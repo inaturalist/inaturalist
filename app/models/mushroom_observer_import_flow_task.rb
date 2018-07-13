@@ -30,8 +30,9 @@ class MushroomObserverImportFlowTask < FlowTask
         transaction do
           o = observation_from_result( result )
           unless o && o.save
-            errors[result[:url]] = o.errors.full_messages.to_sentence
-            clear_warnings_for_url( result[:url] )
+            mo_url = result[:url].gsub( "https", "http" )
+            errors[mo_url] = o.errors.full_messages.to_sentence
+            clear_warnings_for_url( mo_url )
           end
         end
       end
@@ -108,7 +109,8 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def observation_from_result( result, options = {} )
-    log "working on result #{result[:url]}"
+    mo_url = result[:url].gsub( "https", "http" )
+    log "working on result #{mo_url}"
     if ( is_collection_location = result.at( "is_collection_location" ) ) && is_collection_location[:value] == "false"
       warn( result[:url], "Obs not from collection location")
       return nil
@@ -117,14 +119,14 @@ class MushroomObserverImportFlowTask < FlowTask
       where(
         "observation_field_values.observation_field_id = ? AND value = ?",
         mo_url_observation_field,
-        result[:url]
+        mo_url
       ).first
     if existing
-      log "Found existing for #{result[:url]}: #{existing}"
+      log "Found existing for #{mo_url}: #{existing}"
       return existing
     end
     o = Observation.new( user: user )
-    o.observation_field_values.build( observation_field: mo_url_observation_field, value: result[:url] )
+    o.observation_field_values.build( observation_field: mo_url_observation_field, value: mo_url )
     if location = result.at_css( "> location" )
       o.place_guess = location.at( "name" ).text
       swlat = location.at( "latitude_south" ).text.to_f
@@ -146,11 +148,11 @@ class MushroomObserverImportFlowTask < FlowTask
         if taxon && taxon.persisted?
           o.taxon = Taxon.find_by_id( taxon.id )
           if taxon.name != name
-            warn( result[:url], "Name mismatch, #{name} on MO, #{taxon.name} on iNat" )
+            warn( mo_url, "Name mismatch, #{name} on MO, #{taxon.name} on iNat" )
           end
         end
       rescue ActiveRecord::AssociationTypeMismatch
-        warn( result[:url], "Failed to import a new taxon for #{name}")
+        warn( mo_url, "Failed to import a new taxon for #{name}")
       end
       o.species_guess = name
       o.observation_field_values.build( observation_field: mo_name_observation_field, value: [
@@ -187,7 +189,7 @@ class MushroomObserverImportFlowTask < FlowTask
               lp.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
             end
           rescue => e
-            warn( result[:url], "Failed to download #{image_url}")
+            warn( mo_url, "Failed to download #{image_url}")
             next
           end
         end
