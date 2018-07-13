@@ -167,7 +167,7 @@ class MushroomObserverImportFlowTask < FlowTask
     end
     if !options[:skip_images] && ( images = images_from_result( result ) ) && images.size > 0
       images.each do |image|
-        image_url = "http://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
+        image_url = "https://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
         lp = LocalPhoto.new( user: user )
         begin
           log "getting image from #{image_url}"
