@@ -119,7 +119,10 @@ class MushroomObserverImportFlowTask < FlowTask
         mo_url_observation_field,
         result[:url]
       ).first
-    return existing if existing
+    if existing
+      log "Found existing for #{result[:url]}: #{existing}"
+      return existing
+    end
     o = Observation.new( user: user )
     o.observation_field_values.build( observation_field: mo_url_observation_field, value: result[:url] )
     if location = result.at_css( "> location" )
@@ -167,7 +170,7 @@ class MushroomObserverImportFlowTask < FlowTask
     end
     if !options[:skip_images] && ( images = images_from_result( result ) ) && images.size > 0
       images.each do |image|
-        image_url = "https://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
+        image_url = "https://mushroomobserver.nyc3.digitaloceanspaces.com/orig/#{image[:id]}.jpg"
         lp = LocalPhoto.new( user: user )
         begin
           log "getting image from #{image_url}"
@@ -176,8 +179,17 @@ class MushroomObserverImportFlowTask < FlowTask
             lp.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
           end
         rescue => e
-          warn( result[:url], "Failed to download #{image_url}")
-          next
+          begin
+            image_url = "https://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
+            log "getting image from #{image_url}"
+            io = open( URI.parse( image_url ) )
+            Timeout::timeout(10) do
+              lp.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+            end
+          rescue => e
+            warn( result[:url], "Failed to download #{image_url}")
+            next
+          end
         end
         if image_license = image.at( "license")
           lp.license = case image_license[:url]
