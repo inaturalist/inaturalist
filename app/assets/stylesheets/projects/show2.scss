@@ -271,6 +271,8 @@ button {
           }
         }
         .header-about-text {
+          width: 100%;
+          word-wrap: break-word;
           margin-top: 17px;
           overflow: hidden;
           text-overflow: ellipsis;
