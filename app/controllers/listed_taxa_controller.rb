@@ -55,7 +55,7 @@ class ListedTaxaController < ApplicationController
               :errors => msg,
               :full_messages => msg
             },
-            :status => :unprocessable_entity,
+            :status => :forbidden,
             :status_text => msg
         end
       end
@@ -159,7 +159,7 @@ class ListedTaxaController < ApplicationController
           return redirect_to lists_path
         end
         format.json do
-          return render(:json => {:error => msg})
+          return render(:json => {:error => msg}, status: :forbidden)
         end
       end
     end

@@ -116,7 +116,7 @@ class CommentsController < ApplicationController
           redirect_to @comment
         end
         format.json do
-          render :json => {:error => msg}
+          render :json => {:error => msg}, status: :forbidden
         end
       end
       return
@@ -172,7 +172,7 @@ class CommentsController < ApplicationController
           redirect_to @comment
         end
         format.json do
-          render :json => {:error => msg}
+          render :json => {:error => msg}, status: :forbidden
         end
       end
       return 
