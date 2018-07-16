@@ -1576,7 +1576,6 @@ sq:
   generally_these_come_from_iucn_red_list: Zakonisht këto vijnë nga Lista e Kuqe e
     Unionit Ndërkombëtar për Ruajtjen e Natyrës (angl. IUCN), dhe nëse vijnë prej
     diku tjetër i përmbahen kategorive të IUCN.
-  generate_pdf: Krijo PDF
   generate_taxonomic_tags_for_flickr: Gjeneroni etiketat taksonomike për fotot tuaja
     në Flickr.
   generate_widget: Gjenero veglën
@@ -2311,6 +2310,8 @@ sq:
   more_photos: Më shumë fotografi
   most: Më së shumti
   most_agree: shumica pajtohen
+  most_browser_print_pdf: 'Shënim: shumica e shfletuesve kanë mundësinë e shtypjes
+    në PDF'
   most_disagree: shumica nuk pajtohen
   most_comments_and_faves: Komentet dhe te favorizuarat
   most_observations: Më së shumti vëzhgime
@@ -2343,11 +2344,13 @@ sq:
   name: Emri
   name_entered: Emri u fut
   name_llaves: '[EMËR]'
+  name_or_slug: Emri apo shkurtesa URL. p.sh. projekti-im
   name_of_the_place_you: Emëro vendin ku ke bërë vëzhgimin
   name_or_username: Emri ose emri i perdoruesit
   name_provider: Emri i ofruesit
   name_providers:
     col: Katalogu i Jetës
+    ubio: Biografia e përdoruesit
     nzor: Regjistri i Organizmave të Zelandës së Re
   named_based_url_might_change: Emri i bazuar ne IP adresen tuaj mund te ndryshoj,
     mirepo kjo jo.
@@ -2358,10 +2361,12 @@ sq:
   native: autokton
   native_page_url: IP adresa e faqes vendëse
   native_to_place: Autokton në %{place}
+  nav: Navigimi
   nav_description: Lorem Ipsum është një tekst shabllon i industrisë së printimit
     dhe shtypshkronjave. Lorem Ipsum ka qenë teksti shabllon i industrisë që nga vitet
     1500, kur një shtypës i panjohur morri një galeri shkrimesh dhe i ngatërroi për
     të krijuar një libër mostër.
+  ne_lat: NE Latinisht.
   near: afër
   near_threatened: Afër kërcënimit
   nearby: Pranë
@@ -2369,6 +2374,9 @@ sq:
   nearby_observations: Vëzhgimet në Afërsi
   need_id_help?: Ke nevojë për ndihmë mbi ID?
   needs_id: Nevojitet ID
+  needs_id_: Ka nevojë për ID
+  Needs_ID!: Ka nevojë për ID!
+  needs_id_expandable_html: <span class='full'>Ka nevojë për </span>ID
   needs_to_be_identified: E nevojshme të identifikohen
   new: E re
   new_and_noteworthy: E re dhe me vlerë
@@ -2381,8 +2389,11 @@ sq:
     si gjithëpërfshirëse.
   new_comment_on_a_parent_by_user_link: Koment i ri ne @vow_or_con{vow:an|a} %{parent}
     by %{user_link}
+  new_custom_field_for: Fushë e re rregullimi për
+  new_flag_for: Etiketë e re për
   new_guide: Udhëzues i ri
   new_journal_posts: Postim i ri i revistes
+  new_lexicon: Fjalor i ri
   new_list: Listë e re
   new_members: Anëtarë të rinj
   new_message: Mesazh i ri
@@ -2397,6 +2408,8 @@ sq:
   new_password: Fjalëkalimi i ri
   new_post: Postim i ri
   new_project: Projekt i ri
+  new_project_asset: Projekt_aset i ri
+  new_project_asset_for: Projekt aset i ri për
   new_source: Burim i ri
   new_taxon_change: Ndryshim i ri në taxon
   new_taxon_link: Linku i ri i taxonit
@@ -2416,6 +2429,7 @@ sq:
   next_observation: Vëzhgimi i ardhshëm
   next_page: Faqja tjetër
   next_photo: Foto tjetër
+  next_tab: Lidhësja e radhës
   "no": Jo
   no_activity_in_the_past_week: Asnjë aktivitet i javës së kaluar. Koha për
   no_administrator_knows_your_password: Asnjë %{sitename} nga administratorët nuk
@@ -2426,6 +2440,10 @@ sq:
   no_colors_selected: Nuk ka ngjyra të zgjedhura.
   no_comments_yet: Nuk ka komente ende.
   no_countries_added_yet: Asnjë vend nuk ka shtuar akoma
+  no_creative_commons_flickr_photo: Asnjë fotografi Flickr nën Creative Commons nuk
+    është etiketuar
+  no_creative_commons_flickr_photos_tagged_x: Asnjë fotografi Flickr nën Creative
+    Commons nuk është etiketuar "%{x}"
   no_curators_set: Asnjë kurator nuk është caktuar
   no_curators_yet: Asnjë kurator ende!
   no_description: Pa pershkrim
@@ -2515,6 +2533,7 @@ sq:
     me këto kritere
   no_wikipedia_page_for_taxon: Asnjë faqe në Wikipedia për këtë takson.
   no_x_this_y: Nuk ka %{x} ky %{y}
+  noble_curators: '%{site}''s Përzgjedhësit fisnik'
   non_human?: Jo-njerëzore?
   none: Asnjë
   none_found: Asnjë nuk u gjet
@@ -2526,6 +2545,7 @@ sq:
   not_finding_place_you_want?: Nuk gjetët vendin që dëshiron?
   not_finding_what_looking_for: Nuk po gjen atë që po kërkon?
   not_found: Nuk u gjet
+  not_just_creative_commons_licensed: Jo e licencuar vetëm sipas Creative Commons
   not_linked_facebook: Llogaria e juaj në %{site_name} nuk është e lidhur me llogarinë
     tuaj në Facebook
   not_linked_flickr: Llogaria juaj në %{site_name} nuk është e lidhur me llogarinë
@@ -2637,6 +2657,7 @@ sq:
     një drejtkëndëshi të vizatuar përgjatë rrethojës së vendit, çka mund të rezultojë
     në pasaktësi për vendet që nuk ngjasojnë me formën e drejtkëndëshit. Kjo ndodh
     për shkak të një kufizimi në bazën e të dhënave, të cilin po përpiqemi ta zgjidhim.
+  observations_needing_curation: Vëzhgimet të cilat kanë nevojë për përzgjedhje
   observations_obscured: Vëzhgimet (e fshehura)
   observations_observed_this_month: Vëzhgimet <em>observed</em> këtë muaj, jo të shtuara
     këtë muaj. Dilni jashtë!
@@ -2735,6 +2756,8 @@ sq:
       të gjallesave. Këtu poshtë janë diskutimet që po ndodhin tani. (Shënim: Ju regjistroheni
       automatikisht në çdo diskutim ku shtoni komente apo identifikime. Përditësimet
       i menaxhoni në seksionin ‘Regjistrime’ djathtas.)</p>'
+    updates_by_you_panel_title: Kjo lidhëse është një mënyrë e lehtë për të filtruar
+      vetëm përditësimet në përmbajtjen tuaj.
     updates_by_you_panel_body: Mbani mend, në dritaren "Të gjitha përditësimet" ju
       do të pranoni përditësimet jo vetëm të përmbajtjes suaj, por gjithashtu të përmbajtjeve
       të njerëzve që ju ndiqni, si dhe taxave apo vendeve për të cilat ju abonoheni,
@@ -2779,6 +2802,8 @@ sq:
     etj.
   only_show_taxa_fom_this_list: Shfaq vetëm taxa-t nga kjo listë
   only_showing_taxa_from: Duke shfaqur vetëm taxa nga kjo listë
+  only_site_curators_can_turn_on_observation_aggregation: Vetëm përzgjedhësit e faqes
+    mund të aktivizojnë grumbullimin e projekt
   only_species: Vetëm specjet
   only_species_and_subspecies: Vetëm specjet dhe nënspecjet/llojet
   only_the_author_of_this_post_can_do_that: Vetëm autori i ketij postimi mund ta bëjë
@@ -2793,6 +2818,7 @@ sq:
   open_description: Çdokush mund ti shohë koordinatat përveç nëse taxon-i është i
     rrezikuar.
   opt_in_for_this_observation: Zgjidhni për këtë vëzhgim
+  opt_out_of_community_ids_for_obs: Largo identifikimin e komunitetit për këtë vëzhgim
   optional: zgjedhore
   optional_columns_note_for_any: 'Kolonat opsionale (shënim: Për t''u përdorur cilado
     nga kolonat në vëzhgim, duhet që të gjitha të jenë prezente)'
@@ -2824,11 +2850,15 @@ sq:
     one: kafshë tjetër
     other: kafshë tjera
   other_lexicons: Leksikone tjera
+  other_listings_of_this_taxon_for_this_place: Radhitjet tjera të këtij taxon për
+    këtë vend
   other_species_commonly_misidentified_as_this_species: Lloje të tjera zakonisht janë
     ngatërruar si këto lloje
   other_species_commonly_misidentified_as_this_species_in_place_html: Lloje të tjera
     zakonisht janë ngatërruar si këto lloje në <a href="%{url}">%{place}</a>
   our_blog: Blogu ynë
+  out_of_range: Jashtë sferës
+  output_taxon: Taxoni i nxjerrë
   overview: Pamje e përgjithshme
   owner: Pronar
   parent: Prindi
@@ -2836,8 +2866,9 @@ sq:
   password: Fjalëkalimi
   password_confirmation: Konfirmim i fjalëkalimit
   paste: Ngjit
+  paste_in_a_bunch_of_names: Ngjit në varg emrash, 1 për vijë, dhe bjeri butonit!
+  paste_in_a_comma_separated_list: Ngjit në listën e shteteve të ndarë me presje
   pdf: PDF
-  pdf_slash_print: PDF/Print
   people: Njerëz
   people_agree: Njerëz që pajtohen
   people_following_user: Njerëz që ndjekin %{user}
@@ -2866,6 +2897,7 @@ sq:
   photo_browser: Kërkuesi i fotove
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_deleted: Fotografia u fshi
+  photo_hosting_accounts: Llogaritë e vendosjes së fotografive
   photo_integration: Integrimi i fotos
   photo_licensing: Liçencimi i fotove
   photo_type: Lloji i fotos
@@ -2896,6 +2928,7 @@ sq:
   place_deleted: Vendi i fshire
   place_geo:
     geo_planet_place_types:
+      Aggregate: Grumbullo
       aggregate: Totali
       Airport: Aeroporti
       airport: aeroport
@@ -2903,6 +2936,10 @@ sq:
       building: Ndërtesa
       Canton: Kantoni
       canton: kantoni
+      Colloquial: Bisedore
+      colloquial: bisedore
+      Commune: I zakonshëm
+      commune: i zakonshëm
       Continent: Kontinenti
       continent: Kontinent
       Country: Shteti
@@ -2913,16 +2950,30 @@ sq:
       district: qarku
       Division: Ndarje
       division: ndarje
+      Drainage: Drenazh
+      drainage: drenazh
+      Estate: Pronë
+      estate: prone
+      Governorate: Qeverisje
+      governorate: qeverisje
       Historical_County: Qark historik
       historical_county: qark historik
       Historical_State: Shtet historik
       historical_state: shtet historik
       Historical_Town: Qytet historik
       historical_town: qytet historik
+      Intersection: Ndërprerje
+      intersection: ndërprerje
       Island: Ishull
       island: ishull
+      Land_Feature: Tipari i Tokës
+      land_feature: tipari i tokës
+      Local_Administrative_Area: Zona Administrative Lokale
+      local_administrative_area: zona administrative lokale
       Local_Authority: Autoritetet Vendase
       local_authority: autoritetet vendase
+      Miscellaneous: Të Ndryshme
+      miscellaneous: të Ndryshme
       Municipality: Bashki
       municipality: bashki
       Nationality: Kombësia
@@ -2933,6 +2984,10 @@ sq:
       nearby_intersection: kryqëzimi më i afërt
       Open_Space: Hapësira e Hapur
       open_space: hapësira e hapur
+      Parish: Qark
+      parish: qark
+      Prefecture_City: Prefektura Qyteti
+      prefecture_city: prefektura qyteti
       Point_of_Interest: Pika e interesit
       point_of_interest: pika e interesit
       Postal_Code: Kodi Postar
@@ -2943,6 +2998,8 @@ sq:
       region: rajon
       Republic: Republikë
       republic: republikë
+      Shire: Qark
+      shire: qark
       Sports_Team: Ekipi i Sportit
       sports_team: ekipi i sportit
       State: Shteti
@@ -2955,6 +3012,8 @@ sq:
       subdivision: nënndarje
       Suburb: Periferi
       suburb: periferi
+      Supername: Mbiemri
+      supername: mbiemri
       Territory: Teritor
       territory: teritor
       Time_Zone: Zona kohore
@@ -2967,15 +3026,18 @@ sq:
       unknown: e panjohur
       Zone: Zonë
       zone: zonë
+  place_guess: supozimi i vendit
   place_imported: Vendi u importua!
   place_must_have_a_boundary_defined: Vendi duhet patjetër të ketë të definuar kufij.
   place_name: Emri i vendit
   place_notes: Shënime mbi vendin
+  place_subscription: regjistrimi i vendit
   place_too_big_for_check_list: Ky vend është shumë i madh për listë kontrolluese.
     Kalkulimi i zërave të listës është shumë i kushtueshëm, kështuqë ne nuk i lejojmë
     ato për vende të mëdha, përveç nëse ato nuk janë shtuar nga administratorët e
     faqes. Megjithatë, ju ende mund ta përdorni këtë vend për kufijtë e projektit
     dhe paqartësitë te vëzhgimet
+  place_type_name: Emri i llojit të vendit
   place_updated: Vendi u përditësua!
   placement: Vendosje
   places: Vende
@@ -3079,6 +3141,7 @@ sq:
   powered_by_inaturalist_open_source_software_html: Mbështetur nga <a href="https://github.com/inaturalist/inaturalist"
     target="_new" >iNaturalist open source software</a>
   present: i tanishëm
+  press: Shtypi
   preview: Paraafishim
   preview_observations: Paraafisho vëzhgimet
   preview_of_synced_observation: <strong>Parafisho</strong> vëzhgimin e sinkronizuar.  <a
@@ -3094,6 +3157,7 @@ sq:
   previous_page: Faqja paraprake
   previous_photo: Fotoja paraprake
   previous_tab: Skeda paraprake
+  print_verb: Shtyp
   print_in_browser: Printo në shfletues
   privacy: Politika e privatësisë
   privacy_policy: Politika e privatësisë
@@ -3116,40 +3180,202 @@ sq:
     vëzhgimesh përveç nëse projekti është i lidhur me vend me madhësi të moderuar
     ose vetëm nëse lejon vëzhgime përndonjë taxa specifike ose taxa nga lista
   project_assessments: Vlerësimet e projektit
+  project_assets: Asetet e projektit
+  project_cover: Ballina e projektit
   project_created_on: e krijoi këtë projekt më %{date}
+  project_curator_changes: Ndryshimet e kuratorit të projektit
+  project_curator_id: ID e kuratorit të projektit
+  project_curator_tools: Mjetet e kuratorit të projektit
+  project_curators: Kuratorët e projektit
   project_group_label: Grup
+  project_group_description: Grupimi i projektit i takon
+  project_home: Faqja kryesore e projektit
+  project_icon: Ikona e projektit
+  project_id_or_url_slug: ID-ja e projektit apo URL shkurtesa. p.sh. 333 or projekti-im
+  project_invitations: Ftesat në projekt
+  project_journal_posts: Postime të ditarit të projektit
+  project_list: Lista e Projektit
+  project_list_defaults:
+    title: '%{owner_name}''s Lista Kontrolluese'
+    description: Lista e llojeve për %{owner_name}
+  project_curators_added_some_of_your_observations_html: <a href="%{url}">%{project}</a>
+    Kuratorët shtuan disa nga vëzhgimet tuaja
+  project_id: ID e projektit
+  project_members: '%{project} Anëtarët'
   project_membership_model_description: A është projekti juaj i hapur për të gjithë
     apo vetëm njerëzit që ju ftoni?
   project_name: Emri i projektit
   project_observation_settings: Cilësimet e vëzhgimeve të projektit
   project_observations: Vëzhgimet e projektit
+  project_post: Posta e Projektit
+  project_preferred_count_description: |-
+    A doni që numri i taksave për projektin tuaj të raportohet si
+    specie, çdo takson, apo vetëm "gjethet" e pemës taksonomike?
+  project_requirements: Kërkesat e Projektit
   project_rules: Rregullat e projektit
   project_settings: Cilësimet e projektit
+  project_that_does_not_contain_these_observations: Projekt, i cili nuk përmban këto
+    vëzhgime
+  project_user_cannot_be_found: Përdoruesi i projektit nuk mund të gjendet
+  project_user_was_invalid: 'Përdoruesi i projektit ishte i pavlefshëm: %{project_user}'
   project_was_successfully_created: Projekti u krijua me sukses.
   project_was_successfully_updated: Projekti u përditësua me sukses.
   project_x_was_delete: '%{project} u fshi (Ju lutemi prisni ca minuta derisa të largohet
     nga faqja)'
   projects: Projektet
+  projects_description: |-
+    Projektet ua mundësojnë t'i bashkoni vëzhgimet tuaja me njerëz tjerë në %{site_name}.
+    Po që se jeni duke nisur një përpjekje shkencore qytetare apo mbani regjistër të zogjve në lagjen tuaj, Projektet janë mënyra e duhur.
   projects_from_everywhere: Projekte nga të gjitha anët
+  projects_from_place: Projektet nga %{place}
+  projects_in_x: Projektet në %{x}
   projects_you_admin: Projektet që ju administroni
   projects_youve_joined: Projektet që u jeni bashkuar
+  proposed_taxa_that_contradict_the_community_id: Taksonomitë e propozuara që bien
+    në kundërshtim me ID-në e Komunitetit
+  proposed_taxa_that_support_the_community_id: Taksonomitë e propozuara të cilat mbështesin
+    ID-në e Komunitetit
+  protozoans: protozoar
+  provider_authorizations: Autorizimet e ofruesit
+  public_coordinates_obscured_by: Koordinatat publike të paqarta sipas %{distance}
+    km
+  public_domain: Domeni publik
+  publish: Publiko
+  purple: vjollcë
+  quality_grade: Shkalla e kualitetit
+  quality_grade_: Shkalla e kualitetit
+  quality_grade_colon: 'Shkalla e kualitetit:'
+  queued: I rradhitur
+  query: Pyetje
+  range: Rangu
+  range_from: Rangu nga
+  rank: Renditja
+  rank_position: Renditja
+  rank_restrictions: Radhit kufizimit
+  ranks:
+    kingdom: mbretëri
+    subkingdom: nën-mbretëria
+    superclass: superklasa
+    class: klasa
+    subclass: nënklasa
+    infraclass: infraklasa
+    superorder: super-renditja
+    order: renditja
+    suborder: nën-renditja
+    infraorder: infra-renditja
+    superfamily: Superfamilja
+    family: familja
+    subfamily: nënfamilja
+    supertribe: superfisi
+    tribe: fisi
+    subtribe: nënfisi
+    genus: gjinia
+    genushybrid: hibrid gjinor
+    subgenus: nën-gjinia
+    section: seksioni
+    subsection: nën-seksioni
+    species: specjet
+    hybrid: hibrid
+    subspecies: nën-speciet
+    variety: llojllojshmëria
+    form: forma
+    infrahybrid: infra-hibride
+    leaves: gjethet
+  ranges: Rangjet
+  rare: Rallë
+  re_apply_list_rules: Rivendos rregullat e listës
+  re_order_photos: Rirendit fotot &raquo;
   read_more: Lexo më shumë
+  read_our_getting_started_guide: lexo guidën tonë për fillestarë
+  read_the_full_wikipedia: lexo përshkrimin e plotë të Wikipedia
+  ready_to_get_started?: Jeni gati për të filluar ?
+  real_time_stats: Të dhënat në kohë reale
+  real_time_discussions: Diskutimet në kohë reale
+  reason: Arsyeja
+  reason_you_are_flagging_this_item: Arsyeja pse e etiketoni këtë artikull.
+  recaptcha_verification_failed: verifikimi re-Captcha dështoi
   receive_email_notifications_when_people_leave_you: Prano njoftimet përmes emailit
     rreth
   receive_updates_from_this_project: Prano përditësimet nga ky projekt
   received: E pranuar
   recent: Të fundit
+  recent_additions: Shtimet e fundit
   recent_comments_on_your_stuff: Komentet e kohëve të fundit në gjërat tuaja
+  recent_evidence?: Dëshmitë e fundit?
+  recent_evidence_of_organism: Dëshmitë e fundit të një organizmi
   recent_observations: Vëzhgimet e kohëve të fundit
   recent_observations_: Vëzhgimet e Kohëve të fundit
   recent_post: Postim i kohës së fundit
   recent_atom_observations_by: Vëzhgimet e kohëve të fundit nga %{login}(Atom)
   recent_observations_by: Vëzhgimet e kohëve të fundit nga %{login}
   recent_updates: Përditësimet e kohëve të fundit
+  recently_active: Aktiv së fundmi
+  recently_active_projects_from_everywhere: Projektet aktive së fundmi nga gjithandej
+  recently_active_projects_from_place: Projektet aktive së fundmi nga %{place}
+  recently_created: Krijuar së fundmi
+  recently_created_projects_from_everywhere: Projektet e krijuara së fundmi nga gjithandej
+  recently_created_projects_from_place: Projektet e krijuara së fundmi nga %{place}
+  recently_finished: Përfunduar së fundmi
   recently_observed: E vëzhguar kohëve të fundit
+  recently_resolved: Zgjidhur së fundmi
+  record!: Rekord!
   red: e kuqe
+  redo_search_in_map: Ribëje kërkimin në hartë
+  redo_search_in_map_area: Ribëje kërkimin në zonën e hartës
   refresh: Rifresko
+  refresh_listed_taxa: rifresko taxat e radhitura
+  refreshing: duke u rifreskuar
+  regenerate_stats: Rigjenero statistikat
+  regenerate_url: Rigjenero URL-në
+  register_for_this_event_at_x_html: Regjistrohu për këtë ngjarje në %{x}
+  reject?: Refuzo?
+  reject_the_community_id: refuzo ID-në e komunitetit
+  related_species: Speciet e ndërlidhura
+  relative_observations: Vëzhgimet relative
+  reload_and_refresh: Ringarko dhe rifresko listën
+  reload_from_observations: Ringarko nga vëzhgimet
+  reload_timed_out: Ringarkimi skadoi. Ju lutemi provoni sërish më vonë.
+  remarks_optional: Vërejtjet <span class="përshkrim i shkurtër">(optional)</span>
+  remember_its_a_lot_easier_to_id: Mbani mend, është shumë më lehtë të identifikohet
+    dicka nëse ofroni informata përshkruese sa më shumë që mundeni. Më e rëndësishsmja
+    , ju lutemi ofroni një <strong>vend</strong>, një <strong>datë/kohë</strong>,
+    dhe ca informata për <strong>madhësinë</strong>.
+  remember_me: Më mbaj mend
+  remove: Largo
+  remove_all_tags: Largo të gjitha etiketat
+  remove_boundary: Largo kufirin
+  remove_comma_separated_tags: Largo etiketat e ndara me presje
+  remove_conservation_status: largo statusin e konzervimit
+  remove_from: Largo nga
+  remove_curator: Largo përzgjedhësin
+  remove_curator_role: Largo rolin e përzgjedhësit
+  remove_curator_status: Largo statusin e përzgjedhësit
+  remove_from_batch: Largo nga grupi
+  remove_from_guide: Largo nga udhëzuesi
+  remove_from_id_please?: Largo nga ID Ju Lutem?
+  remove_from_list: Largo nga lista
+  remove_from_project: Largo nga projekti
+  remove_this_section: Larko nga seksioni
+  remove_manager: Largo menaxherin
+  remove_observations:
+    one: Largo 1 vëzhgim?
+    other: Largo %{count} vëzhgimet?
+  remove_photo: Largo fotografinë
+  remove_place: Largo vendin
+  remove_project_user: Largo përdoruesin e projektit
+  remove_range: Largo vargun
+  remove_section: Largo seksionin
+  remove_selected: Largo të përzgjedhurat
+  remove_tags: Largo etiketat
+  remove_your_existing_id?: Largo ID-në tuaj ekzistuese?
+  removed: U largua
+  removed!: U largua!
+  removed_project_user: Përdoruesi i projektit u largua
+  removing: Duke e larguar ...
   reorder_by_taxonomy: Renditja sipas taksonomisë
+  repair_doesnt_work_for_that_kind_of_photo: Riparimi nuk funksionon për atë lloj
+    fotografie
+  repair_external_photos: Riparo fotografitë e jashtme
   rules_types:
     must_be_in: E detyrueshme të jetë në taxon
   save: Ruaj

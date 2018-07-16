@@ -8,6 +8,7 @@
 # Author: Dumasya
 # Author: Edible Melon
 # Author: Eleferen
+# Author: Evs
 # Author: Gehhrr
 # Author: Ghiutun
 # Author: Happy13241
@@ -25,6 +26,7 @@
 # Author: Patrick Star
 # Author: Redredsonia
 # Author: Smigles
+# Author: Vlad5250
 # Author: WindEwriX
 # Author: Дмитрий
 # Author: Ядерный Трамвай
@@ -1629,7 +1631,6 @@ ru:
   generally_these_come_from_iucn_red_list: Как правило, они поступают из Красного
     списка МСОП, но если они приходят из других источников, они будут придерживаться
     категорий МСОП.
-  generate_pdf: Создать PDF
   generate_taxonomic_tags_for_flickr: Создать таксономические теги для ваших фото
     на Flickr.
   generate_widget: Сгенерировать виджет
@@ -2198,7 +2199,7 @@ ru:
     уже есть все потомки. Куратор может переопределить это, отредактировав таксоны
     и введя родительские идентификаторы напрямую, но, пожалуйста, подумайте вместо
     этого о слиянии новых таксонов с существующими.
-  log_in: Войти
+  log_in: Вход
   logged_in_as: Вошел как
   login_slash_username: Логин / имя пользователя
   logo:
@@ -2333,6 +2334,8 @@ ru:
   more_photos: Больше фото
   most: Больше всего
   most_agree: большинство согласно
+  most_browser_print_pdf: 'Примечание: Большинство браузеров имеют возможность печати
+    в PDF'
   most_disagree: большинство не согласно
   most_comments_and_faves: Больше всего Комментариев и Фаворитов
   most_observations: Больше всего наблюдений
@@ -2396,7 +2399,7 @@ ru:
   needs_id_expandable_html: <span class='full'>Needs </span>ID
   needs_to_be_identified: Нуждается в определении
   new: Новички
-  new_and_noteworthy: Новое & Выдающееся
+  new_and_noteworthy: Новые и значимые
   new_announcement: Новое объявление
   new_assessment: Новая оценка
   new_check_list: Новый контрольный список
@@ -2740,6 +2743,9 @@ ru:
   on_your_life_list: в вашем списке жизни
   onboarding:
     observe_panel_title: Давайте начнём публиковать некоторые наблюдения
+    observe_panel_body_p1_local: Нужно вдохновение? Вот некоторые организмы, наблюдаемые
+      поблизости...
+    observe_panel_body_p1_global: Нужно вдохновение? Вот некоторые наблюдаемые организмы...
     observe_panel_body_p2: Выйдите на улицу и понаблюдайте за отдельным организмом.
       Выберите что-нибудь дикое и сделайте четкое полнокадровое фото. Если у вас уже
       есть фото чего-нибудь дикого, <a href="%{new_observation_path}">добавьте его
@@ -2757,6 +2763,7 @@ ru:
       в курсе  наблюдений, которые они публикуют. Вы также можете подписаться на определенные
       виды, чтобы следить за новыми наблюдениями этих видов, или делать то же самое
       с местами.
+    comments_panel_title: Любопытно, какие обсуждения происходят на %{site_name}?
     comments_panel_body: '<p>%{site_name} - это все о совместном использовании и обсуждении
       наблюдений живых существ. Ниже приведены обсуждения, которые  происходят прямо
       сейчас.(Обратите внимание: вы автоматически подписываетесь на все обсуждения,
@@ -2843,6 +2850,8 @@ ru:
   originally_flagged_by: Первоначально помеченный
   originally_imported_from_url_html: Первоначально импортированный из <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: URL исходной страницы этого фото.
+  original_rights_holder: Первоначальный правообладатель
+  original_url: Исходный URL
   original_url_for_this_map: Оригинальная ссылка для этой карты
   organism_appears_captive_cultivated: Организм выглядит как В неволе / культивируемое
   other: Другое
@@ -2858,14 +2867,18 @@ ru:
     которые обычно ошибочно идентифицируются как этот вид в <a href="%{url}">%{place}</a>
   our_blog: Наш блог
   out_of_range: Вне диапазона
+  overview: Обзор
   owner: Владелец
+  parent: Родитель
+  parent_name: Название родительского таксона
   password: Пароль
   password_confirmation: Подтверждение пароля
   paste: Вставить
+  paste_in_a_bunch_of_names: Вставьте множество имён, по 1 на строку, и нажмите кнопку!
   paste_in_a_comma_separated_list: Вставить в список стран, разделенных запятыми
   pdf: PDF
-  pdf_slash_print: PDF / Печать
   people: Люди
+  people_agree: люди согласны
   people_following_user: Люди, отслеживающие %{user}
   people_user_follows: Люди, которых отслеживает %{user}
   people_added:
@@ -2889,6 +2902,8 @@ ru:
   photo_browser: Фото-браузер
   photo_by_id_attribution: Фото %{id}, %{attribution}
   photo_deleted: Фото удалено
+  photo_destroyed_because_it_was_deleted_from: Фото либо удалено с внешнего сайта,
+    либо %{site_name} больше не имеет разрешения на его просмотр
   photo_hosting_accounts: Учетные записи фотохостингов
   photo_licensing: Лицензирование фото
   photo_type: Тип фото
@@ -2901,6 +2916,9 @@ ru:
   photos_or_sounds?: Фото или звуки?
   photos_size:
     small: маленький
+    medium: средний
+    large: большой
+    original: исходный размер
   photos_size_photos: '%{photos_size} фото'
   photos_size_photo: '%{photos_size} фото'
   photos_updated: Фото обновлены.
@@ -3109,6 +3127,7 @@ ru:
   previous_page: Предыдущая страница
   previous_photo: Предыдущее Фото
   previous_tab: Предыдущая вкладка
+  print_verb: Печать
   privacy: Политика конфиденциальности
   private_description: Координаты полностью скрыты на общедоступных картах, истинные
     координаты видны только вам и кураторам тех проектов, к которым вы добавляете
@@ -3435,7 +3454,7 @@ ru:
   showing_taxa_from_place: Показ таксонов из %{place}
   sign_out: Выйти
   sign_up!: Зарегистрируйтесь!
-  sign_up: Зарегистрироваться
+  sign_up: Регистрация
   sign_up_exclamation: Зарегистрируйтесь!
   similar_species: Аналогичные виды
   single_observation: Одиночное наблюдение
@@ -4033,6 +4052,7 @@ ru:
   user_added_an_x_to_noun_by_html: '%{user} добавил %{x} к %{noun} %{by}'
   user_added_an_x_to_noun_html: '%{user} добавил %{x} к %{noun}'
   user_added_x_observations_html: '%{user} добавил %{x} наблюдений'
+  user_already_authenticated: Пользователь уже прошел проверку подлинности
   user_blocked: Участник заблокирован
   user_commented_on: '%{user} прокомментировал ваш %{title} %{time}'
   user_faved_a_noun_by_owner: '%{user} добавил к фаворитам %{noun} от %{owner}'
@@ -5257,11 +5277,11 @@ ru:
           в разговорных языках. \n  Эти имена обычно узнаваемы, легко произносятся
           и стабильны с течением \n  времени, но многие организмы имеют несколько
           различных имен в разных \n  местах, даже на одном языке, что может затруднить
-          общение об этих \n  организмах и внести  путаницу.\n  Ученые решают эту
-          проблему, используя одно «научное наименование»\n  для каждой категории
+          общение по теме об этих \n  организмах и внести  путаницу.\n  Ученые решают
+          эту проблему, используя одно «научное наименование»\n  для каждой категории
           организма, соответствующее правилам\n  <a \n  href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">Биологическая
           \n  номенклатура</a>, но эти имена, как правило, основаны на латыни, языке,
-          \n  на котором никто не   говорит, поэтому они для многих людей не такие
+          \n  на котором никто не   говорит, поэтому для многих людей они не такие
           \n  запоминающиеся, как обычные имена. Научные наименования также могут
           \n  отражать таксономическую позицию, поэтому они могут меняться, когда
           \n  ученые разрабатывают более точные теории об эволюционных отношениях
@@ -5461,6 +5481,7 @@ ru:
           мира
         observations_to_date: наблюдений
         species_observed: видов содержат наблюдения
+        people_signed_up: человек зарегистрировалось
         how_it_works: 'Как это работает:'
         record_your_observations: Зарегистрируйте ваши наблюдения
         share_with_fellow_naturalists: Поделитесь с другими

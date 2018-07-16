@@ -1578,7 +1578,6 @@ pt-PT:
   generally_these_come_from_iucn_red_list: Geralmente estes têm origem na Lista Vermelha
     da UICN e se a origem for diferente estarão em conformidade com as categorias
     da UICN.
-  generate_pdf: Gerar PDF
   generate_taxonomic_tags_for_flickr: Gerar etiquetas taxonómicas para as suas fotografias
     do Flickr.
   generate_widget: Gerar componente
@@ -2739,6 +2738,9 @@ pt-PT:
     follow_panel_body: Se visitar esses perfis e clicar no botão seguir, será informado
       sempre que sejam publicadas novas observações pelos membros seguidos
     youve_got_updates_panel_title: Tem atualizações!
+  only_project_curators_can_do_that: Só os curadores do projeto podem fazer isso.
+  only_the_project_admin_can_delete_this_project: Só o administrador do projeto pode
+    eleminar este projeto.
   or_invite_your_friends: ou convide os seus amigos
   original: Original
   other: Outro
@@ -2754,7 +2756,6 @@ pt-PT:
   owner: Proprietário
   password: Palavra-passe
   pdf: PDF
-  pdf_slash_print: PDF / Imprimir
   people: Pessoas
   people_agree: pessoas concordam
   person: pessoa
@@ -2859,19 +2860,34 @@ pt-PT:
   please_check_for_you_confirmation_email: Bem-vindo ao %{site_name}!  Por favor verifique
     a confirmação que enviámos por correio electrónico, mas pode já começar a explorar
     o site.
+  please_complete_the_following_to_add_project: 'Por favor, preencha com a(s) seguinte(s)
+    informação(ões) para adicionar a observação ao projeto:'
   popular: popular
+  print_verb: Imprimir
   profile: Perfil
+  project: Projeto
   project_added_your_observations: O projeto adicionou as suas observações
+  project_aggregator_filter_error: Os projetos não associam automaticamente as observações,
+    a não ser que o projeto esteja associado a um local de dimensões moderadas ou
+    se ele permite apenas observações de táxons específicos ou de ume lista de táxons
+  project_created_on: criou este projecto em %{date}
+  project_curators: Curadores do Projeto
+  project_icon: Ícone do projeto
   project_curators_added_some_of_your_observations_html: Os curadores do <a href="%{url}">%{project}</a>
     adicionaram algumas das suas observações
   project_id: ID do projecto
+  project_members: Membros de %{project}
   project_name: Nome do projeto
+  project_observation_settings: Definições das observações do projeto
+  project_rules: Regras do Projeto
   project_that_does_not_contain_these_observations: Projeto que não inclui essas observações
+  project_was_successfully_updated: Projeto foi atualizado com sucesso.
   projects: Projetos
   projects_description: Os projetos permitem agrupar as suas observações com as de
     outras pessoas em %{site_name}. Quer pretende iniciar um projeto de ciência cidadã,
     ou manter um registo das aves que existem no seu bairro. Os projetos são o caminho
     certo.
+  projects_in_x: Projetos em %{x}
   projects_you_admin: Projetos que administra
   protozoans: protozoários
   rank_position: Posição
@@ -2884,8 +2900,19 @@ pt-PT:
   ray_finned_fishes: Peixes de barbatanas com raios
   read_our_getting_started_guide: leia o nosso Guia de Início
   real_time_discussions: Discussões em tempo real
+  receive_updates_from_this_project: Receber atualizações deste projeto
   recent: Recentes
+  recently_active_projects_from_everywhere: Projetos ativos recentemente de todos
+    os lugares
+  recently_created_projects_from_everywhere: Projetos criados recentemente de todos
+    os lugares
+  remove_from_project: Remover do projeto
+  remove_project_user: Remover utilizador do projeto
+  removed_project_user: Utilizador do projeto removido
   restore: Restaurar
+  rules_types:
+    must_be_coordinates_shareable_by_project_curators: o observador deve permitir
+      que os curadores do projeto visualizem as coordenadas.
   search_projects: Procurar por projetos
   show_common_names: Mostrar os nomes vulgares
   show_less: Mostrar menos
@@ -2893,14 +2920,28 @@ pt-PT:
   sign_in_exclamation: Iniciar sessão
   some_observations_failed_to_be_added: Algumas observações não foram adicionadas
     aos projetos
+  sorry_there_were_problems_with_your_request: 'Lamentamos, occoreu um problema com
+    a sua solicitação: %{project_user}'
   sort: Ordenar
   species_header: Espécie
+  start_a_new_project: Iniciar um novo projeto
+  start_new_project: Iniciar um novo projeto
   still_needs_id?: A comunidade pode confirmar/melhorar a identificação?
+  submission_model_description: Quem pode adicionar observações ao seu projeto?
   subscriptions: Subscrições
   tags_are_a_way: As etiquetas permitem organizar as suas observações. Por exemplo,
     pode marcar todas as observações de poças com a etiqueta "poças" para facilitar
     a sua localização posterior.
   taxon_curators: Curadores de táxons
+  terms_new_users: Se adicionar termos ao seu projeto, todos os novos utilizadores
+    deverão concordar com eles antes de aderir.
+  that_project_doesnt_exist: Este projeto não existe.
+  the_admin_is_the_person_who: O administrador é a pessoa que criou o projeto. Ele
+    faz tudo que os gestores e os curadores fazem, mas é o único que pode eliminar
+    o projeto.
+  the_observation_was_already_added_to_that_project: A observação já foi adicionada
+    a este projeto.
+  the_project: o projeto
   the_world: O Mundo
   this_photo_is_already_associated: Esta foto já está associada com uma das suas observações.
   to_recipient: para

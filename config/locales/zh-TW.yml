@@ -1393,7 +1393,6 @@ zh-TW:
   geo: 地理
   general: 一般
   generally_these_come_from_iucn_red_list: 通常它們來自國際自然保護聯盟瀕危物種(IUCN)紅色名錄，如它們來自其他地方亦會附帶著IUCN的分類。
-  generate_pdf: 產生 PDF
   generate_taxonomic_tags_for_flickr: 為您的 Flickr 照片產生物種分類標籤。
   generate_widget: 產生小工具
   generate_your_stats: 產生您的統計內容
@@ -2023,6 +2022,7 @@ zh-TW:
   more_photos: 更多照片
   most: 多數
   most_agree: 最多同意
+  most_browser_print_pdf: 註：多數瀏覽器已有可列印成 PDF 的選項
   most_disagree: 多數不同意
   most_comments_and_faves: 最多評論與最愛
   most_observations: 最多觀察
@@ -2490,7 +2490,6 @@ zh-TW:
   paste_in_a_bunch_of_names: 每行貼上一串名稱，然後按下按鍵！
   paste_in_a_comma_separated_list: 貼上以逗號分隔的國家清單
   pdf: PDF
-  pdf_slash_print: PDF / 列印
   people: 成員
   people_agree: 人們同意
   people_following_user: 關注 %{user} 的人
@@ -2763,6 +2762,7 @@ zh-TW:
   previous_page: 上一頁
   previous_photo: 上一個照片
   previous_tab: 上一個頁籤
+  print_verb: 列印
   print_in_browser: 在瀏覽器中列印
   privacy: 隱私政策
   privacy_policy: 隱私政策
@@ -3532,7 +3532,7 @@ zh-TW:
     other: 有 <span class='count'>%{count}</span> 個同種異名</span>
   there_is_no_wikipedia_page_matching: 沒有符合的維基百科頁面
   there_isnt_wiki_article: 維基百科沒有名為「<i>%{taxon}</i>」的條目或重定向。您也許想
-  there_isnt_a_wikipedia_article_titled_x_html: 維基百科沒有名為「%{x}」的條目或重定向。您也許想<a href='http://en.wikipedia.org/wiki/%{x}'>創建一條</a>？
+  there_isnt_a_wikipedia_article_titled_x_html: 維基百科沒有名為「%{x}」的條目或重定向。您也許想<a href='http://zh.wikipedia.org/wiki/%{x}'>創建一條</a>？
   there_merge_problems_with_the_merge: 有合併問題：%{merged_errors}
   there_was_a_problem_saving_your_identification: 儲存您的鑑定時出現錯誤：%{error}
   there_were_errors: 出現錯誤。
@@ -3758,6 +3758,7 @@ zh-TW:
   user_added_an_x_to_noun_by_html: '%{user}添加一個%{x}至由%{by}的%{noun}'
   user_added_an_x_to_noun_html: '%{user}添加一個%{x}至%{noun}'
   user_added_x_observations_html: '%{user}添加%{x}個觀察'
+  user_already_authenticated: 使用者已驗證
   user_autocomplete_placeholder: kueda、simon123 等等。
   user_blocked: 使用者已被封鎖
   user_commented: '%{user} 已評論'

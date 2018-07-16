@@ -1132,7 +1132,6 @@ ko:
   general: 일반
   generally_these_come_from_iucn_red_list: 대체적으로 이들은 IUCN 적색 목록에서 가져왔고, 다른 곳이 출처라도
     IUCN 범주를 고수합니다.
-  generate_pdf: PDF 생성하기
   generate_taxonomic_tags_for_flickr: Flickr 사진들을 위한 분류군 태그를 생성합니다.
   generate_widget: 위젯 생성하기
   generating: 생성 중...
@@ -1589,6 +1588,7 @@ ko:
   more_info_title: 자세한 정보
   more_observations: 더 많은 관찰
   more_photos: 더 많은 사진들
+  most_browser_print_pdf: '참고: 대부분의 브라우저는 PDF를 인쇄하는 옵션이 있습니다'
   most_observations: 가장 많은 관찰
   must_have_observation_field: '%{operand}을 필수로 기입해야 합니다.'
   mute_user: 사용자를 알림에서 제외
@@ -1847,7 +1847,6 @@ ko:
   password_confirmation: 비밀번호 확인
   paste: 붙여넣기
   pdf: PDF
-  pdf_slash_print: PDF / 인쇄
   people_added:
     identification:
       without_observation: <strong>ID</strong> 추가됨
@@ -1962,6 +1961,7 @@ ko:
   previous_page: 이전 문서
   previous_photo: 이전 사진
   previous_tab: 이전 탭
+  print_verb: 인쇄
   privacy: 개인정보 정책
   privacy_policy: 개인정보 정책
   private_: 비공개
@@ -2196,6 +2196,7 @@ ko:
   user_added_a_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_an_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_x_observations_html: '%{user}는 %{x}개의 관찰을 추가했습니다.'
+  user_already_authenticated: 사용자는 이미 인증되었습니다
   user_autocomplete_placeholder: kueda, simon123 등.
   user_blocked: 사용자가 차단됨
   user_commented: '%{user}님이 댓글을 남겼습니다'

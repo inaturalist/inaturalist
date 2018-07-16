@@ -69,8 +69,8 @@ fi:
     one: Yhden henkilön mielestä tästä oli apua
     other: '%{count} henkilön mielestä tästä oli apua'
   x_faves:
-    one: 1 suosikki
-    other: '%{count} suosikkia'
+    one: 1 suositus
+    other: '%{count} suositusta'
   x_flags_resolved_html:
     one: <span class='count'>1</span> lippu ratkaistu
     other: <span class='count'>%{count}</span> lippua ratkaistu
@@ -145,6 +145,7 @@ fi:
   about_the_cc_licenses: Tietoja Creative Commons -lisensseistä
   about_the_taxobox_raquo: Taksonominen taulu &raquo;
   about_these_licenses: Tietoja näistä lisensseistä
+  about_this_bioblitz: Tietoja tästä bioblitzistä
   about_this_map: Tietoja tästä kartasta
   about_this_project: Tietoja tästä projektista
   about_x: Tietoja %{x}
@@ -507,7 +508,7 @@ fi:
     linkin?
   are_you_sure_want_delete_this_name: Oletko varma, että haluat poistaa tämän nimen?
   are_you_sure_want_delete_this_range: Oletko varma, että haluat poistaa tämän alueen?
-  are_you_sure_want_join: Oletko varma, että haluat liittyä
+  are_you_sure_want_join: Haluatko varmasti liittyä
   are_you_sure_you_want_to_commit_this_change: Oletko varma, että haluat tehdä tämän
     muutoksen? Tätä ei voi perua.
   are_you_sure_you_want_to_delete_this: Haluatko varmasti poistaa tämän?
@@ -610,7 +611,7 @@ fi:
   batch: Erä
   batch_edit: Erän muokkaus
   batch_operations: Erätoiminnot
-  be_the_first_to_fave_this_observation: Ole ensimmäinen, joka merkitsee tämän suosikikseen!
+  be_the_first_to_fave_this_observation: Ole ensimmäinen joka suosittelee tätä!
   beacuse_we_recently_changed_auth_system: Koska olemme hiljattain muuttaneet käyttäjien
     tunnistautumisjärjestelmäämme, oli tarpeen uusia salasanasi.
   because: koska
@@ -632,6 +633,7 @@ fi:
     edustavat erilaisia viheralueita (puistot, suojelualueet). Jos zoomaat lähemmäksi,
     näet enemmän, pienempiä paikkoja.
   body: Leipäteksti
+  bounding_box: Rajoituslaatikko
   breadcrumbs: Leivänmurut
   brief_caption: Lyhyt kuvaus
   brief_description_on_what_you_observed: Lyhyt kuvaus havainnostasi
@@ -651,6 +653,7 @@ fi:
     projektiin %{project} koska et hyväksynyt projektin ehtoja.
   by_adding_ids_to_observations: lisäämällä tunnisteet havaintoihin
   by_everyone: Kaikkien
+  by_project_list: projektilistoittain
   by_user: käyttäjältä %{user}
   by_you: Sinun
   calendar: Kalenteri
@@ -910,7 +913,7 @@ fi:
     no_rights_reserved: Oikeuksia ei pidätetä
     no_rights_reserved_by: '%{name}, oikeuksia ei pidätetä (%{license_name})'
     anonymous: Anonyymi
-    public_domain: Vapaasti käytettävä
+    public_domain: Tekijänoikeudeton
     copyright: tekijänoikeus
     no_copyright: ei tekijänoikeutta (CC0)
     attribution_noncommercial_sharealike_license: Nimeä-EiKaupallinen-JaaSamoin -lisenssi
@@ -1232,10 +1235,10 @@ fi:
   failed_to_repair_photo: 'Kuvan korjaus epäonnistui: %{errors}'
   "false": Tarua
   faq: Usein Kysytyt Kysymykset
-  fave: suosikki
+  fave: suositus
   faves: Suosikit
   Family: Heimo
-  faved_this_observation: merkitsi tämän havainnon suosikikseen
+  faved_this_observation: suositteli tätä havaintoa
   favorite_taxa: suosikkitaksonit
   favorites: Suosikit
   fblocale: en_US
@@ -1324,6 +1327,7 @@ fi:
   follow_us: 'Seuraa meitä:'
   follow_us_on: 'Seuraa meitä:'
   follow_user: Seuraa käyttäjää %{user}
+  followed_projects: Seuratut projektit
   follower: seuraaja
   followers: Seuraajat
   following: seurataan
@@ -1353,7 +1357,6 @@ fi:
     other: sientä
   gbif_occurrences: GBIF Tapahtumia
   general: Yleinen
-  generate_pdf: Luo PDF
   generate_taxonomic_tags_for_flickr: Luo taksonomisia tunnisteita Flickr valokuviisi.
   generate_widget: Luo Pienoisohjelma
   Genus: Suku
@@ -1385,7 +1388,7 @@ fi:
   guidelines: Ohjeet
   has_been: on ollut
   has_id_supported_by_two_or_more: Onko tunnistetta kannattamassa kaksi tai enemmän
-  has_one_or_more_faves: On yksi tai useampi tykkäys
+  has_one_or_more_faves: On yksi tai useampi suosittelu
   has_photo: On kuvia
   has_photos: on kuvia
   has_photo_and_sound: On sekä kuvia että ääniä
@@ -1473,7 +1476,7 @@ fi:
   improving: Parannus
   in: kohteessa
   in_n: paikassa %{n}
-  inaturalist_network_affiliation: iNaturalist Network kytkös
+  inaturalist_network_affiliation: iNaturalist-verkko kytkös
   inbox: saapuneet
   including: mukaan lukien
   in_order_to_login_and_using_site_visit_url: 'Jotta voit kirjautua sisään ja alkaa
@@ -1547,6 +1550,8 @@ fi:
   join_this_project: Liity tähän projektiin
   joined!: Liitytty!
   joined_any_projects: liittynyt mihinkään projektiin
+  joined_projects: Liitytyt projektit
+  joined_with_date: 'Liittynyt: %{date}'
   joining: Liitytään...
   journal: Päiväkirja
   journal_post: Päiväkirjamerkintä
@@ -1601,6 +1606,7 @@ fi:
   lexicons:
     scientific_names: Tieteelliset nimet
     afrikaans: Afrikaans
+    albanian: Albania
     bengali: Bengali
     catalan: Katalaani
     cebuano: Cebuano
@@ -1737,6 +1743,7 @@ fi:
     pt-BR: Portugali (Brasilia)
     pt-PT: Portugali (Portugali)
     ru: Venäjä
+    sq: Albania
     zh-CN: Kiina (yksinkertaistettu)
     zh-TW: Kiina (perinteinen)
   localized_species_accounts: Paikalliset lajitilit
@@ -1794,7 +1801,7 @@ fi:
     overlays:
       all_observations: Kaikki havainnot
       every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka
-        luotu iNaturalist networkissä
+        luotu iNaturalist-verkossa
       gbif_network: GBIF-verkko
       observations: Havaintoa
       place_boundary: Paikan rajat
@@ -1808,7 +1815,7 @@ fi:
   media: Media
   medium: keskikokoinen
   meet: Tapaa
-  member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist Network</a>in
+  member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist-verkon</a>
     jäsen
   members: Jäsenet
   mentioned_you_in_noun_html: '%{user} mainitsi sinut kohteessa %{noun}'
@@ -1855,7 +1862,7 @@ fi:
   most: Eniten
   most_agree: suurin osa samaa mieltä
   most_disagree: suurin osa eri mieltä
-  most_comments_and_faves: Eniten kommentoidut ja suosikiksi merkatut
+  most_comments_and_faves: Eniten kommentoidut ja suositellut
   most_observations: Eniten havaintoja
   most_species: Useimmat lajit
   most_observed_species: Useimmin havaitut lajit
@@ -1944,9 +1951,11 @@ fi:
     Flickr valokuviin
   no_curators_set: Kuraattoreita ei asetettu
   no_curators_yet: Ei vielä kuraattoreita!
+  no_description: Ei kuvausta
   no_facebook_photos: Emme löydä yhtään kuvaa Facebookista.
   no_flags: Ei lippuja tällä kertaa
   no_flickr_photos_tagged: Yhtään tunnistetta ei ole lisätty Flickr-valokuviin.
+  no_header_row: Ei otsikkoriviä
   no_identifications: Ei tunnistajia
   no_identifications_added:
     current_user: Et ole lisännyt tunnisteita keidenkään havaintoihin.
@@ -2138,6 +2147,13 @@ fi:
     updates_by_you_panel_title: Tämä välilehti on nopea tapa suodattaa vain oman sisältösi
       päivitykset.
     youve_got_updates_panel_title: Sinulla on päivityksiä!
+    youve_got_updates_panel_body_p2: |-
+      <ul>
+        <li><strong>Sisältösi:</strong> Toiminta havainnoissasi kuten kommentit, tunnistamiset ja suositukset %{site_name} yhteisöltä. Saat myös päivityksiä, kun joku lisää havaintosi projektiin, tai merkitsee sen lisäkentillä</li>
+        <li><strong>Ihmiset:</strong> Uudet havainnot tai päiväkirjamerkinnät seuraamiltasi ihmisiltä.</li>
+        <li><strong>Eliöt, projektit & paikat:</strong> Uudet havainnot tietyistä eliöistä tai paikoista, joita olet tilannut. Voit myös liittyä projekteihin, joten sinua päivitetään, kun he julkaisevat projektin päiväkirjamerkintöjä.</li>
+        <li><strong>Keskustelut, joihin olet osallistunut:</strong> Kommentoimalla tai lisäämällä tunnistamisia jonkun muun sisältöön automaattisesti tilaa sinut tähän sisältöön. Käytä 'Hallitse tilauksiasi' työkalua pysäyttääksesi päivitysten vastaanottamisen.</li>
+      </ul>
   one_by_one: Yksi kerrallaan
   one_of_your_lists: yksi listoistasi...
   only_administrators_may_access_that_page: Vain ylläpitäjät voivat päästä tälle sivulle
@@ -2172,7 +2188,7 @@ fi:
   original: Alkuperäinen
   originally_flagged_by: Alun perin liputtanut
   originally_imported_from_url_html: Alun perin tuotu sivulta <a href='%{url}'>%{url}</a>
-  other: muu
+  other: Muu
   other_animals: muut eläimet
   other_animals_plural:
     one: muu eläin
@@ -2190,7 +2206,6 @@ fi:
   paste: Liitä
   paste_in_a_bunch_of_names: Liitä joukko nimiä, 1 riviä kohden ja paina nappia!
   pdf: PDF
-  pdf_slash_print: PDF / Tulosta
   people: Ihmiset
   people_agree: ihmistä samaa mieltä
   people_following_user: Ihmiset jotka seuraavat käyttäjää %{user}
@@ -2253,7 +2268,7 @@ fi:
       county: maa
       District: Piiri
       district: piiri
-      Division: Divisioona
+      Division: Divisio
       division: divisioona
       Drainage: Salaojitus
       drainage: salaojitus
@@ -2389,6 +2404,7 @@ fi:
   please_enter_a_new_pass: Ole hyvä ja anna uusi salasana ja vahvista se.
   please_fix_your_csv_and_try_again: Korjaa CSV:si ja yritä uudelleen.
   popular: suosittu
+  position: Sijainti
   possessive_user: Käyttäjän %{user}
   post: Viesti
   post_published: Viesti julkaistu
@@ -2397,7 +2413,7 @@ fi:
   posts: Viestit
   potential_disagreement: Mahdollinen erimielisyys
   powered_by: Palvelun mahdollistaa
-  powered_by_inaturalist_open_source_software_html: Moottorina toimii <a href="https://github.com/inaturalist/inaturalist"
+  powered_by_inaturalist_open_source_software_html: Palvelun tarjoaa <a href="https://github.com/inaturalist/inaturalist"
     target="_new" >avoimen lähdekoodin iNaturalist-ohjelmisto</a>
   present: nykyisyys
   press: Lehdistö
@@ -2412,6 +2428,7 @@ fi:
   previous_observation: Edellinen havainto
   previous_page: Edellinen sivu
   previous_photo: Edellinen kuva
+  print_verb: Tulosta
   print_in_browser: Tulosta selaimessa
   privacy: Yksityisyyskäytäntö
   privacy_policy: Yksityisyyskäytäntö
@@ -3078,7 +3095,7 @@ fi:
   user_commented: '%{user} kommentoi'
   user_commented_on: '%{user} kommentoi sinun %{title}:n %{time}'
   user_disagrees_this_is_taxon: '%{user} on eri mieltä siitä että tämä on %{taxon}'
-  user_faved_a_noun_by_owner: '%{user} merkitsi käyttäjän %{owner} %{noun}:n suosikikseen'
+  user_faved_a_noun_by_owner: '%{user} suositteli käyttäjän %{owner} %{noun}:ta'
   user_follows: '%{user} seuraa'
   user_hasnt: '%{user} ei ole'
   user_invite_observation_to_project: '%{user} haluaisi kutsua havaintosi "%{observation}"
@@ -3109,6 +3126,7 @@ fi:
     %{site}
   users_observations: Käyttäjän %{user} havainnot
   users_profile: Käyttäjän %{user} profiili
+  users_projects: Käyttäjän %{user} projektit
   value: Arvo
   verbing_x_of_y: '%{verb} %{x}/%{y}...'
   view: Näytä
@@ -3299,7 +3317,7 @@ fi:
     tätä havaintoa.
   you_dont_have_permission_to_edit_that_project: Sinulla ei ole oikeutta muokata tätä
     projektia.
-  you_faved_this: Tykkäsit tästä!
+  you_faved_this: Suosittelit tätä!
   you_have_left_x_project: Olet lähtenyt projektista %{project}
   you_have_logget_out: Olet kirjautunut ulos. Tule pian takaisin!
   you_have_to: Sinun täytyy

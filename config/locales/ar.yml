@@ -53,7 +53,7 @@ ar:
     one: <span class="count">1</span> أصنوفة مطابقة
     other: <span class="count">%{count}</span> أصنوفة مطابقة
   x_misidentifications_of_this_species:
-    one: '1 عدم تعرف على هذا النوع'
+    one: 1 عدم تعرف على هذا النوع
     other: '%{count} عدم تعرف على هذا النوع'
   x_observations:
     one: 1 ملاحظة
@@ -1520,7 +1520,6 @@ ar:
   generally_these_come_from_iucn_red_list: بوجه عام، تأتي هذه القوائم من القائمة الحمراء
     للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية، وإذا كانت تأتي من أماكن أخرى، فإنها
     ستلتزم بفئات الاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية.
-  generate_pdf: توفير PDF
   generate_taxonomic_tags_for_flickr: توفير علامات تصنيفية لصور فليكر الخاصة بك
   generate_widget: توفير أداة
   generate_your_stats: توليد إحصاءاتك
@@ -2232,6 +2231,7 @@ ar:
   more_photos: المزيد من الصور
   most: الأكثر
   most_agree: الأكثر توافقا
+  most_browser_print_pdf: 'ملاحظة: لدى معظم المتصفحات خيار الطباعة إلى PDF'
   most_disagree: الأكثر خلافا
   most_comments_and_faves: الأكثر تعليقا وتفضيلا
   most_observations: الأكثر في الملاحظات
@@ -2767,7 +2767,6 @@ ar:
   paste_in_a_bunch_of_names: ألصق في مجموعة من الأسماء، 1 في كل سطر، واضرب الزر!
   paste_in_a_comma_separated_list: الصق في قائمة بلدان مفصولة بفواصل
   pdf: PDF
-  pdf_slash_print: تحميل / PDF
   people: أشخاص
   people_agree: اتفاق الناس
   people_following_user: الأشخاص الذين يتابعون %{user}
@@ -3059,6 +3058,7 @@ ar:
   previous_page: الصفحة السابقة
   previous_photo: الصورة السابقة
   previous_tab: علامة التبويب السابقة
+  print_verb: طباعة
   print_in_browser: الطباعة في المتصفح
   privacy: سياسة الخصوصية
   privacy_policy: سياسة الخصوصية
@@ -4198,6 +4198,7 @@ ar:
   user_added_an_x_to_noun_by_html: أضاف %{user} %{x} لـ%{noun} بواسطة %{by}
   user_added_an_x_to_noun_html: أضاف %{user} %{x} لـ%{noun}
   user_added_x_observations_html: أضاف %{user} %{x} ملاحظة
+  user_already_authenticated: المستخدم موثق بالفعل
   user_autocomplete_placeholder: kueda وsimon123 وما إلى ذلك.
   user_blocked: المستخدم ممنوع
   user_commented: علق %{user}

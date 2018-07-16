@@ -1597,7 +1597,6 @@ es:
   general: General
   generally_these_come_from_iucn_red_list: Generalmente estos vienen de la Lista Roja
     de la UICN, y si vienen de otros lugares se adhieren a las categorías de la UICN.
-  generate_pdf: Generar PDF
   generate_taxonomic_tags_for_flickr: Generar etiquetas taxonómicas para sus fotos
     de Flickr.
   generate_widget: Genera el widget
@@ -2900,7 +2899,6 @@ es:
     botón!
   paste_in_a_comma_separated_list: Pegar la lista de países separados por comas
   pdf: PDF
-  pdf_slash_print: PDF / Imprimir
   people: Personas
   people_agree: personas concuerdan
   people_following_user: Personas que siguen a %{user}
@@ -3193,6 +3191,7 @@ es:
   previous_page: Página anterior
   previous_photo: Foto anterior
   previous_tab: Pestaña anterior
+  print_verb: Imprimir
   print_in_browser: Imprimir desde el navegador
   privacy: Normativa de privacidad
   privacy_policy: Normativa de privacidad
@@ -3884,6 +3883,34 @@ es:
   taxon: Taxón
   taxon_autocomplete_placeholder: Aves, Monarca, etc.
   taxon_is_a_rank: '%{taxon} es un %{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} es un %{rank} en %{iconic_taxon} con una observación'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} es un %{rank} de anfibios con una observación'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} es un %{rank} de aves con una observación'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} es un %{rank} de mamíferos con una observación'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} es un %{rank} de reptiles con una observación'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} es un %{rank} de plantas con una observación'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} es un %{rank} de peces con aletas radiadas con una observación'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} es un %{rank} de animales con una observación'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} es un %{rank} de insectos con una observación'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} es un %{rank} de arácnidos con una observación'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon} es un %{rank} de hongos con una observación'
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: '%{taxon} es un %{rank} de protozoarios con una observación'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} es un %{rank} de moluscos con una observación'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} es un %{rank} en Chromista (aliados y algas pardas) con una observación'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} es un reino con una observación'
     other: '%{taxon} es un reino con %{count} observaciones'

@@ -670,8 +670,8 @@ it:
   batch_edit: Modifica in gruppo
   batch_edit_taxa_for_x_html: Modifica in gruppo i taxa %{x}
   batch_operations: Operazioni a blocchi
-  be_the_first_to_fave_this_observation: Sii il primo ad aggiungere alle preferite
-    questa osservazione!
+  be_the_first_to_fave_this_observation: Aggiungi per primo questa osservazione ai
+    preferiti!
   beacuse_we_recently_changed_auth_system: Poiché di recente abbiamo cambiato il nostro
     sistema di autenticazione dell'utente, è necessario resettare la tua password.
   because: perché
@@ -1602,7 +1602,6 @@ it:
   general: Generale
   generally_these_come_from_iucn_red_list: In genere, questi provengono dalla lista
     Rossa IUCN, e se provengono da altre fonti dovranno rispettare le categorie IUCN.
-  generate_pdf: Genera PDF
   generate_taxonomic_tags_for_flickr: Genera etichette tassonomiche dalle tue foto
     Flickr.
   generate_widget: Genera il Widget
@@ -2112,9 +2111,9 @@ it:
   listing_taxa: Elencazione taxa
   listing_taxon_names: Elencazione dei nomi dei taxa
   lists: Elenchi
-  lists_are_lists_of_species: Le Liste sono liste di specie (o altri taxa), come ina
-    lista di tutti gli uccelli che hai visto o una lista delle tue salamandre preferite.
-    Queste Liste <em>non</em> sono elenchi di osservazioni.
+  lists_are_lists_of_species: Le liste sono elenchi di specie (o altri taxa), come
+    una lista di tutti gli uccelli che hai visto o quella delle tue salamandre preferite.
+    Queste liste <em>non</em> sono elenchi di osservazioni.
   lists_by_login:
     title:
       current_user: Le tue liste
@@ -2338,6 +2337,8 @@ it:
   more_photos: Più Foto
   most: Il più
   most_agree: la maggior parte è d’accordo
+  most_browser_print_pdf: 'Nota: la maggior parte dei browser ha un''opzione per stampare
+    in PDF'
   most_disagree: la maggior parte è in disaccordo
   most_comments_and_faves: La maggior parte di Commenti e Preferiti
   most_observations: Con più osservazioni
@@ -2902,7 +2903,6 @@ it:
     pulsante!
   paste_in_a_comma_separated_list: Incolla come lista di stati separata da virgole
   pdf: PDF
-  pdf_slash_print: PDF / Stampa
   people: Persone
   people_agree: persone sono d'accordo
   people_following_user: Persone stanno seguendo %{user}
@@ -3198,6 +3198,7 @@ it:
   previous_page: Pagina precedente
   previous_photo: Foto Precedente
   previous_tab: Scheda precedente
+  print_verb: Stampa
   print_in_browser: Stampa nel browser
   privacy: Informativa sulla privacy
   privacy_policy: Informativa sulla privacy
@@ -4392,6 +4393,7 @@ it:
   user_added_an_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a %{noun} di %{by}'
   user_added_an_x_to_noun_html: '%{user} ha aggiunto una %{x} a %{noun}'
   user_added_x_observations_html: '%{user} ha aggiunto %{x} osservazioni'
+  user_already_authenticated: L'utente è già autenticato
   user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: Utente bloccato
   user_commented: '%{user} ha commentato'

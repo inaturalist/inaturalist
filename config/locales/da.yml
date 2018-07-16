@@ -5,6 +5,7 @@
 # Author: IBDJ
 # Author: Joedalton
 # Author: Jorn Ari
+# Author: Lars dalby
 # Author: Oskarlphansen
 # Author: Tinamalmgren
 ---
@@ -144,9 +145,9 @@ da:
   about_muting: Om slukning
   about_names: Om navne
   about_places: Om steder
-  about_taxon_changes: Om taxon ændringer
+  about_taxon_changes: Om takson ændringer
   about_the_cc_licenses: Om Creative Commons licenser
-  about_the_taxobox_raquo: Om taxonboksen &raquo;
+  about_the_taxobox_raquo: Om taksonboksen &raquo;
   about_these_licenses: Om disse licenser
   about_this_bioblitz: Om bioblitzen
   about_this_map: Om dette kort
@@ -301,7 +302,7 @@ da:
   added: Tilføjet
   added!: Tilføjet!
   added_an: tilføjet en
-  added_as_a_part_of: TIlføjet som en del af
+  added_as_a_part_of: Tilføjet som en del af
   added_by: Tilføjet af
   added_by_user_on_date_html: Tilføjet af %{user} den %{date}
   added_identifications_to: tilføjede identifikationer til nogens observationer.
@@ -560,16 +561,16 @@ da:
     disse %{x} taksa?
   are_you_sure_you_want_to_remove_this_invitation: Er du sikker på, at du ønsker at
     fjerne denne invitation?
-  are_you_sure_you_want_to_remove_this_taxon: Er du sikker på at du vil fjerne denne
+  are_you_sure_you_want_to_remove_this_taxon: Er du sikker på, at du vil fjerne denne
     takson?
   are_you_sure_you_want_to_remove_this_taxon_from_checklist: Er du sikker på at du
     vil fjerne denne takson %{place}'s tjekliste?
   articles: Artikler
   associated_observations: Tilknyttede observationer
-  associated_taxa: Tilknyttet taksa
+  associated_taxa: Tilknyttede taksa
   attention: Bemærk
   you_sure_delete_list: Er du sikker på at du vil slette denne liste?
-  you_sure_delete_taxon_from_list?: Er du sikker på at du vil fjerne %{taxon} fra
+  you_sure_delete_taxon_from_list?: Er du sikker på, at du vil fjerne %{taxon} fra
     listen?
   asc: stig
   ascending: stigende
@@ -600,7 +601,7 @@ da:
   automatically_share_your_observations_on: Del dine observationer automatisk på
   automatically_id_new: Automatisk ID de nye obs som
   automatically_update_my_content_for_taxon_changes: Opdatér automatisk mit indhold
-    med takson ændringer
+    med taksonændringer
   back: Tilbage
   back_to: Tilbage til
   back_to_albums: Tilbage til album
@@ -622,7 +623,7 @@ da:
   back_to_shared_taxon: Tilbage til %{sharedtaxon}
   back_to_suggestions: Tilbage til Forslag
   back_to_taxon: Tilbage til %{defaulttaxon}
-  back_to_taxon_changes: Tilbage til takson ændringer
+  back_to_taxon_changes: Tilbage til taksonændringer
   back_to_this: Tilbage til %{place}
   back_to_viewing: Tilbage for at se <i>%{taxon}</i>
   back_to_x: Tilbage til %{noun}
@@ -1563,7 +1564,6 @@ da:
   general: Generelt
   generally_these_come_from_iucn_red_list: Generelt kommer disse fra IUCN Rødliste,
     og hvis de kommer fra andre steder, vil de overholde IUCN-kategorierne.
-  generate_pdf: Generér PDF
   generate_taxonomic_tags_for_flickr: Generér taksonomiske tags til dine Flickr-fotos.
   generate_widget: Generér widget
   generate_your_stats: Generér dine statistikker
@@ -2297,6 +2297,8 @@ da:
   more_photos: Flere foto´s
   most: Flest
   most_agree: mest enig
+  most_browser_print_pdf: 'Bemærk: I de fleste browsere er det muligt at udskrive
+    til PDF'
   most_disagree: mest uenig
   most_comments_and_faves: Flest kommentarer og favoritter
   most_observations: Fleste observationer
@@ -2853,7 +2855,6 @@ da:
   paste_in_a_bunch_of_names: Indsæt et bundt af navne, 1 per linje, og tryk på knappen!
   paste_in_a_comma_separated_list: Indsæt i en kommasepareret liste over lande
   pdf: PDF
-  pdf_slash_print: PDF / Udskriv
   people: Personer
   people_agree: personer er enige
   people_following_user: Personer, der følger %{user}
@@ -3146,6 +3147,7 @@ da:
   previous_page: Forrige side
   previous_photo: Forrige foto
   previous_tab: Forrige fane
+  print_verb: Udskriv
   print_in_browser: Udskriv i browser
   privacy: Fortrolighedspolitik
   privacy_policy: Fortrolighedspolitik
@@ -4313,6 +4315,7 @@ da:
   user_added_an_x_to_noun_by_html: '%{user} tilføjede en %{x} til %{noun} af %{by}'
   user_added_an_x_to_noun_html: '%{user} tilføjede en %{x} til %{noun}'
   user_added_x_observations_html: '%{user} tilføjede %{x} observationer'
+  user_already_authenticated: Brugeren er allerede godkendt
   user_autocomplete_placeholder: kueda, simon123, osv.
   user_blocked: Bruger blokeret
   user_commented: '%{user} kommenterede'
@@ -4337,7 +4340,7 @@ da:
   user_muted: Slukket for bruger
   user_observations: Bruger observationer
   user_s_id: '%{user}''s %{id}'
-  user_s_lists: '%{user}s lister'
+  user_s_lists: '%{user}''s lister'
   user_suggested_an_id: '%{user} foreslog et ID'
   user_thinks_yours_is: '%{user} %{noun} din observation %{observation} er'
   username: Brugernavn
@@ -5292,7 +5295,7 @@ da:
         url: URL for observationen
         image_url: URL til standardbilledet
         sound_url: URL for standard lyden. Bemærk at det kun virker ved direkte uploads
-          og ikke lyde som er hosted på tredjeparts services
+          og ikke lyde, som er hosted på tredjeparts services
         tag_list: Kommasepareret liste over tags
         place_admin1_name: Navn på det administrative sted en rang under landeniveau
         place_admin2_name: Navn på det administrative sted to rang under landeniveau

@@ -1441,7 +1441,6 @@ de:
   full_screen: Vollbild
   gbif_occurrences: GBIF Vorkommnisse
   general: Allgemein
-  generate_pdf: PDF generieren
   generate_widget: Widget generieren
   generate_your_stats: Deine Statistiken erzeugen
   generating: Erstelle...
@@ -1959,6 +1958,8 @@ de:
   more_photos: Weitere Fotos
   most: Meisten
   most_agree: meisten stimmen zu
+  most_browser_print_pdf: 'Anmerkung: Die meisten Browser haben eine Option zum Drucken
+    nach PDF'
   most_disagree: meisten widersprechen
   most_observations: Meisten Beobachtungen
   most_species: Meiste Arten
@@ -2286,7 +2287,6 @@ de:
   password_confirmation: Passwort bestätigt
   paste: Einfügen
   pdf: PDF
-  pdf_slash_print: PDF / Drucken
   people: Personen
   people_agree: Leute stimmen zu
   people_following_user: Personen, die %{user} folgen
@@ -2490,6 +2490,7 @@ de:
   previous_page: Vorherige Seite
   previous_photo: Vorheriges Foto
   previous_tab: Vorheriger Tab
+  print_verb: Drucken
   print_in_browser: Im Browser drucken
   private: privat
   private_: Privat
@@ -2851,6 +2852,7 @@ de:
   usage_stats: Nutzungsstatistiken
   user: Benutzer
   user_added_a_x: '%{user} hat ein %{x} hinzugefügt'
+  user_already_authenticated: Der Benutzer ist bereits authentifiziert
   user_blocked: Benutzer gesperrt
   user_follows: '%{user} folgt'
   user_muted: Benutzer stummgeschaltet
