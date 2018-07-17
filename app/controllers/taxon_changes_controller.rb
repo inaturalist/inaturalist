@@ -166,6 +166,11 @@ class TaxonChangesController < ApplicationController
   end
 
   def commit_for_user
+    if @taxon_change.draft?
+      flash[:error] = t(:taxon_change_must_be_committed_to_update_records)
+      redirect_back_or_default @taxon_change
+      return
+    end
     if @taxon_change.input_taxa.blank? || @taxon_change.output_taxa.blank?
       flash[:error] = "Nothing to do for #{@taxon_change.class.name.underscore.humanize.pluralize.downcase}"
       redirect_back_or_default(@taxon_change)
