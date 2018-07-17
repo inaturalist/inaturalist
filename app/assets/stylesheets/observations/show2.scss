@@ -692,7 +692,7 @@ h3, h4 {
   .control-group {
     float: right;
     .btn-group button .fa {
-      color: #999;
+      color: $text-grey;
     }
   }
   button.dropdown-toggle {
@@ -740,7 +740,7 @@ h3, h4 {
     height: 230px;
     text-align: center;
     font-size: 18px;
-    color: #999;
+    color: $text-grey;
     padding-top: 75px;
     border-bottom: 1px solid $border-grey;;
     .fa {
@@ -814,7 +814,7 @@ h3, h4 {
     }
   }
   .type {
-    color: #999;
+    color: $text-grey;
     &:before {
       content: " (";
     }
@@ -834,16 +834,30 @@ h3, h4 {
   .standard {
     padding-right: 15px;
   }
-  .top_info {
+  .top_info,
+  .places {
     border-bottom: 1px solid $border-grey;
-    display: inline-block;
     padding-bottom: 15px;
+  }
+  .top_info {
+    display: inline-block;
     width: 100%;
     .info {
       display: block;
       float: left;
       min-width: 110px;
       margin-right: 5px;
+    }
+  }
+  .links {
+    padding-top: 15px;
+    .info:before {
+      content: '·';
+      color: $text-grey;
+      margin: 0 5px;
+    }
+    .info:first-child:before {
+      visibility: hidden;
     }
   }
 }
@@ -1712,7 +1726,7 @@ h3, h4 {
         margin-left: 20px;
         &:before {
           content: "\21B3";
-          color: #999;
+          color: $text-grey;
         }
       }
       a.display-name {
