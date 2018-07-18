@@ -54,8 +54,10 @@ namespace :inaturalist do
       where("id < #{ min_id + 1000000 }").maximum(:id)
     UpdateAction.delete_and_purge("id <= #{ last_id_to_delete }")
     # delete anything that may be left in Elasticsearch
-    Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
-      body: { query: { range: { id: { lte: last_id_to_delete } } } })
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+      Elasticsearch::Model.client.delete_by_query(index: UpdateAction.index_name,
+        body: { query: { range: { id: { lte: last_id_to_delete } } } })
+    end
 
     # # suspend subscriptions of users with no viewed updates
     # Update.select(:subscriber_id).group(:subscriber_id).having("max(viewed_at) IS NULL").
