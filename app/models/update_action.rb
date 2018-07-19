@@ -370,4 +370,8 @@ class UpdateAction < ActiveRecord::Base
     unviewed_user_ids.include?(user_id)
   end
 
+  def self.refresh_es_index
+    UpdateAction.__elasticsearch__.refresh_index! unless Rails.env.test?
+  end
+
 end

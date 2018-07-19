@@ -47,7 +47,7 @@ class QualityMetric < ActiveRecord::Base
   end
 
   def self.vote(user, observation, metric, agree)
-    UpdateAction.__elasticsearch__.refresh_index!
+    UpdateAction.refresh_es_index
     qm = observation.quality_metrics.find_or_initialize_by( metric: metric, user_id: user.try(:id) )
     qm.update_attributes( agree: agree )
   end
