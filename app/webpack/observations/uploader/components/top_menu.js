@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Glyphicon, MenuItem, OverlayTrigger, Tooltip,
   Navbar, Nav, NavDropdown, NavItem } from "react-bootstrap";
 
@@ -95,9 +96,9 @@ class TopMenu extends Component {
             </li>
           </OverlayTrigger>
         </Nav>
-        <Nav pullRight>
+        <div className="pull-right">
           { saveButton }
-        </Nav>
+        </div>
       </Navbar>
     );
   }

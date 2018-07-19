@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";

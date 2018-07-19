@@ -485,7 +485,7 @@ class TaxonAutocomplete extends React.Component {
           <input
             type="text"
             name="taxon_name"
-            value={ this.props.value }
+            value={ this.props.value || "" }
             className={ `form-control ${smallClass}` }
             onChange={ this.props.onChange }
             placeholder={ this.props.placeholder || I18n.t( "species_name_cap" ) }

@@ -816,3 +816,9 @@ ul.obs > li .card {
     box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
   }
 }
+
+label {
+  input.form-control {
+    font-weight: normal;
+  }
+}

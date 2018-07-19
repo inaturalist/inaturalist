@@ -1,5 +1,6 @@
 import _ from "lodash";
-import { PropTypes, Component } from "react";
+import { Component } from "react";
+import PropTypes from "prop-types";
 
 class SelectionBasedComponent extends Component {
 
@@ -24,7 +25,7 @@ class SelectionBasedComponent extends Component {
 
   commonValue( attr, obsCards ) {
     const uniq = this.valuesOf( attr, obsCards );
-    return ( uniq.length === 1 ) ? uniq[0] : undefined;
+    return ( uniq.length === 1 ) ? uniq[0] : "";
   }
 
 }

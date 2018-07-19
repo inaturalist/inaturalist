@@ -113,7 +113,7 @@ class LeftMenu extends SelectionBasedComponent {
     return (
       <input type="select" name="value" >
         { _.map( field.allowed_values.split( "|" ), f => (
-          <option value={ f } key={ f }>{ f }</option>
+          <option value={ f || "" } key={ f }>{ f }</option>
         ) ) }
       </input>
     );
@@ -190,7 +190,7 @@ class LeftMenu extends SelectionBasedComponent {
           name="value"
           className="form-control"
           autoComplete="off"
-          value={ this.props.observationFieldValue }
+          value={ this.props.observationFieldValue || "" }
           onClick= { () => {
             if ( this.refs.datetime ) {
               this.refs.datetime.onClick( );
@@ -280,7 +280,7 @@ class LeftMenu extends SelectionBasedComponent {
             className="form-control ofv-field"
             placeholder={ I18n.t( "add_a_field" ) }
           />
-          <input type="hidden" name="observation_field_id" value={ field && field.id } />
+          <input type="hidden" name="observation_field_id" value={ ( field && field.id ) || "" } />
           <div className="taglist">
             { _.map( commonOfvs, ( t, i ) => {
               const key = `${t.observation_field.id}:${t.value}`;

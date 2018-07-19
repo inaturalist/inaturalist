@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col, Modal, Button } from "react-bootstrap";
 /* global SITE */
 /* global iNaturalist */

@@ -1,6 +1,6 @@
-import { Component } from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-// import DateTimeField from "react-bootstrap-datetimepicker";
+import DateTimeField from "react-bootstrap-datetimepicker";
 import moment from "moment-timezone";
 
 class DateTimeFieldWrapper extends Component {
@@ -55,21 +55,20 @@ class DateTimeFieldWrapper extends Component {
   }
 
   render( ) {
-    // return (
-    //   <DateTimeField
-    //     ref="datetime"
-    //     key="datetime"
-    //     mode={ this.props.mode }
-    //     size={ this.props.size }
-    //     maxDate={ this.props.allowFutureDates ? null : moment( ) }
-    //     inputProps={ this.props.inputProps }
-    //     defaultText={ this.props.defaultText || "" }
-    //     dateTime={ this.props.dateTime }
-    //     inputFormat={this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ"}
-    //     onChange={ this.onChange }
-    //   />
-    // );
-    return null;
+    return (
+      <DateTimeField
+        ref="datetime"
+        key="datetime"
+        mode={ this.props.mode }
+        size={ this.props.size }
+        maxDate={ this.props.allowFutureDates ? null : moment( ) }
+        inputProps={ this.props.inputProps }
+        defaultText={ this.props.defaultText || "" }
+        dateTime={ this.props.dateTime }
+        inputFormat={this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ"}
+        onChange={ this.onChange }
+      />
+    );
   }
 }
 

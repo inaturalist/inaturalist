@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "iNaturalist npm package for managing node dependencies.",
   "dependencies": {
+    "@types/googlemaps": "^3.30.11",
+    "@types/markerclustererplus": "^2.1.33",
+    "@types/react": "^16.4.6",
     "EasyZoom": "github:inaturalist/EasyZoom#click-toggle",
     "acorn-to-esprima": "^2.0.8",
     "babel-core": "^6.5.2",
@@ -36,7 +39,7 @@
     "rc-pagination": "^1.5.2",
     "react": "^16.4.1",
     "react-bootstrap": "0.32.1",
-    "react-bootstrap-datetimepicker": "^0.0.22",
+    "react-bootstrap-datetimepicker": "github:inaturalist/react-bootstrap-datetimepicker",
     "react-color": "^2.13.8",
     "react-dnd": "^5.0.0",
     "react-dnd-html5-backend": "^5.0.1",

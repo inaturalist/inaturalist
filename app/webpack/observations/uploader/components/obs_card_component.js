@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { DragSource, DropTarget } from "react-dnd";
 import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import { pipe } from "ramda";
@@ -268,7 +269,7 @@ class ObsCardComponent extends Component {
               <input
                 type="text"
                 className="form-control input-sm"
-                value={ obsCard.date }
+                value={ obsCard.date || "" }
                 onChange= { e => {
                   if ( this.refs.datetime ) {
                     this.refs.datetime.onChange( undefined, e.target.value );
@@ -286,7 +287,7 @@ class ObsCardComponent extends Component {
               <input
                 type="text"
                 className="form-control input-sm"
-                value={ locationText }
+                value={ locationText || "" }
                 placeholder={ I18n.t( "location" ) }
                 readOnly
               />
@@ -295,7 +296,7 @@ class ObsCardComponent extends Component {
               <textarea
                 placeholder={ I18n.t( "description" ) }
                 className="form-control input-sm"
-                value={ obsCard.description }
+                value={ obsCard.description || "" }
                 onChange={ e => updateObsCard( obsCard, { description: e.target.value } ) }
               />
             </div>
