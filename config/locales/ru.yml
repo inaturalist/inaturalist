@@ -3296,11 +3296,14 @@ ru:
     если вы предоставляете как можно больше описательной информации. Самое главное,
     пожалуйста, укажите <strong>место</strong>, <strong>дату / время</strong> и некоторую
     информацию о <strong>размере</strong>.
+  remember_me: Запомнить меня
   remove: Удалить
   remove_all_tags: Удалить все теги
+  remove_boundary: Удалить границу
   remove_comma_separated_tags: Удалить теги, разделенные запятыми
   remove_conservation_status: удалить природоохранный статус
   remove_from: Удалить из
+  remove_curator: Удалить куратора
   remove_curator_role: Удалить роль куратора
   remove_curator_status: Удалить статус куратора
   remove_from_batch: Удалить из пакета
@@ -3308,6 +3311,7 @@ ru:
   remove_from_id_please?: Удалить идентификацию?
   remove_from_list: Удалить из списка
   remove_from_project: Удалить из проекта
+  remove_this_section: Удалить этот раздел
   remove_manager: Удалить менеджера
   remove_observations:
     one: Удалить 1 наблюдение?
@@ -3316,15 +3320,35 @@ ru:
   remove_photo: Удалить фото
   remove_place: Удалить место
   remove_project_user: Удалить участника проекта
+  remove_range: Удалить диапазон
+  remove_section: Удалить раздел
   remove_selected: Удалить выбранное
   remove_tags: Удалить теги
+  remove_your_existing_id?: Удалить вашу теперешнюю идентификацию?
   removed: Удалено
+  removed!: Удалено!
   removed_project_user: Участник проекта удален
+  removing: Удаление...
+  reorder_by_taxonomy: Упорядочить согласно таксономии
   repair_doesnt_work_for_that_kind_of_photo: Восстановление не работает для фото такого
     типа
   repair_external_photos: Восстановить внешние фото
+  replace_boundary_with_kml: Заменить границу KML
+  replace_parentesis: (заменить)
+  replacing: замена
+  reply: Ответ
+  report_any_problems: сообщать о любых проблемах
+  reptiles: рептилии
+  request_failed: Ошибка запроса
+  request_id_help: Запросить помощь по идентификации
+  request_password: Запрос пароля
   request_timed_out: Превышено время ожидания запроса
+  required: обязательное
+  required_: Обязательное
+  required_field: Обязательное поле
+  required_columns_in_order: Требуемые столбцы по порядку
   research: исследовать
+  research_: Исследовать
   research_grade: Исследовательский уровень
   research_grade_observations_have: Наблюдения "Исследовательского уровня" содержат
     дату, фото, координаты и поддерживаемую сообществом идентификацию. Нажмите, чтобы
@@ -3332,9 +3356,19 @@ ru:
   research_grade_qualification: Качество исследовательского уровня
   research_quality: Качество исследовательского уровня
   reset_search_filters: Сбросить фильтры поиска
+  reset_your_password: Сбросить пароль
+  resolve_this_flag: Обработать этот флаг
+  resolved: Обработано
+  resolved_by: Обработано
+  restore: Восстановить
+  restoring: Восстановление...
   results: результаты
+  review_all: Просмотреть всё
+  review_verb: Просмотреть
   reviewed: Проверено
   rg_observations: Наблюдения статуса "исследовательский"
+  roadmap: Дорожная карта
+  role: Роль
   rotate_left: Повернуть влево
   rotate_right: Повернуть вправо
   row_singular_or_plural: Строка(и)
@@ -3352,11 +3386,13 @@ ru:
     must_be_in: должен быть привязан к таксону
     must_be_coordinates_shareable_by_project_curators: наблюдатель должен разрешить
       куратору проекта видеть координаты.
+  said: упомянутый
   sat: Сб
   satellite: спутниковый
   save: Сохранить
   save_all: Сохранить все
   save_and_add_another: Сохранить и добавить ещё
+  save_and_continue: Сохранить &amp; продолжить...
   save_and_add_taxa: Сохранить и начать добавлять виды
   save_changes: Сохранить изменения
   save_colors: Сохранить Цвета
@@ -3387,16 +3423,24 @@ ru:
     наблюдения
   search_by_taxon_name_or_flickr_photo_id: Поиск по имени таксона или идентификатору
     фото на Фликр
+  search_catalogue_of_life: Найти в <a href="http://www.catalogueoflife.org">Catalogue
+    of Life</a>
+  search_catalogue_of_life_raquo: Поиск в Catalogue of Life &raquo;
   search_creative_commons_photos_on_flickr: Поиск фото с лицензией Creative Commons
     на Flickr. Если вы выберете фото, будьте вежливыми и добавьте к ним комментарий
     с благодарностью!
+  search_descendant_taxa_raquo: Поиск таксонов-потомков &raquo;
   search_external_name_providers: Поиск внешних провайдеров имени
   search_for_a_location: Поиск местоположения
+  search_for_new_taxa: Поиск новых таксонов
   search_for_place_to_import_from_yahoo: Поиск места для импорта из Yahoo.
+  search_for_species: Поиск видов
+  search_list: Список поиска
   search_obs: Поиск набл...
   search_places: Поиск мест
   search_projects: Поиск проектов
   search_results_for: Результаты поиска для
+  search_results_for_query: Результаты поиска для %{query}
   search_the_map: Поиск на карте
   search_your_photos: Поиск ваших фото
   seasonality: Сезонность
