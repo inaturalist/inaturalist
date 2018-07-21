@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import UmbrellaLeaderboardContainer from "../containers/umbrella_leaderboard_container";
 import UmbrellaMapContainer from "../containers/umbrella_map_container";

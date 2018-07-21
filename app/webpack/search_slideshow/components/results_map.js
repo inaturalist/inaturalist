@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Util from "../../project_slideshow/models/util";
 
 class ResultsMap extends Component {
