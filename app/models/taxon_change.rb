@@ -292,7 +292,12 @@ class TaxonChange < ActiveRecord::Base
       ActiveRecord::Base.connection.execute(taxon_link_sql) unless debug
     end
     input_taxa.each do |input_taxon|
-      input_taxon.update_attributes( is_active: true )
+      input_taxon.update_attributes( is_active: true ) unless debug
+    end
+    if options[:deactivate_output_taxa]
+      output_taxa.each do |output_taxon|
+        output_taxon.update_attributes( is_active: false ) unless debug
+      end
     end
     # output taxa may or may not need to be made inactive, impossible to say in code
     logger.info "[INFO #{Time.now}] Finished partial revert for #{self}"
