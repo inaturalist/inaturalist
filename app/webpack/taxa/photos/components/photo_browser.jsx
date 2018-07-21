@@ -75,12 +75,12 @@ const PhotoBrowser = ( {
     } )
   );
   const loader = (
-    <div className="loading">
+    <div key="photo-browser-loader" className="loading">
       <i className="fa fa-refresh fa-spin"></i>
     </div>
   );
   const noObsNotice = (
-    <div className="nocontent text-muted">
+    <div key="photo-browser-no-obs-notice" className="nocontent text-muted">
       { I18n.t( place ? "no_observations_from_this_place_yet" : "no_observations_yet" ) }
     </div>
   );
@@ -207,7 +207,7 @@ const PhotoBrowser = ( {
                     }
                   } }
                 >
-                  <Dropdown.Toggle bsClass="link">
+                  <Dropdown.Toggle bsStyle="link">
                     { I18n.t( "grouping" ) }: <strong>{ groupingDisplay( grouping.param ) }</strong>
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
@@ -224,7 +224,7 @@ const PhotoBrowser = ( {
                     id={`term-chooser-${attr.label}`}
                     onSelect={ key => setTerm( attr.id, key ) }
                   >
-                    <Dropdown.Toggle bsClass="link">
+                    <Dropdown.Toggle bsStyle="link">
                       { I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } ) }:&nbsp;
                       <strong>{
                         ( selectedTerm && selectedTerm.id === attr.id && selectedTermValue ?
@@ -266,7 +266,7 @@ const PhotoBrowser = ( {
                   setParam( "order_by", key );
                 } }
               >
-                <Dropdown.Toggle bsClass="link">
+                <Dropdown.Toggle bsStyle="link">
                   { I18n.t( "order_by" ) }: <strong>{ orderByDisplay( params.order_by ) }</strong>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>

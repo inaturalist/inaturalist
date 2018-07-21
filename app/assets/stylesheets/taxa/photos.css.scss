@@ -43,6 +43,14 @@
   button {
     text-transform: capitalize;
   }
+  .btn.btn-link {
+    color: black;
+    margin: 0;
+    padding: 0;
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
 }
 
 #hero {
