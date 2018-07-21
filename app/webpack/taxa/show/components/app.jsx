@@ -67,8 +67,8 @@ const App = ( { taxon, showNewTaxon, config } ) => (
                 ) : null
               }
             </h1>
-            <div>
-              <PlaceChooserContainer />
+            <div id="place-chooser-container">
+              <PlaceChooserContainer container={ $( "#app" ).get( 0 ) } />
             </div>
           </div>
         </Col>

@@ -19,7 +19,7 @@ function mapStateToProps( state ) {
     );
   }
   return {
-    wantedShown: state.taxon.taxon.complete_species_count,
+    wantedShown: state.taxon.taxon.complete_species_count > 0,
     discoveriesShown: state.taxon.taxon.complete_species_count > 0,
     trendingTaxa: state.taxon.trending ? state.taxon.trending.slice( 0, 20 ) : null,
     wantedTaxa: state.taxon.wanted ? state.taxon.wanted.slice( 0, 20 ) : null,

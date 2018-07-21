@@ -45,7 +45,10 @@ const TaxonPhoto = ( {
       );
     }
   }
-  const style = { width, maxWidth: 2 * width };
+  let style = {};
+  if ( width ) {
+    style = { width, maxWidth: 2 * width };
+  }
   return (
     <div
       className={`TaxonPhoto ${className}`}
