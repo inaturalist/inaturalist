@@ -170,9 +170,12 @@ class Activity extends React.Component {
         </span>
       );
     const tabs = (
-      <Tabs activeKey={ this.props.commentIDPanel.activeTab } onSelect={ key => {
-        this.props.setActiveTab( key );
-      } }
+      <Tabs
+        id="comment-id-tabs"
+        activeKey={ this.props.commentIDPanel.activeTab }
+        onSelect={ key => {
+          this.props.setActiveTab( key );
+        } }
       >
         <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">
           { commentContent }

@@ -32,15 +32,17 @@ class Assessment extends React.Component {
             <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
             { I18n.t( "data_quality_assessment" ) }
           </h3>
-          <Panel collapsible expanded={ this.state.open }>
-            <Row>
-              <Col xs={7}>
-                <QualityMetricsContainer />
-              </Col>
-              <Col xs={5}>
-                <ResearchGradeProgressContainer />
-              </Col>
-            </Row>
+          <Panel expanded={ this.state.open } onToggle={ () => {} }>
+            <Panel.Collapse>
+              <Row>
+                <Col xs={7}>
+                  <QualityMetricsContainer />
+                </Col>
+                <Col xs={5}>
+                  <ResearchGradeProgressContainer />
+                </Col>
+              </Row>
+            </Panel.Collapse>
           </Panel>
         </div>
       </Grid>

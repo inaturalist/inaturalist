@@ -120,7 +120,7 @@ const App = ( {
                   title={ I18n.t( "edit" ) }
                   id="edit-dropdown"
                   pullRight
-                  onSelect={ ( event, key ) => {
+                  onSelect={ key => {
                     if ( key === "delete" ) {
                       deleteObservation( );
                     } else if ( key === "license" ) {

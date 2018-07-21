@@ -57,27 +57,29 @@ class Tags extends React.Component {
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { I18n.t( "tags" ) } { count }
         </h4>
-        <Panel collapsible expanded={ this.state.open }>
-          { addTagInput }
-          {
-            _.sortBy( observation.tags, t => ( _.lowerCase( t.tag || t ) ) ).map( t => {
-              let remove;
-              const tag = t.tag || t;
-              if ( viewerIsObserver ) {
-                remove = t.api_status ? ( <div className="loading_spinner" /> ) : (
-                  <Glyphicon glyph="remove-circle" onClick={ () => { this.removeTag( tag ); } } />
+        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+          <Panel.Collapse>
+            { addTagInput }
+            {
+              _.sortBy( observation.tags, t => ( _.lowerCase( t.tag || t ) ) ).map( t => {
+                let remove;
+                const tag = t.tag || t;
+                if ( viewerIsObserver ) {
+                  remove = t.api_status ? ( <div className="loading_spinner" /> ) : (
+                    <Glyphicon glyph="remove-circle" onClick={ () => { this.removeTag( tag ); } } />
+                  );
+                }
+                return (
+                  <div className={ `tag ${t.api_status ? "loading" : ""}` } key={ tag }>
+                    <a href={ `/observations?q=${t}&search_on=tags` }>
+                      { tag }
+                    </a>
+                    { remove }
+                  </div>
                 );
-              }
-              return (
-                <div className={ `tag ${t.api_status ? "loading" : ""}` } key={ tag }>
-                  <a href={ `/observations?q=${t}&search_on=tags` }>
-                    { tag }
-                  </a>
-                  { remove }
-                </div>
-              );
-            } )
-          }
+              } )
+            }
+          </Panel.Collapse>
         </Panel>
       </div>
     );

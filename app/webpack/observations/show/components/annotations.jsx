@@ -336,8 +336,8 @@ class Annotations extends React.Component {
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { I18n.t( "annotations" ) } { count }
         </h4>
-        <Panel collapsible expanded={ this.state.open }>
-          { table }
+        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+          <Panel.Collapse>{ table }</Panel.Collapse>
         </Panel>
       </div>
     );

@@ -101,15 +101,19 @@ class Projects extends React.Component {
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { I18n.t( "projects" ) } { count }
         </h4>
-        <Panel collapsible expanded={ this.state.open }>
-          { addProjectInput }
-          { observation.project_observations.map( po => (
-            <ProjectListing
-              key={ po.project.id }
-              projectObservation={ po }
-              { ...this.props }
-            />
-          ) ) }
+        <Panel id="projects-panel" expanded={ this.state.open } onToggle={ () => null }>
+          <Panel.Collapse>
+            <Panel.Body>
+              { addProjectInput }
+              { observation.project_observations.map( po => (
+                <ProjectListing
+                  key={ po.project.id }
+                  projectObservation={ po }
+                  { ...this.props }
+                />
+              ) ) }
+            </Panel.Body>
+          </Panel.Collapse>
         </Panel>
       </div>
     );

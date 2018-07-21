@@ -108,8 +108,8 @@ class ObservationFields extends React.Component {
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { I18n.t( "observation_fields" ) } { count }
         </h4>
-        <Panel collapsible expanded={ this.state.open }>
-          { panelContent }
+        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+          <Panel.Collapse>{ panelContent }</Panel.Collapse>
         </Panel>
       </div>
     );
