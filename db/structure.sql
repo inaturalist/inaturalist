@@ -4431,17 +4431,6 @@ ALTER SEQUENCE update_actions_id_seq OWNED BY update_actions.id;
 
 
 --
--- Name: update_subscribers; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE update_subscribers (
-    update_action_id integer,
-    subscriber_id integer,
-    viewed_at timestamp without time zone
-);
-
-
---
 -- Name: user_blocks; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -8395,13 +8384,6 @@ CREATE UNIQUE INDEX index_update_actions_unique ON update_actions USING btree (r
 
 
 --
--- Name: index_update_subscribers_on_update_action_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_update_subscribers_on_update_action_id ON update_subscribers USING btree (update_action_id);
-
-
---
 -- Name: index_user_blocks_on_blocked_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9341,4 +9323,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180518192353');
 INSERT INTO schema_migrations (version) VALUES ('20180518231918');
 
 INSERT INTO schema_migrations (version) VALUES ('20180613193352');
+
+INSERT INTO schema_migrations (version) VALUES ('20180719001655');
 

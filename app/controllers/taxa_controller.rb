@@ -157,7 +157,6 @@ class TaxaController < ApplicationController
           return redirect_to( action: "index" )
         end
         
-        # if params[:test] == "taxon-page" || ( logged_in? && current_user.in_test_group?( "taxon-page" ) )
         site_place = @site && @site.place
         user_place = current_user && current_user.place
         preferred_place = user_place || site_place
@@ -174,7 +173,8 @@ class TaxaController < ApplicationController
         options[:api_token] = JsonWebToken.encode( user_id: current_user.id ) if current_user
         @node_taxon_json = INatAPIService.get_json( api_url, options )
         return render_404 unless @node_taxon_json
-        @node_place_json = INatAPIService.get_json( "/places/#{place_id.to_i}" )
+        @node_place_json = ( place_id.blank? || place_id == 0 ) ?
+          nil : INatAPIService.get_json( "/places/#{place_id.to_i}" )
         @chosen_tab = session[:preferred_taxon_page_tab]
         @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
         render layout: "bootstrap", action: "show2"

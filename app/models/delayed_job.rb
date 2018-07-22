@@ -23,7 +23,10 @@ class Delayed::Backend::ActiveRecord::Job
   end
 
   def self.pending
-    Delayed::Job.where("run_at > ? OR attempts = 0", Time.now).order(run_at: :asc)
+    Delayed::Job.
+      where("run_at > ? OR attempts = 0", Time.now).
+      where("failed_at IS NOT NULL").
+      order(run_at: :asc)
   end
 
   def paperclip?

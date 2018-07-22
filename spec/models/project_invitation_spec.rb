@@ -10,6 +10,9 @@ describe ProjectInvitation, "creation" do
 end
 
 describe ProjectInvitation, "notify_owner_of" do
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
+
   it "should generate an update for the observer" do
     pi = make_project_invitation
     lambda {

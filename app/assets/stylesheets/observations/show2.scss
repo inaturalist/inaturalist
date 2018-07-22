@@ -14,6 +14,8 @@
 @import "../shared/modals";
 @import "../../../../node_modules/react-image-gallery/styles/scss/image-gallery";
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
+@import "./identify/observation_modal";
+@import "./identify/suggestions";
 
 #react-images-container {
   .content--jss-0-1, .figure--jss-0-4, .easyzoom, .easyzoom > a {
@@ -690,7 +692,7 @@ h3, h4 {
   .control-group {
     float: right;
     .btn-group button .fa {
-      color: #999;
+      color: $text-grey;
     }
   }
   button.dropdown-toggle {
@@ -738,7 +740,7 @@ h3, h4 {
     height: 230px;
     text-align: center;
     font-size: 18px;
-    color: #999;
+    color: $text-grey;
     padding-top: 75px;
     border-bottom: 1px solid $border-grey;;
     .fa {
@@ -812,7 +814,7 @@ h3, h4 {
     }
   }
   .type {
-    color: #999;
+    color: $text-grey;
     &:before {
       content: " (";
     }
@@ -832,16 +834,30 @@ h3, h4 {
   .standard {
     padding-right: 15px;
   }
-  .top_info {
+  .top_info,
+  .places {
     border-bottom: 1px solid $border-grey;
-    display: inline-block;
     padding-bottom: 15px;
+  }
+  .top_info {
+    display: inline-block;
     width: 100%;
     .info {
       display: block;
       float: left;
       min-width: 110px;
       margin-right: 5px;
+    }
+  }
+  .links {
+    padding-top: 15px;
+    .info:before {
+      content: '·';
+      color: $text-grey;
+      margin: 0 5px;
+    }
+    .info:first-child:before {
+      visibility: hidden;
     }
   }
 }
@@ -1433,8 +1449,9 @@ h3, h4 {
     border: 1px solid $border-grey;
     border-top: 0px;
     padding: 17px 12px;
+    display: flex;
     .btn-space {
-      width: 33%;
+      flex: 2;
       display: inline-block;
       text-align: center;
       button {
@@ -1709,7 +1726,7 @@ h3, h4 {
         margin-left: 20px;
         &:before {
           content: "\21B3";
-          color: #999;
+          color: $text-grey;
         }
       }
       a.display-name {

@@ -75,17 +75,17 @@ module DarwinCore
 
         # Make a POST request to an endpoint indicating the archive with taxon data is updated
         if @opts[:post_taxon_archive_to_url] && @opts[:post_taxon_archive_as_url]
-          uri = URI( @opts[:post_taxon_archive_to_url] )
-          http = Net::HTTP.new( uri.host, uri.port )
-          req = Net::HTTP::Post.new( uri.path, {
-            "Content-Type" => "application/json"
-          })
-          req.body = {
-            name: "iNaturalist",
-            url: @opts[:post_taxon_archive_as_url]
-          }.to_json
+          options = {
+           body: {
+              name: "iNaturalist",
+              url: @opts[:post_taxon_archive_as_url]
+           }.to_json,
+           headers: {
+             "Content-Type" => "application/json"
+           }
+          }
           logger.debug "Posting #{req.body} to #{@opts[:post_taxon_archive_to_url]}"
-          res = http.request( req )
+          response = HTTParty.post( @opts[:post_taxon_archive_to_url], options )
         end
       end
       @opts[:path]

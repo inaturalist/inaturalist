@@ -69,7 +69,7 @@ class MapDetails extends React.Component {
             <span className="value">{ geoprivacy }</span>
           </div>
         </div>
-        <div className="places">
+        <div className="places clearfix">
           <h4>{ I18n.t( "encompassing_places" ) }</h4>
           <div className="standard">
             <span className="attr">{ I18n.t( "standard" ) }:</span>
@@ -79,6 +79,30 @@ class MapDetails extends React.Component {
             <span className="attr">{ I18n.t( "community_curated" ) }:</span>
             { this.placeList( observationPlaces.filter( op => ( op.admin_level === null ) ) ) }
           </div>
+        </div>
+        <div className="links">
+          <span className="attr">{ I18n.t( "view_on" ) }</span>
+          <span>
+            <span className="info">
+              <a className="value" href={ `https://www.google.com/maps?q=loc:${observation.latitude},${observation.longitude}` }>
+                { I18n.t( "google" ) }
+              </a>
+            </span>
+            <span className="info">
+              <a className="value" href={ `https://www.openstreetmap.org/?mlat=${observation.latitude}&mlon=${observation.longitude}` }>
+                { I18n.t( "open_street_map" ) }
+              </a>
+            </span>
+            {/*
+              Nice to have, but sort of useless unless macrostrat implements the abililty to link to the infowindow
+              and not just the coords
+              <span className="info">
+                <a className="value" href={ `https://macrostrat.org/map/#5/${observation.latitude}/${observation.longitude}` }>
+                  { I18n.t( "macrostrat" ) }
+                </a>
+              </span>
+            */}
+          </span>
         </div>
       </div>
     );

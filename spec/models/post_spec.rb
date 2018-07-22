@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe Post do
-  before(:each) { enable_elastic_indexing(UpdateAction) }
-  after(:each) { disable_elastic_indexing(UpdateAction) }
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
 
   describe "creation" do
     it "should not generate jobs if it's a draft" do
@@ -32,19 +32,18 @@ describe Post do
       f = Friendship.make!
       post = without_delay { Post.make!( :draft, parent: f.friend ) }
       expect( post ).not_to be_published
-      UpdateAction.delete_all
-      UpdateSubscriber.delete_all
+      UpdateAction.destroy_all
+      expect( UpdateAction.unviewed_by_user_from_query(f.user_id, notifier: post) ).to eq false
       without_delay { post.update_attributes( body: "#{post.body} something else", published_at: Time.now ) }
-      expect(UpdateAction.where(notifier: post).first.
-        update_subscribers.where(subscriber_id: f.user_id).first).not_to be_blank
+      expect( UpdateAction.unviewed_by_user_from_query(f.user_id, notifier: post) ).to eq true
     end
     it "should not generate updates if body changed by published_at didn't" do
       f = Friendship.make!
       post = without_delay { Post.make!( parent: f.friend, published_at: Time.now ) }
-      UpdateAction.delete_all
-      UpdateSubscriber.delete_all
+      UpdateAction.destroy_all
+      expect( UpdateAction.unviewed_by_user_from_query(f.user_id, notifier: post) ).to eq false
       without_delay { post.update_attributes( body: "#{post.body} something else" ) }
-      expect(UpdateAction.where(notifier: post).first).to be_blank
+      expect( UpdateAction.unviewed_by_user_from_query(f.user_id, notifier: post) ).to eq false
     end
   end
 
@@ -55,20 +54,20 @@ describe Post do
 
       it "should generate an update for a project user" do
         pu = ProjectUser.make!(project: project)
-        expect( pu.user.update_subscribers.count ).to eq 0
+        expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, notifier: post) ).to eq false
         without_delay do
           post.update_attributes(published_at: Time.now)
         end
-        expect( pu.user.update_subscribers.limit(1).last.update_action.notifier ).to eq post
+        expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, notifier: post) ).to eq true
       end
 
       it "should not generate an update for a project user if they don't prefer it" do
         pu = ProjectUser.make!(project: project, prefers_updates: false)
-        expect( pu.user.update_subscribers.count ).to eq 0
+        expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, notifier: post) ).to eq false
         without_delay do
           post.update_attributes(published_at: Time.now)
         end
-        expect( pu.user.update_subscribers.count ).to eq 0
+        expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, notifier: post) ).to eq false
       end
     end
     describe "for a user" do
@@ -106,18 +105,18 @@ describe Post do
     it "should generate an update for the owner" do
       p = Project.make!
       u = p.user
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
       post = without_delay {Post.make!(:user => u, :parent => p)}
-      expect(UpdateAction.where(notifier: post).first.
-        update_subscribers.where(subscriber_id: post.user_id).first).not_to be_blank
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: post) ).to eq true
     end
   end
 
   describe "creation for user" do
     it "should generate updates for followers" do
       f = Friendship.make!
+      expect( UpdateAction.unviewed_by_user_from_query(f.user_id, { }) ).to eq false
       post = without_delay { Post.make!(:parent => f.friend) }
-      expect(UpdateAction.where(notifier: post).first.
-        update_subscribers.where(subscriber_id: f.user_id).first).not_to be_blank
+      expect( UpdateAction.unviewed_by_user_from_query(f.user_id, notifier: post) ).to eq true
     end
   end
 
@@ -133,31 +132,30 @@ describe Post do
       it "generate for published posts" do
         u = User.make!
         project = Project.make!
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
         p = Post.make!( body: "hey @#{ u.login }", parent: project )
         expect( p ).to be_published
-        expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 1
-        expect( UpdateAction.where( notifier: p, notification: "mention" ).first.
-          update_subscribers.first.subscriber ).to eq u
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: p) ).to eq true
       end
       it "do not generate for drafts" do
         u = User.make!
         project = Project.make!
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
         p = Post.make!( :draft, body: "hey @#{ u.login }", parent: project )
         expect( p ).not_to be_published
-        expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 0
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
       end
 
       it "generate for drafts when they're published" do
         u = User.make!
         project = Project.make!
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
         p = Post.make!( :draft, body: "hey @#{ u.login }", parent: project )
         expect( p ).not_to be_published
-        expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 0
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: p) ).to eq false
         p.update_attributes( published_at: Time.now )
         expect( p ).to be_published
-        expect( UpdateAction.where( notifier: p, notification: "mention" ).count ).to eq 1
-        expect( UpdateAction.where( notifier: p, notification: "mention" ).first.
-          update_subscribers.first.subscriber ).to eq u
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: p) ).to eq true
       end
 
     end

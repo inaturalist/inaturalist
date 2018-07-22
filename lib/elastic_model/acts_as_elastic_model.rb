@@ -6,6 +6,7 @@ module ActsAsElasticModel
     include Elasticsearch::Model
 
     attr_accessor :skip_indexing
+    attr_accessor :es_source
 
     # load the index definition, if it exists
     index_path = File.join(Rails.root, "app/es_indices/#{ name.underscore }_index.rb")
@@ -28,22 +29,24 @@ module ActsAsElasticModel
 
     class << self
       def elastic_search(options = {})
-        begin
-          __elasticsearch__.search(ElasticModel.search_hash(options))
-        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-          Logstasher.write_exception(e)
-          Rails.logger.error "[Error] elastic_search failed: #{ e }"
-          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, sleep: 1, tries: 10 ) do
+          begin
+            __elasticsearch__.search(ElasticModel.search_hash(options))
+          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+            Logstasher.write_exception(e)
+            Rails.logger.error "[Error] elastic_search failed: #{ e }"
+            Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+          end
         end
       end
 
       def elastic_paginate(options={})
         options[:page] ||= 1
         options[:per_page] ||= 20
-        options[:source] ||= [ "id" ]
+        options[:source] ||= options[:keep_es_source] ? "*" : [ "id" ]
         result = elastic_search(options).
           per_page(options[:per_page]).page(options[:page])
-        result_to_will_paginate_collection(result)
+        result_to_will_paginate_collection(result, options)
       end
 
       # standard way to bulk index instances. Called without options it will
@@ -96,18 +99,16 @@ module ActsAsElasticModel
       end
 
       def elastic_delete!(options = {})
-        begin
-          __elasticsearch__.client.delete_by_query(index: index_name,
-            body: ElasticModel.search_hash(options))
-          __elasticsearch__.refresh_index! if Rails.env.test?
-        rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
-          Logstasher.write_exception(e)
-          Rails.logger.error "[Error] elastic_delete failed: #{ e }"
-          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
-        rescue Elasticsearch::Transport::Transport::Errors::Conflict => e
-          Logstasher.write_exception(e)
-          Rails.logger.error "[Error] elastic_delete failed: #{ e }"
-          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+          begin
+            __elasticsearch__.client.delete_by_query(index: index_name,
+              body: ElasticModel.search_hash(options))
+            __elasticsearch__.refresh_index! if Rails.env.test?
+          rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
+            Logstasher.write_exception(e)
+            Rails.logger.error "[Error] elastic_delete failed: #{ e }"
+            Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+          end
         end
       end
 
@@ -181,10 +182,15 @@ module ActsAsElasticModel
           batch_start_id = batch_end_id
         end
       end
-      def result_to_will_paginate_collection(result)
-        try_and_try_again( PG::ConnectionBad, sleep_for: 20 ) do
+
+      def result_to_will_paginate_collection(result, options={})
+        try_and_try_again( PG::ConnectionBad, sleep: 20 ) do
           begin
-            records = result.records.to_a
+            records = options[:keep_es_source] ?
+              result.records.map_with_hit do |record, hit|
+                record.es_source = hit._source
+                record
+              end : result.records.to_a
             elastic_ids = result.results.results.map{ |r| r.id.to_i }
             elastic_ids_to_delete = elastic_ids - records.map(&:id)
             unless elastic_ids_to_delete.blank?
@@ -253,14 +259,16 @@ module ActsAsElasticModel
     end
 
     def elastic_delete!
-      begin
-        __elasticsearch__.delete_document
-        # in the test ENV, we will need to wait for changes to be applied
-        self.class.__elasticsearch__.refresh_index! if Rails.env.test?
-      rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
-        Logstasher.write_exception(e)
-        Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
-        Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+      try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 1, tries: 10 ) do
+        begin
+          __elasticsearch__.delete_document
+          # in the test ENV, we will need to wait for changes to be applied
+          self.class.__elasticsearch__.refresh_index! if Rails.env.test?
+        rescue Elasticsearch::Transport::Transport::Errors::NotFound => e
+          Logstasher.write_exception(e)
+          Rails.logger.error "[Error] elastic_delete! failed: #{ e }"
+          Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+        end
       end
     end
 

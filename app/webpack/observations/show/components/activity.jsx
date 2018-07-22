@@ -231,7 +231,8 @@ Activity.propTypes = {
   review: PropTypes.func,
   setActiveTab: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
-  unreview: PropTypes.func
+  unreview: PropTypes.func,
+  onClickCompare: PropTypes.func
 };
 
 export default Activity;

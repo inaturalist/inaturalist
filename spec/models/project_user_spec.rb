@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ProjectUser, "creation" do
-  before(:each) { enable_elastic_indexing(UpdateAction) }
-  after(:each) { disable_elastic_indexing(UpdateAction) }
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
   it "should subscribe user to assessment sections if curator" do
     as = AssessmentSection.make!
     p = as.assessment.project
@@ -162,10 +162,10 @@ describe ProjectUser do
       @project_user = ProjectUser.make!
       Delayed::Job.delete_all
       @now = Time.now
-      enable_elastic_indexing(UpdateAction)
+      enable_has_subscribers
     end
-    after(:each) { disable_elastic_indexing(UpdateAction) }
-    
+    after { disable_has_subscribers }
+
     it "should queue a job to update identifications if became curator" do
       @project_user.update_attributes(:role => ProjectUser::CURATOR)
       jobs = Delayed::Job.where("created_at >= ?", @now)
@@ -198,23 +198,21 @@ describe ProjectUser do
     it "should notify project members of new curators" do
       pu = ProjectUser.make!
       start = Time.now
+      expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, resource: pu.project) ).to eq false
       curator_pu = without_delay do 
         ProjectUser.make!(:project => pu.project, :role => ProjectUser::CURATOR)
       end
-      u = UpdateSubscriber.joins(:update_action).where("created_at >= ?", start).
-        where(subscriber_id: pu.user_id).first
-      expect(u).not_to be_blank
+      expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, resource: pu.project) ).to eq true
     end
 
     it "should notify project members of new managers" do
       pu = ProjectUser.make!
       start = Time.now
+      expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, resource: pu.project) ).to eq false
       curator_pu = without_delay do 
         ProjectUser.make!(:project => pu.project, :role => ProjectUser::MANAGER)
       end
-      u = UpdateSubscriber.joins(:update_action).where("created_at >= ?", start).
-        where(subscriber_id: pu.user_id).first
-      expect(u).not_to be_blank
+      expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, resource: pu.project) ).to eq true
     end
 
     it "should notify project members of new owners" do
@@ -222,12 +220,11 @@ describe ProjectUser do
       p = pu.project
       new_pu = ProjectUser.make!(:project => p)
       start = Time.now
+      expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, resource: pu.project) ).to eq false
       without_delay do
         p.update_attributes(:user => new_pu.user)
       end
-      u = UpdateSubscriber.joins(:update_action).where("created_at >= ?", start).
-        where(subscriber_id: pu.user_id).first
-      expect(u).not_to be_blank
+      expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, resource: pu.project) ).to eq true
     end
   end
 end

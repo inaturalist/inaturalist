@@ -838,8 +838,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
-    before(:each) { enable_elastic_indexing( Observation, Place, UpdateAction ) }
-    after(:each) { disable_elastic_indexing( Observation, Place, UpdateAction ) }
+    before(:each) { enable_elastic_indexing( Observation, Place ) }
+    after(:each) { disable_elastic_indexing( Observation, Place ) }
 
     it "should allow search" do
       expect {
@@ -1637,24 +1637,21 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "viewed_updates" do
+
     before do
-      enable_elastic_indexing(UpdateAction)
+      enable_has_subscribers
       after_delayed_job_finishes do
         @o = Observation.make!(:user => user)
         @c = Comment.make!(:parent => @o)
         @i = Identification.make!(:observation => @o)
       end
     end
-    after(:each) { disable_elastic_indexing(UpdateAction) }
+    after { disable_has_subscribers }
 
     it "should mark all updates from this observation for the signed in user as viewed" do
-      num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource: @o).
-        where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
-      expect(num_updates_for_owner).to eq 2
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: @o) ).to eq true
       put :viewed_updates, :format => :json, :id => @o.id
-      num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource: @o).
-        where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
-      expect(num_updates_for_owner).to eq 0
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: @o) ).to eq false
     end
 
     it "should not mark other updates for the signed in user as viewed" do
@@ -1662,22 +1659,22 @@ shared_examples_for "an ObservationsController" do
         o = Observation.make!(:user => user)
         c = Comment.make!(:parent => o)
       end
-      num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
-        where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
-      expect(num_updates_for_owner).to eq 3
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: @o) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query(@c.user_id, resource: @o) ).to eq true
       without_delay do
         put :viewed_updates, :format => :json, :id => @o.id
       end
-      num_updates_for_owner = UpdateAction.joins(:update_subscribers).where(resource_type: "Observation").
-        where("subscriber_id = ?", user.id).where("viewed_at IS NULL").count
-      expect(num_updates_for_owner).to eq 1
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: @o) ).to eq false
+      expect( UpdateAction.unviewed_by_user_from_query(@c.user_id, resource: @o) ).to eq true
     end
 
     it "should not mark other updates from this observation as viewed" do
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: @o) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query(@c.user_id, resource: @o) ).to eq true
       put :viewed_updates, :format => :json, :id => @o.id
-      num_updates_for_commenter = UpdateAction.joins(:update_subscribers).where(resource: @o).
-        where("subscriber_id = ?", @c.user.id).where("viewed_at IS NULL").count
-      expect(num_updates_for_commenter).to eq 1
+      unviewed_users = UpdateAction.users_with_unviewed_updates_from_query(resource: @o, subscriber_id: @c.user.id)
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: @o) ).to eq false
+      expect( UpdateAction.unviewed_by_user_from_query(@c.user_id, resource: @o) ).to eq true
     end
   end
 

@@ -18,7 +18,7 @@ class Identifiers extends React.Component {
     if ( !observation || !observation.taxon || _.isEmpty( identifiers ) ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
     const taxon = observation.taxon;
-    let singleName = taxon.preferred_common_name || taxon.name;
+    let singleName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name ) || taxon.name;
     if ( config && config.currentUser && config.currentUser.prefers_scientific_name_first ) {
       singleName = taxon.name;
     }

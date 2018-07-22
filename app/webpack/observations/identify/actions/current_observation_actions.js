@@ -5,7 +5,10 @@ import { setConfig } from "./config_actions";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
-import { fetchSuggestions } from "../ducks/suggestions";
+import {
+  fetchSuggestions,
+  updateWithObservation as updateSuggestionsWithObservation
+} from "../ducks/suggestions";
 import { setControlledTermsForTaxon } from "../../show/ducks/controlled_terms";
 import { fetchQualityMetrics, setQualityMetrics } from "../../show/ducks/quality_metrics";
 import { fetchSubscriptions, setSubscriptions } from "../../show/ducks/subscriptions";
@@ -55,6 +58,7 @@ export function fetchDataForTab( options = { } ) {
     const s = getState( );
     const observation = options.observation || s.currentObservation.observation;
     if ( s.currentObservation.tab === "suggestions" ) {
+      dispatch( updateSuggestionsWithObservation( observation ) );
       dispatch( fetchSuggestions( ) );
     } else if ( s.currentObservation.tab === "annotations" ) {
       dispatch( setControlledTermsForTaxon( observation.taxon ) );

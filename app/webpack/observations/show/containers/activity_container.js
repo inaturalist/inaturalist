@@ -5,10 +5,20 @@ import { addComment, confirmDeleteComment, addID, deleteID, restoreID,
 import { setFlaggingModalState } from "../ducks/flagging_modal";
 import { createFlag, deleteFlag } from "../ducks/flags";
 import { setActiveTab } from "../ducks/comment_id_panel";
+import {
+  fetchSuggestions,
+  updateWithObservation as updateSuggestionsWithObservation
+} from "../../identify/ducks/suggestions";
+import {
+  showCurrentObservation as showObservationModal
+} from "../../identify/actions/current_observation_actions";
 
 function mapStateToProps( state ) {
+  const observation = Object.assign( {}, state.observation, {
+    places: state.observationPlaces
+  } );
   return {
-    observation: state.observation,
+    observation,
     config: state.config,
     commentIDPanel: state.commentIDPanel
   };
@@ -28,7 +38,22 @@ function mapDispatchToProps( dispatch ) {
     deleteFlag: id => { dispatch( deleteFlag( id ) ); },
     setActiveTab: activeTab => { dispatch( setActiveTab( activeTab ) ); },
     review: ( ) => { dispatch( review( ) ); },
-    unreview: ( ) => { dispatch( unreview( ) ); }
+    unreview: ( ) => { dispatch( unreview( ) ); },
+    onClickCompare: ( e, taxon, observation, options = {} ) => {
+      if (
+        options.currentUser &&
+        options.currentUser.testGroups &&
+        options.currentUser.testGroups.indexOf( "suggestions-obs-detail" ) >= 0
+      ) {
+        const newObs = Object.assign( {}, observation, { taxon } );
+        dispatch( updateSuggestionsWithObservation( newObs ) );
+        dispatch( fetchSuggestions( ) );
+        dispatch( showObservationModal( observation ) );
+        e.preventDefault( );
+        return false;
+      }
+      return true;
+    }
   };
 }
 

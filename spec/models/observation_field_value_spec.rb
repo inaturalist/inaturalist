@@ -18,24 +18,26 @@ describe ObservationFieldValue, "creation" do
   describe "for subscribers" do
     before do
       UpdateAction.delete_all
-      UpdateSubscriber.delete_all
+      enable_has_subscribers
     end
+    after { disable_has_subscribers }
 
     it "should create an update for the observer if user is not observer" do
       o = Observation.make!
+      expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq false
       ofv = without_delay do
         ObservationFieldValue.make!(:observation => o, :user => User.make!)
       end
-      expect(UpdateAction.where(resource: o, notifier: ofv).first.
-        update_subscribers.where(subscriber_id: o.user_id).count).to eq 1
+      expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq true
     end
     
     it "should not create an update for the observer if the user is the observer" do
       o = Observation.make!
+      expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq false
       ofv = without_delay do
         ObservationFieldValue.make!(:observation => o, :user => o.user)
       end
-      expect(UpdateAction.where(resource: o, notifier: ofv).count).to eq 0
+      expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq false
     end
   end
 end
@@ -44,45 +46,42 @@ describe ObservationFieldValue, "updating for subscribers" do
   before do
     @ofv = ObservationFieldValue.make!(:value => "foo", :user => User.make!)
     @o = @ofv.observation
-    UpdateAction.delete_all
-    UpdateSubscriber.delete_all
-    enable_elastic_indexing(UpdateAction)
+    UpdateAction.destroy_all
+    enable_has_subscribers
   end
-  after(:each) { disable_elastic_indexing(UpdateAction) }
+  after { disable_has_subscribers }
 
   it "should create an update for the observer if user is not observer" do
+    expect( UpdateAction.unviewed_by_user_from_query(@o.user_id, resource: @o) ).to eq false
     without_delay { @ofv.update_attributes(:value => "bar") }
-    expect(UpdateAction.where(resource: @o, notifier: @ofv).first.
-      update_subscribers.where(subscriber_id: @o.user_id).count).to eq 1
+    expect( UpdateAction.unviewed_by_user_from_query(@o.user_id, resource: @o) ).to eq true
   end
 
   it "should create an update for the observer if user is not observer and the observer created the ofv" do
     ofv = without_delay { ObservationFieldValue.make!(:user => @o.user, :value => "foo", :observation => @o) }
-    UpdateAction.delete_all
-    UpdateSubscriber.delete_all
+    UpdateAction.destroy_all
+    expect( UpdateAction.unviewed_by_user_from_query(@o.user_id, resource: @o) ).to eq false
     without_delay { ofv.update_attributes(:value => "bar", :updater => User.make!) }
-    expect(UpdateAction.where(resource: @o, notifier: ofv).first.
-      update_subscribers.where(subscriber_id: @o.user_id).count).to eq 1
+    expect( UpdateAction.unviewed_by_user_from_query(@o.user_id, resource: @o) ).to eq true
   end
 
   it "should not create an update for the observer" do
     ofv = ObservationFieldValue.make!
     o = ofv.observation
     expect(o.user_id).to eq ofv.user_id
-    UpdateAction.delete_all
-    UpdateSubscriber.delete_all
+    UpdateAction.destroy_all
+    expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq false
     without_delay { ofv.update_attributes(:value => "bar") }
-    expect(UpdateAction.where(resource: o, notifier: ofv).count).to eq 0
+    expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq false
   end
 
   it "should not create an update for subscribers who didn't add the value" do
     u = User.make!
     without_delay { Comment.make!(:user => u, :parent => @o)}
-    UpdateAction.delete_all
-    UpdateSubscriber.delete_all
+    UpdateAction.destroy_all
+    expect( UpdateAction.unviewed_by_user_from_query(u.id, resource: @o) ).to eq false
     without_delay { @ofv.update_attributes(:value => "bar") }
-    expect(UpdateAction.where(resource: @o, notifier: @ofv).first.
-      update_subscribers.where(subscriber_id: u.id).count).to eq 0
+    expect( UpdateAction.unviewed_by_user_from_query(u.id, resource: @o) ).to eq false
   end
 end
 
