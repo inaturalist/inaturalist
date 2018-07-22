@@ -51,7 +51,7 @@ class About extends React.Component {
                       <td>
                         <div>
                           { _.map( project.admins, a => (
-                            <span className="project-admin">
+                            <span className="project-admin" key={ `project-admins-${a.id}` }>
                               <span className="project-admin-span">
                                 <UserImage user={ a.user } />
                                 <UserLink user={ a.user } />

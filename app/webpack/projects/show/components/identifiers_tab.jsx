@@ -10,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroller";
 const IdentifiersTab = ( { identifiers, config, setConfig } ) => {
   if ( _.isEmpty( identifiers ) ) { return ( <span /> ); }
   const scrollIndex = config.identifiersScrollIndex || 30;
-  const loader = ( <div className="loading_spinner huge" /> );
+  const loader = ( <div key="identifiers-tab-loading" className="loading_spinner huge" /> );
   return (
     <div className="Identifiers">
       <Grid>
@@ -21,7 +21,7 @@ const IdentifiersTab = ( { identifiers, config, setConfig } ) => {
               hasMore={ identifiers.length >= scrollIndex }
               loader={ loader }
             >
-              <table>
+              <table key="identifiers-tab-table">
                 <thead>
                   <tr>
                     <th className="rank">{ I18n.t( "rank" ) }</th>
@@ -31,7 +31,7 @@ const IdentifiersTab = ( { identifiers, config, setConfig } ) => {
                 </thead>
                 <tbody>
                   { _.map( identifiers.slice( 0, scrollIndex ), ( i, index ) => (
-                    <tr className={ index % 2 !== 0 && "odd" } key={ `identifier-${i.user.id}` }>
+                    <tr className={ index % 2 !== 0 ? "odd" : "" } key={ `identifier-${i.user.id}` }>
                       <td className="rank">{ index + 1 }</td>
                       <td>
                         <UserImage user={ i.user } />

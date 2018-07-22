@@ -25,7 +25,7 @@ const ObservationsTab = ( {
       project.recent_observations.results : null;
   }
   if ( loading ) {
-    view = ( <div className="loading_spinner huge" /> );
+    view = <div key="observations-tab-loading-spinner" className="loading_spinner huge" />;
   } else if ( activeSubview === "map" ) {
     view = (
       <ObservationsMapView

@@ -8,7 +8,7 @@ import InfiniteScroll from "react-infinite-scroller";
 const ObservationsFlexGridView = ( { config, observations, hasMore, loadMore, scrollIndex } ) => {
   if ( _.isEmpty( observations ) ) { return ( <span /> ); }
   const index = scrollIndex || 30;
-  const loader = ( <div className="loading_spinner huge" /> );
+  const loader = ( <div key="observations-flex-grid-view-loading" className="loading_spinner huge" /> );
   return (
     <div className="ObservationFlexGridView">
       <Grid>
@@ -19,7 +19,7 @@ const ObservationsFlexGridView = ( { config, observations, hasMore, loadMore, sc
               hasMore={ hasMore }
               loader={ loader }
             >
-              <div className="ObservationsGrid">
+              <div className="ObservationsGrid" key="observations-flex-grid">
                 { observations.slice( 0, index ).map( o => {
                   let itemDim = 235;
                   let width = itemDim;

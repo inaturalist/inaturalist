@@ -13,7 +13,7 @@ const ObservationsListView = ( {
 } ) => {
   const scrollIndex = config.observationsScrollIndex || 30;
   const filters = config.observationFilters;
-  const loader = ( <div className="loading_spinner huge" /> );
+  const loader = ( <div key="observations-list-view-loading" className="loading_spinner huge" /> );
   const sortColumn = ( filters.order_by === "observed_on" ) ? "observed" : "created";
   const observedCaretDirection =
     ( sortColumn === "observed" && filters.order === "asc" ) ? "up" : "down";
@@ -29,7 +29,7 @@ const ObservationsListView = ( {
               hasMore={ hasMore }
               loader={ loader }
             >
-              <table className="ObservationsList">
+              <table className="ObservationsList" key="observations-list-view-list">
                 <thead>
                   <tr>
                     <th>{ I18n.t( "media" ) }</th>
@@ -73,7 +73,7 @@ const ObservationsListView = ( {
                       displayPlace = I18n.t( "unknown" );
                     }
                     return (
-                      <tr className={ index % 2 === 0 && "even" } key={ `obs_list_row_${o.id}` }>
+                      <tr className={ index % 2 === 0 ? "even" : "" } key={ `obs_list_row_${o.id}` }>
                         <td className="photo">
                           <a
                             href={`/observations/${o.id}`}

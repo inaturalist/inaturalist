@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 import moment from "moment-timezone";
 import inaturalistjs from "inaturalistjs";
 /* global L */

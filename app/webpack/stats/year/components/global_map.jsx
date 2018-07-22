@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import moment from "moment-timezone";
+import PropTypes from "prop-types";
 import inaturalistjs from "inaturalistjs";
 /* global L */
 /* global DEFAULT_SITE_ID */

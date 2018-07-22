@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import inatjs from "inaturalistjs";
 import _ from "lodash";

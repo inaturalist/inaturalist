@@ -7,7 +7,7 @@ import InfiniteScroll from "react-infinite-scroller";
 
 const SpeciesTab = ( { project, config, species, setConfig } ) => {
   if ( _.isEmpty( species ) ) { return ( <span /> ); }
-  const loader = ( <div className="loading_spinner huge" /> );
+  const loader = <div key="species-tab-loading-spinner" className="loading_spinner huge" />;
   const scrollIndex = config.speciesScrollIndex || 30;
   return (
     <div className="TopSpecies">

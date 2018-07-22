@@ -20,6 +20,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
   const taxonRules = _.isEmpty( project.taxonRules ) ? I18n.t( "all_taxa_" ) :
     _.map( project.taxonRules, r => (
       <SplitTaxon
+        key={ `project-taxon-rules-${r.id}` }
         user={ config.currentUser }
         key={ `requirement_taxon_${r.taxon.id}` }
         taxon={ r.taxon }
@@ -31,13 +32,13 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
     _.map( project.projectRules, r => r.project.title ).join( ", " );
   const locationRules = _.isEmpty( project.placeRules ) ? I18n.t( "worldwide" ) :
     _.map( project.placeRules, r => (
-      <a href={ `/places/${r.place.id}` }>
+      <a key={ `project-place-rules-${r.id}` } href={ `/places/${r.place.id}` }>
         { r.place.display_name }
       </a>
     ) );
   const userRules = _.isEmpty( project.userRules ) ? I18n.t( "any" ) :
     _.map( project.userRules, r => (
-      <a href={ `/people/${r.user.login}` }>
+      <a key={ `project-user-rules-${r.id}` } href={ `/people/${r.user.login}` }>
         { r.user.login }
       </a>
     ) );

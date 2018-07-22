@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import { COLORS } from "../../../shared/util";

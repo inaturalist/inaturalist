@@ -195,7 +195,7 @@ class SharedForm extends React.Component {
                   className="form-control"
                   placeholder={ I18n.t( "views.projects.new.project_summary_placeholder" ) }
                   onChange={ e => setDescription( e.target.value ) }
-                  value={ project.description }
+                  value={ project.description || "" }
                 />
                 { project.errors.description && (
                   <Overlay
@@ -226,6 +226,7 @@ class SharedForm extends React.Component {
                   rootClose
                   placement="top"
                   animation={false}
+                  container={ this }
                   overlay={ (
                     <Popover id="color-picker-popover" className="color-picker">
                       <ChromePicker

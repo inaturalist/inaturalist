@@ -237,7 +237,6 @@ class RegularForm extends React.Component {
               <input
                 type="radio"
                 id="project-date-type-any"
-                inputProps
                 checked={ project.date_type === "any" }
                 onChange={ ( ) => updateProject( { date_type: "any" } ) }
               />
