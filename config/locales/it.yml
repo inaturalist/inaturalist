@@ -66,7 +66,7 @@ it:
     one: <span class="count">1</span> taxon corrispondente
     other: <span class="count">%{count}</span> taxa corrispondenti
   x_misidentifications_of_this_species:
-    one: 1 identificazione errata di questa specie
+    one: 1 identificazione errata
     other: '%{count} identificazioni errate di questa specie'
   x_observations:
     one: 1 osservazione
@@ -90,8 +90,8 @@ it:
     one: 1 persona
     other: '%{count} persone'
   x_people_found_this_helpful:
-    one: Una persona ha trovato questo utile
-    other: '%{count} persone hanno trovato questo utile'
+    one: Una persona lo ha trovato utile
+    other: '%{count} persone lo hanno trovato utile'
   x_faves:
     one: 1 preferito
     other: '%{count} preferiti'
@@ -115,13 +115,13 @@ it:
     other: <a href='%{url}'>%{count} specie</a>
   x_suggestions_filtered_by_colon:
     one: '1 suggerimento filtrato per:'
-    other: '%{count} Suggerimenti filtrati per:'
+    other: '%{count} suggerimenti filtrati per:'
   x_taxa_observed_html:
     one: <span class='count'>1</span> taxon osservato
     other: <span class='count'>%{count}</span> taxa osservati
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> osservazione research-grade</span>
-    other: <span class='count'>%{count}</span> osservazioni research-grade</span>
+    one: <span class='count'>1</span> osservazione livello di ricerca</span>
+    other: <span class='count'>%{count}</span> osservazioni livello di ricerca</span>
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span> osservazione livello-ricerca identificate al
       grado di specie o inferiore</span>
@@ -1333,7 +1333,7 @@ it:
   editing_observation_field: Modifica del campo dell'osservazione in corso
   editing_observation_id: Modifica in corso dell'osservazione %{obs_id}
   editing_observations:
-    one: 'Modifica di <span slass="count">un''</span>osservazione:'
+    one: 'Modifica di <span slass="count">1</span>osservazione:'
     other: 'Modifica di <span class="count">%{count}</span> osservazioni:'
   editing_project: Modifica di %{project} in corso
   editing_project_asset: Modifica in corso della risorsa del progetto per
@@ -1889,7 +1889,7 @@ it:
     per confermare che questo è %{taxon}?
   is_the_organism_wild: L'organismo è selvatico/naturalizzato?
   is_this_observation_offensive_html: Questa osservazione è <a href="/help#inappropriate">inappropriata</a>,
-    spam, o offensiva?
+    spam o offensiva?
   is_this_offensive_html: Questo è <a href="/help#inappropriate">inappropriato</a>,
     spam, o offensivo?
   is_this_place_a_duplicate: Questo luogo è un duplicato?
@@ -1921,7 +1921,7 @@ it:
   journal_post: Post del diario
   journal_post_deleted: Post del diario cancellato.
   journal_posts: Post del diario
-  jpg_png_or_gif: JPG, PNG, o GIF
+  jpg_png_or_gif: JPG, PNG o GIF
   jump_to_letter: Vai alla lettera
   just_a_reminder: Solo un promemoria, dal momento che potresti aver garantito ai
     curatori del progetto l'accesso alle coordinate private.
@@ -3515,8 +3515,8 @@ it:
   saved: Salvato
   saving: Salvataggio...
   saving_num_of_count_observations:
-    one: Salvando l'osservazione...
-    other: Salvando %{num} di %{count} osservazioni...
+    one: Salvataggio dell’osservazione...
+    other: Salvataggio di %{num} su %{count} osservazioni...
   saving_verb: Salvataggio
   schemes: Schemi
   schemes_including: Schemi che includono
@@ -5788,11 +5788,11 @@ it:
         project_background_color: Colore di sfondo dell'indice del progetto
         project_background_color_help: Assicurati di scegliere un colore abbastanza
           scuro in modo che il testo bianco sia visibile.
-        project_banner: Banner del Progetto (PNG, JPG, o GIF)
+        project_banner: Banner del Progetto (PNG, JPG o GIF)
         project_banner_help: Immagine del banner opzionale. Le dimensioni ideali sono
           760px per 320px.
         project_details: Dettagli del progetto
-        project_icon: Icona del Progetto (PNG, JPG, o GIF)
+        project_icon: Icona del Progetto (PNG, JPG o GIF)
         project_icon_help: Icona opzionale. Dovrebbe essere almeno 72px x 72px e sarà
           ritagliata a forma quadrata.
         project_name: Nome del Progetto
@@ -6381,8 +6381,8 @@ it:
         one: è troppo corto (minimo 1 carattere)
         other: è troppo corto (minimo %{count} caratteri)
       wrong_length:
-        one: lunghezza sbagliata (dovrebbe essere 1 carattere)
-        other: lunghezza sbagliata (dovrebbe essere %{count} caratteri)
+        one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
+        other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
     template:
       body: 'Ci sono problemi con i seguenti campi:'
       header:
@@ -6477,8 +6477,8 @@ it:
           one: è troppo corto (minimo 1 carattere)
           other: è troppo corto (minimo %{count} caratteri)
         wrong_length:
-          one: lunghezza sbagliata (dovrebbe essere 1 carattere)
-          other: lunghezza sbagliata (dovrebbe essere %{count} caratteri)
+          one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
+          other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
         header:
