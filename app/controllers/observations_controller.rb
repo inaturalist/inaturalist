@@ -733,7 +733,7 @@ class ObservationsController < ApplicationController
           redirect_to(@observation || observations_path)
         end
         format.json do
-          render :status => :unprocessable_entity, :json => {:error => msg}
+          render :status => :forbidden, :json => {:error => msg}
         end
       end
       return
@@ -1449,7 +1449,7 @@ class ObservationsController < ApplicationController
           redirect_back_or_default @observation
         end
         format.json do
-          render :status => 401, :json => {:error => msg}
+          render :status => :forbidden, :json => {:error => msg}
         end
       end
       return
@@ -1923,7 +1923,7 @@ class ObservationsController < ApplicationController
       return
     end
     if flow_task.user_id != current_user.id
-      render status: :unprocessable_entity, text: "You don't have permission to do that"
+      render status: :forbidden, text: "You don't have permission to do that"
       return
     end
     if flow_task.outputs.exists?
@@ -2502,7 +2502,7 @@ class ObservationsController < ApplicationController
           return redirect_to @observation
         end
         format.json do
-          return render :json => {:error => msg}
+          return render :json => {:error => msg}, status: :forbidden
         end
       end
     end
