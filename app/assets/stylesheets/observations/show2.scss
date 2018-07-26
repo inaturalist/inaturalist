@@ -260,7 +260,8 @@ a.UserImage,
             font-size: 140px;
             color: #ccc;
           }
-          span {
+          .nophoto,
+          .add-photo-span {
             position: absolute;
             top: 280px;
             width: 100%;
@@ -268,7 +269,6 @@ a.UserImage,
             font-weight: 100;
           }
           .add-photo-span {
-            position: absolute;
             top: auto;
             bottom: 12px;
             .image-gallery-thumbnail {

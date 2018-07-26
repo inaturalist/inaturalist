@@ -1,5 +1,6 @@
 .bootstrap a.UserImage,
 body > [role="dialog"] a.UserImage,
+body > .popover[role="tooltip"] a.UserImage,
 body > div > .popover[role="tooltip"] a.UserImage {
   display: inline-block;
   border-radius: 120px;

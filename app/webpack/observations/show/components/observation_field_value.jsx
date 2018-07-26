@@ -74,19 +74,19 @@ class ObservationFieldValue extends React.Component {
           <div className="search">
             <a href={ `/observations?field:${ofv.name}=${ofv.value}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              { I18n.t( "observations_with_this_field_and_value" ) }
+              <span className="menu-item-label">{ I18n.t( "observations_with_this_field_and_value" ) }</span>
             </a>
           </div>
           <div className="search">
             <a href={ `/observations?field:${ofv.name}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              { I18n.t( "observations_with_this_field" ) }
+              <span className="menu-item-label">{ I18n.t( "observations_with_this_field" ) }</span>
             </a>
           </div>
           <div className="search">
             <a href={ `/observation_fields/${ofv.observation_field.id}` }>
               <i className="fa fa-arrow-circle-o-right" />
-              { I18n.t( "observation_field_details" ) }
+              <span className="menu-item-label">{ I18n.t( "observation_field_details" ) }</span>
             </a>
           </div>
         </div>

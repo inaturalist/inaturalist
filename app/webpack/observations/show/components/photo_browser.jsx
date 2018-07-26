@@ -160,7 +160,7 @@ class PhotoBrowser extends React.Component {
       contents = (
         <div>
           <i className={ `fa icon-iconic-${iconicTaxonName}`} />
-          { I18n.t( "no_photo" ) }
+          <span className="nophoto">{ I18n.t( "no_photo" ) }</span>
           { this.addPhotoButton( ) }
         </div>
       );

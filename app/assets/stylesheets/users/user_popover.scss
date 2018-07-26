@@ -3,6 +3,7 @@
 }
 
 .UsersPopoverOverlay,
+body > .popover[role="tooltip"].UsersPopoverOverlay,
 body > div > .popover[role="tooltip"].UsersPopoverOverlay {
   .user {
     display: block;
