@@ -2678,6 +2678,9 @@ pt-PT:
   observations_removed_from_the_project: Observações removidas do projeto "%{project}"
   observations_saved: Observação(ões) guardadas!
   observations_specifying_this_field: Observações especificando este campo
+  observations_text_search_warning: As procuras de texto podem produzir resultados
+    estranhos quando combinados com outros filtros. Se quer encontrar a observação
+    de uma espécie em particular, use o filtro de táxon.
   observations_this_year_vs_last_year: Observações deste ano vs. último ano
   observations_title: Observações de Todos
   observations_total: Total de Observações
@@ -2691,6 +2694,7 @@ pt-PT:
     "casuais" caso não atendam as condições acima ou
   observations_with_this_field: Observações com este campo
   observations_with_this_field_and_value: Observações com este campo e valor
+  observationcounts_refreshed: Contagem de observações actualizada
   observed: Observado
   observed_by: Observado por
   observed_in_place?: observado no local
@@ -2700,7 +2704,11 @@ pt-PT:
   observers: Observadores
   observer_short: Observador
   observing: a observar
+  occurence_status_describes_how: O estatuto de ocorrência descreve o quão comum ou
+    raro é um taxón numa determinada área. Ver DarwinCore para <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">mais
+    informação sobre terminologia</a>.
   occurrence_status: Estado da ocorrência
+  occurrence_status_establishment_means: estatuto de ocorrência, forma de estabelecimento
   occurrence_status_levels:
     present: presente
     common: comum
@@ -2733,22 +2741,57 @@ pt-PT:
     observe_panel_title: Vamos começar adicionando algumas observações
     observe_panel_body_p1_local: Precisa de inspiração? Eis alguns organismos a serem
       observados nas proximidades...
+    observe_panel_body_p1_global: Precisa de inspiração? Tem aqui alguns organismos
+      que estão a ser observados...
     observe_panel_body_p2: Vá lá fora e observe um organismo. Escolha algo selvagem
       e tire uma foto nítida e sem cortes. Caso já tenha uma foto, <a href="%{new_observation_path}"
       pode adiciona-la agora</a>. Pode também utilizar a aplicação %{site_name} para
       registar as suas observações.
+    observe_panel_body_p3: Assim que partilhar as suas observações, esta página irá
+      mostrar as actualizações da comunidade na forma de comentários e identificações.
+      Quem sabe o que irá descobrir!
     follow_panel_title_local: Siga Alguns Naturalistas que estão nas Proximidades
     follow_panel_title_global: Siga Alguns dos Naturalistas mais Ativos
     follow_panel_body: Se visitar esses perfis e clicar no botão seguir, será informado
       sempre que sejam publicadas novas observações pelos membros seguidos
+    following_panel_title: Seguir Pessoas, Taxa e Locais
+    following_panel_body: Em %{site_name} pode seguir pessoas para se manter actualizado
+      sobre as observações que vão publicando. Também pode subscrever determinadas
+      espécies para sinalizar as novas observações dessas espécies, ou fazer o mesmo
+      com os locais.
+    comments_panel_title: Curioso com o tipo de discussões que estão a acontecer em
+      %{site_name}?
+    comments_panel_body: '<p>%{site_name} é sobre partilhar e discutir as observações
+      de organismos vivos. (Nota: Fica automaticamente inscrito em qualquer discussão
+      para a qual contribua com comentários ou identificações. Pode gerir estas actualizações
+      na secção ''Subscrições'' à direita.)</p>'
+    updates_by_you_panel_title: Esta aba é uma forma rápida de filtrar apenas as actualizações
+      no seu conteúdo.
+    updates_by_you_panel_body: Lembre-se, na aba 'Todas as actualizações' não só receberá
+      actualizações do seu próprio conteúdo mas, também, do conteúdo das  pessoas
+      que segue e dos taxa ou locais que subscreveu utilizando a ferramenta Subscrições,
+      à direita.
     youve_got_updates_panel_title: Tem atualizações!
+    youve_got_updates_panel_body_p1: Mantenha-se ao corrente das actualizações acerca
+      de...
+    youve_got_updates_panel_body_p2: |-
+      <ul>
+        <li><strong>Seu conteúdo:</strong> Actividade nas suas observações tais como comentários, identificações ou favoritos da comunidade %{site_name}. Também irá receber actualizações quando alguém adiciona a sua observação a um projecto ou inclui anotações com campos adicionais.</li>
+        <li><strong>People:</strong> Novas observações ou publicações de pessoas que segue.</li>
+        <li><strong>Organismos, Projectos e Locais:</strong> Novas observações de organismos ou locais específicos a que subscreveu. Também pode aderir a projectos para que seja actualizado sempre que exista uma nova publicação relacionada com o projecto.</li>
+        <li><strong>Discussões em que participou:</strong> Ao comentar ou adicionar identificações ao conteúdo de outra pessoa subscreve automaticamente qualquer nova actividade desse conteúdo. Utilize a ferramenta 'Gerir as suas subscrições' para deixar de receber actualizações.</li>
+      </ul>
+  one_by_one: Um a um
   one_of_your_lists: uma das suas listas...
   only_a_project_manager_can_add: Só um gestor de projecto pode atribuir o estatuto
     de supervisor de projecto
   only_administrators_may_access_that_page: Só os administradores podem aceder a esta
     página
+  only_accepts_taxa: só aceita taxa
   only_an_admin_can_remove_project_users: Só um administrador pode eliminar utilizadores
     do projecto.
+  only_country_state_and_county: Por agora só os locais equivalentes a país, estado
+    e distrito estão visíveis. Aproxime para ver locais mais pequenos.
   only_curators_can_add_edit_scientific_names: Só os supervisores podem acrescentar/editar
     nomes científicos.
   only_curators_can_access_that_page: Só os supervisores podem aceder a esta página.
@@ -2760,39 +2803,79 @@ pt-PT:
     por ficheiro, caso contrário a conversão ou apresentação serão incorrectas.
   only_project_curators_can_do_that: Só os curadores do projeto podem fazer isso.
   only_receive_updates_about_this_taxon: Só receber actualizações sobre este táxon
+  only_show_active_taxa: Só mostra taxa activos
   only_show_events_that_last_less_than_2_weeks: Só mostrar eventos que duram menos
     de 2 semanas
   only_show_for_species_subspecies_varieties_etc: Só mostrar para espécies, subespécies,
     variedades, etc.
+  only_show_taxa_fom_this_list: Só mostra taxa desta lista
+  only_showing_taxa_from: só a mostrar os taxa desta lista
+  only_site_curators_can_turn_on_observation_aggregation: Apenas os curadores podem
+    activar a agregação a projectos
   only_species: só espécies
   only_species_and_subspecies: apenas espécies e subespécies/variedades
+  only_the_author_of_this_post_can_do_that: Apenas o autor desta publiocação pode
+    fazer isso. Não seja malicioso.
+  only_the_owner_of_this_list_can_do_that: Apenas o proprietário desta lista pode
+    fazer isso. Não seja malicioso.
   only_the_project_admin_can_delete_this_project: Só o administrador do projeto pode
     eleminar este projeto.
+  only_you: Só você
   open: abrir
   open_: Abrir
   open_description: Qualquer um pode ver as coordenadas a menos que o táxon esteja
     ameaçado.
+  opt_in_for_this_observation: Optar por se incluir nesta observação
+  opt_out_of_community_ids_for_obs: Optar por se excluir da comunidade de identificação
+    para esta observação
   optional: opcional
+  optional_columns_note_for_any: 'Colunas opcionais (nota: para usar qualquer uma
+    destas colinas numa observação, todas têm de estar presentes)'
   or: ou
+  or_choose_high_level_taxa: '... ou escolha a partir de um taxa de nível superior'
+  or_if_you_dont_want_email: Ou se simplesmente não quer nenhum email...
   or_invite_your_friends: ou convide os seus amigos
+  or_invited: ou convidados.
+  or_post_message_to_google_group: 'ou envie uma mensagem para o nosso Grupo Google:'
+  or_upload: Ou carregue
+  or_you_can: Ou pode...
+  or_you_can_: ou pode
   orange: laranja
   order: Ordem
   order_by: Ordenar por
   organism_is_wild: O organismo é selvagem
   organisms: Organismos
   original: Original
+  originally_flagged_by: Originalmente marcado por
+  originally_imported_from_url_html: Originalmente importado a partir de <a href='%{url}'>%{url}</a>
+  original_page_url_for_this_photo: URL da página original para esta foto.
+  original_rights_holder: Titular original dos direitos
+  original_url: URL original
+  original_url_for_this_map: URL original para este mapa
+  organism_appears_captive_cultivated: Organismo parece de cativeiro / cultivado
   other: Outro
   other_animals: outros animais
   other_animals_plural:
     one: outro animal
     other: outros animais
+  other_lexicons: Outros Léxicos
   other_listings_of_this_taxon_for_this_place: Outros registos deste táxon para este
     local
   other_species_commonly_misidentified_as_this_species: Outras espécies que costumam
     ser confundidas com esta
+  other_species_commonly_misidentified_as_this_species_in_place_html: Outras espécies
+    que costumam ser mal identificadas como esta espécie em <a href="%{url}">%{place}</a>
   our_blog: O nosso blogue
+  out_of_range: Fora de alcance
+  output_taxon: Táxon resultante
+  overview: Visão geral
   owner: Proprietário
+  parent: Ancestral
+  parent_name: Nome do ancestral
   password: Palavra-passe
+  password_confirmation: Confirmar palavra-passe
+  paste: Colar
+  paste_in_a_bunch_of_names: Colar vários nomes, um por linha, e carregar no botão!
   pdf: PDF
   people: Pessoas
   people_agree: pessoas concordam
