@@ -201,7 +201,6 @@ class FlickrPhoto < Photo
       self.large_url     = sizes.detect{|s| s.label == 'Large'}.try(:source)
       self.original_url  = sizes.detect{|s| s.label == 'Original'}.try(:source)
       if changed?
-        puts "[DEBUG] updated #{self}, changed: #{changed.join(', ')}"
         save unless options[:no_save]
       end
     rescue FlickRaw::FailedResponse => e

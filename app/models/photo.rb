@@ -221,8 +221,8 @@ class Photo < ActiveRecord::Base
           return [ photo, errors ]
         end
         # if that succeded, update this photo with the repaired remote URL
-        photo.file = URI(repaired.original_url || repaired.large_url ||
-          repaired.medium_url || repaired.small_url)
+
+        photo.file = URI( repaired.best_available_url )
         photo.save
         return [ photo, { } ]
       end
