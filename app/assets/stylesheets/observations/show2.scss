@@ -973,7 +973,7 @@ h3, h4 {
   .grade {
     margin: 15px 0px 25px;
   }
-  span[aria-describedby="popover-data-quality"] {
+  .popover-data-quality-link {
     color: $bootstrap-link-color;
     cursor: pointer;
     i {

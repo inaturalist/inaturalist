@@ -63,7 +63,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
             target={linkTarget}
           >
             <i className="fa fa-arrow-circle-o-right" />
-            <span>{ I18n.t( "you_" ) }</span>
+            <span className="menu-item-label">{ I18n.t( "you_" ) }</span>
           </a>
         </div>
       ) );
@@ -76,7 +76,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
             target={linkTarget}
           >
             <i className="fa fa-arrow-circle-o-right" />
-            <span>{ item.user.login }</span>
+            <span className="menu-item-label">{ item.user.login }</span>
           </a>
         </div>
       ) );
@@ -88,7 +88,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
           target={linkTarget}
         >
           <i className="fa fa-arrow-circle-o-right" />
-          <span>{ I18n.t( "everyone_" ) }</span>
+          <span className="menu-item-label">{ I18n.t( "everyone_" ) }</span>
         </a>
       </div>
     ) );
@@ -116,7 +116,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
               target={linkTarget}
             >
               <i className="fa fa-arrow-circle-o-right" />
-              <span>{ _.capitalize( I18n.t( "of_this_taxon" ) ) }</span>
+              <span className="menu-item-label">{ _.capitalize( I18n.t( "of_this_taxon" ) ) }</span>
             </a>
           </div>
           <div className="search">
@@ -125,7 +125,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
               target={linkTarget}
             >
               <i className="fa fa-arrow-circle-o-right" />
-              <span>{ _.capitalize( I18n.t( "by_user", { user: item.user.login } ) ) }</span>
+              <span className="menu-item-label">{ _.capitalize( I18n.t( "by_user", { user: item.user.login } ) ) }</span>
             </a>
           </div>
         </li>

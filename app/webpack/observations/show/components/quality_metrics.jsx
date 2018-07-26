@@ -234,7 +234,7 @@ class QualityMetrics extends React.Component {
                 overlay={ this.popover( ) }
                 className="cool"
               >
-                <span>
+                <span className="popover-data-quality-link">
                   { I18n.t( "data_quality_assessment_" ) }
                   <i className="fa fa-info-circle" />
                 </span>

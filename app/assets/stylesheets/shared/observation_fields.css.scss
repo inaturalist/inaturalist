@@ -91,12 +91,11 @@
     }
     .fa {
       color: $inat-green;
-      position: absolute;
+      margin-right: 5px;
     }
     a {
       color: inherit;
       .menu-item-label {
-        padding-left: 17px;
         display: inline-block;
         vertical-align: top;
       }
