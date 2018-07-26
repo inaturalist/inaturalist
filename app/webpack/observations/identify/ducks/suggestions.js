@@ -12,6 +12,7 @@ const STOP_LOADING = "observations-identify/suggestions/STOP_LOADING";
 const SET_QUERY = "observations-identify/suggestions/SET_QUERY";
 const SET_SUGGESTIONS = "observations-identify/suggestions/SET_SUGGESTIONS";
 const SET_DETAIL_TAXON = "observations-identify/suggestions/SET_DETAIL_TAXON";
+const UPDATE_WITH_OBSERVATION = "observations-identify/suggestions/UPDATE_WITH_OBSERVATION";
 
 export default function reducer(
   state = {
@@ -24,7 +25,8 @@ export default function reducer(
     },
     responseQuery: null,
     detailTaxon: null,
-    detailPhotoIndex: 0
+    detailPhotoIndex: 0,
+    observation: null // optional observation from which to derive default values for query
   },
   action
 ) {
@@ -55,19 +57,24 @@ export default function reducer(
         newState.detailPhotoIndex = action.options.detailPhotoIndex;
       }
       break;
-    case SHOW_CURRENT_OBSERVATION: {
+    // case SHOW_CURRENT_OBSERVATION:
+    case UPDATE_WITH_OBSERVATION: {
       newState.query = {
         source: state.query.source,
         order_by: state.query.order_by
       };
       const observation = action.observation;
       if ( observation.taxon ) {
+        let indexOfTaxonInAncestors = observation.taxon.ancestor_ids.indexOf( observation.taxon.id );
+        if ( indexOfTaxonInAncestors < 0 ) {
+          indexOfTaxonInAncestors = observation.taxon.ancestor_ids.length;
+        }
         if ( observation.taxon.rank_level === 10 ) {
           newState.query.taxon_id =
-            observation.taxon.ancestor_ids[observation.taxon.ancestor_ids.length - 2];
+            observation.taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 1, 0 )];
         } else if ( observation.taxon.rank_level < 10 ) {
           newState.query.taxon_id =
-            observation.taxon.ancestor_ids[observation.taxon.ancestor_ids.length - 3];
+            observation.taxon.ancestor_ids[Math.max( indexOfTaxonInAncestors - 2, 0 )];
         } else {
           newState.query.taxon_id = observation.taxon.id;
         }
@@ -90,6 +97,7 @@ export default function reducer(
       }
       newState.detailTaxon = null;
       newState.detailPhotoIndex = 0;
+      newState.observation = observation;
       break;
     }
     case UPDATE_CURRENT_OBSERVATION: {
@@ -138,11 +146,11 @@ export function updateQuery( query ) {
     if (
       query.taxon_id &&
       !query.taxon &&
-      s.currentObservation.observation &&
-      s.currentObservation.observation.taxon &&
-      s.currentObservation.observation.taxon.id === query.taxon_id
+      s.suggestions.observation &&
+      s.suggestions.observation.taxon &&
+      s.suggestions.observation.taxon.id === query.taxon_id
     ) {
-      newQuery.taxon = s.currentObservation.observation.taxon;
+      newQuery.taxon = s.suggestions.observation.taxon;
     }
     if ( query.taxon_id && !query.taxon ) {
       inatjs.taxa.fetch( query.taxon_id )
@@ -171,6 +179,10 @@ export function updateQuery( query ) {
 
 export function setDetailTaxon( taxon, options = {} ) {
   return { type: SET_DETAIL_TAXON, taxon, options };
+}
+
+export function updateWithObservation( observation ) {
+  return { type: UPDATE_WITH_OBSERVATION, observation };
 }
 
 function sanitizeQuery( query ) {
@@ -207,18 +219,18 @@ export function fetchSuggestions( query ) {
       locale: I18n.locale
     } );
     if ( payload.source === "visual" ) {
-      const photo = s.currentObservation.observation.photos[0];
+      const photo = s.suggestions.observation.photos[0];
       if ( !photo ) {
         // can't get visual results without a photo
         return null;
       }
       payload.image_url = photo.photoUrl( "medium" );
       if (
-        s.currentObservation.observation.geojson &&
+        s.suggestions.observation.geojson &&
         newQuery.place && newQuery.place.id === newQuery.defaultPlace.id
       ) {
-        payload.lat = s.currentObservation.observation.geojson.coordinates[1];
-        payload.lng = s.currentObservation.observation.geojson.coordinates[0];
+        payload.lat = s.suggestions.observation.geojson.coordinates[1];
+        payload.lng = s.suggestions.observation.geojson.coordinates[0];
       } else if ( newQuery.place && newQuery.place.location ) {
         const coords = newQuery.place.location.split( "," );
         payload.lat = coords[0];

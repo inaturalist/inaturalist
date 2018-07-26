@@ -10,7 +10,7 @@ gem 'activerecord-session_store'
 gem 'acts-as-taggable-on', '~> 3.4'
 gem 'acts_as_votable', '~> 0.10.0'
 gem 'addressable', :require => 'addressable/uri'
-gem 'airbrake'
+gem 'airbrake', '~> 7.3'
 gem 'ancestry'
 gem 'angular-rails-templates', git: "https://github.com/gaslight/angular-rails4-templates", ref: 'v0.1.5'
 # aws-sdk locked to pre 3.0; see https://github.com/thoughtbot/paperclip/issues/2484

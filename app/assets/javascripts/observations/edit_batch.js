@@ -8,6 +8,18 @@ function applyBatch(inputNames) {
       }
     }
     var batchVal = input.val()
+
+    // Tags should append, not replace
+    if ( this.match( /tag_list/ ) ) {
+      var newTags = batchVal.split( "," ).map( function( t ) { return t.trim( ) } );
+      $('#batchcol :input[name*="['+this+']"]').each( function( ) {
+        var existingTags = ( $( this ).val( ) || "" ).split( "," ).map( function( t ) { return _.trim( t ); } );
+        var tags = _.compact( _.uniq( existingTags.concat( newTags ) ) );
+        $( this ).val( tags.join( ", " ) );
+      } );
+      return;
+    }
+
     if (this.match(/geoprivacy/) && !batchVal) {
       batchVal = 'open'
     }

@@ -2,8 +2,14 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "a signed in UsersController" do
   before(:all) { User.destroy_all }
-  before(:each) { enable_elastic_indexing( UpdateAction, Observation ) }
-  after(:each) { disable_elastic_indexing( UpdateAction, Observation ) }
+  before(:each) do
+    enable_elastic_indexing( Observation )
+    enable_has_subscribers
+  end
+  after(:each) do
+    disable_elastic_indexing( Observation )
+    disable_has_subscribers
+  end
   let(:user) { User.make! }
   it "should show email for edit" do
     get :edit, :format => :json
@@ -90,6 +96,8 @@ shared_examples_for "a signed in UsersController" do
   end
 
   describe "new_updates" do
+    before { CONFIG.has_subscribers = :enabled }
+    after { CONFIG.has_subscribers = :disabled }
     it "should show recent updates" do
       o = Observation.make!(:user => user)
       without_delay { Comment.make!(:parent => o) }
@@ -135,9 +143,10 @@ shared_examples_for "a signed in UsersController" do
     it "should allow user to skip marking the updates as viewed" do
       o = Observation.make!(:user => user)
       without_delay { Comment.make!(:parent => o) }
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: o) ).to eq true
       get :new_updates, :format => :json, :skip_view => true
       Delayed::Worker.new(:quiet => true).work_off
-      expect(user.update_subscribers.where("viewed_at IS NULL").count).to be > 0
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: o) ).to eq true
     end
   end
 

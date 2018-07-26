@@ -30,8 +30,9 @@ class MushroomObserverImportFlowTask < FlowTask
         transaction do
           o = observation_from_result( result )
           unless o && o.save
-            errors[result[:url]] = o.errors.full_messages.to_sentence
-            clear_warnings_for_url( result[:url] )
+            mo_url = result[:url].gsub( "https", "http" )
+            errors[mo_url] = o.errors.full_messages.to_sentence
+            clear_warnings_for_url( mo_url )
           end
         end
       end
@@ -64,13 +65,13 @@ class MushroomObserverImportFlowTask < FlowTask
   def get_results_xml( options = {} )
     user_id = mo_user_id( options[:api_key] )
     page = options[:page] || 1
-    Nokogiri::XML( open( "http://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}" ) ).search( "result" )
+    Nokogiri::XML( open( "https://mushroomobserver.org/api/observations?user=#{user_id}&detail=high&page=#{page}" ) ).search( "result" )
   end
 
   def mo_user_id( for_api_key = nil )
     unless @mo_user_id
       for_api_key ||= api_key
-      xml = Nokogiri::XML( open( "http://mushroomobserver.org/api/api_keys?api_key=#{for_api_key}" ) )
+      xml = Nokogiri::XML( open( "https://mushroomobserver.org/api/api_keys?api_key=#{for_api_key}" ) )
       @mo_user_id = xml.at( "response/user" )[:id]
     end
     @mo_user_id
@@ -79,7 +80,7 @@ class MushroomObserverImportFlowTask < FlowTask
   def mo_user_name( for_api_key = nil )
     unless @mo_user_name
       user_id = mo_user_id( for_api_key )
-      xml = Nokogiri::XML( open( "http://mushroomobserver.org/api/users?id=#{user_id}&detail=high" ) )
+      xml = Nokogiri::XML( open( "https://mushroomobserver.org/api/users?id=#{user_id}&detail=high" ) )
       @mo_user_name = xml.at( "login_name" ).text
     end
     @mo_user_name
@@ -108,7 +109,8 @@ class MushroomObserverImportFlowTask < FlowTask
   end
 
   def observation_from_result( result, options = {} )
-    log "working on result #{result[:url]}"
+    mo_url = result[:url].gsub( "https", "http" )
+    log "working on result #{mo_url}"
     if ( is_collection_location = result.at( "is_collection_location" ) ) && is_collection_location[:value] == "false"
       warn( result[:url], "Obs not from collection location")
       return nil
@@ -117,11 +119,14 @@ class MushroomObserverImportFlowTask < FlowTask
       where(
         "observation_field_values.observation_field_id = ? AND value = ?",
         mo_url_observation_field,
-        result[:url]
+        mo_url
       ).first
-    return existing if existing
+    if existing
+      log "Found existing for #{mo_url}: #{existing}"
+      return existing
+    end
     o = Observation.new( user: user )
-    o.observation_field_values.build( observation_field: mo_url_observation_field, value: result[:url] )
+    o.observation_field_values.build( observation_field: mo_url_observation_field, value: mo_url )
     if location = result.at_css( "> location" )
       o.place_guess = location.at( "name" ).text
       swlat = location.at( "latitude_south" ).text.to_f
@@ -143,11 +148,11 @@ class MushroomObserverImportFlowTask < FlowTask
         if taxon && taxon.persisted?
           o.taxon = Taxon.find_by_id( taxon.id )
           if taxon.name != name
-            warn( result[:url], "Name mismatch, #{name} on MO, #{taxon.name} on iNat" )
+            warn( mo_url, "Name mismatch, #{name} on MO, #{taxon.name} on iNat" )
           end
         end
       rescue ActiveRecord::AssociationTypeMismatch
-        warn( result[:url], "Failed to import a new taxon for #{name}")
+        warn( mo_url, "Failed to import a new taxon for #{name}")
       end
       o.species_guess = name
       o.observation_field_values.build( observation_field: mo_name_observation_field, value: [
@@ -167,7 +172,7 @@ class MushroomObserverImportFlowTask < FlowTask
     end
     if !options[:skip_images] && ( images = images_from_result( result ) ) && images.size > 0
       images.each do |image|
-        image_url = "http://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
+        image_url = "https://mushroomobserver.nyc3.digitaloceanspaces.com/orig/#{image[:id]}.jpg"
         lp = LocalPhoto.new( user: user )
         begin
           log "getting image from #{image_url}"
@@ -176,8 +181,17 @@ class MushroomObserverImportFlowTask < FlowTask
             lp.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
           end
         rescue => e
-          warn( result[:url], "Failed to download #{image_url}")
-          next
+          begin
+            image_url = "https://images.mushroomobserver.org/orig/#{image[:id]}.jpg"
+            log "getting image from #{image_url}"
+            io = open( URI.parse( image_url ) )
+            Timeout::timeout(10) do
+              lp.file = (io.base_uri.path.split('/').last.blank? ? nil : io)
+            end
+          rescue => e
+            warn( mo_url, "Failed to download #{image_url}")
+            next
+          end
         end
         if image_license = image.at( "license")
           lp.license = case image_license[:url]
@@ -201,7 +215,7 @@ class MushroomObserverImportFlowTask < FlowTask
       @mo_url_observation_field ||= ObservationField.create!(
         name: "Mushroom Observer URL",
         datatype: ObservationField::TEXT,
-        description: "URL of this record on http://mushroomobserver.org"
+        description: "URL of this record on https://mushroomobserver.org"
       )
     end
     @mo_url_observation_field
@@ -213,7 +227,7 @@ class MushroomObserverImportFlowTask < FlowTask
       @mo_name_observation_field ||= ObservationField.create!(
         name: "Mushroom Observer Consensus Name",
         datatype: ObservationField::TEXT,
-        description: "Consensus taxon name for this record on http://mushroomobserver.org"
+        description: "Consensus taxon name for this record on https://mushroomobserver.org"
       )
     end
     @mo_name_observation_field

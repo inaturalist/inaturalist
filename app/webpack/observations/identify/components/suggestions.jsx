@@ -361,7 +361,7 @@ class Suggestions extends React.Component {
                   </div>
                 </div>
                 { detailTaxon ? (
-                  <div className={ `detail-taxon ${detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}` }>
+                  <div className={ `detail-taxon ${detailTaxonImages && detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}` }>
                     { detailPhotos }
                     <div className="obs-modal-header">
                       <SplitTaxon
@@ -381,7 +381,7 @@ class Suggestions extends React.Component {
                       minZoom={2}
                       gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
                       observations={[observation]}
-                      scrollwheel={false}
+                      gestureHandling="auto"
                       taxonLayers={[{
                         taxon: detailTaxon,
                         observations: true,

@@ -14,9 +14,11 @@ class ControlledTerm < ActiveRecord::Base
   has_many :attribute_annotations, class_name: "Annotation", foreign_key: :controlled_attribute_id
   belongs_to :user
   has_many :controlled_term_taxa, inverse_of: :controlled_term, dependent: :destroy
-  has_many :taxa, -> { where ["controlled_term_taxa.exception = ?", false] }, through: :controlled_term_taxa
+  has_many :taxa,
+    -> { joins(:controlled_term_taxa).where ["controlled_term_taxa.exception = ?", false] },
+    through: :controlled_term_taxa
   has_many :excepted_taxa,
-    -> { where ["controlled_term_taxa.exception = ?", true] },
+    -> { joins(:controlled_term_taxa).where ["controlled_term_taxa.exception = ?", true] },
     through: :controlled_term_taxa,
     source: :taxon
 

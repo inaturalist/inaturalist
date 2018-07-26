@@ -19,8 +19,8 @@ describe Comment do
   end
 
   describe "deletion" do
-    before(:each) { enable_elastic_indexing(UpdateAction) }
-    after(:each) { disable_elastic_indexing(UpdateAction) }
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
 
     it "should decrement a counter cache on the parent if the column exists" do
       o = Observation.make!
@@ -58,6 +58,9 @@ describe Comment do
   end
 
   describe "mentions" do
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
+
     it "knows what users have been mentioned" do
       u = User.make!
       c = Comment.make!(body: "hey @#{ u.login }")
@@ -68,8 +71,7 @@ describe Comment do
       u = User.make!
       c = Comment.make!(body: "hey @#{ u.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
-      expect( UpdateAction.where(notifier: c, notification: "mention").first.
-        update_subscribers.first.subscriber ).to eq u
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: c) ).to eq true
     end
 
     it "keeps mentions up-to-date" do
@@ -77,21 +79,28 @@ describe Comment do
       u2 = User.make!
       c = without_delay { Comment.make!(body: "hey") }
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 0
+      expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq false
+      expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq false
+
       c.update_attributes(body: "hey @#{ u1.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
-      expect( UpdateAction.where(notifier: c, notification: "mention").first.
-        update_subscribers.first.subscriber ).to eq u1
+      expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq false
+
       c.update_attributes(body: "hey @#{ u2.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
-      expect( UpdateAction.where(notifier: c, notification: "mention").first.
-        update_subscribers.first.subscriber ).to eq u2
+      expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq false
+      expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq true
+
       c.update_attributes(body: "hey @#{ u1.login }, @#{ u2.login }")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 1
-      # shouldn't need to use uniq here - duplicate subscribers
-      expect( UpdateAction.where(notifier: c, notification: "mention").first.
-        update_subscribers.map(&:subscriber_id).uniq.sort ).to eq [ u1.id, u2.id ]
+      expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq true
+
       c.update_attributes(body: "hey")
       expect( UpdateAction.where(notifier: c, notification: "mention").count ).to eq 0
+      expect( UpdateAction.unviewed_by_user_from_query(u1.id, notifier: c) ).to eq false
+      expect( UpdateAction.unviewed_by_user_from_query(u2.id, notifier: c) ).to eq false
     end
   end
 

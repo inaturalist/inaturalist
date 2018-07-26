@@ -13,8 +13,9 @@ describe ProjectList do
 end
 
 describe ProjectList, "refresh_with_observation" do
-  before { enable_elastic_indexing(Observation, UpdateAction) }
-  after { disable_elastic_indexing(Observation, UpdateAction) }
+  before { enable_elastic_indexing(Observation) }
+  after { disable_elastic_indexing(Observation) }
+
   it "should not remove taxa with no more confirming observations" do
     p = Project.make!
     pl = p.project_list

@@ -10,7 +10,7 @@ module Shared::WikipediaModule
         :redirects => '', 
         :prop => 'revisions', 
         :rvprop => 'content')
-      raw = query_results.at('page')
+      raw = query_results.blank? ? nil : query_results.at('page')
       unless raw.blank? || raw['missing']
         parsed = w.parse(:page => raw['title']).at('text').try(:inner_text).to_s
         @decoded = coder.decode(parsed)

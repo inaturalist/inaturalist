@@ -18,6 +18,8 @@ module ActsAsVotable
     after_save :run_votable_callback
     after_destroy :run_votable_callback
 
+    attr_accessor :bulk_delete
+
     alias_method :user, :voter
 
     def user_id
@@ -31,6 +33,7 @@ module ActsAsVotable
     end
 
     def run_votable_callback
+      return if bulk_delete
       if votable.respond_to?(:votable_callback)
         votable.votable_callback
       end

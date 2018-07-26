@@ -43,15 +43,14 @@ RSpec.configure do |config|
 
   config.before(:each) do
     DatabaseCleaner.start
-  end
-
-  config.before(:each) do
     Delayed::Job.delete_all
     make_default_site
+    CONFIG.has_subscribers = :disabled
   end
 
   config.after(:each) do
     DatabaseCleaner.clean
+    CONFIG.has_subscribers = :enabled
   end
   
   config.before(:all) do
@@ -223,4 +222,14 @@ def make_default_site
     preferred_email_noreply: "no-reply@inaturalist.org"
   ) unless Site.any?
   Site.default( refresh: true )
+end
+
+def enable_has_subscribers
+  enable_elastic_indexing(UpdateAction)
+  CONFIG.has_subscribers = :enabled
+end
+
+def disable_has_subscribers
+  disable_elastic_indexing(UpdateAction)
+  CONFIG.has_subscribers = :disabled
 end

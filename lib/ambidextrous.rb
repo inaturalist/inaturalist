@@ -21,21 +21,29 @@ module Ambidextrous
     url += "?" + options.map{|k,v| "#{k}=#{v}"}.join('&') unless options.blank?
     url
   end
-  
+
+  def is_inaturalistjs_request?
+    request.headers[:Via] === "inaturalistjs"
+  end
+
   def is_android_app?
+    return false if is_inaturalistjs_request?
     !(request.user_agent =~ ANDROID_APP_USER_AGENT_PATTERN).nil?
   end
   
   def is_iphone_app?
+    return false if is_inaturalistjs_request?
     !(request.user_agent =~ IPHONE_APP_USER_AGENT_PATTERN).nil? ||
       !(request.user_agent =~ IPHONE_APP_USER_AGENT_PATTERN_2).nil?
   end
   
   def is_iphone_app_2?
+    return false if is_inaturalistjs_request?
     !(request.user_agent =~ IPHONE_APP_USER_AGENT_PATTERN_2).nil?
   end
   
   def is_mobile_app?
+    return false if is_inaturalistjs_request?
     is_android_app? || is_iphone_app?
   end
 

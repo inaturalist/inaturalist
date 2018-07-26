@@ -3,7 +3,15 @@ class EmailerPreview < ActionMailer::Preview
   def updates_notification
     set_locale
     set_user
-    @user ||= UpdateAction.last.update_subscribers.last.subscriber
+    recently_notified_user_id = UpdateAction.elastic_paginate(
+      filters: {
+        exists: { field: :subscriber_ids }
+      },
+      per_page: 1,
+      sort: { id: :desc },
+      keep_es_source: true
+    ).first.es_source.subscriber_ids.first
+    @user = User.find(recently_notified_user_id)
     updates = @user.recent_notifications( per_page: 50 )
     Emailer.updates_notification(@user, updates)
   end

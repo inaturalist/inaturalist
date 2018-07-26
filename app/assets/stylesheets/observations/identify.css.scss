@@ -20,15 +20,6 @@
   margin: 7px 10px 7px 0px;
 }
 
-.SplitTaxon {
-  display: inline-block;
-  font-size: 90%;
-}
-.SplitTaxon.taxon .display-name {
-  color: black;
-  font-size: 110%;
-}
-
 body > div > [role="dialog"] .searchclear.glyphicon,
 .searchclear.glyphicon {
   position: absolute;
@@ -236,21 +227,6 @@ body > div > [role="dialog"] .DisagreementAlert .modal-dialog {
   z-index: 1050 !important;
 }
 
-.image-gallery-thumbnail {
-  margin-right: 10px;
-}
-.image-gallery-thumbnail,
-.image-gallery-thumbnail.active {
-  border: none;
-}
-.image-gallery-thumbnail.active img {
-  border: 4px solid #337ab7;
-}
-.image-gallery-slide .image-gallery-description {
-  position: relative;
-  padding: 0;
-  bottom: 0;
-}
 .disagreement-group {
   label:first-child {
     margin-right: 10px;

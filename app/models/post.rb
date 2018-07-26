@@ -61,6 +61,7 @@ class Post < ActiveRecord::Base
 
   ALLOWED_ATTRIBUTES = %w(
     href src width height alt cite title class name xml:lang abbr value align style controls preload
+    frameborder frameBorder seamless
   )
 
   def user_must_be_on_site_long_enough

@@ -19,15 +19,18 @@ describe Flag, "creation" do
 end
 
 describe Flag, "update" do
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
+
   it "should generate an update for the user" do
     t = Taxon.make!
     f = Flag.make!(flaggable: t)
     u = make_curator
+    expect( UpdateAction.unviewed_by_user_from_query(f.user_id, resource: f) ).to eq false
     without_delay do
       f.update_attributes(resolver: u, comment: "foo", resolved: true)
     end
-    expect( UpdateAction.joins(:update_subscribers).
-      where(resource: f).where("update_subscribers.subscriber_id = ?", f.user_id).count ).to eq 1
+    expect( UpdateAction.unviewed_by_user_from_query(f.user_id, resource: f) ).to eq true
   end
 
   it "should autosubscribe the resolver" do
@@ -40,8 +43,6 @@ describe Flag, "update" do
 end
 
 describe Flag, "destruction" do
-  before(:each) { enable_elastic_indexing(UpdateAction) }
-  after(:each) { disable_elastic_indexing(UpdateAction) }
   it "should remove the resolver's subscription" do
     t = Taxon.make!
     f = Flag.make!(flaggable: t)

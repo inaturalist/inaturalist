@@ -426,7 +426,7 @@ describe User do
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     before(:each) do
-      enable_elastic_indexing([ Observation, Taxon, Place, UpdateAction ])
+      enable_elastic_indexing([ Observation, Taxon, Place ])
       without_delay do
         @user = User.make!
         @place = make_place_with_geom
@@ -435,8 +435,12 @@ describe User do
             :latitude => @place.latitude, :longitude => @place.longitude)
         end
       end
+      enable_has_subscribers
     end
-    after(:each) { disable_elastic_indexing([ Observation, Place, UpdateAction ]) }
+    after(:each) do
+      disable_elastic_indexing([ Observation, Taxon, Place ])
+      disable_has_subscribers
+    end
 
     it "should destroy the user" do
       @user.sane_destroy
@@ -539,16 +543,9 @@ describe User do
       m = without_delay do
         ProjectUser.make!(:role => ProjectUser::MANAGER, :project => p)
       end
-      UpdateSubscriber.delete_all
-      old_count = UpdateSubscriber.count
-      start = Time.now
+      expect( UpdateAction.unviewed_by_user_from_query(m.user_id, { }) ).to eq false
       without_delay { @user.sane_destroy }
-      new_updates = UpdateSubscriber.joins(:update_action).to_a
-      expect(new_updates.size).to eq p.project_users.count
-      # new_updates.each{|u| puts "u.subscriber_id: #{u.subscriber_id}, u.notification: #{u.notification}"}
-      u = new_updates.detect{|o| o.subscriber_id == m.user_id}
-      expect(u).not_to be_blank
-      expect(u.update_action.resource).to eq(p)
+      expect( UpdateAction.unviewed_by_user_from_query(m.user_id, resource: p) ).to eq true
     end
 
     it "should generate a notification update for new project owners even if they're new members" do
@@ -557,18 +554,9 @@ describe User do
       a = without_delay do
         make_admin
       end
-      UpdateSubscriber.delete_all
-      old_count = UpdateSubscriber.count
-      start = Time.now
-
+      expect( UpdateAction.unviewed_by_user_from_query(a.id, { }) ).to eq false
       without_delay { @user.sane_destroy }
-      p.reload
-      new_updates = UpdateSubscriber.joins(:update_action).to_a
-      expect(new_updates.size).to eq p.project_users.count
-      # new_updates.each{|u| puts "u.subscriber_id: #{u.subscriber_id}, u.notification: #{u.notification}"}
-      u = new_updates.detect{|o| o.subscriber_id == a.id}
-      expect(u).not_to be_blank
-      expect(u.update_action.resource).to eq(p)
+      expect( UpdateAction.unviewed_by_user_from_query(a.id, resource: p) ).to eq true
     end
 
     it "should not destroy project journal posts" do
@@ -857,23 +845,33 @@ describe User do
   end
 
   describe "mentions" do
+    before do
+      enable_elastic_indexing( Observation )
+      enable_has_subscribers
+    end
+    after do
+      disable_elastic_indexing( Observation )
+      disable_has_subscribers
+    end
+
     it "can prefer to not get mentions" do
       u = User.make!
-      expect( u.update_subscribers.count ).to eq 0
-      without_delay { Comment.make!(body: "hey @#{ u.login }") }
-      without_delay { Comment.make!(body: "hey @#{ u.login }") }
-      expect( u.update_subscribers.count ).to eq 2
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
+      c1 = without_delay { Comment.make!(body: "hey @#{ u.login }") }
+      c2 = without_delay { Comment.make!(body: "hey @#{ u.login }") }
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: c1) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: c2) ).to eq true
+
       u.update_attributes(prefers_receive_mentions: false)
-      without_delay { Comment.make!(body: "hey @#{ u.login }") }
-      # the mention count remains the same
-      expect( u.update_subscribers.count ).to eq 2
+      c3 = without_delay { Comment.make!(body: "hey @#{ u.login }") }
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: c3) ).to eq false
     end
 
     it "can prefer to not get mentions in emails" do
       u = User.make!
-      expect( u.update_subscribers.count ).to eq 0
-      without_delay { Comment.make!(body: "hey @#{ u.login }") }
-      expect( u.update_subscribers.count ).to eq 1
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
+      c = without_delay { Comment.make!(body: "hey @#{ u.login }") }
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: c) ).to eq true
       deliveries = ActionMailer::Base.deliveries.size
       u.update_attributes(prefers_mention_email_notification: false)
       UpdateAction.email_updates_to_user(u, 1.hour.ago, Time.now)
@@ -885,8 +883,14 @@ describe User do
   end
 
   describe "prefers_redundant_identification_notifications" do
-    before(:each) { enable_elastic_indexing( Observation, UpdateAction ) }
-    after(:each) { disable_elastic_indexing( Observation, UpdateAction ) }
+    before do
+      enable_elastic_indexing( Observation )
+      enable_has_subscribers
+    end
+    after do
+      disable_elastic_indexing( Observation )
+      disable_has_subscribers
+    end
 
     let(:u) { User.make! }
     let(:genus) { Taxon.make!(rank: Taxon::GENUS) }
@@ -902,16 +906,16 @@ describe User do
         expect( u.subscriptions.map(&:resource) ).to include o
       end
       it "should allow identifications that match with the subscriber" do
-        without_delay { Identification.make!(observation: o, taxon: species) }
-        expect( u.update_subscribers.count ).to eq 1
+        id = without_delay { Identification.make!(observation: o, taxon: species) }
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: id) ).to eq true
       end
       it "should allow identifications of taxa that are descendants of the subscriber's taxon" do
-        without_delay { Identification.make!(observation: o, taxon: subspecies) }
-        expect( u.update_subscribers.count ).to eq 1
+        id = without_delay { Identification.make!(observation: o, taxon: subspecies) }
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: id) ).to eq true
       end
       it "should allow identifications of taxa that are ancestors of the subscriber's taxon" do
-        without_delay { Identification.make!(observation: o, taxon: genus) }
-        expect( u.update_subscribers.count ).to eq 1
+        id = without_delay { Identification.make!(observation: o, taxon: genus) }
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: id) ).to eq true
       end
     end
 
@@ -922,22 +926,22 @@ describe User do
         expect( u.subscriptions.map(&:resource) ).to include o
       end
       it "should suppress identifications that match with the subscriber" do
-        without_delay { Identification.make!(observation: o, taxon: species) }
-        expect( u.update_subscribers.count ).to eq 0
+        id = without_delay { Identification.make!(observation: o, taxon: species) }
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: id) ).to eq false
       end
       it "should allow identifications of taxa that are descendants of the subscriber's taxon" do
-        without_delay { Identification.make!(observation: o, taxon: subspecies) }
-        expect( u.update_subscribers.count ).to eq 1
+        id = without_delay { Identification.make!(observation: o, taxon: subspecies) }
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: id) ).to eq true
       end
       it "should allow identifications of taxa that are ancestors of the subscriber's taxon" do
-        without_delay { Identification.make!(observation: o, taxon: genus) }
-        expect( u.update_subscribers.count ).to eq 1
+        id = without_delay { Identification.make!(observation: o, taxon: genus) }
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: id) ).to eq true
       end
       it "should allow notification if subscriber has no identification" do
         obs = Observation.make!(user: u)
         expect( obs.owners_identification ).to be_blank
-        without_delay { Identification.make!(observation: obs) }
-        expect( u.update_subscribers.count ).to eq 1
+        id = without_delay { Identification.make!(observation: obs) }
+        expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: id) ).to eq true
       end
     end
   end
