@@ -10,6 +10,7 @@ import {
 } from "react-google-maps";
 import { SearchBox } from "react-google-maps/lib/components/places/SearchBox";
 import util from "../models/util";
+import { objectToComparable } from "../../../shared/util";
 
 let lastCenterChange = new Date().getTime();
 
@@ -31,23 +32,41 @@ class LocationChooserMap extends React.Component {
   constructor( props, context ) {
     super( props, context );
     this.handleMapClick = this.handleMapClick.bind( this );
-    // this.close = this.close.bind( this );
-    // this.save = this.save.bind( this );
     this.handlePlacesChanged = this.handlePlacesChanged.bind( this );
-    // this.update = this.update.bind( this );
     this.fitCircles = this.fitCircles.bind( this );
     this.reverseGeocode = this.reverseGeocode.bind( this );
     this.radiusChanged = this.radiusChanged.bind( this );
     this.centerChanged = this.centerChanged.bind( this );
     this.moveCircle = this.moveCircle.bind( this );
-    // this.multiValued = this.multiValued.bind( this );
-    // this.placeholder = this.placeholder.bind( this );
   }
 
   componentDidMount( ) {
     if ( this.map && !this.props.center ) {
       setTimeout( this.fitCircles, 10 );
     }
+  }
+
+  shouldComponentUpdate( nextProps ) {
+    const comparableKeys = [
+      "show",
+      "lat",
+      "lng",
+      "radius",
+      "zoom",
+      "center",
+      "bounds"
+    ];
+    const comparable = objectToComparable(
+      Object.assign( {}, _.filter( this.props, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ), {
+        obsCards: _.keys( this.props.obsCards )
+      } )
+    );
+    const nextComparable = objectToComparable(
+      Object.assign( {}, _.filter( nextProps, ( v, k ) => comparableKeys.indexOf( k ) >= 0 ), {
+        obsCards: _.keys( this.props.obsCards )
+      } )
+    );
+    return comparable !== nextComparable;
   }
 
   componentDidUpdate( prevProps ) {
@@ -57,6 +76,7 @@ class LocationChooserMap extends React.Component {
       }
     }
   }
+
   fitCircles( ) {
     if ( !this.map ) { return; }
     const circles = [];
@@ -102,9 +122,8 @@ class LocationChooserMap extends React.Component {
   }
 
   radiusChanged( ) {
-    if ( this.refs.circle ) {
-      const circleState = this.refs.circle.state.circle;
-      this.moveCircle( circleState.center, circleState.radius );
+    if ( this.circle ) {
+      this.moveCircle( this.circle.getCenter( ), this.circle.getRadius( ) );
     }
   }
 
@@ -115,8 +134,7 @@ class LocationChooserMap extends React.Component {
       lastCenterChange = goTime;
       setTimeout( () => {
         if ( goTime === lastCenterChange ) {
-          const circleState = this.refs.circle.state.circle;
-          this.moveCircle( circleState.center, circleState.radius, { geocode: true } );
+          this.moveCircle( this.circle.getCenter( ), this.circle.getRadius( ), { geocode: true } );
         }
       }, 1000 );
     }
@@ -198,7 +216,6 @@ class LocationChooserMap extends React.Component {
     let circles = [];
     let markers = [];
     let overlays = [];
-    // let canSave = false;
     const latNum = Number( this.props.lat );
     const lngNum = Number( this.props.lng );
     if ( this.props.lat &&
@@ -208,9 +225,6 @@ class LocationChooserMap extends React.Component {
          _.inRange( latNum, -89.999, 90 ) &&
          _.inRange( lngNum, -179.999, 180 ) ) {
       center = { lat: latNum, lng: lngNum };
-      // canSave = true;
-    } else if ( !this.props.lat && !this.props.lng ) {
-      // canSave = true;
     }
     _.each( this.props.obsCards, c => {
       if ( c.latitude && !( this.props.obsCard && this.props.obsCard.id === c.id ) ) {
@@ -240,7 +254,11 @@ class LocationChooserMap extends React.Component {
     } );
     if ( center ) {
       circles.push(
-        <Circle key="circle" ref="circle"
+        <Circle
+          key="circle"
+          ref={ ref => {
+            this.circle = ref;
+          } }
           center={ center }
           radius={ Number( this.props.radius ) }
           onClick={ this.handleMapClick }
@@ -333,9 +351,6 @@ LocationChooserMap.propTypes = {
   setState: PropTypes.func,
   selectedObsCards: PropTypes.object,
   updateState: PropTypes.func,
-  // updateObsCard: PropTypes.func,
-  // updateSelectedObsCards: PropTypes.func,
-  // updateSingleObsCard: PropTypes.bool,
   lat: PropTypes.any,
   lng: PropTypes.any,
   radius: PropTypes.any,
@@ -344,6 +359,10 @@ LocationChooserMap.propTypes = {
   bounds: PropTypes.object,
   notes: PropTypes.string,
   manualPlaceGuess: PropTypes.bool
+};
+
+LocationChooserMap.defaultProps = {
+  obsCards: {}
 };
 
 // withGoogleMap is a HOC from react-google-maps. It requires that this
