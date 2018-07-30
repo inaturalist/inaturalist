@@ -898,7 +898,7 @@ it:
   choose_taxon: Scegli un taxon
   choose_what_kind_of_change_youre_creating: Scegliere che tipo di modifica stai creando.
   choose_your_username: Scegli il tuo nome utente
-  cid_d_to_genus: Con CID al Genere
+  cid_d_to_genus: Con CID al genere
   citation: Citazione
   classification: Classificazione
   clear: pulisci
@@ -1130,7 +1130,7 @@ it:
   darr_apply_darr: '&darr; Applica &darr;'
   dashboard: Bacheca
   data_deficient: Carente di Dati
-  data_quality: Qualità dei Dati
+  data_quality: Qualità dei dati
   data_quality_assessment: Valutazione della qualità dei dati
   data_quality_assessment_: Valutazione della qualità dei dati
   datatype: Tipo di dati
@@ -1626,6 +1626,7 @@ it:
   go_back: Indietro
   going_to_your_observations: Stai andando alle tue osservazioni...
   good_choice_for_sharing: Buona scelta per condivider con gli scienziati
+  google: Google
   got_it!: Capito!
   got_your_data_somewhere_else?: Avete ottenuto i dati in un altro modo? Vi possiamo
     aiutare.
@@ -2179,15 +2180,15 @@ it:
   location_is_obscured: La posizione è oscurata
   location_is_private: La posizione è privata
   location_specified: Posizione specificata
-  locked_taxa_will_not_allow_new: I taxa bloccati non permettono l'aggiunta di taxa
-    discendenti. Per esempio, se blocchi il taxon Amphibia e qualcuno cerca di importate
+  locked_taxa_will_not_allow_new: I taxa bloccati non permettono l’aggiunta di taxa
+    discendenti. Per esempio, se blocchi il taxon Amphibia e qualcuno cerca di importare
     <i>Lithobates catesbeianus</i> da una fonte di nomi esterna, il nuovo taxon sarà
     creato ma non potrà essere classificato come un anfibio. Quando ciò accade, il
-    nuovo taxon dovrebbe essere flaggato per l'attenzione da parte dei curatori. Questo
-    blocco dovrebbe essere usato solo per i taxa che si ritengono completi di tutti
-    i discendenti. Il curatore può annullare questa azione editando i taxa e inserendo
-    gli direttamente gli ID di rango superiore, ma per favore assicurati che non sia
-    meglio unire i nuovi taxa in quelli già esistenti.
+    nuovo taxon dovrebbe essere segnalato all’attenzione dei curatori. Questo blocco
+    dovrebbe essere usato solo per i taxa che si ritengono completi di tutti i discendenti.
+    Il curatore può annullare questa azione editando i taxa e inserendo direttamente
+    gli ID di rango superiore, ma per favore assicurati che non sia meglio invece
+    unire i nuovi taxa in quelli già esistenti.
   log_in: Accedi
   logged_in_as: Accesso effettuato come
   login_slash_username: Login / nome utente
@@ -2452,7 +2453,7 @@ it:
     %{site_name}
   new_user_rules: Nuove Regole degli Utenti
   new_users: Nuovi utenti
-  new_users_w_7_obs: Nuovi utenti w/7 Obs
+  new_users_w_7_obs: Nuovi utenti con 7 osservazioni
   new_users_week: Nuovi Utenti/Settimana
   news: Notizie
   next: Successivo
@@ -2616,7 +2617,7 @@ it:
   observation_photo_uploader: Uploader delle foto dell'osservazione
   observations_by_category: Osservazioni Per categoria
   observations_by_app: Osservazioni Per App
-  observations_by_rank: Osservazioni Per Rango
+  observations_by_rank: Osservazioni per rango
   observations_by_user_on_date: Osservazioni di %{user} il %{date}
   observations_by_you: Le mie osservazioni
   observations_by_you_on_date: Le tue osservazioni del %{date}
@@ -2849,6 +2850,7 @@ it:
   open_: Aperta
   open_description: Tutti possono vedere le coordinate, a meno che il taxon non sia
     minacciato.
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: Dò il consenso per questa osservazione
   opt_out_of_community_ids_for_obs: Rinuncia alla identificazione della community
     per questa osservazione
@@ -2870,7 +2872,7 @@ it:
   organism_is_wild: L'organismo è selvatico
   organisms: Organismi
   original: Originale
-  originally_flagged_by: Originariamente contrassegnata per
+  originally_flagged_by: Originariamente segnalata da
   originally_imported_from_url_html: Originariamente importati da <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: URL della pagina originale per questa foto.
   original_rights_holder: Proprietario originale dei diritti
@@ -3778,7 +3780,7 @@ it:
   species_search: Cerca Specie
   species_taxon_name: Specie / Nome taxon
   species_unknown: Specie sconosciuta
-  specify_the_reason_youre_flagging: Specifica il motivo per cui stai flaggando quest'oggetto
+  specify_the_reason_youre_flagging: Specifica il motivo per cui stai segnalando quest’oggetto
   src: Fonte
   standard: Standard
   start: Inizia
@@ -4002,8 +4004,8 @@ it:
   terms_and_rules_html: Termini &amp; Regole
   terms_new_users: Se aggiungi termini, i nuovi utenti devono accettarli prima di
     unirsi al progetto.
-  terms_of_service: Termini del Servizio
-  terms_service: Termini del Servizio
+  terms_of_service: Termini del servizio
+  terms_service: Termini del servizio
   terrain: terreno
   text: Testo
   text_: testo
@@ -4384,12 +4386,12 @@ it:
     calcolo dovrebbero esportare i CSV in questo formato.
   user: Utente
   user_added_a_x: '%{user} ha aggiunto una %{x}'
-  user_added_a_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a %{noun} di %{by}'
+  user_added_a_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a una %{noun} di %{by}'
   user_added_a_x_to_noun_html: '%{user} ha aggiunto una %{x} a %{noun}'
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}"
     ad un''osservazione di %{owner}'
   user_added_an_observation_html: '%{user} ha aggiunto una osservazione'
-  user_added_an_x: '%{user} aggiunto una %{x}'
+  user_added_an_x: '%{user} ha aggiunto una %{x}'
   user_added_an_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a %{noun} di %{by}'
   user_added_an_x_to_noun_html: '%{user} ha aggiunto una %{x} a %{noun}'
   user_added_x_observations_html: '%{user} ha aggiunto %{x} osservazioni'
@@ -4892,7 +4894,7 @@ it:
   your_google_account: il tuo account Google
   your_google_account_info: Informazioni del tuo account Google
   your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
-  your_recent_projects: I tuoi Progetti Recenti
+  your_recent_projects: I tuoi progetti recenti
   your_should_recognize: Dovresti riconosce alcune di queste foto
   your_site_account_has_been_created: Il tuo account %{site} è stato creato.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -5927,28 +5929,28 @@ it:
         med_ttcid: TTCID Mediana
         med_ttid: TTID Mediana
         new_users_desc: Iscritti in questo giorno
-        obs_1_day: Obs (1 giorno)
+        obs_1_day: Osservazioni (1 giorno)
         obs_1_day_desc: Osservazioni create in un singolo giorno
         obs_cid_d_desc: Create nei precedenti 7 giorni e con una ID della Comunità
         obs_cid_d_to_genus: Osservazioni con CID al genere
         obs_cid_d_to_genus_desc: Create nei precedenti 7 giorni e con una ID della
           Comunità al genere o minore
         obs_desc: Creato nei precedenti 7 giorni
-        obs_id_d_desc: Creato nei precedenti 7 giorni e hanno un'identificazione (potrebbe
-          essere dell'osservatore)
+        obs_id_d_desc: Create nei precedenti 7 giorni e hanno un’identificazione (potrebbe
+          essere dell’osservatore)
         other_desc_html: Creato con un'altra applicazione <a href="%{url}">built da
           un programmatore</a>
         recent_desc: Iscritti nei precedenti 7 giorni
         recent_w_0_obs: Recenti con 0 osservazioni
-        recent_w_0_obs_desc: Inscritti nei precedenti 7 giorni e aggiunte 0 osservazioni
-        recent_w_7_obs: Recente con >= 7 osservazioni
+        recent_w_0_obs_desc: Iscritti nei 7 giorni precedenti e aggiunte 0 osservazioni
+        recent_w_7_obs: Recenti con >= 7 osservazioni
         recent_w_7_obs_desc: Iscritti nei precedenti 7 giorni e aggiunte >=7 osservazioni
-        time_to_id_desc: Per per l'ID (ore, finestra di 1 settimana)
+        time_to_id_desc: Tempo per l’ID (ore, finestra mobile di 1 settimana)
         TTCID: TTCID
         TTCID_desc: Tempo per avere una identificazione da parte di qualcun altro
           che corrisponde al taxon della comunità.
         TTID: TTID
-        TTID_desc: Tempistiche per ricevere un'identificazione da qualcun altro
+        TTID_desc: Tempo per ricevere un’identificazione da qualcun altro
         TTID_note: Queste statistiche si riferiscono alle osservazioni create la settimana
           precedente, quindi non comprendono le osservazioni più vecchie di una settimana;
           per questo le statistiche appaiono minori rispetto a quelle calcolate al
@@ -6195,7 +6197,7 @@ it:
         explore_and_share: Esplora e condividi le tue osservazioni della natura.
         observations_to_date: Osservazioni finora
         species_observed: Specie Osservate
-        people_signed_up: Persone inscritte
+        people_signed_up: Persone iscritte
         how_it_works: Come Funziona
         record_your_observations: Registra le tue osservazioni
         share_with_fellow_naturalists: Condividi con gli altri naturalisti

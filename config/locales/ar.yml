@@ -1184,6 +1184,7 @@ ar:
   does_the_date_seem_accurate: هل يبدو التاريخ دقيقا؟
   doesnt_have_default_photo: ليس لديك صورة افتراضية بعد.
   doh_something_went_wrong: أوه، حدث خطأ ما.
+  doh_something_went_wrong_error: 'عفوا، حدث خطأ ما: %{error}'
   done: تم
   dont_filter: عدم التصفية
   dont_send_me_email: لا ترسل لي أي بريد إلكتروني!
@@ -1543,6 +1544,7 @@ ar:
   go_back: رجوع
   going_to_your_observations: جارٍ الانتقال إلى ملاحظاتك...
   good_choice_for_sharing: خيار جيد للمشاركة مع العلماء
+  google: جوجل
   got_it!: حسنًا!
   got_your_data_somewhere_else?: هل حصلت على بياناتك في مكان آخر؟ نستطيع المساعدة.
   graft: تطعيم
@@ -2716,6 +2718,7 @@ ar:
   open: فتح
   open_: فتح
   open_description: يمكن لأي شخص أن يرى الإحداثيات إذا لم تكن الأصناف مهددة.
+  open_street_map: خريطة الشارع المفتوحة
   opt_in_for_this_observation: الاشتراك في هذه الملاحظة
   opt_out_of_community_ids_for_obs: تعطيل تعريف المجتمع لهذه الملاحظة
   optional: اختياري
@@ -3644,6 +3647,7 @@ ar:
     أخرى لاحقا
   stop_editing: إيقاف التحرير
   stop_following_user: توقف عن متابعة %{user}
+  stop_testing: وقف الاختبار
   stop_updating_position: توقف عن تحديث الموضع
   stuff_just_added: العناصر التي أضفتها للتو...
   subject_resolved_noun_html: '%{subject} حل %{noun}'
@@ -3769,6 +3773,8 @@ ar:
     تقییمات الأصناف ھي وثائق تقییم الحالة الحالیة للأنواع، وعادة ما تکون حالة الحفظ،
     على سبيل المثال، قد تستخدمها منظمة إقليمية لحفظ الطبيعة في تنظيم المعلومات والتماس التغذية الراجعة حول حالة العديد من الأصناف المهددة في المنطقة.
   taxon_change: تغيير الأصنوفة
+  taxon_change_must_be_committed_to_update_records: يجب الالتزام بتغيير الأصنوفة لتحديث
+    السجلات
   taxon_deleted: تم حذف الأصنوفة.
   taxon_doesnt_have_a_range: الأصنوفة ليس لديها نطاق
   taxon_drop: تدهور الأصنوفة

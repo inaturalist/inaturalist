@@ -1302,6 +1302,7 @@ fr:
   does_the_date_seem_accurate: La date semble-t-elle exacte?
   doesnt_have_default_photo: n’a pas encore de photo par défaut.
   doh_something_went_wrong: Oups, quelque chose s’est mal passé.
+  doh_something_went_wrong_error: 'Oh, quelque chose s’est mal passé : %{error}'
   done: Fait
   dont_filter: Ne pas filtrer
   dont_send_me_email: Ne m’envoyez pas de courriel !
@@ -1679,6 +1680,7 @@ fr:
   go_back: Revenir en arrière
   going_to_your_observations: Aller à vos observations…
   good_choice_for_sharing: Excellent choix pour échanger avec les scientifiques
+  google: Google
   got_it!: C’est bon !
   got_your_data_somewhere_else?: Avez-vous obtenu vos données ailleurs ? Nous pouvons
     vous aider.
@@ -2933,6 +2935,7 @@ fr:
   open: Ouvert
   open_: Ouvrir
   open_description: Tout le monde peut voir les coordonnées sauf si le taxon est menacé.
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: Opter pour cette observation
   opt_out_of_community_ids_for_obs: Ne pas utiliser l’identification de la communauté
     pour cette observation
@@ -3902,6 +3905,7 @@ fr:
     Revenez plus tard
   stop_editing: Arrêter la modification
   stop_following_user: Arrêter de suivre %{user}
+  stop_testing: Arrêter le test
   stop_updating_position: Arrêter la mise à jour de l’emplacement
   stuff_just_added: Trucs que vous venez d’ajouter…
   subject_resolved_noun_html: '%{subject} a réglé %{noun}'
@@ -4036,6 +4040,8 @@ fr:
     Les évaluations de taxon sont des documents qui évaluent la situation actuelle d’une espèce, habituellement sa situation quant à la conservation.
     Par exemple, un organisme régional de protection peut les utiliser pour gérer l’information et demander de la rétroaction sur la situation des taxons menacés dans la région.
   taxon_change: modification de taxon
+  taxon_change_must_be_committed_to_update_records: La modification de taxon doit
+    être validée pour mettre à jour les enregistrements
   taxon_deleted: Taxon supprimé
   taxon_doesnt_have_a_range: Le taxon n’a pas d’aire de répartition
   taxon_drop: perte de taxon
