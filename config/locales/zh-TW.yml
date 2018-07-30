@@ -468,7 +468,7 @@ zh-TW:
   any: 任何
   any_: 任何
   apply_to_selected: 套用至已選
-  apply_captive_cultivated: 套用 捕獲/培育
+  apply_captive_cultivated: 套用圈養/栽培
   apply_fields: 套用欄位
   apply_geoprivacy: 套用位置隱私
   apply_darr: 套用 &darr;
@@ -1077,6 +1077,7 @@ zh-TW:
   does_the_date_seem_accurate: 日期看起來精確嗎？
   doesnt_have_default_photo: 尚未有預設照片。
   doh_something_went_wrong: 噢噢，出現了一些問題。
+  doh_something_went_wrong_error: 哎呀，發生了一些錯誤：%{error}
   done: 完成
   dont_filter: 不用篩選
   dont_send_me_email: 不要替我寄送任何電子郵件！
@@ -1393,7 +1394,6 @@ zh-TW:
   geo: 地理
   general: 一般
   generally_these_come_from_iucn_red_list: 通常它們來自國際自然保護聯盟瀕危物種(IUCN)紅色名錄，如它們來自其他地方亦會附帶著IUCN的分類。
-  generate_pdf: 產生 PDF
   generate_taxonomic_tags_for_flickr: 為您的 Flickr 照片產生物種分類標籤。
   generate_widget: 產生小工具
   generate_your_stats: 產生您的統計內容
@@ -1417,6 +1417,7 @@ zh-TW:
   go_back: 返回
   going_to_your_observations: 前往您的觀察…
   good_choice_for_sharing: 與科學家們分享的好選擇
+  google: Google
   got_it!: 了解！
   got_your_data_somewhere_else?: 在別的地方找到您的資料？我們可以協助。
   graft: 轉移
@@ -2023,6 +2024,7 @@ zh-TW:
   more_photos: 更多照片
   most: 多數
   most_agree: 最多同意
+  most_browser_print_pdf: 註：多數瀏覽器已有可列印成 PDF 的選項
   most_disagree: 多數不同意
   most_comments_and_faves: 最多評論與最愛
   most_observations: 最多觀察
@@ -2442,6 +2444,7 @@ zh-TW:
   open: 開啟
   open_: 開啟
   open_description: 任何人皆可查看座標，除非該物種分類受到瀕臨滅絕危險。
+  open_street_map: 開放街圖
   opt_in_for_this_observation: 用於此觀察的選項
   opt_out_of_community_ids_for_obs: 選擇讓此觀察退出社群鑑定
   optional: 可選
@@ -2467,7 +2470,7 @@ zh-TW:
   original_rights_holder: 原有版權持有者
   original_url: 原始 URL
   original_url_for_this_map: 此地圖的原始 URL
-  organism_appears_captive_cultivated: 出現捕獲/培育生物
+  organism_appears_captive_cultivated: 出現圈養/栽培生物
   other: 其它
   other_animals: 其它動物
   other_animals_plural:
@@ -2490,7 +2493,6 @@ zh-TW:
   paste_in_a_bunch_of_names: 每行貼上一串名稱，然後按下按鍵！
   paste_in_a_comma_separated_list: 貼上以逗號分隔的國家清單
   pdf: PDF
-  pdf_slash_print: PDF / 列印
   people: 成員
   people_agree: 人們同意
   people_following_user: 關注 %{user} 的人
@@ -2763,6 +2765,7 @@ zh-TW:
   previous_page: 上一頁
   previous_photo: 上一個照片
   previous_tab: 上一個頁籤
+  print_verb: 列印
   print_in_browser: 在瀏覽器中列印
   privacy: 隱私政策
   privacy_policy: 隱私政策
@@ -2843,7 +2846,7 @@ zh-TW:
   query: 查詢
   range: 範圍
   range_from: 範圍來自
-  rank: 排名
+  rank: 分類位階
   rank_position: 級別
   rank_restrictions: 級別限制
   ranks:
@@ -3304,6 +3307,7 @@ zh-TW:
   still_working_on_classifying_taxon: 仍在處理此物種分類的歸類。請稍後查看
   stop_editing: 停止編輯
   stop_following_user: 停止關注 %{user}
+  stop_testing: 停止測試
   stop_updating_position: 停止更新位置
   stuff_just_added: 您剛添加的東西...
   subject_resolved_noun_html: '%{subject} 解決了 %{noun}'
@@ -3416,6 +3420,7 @@ zh-TW:
   taxon_: 物種分類
   taxon_assessments_are: 物種分類評估是評估物種目前狀態的文獻，通常是保育狀態。例如，區域保育組織可能會使用此來組織訊息，並徵求有關在區域裡數種受威脅之物種分類群狀態的意見回饋。
   taxon_change: 物種分類更改
+  taxon_change_must_be_committed_to_update_records: 必須提交物種分類更改以更新紀錄
   taxon_deleted: 物種分類已刪除。
   taxon_doesnt_have_a_range: 物種分類沒有包含範圍
   taxon_drop: 物種分類去除
@@ -3497,7 +3502,7 @@ zh-TW:
   the_admin_is_the_person_who: 管理員為創建專案的人員。他們可進行任何負責人及策展人所能做出的事項，包含刪除專案。
   the_below_items_are_needed_to_achieve: 需補充以下項目才能達到<span className="bold">研究等級：</span>
   the_community_agrees_location_doesnt: 社群認為<strong>位置看起來不正確</strong>（例如猴子出現在海洋裡，或是河馬出現在辦公大樓等等）
-  the_community_agrees_organism_isnt: 社群認為<strong>不是被野化/歸化的生物</strong>（例如是被人類、或外星智慧生命給捕獲或培育）
+  the_community_agrees_organism_isnt: 社群認為<strong>不是被野化/歸化的生物</strong>（例如是被人類、或外星智慧生命給圈養或栽培）
   the_community_id_requires_at_least_two_identifications: 社群鑑定至少要有兩份鑑定。
   the_community_must_feel_that: 社群必須認為社群鑑定是最能夠作為證據方面
   the_data_quality_assessment_is: 資料品質評估是一項觀察準確程度的摘要。所有觀察最初從「粗略」等級開始，而到達「研究」等級是當
@@ -3532,7 +3537,7 @@ zh-TW:
     other: 有 <span class='count'>%{count}</span> 個同種異名</span>
   there_is_no_wikipedia_page_matching: 沒有符合的維基百科頁面
   there_isnt_wiki_article: 維基百科沒有名為「<i>%{taxon}</i>」的條目或重定向。您也許想
-  there_isnt_a_wikipedia_article_titled_x_html: 維基百科沒有名為「%{x}」的條目或重定向。您也許想<a href='http://en.wikipedia.org/wiki/%{x}'>創建一條</a>？
+  there_isnt_a_wikipedia_article_titled_x_html: 維基百科沒有名為「%{x}」的條目或重定向。您也許想<a href='http://zh.wikipedia.org/wiki/%{x}'>創建一條</a>？
   there_merge_problems_with_the_merge: 有合併問題：%{merged_errors}
   there_was_a_problem_saving_your_identification: 儲存您的鑑定時出現錯誤：%{error}
   there_were_errors: 出現錯誤。
@@ -3758,6 +3763,7 @@ zh-TW:
   user_added_an_x_to_noun_by_html: '%{user}添加一個%{x}至由%{by}的%{noun}'
   user_added_an_x_to_noun_html: '%{user}添加一個%{x}至%{noun}'
   user_added_x_observations_html: '%{user}添加%{x}個觀察'
+  user_already_authenticated: 使用者已驗證
   user_autocomplete_placeholder: kueda、simon123 等等。
   user_blocked: 使用者已被封鎖
   user_commented: '%{user} 已評論'
@@ -3901,7 +3907,7 @@ zh-TW:
   want_to_show_off_some_of_your_favorite_taxa: 要在此秀出您的最愛物種分類群裡一些內容嗎？
   want_to_test_a_new_version_of_this_page: 想要測試此頁面的新版本嗎？
   wanted: 徵求
-  was_it_captive_cultivated?: 是被捕獲/培育？
+  was_it_captive_cultivated?: 是被圈養/栽培？
   we_also_support: |-
     我們亦支援使用 <a href="http://flickr.com">Flickr</a>、
     <a href="http://photos.google.com">Google 照片</a>，及
@@ -4525,7 +4531,7 @@ zh-TW:
               <strong>位置不精準</strong>（例如：例如猴子位在海洋裡，或是河馬位在辦公大樓等等）
             </li>
             <li>
-              <strong>不是野生/歸化的生物</strong>（例如：是被人類、或外星智慧生命給捕獲或培育）
+              <strong>不是野生/歸化的生物</strong>（例如：是被人類、或外星智慧生命給圈養或栽培）
             </li>
             <li>
               觀察內容<strong>沒有呈現出是生物的證明</strong>，例如：僅是風景、水景、岩石之類的圖片。
