@@ -419,6 +419,16 @@ describe User do
       @user.destroy
       expect( UserBlock.where( blocked_user_id: user_block.id ).first ).to be_blank
     end
+
+    it "should delete associated project rules" do
+      user = User.make!
+      collection = Project.make!(project_type: "collection")
+      rule = collection.project_observation_rules.build( operator: "observed_by_user?", operand: user )
+      rule.save!
+      expect( Project.find( collection ).project_observation_rules.length ).to eq 1
+      user.destroy
+      expect( Project.find( collection ).project_observation_rules.length ).to eq 0
+    end
   end
 
   describe "sane_destroy" do

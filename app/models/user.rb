@@ -217,6 +217,7 @@ class User < ActiveRecord::Base
   after_create :set_uri
   after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
+  after_destroy :destroy_project_rules
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -920,6 +921,14 @@ class User < ActiveRecord::Base
     return true unless frozen?
     Doorkeeper::AccessToken.where( resource_owner_id: id ).delete_all
     true
+  end
+
+  def destroy_project_rules
+    ProjectObservationRule.where(
+      operator: "observed_by_user?",
+      operand_type: "User",
+      operand_id: id
+    ).destroy_all
   end
 
   def generate_csv(path, columns, options = {})

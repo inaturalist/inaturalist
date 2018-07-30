@@ -2642,6 +2642,9 @@ wax.interaction = function() {
     };
 
     interaction.screen_feature = function(pos, callback) {
+        if ( interaction.is_disabled( ) ) {
+            return callback( );
+        }
         var zoom = map.getZoom();
         var ignoreThisZoom = (zoom < gm.minZoom() || zoom > gm.maxZoom());
         var tile = ignoreThisZoom ? 'undefined' : getTile(pos);
@@ -2730,6 +2733,10 @@ wax.interaction = function() {
         parent = x;
         return interaction;
     };
+
+    interaction.is_disabled = function( ) {
+      return false;
+    }
 
     return interaction;
 };
