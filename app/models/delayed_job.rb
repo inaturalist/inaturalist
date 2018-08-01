@@ -25,7 +25,7 @@ class Delayed::Backend::ActiveRecord::Job
   def self.pending
     Delayed::Job.
       where("run_at > ? OR attempts = 0", Time.now).
-      where("failed_at IS NOT NULL").
+      where("failed_at IS NULL").
       order(run_at: :asc)
   end
 
