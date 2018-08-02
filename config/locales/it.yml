@@ -1254,6 +1254,7 @@ it:
   does_the_date_seem_accurate: La data sembra corretta?
   doesnt_have_default_photo: non ha ancora una foto predefinita.
   doh_something_went_wrong: Oh, qualcosa è andato storto.
+  doh_something_went_wrong_error: 'Ahi, qualcosa è andato storto: %{error}'
   done: Fatto
   dont_filter: Non filtrare
   dont_send_me_email: Non inviarmi nessuna e-mail!
@@ -3812,6 +3813,7 @@ it:
     di questo taxon. Controlla più tardi
   stop_editing: Termina la modifica
   stop_following_user: Smetti di seguire %{user}
+  stop_testing: Termina il test
   stop_updating_position: Arresta l'aggiornamento del posizionamento
   stuff_just_added: Le cose che hai appena aggiunto...
   subject_resolved_noun_html: '%{subject} ha risolto %{noun}'
@@ -3941,6 +3943,8 @@ it:
     Le valutazioni di un taxon sono dei documenti che stabiliscono lo stato corrente di una specie, in genere lo stato conservazionistico.
     Per esempio, una organizzazione conservazionistica regionale potrebbe usarle per organizzare le informazioni e sollecitare feedback sullo stato di diversi taxa minacciati nella regione.
   taxon_change: modifiche di taxon
+  taxon_change_must_be_committed_to_update_records: Per aggiornare i contenuti occorre
+    confermare la modifica del taxon
   taxon_deleted: Taxon eliminato.
   taxon_doesnt_have_a_range: Il Taxon non ha un areale definito
   taxon_drop: elimina taxon

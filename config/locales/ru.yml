@@ -1566,6 +1566,7 @@ ru:
   flags_explanation: '%{site_name} пользователи помечают флагом то, что они находят
     неправильным. Вот некоторые вопросы, которые еще не были решены кураторами.'
   flags_for: Флаги для
+  flags_on_users_content: Флаги в контенте %{user}
   flickr_account_information: Информация о вашей учётной записи Flickr
   flickr_description: Flickr - это онлайн фото-хостинг, возможно, вы уже об этом знаете!
   flickr_has_no_creative_commons: На Flickr не найдены фото с лицензией Creative Commons
@@ -1770,6 +1771,7 @@ ru:
   identification_saved: Идентификация сохранена!
   identification_summary: Отчет об определении
   identification_updated: Идентификация обновлена!
+  identification_user_short: Идент. пользователя
   identification_withdrawn: Идентификация отозвана.
   identifications: Идентификации
   identifications_by: Идентификации %{user}
@@ -2217,6 +2219,7 @@ ru:
   looks_like_neither_have!: Похоже, ни у кого нет таксонов!
   looks_like_no_species_in_guide: Похоже, у вас еще нет видов в вашем руководстве.
   lookup: Поиск
+  lookup_user_rarr: Поиск пользователя &rarr;
   low: низкий
   lowest_rank: Самый низкий ранг
   made_a: сделано
@@ -2666,6 +2669,7 @@ ru:
     следующим критериям
   observations_it_may_take_a_few: наблюдения. Это может занять несколько минут.
   observations_last500: Наблюдения (последние 500)
+  observations_last_aggregated: Последние совокупные наблюдения
   observations_map: Наблюдения / Карта
   observation_must_dotdotdot: Наблюдения должны...
   observations_near_a_place_are: Наблюдения «возле» места находятся внутри прямоугольника,
@@ -3110,6 +3114,7 @@ ru:
     Это может занять пару минут, если у вас много наблюдений.
   please_hold_on_while_the_file_is_generated: Пожалуйста, подождите, пока файл будет
     сгенерирован. Для больших списков это может занять несколько минут.
+  possessive_user: '%{user}'
   posted_by: Сообщение
   posts: Сообщения
   potential_disagreement: Возможное Несогласие
@@ -3626,6 +3631,7 @@ ru:
     «Управление всеми вашими подписками» ниже. Вы также можете отказаться от подписки
     на что-либо на сайте, просматривая конкретную страницу.
   subscribe_to_this: Подписаться на это
+  subscribe_to_this_observation: Подписаться на это наблюдение
   subscribe_to_x_from_this_y_html: <a href="#" onclick="$(this).parents('form:first').submit();
     return false;">Подписаться</a> на %{x} к этому %{y}.
   subscriptions: Подписки
@@ -3638,6 +3644,7 @@ ru:
   suspicious_photos: Подозрительные фото
   siutable_observations: подходящие наблюдения
   sun: Вск
+  suspend_user: Заблокировать пользователя
   sync_obs_with_photo_metadata: Синхронизировать наблюдение с метаданными фото?
   tag: Тег
   tagging: Присвоение тегов...
@@ -3668,6 +3675,9 @@ ru:
   taxon_is_a_rank_of_aves_with_x_observations:
     one: '%{taxon} это %{rank} птиц с 1 наблюдением'
     other: '%{taxon} это %{rank} птиц с %{count} наблюдениями'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} это %{rank} млекопитающих с 1 наблюдением'
+    other: '%{taxon} это %{rank} млекопитающих с %{count} наблюдениями'
   taxon_is_a_rank_of_reptilia_with_x_observations:
     one: '%{taxon} это %{rank} рептилий с 1 наблюдением'
     other: '%{taxon} это %{rank} рептилий с %{count} наблюдениями'
@@ -3677,6 +3687,9 @@ ru:
   taxon_is_a_rank_of_actinopterygii_with_x_observations:
     one: '%{taxon} это %{rank} лучеперых рыб с 1 наблюдением'
     other: '%{taxon} это %{rank} лучеперых рыб с %{count} наблюдениями'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} это %{rank} животных с 1 наблюдением'
+    other: '%{taxon} это %{rank} животных с %{count} наблюдениями'
   taxon_is_a_rank_of_insecta_with_x_observations:
     one: '%{taxon} это %{rank} насекомых с 1 наблюдением'
     other: '%{taxon} это %{rank} насекомых с %{count} наблюдениями'
@@ -3689,6 +3702,9 @@ ru:
   taxon_is_a_rank_of_protozoa_with_x_observations:
     one: '%{taxon} это %{rank} простейших с 1 наблюдением'
     other: '%{taxon} это %{rank} простейших с %{count} наблюдениями'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} это %{rank} моллюсков с 1 наблюдением'
+    other: '%{taxon} это %{rank} моллюсков с %{count} наблюдениями'
   taxon_is_a_rank_of_chromista_with_x_observations:
     one: '%{taxon} это %{rank} хромисты (бурые водоросли и подобные) с 1 наблюдением'
     other: '%{taxon} это %{rank} хромист (бурые водоросли и подобные) с %{count} наблюдениями'
@@ -3715,6 +3731,7 @@ ru:
   taxon_name: Наименование таксона
   taxon_name_must_match_an_existing_taxon_in_our_database: Наименование таксона должно
     соответствовать существующему в нашей базе
+  taxon_observed_by_user: '%{taxon}, наблюдаемый %{user}'
   taxon_or_place_observations: Наблюдениях таксона или места
   taxon_photos_updated: Фото таксона обновлены!
   taxon_range: Ареал таксона
@@ -4021,6 +4038,7 @@ ru:
   type_taxon_name: Введите наименование таксона
   type_taxon_name_and_click_lookup: Введите наименование таксона и нажмите на поиск
   uicn_red_list_status: 'Статус в Красном списке МСОП:'
+  un_license_this_observation: удалить лицензию для этого наблюдения
   unblock: Разблокировать
   unique_observers: уникальные наблюдатели
   unique_observers_last_3_months: уникальные наблюдатели за последние 3 месяца
@@ -4031,6 +4049,7 @@ ru:
   updates_notification_email_subject: '%{prefix} Новые обновления %{date}'
   updates_suspension_email_subject: '%{prefix} Ваши подписки приостановлены'
   unsubscribe: Отменить подписку
+  unsuspend_user: Разблокированный пользователь
   upcoming_bioblitzes: Предстоящие биоблицы
   update: Обновить
   update_existing_observations_with_new_license: Обновить существующие наблюдения
@@ -4063,9 +4082,11 @@ ru:
   uploaded_by: Загружено
   uploader:
     tooltips:
+      add: Добавить наблюдение(я)
       combine: Объединить выбранные наблюдения
       photo_failed: Фото не удалось загрузить
       remove: Удалить выбранные наблюдения
+      remove_observation: Удалить наблюдение
       remove_photo: Удалить фото
       select_all: Выбрать все наблюдения
   uploading_num_of_count_photos:
@@ -4101,28 +4122,41 @@ ru:
   user_added_x_observations_html: '%{user} добавил %{x} наблюдений'
   user_already_authenticated: Пользователь уже прошел проверку подлинности
   user_blocked: Участник заблокирован
+  user_commented: '%{user} прокомментировал'
   user_commented_on: '%{user} прокомментировал ваш %{title} %{time}'
   user_faved_a_noun_by_owner: '%{user} добавил к фаворитам %{noun} от %{owner}'
   user_follows: '%{user} отслеживает'
+  user_has_opted_out_of_community_id: Пользователь отказался от идентификации сообщества
   user_has_opted_out_of_community_ids: '%{user} решил сохранить контроль над таксонами,
     связанными с его наблюдениями'
+  user_has_opted_out_of_community_ids_for_this_obs: '%{user} решил сохранить контроль
+    над таксонами, связанными с этим наблюдением'
+  user_hasnt: '%{user} не'
   user_invite_observation_to_project: '%{user} приглашает вас добавить ваше наблюдение
     %{observation} к проекту %{project}'
+  user_invited_you_to_join_project: '%{user} пригласил вас присоединиться к %{project}'
   user_invited_you_to_join_this_project_on_date_html: '%{user} приглашает вас присоединиться
     к этому проекту %{date}'
   user_is_a_naturalist: '%{user} - натуралист!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> теперь является %{role}
     %{project}
+  user_muted: Пользователь отключен
   user_observations: Наблюдениях пользователя
+  user_s_lists: Списки %{user}
+  user_thinks_yours_is: '%{user} %{noun} ваше %{observation}'
   username: Имя пользователя
   username_or_user_id: Имя пользователя или его идентификатор
   users: Пользователи
+  users_comment_html: <a href='%{url}'>%{user}</a> комментарий
   users_contributions_to_project_html: вклад <a href="%{url}">%{login}</a> в %{project_title}
   users_highlights_and_stats_from_year_on_site: Основные моменты и статистика %{user}
     за %{year} на %{site}
   users_identification_html: идентификации <a href='%{url}'>%{user}</a>
+  users_identification_short_html: <a href='%{url}'>%{user}</a> идентификация
   users_latest_observations_on_site: последние наблюдения %{user} на %{site}
+  users_observations: наблюдения %{user}
   users_profile: Профиль %{user}
+  users_projects: Проекты %{user}
   using_cc_license_makes_easier_use_your_data: Использование лицензии <strong>Creative
     Commons Attribution</strong> облегчает исследователям использование данных. Если
     захотите, вы можете выбрать другую лицензию после регистрации.
@@ -4140,6 +4174,7 @@ ru:
   view_details: Просмотреть подробности
   view_flags: Посмотреть флаги
   view_flags_for_x_html: Посмотреть флаги для %{x}
+  view_full_observation: Посмотреть наблюдение полностью
   view_invitation: Посмотреть приглашение
   view_journal: Посмотреть журнал
   view_leaderboard: Посмотреть лидеров
@@ -4272,6 +4307,7 @@ ru:
   would_like_some_help_identifying_this: хотел бы помощи в идентификации этого!
   x_blog: Блог %{x}
   x_journal: Журнал %{user}
+  x_journal_archives_for_y: Журнал • Архивы %{user}
   x_journal_editing: Журнал %{user} • Редактирование
   x_journal_middot: Journal %{user}•
   x_journal_new_post: Журнал %{user} • Новое сообщение
@@ -4411,6 +4447,8 @@ ru:
   you_would_get_the: 'вы получите следующие теги:'
   youve_been_invited_to_join_this_project_html: Вас приглашают <a href="%{url}" class="readmore">присоединиться
     к этому проекту</a>
+  youve_joined_the_x_project: Вы присоединились к проекту %{project_invitation}, и
+    ваше наблюдение было добавлено
   your_account_has_been_verified: Ваша учетная запись %{site_name} проверена! Войдите
     в систему, чтобы продолжить.
   your_activation_code_was_missing: Ваш код активации отсутствовал. Пожалуйста, следуйте
@@ -4466,6 +4504,8 @@ ru:
   youve_linked_your_inaturalist_google_account: Вы связали свою учетную запись %{site_name}
     и свою учетную запись Google. Это позволит вам ассоциировать ваши фото Google
     с вашими наблюдениями %{site_name}.
+  youve_opted_out_of_community_ids_for_this_obs: Вы отказались от идентификации сообществом
+    этого наблюдения
   youve_successfully_linked_your_provider_account: Вы успешно привязали свой %{provider}
     аккаунт
   your_dashboard_helps_you: Панель мониторинга помогает отслеживать действия пользователей
@@ -4656,6 +4696,7 @@ ru:
           не имеет никакого отношения к природе, как то, что кто-то на обед, стоит
           пометить, и они могут быть удалены, но доказательства загрязнения или нарушения
           могут быть интересными и, вероятно, не будут удалены.
+        what_is_an_observation?: Что такое наблюдение?
         an_observation_is_the_what_where_and_when_html: |-
           Наблюдение - это то, что, где и когда происходит в природе.
           %{site_name} предоставляет место для добавления этой информации вместе со связанным текстом, фото и тегами. %{site_name} поддерживает запись всех находок в природе, независимо от того, содержат ли они идентифицированные виды или простое описание. (В %{site_name} одну и ту же ящерицу можно охарактеризовать как пустынную рогатую ящерицу, так и как &quot;Mystery Lizard of Death Valley&quot;)
@@ -4807,6 +4848,8 @@ ru:
           <p>
           Однако идентификация сообщества по-прежнему отображается, поэтому все могут видеть различные идентификации, которые были предложены.
           </p>
+        opt_in_for_this_observation: Выбрать принятие помощи для идентификации этого
+          наблюдения
         your_id_does_not_match: Ваша идентификация (<span class="bold">%{taxon_name}</span>)
           не соответствует идентификации сообществом
       copy_tip: Добавить новое наблюдение путем копирования даты данного наблюдения,
@@ -4823,6 +4866,7 @@ ru:
           наблюдения из другой части сайта. Вы должны задать <strong>таксон</strong>,
           <strong>место</strong>, <strong>пользователя</strong>, <strong>проект</strong>,
           или <strong>строку поиска</strong>.
+        ident_by_user_desc_html: Столбцы для текущей идентификации %{user}
         query_placeholder: Выберите ниже параметры запроса или вставьте URL наблюдений
         geo_help_html: Поля город, округ, штат, страна базируются на координатах.
           Аналогичные административные уровни будут использоваться для таких наблюдений,
@@ -4838,6 +4882,7 @@ ru:
         created_on_help: Даты наблюдения  - это когда наблюдения были созданы, а не
           наблюдались, например 2015-01-17, 2015-01, 2015
       field_descriptions:
+        id: Уникальный идентификатор для наблюдения
         scientific_name: Научное наименование наблюдаемого таксона согласно данному
           сайту
         iconic_taxon_name: Высшая таксономическая категория для наблюдаемого таксона
@@ -4845,6 +4890,7 @@ ru:
           наблюдателя
         observed_on_string: Дата/время, введенные наблюдателем
         observed_on: Нормализованная дата наблюдения
+        time_observed_at: Нормализованные дата/время наблюдения
         time_zone: Часовой пояс наблюдения
         latitude: Публично видимая широта
         private_latitude: Приватная широта, делает наблюдение частным или скрытым
@@ -4859,6 +4905,7 @@ ru:
         updated_at: Дата/время наблюдения были последний раз обновлены
         quality_grade: Уровень качества данного наблюдения. См. раздел Помощь, где
           разъясняется, что это означает.
+        license: Лицензия, которую наблюдатель выбрал для этого наблюдения
         tag_list: Список тегов, разделенных запятыми
         place_admin1_name: Название административного места на один ранг ниже уровня
           региона
@@ -4887,6 +4934,8 @@ ru:
           Для этого проекта есть файл шаблона, который может помочь вам со структурой файла CSV.
           <a href="%{url}">Загрузить шаблон</a>
       show:
+        allow_curator_coordinate_access_desc_html: Позволить кураторам проекта видеть
+          частные координаты этого наблюдения
         community_taxon_desc_html: |-
           <p class="ui">
             Таксон сообщества (или идентификация сообщества) представляет то, что, по мнению сообщества %{site_name} изображено в наблюдении. Если вас интересует, как мы выбираем таксон сообщества, см. Примечания к алгоритму ниже, но в целом мы стараемся <strong>выбрать таксон, с которым согласны более 2/3 экспертов</strong>. Иногда это означает выбор таксона более высокого уровня, который содержит ряд таксонов-потомков (например, вы думаете, что это королевская змея, а я думаю, что это гремучая змея, поэтому iNat выбирает подотряд Serpentes, который содержит всех змей). Алгоритм также немного благоприятствует инакомыслию, потому что мы обнаружили, что инакомыслящие часто бывают правы.
@@ -4974,6 +5023,9 @@ ru:
         your_observations_export_is_ready_html: Экспорт ваших наблюдений готов. К
           этому письму прикреплена копия, либо вы можете <a href="%{url}">загрузить
           ваш экспорт</a>.
+        your_observations_export_failed_html: Экспорт вашего наблюдения завершился
+          неудачно. Посетите <a href="%{url}">страницу экспортированных наблюдений</a>
+          для просмотра списка ваших экспортов.
       bulk_import_success:
         success_message: Массовый импорт %{filename} выполнен успешно. Ваши наблюдения
           сейчас обрабатываются и скоро появятся на сайте.
@@ -5033,6 +5085,8 @@ ru:
         what_would_you_like: Что бы вы хотели сделать со своими наблюдениями в этом
           проекте?
         keep_observations_label: Оставьте свои наблюдения в этом проекте
+        keep_observations_desc: "Ваши наблюдения останутся в проекте, и кураторы все
+          равно будут \nиметь возможность просматривать ваши частные координаты."
         project_requires_curator_coordinate_access_desc: Этот проект не допускает
           наблюдений с координатами, которые кураторы проекта не могут видеть. Если
           Вы не хотите делиться координатами ваших наблюдений с кураторами этого проекта,
@@ -5086,6 +5140,10 @@ ru:
           <ol class="description">
             <li>Файлы, заканчивающиеся на .logo.jpg, .logo.png и т. д. будут использоваться в качестве логотипа проекта на странице проекта вместо иконки проекта</li>
             <li>файлы KML и KMZ будут добавлены на карту на странице проекта</li></ol>
+        project_list_desc_html: |-
+          <p class="description">
+            Вы можете создать пользовательский список проектов таксонов и связать его с вашим проектом. Это может быть полезно для ограничения наблюдений, добавляемых в ваш проект, теми, которые соответствуют таксонам в вашем списке, с помощью правила «должно быть таксоном в списке проектов».
+          </p>
         rules:
           captive: в искусственных условиях/в естественных условиях
           coordinates_shareable_by_project_curators: координаты, предоставляемые кураторами
@@ -5129,6 +5187,15 @@ ru:
           вы хотели бы присоединиться, пожалуйста, свяжитесь с одним из указанных
           ниже кураторов и запросите приглашение.
       new:
+        a_project_allows_you_to_gather: Проект-коллекция позволяет собирать и визуализировать
+          наблюдения с использованием основных инструментов поиска iNaturalist. Это
+          устраняет необходимость вручную добавлять наблюдения, потому что все, что
+          соответствует параметрам, установленным проектом, будет автоматически включено.
+        do_you_need_features_from_traditional: Нужны ли вам функции традиционных проектов,
+          такие как доступ к реальным  координатам, пользовательские поля наблюдения
+          или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?
+        no_need_to_rely_on_manual_addition: Нет необходимости полагаться на ручное
+          добавление наблюдений или на агрегатор для индексации наблюдений
         note_these_users_will_be_able_to_edit: 'Примечание: эти пользователи смогут
           редактировать ВСЕ детали проекта, включая администраторов.'
         note_you_can_delete_the_time: '(Примечание: вы можете удалить часовой пояс
@@ -5367,6 +5434,19 @@ ru:
           но он покажет вам необычные всплески в наблюдениях, и если он кажется плоским
           или уменьшается, несмотря на увеличение числа наблюдателей, можно предположить
           изменение в распространенности.
+        charts_help_other: 'Мы также показываем графики сезонности для аннотаций наблюдения.
+          Аннотации - это новая система для добавления метаданных к наблюдениям с
+          использованием контролируемого словаря терминов. Сейчас мы используем только
+          «Стадия жизни» и «Фенология растений» (когда растение цветёт или плодоносит).
+          У нас пока еще нет возможности добавлять аннотации напрямую, поэтому на
+          данный момент мы преобразуем данные из полей наблюдения в аннотации. Если
+          вы не можете дождаться, когда мы построим нашу систему аннотаций, вы можете
+          внести свой вклад в аннотации «Стадия жизни», добавив значения полей наблюдения,
+          которые имеют любое из следующих значений: Взрослый, Общий, Куколка, Нимфа,
+          Личинка, Яйцо или Юношеский. Так что, в частности, поля «Стадия жизни» и
+          «Стадия жизни насекомого» хороши. Для «Фенологии растений» мы смотрим на
+          любое поле со словом «фенология» в его названии и значения «цветок» или
+          «плод», поэтому поле «Цветущая фенология» полезно использовать.'
         charts_help_relative_observations: Отображение частоты как относительной доли
           всех наблюдений помогает сгладить эффект общего роста сайта. Например, если
           сайт растет по мере того, как мы получаем больше наблюдений с каждым годом,
@@ -5521,6 +5601,8 @@ ru:
         scientific_name_first_desc: Показывать научные наименования перед общими именами.
         youve_used_all_of_your_blocks: Вы использовали все ваши блоки. Удалите блок,
           чтобы добавить следующий.
+      show:
+        this_user_was_banned: Этот пользователь был заблокирован
     welcome:
       index:
         connect_with_nature: На связи с природой
@@ -5818,6 +5900,13 @@ ru:
             observation_id:
               user_does_not_accept_fields_from_others: пользователь не допускает заполнение
                 полей другими людьми
+              user_only_accepts_fields_from_site_curators: пользователь допускает
+                заполнение полей только кураторами сайта
+        place:
+          attributes:
+            place_geometry:
+              contains_too_many_observations: содержит слишком много наблюдений для
+                импорта
         post:
           attributes:
             user:
@@ -5914,6 +6003,7 @@ ru:
         tracking_codes: Код отслеживания
         source_url: URL источника
         start_time: Время начала
+        last_aggregated_at: Последние совокупные наблюдения
       project_observation:
         user_id: Отправитель
       place:

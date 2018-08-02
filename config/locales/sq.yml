@@ -3814,26 +3814,57 @@ sq:
   type_species_name: Shkruaj emrin e specjeve
   type_taxon_name: Lloji i emrit të taxon
   update_your_content: Përditëso përmbajten tuaj
+  upload: Ngarko
   user_added_a_x: '%{user} shtoi një %{x}'
   user_added_a_x_to_noun_html: '%{user} shtoi një %{x} tek %{noun}'
   user_added_an_observation_html: '%{user} shtoi një vëzhgim'
   user_added_an_x_to_noun_by_html: '%{user} shtoi një %{x} tek %{noun} nga %{by}'
   user_added_x_observations_html: '%{user} shtoi %{x} vëzhgime'
   view_observation: Shiko vëzhgimin
+  view_your_observations: Shikoni vëzhgimet tuaja
   welcome!: Mirë se vini!
   welcome: mirë se vini
   welcome_comma: Mirë se vini,
   welcome_to_inat: Mirë se vini në %{site_name}
   welcome_to_x_project: Mirë se vini në %{project}
   worldwide: Në mbarë botën
+  you_retain_full_copyright: Juve ju ngelen të gjitha të drejtat me përjashtim të
+    atyre të drejtave të lëshaura për %{site_name} në Kushtet e Shërbimit
   your_comment_was_saved: Përmbajtja juaj u ruajt
   your_content: Përmbajtja Juaj
+  your_observations: Vëzhgimet tuaja
   your_subscriptions: Abonimet tuaja
   your_world!: Bota juaj!
   views:
     projects:
       new:
         welcome_to_projects: Mirë se vini te Projektet!
+    search:
+      index:
+        no_taxa_options_html: |-
+          <p>Ju keni disa opsione:</p>
+          <ul class="list-unstyled">
+            <li>
+              <strong>Shto shenjim tek një taxon i nivelit më të lartë</strong>
+              <p>
+                Psh. Gjenin që përmban specjet. Me shpresë ndonjë miqësore, kuratori do të shtojë taxon-in nëse mund të shtohet.
+              </p>
+            </li>
+            <li>
+              <strong><a href="%{feedback_url}">KOntakto grupin e fidbekut</a></strong>
+              <p>
+                Shumë kurator mbajnë evidencë të emaileve në grupin e fidbekut.
+              </p>
+            </li>
+            <li>
+              <strong>
+                <a href="mailto:%{help_email}">Kontakto për mbështetje</a>
+              </strong>
+              <p>
+                Ju lutem jini të durueshëm, ne nuk kemi shumë staf të dedikuar për mbështetje.
+              </p>
+            </li>
+          </ul>
     taxa:
       show:
         wanted_desc: Specjet në këtë taxon nuk janë vëzhguar ende.

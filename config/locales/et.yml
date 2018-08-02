@@ -1688,7 +1688,7 @@ et:
     ka praegu?
   if_this_link_will_apply_to_descendant: Kui see link käib alamtaksonite kohta, saad
     kasutada malli-koode URLi taksoni nime sisestamiseks
-  if_you_already_have_an_account: Kui sul juba on lehe %{site_name} konto...
+  if_you_already_have_an_account: Kui sul juba on lehe %{article} %{site_name} konto...
   if_you_dont_want_us_to_share_your_data: Kui sa ei soovi, et jagaksime sinu andmeid
   if_you_have_any_trouble_with_the_site_check_out: Kui sul on küsimus, vaata palun
     meie <a href="%{help_url}">abiteemasid</a> või postita sõnum <a href="%{feedback_url}">tagasiside
@@ -1812,6 +1812,9 @@ et:
     teistel veebilehekülgedel
   it_has: Sellel on
   it_instead: hoopis seda.
+  item_flagged_notice_html: |-
+    See märgiti rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href="mailto:%{help_email}" class="contact">ühendust</a>.
+    <a href="%{manage_flags_path}">Halda märkuseid</a>
   its_important_that_you: Pead vajutama
   iucn_red_list_status: IUCNi punase nimestiku staatus
   january: Jaanuar
@@ -1824,6 +1827,8 @@ et:
   join_this_project: Liitu selle projektiga
   joined!: Liitusid!
   joined_any_projects: liitunud mitteühegi projektiga
+  joined_projects: Liitutud projektid
+  joined_with_date: 'Liitutud: %{date}'
   joining: Liitun...
   journal: Päevik
   journal_archives_for: Päeviku arhiiv
@@ -1847,6 +1852,7 @@ et:
   location_unknown: Asukoht teadmata
   language_slash_type: Keel / Tüüp
   large: suur
+  last_active_with_date: 'Viimati aktiivne: %{date}'
   last_confirmed_observation: Viimane kinnitatud vaatlus
   last_inat_observation: Viimane lehe %{site_name} vaatlus
   last_observation: Viimane vaatlus
@@ -1880,21 +1886,30 @@ et:
   legacy_authentication_notice_html: |-
     Näib, et kasutad selle lehe varasema versiooni salasõna.
     Palun pea meeles, et uue lehe jaoks tuleb <a href="%{url}">salasõna muuta</a>.
+  let_us_walk_you_through: Vaatame üle selle lehe peamised võimalused.
   lexicon: Sõnastik
   lexicons:
     scientific_names: Teaduslikud nimed
     afrikaans: Afrikaani
+    albanian: Albaania
     bengali: Bengali
     catalan: Katalaani
     cebuano: Sebu
+    chinese_simplified: Hiina (lihtsustatud)
+    chinese_traditional: Hiina (traditsiooniline)
     creole_french: Kreooli (Prantsuse)
     creole_portuguese: Kreooli (Portugali)
+    czech: Tšehhi
+    danish: Taani
     davawenyo: Davavenjo
     dutch: Hollandi
     english: Inglise
+    estonian: Eesti
+    finnish: Soome
     french: Prantsuse
     gela: Gela
     german: Saksa
+    greek: Kreeka
     hawaiian: Havai
     hebrew: Heebrea
     hiligaynon: Hiligainoni
@@ -1903,10 +1918,12 @@ et:
     italian: Itaalia
     japanese: Jaapani
     korean: Korea
+    luxembourgish: Luksemburgi
     maltese: Malta
     maori: Maori
     misima_paneati: Misima-paneati
     norwegian: Norra
+    occitan: Oksitaani
     pangasinan: Pangasinani
     portuguese: Portugali
     romanian: Rumeenia
@@ -1918,10 +1935,18 @@ et:
     tokelauan: Tokelau
     turkish: Türgi
     waray_waray: Varai
+  less: Vähem
+  license_descriptions_and_images: Litsentside kirjeldused ja kujutised
+  licensed_site_photos: Litsenseeritud %{site_name} fotod
+  license: Litsents
+  licensing: Litsentsimine
   licensing_your_content: |-
     Enda poolt toodetud sisu litsentseerimine lubab teistel seda seaduslikult litsentsi reegleid järgides kasutada. %{site_name} jagab sinu Creative
     Commons-litsentsi alusel toodetud sisu andmepartneritega nagu <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
     (GBIF).
+  licensing_your_content_gives_others_legal: Enda loodud sisu litsentsimine lubab
+    teistel seda kasutada, kui nad järgivad litsentsi reegleid. %{site_name} jagab
+    Creative Commons litsentsidega sisu andmepartneritega nagu
   life: Elu
   life!: Elu!
   life_list: Kasutaja %{user} elunimekiri
@@ -1974,6 +1999,53 @@ et:
   linked_flickr_password_html: '<strong>Me ei küsi sinult kunagi su Flickri salasõna</strong>
     (kuid Flickr võib seda teha: kontrolli internetiaadressit, millele see nupp sind
     saadab, ja veendu, et tegemist oleks Flickr.com-iga).'
+  linked_flickr_photo_copy_html: <strong>Me ei säilita kunagi sinu fotodest koopiaid
+    ega muuda su Flickr andmeid (kui sa meilt seda just ei palu).</strong> Hoolime
+    lindudest, putukatest ja tigudest liiga palju, et sinu infot vussi keerata!
+  list: Nimekiri
+  list_deleted: Loend kustutatud.
+  list_saved: Nimekiri salvestatud.
+  list_tooltip: Näita nimekirjana
+  list_updated: Loend uuendatud!
+  list_views:
+    plain: lihtne
+    taxonomic: taksonoomiline
+    photo: piltidega
+  list_was_successfully_created: Nimekirja loomine õnnestus.
+  listed_taxa: Loetletud taksonid
+  listed_taxon: Loetletud takson
+  listed_taxon_updated: Lotletud taksonit värskendati
+  listing_announcement: Loetlen teadet
+  listing_announcements: Loetlen teateid
+  listing_lists: Loetlen nimekirju
+  listing_project_assets: Loetlen projekti andmeid
+  listing_taxa: Loetlen taksoneid
+  listing_taxon_names: Loetlen taksonite nimesid
+  lists: Nimekirjad
+  lists_are_lists_of_species: Nimekirjad on liikide (või muude taksonite) loendid.
+    Näiteks nimekiri kõigist sinu poolt nähtud lindudest või lemmiksalamandritest.
+    Nad <em>ei</em> ole vaatluste nimekirjad.
+  lists_by_login:
+    title:
+      current_user: Sinu nimekirjad
+      login: Kasutaja %{login} nimekirjad
+  lists_come_in_three: 'Nimekirjasid on kolmel kujul:'
+  load: Lae
+  loading: Laen...
+  loading_flickr_photos: Laen Flick fotosid...
+  loading_full_description_html: Laen täielikku kirjeldust...
+  loading_images: Laen pilte...
+  loading_map: Laen kaarti...
+  loading_metadata: Laen metaandmeid...
+  loading_more_photos: Laen pilte juurde...
+  loading_observations: Laen vaatluseid...
+  loading_preview_and_code: Laen eelvaadet ja koodi...
+  loading_suggestions: Laen soovitusi...
+  loading_tags: Laen märksõnu...
+  loading_taxa_from_your: Laen sinu vaatlustega seotud taksoneid...
+  loading_wikipedia_description: Laen Wikipedia kirjeldust...
+  locale_description: Keel määrab sinu keele ja kuupäeva vormingu eelistused.
+  locales_: Keeled
   locales:
     ar: Araabia
     bg: Bulgaaria
@@ -1988,9 +2060,57 @@ et:
     es-ES: Hispaania (Hispaania)
     es-MX: Hispaania (Mehhiko)
     es: Hispaania
+    et: Eesti
     eu: Baski
     fi: Soome
     fr: Prantsuse
+    gl: Galiitsia
+    id: Indoneesia
+    it: Itaalia
+    ja: Jaapani
+    ko: Korea
+    lb: Luksemburgi
+    mk: Makedoonia
+    oc: Oksitaani
+    pt-BR: Portugali (Brasilia)
+    pt-PT: Portugali (Portugali)
+    ru: Vene
+    sq: Albaania
+    zh-CN: Hiina (lihtsustatud)
+    zh-TW: Hiina (traditsiooniline)
+  locality_notes: Keele märkused
+  localized_species_accounts: Kohapõhised liikide kokkuvõtted
+  location: Asukoht
+  location_: Asukoht
+  locations: Asukohad
+  location_is_accurate: Asukoht on täpne
+  location_is_exact: asukoht on täpne
+  location_is_public: Asukoht on avalik
+  location_is_obscured: Asukoht on varjatud
+  location_is_private: Asukoht on privaatne
+  location_specified: Asukoht määratud
+  locked_taxa_will_not_allow_new: Lukustatud taksonitele ei saa lisada uusi alamtaksoneid.
+    Kui sa näiteks lukustad kahepaiksed ning keegi proovib seejärel mõnest välisest
+    nimede pangast importida liiki <i>Rana catesbeiana</i>, saaks uue taksoni küll
+    luua, kuid seda ei saaks määratleda kahepaiksena. Kui see juhtub, tuleks uuele
+    taksonile lisada märkus, et juhtida sellele mõne kuraatori tähelepanu. Antud võimalust
+    tuleks kasutada ainult taksonite juures, mille puhul usume, et kõik alamtaksonid
+    on juba olemas. Kuraatorid saavad lukust mööda minna taksonit muutes ning sisestades
+    ülemtaksoni ID käsitsi, kuid pigem tuleks uusi taksoneid ühendada juba olemasolevatega.
+  log_in: Logi sisse
+  logged_in_as: Sisse logitud kasutajana
+  login_slash_username: Kasutajatunnus
+  logo:
+    logo: Logo
+    white_bg_gif: valge taustaga GIF
+    transparent_png: läbipaistev PNG
+    white_text_transparent_png: valge tekstiga läbipaistev PNG
+    none: puudub
+  long: 'Pikkus:'
+  longitude: Pikkuskraad
+  longitude_in_decimal: Pikkuskraad komakohaga, nt -122.123
+  longitude_slash_x_coord_slash_easting: Pikkuskraad / x-koordinaat / idapoole
+  look_up_name: Otsi nime
   we_also_support: |-
     Lubame piltide majutamist ka <a href="http://flickr.com">Flickr</a>,
     <a href="http://photos.google.com">Google Photos</a> ja
