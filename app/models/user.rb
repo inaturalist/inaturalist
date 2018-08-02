@@ -1124,4 +1124,9 @@ class User < ActiveRecord::Base
     elastic_index!
   end
 
+  def personal_lists
+    lists.not_flagged_as_spam.
+      where("(type IN ('LifeList', 'List') OR type IS NULL)")
+  end
+
 end

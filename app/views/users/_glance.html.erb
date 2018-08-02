@@ -26,7 +26,7 @@
         <%= t(:journal_posts) %>
       <% end %>
       <%= link_to lists_by_login_path(user.login), :class => 'list-group-item' do %>
-        <span class="badge"><%= user.lists.count %></span>
+        <span class="badge"><%= user.personal_lists.count %></span>
         <span class="glyphicon glyphicon-list"></span>
         <%= t(:lists) %>
       <% end %>
