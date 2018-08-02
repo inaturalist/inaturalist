@@ -5,7 +5,11 @@
         common_taxon_name( @observation.taxon, place: current_user.try(:place) || @site.try(:place) ).try(:name),
         common_taxon_name( @observation.taxon ).try(:name)
       ].detect{|n| !n.blank?}
-    = raw common_name ? "#{capitalize_name( common_name )} (#{@observation.taxon.name})" : @observation.taxon.name
+      display_name = @observation.taxon.name unless common_name
+      display_name ||= current_user.try(:prefers_scientific_name_first) ?
+        "#{@observation.taxon.name} (#{capitalize_name( common_name )})" :
+        "#{capitalize_name( common_name )} (#{@observation.taxon.name})"
+    = raw display_name
   - elsif !@observation.species_guess.blank?
     = @observation.species_guess
   - else
