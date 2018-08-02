@@ -69,6 +69,16 @@ describe Post do
         end
         expect( UpdateAction.unviewed_by_user_from_query(pu.user_id, notifier: post) ).to eq false
       end
+
+      it "should notify subscribers of collection projects" do
+        u = User.make!
+        Subscription.make!( user: u, resource: project )
+        without_delay do
+          post.update_attributes( published_at: Time.now )
+        end
+        expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: post ) ).to eq true
+      end
+
     end
     describe "for a user" do
       it "should increment the user's counter cache" do

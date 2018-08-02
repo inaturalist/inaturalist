@@ -51,6 +51,9 @@ export function fetchFollowers( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const params = { id: state.project.id, per_page: 100 };
+    if ( state.config.currentUser ) {
+      params.ttl = -1;
+    }
     return inatjs.projects.followers( params ).then( response => {
       dispatch( setAttributes( {
         followers_loaded: true,

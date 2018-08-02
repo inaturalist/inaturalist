@@ -365,7 +365,8 @@ class UpdateAction < ActiveRecord::Base
   end
 
   # Only used in specs
-  def self.unviewed_by_user_from_query(user_id, attrs, options={})
+  def self.unviewed_by_user_from_query(user, attrs, options={})
+    user_id = user.try(:id) || user
     unviewed_user_ids = UpdateAction.users_with_unviewed_updates_from_query( attrs )
     unviewed_user_ids.include?(user_id)
   end
