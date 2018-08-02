@@ -20,7 +20,10 @@ class Post < ActiveRecord::Base
     :if => lambda{|post, project, subscription|
       return true unless post.parent_type == 'Project'
       project_user = project.project_users.where(user_id: subscription.user_id).first
-      project_user.prefers_updates?
+      # as it stands right now, collection/umbrella projects don't necessarily
+      # create ProjectUsers, so check subscriptions of one does not exist
+      project_user ? project_user.prefers_updates? :
+        Subscription.where(user_id: subscription.user_id, resource: project).exists?
     },
     :notification => "created_post",
     :include_notifier => true
