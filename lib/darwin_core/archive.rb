@@ -84,7 +84,7 @@ module DarwinCore
              "Content-Type" => "application/json"
            }
           }
-          logger.debug "Posting #{req.body} to #{@opts[:post_taxon_archive_to_url]}"
+          logger.debug "Posting #{options.body} to #{@opts[:post_taxon_archive_to_url]}"
           response = HTTParty.post( @opts[:post_taxon_archive_to_url], options )
         end
       end

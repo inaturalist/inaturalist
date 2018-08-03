@@ -1,6 +1,7 @@
 # Messages for Basque (euskara)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Amaia
 # Author: An13sa
 # Author: Asierog
 # Author: Cgalindo
@@ -72,10 +73,13 @@ eu:
   about: 'Honi buruz:'
   about_bioblitz_results: Bioblitz emaitzen inguruan
   about_community_taxa: Komunitate taxoien inguruan
+  about_conservation_status: Kontserbazio egoerari buruz
   about_external_links: Kanpoko estekei buruz
   about_licenses: Lizentzien inguruan
   about_licensing: Lizentziatzearen inguruan
   about_life!: Bizitzari buruz!
+  about_muting: Isilarazteari buruz
+  about_names: Izenei buruz
   about_places: Tokiei buruz
   about_the_cc_licenses: Creative Commons-eko lizentziei buruz
   about_the_taxobox_raquo: '&raquo; taxonaren fitxari buruz'
@@ -85,6 +89,7 @@ eu:
   about_x: 'Honi buruz: %{x}'
   acc: Zehaztasuna (metroak)
   account: Kontua
+  account_settings: Kontuaren ezarpenak
   accept: onartu
   accept_community_identifications: Komunitatearen identifikatzaileak onaru
   accuracy: Zehaztasuna
@@ -98,7 +103,9 @@ eu:
   action: Ekintza
   actions: Ekintzak
   activate_user: Erabiltzailea aktibatu
-  active: aktibo
+  active: Aktiboa
+  active_users: Erabiltzaile aktiboak
+  activity: Jarduera
   activity_settings: Jarduera hobespenak
   adapted_by_name_from_a_work_by_original: '%{name}(e)k onartua %{original}(r)en lan
     batean oinarritua'
@@ -141,6 +148,7 @@ eu:
   add_countries: Herrialdeak gehitu
   add_custom_project_fields: Pertsonalizatutako proiektu-eremuak gehitu
   add_edit_more_fields: Eremu gehiago gehitu/editatu
+  add_editor: Editorea gehitu
   add_description: '%{description_name} gehitu'
   add_field: Gehitu eremua
   add_from_your_observations: Zure oharretatik gehitu
@@ -230,9 +238,11 @@ eu:
   additional_range_data_from_an_unknown_source: D"Iturri ezezaguneko banaketa osagarriaren
     datuak"
   admin: administratzailea
+  admin_s: Administratzailea(k)
   admin_any_projects: duzu proiekturik administratzen.
   admin_tools: Tresna Administratiboak
   agree: ados
+  agree_: Ados
   agree?: Ados al zaude?
   agree_to_the_project_terms: proiektuaren baldintzak onartu
   agreeing: Prozesuan...
@@ -348,6 +358,7 @@ eu:
   animals: Animaliak
   announcements: Iragarkiak
   any: Edozein
+  any_: Edozein
   apply_to_selected: Hautatutakoei aplikatu
   apply_geoprivacy: Geopribatasuna aplikatu
   apply_darr: Aplikatu ↓
@@ -1994,7 +2005,6 @@ eu:
     botoia!
   paste_in_a_comma_separated_list: Itsatsi herrialde-zerrenda komekin bereizita
   pdf: PDF
-  pdf_slash_print: PDF / Inprimatu
   people: Pertsonak
   people_agree: ados dauden pertsonak
   people_following_user: 'Honi jarraitzen dioten pertsonak: %{user}'

@@ -46,8 +46,9 @@ export function setAttributes( attributes ) {
 }
 
 /* global SITE */
-export function windowStateForObservation( observation, opts = { } ) {
+export function windowStateForObservation( observation, state, opts = { } ) {
   const options = Object.assign( { hash: "" }, opts );
+  const currentUser = state && state.config && state.config.currentUser;
   const observationState = {
     observation: {
       id: observation.id,
@@ -59,7 +60,15 @@ export function windowStateForObservation( observation, opts = { } ) {
   };
   let title = `observed by ${observation.user.login}`;
   if ( observation.taxon ) {
-    title = `${observation.taxon.preferred_common_name || observation.taxon.name} ${title}`;
+    if ( !observation.taxon.preferred_common_name ) {
+      title = `${observation.taxon.name} ${title}`;
+    } else {
+      if ( currentUser && currentUser.prefers_scientific_name_first ) {
+        title = `${observation.taxon.name} (${observation.taxon.preferred_common_name}) ${title}`;
+      } else {
+        title = `${observation.taxon.preferred_common_name} (${observation.taxon.name}) ${title}`;
+      }
+    }
     observationState.observation.taxon = {
       name: observation.taxon.name,
       preferred_common_name: observation.taxon.preferred_common_name
@@ -169,7 +178,7 @@ export function renderObservation( observation, options = { } ) {
     }
     if ( fetchAll || options.fetchPlaces ) { dispatch( fetchObservationPlaces( ) ); }
     if ( fetchAll || options.replaceState ) {
-      const ws = windowStateForObservation( observation, {
+      const ws = windowStateForObservation( observation, s, {
         hash: options.replaceState ? window.location.hash : null
       } );
       history.replaceState( ws.state, ws.title, ws.url );
@@ -925,9 +934,9 @@ export function onFileDrop( droppedFiles ) {
 }
 
 export function showNewObservation( observation, options = { } ) {
-  return dispatch => {
+  return ( dispatch, getState ) => {
     window.scrollTo( 0, 0 );
-    const s = windowStateForObservation( observation );
+    const s = windowStateForObservation( observation, getState( ) );
     if ( !( options && options.skipSetState ) ) {
       history.pushState( s.state, s.title, s.url );
     }

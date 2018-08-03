@@ -217,6 +217,7 @@ class User < ActiveRecord::Base
   after_create :set_uri
   after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
+  after_destroy :destroy_project_rules
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -922,6 +923,14 @@ class User < ActiveRecord::Base
     true
   end
 
+  def destroy_project_rules
+    ProjectObservationRule.where(
+      operator: "observed_by_user?",
+      operand_type: "User",
+      operand_id: id
+    ).destroy_all
+  end
+
   def generate_csv(path, columns, options = {})
     of_names = ObservationField.joins(observation_field_values: :observation).
       where("observations.user_id = ?", id).
@@ -1113,6 +1122,11 @@ class User < ActiveRecord::Base
   def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
     elastic_index!
+  end
+
+  def personal_lists
+    lists.not_flagged_as_spam.
+      where("(type IN ('LifeList', 'List') OR type IS NULL)")
   end
 
 end

@@ -90,8 +90,8 @@ it:
     one: 1 persona
     other: '%{count} persone'
   x_people_found_this_helpful:
-    one: Una persona ha trovato questo utile
-    other: '%{count} persone hanno trovato questo utile'
+    one: Una persona lo ha trovato utile
+    other: '%{count} persone lo hanno trovato utile'
   x_faves:
     one: 1 preferito
     other: '%{count} preferiti'
@@ -115,13 +115,13 @@ it:
     other: <a href='%{url}'>%{count} specie</a>
   x_suggestions_filtered_by_colon:
     one: '1 suggerimento filtrato per:'
-    other: '%{count} Suggerimenti filtrati per:'
+    other: '%{count} suggerimenti filtrati per:'
   x_taxa_observed_html:
     one: <span class='count'>1</span> taxon osservato
     other: <span class='count'>%{count}</span> taxa osservati
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> osservazione research-grade</span>
-    other: <span class='count'>%{count}</span> osservazioni research-grade</span>
+    one: <span class='count'>1</span> osservazione livello di ricerca</span>
+    other: <span class='count'>%{count}</span> osservazioni livello di ricerca</span>
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span> osservazione livello-ricerca identificate al
       grado di specie o inferiore</span>
@@ -670,8 +670,8 @@ it:
   batch_edit: Modifica in gruppo
   batch_edit_taxa_for_x_html: Modifica in gruppo i taxa %{x}
   batch_operations: Operazioni a blocchi
-  be_the_first_to_fave_this_observation: Sii il primo ad aggiungere alle preferite
-    questa osservazione!
+  be_the_first_to_fave_this_observation: Aggiungi per primo questa osservazione ai
+    preferiti!
   beacuse_we_recently_changed_auth_system: Poiché di recente abbiamo cambiato il nostro
     sistema di autenticazione dell'utente, è necessario resettare la tua password.
   because: perché
@@ -898,7 +898,7 @@ it:
   choose_taxon: Scegli un taxon
   choose_what_kind_of_change_youre_creating: Scegliere che tipo di modifica stai creando.
   choose_your_username: Scegli il tuo nome utente
-  cid_d_to_genus: Con CID al Genere
+  cid_d_to_genus: Con CID al genere
   citation: Citazione
   classification: Classificazione
   clear: pulisci
@@ -1130,7 +1130,7 @@ it:
   darr_apply_darr: '&darr; Applica &darr;'
   dashboard: Bacheca
   data_deficient: Carente di Dati
-  data_quality: Qualità dei Dati
+  data_quality: Qualità dei dati
   data_quality_assessment: Valutazione della qualità dei dati
   data_quality_assessment_: Valutazione della qualità dei dati
   datatype: Tipo di dati
@@ -1333,7 +1333,7 @@ it:
   editing_observation_field: Modifica del campo dell'osservazione in corso
   editing_observation_id: Modifica in corso dell'osservazione %{obs_id}
   editing_observations:
-    one: 'Modifica di <span slass="count">un''</span>osservazione:'
+    one: 'Modifica di <span slass="count">1</span>osservazione:'
     other: 'Modifica di <span class="count">%{count}</span> osservazioni:'
   editing_project: Modifica di %{project} in corso
   editing_project_asset: Modifica in corso della risorsa del progetto per
@@ -1602,7 +1602,6 @@ it:
   general: Generale
   generally_these_come_from_iucn_red_list: In genere, questi provengono dalla lista
     Rossa IUCN, e se provengono da altre fonti dovranno rispettare le categorie IUCN.
-  generate_pdf: Genera PDF
   generate_taxonomic_tags_for_flickr: Genera etichette tassonomiche dalle tue foto
     Flickr.
   generate_widget: Genera il Widget
@@ -1627,6 +1626,7 @@ it:
   go_back: Indietro
   going_to_your_observations: Stai andando alle tue osservazioni...
   good_choice_for_sharing: Buona scelta per condivider con gli scienziati
+  google: Google
   got_it!: Capito!
   got_your_data_somewhere_else?: Avete ottenuto i dati in un altro modo? Vi possiamo
     aiutare.
@@ -1890,7 +1890,7 @@ it:
     per confermare che questo è %{taxon}?
   is_the_organism_wild: L'organismo è selvatico/naturalizzato?
   is_this_observation_offensive_html: Questa osservazione è <a href="/help#inappropriate">inappropriata</a>,
-    spam, o offensiva?
+    spam o offensiva?
   is_this_offensive_html: Questo è <a href="/help#inappropriate">inappropriato</a>,
     spam, o offensivo?
   is_this_place_a_duplicate: Questo luogo è un duplicato?
@@ -1922,7 +1922,7 @@ it:
   journal_post: Post del diario
   journal_post_deleted: Post del diario cancellato.
   journal_posts: Post del diario
-  jpg_png_or_gif: JPG, PNG, o GIF
+  jpg_png_or_gif: JPG, PNG o GIF
   jump_to_letter: Vai alla lettera
   just_a_reminder: Solo un promemoria, dal momento che potresti aver garantito ai
     curatori del progetto l'accesso alle coordinate private.
@@ -2112,9 +2112,9 @@ it:
   listing_taxa: Elencazione taxa
   listing_taxon_names: Elencazione dei nomi dei taxa
   lists: Elenchi
-  lists_are_lists_of_species: Le Liste sono liste di specie (o altri taxa), come ina
-    lista di tutti gli uccelli che hai visto o una lista delle tue salamandre preferite.
-    Queste Liste <em>non</em> sono elenchi di osservazioni.
+  lists_are_lists_of_species: Le liste sono elenchi di specie (o altri taxa), come
+    una lista di tutti gli uccelli che hai visto o quella delle tue salamandre preferite.
+    Queste liste <em>non</em> sono elenchi di osservazioni.
   lists_by_login:
     title:
       current_user: Le tue liste
@@ -2180,15 +2180,15 @@ it:
   location_is_obscured: La posizione è oscurata
   location_is_private: La posizione è privata
   location_specified: Posizione specificata
-  locked_taxa_will_not_allow_new: I taxa bloccati non permettono l'aggiunta di taxa
-    discendenti. Per esempio, se blocchi il taxon Amphibia e qualcuno cerca di importate
+  locked_taxa_will_not_allow_new: I taxa bloccati non permettono l’aggiunta di taxa
+    discendenti. Per esempio, se blocchi il taxon Amphibia e qualcuno cerca di importare
     <i>Lithobates catesbeianus</i> da una fonte di nomi esterna, il nuovo taxon sarà
     creato ma non potrà essere classificato come un anfibio. Quando ciò accade, il
-    nuovo taxon dovrebbe essere flaggato per l'attenzione da parte dei curatori. Questo
-    blocco dovrebbe essere usato solo per i taxa che si ritengono completi di tutti
-    i discendenti. Il curatore può annullare questa azione editando i taxa e inserendo
-    gli direttamente gli ID di rango superiore, ma per favore assicurati che non sia
-    meglio unire i nuovi taxa in quelli già esistenti.
+    nuovo taxon dovrebbe essere segnalato all’attenzione dei curatori. Questo blocco
+    dovrebbe essere usato solo per i taxa che si ritengono completi di tutti i discendenti.
+    Il curatore può annullare questa azione editando i taxa e inserendo direttamente
+    gli ID di rango superiore, ma per favore assicurati che non sia meglio invece
+    unire i nuovi taxa in quelli già esistenti.
   log_in: Accedi
   logged_in_as: Accesso effettuato come
   login_slash_username: Login / nome utente
@@ -2338,6 +2338,8 @@ it:
   more_photos: Più Foto
   most: Il più
   most_agree: la maggior parte è d’accordo
+  most_browser_print_pdf: 'Nota: la maggior parte dei browser ha un''opzione per stampare
+    in PDF'
   most_disagree: la maggior parte è in disaccordo
   most_comments_and_faves: La maggior parte di Commenti e Preferiti
   most_observations: Con più osservazioni
@@ -2451,7 +2453,7 @@ it:
     %{site_name}
   new_user_rules: Nuove Regole degli Utenti
   new_users: Nuovi utenti
-  new_users_w_7_obs: Nuovi utenti w/7 Obs
+  new_users_w_7_obs: Nuovi utenti con 7 osservazioni
   new_users_week: Nuovi Utenti/Settimana
   news: Notizie
   next: Successivo
@@ -2615,7 +2617,7 @@ it:
   observation_photo_uploader: Uploader delle foto dell'osservazione
   observations_by_category: Osservazioni Per categoria
   observations_by_app: Osservazioni Per App
-  observations_by_rank: Osservazioni Per Rango
+  observations_by_rank: Osservazioni per rango
   observations_by_user_on_date: Osservazioni di %{user} il %{date}
   observations_by_you: Le mie osservazioni
   observations_by_you_on_date: Le tue osservazioni del %{date}
@@ -2848,6 +2850,7 @@ it:
   open_: Aperta
   open_description: Tutti possono vedere le coordinate, a meno che il taxon non sia
     minacciato.
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: Dò il consenso per questa osservazione
   opt_out_of_community_ids_for_obs: Rinuncia alla identificazione della community
     per questa osservazione
@@ -2869,7 +2872,7 @@ it:
   organism_is_wild: L'organismo è selvatico
   organisms: Organismi
   original: Originale
-  originally_flagged_by: Originariamente contrassegnata per
+  originally_flagged_by: Originariamente segnalata da
   originally_imported_from_url_html: Originariamente importati da <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: URL della pagina originale per questa foto.
   original_rights_holder: Proprietario originale dei diritti
@@ -2902,7 +2905,6 @@ it:
     pulsante!
   paste_in_a_comma_separated_list: Incolla come lista di stati separata da virgole
   pdf: PDF
-  pdf_slash_print: PDF / Stampa
   people: Persone
   people_agree: persone sono d'accordo
   people_following_user: Persone stanno seguendo %{user}
@@ -3198,6 +3200,7 @@ it:
   previous_page: Pagina precedente
   previous_photo: Foto Precedente
   previous_tab: Scheda precedente
+  print_verb: Stampa
   print_in_browser: Stampa nel browser
   privacy: Informativa sulla privacy
   privacy_policy: Informativa sulla privacy
@@ -3514,8 +3517,8 @@ it:
   saved: Salvato
   saving: Salvataggio...
   saving_num_of_count_observations:
-    one: Salvando l'osservazione...
-    other: Salvando %{num} di %{count} osservazioni...
+    one: Salvataggio dell’osservazione...
+    other: Salvataggio di %{num} su %{count} osservazioni...
   saving_verb: Salvataggio
   schemes: Schemi
   schemes_including: Schemi che includono
@@ -3777,7 +3780,7 @@ it:
   species_search: Cerca Specie
   species_taxon_name: Specie / Nome taxon
   species_unknown: Specie sconosciuta
-  specify_the_reason_youre_flagging: Specifica il motivo per cui stai flaggando quest'oggetto
+  specify_the_reason_youre_flagging: Specifica il motivo per cui stai segnalando quest’oggetto
   src: Fonte
   standard: Standard
   start: Inizia
@@ -4001,8 +4004,8 @@ it:
   terms_and_rules_html: Termini &amp; Regole
   terms_new_users: Se aggiungi termini, i nuovi utenti devono accettarli prima di
     unirsi al progetto.
-  terms_of_service: Termini del Servizio
-  terms_service: Termini del Servizio
+  terms_of_service: Termini del servizio
+  terms_service: Termini del servizio
   terrain: terreno
   text: Testo
   text_: testo
@@ -4383,15 +4386,16 @@ it:
     calcolo dovrebbero esportare i CSV in questo formato.
   user: Utente
   user_added_a_x: '%{user} ha aggiunto una %{x}'
-  user_added_a_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a %{noun} di %{by}'
+  user_added_a_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a una %{noun} di %{by}'
   user_added_a_x_to_noun_html: '%{user} ha aggiunto una %{x} a %{noun}'
   user_added_an_observation_field_html: '%{user} ha aggiunto un valore "%{field_name}"
     ad un''osservazione di %{owner}'
   user_added_an_observation_html: '%{user} ha aggiunto una osservazione'
-  user_added_an_x: '%{user} aggiunto una %{x}'
+  user_added_an_x: '%{user} ha aggiunto una %{x}'
   user_added_an_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a %{noun} di %{by}'
   user_added_an_x_to_noun_html: '%{user} ha aggiunto una %{x} a %{noun}'
   user_added_x_observations_html: '%{user} ha aggiunto %{x} osservazioni'
+  user_already_authenticated: L'utente è già autenticato
   user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: Utente bloccato
   user_commented: '%{user} ha commentato'
@@ -4890,7 +4894,7 @@ it:
   your_google_account: il tuo account Google
   your_google_account_info: Informazioni del tuo account Google
   your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
-  your_recent_projects: I tuoi Progetti Recenti
+  your_recent_projects: I tuoi progetti recenti
   your_should_recognize: Dovresti riconosce alcune di queste foto
   your_site_account_has_been_created: Il tuo account %{site} è stato creato.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -5786,11 +5790,11 @@ it:
         project_background_color: Colore di sfondo dell'indice del progetto
         project_background_color_help: Assicurati di scegliere un colore abbastanza
           scuro in modo che il testo bianco sia visibile.
-        project_banner: Banner del Progetto (PNG, JPG, o GIF)
+        project_banner: Banner del Progetto (PNG, JPG o GIF)
         project_banner_help: Immagine del banner opzionale. Le dimensioni ideali sono
           760px per 320px.
         project_details: Dettagli del progetto
-        project_icon: Icona del Progetto (PNG, JPG, o GIF)
+        project_icon: Icona del Progetto (PNG, JPG o GIF)
         project_icon_help: Icona opzionale. Dovrebbe essere almeno 72px x 72px e sarà
           ritagliata a forma quadrata.
         project_name: Nome del Progetto
@@ -5925,28 +5929,28 @@ it:
         med_ttcid: TTCID Mediana
         med_ttid: TTID Mediana
         new_users_desc: Iscritti in questo giorno
-        obs_1_day: Obs (1 giorno)
+        obs_1_day: Osservazioni (1 giorno)
         obs_1_day_desc: Osservazioni create in un singolo giorno
         obs_cid_d_desc: Create nei precedenti 7 giorni e con una ID della Comunità
         obs_cid_d_to_genus: Osservazioni con CID al genere
         obs_cid_d_to_genus_desc: Create nei precedenti 7 giorni e con una ID della
           Comunità al genere o minore
         obs_desc: Creato nei precedenti 7 giorni
-        obs_id_d_desc: Creato nei precedenti 7 giorni e hanno un'identificazione (potrebbe
-          essere dell'osservatore)
+        obs_id_d_desc: Create nei precedenti 7 giorni e hanno un’identificazione (potrebbe
+          essere dell’osservatore)
         other_desc_html: Creato con un'altra applicazione <a href="%{url}">built da
           un programmatore</a>
         recent_desc: Iscritti nei precedenti 7 giorni
         recent_w_0_obs: Recenti con 0 osservazioni
-        recent_w_0_obs_desc: Inscritti nei precedenti 7 giorni e aggiunte 0 osservazioni
-        recent_w_7_obs: Recente con >= 7 osservazioni
+        recent_w_0_obs_desc: Iscritti nei 7 giorni precedenti e aggiunte 0 osservazioni
+        recent_w_7_obs: Recenti con >= 7 osservazioni
         recent_w_7_obs_desc: Iscritti nei precedenti 7 giorni e aggiunte >=7 osservazioni
-        time_to_id_desc: Per per l'ID (ore, finestra di 1 settimana)
+        time_to_id_desc: Tempo per l’ID (ore, finestra mobile di 1 settimana)
         TTCID: TTCID
         TTCID_desc: Tempo per avere una identificazione da parte di qualcun altro
           che corrisponde al taxon della comunità.
         TTID: TTID
-        TTID_desc: Tempistiche per ricevere un'identificazione da qualcun altro
+        TTID_desc: Tempo per ricevere un’identificazione da qualcun altro
         TTID_note: Queste statistiche si riferiscono alle osservazioni create la settimana
           precedente, quindi non comprendono le osservazioni più vecchie di una settimana;
           per questo le statistiche appaiono minori rispetto a quelle calcolate al
@@ -6193,7 +6197,7 @@ it:
         explore_and_share: Esplora e condividi le tue osservazioni della natura.
         observations_to_date: Osservazioni finora
         species_observed: Specie Osservate
-        people_signed_up: Persone inscritte
+        people_signed_up: Persone iscritte
         how_it_works: Come Funziona
         record_your_observations: Registra le tue osservazioni
         share_with_fellow_naturalists: Condividi con gli altri naturalisti
@@ -6379,8 +6383,8 @@ it:
         one: è troppo corto (minimo 1 carattere)
         other: è troppo corto (minimo %{count} caratteri)
       wrong_length:
-        one: lunghezza sbagliata (dovrebbe essere 1 carattere)
-        other: lunghezza sbagliata (dovrebbe essere %{count} caratteri)
+        one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
+        other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
     template:
       body: 'Ci sono problemi con i seguenti campi:'
       header:
@@ -6475,8 +6479,8 @@ it:
           one: è troppo corto (minimo 1 carattere)
           other: è troppo corto (minimo %{count} caratteri)
         wrong_length:
-          one: lunghezza sbagliata (dovrebbe essere 1 carattere)
-          other: lunghezza sbagliata (dovrebbe essere %{count} caratteri)
+          one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
+          other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
         header:

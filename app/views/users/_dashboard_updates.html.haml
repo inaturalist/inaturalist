@@ -72,5 +72,5 @@
             - rescue ActionView::MissingTemplate, Errno::ENOENT
               = "#{resource_type} #{notification}"
   .pagination
-    - unless @pagination_updates.blank?
+    - unless @pagination_updates.blank? || @pagination_updates.next_page.blank?
       = link_to t(:more), url_for_params( from: @pagination_updates.last.id ), data: { from: @pagination_updates.last.id }, id:"more_pagination", class: "btn btn-sm btn-default"
