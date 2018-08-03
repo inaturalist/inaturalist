@@ -4546,7 +4546,8 @@ CREATE TABLE users (
     icon_file_size integer,
     icon_updated_at timestamp without time zone,
     search_place_id integer,
-    curator_sponsor_id integer
+    curator_sponsor_id integer,
+    suspended_by_user_id integer
 );
 
 
@@ -9325,4 +9326,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180518231918');
 INSERT INTO schema_migrations (version) VALUES ('20180613193352');
 
 INSERT INTO schema_migrations (version) VALUES ('20180719001655');
+
+INSERT INTO schema_migrations (version) VALUES ('20180803162216');
 

@@ -188,6 +188,7 @@ class User < ActiveRecord::Base
   # Roles
   has_and_belongs_to_many :roles, -> { uniq }
   belongs_to :curator_sponsor, class_name: "User"
+  belongs_to :suspended_by_user, class_name: "User"
   
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all
@@ -202,6 +203,7 @@ class User < ActiveRecord::Base
   before_save :set_time_zone
   before_save :whitelist_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
+  before_save :check_suspended_by_user
   before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -557,7 +559,12 @@ class User < ActiveRecord::Base
       get_lat_lon_from_ip
     end
   end
-  
+
+  def check_suspended_by_user
+    return if suspended?
+    self.suspended_by_user_id = nil
+  end
+
   def published_name
     name.blank? ? login : name
   end

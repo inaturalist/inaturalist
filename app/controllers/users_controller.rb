@@ -62,9 +62,10 @@ class UsersController < ApplicationController
   # Don't take these out yet, useful for admin user management down the road
 
   def suspend
-     @user.suspend!
-     flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
-     redirect_back_or_default(@user)
+    @user.suspended_by_user = current_user
+    @user.suspend!
+    flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
+    redirect_back_or_default(@user)
   end
    
   def unsuspend
