@@ -55,12 +55,14 @@ class PlaceAutocomplete extends React.Component {
   render( ) {
     return (
       <span className="PlaceAutocomplete">
-        <input
-          type="search"
-          name="place_name"
-          className={`form-control ${this.props.className}`}
-          placeholder={ this.props.placeholder || I18n.t( "place" ) }
-        />
+        <div className="form-group">
+          <input
+            type="search"
+            name="place_name"
+            className={`form-control ${this.props.className}`}
+            placeholder={ this.props.placeholder || I18n.t( "place" ) }
+          />
+        </div>
         <input type="hidden" name="place_id" />
       </span>
     );

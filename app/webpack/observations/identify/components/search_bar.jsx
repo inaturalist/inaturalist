@@ -42,6 +42,18 @@ class SearchBar extends React.Component {
     } = this.props;
     return (
       <form className="SearchBar form-inline">
+        <div className="pull-right">
+          <Button
+            bsStyle={allReviewed ? "primary" : "default"}
+            onClick={ ( ) => ( allReviewed ? unreviewAll( ) : reviewAll( ) ) }
+          >
+            <i
+              className={`fa fa-eye${allReviewed ? "-slash" : ""}`}
+            ></i> {
+              allReviewed ? I18n.t( "mark_all_as_unreviewed" ) : I18n.t( "mark_all_as_reviewed" )
+            }
+          </Button>
+        </div>
         <span className="form-group">
           <TaxonAutocomplete
             bootstrapClear
@@ -104,18 +116,6 @@ class SearchBar extends React.Component {
               { I18n.t( "reviewed" ) }
             </label>
           </div>
-        </div>
-        <div className="pull-right">
-          <Button
-            bsStyle={allReviewed ? "primary" : "default"}
-            onClick={ ( ) => ( allReviewed ? unreviewAll( ) : reviewAll( ) ) }
-          >
-            <i
-              className={`fa fa-eye${allReviewed ? "-slash" : ""}`}
-            ></i> {
-              allReviewed ? I18n.t( "mark_all_as_unreviewed" ) : I18n.t( "mark_all_as_reviewed" )
-            }
-          </Button>
         </div>
       </form>
     );
