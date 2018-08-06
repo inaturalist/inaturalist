@@ -1173,6 +1173,7 @@ pt-BR:
   does_the_date_seem_accurate: A data parece estar precisa?
   doesnt_have_default_photo: ainda não possui uma foto padrão.
   doh_something_went_wrong: Ops, algo saiu errado.
+  doh_something_went_wrong_error: 'Ah, algo deu errado: %{error}'
   done: Concluído
   dont_filter: Não filtrar
   dont_send_me_email: Não me envie qualquer e-mail
@@ -3598,6 +3599,7 @@ pt-BR:
     táxon. Verifique este conteúdo mais tarde.
   stop_editing: Pare de Editar
   stop_following_user: Deixe de seguir %{user}
+  stop_testing: Parar Testes
   stop_updating_position: Deixe de atualizar sua localização
   stuff_just_added: Oque você acabou de adicionar...
   subject_resolved_noun_html: '%{subject} solucionado %{noun}'
@@ -3676,6 +3678,8 @@ pt-BR:
     utilizá-los para organizar as informações e solicitar feedback sobre o status
     de diversas espécies listadas como ameaçadas para a região."
   taxon_change: alteração de táxon
+  taxon_change_must_be_committed_to_update_records: A mudança de táxon deve ser confirmada
+    para atualizar registros
   taxon_deleted: Táxon apagado.
   taxon_doesnt_have_a_range: Táxon não possui distribuição
   taxon_drop: queda de táxon
