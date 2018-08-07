@@ -1485,3 +1485,15 @@ describe "current_synonymous_taxon" do
     expect( swap.input_taxon.current_synonymous_taxon ).to be_blank
   end
 end
+
+describe Taxon, "set_photo_from_observations" do
+  it "does not throw an error if observation photo positions are nil" do
+    t = Taxon.make!( rank: "species" )
+    o = make_research_grade_observation( taxon: t )
+    ObservationPhoto.make!( observation: o, position: 0, photo: Photo.make!( user: o.user ) )
+    ObservationPhoto.make!( observation: o, position: nil, photo: Photo.make!( user: o.user ) )
+    expect{
+      t.set_photo_from_observations
+    }.to_not raise_error
+  end
+end

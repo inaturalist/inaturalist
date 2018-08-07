@@ -767,7 +767,7 @@ class Taxon < ActiveRecord::Base
   def set_photo_from_observations
     return true if photos.count > 0
     return unless obs = observations.has_quality_grade( Observation::RESEARCH_GRADE ).first
-    return unless photo = obs.observation_photos.sort_by(&:position).first.try(:photo)
+    return unless photo = obs.observation_photos.sort_by{ |op| op.position || op.id }.first.try(:photo)
     self.photos << photo
     Taxon.update_ancestor_photos( self, photo )
   end

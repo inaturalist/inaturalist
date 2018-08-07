@@ -499,6 +499,7 @@ class Identification < ActiveRecord::Base
     ident = Identification.find_by_id(ident) unless ident.is_a?(Identification)
     return unless ident
     obs = ident.observation
+    return unless obs
     current_ident = if ident.current?
       ident
     else

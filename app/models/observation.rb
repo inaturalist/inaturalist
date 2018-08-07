@@ -1289,6 +1289,7 @@ class Observation < ActiveRecord::Base
         CASUAL
       elsif (
         owners_identification &&
+        owners_identification.taxon.rank_level &&
         owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
         community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
       )

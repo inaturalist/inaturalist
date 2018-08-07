@@ -110,6 +110,13 @@ describe Emailer, "new_message" do
     mail = Emailer.new_message(m)
     expect(mail.body).to be_blank
   end
+
+  it "does not raise en error if the message is missing" do
+    expect {
+      Emailer.new_message( nil ).deliver_now
+    }.to_not raise_error
+  end
+
 end
 
 describe Emailer, "invite" do

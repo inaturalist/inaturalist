@@ -3692,6 +3692,17 @@ describe "observation field value getter" do
   end
 end
 
+describe Observation, "and update_quality_metrics" do
+  it "should not throw an error of owner ID taxon has no rank level" do
+    o = make_research_grade_observation
+    o.update_attributes( prefers_community_taxon: false )
+    o.owners_identification.taxon.update_attributes( rank: "nonsense" )
+    expect{
+      o.get_quality_grade
+    }.to_not raise_error
+  end
+end
+
 def setup_test_case_taxonomy
   # Tree:
   #          sf

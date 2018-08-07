@@ -35,4 +35,13 @@ describe HasSubscribers do
     expect( UpdateAction.unviewed_by_user_from_query(s.user_id, { }) ).to eq false
   end
 
+  describe "notify_subscribers_of" do
+    it "skips subscribables that do not include HasSubscribers" do
+      s = Site.make!
+      expect {
+        without_delay{ Post.make!( parent: s ) }
+      }.to_not raise_error
+    end
+  end
+
 end

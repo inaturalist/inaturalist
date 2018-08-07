@@ -60,6 +60,7 @@ class Emailer < ActionMailer::Base
   def new_message(message)
     @message = message
     @message = Message.find_by_id(message) unless message.is_a?(Message)
+    return unless @message
     @user = @message.to_user
     set_locale
     return if @user.email.blank?
