@@ -23,7 +23,8 @@ module Ambidextrous
   end
 
   def is_inaturalistjs_request?
-    request.headers[:Via] === "inaturalistjs"
+    request.headers[:Via] === "inaturalistjs" ||
+      request.headers[:Via] === "node-api"
   end
 
   def is_android_app?
