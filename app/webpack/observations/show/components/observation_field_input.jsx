@@ -158,8 +158,7 @@ class ObservationFieldInput extends React.Component {
 
   selectInput( field ) {
     return (
-      <input
-        type="select"
+      <select
         name="value"
         defaultValue={ this.state.observationFieldValue }
         onChange={ this.onChangeHandler }
@@ -167,7 +166,7 @@ class ObservationFieldInput extends React.Component {
         { _.map( field.allowed_values.split( "|" ), f => (
           <option value={ f } key={ f }>{ f }</option>
         ) ) }
-      </input>
+      </select>
     );
   }
 

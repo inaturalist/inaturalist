@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import ReactDOM from "react-dom";
 import {
   OverlayTrigger,
   Popover
@@ -78,6 +77,7 @@ class PlaceChooserPopover extends React.Component {
       places: [],
       current: -1
     };
+    this.input = React.createRef( );
   }
 
   componentDidMount( ) {
@@ -127,7 +127,8 @@ class PlaceChooserPopover extends React.Component {
 
   searchPlaces( text ) {
     const that = this;
-    inatjs.places.autocomplete( { q: text, geo: this.props.withBoundaries } ).then( response => that.handlePlacesResponse( response ) );
+    inatjs.places.autocomplete( { q: text, geo: this.props.withBoundaries } )
+      .then( response => that.handlePlacesResponse( response ) );
   }
 
   fetchPlaces( ids ) {
@@ -160,14 +161,14 @@ class PlaceChooserPopover extends React.Component {
   }
 
   bindArrowKeys( ) {
-    const domNode = ReactDOM.findDOMNode( this.refs.input );
+    const domNode = this.input.current;
     mousetrap( domNode ).bind( "up", ( ) => this.highlightPrev( ) );
     mousetrap( domNode ).bind( "down", ( ) => this.highlightNext( ) );
     mousetrap( domNode ).bind( "enter", ( ) => this.chooseCurrent( ) );
   }
 
   unbindArrowKeys( ) {
-    const domNode = ReactDOM.findDOMNode( this.refs.input );
+    const domNode = this.input.current;
     mousetrap( domNode ).unbind( "up" );
     mousetrap( domNode ).unbind( "down" );
     mousetrap( domNode ).unbind( "enter" );
@@ -185,7 +186,7 @@ class PlaceChooserPopover extends React.Component {
         container={container}
         onEntered={( ) => {
           this.bindArrowKeys( );
-          $( "input", ReactDOM.findDOMNode( this.refs.input ) ).focus( );
+          $( this.input.current ).focus( );
         }}
         onExit={( ) => {
           this.unbindArrowKeys( );
@@ -195,11 +196,11 @@ class PlaceChooserPopover extends React.Component {
             <div className="form-group">
               <input
                 type="text"
+                ref={ this.input }
                 placeholder={I18n.t( "search" )}
-                ref="input"
                 className="form-control"
-                onChange={ ( ) => {
-                  const text = $( "input", ReactDOM.findDOMNode( this.refs.input ) ).val( );
+                onChange={ e => {
+                  const text = e.target.value || "";
                   if ( text.length === 0 ) {
                     this.setState( { places: [] } );
                   } else {
