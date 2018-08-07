@@ -1487,6 +1487,8 @@ describe "current_synonymous_taxon" do
 end
 
 describe Taxon, "set_photo_from_observations" do
+  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
   it "does not throw an error if observation photo positions are nil" do
     t = Taxon.make!( rank: "species" )
     o = make_research_grade_observation( taxon: t )
