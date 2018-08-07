@@ -160,6 +160,7 @@ class ObservationFieldInput extends React.Component {
     return (
       <select
         name="value"
+        className="form-control"
         defaultValue={ this.state.observationFieldValue }
         onChange={ this.onChangeHandler }
       >

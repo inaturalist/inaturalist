@@ -111,7 +111,7 @@ class LeftMenu extends SelectionBasedComponent {
 
   selectInput( field ) {
     return (
-      <select type="select" name="value" >
+      <select type="select" name="value" className="form-control">
         { _.map( field.allowed_values.split( "|" ), f => (
           <option value={ f || "" } key={ f }>{ f }</option>
         ) ) }
