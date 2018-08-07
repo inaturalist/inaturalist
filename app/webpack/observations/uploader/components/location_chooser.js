@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { Modal, Button, Glyphicon } from "react-bootstrap";
 import SelectionBasedComponent from "./selection_based_component";
 import LocationChooserMap from "./location_chooser_map";
+import util from "../models/util";
 
 class LocationChooser extends SelectionBasedComponent {
 
@@ -82,6 +83,19 @@ class LocationChooser extends SelectionBasedComponent {
   placeholder( prop ) {
     return this.multiValued( prop ) ? I18n.t( "multiple" ) : undefined;
   }
+
+  reverseGeocode( lat, lng ) {
+    if ( this.props.manualPlaceGuess && this.props.notes ) { return; }
+    util.reverseGeocode( lat, lng ).then( location => {
+      if ( location ) {
+        this.props.updateState( { locationChooser: {
+          notes: location,
+          manualPlaceGuess: false
+        } } );
+      }
+    } );
+  }
+
 
   render() {
     let canSave = false;

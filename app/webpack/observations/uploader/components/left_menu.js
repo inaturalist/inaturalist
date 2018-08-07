@@ -44,7 +44,7 @@ class LeftMenu extends SelectionBasedComponent {
     const singleObservation = count === 1 ? _.values( this.props.selectedObsCards )[0] : null;
     const uniqDescriptions = this.valuesOf( "description" );
     const commonDescription = this.commonValue( "description" );
-    const commonSelectedTaxon = this.commonValue( "selected_taxon" );
+    const commonSelectedTaxon = this.commonValue( "selected_taxon", null, { defaultValue: undefined } );
     const commonDate = this.commonValue( "date" );
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
@@ -175,9 +175,7 @@ class LeftMenu extends SelectionBasedComponent {
     );
   }
 
-  formPanel( key, title, glyph, contents, contentCount, open ) {
-    let openGlyphClass = "toggle";
-    if ( open ) { openGlyphClass += " rotate"; }
+  formPanel( key, title, glyph, contents, contentCount ) {
     let badge = contentCount && contentCount > 0 ? (
       <Badge className="count">{ contentCount }</Badge>
     ) : undefined;
@@ -185,7 +183,7 @@ class LeftMenu extends SelectionBasedComponent {
       <Panel.Title toggle className={ contentCount ? "contents" : undefined }>
         <Glyphicon glyph={ glyph } className="icon" />
         { title }
-        <Glyphicon glyph="triangle-right" className={ openGlyphClass } />
+        <Glyphicon glyph="triangle-right" className="toggle" />
         { badge }
       </Panel.Title>
     );
