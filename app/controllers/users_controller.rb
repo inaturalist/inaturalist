@@ -577,6 +577,7 @@ class UsersController < ApplicationController
           end
         end
         format.json do
+          User.refresh_es_index
           render :json => @display_user.to_json(User.default_json_options)
         end
       end

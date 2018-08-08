@@ -200,6 +200,7 @@ module HasSubscribers
       users_with_unviewed_from_notifier = Subscription.users_with_unviewed_updates_from(notifier)
       updater_proc = Proc.new {|subscribable|
         next if subscribable.blank?
+        next unless subscribable.respond_to?(:update_subscriptions)
         notify_owner = if options[:include_owner].is_a?(Proc)
           options[:include_owner].call(notifier, subscribable)
         elsif options[:include_owner]
@@ -215,7 +216,7 @@ module HasSubscribers
             users_to_notify[subscribable] << subscribable.user_id
           end
         end
-        
+
         subscribable.update_subscriptions.with_unsuspended_users.find_each do |subscription|
           next if notifier.respond_to?(:user_id) && subscription.user_id == notifier.user_id && !options[:include_notifier]
           next if subscription.created_at > notifier.updated_at
@@ -251,8 +252,9 @@ module HasSubscribers
             notifier: notifier,
             notification: notification
           }
-          action = UpdateAction.first_with_attributes(action_attrs)
-          action.append_subscribers( user_ids )
+          if action = UpdateAction.first_with_attributes(action_attrs)
+            action.append_subscribers( user_ids )
+          end
         end
       end
     end
@@ -297,8 +299,9 @@ module HasSubscribers
         notifier: self,
         notification: options[:notification]
       }
-      action = UpdateAction.first_with_attributes(action_attrs)
-      action.append_subscribers( [send(association).user.id] )
+      if action = UpdateAction.first_with_attributes(action_attrs)
+        action.append_subscribers( [send(association).user.id] )
+      end
     end
 
     def notify_users( method )
@@ -326,9 +329,10 @@ module HasSubscribers
       user_ids_to_notify = users_to_notify.map{ |u|
         options[:if].blank? || options[:if].call( u ) ? u.id : nil
       }.compact
-      action = UpdateAction.first_with_attributes(action_attrs)
-      action.append_subscribers( user_ids_to_notify )
-      action.restrict_to_subscribers( user_ids_to_notify )
+      if action = UpdateAction.first_with_attributes(action_attrs)
+        action.append_subscribers( user_ids_to_notify )
+        action.restrict_to_subscribers( user_ids_to_notify )
+      end
     end
 
   end

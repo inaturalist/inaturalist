@@ -38,6 +38,7 @@ class ProjectObservation < ActiveRecord::Base
 
   def notify_observer(association)
     return if CONFIG.has_subscribers == :disabled
+    return unless observation
     existing_project_updates = UpdateAction.elastic_paginate(
       filters: [
         { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } },
@@ -53,8 +54,9 @@ class ProjectObservation < ActiveRecord::Base
       notifier: self,
       notification: UpdateAction::YOUR_OBSERVATIONS_ADDED
     }
-    action = UpdateAction.first_with_attributes(action_attrs)
-    action.append_subscribers( [observation.user.id] )
+    if action = UpdateAction.first_with_attributes(action_attrs)
+      action.append_subscribers( [observation.user.id] )
+    end
   end
   
   after_destroy do |record|
@@ -287,7 +289,7 @@ class ProjectObservation < ActiveRecord::Base
       preferred_curator_coordinate_access
     else
       if column.to_s =~ /private_/
-        if observation.coordinates_viewable_by?(options[:viewer])
+        if observation && observation.coordinates_viewable_by?(options[:viewer])
           observation.send(column)
         else
           nil

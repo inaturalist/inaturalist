@@ -628,6 +628,28 @@ describe ProjectObservation, "elastic indexing" do
   end
 end
 
+describe ProjectObservation, "notify_observer" do
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
+  it "does not throw an error if its observation for some reason is missing" do
+    po = ProjectObservation.make!
+    Observation.where( id: po.observation_id ).delete_all
+    expect {
+      po.notify_observer( :observation )
+    }.to_not raise_error
+  end
+end
+
+describe ProjectObservation, "to_csv_column" do
+  it "does not throw an error if its observation for some reason is missing" do
+    po = ProjectObservation.make!
+    Observation.where( id: po.observation_id ).delete_all
+    expect {
+      expect( po.to_csv_column( "private_place_guess" ) ).to be_nil
+    }.to_not raise_error
+  end
+end
+
 def setup_project_and_user
   @project_user = ProjectUser.make!
   @project = @project_user.project

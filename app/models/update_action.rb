@@ -246,12 +246,21 @@ class UpdateAction < ActiveRecord::Base
     if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
       return action
     end
-    action = UpdateAction.new(attrs.merge(created_at: Time.now, skip_indexing: true).merge(options))
-    if !action.save(validate: !skip_validations)
+    begin
+      action = UpdateAction.new(attrs.merge(created_at: Time.now, skip_indexing: true).merge(options))
+      if !action.save(validate: !skip_validations)
+        return
+      end
+      action.created_but_not_indexed = true
+      return action
+    rescue PG::Error, ActiveRecord::RecordNotUnique => e
+      # caught a record not unique error. Try ES once more before returning
+      UpdateAction.refresh_es_index
+      if action = UpdateAction.elastic_paginate(filters: filters, keep_es_source: true).first
+        return action
+      end
       return
     end
-    action.created_but_not_indexed = true
-    return action
   end
 
   def self.arel_attributes_to_es_filters( attrs )
@@ -369,10 +378,6 @@ class UpdateAction < ActiveRecord::Base
     user_id = user.try(:id) || user
     unviewed_user_ids = UpdateAction.users_with_unviewed_updates_from_query( attrs )
     unviewed_user_ids.include?(user_id)
-  end
-
-  def self.refresh_es_index
-    UpdateAction.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
 end

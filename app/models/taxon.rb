@@ -767,7 +767,7 @@ class Taxon < ActiveRecord::Base
   def set_photo_from_observations
     return true if photos.count > 0
     return unless obs = observations.has_quality_grade( Observation::RESEARCH_GRADE ).first
-    return unless photo = obs.observation_photos.sort_by(&:position).first.try(:photo)
+    return unless photo = obs.observation_photos.sort_by{ |op| op.position || op.id }.first.try(:photo)
     self.photos << photo
     Taxon.update_ancestor_photos( self, photo )
   end
@@ -1888,10 +1888,6 @@ class Taxon < ActiveRecord::Base
         Observation.elastic_search(
           filters: [ { term: { "taxon.ancestor_ids" => t.id } } ], size: 0).total_entries)
     end
-  end
-
-  def self.refresh_es_index
-    Taxon.__elasticsearch__.refresh_index! unless Rails.env.test?
   end
 
   def self.index_taxa( taxa )

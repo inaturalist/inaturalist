@@ -339,7 +339,9 @@ class TaxonChange < ActiveRecord::Base
     unless target_input_taxon.is_a?( Taxon )
       target_input_taxon = Taxon.find_by_id( target_input_taxon )
     end
-    if target_input_taxon.rank_level <= Taxon::GENUS_LEVEL && output_taxon.rank == target_input_taxon.rank
+    if target_input_taxon.rank_level &&
+       target_input_taxon.rank_level <= Taxon::GENUS_LEVEL &&
+       output_taxon.rank == target_input_taxon.rank
       target_input_taxon.children.active.each do |child|
         # If for some horrible reason people are swapping replacing taxa with
         # their own children, at least don't get into some kind of invite

@@ -209,6 +209,10 @@ module ActsAsElasticModel
         end
       end
 
+      def refresh_es_index
+        __elasticsearch__.refresh_index! unless Rails.env.test?
+      end
+
       private
 
       # standard wrapper for bulk indexing with Elasticsearch::Model

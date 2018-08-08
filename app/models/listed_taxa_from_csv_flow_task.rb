@@ -2,8 +2,9 @@
 class ListedTaxaFromCsvFlowTask < FlowTask
   def run
     outputs.each(&:destroy)
-    list_input = inputs.detect{|input| input.resource.is_a?(List)}
-    file_input = inputs.detect{|input| input.file.exists?}
+    list_input = inputs.detect{ |input| input.resource.is_a?(List) }
+    file_input = inputs.detect{ |input| input.file.exists? }
+    return unless file_input
     row_handler = Proc.new do |row|
       # for some reason, even when you've coerced an entire string into UTF-8, 
       # CSV will still see individual rows in their original encoding, so they 

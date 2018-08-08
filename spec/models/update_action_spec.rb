@@ -112,4 +112,17 @@ describe UpdateAction do
       expect(UpdateAction.elastic_search.total_entries).to eq 0
     end
   end
+
+  describe "first_with_attributes" do
+    it "does not throw an error if attempting to create duplicate" do
+      o = Observation.make!
+      c = Comment.make!( parent: o )
+      expect {
+        ua = UpdateAction.first_with_attributes( resource: o, notifier: c, notification: "testing" )
+        expect( ua ).to be_instance_of( UpdateAction )
+        ua.elastic_delete!
+        UpdateAction.first_with_attributes( resource: o, notifier: c, notification: "testing" )
+      }.to_not raise_error
+    end
+  end
 end
