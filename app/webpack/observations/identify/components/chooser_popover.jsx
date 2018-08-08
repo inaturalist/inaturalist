@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import {
   OverlayTrigger,
   Popover
@@ -33,6 +34,7 @@ class ChooserPopover extends React.Component {
 
   render( ) {
     const {
+      id,
       container,
       chosen,
       defaultChoice,
@@ -51,7 +53,7 @@ class ChooserPopover extends React.Component {
         rootClose
         container={container}
         overlay={
-          <Popover className="ChooserPopover RecordChooserPopover">
+          <Popover id={ id } className="ChooserPopover RecordChooserPopover">
             <ul className="list-unstyled">
               { hideClear ? null : (
                 <li
@@ -104,11 +106,12 @@ class ChooserPopover extends React.Component {
 }
 
 ChooserPopover.propTypes = {
+  id: PropTypes.string.isRequired,
   container: PropTypes.object,
   chosen: PropTypes.string,
   choices: PropTypes.array,
   choiceLabels: PropTypes.object,
-  defaultChoice: PropTypes.object,
+  defaultChoice: PropTypes.string,
   className: PropTypes.string,
   setChoice: PropTypes.func,
   clearChoice: PropTypes.func,

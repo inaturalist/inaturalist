@@ -222,7 +222,9 @@ input.failed, textarea.failed {
         -webkit-transition: all 0.2s ease;
         -o-transition: all 0.2s ease;
         transition: all 0.2s ease;
-        &.rotate {
+      }
+      .collapsed {
+        .glyphicon {
           -moz-transform: rotate(90deg);
           -webkit-transform: rotate(90deg);
           -ms-transform: rotate(90deg);
@@ -814,5 +816,11 @@ ul.obs > li .card {
     border-radius: 4px !important;
     -webkit-box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
     box-shadow: 0 6px 12px rgba(0,0,0,.175) !important;
+  }
+}
+
+label {
+  input.form-control {
+    font-weight: normal;
   }
 }

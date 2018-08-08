@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Modal, Button } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 /* global LIFE_TAXON */

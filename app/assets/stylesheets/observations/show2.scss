@@ -260,7 +260,8 @@ a.UserImage,
             font-size: 140px;
             color: #ccc;
           }
-          span {
+          .nophoto,
+          .add-photo-span {
             position: absolute;
             top: 280px;
             width: 100%;
@@ -268,7 +269,6 @@ a.UserImage,
             font-weight: 100;
           }
           .add-photo-span {
-            position: absolute;
             top: auto;
             bottom: 12px;
             .image-gallery-thumbnail {
@@ -973,7 +973,7 @@ h3, h4 {
   .grade {
     margin: 15px 0px 25px;
   }
-  span[aria-describedby="popover-data-quality"] {
+  .popover-data-quality-link {
     color: $bootstrap-link-color;
     cursor: pointer;
     i {
@@ -2218,7 +2218,7 @@ h3, h4 {
   width: 100%;
   cursor: zoom-in;
 }
-body > div > [role="dialog"] .easyzoom > a > img {
+body > [role="dialog"] .easyzoom > a > img {
   vertical-align: bottom;
 }
 

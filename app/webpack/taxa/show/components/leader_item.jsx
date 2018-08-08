@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import CoverImage from "../../../shared/components/cover_image";
 import _ from "lodash";
@@ -119,7 +120,7 @@ LeaderItem.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string,
   labelTooltip: PropTypes.string,
-  name: React.PropTypes.oneOfType( [
+  name: PropTypes.oneOfType( [
     PropTypes.string,
     PropTypes.number
   ] ),

@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col, Button, Glyphicon } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import ObsCardComponent from "./obs_card_component";

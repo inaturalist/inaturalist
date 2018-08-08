@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Glyphicon, Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
 import SelectionBasedComponent from "./selection_based_component";
 

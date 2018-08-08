@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Badge, OverlayTrigger, Tooltip } from "react-bootstrap";
 import ImageGallery from "react-image-gallery";
@@ -159,7 +160,7 @@ class PhotoBrowser extends React.Component {
       contents = (
         <div>
           <i className={ `fa icon-iconic-${iconicTaxonName}`} />
-          { I18n.t( "no_photo" ) }
+          <span className="nophoto">{ I18n.t( "no_photo" ) }</span>
           { this.addPhotoButton( ) }
         </div>
       );

@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Panel } from "react-bootstrap";
 import ObservationFieldValue from "./observation_field_value";
 import ObservationFieldInput from "./observation_field_input";
@@ -107,8 +108,8 @@ class ObservationFields extends React.Component {
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { I18n.t( "observation_fields" ) } { count }
         </h4>
-        <Panel collapsible expanded={ this.state.open }>
-          { panelContent }
+        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+          <Panel.Collapse>{ panelContent }</Panel.Collapse>
         </Panel>
       </div>
     );

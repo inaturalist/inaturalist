@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ProjectMap from "./project_map";
 import ProjectIconicTaxa from "./project_iconic_taxa";
 import ProjectIconicTaxaSpecies from "./project_iconic_taxa_species";

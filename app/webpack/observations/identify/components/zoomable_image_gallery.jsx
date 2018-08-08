@@ -1,4 +1,4 @@
-import { PropTypes } from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
 import ReactDOM from "react-dom";
 import ImageGallery from "react-image-gallery";

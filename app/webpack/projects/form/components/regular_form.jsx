@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonAutocomplete from "../../../observations/uploader/components/taxon_autocomplete";
@@ -236,7 +237,6 @@ class RegularForm extends React.Component {
               <input
                 type="radio"
                 id="project-date-type-any"
-                inputProps
                 checked={ project.date_type === "any" }
                 onChange={ ( ) => updateProject( { date_type: "any" } ) }
               />

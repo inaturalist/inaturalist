@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Button, Popover, Overlay, Grid, Row, Col } from "react-bootstrap";
 import _ from "lodash";
@@ -527,7 +528,7 @@ class FiltersButton extends React.Component {
           </div>
         </div>
         <div className="form-group">
-          <label className="sectionlabel" htmlForm="params-place-name">
+          <label className="sectionlabel">
             { _.capitalize( I18n.t( "place" ) ) }
           </label>
           <div className="input-group">
@@ -739,7 +740,7 @@ class FiltersButton extends React.Component {
           target={ ( ) => ReactDOM.findDOMNode( this.refs.target ) }
         >
           <Popover
-            className="FiltersButtonPopover"
+            id="FiltersButtonPopover"
             className="FiltersButtonPopover"
             placement="bottom"
           >

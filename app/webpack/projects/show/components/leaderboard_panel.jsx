@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { numberWithCommas } from "../../../shared/util";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserImage from "../../../shared/components/user_image";

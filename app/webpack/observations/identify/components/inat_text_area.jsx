@@ -1,6 +1,6 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { Input } from "react-bootstrap";
 
 class INatTextArea extends React.Component {
   componentDidMount( ) {
@@ -12,13 +12,16 @@ class INatTextArea extends React.Component {
 
   render( ) {
     return (
-      <Input
-        text={ this.props.key }
-        type="textarea"
-        name={this.props.name}
-        className={this.props.className}
-        value={this.props.value}
-      />
+      <div
+        className="form-group"
+        key={ this.props.elementKey }
+      >
+        <textarea
+          name={this.props.name}
+          className={this.props.className}
+          value={this.props.value}
+        />
+      </div>
     );
   }
 }
@@ -28,7 +31,7 @@ INatTextArea.propTypes = {
   name: PropTypes.string,
   mentions: PropTypes.bool,
   value: PropTypes.string,
-  key: PropTypes.string
+  elementKey: PropTypes.string
 };
 
 export default INatTextArea;

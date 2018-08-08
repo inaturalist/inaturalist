@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import inaturalistjs from "inaturalistjs";
 
@@ -68,9 +69,9 @@ UserAutocomplete.propTypes = {
   afterSelect: PropTypes.func,
   afterUnselect: PropTypes.func,
   initialSelection: PropTypes.object,
-  initialUserID: React.PropTypes.oneOfType( [
-    React.PropTypes.string,
-    React.PropTypes.number
+  initialUserID: PropTypes.oneOfType( [
+    PropTypes.string,
+    PropTypes.number
   ] ),
   className: PropTypes.string,
   placeholder: PropTypes.string

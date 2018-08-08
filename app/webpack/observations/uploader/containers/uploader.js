@@ -7,7 +7,7 @@ import { DragDropContext } from "react-dnd";
 const mapStateToProps = ( state ) => state.dragDropZone;
 
 const mapDispatchToProps = ( dispatch ) => ( {
-  onDrop: ( droppedFiles, e ) => {
+  onDrop: ( droppedFiles, rejectedFiles, e ) => {
     dispatch( actions.onFileDrop( droppedFiles, e ) );
   },
   onCardDrop: ( droppedFiles, e, obsCard ) => {

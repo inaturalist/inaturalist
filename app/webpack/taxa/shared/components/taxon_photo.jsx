@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import CoverImage from "../../../shared/components/cover_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../../shared/util";
@@ -44,7 +45,10 @@ const TaxonPhoto = ( {
       );
     }
   }
-  const style = { width, maxWidth: 2 * width };
+  let style = {};
+  if ( width ) {
+    style = { width, maxWidth: 2 * width };
+  }
   return (
     <div
       className={`TaxonPhoto ${className}`}

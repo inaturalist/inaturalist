@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import RecentObservationsContainer from "../containers/recent_observations_container";
 import TopObserversPanelContainer from "../containers/top_observers_panel_container";

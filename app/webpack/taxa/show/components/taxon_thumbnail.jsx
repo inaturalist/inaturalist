@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import CoverImage from "../../../shared/components/cover_image";
@@ -84,7 +85,7 @@ const TaxonThumbnail = ( {
 TaxonThumbnail.propTypes = {
   taxon: PropTypes.object.isRequired,
   key: PropTypes.string,
-  badgeText: React.PropTypes.oneOfType( [
+  badgeText: PropTypes.oneOfType( [
     PropTypes.string,
     PropTypes.number
   ] ),

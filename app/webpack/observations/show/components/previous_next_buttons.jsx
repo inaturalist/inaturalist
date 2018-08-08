@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
 const PreviousNextButtons = ( { otherObservations, showNewObservation, config } ) => {
   const previousDisabled = _.isEmpty( otherObservations.earlierUserObservations );

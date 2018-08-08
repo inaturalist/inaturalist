@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 import IconicTaxaPieChart from "./iconic_taxa_pie_chart";
 

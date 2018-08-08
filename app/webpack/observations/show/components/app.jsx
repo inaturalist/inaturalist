@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col, SplitButton, MenuItem } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
@@ -121,7 +122,7 @@ const App = ( {
                   title={ I18n.t( "edit" ) }
                   id="edit-dropdown"
                   pullRight
-                  onSelect={ ( event, key ) => {
+                  onSelect={ key => {
                     if ( key === "delete" ) {
                       deleteObservation( );
                     } else if ( key === "license" ) {

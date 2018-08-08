@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
@@ -66,8 +67,8 @@ const App = ( { taxon, showNewTaxon, config } ) => (
                 ) : null
               }
             </h1>
-            <div>
-              <PlaceChooserContainer />
+            <div id="place-chooser-container">
+              <PlaceChooserContainer container={ $( "#app" ).get( 0 ) } />
             </div>
           </div>
         </Col>

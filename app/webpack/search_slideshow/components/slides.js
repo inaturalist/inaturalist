@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import ResultsMap from "./results_map";
 import ResultsPeople from "./results_people";
 import ResultsSpecies from "./results_species";

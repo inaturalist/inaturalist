@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import INatTextArea from "./inat_text_area";
 
@@ -23,7 +24,7 @@ const CommentForm = ( { observation, onSubmitComment, className, key } ) => (
     }}
   >
     <h3>{ I18n.t( "add_a_comment" ) }</h3>
-    <INatTextArea name="body" className="form-control" key={ `${key}-inat-text-area` } mentions />
+    <INatTextArea name="body" className="form-control" elementKey={ `${key}-inat-text-area` } mentions />
     <Button type="submit" bsStyle="success">{ I18n.t( "save" ) }</Button>
   </form>
 );
