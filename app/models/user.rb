@@ -231,7 +231,7 @@ class User < ActiveRecord::Base
   MAX_LOGIN_SIZE = 40
 
   # Regexes from restful_authentication
-  LOGIN_PATTERN     = "[A-z][\\\w\\\-_]+"
+  LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
   login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
