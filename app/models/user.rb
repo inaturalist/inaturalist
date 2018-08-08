@@ -466,6 +466,7 @@ class User < ActiveRecord::Base
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
     Photo.where(["user_id = ? AND type != 'GoogleStreetViewPhoto'", id]).update_all(license: number)
+    index_observations_later
     true
   end
 
@@ -474,6 +475,7 @@ class User < ActiveRecord::Base
     number = Photo.license_number_for_code(preferred_sound_license)
     return true unless number
     Sound.where(user_id: id).update_all(license: number)
+    index_observations_later
     true
   end
 
@@ -487,7 +489,10 @@ class User < ActiveRecord::Base
   end
 
   def index_observations_later
-    delay(priority: USER_INTEGRITY_PRIORITY).index_observations
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::index_observations_later": id }
+    ).index_observations
   end
 
   def index_observations
