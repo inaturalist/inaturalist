@@ -24,6 +24,8 @@ import qualityMetricsReducer from "./ducks/quality_metrics";
 import subscriptionsReducer from "./ducks/subscriptions";
 import disagreementAlertReducer from "../shared/ducks/disagreement_alert";
 import setupKeyboardShortcuts from "./keyboard_shortcuts";
+import currentObservationReducer from "../identify/reducers/current_observation_reducer";
+import suggestionsReducer from "../identify/ducks/suggestions";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
@@ -51,7 +53,11 @@ const rootReducer = combineReducers( {
   projectFieldsModal: projectFieldsModalReducer,
   qualityMetrics: qualityMetricsReducer,
   subscriptions: subscriptionsReducer,
-  disagreementAlert: disagreementAlertReducer
+  disagreementAlert: disagreementAlertReducer,
+
+  // stuff from identify, where the "current observation" is the obs in a modal
+  currentObservation: currentObservationReducer,
+  suggestions: suggestionsReducer
 } );
 
 const store = createStore(
@@ -72,7 +78,7 @@ if ( !_.isEmpty( CURRENT_USER ) ) {
 }
 
 if ( !_.isEmpty( PREFERRED_PLACE ) ) {
-  // we use this for requesting localized taoxn names
+  // we use this for requesting localized taxon names
   store.dispatch( setConfig( {
     preferredPlace: PREFERRED_PLACE
   } ) );

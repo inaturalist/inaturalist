@@ -2,10 +2,6 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import Sugggestions from "../components/suggestions";
 import { setDetailTaxon, updateQuery, fetchSuggestions } from "../ducks/suggestions";
-import {
-  submitIdentificationWithConfirmation,
-  updateCurrentObservation
-} from "../actions";
 
 function mapStateToProps( state ) {
   let nextTaxon;
@@ -34,17 +30,6 @@ function mapDispatchToProps( dispatch ) {
     setQuery: query => {
       dispatch( updateQuery( query ) );
       dispatch( fetchSuggestions( ) );
-    },
-    chooseTaxon: ( taxon, options = {} ) => {
-      const ident = {
-        observation_id: options.observation.id,
-        taxon_id: taxon.id,
-        vision: options.vision
-      };
-      dispatch( updateCurrentObservation( { tab: "info" } ) );
-      dispatch( submitIdentificationWithConfirmation( ident, {
-        confirmationText: options.confirmationText
-      } ) );
     }
   };
 }

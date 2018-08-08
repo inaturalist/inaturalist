@@ -36,6 +36,7 @@ class ProjectList < List
   def self.refresh_with_project_observation(project_observation, options = {})
     Rails.logger.info "[INFO #{Time.now}] Starting ProjectList.refresh_with_project_observation for #{project_observation}, #{options.inspect}"
     project_observation = ProjectObservation.find_by_id(project_observation) unless project_observation.is_a?(ProjectObservation)
+    return unless project_observation
     unless observation = Observation.find_by_id(options[:observation_id])
       Rails.logger.error "[ERROR #{Time.now}] ProjectList.refresh_with_project_observation " + 
         "failed with blank observation, project_observation: #{project_observation}, options: #{options.inspect}"

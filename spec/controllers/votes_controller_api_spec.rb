@@ -2,6 +2,8 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "a VotesController" do
   let(:user) { User.make! }
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
 
   describe "vote" do
     before(:each) { enable_elastic_indexing( Observation ) }
@@ -29,20 +31,20 @@ shared_examples_for "a VotesController" do
     end
 
     it "should generate an update for the owner of the votable resource" do
-      expect( UpdateSubscriber.where(subscriber: o.user).count ).to eq 0
+      expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq false
       without_delay do
         post :vote, format: 'json', resource_type: 'observation', resource_id: o.id
       end
-      expect( UpdateSubscriber.where(subscriber: o.user).count ).to eq 1
+      expect( UpdateAction.unviewed_by_user_from_query(o.user_id, resource: o) ).to eq true
     end
 
     it "should not generate an update for the owner of the votable resource if the owner voted" do
       obs = Observation.make!( user: user )
-      expect( UpdateSubscriber.where( subscriber: user ).count ).to eq 0
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: o) ).to eq false
       without_delay do
         post :vote, format: 'json', resource_type: 'observation', resource_id: obs.id
       end
-      expect( UpdateSubscriber.where( subscriber: user ).count ).to eq 0
+      expect( UpdateAction.unviewed_by_user_from_query(user.id, resource: o) ).to eq false
     end
 
     it "should subscribe the voter to updates on the votable" do

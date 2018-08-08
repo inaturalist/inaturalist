@@ -73,6 +73,8 @@ module Inaturalist
       Doorkeeper::ApplicationController.layout "application"
     end
 
+    config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
+
     config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
     config.middleware.use Rack::MobileDetect
   end

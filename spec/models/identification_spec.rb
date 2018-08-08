@@ -729,6 +729,9 @@ describe Identification do
   after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
   describe "mentions" do
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
+
     it "knows what users have been mentioned" do
       u = User.make!
       i = Identification.make!(body: "hey @#{ u.login }")
@@ -737,10 +740,9 @@ describe Identification do
 
     it "generates mention updates" do
       u = User.make!
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notification: "mention") ).to eq false
       i = Identification.make!(body: "hey @#{ u.login }")
-      expect( UpdateAction.where(notifier: i, notification: "mention").count ).to eq 1
-      expect( UpdateAction.where(notifier: i, notification: "mention").first.
-        update_subscribers.first.subscriber).to eq u
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notification: "mention") ).to eq true
     end
   end
 

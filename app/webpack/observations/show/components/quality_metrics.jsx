@@ -263,8 +263,8 @@ class QualityMetrics extends React.Component {
                 <i className="fa fa-map-marker" />
                 { I18n.t( "location_specified" ) }
               </td>
-              <td className="agree">{ observation.location ? checkIcon : null }</td>
-              <td className="disagree">{ observation.location ? null : xIcon }</td>
+              <td className="agree">{ observation.location || observation.obscured ? checkIcon : null }</td>
+              <td className="disagree">{ observation.location || observation.obscured ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">

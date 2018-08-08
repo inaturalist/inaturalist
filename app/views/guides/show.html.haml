@@ -38,9 +38,9 @@
               %i.fa-mobile.fa
               =t :enable_offline_access
         .btn-group.pull-right
-          %button.btn.btn-default{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#pdf_dialog"}
+          %button.btn.btn-default{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#print_dialog"}
             %i.fa.fa-print
-            =t :pdf_slash_print
+            =t :print
           - if @guide.editable_by?(current_user)
             = link_to edit_guide_path(@guide), :class => "btn btn-default" do
               %i.fa.fa-edit
@@ -207,27 +207,24 @@
           = references(:linked => true)
       = render :partial => "shared/flagging", :locals => { :instance => @guide }
 
-#pdf_dialog.modal.fade{tabindex: -1, role: 'dialog', 'aria-labelledby' => t(:generate_pdf) }
+#print_dialog.modal.fade{tabindex: -1, role: 'dialog', 'aria-labelledby' => t(:print) }
   .modal-dialog{role: 'document'}
     .modal-content
       .modal-header
         %button.close{:type => "button", "data-dismiss" => "modal"}
           .span{'aria-hidden' => "true"} &times;
-        %h4.modal-title=t :generate_pdf
-      = form_for GuidePdfFlowTask.new, :url => flow_tasks_url, :remote => true, :html => {'data-type' => 'json'} do |f|
+        %h4.modal-title=t :print
+      = fields_for :print_dialog do |f|
         .modal-body
           .container-fluid
-            = f.fields_for :inputs, f.object.inputs.build(:resource => @guide) do |fi|
-              = fi.hidden_field :resource_type
-              = fi.hidden_field :resource_id
             %h5=t :layout
             .row
-              - GuidePdfFlowTask::LAYOUTS.each do |l|
-                %div{:class => "col-md-#{12 / GuidePdfFlowTask::LAYOUTS.size}"}
+              - Guide::PDF_LAYOUTS.each do |l|
+                %div{:class => "col-md-#{12 / Guide::PDF_LAYOUTS.size}"}
                   .radio
                     %label
                       .img= image_tag "guide-#{l}-icon.png", :class => "img-responsive"
-                      = f.radio_button :options, l, :name => "guide_pdf_flow_task[options][layout]", :checked => (l == GuidePdfFlowTask::GRID ? "checked" : nil)
+                      = f.radio_button :options, l, :name => "guide_pdf_flow_task[options][layout]", :checked => (l == Guide::GRID ? "checked" : nil)
                       = t "views.guides.pdf_layouts.#{l}", :default => l
                       .small.meta=t "views.guides.pdf_layout_notes.#{l}", :default => ""
             .row
@@ -247,9 +244,10 @@
                       = fo.radio_button :query, request.query_string, :checked => false, :disabled => !filter_match_enabled
                       =t :x_taxa_matching_current_filters, :count => @guide_taxa.total_entries
         .modal-footer
-          = link_to "#{t :preview} / #{t(:print_in_browser)}", guide_pdf_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn btn-default", :target => "_blank"
-          .meta.patience.hide=t 'views.guides.pdf_generation_notice'
-          = f.submit t(:generate_pdf), :class => "btn btn-primary", :data => {'loading-click' => t(:generating)}
+          .btn.btn-inter.text-muted
+            .text-muted
+              =t :most_browser_print_pdf
+          = link_to t(:print), guide_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn btn-primary", :target => "_blank"
 
 - if @guide.editable_by?(current_user)
   #mobile_dialog.modal.fade

@@ -365,7 +365,7 @@ class ApplicationController < ActionController::Base
           return redirect_to record
         end
         format.json do
-          return render :json => {:error => msg}
+          return render json: { error: msg }, status: :forbidden
         end
       end
     end
@@ -380,7 +380,7 @@ class ApplicationController < ActionController::Base
           return redirect_to @guide
         end
         format.json do
-          return render :json => {:error => msg}
+          return render json: { error: msg }, status: :forbidden
         end
       end
     end

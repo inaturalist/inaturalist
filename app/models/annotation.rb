@@ -34,7 +34,7 @@ class Annotation < ActiveRecord::Base
   after_save :index_observation
   after_destroy :index_observation, :touch_resource
 
-  attr_accessor :skip_indexing
+  attr_accessor :skip_indexing, :bulk_delete
 
   def resource_is_an_observation
     if !resource.is_a?(Observation)
@@ -139,7 +139,7 @@ class Annotation < ActiveRecord::Base
   end
 
   def votable_callback
-    index_observation
+    index_observation unless bulk_delete
   end
 
   def as_indexed_json(options={})
@@ -155,7 +155,7 @@ class Annotation < ActiveRecord::Base
   end
 
   def index_observation
-    if resource.is_a?(Observation) && !skip_indexing
+    if resource.is_a?(Observation) && !skip_indexing && !bulk_delete
       Observation.elastic_index!(ids: [resource.id])
     end
     true
@@ -168,16 +168,13 @@ class Annotation < ActiveRecord::Base
   end
 
   def touch_resource
-    resource.touch if resource
+    resource.touch if resource && !(resource.bulk_delete || bulk_delete)
     true
   end
 
   def self.reassess_annotations_for_taxon_ids( taxon_ids )
     Annotation.
         joins(
-          controlled_value: [
-            { controlled_term_taxa: :taxon }
-          ],
           controlled_attribute: {
             controlled_term_taxa: {
               taxon: :taxon_ancestors
@@ -188,19 +185,22 @@ class Annotation < ActiveRecord::Base
         includes(
           { resource: :taxon },
           controlled_value: [
-            :taxa,
             :excepted_taxa,
-            { controlled_term_taxa: :taxon }
+            :taxa,
+            :controlled_term_taxa
           ],
           controlled_attribute: [
-            :values,
-            :taxa,
             :excepted_taxa,
-            { controlled_term_taxa: :taxon }
+            :taxa,
+            :controlled_term_taxa
           ]
         ).
         find_each do |a|
-      a.destroy unless a.valid?
+      # run the validation methods which might be affected by taxon changes
+      a.attribute_belongs_to_taxon
+      a.value_belongs_to_taxon
+      # if any of them added errors, the annotation is no longer valid and should be destroyed
+      a.destroy if a.errors.any?
     end
     
   end

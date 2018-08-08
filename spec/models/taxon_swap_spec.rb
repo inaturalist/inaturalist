@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonSwap, "creation" do
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
+
   it "should not allow swaps without inputs" do
     output_taxon = Taxon.make!( rank: Taxon::FAMILY )
     swap = TaxonSwap.make
@@ -26,13 +29,11 @@ describe TaxonSwap, "creation" do
   end
 
   it "should generate mentions" do
-    enable_elastic_indexing( Observation, UpdateAction )
     u = User.make!
+    expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
     tc = without_delay { make_taxon_swap( description: "hey @#{ u.login }" ) }
-    expect( UpdateAction.where( notifier: tc, notification: "mention" ).count ).to eq 1
-    expect( UpdateAction.where( notifier: tc, notification: "mention" ).first.
-      update_subscribers.first.subscriber ).to eq u
-    disable_elastic_indexing( Observation, UpdateAction )
+    expect( UpdateAction.unviewed_by_user_from_query(
+      u.id, notifier_type: "TaxonChange", notifier_id: tc.id) ).to eq true
   end
 
   it "should not bail if a taxon has no rank_level" do
@@ -64,10 +65,14 @@ end
 
 describe TaxonSwap, "destruction" do
   before(:each) do
-    enable_elastic_indexing( Observation, UpdateAction, Taxon, Identification )
+    enable_elastic_indexing( Observation, Taxon, Identification )
     prepare_swap
+    enable_has_subscribers
   end
-  after(:each) { disable_elastic_indexing( Observation, UpdateAction, Taxon, Identification ) }
+  after(:each) do
+    disable_elastic_indexing( Observation, Taxon, Identification )
+    disable_has_subscribers
+  end
 
   it "should destroy updates" do
     Observation.make!( taxon: @input_taxon )
@@ -305,8 +310,12 @@ describe TaxonSwap, "commit_records" do
   before(:each) do
     prepare_swap
     enable_elastic_indexing( Observation, Identification )
+    enable_has_subscribers
   end
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  after(:each) do
+    disable_elastic_indexing( Observation, Identification )
+    disable_has_subscribers
+  end
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)

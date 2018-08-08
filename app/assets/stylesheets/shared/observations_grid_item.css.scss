@@ -1,6 +1,15 @@
 @import "../users/_user_image";
 .ObservationsGridItem {
   position: relative;
+
+  .SplitTaxon {
+    display: inline-block;
+    font-size: 90%;
+  }
+  .SplitTaxon.taxon .display-name {
+    color: black;
+    font-size: 110%;
+  }
 }
 .ObservationsGridItem.borderless.thumbnail {
   border: 1px solid #ddd;

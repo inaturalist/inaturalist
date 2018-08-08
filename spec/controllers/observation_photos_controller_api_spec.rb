@@ -34,9 +34,36 @@ shared_examples_for "an ObservationPhotosController" do
       other_o = make_research_grade_observation
       other_p = other_o.photos.first
       post :create, format: :json, observation_photo: { observation_id: observation.id, photo_id: other_p.id }
-      expect( response ).not_to be_success
+      expect( response.status ).to eq 403
       observation.reload
       expect( observation.photos ).to be_blank
+    end
+
+    describe "observation" do
+      before(:each) { enable_elastic_indexing( Identification ) }
+      after(:each) { disable_elastic_indexing( Identification ) }
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
+
+      it "should change quality_grade from casual to needs_id" do
+        o = Observation.make!( user: user, observed_on_string: "2018-05-02", latitude: 1, longitude: 1 )
+        expect( o.quality_grade ).to eq Observation::CASUAL
+        post :create, format: :json, observation_photo: { observation_id: o.id }, file: file
+        o.reload
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
+
+      it "should change quality_grade in the observations index" do
+        o = Observation.make!( user: user, observed_on_string: "2018-05-02", latitude: 1, longitude: 1 )
+        expect(
+          Observation.elastic_search( where: { id: o.id } ).results.results.first.quality_grade
+        ).to eq Observation::CASUAL
+        post :create, format: :json, observation_photo: { observation_id: o.id }, file: file
+        o.reload
+        expect(
+          Observation.elastic_search( where: { id: o.id } ).results.results.first.quality_grade
+        ).to eq Observation::NEEDS_ID
+      end
     end
   end
 
@@ -80,11 +107,18 @@ shared_examples_for "an ObservationPhotosController" do
     end
   end
 
-  it "should destroy" do
-    p = LocalPhoto.make!(:user => user)
-    op = make_observation_photo(:photo => p, :observation => observation)
-    delete :destroy, :format => :json, :id => op.id
-    expect(ObservationPhoto.find_by_id(op.id)).to be_blank
+  describe "destroy" do
+    it "should destroy" do
+      p = LocalPhoto.make!(:user => user)
+      op = make_observation_photo(:photo => p, :observation => observation)
+      delete :destroy, :format => :json, :id => op.id
+      expect(ObservationPhoto.find_by_id(op.id)).to be_blank
+    end
+    it "should return 403 Forbidden if user doesn't own the observation" do
+      op = make_observation_photo
+      delete :destroy, format: :json, id: op.id
+      expect( response.status ).to eq 403
+    end
   end
 
 end

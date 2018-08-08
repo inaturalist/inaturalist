@@ -61,7 +61,6 @@ Rails.application.routes.draw do
     end
     resources :flags
   end
-  get '/guides/:id.:layout.pdf' => 'guides#show', :as => "guide_pdf", :constraints => {:format => :pdf}, :defaults => {:format => :pdf}
   get 'guides/user/:login' => 'guides#user', :as => :guides_by_login, :constraints => { :login => simplified_login_regex }
   
   resources :acts_as_votable_votes, controller: :votes, constraints: { id: id_param_pattern }, only: [:destroy]
@@ -595,7 +594,9 @@ Rails.application.routes.draw do
   # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You
   # could also fix that other stuff, if you're weren't a horrible person, but
   # you are.
-  get '/rails/mailers/*path' => 'rails/mailers#preview'
+  unless Rails.env.production?
+    get '/rails/mailers/*path' => 'rails/mailers#preview'
+  end
   get '/:controller(/:action(/:id))'
 
   match '/404', to: 'errors#error_404', via: :all

@@ -1,8 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe UpdateAction do
-  before(:each) { enable_elastic_indexing(UpdateAction) }
-  after(:each) { disable_elastic_indexing(UpdateAction) }
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
+
   describe "creation" do
     it "should set resource owner" do
       o = Observation.make!
@@ -16,11 +17,11 @@ describe UpdateAction do
       o = Observation.make!
       s = Subscription.make!(resource: o)
       u = s.user
-      update_count = u.update_subscribers.count
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
       without_delay do
         c = Comment.make!(parent: o)
       end
-      expect( u.update_subscribers.count ).to eq (update_count + 1)
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq true
       expect {
         UpdateAction.email_updates_to_user(u, 10.minutes.ago, Time.now)
       }.to change(ActionMailer::Base.deliveries, :size).by(1)
@@ -109,6 +110,19 @@ describe UpdateAction do
       UpdateAction.delete_and_purge(id: u.id)
       expect(UpdateAction.count).to eq 0
       expect(UpdateAction.elastic_search.total_entries).to eq 0
+    end
+  end
+
+  describe "first_with_attributes" do
+    it "does not throw an error if attempting to create duplicate" do
+      o = Observation.make!
+      c = Comment.make!( parent: o )
+      expect {
+        ua = UpdateAction.first_with_attributes( resource: o, notifier: c, notification: "testing" )
+        expect( ua ).to be_instance_of( UpdateAction )
+        ua.elastic_delete!
+        UpdateAction.first_with_attributes( resource: o, notifier: c, notification: "testing" )
+      }.to_not raise_error
     end
   end
 end

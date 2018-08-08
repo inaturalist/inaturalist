@@ -9,6 +9,13 @@ class Guide < ActiveRecord::Base
   accepts_nested_attributes_for :guide_users, :allow_destroy => true
 
   attr_accessor :publish
+
+  # We used to generate PDFs on the server side, and most of these layouts were
+  # designed to look ok as PDFs, hence the PDF-oriented naming
+  PDF_LAYOUTS = %w(grid book journal)
+  PDF_LAYOUTS.each do |l|
+    const_set l.upcase, l
+  end
   
   has_attached_file :icon, 
     :styles => { :medium => "500x500>", :thumb => "48x48#", :mini => "16x16#", :span2 => "70x70#", :small_square => "200x200#" },
@@ -150,7 +157,7 @@ class Guide < ActiveRecord::Base
     ctrl = ActionController::Base.new
     ctrl.expire_page("/guides/#{id}.pdf") rescue nil
     ctrl.expire_page("/guides/#{id}.xml") rescue nil
-    GuidesController::PDF_LAYOUTS.each do |l|
+    PDF_LAYOUTS.each do |l|
       ctrl.expire_page("/guides/#{id}.#{l}.pdf") rescue nil
     end
     ctrl.expire_page("/guides/#{to_param}.ngz") rescue nil

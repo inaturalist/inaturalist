@@ -1,8 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe UsersController, "dashboard" do
-  before(:each) { enable_elastic_indexing(Observation, UpdateAction) }
-  after(:each) { disable_elastic_indexing(Observation, UpdateAction) }
+  before(:each) { enable_elastic_indexing(Observation) }
+  after(:each) { disable_elastic_indexing(Observation) }
   it "should be accessible when signed in" do
     user = User.make!
     sign_in user
@@ -25,6 +25,8 @@ end
 
 describe UsersController, "delete" do
   let(:user) { User.make! }
+  before(:each) { enable_elastic_indexing(Observation) }
+  after(:each) { disable_elastic_indexing(Observation) }
 
   it "destroys in a delayed job" do
     sign_in user
@@ -77,6 +79,9 @@ describe UsersController, "search" do
 end
 
 describe UsersController, "set_spammer" do
+  before(:each) { enable_elastic_indexing(Observation) }
+  after(:each) { disable_elastic_indexing(Observation) }
+
   describe "non-curators" do
     it "cannot access it" do
       post :set_spammer
@@ -235,5 +240,45 @@ describe UsersController, "remove_role" do
     curator_user.reload
     expect( curator_user ).not_to be_is_curator
     expect( curator_user.curator_sponsor ).to be_blank
+  end
+end
+
+describe UsersController, "suspend" do
+  let(:user) { User.make! }
+  let(:curator_user) { make_curator }
+  it "suspends the user" do
+    expect( user.suspended_at ).to be_nil
+    sign_in curator_user
+    get :suspend, id: user.id
+    user.reload
+    expect( user.suspended_at ).not_to be_nil
+  end
+
+  it "sets the suspending user" do
+    expect( user.suspended_at ).to be_nil
+    sign_in curator_user
+    get :suspend, id: user.id
+    user.reload
+    expect( user.suspended_by_user ).to eq curator_user
+  end
+end
+
+describe UsersController, "unsuspend" do
+  let(:user) { User.make!( suspended_at: Time.now ) }
+  let(:curator_user) { make_curator }
+  it "unsuspends the user" do
+    expect( user.suspended_at ).not_to be_nil
+    sign_in curator_user
+    get :unsuspend, id: user.id
+    user.reload
+    expect( user.suspended_at ).to be_nil
+  end
+
+  it "unsets the suspending user" do
+    expect( user.suspended_at ).not_to be_nil
+    sign_in curator_user
+    get :unsuspend, id: user.id
+    user.reload
+    expect( user.suspended_by_user ).to be_nil
   end
 end

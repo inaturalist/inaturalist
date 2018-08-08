@@ -55,7 +55,7 @@ class ListedTaxaController < ApplicationController
               :errors => msg,
               :full_messages => msg
             },
-            :status => :unprocessable_entity,
+            :status => :forbidden,
             :status_text => msg
         end
       end
@@ -159,7 +159,7 @@ class ListedTaxaController < ApplicationController
           return redirect_to lists_path
         end
         format.json do
-          return render(:json => {:error => msg})
+          return render(:json => {:error => msg}, status: :forbidden)
         end
       end
     end
@@ -193,11 +193,13 @@ class ListedTaxaController < ApplicationController
     @listed_taxon = ListedTaxon.find_by_id(params[:listed_taxon_id])
     @listed_taxon.force_update_cache_columns = true
     respond_to do |format|
-      if @listed_taxon.save
-        format.html do
+      format.html do
+        if @listed_taxon.save
           flash[:notice] = t(:observationcounts_refreshed)
-          redirect_to @listed_taxon
+        else
+          flash[:error] = t(:doh_something_went_wrong_error, error: @listed_taxon.errors.full_messages.to_sentence)
         end
+        redirect_to @listed_taxon
       end
     end
   end

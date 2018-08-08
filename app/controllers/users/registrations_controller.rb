@@ -26,6 +26,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
       end
     end
 
+    # If for some reason a user is already signed in, don't allow them to make
+    # another user
+    if current_user
+      errors ||= []
+      errors << I18n.t( :user_already_authenticated )
+    end
+
     unless errors
       if resource.save
         if resource.active_for_authentication?

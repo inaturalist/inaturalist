@@ -583,7 +583,7 @@ class ListedTaxon < ActiveRecord::Base
   def self.earliest_and_latest_ids(options)
     earliest_id = nil
     latest_id = nil
-    return [ nil, nil ] unless options[:filters]
+    return [ nil, nil, 0 ] unless options[:filters]
     search_params = { filters: options[:filters].dup }
     search_params[:size] = 1
     if options[:range_filters]
@@ -617,19 +617,19 @@ class ListedTaxon < ActiveRecord::Base
           }
         }
       ))
+      if rs && rs.total_entries > 0 && rs.response.aggregations
+        earliest_id = rs.response.aggregations.earliest.hits.hits[0]._source.id
+        latest_id = rs.response.aggregations.latest.hits.hits[0]._source.id
+        total = rs.total_entries
+      end
+      [ earliest_id, latest_id, total || 0]
     rescue Elasticsearch::Transport::Transport::Errors::NotFound,
            Elasticsearch::Transport::Transport::Errors::BadRequest => e
-      rs = nil
       Logstasher.write_exception(e, reference: "ListedTaxon.earliest_and_latest_ids failed")
       Rails.logger.error "[Error] ListedTaxon::earliest_and_latest_ids failed: #{ e }"
       Rails.logger.error "Backtrace:\n#{ e.backtrace[0..30].join("\n") }\n..."
+      [ nil, nil, 0 ]
     end
-    if rs && rs.total_entries > 0 && rs.response.aggregations
-      earliest_id = rs.response.aggregations.earliest.hits.hits[0]._source.id
-      latest_id = rs.response.aggregations.latest.hits.hits[0]._source.id
-      total = rs.total_entries
-    end
-    [ earliest_id, latest_id, total || 0]
   end
 
   def self.update_cache_columns_for(lt)

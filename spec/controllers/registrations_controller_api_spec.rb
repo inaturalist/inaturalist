@@ -68,6 +68,46 @@ describe Users::RegistrationsController, "create" do
     expect( User.find_by_login(u.login).site ).to eq @site
   end
 
+  it "should assign a user to a site using inat_site_id param" do
+    site1 = Site.make!( url: "test.host" )
+    site2 = Site.make!
+    u = User.make
+    post :create, inat_site_id: site2.id, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email
+    }
+    expect( User.find_by_login( u.login ).site ).to eq site2
+  end
+
+  it "should give the user the locale of the requested site" do
+    locale = "es-MX"
+    site = Site.make!( url: "test.host", preferred_locale: locale )
+    u = User.make
+    post :create, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email
+    }
+    expect( User.find_by_login(u.login).locale ).to eq site.preferred_locale
+  end
+
+  it "should give the user the locale of the site specified by inat_site_id" do
+    locale = "es-MX"
+    site1 = Site.make!( url: "test.host" )
+    site2 = Site.make!( preferred_locale: locale )
+    u = User.make
+    post :create, inat_site_id: site2.id, user: {
+      login: u.login,
+      password: "zomgbar",
+      password_confirmation: "zomgbar",
+      email: u.email
+    }
+    expect( User.find_by_login( u.login ).locale ).to eq locale
+  end
+
   it "should accept time_zone" do
     u = User.make
     post :create, user: {

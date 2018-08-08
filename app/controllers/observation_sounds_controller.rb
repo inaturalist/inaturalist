@@ -113,7 +113,7 @@ class ObservationSoundsController < ApplicationController
           return redirect_to record
         end
         format.json do
-          return render :json => {:error => msg}
+          return render :json => {:error => msg}, status: :forbidden
         end
       end
       return false

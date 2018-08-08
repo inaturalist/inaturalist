@@ -310,3 +310,24 @@ input[type="color"]:focus,
     padding-left: 0;
   }
 }
+
+.btn-inter,
+.btn-inter:hover,
+.btn-inter:focus,
+.btn-inter:active {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  background-image: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  cursor: default;
+  opacity: 1;
+  color: inherit;
+}

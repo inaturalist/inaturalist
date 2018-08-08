@@ -5,7 +5,9 @@ module Shared::TouchesObservationModule
   end
 
   def touch_observation
-    observation.touch if observation
+    return unless observation
+    return if observation.bulk_delete
+    observation.touch
   end
 
 end

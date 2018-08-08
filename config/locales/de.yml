@@ -1185,6 +1185,7 @@ de:
   does_the_date_seem_accurate: Scheint das Datum genau zu sein?
   doesnt_have_default_photo: hat noch kein Standard-Bild
   doh_something_went_wrong: Ups, etwas ist schief gelaufen.
+  doh_something_went_wrong_error: 'Etwas ist schief gelaufen: %{error}'
   done: Fertig
   dont_filter: Nicht filtern
   dont_send_me_email: Senden Sie mir keine E-Mail!
@@ -1441,7 +1442,6 @@ de:
   full_screen: Vollbild
   gbif_occurrences: GBIF Vorkommnisse
   general: Allgemein
-  generate_pdf: PDF generieren
   generate_widget: Widget generieren
   generate_your_stats: Deine Statistiken erzeugen
   generating: Erstelle...
@@ -1458,6 +1458,7 @@ de:
   go: Los
   go_back: Zurück gehen
   going_to_your_observations: Gehe zu ihren Beobachtungen...
+  google: Google
   got_it!: Verstanden!
   gray: graun
   green: grün
@@ -1959,6 +1960,8 @@ de:
   more_photos: Weitere Fotos
   most: Meisten
   most_agree: meisten stimmen zu
+  most_browser_print_pdf: 'Anmerkung: Die meisten Browser haben eine Option zum Drucken
+    nach PDF'
   most_disagree: meisten widersprechen
   most_observations: Meisten Beobachtungen
   most_species: Meiste Arten
@@ -2262,6 +2265,7 @@ de:
   only_species: nur Arten
   open: offen
   open_: Öffnen
+  open_street_map: OpenStreetMap
   optional: optional
   or: oder
   or_invite_your_friends: oder ihre Freunde einladen
@@ -2286,7 +2290,6 @@ de:
   password_confirmation: Passwort bestätigt
   paste: Einfügen
   pdf: PDF
-  pdf_slash_print: PDF / Drucken
   people: Personen
   people_agree: Leute stimmen zu
   people_following_user: Personen, die %{user} folgen
@@ -2490,6 +2493,7 @@ de:
   previous_page: Vorherige Seite
   previous_photo: Vorheriges Foto
   previous_tab: Vorheriger Tab
+  print_verb: Drucken
   print_in_browser: Im Browser drucken
   private: privat
   private_: Privat
@@ -2722,6 +2726,7 @@ de:
   status_globally: '%{status} Global'
   status_in_place: '%{status} in %{place}'
   still_no_luck?: Noch immer kein Glück?
+  stop_testing: Testen beenden
   submit: Absenden
   submit_comment: Kommentar abgeben
   submitted: Abgesendet
@@ -2752,6 +2757,8 @@ de:
   taxonomy: Taxonomie
   taxon_: Taxon
   taxon_change: Taxon-Änderung
+  taxon_change_must_be_committed_to_update_records: Die Taxonänderung muss übertragen
+    werden, um Aufzeichnungen zu aktualisieren.
   taxon_deleted: Taxon gelöscht.
   taxon_id: Taxon ID
   taxon_ids: Taxon IDs
@@ -2851,6 +2858,7 @@ de:
   usage_stats: Nutzungsstatistiken
   user: Benutzer
   user_added_a_x: '%{user} hat ein %{x} hinzugefügt'
+  user_already_authenticated: Der Benutzer ist bereits authentifiziert
   user_blocked: Benutzer gesperrt
   user_follows: '%{user} folgt'
   user_muted: Benutzer stummgeschaltet

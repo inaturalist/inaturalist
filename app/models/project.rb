@@ -1024,8 +1024,4 @@ class Project < ActiveRecord::Base
     true
   end
 
-  def self.refresh_es_index
-    Project.__elasticsearch__.refresh_index! unless Rails.env.test?
-  end
-
 end

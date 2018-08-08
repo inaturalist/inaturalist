@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe ProjectUserInvitation, "creation" do
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
+
   it "should email the user" do
     expect {
       ProjectUserInvitation.make!
@@ -21,8 +24,8 @@ describe ProjectUserInvitation, "creation" do
 end
 
 describe ProjectUserInvitation, "deletion" do
-  before(:each) { enable_elastic_indexing( UpdateAction ) }
-  after(:each) { disable_elastic_indexing( UpdateAction ) }
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
   it "should delete updates" do
     pui = without_delay { ProjectUserInvitation.make! }
     expect( UpdateAction.where(resource: pui).count ).to eq 1

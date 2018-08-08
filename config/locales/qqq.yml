@@ -462,6 +462,7 @@ qqq:
   getting_started: '{{Identical|Getting started}}'
   go: '{{Identical|Go}}'
   go_back: '{{Identical|Go back}}'
+  google: Name of the advertising corporation
   got_it!: '{{Identical|Got it}}'
   grant_role: where grant is removed/added and role is a role like admin
   grid: '{{Identical|Grid}}'
@@ -789,6 +790,7 @@ qqq:
     {{Identical|On}}
   open: '{{Identical|Open}}'
   open_: '{{Identical|Open}}'
+  open_street_map: Name of the community-driven mapping organization
   optional: '{{Identical|Optional}}'
   or: '{{Identical|Or}}'
   orange: |-
@@ -908,6 +910,8 @@ qqq:
   previous: '{{Identical|Previous}}'
   prev: '{{Identical|Prev}}'
   previous_page: '{{Identical|Previous page}}'
+  print_verb: The verb "print" for use on a button, e.g. a "Print" button that prints
+    the current page.
   privacy: '{{Identical|Privacy policy}}'
   privacy_policy: '{{Identical|Privacy policy}}'
   private: '{{Identical|Private}}'
@@ -1062,51 +1066,38 @@ qqq:
   taxa: '{{Identical|Taxa}}'
   taxon_is_a_rank: Statement that a particular taxon is of a particular rank. Do not
     translation the variable names, i.e. anything between { and }.
-  taxon_is_a_rank_in_iconic_taxon_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_amphibia_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_aves_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_mammalia_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_reptilia_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_plantae_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations: Like all plural strings, you
+    must translate both `one` and `other` or users of this language will experience
+    crashes.
+  taxon_is_a_rank_of_amphibia_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_aves_with_x_observations: Like all plural strings, you must translate
+    both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_mammalia_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_reptilia_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_plantae_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
   taxon_is_a_rank_of_actinopterygii_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_animalia_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_insecta_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_arachnida_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_fungi_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_protozoa_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_mollusca_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_a_rank_of_chromista_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
-  taxon_is_kingdom_of_life_with_x_observations: Like all plural strings,
-    you must translate both `one` and `other` or users of this language will
-    experience crashes.
+    you must translate both `one` and `other` or users of this language will experience
+    crashes.
+  taxon_is_a_rank_of_animalia_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_insecta_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_arachnida_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_fungi_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_protozoa_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_mollusca_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_a_rank_of_chromista_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
+  taxon_is_kingdom_of_life_with_x_observations: Like all plural strings, you must
+    translate both `one` and `other` or users of this language will experience crashes.
   taxonomy: '{{Identical|Taxonomy}}'
   taxon_: '{{Identical|Taxon}}'
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes

@@ -10,7 +10,8 @@ import {
   showNextObservation,
   showPrevObservation,
   updateCurrentObservation,
-  fetchDataForTab
+  fetchDataForTab,
+  submitIdentificationWithConfirmation
 } from "../actions";
 
 function mapStateToProps( state ) {
@@ -73,6 +74,17 @@ function mapDispatchToProps( dispatch ) {
     },
     toggleKeyboardShortcuts: keyboardShortcutsShown => {
       dispatch( updateCurrentObservation( { keyboardShortcutsShown: !keyboardShortcutsShown } ) );
+    },
+    chooseSuggestedTaxon: ( taxon, options = {} ) => {
+      const ident = {
+        observation_id: options.observation.id,
+        taxon_id: taxon.id,
+        vision: options.vision
+      };
+      dispatch( updateCurrentObservation( { tab: "info" } ) );
+      dispatch( submitIdentificationWithConfirmation( ident, {
+        confirmationText: options.confirmationText
+      } ) );
     }
   };
 }

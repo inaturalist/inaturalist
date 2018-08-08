@@ -7,7 +7,8 @@
 .taxon_change
   - unless hide_buttons
     .pull-right.inline.buttonrow
-      = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-default"
+      - if taxon_change.committed?
+        = link_to t(:update_your_content), taxon_change_commit_for_user_path(taxon_change), :class => "btn btn-default"
       - if taxon_change.editable_by?(current_user)
         = link_to t(:edit), edit_taxon_change_path(taxon_change), :class => "btn btn-default"
         - if show_commit_button && !taxon_change.committed? && taxon_change.committable_by?( current_user )

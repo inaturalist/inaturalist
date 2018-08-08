@@ -857,6 +857,7 @@ ko:
   does_the_date_seem_accurate: 날짜가 정확한가요?
   doesnt_have_default_photo: 기본 사진이 없습니다.
   doh_something_went_wrong: 문제가 생겼습니다.
+  doh_something_went_wrong_error: '무언가 잘못되었습니다: %{error}'
   done: 완료
   dont_filter: 필터 제거
   dont_send_me_email: 메일 수신 거부
@@ -1132,7 +1133,6 @@ ko:
   general: 일반
   generally_these_come_from_iucn_red_list: 대체적으로 이들은 IUCN 적색 목록에서 가져왔고, 다른 곳이 출처라도
     IUCN 범주를 고수합니다.
-  generate_pdf: PDF 생성하기
   generate_taxonomic_tags_for_flickr: Flickr 사진들을 위한 분류군 태그를 생성합니다.
   generate_widget: 위젯 생성하기
   generating: 생성 중...
@@ -1152,6 +1152,7 @@ ko:
   go_back: 돌아가기
   going_to_your_observations: 너의 관찰들로 가기
   good_choice_for_sharing: 과학자들과 공유하는 것은 좋은 선택입니다
+  google: 구글
   got_it!: 알겠습니다!
   got_your_data_somewhere_else?: 다른 곳에서 데이터를 가져왔습니까? 우리가 도울 수 있습니다.
   gray: 회색
@@ -1589,6 +1590,7 @@ ko:
   more_info_title: 자세한 정보
   more_observations: 더 많은 관찰
   more_photos: 더 많은 사진들
+  most_browser_print_pdf: '참고: 대부분의 브라우저는 PDF를 인쇄하는 옵션이 있습니다'
   most_observations: 가장 많은 관찰
   must_have_observation_field: '%{operand}을 필수로 기입해야 합니다.'
   mute_user: 사용자를 알림에서 제외
@@ -1836,6 +1838,7 @@ ko:
   only_you: 나만
   open: 열기
   open_: 열기
+  open_street_map: 오픈스트리트맵
   optional: 선택 사항
   or: 또는
   original_url: 원래의 URL
@@ -1847,7 +1850,6 @@ ko:
   password_confirmation: 비밀번호 확인
   paste: 붙여넣기
   pdf: PDF
-  pdf_slash_print: PDF / 인쇄
   people_added:
     identification:
       without_observation: <strong>ID</strong> 추가됨
@@ -1962,6 +1964,7 @@ ko:
   previous_page: 이전 문서
   previous_photo: 이전 사진
   previous_tab: 이전 탭
+  print_verb: 인쇄
   privacy: 개인정보 정책
   privacy_policy: 개인정보 정책
   private_: 비공개
@@ -2129,6 +2132,7 @@ ko:
   stay_and_try_again: 동일 장소에서 다시 시도하세요
   stop_editing: 그만 편집하기
   stop_following_user: '%{user}를 그만 팔로우하기'
+  stop_testing: 테스트 중지
   submit: 제출
   submit_comment: 댓글 제출
   submitted: 제출됨
@@ -2196,6 +2200,7 @@ ko:
   user_added_a_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_an_x: '%{user}님이 %{x}을(를) 추가했습니다'
   user_added_x_observations_html: '%{user}는 %{x}개의 관찰을 추가했습니다.'
+  user_already_authenticated: 사용자는 이미 인증되었습니다
   user_autocomplete_placeholder: kueda, simon123 등.
   user_blocked: 사용자가 차단됨
   user_commented: '%{user}님이 댓글을 남겼습니다'

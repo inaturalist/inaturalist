@@ -37,6 +37,8 @@ class ProjectObservation < ActiveRecord::Base
   include ActsAsUUIDable
 
   def notify_observer(association)
+    return if CONFIG.has_subscribers == :disabled
+    return unless observation
     existing_project_updates = UpdateAction.elastic_paginate(
       filters: [
         { term: { notification: UpdateAction::YOUR_OBSERVATIONS_ADDED } },
@@ -52,9 +54,9 @@ class ProjectObservation < ActiveRecord::Base
       notifier: self,
       notification: UpdateAction::YOUR_OBSERVATIONS_ADDED
     }
-    action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-    action.bulk_insert_subscribers( [observation.user.id] )
-    UpdateAction.elastic_index!(ids: [action.id])
+    if action = UpdateAction.first_with_attributes(action_attrs)
+      action.append_subscribers( [observation.user.id] )
+    end
   end
   
   after_destroy do |record|
@@ -205,7 +207,8 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def refresh_project_list
-    return true if observation.blank? || observation.taxon_id.blank? || observation.bulk_import
+    return true if observation.blank? || observation.taxon_id.blank? ||
+      observation.bulk_import || observation.bulk_delete
     Project.delay(priority: USER_INTEGRITY_PRIORITY, queue: "slow",
       run_at: 1.hour.from_now, unique_hash: { "Project::refresh_project_list": project_id }).
       refresh_project_list(project_id, :taxa => [observation.taxon_id])
@@ -214,7 +217,7 @@ class ProjectObservation < ActiveRecord::Base
   
   def update_observations_counter_cache_later
     return true unless observation
-    return true if observation.bulk_import
+    return true if observation.bulk_import || observation.bulk_delete
     ProjectUser.delay(priority: USER_INTEGRITY_PRIORITY,
       unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
         [ project_id, observation.user_id ] }
@@ -224,7 +227,7 @@ class ProjectObservation < ActiveRecord::Base
   
   def update_taxa_counter_cache_later
     return true unless observation
-    return true if observation.bulk_import
+    return true if observation.bulk_import || observation.bulk_delete
     ProjectUser.delay(priority: USER_INTEGRITY_PRIORITY,
       unique_hash: { "ProjectUser::update_taxa_counter_cache_from_project_and_user":
         [ project_id, observation.user_id ] }
@@ -233,7 +236,7 @@ class ProjectObservation < ActiveRecord::Base
   end
   
   def update_project_observed_taxa_counter_cache_later
-    return true if observation && observation.bulk_import
+    return true if observation && ( observation.bulk_import || observation.bulk_delete )
     Project.delay(priority: USER_INTEGRITY_PRIORITY,
       unique_hash: { "Project::update_observed_taxa_count": project_id }
     ).update_observed_taxa_count(project_id)
@@ -241,7 +244,7 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def revisit_curator_identifications_later
-    return true if observation && observation.bulk_import
+    return true if observation && ( observation.bulk_import || observation.bulk_delete )
     observation.identifications.each do |i|
       i.update_curator_identification
     end
@@ -286,7 +289,7 @@ class ProjectObservation < ActiveRecord::Base
       preferred_curator_coordinate_access
     else
       if column.to_s =~ /private_/
-        if observation.coordinates_viewable_by?(options[:viewer])
+        if observation && observation.coordinates_viewable_by?(options[:viewer])
           observation.send(column)
         else
           nil

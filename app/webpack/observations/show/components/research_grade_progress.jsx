@@ -21,7 +21,7 @@ class ResearchGradeProgress extends React.Component {
     remainingCriteria.media = ( observation.photos.length + observation.sounds.length ) === 0;
     remainingCriteria.rank = ( observation.taxon && observation.taxon.rank_level > 10 );
     remainingCriteria.ids = !observation.identifications_most_agree;
-    remainingCriteria.location = !observation.location;
+    remainingCriteria.location = !( observation.location || observation.obscured );
     const votesFor = { };
     const votesAgainst = { };
     _.each( qualityMetrics, ( values, metric ) => {

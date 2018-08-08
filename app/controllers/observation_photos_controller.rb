@@ -77,8 +77,13 @@ class ObservationPhotosController < ApplicationController
           # Airbrake.notify(Exception.new(msg), :request => request, :session => session)
           Logstasher.write_exception(Exception.new(msg), request: request, session: session, user: current_user)
           Rails.logger.error "[ERROR #{Time.now}] #{msg}"
+          status = :unprocessable_entity
+          if @observation_photo.photo && @observation_photo.observation &&
+              @observation_photo.photo.user_id != @observation_photo.observation.user_id
+            status = :forbidden
+          end
           render :json => {:errors => @observation_photo.errors.full_messages.to_sentence}, 
-            :status => :unprocessable_entity
+            status: status
         end
       end
     end
@@ -98,9 +103,14 @@ class ObservationPhotosController < ApplicationController
         format.json { render :json => @observation_photo.to_json(:include => [:photo]) }
       else
         Rails.logger.error "[ERROR #{Time.now}] Failed to update observation photo: #{@observation_photo.errors.full_messages.to_sentence}"
+        status = :unprocessable_entity
+        if @observation_photo.photo && @observation_photo.photo.observation &&
+            @observation_photo.photo.user_id != @observation_photo.observation.user_id
+          status = :forbidden
+        end
         format.json do
           render :json => {:errors => @observation_photo.errors.full_messages.to_sentence}, 
-            :status => :unprocessable_entity
+            status: status
         end
       end
     end
@@ -128,7 +138,7 @@ class ObservationPhotosController < ApplicationController
           redirect_to record
         end
         format.json do
-          render json: { error: msg }, status: :unprocessable_entity
+          render json: { error: msg }, status: :forbidden
         end
       end
       return false

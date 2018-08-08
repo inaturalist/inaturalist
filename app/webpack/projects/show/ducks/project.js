@@ -46,6 +46,9 @@ export function fetchMembers( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const params = { id: state.project.id, per_page: 100, order: "login" };
+    if ( state.config.currentUser ) {
+      params.ttl = -1;
+    }
     return inatjs.projects.members( params ).then( response => {
       dispatch( setAttributes( {
         members_loaded: true,

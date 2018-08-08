@@ -1087,6 +1087,7 @@ en:
   does_the_date_seem_accurate: "Does the date seem accurate?"
   doesnt_have_default_photo: doesn't have a default photo yet.
   doh_something_went_wrong: D'oh, something went wrong.
+  doh_something_went_wrong_error: "D'oh, something went wrong: %{error}"
   done: Done
   dont_filter: "Don't filter"
   dont_send_me_email: "Don't send me any email!"
@@ -1407,7 +1408,6 @@ en:
   geo: Geo
   general: General
   generally_these_come_from_iucn_red_list: Generally these come from IUCN Red List, and if they come from elsewhere they will adhere to the IUCN categories.
-  generate_pdf: Generate PDF
   generate_taxonomic_tags_for_flickr: Generate taxonomic tags for your Flickr photos.
   generate_widget: Generate Widget
   generate_your_stats: Generate Your Stats
@@ -1431,6 +1431,7 @@ en:
   go_back: Go back
   going_to_your_observations: Going to your observations...
   good_choice_for_sharing: Good choice for sharing with scientists
+  google: Google
   got_it!: Got it!
   got_your_data_somewhere_else?: Got your data somewhere else?  We can help.
   graft: Graft
@@ -2055,6 +2056,7 @@ en:
   more_photos: More Photos
   most: Most
   most_agree: most agree
+  most_browser_print_pdf: "Note: most browsers have an option to print to PDF"
   most_disagree: most disagree
   most_comments_and_faves: Most Comments and Faves
   most_observations: Most observations
@@ -2504,6 +2506,7 @@ en:
   open: open
   open_: Open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: "Opt in for this observation"
   opt_out_of_community_ids_for_obs: "Opt out of the community identification for this observation"
   optional: optional
@@ -2553,7 +2556,6 @@ en:
   paste_in_a_bunch_of_names: Paste in a bunch of names, 1 per line, and hit the button!
   paste_in_a_comma_separated_list: Paste in a comma-separated list of countries
   pdf: PDF
-  pdf_slash_print: PDF / Print
   people: People
   people_agree: people agree
   people_following_user: "People Following %{user}"
@@ -2832,6 +2834,7 @@ en:
   previous_page: Previous page
   previous_photo: Previous Photo
   previous_tab: Previous Tab
+  print_verb: Print
   print_in_browser: Print in browser
   privacy: Privacy Policy
   privacy_policy: Privacy Policy
@@ -3386,6 +3389,7 @@ en:
   still_working_on_classifying_taxon: Still working on classifying this taxon. Check back later
   stop_editing: Stop Editing
   stop_following_user: "Stop following %{user}"
+  stop_testing: Stop Testing
   stop_updating_position: Stop updating position
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
@@ -3506,6 +3510,7 @@ en:
     Taxon assessments are documents assessing the current status of a species, usually conservation status.
     For example, a regional conservation organization might use them to organize information and solicit feedback about the status of several threatened taxa in the region.
   taxon_change: taxon change
+  taxon_change_must_be_committed_to_update_records: Taxon change must be committed to update records
   taxon_deleted: Taxon deleted.
   taxon_doesnt_have_a_range: Taxon doesn't have a range
   taxon_drop: taxon drop
@@ -3906,6 +3911,7 @@ en:
   user_added_an_x_to_noun_by_html: "%{user} added an %{x} to %{noun} by %{by}"
   user_added_an_x_to_noun_html: "%{user} added an %{x} to %{noun}"
   user_added_x_observations_html: "%{user} added %{x} observations"
+  user_already_authenticated: User is already authenticated
   user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: User blocked
   user_commented: "%{user} commented"
