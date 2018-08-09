@@ -36,6 +36,8 @@
   [class*="content_"] {
     [class*="header_"] {
       margin: 0 10px;
+      position: absolute;
+      right: 0;
     }
     width: 100%;
     img {
@@ -44,7 +46,7 @@
       left: 0;
       right: 0;
       bottom: 0;
-      margin: auto;
+      margin: auto !important;
       padding: 50px 0;
     }
     .easyzoom {
