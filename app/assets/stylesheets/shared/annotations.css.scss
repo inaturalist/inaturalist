@@ -2,7 +2,7 @@
 
 .Annotations,
 .bootstrap .Annotations,
-body > div > [role="dialog"] .Annotations {
+body > [role="dialog"] .Annotations {
   table, .table {
     margin-bottom: 0px;
   }
@@ -63,8 +63,8 @@ body > div > [role="dialog"] .Annotations {
 
 .Annotations,
 .QualityMetrics,
-body > div > [role="dialog"] .Annotations,
-body > div > [role="dialog"] .QualityMetrics {
+body > [role="dialog"] .Annotations,
+body > [role="dialog"] .QualityMetrics {
   .glyphicon, .fa-thumbs-up, .fa-thumbs-down, .fa-thumbs-o-up, .fa-thumbs-o-down {
     cursor: pointer;
     color: #BBBBBB;

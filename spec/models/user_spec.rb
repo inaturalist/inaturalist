@@ -11,7 +11,10 @@ bad_logins = [
   'semicolon;', 'quote"', 'tick\'', 'backtick`', 'percent%', 'plus+', 
   'period.', 'm', 
   'this_is_the_longest_login_ever_written_by_man',
-  "password", "new"
+  "password",
+  "new",
+  "[foo",
+  "^foo"
 ]
 
 describe User do

@@ -231,7 +231,7 @@ class User < ActiveRecord::Base
   MAX_LOGIN_SIZE = 40
 
   # Regexes from restful_authentication
-  LOGIN_PATTERN     = "[A-z][\\\w\\\-_]+"
+  LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
   login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
@@ -466,6 +466,7 @@ class User < ActiveRecord::Base
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
     Photo.where(["user_id = ? AND type != 'GoogleStreetViewPhoto'", id]).update_all(license: number)
+    index_observations_later
     true
   end
 
@@ -474,6 +475,7 @@ class User < ActiveRecord::Base
     number = Photo.license_number_for_code(preferred_sound_license)
     return true unless number
     Sound.where(user_id: id).update_all(license: number)
+    index_observations_later
     true
   end
 
@@ -487,7 +489,10 @@ class User < ActiveRecord::Base
   end
 
   def index_observations_later
-    delay(priority: USER_INTEGRITY_PRIORITY).index_observations
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::index_observations_later": id }
+    ).index_observations
   end
 
   def index_observations

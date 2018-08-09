@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOMServer from "react-dom/server";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import inatjs from "inaturalistjs";
 import _ from "lodash";
@@ -187,12 +188,12 @@ const App = ( {
 };
 
 App.propTypes = {
-  year: React.PropTypes.number,
-  user: React.PropTypes.object,
-  currentUser: React.PropTypes.object,
-  data: React.PropTypes.object,
-  site: React.PropTypes.object,
-  rootTaxonID: React.PropTypes.number
+  year: PropTypes.number,
+  user: PropTypes.object,
+  currentUser: PropTypes.object,
+  data: PropTypes.object,
+  site: PropTypes.object,
+  rootTaxonID: PropTypes.number
 };
 
 export default App;

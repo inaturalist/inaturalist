@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover, Panel } from "react-bootstrap";
 import UsersPopover from "./users_popover";
 import UserImage from "../../../shared/components/user_image";
@@ -260,7 +261,7 @@ class Annotations extends React.Component {
             <td>
               <Dropdown
                 id="grouping-control"
-                onSelect={ ( event, index ) => {
+                onSelect={ index => {
                   this.props.addAnnotation( ct, availableValues[index] );
                 }}
               >
@@ -335,8 +336,8 @@ class Annotations extends React.Component {
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { I18n.t( "annotations" ) } { count }
         </h4>
-        <Panel collapsible expanded={ this.state.open }>
-          { table }
+        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+          <Panel.Collapse>{ table }</Panel.Collapse>
         </Panel>
       </div>
     );

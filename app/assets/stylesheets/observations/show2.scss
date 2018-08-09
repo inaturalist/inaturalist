@@ -17,14 +17,28 @@
 @import "./identify/observation_modal";
 @import "./identify/suggestions";
 
-#react-images-container {
-  .content--jss-0-1, .figure--jss-0-4, .easyzoom, .easyzoom > a {
+// react images ids and class names. get ready for this to change again in the future
+#lightboxBackdrop {
+  [class*="content_"],
+  [class*="figure_"],
+  .easyzoom,
+  .easyzoom > a {
     height: 100%;
   }
-  .figureShadow--jss-0-5 {
+  [class*="spinner_"] {
     display: none;
   }
-  .content--jss-0-1 {
+  [class*="content_"] {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+  }
+  [class*="content_"] {
+    [class*="header_"] {
+      margin: 0 10px;
+      position: absolute;
+      right: 0;
+    }
     width: 100%;
     img {
       position: absolute;
@@ -32,7 +46,8 @@
       left: 0;
       right: 0;
       bottom: 0;
-      margin: auto;
+      margin: auto !important;
+      padding: 50px 0;
     }
     .easyzoom {
       cursor: default;
@@ -260,7 +275,8 @@ a.UserImage,
             font-size: 140px;
             color: #ccc;
           }
-          span {
+          .nophoto,
+          .add-photo-span {
             position: absolute;
             top: 280px;
             width: 100%;
@@ -268,7 +284,6 @@ a.UserImage,
             font-weight: 100;
           }
           .add-photo-span {
-            position: absolute;
             top: auto;
             bottom: 12px;
             .image-gallery-thumbnail {
@@ -973,7 +988,7 @@ h3, h4 {
   .grade {
     margin: 15px 0px 25px;
   }
-  span[aria-describedby="popover-data-quality"] {
+  .popover-data-quality-link {
     color: $bootstrap-link-color;
     cursor: pointer;
     i {
@@ -2218,7 +2233,7 @@ h3, h4 {
   width: 100%;
   cursor: zoom-in;
 }
-body > div > [role="dialog"] .easyzoom > a > img {
+body > [role="dialog"] .easyzoom > a > img {
   vertical-align: bottom;
 }
 

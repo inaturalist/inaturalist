@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import safeHtml from "safe-html";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
@@ -64,7 +65,7 @@ const IdentificationForm = ( {
       type="textarea"
       name="body"
       className="form-control"
-      key={ `${key}-inat-text-area` }
+      elementKey={ `${key}-inat-text-area` }
       mentions
     />
     { blind ? (

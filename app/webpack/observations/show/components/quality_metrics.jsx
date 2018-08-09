@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import UsersPopover from "./users_popover";
@@ -233,7 +234,7 @@ class QualityMetrics extends React.Component {
                 overlay={ this.popover( ) }
                 className="cool"
               >
-                <span>
+                <span className="popover-data-quality-link">
                   { I18n.t( "data_quality_assessment_" ) }
                   <i className="fa fa-info-circle" />
                 </span>

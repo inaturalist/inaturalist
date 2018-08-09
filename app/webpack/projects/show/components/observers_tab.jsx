@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import { numberWithCommas } from "../../../shared/util";
 import UserLink from "../../../shared/components/user_link";
@@ -9,7 +10,7 @@ import InfiniteScroll from "react-infinite-scroller";
 const ObserversTab = ( { config, observers, setConfig } ) => {
   if ( _.isEmpty( observers ) ) { return ( <span /> ); }
   const scrollIndex = config.observersScrollIndex || 30;
-  const loader = ( <div className="loading_spinner huge" /> );
+  const loader = ( <div key="observers-tab-loading" className="loading_spinner huge" /> );
   return (
     <div className="Observers">
       <Grid>
@@ -20,7 +21,7 @@ const ObserversTab = ( { config, observers, setConfig } ) => {
               hasMore={ observers.length >= scrollIndex }
               loader={ loader }
             >
-              <table>
+              <table key="observers-tab-table">
                 <thead>
                   <tr>
                     <th className="rank">{ I18n.t( "rank" ) }</th>
@@ -44,7 +45,7 @@ const ObserversTab = ( { config, observers, setConfig } ) => {
                 <tbody>
                   { _.map( observers.slice( 0, scrollIndex ), ( i, index ) => {
                     return (
-                      <tr className={ index % 2 !== 0 && "odd" } key={ `observer-${i.user.id}` }>
+                      <tr className={ index % 2 !== 0 ? "odd" : "" } key={ `observer-${i.user.id}` }>
                         <td className="rank">{ index + 1 }</td>
                         <td>
                           <UserImage user={ i.user } />

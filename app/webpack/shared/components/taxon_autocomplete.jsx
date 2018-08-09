@@ -1,6 +1,6 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { Input } from "react-bootstrap";
 import inaturalistjs from "inaturalistjs";
 
 class TaxonAutocomplete extends React.Component {
@@ -54,15 +54,17 @@ class TaxonAutocomplete extends React.Component {
   render( ) {
     return (
       <span className={`TaxonAutocomplete ${this.props.className}`}>
-        <Input
-          type="search"
-          name="taxon_name"
-          value={this.props.value}
-          className={`form-control ${this.props.inputClassName}`}
-          onChange={this.props.onChange}
-          placeholder={ this.props.placeholder }
-          autoComplete="off"
-        />
+        <div className="form-group">
+          <input
+            type="search"
+            name="taxon_name"
+            value={this.props.value}
+            className={`form-control ${this.props.inputClassName}`}
+            onChange={this.props.onChange}
+            placeholder={ this.props.placeholder }
+            autoComplete="off"
+          />
+        </div>
         <input type="hidden" name="taxon_id" />
       </span>
     );

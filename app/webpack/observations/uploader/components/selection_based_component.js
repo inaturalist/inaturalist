@@ -1,5 +1,6 @@
 import _ from "lodash";
-import { PropTypes, Component } from "react";
+import { Component } from "react";
+import PropTypes from "prop-types";
 
 class SelectionBasedComponent extends Component {
 
@@ -22,9 +23,13 @@ class SelectionBasedComponent extends Component {
     return _.uniq( _.compact( _.flatten( this.valuesOf( attr, obsCards ) ) ) );
   }
 
-  commonValue( attr, obsCards ) {
+  commonValue( attr, obsCards, options = {} ) {
     const uniq = this.valuesOf( attr, obsCards );
-    return ( uniq.length === 1 ) ? uniq[0] : undefined;
+    let defaultValue = "";
+    if ( "defaultValue" in options ) {
+      defaultValue = options.defaultValue;
+    }
+    return ( uniq.length === 1 ) ? uniq[0] : defaultValue;
   }
 
 }

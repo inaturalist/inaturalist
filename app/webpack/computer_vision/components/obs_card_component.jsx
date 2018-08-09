@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment-timezone";
@@ -122,7 +123,7 @@ class ObsCardComponent extends Component {
             <input
               type="text"
               className="form-control input-sm"
-              value={ obsCard.date }
+              value={ obsCard.date || "" }
               onChange= { e => {
                 if ( this.refs.datetime ) {
                   this.refs.datetime.onChange( undefined, e.target.value );
@@ -140,7 +141,7 @@ class ObsCardComponent extends Component {
             <input
               type="text"
               className="form-control input-sm"
-              value={ locationText }
+              value={ locationText || "" }
               placeholder={ locationText ? "" : I18n.t( "location" ) }
               readOnly
             />

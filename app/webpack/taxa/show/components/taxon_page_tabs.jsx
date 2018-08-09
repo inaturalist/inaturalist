@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Grid, Row, Col, Dropdown, MenuItem } from "react-bootstrap";
 import _ from "lodash";
@@ -57,7 +58,7 @@ class TaxonPageTabs extends React.Component {
           <Dropdown
             id="curation-dropdown"
             pullRight
-            onSelect={ ( e, eventKey ) => {
+            onSelect={ eventKey => {
               switch ( eventKey ) {
                 case "add-flag":
                   window.location = `/taxa/${taxon.id}/flags/new`;

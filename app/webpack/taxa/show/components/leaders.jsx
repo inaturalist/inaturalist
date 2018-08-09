@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
 import TopObserverContainer from "../containers/top_observer_container";
 import TopIdentifierContainer from "../containers/top_identifier_container";

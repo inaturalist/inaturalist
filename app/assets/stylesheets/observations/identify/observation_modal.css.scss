@@ -8,7 +8,7 @@
 @import "../../shared/taxon_autocomplete";
 
 .ObservationModal,
-body > div > [role="dialog"] .ObservationModal {
+body > [role="dialog"] .ObservationModal {
   .SplitTaxon {
     display: inline-block;
     font-size: 90%;
@@ -354,6 +354,10 @@ body > div > [role="dialog"] .ObservationModal {
 
   .easyzoom.is-loading img {
     cursor: progress;
+  }
+
+  .easyzoom > a > img {
+    vertical-align: bottom;
   }
 
   .easyzoom-notice {

@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import {
@@ -242,6 +243,7 @@ class Suggestions extends React.Component {
           <div className="suggestions-list">
             <div className="suggestions-inner">
               <ChooserPopover
+                id="suggestions-sort-chooser"
                 label={ I18n.t( "sort_by" ) }
                 className="pull-right"
                 container={ $( ".ObservationModal" ).get( 0 ) }
@@ -279,6 +281,7 @@ class Suggestions extends React.Component {
                   } }
                 />
                 <TaxonChooserPopover
+                  id="suggestions-taxon-chooser"
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   label={ I18n.t( "taxon" ) }
                   taxon={ query.taxon }
@@ -294,6 +297,7 @@ class Suggestions extends React.Component {
                   config={ config }
                 />
                 <ChooserPopover
+                  id="suggestions-source-chooser"
                   label={ I18n.t( "source" ) }
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   chosen={ query.source }
