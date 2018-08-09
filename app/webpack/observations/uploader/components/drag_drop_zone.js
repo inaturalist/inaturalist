@@ -139,7 +139,7 @@ class DragDropZone extends Component {
 
   unselectAll( e ) {
     const ignore = "a, .card, button, .modal, span.title, .leftColumn, " +
-      ".bootstrap-datetimepicker-widget, .ui-autocomplete, #react-images-container, " +
+      ".bootstrap-datetimepicker-widget, .ui-autocomplete, #lightboxBackdrop, " +
       ".navbar .select, input, .form-group, select";
     const target = e.target || e.nativeEvent.target;
     if ( $( ignore ).has( target ).length > 0 ||

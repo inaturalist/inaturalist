@@ -541,8 +541,8 @@ ul.obs > li .card {
   }
 }
 
-#react-images-container .figureShadow--jss-0-5 {
-  box-shadow: none;
+#lightboxBackdrop [class*="spinner_"] {
+  display: none;
 }
 
 

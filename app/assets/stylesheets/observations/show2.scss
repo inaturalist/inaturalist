@@ -17,14 +17,26 @@
 @import "./identify/observation_modal";
 @import "./identify/suggestions";
 
-#react-images-container {
-  .content--jss-0-1, .figure--jss-0-4, .easyzoom, .easyzoom > a {
+// react images ids and class names. get ready for this to change again in the future
+#lightboxBackdrop {
+  [class*="content_"],
+  [class*="figure_"],
+  .easyzoom,
+  .easyzoom > a {
     height: 100%;
   }
-  .figureShadow--jss-0-5 {
+  [class*="spinner_"] {
     display: none;
   }
-  .content--jss-0-1 {
+  [class*="content_"] {
+    position: absolute !important;
+    left: 0;
+    top: 0;
+  }
+  [class*="content_"] {
+    [class*="header_"] {
+      margin: 0 10px;
+    }
     width: 100%;
     img {
       position: absolute;
@@ -33,6 +45,7 @@
       right: 0;
       bottom: 0;
       margin: auto;
+      padding: 50px 0;
     }
     .easyzoom {
       cursor: default;
