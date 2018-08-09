@@ -284,7 +284,7 @@ et:
   add_to_checklist: Lisa tegevuste nimekirja
   add_to_favorites: Lisa lemmikute hulka
   add_to_id_please: Lisa "Palun määra" alla
-  add_to_list: Lisa loetellu
+  add_to_list: Lisa nimekirja
   add_to_project: Lisa projekti alla
   add_to_your_life_list: Lisa oma elunimekirja!
   add_to_your_list: Lisa nimekirja
@@ -685,6 +685,7 @@ et:
   by_user: kasutaja %{user} poolt
   by_you: Sinu poolt
   calendar: Kalender
+  calendars_only_show_x_observations_at_time: Kalendrites näeb korraga vaid %{x} vaatlust
   can_you_help_your_friends_id_these: Saad sa oma sõpru nende määramisega aidata?
   cancel: Tühista
   cant_flag_an_object_that_doesnt_exist: Ei saa lisada märkust objektile, mida ei
@@ -844,6 +845,7 @@ et:
   choose_taxon: Vali takson
   choose_what_kind_of_change_youre_creating: Vali, mis tüüpi muutust sa teha kavatsed.
   choose_your_username: Vali oma kasutajatunnus
+  cid_d_to_genus: Kogukondlikult määratud liigid
   citation: Viide
   classification: Klassifikatsioon
   clear: tühjenda
@@ -887,6 +889,7 @@ et:
   comments_on_my_observations: Minu vaatluste kommentaarid
   comments_youve_made_with_others: Sinu kommentaarid (koos teistega)<br/><span class="description">viimasel
     nädalal</span>
+  commercial_solicitation: Ärilisi teateid, katkiseid linke, jne.
   commit: Sisesta
   committed: Sisestatud
   committed_on: Sisestatud kuupäeval %{date}
@@ -916,6 +919,7 @@ et:
   comprehensive: täielik
   comprehensive?: On see täielik?
   comprehensive_list: Täielik nimekiri
+  concept_status: Mõiste staatus
   configure: Häälesta
   configure_a_widget_to_show: Seadista %{site_name} tööriist, mis näitaks kodulehel
     või blogis sinu vaatlusi. Võib olla vajalik, et pead enda HTML-koodi päisesse
@@ -974,6 +978,7 @@ et:
     egg: Muna
     juvenile: Nooruk
   controls: Juhthoovad
+  convert: Teisenda
   coordinate_systems: Koordinaatidesüsteemid
   coordinates: Koordinaadid
   coordinates_private: (peidetud koordinaadid)
@@ -1036,6 +1041,8 @@ et:
   created_by_user_on_date: Loonud %{user} kuupäeval %{date}
   created_on: Loodud kuupäeval
   creating_your_account: Loon sinu kontot...
+  creative_commons_flickr_tagged: Sildistatud Creative Commons litsentsiga Flickr
+    fotod
   creative_commons_unless_otherwise_noted: Kui teisiti pole määratletud, kehtib Creative
     Commons litsents.
   critically_endangered: kriitlises hävimisohus
@@ -1346,6 +1353,8 @@ et:
   existing_flags: Praegused märkused
   exit_full_screen: Sule täisekraan
   examples_of_ranking_organizations: Hinnaguid andvad organisatsioonid
+  expand_days: päevad detailselt
+  expand_updates: uuendused detailselt
   explore!: Avasta!
   explore: Avasta
   explore_everyones_observations: Avasta kõigi vaatlused
@@ -2336,7 +2345,7 @@ et:
   new_guide: Uus juhend
   new_journal_posts: Uus päevikukanne
   new_lexicon: Uus leksikon
-  new_list: Uus loend
+  new_list: Uus nimekiri
   new_members: Uued liikmed
   new_message: Uus sõnum
   new_observation_field: Uus vaatlusväli
@@ -2497,6 +2506,259 @@ et:
   not_yet: Mitte veel
   note: Märkus
   notes: Märkused
+  note_you_can_modify_the_height_attribute: 'NB: Saad kõrgust muuta, et see vastaks
+    sinu kodulehel kasutada olevale ruumile.'
+  notify_me_of_mentions: Anna mulle mainimistest teada (s.t. @kasutajatunnus)
+  notify_me_about_redundant_identifications: Anna mulle kattuvatest määratlustest
+    teada
+  notify_me_about_redundant_identifications_desc: Saad teateid määratluste kohta,
+    mis on sinu omaga samad. Kui sa sellest keeldud, saad ainult teateid määratluste
+    kohta, mille takson ei vasta täpselt sinu poolt pakutavaga.
+  number_of_observations: Vaatluste arv
+  number_selected: '# valitud'
+  numeric_: arv
+  noun_by_you: sinu %{noun}
+  obs: Vaatlus
+  obs_cid_d: Kogukondlikud määratlused
+  obs_id_d: Määratlused
+  obscured_: varjatud
+  obscured: Varjatud
+  obscured_or_private: varjatud või privaatne
+  obscured_description: Avalike koordinaatidena näidatakse juhuslikku punkti 10 km
+    raadiuses reaalsetest koordinaatidest. Tõeliseid koordinaadid on nähtavad ainult
+    sulle ja nende projektide kuraatoritele, kuhu sa selle vaatluse lisad.
+  observation: Vaatlus
+  observation_: vaatlus
+  observation_added: Vaatlus lisatud.
+  observation_added_to_the_project: Vaatlus lisatud projektile "%{project}"
+  observation_aggregation: Vaatluste koondamine
+  observation_photo_uploader: Vaatlusfotode üleslaadija
+  observations_by_category: Vaatlused kategooria kaupa
+  observations_by_app: Vaatlused äppi kaupa
+  observations_by_rank: Vaatlused taseme kaupa
+  observations_by_user_on_date: Vaatlused kasutajalt %{user} kuupäeval %{date}
+  observations_by_you: Sinu vaatlused
+  observations_by_you_on_date: Sinu vaatlused kuupäeval %{date}
+  observation_calendar_for: Kasutaja %{user} %{year}. aasta vaatluste kalender
+  observation_contest: vaatluste võistlus
+  observation_curation: Vaatluste kureerimine
+  observation_date: Kuupäev
+  observation_date?: Kuupäev?
+  observation_field: Vaatlusväli
+  observation_field_details: Vaatlusvälja andmed
+  observation_fields: Vaatlusväljad
+  observation_fields_are_additional: Vaatlusväljad on lisa andmeväljad, mida saab
+    vaatlustele lisada.
+  observation_fields_by_preferences_description: Vaatlusväljad töötavad natuke nagu
+    sildid, kuid neid saavad vaikimisi sinu vaatlustele lisada kõik kasutajad. Muuda
+    seda säted, kui soovid, et seda saaksid teha peale sinu vaid lehekülje kuraatorid.
+  observation_flagged: Vaatlusele lisatud märkus
+  observation_flagged_as_flag: 'Vaatlusele lisatud märkus: %{flag}'
+  observation_removed_from_the_project: Vaatlus eemaldatud projektist "%{project}"
+  observation_requirements: Vaatlustingimused
+  observation_rights_html: Vaatlus %{rights}
+  observation_rules: Vaatlusreeglid
+  observation_rules_description: Saad valida reegleid, mis määravad, milliseid vaatlusi
+    saab sellele projektile lisada. Näiteks piirata vaatlusi kindla koha või taksoniga.
+    Kui ühe reeglitüübi kohta on enam kui üks reegel, on vaatlus sobilik, kui see
+    vastab ühelegi reeglitest. Kui sul näiteks on reeglid "peab olema kahepaikne"
+    ja "peab olema roomaja", siis sobivad projektile kahepaiksete VÕI roomajate vaatlused.
+  observation_was_deleted: Vaatlus kustutati.
+  observation_without_media: Meediata vaatlus
+  observation_would_like_some_help: Kasutaja %{user} sooviks selle määramisel abi!
+  observations: Vaatlused
+  observations_: vaatlused
+  observations_added_by_x_html: Vaatlused lisanud %{x}
+  observations_annotated_with_annotation: Vaatlused märkega %{annotation}
+  observations_by: Vaatlused kasutajalt
+  observations_by_everyone: Kõigi vaatlused
+  observations_by_user: Vaatlused kasutajalt %{user}
+  observations_circle_have_their_radii_scaled: Vaatluste ringide raadius sõltub nende
+    asukoha täpsusest. Asukoha täpsuse andmeteta vaatluseid näidatakse minimaalse
+    suurusega.
+  observations_confirmed: Vaatlused (kinnitatud)
+  observations_deleted: Vaatlused kustutatud.
+  observations_fields_are: Vaatlusväljad on vaatlusega seotud lisaandmed nagu nähtud
+    indiviidide hulk, elukoha kirjeldus või kõik muu sinu poolt soovitav! Projektid
+    võivad samuti määrata välju, mille täitmist nad sinult ootavad.
+  observations_for: 'Vaatlused:'
+  observations_for_project: Projekti %{project} vaatlused
+  observations_from: Vaatlused kuupäeval %{date}
+  observations_from_people_taxa_and_places_youre_following: Vaatlused inimestelt,
+    kohtadest ja taksonitest, mida sa jälgid
+  observations_from_this_place: Selle koha vaatlused
+  observations_from_this_project: Selle projekti vaatlused
+  observations_from_you: Sinu vaatlused
+  observations_have_had_their_coordinates: vaatluste koordinaadid on nihutatud juhuslikku
+    punkti %{km} raadiuses sest see takson on kas ohustatud või soovis vaatleja koordinaate
+    varjata.
+  observations_in_this_project_must: Selle projekti vaatlused peavad vastama järgmistele
+    kriteeriumitele
+  observations_it_may_take_a_few: vaatluseid. See võib natuke aega võtta.
+  observations_last500: Vaatlused (viimased 500)
+  observations_last_aggregated: Vaatlused viimati koondatud
+  observations_map: Vaatlused / Kaart
+  observation_must_dotdotdot: Vaatlused peavad...
+  observations_near_a_place_are: Vaatlused koha "lähedal" langevad koha piirjoone
+    ümber tõmmatud nelinurga sisse, mis tähendab, et kohtade puhul, mis ei meenuta
+    nelinurki, võivad tulemused olla natuke ebatäpsed. See tuleneb meie andmebaasi
+    piirangutest, mida loodame tulevikus lahendada.
+  observations_needing_curation: Kureerimist vajavad vaatlused
+  observations_obscured: Vaatlused (varjatud)
+  observations_observed_this_month: Sellel kuul <em>vaadeldud</em> vaatlused, mitte
+    sellel kuul lisatud vaatlused. Käi rohkem õues!
+  observations_of_relatives: Sugulaste vaatlused
+  observations_of_taxon: Taksoni %{taxon_name} vaatlused
+  observations_on_inat_check_list: vaatlused lehel %{site_name}. Kontrollnimekiri
+    kohtadest, mille piires on toimunud vähemalt üks kinnitatud vaatlus.
+  observations_per_month: Vaatluseid kuus
+  observations_removed_from_the_project: Projektist "%{project}" eemaldatud vaatlused
+  observations_saved: Vaatlus(ed) salvestatud!
+  observations_specifying_this_field: Seda välja sisaldavad vaatlused
+  observations_text_search_warning: Tekstipõhised otsingud võivad anda imelikke tulemusi,
+    kuid neid kasutada koos muude filtritega. Kui soovid leida konkreetset liiki,
+    kasuta hoopis taksoni filtrit.
+  observations_this_year_vs_last_year: Vaatluseid sel aastal vs. eelmisel aastal
+  observations_title: Kõigi vaatlused
+  observations_total: Vaatluseid kokku
+  observations_w: Vaatlused sisaldavad
+  observations_w_field: Vaatlused sisaldavad välja
+  observations_was_successfully_updated: Vaatlus(t)e uuendamine õnnestus.
+  observations_week: Vaatluseid nädalas
+  observations_widget: Vaatluste tööriist
+  observations_will_revert_to_casual: Vaatlused muutuvad "juhuvaatlusteks", kui nad
+    ei vasta ülal toodud tingimustele või
+  observations_with_this_field: Selle väljaga vaatlused
+  observations_with_this_field_and_value: Selle väljaga vaatlused, mille väärtus on
+  observationcounts_refreshed: Vaatluste hulgad värskendatud
+  observed: Vaadeldud
+  observed_by: Vaadelnud kasutaja
+  observed_in_place?: vaadeldud kohas
+  observed_on: Vaadeldud kuupäeval
+  observed_one: vaatles ühte
+  observer: Vaatleja
+  observers: Vaatlejad
+  observer_short: Vaatleja
+  observing: vaatles
+  occurence_status_describes_how: Leidumusmäär kirjeldab seda, kui tavaline või haruldane
+    takson valitud piirkonnas on. Vaata selle kohta lisainfot <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">DarwinCore'ist</a>.
+  occurrence_status: Leidumusmäär
+  occurrence_status_establishment_means: leidumusmäär, asustamismeetod
+  occurrence_status_levels:
+    present: olemas
+    common: tavaline
+    uncommon: ebatavaline
+    irregular: ebaregulaarne
+    doubtful: kaheldav
+    absent: puudub
+  of_it_and_its_descendants: sellest ja selle alamliikidest
+  of_least_concern: Vähim muresid
+  of_observations: vaatlused
+  of_species: liigid
+  of_observers: vaatlejad
+  of_identifiers: määratlejad
+  of_places: kohad
+  of_this_taxon: Selle taksoni
+  offensive_inappropriate: solvav / ebasobiv
+  official_blog: Ametlik blogi
+  offline_access_enabled: Offline-ligipääs lubatud
+  old_observation_form: Vana vaatlusvorm (mittekasutatav)
+  ok: OK
+  on_: kuupäeval
+  on_date: kuupäeval %{date}
+  on_day: kuupäeval
+  on_edit_date: kuupäeval %{editdate}
+  on_list?: nimekirjas
+  on_submit_date: kuupäeval %{submitdate}
+  on_your_life_list: sinu elunimekirjas
+  onboarding:
+    observe_panel_title: Alustame mõne vaatluse lisamisega
+    observe_panel_body_p1_local: Vajad inspiratsiooni? Siin on mõned lähipiirkonnas
+      tehtud vaatlused...
+    observe_panel_body_p1_global: Vajad inspiratsiooni? Siin on mõned vaadeldud organismid...
+    observe_panel_body_p2: Mine õue ning vaatle mõnd üksikut organismi. Leia midagi
+      metsikut ning tee sellest täielikult kadreeritud foto. Kui sul juba on millegi
+      metsiku foto, <a href="%{new_observation_path}">lisa see kohe</a>. Vaatluste
+      tegemiseks saab kasutada ka %{site_name} mobiiliäppi.
+    observe_panel_body_p3: Kui oled oma vaatlust jaganud, ilmuvad siia lehel täiendused
+      kogukondlike kommentaaride ja määratlustena. Kes teab, mida sa avastada võid!
+    follow_panel_title_local: Jälgi mõnda läheduses tegutsevad loodusloolast
+    follow_panel_title_global: Jälgi mõnda aktiivset loodusloolast
+    follow_panel_body: Külastades profiile ja klõpsates jälgimise nupule, antakse
+      sulle teada, kui nad mõne vaatluse teevad
+    following_panel_title: Jälgi inimesi, liike ja kohti
+    following_panel_body: Lehel %{site_name} saad jälgida inimesi, et olla kursis
+      sellega, milliseid vaatluseid nad teevad. Lisaks saad jälgida soovitud liike,
+      et olla teadlik uutest vaatlustest, või teha sama mõne kohaga.
+    comments_panel_title: Kas sind huvitab, mille üle lehel %{site_name} arutletakse?
+    comments_panel_body: '<p>%{site_name} on mõeldud elavate asjade vaatluste jagamiseks
+      ja nende arutamiseks. Allpool on mõned praegu toimuvad vestlused. (NB: Sind
+      pannakse automaatselt jälgima kõiki vestluseid, millele oled lisanud kommentaare
+      või määratlusi. Seda infot saad hallata paremal olevas ''Jälgimine'' sektsioonis.)</p>'
+    updates_by_you_panel_title: Selle saki alt näed kerge vaevaga vaid enda lisatud
+      sisuga seotud täiendusi.
+    updates_by_you_panel_body: Pea meeles sakis 'Kõik täiendused' näed sa lisaks enda
+      sisuga seotud täiendustele ka värsket infot kõigi jälgitavate inimeste, liikide
+      või kohtade kohta, mida oled paremal olevasse jälgimise tööriista lisanud.
+    youve_got_updates_panel_title: Sul on uudiseid!
+    youve_got_updates_panel_body_p1: Jälgi uudiseid...
+    youve_got_updates_panel_body_p2: |-
+      <ul>
+        <li><strong>Sinu sisu:</strong> Sinu vaatlustega seotud teiste %{site_name} kasutajate tegevused nagu kommentaarid, määratlused ja lemmikuks kuulutamised. Samuti antakse sulle teada, kui su vaatlus lisatakse mõnda projekti või sellele lisatakse uusi andmeid.</li>
+        <li><strong>Inimesed:</strong> Sinu jälgitavate inimeste uued vaatlused ja päevikukanded.</li>
+        <li><strong>Organismid, projektid ja kohad:</strong> Jälgitavate liikide või kohtadega seotud uued vaatlused. Samuti võid ühineda projektidega, et saada teada, kui nad uusi päevikukandeid postitavad.</li>
+        <li><strong>Sinuga seotud vestlused:</strong> Kellegi teise sisu kommenteerimisel või määratlemisel pannaks sind automaatselt selle sisuga seotud täiendusi jälgima. Kasuta 'Halda oma jälgimisi' tööriista, kui ei soovi neid täiendusi enam näha.</li>
+      </ul>
+  one_by_one: Ükshaaval
+  one_of_your_lists: ühes nimekirjas...
+  only_a_project_manager_can_add: Ainult projekti haldaja saab jagada kuraatori staatust
+  only_administrators_may_access_that_page: Ainult administraatorid saavad seda lehte
+    kasutada
+  only_accepts_taxa: soovib vaid taksoneid
+  only_an_admin_can_remove_project_users: Vaid administraator saab projekti kasutajaid
+    eemaldada
+  only_country_state_and_county: Praegu näidatakse vaid riigi, osariigi ja maakonna
+    sarnaseid kohti. Väiksemate kohtade nägemiseks suurenda kaarti.
+  only_curators_can_add_edit_scientific_names: Ainult kuraatorid saavad teaduslikke
+    nimetusi lisada ja muuta.
+  only_curators_can_access_that_page: Ainult kuraatorid saavad seda lehte kasutada.
+  only_files_with_10000_rows_at_a_time: Failides ei tohiks sisalduda korraga üle 10000
+    rea
+  only_letters_numbers: Ainult tähed ja numbrid ilma tühikuteta, peab algama tähega
+  only_one_coordinate_system_per_file: Ühes failis saab olla kasutusel ainult üks
+    koordinaatide süsteem, muidu võib konverteerimine või kuvamine olla vigane.
+  only_project_curators_can_do_that: Ainult projekti kuraatorid saavad seda teha.
+  only_receive_updates_about_this_taxon: Saa teateid vaid selle taksoni kohta
+  only_show_active_taxa: Näita ainult aktiivseid taksoneid
+  only_show_events_that_last_less_than_2_weeks: Näita ainult sündmusi, mis kestavad
+    alla kahe nädala
+  only_show_for_species_subspecies_varieties_etc: Näita ainult liike, alamliike, sorte,
+    jne.
+  only_show_taxa_fom_this_list: Näita ainult selle nimekirja taksoneid
+  only_showing_taxa_from: näita ainult selle nimekirja taksoneid
+  only_site_curators_can_turn_on_observation_aggregation: Ainult lehe kuraatorid saavad
+    projekti koondamise sisse lülitada
+  only_species: ainult liigid
+  only_species_and_subspecies: ainult liigid ja alamliigid/sordid
+  only_the_author_of_this_post_can_do_that: Seda saab teha ainult antud postituse
+    autor. Ära tee pahandusi.
+  only_the_owner_of_this_list_can_do_that: Seda saab teha ainult antud postituse omanik.
+    Ära tee pahandusi.
+  only_the_project_admin_can_delete_this_project: Ainult projekti administraator saab
+    seda kustutada
+  only_you: Vaid sina
+  open: avalik
+  open_: Avalik
+  open_description: Kõik näevad koordinaate kui takson pole ohustatud.
+  open_street_map: OpenStreetMap
+  opt_in_for_this_observation: Kasuta selle vaatluse puhul
+  opt_out_of_community_ids_for_obs: Ära kasuta kogukondliku määramist selle vaatluse
+    puhul
+  optional: valikuline
+  optional_columns_note_for_any: 'Valikulised tulbad (nb: selleks, et neid tulpasid
+    vaatluse juures kasutada saaks, peavad nad kõik olemas olema)'
+  or: või
+  or_choose_high_level_taxa: '... või vali mõni kõrgema taseme takson'
   we_also_support: |-
     Lubame piltide majutamist ka <a href="http://flickr.com">Flickr</a>,
     <a href="http://photos.google.com">Google Photos</a> ja

@@ -11,6 +11,7 @@
 # Author: Luis2
 # Author: Macofe
 # Author: Mansil
+# Author: Mansil alfalb
 # Author: Marcosvdqueiroz
 # Author: Patrícia Tavares Santos
 # Author: Renatinhoracing
@@ -33,8 +34,8 @@ pt-PT:
     one: 1 identificação
     other: '%{count} identificações'
   x_ids:
-    one: 1 Identificação
-    other: '%{count} Identificações'
+    one: 1 Id.
+    other: '%{count} Ids.'
   x_lists:
     one: 1 lista
     other: '%{count} listas'
@@ -84,23 +85,23 @@ pt-PT:
     one: <span class='count'>1</span> sinalizador resolvido
     other: <span class='count'>%{count}</span> sinalizadores resolvidos
   x_people_like_this:
-    one: 1 pessoa gosta disto
-    other: A %{count} pessoas gostam disto
+    one: Uma pessoa gosta disto
+    other: '%{count} pessoas gostam disto'
   x_people_agree_html:
-    one: <span class="count">1</span> pessoa concorda
+    one: <span class="count">Uma</span> pessoa concorda
     other: <span class="count">%{count}</span> pessoas concordam
   x_species:
     one: 1 espécie
     other: '%{count} espécies'
   x_species_html:
-    one: <span class='count'>1</span> espécie
+    one: <span class='count'>Uma</span> espécie
     other: <span class='count'>%{count}</span> espécies
   x_species_link_html:
     one: <a href='%{url}'>1</a> espécie
     other: <a href='%{url}'>%{count}</a> espécies
   x_suggestions_filtered_by_colon:
-    one: '1 Sugestão Filtrada por:'
-    other: '%{count} Sugestões Filtradas por:'
+    one: 'Uma sugestão filtrada por:'
+    other: '%{count} sugestões filtradas por:'
   x_taxa_observed_html:
     one: <span class='count'>1</span> táxon observado
     other: <span class='count'>%{count}</span> táxons observados
