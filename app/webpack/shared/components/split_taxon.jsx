@@ -148,9 +148,9 @@ const SplitTaxon = props => {
               namePieces.slice( 0, namePieces.length - 1 ).join( " " )
             } <span className="rank">
               { rankPiece }
-            </span> {
-              namePieces[namePieces.length - 1]
-            }
+            </span>
+            &nbsp;
+            { namePieces[namePieces.length - 1] }
           </span>
         );
       }
@@ -168,7 +168,9 @@ const SplitTaxon = props => {
         >
           <span className="rank">
             { _.capitalize( I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) ) }
-          </span> { truncateText( name ) }
+          </span>
+          &nbsp;
+          { truncateText( name ) }
         </LinkElement>
       );
     }
