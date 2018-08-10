@@ -2194,6 +2194,7 @@ class Observation < ActiveRecord::Base
 
   def sw_latlon
     return nil unless georeferenced?
+    return nil unless latitude
     if coordinates_obscured?
       half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
       positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
@@ -2220,6 +2221,7 @@ class Observation < ActiveRecord::Base
 
   def ne_latlon
     return nil unless georeferenced?
+    return nil unless latitude
     if coordinates_obscured?
       half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
       positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0

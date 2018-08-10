@@ -197,23 +197,26 @@ describe "Observation Index" do
     )
     expect( o.as_indexed_json[:private_place_ids] ).to include place.id
   end
-  it "place_ids should include places that contain the uncertainty cell" do
-    place = make_place_with_geom
-    o = Observation.make!( latitude: place.latitude, longitude: place.longitude, geoprivacy: Observation::OBSCURED )
-    expect( o.as_indexed_json[:place_ids] ).to include place.id
-  end
-  it "place_ids should not include places that do not contain the uncertainty cell" do
-    place = make_place_with_geom
-    o = Observation.make!( latitude: place.bounding_box[0], longitude: place.bounding_box[1] )
-    expect( o.as_indexed_json[:place_ids] ).not_to include place.id
-  end
-  it "place_ids should include county-level places that do not contain the uncertainty cell" do
-    place = make_place_with_geom(
-      place_type: Place::COUNTY,
-      admin_level: Place::COUNTY_LEVEL
-    )
-    o = Observation.make!( latitude: place.bounding_box[0], longitude: place.bounding_box[1] )
-    expect( o.as_indexed_json[:place_ids] ).to include place.id
+
+  describe "place_ids" do
+    it "should include places that contain the uncertainty cell" do
+      place = make_place_with_geom
+      o = Observation.make!( latitude: place.latitude, longitude: place.longitude, geoprivacy: Observation::OBSCURED )
+      expect( o.as_indexed_json[:place_ids] ).to include place.id
+    end
+    it "should not include places that do not contain the uncertainty cell" do
+      place = make_place_with_geom
+      o = Observation.make!( latitude: place.bounding_box[0], longitude: place.bounding_box[1] )
+      expect( o.as_indexed_json[:place_ids] ).not_to include place.id
+    end
+    it "should include county-level places that do not contain the uncertainty cell" do
+      place = make_place_with_geom(
+        place_type: Place::COUNTY,
+        admin_level: Place::COUNTY_LEVEL
+      )
+      o = Observation.make!( latitude: place.bounding_box[0], longitude: place.bounding_box[1] )
+      expect( o.as_indexed_json[:place_ids] ).to include place.id
+    end
   end
 
   describe "params_to_elastic_query" do
@@ -723,6 +726,27 @@ describe "Observation Index" do
         expect( o.indexed_place_ids ).to include p.id
         expect( o.indexed_private_place_ids ).to include p.id
       end
+    end
+    it "should have no place IDs when geoprivacy is private" do
+      p = make_place_with_geom
+      o = make_research_grade_candidate_observation(
+        geoprivacy: Observation::PRIVATE,
+        latitude: p.latitude,
+        longitude: p.longitude
+      )
+      Observation.prepare_batch_for_index( [o] )
+      expect( o.indexed_place_ids ).to be_blank
+    end
+    it "should have no place IDs when the taxon has a conservation status with private geoprivacy" do
+      p = make_place_with_geom
+      cs = ConservationStatus.make!( geoprivacy: Observation::PRIVATE )
+      o = make_research_grade_candidate_observation(
+        taxon: cs.taxon,
+        latitude: p.latitude,
+        longitude: p.longitude
+      )
+      Observation.prepare_batch_for_index( [o] )
+      expect( o.indexed_place_ids ).to be_blank
     end
   end
 end

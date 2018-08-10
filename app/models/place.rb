@@ -897,12 +897,14 @@ class Place < ActiveRecord::Base
   def bbox_privately_contains_observation?( o )
     sw = o.private_sw_latlon
     ne = o.private_ne_latlon
+    return false unless sw && ne
     bbox_contains_lat_lng?( *sw ) && bbox_contains_lat_lng?( *ne )
   end
 
   def bbox_publicly_contains_observation?( o )
     sw = o.sw_latlon
     ne = o.ne_latlon
+    return false unless sw && ne
     bbox_contains_lat_lng?( *sw ) && bbox_contains_lat_lng?( *ne )
   end
 
