@@ -2327,6 +2327,14 @@ describe Observation do
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
       expect( o.public_places ).to include p
     end
+    it "should be blank if taxon has conservation status with private geoprivacy" do
+      p = make_place_with_geom( admin_level: 1 )
+      cs = ConservationStatus.make!( geoprivacy: Observation::PRIVATE )
+      o = make_research_grade_candidate_observation( taxon: cs.taxon, latitude: p.latitude, longitude: p.longitude )
+      expect( o ).to be_georeferenced
+      expect( o.geoprivacy ).to be_blank
+      expect( o.public_places ).to be_blank
+    end
   end
 
   describe "update_stats" do
