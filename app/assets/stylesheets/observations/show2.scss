@@ -47,7 +47,6 @@
       right: 0;
       bottom: 0;
       margin: auto !important;
-      padding: 50px 0;
     }
     .easyzoom {
       cursor: default;
@@ -61,15 +60,16 @@
         z-index: 2001;
         cursor: zoom-out !important;
         img {
-          margin: 0px;
+          margin: 0px !important;
+          padding: 0px;
         }
         &.short img {
-          margin-top: auto;
-          margin-bottom: auto;
+          margin-top: auto !important;
+          margin-bottom: auto !important;
         }
         &.narrow img {
-          margin-left: auto;
-          margin-right: auto;
+          margin-left: auto !important;
+          margin-right: auto !important;
         }
       }
     }
