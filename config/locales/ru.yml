@@ -1283,6 +1283,7 @@ ru:
   does_the_date_seem_accurate: Выглядит ли дата точной?
   doesnt_have_default_photo: отсутствует фото по умолчанию.
   doh_something_went_wrong: Ой, что-то пошло не так.
+  doh_something_went_wrong_error: 'Что-то пошло не так: %{error}'
   done: Готово
   dont_filter: Не фильтровать
   dont_send_me_email: Не присылайте мне никаких писем!
@@ -1483,6 +1484,7 @@ ru:
   favorites: Фавориты
   feature_this_project: Особенность этого проекта?
   featured: Рекомендуемые
+  featured?: рекомендуемые?
   featured_projects_from_everywhere: Рекомендуемые проекты отовсюду
   featured_projects_from_place: Интересные проекта для %{place}
   feedback: Обратная связь
@@ -1697,6 +1699,7 @@ ru:
   hasnt_contributed_any_observations: не добавил никаких наблюдений к этому проекту
   hate_me_facebook: Отвяжите ваш аккаунт Facebook от аккаунта %{site_name}
   hate_me_flickr: Отвязать свои учетные записи Flickr и %{site_name}
+  heads_up: Осторожно
   heads_up_observation_search_can_only_load: 'Внимание: поиск наблюдений может загружать
     до 50 страниц'
   heads_up_this_observation_has_been_flagged: 'Внимание: это наблюдение было отмечено.'
@@ -1746,6 +1749,7 @@ ru:
   icon: Иконка
   icon_size: Размер иконки
   icon_slash_photo: Иконка / Фото
+  iconic_taxon: таксон с заданным цветом иконки
   id: ID
   id_: ID
   id_categories:
@@ -1777,6 +1781,9 @@ ru:
   identifications_by: Идентификации %{user}
   identified?: идентифицирован
   identifiers: Эксперты
+  identotron: Identotron
+  identotron_for: Identotron для
+  identotron_help: Помощь по Identotron'у
   ids: Идентификации
   ids_made_for_others: Идентификации, сделанные для других
   if_for_some_reason_a_user_doesnt_agree: Если по какой-то причине вы не согласны
@@ -2058,6 +2065,7 @@ ru:
     по мере ваших наблюдений, и их можно ограничить родительскими таксонами более
     высокого уровня, например, список птиц в семье ворон (Corvidae).
   life_list_first: первый список жизни
+  life_list_firsts: первые списки жизни
   link: Ссылка
   link_or_unlink_your_facebook_account: Привязать или отвязать свою учетную запись
     Facebook
@@ -2124,6 +2132,7 @@ ru:
   listing_announcement: Объявление о создании списка
   listing_announcements: Объявления о создании списка
   listing_lists: Перечисляя списки
+  listing_project_assets: Перечень активов проекта
   listing_taxa: Список Таксонов
   listing_taxon_names: Список наименований таксонов
   lists: Списки
@@ -2285,6 +2294,7 @@ ru:
   media: Медиафайл
   media_type: Тип медиа
   medium: среда
+  medium_url: Средний URL
   meet: Встреча
   member_of_the_inaturalist_network_html: Член <a href="%{url}">iNaturalist Network</a>
   members: Участники
@@ -2363,6 +2373,7 @@ ru:
   must_have_observation_field: должен иметь заполненное поле наблюдения %{operand}
   must_have_x: должен иметь %{x}
   mute_user: Отключить пользователя
+  mute_removed: Отключение звука удалено
   muted_users: Отключенные Пользователи
   n_ago: '%{n} назад'
   n_people_agrees: '%{amount} людей согласны'
@@ -2432,6 +2443,7 @@ ru:
   new_password: Новый пароль
   new_post: Новое сообщение
   new_project: Новый Проект
+  new_project_asset: Новые активы проекта
   new_project_asset_for: Новый актив проекта для
   new_source: Новый Источник
   new_taxon_change: Новое изменение таксона
@@ -2455,6 +2467,8 @@ ru:
   next_tab: Новая вкладка
   "no": Нет
   no_activity_in_the_past_week: Отсутствие активности на прошлой неделе. Пора начать
+  no_administrator_knows_your_password: Ни один администратор %{sitename} не знает
+    ваш новый пароль и не имеет доступа к вашему паролю.
   no_assessments_have_been_added_to_this_project_yet: Никакие оценки еще не были добавлены
     в этот проект.
   no_but_it_is_a_member_of_taxon: Нет, но это член %{taxon}
@@ -2465,6 +2479,7 @@ ru:
     Commons
   no_creative_commons_flickr_photos_tagged_x: Не найдены фото с Flickr с лицензией
     Creative Commons с тегом %{x}
+  no_curators_set: Кураторы не назначены
   no_curators_yet: Пока нет кураторов!
   no_description: Нет описания
   no_facebook_photos: Мы не можем найти фотографии на Facebook.
@@ -2485,6 +2500,7 @@ ru:
     этого проекта.
   no_license_all_rights_reserved: Нет лицензии (Все права защищены)
   no_link_flickr: Нет, лучше нет.
+  no_managers_set: Менеджеры не назначены
   no_matching_article_from_x: Нет соответствующей статьи из %{x}
   no_matching_invitations: Нет соответствующих приглашений
   no_matching_observations: Нет соответствующих наблюдений.
@@ -2553,6 +2569,7 @@ ru:
   no_taxonomic_changes_match_those_criteria: Никакие таксономические изменения не
     соответствуют этим критериям
   no_wikipedia_page_for_taxon: Страница Википедии для этого таксона отсутствует.
+  no_x_this_y: Нет %{x} за этот %{y}
   noble_curators: Почетные кураторы %{site}
   non_human?: Не человек?
   none: Ничего
@@ -2565,6 +2582,7 @@ ru:
   not_finding_place_you_want?: Не нашлось место, которое вы искали?
   not_finding_what_looking_for: Не нашли то, что искали?
   not_found: Не найдено
+  not_just_creative_commons_licensed: не только лицензии Creative Commons
   not_linked_facebook: Ваша учётная запись %{site_name} не связана с учётной записью
     Facebook.
   not_linked_flickr: Ваша учетная запись на сайте %{site_name} в настоящее время не
@@ -2743,7 +2761,9 @@ ru:
   old_observation_form: Старая форма наблюдения (устарела)
   ok: ОК
   on_date: на %{date}
+  on_day: В
   on_edit_date: на %{editdate}
+  on_list?: в списке
   on_submit_date: на %{submitdate}
   on_your_life_list: в вашем списке жизни
   onboarding:
@@ -2844,6 +2864,7 @@ ru:
   or_if_you_dont_want_email: Или если вы просто не хотите ничего получать по электронной
     почте...
   or_invite_your_friends: или пригласите ваших друзей
+  or_invited: или приглашены.
   or_post_message_to_google_group: или напишите сообщение в нашу группу Google
   or_upload: или загрузить
   or_you_can: Или вы можете...
@@ -2853,6 +2874,7 @@ ru:
   order_by: Сортировать по
   organism_is_wild: Организм является диким
   organisms: Организмы
+  original: Исходный
   originally_flagged_by: Первоначально помеченный
   originally_imported_from_url_html: Первоначально импортированный из <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: URL исходной страницы этого фото.
@@ -2867,12 +2889,15 @@ ru:
     few: других животных
     other: другие животные
   other_lexicons: Другие языки
+  other_listings_of_this_taxon_for_this_place: Другие списки этого таксона для этого
+    места
   other_species_commonly_misidentified_as_this_species: Другие виды, которые обычно
     ошибочно идентифицируются как этот вид
   other_species_commonly_misidentified_as_this_species_in_place_html: Другие виды,
     которые обычно ошибочно идентифицируются как этот вид в <a href="%{url}">%{place}</a>
   our_blog: Наш блог
   out_of_range: Вне диапазона
+  output_taxon: Выходной таксон
   overview: Обзор
   owner: Владелец
   parent: Родитель
@@ -2893,6 +2918,11 @@ ru:
       with_observation: добавил <strong>идентификацию</strong> к %{observation_link}
         %{user_link}
       without_observation: добавил <strong>идентификацию</strong>
+    post: создана %{post_link}
+    comment:
+      with_by: добавлен комментарий @vow_or_con{vow:an|a} %{comment_subject_link}
+        с помощью %{by_link}
+      without_by: добавлен комментарий @vow_or_con{vow:an|a} %{comment_subject_link}
   per_day: В день
   per_month: За месяц
   per_week: За неделю
@@ -2911,6 +2941,7 @@ ru:
   photo_destroyed_because_it_was_deleted_from: Фото либо удалено с внешнего сайта,
     либо %{site_name} больше не имеет разрешения на его просмотр
   photo_hosting_accounts: Учетные записи фотохостингов
+  photo_integration: Интеграция фото
   photo_licensing: Лицензирование фото
   photo_type: Тип фото
   photo_urls_repaired: URL фото восстановлены
@@ -2930,11 +2961,13 @@ ru:
   photos_updated: Фото обновлены.
   google_account_not_linked: У %{user} больше нет привязанной учётной записи Google,
     поэтому %{site_name} не имеет прав доступа к этому фото.
+  picasa_identity: Идентификация в Picasa
   pick_a_username: Выберите имя пользователя
   pink: розовый
   place: Место
   placeholder: Заполнитель
   place_added_to_inat_by: Место добавлено к %{site_name}
+  place_autocomplete_placeholder: Национальный парк Зайон, Майами и т.п.
   place_deleted: Место удалено.
   place_geo:
     geo_planet_place_types:
@@ -3165,8 +3198,8 @@ ru:
   project_list_defaults:
     title: Контрольный список %{owner_name}
     description: Список видов для %{owner_name}
-  project_curators_added_some_of_your_observations_html: '%{url}%{project} кураторы
-    добавили некоторые из ваших наблюдений'
+  project_curators_added_some_of_your_observations_html: кураторы добавили некоторые
+    из ваших наблюдений к <a href="%{url}">%{project}</a>
   project_id: Идентификатор проекта
   project_members: '%{project} Участники'
   project_membership_model_description: Ваш проект открыт для всех или только для

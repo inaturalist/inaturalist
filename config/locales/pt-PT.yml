@@ -1234,6 +1234,7 @@ pt-PT:
   does_the_date_seem_accurate: A data parece correta?
   doesnt_have_default_photo: ainda não tem uma foto pré-definida
   doh_something_went_wrong: Ups, algo correu mal.
+  doh_something_went_wrong_error: Ah! Ocorreu algo de errado:% {error}
   done: Concluído
   dont_filter: Não filtrar
   dont_send_me_email: Não me envie qualquer email!
@@ -2829,6 +2830,7 @@ pt-PT:
   open_: Abrir
   open_description: Qualquer um pode ver as coordenadas a menos que o táxon esteja
     ameaçado.
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: Optar por se incluir nesta observação
   opt_out_of_community_ids_for_obs: Optar por se excluir da comunidade de identificação
     para esta observação
@@ -2885,6 +2887,7 @@ pt-PT:
   people: Pessoas
   people_agree: pessoas concordam
   people_following_user: Pessoas que Seguem %{user}
+  people_user_follows: Pessoas %{user} Segue
   people_added:
     identification:
       without_observation: adicionou uma <strong>identificação</strong>
@@ -3135,9 +3138,11 @@ pt-PT:
   popular: popular
   position: Posição
   positional_accuracy: Precisão da localização
+  possessive_user: '%{user}'
   post: Publicação
   post_from_journal_by_parent_html: Publicação do <a href="%{url}">boletim por %{parent}</a>
   post_from_your_journal_html: Publicação de <a href="%{url}">seu jornal</a>
+  post_published: Artigo publicado!
   post_some_new_stuff: publique algo novo
   posted_by: Publicado por
   posted_on: Publicado em
@@ -3272,6 +3277,10 @@ pt-PT:
     order: ordem
     suborder: subordem
     infraorder: infraordem
+    family: família
+    subfamily: subfamília
+    supertribe: supertribo
+    tribe: tribo
     genus: género
     genushybrid: género híbrido
     subgenus: subgénero
@@ -3321,6 +3330,7 @@ pt-PT:
   recently_finished: Terminado recentemente
   recently_observed: Observado recentemente
   recently_resolved: Resolvido recentemente
+  record!: Gravar!
   red: vermelho
   redo_search_in_map: Procurar novamente no mapa
   redo_search_in_map_area: Procurar novamente na área do mapa
@@ -3342,8 +3352,10 @@ pt-PT:
     o máximo de informação descritiva possível. Mais importante, por favor forneça
     uma <strong>place</strong>, uma <strong>date/time</strong> e alguma informação
     sobre <strong>size</strong>.
+  remember_me: Memorizar-me
   remove: Remover
   remove_all_tags: Remova todas as etiquetas
+  remove_boundary: Remover limites
   remove_comma_separated_tags: Remover etiquetas separadas por vírgulas
   remove_conservation_status: remover o estatuto de conservação
   remove_from: Remover de
@@ -3355,6 +3367,7 @@ pt-PT:
   remove_from_list: Remover da lista
   remove_from_project: Remover do projeto
   remove_this_section: Remover esta secção
+  remove_manager: Remover gestor
   remove_photo: Remover a foto
   remove_place: Remover o lugar
   remove_project_user: Remover utilizador do projeto
@@ -3408,6 +3421,7 @@ pt-PT:
   reviewed: Revisto
   rg_observations: Observações GP
   roadmap: itinerário
+  role: Função
   rotate_left: Girar à esquerda
   rotate_right: Girar à direita
   row_singular_or_plural: Linha(s)
@@ -3577,8 +3591,13 @@ pt-PT:
   sizes: Tamanhos
   skip_to_next_page: Ir para página seguinte
   small: pequeno
+  site_stats: Estatísticas do Site
+  some_agree: alguns concordam
   some_observations_failed_to_be_added: Algumas observações não foram adicionadas
     aos projetos
+  some_observations_failed_to_save: Não foi possível guardar algumas observações
+  some_of_those_photos_couldnt_be_saved: 'Não foi possível guardar algumas dessas
+    fotos: %{error}'
   some_people: Algumas pessoas
   some_people_that: Algumas pessoas que
   some_rights_reserved: alguns direitos reservados
@@ -3700,22 +3719,49 @@ pt-PT:
   species_unknown: Espécie desconhecida
   specify_the_reason_youre_flagging: Especificar a razão pela qual está a sinalizar
     este item
+  start: Início
+  start_a_new_list: Começar uma lista nova
   start_a_new_project: Iniciar um novo projeto
+  start_a_project: Iniciar um projeto
+  start_date_time: Data / Hora de Início
+  start_new_account: Iniciar uma nova conta
   start_new_project: Iniciar um novo projeto
+  start_one: começar um
+  start_one_now: Comece um agora!
+  start_typing_field_name: Comece a digitar o nome do campo...
   start_typing_someones_name: Comece a escrever o nome de alguém...
+  states: Estados
+  stats: Estatísticas
+  stats_for_this_year_have_not_been_generated: As estatísticas para este ano não foram
+    geradas.
+  stats_title: Estatísticas do Site
+  status: Estado
   still_needs_id?: A comunidade pode confirmar/melhorar a identificação?
   still_working_on_classifying_taxon: Ainda estamos a trabalhar na classificação deste
     táxon. Volte a verificar mais tarde
   stop_editing: Pare de Editar
+  stop_testing: Parar Teste
   submission_model_description: Quem pode adicionar observações ao seu projeto?
+  submit: Submeter
+  submit_comment: Submeter comentário
+  submitted: Submetido
+  subscribe_to_a_place: Subscrever-se um Lugar
+  subscribe_to_this: Subscrever isto
+  subscribe_to_this_observation: Subscrever-se para esta observação
   subscriptions: Subscrições
   suggestions: Sugestões
   summary: Resumo
   suspicious_photos: Fotos suspeitas
   siutable_observations: observações adequadas
   suspend_user: Suspender utilizador
+  sync: Sincronizar?
+  sync_with_eol: Sincronizar com EOL
   synonyms: Sinónimos
   table: Tabela
+  table_of_contents: Tabela de conteúdos
+  tag: Etiqueta
+  tagging: A etiquetar...
+  tags: Etiquetas
   tags_are_a_way: As etiquetas permitem organizar as suas observações. Por exemplo,
     pode marcar todas as observações de poças com a etiqueta "poças" para facilitar
     a sua localização posterior.
@@ -3753,6 +3799,7 @@ pt-PT:
   taxonomic_groups: Grupos Taxonómicos
   taxonomic_tags_for_flickr: Etiquetas Taxonómicas para o Flickr
   taxonomy_settings: Definições da Taxonomia
+  terms: Termos
   terms_and_rules_html: Termos &amp; Regras
   terms_new_users: Se adicionar termos ao seu projeto, todos os novos utilizadores
     deverão concordar com eles antes de aderir.
@@ -3770,6 +3817,7 @@ pt-PT:
     ao projeto.
   that_observation_no_longer_exists: Essa observação já não existe.
   that_project_doesnt_exist: Este projeto não existe.
+  that_role_doesnt_exist: Essa função não existe
   that_was_the_last_observation_matching_the_current_filters: Esta foi a última observação
     que corresponde com os filtros atuais.
   the: o (a)
@@ -3788,11 +3836,13 @@ pt-PT:
   the_past: o passado
   the_project: o projeto
   the_world: O Mundo
+  then_keybord_sequence: depois
   there_were_problems_adding_your_observation_to_this_project: 'Houve problemas ao
     adicionar a sua observação a este projeto:'
   there_were_problems_adding_that_observation_to_this_project: 'Houve problemas ao
     adicionar essa observação a este projeto:'
   theres_also: também há
+  this: isto
   this_photo_is_already_associated: Esta foto já está associada com uma das suas observações.
   this_species: esta espécie
   this_taxon_concept_is_inactive: este conceito de táxon está inativo
@@ -3801,8 +3851,13 @@ pt-PT:
   this_year: Este Ano
   threatened: ameaçado
   thu: Qui
+  thumb_url: URL da Miniatura
+  time_: hora
   title: título
+  to: para
+  to_: para
   to_recipient: para
+  today: Hoje
   tools: Ferramentas
   top_5_identifiers: Principais 5 identificadores
   top_contributors: Principais colaboradores
@@ -3845,6 +3900,9 @@ pt-PT:
   umbrella_projects: Projetos Umbrella
   unknown: Desconhecido
   unknown_error: Erro desconhecido
+  unknown_rank: (Classificação Desconhecida)
+  unfollow: Deixar de seguir
+  unlink_your_google_account: Desvincular a Sua Conta Google
   updating: A atualizar...
   unpublish: Não publicado
   unreview: Cancelar a revisão
@@ -3868,6 +3926,7 @@ pt-PT:
       photo_failed: Falha ao carregar a foto
       remove_observation: Remover observação
       remove_photo: Remover a foto
+  usage_stats: Estatísticas de utilização
   user: Utilizador
   user_added_a_x: '%{user} adicionou um(a) %{x}'
   user_added_a_x_to_noun_by_html: '%{user} adicionou um(a) %{x} ao %{noun} de %{by}'
