@@ -68,9 +68,15 @@ class Projects extends React.Component {
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
 
-    const projectsOrProjObs = observation.project_observations.concat(
-      observation.non_traditional_projects );
     observation.non_traditional_projects = observation.non_traditional_projects || [];
+    const projectsOrProjObs = observation.non_traditional_projects;
+    _.each( observation.project_observations, po => {
+      // trying to avoid duplicate project listing. This can happen for formerly
+      // traditional projects that have been turned into collection projects
+      if ( !_.find( projectsOrProjObs, ppo => ( ppo.project_id === po.project_id ) ) ) {
+        projectsOrProjObs.push( po );
+      }
+    } );
     if ( !observation || !observation.user ||
          ( !loggedIn &&
            projectsOrProjObs.length === 0 ) ) {

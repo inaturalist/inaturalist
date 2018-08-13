@@ -31,7 +31,6 @@ export function setProject( p ) {
       type: SET_PROJECT,
       project
     } );
-    console.log( project );
   };
 }
 
@@ -351,24 +350,6 @@ export function setSelectedTab( tab, options = { } ) {
       window.scrollTo( 0, 0 );
     }
     dispatch( setConfig( newConfigState ) );
-  };
-}
-
-export function join( ) {
-  return ( dispatch, getState ) => {
-    const { project, config } = getState( );
-    if ( !project || !config.currentUser ) { return; }
-    const payload = { id: project.id };
-    dispatch( setAttributes( {
-      membership_status: "saving"
-    } ) );
-    inatjs.projects.join( payload ).then( ( ) => {
-      dispatch( setAttributes( {
-        currentUserIsMember: true
-      } ) );
-      dispatch( fetchMembers( ) );
-      dispatch( setAttributes( { membership_status: null } ) );
-    } );
   };
 }
 

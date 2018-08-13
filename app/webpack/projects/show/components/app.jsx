@@ -19,7 +19,7 @@ import FlaggingModalContainer from "../containers/flagging_modal_container";
 import UsersPopover from "../../../observations/show/components/users_popover";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
 
-const App = ( { config, project, join, leave, setSelectedTab, convertProject } ) => {
+const App = ( { config, project, leave, setSelectedTab, convertProject } ) => {
   let view;
   let tab = config.selectedTab;
   const showingCountdown = ( project.startDate && !project.started && tab !== "about" &&
@@ -97,6 +97,7 @@ const App = ( { config, project, join, leave, setSelectedTab, convertProject } )
           _.compact( _.map( project.members.results, "user" ) ) : null }
         keyPrefix="members-popover"
         placement="bottom"
+        containerPadding={ 20 }
         returnContentsWhenEmpty
         contentAfterUsers={
           <div className="view-all-members">
@@ -272,7 +273,6 @@ const App = ( { config, project, join, leave, setSelectedTab, convertProject } )
 App.propTypes = {
   config: PropTypes.object,
   project: PropTypes.object,
-  join: PropTypes.func,
   leave: PropTypes.func,
   setSelectedTab: PropTypes.func,
   convertProject: PropTypes.func
