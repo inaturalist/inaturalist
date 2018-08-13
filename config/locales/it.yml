@@ -348,11 +348,11 @@ it:
   admin_any_projects: amministra qualsiasi progetto
   admin_tools: Strumenti Di Amministrazione
   agree: d'accordo
-  agree_: Concordi
+  agree_: Concorda
   agree?: Concordi?
   agree_to_the_project_terms: Accetta i termini di progetto
   agree_with_current_taxon: D'accordo con il taxon corrente
-  agreeing: Concordando...
+  agreeing: Accordo in corso...
   aka: aka
   all: Tutto
   all_colors: '&laquo; Tutti i colori'
@@ -1254,6 +1254,7 @@ it:
   does_the_date_seem_accurate: La data sembra corretta?
   doesnt_have_default_photo: non ha ancora una foto predefinita.
   doh_something_went_wrong: Oh, qualcosa è andato storto.
+  doh_something_went_wrong_error: 'Ahi, qualcosa è andato storto: %{error}'
   done: Fatto
   dont_filter: Non filtrare
   dont_send_me_email: Non inviarmi nessuna e-mail!
@@ -1916,7 +1917,7 @@ it:
   joined_any_projects: aderito a nessun progetto
   joined_projects: Progetti a cui ti sei unito
   joined_with_date: 'Unito: %{date}'
-  joining: Stai aderendo...
+  joining: Adesione in corso...
   journal: Diario
   journal_archives_for: Archivi dei diari per
   journal_post: Post del diario
@@ -2131,7 +2132,7 @@ it:
   loading_observations: Caricamento delle osservazioni...
   loading_preview_and_code: Caricamento in corso dell'anteprima e del codice...
   loading_suggestions: Caricamento suggerimenti...
-  loading_tags: Caricamento tag in corso
+  loading_tags: Caricamento etichette in corso...
   loading_taxa_from_your: Caricamento dei taxa dalle tue osservazioni...
   loading_wikipedia_description: Caricamento della descrizione di Wikipedia...
   locale_description: La localizzazione permette di settare le preferenze della lingua
@@ -3382,7 +3383,7 @@ it:
   redo_search_in_map_area: Ripeti la ricerca nell'area di mappa
   refresh: Aggiorna
   refresh_listed_taxa: aggiorna i taxa elencati
-  refreshing: aggiornamento in corso...
+  refreshing: aggiornamento in corso
   regenerate_stats: Rigenera statistiche
   regenerate_url: Rigenera l'URL
   register_for_this_event_at_x_html: Registrati per questo evento in %{x}
@@ -3588,7 +3589,7 @@ it:
   send_invites_to: Invia inviti a
   send_me_reset_password_instructions: Mandami le istruzioni per resettare la password
   send_the_invites: Manda gli Inviti
-  sending: Invio in corso
+  sending: Invio in corso...
   sent: Inviato
   separate_values_with_a_pipe: Separa i valori con la barra verticale, e.g. "1-5|6-10|molti"
     o "si|no|forse"
@@ -3812,6 +3813,7 @@ it:
     di questo taxon. Controlla più tardi
   stop_editing: Termina la modifica
   stop_following_user: Smetti di seguire %{user}
+  stop_testing: Termina il test
   stop_updating_position: Arresta l'aggiornamento del posizionamento
   stuff_just_added: Le cose che hai appena aggiunto...
   subject_resolved_noun_html: '%{subject} ha risolto %{noun}'
@@ -3868,7 +3870,7 @@ it:
   table: Tabella
   table_of_contents: Indice
   tag: Etichetta
-  tagging: Sto etichettando...
+  tagging: Etichettatura in corso...
   tags: Etichette
   tags_are_a_way: Le Etichette sono un modo per organizzare le tue osservazioni. Per
     esempio, puoi etichettare tutte le tue osservazioni relative alle pozze di marea
@@ -3941,6 +3943,8 @@ it:
     Le valutazioni di un taxon sono dei documenti che stabiliscono lo stato corrente di una specie, in genere lo stato conservazionistico.
     Per esempio, una organizzazione conservazionistica regionale potrebbe usarle per organizzare le informazioni e sollecitare feedback sullo stato di diversi taxa minacciati nella regione.
   taxon_change: modifiche di taxon
+  taxon_change_must_be_committed_to_update_records: Per aggiornare i contenuti occorre
+    confermare la modifica del taxon
   taxon_deleted: Taxon eliminato.
   taxon_doesnt_have_a_range: Il Taxon non ha un areale definito
   taxon_drop: elimina taxon

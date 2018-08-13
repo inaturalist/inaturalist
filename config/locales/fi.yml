@@ -1902,6 +1902,7 @@ fi:
   Needs_ID!: Tarvitsee tunnisteen!
   needs_id_expandable_html: <span class='full'>Tarvitsee </span>tunnisteen
   needs_to_be_identified: On tunnistettava
+  new: Uusi
   new_announcement: Uusi ilmoitus
   new_assessment: Uusi arviointi
   new_check_list: Uusi lajiluettelo
@@ -2171,6 +2172,7 @@ fi:
   open: avoin
   open_: Avoin
   open_description: Jokainen voi nähdä koordinaatit, ellei taksoni ole uhanalainen.
+  open_street_map: OpenStreetMap
   optional: valinnainen
   or: tai
   or_choose_high_level_taxa: '... tai valitse joistakin korkeatasoisista taksoneista'
@@ -2555,6 +2557,7 @@ fi:
   remove_observations:
     one: Poista 1 havainto?
     other: Poista %{count} havaintoa?
+  remove_photo: Poista kuva
   remove_place: Poista paikka
   remove_project_user: Poista projektikäyttäjä
   remove_selected: Poista valitut
@@ -3004,6 +3007,7 @@ fi:
   total_species_observed: Lajeja havaittu yhteensä
   total_unique_observers: Uniikit havainnoijat yhteensä
   total_users: käyttäjää yhteensä,
+  translated_languages: Käännetyt kielet
   "true": Totta
   trending: Nousussa
   trends: Trendit
@@ -3601,6 +3605,7 @@ fi:
         name_place_help_html: Aseta tärkeysjärjestykseen tässä paikassa käytetyt yleiset
           nimet.
         project_addition_preferences:
+          any: Kaikki
           joined: Projektit joihin olet liittynyt
           none: Ei mitkään, vain sinä voit lisätä havaintojasi projekteihin
         search_place_help_html: Oletuspaikka havaintohauille.

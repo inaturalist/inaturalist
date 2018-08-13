@@ -48,6 +48,7 @@ lb:
     one: 1 Aart
     other: '%{count} Aarten'
   _100_day_trends: Tendenz iwwer 100 Deeg
+  _percent_ID_d: '% ID bestëmmt'
   a: ee(n)
   a_: ee(n)
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -66,6 +67,7 @@ lb:
   about_licenses: Iwwer Lizenzen
   about_licensing: Iwwer d'Lizenzen
   about_life!: iwwer d'Liewen!
+  about_muting: Iwwer stomm schalten
   about_names: Iwwer Nimm
   about_places: Iwwer Plazen
   about_taxon_changes: Iwwer Taxon-Ännerungen
@@ -78,6 +80,7 @@ lb:
   account: Benotzerkont
   account_settings: Astellunge vum Benotzerkont
   accept: akzeptéieren
+  accuracy_meters: Genauegkeet (Meter)
   action: Aktioun
   actions: Aktiounen
   activate_user: Benotzer aktivéieren
@@ -163,6 +166,7 @@ lb:
   adding_observations: Observatiounen derbäisetzen
   additional_range: Zousätzleche Beräich
   admin: Admin
+  admin_s: Administrateur(en)
   agree: zoustëmmen
   agree_: Akzeptéieren
   agree?: Zoustëmmen?
@@ -181,15 +185,19 @@ lb:
     rank:
       kingdom: Kinnekräich
       class: Klass
+      phylum: Stamm
       species: Spezien
+      order: Ordnung
     amphibians: Amphibien
     animals: Déieren
     arachnids: Spannendéieren
     birds: Vigel
     insects: Insekten
     mammals: Mamendéieren
+    mollusks: Mollusken
     other_animals: Aner Déieren
     plants: Planzen
+    protozoans: Protozoen
     reptiles: Reptilien
     life: Liewen
     x_plantae:
@@ -223,12 +231,15 @@ lb:
   alphabetical: Alphabetesch
   alphabetical_order: Alphabetesch Reiefolleg
   amphibians: Amphibien
+  an: een
+  an_: een
   and: a(n)
   and_make_some_new: an e puer Neier maachen
   android: Android
   animals: Déieren
   animated_observations_map: Animéiert Kaart mat den Observatiounen
   annotations: Notizen
+  announcement_was_successfully_created: Ukënnegung gouf ugeluecht.
   announcement_was_successfully_updated: Ukënnegung gouf aktualiséiert.
   announcements: Ukënnegungen
   any: all
@@ -280,7 +291,16 @@ lb:
   you_sure_delete_taxon_from_list?: Sidd Dir sécher datt Dir %{taxon} vun der Lëscht
     erofhuele wëllt?
   ascending: vu kleng op grouss
+  assessment: Bewäertung
+  assessment_has_benn_completed: Bewäertung gouf ofgeschloss
+  assessment_sections: Deeler vun der Bewäertung
+  assessment_was_deleted: Bewäertung gouf geläscht.
+  assessment_was_successfully_created: Bewäertung gouf aktualiséiert.
+  assessment_was_successfully_updated: Bewäertung gouf aktualiséiert.
+  assessment_x: '%{assessment} Bewäertung'
+  assessments: Bewäertungen
   associations: Associatiounen
+  at: bäi
   atom: Atom
   automatically_add_to_project: Automatesch bei de Projet derbäisetzen
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse
@@ -525,6 +545,7 @@ lb:
   do_not_show_this_message_again: Dëse Message net,méi weisen
   do_you_want_to_proceed: Wëllt Dir virufueren?
   doh_something_went_wrong: Ups, da ass eppes schif gaang.
+  doh_something_went_wrong_error: 'Ups et ass Eppes schif gaangen: %{error}'
   done: Fäerdeg
   dont_filter: Net filteren
   dont_send_me_email: Schéckt mir keng E-Mailen!
@@ -1439,7 +1460,7 @@ lb:
   unknown_error: Onbekannte Feeler
   unlink_your_google_account: Verbindung mat Ärem Google Benotzerkont ewechhuelen
   unmute: Stomm schalten ausmaachen
-  updating: Aktualisatioun...
+  updating: Aktualiséierung...
   unsuspend_user: Suspendéierung vum Benotzer ophiewen
   update: Aktualiséieren
   update_search: Sichen aktualiséieren
