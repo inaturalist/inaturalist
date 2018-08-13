@@ -72,15 +72,23 @@ const App = ( { config, project, join, leave, setSelectedTab, convertProject } )
   } else {
     membershipLabel = I18n.t( "members" );
   }
+
+  let membershipAction;
+  if ( loggedIn && !userIsOwner ) {
+    if ( project.currentUserIsMember ) {
+      membershipAction = ( ) => { leave( ); };
+    } else {
+      membershipAction = ( ) => {
+        window.location = `/projects/${project.slug}/join`;
+      };
+    }
+  }
+
   const headerButton = (
     <div className="header-members-button">
       <div
         className={ `action ${membershipLabel !== I18n.t( "members" ) && "clicky"}` }
-        onClick={ ( ) => {
-          if ( loggedIn && !userIsOwner ) {
-            project.currentUserIsMember ? leave( ) : join( );
-          }
-        } }
+        onClick={ membershipAction }
       >
         { membershipLabel }
       </div>
@@ -90,6 +98,13 @@ const App = ( { config, project, join, leave, setSelectedTab, convertProject } )
         keyPrefix="members-popover"
         placement="bottom"
         returnContentsWhenEmpty
+        contentAfterUsers={
+          <div className="view-all-members">
+            <a href={ `/projects/${project.slug}/members` } className="linky">
+              { I18n.t( "view_all_members" ) }
+            </a>
+          </div>
+        }
         contents={ (
           <div className="count">
             <i className="fa fa-user" />
@@ -174,7 +189,6 @@ const App = ( { config, project, join, leave, setSelectedTab, convertProject } )
                     <a onClick={ convertProject } className="linky">
                       { I18n.t( "views.projects.show.click_here_to_convert_this_project" ) }
                     </a>
-                    <ConfirmModalContainer />
                   </div>
                 ) }
               </div>
@@ -250,6 +264,7 @@ const App = ( { config, project, join, leave, setSelectedTab, convertProject } )
         { view }
       </div>
       <FlaggingModalContainer />
+      <ConfirmModalContainer />
     </div>
   );
 };

@@ -31,7 +31,7 @@ const UmbrellaNews = ( { project } ) => {
           <div>
             <Row className="posts">
               { _.map( project.posts.results, post => (
-                <Col xs={ 4 } className="post">
+                <Col xs={ 4 } className="post" key={ `post_${post.id}` }>
                   <a href={ `/projects/${project.slug}/journal/${post.id}` }>
                     <div className="date">{ moment( post.created_at ).format( "LL - LT" ) }</div>
                     <div className="title">{ post.title }</div>

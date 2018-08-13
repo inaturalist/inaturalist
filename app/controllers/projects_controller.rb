@@ -1072,6 +1072,7 @@ class ProjectsController < ApplicationController
           render :status => :unprocessable_entity, :json => {:errors => @project_user.errors.full_messages}
         end
       else
+        Project.refresh_es_index
         format.html do
           flash[:notice] = notice
           redirect_to dest

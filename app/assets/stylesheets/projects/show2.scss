@@ -233,7 +233,7 @@ button {
           font-size: 25px;
           margin-top: 5px;
         }
-        .header-followers-button {
+        .header-members-button {
           border: 1px solid rgba(255, 255, 255, 0.3);
           border-radius: 100px;
           overflow: hidden;
@@ -991,6 +991,14 @@ button {
     }
   }
 }
+.UmbrellaOverviewTab .News {
+  .post + .post {
+    margin-top: 0;
+  }
+  button {
+    margin-top: 20px;
+  }
+}
 
 .IconicTaxaPieChart, .QualityGradePieChart {
   position: relative;
@@ -1130,6 +1138,13 @@ button {
   }
   button {
     margin-top: 25px;
+  }
+}
+
+#popover-members-popover {
+  .view-all-members {
+    margin-top: 10px;
+    text-align: center;
   }
 }
 

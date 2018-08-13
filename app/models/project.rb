@@ -126,7 +126,7 @@ class Project < ActiveRecord::Base
     end
   }
 
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :icon,
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
@@ -150,7 +150,7 @@ class Project < ActiveRecord::Base
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :cover,
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",

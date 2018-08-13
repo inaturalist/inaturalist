@@ -45,7 +45,7 @@ export function setAttributes( attributes ) {
 export function fetchMembers( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const params = { id: state.project.id, per_page: 100, order: "login" };
+    const params = { id: state.project.id, per_page: 100, order_by: "login" };
     if ( state.config.currentUser ) {
       params.ttl = -1;
     }
@@ -376,20 +376,25 @@ export function leave( ) {
   return ( dispatch, getState ) => {
     const { project, config } = getState( );
     if ( !project || !config.currentUser ) { return; }
-    const payload = { id: project.id };
-    dispatch( setAttributes( {
-      membership_status: "saving"
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: I18n.t( "are_you_sure_leave_this_project" ),
+      onConfirm: ( ) => {
+        const payload = { id: project.id };
+        dispatch( setAttributes( {
+          membership_status: "saving"
+        } ) );
+        inatjs.projects.leave( payload ).then( ( ) => {
+          dispatch( setAttributes( {
+            currentUserIsMember: false
+          } ) );
+          dispatch( fetchMembers( ) );
+          dispatch( setAttributes( { membership_status: null } ) );
+        } );
+      }
     } ) );
-    inatjs.projects.leave( payload ).then( ( ) => {
-      dispatch( setAttributes( {
-        currentUserIsMember: false
-      } ) );
-      dispatch( fetchMembers( ) );
-      dispatch( setAttributes( { membership_status: null } ) );
-    } );
   };
 }
-
 
 export function convertProject( ) {
   return ( dispatch, getState ) => {
