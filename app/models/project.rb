@@ -287,11 +287,7 @@ class Project < ActiveRecord::Base
   end
 
   def rule_places
-    if project_observation_rules.loaded?
-      @rule_places ||= project_observation_rules.select{ |por| por.operator == "observed_in_place?" }.map(&:operand).compact
-    else
-      @rule_places ||= project_observation_rules.where(operator: "observed_in_place?").map(&:operand).compact
-    end
+    project_observation_rules.select{ |por| por.operator == "observed_in_place?" }.map(&:operand).compact
   end
 
   def rule_taxon
