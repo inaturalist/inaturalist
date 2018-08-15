@@ -27,7 +27,10 @@ class ObservationFieldInput extends React.Component {
 
   componentDidUpdate( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    $( ".observation-field :input:visible:first", domNode ).focus( );
+    // prevent the taxon chooser from opening again after selecting a taxon
+    if ( !this.state.observationFieldTaxon ) {
+      $( ".observation-field :input:visible:first", domNode ).focus( );
+    }
   }
 
   onChangeHandler( e ) {

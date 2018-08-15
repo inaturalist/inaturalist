@@ -215,6 +215,7 @@ $.fn.genericAutocomplete = function( options ) {
   field.keyup( function( e ) {
     if( !field.val( ) ) {
       field.trigger( "resetSelection" );
+      ac._close( );
     }
   });
   // show the results anytime the text field gains focus
