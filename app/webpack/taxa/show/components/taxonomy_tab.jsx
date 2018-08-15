@@ -246,12 +246,14 @@ const TaxonomyTab = ( {
             </Col>
             <Col xs={4}>
               <ul className="tab-links list-group">
-                <li className="list-group-item internal">
-                  <a href={`/taxa/${taxon.id}/names`} rel="nofollow">
-                    <i className="fa fa-gear accessory-icon"></i>
-                    { I18n.t( "manage_names" ) }
-                  </a>
-                </li>
+                { viewerIsCurator ? (
+                  <li className="list-group-item internal">
+                    <a href={`/taxa/${taxon.id}/names`} rel="nofollow">
+                      <i className="fa fa-gear accessory-icon"></i>
+                      { I18n.t( "manage_names" ) }
+                    </a>
+                  </li>
+                ) : null }
                 <li className="list-group-item internal">
                   <a
                     href={`/taxa/${taxon.id}/taxon_names/new`}
