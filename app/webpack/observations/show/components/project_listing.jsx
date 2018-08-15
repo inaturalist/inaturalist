@@ -76,13 +76,15 @@ class ProjectListing extends React.Component {
         { I18n.t( "edit_your_settings_for_this_project" ) }
       </MenuItem> ) );
     }
-    menuItems.push( ( <MenuItem
-      key={ `project-global-${obj.project.id}` }
-      eventKey="globalSettings"
-      href="/users/edit#projects"
-    >
-    { I18n.t( "edit_your_global_project_settings" ) }
-    </MenuItem> ) );
+    if ( isProjectObservation ) {
+      menuItems.push( ( <MenuItem
+        key={ `project-global-${obj.project.id}` }
+        eventKey="globalSettings"
+        href="/users/edit#projects"
+      >
+      { I18n.t( "edit_your_global_project_settings" ) }
+      </MenuItem> ) );
+    }
     return (
       <span className="control-group">
         <Dropdown
