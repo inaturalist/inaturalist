@@ -51,6 +51,7 @@ module DarwinCore
       record.extend(DarwinCore::Helpers)
       record.set_view(options[:view])
       record.set_show_private_coordinates(options[:private_coordinates])
+      record.dwc_use_community_taxon if options[:community_taxon]
       record
     end
 
@@ -65,6 +66,10 @@ module DarwinCore
 
       def set_show_private_coordinates(show_private_coordinates)
         @show_private_coordinates = show_private_coordinates
+      end
+
+      def dwc_use_community_taxon
+        @dwc_use_community_taxon = true
       end
 
       def occurrenceID
@@ -194,39 +199,39 @@ module DarwinCore
       end
 
       def taxonID
-        taxon_id
+        dwc_taxon.try(:id)
       end
 
       def scientificName
-        taxon.name if taxon
+        dwc_taxon.try(:name)
       end
 
       def taxonRank
-        taxon.rank if taxon
+        dwc_taxon.try(:rank)
       end
 
       def kingdom
-        taxon.kingdom_name if taxon
+        dwc_taxon.try(:kingdom_name)
       end
 
       def phylum
-        taxon.phylum_name if taxon
+        dwc_taxon.try(:phylum_name)
       end
 
       def taxon_class
-        taxon.taxonomic_class_name if taxon
+        dwc_taxon.try(:taxonomic_class_name)
       end
 
       def order
-        taxon.taxonomic_order_name if taxon
+        dwc_taxon.try(:taxonomic_order_name)
       end
 
       def family
-        taxon.family_name if taxon
+        dwc_taxon.try(:family_name)
       end
 
       def genus
-        taxon.genus_name if taxon
+        dwc_taxon.try(:genus_name)
       end
 
       def dwc_license
@@ -239,6 +244,10 @@ module DarwinCore
 
       def rightsHolder
         user.name.blank? ? user.login : user.name
+      end
+
+      def dwc_taxon
+        @dwc_use_community_taxon ? community_taxon : taxon
       end
 
     end

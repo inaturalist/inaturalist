@@ -56,6 +56,10 @@ module DarwinCore
       data_paths = make_data
       logger.debug "Data: #{data_paths.inspect}"
       paths = [metadata_path, descriptor_path, data_paths].flatten.compact
+      if @opts[:with_taxa]
+        logger.info "Making taxa extension..."
+        paths << make_api_all_taxon_data
+      end
       archive_path = make_archive(*paths)
       logger.debug "Archive: #{archive_path}"
       FileUtils.mv(archive_path, @opts[:path])
@@ -201,7 +205,10 @@ module DarwinCore
           csv << headers
           observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
             benchmark(:obs) do
-              o = DarwinCore::Occurrence.adapt(o, view: fake_view, private_coordinates: @opts[:private_coordinates])
+              o = DarwinCore::Occurrence.adapt(o, view: fake_view,
+                private_coordinates: @opts[:private_coordinates],
+                community_taxon: @opts[:community_taxon]
+              )
               row = DarwinCore::Occurrence::TERMS.map do |field, uri, default, method|
                 key = method || field
                 benchmark( "obs_#{key}" ) { o.send( key ) }
@@ -465,6 +472,9 @@ module DarwinCore
           Observation.preload_associations(batch, preloads)
         end
         batch.each do |observation|
+          if @opts[:community_taxon] && observation.community_taxon.blank?
+            next
+          end
           yield observation
         end
         batch_times << (Time.now - start)
