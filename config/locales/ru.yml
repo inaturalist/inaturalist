@@ -830,20 +830,20 @@ ru:
     merge: Объединить
     swap: Заменить
     stage: Стадия
-    drop: Бросить
+    drop: Отбросить
     split_from: Разделить форму
     split_into: разделить на
     merge_into: Соединить вместе
     merged_into: слились в
     replaced_by: заменены
     replace_with: 'Заменить на:'
-    dropped: Брошено
+    dropped: отброшено
     staged: поставлен
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} был разделен на %{output_taxa}'
     input_taxon_will_be_split_into_output_taxa_html: '%{input_taxon} будет разделен
       на %{output_taxa}'
-    input_taxon_was_dropped_html: '%{input_taxon} был выброшен'
-    input_taxon_will_be_dropped_html: '%{input_taxon} будет выброшен'
+    input_taxon_was_dropped_html: '%{input_taxon} был отброшен'
+    input_taxon_will_be_dropped_html: '%{input_taxon} будет отброшен'
     input_taxon_will_be_activated_soon_html: '%{input_taxon} будет активирован вскоре'
     input_taxon_was_replaced_by_output_taxon_html: '%{input_taxon} был заменён %{output_taxon}'
     input_taxon_will_be_replaced_by_output_taxon_html: '%{input_taxon} будет заменен
@@ -1288,7 +1288,7 @@ ru:
   dont_filter: Не фильтровать
   dont_send_me_email: Не присылайте мне никаких писем!
   dont_use_double_quotes: Воздержитесь от использования двойных кавычек
-  drop_it: Опустите
+  drop_it: Отбросьте его
   double_click_to_finish: (дважды щелкните, чтобы закончить)
   download: Загрузить
   download_bulk_import_template_html: |-
@@ -2400,6 +2400,12 @@ ru:
   native: естественный
   native_page_url: Собственный URL страницы
   native_to_place: Натиный для %{place}
+  nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    culpa qui officia deserunt mollit anim id est laborum.
   ne_lat: СВ Широта
   ne_lon: СВ долг.
   near: около
@@ -3699,6 +3705,8 @@ ru:
   taxa_observed: наблюдаемых таксонов
   taxa_to_include: Таксоны, которые нужно включить
   taxon: Таксон
+  taxon_autocomplete_placeholder: Птицы, бабочка монарх и т.д.
+  taxon_is_a_rank: '%{taxon} - это %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} это %{rank} %{iconic_taxon} с 1 наблюдением'
     other: '%{taxon} это %{rank} %{iconic_taxon} с %{count} наблюдениями'
@@ -3750,15 +3758,20 @@ ru:
     Оценки таксонов - это документы, оценивающие текущий статус вида, как правило, природоохранный статус.
     Например, региональная природоохранная организация может использовать их для организации информации и получения обратной связи о статусе некоторых находящихся под угрозой таксонов в регионе.
   taxon_change: изменение таксона
+  taxon_change_must_be_committed_to_update_records: Для обновления записей должно
+    быть зафиксировано изменение таксона
   taxon_deleted: Таксон удалён.
   taxon_doesnt_have_a_range: Таксон не имеет диапазона
+  taxon_drop: Отбрасывание таксона
   taxon_id: Идентификатор таксона
   taxon_ids: Идентификации таксона
   taxon_map:
     it_may_take_google_a_while_to: Для загрузки этих данных может потребоваться Google,
       если предположить, что у GBIF есть какие-либо данные.
+    data_url: URL данных
     overlays: Наложения
   taxon_changes: Изменениях таксона
+  taxon_colors: Цвета таксона
   taxon_curators: Кураторы таксона
   taxon_merge: слияния таксонов
   taxon_name: Наименование таксона
@@ -3812,6 +3825,7 @@ ru:
   terms_service: Условия использования
   terrain: местность
   text: Текст
+  text_: текст
   thanks_for_signing_up: Спасибо за регистрацию!
   thanks_for_using: Спасибо за использование
   thanks_from_all_of_us_here_at: Спасибо от всех нас, примкнувших к
@@ -4022,6 +4036,7 @@ ru:
     вашим фото на Flickr. Продолжить?
   this_will_update_all_last_observations: Это обновит все последние наблюдения и добавит
     новые таксоны из
+  this_year: В этом году
   those_are_the_basics_of: Это основа добавления наблюдений! Существует много всего
     другого, что вы можете делать, как, например, проводить поиск и фильтрацию ваших
     наблюдений или редактирование их в пакетном режиме, но они должны быть довольно
@@ -4033,6 +4048,7 @@ ru:
   time_ago: '%{time} назад'
   tired_of_testing_this_new_version: Устали от тестирования этой новой версии?
   title: название
+  title_and_description: Заголовок и описание
   titled_favorites_and_the_most_recent_additions: озаглавленный «Фавориты», и самые
     последние пополнения появятся в этом пространстве.
   to_add_comments: чтобы добавить комментарии
@@ -4044,6 +4060,8 @@ ru:
   to_suggest_an_identification: предлагать идентификацию
   to_tag_your_flickr_from_here: чтобы добавить отсюда теги к вашим фото на Flickr
     без операций "вырезать" и "вставить".
+  to_the_bat_cave: К пещере летучих мышей!
+  today: Сегодня
   too_many_observations_csv: У вас масса наблюдений!<br/> Мы можем принять только
     ваши первые %{max_rows} наблюдений в каждом CSV-файле.
   top_5_identifiers: 5 лучших экспертов
