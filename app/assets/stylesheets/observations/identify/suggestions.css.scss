@@ -59,6 +59,9 @@
         margin-left: 10px;
       }
     }
+    .TaxonMap {
+      height: 300px;
+    }
   }
   .photos {
     margin: -2.5px;
@@ -142,14 +145,38 @@
     .btn-label {
       margin-right: 10px;
     }
+
+    .direct-link {
+      color: $text-grey;
+      margin-left: 5px;
+    }
+    .suggestion-row-content {
+      $suggestion-row-height: 175px;
+      display: flex;
+      .photos {
+        flex: 2;
+        width: 66.66%;
+        .TaxonPhoto {
+          flex: 2;
+        }
+        .noresults {
+          margin: 2.5px;
+          line-height: $suggestion-row-height;
+          width: 100%;
+          background-color: #efefef;
+        }
+      }
+      .TaxonMap {
+        flex: 1;
+        width: 33.33%;
+        height: $suggestion-row-height;
+        margin-left: 5px;
+      }
+    }
   }
 
   .obs-modal-header {
     margin: 20px 0;
-  }
-
-  .TaxonMap {
-    height: 300px;
   }
 
   .tools {
@@ -204,13 +231,15 @@ body > [role="dialog"] .ObservationModal,
 body > div > [role="dialog"] .ObservationModal {
   .right-col {
     .Suggestions {
-      .TaxonMap {
-        height: 300px;
-      }
       .tools {
         background-color: #E3E9DA;
         > * {
           width: auto;
+        }
+      }
+      .suggestions-detail {
+        .TaxonMap {
+          height: 300px;
         }
       }
     }

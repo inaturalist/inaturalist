@@ -2,7 +2,6 @@ import inatjs from "inaturalistjs";
 import _ from "lodash";
 
 import {
-  SHOW_CURRENT_OBSERVATION,
   UPDATE_CURRENT_OBSERVATION
 } from "../actions/current_observation_actions";
 
@@ -98,6 +97,9 @@ export default function reducer(
       newState.detailTaxon = null;
       newState.detailPhotoIndex = 0;
       newState.observation = observation;
+      // Don't use the current observation when making suggestions based on nearby
+      // observations
+      newState.query.featured_observation_id = observation.id;
       break;
     }
     case UPDATE_CURRENT_OBSERVATION: {
@@ -186,7 +188,7 @@ export function updateWithObservation( observation ) {
 }
 
 function sanitizeQuery( query ) {
-  return _.pick( query, ["place_id", "taxon_id", "source", "order_by"] );
+  return _.pick( query, ["place_id", "taxon_id", "source", "order_by", "featured_observation_id"] );
 }
 
 export function fetchSuggestions( query ) {
@@ -226,15 +228,10 @@ export function fetchSuggestions( query ) {
       }
       payload.image_url = photo.photoUrl( "medium" );
       if (
-        s.suggestions.observation.geojson &&
-        newQuery.place && newQuery.place.id === newQuery.defaultPlace.id
+        s.suggestions.observation.geojson
       ) {
         payload.lat = s.suggestions.observation.geojson.coordinates[1];
         payload.lng = s.suggestions.observation.geojson.coordinates[0];
-      } else if ( newQuery.place && newQuery.place.location ) {
-        const coords = newQuery.place.location.split( "," );
-        payload.lat = coords[0];
-        payload.lng = coords[1];
       }
     }
     return inatjs.taxa.suggest( payload ).then( suggestions => {

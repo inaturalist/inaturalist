@@ -526,6 +526,20 @@ class CommunityIdentification extends React.Component {
           { I18n.t( "community_id_heading" ) }
           <span className="header-actions pull-right">
             { this.optOutPopover( ) }
+            { loggedIn && !observation.communityTaxon ? (
+              <a
+                href={ compareLink }
+                className="linky compare-link"
+                onClick={ e => {
+                  if ( onClickCompare ) {
+                    return onClickCompare( e, observation.taxon, observation );
+                  }
+                  return true;
+                } }
+              >
+                { I18n.t( "compare" ) }
+              </a>
+            ) : null }
             <div className="linky" onClick={ this.showCommunityIDModal }>
               { I18n.t( "whats_this?" ) }
             </div>

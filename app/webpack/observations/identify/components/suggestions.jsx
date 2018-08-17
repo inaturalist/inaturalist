@@ -71,7 +71,7 @@ class Suggestions extends React.Component {
     const that = this;
     const taxonPhotos = _
       .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
-      .slice( 0, 5 );
+      .slice( 0, 3 );
     return (
       <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
         <h3 className="clearfix">
@@ -85,6 +85,13 @@ class Suggestions extends React.Component {
             } }
             user={ this.props.config.currentUser }
           />
+          <a
+            target="_blank"
+            href={ urlForTaxon( taxon ) }
+            className="direct-link"
+          >
+            <i className="icon-link"></i>
+          </a>
           <div className="btn-group pull-right">
             { details && ( details.vision_score || details.frequency_score ) ? (
               <div className="quiet btn btn-label btn-xs">
@@ -107,26 +114,48 @@ class Suggestions extends React.Component {
             </Button>
           </div>
         </h3>
-        <LazyLoad height={150} offsetVertical={1000}>
-          <div className="photos">
-            { taxonPhotos.length === 0 ? (
-              <div className="noresults">
-                { I18n.t( "no_photos" ) }
-              </div>
-            ) : taxonPhotos.map( tp => (
-              <TaxonPhoto
-                key={`suggestions-row-photo-${tp.taxon.id}-${tp.photo.id}`}
-                photo={tp.photo}
-                taxon={taxon}
-                width={150}
-                height={150}
-                showTaxonPhotoModal={ p => {
-                  const index = _.findIndex( taxon.taxonPhotos,
-                    taxonPhoto => taxonPhoto.photo.id === p.id );
-                  this.props.setDetailTaxon( taxon, { detailPhotoIndex: index } );
-                } }
-              />
-            ) ) }
+        <LazyLoad height={175} offsetVertical={1000}>
+          <div className="suggestion-row-content">
+            <div className="photos">
+              { taxonPhotos.length === 0 ? (
+                <div className="noresults">
+                  { I18n.t( "no_photos" ) }
+                </div>
+              ) : taxonPhotos.map( tp => (
+                <TaxonPhoto
+                  key={`suggestions-row-photo-${tp.taxon.id}-${tp.photo.id}`}
+                  photo={tp.photo}
+                  taxon={taxon}
+                  height={175}
+                  showTaxonPhotoModal={ p => {
+                    const index = _.findIndex( taxon.taxonPhotos,
+                      taxonPhoto => taxonPhoto.photo.id === p.id );
+                    this.props.setDetailTaxon( taxon, { detailPhotoIndex: index } );
+                  } }
+                />
+              ) ) }
+            </div>
+            <TaxonMap
+              showAllLayer={false}
+              minZoom={ 2 }
+              zoomLevel={ 6 }
+              preserveViewport
+              latitude={ that.props.observation.latitude }
+              longitude={ that.props.observation.longitude }
+              gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
+              observations={[that.props.observation]}
+              gestureHandling="auto"
+              taxonLayers={[{
+                taxon,
+                observations: { observation_id: that.props.observation.id },
+                gbif: { disabled: true },
+                places: true,
+                ranges: true
+              }]}
+              zoomControl={ false }
+              mapTypeControl={ false }
+              disableFullscreen
+            />
           </div>
         </LazyLoad>
       </div>
@@ -231,6 +260,7 @@ class Suggestions extends React.Component {
     if ( query.place && query.place.ancestors ) {
       defaultPlaces = query.place.ancestors;
     }
+    defaultPlaces = _.filter( defaultPlaces, p => parseInt( p.admin_level, 0 ) >= 0 );
     let title = I18n.t( "no_suggestions_available" );
     if ( loading ) {
       title = I18n.t( "suggestions" );
@@ -264,38 +294,6 @@ class Suggestions extends React.Component {
                 { title }
               </div>
               <div className="filters">
-                <PlaceChooserPopover
-                  container={ $( ".ObservationModal" ).get( 0 ) }
-                  label={ I18n.t( "place" ) }
-                  place={ query.place }
-                  withBoundaries
-                  defaultPlace={ query.defaultPlace }
-                  defaultPlaces={ _.sortBy( defaultPlaces, p => p.bbox_area ) }
-                  preIconClass={false}
-                  postIconClass="fa fa-angle-down"
-                  setPlace={ place => {
-                    setQuery( Object.assign( { }, query, { place, place_id: place.id } ) );
-                  } }
-                  clearPlace={ ( ) => {
-                    setQuery( Object.assign( { }, query, { place: null, place_id: null } ) );
-                  } }
-                />
-                <TaxonChooserPopover
-                  id="suggestions-taxon-chooser"
-                  container={ $( ".ObservationModal" ).get( 0 ) }
-                  label={ I18n.t( "taxon" ) }
-                  taxon={ query.taxon }
-                  defaultTaxon={ query.defaultTaxon }
-                  preIconClass={false}
-                  postIconClass="fa fa-angle-down"
-                  setTaxon={ taxon => {
-                    setQuery( Object.assign( { }, query, { taxon, taxon_id: taxon.id } ) );
-                  } }
-                  clearTaxon={ ( ) => {
-                    setQuery( Object.assign( { }, query, { taxon: null, taxon_id: null } ) );
-                  } }
-                  config={ config }
-                />
                 <ChooserPopover
                   id="suggestions-source-chooser"
                   label={ I18n.t( "source" ) }
@@ -314,6 +312,40 @@ class Suggestions extends React.Component {
                     setQuery( Object.assign( { }, query, { source: null } ) );
                   } }
                 />
+                <TaxonChooserPopover
+                  id="suggestions-taxon-chooser"
+                  container={ $( ".ObservationModal" ).get( 0 ) }
+                  label={ I18n.t( "taxon" ) }
+                  taxon={ query.taxon }
+                  defaultTaxon={ query.defaultTaxon }
+                  preIconClass={false}
+                  postIconClass="fa fa-angle-down"
+                  setTaxon={ taxon => {
+                    setQuery( Object.assign( { }, query, { taxon, taxon_id: taxon.id } ) );
+                  } }
+                  clearTaxon={ ( ) => {
+                    setQuery( Object.assign( { }, query, { taxon: null, taxon_id: null } ) );
+                  } }
+                  config={ config }
+                />
+                { query.source === "visual" ? null : (
+                  <PlaceChooserPopover
+                    container={ $( ".ObservationModal" ).get( 0 ) }
+                    label={ I18n.t( "place" ) }
+                    place={ query.place }
+                    withBoundaries
+                    defaultPlace={ query.defaultPlace }
+                    defaultPlaces={ _.sortBy( defaultPlaces, p => p.bbox_area ) }
+                    preIconClass={false}
+                    postIconClass="fa fa-angle-down"
+                    setPlace={ place => {
+                      setQuery( Object.assign( { }, query, { place, place_id: place.id } ) );
+                    } }
+                    clearPlace={ ( ) => {
+                      setQuery( Object.assign( { }, query, { place: null, place_id: null } ) );
+                    } }
+                  />
+                ) }
               </div>
               { loading ? (
                 <div className="text-center">
@@ -388,7 +420,7 @@ class Suggestions extends React.Component {
                       gestureHandling="auto"
                       taxonLayers={[{
                         taxon: detailTaxon,
-                        observations: true,
+                        observations: { observation_id: observation.id },
                         gbif: { disabled: true },
                         places: true,
                         ranges: true
