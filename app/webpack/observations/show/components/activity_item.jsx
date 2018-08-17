@@ -187,6 +187,28 @@ const ActivityItem = ( {
       );
     }
   }
+  const viewerIsAdmin = config.currentUser && config.currentUser.roles && config.currentUser.roles.indexOf( "admin" ) >= 0;
+  if ( viewerIsAdmin && item.vision ) {
+    headerItems.push(
+      <OverlayTrigger
+        key={ `itent-vision-${item.id}` }
+        container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+        placement="top"
+        delayShow={ 200 }
+        overlay={ (
+          <Tooltip id={`vision-tooltip-${item.id}`}>
+            User chose a computer vision suggestion
+          </Tooltip>
+        ) }
+      >
+        <span
+          className="vision-status" style={{ color: "#999", marginRight: "10px" }}
+        >
+          <i className="fa fa-eye"></i>
+        </span>
+      </OverlayTrigger>
+    );
+  }
   if ( item.taxon && !item.current ) {
     headerItems.push(
       <span key={ `ident-withdrawn-${item.id}` } className="item-status">
