@@ -671,7 +671,7 @@ de:
     geändert haben, war es notwendig dein Passwort zurückzusetzen.
   because: weil
   because_of: weil
-  before_importing_photos: vor dem importieren von Fotos
+  before_importing_photos: vor dem importieren von Bildern
   before_you_can_contribute_your_observations: bevor du dein Beobachtungen beitragen
     kannst.
   belives_this_is_a_comprehensive_list_of: glaubt, dass dies eine umfassende Liste
@@ -1511,7 +1511,7 @@ de:
   from_in_this_place: von diesem Ort
   from_list: Von Liste
   from_this: von diesem
-  from_photos: Von Fotos
+  from_photos: Von Bildern
   from_place: Von Ort
   from_soundcloud: Von Soundcloud
   from_your_site_observations: Von %{site_name} Beobachtungen
@@ -1533,6 +1533,7 @@ de:
   generating: Erstelle...
   generating_mobile_archive: Mobiles Archiv wird erstellt
   Genus: Genus
+  geoprivacy: Geo-Privatsphäre
   georeferenced: Georeferenziert?
   georeferenced?: georeferenziert
   get_current_position: Aktuelle Position abrufen
@@ -1682,7 +1683,7 @@ de:
     die taxonomische Information des Bildes.
   import_from_csv: Von CSV importieren
   import_from_other_photo_sites: Von anderen Foto-Websites importieren
-  import_from_photos: Von Fotos importieren
+  import_from_photos: Von Bildern importieren
   import_from_yahoo: Von Yahoo importieren
   import_observations: Beobachtungen exportieren
   import_observations_from_a_photo: Importiere Beobachtungen von einem Bilderdienst
@@ -2212,7 +2213,7 @@ de:
   most_disagree: meisten widersprechen
   most_comments_and_faves: Die meisten Kommentare und am häufigsten favorisiert
   most_observations: Meisten Beobachtungen
-  most_recent_observation_by_date_observed: Neueste überprüfbare Beobachtung nach
+  most_recent_observation_by_date_observed: Neueste verifizierbare Beobachtung nach
     Beobachtungsdatum
   most_species: Meiste Arten
   most_observed_species: Meist beobachtete Art
@@ -2879,6 +2880,7 @@ de:
     united_states: Vereinigte Staaten
     virgin_islands: Jungferninseln
     west_africa: Westafrika
+  places_of_interest: Sehenswürdigkeiten
   plants: Pflanzen
   please_add_this_observation_to: Bitte diese Beobachtung hinzufügen zu
   please_add_this_to_x_html: Bitte dies zu %{x} hinzufügen
@@ -2886,12 +2888,13 @@ de:
     Schritte, um diese Beobachtung dem Projekt hinzuzufügen:'
   please_hold_on_while_the_file: Bitte um Geduld, während die Datei erzeugt wird.
     Es kann ein paar Minuten dauern, wenn du viele Beobachtungen hast.
-  popular: populär
+  popular: beliebt
   position: Position
   positional_accuracy: Positionsgenauigkeit
   possessive_user: '%{user}''s'
   post: Eintrag
   post_published: Eintrag veröffentlicht!
+  post_some_new_stuff: einige neue Sachen posten
   posted_by: Gepostet von
   posted_on: Gepostet am
   posts: Posts
@@ -2901,6 +2904,7 @@ de:
   preview_your_message: Vorschau deiner Nachricht
   previewing: Vorschau...
   previous: Vorherige
+  prev: Vorherige
   previous_observation: Vorherige Beobachtung
   previous_page: Vorherige Seite
   previous_photo: Vorheriges Foto
@@ -2911,6 +2915,10 @@ de:
   privacy_policy: Datenschutzerklärung
   private: privat
   private_: Privat
+  private_description: Koordinaten, die komplett von öffentlichen Karten verborgen
+    sind, tatsächliche Koordinaten, die nur für dich und die Kuratoren von Projekten,
+    zu denen du die Beobachtung hinzufügst, sichtbar sind. Beobachtungen mit privaten
+    Koordinaten werden weiterhin zur Verifizierung von Checklisten verwendet.
   proceed: Fortfahren
   processing: Verarbeite
   processing3p: Verarbeite…
@@ -2919,14 +2927,21 @@ de:
   project_added_your_observations: Projekt hat deine Beobachtungen hinzugefügt
   project_cover: Projektcover
   project_created_on: dieses Projekt erstellen am %{date}
+  project_curator_changes: Projektkurator-Änderungen
+  project_curator_id: Projektkurator-Kennung
+  project_curator_tools: Projektkurator-Werkzeuge
   project_curators: Projekt Kuratoren
   project_group_label: Gruppe
   project_home: Projekt-Startseite
   project_icon: Projektsymbol
+  project_invitations: Projekteinladungen
   project_list: Projektliste
+  project_list_defaults:
+    title: Checkliste von %{owner_name}
   project_curators_added_some_of_your_observations_html: <a href="%{url}">%{project}</a>
     Kuratoren haben einige deiner Beobachtungen hinzugefügt
   project_id: Projekt ID
+  project_members: Mitglieder von %{project}
   project_membership_model_description: Ist dein Projekt offen für alle oder nur für
     Personen, die du einlädst?
   project_name: Projektname
@@ -2948,6 +2963,7 @@ de:
     Leuten auf %{site_name} teilen. Ob du nun eine gemeinnützige wissenschaftliche
     Initiative startest oder die Vögel in deiner Nachbarschaft dokumentieren willst,
     Projekte sind der richtige Weg.
+  projects_from_everywhere: Projekte von Überall
   projects_from_place: Projekte aus %{place}
   projects_in_x: Projekte in %{x}
   projects_you_admin: Projekte die du administrierst
@@ -2955,6 +2971,7 @@ de:
   protozoans: Protozoen
   public_coordinates_obscured_by: Öffentliche Koordinaten verschleiert per %{distance}
     km
+  public_domain: Gemeinfrei
   publish: Veröffentlichen
   quality_grade: Qualitätsstufe
   quality_grade_colon: 'Qualitätsstufe:'
@@ -2992,12 +3009,16 @@ de:
     variety: Varietät
     form: Form
     leaves: Blätter
+  ranges: Bereiche
   rare: Selten
   ray_finned_fishes: Strahlenflosser
+  read_more: Mehr lesen
   read_our_getting_started_guide: lies unsere Anleitung für den Einstieg
+  real_time_stats: Echtzeitstatistiken
   real_time_discussions: Aktuelle Diskussionen
   reason: Grund
   reason_you_are_flagging_this_item: Der Grund für deine Meldung.
+  recaptcha_verification_failed: reCaptcha Verifizierung fehlgeschlagen
   received: erhalten
   recent: Aktuell
   recent_additions: Aktuelle Ergänzungen
@@ -3007,6 +3028,7 @@ de:
   recent_updates: Letzte Aktualisierungen
   recently_active: Kürzlich aktiv
   recently_active_projects_from_place: Kürzlich aktive Projekte von %{place}
+  recently_created: Kürzlich erstellt
   recently_finished: Kürzlich abgeschlossen
   recently_observed: Kürzlich beobachtet
   recently_resolved: Kürzlich geklärt
@@ -3015,6 +3037,7 @@ de:
   redo_search_in_map: Suche in der Karte wiederholen
   redo_search_in_map_area: Suche im Kartenbereich wiederholen
   refresh: Aktualisieren
+  refresh_listed_taxa: gelistete Taxa aktualisieren
   refreshing: aktualisiere
   register_for_this_event_at_x_html: 'Für dieses Event registrieren: %{x}'
   reject?: Ablehnen?
@@ -3388,7 +3411,7 @@ de:
   submit_observations:
     one: 1 Beobachtung einreichen
     other: '%{count} Beobachtungen einreichen'
-  submitted: Abgesendet
+  submitted: Hochgeladen
   subscribe_to_a_taxon: Taxon abonnieren
   subscribe_to_a_place: Einen Ort abonnieren
   subscribe_to_observations_in_a_taxon: Abonniere alle Beobachtungen einer Art oder
@@ -3476,7 +3499,7 @@ de:
   taxonomic_status: Taxonomischer Status
   taxonomic_tags_for_flickr: Taxonomische Tags für Flickr
   taxonomy_settings: Taxonomieeinstellungen
-  tell_the_world_a_little_about_yourself: Erzähl uns was von dir
+  tell_the_world_a_little_about_yourself: Erzähl uns was über dich
   tell_us_why: Sag uns warum...
   terms: Bedingungen
   terms_of_service: Nutzungsbedingungen
@@ -3519,6 +3542,7 @@ de:
     wenn es eine gibt, die umfassend ist, d.h. sie listet <em>alle</em>  Repräsentanten
     ihres Taxons an einem Ort auf, wird das Identotron einen Hinweis anzeigen.
   the_list: die Liste
+  the_past: in der Vergangenheit
   the_project: das Projekt
   the_user_x_has_been_suspended: Der Benutzer %{user} wurde gesperrt.
   the_user_x_has_been_unsuspended: Der Benutzer %{user} wurde entsperrt.
@@ -3697,6 +3721,7 @@ de:
   users_projects: Projekte von %{user}
   valid_interrogation: Gültig?
   value: Wert
+  verifiable_observations_by_observation_date: Verifizierbare Beobachtungen nach Beobachtungsdatum
   view: Ansehen
   view_all: Alle ansehen
   view_all_from_x: All von %{x} anzeigen
@@ -3729,6 +3754,7 @@ de:
   view_your_dashboard: Dein Dashboard anzeigen
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>Dein Dashboar anzeigen</a>
     für weitere Neuigkeiten
+  view_your_inbox: Inbox anzeigen
   view_your_observations: Deine Beobachtungen ansehen
   view_yours: Deine anzeigen
   view_all_of_your_observations_from_x: Zeige alle deine Beobachtungen aus %{x}
@@ -3855,6 +3881,8 @@ de:
   your: Dein
   your_: Dein
   your_account_has_been_activated: Dein Benutzerkonto wurde aktiviert!
+  your_account_has_been_verified: Dein %{site_name} Konto wurde verifiziert! Bitte
+    melde dich an, um fortzufahren.
   your_browser_does_not_support_the_audio_element: Dein Browser unterstützt das Audio-Element
     nicht.
   your_content: Deine Inhalte
@@ -3903,7 +3931,7 @@ de:
     andere auf der Website tun. Um über die Aktivitäten von jemanden benachrichtigt
     zu werden, klicke auf den Link "Folge [Name]" in der Kopfzeile, wenn du seine
     Beobachtungen oder sein Profil ansiehst.
-  verifiable: überprüfbar
+  verifiable: verifizierbar
   views:
     views: Aufrufe
     announcements:
@@ -4046,6 +4074,7 @@ de:
           Beispiel, wenn dir ein Barrakuda auf einer Tauchreise in Turks und Caicos
           gefolgt ist, kannst du die Beobachtung &quot;scary, barracuda, scuba diving,
           vacation, turks and caicos&quot; taggen."
+        what_is_geoprivacy?: Was ist Geo-Privatsphäre?
         what_is_does_it_mean_for: Was bedeutet es eine Beobchtung zu verschleiern?
         when_coordinates_are_obscured_it_means_that: "Wenn Koordinaten verschleiert
           sind, bedeutet das, dass ein zufälliger Punkt innerhalb von\n%{km}KM der
@@ -4111,6 +4140,9 @@ de:
         positioning_device: Beim bestimmen der Koordinaten benutze Gerät
       identify:
         review_all_tooltip: Alle Beobachtungen auf der Seite als überprüft markieren
+      import:
+        geoprivacy_must_be_in_english: Die Geo-Privatsphäre muss in Englisch und leer
+          sein oder auf "verschleiert" oder "privat" gesetzt sein.
       show:
         allow_curator_coordinate_access_desc_html: Den Projekt-Kuratoren erlauben,
           die privaten Koordinaten für diese Beobachtung einzusehen.
@@ -4247,6 +4279,7 @@ de:
           </ol>
         rules:
           captive: in Gefangenschaft/kultiviert sein
+          verifiable: verifizierbar sein
         submission_models:
           curators: Projekt Kuratoren
       invite:
@@ -4345,7 +4378,7 @@ de:
           oder \"Frucht\" als Wert an, das Feld \"Blütenphänologie\" ist also zur
           Nutzung geeignet."
         frequency:
-          verifiable: Überprüfbar
+          verifiable: Verifizierbar
           Flowering Phenology=bare: Keine Blumen
           Flowering Phenology=budding: Knospend
           Flowering Phenology=flower: Blühend
@@ -4677,6 +4710,7 @@ de:
         authority: Behörde
         place_id: Ort
         url: URL
+        geoprivacy: Geo-Privatsphäre
       flag:
         reason: Grund
         flag: Meldung
