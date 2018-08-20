@@ -71,7 +71,15 @@ class Suggestions extends React.Component {
     const that = this;
     const taxonPhotos = _
       .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
-      .slice( 0, 3 );
+      .slice( 0, 2 );
+    let backgroundSize = "cover";
+    if (
+      taxonPhotos.length === 1 &&
+      taxonPhotos[0].photo.original_dimensions &&
+      taxonPhotos[0].photo.original_dimensions.width <= taxonPhotos[0].photo.original_dimensions.height
+    ) {
+      backgroundSize = "contain";
+    }
     return (
       <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
         <h3 className="clearfix">
@@ -114,7 +122,7 @@ class Suggestions extends React.Component {
             </Button>
           </div>
         </h3>
-        <LazyLoad height={175} offsetVertical={1000}>
+        <LazyLoad height={200} offsetVertical={1000}>
           <div className="suggestion-row-content">
             <div className="photos">
               { taxonPhotos.length === 0 ? (
@@ -126,7 +134,8 @@ class Suggestions extends React.Component {
                   key={`suggestions-row-photo-${tp.taxon.id}-${tp.photo.id}`}
                   photo={tp.photo}
                   taxon={taxon}
-                  height={175}
+                  height={200}
+                  backgroundSize={ backgroundSize }
                   showTaxonPhotoModal={ p => {
                     const index = _.findIndex( taxon.taxonPhotos,
                       taxonPhoto => taxonPhoto.photo.id === p.id );
@@ -152,6 +161,12 @@ class Suggestions extends React.Component {
                 places: true,
                 ranges: true
               }]}
+              placeLayers={ !that.props.query.place ? null :
+                [{ place: {
+                  id: that.props.query.place.id,
+                  name: that.props.query.place.name
+                } }]
+              }
               zoomControl={ false }
               mapTypeControl={ false }
               disableFullscreen
