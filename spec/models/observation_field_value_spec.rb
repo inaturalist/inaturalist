@@ -126,10 +126,15 @@ describe ObservationFieldValue, "validation" do
   end
 
   it "allowed values validation should handle nil values" do
-    of = ObservationField.make!(:datatype => "text", :allowed_values => "foo|bar")
+    of = ObservationField.make!(:datatype => ObservationField::TEXT, :allowed_values => "foo|bar")
     expect {
       ObservationFieldValue.make!(:observation_field => of, :value => nil)
     }.to raise_error(ActiveRecord::RecordInvalid)
+  end
+
+  it "should be valid for numeric values in a numeric field that aren't in allowed_values" do
+    of = ObservationField.make!( datatype: ObservationField::NUMERIC, allowed_values: "1|7|56-35" )
+    expect( ObservationFieldValue.make!( observation_field: of, value: 5 ) ).to be_valid
   end
 
   describe "when observer prefers only curators" do
