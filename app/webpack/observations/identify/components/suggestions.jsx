@@ -93,14 +93,8 @@ class Suggestions extends React.Component {
               return false;
             } }
             user={ this.props.config.currentUser }
+            iconLink
           />
-          <a
-            target="_blank"
-            href={ urlForTaxon( taxon ) }
-            className="direct-link"
-          >
-            <i className="icon-link"></i>
-          </a>
           <div className="btn-group pull-right">
             { details && ( details.vision_score || details.frequency_score ) ? (
               <div className="quiet btn btn-label btn-xs">
@@ -417,11 +411,12 @@ class Suggestions extends React.Component {
                     { detailPhotos }
                     <div className="obs-modal-header">
                       <SplitTaxon
-                        taxon={detailTaxon}
+                        taxon={ detailTaxon }
                         url={ urlForTaxon( detailTaxon ) }
                         target="_blank"
                         noParens
                         user={ config.currentUser }
+                        iconLink
                       />
                     </div>
                     { detailTaxon.wikipedia_summary ?
