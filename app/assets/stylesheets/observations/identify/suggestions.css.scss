@@ -1,5 +1,6 @@
 @import "../../colors";
 @import "../../shared/taxon_photo";
+@import "../../shared/taxonomic_branch";
 
 .Suggestions {
   position: relative;
@@ -223,6 +224,13 @@
     i {
       color: $inat-green;
       margin-right: 5px;
+    }
+  }
+  .TaxonomicBranch {
+    .name-row {
+      .SplitTaxon {
+        display: block;
+      }
     }
   }
 }

@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import LazyLoad from "react-lazy-load";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
 import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
 import { urlForTaxon } from "../../../taxa/shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
@@ -440,6 +441,12 @@ class Suggestions extends React.Component {
                         places: true,
                         ranges: true
                       }]}
+                    />
+                    <h4>{ I18n.t( "taxonomy" ) }</h4>
+                    <TaxonomicBranch
+                      taxon={ detailTaxon }
+                      chooseTaxon={ t => setDetailTaxon( t ) }
+                      noHideable
                     />
                   </div>
                 ) : null }

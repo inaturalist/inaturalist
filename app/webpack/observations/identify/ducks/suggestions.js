@@ -56,7 +56,6 @@ export default function reducer(
         newState.detailPhotoIndex = action.options.detailPhotoIndex;
       }
       break;
-    // case SHOW_CURRENT_OBSERVATION:
     case UPDATE_WITH_OBSERVATION: {
       newState.query = {
         source: state.query.source,
@@ -244,5 +243,17 @@ export function fetchSuggestions( query ) {
       dispatch( stopLoading( ) );
       alert( e );
     } );
+  };
+}
+
+export function fetchDetailTaxon( ) {
+  return function ( dispatch, getState ) {
+    const detailTaxon = getState( ).suggestions.detailTaxon;
+    if ( !detailTaxon ) {
+      return;
+    }
+    inatjs.taxa.fetch( detailTaxon.id ).then( response => {
+      dispatch( setDetailTaxon( response.results[0] ) );
+    } ).catch( e => alert( e ) );
   };
 }

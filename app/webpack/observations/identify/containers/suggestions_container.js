@@ -1,7 +1,12 @@
 import { connect } from "react-redux";
 import _ from "lodash";
 import Sugggestions from "../components/suggestions";
-import { setDetailTaxon, updateQuery, fetchSuggestions } from "../ducks/suggestions";
+import {
+  setDetailTaxon,
+  updateQuery,
+  fetchSuggestions,
+  fetchDetailTaxon
+} from "../ducks/suggestions";
 
 function mapStateToProps( state ) {
   let nextTaxon;
@@ -26,6 +31,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     setDetailTaxon: ( taxon, options = {} ) => {
       dispatch( setDetailTaxon( taxon, options ) );
+      dispatch( fetchDetailTaxon( ) );
     },
     setQuery: query => {
       dispatch( updateQuery( query ) );
