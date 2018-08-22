@@ -95,7 +95,9 @@ a:focus {
   display: none;
 }
 
-.linky {
+.linky,
+a.linky,
+.bootstrap a.linky {
   color: $bootstrap-link-color;
   cursor: pointer;
 }
@@ -1345,6 +1347,7 @@ h3, h4 {
     display: flex;
     >:before {
       content: '•';
+      color: $text-grey;
       margin: 0 5px;
     }
     >:first-child:before {

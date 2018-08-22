@@ -1,0 +1,117 @@
+@import "./colors";
+.TaxonomicBranch {
+  .taxonomy {
+    list-style: none;
+    li {
+      margin-left: 15px;
+      margin-top: 5px;
+    }
+    .name-row {
+      display: inline-block;
+    }
+    li.tabular {
+      .row-content {
+        display: table-row;
+        padding: 3px 0px 5px 5px;
+        .name-row {
+          width: 100%;
+        }
+      }
+      .row-content > * {
+        display: table-cell;
+        padding: 3px 5px 5px 5px;
+      }
+      li.current .row-content > * {
+        border-bottom: 1px solid #efefef;
+      }
+    }
+    .label-complete {
+      display: inline-block;
+      background-color: $inat-green;
+      padding: 2px 0px 1px 10px;
+      position: relative;
+      font-size: 12px !important;
+      line-height: 17px !important;
+      z-index: 1;
+      margin: 0 30px 0 10px;
+      color: white
+    }
+    .label-complete:before {
+      content: "";
+      position: absolute;
+      display: block;
+      bottom: 0;
+      border: 10px solid transparent;
+      border-right-width: 5px;
+      border-right-color: $inat-green;
+      left: -15px;
+      z-index: -1;
+    }
+    .label-complete:after {
+      content: "";
+      position: absolute;
+      display: block;
+      bottom: 0;
+      border: 10px solid $inat-green;
+      border-right-width: 5px;
+      border-right-color: white;
+      right: -15px;
+      z-index: -1;
+    }
+    .taxonomy-complete-notice .text-muted {
+      margin: 0 5px;
+    }
+    .row-content:before {
+      content: '\21B3';
+      vertical-align: top;
+    }
+    .row-content:before,
+    .SplitTaxon.has-com-name .secondary-name {
+      color: #999;
+    }
+    li.root {
+      margin-left: 0;
+    }
+    li.root:before {
+      content: '';
+    }
+    .taxon {
+      margin-left: 3px;
+      a {
+        color: #333;
+      }
+      a:hover {
+        color: #23527c;
+      }
+    }
+    li.current > .row-content > .SplitTaxon {
+      font-weight: 800;
+    }
+    .SplitTaxon.has-com-name .secondary-name,
+    i {
+      font-size: smaller;
+    }
+  }
+  .sciname.species,
+  .sciname.subspecies,
+  .sciname.variety,
+  .sciname.hybrid {
+    font-style: italic;
+  }
+  .outdated .sciname,
+  .outdated .comname {
+    text-decoration: line-through;
+  }
+  .complete .hidable {
+    display: none;
+    opacity: 0.5;
+  }
+  .complete.all-shown .hidable {
+    display: block;
+  }
+}
+
+.complete-taxon-popover {
+  max-width: 400px;
+}
+

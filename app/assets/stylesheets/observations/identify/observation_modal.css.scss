@@ -69,11 +69,18 @@ body > [role="dialog"] .ObservationModal {
     .quality_grade {
       font-weight: bold;
     }
-    .SplitTaxon.taxon .display-name {
-      font-size: 180%;
-      display: block;
-      maring-bottom: 2px;
-      color: black;
+    .SplitTaxon.taxon {
+      .display-name {
+        font-size: 180%;
+        display: inline-block;
+        maring-bottom: 2px;
+        color: black;
+      }
+      &.has-com-name {
+        .display-name {
+          display: block;
+        }
+      }
     }
   }
 

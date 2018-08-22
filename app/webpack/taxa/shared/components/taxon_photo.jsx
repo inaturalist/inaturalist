@@ -14,6 +14,7 @@ const TaxonPhoto = ( {
   className,
   size,
   backgroundSize,
+  backgroundPosition,
   showTaxon,
   linkTaxon,
   onClickTaxon,
@@ -73,6 +74,7 @@ const TaxonPhoto = ( {
         low={ photo.photoUrl( "small" ) }
         height={height}
         backgroundSize={backgroundSize}
+        backgroundPosition={backgroundPosition}
       />
     </div>
   );
@@ -88,6 +90,7 @@ TaxonPhoto.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
   backgroundSize: PropTypes.string,
+  backgroundPosition: PropTypes.string,
   showTaxon: PropTypes.bool,
   linkTaxon: PropTypes.bool,
   onClickTaxon: PropTypes.func,

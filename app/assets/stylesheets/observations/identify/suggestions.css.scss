@@ -1,5 +1,6 @@
 @import "../../colors";
 @import "../../shared/taxon_photo";
+@import "../../shared/taxonomic_branch";
 
 .Suggestions {
   position: relative;
@@ -58,6 +59,9 @@
       .next {
         margin-left: 10px;
       }
+    }
+    .TaxonMap {
+      height: 300px;
     }
   }
   .photos {
@@ -123,6 +127,13 @@
     margin-bottom: 0px;
   }
 
+  a.direct-link,
+  .obs-modal-header a.direct-link,
+  .taxon a.direct-link {
+    color: $text-grey;
+    margin-left: 3px;
+  }
+
   .suggestion-row {
     border-top: 1px solid #ddd;
     padding-top: 10px;
@@ -142,14 +153,34 @@
     .btn-label {
       margin-right: 10px;
     }
+
+    .suggestion-row-content {
+      $suggestion-row-height: 200px;
+      display: flex;
+      .photos {
+        flex: 2;
+        width: 66.66%;
+        .TaxonPhoto {
+          flex: 2;
+        }
+        .noresults {
+          margin: 2.5px;
+          line-height: $suggestion-row-height;
+          width: 100%;
+          background-color: #efefef;
+        }
+      }
+      .TaxonMap {
+        flex: 1;
+        width: 33.33%;
+        height: $suggestion-row-height;
+        margin-left: 5px;
+      }
+    }
   }
 
   .obs-modal-header {
-    margin: 20px 0;
-  }
-
-  .TaxonMap {
-    height: 300px;
+    margin: 20px 0 15px;
   }
 
   .tools {
@@ -198,19 +229,28 @@
       margin-right: 5px;
     }
   }
+  .TaxonomicBranch {
+    .name-row {
+      .SplitTaxon {
+        display: block;
+      }
+    }
+  }
 }
 
 body > [role="dialog"] .ObservationModal,
 body > div > [role="dialog"] .ObservationModal {
   .right-col {
     .Suggestions {
-      .TaxonMap {
-        height: 300px;
-      }
       .tools {
         background-color: #E3E9DA;
         > * {
           width: auto;
+        }
+      }
+      .suggestions-detail {
+        .TaxonMap {
+          height: 300px;
         }
       }
     }
