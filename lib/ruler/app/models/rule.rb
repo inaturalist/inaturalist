@@ -16,8 +16,10 @@ class Rule < ActiveRecord::Base
     return "must be #{operator.humanize.downcase}".gsub('?', '') unless operand
     operand_name = if operand.respond_to?(:display_name)
       operand.display_name
-    elsif operand.respond_to?(:name)
+    elsif operand.respond_to?(:name) && !operand.name.blank?
       operand.name
+    elsif operand.respond_to?(:login)
+      operand.login
     elsif operand.respond_to?(:title)
       operand.title
     else

@@ -29,7 +29,7 @@
         project_title: truncate(@project.title, :length => 55)
 .column.span-18
   #observations
-    - if @project_observations.blank?
+    - if @project_observations.blank? && @observations.blank?
       .description.noresults
         = link_to @contributor.user.login, observations_by_login_path(@contributor.user.login)
         = t(:hasnt_contributed_any_observations)
@@ -37,18 +37,22 @@
       .stacked.observationcontrols
       .medium.observations.grid
         - compact do
-          = render :partial => "observations/cached_component", :collection => @project_observations.map{|po| po.observation}.compact
+          = render :partial => "observations/cached_component",
+            :collection => @project_observations ? @project_observations.map{|po| po.observation}.compact : @observations
       :javascript
         $('.observationcontrols').observationControls('medium')
-      = will_paginate @project_observations, :renderer => INatLinkRenderer
+      = will_paginate @project_observations || @observations, :renderer => INatLinkRenderer
 .last.column.span-6
   .stacked
     %h3=t :stats
     %ul.meta
-      %li= t :x_taxa_observed_html, :count => number_with_delimiter(@contributor.taxa_count)
-      %li= t :x_observations_html, :count => number_with_delimiter(@contributor.observations_count)
-      %li= t :x_research_grade_observations_html, :count => number_with_delimiter(@research_grade_count)
-      %li= t :x_research_grade_observations_to_species_html, :count => number_with_delimiter(@research_grade_species_count)
+      - if @project.is_new_project?
+        %li= t :x_observations_html, count: number_with_delimiter(@observations.total_entries)
+      - else
+        %li= t :x_taxa_observed_html, :count => number_with_delimiter(@contributor.taxa_count)
+        %li= t :x_observations_html, count: number_with_delimiter(@contributor.observations_count)
+        %li= t :x_research_grade_observations_html, :count => number_with_delimiter(@research_grade_count)
+        %li= t :x_research_grade_observations_to_species_html, :count => number_with_delimiter(@research_grade_species_count)
   - if is_me?(@contributor.user)
     .stacked
       %h3= t(:settings, default: 'Settings').capitalize
@@ -63,11 +67,17 @@
           label: t(:receive_updates_from_this_project), 
           description: t('views.projects.updates_desc'),
           data: {autosubmit: true}
-        %label=t 'views.projects.curator_coordinate_access_label'
-        - [ProjectUser::CURATOR_COORDINATE_ACCESS_ANY, ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER, ProjectUser::CURATOR_COORDINATE_ACCESS_NONE].each do |option|
-          = f.radio_button :preferred_curator_coordinate_access, option,
-            label_after: true, 
-            label: t("views.projects.project_user_curator_coordinate_access_labels.#{option}"), 
-            data: {autosubmit: true}
+        %label{ class: @project.is_new_project? ? "disabled" : nil }
+          =t 'views.projects.curator_coordinate_access_label'
+        - if @project.is_new_project?
+          .description
+            =t "views.projects.collection_and_umbrellas_do_not_support"
+        - else
+          - [ProjectUser::CURATOR_COORDINATE_ACCESS_ANY, ProjectUser::CURATOR_COORDINATE_ACCESS_OBSERVER, ProjectUser::CURATOR_COORDINATE_ACCESS_NONE].each do |option|
+            = f.radio_button :preferred_curator_coordinate_access, option,
+              label_after: true,
+              label: t("views.projects.project_user_curator_coordinate_access_labels.#{option}"),
+              data: {autosubmit: true}
+      %br
       = link_to t(:leave_this_project) , confirm_leave_project_path(@project), 'class': "ui description"
 

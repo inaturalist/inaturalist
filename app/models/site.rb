@@ -46,7 +46,7 @@ class Site < ActiveRecord::Base
   belongs_to :place, :inverse_of => :sites
 
   # header logo, should be at least 118x22
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :logo,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
@@ -68,7 +68,7 @@ class Site < ActiveRecord::Base
     :message => "must be JPG, PNG, SVG, or GIF"
 
   # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :logo_square,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
@@ -90,7 +90,7 @@ class Site < ActiveRecord::Base
     :message => "must be JPG, PNG, or GIF"
 
   # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :logo_email_banner,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",
@@ -111,7 +111,7 @@ class Site < ActiveRecord::Base
   validates_attachment_content_type :logo_email_banner, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], :message => "must be JPG, PNG, or GIF"
       
   # CSS file to override default styles
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :stylesheet,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",

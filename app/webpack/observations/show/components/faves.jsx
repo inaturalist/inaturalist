@@ -11,10 +11,9 @@ const Faves = ( { observation, config, fave, unfave, faveText, hideOtherUsers } 
   ) );
   const starIconClass = userHasFavedThis ? "fa-star" : "fa-star-o";
   const hoverStarIconClass = userHasFavedThis ? "fa-star-o" : "fa-star";
-  const FaveToggle = ( { text, className } ) => (
+  const FaveToggle = ( { text } ) => (
     <a
-      href="#"
-      className={ className }
+      className="linky"
       onClick={ ( ) => {
         if ( userHasFavedThis ) {
           unfave( observation.id );
