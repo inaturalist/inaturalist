@@ -2191,7 +2191,8 @@ CREATE TABLE oauth_applications (
     image_updated_at timestamp without time zone,
     url character varying(255),
     description text,
-    scopes character varying DEFAULT ''::character varying NOT NULL
+    scopes character varying DEFAULT ''::character varying NOT NULL,
+    confidential boolean DEFAULT true NOT NULL
 );
 
 
@@ -9330,4 +9331,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180719001655');
 INSERT INTO schema_migrations (version) VALUES ('20180803162216');
 
 INSERT INTO schema_migrations (version) VALUES ('20180821031507');
+
+INSERT INTO schema_migrations (version) VALUES ('20180822173011');
 
