@@ -987,7 +987,7 @@ et:
   copy: Kopeeri
   copy_and_paste_the_following_code_to: Kopeeri ja kleebi järgnev kood, et kasutada
     seda hinnangut mõnel teisel veebilehel.
-  copy_and_paste_this_into_your_own_html: Kopeeri ja kleevi see enda HTML-koodi.
+  copy_and_paste_this_into_your_own_html: Kopeeri ja lisa see enda HTML-koodi.
   copy_guide_taxon_to: Kopeeri abitakson...
   copyright:
     some_rights_reserved: mõned õigused kaitstud
@@ -1900,6 +1900,7 @@ et:
   learn_more_raquo: Lisateave &raquo;
   learn_what_these_licenses_mean: Saa teada, mida need litsentsid tähendavad
   least_concern: vähim muresid
+  leave: Lahku
   leave_a_comment: Kommenteeri
   leave_this_project: Lahku projektist
   leaves: lahkub
@@ -2134,7 +2135,7 @@ et:
   look_up_name: Otsi nime
   looks_like_neither_have!: Näib, et kummalgi pole ühtegi taksonit!
   looks_like_no_species_in_guide: Näib, et sinu juhendis pole veel ühtegi liiki.
-  lookup: Vaata
+  lookup: Leia
   lookup_user_rarr: Vaata kasutajat &rarr;
   low: madal
   lowest_rank: Madalaim tase
@@ -4067,6 +4068,11 @@ et:
   this_will_refresh_listed_taxa: See värskendab nimekirjas olevaid taksoneid. See
     võtab natuke aega mistõttu palume seda kasutada harva ja ainult väikeste kontrollnimekirjade
     puhul.
+  this_year: Sel aastal
+  those_are_the_basics_of: Need ongi vaatluste lisamise algtõed! Saad teha ka igasuguseid
+    teisi asju nagu vaatluste otsimine, nende filtreerimine ning nende muutmine komplektina,
+    kuid need võimalused peaksid olema enesest mõistetavad.
+  those_observations_no_longer_exist: Neid vaatlusid enam ei eksisteeri.
   threatened: ohustatud
   thu: "N"
   thumb_url: Eelvaate URL
@@ -4083,7 +4089,10 @@ et:
   to_configure_your_widget: tööriista häälestamiseks.
   to_include_your_google_with_inat: Google konto lisamiseks lehele %{site_name}
   to_suggest_an_identification: määratluse pakkumiseks
+  to_the_bat_cave: Alustame!
   today: Täna
+  too_many_observations_csv: Sul on tohutult vaatluseid!<br />Saame CSV-failist korraga
+    lisada ainult esimesed %{max_rows} vaatlust
   tools: Tööriistad
   top_5_identifiers: 5 parimat määratlejat
   top_contributors: Parimad täiendajad
@@ -4112,6 +4121,20 @@ et:
   twitter: Twitter
   two_thirds: 2/3
   type: Tüüp
+  type_a_name_and_click: Kirjuta nimi ja vajuta LEIA
+  type_a_place_name_and_click_search: Kirjuta koha nimi ja vajuta OTSI
+  type_authority: Tüübi allikas...
+  type_date_time_or_use_the_calendar: Sisesta kuupäev/aeg või kasuta kalendrit
+  type_one_name_per_line: Kirjuta üks nimi rea kohta
+  type_place_name: Kirjuta koha nimi
+  type_project_name: Kirjuta projekti nimi
+  type_source_name: Kirjuta allika nimi
+  type_source_title: Kirjuta allika pealkiri
+  type_species_name: Kirjuta liigi nimi
+  type_taxon_name: Kirjuta taksoni nimi
+  type_taxon_name_and_click_lookup: Kirjuta taksoni nimi ja vajuta leia
+  uicn_red_list_status: 'IUCNi punase nimestiku staatus:'
+  umbrella_projects: Kogumprojektid
   unblock: Tühista blokeering
   unclassified: Liigitamata
   unknown: Teadmata
@@ -4119,7 +4142,43 @@ et:
   unknown_rank: (Tundmatu tase)
   unlink_your_google_account: Ühenda oma Google'i konto lahti
   updating: Täiendan...
+  update: Täienda
+  update_photos: Värskenda fotosid
+  update_search: Värskenda otsingut
+  update_selected_taxa: Värskenda valitud taksoneid
+  update_subscription: Värskenda jälgimist
+  update_x_selected_taxa:
+    one: Täienda ühte valitud taksonit
+    other: Värskenda %{count} valitud taksonit
+  update_your_content: Täienda oma sisu
+  update_with_eol_content: Täienda EOL sisuga
+  update_with_site_content: Täienda lehe %{site_name} sisuga
+  updated: Täiendatud
+  updated_by: Täiendanud
+  updated_daily: Uuendatakse iga päev
+  updated_photo: Uus foto
   upload: Lae üles
+  upload_a_csv_file: Lae CSV-fail üles
+  upload_a_csv_file_with_observation: Lae üles vaatlustega CSV-fail. Kui su vaatlused
+    on tabeli või andmebaasi kujul, siis on kõige lihtsam kasutada seda võimalust.
+  upload_photo: Lae foto üles
+  upload_photos: Lae fotod üles
+  upload_range: Lae piirkond üles
+  uploaded_by: 'Üleslaadija:'
+  uploader:
+    tooltips:
+      add: Lisa vaatlus(ed)
+      combine: Ühenda valitud vaatlused
+      photo_failed: Foto üles laadimine ei õnnestunud
+      remove: Eemalda valitud vaatlused
+      remove_observation: Eemalda vaatlused
+      remove_photo: Eemalda foto
+      select_all: Vali kõik vaatlused
+  uploading_num_of_count_photos:
+    one: Laen fotot üles...
+    other: Laen üles fotot %{num}/%{count}...
+  url_identifier_of_a_project_derived_from: Mõnest välisest allikast pärinev projekti
+    URL / identifikaator
   url_of_this_taxon_on_the_source_website: Selle taksoni URL allikaks oleval veebilehel
   US_states: USA osariigid
   usage_stats: Kasutusstatistika
@@ -4268,7 +4327,15 @@ et:
         success_message: Faili %{filename} massimport õnnestus. Sinu vaatluseid töödeldakse
           ning need ilmuvad peagi lehele.
     projects:
+      umbrella: Ülem
+      collection_and_umbrellas_do_not_support: Kogumis- ja ülemprojektid ei võimalda
+        praegu ligipääsu privaatsetele koordinaatidele.
       new:
+        an_umbrella_project_can_be_used_to: Ülemprojekti saab kasutada kahe või enama
+          kogum- või tavaprojekti statistika võrdlemiseks. Teised projektid peavad
+          eksisteerima, enne kui saad neid ülemprojekti alla lisada. Ühe ülemprojekti
+          alla saad lisada sadu projekte. Ülemprojektid ei saa sisaldada teisi ülemprojekte.
+        can_be_included_in_multiple: Võib sisalduda mitmes ülemprojektis
         delete_project: Kustuta projekt
         note_these_users_will_be_able_to_edit: 'NB: need kasutajad saavad muuta KÕIKI
           projekti omadusi, kaasarvatud administraatoreid.'
@@ -4280,8 +4347,16 @@ et:
         project_icon: Projekti ikoon (PNG, JPG või GIF)
         project_name: Projekti nimi
         project_summary: Projekti kokkuvõte
+        umbrella_project_features: 'Ülemprojekti võimalused:'
         users_can_follow_your_project: Kasutajad saavad sinu projekti jälgida läbi
           päevikukannete
+        visual_comparison_of_data_among: Ülemprojekti alla lisatud projektide andmete
+          visuaalne võrdlus
+        we_have_redesigned_projects: 'Me muutsime projekte ning nüüd on võimalik nõuda,
+          et need sisaldaksid kõiki vaatluseid, mis vastavad sinu määratud kohtadele,
+          taksonitele, kasutajatele, kvaliteedinõuetele ja kuupäevadele. Vali kahe
+          tüübi vahel: kogumisprojektid ja ülemprojektid, millest mõlemil on järgnevad
+          võimalused:'
       project_user_curator_coordinate_access_labels:
         none: Ei.
     stats:
@@ -4306,6 +4381,9 @@ et:
       edit:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: Kui meelt
           muudada, võid alati <a href='/users/edit'>muuta oma sätteid</a>.
+        this_only_applies_to_traditional_projects: See kehtib ainult tavaprojektide
+          puhul. Kogumis- või ülemprojektide puhul, mis on sisuliselt meeldejäetud
+          otsingud, sa vaatlusi välistada ei saa. Loe edasi <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">siit</a>.
   date:
     abbr_day_names:
     - P

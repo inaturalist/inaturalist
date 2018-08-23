@@ -2034,6 +2034,7 @@ fr:
   learn_what_these_licenses_mean: Apprenez-en davantage sur ce que veulent dire ces
     licences
   least_concern: préoccupation mineure
+  leave: Quitter
   leave_a_comment: Laisser un commentaire
   leave_this_project: Quitter ce projet
   leaves: feuilles
@@ -4751,7 +4752,8 @@ fr:
   where_does_x_live: Où vit %{taxa}?
   where_were_they?: Où vivent-ils?
   where_were_you?: Où étiez-vous?
-  which_projects_can_add_your_observations?: Quels projets peuvent ajouter vos observations ?
+  which_projects_can_add_your_observations?: Quels projets traditionnels peuvent ajouter
+    vos observations ?
   white: blanc
   who_can_add_observations_to_this_project?: Qui peut ajouter des observations à ce
     projet ?
@@ -5842,6 +5844,8 @@ fr:
       umbrella: cadre
       tracks_multiple_projects: suit de multiples projets
       projects_included: Projets inclus
+      collection_and_umbrellas_do_not_support: Les collections et les projets chapeau
+        ne supportent pas actuellement l'accès aux coordonnées privées.
       curator_coordinate_access_desc_html: |-
         Souvenez-vous, <strong>les superviseurs du projet peuvent ajouter n’importe laquelle de vos observations à
         leur projet</strong> sauf si vous avez choisi l’inverse dans vos <a
@@ -6525,6 +6529,9 @@ fr:
           any: Tout
           joined: Projets que vous avez rejoint
           none: Non, vous seul pouvez ajouter vos observations aux projets
+        this_only_applies_to_traditional_projects: |-
+          Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.
+          Davantage d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
         project_settings_desc: |-
           Souvenez-vous, cela ne donne pas aux projets le droit d’accéder à vos
           coordonnées privées ou de vous envoyer des mises à jour. Vous devez rejoindre les projets afin

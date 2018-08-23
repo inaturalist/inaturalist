@@ -1702,6 +1702,7 @@ zh-TW:
   learn_more_raquo: 了解更多&raquo;
   learn_what_these_licenses_mean: 了解這些許可協議的含義
   least_concern: 最不重要
+  leave: 離開
   leave_a_comment: 留下評論
   leave_this_project: 離開此專案
   leaves: 離開
@@ -3966,7 +3967,7 @@ zh-TW:
   where_does_x_live: '%{taxa}存活於何處?'
   where_were_they?: 它們在何處？
   where_were_you?: 您在何處？
-  which_projects_can_add_your_observations?: 哪個專案可以添加您的觀察？
+  which_projects_can_add_your_observations?: 哪個傳統專案可以添加您的觀察？
   white: 白色
   who_can_add_observations_to_this_project?: 誰可以添加觀察至此專案？
   who_helped_user_the_most: 誰協助過 %{user} 最多
@@ -4619,6 +4620,7 @@ zh-TW:
       umbrella: 綜合
       tracks_multiple_projects: 追蹤多個專案
       projects_included: 已包含專案
+      collection_and_umbrellas_do_not_support: 收藏與綜合專案目前不支援取用私有座標。
       curator_coordinate_access_desc_html: |-
         請記住，<strong>專案策展人可以添加任何您的觀察至它們的專案裡</strong>，除非您在您的<a
         href="/users/edit">帳號設定</a>裡不選用。僅對您可信任的專案策展人來勾選此方框，來讓他們可檢視您任何觀察裡的私有座標，或添加觀察至此專案裡。若您選擇不授予他們此權限，您仍可依各觀察來允許存取私有座標。
@@ -5015,6 +5017,8 @@ zh-TW:
           any: 任何
           joined: 您已加入的專案
           none: 不，僅有您可添加您的觀察至專案
+        this_only_applies_to_traditional_projects: 這僅會套用到傳統專案。您不能從基本上有保存搜尋的收藏或綜合專案裡排除掉觀察。您可<a
+          href="/blog/15450-announcing-changes-to-projects-on-inaturalist">按此</a>來了解更多。
         project_settings_desc: 請記住，這並沒有給予專案能存取您的私有座標，或寄發給您更新內容的權限。您必須要加入專案才能授予權限，或依各個情況授予它們權限。
         taxon_change_desc: 當 %{site_name} 上的物種分類群被合併或重新命名時，若更改內容為含糊的（例如：拆分） 您的觀察、所列出物種分類群、鑑定等等，將會自動更新到新的物種分類群，您將會收到有關若您有挑選用來手動更新內容的工具方面之更改連結的更新。
         prefers_community_taxa_desc: '%{site_name} 追蹤您對於您的觀察之想法以及社群方面想法。我們與資料合作者所分享的鑑定為社群鑑定，若您認為社群看法不應駕馭您所擁有事物，您可以選擇退出。這樣一來其他人雖仍可添加鑑定，但社群看法將不會偏好您的內容。此代表著您的觀察內容沒有機會被列為研究等級，除非您願意同意社群。'
