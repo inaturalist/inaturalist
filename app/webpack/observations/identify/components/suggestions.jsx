@@ -156,12 +156,6 @@ class Suggestions extends React.Component {
                 places: true,
                 ranges: true
               }]}
-              placeLayers={ !that.props.query.place ? null :
-                [{ place: {
-                  id: that.props.query.place.id,
-                  name: that.props.query.place.name
-                } }]
-              }
               zoomControl={ false }
               mapTypeControl={ false }
               disableFullscreen
