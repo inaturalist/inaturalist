@@ -146,13 +146,13 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name(tn_en.taxon.taxon_names, locale: :es) ).to be_blank
   end
 
-  it "should choose a locale=specific name for traditional Chinese" do
+  it "should choose a locale-specific name for traditional Chinese" do
     tn_en = TaxonName.make!(:name => "Queen's Wreath", :lexicon => "English", :taxon => t)
     tn_zh_tw = TaxonName.make!(:name => "藍花藤", :lexicon => "Chinese (traditional)", :taxon => t)
     expect(TaxonName.choose_common_name([tn_en, tn_zh_tw], :locale => "zh-TW")).to eq tn_zh_tw
   end
 
-  it "should choose a locale=specific name for simplified Chinese" do
+  it "should choose a locale-specific name for simplified Chinese" do
     tn_en = TaxonName.make!(:name => "Queen's Wreath", :lexicon => "English", :taxon => t)
     tn_zh_cn = TaxonName.make!(:name => "藍花藤", :lexicon => "Chinese (simplified)", :taxon => t)
     expect(TaxonName.choose_common_name([tn_en, tn_zh_cn], :locale => "zh-CN")).to eq tn_zh_cn
@@ -161,7 +161,7 @@ describe TaxonName, "choose_common_name" do
   it "should choose a place-specific name" do
     california = Place.make!
     oregon = Place.make!
-    tn_gl = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
+    tn_en = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
     tn_ca = TaxonName.make!(:name => "California bay laurel", :lexicon => "English", :taxon => t)
     ptn_ca = PlaceTaxonName.make!(:taxon_name => tn_ca, :place => california)
     tn_or = TaxonName.make!(:name => "Oregon myrtle", :lexicon => "English", :taxon => t)
@@ -169,42 +169,51 @@ describe TaxonName, "choose_common_name" do
     t.reload
     expect(TaxonName.choose_common_name(t.taxon_names, :place => oregon)).to eq tn_or
     expect(TaxonName.choose_common_name(t.taxon_names, :place => california)).to eq tn_ca
-    expect(TaxonName.choose_common_name(t.taxon_names)).to eq tn_gl
-  end
-  it "should choose a place-specific name regardless of locale" do
-    california = Place.make!
-    oregon = Place.make!
-    tn_gl = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
-    tn_es = TaxonName.make!(:name => "Laurel de California", :lexicon => "Spanish", :taxon => t)
-    # ptn_ca = PlaceTaxonName.make!(:taxon_name => tn_ca, :place => california)
-    tn_or = TaxonName.make!(:name => "Oregon myrtle", :lexicon => "English", :taxon => t)
-    ptn_or = PlaceTaxonName.make!(:taxon_name => tn_or, :place => oregon)
-    t.reload
-    expect(TaxonName.choose_common_name(t.taxon_names, :place => oregon, :locale => :es)).to eq tn_or
+    expect(TaxonName.choose_common_name(t.taxon_names)).to eq tn_en
   end
 
   it "should pick a place-specific name for a parent of the requested place" do
     california = Place.make!
     oregon = Place.make!
-    tn_gl = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
+    tn_en = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
     tn_ca = TaxonName.make!(:name => "California bay laurel", :lexicon => "English", :taxon => t)
     ptn_ca = PlaceTaxonName.make!(:taxon_name => tn_ca, :place => california)
     t.reload
     p = Place.make!(:parent => california, :name => "Alameda County")
     expect(p.self_and_ancestor_ids).to include(california.id)
     expect(TaxonName.choose_common_name(t.taxon_names, :place => p)).to eq tn_ca
-    expect(TaxonName.choose_common_name(t.taxon_names)).to eq tn_gl
+    expect(TaxonName.choose_common_name(t.taxon_names)).to eq tn_en
   end
 
   it "should pick names based on the site's place" do
     california = Place.make!
     oregon = Place.make!
-    tn_gl = TaxonName.make!(name: "bay tree", lexicon: "English", taxon: t)
+    tn_en = TaxonName.make!(name: "bay tree", lexicon: "English", taxon: t)
     tn_es = TaxonName.make!(name: "Laurel de California", lexicon: "Spanish", taxon: t)
     tn_or = TaxonName.make!(name: "Oregon myrtle", lexicon: "English", taxon: t)
     ptn_or = PlaceTaxonName.make!(taxon_name: tn_or, place: oregon)
     t.reload
     Site.default.update_attributes( place: oregon )
     expect(TaxonName.choose_common_name( t.taxon_names, site: Site.default ) ).to eq tn_or
+  end
+
+  it "should favor a locale within a place" do
+    p = Place.make!
+    tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
+    tn_es = TaxonName.make!( name: "Laurel de California", lexicon: "Spanish", taxon: t )
+    ptn_tn_en = PlaceTaxonName.make!( taxon_name: tn_en, place: p, position: 1 )
+    ptn_tn_es = PlaceTaxonName.make!( taxon_name: tn_es, place: p, position: 2 )
+    t.reload
+    expect( TaxonName.choose_common_name( t.taxon_names, place: p, locale: "es" ) ).to eq tn_es
+  end
+
+  it "should not pick a name if it doesn't match the locale even if it matches the place" do
+    p = Place.make!
+    tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
+    tn_es = TaxonName.make!( name: "Laurel de California", lexicon: "Spanish", taxon: t )
+    ptn_tn_en = PlaceTaxonName.make!( taxon_name: tn_en, place: p, position: 1 )
+    ptn_tn_es = PlaceTaxonName.make!( taxon_name: tn_es, place: p, position: 2 )
+    t.reload
+    expect( TaxonName.choose_common_name( t.taxon_names, place: p, locale: "ja" ) ).to be_blank
   end
 end
