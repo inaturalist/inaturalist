@@ -1877,6 +1877,7 @@ ar:
   learn_more_raquo: اعرف المزيد &raquo;
   learn_what_these_licenses_mean: تعرف على ما تعنيه هذه التراخيص
   least_concern: أقل قلق
+  leave: مغادرة
   leave_a_comment: اترك تعليقًا
   leave_this_project: اترك هذا المشروع
   leaves: أوراق أشجار
@@ -4427,7 +4428,8 @@ ar:
   where_does_x_live: أين يعيش %{taxa}؟
   where_were_they?: أين كانوا؟
   where_were_you?: أين كنت؟
-  which_projects_can_add_your_observations?: ما المشاريع التي يمكنها إضافة ملاحظاتك؟
+  which_projects_can_add_your_observations?: ما هي المشاريع التقليدية التي يمكنها
+    إضافة ملاحظاتك؟
   white: أبيض
   who_can_add_observations_to_this_project?: من يمكنه إضافة ملاحظات إلى هذا المشروع؟
   who_helped_user_the_most: من ساعد %{user} أكثر
@@ -5306,6 +5308,8 @@ ar:
       umbrella: مظلة
       tracks_multiple_projects: يتتبع مشاريع متعددة
       projects_included: المشاريع المضمنة
+      collection_and_umbrellas_do_not_support: لا تدعم مشاريع التجميع والمظلة حاليا
+        الوصول إلى الإحداثيات الخاصة.
       curator_coordinate_access_desc_html: "تذكر أن <strong>أمناء المشروع يمكنهم إضافة
         أي من ملاحظاتك إلى \nمشروعهم</strong> ما لم \nتشترك في <a href=\"/users/edit\">إعدادات
         الحساب</a>، \nحدد هذا المربع فقط إذا كنت تثق في أمناء المشروع لعرض إحداثياتك
@@ -5852,6 +5856,9 @@ ar:
           any: أي
           joined: المشاريع التي انضممت إليها
           none: لا شيء، فقط يمكنك إضافة ملاحظاتك إلى المشاريع
+        this_only_applies_to_traditional_projects: "هذا ينطبق فقط على المشاريع التقليدية،
+          لا يمكنك استبعاد الملاحظات \nمن مشاريع مجموعة أو مظلة، وهي عمليات بحث محفوظة
+          بشكل أساسي، \nيمكنك قراءة المزيد\n<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">هنا</a>."
         project_settings_desc: "تذكر، هذا لا يعطي مشاريع الإذن بالوصول \nلإحداثياتك
           الخاصة أو إرسال تحديثات لك،; يجب عليك الانضمام إلى المشاريع من \nأجل منح
           هذه الأذونات، أو منحها على أساس كل حالة على \nحدة."

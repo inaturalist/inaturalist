@@ -1237,6 +1237,7 @@ ca:
   does_the_date_seem_accurate: La data sembla correcte?
   doesnt_have_default_photo: encara no teniu una foto per defecte.
   doh_something_went_wrong: Alguna cosa no ha anat bé.
+  doh_something_went_wrong_error: 'Oh, alguna cosa ha anat malament: %{error}'
   done: Fet
   dont_filter: No filtreu
   dont_send_me_email: No m'envieu cap correu electrònic!
@@ -1610,6 +1611,7 @@ ca:
   go_back: Torna
   going_to_your_observations: Anant a les vostres observacions...
   good_choice_for_sharing: Bona alternativa per compartir amb els científics
+  google: Google
   got_it!: Entesos!
   got_your_data_somewhere_else?: Heu obtingut les dades a un altre lloc? Us podem
     ajudar.
@@ -2322,6 +2324,8 @@ ca:
   more_photos: Més Fotos
   most: Més
   most_agree: La majoria està d’acord
+  most_browser_print_pdf: 'Nota: la majoria de navegadors tenen una opció per imprimir
+    a PDF'
   most_disagree: La majoria no està d’acord
   most_comments_and_faves: La majoria de Comentaris i Favorits
   most_observations: La majoria de les observacions
@@ -2830,6 +2834,7 @@ ca:
   open_: Obre
   open_description: Tots els usuaris poden veure les coordenades tret que el tàxon
     estigui en perill.
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: Optar per aquesta observació
   opt_out_of_community_ids_for_obs: Opta per la identificació de la comunitat per
     aquesta observació.
@@ -3177,6 +3182,7 @@ ca:
   previous_page: Pàgina anterior
   previous_photo: Foto anterior
   previous_tab: Pestanya anterior
+  print_verb: Imprimeix
   print_in_browser: Imprimir des del navegador
   privacy: Política de privacitat
   privacy_policy: Política de privadesa
@@ -3788,6 +3794,7 @@ ca:
     tàxon. Torneu a revisar-ho més endavant.
   stop_editing: Atura la modificació
   stop_following_user: Deixa de seguir a %{user}
+  stop_testing: Atureu la prova
   stop_updating_position: Deixa d'actualitzar posició
   stuff_just_added: El que acabeu d'afegir ...
   subject_resolved_noun_html: '%{subject} resol %{noun}'
@@ -4376,6 +4383,7 @@ ca:
   user_added_an_x_to_noun_by_html: '%{user} ha afegit %{x} a %{noun} de %{by}'
   user_added_an_x_to_noun_html: '%{user} ha afegit una %{x} a %{noun}'
   user_added_x_observations_html: '%{user} ha afegit %{x} observacions'
+  user_already_authenticated: L'usuari ja es va autenticar
   user_autocomplete_placeholder: kueda, simon123, etc.
   user_blocked: Usuari blocat
   user_commented: '%{user} ha comentat'
@@ -5671,6 +5679,8 @@ ca:
           i visualitzar les observacions emprant les eines de cerca del nucli d'iNaturalist.
           Això elimina la necessitat d'afegir manualment les observacions perquè tot
           allò que compleix els paràmetres del projecte s'inclouen automàticament.
+        can_be_included_in_multiple: Pot ser inclòs en diversos projectes paraigua
+        click_through_to_individual_projects: Clic a través de projectes individuals
         collection_projects: Col·lecció de Projectes
         collection_project_features: 'Característiques de la col·lecció de Projectes:'
         contain_entire_image_without_cropping: Conté imatge sencera sense retallar
@@ -6366,7 +6376,13 @@ ca:
             lexicon:
               should_not_contain_commas_or_slashes: no pot contenir comes o barres
                 inclinades
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: ha de semblar una adreça de correu
+                electrònic
     models:
+      AssessmentSection: Secció de valoració
       Atlas: Atles
       CompleteSet: Conjunt complet
       TaxonLink: Enllaç al Tàxon
