@@ -227,27 +227,19 @@ class TaxonName < ActiveRecord::Base
       place_names = []
     end
     locale = options[:locale]
+    locale = options[:user].try(:locale) if locale.blank?
     locale = options[:site].try(:locale) if locale.blank?
     locale = I18n.locale if locale.blank?
     language_name = language_for_locale( locale )
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name }
-    # unknames = common_names.select {|n| n.lexicon.blank? || n.lexicon.downcase == 'unspecified' }
 
     # We want Maori names to show up in New Zealand even for English speakers, but we don't want North American English names to show in Mexcio
-
     locale_and_place_names = place_names.select {|n| n.localizable_lexicon == language_name }
     
     if locale_and_place_names.length > 0
-      # puts "choosing locale and place name"
       locale_and_place_names.first
     elsif locale_names.length > 0
-      # puts "choosing locale name"
       locale_names.first
-    # elsif place_names.length > 0
-    #   puts "choosing place name"
-    #   place_names.first
-    else
-      # puts "not choosing any name"
     end
   end
 
