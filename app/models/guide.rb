@@ -30,7 +30,7 @@ class Guide < ActiveRecord::Base
     :url => ":s3_alias_url"
   invalidate_cloudfront_caches :icon, "guides/:id-*"
 
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :ngz,
       :storage => :s3,
       :s3_credentials => "#{Rails.root}/config/s3.yml",

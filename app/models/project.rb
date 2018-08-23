@@ -126,7 +126,7 @@ class Project < ActiveRecord::Base
     end
   }
 
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :icon,
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
@@ -150,7 +150,7 @@ class Project < ActiveRecord::Base
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     :message => "must be JPG, PNG, or GIF"
 
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :cover,
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
@@ -287,7 +287,7 @@ class Project < ActiveRecord::Base
   end
 
   def rule_places
-    @rule_places ||= project_observation_rules.where(operator: "observed_in_place?").map(&:operand).compact
+    project_observation_rules.select{ |por| por.operator == "observed_in_place?" }.map(&:operand).compact
   end
 
   def rule_taxon
@@ -342,14 +342,11 @@ class Project < ActiveRecord::Base
   end
 
   def rule_place_ids
-    rule_place_ids = project_observation_rules.select do |r|
-      r.operator == "observed_in_place?"
-    end.map( &:operand_id )
+    rule_place_ids = rule_places.map( &:id )
     [ place_id, rule_place_ids ].flatten.compact.uniq
   end
 
   def associated_place_ids
-    rule_places = project_observation_rules.where(operator: "observed_in_place?").map(&:operand).compact
     place_ids = [place.try(:self_and_ancestor_ids), rule_places.map(&:self_and_ancestor_ids)]
     if project_type == "umbrella"
       project_observation_rules.includes(:operand).each do |por|

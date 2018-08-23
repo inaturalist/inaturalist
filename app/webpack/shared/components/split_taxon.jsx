@@ -16,7 +16,8 @@ const SplitTaxon = props => {
     onClick,
     noInactive,
     showMemberGroup,
-    user
+    user,
+    iconLink
   } = props;
   const showScinameFirst = user && user.prefers_scientific_name_first;
   const LinkElement = ( url || onClick ) ? "a" : "span";
@@ -254,13 +255,27 @@ const SplitTaxon = props => {
     firstName = comName( );
     secondName = sciName( );
   }
+  let linkIcon = null;
+  if ( iconLink ) {
+    linkIcon = (
+      <a
+        target={ target }
+        href={ url }
+        className="direct-link"
+        key={ `${keyBase}-linkIcon` }
+      >
+        <i className="icon-link"></i>
+      </a>
+    );
+  }
   const nodes = _.compact( [
     icon( ),
     firstName,
     secondName,
     inactive( ),
     extinct( ),
-    memberGroup
+    memberGroup,
+    linkIcon
   ] );
   return (
     <span title={title} className={`SplitTaxon ${taxonClass( )}`}>
@@ -282,7 +297,8 @@ SplitTaxon.propTypes = {
   onClick: PropTypes.func,
   noInactive: PropTypes.bool,
   showMemberGroup: PropTypes.bool,
-  user: PropTypes.object
+  user: PropTypes.object,
+  iconLink: PropTypes.bool
 };
 SplitTaxon.defaultProps = {
   target: "_self"

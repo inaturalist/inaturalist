@@ -1,5 +1,5 @@
 class LocalSound < Sound
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :file,
       preserve_files: true,
       storage: :s3,

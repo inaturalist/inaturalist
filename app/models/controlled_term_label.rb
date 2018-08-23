@@ -4,7 +4,7 @@ class ControlledTermLabel < ActiveRecord::Base
   belongs_to :valid_within_taxon, foreign_key: :valid_within_clade,
     class_name: "Taxon"
 
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :icon,
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",

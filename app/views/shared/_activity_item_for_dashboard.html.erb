@@ -10,6 +10,7 @@
   elsif item.respond_to?(:user)
     item.user
   end
+  return unless user
   edit_url = case item.class.name
   when "Comment" then edit_comment_path(item)
   when "Identification" then edit_identification_path(item)
@@ -53,7 +54,7 @@
           <%- end -%>
         </span>
       </h2>
-    </div>                  
+    </div>
     <div class="timeline-body">
       <%- if item.is_a? Identification %>
         <%= render :partial => "identifications/identification_for_dashboard", :locals => { 

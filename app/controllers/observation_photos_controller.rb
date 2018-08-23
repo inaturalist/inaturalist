@@ -95,7 +95,11 @@ class ObservationPhotosController < ApplicationController
     end
     return unless require_owner
 
-    @observation_photo.photo.file = params[:file] if params[:file]
+    if params[:file]
+      @photo = LocalPhoto.new(:file => params[:file], :user => current_user, :mobile => is_mobile_app?)
+      @photo.save
+      @observation_photo.photo = @photo
+    end
     respond_to do |format|
       if @observation_photo.update_attributes(params[:observation_photo])
         @observation_photo.observation.elastic_index!

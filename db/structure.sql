@@ -2191,7 +2191,8 @@ CREATE TABLE oauth_applications (
     image_updated_at timestamp without time zone,
     url character varying(255),
     description text,
-    scopes character varying DEFAULT ''::character varying NOT NULL
+    scopes character varying DEFAULT ''::character varying NOT NULL,
+    confidential boolean DEFAULT true NOT NULL
 );
 
 
@@ -3873,7 +3874,7 @@ CREATE TABLE taxa (
     updater_id integer,
     observations_count integer DEFAULT 0,
     listed_taxa_count integer DEFAULT 0,
-    rank_level integer,
+    rank_level double precision,
     unique_name character varying(255),
     wikipedia_summary text,
     wikipedia_title character varying(255),
@@ -9328,4 +9329,8 @@ INSERT INTO schema_migrations (version) VALUES ('20180613193352');
 INSERT INTO schema_migrations (version) VALUES ('20180719001655');
 
 INSERT INTO schema_migrations (version) VALUES ('20180803162216');
+
+INSERT INTO schema_migrations (version) VALUES ('20180821031507');
+
+INSERT INTO schema_migrations (version) VALUES ('20180822173011');
 
