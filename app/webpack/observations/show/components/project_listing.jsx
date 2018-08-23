@@ -141,45 +141,50 @@ class ProjectListing extends React.Component {
             </span>
           );
           observationFields = (
-            <Panel collapsible expanded={ this.state.fieldsPanelOpen }>
-              { projectFieldValues.map( ofv => {
-                if ( this.state.editingFieldValue &&
-                     this.state.editingFieldValue.uuid === ofv.uuid ) {
-                  return (
-                    <ObservationFieldInput
-                      observationField={ ofv.observation_field }
-                      observationFieldValue={ ofv.value }
-                      observationFieldTaxon={ ofv.taxon }
-                      key={ `editing-field-value-${ofv.uuid}` }
-                      setEditingFieldValue={ fieldValue => {
-                        this.setState( { editingFieldValue: fieldValue } );
-                      }}
-                      editing
-                      originalOfv={ ofv }
-                      hideFieldChooser
-                      onCancel={ ( ) => {
-                        this.setState( { editingFieldValue: null } );
-                      } }
-                      onSubmit={ r => {
-                        if ( r.value !== ofv.value ) {
-                          this.props.updateObservationFieldValue( ofv.uuid, r );
-                        }
-                        this.setState( { editingFieldValue: null } );
-                      } }
-                    />
-                  );
-                }
-                return (
-                  <ObservationFieldValue
-                    ofv={ ofv }
-                    key={ `field-value-${ofv.uuid || ofv.observation_field.id}` }
-                    setEditingFieldValue={ fieldValue => {
-                      this.setState( { editingFieldValue: fieldValue } );
-                    }}
-                    { ...this.props }
-                  />
-                );
-              } ) }
+
+            <Panel expanded={ this.state.fieldsPanelOpen } onToggle={ () => null }>
+              <Panel.Collapse>
+                <Panel.Body>
+                  { projectFieldValues.map( ofv => {
+                    if ( this.state.editingFieldValue &&
+                         this.state.editingFieldValue.uuid === ofv.uuid ) {
+                      return (
+                        <ObservationFieldInput
+                          observationField={ ofv.observation_field }
+                          observationFieldValue={ ofv.value }
+                          observationFieldTaxon={ ofv.taxon }
+                          key={ `editing-field-value-${ofv.uuid}` }
+                          setEditingFieldValue={ fieldValue => {
+                            this.setState( { editingFieldValue: fieldValue } );
+                          }}
+                          editing
+                          originalOfv={ ofv }
+                          hideFieldChooser
+                          onCancel={ ( ) => {
+                            this.setState( { editingFieldValue: null } );
+                          } }
+                          onSubmit={ r => {
+                            if ( r.value !== ofv.value ) {
+                              this.props.updateObservationFieldValue( ofv.uuid, r );
+                            }
+                            this.setState( { editingFieldValue: null } );
+                          } }
+                        />
+                      );
+                    }
+                    return (
+                      <ObservationFieldValue
+                        ofv={ ofv }
+                        key={ `field-value-${ofv.uuid || ofv.observation_field.id}` }
+                        setEditingFieldValue={ fieldValue => {
+                          this.setState( { editingFieldValue: fieldValue } );
+                        }}
+                        { ...this.props }
+                      />
+                    );
+                  } ) }
+                </Panel.Body>
+              </Panel.Collapse>
             </Panel>
           );
         }
