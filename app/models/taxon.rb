@@ -115,7 +115,7 @@ class Taxon < ActiveRecord::Base
   }
   
   RANK_LEVELS = {
-    "root"            => 100,
+    "stateofmatter"            => 100,
     "kingdom"         => 70,
     "subkingdom"      => 67,
     "phylum"          => 60,
