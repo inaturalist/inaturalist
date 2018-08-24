@@ -85,7 +85,9 @@ class Suggestions extends React.Component {
       <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
         <h3 className="clearfix">
           <SplitTaxon
-            taxon={taxon}
+            taxon={ taxon }
+            target="_blank"
+            url={ urlForTaxon( taxon ) }
             onClick={ e => {
               e.preventDefault( );
               this.scrollToTop( );
