@@ -132,7 +132,7 @@ describe TaxonName, "choose_common_name" do
   it "should not choose an invalid common name" do
     tn_invalid = TaxonName.make!(:is_valid => false, :taxon => t, :lexicon => "English", :name => "Bar")
     tn_valid = TaxonName.make!(:is_valid => true, :taxon => t, :lexicon => "English", :name => "Foo")
-    expect(TaxonName.choose_common_name([tn_invalid, tn_valid])).to eq tn_valid
+    expect(TaxonName.choose_common_name([tn_invalid, tn_valid], locale: :en) ).to eq tn_valid
   end
 
   it "should choose a locale-specific name" do
@@ -158,7 +158,7 @@ describe TaxonName, "choose_common_name" do
     expect(TaxonName.choose_common_name([tn_en, tn_zh_cn], :locale => "zh-CN")).to eq tn_zh_cn
   end
 
-  it "should choose a place-specific name" do
+  it "should choose a locale-specific place-specific name" do
     california = Place.make!
     oregon = Place.make!
     tn_en = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
@@ -167,12 +167,12 @@ describe TaxonName, "choose_common_name" do
     tn_or = TaxonName.make!(:name => "Oregon myrtle", :lexicon => "English", :taxon => t)
     ptn_or = PlaceTaxonName.make!(:taxon_name => tn_or, :place => oregon)
     t.reload
-    expect(TaxonName.choose_common_name(t.taxon_names, :place => oregon)).to eq tn_or
-    expect(TaxonName.choose_common_name(t.taxon_names, :place => california)).to eq tn_ca
-    expect(TaxonName.choose_common_name(t.taxon_names)).to eq tn_en
+    expect( TaxonName.choose_common_name( t.taxon_names, place: oregon ) ).to eq tn_or
+    expect( TaxonName.choose_common_name( t.taxon_names, place: california ) ).to eq tn_ca
+    expect( TaxonName.choose_common_name( t.taxon_names, locale: :en ) ).to eq tn_en
   end
 
-  it "should pick a place-specific name for a parent of the requested place" do
+  it "should pick a locale-specific place-specific name for a parent of the requested place" do
     california = Place.make!
     oregon = Place.make!
     tn_en = TaxonName.make!(:name => "bay tree", :lexicon => "English", :taxon => t)
@@ -207,13 +207,22 @@ describe TaxonName, "choose_common_name" do
     expect( TaxonName.choose_common_name( t.taxon_names, place: p, locale: "es" ) ).to eq tn_es
   end
 
-  it "should not pick a name if it doesn't match the locale even if it matches the place" do
-    p = Place.make!
+  it "should not pick a name if it doesn't match the locale even if it matches an ancestor place" do
+    ancestor_place = Place.make!
+    place = Place.make!( parent: ancestor_place )
     tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
     tn_es = TaxonName.make!( name: "Laurel de California", lexicon: "Spanish", taxon: t )
-    ptn_tn_en = PlaceTaxonName.make!( taxon_name: tn_en, place: p, position: 1 )
-    ptn_tn_es = PlaceTaxonName.make!( taxon_name: tn_es, place: p, position: 2 )
+    ptn_tn_en = PlaceTaxonName.make!( taxon_name: tn_en, place: ancestor_place, position: 1 )
+    ptn_tn_es = PlaceTaxonName.make!( taxon_name: tn_es, place: ancestor_place, position: 2 )
     t.reload
-    expect( TaxonName.choose_common_name( t.taxon_names, place: p, locale: "ja" ) ).to be_blank
+    expect( TaxonName.choose_common_name( t.taxon_names, place: place, locale: "ja" ) ).to be_blank
+  end
+
+  it "should pick a name if it doesn't match the locale if it exactly matches a place" do
+    place = Place.make!
+    tn_en = TaxonName.make!( name: "bay tree", lexicon: "English", taxon: t )
+    ptn_tn_en = PlaceTaxonName.make!( taxon_name: tn_en, place: place, position: 1 )
+    t.reload
+    expect( TaxonName.choose_common_name( t.taxon_names, place: place, locale: "ja" ) ).to eq tn_en
   end
 end
