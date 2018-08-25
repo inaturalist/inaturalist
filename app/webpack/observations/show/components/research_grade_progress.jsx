@@ -234,9 +234,15 @@ class ResearchGradeProgress extends React.Component {
             </Col>
           </div>
           <div className="labels">
-            <div className={ `casual ${grade === "casual" && "active"}` }>Casual Grade</div>
-            <div className={ `needs-id ${grade === "needs_id" && "active"}` }>Needs ID</div>
-            <div className={ `research ${grade === "research" && "active"}` }>Research Grade</div>
+            <div className={ `casual ${grade === "casual" && "active"}` }>
+              { I18n.t( "casual_" ) }
+            </div>
+            <div className={ `needs-id ${grade === "needs_id" && "active"}` }>
+              { I18n.t( "needs_id_" ) }
+            </div>
+            <div className={ `research ${grade === "research" && "active"}` }>
+              { I18n.t( "research_grade" ) }
+            </div>
           </div>
         </div>
         <div className="info">
