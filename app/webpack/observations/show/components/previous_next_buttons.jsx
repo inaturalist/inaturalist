@@ -21,6 +21,7 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation, config } 
     } else {
       prevAlt = I18n.t( "unknown" );
     }
+    prevAlt = iNatModels.Taxon.titleCaseName( prevAlt );
   }
   if ( !nextDisabled ) {
     const nextObs = otherObservations.laterUserObservations[0];
@@ -34,6 +35,7 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation, config } 
     } else {
       nextAlt = I18n.t( "unknown" );
     }
+    nextAlt = iNatModels.Taxon.titleCaseName( nextAlt );
   }
   return (
     <div className="PreviousNextButtons">
