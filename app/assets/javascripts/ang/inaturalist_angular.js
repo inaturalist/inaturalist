@@ -209,6 +209,10 @@ iNatAPI.directive('inatTaxon', ["shared", function(shared) {
       scope.showRank = function() {
         return scope.taxon && scope.taxon.rank_level > 10;
       }
+      scope.rank = function() {
+        if ( !scope.taxon || !scope.taxon.rank ) { return; }
+        return I18n.t( "ranks."+scope.taxon.rank.toLowerCase( ), { defaultValue: scope.taxon.rank } );
+      }
     },
     templateUrl: 'ang/templates/shared/taxon.html'
   }
