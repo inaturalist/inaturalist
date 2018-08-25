@@ -1134,6 +1134,9 @@ class User < ActiveRecord::Base
   def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
     elastic_index!
+    Observation.elastic_index!( scope: Observation.by( id ), delay: true )
+    Identification.elastic_index!( scope: Identification.where( user_id: id ), delay: true )
+    Project.elastic_index!( scope: Project.where( user_id: id ), delay: true )
   end
 
   def personal_lists
