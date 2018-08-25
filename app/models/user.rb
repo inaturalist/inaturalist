@@ -109,8 +109,8 @@ class User < ActiveRecord::Base
   # Some interesting ways to map self-referential relationships in rails
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
-  has_many :stalkerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
-  has_many :followers, :through => :stalkerships,  :source => 'user'
+  has_many :followerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
+  has_many :followers, :through => :followerships,  :source => 'user'
   
   has_many :lists, :dependent => :destroy
   has_many :life_lists
