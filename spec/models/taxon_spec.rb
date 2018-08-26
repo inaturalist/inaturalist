@@ -115,6 +115,16 @@ describe Taxon, "creation" do
   it "should strip leading space" do
     expect( Taxon.make!( name: "   Leading space" ).name ).to eq "Leading space"
   end
+  
+  it "should prevent creating a taxon with a rank coarser than the parent" do
+    parent = Taxon.make!( rank: Taxon::GENUS)
+    taxon = Taxon.new(:name => 'balderdash', :rank => Taxon::FAMILY, parent: parent )
+    taxon.save
+    taxon.valid?
+    expect(taxon.errors).not_to be_blank
+  end
+  
+  
 end
 
 describe Taxon, "updating" do
@@ -147,6 +157,27 @@ describe Taxon, "updating" do
     t.update_attributes( name: "    Leading space" )
     expect( t.name ).to eq "Leading space"
   end
+  
+  it "should prevent updating a taxon rank to be coarser than the parent" do
+    parent = Taxon.make!( rank: Taxon::GENUS)
+    taxon = Taxon.new(:name => 'balderdash', :rank => Taxon::SPECIES, parent: parent )
+    taxon.save
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( rank: Taxon::FAMILY )
+    expect(taxon.errors).not_to be_blank
+  end
+  
+  it "should prevent updating a taxon rank to be same rank as child" do
+    parent = Taxon.make!( rank: Taxon::GENUS)
+    taxon = Taxon.new(:name => 'balderdash', :rank => Taxon::SPECIES, parent: parent )
+    taxon.save
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    parent.update_attributes( rank: Taxon::SPECIES )
+    expect(parent.errors).not_to be_blank
+  end
+  
 end
 
 describe Taxon, "destruction" do
@@ -638,8 +669,8 @@ describe Taxon, "merging" do
   end
   
   it "should set iconic taxa on children" do
-    reject = Taxon.make!
-    child = Taxon.make!(:parent => reject)
+    reject = Taxon.make!(:rank => "species")
+    child = Taxon.make!(:parent => reject, :rank => "subspecies")
     expect(child.iconic_taxon_id).not_to eq @keeper.iconic_taxon_id
     expect(child.iconic_taxon_id).to eq reject.iconic_taxon_id
     @keeper.merge(reject)
@@ -908,7 +939,7 @@ describe Taxon, "grafting" do
   end
   
   it "should set iconic taxa on descendants" do
-    taxon = Taxon.make!(:name => "Craptaculous", :parent => @graftee)
+    taxon = Taxon.make!(:rank => "subspecies", :name => "Craptaculous", :parent => @graftee)
     @graftee.update_attributes(:parent => @Pseudacris)
     taxon.reload
     expect(taxon.iconic_taxon_id).to eq @Pseudacris.iconic_taxon_id
@@ -985,8 +1016,8 @@ describe Taxon, "single_taxon_for_name" do
   end
 
   it "should find a single valid name among invalid synonyms" do
-    valid = Taxon.make!(:parent => Taxon.make!)
-    invalid = Taxon.make!(:parent => Taxon.make!)
+    valid = Taxon.make!(:parent => Taxon.make!(:rank => :genus), :rank => :species)
+    invalid = Taxon.make!(:parent => Taxon.make!(:rank => :genus), :rank => :species)
     tn = TaxonName.create!(taxon: invalid, name: valid.name, is_valid: false, lexicon: TaxonName::SCIENTIFIC_NAMES)
     all_names = [valid.taxon_names.map(&:name), invalid.reload.taxon_names.map(&:name)].flatten.uniq
     expect( all_names.size ).to eq 2
@@ -1275,7 +1306,7 @@ describe "complete" do
         expect( t ).to be_valid
       end
       it "should allow editing rank" do
-        superfamily.update_attributes( rank: "superduperfamily", current_user: taxon_curator.user )
+        superfamily.update_attributes( rank: "order", current_user: taxon_curator.user )
         expect( superfamily ).to be_valid
       end
       it "should allow editing is_active" do
