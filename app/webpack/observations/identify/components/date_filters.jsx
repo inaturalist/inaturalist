@@ -75,7 +75,7 @@ const DateFilters = ( {
           onChange={ e => updateSearchParams( { [dateTypeField]: e.target.value } ) }
         />
         <span className="date-type date-type-range">
-          { I18n.t( "range" ) }
+          { I18n.t( "date_picker.range" ) }
           <div
             style={ { position: "relative" } }
             className={
@@ -97,8 +97,7 @@ const DateFilters = ( {
           <div
             style={ { position: "relative" } }
             className={
-              ( params[dateTypeField] === "range" ? "" : "collapse" ) +
-              `${params[d2Field] ? " filter-changed" : ""}`
+              `${params[dateTypeField] === "range" ? "" : "collapse"}${params[d2Field] ? " filter-changed" : ""}`
             }
           >
             <DateTimeFieldWrapper

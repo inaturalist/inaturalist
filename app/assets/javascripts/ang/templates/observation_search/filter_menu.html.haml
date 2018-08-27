@@ -132,7 +132,7 @@
           %label.radio
             %input{type: 'radio', name: 'date-type', value: 'range', "ng-model" => "params.dateType"}
             %span.date-type.date-type-range
-              {{ shared.t('range') }}
+              {{ shared.t('date_picker.range') }}
               %input.form-control.input-sm.date-picker{type: 'text', placeholder: "{{ shared.t('start') }}", "ng-model" => "params.d1", "ng-click" => "params.dateType = 'range'", "ng-class" => "{ 'filter-changed': processedParams.d1 }" }
               %input.form-control.input-sm.date-picker{type: 'text', placeholder: "{{ shared.t('end') }}", "ng-model" => "params.d2", "ng-click" => "params.dateType = 'range'", "ng-class" => "{ 'filter-changed': processedParams.d2 }" }
           %label.radio
@@ -239,7 +239,7 @@
                 %label.radio
                   %input{type: 'radio', name: 'created-date-type', value: 'range', "ng-model" => "params.createdDateType"}
                   %span.date-type.date-type-range
-                    {{ shared.t('range') }}
+                    {{ shared.t('date_picker.range') }}
                     %input.form-control.input-sm.date-picker{ type: 'text', placeholder: "{{ shared.t('start') }}", "ng-model" => "params.created_d1", "ng-click" => "params.createdDateType = 'range'", "ng-class" => "{ 'filter-changed': processedParams.created_d1 }" }
                     %input.form-control.input-sm.date-picker{ type: 'text', placeholder: "{{ shared.t('end') }}", "ng-model" => "params.created_d2", "ng-click" => "params.createdDateType = 'range'", "ng-class" => "{ 'filter-changed': processedParams.created_d2 }" }
   #filters-footer.row
