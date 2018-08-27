@@ -1302,8 +1302,8 @@ describe Observation do
     end
   
     it "should decrement the taxon's ancestors' counter caches" do
-      p = Taxon.make!
-      t = Taxon.make!(:parent => p)
+      p = Taxon.make!(:rank => Taxon::GENUS)
+      t = Taxon.make!(:parent => p, :rank => Taxon::SPECIES)
       o = without_delay {Observation.make!(:taxon => t)}
       p.reload
       expect(p.observations_count).to eq(1)
@@ -1778,6 +1778,8 @@ describe Observation do
     end
   
     it "should be set automatically if the taxon's parent is threatened" do
+      parent = cs.taxon
+      parent.update_attributes( rank: Taxon::SPECIES, rank_level: Taxon::SPECIES_LEVEL )
       child = Taxon.make!( parent: cs.taxon, rank: "subspecies" )
       observation = Observation.make!( defaults.merge( taxon: child ) )
       expect( observation.taxon ).not_to be_threatened

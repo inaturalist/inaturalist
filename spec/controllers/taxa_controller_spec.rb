@@ -187,7 +187,7 @@ describe TaxaController do
     it "should allow curators to supercede locking" do
       user = make_curator
       sign_in user
-      locked_parent = Taxon.make!(:locked => true)
+      locked_parent = Taxon.make!(:locked => true, :rank => Taxon::ORDER)
       taxon = Taxon.make!( rank: Taxon::FAMILY )
       put :update, :id => taxon.id, :taxon => {:parent_id => locked_parent.id}
       taxon.reload
