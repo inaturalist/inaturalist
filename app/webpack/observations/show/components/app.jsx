@@ -73,9 +73,9 @@ const App = ( {
   let formattedDateObserved;
   if ( observation.time_observed_at ) {
     formattedDateObserved = moment.tz( observation.time_observed_at,
-      observation.observed_time_zone ).format( "MMM D, YYYY · LT z" );
+      observation.observed_time_zone ).format( I18n.t( "momentjs.datetime_with_zone" ) );
   } else if ( observation.observed_on ) {
-    formattedDateObserved = moment( observation.observed_on ).format( "MMM D, YYYY" );
+    formattedDateObserved = moment( observation.observed_on ).format( "ll" );
   } else {
     formattedDateObserved = I18n.t( "not_recorded" );
   }
@@ -172,7 +172,7 @@ const App = ( {
                         <span className="bold_label">{ I18n.t( "submitted" ) }:</span>
                         <span className="date">
                           { moment.tz( observation.created_at,
-                            observation.created_time_zone ).format( "MMM D, YYYY · LT z" ) }
+                            observation.created_time_zone ).format( I18n.t( "momentjs.datetime_with_zone" ) ) }
                         </span>
                       </Col>
                     </Row>
