@@ -109,7 +109,7 @@ const App = ( {
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
                 <span className={ `quality_grade ${observation.quality_grade} ` }>
-                  { _.startCase( I18n.t( qualityGrade ) ) }
+                  { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
                 </span>
               </div>
             </Col>
