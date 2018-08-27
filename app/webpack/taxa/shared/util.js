@@ -101,7 +101,7 @@ const windowStateForTaxon = taxon => {
   }
   let title = scinameWithRank;
   if ( taxon.preferred_common_name ) {
-    title = `${taxon.preferred_common_name} (${scinameWithRank})`;
+    title = `${iNatModels.Taxon.titleCaseName( taxon.preferred_common_name )} (${scinameWithRank})`;
   }
   const state = { taxon: {
     id: taxon.id,
