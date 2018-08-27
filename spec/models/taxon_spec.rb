@@ -792,8 +792,8 @@ describe Taxon, "moving" do
   end
 
   it "should set iconic taxon on observations of descendants if grafting for the first time" do
-    parent = Taxon.make!
-    taxon = Taxon.make!(:parent => parent)
+    parent = Taxon.make!(:rank => Taxon::GENUS)
+    taxon = Taxon.make!(:parent => parent, :rank => Taxon::SPECIES)
     obs = without_delay { Observation.make!(:taxon => taxon) }
     expect(obs.iconic_taxon).to be_blank
     without_delay do
@@ -1008,9 +1008,9 @@ describe Taxon, "single_taxon_for_name" do
 
   it "should find a valid name, not invalid synonyms within the same parent" do
     name = "Foo bar"
-    parent = Taxon.make!
-    valid = Taxon.make!(:name => name, :parent => parent)
-    invalid = Taxon.make!(:parent => parent)
+    parent = Taxon.make!(:rank => Taxon::GENUS)
+    valid = Taxon.make!(:name => name, :parent => parent, :rank => Taxon::SPECIES)
+    invalid = Taxon.make!(:parent => parent, :rank => Taxon::SPECIES)
     invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
     expect(Taxon.single_taxon_for_name(name)).to eq(valid)
   end

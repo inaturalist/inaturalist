@@ -1,10 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 def setup_taxon_merge
-  input_genus = Taxon.make!( rank: Taxon::GENUS )
-  @input_taxon1 = Taxon.make!( rank: Taxon::SPECIES, parent: input_genus )
-  @input_taxon2 = Taxon.make!( rank: Taxon::SPECIES, parent: input_genus )
-  @input_taxon3 = Taxon.make!( rank: Taxon::SPECIES, parent: input_genus )
+  @input_genus = Taxon.make!( rank: Taxon::GENUS )
+  @input_taxon1 = Taxon.make!( rank: Taxon::SPECIES, parent: @input_genus )
+  @input_taxon2 = Taxon.make!( rank: Taxon::SPECIES, parent: @input_genus )
+  @input_taxon3 = Taxon.make!( rank: Taxon::SPECIES, parent: @input_genus )
   @output_taxon = Taxon.make!( rank: Taxon::SPECIES )
   @merge = TaxonMerge.make
   @merge.add_input_taxon( @input_taxon1 )
@@ -108,8 +108,10 @@ describe TaxonMerge, "commit" do
     after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
     it "should move children from the input to the output taxon" do
+      @input_genus.update_attributes( rank: Taxon::ORDER, rank_level: Taxon::ORDER_LEVEL )
       @input_taxon1.update_attributes( rank: Taxon::SUPERFAMILY, rank_level: Taxon::SUPERFAMILY_LEVEL )
       @input_taxon2.update_attributes( rank: Taxon::SUPERFAMILY, rank_level: Taxon::SUPERFAMILY_LEVEL )
+      @output_taxon.update_attributes( rank: Taxon::SUPERFAMILY, rank_level: Taxon::SUPERFAMILY_LEVEL )
       child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::FAMILY )
       descendant1 = Taxon.make!( parent: child1, rank: Taxon::GENUS )
       child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::FAMILY )

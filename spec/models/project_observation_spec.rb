@@ -319,7 +319,7 @@ describe ProjectObservation, "in_taxon?" do
   end
   
   it "should be true for observations of descendants if target taxon" do
-    child = Taxon.make!(:parent => @taxon)
+    child = Taxon.make!(:parent => @taxon, :rank => Taxon::SUBSPECIES)
     o = Observation.make!(:taxon => child, :user => @project_user.user)
     po = make_project_observation(:observation => o, :project => @project, :user => o.user)
     expect(po).to be_in_taxon(@taxon)
@@ -653,6 +653,6 @@ end
 def setup_project_and_user
   @project_user = ProjectUser.make!
   @project = @project_user.project
-  @taxon = Taxon.make!
+  @taxon = Taxon.make!(:rank => Taxon::SPECIES)
   @observation = Observation.make!(:user => @project_user.user, :taxon => @taxon)
 end

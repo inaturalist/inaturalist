@@ -434,8 +434,8 @@ describe Observation do
     end
 
     it "should increment the taxon's ancestors' counter caches" do
-      p = without_delay { Taxon.make! }
-      t = without_delay { Taxon.make!(:parent => p) }
+      p = without_delay { Taxon.make!(:rank => Taxon::GENUS) }
+      t = without_delay { Taxon.make!(:parent => p, :rank => Taxon::SPECIES) }
       expect(p.observations_count).to eq 0
       o = without_delay { Observation.make!(:taxon => t) }
       p.reload
@@ -1200,8 +1200,8 @@ describe Observation do
   
     it "should increment the taxon's ancestors' counter caches" do
       o = Observation.make!
-      p = without_delay { Taxon.make! }
-      t = without_delay { Taxon.make!(:parent => p) }
+      p = without_delay { Taxon.make!(:rank => Taxon::GENUS) }
+      t = without_delay { Taxon.make!(:parent => p, :rank => Taxon::SPECIES) }
       expect(p.observations_count).to eq 0
       o.update_attributes(:taxon => t)
       Delayed::Worker.new.work_off
@@ -2443,8 +2443,8 @@ describe Observation do
     end
 
     it "should generate an update for descendent taxa" do
-      t1 = Taxon.make!
-      t2 = Taxon.make!(:parent => t1)
+      t1 = Taxon.make!(:rank => Taxon::GENUS)
+      t2 = Taxon.make!(:parent => t1, :rank => Taxon::SPECIES)
       s = Subscription.make!(:resource => t1)
       o = Observation.make(:taxon => t2)
       expect( UpdateAction.unviewed_by_user_from_query(s.user_id, resource: t1) ).to eq false

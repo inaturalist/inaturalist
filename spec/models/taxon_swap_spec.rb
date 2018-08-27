@@ -211,8 +211,8 @@ describe TaxonSwap, "commit" do
     end
 
     it "should not move inactive children from the input to the output taxon" do
-      child = Taxon.make!( parent: @input_taxon, is_active: false )
-      descendant = Taxon.make!( parent: child, is_active: false )
+      child = Taxon.make!( parent: @input_taxon, is_active: false, rank: Taxon::GENUS)
+      descendant = Taxon.make!( parent: child, is_active: false, rank: Taxon::SPECIES)
       without_delay { @swap.commit }
       child.reload
       descendant.reload
@@ -250,8 +250,9 @@ describe TaxonSwap, "commit" do
     end
 
     it "should not make swaps for a child if the child is itself involved in this swap" do
+      @superfamily.update_attributes( rank: Taxon::GENUS )
       @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
-      @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", parent: @input_taxon )
+      @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
       child = @output_taxon
       [@input_taxon, @output_taxon, child].each(&:reload)
       without_delay { @swap.commit }
@@ -599,9 +600,9 @@ describe "move_input_children_to_output" do
 end
 
 def prepare_swap
-  superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
-  @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "InputFamily", parent: superfamily )
-  @output_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "OutputFamily", parent: superfamily )
+  @superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "InputFamily", parent: @superfamily )
+  @output_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "OutputFamily", parent: @superfamily )
   @swap = TaxonSwap.make
   @swap.add_input_taxon(@input_taxon)
   @swap.add_output_taxon(@output_taxon)
