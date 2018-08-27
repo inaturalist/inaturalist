@@ -877,6 +877,7 @@ class Taxon < ActiveRecord::Base
   
   def rank_level_must_be_finer_than_parent
     return if parent.nil?
+    
     if (parent.rank_level.nil? || rank_level.nil?) || (parent.rank_level.to_f <= rank_level.to_f)
       errors.add(self.name, "rank level must be finer than parent")
     end

@@ -199,8 +199,8 @@ describe Identification, "creation" do
   
   it "should consider an identification with a taxon that is a child of " + 
      "the observation's taxon to be in agreement" do
-    taxon = Taxon.make!
-    parent = Taxon.make!
+    taxon = Taxon.make!(:rank => Taxon::SPECIES)
+    parent = Taxon.make!(:rank => Taxon::GENUS)
     taxon.update_attributes(:parent => parent)
     observation = Observation.make!(:taxon => parent, :prefers_community_taxon => false)
     identification = Identification.make!(:observation => observation, :taxon => taxon)

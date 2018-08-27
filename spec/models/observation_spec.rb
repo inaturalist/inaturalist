@@ -1364,9 +1364,9 @@ describe Observation do
     end
 
     it "should not choose a taxon from species_guess if exact matches don't form a subtree" do
-      taxon = Taxon.make!(:rank => "species", :parent => Taxon.make!, :name => "Spirolobicus bananaensis")
+      taxon = Taxon.make!(:rank => "species", :parent => Taxon.make!(:rank => Taxon::GENUS), :name => "Spirolobicus bananaensis")
       child = Taxon.make!(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
-      taxon2 = Taxon.make!(:rank => "species", :parent => Taxon.make!)
+      taxon2 = Taxon.make!(:rank => "species", :parent => Taxon.make!(:rank => Taxon::GENUS))
       common_name = "Spiraled Banana Shrew"
       TaxonName.make!(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
       TaxonName.make!(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])

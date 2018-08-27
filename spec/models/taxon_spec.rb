@@ -977,6 +977,7 @@ describe Taxon, "grafting" do
       expect( es_o_idents[1].category ).to eq Identification::SUPPORTING
       expect( es_o_idents[2].category ).to eq Identification::SUPPORTING
       expect( es_o_idents[3].category ).to eq Identification::MAVERICK
+      without_delay { i.taxon.update_attributes( rank: Taxon::SPECIES ) }
       without_delay { i.taxon.update_attributes( parent: @Pseudacris ) }
       i.reload
       expect( i.taxon.ancestor_ids ).to include( @Pseudacris.id)
