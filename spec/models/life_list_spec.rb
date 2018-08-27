@@ -7,8 +7,8 @@ describe LifeList do
 
   describe "reload_from_observations" do
     before(:each) do
-      @taxon = Taxon.make!
-      @child = Taxon.make!(:parent => @taxon)
+      @taxon = Taxon.make!(:rank => Taxon::SPECIES)
+      @child = Taxon.make!(:parent => @taxon, :rank => Taxon::SUBSPECIES)
       @list = make_life_list_for_taxon(@taxon)
       expect(@list).to be_valid
     end

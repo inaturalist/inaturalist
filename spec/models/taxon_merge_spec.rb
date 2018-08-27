@@ -130,6 +130,7 @@ describe TaxonMerge, "commit" do
 
     describe "should make swaps for all children when merging a" do
       it "genus" do
+        @input_genus.update_attributes( rank: Taxon::FAMILY, rank_level: Taxon::FAMILY_LEVEL )
         @input_taxon1.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
         @input_taxon2.update_attributes( rank: Taxon::GENUS, name: "Rana" )
         @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )

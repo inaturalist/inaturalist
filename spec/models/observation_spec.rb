@@ -1223,8 +1223,8 @@ describe Observation do
     end
   
     it "should decrement the taxon's ancestors' counter caches" do
-      p = Taxon.make!
-      t = Taxon.make!(:parent => p)
+      p = Taxon.make!(:rank => Taxon::GENUS)
+      t = Taxon.make!(:parent => p, :rank => Taxon::SPECIES)
       o = without_delay {Observation.make!(:taxon => t)}
       p.reload
       expect(p.observations_count).to eq(1)
@@ -1723,8 +1723,8 @@ describe Observation do
         expect(Observation.of(t).first).to eq o
       end
       it "should find observations of a descendant of a taxon" do
-        t = without_delay { Taxon.make! }
-        c = without_delay { Taxon.make!(:parent => t) }
+        t = without_delay { Taxon.make!(:rank => Taxon::GENUS) }
+        c = without_delay { Taxon.make!(:parent => t, :rank => Taxon::SPECIES) }
         o = Observation.make!(:taxon => c)
         expect(Observation.of(t).first).to eq o
       end
@@ -2357,8 +2357,8 @@ describe Observation do
     after(:each) { disable_elastic_indexing(Identification) }
 
     it "should work" do
-      parent = Taxon.make!
-      child = Taxon.make!
+      parent = Taxon.make!(:rank => Taxon::GENUS)
+      child = Taxon.make!(:rank => Taxon::SPECIES)
       o = Observation.make!(:taxon => parent)
       i1 = Identification.make!(:observation => o, :taxon => child)
       o.reload

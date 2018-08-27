@@ -202,7 +202,7 @@ describe TaxonSwap, "commit" do
 
     it "should move children from the input to the output taxon" do
       child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
-      descendant = Taxon.make!( parent: child )
+      descendant = Taxon.make!( parent: child , rank: Taxon::SPECIES )
       without_delay { @swap.commit }
       child.reload
       descendant.reload

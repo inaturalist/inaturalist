@@ -220,8 +220,8 @@ describe Identification, "creation" do
   end
   
   it "should not consider identifications of different taxa in the different lineages to be in agreement" do
-    taxon = Taxon.make!
-    child = Taxon.make!(:parent => taxon)
+    taxon = Taxon.make!( :rank => Taxon::GENUS )
+    child = Taxon.make!( :parent => taxon, :rank => Taxon::SPECIES)
     o = Observation.make!(:prefers_community_taxon => false)
     ident = Identification.make!(:taxon => child, :observation => o)
     disagreement = Identification.make!(:observation => o, :taxon => taxon)
