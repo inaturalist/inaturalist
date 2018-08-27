@@ -16,6 +16,7 @@
 # Author: Liuxinyu970226
 # Author: Macofe
 # Author: Nike
+# Author: Phil.pav
 # Author: Pihlaviita
 # Author: Purodha
 # Author: Pyscowicz
@@ -84,6 +85,7 @@ qqq:
   a_flag_for_x: where x is the title of the resource being flagged
   a_member_of_taxon_html: where taxon is the name of a taxon such as Animalia
   about: '{{Identical|About}}'
+  about_establishment_means: 'Establishment means: endemic, native, introduced'
   about_x: |-
     where x is the site name
     {{Identical|About}}
@@ -405,6 +407,7 @@ qqq:
   error_updating_photo: where photo_errors are a description of the error
   establishment:
     native: '{{Identical|Native}}'
+  establishment_means: '* Establishment means: endemic, native, introduced'
   everyone: '{{Identical|Everyone}}'
   explore!: '{{Identical|Explore}}'
   export: '{{Identical|Export}}'
@@ -430,6 +433,7 @@ qqq:
   fields: '{{Identical|Field}}'
   fields_: '{{Identical|Field}}'
   file: '{{Identical|File}}'
+  filling_out_checklist_for_place: check https://www.inaturalist.org/places for context
   filter: '{{Identical|Filter}}'
   filters: '{{Identical|Filter}}'
   find: '{{Identical|Find}}'
@@ -1403,6 +1407,10 @@ qqq:
           a common abbreviation that naturalists use in online communities.'
         invite_other_photographers_to_inat: where site_name is the site name
         invite_your_friends_description: where site_name is the site name
+    places:
+      index:
+        adding_new_places: Check http://www.inaturalist.org/places for context
+        filling_out_checklists: check https://www.inaturalist.org/places for context
     projects:
       edit:
         submission_models:
