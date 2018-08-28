@@ -264,16 +264,6 @@ const App = ( {
               <SimilarContainer />
             </Col>
           </Row>
-          <Row>
-            <Col xs={12}>
-              <TestGroupToggle
-                group="suggestions-obs-detail"
-                joinPrompt="Do you want to test Identify suggestions on the observation detail page?"
-                joinedStatus="You're testing Identify suggestions on the observation detail page."
-                user={ config.currentUser }
-              />
-            </Col>
-          </Row>
         </Grid>
       </div>
       <FlaggingModalContainer />
