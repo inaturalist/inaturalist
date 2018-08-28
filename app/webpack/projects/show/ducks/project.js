@@ -304,7 +304,7 @@ export function fetchOverviewData( ) {
     dispatch( fetchIdentifiers( ) );
     dispatch( fetchPosts( ) );
     dispatch( fetchMembers( ) );
-    dispatch( fetchIconicTaxaCounts( ) );
+    dispatch( fetchQualityGradeCounts( ) );
   };
 }
 

@@ -2,15 +2,15 @@ import _ from "lodash";
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
-import IconicTaxaPieChart from "./iconic_taxa_pie_chart";
+import QualityGradePieChart from "./quality_grade_pie_chart";
 
 class OverviewStats extends Component {
   render( ) {
     const { project, setSelectedTab } = this.props;
-    if ( !project.iconic_taxa_species_counts_loaded ) {
+    if ( !project.quality_grade_counts_loaded ) {
       return ( <div className="loading_spinner" /> );
     }
-    if ( _.isEmpty( project.iconic_taxa_species_counts.results ) ) { return ( <div /> ); }
+    if ( _.isEmpty( project.quality_grade_counts.results ) ) { return ( <div /> ); }
     return (
       <Col xs={ 4 }>
         <h2>
@@ -20,7 +20,7 @@ class OverviewStats extends Component {
             onClick={ ( ) => setSelectedTab( "stats" ) }
           />
         </h2>
-        <IconicTaxaPieChart { ...this.props } />
+        <QualityGradePieChart { ...this.props } />
       </Col>
     );
   }
