@@ -100,7 +100,6 @@ class TaxonName < ActiveRecord::Base
     "galician"              => "gl",
     "german"                => "de",
     "greek"                 => "el",
-    "finnish"               => "fi",
     "hawaiian"              => "haw",
     "hebrew"                => "iw",
     "indonesian"            => "id",
