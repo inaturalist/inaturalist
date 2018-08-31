@@ -10,7 +10,11 @@ var application =  angular.module( "ObservationSearch", [
 
 // Load translations for moment if available
 // http://stackoverflow.com/a/22965260
-var shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
+var shortRelativeTime = ( I18n.t( "momentjs" ) || {} ).shortRelativeTime;
+if ( !shortRelativeTime && I18n.locale.toString().indexOf( "-" ) > 0 ) {
+  var lang = I18n.locale.split( "-" )[0];
+  shortRelativeTime = ( I18n.t( "momentjs", { locale: lang } ) || {} ).shortRelativeTime;
+}
 if ( shortRelativeTime ) {
   moment.locale( I18n.locale, { relativeTime: shortRelativeTime } );
 }
