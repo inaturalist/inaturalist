@@ -49,7 +49,10 @@ $.fn.universalAutocomplete = function( options ) {
         itemText = $( "<span></span>" ).addClass( "taxon" ).addClass( item.record.rank );
         var scinameWithRank = item.record.name;
         if ( item.record.rank_level > 10 ) {
-          scinameWithRank = "<span class='rank'>" + item.record.rank + "</span> " + item.record.name;
+          scinameWithRank = "<span class='rank'>" +
+            I18n.t( "ranks." + item.record.rank.toLowerCase(), { defaultValue: item.record.rank } ) +
+            "</span> " +
+            item.record.name;
         }
         if ( item.record.preferred_common_name ) {
           itemText.addClass( "has-com-name" );
