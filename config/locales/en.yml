@@ -1087,6 +1087,7 @@ en:
   does_the_date_seem_accurate: "Does the date seem accurate?"
   doesnt_have_default_photo: doesn't have a default photo yet.
   doh_something_went_wrong: D'oh, something went wrong.
+  doh_something_went_wrong_error: "D'oh, something went wrong: %{error}"
   done: Done
   dont_filter: "Don't filter"
   dont_send_me_email: "Don't send me any email!"
@@ -1430,6 +1431,7 @@ en:
   go_back: Go back
   going_to_your_observations: Going to your observations...
   good_choice_for_sharing: Good choice for sharing with scientists
+  google: Google
   got_it!: Got it!
   got_your_data_somewhere_else?: Got your data somewhere else?  We can help.
   graft: Graft
@@ -1730,6 +1732,7 @@ en:
   learn_more_raquo: "Learn more &raquo;"
   learn_what_these_licenses_mean: Learn what these licenses mean
   least_concern: least concern
+  leave: Leave
   leave_a_comment: Leave a comment
   leave_this_project: Leave this project
   leaves: leaves
@@ -2037,6 +2040,7 @@ en:
       MM: "%dmo"
       'y':  "1y"
       yy: "%dy"
+    datetime_with_zone: "MMM D, YYYY · LT z"
   mon: Mon
   month: Month
   months: Months
@@ -2503,6 +2507,7 @@ en:
   open: open
   open_: Open
   open_description: "Everyone can see the coordinates unless the taxon is threatened."
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: "Opt in for this observation"
   opt_out_of_community_ids_for_obs: "Opt out of the community identification for this observation"
   optional: optional
@@ -2932,6 +2937,7 @@ en:
       class: class
       subclass: subclass
       infraclass: infraclass
+      subterclass: subterclass
       superorder: superorder
       order: order
       suborder: suborder
@@ -3385,6 +3391,7 @@ en:
   still_working_on_classifying_taxon: Still working on classifying this taxon. Check back later
   stop_editing: Stop Editing
   stop_following_user: "Stop following %{user}"
+  stop_testing: Stop Testing
   stop_updating_position: Stop updating position
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
@@ -3505,6 +3512,7 @@ en:
     Taxon assessments are documents assessing the current status of a species, usually conservation status.
     For example, a regional conservation organization might use them to organize information and solicit feedback about the status of several threatened taxa in the region.
   taxon_change: taxon change
+  taxon_change_must_be_committed_to_update_records: Taxon change must be committed to update records
   taxon_deleted: Taxon deleted.
   taxon_doesnt_have_a_range: Taxon doesn't have a range
   taxon_drop: taxon drop
@@ -4104,7 +4112,7 @@ en:
   where_does_x_live: Where does %{taxa} live?
   where_were_they?: Where were they?
   where_were_you?: Where were you?
-  which_projects_can_add_your_observations?: Which projects can add your observations?
+  which_projects_can_add_your_observations?: Which traditional projects can add your observations?
   white: white
   who_can_add_observations_to_this_project?: Who can add observations to this project?
   who_helped_user_the_most: "Who Helped %{user} the Most"
@@ -5105,6 +5113,8 @@ en:
       umbrella: Umbrella
       tracks_multiple_projects: tracks multiple projects
       projects_included: Projects Included
+      collection_and_umbrellas_do_not_support: |
+        Collection and umbrella projects do not currently support access to private coordinates.
       curator_coordinate_access_desc_html: |
         Remember, <strong>project curators can add any of your observations to
         their project</strong> unless you've opted out in your <a
@@ -5791,6 +5801,11 @@ en:
           any: Any
           joined: Projects you've joined
           none: "None, only you can add your observations to projects"
+        this_only_applies_to_traditional_projects: |
+          This only applies to traditional projects. You can't exclude observations
+          from collection or umbrella projects, which are essentially saved searches.
+          You can read more
+          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
         project_settings_desc: |
           Remember, this does not give projects permission to access your
           private coordinates or send you updates. You must join projects in
@@ -5928,10 +5943,6 @@ en:
       - October
       - November
       - December
-    order:
-      - :year
-      - :month
-      - :day
   datetime:
     distance_in_words:
       about_x_hours:

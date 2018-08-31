@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { DragSource as dragSource } from "react-dnd";
 import { PHOTO_CHOOSER_DRAGGABLE_TYPE } from "./photo_chooser_constants";
 import PhotoChoserPhoto from "./photo_chooser_photo";

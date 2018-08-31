@@ -1249,8 +1249,8 @@ describe Observation do
   end
 
   describe "destruction" do
-    before(:each) { enable_elastic_indexing(UpdateAction) }
-    after(:each) { disable_elastic_indexing(UpdateAction) }
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
 
     it "should decrement the counter cache in users" do
       @observation = Observation.make!
@@ -1278,10 +1278,9 @@ describe Observation do
       s = Subscription.make!(:user => subscriber, :resource => user)
       o = Observation.make(:user => user)
       without_delay { o.save! }
-      update = UpdateSubscriber.where(:subscriber_id => subscriber).limit(1).last
-      expect(update).not_to be_blank
+      expect( UpdateAction.unviewed_by_user_from_query(subscriber.id, resource: user) ).to eq true
       o.destroy
-      expect(UpdateSubscriber.where(update_action_id: update.update_action_id).first).to be_blank
+      expect( UpdateAction.unviewed_by_user_from_query(subscriber.id, resource: user) ).to eq false
     end
 
     it "should delete associated project observations" do
@@ -2328,6 +2327,14 @@ describe Observation do
       o = Observation.make!( latitude: p.latitude, longitude: p.longitude, taxon: make_threatened_taxon )
       expect( o.public_places ).to include p
     end
+    it "should be blank if taxon has conservation status with private geoprivacy" do
+      p = make_place_with_geom( admin_level: 1 )
+      cs = ConservationStatus.make!( geoprivacy: Observation::PRIVATE )
+      o = make_research_grade_candidate_observation( taxon: cs.taxon, latitude: p.latitude, longitude: p.longitude )
+      expect( o ).to be_georeferenced
+      expect( o.geoprivacy ).to be_blank
+      expect( o.public_places ).to be_blank
+    end
   end
 
   describe "update_stats" do
@@ -2421,20 +2428,18 @@ describe Observation do
   end
 
   describe "taxon updates" do
-    before(:each) { enable_elastic_indexing(UpdateAction) }
-    after(:each) { disable_elastic_indexing(UpdateAction) }
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
 
     it "should generate an update" do
       t = Taxon.make!
       s = Subscription.make!(:resource => t)
       o = Observation.make(:taxon => t)
+      expect( UpdateAction.unviewed_by_user_from_query(s.user_id, resource: t) ).to eq false
       without_delay do
         o.save!
       end
-      u = UpdateSubscriber.limit(1).last
-      expect(u).not_to be_blank
-      expect(u.update_action.notifier).to eq(o)
-      expect(u.subscriber).to eq(s.user)
+      expect( UpdateAction.unviewed_by_user_from_query(s.user_id, resource: t) ).to eq true
     end
 
     it "should generate an update for descendent taxa" do
@@ -2442,13 +2447,11 @@ describe Observation do
       t2 = Taxon.make!(:parent => t1)
       s = Subscription.make!(:resource => t1)
       o = Observation.make(:taxon => t2)
+      expect( UpdateAction.unviewed_by_user_from_query(s.user_id, resource: t1) ).to eq false
       without_delay do
         o.save!
       end
-      u = UpdateSubscriber.limit(1).last
-      expect(u).not_to be_blank
-      expect(u.update_action.notifier).to eq(o)
-      expect(u.subscriber).to eq(s.user)
+      expect( UpdateAction.unviewed_by_user_from_query(s.user_id, resource: t1) ).to eq true
     end
 
     # This ended up being really annoying for people subscribed to high level
@@ -2472,8 +2475,8 @@ describe Observation do
 
 
   describe "place updates" do
-    before(:each) { enable_elastic_indexing(UpdateAction) }
-    after(:each) { disable_elastic_indexing(UpdateAction) }
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
 
     describe "for places that cross the date line" do
       let(:place) {
@@ -2511,13 +2514,13 @@ describe Observation do
           Observation.make!( latitude: @christchurch_lat, longitude: @christchurch_lon )
         end
         expect( o.public_places.map(&:id) ).to include place.id
-        expect( @subscription.user.update_subscribers.limit(1).last.update_action.notifier ).to eq o
+        expect( UpdateAction.unviewed_by_user_from_query(@subscription.user_id, notifier: o) ).to eq true
       end
       it "should not generate for observations outside of that place" do
         o = without_delay do
           Observation.make!(:latitude => -1 * @christchurch_lat, :longitude => @christchurch_lon)
         end
-        expect(@subscription.user.update_subscribers).to be_blank
+        expect( UpdateAction.unviewed_by_user_from_query(@subscription.user_id, notifier: o) ).to eq false
       end
     end
   end
@@ -3463,6 +3466,9 @@ describe Observation do
   end
 
   describe "mentions" do
+    before { enable_has_subscribers }
+    after { disable_has_subscribers }
+
     it "knows what users have been mentioned" do
       u = User.make!
       o = Observation.make!(description: "hey @#{ u.login }")
@@ -3472,26 +3478,22 @@ describe Observation do
     it "generates mention updates" do
       u = User.make!
       o = Observation.make!(description: "hey @#{ u.login }")
-      expect( UpdateAction.where(notifier: o, notification: "mention").count ).to eq 1
-      expect(
-        UpdateAction.where(notifier: o, notification: "mention").first.update_subscribers.first.subscriber
-      ).to eq u
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
     end
 
     it "does not generation a mention update if the description was updated and the mentioned user wasn't in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
-      UpdateAction.where( notifier: o, notification: "mention" ).destroy_all
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
       o.update_attributes( description: "#{o.description} and some extra" )
-      action = UpdateAction.where( notifier: o, notification: "mention" ).first
-      expect( action.update_subscribers.count ).to eq 0
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "generates a mention update if the description was updated and the mentioned user was in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey") }
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
       o.update_attributes( description: "#{o.description} @#{u.login}" )
-      action = UpdateAction.where( notifier: o, notification: "mention" ).first
-      expect( action.update_subscribers.count ).to eq 1
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
     end
   end
 
@@ -3695,6 +3697,17 @@ describe "observation field value getter" do
     expect(
       ofv.observation.send("field:#{ofv.observation_field.name}")
     ).to eq ofv.value
+  end
+end
+
+describe Observation, "and update_quality_metrics" do
+  it "should not throw an error of owner ID taxon has no rank level" do
+    o = make_research_grade_observation
+    o.update_attributes( prefers_community_taxon: false )
+    o.owners_identification.taxon.update_attributes( rank: "nonsense" )
+    expect{
+      o.get_quality_grade
+    }.to_not raise_error
   end
 end
 

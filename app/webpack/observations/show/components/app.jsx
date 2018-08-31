@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col, SplitButton, MenuItem } from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
@@ -32,6 +33,8 @@ import ProjectFieldsModalContainer from "../containers/project_fields_modal_cont
 import ProjectsContainer from "../containers/projects_container";
 import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
+import ObservationModalContainer from "../containers/observation_modal_container";
+import TestGroupToggle from "../../../shared/components/test_group_toggle";
 
 moment.locale( "en", {
   relativeTime: {
@@ -70,9 +73,9 @@ const App = ( {
   let formattedDateObserved;
   if ( observation.time_observed_at ) {
     formattedDateObserved = moment.tz( observation.time_observed_at,
-      observation.observed_time_zone ).format( "MMM D, YYYY · LT z" );
+      observation.observed_time_zone ).format( I18n.t( "momentjs.datetime_with_zone" ) );
   } else if ( observation.observed_on ) {
-    formattedDateObserved = moment( observation.observed_on ).format( "MMM D, YYYY" );
+    formattedDateObserved = moment( observation.observed_on ).format( "ll" );
   } else {
     formattedDateObserved = I18n.t( "not_recorded" );
   }
@@ -106,7 +109,7 @@ const App = ( {
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
                 <span className={ `quality_grade ${observation.quality_grade} ` }>
-                  { _.startCase( I18n.t( qualityGrade ) ) }
+                  { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
                 </span>
               </div>
             </Col>
@@ -119,7 +122,7 @@ const App = ( {
                   title={ I18n.t( "edit" ) }
                   id="edit-dropdown"
                   pullRight
-                  onSelect={ ( event, key ) => {
+                  onSelect={ key => {
                     if ( key === "delete" ) {
                       deleteObservation( );
                     } else if ( key === "license" ) {
@@ -169,7 +172,7 @@ const App = ( {
                         <span className="bold_label">{ I18n.t( "submitted" ) }:</span>
                         <span className="date">
                           { moment.tz( observation.created_at,
-                            observation.created_time_zone ).format( "MMM D, YYYY · LT z" ) }
+                            observation.created_time_zone ).format( I18n.t( "momentjs.datetime_with_zone" ) ) }
                         </span>
                       </Col>
                     </Row>
@@ -270,6 +273,7 @@ const App = ( {
       <LicensingModalContainer />
       <MediaViewerContainer />
       <ProjectFieldsModalContainer />
+      <ObservationModalContainer />
     </div>
   );
 };

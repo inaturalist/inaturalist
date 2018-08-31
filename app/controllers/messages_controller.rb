@@ -125,7 +125,7 @@ class MessagesController < ApplicationController
           flash[:error] = msg
           return redirect_back_or_default(messages_url)
         end
-        format.json { render :json => {:error => msg} }
+        format.json { render :json => {:error => msg}, status: :forbidden }
       end
     end
   end

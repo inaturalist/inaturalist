@@ -2,7 +2,7 @@ class YearStatistic < ActiveRecord::Base
   belongs_to :user
   belongs_to :site
 
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :shareable_image,
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",

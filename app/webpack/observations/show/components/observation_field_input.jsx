@@ -1,7 +1,8 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { Input, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
 import DateTimeFieldWrapper from "../../uploader/components/date_time_field_wrapper";
 
@@ -26,7 +27,10 @@ class ObservationFieldInput extends React.Component {
 
   componentDidUpdate( ) {
     const domNode = ReactDOM.findDOMNode( this );
-    $( ".observation-field :input:visible:first", domNode ).focus( );
+    // prevent the taxon chooser from opening again after selecting a taxon
+    if ( !this.state.observationFieldTaxon ) {
+      $( ".observation-field :input:visible:first", domNode ).focus( );
+    }
   }
 
   onChangeHandler( e ) {
@@ -157,16 +161,16 @@ class ObservationFieldInput extends React.Component {
 
   selectInput( field ) {
     return (
-      <Input
-        type="select"
+      <select
         name="value"
+        className="form-control"
         defaultValue={ this.state.observationFieldValue }
         onChange={ this.onChangeHandler }
       >
         { _.map( field.allowed_values.split( "|" ), f => (
           <option value={ f } key={ f }>{ f }</option>
         ) ) }
-      </Input>
+      </select>
     );
   }
 

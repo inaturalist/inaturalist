@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import {
@@ -8,6 +9,7 @@ import {
 } from "react-bootstrap";
 import LazyLoad from "react-lazy-load";
 import SplitTaxon from "../../../shared/components/split_taxon";
+import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
 import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
 import { urlForTaxon } from "../../../taxa/shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
@@ -70,12 +72,22 @@ class Suggestions extends React.Component {
     const that = this;
     const taxonPhotos = _
       .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
-      .slice( 0, 5 );
+      .slice( 0, 2 );
+    let backgroundSize = "cover";
+    if (
+      taxonPhotos.length === 1 &&
+      taxonPhotos[0].photo.original_dimensions &&
+      taxonPhotos[0].photo.original_dimensions.width <= taxonPhotos[0].photo.original_dimensions.height
+    ) {
+      backgroundSize = "contain";
+    }
     return (
       <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
         <h3 className="clearfix">
           <SplitTaxon
-            taxon={taxon}
+            taxon={ taxon }
+            target="_blank"
+            url={ urlForTaxon( taxon ) }
             onClick={ e => {
               e.preventDefault( );
               this.scrollToTop( );
@@ -83,6 +95,7 @@ class Suggestions extends React.Component {
               return false;
             } }
             user={ this.props.config.currentUser }
+            iconLink
           />
           <div className="btn-group pull-right">
             { details && ( details.vision_score || details.frequency_score ) ? (
@@ -106,26 +119,49 @@ class Suggestions extends React.Component {
             </Button>
           </div>
         </h3>
-        <LazyLoad height={150} offsetVertical={1000}>
-          <div className="photos">
-            { taxonPhotos.length === 0 ? (
-              <div className="noresults">
-                { I18n.t( "no_photos" ) }
-              </div>
-            ) : taxonPhotos.map( tp => (
-              <TaxonPhoto
-                key={`suggestions-row-photo-${tp.taxon.id}-${tp.photo.id}`}
-                photo={tp.photo}
-                taxon={taxon}
-                width={150}
-                height={150}
-                showTaxonPhotoModal={ p => {
-                  const index = _.findIndex( taxon.taxonPhotos,
-                    taxonPhoto => taxonPhoto.photo.id === p.id );
-                  this.props.setDetailTaxon( taxon, { detailPhotoIndex: index } );
-                } }
-              />
-            ) ) }
+        <LazyLoad height={200} offsetVertical={1000}>
+          <div className="suggestion-row-content">
+            <div className="photos">
+              { taxonPhotos.length === 0 ? (
+                <div className="noresults">
+                  { I18n.t( "no_photos" ) }
+                </div>
+              ) : taxonPhotos.map( tp => (
+                <TaxonPhoto
+                  key={`suggestions-row-photo-${tp.taxon.id}-${tp.photo.id}`}
+                  photo={tp.photo}
+                  taxon={taxon}
+                  height={200}
+                  backgroundSize={ backgroundSize }
+                  showTaxonPhotoModal={ p => {
+                    const index = _.findIndex( taxon.taxonPhotos,
+                      taxonPhoto => taxonPhoto.photo.id === p.id );
+                    this.props.setDetailTaxon( taxon, { detailPhotoIndex: index } );
+                  } }
+                />
+              ) ) }
+            </div>
+            <TaxonMap
+              showAllLayer={false}
+              minZoom={ 2 }
+              zoomLevel={ 6 }
+              preserveViewport
+              latitude={ that.props.observation.latitude }
+              longitude={ that.props.observation.longitude }
+              gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
+              observations={[that.props.observation]}
+              gestureHandling="auto"
+              taxonLayers={[{
+                taxon,
+                observations: { observation_id: that.props.observation.id },
+                gbif: { disabled: true },
+                places: true,
+                ranges: true
+              }]}
+              zoomControl={ false }
+              mapTypeControl={ false }
+              disableFullscreen
+            />
           </div>
         </LazyLoad>
       </div>
@@ -230,6 +266,7 @@ class Suggestions extends React.Component {
     if ( query.place && query.place.ancestors ) {
       defaultPlaces = query.place.ancestors;
     }
+    defaultPlaces = _.filter( defaultPlaces, p => parseInt( p.admin_level, 0 ) >= 0 );
     let title = I18n.t( "no_suggestions_available" );
     if ( loading ) {
       title = I18n.t( "suggestions" );
@@ -242,6 +279,7 @@ class Suggestions extends React.Component {
           <div className="suggestions-list">
             <div className="suggestions-inner">
               <ChooserPopover
+                id="suggestions-sort-chooser"
                 label={ I18n.t( "sort_by" ) }
                 className="pull-right"
                 container={ $( ".ObservationModal" ).get( 0 ) }
@@ -262,38 +300,8 @@ class Suggestions extends React.Component {
                 { title }
               </div>
               <div className="filters">
-                <PlaceChooserPopover
-                  container={ $( ".ObservationModal" ).get( 0 ) }
-                  label={ I18n.t( "place" ) }
-                  place={ query.place }
-                  withBoundaries
-                  defaultPlace={ query.defaultPlace }
-                  defaultPlaces={ _.sortBy( defaultPlaces, p => p.bbox_area ) }
-                  preIconClass={false}
-                  postIconClass="fa fa-angle-down"
-                  setPlace={ place => {
-                    setQuery( Object.assign( { }, query, { place, place_id: place.id } ) );
-                  } }
-                  clearPlace={ ( ) => {
-                    setQuery( Object.assign( { }, query, { place: null, place_id: null } ) );
-                  } }
-                />
-                <TaxonChooserPopover
-                  container={ $( ".ObservationModal" ).get( 0 ) }
-                  label={ I18n.t( "taxon" ) }
-                  taxon={ query.taxon }
-                  defaultTaxon={ query.defaultTaxon }
-                  preIconClass={false}
-                  postIconClass="fa fa-angle-down"
-                  setTaxon={ taxon => {
-                    setQuery( Object.assign( { }, query, { taxon, taxon_id: taxon.id } ) );
-                  } }
-                  clearTaxon={ ( ) => {
-                    setQuery( Object.assign( { }, query, { taxon: null, taxon_id: null } ) );
-                  } }
-                  config={ config }
-                />
                 <ChooserPopover
+                  id="suggestions-source-chooser"
                   label={ I18n.t( "source" ) }
                   container={ $( ".ObservationModal" ).get( 0 ) }
                   chosen={ query.source }
@@ -310,6 +318,40 @@ class Suggestions extends React.Component {
                     setQuery( Object.assign( { }, query, { source: null } ) );
                   } }
                 />
+                <TaxonChooserPopover
+                  id="suggestions-taxon-chooser"
+                  container={ $( ".ObservationModal" ).get( 0 ) }
+                  label={ I18n.t( "taxon" ) }
+                  taxon={ query.taxon }
+                  defaultTaxon={ query.defaultTaxon }
+                  preIconClass={false}
+                  postIconClass="fa fa-angle-down"
+                  setTaxon={ taxon => {
+                    setQuery( Object.assign( { }, query, { taxon, taxon_id: taxon.id } ) );
+                  } }
+                  clearTaxon={ ( ) => {
+                    setQuery( Object.assign( { }, query, { taxon: null, taxon_id: null } ) );
+                  } }
+                  config={ config }
+                />
+                { query.source === "visual" ? null : (
+                  <PlaceChooserPopover
+                    container={ $( ".ObservationModal" ).get( 0 ) }
+                    label={ I18n.t( "place" ) }
+                    place={ query.place }
+                    withBoundaries
+                    defaultPlace={ query.defaultPlace }
+                    defaultPlaces={ _.sortBy( defaultPlaces, p => p.bbox_area ) }
+                    preIconClass={false}
+                    postIconClass="fa fa-angle-down"
+                    setPlace={ place => {
+                      setQuery( Object.assign( { }, query, { place, place_id: place.id } ) );
+                    } }
+                    clearPlace={ ( ) => {
+                      setQuery( Object.assign( { }, query, { place: null, place_id: null } ) );
+                    } }
+                  />
+                ) }
               </div>
               { loading ? (
                 <div className="text-center">
@@ -361,15 +403,16 @@ class Suggestions extends React.Component {
                   </div>
                 </div>
                 { detailTaxon ? (
-                  <div className={ `detail-taxon ${detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}` }>
+                  <div className={ `detail-taxon ${detailTaxonImages && detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}` }>
                     { detailPhotos }
                     <div className="obs-modal-header">
                       <SplitTaxon
-                        taxon={detailTaxon}
+                        taxon={ detailTaxon }
                         url={ urlForTaxon( detailTaxon ) }
                         target="_blank"
                         noParens
                         user={ config.currentUser }
+                        iconLink
                       />
                     </div>
                     { detailTaxon.wikipedia_summary ?
@@ -381,14 +424,20 @@ class Suggestions extends React.Component {
                       minZoom={2}
                       gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
                       observations={[observation]}
-                      scrollwheel={false}
+                      gestureHandling="auto"
                       taxonLayers={[{
                         taxon: detailTaxon,
-                        observations: true,
+                        observations: { observation_id: observation.id },
                         gbif: { disabled: true },
                         places: true,
                         ranges: true
                       }]}
+                    />
+                    <h4>{ I18n.t( "taxonomy" ) }</h4>
+                    <TaxonomicBranch
+                      taxon={ detailTaxon }
+                      chooseTaxon={ t => setDetailTaxon( t ) }
+                      noHideable
                     />
                   </div>
                 ) : null }

@@ -56,6 +56,10 @@ module DarwinCore
       data_paths = make_data
       logger.debug "Data: #{data_paths.inspect}"
       paths = [metadata_path, descriptor_path, data_paths].flatten.compact
+      if @opts[:with_taxa]
+        logger.info "Making taxa extension..."
+        paths << make_api_all_taxon_data
+      end
       archive_path = make_archive(*paths)
       logger.debug "Archive: #{archive_path}"
       FileUtils.mv(archive_path, @opts[:path])
@@ -75,17 +79,17 @@ module DarwinCore
 
         # Make a POST request to an endpoint indicating the archive with taxon data is updated
         if @opts[:post_taxon_archive_to_url] && @opts[:post_taxon_archive_as_url]
-          uri = URI( @opts[:post_taxon_archive_to_url] )
-          http = Net::HTTP.new( uri.host, uri.port )
-          req = Net::HTTP::Post.new( uri.path, {
-            "Content-Type" => "application/json"
-          })
-          req.body = {
-            name: "iNaturalist",
-            url: @opts[:post_taxon_archive_as_url]
-          }.to_json
-          logger.debug "Posting #{req.body} to #{@opts[:post_taxon_archive_to_url]}"
-          res = http.request( req )
+          options = {
+           body: {
+              name: "iNaturalist",
+              url: @opts[:post_taxon_archive_as_url]
+           }.to_json,
+           headers: {
+             "Content-Type" => "application/json"
+           }
+          }
+          logger.debug "Posting #{options[:body]} to #{@opts[:post_taxon_archive_to_url]}"
+          response = HTTParty.post( @opts[:post_taxon_archive_to_url], options )
         end
       end
       @opts[:path]
@@ -189,19 +193,26 @@ module DarwinCore
       fake_view = FakeView.new
       
       preloads = [
-        { taxon: :ancestor_taxa }, 
+        { taxon: :ancestor_taxa },
         { user: :stored_preferences }, 
         :quality_metrics, 
         :identifications,
         { observations_places: :place }
       ]
+
+      if @opts[:community_taxon]
+        preloads  << { community_taxon: :ancestor_taxa }
+      end
       
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers
           observations_in_batches(observations_params, preloads, label: 'make_occurrence_data') do |o|
             benchmark(:obs) do
-              o = DarwinCore::Occurrence.adapt(o, view: fake_view, private_coordinates: @opts[:private_coordinates])
+              o = DarwinCore::Occurrence.adapt(o, view: fake_view,
+                private_coordinates: @opts[:private_coordinates],
+                community_taxon: @opts[:community_taxon]
+              )
               row = DarwinCore::Occurrence::TERMS.map do |field, uri, default, method|
                 key = method || field
                 benchmark( "obs_#{key}" ) { o.send( key ) }
@@ -465,6 +476,9 @@ module DarwinCore
           Observation.preload_associations(batch, preloads)
         end
         batch.each do |observation|
+          if @opts[:community_taxon] && observation.community_taxon.blank?
+            next
+          end
           yield observation
         end
         batch_times << (Time.now - start)

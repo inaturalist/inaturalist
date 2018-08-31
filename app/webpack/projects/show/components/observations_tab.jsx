@@ -1,5 +1,5 @@
-import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import ObservationsFlexGridView from "./observations_flex_grid_view";
 import ObservationsListView from "./observations_list_view";
@@ -25,7 +25,7 @@ const ObservationsTab = ( {
       project.recent_observations.results : null;
   }
   if ( loading ) {
-    view = ( <div className="loading_spinner huge" /> );
+    view = <div key="observations-tab-loading-spinner" className="loading_spinner huge" />;
   } else if ( activeSubview === "map" ) {
     view = (
       <ObservationsMapView

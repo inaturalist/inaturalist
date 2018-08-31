@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import moment from "moment-timezone";
+import PropTypes from "prop-types";
 import inaturalistjs from "inaturalistjs";
 /* global L */
 /* global DEFAULT_SITE_ID */
@@ -100,9 +100,9 @@ class GlobalMap extends React.Component {
 }
 
 GlobalMap.propTypes = {
-  site: React.PropTypes.object,
-  year: React.PropTypes.number,
-  interval: React.PropTypes.string
+  site: PropTypes.object,
+  year: PropTypes.number,
+  interval: PropTypes.string
 };
 
 export default GlobalMap;

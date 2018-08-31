@@ -1,9 +1,9 @@
 #encoding: utf-8
-class UsersController < ApplicationController  
+class UsersController < ApplicationController
   before_action :doorkeeper_authorize!,
     only: [ :create, :update, :edit, :dashboard, :new_updates, :api_token ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :authenticate_user!, 
+  before_filter :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
@@ -62,9 +62,10 @@ class UsersController < ApplicationController
   # Don't take these out yet, useful for admin user management down the road
 
   def suspend
-     @user.suspend!
-     flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
-     redirect_back_or_default(@user)
+    @user.suspended_by_user = current_user
+    @user.suspend!
+    flash[:notice] = t(:the_user_x_has_been_suspended, :user => @user.login)
+    redirect_back_or_default(@user)
   end
    
   def unsuspend
@@ -278,7 +279,7 @@ class UsersController < ApplicationController
   def show
     @selected_user = @user
     @login = @selected_user.login
-    @followees = @selected_user.friends.paginate(:page => 1, :per_page => 15).order("id desc")
+    @followees = @selected_user.friends.where( "users.suspended_at IS NULL" ).paginate(:page => 1, :per_page => 15).order("id desc")
     @favorites_list = @selected_user.lists.find_by_title("Favorites")
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
@@ -313,9 +314,9 @@ class UsersController < ApplicationController
   
   def relationships
     @users = if params[:following]
-      @user.friends.paginate(page: params[:page] || 1).order(:login)
+      @user.friends.where( "users.suspended_at IS NULL" ).paginate(page: params[:page] || 1).order(:login)
     else
-      @user.followers.paginate(page: params[:page] || 1).order(:login)
+      @user.followers.where( "users.suspended_at IS NULL" ).paginate(page: params[:page] || 1).order(:login)
     end
     counts_for_users
   end
@@ -464,6 +465,8 @@ class UsersController < ApplicationController
   end
   
   def new_updates
+    # not sure why current_user would be nil here, but sometimes it is
+    return redirect_to login_path if !current_user
     params[:notification] ||= "activity"
     params[:notification] = params[:notification].split(",")
     filters = [ { terms: { notification: params[:notification] } } ]
@@ -574,6 +577,7 @@ class UsersController < ApplicationController
           end
         end
         format.json do
+          User.refresh_es_index
           render :json => @display_user.to_json(User.default_json_options)
         end
       end
@@ -647,7 +651,7 @@ class UsersController < ApplicationController
       }
     }.symbolize_keys
     updates.each do |k,v|
-      v = true if v.yesish?
+      v = true if v.yesish? && v != "1"
       v = false if v.noish?
       session[k] = v
       if (k =~ /^prefers_/ || k =~ /^preferred_/) && logged_in? && current_user.respond_to?(k)
@@ -658,6 +662,8 @@ class UsersController < ApplicationController
   end
 
   def api_token
+    # not sure why current_user would be nil here, but sometimes it is
+    return redirect_to login_path if !current_user
     payload = { user_id: current_user.id }
     if doorkeeper_token && (a = doorkeeper_token.application)
       payload[:oauth_application_id] = a.becomes( OauthApplication ).id

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
 import * as d3 from "d3";
 import { COLORS } from "../../../shared/util";
@@ -153,14 +154,14 @@ const PieChartForIconicTaxonCounts = ( {
 };
 
 PieChartForIconicTaxonCounts.propTypes = {
-  data: React.PropTypes.object,
-  year: React.PropTypes.number,
-  user: React.PropTypes.object,
-  margin: React.PropTypes.object,
-  labelForDatum: React.PropTypes.func,
-  innerRadius: React.PropTypes.number,
-  donutWidth: React.PropTypes.number,
-  urlPrefix: React.PropTypes.string
+  data: PropTypes.object,
+  year: PropTypes.number,
+  user: PropTypes.object,
+  margin: PropTypes.object,
+  labelForDatum: PropTypes.func,
+  innerRadius: PropTypes.number,
+  donutWidth: PropTypes.number,
+  urlPrefix: PropTypes.string
 };
 
 export default PieChartForIconicTaxonCounts;

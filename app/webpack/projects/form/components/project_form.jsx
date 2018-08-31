@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col, Overlay, Popover } from "react-bootstrap";
 import UserAutocomplete from "../../../observations/identify/components/user_autocomplete";
 import RegularForm from "./regular_form";

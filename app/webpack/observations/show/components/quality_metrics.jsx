@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 import UsersPopover from "./users_popover";
@@ -233,7 +234,7 @@ class QualityMetrics extends React.Component {
                 overlay={ this.popover( ) }
                 className="cool"
               >
-                <span>
+                <span className="popover-data-quality-link">
                   { I18n.t( "data_quality_assessment_" ) }
                   <i className="fa fa-info-circle" />
                 </span>
@@ -263,8 +264,8 @@ class QualityMetrics extends React.Component {
                 <i className="fa fa-map-marker" />
                 { I18n.t( "location_specified" ) }
               </td>
-              <td className="agree">{ observation.location ? checkIcon : null }</td>
-              <td className="disagree">{ observation.location ? null : xIcon }</td>
+              <td className="agree">{ observation.location || observation.obscured ? checkIcon : null }</td>
+              <td className="disagree">{ observation.location || observation.obscured ? null : xIcon }</td>
             </tr>
             <tr>
               <td className="metric_title">

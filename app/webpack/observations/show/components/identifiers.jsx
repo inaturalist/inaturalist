@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Panel } from "react-bootstrap";
 import UserImage from "../../../shared/components/user_image";
 
@@ -17,7 +18,7 @@ class Identifiers extends React.Component {
     if ( !observation || !observation.taxon || _.isEmpty( identifiers ) ) { return ( <span /> ); }
     const loggedIn = config && config.currentUser;
     const taxon = observation.taxon;
-    let singleName = taxon.preferred_common_name || taxon.name;
+    let singleName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name ) || taxon.name;
     if ( config && config.currentUser && config.currentUser.prefers_scientific_name_first ) {
       singleName = taxon.name;
     }
@@ -36,23 +37,25 @@ class Identifiers extends React.Component {
           { I18n.t( "top_identifiers_of_taxon", {
             taxon: singleName } ) }
         </h4>
-        <Panel collapsible expanded={ this.state.open }>
-          { identifiers.map( i => (
-            <div className="identifier" key={ `identifier-${i.user.id}` }>
-              <div className="UserWithIcon">
-                <div className="icon">
-                  <UserImage user={ i.user } />
-                </div>
-                <div className="title">
-                  <a href={ `/people/${i.user.login}` }>{ i.user.login }</a>
-                </div>
-                <div className="subtitle">
-                  <i className="icon-identification" />
-                  { i.count }
+        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+          <Panel.Collapse>
+            { identifiers.map( i => (
+              <div className="identifier" key={ `identifier-${i.user.id}` }>
+                <div className="UserWithIcon">
+                  <div className="icon">
+                    <UserImage user={ i.user } />
+                  </div>
+                  <div className="title">
+                    <a href={ `/people/${i.user.login}` }>{ i.user.login }</a>
+                  </div>
+                  <div className="subtitle">
+                    <i className="icon-identification" />
+                    { i.count }
+                  </div>
                 </div>
               </div>
-            </div>
-          ) ) }
+            ) ) }
+          </Panel.Collapse>
         </Panel>
       </div>
     );

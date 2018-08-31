@@ -167,7 +167,12 @@ module TaxaHelper
   def capitalize_piece( piece )
     # \p{Word} matches any word in Unicode, \w does not, apparently
     # https://stackoverflow.com/questions/3576232/how-to-match-unicode-words-with-ruby-1-9#3576559
+
+    # Match contractions like d'Silva
     if bits = piece.match( /^([a-z]['’])(\p{Word}+)/ )
+      "#{bits[1]}#{bits[2].capitalize}"
+    # Match okina and similar leading punctuation characters that will match \p{Word}
+    elsif bits = piece.match( /^([ʻ])(\p{Word}+)/)
       "#{bits[1]}#{bits[2].capitalize}"
     elsif bits = piece.match( /(.*?)(\p{Word}+)(.*)/ )
       "#{bits[1]}#{bits[2].capitalize}#{bits[3]}"

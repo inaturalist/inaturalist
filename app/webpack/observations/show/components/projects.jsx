@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Panel } from "react-bootstrap";
 import ProjectListing from "./project_listing";
 
@@ -66,8 +67,19 @@ class Projects extends React.Component {
     const observation = this.props.observation;
     const config = this.props.config;
     const loggedIn = config && config.currentUser;
+
+    observation.non_traditional_projects = observation.non_traditional_projects || [];
+    const projectsOrProjObs = observation.non_traditional_projects;
+    _.each( observation.project_observations, po => {
+      // trying to avoid duplicate project listing. This can happen for formerly
+      // traditional projects that have been turned into collection projects
+      if ( !_.find( projectsOrProjObs, ppo => ( ppo.project_id === po.project_id ) ) ) {
+        projectsOrProjObs.push( po );
+      }
+    } );
     if ( !observation || !observation.user ||
-         ( !loggedIn && observation.project_observations.length === 0 ) ) {
+         ( !loggedIn &&
+           projectsOrProjObs.length === 0 ) ) {
       return ( <span /> );
     }
     let addProjectInput;
@@ -84,8 +96,8 @@ class Projects extends React.Component {
         </form>
       );
     }
-    const count = observation.project_observations.length > 0 ?
-      `(${observation.project_observations.length})` : "";
+    const count = projectsOrProjObs.length > 0 ?
+      `(${projectsOrProjObs.length})` : "";
     return (
       <div className="Projects collapsible-section">
         <h4
@@ -100,15 +112,19 @@ class Projects extends React.Component {
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { I18n.t( "projects" ) } { count }
         </h4>
-        <Panel collapsible expanded={ this.state.open }>
-          { addProjectInput }
-          { observation.project_observations.map( po => (
-            <ProjectListing
-              key={ po.project.id }
-              projectObservation={ po }
-              { ...this.props }
-            />
-          ) ) }
+        <Panel id="projects-panel" expanded={ this.state.open } onToggle={ () => null }>
+          <Panel.Collapse>
+            <Panel.Body>
+              { addProjectInput }
+              { projectsOrProjObs.map( obj => (
+                <ProjectListing
+                  key={ obj.project.id }
+                  displayObject={ obj }
+                  { ...this.props }
+                />
+              ) ) }
+            </Panel.Body>
+          </Panel.Collapse>
         </Panel>
       </div>
     );

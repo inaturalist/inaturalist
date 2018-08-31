@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment";
@@ -150,10 +151,10 @@ const Observations = ( { data, site, user, year } ) => {
 };
 
 Observations.propTypes = {
-  site: React.PropTypes.object,
-  user: React.PropTypes.object,
-  year: React.PropTypes.number,
-  data: React.PropTypes.object
+  site: PropTypes.object,
+  user: PropTypes.object,
+  year: PropTypes.number,
+  data: PropTypes.object
 };
 
 export default Observations;

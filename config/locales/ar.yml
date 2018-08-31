@@ -52,6 +52,9 @@ ar:
   x_matching_taxa_html:
     one: <span class="count">1</span> أصنوفة مطابقة
     other: <span class="count">%{count}</span> أصنوفة مطابقة
+  x_misidentifications_of_this_species:
+    one: 1 عدم تعرف على هذا النوع
+    other: '%{count} عدم تعرف على هذا النوع'
   x_observations:
     one: 1 ملاحظة
     other: '%{count} ملاحظات'
@@ -1181,6 +1184,7 @@ ar:
   does_the_date_seem_accurate: هل يبدو التاريخ دقيقا؟
   doesnt_have_default_photo: ليس لديك صورة افتراضية بعد.
   doh_something_went_wrong: أوه، حدث خطأ ما.
+  doh_something_went_wrong_error: 'عفوا، حدث خطأ ما: %{error}'
   done: تم
   dont_filter: عدم التصفية
   dont_send_me_email: لا ترسل لي أي بريد إلكتروني!
@@ -1517,7 +1521,6 @@ ar:
   generally_these_come_from_iucn_red_list: بوجه عام، تأتي هذه القوائم من القائمة الحمراء
     للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية، وإذا كانت تأتي من أماكن أخرى، فإنها
     ستلتزم بفئات الاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية.
-  generate_pdf: توفير PDF
   generate_taxonomic_tags_for_flickr: توفير علامات تصنيفية لصور فليكر الخاصة بك
   generate_widget: توفير أداة
   generate_your_stats: توليد إحصاءاتك
@@ -1541,6 +1544,7 @@ ar:
   go_back: رجوع
   going_to_your_observations: جارٍ الانتقال إلى ملاحظاتك...
   good_choice_for_sharing: خيار جيد للمشاركة مع العلماء
+  google: جوجل
   got_it!: حسنًا!
   got_your_data_somewhere_else?: هل حصلت على بياناتك في مكان آخر؟ نستطيع المساعدة.
   graft: تطعيم
@@ -1873,6 +1877,7 @@ ar:
   learn_more_raquo: اعرف المزيد &raquo;
   learn_what_these_licenses_mean: تعرف على ما تعنيه هذه التراخيص
   least_concern: أقل قلق
+  leave: مغادرة
   leave_a_comment: اترك تعليقًا
   leave_this_project: اترك هذا المشروع
   leaves: أوراق أشجار
@@ -2229,6 +2234,7 @@ ar:
   more_photos: المزيد من الصور
   most: الأكثر
   most_agree: الأكثر توافقا
+  most_browser_print_pdf: 'ملاحظة: لدى معظم المتصفحات خيار الطباعة إلى PDF'
   most_disagree: الأكثر خلافا
   most_comments_and_faves: الأكثر تعليقا وتفضيلا
   most_observations: الأكثر في الملاحظات
@@ -2713,6 +2719,7 @@ ar:
   open: فتح
   open_: فتح
   open_description: يمكن لأي شخص أن يرى الإحداثيات إذا لم تكن الأصناف مهددة.
+  open_street_map: خريطة الشارع المفتوحة
   opt_in_for_this_observation: الاشتراك في هذه الملاحظة
   opt_out_of_community_ids_for_obs: تعطيل تعريف المجتمع لهذه الملاحظة
   optional: اختياري
@@ -2764,7 +2771,6 @@ ar:
   paste_in_a_bunch_of_names: ألصق في مجموعة من الأسماء، 1 في كل سطر، واضرب الزر!
   paste_in_a_comma_separated_list: الصق في قائمة بلدان مفصولة بفواصل
   pdf: PDF
-  pdf_slash_print: تحميل / PDF
   people: أشخاص
   people_agree: اتفاق الناس
   people_following_user: الأشخاص الذين يتابعون %{user}
@@ -3056,6 +3062,7 @@ ar:
   previous_page: الصفحة السابقة
   previous_photo: الصورة السابقة
   previous_tab: علامة التبويب السابقة
+  print_verb: طباعة
   print_in_browser: الطباعة في المتصفح
   privacy: سياسة الخصوصية
   privacy_policy: سياسة الخصوصية
@@ -3641,6 +3648,7 @@ ar:
     أخرى لاحقا
   stop_editing: إيقاف التحرير
   stop_following_user: توقف عن متابعة %{user}
+  stop_testing: وقف الاختبار
   stop_updating_position: توقف عن تحديث الموضع
   stuff_just_added: العناصر التي أضفتها للتو...
   subject_resolved_noun_html: '%{subject} حل %{noun}'
@@ -3766,6 +3774,8 @@ ar:
     تقییمات الأصناف ھي وثائق تقییم الحالة الحالیة للأنواع، وعادة ما تکون حالة الحفظ،
     على سبيل المثال، قد تستخدمها منظمة إقليمية لحفظ الطبيعة في تنظيم المعلومات والتماس التغذية الراجعة حول حالة العديد من الأصناف المهددة في المنطقة.
   taxon_change: تغيير الأصنوفة
+  taxon_change_must_be_committed_to_update_records: يجب الالتزام بتغيير الأصنوفة لتحديث
+    السجلات
   taxon_deleted: تم حذف الأصنوفة.
   taxon_doesnt_have_a_range: الأصنوفة ليس لديها نطاق
   taxon_drop: تدهور الأصنوفة
@@ -4195,6 +4205,7 @@ ar:
   user_added_an_x_to_noun_by_html: أضاف %{user} %{x} لـ%{noun} بواسطة %{by}
   user_added_an_x_to_noun_html: أضاف %{user} %{x} لـ%{noun}
   user_added_x_observations_html: أضاف %{user} %{x} ملاحظة
+  user_already_authenticated: المستخدم موثق بالفعل
   user_autocomplete_placeholder: kueda وsimon123 وما إلى ذلك.
   user_blocked: المستخدم ممنوع
   user_commented: علق %{user}
@@ -4417,7 +4428,8 @@ ar:
   where_does_x_live: أين يعيش %{taxa}؟
   where_were_they?: أين كانوا؟
   where_were_you?: أين كنت؟
-  which_projects_can_add_your_observations?: ما المشاريع التي يمكنها إضافة ملاحظاتك؟
+  which_projects_can_add_your_observations?: ما هي المشاريع التقليدية التي يمكنها
+    إضافة ملاحظاتك؟
   white: أبيض
   who_can_add_observations_to_this_project?: من يمكنه إضافة ملاحظات إلى هذا المشروع؟
   who_helped_user_the_most: من ساعد %{user} أكثر
@@ -5296,6 +5308,8 @@ ar:
       umbrella: مظلة
       tracks_multiple_projects: يتتبع مشاريع متعددة
       projects_included: المشاريع المضمنة
+      collection_and_umbrellas_do_not_support: لا تدعم مشاريع التجميع والمظلة حاليا
+        الوصول إلى الإحداثيات الخاصة.
       curator_coordinate_access_desc_html: "تذكر أن <strong>أمناء المشروع يمكنهم إضافة
         أي من ملاحظاتك إلى \nمشروعهم</strong> ما لم \nتشترك في <a href=\"/users/edit\">إعدادات
         الحساب</a>، \nحدد هذا المربع فقط إذا كنت تثق في أمناء المشروع لعرض إحداثياتك
@@ -5842,6 +5856,9 @@ ar:
           any: أي
           joined: المشاريع التي انضممت إليها
           none: لا شيء، فقط يمكنك إضافة ملاحظاتك إلى المشاريع
+        this_only_applies_to_traditional_projects: "هذا ينطبق فقط على المشاريع التقليدية،
+          لا يمكنك استبعاد الملاحظات \nمن مشاريع مجموعة أو مظلة، وهي عمليات بحث محفوظة
+          بشكل أساسي، \nيمكنك قراءة المزيد\n<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">هنا</a>."
         project_settings_desc: "تذكر، هذا لا يعطي مشاريع الإذن بالوصول \nلإحداثياتك
           الخاصة أو إرسال تحديثات لك،; يجب عليك الانضمام إلى المشاريع من \nأجل منح
           هذه الأذونات، أو منحها على أساس كل حالة على \nحدة."
@@ -5969,10 +5986,6 @@ ar:
       10: أكتوبر
       11: نوفمبر
       12: ديسمبر
-    order:
-    - 'سنة:'
-    - :شهر
-    - :يوم
   datetime:
     distance_in_words:
       about_x_hours:

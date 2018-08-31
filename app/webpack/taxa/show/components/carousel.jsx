@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Button } from "react-bootstrap";
 import _ from "lodash";
@@ -7,18 +8,32 @@ class Carousel extends React.Component {
   constructor( ) {
     super( );
     this.state = {
-      currentIndex: 0
+      currentIndex: 0,
+      sliding: false
     };
+  }
+  componentDidMount( ) {
+    const domNode = ReactDOM.findDOMNode( this );
+    const that = this;
+    $( ".carousel", domNode ).on( "slid.bs.carousel", ( ) => {
+      that.setState( { sliding: false } );
+    } );
   }
   showNext( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( ".carousel", domNode ).carousel( "next" );
-    this.setState( { currentIndex: this.state.currentIndex + 1 } );
+    this.setState( {
+      currentIndex: this.state.currentIndex + 1,
+      sliding: true
+    } );
   }
   showPrev( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( ".carousel", domNode ).carousel( "prev" );
-    this.setState( { currentIndex: this.state.currentIndex - 1 } );
+    this.setState( {
+      currentIndex: this.state.currentIndex - 1,
+      sliding: true
+    } );
   }
   render( ) {
     let link;
@@ -48,13 +63,13 @@ class Carousel extends React.Component {
         <div className="carousel-controls pull-right nav-buttons">
           <Button
             className="nav-btn prev-btn"
-            disabled={this.state.currentIndex === 0}
+            disabled={this.state.currentIndex === 0 || this.state.sliding }
             onClick={ ( ) => this.showPrev( ) }
             title={ I18n.t( "prev" ) }
           />
           <Button
             className="nav-btn next-btn"
-            disabled={this.state.currentIndex >= this.props.items.length - 1}
+            disabled={this.state.currentIndex >= this.props.items.length - 1  || this.state.sliding}
             onClick={ ( ) => this.showNext( ) }
             title={ I18n.t( "next" ) }
           />

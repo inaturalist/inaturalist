@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import {
   OverlayTrigger,
   Popover
@@ -60,6 +61,7 @@ class TaxonChooserPopover extends React.Component {
 
   render( ) {
     const {
+      id,
       container,
       taxon,
       className,
@@ -77,7 +79,7 @@ class TaxonChooserPopover extends React.Component {
         rootClose
         container={container}
         overlay={
-          <Popover className="TaxonChooserPopover RecordChooserPopover">
+          <Popover id={ id } className="TaxonChooserPopover RecordChooserPopover">
             <TaxonAutocomplete
               initialSelection={taxon}
               bootstrapClear
@@ -148,6 +150,7 @@ class TaxonChooserPopover extends React.Component {
 }
 
 TaxonChooserPopover.propTypes = {
+  id: PropTypes.string.isRequired,
   container: PropTypes.object,
   taxon: PropTypes.object,
   defaultTaxon: PropTypes.object,

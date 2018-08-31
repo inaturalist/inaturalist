@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Col } from "react-bootstrap";
 /* global OUTLINK_SITE_ICONS */
 
@@ -21,7 +22,7 @@ class ResearchGradeProgress extends React.Component {
     remainingCriteria.media = ( observation.photos.length + observation.sounds.length ) === 0;
     remainingCriteria.rank = ( observation.taxon && observation.taxon.rank_level > 10 );
     remainingCriteria.ids = !observation.identifications_most_agree;
-    remainingCriteria.location = !observation.location;
+    remainingCriteria.location = !( observation.location || observation.obscured );
     const votesFor = { };
     const votesAgainst = { };
     _.each( qualityMetrics, ( values, metric ) => {
@@ -233,9 +234,15 @@ class ResearchGradeProgress extends React.Component {
             </Col>
           </div>
           <div className="labels">
-            <div className={ `casual ${grade === "casual" && "active"}` }>Casual Grade</div>
-            <div className={ `needs-id ${grade === "needs_id" && "active"}` }>Needs ID</div>
-            <div className={ `research ${grade === "research" && "active"}` }>Research Grade</div>
+            <div className={ `casual ${grade === "casual" && "active"}` }>
+              { I18n.t( "casual_" ) }
+            </div>
+            <div className={ `needs-id ${grade === "needs_id" && "active"}` }>
+              { I18n.t( "needs_id_" ) }
+            </div>
+            <div className={ `research ${grade === "research" && "active"}` }>
+              { I18n.t( "research_grade" ) }
+            </div>
           </div>
         </div>
         <div className="info">

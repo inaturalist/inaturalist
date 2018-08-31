@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Button } from "react-bootstrap";
 import { fetch } from "../../../shared/util";
 
@@ -48,9 +49,9 @@ class GenerateStatsButton extends React.Component {
 }
 
 GenerateStatsButton.propTypes = {
-  user: React.PropTypes.object,
-  text: React.PropTypes.string,
-  year: React.PropTypes.number.isRequired
+  user: PropTypes.object,
+  text: PropTypes.string,
+  year: PropTypes.number.isRequired
 };
 
 GenerateStatsButton.defaultProps = {

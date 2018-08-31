@@ -16,6 +16,7 @@
 # Author: MokaAkashiyaPT
 # Author: Pedrofariasm
 # Author: Peter Fernando
+# Author: Piterkeo
 # Author: Tim Vincent
 # Author: Vonmatter
 # Author: Walesson
@@ -110,6 +111,7 @@ pt-BR:
   x_taxa_matching_current_filters:
     one: 1 táxon corresponde com filtros selecionados
     other: '%{count} táxons correspondem com filtros selecionados'
+  _100_day_trends: Tendências de 100 dias
   _percent_ID_d: '% ID''d'
   a: uma
   a_: uma
@@ -129,6 +131,7 @@ pt-BR:
   about_blocking: Sobre Bloquear
   about_charts: Sobre os Gráficos
   about_community_taxa: Sobre os táxons da comunidade
+  about_complete_taxa: Sobre táxons completos
   about_conservation_status: Sobre o Status de Conservação
   about_editing_observation_fields: Sobre a Edição dos Campos de Observação
   about_establishment_means: Sobre Formas de Estabelecimento
@@ -143,11 +146,13 @@ pt-BR:
   about_the_cc_licenses: Sobre as licenças Creative Commons
   about_the_taxobox_raquo: Sobre a caixa de seleção de táxon &raquo;
   about_these_licenses: Sobre estas licenças
+  about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre este mapa
   about_this_project: Sobre este Projeto
   about_x: Sobre %{x}
   acc: Precisão exata - Acurácia (m)
   account: Conta
+  account_settings: Configurações da conta
   accept: Aceito
   accept_community_identifications: Aceito as identificações sugeridas pela comunidade
   accuracy: Precisão (Acurácia)
@@ -164,6 +169,7 @@ pt-BR:
   actions: ações
   activate_user: Ativar usuário
   active: Ativo
+  active_users: Usuários ativos
   activity: Atividade
   activity_settings: Configurações de atividade
   adapted_by_name_from_a_work_by_original: Adaptado por %{name} from a work by %{original}
@@ -192,6 +198,11 @@ pt-BR:
   add_an_observation: Adicione uma observação
   add_an_observation?: Adicionar uma observação?
   add_an_observation_of: Adicione uma observação de %{taxon}
+  add_annotations_for_x: Adicionar anotações para "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Adicionar anotações sobre "Sexo"
+    plant_phenology: Adicionar anotações sobre "Fenologia Vegetal"
+    life_stage: Adicionar anotações sobre "Estágio de Vida"
   add_another: Adicione outro
   add_another_flag: Adicione um outro alerta
   add_another_photo: Adicione outra foto
@@ -208,6 +219,7 @@ pt-BR:
   add_custom_project_fields: Adicione campos de projetos personalizados
   add_edit_flags: Adicionar/Editar Etiquetas
   add_edit_more_fields: Adicionar/editar mais campos
+  add_editor: Adicionar Editor
   add_description: Adicionar %{description_name}
   add_field: Adicionar campo
   add_from_your_observations: Adicionar de suas observações
@@ -254,6 +266,7 @@ pt-BR:
   add_life_stage_larva_annotation: 'Adicionar "Estágio de Vida: Larva" anotação'
   add_life_stage_juvenile_annotation: 'Adicionar "Estágio de Vida: Juvenil" anotação'
   add_life_stage_egg_annotation: 'Adicionar "Estágio de Vida: Ovo" anotação'
+  add_section: Adicionar seção
   add_several_observations_at_once: Adicionar diversas observações de uma só vez.
   add_sex_female_annotation: 'Adicionar "Sexo: Fêmea" anotação'
   add_sex_male_annotation: 'Adicionar "Sexo: Macho" anotação'
@@ -304,6 +317,7 @@ pt-BR:
   additional_range_data_from_an_unknown_source: Distribuição adicional para fontes
     desconhecidas
   admin: Administrador
+  admin_s: Administrador(es)
   admin_any_projects: administra qualquer projeto
   admin_tools: Ferramentas Administrativas
   agree: Concordo
@@ -324,6 +338,34 @@ pt-BR:
   all_photos: Todas as fotos
   all_places: Todos os lugares
   all_projects: Todos os Projetos
+  all_rank_added_to_the_database:
+    phylum: Todos os filos adicionados à base de dados
+    subphylum: Todos os subfilos adicionados à base de dados
+    superclass: Todas as superclasses adicionadas à base de dados
+    class: Todas as classes adicionadas à base de dados
+    subclass: Todas as subclasses adicionadas à base de dados
+    infraclass: Todas as infraclasses adicionadas à base de dados
+    superorder: Todas as superordens adicionadas à base de dados
+    order: Todas as ordens adicionadas à base de dados
+    suborder: Todas as subordens adicionadas à base de dados
+    infraorder: Todas as infraordens adicionadas à base de dados
+    superfamily: Todas as superfamílias adicionadas à base de dados
+    epifamily: Todas as epifamílias adicionadas à base de dados
+    family: Todas as famílias adicionadas à base de dados
+    subfamily: Todas as subfamílias adicionadas à base de dados
+    supertribe: Todas as supertribos adicionadas à base de dados
+    tribe: Todas as tribos adicionadas à base de dados
+    subtribe: Todas as subtribos adicionadas à base de dados
+    genus: Todos os gêneros adicionados à base de dados
+    genushybrid: Todos os gêneros híbridos adicionados à base de dados
+    subgenus: Todos os subgêneros adicionados à base de dados
+    section: Todas as seções adicionadas à base de dados
+    subsection: Todas as subseções adicionadas à base de dados
+    species: Todas as espécies adicionadas à base de dados
+    hybrid: Todos os híbridos adicionados à base de dados
+    subspecies: Todas as subespécies adicionadas à base de dados
+    variety: Todas as variedades adicionadas à base de dados
+    form: Todas as formas adicionadas à base de dados
   all_rights_reserved: todos os direitos reservados
   all_species: Todas as Espécies
   all_taxa:
@@ -391,6 +433,7 @@ pt-BR:
     x_other_animals:
       one: 1 outro animal
       other: '%{count} outros animais'
+  all_taxa_: Todos os táxons
   all_taxa_in_this_guide: Todas as espécies e grupos deste guia
   all_taxonomic_groups: '&laquo; Todos os Grupos Taxonômicos'
   all_updates: Todas as atualizações
@@ -433,11 +476,13 @@ pt-BR:
     other: e %{count} pessoas a mais
   android: Android
   animals: Animais
+  animated_observations_map: Mapa de Observações Animado
   annotations: Anotações
   announcement_was_successfully_created: Aviso foi criado com sucesso.
   announcement_was_successfully_updated: Aviso foi atualizado com sucesso.
   announcements: Anúncios
   any: qualquer
+  any_: Qualquer
   apply_to_selected: Aplicar nos selecionados
   apply_captive_cultivated: Aplicar doméstico/cultivado
   apply_fields: Aplicar campos
@@ -563,6 +608,7 @@ pt-BR:
   back_to_browsing_people: Voltar para a busca de pessoas
   back_to_calendar: Voltar para calendário %{user}
   back_to_editing_observation: Voltar para observação editada
+  back_to_friends: Voltar a amigos
   back_to_help: Voltar para Ajuda
   back_to_import: Voltar para Importar
   back_to_lists: Voltar para %{name} lists
@@ -592,6 +638,7 @@ pt-BR:
   back_to_your_projects: Voltar aos seus projetos
   based_on_the_evidence_can_id_be_improved: Baseado nesta evidência, a ID da comunidade
     pode ainda ser confirmada ou melhorada?
+  basic: Básico
   batch: Grupo
   batch_edit: Editar em grupo
   batch_edit_taxa_for_x_html: Edição de dados por lote para %{x}
@@ -610,6 +657,8 @@ pt-BR:
   bioblitz: Bioblitz
   birds: aves
   black: preto
+  block_user: Bloquear usuário(a)
+  block_removed: Bloqueio removido
   blocked_users: Usuários Bloqueados
   blog_widget: Blog Widget
   blue: azul
@@ -648,6 +697,8 @@ pt-BR:
   by_user: por %{user}
   by_you: Por você
   calendar: Calendário
+  calendars_only_show_x_observations_at_time: Calendários só mostram %{x} observações
+    por vez
   can_you_help_your_friends_id_these: Você pode ajudar seus amigos a identificar isto?
   cancel: Cancelar
   cant_flag_an_object_that_doesnt_exist: Não pode marcar com alerta um objeto que
@@ -658,6 +709,7 @@ pt-BR:
   card: Identificação
   case_plural: s
   casual: casual
+  casual_: Casual
   catalogue_of_life: Catálogo da Vida
   categories: categorias
   cc_0_description: Esta licença libera a sua obra em domínio público, de modo que
@@ -754,6 +806,7 @@ pt-BR:
   change_your_password: Altere sua senha
   changing_the_geoprivacy: Mudar a geoprivacidade altera como as outras pessoas verão
     a localização das suas observações.
+  check_above_for_errors: Verifique erros acima
   check_back_soon: Verifique em breve!
   check_here_to_autoload_description: Selecione aqui para carregar automaticamente
     as descrições da Wikipedia. Desmarque esta seleção quando uma nome científico
@@ -806,6 +859,9 @@ pt-BR:
     licenciadas de outros sites ou carregue de %{site_name} observações. Tente escolher
     imagens que <em>com características que possibilitem a identificação</em> e <em>sejam
     bonitas com ícones</em>.  A <em>primeira será a padrão</em>.
+  choose_columns: Escolha colunas
+  choose_file: Escolher arquivo
+  choose_files: Escolher arquivos
   choose_files_from_your_computer: escolha arquivos do seu computador
   choose_from_your_lists: Escolha das suas listas
   choose_good_default_photos: Escolha com atenção as imagens licenciadas apra Crative
@@ -1173,6 +1229,7 @@ pt-BR:
   does_the_date_seem_accurate: A data parece estar precisa?
   doesnt_have_default_photo: ainda não possui uma foto padrão.
   doh_something_went_wrong: Ops, algo saiu errado.
+  doh_something_went_wrong_error: 'Ah, algo deu errado: %{error}'
   done: Concluído
   dont_filter: Não filtrar
   dont_send_me_email: Não me envie qualquer e-mail
@@ -1510,7 +1567,6 @@ pt-BR:
   generally_these_come_from_iucn_red_list: Geralmente estes vem da Lista Vermelha
     da IUCN, e se eles vem de outras referências eles devem aderir Às categorias da
     IUCN.
-  generate_pdf: Gerar PDF
   generate_taxonomic_tags_for_flickr: Gerar marcações taxonômicas para suas fotos
     do Flickr.
   generate_widget: Gerar Widget
@@ -1535,6 +1591,7 @@ pt-BR:
   go_back: Voltar
   going_to_your_observations: Indo para suas observações...
   good_choice_for_sharing: Boa alternativa para compartilhar com pesquisadores científicos
+  google: Google
   got_it!: Entendido!
   got_your_data_somewhere_else?: Obteve seus dados em outro lugar? Nós podemos ajudar.
   graft: Rascunho
@@ -1650,8 +1707,8 @@ pt-BR:
   identotron_help: Ajuda do Auto-Identificador
   ids: IDs
   ids_made_for_others: Identificações feitas por outros
-  if_for_some_reason_a_user_doesnt_agree: Se por alguma razão um usuário não concorda
-    com o táxon da comunidade, ele rejeitá-la, o que significa que sua identificação
+  if_for_some_reason_a_user_doesnt_agree: Se por alguma razão você não concordar com
+    o táxon da comunidade, você pode rejeitá-lo, o que significa que sua identificação
     será utilizada para se conectar a outras observações, atualizar listas de vida,
     etc. Também significa que sua observação apenas se tornará elegível ao 'Nível
     de Pesquisa' quando a comunidade concordar com ela.
@@ -1851,6 +1908,7 @@ pt-BR:
   learn_more_raquo: Saiba mais &raquo;
   learn_what_these_licenses_mean: Saiba o que estas licenças significam
   least_concern: Pouco preocupante
+  leave: Sair
   leave_a_comment: Deixe um comentário
   leave_this_project: Sair deste projeto
   leaves: folhas
@@ -2209,6 +2267,8 @@ pt-BR:
   more_photos: Mais Fotos
   most: Mais
   most_agree: a maioria concorda
+  most_browser_print_pdf: 'Nota: a maioria dos navegadores tem a opção de imprimir
+    em PDF'
   most_disagree: a maioria discorda
   most_observations: A maioria das observações
   most_recent_observation_by_date_observed: Observação mais recente já verificada
@@ -2689,6 +2749,7 @@ pt-BR:
   open_: Abrir
   open_description: Qualquer um pode ter acesso as coordenadas a não ser que o táxon
     esteja em perigo.
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: Opine sobre esta observação
   opt_out_of_community_ids_for_obs: Opte por sair da comunidade de identificação para
     esta observação
@@ -2740,7 +2801,6 @@ pt-BR:
   paste_in_a_bunch_of_names: Adicione um grupo de nomes, 1 por linha, a aperte o botão!
   paste_in_a_comma_separated_list: Cole uma lista de países separados por vírgulas
   pdf: PDF
-  pdf_slash_print: PDF / Imprimir
   people: Pessoas
   people_agree: pessoas concordam
   people_following_user: Pessoas que Seguem %{user}
@@ -3025,6 +3085,7 @@ pt-BR:
   previous_page: Página Anterior
   previous_photo: Foto Anterior
   previous_tab: Aba Anterior
+  print_verb: Imprimir
   print_in_browser: Imprimir no navegador
   privacy: Política de Privacidade
   privacy_policy: Política de Privacidade
@@ -3090,9 +3151,9 @@ pt-BR:
     que seja removido do site)'
   projects: Projetos
   projects_description: Projetos são uma maneira de reunir suas observações com outras
-    pessoas no %{site_name}.  Esteja você interessado em começar um projeto de ciência
-    cidadã ou somente criar tabelas das aves próximas de um parque com seu clube local
-    de observadores, tudo isso pode ser feito com Projetos.
+    pessoas no %{site_name}. Seja começando um projeto de ciência cidadã ou mantendo
+    tabelas sobre as aves próximas na sua vizinhança, os Projetos são o caminho a
+    seguir.
   projects_from_place: Projetos do %{place}
   projects_in_x: Projetos em %{x}
   projects_you_admin: Projetos que você administra
@@ -3363,7 +3424,7 @@ pt-BR:
     aos coordenadores.
   seen_it?: Você viu?
   seen_nearby: Visto nas proximidades
-  seen_one: Viu um?]
+  seen_one: Viu um?
   select: Selecionar
   select_all: Selecionar todas
   select_an_album: Selecionar álbum
@@ -3595,6 +3656,7 @@ pt-BR:
     táxon. Verifique este conteúdo mais tarde.
   stop_editing: Pare de Editar
   stop_following_user: Deixe de seguir %{user}
+  stop_testing: Parar Testes
   stop_updating_position: Deixe de atualizar sua localização
   stuff_just_added: Oque você acabou de adicionar...
   subject_resolved_noun_html: '%{subject} solucionado %{noun}'
@@ -3673,6 +3735,8 @@ pt-BR:
     utilizá-los para organizar as informações e solicitar feedback sobre o status
     de diversas espécies listadas como ameaçadas para a região."
   taxon_change: alteração de táxon
+  taxon_change_must_be_committed_to_update_records: A mudança de táxon deve ser confirmada
+    para atualizar registros
   taxon_deleted: Táxon apagado.
   taxon_doesnt_have_a_range: Táxon não possui distribuição
   taxon_drop: queda de táxon
@@ -3782,7 +3846,7 @@ pt-BR:
     desta táxon em um local, o Identitron lhe avisará.'
   the_list: a lista
   the_name_of_the_taxon_including_space: O nome do táxon, incluindo o espaço para
-    espécies e subespécies.<br/><br/> <strong>Exemplo:</strong><br/>
+    espécie e infraespécie.<br/><br/> <strong>Exemplo:</strong><br/>
   the_observation_form_looks: 'O formulário de observação é semelhante a este:'
   the_observation_has_date: a observação <strong>possui uma data</strong>
   the_observation_has_photo: a observação <strong>possui uma foto</strong>
@@ -4103,6 +4167,7 @@ pt-BR:
   user_added_an_x_to_noun_by_html: '%{user} adicionou uma %{x} a %{noun} de %{by}'
   user_added_an_x_to_noun_html: '%{user} adicionou uma %{x} a %{noun}'
   user_added_x_observations_html: '%{user} adicionou %{x} observações'
+  user_already_authenticated: O usuário já está autenticado
   user_commented: '%{user} comentado'
   user_commented_on: '%{user} comentou sobre seu %{title} %{time}'
   user_faved_a_noun_by_owner: '%{user} favorito %{noun} por %{owner}'
@@ -4139,6 +4204,7 @@ pt-BR:
   users_latest_observations_on_site: Últimas observações de %{user} em %{site}
   users_observations: Observações de %{user}
   users_profile: Perfil de %{user}
+  users_projects: Projetos de %{user}
   using_a_license: utilizando a licença
   using_cc_license_makes_easier_use_your_data: Utilizando a licença de <strong>Atribuição
     Creative Commons</strong> facilita o uso dos seus dados pelos pesquisadores. Você
@@ -4316,7 +4382,8 @@ pt-BR:
   where_does_x_live: Onde mora o %{taxa}?
   where_were_they?: Onde eles estão?
   where_were_you?: Onde você está?
-  which_projects_can_add_your_observations?: Quais projetos podem adicionar suas observações?
+  which_projects_can_add_your_observations?: Quais projetos tradicionais podem adicionar
+    suas observações?
   white: branco
   with_annotation: Com anotação
   without_annotation: Sem anotação
@@ -5269,6 +5336,8 @@ pt-BR:
       formatting_simple_help: Associar automaticamente os URLs e inserir a linha de
         intervalo.
     projects:
+      collection_and_umbrellas_do_not_support: Os projetos de coleta e guarda-chuva
+        não suportam atualmente o acesso a coordenadas privadas.
       curator_coordinate_access_desc_html: |-
         Lembre-se, <strong>administradores de projetos podem adicionar qualquer uma de suas observações aos seus projetos</strong> a não ser que você altere <a
         href="/users/edit">suas configurações de conta</a>. Marque esta caixa apenas se você confia nos administradores de projeto para visualizarem as coordenadas privadas de qualquer uma de suas observações que possa ser integrada ao projeto. Se escolher não permitir o acesso, você ainda poderá permitir o acesso específico aos dados de determinadas observações.
@@ -5729,10 +5798,6 @@ pt-BR:
       10: Outubro
       11: Novembro
       12: Dezembro
-    order:
-    - :ano
-    - :mês
-    - :dia
   datetime:
     distance_in_words:
       about_x_hours:

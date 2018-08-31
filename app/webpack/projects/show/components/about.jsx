@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import moment from "moment";
 import Requirements from "./requirements";
@@ -50,7 +51,7 @@ class About extends React.Component {
                       <td>
                         <div>
                           { _.map( project.admins, a => (
-                            <span className="project-admin">
+                            <span className="project-admin" key={ `project-admins-${a.id}` }>
                               <span className="project-admin-span">
                                 <UserImage user={ a.user } />
                                 <UserLink user={ a.user } />

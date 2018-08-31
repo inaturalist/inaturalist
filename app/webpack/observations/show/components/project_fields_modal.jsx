@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Modal, Button } from "react-bootstrap";
 import ObservationFieldInput from "./observation_field_input";

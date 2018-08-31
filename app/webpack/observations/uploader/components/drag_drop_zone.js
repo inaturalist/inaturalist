@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import { DropTarget } from "react-dnd";
@@ -138,7 +139,7 @@ class DragDropZone extends Component {
 
   unselectAll( e ) {
     const ignore = "a, .card, button, .modal, span.title, .leftColumn, " +
-      ".bootstrap-datetimepicker-widget, .ui-autocomplete, #react-images-container, " +
+      ".bootstrap-datetimepicker-widget, .ui-autocomplete, #lightboxBackdrop, " +
       ".navbar .select, input, .form-group, select";
     const target = e.target || e.nativeEvent.target;
     if ( $( ignore ).has( target ).length > 0 ||

@@ -29,28 +29,6 @@ var emptyLayer = new google.maps.ImageMapType({
   getTileUrl: function(tile, zoom) { }
 });
 
-// extend parts of the Google Marker class
-google.maps.Marker.prototype.observation_id = null;
-
-// A map consists of the map itself, plus methods on how to add Observations
-// javascript objects to the map and handle the updating of those objects
-// when an Observation is moved or editted.
-
-// storage for marker objects indexed by their corresponding
-// observation_id's
-google.maps.Map.prototype.observations = {};
-google.maps.Map.prototype.places = {};
-    
-// used when creating observations from the map
-// TODO: make this more like a stack to help with handling multiple
-// unsaved markers
-google.maps.Map.prototype.lastUnsavedMarker = null;
-
-
-// general purpose infoWindow
-// stores a global scope reference to an infoWindow
-google.maps.Map.prototype.infoWindow = null;
-
 
 google.maps.Map.prototype.createMarker = function(lat, lng, options) {
   options = options || {}
@@ -443,6 +421,28 @@ iNaturalist.Map.createMap = function(options) {
   else {
     map = new google.maps.Map(options.div, options);
   }
+
+  // extend parts of the Google Marker class
+  map.observation_id = null;
+
+  // A map consists of the map itself, plus methods on how to add Observations
+  // javascript objects to the map and handle the updating of those objects
+  // when an Observation is moved or editted.
+
+  // storage for marker objects indexed by their corresponding
+  // observation_id's
+  map.observations = {};
+  map.places = {};
+      
+  // used when creating observations from the map
+  // TODO: make this more like a stack to help with handling multiple
+  // unsaved markers
+  map.lastUnsavedMarker = null;
+
+
+  // general purpose infoWindow
+  // stores a global scope reference to an infoWindow
+  google.maps.Map.prototype.infoWindow = null;
 
   map.addListener('maptypeid_changed', function() {
     var mapTypeId = map.getMapTypeId()
@@ -1092,7 +1092,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]',
     'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id',
     'taxon_ids', 'not_in_place', 'unobserved_by_user_id', 'radius', 'geo',
-    'oauth_application_id', 'collection_preview' ];
+    'oauth_application_id', 'collection_preview', 'term_id', 'term_value_id',
+    'without_term_value_id' ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
@@ -1185,6 +1186,7 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
   var waxInteraction = wax.g.interaction( );
   var oldFeature = waxInteraction.screen_feature;
   map.createInfoWindow( );
+
   waxInteraction.screen_feature = function( pos, callback ) {
     // making sure the colored heatmap doesn't have offset interactions
     if( options.maxzoom && map.getZoom( ) <= options.maxzoom ) {
@@ -1203,13 +1205,17 @@ google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, op
     });
   };
 
+  waxInteraction.is_disabled = function( ) {
+    return map.overlayMapTypes.getAt( layerID - 1 ) === emptyLayer;
+  };
+
   waxInteraction
     .map(map)
     .tilejson(tilejson)
     .on({
       on: function(o) {
         // check to see if the layer with the interaction is enabled
-        if( map.overlayMapTypes.getAt( layerID - 1 ) === emptyLayer ) {
+        if( waxInteraction.is_disabled( ) ) {
           return null;
         }
         interactionOn = true;

@@ -1,4 +1,5 @@
-import React, { Component, PropTypes } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import IconicTaxaPieChart from "./iconic_taxa_pie_chart";
 import QualityGradePieChart from "./quality_grade_pie_chart";
@@ -8,7 +9,7 @@ import ObservationsFlexGridView from "./observations_flex_grid_view";
 class StatsTab extends Component {
 
   componentDidMount( ) {
-    this.props.fetchQualityGradeCounts( );
+    this.props.fetchIconicTaxaCounts( );
     this.props.fetchIdentificationCategories( );
     this.props.fetchPopularObservations( );
   }
@@ -66,7 +67,7 @@ StatsTab.propTypes = {
   project: PropTypes.object,
   fetchIdentificationCategories: PropTypes.func,
   fetchPopularObservations: PropTypes.func,
-  fetchQualityGradeCounts: PropTypes.func,
+  fetchIconicTaxaCounts: PropTypes.func,
   setConfig: PropTypes.func,
   species: PropTypes.array
 };

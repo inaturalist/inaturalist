@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Panel } from "react-bootstrap";
 import ObservationAttribution from "../../../shared/components/observation_attribution";
 
@@ -48,9 +49,11 @@ class Copyright extends React.Component {
           <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
           { panelTitle }
         </h4>
-        <Panel collapsible expanded={ this.state.open }>
-          <ObservationAttribution observation={ observation } />
-          { application }
+        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+          <Panel.Collapse>
+            <ObservationAttribution observation={ observation } />
+            { application }
+          </Panel.Collapse>
         </Panel>
       </div>
     );

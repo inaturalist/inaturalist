@@ -176,7 +176,7 @@ module ObservationSearch
       if api_params[:reviewed].blank?
         api_params.delete(:viewer_id)
       end
-      if api_params[:per_page] > 200
+      if api_params[:per_page] && api_params[:per_page].to_i > 200
         api_params[:per_page] = 200
       end
       api_params

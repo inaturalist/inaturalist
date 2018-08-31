@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import CoverImage from "../../../shared/components/cover_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import { urlForTaxon } from "../../shared/util";
@@ -13,6 +14,7 @@ const TaxonPhoto = ( {
   className,
   size,
   backgroundSize,
+  backgroundPosition,
   showTaxon,
   linkTaxon,
   onClickTaxon,
@@ -44,7 +46,10 @@ const TaxonPhoto = ( {
       );
     }
   }
-  const style = { width, maxWidth: 2 * width };
+  let style = {};
+  if ( width ) {
+    style = { width, maxWidth: 2 * width };
+  }
   return (
     <div
       className={`TaxonPhoto ${className}`}
@@ -69,6 +74,7 @@ const TaxonPhoto = ( {
         low={ photo.photoUrl( "small" ) }
         height={height}
         backgroundSize={backgroundSize}
+        backgroundPosition={backgroundPosition}
       />
     </div>
   );
@@ -84,6 +90,7 @@ TaxonPhoto.propTypes = {
   className: PropTypes.string,
   size: PropTypes.string,
   backgroundSize: PropTypes.string,
+  backgroundPosition: PropTypes.string,
   showTaxon: PropTypes.bool,
   linkTaxon: PropTypes.bool,
   onClickTaxon: PropTypes.func,

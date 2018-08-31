@@ -109,6 +109,7 @@ class ProjectUser < ActiveRecord::Base
 
   def user_invited?
     return true unless project
+    return true if project.is_new_project?
     return true if project.preferred_membership_model == Project::MEMBERSHIP_OPEN
     return true if project.user_id == user_id
     uid = user_id || user.try(:id)

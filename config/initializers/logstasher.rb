@@ -47,6 +47,7 @@ module Logstasher
       payload[:http_languages] = request.env["HTTP_ACCEPT_LANGUAGE"].
         split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.map(&:downcase).first
     end
+    payload[:Via] = request.headers["Via"]
     payload[:ssl] = request.ssl?.to_s
     payload[:bot] = Logstasher.is_user_agent_a_bot?(request.user_agent)
     # this can be overwritten by merging Logstasher.payload_from_user

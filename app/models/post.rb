@@ -20,6 +20,9 @@ class Post < ActiveRecord::Base
     :if => lambda{|post, project, subscription|
       return true unless post.parent_type == 'Project'
       project_user = project.project_users.where(user_id: subscription.user_id).first
+      # as it stands right now, collection/umbrella projects don't necessarily
+      # create ProjectUsers, so only check preferences if one exists
+      return true unless project_user
       project_user.prefers_updates?
     },
     :notification => "created_post",
@@ -61,6 +64,7 @@ class Post < ActiveRecord::Base
 
   ALLOWED_ATTRIBUTES = %w(
     href src width height alt cite title class name xml:lang abbr value align style controls preload
+    frameborder frameBorder seamless
   )
 
   def user_must_be_on_site_long_enough

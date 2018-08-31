@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonSwap, "creation" do
+  before { enable_has_subscribers }
+  after { disable_has_subscribers }
+
   it "should not allow swaps without inputs" do
     output_taxon = Taxon.make!( rank: Taxon::FAMILY )
     swap = TaxonSwap.make
@@ -26,13 +29,11 @@ describe TaxonSwap, "creation" do
   end
 
   it "should generate mentions" do
-    enable_elastic_indexing( Observation, UpdateAction )
     u = User.make!
+    expect( UpdateAction.unviewed_by_user_from_query(u.id, { }) ).to eq false
     tc = without_delay { make_taxon_swap( description: "hey @#{ u.login }" ) }
-    expect( UpdateAction.where( notifier: tc, notification: "mention" ).count ).to eq 1
-    expect( UpdateAction.where( notifier: tc, notification: "mention" ).first.
-      update_subscribers.first.subscriber ).to eq u
-    disable_elastic_indexing( Observation, UpdateAction )
+    expect( UpdateAction.unviewed_by_user_from_query(
+      u.id, notifier_type: "TaxonChange", notifier_id: tc.id) ).to eq true
   end
 
   it "should not bail if a taxon has no rank_level" do
@@ -64,10 +65,14 @@ end
 
 describe TaxonSwap, "destruction" do
   before(:each) do
-    enable_elastic_indexing( Observation, UpdateAction, Taxon, Identification )
+    enable_elastic_indexing( Observation, Taxon, Identification )
     prepare_swap
+    enable_has_subscribers
   end
-  after(:each) { disable_elastic_indexing( Observation, UpdateAction, Taxon, Identification ) }
+  after(:each) do
+    disable_elastic_indexing( Observation, Taxon, Identification )
+    disable_has_subscribers
+  end
 
   it "should destroy updates" do
     Observation.make!( taxon: @input_taxon )
@@ -305,8 +310,12 @@ describe TaxonSwap, "commit_records" do
   before(:each) do
     prepare_swap
     enable_elastic_indexing( Observation, Identification )
+    enable_has_subscribers
   end
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  after(:each) do
+    disable_elastic_indexing( Observation, Identification )
+    disable_has_subscribers
+  end
 
   it "should update records" do
     obs = Observation.make!(:taxon => @input_taxon)
@@ -586,6 +595,28 @@ describe "move_input_children_to_output" do
     new_i2 = o.identifications.current.where( user_id: i2.user_id ).first
     expect( new_i2 ).to be_disagreement
     expect( new_i2.previous_observation_taxon ).to eq @output_taxon.children.first
+  end
+
+  it "should work make swaps for subspecies when you swap a genus" do
+    input_genus = Taxon.make!( rank: Taxon::GENUS, name: "Inputgenus" )
+    input_species = Taxon.make!( rank: Taxon::SPECIES, name: "Inputgenus foo", parent: input_genus )
+    input_subspecies = Taxon.make!( rank: Taxon::SUBSPECIES, name: "Inputgenus foo foo", parent: input_species )
+    output_genus = Taxon.make!( rank: Taxon::GENUS, name: "Outputgenus", is_active: false )
+    # puts Taxon.where( "name like 'Inputgenus%'" ).all
+    swap = TaxonSwap.make
+    swap.committer = swap.user
+    swap.add_input_taxon( input_genus )
+    swap.add_output_taxon( output_genus )
+    swap.save!
+    swap.commit
+    Delayed::Worker.new.work_off
+    Delayed::Worker.new.work_off
+    Delayed::Worker.new.work_off
+    output_genus.reload
+    output_species = output_genus.children.detect{|t| t.name == "Outputgenus foo" }
+    expect( output_species ).not_to be_blank
+    output_subspecies = output_species.children.detect{|t| t.name == "Outputgenus foo foo" }
+    expect( output_subspecies ).not_to be_blank
   end
 end
 

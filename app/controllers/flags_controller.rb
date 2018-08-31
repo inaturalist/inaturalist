@@ -40,7 +40,7 @@ class FlagsController < ApplicationController
           @flags.reject!{ |f| f.flag != @flag_type }
         end
       else
-        # otherwise start will all recent unresolved flags
+        # otherwise start with all recent unresolved flags
         @flags = Flag.where(resolved: false).order("created_at desc")
         unless @flag_type.blank?
           @flags = @flags.where(flag: @flag_type)

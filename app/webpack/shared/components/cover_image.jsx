@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import OnScreen from "onscreen";
 import _ from "lodash";
@@ -80,7 +81,7 @@ class CoverImage extends React.Component {
           width: "100%",
           minHeight: this.props.height,
           backgroundSize: this.props.backgroundSize,
-          backgroundPosition: "center",
+          backgroundPosition: this.props.backgroundPosition,
           backgroundRepeat: "no-repeat",
           backgroundImage: `url('${lowResUrl}')`
         }}
@@ -96,11 +97,13 @@ CoverImage.propTypes = {
   height: PropTypes.number.isRequired,
   className: PropTypes.string,
   lazyLoad: PropTypes.bool,
-  backgroundSize: PropTypes.string
+  backgroundSize: PropTypes.string,
+  backgroundPosition: PropTypes.string
 };
 
 CoverImage.defaultProps = {
-  backgroundSize: "cover"
+  backgroundSize: "cover",
+  backgroundPosition: "center"
 };
 
 export default CoverImage;

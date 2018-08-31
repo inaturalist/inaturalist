@@ -17,12 +17,12 @@ const setupKeyboardShortcuts = dispatch => {
   bindShortcut( "i", ( ) => {
     dispatch( setMediaViewerState( { show: false } ) );
     dispatch( setActiveTab( "add_id" ) );
-    setTimeout( focusCommentIDInput, 200 );
+    setTimeout( focusCommentIDInput, 300 );
   } );
   bindShortcut( "c", ( ) => {
     dispatch( setMediaViewerState( { show: false } ) );
     dispatch( setActiveTab( "comment" ) );
-    setTimeout( focusCommentIDInput, 200 );
+    setTimeout( focusCommentIDInput, 300 );
   } );
   bindShortcut( "z", ( ) => {
     dispatch( toggleMediaViewer( ) );

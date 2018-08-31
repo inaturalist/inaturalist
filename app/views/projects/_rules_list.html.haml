@@ -1,0 +1,23 @@
+- for rule in @project.project_observation_rules
+  %li= rule.terms
+- unless @project.prefers_rule_quality_grade.blank?
+  %li= "must be quality grade #{@project.prefers_rule_quality_grade.split(",").join(", ")}"
+- unless @project.prefers_rule_d1.blank?
+  %li= "must be observed after #{@project.prefers_rule_d1}"
+- unless @project.prefers_rule_d2.blank?
+  %li= "must be observed before #{@project.prefers_rule_d2}"
+- unless @project.prefers_rule_observed_on.blank?
+  %li= "must be observed on #{@project.prefers_rule_observed_on}"
+- unless @project.prefers_rule_month.blank?
+  %li
+    - months = @project.prefers_rule_month.split(",").map{ |i| I18n.t( "date_format.month.#{ Date::MONTHNAMES[i.to_i].downcase }" ) }
+    = "must be observed in #{ months.join(", ") }"
+- unless @project.prefers_rule_photos.blank?
+  %li= "must have photos"
+- unless @project.prefers_rule_sounds.blank?
+  %li= "must have sounds"
+
+
+
+
+

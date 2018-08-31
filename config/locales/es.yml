@@ -1253,6 +1253,7 @@ es:
   does_the_date_seem_accurate: ¿La fecha parece correcto?
   doesnt_have_default_photo: no tiene una foto predeterminada aún.
   doh_something_went_wrong: Algo salió mal.
+  doh_something_went_wrong_error: 'Se ha producido un problema: %{error}'
   done: Hecho
   dont_filter: No filtrar
   dont_send_me_email: No enviarme ningún mensaje de correo electrónico
@@ -1597,7 +1598,6 @@ es:
   general: General
   generally_these_come_from_iucn_red_list: Generalmente estos vienen de la Lista Roja
     de la UICN, y si vienen de otros lugares se adhieren a las categorías de la UICN.
-  generate_pdf: Generar PDF
   generate_taxonomic_tags_for_flickr: Generar etiquetas taxonómicas para sus fotos
     de Flickr.
   generate_widget: Genera el widget
@@ -1622,6 +1622,7 @@ es:
   go_back: Regresar
   going_to_your_observations: Dirigiéndote a tus observaciones ...
   good_choice_for_sharing: Buena alternativa para compartir con los científicos
+  google: Google
   got_it!: Entendido
   got_your_data_somewhere_else?: ¿Obtuvo sus datos en otro lugar? Podemos ayudarle.
   graft: Injertar
@@ -2847,6 +2848,7 @@ es:
   open_: Abierto
   open_description: Todo el mundo puede ver las coordenadas a menos que el taxón esté
     en peligro.
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: Optar por esta observación
   opt_out_of_community_ids_for_obs: Opte por la identificación de la comunidad para
     esta observación
@@ -2900,7 +2902,6 @@ es:
     botón!
   paste_in_a_comma_separated_list: Pegar la lista de países separados por comas
   pdf: PDF
-  pdf_slash_print: PDF / Imprimir
   people: Personas
   people_agree: personas concuerdan
   people_following_user: Personas que siguen a %{user}
@@ -3193,6 +3194,7 @@ es:
   previous_page: Página anterior
   previous_photo: Foto anterior
   previous_tab: Pestaña anterior
+  print_verb: Imprimir
   print_in_browser: Imprimir desde el navegador
   privacy: Normativa de privacidad
   privacy_policy: Normativa de privacidad
@@ -3295,36 +3297,37 @@ es:
   ranks:
     kingdom: reino
     subkingdom: subreino
-    phylum: Filo
-    subphylum: Subfilo
+    phylum: filo
+    subphylum: subfilo
     superclass: superclase
     class: clase
     subclass: subclase
     infraclass: infraclase
+    subtercass: subtercase
     superorder: Superorden
-    order: Orden
-    suborder: Suborden
+    order: orden
+    suborder: suborden
     infraorder: infraorden
     parvorder: parvorden
     zoosection: zoosección
     zoosubsection: zoosubsección
-    superfamily: Superfamilia
+    superfamily: superfamilia
     epifamily: epifamilia
-    family: Familia
-    subfamily: Subfamilia
-    supertribe: Supertribu
-    tribe: Tribu
-    subtribe: Subtribu
-    genus: Género
-    genushybrid: Género híbrido
+    family: familia
+    subfamily: subfamilia
+    supertribe: supertribu
+    tribe: tribu
+    subtribe: subtribu
+    genus: género
+    genushybrid: género híbrido
     subgenus: subgénero
     section: sección
     subsection: subsección
-    species: Especies
-    hybrid: Híbrido
-    subspecies: Subespecies
-    variety: Variedad
-    form: Forma
+    species: especies
+    hybrid: híbrido
+    subspecies: subespecies
+    variety: variedad
+    form: forma
     infrahybrid: infrahíbrido
     leaves: hojas
   ranges: Distribuciónes
@@ -4559,7 +4562,7 @@ es:
   welcome: Bienvenido
   welcome_back: Bienvenido de vuelta
   welcome_comma: Bienvenido,
-  welcome_login: Bienvenido %{login}
+  welcome_login: Hola, %{login}
   welcome_message: donde puedes <strong>registrar</strong> lo que ves en la naturaleza,
     <strong>conocer a</strong> otros amantes de la naturaleza, y <strong>aprender</strong>
     acerca del mundo natural.
@@ -6290,10 +6293,6 @@ es:
       10: octubre
       11: noviembre
       12: diciembre
-    order:
-    - day
-    - month
-    - year
   datetime:
     distance_in_words:
       about_x_hours:

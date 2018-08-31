@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Button, Tabs, Tab } from "react-bootstrap";
 import moment from "moment-timezone";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
@@ -169,9 +170,12 @@ class Activity extends React.Component {
         </span>
       );
     const tabs = (
-      <Tabs activeKey={ this.props.commentIDPanel.activeTab } onSelect={ key => {
-        this.props.setActiveTab( key );
-      } }
+      <Tabs
+        id="comment-id-tabs"
+        activeKey={ this.props.commentIDPanel.activeTab }
+        onSelect={ key => {
+          this.props.setActiveTab( key );
+        } }
       >
         <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">
           { commentContent }
@@ -227,7 +231,8 @@ Activity.propTypes = {
   review: PropTypes.func,
   setActiveTab: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
-  unreview: PropTypes.func
+  unreview: PropTypes.func,
+  onClickCompare: PropTypes.func
 };
 
 export default Activity;

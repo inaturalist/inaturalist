@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
 const PreviousNextButtons = ( { otherObservations, showNewObservation, config } ) => {
   const previousDisabled = _.isEmpty( otherObservations.earlierUserObservations );
@@ -20,6 +21,7 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation, config } 
     } else {
       prevAlt = I18n.t( "unknown" );
     }
+    prevAlt = iNatModels.Taxon.titleCaseName( prevAlt );
   }
   if ( !nextDisabled ) {
     const nextObs = otherObservations.laterUserObservations[0];
@@ -33,6 +35,7 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation, config } 
     } else {
       nextAlt = I18n.t( "unknown" );
     }
+    nextAlt = iNatModels.Taxon.titleCaseName( nextAlt );
   }
   return (
     <div className="PreviousNextButtons">

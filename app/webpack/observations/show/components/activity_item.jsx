@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOMServer from "react-dom/server";
 import _ from "lodash";
 import { OverlayTrigger, Panel, Tooltip } from "react-bootstrap";
@@ -25,7 +26,8 @@ const ActivityItem = ( {
   hideCompare,
   hideDisagreement,
   hideCategory,
-  noTaxonLink
+  noTaxonLink,
+  onClickCompare
 } ) => {
   if ( !item ) { return ( <div /> ); }
   const taxon = item.taxon;
@@ -55,7 +57,7 @@ const ActivityItem = ( {
         canAgree = true;
       }
     }
-    if ( firstDisplay && !hideCompare ) {
+    if ( loggedIn && firstDisplay && !hideCompare ) {
       let compareTaxonID = taxon.id;
       if ( taxon.rank_level <= 10 ) {
         compareTaxonID = taxon.ancestor_ids[taxon.ancestor_ids.length - 1];
@@ -65,7 +67,15 @@ const ActivityItem = ( {
           key={ `id-compare-${item.id}` }
           href={ `/observations/identotron?observation_id=${observation.id}&taxon=${compareTaxonID}` }
         >
-          <button className="btn btn-default btn-sm">
+          <button
+            className="btn btn-default btn-sm"
+            onClick={ e => {
+              if ( onClickCompare ) {
+                return onClickCompare( e, taxon, observation, { currentUser: config.currentUser } );
+              }
+              return true;
+            } }
+          >
             <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
           </button>
         </a>
@@ -177,6 +187,28 @@ const ActivityItem = ( {
       );
     }
   }
+  const viewerIsAdmin = config.currentUser && config.currentUser.roles && config.currentUser.roles.indexOf( "admin" ) >= 0;
+  if ( viewerIsAdmin && item.vision ) {
+    headerItems.push(
+      <OverlayTrigger
+        key={ `itent-vision-${item.id}` }
+        container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+        placement="top"
+        delayShow={ 200 }
+        overlay={ (
+          <Tooltip id={`vision-tooltip-${item.id}`}>
+            User chose a computer vision suggestion
+          </Tooltip>
+        ) }
+      >
+        <span
+          className="vision-status" style={{ color: "#999", marginRight: "10px" }}
+        >
+          <i className="fa fa-eye"></i>
+        </span>
+      </OverlayTrigger>
+    );
+  }
   if ( item.taxon && !item.current ) {
     headerItems.push(
       <span key={ `ident-withdrawn-${item.id}` } className="item-status">
@@ -229,10 +261,9 @@ const ActivityItem = ( {
       <div className="icon">
         <UserImage user={ item.user } linkTarget={ linkTarget } />
       </div>
-      <Panel
-        className={ panelClass }
-        header={(
-          <div>
+      <Panel className={ panelClass }>
+        <Panel.Heading>
+          <Panel.Title>
             <span className="title_text" dangerouslySetInnerHTML={ { __html: header } } />
             { headerItems }
             <time
@@ -251,14 +282,15 @@ const ActivityItem = ( {
               setFlaggingModalState={ setFlaggingModalState }
               linkTarget={linkTarget}
             />
+          </Panel.Title>
+        </Panel.Heading>
+        <Panel.Body>
+          { taxonChange }
+          <div className="contents">
+            { contents }
           </div>
-        )}
-        footer={ footer }
-      >
-        { taxonChange }
-        <div className="contents">
-          { contents }
-        </div>
+        </Panel.Body>
+        { footer ? <Panel.Footer>{ footer }</Panel.Footer> : null }
       </Panel>
     </div>
   );
@@ -279,7 +311,8 @@ ActivityItem.propTypes = {
   hideCompare: PropTypes.bool,
   hideDisagreement: PropTypes.bool,
   hideCategory: PropTypes.bool,
-  noTaxonLink: PropTypes.bool
+  noTaxonLink: PropTypes.bool,
+  onClickCompare: PropTypes.func
 };
 
 export default ActivityItem;

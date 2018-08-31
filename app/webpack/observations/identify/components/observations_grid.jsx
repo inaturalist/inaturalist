@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
 import ObservationsGridItemForIdentify from "./observations_grid_item_for_identify";
 
@@ -43,7 +44,7 @@ Col.propTypes = {
 };
 ObservationsGrid.propTypes = {
   observations: PropTypes.arrayOf(
-    React.PropTypes.object
+    PropTypes.object
   ).isRequired,
   onObservationClick: PropTypes.func,
   onAgree: PropTypes.func,

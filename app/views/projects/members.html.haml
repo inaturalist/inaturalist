@@ -27,8 +27,9 @@
             %th= t :user
             %th
             %th= t :role
-            %th.nobr
-              \# #{t :obs}.
+            - unless @project.is_new_project?
+              %th.nobr
+                \# #{t :obs}.
             %th
             - if logged_in? && @project_user && @project_user.is_manager?
               %th
@@ -47,16 +48,17 @@
                 %span.description= t :admin
               - elsif !project_user.role.blank?
                 %span.description= t(project_user.role).downcase
-            %td.nobr.numeric
-              = link_to number_with_delimiter(project_user.observations_count),  |
-                project_show_contributor_path(@project, project_user.user.login) |
+            - unless @project.is_new_project?
+              %td.nobr.numeric
+                = link_to number_with_delimiter(project_user.observations_count),  |
+                  project_show_contributor_path(@project, project_user.user.login) |
             %td.nobr
               = link_to t(:view_stats),                                           |
                 project_show_contributor_path(@project, project_user.user.login), |
                 :class => "readmore"                                              |
             - if logged_in? && @project_user && @project_user.is_manager?
               %td.actions
-                - if @project.user_id != project_user.user.id
+                - if !@project.is_new_project? && @project.user_id != project_user.user.id
                   .buttonrow.smallbuttons.clear
                     - if project_user.role == ProjectUser::CURATOR
                       = link_to t(:remove_curator), change_project_user_role_path(@project.id, project_user.id),    |
@@ -101,18 +103,19 @@
           Your project only accepts invited people. You can
           = link_to "invite new members here", invite_to_project_path(@project), :class => "readmore"
       .quiet.box
-        .stacked
-          %h3= t :curators
-          %p.ui
-            = t :curators_can_remove_observations_from
-          - if !@curators.blank?
-            %ul.clear.plain
-              - for user in @curators
-                %li.stacked
-                  = link_to user_image(user, :size => "thumb"), person_path(user.login)
-                  = link_to_user user
-          - else
-            .nocontent= t :no_curators_set
+        - unless @project.is_new_project?
+          .stacked
+            %h3= t :curators
+            %p.ui
+              = t :curators_can_remove_observations_from
+            - if !@curators.blank?
+              %ul.clear.plain
+                - for user in @curators
+                  %li.stacked
+                    = link_to user_image(user, :size => "thumb"), person_path(user.login)
+                    = link_to_user user
+            - else
+              .nocontent= t :no_curators_set
         .stacked
           %h3= t :managers
           %p.ui

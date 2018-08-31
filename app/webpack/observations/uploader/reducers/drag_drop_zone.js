@@ -1,6 +1,6 @@
 import _ from "lodash";
 import * as types from "../constants/constants";
-import update from "react-addons-update";
+import update from "immutability-helper";
 import ObsCard from "../models/obs_card";
 
 const defaultState = {

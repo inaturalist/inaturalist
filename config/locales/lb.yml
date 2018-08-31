@@ -48,6 +48,7 @@ lb:
     one: 1 Aart
     other: '%{count} Aarten'
   _100_day_trends: Tendenz iwwer 100 Deeg
+  _percent_ID_d: '% ID bestëmmt'
   a: ee(n)
   a_: ee(n)
   a_community_for_naturalist: Eng Communautéit fir Naturalisten
@@ -66,6 +67,7 @@ lb:
   about_licenses: Iwwer Lizenzen
   about_licensing: Iwwer d'Lizenzen
   about_life!: iwwer d'Liewen!
+  about_muting: Iwwer stomm schalten
   about_names: Iwwer Nimm
   about_places: Iwwer Plazen
   about_taxon_changes: Iwwer Taxon-Ännerungen
@@ -78,6 +80,7 @@ lb:
   account: Benotzerkont
   account_settings: Astellunge vum Benotzerkont
   accept: akzeptéieren
+  accuracy_meters: Genauegkeet (Meter)
   action: Aktioun
   actions: Aktiounen
   activate_user: Benotzer aktivéieren
@@ -143,6 +146,7 @@ lb:
   add_place: Plaz derbäisetzen
   add_section: Abschnitt derbäisetzen
   add_several_observations_at_once: E puer Observatiounen op eemol derbäisetzen.
+  add_some_now: Der elo e puer derbäisetzen
   add_to_a_project: E Projet derbäisetzen
   add_to_calendar: Bei de Kalenner derbäisetzen
   add_to_favorites: Bei d'Favoriten deräisetzen
@@ -162,6 +166,7 @@ lb:
   adding_observations: Observatiounen derbäisetzen
   additional_range: Zousätzleche Beräich
   admin: Admin
+  admin_s: Administrateur(en)
   agree: zoustëmmen
   agree_: Akzeptéieren
   agree?: Zoustëmmen?
@@ -175,20 +180,24 @@ lb:
   all_projects: All Projeten
   all_rank_added_to_the_database:
     hybrid: All Hybriden an d'Datebank derbäigesat
-  all_species: All Spezien
+  all_species: All Aarten
   all_taxa:
     rank:
       kingdom: Kinnekräich
       class: Klass
-      species: Spezien
+      phylum: Stamm
+      species: Aarten
+      order: Ordnung
     amphibians: Amphibien
     animals: Déieren
     arachnids: Spannendéieren
     birds: Vigel
     insects: Insekten
     mammals: Mamendéieren
+    mollusks: Mollusken
     other_animals: Aner Déieren
     plants: Planzen
+    protozoans: Protozoen
     reptiles: Reptilien
     life: Liewen
     x_plantae:
@@ -222,11 +231,15 @@ lb:
   alphabetical: Alphabetesch
   alphabetical_order: Alphabetesch Reiefolleg
   amphibians: Amphibien
+  an: een
+  an_: een
   and: a(n)
+  and_make_some_new: an e puer Neier maachen
   android: Android
   animals: Déieren
   animated_observations_map: Animéiert Kaart mat den Observatiounen
   annotations: Notizen
+  announcement_was_successfully_created: Ukënnegung gouf ugeluecht.
   announcement_was_successfully_updated: Ukënnegung gouf aktualiséiert.
   announcements: Ukënnegungen
   any: all
@@ -260,6 +273,8 @@ lb:
   are_you_sure_want_delete_this_range: Sidd Dir sécher datt Dir dëse Beräich läsche
     wëllt?
   are_you_sure_want_join: Sidd Dir sécher datt Dir matmaache wëllt
+  are_you_sure_you_want_to_commit_this_change: Sidd Dir sécher datt Dir dës Ännerung
+    confirméiere wëllt? Dëst kann net réckgängeg gemaach ginn.
   are_you_sure_you_want_to_delete_this: Sidd Dir sécher datt Dir dëst läsche wëllt?
   are_you_sure_you_want_to_delete_this_photo?: Sidd Dir sécher datt Dir dës Foto läsche
     wëllt?
@@ -275,7 +290,17 @@ lb:
   you_sure_delete_list: Sidd Dir sécher datt Dir dës Lëscht läsche wëllt?
   you_sure_delete_taxon_from_list?: Sidd Dir sécher datt Dir %{taxon} vun der Lëscht
     erofhuele wëllt?
+  ascending: vu kleng op grouss
+  assessment: Bewäertung
+  assessment_has_benn_completed: Bewäertung gouf ofgeschloss
+  assessment_sections: Deeler vun der Bewäertung
+  assessment_was_deleted: Bewäertung gouf geläscht.
+  assessment_was_successfully_created: Bewäertung gouf aktualiséiert.
+  assessment_was_successfully_updated: Bewäertung gouf aktualiséiert.
+  assessment_x: '%{assessment} Bewäertung'
+  assessments: Bewäertungen
   associations: Associatiounen
+  at: bäi
   atom: Atom
   automatically_add_to_project: Automatesch bei de Projet derbäisetzen
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse
@@ -283,7 +308,7 @@ lb:
   back: Zréck
   back_to: Zréck op
   back_to_albums: Zréck op d'Albumen
-  back_to_all_species: Zréck op all Spezien
+  back_to_all_species: Zréck op all Aarten
   back_to_calendar: Zréck op de Kalenner vum %{user}}
   back_to_editing_observation: Zréck op d'Ännere vun der Observatioun
   back_to_friends: Zréck bei d'Frënn
@@ -347,11 +372,12 @@ lb:
   change_types:
     change_types: Typen änneren
     split: Opdeelen
-    merge: Zesummeleeën
+    merge: Fusionéieren
     swap: Austauschen
     replaced_by: ersat duerch
     replace_with: ersetzen duerch
   change_your_password: Ännert Äert Passwuert
+  check_above_for_errors: Kuckt uewen no de Feeler hei driwwer
   check_it_out: Probéiert et aus
   check_out_our_blog: Besicht eise Blog
   checklist: Check-Lëscht
@@ -516,8 +542,10 @@ lb:
   disconnect_provider: '%{provider} trennen'
   dna_: DNA
   documentation_for_developers_html: Dokumentatioun fir <a href="/pages/developers">Entwéckler</a>
+  do_not_show_this_message_again: Dëse Message net,méi weisen
   do_you_want_to_proceed: Wëllt Dir virufueren?
   doh_something_went_wrong: Ups, da ass eppes schif gaang.
+  doh_something_went_wrong_error: 'Ups et ass Eppes schif gaangen: %{error}'
   done: Fäerdeg
   dont_filter: Net filteren
   dont_send_me_email: Schéckt mir keng E-Mailen!
@@ -643,7 +671,6 @@ lb:
   full_screen: Ganzen Ecran
   geo: Geo
   general: Allgemeng
-  generate_pdf: PDF generéieren
   generate_your_stats: Generéiert Är Statistiken
   get_started: Fir unzefänken
   getting_started: Fir unzefänken
@@ -652,6 +679,7 @@ lb:
   globally: global
   go: Lass
   go_back: Zréck goen
+  google: Google
   got_it!: Verstan!
   gray: gro
   green: gréng
@@ -664,7 +692,9 @@ lb:
   has_photo: Huet eng Foto
   has_photos: huet Fotoen
   has_photos_or_sounds: Huet Fotoen oder Téin
+  has_sound: Mat Toun
   has_sounds: huet Téin
+  hasnt_contributed_any_observations: huet keng Observatiounen zu dësem Projet bäigedroen.
   hello: <test>
   help: Hëllef
   help_confirm_observations!: Hëlleft Observatiounen ze confirméieren!
@@ -724,7 +754,9 @@ lb:
   join: Matmaachen
   join_inat: Bei %{site_name} matmaachen!
   join_project: Bei dësem Projet matmaachen
+  join_this_project: Bei dësem Projet matmaachen
   joined_with_date: 'Bäigetrueden: %{date}'
+  jpg_png_or_gif: JPG, PNG, oder GIF
   just_added!: Elo grad bäigesat!
   keep_editing: Virufuere mat Änneren
   kml: KML
@@ -816,8 +848,10 @@ lb:
     da: Dänesch
     de: Däitsch
     el: Griichesch
+    en-US: Englesch (USA)
     en: Englesch
     es-ES: Spuenesch (Spuenien)
+    es-MX: Spuenesch (Mexiko)
     es: Spuenesch
     et: Estnesch
     eu: Baskesch
@@ -880,17 +914,28 @@ lb:
   mentioned_you_in_an_x_on_noun_by_html: '%{user} huet Iech an engem %{x} iwwer %{noun}
     vum %{by} ernimmt'
   mentions: Mentiounen
+  merge: Fusionéieren
+  merging: Gëtt fusionéiert
   message: Message
   messages: Messagen
   mobile: Mobil
+  mobile_app_for: Mobil App fir
+  mobile_apps_for: Mobil Appe fir
   momentjs:
     shortRelativeTime:
+      future: an %s
       past: '%s'
       s: 1s
       m: 1min
+      mm: '%d Méint'
+      h: 1 Stonn
+      hh: '%d Stonnen'
       d: 1d
+      dd: '%d Deeg'
       M: 1min
       MM: '%dmo'
+      "y": 1 Joer
+      yy: '%d Joer'
   mon: Méi
   month: Mount
   months: Méint
@@ -905,8 +950,10 @@ lb:
   more_observations: Méi Observatiounen
   more_photos: Méi Fotoen
   most: Déi meescht
+  most_browser_print_pdf: 'Notiz: déi meescht Browser hunn eng Optioun fir PDF''en
+    ze drécken'
   most_observations: Meescht Observatiounen
-  most_observed_threatened_species: Bedreeten Aarten déi am dacksten observéiert goufen
+  most_observed_threatened_species: Bedrohten Aarten déi am dacksten observéiert goufen
   multiple: méi
   multiple_select_option: -- méi --
   must_be_less_than_x_MB: Muss méi kleng si wéi %{x} MB
@@ -1030,6 +1077,7 @@ lb:
   observations_by_user: Observatioune vum %{user}
   observations_confirmed: Observatiounen (confirméiert)
   observations_deleted: Observatioune goufe geläscht.
+  observations_for: Observatioune fir
   observations_for_project: Observatioune fir %{project}
   observations_from: Observatioune vum %{date}
   observations_from_people_taxa_and_places_youre_following: Observatioune vu Leit,
@@ -1050,7 +1098,7 @@ lb:
     doubtful: zweiwelhaft
     absent: net do
   of_observations: Observatiounen
-  of_species: Spezien
+  of_species: Aarten
   of_places: Plazen
   official_blog: Offizielle Blog
   ok: OK
@@ -1070,6 +1118,7 @@ lb:
   only_you: Nëmmen Dir
   open: opmaachen
   open_: Opmaachen
+  open_street_map: OpenStreetMap
   optional: fakultativ
   or: oder
   or_invite_your_friends: oder invitéiert Är Frënn
@@ -1090,7 +1139,6 @@ lb:
   owner: Besëtzer
   password: Passwuert
   pdf: PDF
-  pdf_slash_print: PDF / Drécken
   people: Leit
   per_day: Pro Dag
   per_month: Pro Mount
@@ -1225,6 +1273,7 @@ lb:
   previous_page: Vireg Säit
   previous_photo: Vireg Foto
   previous_tab: Viregen Tab
+  print_verb: Drécken
   privacy: Dateschutz
   privacy_policy: Dateschutz
   private_: Privat
@@ -1370,7 +1419,7 @@ lb:
   suspend_user: Benotzer suspendéieren
   table: Tabell
   take_me_back: Zréck goen
-  taxa_all_species_html: All Spezien
+  taxa_all_species_html: All Aarten
   taxon_observed_by_user: '%{taxon} observéiert vum %{user}'
   tell_the_world_a_little_about_yourself: Zielt eis eppes vun Iech
   tell_us_why: Sot eis firwat...
@@ -1411,7 +1460,7 @@ lb:
   unknown_error: Onbekannte Feeler
   unlink_your_google_account: Verbindung mat Ärem Google Benotzerkont ewechhuelen
   unmute: Stomm schalten ausmaachen
-  updating: Aktualisatioun...
+  updating: Aktualiséierung...
   unsuspend_user: Suspendéierung vum Benotzer ophiewen
   update: Aktualiséieren
   update_search: Sichen aktualiséieren
@@ -1434,6 +1483,7 @@ lb:
   usage_stats: Statistike vum Benotzen
   user: Benotzer
   user_added_a_x: '%{user} huet e(n) %{x} derbäigesat'
+  user_already_authenticated: De Benotzer ass schonn authentifizéiert
   user_blocked: Benotzer gespaart
   user_invited_you_to_join_html: '%{user} huet Iech invitéiert fir matzemaachen'
   user_muted: Benotzer stommgeschalt
@@ -1713,10 +1763,6 @@ lb:
       10: Oktober
       11: November
       12: Dezember
-    order:
-    - :Joer
-    - :Mount
-    - :Dag
   datetime:
     distance_in_words:
       half_a_minute: eng hallef Minutt

@@ -18,9 +18,9 @@ class ProjectUserInvitation < ActiveRecord::Base
       notifier: self,
       notification: "invited"
     }
-    action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-    action.bulk_insert_subscribers( [invited_user.id] )
-    UpdateAction.elastic_index!(ids: [action.id])
+    if action = UpdateAction.first_with_attributes(action_attrs)
+      action.append_subscribers( [invited_user.id] )
+    end
   end
 
   def destroy_updates

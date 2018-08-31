@@ -1,5 +1,6 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import UsersPopover from "./users_popover";
 
 const Faves = ( { observation, config, fave, unfave, faveText, hideOtherUsers } ) => {
@@ -10,10 +11,9 @@ const Faves = ( { observation, config, fave, unfave, faveText, hideOtherUsers } 
   ) );
   const starIconClass = userHasFavedThis ? "fa-star" : "fa-star-o";
   const hoverStarIconClass = userHasFavedThis ? "fa-star-o" : "fa-star";
-  const FaveToggle = ( { text, className } ) => (
+  const FaveToggle = ( { text } ) => (
     <a
-      href="#"
-      className={ className }
+      className="linky"
       onClick={ ( ) => {
         if ( userHasFavedThis ) {
           unfave( observation.id );

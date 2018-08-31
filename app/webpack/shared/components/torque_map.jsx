@@ -1,6 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import ReactDOM from "react-dom";
+import PropTypes from "prop-types";
 import moment from "moment-timezone";
 import inaturalistjs from "inaturalistjs";
 /* global L */
@@ -143,10 +144,10 @@ class TorqueMap extends React.Component {
 }
 
 TorqueMap.propTypes = {
-  params: React.PropTypes.object,
-  interval: React.PropTypes.string,
-  basemap: React.PropTypes.string,
-  color: React.PropTypes.string
+  params: PropTypes.object,
+  interval: PropTypes.string,
+  basemap: PropTypes.string,
+  color: PropTypes.string
 };
 
 export default TorqueMap;

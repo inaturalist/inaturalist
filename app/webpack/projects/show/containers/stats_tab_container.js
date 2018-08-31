@@ -3,7 +3,7 @@ import StatsTab from "../components/stats_tab";
 import {
   fetchIdentificationCategories,
   fetchPopularObservations,
-  fetchQualityGradeCounts } from "../ducks/project";
+  fetchIconicTaxaCounts } from "../ducks/project";
 import { setConfig } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
@@ -17,7 +17,7 @@ function mapDispatchToProps( dispatch ) {
   return {
     fetchIdentificationCategories: ( ) => dispatch( fetchIdentificationCategories( ) ),
     fetchPopularObservations: ( ) => dispatch( fetchPopularObservations( ) ),
-    fetchQualityGradeCounts: ( ) => dispatch( fetchQualityGradeCounts( ) ),
+    fetchIconicTaxaCounts: ( ) => dispatch( fetchIconicTaxaCounts( ) ),
     setConfig: attributes => dispatch( setConfig( attributes ) )
   };
 }

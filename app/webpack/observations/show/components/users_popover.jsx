@@ -1,10 +1,19 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
 import { Popover, OverlayTrigger } from "react-bootstrap";
 import UserImage from "../../../shared/components/user_image";
 /* global SITE */
 
-const UsersPopover = ( { keyPrefix, users, contents, placement, returnContentsWhenEmpty } ) => {
+const UsersPopover = ( {
+  keyPrefix,
+  users,
+  contents,
+  placement,
+  returnContentsWhenEmpty,
+  contentAfterUsers,
+  containerPadding
+} ) => {
   if ( !users || users.length === 0 ) {
     return returnContentsWhenEmpty ? contents : ( <span /> );
   }
@@ -26,6 +35,7 @@ const UsersPopover = ( { keyPrefix, users, contents, placement, returnContentsWh
           </span>
         );
       } ) }
+      { contentAfterUsers }
     </Popover>
   );
   return (
@@ -35,6 +45,7 @@ const UsersPopover = ( { keyPrefix, users, contents, placement, returnContentsWh
       placement={ placement || "top" }
       animation={false}
       overlay={popover}
+      containerPadding={containerPadding}
     >
       <span className="UsersPopover">
         { contents }
@@ -48,6 +59,8 @@ UsersPopover.propTypes = {
   contents: PropTypes.object,
   users: PropTypes.array,
   placement: PropTypes.string,
+  containerPadding: PropTypes.number,
+  contentAfterUsers: PropTypes.object,
   returnContentsWhenEmpty: PropTypes.bool
 };
 

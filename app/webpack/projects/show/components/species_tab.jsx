@@ -1,12 +1,13 @@
 import _ from "lodash";
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonThumbnail from "../../../taxa/show/components/taxon_thumbnail";
 import InfiniteScroll from "react-infinite-scroller";
 
 const SpeciesTab = ( { project, config, species, setConfig } ) => {
   if ( _.isEmpty( species ) ) { return ( <span /> ); }
-  const loader = ( <div className="loading_spinner huge" /> );
+  const loader = <div key="species-tab-loading-spinner" className="loading_spinner huge" />;
   const scrollIndex = config.speciesScrollIndex || 30;
   return (
     <div className="TopSpecies">

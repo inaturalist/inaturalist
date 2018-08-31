@@ -43,3 +43,13 @@ class FalseClass
     true
   end
 end
+
+class Fixnum
+  def yesish?
+    self == 1
+  end
+
+  def noish?
+    self == 0
+  end
+end

@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import { Row, Col } from "react-bootstrap";
 import SpeciesComparisonContainer from "../containers/species_comparison_container";

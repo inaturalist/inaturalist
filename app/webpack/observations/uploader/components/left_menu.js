@@ -1,7 +1,8 @@
 import _ from "lodash";
 import moment from "moment-timezone";
-import React, { PropTypes } from "react";
-import { Input, Glyphicon, Accordion, Panel, Badge } from "react-bootstrap";
+import React from "react";
+import PropTypes from "prop-types";
+import { Glyphicon, PanelGroup, Panel, Badge } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
@@ -43,13 +44,13 @@ class LeftMenu extends SelectionBasedComponent {
     const singleObservation = count === 1 ? _.values( this.props.selectedObsCards )[0] : null;
     const uniqDescriptions = this.valuesOf( "description" );
     const commonDescription = this.commonValue( "description" );
-    const commonSelectedTaxon = this.commonValue( "selected_taxon" );
+    const commonSelectedTaxon = this.commonValue( "selected_taxon", null, { defaultValue: undefined } );
     const commonDate = this.commonValue( "date" );
     const commonLat = this.commonValue( "latitude" );
     const commonLng = this.commonValue( "longitude" );
     const commonNotes = this.commonValue( "locality_notes" );
     const commonGeoprivacy = this.commonValue( "geoprivacy" );
-    let locationText = commonNotes ||
+    const locationText = commonNotes ||
       ( commonLat && commonLng &&
       `${_.round( commonLat, 4 )},${_.round( commonLng, 4 )}` );
     let multipleGeoprivacy = !commonGeoprivacy && (
@@ -108,7 +109,7 @@ class LeftMenu extends SelectionBasedComponent {
           <input
             type="text"
             className="form-control"
-            value={ commonDate }
+            value={ commonDate || "" }
             onChange= { e => {
               if ( this.refs.datetime ) {
                 this.refs.datetime.onChange( undefined, e.target.value );
@@ -127,7 +128,7 @@ class LeftMenu extends SelectionBasedComponent {
           <input
             type="text"
             className="form-control"
-            value={ locationText }
+            value={ locationText || "" }
             placeholder={ ( this.valuesOf( "latitude" ).length > 1 &&
               this.valuesOf( "longitude" ).length > 1 ) ?
               I18n.t( "edit_multiple_locations" ) : I18n.t( "location" ) }
@@ -143,17 +144,20 @@ class LeftMenu extends SelectionBasedComponent {
             onChange={ e => updateSelectedObsCards( { description: e.target.value } ) }
           />
         </div>
-        <Input
-          key={ `multigeoprivacy${commonGeoprivacy}` }
-          type="select"
-          value={ commonGeoprivacy }
-          onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
-        >
-          { multipleGeoprivacy }
-          <option value="open">{ I18n.t( "location_is_public" ) }</option>
-          <option value="obscured">{ I18n.t( "location_is_obscured" ) }</option>
-          <option value="private">{ I18n.t( "location_is_private" ) }</option>
-        </Input>
+        <div className="form-group">
+          <select
+            key={ `multigeoprivacy${commonGeoprivacy}` }
+            type="select"
+            className="form-control"
+            value={ commonGeoprivacy || "" }
+            onChange={ e => updateSelectedObsCards( { geoprivacy: e.target.value } ) }
+          >
+            { multipleGeoprivacy }
+            <option value="open">{ I18n.t( "location_is_public" ) }</option>
+            <option value="obscured">{ I18n.t( "location_is_obscured" ) }</option>
+            <option value="private">{ I18n.t( "location_is_private" ) }</option>
+          </select>
+        </div>
         <div className="form-group">
           <div className="checkbox">
             <label>
@@ -171,19 +175,17 @@ class LeftMenu extends SelectionBasedComponent {
     );
   }
 
-  formPanel( key, title, glyph, contents, contentCount, open ) {
-    let openGlyphClass = "toggle";
-    if ( open ) { openGlyphClass += " rotate"; }
+  formPanel( key, title, glyph, contents, contentCount ) {
     let badge = contentCount && contentCount > 0 ? (
       <Badge className="count">{ contentCount }</Badge>
     ) : undefined;
     let header = (
-      <div className={ contentCount && "contents" }>
+      <Panel.Title toggle className={ contentCount ? "contents" : undefined }>
         <Glyphicon glyph={ glyph } className="icon" />
         { title }
-        <Glyphicon glyph="triangle-right" className={ openGlyphClass } />
+        <Glyphicon glyph="triangle-right" className="toggle" />
         { badge }
-      </div>
+      </Panel.Title>
     );
     let className = `panel-${key}`;
     const onEntered = ( key !== "1" ) ? () => {
@@ -196,12 +198,15 @@ class LeftMenu extends SelectionBasedComponent {
       <Panel
         eventKey={ key }
         className={ className }
-        header={ header }
-        onEnter={ () => { $( `.${className} .toggle` ).addClass( "rotate" ); } }
-        onEntered={ () => setTimeout( onEntered, 50 ) }
-        onExit={ () => { $( `.${className} .toggle` ).removeClass( "rotate" ); } }
       >
-        { contents }
+        <Panel.Heading>
+          { header }
+        </Panel.Heading>
+        <Panel.Collapse onEntered={ () => setTimeout( onEntered, 50 ) }>
+          <Panel.Body>
+            { contents }
+          </Panel.Body>
+        </Panel.Collapse>
       </Panel>
     );
   }
@@ -230,7 +235,7 @@ class LeftMenu extends SelectionBasedComponent {
           />
           <br />
           <br />
-          <Accordion defaultActiveKey="1">
+          <PanelGroup accordion defaultActiveKey="1" id="left-menu-accordion">
             { this.formPanel( "1", I18n.t( "details" ), "pencil",
               this.details( ), detailsContent, true ) }
             { this.formPanel( "2", I18n.t( "tags" ), "tag", (
@@ -239,7 +244,7 @@ class LeftMenu extends SelectionBasedComponent {
               <ProjectsChooser { ...this.props } /> ), projectsContent ) }
             { this.formPanel( "4", I18n.t( "fields_" ), "th-list", (
               <ObservationFieldsChooser { ...this.props } /> ), fieldsContent ) }
-          </Accordion>
+          </PanelGroup>
         </div>
       );
     }

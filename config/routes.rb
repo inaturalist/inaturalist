@@ -595,7 +595,9 @@ Rails.application.routes.draw do
   # '/:controller(/:action(/:id))' but that breaks a bunch of other stuff. You
   # could also fix that other stuff, if you're weren't a horrible person, but
   # you are.
-  get '/rails/mailers/*path' => 'rails/mailers#preview'
+  unless Rails.env.production?
+    get '/rails/mailers/*path' => 'rails/mailers#preview'
+  end
   get '/:controller(/:action(/:id))'
 
   match '/404', to: 'errors#error_404', via: :all

@@ -109,8 +109,8 @@ class User < ActiveRecord::Base
   # Some interesting ways to map self-referential relationships in rails
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
-  has_many :stalkerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
-  has_many :followers, :through => :stalkerships,  :source => 'user'
+  has_many :followerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
+  has_many :followers, :through => :followerships,  :source => 'user'
   
   has_many :lists, :dependent => :destroy
   has_many :life_lists
@@ -151,6 +151,7 @@ class User < ActiveRecord::Base
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
+  has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
   
   file_options = {
@@ -164,7 +165,7 @@ class User < ActiveRecord::Base
     }
   }
 
-  if Rails.env.production?
+  if CONFIG.usingS3
     has_attached_file :icon, file_options.merge(
       storage: :s3,
       s3_credentials: "#{Rails.root}/config/s3.yml",
@@ -188,11 +189,10 @@ class User < ActiveRecord::Base
   # Roles
   has_and_belongs_to_many :roles, -> { uniq }
   belongs_to :curator_sponsor, class_name: "User"
+  belongs_to :suspended_by_user, class_name: "User"
   
   has_subscribers
   has_many :subscriptions, :dependent => :delete_all
-  has_many :update_subscribers, foreign_key: :subscriber_id, dependent: :delete_all
-  has_many :update_subscriber_actions, source: :update_action, through: :update_subscribers
   has_many :flow_tasks
   has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
@@ -204,6 +204,7 @@ class User < ActiveRecord::Base
   before_save :set_time_zone
   before_save :whitelist_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
+  before_save :check_suspended_by_user
   before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -219,6 +220,7 @@ class User < ActiveRecord::Base
   after_create :set_uri
   after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
+  after_destroy :destroy_project_rules
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -230,7 +232,7 @@ class User < ActiveRecord::Base
   MAX_LOGIN_SIZE = 40
 
   # Regexes from restful_authentication
-  LOGIN_PATTERN     = "[A-z][\\\w\\\-_]+"
+  LOGIN_PATTERN     = "[A-Za-z][\\\w\\\-_]+"
   login_regex       = /\A#{ LOGIN_PATTERN }\z/                          # ASCII, strict
   email_name_regex  = '[\w\.%\+\-]+'.freeze
   domain_head_regex = '(?:[A-Z0-9\-]+\.)+'.freeze
@@ -465,6 +467,7 @@ class User < ActiveRecord::Base
     number = Photo.license_number_for_code(preferred_photo_license)
     return true unless number
     Photo.where(["user_id = ? AND type != 'GoogleStreetViewPhoto'", id]).update_all(license: number)
+    index_observations_later
     true
   end
 
@@ -473,6 +476,7 @@ class User < ActiveRecord::Base
     number = Photo.license_number_for_code(preferred_sound_license)
     return true unless number
     Sound.where(user_id: id).update_all(license: number)
+    index_observations_later
     true
   end
 
@@ -486,7 +490,10 @@ class User < ActiveRecord::Base
   end
 
   def index_observations_later
-    delay(priority: USER_INTEGRITY_PRIORITY).index_observations
+    delay(
+      priority: USER_INTEGRITY_PRIORITY,
+      unique_hash: { "User::index_observations_later": id }
+    ).index_observations
   end
 
   def index_observations
@@ -558,7 +565,12 @@ class User < ActiveRecord::Base
       get_lat_lon_from_ip
     end
   end
-  
+
+  def check_suspended_by_user
+    return if suspended?
+    self.suspended_by_user_id = nil
+  end
+
   def published_name
     name.blank? ? login : name
   end
@@ -677,12 +689,88 @@ class User < ActiveRecord::Base
       l.destroy
     end
 
+    User.preload_associations(self, [ :stored_preferences, :roles, :flags ])
     # delete observations without onerous callbacks
-    observations.find_each do |o|
+    observations.includes([
+      { user: :stored_preferences },
+      :votes_for,
+      :flags,
+      :stored_preferences,
+      :observation_photos,
+      :comments,
+      :annotations,
+      { identifications: [
+        :taxon,
+        :user,
+        :flags
+      ] },
+      :project_observations,
+      :project_invitations,
+      :quality_metrics,
+      :observation_field_values,
+      :observation_sounds,
+      :observation_reviews,
+      { listed_taxa: :list },
+      :tags,
+      :taxon,
+      :quality_metrics,
+      :sounds
+    ]).find_each(batch_size: 100) do |o|
       o.skip_refresh_lists = true
       o.skip_refresh_check_lists = true
       o.skip_identifications = true
+      o.bulk_delete = true
+      o.comments.each{ |c| c.bulk_delete = true }
+      o.annotations.each{ |a| a.bulk_delete = true }
       o.destroy
+    end
+
+    identification_observation_ids = Identification.where(user_id: id).
+      select(:observation_id).distinct.pluck(:observation_id)
+    comment_observation_ids = Comment.where(user_id: id, parent_type: "Observation").
+      select(:parent_id).distinct.pluck(:parent_id)
+    annotation_observation_ids = Annotation.where(user_id: id, resource_type: "Observation").
+      select(:resource_id).distinct.pluck(:resource_id)
+    unique_obs_ids = ( identification_observation_ids + comment_observation_ids +
+      annotation_observation_ids ).uniq
+
+    identifications.includes([
+      :observation,
+      :taxon,
+      :user,
+      :flags
+    ]).find_each(batch_size: 100) do |i|
+      i.observation.skip_indexing = true
+      i.observation.bulk_delete = true
+      i.bulk_delete = true
+      i.destroy
+    end
+
+    identification_observation_ids.in_groups_of(100, false) do |obs_ids|
+      Observation.where(id: obs_ids).includes(
+        { user: :stored_preferences },
+        :votes_for,
+        :flags,
+        :taxon,
+        { photos: :flags },
+        { identifications: [ :taxon, { user: :flags } ] },
+        :quality_metrics
+      ).each do |o|
+        Identification.update_categories_for_observation( o, { skip_reload: true, skip_indexing: true } )
+        o.update_stats
+      end
+      Identification.elastic_index!(scope: Identification.where(observation_id: obs_ids))
+    end
+
+    comments.find_each(batch_size: 100) do |c|
+      c.bulk_delete = true
+      c.destroy
+    end
+
+    annotations.includes(:votes_for).find_each(batch_size: 100) do |a|
+      a.votes_for.each{ |v| v.bulk_delete = true }
+      a.bulk_delete = true
+      a.destroy
     end
 
     # transition ownership of projects with observations, delete the rest
@@ -701,6 +789,8 @@ class User < ActiveRecord::Base
         p.destroy
       end
     end
+
+    Observation.elastic_index!(ids: unique_obs_ids )
 
     # delete the user
     destroy
@@ -846,6 +936,14 @@ class User < ActiveRecord::Base
     true
   end
 
+  def destroy_project_rules
+    ProjectObservationRule.where(
+      operator: "observed_by_user?",
+      operand_type: "User",
+      operand_id: id
+    ).destroy_all
+  end
+
   def generate_csv(path, columns, options = {})
     of_names = ObservationField.joins(observation_field_values: :observation).
       where("observations.user_id = ?", id).
@@ -916,6 +1014,7 @@ class User < ActiveRecord::Base
   end
 
   def recent_notifications(options={})
+    return [] if CONFIG.has_subscribers == :disabled
     options[:filters] = options[:filters] ? options[:filters].dup : [ ]
     options[:inverse_filters] = options[:inverse_filters] ? options[:inverse_filters].dup : [ ]
     options[:per_page] ||= 10
@@ -1036,6 +1135,14 @@ class User < ActiveRecord::Base
   def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
     elastic_index!
+    Observation.elastic_index!( scope: Observation.by( id ), delay: true )
+    Identification.elastic_index!( scope: Identification.where( user_id: id ), delay: true )
+    Project.elastic_index!( scope: Project.where( user_id: id ), delay: true )
+  end
+
+  def personal_lists
+    lists.not_flagged_as_spam.
+      where("(type IN ('LifeList', 'List') OR type IS NULL)")
   end
 
 end

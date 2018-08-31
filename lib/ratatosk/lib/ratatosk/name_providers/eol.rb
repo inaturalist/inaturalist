@@ -215,6 +215,7 @@ module Ratatosk
         if @adaptee.rank.blank? && @adaptee.name.split.size == 2
           @adaptee.rank = ::Taxon::SPECIES
         end
+        @adaptee.rank = nil unless Taxon::RANKS.include?( @adaptee.rank )
         @adaptee.source = EolNameProvider.source
         @adaptee.name_provider = "EolNameProvider"
         @adaptee.source_identifier = begin

@@ -160,10 +160,10 @@ class TaxonChange < ActiveRecord::Base
               notifier: self,
               notification: "committed"
             }
-            action = UpdateAction.first_with_attributes(action_attrs, skip_indexing: true)
-            action.bulk_insert_subscribers( [record.user.id] )
-            UpdateAction.elastic_index!(ids: [action.id])
-            notified_user_ids << record.user.id
+            if action = UpdateAction.first_with_attributes(action_attrs)
+              action.append_subscribers( [record.user.id] )
+              notified_user_ids << record.user.id
+            end
           end
           if automatable? && (!record_has_user || record.user.prefers_automatic_taxonomic_changes?)
             auto_updatable_records << record
@@ -292,7 +292,12 @@ class TaxonChange < ActiveRecord::Base
       ActiveRecord::Base.connection.execute(taxon_link_sql) unless debug
     end
     input_taxa.each do |input_taxon|
-      input_taxon.update_attributes( is_active: true )
+      input_taxon.update_attributes( is_active: true ) unless debug
+    end
+    if options[:deactivate_output_taxa]
+      output_taxa.each do |output_taxon|
+        output_taxon.update_attributes( is_active: false ) unless debug
+      end
     end
     # output taxa may or may not need to be made inactive, impossible to say in code
     logger.info "[INFO #{Time.now}] Finished partial revert for #{self}"
@@ -334,7 +339,9 @@ class TaxonChange < ActiveRecord::Base
     unless target_input_taxon.is_a?( Taxon )
       target_input_taxon = Taxon.find_by_id( target_input_taxon )
     end
-    if target_input_taxon.rank_level <= Taxon::GENUS_LEVEL && output_taxon.rank == target_input_taxon.rank
+    if target_input_taxon.rank_level &&
+       target_input_taxon.rank_level <= Taxon::GENUS_LEVEL &&
+       output_taxon.rank == target_input_taxon.rank
       target_input_taxon.children.active.each do |child|
         # If for some horrible reason people are swapping replacing taxa with
         # their own children, at least don't get into some kind of invite
@@ -350,7 +357,9 @@ class TaxonChange < ActiveRecord::Base
         )
         tc.add_input_taxon( child )
         output_child_name = child.name.sub( target_input_taxon.name.strip, output_taxon.name.strip ).strip.gsub( /\s+/, " " )
-        unless output_child = output_taxon.children.detect{|c| c.name == output_child_name }
+        if output_child = output_taxon.children.detect{|c| c.name == output_child_name }
+          # puts "found existing output_child: #{output_child}"
+        else
           output_child = Taxon.new(
             name: output_child_name,
             rank: child.rank,

@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
 import DateTimeFieldWrapper from "../../uploader/components/date_time_field_wrapper";
 import JQueryUIMultiselect from "./jquery_ui_multiselect";
@@ -74,7 +75,7 @@ const DateFilters = ( {
           onChange={ e => updateSearchParams( { [dateTypeField]: e.target.value } ) }
         />
         <span className="date-type date-type-range">
-          { I18n.t( "range" ) }
+          { I18n.t( "date_picker.range" ) }
           <div
             style={ { position: "relative" } }
             className={
@@ -96,8 +97,7 @@ const DateFilters = ( {
           <div
             style={ { position: "relative" } }
             className={
-              ( params[dateTypeField] === "range" ? "" : "collapse" ) +
-              `${params[d2Field] ? " filter-changed" : ""}`
+              `${params[dateTypeField] === "range" ? "" : "collapse"}${params[d2Field] ? " filter-changed" : ""}`
             }
           >
             <DateTimeFieldWrapper

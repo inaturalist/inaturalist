@@ -73,6 +73,8 @@ module Inaturalist
       Doorkeeper::ApplicationController.layout "application"
     end
 
+    config.action_mailer.preview_path = "#{Rails.root}/test/mailers/previews"
+
     config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
     config.middleware.use Rack::MobileDetect
   end
@@ -86,6 +88,7 @@ Rack::Utils.multipart_part_limit = 2048
 # load SiteConfig class and config
 require "site_config"
 CONFIG = SiteConfig.load
+CONFIG.usingS3 = Rails.env.production? || Rails.env.prod_dev?
 
 # A DEFAULT_SRID of -1 causes lots of warnings when running specs
 # Keep it as -1 for production because existing data is based on it

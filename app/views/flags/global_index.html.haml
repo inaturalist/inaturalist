@@ -12,18 +12,19 @@
     });
 #flags
   .right.inline.smallbuttons.buttonrow
-    = form_tag(flags_path, method: "get") do
+    = form_tag( flags_path, method: "get" ) do
+      = hidden_fields_for_params( without: [:user_id] )
       = label_tag :user_id, t(:search), default: params[:user_id]
-      = text_field_tag :user_id, nil, placeholder: t(:start_typing_someones_name)
+      = text_field_tag :user_id, nil, placeholder: t(:start_typing_someones_name), data: { autosubmit: true }
+    = form_tag( flags_path, method: "get" ) do
+      = hidden_fields_for_params( without: [:flag] )
       = select_tag :flag, options_for_select([["all", nil],
         ["copyright infringement", :copyright_infringement],
-        ["inappropriate", :inappropriate], ["spam", :spam]], params[:flag])
-      = submit_tag :submit, class: "default button"
+        ["inappropriate", :inappropriate], ["spam", :spam]], params[:flag]), data: { autosubmit: true }
   #pageheader.column
     %h2= @title
   .description
     %p= t(:flags_explanation, site_name: @site.name)
-  #ul
-    = render :partial => "flag_list", locals: { flags: @flags }
+  = render :partial => "flag_list", locals: { flags: @flags }
   - if @flags.respond_to?(:total_pages)
-    = will_paginate @flags
+    = will_paginate @flags, renderer: INatLinkRenderer

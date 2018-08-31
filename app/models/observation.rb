@@ -52,7 +52,7 @@ class Observation < ActiveRecord::Base
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
-    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics
+    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -1289,6 +1289,7 @@ class Observation < ActiveRecord::Base
         CASUAL
       elsif (
         owners_identification &&
+        owners_identification.taxon.rank_level &&
         owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
         community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
       )
@@ -1954,6 +1955,7 @@ class Observation < ActiveRecord::Base
   end
 
   def update_user_counter_caches_after_destroy
+    return if bulk_delete
     User.where( id: user_id ).update_all( observations_count: [user.observations_count.to_i - 1, 0].max )
     user.reload
     user.elastic_index!
@@ -1962,6 +1964,7 @@ class Observation < ActiveRecord::Base
   end
 
   def update_user_counter_caches
+    return if bulk_delete
     User.delay(
       unique_hash: { "User::update_observations_counter_cache": user_id },
       run_at: 1.minute.from_now
@@ -2191,6 +2194,7 @@ class Observation < ActiveRecord::Base
 
   def sw_latlon
     return nil unless georeferenced?
+    return nil unless latitude
     if coordinates_obscured?
       half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
       positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
@@ -2217,6 +2221,7 @@ class Observation < ActiveRecord::Base
 
   def ne_latlon
     return nil unless georeferenced?
+    return nil unless latitude
     if coordinates_obscured?
       half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
       positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
@@ -2342,7 +2347,7 @@ class Observation < ActiveRecord::Base
   
   def public_places
     return [] unless georeferenced?
-    return [] if geoprivacy == PRIVATE
+    return [] if latitude.blank?
     candidates = observations_places.map(&:place).compact
     candidates.select do |p|
       p.bbox_publicly_contains_observation?( self ) ||
@@ -3004,9 +3009,7 @@ class Observation < ActiveRecord::Base
   end
 
   def user_viewed_updates(user_id)
-    obs_updates = UpdateAction.joins(:update_subscribers).
-      where(resource: self).
-      where("update_subscribers.subscriber_id = ?", user_id)
+    obs_updates = UpdateAction.where(resource: self)
     UpdateAction.user_viewed_updates(obs_updates, user_id)
   end
 

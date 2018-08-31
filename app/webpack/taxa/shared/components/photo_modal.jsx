@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import { Modal, Button, Grid, Row, Col } from "react-bootstrap";
 import { bind as bindShortcut, unbind as unbindShortcut } from "mousetrap";
 import SplitTaxon from "../../../shared/components/split_taxon";

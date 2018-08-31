@@ -37,7 +37,7 @@ class Comment < ActiveRecord::Base
 
   include ActsAsUUIDable
 
-  attr_accessor :html
+  attr_accessor :html, :bulk_delete
 
   def to_s
     "<Comment #{id} user_id: #{user_id} parent_type: #{parent_type} parent_id: #{parent_id}>"
@@ -99,6 +99,7 @@ class Comment < ActiveRecord::Base
   end
 
   def index_parent
+    return if bulk_delete
     if parent && parent.respond_to?(:elastic_index!)
       parent.elastic_index!
     end

@@ -1,7 +1,7 @@
 import _ from "lodash";
 import fetch from "cross-fetch";
 import moment from "moment-timezone";
-import update from "react-addons-update";
+import update from "immutability-helper";
 import DroppedFile from "../../observations/uploader/models/dropped_file";
 import ObsCard from "../../observations/uploader/models/obs_card";
 import { resizeUpload } from "../../shared/util";

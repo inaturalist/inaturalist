@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Lightbox from "react-images";
 import EasyZoom from "EasyZoom/dist/easyzoom";
 /* global SITE */
@@ -21,7 +22,7 @@ class MediaViewer extends Component {
   }
 
   easyzoom( ) {
-    $( "#react-images-container .content--jss-0-1 img" ).wrap( function ( ) {
+    $( "#lightboxBackdrop figure > img" ).wrap( function ( ) {
       let imgUrl = $( this ).attr( "src" );
       if ( $( this ).attr( "srcset" ) ) {
         const matches = $( this ).attr( "srcset" ).match( /^(.*?) / );
@@ -29,7 +30,7 @@ class MediaViewer extends Component {
       }
       return `<div class="easyzoom"><a href="${imgUrl}"></a></div>`;
     } );
-    const easyZoomTarget = $( "#react-images-container .easyzoom" );
+    const easyZoomTarget = $( "#lightboxBackdrop .easyzoom" );
     easyZoomTarget.easyZoom( {
       eventType: "click",
       onShow( ) {
@@ -40,8 +41,8 @@ class MediaViewer extends Component {
       },
       loadingNotice: I18n.t( "loading" )
     } );
-    $( "#react-images-container .easyzoom a" ).unbind( "click" );
-    $( "#react-images-container .easyzoom a" ).on( "click", e => {
+    $( "#lightboxBackdrop .easyzoom a" ).unbind( "click" );
+    $( "#lightboxBackdrop .easyzoom a" ).on( "click", e => {
       if ( !$( e.target ).is( "img" ) ) {
         this.close( );
       }
@@ -89,8 +90,14 @@ class MediaViewer extends Component {
         ]
       };
     } );
+    // Note that adding a key here forces the lightbox to completely re-render
+    // when switching to each new image, which is required for re-building the
+    // easyzoom stuff for each image. Basically using that jQuery library with
+    // react is really brittle. In a perfect world, zoom state would be an
+    // expression of the component state or the props.
     return (
       <Lightbox
+        key={ `lightbox-${this.props.mediaViewer.activeIndex}` }
         ref="lightbox"
         onClickPrev={ this.prev }
         onClickNext={ this.next }

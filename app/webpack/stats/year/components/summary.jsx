@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import { COLORS } from "../../../shared/util";
@@ -153,9 +154,9 @@ const Summary = ( {
 };
 
 Summary.propTypes = {
-  data: React.PropTypes.object,
-  year: React.PropTypes.number,
-  user: React.PropTypes.object
+  data: PropTypes.object,
+  year: PropTypes.number,
+  user: PropTypes.object
 };
 
 export default Summary;

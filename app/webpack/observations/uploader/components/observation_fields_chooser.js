@@ -1,7 +1,8 @@
 import _ from "lodash";
 import moment from "moment-timezone";
-import React, { PropTypes } from "react";
-import { Input, Glyphicon, Badge, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
+import React from "react";
+import PropTypes from "prop-types";
+import { Glyphicon, Badge, OverlayTrigger, Tooltip, Button } from "react-bootstrap";
 import TaxonAutocomplete from "./taxon_autocomplete";
 import DateTimeFieldWrapper from "./date_time_field_wrapper";
 import SelectionBasedComponent from "./selection_based_component";
@@ -110,11 +111,11 @@ class LeftMenu extends SelectionBasedComponent {
 
   selectInput( field ) {
     return (
-      <Input type="select" name="value" >
+      <select type="select" name="value" className="form-control">
         { _.map( field.allowed_values.split( "|" ), f => (
-          <option value={ f } key={ f }>{ f }</option>
+          <option value={ f || "" } key={ f }>{ f }</option>
         ) ) }
-      </Input>
+      </select>
     );
   }
 
@@ -189,7 +190,7 @@ class LeftMenu extends SelectionBasedComponent {
           name="value"
           className="form-control"
           autoComplete="off"
-          value={ this.props.observationFieldValue }
+          value={ this.props.observationFieldValue || "" }
           onClick= { () => {
             if ( this.refs.datetime ) {
               this.refs.datetime.onClick( );
@@ -279,7 +280,7 @@ class LeftMenu extends SelectionBasedComponent {
             className="form-control ofv-field"
             placeholder={ I18n.t( "add_a_field" ) }
           />
-          <input type="hidden" name="observation_field_id" value={ field && field.id } />
+          <input type="hidden" name="observation_field_id" value={ ( field && field.id ) || "" } />
           <div className="taglist">
             { _.map( commonOfvs, ( t, i ) => {
               const key = `${t.observation_field.id}:${t.value}`;

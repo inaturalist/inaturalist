@@ -1,4 +1,5 @@
-import React, { PropTypes } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 import _ from "lodash";
 import { Row, Col } from "react-bootstrap";
 import ObservationsGridItem from "../../../shared/components/observations_grid_item";

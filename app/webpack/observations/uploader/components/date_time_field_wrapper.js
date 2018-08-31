@@ -1,4 +1,5 @@
-import React, { PropTypes, Component } from "react";
+import React, { Component } from "react";
+import PropTypes from "prop-types";
 import DateTimeField from "react-bootstrap-datetimepicker";
 import moment from "moment-timezone";
 
@@ -83,9 +84,9 @@ DateTimeFieldWrapper.propTypes = {
   size: PropTypes.string,
   allowFutureDates: PropTypes.bool,
   dateTime: PropTypes.oneOfType( [
-    React.PropTypes.string,
-    React.PropTypes.number,
-    React.PropTypes.object
+    PropTypes.string,
+    PropTypes.number,
+    PropTypes.object
   ] )
 };
 

@@ -65,7 +65,7 @@ inatTaxonMap.setup = function ( elt, options ) {
       if ( typeof( observation) === "string" ) {
         return jQuery.parseJSON( observation );
       }
-      return observation;
+      return _.assignIn( {}, observation );
     });
   }
   if (options.zoomLevel === 0) {
