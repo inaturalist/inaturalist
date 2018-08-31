@@ -230,7 +230,6 @@ body > [role="dialog"] .ObservationModal {
     .btn-checkbox {
       text-align: left;
       padding-left: 0;
-      text-transform: capitalize;
       input {
         margin-right: 5px;
       }
@@ -436,7 +435,6 @@ body > [role="dialog"] .ObservationModal {
   .column-header {
     font-size: 18px;
     margin-bottom: 10px;
-    text-transform: capitalize;
 
     a {
       color: black;
@@ -484,7 +482,6 @@ body > [role="dialog"] .ObservationModal {
     border-bottom: 3px solid transparent;
     color: #555;
     font-weight: bold;
-    text-transform: capitalize;
     white-space: nowrap;
     overflow: hidden;
     display: block;

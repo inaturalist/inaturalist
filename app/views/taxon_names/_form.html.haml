@@ -32,11 +32,11 @@
         .radio
           %label.inline
             = n.radio_button :is_valid, true.to_s, :skip_builder => true
-            = t(:true).downcase
+            = t(:true)
         .radio
           %label.inline
             = n.radio_button :is_valid, false, :skip_builder => true
-            = t(:false).downcase
+            = t(:false)
       - unless @taxon_name.new_record?
         .stacked.clear
           %h3

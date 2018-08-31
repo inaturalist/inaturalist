@@ -36,7 +36,7 @@ const ArticlesTab = ( {
           </div>
         </Col>
         <Col xs={3} xsOffset={1}>
-          <h2>{ I18n.t( "more_info" ) }</h2>
+          <h2>{ I18n.t( "more_info_title" ) }</h2>
           <ul className="list-group iconified-list-group">
             { links.map( link => {
               const host = link.url.split( "/" )[2];

@@ -80,8 +80,7 @@
           = stripped_first_paragraph_of_text(@description, "\n\n")
         = remaining_paragraphs_of_text(@description, "\n\n")
     %h3.page-header
-      = t(:following).capitalize
-      = t(:x_people, :count => @user.friendships.count)
+      = t(:following_x_people, :count => @user.friendships.count)
     - unless @followees.blank?
       .row
         - @followees[0..3].each do |friend|

@@ -1,6 +1,5 @@
 import { connect } from "react-redux";
 import { stringify } from "querystring";
-import _ from "lodash";
 import LeaderItem from "../components/leader_item";
 import { defaultObservationParams } from "../../shared/util";
 
@@ -12,7 +11,7 @@ function mapStateToProps( state ) {
     className: "NumSpecies",
     label: I18n.t( "total_species_observed" ),
     name: I18n.t( "x_of_y", { x: "?", y: state.taxon.taxon.complete_species_count } ),
-    linkText: _.startCase( I18n.t( "view_all" ) ),
+    linkText: I18n.t( "view_all" ),
     noContent: true
   };
   const baseParams = {

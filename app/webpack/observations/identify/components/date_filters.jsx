@@ -34,7 +34,7 @@ const DateFilters = ( {
             updateSearchParams( { [dateTypeField]: "any" } );
           } }
         />
-        { _.capitalize( I18n.t( "any" ) ) }
+        { I18n.t( "any_" ) }
       </label>
       <label className="radio">
         <input
