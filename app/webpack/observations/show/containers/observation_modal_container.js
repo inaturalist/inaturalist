@@ -40,8 +40,8 @@ function mapDispatchToProps( dispatch ) {
     setImagesCurrentIndex: index => {
       dispatch( updateCurrentObservation( { imagesCurrentIndex: index } ) );
     },
-    chooseSuggestedTaxon: taxon => {
-      dispatch( addID( taxon ) );
+    chooseSuggestedTaxon: ( taxon, options ) => {
+      dispatch( addID( Object.assign( {}, taxon, { isVisionResult: options.vision } ) ) );
       dispatch( hideCurrentObservation( ) );
     }
   };
