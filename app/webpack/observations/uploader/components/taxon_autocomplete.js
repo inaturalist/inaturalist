@@ -336,7 +336,7 @@ class TaxonAutocomplete extends React.Component {
     ) {
       name = result.name;
     } else {
-      name = iNatModels.Taxon.titleCaseName( result.preferred_common_name || result.english_common_name ) || result.name;
+      name = iNatModels.Taxon.titleCaseName( result.preferred_common_name ) || result.name;
     }
     return name;
   }
@@ -452,7 +452,7 @@ class TaxonAutocomplete extends React.Component {
     }
     if ( result.title ) {
       if ( scinameFirst ) {
-        result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name || result.english_common_name );
+        result.subtitle = iNatModels.Taxon.titleCaseName( result.preferred_common_name );
       }
       if ( !result.subtitle && result.name !== result.title ) {
         if ( result.rank_level <= 20 ) {

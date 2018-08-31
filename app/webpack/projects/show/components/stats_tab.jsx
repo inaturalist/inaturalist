@@ -9,7 +9,7 @@ import ObservationsFlexGridView from "./observations_flex_grid_view";
 class StatsTab extends Component {
 
   componentDidMount( ) {
-    this.props.fetchQualityGradeCounts( );
+    this.props.fetchIconicTaxaCounts( );
     this.props.fetchIdentificationCategories( );
     this.props.fetchPopularObservations( );
   }
@@ -67,7 +67,7 @@ StatsTab.propTypes = {
   project: PropTypes.object,
   fetchIdentificationCategories: PropTypes.func,
   fetchPopularObservations: PropTypes.func,
-  fetchQualityGradeCounts: PropTypes.func,
+  fetchIconicTaxaCounts: PropTypes.func,
   setConfig: PropTypes.func,
   species: PropTypes.array
 };
