@@ -3450,6 +3450,41 @@ ALTER SEQUENCE rules_id_seq OWNED BY rules.id;
 
 
 --
+-- Name: saved_locations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE saved_locations (
+    id integer NOT NULL,
+    user_id integer,
+    latitude numeric(15,10),
+    longitude numeric(15,10),
+    title character varying,
+    positional_accuracy integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: saved_locations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE saved_locations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saved_locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE saved_locations_id_seq OWNED BY saved_locations.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5314,6 +5349,13 @@ ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regcl
 
 
 --
+-- Name: saved_locations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY saved_locations ALTER COLUMN id SET DEFAULT nextval('saved_locations_id_seq'::regclass);
+
+
+--
 -- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6181,6 +6223,14 @@ ALTER TABLE ONLY roles
 
 ALTER TABLE ONLY rules
     ADD CONSTRAINT rules_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: saved_locations saved_locations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY saved_locations
+    ADD CONSTRAINT saved_locations_pkey PRIMARY KEY (id);
 
 
 --
@@ -7989,6 +8039,13 @@ CREATE INDEX index_roles_users_on_user_id ON roles_users USING btree (user_id);
 
 
 --
+-- Name: index_saved_locations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saved_locations_on_user_id ON saved_locations USING btree (user_id);
+
+
+--
 -- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9341,4 +9398,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180518192353');
 INSERT INTO schema_migrations (version) VALUES ('20180518231918');
 
 INSERT INTO schema_migrations (version) VALUES ('20180613193352');
+
+INSERT INTO schema_migrations (version) VALUES ('20180704195638');
 

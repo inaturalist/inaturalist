@@ -151,6 +151,7 @@ class User < ActiveRecord::Base
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
+  has_many :saved_locations, inverse_of: :user, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],

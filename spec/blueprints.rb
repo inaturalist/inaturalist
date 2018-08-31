@@ -342,6 +342,13 @@ Role.blueprint(:admin) do
   name { User::JEDI_MASTER_ROLE }
 end
 
+SavedLocation.blueprint do
+  user { User.make! }
+  title { Faker::Name.name }
+  latitude { rand(90) }
+  longitude { rand(180) }
+end
+
 Site.blueprint do
   name { Faker::Name.name }
   url { "http://#{Faker::Internet.domain_name}" }
