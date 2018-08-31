@@ -115,15 +115,15 @@ class Taxon < ActiveRecord::Base
   }
   
   RANK_LEVELS = {
-    "stateofmatter"            => 100,
+    "stateofmatter"   => 100,
     "kingdom"         => 70,
-    "subkingdom"      => 67,
     "phylum"          => 60,
     "subphylum"       => 57,
     "superclass"      => 53,
     "class"           => 50,
     "subclass"        => 47,
     "infraclass"      => 45,
+    "subterclass"     => 44,
     "superorder"      => 43,
     "order"           => 40,
     "suborder"        => 37,
