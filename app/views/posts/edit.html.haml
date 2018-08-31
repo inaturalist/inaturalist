@@ -1,6 +1,5 @@
 - content_for(:title) do
-  = t(:x_journal_editing, :user => @parent_display_name).html_safe
-  "#{@post.title}"
+  =raw t :editing_this, elem: title_by_user( @post.title )
 - content_for(:extracss) do
   = stylesheet_link_tag "observations", "posts"
 - content_for(:extrajs) do
