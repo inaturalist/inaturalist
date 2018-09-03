@@ -1474,10 +1474,13 @@ de:
   flag_an_item: Objekt melden
   flag_as_spammer: Als Spammer markieren
   flag_as_non_spammer: Als Nicht-Spammer markieren
+  flag_description: Melde diesen Inhalt um Kuratoren wissen zu lassen, dass etwas
+    nicht stimmt.
   flag_for_curation: Zur Kuratierung melden
   flag_it!: Markieren!
   flag_marked_as_resolved_html: <span class="meta">Meldung als</span> <strong>geklärt.</strong><span
     class="meta">gekennzeichnet</span>.
+  flag_reason: '&ldquo;Ich melde d. %{record},'
   flag_saved: Meldung abgegeben.
   flag_saved_thanks: Markierung gespeichert. Danke!
   flag_this_observation: Diese Beobachtung melden
@@ -2460,7 +2463,7 @@ de:
   noun_by_you: '%{noun} von Ihnen'
   obs: Beobachtungen
   obscured_: verschleiert
-  obscured: Verschleiert
+  obscured: verschleiert
   obscured_or_private: verschleiert oder privat
   observation: Beobachtung
   observation_: Beobachtung
@@ -2723,8 +2726,7 @@ de:
   people_following_user: Personen, die %{user} folgen
   people_user_follows: Leute denen %{user} folgt
   people_added:
-    observation: hat ein/e/n %{observation_link} von @vow_or_con{vow:an|a} %{taxon_link}
-      hinzugefügt
+    observation: ': %{observation_link} von @vow_or_con{vow:an|a} %{taxon_link} hinzugefügt'
     identification:
       with_observation: hat eine <strong>ID</strong> zu einer %{observation_link}
         von %{user_link} hinzugefügt
@@ -2943,7 +2945,7 @@ de:
     united_states: Vereinigte Staaten
     virgin_islands: Jungferninseln
     west_africa: Westafrika
-  places_of_interest: Sehenswürdigkeiten
+  places_of_interest: Interessante Orte
   places_merged_successfully: Orte erfolgreich zusammengeführt!
   plants: Pflanzen
   please_add_a_citation_for_this_change: Bitte eine Zitierung zu dieser Veränderung
@@ -3650,23 +3652,31 @@ de:
   taxon_name: Taxonname
   taxon_photos_updated: Taxon-Bilder aktualisiert!
   taxon_range: Taxon-Bereich
+  taxon_ranks: Taxonränge
+  taxon_removed_from_list: Taxon aus der Liste entfernt.
   taxon_scheme: Taxon-Schema
+  taxon_schemes: Taxonschemen
+  taxon_schemes_raquo_html: Taxon<nobr>schemen &raquo;</nobr>
   taxon_search: Taxon-Suche
+  taxon_search_results_for: Taxon-Suchergebnisse für
   taxon_swap: Taxon-Tausch
   taxon_to_delete: Zu löschendes Taxon
   taxon_to_keep: Zu behaltendes Taxon
+  taxon_name_was_deleted: Der Taxonname wurde gelöscht.
   taxon_name_was_successfully_updated: Taxon-Name wurde erfolgreich aktualisiert.
   taxon_was_successfully_updated: Taxon wurde erfolgreich aktualisiert.
   taxonomic: Taxonomisch
   taxonomic_changes: Taxonomische Änderungen
   taxonomic_changes_raquo_html: Taxonomische <nobr>Änderungen &raquo;</nobr>
   taxonomic_groups: Taxonomische Gruppen
+  taxonomic_order: Taxonomische Reihenfolge
   taxonomic_status: Taxonomischer Status
   taxonomic_tags_for_flickr: Taxonomische Tags für Flickr
   taxonomy_settings: Taxonomieeinstellungen
   tell_the_world_a_little_about_yourself: Erzähl uns was über dich
   tell_us_why: Sag uns warum...
   terms: Bedingungen
+  terms_and_rules_html: Bedingungen &amp; Regeln
   terms_of_service: Nutzungsbedingungen
   terms_service: Nutzungsbedingungen
   terrain: Gelände
@@ -3686,6 +3696,8 @@ de:
   that_was_the_last_observation_matching_the_current_filters: Das war die letzte Beobachtung,
     die dem aktuellen Filter entsprach.
   thats_not_a_real_date: Das ist kein echtes Datum!
+  the: das
+  the_: Das
   the_below_items_are_needed_to_achieve: 'Die folgenden Punkte werden benötigt, um
     <span className="bold">Forschungsqualität</span> zu erreichen:'
   the_community_agrees_organism_isnt: die Community ist sich einig, dass der <strong>Organismus
@@ -3695,6 +3707,9 @@ de:
     mindestens zwei Identifikationen.
   the_community_must_feel_that: Die Community muss das Gefühl haben, dass die Community-ID
     die beste ist, die auf der vorhandenen Evidenz basieren kann.
+  the_data_quality_assessment_is: Die Bewertung der Datenqualität ist eine Zusammenfassung
+    der Genauigkeit einer Beobachtung. Alle Beobachtungen starten als <strong>"Hobbyqualität"</strong>
+    und erreichen <strong>Forschungsqualität</strong>, wenn
   the_following_lists: die folgenden Listen
   the_following_observations_could: Die folgenden Beobachtungen konnten nicht zu %{link}
     hinzugefügt werden
@@ -3708,6 +3723,7 @@ de:
     ihres Taxons an einem Ort auf, wird das Identotron einen Hinweis anzeigen.
   the_list: die Liste
   the_past: in der Vergangenheit
+  the_people_of_inat: Die Menschen von %{site_name}
   the_project: das Projekt
   the_user_x_has_been_suspended: Der Benutzer %{user} wurde gesperrt.
   the_user_x_has_been_unsuspended: Der Benutzer %{user} wurde entsperrt.
@@ -3727,6 +3743,8 @@ de:
     keine Weiterleitung mit dem Titel'<i>%{x}</i>'. Vielleicht möchtest du ja einen
     <a href='http://de.wikipedia.org/wiki/%{x}'>erstellen</a>?
   there_were_errors: Es gab einen Fehler.
+  there_were_some_problems_saving_this_observation: Beim Speichern dieser Beobachtung
+    gab es einige Probleme
   there_were_some_problems_with_fields: 'Es gab einige Probleme mit den folgenden
     Feldern:'
   theres_also: es gibt auch
@@ -3815,6 +3833,7 @@ de:
   type: Typ
   type_a_place_name_and_click_search: Gib einen Ortsnamen ein und klicke auf SUCHEN,
     um zu suchen.
+  type_source_title: Quelltitel eingeben
   unblock: Entsperren
   unclassified: Nicht klassifiziert
   uninvite: ausladen
@@ -3833,12 +3852,15 @@ de:
   unverifiable: Nicht verifizierbar
   upcoming_bioblitzes: Bevorstehende bioblitze
   update: Aktualisieren
+  update_photos: Fotos aktualisieren
   updated: Aktualisiert
+  updated_by: Aktualisiert von
   updated_daily: Täglich aktualisiert
   upload: Hochladen
   upload_a_csv_file: CSV-Datei hochladen
   upload_photo: Bild hochladen
   upload_photos: Bilder hochladen
+  upload_range: Bereich hochladen
   uploaded_by: Hochgeladen von
   uploader:
     tooltips:
@@ -3855,8 +3877,8 @@ de:
     Zusammenführung oder einen Tausch von aktiven Taxa beschreibt, die später eingereicht
     werden sollen.
   user: Benutzer
-  user_added_a_x: '%{user} hat ein/e/n %{x} hinzugefügt'
-  user_added_a_x_to_noun_by_html: '%{user} hat ein/e/n %{x} zu %{noun} von %{by} hinzugefügt'
+  user_added_a_x: '%{user}: %{x} hinzugefügt'
+  user_added_a_x_to_noun_by_html: '%{user}: %{x} zu %{noun} von %{by} hinzugefügt'
   user_added_a_x_to_noun_html: '%{user}: %{x} zu %{noun} hinzugefügt'
   user_added_an_observation_field_html: '%{user} hat einen Wert für %{field_name}
     zu einer Beobachtung von %{owner} hinzugefügt'
@@ -3875,6 +3897,7 @@ de:
   user_faved_a_noun_by_owner: '%{user} hat %{noun} von %{owner} favorisiert'
   user_follows: '%{user} folgt'
   user_muted: Benutzer gesperrt
+  user_s_lists: Listen von %{user}
   user_suggested_an_id: '%{user} hat eine Bestimmung (ID) vorgeschlagen'
   username: Benutzername
   username_or_email: Benutzername oder Email
@@ -4609,8 +4632,8 @@ de:
         about_establishment_desc: '"Verbreitung" beschreibt, wie eine Art dorthin
           gelangt ist, wo sie derzeit vorkommt. "Eingeführt" bedeutet, dass sie sich
           aufgrund menschlicher Eingriffe verbreitet hat, während "einheimisch" bedeutet,
-          dass sie ohne menschliches Zutun dort verbreitet hat. Endemische Arten kommen
-          nur an einem bestimmten Ort und sonst nirgendwo  vor.'
+          dass sie sich ohne menschliches Zutun dort verbreitet hat. Endemische Arten
+          kommen nur an einem bestimmten Ort vor (z.B. einer Insel) und sonst nirgends.'
         charts_help_seasonality: Diese Tabelle zeigt die Anzahl von Beobachtungen
           von diesem Taxon, gruppiert nach Monaten. Bitte denke daran, dass dies Zahlen
           von Beobachtungen sind und diese somit dadurch beeinflusst werden, wann
@@ -4656,10 +4679,10 @@ de:
           <ul>
             Versuche Namen hinzuzufügen, die bereits an anderer Stelle verwendet wurden. Bitte erfinde keine neuen Namen.</p></li>
             <li><p>Füge keine doppelten Namen hinzu, z.B. nenne nicht mehrere Falken "Falke"</p></li>
-            <li><p>Für höhere Taxa versuche, Namen zu verwenden, die alle Nachkommen, wie "Reiher und Verwandte" oder "Heidekrautgewächse"</p></li> enthalten.
+            <li><p>Für höhere Taxa versuche Namen zu verwenden, die alle Nachkommen wie "Reiher und Verwandte" oder "Heidekrautgewächse"</p></li> enthalten.
             <li>
               <p>
-                Füge keine Informationen hinzu, die nicht dem Namen entsprechen, z.B. beiläufige Informationen darüber, wie der Name Ihrer Meinung nach verwendet werden sollte
+                Füge keine Informationen hinzu, die nicht dem Namen entsprechen, z.B. beiläufige Informationen darüber wie der Name Ihrer Meinung nach verwendet werden sollte
               </p>
             </li>
             <li>

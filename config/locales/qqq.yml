@@ -5,11 +5,13 @@
 # Author: Aru
 # Author: BramEsposito
 # Author: Cellina
+# Author: Chestnut123tw
 # Author: Cruzan
 # Author: Danieleseglie
 # Author: Exonie
 # Author: Fortega
 # Author: Frog7301
+# Author: Ilmarine
 # Author: Jareks
 # Author: Jujurenoult
 # Author: Kruczoczarna
@@ -361,6 +363,7 @@ qqq:
   date_picker:
     closeText: '{{Identical|Close}}'
     currentText: '{{Identical|Today}}'
+    range: This is the string used for a date range (from date to date)
   date_time: '{{Identical|Date}}'
   dates: '{{Identical|Date}}'
   datetime_: '{{Identical|Date}}'
@@ -1415,6 +1418,8 @@ qqq:
       edit:
         submission_models:
           any: '{{Identical|Anyone}}'
+      project_user_curator_coordinate_access_labels:
+        none: 'There will be two meanings: "no" and "brief for number" on "No.".'
       show:
         no_journal_blurb_html: Notice shown to project owners when they do not have
           any journal posts.

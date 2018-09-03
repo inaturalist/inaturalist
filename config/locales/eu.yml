@@ -5,6 +5,7 @@
 # Author: An13sa
 # Author: Asierog
 # Author: Cgalindo
+# Author: EukeneFL
 # Author: Fitoschido
 # Author: Iñaki LL
 # Author: Macofe
@@ -193,6 +194,7 @@ eu:
   add_life_stage_nymph_annotation: 'Gehitu "Bizi Aroa: Ninfa" oharra'
   add_life_stage_larva_annotation: 'Gehitu "Bizi Aroa: Larba" oharra'
   add_life_stage_egg_annotation: 'Gehitu: "Bizi aroa: Arrautza" oharra'
+  add_section: Gehitu atala
   add_several_observations_at_once: Hainbat ohar gehitu aldi berean
   add_sex_female_annotation: 'Gehitu: "Sexua: Emakumezkoa" oharra'
   add_sex_male_annotation: 'Gehitu: "Sexua: Gizonezkoa" oharra'
@@ -210,6 +212,7 @@ eu:
     oharrekin lotutako Flickr-eko argazkiei.
   add_to: 'Hona gehitu:'
   add_to_a_scheme: Eskema batetara gehitu
+  add_to_a_project: Proiektu batera gehitu
   add_to_calendar: Egutegira gehitu
   add_to_checklist: ikuste-zerrendara gehitu
   add_to_favorites: Gustokoentara gehitu
@@ -253,6 +256,7 @@ eu:
   all_csv: CSV guztiak
   all_life: Bizitza osoa
   all_names: Izen guztiak
+  all_observations: Ohar guztiak
   all_photos: Argazki guztiak
   all_places: « Leku guztiak
   all_projects: Proiektu guztiak
@@ -421,6 +425,7 @@ eu:
   articles: Artikuluak
   associated_observations: Lotutako oharrak
   associated_taxa: Lotutako taxonak
+  attention: Erne
   you_sure_delete_list: Ziur zaude zerrenda hau ezabatu nahi duzula?
   you_sure_delete_taxon_from_list?: Ziur zaude %{taxon} zerrendatik ezabatu nahi duzula?
   asc: goranz.
@@ -486,6 +491,7 @@ eu:
   bg_color: BG kolorea
   birds: hegaztiak
   black: beltza
+  blocked_users: Blokeatutako Erabiltzaileak
   blog_widget: Blogeko widget-a
   blue: urdina
   blue_icons_represent_political_units: Ikono urdinek unitate politikoak adierazten
@@ -502,6 +508,8 @@ eu:
   browse: Taxonomian nabigatu
   browse_all_projects: Proiektu guztiak bilatu
   browse_all_species: Espezie guztiak arakatu
+  browse_observations: Oharrak Arakatu
+  browse_people: Jendea Arakatu
   browse_projects: Proiektuak arakatu
   browse_species_that_occur_near_this_observation: Behaketa horretatik gertu gertatzen
     diren espezieak bilatu.
@@ -560,6 +568,7 @@ eu:
   cc_by_sa_name: Esleipena-Berdin partekatu
   cc_used_under_a: 'Creative Commons, honen mende erabilita:'
   change: Aldatu
+  change_admin: Administratzailea Aldatu
   change_descriptions:
     split: Espeziea edo taldea bereizita dago
     merge: Espezie asko beste klase edo talde bat sortuz elkartzen dira
@@ -633,15 +642,18 @@ eu:
     Flickr-en edo zure oharretatik hautatu hemen: %{site_name}. Egin proba eta hautatu
     diagnosiko ezaugarriak</em> erakusten dituzten <em> eta <em> ikono</em> gisa ondo
     ikusten diren irudiak.  <em>Lehenengoa lehenetsita</em> azaltzen da.'
+  choose_file: Fitxategia aukeratu
   choose_files: Artxiboak hautatu
   choose_files_from_your_computer: zure ordenagailuko fitxategia hautatu.
   choose_from_your_lists: Zure zerrendetatik hautatu
   choose_good_default_photos: argazki onak hautatu lehenespenez Creative Commons-eko
     argazki taldetik Flickr-en
+  choose_photos: Argazkiak aukeratu
   choose_photos_for_this_taxon: Taxon honetarako argazkiak hautatu
   choose_photos_to_tag_from_photostream: Etiketatzeko argazkiak aukeratu zure Photostream-etik
   choose_place: Lekua hautatu
   choose_rule: Araua hautatu
+  choose_subjects: Gaiak aukeratu
   choose_tags: Etiketak hautatu
   choose_taxon: Taxona hautatu
   choose_what_kind_of_change_youre_creating: Aukeratu sartu nahi duzun aldaketa mota.
@@ -681,6 +693,8 @@ eu:
   comma_separated_please: Mesedez, komekin bereizi
   comment_preview: Oharraren aurrebista
   comment: oharra
+  comment_: Iruzkina
+  comment_feed: Iruzkinen jarioa
   comment_deleted: Oharra ezabatu egin da
   commented: aipatzen dut
   comments: Oharrak
@@ -694,10 +708,12 @@ eu:
   committed: Gorde
   committing: Gordetzen...
   community_supported_id: Komunitateak aitortutako identifikadorea?
+  compare: Alderatu
   compare_with: 'Honekin alderatu:'
   comparing: alderatzen
   comparing_list_to_list: '%{list1} %{list2}-(r)ekin alderatuta'
   comparing_observations_from: '%{user}-(r)en oharren alderaketa egun honetan: %{dates}'
+  completed: Osatuta
   comprehensive: osoa
   comprehensive?: Osoa?
   comprehensive_list: Zerrenda osoa
@@ -706,6 +722,7 @@ eu:
   configure_a_widget_to_show: Konfiguratu widget-a %{site_name}(e)ko behaketak zure
     webgunean edo blogean erakusteko. Zure HTML kodeko <code><head></code>(e)an CSS
     estiloa ere gehi dezakezu. CSS libreki alda dezakezu.
+  confirm: Baieztatu
   confirm_membership: Izen-ematea baieztatu
   confirm_new_password: Pasahitz berria baieztatu
   confirm_now: Orain baieztatu
@@ -746,6 +763,7 @@ eu:
     egg: Arrautza
     juvenile: Gaztea
   controls: Kontrolak
+  convert: Bihurtu
   coordinate_systems: Koordenatu sistemak
   coordinates: Koordenatuak
   coordinates_private: (koordenatu pribatuak)
@@ -913,8 +931,11 @@ eu:
   does_the_location_seem_accurate: Lekuak zuzena al dirudi?
   doesnt_have_default_photo: oraindik ez duzu lehenetsitako argazkirik.
   doh_something_went_wrong: Zerbait ez da ondo atera.
+  done: Eginda
   dont_filter: Ez iragazi
+  dont_send_me_email: Ez bidali emailrik!
   dont_use_double_quotes: Ez erabili komatxo bikoitzak beste inon
+  drop_it: Utzi
   double_click_to_finish: (Klik bikoitzarekin zure forma amaituko da)
   download: 'Deskargatu:'
   download_csv: CSV deskargatu
@@ -925,6 +946,8 @@ eu:
   draft_: Zirriborroa
   draft_saved: Zirriborroan gordeta!
   drafts: Zirriborroak
+  drawings: Marrazkiak
+  duplicate_verb: Bikoiztu
   each_place_displays_all_species_inat_knows: 'Lekuko orrialde bakoitzak %{site_name}-(e)k
     toki horretatik ezagutzen dituen espezie guztiak erakusten ditu, oparotasunari,
     kontserbazio-egoerari eta leku horretan lehen aldiz espezie hori ikusi zuenari
@@ -933,12 +956,21 @@ eu:
   edit: Aldatu
   edit_a_batch_of_observations: Ohar taldea aldatu
   edit_account_settings_and_profile: Kontua eta profila aldatu
+  edit_assessment: Eginkizuna aldatu
+  edit_atlas: Atlasa Aldatu
+  edit_body: Gorputza aldatu
   edit_colors: Koloreak aldatu
   edit_comment: Oharra aldatu
   edit_custom_project_fields: Pertsonalizatutako proiektu-eremuak aldatu
   edit_flagged_observation: Markatutako oharra editatu
   edit_license: Lizentzia aldatu
+  edit_multiple_dates: Data anitzak aldatu
+  edit_multiple_descriptions: Deskribapen anitzak aldatu
+  edit_multiple_locations: Kokapen anitzak aldatu
+  edit_multiple_species: Espezie anitzak aldatu
   edit_notes: Oharrak aldatu
+  edit_observation: Oharra Aldatu
+  edit_observations: Oharrak aldatu
   edit_photos: Argazkiak aldatu
   edit_photos_for_observation_id: '%{obs_id} behaketarako argazkiak aldatu'
   edit_place: lekua aldatu
@@ -984,6 +1016,8 @@ eu:
     webgunean »
   embed_place_widget: Lekuko widget-a txertatu
   embed_widget_project: Proiektu honetarako widget-a txertatu zure web orrialdean
+  enable_offline_access: Konexiorik gabeko sarbidea gaitu
+  enable_offline_access_for_mobile: Mugikorrerako konexiorik gabeko sarbidea gaitu
   end: Amaiera
   endangered: arriskuan
   endemic: endemikoa
@@ -1009,6 +1043,7 @@ eu:
   every_species_seen_by: 'Espezie guztiak honela ikusita:'
   everyone: guztiak
   everyone_journal_posts: Artikuluak egunkari guztietan
+  exact: Zehatza
   exact_coordinates_obscured_for: Koordenatu zehatzak ezkutatuta mehatxatutako espezieen
     bistaratze publikorako.
   exact_date: Data zehatza
@@ -1019,6 +1054,7 @@ eu:
   expand_days: egunak zabaldu
   expand_updates: eguneraketak zabaldu
   explore!: Ezagutu!
+  explore: Esploratu
   explore_everyones_observations: Denen oharrak arakatu.
   export: Esportatu
   external_links: Kanpoko estekak
@@ -1033,9 +1069,14 @@ eu:
   facebook_needs_the_owner_of_that_photo_to: 'Facebook-ek %@ argazki-jabearen baieztapena
     behar du hona konexioa egiteko: %{site_name_short}.'
   facebook_options: Facebook-eko aukerak
+  failed_to_find_your_location: Zure kokapena aurkitzeak huts egin du.
+  failed_to_save_record: Ezin izan da agiria gorde. Mesedez saia zaitez berriz geroago.
   "false": Gezurra
   faq: Maiz egiten diren galderak
+  fave: gogokoa
+  faves: Gogokoak
   Family: Familia
+  faved_this_observation: ohar hau gogoko gisa markatu
   favorite_taxa: taxon gogokoenak
   favorites: Gogokoak
   fblocale: es_LA
@@ -1046,9 +1087,14 @@ eu:
   feedback_group: Atzeraelikadura taldea
   feeds: 'Iturriak:'
   feeds_for_current_filters: Uneko iragazkietarako iturriak
+  failed: Hutsegitea
+  field_guides: Eremu Gidak
   field_note: <strong>Oharra:</strong> Eremu berri bat sortu aurretik beste norbaitek
     lehenago sortu al duen begira ezazu, bikoiztasunak sahiestu arren
   fields: eremuak
+  fields_: Eremuak
+  fields_merged: Eremuak bateratu dira
+  file: Fitxategia
   file_should_be_in_the_following_format: |-
     Fitxategiak formatu hau izan behar luke: espeziearen edo taldearen izena,
     deskribapena
@@ -1059,6 +1105,7 @@ eu:
   filling_out_your_profile: zure profila osatu
   filter: Iragazkia
   filter_by: 'Honen arabera iragazi:'
+  filter_by_place: Lekuaren arabera iragazi
   filter_by_taxon: Taxioiei begira iragazi
   filter_by_place_taxon_and_color: Kontrolak erabilita iragazi leku, kolore, espezie
     edo taldearen arabera.
@@ -1067,6 +1114,7 @@ eu:
     eta gehitu ez diren iragazitako behaketak
   filters: Iragazkiak
   find: Aurkitu
+  find_a_guide: Gida aurkitu
   find_a_place: Lekua bilatu
   find_guides: Gidariak Bilatu
   find_new_place_to_explore: Bilatu arakatzeko beste leku bat!
@@ -1075,14 +1123,21 @@ eu:
   find_places: Lekuak bilatu
   find_some_people_to_follow: Jarraitzeko pertsonak bilatu
   find_species: Espezieak bilatu
+  find_your_current_location: Zure oraingo kokapena aurkitu
+  finished: Amaituta
   first_confirmed_inat_observation: Lehen oharra %{site_name} baieztatuta
   first_connect_your_provider_account_to_your_site: 'Lehenik eta behin, konektatu
     zure %{provider} kontua  %{site_name}webgunera:'
   first_inat_observation: Lehen oharra %{site_name}
+  first_observation: Lehenengo Oharra
+  first_observation_by_date_added: Datararen araberako lehenengo oharra gehitu da
   first_observer: Lehen behatzailea
   first_report: lehenengo txostena
   flag: Ekarri
+  flag_as_inappropriate: Desegokitzat markatu
   flag_an_item: Eduki bat markatu
+  flag_as_spammer: Spammer gisa markatu
+  flag_as_non_spammer: Ez-spammer gisa markatu
   flag_description: Edukia markatu administrariei zerbait ez dagoela ondo jakinarazteko.
   flag_for_curation: Administraziorako markatu.
   flag_it!: Markatu!
@@ -1091,7 +1146,9 @@ eu:
   flag_saved: Ohartarazpena gordeta.
   flag_saved_thanks: Ohartarazpena gordeta. Mila esker!
   flag_this_observation: Ohar hau markatu
+  flag_this_photo: Argazki hau markatu
   flagged: markatuta
+  flagged_: Markatuta
   flagged_for_curation: Administraziorako markatuta.
   flagger: Markagailua
   flags: Markak
@@ -1116,9 +1173,11 @@ eu:
   flickr_tags: Flickr-eko etiketak
   flickr_youre_all_set: Prest dago %{site_name} arakatzen hasteko
   fluid: arina
+  follow: Jarraitu
   follow_us: 'Jarrai iezaguzu hemen:'
   follow_us_on: 'Jarrai iezaguzu hemen:'
   follow_user: 'Honi jarraitu: %{user}'
+  followed_projects: Jarraitutako Proiektuak
   follower: jarraitzailea
   followers: jarraitzaileak
   following: Jarraitzen
@@ -1142,6 +1201,7 @@ eu:
   full_id_please: ID, mesedez!
   full_id_please!: Izen zientifiko osoa!
   full_id_please?: Izen zientifiko osoa?
+  full_screen: Pantaila osoa
   fungi:
     one: 'onddoa '
     other: onddoak
@@ -1152,6 +1212,7 @@ eu:
   general: Orokorra
   generate_taxonomic_tags_for_flickr: Etiketa taxonomikoak sortu zure Flickr-eko argazkietarako.
   generate_widget: Widget-a sortu
+  generating: Sortzen...
   Genus: Generoa
   genus_slash_species: '[GENEROA] / [ESPEZIEA]'
   geoprivacy: Geopribatutasuna
@@ -1159,12 +1220,18 @@ eu:
   georeferenced?: geoerreferentziarekin
   get_current_position: Uneko posizioa lortu
   get_started_raquo: Hasi »
+  get_started: Hasi
   getting_started: Nola hasi
   give_it_some_detail: Sartu xehetasunen bat!
   global_conservation_status: Kontserbazio-egoera orokorra
+  global_names: Izen globalak
   globally: globalki
   go: Bilatu
+  go_back: Atzera jo
+  going_to_your_observations: Zure oharretara goaz...
   good_choice_for_sharing: Zientzialariekin partekatzeko aukera ona
+  google: Google
+  got_it!: Ulertuta!
   got_your_data_somewhere_else?: Zure datuak beste nonbait eskuratu dituzu? Lagun
     diezazukegu.
   graft: Txertatu
@@ -1179,13 +1246,25 @@ eu:
   grey: grisa
   grid: Sareta
   group: Taldea
+  grouping: Taldekatzen
   guess_description: Kalkulua / Deskribapena
   guides: Gidariak
   guide_colors: Koloreen gida
+  guide_deleted: Gida ezabatuta
+  guide_will_be_deleted: Gida ezabatuko da. Momentu bat beharko da gida luzeetarako.
   guide_taxon: Taxon gidaria
+  guide_was_successfully_created: Gida arrakastaz sortu da.
+  guide_was_successfully_published: Gida arrakastaz argitaratu da.
+  guide_was_successfully_updated: Gida arrakastaz eguneratu da.
   has_already_been_flagged_by: 'honek dagoeneko jakinarazi du:'
   has_been: izan da
+  has_one_or_more_faves: Gogoko bat edo gehiago dau(z)ka
+  has_photo: Argazkia dauka
+  has_photos: Argazkiak dauzka
+  has_photo_and_sound: Argazkia zein soinua dauzka
   has_photos_or_sounds: Argazkiak edo soinuak ditu
+  has_sound: Soinua dauka
+  has_sounds: soinuak dauzka
   hasnt_contributed_any_observations: ez duzu oharrik gehitu proiektu honetara.
   hate_me_facebook: Facebook eta %{site_name} webguneko zure kontuak desestekatu
   hate_me_flickr: Flickr eta %{site_name} webguneko zure kontuak desestekatu
@@ -1221,9 +1300,11 @@ eu:
   hide: Ezkutatu
   hide_details: xehetasunak ezkutatu
   highest_rank: Mailarik altuena
+  history: Historia
   home: Hasiera
   home_faq: Maiz egiten diren galderak
   hybrid: hibridoa
+  i_agree_to_the_project_terms: Proiektuaren baldintzak onartzen ditut
   icon: Ikonoa
   icon_size: Ikonoaren tamaina
   icon_slash_photo: Ikonoa / Argazkia
@@ -1239,6 +1320,9 @@ eu:
   id_please!: ID, mesedez!
   id_please: ID, mesedez
   id_please_expandable_html: ID,<span class='full'> mesedez!</span>
+  identify: Identifikatu
+  identify_observations: Oharrak identifikatu
+  identify_title: Identifikatu
   identification: identifikazioa
   identification_deleted: Identifikazioa ezabatuta.
   identification_saved: Identifikazioa gordeta!
@@ -1247,6 +1331,7 @@ eu:
   identifications: Identifikazioak
   identifications_by: 'Honen araberako identifikazioak: %{user}'
   identified?: identifikazioarekin
+  identifiers: Identifikatzaileak
   identotron: Identotron
   identotron_for: 'Identotron honetarako:'
   identotron_help: Identotron-ekin laguntza
@@ -1279,6 +1364,8 @@ eu:
   if_your_search_comes_up: Zure bilaketak emaitzarik ematen ez badu, jarri xehetasun
     gehiago bilaketa-eremuetan izenen gure kanpoko hornitzaileen bidez bilaketa errepikatzeko
   ignore: Ezikusi
+  ignore_and_continue: Ezikusi eta jarraitu
+  ignore_times: Denborak ezikusi
   imperiled: Arriskuan
   import: Inportatu
   import_all_photos_as_observations: Argazki guztiak ohar gisa inportatu
@@ -1293,7 +1380,10 @@ eu:
   import_observations_from_a_photo: Argazki-hornitzaile edo fitxategi bateko oharrak
     inportatu zure ordenagailuan.
   import_photos: Argazkiak inportatu
+  import_sections: Atalak inportatu
+  import_sounds: Soinuak Inportatu
   importing: Inportatzen...
+  improving: Hobetzen
   in_: 'hemendik:'
   inbox: postontzia
   in_order_to_login_and_using_site_visit_url: Erregistratu eta gunea erabiltzen hasteko,
