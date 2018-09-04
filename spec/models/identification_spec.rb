@@ -199,8 +199,8 @@ describe Identification, "creation" do
   
   it "should consider an identification with a taxon that is a child of " + 
      "the observation's taxon to be in agreement" do
-    taxon = Taxon.make!(:rank => Taxon::SPECIES)
-    parent = Taxon.make!(:rank => Taxon::GENUS)
+    taxon = Taxon.make!(rank: Taxon::SPECIES)
+    parent = Taxon.make!(rank: Taxon::GENUS)
     taxon.update_attributes(:parent => parent)
     observation = Observation.make!(:taxon => parent, :prefers_community_taxon => false)
     identification = Identification.make!(:observation => observation, :taxon => taxon)
@@ -220,8 +220,8 @@ describe Identification, "creation" do
   end
   
   it "should not consider identifications of different taxa in the different lineages to be in agreement" do
-    taxon = Taxon.make!( :rank => Taxon::GENUS )
-    child = Taxon.make!( :parent => taxon, :rank => Taxon::SPECIES)
+    taxon = Taxon.make!( rank: Taxon::GENUS )
+    child = Taxon.make!( parent: taxon, rank: Taxon::SPECIES)
     o = Observation.make!(:prefers_community_taxon => false)
     ident = Identification.make!(:taxon => child, :observation => o)
     disagreement = Identification.make!(:observation => o, :taxon => taxon)
