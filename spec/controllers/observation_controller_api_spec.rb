@@ -1172,7 +1172,7 @@ shared_examples_for "an ObservationsController" do
     it "should filter by taxon name if there are synonyms and iconic_taxa provided" do
       load_test_taxa
       o1 = Observation.make!(:taxon => @Pseudacris_regilla)
-      synonym = Taxon.make!(:parent => @Calypte, :name => o1.taxon.name, :rank => Taxon::SPECIES)
+      synonym = Taxon.make!(parent: @Calypte, name: o1.taxon.name, rank: Taxon::SPECIES)
       o2 = Observation.make!(:taxon => synonym)
       get :index, :format => :json, :taxon_name => o1.taxon.name, :iconic_taxa => [@Aves.name]
       expect(JSON.parse(response.body).size).to eq 1

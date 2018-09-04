@@ -117,8 +117,8 @@ describe Taxon, "creation" do
   end
   
   it "should prevent creating a taxon with a rank coarser than the parent" do
-    parent = Taxon.make!( rank: Taxon::GENUS)
-    taxon = Taxon.new(:name => 'balderdash', :rank => Taxon::FAMILY, parent: parent )
+    parent = Taxon.make!( rank: Taxon::GENUS )
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::FAMILY, parent: parent )
     taxon.save
     taxon.valid?
     expect(taxon.errors).not_to be_blank
@@ -159,8 +159,8 @@ describe Taxon, "updating" do
   end
   
   it "should prevent updating a taxon rank to be coarser than the parent" do
-    parent = Taxon.make!( rank: Taxon::GENUS)
-    taxon = Taxon.new(:name => 'balderdash', :rank => Taxon::SPECIES, parent: parent )
+    parent = Taxon.make!( rank: Taxon::GENUS )
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::SPECIES, parent: parent )
     taxon.save
     taxon.valid?
     expect(taxon.errors).to be_blank
@@ -169,8 +169,8 @@ describe Taxon, "updating" do
   end
   
   it "should prevent updating a taxon rank to be same rank as child" do
-    parent = Taxon.make!( rank: Taxon::GENUS)
-    taxon = Taxon.new(:name => 'balderdash', :rank => Taxon::SPECIES, parent: parent )
+    parent = Taxon.make!( rank: Taxon::GENUS )
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::SPECIES, parent: parent )
     taxon.save
     taxon.valid?
     expect(taxon.errors).to be_blank
@@ -663,8 +663,8 @@ describe Taxon, "merging" do
   end
   
   it "should set iconic taxa on children" do
-    reject = Taxon.make!(:rank => "species")
-    child = Taxon.make!(:parent => reject, :rank => "subspecies")
+    reject = Taxon.make!(rank: "species")
+    child = Taxon.make!(parent: reject, rank: "subspecies")
     expect(child.iconic_taxon_id).not_to eq @keeper.iconic_taxon_id
     expect(child.iconic_taxon_id).to eq reject.iconic_taxon_id
     @keeper.merge(reject)
@@ -786,8 +786,8 @@ describe Taxon, "moving" do
   end
 
   it "should set iconic taxon on observations of descendants if grafting for the first time" do
-    parent = Taxon.make!(:rank => Taxon::GENUS)
-    taxon = Taxon.make!(:parent => parent, :rank => Taxon::SPECIES)
+    parent = Taxon.make!(rank: Taxon::GENUS)
+    taxon = Taxon.make!(parent: parent, rank: Taxon::SPECIES)
     obs = without_delay { Observation.make!(:taxon => taxon) }
     expect(obs.iconic_taxon).to be_blank
     without_delay do
@@ -933,7 +933,7 @@ describe Taxon, "grafting" do
   end
   
   it "should set iconic taxa on descendants" do
-    taxon = Taxon.make!(:rank => "subspecies", :name => "Craptaculous", :parent => @graftee)
+    taxon = Taxon.make!(rank: "subspecies", name: "Craptaculous", parent: @graftee)
     @graftee.update_attributes(:parent => @Pseudacris)
     taxon.reload
     expect(taxon.iconic_taxon_id).to eq @Pseudacris.iconic_taxon_id
@@ -1003,16 +1003,16 @@ describe Taxon, "single_taxon_for_name" do
 
   it "should find a valid name, not invalid synonyms within the same parent" do
     name = "Foo bar"
-    parent = Taxon.make!(:rank => Taxon::GENUS)
-    valid = Taxon.make!(:name => name, :parent => parent, :rank => Taxon::SPECIES)
-    invalid = Taxon.make!(:parent => parent, :rank => Taxon::SPECIES)
+    parent = Taxon.make!(rank: Taxon::GENUS)
+    valid = Taxon.make!(name: name, parent: parent, rank: Taxon::SPECIES)
+    invalid = Taxon.make!(parent: parent, rank: Taxon::SPECIES)
     invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
     expect(Taxon.single_taxon_for_name(name)).to eq(valid)
   end
 
   it "should find a single valid name among invalid synonyms" do
-    valid = Taxon.make!(:parent => Taxon.make!(:rank => :genus), :rank => :species)
-    invalid = Taxon.make!(:parent => Taxon.make!(:rank => :genus), :rank => :species)
+    valid = Taxon.make!(parent: Taxon.make!(rank: Taxon::GENUS), rank: Taxon::SPECIES)
+    invalid = Taxon.make!(parent: Taxon.make!(rank: Taxon::GENUS), rank: Taxon::SPECIES)
     tn = TaxonName.create!(taxon: invalid, name: valid.name, is_valid: false, lexicon: TaxonName::SCIENTIFIC_NAMES)
     all_names = [valid.taxon_names.map(&:name), invalid.reload.taxon_names.map(&:name)].flatten.uniq
     expect( all_names.size ).to eq 2
