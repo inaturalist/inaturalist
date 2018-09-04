@@ -171,9 +171,10 @@ class Taxon < ActiveRecord::Base
       self.rank == rank
     end
   end
+  ROOT_LEVEL = STATEOFMATTER_LEVEL
   
   RANKS = RANK_LEVELS.keys
-  VISIBLE_RANKS = RANKS - ['root']
+  VISIBLE_RANKS = RANKS - ['stateofmatter']
   
   RANK_EQUIVALENTS = {
     'division'        => 'phylum',

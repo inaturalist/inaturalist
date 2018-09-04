@@ -29,6 +29,13 @@ describe Taxon do
   it "species_or_lower? should be true for Pseudacris regilla" do
     expect(@Pseudacris_regilla.species_or_lower?).to be(true)
   end
+
+  it "has rank levels for stateofmatter and root" do
+    expect( Taxon::STATEOFMATTER_LEVEL ).to eq 100
+    expect( Taxon::ROOT_LEVEL ).to eq 100
+    expect( Taxon::ROOT_LEVEL ).to eq Taxon::STATEOFMATTER_LEVEL
+  end
+
 end
 
 describe Taxon, "creation" do
