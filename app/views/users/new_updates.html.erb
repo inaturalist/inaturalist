@@ -7,8 +7,8 @@
       next unless update.resource
       resource = update.resource
       link_subject = resource
-      if update.notification == "mention"
-        anchor = "activity_comment_#{ update.notifier_id }"
+      if update.notification == "mention" || update.notifier_type == "Comment"
+        anchor = "comment-#{ update.notifier_id }"
         link_subject = update.notifier
       end
     -%>
