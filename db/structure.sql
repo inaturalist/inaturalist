@@ -4690,7 +4690,8 @@ CREATE TABLE wiki_pages (
     title character varying(255),
     content text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    admin_only boolean DEFAULT false
 );
 
 
@@ -9333,4 +9334,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180803162216');
 INSERT INTO schema_migrations (version) VALUES ('20180821031507');
 
 INSERT INTO schema_migrations (version) VALUES ('20180822173011');
+
+INSERT INTO schema_migrations (version) VALUES ('20180905191330');
 
