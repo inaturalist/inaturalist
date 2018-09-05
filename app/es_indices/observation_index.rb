@@ -231,7 +231,7 @@ class Observation < ActiveRecord::Base
         reject{ |op| op.photo.blank? }.
         each_with_index.map{ |op, i|
           json[:photos] << op.photo.as_indexed_json
-          json[:observation_photos] << { uuid: op.uuid, photo_id: op.photo.id, position: i }
+          json[:observation_photos] << { id: op.id, uuid: op.uuid, photo_id: op.photo.id, position: i }
         }
 
       add_taxon_statuses(json, t) if t && json[:taxon]
