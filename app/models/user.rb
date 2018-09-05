@@ -109,8 +109,8 @@ class User < ActiveRecord::Base
   # Some interesting ways to map self-referential relationships in rails
   has_many :friendships, :dependent => :destroy
   has_many :friends, :through => :friendships
-  has_many :stalkerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
-  has_many :followers, :through => :stalkerships,  :source => 'user'
+  has_many :followerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
+  has_many :followers, :through => :followerships,  :source => 'user'
   
   has_many :lists, :dependent => :destroy
   has_many :life_lists
@@ -1134,6 +1134,9 @@ class User < ActiveRecord::Base
   def flagged_with( flag, options = {} )
     evaluate_new_flag_for_spam( flag )
     elastic_index!
+    Observation.elastic_index!( scope: Observation.by( id ), delay: true )
+    Identification.elastic_index!( scope: Identification.where( user_id: id ), delay: true )
+    Project.elastic_index!( scope: Project.where( user_id: id ), delay: true )
   end
 
   def personal_lists

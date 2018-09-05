@@ -22,9 +22,10 @@
   </p>
 </div>
 
-<ul>
-  <% if @flags.empty? %>
+<% if @flags.empty? %>
+  <ul>
     <li class="quiet description"><%=t :no_flags %></li>
-  <% end %>  
+  </ul>
+<% else %>
   <%= render :partial => "flag_list", :locals => { :flags => @flags } %>
-</ul>
+<% end %>

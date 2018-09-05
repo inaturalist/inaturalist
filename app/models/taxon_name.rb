@@ -42,6 +42,8 @@ class TaxonName < ActiveRecord::Base
     :DAVAWENYO           =>  'Davawenyo',
     :DUTCH               =>  'Dutch',
     :ENGLISH             =>  'English',
+    :ESTONIAN            =>  'Estonian',
+    :FINNISH             =>  'Finnish',
     :FRENCH              =>  'French',
     :GELA                =>  'Gela',
     :GERMAN              =>  'German',
@@ -93,11 +95,11 @@ class TaxonName < ActiveRecord::Base
     "dutch"                 => "nl",
     "english"               => "en",
     "estonian"              => "et",
+    "finnish"               => "fi",
     "french"                => "fr",
     "galician"              => "gl",
     "german"                => "de",
     "greek"                 => "el",
-    "finnish"               => "fi",
     "hawaiian"              => "haw",
     "hebrew"                => "iw",
     "indonesian"            => "id",
@@ -212,34 +214,43 @@ class TaxonName < ActiveRecord::Base
     common_names = common_names.sort_by{|tn| [tn.position, tn.id]}
     
     if place
-      place_names = common_names.select{|tn| tn.place_taxon_names.detect{|ptn| ptn.place_id == place.id}}
-      if place_names.blank?
+      exact_place_names = common_names.select{|tn| tn.place_taxon_names.detect{|ptn| ptn.place_id == place.id}}
+      place_names = []
+      if exact_place_names.blank?
         place_names = common_names.select{|tn| tn.place_taxon_names.detect{|ptn| 
           place.self_and_ancestor_ids.include?(ptn.place_id)
         }}
       end
-      place_names = place_names.sort_by {|tn|
+      name_sorter = Proc.new do |tn|
         ptn = tn.place_taxon_names.detect{|ptn| ptn.place_id == place.id}
         ptn ||= tn.place_taxon_names.detect{|ptn| place.self_and_ancestor_ids.include?(ptn.place_id)}
         [ptn.position, tn.position, tn.id]
-      }
+      end
+      place_names = place_names.sort_by( &name_sorter )
+      exact_place_names = exact_place_names.sort_by( &name_sorter )
     else
       place_names = []
+      exact_place_names = []
     end
     locale = options[:locale]
+    locale = options[:user].try(:locale) if locale.blank?
     locale = options[:site].try(:locale) if locale.blank?
     locale = I18n.locale if locale.blank?
-    language_name = language_for_locale( locale ) || "english"
+    language_name = language_for_locale( locale )
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name }
-    engnames = common_names.select {|n| n.is_english? }
-    unknames = common_names.select {|n| n.lexicon.blank? || n.lexicon.downcase == 'unspecified' }
+
+    # We want Maori names to show up in New Zealand even for English speakers, but we don't want North American English names to show in Mexcio
+    locale_and_place_names = place_names.select {|n| n.localizable_lexicon == language_name }
+    exact_locale_and_place_names = exact_place_names.select {|n| n.localizable_lexicon == language_name }
     
-    if place_names.length > 0
-      place_names.first
+    if exact_locale_and_place_names.length > 0
+      exact_locale_and_place_names.first
+    elsif exact_place_names.length > 0
+      exact_place_names.first
+    elsif locale_and_place_names.length > 0
+      locale_and_place_names.first
     elsif locale_names.length > 0
       locale_names.first
-    elsif unknames.length > 0
-      unknames.first
     end
   end
 

@@ -313,6 +313,10 @@ module ApplicationHelper
     # Ensure all tags are closed
     Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
   end
+
+  def title_by_user( text )
+    h( text ).gsub( "&amp;", "&" ).html_safe
+  end
   
   def markdown(text)
     BlueCloth::new(text).to_html

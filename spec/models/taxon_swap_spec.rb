@@ -596,6 +596,28 @@ describe "move_input_children_to_output" do
     expect( new_i2 ).to be_disagreement
     expect( new_i2.previous_observation_taxon ).to eq @output_taxon.children.first
   end
+
+  it "should work make swaps for subspecies when you swap a genus" do
+    input_genus = Taxon.make!( rank: Taxon::GENUS, name: "Inputgenus" )
+    input_species = Taxon.make!( rank: Taxon::SPECIES, name: "Inputgenus foo", parent: input_genus )
+    input_subspecies = Taxon.make!( rank: Taxon::SUBSPECIES, name: "Inputgenus foo foo", parent: input_species )
+    output_genus = Taxon.make!( rank: Taxon::GENUS, name: "Outputgenus", is_active: false )
+    # puts Taxon.where( "name like 'Inputgenus%'" ).all
+    swap = TaxonSwap.make
+    swap.committer = swap.user
+    swap.add_input_taxon( input_genus )
+    swap.add_output_taxon( output_genus )
+    swap.save!
+    swap.commit
+    Delayed::Worker.new.work_off
+    Delayed::Worker.new.work_off
+    Delayed::Worker.new.work_off
+    output_genus.reload
+    output_species = output_genus.children.detect{|t| t.name == "Outputgenus foo" }
+    expect( output_species ).not_to be_blank
+    output_subspecies = output_species.children.detect{|t| t.name == "Outputgenus foo foo" }
+    expect( output_subspecies ).not_to be_blank
+  end
 end
 
 def prepare_swap

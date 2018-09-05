@@ -959,6 +959,45 @@ describe User do
     end
   end
 
+  describe "when flagged as spam" do
+    before(:each) { enable_elastic_indexing( Observation, Identification, Project ) }
+    after(:each) { disable_elastic_indexing( Observation, Identification, Project ) }
+
+    let(:user) { User.make! }
+    let(:flagger) { User.make! }
+
+    it "should reindex observations as spam" do
+      o = Observation.make!( user: user )
+      Delayed::Worker.new.work_off
+      es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
+      expect( es_o.spam ).to be false
+      user.add_flag( flag: Flag::SPAM, user_id: flagger.id )
+      Delayed::Worker.new.work_off
+      es_o = Observation.elastic_search( where: { id: o.id } ).results[0]
+      expect( es_o.spam ).to be true
+    end
+    it "should reindex identifications as spam" do
+      i = Identification.make!( user: user )
+      Delayed::Worker.new.work_off
+      es_i = Identification.elastic_search( where: { id: i.id } ).results[0]
+      expect( es_i.spam ).to be false
+      user.add_flag( flag: Flag::SPAM, user_id: flagger.id )
+      Delayed::Worker.new.work_off
+      es_i = Identification.elastic_search( where: { id: i.id } ).results[0]
+      expect( es_i.spam ).to be true
+    end
+    it "should reindex projects as spam" do
+      project = Project.make!( user: user )
+      Delayed::Worker.new.work_off
+      es_project = Project.elastic_search( where: { id: project.id } ).results[0]
+      expect( es_project.spam ).to be false
+      user.add_flag( flag: Flag::SPAM, user_id: flagger.id )
+      Delayed::Worker.new.work_off
+      es_project = Project.elastic_search( where: { id: project.id } ).results[0]
+      expect( es_project.spam ).to be true
+    end
+  end
+
   protected
   def create_user(options = {})
     opts = {

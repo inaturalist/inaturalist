@@ -357,7 +357,9 @@ class TaxonChange < ActiveRecord::Base
         )
         tc.add_input_taxon( child )
         output_child_name = child.name.sub( target_input_taxon.name.strip, output_taxon.name.strip ).strip.gsub( /\s+/, " " )
-        unless output_child = output_taxon.children.detect{|c| c.name == output_child_name }
+        if output_child = output_taxon.children.detect{|c| c.name == output_child_name }
+          # puts "found existing output_child: #{output_child}"
+        else
           output_child = Taxon.new(
             name: output_child_name,
             rank: child.rank,

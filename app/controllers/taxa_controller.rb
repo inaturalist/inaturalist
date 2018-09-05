@@ -1455,7 +1455,8 @@ class TaxaController < ApplicationController
       return
     end
     
-    @external_taxa = Taxon.find(ext_names.map(&:taxon_id)) unless ext_names.blank?
+    ext_taxon_ids = ext_names.map(&:taxon_id).compact
+    @external_taxa = Taxon.find( ext_taxon_ids ) unless ext_taxon_ids.blank?
     
     return if @external_taxa.blank?
     

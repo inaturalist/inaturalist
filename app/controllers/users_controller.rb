@@ -279,7 +279,7 @@ class UsersController < ApplicationController
   def show
     @selected_user = @user
     @login = @selected_user.login
-    @followees = @selected_user.friends.paginate(:page => 1, :per_page => 15).order("id desc")
+    @followees = @selected_user.friends.where( "users.suspended_at IS NULL" ).paginate(:page => 1, :per_page => 15).order("id desc")
     @favorites_list = @selected_user.lists.find_by_title("Favorites")
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
@@ -314,9 +314,9 @@ class UsersController < ApplicationController
   
   def relationships
     @users = if params[:following]
-      @user.friends.paginate(page: params[:page] || 1).order(:login)
+      @user.friends.where( "users.suspended_at IS NULL" ).paginate(page: params[:page] || 1).order(:login)
     else
-      @user.followers.paginate(page: params[:page] || 1).order(:login)
+      @user.followers.where( "users.suspended_at IS NULL" ).paginate(page: params[:page] || 1).order(:login)
     end
     counts_for_users
   end

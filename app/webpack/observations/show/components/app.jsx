@@ -73,9 +73,9 @@ const App = ( {
   let formattedDateObserved;
   if ( observation.time_observed_at ) {
     formattedDateObserved = moment.tz( observation.time_observed_at,
-      observation.observed_time_zone ).format( "MMM D, YYYY · LT z" );
+      observation.observed_time_zone ).format( I18n.t( "momentjs.datetime_with_zone" ) );
   } else if ( observation.observed_on ) {
-    formattedDateObserved = moment( observation.observed_on ).format( "MMM D, YYYY" );
+    formattedDateObserved = moment( observation.observed_on ).format( "ll" );
   } else {
     formattedDateObserved = I18n.t( "not_recorded" );
   }
@@ -109,7 +109,7 @@ const App = ( {
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />
                 <span className={ `quality_grade ${observation.quality_grade} ` }>
-                  { _.startCase( I18n.t( qualityGrade ) ) }
+                  { I18n.t( `${qualityGrade}_`, { defaultValue: I18n.t( qualityGrade ) } ) }
                 </span>
               </div>
             </Col>
@@ -172,7 +172,7 @@ const App = ( {
                         <span className="bold_label">{ I18n.t( "submitted" ) }:</span>
                         <span className="date">
                           { moment.tz( observation.created_at,
-                            observation.created_time_zone ).format( "MMM D, YYYY · LT z" ) }
+                            observation.created_time_zone ).format( I18n.t( "momentjs.datetime_with_zone" ) ) }
                         </span>
                       </Col>
                     </Row>
@@ -262,16 +262,6 @@ const App = ( {
             </Col>
             <Col xs={6}>
               <SimilarContainer />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <TestGroupToggle
-                group="suggestions-obs-detail"
-                joinPrompt="Do you want to test Identify suggestions on the observation detail page?"
-                joinedStatus="You're testing Identify suggestions on the observation detail page."
-                user={ config.currentUser }
-              />
             </Col>
           </Row>
         </Grid>

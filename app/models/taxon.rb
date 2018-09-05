@@ -115,15 +115,15 @@ class Taxon < ActiveRecord::Base
   }
   
   RANK_LEVELS = {
-    "root"            => 100,
+    "stateofmatter"   => 100,
     "kingdom"         => 70,
-    "subkingdom"      => 67,
     "phylum"          => 60,
     "subphylum"       => 57,
     "superclass"      => 53,
     "class"           => 50,
     "subclass"        => 47,
     "infraclass"      => 45,
+    "subterclass"     => 44,
     "superorder"      => 43,
     "order"           => 40,
     "suborder"        => 37,
@@ -171,9 +171,10 @@ class Taxon < ActiveRecord::Base
       self.rank == rank
     end
   end
+  ROOT_LEVEL = STATEOFMATTER_LEVEL
   
   RANKS = RANK_LEVELS.keys
-  VISIBLE_RANKS = RANKS - ['root']
+  VISIBLE_RANKS = RANKS - ['stateofmatter']
   
   RANK_EQUIVALENTS = {
     'division'        => 'phylum',

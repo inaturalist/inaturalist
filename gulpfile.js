@@ -19,7 +19,7 @@ gulp.task("watch", function() {
 
     // all jsx files in the webback dir
     "app/webpack/**/*.jsx"
-  ], ["webpack"]);
+  ], { interval: 1000 }, ["webpack"]);
 });
 
 gulp.task("default", ["webpack", "watch"]);

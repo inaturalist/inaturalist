@@ -869,6 +869,19 @@ $nav-btn-dim: 40px;
   }
 }
 
+.TaxonomyTab {
+  .sciname.species,
+  .sciname.subspecies,
+  .sciname.variety,
+  .sciname.hybrid {
+    font-style: italic;
+  }
+  .outdated .sciname,
+  .outdated .comname {
+    text-decoration: line-through;
+  }
+}
+
 .SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
   margin-bottom: 20px;
 }

@@ -131,6 +131,12 @@ class IdentificationsController < ApplicationController
       end
       format.json do
         pagination_headers_for( @identifications )
+        @identifications.each do |i|
+          i.taxon.current_user = current_user if i.taxon && current_user
+          i.observation.taxon.current_user = current_user if i.observation.taxon && current_user
+          i.observation.localize_place = current_user.try(:place) || @site.place
+          i.observation.localize_locale = current_user.try(:locale) || @site.locale
+        end
         taxon_options = {
           only: [:id, :name, :rank],
           methods: [:default_name, :photo_url, :iconic_taxon_name]

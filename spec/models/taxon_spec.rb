@@ -29,6 +29,13 @@ describe Taxon do
   it "species_or_lower? should be true for Pseudacris regilla" do
     expect(@Pseudacris_regilla.species_or_lower?).to be(true)
   end
+
+  it "has rank levels for stateofmatter and root" do
+    expect( Taxon::STATEOFMATTER_LEVEL ).to eq 100
+    expect( Taxon::ROOT_LEVEL ).to eq 100
+    expect( Taxon::ROOT_LEVEL ).to eq Taxon::STATEOFMATTER_LEVEL
+  end
+
 end
 
 describe Taxon, "creation" do
@@ -376,12 +383,6 @@ describe Taxon, "common_name" do
     tn_es = TaxonName.make!(:taxon => t, :name => "Diablo Rojo", :lexicon => TaxonName::LEXICONS[:SPANISH])
     tn_un = TaxonName.make!(:taxon => t, :name => "run away!", :lexicon => 'unspecified')
     expect(t.common_name).to eq(tn_en)
-  end
-  it "should default to unknown if no English" do
-    t = Taxon.make!
-    tn_es = TaxonName.make!(:taxon => t, :name => "Diablo Rojo", :lexicon => TaxonName::LEXICONS[:SPANISH])
-    tn_un = TaxonName.make!(:taxon => t, :name => "run away!", :lexicon => 'unspecified')
-    expect(t.common_name).to eq(tn_un)
   end
   it "should not default to first common if no English or unknown" do
     t = Taxon.make!

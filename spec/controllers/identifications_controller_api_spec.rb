@@ -239,7 +239,7 @@ shared_examples_for "an IdentificationsController" do
     end
     it "should include locale-specific taxon name" do
       ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
-      tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS["Spanish"] )
+      tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS[:SPANISH] )
       user.update_attributes( locale: "es" )
       get :by_login, format: :json, login: user.login
       json = JSON.parse( response.body )
@@ -249,9 +249,9 @@ shared_examples_for "an IdentificationsController" do
     it "should include place-specific taxon name" do
       ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
       place = Place.make!
-      tn = TaxonName.make!( taxon: ident.taxon )
+      tn = TaxonName.make!( taxon: ident.taxon, lexicon: TaxonName::LEXICONS[:ENGLISH] )
       ptn = PlaceTaxonName.make!( taxon_name: tn, place: place )
-      user.update_attributes( place: place )
+      user.update_attributes( place: place, locale: "en" )
       get :by_login, format: :json, login: user.login
       json = JSON.parse( response.body )
       json_ident = json.detect{|i| i["id"] == ident.id }
@@ -259,7 +259,7 @@ shared_examples_for "an IdentificationsController" do
     end
     it "should include locale-specific observation taxon name" do
       ident = Identification.make!( user: user, observation: make_research_grade_observation( taxon: @Calypte_anna ) )
-      tn = TaxonName.make!( taxon: ident.observation.taxon, lexicon: TaxonName::LEXICONS["Spanish"] )
+      tn = TaxonName.make!( taxon: ident.observation.taxon, lexicon: TaxonName::LEXICONS[:SPANISH] )
       user.update_attributes( locale: "es" )
       get :by_login, format: :json, login: user.login
       json = JSON.parse( response.body )

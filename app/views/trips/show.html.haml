@@ -1,5 +1,5 @@
 - content_for :title do
-  = @title = @trip.title
+  =title_by_user @title = @trip.title
 - content_for :extracss do
   = stylesheet_link_tag "trips/show"
 - content_for :extrajs do
