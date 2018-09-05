@@ -1930,6 +1930,7 @@ da:
   learn_more_raquo: Lær mere &raquo;
   learn_what_these_licenses_mean: Lær hvad disse licenser betyder
   least_concern: mindste bekymring
+  leave: Forlad
   leave_a_comment: Efterlad en kommentar
   leave_this_project: Forlad dette projekt
   leaves: blade
@@ -4553,7 +4554,8 @@ da:
   where_does_x_live: Hvor lever %{taxa}?
   where_were_they?: Hvor var de?
   where_were_you?: Hvor observerede du den?
-  which_projects_can_add_your_observations?: Hvilke projekter kan tilføje dine observationer?
+  which_projects_can_add_your_observations?: Hvilke traditionelle projekter kan tilføje
+    dine observationer?
   white: hvid
   who_can_add_observations_to_this_project?: Hvem kan tilføje observationer til dette
     projekt?
@@ -5514,6 +5516,8 @@ da:
       umbrella: Paraply
       tracks_multiple_projects: Følger flere projekter
       projects_included: Projekter inkluderet
+      collection_and_umbrellas_do_not_support: Samlings- og paraplyprojekter understøtter
+        ikke adgang til private koordinater.
       curator_coordinate_access_desc_html: |-
         Husk, at <strong> projekt kuratorer kan tilføje nogle af dine observationer til deres projekt </ strong>, medmindre du har fravalgt det i din <a
         href = "/ users / edit"> kontoindstillinger </a>. Markér kun dette felt, hvis du har tillid til at projektets kuratorer må se dine private koordinater for alle dine observationer, der tilføjes til dette projekt. hvis du
@@ -6096,6 +6100,10 @@ da:
           any: Alle
           joined: Projekter du er medlem af
           none: Ingen. Det er kun dig der kan tilføje dine observationer til projekter
+        this_only_applies_to_traditional_projects: |-
+          Dette gælder kun for traditionelle projekter. Du kan ikke udelukke observationer
+          fra samlings- eller paraplyprojekter, som hovedsageligt er gemte søgninger.
+          Du kan læse mere <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
         project_settings_desc: |-
           Husk, dette giver ikke projekter tilladelse til at få adgang til dine
           private koordinater eller sende dig underretninger. Du skal være medlem af disse  projekter for at give disse tilladelser eller for at tillade dem fra gang til gang.
