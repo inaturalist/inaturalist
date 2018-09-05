@@ -2374,16 +2374,16 @@ describe Observation do
     end
 
     it "should work" do
-      parent = Taxon.make!
-      child = Taxon.make!
-      o = Observation.make!(:taxon => parent)
-      i1 = Identification.make!(:observation => o, :taxon => child)
+      parent = Taxon.make!( rank: Taxon::GENUS )
+      child = Taxon.make!( rank: Taxon::SPECIES )
+      o = Observation.make!( taxon: parent )
+      i1 = Identification.make!( observation: o, taxon: child )
       o.reload
-      expect(o.community_taxon).to be_blank
-      child.update_attributes(:parent => parent)
-      Observation.update_stats_for_observations_of(parent)
+      expect( o.community_taxon ).to be_blank
+      child.update_attributes( parent: parent )
+      Observation.update_stats_for_observations_of( parent )
       o.reload
-      expect(o.community_taxon).not_to be_blank
+      expect( o.community_taxon ).not_to be_blank
     end
   end
 
