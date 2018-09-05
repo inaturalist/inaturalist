@@ -34,7 +34,6 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
           { sortedStatuses.map( status => {
             let text = status.statusText( );
             text = I18n.t( text, { defaultValue: text } );
-            text = _.capitalize( text );
             if ( !text.match( /\(${status.status}\)/ ) ) {
               text += ` (${status.status})`;
             }
@@ -79,7 +78,7 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                             { defaultValue: status.place.display_name } ) }
                         </a>
                         :
-                        _.capitalize( I18n.t( "globally" ) )
+                        I18n.t( "globally" )
                       }
                     </div>
                   </div>
@@ -157,14 +156,13 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                             { defaultValue: lt.place.display_name } ) }
                         </a>
                         :
-                        _.capitalize( I18n.t( "globally" ) )
+                        I18n.t( "globally" )
                       }
                     </div>
                   </div>
                 </td>
                 <td>
-                  { _.capitalize( I18n.t( lt.establishment_means,
-                    { defaultValue: lt.establishment_means } ) ) }
+                  { I18n.t( lt.establishment_means, { defaultValue: lt.establishment_means } ) }
                 </td>
                 <td>
                   <a href={`/lists/${lt.list.id}`}>{ lt.list.title }</a>
