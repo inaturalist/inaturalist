@@ -434,8 +434,8 @@ describe Observation do
     end
 
     it "should increment the taxon's ancestors' counter caches" do
-      p = without_delay { Taxon.make! }
-      t = without_delay { Taxon.make!(:parent => p) }
+      p = without_delay { Taxon.make!(rank: Taxon::GENUS) }
+      t = without_delay { Taxon.make!(parent: p, rank: Taxon::SPECIES) }
       expect(p.observations_count).to eq 0
       o = without_delay { Observation.make!(:taxon => t) }
       p.reload
@@ -1200,8 +1200,8 @@ describe Observation do
   
     it "should increment the taxon's ancestors' counter caches" do
       o = Observation.make!
-      p = without_delay { Taxon.make! }
-      t = without_delay { Taxon.make!(:parent => p) }
+      p = without_delay { Taxon.make!(rank: Taxon::GENUS) }
+      t = without_delay { Taxon.make!(parent: p, rank: Taxon::SPECIES) }
       expect(p.observations_count).to eq 0
       o.update_attributes(:taxon => t)
       Delayed::Worker.new.work_off
@@ -1223,8 +1223,8 @@ describe Observation do
     end
   
     it "should decrement the taxon's ancestors' counter caches" do
-      p = Taxon.make!
-      t = Taxon.make!(:parent => p)
+      p = Taxon.make!(rank: Taxon::GENUS)
+      t = Taxon.make!(parent: p, rank: Taxon::SPECIES)
       o = without_delay {Observation.make!(:taxon => t)}
       p.reload
       expect(p.observations_count).to eq(1)
@@ -1302,8 +1302,8 @@ describe Observation do
     end
   
     it "should decrement the taxon's ancestors' counter caches" do
-      p = Taxon.make!
-      t = Taxon.make!(:parent => p)
+      p = Taxon.make!(rank: Taxon::GENUS)
+      t = Taxon.make!(parent: p, rank: Taxon::SPECIES)
       o = without_delay {Observation.make!(:taxon => t)}
       p.reload
       expect(p.observations_count).to eq(1)
@@ -1364,9 +1364,9 @@ describe Observation do
     end
 
     it "should not choose a taxon from species_guess if exact matches don't form a subtree" do
-      taxon = Taxon.make!(:rank => "species", :parent => Taxon.make!, :name => "Spirolobicus bananaensis")
+      taxon = Taxon.make!(rank: "species", parent: Taxon.make!(rank: Taxon::GENUS), name: "Spirolobicus bananaensis")
       child = Taxon.make!(:rank => "subspecies", :parent => taxon, :name => "#{taxon.name} foo")
-      taxon2 = Taxon.make!(:rank => "species", :parent => Taxon.make!)
+      taxon2 = Taxon.make!(rank: "species", parent: Taxon.make!(rank: Taxon::GENUS))
       common_name = "Spiraled Banana Shrew"
       TaxonName.make!(:taxon => taxon, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
       TaxonName.make!(:taxon => child, :name => common_name, :lexicon => TaxonName::LEXICONS[:ENGLISH])
@@ -1723,8 +1723,8 @@ describe Observation do
         expect(Observation.of(t).first).to eq o
       end
       it "should find observations of a descendant of a taxon" do
-        t = without_delay { Taxon.make! }
-        c = without_delay { Taxon.make!(:parent => t) }
+        t = without_delay { Taxon.make!(rank: Taxon::GENUS) }
+        c = without_delay { Taxon.make!(parent: t, rank: Taxon::SPECIES) }
         o = Observation.make!(:taxon => c)
         expect(Observation.of(t).first).to eq o
       end
@@ -1778,6 +1778,8 @@ describe Observation do
     end
   
     it "should be set automatically if the taxon's parent is threatened" do
+      parent = cs.taxon
+      parent.update_attributes( rank: Taxon::SPECIES, rank_level: Taxon::SPECIES_LEVEL )
       child = Taxon.make!( parent: cs.taxon, rank: "subspecies" )
       observation = Observation.make!( defaults.merge( taxon: child ) )
       expect( observation.taxon ).not_to be_threatened
@@ -2357,8 +2359,8 @@ describe Observation do
     after(:each) { disable_elastic_indexing(Identification) }
 
     it "should work" do
-      parent = Taxon.make!
-      child = Taxon.make!
+      parent = Taxon.make!(rank: Taxon::GENUS)
+      child = Taxon.make!(rank: Taxon::SPECIES)
       o = Observation.make!(:taxon => parent)
       i1 = Identification.make!(:observation => o, :taxon => child)
       o.reload
@@ -2443,8 +2445,8 @@ describe Observation do
     end
 
     it "should generate an update for descendent taxa" do
-      t1 = Taxon.make!
-      t2 = Taxon.make!(:parent => t1)
+      t1 = Taxon.make!(rank: Taxon::GENUS)
+      t2 = Taxon.make!(parent: t1, rank: Taxon::SPECIES)
       s = Subscription.make!(:resource => t1)
       o = Observation.make(:taxon => t2)
       expect( UpdateAction.unviewed_by_user_from_query(s.user_id, resource: t1) ).to eq false

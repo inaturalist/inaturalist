@@ -14,10 +14,10 @@ describe ControlledTerm do
   end
 
   describe "taxon selection" do
-    let(:animalia) { Taxon.make!(name: "Animalia") }
-    let(:mammalia) { Taxon.make!(name: "Mammalia", parent: animalia) }
-    let(:primates) { Taxon.make!(name: "Primates", parent: mammalia) }
-    let(:plantae) { Taxon.make!(name: "Plantae") }
+    let(:animalia) { Taxon.make!(name: "Animalia", rank: Taxon::KINGDOM) }
+    let(:mammalia) { Taxon.make!(name: "Mammalia", parent: animalia, rank: Taxon::CLASS) }
+    let(:primates) { Taxon.make!(name: "Primates", parent: mammalia, rank: Taxon::ORDER) }
+    let(:plantae) { Taxon.make!(name: "Plantae", rank: Taxon::KINGDOM) }
   
     describe "for_taxon" do
       it "returns terms for taxa and their ancestors" do
