@@ -58,9 +58,6 @@ et:
   x_others:
     one: 1 muu
     other: '%{count} muud'
-  x_people:
-    one: 1 inimene
-    other: '%{count} inimest'
   x_people_found_this_helpful:
     one: Ühe isiku jaoks oli sellest abi
     other: '%{count} isiku jaoks oli sellest abi'
@@ -109,7 +106,7 @@ et:
     other: <span class='count'>%{count}</span> taksonimuudatust lisatud
   _100_day_trends: 100 päeva trendid
   _percent_ID_d: '% määratud'
-  a: '{null}'
+  a: '&nbsp;'
   a_community_for_naturalist: Loodusloolaste kogukond
   a_default_taxon_name_will_automatically_created: Vaikimisi taksoni nimi luuakse
     automaatselt sellele määratud teaduslikust nimetusest. Kui oled uue taksoni salvestanud,
@@ -1850,7 +1847,7 @@ et:
   joined!: Liitusid!
   joined_any_projects: liitunud mitteühegi projektiga
   joined_projects: Liitutud projektid
-  joined_with_date: 'Liitutud: %{date}'
+  joined_with_date: 'Liitunud: %{date}'
   joining: Liitun...
   journal: Päevik
   journal_archives_for: Päeviku arhiiv
@@ -4095,7 +4092,7 @@ et:
   tired_of_testing_this_new_version: Oled uue versiooni testimisest väsinud?
   title: pealkiri
   title_and_description: Pealkiri ja kirjeldus
-  titled_favorites_and_the_most_recent_additions: nimega "Lemmikud" ning siia ilmuvad
+  titled_favorites_and_the_most_recent_additions: nimega "Favorites" ning siia ilmuvad
     kõige uuemad lisandused.
   to_add_comments: lisada kommentaare
   to_add_identifications: lisada määratlusi
@@ -4352,7 +4349,6 @@ et:
     <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Näita teisi hiljutisi vaatluseid
   view_more_unreviewed: Näita teisi mittekontrollituid
-  view_nbsp: Vaata &nbsp;
   view_observation: Ava vaatlus
   view_observations: Ava vaatlused
   view_observation_flags: Ava vaatluse märkused
@@ -5059,6 +5055,23 @@ et:
           vaatlused "teaduskõlbulikeks"?
         what_is_a_life_list?: Mis on elunimekiri?
         just_a_simple_list: See on lihtne taksonite loend, mis ei toimi kuidagi eriliselt.
+        automatically_updates_based_on_your_observations: Täieneb automaatselt sinu
+          vaatlustega. Kõigil lehe %{site_name} kasutajatel on oma vaikimisi elunimekiri,
+          mis sisaldab kõiki liike, mida nad on vaadelnud. Kui sa kustutad mõne vaatluse
+          või muudad määratlust, siis see liik eemaldatakse. Saa oma elunimekirja
+          ka käsitsi taksoneid lisada nagu teistesse nimekirjadessegi. Käsitsi lisatud
+          liike ei eemaldata, kui sa neid vaatleid ja seejärel vaatluse kustutad.
+        you_can_also_make_additional_life_lists: Saad teha ka lisa elunimekirju, mis
+          on mõeldud spetsiifiliste organismigruppide jaoks, nt lindude elunimekiri
+          või astriliste elunimekiri.
+        a_project_list_belongs: Projekti nimekiri kuulub ühele projektile ning selles
+          on kõik antud projekti liikmete poolte vaadeldud taksonid. Projekti nimekirja
+          saavad administraatorid ka käsitsi täita ning nendega saab piirata projekti
+          aktsepteerima ainult seal sisalduvaid taksoneid.
+        a_check_list_is_html: Kontrollnimekiri koonseb mingis kohas olevatest taksonitest.
+          Igal kohal on oma vaikimisi kontrollnimekiri ning alati, kui selle koha
+          piirides tehakse mõni vaatlus <em>ja</em> see vaatlus muutub teaduskõlbulikuks,
+          lisatakse vaadeldud liik automaatselt tolle koha kontrollnimekirja.
     observations:
       export:
         well_email_you: Ok, me saadame sulle kirja, kui asi on valmis.

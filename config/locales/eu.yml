@@ -34,9 +34,6 @@ eu:
   x_observations_html:
     one: <span class='count'>1</span> behaketa
     other: <span class='count'>%{count}</span> behaketak
-  x_people:
-    one: 1 lagun
-    other: '%{count} lagun'
   x_species:
     one: 1 espezie
     other: '%{count} espezie'
@@ -1944,6 +1941,10 @@ eu:
     da'
   observation_rights_html: '%{rights} behaketa'
   observation_rules: Behaketa-arauak
+  observation_rules_description: 'Zuk arauak sor ditzakezu proiektuari zein behaketa
+    gehitu daitezkeen zehazteko. Esate baterako, behaketak leku jakin batera mugatzea.
+    Oharra: Lekuen mugaketa hemen oinarritzen da gaur egun: %{site_name} Places. Behaketak
+    leku baten inguruko laukizuzen txikienera soilik mugatu ditzake.'
   observation_was_deleted: Behaketa ezabatu egin da.
   observation_would_like_some_help: ¡%{user}-(e)k laguntza pixka bat beharko luke
     elementu hau identifikatzeko!
@@ -3163,7 +3164,6 @@ eu:
   view_more_observations_of_x_taxon: '%{taxon}-(r)en behaketa gehiago ikusi hemen:
     <nobr>%{site_name} »</nobr>'
   view_more_recent_observations: Duela gutxiko behaketa gehiago ikusi
-  view_nbsp: Ikusi  
   view_observation: Behaketa ikusi
   view_observations: Behaketak ikusi
   view_observations_of_this_taxon_by: Taxon honetako oharrak iksui

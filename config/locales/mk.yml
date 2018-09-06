@@ -31,9 +31,6 @@ mk:
   x_observations_link_html:
     one: <a href='%{url}'>1</a> набљудување
     other: <a href='%{url}'>%{count}</a> набљудувања
-  x_people:
-    one: 1 лице
-    other: '%{count} лица'
   x_people_agree_html:
     one: <span class="count">1</span> се согласува
     other: <span class="count">%{count}</span> се согласуваат
@@ -1713,7 +1710,6 @@ mk:
   view_more_observations_of_x_taxon: Погледајте повеќе набљудувања на %{taxon} сместени
     на <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Погледајте скорешни набљудувања
-  view_nbsp: Погл. &nbsp;
   view_observation: Погл. набљудување
   view_observations: Погл. набљудувања
   view_observations_by_everyone: Погл. набљудувања од сите

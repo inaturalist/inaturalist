@@ -80,9 +80,6 @@ de:
   x_others:
     one: Eine weitere
     other: '%{count} weitere'
-  x_people:
-    one: Eine Person
-    other: '%{count} Personen'
   x_people_found_this_helpful:
     one: Eine Person fand das hilfreich
     other: '%{count} Personen fanden das hilfreich'
@@ -3397,6 +3394,8 @@ de:
   small: klein
   site_name_place: '%{site_name} Orte'
   site_stats: Seitenstatistik
+  site_taxon_page: '%{site_name} Taxonseite'
+  site_year_in_review: '%{site_name} Jahr in Überprüfung %{year}'
   some_agree: einige stimmen zu
   some_observations_failed_to_be_added: Das Hinzufügen einiger Beobachtungen zum Projekt
     ist fehlgeschlagen
@@ -3672,7 +3671,9 @@ de:
   taxonomic_order: Taxonomische Reihenfolge
   taxonomic_status: Taxonomischer Status
   taxonomic_tags_for_flickr: Taxonomische Tags für Flickr
+  taxonomic_tree_browser: Taxonomischer Baumbrowser
   taxonomy_settings: Taxonomieeinstellungen
+  tell_everyone_a_little_about_you: Erzähle jedem ein Bisschen über dich selbst
   tell_the_world_a_little_about_yourself: Erzähl uns was über dich
   tell_us_why: Sag uns warum...
   terms: Bedingungen
@@ -3722,6 +3723,8 @@ de:
     wenn es eine gibt, die umfassend ist, d.h. sie listet <em>alle</em>  Repräsentanten
     ihres Taxons an einem Ort auf, wird das Identotron einen Hinweis anzeigen.
   the_list: die Liste
+  the_observation_form_looks: 'Das Beobachtungsformular sieht wie dieses aus:'
+  the_observation_has_date: die Beobachtung <strong>hat ein Datum</strong>
   the_past: in der Vergangenheit
   the_people_of_inat: Die Menschen von %{site_name}
   the_project: das Projekt
@@ -3937,7 +3940,6 @@ de:
   view_more_observations_of_x_taxon: Mehr Beobachtungen zu %{taxon} auf <nobr>%{site_name}
     &raquo;</nobr> anzeigen
   view_more_unreviewed: Mehr ungeprüfte ansehen
-  view_nbsp: Ansehen &nbsp;
   view_observation: Beobachtung ansehen
   view_observations: Beobachtungen anzeigen
   view_observations_by_everyone: Beobachtungen von allen anzeigen

@@ -70,9 +70,6 @@ pt-BR:
   x_others:
     one: 1 outra
     other: '%{count} outras'
-  x_people:
-    one: 1 pessoa
-    other: '%{count} pessoas'
   x_people_found_this_helpful:
     one: Uma pessoa considerou isto útil
     other: '%{count} pessoas consideraram isto útil'
@@ -86,8 +83,8 @@ pt-BR:
     one: <span class="count">1</span> pessoas concordam
     other: <span class="count">%{count}</span> pessoas concordam
   x_species:
-    one: 1 espécie
-    other: '%{count} espécies'
+    one: 1 Espécie
+    other: '%{count} Espécies'
   x_species_html:
     one: <span class='count'>1</span> espécies
     other: <span class='count'>%{count}</span> espécies
@@ -214,7 +211,7 @@ pt-BR:
   add_comma_separated_tags: Adicionar marcações separadas por vírgulas
   add_comment: Adicionar um comentário
   add_common_names_for: Adicionar nomes comuns para táxons existentes
-  add_conservation_status: adicionar um status de conservação
+  add_conservation_status: Adicionar um status de conservação
   add_countries: Adicione países
   add_custom_project_fields: Adicione campos de projetos personalizados
   add_edit_flags: Adicionar/Editar Etiquetas
@@ -571,8 +568,8 @@ pt-BR:
   you_sure_delete_list: Tem certeza que gostaria de apagar esta lista?
   you_sure_delete_taxon_from_list?: Você tem certeza que deseja remover %{taxon} da
     lista?
-  asc: asc
-  ascending: ascendente
+  asc: Asc
+  ascending: Ascendente
   aside_from_extraordinary_circumstances: Salvo circunstâncias extraordinárias, nós
     nunca iremos solicitar sua senha.
   assessment: avaliação
@@ -694,7 +691,7 @@ pt-BR:
   by_adding_ids_to_observations: por adicionar identificações às observações
   by_everyone: Por todos
   by_project_list: por lista de projeto
-  by_user: por %{user}
+  by_user: Por %{user}
   by_you: Por você
   calendar: Calendário
   calendars_only_show_x_observations_at_time: Calendários só mostram %{x} observações
@@ -711,7 +708,7 @@ pt-BR:
   casual: casual
   casual_: Casual
   catalogue_of_life: Catálogo da Vida
-  categories: categorias
+  categories: Categorias
   cc_0_description: Esta licença libera a sua obra em domínio público, de modo que
     outros podem copiar, modificar, distribuir e levar a termo o seu trabalho, inclusive
     com finalidade comercial, sem pedir permissão, ou dar-lhe crédito. Esta é a licença
@@ -1085,6 +1082,7 @@ pt-BR:
   cumulative_ids: 'Identificações acumuladas: %{count} de %{total}'
   curate_observations: Administrar observações
   curate_taxa: Táxon administrado
+  curate_user: Usuário curador
   curate_users: Administrar usuários
   curated: Administrados
   curated_checklist: Lista Oficial
@@ -1118,7 +1116,7 @@ pt-BR:
   date_: Data
   date?: Data?
   date_added: Data de inclusão
-  date_created: data de criação
+  date_created: Data de criação
   date_format:
     date_long:
       january: Janeiro %{day} %{year}
@@ -1265,7 +1263,7 @@ pt-BR:
   edit_custom_project_fields: Editar campos de projetos personalizados
   edit_field: Editar campo
   edit_flagged_observation: Editar Observação com Alerta
-  edit_license: Modificar licença
+  edit_license: Editar licença
   edit_multiple_dates: Editar múltiplas datas
   edit_multiple_descriptions: Editar múltiplas descrições
   edit_multiple_locations: Editar múltiplas localizações
@@ -1287,7 +1285,7 @@ pt-BR:
   edit_taxon_range: Modificar a área de distribuição do taxon
   edit_the_observation: Modifique está observação
   edit_this_link: Editar este link
-  edit_your_account: editar sua conta
+  edit_your_account: Editar sua conta
   edit_your_account_and_profile_html: Editar a Sua Conta e Perfil
   edit_your_default_settings: Modifique suas configurações padrão
   edit_your_global_project_settings: Editar suas configurações globais de projeto
@@ -1348,12 +1346,12 @@ pt-BR:
   error_updating_photo: 'Erro atualizando foto: %{photo_errors}'
   establishment:
     establishment: Estabelecimento
-    native: nativa
-    endemic: endêmica
-    introduced: introduzida
-    naturalised: naturalizada
-    invasive: invasora
-    managed: cultivada/cativeiro
+    native: Nativa
+    endemic: Endêmica
+    introduced: Introduzida
+    naturalised: Naturalizada
+    invasive: Invasora
+    managed: Cultivada/Cativeiro
   establishment_means: Meios de estabelecimento
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: nativa e não ocorre em nenhum outro local
@@ -1376,11 +1374,11 @@ pt-BR:
   exact_date: Data exata
   exact_location: Localização exata
   exact_rank: Classificação exata
-  existing_flags: Alertas
+  existing_flags: Bandeiras existentes
   exit_full_screen: Sair do modo tela inteira
   examples_of_ranking_organizations: Exemplos de Organizações de Classificação
-  expand_days: expandir dias
-  expand_updates: expandir atualizações
+  expand_days: Expandir dias
+  expand_updates: Expandir atualizações
   explore!: Explore!
   explore_everyones_observations: Explore as observações de todos
   export: Exportar
@@ -1415,11 +1413,11 @@ pt-BR:
   faves: Favoritos
   Family: Família
   faved_this_observation: Marque esta observação como favorito
-  favorite_taxa: taxóns favoritos
+  favorite_taxa: Taxóns favoritos
   favorites: Favoritos
   fblocale: inglês_US
   feature_this_project: Destacar este projeto?
-  featured: destacado
+  featured: Destacado
   featured?: destacado?
   featured_projects_from_everywhere: Projetos em destaque de todos os lugares
   featured_projects_from_place: Projetos em destaque de %{place}
@@ -1480,7 +1478,7 @@ pt-BR:
   first_observer: Primeiro observador
   first_report: primeiro registro
   flag: Alerta
-  flag_as_inappropriate: Marcar como inapropiado
+  flag_as_inappropriate: Marcar como inapropriado
   flag_an_item: Alerte sobre um ítem
   flag_as_spammer: Marque como spam
   flag_as_non_spammer: Marque como não produtor de spam
@@ -1490,7 +1488,7 @@ pt-BR:
   flag_it!: Alerte isto!
   flag_marked_as_resolved_html: <span class="meta">Marcado com Alerta</span> <strong>resolvido.</strong>
   flag_reason: '&ldquo;Estou marcando com um alerta esta %{record} porque'
-  flag_saved: Alerta salvo.
+  flag_saved: Alerta salvo
   flag_saved_thanks: Alerta salvo. Obrigada!
   flag_this_observation: Marque com alerta esta observação
   flag_this_photo: Faça um alerta sobre esta foto
@@ -1625,9 +1623,12 @@ pt-BR:
   has_been: foi
   has_id_supported_by_two_or_more: Possui ID suportado por dois ou mais
   has_one_or_more_faves: Possui um ou mais favoritos
-  has_photos: possui fotos
+  has_photo: Tem foto
+  has_photos: Possui fotos
+  has_photo_and_sound: Tem foto e som
   has_photos_or_sounds: Possui fotos ou sons
-  has_sounds: possui sons
+  has_sound: Tem som
+  has_sounds: Possui sons
   hasnt_contributed_any_observations: não contribui com observações para este projeto
   hate_me_facebook: Desconecte sua conta do Facebook e %{site_name} Contas
   hate_me_flickr: Desconecte sua conta do Flickr e %{site_name} Contas
@@ -1662,7 +1663,8 @@ pt-BR:
   hi_user: Olá %{user}
   hide: Ocultar
   hide_details: Ocultar detalhes
-  high: alta
+  hide_uncountable_species: Ocultar espécies incontáveis
+  high: Alta
   highest_rank: Categoria mais alta
   highlights: Destaques
   history: Histórico
@@ -1768,8 +1770,8 @@ pt-BR:
   in_taxon?: com táxon
   in_the_past: no passado
   in_the_past_week: durante a semana passada
-  inactive: inativo
-  inactive_taxon: espécie ou grupo inativo
+  inactive: Inativo
+  inactive_taxon: Espécie ou grupo inativo
   inactive_taxon_concepts_are: A nomenclatura de táxon inativo se refere ou a táxons
     desatualizados ou a categorizas em processo de revisão. Estas nomenclaturas são
     mantidas somente para rastrear o histórico de determinada espécie ou grupo em
@@ -1801,9 +1803,9 @@ pt-BR:
     não conhece, e também ajudar outras pessoas a identificar misteriosas criaturas!
   interactions: Interações
   internal_server_error: Erro interno do servidor
-  introduced: introduzida
+  introduced: Introduzida
   introduced_in_place: Introduzido em %{place}
-  invasive: invasoras
+  invasive: Invasoras
   invitation: Convite
   invitations: Convites
   invite: convidar
@@ -2099,6 +2101,7 @@ pt-BR:
     ko: Coreano
     lb: Luxemburguês
     mk: Macedônio
+    nl: Holandês
     oc: Occitano
     pt-BR: Português (Brasil)
     pt-PT: Português (Portugal)
@@ -2144,7 +2147,7 @@ pt-BR:
     guias ainda.
   lookup: Procurar
   lookup_user_rarr: Procure usuário &rarr;
-  low: baixa
+  low: Baixa
   lowest_rank: Classificação mais baixa
   made_a: fez um
   make_admin: Tornar administrador
@@ -2251,6 +2254,7 @@ pt-BR:
       MM: '%d mês'
       "y": 1a
       yy: '%da'
+    datetime_with_zone: MMM D, YYYY · LT z
   mon: Seg
   month: Mês
   months: Meses
@@ -2262,7 +2266,7 @@ pt-BR:
   more_import_options: Mais opções de importação
   more_info: Mais informações
   more_info_title: Maiores informações
-  more_journal_posts: Mais artigos do Boletim Informativo
+  more_journal_posts: Mais artigos do boletim informativo
   more_observations: Mais observações
   more_photos: Mais Fotos
   most: Mais
@@ -2275,6 +2279,8 @@ pt-BR:
     por data de observação
   most_species: A maioria das espécies
   most_observed_species: Espécies mais observadas
+  most_observed_introduced_species: Espécies Introduzidas Mais Observadas
+  most_observed_threatened_species: Espécies ameaçadas mais observadas
   multiple: múltiplo
   multiple_select_option: -- múltiplo --
   multiple_taxa_for_taxon_change: Diversas espécies e grupos (entrada de dados para
@@ -2321,7 +2327,7 @@ pt-BR:
   ne_lat: Lat. N.E.
   ne_lon: Long. N.E.
   near: perto
-  near_threatened: quase ameaçado
+  near_threatened: Quase ameaçado
   nearby: Nas redondezas
   nearby_observations_: Observações Próximas
   nearby_observations: Observações Próximas
@@ -2649,7 +2655,7 @@ pt-BR:
   of: de
   of_it_and_its_descendants: deste e de seus descendentes
   of_least_concern: De pouca importância
-  offensive_inappropriate: ofensivo / inapropriado
+  offensive_inappropriate: Ofensivo / Inapropriado
   official_blog: Blog Oficial
   offline_access_enabled: Acesso offline habilitado
   old_observation_form: Registro antigo de observações
@@ -2817,7 +2823,7 @@ pt-BR:
       without_by: comentou sobre @vow_or_con{vow:an|a} %{comment_subject_link}
   per_month: Por mês
   per_week: Por semana
-  person: pessoa
+  person: Pessoa
   personal_message: Mensagem pessoal
   personal_message_description: Ninguém gosta de receber e-mail de uma máquina! Por
     que não deixar seus amigos saberem que você está os convidando?
@@ -3057,7 +3063,7 @@ pt-BR:
     Isto pode levar alguns minutos caso você tenha muitas observações.
   please_hold_on_while_the_file_is_generated: Por favor aguarde alguns minutos enquanto
     o arquivo é grado. Isto pode levar alguns minutos para listas grandes.
-  popular: popular
+  popular: Popular
   position: Posição
   positional_accuracy: Precisão da localização (acurácia)
   possessive_user: Do(a) %{user}
@@ -3169,43 +3175,48 @@ pt-BR:
   quality_grade_colon: 'Grau de qualidade:'
   queued: Em espera
   query: Consulta
+  random: Aleatório
   range: Área de Distribuição
   range_from: Distribuição de
   rank: Classificação
   rank_position: Classificação
   rank_restrictions: Restrição para classificação
   ranks:
-    kingdom: reino
-    subkingdom: subreino
-    phylum: filo
-    subphylum: subfilo
-    superclass: superclasse
-    class: classe
-    subclass: subclasse
-    infraclass: infraclasse
-    superorder: superordem
-    order: ordem
-    suborder: subordem
-    infraorder: infraordem
+    kingdom: Reino
+    subkingdom: Subreino
+    phylum: Filo
+    subphylum: Subfilo
+    superclass: Superclasse
+    class: Classe
+    subclass: Subclasse
+    infraclass: Infraclasse
+    superorder: Superordem
+    order: Ordem
+    suborder: Subordem
+    infraorder: Infraordem
+    subterclass: Subclasse
+    parvorder: Parvorder
+    zoosection: Seção de zoológico
     zoosubsection: Zoosubsection
-    superfamily: superfamília
-    epifamily: epifamília
-    family: família
-    subfamily: subfamília
-    supertribe: supertribo
-    tribe: tribo
-    subtribe: subtribo
-    genus: gênero
+    superfamily: Superfamília
+    epifamily: Epifamília
+    family: Família
+    subfamily: Subfamília
+    supertribe: Supertribo
+    tribe: Tribo
+    subtribe: Subtribo
+    genus: Gênero
     genushybrid: Gênero híbrido
-    subgenus: subgênero
-    section: seção
-    subsection: subseção
-    species: espécie
+    subgenus: Subgênero
+    section: Seção
+    subsection: Subseção
+    species: Espécies
     hybrid: Híbrido
-    subspecies: subespécies
-    variety: variedade
+    subspecies: Subespécies
+    variety: Variedade
     form: Formulário
-    leaves: folhas
+    infrahybrid: Infra-híbrido
+    leaves: Folhas
   rare: Raro
   ray_finned_fishes: Actinopterygii, grupo de peixes de barbatanas com raios.
   re_apply_list_rules: Reaplicar as regras da lista
@@ -3434,6 +3445,8 @@ pt-BR:
   select_one_or_more_photos: Selecione uma ou mais fotos
   select_none: Limpar seleção
   select_observations_to_edit: Selecione observações para editar...
+  select_one_of_friends_albums: Selecione um dos álbuns de %{friend}
+  select_one_of_your_albums: Selecione um dos seus álbuns
   select_options: Selecionar opções
   select_photos_from_your_photo_stream: Selecione fotos de sites de armazenamento
     de imagens externos para converte-las em %{site_name} observações. Data, horário
@@ -3613,7 +3626,7 @@ pt-BR:
   sources_youve_added: Fontes que você adicionou
   sources_and_credits: Fontes e Créditos
   sourcing: Buscando fonte
-  spam: spam
+  spam: Spam
   spanish: Espanhol
   species: Espécies
   species_from_around_the_world: Espécies de todo o mundo
@@ -3638,7 +3651,7 @@ pt-BR:
   start_adding_observations: Começar a adicionar observações
   start_new_account: Iniciar uma nova conta
   start_new_project: Iniciar um novo projeto
-  start_one: começar um
+  start_one: Começar um
   start_one_now: Comece um agora!
   start_typing_field_name: Comece digitando o nome do campo...
   start_typing_place_name: Comece a digitar o nome de um local
@@ -4008,7 +4021,7 @@ pt-BR:
     outras coisas que você pode fazer, como por exemplo pesquisar e filtrar observações
     ou editar elas em massa, mas isto deve ser simples de explorar sozinho.
   those_observations_no_longer_exist: Estas observações não existem mais.
-  threatened: ameaçado
+  threatened: Ameaçado
   thu: Qui
   time_: horário
   time_ago: há %{time}
@@ -4229,6 +4242,7 @@ pt-BR:
   view_contributions: Ver contribuições
   view_details: Ver detalhes
   view_field_options: Ver Opções de Campo
+  view_flag: Ver bandeira
   view_flags: Ver alertas
   view_flags_for_x_html: Ver alertas para %{x}
   view_full_observation: Ver observação completa
@@ -4253,7 +4267,6 @@ pt-BR:
     &raquo;</nobr>
   view_more_recent_observations: Ver mais observações recentes
   view_more_unreviewed: Ver mais não revisados
-  view_nbsp: Ver &nbsp;
   view_observation: Ver observação
   view_observations: Ver observações
   view_observation_flags: Ver observações marcadas
@@ -6139,7 +6152,7 @@ pt-BR:
         observation_field: :@m
         post: :@m
         taxon: :@m
-  wild: selvagem
+  wild: Selvagem
   will_paginate:
     previous_label: '&#8592; Prévia'
     next_label: Próxima &#8594;

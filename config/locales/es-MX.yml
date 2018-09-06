@@ -39,9 +39,6 @@ es-MX:
   x_observations_reviewed_html:
     one: <span class='count'>1</span> observación revisada
     other: <span class='count'>%{count}</span> observaciones revisadas
-  x_people:
-    one: Una persona
-    other: '%{count} personas'
   x_faves:
     one: 1 Favorito
     other: '%{count} Favoritos'
@@ -857,6 +854,7 @@ es-MX:
     de datos
   curate_observations: Cura observaciones
   curate_taxa: Cura una especie o grupo
+  curate_user: Curar usuario
   curate_users: Curar usuarios
   curated: curados
   curated_checklist: Lista oficial
@@ -3543,7 +3541,6 @@ es-MX:
     en <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Ver mas observaciones recientes
   view_more_unreviewed: Ver más sin revisar
-  view_nbsp: Ver &nbsp;
   view_observation: Ver observación
   view_observations: Ver observaciones
   view_observations_by_everyone: Ve las observaciones de todos

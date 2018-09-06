@@ -87,9 +87,6 @@ fr:
   x_others:
     one: 1 autre
     other: '%{count} autres'
-  x_people:
-    one: 1 personne
-    other: '%{count} personnes'
   x_people_found_this_helpful:
     one: Une personne a trouvé cela utile
     other: '%{count} personnes ont trouvé cela utile'
@@ -4606,7 +4603,6 @@ fr:
     <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Afficher les observations les plus récentes
   view_more_unreviewed: Afficher plus de non relu
-  view_nbsp: Voir &nbsp;
   view_observation: Afficher l’observation
   view_observations: Afficher toutes les observations
   view_observation_flags: Afficher les observations
@@ -6660,19 +6656,18 @@ fr:
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
     month_names:
-      -
-      - Janvier
-      - Février
-      - Mars
-      - Avril
-      - Mai
-      - Juin
-      - Juillet
-      - Août
-      - Septembre
-      - Octobre
-      - Novembre
-      - Décembre
+      1: Janvier
+      2: Février
+      3: Mars
+      4: Avril
+      5: Mai
+      6: Juin
+      7: Juillet
+      8: Août
+      9: Septembre
+      10: Octobre
+      11: Novembre
+      12: Décembre
   datetime:
     distance_in_words:
       about_x_hours:

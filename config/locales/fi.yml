@@ -62,9 +62,6 @@ fi:
   x_others:
     one: 1 muu
     other: '%{count} muuta'
-  x_people:
-    one: 1 henkilö
-    other: '%{count} henkilöä'
   x_people_found_this_helpful:
     one: Yhden henkilön mielestä tästä oli apua
     other: '%{count} henkilön mielestä tästä oli apua'
@@ -3160,7 +3157,6 @@ fi:
   view_more_observations_of_x_project: Näytä lisää havaintoja projektista %{project}
     sivustolla <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Näytä lisää viimeaikaisia havaintoja
-  view_nbsp: Näytä &nbsp;
   view_observation: Näytä havainto
   view_observations: Näytä havainnot
   view_observation_flags: Näytä havaintoliput

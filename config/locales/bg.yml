@@ -50,9 +50,6 @@ bg:
   x_observations_reviewed_html:
     one: <span class='count'>1</span> рецензирано наблюдение
     other: <span class='count'>%{count}</span> рецензирани наблюдения
-  x_people:
-    one: 1 човек
-    other: '%{count} човека'
   x_faves:
     one: 1 харесване
     other: '%{count} харесвания'
@@ -2826,10 +2823,6 @@ bg:
       10: октомври
       11: ноември
       12: декември
-    order:
-    - :година
-    - :месец
-    - :ден
   datetime:
     distance_in_words:
       about_x_hours:

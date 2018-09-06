@@ -86,9 +86,6 @@ it:
   x_others:
     one: un altro
     other: '%{count} altri'
-  x_people:
-    one: 1 persona
-    other: '%{count} persone'
   x_people_found_this_helpful:
     one: Una persona lo ha trovato utile
     other: '%{count} persone lo hanno trovato utile'
@@ -4500,7 +4497,6 @@ it:
     &raquo;</nobr>
   view_more_recent_observations: Visualizza più osservazioni recenti
   view_more_unreviewed: Esamina altri tra i non esaminati.
-  view_nbsp: Visualizza &nbsp;
   view_observation: Visualizza osservazione
   view_observations: Visualizza osservazioni
   view_observation_flags: Visualizza i contrassegni delle osservazioni

@@ -105,10 +105,6 @@ ru:
   x_others:
     one: 1 другой
     other: '%{count} других'
-  x_people:
-    one: 1 человек
-    few: '%{count} человека'
-    other: '%{count} человек'
   x_people_found_this_helpful:
     one: Один человек нашел это полезным
     few: '%{count} человека нашли это полезным'
@@ -272,7 +268,7 @@ ru:
   add_comma_separated_tags: Добавьте теги, разделяя  их запятыми
   add_comment: Добавить комментарий
   add_common_names_for: добавить общие названия для существующих таксонов
-  add_conservation_status: добавить природоохранный статус
+  add_conservation_status: Добавить природоохранный статус
   add_countries: Добавить страны
   add_custom_project_fields: Добавить пользовательские поля проекта
   add_edit_flags: Добавить/редактировать флаги
@@ -634,7 +630,7 @@ ru:
   you_sure_delete_list: Вы точно хотите удалить этот список?
   you_sure_delete_taxon_from_list?: Вы уверены, что хотите удалить %{taxon} из списка?
   asc: возр
-  ascending: по возрастанию
+  ascending: По возрастанию
   aside_from_extraordinary_circumstances: За исключением чрезвычайных обстоятельств,
     мы никогда не спрашиваем ваш пароль.
   assessment: оценка
@@ -773,7 +769,7 @@ ru:
   casual: обыкновенное
   casual_: Обыкновенное
   catalogue_of_life: Каталог жизни
-  categories: категории
+  categories: Категории
   cc_0_description: Эта лицензия делает вашу работу общественным достоянием, поэтому
     другие могут копировать, изменять, распространять и видоизменять вашу работу,
     даже в коммерческих целях, без вашего разрешения или выражения вам благодарности.
@@ -1244,7 +1240,7 @@ ru:
   deleting_verb: Удаление
   desc: убыв
   descendant_taxa: подчиненный таксон
-  descending: по убыванию
+  descending: По убыванию
   describe_purpose: Опишите цель проекта
   describe_your_interest_in_nature: Опишите ваш интерес к природе!
   description: Описание
@@ -1341,7 +1337,7 @@ ru:
   edit_source: Редактировать источник
   edit_taxa: Редактировать таксон
   edit_taxon: Редактировать таксон
-  edit_taxon_change: редактировать изменение таксона
+  edit_taxon_change: Редактировать изменение таксона
   edit_taxon_link: Редактировать ссылку на таксон
   edit_taxon_range: Редактировать ареал таксона
   edit_the_observation: Редактировать наблюдение
@@ -1350,7 +1346,7 @@ ru:
   edit_your_account_and_profile_html: Редактировать свою учетную запись и профиль
   edit_your_default_settings: Редактировать настройки по умолчанию
   edit_your_global_project_settings: Редактирование глобальных параметров проекта
-  edit_your_identification: Редактирование вашу идентификацию
+  edit_your_identification: Редактировать вашу идентификацию
   edit_your_profile: Редактировать ваш профиль
   edit_your_settings_for_this_project: Редактировать настройки данного проекта
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Отредактируйте свои настройки</a>,
@@ -1410,12 +1406,12 @@ ru:
   error_updating_photo: 'Ошибка обновления фото: %{photo_errors}'
   establishment:
     establishment: Возникновение
-    native: естественный
-    endemic: эндемичный
+    native: Естественный
+    endemic: Эндемичный
     introduced: интродуцированный
-    naturalised: натурализованный
-    invasive: инвазивный
-    managed: управляемый
+    naturalised: Натурализованный
+    invasive: Инвазивный
+    managed: Управляемый
   establishment_means: Способ возникновения
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: естественный и больше нигде не встречается
@@ -1444,7 +1440,7 @@ ru:
   exit_full_screen: Выйти из полноэкранного режима
   examples_of_ranking_organizations: Примеры рейтинговых организаций
   expand_days: расширить дни
-  expand_updates: расширить обновления
+  expand_updates: Расширить обновления
   explore!: Исследовать!
   explore: Исследуйте
   explore_everyones_observations: Просмотреть чьи-либо наблюдения
@@ -1696,7 +1692,7 @@ ru:
   has_photo_and_sound: Содержит как фото, так и звук
   has_photos_or_sounds: Содержит фото или звуки
   has_sound: Имеет звук
-  has_sounds: имеет звуки
+  has_sounds: Имеет звуки
   hasnt_contributed_any_observations: не добавил никаких наблюдений к этому проекту
   hate_me_facebook: Отвяжите ваш аккаунт Facebook от аккаунта %{site_name}
   hate_me_flickr: Отвязать свои учетные записи Flickr и %{site_name}
@@ -1735,7 +1731,7 @@ ru:
   hide: Скрыть
   hide_details: Скрыть подробности
   hide_uncountable_species: Спрятать несчетные виды
-  high: высоко
+  high: Высокий
   highest_rank: Наивысший ранг
   highlights: Особенности
   highlights_and_stats_from_year_on_site: Основные моменты и статистика за %{year}
@@ -1852,8 +1848,8 @@ ru:
   in_taxon?: в таксоне
   in_the_past: в прошлом
   in_the_past_week: на прошлой неделе
-  inactive: неактивный
-  inactive_taxon: неактивный таксон
+  inactive: Неактивный
+  inactive_taxon: Неактивный таксон
   inactive_taxon_concepts_are: Концепция неактивных таксонов заключается в том, что
     либо таксоны  устарели, либо подверглись изменению. Устаревшие концепции сохраняются
     для поддержания истории и совместимости с некоторыми сайтами-партнерами.
@@ -1884,7 +1880,7 @@ ru:
   internal_server_error: Внутренняя ошибка сервера
   introduced: интродуцированный
   introduced_in_place: Интродуцирован в %{place}
-  invasive: инвазивный
+  invasive: Инвазивный
   invitation: Приглашение
   invitations: Приглашения
   invite: пригласить
@@ -2230,7 +2226,7 @@ ru:
   looks_like_no_species_in_guide: Похоже, у вас еще нет видов в вашем руководстве.
   lookup: Поиск
   lookup_user_rarr: Поиск пользователя &rarr;
-  low: низкий
+  low: Низкий
   lowest_rank: Самый низкий ранг
   made_a: сделано
   make_admin: Сделать администратором
@@ -2411,7 +2407,7 @@ ru:
   ne_lat: СВ Широта
   ne_lon: СВ долг.
   near: около
-  near_threatened: близок к исчезновению
+  near_threatened: Близок к исчезновению
   nearby: Около
   nearby_observations_: Наблюдения рядом
   nearby_observations: Наблюдения рядом
@@ -3273,34 +3269,35 @@ ru:
   rank_restrictions: Ограничения ранга
   ranks:
     kingdom: царство
-    subkingdom: подцарство
-    phylum: тип
-    subphylum: подтип
-    superclass: суперкласс
+    subkingdom: Подцарство
+    phylum: Тип
+    subphylum: Подтип
+    superclass: Надкласс
     class: класс
-    subclass: подкласс
-    infraclass: инфракласс
-    superorder: надотряд
-    order: отряд
-    suborder: подотряд
-    infraorder: инфраотряд
+    subclass: Подкласс
+    infraclass: Инфракласс
+    superorder: Надотряд
+    order: Отряд
+    suborder: Подотряд
+    infraorder: Инфраотряд
     zoosection: Зоосекция
     zoosubsection: Зооподсекция
-    superfamily: надсемейство
-    family: семейство
-    subfamily: подсемейство
-    tribe: триба
-    subtribe: подтриба
-    genus: род
-    subgenus: подрод
-    section: секция
-    subsection: подраздел
-    species: вид
-    hybrid: гибрид
-    subspecies: подвид
-    variety: разновидность
-    form: форма
-    leaves: листья
+    superfamily: Надсемейство
+    family: Семейство
+    subfamily: Подсемейство
+    supertribe: Надтриба
+    tribe: Триба
+    subtribe: Подтриба
+    genus: Род
+    subgenus: Подрод
+    section: Секция
+    subsection: Подраздел
+    species: Вид
+    hybrid: Гибрид
+    subspecies: Подвид
+    variety: Разновидность
+    form: Форма
+    leaves: Листья
   ranges: Диапазоны
   rare: Редкий
   ray_finned_fishes: Лучепёрые рыбы
@@ -3507,6 +3504,7 @@ ru:
   see_something_wrong_with_taxon: Что-то не так с этим таксоном? Сообщите кураторам.
   select: Выбрать
   select_all: Выбрать все
+  select_an_album: Выбрать альбом
   select_at_least_one: Выберите хотя бы одно
   select_how_unobserved_listings_are_displayed: Выберите, как отображаются ненаблюдаемые
     списки в списке проектов
@@ -4162,7 +4160,7 @@ ru:
     наблюдений или редактирование их в пакетном режиме, но они должны быть довольно
     очевидны.
   those_observations_no_longer_exist: Эти наблюдения больше не существуют.
-  threatened: под угрозой исчезновения
+  threatened: Под угрозой исчезновения
   thu: Чт
   time_: время
   time_ago: '%{time} назад'
@@ -4265,7 +4263,7 @@ ru:
   update_search: Обновить поиск
   update_selected_taxa: Обновите выбранные таксоны
   update_subscription: Обновить подписку
-  update_subscription_preferences: обновить настройки подписок
+  update_subscription_preferences: Обновить настройки подписок
   update_x_selected_taxa:
     one: Обновить 1 выбранный таксон
     few: Обновить %{count} выбранных таксона
@@ -4381,12 +4379,15 @@ ru:
   view: Просмотр
   view_all: Посмотреть все
   view_all_members: Посмотреть всех участников
+  view_all_n: Просмотреть все %{n}
   view_all_observations: Посмотреть все наблюдения
   view_all_photocount_photos: Посмотреть все %{photo_count} фото
   view_all_photos_tagged_taxon_html: Посмотреть все фотографии с тегом "%{taxon}"
     на <nobr>Flickr &raquo;</nobr>
   view_all_your_projects: Просмотреть все ваши проекты
+  view_change: Просмотр изменений
   view_check_list_page: Просмотр страницы контрольного списка
+  view_contributions: Просмотреть вклад
   view_details: Просмотреть подробности
   view_flags: Посмотреть флаги
   view_flags_for_x_html: Посмотреть флаги для %{x}
@@ -4396,6 +4397,7 @@ ru:
   view_leaderboard: Посмотреть лидеров
   view_leaderboard_from_last_month: Посмотреть лидеров прошлого месяца
   view_leaderboard_from_last_year: Посмотреть лидеров прошлого года
+  view_license: Просмотр лицензии
   view_lists: Посмотреть списки
   view_more: Посмотреть ещё
   view_more_about_x: Узнать больше о %{x}
@@ -4732,6 +4734,7 @@ ru:
   your_dashboard_helps_you: Панель мониторинга помогает отслеживать действия пользователей
     на сайте. Чтобы следить за чьими-либо обновлениями, нажмите на ссылку "Отслеживать
     [имя]" в заголовке при просмотре их наблюдений или профиля.
+  verifiable: Проверяемый
   views:
     views: Просмотры
     announcements:
@@ -6413,7 +6416,7 @@ ru:
         search_place_id: Место поиска
         place_id: Место
         preferred_observation_fields_by: Разрешить поля наблюдения от
-  wild: дикий
+  wild: Дикий
   will_paginate:
     previous_label: '&#8592; Пред'
   zoom_in: Увеличить
