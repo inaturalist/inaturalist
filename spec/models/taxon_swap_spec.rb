@@ -249,16 +249,15 @@ describe TaxonSwap, "commit" do
       end
     end
 
-    it "should not make swaps for a child if the child is itself involved in this swap" do
-      @superfamily.update_attributes( rank: Taxon::GENUS )
+    it "should raise error if the output taxon is a descendant of the input taxon" do
+      @ancestor_taxon.update_attributes( rank: Taxon::GENUS )
       @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
       @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
       child = @output_taxon
       [@input_taxon, @output_taxon, child].each(&:reload)
-      without_delay { @swap.commit }
-      [@input_taxon, @output_taxon, child].each(&:reload)
-      expect( child.parent ).to eq @input_taxon
-      expect( child.taxon_change_taxa ).to be_blank
+      expect {
+        @swap.commit
+      }.to raise_error TaxonChange::RankLevelError
     end
   end
 
@@ -450,9 +449,9 @@ describe TaxonSwap, "commit_records" do
     other_swap.add_output_taxon( Taxon.make!( is_active: false, name: "OtherOutputSpecies", parent: other_input_genus, rank: Taxon::SPECIES ) )
     other_swap.committer = make_admin
     other_swap.save!
-    other_swap.commit
-    other_swap.reload
-    expect( other_swap.committed_on ).to eq nil
+    expect {
+      other_swap.commit
+    }.to raise_error TaxonChange::RankLevelError
   end
       
   it "should replace an inactive previous_observation_taxon with it's current active synonym" do
@@ -634,9 +633,9 @@ describe "move_input_children_to_output" do
 end
 
 def prepare_swap
-  @superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
-  @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "InputFamily", parent: @superfamily )
-  @output_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "OutputFamily", parent: @superfamily )
+  @ancestor_taxon = Taxon.make!( rank: Taxon::SUPERFAMILY )
+  @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "InputFamily", parent: @ancestor_taxon )
+  @output_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "OutputFamily", parent: @ancestor_taxon )
   @swap = TaxonSwap.make
   @swap.add_input_taxon(@input_taxon)
   @swap.add_output_taxon(@output_taxon)
