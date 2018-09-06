@@ -88,7 +88,7 @@ class TaxonChange < ActiveRecord::Base
   end
   
   def rank_level_conflict?
-    return false if type != "TaxonSwap"
+    return false unless type == "TaxonSwap"
     return false unless input_taxa_rank_level_conflict = input_taxa[0].descendants.where( "rank_level >= ?", output_taxa[0].rank_level ).first
     input_taxa_rank_level_conflict
   end
@@ -135,7 +135,7 @@ class TaxonChange < ActiveRecord::Base
       raise PermissionError, "Committing user doesn't have permission to commit"
     end
     if rank_level_conflict?
-      raise RankLevelError, "output taxon rank level not coarser than all input taxon descendant rank levels"
+      raise RankLevelError, "Output taxon rank level not coarser than all input taxon descendant rank levels"
       return
     end
     input_taxa.each {|t| t.update_attribute(:is_active, false)}
