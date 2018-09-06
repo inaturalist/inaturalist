@@ -158,6 +158,12 @@ class TaxonChangesController < ApplicationController
       return
     end
     
+    if @taxon_change.rank_level_conflict?
+      flash[:error] = "all input taxon descendant rank levels must be finer than the output taxon rank level"
+      redirect_back_or_default(taxon_changes_path)
+      return
+    end
+    
     @taxon_change.committer = current_user
     @taxon_change.commit
     

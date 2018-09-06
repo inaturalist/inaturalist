@@ -443,6 +443,18 @@ describe TaxonSwap, "commit_records" do
     expect( ident.previous_observation_taxon ).to eq @output_taxon
   end
   
+  it "should not commit a taxon swap without all input taxon descendant rank levels finer than the output taxon rank level" do
+    other_swap = TaxonSwap.make
+    other_input_genus = Taxon.make!( is_active: false, name: "OtherInputGenus", rank: Taxon::GENUS )
+    other_swap.add_input_taxon( other_input_genus )
+    other_swap.add_output_taxon( Taxon.make!( is_active: false, name: "OtherOutputSpecies", parent: other_input_genus, rank: Taxon::SPECIES ) )
+    other_swap.committer = make_admin
+    other_swap.save!
+    other_swap.commit
+    other_swap.reload
+    expect( other_swap.committed_on ).to eq nil
+  end
+      
   it "should replace an inactive previous_observation_taxon with it's current active synonym" do
     other_swap = TaxonSwap.make
     other_swap.add_input_taxon( Taxon.make!( :species, is_active: false, name: "OtherInputSpecies" ) )

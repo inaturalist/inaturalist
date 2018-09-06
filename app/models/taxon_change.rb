@@ -86,6 +86,10 @@ class TaxonChange < ActiveRecord::Base
   def committed?
     !committed_on.blank?
   end
+  
+  def rank_level_conflict?
+    type == "TaxonSwap" && input_taxa[0].descendants.where("rank_level >= ?", output_taxa[0].rank_level).count > 0
+  end
 
   def committable_by?( u )
     return false unless u
@@ -126,6 +130,10 @@ class TaxonChange < ActiveRecord::Base
   def commit
     unless committable_by?( committer )
       raise PermissionError, "Committing user doesn't have permission to commit"
+    end
+    if rank_level_conflict?
+      Rails.logger.error "[ERROR #{Time.now}] Failed to commit records for #{self}: all input taxon descendant rank levels must be finer than the output taxon rank level"
+      return
     end
     input_taxa.each {|t| t.update_attribute(:is_active, false)}
     output_taxa.each {|t| t.update_attribute(:is_active, true)}
