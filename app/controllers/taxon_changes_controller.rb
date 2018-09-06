@@ -158,9 +158,10 @@ class TaxonChangesController < ApplicationController
       return
     end
     
-    if @taxon_change.rank_level_conflict?
-      flash[:error] = "all input taxon descendant rank levels must be finer than the output taxon rank level"
-      redirect_back_or_default(taxon_changes_path)
+    @taxon = @taxon_change.rank_level_conflict?
+    if @taxon
+      flash[:error] = "Output taxon rank level not coarser than rank level of all input taxon #{view_context.link_to( 'descendants', @taxon )}".html_safe
+      redirect_back_or_default( taxon_changes_path )
       return
     end
     
