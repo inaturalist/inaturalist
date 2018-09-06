@@ -276,9 +276,24 @@ class Taxon < ActiveRecord::Base
     [IUCN_STATUS_CODES[name], value]
   }]
   
-  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 
-    'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars', 'chiton', 
-    'arizona']
+  PROBLEM_NAMES = [
+    "arizona",
+    "bee hive",
+    "california",
+    "caterpillar",
+    "caterpillars",
+    "chiton",
+    "cicada",
+    "gall",
+    "larva",
+    "lichen",
+    "lizard",
+    "oman",
+    "pinecone",
+    "tanzania",
+    "virginia",
+    "winged insect"
+  ]
   
   PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA = %w(
     ancestry
