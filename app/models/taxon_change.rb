@@ -87,6 +87,12 @@ class TaxonChange < ActiveRecord::Base
     !committed_on.blank?
   end
 
+  def active_children_conflict?
+    return false unless type == "TaxonSwap"
+    return false unless input_taxa_active_children_conflict = input_taxa[0].children.any?{ |e| e.is_active }
+    input_taxa_active_children_conflict
+  end
+  
   def committable_by?( u )
     return false unless u
     return false unless u.is_curator?
@@ -127,6 +133,10 @@ class TaxonChange < ActiveRecord::Base
   def commit
     unless committable_by?( committer )
       raise PermissionError, "Committing user doesn't have permission to commit"
+    end
+    if active_children_conflict?
+      raise ActiveChildrenError, "Input taxon cannot have active children"
+      return
     end
     input_taxa.each {|t| t.update_attribute(:is_active, false)}
     output_taxa.each {|t| t.update_attribute(:is_active, true)}
