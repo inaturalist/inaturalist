@@ -135,8 +135,21 @@ describe Taxon, "creation" do
     parent = Taxon.make!( rank: Taxon::GENUS, is_active: false )
     taxon = Taxon.new(name: 'balderdash', rank: Taxon::SPECIES, parent: parent )
     taxon.save
-    taxon.valid?
     expect(taxon.errors).not_to be_blank
+  end
+  
+  it "should allow creating an active taxon with an inactive parent if output of draft taxon change" do
+    input_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: true )
+    output_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: false )
+    swap = TaxonSwap.make
+    swap.add_input_taxon(input_taxon)
+    swap.add_output_taxon(output_taxon)
+    swap.save!
+    
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::SPECIES, parent: output_taxon )
+    taxon.save
+    taxon.valid?
+    expect(taxon.errors).to be_blank
   end
   
   it "should prevent grafting an active taxon to an inactive parent" do
@@ -147,6 +160,22 @@ describe Taxon, "creation" do
     taxon.save
     taxon.reload
     expect(taxon.parent_id).not_to be(parent.id)
+  end
+  
+  it "should allow grafting an active taxon to an inactive parent if output of draft taxon change" do
+    input_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: true )
+    output_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: false )
+    swap = TaxonSwap.make
+    swap.add_input_taxon(input_taxon)
+    swap.add_output_taxon(output_taxon)
+    swap.save!
+    
+    taxon = Taxon.make!(name: 'balderdash', rank: Taxon::SPECIES)
+    expect(taxon.parent_id).not_to be(output_taxon.id)
+    taxon.parent = output_taxon
+    taxon.save
+    taxon.reload
+    expect(taxon.parent_id).to be(output_taxon.id)
   end
   
 end
@@ -219,6 +248,22 @@ describe Taxon, "updating" do
     taxon.update_attributes( is_active: true )
     expect(taxon.errors).not_to be_blank
   end
+  
+  it "should allow updating a taxon to be active if it has an inactive parent if output of draft taxon change" do
+    input_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: true )
+    output_taxon = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS, is_active: false )
+    swap = TaxonSwap.make
+    swap.add_input_taxon(input_taxon)
+    swap.add_output_taxon(output_taxon)
+    swap.save!
+    
+    taxon = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: output_taxon, is_active: false )
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( is_active: true )
+    expect(taxon.errors).to be_blank
+  end
+  
 end
 
 describe Taxon, "destruction" do

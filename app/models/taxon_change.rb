@@ -96,7 +96,7 @@ class TaxonChange < ActiveRecord::Base
   def active_children_conflict?
     return false unless type == "TaxonSwap"
     return false unless input_taxa_active_children_conflict = input_taxa[0].children.any?{ |e| e.is_active }
-    input_taxa_active_children_conflict
+    return true
   end
   
   def committable_by?( u )
@@ -134,7 +134,6 @@ class TaxonChange < ActiveRecord::Base
 
   class PermissionError < StandardError; end
   class ActiveChildrenError < StandardError; end
-
   class RankLevelError < StandardError; end
 
   # Override in subclasses

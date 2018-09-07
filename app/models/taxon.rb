@@ -926,12 +926,12 @@ class Taxon < ActiveRecord::Base
       errors.add(self.name, "inactive taxa must only have inactive children")
     end
   end
-  
+    
   def active_parent_if_active
     return if parent.nil? || !is_active
     
-    if !parent.is_active
-      errors.add(self.name, "active taxa must have active parent")
+    if !parent.is_active && parent.taxon_changes.where( "committed_on IS NULL" ).first.nil?
+      errors.add( self.name, "parents of active taxa must be active or the output of a draft taxon change" )
     end
   end
 
