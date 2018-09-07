@@ -254,18 +254,6 @@ describe TaxonSwap, "commit" do
         end
       end
 
-      it "should not make swaps for a child if the child is itself involved in this swap" do
-        @ancestor_taxon.update_attributes( rank: Taxon::GENUS )
-        @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
-        @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
-        child = @output_taxon
-        [@input_taxon, @output_taxon, child].each(&:reload)
-        without_delay { @swap.commit }
-        [@input_taxon, @output_taxon, child].each(&:reload)
-        expect( child.parent ).to eq @input_taxon
-        expect( child.taxon_change_taxa ).to be_blank
-      end
-
       it "should swap species in a genus even if there's a subgenus" do
         @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
         @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
