@@ -270,6 +270,7 @@ describe TaxonSwap, "commit" do
       @swap.commit
     }.to raise_error TaxonChange::PermissionError
   end
+  
   it "should raise an error if commiter is not a taxon curator of a complete ancestor of the output taxon" do
     superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
     tc = TaxonCurator.make!( taxon: superfamily )
@@ -277,6 +278,13 @@ describe TaxonSwap, "commit" do
     expect {
       @swap.commit
     }.to raise_error TaxonChange::PermissionError
+  end
+  
+  it "should raise an error if input taxon has active children" do
+    child = Taxon.make!( rank: Taxon::GENUS, parent: @swap.input_taxon )
+    expect {
+      @swap.commit
+    }.to raise_error TaxonChange::ActiveChildrenError
   end
 
   describe "for input taxa with reverted changes" do

@@ -131,6 +131,23 @@ describe Taxon, "creation" do
     expect(taxon.errors).not_to be_blank
   end
   
+  it "should prevent creating an active taxon with an inactive parent" do
+    parent = Taxon.make!( rank: Taxon::GENUS, is_active: false )
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::SPECIES, parent: parent )
+    taxon.save
+    taxon.valid?
+    expect(taxon.errors).not_to be_blank
+  end
+  
+  it "should prevent grafting an active taxon to an inactive parent" do
+    parent = Taxon.make!( rank: Taxon::GENUS, is_active: false )
+    taxon = Taxon.make!(name: 'balderdash', rank: Taxon::SPECIES)
+    expect(taxon.parent_id).not_to be(parent.id)
+    taxon.parent = parent
+    taxon.save
+    taxon.reload
+    expect(taxon.parent_id).not_to be(parent.id)
+  end
   
 end
 
@@ -185,6 +202,23 @@ describe Taxon, "updating" do
     expect(parent.errors).not_to be_blank
   end
   
+  it "should prevent updating a taxon to be inactive if it has active children" do #unless done by a taxon swap with the automatic thing checked
+    taxon = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS )
+    child = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: taxon )
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( is_active: false )
+    expect(taxon.errors).not_to be_blank
+  end
+  
+  it "should prevent updating a taxon to be active if it has an inactive parent" do
+    parent = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS, is_active: false )
+    taxon = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: parent, is_active: false )
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( is_active: true )
+    expect(taxon.errors).not_to be_blank
+  end
 end
 
 describe Taxon, "destruction" do

@@ -9,6 +9,9 @@ class Taxon < ActiveRecord::Base
   
   # Allow this taxon to be grafted to locked subtrees
   attr_accessor :skip_locks
+  
+  # Allow this taxon to be inactivated despite having active children
+  attr_accessor :skip_only_inactive_children_if_inactive
 
   # Skip the more onerous callbacks that happen after grafting a taxon somewhere else
   attr_accessor :skip_after_move
@@ -106,6 +109,8 @@ class Taxon < ActiveRecord::Base
   validate :rank_level_must_be_coarser_than_children
   validate :rank_level_must_be_finer_than_parent
   validate :rank_level_for_taxon_and_parent_must_not_be_nil
+  validate :only_inactive_children_if_inactive
+  validate :active_parent_if_active
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -912,6 +917,21 @@ class Taxon < ActiveRecord::Base
     return if new_record?
     if (children.any?{ |e| e.rank_level.nil? }  || rank_level.nil?) || (children.any?{ |e| e.rank_level.to_f >= rank_level.to_f })
       errors.add(self.name, "rank level must be coarser than children")
+    end
+  end
+  
+  def only_inactive_children_if_inactive
+    return if new_record? || is_active
+    if !@skip_only_inactive_children_if_inactive && children.any?{ |e| e.is_active }
+      errors.add(self.name, "inactive taxa must only have inactive children")
+    end
+  end
+  
+  def active_parent_if_active
+    return if parent.nil? || !is_active
+    
+    if !parent.is_active
+      errors.add(self.name, "active taxa must have active parent")
     end
   end
 

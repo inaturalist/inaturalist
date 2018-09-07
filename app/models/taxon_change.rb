@@ -121,7 +121,8 @@ class TaxonChange < ActiveRecord::Base
   end
 
   class PermissionError < StandardError; end
-
+  class ActiveChildrenError < StandardError; end
+  
   # Override in subclasses
   def commit
     unless committable_by?( committer )
