@@ -253,18 +253,6 @@ describe TaxonSwap, "commit" do
         end
       end
 
-      it "should not make swaps for a child if the child is itself involved in this swap" do
-        @superfamily.update_attributes( rank: Taxon::GENUS )
-        @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
-        @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
-        child = @output_taxon
-        [@input_taxon, @output_taxon, child].each(&:reload)
-        without_delay { @swap.commit }
-        [@input_taxon, @output_taxon, child].each(&:reload)
-        expect( child.parent ).to eq @input_taxon
-        expect( child.taxon_change_taxa ).to be_blank
-      end
-
       it "should swap species in a genus even if there's a subgenus" do
         @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
         @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
@@ -283,7 +271,7 @@ describe TaxonSwap, "commit" do
 
       it "should move children despite a locked ancestor" do
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
-        @superfamily.update_attributes( locked: true )
+        @ancestor_taxon.update_attributes( locked: true )
         @swap.reload
         without_delay { @swap.commit }
         child.reload
@@ -293,7 +281,7 @@ describe TaxonSwap, "commit" do
         @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
         @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla" )
-        @superfamily.update_attributes( locked: true )
+        @ancestor_taxon.update_attributes( locked: true )
         [@input_taxon, @output_taxon, child].each(&:reload)
         without_delay { @swap.commit }
         [@input_taxon, @output_taxon, child].each(&:reload)
@@ -314,6 +302,8 @@ describe TaxonSwap, "commit" do
       expect {
         @swap.commit
       }.to raise_error TaxonChange::RankLevelError
+    end
+
     describe "without move_children" do
       it "should not move children" do
         family1 = Taxon.make!( rank: Taxon::FAMILY )
