@@ -107,6 +107,10 @@ describe TaxonMerge, "commit" do
     before(:each) { enable_elastic_indexing( Observation, Identification ) }
     after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
+    before(:each) do
+      @merge.update_attributes( move_children: true )
+    end
+
     it "should move children from the input to the output taxon" do
       @input_ancestor.update_attributes( rank: Taxon::ORDER, rank_level: Taxon::ORDER_LEVEL )
       @input_taxon1.update_attributes( rank: Taxon::SUPERFAMILY, rank_level: Taxon::SUPERFAMILY_LEVEL )
@@ -136,7 +140,7 @@ describe TaxonMerge, "commit" do
         @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
         child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::SPECIES, name: "Hyla regilla" )
         child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::SPECIES, name: "Rana clamitans" )
-        [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
+        [@merge, @input_taxon1, @output_taxon, child1, child2].each(&:reload)
         without_delay { @merge.commit }
         [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
         expect( child1.parent ).to eq @input_taxon1
@@ -151,12 +155,12 @@ describe TaxonMerge, "commit" do
         expect( child_swap2.output_taxon.parent ).to eq @output_taxon
       end
       it "species" do
-        @input_taxon1.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla"  )
-        @input_taxon2.update_attributes( rank: Taxon::SPECIES, name: "Rana clamitans"  )
-        @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla"  )
+        @input_taxon1.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
+        @input_taxon2.update_attributes( rank: Taxon::SPECIES, name: "Rana clamitans" )
+        @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla" )
         child1 = Taxon.make!( parent: @input_taxon1, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SPECIES_LEVEL )
         child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::SUBSPECIES, name: "Rana clamitans foo", rank_level: Taxon::SPECIES_LEVEL )
-        [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
+        [@merge, @input_taxon1, @output_taxon, child1, child2].each(&:reload)
         without_delay { @merge.commit }
         [@input_taxon1, @output_taxon, child1, child2].each(&:reload)
         expect( child1.parent ).to eq @input_taxon1
