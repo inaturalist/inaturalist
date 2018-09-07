@@ -86,6 +86,12 @@ class TaxonChange < ActiveRecord::Base
   def committed?
     !committed_on.blank?
   end
+  
+  def rank_level_conflict?
+    return false unless type == "TaxonSwap"
+    return false unless input_taxa_rank_level_conflict = input_taxa[0].descendants.where( "rank_level >= ?", output_taxa[0].rank_level ).first
+    input_taxa_rank_level_conflict
+  end
 
   def active_children_conflict?
     return false unless type == "TaxonSwap"
@@ -128,7 +134,9 @@ class TaxonChange < ActiveRecord::Base
 
   class PermissionError < StandardError; end
   class ActiveChildrenError < StandardError; end
-  
+
+  class RankLevelError < StandardError; end
+
   # Override in subclasses
   def commit
     unless committable_by?( committer )
@@ -136,6 +144,10 @@ class TaxonChange < ActiveRecord::Base
     end
     if active_children_conflict?
       raise ActiveChildrenError, "Input taxon cannot have active children"
+      return
+    end
+    if rank_level_conflict?
+      raise RankLevelError, "Output taxon rank level not coarser than all input taxon descendant rank levels"
       return
     end
     input_taxa.each {|t| t.update_attribute(:is_active, false)}
