@@ -238,6 +238,7 @@ describe TaxonSwap, "commit" do
           expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla"
           expect( child_swap.output_taxon.parent ).to eq @output_taxon
         end
+        
         it "species" do
           @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
           @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla" )
@@ -254,7 +255,7 @@ describe TaxonSwap, "commit" do
       end
 
       it "should not make swaps for a child if the child is itself involved in this swap" do
-        @superfamily.update_attributes( rank: Taxon::GENUS )
+        @ancestor_taxon.update_attributes( rank: Taxon::GENUS )
         @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
         @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
         child = @output_taxon
@@ -283,17 +284,18 @@ describe TaxonSwap, "commit" do
 
       it "should move children despite a locked ancestor" do
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
-        @superfamily.update_attributes( locked: true )
+        @ancestor_taxon.update_attributes( locked: true )
         @swap.reload
         without_delay { @swap.commit }
         child.reload
         expect( child.parent ).to eq @output_taxon
       end
+      
       it "should swap child species despite a locked ancestor" do
         @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
         @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla" )
-        @superfamily.update_attributes( locked: true )
+        @ancestor_taxon.update_attributes( locked: true )
         [@input_taxon, @output_taxon, child].each(&:reload)
         without_delay { @swap.commit }
         [@input_taxon, @output_taxon, child].each(&:reload)
@@ -336,8 +338,9 @@ describe TaxonSwap, "commit" do
         expect( species.taxon_changes.size ).to eq 0
         expect( species.taxon_change_taxa.size ).to eq 0
       end
+    end
   end
-
+  
   it "should raise error if the output taxon is a descendant of the input taxon" do
     @ancestor_taxon.update_attributes( rank: Taxon::GENUS )
     @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
