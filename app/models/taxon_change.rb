@@ -88,14 +88,13 @@ class TaxonChange < ActiveRecord::Base
   end
   
   def rank_level_conflict?
-    return false unless type == "TaxonSwap"
+    return false unless ["TaxonSwap", "TaxonMerge"].include? type
     return false unless input_taxa_rank_level_conflict = input_taxa[0].descendants.where( "rank_level >= ?", output_taxa[0].rank_level ).first
     input_taxa_rank_level_conflict
   end
 
   def active_children_conflict?
-    return false unless type == "TaxonSwap"
-    return false unless input_taxa_active_children_conflict = input_taxa[0].children.any?{ |e| e.is_active }
+    return false if move_children? || !input_taxa[0].children.any?{ |e| e.is_active }
     return true
   end
   

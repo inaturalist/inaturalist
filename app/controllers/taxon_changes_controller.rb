@@ -165,7 +165,7 @@ class TaxonChangesController < ApplicationController
       return
     end
     
-    if @taxon_change.active_children_conflict? ####unless move children to output option
+    if !@taxon_chante.move_children? && @taxon_change.active_children_conflict?
       flash[:error] = "Input taxon cannot have active children, move them first, or select the 'Move children to output?' option".html_safe
       redirect_back_or_default( taxon_changes_path )
       return
