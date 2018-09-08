@@ -347,8 +347,14 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def move_input_children_to_output( target_input_taxon )
+    return unless move_children?
     unless target_input_taxon.is_a?( Taxon )
       target_input_taxon = Taxon.find_by_id( target_input_taxon )
+    end
+    move_child = Proc.new do |child|
+      child.skip_locks = true
+      output_taxon.skip_locks = true
+      child.move_to_child_of( output_taxon )
     end
     if target_input_taxon.rank_level &&
        target_input_taxon.rank_level <= Taxon::GENUS_LEVEL &&
@@ -364,20 +370,28 @@ class TaxonChange < ActiveRecord::Base
           user: user,
           change_group: (change_group || "#{self.class.name}-#{id}-children"),
           source: source,
-          description: "Automatically generated change from #{FakeView.taxon_change_url( self )}"
+          description: "Automatically generated change from #{FakeView.taxon_change_url( self )}",
+          move_children: true
         )
         tc.add_input_taxon( child )
-        output_child_name = child.name.sub( target_input_taxon.name.strip, output_taxon.name.strip ).strip.gsub( /\s+/, " " )
+        output_child_name = if child.rank_level < Taxon::SPECIES_LEVEL
+          child.name.sub( child.species_name.to_s.strip, output_taxon.species_name.to_s.strip ).strip.gsub( /\s+/, " " )
+        elsif child.species?
+          child.name.sub( child.genus_name.to_s.strip, output_taxon.genus_name.to_s.strip ).strip.gsub( /\s+/, " " )
+        else
+          child.name
+        end
         if output_child = output_taxon.children.detect{|c| c.name == output_child_name }
           # puts "found existing output_child: #{output_child}"
         else
           output_child = Taxon.new(
             name: output_child_name,
             rank: child.rank,
-            is_active: false
+            is_active: false,
+            skip_locks: true
           )
           output_child.save!
-          output_child.update_attributes( parent: output_taxon )
+          output_child.update_attributes( parent: output_taxon, skip_locks: true )
         end
         tc.add_output_taxon( output_child )
         tc.save!
@@ -385,7 +399,7 @@ class TaxonChange < ActiveRecord::Base
         tc.commit
       end
     else
-      target_input_taxon.children.active.each { |child| child.move_to_child_of( output_taxon ) }
+      target_input_taxon.children.active.each( &move_child )
     end
   end
 

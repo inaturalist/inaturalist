@@ -18,5 +18,6 @@ code {white-space:normal;}
   color: white;
 }
 .wiki_history .author, .wiki_history .version {white-space: nowrap;}
+.wiki_history .td:first-child { white-space: nowrap; }
 .img {background-color: white; padding: 1em; border: 1px solid #eee;}
 .img img {width:100%;}

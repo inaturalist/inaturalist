@@ -201,6 +201,14 @@ module Ratatosk
             unless f.save
               puts "Failed to save flag: #{f.errors.full_messages.to_sentence}"
             end
+          elsif new_taxon.errors[:ancestry].to_s =~ /complete/
+              msg = "it failed to graft to #{graft_point.name}, which "
+              msg += "falls within a complete taxon. "
+              msg += "This should be reviewed by the appropriate taxon curator"
+              f = new_taxon.flags.build(:flag => msg) 
+              unless f.save
+                puts "Failed to save flag: #{f.errors.full_messages.to_sentence}"
+              end
           else
             raise RatatoskGraftError, "New taxon had errors: #{new_taxon.errors.full_messages.to_sentence}"
           end
