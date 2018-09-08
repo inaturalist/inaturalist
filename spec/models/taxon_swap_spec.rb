@@ -364,6 +364,15 @@ describe TaxonSwap, "commit" do
       @swap.commit
     }.to raise_error TaxonChange::ActiveChildrenError
   end
+  
+  it "should not raise an error if input taxon has active children but move children is checked" do
+    child = Taxon.make!( rank: Taxon::GENUS, parent: @swap.input_taxon )
+    @swap.update_attributes( move_children: true )
+    expect {
+      @swap.commit
+    }.not_to raise_error TaxonChange::ActiveChildrenError
+  end
+  
 
   describe "for input taxa with reverted changes" do
     it "should not die in an infinite loop" do

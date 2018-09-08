@@ -231,7 +231,7 @@ describe Taxon, "updating" do
     expect(parent.errors).not_to be_blank
   end
   
-  it "should prevent updating a taxon to be inactive if it has active children" do #unless done by a taxon swap with the automatic thing checked
+  it "should prevent updating a taxon to be inactive if it has active children" do
     taxon = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS )
     child = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: taxon )
     taxon.valid?
@@ -239,6 +239,16 @@ describe Taxon, "updating" do
     taxon.update_attributes( is_active: false )
     expect(taxon.errors).not_to be_blank
   end
+  
+  it "should allow updating a taxon to be inactive if it has active children but move children is checked" do
+    taxon = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS )
+    child = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: taxon )
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( is_active: false, skip_only_inactive_children_if_inactive: true )
+    expect(taxon.errors).to be_blank
+  end
+  
   
   it "should prevent updating a taxon to be active if it has an inactive parent" do
     parent = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS, is_active: false )

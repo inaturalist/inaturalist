@@ -148,7 +148,7 @@ class TaxonChange < ActiveRecord::Base
       raise RankLevelError, "Output taxon rank level not coarser than all input taxon descendant rank levels"
       return
     end
-    input_taxa.each {|t| t.update_attribute(:is_active, false)}
+    input_taxa.each {|t| t.update_attributes(is_active: false, skip_only_inactive_children_if_inactive: move_children? )}
     output_taxa.each {|t| t.update_attribute(:is_active, true)}
     update_attribute(:committed_on, Time.now)
   end
