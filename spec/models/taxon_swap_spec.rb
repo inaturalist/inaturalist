@@ -238,6 +238,7 @@ describe TaxonSwap, "commit" do
           expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla"
           expect( child_swap.output_taxon.parent ).to eq @output_taxon
         end
+        
         it "species" do
           @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
           @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla" )
@@ -277,6 +278,7 @@ describe TaxonSwap, "commit" do
         child.reload
         expect( child.parent ).to eq @output_taxon
       end
+      
       it "should swap child species despite a locked ancestor" do
         @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
         @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
@@ -291,17 +293,6 @@ describe TaxonSwap, "commit" do
         expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla"
         expect( child_swap.output_taxon.parent ).to eq @output_taxon
       end
-    end
-
-    it "should raise error if the output taxon is a descendant of the input taxon" do
-      @ancestor_taxon.update_attributes( rank: Taxon::GENUS )
-      @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
-      @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
-      child = @output_taxon
-      [@input_taxon, @output_taxon, child].each(&:reload)
-      expect {
-        @swap.commit
-      }.to raise_error TaxonChange::RankLevelError
     end
 
     describe "without move_children" do
@@ -336,6 +327,17 @@ describe TaxonSwap, "commit" do
         expect( species.taxon_change_taxa.size ).to eq 0
       end
     end
+  end
+  
+  it "should raise error if the output taxon is a descendant of the input taxon" do
+    @ancestor_taxon.update_attributes( rank: Taxon::GENUS )
+    @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
+    @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
+    child = @output_taxon
+    [@input_taxon, @output_taxon, child].each(&:reload)
+    expect {
+      @swap.commit
+    }.to raise_error TaxonChange::RankLevelError
   end
 
   it "should raise an error if commiter is not a taxon curator of a complete ancestor of the input taxon" do
