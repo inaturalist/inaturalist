@@ -9,6 +9,7 @@ import _ from "lodash";
 import reducer from "./reducers";
 import Uploader from "./containers/uploader";
 import actions from "./actions/actions";
+import { fetchSavedLocations } from "./ducks/saved_locations";
 
 const store = createStore(
   reducer,
@@ -27,6 +28,7 @@ if ( !_.isEmpty( CURRENT_USER ) ) {
       currentUser: CURRENT_USER
     }
   } ) );
+  store.dispatch( fetchSavedLocations( ) );
 }
 
 render(

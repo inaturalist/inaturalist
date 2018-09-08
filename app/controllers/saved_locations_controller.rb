@@ -7,6 +7,11 @@ class SavedLocationsController < ApplicationController
 
   def index
     @saved_locations = current_user.saved_locations.page( params[:page] ).per_page( limited_per_page )
+    if params[:q] && !params[:q].blank?
+      @saved_locations = @saved_locations.where( "title ilike ?", "%#{params[:q]}%" )
+    else
+      @saved_locations = @saved_locations.order( "title ASC" )
+    end
     respond_to do |format|
       format.json { render json: @saved_locations }
     end

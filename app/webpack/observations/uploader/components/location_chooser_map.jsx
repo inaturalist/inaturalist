@@ -34,6 +34,7 @@ class LocationChooserMap extends React.Component {
     this.handleMapClick = this.handleMapClick.bind( this );
     this.handlePlacesChanged = this.handlePlacesChanged.bind( this );
     this.fitCircles = this.fitCircles.bind( this );
+    this.fitCurrentCircle = this.fitCurrentCircle.bind( this );
     this.reverseGeocode = this.reverseGeocode.bind( this );
     this.radiusChanged = this.radiusChanged.bind( this );
     this.centerChanged = this.centerChanged.bind( this );
@@ -74,6 +75,8 @@ class LocationChooserMap extends React.Component {
       if ( !this.props.center ) {
         setTimeout( this.fitCircles, 10 );
       }
+    } else if ( this.props.show && objectToComparable( this.props.center ) !== objectToComparable( prevProps.center ) ) {
+      setTimeout( this.fitCurrentCircle, 10 );
     }
   }
 
@@ -97,6 +100,22 @@ class LocationChooserMap extends React.Component {
       _.each( circles, c => {
         bounds.union( c.getBounds( ) );
       } );
+      this.map.fitBounds( bounds );
+    }
+  }
+
+  fitCurrentCircle( ) {
+    if ( !this.map ) { return; }
+    if ( !this.props.center ) { return; }
+    if ( !this.props.radius ) {
+      this.map.panTo( this.props.center );
+    } else {
+      const bounds = (
+        new google.maps.Circle( {
+          center: this.props.center,
+          radius: this.props.radius || 0
+        } )
+      ).getBounds( );
       this.map.fitBounds( bounds );
     }
   }

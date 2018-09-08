@@ -1736,7 +1736,6 @@ en:
   leave_a_comment: Leave a comment
   leave_this_project: Leave this project
   leaves: leaves
-  not_absent: not absent
   legacy_authentication_notice_html: |
     Looks like you're using a password from an older version of this website.
     Please remember to <a href="%{url}">change your password</a> for the new version.
@@ -2245,6 +2244,7 @@ en:
   no_results_found: No results found
   no_results_for: 'No results for '
   no_results_matching: No results matching
+  no_saved_locations_yet: No saved locations yet
   no_sections_available: No sections available.
   no_sections_have_been_added_to_this_assessments_yet: No sections have been added to this assessments yet.
   no_species_have_been_listed: No species have been listed for this place yet!
@@ -2270,6 +2270,7 @@ en:
   none: None
   none_found: None found
   normal: normal
+  not_absent: not absent
   not_completed: Not Completed
   not_evaluated: not evaluated
   not_filtering: Not filtering
@@ -3847,6 +3848,8 @@ en:
   update_existing_observations_with_new_license: Update existing observations with new license choices
   update_existing_photos_with_new_license: Update existing photos with new license choices
   update_existing_sounds_with_new_license: Update existing sounds with new license choices
+  update_observation: Update Observation
+  update_observations: Update Observations
   update_past: "Update past %{type}"
   update_photos: Update photos
   update_search: Update search
@@ -4333,6 +4336,7 @@ en:
   your_profile_was_successfully_updated: Your profile was successfully updated!
   your_projects: Your Projects
   your_recent_projects: Your Recent Projects
+  your_saved_locations: Your Saved Locations
   your_should_recognize: You should recognize some of these photos
   your_site_account_has_been_created: "Your %{site} account has been created."
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} needs you to authorize more permissions from %{provider} to proceed:"

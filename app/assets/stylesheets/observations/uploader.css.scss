@@ -1,4 +1,5 @@
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
+@import "../colors";
 
 body {
   background-color: #eee;
@@ -557,7 +558,7 @@ ul.obs > li .card {
       }
     }
     .modal-dialog {
-      width: 700px;
+      width: 80%;
     }
     .modal-body {
       height: 400px;
@@ -583,11 +584,19 @@ ul.obs > li .card {
     .form-group {
       display: inline-block;
       margin: 0px 10px;
-      input {
-        width: 100px;
-        &.notes {
-          width: 250px;
-        }
+      flex: 1;
+      .input,
+      label {
+        width: 100%;
+      }
+    }
+    .notes-form-group {
+      flex: 2;
+    }
+    .save-form-group {
+      flex: 0;
+      .btn-group {
+        display: flex; 
       }
     }
     .close {
@@ -822,5 +831,77 @@ ul.obs > li .card {
 label {
   input.form-control {
     font-weight: normal;
+  }
+}
+
+.SavedLocationChooser {
+  position: absolute;
+  z-index: 0;
+  top: 20px;
+  left: 390px;
+  width: 270px;
+
+  input,
+  .menu {
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 5px;
+    box-sizing: border-box;
+    font-size: 13px;
+    outline: none; 
+  }
+
+  input {
+    border: 1px solid transparent;
+    padding: 0px 12px;
+    height: 28.5px;
+  }
+  .menu {
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    max-height: 300px;
+    overflow-y: auto;
+    background-color: white;
+    border: 1px solid #ddd;
+    ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      li {
+        margin: 0;
+        padding: 3px 12px;
+        border-top: 1px solid #eee;
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        a {
+          text-decoration: none;
+          .small {
+            margin: 0;
+            dt {
+              display: inline-block;
+              opacity: 0.8;
+              margin-right: 3px;
+              &:after {
+                content: ":";
+              }
+            }
+            dd {
+              display: inline-block;
+              margin-right: 5px;
+            }
+          }
+        }
+        button {
+          padding: 0;
+          border: 0 transparent;
+          color: $text-grey;
+          &:hover {
+            color: red;
+          }
+          margin-left: 10px;
+        }
+      }
+    }
   }
 }

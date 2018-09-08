@@ -1,9 +1,10 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Modal, Button, Glyphicon } from "react-bootstrap";
+import { Modal, Button, Glyphicon, OverlayTrigger, Popover } from "react-bootstrap";
 import SelectionBasedComponent from "./selection_based_component";
 import LocationChooserMap from "./location_chooser_map";
+import SavedLocationChooser from "./saved_location_chooser";
 import util from "../models/util";
 
 class LocationChooser extends SelectionBasedComponent {
@@ -159,8 +160,8 @@ class LocationChooser extends SelectionBasedComponent {
               </label>
             </div>
             <div className="form-group">
-              <label className="control-label">
-                { I18n.t( "accuracy_meters" ) }
+              <label className="control-label" title={ I18n.t( "accuracy_meters" ) }>
+                { I18n.t( "acc" ) }
                 <input
                   className="form-control"
                   key="radius"
@@ -171,7 +172,7 @@ class LocationChooser extends SelectionBasedComponent {
                 />
               </label>
             </div>
-            <div className="form-group">
+            <div className="form-group notes-form-group">
               <label className="control-label">
                 { I18n.t( "locality_notes" ) }
                 <input
@@ -184,6 +185,43 @@ class LocationChooser extends SelectionBasedComponent {
                 />
               </label>
             </div>
+            <div className="form-group save-form-group">
+              <label className="control-label">
+                &nbsp;
+                <button
+                  type="button"
+                  className="btn btn-default"
+                  onClick={ () => {
+                    this.props.saveLocation( {
+                      latitude: latNum,
+                      longitude: lngNum,
+                      positional_accuracy: this.props.radius,
+                      title: this.props.notes
+                    } );
+                  } }
+                >
+                  <i className="glyphicon glyphicon-map-marker"></i> { I18n.t( "save" ) }
+                </button>
+              </label>
+            </div>
+            <SavedLocationChooser
+              defaultLocations={ this.props.savedLocations }
+              onChoose={ sl => {
+                this.props.updateState( { locationChooser: {
+                  lat: sl.latitude,
+                  lng: sl.longitude,
+                  radius: sl.positional_accuracy,
+                  notes: sl.title,
+                  manualPlaceGuess: false,
+                  center: {
+                    lat: sl.latitude,
+                    lng: sl.longitude
+                  },
+                  show: true
+                } } );
+              } }
+              removeLocation={ sl => this.props.removeSavedLocation( sl ) }
+            />
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -193,7 +231,7 @@ class LocationChooser extends SelectionBasedComponent {
             bsStyle="primary"
             disabled={ !canSave }
           >
-            { I18n.t( "save" ) }
+            { I18n.t( "update_observations" ) }
           </Button>
         </Modal.Footer>
       </Modal>
@@ -218,7 +256,14 @@ LocationChooser.propTypes = {
   zoom: PropTypes.number,
   center: PropTypes.object,
   bounds: PropTypes.object,
-  notes: PropTypes.string
+  notes: PropTypes.string,
+  saveLocation: PropTypes.func,
+  savedLocations: PropTypes.array,
+  removeSavedLocation: PropTypes.func
+};
+
+LocationChooser.defaultProps = {
+  savedLocations: []
 };
 
 export default LocationChooser;
