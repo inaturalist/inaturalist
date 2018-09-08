@@ -3966,7 +3966,8 @@ CREATE TABLE taxon_changes (
     updated_at timestamp without time zone NOT NULL,
     committed_on date,
     change_group character varying(255),
-    committer_id integer
+    committer_id integer,
+    move_children boolean DEFAULT false
 );
 
 
@@ -9336,4 +9337,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180821031507');
 INSERT INTO schema_migrations (version) VALUES ('20180822173011');
 
 INSERT INTO schema_migrations (version) VALUES ('20180905191330');
+
+INSERT INTO schema_migrations (version) VALUES ('20180906232956');
 
