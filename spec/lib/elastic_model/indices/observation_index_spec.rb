@@ -67,6 +67,11 @@ describe "Observation Index" do
     expect( json[:photos][4][:id] ).to eq p5.id
   end
 
+  it "includes observation photo ID" do
+    o = make_research_grade_candidate_observation
+    expect( o.as_indexed_json[:observation_photos][0][:id] ).to eq o.observation_photos.first.id
+  end
+
   it "uses private_latitude/longitude to create private_geojson" do
     o = Observation.make!
     o.update_columns(private_latitude: 3.0, private_longitude: 4.0, private_geom: nil)

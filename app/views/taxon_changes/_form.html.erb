@@ -32,10 +32,12 @@
         $('#singletaxon').removeClass('right').addClass('left').show()
         $('#multiple_taxa').removeClass('right').addClass('left').hide()
         $('#singletaxon legend').text(I18n.t('output_taxon'))
+        $( "#move-children" ).hide( );
       } else if ( changeType == 'TaxonDrop') {
         $('#singletaxon').removeClass('right').addClass('left').show()
         $('#multiple_taxa').removeClass('right').addClass('left').hide()
         $('#singletaxon legend').text(I18n.t('input_taxon'))
+        $( "#move-children" ).hide( );
       } else if (changeType == 'TaxonSwap' || changeType == 'TaxonMerge') {
         $('#singletaxon').removeClass('left').addClass('right').show()
         $('#singletaxon legend').text(I18n.t('output_taxon'))
@@ -46,12 +48,14 @@
           $('#multiple_taxa .add_taxon_link').show();
         }
         $('#multiple_taxa legend').text(I18n.t('input_taxon'))
+        $( "#move-children" ).show( );
       } else {
         $('#singletaxon').removeClass('right').addClass('left').show()
         $('#singletaxon legend').text(I18n.t('input_taxon'))
         $('#multiple_taxa').removeClass('left').addClass('right').show()
         $('#multiple_taxa .add_taxon_link').show();
         $('#multiple_taxa legend').text(I18n.t('output_taxon'))
+        $( "#move-children" ).hide( );
       }
     }
     $(document).ready(function() {
@@ -208,6 +212,18 @@
         <% end -%>
       </fieldset>
     <% end -%>
+  </div>
+
+  <div id="move-children" class="column span-24">
+    <fieldset>
+      <legend><%=t :more %></legend>
+      <%= f.check_box :move_children,
+        label_after: true,
+        label: t(:move_input_children_to_output?),
+        description: t( "views.taxon_changes.form.move_children_desc_html" ),
+        disabled: taxon_change.committed?
+      %>
+    </fieldset>
   </div>
   
   <div class="column span-24">

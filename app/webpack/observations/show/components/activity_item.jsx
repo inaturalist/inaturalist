@@ -254,7 +254,7 @@ const ActivityItem = ( {
       />
     );
   }
-  const elementID = isID ? `identification-${item.id}` : `comment-${item.id}`;
+  const elementID = isID ? `activity_identification_${item.id}` : `activity_comment_${item.id}`;
   const itemURL = isID ? `/identifications/${item.id}` : `/comments/${item.id}`;
   return (
     <div id={ elementID } className={ `ActivityItem ${className} ${byClass}` }>

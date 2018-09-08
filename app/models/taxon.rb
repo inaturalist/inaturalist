@@ -103,6 +103,9 @@ class Taxon < ActiveRecord::Base
   validate :complete_rank_below_rank
   validate :graftable_if_complete
   validate :user_can_edit_attributes, on: :update
+  validate :rank_level_must_be_coarser_than_children
+  validate :rank_level_must_be_finer_than_parent
+  validate :rank_level_for_taxon_and_parent_must_not_be_nil
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -171,9 +174,10 @@ class Taxon < ActiveRecord::Base
       self.rank == rank
     end
   end
+  ROOT_LEVEL = STATEOFMATTER_LEVEL
   
   RANKS = RANK_LEVELS.keys
-  VISIBLE_RANKS = RANKS - ['root']
+  VISIBLE_RANKS = RANKS - ['stateofmatter']
   
   RANK_EQUIVALENTS = {
     'division'        => 'phylum',
@@ -272,9 +276,24 @@ class Taxon < ActiveRecord::Base
     [IUCN_STATUS_CODES[name], value]
   }]
   
-  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 
-    'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars', 'chiton', 
-    'arizona']
+  PROBLEM_NAMES = [
+    "arizona",
+    "bee hive",
+    "california",
+    "caterpillar",
+    "caterpillars",
+    "chiton",
+    "cicada",
+    "gall",
+    "larva",
+    "lichen",
+    "lizard",
+    "oman",
+    "pinecone",
+    "tanzania",
+    "virginia",
+    "winged insect"
+  ]
   
   PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA = %w(
     ancestry
@@ -870,6 +889,29 @@ class Taxon < ActiveRecord::Base
   def taxon_cant_be_its_own_ancestor
     if ancestor_ids.include?(id)
       errors.add(self.name, "can't be its own ancestor")
+    end
+  end
+  
+  def rank_level_for_taxon_and_parent_must_not_be_nil
+    return if parent.nil?
+    
+    if parent.rank_level.nil? || rank_level.nil?
+      errors.add(self.name, "rank level for taxon and parent must not be nil")
+    end
+  end
+  
+  def rank_level_must_be_finer_than_parent
+    return if parent.nil?
+    
+    if parent.rank_level.to_f <= rank_level.to_f
+      errors.add(self.name, "rank level must be finer than parent")
+    end
+  end
+  
+  def rank_level_must_be_coarser_than_children
+    return if new_record?
+    if (children.any?{ |e| e.rank_level.nil? }  || rank_level.nil?) || (children.any?{ |e| e.rank_level.to_f >= rank_level.to_f })
+      errors.add(self.name, "rank level must be coarser than children")
     end
   end
 

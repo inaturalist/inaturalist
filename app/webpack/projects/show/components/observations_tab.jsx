@@ -16,13 +16,13 @@ const ObservationsTab = ( {
   let view;
   const activeSubview = config.observationsSearchSubview || "grid";
   let observations;
-  const loading = !project.recent_observations_loaded;
+  let loading;
   if ( activeSubview === "table" ) {
-    observations = project.filtered_observations_loaded ?
-      project.filtered_observations.results : null;
+    loading = !project.filtered_observations_loaded;
+    observations = loading ? null : project.filtered_observations.results;
   } else {
-    observations = project.recent_observations_loaded ?
-      project.recent_observations.results : null;
+    loading = !project.recent_observations_loaded;
+    observations = loading ? null : project.recent_observations.results;
   }
   if ( loading ) {
     view = <div key="observations-tab-loading-spinner" className="loading_spinner huge" />;
@@ -36,10 +36,9 @@ const ObservationsTab = ( {
     view = (
       <ObservationsListView
         config={ config }
-        loading={ !project.filtered_observations_loaded }
+        loading={ loading }
         setObservationFilters={ setObservationFilters }
-        observations={ project.filtered_observations_loaded ?
-          project.filtered_observations.results : null }
+        observations={ loading ? null : project.filtered_observations.results }
         loadMore={ ( ) => {
           infiniteScrollObservations( scrollIndex + 30 );
         } }

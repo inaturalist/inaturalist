@@ -257,7 +257,7 @@ en:
   add_taxon_batch_to: "Add Taxon Batch to %{list}"
   add_taxon_range: Add taxon range
   add_taxonomic_tags_to: "Add taxonomic tags to selected Flickr photos &raquo;"
-  add_taxonomic_tags_to_the_fickr_photos: Add taxonomic tags to the Fickr photos associated with the selected observations.
+  add_taxonomic_tags_to_the_flickr_photos: Add taxonomic tags to the Flickr photos associated with the selected observations.
   add_to: Add to
   add_to_a_scheme: Add to a scheme
   add_to_a_project: Add to a project
@@ -295,6 +295,7 @@ en:
   admin: Admin
   admin_s: Admin(s)
   admin_any_projects: admin any projects
+  admin_only: Admin-only
   admin_tools: Admin Tools
   agree: agree
   agree_: Agree
@@ -511,7 +512,7 @@ en:
   you_sure_delete_taxon_from_list?: "Are you sure you want to remove %{taxon} from the list?"
   asc: asc
   ascending: ascending
-  aside_from_extraordinary_circumstances: "Aside from extraordinary circumstances, we well never ask you for your password."
+  aside_from_extraordinary_circumstances: "Aside from extraordinary circumstances, we will never ask you for your password."
   assessment: assessment
   assessment_has_benn_completed: Assessment has been completed
   assessment_sections: Assessment sections
@@ -1895,6 +1896,7 @@ en:
     ko: Korean
     lb: Luxembourgish
     mk: Macedonian
+    nl: Dutch
     oc: Occitan
     pt-BR: Portuguese (Brazil)
     pt-PT: Portuguese (Portugal)
@@ -2065,6 +2067,7 @@ en:
   most_observed_species: Most observed species
   most_observed_introduced_species: Most observed introduced species
   most_observed_threatened_species: Most observed threatened species
+  move_input_children_to_output?: Move children to output?
   multiple: multiple
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: "Multiple taxa (input for swap/merge, output for split)"
@@ -5656,6 +5659,23 @@ en:
           and its descendants. The photos chosen for this
           taxon will show first, though. The first photo will be
           the default image used across the site.
+    taxon_changes:
+      move_children_desc: |
+        Children of the input taxon that are genera or coarser will be moved to
+        the output; species, subspecies, varieties, etc. will be swapped into
+        equivalents with the new genus or species name.
+      form:
+        move_children_desc_html: |
+          Checking this box will move the children of the input taxon to the
+          output taxon for Swaps and Merges when this change is committed. If
+          this change to a genus or lower, it will create Taxon Swaps for all
+          descendants that have an implied name change. For example, if you swap
+          the family Canidae into Dogidae, this change the parent of the genus
+          <i>Canis</i> from Canidae to Dogidae. If you swap the genus
+          <i>Canis</i> into the genus <i>Dogis</i>, it will create and commit
+          Taxon Swaps to change <i>Canis lupus</i> to <i>Dogis lupus</i> and
+          <i>Canis lupus</i> ssp. <i>lupus</i> to <i>Dogis lupus</i> ssp.
+          <i>lupus</i>. This can cause quite a mess, so use with care.
     taxon_links:
       form:
         name_with_rank_desc: |
