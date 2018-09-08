@@ -94,7 +94,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def active_children_conflict?
-    return false if move_children? || !input_taxa[0].children.any?{ |e| e.is_active }
+    return false if move_children? || !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
     return true
   end
   

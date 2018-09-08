@@ -305,10 +305,9 @@ describe TaxonSwap, "commit" do
         swap.add_output_taxon( family2 )
         swap.save!
         swap.committer = swap.user
-        swap.commit
-        Delayed::Worker.new.work_off
-        genus.reload
-        expect( genus.parent ).to eq family1
+        expect {
+          swap.commit
+        }.to raise_error TaxonChange::ActiveChildrenError
       end
 
       it "should not make a swap" do
@@ -320,11 +319,9 @@ describe TaxonSwap, "commit" do
         swap.add_output_taxon( genus2 )
         swap.save!
         swap.committer = swap.user
-        swap.commit
-        Delayed::Worker.new.work_off
-        species.reload
-        expect( species.taxon_changes.size ).to eq 0
-        expect( species.taxon_change_taxa.size ).to eq 0
+        expect {
+          swap.commit
+        }.to raise_error TaxonChange::ActiveChildrenError
       end
     end
   end
@@ -334,6 +331,7 @@ describe TaxonSwap, "commit" do
     @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
     @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
     child = @output_taxon
+    @swap.update_attributes(move_children: true)
     [@input_taxon, @output_taxon, child].each(&:reload)
     expect {
       @swap.commit
