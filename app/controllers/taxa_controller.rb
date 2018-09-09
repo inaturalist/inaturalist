@@ -246,10 +246,12 @@ class TaxaController < ApplicationController
           "#{locked_ancestor.name}</a>).  Please consider merging this " + 
           "into an existing taxon instead."
       end
-      if @taxon.is_active && !@taxon.parent.is_active && (taxon_change = @taxon.parent.taxon_changes.where( "committed_on IS NULL" ).first)
-        flash[:notice] += " Heads up: the parent of this active taxon is inactive " + 
-          "but its the output of this <a href='/taxa_changes/#{taxon_change.id}'>" + 
-          "draft taxon change</a> that we assume you'll commit shortly."
+      if parent = @taxon.parent
+        if @taxon.is_active && !parent.is_active && (taxon_change = parent.taxon_changes.where( "committed_on IS NULL" ).first)
+          flash[:notice] += " Heads up: the parent of this active taxon is inactive " + 
+            "but its the output of this <a href='/taxa_changes/#{taxon_change.id}'>" + 
+            "draft taxon change</a> that we assume you'll commit shortly."
+        end
       end
       redirect_to :action => 'show', :id => @taxon
     else
