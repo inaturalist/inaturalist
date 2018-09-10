@@ -363,7 +363,9 @@ class TaxonChange < ActiveRecord::Base
     end
     move_child = Proc.new do |child|
       child.skip_locks = true
+      child.skip_complete = true
       output_taxon.skip_locks = true
+      output_taxon.skip_complete = true
       child.move_to_child_of( output_taxon )
     end
     if target_input_taxon.rank_level &&
