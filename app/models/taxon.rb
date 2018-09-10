@@ -923,16 +923,19 @@ class Taxon < ActiveRecord::Base
   def only_inactive_children_if_inactive
     return if new_record? || is_active
     if !@skip_only_inactive_children_if_inactive && children.any?{ |e| e.is_active }
-      errors.add(self.name, "inactive taxa must only have inactive children")
+      errors.add(self.name, "must only have inactive children to be inactive itself")
     end
   end
     
   def active_parent_if_active
     return if parent.nil? || !is_active
-    
-    if !parent.is_active && ( !parent.taxon_change_taxa.map{|tct| tct.taxon_change.committed_on.nil? && ( ["TaxonSplit" || "TaxonMerge"].include? tct.taxon_change.type )}.any? || !parent.taxon_changes.map{|tc| tc.committed_on.nil? && tct.taxon_change.type == "TaxonSwap"}.any? )
-      errors.add( self.name, "parents of active taxa must be active or the output of a draft taxon change" )
-    end
+    return if parent.is_active
+    return if parent_is_draft_swap_output = parent.taxon_changes.map{|tc| tc.committed_on.nil? && tc.type == "TaxonSwap"}.any?
+    return if parent_is_draft_merge_or_split_output = parent.taxon_change_taxa.map{|tct|
+      tct.taxon_change.committed_on.nil? &&
+      ( ["TaxonSplit" || "TaxonMerge"].include? tct.taxon_change.type )
+    }.any?
+    errors.add( self.name, "must have a parent that is active or the output of a draft taxon change" )
   end
 
   def can_only_be_featured_if_photos
