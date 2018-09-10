@@ -86,7 +86,7 @@ ko:
   add_a_new_change_group: 새로운 변화 그룹 추가하기
   add_a_new_observation_to_id_please!: ID할 새로운 관찰을 추가해 주세요!
   add_a_place_raquo: 장소 추가하기 &raquo;
-  add_a_single_observation: 관찰 하나 추가하기
+  add_a_single_observation: 관찰 하나를 추가합니다.
   add_a_taxon: 분류군 추가하기
   add_all_your_matching_obs_of_this_taxon: 이 분류군과 일치하는 내 관찰을 모두 이 프로젝트에 추가하기
   add_all_your_matching_obs_to_this_project: 일치하는 내 관찰을 모두 이 프로젝트에 추가하기
@@ -95,7 +95,7 @@ ko:
   add_an_observation: 관찰 추가하기
   add_an_observation?: 관찰을 추가할까요?
   add_an_observation_of: '%{taxon} 관찰을 추가하기'
-  add_another: 더 추가하기
+  add_another: 다른 항목 추가하기
   add_another_flag: 다른 플래그 달기
   add_another_photo: 다른 사진 추가하기
   add_another_section: 다른 구역 추가하기
@@ -103,18 +103,18 @@ ko:
   add_asset: 자산 추가하기
   add_batch: 여러 개 추가하기
   add_colors: 색 추가하기
-  add_comma_separated_tags: 쉼표로 분리된 택 추가하기
+  add_comma_separated_tags: 쉼표로 구분된 태그 추가하기
   add_comment: 댓글 추가
-  add_common_names_for: 분류군에 일반명 추가하기
+  add_common_names_for: 기존 분류군의 일반명 추가하기
   add_conservation_status: 보전 상태 추가하기
   add_countries: 국가 추가하기
-  add_custom_project_fields: 자체적 프로젝트 필드 추가하기
+  add_custom_project_fields: 사용자 지정 프로젝트 필드 추가하기
   add_edit_flags: 플래그 추가/편집
   add_edit_more_fields: 더 많은 필드 추가/편집
   add_editor: 편집자 추가
   add_description: '%{description_name} 추가하기'
   add_field: 필드 추가
-  add_from_your_observations: 관찰에서 추가하기
+  add_from_your_observations: 내 관찰에서 추가하기
   add_link: 링크 추가
   add_listed_taxa_from_observations: 관찰에서 기재된 분류군을 추가하기
   add_higher_level_taxon: '상위 계층 분류군 추가하기 (예: "새")'
@@ -123,10 +123,10 @@ ko:
   add_more_photos: 다른 사진 추가하기
   add_new_lexicon: 새로운 어휘 목록 추가하기
   add_new_observations: 새로운 관찰 추가하기
-  add_new_photos_by_their_ids: 플리커 계정을 이용해 새로운 사진 추가하기 (크리에이티브 커먼즈일 경우에만!)
+  add_new_photos_by_their_ids: 플리커 ID를 이용해 새로운 사진 추가하기 (크리에이티브 커먼즈에 속해야 함!)
   add_new_place: 새로운 장소 추가하기
   add_new_rule: 새로운 규칙 추가하기
-  add_new_source: 새로운 자료 추가하기
+  add_new_source: 새로운 출처 추가하기...
   add_new_taxon_name: 새로운 분류균 이름 추가하기
   add_notes_about_this_taxon: '이 장소에 있는 분류군에 대해 메모 추가하기 (예: 언제 어디서 나타나는지)'
   add_obs_from_a_link: '목록에서 관찰 추가하기: %{link}'
@@ -147,7 +147,7 @@ ko:
   add_some_now: 지금 추가하기
   add_tag: 태그 추가
   add_tags: 태그 추가하기
-  add_tags_to_selected_taxa: 분류군에 태그 추가하기
+  add_tags_to_selected_taxa: 선택된 분류군에 태그 추가하기
   add_taxa: 분류군 추가하기
   add_taxa_to_places: 장소에 분류군 추가하기
   add_taxon_batch_to: 분류군 여러 개를 %{list}에 추가하기
@@ -163,7 +163,7 @@ ko:
   add_to_id_please: ID에 추가해 주세요
   add_to_list: 목록에 추가하기
   add_to_project: 프로젝트에 추가하기
-  add_to_your_life_list: Life 목록에 추가하기!
+  add_to_your_life_list: 내 Life 목록에 추가하기!
   add_to_your_list: 내 목록에 추가하기
   add_your_email_to_get: 이메일을 추가하면 공동체가 내 관찰에 대한 피드백을 할 수 있습니다. 이메일을 추가하고 싶지 않다면 추후에
     확인해 주세요!
@@ -447,8 +447,8 @@ ko:
   brief_description_of_what_you_saw: 본 것의 간결한 설명
   brown: 갈색
   browse: 찾아보기
-  browse_all_projects: 모든 프로젝트 검색
-  browse_all_species: 모든 종 검색
+  browse_all_projects: 모든 프로젝트 찾아보기
+  browse_all_species: 모든 종 찾아보기
   browse_observations: 관찰 찾아보기
   browse_people: 사람 찾아보기
   browse_projects: 프로젝트 검색
@@ -459,7 +459,7 @@ ko:
   by_adding_ids_to_observations: 동정을 관찰에 추가
   by_everyone: 모두
   by_project_list: 프로젝트 목록으로
-  by_user: '%{user} 님께서'
+  by_user: '%{user}님께서'
   by_you: 내가
   calendar: 일정
   can_you_help_your_friends_id_these: 동정을 도와줄 수 있나요?
@@ -470,7 +470,7 @@ ko:
   card: 카드
   casual: 비공식적
   catalogue_of_life: 생명체 목록
-  categories: 분류 목록
+  categories: 분류
   cc_0_description: 이 라이선스는 작품을 퍼블릭 도메인에 공개함으로써 허락을 구하거나 원작자를 표시하지 않고도 다른 사람들이 상업적인
     목적을 포함하여 작품을 복사, 변경, 배포, 공연할 수 있습니다. 이것은 제공되는 라이선스들 가운데 가장 포괄적입니다. 최대한의 보급 및 라이선스된
     자료의 이용에 권장됩니다.
@@ -751,7 +751,7 @@ ko:
   date_: 날짜
   date?: 날짜?
   date_added: 날짜 추가됨
-  date_created: 날짜 생성됨
+  date_created: 만든 날짜
   date_format:
     date_long:
       january: '%{year} 1월 %{day}'
@@ -879,38 +879,38 @@ ko:
   edit_account_settings_and_profile: 계정 설정 편집
   edit_assessment: 평가 편집
   edit_body: 본문 편집
-  edit_colors: 색깔 편집
-  edit_comment: 댓글 편집
-  edit_custom_project_fields: 자체적 프로젝트 필드 편집
+  edit_colors: 색 편집
+  edit_comment: 내 댓글 편집
+  edit_custom_project_fields: 사용자 지정 프로젝트 필드 편집
   edit_field: 분야 편집
   edit_flagged_observation: 플래그된 관찰 편집
   edit_license: 라이선스 수정
-  edit_multiple_dates: 다수의 일자 편집
-  edit_multiple_descriptions: 다중 설명 편집
+  edit_multiple_dates: 다수의 날짜 편집
+  edit_multiple_descriptions: 여러 설명 편집
   edit_multiple_locations: 다수의 장소 편집
   edit_multiple_species: 다수의 종 편집
   edit_notes: 메모 편집
   edit_photos: 사진 편집
-  edit_photos_for_observation_id: 관찰 사진 편집 %{obs_id}
+  edit_photos_for_observation_id: 관찰 %{obs_id}의 사진 편집
   edit_place: 장소 수정
   edit_project: 프로젝트 편집
   edit_range_raquo: 범위 편집 &raquo;
   edit_remove: 편집/삭제
   edit_selected: 선택 항목 편집
   edit_source: 출처 편집
-  edit_taxa: 분류군들 편집
+  edit_taxa: 분류군 편집
   edit_taxon_change: 분류군 변화 편집
   edit_taxon_link: 분류군 링크 편집
   edit_taxon_range: 분류군 범위 편집
   edit_the_observation: 관찰 편집
   edit_this_link: 이 링크 편집
-  edit_your_account: 계정 편집
+  edit_your_account: 내 계정 편집
   edit_your_account_and_profile_html: 계정 및 프로필 편집
-  edit_your_default_settings: 기본 설정 값 편집하기
-  edit_your_global_project_settings: 글로벌 프로젝트 설정 편집
-  edit_your_identification: 동정 편집
-  edit_your_profile: 프로필 편집하기
-  edit_your_settings_for_this_project: 이 프로젝트에 대한 설정 편집
+  edit_your_default_settings: 내 기본 설정 편집하기
+  edit_your_global_project_settings: 내 전역 프로젝트 설정 편집
+  edit_your_identification: 내 동정 편집
+  edit_your_profile: 내 프로필 편집하기
+  edit_your_settings_for_this_project: 이 프로젝트에 대한 내 설정 편집
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'> 설정</a>을 편집하여 받는 업데이트의
     종류를 변경하거나 구독 취소를 합니다.
   edited: 편집됨
@@ -960,7 +960,7 @@ ko:
     native: 토착종
     endemic: 고유종
     introduced: 도입종
-    naturalised: 토착화된
+    naturalised: 토착화됨
     invasive: 외래종
     managed: 관리됨
   establishment_means_descriptions:
@@ -981,10 +981,10 @@ ko:
   everywhere: 모든 곳
   exact: 정확하게
   exact_coordinates_obscured_for: 멸종 위기에 직면한 종들의 정확한 위치 좌표는 일반인에게는 비공개로 되어 있습니다.
-  exact_date: 정확한 일자
+  exact_date: 정확한 날짜
   exact_location: 정확한_장소
   exact_rank: 정확한 랭크
-  existing_flags: 기존 태그
+  existing_flags: 기존 플래그
   exit_full_screen: 전체 화면에서 나가기
   expand_days: 요일 확장
   expand_updates: 업데이트 확장
@@ -992,7 +992,7 @@ ko:
   explore_everyones_observations: 모든 사람들의 관찰 탐색
   export: 내보내기
   export_observations: 관찰 내보내기
-  export_with_private_coordinates: 비공개 좌표와 내보내기
+  export_with_private_coordinates: 비공개 좌표와 함께 내보내기
   exporting: 내보내는 중...
   external_links: 외부 링크
   extinct: 멸종
@@ -1065,15 +1065,15 @@ ko:
   first_observer: 첫 번째 관찰자
   first_report: 첫 번째 보고서
   flag: 플래그
-  flag_as_inappropriate: 부적절한 것으로 플래그
-  flag_an_item: 아이템을 플래그
-  flag_as_spammer: 스패머로 플래그
+  flag_as_inappropriate: 부적절한 것으로 표시
+  flag_an_item: 항목을 플래그
+  flag_as_spammer: 스패머로 표시
   flag_as_non_spammer: 비스패머로 플래그
   flag_description: 큐레이터들이 이 자료의 문제점을 알 수 있도록 플래그를 다세요.
   flag_for_curation: 큐레이션 대상으로 플래그
   flag_it!: 플래그!
   flag_reason: '&ldquo; %{record}를 플래그하는 이유는'
-  flag_saved: 플래그 저장
+  flag_saved: 플래그 저장됨
   flag_saved_thanks: 플래그가 저장되었습니다. 감사합니다!
   flag_this_observation: 이 관찰에 플래그를 달기
   flag_this_photo: 이 사진 플래그
@@ -1169,13 +1169,13 @@ ko:
   guide_was_successfully_updated: 가이드가 성공적으로 업데이트되었습니다.
   guidelines: 가이드라인
   has_already_been_flagged_by: 에 의해 이미 플래그함
-  has_one_or_more_faves: 하나 이상의 '좋아요'가 있다
+  has_one_or_more_faves: 하나 이상의 '좋아요'가 있음
   has_photo: 사진이 있음
-  has_photos: 사진이 있다
+  has_photos: 사진이 있음
   has_photo_and_sound: 사진과 소리가 모두 있음
   has_photos_or_sounds: 사진이나 음원이 있습니다
   has_sound: 소리가 있음
-  has_sounds: 소리가 있다
+  has_sounds: 소리가 있음
   hasnt_contributed_any_observations: 이 프로젝트에 관찰을 기여하지 않았습니다.
   hate_me_facebook: 페이스북과 %{site_name} 계정 연결을 끊습니다
   hate_me_flickr: Flickr와 %{site_name} 계정 연결을 끊습니다
@@ -1581,10 +1581,13 @@ ko:
       past: '%s'
       m: 1분
       M: 1분
+    datetime_with_zone: MMM D, YYYY · LT z
   mon: 월
   month: 월
   months_ago: '%{text}전'
   more: 더 보기
+  more_fields: 더 많은 친구
+  more_filters: 더 많은 필터
   more_from_x: '%{x}의 더 많은 정보'
   more_import_options: 가져오기 옵션 더 보기
   more_info: 자세한 정보
@@ -1593,6 +1596,7 @@ ko:
   more_photos: 더 많은 사진들
   most_browser_print_pdf: '참고: 대부분의 브라우저는 PDF를 인쇄하는 옵션이 있습니다'
   most_observations: 가장 많은 관찰
+  most_species: 대부분의 종
   must_have_observation_field: '%{operand}을 필수로 기입해야 합니다.'
   mute_user: 사용자를 알림에서 제외
   mute_removed: 알림 제외를 제거함
@@ -1857,9 +1861,11 @@ ko:
   per_day: 매일
   per_month: 매월
   per_week: 매주
+  person: 사람
   photo: 사진
   photo_browser: 사진 탐색기
   photo_deleted: 사진 삭제됨
+  photo_licensing: 사진 라이선스
   photos_from: 촬영 장소
   photos_or_sounds: 사진 또는 음원
   photos_size:
@@ -1998,12 +2004,16 @@ ko:
   rank: 순위
   rank_position: 순위
   ranks:
+    kingdom: 계
     subkingdom: 아계
+    phylum: 문
     infraclass: 하강
+    genus: 속
     subgenus: 아종
     section: 섹션
     subsection: 아섹션
     species: 종
+    hybrid: 혼종
   ranges: 범위
   read_more: 더 읽어보기
   real_time_discussions: 실시간 토론
@@ -2014,7 +2024,9 @@ ko:
   recent_evidence?: 최근의 증거가 있습니까?
   recent_observations: 최근 관찰
   recent_atom_observations_by: '%{login}의 최근 관찰 (Atom)'
+  recent_updates: 최근 업데이트
   recently_finished: 최근에 완료됨
+  recently_resolved: 최근 해결됨
   reload_from_observations: 관찰에서 다시 불러오기
   remove: 제거
   remove_all_tags: 모든 태그를 제거
@@ -2042,6 +2054,8 @@ ko:
   required_: 필수
   required_field: 필수 필드
   research_: 연구
+  research_quality: 연구 품질
+  reset_your_password: 내 비밀번호 재설정
   restore: 복구
   restoring: 복구 중...
   review_verb: 검토
@@ -2075,8 +2089,10 @@ ko:
   select_all: 모두 선택
   select_an_album: 앨범 선택
   select_at_least_one: 적어도 하나를 선택하십시오
-  select_observations_to_edit: 편집할 관찰페이지 선택하기...
-  select_one_of_your_albums: 앨범 중 하나를 선택하십시오
+  select_none: 선택 없음
+  select_observations_to_edit: 편집할 관찰 선택하기...
+  select_one_of_your_albums: 내 앨범 중 하나를 선택하십시오
+  select_options: 옵션 선택
   selected: 삭제됨
   selected_photos: 선택된 사진들
   select_this_taxon: 이 분류군 선택
@@ -2125,9 +2141,14 @@ ko:
   source_wikipedia: '출처: 위키백과'
   source_list:
     inaturalist: iNaturalist
+  spam: 스팸
   specify_the_reason_youre_flagging: 이 항목을 플래그하는 이유를 기입하세요
+  start_a_new_project: 새 프로젝트 시작하기
+  start_a_project: 프로젝트 시작하기
   start_adding_observations: 관찰 추가를 시작하기
   start_date_time: 시작 날짜 / 시간
+  start_new_account: 새 계정 시작하기
+  start_new_project: 새 프로젝트 시작하기
   start_one_now: 지금 당장 시작해보세요!
   status: 상태
   stay_and_try_again: 동일 장소에서 다시 시도하세요
@@ -2227,17 +2248,22 @@ ko:
   view_all_observations: 모든 관찰 보기
   view_all_your_projects: 나의 모든 프로젝트 보기
   view_change: 차이 보기
+  view_check_list_page: 체크리스트 문서 보기
   view_contributions: 기여 보기
   view_details: 자세한 내용 보기
   view_flag: 플래그 보기
+  view_flags: 플래그 보기
+  view_leaderboard: 리더보드 보기
   view_license: 라이선스 보기
   view_lists: 목록 보기
   view_more: 더 보기
   view_more_observations: 더 많은 관찰 보기
+  view_more_observations_from_x: '%{x}에서 더 많은 관찰 보기'
   view_more_observations_from: '더 많은 관찰 보기:'
   view_more_observations_of_x_project: '%{project}에서 <nobr>%{site_name} &raquo;</nobr>에
     대한 관찰을 더 보기'
   view_more_recent_observations: 더 최근 관찰 보기
+  view_observation: 관찰 보기
   view_observations: 관찰 보기
   view_observations_by_everyone: 모두의 관찰 보기
   view_sample: 샘플 보기
@@ -2315,6 +2341,7 @@ ko:
   your_account_has_been_activated: 당신의 계정이 활성화되었습니다!
   your_browser_does_not_support_the_audio_element: 브라우저가 오디오 요소를 지원하지 않습니다.
   your_month_observations: '%{month}월의 내 관찰'
+  your_observations: 내 관찰
   your_observations_couldnt_be_added_to_that_project: 관찰이 프로젝트에 추가되지 못했습니다.%{errors}
   your_projects: 내 프로젝트
   your_google_account: 내 구글 계정

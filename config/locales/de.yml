@@ -1324,6 +1324,7 @@ de:
   editing_observation_field: Beobachtungsfeld bearbeiten
   editing_observation_id: Beobachtung %{obs_id} bearbeiten
   editing_project: '%{project} bearbeiten'
+  editing_subscription_to_x_html: Abonnements für %{x} bearbeiten
   editing_taxon_link: Taxonlink bearbeiten
   editing_taxon_name: Taxonnamen bearbeiten
   editing_taxon_range: Taxonbereich bearbeiten
@@ -2207,7 +2208,7 @@ de:
       h: 1h
       hh: '%dh'
       d: 1d
-      dd: '&dd'
+      dd: '%dd'
       M: 1mo
       MM: '%dmo'
       "y": 1y
@@ -3069,6 +3070,7 @@ de:
   quality_grade_: Qualitätsstufe
   quality_grade_colon: 'Qualitätsstufe:'
   query: Abfrage
+  random: Zufällig
   range: Bereich
   range_from: Bereich von
   rank: Rang
@@ -3170,6 +3172,7 @@ de:
   remove_all_tags: Alle Tags entfernen
   remove_boundary: Grenze entfernen
   remove_comma_separated_tags: Komma-getrennte Tags entfernen
+  remove_conservation_status: Konservierungsstatus entfernen
   remove_from: Entfernen aus
   remove_curator: Kurator entfernen
   remove_curator_role: Kuratorrolle entfernen
@@ -3241,6 +3244,7 @@ de:
   rotate_right: Nach rechts drehen
   row_singular_or_plural: Zeile(n)
   row_number_i_was_parsed_as: Zeilennummer %{row} wurde geparst als
+  rule_must_be: Regel muss sein …
   rules_and_formatting: Regeln & Formatierung
   rules_for_adding_observations: Regeln für das Hinzufügen von Beobachtungen
   rules_for_becoming_a_member: Regeln für die Mitgliedschaft
@@ -3367,6 +3371,8 @@ de:
   show: Anzeigen
   show_active_and_inactive_taxa: Aktive und inaktive Taxa anzeigen
   show_common_names: Umgangssprachliche Namen anzeigen
+  show_counts: Zähler basierend auf der Liste anzeigen.
+  show_default_taxon_photos: Standard-Taxon-Fotos anzeigen
   show_kml: KML zeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
@@ -3376,8 +3382,12 @@ de:
     Blog oder Deiner Webseite!
   show_only: Nur anzeigen
   show_scientific_name_first: Wissenschaftliche Namen bevorzugen
+  show_taxa_from_both: (Taxa von beiden Listen anzeigen)
+  show_taxa_from_everywhere: Taxa von überall anzeigen
   show_taxa_from_place: Taxa von %{place} anzeigen
   show_total_listed_taxa: Insgesamt gelistete Taxa anzeigen
+  showing_observations_by: Beobachtungen anzeigen nach
+  showing_taxa_from_place: Taxa von %{place} anzeigen
   showing_x_of_y_listings: Zeige %{x} von %{y} Ergebnissen
   shown_publicly_as: Öffentlich dargestellt als
   sign_in: Anmelden
