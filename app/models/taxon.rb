@@ -10,6 +10,9 @@ class Taxon < ActiveRecord::Base
   # Allow this taxon to be grafted to locked subtrees
   attr_accessor :skip_locks
   
+  # Allow this taxon to be grafted to complete subtrees
+  attr_accessor :skip_complete
+  
   # Allow this taxon to be inactivated despite having active children
   attr_accessor :skip_only_inactive_children_if_inactive
 
@@ -978,7 +981,7 @@ class Taxon < ActiveRecord::Base
   def graftable_if_complete
     return true unless ancestry_changed?
     ct = complete_taxon
-    if ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
+    if !@skip_complete && ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
       errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
     end
     true
