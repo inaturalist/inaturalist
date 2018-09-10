@@ -299,6 +299,7 @@ atlasJS.alterAtlas = function( place ) {
       }
     },
     error: function( e ) {
+      alert( e.responseJSON.error );
       atlasJS.addPlaceToMap( place, "failed", { selected: true } );
       atlasJS.updateMetadataPanel( );
     }
