@@ -293,6 +293,39 @@ describe TaxonSwap, "commit" do
         expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla"
         expect( child_swap.output_taxon.parent ).to eq @output_taxon
       end
+      
+      it "should move children despite a complete ancestor" do
+        child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
+        @ancestor_taxon.update_attributes( complete: true, complete_rank: "subspecies" )
+        @swap.reload
+        user = make_curator
+        tc = TaxonCurator.make!( taxon: @ancestor_taxon, user: user)
+        tc.reload
+        @swap.committer = user
+        without_delay { @swap.commit }
+        child.reload
+        expect( child.parent ).to eq @output_taxon
+      end
+      
+      it "should swap child species despite a complete ancestor" do
+        @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
+        @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
+        child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla" )
+        @ancestor_taxon.update_attributes( complete: true, complete_rank: "subspecies" )
+        user = make_curator
+        tc = TaxonCurator.make!( taxon: @ancestor_taxon, user: user)
+        tc.reload
+        [@input_taxon, @output_taxon, child].each(&:reload)
+        @swap.committer = user
+        without_delay { @swap.commit }
+        [@input_taxon, @output_taxon, child].each(&:reload)
+        expect( child.parent ).to eq @input_taxon
+        child_swap = child.taxon_change_taxa.first.taxon_change
+        expect( child_swap ).not_to be_blank
+        expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla"
+        expect( child_swap.output_taxon.parent ).to eq @output_taxon
+      end
+    
     end
 
     describe "without move_children" do

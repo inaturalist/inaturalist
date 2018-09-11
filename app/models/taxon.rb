@@ -938,7 +938,7 @@ class Taxon < ActiveRecord::Base
       tct.taxon_change.committed_on.nil? &&
       ( ["TaxonSplit" || "TaxonMerge"].include? tct.taxon_change.type )
     }.any?
-    errors.add( self.name, "must have a parent that is active or the output of a draft taxon change" )
+    errors.add( self.name, "must have a parent that is active or the output of a draft taxon change to be active itself" )
   end
 
   def can_only_be_featured_if_photos
