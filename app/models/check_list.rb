@@ -1,6 +1,5 @@
 # CheckLists are lists of Taxa that occur in a Place.
 class CheckList < List
-  belongs_to :place
   belongs_to :taxon
   belongs_to :source
   

@@ -33,7 +33,7 @@ class Atlas < ActiveRecord::Base
   # All of the atlas places where there is a ListedTaxon demonstrating presence
   def presence_places
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
-    descendant_listed_taxa = ListedTaxon.joins( list: :check_list_place ).
+    descendant_listed_taxa = ListedTaxon.joins( list: :place ).
       where( "lists.type = 'CheckList'" ).
       where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) )
     descendant_place_ids = descendant_listed_taxa.select( "listed_taxa.place_id" ).distinct.pluck( :place_id )
@@ -75,9 +75,9 @@ class Atlas < ActiveRecord::Base
     place_descendants = [place, Place.find(place_id).descendants.
       where('admin_level IN (?)',[Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] ).pluck(:id ) ].
       compact.flatten
-    ListedTaxon.joins( { list: :check_list_place } ).where( "lists.type = 'CheckList'" ).
-    where( "listed_taxa.taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) ).
-    where( "listed_taxa.place_id IN (?)", place_descendants )
+    ListedTaxon.joins( { list: :place } ).where( "lists.type = 'CheckList'" ).
+      where( "listed_taxa.taxon_id IN (?)", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) ).
+      where( "listed_taxa.place_id IN (?)", place_descendants )
   end
 
   def relevant_listed_taxon_alterations
@@ -94,17 +94,19 @@ class Atlas < ActiveRecord::Base
   # All presence places, including est. means data, NOT just the places with
   # est. means data
   def presence_places_with_establishment_means
-    scope = ListedTaxon.joins( { list: :check_list_place } ).
+    scope = ListedTaxon.joins( { list: :place } ).
       where( "lists.type = 'CheckList'" ).
       where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) )
 
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
-
+    Rails.logger.debug "[DEBUG] exploded_place_ids_to_include: #{exploded_place_ids_to_include}"
     native_place_ids = scope.select( "listed_taxa.place_id" ).
       where( "listed_taxa.establishment_means IS NULL OR listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS ).
       distinct.pluck( :place_id ) 
+    Rails.logger.debug "[DEBUG] native_place_ids: #{native_place_ids}"
     introduced_place_ids = scope.select( "listed_taxa.place_id" ).
       where( "listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS ).distinct.pluck( :place_id ) 
+    Rails.logger.debug "[DEBUG] introduced_place_ids: #{introduced_place_ids}"
 
     descendants_places = Place.where( id: native_place_ids).
       where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )
