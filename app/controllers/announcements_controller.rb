@@ -1,6 +1,6 @@
 class AnnouncementsController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :admin_required
+  before_filter :site_admin_required
   before_filter :load_announcement, :only => [:show, :edit, :update, :destroy]
   before_filter :load_sites, only: [:new, :edit, :create]
 
@@ -10,6 +10,13 @@ class AnnouncementsController < ApplicationController
   # GET /announcements.xml
   def index
     @announcements = Announcement.order( "id desc" ).page( params[:page] )
+    current_user_site_ids = current_user.site_admins.pluck(:site_id)
+    unless current_user_site_ids.blank?
+      @announcements = @announcements.where( site_id: current_user_site_ids )
+    end
+    unless params[:q].blank?
+      @announcements = @announcements.where( "body ilike ?", "%#{params[:q]}%" )
+    end
   end
   
   def show
@@ -17,6 +24,9 @@ class AnnouncementsController < ApplicationController
   
   def new
     @announcement = Announcement.new
+    if @site && !current_user.is_admin? && @site_admin = @site.site_admins.detect{|sa| sa.user_id == current_user.id }
+      @announcement.site = @site
+    end
     respond_to do |format|
       format.html
     end
@@ -27,7 +37,9 @@ class AnnouncementsController < ApplicationController
   
   def create
     @announcement = Announcement.new(params[:announcement])
-
+    if @site && !current_user.is_admin? && @site_admin = @site.site_admins.detect{|sa| sa.user_id == current_user.id }
+      @announcement.site = @site
+    end
     respond_to do |format|
       if @announcement.save
         format.html { redirect_to(@announcement, :notice => t(:announcement_was_successfully_created)) }

@@ -18,7 +18,14 @@
   -%>
   <%= f.datetime_select :start, use_month_names: month_names %>
   <%= f.datetime_select :end, use_month_names: month_names %>
-  <%= f.select :site_id, @sites.map{ |s| [s.name, s.id] }, include_blank: t(:all) %>
+  <% if current_user.is_admin? %>
+    <%= f.select :site_id, @sites.map{ |s| [s.name, s.id] }, include_blank: t(:all) %>
+  <% else %>
+    <%= f.hidden_field :site_id %>
+    <%= f.form_field :site do %>
+      <%= link_to @announcement.site.name, @announcement.site %>
+    <% end %>
+  <% end %>
   <%= f.select :locales, I18N_SUPPORTED_LOCALES, {}, {
     multiple: true,
     description: t( "views.announcements.locales_desc" )
