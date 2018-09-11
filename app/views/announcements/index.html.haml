@@ -2,6 +2,8 @@
   .row
     .col-xs-12
       %h1= t :announcements
+      .stacked
+        = link_to t(:new_announcement), new_announcement_path, class: "btn btn-primary"
       %table.table
         %thead
           %tr
@@ -13,8 +15,8 @@
           - @announcements.each do |announcement|
             %tr
               %td= h announcement.placement
-              %td.nobr= h announcement.start
-              %td.nobr= h announcement.end
+              %td=l announcement.start
+              %td=l announcement.end
               %td=raw announcement.body
               %td= link_to t(:show), announcement
               %td= link_to t(:edit), edit_announcement_path(announcement)
