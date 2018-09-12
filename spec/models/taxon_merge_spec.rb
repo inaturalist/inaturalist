@@ -15,6 +15,15 @@ def setup_taxon_merge
   @merge.reload
 end
 
+def clean_taxon_merge
+  @merge.destroy
+  @input_taxon1.destroy
+  @input_taxon2.destroy
+  @input_taxon3.destroy
+  @output_taxon.destroy
+  @input_ancestor.destroy
+end
+
 describe "create" do
   it "should not allow a single input taxon" do
     setup_taxon_merge
@@ -106,6 +115,7 @@ describe TaxonMerge, "commit" do
   describe "for taxa with children" do
     before(:each) { enable_elastic_indexing( Observation, Identification ) }
     after(:each) { disable_elastic_indexing( Observation, Identification ) }
+    after(:each) { clean_taxon_merge }
 
     before(:each) do
       @merge.update_attributes( move_children: true )

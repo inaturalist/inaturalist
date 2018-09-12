@@ -9,6 +9,12 @@ class Taxon < ActiveRecord::Base
   
   # Allow this taxon to be grafted to locked subtrees
   attr_accessor :skip_locks
+  
+  # Allow this taxon to be grafted to complete subtrees
+  attr_accessor :skip_complete
+  
+  # Allow this taxon to be inactivated despite having active children
+  attr_accessor :skip_only_inactive_children_if_inactive
 
   # Skip the more onerous callbacks that happen after grafting a taxon somewhere else
   attr_accessor :skip_after_move
@@ -106,6 +112,8 @@ class Taxon < ActiveRecord::Base
   validate :rank_level_must_be_coarser_than_children
   validate :rank_level_must_be_finer_than_parent
   validate :rank_level_for_taxon_and_parent_must_not_be_nil
+  validate :only_inactive_children_if_inactive
+  validate :active_parent_if_active
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -914,6 +922,24 @@ class Taxon < ActiveRecord::Base
       errors.add(self.name, "rank level must be coarser than children")
     end
   end
+  
+  def only_inactive_children_if_inactive
+    return if new_record? || is_active
+    if !@skip_only_inactive_children_if_inactive && children.any?{ |e| e.is_active }
+      errors.add(self.name, "must only have inactive children to be inactive itself")
+    end
+  end
+    
+  def active_parent_if_active
+    return if parent.nil? || !is_active
+    return if parent.is_active
+    return if parent_is_draft_swap_output = parent.taxon_changes.map{|tc| tc.committed_on.nil? && tc.type == "TaxonSwap"}.any?
+    return if parent_is_draft_merge_or_split_output = parent.taxon_change_taxa.map{|tct|
+      tct.taxon_change.committed_on.nil? &&
+      ( ["TaxonSplit" || "TaxonMerge"].include? tct.taxon_change.type )
+    }.any?
+    errors.add( self.name, "must have a parent that is active or the output of a draft taxon change to be active itself" )
+  end
 
   def can_only_be_featured_if_photos
     if !featured_at.blank? && taxon_photos.blank?
@@ -955,7 +981,7 @@ class Taxon < ActiveRecord::Base
   def graftable_if_complete
     return true unless ancestry_changed?
     ct = complete_taxon
-    if ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
+    if !@skip_complete && ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
       errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
     end
     true
