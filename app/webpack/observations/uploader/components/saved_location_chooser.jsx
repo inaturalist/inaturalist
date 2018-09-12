@@ -12,7 +12,6 @@ class SavedLocationChooser extends React.Component {
       locations: [],
       current: -1
     };
-    // this.input = React.createRef( );
     this.clickOffEventNamespace = "click.SavedLocationChooserClickOff";
   }
 
@@ -51,17 +50,22 @@ class SavedLocationChooser extends React.Component {
   searchLocations( text ) {
     fetch( `/saved_locations?q=${text}` )
       .then( response => response.json( ) )
-      .then( locations => this.setState( { locations } ) );
+      .then( json => this.setState( { locations: json.results } ) );
   }
 
   render( ) {
     const {
       onChoose,
       defaultLocations,
-      removeLocation
+      removeLocation,
+      locationsTotal
     } = this.props;
+    const className = `SavedLocationChooser ${this.props.className || ""}`;
     return (
-      <div className="SavedLocationChooser">
+      <div className={ className }>
+        <div className="accessory">
+          <span className="badge">{ I18n.toNumber( locationsTotal, { precision: 0 } ) }</span>
+        </div>
         <input
           placeholder={ I18n.t( "your_saved_locations", { defaultValue: "Your Saved Locations" } ) }
           className="form-control"
@@ -124,7 +128,9 @@ class SavedLocationChooser extends React.Component {
 SavedLocationChooser.propTypes = {
   defaultLocations: PropTypes.array,
   onChoose: PropTypes.func,
-  removeLocation: PropTypes.func
+  removeLocation: PropTypes.func,
+  className: PropTypes.string,
+  locationsTotal: PropTypes.number
 };
 
 export default SavedLocationChooser;

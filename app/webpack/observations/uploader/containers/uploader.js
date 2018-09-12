@@ -9,7 +9,7 @@ const mapStateToProps = ( state ) => {
   return Object.assign(
     {},
     state.dragDropZone,
-    { savedLocations: state.savedLocations.savedLocations }
+    { savedLocations: state.savedLocations }
   );
 };
 

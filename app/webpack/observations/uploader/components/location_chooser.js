@@ -205,7 +205,9 @@ class LocationChooser extends SelectionBasedComponent {
               </label>
             </div>
             <SavedLocationChooser
-              defaultLocations={ this.props.savedLocations }
+              className={ this.props.savedLocations.savedLocations.length === 0 ? "hidden" : "" }
+              locationsTotal={ this.props.savedLocations.total }
+              defaultLocations={ this.props.savedLocations.savedLocations }
               onChoose={ sl => {
                 this.props.updateState( { locationChooser: {
                   lat: sl.latitude,
@@ -258,12 +260,12 @@ LocationChooser.propTypes = {
   bounds: PropTypes.object,
   notes: PropTypes.string,
   saveLocation: PropTypes.func,
-  savedLocations: PropTypes.array,
+  savedLocations: PropTypes.object,
   removeSavedLocation: PropTypes.func
 };
 
 LocationChooser.defaultProps = {
-  savedLocations: []
+  savedLocations: {}
 };
 
 export default LocationChooser;

@@ -6534,13 +6534,6 @@ CREATE INDEX index_annotations_on_user_id ON annotations USING btree (user_id);
 
 
 --
--- Name: index_announcements_on_site_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_announcements_on_site_id ON announcements USING btree (site_id);
-
-
---
 -- Name: index_announcements_on_start_and_end; Type: INDEX; Schema: public; Owner: -
 --
 

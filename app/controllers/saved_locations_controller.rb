@@ -6,6 +6,7 @@ class SavedLocationsController < ApplicationController
   before_filter :require_owner, only: [:destroy]
 
   def index
+    page = params[:page].to_i <= 0 ? 1 : params[:page].to_i
     @saved_locations = current_user.saved_locations.page( params[:page] ).per_page( limited_per_page )
     if params[:q] && !params[:q].blank?
       @saved_locations = @saved_locations.where( "title ilike ?", "%#{params[:q]}%" )
@@ -13,7 +14,14 @@ class SavedLocationsController < ApplicationController
       @saved_locations = @saved_locations.order( "title ASC" )
     end
     respond_to do |format|
-      format.json { render json: @saved_locations }
+      format.json do
+        render json: {
+          total_results: @saved_locations.total_entries,
+          page: page,
+          per_page: limited_per_page,
+          results: @saved_locations
+        }
+      end
     end
   end
 

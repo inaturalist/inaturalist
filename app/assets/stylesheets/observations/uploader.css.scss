@@ -841,6 +841,14 @@ label {
   left: 390px;
   width: 270px;
 
+  .accessory {
+    position: absolute;
+    right: 2px;
+    top: 2px;
+    padding: 1px 3px;
+    background-color: white;
+  }
+
   input,
   .menu {
     border-radius: 2px;

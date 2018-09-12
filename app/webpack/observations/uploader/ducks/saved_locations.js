@@ -2,10 +2,12 @@ import { fetch } from "../../../shared/util";
 
 const START_LOADING = "observations-uploader/saved_locations/START_LOADING";
 const SET_SAVED_LOCATIONS = "observations-uploader/saved_locations/set_saved_locations";
+const SET_TOTAL = "observations-uploader/saved_locations/set_total";
 
 export default function reducer(
   state = {
     loading: false,
+    total: 0,
     savedLocations: []
   },
   action
@@ -18,6 +20,9 @@ export default function reducer(
     case SET_SAVED_LOCATIONS:
       newState.loading = false;
       newState.savedLocations = action.savedLocations;
+      break;
+    case SET_TOTAL:
+      newState.total = action.total;
       break;
     default:
       // Nothing to see here
@@ -32,16 +37,22 @@ const setSavedLocations = savedLocations => ( {
   savedLocations
 } );
 
+const setTotal = total => ( {
+  type: SET_TOTAL,
+  total
+} );
+
 export function fetchSavedLocations( ) {
   return function ( dispatch ) {
     dispatch( startLoading( ) );
     const authenticityToken = $( "meta[name=csrf-token]" ).attr( "content" );
     fetch( `/saved_locations.json?authenticity_token=${authenticityToken}` )
       .then( response => response.json( ) )
-      .then( savedLocations => {
-        dispatch( setSavedLocations( savedLocations ) );
+      .then( json => {
+        dispatch( setSavedLocations( json.results ) );
+        dispatch( setTotal( json.total_results ) );
       } )
-      .catch( e => console.log( "Failed to fetch saved locations: ", e ) );
+      .catch( e => alert( `Failed to fetch saved locations: ${e}` ) );
   };
 }
 
