@@ -432,20 +432,21 @@ class UsersController < ApplicationController
     respond_to do |format|
       format.html do
         scope = Announcement.
+          joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id").
+          joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
           where( 'placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc ).
           limit( 50 )
         base_scope = scope
-        scope = scope.where( "site_id IS NULL OR site_id = ?", @site )
+        scope = scope.where( "sites.id IS NULL OR sites.id = ?", @site )
         @announcements = scope.in_locale( I18n.locale )
         @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
         if @announcements.blank?
-          Rails.logger.debug "[DEBUG] didn't find any site-specific announcements"
-          @announcements = base_scope.where( "site_id IS NULL AND locales IS NULL" )
-          @announcements << base_scope.in_locale( I18n.locale ).where( "site_id IS NULL" )
+          @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" )
+          @announcements << base_scope.in_locale( I18n.locale ).where( "sites.id IS NULL" )
           @announcements = @announcements.flatten
         end
         @announcements = @announcements.sort_by {|a| [
-          a.site_id == @site.try(:id) ? 0 : 1,
+          a.site_ids.include?( @site.try(:id) ) ? 0 : 1,
           a.locales.include?( I18n.locale ) ? 0 : 1,
           a.id * -1
         ] }

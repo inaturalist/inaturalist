@@ -1,6 +1,6 @@
 class Announcement < ActiveRecord::Base
   PLACEMENTS = %w(users/dashboard#sidebar users/dashboard welcome/index)
-  belongs_to :site, inverse_of: :announcements
+  has_and_belongs_to_many :sites
   validates_presence_of :placement, :start, :end, :body
 
   scope :in_locale, lambda {|locale|

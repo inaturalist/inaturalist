@@ -25,7 +25,7 @@ class AnnouncementsController < ApplicationController
   def new
     @announcement = Announcement.new
     if @site && !current_user.is_admin? && @site_admin = @site.site_admins.detect{|sa| sa.user_id == current_user.id }
-      @announcement.site = @site
+      @announcement.sites = [@site]
     end
     respond_to do |format|
       format.html
@@ -38,7 +38,7 @@ class AnnouncementsController < ApplicationController
   def create
     @announcement = Announcement.new(params[:announcement])
     if @site && !current_user.is_admin? && @site_admin = @site.site_admins.detect{|sa| sa.user_id == current_user.id }
-      @announcement.site = @site
+      @announcement.sites = [@site]
     end
     respond_to do |format|
       if @announcement.save
