@@ -92,6 +92,7 @@ class SitesController < ApplicationController
 
   private
 
+  # TODO rename?
   def site_admin_required
     unless current_user.is_admin? || 
         ( @record && @record_admin = @record.site_admins.where( user_id: current_user ).first )

@@ -61,11 +61,15 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
-    if params[:inat_site_id]
-      @site ||= Site.find( params[:inat_site_id] )
-    end
-    @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
-    @site ||= Site.default
+    @site = Site.find(3)
+    # if current_user && current_user.login == "pleary96"
+    #   @site = Site.find(3)
+    # end
+    # if params[:inat_site_id]
+    #   @site ||= Site.find( params[:inat_site_id] )
+    # end
+    # @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
+    # @site ||= Site.default
   end
 
   def draft_site_requires_login
@@ -515,7 +519,26 @@ class ApplicationController < ActionController::Base
   private
 
   def admin_required
-    unless logged_in? && current_user.has_role?(:admin)
+    unless logged_in? && current_user.is_admin?
+      msg = t(:only_administrators_may_access_that_page)
+      respond_to do |format|
+        format.html do
+          flash[:error] = msg
+          redirect_to observations_path
+        end
+        format.js do
+          render :status => :unprocessable_entity, :text => msg
+        end
+        format.json do
+          render :status => :unprocessable_entity, :json => {:error => msg}
+        end
+      end
+      return false
+    end
+  end
+
+  def admin_or_site_admin_required
+    unless logged_in? && ( current_user.is_admin? || ( @site && current_user.is_site_admin_of?( @site ) ) )
       msg = t(:only_administrators_may_access_that_page)
       respond_to do |format|
         format.html do

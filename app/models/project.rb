@@ -3,23 +3,24 @@ class Project < ActiveRecord::Base
   include ActsAsElasticModel
 
   belongs_to :user
-  belongs_to :place, :inverse_of => :projects
-  has_many :project_users, :dependent => :delete_all, :inverse_of => :project
-  has_many :project_observations, :dependent => :delete_all
-  has_many :project_invitations, :dependent => :destroy
-  has_many :project_user_invitations, :dependent => :delete_all
-  has_many :users, :through => :project_users
-  has_many :observations, :through => :project_observations
-  has_one :project_list, :dependent => :destroy
-  has_many :listed_taxa, :through => :project_list
-  has_many :taxa, :through => :listed_taxa
-  has_many :project_assets, :dependent => :delete_all
-  has_one :custom_project, :dependent => :delete
-  has_many :project_observation_fields, -> { order("position") }, :dependent => :destroy, :inverse_of => :project
-  has_many :observation_fields, :through => :project_observation_fields
-  has_many :posts, :as => :parent, :dependent => :destroy
-  has_many :journal_posts, :class_name => "Post", :as => :parent
-  has_many :assessments, :dependent => :destroy
+  belongs_to :place, inverse_of: :projects
+  has_many :project_users, dependent: :delete_all, inverse_of: :project
+  has_many :project_observations, dependent: :delete_all
+  has_many :project_invitations, dependent: :destroy
+  has_many :project_user_invitations, dependent: :delete_all
+  has_many :users, through: :project_users
+  has_many :observations, through: :project_observations
+  has_one :project_list, dependent: :destroy
+  has_many :listed_taxa, through: :project_list
+  has_many :taxa, through: :listed_taxa
+  has_many :project_assets, dependent: :delete_all
+  has_one :custom_project, dependent: :delete
+  has_many :project_observation_fields, -> { order("position") }, dependent: :destroy, inverse_of: :project
+  has_many :observation_fields, through: :project_observation_fields
+  has_many :posts, as: :parent, dependent: :destroy
+  has_many :journal_posts, class_name: "Post", as: :parent
+  has_many :assessments, dependent: :destroy
+  has_many :site_featured_projects, dependent: :destroy
   
   before_save :strip_title
   before_save :reset_last_aggregated_at
@@ -31,16 +32,16 @@ class Project < ActiveRecord::Base
 
   after_destroy :destroy_project_rules
 
-  has_rules_for :project_users, :rule_class => ProjectUserRule
-  has_rules_for :project_observations, :rule_class => ProjectObservationRule
+  has_rules_for :project_users, rule_class: ProjectUserRule
+  has_rules_for :project_observations, rule_class: ProjectObservationRule
 
-  has_subscribers :to => {
-    :posts => {:notification => "created_project_post"},
-    :project_users => {:notification => "curator_change"}
+  has_subscribers to: {
+    posts: { notification: "created_project_post" },
+    project_users: { notification: "curator_change" }
   }
 
   extend FriendlyId
-  friendly_id :title, :use => [ :slugged, :history, :finders ], :reserved_words => ProjectsController.action_methods.to_a
+  friendly_id :title, use: [ :slugged, :history, :finders ], reserved_words: ProjectsController.action_methods.to_a
 
   def normalize_friendly_id( string )
     super_candidate = super( string )
@@ -52,11 +53,11 @@ class Project < ActiveRecord::Base
     candidate
   end
   
-  preference :count_from_list, :boolean, :default => false
-  preference :place_boundary_visible, :boolean, :default => false
-  preference :count_by, :string, :default => 'species'
-  preference :display_checklist, :boolean, :default => false
-  preference :range_by_date, :boolean, :default => false
+  preference :count_from_list, :boolean, default: false
+  preference :place_boundary_visible, :boolean, default: false
+  preference :count_by, :string, default: 'species'
+  preference :display_checklist, :boolean, default: false
+  preference :range_by_date, :boolean, default: false
   preference :aggregation, :boolean, default: false
   preference :banner_color, :string
   preference :banner_contain, :boolean, default: false
@@ -81,27 +82,27 @@ class Project < ActiveRecord::Base
   MEMBERSHIP_OPEN = 'open'
   MEMBERSHIP_INVITE_ONLY = 'inviteonly'
   MEMBERSHIP_MODELS = [MEMBERSHIP_OPEN, MEMBERSHIP_INVITE_ONLY]
-  preference :membership_model, :string, :default => MEMBERSHIP_OPEN
+  preference :membership_model, :string, default: MEMBERSHIP_OPEN
 
   NPS_BIOBLITZ_PROJECT_NAME = "2016 National Parks Bioblitz - NPS Servicewide"
   NPS_BIOBLITZ_GROUP_NAME = "2016 National Parks BioBlitz"
 
-  accepts_nested_attributes_for :project_observation_fields, :allow_destroy => true
-  accepts_nested_attributes_for :project_users, :allow_destroy => true
+  accepts_nested_attributes_for :project_observation_fields, allow_destroy: true
+  accepts_nested_attributes_for :project_users, allow_destroy: true
 
-  validates_length_of :title, :within => 1..100
+  validates_length_of :title, within: 1..100
   validates_presence_of :user
-  validates_format_of :event_url, :with => /\A#{URI.regexp}\z/,
-    :message => "should look like a URL, e.g. #{Site.default.try(:url) || 'http://www.inaturalist.org'}",
-    :allow_blank => true
-  validates_presence_of :start_time, :if => lambda {|p| p.bioblitz? }, :message => "can't be blank for a bioblitz"
-  validates_presence_of :end_time, :if => lambda {|p| p.bioblitz? }, :message => "can't be blank for a bioblitz"
-  validate :place_with_boundary, :if => lambda {|p| p.bioblitz? }
-  validate :one_year_time_span, :if => lambda {|p| p.bioblitz? }, :unless => "errors.any?"
+  validates_format_of :event_url, with: /\A#{URI.regexp}\z/,
+    message: "should look like a URL, e.g. #{Site.default.try(:url) || 'http://www.inaturalist.org'}",
+    allow_blank: true
+  validates_presence_of :start_time, if: lambda {|p| p.bioblitz? }, message: "can't be blank for a bioblitz"
+  validates_presence_of :end_time, if: lambda {|p| p.bioblitz? }, message: "can't be blank for a bioblitz"
+  validate :place_with_boundary, if: lambda {|p| p.bioblitz? }
+  validate :one_year_time_span, if: lambda {|p| p.bioblitz? }, unless: "errors.any?"
   validate :aggregation_preference_allowed?
 
   scope :featured, -> { where("featured_at IS NOT NULL") }
-  scope :in_group, lambda {|name| where(:group => name) }
+  scope :in_group, lambda {|name| where(group: name) }
   scope :near_point, lambda {|latitude, longitude|
     latitude = latitude.to_f
     longitude = longitude.to_f
@@ -114,7 +115,7 @@ class Project < ActiveRecord::Base
     featured.where("projects.latitude IS NULL OR ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) < 5").
     order("CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{longitude}, #{latitude})) END")
   }
-  scope :from_source_url, lambda {|url| where(:source_url => url) }
+  scope :from_source_url, lambda {|url| where(source_url: url) }
   scope :in_place, lambda{|place|
     place = Place.find(place) unless place.is_a?(Place) rescue nil
     if place
@@ -147,8 +148,8 @@ class Project < ActiveRecord::Base
       default_url: "/attachment_defaults/general/:style.png"
   end
   
-  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
-    :message => "must be JPG, PNG, or GIF"
+  validates_attachment_content_type :icon, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
+    message: "must be JPG, PNG, or GIF"
 
   if CONFIG.usingS3
     has_attached_file :cover,
@@ -164,11 +165,11 @@ class Project < ActiveRecord::Base
     invalidate_cloudfront_caches :cover, "projects/:id-cover.*"
   else
     has_attached_file :cover,
-      :path => ":rails_root/public/attachments/:class/:id-cover.:extension",
-      :url => "#{ CONFIG.s3_host }/attachments/:class/:id-cover.:extension",
-      :default_url => ""
+      path: ":rails_root/public/attachments/:class/:id-cover.:extension",
+      url: "#{ CONFIG.s3_host }/attachments/:class/:id-cover.:extension",
+      default_url: ""
   end
-  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /octet-stream/], :message => "must be JPG or PNG"
+  validates_attachment_content_type :icon, content_type: [/jpe?g/i, /png/i, /octet-stream/], message: "must be JPG or PNG"
   validate :cover_dimensions, unless: Proc.new { |p| p.errors.any? || p.is_new_project? }
   
   ASSESSMENT_TYPE = 'assessment'
@@ -176,9 +177,9 @@ class Project < ActiveRecord::Base
   PROJECT_TYPES = [ASSESSMENT_TYPE, BIOBLITZ_TYPE]
   RESERVED_TITLES = ProjectsController.action_methods
   MAP_TYPES = %w(roadmap terrain satellite hybrid)
-  validates_exclusion_of :title, :in => RESERVED_TITLES + %w(user)
+  validates_exclusion_of :title, in: RESERVED_TITLES + %w(user)
   validates_uniqueness_of :title
-  validates_inclusion_of :map_type, :in => MAP_TYPES
+  validates_inclusion_of :map_type, in: MAP_TYPES
 
   acts_as_spammable fields: [ :title, :description ],
                     comment_type: "item-description",
@@ -188,7 +189,7 @@ class Project < ActiveRecord::Base
 
   def place_with_boundary
     return if place_id.blank?
-    unless PlaceGeometry.where(:place_id => place_id).exists?
+    unless PlaceGeometry.where(place_id: place_id).exists?
       errors.add(:place_id, "must be set and have a boundary for a bioblitz")
     end
   end
@@ -250,16 +251,16 @@ class Project < ActiveRecord::Base
   
   def add_owner_as_project_user(options = {})
     return true unless user_id_changed? || options[:force]
-    if pu = project_users.where(:user_id => user_id).first
-      pu.update_attributes(:role => ProjectUser::MANAGER)
+    if pu = project_users.where(user_id: user_id).first
+      pu.update_attributes(role: ProjectUser::MANAGER)
     else
-      self.project_users.create(:user => user, :role => ProjectUser::MANAGER, :skip_updates => true)
+      self.project_users.create(user: user, role: ProjectUser::MANAGER, skip_updates: true)
     end
     true
   end
   
   def create_the_project_list
-    create_project_list(:project => self)
+    create_project_list(project: self)
     true
   end
 
@@ -279,7 +280,7 @@ class Project < ActiveRecord::Base
   def curated_by?(user)
     return false if user.blank?
     return true if user.is_admin?
-    project_users.curators.exists?(:user_id => user.id) || project_users.managers.exists?(:user_id => user.id)
+    project_users.curators.exists?(user_id: user.id) || project_users.managers.exists?(user_id: user.id)
   end
   
   def rule_place
@@ -557,17 +558,17 @@ class Project < ActiveRecord::Base
   def duplicate
     new_project = dup
     project_observation_fields.each do |pof|
-      new_project.project_observation_fields.build(:position => pof.position, 
-        :observation_field => pof.observation_field, :required => pof.required)
+      new_project.project_observation_fields.build(position: pof.position,
+        observation_field: pof.observation_field, required: pof.required)
     end
     project_observation_rules.each do |por|
-      new_project.project_observation_rules.build(:operand => por.operand, :operator => por.operator)
+      new_project.project_observation_rules.build(operand: por.operand, operator: por.operator)
     end
     new_project.title = "#{title} copy"
     new_project.custom_project = custom_project.dup unless custom_project.blank?
     new_project.save!
     listed_taxa.find_each do |lt|
-      ListedTaxon.create(:list => new_project.project_list, :taxon_id => lt.taxon_id, :description => lt.description)
+      ListedTaxon.create(list: new_project.project_list, taxon_id: lt.taxon_id, description: lt.description)
     end
     new_project
   end
@@ -598,7 +599,7 @@ class Project < ActiveRecord::Base
         ])
         batch.each do |project_observation|
           csv << columns.map {|column| 
-            project_observation.to_csv_column(column, :project => self, :viewer => options[:viewer])
+            project_observation.to_csv_column(column, project: self, viewer: options[:viewer])
           }
         end
       end
@@ -642,8 +643,8 @@ class Project < ActiveRecord::Base
   
   def self.default_json_options
     {
-      :methods => [:icon_url, :project_observation_rule_terms, :featured_at_utc, :rule_place, :cached_slug, :slug],
-      :except => [:tracking_codes]
+      methods: [:icon_url, :project_observation_rule_terms, :featured_at_utc, :rule_place, :cached_slug, :slug],
+      except: [:tracking_codes]
     }
   end
   
@@ -654,11 +655,11 @@ class Project < ActiveRecord::Base
     unless project_user = project.project_users.find_by_id(project_user_id)
       return
     end
-    project.project_observations.joins({ :observation => :identifications }).
+    project.project_observations.joins({ observation: :identifications }).
       where("project_observations.curator_identification_id IS NULL AND identifications.user_id = ?",
       project_user.user_id).find_each do |po|
       curator_ident = po.observation.identifications.detect{|ident| ident.user_id == project_user.user_id}
-      po.update_attributes(:curator_identification => curator_ident)
+      po.update_attributes(curator_identification: curator_ident)
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
         unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
           [ project_id, po.observation.user_id ] }
@@ -677,13 +678,13 @@ class Project < ActiveRecord::Base
     
     find_options = if user = User.find_by_id(user_id)
       {
-        :include => [:curator_identification, :observation], 
-        :conditions => ["identifications.user_id = ?", user.id]
+        include: [:curator_identification, :observation], 
+        conditions: ["identifications.user_id = ?", user.id]
       }
     else
       {
-        :include => {:observation => :identifications}, 
-        :conditions => "project_observations.curator_identification_id IS NOT NULL"
+        include: {observation: :identifications}, 
+        conditions: "project_observations.curator_identification_id IS NOT NULL"
       }
     end
     
@@ -692,7 +693,7 @@ class Project < ActiveRecord::Base
     
     project.project_observations.where(find_options[:conditions]).joins(find_options[:include]).each do |po|
       curator_ident = po.observation.identifications.detect{|ident| project_curator_user_ids.include?(ident.user_id)}
-      po.update_attributes(:curator_identification => curator_ident)
+      po.update_attributes(curator_identification: curator_ident)
       ProjectUser.delay(priority: INTEGRITY_PRIORITY,
         unique_hash: { "ProjectUser::update_observations_counter_cache_from_project_and_user":
           [ project_id, po.observation.user_id ] }
@@ -721,7 +722,7 @@ class Project < ActiveRecord::Base
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
     observed_taxa_count = project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
-    project.update_attributes(:observed_taxa_count => observed_taxa_count)
+    project.update_attributes(observed_taxa_count: observed_taxa_count)
   end
   
   def self.revoke_project_observations_on_leave_project(project_id, user_id)
@@ -785,7 +786,7 @@ class Project < ActiveRecord::Base
       I18n.t(:geoprivacy)                => ["[Leave blank for 'open']", 'Private', 'Obscured'],
     }
 
-    ProjectObservationField.includes(:observation_field).where(:project_id => self.id).order(:position).each do |field|
+    ProjectObservationField.includes(:observation_field).where(project_id: self.id).order(:position).each do |field|
       name = field.observation_field.name
       name = "#{name}*" if field.required?
       if field.observation_field.allowed_values.blank?

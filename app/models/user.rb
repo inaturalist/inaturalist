@@ -152,6 +152,7 @@ class User < ActiveRecord::Base
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
   has_many :annotations, dependent: :destroy
+  has_many :site_admins, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
@@ -414,7 +415,12 @@ class User < ActiveRecord::Base
     has_role?(:admin)
   end
   alias :admin? :is_admin?
-  
+
+  def is_site_admin_of?( site )
+    return false unless site && site.is_a?( Site )
+    !!site_admins.detect{ |sa| sa.site_id == site.id }
+  end
+
   def to_s
     "<User #{self.id}: #{self.login}>"
   end

@@ -2,30 +2,34 @@ class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
 
   protect_from_forgery unless: -> { request.format.widget? }
-  before_filter :allow_external_iframes, only: [:show]
+  before_filter :allow_external_iframes, only: [ :show ]
 
   caches_action :observed_taxa_count, :contributors,
-    :expires_in => WIDGET_CACHE_EXPIRATION,
-    :cache_path => Proc.new {|c| c.params}, 
-    :if => Proc.new {|c| c.request.format == :widget}
+    expires_in: WIDGET_CACHE_EXPIRATION,
+    cache_path: Proc.new {|c| c.params},
+    if: Proc.new {|c| c.request.format == :widget}
 
   before_action :doorkeeper_authorize!, 
-    only: [ :by_login, :join, :leave, :members ],
+    only: [ :by_login, :join, :leave, :members, :feature, :unfeature ],
     if: lambda { authenticate_with_oauth? }
+  before_filter :admin_or_site_admin_required, only: [ :feature, :unfeature ]
   
-  before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
+  before_filter :return_here,
+    only: [ :index, :show, :contributors, :members, :show_contributor, :terms, :invite ]
   before_filter :authenticate_user!, 
-    :unless => lambda { authenticated_with_oauth? },
-    :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
+    unless: lambda { authenticated_with_oauth? },
+    except: [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
       :browse, :calendar, :stats_slideshow ]
   load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
-  before_filter :load_project, :except => load_except
-  blocks_spam :except => load_except, :instance => :project
-  before_filter :ensure_current_project_url, :only => :show
-  before_filter :load_project_user, :except => [:index, :search, :new_traditional, :by_login, :new]
-  before_filter :load_user_by_login, :only => [:by_login]
-  before_filter :ensure_can_edit, :only => [:edit, :update]
-  before_filter :filter_params, :only => [:update, :create]
+  before_filter :load_project, except: load_except
+  blocks_spam except: load_except, instance: :project
+  before_filter :ensure_current_project_url, only: :show
+  before_filter :load_project_user,
+    except: [ :index, :search, :new_traditional, :by_login, :new, :feature, :unfeature ]
+  before_filter :load_user_by_login, only: [ :by_login ]
+  before_filter :ensure_can_edit, only: [ :edit, :update ]
+  before_filter :filter_params, only: [ :update, :create ]
+  before_filter :site_required, only: [ :feature, :unfeature ]
   
   ORDERS = %w(title created)
   ORDER_CLAUSES = {
@@ -228,6 +232,7 @@ class ProjectsController < ApplicationController
         if logged_in? && @project_user.blank?
           @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
         end
+        @site_feature = @project.site_featured_projects.where(site_id: @site.id).first
 
         if params[:iframe]
           @headless = @footless = true
@@ -1019,6 +1024,27 @@ class ProjectsController < ApplicationController
     redirect_back_or_default @project
   end
 
+  def feature
+    feature = SiteFeaturedProject.where(site: @site, project: @project).
+      first_or_create(user: @current_user)
+    feature.update_attributes( user: @current_user )
+    if feature.noteworthy && ( params[:noteworthy].nil? || params[:noteworthy].noish? )
+      feature.update_attributes( noteworthy: false )
+    elsif !feature.noteworthy && params[:noteworthy].yesish?
+      feature.update_attributes( noteworthy: true )
+    end
+    Project.refresh_es_index
+    render status: :ok, json: { }
+  end
+
+  def unfeature
+    SiteFeaturedProject.where(
+      site: @site, project: @project
+    ).destroy_all
+    Project.refresh_es_index
+    render status: :ok, json: { }
+  end
+
   private
   
   def load_project
@@ -1097,4 +1123,12 @@ class ProjectsController < ApplicationController
     end
     true
   end
+
+  def site_required
+    unless @site
+      render status: :unprocessable_entity, json: { errors: "Site required" }
+      return
+    end
+  end
+
 end

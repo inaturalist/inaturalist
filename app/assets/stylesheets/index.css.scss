@@ -2324,3 +2324,18 @@ $header-line-height: 34px;
     max-height: 500px;
   }
 }
+#projectnav.site_admins {
+  li.bootstrap {
+    font-size: 12px;
+    background-color: inherit;
+  }
+  .dropdown-menu > li > label {
+    display: block;
+    padding: 3px 8px;
+    clear: both;
+    font-weight: normal;
+    line-height: 1;
+    color: #333;
+    white-space: nowrap;
+  }
+}

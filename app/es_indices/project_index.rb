@@ -10,7 +10,8 @@ class Project < ActiveRecord::Base
     :project_users,
     :observation_fields,
     :project_observation_rules,
-    :stored_preferences
+    :stored_preferences,
+    :site_featured_projects
   ) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -56,6 +57,11 @@ class Project < ActiveRecord::Base
       end
       indexes :flags do
         indexes :flag, type: "keyword"
+      end
+      indexes :site_features, type: :nested do
+        indexes :site_id
+        indexes :noteworthy, type: "boolean"
+        indexes :updated_at, type: "date"
       end
     end
   end
@@ -126,7 +132,8 @@ class Project < ActiveRecord::Base
       updated_at: updated_at,
       observations_count: obs_result ? obs_result.total_results : nil,
       spam: known_spam? || owned_by_spammer?,
-      flags: flags.map(&:as_indexed_json)
+      flags: flags.map(&:as_indexed_json),
+      site_features: site_featured_projects.map(&:as_indexed_json)
     }
   end
 

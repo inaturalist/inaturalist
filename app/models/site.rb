@@ -5,6 +5,7 @@ class Site < ActiveRecord::Base
   has_many :posts, as: :parent, dependent: :destroy
   has_many :journal_posts, class_name: "Post", as: :parent, dependent: :destroy
   has_many :announcements, inverse_of: :site, dependent: :destroy
+  has_many :site_featured_projects, dependent: :destroy
 
   scope :live, -> { where(draft: false) }
   scope :drafts, -> { where(draft: true) }
@@ -43,89 +44,89 @@ class Site < ActiveRecord::Base
   preference :legacy_rest_auth_key, :string
 
   # default place ID for place filters. Presently only used on /places, but use may be expanded
-  belongs_to :place, :inverse_of => :sites
+  belongs_to :place, inverse_of: :sites
 
   # header logo, should be at least 118x22
   if CONFIG.usingS3
     has_attached_file :logo,
-      :storage => :s3,
-      :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :s3_protocol => CONFIG.s3_protocol || "https",
-      :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
-      :s3_region => CONFIG.s3_region,
-      :bucket => CONFIG.s3_bucket,
-      :path => "sites/:id-logo.:extension",
-      :url => ":s3_alias_url",
-      :default_url => "logo-small.gif"
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      s3_region: CONFIG.s3_region,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-logo.:extension",
+      url: ":s3_alias_url",
+      default_url: "logo-small.gif"
     invalidate_cloudfront_caches :logo, "sites/:id-logo.*"
   else
     has_attached_file :logo,
-      :path => ":rails_root/public/attachments/sites/:id-logo.:extension",
-      :url => "/attachments/sites/:id-logo.:extension",
-      :default_url => "logo-small.gif"
+      path: ":rails_root/public/attachments/sites/:id-logo.:extension",
+      url: "/attachments/sites/:id-logo.:extension",
+      default_url: "logo-small.gif"
   end
-  validates_attachment_content_type :logo, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
-    :message => "must be JPG, PNG, SVG, or GIF"
+  validates_attachment_content_type :logo, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/, /svg/], 
+    message: "must be JPG, PNG, SVG, or GIF"
 
   # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
   if CONFIG.usingS3
     has_attached_file :logo_square,
-      :storage => :s3,
-      :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :s3_protocol => CONFIG.s3_protocol || "https",
-      :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
-      :s3_region => CONFIG.s3_region,
-      :bucket => CONFIG.s3_bucket,
-      :path => "sites/:id-logo_square.:extension",
-      :url => ":s3_alias_url",
-      :default_url => "bird.png"
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      s3_region: CONFIG.s3_region,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-logo_square.:extension",
+      url: ":s3_alias_url",
+      default_url: "bird.png"
     invalidate_cloudfront_caches :logo_square, "sites/:id-logo_square.*"
   else
     has_attached_file :logo_square,
-      :path => ":rails_root/public/attachments/sites/:id-logo_square.:extension",
-      :url => "/attachments/sites/:id-logo_square.:extension",
-      :default_url => "bird.png"
+      path: ":rails_root/public/attachments/sites/:id-logo_square.:extension",
+      url: "/attachments/sites/:id-logo_square.:extension",
+      default_url: "bird.png"
   end
-  validates_attachment_content_type :logo_square, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
-    :message => "must be JPG, PNG, or GIF"
+  validates_attachment_content_type :logo_square, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/],
+    message: "must be JPG, PNG, or GIF"
 
   # large square branding image that appears on pages like /login. Should be 300 px wide and about that tall
   if CONFIG.usingS3
     has_attached_file :logo_email_banner,
-      :storage => :s3,
-      :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :s3_protocol => CONFIG.s3_protocol || "https",
-      :s3_region => CONFIG.s3_region,
-      :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
-      :bucket => CONFIG.s3_bucket,
-      :path => "sites/:id-logo_email_banner.:extension",
-      :url => ":s3_alias_url",
-      :default_url => "inat_email_banner.png"
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_region: CONFIG.s3_region,
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-logo_email_banner.:extension",
+      url: ":s3_alias_url",
+      default_url: "inat_email_banner.png"
     invalidate_cloudfront_caches :logo_email_banner, "sites/:id-logo_email_banner.*"
   else
     has_attached_file :logo_email_banner,
-      :path => ":rails_root/public/attachments/sites/:id-logo_email_banner.:extension",
-      :url => "/attachments/sites/:id-logo_email_banner.:extension",
-      :default_url => "inat_email_banner.png"
+      path: ":rails_root/public/attachments/sites/:id-logo_email_banner.:extension",
+      url: "/attachments/sites/:id-logo_email_banner.:extension",
+      default_url: "inat_email_banner.png"
   end
-  validates_attachment_content_type :logo_email_banner, :content_type => [/jpe?g/i, /png/i, /gif/i, /octet-stream/], :message => "must be JPG, PNG, or GIF"
+  validates_attachment_content_type :logo_email_banner, content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/], message: "must be JPG, PNG, or GIF"
       
   # CSS file to override default styles
   if CONFIG.usingS3
     has_attached_file :stylesheet,
-      :storage => :s3,
-      :s3_credentials => "#{Rails.root}/config/s3.yml",
-      :s3_protocol => CONFIG.s3_protocol || "https",
-      :s3_region => CONFIG.s3_region,
-      :s3_host_alias => CONFIG.s3_host || CONFIG.s3_bucket,
-      :bucket => CONFIG.s3_bucket,
-      :path => "sites/:id-stylesheet.css",
-      :url => ":s3_alias_url"
+      storage: :s3,
+      s3_credentials: "#{Rails.root}/config/s3.yml",
+      s3_protocol: CONFIG.s3_protocol || "https",
+      s3_region: CONFIG.s3_region,
+      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+      bucket: CONFIG.s3_bucket,
+      path: "sites/:id-stylesheet.css",
+      url: ":s3_alias_url"
     invalidate_cloudfront_caches :stylesheet, "sites/:id-stylesheet.css"
   else
     has_attached_file :stylesheet,
-      :path => ":rails_root/public/attachments/sites/:id-stylesheet.css",
-      :url => "/attachments/sites/:id-stylesheet.css"
+      path: ":rails_root/public/attachments/sites/:id-stylesheet.css",
+      url: "/attachments/sites/:id-stylesheet.css"
   end
 
   validates_attachment_content_type :stylesheet, content_type: [
@@ -140,10 +141,10 @@ class Site < ActiveRecord::Base
   preference :about_url, :string
 
   # URL where visitors can get help using the site
-  preference :help_url, :string, :default => "/pages/help"
+  preference :help_url, :string, default: "/pages/help"
   
   # URL where visitors can get started using the site
-  preference :getting_started_url, :string, :default => "/pages/getting+started"
+  preference :getting_started_url, :string, default: "/pages/getting+started"
 
   # URL where press can learn more about the site and get assets
   preference :press_url, :string
@@ -179,7 +180,7 @@ class Site < ActiveRecord::Base
   preference :site_observations_filter, :string, default: OBSERVATIONS_FILTERS_PLACE
 
   # Used in places like /people
-  preference :site_only_users, :boolean, :default => false
+  preference :site_only_users, :boolean, default: false
 
   # iOS app ID. Used to display header notice about app in mobile views
   preference :ios_app_id, :string
@@ -316,6 +317,10 @@ class Site < ActiveRecord::Base
     if Site.default && self.id == Site.default.id
       Site.default( refresh: true )
     end
+  end
+
+  def short_url
+    url.sub( /https?:\/\//, "" ).sub( /\/$/, "" )
   end
 
 end

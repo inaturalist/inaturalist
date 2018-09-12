@@ -347,6 +347,11 @@ Site.blueprint do
   url { "http://#{Faker::Internet.domain_name}" }
 end
 
+SiteAdmin.blueprint do
+  user { User.make! }
+  site { Site.make! }
+end
+
 SiteStatistic.blueprint do
   data { {
     observations: { },

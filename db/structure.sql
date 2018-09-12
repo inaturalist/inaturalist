@@ -3524,6 +3524,41 @@ ALTER SEQUENCE site_admins_id_seq OWNED BY site_admins.id;
 
 
 --
+-- Name: site_featured_projects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE site_featured_projects (
+    id integer NOT NULL,
+    site_id integer,
+    project_id integer,
+    user_id integer,
+    noteworthy boolean DEFAULT false,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: site_featured_projects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE site_featured_projects_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: site_featured_projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE site_featured_projects_id_seq OWNED BY site_featured_projects.id;
+
+
+--
 -- Name: site_statistics; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5319,6 +5354,13 @@ ALTER TABLE ONLY site_admins ALTER COLUMN id SET DEFAULT nextval('site_admins_id
 
 
 --
+-- Name: site_featured_projects id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY site_featured_projects ALTER COLUMN id SET DEFAULT nextval('site_featured_projects_id_seq'::regclass);
+
+
+--
 -- Name: site_statistics id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6188,6 +6230,14 @@ ALTER TABLE ONLY sessions
 
 ALTER TABLE ONLY site_admins
     ADD CONSTRAINT site_admins_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: site_featured_projects site_featured_projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY site_featured_projects
+    ADD CONSTRAINT site_featured_projects_pkey PRIMARY KEY (id);
 
 
 --
@@ -8008,6 +8058,13 @@ CREATE INDEX index_site_admins_on_user_id ON site_admins USING btree (user_id);
 
 
 --
+-- Name: index_site_featured_projects_on_site_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_site_featured_projects_on_site_id_and_project_id ON site_featured_projects USING btree (site_id, project_id);
+
+
+--
 -- Name: index_sites_on_place_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9333,4 +9390,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180803162216');
 INSERT INTO schema_migrations (version) VALUES ('20180821031507');
 
 INSERT INTO schema_migrations (version) VALUES ('20180822173011');
+
+INSERT INTO schema_migrations (version) VALUES ('20180911144001');
 

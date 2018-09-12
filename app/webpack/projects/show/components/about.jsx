@@ -8,6 +8,7 @@ import SubprojectsList from "./subprojects_list";
 import UserText from "../../../shared/components/user_text";
 import UserLink from "../../../shared/components/user_link";
 import UserImage from "../../../shared/components/user_image";
+import FeatureButtonContainer from "../containers/feature_button_container";
 
 class About extends React.Component {
   render( ) {
@@ -19,7 +20,9 @@ class About extends React.Component {
             <Col xs={ 12 }>
               <div
                 className="back linky"
-                onClick={ () => setSelectedTab( project.is_umbrella ? "umbrella_overview" : "overview" ) }
+                onClick={ () =>
+                  setSelectedTab( project.is_umbrella ? "umbrella_overview" : "overview" )
+                }
               >
                 <i className="fa fa-angle-left" />
                 { I18n.t( "back_to_x", { noun: project.title } ) }
@@ -64,6 +67,7 @@ class About extends React.Component {
                     </tr>
                   </tbody>
                 </table>
+                <FeatureButtonContainer />
               </div>
             </Col>
             <Col xs={ 5 } className="requirements-col">

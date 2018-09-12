@@ -376,11 +376,6 @@ export function submitProject( ) {
       payload.project.admin_attributes.push( projectUserPayload );
     } );
 
-    // add featured_at flag
-    if ( viewerIsAdmin ) {
-      payload.project.featured_at = project.featured_at ? "1" : null;
-    }
-
     dispatch( updateProject( { saving: true } ) );
     if ( project.id ) {
       payload.id = project.slug;
