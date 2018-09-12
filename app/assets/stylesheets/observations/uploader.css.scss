@@ -551,6 +551,17 @@ ul.obs > li .card {
 
 .modal {
   &.location {
+
+    .modal-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      min-height: 508px;
+      overflow: hidden;
+    }
+
+
     .modal-header {
       .glyphicon {
         font-size: 0.9em;
@@ -559,10 +570,16 @@ ul.obs > li .card {
     }
     .modal-dialog {
       width: 80%;
+      height: 90%;
+      display: flex;
     }
     .modal-body {
-      height: 400px;
+      min-height: 400px;
       padding: 10px;
+      flex: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
     .modal-header {
       padding: 10px 10px 5px 10px;
@@ -609,7 +626,8 @@ ul.obs > li .card {
     }
   }
   .map {
-    height: 310px;
+    min-height: 310px;
+    flex: 2;
     .photo-marker {
       width: 50px;
       height: 50px;
@@ -904,6 +922,7 @@ label {
           padding: 0;
           border: 0 transparent;
           color: $text-grey;
+          background-color: transparent;
           &:hover {
             color: red;
           }

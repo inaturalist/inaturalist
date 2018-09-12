@@ -219,7 +219,8 @@ class LocationChooser extends SelectionBasedComponent {
                     lat: sl.latitude,
                     lng: sl.longitude
                   },
-                  show: true
+                  show: true,
+                  fitCurrentCircle: true
                 } } );
               } }
               removeLocation={ sl => this.props.removeSavedLocation( sl ) }

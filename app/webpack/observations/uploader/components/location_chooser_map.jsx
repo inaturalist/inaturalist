@@ -75,7 +75,11 @@ class LocationChooserMap extends React.Component {
       if ( !this.props.center ) {
         setTimeout( this.fitCircles, 10 );
       }
-    } else if ( this.props.show && objectToComparable( this.props.center ) !== objectToComparable( prevProps.center ) ) {
+    } else if (
+      this.props.show &&
+      this.props.fitCurrentCircle &&
+      objectToComparable( this.props.center ) !== objectToComparable( prevProps.center )
+    ) {
       setTimeout( this.fitCurrentCircle, 10 );
     }
   }
@@ -118,6 +122,7 @@ class LocationChooserMap extends React.Component {
       ).getBounds( );
       this.map.fitBounds( bounds );
     }
+    this.props.updateState( { locationChooser: { fitCurrentCircle: false } } );
   }
 
   handleMapClick( event ) {
@@ -314,8 +319,9 @@ class LocationChooserMap extends React.Component {
         defaultCenter={ props.center || { lat: 30, lng: 15 } }
         onClick={ this.handleMapClick }
         onBoundsChanged={ ( ) => {
+          const c = this.map.getCenter( );
           this.props.updateState( { locationChooser: {
-            center: this.map.getCenter( ),
+            center: { lat: c.lat(), lng: c.lng() },
             bounds: this.map.getBounds( ),
             zoom: this.map.getZoom( )
           } } );
@@ -323,7 +329,7 @@ class LocationChooserMap extends React.Component {
         options={{
           streetViewControl: false,
           fullscreenControl: true,
-          gestureHandling: "auto"
+          gestureHandling: "greedy"
         }}
       >
         {/*
@@ -377,7 +383,8 @@ LocationChooserMap.propTypes = {
   center: PropTypes.object,
   bounds: PropTypes.object,
   notes: PropTypes.string,
-  manualPlaceGuess: PropTypes.bool
+  manualPlaceGuess: PropTypes.bool,
+  fitCurrentCircle: PropTypes.bool
 };
 
 LocationChooserMap.defaultProps = {
