@@ -7,35 +7,33 @@ const PreviousNextButtons = ( { otherObservations, showNewObservation, config } 
   const nextDisabled = _.isEmpty( otherObservations.laterUserObservations );
   let prevAction = ( ) => { };
   let nextAction = ( ) => { };
-  let prevAlt;
-  let nextAlt;
+  let prevAlt = I18n.t( "unknown" );
+  let nextAlt = I18n.t( "unknown" );
+  const userPrefersSciname = config && config.currentUser &&
+    config.currentUser.prefers_scientific_name_first;
   if ( !previousDisabled ) {
     const previousObs = otherObservations.earlierUserObservations[0];
     prevAction = ( ) => { showNewObservation( previousObs, { useInstance: true } ); };
     if ( previousObs.taxon ) {
-      if ( config && config.currentUser && config.currentUser.prefers_scientific_name_first ) {
-        prevAlt = previousObs.taxon.name;
-      } else {
-        prevAlt = previousObs.taxon.preferred_common_name || previousObs.taxon.name;
+      prevAlt = previousObs.taxon.name;
+      if ( previousObs.taxon.preferred_common_name && !userPrefersSciname ) {
+        prevAlt = iNatModels.Taxon.titleCaseName( previousObs.taxon.preferred_common_name );
       }
-    } else {
-      prevAlt = I18n.t( "unknown" );
+    } else if ( previousObs.species_guess ) {
+      prevAlt = previousObs.species_guess;
     }
-    prevAlt = iNatModels.Taxon.titleCaseName( prevAlt );
   }
   if ( !nextDisabled ) {
     const nextObs = otherObservations.laterUserObservations[0];
     nextAction = ( ) => { showNewObservation( nextObs, { useInstance: true } ); };
     if ( nextObs.taxon ) {
-      if ( config && config.currentUser && config.currentUser.prefers_scientific_name_first ) {
-        nextAlt = nextObs.taxon.name;
-      } else {
-        nextAlt = nextObs.taxon.preferred_common_name || nextObs.taxon.name;
+      nextAlt = nextObs.taxon.name;
+      if ( nextObs.taxon.preferred_common_name && !userPrefersSciname ) {
+        nextAlt = iNatModels.Taxon.titleCaseName( nextObs.taxon.preferred_common_name );
       }
-    } else {
-      nextAlt = I18n.t( "unknown" );
+    } else if ( nextObs.species_guess ) {
+      nextAlt = nextObs.species_guess;
     }
-    nextAlt = iNatModels.Taxon.titleCaseName( nextAlt );
   }
   return (
     <div className="PreviousNextButtons">
