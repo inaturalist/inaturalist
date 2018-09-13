@@ -7,12 +7,12 @@ shared_examples_for "a SavedLocationsController" do
     it "shows the current user's saved locations" do
       saved_location = SavedLocation.make!( user: user )
       get :index, format: :json
-      expect( JSON.parse( response.body ).detect{|sl| sl["id"] == saved_location.id } ).not_to be_blank
+      expect( JSON.parse( response.body )["results"].detect{|sl| sl["id"] == saved_location.id } ).not_to be_blank
     end
     it "does not show other users' saved locations" do
       saved_location = SavedLocation.make!
       get :index, format: :json
-      expect( JSON.parse( response.body ).detect{|sl| sl["id"] == saved_location.id } ).to be_blank
+      expect( JSON.parse( response.body )["results"].detect{|sl| sl["id"] == saved_location.id } ).to be_blank
     end
   end
 
