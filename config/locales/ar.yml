@@ -73,9 +73,6 @@ ar:
   x_others:
     one: 1 آخر
     other: '%{count} آخرون'
-  x_people:
-    one: 1 شخص
-    other: '%{count} أشخاص'
   x_people_found_this_helpful:
     one: شخص واحد وجد هذا مفيدا
     other: '%{count} أشخاص وجدوا هذا مفيدا'
@@ -1040,6 +1037,7 @@ ar:
   cumulative_ids: 'المعرفات التراكمية: %{count} لـ%{total}'
   curate_observations: الإشراف على الملاحظات
   curate_taxa: تنظيف الأصناف
+  curate_user: الإشراف على المستخدم
   curate_users: الإشراف على المستخدمين
   curated: تم تقييمه
   curated_checklist: قائمة تدقيق منسقة
@@ -1483,6 +1481,9 @@ ar:
   follower: متابع
   followers: متابعون
   following: التالي
+  following_x_people:
+    one: متابعة شخص واحد
+    other: متابعة Following %{count} أشخاص
   for: لـ
   for_a_taxon: لأصنوفة
   for_a_widget_showing_recent_observations_from: بالنسبة للأداة التي تعرض الملاحظات
@@ -2063,6 +2064,7 @@ ar:
     ko: الكورية
     lb: اللوكسمبرغية
     mk: المقدونية
+    nl: الهولندية
     oc: القسطانية
     pt-BR: البرتغالية (البرازيل).
     pt-PT: البرتغالية (البرتغال)
@@ -2218,6 +2220,7 @@ ar:
       MM: '%dmo'
       "y": سنة واحدة
       yy: '%dy'
+    datetime_with_zone: ي شش سسسس · LT مز
   mon: شهر
   month: شهر
   months: أشهر
@@ -3152,6 +3155,7 @@ ar:
   quality_grade_colon: 'درجة الجودة:'
   queued: في قائمة الانتظار
   query: استعلام
+  random: عشوائي
   range: النطاق
   range_from: مجموعة من
   rank: المرتبة
@@ -3170,6 +3174,7 @@ ar:
     order: رتبة
     suborder: رتيبة
     infraorder: تحت رتبة
+    subterclass: طائفة فرعية
     parvorder: رتبة صغرى
     zoosection: قسم حديقة الحيوان
     zoosubsection: قسم حديقة الحيوان القرعي
@@ -4301,7 +4306,6 @@ ar:
     &raquo;</nobr>
   view_more_recent_observations: عرض المزيد من الملاحظات الأخيرة
   view_more_unreviewed: عرض المزيد مما لم تتم مراجعته
-  view_nbsp: عرض &nbsp;
   view_observation: عرض الملاحظة
   view_observations: عرض الملاحظات
   view_observation_flags: عرض أعلام الملاحظة

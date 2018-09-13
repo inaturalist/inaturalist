@@ -229,7 +229,7 @@ namespace :inaturalist do
                  "taxon_split", "taxon_stage", "taxon_drop",
                  "lexicons", "places_name",
                  "data_quality", "checklist", "misidentifications",
-                 "frequency", "rg_observations", "supporting"
+                 "frequency", "rg_observations", "supporting", "random"
                 ]
     %w(
       all_taxa

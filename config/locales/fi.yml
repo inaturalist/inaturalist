@@ -62,9 +62,6 @@ fi:
   x_others:
     one: 1 muu
     other: '%{count} muuta'
-  x_people:
-    one: 1 henkilö
-    other: '%{count} henkilöä'
   x_people_found_this_helpful:
     one: Yhden henkilön mielestä tästä oli apua
     other: '%{count} henkilön mielestä tästä oli apua'
@@ -205,8 +202,8 @@ fi:
   add_colors: Lisää värejä
   add_comma_separated_tags: Lisää pilkulla erotellut tunnisteet
   add_comment: Lisää kommentti
-  add_common_names_for: lisää yleisiä nimiä nykyisiin taksoneihin
-  add_conservation_status: lisää suojelutaso
+  add_common_names_for: Lisää yleisiä nimiä nykyisiin taksoneihin
+  add_conservation_status: Lisää suojelutaso
   add_countries: Lisää maita
   add_custom_project_fields: Lisää mukautettuja projektikenttiä
   add_edit_flags: Lisää/muokkaa merkintöjä
@@ -543,8 +540,8 @@ fi:
   you_sure_delete_list: Haluatko varmasti poistaa tämän listan?
   you_sure_delete_taxon_from_list?: Oletko varma, että haluat poistaa taksonin %{taxon}
     listasta?
-  asc: nouseva
-  ascending: nouseva
+  asc: Nouseva
+  ascending: Nouseva
   aside_from_extraordinary_circumstances: Lukuunottamatta poikkeuksellisia olosuhteita,
     emme koskaan kysy salasanaasi.
   assessment: arviointi
@@ -3160,7 +3157,6 @@ fi:
   view_more_observations_of_x_project: Näytä lisää havaintoja projektista %{project}
     sivustolla <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Näytä lisää viimeaikaisia havaintoja
-  view_nbsp: Näytä &nbsp;
   view_observation: Näytä havainto
   view_observations: Näytä havainnot
   view_observation_flags: Näytä havaintoliput

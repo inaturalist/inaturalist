@@ -34,9 +34,6 @@ eu:
   x_observations_html:
     one: <span class='count'>1</span> behaketa
     other: <span class='count'>%{count}</span> behaketak
-  x_people:
-    one: 1 lagun
-    other: '%{count} lagun'
   x_species:
     one: 1 espezie
     other: '%{count} espezie'
@@ -123,7 +120,7 @@ eu:
   add_a_new_change_group: Gehitu beste aldaketa bat taldean
   add_a_new_observation_to_id_please!: '¡Oharra gehitu honi: "ID mesedez"!'
   add_a_place_raquo: '&raquo; leku bat gehitu'
-  add_a_single_observation: Ohar arrunta gehitu
+  add_a_single_observation: Ohar arrunta gehitu.
   add_a_taxon: Espeziea edo taldea gehitu
   add_all_your_matching_obs_of_this_taxon: . Gehitu espezie edo talde horrek proiektu
     honi egindako ohar guztiak
@@ -135,15 +132,15 @@ eu:
   add_an_observation?: Oharra gehitu?
   add_an_observation_of: 'Honi buruzko oharra gehitu: %{taxon}'
   add_another: Beste bat gehitu
-  add_another_flag: Beste marka bat gehitu.
+  add_another_flag: Beste bandera bat gehitu
   add_another_photo: Beste argazki bat gehitu
   add_another_section: Sekzio berria gehitu
   add_another_subscription: Beste harpidetza bat gehitu
   add_asset: Aktiboa gehitu
-  add_batch: Taldea gehitu
+  add_batch: Lotea gehitu
   add_colors: Koloreak gehitu
   add_comma_separated_tags: Komarekin bereiztutako etiketak gehitu
-  add_comment: Oharra gehitu
+  add_comment: Iruzkina gehitu
   add_common_names_for: Izen arruntak gehitu lehendik dauden taxonei
   add_conservation_status: iraute egoera gehitu
   add_countries: Herrialdeak gehitu
@@ -198,13 +195,13 @@ eu:
   add_several_observations_at_once: Hainbat ohar gehitu aldi berean
   add_sex_female_annotation: 'Gehitu: "Sexua: Emakumezkoa" oharra'
   add_sex_male_annotation: 'Gehitu: "Sexua: Gizonezkoa" oharra'
-  add_shape: Muga gehitu
+  add_shape: Forma gehitu
   add_some_now: Batzuk orain gehitu
-  add_tag: Gehitu etiketa
-  add_tags: Ekiketak gehitu
+  add_tag: Etiketa gehitu
+  add_tags: Etiketak gehitu
   add_tags_to_selected_taxa: Aukeratutako taxoiei etiketak gehitu
-  add_taxa: Taxonak gehitu
-  add_taxa_to_places: Taxonak gehitu lekuetara
+  add_taxa: Taxoia gehitu
+  add_taxa_to_places: Taxoiak gehitu lekuetara
   add_taxon_batch_to: 'Taxon-zerrenda gehitu hona: %{list}'
   add_taxon_range: Taxon maila gehitu
   add_taxonomic_tags_to: Etiketa taxonomikoak gehitu hautatutako Flickr-eko » argazkiei;
@@ -214,16 +211,16 @@ eu:
   add_to_a_scheme: Eskema batetara gehitu
   add_to_a_project: Proiektu batera gehitu
   add_to_calendar: Egutegira gehitu
-  add_to_checklist: ikuste-zerrendara gehitu
-  add_to_favorites: Gustokoentara gehitu
+  add_to_checklist: Ikuste-zerrendara gehitu
+  add_to_favorites: Gustukoenetara gehitu
   add_to_id_please: ID eskatu
   add_to_list: Zerrendara gehitu
   add_to_project: Proiektura gehitu
-  add_to_your_life_list: Bizitzako zerrendara gehitu
+  add_to_your_life_list: Bizitzako zerrendara gehitu!
   add_to_your_list: Zure zerrendara gehitu
   add_your_own_observations_at: 'Zure oharrak gehitu hemen: %{site_name}'
   add_your_photo: Zure argazkia gehitu
-  add_your_photo_to: 'Zure argazkia gehitu hona: %{project}'
+  add_your_photo_to: Zure argazkia %{project}-ra gehitu
   added: 'Egun honetan gehitua:'
   added!: Gehituta!
   added_an: 'Gehitu dut:'
@@ -428,8 +425,8 @@ eu:
   attention: Erne
   you_sure_delete_list: Ziur zaude zerrenda hau ezabatu nahi duzula?
   you_sure_delete_taxon_from_list?: Ziur zaude %{taxon} zerrendatik ezabatu nahi duzula?
-  asc: goranz.
-  ascending: goranzkoa
+  asc: Goranz.
+  ascending: Goranzkoa
   aside_from_extraordinary_circumstances: Ohiz kanpoko baldintzetan izan ezik, inoiz
     ez dizugu pasahitza eskatuko.
   assessment: balorazioa
@@ -520,7 +517,7 @@ eu:
   by_adding_ids_to_observations: oharrei identifikadoreak gehituta
   by_everyone: Edonork
   by_project_list: proiektu-zerrendaren arabera
-  by_user: 'honek: %{user}'
+  by_user: 'Nork: %{user}'
   by_you: Norbere
   calendar: Egutegia
   can_you_help_your_friends_id_these: Ohar hauek identifikatzen lagundu al dezakezu?
@@ -531,7 +528,7 @@ eu:
   card: Txartela
   casual: ustekabekoa
   catalogue_of_life: Bizitzako katalogoa
-  categories: kategoriak
+  categories: Kategoriak
   cc_attribution_license: Creative Commons-eko esleipen-lizentzia
   cc_by_description: Lizentzia honek beste pertsona batzuei zure lanetik abiatuta
     banatzea, konbinatzea, doitzea eta eraikitzea ahalbidetzen die, baita merkataritzako
@@ -841,7 +838,7 @@ eu:
   date_: Data
   date?: Data?
   date_added: Gehitutako data
-  date_created: sortze-data
+  date_created: Sortze-data
   date_format:
     date_long:
       january: '%{year}(e)ko urtarrilak %{day}'
@@ -902,9 +899,9 @@ eu:
   delete_your_account: Zure kontua ezabatu
   deleting: Ezabatzen...
   deleting_verb: Ezabatzen
-  desc: beher.
+  desc: Beher.
   descendant_taxa: taxon ondorengoak
-  descending: beheranzkoa
+  descending: Beheranzkoa
   describe_purpose: Deskribatu proiektu honen helburua
   describe_your_interest_in_nature: Deskribatu naturari buruz duzun interesa!
   description: Deskribapena
@@ -960,7 +957,7 @@ eu:
   edit_atlas: Atlasa Aldatu
   edit_body: Gorputza aldatu
   edit_colors: Koloreak aldatu
-  edit_comment: Oharra aldatu
+  edit_comment: Zure iruzkina aldatu
   edit_custom_project_fields: Pertsonalizatutako proiektu-eremuak aldatu
   edit_flagged_observation: Markatutako oharra editatu
   edit_license: Lizentzia aldatu
@@ -973,19 +970,19 @@ eu:
   edit_observations: Oharrak aldatu
   edit_photos: Argazkiak aldatu
   edit_photos_for_observation_id: '%{obs_id} behaketarako argazkiak aldatu'
-  edit_place: lekua aldatu
+  edit_place: Lekua aldatu
   edit_project: Proiektua aldatu
-  edit_range_raquo: Maila aldatu »
+  edit_range_raquo: Maila aldatu &raquo;
   edit_remove: Modificar/Quitar
   edit_selected: Hautatutakoak aldatu
   edit_source: Iturria aldatu
-  edit_taxa: Taxonak editatu
+  edit_taxa: Taxoiak editatu
   edit_taxon_change: Aldatu espezie edo taldeko aldaketak
   edit_taxon_link: Taxonaren esteka aldatu
   edit_taxon_range: Taxonaren maila aldatu
   edit_the_observation: Oharra aldatu
   edit_this_link: Esteka hau aldatu
-  edit_your_account: zure kontua aldatu
+  edit_your_account: Zure kontua aldatu
   edit_your_account_and_profile_html: Zure kontua eta profila aldatu
   edit_your_identification: Zure identifikazioa aldatu
   edit_your_profile: Zure profila aldatu
@@ -1026,13 +1023,13 @@ eu:
   error_updating_photo: 'Errorea argazkia igotzean: %{photo_errors}'
   establishment:
     establishment: Sailkapena
-    native: bertakoa
-    endemic: endemikoa
-    introduced: sartua
-    naturalised: naturalizatua
-    invasive: inbaditzailea
-    managed: gatibutasuna/landua
-  establishment_means: Kokatzeko modua.
+    native: Bertakoa
+    endemic: Endemikoa
+    introduced: Sartua
+    naturalised: Naturalizatua
+    invasive: Inbaditzailea
+    managed: Gatibutasuna/Landua
+  establishment_means: Kokatzeko moduak
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: Mexikon soilik gertatzen da
     arrived_in_the_region_via_anthropogenic_means: baliabide antropogenoen bidez iritsi
@@ -1049,10 +1046,10 @@ eu:
   exact_date: Data zehatza
   exact_location: Kokapen zehatza
   exact_rank: Tarte zehatza
-  existing_flags: Existitzen diren markak.
-  exit_full_screen: Irten pantaila osotik.
-  expand_days: egunak zabaldu
-  expand_updates: eguneraketak zabaldu
+  existing_flags: Existitzen diren banderak
+  exit_full_screen: Irten pantaila osotik
+  expand_days: Egunak zabaldu
+  expand_updates: Eguneraketak zabaldu
   explore!: Ezagutu!
   explore: Esploratu
   explore_everyones_observations: Denen oharrak arakatu.
@@ -2078,7 +2075,7 @@ eu:
   original: Jatorrizkoa
   originally_flagged_by: 'Jatorrian ohartarazpen gisa jarri zuen honek:'
   organism_appears_captive_cultivated: Organismoak gatibua/landua dirudi
-  other: beste
+  other: Beste
   other_animals: beste animalia batzuk
   other_animals_plural:
     one: beste animalia bat
@@ -2099,7 +2096,7 @@ eu:
   people_agree: ados dauden pertsonak
   people_following_user: 'Honi jarraitzen dioten pertsonak: %{user}'
   people_user_follows: Jendea %{user} Jarraitzaileak
-  person: pertsona
+  person: Pertsona
   personal_message: Mezu pertsonala
   personal_message_description: Inork ez du gustuko mezu automatikoak jasotzea. Lagunei
     zergatik gonbidatzen dituzun azal diezaiekezu.
@@ -2369,7 +2366,7 @@ eu:
     phylum: Filuma
     subphylum: Azpifiluma
     superclass: Superklasea
-    class: klasea
+    class: Klasea
     subclass: Azpiklasea
     superorder: Superordena
     order: Ordena
@@ -3163,7 +3160,6 @@ eu:
   view_more_observations_of_x_taxon: '%{taxon}-(r)en behaketa gehiago ikusi hemen:
     <nobr>%{site_name} »</nobr>'
   view_more_recent_observations: Duela gutxiko behaketa gehiago ikusi
-  view_nbsp: Ikusi  
   view_observation: Behaketa ikusi
   view_observations: Behaketak ikusi
   view_observations_of_this_taxon_by: Taxon honetako oharrak iksui
@@ -3716,7 +3712,7 @@ eu:
           eta kudeatzaileek beren proiektuko baliabideak sortu, eguneratu eta ezaba
           ditzakete.
       project_user_curator_coordinate_access_labels:
-        none: Inor
+        none: Ez.
     shared:
       not_found:
         sorry_that_doesnt_exist: Sentitzen dugu, hori ez da existitzen!

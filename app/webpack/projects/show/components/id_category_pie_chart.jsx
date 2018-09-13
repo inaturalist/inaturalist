@@ -15,30 +15,30 @@ const IdCategroryPieChart = ( { project } ) => {
   return (
     <div className="IconicTaxaPieChart">
       <div className="count-label">
-        { I18n.t( "x_identifications", { count: I18n.toNumber( total, { precision: 0 } ) } ) }
+        { I18n.t( "x_identifications_", { count: I18n.toNumber( total, { precision: 0 } ) } ) }
       </div>
       <PieChart
         data={[
           {
-            label: _.capitalize( I18n.t( "improving" ) ),
+            label: I18n.t( "improving" ),
             value: data.improving,
             color: COLORS.inatGreen,
             category: "improving"
           },
           {
-            label: _.capitalize( I18n.t( "supporting" ) ),
+            label: I18n.t( "supporting" ),
             value: data.supporting,
             color: COLORS.inatGreenLight,
             category: "supporting"
           },
           {
-            label: _.capitalize( I18n.t( "leading" ) ),
+            label: I18n.t( "leading" ),
             value: data.leading,
             color: COLORS.needsIdYellow,
             category: "leading"
           },
           {
-            label: _.capitalize( I18n.t( "maverick" ) ),
+            label: I18n.t( "maverick" ),
             value: data.maverick,
             color: COLORS.failRed,
             category: "maverick"

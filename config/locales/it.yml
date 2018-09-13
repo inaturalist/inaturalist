@@ -86,9 +86,6 @@ it:
   x_others:
     one: un altro
     other: '%{count} altri'
-  x_people:
-    one: 1 persona
-    other: '%{count} persone'
   x_people_found_this_helpful:
     one: Una persona lo ha trovato utile
     other: '%{count} persone lo hanno trovato utile'
@@ -236,12 +233,12 @@ it:
   add_colors: Aggiungi colori
   add_comma_separated_tags: Aggiungi etichette separate da virgole
   add_comment: Aggiungi un commento
-  add_common_names_for: aggiungi nomi comuni per taxa esistenti
-  add_conservation_status: aggiungi stato di conservazione
+  add_common_names_for: Aggiungi nomi comuni per taxa esistenti
+  add_conservation_status: Aggiungi stato di conservazione
   add_countries: Aggiungi Paesi
   add_custom_project_fields: Aggiungi campi personalizzati per il progetto
   add_edit_flags: Aggiungi/Modifica contrassegni
-  add_edit_more_fields: Aggiungi più campi/modifica
+  add_edit_more_fields: Aggiungi/modifica più campi
   add_editor: Aggiungi Editor
   add_description: Aggiungi %{description_name}
   add_field: Aggiungi campo
@@ -269,7 +266,7 @@ it:
   add_observations: Aggiungi osservazioni
   add_observations_by_checking_off: Aggiungi osservazioni spuntando le specie da una
     lista
-  add_observations_from_list: Aggiungi osservazioni da una lista
+  add_observations_from_list: Aggiungi osservazioni da un'elenco
   add_observations_of_taxa_youve_added: Aggiungi le osservazioni dei taxa che hai
     aggiunto a una lista. In fase di sviluppo, stiamo risolvendo i bug...
   add_observations_project: Aggiungi osservazioni a questo progetto
@@ -318,8 +315,8 @@ it:
   add_to_id_please: Aggiungi a "ID per favore"
   add_to_list: Aggiungi all'elenco
   add_to_project: Aggiungi al progetto
-  add_to_your_life_list: Aggiungi alla tua Lista degli Esseri Viventi!
-  add_to_your_list: Aggiungi alla tua lista
+  add_to_your_life_list: Aggiungi al tuo elenco degli esseri viventi!
+  add_to_your_list: Aggiungi al tuo elenco
   add_your_email_to_get: Inserisci la tua mail per avere feedback riguardo le tue
     osservazioni da parte della community. Se preferisci non condividerla, torna presto
     a fare un controllo!
@@ -597,8 +594,8 @@ it:
   attention: Attenzione
   you_sure_delete_list: Sei sicuro di voler cancellare questa lista?
   you_sure_delete_taxon_from_list?: Sei sicuro di voler rimuovere %{taxon} dall'elenco?
-  asc: cresc
-  ascending: crescente
+  asc: Cresc
+  ascending: Crescente
   aside_from_extraordinary_circumstances: Salvo circostanze straordinarie, non ti
     chiederemo mai la tua password.
   assessment: valutazione
@@ -723,7 +720,7 @@ it:
   by_adding_ids_to_observations: aggiungendo le ID alle osservazioni
   by_everyone: Da tutti
   by_project_list: per la lista del progetto
-  by_user: da %{user}
+  by_user: Da %{user}
   by_you: Le mie
   calendar: Calendario
   calendars_only_show_x_observations_at_time: I calendari mostrano solo %{x} osservazioni
@@ -740,7 +737,7 @@ it:
   casual: casuale
   casual_: Casuale
   catalogue_of_life: Catalogue of Life
-  categories: categorie
+  categories: Categorie
   cc_0_description: Questa licenza rilascia il tuo lavoro nel pubblico dominio, in
     modo che altri possano copiare, modificare, distribuire ed eseguire il tuo lavoro,
     anche a fini commerciali, il tutto senza chiedere il permesso o concedendoti crediti.
@@ -1136,7 +1133,7 @@ it:
   datatype: Tipo di dati
   date_: Data
   date?: Data?
-  date_added: Data inserimento
+  date_added: Data aggiunta
   date_created: Data creata
   date_format:
     date_long:
@@ -1210,9 +1207,9 @@ it:
   deleted_vote: Voto eliminato
   deleting: Eliminazione in corso...
   deleting_verb: Eliminazione in corso
-  desc: decr
+  desc: Decr
   descendant_taxa: taxa discendenti
-  descending: decrescente
+  descending: Decrescente
   describe_purpose: Descrivi lo scopo di questo progetto.
   describe_your_interest_in_nature: Descrivi il tuo interesse per la natura!
   description: Descrizione
@@ -1289,7 +1286,7 @@ it:
   edit_body: Modifica il corpo
   edit_colors: Modifica i colori
   edit_comment: Modifica il tuo commento
-  edit_custom_project_fields: Modifica i campi del progetto personalizzato
+  edit_custom_project_fields: Modifica i campi personalizzati del progetto
   edit_field: Modifica il campo
   edit_flagged_observation: Modifica l'osservazione contrassegnata
   edit_license: Modifica la licenza
@@ -1303,19 +1300,19 @@ it:
   edit_photos: Modifica le foto
   edit_photos_for_observation_id: Modifica la foto per l'osservazione %{obs_id}
   edit_place: Modifica il luogo
-  edit_project: Modifica il progetto
+  edit_project: Modifica progetto
   edit_range_raquo: Modifica l'areale &raquo;
   edit_remove: Modifica/Rimuovi
   edit_selected: Modifica i selezionati
   edit_source: Modifica la fonte
   edit_taxa: Modifica i taxa
   edit_taxon: Modifica taxon
-  edit_taxon_change: modifica il cambiamento del taxon
+  edit_taxon_change: Modifica il cambiamento del taxon
   edit_taxon_link: Modifica il link del taxon
   edit_taxon_range: Modifica l'areale del taxon
   edit_the_observation: Modifica l'osservazione
   edit_this_link: Modifica questo link
-  edit_your_account: modifica il tuo account
+  edit_your_account: Modifica la tua utenza
   edit_your_account_and_profile_html: Modifica il tuo account & il tuo profilo
   edit_your_default_settings: Modifica le tue impostazioni predefinite
   edit_your_global_project_settings: Modifica le impostazioni globali del progetto
@@ -1377,12 +1374,12 @@ it:
   error_updating_photo: 'Errore nell''aggiornamento della foto: %{photo_errors}'
   establishment:
     establishment: Origine
-    native: nativa
-    endemic: endemica
-    introduced: introdotta
-    naturalised: naturalizzata
-    invasive: invasiva
-    managed: gestita
+    native: Nativa
+    endemic: Endemica
+    introduced: Introdotta
+    naturalised: Naturalizzata
+    invasive: Invasiva
+    managed: Gestita
   establishment_means: Origine di occupazione
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: nativa e non presente da nessun'altra parte
@@ -1410,8 +1407,8 @@ it:
   existing_flags: Contrassegni esistenti
   exit_full_screen: Esci dalla modalità a tutto schermo
   examples_of_ranking_organizations: Esempi di organizzazioni di classificazione
-  expand_days: espandi i giorni
-  expand_updates: espandi gli aggiornamenti
+  expand_days: Espandi i giorni
+  expand_updates: Espandi gli aggiornamenti
   explore!: Esplora!
   explore: Esplora
   explore_everyones_observations: Esplora le osservazioni di tutti
@@ -1448,7 +1445,7 @@ it:
   faves: Preferiti
   Family: Famiglia
   faved_this_observation: ha aggiunto ai preferiti questa osservazione
-  favorite_taxa: taxa preferiti
+  favorite_taxa: Taxa preferiti
   favorites: Contenuto preferito
   fblocale: it_IT
   feature_this_project: Vuoi evidenziare il progetto?
@@ -1525,7 +1522,7 @@ it:
   flag_marked_as_resolved_html: <span class="meta">Segnalazione segnata come</span>
     <strong>risolta.</strong>
   flag_reason: '&ldquo;Sto contrassegnando questo %{record} perché'
-  flag_saved: Contrassegno salvato.
+  flag_saved: Contrassegno salvato
   flag_saved_thanks: Contrassegno salvato. Grazie!
   flag_this_observation: Contrassegna questa osservazione
   flag_this_photo: Contrassegna questa foto
@@ -1662,11 +1659,11 @@ it:
   has_id_supported_by_two_or_more: Ha un'ID supportata da due o più
   has_one_or_more_faves: Ha una o più preferenze
   has_photo: Ha foto
-  has_photos: ha foto
+  has_photos: Ha foto
   has_photo_and_sound: Ha sia foto che suoni
   has_photos_or_sounds: Ha foto o suoni
   has_sound: Ha suoni
-  has_sounds: ha suoni
+  has_sounds: Ha suoni
   hasnt_contributed_any_observations: non ha contribuito con nessuna osservazione
     a questo progetto.
   hate_me_facebook: Scollega i tuoi account Facebook e %{site_name}
@@ -1708,7 +1705,7 @@ it:
   hide: Nascondi
   hide_details: Nascondi i dettagli
   hide_uncountable_species: Nascondi le specie non conteggiabili
-  high: superiore
+  high: Superiore
   highest_rank: Il rango più alto
   highlights: In evidenza
   highlights_and_stats_from_year_on_site: Sintesi e statistiche dal %{year} su %{site}
@@ -1825,8 +1822,8 @@ it:
   in_taxon?: nel taxon
   in_the_past: in passato
   in_the_past_week: la scorsa settimana
-  inactive: inattivo
-  inactive_taxon: taxon inattivo
+  inactive: Inattivo
+  inactive_taxon: Taxon inattivo
   inactive_taxon_concepts_are: I taxa inattivi sono quelli obsoleti da un punto di
     vista tassonomico, o in attesa di una modifica del taxon. I taxa obsoleti sono
     conservati a fini storici e per la compatibilità con alcuni dei siti partner.
@@ -1855,9 +1852,9 @@ it:
     non conoscete ed aiutare le persone ad identificare le creature misteriose!
   interactions: Interazioni
   internal_server_error: Errore interno del server
-  introduced: introdotta
+  introduced: Introdotta
   introduced_in_place: Introdotto in %{place}
-  invasive: invasiva
+  invasive: Invasiva
   invitation: Invito
   invitations: Inviti
   invite: invito
@@ -2210,7 +2207,7 @@ it:
     tua guida.
   lookup: Cerca
   lookup_user_rarr: Cerca utente &rarr;
-  low: inferiore
+  low: Inferiore
   lowest_rank: Il rango più basso
   made_a: fatto un
   make_admin: Rendi amministratore
@@ -2266,7 +2263,7 @@ it:
   map_tooltip: Mostra la visualizzazione a mappa
   map_for: Mappa per
   mark_as_reviewed: Contrassegna come revisionata
-  mark_all_as_reviewed: Segna come revisionato
+  mark_all_as_reviewed: Segna tutto come revisionato
   mark_all_as_unreviewed: Contrassegna tutto come non controllato
   matched_several_different_taxa: diversi taxa distinti corrispondono
   matching_species_will_shown_up_here: Le specie che corrispondono saranno mostrati
@@ -2333,7 +2330,7 @@ it:
   more_filters: Più filtri
   more_from_x: Più info su %{x}
   more_import_options: Più opzioni di importazione
-  more_info: Più info
+  more_info: Ulteriori Informazioni
   more_info_title: Ulteriori Informazioni
   more_journal_posts: Più post del diario
   more_observations: Più osservazioni
@@ -2401,7 +2398,7 @@ it:
   ne_lat: Lat. NE
   ne_lon: Lon. NE
   near: vicino
-  near_threatened: Quasi Minacciata
+  near_threatened: Quasi minacciata
   nearby: Nelle vicinanze
   nearby_observations_: Osservazioni nelle vicinanze
   nearby_observations: Osservazioni nelle vicinanze
@@ -2751,7 +2748,7 @@ it:
   of_identifiers: identificatori
   of_places: luoghi
   of_this_taxon: Di questo taxon
-  offensive_inappropriate: offensivo / inappropriato
+  offensive_inappropriate: Offensivo / inappropriato
   official_blog: Blog Ufficiale
   offline_access_enabled: Accesso offline abilitato
   old_observation_form: Vecchio formulario dell'osservazione (obsoleto)
@@ -2925,7 +2922,7 @@ it:
   per_day: Per giorno
   per_month: Per mese
   per_week: Per settimana
-  person: persona
+  person: Persona
   personal_message: Messaggio personale
   personal_message_description: A nessuno piace ricevere e-mail da una macchina! Perché
     non fate sapere ai vostri amici perché li stai invitando?
@@ -3169,7 +3166,7 @@ it:
     può richiedere alcuni minuti se hai molte osservazioni.
   please_hold_on_while_the_file_is_generated: Per favore attendi la creazione del
     file. L'operazione può richiedere alcuni minuti per liste molto lunghe.
-  popular: popolare
+  popular: Popolare
   position: Posizione
   positional_accuracy: Precisione della posizione
   possessive_user: di %{user}
@@ -3299,46 +3296,47 @@ it:
   quality_grade_colon: 'Qualità:'
   queued: In coda
   query: Interrogazione
+  random: Casuale
   range: Intervallo
   range_from: Areale da
   rank: Rango
   rank_position: Rango
   rank_restrictions: Restrizioni del rango
   ranks:
-    kingdom: regno
-    subkingdom: sottoregno
-    phylum: phylum
-    subphylum: subphylum
-    superclass: superclasse
-    class: classe
-    subclass: sottoclasse
-    infraclass: infraclasse
-    superorder: superordine
-    order: ordine
-    suborder: sottordine
-    infraorder: infraordine
-    parvorder: parvordine
-    zoosection: zoosezione
-    zoosubsection: zoosottosezione
-    superfamily: superfamiglia
-    epifamily: epi-familia
-    family: famiglia
-    subfamily: sottofamiglia
-    supertribe: supertribù
-    tribe: tribù
-    subtribe: sottotribù
-    genus: genere
-    genushybrid: genereibrido
-    subgenus: sottogenere
-    section: sezione
-    subsection: sottosezione
-    species: specie
-    hybrid: ibrido
-    subspecies: sottospecie
-    variety: varietà
-    form: forma
-    infrahybrid: infraibrido
-    leaves: foglie
+    kingdom: Regno
+    subkingdom: Sottoregno
+    phylum: Phylum
+    subphylum: Subphylum
+    superclass: Superclasse
+    class: Classe
+    subclass: Sottoclasse
+    infraclass: Infraclasse
+    superorder: Superordine
+    order: Ordine
+    suborder: Sottordine
+    infraorder: Infraordine
+    parvorder: Parvordine
+    zoosection: Zoosezione
+    zoosubsection: Zoosottosezione
+    superfamily: Superfamiglia
+    epifamily: Epifamilia
+    family: Famiglia
+    subfamily: Sottofamiglia
+    supertribe: Supertribù
+    tribe: Tribù
+    subtribe: Sottotribù
+    genus: Genere
+    genushybrid: Genereibrido
+    subgenus: Sottogenere
+    section: Sezione
+    subsection: Sottosezione
+    species: Specie
+    hybrid: Ibrido
+    subspecies: Sottospecie
+    variety: Varietà
+    form: Forma
+    infrahybrid: Infraibrido
+    leaves: Foglie
   ranges: Areali
   rare: Raro
   ray_finned_fishes: Attinopterigi
@@ -3461,7 +3459,7 @@ it:
     foto, coordinate, data e una ID supportata dalla community. Clicca qui per vedere
     la valutazione della qualità dei dati
   research_grade_qualification: Qualifica di Livello ricerca
-  research_quality: Qualità Ricerca
+  research_quality: Qualità ricerca
   reset_search_filters: Resetta i filtri di ricerca
   reset_your_password: Reimposta la tua password
   resolve: Risolvi
@@ -3767,7 +3765,7 @@ it:
   sources_youve_added: Fonti che hai aggiunto
   sources_and_credits: Fonti e Crediti
   sourcing: Preparazione fonte
-  spam: spam
+  spam: Spam
   spanish: Spagnolo
   species: Specie
   species_by_category: specie per categoria
@@ -3791,9 +3789,9 @@ it:
   start_a_project: Avvia un progetto
   start_adding_observations: Inizia ad aggiungere le osservazioni
   start_date_time: Data/ora di inizio
-  start_new_account: Crea un nuovo account
+  start_new_account: Crea una nuova utenza
   start_new_project: Avvia un nuovo progetto
-  start_one: avviane uno
+  start_one: Avviane uno
   start_one_now: Avviane uno ora!
   start_typing_field_name: Inizia a digitare il nome del campo...
   start_typing_place_name: Inizia a digitare il nome di un luogo...
@@ -4231,7 +4229,7 @@ it:
     o editarle in gruppo, ma queste operazioni sono abbastanza semplici e non hanno
     bisogno di spiegazione.
   those_observations_no_longer_exist: Queste osservazioni non esistono più.
-  threatened: minacciata
+  threatened: Minacciata
   thu: Gio
   thumb_url: URL miniatura
   time_: tempo
@@ -4267,7 +4265,7 @@ it:
   top_observers: Migliori osservatori
   top_species: Specie più osservata
   total: Totale
-  totals: totali
+  totals: Totali
   total_members: Totale membri
   total_observations: Totale osservazioni
   total_species_observed: Totale specie osservate
@@ -4337,8 +4335,8 @@ it:
   update_photos: Aggiorna le foto
   update_search: Aggiorna ricerca
   update_selected_taxa: Aggiorna i taxa selezionati
-  update_subscription: Aggiornamento l'iscrizione
-  update_subscription_preferences: aggiorna preferenze dell'iscrizione
+  update_subscription: Aggiorna iscrizione
+  update_subscription_preferences: Aggiorna preferenze dell'iscrizione
   update_x_selected_taxa:
     one: Aggiorna il taxon selezionato
     other: Aggiorna i %{count} taxa selezionati
@@ -4485,8 +4483,8 @@ it:
   view_leaderboard_from_last_month: Visualizza la classifica dell'ultimo mese
   view_leaderboard_from_last_year: Visualizza la classifica dell'ultimo anno
   view_license: Visualizza la licenza
-  view_lists: Visualizza le liste
-  view_listing: Visualizza la lista
+  view_lists: Visualizza gli elenchi
+  view_listing: Visualizza l'elenco
   view_more: Mostra di più
   view_more_about_x: Mostra di più su %{x}
   view_more_observations: Visualizza più osservazioni
@@ -4500,7 +4498,6 @@ it:
     &raquo;</nobr>
   view_more_recent_observations: Visualizza più osservazioni recenti
   view_more_unreviewed: Esamina altri tra i non esaminati.
-  view_nbsp: Visualizza &nbsp;
   view_observation: Visualizza osservazione
   view_observations: Visualizza osservazioni
   view_observation_flags: Visualizza i contrassegni delle osservazioni
@@ -4646,8 +4643,8 @@ it:
     progetto?
   who_helped_user_the_most: Chi ha aiutato maggiormente %{user}
   who_user_helped_the_most: Chi %{user} ha aiutato di più
-  with_annotation: Con nota
-  without_annotation: Senza nota
+  with_annotation: Con annotazione
+  without_annotation: Senza annotazione
   widget: Widget
   widget_code: Codice del Widget
   widget_for: Widget per
@@ -4934,7 +4931,7 @@ it:
     stanno facendo le altre persone sul sito. Per seguire gli aggiornamenti di una
     persona, clicca il link 'Segui [nome]' nell'intestazione quando visualizzi le
     sue osservazioni o il suo profilo.
-  verifiable: verificabile
+  verifiable: Verificabile
   views:
     views: Visualizzazioni
     announcements:
@@ -6697,7 +6694,7 @@ it:
         observation_field: :@m
         post: :@m
         taxon: :@m
-  wild: selvatico
+  wild: Selvatico
   will_paginate:
     previous_label: '&#8592; Precedente'
     next_label: Successivo &#8594;

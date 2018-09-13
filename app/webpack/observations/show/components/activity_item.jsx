@@ -225,7 +225,7 @@ const ActivityItem = ( {
         target={ linkTarget }
         className="linky"
       >
-         { _.startCase( I18n.t( type ) ) }
+         { I18n.t( type ) }
       </a>
     </div> );
   }

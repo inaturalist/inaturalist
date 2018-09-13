@@ -6,9 +6,7 @@ const TaxonImage = ( { taxon, user, size } ) => {
   let title = "";
   if ( taxon ) {
     if ( taxon.rank && taxon.rank_level > 10 ) {
-      title += _.capitalize(
-        I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } )
-      );
+      title += I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } );
     }
     title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {

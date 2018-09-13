@@ -38,9 +38,6 @@ lb:
   x_others:
     one: 1 anerer
     other: '%{count} anerer'
-  x_people:
-    one: Eng Persoun
-    other: '%{count} Leit'
   x_people_found_this_helpful:
     one: Eng Persoun huet dëst nëtzlech fonnt.
     other: '%{count} Persounen hunn dëst nëtzlech fonnt.'
@@ -133,7 +130,7 @@ lb:
   add_new_observations: Nei Observatiounen derbäisetzen
   add_new_place: Eng nei Plaz do bäisetzen
   add_new_rule: Eng nei Regel derbäisetzen
-  add_new_source: Eng nei Quell derbäisetzen...
+  add_new_source: Nei Quell derbäisetzen...
   add_new_taxon_name: En neien Taxon-Numm derbäisetzen
   add_observation: Eng Observatioun derbäisetzen
   add_observations!: Observatiounen derbäisetzen!
@@ -704,7 +701,7 @@ lb:
   hi_user: Salut %{user}
   hide: Verstoppen
   hide_details: Detailer verstoppen
-  high: héich
+  high: Héich
   highlights: Héichpunkten
   history: Geschicht
   hybrid: hybrid
@@ -865,6 +862,7 @@ lb:
     ko: Koreanesch
     lb: Lëtzebuergesch
     mk: Mazedonesch
+    nl: Hollännesch
     pt-BR: Portugisesch (Brasilien)
     pt-PT: Portugisesch (Portugal)
     ru: Russesch
@@ -883,7 +881,7 @@ lb:
     logo: Logo
     transparent_png: transparente PNG
     none: keen
-  low: niddreg
+  low: Niddreg
   make_admin: Administrateur maachen
   make_an_observation: eng Observatioun maachen
   make_this_your_default_license: Maacht heirauser Är Standard-%{type}-Lizenz
@@ -1263,7 +1261,7 @@ lb:
     west_africa: Westafrika
   places_of_interest: Interessant Plazen
   plants: Planzen
-  popular: beléift
+  popular: Beléift
   position: Positioun
   possessive_user: '%{user}'
   potential_disagreement: Potentiellen Desaccord
@@ -1292,11 +1290,15 @@ lb:
   projects_youve_joined: Projete bei deenen Dir matgemaach hutt
   publish: Verëffentlechen
   query: Ufro
+  random: Zoufall
   rank_position: Klassement
   ranks:
     kingdom: Kinnekräich
+    subclass: Ënnerklass
+    family: Famill
     subgenus: Ënneraart
     section: Abschnitt
+    leaves: Blieder
   ranges: Beräicher
   rare: Seelen
   read_more: Liest méi
@@ -1306,7 +1308,7 @@ lb:
   recent: Rezent
   recent_evidence?: Rezenten Noweis?
   recent_observations: Rezent Observatiounen
-  recent_updates: Rezent Aktualisatiounen
+  recent_updates: Rezent Aktualiséierungen
   recently_active: Rezent aktiv
   recently_active_projects_from_everywhere: Rezent aktiv Projete vun iwwerall
   recently_created_projects_from_everywhere: Rezent kreéiert Projete vun iwwerall
@@ -1330,6 +1332,7 @@ lb:
   required_: Obligatoresch
   research_: Recherche
   reset_search_filters: Sichfilteren zrécksetzen
+  reset_your_password: Äert Passwuert zrécksetzen
   restore: Restauréieren
   restoring: Restauréieren...
   results: Resultater
@@ -1500,10 +1503,13 @@ lb:
   value: Wäert
   view: Weisen
   view_all_members: All Membere weisen
+  view_all_observations: All Observatioune weisen
   view_all_your_projects: All Är Projete weisen
   view_change: Ännerung weisen
   view_details: Detailer weisen
   view_invitation: Invitatioun weisen
+  view_license: Lizenz weisen
+  view_lists: Lëschte weisen
   view_more: Méi weisen
   view_observation: Observatioun weisen
   view_observations: Observatioune weisen
@@ -1548,8 +1554,8 @@ lb:
   where_did_you_see_it: Wou hutt Dir et gesinn?
   where_were_they?: Wou waren se?
   where_were_you?: Wou sidd Dir?
-  which_projects_can_add_your_observations?: Wat fir traditionnell Projete kënnen
-    Är Observatiounen derbäisetzen?
+  which_projects_can_add_your_observations?: Wat fir traditionell Projete kënnen Är
+    Observatiounen derbäisetzen?
   white: wäiss
   who_helped_user_the_most: Wien huet dem %{user} am Meeschte gehollef
   who_user_helped_the_most: Wien dem %{user} am Meeschte gehollef huet
@@ -1892,7 +1898,7 @@ lb:
         observation_field: :@m
         post: :@m
         taxon: :@m
-  wild: wëll
+  wild: Wëll
   will_paginate:
     previous_label: '&#8592; Vireg'
     next_label: Nächst &#8594;

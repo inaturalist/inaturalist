@@ -13,7 +13,7 @@ const RecentObservations = ( { observations, showPhotoModal, url } ) => {
       <Row>
         <Col xs={12}>
           <Carousel
-            title={ I18n.t( "recent_observations" ) }
+            title={ I18n.t( "recent_observations_" ) }
             noContent={ I18n.t( "no_observations_yet" ) }
             items={ _.map( _.chunk( observations, chunkSize ), ( chunk, i ) => (
               <div className="slide" key={`recent-observations-${i}`}>

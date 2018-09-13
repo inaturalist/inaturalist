@@ -28,9 +28,6 @@ gl:
   x_observations_html:
     one: <span class='count'>1</span> observación
     other: <span class='count'>%{count}</span> observacións
-  x_people:
-    one: 1 persoa
-    other: '%{count} persoas'
   x_species:
     one: 1 especie
     other: '%{count} especies'
@@ -2848,7 +2845,6 @@ gl:
   view_more_observations_of_x_taxon: Ver máis observacións de %{taxon} en <nobr>%{site_name}
     »</nobr>
   view_more_recent_observations: Ver máis observacións recentes
-  view_nbsp: Ver
   view_observation: Ver observación
   view_observations: Ver observacións
   view_observations_raquo: Ver observacións »

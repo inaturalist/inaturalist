@@ -347,7 +347,7 @@ class TaxonAutocomplete extends React.Component {
          _.includes( result.subtitle, fieldValue ) ) { return false; }
     if ( _.includes( result.title, result.matched_term ) ||
          _.includes( result.subtitle, result.matched_term ) ) { return false; }
-    return ` (${_.capitalize( result.matched_term )})`;
+    return ` (${result.matched_term})`;
   }
 
   itemPhoto( r ) {
@@ -468,7 +468,7 @@ class TaxonAutocomplete extends React.Component {
     }
     if ( result.rank && ( result.rank_level > 10 || !result.subtitle ) ) {
       const rank = I18n.t( `ranks.${result.rank}`, { defaultValue: result.rank } );
-      result.subtitle = <span>{ _.capitalize( rank ) } { result.subtitle }</span>;
+      result.subtitle = <span>{ I18n.t( `ranks.${rank}` ) } { result.subtitle }</span>;
     }
     return this.resultTemplate( result, fieldValue, options );
   }

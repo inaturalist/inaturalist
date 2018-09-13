@@ -80,9 +80,6 @@ de:
   x_others:
     one: Eine weitere
     other: '%{count} weitere'
-  x_people:
-    one: Eine Person
-    other: '%{count} Personen'
   x_people_found_this_helpful:
     one: Eine Person fand das hilfreich
     other: '%{count} Personen fanden das hilfreich'
@@ -1327,6 +1324,7 @@ de:
   editing_observation_field: Beobachtungsfeld bearbeiten
   editing_observation_id: Beobachtung %{obs_id} bearbeiten
   editing_project: '%{project} bearbeiten'
+  editing_subscription_to_x_html: Abonnements für %{x} bearbeiten
   editing_taxon_link: Taxonlink bearbeiten
   editing_taxon_name: Taxonnamen bearbeiten
   editing_taxon_range: Taxonbereich bearbeiten
@@ -1533,6 +1531,7 @@ de:
   from_place: Von Ort
   from_soundcloud: Von Soundcloud
   from_your_site_observations: Von %{site_name} Beobachtungen
+  from_licensed_site_observations: Von lizenzierten %{site_name}-Beobachtungen
   full_id_please: ID Bitte!
   full_id_please!: ID Bitte!
   full_id_please?: ID Bitte!
@@ -1555,6 +1554,7 @@ de:
   georeferenced: Georeferenziert?
   georeferenced?: georeferenziert
   get_current_position: Aktuelle Position abrufen
+  get_started_raquo: Anfangen &raquo;
   get_started: Loslegen
   getting_started: Anfangen
   getting_started_guide: Anleitung für den Einstieg
@@ -2210,7 +2210,7 @@ de:
       h: 1h
       hh: '%dh'
       d: 1d
-      dd: '&dd'
+      dd: '%dd'
       M: 1mo
       MM: '%dmo'
       "y": 1y
@@ -3072,6 +3072,7 @@ de:
   quality_grade_: Qualitätsstufe
   quality_grade_colon: 'Qualitätsstufe:'
   query: Abfrage
+  random: Zufällig
   range: Bereich
   range_from: Bereich von
   rank: Rang
@@ -3173,6 +3174,7 @@ de:
   remove_all_tags: Alle Tags entfernen
   remove_boundary: Grenze entfernen
   remove_comma_separated_tags: Komma-getrennte Tags entfernen
+  remove_conservation_status: Konservierungsstatus entfernen
   remove_from: Entfernen aus
   remove_curator: Kurator entfernen
   remove_curator_role: Kuratorrolle entfernen
@@ -3244,6 +3246,7 @@ de:
   rotate_right: Nach rechts drehen
   row_singular_or_plural: Zeile(n)
   row_number_i_was_parsed_as: Zeilennummer %{row} wurde geparst als
+  rule_must_be: Regel muss sein …
   rules_and_formatting: Regeln & Formatierung
   rules_for_adding_observations: Regeln für das Hinzufügen von Beobachtungen
   rules_for_becoming_a_member: Regeln für die Mitgliedschaft
@@ -3370,6 +3373,8 @@ de:
   show: Anzeigen
   show_active_and_inactive_taxa: Aktive und inaktive Taxa anzeigen
   show_common_names: Umgangssprachliche Namen anzeigen
+  show_counts: Zähler basierend auf der Liste anzeigen.
+  show_default_taxon_photos: Standard-Taxon-Fotos anzeigen
   show_kml: KML zeigen
   show_less: Weniger anzeigen
   show_more: Mehr anzeigen
@@ -3379,8 +3384,12 @@ de:
     Blog oder Deiner Webseite!
   show_only: Nur anzeigen
   show_scientific_name_first: Wissenschaftliche Namen bevorzugen
+  show_taxa_from_both: (Taxa von beiden Listen anzeigen)
+  show_taxa_from_everywhere: Taxa von überall anzeigen
   show_taxa_from_place: Taxa von %{place} anzeigen
   show_total_listed_taxa: Insgesamt gelistete Taxa anzeigen
+  showing_observations_by: Beobachtungen anzeigen nach
+  showing_taxa_from_place: Taxa von %{place} anzeigen
   showing_x_of_y_listings: Zeige %{x} von %{y} Ergebnissen
   shown_publicly_as: Öffentlich dargestellt als
   sign_in: Anmelden
@@ -3397,6 +3406,8 @@ de:
   small: klein
   site_name_place: '%{site_name} Orte'
   site_stats: Seitenstatistik
+  site_taxon_page: '%{site_name} Taxonseite'
+  site_year_in_review: '%{site_name} Jahr in Überprüfung %{year}'
   some_agree: einige stimmen zu
   some_observations_failed_to_be_added: Das Hinzufügen einiger Beobachtungen zum Projekt
     ist fehlgeschlagen
@@ -3672,7 +3683,9 @@ de:
   taxonomic_order: Taxonomische Reihenfolge
   taxonomic_status: Taxonomischer Status
   taxonomic_tags_for_flickr: Taxonomische Tags für Flickr
+  taxonomic_tree_browser: Taxonomischer Baumbrowser
   taxonomy_settings: Taxonomieeinstellungen
+  tell_everyone_a_little_about_you: Erzähle jedem ein Bisschen über dich selbst
   tell_the_world_a_little_about_yourself: Erzähl uns was über dich
   tell_us_why: Sag uns warum...
   terms: Bedingungen
@@ -3722,6 +3735,8 @@ de:
     wenn es eine gibt, die umfassend ist, d.h. sie listet <em>alle</em>  Repräsentanten
     ihres Taxons an einem Ort auf, wird das Identotron einen Hinweis anzeigen.
   the_list: die Liste
+  the_observation_form_looks: 'Das Beobachtungsformular sieht wie dieses aus:'
+  the_observation_has_date: die Beobachtung <strong>hat ein Datum</strong>
   the_past: in der Vergangenheit
   the_people_of_inat: Die Menschen von %{site_name}
   the_project: das Projekt
@@ -3920,6 +3935,7 @@ de:
   view_all_your_projects: Alle deine Projekte anzeigen
   view_change: Änderung anzeigen
   view_contributions: Beiträge anzeigen
+  view_details: Details anzeigen
   view_field_options: Feldoptionen anzeigen
   view_flag: Meldung anzeigen
   view_flags: Meldungen anzeigen
@@ -3928,16 +3944,17 @@ de:
   view_journal: Journal anzeigen
   view_leaderboard_from_last_month: Rangliste vom letzten Monat anzeigen
   view_license: Lizenz anzeigen
+  view_lists: Listen anzeigen
   view_listing: Auflistung anzeigen
   view_more: Mehr ansehen
   view_more_about_x: Mehr über %{x} anzeigen
   view_more_observations_from_x: Mehr Beobachtungen von %{x} anzeigen
+  view_more_observations_from: Mehr Beobachtungen anzeigen von
   view_more_observations_near_x_place: Mehr Beobachtungen in der Nähe von %{place}
     auf <nobr>%{site_name} &raquo;</nobr> anzeigen
   view_more_observations_of_x_taxon: Mehr Beobachtungen zu %{taxon} auf <nobr>%{site_name}
     &raquo;</nobr> anzeigen
   view_more_unreviewed: Mehr ungeprüfte ansehen
-  view_nbsp: Ansehen &nbsp;
   view_observation: Beobachtung ansehen
   view_observations: Beobachtungen anzeigen
   view_observations_by_everyone: Beobachtungen von allen anzeigen
@@ -3949,12 +3966,17 @@ de:
   view_photos_ranges_observations_more: Erkunde Bilder, die Artenvielfalt, %{site_name}-Beobachtungen
     und vieles mehr! Wir haben Informationen aus vielen verschiedenen Quellen zusammengetragen,
     um einen schnellen Überblick über jede Art an jedem Ort zu erhalten.
+  view_post: Eintrag anzeigen
+  view_the_observation: Die Beobachtung ansehen
+  view_unidentified_observations: Nicht identifizierte Beobachtungen anzeigen...
   view_x: '%{x} anzeigen'
+  view_x_from_x: '%{day_observations} Beobachtungen von %{observed_on} anzeigen'
   view_xs_journal: '%{x}s Journal anzeigen'
   view_your_dashboard: Dein Dashboard anzeigen
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>Dein Dashboar anzeigen</a>
     für weitere Neuigkeiten
   view_your_inbox: Inbox anzeigen
+  view_your_life_list: Deine Lebensliste anzeigen
   view_your_calendar: Deinen Kalender anzeigen
   view_your_observations: Deine Beobachtungen ansehen
   view_your_year_stats: Deine Statistik für %{year} anzeigen
