@@ -4614,6 +4614,7 @@ ru:
   you_didnt_select_any_photos_to_tag: Вы не выбрали ни одного фото для проставления
     тегов!
   you_dont_have_any: У вас нет подписок на какое-либо место или таксон
+  you_dont_have_permission_to_do_that: У вас нет прав на это.
   you_dont_have_permission_to_edit_that_observation: У вас нет прав редактировать
     это наблюдение.
   you_dont_have_permission_to_edit_that_project: У вас нет прав редактировать этот
@@ -4625,21 +4626,29 @@ ru:
     фото.
   you_faved_this: Вы добавили это к фаворитам!
   you_have_left_x_project: Вы покинули %{project}
+  you_have_logget_out: Вы вышли из системы. Возвращайтесь скорее!
+  you_have_to: Вы должны
   you_havent_left_any_comments_recently: Вы еще не оставили комментарии. Оставьте
     кому-нибудь замечание!
   you_havent_linked_your_inaturalist_google_account: Вы еще не связали свою учетную
     запись %{site_name} с вашим аккаунтом Google
   you_joined_this_project: Вы присоединились к этому проекту!
+  you_may_have: у вас, вероятно, есть. Скорее всего, он будет работать только в современных,
+    совместимых со стандартами браузерах, таких как
   you_must_be_a_member_of_this_project_to_do_that: Для того, чтобы сделать это, вы
     должны быть участником этого проекта
   you_must_be_project_manager_to_do_that: Для того, чтобы сделать это, вы должны быть
     менеджером проекта
   you_must_choose_an_observation_field: Вы должны выбрать поле наблюдения
+  you_must_fill_out_the_required_fields: Вы должны заполнить требуемые поля
+  you_must_have_a_header_row: У вас должна быть строка заголовков
   you_must_select_a_csv_file_to_upload: Необходимо выбрать файл формата CSV для загрузки.
   you_must_select_a_place_to_merge_with: Вы должны выбрать место, чтобы присоединить
     его.
   you_must_select_at_least_one_taxon: Вы должны выбрать хотя бы один таксон
   you_must_select_dates_to_compare: Вы должны выбрать даты для сравнения
+  you_must_specify_and_confirm_a_new_password: Необходимо указать и подтвердить новый
+    пароль.
   you_need_to_have_linked_flickr_account: Вам нужно иметь привязанную учетную запись
     Flickr, чтобы добавить теги к ваши фото.
   you_need_to_select_at_least_one_photo: Вы должны выбрать хотя бы одно фото!
@@ -4653,6 +4662,8 @@ ru:
   you_sure_delete_check_list: Вы уверены, что хотите удалить этот список? Возможно,
     некоторые люди вложили в него много труда...
   you_sure_delete_comment?: Вы уверены, что хотите удалить данный комментарий?
+  you_sure_delete_custom_field?: Вы уверены, что хотите удалить эти настраиваемые
+    поля?
   you_sure_delete_flag?: Вы уверены, что хотите удалить этот флаг?
   you_sure_delete_project?: Вы уверены, что хотите удалить этот проект?
   you_sure_delete_this_observation: Вы уверены, что хотите удалить это наблюдение?
@@ -4664,15 +4675,21 @@ ru:
     в комментарии.
   you_tried_to_do_something_you_shouldnt: Вы пытались сделать то, что не должны были,
     например, редактировать чужие данные без разрешения.  Не будьте злыми.
+  you_unlinked_your_provider_account: Вы разорвали связь с учетной записью %{provider}
   you_would_get_the: 'вы получите следующие теги:'
+  youll_need_to_link: Вы должны привязать
   youve_been_invited_to_join_this_project_html: Вас приглашают <a href="%{url}" class="readmore">присоединиться
     к этому проекту</a>
   youve_joined_the_x_project: Вы присоединились к проекту %{project_invitation}, и
     ваше наблюдение было добавлено
+  your: Ваш(и)
+  your_account_has_been_activated: Ваш аккаунт был активирован!
   your_account_has_been_verified: Ваша учетная запись %{site_name} проверена! Войдите
     в систему, чтобы продолжить.
   your_activation_code_was_missing: Ваш код активации отсутствовал. Пожалуйста, следуйте
     по URL-адресу из вашей электронной почты.
+  your_browser_does_not_support_the_audio_element: Ваш браузер не поддерживает аудио
+    элементы.
   your_coarser_id: |-
     Ваша более грубая идентификация <span class='taxon'>%{coarser_taxon_name}</span> означает, что вы не согласны с существующей более точной идентификацией
     <span class='taxon'>%{finer_taxon_name}</span>. Это то, что вы хотите сделать?<br><br>
@@ -4680,11 +4697,17 @@ ru:
   your_comment_was_saved: Ваш контент был сохранен.
   your_content: Ваш контент
   your_contributions_to_project: Ваш вклад в %{project_title}
+  your_default: ваше значение по умолчанию
   your_default_time_zone: Ваш часовой пояс по умолчанию
+  your_drafts: Ваши черновики
   your_email_address: Ваш адрес электронной почты
   your_flickr_account: Ваша учетная запись Flickr
   your_flickr_photos_have_been_tagged: В ваших фото на Flickr проставлены теги!
+  your_hard_drive: ваш жесткий диск
+  your_home: Ваша домашняя страница
+  your_id: Ваша идентификация
   your_identification: Ваша Идентификация
+  your_inat_account_has_been_activated: Ваш аккаунт %{inat} был активирован!
   your_life_list: ваш список жизни!
   your_membership: Ваш вклад
   your_month_observations: ваши наблюдения за %{month}
@@ -4716,6 +4739,7 @@ ru:
   your_sure_delete_taxon_from_list?: Вы уверены, что хотите удалить %{taxon} из этого
     списка?
   your_tags: Ваши теги
+  yours: Ваш(и)
   youre_following: вы отслеживаете
   youre_not_following_anyone: "Вы никого не отслеживаете. Отслеживание других натуралистов
     \ позволит вам легко быть в курсе их последних наблюдений. Поищите, что \n<a href=\"%{observations_path}\">наблюдают</a>
@@ -4727,6 +4751,7 @@ ru:
   youve_linked_your_inaturalist_google_account: Вы связали свою учетную запись %{site_name}
     и свою учетную запись Google. Это позволит вам ассоциировать ваши фото Google
     с вашими наблюдениями %{site_name}.
+  youve_opted_out_of_community_ids: Вы отказались от идентификаций сообщества
   youve_opted_out_of_community_ids_for_this_obs: Вы отказались от идентификации сообществом
     этого наблюдения
   youve_successfully_linked_your_provider_account: Вы успешно привязали свой %{provider}
@@ -4755,6 +4780,8 @@ ru:
     devise:
       mailer:
         confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: Планируете ли вы использовать
+            %{site_name} в классе?
           community_guidelines_html: <a href="%{url}">Ознакомьтесь в Правилами Сообщества</a>,
             где есть советы по поддержанию  iNaturalist дружелюбным и гостеприимным
             местом.
@@ -5093,6 +5120,7 @@ ru:
           <p>
           Однако идентификация сообщества по-прежнему отображается, поэтому все могут видеть различные идентификации, которые были предложены.
           </p>
+        you_have_opted_out: Вы отказались от идентификаций сообщества
         opt_in_for_this_observation: Выбрать принятие помощи для идентификации этого
           наблюдения
         your_id_does_not_match: Ваша идентификация (<span class="bold">%{taxon_name}</span>)

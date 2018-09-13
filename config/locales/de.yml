@@ -1531,6 +1531,7 @@ de:
   from_place: Von Ort
   from_soundcloud: Von Soundcloud
   from_your_site_observations: Von %{site_name} Beobachtungen
+  from_licensed_site_observations: Von lizenzierten %{site_name}-Beobachtungen
   full_id_please: ID Bitte!
   full_id_please!: ID Bitte!
   full_id_please?: ID Bitte!
@@ -1553,6 +1554,7 @@ de:
   georeferenced: Georeferenziert?
   georeferenced?: georeferenziert
   get_current_position: Aktuelle Position abrufen
+  get_started_raquo: Anfangen &raquo;
   get_started: Loslegen
   getting_started: Anfangen
   getting_started_guide: Anleitung für den Einstieg
@@ -3933,6 +3935,7 @@ de:
   view_all_your_projects: Alle deine Projekte anzeigen
   view_change: Änderung anzeigen
   view_contributions: Beiträge anzeigen
+  view_details: Details anzeigen
   view_field_options: Feldoptionen anzeigen
   view_flag: Meldung anzeigen
   view_flags: Meldungen anzeigen
@@ -3941,10 +3944,12 @@ de:
   view_journal: Journal anzeigen
   view_leaderboard_from_last_month: Rangliste vom letzten Monat anzeigen
   view_license: Lizenz anzeigen
+  view_lists: Listen anzeigen
   view_listing: Auflistung anzeigen
   view_more: Mehr ansehen
   view_more_about_x: Mehr über %{x} anzeigen
   view_more_observations_from_x: Mehr Beobachtungen von %{x} anzeigen
+  view_more_observations_from: Mehr Beobachtungen anzeigen von
   view_more_observations_near_x_place: Mehr Beobachtungen in der Nähe von %{place}
     auf <nobr>%{site_name} &raquo;</nobr> anzeigen
   view_more_observations_of_x_taxon: Mehr Beobachtungen zu %{taxon} auf <nobr>%{site_name}
@@ -3961,12 +3966,17 @@ de:
   view_photos_ranges_observations_more: Erkunde Bilder, die Artenvielfalt, %{site_name}-Beobachtungen
     und vieles mehr! Wir haben Informationen aus vielen verschiedenen Quellen zusammengetragen,
     um einen schnellen Überblick über jede Art an jedem Ort zu erhalten.
+  view_post: Eintrag anzeigen
+  view_the_observation: Die Beobachtung ansehen
+  view_unidentified_observations: Nicht identifizierte Beobachtungen anzeigen...
   view_x: '%{x} anzeigen'
+  view_x_from_x: '%{day_observations} Beobachtungen von %{observed_on} anzeigen'
   view_xs_journal: '%{x}s Journal anzeigen'
   view_your_dashboard: Dein Dashboard anzeigen
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>Dein Dashboar anzeigen</a>
     für weitere Neuigkeiten
   view_your_inbox: Inbox anzeigen
+  view_your_life_list: Deine Lebensliste anzeigen
   view_your_calendar: Deinen Kalender anzeigen
   view_your_observations: Deine Beobachtungen ansehen
   view_your_year_stats: Deine Statistik für %{year} anzeigen

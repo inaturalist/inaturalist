@@ -195,7 +195,7 @@ ca:
   add_an_assessment: Afegiu una valoració
   add_an_identification: Afegiu una identificació
   add_an_observation: Afegiu una observació
-  add_an_observation?: Afegiu una observació?
+  add_an_observation?: Afegir una observació?
   add_an_observation_of: Afegiu una observació de %{taxon}
   add_annotations_for_x: Afegiu observacions de "%{x}"
   add_annotations_for_controlled_attribute:
@@ -1089,6 +1089,7 @@ ca:
   cumulative_ids: 'Identificacions acumulades: %{count} de %{total}'
   curate_observations: Supervisa observacions
   curate_taxa: Supervisa tàxons
+  curate_user: Usuari supervisor
   curate_users: Supervisa usuaris
   curated: supervisat
   curated_checklist: Llista de comprovació supervisada
@@ -1120,7 +1121,7 @@ ca:
   date_: Data
   date?: Data?
   date_added: 'Afegit en data:'
-  date_created: data de creació
+  date_created: Data de creació
   date_format:
     date_long:
       january: '%{day} de gener de %{year}'
@@ -1274,22 +1275,22 @@ ca:
   edit_flagged_observation: Editeu l'observació marcada
   edit_license: Modifica la llicència
   edit_multiple_dates: Editeu diverses dates
-  edit_multiple_descriptions: Editar descripcions múltiples
+  edit_multiple_descriptions: Editar múltiples descripcions
   edit_multiple_locations: Editeu diverses localitzacions
   edit_multiple_species: Editeu diverses espècies
-  edit_notes: Modifica les notes
+  edit_notes: Modifiqueu les notes
   edit_observation: Editeu Observació
   edit_observations: Editeu Observacions
-  edit_photos: Modifica les fotos
-  edit_photos_for_observation_id: Modifica les fotos per a l'observació %{obs_id}
-  edit_place: Modifica lloc
-  edit_project: Modifica projecte
-  edit_range_raquo: Modifica l’interval →
+  edit_photos: Modifiqueu les fotos
+  edit_photos_for_observation_id: Modifiqueu les fotos per a l'observació %{obs_id}
+  edit_place: Modifiqueu el lloc
+  edit_project: Modifiqueu el projecte
+  edit_range_raquo: Modifiquei l’interval →
   edit_remove: Modificar/Treure
-  edit_selected: Modifica els elements seleccionats
-  edit_source: Modifica la font
-  edit_taxa: Edita el tàxon
-  edit_taxon: Edita el tàxon
+  edit_selected: Modifiqueu els elements seleccionats
+  edit_source: Modifiqueu la font
+  edit_taxa: Editeu el tàxon
+  edit_taxon: Editeu el tàxon
   edit_taxon_change: Modifica els canvis en el tàxon
   edit_taxon_link: Modifica l'enllaç del tàxon
   edit_taxon_range: Modifica el rang del tàxon
@@ -1546,6 +1547,9 @@ ca:
   follower: seguidor
   followers: seguidors
   following: Seguint
+  following_x_people:
+    one: Seguint 1 Persona
+    other: Seguint %{count} Persones
   for: per a
   for_a_taxon: d'un tàxon
   for_a_widget_showing_recent_observations_from: Per al giny que mostra les observacions
@@ -1948,6 +1952,7 @@ ca:
   learn_more_raquo: Per saber-ne més »
   learn_what_these_licenses_mean: Informeu-vos sobre què signifiquen aquestes llicències
   least_concern: preocupació menor
+  leave: Sortir
   leave_a_comment: Deixeu un comentari
   leave_this_project: Sortiu d'aquest projecte
   leaves: abandona
@@ -2146,6 +2151,7 @@ ca:
     ko: Coreà
     lb: Luxemburguès
     mk: Macedònic
+    nl: Holandès
     oc: Occità
     pt-BR: Portuguès (Brasil)
     pt-PT: Portuguès (Portugal)
@@ -2305,6 +2311,7 @@ ca:
       MM: '%d mes'
       "y": 1a
       yy: '%da'
+    datetime_with_zone: LT, D MMM YYYY z
   mon: Dl.
   month: Mes
   months: Mesos
@@ -3274,6 +3281,7 @@ ca:
   quality_grade_colon: 'Grau de qualitat:'
   queued: En cua
   query: Consulta
+  random: A l’atzar
   range: Interval
   range_from: Distribució de
   rank: Rang
@@ -3292,6 +3300,7 @@ ca:
     order: ordre
     suborder: subordre
     infraorder: infra-ordre
+    subterclass: Subterclasse
     parvorder: parvordre
     zoosection: zoosecció
     zoosubsection: zoosubsecció
@@ -3919,6 +3928,8 @@ ca:
     Les valoracions de tàxons són documents que avaluen l'estat actual d'una espècie, normalment el seu estat de conservació.
     Per exemple, una organització conservacionista local pot utilitzar-los per organitzar i recollir la informació l'estat de diversos tàxons amenaçats de la seva regió.
   taxon_change: canvi de tàxon
+  taxon_change_must_be_committed_to_update_records: Cal canviar el tàxon per actualitzar
+    els registres
   taxon_deleted: El tàxon s’ha esborrat.
   taxon_doesnt_have_a_range: El tàxon no té un rang
   taxon_drop: abandona tàxon
