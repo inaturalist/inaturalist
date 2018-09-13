@@ -24,9 +24,9 @@ describe GuideTaxon, "creation" do
   it "should update the guide's taxon id" do
     g = Guide.make!
     expect(g.taxon_id).to be_blank
-    ancestor = Taxon.make!
-    t1 = Taxon.make!(:parent => ancestor)
-    t2 = Taxon.make!(:parent => ancestor)
+    ancestor = Taxon.make!(rank: Taxon::GENUS)
+    t1 = Taxon.make!(parent: ancestor, rank: Taxon::SPECIES)
+    t2 = Taxon.make!(parent: ancestor, rank: Taxon::SPECIES)
     gt1 = without_delay { GuideTaxon.make!(:guide => g, :taxon => t1) }
     gt2 = without_delay { GuideTaxon.make!(:guide => g, :taxon => t2) }
     g.reload
@@ -47,8 +47,8 @@ describe GuideTaxon, "deletion" do
   it "should update the guide's taxon id" do
     without_delay do
       g = Guide.make!
-      ancestor = Taxon.make!
-      t1 = Taxon.make!(:parent => ancestor)
+      ancestor = Taxon.make!(rank: Taxon::GENUS)
+      t1 = Taxon.make!(parent: ancestor, rank: Taxon::SPECIES)
       t2 = Taxon.make!
       gt1 = GuideTaxon.make!(:guide => g, :taxon => t1)
       gt2 = GuideTaxon.make!(:guide => g, :taxon => t2)

@@ -11,8 +11,8 @@ describe ListsController, "show" do
   end
 
   it "should filter by taxon" do
-    parent = Taxon.make!
-    lt1 = ListedTaxon.make!(:taxon => Taxon.make!(:parent => parent))
+    parent = Taxon.make!(rank: Taxon::GENUS)
+    lt1 = ListedTaxon.make!(taxon: Taxon.make!(parent: parent, rank: Taxon::SPECIES))
     expect(parent.children.size).to eq 1
     lt2 = ListedTaxon.make!(:list => lt1.list)
     get :show, :format => :json, :id => lt1.list_id, :taxon => parent.id

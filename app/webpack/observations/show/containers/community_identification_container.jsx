@@ -14,7 +14,7 @@ import {
 
 function mapStateToProps( state ) {
   return {
-    observation: state.observation,
+    observation: Object.assign( {}, state.observation, { places: state.observationPlaces } ),
     config: state.config
   };
 }

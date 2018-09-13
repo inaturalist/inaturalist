@@ -158,6 +158,19 @@ class TaxonChangesController < ApplicationController
       return
     end
     
+    @taxon = @taxon_change.rank_level_conflict?
+    if @taxon
+      flash[:error] = "Output taxon rank level not coarser than rank level of all input taxon #{view_context.link_to( 'descendants', @taxon )}".html_safe
+      redirect_back_or_default( taxon_changes_path )
+      return
+    end
+    
+    if !@taxon_change.move_children? && @taxon_change.active_children_conflict?
+      flash[:error] = "Input taxon cannot have active children, move them first, or select the 'Move children to output?' option"
+      redirect_back_or_default @taxon_change
+      return
+    end
+    
     @taxon_change.committer = current_user
     @taxon_change.commit
     

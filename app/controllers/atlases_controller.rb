@@ -84,28 +84,37 @@ class AtlasesController < ApplicationController
 
   def alter_atlas_presence
     taxon_id = params[:taxon_id]
-    @place_id = params[:place_id]
-    place = Place.find( @place_id )
+    place_id = params[:place_id]
+    place = Place.find( place_id )
     taxon = Taxon.find( taxon_id )
-    lts = taxon.atlas.get_atlas_presence_place_listed_taxa( @place_id )
+    lts = taxon.atlas.get_atlas_presence_place_listed_taxa( place_id )
+    error = nil
     if lts.count > 0
       lts.each do |lt|
         lt.updater = current_user
         lt.destroy
       end
-      @presence = false
+      presence = false
     else
-      list_id = place.check_list_id
-      lt = ListedTaxon.create( taxon_id: taxon_id, place_id: @place_id, list_id: list_id, user_id: current_user.id )
+      comprehensive_list = place.check_lists.where( "comprehensive AND lists.taxon_id IN (?)", taxon.self_and_ancestor_ids ).first
+      list_id = comprehensive_list ? comprehensive_list.id : place.check_list_id
+      lt = ListedTaxon.create( taxon_id: taxon_id, place_id: place_id, list_id: list_id, user_id: current_user.id )
       if lt.errors.any?
-        @presence = "not allowed"
+        presence = "not allowed"
+        error = lt.errors.full_messages.to_sentence
       else
-        @presence = true
+        presence = true
       end
     end
 
     respond_to do |format|
-      format.json { render json: { place_name: place.try_methods( :display_name, :name ), place_id: @place_id, presence: @presence }, status: :ok }
+      format.json do
+        if error
+          render json: { place_name: place.try_methods( :display_name, :name ), place_id: place_id, presence: presence, error: error }, status: :unprocessable_entity
+        else
+          render json: { place_name: place.try_methods( :display_name, :name ), place_id: place_id, presence: presence }, status: :ok
+        end
+      end
     end
   end
 

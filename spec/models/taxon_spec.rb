@@ -122,6 +122,62 @@ describe Taxon, "creation" do
   it "should strip leading space" do
     expect( Taxon.make!( name: "   Leading space" ).name ).to eq "Leading space"
   end
+  
+  it "should prevent creating a taxon with a rank coarser than the parent" do
+    parent = Taxon.make!( rank: Taxon::GENUS )
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::FAMILY, parent: parent )
+    taxon.save
+    taxon.valid?
+    expect(taxon.errors).not_to be_blank
+  end
+  
+  it "should prevent creating an active taxon with an inactive parent" do
+    parent = Taxon.make!( rank: Taxon::GENUS, is_active: false )
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::SPECIES, parent: parent )
+    taxon.save
+    expect(taxon.errors).not_to be_blank
+  end
+  
+  it "should allow creating an active taxon with an inactive parent if output of draft taxon change" do
+    input_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: true )
+    output_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: false )
+    swap = TaxonSwap.make
+    swap.add_input_taxon(input_taxon)
+    swap.add_output_taxon(output_taxon)
+    swap.save!
+    
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::SPECIES, parent: output_taxon )
+    taxon.save
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+  end
+  
+  it "should prevent grafting an active taxon to an inactive parent" do
+    parent = Taxon.make!( rank: Taxon::GENUS, is_active: false )
+    taxon = Taxon.make!(name: 'balderdash', rank: Taxon::SPECIES)
+    expect(taxon.parent_id).not_to be(parent.id)
+    taxon.parent = parent
+    taxon.save
+    taxon.reload
+    expect(taxon.parent_id).not_to be(parent.id)
+  end
+  
+  it "should allow grafting an active taxon to an inactive parent if output of draft taxon change" do
+    input_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: true )
+    output_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: false )
+    swap = TaxonSwap.make
+    swap.add_input_taxon(input_taxon)
+    swap.add_output_taxon(output_taxon)
+    swap.save!
+    
+    taxon = Taxon.make!(name: 'balderdash', rank: Taxon::SPECIES)
+    expect(taxon.parent_id).not_to be(output_taxon.id)
+    taxon.parent = output_taxon
+    taxon.save
+    taxon.reload
+    expect(taxon.parent_id).to be(output_taxon.id)
+  end
+  
 end
 
 describe Taxon, "updating" do
@@ -154,6 +210,70 @@ describe Taxon, "updating" do
     t.update_attributes( name: "    Leading space" )
     expect( t.name ).to eq "Leading space"
   end
+  
+  it "should prevent updating a taxon rank to be coarser than the parent" do
+    parent = Taxon.make!( rank: Taxon::GENUS )
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::SPECIES, parent: parent )
+    taxon.save
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( rank: Taxon::FAMILY )
+    expect(taxon.errors).not_to be_blank
+  end
+  
+  it "should prevent updating a taxon rank to be same rank as child" do
+    parent = Taxon.make!( rank: Taxon::GENUS )
+    taxon = Taxon.new(name: 'balderdash', rank: Taxon::SPECIES, parent: parent )
+    taxon.save
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    parent.update_attributes( rank: Taxon::SPECIES )
+    expect(parent.errors).not_to be_blank
+  end
+  
+  it "should prevent updating a taxon to be inactive if it has active children" do
+    taxon = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS )
+    child = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: taxon )
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( is_active: false )
+    expect(taxon.errors).not_to be_blank
+  end
+  
+  it "should allow updating a taxon to be inactive if it has active children but move children is checked" do
+    taxon = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS )
+    child = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: taxon )
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( is_active: false, skip_only_inactive_children_if_inactive: true )
+    expect(taxon.errors).to be_blank
+  end
+  
+  
+  it "should prevent updating a taxon to be active if it has an inactive parent" do
+    parent = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS, is_active: false )
+    taxon = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: parent, is_active: false )
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( is_active: true )
+    expect(taxon.errors).not_to be_blank
+  end
+  
+  it "should allow updating a taxon to be active if it has an inactive parent if output of draft taxon change" do
+    input_taxon = Taxon.make!( rank: Taxon::GENUS, is_active: true )
+    output_taxon = Taxon.make!(name: 'balderdash', rank: Taxon::GENUS, is_active: false )
+    swap = TaxonSwap.make
+    swap.add_input_taxon(input_taxon)
+    swap.add_output_taxon(output_taxon)
+    swap.save!
+    
+    taxon = Taxon.make!(name: 'balderdash foo', rank: Taxon::SPECIES, parent: output_taxon, is_active: false )
+    taxon.valid?
+    expect(taxon.errors).to be_blank
+    taxon.update_attributes( is_active: true )
+    expect(taxon.errors).to be_blank
+  end
+  
 end
 
 describe Taxon, "destruction" do
@@ -639,8 +759,8 @@ describe Taxon, "merging" do
   end
   
   it "should set iconic taxa on children" do
-    reject = Taxon.make!
-    child = Taxon.make!(:parent => reject)
+    reject = Taxon.make!(rank: "species")
+    child = Taxon.make!(parent: reject, rank: "subspecies")
     expect(child.iconic_taxon_id).not_to eq @keeper.iconic_taxon_id
     expect(child.iconic_taxon_id).to eq reject.iconic_taxon_id
     @keeper.merge(reject)
@@ -762,8 +882,8 @@ describe Taxon, "moving" do
   end
 
   it "should set iconic taxon on observations of descendants if grafting for the first time" do
-    parent = Taxon.make!
-    taxon = Taxon.make!(:parent => parent)
+    parent = Taxon.make!(rank: Taxon::GENUS)
+    taxon = Taxon.make!(parent: parent, rank: Taxon::SPECIES)
     obs = without_delay { Observation.make!(:taxon => taxon) }
     expect(obs.iconic_taxon).to be_blank
     without_delay do
@@ -909,7 +1029,7 @@ describe Taxon, "grafting" do
   end
   
   it "should set iconic taxa on descendants" do
-    taxon = Taxon.make!(:name => "Craptaculous", :parent => @graftee)
+    taxon = Taxon.make!(rank: "subspecies", name: "Craptaculous", parent: @graftee)
     @graftee.update_attributes(:parent => @Pseudacris)
     taxon.reload
     expect(taxon.iconic_taxon_id).to eq @Pseudacris.iconic_taxon_id
@@ -947,6 +1067,7 @@ describe Taxon, "grafting" do
       expect( es_o_idents[1].category ).to eq Identification::SUPPORTING
       expect( es_o_idents[2].category ).to eq Identification::SUPPORTING
       expect( es_o_idents[3].category ).to eq Identification::MAVERICK
+      without_delay { i.taxon.update_attributes( rank: Taxon::SPECIES ) }
       without_delay { i.taxon.update_attributes( parent: @Pseudacris ) }
       i.reload
       expect( i.taxon.ancestor_ids ).to include( @Pseudacris.id)
@@ -978,16 +1099,16 @@ describe Taxon, "single_taxon_for_name" do
 
   it "should find a valid name, not invalid synonyms within the same parent" do
     name = "Foo bar"
-    parent = Taxon.make!
-    valid = Taxon.make!(:name => name, :parent => parent)
-    invalid = Taxon.make!(:parent => parent)
+    parent = Taxon.make!(rank: Taxon::GENUS)
+    valid = Taxon.make!(name: name, parent: parent, rank: Taxon::SPECIES)
+    invalid = Taxon.make!(parent: parent, rank: Taxon::SPECIES)
     invalid.taxon_names.create(:name => name, :is_valid => false, :lexicon => TaxonName::SCIENTIFIC_NAMES)
     expect(Taxon.single_taxon_for_name(name)).to eq(valid)
   end
 
   it "should find a single valid name among invalid synonyms" do
-    valid = Taxon.make!(:parent => Taxon.make!)
-    invalid = Taxon.make!(:parent => Taxon.make!)
+    valid = Taxon.make!(parent: Taxon.make!(rank: Taxon::GENUS), rank: Taxon::SPECIES)
+    invalid = Taxon.make!(parent: Taxon.make!(rank: Taxon::GENUS), rank: Taxon::SPECIES)
     tn = TaxonName.create!(taxon: invalid, name: valid.name, is_valid: false, lexicon: TaxonName::SCIENTIFIC_NAMES)
     all_names = [valid.taxon_names.map(&:name), invalid.reload.taxon_names.map(&:name)].flatten.uniq
     expect( all_names.size ).to eq 2
@@ -1276,7 +1397,7 @@ describe "complete" do
         expect( t ).to be_valid
       end
       it "should allow editing rank" do
-        superfamily.update_attributes( rank: "superduperfamily", current_user: taxon_curator.user )
+        superfamily.update_attributes( rank: "order", current_user: taxon_curator.user )
         expect( superfamily ).to be_valid
       end
       it "should allow editing is_active" do

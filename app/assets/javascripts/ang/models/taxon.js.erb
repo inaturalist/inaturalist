@@ -150,7 +150,7 @@ iNatModels.Taxon.titleCaseName = function( name ) {
     "on",
     "the"
   ];
-  var commonNamePieces = name.split( /\s+/ );
+  var commonNamePieces = _.trim( name ).split( /\s+/ );
   return _.map( commonNamePieces, function( piece, i ) {
     if ( i > 0 && uncapitalized.indexOf( piece.toLowerCase( ) ) >= 0 ) {
       return piece.toLowerCase( );
