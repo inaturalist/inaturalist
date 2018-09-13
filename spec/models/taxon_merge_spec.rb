@@ -198,6 +198,23 @@ describe TaxonMerge, "commit" do
       expect( @input_taxon2.taxon_change_taxa.size ).to eq 1
       expect( @input_taxon2.taxon_change_taxa.first.taxon_change ).to eq @merge
     end
+
+    it "should move a child if a swap would make a new taxon with the same name" do
+      @input_ancestor.update_attributes( rank: Taxon::FAMILY, name: "Hylidae" )
+      @input_taxon1.update_attributes( rank: Taxon::GENUS, name: "Acris" )
+      @input_taxon2.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
+      @input_taxon3.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
+      @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Acris", is_active: false )
+      child = Taxon.make!( parent: @input_taxon1, rank: Taxon::SPECIES, name: "Acris blanchardii" )
+      @merge.reload
+      @merge.commit
+      Delayed::Worker.new.work_off
+      child.reload
+      @output_taxon.reload
+      expect( child.parent ).to eq @output_taxon
+      expect( child.taxon_changes.count ).to eq 0
+      expect( child.taxon_change_taxa.count ).to eq 0
+    end
   end
 end
 

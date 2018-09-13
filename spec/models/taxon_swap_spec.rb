@@ -401,7 +401,7 @@ describe TaxonSwap, "commit" do
     @swap.update_attributes( move_children: true )
     expect {
       @swap.commit
-    }.not_to raise_error TaxonChange::ActiveChildrenError
+    }.not_to raise_error # TaxonChange::ActiveChildrenError
   end
   
 
@@ -708,7 +708,7 @@ describe "move_input_children_to_output" do
     @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
     @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
     child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
-    [@input_taxon, @output_taxon, child].each(&:reload)
+    [@input_taxon, @output_taxon, child, @swap].each(&:reload)
     @swap.committer = @swap.user
     @swap.commit
     [@input_taxon, @output_taxon, child].each(&:reload)
