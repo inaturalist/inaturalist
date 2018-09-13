@@ -91,9 +91,8 @@ const SplitTaxon = props => {
       comNameClass = `noname display-name ${comNameClass}`;
       if ( placeholder ) {
         return (
-          <span>
+          <span key={ key }>
             <LinkElement
-              key={ key }
               className={ comNameClass }
               href={ url }
               onClick={ onClick }

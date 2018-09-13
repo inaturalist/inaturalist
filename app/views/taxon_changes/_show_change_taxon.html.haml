@@ -48,7 +48,7 @@
           = t :group
           \:
         = link_to taxon_change.change_group, taxon_changes_path(:change_group => taxon_change.change_group)
-    - if taxon_change.move_children?
+    - if ( taxon_change.is_a?( TaxonSwap ) || taxon_change.is_a?( TaxonMerge ) ) && taxon_change.move_children?
       .move_children
         %label=t :move_input_children_to_output?
         =t :yes
