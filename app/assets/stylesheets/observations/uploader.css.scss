@@ -900,6 +900,9 @@ label {
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
+        &.current {
+          background-color: #FAFAFA;
+        }
         a {
           text-decoration: none;
           .small {

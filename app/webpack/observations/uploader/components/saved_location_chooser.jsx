@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import _ from "lodash";
 import { fetch } from "../../../shared/util";
+import mousetrap from "mousetrap";
 
 class SavedLocationChooser extends React.Component {
   constructor( props ) {
@@ -13,6 +14,7 @@ class SavedLocationChooser extends React.Component {
       current: -1
     };
     this.clickOffEventNamespace = "click.SavedLocationChooserClickOff";
+    this.input = React.createRef( );
   }
 
   componentDidMount( ) {
@@ -25,32 +27,82 @@ class SavedLocationChooser extends React.Component {
 
   setLocationsFromProps( props ) {
     if ( _.isEmpty( this.state.query ) && props.defaultLocations.length > 0 ) {
-      this.setState( { locations: props.defaultLocations } );
+      this.setState( {
+        current: -1,
+        locations: props.defaultLocations
+      } );
     }
   }
 
   show( ) {
-    this.setState( { show: true } );
-    const that = this;
-    $( "body" ).on( this.clickOffEventNamespace, e => {
-      if ( !$( ".SavedLocationChooser" ).is( e.target ) &&
-          $( ".SavedLocationChooser" ).has( e.target ).length === 0 &&
-          $( e.target ).parents( ".SavedLocationChooser" ).length === 0
-        ) {
-        that.hide( );
-      }
-    } );
+    if ( !this.state.show ) {
+      this.setState( { show: true } );
+      this.bindArrowKeys( );
+      const that = this;
+      $( "body" ).on( this.clickOffEventNamespace, e => {
+        if ( !$( ".SavedLocationChooser" ).is( e.target ) &&
+            $( ".SavedLocationChooser" ).has( e.target ).length === 0 &&
+            $( e.target ).parents( ".SavedLocationChooser" ).length === 0
+          ) {
+          that.hide( );
+        }
+      } );
+    }
   }
 
   hide( ) {
-    this.setState( { show: false } );
-    $( "body" ).unbind( this.clickOffEventNamespace );
+    if ( this.state.show ) {
+      this.setState( { show: false, current: -1 } );
+      this.unbindArrowKeys( );
+      $( "body" ).unbind( this.clickOffEventNamespace );
+    }
   }
 
   searchLocations( text ) {
     fetch( `/saved_locations?q=${text}` )
       .then( response => response.json( ) )
-      .then( json => this.setState( { locations: json.results } ) );
+      .then( json => this.setState( {
+        current: -1,
+        locations: json.results
+      } ) );
+  }
+
+  bindArrowKeys( ) {
+    const domNode = this.input.current;
+    mousetrap( domNode ).bind( "up", ( ) => this.highlightPrev( ) );
+    mousetrap( domNode ).bind( "down", ( ) => this.highlightNext( ) );
+    mousetrap( domNode ).bind( "enter", ( ) => this.chooseCurrent( ) );
+  }
+
+  unbindArrowKeys( ) {
+    const domNode = this.input.current;
+    mousetrap( domNode ).unbind( "up" );
+    mousetrap( domNode ).unbind( "down" );
+    mousetrap( domNode ).unbind( "enter" );
+  }
+
+  highlightNext( ) {
+    this.setState( {
+      current: Math.min( this.state.locations.length - 1, this.state.current + 1 )
+    } );
+  }
+
+  highlightPrev( ) {
+    this.setState( {
+      current: Math.max( 0, this.state.current - 1 )
+    } );
+  }
+
+  chooseCurrent( ) {
+    const currentPlace = this.state.locations[this.state.current];
+    if ( currentPlace ) {
+      this.props.onChoose( currentPlace );
+    }
+    this.hide( );
+    this.setState( { query: "" } );
+    if ( this.input.current ) {
+      this.input.current.blur( );
+    }
   }
 
   render( ) {
@@ -67,11 +119,16 @@ class SavedLocationChooser extends React.Component {
           <span className="badge">{ I18n.toNumber( locationsTotal, { precision: 0 } ) }</span>
         </div>
         <input
+          ref={ this.input }
+          value={ this.state.query }
           placeholder={ I18n.t( "your_saved_locations", { defaultValue: "Your Saved Locations" } ) }
           className="form-control"
-          onFocus={ ( ) => this.show( ) }
+          onFocus={ ( ) => {
+            this.show( );
+          } }
           onChange={ e => {
             const text = e.target.value || "";
+            this.setState( { query: text } );
             if ( text.length === 0 ) {
               this.setState( { locations: defaultLocations } );
             } else {
@@ -86,8 +143,11 @@ class SavedLocationChooser extends React.Component {
                 { I18n.t( "no_results_found" ) }
               </li>
             ) : null }
-            { this.state.locations.map( sl => (
-              <li key={ `saved-location-${sl.id}` }>
+            { this.state.locations.map( ( sl, i ) => (
+              <li
+                key={ `saved-location-${sl.id}` }
+                className={ i === this.state.current ? "current" : "" }
+              >
                 <a
                   href="#"
                   onClick={ e => {
@@ -96,6 +156,7 @@ class SavedLocationChooser extends React.Component {
                     this.hide( );
                     return false;
                   }}
+                  onMouseOver={ ( ) => this.setState( { current: i } ) }
                 >
                   { sl.title }
                   <dl className="small text-muted">
