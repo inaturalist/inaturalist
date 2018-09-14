@@ -90,9 +90,9 @@ class TaxonChange < ActiveRecord::Base
   def rank_level_conflict?
     return false unless ["TaxonSwap", "TaxonMerge"].include? type
     if type == "TaxonSwap"
-      input_taxa_rank_level_conflict = input_taxa[0].descendants.where( "rank_level >= ?", output_taxa[0].rank_level ).first
+      input_taxa_rank_level_conflict = input_taxa[0] if ( input_taxa[0].rank_level > output_taxa[0].rank_level )
     elsif type == "TaxonMerge"
-      input_taxa_rank_level_conflict  = output_taxa.map{|ot| ot.descendants.where( "rank_level >= ?", input_taxa[0].rank_level ).first }.first
+      input_taxa_rank_level_conflict  = input_taxa.map{ |input_taxon| input_taxon.rank_level > output_taxa[0].rank_level }.first
     end
     return false unless input_taxa_rank_level_conflict 
     input_taxa_rank_level_conflict
@@ -150,7 +150,7 @@ class TaxonChange < ActiveRecord::Base
       return
     end
     if rank_level_conflict?
-      raise RankLevelError, "Output taxon rank level not coarser than all input taxon descendant rank levels"
+      raise RankLevelError, "Output taxon rank level finer than rank level of an input taxon"
       return
     end
     input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: move_children? )}
