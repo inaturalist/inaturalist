@@ -153,8 +153,14 @@ class TaxonChange < ActiveRecord::Base
       raise RankLevelError, "Output taxon rank level not coarser than all input taxon descendant rank levels"
       return
     end
-    input_taxa.each {|t| t.update_attributes(is_active: false, skip_only_inactive_children_if_inactive: move_children? )}
-    output_taxa.each {|t| t.update_attribute(:is_active, true)}
+    input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: move_children? )}
+    output_taxa.each do |t|
+      t.update_attributes!(
+        is_active: true,
+        skip_only_inactive_children_if_inactive: move_children?,
+        skip_complete: true
+      )
+    end
     update_attribute(:committed_on, Time.now)
   end
 
@@ -373,9 +379,15 @@ class TaxonChange < ActiveRecord::Base
       output_taxon.skip_complete = true
       child.move_to_child_of( output_taxon )
     end
-    if target_input_taxon.rank_level &&
-       target_input_taxon.rank_level <= Taxon::GENUS_LEVEL &&
-       output_taxon.rank == target_input_taxon.rank
+    if (
+      target_input_taxon.rank_level &&
+      target_input_taxon.rank_level <= Taxon::GENUS_LEVEL &&
+      output_taxon.rank == target_input_taxon.rank &&
+        (
+          target_input_taxon.genus.blank? || output_taxon.genus.blank? ||
+          output_taxon.genus.try(:name) != target_input_taxon.genus.try(:name)
+        )
+    )
       target_input_taxon.children.active.each do |child|
         # If for some horrible reason people are swapping replacing taxa with
         # their own children, at least don't get into some kind of invite
