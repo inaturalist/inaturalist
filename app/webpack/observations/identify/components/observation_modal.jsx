@@ -218,7 +218,7 @@ class ObservationModal extends React.Component {
       if ( observation.quality_grade === "needs_id" ) {
         return I18n.t( "needs_id_" );
       }
-      return I18n.t( observation.quality_grade );
+      return I18n.t( "casual_" );
     };
 
     const defaultShortcuts = [
