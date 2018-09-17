@@ -24,6 +24,7 @@
 # Author: Orikrin1998
 # Author: Oupsa
 # Author: Pamputt
+# Author: Pols12
 # Author: Robby
 # Author: Spasmedevivre
 # Author: Thibaut120094
@@ -255,7 +256,7 @@ fr:
   add_more_photos: Ajouter plus de photos
   add_new_lexicon: Ajouter un nouveau lexique
   add_new_observations: Ajouter de nouvelles observations
-  add_new_photos_by_their_ids: Ajouter de nouvelles photos selon leurs identifiants
+  add_new_photos_by_their_ids: Ajouter de nouvelles photos selon leur identifiant
     Flickr (doivent avoir une licence Creative Commons !)
   add_new_place: Ajouter un nouveau lieu
   add_new_rule: Ajouter une nouvelle règle
@@ -301,15 +302,15 @@ fr:
   add_some_now: En ajouter maintenant
   add_tag: Ajouter une balise
   add_tags: Ajouter des balises
-  add_tags_to_selected_taxa: Ajouter des étiquettes aux taxons sélectionnés
+  add_tags_to_selected_taxa: Ajouter des balises aux taxons sélectionnés
   add_taxa: Ajouter des taxons
   add_taxa_to_places: Ajouter des taxons aux lieux
   add_taxon_batch_to: Ajouter un lot de taxons à %{list}
-  add_taxon_range: Ajouter une aire de répartition pour le taxon
+  add_taxon_range: Ajouter un périmètre de taxon
   add_taxonomic_tags_to: Ajouter des étiquettes taxinomiques aux photos Flickr sélectionnées
     &raquo;
-  add_taxonomic_tags_to_the_fickr_photos: Ajouter des étiquettes taxinomiques aux
-    photos Flickr associées aux observations sélectionnées.
+  add_taxonomic_tags_to_the_flickr_photos: Ajouter les balises taxonomiques aux photos
+    Flickr associées avec les observations sélectionnées.
   add_to: Ajouter à
   add_to_a_scheme: Ajouter à un programme
   add_to_a_project: Ajouter à un projet
@@ -348,6 +349,7 @@ fr:
   admin: Admin
   admin_s: Administrateur(s)
   admin_any_projects: Administrer n’importe quels projets
+  admin_only: Administrateur uniquement
   admin_tools: Outils d’administration
   agree: accepter
   agree_: Accepter
@@ -608,8 +610,8 @@ fr:
   you_sure_delete_list: Êtes-vous certain de vouloir supprimer cette liste ?
   you_sure_delete_taxon_from_list?: Êtes-vous certain de vouloir retirer %{taxon}
     de la liste?
-  asc: crois.
-  ascending: croissant
+  asc: Asc
+  ascending: Croissant
   aside_from_extraordinary_circumstances: Sauf dans des situations extraordinaires,
     nous ne vous demanderons jamais votre mot de passe.
   assessment: évaluation
@@ -752,7 +754,7 @@ fr:
   casual: occasionnel
   casual_: Occasionnel
   catalogue_of_life: Catalogue of Life
-  categories: catégories
+  categories: Catégories
   cc_0_description: Cette licence place votre travail dans le domaine public, de telle
     sorte que d’autres peuvent le copier, le modifier, le distribuer et y accéder,
     même pour des raisons commerciales, le tout sans demander de permission ou vous
@@ -1147,6 +1149,7 @@ fr:
   cumulative_ids: 'IDs cumulés : %{count} sur %{total}'
   curate_observations: Organiser les observations
   curate_taxa: Organiser les taxons
+  curate_user: Superviser l’utilisateur
   curate_users: Organiser les utilisateurs
   curated: Organisé
   curated_checklist: Liste de contrôle organisée
@@ -1179,8 +1182,8 @@ fr:
   datatype: Type de données
   date_: Date
   date?: Date?
-  date_added: Date ajoutée
-  date_created: date créée
+  date_added: Date d’ajout
+  date_created: Date de création
   date_format:
     date_long:
       january: '%{day} janvier %{year}'
@@ -1252,9 +1255,9 @@ fr:
   deleted_vote: Vote supprimé
   deleting: Suppression en cours…
   deleting_verb: Suppression
-  desc: décroissant
+  desc: Desc
   descendant_taxa: taxons descendants
-  descending: descendant
+  descending: Descendant
   describe_purpose: Décrivez le but de ce projet.
   describe_your_interest_in_nature: Décrivez votre intérêt envers la nature!
   description: Description
@@ -1330,7 +1333,7 @@ fr:
   edit: Modifier
   edit_a_batch_of_observations: Modifier un lot d’observations
   edit_account_settings_and_profile: Modifier les paramètres &amp; profil d’un compte
-  edit_assessment: Modifier une évaluation
+  edit_assessment: Modifier l’évaluation
   edit_atlas: Modifier un atlas
   edit_body: Modifier le corps
   edit_colors: Modifier les couleurs
@@ -1350,7 +1353,7 @@ fr:
   edit_photos_for_observation_id: Modifier les photos pour l’observation %{obs_id}
   edit_place: Modifier le lieu
   edit_project: Modifier un projet
-  edit_range_raquo: Modifier l’aire de répartition &raquo;
+  edit_range_raquo: Modifier le périmètre &raquo;
   edit_remove: Modifier/supprimer
   edit_selected: Modifier la sélection
   edit_source: Modifier la source
@@ -1358,10 +1361,10 @@ fr:
   edit_taxon: Modifier le taxon
   edit_taxon_change: Modifier la modification de taxon
   edit_taxon_link: Modifier le lien relatif au taxon
-  edit_taxon_range: Modifier l’aire de répartition du taxon
+  edit_taxon_range: Modifier le périmètre du taxon
   edit_the_observation: Modifier l’observation
   edit_this_link: Modifier ce lien
-  edit_your_account: modifier votre compte
+  edit_your_account: Modifier votre compte
   edit_your_account_and_profile_html: Modifier votre compte et votre profil
   edit_your_default_settings: Modifier vos paramètres par défaut
   edit_your_global_project_settings: Modifier vos paramètres de projet globaux
@@ -1424,12 +1427,12 @@ fr:
   error_updating_photo: 'Erreur de mise à jour de la photo : %{photo_errors}'
   establishment:
     establishment: Établissement
-    native: indigène
+    native: Indigène
     endemic: Endémique
-    introduced: introduite
-    naturalised: acclimatée
+    introduced: Introduite
+    naturalised: Acclimatée
     invasive: Envahissante
-    managed: gérée
+    managed: Gérée
   establishment_means: Moyens d’établissement
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: indigène et n’existe nulle part ailleurs
@@ -1458,14 +1461,14 @@ fr:
   existing_flags: Drapeaux existants
   exit_full_screen: Sortir du mode plein écran
   examples_of_ranking_organizations: Exemples d’organisations de classement
-  expand_days: développer les jours
-  expand_updates: développer les mises à jour
+  expand_days: Développer les jours
+  expand_updates: Développer les mises à jour
   explore!: Explorez!
   explore: Explorer
   explore_everyones_observations: Explorer les observations de tout le monde
   export: Exporter
   export_observations: Exporter les observations
-  export_with_private_coordinates: Exporter avec des coordonnées privées
+  export_with_private_coordinates: Exporter avec les coordonnées privées
   exporting: Exportation en cours…
   external_links: Liens externes
   extinct: disparue
@@ -1496,7 +1499,7 @@ fr:
   faves: Favoris
   Family: Famille
   faved_this_observation: mettre cette observation en favori
-  favorite_taxa: taxons favoris
+  favorite_taxa: Taxons favoris
   favorites: Favoris
   fblocale: aux_É.-U.
   feature_this_project: Mettre en valeur ce projet?
@@ -1565,23 +1568,23 @@ fr:
   first_report: premier rapport
   flag: Signaler
   flag_as_inappropriate: Marquer comme non approprié
-  flag_an_item: Signaler un élément
-  flag_as_spammer: Signaler comme polluposteur
-  flag_as_non_spammer: Signaler comme non-polluposteur
+  flag_an_item: Marquer un élément
+  flag_as_spammer: Marquer comme polluposteur
+  flag_as_non_spammer: Marquer comme non-polluposteur
   flag_description: Signaler aux responsables de l’organisation qu’il y a un problème
     avec le contenu
-  flag_for_curation: Signaler aux fins d’organisation
+  flag_for_curation: Marquer pour les organisateurs
   flag_it!: Signalez !
   flag_marked_as_resolved_html: <span class="meta">Drapeau indiquant que le problème</span>
     <strong>est résolu.</strong>
   flag_reason: '&ldquo;Je signale ce %{record} parce que'
-  flag_saved: Drapeau enregistré.
+  flag_saved: Marque enregistré
   flag_saved_thanks: Drapeau enregistré. Merci !
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
   flagged: a signalé
   flagged_: Marqué
-  flagged_for_curation: Signalé aux fins d’organisation
+  flagged_for_curation: Marqué pour supervision
   flagged_thing_explanation: Les utilisateurs ont signalé ce %{thing} parce que
   flagger: Signaleur
   flags: Drapeaux
@@ -1714,12 +1717,12 @@ fr:
   has_been: a été
   has_id_supported_by_two_or_more: Possède un ID établi par au moins deux
   has_one_or_more_faves: A un ou plusieurs favoris
-  has_photo: a des photos
-  has_photos: a des photos
+  has_photo: A une photo
+  has_photos: A des photos
   has_photo_and_sound: A une photo et un son
   has_photos_or_sounds: Possède des photos ou des sons
   has_sound: A un son
-  has_sounds: a des sons
+  has_sounds: A des sons
   hasnt_contributed_any_observations: n’a contribué aucune observation à ce projet.
   hate_me_facebook: Supprimer le lien entre Facebook et vos comptes %{site_name}
   hate_me_flickr: Supprimer le lien entre vos comptes Flickr et %{site_name}
@@ -1760,8 +1763,8 @@ fr:
   hide: Masquer
   hide_details: Masquer les détails
   hide_uncountable_species: Masquer les espèces indénombrables
-  high: haut
-  highest_rank: Rang le plus elevé
+  high: Haut
+  highest_rank: Rang le plus élevé
   highlights: Mise en évidence
   highlights_and_stats_from_year_on_site: Mises en évidence et statistiques pour %{year}
     sur %{site}
@@ -1881,8 +1884,8 @@ fr:
   in_taxon?: dans le taxon
   in_the_past: dans le passé
   in_the_past_week: la semaine passée
-  inactive: inactif
-  inactive_taxon: taxon inactif
+  inactive: Inactif
+  inactive_taxon: Taxon inactif
   inactive_taxon_concepts_are: Les taxons inactifs sont soit désuets d’un point de
     vue taxinomique, soit en attente d’une modification de taxon. Les concepts désuets
     sont conservés aux fins d’historique et de compatibilité avec certains sites partenaires.
@@ -1916,7 +1919,7 @@ fr:
   internal_server_error: Erreur interne du serveur
   introduced: Introduite
   introduced_in_place: Introduit dans %{place}
-  invasive: invasive
+  invasive: Invasive
   invitation: Invitation
   invitations: Invitations
   invite: inviter
@@ -2338,8 +2341,8 @@ fr:
       range: Plage
   map_tooltip: Afficher la vue de la carte
   map_for: Carte de
-  mark_as_reviewed: Mark tel que révisé
-  mark_all_as_reviewed: Marquer l'ensemble comme relu
+  mark_as_reviewed: Marquer comme relu
+  mark_all_as_reviewed: Marquer l’ensemble comme relu
   mark_all_as_unreviewed: Marquer tout comme non relu
   matched_several_different_taxa: correspond à plusieurs taxons différents
   matching_species_will_shown_up_here: Les espèces correspondantes seront affichées
@@ -2396,6 +2399,7 @@ fr:
       MM: '%dmo'
       "y": 1y
       yy: '%dy'
+    datetime_with_zone: D MMM YYYY · LT z
   mon: Lun
   month: Mois
   months: Mois
@@ -2407,8 +2411,8 @@ fr:
   more_import_options: Plus options d’importation
   more_info: Plus d’informations
   more_info_title: Plus d’informations
-  more_journal_posts: Plus de notes de journal
-  more_observations: Plus d’observations
+  more_journal_posts: Davantage de notes de journal
+  more_observations: Davantage d’observations
   more_photos: Plus de photos
   most: Le plus
   most_agree: la plupart sont d’accord
@@ -2416,13 +2420,14 @@ fr:
     en PDF'
   most_disagree: la plupart ne sont pas d’accord
   most_comments_and_faves: La plupart des commentaires et favoris
-  most_observations: Le plus d'observations
+  most_observations: Plus d’observations
   most_recent_observation_by_date_observed: Observation vérifiable la plus récente
     observée par date
-  most_species: Le plus d'espèces
+  most_species: Plus d’espèces
   most_observed_species: Espèces les plus observées
   most_observed_introduced_species: Espèces introduites les plus observées
   most_observed_threatened_species: Espèces menacées les plus observées
+  move_input_children_to_output?: Déplacer les enfants vers la sortie ?
   multiple: multiple
   multiple_select_option: -- multiple --
   multiple_taxa_for_taxon_change: Taxons multiples (entrée aux fins d’échange/fusion,
@@ -2473,7 +2478,7 @@ fr:
   ne_lat: Lat. NE
   ne_lon: Lon. NE
   near: près de
-  near_threatened: quasi-menacée
+  near_threatened: Quasi-menacée
   nearby: À proximité
   nearby_observations_: Observations à proximité
   nearby_observations: Observations à proximité
@@ -2831,7 +2836,7 @@ fr:
   of_identifiers: identificateurs
   of_places: lieux
   of_this_taxon: De ce taxon
-  offensive_inappropriate: injurieux/inapproprié
+  offensive_inappropriate: Injurieux/inapproprié
   official_blog: Blogue officiel
   offline_access_enabled: Accès hors ligne activé
   old_observation_form: Ancien formulaire d’observation (désuet)
@@ -3393,39 +3398,40 @@ fr:
   rank_position: Rang
   rank_restrictions: Restrictions de rang
   ranks:
-    kingdom: règne
+    kingdom: Royaume
     subkingdom: Sous-royaume
-    phylum: embranchement
-    subphylum: sous-embranchement
-    superclass: super-classe
-    class: classe
+    phylum: Embranchement
+    subphylum: Sous-embranchement
+    superclass: Super-classe
+    class: Classe
     subclass: Sous-classe
-    infraclass: classe interne
+    infraclass: Classe interne
     superorder: Super-ordre
-    order: ordre
+    order: Ordre
     suborder: Sous-ordre
-    infraorder: sous-ordre
-    parvorder: parvorder
-    zoosection: zoosection
+    infraorder: Sous-ordre
+    subterclass: Sous-classe
+    parvorder: Parvorder
+    zoosection: Zoosection
     zoosubsection: Zoosubsection
-    superfamily: super-famille
-    epifamily: épifamille
+    superfamily: Super-famille
+    epifamily: Épifamille
     family: Famille
-    subfamily: sous-famille
+    subfamily: Sous-famille
     supertribe: Super-tribu
-    tribe: tribu
-    subtribe: sous-tribu
-    genus: genre
-    genushybrid: genre hybride
+    tribe: Tribu
+    subtribe: Sous-tribu
+    genus: Genre
+    genushybrid: Genre hybride
     subgenus: Sous-genre
-    section: section
-    subsection: sous-section
-    species: espèces
+    section: Section
+    subsection: Sous-section
+    species: Espèce
     hybrid: Hybride
-    subspecies: sous-espèce
-    variety: variété
-    form: forme
-    infrahybrid: sous-hybride
+    subspecies: Sous-espèces
+    variety: Variété
+    form: Forme
+    infrahybrid: Sous-hybride
     leaves: Feuilles
   ranges: Intervalles
   rare: Rare
@@ -3861,7 +3867,7 @@ fr:
   sources_youve_added: Sources que vous avez ajoutées
   sources_and_credits: Sources et générique
   sourcing: Source
-  spam: pourriel
+  spam: Pourriel
   spanish: Espagnol
   species: Espèces
   species_by_category: espèces par catégorie
@@ -3887,7 +3893,7 @@ fr:
   start_date_time: Date / Heure de début
   start_new_account: Démarrer un nouveau compte
   start_new_project: Démarrer un nouveau projet
-  start_one: démarrer une
+  start_one: Démarrer un
   start_one_now: Démarrez-en un maintenant!
   start_typing_field_name: Commencez à taper le nom du champ…
   start_typing_place_name: Commencez à taper le nom du lieu…
@@ -4338,7 +4344,7 @@ fr:
     observations ou les modifier dans un lot, mais ces actions devraient se passer
     d’explications.
   those_observations_no_longer_exist: Ces observations n’existent plus.
-  threatened: menacée
+  threatened: Menacé
   thu: Jeu
   thumb_url: URL de la vignette
   time_: heure
@@ -4374,7 +4380,7 @@ fr:
   top_observers: Meilleurs observateurs
   top_species: Espèces favorites
   total: Total
-  totals: totaux
+  totals: Totaux
   total_members: Total des membres
   total_observations: Total des observations
   total_species_observed: Nombre total d’espèces observées
@@ -4443,7 +4449,7 @@ fr:
     moyen des nouveaux choix de licence
   update_existing_sounds_with_new_license: Mettre à jour les sons existants au moyen
     des nouveaux choix de licence
-  update_past: Mettre jour les derniers %{type}
+  update_past: Mettre à jour les derniers %{type}
   update_photos: Mettre à jour les photos
   update_search: Mettre à jour la recherche
   update_selected_taxa: Mettre à jour les taxons sélectionnés
@@ -4599,7 +4605,7 @@ fr:
   view_more_about_x: Afficher plus sur %{x}
   view_more_observations: Afficher plus d'observations
   view_more_observations_from_x: Afficher plus d'observations de %{x}
-  view_more_observations_from: Afficher plus d'observations de
+  view_more_observations_from: Afficher plus d’observations de
   view_more_observations_near_x_place: Afficher plus d'observations près de %{place}
     sur <nobr>%{site_name} »</nobr>
   view_more_observations_of_x_project: Afficher plus d'observations de %{project}
@@ -6388,6 +6394,22 @@ fr:
           et de ses descendants. Les photos choisies pour ce
           taxon seront cependant affichées en premier. La première photo sera
           celle par défaut utilisée sur le site.
+    taxon_changes:
+      move_children_desc: Les enfants du taxon saisi qui sont des genres ou plus gros
+        seront déplacés dans la sortie ; les espèces, sous-espèces, variétés, etc.
+        seront changées dans leur équivalent avec le nouveau nom de genre ou d’espèce.
+      form:
+        move_children_desc_html: |-
+          Cocher cette case déplacera les enfants du taxon d’entrée vers le
+          taxon cible pour les Échanges et les Fusions, quand cette modification sera validée. Si
+          cela déplace vers un genre ou inférieur, cela créera un échange de taxons pour tous
+          les descendants qui ont un changement de nom implicite. Par exemple, si vous échangez
+          la famille Canidae en Dogidae, cela modifie le parent du genre
+          <i>Canis</i> de Canidae en Dogidae. Si vous changez le genre
+          <i>Canis</i> dans le genre <i>Dogis</i>, cela créera et validera
+          des échanges de taxon pour changer <i>Canis lupus</i> en <i>Dogis lupus</i> et
+          <i>Canis lupus</i> ssp. <i>lupus</i> en <i>Dogis lupus</i> ssp.
+          <i>lupus</i>. Cela peut provoquer une certaine confusion, donc à utiliser avec précaution.
     taxon_links:
       form:
         name_with_rank_desc: Le nom du tacon avec son rang. Pour des rangs infraspécifiques,

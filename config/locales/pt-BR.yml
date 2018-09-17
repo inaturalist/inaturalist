@@ -278,8 +278,8 @@ pt-BR:
   add_taxon_range: Adicionar área de alcance de um táxon
   add_taxonomic_tags_to: Adicionar marcações taxonômicas as fotos selecionadas do
     Flickr &raquo;
-  add_taxonomic_tags_to_the_fickr_photos: Adicionar marcações taxonômicas as fotos
-    do Flickr associadas as observações selecionadas.
+  add_taxonomic_tags_to_the_flickr_photos: Adicione etiquetas taxonômicas às fotos
+    do Flickr associadas às observações selecionadas.
   add_to: Adicione a
   add_to_a_scheme: Adicione a um esquema
   add_to_a_project: Adicionar a um projeto
@@ -316,6 +316,7 @@ pt-BR:
   admin: Administrador
   admin_s: Administrador(es)
   admin_any_projects: administra qualquer projeto
+  admin_only: Somente administrador
   admin_tools: Ferramentas Administrativas
   agree: Concordo
   agree_: Concordo
@@ -570,8 +571,8 @@ pt-BR:
     lista?
   asc: Asc
   ascending: Ascendente
-  aside_from_extraordinary_circumstances: Salvo circunstâncias extraordinárias, nós
-    nunca iremos solicitar sua senha.
+  aside_from_extraordinary_circumstances: Além de circunstâncias extraordinárias,
+    nunca lhe pediremos sua senha.
   assessment: avaliação
   assessment_has_benn_completed: Avaliação completa
   assessment_sections: Seções de avaliação
@@ -2281,6 +2282,7 @@ pt-BR:
   most_observed_species: Espécies mais observadas
   most_observed_introduced_species: Espécies Introduzidas Mais Observadas
   most_observed_threatened_species: Espécies ameaçadas mais observadas
+  move_input_children_to_output?: Mover as crianças para a saída?
   multiple: múltiplo
   multiple_select_option: -- múltiplo --
   multiple_taxa_for_taxon_change: Diversas espécies e grupos (entrada de dados para
@@ -5623,6 +5625,11 @@ pt-BR:
           deste táxon e de seus descendentes. As fotos escolhidas para este táxon
           serão exibidas primeiro. A primeira foto registrada será exibida como padrão
           em todo o site.
+    taxon_changes:
+      move_children_desc: |-
+        Filhos do táxon de entrada que são mais ou menos generosos serão movidos para
+        a saída; espécies, subespécies, variedades, etc. serão convertidos em
+        equivalentes com o novo nome de gênero ou espécie.
     taxon_names:
       form:
         new_name_guidelines_html: |-

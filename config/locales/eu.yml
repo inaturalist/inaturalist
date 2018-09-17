@@ -205,8 +205,6 @@ eu:
   add_taxon_batch_to: 'Taxon-zerrenda gehitu hona: %{list}'
   add_taxon_range: Taxon maila gehitu
   add_taxonomic_tags_to: Etiketa taxonomikoak gehitu hautatutako Flickr-eko » argazkiei;
-  add_taxonomic_tags_to_the_fickr_photos: Etiketa taxonomikoak gehitu hautatutako
-    oharrekin lotutako Flickr-eko argazkiei.
   add_to: 'Hona gehitu:'
   add_to_a_scheme: Eskema batetara gehitu
   add_to_a_project: Proiektu batera gehitu
@@ -1941,6 +1939,10 @@ eu:
     da'
   observation_rights_html: '%{rights} behaketa'
   observation_rules: Behaketa-arauak
+  observation_rules_description: 'Zuk arauak sor ditzakezu proiektuari zein behaketa
+    gehitu daitezkeen zehazteko. Esate baterako, behaketak leku jakin batera mugatzea.
+    Oharra: Lekuen mugaketa hemen oinarritzen da gaur egun: %{site_name} Places. Behaketak
+    leku baten inguruko laukizuzen txikienera soilik mugatu ditzake.'
   observation_was_deleted: Behaketa ezabatu egin da.
   observation_would_like_some_help: ¡%{user}-(e)k laguntza pixka bat beharko luke
     elementu hau identifikatzeko!
