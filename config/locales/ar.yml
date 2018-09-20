@@ -281,7 +281,7 @@ ar:
   add_taxon_batch_to: إضافة دفعة أصناف إلى %{list}
   add_taxon_range: إضافة نطاق الأصنوفة
   add_taxonomic_tags_to: إضافة علامات تصنيفية إلى صور فليكر المحددة &raquo;
-  add_taxonomic_tags_to_the_fickr_photos: إضافة علامات تصنيفية إلى صور فيكر المرتبطة
+  add_taxonomic_tags_to_the_flickr_photos: إضافة وسوم تصنيفية إلى صور فيكر المرتبطة
     بالملاحظات المحددة.
   add_to: أضف إلى
   add_to_a_scheme: إضافة إلى جدولة
@@ -318,6 +318,7 @@ ar:
   admin: إداري
   admin_s: إداري(ون)
   admin_any_projects: مشرف أي المشاريع
+  admin_only: الإداري فقط
   admin_tools: أدوات المشرف
   agree: موافقة
   agree_: أوافق
@@ -557,7 +558,7 @@ ar:
   you_sure_delete_taxon_from_list?: هل تريد بالتأكيد إزالة %{taxon} من القائمة؟
   asc: تصاعدي
   ascending: تصاعدي
-  aside_from_extraordinary_circumstances: بصرف النظر عن الظروف الاستثنائية، نحن لا
+  aside_from_extraordinary_circumstances: بصرف النظر عن الظروف الاستثنائية، نحن لن
     نطلب منك أبدا كلمة المرور الخاصة بك.
   assessment: تقدير
   assessment_has_benn_completed: لقد اكتمل التقييم
@@ -2247,6 +2248,7 @@ ar:
   most_observed_species: الأكثر في الأنواع الملاحظة
   most_observed_introduced_species: الأكثر في الأنواع الملاحظة المدخلة
   most_observed_threatened_species: الأكثر في الأنواع الملاحظة المهددة بالانقراض
+  move_input_children_to_output?: نقل الأطفال للإخراج؟
   multiple: متعدد
   multiple_select_option: -- متعدد --
   multiple_taxa_for_taxon_change: أصناف متعددة (مدخلات للمبادلة/الدمج، إخراج للتقسيم)
@@ -5759,6 +5761,21 @@ ar:
         photo_chooser_modal_explanation: "لاحظ أن صفحة الأصنوفة سوف تظهر صور هذه الأصنوفة
           \nوذريتها، الصور التي تم اختيارها لهذه \nالأصنوفة سوف تظهر أولا، على الرغم
           من ذلك، ستكون الصورة الأولى هي \nالصورة الافتراضية المستخدمة عبر الموقع."
+    taxon_changes:
+      move_children_desc: |-
+        سيتم نقل الأطفال من المدخلات المدخلة التي هي أجناس أو خشن إلى
+        الإخراج والأنواع والأنواع الفرعية والأصناف وما إلى ذلك سيتم تبديلها إلى
+        مكافئات مع اسم جنس أو نوع جديد.
+      form:
+        move_children_desc_html: "سيؤدي تحديد هذا المربع إلى نقل أطفال الأصنوفة المدخلة
+          إلى \nأصنوفة الإخراج المقايضات و تدمج عند تنفيذ هذا التغيير، إذا كان \nهذا
+          التغيير لجنس أو أقل، فسيؤدي ذلك إلى إنشاء مقايضات أصناف لجميع \nالأحفاد
+          الذين تغير اسمهم الضمني، على سبيل المثال ، إذا قمت بتبديل \nعائلة الكلبيات
+          إلى Dogidae، فهذا يغير أصل الجنس\n<i>Canis</i> من كلبيات إلى Dogidae، إذا
+          قمت بتبديل جنس\n<i>Canis</i> إلى الجنس <i>Dogis</i>، فسوف ينشئ ويلتزم\nيمقايضات
+          أصناف لتغيير <i>Canis lupus</i> إلى <i>Dogis lupus</i> و\n<i>Canis lupus</i>
+          ssp، <i>lupus</i> إلى <i>Dogis lupus</i> ssp.\n<i>lupus</i> هذا يمكن أن
+          يسبب فوضى; لذلك استخدم بعناية."
     taxon_links:
       form:
         name_with_rank_desc: |-

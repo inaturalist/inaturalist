@@ -297,8 +297,6 @@ de:
   add_taxon_range: Taxonrang hinzufügen
   add_taxonomic_tags_to: Taxonomie-Tags zu ausgewählten Flickr-Bildern hinzufügen
     &raquo;
-  add_taxonomic_tags_to_the_fickr_photos: Taxonomie-Markierungen zu Flickr-Fotos hinzufügen,
-    die mit den ausgewählten Beobachtungen verknüpft sind.
   add_to: Hinzufügen zu
   add_to_a_scheme: Zu einem Schema hinzufügen
   add_to_a_project: Zu einem Projekt hinzufügen
@@ -336,6 +334,7 @@ de:
   admin: Administrator
   admin_s: Admin(s)
   admin_any_projects: Projekte verwalten
+  admin_only: Nur Administratoren
   admin_tools: Verwaltungswerkzeuge
   agree: Zustimmen
   agree_: Zustimmen
@@ -2650,6 +2649,8 @@ de:
   only_accepts_taxa: akzeptiert nur Taxa
   only_an_admin_can_remove_project_users: Nur Administratoren können Projektbenutzer
     entfernen.
+  only_curators_can_add_edit_scientific_names: Nur Kuratoren können wissenschaftliche
+    Namen hinzufügen oder bearbeiten.
   only_curators_can_access_that_page: Nur Kuratoren können auf diese Seite zugreifen.
   only_files_with_10000_rows_at_a_time: Bitte nur Dateien mit 10000 Zeilen auf einmal
   only_letters_numbers: Nur Buchstaben und Zahlen, keine Leerzeichen, muss mit einem
@@ -2690,6 +2691,7 @@ de:
   organisms: Organismen
   original: Original
   originally_flagged_by: Ursprünglich gemeldet von
+  original_page_url_for_this_photo: Ursprüngliche Seiten-URL für dieses Foto.
   original_rights_holder: Ursprünglicher Rechteinhaber
   original_url: Ursprüngliche URL
   original_url_for_this_map: Ursprüngliche URL für diese Karte
@@ -3009,6 +3011,9 @@ de:
   profile: Profil
   project: Projekt
   project_added_your_observations: Projekt hat deine Beobachtungen hinzugefügt
+  project_admins:
+    one: Projektadministrator
+    other: Projektadministratoren
   project_cover: Projektcover
   project_created_on: dieses Projekt erstellen am %{date}
   project_curator_changes: Projektkurator-Änderungen
@@ -3403,6 +3408,7 @@ de:
   sign_in_exclamation: Anmelden!
   single_observation: Einzelne Beobachtung
   sizes: Größe
+  skip_to_next_page: Zur nächsten Seite springen
   small: klein
   site_name_place: '%{site_name} Orte'
   site_stats: Seitenstatistik

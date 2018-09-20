@@ -153,7 +153,6 @@ ko:
   add_taxon_batch_to: 분류군 여러 개를 %{list}에 추가하기
   add_taxon_range: 분류군 범위를 추가하기
   add_taxonomic_tags_to: 선택된 플리커 사진에 분류군 태그 추가하기
-  add_taxonomic_tags_to_the_fickr_photos: 선택된 관찰에 대한 플리커 사진에 분류군 태그 추가하기
   add_to: 추가하기
   add_to_a_scheme: 계획에 추가하기
   add_to_a_project: 프로젝트에 추가
@@ -189,6 +188,7 @@ ko:
   admin: 관리자
   admin_s: 관리자
   admin_any_projects: 관리자 아무 프로젝트
+  admin_only: 관리자 전용
   admin_tools: 관리자 도구
   agree: 동의
   agree_: 동의
@@ -357,7 +357,7 @@ ko:
   you_sure_delete_taxon_from_list?: 정말 목록에서 %{taxon}을(를) 삭제하겠습니까?
   asc: 오름차순
   ascending: 오름차순
-  aside_from_extraordinary_circumstances: 정말 꼭 필요한 경우가 아니라면 비밀번호를 묻지 않을 것입니다.
+  aside_from_extraordinary_circumstances: 저희는 특별한 경우가 아니라면 비밀번호는 절대 묻지 않습니다.
   assessment: 평가
   assessment_has_benn_completed: 평가 완료되었습니다.
   assessment_sections: 평가 항목
@@ -2007,7 +2007,11 @@ ko:
     kingdom: 계
     subkingdom: 아계
     phylum: 문
+    subclass: 아강
     infraclass: 하강
+    superorder: 상목
+    suborder: 아목
+    family: 과
     genus: 속
     subgenus: 아종
     section: 섹션
@@ -2025,6 +2029,7 @@ ko:
   recent_observations: 최근 관찰
   recent_atom_observations_by: '%{login}의 최근 관찰 (Atom)'
   recent_updates: 최근 업데이트
+  recently_created: 최근 생성함
   recently_finished: 최근에 완료됨
   recently_resolved: 최근 해결됨
   reload_from_observations: 관찰에서 다시 불러오기
@@ -2055,6 +2060,7 @@ ko:
   required_field: 필수 필드
   research_: 연구
   research_quality: 연구 품질
+  reset_search_filters: 검색 필터 초기화
   reset_your_password: 내 비밀번호 재설정
   restore: 복구
   restoring: 복구 중...
@@ -2143,6 +2149,7 @@ ko:
     inaturalist: iNaturalist
   spam: 스팸
   specify_the_reason_youre_flagging: 이 항목을 플래그하는 이유를 기입하세요
+  start_a_new_list: 새 목록 시작하기
   start_a_new_project: 새 프로젝트 시작하기
   start_a_project: 프로젝트 시작하기
   start_adding_observations: 관찰 추가를 시작하기
@@ -2203,6 +2210,7 @@ ko:
   update: 갱신
   update_photos: 사진 갱신
   update_subscription: 구독 갱신
+  update_subscription_preferences: 구독 환경 설정 업데이트
   updated: 갱신됨
   updated_daily: 매일 갱신
   upload: 올리기
@@ -2665,5 +2673,6 @@ ko:
       gender:
         m: 남
         f: 여
+  wild: 야생
   zoom_photo: 사진 확대/축소
 ...

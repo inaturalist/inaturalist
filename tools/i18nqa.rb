@@ -64,6 +64,10 @@ data.each do |key, translation|
       problems[key] << "**ERROR:** Must not include `#{match}`"
     end
   end
+  if key =~ /^#{locale}\.i18n\.inflections\.gender\.$/
+    problems[key] = problems[key] || []
+      problems[key] << "**ERROR:** Gender inflection with a blank key"
+  end
   next unless data[en_key]
   if data[en_key].is_a?( Array )
     if data[en_key].size > translation.size && @levels.include?( "warning" )
