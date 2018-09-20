@@ -401,7 +401,7 @@ describe TaxonSwap, "commit" do
     @swap.update_attributes( move_children: true )
     expect {
       @swap.commit
-    }.not_to raise_error TaxonChange::ActiveChildrenError
+    }.not_to raise_error # TaxonChange::ActiveChildrenError
   end
   
 
@@ -580,6 +580,20 @@ describe TaxonSwap, "commit_records" do
       other_swap.commit
     }.to raise_error TaxonChange::RankLevelError
   end
+  
+  it "should commit a taxon swap with all input taxon descendant rank levels finer than the output taxon rank level" do
+    other_swap = TaxonSwap.make
+    other_input_genus = Taxon.make!( is_active: true, rank: Taxon::GENUS )
+    child = Taxon.make!( is_active: true, parent: other_input_genus, rank: Taxon::SPECIES )
+    other_swap.add_input_taxon( other_input_genus )
+    other_swap.add_output_taxon( Taxon.make!( is_active: false, rank: Taxon::GENUS ) )
+    other_swap.committer = make_admin
+    other_swap.save!
+    expect {
+      other_swap.commit
+    }.to_not raise_error TaxonChange::RankLevelError
+  end
+  
       
   it "should replace an inactive previous_observation_taxon with it's current active synonym" do
     other_swap = TaxonSwap.make
@@ -708,7 +722,7 @@ describe "move_input_children_to_output" do
     @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
     @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
     child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
-    [@input_taxon, @output_taxon, child].each(&:reload)
+    [@input_taxon, @output_taxon, child, @swap].each(&:reload)
     @swap.committer = @swap.user
     @swap.commit
     [@input_taxon, @output_taxon, child].each(&:reload)
