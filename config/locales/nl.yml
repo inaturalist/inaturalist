@@ -328,6 +328,7 @@ nl:
   admin: Beheerder
   admin_s: Beheerder(s)
   admin_any_projects: Beheer willekeurig project
+  admin_only: Alleen admins
   admin_tools: Werktuigen voor de beheerder
   agree: akkoord
   agree_: Akkoord
@@ -714,13 +715,39 @@ nl:
   casual_: Slordig
   catalogue_of_life: Catalogue of Life
   categories: categorieën
+  cc_0_description: Deze licentie geeft uw werk vrij in het publieke domein, zodat
+    anderen uw werk kunnen kopiëren, wijzigen, distribueren en uitvoeren, zelfs voor
+    commerciële doeleinden, allemaal zonder toestemming te vragen of u krediet te
+    geven. Dit is de meest inschikkelijke licentie die wordt aangeboden. Aanbevolen
+    voor maximale verspreiding en gebruik van het materiaal.
   cc_0_name: Geen Auteursrecht (CC0)
   cc_attribution_license: Creative Commons Naamsvermelding licentie
+  cc_by_description: Met deze licentie kunnen anderen je werk distribueren, remixen,
+    aanpassen en uitbreiden, zelfs commercieel, zolang ze je crediteren voor de oorspronkelijke
+    creatie.
   cc_by_name: Naamsvermelding
+  cc_by_nc_description: Deze licentie laat anderen remixen, aanpassen en niet-commercieel
+    op je werk bouwen en hoewel hun nieuwe werken je ook moeten erkennen en niet-commercieel
+    zijn, hoeven ze hun afgeleide werken niet onder dezelfde voorwaarden in licentie
+    te geven.
   cc_by_nc_name: Naamsvermelding-NietCommercieel
+  cc_by_nc_nd_description: Deze licentie is de meest beperkende van de zes hoofdlicenties
+    en staat anderen alleen toe om uw werken te downloaden en ze met anderen te delen
+    zolang ze u crediteren, maar ze kunnen deze op geen enkele manier wijzigen of
+    commercieel gebruiken.
   cc_by_nc_nd_name: Naamsvermelding-NietCommercieel-GeenAfgeleideWerken
+  cc_by_nc_sa_description: Met deze licentie kunnen anderen uw werk niet-commerciële
+    remixen, aanpassen en op uw werk voortborduren, zolang ze u crediteren en hun
+    nieuwe creaties onder dezelfde voorwaarden in licentie geven.
   cc_by_nc_sa_name: Naamsvermelding-NietCommercieel-GelijkDelen
+  cc_by_nd_description: Deze licentie zorgt voor herdistributie, commercieel en niet-commercieel,
+    zolang het onveranderd en in zijn geheel wordt doorgegeven, met een eer aan u.
   cc_by_nd_name: Naamsvermelding-GeenAfgeleideWerken
+  cc_by_sa_description: Deze licentie laat anderen remixen, tweaken en voortbouwen
+    op je werk, zelfs voor commerciële doeleinden, zolang ze je crediteren en hun
+    nieuwe creaties onder dezelfde voorwaarden licentiëren. Alle nieuwe werken gebaseerd
+    op de jouwe zullen dezelfde licentie hebben, dus eventuele afgeleide werken zullen
+    ook commercieel gebruik toestaan.
   cc_by_sa_name: Naamsvermelding-GelijkDelen
   cc_used_under_a: Creative Commons gebruikt onder een
   change: Wijzigen
@@ -805,6 +832,10 @@ nl:
   check_out_what_the_observation: Bekijk hoe de waarneming die je probeert te identificeren
     er uitziet.
   check_out_your_life_list: Bekijk je Life List
+  check_this_box_if: |-
+    Vink dit vakje aan als u een
+    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'> Creative Commons Attribution-NonCommercial-licentie </a>
+    aan je foto's wilt toekennen. U kunt een andere licentie kiezen of de licentie later verwijderen, maar dit is de beste licentie om te delen met onderzoekers.
   checklist: Checklist
   checklists: Checklists
   checklist_places: Checklist locaties
@@ -813,6 +844,7 @@ nl:
   checklist_places_introduced: Checklistplaatsen (voorgesteld)
   cheklist_places_are_places_with_contain_taxon: '"Checklistplaatsen" zijn plaatsen
     met checklists die dit taxon bevatten.'
+  child_taxa: Kinder taxa
   choose_a_field: Kies een veld
   choose_a_list_above: Kies hierboven een lijst
   choose_a_place: Kies een locatie
@@ -1347,7 +1379,8 @@ nl:
   finished: Voltooid
   finished_with_page: Eindig met pagina
   first_confirmed_inat_observation: Eerste bevestigde %{site_name}-waarneming
-  first_connect_your_provider_account_to_your_site: Ten eerste, verbind je
+  first_connect_your_provider_account_to_your_site: Om te beginnen, verbind je %{provider}account
+    met %{site_name}
   first_inat_observation: Eerste %{site_name} waarneming
   first_observation: Eerste waarneming
   first_observation_by_date_added: Eerste waarneming op datum toegevoegd
@@ -1960,6 +1993,9 @@ nl:
   message: Bericht
   messages: Berichten
   misidentifications: Foute identificaties
+  misleading_or_illegal_content_html: |-
+    Misleidende of illegale inhoud, racistische of etnische smet, enz. Voor meer informatie over onze definitie van "geschikt", zie de
+    <a href="/help#inappropriate">Veelgestelde vragen (FAQ)</a>.
   mixed_licenses: Gemengde licentiew
   mobile: Mobiel
   mobile_app_for: Mobiele app voor
@@ -2082,6 +2118,8 @@ nl:
   new_taxon_name: Nieuwe taxon naam
   new_taxon_name_for: Nieuwe Taxon Naam voor
   new_trip: Nieuwe excursie
+  new_updates_in_the_last_24_hours_from: De laatste nieuwtjes van de afgelopen 24
+    uur van %{site_name}
   new_user_rules: Nieuwe gebruikersregels
   new_users: Nieuwe gebruikers
   new_users_week: Nieuwe gebruikers / week
@@ -3632,6 +3670,11 @@ nl:
         what_is_inaturalist?: Wat is %{site_name}?
         who_is_behind_inaturalist?: Wie zit er achter %{site_name}?
         who_is_behind_inaturalist: Wie zit er achter %{site_name}?
+        inaturalist_was_originally_the_masters_final_html: |-
+          %{site_name} was oorspronkelijk het afstudeerproject van Nathan Agrin,
+          Jessica Kline en Ken-ichi Ueda bij UC Berkeley's
+          <a href="http://www.ischool.berkeley.edu">School of Information</a>.
+          Bekijk de <a href="/about"> pagina </a> voor meer informatie over de mensen die de site momenteel beheren.
         inaturalist_is_built_using_html: |-
           %{site_name} software is opgebouwd met behulp van <a
           href="http://www.rubyonrails.org/">Ruby on Rails</a>, <a

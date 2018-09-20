@@ -197,7 +197,7 @@ et:
   add_another_photo: Lisa veel üks foto
   add_another_section: Lisa veel üks sektsioon
   add_another_subscription: Lisa veel üks jälgitav
-  add_asset: Lisa andmeid
+  add_asset: Uus lisa
   add_batch: Lisa komplekt
   add_colors: Lisa värvid
   add_comma_separated_tags: Lisa komaga erladatud märksõnad
@@ -920,7 +920,7 @@ et:
   comprehensive?: On see täielik?
   comprehensive_list: Täielik nimekiri
   concept_status: Mõiste staatus
-  configure: Häälesta
+  configure: Uuenda
   configure_a_widget_to_show: Seadista %{site_name} tööriist, mis näitaks kodulehel
     või blogis sinu vaatlusi. Võib olla vajalik, et pead enda HTML-koodi päisesse
     lisama CSS-stiili. Kui soovid, võid CSSi muuta.
@@ -981,7 +981,7 @@ et:
   convert: Teisenda
   coordinate_systems: Koordinaatidesüsteemid
   coordinates: Koordinaadid
-  coordinates_private: (peidetud koordinaadid)
+  coordinates_private: (priivatsed koordinaadid)
   copy: Kopeeri
   copy_and_paste_the_following_code_to: Kopeeri ja kleebi järgnev kood, et kasutada
     seda hinnangut mõnel teisel veebilehel.
@@ -1064,9 +1064,9 @@ et:
   curator: Kuraator
   curators_changed_for_x_html: '%{x} kuraator muutus'
   curators: Kuraatorid
-  curators_can_remove_observations_from: Kuraatorid võivad projektist vaatlusi eemaldada  ja
-    nende tehtud määratlused on projektipõhistel lehtedel vaatluse kõrval eraldi ära
-    toodud. Kuraatorid näevad ka selle projekti alla lisatud vaatluste privaatseid
+  curators_can_remove_observations_from: Kuraatorid võivad projektist vaatlusi eemaldada
+    ja nende tehtud määratlused on projektipõhistel lehtedel vaatluse kõrval eraldi
+    ära toodud. Kuraatorid näevad ka selle projekti alla lisatud vaatluste privaatseid
     ja varjatud tõeliseid koordinaate.
   curator_identification: Kuraatoritunnus
   current_flags: Praegused märkused
@@ -1282,7 +1282,7 @@ et:
     one: 'Muudan <span class="count">ühte</span> vaatlust:'
     other: 'Muudan <span class="count">%{count}</span> vaatlust:'
   editing_project: Muudan projekti %{project}
-  editing_project_asset: Muudan andmeid projektil
+  editing_project_asset: Muudan lisasid projektil
   editing_subscription_to_x_html: 'Muudan jälgimist: %{x}'
   editing_taxon_link: Muudan taksoni linki
   editing_taxon_name: Muudan taksoni nime
@@ -1361,7 +1361,7 @@ et:
   explore_everyones_observations: Avasta kõigi vaatlused
   export: Ekspordi
   export_observations: Ekspordi vaatlused
-  export_with_private_coordinates: Ekspordi varjatud koordinaatidega
+  export_with_private_coordinates: Ekspordi privaatsete koordinaatidega
   exporting: Eksportin...
   external_links: Välised lingid
   extinct: väljasurnud
@@ -1751,7 +1751,7 @@ et:
   in: kohas
   in_: kohas
   in_n: kohas %{n}
-  inaturalist_network_affiliation: iNaturalist võrgu kuuluvus
+  inaturalist_network_affiliation: iNaturalist võrgustiku kuuluvus
   inbox: saabunud
   including: sisaldab
   in_order_to_login_and_using_site_visit_url: 'Sisse logimiseks ja lehekülje kasutamiseks
@@ -1887,7 +1887,7 @@ et:
   latitude_in_decimals: Laiuskraad komakohaga, nt 38.123
   latitude_slash_y_coord_slash_northing: Laiuskraad / y-koordinaat / põhjapoole
   layers: Kihid
-  layout: Laotus
+  layout: Paigutus
   leaderboard: Edetabel
   leaderboard_for_x: 'Edetabel: %{x}'
   leaderboards: Edetabelid
@@ -2250,7 +2250,7 @@ et:
       d: 1p
       dd: '%dp'
       M: 1k
-      MM: '%k'
+      MM: '%dk'
       "y": 1a
       yy: '%da'
     datetime_with_zone: D. MMM YYYY · LT z
@@ -2363,13 +2363,13 @@ et:
   new_observations_ellispsis: Uued vaatlused...
   new_observations_from_place_html: Uued vaatlused kohas %{place}
   new_observations_may_take_up_to: Uute vaatluste lisandumine tööriista võib võtta
-    kuni %{widget_expiration}
+    kuni %{widget_expiration} minutit
   new_observations_of_x_html: '%{x} uued vaatlused'
   new_password: Uus salasõna
   new_post: Uus postitus
   new_project: Uus projekt
   new_project_asset: Uus project_asset
-  new_project_asset_for: Uued andmed projektile
+  new_project_asset_for: Uus lisa projektile
   new_source: Uus allikas
   new_taxon_change: Uus taksonimuudatus
   new_taxon_link: Uus taksonilink
@@ -3107,11 +3107,11 @@ et:
   print_in_browser: Prindi brauseris
   privacy: Privaatsusreeglid
   privacy_policy: Privaatsusreeglid
-  private: isiklik
+  private: privaatne
   private_: Isiklik
   private_description: Koordinaate ei näidata avalikel kaartidel üldse. Tõelised koordinaadid
     on nähtavad ainult sulle ja nende projektide koordinaatoritele, kuhu sa vaatluse
-    lisad. Isiklike koordinaatidega vaatluseid saab siiski kasutada kohtade kontrollnimekirjade
+    lisad. Privaatsete koordinaatidega vaatluseid saab siiski kasutada kohtade kontrollnimekirjade
     loomisel.
   proceed: Jätka
   processing: Töötlen
@@ -3126,7 +3126,7 @@ et:
     sisse lülitada vaid sellisel juhul, kui nad on seotud mõne keskmises suuruses
     kohaga või lubavad ainult ühe taksoni või taksonite nimekirja vaatluseid.
   project_assessments: Projekti hinnangud
-  project_assets: Projekti andmed
+  project_assets: Projekti lisad
   project_cover: Projekti kaanepilt
   project_created_on: lõi selle projekti kuupäeval %{date}
   project_curator_changes: Projekti kuraator muutus
@@ -4157,7 +4157,7 @@ et:
   type_taxon_name: Kirjuta taksoni nimi
   type_taxon_name_and_click_lookup: Kirjuta taksoni nimi ja vajuta leia
   uicn_red_list_status: 'IUCNi punase nimestiku staatus:'
-  umbrella_projects: Kogumprojektid
+  umbrella_projects: Ülemprojektid
   un_license_this_observation: lõpeta antud vaatluse litsents
   unblock: Tühista blokeering
   unclassified: Liigitamata
@@ -5190,8 +5190,8 @@ et:
         latitude: Avalikult nähtav laiuskraad
         longitude: Avalikult nähtav pikkuskraad
         positional_accuracy: Koordinaatide täpsus
-        private_latitude: Peidetud pikkuskraad, kui vaatlus on privaatne või varjatud
-        private_longitude: Peidetud laiuskraad, kui vaatlus on privaatne või varjatud
+        private_latitude: Privaatne pikkuskraad, kui vaatlus on privaatne või varjatud
+        private_longitude: Privaatne laiuskraad, kui vaatlus on privaatne või varjatud
         geoprivacy: Kas vaatleja on soovinud koordinaate varjata
         coordinates_obscured: Kas koordinaadid on varjatud geoprivaatsusest või taksoni
           ohustatusest tulenevalt
@@ -5399,13 +5399,13 @@ et:
         praegu ligipääsu privaatsetele koordinaatidele.
       curator_coordinate_access_desc_html: |-
         Pea meeles, <strong>projekti kuraatorid saavad kõiki su vaatluseid oma projektidesse lisada</strong>, kui sa pole sellest <a
-        href="/users/edit">oma kontosätetes</a> keeldunud. Pane siia kasti linnuke vaid siis, kui soovid usaldada projekti kuraatoritele ligipääsu nende vaatluste varjatud koordinaatidele, mis selle projektiga sobivad. Kui sa ei soovi neile seda ligipääsu võimaldada, saad neile siiski iga vaatluse puhul sellised õigused eraldi pakkuda.
+        href="/users/edit">oma kontosätetes</a> keeldunud. Pane siia kasti linnuke vaid siis, kui soovid usaldada projekti kuraatoritele ligipääsu nende vaatluste privaatsetele koordinaatidele, mis selle projektiga sobivad. Kui sa ei soovi neile seda ligipääsu võimaldada, saad neile siiski iga vaatluse puhul sellised õigused eraldi pakkuda.
       confirm_leave:
         what_would_you_like: Mida sa tahaksid teha sellesse projekti kuuluvate enda
           vaatlustega?
         keep_observations_label: Jäta oma vaatlused projekti
         keep_observations_desc: Sinu vaatlused jäävad projekti ning kuraatorid näevad
-          endiselt nende varjatud koordinaate.
+          endiselt nende privaatseid koordinaate.
         project_requires_curator_coordinate_access_desc: See projekt ei luba lisada
           vaatluseid, mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei
           soovi oma vaatluste koordinaate antud projekti kuraatoritega jagada, pead
@@ -5415,7 +5415,7 @@ et:
           ka edaspidi lisada sinu vaatluseid oma projektidesse, kui sa ei muuda oma
           <a href="/users/edit">kontosätteid</a>.
         revoke_observations_label: Jäta oma vaatlused projekti, kuid ära luba kuraatoritel
-          nende varjatud koordinaatide nägemist
+          nende privaatseid koordinaatide nägemist
         revoke_observations_desc: Kui ainus põhjus su lahkumiseks on see, et sa ei
           soovi, et kuraatorid su varjatud koordinaate näeks.
       edit:
@@ -5461,7 +5461,7 @@ et:
             </li>
           </ol>
         project_assets_desc_html: |-
-          <p class="description">Projekti andmed on lihtsalt sellega seotud failid, mille puhul kehtivad mõned spetsiaalsed reeglid:</p>
+          <p class="description">Projekti lisad on lihtsalt sellega seotud failid, mille puhul kehtivad mõned spetsiaalsed reeglid:</p>
           <ol class="description">
             <li>Sõnadega .logo.jpg, .logo.png, jne lõppevaid faile kasutatakse projekti lehel projekti ikooni asemel logona</li>
             <li>KML- ja KMZ-failid lisatakse projekti lehel olevale kaardile</li>
@@ -5471,7 +5471,7 @@ et:
           Võid teha projekti jaoks spetsiaalse taksonite nimekirja ja selle projektiga seostada. Seeläbi saad piirata projektile lisatavaid vaatluseid kasutades reeglit "peab olema projekti nimekirja takson".
           </p>
         rules:
-          captive: on vangistatud/kultiveeritud
+          captive: olema vangistatud/kultiveeritud
           coordinates_shareable_by_project_curators: projekti kuraatorid saavad koordinaate
             jagada
           georeferenced: omama koordinaate
@@ -5488,16 +5488,65 @@ et:
         submission_models:
           any: kõik
           curators: projekti kuraatorid
+        trusted_project_means: Projekti usaldamine on seotud sellega, et projektide
+          haldajad saavad projekte täiendada lisade ning atribuutidega (nt bänneri
+          HTML, CSS). Ligipääs nendele lisadele tähendab seda, et projekti haldajatel
+          on teoorias võimalik täiendada koodi kuritahtliku Javascriptiga, seega tuleks
+          usaldada ainult projekte, mille haldajad on nii usaldusväärsed kui tehniliselt
+          kompetentsed.
+        you_can_preview: Saad näha eelvaadet sellest, milline su projekt näeks välja
+          kogumisprojektina, <a href="%{url}">vajutades siia</a>.
+      invite:
+        description_html: |-
+          <h3>Kutsetest</h3>
+          <p class="ui">
+          Inimeste kutsumine projekti on natuke teistsugune, kui üksikute vaatluste kutsumine. Inimeste kutsumise puhul
+          </p>
+          <ol>
+            <li>Saadetakse neile e-kiri kutsega projektiga liituma</li>
+            <li>Näitab neile kutset ka nende töölaual</li>
+            <li>Lubab neil sinu projektiga liituda, kui projekt on mõeldud vaid kutsututele</li>
+          </ol>
+          <p class="ui">
+          Vaid projekti kuraatorid saavad inimesi projekti kutsuda. Inimesi peaks saama otsida nende iNat kasutajatunnuse või nende <em>täieliku</em> e-posti aadressi abil, kui viimane meil andmebaasis olemas on.
+          </p>
+      join:
+        invite_only_description: Selle projektis on vaid kutsutud liikmed. Kui soovid
+          liituda, kontakteeru palun mõne alloleva kuraatoriga ning küsi endale kutset.
       new:
+        a_project_allows_you_to_gather: Kogumisprojektid lubavad sul iNaturalisti
+          otsingutööriistade abil vaatluseid koguda ja visualiseerida. Sellistesse
+          projektidesse pole vaja vaatluseid käsitsi lisada, sest kõik projekti parameetritele
+          vastavad vaatlused lisatakse automaatselt.
         an_umbrella_project_can_be_used_to: Ülemprojekti saab kasutada kahe või enama
-          kogum- või tavaprojekti statistika võrdlemiseks. Teised projektid peavad
+          kogumis- või tavaprojekti statistika võrdlemiseks. Teised projektid peavad
           eksisteerima, enne kui saad neid ülemprojekti alla lisada. Ühe ülemprojekti
           alla saad lisada sadu projekte. Ülemprojektid ei saa sisaldada teisi ülemprojekte.
         can_be_included_in_multiple: Võib sisalduda mitmes ülemprojektis
+        click_through_to_individual_projects: Vaata üksikprojekte
+        collection_projects: Kogumisprojektid
+        collection_project_features: 'Kogumisprojektide võimalused:'
+        contain_entire_image_without_cropping: Sisaldab tervet lõikamata pilti
+        custom_banner_icon_and_project_description: Spetsiaalne bänner, ikoon ja projekti
+          kirjeldus
+        data_visualizations: Admete visualiseerimine
         delete_project: Kustuta projekt
+        display_project_name: Näita projekti nime
+        do_you_need_features_from_traditional: Kas sa vajad tavaprojektide võimalusi
+          nagu ligipääsu tõelistele koordinaatidele, vaatluste spetsiaalväljasid või
+          üksikute vaatluste lisamist, millega automaatfiltrid hakkama ei saa?
+        leaderboards_among_individuals: <strong>Kasutajate</strong> edetabelid
+        leaderboards_among_projects_and_bioblitzes: <strong>Projektide ja bioblitzide</strong>
+          edetabelid
+        multiple_project_administrators: Mitu projekti administraatorit
         name_placeholder: Tartu linnud, Imelised konnad, jne.
+        no_need_to_rely_on_manual_addition: Enam ei pea lootma käsitsi lisatud vaatluste
+          või vaatluste koondaja peale
         note_these_users_will_be_able_to_edit: 'NB: need kasutajad saavad muuta KÕIKI
           projekti omadusi, kaasarvatud administraatoreid.'
+        note_you_can_delete_the_time: '(NB: Kui soovid kasutada terveid päevi, võid
+          ajavööndi ja täpse aja kustutada.)'
+        or_drag_and_drop: (või lohista see siia)
         please_specify_the_requirements: Palun määra nõuded vaatlustele, mida sellele
           projektile lisada saab. Võid automaatseks lisamiseks valida korraga mitu
           liiki, kohta ja kasutajat.
@@ -5519,8 +5568,11 @@ et:
         project_summary_placeholder: Avasta ja jälgi Soomaa linde...
         start_and_end_times_for_bioblitzes: Bioblitzide algus- ja lõpuajad
         umbrella_project_features: 'Ülemprojekti võimalused:'
+        unique_url_for_outreach: Levitamiseks unikaalne URL
         users_can_follow_your_project: Kasutajad saavad sinu projekti jälgida läbi
           päevikukannete
+        use_this_link_to_create_html: Tavaprojekti loomiseks <a href="%{url}">vajuta
+          siia</a>.
         visual_comparison_of_data_among: Ülemprojekti alla lisatud projektide andmete
           visuaalne võrdlus
         we_have_redesigned_projects: 'Me muutsime projekte ning nüüd on võimalik nõuda,
@@ -5529,8 +5581,32 @@ et:
           tüübi vahel: kogumisprojektid ja ülemprojektid, millest mõlemil on järgnevad
           võimalused:'
         welcome_to_projects: Teretulemast projektide maailma!
+        you_have_not_defined_any_observation_requirements: Sa ei ole määranud ühtegi
+          vaatlusnõuet. Vali üks või enam taksonit (nt linnud, okaspuud), kohta (nt
+          Eesti, Saaremaa), kasutajat ja/või kuupäeva, et panna paika, mida sa soovid
+          selle projekti alla koondada.
+      project_location_privacy_notice_html: |-
+        <p>
+        Pea meeles, et ainult projekti kuraatorid näevad selles projektis sinu privaatseid või varjatud asukohti, kui sa ise seda spetsiaalselt keelanud pole, ning nad saavad sellesse projekti lisada kõiki sinu vaatlusi kui sa oma <a href="/users/edit">sätteid ei muuda</a>. Saad ka iga vaatluse puhul eraldi koordinaate peita või näidata.
+        </p>
+        <p>
+        Kui sa oled asukoha privaatsuse pärast mures, ära liitu projektidega, kui sa just nende kuraatoreid ei usalda.
+        </p>
       project_user_curator_coordinate_access_labels:
+        observer: Jah, aga ainult siis, kui ma ise vaatluse projekti lisan.
+        any: Jah, ükskõik kes vaatluse projekti lisab.
         none: Ei.
+      curator_coordinate_access_label: Kas sa soovid oma priivatseid/varjatud koordinaate
+        muuta projekti kuraatoritele nähtavaks?
+      curator_coordinate_access_note: Võid ka vaatluste privaatseid koordinaate selles
+        projektis üksikjuhtumite põhiselt jagada. Tegemist on vaid projekti lisatavatele
+        uutele vaatlustele kehtivate vaikimisi sätetega.
+      project_terms_desc_html: Luba projekti kuraatoritel kasutada sinu vaatlusi vastavalt
+        <a href="%{url}">projekti reeglitele</a>.
+      show:
+        are_you_sure_you_want_to_convert: Oled sa kindel, et soovid projekti muuta
+          kogumisprojektiks?
+        click_here_to_convert_this_project: Vajuta siia, et muuta projekt kogumisprojektiks.
     shared:
       blocked:
         youve_been_blocked: Sind on blokeeritud
@@ -5541,25 +5617,62 @@ et:
         youve_blocked_desc: Sa oled selle asja omaniku blokeerinud, mis tähendab,
           et saa ei saa temaga suhelda. Enamik sellel lehel olevaid interaktiivseid
           elemente ei toimi.
+      spam:
+        this_has_been_flagged_as_spam: See on varustatud rämpsposti märkusega
+      not_found:
+        sorry_that_doesnt_exist: Vabandust, seda ei eksisteeri!
+        even_our_dedicated_search_mole_couldnt: Ka meie pühendunud otsingumootor ei
+          suutnud midagi leida!
     stats:
       index:
+        active_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari
+          või postituse
+        active_users_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari
+          või postituse
+        android_desc_html: Loodud <a href="%{url}">iNaturalist Android äpiga</a>
+        avg_ttcid: Keskmine AKM
+        avg_ttid: Keskmine AM
+        identifiers_desc: Lisas sellel päeval kellegi teise vaatlusele määratluse
+        iphone_desc_html: Loodud <a href="%{url}">iNaturalist iPhone äpiga</a>
+        med_ttcid: Mediaan AKM
+        med_ttid: Mediaan AM
+        new_users_desc: Liitus sellel päeval
         obs_1_day: Vaatlused (1 päevas)
         obs_1_day_desc: Ühe päeva jooksul loodud vaatlused
         obs_cid_d_desc: Loodud viimase 7 päeva jooksul ja saanud kogukondliku määratluse
         obs_cid_d_to_genus: Kogukondlik määratlus perekonnani
         obs_cid_d_to_genus_desc: Loodud viimase 7 päeva jooksul ja saanud kogukondliku
           määratluse vähemalt perekonnani
+        obs_desc: Loodud viimasel 7 päeval
         obs_id_d_desc: Loodud viimase 7 päeva jooksul ja saanud määratluse (võib olla
           vaatleja enda oma)
+        other_desc_html: Loodud teiste <a href="%{url}">arendajate</a> programmidega
+        recent_desc: Liitus eelmisel 7 päeval
+        recent_w_0_obs: Hiljutised 0 vaatlusega
+        recent_w_0_obs_desc: Liitus viimase 7 päeva jooksul ja lisas 0 vaatlust
+        recent_w_7_obs: Hiljutised >= 7 vaatlusega
+        recent_w_7_obs_desc: Liitus viimase 7 päeva jooksul ja lisas >= 7 vaatlust
         time_to_id_desc: Aeg määratluseni (tundides, ühe nädalase liikuva vahemiku
           jooksul)
+        TTCID: AKM
+        TTCID_desc: Aeg, mis kulub kelleltki teiselt kogukondlikule taksonile vastava
+          määratluse saamiseks
+        TTID: AM
+        TTID_desc: Aeg, mis kulub kelleltki teiselt määratluse saamiseks
         TTID_note: See statistiks on koostatud eelmisel nädalal loodud vaatluste põhjal,
           mis tähendab, et see ei sisalda määratlusi, mis on lisatud vaatlustele,
           mis toimusid varem. Seetõttu on numbrid väiksemad kui neid arvutada tänase
           seisuga, kuid nad peaksid siiski andma pildi sellest, kui kiiresti kogukond
           ühe nädala jooksul määratleb. Pane tähele, et statistika käib ainult fotodega
           vaatluste kohta.
+        website_desc_html: Loodud <a href="https://www.inaturalist.org">iNaturalist</a>
+          või <a href="%{url}">iNaturalist võrgustiku</a> leheküljel
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: Kõrgema taseme taksonile kaitsestaatuse
+          lisamine mõjutab kõiki selle taksoni alla kuuluvaid liike. Palun ära lisa
+          staatust taksonitele, mis sisaldavad liike, kellel staatus puudub, sest
+          vastasel juhul varjatakse ebavajalikult nende liikide vaatluste koordinaadid.
       show:
         about_names_desc: |-
           <p>
@@ -5571,6 +5684,8 @@ et:
           <p>
           Proovime neid probleeme leevendada näidates igal pool, kus võimalik, nii rahvapärast kui teaduslikku nime ning valides näidatavad rahvapärased nimed vastavalt lugeja keele ja geograafilistele eelistustele.
           </p>
+        about_conservation_status_desc: Kaitsestaatus võtab kokku organismidegrupi
+          hävimisohu.
         about_taxon_curators_desc: Need inimesed haldavad seda osa taksonoomilisest
           puust, mille alla kuulub ka see takson. Kui sa soovid muudatusi teha, lisa
           sellele taksonile märkus või võta ühendust ühega nendest inimestest.
@@ -5589,6 +5704,8 @@ et:
           Life Stage=pupa: Nukk
           Life Stage=adult: Täiskasvanu
           unannotated: Märkus puudub
+        photo_chooser_modal_desc: Lohista vasakult siia fotosid või lohista siinolevaid
+          fotosid uude järjekorda.
     taxon_names:
       form:
         new_name_guidelines_html: |-
@@ -5787,6 +5904,11 @@ et:
         title: Pealkiri
         description: Kirjeldus
         terms: Tingimused
+        map_type: Kaardi tüüp
+        zoom_level: Suurendusaste
+        preferred_membership_model: Eelistatud liikmestaatud
+        prefers_place_boundary_visible: Näita kaardil koha piirjoont
+        tracking_codes: Jälgimiskoodid
       place:
         code: Kood
         latitude: Laiuskraad

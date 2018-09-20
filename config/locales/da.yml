@@ -278,6 +278,8 @@ da:
   add_taxon_batch_to: Tilføj et bundt af taksa til %{list}
   add_taxon_range: Tilføj takson område
   add_taxonomic_tags_to: Tilføj taksonomiske tags til valgte Flickr foto´s &raquo;
+  add_taxonomic_tags_to_the_flickr_photos: Tilføj taksonomiske tags til valgte Flickr
+    foto´s forbundet med de valgte observationer.
   add_to: Tilføj til
   add_to_a_scheme: Tilføj til en ordning
   add_to_a_project: Tilføj til et projekt
@@ -314,6 +316,7 @@ da:
   admin: Administrator
   admin_s: Administrator(er)
   admin_any_projects: administrerer et hvert projekt
+  admin_only: Kun admin.
   admin_tools: Administrator værktøjer
   agree: enig
   agree_: Enig
@@ -2312,6 +2315,7 @@ da:
   most_observed_species: Mest observerede arter
   most_observed_introduced_species: Flest observerede indførte arter
   most_observed_threatened_species: Mest observerede truede arter
+  move_input_children_to_output?: Flyt underordnede til output?
   multiple: flere
   multiple_select_option: -- flere --
   multiple_taxa_for_taxon_change: Flere taksa (input for skifte/sammenlægning, output
@@ -5996,6 +6000,21 @@ da:
           Bemærk at taksonsiden viser billeder af denne takson
           og dens efterkommere. De valgte foto´s til denne
           takson vil dog blive vist først. Det første billede vil blive et standardbillede, og det vil blive brugt på tværs af websiden.
+    taxon_changes:
+      move_children_desc: |-
+        Underordnede af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive byttet ind i
+        ækvivalenter med den nye slægt eller artsnavn.
+      form:
+        move_children_desc_html: "Ved at tjekke denne boks flyttes underordnede i
+          input taksonet til\noutput takson for skifte og fusioner, når denne ændring
+          er udført. Hvis\ndenne ændres til slægt eller lavere, det vil resultere
+          i takson skifte for alle\nefterkommere, der har en underforstået navneændring.
+          For eksempel, hvis du flytter\nfamilien Canidae ind i Dogidae, ændrer det
+          slægtens overordnede\n<i>Canis</i> fra Canidae til Dogidae. \nHvis du flytter
+          slægten <i>Canis</i> ind i slægten <i>Dogis</i>, vil det udløse og udføre
+          et takson skifte <i>Canis lupus</i> til <i>Dogis lupus</i> og\n<i>Canis
+          lupus</i> ssp. <i>lupus</i> til <i>Dogis lupus</i> ssp.\n<i>lupus</i>. Dette
+          kan medføre et værre roderi, så gør det med omtanke."
     taxon_links:
       form:
         name_with_rank_desc: |-
