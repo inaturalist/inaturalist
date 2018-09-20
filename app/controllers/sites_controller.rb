@@ -1,15 +1,16 @@
 class SitesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :load_site, :only => [:show, :edit, :update, :destroy]
-  before_filter :site_admin_required
-  before_filter :setup_pref_groups, :only => [:new, :create, :edit, :update, :show]
+  before_filter :load_site, only: [:show, :edit, :update, :destroy]
+  before_filter :admin_or_any_site_admin_required, only: [:index, :show]
+  before_filter :require_admin_of_viewed_site, except: [:index, :show]
+  before_filter :setup_pref_groups, only: [:new, :create, :edit, :update, :show]
 
   layout "bootstrap"
 
   # GET /sites
   # GET /sites.json
   def index
-    @records = Site.page(params[:page])
+    @records = Site.page(params[:page]).order(:id)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -92,8 +93,7 @@ class SitesController < ApplicationController
 
   private
 
-  # TODO rename?
-  def site_admin_required
+  def require_admin_of_viewed_site
     unless current_user.is_admin? || 
         ( @record && @record_admin = @record.site_admins.where( user_id: current_user ).first )
       redirect_to_hell 

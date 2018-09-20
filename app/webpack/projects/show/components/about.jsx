@@ -12,7 +12,20 @@ import FeatureButtonContainer from "../containers/feature_button_container";
 
 class About extends React.Component {
   render( ) {
-    const { project, setSelectedTab } = this.props;
+    const { project, setSelectedTab, config } = this.props;
+    const loggedIn = config.currentUser;
+    const userIsAdmin = loggedIn && config.currentUser.roles &&
+      config.currentUser.roles.indexOf( "admin" ) >= 0;
+    const userIsSiteAdmin = loggedIn && config.currentUser.site_admin;
+    let siteAdminTools;
+    if ( userIsAdmin || userIsSiteAdmin ) {
+      siteAdminTools = (
+        <div className="admin-tools">
+          <h4>{ I18n.t( "site_admin_tools" ) }</h4>
+          <FeatureButtonContainer />
+        </div>
+      );
+    }
     return (
       <div className="About">
         <Grid>
@@ -74,10 +87,7 @@ class About extends React.Component {
                 ( <SubprojectsList {...this.props } /> ) :
                 ( <Requirements { ...this.props } /> )
               }
-              <div className="admin-tools">
-                <h4>{ I18n.t( "site_admin_tools" ) }</h4>
-                <FeatureButtonContainer />
-              </div>
+              { siteAdminTools }
             </Col>
           </Row>
         </Grid>

@@ -12,7 +12,7 @@ class ProjectsController < ApplicationController
   before_action :doorkeeper_authorize!, 
     only: [ :by_login, :join, :leave, :members, :feature, :unfeature ],
     if: lambda { authenticate_with_oauth? }
-  before_filter :admin_or_site_admin_required, only: [ :feature, :unfeature ]
+  before_filter :admin_or_this_site_admin_required, only: [ :feature, :unfeature ]
   
   before_filter :return_here,
     only: [ :index, :show, :contributors, :members, :show_contributor, :terms, :invite ]

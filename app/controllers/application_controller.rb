@@ -516,40 +516,37 @@ class ApplicationController < ActionController::Base
 
   def admin_required
     unless logged_in? && current_user.is_admin?
-      msg = t(:only_administrators_may_access_that_page)
-      respond_to do |format|
-        format.html do
-          flash[:error] = msg
-          redirect_to observations_path
-        end
-        format.js do
-          render :status => :unprocessable_entity, :text => msg
-        end
-        format.json do
-          render :status => :unprocessable_entity, :json => {:error => msg}
-        end
-      end
-      return false
+      only_admins_failure_state
     end
   end
 
-  def admin_or_site_admin_required
+  def admin_or_this_site_admin_required
     unless logged_in? && ( current_user.is_admin? || ( @site && current_user.is_site_admin_of?( @site ) ) )
-      msg = t(:only_administrators_may_access_that_page)
-      respond_to do |format|
-        format.html do
-          flash[:error] = msg
-          redirect_to observations_path
-        end
-        format.js do
-          render :status => :unprocessable_entity, :text => msg
-        end
-        format.json do
-          render :status => :unprocessable_entity, :json => {:error => msg}
-        end
-      end
-      return false
+      only_admins_failure_state
     end
+  end
+
+  def admin_or_any_site_admin_required
+    unless logged_in? && ( current_user.is_admin? || current_user.site_admins.any? )
+      only_admins_failure_state
+    end
+  end
+
+  def only_admins_failure_state
+    msg = t(:only_administrators_may_access_that_page)
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_back_or_default( root_url )
+      end
+      format.js do
+        render :status => :unprocessable_entity, :text => msg
+      end
+      format.json do
+        render :status => :unprocessable_entity, :json => {:error => msg}
+      end
+    end
+    return false
   end
 
   def remove_header_and_footer_for_apps
