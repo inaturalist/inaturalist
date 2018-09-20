@@ -14,7 +14,7 @@ class FeatureButton extends React.Component {
     if ( !userIsAdmin && !userIsSiteAdmin ) {
       return null;
     }
-    let buttonLabel = "Feature this project";
+    let buttonLabel = I18n.t( "feature_this_project_" );
     let menuItems = [(
       <MenuItem
         key={ "noteworthy" }
@@ -22,7 +22,7 @@ class FeatureButton extends React.Component {
         disabled={ siteFeature && siteFeature.noteworthy }
         className={ siteFeature && siteFeature.noteworthy ? "bold" : null }
       >
-        New and noteworthy section
+        { I18n.t( "new_and_noteworthy" ) }
       </MenuItem> ), (
       <MenuItem
         key={ "featured" }
@@ -30,18 +30,18 @@ class FeatureButton extends React.Component {
         disabled={ siteFeature && !siteFeature.noteworthy }
         className={ siteFeature && !siteFeature.noteworthy ? "bold" : null }
       >
-        Featured section
+        { I18n.t( "featured_" ) }
       </MenuItem> )
     ];
     if ( siteFeature ) {
-      buttonLabel = siteFeature.noteworthy ?
-        "Shown in New and Noteworthy" : "Shown in the Featured section";
+      buttonLabel = I18n.t( "featuring" ) + ": " + ( siteFeature.noteworthy ?
+        I18n.t( "new_and_noteworthy" ) : I18n.t( "featured_" ) );
       menuItems.push( (
         <MenuItem
           key={ "remove" }
           eventKey={ "remove" }
         >
-          Remove from featured
+          { I18n.t( "remove_from_featured" ) }
         </MenuItem>
       ) );
     }

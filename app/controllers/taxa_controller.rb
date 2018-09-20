@@ -170,7 +170,7 @@ class TaxaController < ApplicationController
         end
         api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}"
         options = {}
-        options[:api_token] = JsonWebToken.encode( user_id: current_user.id ) if current_user
+        options[:api_token] = current_user.api_token if current_user
         @node_taxon_json = INatAPIService.get_json( api_url, options )
         return render_404 unless @node_taxon_json
         @node_place_json = ( place_id.blank? || place_id == 0 ) ?
@@ -207,7 +207,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do
         options = {}
-        options[:api_token] = JsonWebToken.encode( user_id: current_user.id ) if current_user
+        options[:api_token] = current_user.api_token if current_user
         @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}", options )
         place_id = current_user.preferred_taxon_page_place_id if logged_in?
         place_id = session[:prefers_taxon_page_place_id] if place_id.blank?

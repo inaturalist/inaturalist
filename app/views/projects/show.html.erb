@@ -334,20 +334,39 @@
       <li><div class="curatorlabel"><%=t :site_admin_tools %></div></li>
       <li class="bootstrap">
         <div class="dropdown btn-block">
-          <div class="dropdown-toggle navlink" data-toggle="dropdown">
-            <span class='lead'>&raquo;</span>
-            <% if @site_feature -%>
-              <%= @site_feature.noteworthy? ?
-                "Shown in New and Noteworthy" : "Shown in the Featured section"; %>
-            <% else -%>
-              Feature this project
-            <% end -%>
-            <span class="caret" />
+          <div class="dropdown-toggle" data-toggle="dropdown">
+            <a class="navlink">
+              <span class='lead'>&raquo;</span>
+              <% if @site_feature -%>
+                <%= t( :featuring ) %>:
+                <%= @site_feature.noteworthy? ?
+                  t( :new_and_noteworthy ) : t( :featured_ ) %>
+              <% else -%>
+                <%= t( :feature_this_project_ ) %>
+              <% end -%>
+              <span class="caret" />
+            </a>
           </div>
           <ul id="feature-menu" class="dropdown-menu" style="width: 100%">
-            <li data-type="noteworthy"><a>New and noteworthy section</a></li>
-            <li data-type="featured"><a>Featured section</a></li>
-            <li data-type="remove"><a>Remove from featured</a></li>
+            <li
+              data-type="noteworthy"
+              class="<%= ( @site_feature && @site_feature.noteworthy? ) ? "disabled" : nil %>"
+            >
+              <a><%= t( :new_and_noteworthy ) %></a>
+            </li>
+            <li
+              data-type="featured"
+              class="<%= ( @site_feature && !@site_feature.noteworthy? ) ? "disabled" : nil %>"
+            >
+              <a><%= t( :featured_ ) %></a>
+            </li>
+            <% if @site_feature -%>
+              <li
+                data-type="remove"
+              >
+                <a><%= t( :remove_from_featured ) %></a>
+              </li>
+            <% end -%>
           </ul>
         </div>
       </li>

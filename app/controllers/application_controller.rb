@@ -61,15 +61,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_site
-    @site = Site.find(3)
-    # if current_user && current_user.login == "pleary96"
-    #   @site = Site.find(3)
-    # end
-    # if params[:inat_site_id]
-    #   @site ||= Site.find( params[:inat_site_id] )
-    # end
-    # @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
-    # @site ||= Site.default
+    if params[:inat_site_id]
+      @site ||= Site.find( params[:inat_site_id] )
+    end
+    @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
+    @site ||= Site.default
   end
 
   def draft_site_requires_login

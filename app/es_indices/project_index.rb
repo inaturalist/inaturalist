@@ -127,9 +127,9 @@ class Project < ActiveRecord::Base
       rule_preferences: preferences.
         select{ |k,v| Project::RULE_PREFERENCES.include?(k) && !v.blank? }.
         map{ |k,v| { field: k.sub("rule_",""), value: v } },
-      featured_at: featured_at,
       created_at: created_at,
       updated_at: updated_at,
+      last_post_at: posts.published.last.try(:published_at),
       observations_count: obs_result ? obs_result.total_results : nil,
       spam: known_spam? || owned_by_spammer?,
       flags: flags.map(&:as_indexed_json),

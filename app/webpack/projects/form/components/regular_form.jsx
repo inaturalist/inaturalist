@@ -329,7 +329,7 @@ class RegularForm extends React.Component {
                   onChange={ values =>
                     setRulePreference( "month", values ? values.join( "," ) : null )
                   }
-                  defaultValue={ project.rule_month ? project.rule_month.split( "," ) : null }
+                  defaultValue={ project.rule_month ? project.rule_month.split( "," ) : [] }
                   data={
                     _.map( monthNames, ( month, i ) => (
                       {

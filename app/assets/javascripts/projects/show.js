@@ -55,14 +55,13 @@ $( document ).ready( function( ) {
     } else if ( type === "remove" ) {
       method = "unfeature";
     }
-    $( "body" ).css( "cursor", "progress" );
+    $( "*" ).css( "cursor", "progress" );
     $.ajax( {
       type: "PUT",
       url: "/projects/" + PROJECT_ID + "/" + method,
       data: data,
       success: function( data ) {
-        // location.reload( );
-        $( "body" ).css( "cursor", "default" );
+        location.reload( );
       },
       error: function( data ) {
         console.log( "error" );
@@ -71,6 +70,5 @@ $( document ).ready( function( ) {
       dataType: "JSON"
     } );
   } );
-
 
 } );

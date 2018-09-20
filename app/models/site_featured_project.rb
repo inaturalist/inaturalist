@@ -10,10 +10,11 @@ class SiteFeaturedProject < ActiveRecord::Base
 
   validates_uniqueness_of :project_id, scope: :site_id
 
-  after_save :index_project
+  after_commit :index_project
   after_destroy :index_project
 
   def index_project
+    project.reload
     project.elastic_index!
   end
 

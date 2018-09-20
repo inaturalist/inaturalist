@@ -67,7 +67,6 @@ class About extends React.Component {
                     </tr>
                   </tbody>
                 </table>
-                <FeatureButtonContainer />
               </div>
             </Col>
             <Col xs={ 5 } className="requirements-col">
@@ -75,6 +74,10 @@ class About extends React.Component {
                 ( <SubprojectsList {...this.props } /> ) :
                 ( <Requirements { ...this.props } /> )
               }
+              <div className="admin-tools">
+                <h4>{ I18n.t( "site_admin_tools" ) }</h4>
+                <FeatureButtonContainer />
+              </div>
             </Col>
           </Row>
         </Grid>

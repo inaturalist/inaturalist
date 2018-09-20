@@ -459,7 +459,11 @@ class User < ActiveRecord::Base
   def twitter_identity
     @twitter_identity ||= has_provider_auth('twitter')
   end
-  
+
+  def api_token
+    JsonWebToken.encode( user_id: id )
+  end
+
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
     Observation.where(user_id: id).update_all(license: preferred_observation_license)
