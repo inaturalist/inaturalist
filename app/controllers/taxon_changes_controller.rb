@@ -78,7 +78,7 @@ class TaxonChangesController < ApplicationController
     unless @taxon_change.committed?
       @existing = @taxon_change.input_taxa.map do |it|
         TaxonChange.input_taxon(it).all.to_a
-      end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id}
+      end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id || !tc.committed_on.nil?}
       @complete_taxon = @taxon_change.input_taxa.detect{|t| t.complete_taxon}.try(:complete_taxon)
       @complete_taxon ||= @taxon_change.output_taxa.detect{|t| t.complete_taxon}.try(:complete_taxon)
     end
@@ -155,6 +155,19 @@ class TaxonChangesController < ApplicationController
     if @taxon_change.committed?
       flash[:error] = "This taxonomic change was already committed!"
       redirect_back_or_default(taxon_changes_path)
+      return
+    end
+    
+    @taxon = @taxon_change.rank_level_conflict?
+    if @taxon
+      flash[:error] = "Output taxon rank level finer than rank level of input taxon #{view_context.link_to( @taxon.name, @taxon )}".html_safe
+      redirect_back_or_default( taxon_changes_path )
+      return
+    end
+    
+    if !@taxon_change.move_children? && @taxon_change.active_children_conflict?
+      flash[:error] = "Input taxon cannot have active children, move them first, or select the 'Move children to output?' option"
+      redirect_back_or_default @taxon_change
       return
     end
     

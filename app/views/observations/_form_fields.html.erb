@@ -204,11 +204,10 @@
 
         <div id="add_sounds_<%= i %>">
           <div id="sounds_<%= i %>" class="observation_sounds">
-            <%= render :partial => "sounds/sound_list_form", :locals => { 
-              sounds: observation.sounds,
+            <%= render partial: "sounds/sound_list_form", locals: { 
+              sounds: observation.observation_sounds.map(&:sound),
               index: i,
               checked: true,
-              # synclink_base: observation.new_record? ? new_observation_path : edit_observation_path(observation),
               sound_identity: @sound_identities.first,
               local_sounds: true
             } %>

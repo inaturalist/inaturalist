@@ -39,9 +39,6 @@ id:
   x_observations_link_html:
     one: <a href='%{url}'>1 observasi</a>
     other: <a href='%{url}'>%{count} observasi</a>
-  x_people:
-    one: 1 person
-    other: '%{count} people'
   x_faves:
     one: 1 hour
     other: '%{count} hours'
@@ -206,8 +203,6 @@ id:
   add_taxon_batch_to: Add Taxon Batch to %{list}
   add_taxon_range: Tambahkan jarak taksa
   add_taxonomic_tags_to: Tambahkan tag taksonomi untuk foto Flickr yang dipilih &raquo;
-  add_taxonomic_tags_to_the_fickr_photos: Tambahkan tag taksonomi untuk foto Fickr
-    terkait dengan pengamatan yang dipilih.
   add_to: Tambahkan ke
   add_to_a_scheme: Tambahkan ke skema
   add_to_a_project: Tambahkan ke proyek

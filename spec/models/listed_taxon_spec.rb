@@ -359,15 +359,15 @@ describe ListedTaxon do
 
   describe "validation for comprehensive check lists" do
     before(:each) do
-      @parent = Taxon.make!
-      @taxon = Taxon.make!(:parent => @parent)
+      @parent = Taxon.make!(rank: Taxon::GENUS)
+      @taxon = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       @place = Place.make!
       @check_list = CheckList.make!(:place => @place, :taxon => @parent, :comprehensive => true)
       @check_listed_taxon = @check_list.add_taxon(@taxon)
     end
   
     it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon" do
-      t = Taxon.make!(:parent => @parent)
+      t = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       expect(@check_list.taxon_ids).not_to include(t.id)
       lt = @place.check_list.add_taxon(t)
       expect(lt).not_to be_valid
@@ -375,7 +375,7 @@ describe ListedTaxon do
     end
   
     it "should fail if a comprehensive check list that doesn't contain this taxon exists for a parent taxon in an ancestor place" do
-      t = Taxon.make!(:parent => @parent)
+      t = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       expect(@check_list.taxon_ids).not_to include(t.id)
       p = Place.make!(:parent => @place)
       lt = p.check_list.add_taxon(t)
@@ -384,7 +384,7 @@ describe ListedTaxon do
     end
   
     it "should pass if a comprehensive check lists that does contain this taxon exists for a parent taxon" do
-      t = Taxon.make!(:parent => @parent)
+      t = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       clt = @check_list.add_taxon(t)
       expect(@check_list.taxon_ids).to include(t.id)
       lt = @place.check_list.add_taxon(t)
@@ -392,7 +392,7 @@ describe ListedTaxon do
     end
   
     it "should pass if a comprehensive check list that doesn't contain this taxon exists for a parent taxon and there is a confirming observation" do
-      t = Taxon.make!(:parent => @parent)
+      t = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       o = make_research_grade_observation(:taxon => t, :latitude => @place.latitude, :longitude => @place.longitude)
       expect(@check_list.taxon_ids).not_to include(t.id)
       lt = @place.check_list.add_taxon(t, :first_observation => o)

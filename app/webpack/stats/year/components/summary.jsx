@@ -110,25 +110,25 @@ const Summary = ( {
             <PieChart
               data={[
                 {
-                  label: _.capitalize( I18n.t( "improving" ) ),
+                  label: I18n.t( "improving" ),
                   value: data.identifications.category_counts.improving,
                   color: COLORS.inatGreen,
                   category: "improving"
                 },
                 {
-                  label: _.capitalize( I18n.t( "supporting" ) ),
+                  label: I18n.t( "supporting" ),
                   value: data.identifications.category_counts.supporting,
                   color: COLORS.inatGreenLight,
                   category: "supporting"
                 },
                 {
-                  label: _.capitalize( I18n.t( "leading" ) ),
+                  label: I18n.t( "leading" ),
                   value: data.identifications.category_counts.leading,
                   color: COLORS.needsIdYellow,
                   category: "leading"
                 },
                 {
-                  label: _.capitalize( I18n.t( "maverick" ) ),
+                  label: I18n.t( "maverick" ),
                   value: data.identifications.category_counts.maverick,
                   color: COLORS.failRed,
                   category: "maverick"

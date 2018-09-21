@@ -26,6 +26,7 @@ class Project < ActiveRecord::Base
       indexes :project_type, type: "keyword"
       indexes :location, type: "geo_point"
       indexes :geojson, type: "geo_shape"
+      indexes :terms, type: "text", index: false
       indexes :search_parameters, type: :nested do
         indexes :field, type: "keyword"
         indexes :value, type: "text"
@@ -95,6 +96,7 @@ class Project < ActiveRecord::Base
       header_image_file_name: cover_file_name,
       header_image_contain: !!preferred_banner_contain,
       project_observation_fields: project_observation_fields.uniq.map(&:as_indexed_json),
+      terms: terms.blank? ? nil : terms,
       search_parameters: collection_search_parameters.map{ |field,value|
         type = "keyword"
         if [ "d1", "d2", "observed_on" ].include?( field )

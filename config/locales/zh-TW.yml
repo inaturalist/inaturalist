@@ -1,6 +1,7 @@
 # Messages for Traditional Chinese (中文（繁體）‎)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: 1233thehongkonger
 # Author: 578985s
 # Author: A2093064
 # Author: Aru
@@ -72,9 +73,6 @@ zh-TW:
   x_others:
     one: 1 個其它
     other: '%{count} 個其它'
-  x_people:
-    one: 1 個人
-    other: '%{count} 個人'
   x_people_found_this_helpful:
     one: 1 個人覺得這個是有助益的
     other: '%{count} 個人發現這個是有益處的'
@@ -184,11 +182,11 @@ zh-TW:
   add_a_comment: 新增評論
   add_a_field: 新增一個欄位
   add_a_flag: 新增一個標記
-  add_a_link_raquo: 新增一個連結
+  add_a_link_raquo: 新增一個連結&raquo;
   add_a_name: 加入名稱
   add_a_new_change_group: 增加一新變更群組
   add_a_new_observation_to_id_please!: 請增加一個需要鑑定的新觀察記錄！
-  add_a_place_raquo: 新增地點 &raquo;
+  add_a_place_raquo: 新增地點&raquo;
   add_a_single_observation: 新增一項觀察記錄
   add_a_taxon: 新增分類群
   add_all_your_matching_obs_of_this_taxon: 把這分類群中您所有符合的觀察記錄添加到此專案
@@ -197,17 +195,17 @@ zh-TW:
   add_an_identification: 新增物種鑑定
   add_an_observation: 新增觀察紀錄
   add_an_observation?: 新增觀察紀錄?
-  add_an_observation_of: 新增一筆 %{taxon} 的觀察紀錄
+  add_an_observation_of: 新增一筆%{taxon}的觀察紀錄
   add_annotations_for_x: 新增「%{x}」註解
   add_annotations_for_controlled_attribute:
     sex: 新增「性別」註解
     plant_phenology: 新增「植物物候」註解
     life_stage: 新增「生命階段」註解
-  add_another: 新增其他紀錄
-  add_another_flag: 新增其他標記
-  add_another_photo: 新增其他圖片
-  add_another_section: 加入其他資訊
-  add_another_subscription: 新增其他訂閱
+  add_another: 新增其它
+  add_another_flag: 新增其它標記
+  add_another_photo: 新增其它圖片
+  add_another_section: 加入其它資訊
+  add_another_subscription: 新增其它訂閱
   add_asset: 添加可用物件
   add_batch: 批次新增
   add_colors: 新增顏色
@@ -227,11 +225,11 @@ zh-TW:
   add_listed_taxa_from_observations: 從觀察紀錄中加入列出的物種分類群
   add_higher_level_taxon: 新增一個更高階層的物種分類 (例如:"鳥類")
   add_id: 新增物種鑑定
-  add_it_to_place_raquo: 把本項新增至地點 &raquo;
+  add_it_to_place_raquo: 把本項新增至地點&raquo;
   add_more_photos: 新增更多照片
   add_new_lexicon: 新增新的詞彙
   add_new_observations: 新增多個觀察紀錄
-  add_new_photos_by_their_ids: 從其 Flickr 帳戶中新增相片 (必須是創用 CC (Creative Commons) 授權!)
+  add_new_photos_by_their_ids: 從其 Flickr 帳戶中新增相片（必須是創用 CC（Creative Commons）授權!）
   add_new_place: 新增一處新地點
   add_new_rule: 新增一條新規則
   add_new_source: 新增新的來源....
@@ -276,7 +274,7 @@ zh-TW:
   add_taxon_batch_to: 把物種分類添加到 %{list}
   add_taxon_range: 添加物種分類範圍
   add_taxonomic_tags_to: 添加物種分類標籤至所選的 Flickr 照片&raquo;
-  add_taxonomic_tags_to_the_fickr_photos: 添加物種分類標籤至關聯於所選觀察的 Flickr 照片。
+  add_taxonomic_tags_to_the_flickr_photos: 添加物種分類標籤至關聯於所選觀察的 Flickr 照片。
   add_to: 新增至
   add_to_a_scheme: 添加至綱要
   add_to_a_project: 新增至專案
@@ -291,7 +289,7 @@ zh-TW:
   add_your_email_to_get: 添加您的電子郵件，以讓您的觀察能獲得來自於社群的意見回饋。若您不想分享它請立即查驗！
   add_your_own_observations_at: 新增您的觀察到 %{site_name}
   add_your_photo: 新增你的照片
-  add_your_photo_to: 新增你的圖片至 %{project} 專案
+  add_your_photo_to: 新增你的圖片至%{project}專案
   added: 已新增
   added!: 已新增!
   added_an: 已添加一個
@@ -311,6 +309,7 @@ zh-TW:
   admin: 管理員
   admin_s: 管理員
   admin_any_projects: 管理任何專案
+  admin_only: 只供管理員使用
   admin_tools: 管理員工具
   agree: 同意
   agree_: 同意
@@ -942,6 +941,7 @@ zh-TW:
   cumulative_ids: 累計鑑定：%{count} 個，全部 %{total} 個
   curate_observations: 策展觀察
   curate_taxa: 策展物種分類
+  curate_user: 策展用戶
   curate_users: 策展用戶
   curated: 已策展
   curated_checklist: 已策展清單
@@ -1359,6 +1359,9 @@ zh-TW:
   follower: 關注者
   followers: 關注者
   following: 追蹤中
+  following_x_people:
+    one: 關注 1 個人
+    other: 關注 %{count} 個人
   for: 用於
   for_a_taxon: 用於一個物種分類
   for_a_widget_showing_recent_observations_from: 要讓小工具顯示來自於%{place_name}的近期觀察，請查看
@@ -1577,7 +1580,7 @@ zh-TW:
   in_the_past: 在過去
   in_the_past_week: 在過去一週
   inactive: 不活躍
-  inactive_taxon: 不作用的物種分類
+  inactive_taxon: 不起作用的物種分類
   inactive_taxon_concepts_are: 無作用物種分類概念代表著分類方式過時，或是正處於在物種分類更改的階段上。過時概念會保留在維護歷史裡；並兼容於其它合作者的網站
   inappropriate: 不適當？
   inappropriate_content: 不適當內容？
@@ -1869,6 +1872,7 @@ zh-TW:
     ko: 韓語
     lb: 盧森堡語
     mk: 馬其頓語
+    nl: 荷蘭語
     oc: 奧克語
     pt-BR: 葡萄牙語 (巴西)
     pt-PT: 葡萄牙語 (葡萄牙)
@@ -2009,6 +2013,7 @@ zh-TW:
       MM: '%dmo'
       "y": 1y
       yy: '%dy'
+    datetime_with_zone: MMM D, YYYY · LT z
   mon: 週一
   month: 月
   months: 月
@@ -2845,6 +2850,7 @@ zh-TW:
   quality_grade_colon: 品質等級：
   queued: 已排程
   query: 查詢
+  random: 隨機
   range: 範圍
   range_from: 範圍來自
   rank: 分類位階
@@ -2863,6 +2869,7 @@ zh-TW:
     order: 目
     suborder: 亞目
     infraorder: 下目
+    subterclass: 準綱
     parvorder: 小目
     zoosection: 動物園區域
     zoosubsection: 動物園子區域
@@ -3587,7 +3594,7 @@ zh-TW:
   this_observation_is_research_grade: 此觀察為研究等級！
   this_observation_lies_outside_the: 此物種的觀察不在 %{site_name} 的範圍內。這代表著可能是 %{site_name}
     的範圍有誤、鑑定錯誤、內容不定，或是範圍擴大！
-  this_observation_was_created_using: 此觀察被創建使用於：
+  this_observation_was_created_using: 此觀察使用以下方式創建：
   this_photo_is_already_associated: 此照片已分配至您的觀察之一了。
   this_place_has_no_check_list: 此地點沒有清單。
   this_species: 此物種
@@ -3710,7 +3717,7 @@ zh-TW:
   update_existing_observations_with_new_license: 以新挑選的許可協議來更新現有觀察
   update_existing_photos_with_new_license: 以新挑選的許可協議來更新現有照片
   update_existing_sounds_with_new_license: 以新挑選的許可協議來更新現有聲音
-  update_past: 更新過往%{type}
+  update_past: 更新先前的%{type}
   update_photos: 更新照片
   update_search: 更新搜尋
   update_selected_taxa: 更新所選物種分類
@@ -3850,7 +3857,6 @@ zh-TW:
   view_more_observations_of_x_taxon: 在 <nobr>%{site_name}&raquo;</nobr> 上檢視更多屬於%{taxon}的觀察
   view_more_recent_observations: 檢視更多的近期觀察
   view_more_unreviewed: 檢視更多未檢閱項目
-  view_nbsp: 檢視&nbsp;
   view_observation: 檢視觀察
   view_observations: 檢視觀察
   view_observation_flags: 檢視觀察標記
@@ -4775,7 +4781,7 @@ zh-TW:
       project_user_curator_coordinate_access_labels:
         observer: 是的，但僅在我自行添加觀察至專案。
         any: 是的，不論誰添加觀察至專案裡。
-        none: 編號
+        none: 不
       curator_coordinate_access_label: 您想讓您的私有/隱蔽觀察座標可讓專案策展人看見？
       curator_coordinate_access_note: 您也可採用依逐個專案來分享觀察裡的私有座標。這些是當添加新觀察至專案時的預設內容。
       project_terms_desc_html: 允許此專案策展人依據<a href="%{url}">專案項目</a>來使用您的觀察。

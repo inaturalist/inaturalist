@@ -499,4 +499,8 @@ UserBlock.blueprint do
 end
 
 WikiPage.blueprint do
+  t = Faker::Lorem.sentence
+  title { t }
+  path { t.parameterize }
+  creator { User.make! }
 end

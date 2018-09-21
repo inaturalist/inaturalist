@@ -30,12 +30,12 @@ class FeatureButton extends React.Component {
         disabled={ siteFeature && !siteFeature.noteworthy }
         className={ siteFeature && !siteFeature.noteworthy ? "bold" : null }
       >
-        { I18n.t( "featured_" ) }
+        { I18n.t( "featured" ) }
       </MenuItem> )
     ];
     if ( siteFeature ) {
       buttonLabel = I18n.t( "featuring" ) + ": " + ( siteFeature.noteworthy ?
-        I18n.t( "new_and_noteworthy" ) : I18n.t( "featured_" ) );
+        I18n.t( "new_and_noteworthy" ) : I18n.t( "featured" ) );
       menuItems.push( (
         <MenuItem
           key={ "remove" }

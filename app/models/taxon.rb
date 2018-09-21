@@ -9,6 +9,12 @@ class Taxon < ActiveRecord::Base
   
   # Allow this taxon to be grafted to locked subtrees
   attr_accessor :skip_locks
+  
+  # Allow this taxon to be grafted to complete subtrees
+  attr_accessor :skip_complete
+  
+  # Allow this taxon to be inactivated despite having active children
+  attr_accessor :skip_only_inactive_children_if_inactive
 
   # Skip the more onerous callbacks that happen after grafting a taxon somewhere else
   attr_accessor :skip_after_move
@@ -103,6 +109,11 @@ class Taxon < ActiveRecord::Base
   validate :complete_rank_below_rank
   validate :graftable_if_complete
   validate :user_can_edit_attributes, on: :update
+  validate :rank_level_must_be_coarser_than_children
+  validate :rank_level_must_be_finer_than_parent
+  validate :rank_level_for_taxon_and_parent_must_not_be_nil
+  validate :only_inactive_children_if_inactive
+  validate :active_parent_if_active
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -273,9 +284,24 @@ class Taxon < ActiveRecord::Base
     [IUCN_STATUS_CODES[name], value]
   }]
   
-  PROBLEM_NAMES = ['california', 'lichen', 'bee hive', 'virginia', 'oman', 'winged insect', 
-    'lizard', 'gall', 'pinecone', 'larva', 'cicada', 'caterpillar', 'caterpillars', 'chiton', 
-    'arizona']
+  PROBLEM_NAMES = [
+    "arizona",
+    "bee hive",
+    "california",
+    "caterpillar",
+    "caterpillars",
+    "chiton",
+    "cicada",
+    "gall",
+    "larva",
+    "lichen",
+    "lizard",
+    "oman",
+    "pinecone",
+    "tanzania",
+    "virginia",
+    "winged insect"
+  ]
   
   PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA = %w(
     ancestry
@@ -702,8 +728,8 @@ class Taxon < ActiveRecord::Base
     parent_id.nil?
   end
   
-  def move_to_child_of(taxon)
-    update_attributes(:parent => taxon)
+  def move_to_child_of( taxon )
+    update_attributes( parent: taxon )
   end
   
   def default_name(options = {})
@@ -873,6 +899,43 @@ class Taxon < ActiveRecord::Base
       errors.add(self.name, "can't be its own ancestor")
     end
   end
+  
+  def rank_level_for_taxon_and_parent_must_not_be_nil
+    return if parent.nil?
+    
+    if parent.rank_level.nil? || rank_level.nil?
+      errors.add(self.name, "rank level for taxon and parent must not be nil")
+    end
+  end
+  
+  def rank_level_must_be_finer_than_parent
+    return if parent.nil?
+    
+    if parent.rank_level.to_f <= rank_level.to_f
+      errors.add(self.name, "rank level must be finer than parent")
+    end
+  end
+  
+  def rank_level_must_be_coarser_than_children
+    return if new_record?
+    if (children.any?{ |e| e.rank_level.nil? }  || rank_level.nil?) || (children.any?{ |e| e.rank_level.to_f >= rank_level.to_f })
+      errors.add(self.name, "rank level must be coarser than children")
+    end
+  end
+  
+  def only_inactive_children_if_inactive
+    return if new_record? || is_active
+    if !@skip_only_inactive_children_if_inactive && children.any?{ |e| e.is_active }
+      errors.add(self.name, "must only have inactive children to be inactive itself")
+    end
+  end
+    
+  def active_parent_if_active
+    return if parent.nil? || !is_active
+    return if parent.is_active
+    return if TaxonChange.uncommitted.output_taxon( parent ).exists?
+    errors.add( self.name, "must have a parent that is active or the output of a draft taxon change to be active itself" )
+  end
 
   def can_only_be_featured_if_photos
     if !featured_at.blank? && taxon_photos.blank?
@@ -914,7 +977,7 @@ class Taxon < ActiveRecord::Base
   def graftable_if_complete
     return true unless ancestry_changed?
     ct = complete_taxon
-    if ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
+    if !skip_complete && ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
       errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
     end
     true

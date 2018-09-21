@@ -22,11 +22,11 @@ class FlagAnItem extends React.Component {
       const type = itemTypeLabel || item.constructor.name;
       return (
         <div className="FlagAnItem alert alert-danger">
-          <i className="fa fa-flag" />
-          { flagQualifier ?
+          <i className="fa fa-flag" /> {
+            flagQualifier ?
             I18n.t( "x_flagged_as_flag", { x: type, flag: flagQualifier } ) :
-            I18n.t( "x_flagged", { x: type } ) }
-          { editLink }
+            I18n.t( "x_flagged", { x: type } )
+          } { editLink }
         </div>
       );
     }

@@ -5,17 +5,20 @@
 # Author: Aru
 # Author: BramEsposito
 # Author: Cellina
+# Author: Chestnut123tw
 # Author: Cruzan
 # Author: Danieleseglie
 # Author: Exonie
 # Author: Fortega
 # Author: Frog7301
+# Author: Ilmarine
 # Author: Jareks
 # Author: Jujurenoult
 # Author: Kruczoczarna
 # Author: Liuxinyu970226
 # Author: Macofe
 # Author: Nike
+# Author: Phil.pav
 # Author: Pihlaviita
 # Author: Purodha
 # Author: Pyscowicz
@@ -54,10 +57,6 @@ qqq:
   x_observations_link_html: |-
     Number of observations, with the count linked to $url
     {{Identical|Observation}}
-  x_people: |-
-    Number of people
-    {{Identical|Person}}
-    {{Identical|People}}
   x_people_agree_html: |-
     Number of people that agree with something,
     with the count in a span of class 'count'
@@ -84,6 +83,7 @@ qqq:
   a_flag_for_x: where x is the title of the resource being flagged
   a_member_of_taxon_html: where taxon is the name of a taxon such as Animalia
   about: '{{Identical|About}}'
+  about_establishment_means: 'Establishment means: endemic, native, introduced'
   about_x: |-
     where x is the site name
     {{Identical|About}}
@@ -359,7 +359,7 @@ qqq:
   date_picker:
     closeText: '{{Identical|Close}}'
     currentText: '{{Identical|Today}}'
-    range: As in a range of dates, e.g. 2018-01-05 to 2018-04-05
+    range: This is the string used for a date range (from date to date)
   date_time: '{{Identical|Date}}'
   dates: '{{Identical|Date}}'
   datetime_: '{{Identical|Date}}'
@@ -406,6 +406,7 @@ qqq:
   error_updating_photo: where photo_errors are a description of the error
   establishment:
     native: '{{Identical|Native}}'
+  establishment_means: '* Establishment means: endemic, native, introduced'
   everyone: '{{Identical|Everyone}}'
   explore!: '{{Identical|Explore}}'
   export: '{{Identical|Export}}'
@@ -431,6 +432,7 @@ qqq:
   fields: '{{Identical|Field}}'
   fields_: '{{Identical|Field}}'
   file: '{{Identical|File}}'
+  filling_out_checklist_for_place: check https://www.inaturalist.org/places for context
   filter: '{{Identical|Filter}}'
   filters: '{{Identical|Filter}}'
   find: '{{Identical|Find}}'
@@ -698,7 +700,8 @@ qqq:
   momentjs:
     shortRelativeTime:
       future: '{{Identical|In}}'
-    datetime_with_zone: momentjs formatting string for a date with a time and a time zone. See https://momentjs.com/docs/#/displaying/ for formatting rules.
+    datetime_with_zone: momentjs formatting string for a date with a time and a time
+      zone. See https://momentjs.com/docs/#/displaying/ for formatting rules.
   mon: Abbreviation for Monday, a day of the week.
   month: '{{Identical|Month}}'
   months: '{{Identical|Month}}'
@@ -944,7 +947,9 @@ qqq:
   purple: '{{Identical|Purple}}'
   queued: '{{Identical|Queue}}'
   query: '{{Identical|Query}}'
-  range: "Geographical range, as in the range of a species distrubtion. For ranges of dates see date_picker.range or date_range."
+  random: '{{Identical|Random}}'
+  range: Geographical range, as in the range of a species distrubtion. For ranges
+    of dates see date_picker.range or date_range.
   rank: '{{Identical|Rank}}'
   rank_position: Rank, as in position in a list
   ranks:
@@ -1407,10 +1412,16 @@ qqq:
           a common abbreviation that naturalists use in online communities.'
         invite_other_photographers_to_inat: where site_name is the site name
         invite_your_friends_description: where site_name is the site name
+    places:
+      index:
+        adding_new_places: Check http://www.inaturalist.org/places for context
+        filling_out_checklists: check https://www.inaturalist.org/places for context
     projects:
       edit:
         submission_models:
           any: '{{Identical|Anyone}}'
+      project_user_curator_coordinate_access_labels:
+        none: 'There will be two meanings: "no" and "brief for number" on "No.".'
       show:
         no_journal_blurb_html: Notice shown to project owners when they do not have
           any journal posts.

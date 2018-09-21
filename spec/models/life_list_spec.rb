@@ -7,8 +7,8 @@ describe LifeList do
 
   describe "reload_from_observations" do
     before(:each) do
-      @taxon = Taxon.make!
-      @child = Taxon.make!(:parent => @taxon)
+      @taxon = Taxon.make!(rank: Taxon::SPECIES)
+      @child = Taxon.make!(parent: @taxon, rank: Taxon::SUBSPECIES)
       @list = make_life_list_for_taxon(@taxon)
       expect(@list).to be_valid
     end
@@ -76,7 +76,7 @@ describe LifeList do
     after(:each) { disable_elastic_indexing( Observation, Place, Identification ) }
 
     it "should add new taxa to the list" do
-      t = Taxon.make!(:parent => @parent)
+      t = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       o = Observation.make!(:user => @list.user, :taxon => t)
       expect(@list.taxon_ids).not_to include(t.id)
       LifeList.refresh_with_observation(o)
@@ -96,7 +96,7 @@ describe LifeList do
     end
   
     it "should remove listed taxa that weren't manually added" do
-      t = Taxon.make!(:parent => @parent)
+      t = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       o = Observation.make!(:user => @list.user, :taxon => t)
       expect(@list.taxon_ids).not_to include(t.id)
       LifeList.refresh_with_observation(o)
@@ -110,7 +110,7 @@ describe LifeList do
     end
   
     it "should keep listed taxa that were manually added" do
-      t = Taxon.make!(:parent => @parent)
+      t = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       @list.add_taxon(t, :manually_added => true)
       @list.reload
       expect(@list.taxon_ids).to include(t.id)
@@ -124,7 +124,7 @@ describe LifeList do
     end
   
     it "should keep listed taxa with observations" do
-      t = Taxon.make!(:parent => @parent)
+      t = Taxon.make!(parent: @parent, rank: Taxon::SPECIES)
       o1 = Observation.make!(:user => @list.user, :taxon => t)
       o2 = Observation.make!(:user => @list.user, :taxon => t)
       LifeList.refresh_with_observation(o2)

@@ -30,8 +30,8 @@
         = formatted_user_text taxon_change.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
     .meta
       %label
-        = t :source
-        \:
+        = succeed ":" do
+          = t :source
       - if taxon_change.source
         - if taxon_change.source.url
           = link_to truncate(taxon_change.source.title, :length => 40), taxon_change.source.url
@@ -48,6 +48,11 @@
           = t :group
           \:
         = link_to taxon_change.change_group, taxon_changes_path(:change_group => taxon_change.change_group)
+    - if ( taxon_change.is_a?( TaxonSwap ) || taxon_change.is_a?( TaxonMerge ) ) && taxon_change.move_children?
+      .move_children
+        %label=t :move_input_children_to_output?
+        =t :yes
+        %span.helptip{ rel: t( "views.taxon_changes.move_children_desc" ) }
     - if taxon_change.user
       %label= t :added_by
       = link_to taxon_change.user.login, taxon_change.user

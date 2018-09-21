@@ -116,7 +116,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
               target={linkTarget}
             >
               <i className="fa fa-arrow-circle-o-right" />
-              <span className="menu-item-label">{ _.capitalize( I18n.t( "of_this_taxon" ) ) }</span>
+              <span className="menu-item-label">{ I18n.t( "of_this_taxon" ) }</span>
             </a>
           </div>
           <div className="search">
@@ -125,7 +125,7 @@ const ActivityItemMenu = ( { item, config, deleteComment, deleteID, restoreID,
               target={linkTarget}
             >
               <i className="fa fa-arrow-circle-o-right" />
-              <span className="menu-item-label">{ _.capitalize( I18n.t( "by_user", { user: item.user.login } ) ) }</span>
+              <span className="menu-item-label">{ I18n.t( "by_user", { user: item.user.login } ) }</span>
             </a>
           </div>
         </li>
