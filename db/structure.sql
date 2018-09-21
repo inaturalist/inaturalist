@@ -340,8 +340,7 @@ CREATE TABLE announcements (
     body text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    locales text[] DEFAULT '{}'::text[],
-    site_id integer
+    locales text[] DEFAULT '{}'::text[]
 );
 
 
@@ -362,6 +361,16 @@ CREATE SEQUENCE announcements_id_seq
 --
 
 ALTER SEQUENCE announcements_id_seq OWNED BY announcements.id;
+
+
+--
+-- Name: announcements_sites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE announcements_sites (
+    announcement_id integer,
+    site_id integer
+);
 
 
 --
@@ -3451,6 +3460,41 @@ ALTER SEQUENCE rules_id_seq OWNED BY rules.id;
 
 
 --
+-- Name: saved_locations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE saved_locations (
+    id integer NOT NULL,
+    user_id integer,
+    latitude numeric(15,10),
+    longitude numeric(15,10),
+    title character varying,
+    positional_accuracy integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: saved_locations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE saved_locations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saved_locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE saved_locations_id_seq OWNED BY saved_locations.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3521,6 +3565,41 @@ CREATE SEQUENCE site_admins_id_seq
 --
 
 ALTER SEQUENCE site_admins_id_seq OWNED BY site_admins.id;
+
+
+--
+-- Name: site_featured_projects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE site_featured_projects (
+    id integer NOT NULL,
+    site_id integer,
+    project_id integer,
+    user_id integer,
+    noteworthy boolean DEFAULT false,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: site_featured_projects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE site_featured_projects_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: site_featured_projects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE site_featured_projects_id_seq OWNED BY site_featured_projects.id;
 
 
 --
@@ -5307,6 +5386,13 @@ ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regcl
 
 
 --
+-- Name: saved_locations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY saved_locations ALTER COLUMN id SET DEFAULT nextval('saved_locations_id_seq'::regclass);
+
+
+--
 -- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5318,6 +5404,13 @@ ALTER TABLE ONLY sessions ALTER COLUMN id SET DEFAULT nextval('sessions_id_seq':
 --
 
 ALTER TABLE ONLY site_admins ALTER COLUMN id SET DEFAULT nextval('site_admins_id_seq'::regclass);
+
+
+--
+-- Name: site_featured_projects id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY site_featured_projects ALTER COLUMN id SET DEFAULT nextval('site_featured_projects_id_seq'::regclass);
 
 
 --
@@ -6177,6 +6270,14 @@ ALTER TABLE ONLY rules
 
 
 --
+-- Name: saved_locations saved_locations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY saved_locations
+    ADD CONSTRAINT saved_locations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6190,6 +6291,14 @@ ALTER TABLE ONLY sessions
 
 ALTER TABLE ONLY site_admins
     ADD CONSTRAINT site_admins_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: site_featured_projects site_featured_projects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY site_featured_projects
+    ADD CONSTRAINT site_featured_projects_pkey PRIMARY KEY (id);
 
 
 --
@@ -6484,17 +6593,24 @@ CREATE INDEX index_annotations_on_user_id ON annotations USING btree (user_id);
 
 
 --
--- Name: index_announcements_on_site_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_announcements_on_site_id ON announcements USING btree (site_id);
-
-
---
 -- Name: index_announcements_on_start_and_end; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_announcements_on_start_and_end ON announcements USING btree (start, "end");
+
+
+--
+-- Name: index_announcements_sites_on_announcement_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcements_sites_on_announcement_id ON announcements_sites USING btree (announcement_id);
+
+
+--
+-- Name: index_announcements_sites_on_site_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcements_sites_on_site_id ON announcements_sites USING btree (site_id);
 
 
 --
@@ -7982,6 +8098,13 @@ CREATE INDEX index_roles_users_on_user_id ON roles_users USING btree (user_id);
 
 
 --
+-- Name: index_saved_locations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saved_locations_on_user_id ON saved_locations USING btree (user_id);
+
+
+--
 -- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8007,6 +8130,13 @@ CREATE INDEX index_site_admins_on_site_id ON site_admins USING btree (site_id);
 --
 
 CREATE INDEX index_site_admins_on_user_id ON site_admins USING btree (user_id);
+
+
+--
+-- Name: index_site_featured_projects_on_site_id_and_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_site_featured_projects_on_site_id_and_project_id ON site_featured_projects USING btree (site_id, project_id);
 
 
 --
@@ -9328,6 +9458,8 @@ INSERT INTO schema_migrations (version) VALUES ('20180518231918');
 
 INSERT INTO schema_migrations (version) VALUES ('20180613193352');
 
+INSERT INTO schema_migrations (version) VALUES ('20180704195638');
+
 INSERT INTO schema_migrations (version) VALUES ('20180719001655');
 
 INSERT INTO schema_migrations (version) VALUES ('20180803162216');
@@ -9336,7 +9468,11 @@ INSERT INTO schema_migrations (version) VALUES ('20180821031507');
 
 INSERT INTO schema_migrations (version) VALUES ('20180822173011');
 
+INSERT INTO schema_migrations (version) VALUES ('20180911144001');
+
 INSERT INTO schema_migrations (version) VALUES ('20180905191330');
 
 INSERT INTO schema_migrations (version) VALUES ('20180906232956');
+
+INSERT INTO schema_migrations (version) VALUES ('20180911233322');
 

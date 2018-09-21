@@ -10,6 +10,28 @@
           $( "#reject_user_id" ).val( ui.item.user_id );
         }
       } );
+      $( "#site-admins .dropdown-menu" ).on( "click", function( e ) {
+        e.stopPropagation( );
+      } );
+      $( "#site-admins input[type='checkbox']" ).on( "change", function( e ) {
+        $.ajax({
+          type: $( this ).is( ":checked" ) ? "POST" : "DELETE",
+          url: "/site_admins",
+          data: {
+            site_admin: {
+              user_id: #{ @display_user.id },
+              site_id: $( this ).val( )
+            }
+          },
+          success: function( data ) {
+            console.log( "success" );
+          },
+          error: function( data ) {
+            console.log( "error" );
+          },
+          dataType: "JSON"
+        });
+      } );
     } )
 .container
   .row
@@ -62,6 +84,24 @@
             method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
             class: "btn btn-block btn-success"
         = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"
+        .dropdown.btn-block#site-admins
+          .btn.btn-block.btn-success.dropdown-toggle{ "data-toggle" => "dropdown" }
+            = t :make_site_admin
+            %span.caret
+          %ul.dropdown-menu{ style: "width:100%" }
+            - Site.order(:id).map do |s|
+              %li
+                %label
+                  %input{                                                                |
+                    type: "checkbox",                                                    |
+                    id: "site-#{s.id}",                                                  |
+                    value: s.id,                                                         |
+                    checked: @display_user.site_admins.detect{ |sa| sa.site_id == s.id } |
+                  }                                                                      |
+                  = s.name
+                  = " [#{ s.short_url }]"
+                  - if s.draft
+                    = " (#{ I18n.t(:draft) })"
         = link_to "Log in as #{@display_user.login}", { controller: "admin", action: "login_as", id: @display_user.id }, class: "btn btn-block btn-info"
         = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
         = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,

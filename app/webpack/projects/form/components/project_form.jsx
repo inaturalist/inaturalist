@@ -77,25 +77,6 @@ class ProjectForm extends React.Component {
               ) }
             </Col>
           </Row>
-          { viewerIsAdmin && (
-            <Row>
-              <Col xs={12}>
-                <div className="admin-tools">
-                  <label>{ I18n.t( "admin_tools" ) }</label>
-                  <input
-                    type="checkbox"
-                    id="project-featured-at"
-                    name="featured_at"
-                    defaultChecked={ project.featured_at }
-                    onChange={ e => updateProject( { featured_at: e.target.checked } ) }
-                  />
-                  <label className="inline" htmlFor="project-featured-at">
-                    { I18n.t( "feature_this_project" ) }
-                  </label>
-                </div>
-              </Col>
-            </Row>
-          )}
           <Row>
             <Col xs={12}>
               * { I18n.t( "required_" ) }

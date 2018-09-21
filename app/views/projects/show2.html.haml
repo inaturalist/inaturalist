@@ -22,6 +22,7 @@
       js_current_user = { id: current_user.id,
         login: current_user.login,
         curator_project_ids: current_user.project_users.curator_privilege.pluck(:project_id),
+        site_admin: is_site_admin?,
         icon_url: current_user.icon.file? ? current_user.icon.url(:medium) : nil,
         roles: current_user.roles.map(&:name),
         prefers_scientific_name_first: current_user.prefers_scientific_name_first,
@@ -35,6 +36,7 @@
     var CURRENT_SUBTAB = "#{ @current_subtab }";
     var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
     var SITE = {
+      id: #{@site.id},
       help_email: "#{@site.email_help}"
     };
   = javascript_include_tag "projects-show-webpack"
