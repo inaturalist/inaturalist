@@ -743,7 +743,29 @@ describe User do
       expect(suggestion).not_to be_blank
       expect(suggestion).not_to start_with '2'
     end
-    
+
+    it "should not suggest purely integer logins" do
+      suggestion = User.suggest_login("")
+      expect(suggestion).not_to be_blank
+      expect(suggestion).to eq "naturalist"
+
+      suggestion = User.suggest_login("育")
+      expect(suggestion).not_to be_blank
+      expect(suggestion).to eq "naturalist"
+    end
+
+    it "should suggest naturalistX for more empty suggestions" do
+      User.make!(login: "naturalist")
+      suggestion = User.suggest_login("")
+      expect(suggestion).not_to be_blank
+      expect(suggestion).to eq "naturalist1"
+
+      User.make!(login: "naturalist1")
+      suggestion = User.suggest_login("")
+      expect(suggestion).not_to be_blank
+      expect(suggestion).to eq "naturalist2"
+    end
+
   end
 
   describe "community taxa preference" do
