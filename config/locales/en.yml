@@ -2002,6 +2002,8 @@ en:
   meet: Meet
   member_of_the_inaturalist_network_html: |
     Member of the <a href="%{url}">iNaturalist Network</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Member of the %{partial_inat_network_tag_html}iNaturalist Network</a> a joint initiative of the %{cas_tag_html} and the %{nat_geo_tag_html}.
   members: Members
   membership_model: Membership Model
   mentioned_you_in_noun_html: "%{user} mentioned you in %{noun}"
