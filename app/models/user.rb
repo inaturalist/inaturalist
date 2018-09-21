@@ -152,7 +152,6 @@ class User < ActiveRecord::Base
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
   has_many :annotations, dependent: :destroy
-  has_many :site_admins, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
@@ -196,6 +195,7 @@ class User < ActiveRecord::Base
   has_many :flow_tasks
   has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
+  has_many :site_admins, inverse_of: :user
   belongs_to :place, :inverse_of => :users
   belongs_to :search_place, inverse_of: :search_users, class_name: "Place"
 
