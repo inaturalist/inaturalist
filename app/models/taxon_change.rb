@@ -90,19 +90,26 @@ class TaxonChange < ActiveRecord::Base
   def rank_level_conflict?
     return false unless ["TaxonSwap", "TaxonMerge"].include? type
     if type == "TaxonSwap"
-      input_taxa_rank_level_conflict = input_taxa[0] if ( input_taxa[0].rank_level > output_taxa[0].rank_level )
+      input_taxa_rank_level_conflict = input_taxa[0] if ( input_taxa[0].children.where(is_active: true).map{|c| c.rank_level >= output_taxa[0].rank_level}.any? )
     elsif type == "TaxonMerge"
-      input_taxa_rank_level_conflict  = input_taxa.map{ |input_taxon| input_taxon.rank_level > output_taxa[0].rank_level }.first
+      input_taxa_rank_level_conflict = input_taxa.select{ |input_taxon| input_taxon.children.where(is_active: true).map{|c| c.rank_level >= output_taxa[0].rank_level}.any? }.first
     end
     return false unless input_taxa_rank_level_conflict 
     input_taxa_rank_level_conflict
   end
 
   def active_children_conflict?
-    return false if move_children? || !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
+    return false if move_children?
+    # inputs can't have active children
+    if ["TaxonSwap", "TaxonSplit"].include? type
+      return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
+    # unless they are also inputs
+    elsif type == "TaxonMerge"
+      return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.pluck(:id).include? e.id) }}.any?
+    end
     return true
   end
-  
+    
   def committable_by?( u )
     return false unless u
     return false unless u.is_curator?
@@ -150,10 +157,10 @@ class TaxonChange < ActiveRecord::Base
       return
     end
     if rank_level_conflict?
-      raise RankLevelError, "Output taxon rank level finer than rank level of an input taxon"
+      raise RankLevelError, "Output taxon rank level not coarser than rank level of an input taxon's active children"
       return
     end
-    input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: move_children? )}
+    input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
     output_taxa.each do |t|
       t.update_attributes!(
         is_active: true,

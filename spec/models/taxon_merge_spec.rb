@@ -134,6 +134,8 @@ describe TaxonMerge, "commit" do
       descendant1 = Taxon.make!( parent: child1, rank: Taxon::GENUS )
       child2 = Taxon.make!( parent: @input_taxon2, rank: Taxon::FAMILY )
       descendant2 = Taxon.make!( parent: child2, rank: Taxon::GENUS )
+      @merge.reload
+      @merge.committer = @merge.user
       expect( @merge ).to be_valid
       without_delay { @merge.commit }
       child1.reload
@@ -312,22 +314,58 @@ describe TaxonMerge, "commit_records" do
     expect( new_ident.previous_observation_taxon ).to eq other_swap.output_taxon
   end
   
-  it "should commit a taxon merge with all input taxon descendant rank levels finer than the output taxon rank level" do
+  it "should commit a taxon merge with all input taxon active child rank levels finer than the output taxon rank level" do
     child = Taxon.make!( is_active: true, parent: @input_taxon1, rank: Taxon::SUBSPECIES )
     @merge.reload
+    @merge.committer = @merge.user
+    @merge.move_children = true
     expect {
       @merge.commit
-    }.not_to raise_error TaxonChange::RankLevelError
+    }.not_to raise_error # TaxonChange::RankLevelError
   end
   
-  it "should not commit a taxon merge without all input taxon descendant rank levels finer than the output taxon rank level" do
+  it "should not commit a taxon merge without all input taxon active child rank levels finer than the output taxon rank level" do
+    @output_taxon.update_attributes(
+     rank: Taxon::SUBSPECIES,
+     rank_level: Taxon::SUBSPECIES_LEVEL
+    )
+    child = Taxon.make!( is_active: true, parent: @input_taxon1, rank: Taxon::SUBSPECIES )
+    @merge.reload
+    @merge.move_children = true
+    @merge.committer = @merge.user
+    expect {
+      @merge.commit
+    }.to raise_error TaxonChange::RankLevelError
+  end
+  
+  it "should commit a taxon merge with childless input taxon rank level coarser than the output taxon rank level" do
     @output_taxon.update_attribute(
      :rank, Taxon::SUBSPECIES
     )
     child = Taxon.make!( is_active: true, parent: @input_taxon1, rank: Taxon::SUBSPECIES )
-    @merge.reload
+    @merge.move_children = true
+    @merge.committer = @merge.user
     expect {
       @merge.commit
-    }.not_to raise_error TaxonChange::RankLevelError
+    }.not_to raise_error # TaxonChange::RankLevelError
+  end
+  
+  it "should raise an error if input taxon has active children that aren't involved in the merge" do
+    child = Taxon.make!( rank: Taxon::SUBSPECIES, parent: @input_taxon1 )
+    @merge.committer = @merge.user
+    expect {
+      @merge.commit
+    }.to raise_error TaxonChange::ActiveChildrenError
+  end
+  
+  it "should not raise an error if input taxon has no active children that aren't involved in the merge" do
+    child = Taxon.make!( rank: Taxon::SUBSPECIES, parent: @input_taxon1 )
+    @merge.add_input_taxon( child )
+    @merge.save
+    @merge.reload
+    @merge.committer = @merge.user
+    expect {
+      @merge.commit
+    }.not_to raise_error # TaxonChange::ActiveChildrenError
   end
 end
