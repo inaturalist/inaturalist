@@ -101,11 +101,13 @@ class TaxonChange < ActiveRecord::Base
   def active_children_conflict?
     return false if move_children?
     # inputs can't have active children
-    if ["TaxonSwap", "TaxonSplit"].include? type
+    if ["TaxonSwap", "TaxonSplit", "TaxonDrop"].include? type
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
     # unless they are also inputs
     elsif type == "TaxonMerge"
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.pluck(:id).include? e.id) }}.any?
+    elsif type == "TaxonStage"
+      return false
     end
     return true
   end
