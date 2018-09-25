@@ -44,48 +44,49 @@ class ProjectsController < ApplicationController
           @place = @site.place unless params[:everywhere].yesish?
         end
 
-        carousel_ids = INatAPIService.projects(
-          site_id: @site.id,
+        base_params = { site_id: @site_id }
+        if current_user && ( current_user.is_admin? || current_user.site_admins.any? )
+          base_params[:ttl] = -1
+        end
+
+        carousel_ids = INatAPIService.projects( base_params.merge(
           noteworthy: true,
           order_by: "featured",
-          per_page: 3,
-        ).results.map{ |p| p["id"] }
+          per_page: 3
+        )).results.map{ |p| p["id"] }
         @carousel = carousel_ids.map{ |id| Project.find(id) }.compact
 
-        featured_ids = INatAPIService.projects(
-          site_id: @site.id,
+        featured_ids = INatAPIService.projects( base_params.merge(
           featured: true,
           not_id: @carousel.map(&:id),
           order_by: "featured",
           per_page: 11
-        ).results.map{ |p| p["id"] }
+        )).results.map{ |p| p["id"] }
         @featured = featured_ids.map{ |id| Project.find(id) }.compact
         while @carousel.length < 3 && @featured.length > 0 do
           @carousel.push( @featured.shift )
         end
         @featured = @featured[0...8]
 
-        recent_ids = INatAPIService.projects(
-          site_id: @site.id,
+        recent_ids = INatAPIService.projects( base_params.merge(
           not_id: @carousel.map(&:id) + @featured.map(&:id),
           per_page: 11,
           order_by: "recent_posts",
           place_id: @place.try(:id)
-        ).results.map{ |p| p["id"] }
+        )).results.map{ |p| p["id"] }
         @recent = recent_ids.map{ |id| Project.find(id) }.compact
         while @carousel.length < 3 && @recent.length > 0 do
           @carousel.push( @recent.shift )
         end
         @recent = @recent[0...8]
 
-        created_ids = INatAPIService.projects(
-          site_id: @site.id,
+        created_ids = INatAPIService.projects( base_params.merge(
           not_id: @carousel.map(&:id) + @featured.map(&:id) + @recent.map(&:id),
           per_page: 8,
           order_by: "created",
           place_id: @place.try(:id),
           has_posts: true
-        ).results.map{ |p| p["id"] }
+        )).results.map{ |p| p["id"] }
         @created = created_ids.map{ |id| Project.find(id) }.compact
 
         if logged_in?

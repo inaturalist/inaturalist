@@ -12,7 +12,7 @@ class AnnouncementsController < ApplicationController
     @announcements = Announcement.order( "id desc" ).page( params[:page] )
     current_user_site_ids = current_user.site_admins.pluck(:site_id)
     unless current_user_site_ids.blank?
-      @announcements = @announcements.where( site_id: current_user_site_ids )
+      @announcements = @announcements.joins(:sites).where( "sites.id": current_user_site_ids )
     end
     unless params[:q].blank?
       @announcements = @announcements.where( "body ilike ?", "%#{params[:q]}%" )
