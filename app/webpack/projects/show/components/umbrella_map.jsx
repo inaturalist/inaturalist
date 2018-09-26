@@ -39,7 +39,7 @@ class UmbrellaMap extends Component {
     const { project } = this.props;
     const subprojectPlaceRules = _.compact( _.flattenDeep( _.map( project.projectRules, rule => (
       _.filter( rule.project.project_observation_rules, subRule => (
-        subRule.operand_type === "Place"
+        subRule.operand_type === "Place" && subRule.operator === "observed_in_place?"
       ) )
     ) ) ) );
     const placeIDs = _.map( subprojectPlaceRules, "operand_id" );

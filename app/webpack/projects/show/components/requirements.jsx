@@ -28,6 +28,17 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
         noInactive
       />
     ) );
+  const exceptTaxonRules = !_.isEmpty( project.notTaxonRules ) &&
+    _.map( project.notTaxonRules, r => (
+      <SplitTaxon
+        key={ `project-taxon-rules-${r.id}` }
+        user={ config.currentUser }
+        key={ `requirement_taxon_${r.taxon.id}` }
+        taxon={ r.taxon }
+        url={ `/taxa/${r.taxon.id}` }
+        noInactive
+      />
+    ) );
   const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any" ) :
     _.map( project.projectRules, r => r.project.title ).join( ", " );
   const locationRules = _.isEmpty( project.placeRules ) ? I18n.t( "worldwide" ) :
@@ -36,8 +47,20 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
         { r.place.display_name }
       </a>
     ) );
+  const exceptLocationRules = ! _.isEmpty( project.notPlaceRules ) &&
+    _.map( project.notPlaceRules, r => (
+      <a key={ `project-place-rules-${r.id}` } href={ `/places/${r.place.id}` }>
+        { r.place.display_name }
+      </a>
+    ) );
   const userRules = _.isEmpty( project.userRules ) ? I18n.t( "any" ) :
     _.map( project.userRules, r => (
+      <a key={ `project-user-rules-${r.id}` } href={ `/people/${r.user.login}` }>
+        { r.user.login }
+      </a>
+    ) );
+  const exceptUserRules = ! _.isEmpty( project.notUserRules ) &&
+    _.map( project.notUserRules, r => (
       <a key={ `project-user-rules-${r.id}` } href={ `/people/${r.user.login}` }>
         { r.user.login }
       </a>
@@ -95,21 +118,51 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
                 <i className="fa fa-leaf" />
                 { I18n.t( "taxa" ) }
               </td>
-              <td className="value">{ taxonRules }</td>
+              <td className="value">
+                { taxonRules }
+                { exceptTaxonRules && (
+                  <span className="except">
+                    <span className="bold">
+                      except
+                    </span>
+                    { exceptTaxonRules }
+                  </span>
+                ) }
+              </td>
             </tr>
             <tr>
               <td className="param">
                 <i className="fa fa-map-marker" />
                 { I18n.t( "location" ) }
               </td>
-              <td className="value">{ locationRules }</td>
+              <td className="value">
+                { locationRules }
+                { exceptLocationRules && (
+                  <span className="except">
+                    <span className="bold">
+                      except
+                    </span>
+                    { exceptLocationRules }
+                  </span>
+                ) }
+              </td>
             </tr>
             <tr>
               <td className="param">
                 <i className="fa fa-user" />
                 { I18n.t( "users" ) }
               </td>
-              <td className="value">{ userRules }</td>
+              <td className="value">
+                { userRules }
+                { exceptUserRules && (
+                  <span className="except">
+                    <span className="bold">
+                      except
+                    </span>
+                    { exceptUserRules }
+                  </span>
+                ) }
+              </td>
             </tr>
             <tr>
               <td className="param">

@@ -10877,6 +10877,8 @@ I18n.translations["en"] = {
   "exact_date": "Exact Date",
   "exact_location": "Exact_location",
   "examples_of_ranking_organizations": "Examples of Ranking Organizations",
+  "except_filters": "Except Filters",
+  "except_x": "Except %{x}",
   "exit_full_screen": "Exit Full Screen",
   "export_observations": "Export Observations",
   "exporting": "Exporting...",

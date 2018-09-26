@@ -965,8 +965,21 @@ button {
       a {
         color: inherit;
       }
-      & > a:not(:last-child)::after, .SplitTaxon:not(:last-child)::after {
+      & > a:not(:last-of-type)::after,
+      & > .except > a:not(:last-of-type)::after,
+      & .SplitTaxon:not(:last-of-type)::after {
        content: ", ";
+      }
+      .except {
+        .bold {
+          font-weight: 700;
+          &::before {
+            content: " "
+          }
+          &::after {
+            content: " "
+          }
+        }
       }
     }
   }
