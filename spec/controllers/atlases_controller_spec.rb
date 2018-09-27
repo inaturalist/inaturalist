@@ -16,9 +16,6 @@ describe AtlasesController do
     let(:place) { Place.make!( admin_level: 1 ) }
     let(:atlas) { Atlas.make!( taxon: taxon, user: user ) }
     it "should create a listing if one doesn't exist" do
-      # taxon = Taxon.make!
-      # place = Place.make!(admin_level: 0)
-      # atlas = Atlas.make!(user: user, taxon: taxon)
       sign_in user
       post :alter_atlas_presence, id: atlas.id, taxon_id: taxon.id, place_id: place.id
       lt = ListedTaxon.where(taxon_id: taxon.id, place_id: place.id, list_id: place.check_list_id).first
@@ -26,12 +23,10 @@ describe AtlasesController do
     end
     
     it "should destroy a listing if one does exist" do
-      # taxon = Taxon.make!
       expect( taxon ).not_to be_blank
       AncestryDenormalizer.denormalize
       check_list = List.find( place.check_list_id )
       check_listed_taxon = check_list.add_taxon( taxon )
-      # atlas = Atlas.make!( user: user, taxon: taxon )
       sign_in user
       post :alter_atlas_presence, id: atlas.id, taxon_id: taxon.id, place_id: place.id
       lt = ListedTaxon.where( taxon_id: taxon.id, place_id: place.id, list_id: place.check_list_id ).first
@@ -43,6 +38,14 @@ describe AtlasesController do
       sign_in user
       post :alter_atlas_presence, format: :json, id: atlas.id, taxon_id: taxon.id, place_id: place.id
       lt = ListedTaxon.where( taxon_id: taxon.id, place_id: place.id, list_id: comprehensive_list.id ).first
+      expect( lt ).not_to be_blank
+    end
+
+    it "should create a listing on the default list if there's a comprehensive list" do
+      comprehensive_list = place.check_lists.create!( taxon: genus, user: user, comprehensive: true )
+      sign_in user
+      post :alter_atlas_presence, format: :json, id: atlas.id, taxon_id: taxon.id, place_id: place.id
+      lt = ListedTaxon.where( taxon_id: taxon.id, place_id: place.id, list_id: place.check_list_id ).first
       expect( lt ).not_to be_blank
     end
 

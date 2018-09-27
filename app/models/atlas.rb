@@ -99,14 +99,11 @@ class Atlas < ActiveRecord::Base
       where( "listed_taxa.taxon_id IN ( ? )", taxon.taxon_ancestors_as_ancestor.pluck( :taxon_id ) )
 
     exploded_place_ids_to_include, exploded_place_ids_to_exclude = get_exploded_place_ids_to_include_and_exclude
-    Rails.logger.debug "[DEBUG] exploded_place_ids_to_include: #{exploded_place_ids_to_include}"
     native_place_ids = scope.select( "listed_taxa.place_id" ).
       where( "listed_taxa.establishment_means IS NULL OR listed_taxa.establishment_means IN (?)", ListedTaxon::NATIVE_EQUIVALENTS ).
       distinct.pluck( :place_id ) 
-    Rails.logger.debug "[DEBUG] native_place_ids: #{native_place_ids}"
     introduced_place_ids = scope.select( "listed_taxa.place_id" ).
       where( "listed_taxa.establishment_means IN (?)", ListedTaxon::INTRODUCED_EQUIVALENTS ).distinct.pluck( :place_id ) 
-    Rails.logger.debug "[DEBUG] introduced_place_ids: #{introduced_place_ids}"
 
     descendants_places = Place.where( id: native_place_ids).
       where( "admin_level IN (?)", [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL] )

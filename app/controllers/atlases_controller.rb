@@ -126,6 +126,11 @@ class AtlasesController < ApplicationController
       lt = list.listed_taxa.find_by_taxon_id( taxon_id )
       lt ||= ListedTaxon.create( taxon_id: taxon_id, place_id: place_id, list_id: list.id, user_id: current_user.id )
 
+      # If we're working on a comprehensive list, make sure the default list gets updated too
+      if place.check_list_id != list.id
+        place.check_list.add_taxon( taxon, place: place, user: current_user )
+      end
+
       if lt.errors.any?
         presence = "not allowed"
         error = lt.errors.full_messages.to_sentence
