@@ -96,14 +96,44 @@ class AtlasesController < ApplicationController
       end
       presence = false
     else
-      comprehensive_list = place.check_lists.where( "comprehensive AND lists.taxon_id IN (?)", taxon.self_and_ancestor_ids ).first
-      list_id = comprehensive_list ? comprehensive_list.id : place.check_list_id
-      lt = ListedTaxon.create( taxon_id: taxon_id, place_id: place_id, list_id: list_id, user_id: current_user.id )
+      list = place.check_list
+
+      # If there are other potentially relevant comprehensive lists, those
+      # need to be added to as well otherwise the validation for our new
+      # listed taxon will fail
+      comprehensive_ancestor_check_lists = CheckList.where(
+        "comprehensive AND lists.taxon_id IN (?) AND lists.place_id IN (?)",
+        taxon.ancestor_ids, place.self_and_ancestor_ids
+      )
+      if comprehensive_ancestor_check_lists.exists?
+        ancestor_place_ids = place.ancestor_ids
+        # Order these by higher ranked taxa and higher ranked places
+        comprehensive_ancestor_check_lists = comprehensive_ancestor_check_lists.
+          includes(:taxon).
+          limit( 500 ).
+          sort_by{ |cl| [cl.taxon.rank_level.to_i * -1, ancestor_place_ids.index(cl.place_id).to_i ]}
+        comprehensive_ancestor_check_lists.each do |check_list|
+          check_list.add_taxon( taxon, user: current_user )
+        end
+      end
+
+      lt = list.listed_taxa.find_by_taxon_id( taxon_id )
+      lt ||= ListedTaxon.create( taxon_id: taxon_id, place_id: place_id, list_id: list.id, user_id: current_user.id )
+
       if lt.errors.any?
         presence = "not allowed"
         error = lt.errors.full_messages.to_sentence
       else
         presence = true
+      end
+    end
+
+
+    unless presence
+      comprehensive_list = place.check_lists.where( "comprehensive AND lists.taxon_id IN (?)", taxon.self_and_ancestor_ids ).first
+      if comprehensive_list && comprehensive_lt = comprehensive_list.listed_taxa.where( taxon: taxon ).first
+        comprehensive_lt.updater = current_user
+        comprehensive_lt.destroy
       end
     end
 

@@ -153,6 +153,7 @@ shared_examples_for "an ObservationsController" do
       }.not_to raise_error
     end
 
+
     it "should allow Google Street View photos", disabled: ENV["TRAVIS_CI"] do
       url = "http://maps.googleapis.com/maps/api/streetview?size=600x300&location=37.903042,-122.24697600000002&heading=-73.33342317239405&pitch=28.839156732145224&fov=180&sensor=false"
       post :create, :format => :json, :observation => {:species_guess => "tree"}, :google_street_view_photos => {
