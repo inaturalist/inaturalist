@@ -24,6 +24,7 @@ module DarwinCore
       %w(decimalLongitude http://rs.tdwg.org/dwc/terms/decimalLongitude),
       %w(coordinateUncertaintyInMeters http://rs.tdwg.org/dwc/terms/coordinateUncertaintyInMeters),
       %w(countryCode http://rs.tdwg.org/dwc/terms/countryCode),
+      %w(stateProvince http://rs.tdwg.org/dwc/terms/stateProvince),
       %w(identificationID http://rs.tdwg.org/dwc/terms/identificationID),
       %w(dateIdentified http://rs.tdwg.org/dwc/terms/dateIdentified),
       %w(identificationRemarks http://rs.tdwg.org/dwc/terms/identificationRemarks),
@@ -184,6 +185,10 @@ module DarwinCore
 
       def countryCode
         observations_places.map(&:place).compact.detect{ |p| p.admin_level == Place::COUNTRY_LEVEL }.try(:code)
+      end
+
+      def stateProvince
+        observations_places.map(&:place).compact.detect{ |p| p.admin_level == Place::STATE_LEVEL }.try(:name)
       end
 
       def identificationID
