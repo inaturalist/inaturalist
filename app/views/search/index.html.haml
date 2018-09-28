@@ -63,6 +63,7 @@
       -webkit-line-clamp: 1;
       -webkit-box-orient: vertical;
       text-overflow: ellipsis;
+      margin-bottom: 5px;
     }
     .media-heading .text-muted { color: #aaa; }
     .media-body p {
@@ -102,15 +103,25 @@
                     = taxon_image( record )
             .media-body
               %h4.media-heading
-                = render "shared/taxon", taxon: record, link_url: record
+                = highlight render( "shared/taxon", taxon: record, link_url: record ), @q
                 %span.text-muted= "|"
                 = link_to t(:view_observations), observations_path( taxon_id: record.id ), class: "view-obs-link"
-              %p
+              %p.unstacked
                 - txt = record.wikipedia_summary || record.auto_summary
                 - if txt.blank?
                   =t :no_description
                 - else
-                  =raw txt
+                  = highlight( strip_tags( txt ), @q )
+              - other_names = record.taxon_names.select{|tn| tn.name != record.name && tn.name != record.common_name.try(:name) }
+              - unless other_names.blank?
+                %p.text-muted
+                  = succeed ":" do
+                    = t(:other_names)
+                  :ruby
+                    name_strings = other_names.sort_by{|tn| tn.name.downcase.include?( @q.to_s.downcase ) ? 0 : 1 }.map do |tn|
+                      tn.is_scientific_names? ? "<span class='sciname #{record.rank}'>#{tn.name}</span>" : capitalize_name( tn.name )
+                    end
+                  = highlight( name_strings[0..5].join( ", " ), @q )
           - elsif record.is_a?( Place )
             .media-left.icon
               .inner
@@ -118,7 +129,7 @@
                   %i.fa.fa-map-marker
             .media-body
               %h4.media-heading
-                = link_to t( "places_name.#{record.name.to_s.parameterize.underscore}", default: record.display_name ), record
+                = highlight link_to( t( "places_name.#{record.name.to_s.parameterize.underscore}", default: record.display_name ), record ), @q
                 %span.text-muted= "|"
                 = link_to t(:view_observations), observations_path( place_id: record.id ), class: "view-obs-link"
               - if record.place_type_name.blank?
@@ -135,7 +146,7 @@
                     %i.fa.fa-briefcase
             .media-body
               %h4.media-heading
-                = link_to record.try_methods( :name, :title ), record
+                = highlight link_to( record.try_methods( :name, :title ), record ), @q
                 %span.text-muted= "|"
                 = link_to t(:view_observations), observations_path( project_id: record.slug ), class: "view-obs-link"
               %p
@@ -143,7 +154,7 @@
                 - if txt.blank?
                   =t :no_description
                 - else
-                  = strip_tags( truncate( txt, length: 300 ) )
+                  = highlight( strip_tags( truncate( txt, length: 300 ) ), @q )
                 
           - elsif record.is_a?( User )
             .media-left{ class: record.icon? ? nil : "icon" }
@@ -155,7 +166,7 @@
                     %i.icon-person
             .media-body
               %h4.media-heading
-                = link_to record.login, person_path( record )
+                = highlight link_to( record.login, person_path( record ) ), @q
                 %span.text-muted= "|"
                 = link_to t(:view_observations), observations_path( user_id: record.login ), class: "view-obs-link"
               %p
@@ -163,7 +174,7 @@
                 - if txt.blank?
                   =t :no_description
                 - else
-                  = formatted_user_text( txt.truncate( 300 ) )
+                  = highlight strip_tags( txt.truncate( 300 ) ), @q
           - else
             .media-left.icon
               .inner
@@ -171,7 +182,7 @@
                   %i.icon-iconic-unknown
             .media-body
               %h4.media-heading= link_to record.try_methods( :login, :name, :title ), record
-              %p= formatted_user_text( record.try_methods( :body, :description ).to_s.truncate( 300 ) )
+              %p= highlight strip_tags( record.try_methods( :body, :description ).to_s.truncate( 300 ) ), @q
       = will_paginate @results, renderer: INatLinkRenderer, skip_right: true
   - if logged_in? && @sources.include?( "taxa" )
     .row
