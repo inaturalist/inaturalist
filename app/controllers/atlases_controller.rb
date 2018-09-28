@@ -96,20 +96,14 @@ class AtlasesController < ApplicationController
       end
       presence = false
     else
-      comprehensive_list = place.check_lists.where( "comprehensive AND lists.taxon_id IN (?)", taxon.self_and_ancestor_ids ).first
-      if comprehensive_list.blank?
-        list = place.check_list
-      else
-        # If there's a comprehensive list, we should add to that
-        list = comprehensive_list
-      end
+      list = place.check_list
 
       # If there are other potentially relevant comprehensive lists, those
       # need to be added to as well otherwise the validation for our new
       # listed taxon will fail
       comprehensive_ancestor_check_lists = CheckList.where(
         "comprehensive AND lists.taxon_id IN (?) AND lists.place_id IN (?)",
-        taxon.ancestor_ids, place.ancestor_ids
+        taxon.ancestor_ids, place.self_and_ancestor_ids
       )
       if comprehensive_ancestor_check_lists.exists?
         ancestor_place_ids = place.ancestor_ids
@@ -126,16 +120,20 @@ class AtlasesController < ApplicationController
       lt = list.listed_taxa.find_by_taxon_id( taxon_id )
       lt ||= ListedTaxon.create( taxon_id: taxon_id, place_id: place_id, list_id: list.id, user_id: current_user.id )
 
-      # If we're working on a comprehensive list, make sure the default list gets updated too
-      if place.check_list_id != list.id
-        place.check_list.add_taxon( taxon, place: place, user: current_user )
-      end
-
       if lt.errors.any?
         presence = "not allowed"
         error = lt.errors.full_messages.to_sentence
       else
         presence = true
+      end
+    end
+
+
+    unless presence
+      comprehensive_list = place.check_lists.where( "comprehensive AND lists.taxon_id IN (?)", taxon.self_and_ancestor_ids ).first
+      if comprehensive_list && comprehensive_lt = comprehensive_list.listed_taxa.where( taxon: taxon ).first
+        comprehensive_lt.updater = current_user
+        comprehensive_lt.destroy
       end
     end
 

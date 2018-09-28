@@ -49,9 +49,10 @@ describe AtlasesController do
       expect( lt ).not_to be_blank
     end
 
-    it "should destroy a listing from a comprehensive list" do
+    it "should destroy a listing from a comprehensive list when destroying a default listing" do
       comprehensive_list = place.check_lists.create!( taxon: genus, user: user, comprehensive: true )
       lt = comprehensive_list.add_taxon( taxon )
+      comprehensive_list.place.check_list.add_taxon( taxon )
       AncestryDenormalizer.denormalize
       sign_in user
       post :alter_atlas_presence, format: :json, id: atlas.id, taxon_id: taxon.id, place_id: place.id
