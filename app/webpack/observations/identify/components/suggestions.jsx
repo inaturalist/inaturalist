@@ -7,10 +7,8 @@ import {
   OverlayTrigger,
   Tooltip
 } from "react-bootstrap";
-import LazyLoad from "react-lazy-load";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonomicBranch from "../../../shared/components/taxonomic_branch";
-import TaxonPhoto from "../../../taxa/shared/components/taxon_photo";
 import { urlForTaxon } from "../../../taxa/shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import PlaceChooserPopover from "../../../taxa/shared/components/place_chooser_popover";
@@ -19,6 +17,7 @@ import UserText from "../../../shared/components/user_text";
 import TaxonChooserPopover from "./taxon_chooser_popover";
 import ChooserPopover from "./chooser_popover";
 import TaxonMap from "./taxon_map";
+import SuggestionRow from "./suggestion_row";
 
 class Suggestions extends React.Component {
   constructor( ) {
@@ -28,6 +27,7 @@ class Suggestions extends React.Component {
       detailTaxonChangedFor: null
     };
   }
+
   componentWillReceiveProps( nextProps ) {
     if (
       nextProps.detailTaxon &&
@@ -43,11 +43,14 @@ class Suggestions extends React.Component {
       this.setState( { detailTaxonChangedFor: null } );
     }
   }
+
   componentDidUpdate( ) {
     if ( this.state.detailTaxonChangedFor ) {
       const domNode = ReactDOM.findDOMNode( this );
       $( ".detail-taxon", domNode ).removeClass( "changed" );
-      $( ".detail-taxon", domNode ).addClass( `will-change-for-${this.state.detailTaxonChangedFor}` );
+      $( ".detail-taxon", domNode ).addClass(
+        `will-change-for-${this.state.detailTaxonChangedFor}`
+      );
       setTimeout( ( ) => {
         $( ".detail-taxon", domNode ).addClass( "changed" );
         $( ".detail-taxon", domNode ).removeClass( "will-change-for-prev" );
@@ -55,10 +58,12 @@ class Suggestions extends React.Component {
       }, 100 );
     }
   }
+
   scrollToTop( ) {
     this.setState( { scrollTopWas: $( ".Suggestions" ).scrollTop( ) } );
     $( ".Suggestions" ).scrollTop( 0 );
   }
+
   resetScrollTop( ) {
     if ( this.state.scrollTopWas ) {
       const scrollTopWas = this.state.scrollTopWas;
@@ -68,105 +73,7 @@ class Suggestions extends React.Component {
       }, 100 );
     }
   }
-  suggestionRowForTaxon( taxon, details = {} ) {
-    const that = this;
-    const taxonPhotos = _
-      .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
-      .slice( 0, 2 );
-    let backgroundSize = "cover";
-    if (
-      taxonPhotos.length === 1 &&
-      taxonPhotos[0].photo.original_dimensions &&
-      taxonPhotos[0].photo.original_dimensions.width <= taxonPhotos[0].photo.original_dimensions.height
-    ) {
-      backgroundSize = "contain";
-    }
-    return (
-      <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
-        <h3 className="clearfix">
-          <SplitTaxon
-            taxon={ taxon }
-            target="_blank"
-            url={ urlForTaxon( taxon ) }
-            onClick={ e => {
-              e.preventDefault( );
-              this.scrollToTop( );
-              this.props.setDetailTaxon( taxon );
-              return false;
-            } }
-            user={ this.props.config.currentUser }
-            iconLink
-          />
-          <div className="btn-group pull-right">
-            { details && ( details.vision_score || details.frequency_score ) ? (
-              <div className="quiet btn btn-label btn-xs">
-                { details.vision_score ? I18n.t( "visually_similar" ) : null }
-                { details.vision_score && details.frequency_score ? <span> / </span> : null }
-                { details.frequency_score ? I18n.t( "seen_nearby" ) : null }
-              </div>
-            ) : null }
-            <Button
-              bsSize="xs"
-              bsStyle="primary"
-              onClick={ ( ) => {
-                that.props.chooseTaxon( taxon, {
-                  observation: that.props.observation,
-                  vision: that.props.query.source === "visual"
-                } );
-              } }
-            >
-              { I18n.t( "select" ) }
-            </Button>
-          </div>
-        </h3>
-        <LazyLoad height={200} offsetVertical={1000}>
-          <div className="suggestion-row-content">
-            <div className="photos">
-              { taxonPhotos.length === 0 ? (
-                <div className="noresults">
-                  { I18n.t( "no_photos" ) }
-                </div>
-              ) : taxonPhotos.map( tp => (
-                <TaxonPhoto
-                  key={`suggestions-row-photo-${tp.taxon.id}-${tp.photo.id}`}
-                  photo={tp.photo}
-                  taxon={taxon}
-                  height={200}
-                  backgroundSize={ backgroundSize }
-                  showTaxonPhotoModal={ p => {
-                    const index = _.findIndex( taxon.taxonPhotos,
-                      taxonPhoto => taxonPhoto.photo.id === p.id );
-                    this.props.setDetailTaxon( taxon, { detailPhotoIndex: index } );
-                  } }
-                />
-              ) ) }
-            </div>
-            <TaxonMap
-              showAllLayer={false}
-              minZoom={ 2 }
-              zoomLevel={ 6 }
-              preserveViewport
-              latitude={ that.props.observation.latitude }
-              longitude={ that.props.observation.longitude }
-              gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
-              observations={[that.props.observation]}
-              gestureHandling="auto"
-              taxonLayers={[{
-                taxon,
-                observations: { observation_id: that.props.observation.id },
-                gbif: { disabled: true },
-                places: true,
-                ranges: true
-              }]}
-              zoomControl={ false }
-              mapTypeControl={ false }
-              disableFullscreen
-            />
-          </div>
-        </LazyLoad>
-      </div>
-    );
-  }
+
   render( ) {
     const {
       query,
@@ -368,7 +275,21 @@ class Suggestions extends React.Component {
                   </a>
                 </div>
               ) : null }
-              { response.results.map( r => this.suggestionRowForTaxon( r.taxon, r.sourceDetails ) ) }
+              { response.results.map( r => (
+                <SuggestionRow
+                  key={ `suggestion-row-${r.taxon.id}` }
+                  taxon={ r.taxon }
+                  observation={ observation }
+                  details={ r.sourceDetails }
+                  chooseTaxon={ chooseTaxon }
+                  source={ query.source }
+                  config={ config }
+                  setDetailTaxon={ ( taxon, options = {} ) => {
+                    this.scrollToTop( );
+                    setDetailTaxon( taxon, options );
+                  } }
+                />
+              ) ) }
             </div>
           </div>
           <div className="suggestions-detail">
