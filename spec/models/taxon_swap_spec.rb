@@ -293,6 +293,39 @@ describe TaxonSwap, "commit" do
         expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla"
         expect( child_swap.output_taxon.parent ).to eq @output_taxon
       end
+      
+      it "should move children despite a complete ancestor" do
+        child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
+        @ancestor_taxon.update_attributes( complete: true, complete_rank: "subspecies" )
+        @swap.reload
+        user = make_curator
+        tc = TaxonCurator.make!( taxon: @ancestor_taxon, user: user)
+        tc.reload
+        @swap.committer = user
+        without_delay { @swap.commit }
+        child.reload
+        expect( child.parent ).to eq @output_taxon
+      end
+      
+      it "should swap child species despite a complete ancestor" do
+        @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
+        @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
+        child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla" )
+        @ancestor_taxon.update_attributes( complete: true, complete_rank: "subspecies" )
+        user = make_curator
+        tc = TaxonCurator.make!( taxon: @ancestor_taxon, user: user)
+        tc.reload
+        [@input_taxon, @output_taxon, child].each(&:reload)
+        @swap.committer = user
+        without_delay { @swap.commit }
+        [@input_taxon, @output_taxon, child].each(&:reload)
+        expect( child.parent ).to eq @input_taxon
+        child_swap = child.taxon_change_taxa.first.taxon_change
+        expect( child_swap ).not_to be_blank
+        expect( child_swap.output_taxon.name ).to eq "Pseudacris regilla"
+        expect( child_swap.output_taxon.parent ).to eq @output_taxon
+      end
+    
     end
 
     describe "without move_children" do
@@ -305,10 +338,9 @@ describe TaxonSwap, "commit" do
         swap.add_output_taxon( family2 )
         swap.save!
         swap.committer = swap.user
-        swap.commit
-        Delayed::Worker.new.work_off
-        genus.reload
-        expect( genus.parent ).to eq family1
+        expect {
+          swap.commit
+        }.to raise_error TaxonChange::ActiveChildrenError
       end
 
       it "should not make a swap" do
@@ -320,11 +352,9 @@ describe TaxonSwap, "commit" do
         swap.add_output_taxon( genus2 )
         swap.save!
         swap.committer = swap.user
-        swap.commit
-        Delayed::Worker.new.work_off
-        species.reload
-        expect( species.taxon_changes.size ).to eq 0
-        expect( species.taxon_change_taxa.size ).to eq 0
+        expect {
+          swap.commit
+        }.to raise_error TaxonChange::ActiveChildrenError
       end
     end
   end
@@ -334,6 +364,7 @@ describe TaxonSwap, "commit" do
     @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla" )
     @output_taxon.update_attributes( rank: Taxon::SUBSPECIES, name: "Pseudacris regilla regilla", parent: @input_taxon )
     child = @output_taxon
+    @swap.update_attributes(move_children: true)
     [@input_taxon, @output_taxon, child].each(&:reload)
     expect {
       @swap.commit
@@ -348,6 +379,7 @@ describe TaxonSwap, "commit" do
       @swap.commit
     }.to raise_error TaxonChange::PermissionError
   end
+  
   it "should raise an error if commiter is not a taxon curator of a complete ancestor of the output taxon" do
     superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
     tc = TaxonCurator.make!( taxon: superfamily )
@@ -356,6 +388,22 @@ describe TaxonSwap, "commit" do
       @swap.commit
     }.to raise_error TaxonChange::PermissionError
   end
+  
+  it "should raise an error if input taxon has active children" do
+    child = Taxon.make!( rank: Taxon::GENUS, parent: @swap.input_taxon )
+    expect {
+      @swap.commit
+    }.to raise_error TaxonChange::ActiveChildrenError
+  end
+  
+  it "should not raise an error if input taxon has active children but move children is checked" do
+    child = Taxon.make!( rank: Taxon::GENUS, parent: @swap.input_taxon )
+    @swap.update_attributes( move_children: true )
+    expect {
+      @swap.commit
+    }.not_to raise_error # TaxonChange::ActiveChildrenError
+  end
+  
 
   describe "for input taxa with reverted changes" do
     it "should not die in an infinite loop" do
@@ -521,17 +569,46 @@ describe TaxonSwap, "commit_records" do
     expect( ident.previous_observation_taxon ).to eq @output_taxon
   end
   
-  it "should not commit a taxon swap without all input taxon descendant rank levels finer than the output taxon rank level" do
+  it "should commit a taxon swap with childless input taxon with rank level coarser than the output taxon rank level" do
     other_swap = TaxonSwap.make
-    other_input_genus = Taxon.make!( is_active: false, name: "OtherInputGenus", rank: Taxon::GENUS )
+    other_input_genus = Taxon.make!( is_active: false, rank: Taxon::GENUS )
     other_swap.add_input_taxon( other_input_genus )
-    other_swap.add_output_taxon( Taxon.make!( is_active: false, name: "OtherOutputSpecies", parent: other_input_genus, rank: Taxon::SPECIES ) )
+    other_swap.add_output_taxon( Taxon.make!( is_active: false, rank: Taxon::SPECIES ) )
+    other_swap.committer = make_admin
+    other_swap.save!
+    expect {
+      other_swap.commit
+    }.not_to raise_error # TaxonChange::RankLevelError
+  end
+  
+  it "should not commit a taxon swap without all input taxon child rank levels finer than the output taxon rank level" do
+    other_swap = TaxonSwap.make
+    other_input_genus = Taxon.make!( is_active: true, rank: Taxon::GENUS )
+    child = Taxon.make!( is_active: true, parent: other_input_genus, rank: Taxon::SPECIES )
+    other_swap.add_input_taxon( other_input_genus )
+    other_swap.add_output_taxon( Taxon.make!( is_active: false, rank: Taxon::SPECIES ) )
+    other_swap.move_children = true
     other_swap.committer = make_admin
     other_swap.save!
     expect {
       other_swap.commit
     }.to raise_error TaxonChange::RankLevelError
   end
+  
+  it "should commit a taxon swap with all input taxon child rank levels finer than the output taxon rank level" do
+    other_swap = TaxonSwap.make
+    other_input_genus = Taxon.make!( is_active: true, rank: Taxon::GENUS )
+    child = Taxon.make!( is_active: true, parent: other_input_genus, rank: Taxon::SPECIES )
+    other_swap.add_input_taxon( other_input_genus )
+    other_swap.add_output_taxon( Taxon.make!( is_active: false, rank: Taxon::GENUS ) )
+    other_swap.move_children = true
+    other_swap.committer = make_admin
+    other_swap.save!
+    expect {
+      other_swap.commit
+    }.not_to raise_error # TaxonChange::RankLevelError
+  end
+  
       
   it "should replace an inactive previous_observation_taxon with it's current active synonym" do
     other_swap = TaxonSwap.make
@@ -660,7 +737,7 @@ describe "move_input_children_to_output" do
     @input_taxon.update_attributes( rank: Taxon::SPECIES, name: "Hyla regilla", rank_level: Taxon::SPECIES_LEVEL )
     @output_taxon.update_attributes( rank: Taxon::SPECIES, name: "Pseudacris regilla", rank_level: Taxon::SPECIES_LEVEL )
     child = Taxon.make!( parent: @input_taxon, rank: Taxon::SUBSPECIES, name: "Hyla regilla foo", rank_level: Taxon::SUBSPECIES_LEVEL )
-    [@input_taxon, @output_taxon, child].each(&:reload)
+    [@input_taxon, @output_taxon, child, @swap].each(&:reload)
     @swap.committer = @swap.user
     @swap.commit
     [@input_taxon, @output_taxon, child].each(&:reload)

@@ -37,7 +37,7 @@ const ObservationsGridItemForIdentify = ( {
         } }
       >
         <i className={ observation.agreeLoading ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
-        </i> { _.capitalize( I18n.t( "agree" ) ) }
+        </i> { I18n.t( "agree_" ) }
       </Button>
     </OverlayTrigger>
   );

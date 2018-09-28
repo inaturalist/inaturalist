@@ -104,7 +104,7 @@ class FiltersButton extends React.Component {
                   updateSearchParams( { [checkbox.param]: newVals.join( "," ) } );
                 }
               }}
-            /> { _.capitalize( I18n.t( checkbox.label || checkbox.param ) ) }
+            /> { I18n.t( checkbox.label || checkbox.param ) }
           </label>
         </div>
       );
@@ -136,10 +136,10 @@ class FiltersButton extends React.Component {
       "form"
     ];
     const orderByFields = [
-      { value: "observations.id", default: "date added", key: "date_added" },
-      { value: "observed_on", default: "date observed", key: "date_observed" },
-      { value: "votes", default: "faves", key: "faves" },
-      { value: "random", default: "random", key: "random" }
+      { value: "observations.id", default: "date added", label: "date_added" },
+      { value: "observed_on", default: "date observed", label: "date_observed_" },
+      { value: "votes", default: "faves", label: "faves" },
+      { value: "random", default: "random", label: "random" }
     ];
     const canShowObservationFields = ( ) => (
       params.observationFields && _.size( params.observationFields ) > 0
@@ -155,7 +155,7 @@ class FiltersButton extends React.Component {
       return (
         <Button
           className={cssClass}
-          title={ _.capitalize( I18n.t( t.label ) ) }
+          title={ I18n.t( `all_taxa.${t.label}` ) }
           key={`btn-${t.name}`}
           onClick={ ( ) => {
             let newIconicTaxa;
@@ -189,7 +189,7 @@ class FiltersButton extends React.Component {
           <Col xs="12">
             <label className="sectionlabel">
               {
-                _.capitalize( I18n.t( "quality_grade" ) )
+                I18n.t( "quality_grade_" )
               } <small className="text-muted">({ I18n.t( "select_at_least_one" ) })</small>
             </label>
           </Col>
@@ -198,13 +198,13 @@ class FiltersButton extends React.Component {
           <Col className="quality-filters" xs="12">
             { filterCheckbox( {
               param: "quality_grade",
-              label: "casual",
+              label: "casual_",
               checked: "casual",
               noBlank: true
             } ) }
             { filterCheckbox( {
               param: "quality_grade",
-              label: "needs_id",
+              label: "needs_id_",
               checked: "needs_id",
               noBlank: true
             } ) }
@@ -219,7 +219,7 @@ class FiltersButton extends React.Component {
         <Row>
           <Col xs="12">
             <label className="sectionlabel">
-              { _.capitalize( I18n.t( "show" ) ) }
+              { I18n.t( "show" ) }
             </label>
           </Col>
         </Row>
@@ -264,7 +264,7 @@ class FiltersButton extends React.Component {
         <Row className="form-group">
           <Col xs="12">
             <label className="sectionlabel">
-              { _.capitalize( I18n.t( "categories" ) ) }
+              { I18n.t( "categories" ) }
             </label>
             <div className="filters-categories btn-group">
               { [
@@ -289,7 +289,7 @@ class FiltersButton extends React.Component {
         <Row>
           <Col xs="12">
             <label className="sectionlabel" htmlFor="params-hrank">
-              { _.capitalize( I18n.t( "rank" ) ) }
+              { I18n.t( "rank" ) }
             </label>
           </Col>
         </Row>
@@ -301,11 +301,11 @@ class FiltersButton extends React.Component {
               onChange={ e => updateSearchParams( { hrank: e.target.value } ) }
             >
               <option value="">
-                { _.capitalize( I18n.t( "high" ) ) }
+                { I18n.t( "high" ) }
               </option>
               { visibleRanks.map( rank => (
                 <option key={`params-hrank-${rank}`} value={rank}>
-                  { _.capitalize( I18n.t( `ranks.${rank}` ) ) }
+                  { I18n.t( `ranks.${rank}` ) }
                 </option>
               ) ) }
             </select>
@@ -317,11 +317,11 @@ class FiltersButton extends React.Component {
               onChange={ e => updateSearchParams( { lrank: e.target.value } ) }
             >
               <option value="">
-                { _.capitalize( I18n.t( "low" ) ) }
+                { I18n.t( "low" ) }
               </option>
               { visibleRanks.map( rank => (
                 <option key={`params-lrank-${rank}`} value={rank}>
-                  { _.capitalize( I18n.t( `ranks.${rank}` ) ) }
+                  { I18n.t( `ranks.${rank}` ) }
                 </option>
               ) ) }
             </select>
@@ -330,7 +330,7 @@ class FiltersButton extends React.Component {
         <Row>
           <Col xs="12">
             <label className="sectionlabel" htmlFor="params-order-by">
-              { _.capitalize( I18n.t( "sort_by" ) ) }
+              { I18n.t( "sort_by" ) }
             </label>
           </Col>
         </Row>
@@ -346,7 +346,7 @@ class FiltersButton extends React.Component {
             >
               { orderByFields.map( field => (
                 <option value={field.value} key={`params-order-by-${field.value}`}>
-                  { _.capitalize( I18n.t( field.key, { defaultValue: field.default } ) ) }
+                  { I18n.t( field.label, { defaultValue: field.default } ) }
                 </option>
               ) ) }
             </select>
@@ -361,10 +361,10 @@ class FiltersButton extends React.Component {
               onChange={ e => updateSearchParams( { order: e.target.value } ) }
             >
               <option value="asc">
-                { _.capitalize( I18n.t( "ascending" ) ) }
+                { I18n.t( "ascending" ) }
               </option>
               <option value="desc">
-                { _.capitalize( I18n.t( "descending" ) ) }
+                { I18n.t( "descending" ) }
               </option>
             </select>
           </Col>
@@ -374,7 +374,7 @@ class FiltersButton extends React.Component {
     const mainRightCol = (
       <Col xs="4" className="filters-right-col">
         <label className="sectionlabel">
-          { _.capitalize( I18n.t( "date_observed" ) ) }
+          { I18n.t( "date_observed_" ) }
         </label>
         <DateFilters
           params={ params }
@@ -419,7 +419,7 @@ class FiltersButton extends React.Component {
         </div>
         <div className="form-group">
           <label className="sectionlabel">
-            { _.capitalize( I18n.t( "photo_licensing" ) ) }
+            { I18n.t( "photo_licensing" ) }
           </label>
           <select
             className={`form-control ${params.photo_license ? "filter-changed" : ""}`}
@@ -428,7 +428,7 @@ class FiltersButton extends React.Component {
           >
             <option value="">{ I18n.t( "all" ) }</option>
             {licenses.map( ( code ) => (
-              <option key={`photo-licenses-${code}`} value={ code }>{ code }</option>
+              <option key={`photo-licenses-${code}`} value={ code }>{ code.replace( "CC-", "CC " ) }</option>
             ) ) }
           </select>
         </div>
@@ -449,7 +449,7 @@ class FiltersButton extends React.Component {
               }
               onClick={ ( ) => updateSearchParams( { reviewed: "any" } ) }
             />
-            { _.capitalize( I18n.t( "any" ) ) }
+            { I18n.t( "any_" ) }
           </label>
           <label
             className={ `radio-inline ${params.reviewed === true ? "filter-changed" : ""}` }
@@ -461,7 +461,7 @@ class FiltersButton extends React.Component {
               checked={params.reviewed === true}
               onClick={ ( ) => updateSearchParams( { reviewed: true } ) }
             />
-            { _.capitalize( I18n.t( "yes" ) ) }
+            { I18n.t( "yes" ) }
           </label>
           <label className="radio-inline">
             <input
@@ -471,7 +471,7 @@ class FiltersButton extends React.Component {
               checked={params.reviewed === false}
               onClick={ ( ) => updateSearchParams( { reviewed: false } ) }
             />
-            { _.capitalize( I18n.t( "no" ) ) }
+            { I18n.t( "no" ) }
           </label>
         </div>
       </Col>
@@ -487,7 +487,7 @@ class FiltersButton extends React.Component {
       <Col xs="4">
         <div className="form-group">
           <label className="sectionlabel" htmlFor="params-user-id">
-            { _.capitalize( I18n.t( "person" ) ) }
+            { I18n.t( "person" ) }
           </label>
           <div className="input-group">
             <span className="input-group-addon icon-person"></span>
@@ -508,7 +508,7 @@ class FiltersButton extends React.Component {
         </div>
         <div className="form-group">
           <label className="sectionlabel" htmlFor="params-project-id">
-            { _.capitalize( I18n.t( "project" ) ) }
+            { I18n.t( "project" ) }
           </label>
           <div className="input-group">
             <span className="input-group-addon fa fa-briefcase"></span>
@@ -529,7 +529,7 @@ class FiltersButton extends React.Component {
         </div>
         <div className="form-group">
           <label className="sectionlabel">
-            { _.capitalize( I18n.t( "place" ) ) }
+            { I18n.t( "place" ) }
           </label>
           <div className="input-group">
             <span className="input-group-addon fa fa-globe"></span>
@@ -571,7 +571,7 @@ class FiltersButton extends React.Component {
             } }
           >
             <option value="">
-              { _.capitalize( I18n.t( "none" ) ) }
+              { I18n.t( "none" ) }
             </option>
             { terms.map( t => (
               <option value={ t.id } key={`with-term-id-${t.id}`}>
@@ -589,7 +589,7 @@ class FiltersButton extends React.Component {
                 onChange={ e => updateSearchParams( { term_value_id: e.target.value } ) }
               >
                 <option value="">
-                  { _.capitalize( I18n.t( "any" ) ) }
+                  { I18n.t( "any_" ) }
                 </option>
                 { chosenTerm.values.map( t => (
                   <option value={ t.id } key={`annotation-term-value-id-${t.id}`}>
@@ -615,7 +615,7 @@ class FiltersButton extends React.Component {
             } }
           >
             <option value="">
-              { _.capitalize( I18n.t( "none" ) ) }
+              { I18n.t( "none" ) }
             </option>
             { terms.map( t => (
               <option value={ t.id } key={`without-term-id-${t.id}`}>
@@ -633,7 +633,7 @@ class FiltersButton extends React.Component {
                 onChange={ e => updateSearchParams( { without_term_value_id: e.target.value } ) }
               >
                 <option value="">
-                  { _.capitalize( I18n.t( "any" ) ) }
+                  { I18n.t( "any_" ) }
                 </option>
                 { rejectedTerm.values.map( t => (
                   <option value={ t.id } key={`without-term-value-id-${t.id}`}>
@@ -649,7 +649,7 @@ class FiltersButton extends React.Component {
     const moreRightCol = (
       <Col xs="4">
         <label className="sectionlabel">
-          { _.capitalize( I18n.t( "date_added" ) ) }
+          { I18n.t( "date_added" ) }
         </label>
         <DateFilters
           params={ params }
@@ -680,7 +680,7 @@ class FiltersButton extends React.Component {
                   this.setState( { moreFiltersHidden: !this.state.moreFiltersHidden } );
                 }}
               >
-                { _.capitalize( I18n.t( "more_filters" ) ) }
+                { I18n.t( "more_filters" ) }
                 &nbsp;
                 <i className="fa fa-caret-down"></i>
                 <i className="fa fa-caret-up"></i>
@@ -692,10 +692,10 @@ class FiltersButton extends React.Component {
         <Row className="filters-footer FiltersButtonFooter">
           <Col xs="12">
             <Button bsStyle="primary" onClick={ () => closeFilters( ) }>
-              { _.capitalize( I18n.t( "update_search" ) ) }
+              { I18n.t( "update_search" ) }
             </Button>
             <Button onClick={ ( ) => resetParams( ) }>
-              { _.capitalize( I18n.t( "reset_search_filters" ) ) }
+              { I18n.t( "reset_search_filters" ) }
             </Button>
             <div className="feeds" className="feeds pull-right">
               <a

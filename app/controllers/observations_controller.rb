@@ -389,6 +389,9 @@ class ObservationsController < ApplicationController
       copy_obs.observation_photos.each do |op|
         @observation.observation_photos.build(:photo => op.photo)
       end
+      copy_obs.observation_sounds.each do |os|
+        @observation.observation_sounds.build( sound: os.sound )
+      end
       copy_obs.observation_field_values.each do |ofv|
         @observation.observation_field_values.build(:observation_field => ofv.observation_field, :value => ofv.value)
       end

@@ -45,7 +45,7 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
       license_name: I18n.t( "public_domain" )
     } );
   } else if ( photo.license_code === "cc0" ) {
-    s = _.capitalize( I18n.t( "by_user", { user: userName } ) );
+    s = I18n.t( "by_user", { user: userName } );
   } else {
     s = `(c) ${userName}`;
   }
@@ -80,7 +80,7 @@ const commasAnd = ( items ) => {
 const windowStateForTaxon = taxon => {
   let scinameWithRank = taxon.name;
   if ( taxon.rank_level > 10 ) {
-    scinameWithRank = `${_.capitalize( taxon.rank )} ${taxon.name}`;
+    scinameWithRank = `${I18n.t( `ranks.${taxon.rank.toString().toLowerCase()}` )} ${taxon.name}`;
   } else if ( taxon.rank_level < 10 ) {
     let rankPiece;
     if ( taxon.rank === "variety" ) {

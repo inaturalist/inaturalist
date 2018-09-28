@@ -14,104 +14,104 @@ const PieChartForIconicTaxonCounts = ( {
   labelForDatum,
   urlPrefix
 } ) => {
-  const nameForPieLabel = name => _.truncate( _.capitalize( name ), { length: 15 } );
+  const nameForPieLabel = name => _.truncate( name, { length: 15 } );
   return (
     <PieChart
       data={[
         {
           label: nameForPieLabel( I18n.t( "unknown" ) ),
-          fullLabel: _.capitalize( I18n.t( "unknown" ) ),
+          fullLabel: I18n.t( "unknown" ),
           value: data.Unknown,
           color: COLORS.iconic.Unknown,
           iconicTaxonName: "Unknown"
         },
         {
-          label: nameForPieLabel( I18n.t( "protozoans" ) ),
-          fullLabel: _.capitalize( I18n.t( "protozoans" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.protozoans" ) ),
+          fullLabel: I18n.t( "all_taxa.protozoans" ),
           value: data.Protozoa,
           color: COLORS.iconic.Protozoa,
           iconicTaxonName: "Protozoa"
         },
         {
-          label: nameForPieLabel( I18n.t( "fungi", { count: 2 } ) ),
-          fullLabel: _.capitalize( I18n.t( "fungi", { count: 2 } ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.fungi" ) ),
+          fullLabel: I18n.t( "all_taxa.fungi" ),
           value: data.Fungi,
           color: COLORS.iconic.Fungi,
           iconicTaxonName: "Fungi"
         },
         {
-          label: nameForPieLabel( I18n.t( "plants" ) ),
-          fullLabel: _.capitalize( I18n.t( "plants" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.plants" ) ),
+          fullLabel: I18n.t( "all_taxa.plants" ),
           value: data.Plantae,
           color: COLORS.inatGreenLight,
           iconicTaxonName: "Plantae"
         },
         {
           label: nameForPieLabel( I18n.t( "all_taxa.chromista" ) ),
-          fullLabel: _.capitalize( I18n.t( "all_taxa.chromista" ) ),
+          fullLabel: I18n.t( "all_taxa.chromista" ),
           value: data.Chromista,
           color: COLORS.iconic.Chromista,
           iconicTaxonName: "Chromista"
         },
         {
-          label: nameForPieLabel( I18n.t( "mollusks" ) ),
-          fullLabel: _.capitalize( I18n.t( "mollusks" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.mollusks" ) ),
+          fullLabel: I18n.t( "all_taxa.mollusks" ),
           value: data.Mollusca,
           color: COLORS.iconic.Mollusca,
           iconicTaxonName: "Mollusca"
         },
         {
-          label: nameForPieLabel( I18n.t( "insects" ) ),
-          fullLabel: _.capitalize( I18n.t( "insects" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.insects" ) ),
+          fullLabel: I18n.t( "all_taxa.insects" ),
           value: data.Insecta,
           color: d3.color( COLORS.iconic.Insecta ).brighter( ),
           iconicTaxonName: "Insecta"
         },
         {
-          label: nameForPieLabel( I18n.t( "arachnids" ) ),
-          fullLabel: _.capitalize( I18n.t( "arachnids" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.arachnids" ) ),
+          fullLabel: I18n.t( "all_taxa.arachnids" ),
           value: data.Arachnida,
           color: d3.color( COLORS.iconic.Arachnida ).brighter( ).brighter( ),
           iconicTaxonName: "Arachnida"
         },
         {
-          label: nameForPieLabel( I18n.t( "ray_finned_fishes" ) ),
-          fullLabel: _.capitalize( I18n.t( "ray_finned_fishes" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.ray_finned_fishes" ) ),
+          fullLabel: I18n.t( "all_taxa.ray_finned_fishes" ),
           value: data.Actinopterygii,
           color: d3.color( COLORS.iconic.Actinopterygii ).darker( 1 ),
           iconicTaxonName: "Actinopterygii"
         },
         {
-          label: nameForPieLabel( I18n.t( "amphibians" ) ),
-          fullLabel: _.capitalize( I18n.t( "amphibians" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.amphibians" ) ),
+          fullLabel: I18n.t( "all_taxa.amphibians" ),
           value: data.Amphibia,
           color: d3.color( COLORS.iconic.Amphibia ).darker( 0.5 ),
           iconicTaxonName: "Amphibia"
         },
         {
-          label: nameForPieLabel( I18n.t( "reptiles" ) ),
-          fullLabel: _.capitalize( I18n.t( "reptiles" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.reptiles" ) ),
+          fullLabel: I18n.t( "all_taxa.reptiles" ),
           value: data.Reptilia,
           color: d3.color( COLORS.iconic.Reptilia ),
           iconicTaxonName: "Reptilia"
         },
         {
-          label: nameForPieLabel( I18n.t( "birds" ) ),
-          fullLabel: _.capitalize( I18n.t( "birds" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.birds" ) ),
+          fullLabel: I18n.t( "all_taxa.birds" ),
           value: data.Aves,
           color: d3.color( COLORS.iconic.Aves ).brighter( 0.5 ),
           iconicTaxonName: "Aves"
         },
         {
-          label: nameForPieLabel( I18n.t( "mammals" ) ),
-          fullLabel: _.capitalize( I18n.t( "mammals" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.mammals" ) ),
+          fullLabel: I18n.t( "all_taxa.mammals" ),
           value: data.Mammalia,
           color: d3.color( COLORS.iconic.Aves ).brighter( 1 ),
           iconicTaxonName: "Mammalia"
         },
         {
-          label: nameForPieLabel( I18n.t( "other_animals" ) ),
-          fullLabel: _.capitalize( I18n.t( "other_animals" ) ),
+          label: nameForPieLabel( I18n.t( "all_taxa.other_animals" ) ),
+          fullLabel: I18n.t( "all_taxa.other_animals" ),
           value: data.Animalia,
           color: d3.color( COLORS.iconic.Animalia ),
           iconicTaxonName: "Animalia"

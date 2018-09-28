@@ -39,7 +39,7 @@
   </div>
   
   <div class="meta inter" style="float: right; margin-right: 0">
-    <%=raw t(:view_nbsp) %>
+    <%=raw t(:view) %>
     <%= link_to t(:grid), url_for_params(:without => "view"), :class => "modal_link #{'selected' if @view == TaxaController::GRID_VIEW}" %>
     <%= link_to t(:list), url_for_params(:view => TaxaController::LIST_VIEW), :class => "modal_link #{'selected' if @view == TaxaController::LIST_VIEW}" %>
   </div>

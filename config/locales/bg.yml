@@ -50,9 +50,6 @@ bg:
   x_observations_reviewed_html:
     one: <span class='count'>1</span> рецензирано наблюдение
     other: <span class='count'>%{count}</span> рецензирани наблюдения
-  x_people:
-    one: 1 човек
-    other: '%{count} човека'
   x_faves:
     one: 1 харесване
     other: '%{count} харесвания'
@@ -602,6 +599,7 @@ bg:
   create_a_new_taxon: Създай нов таксон
   create_an_account: Създай акаунт
   create_new_taxon: Създай нов таксон
+  created_by: Създадено от
   creating_your_account: Създаване на акаунт...
   critically_endangered: критично застрашен
   critically_imperiled: критично застрашен
@@ -733,6 +731,7 @@ bg:
   edit: Редактирай
   edit_account_settings_and_profile: Промени настройките на акаунта и профила
   edit_body: Редактирай съдържанието
+  edit_field: Редактирай полето
   edit_license: Редактиране на лиценза
   edit_photos_for_observation_id: Редактиране на снимки на наблюдение %{obs_id}
   edit_your_account_and_profile_html: Редактиране на вашия акаунт и профил
@@ -2626,6 +2625,9 @@ bg:
           has_media: имат медия (снимка или звук)
         submission_models:
           any: всеки
+      new:
+        project_name: Име на проекта
+        welcome_to_projects: Добре дошли в Проекти!
       curator_coordinate_access_label: Искате ли да направите координатите на своите
         поверителни/замаскирани наблюдения видими за кураторите на проекта?
       show:
@@ -2826,10 +2828,6 @@ bg:
       10: октомври
       11: ноември
       12: декември
-    order:
-    - :година
-    - :месец
-    - :ден
   datetime:
     distance_in_words:
       about_x_hours:
@@ -2951,6 +2949,8 @@ bg:
         published_at: Публикация
       listed_taxon:
         establishment_means: Начин на заселване
+      observation_field_value:
+        value: стойност
       post:
         title: Заглавие
         body: Съдържание
@@ -2959,6 +2959,7 @@ bg:
         project_icon: Икона на проекта
         project_type: Тип на проект
         description: Описание
+        terms: Условия
         start_time: Час на започване
       place:
         code: Код
@@ -2978,10 +2979,12 @@ bg:
         wikipedia_summary: Резюме от Уикипедия
       user:
         email: Електронна поща
+        login: Потребителско име
         name: Име
         locale: Локал
         time_zone: Часова зона
         search_place_id: Място за търсене
+        place_id: Място
         preferred_observation_fields_by: Позволявай полета за наблюдения от
   wild: див
   will_paginate:

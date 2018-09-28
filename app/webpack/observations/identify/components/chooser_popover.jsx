@@ -66,7 +66,7 @@ class ChooserPopover extends React.Component {
                   style={{ display: this.props.chosen ? "block" : "none" }}
                 >
                   <i className="fa fa-times"></i>
-                  { _.capitalize( I18n.t( "clear" ) ) }
+                  { I18n.t( "clear" ) }
                 </li>
               ) }
               { _.map( this.state.choices, ( s, i ) => (

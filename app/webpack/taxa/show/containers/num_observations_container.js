@@ -12,7 +12,7 @@ function mapStateToProps( state ) {
     className: "NumObservations",
     label: I18n.t( "total_observations" ),
     name: 0,
-    linkText: _.startCase( I18n.t( "view_all" ) ),
+    linkText: I18n.t( "view_all" ),
     noContent: true
   };
   if ( state.config.currentUser && state.config.currentUser.login ) {
