@@ -64,9 +64,6 @@ da:
   x_others:
     one: 1 anden
     other: '%{count} andre'
-  x_people:
-    one: 1 person
-    other: '%{count} personer'
   x_people_found_this_helpful:
     one: En person synes dette var hjælpsomy
     other: '%{count} personer synes dette var hjælpsomt'
@@ -195,7 +192,7 @@ da:
     af denne takson til dette projekt
   add_all_your_matching_obs_to_this_project: Tilføj alle dine matchende observationer
     til dette projekt
-  add_an_assessment: TIlføj en vurdering
+  add_an_assessment: Tilføj en vurdering
   add_an_identification: Tilføj en identifikation
   add_an_observation: Tilføj en observation
   add_an_observation?: Tilføj en observation?
@@ -207,7 +204,7 @@ da:
     life_stage: Tilføj noter for "livsstadie"
   add_another: Tilføj en mere
   add_another_flag: Tilføj endnu en markering
-  add_another_photo: Tilføj et foto mere
+  add_another_photo: Tilføj endnu et foto
   add_another_section: Tilføj en sektion mere
   add_another_subscription: Tilføj endnu et abonnement
   add_asset: Tilføj aktiv
@@ -216,7 +213,7 @@ da:
   add_comma_separated_tags: Tilføj kommaseparerede tags
   add_comment: Tilføj en kommentar
   add_common_names_for: tilføj lokale navne til eksisterende taksa
-  add_conservation_status: tilføj bevaringsstatus
+  add_conservation_status: Tilføj bevaringsstatus
   add_countries: Tilføj lande
   add_custom_project_fields: Tilføj brugerdefinerede projektfelter
   add_edit_flags: Tilføj/redigér markeringer
@@ -232,7 +229,7 @@ da:
   add_it_to_place_raquo: Tilføj den til et sted &raquo;
   add_more_photos: Tilføj flere fotos
   add_new_lexicon: Tilføj nyt leksikon
-  add_new_observations: Tilføj ny observationer
+  add_new_observations: Tilføj nye observationer
   add_new_photos_by_their_ids: Tilføj nyt foto via Flickr ID (skal være Creative Commons!)
   add_new_place: Tilføj et nyt sted
   add_new_rule: Tilføj en ny regel
@@ -281,7 +278,7 @@ da:
   add_taxon_batch_to: Tilføj et bundt af taksa til %{list}
   add_taxon_range: Tilføj takson område
   add_taxonomic_tags_to: Tilføj taksonomiske tags til valgte Flickr foto´s &raquo;
-  add_taxonomic_tags_to_the_fickr_photos: Tilføj taksonomiske tags til valgte Flickr
+  add_taxonomic_tags_to_the_flickr_photos: Tilføj taksonomiske tags til valgte Flickr
     foto´s forbundet med de valgte observationer.
   add_to: Tilføj til
   add_to_a_scheme: Tilføj til en ordning
@@ -319,6 +316,7 @@ da:
   admin: Administrator
   admin_s: Administrator(er)
   admin_any_projects: administrerer et hvert projekt
+  admin_only: Kun admin.
   admin_tools: Administrator værktøjer
   agree: enig
   agree_: Enig
@@ -1073,6 +1071,7 @@ da:
   cumulative_ids: Kumulative id'er:%{count} af %{total}
   curate_observations: Kuratér observationer
   curate_taxa: Kuratér taksa
+  curate_user: Kuratér brugere
   curate_users: Kuratér brugere
   curated: kurateret
   curated_checklist: Kurateret tjekliste
@@ -1104,7 +1103,7 @@ da:
   date_: Dato
   date?: Dato?
   date_added: Tilføjelsesdato
-  date_created: oprettelsesdato
+  date_created: Oprettelsesdato
   date_format:
     date_long:
       january: '%{day}. januar %{year}'
@@ -1176,9 +1175,9 @@ da:
   deleted_vote: Slettet stemme
   deleting: Sletter...
   deleting_verb: Sletter
-  desc: fald
+  desc: Fald
   descendant_taxa: efterkommer taksa
-  descending: faldende
+  descending: Faldende
   describe_purpose: Beskriv formålet med dette projekt.
   describe_your_interest_in_nature: Beskriv din interesse for naturen!
   description: Beskrivelse
@@ -1343,7 +1342,7 @@ da:
   error_updating_photo: Fejl ved opdatering af billede:%{photo_errors}
   establishment:
     establishment: Oprindelse
-    native: hjemmehørende
+    native: Hjemmehørende
     endemic: endemisk
     introduced: indført
     naturalised: naturaliserede
@@ -1486,7 +1485,7 @@ da:
   flag_it!: Markér den!
   flag_marked_as_resolved_html: <span class="meta">Markér som</span> <strong>resolved.</strong>
   flag_reason: '&ldquo;Jeg markerer denne %{record} fordi'
-  flag_saved: Markering gemt.
+  flag_saved: Markering gemt
   flag_saved_thanks: Markering gemt. Tak!
   flag_this_observation: Markér dette objekt
   flag_this_photo: Markér dette foto
@@ -1528,6 +1527,9 @@ da:
   follower: følger
   followers: Følgere
   following: følger
+  following_x_people:
+    one: Følger 1 person
+    other: Følger %{count} personer
   for: for
   for_a_taxon: for en takson
   for_a_widget_showing_recent_observations_from: For en widget, der viser de seneste
@@ -1626,7 +1628,7 @@ da:
   has_photo_and_sound: Har både foto og lyd
   has_photos_or_sounds: Har foto´s eller lyde
   has_sound: Har lyd
-  has_sounds: har lyde
+  has_sounds: Har lyde
   hasnt_contributed_any_observations: har ikke bidraget med nogle observationer til
     dette projekt.
   hate_me_facebook: Frakobl din Facebook- fra din %{site_name} konto
@@ -1664,7 +1666,7 @@ da:
   hide: Skjul
   hide_details: Skjul detaljer
   hide_uncountable_species: Skjul arter der ikke medregnes
-  high: høj
+  high: Høj
   highest_rank: Højeste rang
   highlights: Højdepunkter
   highlights_and_stats_from_year_on_site: Højdepunkter og statistikker fra %{year}
@@ -1783,7 +1785,7 @@ da:
   in_taxon?: i takson
   in_the_past: i fortiden
   in_the_past_week: i den sidste uge
-  inactive: inaktiv
+  inactive: Inaktiv
   inactive_taxon: inaktiv takson
   inactive_taxon_concepts_are: Inaktive takson koncepter er enten taksonomisk forældede
     eller bliver klargjort til en takson ændring. Forældede koncepter bibeholdes for
@@ -2126,6 +2128,7 @@ da:
     ko: Koreansk
     lb: Luxembursk
     mk: Makedonsk
+    nl: Hollandsk
     oc: Occitansk
     pt-BR: Portugisisk (Brasilien)
     pt-PT: Portugisisk (Portugal)
@@ -2196,7 +2199,7 @@ da:
   mammals: pattedyr
   manage: Administrer
   manage_all_your_subscriptions: Administrer alle dine abonnementer
-  manage_names: Administrer navne
+  manage_names: Administrér navne
   manage_your_projects: Administrer dine projekter
   manage_your_project_invitations: Administrer dine projekt invitationer
   manage_subscriptions: Administrer abonnementer
@@ -2284,6 +2287,7 @@ da:
       MM: '%dmo'
       "y": 1å
       yy: '%dy'
+    datetime_with_zone: MMM D, ÅÅÅÅ · LT z
   mon: Man
   month: Måned
   months: Måneder
@@ -2311,6 +2315,7 @@ da:
   most_observed_species: Mest observerede arter
   most_observed_introduced_species: Flest observerede indførte arter
   most_observed_threatened_species: Mest observerede truede arter
+  move_input_children_to_output?: Flyt underordnede til output?
   multiple: flere
   multiple_select_option: -- flere --
   multiple_taxa_for_taxon_change: Flere taksa (input for skifte/sammenlægning, output
@@ -2362,7 +2367,7 @@ da:
   ne_lat: NØ Bre.
   ne_lon: NØ Læn.
   near: nær ved
-  near_threatened: næsten truet
+  near_threatened: Næsten truet
   nearby: I nærheden af
   nearby_observations_: Observationer i nærheden
   nearby_observations: Observationer i nærheden
@@ -2876,7 +2881,7 @@ da:
   per_day: Per dag
   per_month: Per måned
   per_week: Per uge
-  person: person
+  person: Person
   personal_message: Personlig besked
   personal_message_description: Ingen kan lide at få e-mail fra en maskine! Fortæl
     dine venner hvorfor du vil invitere dem.
@@ -3245,45 +3250,47 @@ da:
   quality_grade_colon: 'Kvalitetsklasse:'
   queued: I kø
   query: Søgning
+  random: Tilfældig
   range: Område
   range_from: Område fra
   rank: Rang
   rank_position: Rang
   rank_restrictions: Rangrestriktioner
   ranks:
-    kingdom: rige
-    subkingdom: underrige
-    phylum: række
-    subphylum: underrække
-    superclass: superklasse
-    class: klasse
-    subclass: underklasse
-    infraclass: infraklasse
-    superorder: superorden
-    order: orden
-    suborder: underorden
-    infraorder: infraorden
-    parvorder: parvorden
-    zoosection: zoosektion
-    zoosubsection: zooundersektion
-    superfamily: superfamilie
-    epifamily: epifamilie
-    family: familie
-    subfamily: underfamilie
-    supertribe: superstamme
-    tribe: stamme
-    subtribe: understamme
-    genus: slægt
-    genushybrid: slægtshybrid
-    subgenus: underslægt
-    section: sektion
-    subsection: undersektion
-    species: arter
-    hybrid: hybrid
-    subspecies: underarter
-    variety: varietet
+    kingdom: Rige
+    subkingdom: Underrige
+    phylum: Række
+    subphylum: Underrække
+    superclass: Superklasse
+    class: Klasse
+    subclass: Underklasse
+    infraclass: Infraklasse
+    superorder: Superorden
+    order: Orden
+    suborder: Underorden
+    infraorder: Infraorden
+    subterclass: Subterklasse
+    parvorder: Parvorden
+    zoosection: Zoosektion
+    zoosubsection: Zooundersektion
+    superfamily: Superfamilie
+    epifamily: Epifamilie
+    family: Familie
+    subfamily: Underfamilie
+    supertribe: Superstamme
+    tribe: Stamme
+    subtribe: Understamme
+    genus: Slægt
+    genushybrid: Slægtshybrid
+    subgenus: Underslægt
+    section: Sektion
+    subsection: Undersektion
+    species: Arter
+    hybrid: Hybrid
+    subspecies: Underarter
+    variety: Varietet
     form: form
-    infrahybrid: infrahybrid
+    infrahybrid: Infrahybrid
     leaves: blade
   ranges: Områder
   rare: Sjælden
@@ -4381,7 +4388,7 @@ da:
   view_all: Vis alle
   view_all_from_x: Vis alle fra %{x}
   view_all_members: Vis alle medlemmer
-  view_all_n: Vis all %{n}
+  view_all_n: Vis alle %{n}
   view_all_observations: Vis alle observationer
   view_all_photocount_photos: Vis alle %{photo_count}foto´s
   view_all_photos_tagged_taxon_html: Vis alle foto´s tagget "%{taxon}" på <nobr>Flickr
@@ -4418,7 +4425,6 @@ da:
     &raquo;</nobr>
   view_more_recent_observations: Vis flere nylige observationer
   view_more_unreviewed: Vis flere der ikke er gennemgået
-  view_nbsp: Vis &nbsp;
   view_observation: Vis observation
   view_observations: Vis observationer
   view_observation_flags: Vis observations markeringer
@@ -5994,6 +6000,21 @@ da:
           Bemærk at taksonsiden viser billeder af denne takson
           og dens efterkommere. De valgte foto´s til denne
           takson vil dog blive vist først. Det første billede vil blive et standardbillede, og det vil blive brugt på tværs af websiden.
+    taxon_changes:
+      move_children_desc: |-
+        Underordnede af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive byttet ind i
+        ækvivalenter med den nye slægt eller artsnavn.
+      form:
+        move_children_desc_html: "Ved at tjekke denne boks flyttes underordnede i
+          input taksonet til\noutput takson for skifte og fusioner, når denne ændring
+          er udført. Hvis\ndenne ændres til slægt eller lavere, det vil resultere
+          i takson skifte for alle\nefterkommere, der har en underforstået navneændring.
+          For eksempel, hvis du flytter\nfamilien Canidae ind i Dogidae, ændrer det
+          slægtens overordnede\n<i>Canis</i> fra Canidae til Dogidae. \nHvis du flytter
+          slægten <i>Canis</i> ind i slægten <i>Dogis</i>, vil det udløse og udføre
+          et takson skifte <i>Canis lupus</i> til <i>Dogis lupus</i> og\n<i>Canis
+          lupus</i> ssp. <i>lupus</i> til <i>Dogis lupus</i> ssp.\n<i>lupus</i>. Dette
+          kan medføre et værre roderi, så gør det med omtanke."
     taxon_links:
       form:
         name_with_rank_desc: |-

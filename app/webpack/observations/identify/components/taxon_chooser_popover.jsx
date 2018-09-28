@@ -106,7 +106,7 @@ class TaxonChooserPopover extends React.Component {
                 style={{ display: this.props.taxon ? "block" : "none" }}
               >
                 <i className="fa fa-times"></i>
-                { _.capitalize( I18n.t( "clear" ) ) }
+                { I18n.t( "clear" ) }
               </li>
               { _.map( this.state.taxa, ( t, i ) => (
                 <li
@@ -141,7 +141,8 @@ class TaxonChooserPopover extends React.Component {
             taxon ?
               <SplitTaxon taxon={taxon} user={ config.currentUser } />
               :
-              _.startCase( I18n.t( "filter_by_taxon" ) ) }
+              I18n.t( "filter_by_taxon" )
+          }
           { postIconClass ? <i className={`${postIconClass} post-icon`}></i> : null }
         </div>
       </OverlayTrigger>

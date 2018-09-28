@@ -180,7 +180,7 @@ export function updateQuery( query ) {
   };
 }
 
-export function setDetailTaxon( taxon, options = {} ) {
+export function setDetailTaxon( taxon, options = null ) {
   return { type: SET_DETAIL_TAXON, taxon, options };
 }
 

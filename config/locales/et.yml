@@ -58,9 +58,6 @@ et:
   x_others:
     one: 1 muu
     other: '%{count} muud'
-  x_people:
-    one: 1 inimene
-    other: '%{count} inimest'
   x_people_found_this_helpful:
     one: Ühe isiku jaoks oli sellest abi
     other: '%{count} isiku jaoks oli sellest abi'
@@ -109,7 +106,7 @@ et:
     other: <span class='count'>%{count}</span> taksonimuudatust lisatud
   _100_day_trends: 100 päeva trendid
   _percent_ID_d: '% määratud'
-  a: '{null}'
+  a: '&nbsp;'
   a_community_for_naturalist: Loodusloolaste kogukond
   a_default_taxon_name_will_automatically_created: Vaikimisi taksoni nimi luuakse
     automaatselt sellele määratud teaduslikust nimetusest. Kui oled uue taksoni salvestanud,
@@ -200,13 +197,13 @@ et:
   add_another_photo: Lisa veel üks foto
   add_another_section: Lisa veel üks sektsioon
   add_another_subscription: Lisa veel üks jälgitav
-  add_asset: Lisa andmeid
+  add_asset: Uus lisa
   add_batch: Lisa komplekt
   add_colors: Lisa värvid
   add_comma_separated_tags: Lisa komaga erladatud märksõnad
   add_comment: Lisa kommentaar
-  add_common_names_for: lisa olemasolevatele taksonitele rahvapäraseid nimesid
-  add_conservation_status: lisa kaitsestaatus
+  add_common_names_for: Lisa olemasolevatele taksonitele rahvapäraseid nimesid
+  add_conservation_status: Lisa kaitsestaatus
   add_countries: Lisa riigid
   add_custom_project_fields: Lisa projektile spetsiaalsed väljad
   add_edit_flags: Lisa/muuda märkuseid
@@ -241,7 +238,7 @@ et:
   add_observations_of_taxa_youve_added: Lisa vaatlusi taksonite kohta, mida oled lisanud
     nimekirja. Arendamisel, sisaldab vigu...
   add_observations_project: Lisa projekti alla vaatlusi
-  add_one: Lisa üks!
+  add_one: Lisa!
   add_one_now: Lisa
   add_photos: Lisa fotod
   add_photos_to_this_observation: Lisa selle vaatluse kohta käivad fotod
@@ -272,12 +269,12 @@ et:
   add_tags: Lisa märksõnad
   add_tags_to_selected_taxa: Lisa valitud taksonile märksõnad
   add_taxa: Lisa taksonid
-  add_taxa_to_places: lisa kohtadele taksoneid
+  add_taxa_to_places: Lisa kohtadele taksoneid
   add_taxon_batch_to: Lisa taksonite komplekt nimekirja %{list}
   add_taxon_range: Lisa taksoni piirkond
   add_taxonomic_tags_to: Lisa valitud Flickr fotodele taksonoomilised märksõnad &raquo;
-  add_taxonomic_tags_to_the_fickr_photos: Lisa valitud vaatlusega seotud Flickr fotodele
-    taksonoomilised märgised.
+  add_taxonomic_tags_to_the_flickr_photos: Lisa valitud vaatlustega seotud Flickr
+    fotodele taksonoomilised märksõnad
   add_to: Lisa
   add_to_a_scheme: Lisa skeemi alla
   add_to_a_project: Lisa projekti alla
@@ -315,6 +312,7 @@ et:
   admin: Administraator
   admin_s: Admin(id)
   admin_any_projects: administreeri projekte
+  admin_only: Ainult administraatoritele
   admin_tools: Admintööriistad
   agree: nõustun
   agree_: Nõustun
@@ -564,8 +562,8 @@ et:
   you_sure_delete_list: Oled sa kindel, et soovid seda nimekirja kustutada?
   you_sure_delete_taxon_from_list?: Oled sa kindel, et soovid taksoni %{taxon} nimekirjast
     eemaldada?
-  asc: kasvav
-  ascending: kasvav
+  asc: Kasvav
+  ascending: Kasvav
   aside_from_extraordinary_circumstances: Erakordsed olukorrad väljaarvatud, ei küsi
     me sinult kunagi sinu salasõna.
   assessment: hinnang
@@ -683,7 +681,7 @@ et:
   by_adding_ids_to_observations: lisades vaatlustele määratlusi
   by_everyone: Kõikidelt
   by_project_list: projekti nimekirja järgi
-  by_user: kasutaja %{user} poolt
+  by_user: Kasutaja %{user} poolt
   by_you: Sinu poolt
   calendar: Kalender
   calendars_only_show_x_observations_at_time: Kalendrites näeb korraga vaid %{x} vaatlust
@@ -698,7 +696,7 @@ et:
   casual: juhuvaatlus
   casual_: Juhuvaatlus
   catalogue_of_life: Catalogue of Life
-  categories: kategooriad
+  categories: Kategooriad
   cc_0_description: See litsents määrab, et sinu töö on vabakasutuses ning teised
     saavad seda kopeerida, muuta, jagada ja esitleda isegi ärilistel eesmärkidel ning
     seda kõike sinult luba küsimata või sinule viitamata. See on pakutavatest litsentsidest
@@ -922,7 +920,7 @@ et:
   comprehensive?: On see täielik?
   comprehensive_list: Täielik nimekiri
   concept_status: Mõiste staatus
-  configure: Häälesta
+  configure: Uuenda
   configure_a_widget_to_show: Seadista %{site_name} tööriist, mis näitaks kodulehel
     või blogis sinu vaatlusi. Võib olla vajalik, et pead enda HTML-koodi päisesse
     lisama CSS-stiili. Kui soovid, võid CSSi muuta.
@@ -983,7 +981,7 @@ et:
   convert: Teisenda
   coordinate_systems: Koordinaatidesüsteemid
   coordinates: Koordinaadid
-  coordinates_private: (peidetud koordinaadid)
+  coordinates_private: (priivatsed koordinaadid)
   copy: Kopeeri
   copy_and_paste_the_following_code_to: Kopeeri ja kleebi järgnev kood, et kasutada
     seda hinnangut mõnel teisel veebilehel.
@@ -1056,6 +1054,7 @@ et:
   cumulative_ids: 'Kokku määratlusi: %{count}/%{total}'
   curate_observations: Kureeri vaatlusi
   curate_taxa: Kureeri taksoneid
+  curate_user: Kureeri kasutajat
   curate_users: Kureeri kasutajaid
   curated: kureerinud
   curated_checklist: Kureeritud nimekiri
@@ -1065,9 +1064,9 @@ et:
   curator: Kuraator
   curators_changed_for_x_html: '%{x} kuraator muutus'
   curators: Kuraatorid
-  curators_can_remove_observations_from: Kuraatorid võivad projektist vaatlusi eemaldada  ja
-    nende tehtud määratlused on projektipõhistel lehtedel vaatluse kõrval eraldi ära
-    toodud. Kuraatorid näevad ka selle projekti alla lisatud vaatluste privaatseid
+  curators_can_remove_observations_from: Kuraatorid võivad projektist vaatlusi eemaldada
+    ja nende tehtud määratlused on projektipõhistel lehtedel vaatluse kõrval eraldi
+    ära toodud. Kuraatorid näevad ka selle projekti alla lisatud vaatluste privaatseid
     ja varjatud tõeliseid koordinaate.
   curator_identification: Kuraatoritunnus
   current_flags: Praegused märkused
@@ -1087,7 +1086,7 @@ et:
   date_: Kuupäev
   date?: Kuupäev?
   date_added: Lisamiskuupäev
-  date_created: lisamiskuupäev
+  date_created: Loomiskuupäev
   date_format:
     date_long:
       january: '%{day}, jaanuar %{year}'
@@ -1159,9 +1158,9 @@ et:
   deleted_vote: Kustuta hääl
   deleting: Kustutan...
   deleting_verb: Kustutan
-  desc: kahanev
+  desc: Kahanev
   descendant_taxa: alamtaksonid
-  descending: kahanev
+  descending: Kahanev
   describe_purpose: Kirjelda selle projekti eesmärki.
   describe_your_interest_in_nature: Kirjelda enda huvi looduse vastu!
   description: Kirjeldus
@@ -1231,7 +1230,7 @@ et:
   edit: Muuda
   edit_a_batch_of_observations: Muuda vaatluste komplekti
   edit_account_settings_and_profile: Muuda konto sätteid &amp; profiili
-  edit_assessment: Muuda hinnanguid
+  edit_assessment: Muuda hinnangut
   edit_atlas: Muuda atlast
   edit_body: Muuda sisu
   edit_colors: Muuda värve
@@ -1257,12 +1256,12 @@ et:
   edit_source: Muuda allikat
   edit_taxa: Muuda taksoneid
   edit_taxon: Muuda taksonit
-  edit_taxon_change: redigeeri taksoni muudatust
+  edit_taxon_change: Redigeeri taksoni muudatust
   edit_taxon_link: Muuda taksoni linki
   edit_taxon_range: Muuda taksoni piirkonda
   edit_the_observation: Muuda vaatlust
   edit_this_link: Muuda seda linki
-  edit_your_account: muuda oma kontot
+  edit_your_account: Muuda oma kontot
   edit_your_account_and_profile_html: Muuda oma kontot ja profiili
   edit_your_default_settings: Muuta oma vaikimisisätteid
   edit_your_global_project_settings: Muuda oma üldiseid projektisätteid
@@ -1283,7 +1282,7 @@ et:
     one: 'Muudan <span class="count">ühte</span> vaatlust:'
     other: 'Muudan <span class="count">%{count}</span> vaatlust:'
   editing_project: Muudan projekti %{project}
-  editing_project_asset: Muudan andmeid projektil
+  editing_project_asset: Muudan lisasid projektil
   editing_subscription_to_x_html: 'Muudan jälgimist: %{x}'
   editing_taxon_link: Muudan taksoni linki
   editing_taxon_name: Muudan taksoni nime
@@ -1324,12 +1323,12 @@ et:
   error_updating_photo: 'Foto uuendamine ebaõnnestus: %{photo_errors}'
   establishment:
     establishment: Asutus
-    native: kohalik
-    endemic: endeemiline
-    introduced: sissetoodud
-    naturalised: kohandunud
-    invasive: invasiivne
-    managed: hallatud
+    native: Kohalik
+    endemic: Endeemiline
+    introduced: Sissetoodud
+    naturalised: Kohandunud
+    invasive: Invasiivne
+    managed: Hallatud
   establishment_means: Asustamismeetod
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: kohalik ja ei eksisteeri mujal
@@ -1355,14 +1354,14 @@ et:
   existing_flags: Praegused märkused
   exit_full_screen: Sule täisekraan
   examples_of_ranking_organizations: Kategooriaid määravad organisatsioonid
-  expand_days: päevad detailselt
-  expand_updates: uuendused detailselt
+  expand_days: Päevad detailselt
+  expand_updates: Uuendused detailselt
   explore!: Avasta!
   explore: Avasta
   explore_everyones_observations: Avasta kõigi vaatlused
   export: Ekspordi
   export_observations: Ekspordi vaatlused
-  export_with_private_coordinates: Ekspordi varjatud koordinaatidega
+  export_with_private_coordinates: Ekspordi privaatsete koordinaatidega
   exporting: Eksportin...
   external_links: Välised lingid
   extinct: väljasurnud
@@ -1392,11 +1391,11 @@ et:
   faves: Lemmikud
   Family: Sugukond
   faved_this_observation: lemmikvaatlus
-  favorite_taxa: lemmiktaksonid
+  favorite_taxa: Lemmiktaksonid
   favorites: Lemmikud
   fblocale: en_US
   feature_this_project: Tõsta projekti esile?
-  featured: esiletõstetud
+  featured: Esiletõstetud
   featured?: esiletõstetud?
   featured_projects_from_everywhere: Kõigist kohtadest esile tõstetud projektid
   featured_projects_from_place: Esile tõstetud projektid kohast %{place}
@@ -1467,7 +1466,7 @@ et:
   flag_it!: Lisa märkus!
   flag_marked_as_resolved_html: <span class="meta">Märkus</span> <strong>on lahendatud.</strong>
   flag_reason: '&ldquo;Lisan märkuse objektile %{record}, sest'
-  flag_saved: Märkus salvestatud.
+  flag_saved: Märkus salvestatud
   flag_saved_thanks: Märkus salvestatud. Aitäh!
   flag_this_observation: Lisa vaatlusele märkus
   flag_this_photo: Lisa fotole märkus
@@ -1508,6 +1507,9 @@ et:
   follower: jälgija
   followers: Jälgijad
   following: jälgitavad
+  following_x_people:
+    one: Jägib 1 isikut
+    other: Jälgib %{count} isikut
   for_a_taxon: taksonile
   for_a_widget_showing_recent_observations_from: Et näha tööriista, mis näitab hiljutisi
     vaatlusi kohast %{place_name}, vaata
@@ -1601,11 +1603,11 @@ et:
   has_id_supported_by_two_or_more: On kahe või enama kasutaja poolt määratud
   has_one_or_more_faves: On vähemalt ühe kasutaja lemmik
   has_photo: On piltidega
-  has_photos: on piltidega
+  has_photos: On piltidega
   has_photo_and_sound: On nii piltide kui helidega
   has_photos_or_sounds: On piltide ja helidega
   has_sound: On helidega
-  has_sounds: on helidega
+  has_sounds: On helidega
   hasnt_contributed_any_observations: pole sellele projektile lisanud ühtegi vaatlust.
   hate_me_facebook: Ühenda oma Facebooki kontro ja lehe %{site_name} konto lahti
   hate_me_flickr: Ühenda oma Flickr kontro ja lehe %{site_name} konto lahti
@@ -1642,7 +1644,7 @@ et:
   hide: Peida
   hide_details: Peida üksikasjad
   hide_uncountable_species: Peida loendamatud liigid
-  high: kõrge
+  high: Kõrge
   highest_rank: Kõrgeim kategooria
   highlights: Tipud
   highlights_and_stats_from_year_on_site: '%{year}. aasta tipud ja statistika lehel
@@ -1749,7 +1751,7 @@ et:
   in: kohas
   in_: kohas
   in_n: kohas %{n}
-  inaturalist_network_affiliation: iNaturalist võrgu kuuluvus
+  inaturalist_network_affiliation: iNaturalist võrgustiku kuuluvus
   inbox: saabunud
   including: sisaldab
   in_order_to_login_and_using_site_visit_url: 'Sisse logimiseks ja lehekülje kasutamiseks
@@ -1758,8 +1760,8 @@ et:
   in_taxon?: taksonis
   in_the_past: minevikus
   in_the_past_week: eelmisel nädalal
-  inactive: mitteaktiivne
-  inactive_taxon: mitteaktiivne takson
+  inactive: Mitteaktiivne
+  inactive_taxon: Mitteaktiivne takson
   inactive_taxon_concepts_are: Mitteaktiivsed taksonid on kas taksonoomiliselt aegunud
     või need on taksoni muudatuste kohahoidjad. Aegunud taksoneid säilitatakse ajaloo
     jaoks ning partnerlehekülgedega ühlidumiseks.
@@ -1789,9 +1791,9 @@ et:
     oska määrata, ning selleks, et aidata teistel müstilisi elukaid määratleda!
   interactions: Vastastikmõjud
   internal_server_error: Serveri sisene viga
-  introduced: sissetoodud
+  introduced: Sissetoodud
   introduced_in_place: Sissetoodud kohta %{place}
-  invasive: invasiivne
+  invasive: Invasiivne
   invitation: Kutse
   invitations: Kutsed
   invite: kutsu
@@ -1850,7 +1852,7 @@ et:
   joined!: Liitusid!
   joined_any_projects: liitunud mitteühegi projektiga
   joined_projects: Liitutud projektid
-  joined_with_date: 'Liitutud: %{date}'
+  joined_with_date: 'Liitunud: %{date}'
   joining: Liitun...
   journal: Päevik
   journal_archives_for: Päeviku arhiiv
@@ -1885,14 +1887,14 @@ et:
   latitude_in_decimals: Laiuskraad komakohaga, nt 38.123
   latitude_slash_y_coord_slash_northing: Laiuskraad / y-koordinaat / põhjapoole
   layers: Kihid
-  layout: Laotus
+  layout: Paigutus
   leaderboard: Edetabel
   leaderboard_for_x: 'Edetabel: %{x}'
   leaderboards: Edetabelid
   leaderboard_most:
-    species: Enim liike ajal %{time}
-    observations: Enim vaatlus ajal %{time}
-    identifications: Enim määratlusi ajal %{time}
+    species: Enim liike %{time}
+    observations: Enim vaatluseid %{time}
+    identifications: Enim määratlusi %{time}
   leading: Suunaja
   learn!: Õpi!
   learn: Õpi
@@ -2094,6 +2096,7 @@ et:
     ko: Korea
     lb: Luksemburgi
     mk: Makedoonia
+    nl: Hollandi
     oc: Oksitaani
     pt-BR: Portugali (Brasilia)
     pt-PT: Portugali (Portugali)
@@ -2138,7 +2141,7 @@ et:
   looks_like_no_species_in_guide: Näib, et sinu juhendis pole veel ühtegi liiki.
   lookup: Leia
   lookup_user_rarr: Vaata kasutajat &rarr;
-  low: madal
+  low: Madal
   lowest_rank: Madalaim kategooria
   made_a: tegi
   make_admin: Muuda administraatoriks
@@ -2247,9 +2250,10 @@ et:
       d: 1p
       dd: '%dp'
       M: 1k
-      MM: '%k'
+      MM: '%dk'
       "y": 1a
       yy: '%da'
+    datetime_with_zone: D. MMM YYYY · LT z
   mon: E
   month: Kuu
   months: Kuud
@@ -2276,6 +2280,7 @@ et:
   most_observed_species: Enim vaadeldud liike
   most_observed_introduced_species: Enim vaadeldud sissetoodud liike
   most_observed_threatened_species: Enim vaadeldud ohustatud liike
+  move_input_children_to_output?: Liiguta alamad väljundisse?
   multiple: mitu
   multiple_select_option: -- mitu --
   multiple_taxa_for_taxon_change: Mitu taksonit (sisend vahetamiseks/ühendamiseks,
@@ -2325,7 +2330,7 @@ et:
   ne_lat: Kirdelaius
   ne_lon: Kirdepikkus
   near: lähedal
-  near_threatened: peaaegu ohustatud
+  near_threatened: Peaaegu ohustatud
   nearby: Läheduses
   nearby_observations_: Lähedased vaatlused
   nearby_observations: Lähedased vaatlused
@@ -2358,13 +2363,13 @@ et:
   new_observations_ellispsis: Uued vaatlused...
   new_observations_from_place_html: Uued vaatlused kohas %{place}
   new_observations_may_take_up_to: Uute vaatluste lisandumine tööriista võib võtta
-    kuni %{widget_expiration}
+    kuni %{widget_expiration} minutit
   new_observations_of_x_html: '%{x} uued vaatlused'
   new_password: Uus salasõna
   new_post: Uus postitus
   new_project: Uus projekt
   new_project_asset: Uus project_asset
-  new_project_asset_for: Uued andmed projektile
+  new_project_asset_for: Uus lisa projektile
   new_source: Uus allikas
   new_taxon_change: Uus taksonimuudatus
   new_taxon_link: Uus taksonilink
@@ -2663,7 +2668,7 @@ et:
   of_identifiers: määratlejad
   of_places: kohad
   of_this_taxon: Selle taksoni
-  offensive_inappropriate: solvav / ebasobiv
+  offensive_inappropriate: Solvav / ebasobiv
   official_blog: Ametlik blogi
   offline_access_enabled: Offline-ligipääs lubatud
   old_observation_form: Vana vaatlusvorm (mittekasutatav)
@@ -2825,7 +2830,7 @@ et:
   per_day: Päevas
   per_month: Kuus
   per_week: Nädalas
-  person: isik
+  person: Isik
   personal_message: Isiklik teade
   personal_message_description: Keegi ei taha saada e-kirju masinatelt! Anna sõpradele
     teada, et sina neid kutsud!
@@ -3065,7 +3070,7 @@ et:
     vaatluseid, võib see võtta paar minutit.
   please_hold_on_while_the_file_is_generated: Palun oota hetk, kuni faili luuakse.
     Suurte nimekirjade puhul võib see võta paar minutit.
-  popular: levinud
+  popular: Levinud
   position: Asukoht
   positional_accuracy: Asukoha täpsus
   possessive_user: Kasutaja %{user}
@@ -3102,11 +3107,11 @@ et:
   print_in_browser: Prindi brauseris
   privacy: Privaatsusreeglid
   privacy_policy: Privaatsusreeglid
-  private: isiklik
+  private: privaatne
   private_: Isiklik
   private_description: Koordinaate ei näidata avalikel kaartidel üldse. Tõelised koordinaadid
     on nähtavad ainult sulle ja nende projektide koordinaatoritele, kuhu sa vaatluse
-    lisad. Isiklike koordinaatidega vaatluseid saab siiski kasutada kohtade kontrollnimekirjade
+    lisad. Privaatsete koordinaatidega vaatluseid saab siiski kasutada kohtade kontrollnimekirjade
     loomisel.
   proceed: Jätka
   processing: Töötlen
@@ -3121,7 +3126,7 @@ et:
     sisse lülitada vaid sellisel juhul, kui nad on seotud mõne keskmises suuruses
     kohaga või lubavad ainult ühe taksoni või taksonite nimekirja vaatluseid.
   project_assessments: Projekti hinnangud
-  project_assets: Projekti andmed
+  project_assets: Projekti lisad
   project_cover: Projekti kaanepilt
   project_created_on: lõi selle projekti kuupäeval %{date}
   project_curator_changes: Projekti kuraator muutus
@@ -3188,46 +3193,48 @@ et:
   quality_grade_colon: 'Kvaliteedihinnang:'
   queued: Järjekorras
   query: Päring
+  random: Juhuslik
   range: Piirkond
   range_from: Piirkond
   rank: Kategooria
   rank_position: Tase
   rank_restrictions: Kategooria piirangud
   ranks:
-    kingdom: riik
-    subkingdom: alamriik
-    phylum: hõimkond
-    subphylum: alamhõimkond
-    superclass: ülemklass
-    class: klass
-    subclass: alamklass
-    infraclass: infraklass
-    superorder: ülemselts
-    order: selts
-    suborder: alamselts
-    infraorder: infraselts
-    parvorder: parvklass
-    zoosection: zooloogiline sektsioon
-    zoosubsection: zooloogiline alamsektsioon
-    superfamily: ülemsugukond
-    epifamily: episugukond
-    family: sugukond
-    subfamily: alamsugukond
-    supertribe: ülemtriibus
-    tribe: triibus
-    subtribe: alamtriibus
-    genus: perekond
-    genushybrid: hübriidperekond
-    subgenus: alamperekond
-    section: sektsioon
-    subsection: alamsektsioon
-    species: liik
-    hybrid: hübriid
-    subspecies: alamliik
-    variety: teisend
-    form: vorm
-    infrahybrid: alamhübriid
-    leaves: lehed
+    kingdom: Riik
+    subkingdom: Alamriik
+    phylum: Hõimkond
+    subphylum: Alamhõimkond
+    superclass: Ülemklass
+    class: Klass
+    subclass: Alamklass
+    infraclass: Infraklass
+    superorder: Ülemselts
+    order: Selts
+    suborder: Alamselts
+    infraorder: Infraselts
+    subterclass: Subterklass
+    parvorder: Parvklass
+    zoosection: Zooloogiline sektsioon
+    zoosubsection: Zooloogiline alamsektsioon
+    superfamily: Ülemsugukond
+    epifamily: Episugukond
+    family: Sugukond
+    subfamily: Alamsugukond
+    supertribe: Ülemtriibus
+    tribe: Triibus
+    subtribe: Alamtriibus
+    genus: Perekond
+    genushybrid: Hübriidperekond
+    subgenus: Alamperekond
+    section: Sektsioon
+    subsection: Alamsektsioon
+    species: Liik
+    hybrid: Hübriid
+    subspecies: Alamliik
+    variety: Teisend
+    form: Vorm
+    infrahybrid: Alamhübriid
+    leaves: Lehed
   ranges: Piirkonnad
   rare: Haruldane
   ray_finned_fishes: kiiruimsed
@@ -3644,7 +3651,7 @@ et:
   sources_youve_added: Sinu lisatud allikad
   sources_and_credits: Allikad ja autorid
   sourcing: Allikad
-  spam: rämpspost
+  spam: Rämpspost
   spanish: Hispaania
   species: Liigid
   species_by_category: liigid kategooriate kaupa
@@ -3670,7 +3677,7 @@ et:
   start_date_time: Alguskuupäev/kellaaeg
   start_new_account: Loo uus konto
   start_new_project: Alusta uut projekti
-  start_one: alusta ise
+  start_one: Alusta ise
   start_one_now: Alusta ise!
   start_typing_field_name: Trüki välja nimi...
   start_typing_place_name: Trüki koha nimi...
@@ -3711,11 +3718,11 @@ et:
     lisatud vaatluseid.
   subscribe_to_observations_in_a_place: Jälgi kõiki selles kohas tehtud vaatluseid.
     Saab kasutada koos taksoni filtriga (nt 'Texase skorpionid').
-  subscribe_to_places_to: Jälgi mõnda kohta, et saada teateid seal tehtud vaatluste
-    kohta. Ka sinu poolt jälgitavate inimeste ja sinu kommenteeritud asjade jälgimine
-    toimub siit kaudu. Kui soovid näiteks näha, mida sa jälgid või mõnda jälgimist
-    lõpetada, vajuta nupu "Halda jälgimisi". Kõigi asjade jälgimist peaks saama lõpetada
-    ka nende endi lehelt.
+  subscribe_to_places_to: Jälgi mõnda kohta, et saada teateid seal tehtud vaatlustest.
+    Ka sinu poolt jälgitavate inimeste ja sinu kommenteeritud asjade jälgimine toimub
+    siit kaudu. Kui soovid näha, mida jälgid või mõnda jälgimist lõpetada, vajuta
+    nupu "Halda jälgimisi". Kõigi asjade jälgimist peaks saama lõpetada ka nende endi
+    lehelt.
   subscribe_to_this: Jälgi seda
   subscribe_to_this_observation: Jälgi seda vaatlust
   subscribe_to_x_from_this_y_html: <a href="#" onclick="$(this).parents('form:first').submit();
@@ -4087,7 +4094,7 @@ et:
     teisi asju nagu vaatluste otsimine, nende filtreerimine ning nende muutmine komplektina,
     kuid need võimalused peaksid olema enesest mõistetavad.
   those_observations_no_longer_exist: Neid vaatlusid enam ei eksisteeri.
-  threatened: ohustatud
+  threatened: Ohustatud
   thu: "N"
   thumb_url: Eelvaate URL
   time_: aeg
@@ -4095,7 +4102,7 @@ et:
   tired_of_testing_this_new_version: Oled uue versiooni testimisest väsinud?
   title: pealkiri
   title_and_description: Pealkiri ja kirjeldus
-  titled_favorites_and_the_most_recent_additions: nimega "Lemmikud" ning siia ilmuvad
+  titled_favorites_and_the_most_recent_additions: nimega "Favorites" ning siia ilmuvad
     kõige uuemad lisandused.
   to_add_comments: lisada kommentaare
   to_add_identifications: lisada määratlusi
@@ -4119,7 +4126,7 @@ et:
   top_observers: Parimad vaatlejad
   top_species: Enim esindatud liigid
   total: Kokku
-  totals: kokku
+  totals: Kokku
   total_members: Kokku kasutajaid
   total_observations: Vaatluseid kokku
   total_species_observed: Kokku vaadeldud liike
@@ -4150,7 +4157,7 @@ et:
   type_taxon_name: Kirjuta taksoni nimi
   type_taxon_name_and_click_lookup: Kirjuta taksoni nimi ja vajuta leia
   uicn_red_list_status: 'IUCNi punase nimestiku staatus:'
-  umbrella_projects: Kogumprojektid
+  umbrella_projects: Ülemprojektid
   un_license_this_observation: lõpeta antud vaatluse litsents
   unblock: Tühista blokeering
   unclassified: Liigitamata
@@ -4188,7 +4195,7 @@ et:
   update_search: Värskenda otsingut
   update_selected_taxa: Värskenda valitud taksoneid
   update_subscription: Värskenda jälgimist
-  update_subscription_preferences: värskenda jälgimiseelistusi
+  update_subscription_preferences: Värskenda jälgimiseelistusi
   update_x_selected_taxa:
     one: Täienda ühte valitud taksonit
     other: Värskenda %{count} valitud taksonit
@@ -4330,7 +4337,7 @@ et:
   view_flag: Vaata märkust
   view_flags: Vaata märkuseid
   view_flags_for_x_html: Näita %{x} märkuseid
-  view_full_observation: Näita terve vaatlust
+  view_full_observation: Näita tervet vaatlust
   view_invitation: Vaata kutset
   view_journal: Näita päevikut
   view_leaderboard: Vaata edetabelit
@@ -4352,7 +4359,6 @@ et:
     <nobr>%{site_name} &raquo;</nobr>
   view_more_recent_observations: Näita teisi hiljutisi vaatluseid
   view_more_unreviewed: Näita teisi mittekontrollituid
-  view_nbsp: Vaata &nbsp;
   view_observation: Ava vaatlus
   view_observations: Ava vaatlused
   view_observation_flags: Ava vaatluse märkused
@@ -4767,7 +4773,7 @@ et:
   your_dashboard_helps_you: Oma töölaual näed lihtsalt, mida teised inimesed sellel
     lehel teevad. Kellegi järgimiseks vajuta nende vaatluse või profiili päises olevat
     'Jälgi [nimi]' nuppu.
-  verifiable: tõendatav
+  verifiable: Tõendatav
   views:
     views: Vaatamisi
     announcements:
@@ -5059,8 +5065,105 @@ et:
           vaatlused "teaduskõlbulikeks"?
         what_is_a_life_list?: Mis on elunimekiri?
         just_a_simple_list: See on lihtne taksonite loend, mis ei toimi kuidagi eriliselt.
+        automatically_updates_based_on_your_observations: Täieneb automaatselt sinu
+          vaatlustega. Kõigil lehe %{site_name} kasutajatel on oma vaikimisi elunimekiri,
+          mis sisaldab kõiki liike, mida nad on vaadelnud. Kui sa kustutad mõne vaatluse
+          või muudad määratlust, siis see liik eemaldatakse. Saa oma elunimekirja
+          ka käsitsi taksoneid lisada nagu teistesse nimekirjadessegi. Käsitsi lisatud
+          liike ei eemaldata, kui sa neid vaatleid ja seejärel vaatluse kustutad.
+        you_can_also_make_additional_life_lists: Saad teha ka lisa elunimekirju, mis
+          on mõeldud spetsiifiliste organismigruppide jaoks, nt lindude elunimekiri
+          või astriliste elunimekiri.
+        a_project_list_belongs: Projekti nimekiri kuulub ühele projektile ning selles
+          on kõik antud projekti liikmete poolte vaadeldud taksonid. Projekti nimekirja
+          saavad administraatorid ka käsitsi täita ning nendega saab piirata projekti
+          aktsepteerima ainult seal sisalduvaid taksoneid.
+        a_check_list_is_html: Kontrollnimekiri koonseb mingis kohas olevatest taksonitest.
+          Igal kohal on oma vaikimisi kontrollnimekiri ning alati, kui selle koha
+          piirides tehakse mõni vaatlus <em>ja</em> see vaatlus muutub teaduskõlbulikuks,
+          lisatakse vaadeldud liik automaatselt tolle koha kontrollnimekirja.
+        inat_users_can_also: '%{site_name} kasutajad saavad kohtadele lisada ka uusi
+          kontrollnimekirju, kuid neid ei täiendata automaatselt. Nende abil saavad
+          inimesed peamiselt lisada väliseid andmeallikaid või luua enda kogemustel
+          põinevaid nimekirju.'
+        is_a_list_of_every_species_that_you_have_seen: Elunimekiri koosneb kõigist
+          sinu poolt nähtud liikidest. Igal lehe %{site_name} kasutajal on elunimekiri,
+          mis täieneb automaatselt lehele lisatud vaatlustega.
+        i_observed_a_species: Vaatlesin üht liiki. Miks ei ilmu see minu elunimekirja?
+        while_the_life_list_is_automatically_populated: Kuigi elunimekiri täieneb
+          automaatselt lisatud vaatlustega, ei lisata liike nimekirja kui %{site_name}
+          ei tunne ära sinu kasutatud nimetust. Soovitame katsetada mõnda alternatiivset
+          nimetust, mida võiksime tunda.
+    listed_taxa:
+      establishment_field:
+        confirmation: Oled sa kindel? See muudab KÕIGI selle koha all olevate kohtade
+          taksonite asustamismeetodit. Võib-olla kaotad sellega paljude inimeste tehtud
+          töö.
+        description_html: See määrab koha <a href="%{place_url}">%{place_name}</a>
+          alamkohtades <em>kõigi</em> selle taksoni asustamismeetodiks <strong>"%{establishment_means}"</strong>.
+          Ainult kuraatorid saavad kasutada seda tööriista. Määrates asustamismeetodiks
+          "Sissetoodud", saavutad enam-vähem sama efekti, kuid see ei muuda olemasolevaid
+          väärtuseid ning lisab vastava märkuse ainult neile taksonitele, millel see
+          puudub.
+    lists:
+      new:
+        place_desc: Täienda seda nimekirja automaatselt antud kohas vaadeldud taksonitega.
+          Saad kasutada ainult kohti, millel on piirjooned.
+      show:
+        project_list_desc: Projekti nimekirjades on projekti kuraatorite poolt lisatud
+          taksonid ning taksonid, mis on seotud projektile lisatud teaduskõlbulike
+          vaatlustega.
     observations:
+      community_id:
+        agreement: Leping
+        algorithm_summary: Algorütmi kokkuvõte
+        ancestor_disagreements: Alamtaksonite ebakõlad
+        below_cutoff: Allpool eiramispiiri
+        cumulative_count: Koguarv
+        disagreement: Erimeelsus
+        disagreement_count: Erimeelsuste arv
+        identification_count: Määratluste arv
+        score: Skoor
+        explanation: |-
+          <p>
+          Kui kasutaja mingil põhjusel ei nõustu kogukondliku taksoniga, saavad nad selle tagasi lükata, mis tähendab, et teiste vaatlustega seostamiseks, elunimekirjade täiendamiseks, jne kasutatakse nende endi pakutud määratlust. Samas tähendab see ka seda, et see vaatlus saab teaduskõlbulikuks alles siis, kui kogukond sellega nõustub.
+          </p>
+          <p>
+          Samas näidatakse kogukondlikku määratlust edasi, et kõik erinevad pakutud määratlused oleksid nähtavad.
+          </p>
+        you_have_opted_out: Sa ei soovi kogukondlike määratlusi
+        opt_in_for_this_observation: Kasuta selle vaatluse puhul
+        your_id_does_not_match: Siinu määratlus (<span class="bold">%{taxon_name}</span>)
+          ei kattu kogukondliku määratlusega
+      copy_tip: Lisa selle vaatluse kuupäeva, asukohta, fotosid ja muidu vaatluse
+        välju kasutades uus vaatlus.
+      captive_help_html: Oli see organism <strong>kasvatatud</strong> või <strong>vangistatud</strong>?
+        Näiteks <strong>aias, loomaaias, akvaariumis</strong> või mõnes muus kohas,
+        kus lihtsalt <strong>inimesed soovisid, et see seal oleks</strong>? Kõik eluslooduse
+        vaatlused on teretulnud, kuid me sooviksime teada, kui miski ei ole metsik
+        või on elukohaga kohandunud.
       export:
+        choose_columns_desc: Vali eksporditavad tulbad
+        create_a_query_desc_html: "Loo vaatluspäring nagu igalpool mujal meie leheküljel.
+          Võid siia sisestada ka mõnest teisest lehe osast pärit vaatluste URLi. Pea
+          määrama <strong>taksoni</strong>, <strong>koha</strong>, <strong>kasutaja</strong>,
+          \n<strong>projekti</strong> või <strong>otsingupäringu</strong>."
+        ident_by_user_desc_html: Kasutaja %{user} praeguse määratluse tulbad
+        query_placeholder: Vali altpoolt päringu parameetrid või lisa vaatluse URL
+        taxon_extras_help_html: 'Märkus: need tulbad muudavad su ekspordi loomise
+          aeglasemaks'
+        geo_help_html: Koordinaatidel põhinev linn, maakond, osariik või riik. Kui
+          need kohatüübid ei kehti, kasutatakse vaatluste juures analoogseid administratiivüksuseid.
+          Priivatseid välju (private_*) kaasatakse ainult siis, kui kasutad kasutajate
+          filtrit ja kasutajaks oled sina või kui kasutad projektide filtrit ja sina
+          oled projekti kuraator.
+        be_patient: Palun ole kannatlik, see võib võtta paar minutit. Kui see kestab
+          liiga kaua, võid
+        check_back: Kui laed lehe mõne minuti pärast uuesti, peaks su eksport ilmuma
+          lehe allosas olevas nimekirjas.
+        receive_an_email_with_your_data: Andmed e-postiga
+        receive_an_email_with_your_data_help: Saad e-posti ning sinu eksport on lisatud
+          manusena.
         well_email_you: Ok, me saadame sulle kirja, kui asi on valmis.
         taking_a_while: See võtab natuke aega. Palun vali mõni allolevatest võimalustest.
         date_range_help: Vaatluse maksimaalne ja minimaalne kuupäev AAAA-KK-PP formaadis,
@@ -5071,31 +5174,206 @@ et:
         id: Vaatluse unikaalne tunnus
         species_guess: Vaatleja siestatud taksoni nimetus
         scientific_name: Vaatluse teaduslik nimetus vastavalt meie lehele
+        common_name: Vaadeldud taksoni rahvapärane nimi vastavalt sellele lehele
+        iconic_taxon_name: Vaadeldud taksoni kõrgema taseme taksonoomiline kategooria
+        taxon_id: Vaadeldud taksoni unikaalne tunnus
+        id_please: Kas vaatleja soovis abi määratlemisel
+        num_identification_agreements: Vaatleja määratlusega nõustuvate määratluste
+          arv
+        num_identification_disagreements: Vaatleja määratlusega mittenõustuvate määratluste
+          arv
+        observed_on_string: Vaatleja sisestatud kuupäev/kellaaeg
+        observed_on: Kohandatud vaatluskuupäev
+        time_observed_at: Kohandatud vaatluskuupäev ja -kellaaeg
+        time_zone: Vaatluse ajavöönd
+        place_guess: Vaatleja sisestatud asukoha kirjeldus
+        latitude: Avalikult nähtav laiuskraad
+        longitude: Avalikult nähtav pikkuskraad
+        positional_accuracy: Koordinaatide täpsus
+        private_latitude: Privaatne pikkuskraad, kui vaatlus on privaatne või varjatud
+        private_longitude: Privaatne laiuskraad, kui vaatlus on privaatne või varjatud
+        geoprivacy: Kas vaatleja on soovinud koordinaate varjata
+        coordinates_obscured: Kas koordinaadid on varjatud geoprivaatsusest või taksoni
+          ohustatusest tulenevalt
+        out_of_range: Kas vaatlus asub väljaspool taksoni teadaolevaid piirkondi
+        user_id: Vaatluse unikaalne tunnus
         user_login: Vaatleja kasutajatunnus
+        created_at: Vaatluse loomise kuupäev ja kellaaeg
+        updated_at: Vaatluse viimase uuendamise kuupäev ja kellaaeg
+        quality_grade: Vaatuse kvaliteedihinnang. Vaata abi sektsioonist selle täpsemat
+          seletust
+        license: Vaatleja poolt sellele vaatlusele valitud litsents
         url: Selle vaatluse URL
         image_url: Vaikimisi pildi URL
         sound_url: 'Vaikimisi heli URL. NB: see töötab ainult otse üles laetud failide,
           mitte kusagil mujal majutatud helide puhul.'
         tag_list: Komaga eraldatud märksõnad
+        place_admin1_name: Riigist üks aste allpool oleva administratiivse üksuse
+          nimi
+        place_admin2_name: Riigist kaks astet allpool oleva administratiivse üksuse
+          nimi
+        positioning_method: Koordinaatide määramise viis
         positioning_device: Koordinaatide määramise seade
       identify:
         review_all_tooltip: Märgi kõik lehe vaatlused ülevaadatuks
+        you_reviewed_message: Sa oled kontrollinud %{reviewed}/%{pageTotal} sellel
+          leheküljel olevast vaatlusest. Kokku on vaatluseid %{total}.
+        unreview_all_tooltip: Märkisid kõik selle lehekülje vaatlused mitte kontrollituks
       import:
+        coordinate_systems_help: '%{site_name} lubab kasutada erinevate koordinaatsüsteemide
+          koordinate. Kui kasutad koordinaate, mis ei vasta laius-/pikkuskraadidele,
+          pead meile ütlema, millist süsteemi sa kasutad, et saaksime neid õigesti
+          tõlgendada. Palun vali kindlasti oma andmetele vastav koordinaatsüsteem,
+          muidu võib asukohta paikned reaalsest väga kaugel. Kui su koordinaadid on
+          pärit GPS-seadmest, vaata selle sätetest järgi kasutatava koordinaatsüsteemi
+          nimi. Pane tähele: me ei säilita teistest süsteemidest pärit koordinaate,
+          vaid ainult nende laius-/pikkuskraadide versioone.'
         date_column_format: AAAA-KK-PP TT:MM
         decimal_degrees_format: kk.kkkk
+        geoprivacy_must_be_in_english: Asukoha privaatsuse tulba väärtused peavad
+          olema inglise keeles. Sobivad väärtused on tühi, "obscured" (varjatud) või
+          "private" (privaatne).
+        project_csv_template_notice_html: Kui vajad CSV-failide struktuuriga abi,
+          võid vaadata selle projekti näidis malli. <a href="%{url}">Laadi see alla</a>
       show:
         allow_curator_coordinate_access_desc_html: Luba projektide kuraatoritel näha
           selle vaatluse privaatseid koordinaate.
+        ancestor_disagreements_desc: Määratletud taksonite hulk, milles sisalduvad
+          antud taksoni alamtaksonid, mis määrati peale seda, kui antud taksonit esimest
+          korda määratluses kasutati
+        community_taxon_desc_html: |-
+          <p class="ui">
+          Kogukondlik takson (ehk kogukondlik määratlus) tähistab seda, mida lehe %{site_name} kogukond mingi vaatluse kohta arvab. Kui sind huvitab, kuidas me kogukondliku taksoni valime, vaata allpool olevaid algorütmi kohta käivaid märkuseid. Üldiselt proovime <strong>valida taksoni, millega enam kui 2/3 määratlejatest nõustuvad</strong>. Mõnikord tähendab see seda, et peame valima kõrgema tasema taksoni, milles sisalduvad arvamuste vastuolud (nt kui sina arvad, et tegu on kuningmaoga, ja mina arvan, et tegu on lõgismaoga, valib iNat alamseltsi Serpentes, mis sisaldab kõik madusid). Algorütm eelistab vähesel määral ebakõla, sest oleme avastanud, et mittenõustujatel on sageli õigus.
+          </p>
+          <p class="ui">
+          Kogukondlikut taksonit kasutame vaatluste jagamisel andmepartneritega, vaatluste seostamiseks sama taksoniga, sinu elunimekirja täiendamiseks, jne. Kui sa mingil põhjusel ei nõustu kogukondliku taksoniga, saad selle tagasi lükata, mis tähendab, et sinu määratlust kasutatakse teiste vaatlustega seostamiseks, elunimekirjade täiendamiseks, jne. Samuti tähendab see seda, et su vaatlus muutub teaduskõlbulikuks vaid siis, kui kogukond <em>sinuga</em> nõustub. Kui sulle mõte kogukondlikest taksonitest ei meeldi, võid neist täielikult keelduda <a href="/users/edit" target="_blank">muutes enda sätteid</a>.
+          </p>
+          <p class="ui">
+          <strong>Algorütm:</strong> kõigile määratletud taksonitele ja neid sisalduvatele taksonitele (st perekond <em>Homo</em> sisaldab liiki <em>Homo sapiens</em>) antakse skoor, mis vastab suhtarvule: kõik selle taksoni määratlused jagatud kõigi määratluste pluss peale esmast määratlemist lisatud konservatiivsemate määratluste pluss täiesti erinevate taksonite määratluste (st määratlused, mis ei sisalda skooritavat taksonit) summaga. Määratletud taksonite puhul, mille skoor on suurem kui 2/3 ning, millel on vähemalt 2 määratlust, valitakse täpseim sobiv takson.
+          </p>
+        cumulative_count_desc: Taksoni ja kõigi selle alamtaksonite määratluste hulk
+        curator_coordinate_access_disabled_desc_html: See projekt ei luba lisada vaatluseid,
+          mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei soovi selle
+          vaatluse koordinaate antud projekti kuraatoritega jagada, pead vaatluse
+          projektist eemaldama.
+        disagreement_count_desc: Taksoni alamtaksonite seas mitte olevate määratluste
+          hulk
+        identification_count_desc: Selle konkreetse taksoni määratluste hulk
+        flagged_photos_desc_html: 'Mõnedele neist fotodest on lisatud märge ebasobiva
+          sisu või autoriõiguste rikkumise kohta. Loe täpsemalt: %{links}'
+        join_project_desc_html: Projektiga liitudes saavad projekti kuraatorid näha
+          nii selle kui kõigi teiste projektis sisalduvate vaatluste varjatud koordinaate
+          ning liitudes nõustud sa ka projekti <a href="%{url}" target="_blank">reeglitega</a>.
+        quality_assessment_help_html: |-
+          <p>
+          Andmete kvaliteedihinnang on vaatluse täpsuse kokkuvõte. Kõik vaatlused on esmalt <strong>"juhuvaatlused"</strong> ning muutuvad <strong>"vajab märamist"</strong> vaatlusteks kui
+          </p>
+
+          <ul>
+            <li>vaatlusel <strong>on kuupäev</strong></li>
+            <li>vaatlusel <strong>on asukoha andmed</strong> (st laius- ja pikkuskraadid)</li>
+            <li>vaatlusel <strong>on fotod või helid</strong></li>
+            <li>vaatlus <strong>ei ole inimesest</strong></li>
+          </ul>
+          <p>
+          Vaatlused muutuvad <strong>"teaduskõlbulikuks"</strong> kui
+          </p>
+          <ul>
+            <li>kui %{site_name} <strong>kogukond nõustub liigitäpsuse või täpsema määratlusega</strong>, st kui 2/3 määratlejatest nõustuvad mingi taksoniga</li>
+          </ul>
+          <p>
+          Vaatlus muutub uuesti <strong>"juhuvaatluseks"</strong>, kui ülalolevad tingimused pole täidetud või kogukond arvab,
+          </p>
+          <ul>
+            <li>et <strong>asukoht ei näi olevat täpne</strong> (nt ahvid keset ookeani, jõehobud kontorihoones, jne)</li>
+            <li>et <strong>organism pole metsik/kohandunud</strong> (nt inimeste poolt vangistatud või kasvatatud või sisaldab intelligentseid tulnukaid)</li>
+            <li>et vaatlus <strong>ei sisalda mingi organismi olemasolu tundemärke</strong>, nt pildid maastikest, veekogudest, kividest, jne</li>
+            <li>et vaatlus <strong>ei sisalda hiljutisi (~100 aastat) märke organismi kohalolust</strong> (nt kivistised, kuid väljaheited, jäljed ja kuivanud lehed sobivad)</li>
+            <li>vaatlus ei vaja enam määratlemist <em>ning</em> kogukondlik määratlus on vähemalt sugukonna tasemel</li>
+            <li>vaatleja ei ole soovinud kogukondliku määratlust ning kogukondlik määratlus ei ole vaatleja määratluse täpsem versioon</li>
+          </ul>
+          <p>
+          Ja kui see pole veel piisavalt keeruline, siis eksisteerivad ka olukorrad, kus süsteem ise saab otsustada:
+          </p>
+          <ul>
+            <li>Süsteem otsustab, et vaatlus pole metsik/kohandunud, kui väikseimas maakonna, osariigi või riigi tüüpi kohas, milles see vaatlus on tehtud, on vähemalt 10 teist liigi või täpsema taseme vaatlust, mis sisaldavad sama organismi, ning 80% neist on märgitud mitte metsikuks või kohandunuks.</li>
+          </ul>
+        score_desc: skoor = koguarv / (koguarv + erimeelsuste arv + alamtaksonite
+          ebakõlad)
+        observation_flagged_notice_html: |-
+          Vaatlus on märgitud rämpspostiks ja pole enam avalikult nähtav. Sina näed seda, kuna oled selle loonud kasutaja või lehe kuraator. Kui sa arvad, et tegu on eksitusega, võta meiega palun <a href="mailto:%{help_email}" class="contact">ühendust</a>.
+          <a href="/observations/%{observation_id}/flags">Halda märkuseid</a>
+      user_stats:
+        user_stats_desc: Kasutajate statistika on piiratud top 500ga vaatluste või
+          liikide arvu järgi, mis tähendab, et enamasti näidatakse natuke üle viiesaja
+          kasutaja, sest need kaks nimekirja ei sisalda enamasti samu kasutajaid.
+          '*' märgitud väärtus tähendab, et kasutaja on selle väärtuse top 500 sees.
+    observation_fields:
+      about_editing_observation_fields_desc_html: |-
+        <p class='ui'>Saad seda vaatlusvälja muuta, kuna oled selle looja või lehe kuraator. Kui oled lehe kuraator, järgi palun allolevaid juhiseid</p>
+        <ol>
+          <li>Ära tee ebaolulisi nime muutuseid (nt muutes sõna "söök" sõnaks "nektar")</li>
+          <li>Pea meeles, et vaatlusvälju saab kasutada kõigi taksonite vaatluste puhul, nii et proovi mitte kasutada mingile taksonile eripärast terminoloogiat</li>
+          <li>Ära kustuta välju, mida inimesed kasutavad</li>
+          <li>Ära tõlgi olemasolevaid välju erinvatesse keeltesse. Selle lehe peamine keel on inglise keel. Kui sa tõesti soovid välja, mis sisaldaks sama mõtet aga oleks mõnes teises keeles, siis loo palun uus vaatlusväli.</li>
+        </ol>
+      dna_help: Et lülitada sisse BOLD DNA triipkoodide võrdlemise võimalus, peab
+        su välja nime sisaldama sõnu "COI", "COX1", "ITS" või "matK", mis vastab geenile,
+        millega see väli tegeleb.
+      merge:
+        warning_html: Palun austa teiste kasutajate andmeid ja <strong>suhtle enne
+          vaatlusvälja ühendamist selle loojaga</strong>. See tööriist hävitab ühendatava
+          vaatlusvälja ning liigitab kõik seda kasutavad vaatlused alles jääva välja
+          alle. <strong>Seda ei saa tagasi võtta!</strong> Ole ettevaatlik!
     emailer:
+      observations_export_notification:
+        your_observations_export_is_ready_html: Sinu eksporditud vaatlused on valmis.
+          Koopia ekspordist on selle kirja manuses või saad selle <a href="%{url}">alla
+          laadida siit</a>.
+        your_observations_export_failed_html: Sinu vaatluste eksportimine ebaõnnestus.
+          Külasta <a href="%{url}">vaatluste eksportimise lehte</a>, et näha kõiki
+          oma eksporte.
       bulk_import_success:
         success_message: Faili %{filename} massimport õnnestus. Sinu vaatluseid töödeldakse
           ning need ilmuvad peagi lehele.
+      bulk_import_error:
+        taxon_spelling_notice_html: Palun kontrolli iga sissekande õigekirja. Kui
+          see on õige, otsi liiki aadressilt %{search_taxa_url}. Kui nime pole veel
+          lehe %{site_name} andmebaasis, pead selle enne massimporti looma. Kasuta
+          uute nimede importimiseks otsingu lehe allosas olevat kasti. Kui nimi on
+          olemas, kuid see on õigesti seotud mitme taksoniga, proovi kasutada mõnda
+          teist nimetust, mis oleks seostatav vaid ühe taksoniga.
+      users_updates_suspended:
+        message: Sa pole mõnda aega olnud lehel %{site_name} aktiivne, nii et oleme
+          katkestanud sinu jälgimised. Et jätkuvalt saada teateid lehel toimuvast,
+          palun <a href="%{login_url}">logi uuesti sisse</a>.
     photos:
       inviter:
         automatically_add_to_project: Lisa automaatselt projekti
         automatically_id_the_new_obs_as: Määratle uus vaatlus automaatselt kui
+        dont_forget_the_invite_link_placeholder: ära unusta {{INVITE_LINK}} (kutse
+          lingi) kohahoidjat
         invite_other_photographers_to_inat: Kutsu teisi fotograafe lehele %{site_name}
+        invite_your_friends_description: Saad muuta väga lihtsaks Facebooki ja Flickri
+          fotode lisamise %{site_name} vaatlustele. Jäta lihtsalt kommentaar, milles
+          sisaldub allolev spetsiaalne kutse-URL. Saad uue vaatluse jaoks ka taksoni
+          ja projekti ette ära valida.
+      show:
+        view_original_html: Originaali näed aadressil <a href="%{url}">%{url}</a>.
+          Palun märgi autoriõiguste rikkumise märkused lahendatuks, kui see foto neid
+          ei riku.
     places:
+      kml_field_desc: Koha piirjoone KML. Seda saab teha Google Maps, Google Earth
+        või enamiku GIS-programmidega. Peab sisaldama vähemalt ühte hulknurka, olema
+        vähem kui 1 MB (kuraatorite puhul vähem kui 5 MB) ning selle pindala peab
+        olema väiksem kui USA Texase osariigil.
+      edit:
+        complex_boundary_note_html: See piirjoon on veebis muutmiseks natuke liiga
+          keeruline. Kuid sa võid siiski <a href="%{url}">KML-faili alla laadida</a>,
+          seda sinu jaoks sobivas GIS-programmis muuta ning uue KML-faili otse üles
+          laadida.
+        admin_level_desc: 'Peaks olema määratud vaid poliitiliste kehandite puhul.
+          USA vasted oleksid: 0=riik, 1=osariik, 2=maakond, 3=linn'
       index:
         adding_new_places: lisades uusi kohti
         confirming_identifications: kinnitades vaatluseid lisades neile määratlusi
@@ -5104,34 +5382,197 @@ et:
       new:
         check_list_note: 'NB: väga suurte kohtade puhul on kontrollnimekirjad automaatselt
           välja lülitatud.'
+        coordinates_desc: Kui sa piirjoont ei joonista või KML-faili üles ei lae,
+          pead määrama koordinaadid.
+        map_instruction: Joonista hulknurkade tööriistaga koha piirjoon.
+    posts:
+      formatting_none_help: HTMLi pole sisestatud, kasutab ainult sinu sisestatud
+        vormistusvõimalusi.
+      formatting_simple_help: Muudab automaatselt URLid linkitekst ja lisab reavahed.
     projects:
+      project_type: Projekti tüüp
+      collection: Kogum
       umbrella: Ülem
+      tracks_multiple_projects: jälgib mitut projekti
+      projects_included: Sisalduvad projektid
       collection_and_umbrellas_do_not_support: Kogumis- ja ülemprojektid ei võimalda
         praegu ligipääsu privaatsetele koordinaatidele.
+      curator_coordinate_access_desc_html: |-
+        Pea meeles, <strong>projekti kuraatorid saavad kõiki su vaatluseid oma projektidesse lisada</strong>, kui sa pole sellest <a
+        href="/users/edit">oma kontosätetes</a> keeldunud. Pane siia kasti linnuke vaid siis, kui soovid usaldada projekti kuraatoritele ligipääsu nende vaatluste privaatsetele koordinaatidele, mis selle projektiga sobivad. Kui sa ei soovi neile seda ligipääsu võimaldada, saad neile siiski iga vaatluse puhul sellised õigused eraldi pakkuda.
+      confirm_leave:
+        what_would_you_like: Mida sa tahaksid teha sellesse projekti kuuluvate enda
+          vaatlustega?
+        keep_observations_label: Jäta oma vaatlused projekti
+        keep_observations_desc: Sinu vaatlused jäävad projekti ning kuraatorid näevad
+          endiselt nende privaatseid koordinaate.
+        project_requires_curator_coordinate_access_desc: See projekt ei luba lisada
+          vaatluseid, mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei
+          soovi oma vaatluste koordinaate antud projekti kuraatoritega jagada, pead
+          vaatlused projektist eemaldama.
+        remove_observations_label: Eemalda kõik oma vaatlused sellest projektist
+        remove_observations_desc_html: Pea meeles, et projektide kuraatorid saavad
+          ka edaspidi lisada sinu vaatluseid oma projektidesse, kui sa ei muuda oma
+          <a href="/users/edit">kontosätteid</a>.
+        revoke_observations_label: Jäta oma vaatlused projekti, kuid ära luba kuraatoritel
+          nende privaatseid koordinaatide nägemist
+        revoke_observations_desc: Kui ainus põhjus su lahkumiseks on see, et sa ei
+          soovi, et kuraatorid su varjatud koordinaate näeks.
       edit:
+        aggregation_pending: Koondamine on ootel
+        new_place_desc_html: Vaata esmalt <a href="%{places_url}" target="_blank">olemasolevaid
+          kohti</a> ja kontrolli, kas sinu sisestatud kohanimi on ikka õige. Kui sa
+          ka siis ei suuda soovitud kohta leida või proovida <a href="%{new_place_url}"
+          target="_blank">uue koha loomist</a>, aga ole palun kindel, et tegu pole
+          olemasoleva koha duplikaadiga.
+        bioblitz_desc_html: |-
+          <p>
+          Bioblitz on üritus, mille puhul osalejad proovivad kindla aja jooksul vaadelda võimalikult palju liike. See on lõbus viis, millega tutvustada inimestele elu mitmekesisust, kogudes samal ajal olulisi andmeid.
+          </p>
+        change_admin_desc: Vali üks projekti kuraatoritest uuest administraatoriks.
+        cover_desc: Projekti päises ilmuv valikuline bänneripilt. Peab olema 950 pikslit
+          lai ja vähemalt 400 pikslit kõrge.
+        custom_project_fields_means: Muuda projekti bännerit, lisa sisu külgtulpadesse
+          ja redigeeri CSSi.
+        end_time_desc: Sinu bioblitzi lõpuaeg. Peab olema vähem kui aasta peale algusaega
         event_url_desc: Ürituste registreerumisteenuse URL, mida oma bioblitzi puhul
           kasutad. Kui tegemist on Eventrbite'i URLiga, milles sisaldub ka numbriline
           ID, lisame su projekti lehele bioblitzi alguseni registreerumisvormi.
+        icon_desc: Lõigatakse ruudukujuliseks
+        it_looks_like_this_project_can_be_converted: Näib, et selle projekti saab
+          muuta uueks <a href="%{url}">kogumisprojektiks</a>.
+        last_aggregated_at_desc: Aeg, kui projekti lisati viimased vaatlused
+        no_curators: Projektil ei ole kuraatoreid. Kui soovid määrata uue kasutaja
+          projekti administraatoriks, peavad nad esmalt projektiga liituma ja sa pead
+          tegema neist kuraatorid.
+        observation_aggregation_desc_html: |-
+          <p class="description">
+          Vaatluste koondamine lisab projekti vastavalt selle reeglitele automaatselt sobivad vaatlused. Kuna projektist ei saa korraga suurt hulka vaatluseid eemalda, võib see olla ohtlik, seega ole kindel, et oled valinud kõik soovitud koha ja taksonite reeglid või muidu võib lisanduda suur hulk ebasobivaid vaatluseid, mida pead siis käsitsi eemaldama.
+          </p>
+          <p class="description">
+          Koondamine toimub vaid siis, kui projekt vastab järgnevatele nõuetele:
+          </p>
+          <ol>
+            <li class="readable description">
+          Projektil peab olema vähemalt üks 'vaatlus peab olema tehtud kohas' reegel, mille puhul koht on väikese või keskmise suurusega (umbes Texase või Ukraina suurune)
+            </li>
+            <li class="readable description">
+          VÕI on projektil vähemalt üks 'peab olema taksonis' reegel
+            </li>
+          </ol>
+        project_assets_desc_html: |-
+          <p class="description">Projekti lisad on lihtsalt sellega seotud failid, mille puhul kehtivad mõned spetsiaalsed reeglid:</p>
+          <ol class="description">
+            <li>Sõnadega .logo.jpg, .logo.png, jne lõppevaid faile kasutatakse projekti lehel projekti ikooni asemel logona</li>
+            <li>KML- ja KMZ-failid lisatakse projekti lehel olevale kaardile</li>
+          </ol>
+        project_list_desc_html: |-
+          <p class="description">
+          Võid teha projekti jaoks spetsiaalse taksonite nimekirja ja selle projektiga seostada. Seeläbi saad piirata projektile lisatavaid vaatluseid kasutades reeglit "peab olema projekti nimekirja takson".
+          </p>
+        rules:
+          captive: olema vangistatud/kultiveeritud
+          coordinates_shareable_by_project_curators: projekti kuraatorid saavad koordinaate
+            jagada
+          georeferenced: omama koordinaate
+          has_a_photo: omama fotot
+          has_a_sound: omam heli
+          has_media: omama meediat (foto või heli)
+          identified: olema määratletud
+          in_taxon: olema taksonis
+          observed_in_place: olema vaadeldud kohas
+          on_list: olema projekti nimekirja takson
+          verifiable: olema tõendatav
+          wild: olema metsik/kohandunud
+        start_time_desc: 'Bioblitzi algusaeg. Formaat: AAAA-KK-PPTtt:mm:ss±tt:mm'
+        submission_models:
+          any: kõik
+          curators: projekti kuraatorid
+        trusted_project_means: Projekti usaldamine on seotud sellega, et projektide
+          haldajad saavad projekte täiendada lisade ning atribuutidega (nt bänneri
+          HTML, CSS). Ligipääs nendele lisadele tähendab seda, et projekti haldajatel
+          on teoorias võimalik täiendada koodi kuritahtliku Javascriptiga, seega tuleks
+          usaldada ainult projekte, mille haldajad on nii usaldusväärsed kui tehniliselt
+          kompetentsed.
+        you_can_preview: Saad näha eelvaadet sellest, milline su projekt näeks välja
+          kogumisprojektina, <a href="%{url}">vajutades siia</a>.
+      invite:
+        description_html: |-
+          <h3>Kutsetest</h3>
+          <p class="ui">
+          Inimeste kutsumine projekti on natuke teistsugune, kui üksikute vaatluste kutsumine. Inimeste kutsumise puhul
+          </p>
+          <ol>
+            <li>Saadetakse neile e-kiri kutsega projektiga liituma</li>
+            <li>Näitab neile kutset ka nende töölaual</li>
+            <li>Lubab neil sinu projektiga liituda, kui projekt on mõeldud vaid kutsututele</li>
+          </ol>
+          <p class="ui">
+          Vaid projekti kuraatorid saavad inimesi projekti kutsuda. Inimesi peaks saama otsida nende iNat kasutajatunnuse või nende <em>täieliku</em> e-posti aadressi abil, kui viimane meil andmebaasis olemas on.
+          </p>
+      join:
+        invite_only_description: Selle projektis on vaid kutsutud liikmed. Kui soovid
+          liituda, kontakteeru palun mõne alloleva kuraatoriga ning küsi endale kutset.
       new:
+        a_project_allows_you_to_gather: Kogumisprojektid lubavad sul iNaturalisti
+          otsingutööriistade abil vaatluseid koguda ja visualiseerida. Sellistesse
+          projektidesse pole vaja vaatluseid käsitsi lisada, sest kõik projekti parameetritele
+          vastavad vaatlused lisatakse automaatselt.
         an_umbrella_project_can_be_used_to: Ülemprojekti saab kasutada kahe või enama
-          kogum- või tavaprojekti statistika võrdlemiseks. Teised projektid peavad
+          kogumis- või tavaprojekti statistika võrdlemiseks. Teised projektid peavad
           eksisteerima, enne kui saad neid ülemprojekti alla lisada. Ühe ülemprojekti
           alla saad lisada sadu projekte. Ülemprojektid ei saa sisaldada teisi ülemprojekte.
         can_be_included_in_multiple: Võib sisalduda mitmes ülemprojektis
+        click_through_to_individual_projects: Vaata üksikprojekte
+        collection_projects: Kogumisprojektid
+        collection_project_features: 'Kogumisprojektide võimalused:'
+        contain_entire_image_without_cropping: Sisaldab tervet lõikamata pilti
+        custom_banner_icon_and_project_description: Spetsiaalne bänner, ikoon ja projekti
+          kirjeldus
+        data_visualizations: Admete visualiseerimine
         delete_project: Kustuta projekt
+        display_project_name: Näita projekti nime
+        do_you_need_features_from_traditional: Kas sa vajad tavaprojektide võimalusi
+          nagu ligipääsu tõelistele koordinaatidele, vaatluste spetsiaalväljasid või
+          üksikute vaatluste lisamist, millega automaatfiltrid hakkama ei saa?
+        leaderboards_among_individuals: <strong>Kasutajate</strong> edetabelid
+        leaderboards_among_projects_and_bioblitzes: <strong>Projektide ja bioblitzide</strong>
+          edetabelid
+        multiple_project_administrators: Mitu projekti administraatorit
+        name_placeholder: Tartu linnud, Imelised konnad, jne.
+        no_need_to_rely_on_manual_addition: Enam ei pea lootma käsitsi lisatud vaatluste
+          või vaatluste koondaja peale
         note_these_users_will_be_able_to_edit: 'NB: need kasutajad saavad muuta KÕIKI
           projekti omadusi, kaasarvatud administraatoreid.'
+        note_you_can_delete_the_time: '(NB: Kui soovid kasutada terveid päevi, võid
+          ajavööndi ja täpse aja kustutada.)'
+        or_drag_and_drop: (või lohista see siia)
         please_specify_the_requirements: Palun määra nõuded vaatlustele, mida sellele
           projektile lisada saab. Võid automaatseks lisamiseks valida korraga mitu
           liiki, kohta ja kasutajat.
+        project_background_color: Projekti kokkuvõtte tausta värv
+        project_background_color_help: Vali kindlasti piisavalt tume värv, et valge
+          pealistekst oleks loetav.
         project_banner: Projekti bänner (PNG, JPG või GIF)
+        project_banner_help: Valikuline bännerpilt. Ideaalsed mõõtmed on 760 pikslit
+          korda 320 pikslit.
         project_details: Projekti detailid
         project_icon: Projekti ikoon (PNG, JPG või GIF)
+        project_icon_help: Valikuline ikoon. Peaks olema vähemalt 72 pikslit korda
+          72 pikslit ning see lõigatakse ruuduks.
         project_name: Projekti nimi
         project_summary: Projekti kokkuvõte
+        project_summary_help: Lisa oma projekti lühikokkuvõte. Projekti avalehe bänneri
+          kõrval on sellest näha umbes 200 tähemärki, nii et pane kõige olulisem info
+          algusse!
+        project_summary_placeholder: Avasta ja jälgi Soomaa linde...
+        start_and_end_times_for_bioblitzes: Bioblitzide algus- ja lõpuajad
         umbrella_project_features: 'Ülemprojekti võimalused:'
+        unique_url_for_outreach: Levitamiseks unikaalne URL
         users_can_follow_your_project: Kasutajad saavad sinu projekti jälgida läbi
           päevikukannete
+        use_this_link_to_create_html: Tavaprojekti loomiseks <a href="%{url}">vajuta
+          siia</a>.
         visual_comparison_of_data_among: Ülemprojekti alla lisatud projektide andmete
           visuaalne võrdlus
         we_have_redesigned_projects: 'Me muutsime projekte ning nüüd on võimalik nõuda,
@@ -5139,31 +5580,103 @@ et:
           taksonitele, kasutajatele, kvaliteedinõuetele ja kuupäevadele. Vali kahe
           tüübi vahel: kogumisprojektid ja ülemprojektid, millest mõlemil on järgnevad
           võimalused:'
+        welcome_to_projects: Teretulemast projektide maailma!
+        you_have_not_defined_any_observation_requirements: Sa ei ole määranud ühtegi
+          vaatlusnõuet. Vali üks või enam taksonit (nt linnud, okaspuud), kohta (nt
+          Eesti, Saaremaa), kasutajat ja/või kuupäeva, et panna paika, mida sa soovid
+          selle projekti alla koondada.
+      project_location_privacy_notice_html: |-
+        <p>
+        Pea meeles, et ainult projekti kuraatorid näevad selles projektis sinu privaatseid või varjatud asukohti, kui sa ise seda spetsiaalselt keelanud pole, ning nad saavad sellesse projekti lisada kõiki sinu vaatlusi kui sa oma <a href="/users/edit">sätteid ei muuda</a>. Saad ka iga vaatluse puhul eraldi koordinaate peita või näidata.
+        </p>
+        <p>
+        Kui sa oled asukoha privaatsuse pärast mures, ära liitu projektidega, kui sa just nende kuraatoreid ei usalda.
+        </p>
       project_user_curator_coordinate_access_labels:
+        observer: Jah, aga ainult siis, kui ma ise vaatluse projekti lisan.
+        any: Jah, ükskõik kes vaatluse projekti lisab.
         none: Ei.
+      curator_coordinate_access_label: Kas sa soovid oma priivatseid/varjatud koordinaate
+        muuta projekti kuraatoritele nähtavaks?
+      curator_coordinate_access_note: Võid ka vaatluste privaatseid koordinaate selles
+        projektis üksikjuhtumite põhiselt jagada. Tegemist on vaid projekti lisatavatele
+        uutele vaatlustele kehtivate vaikimisi sätetega.
+      project_terms_desc_html: Luba projekti kuraatoritel kasutada sinu vaatlusi vastavalt
+        <a href="%{url}">projekti reeglitele</a>.
+      show:
+        are_you_sure_you_want_to_convert: Oled sa kindel, et soovid projekti muuta
+          kogumisprojektiks?
+        click_here_to_convert_this_project: Vajuta siia, et muuta projekt kogumisprojektiks.
+    shared:
+      blocked:
+        youve_been_blocked: Sind on blokeeritud
+        youve_been_blocked_desc: Selle asja omanik on sind blokeerinud, mis tähendab,
+          et sa ei saa temaga suhelda. Enamik sellel lehel olevaid interaktiivseid
+          elemente ei toimi.
+        youve_blocked: Sa oled selle kasutaja blokeerinud
+        youve_blocked_desc: Sa oled selle asja omaniku blokeerinud, mis tähendab,
+          et saa ei saa temaga suhelda. Enamik sellel lehel olevaid interaktiivseid
+          elemente ei toimi.
+      spam:
+        this_has_been_flagged_as_spam: See on varustatud rämpsposti märkusega
+      not_found:
+        sorry_that_doesnt_exist: Vabandust, seda ei eksisteeri!
+        even_our_dedicated_search_mole_couldnt: Ka meie pühendunud otsingumootor ei
+          suutnud midagi leida!
     stats:
       index:
+        active_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari
+          või postituse
+        active_users_desc: Lõi viimase 30 päeva jooksul määratluse, vaatluse, kommentaari
+          või postituse
+        android_desc_html: Loodud <a href="%{url}">iNaturalist Android äpiga</a>
+        avg_ttcid: Keskmine AKM
+        avg_ttid: Keskmine AM
+        identifiers_desc: Lisas sellel päeval kellegi teise vaatlusele määratluse
+        iphone_desc_html: Loodud <a href="%{url}">iNaturalist iPhone äpiga</a>
+        med_ttcid: Mediaan AKM
+        med_ttid: Mediaan AM
+        new_users_desc: Liitus sellel päeval
         obs_1_day: Vaatlused (1 päevas)
         obs_1_day_desc: Ühe päeva jooksul loodud vaatlused
         obs_cid_d_desc: Loodud viimase 7 päeva jooksul ja saanud kogukondliku määratluse
         obs_cid_d_to_genus: Kogukondlik määratlus perekonnani
         obs_cid_d_to_genus_desc: Loodud viimase 7 päeva jooksul ja saanud kogukondliku
           määratluse vähemalt perekonnani
+        obs_desc: Loodud viimasel 7 päeval
         obs_id_d_desc: Loodud viimase 7 päeva jooksul ja saanud määratluse (võib olla
           vaatleja enda oma)
+        other_desc_html: Loodud teiste <a href="%{url}">arendajate</a> programmidega
+        recent_desc: Liitus eelmisel 7 päeval
+        recent_w_0_obs: Hiljutised 0 vaatlusega
+        recent_w_0_obs_desc: Liitus viimase 7 päeva jooksul ja lisas 0 vaatlust
+        recent_w_7_obs: Hiljutised >= 7 vaatlusega
+        recent_w_7_obs_desc: Liitus viimase 7 päeva jooksul ja lisas >= 7 vaatlust
         time_to_id_desc: Aeg määratluseni (tundides, ühe nädalase liikuva vahemiku
           jooksul)
+        TTCID: AKM
+        TTCID_desc: Aeg, mis kulub kelleltki teiselt kogukondlikule taksonile vastava
+          määratluse saamiseks
+        TTID: AM
+        TTID_desc: Aeg, mis kulub kelleltki teiselt määratluse saamiseks
         TTID_note: See statistiks on koostatud eelmisel nädalal loodud vaatluste põhjal,
           mis tähendab, et see ei sisalda määratlusi, mis on lisatud vaatlustele,
           mis toimusid varem. Seetõttu on numbrid väiksemad kui neid arvutada tänase
           seisuga, kuid nad peaksid siiski andma pildi sellest, kui kiiresti kogukond
           ühe nädala jooksul määratleb. Pane tähele, et statistika käib ainult fotodega
           vaatluste kohta.
+        website_desc_html: Loodud <a href="https://www.inaturalist.org">iNaturalist</a>
+          või <a href="%{url}">iNaturalist võrgustiku</a> leheküljel
     taxa:
+      edit:
+        high_status_conservation_status_notice_html: Kõrgema taseme taksonile kaitsestaatuse
+          lisamine mõjutab kõiki selle taksoni alla kuuluvaid liike. Palun ära lisa
+          staatust taksonitele, mis sisaldavad liike, kellel staatus puudub, sest
+          vastasel juhul varjatakse ebavajalikult nende liikide vaatluste koordinaadid.
       show:
         about_names_desc: |-
           <p>
-          Enamikel organismide kategooriatel on "rahvapärased nimed", mida kasutatakse kõnekeeltes. Need nimed on enamasti äratuntavad, lihtsasti hääldatavad ning läbi ajaloo samad, kuid paljudel organismidel on mitu erinevat nime, mida kasutatakse erinevates kohtades, isegi kui keel on sama, mis võib nendest rääkimise muuta keeruliseks. Teadlased on lahendanud selle probleemi kasutades ühte "teaduslikku nimetust" iga organismi kategooriaga, mis vastab <a href="https://et.wikipedia.org/wiki/Binaarne_nomenklatuur">binaarse nomenklatuuri reeglitele</a>, kuid enamasti on need nimed ladina keeles ehk siis keeles, mida enam ei räägita, mistõttu pole nad paljudele sama meeldejäävad kui rahvapärased nimed. Teaduslikud nimed võivad ka peegeldada organismi taksonoomilist asukohta, mis tähendab, et need võivad muutuda, kui teadlased loovad erinevate organismide evolutsiooniliste suhete kohta täpsemaid teooriaid. See vähendab taaskord nende kasulikust suhtlemisel ja seda isegi inimeste puhul, kes tunnevad teaduslikke nimesid.
+          Enamikel organismide kategooriatel on "rahvapärased nimed", mida kasutatakse kõnekeeltes. Need nimed on enamasti äratuntavad, lihtsasti hääldatavad ning läbi ajaloo samad, kuid paljudel organismidel on mitu erinevat nime, mida kasutatakse erinevates kohtades, isegi kui keel on sama, mis võib nendest rääkimise muuta keeruliseks. Teadlased on lahendanud selle probleemi kasutades ühte "teaduslikku nimetust" iga organismi kategooria puhul, mis vastab <a href="https://et.wikipedia.org/wiki/Binaarne_nomenklatuur">binaarse nomenklatuuri reeglitele</a>, kuid enamasti on need nimed ladina keeles ehk siis keeles, mida enam ei räägita, mistõttu pole nad paljudele samavõrd meeldejäävad kui rahvapärased nimed. Teaduslikud nimed võivad ka peegeldada organismi taksonoomilist asukohta, mis tähendab, et need võivad muutuda, kui teadlased loovad erinevate organismide evolutsiooniliste suhete kohta täpsemaid teooriaid. See vähendab taaskord nende kasulikust suhtlemisel ja seda isegi inimeste puhul, kes tunnevad teaduslikke nimesid.
           </p>
           <p>
           Vana ütlus võtab selle kokku: "Rahvapärased nimed muutuvad kohast kohta ja teaduslikud nimed ajast aega."
@@ -5171,21 +5684,43 @@ et:
           <p>
           Proovime neid probleeme leevendada näidates igal pool, kus võimalik, nii rahvapärast kui teaduslikku nime ning valides näidatavad rahvapärased nimed vastavalt lugeja keele ja geograafilistele eelistustele.
           </p>
+        about_conservation_status_desc: Kaitsestaatus võtab kokku organismidegrupi
+          hävimisohu.
+        about_taxon_curators_desc: Need inimesed haldavad seda osa taksonoomilisest
+          puust, mille alla kuulub ka see takson. Kui sa soovid muudatusi teha, lisa
+          sellele taksonile märkus või võta ühendust ühega nendest inimestest.
+        frequency:
+          research: Teaduskõlbulik
+          verifiable: Tõendatav
+          Flowering Phenology=bare: Õisi pole
+          Flowering Phenology=budding: Võrsuv
+          Flowering Phenology=flower: Õitsev
+          Flowering Phenology=fruit: Viljakandev
+          Life Stage=egg: Muna
+          Life Stage=larva: Tõuk
+          Life Stage=teneral: Valmik
+          Life Stage=subimago: Eelvalmik
+          Life Stage=nymph: Nümf
+          Life Stage=pupa: Nukk
+          Life Stage=adult: Täiskasvanu
+          unannotated: Märkus puudub
+        photo_chooser_modal_desc: Lohista vasakult siia fotosid või lohista siinolevaid
+          fotosid uude järjekorda.
     taxon_names:
       form:
         new_name_guidelines_html: |-
           <ul>
             <li><p>Proovi lisada nimesid, mida kasutatakse ka mujal. Palun ära leiuta uusi nimesid.</p></li>
             <li><p>Palun ära lisa korduvaid nimesid, st ära nimeta mitmet kulli lihtsalt "kulliks"</p></li>
-            <li><p>Kõrgema taseme taksonite puhul proov kasutada nimesid, mis viitaksid kõigile alamtaksonitele, nt "roosilased" või "suitsupääsukesed"</p></li>
-            <li><p>Ära lisa infot, mis ei ole nimi, nt sulgudes infot selle kohta, kuidas sinu arust tuleks nime kasutada</p></li>
-            <li><p>Uute sõnaraamatute nimed peaksid olema inglise keeles. Palun ära lisa tõlgitud keelte nimes nagu "Estonian, eesti", sest see muudab erinevates keeltes lehte kasutavate inimeste jaoks kohalike nimede kuvamise keeruliseks või isegi võimatuks</p></li>
-            <li><p>Mõne telgitud keelega seotud rahvapärased nimed ilmuvad tolles keeles vaikimisi nimedena (kui prioriteeti ei määra koha eelistus, nimede järjekord, vms). <a class="readmore" href="/pages/translate">Loe lähemalt tõlkimise kohta</a></p></li>
+            <li><p>Kõrgema taseme taksonite puhul proovi kasutada nimesid, mis viitaksid kõigile alamtaksonitele, nt "roosilased" või "suitsupääsukesed"</p></li>
+            <li><p>Ära lisa infot, mis ei ole nime osa, nt sulgudes infot selle kohta, kuidas sinu arust tuleks nime kasutada</p></li>
+            <li><p>Uute sõnaraamatute nimed peaksid olema inglise keeles. Palun ära lisa tõlgitud keelte nimesid nagu "Estonian, eesti", sest see muudab erinevates keeltes lehte kasutavate inimeste jaoks kohalike nimede kuvamise keeruliseks või isegi võimatuks</p></li>
+            <li><p>Tõlgitud keelega seotud rahvapärased nimed ilmuvad tolles keeles vaikimisi nimedena (kui prioriteeti ei määra koha eelistus, nimede järjekord, vms). <a class="readmore" href="/pages/translate">Loe lähemalt tõlkimise kohta</a></p></li>
           </ul>
         places_help_html: Pane nimi kokku mõne kohaga, et see oleks tolle kohaga seotud
           kasutajatel ja lehtedel eelistatud. Kui ühes kohas on palju nimesid, saad
           nende järjekorda määrata <a href="%{url}">siin</a>. Palun <strong>ära</strong>
-          pane nime kokku IGA seda kasutava kohga, vaid ainult nendega, mille puhul
+          pane nime kokku IGA seda kasutava kohaga, vaid ainult nendega, mille puhul
           kasutus teistest erineb.
     users:
       edit:
@@ -5369,6 +5904,11 @@ et:
         title: Pealkiri
         description: Kirjeldus
         terms: Tingimused
+        map_type: Kaardi tüüp
+        zoom_level: Suurendusaste
+        preferred_membership_model: Eelistatud liikmestaatud
+        prefers_place_boundary_visible: Näita kaardil koha piirjoont
+        tracking_codes: Jälgimiskoodid
       place:
         code: Kood
         latitude: Laiuskraad
@@ -5392,7 +5932,7 @@ et:
         time_zone: Ajavöönd
         search_place_id: Otsi kohta
         place_id: Koht
-  wild: metsik
+  wild: Metsik
   will_paginate:
     previous_label: '&#8592; eelmine'
     next_label: Järgmine &#8594;

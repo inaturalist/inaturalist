@@ -78,7 +78,7 @@ class TaxonChangesController < ApplicationController
     unless @taxon_change.committed?
       @existing = @taxon_change.input_taxa.map do |it|
         TaxonChange.input_taxon(it).all.to_a
-      end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id}
+      end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id || !tc.committed_on.nil?}
       @complete_taxon = @taxon_change.input_taxa.detect{|t| t.complete_taxon}.try(:complete_taxon)
       @complete_taxon ||= @taxon_change.output_taxa.detect{|t| t.complete_taxon}.try(:complete_taxon)
     end
@@ -160,7 +160,7 @@ class TaxonChangesController < ApplicationController
     
     @taxon = @taxon_change.rank_level_conflict?
     if @taxon
-      flash[:error] = "Output taxon rank level not coarser than rank level of all input taxon #{view_context.link_to( 'descendants', @taxon )}".html_safe
+      flash[:error] = "Output taxon rank level not coarser than rank level of active children of input taxon #{view_context.link_to( @taxon.name, @taxon )}".html_safe
       redirect_back_or_default( taxon_changes_path )
       return
     end

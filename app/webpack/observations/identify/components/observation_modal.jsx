@@ -213,16 +213,19 @@ class ObservationModal extends React.Component {
 
     const qualityGrade = ( ) => {
       if ( observation.quality_grade === "research" ) {
-        return _.capitalize( I18n.t( "research_grade" ) );
+        return I18n.t( "research_grade" );
       }
-      return _.capitalize( I18n.t( observation.quality_grade ) );
+      if ( observation.quality_grade === "needs_id" ) {
+        return I18n.t( "needs_id_" );
+      }
+      return I18n.t( "casual_" );
     };
 
     const defaultShortcuts = [
       { keys: ["x"], label: I18n.t( "organism_appears_captive_cultivated" ) },
       { keys: ["r"], label: I18n.t( "mark_as_reviewed" ) },
-      { keys: ["c"], label: I18n.t( "comment" ), skipBlind: true },
-      { keys: ["a"], label: I18n.t( "agree" ), skipBlind: true },
+      { keys: ["c"], label: I18n.t( "comment_" ), skipBlind: true },
+      { keys: ["a"], label: I18n.t( "agree_" ), skipBlind: true },
       { keys: ["i"], label: I18n.t( "add_id" ) },
       { keys: ["f"], label: I18n.t( "add_to_favorites" ) },
       { keys: ["z"], label: I18n.t( "zoom_photo" ) },
@@ -247,7 +250,7 @@ class ObservationModal extends React.Component {
                 <td>
                   <span dangerouslySetInnerHTML={ { __html: shortcut.keys.map( k => `<code>${k}</code>` ).join( " + " ) } } />
                 </td>
-                <td>{ _.capitalize( shortcut.label ) }</td>
+                <td>{ shortcut.label }</td>
               </tr>
             )
           ) )
@@ -421,7 +424,7 @@ class ObservationModal extends React.Component {
                     >
                       <input
                         type="checkbox"
-                        defaultChecked={ captiveByCurrentUser }
+                        checked={ captiveByCurrentUser || false }
                         onChange={function ( ) {
                           toggleCaptive( );
                         }}
@@ -567,7 +570,7 @@ class ObservationModal extends React.Component {
                       >
                         <input
                           type="checkbox"
-                          defaultChecked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                          checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
                           onChange={function ( ) {
                             toggleReviewed( );
                           }}
@@ -597,7 +600,7 @@ class ObservationModal extends React.Component {
                           <div className="loading_spinner" />
                         ) : (
                           <i className="fa fa-check"></i>
-                        ) } { _.capitalize( I18n.t( "agree" ) ) }
+                        ) } { I18n.t( "agree_" ) }
                       </Button>
                     </OverlayTrigger>
                     <Button
@@ -605,7 +608,7 @@ class ObservationModal extends React.Component {
                       className="comment-btn"
                       onClick={ function ( ) { addComment( ); } }
                     >
-                      <i className="fa fa-comment"></i> { _.capitalize( I18n.t( "comment" ) ) }
+                      <i className="fa fa-comment"></i> { I18n.t( "comment_" ) }
                     </Button>
                     <Button bsStyle="default" onClick={ function ( ) { addIdentification( ); } } >
                       <i className="icon-identification"></i> { I18n.t( "add_id" ) }

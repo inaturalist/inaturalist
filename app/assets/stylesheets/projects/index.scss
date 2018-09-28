@@ -83,7 +83,6 @@ $carousel-height-narrow: 350px;
     }
     span {
       font-size: 18px;
-      text-transform: capitalize;
     }
   }
   .left,
@@ -166,10 +165,6 @@ $carousel-height-narrow: 350px;
 #main-container {
   z-index: 1;
   background-color: $page-background-grey;
-
-  h2 {
-    text-transform: capitalize;
-  }
 
   .thumbnail {
     border: 1px solid $border-grey;

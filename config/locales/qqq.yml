@@ -57,10 +57,6 @@ qqq:
   x_observations_link_html: |-
     Number of observations, with the count linked to $url
     {{Identical|Observation}}
-  x_people: |-
-    Number of people
-    {{Identical|Person}}
-    {{Identical|People}}
   x_people_agree_html: |-
     Number of people that agree with something,
     with the count in a span of class 'count'
@@ -704,7 +700,8 @@ qqq:
   momentjs:
     shortRelativeTime:
       future: '{{Identical|In}}'
-    datetime_with_zone: momentjs formatting string for a date with a time and a time zone. See https://momentjs.com/docs/#/displaying/ for formatting rules.
+    datetime_with_zone: momentjs formatting string for a date with a time and a time
+      zone. See https://momentjs.com/docs/#/displaying/ for formatting rules.
   mon: Abbreviation for Monday, a day of the week.
   month: '{{Identical|Month}}'
   months: '{{Identical|Month}}'
@@ -950,7 +947,9 @@ qqq:
   purple: '{{Identical|Purple}}'
   queued: '{{Identical|Queue}}'
   query: '{{Identical|Query}}'
-  range: "Geographical range, as in the range of a species distrubtion. For ranges of dates see date_picker.range or date_range."
+  random: '{{Identical|Random}}'
+  range: Geographical range, as in the range of a species distrubtion. For ranges
+    of dates see date_picker.range or date_range.
   rank: '{{Identical|Rank}}'
   rank_position: Rank, as in position in a list
   ranks:

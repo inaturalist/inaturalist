@@ -92,7 +92,6 @@ html, body {height: 100%;}
   border-radius: 2px;
   box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
   margin: 5px;
-  text-transform: capitalize;
 }
 
 .gmapv3legend .gmap-label {
@@ -131,7 +130,6 @@ html, body {height: 100%;}
 .gmapv3legend ul.inat-overlay li {
   padding: 5px;
   list-style: none;
-  text-transform: capitalize;
 }
 
 .gmapv3legend ul.inat-overlay li.header {
@@ -1993,9 +1991,6 @@ user-icon .icon-person:before {
         }
         .secondary-name:before { content: '('; display: inline-block; }
         .secondary-name:after { content: ')'; display: inline-block; }
-        .rank {
-          text-transform: capitalize;
-        }
         overflow: hidden;
         white-space: nowrap;
       }
@@ -2066,9 +2061,6 @@ user-icon .icon-person:before {
           color: white;
         }
       }
-    }
-    .ac.view-all {
-      text-transform: capitalize;
     }
     .ui-state-focus {
       .ac {

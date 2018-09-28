@@ -43,7 +43,7 @@ const InteractionsTab = ( { interactions } ) => {
             { _.map( interactionsByType, ( typedInteractions, type ) => (
               <li key={`interactions-${type}`}>
                 <strong>
-                  { _.startCase( type ) }:
+                  { type }:
                   { I18n.t( "x_species", { count: typedInteractions.length } ) }
                 </strong>
                 <ul>

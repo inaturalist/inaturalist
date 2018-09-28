@@ -44,9 +44,6 @@ oc:
   x_observations_link_html:
     one: <a href='%{url}'>1 observacion</a>
     other: <a href='%{url}'>%{count} observacions</a>
-  x_people:
-    one: 1 persona
-    other: '%{count} personas'
   x_people_agree_html:
     one: <span class="count">1</span> persona es d’acòrdi
     other: <span class="count">%{count}</span> personas son d’acòrdi

@@ -8,6 +8,7 @@ $changed-color: #74ac00;
   z-index: 1060;
 }
 
+.bootstrap .FiltersButtonPopover.popover,
 .FiltersButtonPopover.popover {
   max-width: none;
   .popover-content {
@@ -191,6 +192,12 @@ $changed-color: #74ac00;
       font-size: 16px;
       .text-muted {
         font-weight: normal;
+      }
+    }
+
+    .input-group {
+      .form-group {
+        margin-bottom: 0;
       }
     }
   }

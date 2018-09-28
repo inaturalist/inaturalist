@@ -728,8 +728,8 @@ class Taxon < ActiveRecord::Base
     parent_id.nil?
   end
   
-  def move_to_child_of(taxon)
-    update_attributes(:parent => taxon)
+  def move_to_child_of( taxon )
+    update_attributes( parent: taxon )
   end
   
   def default_name(options = {})
@@ -933,11 +933,7 @@ class Taxon < ActiveRecord::Base
   def active_parent_if_active
     return if parent.nil? || !is_active
     return if parent.is_active
-    return if parent_is_draft_swap_output = parent.taxon_changes.map{|tc| tc.committed_on.nil? && tc.type == "TaxonSwap"}.any?
-    return if parent_is_draft_merge_or_split_output = parent.taxon_change_taxa.map{|tct|
-      tct.taxon_change.committed_on.nil? &&
-      ( ["TaxonSplit" || "TaxonMerge"].include? tct.taxon_change.type )
-    }.any?
+    return if TaxonChange.uncommitted.output_taxon( parent ).exists?
     errors.add( self.name, "must have a parent that is active or the output of a draft taxon change to be active itself" )
   end
 
@@ -981,7 +977,7 @@ class Taxon < ActiveRecord::Base
   def graftable_if_complete
     return true unless ancestry_changed?
     ct = complete_taxon
-    if !@skip_complete && ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
+    if !skip_complete && ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
       errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
     end
     true

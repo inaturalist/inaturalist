@@ -220,7 +220,7 @@ class PlaceChooserPopover extends React.Component {
                 style={{ display: this.props.place ? "block" : "none" }}
               >
                 <i className="fa fa-times"></i>
-                { _.capitalize( I18n.t( "clear" ) ) }
+                { I18n.t( "clear" ) }
               </li>
               { _.map( this.state.places, ( p, i ) => {
                 let placeType;
@@ -265,7 +265,8 @@ class PlaceChooserPopover extends React.Component {
             place ?
               I18n.t( `places_name.${_.snakeCase( place.name )}`, { defaultValue: place.display_name } )
               :
-              _.startCase( I18n.t( "filter_by_place" ) ) }
+              I18n.t( "filter_by_place" )
+          }
           { postIconClass ? <i className={`${postIconClass} post-icon`}></i> : null }
         </div>
       </OverlayTrigger>
