@@ -1,9 +1,10 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Modal, Button, Glyphicon } from "react-bootstrap";
+import { Modal, Button, Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import SelectionBasedComponent from "./selection_based_component";
 import LocationChooserMap from "./location_chooser_map";
+import SavedLocationChooser from "./saved_location_chooser";
 import util from "../models/util";
 
 class LocationChooser extends SelectionBasedComponent {
@@ -33,6 +34,7 @@ class LocationChooser extends SelectionBasedComponent {
       latitude: this.props.lat ? Number( this.props.lat ) : undefined,
       longitude: this.props.lat ? Number( this.props.lng ) : undefined,
       accuracy: this.props.radius ? Number( this.props.radius ) : undefined,
+      geoprivacy: this.props.geoprivacy,
       center: this.props.center,
       bounds: this.props.bounds,
       zoom: this.props.zoom,
@@ -50,6 +52,7 @@ class LocationChooser extends SelectionBasedComponent {
       if ( !attrs.latitude && this.multiValued( "latitude" ) ) { delete attrs.latitude; }
       if ( !attrs.longitude && this.multiValued( "longitude" ) ) { delete attrs.longitude; }
       if ( !attrs.accuracy && this.multiValued( "accuracy" ) ) { delete attrs.accuracy; }
+      if ( !attrs.geoprivacy && this.multiValued( "geoprivacy" ) ) { delete attrs.geoprivacy; }
       if ( !attrs.locality_notes && this.multiValued( "locality_notes" ) ) {
         delete attrs.locality_notes;
       }
@@ -96,7 +99,6 @@ class LocationChooser extends SelectionBasedComponent {
     } );
   }
 
-
   render() {
     let canSave = false;
     const latNum = Number( this.props.lat );
@@ -112,6 +114,8 @@ class LocationChooser extends SelectionBasedComponent {
       canSave = true;
     }
     const glyph = this.props.notes && ( <Glyphicon glyph="map-marker" /> );
+    let multipleGeoprivacy = this.multiValued( "geoprivacy" ) && (
+      <option>{ I18n.t( "multiple_select_option" ) }</option> );
     return (
       <Modal
         show={ this.props.show }
@@ -134,7 +138,7 @@ class LocationChooser extends SelectionBasedComponent {
           <div className="form">
             <div className="form-group">
               <label className="control-label">
-                { I18n.t( "latitude" ) }
+                <span className="label-text">{ I18n.t( "latitude" ) }</span>
                 <input
                   className="form-control"
                   key="lat"
@@ -147,7 +151,7 @@ class LocationChooser extends SelectionBasedComponent {
             </div>
             <div className="form-group">
               <label className="control-label">
-                { I18n.t( "longitude" ) }
+                <span className="label-text">{ I18n.t( "longitude" ) }</span>
                 <input
                   className="form-control"
                   key="lng"
@@ -159,8 +163,8 @@ class LocationChooser extends SelectionBasedComponent {
               </label>
             </div>
             <div className="form-group">
-              <label className="control-label">
-                { I18n.t( "accuracy_meters" ) }
+              <label className="control-label" title={ I18n.t( "accuracy_meters" ) }>
+                <span className="label-text">{ I18n.t( "acc" ) }</span>
                 <input
                   className="form-control"
                   key="radius"
@@ -172,8 +176,25 @@ class LocationChooser extends SelectionBasedComponent {
               </label>
             </div>
             <div className="form-group">
+              <label className="control-label" title={ I18n.t( "geoprivacy" ) }>
+                <span className="label-text">{ I18n.t( "geoprivacy" ) }</span>
+                <select
+                  key="location-chooser-geoprivacy"
+                  type="select"
+                  className="form-control"
+                  onChange={ e => this.update( "geoprivacy", e ) }
+                  value={ this.props.geoprivacy }
+                >
+                  { multipleGeoprivacy }
+                  <option value="open">{ I18n.t( "open_" ) }</option>
+                  <option value="obscured">{ I18n.t( "obscured" ) }</option>
+                  <option value="private">{ I18n.t( "private_" ) }</option>
+                </select>
+              </label>
+            </div>
+            <div className="form-group notes-form-group">
               <label className="control-label">
-                { I18n.t( "locality_notes" ) }
+                <span className="label-text">{ I18n.t( "locality_notes" ) }</span>
                 <input
                   className="notes form-control"
                   key="notes"
@@ -184,6 +205,62 @@ class LocationChooser extends SelectionBasedComponent {
                 />
               </label>
             </div>
+            { latNum && lngNum && this.props.notes ? (
+              <div className="form-group save-form-group">
+                <label className="control-label">
+                  <span className="label-text">&nbsp;</span>
+                  <OverlayTrigger
+                    placement="top"
+                    trigger={["hover", "focus"]}
+                    delayShow={1000}
+                    overlay={
+                      <Tooltip id="pin-btn-tooltip">
+                        { I18n.t( "pinned_locations_desc" ) }
+                      </Tooltip>
+                    }
+                    container={ $( ".location" ).get( 0 ) }
+                  >
+                    <button
+                      type="button"
+                      className="btn btn-default"
+                      onClick={ () => {
+                        this.props.saveLocation( {
+                          latitude: latNum,
+                          longitude: lngNum,
+                          positional_accuracy: this.props.radius,
+                          geoprivacy: this.props.geoprivacy,
+                          title: this.props.notes
+                        } );
+                      } }
+                    >
+                      <i className="fa fa-thumb-tack"></i> { I18n.t( "pin_verb" ) }
+                    </button>
+                  </OverlayTrigger>
+                </label>
+              </div>
+            ) : null }
+            <SavedLocationChooser
+              className={ this.props.savedLocations.savedLocations.length === 0 ? "hidden" : "" }
+              locationsTotal={ this.props.savedLocations.total }
+              defaultLocations={ this.props.savedLocations.savedLocations }
+              onChoose={ sl => {
+                this.props.updateState( { locationChooser: {
+                  lat: sl.latitude,
+                  lng: sl.longitude,
+                  radius: sl.positional_accuracy,
+                  geoprivacy: sl.geoprivacy,
+                  notes: sl.title,
+                  manualPlaceGuess: false,
+                  center: {
+                    lat: sl.latitude,
+                    lng: sl.longitude
+                  },
+                  show: true,
+                  fitCurrentCircle: true
+                } } );
+              } }
+              removeLocation={ sl => this.props.removeSavedLocation( sl ) }
+            />
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -193,7 +270,7 @@ class LocationChooser extends SelectionBasedComponent {
             bsStyle="primary"
             disabled={ !canSave }
           >
-            { I18n.t( "save" ) }
+            { I18n.t( "update_observations" ) }
           </Button>
         </Modal.Footer>
       </Modal>
@@ -216,9 +293,17 @@ LocationChooser.propTypes = {
   lng: PropTypes.any,
   radius: PropTypes.any,
   zoom: PropTypes.number,
+  geoprivacy: PropTypes.string,
   center: PropTypes.object,
   bounds: PropTypes.object,
-  notes: PropTypes.string
+  notes: PropTypes.string,
+  saveLocation: PropTypes.func,
+  savedLocations: PropTypes.object,
+  removeSavedLocation: PropTypes.func
+};
+
+LocationChooser.defaultProps = {
+  savedLocations: {}
 };
 
 export default LocationChooser;

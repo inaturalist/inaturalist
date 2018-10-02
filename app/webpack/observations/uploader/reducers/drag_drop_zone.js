@@ -9,7 +9,7 @@ const defaultState = {
   numberOfUploads: 0,
   maximumNumberOfUploads: 3,
   saveCounts: { pending: 0, saving: 0, saved: 0, failed: 0 },
-  locationChooser: { show: false },
+  locationChooser: { show: false, fitCurrentCircle: false },
   removeModal: { show: false },
   confirmModal: { show: false },
   photoViewer: { show: false },

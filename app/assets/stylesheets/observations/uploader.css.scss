@@ -1,4 +1,6 @@
 @import "../../../../node_modules/react-bootstrap-datetimepicker/css/bootstrap-datetimepicker.min";
+@import "../colors";
+@import "../shared/saved_location_chooser";
 
 body {
   background-color: #eee;
@@ -550,6 +552,22 @@ ul.obs > li .card {
 
 .modal {
   &.location {
+
+    display: flex !important;
+    padding-left: 0px !important;
+    flex-direction: column;
+    align-items: center;
+
+    .modal-content {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      min-height: 508px;
+      overflow: hidden;
+    }
+
+
     .modal-header {
       .glyphicon {
         font-size: 0.9em;
@@ -557,11 +575,17 @@ ul.obs > li .card {
       }
     }
     .modal-dialog {
-      width: 700px;
+      width: 80%;
+      height: 90%;
+      display: flex;
     }
     .modal-body {
-      height: 400px;
+      min-height: 400px;
       padding: 10px;
+      flex: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
     }
     .modal-header {
       padding: 10px 10px 5px 10px;
@@ -583,11 +607,19 @@ ul.obs > li .card {
     .form-group {
       display: inline-block;
       margin: 0px 10px;
-      input {
-        width: 100px;
-        &.notes {
-          width: 250px;
-        }
+      flex: 1;
+      .input,
+      label {
+        width: 100%;
+      }
+    }
+    .notes-form-group {
+      flex: 2;
+    }
+    .save-form-group {
+      flex: 0;
+      .btn-group {
+        display: flex; 
       }
     }
     .close {
@@ -600,7 +632,8 @@ ul.obs > li .card {
     }
   }
   .map {
-    height: 310px;
+    min-height: 310px;
+    flex: 2;
     .photo-marker {
       width: 50px;
       height: 50px;
@@ -620,6 +653,15 @@ ul.obs > li .card {
     display: flex;
     option {
       height: 0px;
+    }
+    select {
+      font-weight: normal;
+    }
+    label {
+      .label-text {
+        display: block;
+        white-space: nowrap;
+      }
     }
   }
 
@@ -824,3 +866,4 @@ label {
     font-weight: normal;
   }
 }
+

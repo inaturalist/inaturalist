@@ -3451,6 +3451,42 @@ ALTER SEQUENCE rules_id_seq OWNED BY rules.id;
 
 
 --
+-- Name: saved_locations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE saved_locations (
+    id integer NOT NULL,
+    user_id integer,
+    latitude numeric(15,10),
+    longitude numeric(15,10),
+    title character varying,
+    positional_accuracy integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    geoprivacy text DEFAULT 'open'::text
+);
+
+
+--
+-- Name: saved_locations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE saved_locations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: saved_locations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE saved_locations_id_seq OWNED BY saved_locations.id;
+
+
+--
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5307,6 +5343,13 @@ ALTER TABLE ONLY rules ALTER COLUMN id SET DEFAULT nextval('rules_id_seq'::regcl
 
 
 --
+-- Name: saved_locations id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY saved_locations ALTER COLUMN id SET DEFAULT nextval('saved_locations_id_seq'::regclass);
+
+
+--
 -- Name: sessions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6177,6 +6220,14 @@ ALTER TABLE ONLY rules
 
 
 --
+-- Name: saved_locations saved_locations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY saved_locations
+    ADD CONSTRAINT saved_locations_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: sessions sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6481,13 +6532,6 @@ CREATE INDEX index_annotations_on_resource_id_and_resource_type ON annotations U
 --
 
 CREATE INDEX index_annotations_on_user_id ON annotations USING btree (user_id);
-
-
---
--- Name: index_announcements_on_site_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_announcements_on_site_id ON announcements USING btree (site_id);
 
 
 --
@@ -7982,6 +8026,20 @@ CREATE INDEX index_roles_users_on_user_id ON roles_users USING btree (user_id);
 
 
 --
+-- Name: index_saved_locations_on_title; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saved_locations_on_title ON saved_locations USING btree (title);
+
+
+--
+-- Name: index_saved_locations_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saved_locations_on_user_id ON saved_locations USING btree (user_id);
+
+
+--
 -- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9328,6 +9386,8 @@ INSERT INTO schema_migrations (version) VALUES ('20180518231918');
 
 INSERT INTO schema_migrations (version) VALUES ('20180613193352');
 
+INSERT INTO schema_migrations (version) VALUES ('20180704195638');
+
 INSERT INTO schema_migrations (version) VALUES ('20180719001655');
 
 INSERT INTO schema_migrations (version) VALUES ('20180803162216');
@@ -9339,4 +9399,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180822173011');
 INSERT INTO schema_migrations (version) VALUES ('20180905191330');
 
 INSERT INTO schema_migrations (version) VALUES ('20180906232956');
+
+INSERT INTO schema_migrations (version) VALUES ('20180914231617');
 

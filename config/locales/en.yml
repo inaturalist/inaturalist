@@ -1740,7 +1740,6 @@ en:
   leave_a_comment: Leave a comment
   leave_this_project: Leave this project
   leaves: leaves
-  not_absent: not absent
   legacy_authentication_notice_html: |
     Looks like you're using a password from an older version of this website.
     Please remember to <a href="%{url}">change your password</a> for the new version.
@@ -2277,6 +2276,7 @@ en:
   none: None
   none_found: None found
   normal: normal
+  not_absent: not absent
   not_completed: Not Completed
   not_evaluated: not evaluated
   not_filtering: Not filtering
@@ -2616,7 +2616,10 @@ en:
   google_account_not_linked: "%{user} doesn't have a linked Google account anymore, so %{site_name} doesn't have permission to access this photo."
   picasa_identity: Picasa Identity
   pick_a_username: Pick a username
+  pin_verb: Pin
   pink: pink
+  pinned_locations_desc: |
+    Pin this combination of coordinates, accuracy, geoprivacy, and locality notes for later use.
   place: Place
   placeholder: Placeholder
   place_added_to_inat_by: "Place added to %{site_name} by"
@@ -3857,6 +3860,8 @@ en:
   update_existing_observations_with_new_license: Update existing observations with new license choices
   update_existing_photos_with_new_license: Update existing photos with new license choices
   update_existing_sounds_with_new_license: Update existing sounds with new license choices
+  update_observation: Update Observation
+  update_observations: Update Observations
   update_past: "Update Past %{type}"
   update_photos: Update Photos
   update_search: Update Search
@@ -4339,6 +4344,7 @@ en:
   your_projects: Your Projects
   your_google_account: your Google account
   your_google_account_info: Your Google Account Information
+  your_pinned_locations: Your Pinned Locations
   your_profile_was_successfully_updated: Your profile was successfully updated!
   your_projects: Your Projects
   your_recent_projects: Your Recent Projects
