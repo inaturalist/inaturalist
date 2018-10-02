@@ -198,6 +198,7 @@ body>div>.popover[role="tooltip"].popover-error {
     margin: 0 15px;
     padding: 10px 15px;
     .inverse-toggle {
+      cursor: pointer;
       .fa {
         color: $inat-green;
         margin-left: 5px;
@@ -214,6 +215,17 @@ body>div>.popover[role="tooltip"].popover-error {
       }
       .collapse.in, .collapsing {
         margin-top: 15px;
+      }
+    }
+  }
+  .annotations-form-group {
+    select, .term-value {
+      display: inline-block;
+    }
+    .term-value {
+      white-space: nowrap;
+      big {
+        margin: 0 10px;
       }
     }
   }

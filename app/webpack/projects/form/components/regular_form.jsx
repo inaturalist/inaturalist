@@ -28,12 +28,15 @@ class RegularForm extends React.Component {
     const {
       project,
       setRulePreference,
-      updateProject
+      updateProject,
+      allControlledTerms
     } = this.props;
     const monthNames = ( "january february march april may june july august " +
       "september october november december" ).split( " " );
     const inverseFilterCount = _.size( project.notTaxonRules ) +
       _.size( project.notPlaceRules ) + _.size( project.notUserRules );
+    const chosenTerm = project.rule_term_id ?
+      allControlledTerms.find( t => t.id === _.toInteger( project.rule_term_id ) ) : null;
     return (
       <div id="RegularForm" className="Form">
         <Grid>
@@ -90,6 +93,60 @@ class RegularForm extends React.Component {
                   </Row>
                 </Panel.Collapse>
               </Panel>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={6}>
+              <div className="form-group annotations-form-group">
+                <label className="sectionlabel">{ I18n.t( "with_annotation" ) }</label>
+                <select
+                  id="project-term-id"
+                  className={ "form-control" }
+                  value={ project.rule_term_id }
+                  onChange={ e => {
+                    if ( _.isEmpty( e.target.value ) ) {
+                      setRulePreference( "term_id", null );
+                    } else {
+                      setRulePreference( "term_id", e.target.value );
+                    }
+                  } }
+                >
+                  <option value="">
+                    { I18n.t( "none" ) }
+                  </option>
+                  { allControlledTerms.map( t => (
+                    <option value={ t.id } key={`with-term-id-${t.id}`}>
+                      { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                    </option>
+                  ) ) }
+                </select>
+                { chosenTerm ? (
+                  <div className="term-value">
+                    <big>=</big>
+                    <select
+                      id="project-term-value-id"
+                      className={ "form-control" }
+                      value={ project.rule_term_value_id }
+                      onChange={ e => {
+                        if ( _.isEmpty( e.target.value ) ) {
+                          setRulePreference( "term_value_id", null );
+                        } else {
+                          setRulePreference( "term_value_id", e.target.value );
+                        }
+                      } }
+                    >
+                      <option value="">
+                        { I18n.t( "any_" ) }
+                      </option>
+                      { chosenTerm.values.map( t => (
+                        <option value={ t.id } key={`annotation-term-value-id-${t.id}`}>
+                          { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                        </option>
+                      ) ) }
+                    </select>
+                  </div>
+                ) : null }
+              </div>
             </Col>
           </Row>
           <Row>
@@ -305,6 +362,7 @@ class RegularForm extends React.Component {
 RegularForm.propTypes = {
   config: PropTypes.object,
   project: PropTypes.object,
+  allControlledTerms: PropTypes.array,
   addProjectRule: PropTypes.func,
   removeProjectRule: PropTypes.func,
   setRulePreference: PropTypes.func,

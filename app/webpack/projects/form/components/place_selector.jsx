@@ -57,7 +57,7 @@ PlaceSelector.propTypes = {
   project: PropTypes.object,
   addProjectRule: PropTypes.func,
   removeProjectRule: PropTypes.func,
-  inverse: PropTypes.boolean
+  inverse: PropTypes.bool
 };
 
 export default PlaceSelector;

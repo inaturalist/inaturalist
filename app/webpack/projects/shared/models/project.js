@@ -103,7 +103,6 @@ const Project = class Project {
     this.placeRules = [];
     this.notPlaceRules = [];
     this.projectRules = [];
-    console.log(this.project_observation_rules);
     _.each( this.project_observation_rules, rule => {
       if ( !rule._destroy ) {
         if ( rule.operand_type === "Taxon" && rule.operator === "not_in_taxon?" ) {
@@ -131,6 +130,9 @@ const Project = class Project {
       this[`rule_${pref.field}`] = _.toString( pref.value );
       if ( pref.value && pref.field === "quality_grade" ) {
         this[`rule_${pref.field}`] = _.keyBy( pref.value.split( "," ) );
+      }
+      if ( pref.controlled_term ) {
+        this[`rule_${pref.field}_instance`] = pref.controlled_term;
       }
     } );
     this.rule_quality_grade = this.rule_quality_grade || { };

@@ -86,6 +86,36 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
   } else if ( project.rule_observed_on ) {
     dateRules = dateToString( project.rule_observed_on );
   }
+  let annotationRequirement;
+  if ( project.rule_term_id_instance ) {
+    annotationRequirement = (
+      <tr>
+        <td className="param">
+          <i className="fa fa-tag" />
+          { I18n.t( "annotation" ) }
+        </td>
+        <td className="value">
+          <a href={ `/observations?term_id=${project.rule_term_id}` }>
+            { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_id_instance.label )}`,
+              { default: project.rule_term_id_instance.label } )
+            }
+          </a>
+          { project.rule_term_value_id_instance && (
+            <span className="term-value">
+              <span className="separator">
+                &rarr;
+              </span>
+              <a href={ `/observations?term_id=${project.rule_term_id}&term_value_id=${project.rule_term_value_id}` }>
+                { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_value_id_instance.label )}`,
+                  { default: project.rule_term_value_id_instance.label } )
+                }
+              </a>
+            </span>
+          )}
+        </td>
+      </tr>
+    );
+  }
   return (
     <div className="Requirements">
       <h2>
@@ -185,6 +215,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
               </td>
               <td className="value">{ dateRules }</td>
             </tr>
+            { annotationRequirement }
           </tbody>
         ) }
       </table>

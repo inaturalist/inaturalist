@@ -442,6 +442,7 @@ en:
   android: Android
   animals: Animals
   animated_observations_map: Animated Observations Map
+  annotation: Annotation
   annotations: Annotations
   announcement_was_successfully_created: Announcement was successfully created.
   announcement_was_successfully_updated: Announcement was successfully updated.
@@ -5311,7 +5312,8 @@ en:
         or_drag_and_drop: (or drag and drop)
         please_specify_the_requirements: |
           Please specify the requirements for the observations to be added to this project.
-          You can select multiple species, places, and users to be automatically included.
+          You can specify multiple species, places, users, or quality grades to be automatically
+          included, or leave a field blank if you have no specific requirement for it.
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
         project_banner: Project Banner (PNG, JPG, or GIF)
