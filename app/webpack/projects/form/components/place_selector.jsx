@@ -13,7 +13,7 @@ class PlaceSelector extends React.Component {
       inverse
     } = this.props;
     const label = inverse ?
-      I18n.t( "except_x", { x: I18n.t( "places" ) } ) : I18n.t( "places" );
+      I18n.t( "exclude_x", { x: I18n.t( "places" ) } ) : I18n.t( "places" );
     const rule = inverse ? "not_observed_in_place?" : "observed_in_place?";
     const rulesAttribute = inverse ? "notPlaceRules" : "placeRules";
     return (

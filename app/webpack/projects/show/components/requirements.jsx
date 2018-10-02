@@ -153,7 +153,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
                 { exceptTaxonRules && (
                   <span className="except">
                     <span className="bold">
-                      except
+                      { I18n.t( "except" ) }
                     </span>
                     { exceptTaxonRules }
                   </span>

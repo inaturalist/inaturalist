@@ -13,7 +13,7 @@ class UserSelector extends React.Component {
       inverse
     } = this.props;
     const label = inverse ?
-      I18n.t( "except_x", { x: I18n.t( "users" ) } ) : I18n.t( "users" );
+      I18n.t( "exclude_x", { x: I18n.t( "users" ) } ) : I18n.t( "users" );
     const rule = inverse ? "not_observed_by_user?" : "observed_by_user?";
     const rulesAttribute = inverse ? "notUserRules" : "userRules";
     return (

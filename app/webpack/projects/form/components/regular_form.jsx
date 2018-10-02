@@ -66,7 +66,7 @@ class RegularForm extends React.Component {
                   this.setState( { inverseFiltersOpen: !this.state.inverseFiltersOpen } );
                 } }
               >
-                { I18n.t( "except_filters" ) }
+                { I18n.t( "exclusion_filters" ) }
                 { inverseFilterCount > 0 && ` (${inverseFilterCount})` }
                 <i
                   className={
