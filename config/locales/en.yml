@@ -2251,7 +2251,6 @@ en:
   no_results_found: No results found
   no_results_for: 'No results for '
   no_results_matching: No results matching
-  no_saved_locations_yet: No saved locations yet
   no_sections_available: No sections available.
   no_sections_have_been_added_to_this_assessments_yet: No sections have been added to this assessments yet.
   no_species_have_been_listed: No species have been listed for this place yet!
@@ -2617,7 +2616,10 @@ en:
   google_account_not_linked: "%{user} doesn't have a linked Google account anymore, so %{site_name} doesn't have permission to access this photo."
   picasa_identity: Picasa Identity
   pick_a_username: Pick a username
+  pin_verb: Pin
   pink: pink
+  pinned_locations_desc: |
+    Pin this combination of coordinates, accuracy, geoprivacy, and locality notes for later use.
   place: Place
   placeholder: Placeholder
   place_added_to_inat_by: "Place added to %{site_name} by"
@@ -4342,10 +4344,10 @@ en:
   your_projects: Your Projects
   your_google_account: your Google account
   your_google_account_info: Your Google Account Information
+  your_pinned_locations: Your Pinned Locations
   your_profile_was_successfully_updated: Your profile was successfully updated!
   your_projects: Your Projects
   your_recent_projects: Your Recent Projects
-  your_saved_locations: Your Saved Locations
   your_should_recognize: You should recognize some of these photos
   your_site_account_has_been_created: "Your %{site} account has been created."
   your_site_needs_your_to_authorize_more_permissions_from_provider: "%{site_name} needs you to authorize more permissions from %{provider} to proceed:"

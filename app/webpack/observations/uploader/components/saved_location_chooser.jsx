@@ -121,7 +121,7 @@ class SavedLocationChooser extends React.Component {
         <input
           ref={ this.input }
           value={ this.state.query }
-          placeholder={ I18n.t( "your_saved_locations", { defaultValue: "Your Saved Locations" } ) }
+          placeholder={ I18n.t( "your_pinned_locations", { defaultValue: "Your Pinned Locations" } ) }
           className="form-control"
           onFocus={ ( ) => {
             this.show( );

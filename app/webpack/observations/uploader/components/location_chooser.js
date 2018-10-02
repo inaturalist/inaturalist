@@ -1,7 +1,7 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Modal, Button, Glyphicon } from "react-bootstrap";
+import { Modal, Button, Glyphicon, OverlayTrigger, Tooltip } from "react-bootstrap";
 import SelectionBasedComponent from "./selection_based_component";
 import LocationChooserMap from "./location_chooser_map";
 import SavedLocationChooser from "./saved_location_chooser";
@@ -205,27 +205,40 @@ class LocationChooser extends SelectionBasedComponent {
                 />
               </label>
             </div>
-            <div className="form-group save-form-group">
-              <label className="control-label">
-                <span className="label-text">&nbsp;</span>
-                <button
-                  type="button"
-                  className="btn btn-default"
-                  disabled={ !( latNum && lngNum && this.props.notes ) }
-                  onClick={ () => {
-                    this.props.saveLocation( {
-                      latitude: latNum,
-                      longitude: lngNum,
-                      positional_accuracy: this.props.radius,
-                      geoprivacy: this.props.geoprivacy,
-                      title: this.props.notes
-                    } );
-                  } }
-                >
-                  <i className="glyphicon glyphicon-map-marker"></i> { I18n.t( "save" ) }
-                </button>
-              </label>
-            </div>
+            { latNum && lngNum && this.props.notes ? (
+              <div className="form-group save-form-group">
+                <label className="control-label">
+                  <span className="label-text">&nbsp;</span>
+                  <OverlayTrigger
+                    placement="top"
+                    trigger={["hover", "focus"]}
+                    delayShow={1000}
+                    overlay={
+                      <Tooltip id="pin-btn-tooltip">
+                        { I18n.t( "pinned_locations_desc" ) }
+                      </Tooltip>
+                    }
+                    container={ $( ".location" ).get( 0 ) }
+                  >
+                    <button
+                      type="button"
+                      className="btn btn-default"
+                      onClick={ () => {
+                        this.props.saveLocation( {
+                          latitude: latNum,
+                          longitude: lngNum,
+                          positional_accuracy: this.props.radius,
+                          geoprivacy: this.props.geoprivacy,
+                          title: this.props.notes
+                        } );
+                      } }
+                    >
+                      <i className="fa fa-thumb-tack"></i> { I18n.t( "pin_verb" ) }
+                    </button>
+                  </OverlayTrigger>
+                </label>
+              </div>
+            ) : null }
             <SavedLocationChooser
               className={ this.props.savedLocations.savedLocations.length === 0 ? "hidden" : "" }
               locationsTotal={ this.props.savedLocations.total }
