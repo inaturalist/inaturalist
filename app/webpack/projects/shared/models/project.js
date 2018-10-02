@@ -97,15 +97,24 @@ const Project = class Project {
   // creates convenience instances used in project form components
   createSpecificRuleAttributes( ) {
     this.taxonRules = [];
+    this.notTaxonRules = [];
     this.userRules = [];
+    this.notUserRules = [];
     this.placeRules = [];
+    this.notPlaceRules = [];
     this.projectRules = [];
     _.each( this.project_observation_rules, rule => {
       if ( !rule._destroy ) {
-        if ( rule.operand_type === "Taxon" ) {
+        if ( rule.operand_type === "Taxon" && rule.operator === "not_in_taxon?" ) {
+          this.notTaxonRules.push( rule );
+        } else if ( rule.operand_type === "Taxon" ) {
           this.taxonRules.push( rule );
+        } else if ( rule.operand_type === "User" && rule.operator === "not_observed_by_user?" ) {
+          this.notUserRules.push( rule );
         } else if ( rule.operand_type === "User" ) {
           this.userRules.push( rule );
+        } else if ( rule.operand_type === "Place" && rule.operator === "not_observed_in_place?" ) {
+          this.notPlaceRules.push( rule );
         } else if ( rule.operand_type === "Place" ) {
           this.placeRules.push( rule );
         } else if ( rule.operand_type === "Project" ) {
@@ -122,6 +131,9 @@ const Project = class Project {
       if ( pref.value && pref.field === "quality_grade" ) {
         this[`rule_${pref.field}`] = _.keyBy( pref.value.split( "," ) );
       }
+      if ( pref.controlled_term ) {
+        this[`rule_${pref.field}_instance`] = pref.controlled_term;
+      }
     } );
     this.rule_quality_grade = this.rule_quality_grade || { };
   }
@@ -137,13 +149,25 @@ const Project = class Project {
       this.previewSearchParamsObject = _.fromPairs(
         _.map( _.filter( this.rule_preferences, p => p.value !== null ), p => [p.field, p.value] )
       );
+      if ( !_.isEmpty( this.notTaxonRules ) ) {
+        this.previewSearchParamsObject.without_taxon_id =
+          _.map( this.notTaxonRules, r => r.operand_id ).join( "," );
+      }
       if ( !_.isEmpty( this.taxonRules ) ) {
         this.previewSearchParamsObject.taxon_ids =
           _.map( this.taxonRules, r => r.operand_id ).join( "," );
       }
+      if ( !_.isEmpty( this.notPlaceRules ) ) {
+        this.previewSearchParamsObject.not_in_place =
+          _.map( this.notPlaceRules, r => r.operand_id ).join( "," );
+      }
       if ( !_.isEmpty( this.placeRules ) ) {
         this.previewSearchParamsObject.place_id =
           _.map( this.placeRules, r => r.operand_id ).join( "," );
+      }
+      if ( !_.isEmpty( this.notUserRules ) ) {
+        this.previewSearchParamsObject.not_user_id =
+          _.map( this.notUserRules, r => r.operand_id ).join( "," );
       }
       if ( !_.isEmpty( this.userRules ) ) {
         this.previewSearchParamsObject.user_id =

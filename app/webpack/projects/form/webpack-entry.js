@@ -9,13 +9,16 @@ import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
 import formReducer, { setProject } from "./form_reducer";
 import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
+import controlledTermsReducer, { fetchAllControlledTerms }
+  from "../../observations/show/ducks/controlled_terms";
 /* global PROJECT_DATA */
 /* global CURRENT_PROJECT */
 
 const rootReducer = combineReducers( {
   confirmModal: confirmModalReducer,
   config: configReducer,
-  form: formReducer
+  form: formReducer,
+  controlledTerms: controlledTermsReducer
 } );
 
 const store = createStore(
@@ -38,6 +41,8 @@ if ( !_.isEmpty( CURRENT_USER ) ) {
 if ( !_.isEmpty( CURRENT_PROJECT ) ) {
   store.dispatch( setProject( CURRENT_PROJECT ) );
 }
+
+store.dispatch( fetchAllControlledTerms( ) );
 
 render(
   <Provider store={store}>

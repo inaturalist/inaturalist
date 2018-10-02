@@ -322,6 +322,9 @@ export function submitProject( ) {
         _.keys( project.rule_quality_grade ).join( "," ) : "",
       prefers_rule_photos: _.isEmpty( project.rule_photos ) ? "" : project.rule_photos,
       prefers_rule_sounds: _.isEmpty( project.rule_sounds ) ? "" : project.rule_sounds,
+      prefers_rule_term_id: _.isEmpty( project.rule_term_id ) ? "" : project.rule_term_id,
+      prefers_rule_term_value_id: _.isEmpty( project.rule_term_value_id ) ?
+        "" : project.rule_term_value_id,
       prefers_rule_observed_on:
         ( project.date_type !== "exact" || _.isEmpty( project.rule_observed_on ) ) ?
           "" : project.rule_observed_on.trim( ),
@@ -408,6 +411,8 @@ export function confirmSubmitProject( ) {
     if ( !_.isEmpty( project.rule_quality_grade ) ) { empty = false; }
     if ( !_.isEmpty( project.rule_photos ) ) { empty = false; }
     if ( !_.isEmpty( project.rule_sounds ) ) { empty = false; }
+    if ( !_.isEmpty( project.rule_term_id ) ) { empty = false; }
+    if ( !_.isEmpty( project.rule_term_value_id ) ) { empty = false; }
     if ( dateType === "exact" && !_.isEmpty( project.rule_observed_on ) ) { empty = false; }
     if ( dateType === "range" && !_.isEmpty( project.rule_d1 ) ) { empty = false; }
     if ( dateType === "range" && !_.isEmpty( project.rule_d2 ) ) { empty = false; }

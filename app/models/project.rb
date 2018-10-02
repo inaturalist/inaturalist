@@ -68,9 +68,12 @@ class Project < ActiveRecord::Base
   preference :rule_d1, :string
   preference :rule_d2, :string
   preference :rule_month, :string
+  preference :rule_term_id, :integer
+  preference :rule_term_value_id, :integer
   RULE_PREFERENCES = [
     "rule_quality_grade", "rule_photos", "rule_sounds",
-    "rule_observed_on", "rule_d1", "rule_d2", "rule_month"
+    "rule_observed_on", "rule_d1", "rule_d2", "rule_month",
+    "rule_term_id", "rule_term_value_id"
   ]
   
   SUBMISSION_BY_ANYONE = 'any'
@@ -435,13 +438,20 @@ class Project < ActiveRecord::Base
       params[:d1] = preferred_start_date_or_time
       params[:d2] = preferred_end_date_or_time
     end
-    taxon_ids = []
+    taxon_ids = [ ]
+    without_taxon_ids = [ ]
     user_ids = [ ]
+    not_user_ids = [ ]
     place_ids = [ place_id ]
+    not_place_ids = [ ]
     project_observation_rules.each do |rule|
       case rule.operator
+      when "not_in_taxon?"
+        without_taxon_ids << rule.operand_id
       when "in_taxon?"
         taxon_ids << rule.operand_id
+      when "not_observed_in_place?"
+        not_place_ids << rule.operand_id
       when "observed_in_place?"
         place_ids << rule.operand_id
       when "has_a_photo?"
@@ -450,6 +460,8 @@ class Project < ActiveRecord::Base
         params[:sounds] = true
       when "observed_by_user?"
         user_ids << rule.operand_id
+      when "not_observed_by_user?"
+        not_user_ids << rule.operand_id
       when "verifiable?"
         params[:quality_grade] = "research,needs_id"
       end
@@ -468,11 +480,17 @@ class Project < ActiveRecord::Base
         params[ rule.sub( "rule_", "" ) ] = rule_value
       end
     end
+    without_taxon_ids = without_taxon_ids.compact.uniq
     taxon_ids = taxon_ids.compact.uniq
+    not_place_ids = not_place_ids.compact.uniq
     place_ids = place_ids.compact.uniq
+    not_user_ids = not_user_ids.compact.uniq
     user_ids = user_ids.compact.uniq
+    params.merge!(without_taxon_id: without_taxon_ids) unless without_taxon_ids.blank?
     params.merge!(taxon_id: taxon_ids) unless taxon_ids.blank?
+    params.merge!(not_in_place: not_place_ids) unless not_place_ids.blank?
     params.merge!(place_id: place_ids) unless place_ids.blank?
+    params.merge!(not_user_id: not_user_ids) unless not_user_ids.blank?
     params.merge!(user_id: user_ids) unless user_ids.blank?
     params
   end

@@ -1,9 +1,12 @@
 class ProjectObservationRule < Rule
   OPERAND_OPERATORS_CLASSES = {
+    "not_observed_in_place?" => "Place",
     "observed_in_place?" => "Place",
+    "not_in_taxon?" => "Taxon",
     "in_taxon?" => "Taxon",
     "has_observation_field?" => "ObservationField",
     "observed_after?" => "Time",
+    "not_observed_by_user?" => "User",
     "observed_by_user?" => "User",
     "observed_before?" => "Time",
     "in_project?" => "Project"
