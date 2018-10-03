@@ -125,7 +125,8 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    aasm (4.0.8)
+    aasm (5.0.1)
+      concurrent-ruby (~> 1.0)
     actionmailer (4.2.7.1)
       actionpack (= 4.2.7.1)
       actionview (= 4.2.7.1)
