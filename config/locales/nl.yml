@@ -292,6 +292,8 @@ nl:
   add_taxon_range: Taxonreeks toevoegen
   add_taxonomic_tags_to: Voeg taxonomische tags toe aan de geselecteerde Flickr fotos
     &raquo;
+  add_taxonomic_tags_to_the_flickr_photos: Voeg taxonomische labels toe aan Flickr-foto's
+    gerelateerd aan de geselecteerde waarnemingen.
   add_to: Toevoegen aan
   add_to_a_scheme: Toevoegen aan een schema
   add_to_a_project: Aan een project toevoegen
@@ -478,6 +480,11 @@ nl:
   and_other_taxa: '&amp; Andere Taxa'
   and_un_license_all_your_observations: en hef de licentie voor al uw waarnemingen
     op
+  and_you_havent_linked: ..en als u geen van deze externe accounts hebt gekoppeld,
+    moet u zich eerst via %{site_name} aanmelden, vervolgens uw profiel bewerken en
+    uw account vanaf daar koppelen. Anders kan %{site_name} mogelijk niet zien dat
+    de twee accounts zijn verbonden en proberen in plaats daarvan een nieuw account
+    voor u te maken!
   and_x_more_people!:
     one: en nog 1 persoon!
     other: en %{count} meerdere personen!
@@ -495,6 +502,8 @@ nl:
   apply_fields: Velden toepassen
   apply_geoprivacy: Geoprivacy toevoegen
   apply_darr: Toepassen &darr;
+  apply_establishment_means_to_descendant_places: Vestiging toepassen op afgeleide
+    plaatsen
   apply_these_settings_to_all: Pas deze instellingen toe op alle onderstaande waarnemingen
   appropriate?: Passend?
   arachnids: spinachtigen
@@ -632,6 +641,7 @@ nl:
   back_to_x_history: Terug naar de geschiedenis van %{x}
   back_to_x_journal: Terug naar het dagboek van %{user}
   back_to_x_blog: Terug naar de blog van %{x}
+  back_to_your_dashboard: Terug naar je dashboard
   back_to_x_observations: Terug naar de waarnemingen van %{user}
   back_to_your_lists: Terug naar uw overzichten
   back_to_your_journal: Terug naar uw dagboek
@@ -708,7 +718,7 @@ nl:
     niet bestaat
   cant_merge_a_taxon_with_itself: Kan een taxon niet met zichzelf samenvoegen.
   captive: In gevangenschap
-  captive_cultivated: In gevangenschap / gecultiveerd
+  captive_cultivated: In gevangenschap / Gecultiveerd
   card: Kaart
   case_plural: S
   casual: slordig
@@ -849,6 +859,10 @@ nl:
   choose_a_list_above: Kies hierboven een lijst
   choose_a_place: Kies een locatie
   choose_a_taxon: Kies een taxon (optioneel)
+  choose_cc_licensed_photos_html: Kies <a href="http://creativecommons.org/">open</a>
+    - gelicenseerde foto's van andere sites of kies uit %{site_name} waarnemingen.
+    Probeer afbeeldingen te kiezen die <em>diagnostische functies weergeven</em> en
+    <em>er goed uitzien als pictogrammen</em>. De <em>eerste is de standaard</em>.
   choose_columns: Kies kolommen
   choose_file: Kies bestand
   choose_files: Kies bestanden
@@ -864,12 +878,19 @@ nl:
   choose_subjects: Kies onderwerpen
   choose_tags: Labels kiezen
   choose_taxon: Kies een taxon
+  choose_what_kind_of_change_youre_creating: Kies welk type wijziging u aan het maken
+    bent.
   choose_your_username: Kies uw gebruikersnaam
+  cid_d_to_genus: CID'd naar Genus
   citation: Citaat
   classification: Classificatie
   clear: wissen
   clear_color_filters: Verwijder kleur filters
   clear_search: Zoekopdracht wissen
+  clear_shapes: Duidelijke vormen
+  click_add_an_observation_to_the_lower_right: Welkom bij  %{site_name_short}! Klik
+    op 'Voeg een waarneming toe' rechtsonder. Je krijg dan de vraag om in te loggen
+    als je dat nog niet bent
   click_on_map_to_draw_shape_around_place: Klik op de kaart om een vorm rond de plaats
     te tekenen
   click_on_the_map_to: Klik op de kaart om je waarneming te plaatsen
@@ -877,9 +898,22 @@ nl:
   click_the_map_to_jump_new_place: Klik op de kaart om naar een nieuwe plaats te gaan
   close: Sluiten
   code: Code
+  collapse_days: dagen samenvouwen
+  collapse_updates: nieuwtjes samenvouwen
+  color_categories_for_this_species: "Kleurcategorieën voor deze soort, alsof je deze
+    zou plaatsen\nin een veldgids gesorteerd op kleur. Gelieve niet elke kleur aan
+    te geven van \nhet organisme, alleen de prominente. Gebruik voor bloeiende planten
+    alsjeblieft\nalleen de bloemkleur. Niet invullen als de kleuren niet zinvol zijn
+    bij indeling categorieën, zoals bruine zoogdieren en groene varens."
   colors: Kleuren
   columns: Kolommen
   combine: Samenvoegen
+  comma_separated_list_of_tracking_codes: "Komma-gescheiden lijst met trackingcodes.
+    Voeg een trackingcode toe als u mensen doorstuurt naar het nieuwe waarnemingenscherm
+    en een trackingcode wilt toevoegen, b.v. \n%{root_url}observations/new?project_id=%{project_id}
+    &tracking_code = yourcode123.\nU kunt dit gebruiken om deelname vanaf verschillende
+    bronnen bij te houden. U ziet deze codes wanneer u de waarnemingen van uw project
+    downloadt als CSV."
   comma_separated_please: Gescheiden door komma's, graag
   comment_preview: Bericht preview
   comment: reactie
@@ -892,6 +926,8 @@ nl:
   comments_by_me: Reacties van mij
   comments_on: Reacties op
   comments_on_my_observations: Reacties op mijn waarnemingen
+  comments_youve_made_with_others: Opmerkingen die je gemaakt hebt (w/ Others)<br/><span
+    class="description">in de afgelopen week</span>
   commercial_solicitation: Commerciële advertenties, koppelingen naar nergens, enzovoort.
   commit: Bevestig
   committed: Bevestigd
@@ -899,9 +935,12 @@ nl:
   committing: Aan het bevestigen
   community: Gemeenschap
   community_guidelines: Gemeenschap richtlijnen
+  community_id: '<strong>Gemeenschaps</strong>ID:'
   community_id_heading: Community-ID
   community_id_at_species_or_lower?: Community ID op soort of lager?
   community_id_at_genus_level_or_lower: Community ID op genus niveau of lager
+  community_id_at_species_level_or_lower: Community ID op soortniveau of lager
+  community_moderation_settings: Community moderatie instellingen
   compare: Vergelijken
   compare_with: Vergelijk met
   comparing: vergelijken
@@ -928,6 +967,9 @@ nl:
   connected_accounts: Gekoppelde accounts
   connecting_flickr: Verbinden met Flickr ...
   connecting_to_facebook: Verbinden met Facebook ...
+  connecting_your_inat_account_to_accounts_other_sites: Door uw %{site_name}-account
+    aan te sluiten op accounts op andere sites, kunt u zich aanmelden bij %{site_name}
+    met uw inloggegevens van die sites.
   conservation_status: Natuurbeschermingstatus
   conservation_status_descriptions:
     status: Statuscode, rang, enz..., Als een korte code zoals E of CR bestaat, gebruik
@@ -938,6 +980,8 @@ nl:
       wil worden genoemd als de autoriteit.
     place: Plek tot waar deze status is beperkt.
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
+  contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon
+    die hier voorkomen?
   contest: wedstrijd
   continue: Doorgaan
   contributions: bijdragen
@@ -992,6 +1036,8 @@ nl:
   copyright_holder: Auteursrechthouder
   copyright_info: Auteursrechtinformatie
   copyright_info_and_more: Auteursrechtinformatie en meer
+  copyright_infringement_desc: Is in strijd met de auteursrechtwetgeving of is gemaakt
+    door iemand anders dan de waarnemer en heeft geen aantrekkingskracht
   couldnt_change_your_password: 'Kon uw wachtwoord niet wijzigen: %{e}'
   couldnt_find_a_user_matching_x_param: Kon geen gebruiker vinden overeenstemmend
     met %{id}
@@ -1021,11 +1067,13 @@ nl:
   creating_your_account: Uw account aanmaken ...
   creative_commons_flickr_tagged: Creative Commons Flickr foto's getagd
   creative_commons_unless_otherwise_noted: Creative Commons tenzij anders vermeld.
-  critically_endangered: ernstig bedreigd
-  critically_imperiled: ernstig bedreigd
+  critically_endangered: Ernstig Bedreigd
+  critically_imperiled: Ernstig Bedreigd
   css_description: Dit wordt op de pagina ingevoegd na alle andere css.
   csv: CSV
   csv_file: CSV-bestand
+  csv_should_not_contain_a_header_row: CSV mag geen kopregel bevatten
+  cumulative_ids: 'Cumulatieve ID''s: %{count} of %{total}'
   curate_observations: Waarnemingen opvolgen
   curate_taxa: Taxa opvolgen
   curate_user: Gebruiker opvolgen
@@ -1045,10 +1093,13 @@ nl:
   curator_identification: Curator identificatie
   current_flags: Huidige markeringen
   current_password: Huidige wachtwoord
+  custom_project_fields: Aangepaste projectvelden
+  custom_project_was_successfully_created: Project is succesvol aangemaakt.
+  custom_project_was_successfully_updated: Project was succesvol bijgewerkt.
   customize_location: Locatie aanpassen
   darr_apply_darr: '&darr; Toepassen &darr;'
   dashboard: Dashboard
-  data_deficient: gegevens tekort
+  data_deficient: Gegevens Tekort
   data_quality: Gegevenskwaliteit
   data_quality_assessment: Beoordeling van Gegevenskwaliteit
   data_quality_assessment_: beoordeling van gegevenskwaliteit
@@ -1190,6 +1241,11 @@ nl:
   drag_and_drop_some_photos_or_sounds: Sleep enkele foto's of opnames
   drawings: Tekeningen
   duplicate_verb: Dupliceren
+  each_place_displays_all_species_inat_knows: Bij elke plaats staan alle soorten %{site_name}
+    die bekend zijn van die plek, inclusief informatie over hun abundantie, beschermingsstatus
+    en wie als eerste die soort vanaf die plaats op %{site_name} heeft waargenomen.
+    U kunt de soort filteren op taxonomische groep, kleur, beschermingsstatus of gewoon
+    ouderwets zoeken.
   edit: Bewerken
   edit_a_batch_of_observations: Bewerk een reeks Waarnemingen
   edit_account_settings_and_profile: Account instellingen &amp; profiel bewerken
@@ -1231,6 +1287,8 @@ nl:
   edit_your_identification: Uw identificatie bewerken
   edit_your_profile: Bewerk uw profiel
   edit_your_settings_for_this_project: Uw instellingen voor dit project bewerken
+  edit_your_settings_to_unsubscribe_html: <a href='%{url}'> Bewerk uw instellingen</a>
+    om het soort updates dat u ontvangt of afmeldt volledig te wijzigen.
   edited: Bewerkt
   edited_by: Bewerkt door
   edited_by_name_html: Bewerkt door %{name}
@@ -1244,6 +1302,7 @@ nl:
   editing_project: '%{project} aan het bewerken'
   editing_taxon_link: Taxonkoppeling bewerken
   editing_taxon_name: Taxonnaam bewerken
+  editing_taxon_range: Taxonreeks bewerken
   editing_this: '%{elem} aan het bewerken'
   editing_x_in_y: '%{x} in %{y} bewerken'
   editors: Editors
@@ -1269,11 +1328,12 @@ nl:
   enlarge: Vergroten
   end: Einde
   end_date_time: Einddatum /Tijd
-  endangered: bedreigd
-  endemic: inheems
+  endangered: Bedreigd
+  endemic: Inheems
   eol: EOL
   eol_collection_url: EOL verzameling URL
   establishment:
+    establishment: Aanstelling
     native: inheems
     endemic: endemisch
     introduced: geïntroduceerd
@@ -1305,7 +1365,7 @@ nl:
   exact_location: Exacte locatie
   exact_rank: Exacte rang
   existing_flags: Bestaande labels
-  exit_full_screen: Volledig schermmodus verlaten
+  exit_full_screen: Volledig Schermmodus Verlaten
   expand_days: dagen groter maken
   expand_updates: updates groter maken
   explore!: Verkennen!
@@ -1317,7 +1377,7 @@ nl:
   exporting: Aan het exporteren...
   external_links: Externe links
   extinct: uitgestorven
-  extinct_in_the_wild: uitgestorven in het wild
+  extinct_in_the_wild: Uitgestorven in het Wild
   extra_properties: Extra eigenschappen
   extras: Extra's
   evidence_of_organism: Bewijs van organisme
@@ -1326,10 +1386,15 @@ nl:
   facebook_account_information: Uw Facebook-account informatie
   facebook_account_not_linked: '%{user} heeft geen gekoppeld Facebook-account meer,
     waardoor %{site_name} geen toegang meer heeft tot deze foto.'
+  facebook_confirmation: Facebook wil dat je bevestigt dat je wilt dat je account
+    is verbonden met %{site_name}.
+  facebook_needs_the_owner_of_that_photo_to: Facebook heeft de eigenaar van die foto
+    nodig om hun verbinding met %{site_name_short} opnieuw te bevestigen.
   facebook_options: Facebookopties
   facts_and_stats: Feiten en statistieken
   failed_to_find_your_location: Locatie niet gevonden.
   failed_to_repair_photo: 'Foto herstellen niet geslaagd: %{errors}'
+  failed_to_save_record: Fout bij het opslaan van gegevens. Probeer het later opnieuw.
   "false": Onwaar
   faq: Veelgestelde vragen
   fave: favoriet
@@ -1349,6 +1414,8 @@ nl:
   feeds: Feeds
   failed: Mislukt
   field_guides: Veldgidsen
+  field_note: <strong>Let op:</strong> Als u een veld wilt maken, controleert u dan
+    of het al niet is aangemaakt door een ander om dubbele velden te voorkomen.
   fields: velden
   fields_: Velden
   fields_can_only_be_edited_by_the_people_who: Velden kunnen enkel aangepast worden
@@ -1365,16 +1432,20 @@ nl:
   filter_by_place: Filter op plaats
   filter_by_taxon: Filter op taxon
   filtering: Filteren
+  filtering_observations_that_pass_the: Het filteren van waarnemingen die aan de projectregels
+    voldoen of die op de locatie van het project zijn gemaakt en nog niet zijn ingebracht
   filters: Filters
   find: Zoeken
+  find_a_place: Zoek een plaats
   find_guides: Vind gidsen
   find_new_place_to_explore: Zoek een nieuwe plek om te ontdekken
   find_observations: Vind waarnemingen
-  find_photos: Vind foto's
-  find_places: Vind plaatsen
-  find_some_people_to_follow: Vind een aantal mensen om te volgen
+  find_photos: Zoek foto's
+  find_places: Zoek plaatsen
+  find_some_people_to_follow: Zoek een aantal mensen om te volgen
   find_species: Zoek Soorten
-  find_suitable_observations: Vind passende waarnemingen
+  find_suitable_observations: Zoek passende waarnemingen
+  find_unsuitable_observations: Zoek niet passende waarnemingen
   find_your_current_location: Zoek je huidige locatie
   finished: Voltooid
   finished_with_page: Eindig met pagina
@@ -1412,16 +1483,23 @@ nl:
     er iets fout zit. Hier zijn een aantal issues die not niet opgelost zij door de
     curators.'
   flags_for: Markeringen voor
+  flags_on_users_content: Markeer %{user} inhoud
   flickr_account_information: Uw Flickr-account informatie
+  flickr_description: Flickr is een online foto hosting service, misschien ken je
+    het al!
   flickr_has_no_creative_commons: Flickr beschikt niet over foto's met Creative Commons-licentie
     van deze plaats.
   flickr_identity: Flickr-identiteit
+  flickr_invite_link_raquo: Flickr uitnodigings link &raquo;
+  flickr_needs_to_confirm: Flickr wil dat je bevestigt dat je wilt dat je account
+    is verbonden met %{site_name}.
   flickr_photo: Flickr foto
   flickr_photos: Flickr afbeeldingen
   flickr_tagger: Flicker tagger
   flickr_tags: Flickrlabels
   flickr_youre_all_set: Je bent er volledig klaar voor om %{site_name} te verkennen
   flowering_phenology: Bloeifenologie
+  fluid_layout: Fluid opmaak
   fluid: vloeiend
   follow: Volg
   follow_us: Volg ons op
@@ -1431,6 +1509,9 @@ nl:
   follower: volger
   followers: Volgers
   following: volgt
+  following_x_people:
+    one: Volgt 1 Persoon
+    other: Volgt %{count} Personen
   for: voor
   for_a_taxon: voor een taxon
   for_a_widget_showing_recent_observations_from: Voor een widget die de recente waarnemingen
@@ -1439,7 +1520,7 @@ nl:
   formatting: Opmaak
   forgot_your_password: Uw wachtwoord vergeten?
   frequency: Frequentie
-  fri: Vr
+  fri: vr
   from: Van
   from_a_place: van een plaats
   from_anywhere_change: van eender waar (<span class="button">aanpassen</span>)
@@ -1494,6 +1575,9 @@ nl:
   google: Google
   got_it!: Begrepen!
   got_your_data_somewhere_else?: Heb je je data ergens anders? We kunnen helpen.
+  grafting_attemps_to_insert_this_taxon: Enten is het invoegen van dit taxon in onze
+    taxonomische boom, een bestaand oudertaxon te vinden of alle noodzakelijke tussenliggende
+    taxa te creëren om het aan een bestaand taxon van hoger niveau te hechten.
   grant_role: '%{grant} %{role} rol'
   gray: grijs
   green: groen
@@ -1510,12 +1594,17 @@ nl:
   guide_deleted: Gids verwijderd
   guide_will_be_deleted: Gids wordt verwijderd. Voor uitgebreide gidsen kan dit even
     duren.
+  guide_taxon: Gids taxon
   guide_was_successfully_created: Gids werd succevol aangemaakt.
   guide_was_successfully_published: Gids werd succesvol gepubliceerd.
   guide_was_successfully_updated: Gids werd succesvol bijgewerkt.
   guidelines: Richtlijnen
   has_already_been_flagged_by: is reeds gemarkeerd door
+  has_been: is geweest
+  has_id_supported_by_two_or_more: Heeft een ID die ondersteund wordt door twee of
+    meer
   has_one_or_more_faves: Heeft één of meer favorieten
+  has_photo: Heeft Foto's
   has_photos: heeft fotos
   has_photo_and_sound: Heeft zowel een foto als geluid
   has_photos_or_sounds: Heeft foto's of geluid
@@ -1532,11 +1621,22 @@ nl:
   heads_up_this_photo_has_been_flagged: 'OPGELET: deze foto is gemarkeerd.'
   heads_up_this_photo_is_already_associated_with: 'Opgelet: deze foto is al gelinkt
     met een <a target=''_blank'' href=''%{url}''>andere waarneming</a>'
+  heads_up_this_taxon_locked_users_cant_add_descendants: <strong>Let op:</ strong>dit
+    taxon is vergrendeld, wat betekent dat de meeste gebruikers geen nieuwe nakomelingen
+    kunnen toevoegen door taxa te importeren. Curatoren kunnen dit nog steeds doen
+    door taxa te bewerken en een ouder te kiezen, maar overweeg alsjeblieft om taxa
+    samen te voegen.
+  heads_up_you_have_multiple: 'Let op: u hebt meerdere taxonomische machinetags voor
+    identieke ranglijsten. Ze zijn kleurgecodeerd op rang.'
   hello: <test>
   help: Help
   help_confirm_observations!: Help waarnemingen bevestigen!
   help_faq: Help / FAQ
   help_out!: Help Mee!
+  helped_the_observer_make: hielp de waarnemer hun definitieve ID te maken (dat wil
+    zeggen ze werden gemaakt vóór de definitieve ID en ze matchen het)
+  here_are_3_examples: Hier zijn 3 voorbeelden van gegevens in het juiste formaat
+  here_are_our_top_species_suggestions: Dit zijn onze top voorstellen voor deze soort
   here_are_some_things_you_can_do_meantime: 'Enkele dingen die je intussen kan doen:'
   here_are_some_things_you_can_do_in_the_meantime: Enkele dingen die je intussen kan
     doen
@@ -1548,16 +1648,31 @@ nl:
   hide_details: Details verbergen
   high: hoog
   highest_rank: Hoogste rang
+  highlights_and_stats_from_year_on_site: Hoogtepunten en statistieken van %{year}
+    op %{site}
   history: Geschiedenis
   home: Startpagina
   home_faq: Veelgestelde vragen
+  however_there_were_some_issues: 'Helaas, er zijn nog een paar issues: %{issues}'
   hybrid: hybride
   i_agree_to_the_project_terms: Ik ga akkoord met de voorwaarden van dit project
+  i_dont_know_but_i_am_sure_this_is_taxon: Ik weet het niet maar ik weet zeker dat
+    het %{taxon} is
   icon: Pictogram
   icon_size: Pictogramgrootte
   icon_slash_photo: Pictogram of foto
   id: ID
   id_: ID
+  id_categories:
+    tooltips:
+      leading: Taxon stamt af van het gemeenschapstaxon. Deze determinatie kan leiden
+        naar het correcte antwoord.
+      improving: |-
+        Eerste suggestie van dit taxon waar de gemeenschap vervolgens mee instemde. Dit hielp
+        bij het verfijnen van het gemeenschapstaxon.
+      maverick: |-
+        Taxon is geen afstammeling of voorouder van het community taxon, d.w.z. de gemeenschap is het niet
+        eens met dit taxon.
   id_please!: ID graag!
   id_please: ID graag
   id_please_expandable_html: ID<span class='full'> graag</span>!
@@ -1597,7 +1712,12 @@ nl:
   if_you_have_any_trouble_with_the_site_check_out: Mocht je vragen hebben, ga dan
     even naar onze <a href="%{help_url}">help sectie</a> of plaats een bericht in
     onze <a href="%{feedback_url}">feedbackgroep</a>.
+  if_youd_like_us_to_share_your_observations_with: Als u wilt dat wij uw waarnemingen
+    met gegevenspartners delen, zorg er dan voor dat je gekozen hebt om je waarnemingen
+    in licentie te geven met een Creative Commons-licentie.
   if_you_want_to_change_the_name: indien u de naam wenst te wijzigen
+  if_your_project_is: Als uw project over een bepaalde plaats gaat, stelt u de coördinaten
+    in door op de kaart te klikken of ze handmatig in te voeren.
   ignore: negeren
   ignore_and_continue: Negeren en verdergaan
   image_must_be_exactly: afbeelding moet exact 950px breed en maximaal 400px hoog
@@ -1637,10 +1757,18 @@ nl:
   inat_user_profile: '%{site_name}: Profiel van %{user}'
   inaturalist_observations_by: '%{site_name} &#58; Waarnemingen door %{login}'
   inaturalist_places: '%{site_name} Plaatsen'
+  inaturalist_places_are_way_record_what_lives_where: '%{site_name} Plaatsen zijn
+    een manier om vast te leggen wat er leeft. Als u op zoek bent naar een bepaalde
+    soort, weet u waar u kunt zoeken. Elke plaats heeft een soortenlijst, zodat ze
+    ook nuttig kunnen zijn om flora of fauna op te zoeken die je op bepaalde plekken
+    hebt gevonden.'
   info: Informatie
   input_taxon: Invoer taxon
   insects: insecten
   insect_life_stage: Levensstadium van het insect
+  inspired_by_the_flickr_group: Geïnspireerd door de Flickr-groep <a href='http://flickr.com/groups/idplease/'>ID
+    alstublieft</a>, dit is een plaats om waarnemingen te plaatsen van dingen die
+    je niet kent en om mensen te helpen bij het determineren van mysterieuze wezens!
   interactions: Interacties
   internal_server_error: Er is een interne fout opgetreden
   introduced: Geïntroduceerd
@@ -1686,6 +1814,11 @@ nl:
   it_can_now_be_used_for_research: Het kan nu worden gebruikt voor onderzoek en getoond
     worden op andere websites.
   it_has: Het heeft
+  item_flagged_notice_html: "Dit is gemarkeerd als spam en is niet langer\npubliekelijk
+    zichtbaar. Je kunt het zien omdat je het hebt gemaakt of omdat je een\nwebsite-curator
+    bent. Als u denkt dat dit een vergissing is, \n<a href=\"mailto:%{help_email}\"
+    class=\"contact\">Neem alstublieft contact met ons op</a>.\n<a href=\"%{manage_flags_path}\">Vlaggen
+    beheren</a>"
   its_important_that_you: Het is belangrijk dat je klikt op
   iucn_red_list_status: status op de IUCN Rode Lijst
   january: januari
@@ -1697,6 +1830,7 @@ nl:
     en <a href='%{invite_url}'>nodig enkele waarnemingen uit</a>
   join_this_project: Doe mee aan dit project
   joined!: Toegevoegd!
+  joined_projects: Deelname aan projecten
   joined_with_date: Lid geworden op %{date}
   joining: Bezig met koppelen...
   journal: Logboek
@@ -1750,7 +1884,6 @@ nl:
   leave_a_comment: Reactie achterlaten
   leave_this_project: Dit project verlaten
   leaves: verlaat
-  not_absent: niet afwezig
   legacy_authentication_notice_html: |-
     Het lijkt erop dat je een wachtwoord gebruikt van een oudere versie van deze website.
     Vergeet aub niet <a href="%{url}">je wachtwoord te veranderen</a> voor de nieuwe versie.
@@ -1828,7 +1961,23 @@ nl:
     je zal dan enkel geen foto's meer kunnen toevoegen. Dit kan inderdaad soms de
     betere keuze zijn, bv. indien je een nieuw Facebookaccount zou willen aanmaken
     om aan %{site_name} te koppelen.
+  linked_facebook_howto: Om Facebook te verbinden met %{site_name}, klik je op de
+    link aan de rechterkant en log je in op Facebook.com.
+  linked_facebook_password: We zullen je nooit om je Facebook-wachtwoord vragen (maar
+    Facebook zou kunnen, controleer de URL die de knop je stuurt en zorg ervoor dat
+    het Facebook.com is). We zullen ook uw Facebook-gegevens niet wijzigen tenzij
+    u dat wilt.
   linked_flickr: Uw %{site_name}-account is nu gekoppeld aan uw Flickr-account
+  linked_flickr_automatically: Hou verder ook in gedachten dat wanneer je op %{site_name}
+    inlogt via Flickr, we automatisch je %{site_name}- en Flickraccounts zullen koppelen.
+    Lijkt ons redelijk aangezien, wanneer je Flickr gebruikt, je toch in de mogelijkheid
+    wil zijn om Flickrfoto's te importeren, niet?
+  linked_flickr_description: Door je %{site_name}-account aan je Flickraccount gekoppeld
+    te houden heb je de mogelijkheid om meerdere foto's aan je waarnemingen toe te
+    voegen. Uiteraard is het geen probleem mocht je beide accounts willen scheiden,
+    je zal dan enkel geen foto's meer kunnen toevoegen. Dit kan inderdaad soms de
+    betere keuze zijn, bv. indien je een nieuw Flickraccount zou willen aanmaken om
+    aan %{site_name} te koppelen.
   list: Lijst
   list_deleted: Lijst verwijderd.
   list_saved: Lijst opgeslagen.
@@ -1838,7 +1987,7 @@ nl:
     taxonomic: taxonomisch
     photo: foto
   list_was_successfully_created: De lijst werd succesvol aangemaakt.
-  listed_taxa: Opgelijste taxa
+  listed_taxa: Opgelijste Taxa
   listed_taxon: Opgelijst taxon
   listed_taxon_updated: Opgelijst taxon bijgewerkt
   listing_announcement: Aankondiging oplijsten
@@ -1902,6 +2051,7 @@ nl:
     sq: Albanees
     zh-CN: Chinees (vereenvoudigd)
     zh-TW: Chinees (traditioneel)
+  localized_species_accounts: Lokale soortaccounts
   location: Locatie
   location_: Locatie
   locations: Locaties
@@ -1911,6 +2061,15 @@ nl:
   location_is_obscured: Locatie is verborgen
   location_is_private: Locatie is privé
   location_specified: Locatie opgegeven
+  locked_taxa_will_not_allow_new: Gesloten taxa staan niet toe dat nieuwe afgeleide
+    taxa aan hen worden toegevoegd. Dus als je Amphibia afsloot en iemand probeerde
+    <i>Rana catesbeiana</ i> van een externe naamaanbieder te importeren, dan zou
+    het nieuwe taxon gecreëerd worden, maar het kon niet geclassificeerd worden als
+    een amfibie. Wanneer dit gebeurt, moet de nieuw toegevoegde taxa worden gemarkeerd
+    voor de curator. Dit zou eigenlijk alleen voor taxa moeten worden gebruikt waarvan
+    we denken dat we al de afgeleide taxa hebben. Curator kan dit overschrijven door
+    rechtstreeks taxa te bewerken en parent-ID's in te voeren, maar overweeg alseblieft
+    om nieuwe taxa samen te voegen met bestaande.
   log_in: Aanmelden
   logged_in_as: Aangemeld als
   login_slash_username: Login / gebruikersnaam
@@ -1918,8 +2077,10 @@ nl:
     logo: Logo
     transparent_png: transparante PNG
     none: geen
+  long: 'Len:'
   longitude: Lengtegraad
   longitude_in_decimal: Lengteligging in decimale graden, bv. -122.123
+  longitude_slash_x_coord_slash_easting: Longitude / x coord / oostening
   look_up_name: Naam opzoeken
   looks_like_no_species_in_guide: Het lijkt erop dat er nog geen soort in uw gids
     aanwezig is.
@@ -1930,6 +2091,7 @@ nl:
   make_admin: Maak beheerder
   make_an_observation: Doe een waarneming
   make_a_new_place: Een nieuwe plaats aanmaken
+  make_curator: Beheerder maken
   make_it_a_life_list?: Er een levenslijst van maken?
   make_manager: Maak manager
   make_new_place: Een nieuwe plaats aanmaken
@@ -2138,6 +2300,7 @@ nl:
   no_comments_yet: Nog geen reacties.
   no_countries_added_yet: Nog geen landen toegevoegd
   no_creative_commons_flickr_photo: Geen Creative Commons Flickr Fotos getagd
+  no_curators_set: Geen beheerders ingesteld
   no_curators_yet: Nog geen curatoren!
   no_description: Geen beschrijving
   no_facebook_photos: We kunnen geen foto's van Facebook terugvinden.
@@ -2170,7 +2333,7 @@ nl:
   no_nearby_observations: Geen waarnemingen dichtbij.
   no_new_messages: Geen nieuwe berichten
   no_news_yet: Nog geen nieuws
-  no_observations: geen waarnemingen
+  no_observations: Geen Waarnemingen
   no_observations_from_this_place_yet: Nog geen waarnemingen voor deze plaats
   no_observations_matching_those_ids: Geen waarnemingen overeenkomstig met deze ID's.
   no_observations_submitted: Geen waarnemingen toegevoegd!
@@ -2209,6 +2372,7 @@ nl:
   none: Geen
   none_found: Niet gevonden
   normal: normaal
+  not_absent: niet afwezig
   not_completed: Niet voltooid
   not_evaluated: Niet beoordeeld
   not_found: Niet gevonden
@@ -2245,6 +2409,9 @@ nl:
   observation_date?: Datum?
   observation_field: Waarnemingsveld
   observation_fields: Waarnemingsvelden
+  observation_fields_by_preferences_description: |-
+    Waarnemingsvelden lijken een beetje op tags, behalve dat default iedereen ze kan toevoegen
+    aan je waarneming. Verander dit als je liever wilt dat alleen jij dit kan doen of alleen site-curators.
   observation_flagged: Waarneming gemarkeerd
   observation_flagged_as_flag: Waarneming gemarkeerd als %{flag}
   observation_removed_from_the_project: Waarneming verwijderd uit het project %{project}
@@ -2328,6 +2495,13 @@ nl:
       je geinformeerd wanneer zij waarnemingen plaatsen
     following_panel_title: Blijf op de hoogte van Personen, Taxa en Plaatsen
     comments_panel_title: Nieuwsgierig welke discussies plaatsvinden op %{site_name}?
+    comments_panel_body: '<p>%{site_name} gaat volledig over het delen en bespreken
+      van waarnemingen van flora en fauna. Hieronder zijn nu discussies gaande. (Opmerking:
+      u bent automatisch geabonneerd op discussies waaraan u opmerkingen of determinaties
+      bijdraagt. Beheer deze nieuwtjes in het gedeelte ''Abonnementen'' aan de rechterkant.)
+      </ P>'
+    updates_by_you_panel_title: Dit tabblad is een snelle manier om alleen nieuws
+      over je eigen content te filteren
     updates_by_you_panel_body: Houd er rekening mee dat u op het tabblad 'Alle updates'
       nieuwtjes ontvangt, niet alleen over uw eigen inhoud, maar ook over inhoud van
       mensen die u volgt en de taxa of plaatsen waar u zich abonneert, met gebruik
@@ -2583,7 +2757,7 @@ nl:
   press: Pers
   preview: Preview
   preview_observations: Preview Waarnemingen
-  preview_personal_message: Ik zou graag willen dat je me vergezelt op % {site}, een
+  preview_personal_message: Ik zou graag willen dat je me vergezelt op %{site}, een
     website waar je je waarnemingen van planten en dieren kunt vastleggen, je levenslijst
     kunt bijhouden en meer te weten kunt komen over de wereld der natuur!
   preview_your_message: Preview uw bericht
@@ -2599,6 +2773,10 @@ nl:
   privacy_policy: Privacybeleid
   private: privé
   private_: Privé
+  private_description: Coördinaten volledig verborgen voor openbare kaarten, echte
+    coördinaten die alleen zichtbaar zijn voor u en de curatoren van projecten waaraan
+    u de waarneming toevoegt. Waarnemingen met privé-coördinaten worden nog steeds
+    gebruikt om plaatscontrolelijsten te verifiëren.
   proceed: Doorgaan
   processing: Verwerken
   processing3p: Verwerken ...
@@ -2660,7 +2838,7 @@ nl:
     tribe: Tak
     subtribe: Ondertak
     genus: Geslacht
-    subgenus: ondergeslacht
+    subgenus: Subgenus
     section: Sectie
     subsection: Subsectie
     species: Soort
@@ -2747,6 +2925,7 @@ nl:
   required_field: verplicht veld
   research: onderzoek
   research_: Onderzoek
+  research_grade_qualification: Onderzoeksniveau qualificatie
   reset_search_filters: Reset zoekfilters
   reset_your_password: Uw wachtwoord opnieuw instellen
   resolve: Oplossen
@@ -2803,16 +2982,16 @@ nl:
   search_by_name_or_email: Zoek op naam of e-mail
   search_by_taxon_name_or_observation_id: Zoeken op taxon naam of waarnemings-ID
   search_by_taxon_name_or_flickr_photo_id: Zoek op taxonnaam of Flickr foto ID
-  search_for_a_location: Zoek naar een locatie
-  search_for_new_taxa: Zoek naar nieuwe taxa
-  search_for_species: Zoek soorten
+  search_for_a_location: Zoek naar een Locatie
+  search_for_new_taxa: Zoek naar Nieuwe Taxa
+  search_for_species: Zoek Soorten
   search_obs: Zoek waarnemingen
-  search_places: Zoek plaatsen
-  search_projects: Zoek projecten
+  search_places: Zoek Plaatsen
+  search_projects: Zoek Projecten
   search_results_for: Zoekresultaten voor
   search_results_for_query: Zoek resultaten voor "%{query}"
-  search_species: Zoek soorten
-  search_species_: Zoek soorten
+  search_species: Zoek Soorten
+  search_species_: Zoek Soorten
   search_taxa: Zoek taxa
   search_the_map: Zoek op kaart
   search_this_taxon: Zoek dit taxon
@@ -3007,7 +3186,7 @@ nl:
   summary: Samenvatting
   suspicious_photos: Verdachte foto's
   siutable_observations: bruikbare waarnemingen
-  sun: Zon
+  sun: zo
   suspend_user: Gebruiker schorsen
   sync: Sync?
   synonyms: Synoniemen
@@ -3100,7 +3279,7 @@ nl:
   taxonomic_status: Taxonomische status
   taxonomic_tags_for_flickr: Taxonomische labels voor Flickr
   taxonomy_settings: Taxonomische instellingen
-  tell_the_world_a_little_about_yourself: Vertel ons over uzelf
+  tell_the_world_a_little_about_yourself: Vertel ons over jezelf
   tell_us_why: Vertel ons waarom ...
   terms: Termen
   terms_and_rules_html: Voorwaarden en regels
@@ -3142,6 +3321,9 @@ nl:
   the_user_x_has_been_suspended: Gebruiker %{user} werd geschorst
   the_user_x_has_been_unsuspended: De schorsing van gebruiker %{user} werd opgeheven
   the_world: De wereld
+  the_world_is_full_of_interesting_places: |-
+    De wereld zit vol met interessante plaatsen, elk gevuld met merkwaardige en
+    prachtige levensvormen. Soms aan de andere kant van de wereld, soms gewoon in de straat! %{site_name} Surf langs plaatsen en ontdek het leven van onze planeet. Begin met ontdekken!
   then_keybord_sequence: dan
   there_is_no_wikipedia_page_matching: Er is geen overeenkomstige Wikipedia-pagina
   there_was_a_problem_saving_your_identification: 'Er was een probleem bij het opslaan
@@ -3177,6 +3359,13 @@ nl:
     te nemen met %{email}
   this_list_is_empty!: Deze lijst is leeg!
   this_observation: Deze waarneming
+  this_observation_is_featured_on_x_sites:
+    one: Deze waarneming is te zien op 1 site
+    other: Deze waarneming is te zien op %{count} sites
+  this_observation_is_in_x_projects:
+    one: Deze waarneming zit in 1 project
+    other: Deze waarneming zit in %{count} projecten
+  this_observation_is_research_grade: Deze waarneming heeft Onderzoeksniveau behaald!
   this_observation_was_created_using: 'Deze waarneming werd aangemaakt met behulp
     van:'
   this_photo_is_already_associated: Deze foto is reeds verbonden met één van je waarnemingen.
@@ -3190,11 +3379,13 @@ nl:
   this_year: Dit jaar
   those_observations_no_longer_exist: Deze waarneming bestaat niet langer.
   threatened: Bedreigd
-  thu: Do
+  thu: do
   time_: tijd
   time_ago: '%{time} geleden'
   title: titel
   title_and_description: Titel & Beschrijving
+  titled_favorites_and_the_most_recent_additions: met de naam "Favorieten" en de meest
+    recente toevoegen zullen hier verschijnen.
   to_add_comments: om reacties toe te voegen
   to_add_identifications: identificaties toevoegen
   to_add_ids: om ID's toe te voegen
@@ -3225,7 +3416,7 @@ nl:
     formulier op deze pagina.
   try_it_out: Probeer het eens
   try_wikipedia: Wikipedia proberen?
-  tue: Di
+  tue: di
   twitter: Twitter
   two_thirds: 2/3
   type: Type
@@ -3309,7 +3500,7 @@ nl:
   user_suggested_an_id: '%{user} stelde een ID voor'
   username: Gebruikersnaam
   username_or_email: Gebruikersnaam of e-mail
-  username_or_user_id: Gebruikersnaam of gebruikers-ID
+  username_or_user_id: Gebruikersnaam of Gebruikers-ID
   users: Gebruikers
   users_comment_html: <a href='%{url}'>reactie van %{user}</a>
   users_contributions_to_project_html: Bijdragen van <a href="%{url}">%{login}</a>
@@ -3376,6 +3567,9 @@ nl:
   view_on_amphibiaweb: Bekijk op Amphibia Web
   view_on_flickr: Bekijk op Flickr
   view_on_wikipedia: Bekijk op Wikipedia
+  view_photos_ranges_observations_more: Bekijk foto's, soorten reeksen, %{site_name}-waarnemingen
+    en meer! We hebben informatie uit veel verschillende bronnen verzameld en gecombineerd
+    tot een korte samenvatting van elke soort voor elke plaats.
   view_place: Plaats weergeven
   view_post: Bericht weergeven
   view_projects_from_place: Projecten weergeven van %{place}
@@ -3409,7 +3603,7 @@ nl:
   view_your_observations: Uw waarnemingen weergeven
   view_your_year_stats: Uw statistieken van %{year} wergeven
   view_all_of_your_observations_from_x: Al uw waarnemingen van %{x} weergeven
-  vulnerable: kwetsbaar
+  vulnerable: Kwetsbaar
   wait_file_generation: Even geduld, het bestand wordt aangemaakt. Voor lange lijsten
     kan dit enkele minuten in beslag nemen.
   want_to_add_one: Eén toevoegen?
@@ -3714,6 +3908,14 @@ nl:
         what_is_geoprivacy?: Wat is geoprivacy?
         what_is_does_it_mean_for: Wat betekent het wanneer een waarneming versluierd
           is?
+        when_coordinates_are_obscured_it_means_that: |-
+          Wanneer coördinaten worden vervaagd, betekent dit dat een willekeurig punt binnenin
+          %{km}KM van de werkelijke coördinaten wordt getoond (dat wil zeggen op de startpagina, de pagina met waarnemingen en projectpagina's), terwijl de echte coördinaten alleen zichtbaar zijn als u
+          kijkt bij uw eigen waarnemingen (dat wil zeggen op het individuele project
+          pagina's en de lijst met uw eigen waarnemingen). Merk op dat curatoren van
+          de projecten waaraan je een observatie hebt toegevoegd ook de
+          echte coördinaten kunnen zien. Vervaagde coördinaten moeten altijd worden gesymboliseerd door
+          circulaire marker zonder stelen op kaarten en in geospatiale feeds.
         you_can_also_obscure_the_coordinates_html: Je kan de coördinaten van je eigen
           waarnemingen altijd versluieren ongeacht het taxon. Raadpleeg <a href="#geoprivacy">geoprivacy</a>
           hierboven.
@@ -3784,6 +3986,8 @@ nl:
         adding_new_places: nieuwe plaatsen toevoegen
         confirming_identifications: identificaties bevestigen door ID's aan waarnemingen
           toe te voegen
+        you_can_help_out_by: Je kunt helpen onze informatie over plaatsen te verbeteren
+          door
     projects:
       project_type: Projecttype
       collection: Verzameling
@@ -3903,6 +4107,9 @@ nl:
       dashboard:
         your_content_will_be_updated: Uw inhoud met betrekking tot deze taxa wordt
           automatisch bijgewerkt.
+        curators_can_see: |-
+          Vergeet niet dat projectcuratoren de privé en vervaagde
+          coördinaten kunnen zien van waarnemingen die u toevoegt aan dit project.
       edit:
         project_addition_preferences:
           any: Alle

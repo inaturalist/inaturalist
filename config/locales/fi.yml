@@ -270,7 +270,7 @@ fi:
   add_tags: Lisää tunnisteita
   add_tags_to_selected_taxa: Lisää tunnisteita valittuun taksoniin
   add_taxa: Lisää taksoni
-  add_taxa_to_places: lisää taksoni paikkoihin
+  add_taxa_to_places: Lisää taksoni paikkoihin
   add_taxon_batch_to: Lisää taksonierä listaan %{list}
   add_taxon_range: Lisää taksonin levinneisyysalue
   add_taxonomic_tags_to: Lisää taksonomiset tunnisteet valittuihin Flickr-kuviin &raquo;
@@ -291,7 +291,7 @@ fi:
     Lisää sähköpostiosoitteesi saadaksesi palautetta yhteisöltä.
     Jos et halua jakaa sitä, seuraa tätä sivustoa säännöllisesti.
   add_your_own_observations_at: Lisää omia havaintojasi sivulle %{site_name}
-  add_your_photo: Lisää kuva
+  add_your_photo: Lisää kuvasi
   add_your_photo_to: Lisää kuvasi projektiin %{project}
   added: Lisätty
   added!: Lisätty!
@@ -2220,6 +2220,7 @@ fi:
   other_animals_plural:
     one: muu eläin
     other: muut eläimet
+  other_names: Muut nimet
   other_species_commonly_misidentified_as_this_species: Lajeja, jotka usein määritetään
     virheellisesti täksi lajiksi
   other_species_commonly_misidentified_as_this_species_in_place_html: Lajeja, jotka
@@ -2274,7 +2275,10 @@ fi:
     original: alkuperäinen
   photos_updated: Kuvat päivitetty.
   pick_a_username: Valitse käyttäjänimi
+  pin_verb: Kiinnitä
   pink: pinkki
+  pinned_locations_desc: Kiinnitä tämä yhdistelmä koordinaateista, tarkkuudesta, paikannuksen
+    yksityisyydestä ja sijainnista myöhempää käyttöä varten.
   place: Paikka
   place_deleted: Paikka poistettu.
   place_geo:
@@ -3076,6 +3080,8 @@ fi:
   update_existing_photos_with_new_license: Päivitä nykyiset kuvat uudella valitulla
     lisenssillä
   update_existing_sounds_with_new_license: Päivitä olemassa olevat äänet uusilla lisenssivaihtoehdoilla
+  update_observation: Päivitä havainto
+  update_observations: Päivitä havaintoja
   update_photos: Päivitä kuvat
   update_search: Päivitä haku
   update_selected_taxa: Päivitä valitut taksonit
@@ -3399,6 +3405,7 @@ fi:
     tähän projektiin: %{errors}'
   your_projects: Projektisi
   your_google_account: Google-tilisi
+  your_pinned_locations: Kiinnitetyt sijainnit
   your_profile_was_successfully_updated: Profiilisi päivitettiin onnistuneesti!
   your_should_recognize: Sinun pitäisi tunnistaa jotkin näistä valokuvista
   your_site_account_has_been_created: '%{site}-tilisi on luotu.'

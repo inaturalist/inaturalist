@@ -32,6 +32,7 @@
 # Author: Verdy p
 # Author: Wladek92
 # Author: Yasten
+# Author: Zarisi
 ---
 fr:
   x_comments:
@@ -670,6 +671,7 @@ fr:
   back_to_x_history: Retourner à l’historique de %{x}
   back_to_x_journal: Retourner au journal de %{user}
   back_to_x_blog: Retour au blogue de %{x}
+  back_to_your_dashboard: Retour à votre tableau de bord
   back_to_x_observations: Retourner aux observations de %{user}
   back_to_your_lists: Retourner à vos listes
   back_to_your_journal: Retourner à votre journal
@@ -748,7 +750,7 @@ fr:
     pas
   cant_merge_a_taxon_with_itself: Impossible de fusionner un taxon avec lui-même.
   captive: En captivité
-  captive_cultivated: En captivité/cultivé
+  captive_cultivated: En captivité / cultivé
   card: Carte
   case_plural: s
   casual: occasionnel
@@ -1003,6 +1005,7 @@ fr:
   comparing_list_to_list: Comparaison de %{list1} avec %{list2}
   comparing_versions_x_and_y: Comparaison des versions %{x} et %{y}
   comparing_observations_from: Comparaison des observations de %{user} du %{dates}
+  complete_sets: Ensembles complets
   compiled_by_name: Compilé par %{name}
   completed: Complétée
   completed_at: Complétée à
@@ -1139,8 +1142,8 @@ fr:
   creating_your_account: Création de votre compte…
   creative_commons_flickr_tagged: Photos de Flickr Creative Commons signalées
   creative_commons_unless_otherwise_noted: Creative Commons, sauf mention contraire.
-  critically_endangered: gravement menacée
-  critically_imperiled: gravement menacé
+  critically_endangered: Gravement menacée
+  critically_imperiled: Gravement menacé
   css_description: Sera inclus après tous les autres CSS de la page.
   csv: CSV
   csv_file: Fichier CSV
@@ -1175,7 +1178,7 @@ fr:
   customize_location: Personnaliser l’emplacement
   darr_apply_darr: '&darr; Appliquez &darr;'
   dashboard: Tableau de bord
-  data_deficient: données insuffisantes
+  data_deficient: Données insuffisantes
   data_quality: Qualité des données
   data_quality_assessment: Évaluation de la qualité des données
   data_quality_assessment_: évaluation de la qualité de la donnée
@@ -1419,8 +1422,8 @@ fr:
   encompassing_places: Lieux encerclés
   end: Fin
   end_date_time: Date / heure de fin
-  endangered: en voie de disparition
-  endemic: endémique
+  endangered: Menacé
+  endemic: Endémique
   endemic_to_x: Endémique à %{x}
   eol: EdlV
   eol_collection_url: URL de la collection de l’EdlV
@@ -1472,7 +1475,7 @@ fr:
   exporting: Exportation en cours…
   external_links: Liens externes
   extinct: disparue
-  extinct_in_the_wild: disparue à l’état sauvage
+  extinct_in_the_wild: Disparue à l’état sauvage
   extra_properties: Propriétés supplémentaires
   extras: Suppléments
   evidence_of_organism: Preuve de l’organisme
@@ -1573,12 +1576,12 @@ fr:
   flag_as_non_spammer: Marquer comme non-polluposteur
   flag_description: Signaler aux responsables de l’organisation qu’il y a un problème
     avec le contenu
-  flag_for_curation: Marquer pour les organisateurs
+  flag_for_curation: Marquer pour la supervision
   flag_it!: Signalez !
   flag_marked_as_resolved_html: <span class="meta">Drapeau indiquant que le problème</span>
     <strong>est résolu.</strong>
   flag_reason: '&ldquo;Je signale ce %{record} parce que'
-  flag_saved: Marque enregistré
+  flag_saved: Marque enregistrée
   flag_saved_thanks: Drapeau enregistré. Merci !
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
@@ -2036,12 +2039,11 @@ fr:
   learn_more_raquo: Apprenez-en davantage &raquo;
   learn_what_these_licenses_mean: Apprenez-en davantage sur ce que veulent dire ces
     licences
-  least_concern: préoccupation mineure
+  least_concern: Préoccupation mineure
   leave: Quitter
   leave_a_comment: Laisser un commentaire
   leave_this_project: Quitter ce projet
   leaves: feuilles
-  not_absent: non absent
   legacy_authentication_notice_html: |-
     Il semble que vous utilisez un mot de passe d’une ancienne version de ce site web.
     Souvenez-vous de <a href="%{url}">modifier votre mot de passe</a> aux fins de la nouvelle version.
@@ -2356,8 +2358,9 @@ fr:
   medium_url: URL du média
   meet: Rencontrer
   member_of_the_inaturalist_network_html: Membre du <a href="%{url}">Réseau iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membre du %{partial_inat_network_tag_html}Réseau iNaturalist</a> une initiative conjointe de la %{cas_tag_html} et de la %{nat_geo_tag_html}.
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : Membre du %{partial_inat_network_tag_html}Réseau iNaturalist</a> une initiative
+    conjointe de la %{cas_tag_html} et de la %{nat_geo_tag_html}.
   members: Membres
   membership_model: Modèle d’adhésion
   mentioned_you_in_noun_html: '%{user} vous a mentionné dans %{noun}'
@@ -2598,7 +2601,7 @@ fr:
   no_nearby_observations: Aucune observation à proximité.
   no_new_messages: Aucun nouveau message
   no_news_yet: Encore aucune actualité
-  no_observations: Aucune observation
+  no_observations: Pas d'observations
   no_observations_from_this_place_yet: Aucune observation dans ce lieu jusqu’à présent.
   no_observations_matching_those_ids: Aucune observation correspondant à ces identifications.
   no_observations_need_an_id: Aucune observation ne nécessite d’identification pour
@@ -2655,6 +2658,7 @@ fr:
   none: Aucun
   none_found: Aucun trouvé
   normal: normal
+  not_absent: non absent
   not_completed: Incomplet
   not_evaluated: non évalué
   not_filtering: Le filtrage n’a pas lieu
@@ -2982,6 +2986,7 @@ fr:
     other: autres animaux
   other_lexicons: Autres lexicons
   other_listings_of_this_taxon_for_this_place: Autres listes de ce taxon pour ce lieu
+  other_names: Autres noms
   other_species_commonly_misidentified_as_this_species: Autres espèces souvent confondues
     avec cette espèce
   other_species_commonly_misidentified_as_this_species_in_place_html: Autres espèces
@@ -3054,7 +3059,10 @@ fr:
     n’a pas le droit d’accéder à cette photo.'
   picasa_identity: Identité Picasa
   pick_a_username: Choisissez un nom d’utilisateur
+  pin_verb: Épingler
   pink: rose
+  pinned_locations_desc: Épingler cette combinaison de coordonnées, de précision,
+    de confidentialité géographique et de notes locales, pour un usage ultérieur.
   place: Lieu
   placeholder: Signet (élément de substitution)
   place_added_to_inat_by: Lieu ajouté à %{site_name} par
@@ -3643,7 +3651,7 @@ fr:
   search_projects: Rechercher des projets
   search_results_for: Rechercher des résultats pour
   search_results_for_query: Résultats de recherche pour « %{query} »
-  search_remote: Rechercher à distance
+  search_remote: Recherche à distance
   search_species: Rechercher des espèces
   search_species_: Rechercher des espèces...
   search_taxa: Rechercher de taxons…
@@ -4068,6 +4076,7 @@ fr:
   taxon_colors: Couleurs des taxons
   taxon_curators: Superviseurs des taxons
   taxon_extras: Taxons additionnels
+  taxon_links: Liens de taxon
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre
@@ -4451,6 +4460,8 @@ fr:
     moyen des nouveaux choix de licence
   update_existing_sounds_with_new_license: Mettre à jour les sons existants au moyen
     des nouveaux choix de licence
+  update_observation: Mettre à jour l’observation
+  update_observations: Mettre à jour les observations
   update_past: Mettre à jour les derniers %{type}
   update_photos: Mettre à jour les photos
   update_search: Mettre à jour la recherche
@@ -4551,7 +4562,7 @@ fr:
   user_thinks_yours_is: '%{user} %{noun} que votre observation %{observation} est'
   username: Nom d’utilisateur
   username_or_email: Nom d’utilisateur ou adresse électronique
-  username_or_user_id: Nom d’utilisateur ou ID utilisateur
+  username_or_user_id: Nom ou ID d’utilisateur
   users: Utilisateurs
   users_comment_html: commentaire de <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: contributions de <a href="%{url}">%{login}</a>
@@ -4671,7 +4682,7 @@ fr:
   view_yours: Afficher la vôtre
   view_all_of_your_observations_from_x: Afficher toutes vos observations depuis %{x}
   visually_similar: Visuellement semblable
-  vulnerable: vulnérable
+  vulnerable: Vulnérable
   w00t_no_ungrafted_taxa: Oups! Pas de taxons non greffés!
   w_photos_only: avec photos
   w_sounds: avec sons
@@ -5034,6 +5045,7 @@ fr:
   your_projects: Vos projets
   your_google_account: votre compte Google
   your_google_account_info: Les informations de votre compte Google
+  your_pinned_locations: Vos emplacements épinglés
   your_profile_was_successfully_updated: Votre profil a bien été mis à jour!
   your_recent_projects: Vos projets récents
   your_should_recognize: Vous devriez reconnaître certaines de ces photos

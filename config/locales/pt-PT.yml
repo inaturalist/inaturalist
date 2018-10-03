@@ -15,6 +15,7 @@
 # Author: Marcosvdqueiroz
 # Author: Patrícia Tavares Santos
 # Author: Renatinhoracing
+# Author: Ruila
 # Author: Vitorvicentevalente
 ---
 pt-PT:
@@ -88,8 +89,8 @@ pt-PT:
     one: <span class="count">Uma</span> pessoa concorda
     other: <span class="count">%{count}</span> pessoas concordam
   x_species:
-    one: 1 espécie
-    other: '%{count} espécies'
+    one: 1 Espécie
+    other: '%{count} Espécies'
   x_species_html:
     one: <span class='count'>Uma</span> espécie
     other: <span class='count'>%{count}</span> espécies
@@ -182,40 +183,40 @@ pt-PT:
   add_a_batch_of_observations: Adicionar um Conjunto de Observações
   add_a_batch_of_observations_by_csv: Adicionar um Conjunto de Observações por CSV
   add_a_batch_of_taxa: Adicionar um Conjunto de Táxons
-  add_a_comment: Adicionar um comentário
-  add_a_field: Adicionar um campo
-  add_a_flag: Adicionar um sinalizador
-  add_a_link_raquo: Adicionar um link &raquo;
-  add_a_name: Adicionar um nome
-  add_a_new_change_group: Adicionar um novo grupo de alteração
+  add_a_comment: Adicionar um Comentário
+  add_a_field: Adicionar um Campo
+  add_a_flag: Adicionar um Sinalizador
+  add_a_link_raquo: Adicionar um Link &raquo;
+  add_a_name: Adicionar um Nome
+  add_a_new_change_group: Adicionar um Novo Grupo de Alteração
   add_a_new_observation_to_id_please!: Adicionar uma Nova Observação para Identificar,
     Por favor!
-  add_a_place_raquo: Adicionar um lugar &raquo;
+  add_a_place_raquo: Adicionar um Lugar &raquo;
   add_a_single_observation: Adicionar uma única observação.
-  add_a_taxon: Adicione um táxon
+  add_a_taxon: Adicione um Táxon
   add_all_your_matching_obs_of_this_taxon: Adicione todas as suas observações deste
     táxon para este projeto
   add_all_your_matching_obs_to_this_project: Adicionar todas as suas observações correspondentes
     neste projeto
-  add_an_assessment: Adicionar uma avaliação
-  add_an_identification: Adicionar uma identificação
-  add_an_observation: Adicionar uma observação
-  add_an_observation?: Adicionar uma observação?
-  add_an_observation_of: Adicione uma observação de %{taxon}
-  add_annotations_for_x: Adicionar anotações para "%{x}"
+  add_an_assessment: Adicionar uma Avaliação
+  add_an_identification: Adicionar uma Identificação
+  add_an_observation: Adicionar uma Observação
+  add_an_observation?: Adicionar uma Observação?
+  add_an_observation_of: Adicione uma Observação de %{taxon}
+  add_annotations_for_x: Adicionar Anotações para "%{x}"
   add_annotations_for_controlled_attribute:
-    sex: Adicionar anotações sobre "Género"
-    plant_phenology: Adicionar anotações sobre "Fenologia da Planta"
-    life_stage: Adicionar anotações sobre "Fase da Vida"
-  add_another: Adicionar outra
-  add_another_flag: Adicionar outro sinalizador
-  add_another_photo: Adicionar outra fotografia
-  add_another_section: Adicionar outra secção
-  add_another_subscription: Adicionar outra subscrição
-  add_asset: Adicionar ativo
-  add_batch: Adicionar um conjunto
-  add_colors: Adicionar cores
-  add_comma_separated_tags: Adicionar etiquetas separadas por vírgulas
+    sex: Adicionar Anotações Sobre "Género"
+    plant_phenology: Adicionar Anotações Sobre "Fenologia da Planta"
+    life_stage: Adicionar Anotações Sobre "Fase da Vida"
+  add_another: Adicionar Outra
+  add_another_flag: Adicionar Outro Sinalizador
+  add_another_photo: Adicionar Outra Fotografia
+  add_another_section: Adicionar Outra Secção
+  add_another_subscription: Adicionar Outra Subscrição
+  add_asset: Adicionar Ativo
+  add_batch: Adicionar um Conjunto
+  add_colors: Adicionar Cores
+  add_comma_separated_tags: Adicionar Etiquetas Separadas por Vírgulas
   add_comment: Adicionar um comentário
   add_common_names_for: adicionar nomes comuns aos táxons já existentes
   add_conservation_status: adicionar estatuto de conservação
@@ -325,6 +326,7 @@ pt-PT:
   admin: Administrador
   admin_s: Administrador(es)
   admin_any_projects: administrar qualquer projeto
+  admin_only: Apenas administradores
   admin_tools: Ferramentas de Administração
   agree: concordar
   agree_: Concordar
@@ -577,8 +579,8 @@ pt-PT:
   attention: Atenção
   you_sure_delete_list: Tem a certeza que quer eliminar esta lista?
   you_sure_delete_taxon_from_list?: Tem a certeza que quer remover %{taxon} da lista?
-  asc: asc
-  ascending: ascendente
+  asc: Asc
+  ascending: Ascendente
   aside_from_extraordinary_circumstances: Salvo em circunstâncias extraordinárias,
     nunca lhe pediremos a sua palavra-passe.
   assessment: avaliação
@@ -1946,7 +1948,6 @@ pt-PT:
   leave_a_comment: Deixar um comentário
   leave_this_project: Sair deste projeto
   leaves: folhas
-  not_absent: não ausente
   legacy_authentication_notice_html: |-
     Parece que está a usar uma palavra-passe de uma versão anterior deste website.
     Por favor lembre-se de %{url}">alterar a sua palavra-passe</a> para a nova versão.
@@ -2256,8 +2257,9 @@ pt-PT:
   medium_url: URL de media
   meet: Conhecer
   member_of_the_inaturalist_network_html: Membro da <a href="%{url}">Rede iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membro da %{partial_inat_network_tag_html}Rede iNaturalist</a> uma iniciativa conjunta da %{cas_tag_html} e da %{nat_geo_tag_html}.
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : Membro da %{partial_inat_network_tag_html}Rede iNaturalist</a> uma iniciativa
+    conjunta da %{cas_tag_html} e da %{nat_geo_tag_html}.
   members: Membros
   membership_model: Modelo de adesão
   mentioned_you_in_noun_html: '%{user} mencionou você em %{noun}'
@@ -2549,6 +2551,7 @@ pt-PT:
   none: Nenhum
   none_found: Não encontrado
   normal: normal
+  not_absent: não ausente
   not_completed: Incompleto
   not_evaluated: Não avaliado
   not_filtering: Sem filtrar

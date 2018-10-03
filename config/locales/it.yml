@@ -304,6 +304,8 @@ it:
   add_taxon_range: Aggiungi areale di taxon
   add_taxonomic_tags_to: Aggiungi etichette tassonomiche alle foto di Flickr selezionate
     &raquo;
+  add_taxonomic_tags_to_the_flickr_photos: Aggiungi etichette tassonomiche alle foto
+    Fickr associate alle osservazioni selezionate.
   add_to: Aggiungi a
   add_to_a_scheme: Aggiungi a uno schema
   add_to_a_project: Aggiungi a un progetto
@@ -341,6 +343,7 @@ it:
   admin: Amministratore
   admin_s: Amministratore(i)
   admin_any_projects: amministra qualsiasi progetto
+  admin_only: Solo-Amministratore
   admin_tools: Strumenti Di Amministrazione
   agree: d'accordo
   agree_: Accetto
@@ -598,7 +601,7 @@ it:
     chiederemo mai la tua password.
   assessment: valutazione
   assessment_has_benn_completed: La valutazione è terminata
-  assessment_sections: Sezioni della valutazione
+  assessment_sections: Sezioni della Valutazione
   assessment_was_deleted: La valutazione è stata eliminata.
   assessment_was_successfully_created: La valutazione è stata creata correttamente.
   assessment_was_successfully_updated: La valutazione è stata aggiornata correttamente.
@@ -652,6 +655,7 @@ it:
   back_to_x_history: Torna alla cronologia di %{x}
   back_to_x_journal: Torna al diario di %{user}
   back_to_x_blog: Torna al blog di %{x}
+  back_to_your_dashboard: Torna alla tua bacheca
   back_to_x_observations: Torna alle osservazioni di %{user}
   back_to_your_lists: Torna alle tue liste
   back_to_your_journal: Torna al tuo diario
@@ -729,7 +733,7 @@ it:
     che non esiste
   cant_merge_a_taxon_with_itself: Impossibile unire un taxon con se stesso.
   captive: In cattività
-  captive_cultivated: In cattività / coltivato
+  captive_cultivated: In Cattività / Coltivato
   card: Carta
   case_plural: '&#10240;'
   casual: casuale
@@ -961,6 +965,7 @@ it:
   comparing_versions_x_and_y: Confronto in corso tra la versione %{x} e %{y}
   comparing_observations_from: Confronto in corso delle osservazioni di %{user} del
     %{dates}
+  complete_sets: Set Completi
   compiled_by_name: Compilato da %{name}
   completed: Completato
   completed_at: Completato in
@@ -1091,7 +1096,7 @@ it:
   creative_commons_flickr_tagged: Foto di Flickr Creative Commons Etichettate
   creative_commons_unless_otherwise_noted: Creative Commons, salvo diversamente indicato.
   critically_endangered: In Pericolo Critico
-  critically_imperiled: rischio critico d'estinzione
+  critically_imperiled: Rischio Critico d'Estinzione
   css_description: Questo verrà incluso dopo tutti gli altri css della pagina.
   csv: CSV
   csv_file: File CSV
@@ -1365,7 +1370,7 @@ it:
   end: Fine
   end_date_time: Data/Ora di fine
   endangered: In Pericolo
-  endemic: endemiche
+  endemic: Endemiche
   endemic_to_x: Endemico in %{x}
   eol: EOL
   eol_collection_url: URL della raccolta EOL
@@ -1416,7 +1421,7 @@ it:
   exporting: Esportazione in corso...
   external_links: Collegamenti esterni
   extinct: Estinta
-  extinct_in_the_wild: estinta in natura
+  extinct_in_the_wild: Estinta in Natura
   extra_properties: Proprietà aggiuntive
   extras: Extra
   evidence_of_organism: Evidenza della presenza dell'organismo
@@ -1561,6 +1566,9 @@ it:
   follower: seguace
   followers: Seguaci
   following: segui
+  following_x_people:
+    one: Seguendo 1 Persona
+    other: Seguendo %{count} Persone
   for: di
   for_a_taxon: per un taxon
   for_a_widget_showing_recent_observations_from: Per un widget che mostra le recenti
@@ -1966,7 +1974,6 @@ it:
   leave_a_comment: Lascia un commento
   leave_this_project: Abbandona questo progetto
   leaves: foglie
-  not_absent: non assente
   legacy_authentication_notice_html: |-
     Sembra che tu stia utilizzando una password di una versione precedente di questo sito.
     Ricordati di <a href="%{url}">cambiare la tua password</a> per la nuova versione.
@@ -2099,7 +2106,7 @@ it:
     taxonomic: tassonomico
     photo: foto
   list_was_successfully_created: La lista è stata creata con successo.
-  listed_taxa: Taxa elencati
+  listed_taxa: Taxa Elencati
   listed_taxon: Taxa elencati
   listed_taxon_updated: Taxa elencati aggiornati
   listing_announcement: Elencazione annuncio
@@ -2159,6 +2166,7 @@ it:
     ko: Coreano
     lb: Lussemburghese
     mk: Macedone
+    nl: Olandese
     oc: Occitano
     pt-BR: Portoghese (Brasile)
     pt-PT: Portoghese (Portogallo)
@@ -2511,7 +2519,7 @@ it:
   no_nearby_observations: Nessuna osservazione nelle vicinanze.
   no_new_messages: Nessun nuovo messaggio
   no_news_yet: Accora nessuna notizia
-  no_observations: nessuna osservazione
+  no_observations: Nessuna Osservazione
   no_observations_from_this_place_yet: Ancora nessuna osservazione da questo luogo.
   no_observations_matching_those_ids: Nessuna osservazione corrisponde a queste ID.
   no_observations_need_an_id: Nessun osservazione ha bisogno di una ID ora! Fantastico!
@@ -2568,6 +2576,7 @@ it:
   none: Nessuno
   none_found: Non trovato
   normal: normale
+  not_absent: non assente
   not_completed: Non Completato
   not_evaluated: Non Valutata
   not_filtering: Filtro inattivo
@@ -2884,6 +2893,7 @@ it:
   other_lexicons: Altre lingue
   other_listings_of_this_taxon_for_this_place: Altre osservazioni di questo taxon
     per questo luogo
+  other_names: Altri nomi
   other_species_commonly_misidentified_as_this_species: Altre specie identificate
     erroneamente al posto di questa
   other_species_commonly_misidentified_as_this_species_in_place_html: Altre specie
@@ -3313,6 +3323,7 @@ it:
     order: Ordine
     suborder: Sottordine
     infraorder: Infraordine
+    subterclass: Superclasse
     parvorder: Parvordine
     zoosection: Zoosezione
     zoosubsection: Zoosottosezione
@@ -3534,19 +3545,19 @@ it:
     Se ne selezioni una, sii gentile e lascia un ringraziamento nel commento!
   search_descendant_taxa_raquo: Cerca nei taxa discendenti &raquo;
   search_external_name_providers: Cerca nei fornitori di nomi esterni
-  search_for_a_location: Cerca una posizione
-  search_for_new_taxa: cerca nuovi taxa
+  search_for_a_location: Cerca una Località
+  search_for_new_taxa: cerca Nuovi Taxa
   search_for_place_to_import_from_yahoo: Cerca un luogo da importare da Yahoo.
-  search_for_species: Cerca specie
+  search_for_species: Cerca Specie
   search_list: Cerca Liste
   search_obs: Cerca osservazioni...
-  search_places: Cerca luoghi
-  search_projects: Cerca progetti
+  search_places: Cerca Luoghi
+  search_projects: Cerca Progetti
   search_results_for: Cerca Risultati per
   search_results_for_query: Risultati della ricerca per"%{query}"
-  search_remote: Cerca in remoto
-  search_species: Cerca specie
-  search_species_: Cerca specie...
+  search_remote: Cerca In Remoto
+  search_species: Cerca Specie
+  search_species_: Cerca Specie...
   search_taxa: Cerca taxa...
   search_the_map: Cerca sulla mappa
   search_this_taxon: cerca questo taxon
@@ -3957,6 +3968,7 @@ it:
   taxon_colors: Colori del taxon
   taxon_curators: Curatori del taxon
   taxon_extras: Extra del taxon
+  taxon_links: Link del Taxon
   taxon_merge: unione del taxon
   taxon_name: Nome del taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Il nome del taxon deve
@@ -4329,6 +4341,8 @@ it:
     con la nuova licenza scelta
   update_existing_photos_with_new_license: Aggiorna le foto con la nuova licenza scelta
   update_existing_sounds_with_new_license: Aggiorna i suoni con la nuova licenza scelta
+  update_observation: Aggiorna l'osservazione
+  update_observations: Aggiorna osservazioni
   update_past: Aggiorna le vecchie %{type}
   update_photos: Aggiorna le foto
   update_search: Aggiorna ricerca
@@ -4430,7 +4444,7 @@ it:
   user_thinks_yours_is: '%{user} %{noun} che la tua osservazione %{observation} sia'
   username: Nome utente
   username_or_email: Nome utente o email
-  username_or_user_id: Nome utente o ID utente
+  username_or_user_id: Nome Utente o ID Utente
   users: Utenti
   users_comment_html: commento di <a href='%{url}'>%{user}</a>
   users_contributions_to_project_html: I contributi di <a href="%{url}">%{login}</a>
