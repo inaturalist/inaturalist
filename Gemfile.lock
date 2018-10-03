@@ -125,7 +125,6 @@ GIT
 GEM
   remote: http://rubygems.org/
   specs:
-    aasm (4.0.8)
     actionmailer (4.2.7.1)
       actionpack (= 4.2.7.1)
       actionview (= 4.2.7.1)
@@ -594,7 +593,6 @@ GEM
     sshkit (1.15.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
-    statsd-ruby (1.2.1)
     systemu (2.6.4)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
@@ -642,7 +640,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  aasm
   actionpack-action_caching
   actionpack-page_caching
   activerecord-postgis-adapter!
@@ -746,7 +743,6 @@ DEPENDENCIES
   simplecov
   soundcloud
   sprockets (~> 2.12.5)
-  statsd-ruby
   thin (~> 1.6.3)
   translate-rails3!
   trollop
