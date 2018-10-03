@@ -193,6 +193,42 @@ body>div>.popover[role="tooltip"].popover-error {
       line-height: 34px;
     }
   }
+  .autocompletes {
+    border: 1px solid #ddd;
+    margin: 0 15px;
+    padding: 10px 15px;
+    .inverse-toggle {
+      cursor: pointer;
+      .fa {
+        color: $inat-green;
+        margin-left: 5px;
+      }
+    }
+    .inverse.panel-default {
+      margin: 0;
+      border: 0;
+      background-color: inherit;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      .panel-collapse > .row {
+        padding-bottom: 10px;
+      }
+      .collapse.in, .collapsing {
+        margin-top: 15px;
+      }
+    }
+  }
+  .annotations-form-group {
+    select, .term-value {
+      display: inline-block;
+    }
+    .term-value {
+      white-space: nowrap;
+      big {
+        margin: 0 10px;
+      }
+    }
+  }
   input[type="radio"], input[type="checkbox"] {
     margin-right: 5px;
   }

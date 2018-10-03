@@ -205,7 +205,7 @@ class LocationChooser extends SelectionBasedComponent {
                 />
               </label>
             </div>
-            { latNum && lngNum && this.props.notes ? (
+            { this.props.saveLocation && latNum && lngNum && this.props.notes ? (
               <div className="form-group save-form-group">
                 <label className="control-label">
                   <span className="label-text">&nbsp;</span>
@@ -239,28 +239,30 @@ class LocationChooser extends SelectionBasedComponent {
                 </label>
               </div>
             ) : null }
-            <SavedLocationChooser
-              className={ this.props.savedLocations.savedLocations.length === 0 ? "hidden" : "" }
-              locationsTotal={ this.props.savedLocations.total }
-              defaultLocations={ this.props.savedLocations.savedLocations }
-              onChoose={ sl => {
-                this.props.updateState( { locationChooser: {
-                  lat: sl.latitude,
-                  lng: sl.longitude,
-                  radius: sl.positional_accuracy,
-                  geoprivacy: sl.geoprivacy,
-                  notes: sl.title,
-                  manualPlaceGuess: false,
-                  center: {
+            { this.props.savedLocations.savedLocations ? (
+              <SavedLocationChooser
+                className={ this.props.savedLocations.savedLocations.length === 0 ? "hidden" : "" }
+                locationsTotal={ this.props.savedLocations.total }
+                defaultLocations={ this.props.savedLocations.savedLocations }
+                onChoose={ sl => {
+                  this.props.updateState( { locationChooser: {
                     lat: sl.latitude,
-                    lng: sl.longitude
-                  },
-                  show: true,
-                  fitCurrentCircle: true
-                } } );
-              } }
-              removeLocation={ sl => this.props.removeSavedLocation( sl ) }
-            />
+                    lng: sl.longitude,
+                    radius: sl.positional_accuracy,
+                    geoprivacy: sl.geoprivacy,
+                    notes: sl.title,
+                    manualPlaceGuess: false,
+                    center: {
+                      lat: sl.latitude,
+                      lng: sl.longitude
+                    },
+                    show: true,
+                    fitCurrentCircle: true
+                  } } );
+                } }
+                removeLocation={ sl => this.props.removeSavedLocation( sl ) }
+              />
+            ) : null }
           </div>
         </Modal.Body>
         <Modal.Footer>

@@ -92,7 +92,7 @@ const ObservationsTab = ( {
                 { I18n.t( "identify" ) }
               </button>
             </a>
-            <a href={ `/observations?project_id=${project.slug}&verifiable=any&place=any` }>
+            <a href={ `/observations?project_id=${project.slug}&verifiable=any&place_id=any` }>
               <button className="btn btn-default standalone">
                 <i className="fa fa-search" />
                 { I18n.t( "search" ) }

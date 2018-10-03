@@ -224,16 +224,15 @@ describe TaxaController do
   describe "observation_photos" do
     before(:each) { enable_elastic_indexing( Observation ) }
     after(:each) { disable_elastic_indexing( Observation ) }
+
+    let(:o) { make_research_grade_observation }
+    let(:p) { o.photos.first }
     it "should include photos from observations" do
-      o = make_research_grade_observation
-      p = o.photos.first
       get :observation_photos, id: o.taxon_id
       expect(assigns(:photos)).to include p
     end
 
     it "should return photos of an exact taxon match even if there are lots of text matches" do
-      o = make_research_grade_observation
-      p = o.photos.first
       t = o.taxon
       other_obs = []
       10.times { other_obs << make_research_grade_observation( description: t.name ) }
@@ -243,6 +242,19 @@ describe TaxaController do
       get :observation_photos, q: t.name
       expect( assigns(:photos).size ).to eq 1
       expect( assigns(:photos) ).to include p
+    end
+
+    it "should return photos from Research Grade obs even if there are multiple synonymous taxa" do
+      parent = Taxon.make!( rank: Taxon::GENUS )
+      o.taxon.update_attributes( rank: Taxon::SPECIES, parent: parent )
+      t2 = Taxon.make!( parent: parent, rank: Taxon::SPECIES )
+      t2n = TaxonName.make!( taxon: t2, name: o.taxon.name, is_valid: true, lexicon: TaxonName::SCIENTIFIC_NAMES )
+      o2 = make_research_grade_observation( taxon: t2 )
+      Delayed::Worker.new.work_off
+      expect( Taxon.single_taxon_for_name( o.taxon.name ) ).to be_nil
+      get :observation_photos, q: o.taxon.name, quality_grade: Observation::RESEARCH_GRADE
+      expect( assigns(:photos) ).to include p
+      expect( assigns(:photos) ).to include o2.photos.first
     end
   end
 

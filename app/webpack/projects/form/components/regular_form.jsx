@@ -2,17 +2,22 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { Grid, Row, Col } from "react-bootstrap";
-import TaxonAutocomplete from "../../../observations/uploader/components/taxon_autocomplete";
-import PlaceAutocomplete from "../../../observations/identify/components/place_autocomplete";
-import UserAutocomplete from "../../../observations/identify/components/user_autocomplete";
-import util from "../../../observations/show/util";
-import SplitTaxon from "../../../shared/components/split_taxon";
+import { Grid, Row, Col, Panel } from "react-bootstrap";
 import DateTimeFieldWrapper from
   "../../../observations/uploader/components/date_time_field_wrapper";
 import JQueryUIMultiselect from "../../../observations/identify/components/jquery_ui_multiselect";
+import TaxonSelector from "./taxon_selector";
+import PlaceSelector from "./place_selector";
+import UserSelector from "./user_selector";
 
 class RegularForm extends React.Component {
+
+  constructor( props ) {
+    super( props );
+    this.state = {
+      inverseFiltersOpen: false
+    };
+  }
 
   qualityGradeValues( ) {
     const checkedInputs = $( "input[name=quality_grade]:checked", ReactDOM.findDOMNode( this ) );
@@ -21,15 +26,17 @@ class RegularForm extends React.Component {
 
   render( ) {
     const {
-      config,
       project,
-      addProjectRule,
-      removeProjectRule,
       setRulePreference,
-      updateProject
+      updateProject,
+      allControlledTerms
     } = this.props;
     const monthNames = ( "january february march april may june july august " +
       "september october november december" ).split( " " );
+    const inverseFilterCount = _.size( project.notTaxonRules ) +
+      _.size( project.notPlaceRules ) + _.size( project.notUserRules );
+    const chosenTerm = project.rule_term_id ?
+      allControlledTerms.find( t => t.id === _.toInteger( project.rule_term_id ) ) : null;
     return (
       <div id="RegularForm" className="Form">
         <Grid>
@@ -42,100 +49,104 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={4}>
-              <label>{ I18n.t( "taxa" ) }</label>
-              <TaxonAutocomplete
-                ref="ta"
-                bootstrap
-                perPage={ 6 }
-                searchExternal={ false }
-                onSelectReturn={ e => {
-                  addProjectRule( "in_taxon?", "Taxon", e.item );
-                  this.refs.ta.inputElement( ).val( "" );
+            <Col xs={12} className="autocompletes">
+              <Row>
+                <Col xs={4}>
+                  <TaxonSelector { ...this.props } />
+                </Col>
+                <Col xs={4}>
+                  <PlaceSelector { ...this.props } />
+                </Col>
+                <Col xs={4}>
+                  <UserSelector { ...this.props } />
+                </Col>
+              </Row>
+              <label className="inverse-toggle collapsible"
+                onClick={ ( ) => {
+                  this.setState( { inverseFiltersOpen: !this.state.inverseFiltersOpen } );
                 } }
-                config={ config }
-                placeholder={ I18n.t( "taxon_autocomplete_placeholder" ) }
-              />
-              { !_.isEmpty( project.taxonRules ) && (
-                <div className="icon-previews">
-                  { _.map( project.taxonRules, taxonRule => (
-                    <div className="icon-preview" key={ `taxon_rule_${taxonRule.taxon.id}` }>
-                      { util.taxonImage( taxonRule.taxon ) }
-                      <SplitTaxon
-                        taxon={ taxonRule.taxon }
-                        user={ config.currentUser }
-                      />
-                      <i
-                        className="fa fa-times-circle"
-                        onClick={ ( ) => removeProjectRule( taxonRule ) }
-                      />
-                    </div>
-                  ) ) }
-                </div>
-              ) }
-            </Col>
-            <Col xs={4}>
-              <label>{ I18n.t( "places" ) }</label>
-              <div className="input-group">
-                <span className="input-group-addon fa fa-globe"></span>
-                <PlaceAutocomplete
-                  ref="pa"
-                  afterSelect={ e => {
-                    addProjectRule( "observed_in_place?", "Place", e.item );
-                    this.refs.pa.inputElement( ).val( "" );
-                  } }
-                  bootstrapClear
-                  config={ config }
-                  placeholder={ I18n.t( "place_autocomplete_placeholder" ) }
+              >
+                { I18n.t( "exclusion_filters" ) }
+                { inverseFilterCount > 0 && ` (${inverseFilterCount})` }
+                <i
+                  className={
+                    `fa fa-chevron-circle-${this.state.inverseFiltersOpen ? "down" : "right"}`
+                  }
                 />
-              </div>
-              { !_.isEmpty( project.placeRules ) && (
-                <div className="icon-previews">
-                  { _.map( project.placeRules, placeRule => (
-                    <div className="badge-div" key={ `place_rule_${placeRule.place.id}` }>
-                      <span className="badge">
-                        { placeRule.place.display_name }
-                        <i
-                          className="fa fa-times-circle-o"
-                          onClick={ ( ) => removeProjectRule( placeRule ) }
-                        />
-                      </span>
-                    </div>
-                  ) ) }
-                </div>
-              ) }
+              </label>
+              <Panel
+                className="inverse"
+                expanded={ this.state.inverseFiltersOpen }
+                onToggle={ () => {} }
+              >
+                <Panel.Collapse>
+                  <Row>
+                    <Col xs={4}>
+                      <TaxonSelector { ...this.props } inverse />
+                    </Col>
+                    <Col xs={4}>
+                      <PlaceSelector { ...this.props } inverse />
+                    </Col>
+                    <Col xs={4}>
+                      <UserSelector { ...this.props } inverse />
+                    </Col>
+                  </Row>
+                </Panel.Collapse>
+              </Panel>
             </Col>
-            <Col xs={4}>
-              <label>{ I18n.t( "users" ) }</label>
-              <div className="input-group">
-                <span className="input-group-addon fa fa-briefcase"></span>
-                <UserAutocomplete
-                  ref="ua"
-                  afterSelect={ e => {
-                    e.item.id = e.item.user_id;
-                    addProjectRule( "observed_by_user?", "User", e.item );
-                    this.refs.ua.inputElement( ).val( "" );
+          </Row>
+          <Row>
+            <Col xs={6}>
+              <div className="form-group annotations-form-group">
+                <label className="sectionlabel">{ I18n.t( "with_annotation" ) }</label>
+                <select
+                  id="project-term-id"
+                  className={ "form-control" }
+                  value={ project.rule_term_id }
+                  onChange={ e => {
+                    if ( _.isEmpty( e.target.value ) ) {
+                      setRulePreference( "term_id", null );
+                    } else {
+                      setRulePreference( "term_id", e.target.value );
+                    }
                   } }
-                  bootstrapClear
-                  config={ config }
-                  placeholder={ I18n.t( "user_autocomplete_placeholder" ) }
-                />
-              </div>
-              { !_.isEmpty( project.userRules ) && (
-                <div className="icon-previews">
-                  { _.map( project.userRules, userRule => (
-                    <div className="badge-div" key={ `user_rule_${userRule.user.id}` }>
-                      <span className="badge">
-                        { userRule.user.login }
-                        <i
-                          className="fa fa-times-circle-o"
-                          onClick={ ( ) => removeProjectRule( userRule ) }
-                        />
-                      </span>
-                    </div>
+                >
+                  <option value="">
+                    { I18n.t( "none" ) }
+                  </option>
+                  { allControlledTerms.map( t => (
+                    <option value={ t.id } key={`with-term-id-${t.id}`}>
+                      { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                    </option>
                   ) ) }
-                </div>
-              ) }
+                </select>
+                { chosenTerm ? (
+                  <div className="term-value">
+                    <big>=</big>
+                    <select
+                      id="project-term-value-id"
+                      className={ "form-control" }
+                      value={ project.rule_term_value_id }
+                      onChange={ e => {
+                        if ( _.isEmpty( e.target.value ) ) {
+                          setRulePreference( "term_value_id", null );
+                        } else {
+                          setRulePreference( "term_value_id", e.target.value );
+                        }
+                      } }
+                    >
+                      <option value="">
+                        { I18n.t( "any_" ) }
+                      </option>
+                      { chosenTerm.values.map( t => (
+                        <option value={ t.id } key={`annotation-term-value-id-${t.id}`}>
+                          { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
+                        </option>
+                      ) ) }
+                    </select>
+                  </div>
+                ) : null }
+              </div>
             </Col>
           </Row>
           <Row>
@@ -351,6 +362,7 @@ class RegularForm extends React.Component {
 RegularForm.propTypes = {
   config: PropTypes.object,
   project: PropTypes.object,
+  allControlledTerms: PropTypes.array,
   addProjectRule: PropTypes.func,
   removeProjectRule: PropTypes.func,
   setRulePreference: PropTypes.func,

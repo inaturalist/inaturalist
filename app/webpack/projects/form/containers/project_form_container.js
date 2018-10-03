@@ -13,12 +13,14 @@ import {
   onFileDrop,
   deleteProject,
   setRulePreference,
-  removeProject } from "../form_reducer";
+  removeProject
+} from "../form_reducer";
 
 function mapStateToProps( state ) {
   return {
     config: state.config,
-    project: state.form.project
+    project: state.form.project,
+    allControlledTerms: state.controlledTerms.allTerms
   };
 }
 
