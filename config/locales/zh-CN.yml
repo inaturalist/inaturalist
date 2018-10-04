@@ -1,6 +1,7 @@
 # Messages for Simplified Chinese (中文（简体）‎)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: A Chinese Wikipedian
 # Author: Apflu
 # Author: Cgalindo
 # Author: Deathkon
@@ -10,6 +11,7 @@
 # Author: Liuxinyu970226
 # Author: NeverBehave
 # Author: Peishanxu
+# Author: Phenolla
 # Author: Shizhao
 # Author: Yfdyh000
 # Author: Zz
@@ -524,7 +526,7 @@ zh-CN:
   you_sure_delete_taxon_from_list?: 您确定要从列表中移除%{taxon}吗？
   asc: 升
   ascending: 升序
-  aside_from_extraordinary_circumstances: 除了特殊情况外，我们也不会向您询问您的密码。
+  aside_from_extraordinary_circumstances: 除了特殊情况外，我们不会向您询问您的密码。
   assessment: 评定
   assessment_has_benn_completed: 评定已完成
   assessment_sections: 评定区间
@@ -577,6 +579,7 @@ zh-CN:
   back_to_x_history: 回到 %{x} 历史
   back_to_x_journal: 回到 %{user} 的日记
   back_to_x_blog: 返回至 %{x} 的博客
+  back_to_your_dashboard: 返回您的控制面板
   back_to_x_observations: 回到 %{user} 的观察
   back_to_your_lists: 回到您的列表
   back_to_your_journal: 回到您的日记
@@ -812,6 +815,7 @@ zh-CN:
   comparing_list_to_list: 比较 %{list1} 与 %{list2}
   comparing_versions_x_and_y: 比较版本 %{x} 和 %{y}
   comparing_observations_from: 比较 %{user} 在 %{dates} 做出的观察
+  complete_sets: 完整集
   compiled_by_name: 由 %{name} 编译
   completed: 已完成
   completed_at: 完成于
@@ -1176,7 +1180,7 @@ zh-CN:
   encompassing_places: 包围地点
   end: 结束
   end_date_time: 结束日期/时间
-  endangered: 濒临灭绝
+  endangered: 濒危
   endemic: 地方性
   endemic_to_x: '%{x}的特有种'
   eol: EOL
@@ -1699,7 +1703,6 @@ zh-CN:
   leave_a_comment: 留下评论
   leave_this_project: 离开这个项目
   leaves: 离开
-  not_absent: 毫不稀有
   legacy_authentication_notice_html: 看起来您正在使用来自此网站旧版本的密码。请记得<a href="%{url}">更改您的密码</a>以便使用新版本。
   let_us_walk_you_through: 让我们带您看一看这个网站的主要功能吧。
   lexicon: 词典
@@ -2222,6 +2225,7 @@ zh-CN:
   none: 无
   none_found: 未找到
   normal: 一般
+  not_absent: 毫不稀有
   not_completed: 未完成
   not_evaluated: 未评估
   not_filtering: 未过滤
@@ -3032,7 +3036,7 @@ zh-CN:
   save_photos: 保存照片
   save_place: 保存地点
   save_trip: 保存旅行
-  saved: 已保存
+  saved: 已提交
   saving: 正在保存...
   saving_num_of_count_observations:
     one: 正在保存观察...
@@ -3062,7 +3066,7 @@ zh-CN:
   search_projects: 搜索项目
   search_results_for: 搜索结果用于
   search_results_for_query: 搜索“%{query}”的结果
-  search_remote: 搜索远程
+  search_remote: 远程搜索
   search_species: 搜索物种
   search_species_: 搜索物种...
   search_taxa: 搜索分类群...
@@ -3420,6 +3424,7 @@ zh-CN:
   taxon_colors: 分类单元颜色
   taxon_curators: 物种馆长
   taxon_extras: 分类单元额外值
+  taxon_links: 分类单元链接
   taxon_merge: 分类单元合并
   taxon_name: 分类单元名称
   taxon_name_must_match_an_existing_taxon_in_our_database: 分类单元名称必须与我们数据库中的现有分类单元匹配

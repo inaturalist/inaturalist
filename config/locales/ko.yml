@@ -409,6 +409,7 @@ ko:
   back_to_x_history: '%{x} 역사로 돌아가기'
   back_to_x_journal: '%{user}의 일지로 돌아가기'
   back_to_x_blog: '%{x}의 블로그로 돌아가기'
+  back_to_your_dashboard: 내 대시보드로 돌아가기
   back_to_x_observations: '%{user}의 관찰로 돌아가기'
   back_to_your_lists: 사용자의 목록으로 돌아가기
   back_to_your_journal: 너의 일지로 돌아가기
@@ -466,7 +467,7 @@ ko:
   cancel: 취소
   cant_flag_an_object_that_doesnt_exist: 존제하지 않는 물체에 플래그를 세울 수 없다.
   cant_merge_a_taxon_with_itself: 분류군을 자기 자신과 병합할 수 없습니다.
-  captive_cultivated: 포획된/양식된
+  captive_cultivated: 포획된 / 양식된
   card: 카드
   casual: 비공식적
   catalogue_of_life: 생명체 목록
@@ -1363,6 +1364,7 @@ ko:
   leaderboard_most:
     observations: '%{time}에 가장 많은 관찰'
   learn_more: 더 알아보기
+  least_concern: 관심 대상
   leave: 떠나기
   let_us_walk_you_through: 이 사이트의 주요 기능들을 살펴봅시다.
   lexicons:
@@ -1708,7 +1710,7 @@ ko:
   no_nearby_observations: 근처 관찰이 없습니다.
   no_new_messages: 새 메시지가 없습니다
   no_news_yet: 아직 소식이 없습니다
-  no_observations: 관찰이 없습니다.
+  no_observations: 관찰이 없습니다
   no_observations_from_this_place_yet: 아직 이 장소에 관찰이 없습니다.
   no_observations_matching_those_ids: 동정과 일치하는 관찰이 없습니다.
   no_observations_need_an_id: 동정이 필요한 관찰이 없습니다!
@@ -1849,6 +1851,7 @@ ko:
   original_url: 원래의 URL
   other: 기타
   other_lexicons: 기타 어휘 목록
+  other_names: 다른 이름
   overview: 개요
   owner: 소유자
   password: 비밀번호
@@ -1874,6 +1877,7 @@ ko:
     large: 크게
   google_account_not_linked: '%{user}님이 더 이상 연결된 구글 계정이 없기 때문에 %{site_name}이(가) 이
     사진을 접근할 권한이 없습니다.'
+  pin_verb: 저장
   pink: 핑크
   place: 장소
   place_autocomplete_placeholder: 자이언 국립공원, 마이애미, 등등
@@ -2208,6 +2212,8 @@ ko:
   unmute: 알림 제외를 해제
   unsubscribe: 구독 해지
   update: 갱신
+  update_observation: 관찰 업데이트
+  update_observations: 관찰 업데이트
   update_photos: 사진 갱신
   update_subscription: 구독 갱신
   update_subscription_preferences: 구독 환경 설정 업데이트
@@ -2279,6 +2285,7 @@ ko:
   view_unidentified_observations: 동정하지 않은 관찰 보기
   view_x: '%{x} 보기'
   view_your_observations: 내 관찰 보기
+  vulnerable: 취약
   we_also_support: "<a href=\"http://flickr.com\">플리커</a>, \n<a href=\"http://photos.google.com\">구글
     포토</a>, \n<a href=\"http://facebook.com\">페이스북</a>\n의 영상 호스팅도 지원합니다."
   we_care_privacy: 우리는 여러분의 개인정보를 보호합니다!
@@ -2354,6 +2361,7 @@ ko:
   your_projects: 내 프로젝트
   your_google_account: 내 구글 계정
   your_google_account_info: 구글 계정 정보
+  your_pinned_locations: 내가 저장한 위치
   your_recent_projects: 내 최근 프로젝트
   your_subscriptions: 당신의 구독 목록
   your_sure_delete_list?: 이 목록을 삭제하겠습니까?

@@ -628,6 +628,7 @@ pt-BR:
   back_to_x_history: Voltar para %{x} histórico
   back_to_x_journal: Voltar para %{user}'s boletim informativo
   back_to_x_blog: Voltar ao blog de %{x}
+  back_to_your_dashboard: Voltar ao seu painel
   back_to_x_observations: Voltar para as observações de %{user}
   back_to_your_lists: Voltar para sua lista
   back_to_your_journal: Voltar para seu diário
@@ -703,7 +704,7 @@ pt-BR:
     não existe
   cant_merge_a_taxon_with_itself: Não pode combinar um táxon com ele mesmo.
   captive: Cativo
-  captive_cultivated: Em cativeiro / cultivada
+  captive_cultivated: Em cativeiro / Cultivada
   card: Identificação
   case_plural: s
   casual: casual
@@ -940,6 +941,7 @@ pt-BR:
   comparing_list_to_list: Comparando %{list1} com %{list2}
   comparing_versions_x_and_y: Comparando as versões %{x} e %{y}
   comparing_observations_from: Comparando %{user} observações de %{dates}
+  complete_sets: Conjuntos Completos
   compiled_by_name: Compilada por %{name}
   completed: Concluído
   completed_at: Concluído em
@@ -1074,8 +1076,8 @@ pt-BR:
   creative_commons_flickr_tagged: Fotos Creative Commons marcadas no Flickr
   creative_commons_unless_otherwise_noted: Creative Commons a não ser que prefira
     não licenciar desta maneira.
-  critically_endangered: criticamente em perigo
-  critically_imperiled: criticamente em perigo
+  critically_endangered: Criticamente em perigo
+  critically_imperiled: Criticamente em perigo
   css_description: Isto será incluído depois de todas as outras css na página
   csv: CSV
   csv_file: Arquivo CSV
@@ -1109,7 +1111,7 @@ pt-BR:
   customize_location: Personalizar Localização
   darr_apply_darr: '&darr; Aplicar &darr;'
   dashboard: Painel de controle
-  data_deficient: dados insuficientes
+  data_deficient: Dados insuficientes
   data_quality: Qualidade dos Dados
   data_quality_assessment: Avaliação da qualidade dos dados
   data_quality_assessment_: Avaliação da qualidade dos dados
@@ -1339,8 +1341,8 @@ pt-BR:
   enlarge: Ampliar
   encompassing_places: Locais no entorno
   end: Fim
-  endangered: em perigo
-  endemic: endêmica
+  endangered: Em perigo
+  endemic: Endêmica
   endemic_to_x: Endêmica de %{x}
   eol: EOL
   eol_collection_url: URL da coleção EOL
@@ -1388,7 +1390,7 @@ pt-BR:
   exporting: Exportando...
   external_links: Links externos
   extinct: extinto
-  extinct_in_the_wild: extinto na natureza
+  extinct_in_the_wild: Extinto na natureza
   extra_properties: Propriedades extras
   extras: Extras
   evidence_of_organism: Evidência de organismo
@@ -1915,7 +1917,6 @@ pt-BR:
   leave_a_comment: Deixe um comentário
   leave_this_project: Sair deste projeto
   leaves: folhas
-  not_absent: não ausente
   legacy_authentication_notice_html: Parece que você está utilizando uma senha da
     versão antiga deste site. Por favor lembre-se de <a href="%{url}">mudar sua senha</a>
     para a nova versão.
@@ -2213,8 +2214,9 @@ pt-BR:
   media: Mídia
   medium: médio
   member_of_the_inaturalist_network_html: Membro da <a href="%{url}">Rede iNaturalist</a>
-  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
-    Membro da %{partial_inat_network_tag_html}Rede iNaturalist</a> uma iniciativa conjunta da %{cas_tag_html} e da %{nat_geo_tag_html}.
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : Membro da %{partial_inat_network_tag_html}Rede iNaturalist</a> uma iniciativa
+    conjunta da %{cas_tag_html} e da %{nat_geo_tag_html}.
   members: Membros
   mentioned_you_in_noun_html: '%{user} mencionou você em %{noun}'
   mentioned_you_in_noun_by_html: '%{user} mencionou você em %{noun} por %{by}'
@@ -2498,6 +2500,7 @@ pt-BR:
   none: Nenhum
   none_found: Não encontrado
   normal: normal
+  not_absent: não ausente
   not_completed: Incompleto
   not_evaluated: Não avaliado
   not_filtering: Não filtrar
@@ -3419,12 +3422,12 @@ pt-BR:
   search_for_species: Buscar espécies
   search_list: Lista de pesquisas
   search_obs: Procurar por observações
-  search_places: Procurar por locais
+  search_places: Pesquisar lugares
   search_projects: Procurar por projetos
   search_results_for: Procurar por resultados para
   search_remote: Busca remota
   search_species: Procurar por espécies
-  search_species_: Procurar por espécies
+  search_species_: Procurando por espécies...
   search_taxa: Procurar por táxons
   search_the_map: Procurar no mapa
   search_this_taxon: procurar este táxon
@@ -3766,6 +3769,7 @@ pt-BR:
     data_url: Dados de URL
     overlays: Capas
   taxon_changes: Alterações de Táxon
+  taxon_links: Links Taxon
   taxon_merge: Fundir táxon
   taxon_name: Nome de táxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Nome do táxon deve coincidir
@@ -4319,7 +4323,7 @@ pt-BR:
   view_yours: Veja os Seus
   view_all_of_your_observations_from_x: Ver todas as suas observações de %{x}
   visually_similar: Visualmente Similar
-  vulnerable: vulnerável
+  vulnerable: Vulnerável
   w00t_no_ungrafted_taxa: Ops! Não são aceitos táxons sem relações taxonômicas@
   w_photos_only: com fotos
   w_sounds: com sons

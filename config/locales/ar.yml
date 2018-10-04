@@ -156,7 +156,7 @@ ar:
   about_this_bioblitz: حول هذا bioblitz
   about_this_map: عن هذه الخريطة
   about_this_project: عن هذا المشروع
-  about_x: عن %{x}
+  about_x: حول %{x}
   acc: الدقة (م)
   account: الحساب
   account_settings: إعدادات الحساب
@@ -614,6 +614,7 @@ ar:
   back_to_x_history: الرجوع إلى تاريخ %{x}
   back_to_x_journal: الرجوع إلى مجلة %{user}
   back_to_x_blog: الرجوع إلى مدونة %{x}
+  back_to_your_dashboard: العودة إلى لوحة معلوماتك
   back_to_x_observations: الرجوع إلى ملاحظات %{user}
   back_to_your_lists: العودة إلى قوائمك
   back_to_your_journal: العودة إلى مجلتك
@@ -902,6 +903,7 @@ ar:
   comparing_list_to_list: مقارنة %{list1} مع %{list2}
   comparing_versions_x_and_y: مقارنة الإصدارات %{x} و%{y}
   comparing_observations_from: مقارنة %{user} الملاحظات من %{dates}
+  complete_sets: مجموعات كاملة
   compiled_by_name: تم تجميعها بواسطة %{name}
   completed: اكتمل
   completed_at: اكتمل في
@@ -1883,7 +1885,6 @@ ar:
   leave_a_comment: اترك تعليقًا
   leave_this_project: اترك هذا المشروع
   leaves: أوراق أشجار
-  not_absent: ليس غائبا
   legacy_authentication_notice_html: يبدو أنك تستخدم كلمة مرور من إصدار أقدم من هذا
     الموقع، يُرجَى تذكر <a href="%{url}">تغيير كلمة المرور</a> للإصدار الجديد.
   let_us_walk_you_through: دعونا نمشي معك خلال الملامح الرئيسية لهذا الموقع.
@@ -2177,6 +2178,9 @@ ar:
   medium_url: مسار الوسيط
   meet: يقابل
   member_of_the_inaturalist_network_html: عضو في <a href="%{url}">شبكة إيناتوراليست</a>
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : عضو %{partial_inat_network_tag_html}iNaturalist Network</a> مبادرة مشتركة من %{cas_tag_html}
+    و%{nat_geo_tag_html}.
   members: أعضاء
   membership_model: نموذج العضوية
   mentioned_you_in_noun_html: أشار %{user} لك في %{noun}
@@ -2466,6 +2470,7 @@ ar:
   none: لا شيء
   none_found: لم يتم العثور على شيء
   normal: عادي
+  not_absent: ليس غائبا
   not_completed: غير مكتمل
   not_evaluated: لم يتم تقييمه
   not_filtering: عدم التصفية
@@ -2759,6 +2764,7 @@ ar:
     other: حيوانات أخرى
   other_lexicons: معاجم أخرى
   other_listings_of_this_taxon_for_this_place: قوائم أخرى لهذه الأصنوفة لهذا المكان
+  other_names: أسماء أخرى
   other_species_commonly_misidentified_as_this_species: الأنواع الأخرى عادة ما يتم
     التعرف عليها بشكل خاطئ مثل هذا النوع
   other_species_commonly_misidentified_as_this_species_in_place_html: تم تعريف الأنواع
@@ -2831,7 +2837,10 @@ ar:
     لدى %{site_name} إذن بالدخول إلى هذه الصورة.
   picasa_identity: هوية بيكاسا
   pick_a_username: اختر اسم مستخدم
+  pin_verb: تثبيت
   pink: زهري
+  pinned_locations_desc: تثبيت هذه المجموعة من الإحداثيات والدقة والخصوصية الجغرافية
+    وملاحظات المكان لاستخدامها لاحقا.
   place: مكان
   placeholder: نائب
   place_added_to_inat_by: تمت إضافة المكان إلى %{site_name} بواسطة
@@ -3798,6 +3807,7 @@ ar:
   taxon_colors: ألوان الأصنوفة
   taxon_curators: أمناء الأصنوفة
   taxon_extras: إضافات الأصنوفة
+  taxon_links: روابط الأصنوفة
   taxon_merge: دمج الأصنوفة
   taxon_name: اسم الأصنوفة
   taxon_name_must_match_an_existing_taxon_in_our_database: يجب أن يتطابق اسم الأصنوفة
@@ -4148,6 +4158,8 @@ ar:
   update_existing_photos_with_new_license: تحديث الصور الحالية مع خيارات ترخيص جديدة
   update_existing_sounds_with_new_license: تحديث الأصوات الحالية مع خيارات الترخيص
     الجديدة
+  update_observation: تحديث الملاحظة
+  update_observations: تحديث ملاحظات
   update_past: تحديث %{type} السابق
   update_photos: تحديث الصور
   update_search: تحديث البحث
@@ -4677,6 +4689,7 @@ ar:
   your_projects: مشاريعك
   your_google_account: حسابك في جوجل
   your_google_account_info: معلومات حسابك في جوجل
+  your_pinned_locations: مواقعك المثبتة
   your_profile_was_successfully_updated: تم تحديث ملفك الشخصي بنجاح!
   your_recent_projects: مشاريعك الحديثة
   your_should_recognize: يجب عليك التعرف على بعض هذه الصور

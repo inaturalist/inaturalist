@@ -579,6 +579,7 @@ zh-TW:
   back_to_x_history: 返回至%{x}歷史
   back_to_x_journal: 返回至%{user}的日誌
   back_to_x_blog: 返回至%{x}的部落格
+  back_to_your_dashboard: 回到您的控制面板
   back_to_x_observations: 返回至%{user}的觀察
   back_to_your_lists: 返回至您的清單
   back_to_your_journal: 返回至您的日誌
@@ -815,6 +816,7 @@ zh-TW:
   comparing_list_to_list: 比較%{list1}與%{list2}
   comparing_versions_x_and_y: 比較版本 %{x} 和 %{y}
   comparing_observations_from: 比較 %{user} 自 %{dates} 的觀察
+  complete_sets: 全集
   compiled_by_name: 編譯由%{name}
   completed: 已完成
   completed_at: 完成於
@@ -1082,7 +1084,7 @@ zh-TW:
   dont_filter: 不用篩選
   dont_send_me_email: 不要替我寄送任何電子郵件！
   dont_use_double_quotes: 不要在任何其它地方使用雙引號
-  drop_it: 去除
+  drop_it: 放開
   double_click_to_finish: （快按兩下來完成）
   download: 下載
   download_bulk_import_template_html: |-
@@ -1709,7 +1711,6 @@ zh-TW:
   leave_a_comment: 留下評論
   leave_this_project: 離開此專案
   leaves: 離開
-  not_absent: 不缺失
   legacy_authentication_notice_html: 看起來您正在使用此網站的舊版本密碼。請記得為新版本來<a href="%{url}">更改您的密碼</a>。
   let_us_walk_you_through: 讓我們帶您看一看此網站的主要功能吧。
   lexicon: 詞彙
@@ -1972,6 +1973,8 @@ zh-TW:
   meet: 會見
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist Network</a>
     的成員
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : '%{partial_inat_network_tag_html}iNaturalist 網路</a>成員是聯合 %{cas_tag_html} 與 %{nat_geo_tag_html}。'
   members: 成員
   membership_model: 成員模組
   mentioned_you_in_noun_html: '%{user} 在 %{noun} 提到了您'
@@ -2039,6 +2042,7 @@ zh-TW:
   most_observed_species: 被觀察最多次的物種
   most_observed_introduced_species: 被觀察最多次的引進物種
   most_observed_threatened_species: 被觀察最多次的受威脅物種
+  move_input_children_to_output?: 移動子項至輸出？
   multiple: 多種
   multiple_select_option: -- 多種 --
   multiple_taxa_for_taxon_change: 多項物種分類群（輸入用於對換/合併方面，輸出用於拆分方面）
@@ -2243,6 +2247,7 @@ zh-TW:
   none: 無
   none_found: 未找到
   normal: 一般
+  not_absent: 不缺失
   not_completed: 未完成
   not_evaluated: 未評估
   not_filtering: 未篩選
@@ -2484,6 +2489,7 @@ zh-TW:
     other: 個其它動物
   other_lexicons: 其它詞彙
   other_listings_of_this_taxon_for_this_place: 其它此地點的物種分類清單
+  other_names: 別名
   other_species_commonly_misidentified_as_this_species: 常被誤認為是此物種的其它物種
   other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>常被誤認為是此物種的其它物種
   our_blog: 我們的部落格
@@ -2549,7 +2555,9 @@ zh-TW:
   google_account_not_linked: '%{user}不再有連結 Google 的帳號，因此 %{site_name} 沒有權限來使用此照片。'
   picasa_identity: Picasa 身份
   pick_a_username: 挑選一個用戶名稱
+  pin_verb: 釘選
   pink: 粉紅色
+  pinned_locations_desc: 釘選此座標、精確度、位置隱私以及地點標註的組合內容來供日後使用。
   place: 地點
   placeholder: 位置標誌符
   place_added_to_inat_by: 地點已增加至 %{site_name} 由
@@ -3443,6 +3451,7 @@ zh-TW:
   taxon_colors: 物種分類色彩
   taxon_curators: 物種分類策展人
   taxon_extras: 物種分類附加
+  taxon_links: 物種分類連結
   taxon_merge: 物種分類合併
   taxon_name: 物種分類名稱
   taxon_name_must_match_an_existing_taxon_in_our_database: 物種分類名稱必須符合存在於我們資料庫裡的物種分類
@@ -3717,6 +3726,8 @@ zh-TW:
   update_existing_observations_with_new_license: 以新挑選的許可協議來更新現有觀察
   update_existing_photos_with_new_license: 以新挑選的許可協議來更新現有照片
   update_existing_sounds_with_new_license: 以新挑選的許可協議來更新現有聲音
+  update_observation: 更新觀察
+  update_observations: 更新觀察
   update_past: 更新先前的%{type}
   update_photos: 更新照片
   update_search: 更新搜尋
@@ -4163,6 +4174,7 @@ zh-TW:
   your_projects: 您的專案
   your_google_account: 您的 Google 帳號
   your_google_account_info: 您的 Google 帳號訊息
+  your_pinned_locations: 您所釘選的位置
   your_profile_was_successfully_updated: 您的個人資料更新成功！
   your_recent_projects: 您最近的專案
   your_should_recognize: 您應該辨別其中一些照片
@@ -4947,6 +4959,13 @@ zh-TW:
           unannotated: 沒有註釋
         photo_chooser_modal_desc: 從左方拖拉照片於此，或拖拉照片於此來重新排列。
         photo_chooser_modal_explanation: 註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。
+    taxon_changes:
+      move_children_desc: 子項若為屬或較粗略內容，因而移動到種、亞種、變種、等其它輸出的所輸入物種分類，將會對換至同等之新的屬、或種名稱。
+      form:
+        move_children_desc_html: |-
+          當更改提交時，勾選此方框將會移動所輸入物種分類的子項至輸出物種分類來對換與合併。若此更改內容為屬或較低階級別，會給所有具有隱含名稱變更的派生建立物種分類對換。例如，如果您將 Canidae 科對換至 Dogidae 科，這會更改 <i>Canis</i> 屬從 Canidae 至 Dogidae 的父級項目。如果您對換
+          <i>Canis</i> 屬至 <i>Dogis</i> 屬，這將會建立並提交物種分類對換來把 <i>Canis lupus</i> 更改成 <i>Dogis lupus</i> ，以及 <i>Canis lupus</i> ssp. <i>lupus</i> 會更改成 <i>Dogis lupus</i> ssp.
+          <i>lupus</i>。這會有造成混亂情況的可能，因此請小心使用。
     taxon_links:
       form:
         name_with_rank_desc: 此級別的物種分類名稱。對於特定的級別，是插入在雙名之後。

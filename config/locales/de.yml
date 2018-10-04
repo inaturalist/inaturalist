@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Andreas Plank
 # Author: AndreasHerde
+# Author: Asieverd
 # Author: Cellina
 # Author: Crazy1880
 # Author: Dellfalconer
@@ -316,7 +317,7 @@ de:
   add_your_photo_to: Dein Foto zu %{project} hinzufügen
   added: Hinzugefügt
   added!: Hinzugefügt!
-  added_an: ein hinzugefügt
+  added_an: 'hat hinzugefügt:'
   added_as_a_part_of: Hinzugefügt als Teil von
   added_by: Hinzugefügt von
   added_by_user_on_date_html: Von %{user} am %{date} hinzugefügt
@@ -653,6 +654,7 @@ de:
   back_to_x_history: Zurück zu %{x}-Verlauf
   back_to_x_journal: Zurück zum Journal von %{user}
   back_to_x_blog: Zurück zu %{x}'s Blog
+  back_to_your_dashboard: Zurück zu Deinem Dashboard
   back_to_x_observations: Zurück zu den Beobachtungen von %{user}
   back_to_your_lists: Zurück zu deinen Listen
   back_to_your_journal: Zurück zu deinem Journal
@@ -956,6 +958,7 @@ de:
   comparing_list_to_list: Vergleiche %{list1} mit %{list2}
   comparing_versions_x_and_y: Vergleiche Versionen %{x} und %{y}
   comparing_observations_from: Vergleiche %{user} Beobachtungen von %{dates}
+  complete_sets: Vollständige Sets
   compiled_by_name: Zusammengestellt von %{name}
   completed: Abgeschlossen
   completed_at: Abgeschlossen um
@@ -1867,7 +1870,6 @@ de:
   leave_a_comment: Einen Kommentar hinterlassen
   leave_this_project: Dieses Projekt verlassen
   leaves: verlässt
-  not_absent: nicht abwesend
   legacy_authentication_notice_html: |-
     Sieht so aus, als ob du ein Passwort von einer älteren Version dieser Website benutzt.
     Bitte denke daran, dein Passwort für die neue Version <a href="%{url}">zu ändern</a>.
@@ -2435,6 +2437,7 @@ de:
   none: Keine
   none_found: nichts gefunden
   normal: normal
+  not_absent: nicht abwesend
   not_completed: Nicht komplett
   not_evaluated: nicht beurteilt
   not_filtering: Keine Filterung
@@ -2705,6 +2708,7 @@ de:
   other_lexicons: Andere Lexika
   other_listings_of_this_taxon_for_this_place: Andere Auflistungen dieses Taxons für
     diesen Ort
+  other_names: Andere Namen
   other_species_commonly_misidentified_as_this_species: Andere Arten, die häufig als
     diese Art fehlbestimmt werden
   other_species_commonly_misidentified_as_this_species_in_place_html: Andere Arten,
@@ -2773,6 +2777,7 @@ de:
   photos_updated: Fotos aktualisiert.
   picasa_identity: Picasa Identität
   pick_a_username: Wähle einen Benutzernamen aus
+  pin_verb: Anpinnen
   pink: rosa
   place: Ort
   placeholder: Platzhalter
@@ -3681,6 +3686,7 @@ de:
   taxon_to_keep: Zu behaltendes Taxon
   taxon_name_was_deleted: Der Taxonname wurde gelöscht.
   taxon_name_was_successfully_updated: Taxon-Name wurde erfolgreich aktualisiert.
+  taxon_was_successfully_created: Das Taxon wurde erfolgreich erstellt.
   taxon_was_successfully_updated: Taxon wurde erfolgreich aktualisiert.
   taxonomic: Taxonomisch
   taxonomic_changes: Taxonomische Änderungen
@@ -3743,6 +3749,9 @@ de:
   the_list: die Liste
   the_observation_form_looks: 'Das Beobachtungsformular sieht wie dieses aus:'
   the_observation_has_date: die Beobachtung <strong>hat ein Datum</strong>
+  the_observation_has_photo: Die Beobachtung <strong>hat ein Bild</strong>
+  the_observation_was_already_added_to_that_project: Die Beobachtung wurde bereits
+    zu diesem Projekt hinzugefügt.
   the_past: in der Vergangenheit
   the_people_of_inat: Die Menschen von %{site_name}
   the_project: das Projekt
@@ -3783,6 +3792,7 @@ de:
     hochgeladen.
   they_already_have_iNat_accounts: '...sie haben bereits %{site_name}-Accounts'
   they_have_been_invited: '...sie wurden bereits eingeladen'
+  this: dies
   this_bioblitz_beings_in: Dieser bioblitz beginnt in
   this_is_a: Dies ist ein
   this_list_is_empty!: Diese Liste ist leer!
@@ -3800,6 +3810,7 @@ de:
   this_taxon_change_has_been_commited: |-
     <strong>Diese Taxon-Änderung wurde eingereicht!</strong>
     Bitte bearbeite die Taxa nicht.  Die Bearbeitung anderer Felder ist in Ordnung.
+  this_taxon_concept_is_inactive: Dieses Taxonkonzept ist inaktiv
   this_taxon_has_no_default_photo: Dieses Taxon hat kein Standardbild!
   this_tool_is_experimental: Dieses Tool ist experimentell, also bitte
   this_user_has_been_suspended: Dieser Benutzer wurde gesperrt.
@@ -3817,6 +3828,12 @@ de:
   title_and_description: Titel & Beschreibung
   titled_favorites_and_the_most_recent_additions: mit dem Titel "Favoriten" und die
     neuesten Beiträge erscheinen in diesem Bereich.
+  to: nach
+  to_: nach
+  to_add_comments: um Kommentare hinzuzufügen
+  to_add_ids: um Kennungen hinzuzufügen
+  to_an: zu einer
+  to_recipient: an
   to_suggest_an_identification: eine Identifikation vorschlagen
   to_tag_your_flickr_from_here: um deine Flickr-Bilder von hier aus ohne Ausschneiden
     und Einfügen zu taggen.
@@ -3854,7 +3871,12 @@ de:
   type: Typ
   type_a_place_name_and_click_search: Gib einen Ortsnamen ein und klicke auf SUCHEN,
     um zu suchen.
+  type_one_name_per_line: Einen Namen pro Zeile eingeben
+  type_place_name: Namen des Ortes eingeben
+  type_project_name: Namen des Projektes eingeben
   type_source_title: Quelltitel eingeben
+  type_species_name: Namen der Spezies eingeben
+  type_taxon_name: Namen des Taxons eingeben
   unblock: Entsperren
   unclassified: Nicht klassifiziert
   uninvite: ausladen
@@ -3863,6 +3885,7 @@ de:
   unknown_rank: (Unbekannter Rang)
   unfollow: Nicht mehr folgen
   unmute: Ton an
+  updates_notification_email_subject: '%{prefix} Neue Aktualisierungen %{date}'
   updating: Aktualisiere…
   unprocessable: Unverarbeitbar
   unpublish: Unveröffentlichen
@@ -3873,10 +3896,16 @@ de:
   unverifiable: Nicht verifizierbar
   upcoming_bioblitzes: Bevorstehende bioblitze
   update: Aktualisieren
+  update_observation: Beobachtung aktualisieren
+  update_observations: Beobachtungen aktualisieren
   update_photos: Fotos aktualisieren
+  update_search: Suche aktualisieren
+  update_selected_taxa: Ausgewählte Taxa aktualisieren
+  update_your_content: Deinen Inhalt aktualisieren
   updated: Aktualisiert
   updated_by: Aktualisiert von
   updated_daily: Täglich aktualisiert
+  updated_photo: Foto aktualisiert
   upload: Hochladen
   upload_a_csv_file: CSV-Datei hochladen
   upload_photo: Bild hochladen
@@ -3917,6 +3946,8 @@ de:
     handelt'
   user_faved_a_noun_by_owner: '%{user} hat %{noun} von %{owner} favorisiert'
   user_follows: '%{user} folgt'
+  user_hasnt: '%{user} hat nicht'
+  user_is_a_naturalist: '%{user} ist ein Naturalist!'
   user_muted: Benutzer gesperrt
   user_s_lists: Listen von %{user}
   user_suggested_an_id: '%{user} hat eine Bestimmung (ID) vorgeschlagen'
@@ -3926,15 +3957,19 @@ de:
   users: Benutzer
   users_id: '%{user}''s ID'
   users_identification_short_html: Kennung von <a href='%{url}'>%{user}</a>
+  users_observations: Beobachtungen von %{user}
   users_profile: '%{user}''s Profil'
   users_projects: Projekte von %{user}
   valid_interrogation: Gültig?
+  valid_options_are: Gültige Optionen sind
   value: Wert
   verifiable_observations_by_observation_date: Verifizierbare Beobachtungen nach Beobachtungsdatum
   view: Ansehen
   view_all: Alle ansehen
   view_all_from_x: All von %{x} anzeigen
+  view_all_members: Alle Mitglieder ansehen
   view_all_n: Alle %{n} anzeigen
+  view_all_observations: Alle Beobachtungen ansehen
   view_all_photocount_photos: Alle %{photo_count} Bilder anzeigen
   view_all_photos_tagged_taxon_html: Alle Bilder mit dem Tag "%{taxon}" auf <nobr>Flickr
     &raquo;</nobr> anzeigen
@@ -3947,6 +3982,7 @@ de:
   view_flags: Meldungen anzeigen
   view_flags_for_x_html: Meldungen für %{x} anzeigen
   view_full_observation: Komplette Beobachtung anzeigen
+  view_invitation: Einladung ansehen
   view_journal: Journal anzeigen
   view_leaderboard_from_last_month: Rangliste vom letzten Monat anzeigen
   view_license: Lizenz anzeigen
@@ -3954,6 +3990,7 @@ de:
   view_listing: Auflistung anzeigen
   view_more: Mehr ansehen
   view_more_about_x: Mehr über %{x} anzeigen
+  view_more_observations: Weitere Beobachtungen ansehen
   view_more_observations_from_x: Mehr Beobachtungen von %{x} anzeigen
   view_more_observations_from: Mehr Beobachtungen anzeigen von
   view_more_observations_near_x_place: Mehr Beobachtungen in der Nähe von %{place}
@@ -3972,7 +4009,11 @@ de:
   view_photos_ranges_observations_more: Erkunde Bilder, die Artenvielfalt, %{site_name}-Beobachtungen
     und vieles mehr! Wir haben Informationen aus vielen verschiedenen Quellen zusammengetragen,
     um einen schnellen Überblick über jede Art an jedem Ort zu erhalten.
+  view_place: Ort ansehen
   view_post: Eintrag anzeigen
+  view_stats: Statistiken ansehen
+  view_taxon_changes: Taxonänderungen ansehen
+  view_taxon_page: Taxonseite ansehen
   view_the_observation: Die Beobachtung ansehen
   view_unidentified_observations: Nicht identifizierte Beobachtungen anzeigen...
   view_x: '%{x} anzeigen'
@@ -4194,6 +4235,7 @@ de:
   your_photos_have_been_tagged: Deine Bilder wurden getaggt!
   your_google_account: Dein Google-Konto
   your_google_account_info: Deine Google-Konto Informationen
+  your_pinned_locations: Deine angepinnten Orte
   your_profile_was_successfully_updated: Dein Profil wurde erfolgreich aktualisiert!
   your_recent_projects: Deine Aktuellen Projekte
   your_should_recognize: Du solltest einige dieser Bilder erkennen
