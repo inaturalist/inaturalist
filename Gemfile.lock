@@ -214,10 +214,7 @@ GEM
       unicode_utils (~> 1.4)
     bluecloth (2.2.0)
     builder (3.2.3)
-    byebug (3.5.1)
-      columnize (~> 0.8)
-      debugger-linecache (~> 1.2)
-      slop (~> 3.6)
+    byebug (10.0.2)
     capistrano (3.10.0)
       airbrussh (>= 1.0.0)
       i18n
@@ -257,7 +254,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    columnize (0.9.0)
     commander (4.4.3)
       highline (~> 1.7.2)
     concurrent-ruby (1.0.5)
@@ -271,7 +267,6 @@ GEM
     dbf (2.0.7)
       fastercsv (~> 1.5.4)
     debug_inspector (0.0.2)
-    debugger-linecache (1.2.0)
     delayed_job (4.1.5)
       activesupport (>= 3.0, < 5.3)
     devise (4.5.0)
@@ -577,7 +572,6 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
-    slop (3.6.0)
     soundcloud (0.3.4)
       hashie
       httmultiparty (~> 0.3.0)
