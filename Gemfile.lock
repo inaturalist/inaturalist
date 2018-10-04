@@ -34,16 +34,6 @@ GIT
       i18n (~> 0.6, >= 0.6.6)
 
 GIT
-  remote: https://github.com/gaslight/angular-rails4-templates
-  revision: 5772884f27ea5dc673767c98d2b3bdd0d46cabaa
-  ref: v0.1.5
-  specs:
-    angular-rails-templates (0.1.5)
-      railties (>= 3.1)
-      sprockets (~> 2)
-      tilt
-
-GIT
   remote: https://github.com/hugueslamy/delayed_job_active_record.git
   revision: 7dcacc2459ad47c948153cc3bab78bc822191718
   ref: 7dcacc2459ad47c948153cc3bab78bc822191718
@@ -185,6 +175,10 @@ GEM
       nokogiri
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
+    angular-rails-templates (0.3.0)
+      railties (>= 3.1)
+      sprockets (~> 2.0)
+      tilt
     apipie-rails (0.3.1)
       json
     arel (6.0.4)
@@ -649,7 +643,7 @@ DEPENDENCIES
   addressable
   airbrake (~> 7.3)
   ancestry
-  angular-rails-templates!
+  angular-rails-templates
   apipie-rails
   aws-sdk (< 3.0)
   better_errors
