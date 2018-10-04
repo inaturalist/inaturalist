@@ -166,9 +166,6 @@
 .frequency-chart-tooltip .value {
   font-weight: 600;
 }
-.frequency-chart-tooltip .column-label {
-  text-transform: capitalize;
-}
 .frequency-chart-tooltip .series {
   line-height: 0;
   margin-bottom: 10px;
@@ -276,84 +273,82 @@
   top: 8px;
 }
 
+$leaderItemImageDim: 56px;
 .LeaderItem {
   margin: 20px 0 20px;
+  .img-wrapper {
+    border: 1px solid transparent;
+    width: $leaderItemImageDim;
+    height: $leaderItemImageDim;
+    line-height: $leaderItemImageDim;
+    text-align: center;
+    overflow: hidden;
+    i {
+      font-size: $leaderItemImageDim * 0.7;
+      margin: auto;
+      line-height: $leaderItemImageDim * 0.9;
+      color: #666;
+    }
+  }
+  .img-wrapper.no-photo {
+    border-color: #bbb;
+  }
+  .CoverImage {
+    width: $leaderItemImageDim;
+    height: $leaderItemImageDim;
+  }
+  &.TopIdentifier .CoverImage,
+  &.TopObserver .CoverImage,
+  &.TopIdentifier .img-wrapper,
+  &.TopObserver .img-wrapper {
+    border-radius: 100px;
+  }
+  .item-label {
+    color: #4a4a4a;
+    font-size: 13px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  h4 {
+    text-transform: none;
+    margin: 0px 0px 3px 0px;
+    font-size: 18px;
+  }
+  .name {
+    font-weight: bold;
+    white-space: nowrap;
+    a {
+      color: black;
+    }
+  }
+  .extra {
+    font-size: 13px;
+    a {
+      white-space: nowrap;
+      margin-right: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    a:last-child {
+      margin-right: 0;
+    }
+    i {
+      color: #999;
+      margin-right: 2px;
+      color: $inat-green;
+    }
+  }
+  .value {
+    color: #4a4a4a;
+  }
+  .media-body {
+    vertical-align: middle;
+  }
+  .img-wrapper .fa-binoculars {
+    font-size: $leaderItemImageDim * 0.5;
+  }
 }
-$leaderItemImageDim: 56px;
-.LeaderItem .img-wrapper i {
-  font-size: $leaderItemImageDim * 0.7;
-  margin: auto;
-  line-height: $leaderItemImageDim * 0.9;
-  color: #666;
-}
-.LeaderItem .img-wrapper {
-  border: 1px solid transparent;
-  width: $leaderItemImageDim;
-  height: $leaderItemImageDim;
-  line-height: $leaderItemImageDim;
-  text-align: center;
-  overflow: hidden;
-}
-.LeaderItem .img-wrapper.no-photo {
-  border-color: #bbb;
-}
-.LeaderItem .CoverImage {
-  width: $leaderItemImageDim;
-  height: $leaderItemImageDim;
-}
-.LeaderItem.TopIdentifier .CoverImage,
-.LeaderItem.TopObserver .CoverImage,
-.LeaderItem.TopIdentifier .img-wrapper,
-.LeaderItem.TopObserver .img-wrapper {
-  border-radius: 100px;
-}
-
-.LeaderItem .item-label {
-  color: #4a4a4a;
-  font-size: 13px;
-  text-transform: uppercase;
-  line-height: 1;
-  margin-bottom: 10px;
-}
-.LeaderItem h4 {
-  text-transform: none;
-  margin: 0px 0px 3px 0px;
-  font-size: 18px;
-}
-.LeaderItem .name {
-  font-weight: bold;
-  white-space: nowrap;
-}
-.LeaderItem.no-content .name {
-  text-transform: capitalize;
-}
-.LeaderItem .name a {
-  color: black;
-}
-.LeaderItem .extra {
-  font-size: 13px;
-}
-.LeaderItem .extra a {
-  white-space: nowrap;
-  margin-right: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
-}
-.LeaderItem .value {
-  color: #4a4a4a;
-}
-.LeaderItem .extra i {
-  color: #999;
-  margin-right: 2px;
-  color: $inat-green;
-}
-.LeaderItem .media-body {
-  vertical-align: middle;
-}
-.LeaderItem .img-wrapper .fa-binoculars {
-  font-size: $leaderItemImageDim * 0.5;
-}
-
 
 $photoPreviewThumbDim: 92px;
 $photoPreviewThumbGutter: 1px;
@@ -417,7 +412,6 @@ $photoPreviewThumbGutterTop: 3px;
 .PhotoPreview .viewmore {
   text-align: center;
   font-weight: bold;
-  text-transform: capitalize;
 }
 .PhotoPreview .viewmore a {
   display: block;
@@ -513,7 +507,6 @@ $photoPreviewThumbGutterTop: 3px;
   th {
     font-weight: 600;
     white-space: nowrap;
-    text-transform: capitalize;
   }
   .UserText {
     br {
@@ -523,13 +516,9 @@ $photoPreviewThumbGutterTop: 3px;
 }
 
 h2, h3, h4, h5 {
-  text-transform: capitalize;
   padding-bottom: 3px;
 }
 
-.StatusHeader strong {
-  text-transform: capitalize;
-}
 .StatusHeader a {
   text-decoration: underline;
   color: inherit;
@@ -601,7 +590,6 @@ $introducedColor: #E4007C;
   font-weight: bold;
   font-size: 18px;
   padding: 20px 30px 16px;
-  text-transform: capitalize;
 }
 .TaxonPageTabs .nav-tabs > li > a {
   border: 0 transparent;
@@ -929,7 +917,6 @@ $nav-btn-dim: 40px;
   color: white;
   font-size: 10px;
   line-height: 14px;
-  text-transform: capitalize;
 }
 .DraggablePhoto img {
   width: 100%;
@@ -947,9 +934,6 @@ $nav-btn-dim: 40px;
 }
 .PhotoChooserDropArea.hovering {
   border: 2px dashed #ddd;
-}
-.PhotoChooserDropArea .btn-primary {
-  text-transform: capitalize;
 }
 body > [role="dialog"] .PhotoChooserModal .modal-title {
   line-height: 1;
@@ -1008,7 +992,6 @@ body > [role="dialog"] .PhotoChooserModal .modal-title {
   background-color: white;
   border-radius: 0 2px 0 0;
   font-size: 18px;
-  text-transform: capitalize;
 }
 .RecentObservations .nav-btn {
   top: 0px;

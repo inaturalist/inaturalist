@@ -88,11 +88,30 @@ class TaxonChange < ActiveRecord::Base
   end
   
   def rank_level_conflict?
-    return false unless type == "TaxonSwap"
-    return false unless input_taxa_rank_level_conflict = input_taxa[0].descendants.where( "rank_level >= ?", output_taxa[0].rank_level ).first
+    return false unless ["TaxonSwap", "TaxonMerge"].include? type
+    if type == "TaxonSwap"
+      input_taxa_rank_level_conflict = input_taxa[0] if ( input_taxa[0].children.where(is_active: true).map{|c| c.rank_level >= output_taxa[0].rank_level}.any? )
+    elsif type == "TaxonMerge"
+      input_taxa_rank_level_conflict = input_taxa.select{ |input_taxon| input_taxon.children.where(is_active: true).map{|c| c.rank_level >= output_taxa[0].rank_level}.any? }.first
+    end
+    return false unless input_taxa_rank_level_conflict 
     input_taxa_rank_level_conflict
   end
 
+  def active_children_conflict?
+    return false if move_children?
+    # inputs can't have active children
+    if ["TaxonSwap", "TaxonSplit", "TaxonDrop"].include? type
+      return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
+    # unless they are also inputs
+    elsif type == "TaxonMerge"
+      return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.pluck(:id).include? e.id) }}.any?
+    elsif type == "TaxonStage"
+      return false
+    end
+    return true
+  end
+    
   def committable_by?( u )
     return false unless u
     return false unless u.is_curator?
@@ -127,6 +146,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   class PermissionError < StandardError; end
+  class ActiveChildrenError < StandardError; end
   class RankLevelError < StandardError; end
 
   # Override in subclasses
@@ -134,12 +154,22 @@ class TaxonChange < ActiveRecord::Base
     unless committable_by?( committer )
       raise PermissionError, "Committing user doesn't have permission to commit"
     end
-    if rank_level_conflict?
-      raise RankLevelError, "Output taxon rank level not coarser than all input taxon descendant rank levels"
+    if active_children_conflict?
+      raise ActiveChildrenError, "Input taxon cannot have active children"
       return
     end
-    input_taxa.each {|t| t.update_attribute(:is_active, false)}
-    output_taxa.each {|t| t.update_attribute(:is_active, true)}
+    if rank_level_conflict?
+      raise RankLevelError, "Output taxon rank level not coarser than rank level of an input taxon's active children"
+      return
+    end
+    input_taxa.each {|t| t.update_attributes!(is_active: false, skip_only_inactive_children_if_inactive: (move_children? || !active_children_conflict?) )}
+    output_taxa.each do |t|
+      t.update_attributes!(
+        is_active: true,
+        skip_only_inactive_children_if_inactive: move_children?,
+        skip_complete: true
+      )
+    end
     update_attribute(:committed_on, Time.now)
   end
 
@@ -353,12 +383,20 @@ class TaxonChange < ActiveRecord::Base
     end
     move_child = Proc.new do |child|
       child.skip_locks = true
+      child.skip_complete = true
       output_taxon.skip_locks = true
+      output_taxon.skip_complete = true
       child.move_to_child_of( output_taxon )
     end
-    if target_input_taxon.rank_level &&
-       target_input_taxon.rank_level <= Taxon::GENUS_LEVEL &&
-       output_taxon.rank == target_input_taxon.rank
+    if (
+      target_input_taxon.rank_level &&
+      target_input_taxon.rank_level <= Taxon::GENUS_LEVEL &&
+      output_taxon.rank == target_input_taxon.rank &&
+        (
+          target_input_taxon.genus.blank? || output_taxon.genus.blank? ||
+          output_taxon.genus.try(:name) != target_input_taxon.genus.try(:name)
+        )
+    )
       target_input_taxon.children.active.each do |child|
         # If for some horrible reason people are swapping replacing taxa with
         # their own children, at least don't get into some kind of invite

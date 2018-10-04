@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gem 'rails', "~> 4.2.7.1"
 
 gem 'apipie-rails'
-gem 'aasm'
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
 gem 'activerecord-session_store'
@@ -99,7 +98,6 @@ gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'yui-compressor'
 gem 'xmp', "~> 0.2.1", git: 'https://github.com/kueda/xmp.git'
-gem 'statsd-ruby', :require => 'statsd'
 # these need to be loaded after will_paginate
 gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
@@ -121,7 +119,7 @@ group :test, :development, :prod_dev do
   gem "byebug"
   gem "binding_of_caller"
   gem 'thin', '~> 1.6.3'
-  gem 'capybara', '~> 2.4'
+  gem 'capybara', '~> 3.8'
   gem 'puma'
 end
 

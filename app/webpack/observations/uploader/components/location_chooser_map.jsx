@@ -34,6 +34,7 @@ class LocationChooserMap extends React.Component {
     this.handleMapClick = this.handleMapClick.bind( this );
     this.handlePlacesChanged = this.handlePlacesChanged.bind( this );
     this.fitCircles = this.fitCircles.bind( this );
+    this.fitCurrentCircle = this.fitCurrentCircle.bind( this );
     this.reverseGeocode = this.reverseGeocode.bind( this );
     this.radiusChanged = this.radiusChanged.bind( this );
     this.centerChanged = this.centerChanged.bind( this );
@@ -74,6 +75,12 @@ class LocationChooserMap extends React.Component {
       if ( !this.props.center ) {
         setTimeout( this.fitCircles, 10 );
       }
+    } else if (
+      this.props.show &&
+      this.props.fitCurrentCircle &&
+      objectToComparable( this.props.center ) !== objectToComparable( prevProps.center )
+    ) {
+      setTimeout( this.fitCurrentCircle, 10 );
     }
   }
 
@@ -99,6 +106,23 @@ class LocationChooserMap extends React.Component {
       } );
       this.map.fitBounds( bounds );
     }
+  }
+
+  fitCurrentCircle( ) {
+    if ( !this.map ) { return; }
+    if ( !this.props.center ) { return; }
+    if ( !this.props.radius ) {
+      this.map.panTo( this.props.center );
+    } else {
+      const bounds = (
+        new google.maps.Circle( {
+          center: this.props.center,
+          radius: this.props.radius || 0
+        } )
+      ).getBounds( );
+      this.map.fitBounds( bounds );
+    }
+    this.props.updateState( { locationChooser: { fitCurrentCircle: false } } );
   }
 
   handleMapClick( event ) {
@@ -295,8 +319,9 @@ class LocationChooserMap extends React.Component {
         defaultCenter={ props.center || { lat: 30, lng: 15 } }
         onClick={ this.handleMapClick }
         onBoundsChanged={ ( ) => {
+          const c = this.map.getCenter( );
           this.props.updateState( { locationChooser: {
-            center: this.map.getCenter( ),
+            center: { lat: c.lat(), lng: c.lng() },
             bounds: this.map.getBounds( ),
             zoom: this.map.getZoom( )
           } } );
@@ -304,7 +329,7 @@ class LocationChooserMap extends React.Component {
         options={{
           streetViewControl: false,
           fullscreenControl: true,
-          gestureHandling: "auto"
+          gestureHandling: "greedy"
         }}
       >
         {/*
@@ -358,7 +383,8 @@ LocationChooserMap.propTypes = {
   center: PropTypes.object,
   bounds: PropTypes.object,
   notes: PropTypes.string,
-  manualPlaceGuess: PropTypes.bool
+  manualPlaceGuess: PropTypes.bool,
+  fitCurrentCircle: PropTypes.bool
 };
 
 LocationChooserMap.defaultProps = {

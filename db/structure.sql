@@ -3471,7 +3471,8 @@ CREATE TABLE saved_locations (
     title character varying,
     positional_accuracy integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    geoprivacy text DEFAULT 'open'::text
 );
 
 
@@ -8048,6 +8049,13 @@ CREATE INDEX index_roles_users_on_user_id ON roles_users USING btree (user_id);
 
 
 --
+-- Name: index_saved_locations_on_title; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_saved_locations_on_title ON saved_locations USING btree (title);
+
+
+--
 -- Name: index_saved_locations_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9416,4 +9424,6 @@ INSERT INTO schema_migrations (version) VALUES ('20180905191330');
 INSERT INTO schema_migrations (version) VALUES ('20180906232956');
 
 INSERT INTO schema_migrations (version) VALUES ('20180911233322');
+
+INSERT INTO schema_migrations (version) VALUES ('20180914231617');
 

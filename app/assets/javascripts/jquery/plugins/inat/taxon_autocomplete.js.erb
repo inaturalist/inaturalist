@@ -75,14 +75,11 @@ autocompleter.taxonTemplate = function( result, fieldValue, options ) {
   autocompleter.setSubtitle( result, options );
   autocompleter.appendMatchedTerm( result, fieldValue );
   if( result.rank && ( result.rank_level > 10 || !result.subtitle )) {
+    var rank = autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) );
     if ( options.user && options.user.prefers_scientific_name_first ) {
-      result.title =
-        autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) ) +
-        ( result.title ? " " + result.title : "" );
+      result.title = rank + ( result.title ? " " + result.title : "" );
     } else {
-      result.subtitle =
-        autocompleter.capitalize( I18n.t("ranks." + result.rank, { defaultValue: result.rank } ) ) +
-        ( result.subtitle ? " " + result.subtitle : "" );
+      result.subtitle = rank + ( result.subtitle ? " " + result.subtitle : "" );
     }
   }
 

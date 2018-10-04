@@ -152,6 +152,7 @@ class User < ActiveRecord::Base
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
   has_many :annotations, dependent: :destroy
+  has_many :saved_locations, inverse_of: :user, dependent: :destroy
   
   file_options = {
     processors: [:deanimator],
@@ -651,23 +652,24 @@ class User < ActiveRecord::Base
     requested_login = requested_login.to_s
     requested_login = "naturalist" if requested_login.blank?
     # strip out everything but letters and numbers so we can pass the login format regex validation
-    requested_login = requested_login.sub(/^\d*/, '').downcase.split('').select do |l| 
+    requested_login = requested_login.sub(/^\d*/, '').downcase.split('').select do |l|
       ('a'..'z').member?(l) || ('0'..'9').member?(l)
     end.join('')
+    requested_login = "naturalist" if requested_login.blank?
     suggested_login = requested_login
-    
+
     if suggested_login.size > MAX_LOGIN_SIZE
       suggested_login = suggested_login[0..MAX_LOGIN_SIZE/2]
     end
-    
+
     appendix = 1
     while suggested_login.to_s.size < MIN_LOGIN_SIZE || User.find_by_login(suggested_login)
-      appendix += 1 
       suggested_login = "#{requested_login}#{appendix}"
+      appendix += 1
     end
-    
+
     (MIN_LOGIN_SIZE..MAX_LOGIN_SIZE).include?(suggested_login.size) ? suggested_login : nil
-  end  
+  end
 
   # Destroying a user triggers a giant, slow, costly cascade of deletions that
   # all occur within a transaction. This method tries to circumvent some of

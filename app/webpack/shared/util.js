@@ -2,7 +2,7 @@ import baseFetch from "cross-fetch";
 import _ from "lodash";
 
 // Light wrapper around fetch to ensure credentials are always passed through
-const fetch = ( url, options ) =>
+const fetch = ( url, options = {} ) =>
   baseFetch( url, Object.assign( {}, options, { credentials: "same-origin" } ) );
 
 function updateSession( params ) {

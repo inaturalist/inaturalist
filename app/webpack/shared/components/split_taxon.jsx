@@ -25,9 +25,7 @@ const SplitTaxon = props => {
   let title = "";
   if ( taxon ) {
     if ( taxon.rank && taxon.rank_level > 10 ) {
-      title += _.capitalize(
-        I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } )
-      );
+      title += I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } );
     }
     title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {
@@ -91,9 +89,8 @@ const SplitTaxon = props => {
       comNameClass = `noname display-name ${comNameClass}`;
       if ( placeholder ) {
         return (
-          <span>
+          <span key={ key }>
             <LinkElement
-              key={ key }
               className={ comNameClass }
               href={ url }
               onClick={ onClick }
@@ -168,7 +165,7 @@ const SplitTaxon = props => {
           target={ target }
         >
           <span className="rank">
-            { _.capitalize( I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) ) }
+            { I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) }
           </span>
           &nbsp;
           { truncateText( name ) }
@@ -197,7 +194,7 @@ const SplitTaxon = props => {
           href={`/taxon_changes?taxon_id=${taxon.id}`}
           target={ target }
         >
-          <i className="fa fa-exclamation-circle"></i> { _.startCase( I18n.t( "inactive_taxon" ) ) }
+          <i className="fa fa-exclamation-circle"></i> { I18n.t( "inactive_taxon" ) }
         </a>
       </span>
     );

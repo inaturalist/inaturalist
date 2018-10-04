@@ -126,6 +126,7 @@ class ObsCardComponent extends Component {
       lat: this.props.obsCard.latitude,
       lng: this.props.obsCard.longitude,
       radius: this.props.obsCard.accuracy,
+      geoprivacy: this.props.obsCard.geoprivacy,
       obsCard: this.props.obsCard,
       zoom: this.props.obsCard.zoom,
       center: this.props.obsCard.center,

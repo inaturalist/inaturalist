@@ -31,9 +31,13 @@ class SearchController < ApplicationController
         end
         memo
       end
+      @results_matched_terms = {}
       records = response.results.map do |result|
         next unless klass = Object.const_get( result["type"] )
-        records_by_type_id[result["type"]][result["record"]["id"]]
+        record = records_by_type_id[result["type"]][result["record"]["id"]]
+        Rails.logger.debug "[DEBUG] result[matches]: #{result["matches"]}"
+        @results_matched_terms["#{record.class.name}-#{record.id}"] = result["matches"]
+        record
       end.compact
     end
     @results = WillPaginate::Collection.create( response["page"] || 1, response["per_page"] || 0, response["total_results"] || 0 ) do |pager|

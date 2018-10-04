@@ -72,9 +72,6 @@ cs:
   x_others:
     one: 1 ostatní
     other: '%{count} ostatní'
-  x_people:
-    one: 1 člověk
-    other: '%{count} lidé'
   x_people_found_this_helpful:
     one: One člověk toto považuje za užitečné
     other: '%{count} lidé toto považují za užitečné'
@@ -285,8 +282,6 @@ cs:
   add_taxon_range: Přidat rozsah taxonů
   add_taxonomic_tags_to: Přidat taxonomické tagy do vybraných fotografií z Flickeru
     &raquo;
-  add_taxonomic_tags_to_the_fickr_photos: Přidat taxonomické tagy do fotografií z
-    Flickeru spojených s vybranným pozorováním.
   add_to: Přidat do
   add_to_a_scheme: Přidat do schématu
   add_to_a_project: Přidat do projektu
@@ -4248,7 +4243,6 @@ cs:
     &raquo;</nobr>
   view_more_recent_observations: Zobrazit více nedávných pozorování
   view_more_unreviewed: Zobrazit více nezkontrolovaných
-  view_nbsp: Zobrazit &nbsp;
   view_observation: Zobrazit pozorování
   view_observations: Zobrazit pozorování
   view_observation_flags: Zobrazit vlajky pozorování

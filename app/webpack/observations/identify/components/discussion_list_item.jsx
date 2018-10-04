@@ -50,7 +50,7 @@ const DiscussionListItem = ( {
             } }
           >
             <i className={ loading ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
-            </i> { _.capitalize( I18n.t( "agree" ) ) }
+            </i> { I18n.t( "agree" ) }
           </Button>
         </div>
       );

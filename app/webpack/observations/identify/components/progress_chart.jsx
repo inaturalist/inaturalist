@@ -10,9 +10,9 @@ const ProgressChart = ( {
     <div className="title">
       <span
         dangerouslySetInnerHTML={ { __html:
-          _.capitalize( I18n.t( "x_observations_reviewed_html",
+          I18n.t( "x_observations_reviewed_html",
             { count: I18n.toNumber( reviewed, { precision: 0 } ) }
-          ) )
+          )
         } }
       ></span>
     </div>

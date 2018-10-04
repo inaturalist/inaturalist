@@ -301,7 +301,6 @@ button {
           .btn-white {
             border-radius: 2px;
             color: #333;
-            text-transform: capitalize;
           }
         }
         .header-about-news {
@@ -966,8 +965,23 @@ button {
       a {
         color: inherit;
       }
-      & > a:not(:last-child)::after, .SplitTaxon:not(:last-child)::after {
+      & > a:not(:last-of-type)::after,
+      & > .except > a:not(:last-of-type)::after,
+      & .SplitTaxon:not(:last-of-type)::after {
        content: ", ";
+      }
+      .term-value {
+        .separator::before, .separator::after {
+          content: " ";
+        }
+      }
+      .except {
+        .bold {
+          font-weight: 700;
+          &::before, &::after {
+            content: " "
+          }
+        }
       }
     }
   }
@@ -1013,7 +1027,6 @@ button {
     font-weight: 700;
     pointer-events: none;
     word-spacing: 400px;
-    text-transform: capitalize;
   }
   .PieChart {
     svg {
@@ -1317,7 +1330,6 @@ $nav-btn-dim: 40px;
   background-color: white;
   border-radius: 0 2px 0 0;
   font-size: 18px;
-  text-transform: capitalize;
 }
 .RecentObservations .nav-btn {
   top: 0px;

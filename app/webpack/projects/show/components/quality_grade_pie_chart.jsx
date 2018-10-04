@@ -16,27 +16,27 @@ const QualityGradePieChart = ( { project } ) => {
   return (
     <div className="QualityGradePieChart">
       <div className="count-label">
-        { I18n.t( "x_observations", { count: total } ) }
+        { I18n.t( "x_observations_", { count: total } ) }
       </div>
       <PieChart
         data={[
           {
-            label: _.capitalize( I18n.t( "research_grade" ) ),
-            fullLabel: _.capitalize( I18n.t( "research_grade" ) ),
+            label: I18n.t( "research_grade" ),
+            fullLabel: I18n.t( "research_grade" ),
             value: data.research,
             color: COLORS.inatGreenLight,
             enLabel: "research"
           },
           {
-            label: _.capitalize( I18n.t( "needs_id" ) ),
-            fullLabel: _.capitalize( I18n.t( "needs_id" ) ),
+            label: I18n.t( "needs_id_" ),
+            fullLabel: I18n.t( "needs_id_" ),
             value: data.needs_id,
             color: COLORS.needsIdYellow,
             enLabel: "needs_id"
           },
           {
-            label: _.capitalize( I18n.t( "casual" ) ),
-            fullLabel: _.capitalize( I18n.t( "casual" ) ),
+            label: I18n.t( "casual_" ),
+            fullLabel: I18n.t( "casual_" ),
             value: data.casual,
             color: "#aaaaaa",
             enLabel: "casual"

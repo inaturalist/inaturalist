@@ -3,8 +3,15 @@ import DragDropZone from "../components/drag_drop_zone";
 import actions from "../actions/actions";
 import HTML5Backend from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
+import { createSavedLocation, removeSavedLocation } from "../ducks/saved_locations";
 
-const mapStateToProps = ( state ) => state.dragDropZone;
+const mapStateToProps = ( state ) => {
+  return Object.assign(
+    {},
+    state.dragDropZone,
+    { savedLocations: state.savedLocations }
+  );
+};
 
 const mapDispatchToProps = ( dispatch ) => ( {
   onDrop: ( droppedFiles, rejectedFiles, e ) => {
@@ -69,7 +76,11 @@ const mapDispatchToProps = ( dispatch ) => ( {
   },
   removeFromSelectedObsCards: ( updates ) => {
     dispatch( actions.removeFromSelectedObsCards( updates ) );
-  }
+  },
+  saveLocation: params => {
+    dispatch( createSavedLocation( params ) );
+  },
+  removeSavedLocation: savedLocation => dispatch( removeSavedLocation( savedLocation ) )
 } );
 
 /* eslint new-cap: [2, { capIsNewExceptions: ["DragDropContext"] }] */
