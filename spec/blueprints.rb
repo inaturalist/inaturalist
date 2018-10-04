@@ -1,6 +1,12 @@
 require 'machinist/active_record'
 require 'faker'
 
+Announcement.blueprint do
+  start { 1.day.ago }
+  send(:end) { 1.day.from_now }
+  body { Faker::Lorem.sentence }
+  placement { "users/dashboard#sidebar" }
+end
 Annotation.blueprint do
   controlled_attribute { ControlledTerm.make! }
   controlled_value { ControlledTerm.make! }

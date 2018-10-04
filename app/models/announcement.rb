@@ -7,6 +7,10 @@ class Announcement < ActiveRecord::Base
     where("(? = ANY (locales)) OR locales IS NULL OR locales = '{}'", locale)
   }
 
+  scope :in_specific_locale, lambda {|locale|
+    where( "? = ANY (locales)", locale )
+  }
+
   before_save :compact_locales
 
   def session_key
