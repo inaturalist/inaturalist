@@ -340,8 +340,7 @@ CREATE TABLE announcements (
     body text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    locales text[] DEFAULT '{}'::text[],
-    site_id integer
+    locales text[] DEFAULT '{}'::text[]
 );
 
 
@@ -362,6 +361,16 @@ CREATE SEQUENCE announcements_id_seq
 --
 
 ALTER SEQUENCE announcements_id_seq OWNED BY announcements.id;
+
+
+--
+-- Name: announcements_sites; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE announcements_sites (
+    announcement_id integer,
+    site_id integer
+);
 
 
 --
@@ -6542,6 +6551,20 @@ CREATE INDEX index_announcements_on_start_and_end ON announcements USING btree (
 
 
 --
+-- Name: index_announcements_sites_on_announcement_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcements_sites_on_announcement_id ON announcements_sites USING btree (announcement_id);
+
+
+--
+-- Name: index_announcements_sites_on_site_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_announcements_sites_on_site_id ON announcements_sites USING btree (site_id);
+
+
+--
 -- Name: index_api_endpoint_caches_on_api_endpoint_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9399,6 +9422,8 @@ INSERT INTO schema_migrations (version) VALUES ('20180822173011');
 INSERT INTO schema_migrations (version) VALUES ('20180905191330');
 
 INSERT INTO schema_migrations (version) VALUES ('20180906232956');
+
+INSERT INTO schema_migrations (version) VALUES ('20180911233322');
 
 INSERT INTO schema_migrations (version) VALUES ('20180914231617');
 
