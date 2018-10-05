@@ -35,6 +35,13 @@ describe UsersController, "dashboard" do
     get :dashboard
     expect( assigns(:announcements) ).to include a
   end
+  it "should show a siteless, localeless announcement even if the user has a site and a locale" do
+    a = Announcement.make!
+    site = Site.make!
+    sign_in User.make!( locale: "es", site: site )
+    get :dashboard, inat_site_id: site.id
+    expect( assigns(:announcements) ).to include a
+  end
 end
 
 describe UsersController, "update" do
