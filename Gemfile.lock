@@ -231,8 +231,6 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-delayed-job (1.3.0)
-      capistrano (>= 3.0.0)
     capybara (3.8.2)
       addressable
       mini_mime (>= 0.1.3)
@@ -656,7 +654,6 @@ DEPENDENCIES
   capistrano-passenger (~> 0.0)
   capistrano-rails (~> 1.1)
   capistrano-rvm (~> 0.1)
-  capistrano3-delayed-job (~> 1.0)
   capybara (~> 3.8)
   chroma
   chronic
