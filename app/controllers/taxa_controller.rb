@@ -731,7 +731,7 @@ class TaxaController < ApplicationController
       end
       unless quality_grades.blank?
         filters << {
-          match: {
+          terms: {
             quality_grade: quality_grades
           }
         }

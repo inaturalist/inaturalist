@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :saved_locations
   apipie
 
   resources :sites

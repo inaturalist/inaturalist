@@ -424,7 +424,7 @@ class ObservationModal extends React.Component {
                     >
                       <input
                         type="checkbox"
-                        checked={ captiveByCurrentUser }
+                        checked={ captiveByCurrentUser || false }
                         onChange={function ( ) {
                           toggleCaptive( );
                         }}
@@ -570,7 +570,7 @@ class ObservationModal extends React.Component {
                       >
                         <input
                           type="checkbox"
-                          checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser }
+                          checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
                           onChange={function ( ) {
                             toggleReviewed( );
                           }}

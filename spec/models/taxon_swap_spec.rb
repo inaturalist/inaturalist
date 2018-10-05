@@ -569,11 +569,25 @@ describe TaxonSwap, "commit_records" do
     expect( ident.previous_observation_taxon ).to eq @output_taxon
   end
   
-  it "should not commit a taxon swap without all input taxon descendant rank levels finer than the output taxon rank level" do
+  it "should commit a taxon swap with childless input taxon with rank level coarser than the output taxon rank level" do
     other_swap = TaxonSwap.make
-    other_input_genus = Taxon.make!( is_active: false, name: "OtherInputGenus", rank: Taxon::GENUS )
+    other_input_genus = Taxon.make!( is_active: false, rank: Taxon::GENUS )
     other_swap.add_input_taxon( other_input_genus )
-    other_swap.add_output_taxon( Taxon.make!( is_active: false, name: "OtherOutputSpecies", parent: other_input_genus, rank: Taxon::SPECIES ) )
+    other_swap.add_output_taxon( Taxon.make!( is_active: false, rank: Taxon::SPECIES ) )
+    other_swap.committer = make_admin
+    other_swap.save!
+    expect {
+      other_swap.commit
+    }.not_to raise_error # TaxonChange::RankLevelError
+  end
+  
+  it "should not commit a taxon swap without all input taxon child rank levels finer than the output taxon rank level" do
+    other_swap = TaxonSwap.make
+    other_input_genus = Taxon.make!( is_active: true, rank: Taxon::GENUS )
+    child = Taxon.make!( is_active: true, parent: other_input_genus, rank: Taxon::SPECIES )
+    other_swap.add_input_taxon( other_input_genus )
+    other_swap.add_output_taxon( Taxon.make!( is_active: false, rank: Taxon::SPECIES ) )
+    other_swap.move_children = true
     other_swap.committer = make_admin
     other_swap.save!
     expect {
@@ -581,17 +595,18 @@ describe TaxonSwap, "commit_records" do
     }.to raise_error TaxonChange::RankLevelError
   end
   
-  it "should commit a taxon swap with all input taxon descendant rank levels finer than the output taxon rank level" do
+  it "should commit a taxon swap with all input taxon child rank levels finer than the output taxon rank level" do
     other_swap = TaxonSwap.make
     other_input_genus = Taxon.make!( is_active: true, rank: Taxon::GENUS )
     child = Taxon.make!( is_active: true, parent: other_input_genus, rank: Taxon::SPECIES )
     other_swap.add_input_taxon( other_input_genus )
     other_swap.add_output_taxon( Taxon.make!( is_active: false, rank: Taxon::GENUS ) )
+    other_swap.move_children = true
     other_swap.committer = make_admin
     other_swap.save!
     expect {
       other_swap.commit
-    }.to_not raise_error TaxonChange::RankLevelError
+    }.not_to raise_error # TaxonChange::RankLevelError
   end
   
       

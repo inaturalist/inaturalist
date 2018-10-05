@@ -9,7 +9,7 @@ const defaultState = {
   numberOfUploads: 0,
   maximumNumberOfUploads: 3,
   saveCounts: { pending: 0, saving: 0, saved: 0, failed: 0 },
-  locationChooser: { show: false },
+  locationChooser: { show: false, fitCurrentCircle: false },
   removeModal: { show: false },
   confirmModal: { show: false },
   photoViewer: { show: false },
@@ -225,9 +225,18 @@ const dragDropZone = ( state = defaultState, action ) => {
     case types.REMOVE_OBS_CARD: {
       const cards = Object.assign( { }, state.obsCards );
       const ids = Object.assign( { }, state.selectedIDs );
+      const files = Object.assign( { }, state.files );
       delete cards[action.obsCard.id];
       delete ids[action.obsCard.id];
-      return Object.assign( { }, state, { obsCards: cards, selectedIDs: ids } );
+      _.each( files, file => {
+        if ( file.cardID.toString( ) === action.obsCard.id.toString( ) ) {
+          if ( file.preview ) {
+            window.URL.revokeObjectURL( file.preview );
+          }
+          delete files[file.id];
+        }
+      } );
+      return Object.assign( { }, state, { obsCards: cards, selectedIDs: ids, files } );
     }
 
     case types.REMOVE_FILE: {
@@ -239,6 +248,9 @@ const dragDropZone = ( state = defaultState, action ) => {
         updatedState = update( updatedState, { obsCards: {
           [card.id]: { $merge: { updatedAt: time, galleryIndex: 1 } }
         } } );
+      }
+      if ( updatedState.files[action.file.id] && updatedState.files[action.file.id].preview ) {
+        window.URL.revokeObjectURL( updatedState.files[action.file.id].preview );
       }
       delete updatedState.files[action.file.id];
       // reset all card file associations
@@ -253,8 +265,21 @@ const dragDropZone = ( state = defaultState, action ) => {
 
     case types.REMOVE_SELECTED: {
       const modified = Object.assign( { }, state.obsCards );
-      _.each( state.selectedObsCards, ( v, id ) => ( delete modified[id] ) );
-      return Object.assign( { }, state, { obsCards: modified,
+      const files = Object.assign( { }, state.files );
+      _.each( state.selectedObsCards, ( v, id ) => {
+        delete modified[id];
+        _.each( files, file => {
+          if ( file.cardID.toString( ) === id.toString( ) ) {
+            if ( file.preview ) {
+              window.URL.revokeObjectURL( file.preview );
+            }
+            delete files[file.id];
+          }
+        } );
+      } );
+      return Object.assign( { }, state, {
+        obsCards: modified,
+        files,
         selectedObsCards: { }
       } );
     }

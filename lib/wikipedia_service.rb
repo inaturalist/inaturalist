@@ -38,7 +38,7 @@ class WikipediaService < MetaService
     hxml = Nokogiri::HTML(HTMLEntities.new.decode(parsed.at( "text" ).try( :inner_text )))
     hxml.search('table').remove
     hxml.search("//comment()").remove
-    summary = (hxml.at('p') || hxml).inner_html.to_s
+    summary = ( hxml.search("//p").detect{|node| !node.inner_html.strip.blank?} || hxml ).inner_html.to_s.strip
     summary = sanitizer.sanitize(summary, :tags => %w(p i em b strong))
     summary.gsub! /\[.*?\]/, ''
     summary

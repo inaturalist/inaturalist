@@ -2274,6 +2274,8 @@ es:
   medium_url: URL medio
   meet: Conocer
   member_of_the_inaturalist_network_html: Miembro de la <a href="%{url}">Red iNaturalist</a>
+  member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html: |
+    Miembro de la %{partial_inat_network_tag_html}Red iNaturalist</a> una iniciativa conjunta por la %{cas_tag_html} y la %{nat_geo_tag_html}.
   members: Miembros
   membership_model: Modelo de membresía
   mentioned_you_in_noun_html: '%{user} te ha mencionado en %{noun}'
@@ -2318,7 +2320,7 @@ es:
       MM: '%d mes'
       "y": 1a
       yy: '%da'
-    datetime_with_zone: MMM D, AAAA · LT z
+    datetime_with_zone: MMM D, YYYY · LT z
   mon: lun
   month: Mes
   months: Meses
@@ -6025,8 +6027,8 @@ es:
         about_conservation_status_desc: El estado de conservación sintetiza el riesgo
           de extinción de un grupo de organismos.
         about_establishment_desc: «Medios de establecimiento» describe cómo llegó
-          una especie adonde se encuentra. <i>Introducida</i> significa que llegó
-          por la actividad humana, <i>nativa</i> que ocurrió sin intervención humana.
+          una especie adonde se encuentra. Introducida significa que llegó
+          por la actividad humana, nativa que ocurrió sin intervención humana.
           Las especies endémicas se encuentran solo en un lugar concreto.
         about_taxon_curators_desc: |-
           Estas personas administran la parte del árbol taxonómico que incluye

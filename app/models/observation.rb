@@ -2632,7 +2632,10 @@ class Observation < ActiveRecord::Base
     input_taxon_ids = taxon_change.input_taxa.map(&:id)
     scope = Observation.where("observations.taxon_id IN (?)", input_taxon_ids)
     scope = scope.by(options[:user]) if options[:user]
-    scope = scope.where("observations.id IN (?)", options[:records].to_a) unless options[:records].blank?
+    unless options[:records].blank?
+      record_ids = options[:records].to_a.map{|r| r.is_a?( Observation ) ? r.id : r.to_i }.compact.uniq
+      scope = scope.where( "observations.id IN (?)", record_ids )
+    end
     scope = scope.includes( :user, :identifications, :observations_places )
     scope.find_each do |observation|
       if observation.owners_identification && input_taxon_ids.include?( observation.owners_identification.taxon_id )

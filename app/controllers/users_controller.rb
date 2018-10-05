@@ -437,14 +437,17 @@ class UsersController < ApplicationController
           where( 'placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc ).
           limit( 50 )
         base_scope = scope
-        scope = scope.where( "sites.id IS NULL OR sites.id = ?", @site )
-        @announcements = scope.in_locale( I18n.locale )
+        scope = scope.where( "sites.id = ?", @site )
+        @announcements = scope.in_specific_locale( I18n.locale )
+        @announcements = scope.in_specific_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
+        @announcements = scope.in_locale( I18n.locale ) if @announcements.blank?
         @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
         if @announcements.blank?
-          @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" )
-          @announcements << base_scope.in_locale( I18n.locale ).where( "sites.id IS NULL" )
+          @announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
+          @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if @announcements.blank?
           @announcements = @announcements.flatten
         end
+        @announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ) if @announcements.blank?
         @announcements = @announcements.sort_by {|a| [
           a.site_ids.include?( @site.try(:id) ) ? 0 : 1,
           a.locales.include?( I18n.locale ) ? 0 : 1,

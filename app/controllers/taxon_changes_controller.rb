@@ -160,7 +160,7 @@ class TaxonChangesController < ApplicationController
     
     @taxon = @taxon_change.rank_level_conflict?
     if @taxon
-      flash[:error] = "Output taxon rank level finer than rank level of input taxon #{view_context.link_to( @taxon.name, @taxon )}".html_safe
+      flash[:error] = "Output taxon rank level not coarser than rank level of active children of input taxon #{view_context.link_to( @taxon.name, @taxon )}".html_safe
       redirect_back_or_default( taxon_changes_path )
       return
     end
