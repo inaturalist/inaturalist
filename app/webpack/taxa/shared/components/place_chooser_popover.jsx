@@ -225,7 +225,10 @@ class PlaceChooserPopover extends React.Component {
               { _.map( this.state.places, ( p, i ) => {
                 let placeType;
                 if ( p && PLACE_TYPES[p.place_type] ) {
-                  placeType = I18n.t( `place_geo.geo_planet_place_types.${_.snakeCase( PLACE_TYPES[p.place_type] )}` );
+                  const placeTypeKey = _.snakeCase( PLACE_TYPES[p.place_type] );
+                  placeType = I18n.t( `place_geo.geo_planet_place_types.${_.capitalize( placeTypeKey )}`, {
+                    defaultValue: I18n.t( `place_geo.geo_planet_place_types.${placeTypeKey}` )
+                  } );
                 }
                 return (
                   <li
