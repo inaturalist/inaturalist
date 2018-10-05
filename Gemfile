@@ -61,7 +61,7 @@ gem 'jquery-rails', "~> 4.0.4"
 gem 'koala'
 gem 'dalli'
 gem 'mocha', :require => false
-gem "nokogiri", "~> 1.8.1"
+gem "nokogiri", "~> 1.8.5"
 gem "non-stupid-digest-assets"
 gem "omniauth"
 gem "omniauth-oauth2", " 1.3.1"
