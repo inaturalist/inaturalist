@@ -261,11 +261,17 @@
     <h3><%= t(:connected_accounts) %></h3>
     <ul>
       <% ProviderAuthorization::PROVIDERS.each do |provider| %>
-        <% if @user.has_provider_auth(provider) %>
+        <% if pa = @user.has_provider_auth(provider) %>
           <li class="clear">
-            <%= button_to t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
-              omniauth_disconnect_path(provider),
-              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} disabled button", :method => "delete" %>
+            <%= button_to omniauth_disconnect_path(provider),
+              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} disabled button", :method => "delete" do %>
+              <%= t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]) %>
+              <% unless pa.provider_uid.blank? %>
+                <div class="small">
+                  UID: <%= pa.provider_uid %>
+                </div>
+              <% end %>
+            <% end %>
           </li>
         <% else %>
           <li class="clear">

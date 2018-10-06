@@ -64,4 +64,8 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     provider :google_oauth2, CONFIG.google.client_id, CONFIG.google.secret, opts
   end
 
+  if CONFIG.orcid
+    provider :orcid, CONFIG.orcid.client_id, CONFIG.orcid.client_secret
+  end
+
 end

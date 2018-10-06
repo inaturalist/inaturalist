@@ -130,7 +130,11 @@ module DarwinCore
       end
 
       def recordedBy
-        user.name.blank? ? user.login : user.name
+        n = user.name.blank? ? user.login : user.name
+        if orcid_id = user.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
+          n = "#{n} | https://orcid.org/#{orcid_id}"
+        end
+        n
       end
 
       def establishmentMeans

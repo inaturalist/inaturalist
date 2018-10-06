@@ -68,6 +68,7 @@ gem "omniauth-oauth2", " 1.3.1"
 gem 'omniauth-facebook', '~> 4.0.0'
 gem 'omniauth-flickr'
 gem 'omniauth-openid'
+gem "omniauth-orcid"
 gem "omniauth-google-oauth2", "~> 0.5.2"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
