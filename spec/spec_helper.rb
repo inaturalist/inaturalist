@@ -74,7 +74,7 @@ RSpec.configure do |config|
     end
   end
 
-  config.include Devise::TestHelpers, :type => :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.include Devise::TestHelpers, :type => :view
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
   config.infer_spec_type_from_file_location!
