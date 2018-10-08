@@ -258,7 +258,6 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
-    daemon-spawn (0.4.2)
     daemons (1.1.9)
     dalli (2.7.8)
     database_cleaner (1.7.0)
@@ -658,8 +657,6 @@ DEPENDENCIES
   chronic
   cocoon
   coffee-rails
-  daemon-spawn
-  daemons
   dalli
   database_cleaner
   dbf

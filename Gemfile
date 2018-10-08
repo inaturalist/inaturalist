@@ -26,8 +26,6 @@ gem 'chroma'
 gem 'chronic'
 gem 'coffee-rails'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
-gem 'daemons'
-gem 'daemon-spawn'
 gem 'dbf'
 gem 'delayed_job', '~> 4.1.5'
 gem 'delayed_job_active_record',
