@@ -38,7 +38,7 @@ gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'devise_suspendable'
 gem 'diffy'
-gem 'doorkeeper', "~> 4.4.0"
+gem 'doorkeeper', "~> 5.0.0"
 gem 'dynamic_form'
 gem 'exifr'
 gem 'fastimage'
