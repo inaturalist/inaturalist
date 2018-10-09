@@ -201,9 +201,9 @@ GEM
       aws-sdk-core (= 2.10.123)
     aws-sigv4 (1.0.2)
     bcrypt (3.1.12)
-    better_errors (2.1.1)
+    better_errors (2.5.0)
       coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
+      erubi (>= 1.0.0)
       rack (>= 0.9.0)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -244,7 +244,7 @@ GEM
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.6)
-    coderay (1.1.0)
+    coderay (1.1.2)
     coffee-rails (4.2.2)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0)
@@ -295,6 +295,7 @@ GEM
     elasticsearch-transport (5.0.4)
       faraday
       multi_json
+    erubi (1.7.1)
     erubis (2.7.0)
     eventmachine (1.0.6)
     execjs (2.7.0)
