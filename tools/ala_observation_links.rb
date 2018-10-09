@@ -25,6 +25,7 @@ delete_count = 0
 startindex = 0
 maxresults = 100
 href_name = "Atlas of Living Australia"
+obs_ids_to_index = []
 while true do
   url = "http://biocache.ala.org.au/ws/webportal/occurrences?facet=off&fq=data_resource_uid:#{data_resource_uid}&pageSize=#{maxresults}&startIndex=#{startindex}"
   puts url
@@ -50,6 +51,7 @@ while true do
       ol = ObservationLink.new(:observation => observation, :href => href, :href_name => href_name, :rel => "alternate")
       ol.save unless @opts[:debug]
       new_count += 1
+      obs_ids_to_index << observation.id
       puts "\tCreated #{ol}"
     end
   end
@@ -58,7 +60,19 @@ while true do
   puts
 end
 
-delete_count = ObservationLink.where(href_name: href_name).where("updated_at < ?", start_time).count
-ObservationLink.where("href_name = ? AND updated_at < ?", href_name, start_time).delete_all unless @opts[:debug]
+links_to_delete_scope = ObservationLink.where(href_name: href_name).where("updated_at < ?", start_time)
+delete_count = links_to_delete_scope.count
+obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
+links_to_delete_scope.delete_all unless @opts[:debug]
 
+puts
+puts "Re-indexing #{obs_ids_to_index.size} observations..."
+obs_ids_to_index = obs_ids_to_index.compact.uniq
+obs_ids_to_index.in_groups_of( 500 ) do |group|
+  print '.'
+  Observation.elastic_index!( ids: group.compact )
+end
+puts
+
+puts
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"

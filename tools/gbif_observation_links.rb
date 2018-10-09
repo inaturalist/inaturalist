@@ -105,6 +105,7 @@ end
 puts
 puts "Downloading archive..."
 download
+obs_ids_to_index = []
 # "\x00" is an unprintable character that I hope we can assume will never appear in the data. If it does, CSV will choke
 CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true, quote_char: "\x00") do |row|
   # puts "row['gbifID']: #{row['gbifID']}\t\trow['catalogNumber']: #{row['catalogNumber']}"
@@ -130,11 +131,24 @@ CSV.foreach(File.join(@tmp_path, "occurrence.txt"), col_sep: "\t", headers: true
     ol = ObservationLink.new(:observation => observation, :href => href, :href_name => "GBIF", :rel => "alternate")
     ol.save unless @opts[:debug]
     new_count += 1
+    obs_ids_to_index << observation.id
     # puts "\tCreated #{ol}"
   end
   count += 1
 end
 
 delete_count = ObservationLink.where(href_name: "GBIF").where("updated_at < ?", start_time).count
-ObservationLink.where("href_name = 'GBIF' AND updated_at < ?", start_time).delete_all unless @opts[:debug]
+links_to_delete_scope = ObservationLink.where("href_name = 'GBIF' AND updated_at < ?", start_time)
+obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
+links_to_delete_scope.delete_all unless @opts[:debug]
+
+puts
+puts "Re-indexing #{obs_ids_to_index.size} observations..."
+obs_ids_to_index = obs_ids_to_index.compact.uniq
+obs_ids_to_index.in_groups_of( 500 ) do |group|
+  print '.'
+  Observation.elastic_index!( ids: group.compact )
+end
+puts
+puts
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s. Request key: #{@key}"
