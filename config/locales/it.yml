@@ -503,6 +503,7 @@ it:
   android: Android
   animals: Animali
   animated_observations_map: Mappa animata delle osservazioni
+  annotation: Annotazione
   annotations: Annotazioni
   announcement_was_successfully_created: L'avviso è stato creato con successo.
   announcement_was_successfully_updated: L'avviso è stato aggiornato correttamente.
@@ -1407,6 +1408,7 @@ it:
   exact_date: Data esatta
   exact_location: Località_esatta
   exact_rank: Rank esatto
+  exclusion_filters: Filtri di esclusione
   existing_flags: Contrassegni esistenti
   exit_full_screen: Esci dalla modalità a tutto schermo
   examples_of_ranking_organizations: Esempi di organizzazioni di classificazione
@@ -5801,8 +5803,9 @@ it:
           le ore se vuoi includere giornate intere.)'
         or_drag_and_drop: (o trascina e rilascia)
         please_specify_the_requirements: Per favore specifica i requisiti delle osservazioni
-          da aggiungere al progetto. Puoi selezionare più specie, luoghi, e utenti
-          da inserire automaticamente.
+          da aggiungere al progetto. Puoi specificare più specie, luoghi, utenti e
+          gradi di qualità da inserire automaticamente, o lasciare un campo vuoto
+          se non hai alcun requisito specifico per esso.
         project_background_color: Colore di sfondo dell'indice del progetto
         project_background_color_help: Assicurati di scegliere un colore abbastanza
           scuro in modo che il testo bianco sia visibile.
