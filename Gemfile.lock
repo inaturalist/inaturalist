@@ -241,8 +241,6 @@ GEM
     chroma (0.2.0)
     chronic (0.10.2)
     climate_control (0.2.0)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.6)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -454,12 +452,12 @@ GEM
       omniauth-oauth (~> 1.0)
     orm_adapter (0.5.0)
     os (0.9.6)
-    paperclip (5.2.1)
+    paperclip (6.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     parallel (1.6.1)
     pg (0.18.1)
     polyglot (0.3.5)
@@ -587,6 +585,8 @@ GEM
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     systemu (2.6.4)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thin (1.6.3)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0)
@@ -707,7 +707,7 @@ DEPENDENCIES
   omniauth-openid
   omniauth-soundcloud!
   omniauth-twitter
-  paperclip (~> 5.2.1)
+  paperclip (~> 6.1.0)
   pg
   preferences!
   puma
