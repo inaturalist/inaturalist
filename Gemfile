@@ -124,8 +124,8 @@ end
 group :test do
   gem 'faker'
   gem 'simplecov', :require => false
-  gem "rspec", "~> 3.4.0"
-  gem "rspec-rails", "~> 3.4.2"
+  gem "rspec", "~> 3.8.0"
+  gem "rspec-rails", "~> 3.8.0"
   gem "rspec-html-matchers"
   gem "webmock"
 end
