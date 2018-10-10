@@ -71,9 +71,10 @@ class FacebookController < ApplicationController
   private
   def authorize
     @provider = 'facebook'
-    uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
-    uri.query_values ||= {}
-    uri.query_values = uri.query_values.merge({:source => @provider, :context => @context})
+    uri = URI.parse( request.referrer ) # extracts params and puts them in the hash uri.query_values
+    query_values ||= {}
+    query_values = Rack::Utils.parse_nested_query( uri.query ).symbolize_keys.merge( source: @provider, context: @context )
+    uri.query = query_values.to_query
     session[:return_to] = uri.to_s 
     render(:partial => "photos/auth")
   end

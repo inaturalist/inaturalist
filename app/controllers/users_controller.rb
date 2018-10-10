@@ -550,7 +550,7 @@ class UsersController < ApplicationController
          @display_user.previous_changes.empty?
         @display_user.update_columns(updated_at: Time.now)
       end
-      sign_in @display_user, :bypass => true
+      bypass_sign_in( @display_user )
       respond_to do |format|
         format.html do
           if locale_was != @display_user.locale

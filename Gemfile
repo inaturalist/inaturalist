@@ -1,14 +1,15 @@
 source 'http://rubygems.org'
 
+ruby '2.3.1'
+
 gem 'rails', "~> 4.2.7.1"
 
 gem 'apipie-rails'
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
 gem 'activerecord-session_store'
-gem 'acts-as-taggable-on', '~> 3.4'
+gem 'acts-as-taggable-on', '~> 4.0'
 gem 'acts_as_votable', '~> 0.10.0'
-gem 'addressable', :require => 'addressable/uri'
 gem 'airbrake', '~> 7.3'
 gem 'ancestry'
 gem 'angular-rails-templates', git: "https://github.com/gaslight/angular-rails4-templates", ref: 'v0.1.5'
@@ -17,7 +18,6 @@ gem 'aws-sdk', '< 3.0'
 gem 'biodiversity'
 gem 'bluecloth'
 gem 'bugguide', git: 'https://github.com/kueda/bugguide.git'
-gem 'capistrano3-delayed-job', '~> 1.0'
 gem 'capistrano', '~> 3.3'
 gem 'capistrano-rvm', '~> 0.1'
 gem 'capistrano-rails', '~> 1.1'
@@ -26,8 +26,6 @@ gem 'chroma'
 gem 'chronic'
 gem 'coffee-rails'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
-gem 'daemons'
-gem 'daemon-spawn'
 gem 'dbf'
 gem 'delayed_job', '~> 4.1.5'
 gem 'delayed_job_active_record',
@@ -38,7 +36,7 @@ gem 'devise-encryptable'
 gem 'devise-i18n'
 gem 'devise_suspendable'
 gem 'diffy'
-gem 'doorkeeper', "~> 4.4.0"
+gem 'doorkeeper', "~> 5.0.0"
 gem 'dynamic_form'
 gem 'exifr'
 gem 'fastimage'
@@ -60,15 +58,14 @@ gem 'json'
 gem 'jquery-rails', "~> 4.0.4"
 gem 'koala'
 gem 'dalli'
-gem 'mocha', :require => false
-gem "nokogiri", "~> 1.8.1"
+gem "nokogiri", "~> 1.8.5"
 gem "non-stupid-digest-assets"
 gem "omniauth"
 gem "omniauth-oauth2", " 1.3.1"
-gem 'omniauth-facebook', '~> 4.0.0'
+gem 'omniauth-facebook', '~> 5.0.0'
 gem 'omniauth-flickr'
 gem 'omniauth-openid'
-gem "omniauth-google-oauth2", "~> 0.4.1"
+gem "omniauth-google-oauth2", "~> 0.5.2"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
@@ -109,7 +106,7 @@ gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter', :git => 'https://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do
-  gem 'newrelic_rpm', '~> 3.15.0'
+  gem 'newrelic_rpm', '~> 5.4.0'
 end
 
 group :test, :development, :prod_dev do
@@ -126,8 +123,8 @@ end
 group :test do
   gem 'faker'
   gem 'simplecov', :require => false
-  gem "rspec", "~> 3.4.0"
-  gem "rspec-rails", "~> 3.4.2"
+  gem "rspec", "~> 3.8.0"
+  gem "rspec-rails", "~> 3.8.0"
   gem "rspec-html-matchers"
   gem "webmock"
 end

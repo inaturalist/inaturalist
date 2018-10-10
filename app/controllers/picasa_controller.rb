@@ -22,9 +22,10 @@ class PicasaController < ApplicationController
     pa = current_user.has_provider_auth('google')
     if pa.nil?
       @provider = 'picasa'
-      uri = Addressable::URI.parse(request.referrer) # extracts params and puts them in the hash uri.query_values
-      uri.query_values ||= {}
-      uri.query_values = uri.query_values.merge({:source => @provider, :context => context})
+      uri = URI.parse( request.referrer ) # extracts params and puts them in the hash uri.query_values
+      query_values ||= {}
+      query_values = Rack::Utils.parse_nested_query( uri.query ).symbolize_keys.merge( source: @provider, context: context )
+      uri.query = query_values.to_query
       @auth_url = ProviderAuthorization::AUTH_URLS['google']
       session[:return_to] = uri.to_s 
       render(:partial => "photos/auth") and return

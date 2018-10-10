@@ -221,6 +221,7 @@ class User < ActiveRecord::Base
   after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
+  after_destroy :reindex_faved_observations_after_destroy_later
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -943,6 +944,36 @@ class User < ActiveRecord::Base
       operand_type: "User",
       operand_id: id
     ).destroy_all
+  end
+
+  def self.reindex_faved_observations_after_destroy( user_id )
+    while true
+      obs = Observation.elastic_search(
+        _source: [:id],
+        limit: 200,
+        where: {
+          nested: {
+            path: "votes",
+            query: {
+              bool: {
+                filter: {
+                  term: {
+                    "votes.user_id": user_id
+                  }
+                }
+              }
+            }
+          }
+        }
+      ).results.results
+      break if obs.blank?
+      Observation.elastic_index!( ids: obs.map(&:id) )
+    end
+  end
+
+  def reindex_faved_observations_after_destroy_later
+    User.delay.reindex_faved_observations_after_destroy( id )
+    true
   end
 
   def generate_csv(path, columns, options = {})

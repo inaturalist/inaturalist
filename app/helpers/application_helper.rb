@@ -305,13 +305,41 @@ module ApplicationHelper
     end
     text = sanitize(text, options)
     text = compact(text, :all_tags => true) if options[:compact]
-    text = simple_format(text, {}, :sanitize => false) unless options[:skip_simple_format]
     text = auto_link(text.html_safe, :sanitize => false).html_safe
     text = hyperlink_mentions(text)
     # scrub to fix any encoding issues
     text = text.scrub.gsub(/<a /, '<a rel="nofollow" ')
     # Ensure all tags are closed
-    Nokogiri::HTML::DocumentFragment.parse(text).to_s.html_safe
+    text = Nokogiri::HTML::DocumentFragment.parse( text ).to_s
+    unless options[:skip_simple_format]
+      text = simple_format_with_structure( text, sanitize: false )
+    end
+    text.html_safe
+  end
+
+  def simple_format_with_structure( text, options )
+    new_text = ""
+    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>)/m )
+    chunks.each do |chunk|
+      if chunk =~ /<(table|ul|ol)>/
+        html = Nokogiri::HTML::DocumentFragment.parse( chunk )
+        if table = html.at_css( "table" )
+          table["class"] = "#{html.at_css( "table" )["class"]} table".strip
+        end
+        html.css( "td, th, li" ).each do |node|
+          if node.content.strip =~ /\n/
+            new_content = Nokogiri::HTML::DocumentFragment.
+              parse( simple_format_with_structure( node.children.to_s, options ).html_safe )
+            node.content = nil
+            node << new_content
+          end
+        end
+        new_text += html.to_s.html_safe
+      else
+        new_text += simple_format( chunk, options ).html_safe
+      end
+    end
+    new_text.html_safe
   end
 
   def title_by_user( text )
