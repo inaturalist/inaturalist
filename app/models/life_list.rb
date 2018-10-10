@@ -23,6 +23,15 @@ class LifeList < List
   #
   def add_taxon(taxon, options = {})
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon
+    
+    # Make sure the parent species is added for infraspecies
+    taxon = taxon.is_a?(Taxon) ? taxon : Taxon.find(taxon_id)
+    if taxon.rank_level < Taxon::SPECIES_LEVEL && taxon.species
+      unless listed_taxon = listed_taxa.find_by_taxon_id(taxon.species.id)
+        lt = ListedTaxon.create(options.merge(list: self, taxon_id: taxon.species.id))
+      end
+    end
+    
     if listed_taxon = listed_taxa.find_by_taxon_id(taxon_id)
       return listed_taxon
     end

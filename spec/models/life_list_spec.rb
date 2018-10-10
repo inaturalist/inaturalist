@@ -23,7 +23,7 @@ describe LifeList do
       @list.reload
       expect(@list.taxon_ids).to include(@child.id)
   
-      new_child = Taxon.make!(:parent => @taxon)
+      new_child = Taxon.make!(:parent => @taxon, rank: Taxon::SUBSPECIES)
       obs.update_attributes(:taxon => new_child)
       @list.reload
       expect(@list.taxon_ids).not_to include(new_child.id)
@@ -31,6 +31,16 @@ describe LifeList do
       LifeList.reload_from_observations(@list)
       @list.reload
       expect(@list.taxon_ids).not_to include(@child.id)
+    end
+    
+    it "should add the species on reload if a subspecies was observed" do
+      @new_list = LifeList.make!
+      subspecies = Taxon.make!(parent: @taxon, rank: Taxon::SUBSPECIES)
+      o = Observation.make!(user: @new_list.user, taxon: subspecies)
+      expect(@new_list.taxon_ids).not_to include(@taxon.id)
+      LifeList.reload_from_observations(@new_list)
+      @new_list.reload
+      expect(@new_list.taxon_ids).to include(@taxon.id)
     end
 
     it "should add taxa from place" do
