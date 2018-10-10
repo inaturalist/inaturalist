@@ -13,8 +13,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'airbrake', '~> 7.3'
 gem 'ancestry'
 gem 'angular-rails-templates', git: "https://github.com/gaslight/angular-rails4-templates", ref: 'v0.1.5'
-# aws-sdk locked to pre 3.0; see https://github.com/thoughtbot/paperclip/issues/2484
-gem 'aws-sdk', '< 3.0'
+gem "aws-sdk-s3"
 gem 'biodiversity'
 gem 'bluecloth'
 gem 'bugguide', git: 'https://github.com/kueda/bugguide.git'
