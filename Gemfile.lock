@@ -394,7 +394,6 @@ GEM
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     memoist (0.14.0)
-    metaclass (0.0.4)
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
@@ -402,8 +401,6 @@ GEM
     mini_mime (1.0.0)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
-    mocha (1.1.0)
-      metaclass (~> 0.0.1)
     multi_json (1.13.1)
     multi_xml (0.6.0)
     multipart-post (2.0.0)
@@ -694,7 +691,6 @@ DEPENDENCIES
   json
   koala
   machinist
-  mocha
   newrelic_rpm (~> 5.4.0)
   nokogiri (~> 1.8.5)
   non-stupid-digest-assets
@@ -748,4 +744,4 @@ RUBY VERSION
    ruby 2.3.1p112
 
 BUNDLED WITH
-   1.16.3
+   1.16.6
