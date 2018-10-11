@@ -7,12 +7,7 @@ shared_examples_for "a ProjectsController" do
   describe "index" do
 
     describe "featured" do
-      before(:each) do
-        # not sure why this would be needed since its in a before :each in
-        # the spec helper, but Travis was failing because Site.default was
-        make_default_site
-      end
-      let!(:featured) { SiteFeaturedProject.make!(site: Site.default).project }
+      let!(:featured) { SiteFeaturedProject.make!.project }
       let!(:not_featured) { Project.make! }
       it "should include featured projects" do
         get :index, format: :json, featured: true
