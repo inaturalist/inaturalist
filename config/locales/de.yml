@@ -5,6 +5,7 @@
 # Author: AndreasHerde
 # Author: Asieverd
 # Author: Cellina
+# Author: Chimu
 # Author: Crazy1880
 # Author: Dellfalconer
 # Author: Eddie
@@ -128,16 +129,16 @@ de:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> Taxon-Änderung gemacht
     other: <span class='count'>%{count}</span> Taxon-Änderungen gemacht
-  _100_day_trends: 100-Tage-Trend
-  _percent_ID_d: '% bestimmt'
+  _100_day_trends: 100-Tage-Trends
+  _percent_ID_d: '% identifiziert'
   a: ein
   a_: ein
   a_community_for_naturalist: Eine Community für Naturfreunde
   a_default_taxon_name_will_automatically_created: |-
-    Ein voreingestellter Taxonname wird automatisch erstellt aus dem Attribut des Wissenschaftsnamens dieses Taxons.
+    Ein voreingestellter Taxonname wird automatisch aus dem Attribut des Wissenschaftsnamens dieses Taxons erstellt.
     Wenn du das neue Taxon gespeichert hast, kannst du hier andere Namen (umgangssprachliche Namen, veraltete Wissenschaftsnamen usw.) hinzufügen.
   a_few_points_to_make_things_clear: 'Ein paar Punkte sollen die Dinge etwas verdeutlichen:'
-  a_flag_for_x: eine Meldung für %{x}
+  a_flag_for_x: eine Merker für %{x}
   a_greasemonkey_script: ein Greasemonkey-Skript
   a_member_of: Ein Mitglied von
   a_member_of_taxon_html: ein Mitglied von %{taxon}
@@ -146,14 +147,14 @@ de:
   about_bioblitz_results: Über BioBlitz-Ergebnisse
   about_blocking: Über Blockieren
   about_charts: Über Diagramme
-  about_community_taxa: Über Lebensgemeinschafts-Taxa
+  about_community_taxa: Über Gemeinschafts-Taxa
   about_complete_taxa: Über Vollständige Taxa
   about_conservation_status: Über Schutzstatus
-  about_editing_observation_fields: Über das Bearbeiten von Beobachtungsfeldern
+  about_editing_observation_fields: Über das Editieren von Beobachtungsfeldern
   about_establishment_means: Über Verbreitung
   about_external_links: Über externe Links
   about_licenses: Über Lizenzen
-  about_licensing: Über Lizenzierung
+  about_licensing: Über Lizenzen
   about_life!: Übers Leben!
   about_muting: Über Stummstellen
   about_names: Über Namen
@@ -166,7 +167,7 @@ de:
   about_this_map: Über diese Karte
   about_this_project: Über dieses Projekt
   about_x: Über %{x}
-  acc: Zuordnungsgenauigkeit (m)
+  acc: Genauigkeit (m)
   account: Benutzerkonto
   account_settings: Kontoeinstellungen
   accept: akzeptieren
@@ -189,51 +190,49 @@ de:
   adapted_by_name_from_a_work_by_original: Angepasst von %{name} aus einer Arbeit
     von %{original}
   add: Hinzufügen
-  add_a: Hinzufügen einen
-  add_a_batch_of_observations: Eine Stapel an Beobachtungen hinzufügen
-  add_a_batch_of_observations_by_csv: Einen Datenstapel an Beobachtungen im CSV-Format
-    hinzufügen
-  add_a_batch_of_taxa: Einen Bündel an Taxa hinzufügen
+  add_a: CANNOT BE TRANSLATED
+  add_a_batch_of_observations: Beobachtungssatz hinzufügen
+  add_a_batch_of_observations_by_csv: Beobachtungssatz im CSV-Format hinzufügen
+  add_a_batch_of_taxa: Taxa-Satz hinzufügen
   add_a_comment: Kommentar hinzufügen
   add_a_field: Feld hinzufügen
-  add_a_flag: Melden
-  add_a_link_raquo: Einen Link hinzufügen &raquo;
-  add_a_name: Einen Namen hinzufügen
-  add_a_new_change_group: Eine neue Änderungsgruppe hinzufügen
-  add_a_new_observation_to_id_please!: Füge der Kennung bitte eine neue Beobachtung
-    hinzu!
-  add_a_place_raquo: Einen Ort hinzufügen &raquo;
-  add_a_single_observation: Eine Einzelbeobachtung hinzufügen.
-  add_a_taxon: Ein Taxon hinzufügen
+  add_a_flag: Merker hinzufügen
+  add_a_link_raquo: Link hinzufügen &raquo;
+  add_a_name: Namen hinzufügen
+  add_a_new_change_group: Neue Änderungsgruppe hinzufügen
+  add_a_new_observation_to_id_please!: Neue Beobachtung zur ID hinzufügen, bitte!
+  add_a_place_raquo: Ort hinzufügen &raquo;
+  add_a_single_observation: Einzelbeobachtung hinzufügen.
+  add_a_taxon: Taxon hinzufügen
   add_all_your_matching_obs_of_this_taxon: All deine passenden Beobachtungen dieses
     Taxons zu diesem Projekt hinzufügen
   add_all_your_matching_obs_to_this_project: All deine passenden Beobachtungen zu
     diesem Projekt hinzufügen
-  add_an_assessment: Eine Bewertung hinzufügen
-  add_an_identification: Eine Bestimmung hinzufügen
+  add_an_assessment: Bewertung hinzufügen
+  add_an_identification: Bestimmung hinzufügen
   add_an_observation: Beobachtung hinzufügen
   add_an_observation?: Beobachtung hinzufügen?
-  add_an_observation_of: Eine Beobachtung von %{taxon} hinzufügen
+  add_an_observation_of: Beobachtung von %{taxon} hinzufügen
   add_annotations_for_x: Annotationen für "%{x}" hinzufügen
   add_annotations_for_controlled_attribute:
     sex: Annotationen für "Geschlecht" hinzufügen
     plant_phenology: Annotationen zur "Pflanzenphänologie" hinzufügen
     life_stage: Annotationen zu "Lebensstadium" hinzufügen
   add_another: Weitere hinzufügen
-  add_another_flag: Eine weitere Meldung abgeben
-  add_another_photo: Ein weiteres Foto hinzufügen
+  add_another_flag: Weiterer Merker hinzufügen
+  add_another_photo: Weiteres Foto hinzufügen
   add_another_section: Weiteren Abschnitt hinzufügen
   add_another_subscription: Weiteres Abonnement hinzufügen
   add_asset: Bestand hinzufügen
-  add_batch: Bündel hinzufügen
+  add_batch: Satz hinzufügen
   add_colors: Farben hinzufügen
   add_comma_separated_tags: Kommagetrennte Tags (Suchwörter) hinzufügen
-  add_comment: Einen Kommentar hinzufügen
+  add_comment: Kommentar hinzufügen
   add_common_names_for: umgangssprachliche Namen für vorhandenes Taxon hinzufügen
   add_conservation_status: Schutzstatus hinzufügen
   add_countries: Länder hinzufügen
   add_custom_project_fields: Benutzerdefinierte Projektfelder hinzufügen
-  add_edit_flags: Meldungen abgeben/bearbeiten
+  add_edit_flags: Merker abgeben/bearbeiten
   add_edit_more_fields: Hinzufügen/Bearbeiten weiterer Felder
   add_editor: Autor hinzufügen
   add_description: '%{description_name} hinzufügen'
@@ -241,7 +240,7 @@ de:
   add_from_your_observations: Aus eigenen Beobachtungen hinzufügen
   add_link: Link hinzufügen
   add_listed_taxa_from_observations: Taxonliste aus Beobachtungen hinzufügen
-  add_higher_level_taxon: Einen höheren Taxonrang (z.&nbsp;B. „Vögel“) hinzufügen
+  add_higher_level_taxon: Höheren Taxonrang (z.B. „Vögel“) hinzufügen
   add_id: Kennung hinzufügen
   add_it_to_place_raquo: Einem Ort hinzufügen &raquo;
   add_more_photos: Weitere Fotos hinzufügen
@@ -249,13 +248,13 @@ de:
   add_new_observations: Neue Beobachtungen hinzufügen
   add_new_photos_by_their_ids: Neue Fotos durch deine Flickr-Kennung hinzufügen (muss
     Creative-Commons-Lizenz sein!)
-  add_new_place: Einen neuen Ort hinzufügen
-  add_new_rule: Eine neue Regel hinzufügen
+  add_new_place: Neuen Ort hinzufügen
+  add_new_rule: Neue Regel hinzufügen
   add_new_source: Neue Quelle hinzufügen …
-  add_new_taxon_name: Einen neuen Taxonnamen hinzufügen
+  add_new_taxon_name: Neuen Taxonnamen hinzufügen
   add_notes_about_this_taxon: Füge Anmerkungen über dieses Taxon dieses Ortes hinzu,
-    z.&nbsp;B. wo und wann es erscheint.
-  add_obs_from_a_link: 'Beobachtungen hinzufügen aus Liste: %{link}'
+    z.B. wo und wann es erscheint.
+  add_obs_from_a_link: Beobachtungen aus Liste %{link} hinzufügen
   add_obs_from_a_list: Beobachtungen aus einer Liste hinzufügen
   add_observation: Beobachtung hinzufügen
   add_observations!: Füge Beobachtungen hinzu!
@@ -832,7 +831,7 @@ de:
     ist.
   check_it_out: Probier es aus
   check_list: Prüfliste
-  check_list_description: Wählee ein höherstufiges Taxon, wie "Aves" für Vögel oder
+  check_list_description: Wähle ein höherstufiges Taxon, wie "Aves" für Vögel oder
     "Amphibia" für Lurche aus, das du in dieser Liste anzeigen möchtest. Wenn gesetzt,
     erlaubt diese Liste keine Taxa, die nicht in diesem Taxon enthalten sind. Zum
     Beispiel, wenn du eine Liste mit Vögeln erstellt, wirst dort keine Frösche hinzufügen
@@ -899,12 +898,12 @@ de:
   clear_search: Suche löschen
   clear_shapes: Umrisse löschen
   click_add_an_observation_to_the_lower_right: Willkommen bei %{site_name_short}!
-    Klicke unten rechts auf "Hinzufügen einer Beobachtung". Du wirst aufgefordert
-    dich anzumelden oder zu registrieren, wenn du das nicht bereits getan hast
+    Klicke unten rechts auf "Beobachtung hinzufügen". Du wirst zur Anmeldung/Registrierung
+    aufgefordert, wenn noch nicht getan
   click_on_map_to_draw_shape_around_place: Klick auf die Karte um einen Umriss um
     diesen Ort zu zeichnen
   click_on_the_map_to: Klick auf die Karte, um deine Beobachtung zu verorten
-  click_the_map: <strong>Klicke auf die Karte</strong> um einen Standort hinzuzufügen.
+  click_the_map: <strong>Klicke auf die Karte</strong> um ein Ort hinzuzufügen.
   click_the_map_to_jump_new_place: Klicke auf die Karte, um zu einem neuen Ort zu
     wechseln
   close: Schließen
@@ -1391,6 +1390,8 @@ de:
   exact_coordinates_obscured_for: Genaue Koordinaten für bedrohte Arten sind verschleiert.
   exact_date: Genaues Datum
   exact_rank: Genauer Rang
+  except: Außer
+  exclude_x: Ausschließen %{x}
   existing_flags: Vorhandene Meldungen
   exit_full_screen: Vollbild beenden
   expand_days: Tage ausklappen
@@ -1422,6 +1423,7 @@ de:
   faved_this_observation: favorisierte/n diese Beobachtung
   favorite_taxa: bevorzugte Taxa
   favorites: Favoriten
+  fblocale: Englisch_USA
   feedback: Feedback
   feedback_group: Feedback Gruppe
   feeds: Feeds
@@ -1560,11 +1562,13 @@ de:
   get_started: Loslegen
   getting_started: Anfangen
   getting_started_guide: Anleitung für den Einstieg
+  give_it_some_detail: Bitte detaillieren!
   global_names: Globale Namen
   globally: global
   go: Los
   go_back: Zurück gehen
   going_to_your_observations: Gehe zu deinen Beobachtungen...
+  good_choice_for_sharing: Gute Auswahl zum teilen mit Wissenschaftler
   google: Google
   got_it!: Verstanden!
   gray: graun
@@ -1676,6 +1680,8 @@ de:
     (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung
     von Lebenslisten usw. verwendet wird. Es bedeutet auch, dass deine Beobachtung
     nur dann Forschungsqualität erreichen kann, wenn die Community dir zustimmt.
+  if_this_is_a_scientific_name: Falls dies ein wissenschaftlicher Namen ist, ist er
+    allgemein akzeptiert?
   if_this_link_will_apply_to_descendant: Wenn dieser Link auf nachkommende Taxa zutrifft,
     kannst du Template-Tags verwenden, um den Taxon-Namen in die URL einzutragen
   if_you_dont_want_us_to_share_your_data: Wenn du nicht willst, dass wir deine Daten
@@ -2060,6 +2066,7 @@ de:
     ko: Koreanisch
     lb: Luxemburgisch
     mk: Mazedonisch
+    nl: Niederländisch
     oc: Okzitanisch
     pt-BR: Portugiesisch (Brasilien)
     pt-PT: Portugiesisch (Portugal)
@@ -2172,6 +2179,9 @@ de:
   meet: Treffen
   member_of_the_inaturalist_network_html: Mitglied des <a href="%{url}">iNaturalist
     Netzwerkes</a>
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : Mitglied vom %{partial_inat_network_tag_html}-iNaturalist-Netzwerk, eine gemeisame
+    Initiative von %{cas_tag_html} und von %{nat_geo_tag_html}.
   members: Mitglieder
   membership_model: Mitgliedersmodell
   mentioned_you_in_noun_html: '%{user} erwähnte dich in %{noun}'
@@ -2278,6 +2288,7 @@ de:
   native: einheimisch
   native_page_url: Native Seiten-URL
   native_to_place: Einheimisch in %{place}
+  nav: Navigator
   ne_lat: NO Lat
   ne_lon: NO Lon.
   near: nahe
@@ -2327,6 +2338,7 @@ de:
   new_taxon_range: Neue Taxon-Verbreitung
   new_taxonomic_change: Neue taxonomische Änderung (Entwurf)
   new_trip: Neuer Trip
+  new_updates_in_the_last_24_hours_from: Neue Updates in den letzten 24 Std. von %{site_name}
   new_user_rules: Neue Benutzerregeln
   new_users: Neue Benutzer
   new_users_week: Neue Benutzer / Woche
@@ -2681,6 +2693,7 @@ de:
   opt_in_for_this_observation: Für diese Beobachtung anmelden
   optional: optional
   or: oder
+  or_if_you_dont_want_email: Oder wenn Sie gar keine Emails möchten ...
   or_invite_your_friends: oder deine Freunde einladen
   or_invited: oder eingeladen.
   or_post_message_to_google_group: 'oder poste eine Nachicht in unsere Google Gruppe:'
@@ -3179,6 +3192,10 @@ de:
   reload_from_observations: Neuladen aus Beobachtungen
   reload_timed_out: Zeitüberschreitung beim Neuladen.  Bitte versuche es später noch
     einmal.
+  remember_its_a_lot_easier_to_id: Bemerken Sie bitte daß es viel einfacher ist ein
+    Eintrag zu identifizieren wenn Sie so viel wie mögliche Informationen eingeben.
+    Am wichtigsten sind <strong>Ort<strong>, <strong>Datum/Uhrzeit<strong>, und Informationen
+    über die <strong>Größe<strong>.
   remember_me: Angemeldet bleiben
   remove: Entfernen
   remove_all_tags: Alle Tags entfernen
@@ -3662,6 +3679,7 @@ de:
   taxon_change_must_be_committed_to_update_records: Die Taxon-Änderung muss eingereicht
     werden, um Aufzeichnungen zu aktualisieren.
   taxon_deleted: Taxon gelöscht.
+  taxon_doesnt_have_a_range: Das Taxon hat keinen Bereich
   taxon_id: Taxon ID
   taxon_ids: Taxon IDs
   taxon_map:
@@ -3672,6 +3690,7 @@ de:
   taxon_curators: Taxon-Kuratoren
   taxon_extras: Taxon-Extras
   taxon_name: Taxonname
+  taxon_observed_by_user: '%{taxon} beobachtet von %{user}'
   taxon_photos_updated: Taxon-Bilder aktualisiert!
   taxon_range: Taxon-Bereich
   taxon_ranks: Taxonränge
@@ -3772,9 +3791,18 @@ de:
   there_isnt_a_wikipedia_article_titled_x_html: Es gibt keinen Wikipedia-Artikel oder
     keine Weiterleitung mit dem Titel'<i>%{x}</i>'. Vielleicht möchtest du ja einen
     <a href='http://de.wikipedia.org/wiki/%{x}'>erstellen</a>?
+  there_merge_problems_with_the_merge: 'Es gab Probleme mit der Zusammenführung: %{merged_errors}'
   there_were_errors: Es gab einen Fehler.
+  there_were_problems_adding_that_observation_to_this_project: 'Es gab Probleme beim
+    Hinzufügen dieser Beobachtung zu diesem Projekt:'
+  there_were_problems_importing_that_place: 'Problem bei Importieren vom Ort: %{place_error}'
   there_were_some_problems_saving_this_observation: Beim Speichern dieser Beobachtung
     gab es einige Probleme
+  there_were_some_problems_saving_those_colors: 'Problem beim Speichern dieser Farben:
+    %{error}'
+  there_were_some_problems_with: 'Problem mit Ihrer CSV-Datei. Überprüfen Sie bitte
+    die fehlerhaften Zeilen. Der Fehler könnte auch bei uns liegen: in diesem Fall,
+    kontaktieren Sie uns bitte.'
   there_were_some_problems_with_fields: 'Es gab einige Probleme mit den folgenden
     Feldern:'
   theres_also: es gibt auch
@@ -4015,7 +4043,9 @@ de:
   view_taxon_changes: Taxonänderungen ansehen
   view_taxon_page: Taxonseite ansehen
   view_the_observation: Die Beobachtung ansehen
+  view_the_range: Den Bereich ansehen
   view_unidentified_observations: Nicht identifizierte Beobachtungen anzeigen...
+  view_user_observations: Beobachtungen von %{user} ansehen
   view_x: '%{x} anzeigen'
   view_x_from_x: '%{day_observations} Beobachtungen von %{observed_on} anzeigen'
   view_xs_journal: '%{x}s Journal anzeigen'
@@ -4110,6 +4140,7 @@ de:
   widget: Widget
   widget_code: Widget Code
   widget_for: Widget für
+  will_be: wird sein
   wikipedia_entry: Wikipedia Eintrag
   with: mit
   withdraw: Zurücknehmen
@@ -4127,12 +4158,15 @@ de:
   x_blog: '%{x}''s Blog'
   x_deleted: '%{x} gelöscht'
   x_does_not_exist: '"%{x}" existiert nicht'
+  x_doesnt: '%{login} hat nicht'
   x_flagged: '%{x} wurde gemeldet'
   x_flagged_as_flag: '%{x} wurde als %{flag} gemeldet'
   x_journal: '%{user}#s Journal'
   x_journal_middot: '%{user}''s Journal •'
   x_journal_new_post: '%{user}''s Journal • Neuer Eintrag'
   x_of_y: '%{x} von %{y}'
+  x_of_y_people_over_two_thirds_agree_it_is: '%{x} von %{y} Leute (mehr als 2/3) sind
+    damit einverstanden'
   x_project_journal: '%{project}''s %{name}'
   x_project_stats: '%{project} Statistik'
   x_sent_you_a_new_message_on_y_html: '%{x} hat Ihnen eine neue Nachricht gesendet
