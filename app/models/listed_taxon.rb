@@ -371,7 +371,7 @@ class ListedTaxon < ActiveRecord::Base
     return true unless l.is_a?(LifeList)
     return true unless l.user
     return true unless l.user.life_list_id == self.list_id 
-    User.where(id: l.user_id).update_all(life_list_taxa_count: l.listed_taxa.count)
+    User.where(id: l.user_id).update_all( life_list_taxa_count: l.listed_taxa.with_leaves( l.listed_taxa.to_sql ).confirmed.count )
     true
   end
   
