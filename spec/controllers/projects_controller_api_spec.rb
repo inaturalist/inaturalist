@@ -7,8 +7,7 @@ shared_examples_for "a ProjectsController" do
   describe "index" do
 
     describe "featured" do
-      let!(:featured) { Project.make! }
-      let!(:site_featured_project) { SiteFeaturedProject.make!(project: featured) }
+      let!(:featured) { SiteFeaturedProject.make!.project }
       let!(:not_featured) { Project.make! }
       it "should include featured projects" do
         get :index, format: :json, featured: true
@@ -22,7 +21,6 @@ shared_examples_for "a ProjectsController" do
         let(:featured_with_coordinates) {
           p = Project.make!(
             title: "featured with coordinates",
-            featured_at: Time.now,
             latitude: 1,
             longitude: 1
           )

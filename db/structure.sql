@@ -3587,7 +3587,6 @@ CREATE TABLE site_featured_projects (
 --
 
 CREATE SEQUENCE site_featured_projects_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
