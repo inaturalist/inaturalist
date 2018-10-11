@@ -494,6 +494,7 @@ de:
   android: Android
   animals: Tiere
   animated_observations_map: animierte Karte der Beobachtungen
+  annotation: Anmerkung
   annotations: Vermerke
   announcement_was_successfully_created: Ankündigung wurde erfolgreich erstellt.
   announcement_was_successfully_updated: Ankündigung wurde erfolgreich aktualisiert.
@@ -1392,6 +1393,7 @@ de:
   exact_rank: Genauer Rang
   except: Außer
   exclude_x: Ausschließen %{x}
+  exclusion_filters: Ausschluss-Filter
   existing_flags: Vorhandene Meldungen
   exit_full_screen: Vollbild beenden
   expand_days: Tage ausklappen
@@ -1424,6 +1426,10 @@ de:
   favorite_taxa: bevorzugte Taxa
   favorites: Favoriten
   fblocale: Englisch_USA
+  featured: Vorgestellt
+  featured?: vorgestellt?
+  featured_projects_from_everywhere: Vorgestellte Projekte von überall
+  featured_projects_from_place: Vorgestellte Projekte von %{place}
   feedback: Feedback
   feedback_group: Feedback Gruppe
   feeds: Feeds
@@ -2792,6 +2798,8 @@ de:
   pick_a_username: Wähle einen Benutzernamen aus
   pin_verb: Anpinnen
   pink: rosa
+  pinned_locations_desc: Setze diese Kombination aus Koordinaten, Genauigkeit, Geodatenschutz
+    und Ortsangaben für die spätere Verwendung fest.
   place: Ort
   placeholder: Platzhalter
   place_added_to_inat_by: Ort zu %{site_name} hinzugefügt von
@@ -3192,6 +3200,7 @@ de:
   reload_from_observations: Neuladen aus Beobachtungen
   reload_timed_out: Zeitüberschreitung beim Neuladen.  Bitte versuche es später noch
     einmal.
+  remarks_optional: Anmerkungen <span class="small description">(optional)</span>
   remember_its_a_lot_easier_to_id: Bemerken Sie bitte daß es viel einfacher ist ein
     Eintrag zu identifizieren wenn Sie so viel wie mögliche Informationen eingeben.
     Am wichtigsten sind <strong>Ort<strong>, <strong>Datum/Uhrzeit<strong>, und Informationen
@@ -3415,6 +3424,7 @@ de:
   show_taxa_from_everywhere: Taxa von überall anzeigen
   show_taxa_from_place: Taxa von %{place} anzeigen
   show_total_listed_taxa: Insgesamt gelistete Taxa anzeigen
+  show_uncountable_species: Unzählbare Spezies anzeigen
   showing_observations_by: Beobachtungen anzeigen nach
   showing_taxa_from_place: Taxa von %{place} anzeigen
   showing_x_of_y_listings: Zeige %{x} von %{y} Ergebnissen
@@ -4685,6 +4695,11 @@ de:
           Projekten, wie den Zugriff auf die tatsächlichen Koordinaten, benutzerdefinierte
           Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht
           automatisch gefiltert werden können?
+        please_specify_the_requirements: Bitte geben Sie die Anforderungen für die
+          Beobachtungen an, die zu diesem Projekt hinzugefügt werden sollen. Sie können
+          mehrere Arten, Orte, Benutzer oder Qualitätsstufen angeben, die automatisch
+          einbezogen werden sollen, oder ein Feld leer lassen, wenn Sie keine besonderen
+          Anforderungen haben.
         project_summary_help: Gib eine kurze Erläuterung deines Projekts an. Ungefähr
           die ersten 200 Zeichen werden rechts neben dem Banner der Projekt-Startseite
           zu sehen sein, also schreibe das Wichtigste zu Beginn hin!
