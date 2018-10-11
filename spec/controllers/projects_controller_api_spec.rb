@@ -7,7 +7,8 @@ shared_examples_for "a ProjectsController" do
   describe "index" do
 
     describe "featured" do
-      let!(:featured) { SiteFeaturedProject.make!.project }
+      let!(:featured) { Project.make! }
+      let!(:site_featured_project) { SiteFeaturedProject.make!(project: featured) }
       let!(:not_featured) { Project.make! }
       it "should include featured projects" do
         get :index, format: :json, featured: true

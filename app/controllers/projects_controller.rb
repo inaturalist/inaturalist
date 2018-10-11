@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
           @place = @site.place unless params[:everywhere].yesish?
         end
 
-        base_params = { site_id: @site_id }
+        base_params = { site_id: @site.id }
         if current_user && ( current_user.is_admin? || current_user.site_admins.any? )
           base_params[:ttl] = -1
         end
