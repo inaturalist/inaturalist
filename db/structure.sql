@@ -3272,7 +3272,6 @@ CREATE TABLE projects (
     project_type character varying(255),
     slug character varying(255),
     observed_taxa_count integer DEFAULT 0,
-    featured_at timestamp without time zone,
     source_url character varying(255),
     tracking_codes character varying(255),
     delta boolean DEFAULT false,

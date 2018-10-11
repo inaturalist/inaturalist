@@ -107,10 +107,30 @@ class ProjectsController < ApplicationController
       end
       format.json do
         scope = Project.all
-        scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
+        # ensuring lat/lng are floats to prevent SQL injection in an order clause below
+        if params[:latitude]
+          params[:latitude] = Float(params[:latitude]) rescue nil
+        end
+        if params[:longitude]
+          params[:longitude] = Float(params[:longitude]) rescue nil
+        end
+        if params[:featured] && params[:latitude] && params[:longitude]
+          scope = scope.joins(:site_featured_projects)
+          scope = scope.
+            where(["projects.latitude IS NULL OR ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(?, ?)) < 5",
+              params[:latitude], params[:longitude]]).
+            order("CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{params[:latitude]}, #{params[:latitude]})) END")
+        else
+          if params[:featured]
+            scope = scope.joins(:site_featured_projects)
+          end
+          if params[:latitude] && params[:longitude]
+            scope = scope.near_point(params[:latitude], params[:longitude])
+          end
+        end
         scope = scope.in_group(params[:group]) if params[:group]
         scope = scope.from_source_url(params[:source]) if params[:source]
-        @projects = scope.paginate(:page => params[:page], :per_page => 100)
+        @projects = scope.paginate(:page => params[:page], :per_page => 100).to_a.uniq
         opts = Project.default_json_options.merge(:include => [
           :project_list, 
           {:project_observation_fields => ProjectObservationField.default_json_options}

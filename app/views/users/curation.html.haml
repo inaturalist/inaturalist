@@ -33,6 +33,11 @@
         });
       } );
     } )
+= content_for :extracss do
+  :css
+    .dropdown-menu.site-admins li {
+      padding: 3px 10px;
+    }
 .container
   .row
     .col-xs-12
@@ -88,7 +93,7 @@
           .btn.btn-block.btn-success.dropdown-toggle{ "data-toggle" => "dropdown" }
             = t :make_site_admin
             %span.caret
-          %ul.dropdown-menu{ style: "width:100%" }
+          %ul.dropdown-menu.site-admins{ style: "width:100%" }
             - Site.order(:id).map do |s|
               %li
                 %label

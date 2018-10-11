@@ -365,6 +365,12 @@ SiteAdmin.blueprint do
   site { Site.make! }
 end
 
+SiteFeaturedProject.blueprint do
+  project { Project.make! }
+  site { Site.make! }
+  user { User.make! }
+end
+
 SiteStatistic.blueprint do
   data { {
     observations: { },

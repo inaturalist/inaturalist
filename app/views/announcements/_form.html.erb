@@ -22,9 +22,6 @@
     <%= f.select :site_ids, @sites.map{ |s| [s.name, s.id] }, { include_blank: t(:all) }, multiple: true %>
   <% else %>
     <%= f.hidden_field :site_ids %>
-    <%= f.form_field :site do %>
-      <%= link_to @announcement.site.name, @announcement.site %>
-    <% end %>
   <% end %>
   <%= f.select :locales, I18N_SUPPORTED_LOCALES, {}, {
     multiple: true,
