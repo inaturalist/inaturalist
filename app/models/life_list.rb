@@ -26,7 +26,7 @@ class LifeList < List
     
     # Make sure the parent species is added for infraspecies
     taxon = taxon.is_a?(Taxon) ? taxon : Taxon.find(taxon_id)
-    if taxon.rank_level < Taxon::SPECIES_LEVEL && taxon.species
+    if !taxon.rank_level.nil? && taxon.rank_level < Taxon::SPECIES_LEVEL && taxon.species
       unless listed_taxon = listed_taxa.find_by_taxon_id(taxon.species.id)
         lt = ListedTaxon.create(options.merge(list: self, taxon_id: taxon.species.id))
       end
