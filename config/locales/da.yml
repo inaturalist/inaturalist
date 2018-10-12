@@ -198,10 +198,10 @@ da:
   add_an_observation: Tilføj en observation
   add_an_observation?: Tilføj en observation?
   add_an_observation_of: Tilføj en observation af %{taxon}
-  add_annotations_for_x: Tilføj noter for "%{x}"
+  add_annotations_for_x: Tilføj anmærkninger for "%{x}"
   add_annotations_for_controlled_attribute:
     sex: Tilføj noter for "køn"
-    plant_phenology: Tilføj noter for "plantefænologi"
+    plant_phenology: Tilføj anmærkninger for "plantefænologi"
     life_stage: Tilføj noter for "livsstadie"
   add_another: Tilføj en mere
   add_another_flag: Tilføj endnu en markering
@@ -254,20 +254,21 @@ da:
   add_photos: Tilføj fotos
   add_photos_to_this_observation: Tilføj fotos til denne observation
   add_place: Tilføj sted
-  add_plant_phenology_budding_annotation: 'Tilføj noten "Plantefænologi: Spirende"'
+  add_plant_phenology_budding_annotation: 'Tilføj anmærkningen "Plantefænologi: Spirende"'
   add_plant_phenology_flowering_annotation: 'Tilføj noten "Plantefænologi: Blomstrende"'
-  add_plant_phenology_fruiting_annotation: 'Tilføj noten "Plantefænologi: I frugt"'
+  add_plant_phenology_fruiting_annotation: 'Tilføj anmærkningen "Plantefænologi: I
+    frugt"'
   add_life_stage_adult_annotation: 'Tilføj noten "Livsstadie: Voksen"'
-  add_life_stage_teneral_annotation: 'Tilføj noten "Livsstadie: teneral"'
+  add_life_stage_teneral_annotation: 'Tilføj anmærkningen "Livsstadie: teneral"'
   add_life_stage_subimago_annotation: 'Tilføj noten "Livsstadie: subimago"'
-  add_life_stage_pupa_annotation: 'Tilføj noten "Livsstadie: Puppe"'
+  add_life_stage_pupa_annotation: 'Tilføj anmærkningen "Livsstadie: Puppe"'
   add_life_stage_nymph_annotation: 'Tilføj noten "Livsstadie: nymfe"'
-  add_life_stage_larva_annotation: 'Tilføj noten "Livsstadie: Larve"'
+  add_life_stage_larva_annotation: 'Tilføj anmærkningen "Livsstadie: Larve"'
   add_life_stage_juvenile_annotation: 'Tilføj noten "Livsstadie: Juvenil"'
-  add_life_stage_egg_annotation: 'Tilføj noten "Livsstadie: Æg"'
+  add_life_stage_egg_annotation: 'Tilføj anmærkningen "Livsstadie: Æg"'
   add_section: Tilføj sektion
   add_several_observations_at_once: Tilføj flere observationer på en gang.
-  add_sex_female_annotation: 'Tilføj noten "Køn: Hunkøn"'
+  add_sex_female_annotation: 'Tilføj anmærkningen "Køn: Hunkøn"'
   add_sex_male_annotation: 'Tilføj noten "Køn: Hankøn"'
   add_shape: Tilføj form
   add_some_now: Tilføj noget nu
@@ -476,6 +477,7 @@ da:
   android: Android
   animals: Dyr
   animated_observations_map: Animeret observationskort
+  annotation: Anmærkning
   annotations: Note
   announcement_was_successfully_created: Meddelelsen blev oprettet.
   announcement_was_successfully_updated: Meddelelsen blev opdateret.
@@ -1374,6 +1376,9 @@ da:
   exact_date: Eksakt dato
   exact_location: Eksakt_sted
   exact_rank: Eksakt række
+  except: bort set fra
+  exclude_x: Ekskluder %{x}
+  exclusion_filters: Eksklusionsfiltre
   existing_flags: Eksisterende markeringer
   exit_full_screen: Afslut fuld skærm
   examples_of_ranking_organizations: Eksempler på naturbeskyttelsesorganisationer
@@ -2292,7 +2297,7 @@ da:
       MM: '%dmo'
       "y": 1å
       yy: '%dy'
-    datetime_with_zone: MMM D, ÅÅÅÅ · LT z
+    datetime_with_zone: MMM D, YYYY · LT z
   mon: Man
   month: Måned
   months: Måneder
@@ -2512,7 +2517,7 @@ da:
   no_range_data_available: Ingen områdedata tilgængelig.
   no_recent_activity: Ingen nylige aktiviteter
   no_recently_active: Ingen nylige aktive projekter endnu.
-  no_relevant_annotations: Ingen relevante noter
+  no_relevant_annotations: Ingen relevante anmærkninger
   no_reply_yet: Intet svar endnu
   no_results_found: Ingen resultater fundet
   no_results_for: Ingen resultater for
@@ -4580,7 +4585,7 @@ da:
     projekt?
   who_helped_user_the_most: Hvem hjalp %{user} mest
   who_user_helped_the_most: Hvem %{user} hjalp mest
-  with_annotation: Med note
+  with_annotation: Med anmærkning
   without_annotation: Uden note
   widget: Widget
   widget_code: Widget kode
@@ -5953,19 +5958,19 @@ da:
           observerer, men det vil vise dig usædvanlige udsving i observationerne og hvis
           det virker fladt eller faldende trods et stigende antal observatører, så kan
           det tyde på en ændring i forekomst.
-        charts_help_other: "Vi viser også diagrammer med sæsonudsving udfra observationsnoterne.\nNoterne
-          er et nyt system til at tilføje metadata til observationer ved hjælp af
-          et foruddefineret sæt af termer. Indtil videre bruger vi kun \"Livsstadie\"
-          og\" plantefænologi \"(når planten er blomstrende eller i\nfrugtsætning).
-          Vi har endnu ikke mulighed for at tilføje noter direkte, så pt. konverterer
-          vi data fra observationsfelter til noter.\nHvis du ikke kan vente på, at
-          vi bygger vores notesystem, kan du til \"Livsstadie\" tilføje noter via
-          et tilføjet observationsfelt, der har en af de følgende termer: Voksen,
-          Teneral, Puppe,\nNymfe, Larve, Æg eller Juvenil. Så specielt er \"Livsstadie\"
-          og \n\"Insekt Livsstadie\" felterne gode. For \"Plantefænologi\" ser vi
-          på et hvilket som helst felt med ordet \"fænologi\" i sit navn og\n\"blomst\"
-          eller \"frugt\" i værdien, så feltet \"Blomstrende fænologi\"\ner en god
-          en at bruge."
+        charts_help_other: "Vi viser også diagrammer med sæsonudsving udfra observations
+          anmærkninger.\nAnmærkninger er et nyt system til at tilføje metadata til
+          observationer ved hjælp af et foruddefineret sæt af termer. Indtil videre
+          bruger vi kun \"Livsstadie\" og\" plantefænologi \"(når planten er blomstrende
+          eller i\nfrugtsætning). Vi har endnu ikke mulighed for at tilføje anmærkninger
+          direkte, så pt. konverterer vi data fra observationsfelter til anmærkninger.\nHvis
+          du ikke kan vente på, at vi bygger vores anmærkningssystem, kan du til \"Livsstadie\"
+          tilføje anmærkninger via et tilføjet observationsfelt, der har en af de
+          følgende termer: Voksen, Teneral, Puppe,\nNymfe, Larve, Æg eller Juvenil.
+          Så specielt er \"Livsstadie\" og \n\"Insekt Livsstadie\" felterne gode.
+          For \"Plantefænologi\" ser vi på et hvilket som helst felt med ordet \"fænologi\"
+          i sit navn og\n\"blomst\" eller \"frugt\" i værdien, så feltet \"Blomstrende
+          fænologi\"\ner en god en at bruge."
         charts_help_relative_observations: "Ved at vise hyppighed som en relativ andel
           af alle observationer, hjælper det med at udjævne effekten af websidens
           samlede vækst. \nFor eksempel, når websiden hvert år vokser efterhånden
@@ -6007,7 +6012,7 @@ da:
           Life Stage=nymph: Nymfe
           Life Stage=pupa: Puppe
           Life Stage=adult: Voksen
-          unannotated: Ingen note
+          unannotated: Ingen anmærkning
         photo_chooser_modal_desc: Træk foto´s hertil fra venstre side eller træk i
           foto´s for at reorganisere.
         photo_chooser_modal_explanation: |-

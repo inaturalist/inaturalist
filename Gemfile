@@ -54,10 +54,9 @@ gem 'i18n-inflector-rails'
 gem 'i18n-js', :git => 'https://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'https://github.com/Programatica/irwi.git'
 gem 'json'
-gem 'jquery-rails', "~> 4.0.4"
+gem 'jquery-rails', "~> 4.0"
 gem 'koala'
 gem 'dalli'
-gem 'mocha', :require => false
 gem "nokogiri", "~> 1.8.5"
 gem "non-stupid-digest-assets"
 gem "omniauth"
@@ -115,7 +114,7 @@ group :test, :development, :prod_dev do
   gem "better_errors"
   gem "byebug"
   gem "binding_of_caller"
-  gem 'thin', '~> 1.6.3'
+  gem 'thin', '~> 1.7'
   gem 'capybara', '~> 3.8'
   gem 'puma'
 end
@@ -123,8 +122,8 @@ end
 group :test do
   gem 'faker'
   gem 'simplecov', :require => false
-  gem "rspec", "~> 3.4.0"
-  gem "rspec-rails", "~> 3.4.2"
+  gem "rspec", "~> 3.8.0"
+  gem "rspec-rails", "~> 3.8.0"
   gem "rspec-html-matchers"
   gem "webmock"
 end

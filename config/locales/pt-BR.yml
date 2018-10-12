@@ -475,6 +475,7 @@ pt-BR:
   android: Android
   animals: Animais
   animated_observations_map: Mapa de Observações Animado
+  annotation: Anotação
   annotations: Anotações
   announcement_was_successfully_created: Aviso foi criado com sucesso.
   announcement_was_successfully_updated: Aviso foi atualizado com sucesso.
@@ -1377,6 +1378,9 @@ pt-BR:
   exact_date: Data exata
   exact_location: Localização exata
   exact_rank: Classificação exata
+  except: exceto
+  exclude_x: Excluir %{x}
+  exclusion_filters: Filtros de Exclusão
   existing_flags: Bandeiras existentes
   exit_full_screen: Sair do modo tela inteira
   examples_of_ranking_organizations: Exemplos de Organizações de Classificação
@@ -2797,6 +2801,7 @@ pt-BR:
     other: outros animais
   other_listings_of_this_taxon_for_this_place: Outros registros deste táxon para este
     local
+  other_names: Outros Nomes
   other_species_commonly_misidentified_as_this_species: Outras espécies que costumam
     ser confundidas com esta
   other_species_commonly_misidentified_as_this_species_in_place_html: Outras espécies
@@ -2865,7 +2870,10 @@ pt-BR:
   photos_updated: Fotos atualizadas.
   picasa_identity: Identidade Picasa
   pick_a_username: Escolha um nome de usuário
+  pin_verb: Pin
   pink: rosa
+  pinned_locations_desc: Pegue esta combinação de coordenadas, precisão, geocodificação
+    e notas de localidade para uso posterior.
   place: Lugar
   placeholder: Posição
   place_added_to_inat_by: Lugar adicionado para %{site_name} por
@@ -4123,6 +4131,8 @@ pt-BR:
     escolhida
   update_existing_sounds_with_new_license: Atualizar sons existentes com a nova licença
     escolhida
+  update_observation: Atualizar observação
+  update_observations: Atualizar observações
   update_past: Atualizar %{type} passado
   update_photos: Atualizar fotos
   update_search: Atualizar pesquisa
@@ -4638,6 +4648,7 @@ pt-BR:
     ser adicionadas neste projeto: %{errors}'
   your_photos_have_been_tagged: Suas fotos foram marcadas!
   your_google_account: sua conta do Google
+  your_pinned_locations: Seus locais fixados
   your_profile_was_successfully_updated: Seu perfil foi atualizado com sucesso!
   your_should_recognize: Você deve reconhecer algumas destas fotos
   your_site_account_has_been_created: Sua conta %{site} foi criada.
@@ -5474,6 +5485,10 @@ pt-BR:
           contate um dos administradores abaixo e solicite um convite.
       new:
         contain_entire_image_without_cropping: Contém imagem inteira sem cortar
+        please_specify_the_requirements: |-
+          Por favor, especifique os requisitos para as observações a serem adicionadas a este projeto.
+          Você pode especificar várias espécies, locais, usuários ou notas de qualidade para serem automaticamente
+          incluído, ou deixe um campo em branco se você não tiver nenhum requisito específico para isso.
       project_location_privacy_notice_html: |-
         <p>
           Por favor este ciente de que os administradores de projetos serão capazes de acessar todos seus dados de localização, sejam elas ocultas ou privadas, a não ser que você revogue esta permissão além disso, eles serão capazes de adicionar qualquer uma de suas observações aos seus projetos a não ser que você <a href="/users/edit">altere suas configurações</a>. Você também pode permitir ou revogar o acesso de administradores de projetos as suas observações configurando uma à uma.
