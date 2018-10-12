@@ -448,6 +448,7 @@ GEM
     omniauth-twitter (1.4.0)
       omniauth-oauth (~> 1.1)
       rack
+    optimist (3.0.0)
     orm_adapter (0.5.0)
     os (0.9.6)
     paperclip (5.2.1)
@@ -592,7 +593,6 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    trollop (2.9.9)
     tzinfo (1.2.5)
       thread_safe (~> 0.1)
     uglifier (4.1.19)
@@ -699,6 +699,7 @@ DEPENDENCIES
   omniauth-openid
   omniauth-soundcloud!
   omniauth-twitter
+  optimist
   paperclip (~> 5.2.1)
   pg
   preferences!
@@ -725,7 +726,6 @@ DEPENDENCIES
   sprockets (~> 2.12.5)
   thin (~> 1.7)
   translate-rails3!
-  trollop
   uglifier
   utf8-cleaner
   watu_table_builder

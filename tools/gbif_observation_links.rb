@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-@opts = Trollop::options do
+@opts = Optimist::options do
     banner <<-EOS
 Create ObservationLinks for observations that have been integrated into GBIF.
 
@@ -18,9 +18,9 @@ EOS
   opt :request_key, "GBIF download request key", :type => :string, :short => "-k"
 end
 
-Trollop::die "You must specify a GBIF username as an argument or in config.yml" if @opts.username.blank?
-Trollop::die "You must specify a GBIF password as an argument or in config.yml" if @opts.password.blank?
-Trollop::die "You must specify a GBIF notification email address as an argument or in config.yml" if @opts.notification_address.blank?
+Optimist::die "You must specify a GBIF username as an argument or in config.yml" if @opts.username.blank?
+Optimist::die "You must specify a GBIF password as an argument or in config.yml" if @opts.password.blank?
+Optimist::die "You must specify a GBIF notification email address as an argument or in config.yml" if @opts.notification_address.blank?
 
 start_time = Time.now
 new_count = 0
@@ -76,7 +76,7 @@ def generating
   # rescue RestClient::ResourceNotFound => e
   #   return true
   # rescue RestClient::InternalServerError => e
-  #   Trollop::die "Looks like a bug at GBIF: #{e}"
+  #   Optimist::die "Looks like a bug at GBIF: #{e}"
   # end
   @status = JSON.parse(RestClient.get(status_url))
   @num_checks += 1

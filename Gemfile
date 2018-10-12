@@ -69,6 +69,7 @@ gem "omniauth-google-oauth2", "~> 0.5.2"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
+gem "optimist"
 gem "paperclip", "~> 5.2.1"
 gem 'pg'
 gem 'preferences', :git => 'https://github.com/kueda/preferences.git'
@@ -86,7 +87,6 @@ gem 'sass-rails', '=5.0.1'
 gem 'soundcloud'
 gem 'sprockets', '~> 2.12.5'
 gem 'translate-rails3', :require => 'translate', :git => 'https://github.com/JayTeeSF/translate.git'
-gem 'trollop'
 gem 'uglifier'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"

@@ -1,10 +1,10 @@
 #encoding: utf-8
 
-require 'rubygems'
-require 'trollop'
-require 'csv'
+require "rubygems"
+require "optimist"
+require "csv"
 
-opts = Trollop::options do
+opts = Optimist::options do
     banner <<-EOS
 Import taxa from a list of names in CSV following the format
 
@@ -37,7 +37,7 @@ start = Time.now
 OPTS = opts
 
 csv_path = ARGV[0]
-Trollop::DIE unless csv_path && File.exist?(csv_path)
+Optimist::DIE unless csv_path && File.exist?(csv_path)
 if opts.place_id && @place = Place.find( opts.place_id )
   puts "Found place: #{@place}"
 end

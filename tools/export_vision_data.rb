@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-OPTS = Trollop::options do
+OPTS = Optimist::options do
     banner <<-EOS
 
 Export a CSV archive of photos suitable for use in computer vision training.
