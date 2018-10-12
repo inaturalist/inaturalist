@@ -1,10 +1,14 @@
 class Announcement < ActiveRecord::Base
-  PLACEMENTS = %w(users/dashboard users/dashboard#sidebar welcome/index)
-  belongs_to :site, inverse_of: :announcements
+  PLACEMENTS = %w(users/dashboard#sidebar users/dashboard welcome/index)
+  has_and_belongs_to_many :sites
   validates_presence_of :placement, :start, :end, :body
 
   scope :in_locale, lambda {|locale|
     where("(? = ANY (locales)) OR locales IS NULL OR locales = '{}'", locale)
+  }
+
+  scope :in_specific_locale, lambda {|locale|
+    where( "? = ANY (locales)", locale )
   }
 
   before_save :compact_locales

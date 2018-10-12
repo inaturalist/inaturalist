@@ -1275,10 +1275,12 @@ en:
   favorites: "Favorites"
   fblocale: en_US
   feature_this_project: "Feature this project?"
+  feature_this_project_: "Feature this project"
   featured: Featured
   featured?: featured?
   featured_projects_from_everywhere: Featured projects from everywhere
   featured_projects_from_place: "Featured projects from %{place}"
+  featuring: Featuring
   feedback: Feedback
   feedback_group: Feedback Group
   feeds: 'Feeds'
@@ -2755,6 +2757,7 @@ en:
     belgium: Belgium
     bosnia_and_herzegovina: Bosnia and Herzegovina
     brazil: Brazil
+    canada: Canada
     central_america: Central America
     china: China
     colombia: Colombia
@@ -3047,6 +3050,7 @@ en:
   remove_curator_role: Remove curator role
   remove_curator_status: Remove curator status
   remove_from_batch: Remove from batch
+  remove_from_featured: Remove from featured
   remove_from_guide: Remove from guide
   remove_from_id_please?: Remove from ID Please?
   remove_from_list: Remove from list
@@ -3270,8 +3274,11 @@ en:
   sizes: Sizes
   skip_to_next_page: "Skip to next page"
   small: small
+  site_admin_tools: Site admin tools
   site_name_place: "%{site_name} place"
   site_observations_export_from_date: "%{site_name} observations export from %{date}"
+  site_site_admin: "%{site_name} Site Admin"
+  site_staff: "%{site_name} Staff"
   site_stats: Site Stats
   site_taxon_page: "%{site_name} taxon page"
   site_year_in_review: "%{site_name} Year In Review %{year}"
@@ -4383,7 +4390,7 @@ en:
       locales_desc: |
         CMD- or SHIFT-click to select multiple. Not selecting any will show the
         announcement for all users regardless of locale. Choosing a language
-        locale without a region will *not* target locales with regions, e.g. if
+        without a region will *not* target locales with regions, e.g. if
         you chose en it will not appear for people who have chosen en-US. If you
         want to target both, choose both. If you want to show an announcement
         for all members of a site, just leave this blank.

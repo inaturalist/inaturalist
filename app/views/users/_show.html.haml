@@ -44,10 +44,21 @@
   .col-sm-8{:style => "background-color:white"}
     %h1
       = @user.name.blank? ? @user.login : @user.name
-      - if @user.is_admin? || @user.is_curator?
-        %small
-          = @user.is_admin? ? t(:admin) : t(:curator)
-          = link_to help_path(:anchor => "curators") do
+      - admin_site = @user.site_admins.live.first.try(:site)
+      - if @user.is_admin? || @user.is_curator? || admin_site
+        %small.role
+          - info_link = help_path(anchor: "curators")
+          - if @user.is_admin?
+            = t(:site_staff, site_name: "iNaturalist")
+          - elsif admin_site
+            - site_link = link_to( admin_site.name, admin_site.url, class: "site")
+            = raw t(:site_site_admin, site_name: site_link)
+            - if admin_site.place
+              = " (#{t("places_name.#{admin_site.place.name.parameterize.underscore}")})"
+            - info_link = wiki_page_url( "network" )
+          - else
+            = t(:curator)
+          = link_to info_link do
             %span.glyphicon.glyphicon.glyphicon-question-sign
     %p#significant-dates
       %span.date

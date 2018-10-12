@@ -27,7 +27,8 @@
   <script type="text/javascript" charset="utf-8">
     var PRESERVE_VIEWPORT = <%= (@project.latitude && @project.zoom_level ? true : false).to_s %>,
         OBSERVATIONS_URL = <%= @observations_url.inspect.html_safe %>,
-        KML_ASSET_URLS = <%= @kml_assets.map{|a| a.asset.url}.inspect.html_safe %>;
+        KML_ASSET_URLS = <%= @kml_assets.map{|a| a.asset.url}.inspect.html_safe %>,
+        PROJECT_ID = <%= @project.id %>;
   </script>
   <%= javascript_include_tag "ang/controllers/project_stats_controller" %>
 <%- end -%>
@@ -326,6 +327,49 @@
       <% if @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
       <% end -%>
+    </ul>
+  <% end -%>
+  <% if is_admin? || is_site_admin? -%>
+    <ul id="projectnav" class="stacked curatorbox site_admins">
+      <li><div class="curatorlabel"><%=t :site_admin_tools %></div></li>
+      <li class="bootstrap">
+        <div class="dropdown btn-block">
+          <div class="dropdown-toggle" data-toggle="dropdown">
+            <a class="navlink">
+              <span class='lead'>&raquo;</span>
+              <% if @site_feature -%>
+                <%= t( :featuring ) %>:
+                <%= @site_feature.noteworthy? ?
+                  t( :new_and_noteworthy ) : t( :featured_ ) %>
+              <% else -%>
+                <%= t( :feature_this_project_ ) %>
+              <% end -%>
+              <span class="caret" />
+            </a>
+          </div>
+          <ul id="feature-menu" class="dropdown-menu" style="width: 100%">
+            <li
+              data-type="noteworthy"
+              class="<%= ( @site_feature && @site_feature.noteworthy? ) ? "disabled" : nil %>"
+            >
+              <a><%= t( :new_and_noteworthy ) %></a>
+            </li>
+            <li
+              data-type="featured"
+              class="<%= ( @site_feature && !@site_feature.noteworthy? ) ? "disabled" : nil %>"
+            >
+              <a><%= t( :featured_ ) %></a>
+            </li>
+            <% if @site_feature -%>
+              <li
+                data-type="remove"
+              >
+                <a><%= t( :remove_from_featured ) %></a>
+              </li>
+            <% end -%>
+          </ul>
+        </div>
+      </li>
     </ul>
   <% end -%>
   <% unless @project.bioblitz? && !@project.event_started? %>

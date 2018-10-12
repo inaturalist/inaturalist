@@ -1,6 +1,12 @@
 require 'machinist/active_record'
 require 'faker'
 
+Announcement.blueprint do
+  start { 1.day.ago }
+  send(:end) { 1.day.from_now }
+  body { Faker::Lorem.sentence }
+  placement { "users/dashboard#sidebar" }
+end
 Annotation.blueprint do
   controlled_attribute { ControlledTerm.make! }
   controlled_value { ControlledTerm.make! }
@@ -352,6 +358,17 @@ end
 Site.blueprint do
   name { Faker::Name.name }
   url { "http://#{Faker::Internet.domain_name}" }
+end
+
+SiteAdmin.blueprint do
+  user { User.make! }
+  site { Site.make! }
+end
+
+SiteFeaturedProject.blueprint do
+  project { Project.make! }
+  site { Site.make! }
+  user { User.make! }
 end
 
 SiteStatistic.blueprint do
