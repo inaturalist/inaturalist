@@ -53,7 +53,8 @@
           - elsif admin_site
             - site_link = link_to( admin_site.name, admin_site.url, class: "site")
             = raw t(:site_site_admin, site_name: site_link)
-            = " (#{t("places_name.#{admin_site.place.name.parameterize.underscore}")})"
+            - if admin_site.place
+              = " (#{t("places_name.#{admin_site.place.name.parameterize.underscore}")})"
             - info_link = wiki_page_url( "network" )
           - else
             = t(:curator)

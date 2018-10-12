@@ -13,26 +13,31 @@
       $( "#site-admins .dropdown-menu" ).on( "click", function( e ) {
         e.stopPropagation( );
       } );
-      $( "#site-admins input[type='checkbox']" ).on( "change", function( e ) {
-        $.ajax({
-          type: $( this ).is( ":checked" ) ? "POST" : "DELETE",
-          url: "/site_admins",
-          data: {
-            site_admin: {
-              user_id: #{ @display_user.id },
-              site_id: $( this ).val( )
-            }
-          },
-          success: function( data ) {
-            console.log( "success" );
-          },
-          error: function( data ) {
-            console.log( "error" );
-          },
-          dataType: "JSON"
-        });
+    } );
+
+  - if @display_user
+    :javascript
+      $( document ).ready( function( ) {
+        $( "#site-admins input[type='checkbox']" ).on( "change", function( e ) {
+          $.ajax({
+            type: $( this ).is( ":checked" ) ? "POST" : "DELETE",
+            url: "/site_admins",
+            data: {
+              site_admin: {
+                user_id: #{ @display_user.id },
+                site_id: $( this ).val( )
+              }
+            },
+            success: function( data ) {
+              console.log( "success" );
+            },
+            error: function( data ) {
+              console.log( "error" );
+            },
+            dataType: "JSON"
+          });
+        } );
       } );
-    } )
 = content_for :extracss do
   :css
     .dropdown-menu.site-admins li {
