@@ -43,8 +43,12 @@ h1 {
     margin-left: 10px;
   }
 
-  small {
+  small.role {
     white-space: nowrap;
+    a.site {
+      color: inherit;
+      text-decoration: underline;
+    }
   }
 }
 

@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
-import About from "../components/about";
-import { setSelectedTab, feature, unfeature } from "../ducks/project";
+import FeatureButton from "../components/feature_button";
+import { feature, unfeature } from "../ducks/project";
 
 function mapStateToProps( state ) {
   return {
@@ -11,15 +11,14 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setSelectedTab: tab => { dispatch( setSelectedTab( tab ) ); },
     feature: options => { dispatch( feature( options ) ); },
     unfeature: ( ) => { dispatch( unfeature( ) ); }
   };
 }
 
-const AboutContainer = connect(
+const FeatureButtonContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)( About );
+)( FeatureButton );
 
-export default AboutContainer;
+export default FeatureButtonContainer;

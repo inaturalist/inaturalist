@@ -460,6 +460,7 @@ zh-TW:
   android: Android
   animals: 動物
   animated_observations_map: 動畫化觀察地圖
+  annotation: 註解
   annotations: 註解
   announcement_was_successfully_created: 通告已成功創建。
   announcement_was_successfully_updated: 通告已成功更新。
@@ -1221,8 +1222,11 @@ zh-TW:
   exact_date: 精確日期
   exact_location: 精確位置
   exact_rank: 精確級別
+  except: 除外
+  exclude_x: 不包含%{x}
+  exclusion_filters: 排除的篩選
   existing_flags: 精確標記
-  exit_full_screen: 退出全螢幕
+  exit_full_screen: 結束全螢幕
   examples_of_ranking_organizations: 生物階層範例
   expand_days: 展開日期
   expand_updates: 擴充更新
@@ -1455,7 +1459,7 @@ zh-TW:
   has_photo: 擁有照片
   has_photos: 擁有照片
   has_photo_and_sound: 擁有照片與聲音
-  has_photos_or_sounds: 擁有照片和聲音
+  has_photos_or_sounds: 擁有照片或聲音
   has_sound: 擁有聲音
   has_sounds: 擁有聲音
   hasnt_contributed_any_observations: 沒有貢獻任何觀察至此專案。
@@ -2879,8 +2883,8 @@ zh-TW:
     infraorder: 下目
     subterclass: 準綱
     parvorder: 小目
-    zoosection: 動物園區域
-    zoosubsection: 動物園子區域
+    zoosection: 派
+    zoosubsection: 亞派
     superfamily: 總科
     epifamily: 領科
     family: 科
@@ -2891,7 +2895,7 @@ zh-TW:
     genus: 屬
     genushybrid: 屬間雜種
     subgenus: 亞屬
-    section: 章節
+    section: 節
     subsection: 亞組
     species: 種
     hybrid: 雜種
@@ -3047,7 +3051,7 @@ zh-TW:
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
   said: 說
   sat: 週六
-  satellite: 衛星國家
+  satellite: 衛星
   save: 儲存
   save_all: 儲存全部
   save_and_add_another: 儲存並添加另一個
@@ -3185,7 +3189,7 @@ zh-TW:
   single_taxon: 單一物種分類（輸入用於拆分/去除/階段方面，輸出用於合併/對換方面）
   sizes: 大小
   skip_to_next_page: 跳至下一頁
-  small: 小型
+  small: 小
   site_name_place: '%{site_name} 地點'
   site_observations_export_from_date: 自 %{date} %{site_name} 匯出的觀察
   site_stats: 網站統計
@@ -4487,7 +4491,7 @@ zh-TW:
         place_admin1_name: 在國家層級下一個級別的行政地點名稱
         place_admin2_name: 在國家層級下兩個級別的行政地點名稱
         positioning_method: 座標如何被判斷
-        positioning_device: 用於判斷座標的設備
+        positioning_device: 用於判斷座標的裝置
       identify:
         review_all_tooltip: 標示頁面所有觀察為已檢閱。
         you_reviewed_message: 您檢閱了頁面上超出 %{total} 的符合觀察裡 %{pageTotal} 中的 %{reviewed}
@@ -4759,7 +4763,7 @@ zh-TW:
         or_drag_and_drop: （或是拖拉）
         please_specify_the_requirements: |-
           請指名添加至此專案的觀察所需內容。
-          您可以選擇多項物種、地點，以及自動包含的使用者。
+          您可以指定多項物種、地點、自動包含的品質等級，若您對此沒有特別需求欄位可以留空。
         project_background_color: 專案摘要背景顏色
         project_background_color_help: 請確認挑選顏色的暗度足夠讓所覆蓋白色文字能辨識出。
         project_banner: 專案橫幅（PNG、JPG、或 GIF 檔案）
@@ -5081,7 +5085,7 @@ zh-TW:
         build_your_knowledge: 透過與其他博物學友的交談，以及協助他人來建立您的知識。
         run_a_bioblitz: 運作一個 Bioblitz
         hold_an_event: 舉行一場能讓人們盡情來找尋物種的活動。
-        works_on_all_your_devices: 在您的所有設備上運作
+        works_on_all_your_devices: 在您的所有裝置上運作
         install_our_mobile_apps: 安裝我們的移動版應用程式，來讓您即使沒有手機信號或 wifi 也可以隨意觀察。
         who_uses_site_name: 誰使用 %{site_name}?
         what_are_you_waiting_for: 還有什麼好等待呢？

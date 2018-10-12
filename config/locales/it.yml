@@ -503,6 +503,7 @@ it:
   android: Android
   animals: Animali
   animated_observations_map: Mappa animata delle osservazioni
+  annotation: Annotazione
   annotations: Annotazioni
   announcement_was_successfully_created: L'avviso è stato creato con successo.
   announcement_was_successfully_updated: L'avviso è stato aggiornato correttamente.
@@ -1104,6 +1105,7 @@ it:
   cumulative_ids: 'ID comulativo: %{count} di %{total}'
   curate_observations: Organizza osservazioni
   curate_taxa: Organizza taxa
+  curate_user: Gestisci utente
   curate_users: Organizza utenti
   curated: curati
   curated_checklist: Checklist organizzata
@@ -1407,6 +1409,9 @@ it:
   exact_date: Data esatta
   exact_location: Località_esatta
   exact_rank: Rank esatto
+  except: eccetto
+  exclude_x: Escludi %{x}
+  exclusion_filters: Filtri di esclusione
   existing_flags: Contrassegni esistenti
   exit_full_screen: Esci dalla modalità a tutto schermo
   examples_of_ranking_organizations: Esempi di organizzazioni di classificazione
@@ -2283,6 +2288,9 @@ it:
   medium_url: URL del contenuto
   meet: Incontra
   member_of_the_inaturalist_network_html: Membri di <a href="%{url}">iNaturalist Network</a>
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : Membro del%{partial_inat_network_tag_html}Network iNaturalist</a> un'iniziativa
+    comune di %{cas_tag_html}%{nat_geo_tag_html} e di %{nat_geo_tag_html}.
   members: Membri
   membership_model: Modello di adesione
   mentioned_you_in_noun_html: '%{user} ti ha menzionato in %{noun}'
@@ -2327,6 +2335,7 @@ it:
       MM: '%d mesi'
       "y": 1 anno
       yy: '%d anni'
+    datetime_with_zone: D MMM YYYY · LT z
   mon: Lun
   month: Mese
   months: Mesi
@@ -2354,6 +2363,7 @@ it:
   most_observed_species: Le specie più osservate
   most_observed_introduced_species: Le specie introdotte più osservate
   most_observed_threatened_species: Le specie minacciate più osservate
+  move_input_children_to_output?: Sposta i discendenti verso l'output?
   multiple: Più di uno
   multiple_select_option: -- più --
   multiple_taxa_for_taxon_change: Taxa multipli (entra per scambiare/unire, esci per
@@ -2967,7 +2977,10 @@ it:
     %{site_name} non ha l''autorizzazione per accedere alla foto.'
   picasa_identity: Identità Picasa
   pick_a_username: Scegli un nome utente
+  pin_verb: Memorizza
   pink: rosa
+  pinned_locations_desc: Memorizza questa combinazione di coordinate, accuratezza,
+    geoprivacy, e note della località per usarle successivamente.
   place: Luogo
   placeholder: Segnaposto
   place_added_to_inat_by: Luogo aggiunto a %{site_name} da
@@ -4907,6 +4920,7 @@ it:
   your_projects: I tuoi progetti
   your_google_account: il tuo account Google
   your_google_account_info: Informazioni del tuo account Google
+  your_pinned_locations: Le tue località memorizzate
   your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
   your_recent_projects: I tuoi progetti recenti
   your_should_recognize: Dovresti riconosce alcune di queste foto
@@ -5801,8 +5815,9 @@ it:
           le ore se vuoi includere giornate intere.)'
         or_drag_and_drop: (o trascina e rilascia)
         please_specify_the_requirements: Per favore specifica i requisiti delle osservazioni
-          da aggiungere al progetto. Puoi selezionare più specie, luoghi, e utenti
-          da inserire automaticamente.
+          da aggiungere al progetto. Puoi specificare più specie, luoghi, utenti e
+          gradi di qualità da inserire automaticamente, o lasciare un campo vuoto
+          se non hai alcun requisito specifico per esso.
         project_background_color: Colore di sfondo dell'indice del progetto
         project_background_color_help: Assicurati di scegliere un colore abbastanza
           scuro in modo che il testo bianco sia visibile.

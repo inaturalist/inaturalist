@@ -5,13 +5,10 @@ shared_examples_for "a ProjectsController" do
   let(:project) { Project.make! }
 
   describe "index" do
+
     describe "featured" do
-      let(:featured) { Project.make!( title: "featured", featured_at: Time.now ) }
-      let(:not_featured) { Project.make! }
-      before do
-        expect( featured ).to be_featured
-        expect( not_featured ).not_to be_featured
-      end
+      let!(:featured) { SiteFeaturedProject.make!.project }
+      let!(:not_featured) { Project.make! }
       it "should include featured projects" do
         get :index, format: :json, featured: true
         expect( JSON.parse( response.body ).detect{|p| p["id"] == featured.id } ).not_to be_blank
@@ -22,20 +19,20 @@ shared_examples_for "a ProjectsController" do
       end
       describe "with coordinates" do
         let(:featured_with_coordinates) {
-          Project.make!(
+          p = Project.make!(
             title: "featured with coordinates",
-            featured_at: Time.now,
             latitude: 1,
             longitude: 1
           )
+          SiteFeaturedProject.make!(project: p)
+          p
         }
         before do
-          expect( featured_with_coordinates ).to be_featured
           expect( featured_with_coordinates.latitude ).not_to be_blank
           expect( featured.latitude ).to be_blank
         end
         it "should include featured projects without coordinates" do
-          get :index, format: :json, featured: true, 
+          get :index, format: :json, featured: true,
             latitude: featured_with_coordinates.latitude,
             longitude: featured_with_coordinates.longitude
           project_ids = JSON.parse( response.body ).map{|p| p["id"]}

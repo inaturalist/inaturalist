@@ -27,6 +27,7 @@
 # Author: Pols12
 # Author: Robby
 # Author: Spasmedevivre
+# Author: Tartare
 # Author: Thibaut120094
 # Author: Urhixidur
 # Author: Verdy p
@@ -511,6 +512,7 @@ fr:
   android: Androïde
   animals: Animaux
   animated_observations_map: Carte animée des observations
+  annotation: Annotation
   annotations: Annotations
   announcement_was_successfully_created: L’annonce a bien été créée.
   announcement_was_successfully_updated: L’annonce a bien été mise à jour.
@@ -1461,6 +1463,9 @@ fr:
   exact_date: Date exacte
   exact_location: Emplacement exact
   exact_rank: Rang exact
+  except: exception
+  exclude_x: Exclure %{x}
+  exclusion_filters: Filtres d'exclusion
   existing_flags: Drapeaux existants
   exit_full_screen: Sortir du mode plein écran
   examples_of_ranking_organizations: Exemples d’organisations de classement
@@ -3062,7 +3067,7 @@ fr:
   pin_verb: Épingler
   pink: rose
   pinned_locations_desc: Épingler cette combinaison de coordonnées, de précision,
-    de confidentialité géographique et de notes locales, pour un usage ultérieur.
+    de confidentialité géographique et de notes de lieux, pour un usage ultérieur.
   place: Lieu
   placeholder: Signet (élément de substitution)
   place_added_to_inat_by: Lieu ajouté à %{site_name} par
@@ -6050,7 +6055,7 @@ fr:
         or_drag_and_drop: (ou glissez et déposez)
         please_specify_the_requirements: |-
           Veuillez spécifier les exigences pour les observations à ajouter à ce projet.
-          Vous pouvez sélectionner plusieurs espèces, endroits et utilisateurs à inclure automatiquement.
+          Vous pouvez spécifier plusieurs espèces, lieux, utilisateurs, ou des niveaux de qualité à inclure automatiquement, ou bien laisser le champ vide si vous n'avez pas d’exigences particulières.
         project_background_color: Couleur d'arrière plan du résumé du projet
         project_background_color_help: Assurez-vous de choisir une couleur assez sombre
           pour que le texte blanc recouvrant soit lisible.

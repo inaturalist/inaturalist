@@ -120,7 +120,11 @@ module ApplicationHelper
   def is_admin?
     logged_in? && current_user.is_admin?
   end
-  
+
+  def is_site_admin?
+    logged_in? && @site && current_user.is_site_admin_of?( @site )
+  end
+
   def is_curator?
     logged_in? && current_user.is_curator?
   end

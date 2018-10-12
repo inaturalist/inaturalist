@@ -476,6 +476,7 @@ ar:
   android: أندرويد
   animals: حيوانات
   animated_observations_map: خريطة الملاحظات المتحركة
+  annotation: تعليق توضيحي
   annotations: الشروح
   announcement_was_successfully_created: تم إنشاء الإعلان بنجاح.
   announcement_was_successfully_updated: تم تحديث الإعلان بنجاح.
@@ -1334,6 +1335,9 @@ ar:
   exact_date: التاريخ المحدد
   exact_location: التاريخ_المحدد
   exact_rank: الترتيب الدقيق
+  except: إلا
+  exclude_x: استبعاد %{x}
+  exclusion_filters: مرشحات الاستبعاد
   existing_flags: الأعلام الموجودة
   exit_full_screen: إنهاء وضع الشاشة الكاملة
   examples_of_ranking_organizations: أمثلة لمنظمات التصنيف
@@ -5469,9 +5473,10 @@ ar:
         note_you_can_delete_the_time: '(ملاحظة: يمكنك حذف المنطقة الزمنية والأوقات
           الدقيقة إذا كنت تريد تضمين أيام كاملة.)'
         or_drag_and_drop: (أو سحب وإسقاط)
-        please_specify_the_requirements: |-
-          يُرجَى تحديد متطلبات إضافة الملاحظات إلى هذا المشروع،
-          يمكنك تحديد أنواع، وأماكن، ومستخدمين متعددة ليتم تضمينها تلقائيا.
+        please_specify_the_requirements: "يُرجَى تحديد متطلبات إضافة الملاحظات إلى
+          هذا المشروع،\nيمكنك تحديد أنواع، أو أماكن، أو مستخدمين، أو درجات جودة متعددة
+          ليتم تضمينها \nتلقائيا، أو ترك حقل فارغا إذا لم يكن لديك أي متطلبات محددة
+          له."
         project_background_color: لون خلفية ملخص المشروع
         project_background_color_help: تأكد من اختيار لون داكن بدرجة كافية حتى يصبح
           النص المتراكب الأبيض مقروءا.

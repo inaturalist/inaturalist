@@ -544,6 +544,7 @@ ru:
   android: Android
   animals: Животные
   animated_observations_map: Анимированная карта наблюдений
+  annotation: Значение
   annotations: Значения
   announcement_was_successfully_created: Объявление было успешно создано.
   announcement_was_successfully_updated: Объявление было успешно обновлено.
@@ -1442,6 +1443,9 @@ ru:
   exact_date: Точная дата
   exact_location: Точное местонахождение
   exact_rank: Точный ранг
+  except: за исключением
+  exclude_x: Исключить %{x}
+  exclusion_filters: Фильтры исключений
   existing_flags: Существующие флаги
   exit_full_screen: Выйти из полноэкранного режима
   examples_of_ranking_organizations: Примеры рейтинговых организаций
@@ -1590,7 +1594,7 @@ ru:
   flowering_phenology: Фенология цветения
   fluid_layout: Гибкая разметка
   fluid: жидкий
-  follow: Отслеживает
+  follow: Отслеживать
   follow_us: Подпишитесь на нас в
   follow_us_on: Подпишитесь на нас в
   follow_user: Отслеживать %{user}
@@ -2771,7 +2775,7 @@ ru:
   observed_by: Наблюдал
   observed_in_place?: наблюдалось в месте
   observed_on: Наблюдалось
-  observed_one: наблюдался один
+  observed_one: наблюдал нечто
   observer: Наблюдатель
   observers: наблюдателей
   observer_short: Наблюдатель
@@ -2804,7 +2808,7 @@ ru:
   old_observation_form: Старая форма наблюдения (устарела)
   ok: ОК
   on_date: на %{date}
-  on_day: В
+  on_day: в день
   on_edit_date: на %{editdate}
   on_list?: в списке
   on_submit_date: на %{submitdate}
@@ -5657,9 +5661,9 @@ ru:
       confirm_leave:
         what_would_you_like: Что бы вы хотели сделать со своими наблюдениями в этом
           проекте?
-        keep_observations_label: Оставьте свои наблюдения в этом проекте
-        keep_observations_desc: "Ваши наблюдения останутся в проекте, и кураторы все
-          равно будут \nиметь возможность просматривать ваши частные координаты."
+        keep_observations_label: Оставить свои наблюдения в этом проекте
+        keep_observations_desc: "Ваши наблюдения останутся в проекте, и кураторы по-прежнему
+          будут \nиметь возможность просматривать ваши частные координаты."
         project_requires_curator_coordinate_access_desc: Этот проект не допускает
           наблюдений с координатами, которые кураторы проекта не могут видеть. Если
           Вы не хотите делиться координатами ваших наблюдений с кураторами этого проекта,
@@ -5806,7 +5810,8 @@ ru:
         or_drag_and_drop: (или перетащить и отпустить)
         please_specify_the_requirements: Просьба указать требования к наблюдениям,
           которые должны быть включены в этот проект. Можно выбрать несколько видов,
-          мест и пользователей для автоматического включения.
+          мест, пользователей и уровней качества для автоматического включения или
+          оставить поле пустым, если у вас нет к нему особых требований.
         project_background_color: Цвет фона описания проекта
         project_background_color_help: Не забудьте выбрать цвет достаточно темным,
           чтобы белый наложенный текст был разборчивым.
