@@ -208,11 +208,19 @@
               &nbsp;
             </div>
             <div class="barchart">
-              <%= render :partial => "shared/barchart_datum", :locals => {
-                :value => @total_observed_taxa,
-                :max => @total_listed_taxa,
-                :label_text => "#{t(:of)} #{@total_listed_taxa} #{t(:taxa_observed)}",
-                :min_value_label_width => 30 } %>
+              <% if @observed -%>
+                <%= render :partial => "shared/barchart_datum", :locals => {
+                  :value => @total_listed_taxa,
+                  :max => @total_listed_taxa,
+                  :label_text => t(:taxa).downcase,
+                  :min_value_label_width => 30 } %>
+              <% else -%>
+                <%= render :partial => "shared/barchart_datum", :locals => {
+                  :value => @total_observed_taxa,
+                  :max => @total_listed_taxa,
+                  :label_text => "#{t(:of)} #{@total_listed_taxa} #{t(:taxa_observed)}",
+                  :min_value_label_width => 30 } %>
+              <% end -%>
             </div>
           </a>
           <% for grouper, count in @iconic_taxon_counts.sort_by{ |_key, value| -1.0 * value }.to_h -%>
