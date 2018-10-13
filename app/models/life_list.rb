@@ -191,6 +191,7 @@ class LifeList < List
     return unless list
     repair_observed(list)
     add_taxa_from_observations(list)
+    refresh_cache_columns(list)
     remove_orphans(list)
   end
   
@@ -201,6 +202,16 @@ class LifeList < List
       where('list_id = ? AND listed_taxa.manually_added = false AND listed_taxa.last_observation_id IS NOT NULL AND listed_taxa.first_observation_id IS NOT NULL AND lo.id IS NULL AND fo.id IS NULL', list.id).find_in_batches do |batch|
       batch.each do |lt|
         lt.destroy
+      end
+    end
+  end
+  
+  def self.refresh_cache_columns(list)
+    ListedTaxon.
+      where('list_id = ? AND listed_taxa.manually_added = false AND ((listed_taxa.last_observation_id IS NULL AND listed_taxa.first_observation_id IS NOT NULL) OR (listed_taxa.last_observation_id IS NOT NULL AND listed_taxa.first_observation_id IS NULL))', list.id).find_in_batches do |batch|
+      batch.each do |lt|
+        lt.force_update_cache_columns = true
+        lt.save
       end
     end
   end
