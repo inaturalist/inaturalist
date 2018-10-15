@@ -1065,7 +1065,7 @@ ru:
     nymph: Нимфа
     larva: Личинка
     egg: Яйцо
-    juvenile: Юношеский
+    juvenile: Молодой
   controls: Элементы управления
   convert: Конвертировать
   coordinate_systems: Системы координат
@@ -2705,7 +2705,7 @@ ru:
   observation_would_like_some_help: '%{user} хотел бы помощи в идентификации этого!'
   observations: Наблюдения
   observations_: наблюдения
-  observations_added_by_x_html: Замечания добавленные %{x}
+  observations_added_by_x_html: Наблюдения, добавленные %{x}
   observations_annotated_with_annotation: Наблюдения, снабженные %{annotation}
   observations_by: Наблюдения
   observations_by_everyone: Любые наблюдения
@@ -2964,16 +2964,16 @@ ru:
   people_following_user: Люди, отслеживающие %{user}
   people_user_follows: Люди, которых отслеживает %{user}
   people_added:
-    observation: добавил %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
+    observation: добавил %{observation_link} @vow_or_con{vow:an|a} %{taxon_link}
     identification:
       with_observation: добавил <strong>идентификацию</strong> к %{observation_link}
         %{user_link}
       without_observation: добавил <strong>идентификацию</strong>
     post: создана %{post_link}
     comment:
-      with_by: добавлен комментарий @vow_or_con{vow:an|a} %{comment_subject_link}
-        с помощью %{by_link}
-      without_by: добавлен комментарий @vow_or_con{vow:an|a} %{comment_subject_link}
+      with_by: добавлен комментарий к @vow_or_con{vow:an|a} %{comment_subject_link}
+        пользователя %{by_link}
+      without_by: добавлен комментарий к @vow_or_con{vow:an|a} %{comment_subject_link}
   per_day: В день
   per_month: За месяц
   per_week: За неделю
@@ -3577,7 +3577,7 @@ ru:
   scientific_names: Научные наименования
   search: Поиск
   search_all_fields: Поиск по всем полям
-  search_by_name_or_email: Найдите по имени или e-mail
+  search_by_name_or_email: Имя или e-mail
   search_by_taxon_name_or_observation_id: Поиск по наименованию таксона или идентификатору
     наблюдения
   search_by_taxon_name_or_flickr_photo_id: Поиск по имени таксона или идентификатору

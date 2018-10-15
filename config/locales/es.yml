@@ -29,6 +29,7 @@
 # Author: Pato
 # Author: PoLuX124
 # Author: RicardoSGZ
+# Author: Tiberius1701
 # Author: Tifdogo12
 # Author: Turluma
 # Author: Tusca
@@ -4800,7 +4801,7 @@ es:
   you_dont_have_permission_to_edit_that_project: No tienes permisos para editar ese
     proyecto.
   you_dont_have_permission_to_edit_that_taxon: No tienes permiso para editar ese taxón.
-    Contacta a uno de los curadores de taxones o incluye una advertencia para solicitar
+    Contacta con uno de los curadores de taxones o incluye una advertencia para solicitar
     cambios.
   you_dont_have_permission_to_edit_those_photos: No tienes permisos para editar esas
     fotos.
@@ -5147,9 +5148,9 @@ es:
           a mejorar ciertas funciones, \n<a href=\"http://github.com/inaturalist/inaturalist\"
           title=\"inaturalist's \ninaturalist at master - GitHub\">haz un fork del
           proyecto en GitHub!</a>"
-        how_do_i_contact_inaturalist?: ¿Cómo puedo contactar a %{site_name}?
-        you_can_contact_us_at_html: Nos puedes contactar en <a href="mailto:%{help_email}"
-          >%{help_email}</a>
+        how_do_i_contact_inaturalist?: ¿Cómo puedo contactar con %{site_name}?
+        you_can_contact_us_at_html: Puedes ponerte en contacto con nosotros en <a
+          href="mailto:%{help_email}" >%{help_email}</a>
         what_are_admins_and_curators?: ¿Qué son los adminstradores y los curadores?
         inat_admins_are_the_people_who: "%{site_name} admins son quienes dirigen el
           sitio.  Tienen acceso directo al \ncódigo subyacente de la página, a la
@@ -5905,26 +5906,26 @@ es:
     search:
       index:
         no_taxa_options_html: |-
-          p>You've got a few options:</p>
+          p>Tienes algunas opciones:</p>
           <ul class="list-unstyled">
             <li>
-              <strong>Añade advertencia a un taxón de nivel superior</strong>
+              <strong>Agregar una marca a un taxón de nivel superior</strong>
               <p>
-                P.ej. el género que contiene a la especie. Con suerte un curador amigable añadirá el taxón si es posible.
+                Por ejemplo, el género que contiene una especie. Esperemos que un conservador amistoso agregue el taxón si puede ser agregado.
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Contacta al grupo de retroalimentación</a></strong>
+              <strong><a href="%{feedback_url}">Contacta con el grupo de comentarios</a></strong>
               <p>
-                Muchos curadores siguen los correos del grupo de retroalimentación.
+                Muchos curadores siguen los correos del grupo de comentarios.
               </p>
             </li>
             <li>
               <strong>
-                <a href="mailto:%{help_email}">Contacta ayuda</a>
+                <a href="mailto:%{help_email}">Soporte de contacto</a>
               </strong>
               <p>
-                Por favor, te paciencia, no tenemos muchos empleados dedicados.
+                Por favor, ten paciencia, no tenemos personal de soporte dedicado.
               </p>
             </li>
           </ul>
@@ -6033,9 +6034,9 @@ es:
           una especie adonde se encuentra. Introducida significa que llegó por la
           actividad humana, nativa que ocurrió sin intervención humana. Las especies
           endémicas se encuentran solo en un lugar concreto.
-        about_taxon_curators_desc: |-
-          Estas personas administran la parte del árbol taxonómico que incluye
-          este taxón. Si  quieres hacer cambios, incluye una advertencia para este taxón o contacta a una de estas personas.
+        about_taxon_curators_desc: Estas personas administran la parte del árbol taxonómico
+          que incluye este taxón. Si deseas realizar cambios, incluye una advertencia
+          para este taxón o ponte en contacto con una de estas personas.
         charts_help_seasonality: Este gráfico muestra el número de observaciones de
           este taxón agrupadas por mes. Tenga en cuenta que se trata del número de
           observaciones, por lo que dependes tanto del momento en el que el organismo
