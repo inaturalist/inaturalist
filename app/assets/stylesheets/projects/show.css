@@ -191,3 +191,28 @@ h2{line-height:1;margin:0;float:left;}
   font-style: italic;
 }
 
+#projectnav.site_admins li.bootstrap {
+  font-size: 12px;
+  background-color: #E9F3DA;
+}
+#projectnav.site_admins li.bootstrap:hover {
+  background-color: #F4F4F4;
+}
+#projectnav.site_admins .dropdown {
+  cursor: pointer;
+}
+#projectnav.site_admins .dropdown-menu > li > label {
+  display: block;
+  padding: 3px 8px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1;
+  color: #333;
+  white-space: nowrap;
+}
+#projectnav .dropdown-toggle a {
+  color: #36C;
+}
+#projectnav.site_admins .dropdown-menu li.disabled a {
+  font-weight: 800;
+}

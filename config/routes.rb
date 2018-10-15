@@ -299,6 +299,8 @@ Rails.application.routes.draw do
       put "change_admin/:user_id" => "projects#change_admin", as: :change_admin
       get :convert_to_collection
       get :convert_to_traditional
+      put :feature
+      put :unfeature
     end
     collection do
       get :calendar
@@ -496,6 +498,12 @@ Rails.application.routes.draw do
         get :failed
         get :pending
       end
+    end
+  end
+
+  resources :site_admins, only: [:create, :destroy] do
+    collection do
+      delete :destroy
     end
   end
 

@@ -1,10 +1,10 @@
 require "rubygems"
-require 'trollop'
+require "optimist"
 require "haml"
 require "active_support"
 require "active_support/core_ext/string/inflections"
 
-opts = Trollop::options do
+opts = Optimist::options do
     banner <<-EOS
 Generate iNaturalist API HTML docs.
 

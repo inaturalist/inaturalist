@@ -489,7 +489,7 @@ private
     elsif filter_by_iconic_taxon?
       unpaginated_listed_taxa = apply_iconic_taxon_filter(unpaginated_listed_taxa)
     elsif params[:taxonomic_status] != "all"
-      unpaginated_listed_taxa = apply_taxonomic_status_filter(unpaginated_listed_taxa)
+      unpaginated_listed_taxa = apply_taxonomic_status_filter(list, unpaginated_listed_taxa)
     end
     if params[:taxonomic_status] == "all"
       @taxonomic_status = "all"
@@ -504,6 +504,10 @@ private
         unpaginated_listed_taxa = unpaginated_listed_taxa.unconfirmed
       end
     end
+    if params[:observed].blank? && list.is_a?(LifeList) && list.id == list.user.life_list_id
+      @observed = 't'
+      unpaginated_listed_taxa = unpaginated_listed_taxa.confirmed
+    end
 
     if filter_by_param?(params[:rank])
       @rank = params[:rank]
@@ -517,6 +521,9 @@ private
     elsif list.is_a?(CheckList)
       @rank = "species"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_species
+    elsif list.is_a?(LifeList) && list.id == list.user.life_list_id
+      @rank = "leaves"
+      unpaginated_listed_taxa = unpaginated_listed_taxa.with_leaves(unpaginated_listed_taxa.to_sql)
     else
       @rank = "all"
     end
@@ -534,16 +541,18 @@ private
     unpaginated_listed_taxa
   end
 
-  def apply_taxonomic_status_filter(unpaginated_listed_taxa)
+  def apply_taxonomic_status_filter(list, unpaginated_listed_taxa)
     if filter_by_param?(params[:taxonomic_status])
       @taxonomic_status = params[:taxonomic_status]
       unless @taxonomic_status == "all"
         taxonomic_status_for_scope = params["taxonomic_status"] == "active"
         unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(taxonomic_status_for_scope)
       end
-    else
+    elsif list.is_a?(CheckList)
       @taxonomic_status = "active"
       unpaginated_listed_taxa = unpaginated_listed_taxa.with_taxonomic_status(true)
+    else
+      @taxonomic_status = "all"
     end
     unpaginated_listed_taxa
   end

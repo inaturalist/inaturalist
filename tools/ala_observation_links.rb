@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-@opts = Trollop::options do
+@opts = Optimist::options do
     banner <<-EOS
 Create ObservationLinks for observations that have been integrated into 
 the Atlas of Living Australia.
@@ -16,7 +16,7 @@ EOS
 end
 
 data_resource_uid = ARGV[0]
-Trollop::die "You must specify a data resource UID" if data_resource_uid.blank?
+Optimist::die "You must specify a data resource UID" if data_resource_uid.blank?
 
 start_time = Time.now
 new_count = 0

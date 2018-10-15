@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-@opts = Trollop::options do
+@opts = Optimist::options do
     banner <<-EOS
 Calculate streaks of observations to find out who the regulars are. The
 really, really regulars. A streak is defined as 3 days or more.

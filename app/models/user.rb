@@ -196,6 +196,7 @@ class User < ActiveRecord::Base
   has_many :flow_tasks
   has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
+  has_many :site_admins, inverse_of: :user
   belongs_to :place, :inverse_of => :users
   belongs_to :search_place, inverse_of: :search_users, class_name: "Place"
 
@@ -416,7 +417,12 @@ class User < ActiveRecord::Base
     has_role?(:admin)
   end
   alias :admin? :is_admin?
-  
+
+  def is_site_admin_of?( site )
+    return false unless site && site.is_a?( Site )
+    !!site_admins.detect{ |sa| sa.site_id == site.id }
+  end
+
   def to_s
     "<User #{self.id}: #{self.login}>"
   end
@@ -455,7 +461,11 @@ class User < ActiveRecord::Base
   def twitter_identity
     @twitter_identity ||= has_provider_auth('twitter')
   end
-  
+
+  def api_token
+    JsonWebToken.encode( user_id: id )
+  end
+
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
     Observation.where(user_id: id).update_all(license: preferred_observation_license)

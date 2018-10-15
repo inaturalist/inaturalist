@@ -1,8 +1,8 @@
-require 'rubygems'
-require 'trollop'
-require 'geo_ruby/geojson'
+require "rubygems"
+require "optimist"
+require "geo_ruby/geojson"
 
-opts = Trollop::options do
+opts = Optimist::options do
     banner <<-EOS
 Use manually created clipping polygons to split the parent range of a taxon split into child ranges.
 The clipping polygons should be labeled following this convention Pantherophis_alleghaniensis_59644_split.kml
