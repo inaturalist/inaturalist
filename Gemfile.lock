@@ -192,14 +192,21 @@ GEM
       addressable (>= 2.3.1)
       extlib (>= 0.9.15)
       multi_json (>= 1.0.0)
-    aws-sdk (2.10.123)
-      aws-sdk-resources (= 2.10.123)
-    aws-sdk-core (2.10.123)
+    aws-eventstream (1.0.1)
+    aws-partitions (1.105.0)
+    aws-sdk-core (3.30.0)
+      aws-eventstream (~> 1.0)
+      aws-partitions (~> 1.0)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.10.123)
-      aws-sdk-core (= 2.10.123)
-    aws-sigv4 (1.0.2)
+    aws-sdk-kms (1.9.0)
+      aws-sdk-core (~> 3, >= 3.26.0)
+      aws-sigv4 (~> 1.0)
+    aws-sdk-s3 (1.21.0)
+      aws-sdk-core (~> 3, >= 3.26.0)
+      aws-sdk-kms (~> 1)
+      aws-sigv4 (~> 1.0)
+    aws-sigv4 (1.0.3)
     bcrypt (3.1.12)
     better_errors (2.5.0)
       coderay (>= 1.0.0)
@@ -241,8 +248,6 @@ GEM
     chroma (0.2.0)
     chronic (0.10.2)
     climate_control (0.2.0)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     cocoon (1.2.6)
     coderay (1.1.2)
     coffee-rails (4.2.2)
@@ -453,12 +458,12 @@ GEM
     optimist (3.0.0)
     orm_adapter (0.5.0)
     os (0.9.6)
-    paperclip (5.2.1)
+    paperclip (6.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     parallel (1.6.1)
     pg (0.18.1)
     polyglot (0.3.5)
@@ -585,6 +590,8 @@ GEM
     sshkit (1.17.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -637,7 +644,7 @@ DEPENDENCIES
   ancestry
   angular-rails-templates!
   apipie-rails
-  aws-sdk (< 3.0)
+  aws-sdk-s3
   better_errors
   binding_of_caller
   biodiversity
@@ -701,8 +708,8 @@ DEPENDENCIES
   omniauth-openid
   omniauth-soundcloud!
   omniauth-twitter
+  paperclip (~> 6.1.0)
   optimist
-  paperclip (~> 5.2.1)
   pg
   preferences!
   puma

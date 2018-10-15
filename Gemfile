@@ -13,8 +13,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'airbrake', '~> 7.3'
 gem 'ancestry'
 gem 'angular-rails-templates', git: "https://github.com/gaslight/angular-rails4-templates", ref: 'v0.1.5'
-# aws-sdk locked to pre 3.0; see https://github.com/thoughtbot/paperclip/issues/2484
-gem 'aws-sdk', '< 3.0'
+gem "aws-sdk-s3"
 gem 'biodiversity'
 gem 'bluecloth'
 gem 'bugguide', git: 'https://github.com/kueda/bugguide.git'
@@ -69,8 +68,8 @@ gem "omniauth-google-oauth2", "~> 0.5.2"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
+gem "paperclip", "~> 6.1.0"
 gem "optimist"
-gem "paperclip", "~> 5.2.1"
 gem 'pg'
 gem 'preferences', :git => 'https://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'https://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
