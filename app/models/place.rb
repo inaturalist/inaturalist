@@ -879,6 +879,7 @@ class Place < ActiveRecord::Base
         f.point(swlng, swlat)
       ])
     )
+    return false unless bbox
     pt = f.point(lng,lat)
 
     # buffer the point to make a circle if accuracy set. Note that the method
