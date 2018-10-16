@@ -156,3 +156,64 @@ describe ConservationStatus, "updating geoprivacy" do
     expect(o.latitude).not_to be_blank
   end
 end
+
+describe ConservationStatus, "updating place" do
+  let(:old_place) { make_place_with_geom }
+  let(:new_place) { make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))" ) }
+  let(:taxon) { Taxon.make!(:species) }
+  it "should reassess observations in the new place" do
+    cs = without_delay do
+      ConservationStatus.make!( taxon: taxon, place: old_place )
+    end
+    o = Observation.make!(
+      latitude: new_place.latitude,
+      longitude: new_place.longitude,
+      taxon: cs.taxon
+    )
+    expect( o ).not_to be_coordinates_obscured
+    cs.update_attributes( place: new_place )
+    Delayed::Worker.new.work_off
+    o.reload
+    expect( o ).to be_coordinates_obscured
+  end
+  it "should reassess observations in the old place" do
+    cs = without_delay do
+      ConservationStatus.make!( taxon: taxon, place: old_place )
+    end
+    o = without_delay do
+      Observation.make!(
+        latitude: old_place.latitude,
+        longitude: old_place.longitude,
+        taxon: cs.taxon
+      )
+    end
+    expect( o ).to be_coordinates_obscured
+    cs.update_attributes( place: new_place )
+    Delayed::Worker.new.work_off
+    o.reload
+    expect( o ).not_to be_coordinates_obscured
+  end
+  it "should reassess all observations if place added" do
+    cs = without_delay { ConservationStatus.make!( taxon: taxon ) }
+    taxon.reload
+    o = Observation.make!( taxon: cs.taxon, latitude: -3, longitude: -3 )
+    expect( o ).to be_coordinates_obscured
+    cs.update_attributes( place: new_place )
+    Delayed::Worker.new.work_off
+    o.reload
+    expect( o ).not_to be_coordinates_obscured
+  end
+  it "should reassess all observations if place removed" do
+    cs = without_delay { ConservationStatus.make!( taxon: taxon, place: old_place ) }
+    o = Observation.make!(
+      taxon: cs.taxon,
+      latitude: -3,
+      longitude: -3
+    )
+    expect( o ).not_to be_coordinates_obscured
+    cs.update_attributes( place: nil )
+    Delayed::Worker.new.work_off
+    o.reload
+    expect( o ).to be_coordinates_obscured
+  end
+end
