@@ -828,12 +828,13 @@ protected
     month = options[:month] || Time.now.month
     site_filter = @site && @site.prefers_site_only_users?
     filters = [
-      { term: { own_observation: false } },
-      {
-        terms: {
-          "observation.quality_grade": [Observation::RESEARCH_GRADE, Observation::NEEDS_ID]
-        }
-      }
+      { term: { own_observation: false } }
+      # Uncomment if / when we want to only show ident stats from verifiable obs
+      # {
+      #   terms: {
+      #     "observation.quality_grade": [Observation::RESEARCH_GRADE, Observation::NEEDS_ID]
+      #   }
+      # }
     ]
     if per == 'month'
       date = Date.parse("#{ year }-#{ month }-1")
