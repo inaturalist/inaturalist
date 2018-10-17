@@ -170,7 +170,7 @@ class TaxaController < ApplicationController
         end
         api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}"
         options = {}
-        options[:api_token] = current_user.api_token if current_user
+        options[:authenticate] = current_user
         @node_taxon_json = INatAPIService.get_json( api_url, options )
         return render_404 unless @node_taxon_json
         @node_place_json = ( place_id.blank? || place_id == 0 ) ?
