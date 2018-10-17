@@ -9,9 +9,7 @@
         <%= f.form_field :name, label: t(:scientific_name) do %>
           <strong><%= @taxon.name %></strong>
           <div class="meta">
-            <%= t :add_a %>
-            <%= link_to t(:taxon_swap), new_taxon_change_path(:type => "TaxonSwap", :input_taxon_ids => @taxon.id) %>
-            <%= t :if_you_want_to_change_the_name %>
+            <%= t :add_a_taxon_swap_if_you_want_to_change_the_name_html, url: new_taxon_change_path( type: "TaxonSwap", input_taxon_ids: @taxon.id ) %>
           </div>
         <% end %>
       <% end -%>
