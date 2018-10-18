@@ -10,6 +10,7 @@
 # Author: Marjo
 # Author: MrLeopold
 # Author: Mwestra74
+# Author: Ndecouck
 # Author: Nienke74
 # Author: Optilete
 # Author: Pwijnsouw
@@ -950,9 +951,13 @@ nl:
   comparing_list_to_list: Vergeijken
   comparing_versions_x_and_y: Versies %{x} en %{y} vergelijken
   comparing_observations_from: Vergelijken van %{user} waarnemingen van %{dates}
+  complete_sets: Volledige sets
   compiled_by_name: Gecompileerd door %{name}
   completed: Voltooid
   completed_at: Voltooid op
+  comprehensive: uitgebreid
+  comprehensive?: Uitgebreid?
+  comprehensive_list: Uitgebreide lijst
   concept_status: Concept Status
   configure: Instellen
   configure_a_widget_to_show: Stel een widget in om de  %{site_name} waarnemingen
@@ -984,6 +989,7 @@ nl:
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
+    iucn: Equivalent van IUCN Rode Lijst code
   contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon
     die hier voorkomen?
   contest: wedstrijd
@@ -1011,6 +1017,7 @@ nl:
     juvenile: Juveniel
   controls: Besturing
   convert: Converteren
+  coordinate_systems: Coördinaatsystemen
   coordinates: Coördinaten
   coordinates_private: (coördinaten privé)
   copy: Kopiëren
@@ -1301,6 +1308,7 @@ nl:
   edited_by_name_html: Bewerkt door %{name}
   editing: Bewerken
   editing_announcement: Bewerk aankondiging
+  editing_custom_project_fields_for: Bewerk standaard project velden voor
   editing_observation_field: Bewerk waarnemingsveld
   editing_observation_id: Waarneming bewerken %{obs_id}
   editing_observations:
@@ -1371,6 +1379,7 @@ nl:
   exact_date: Exacte datum
   exact_location: Exacte locatie
   exact_rank: Exacte rang
+  except: met uitzondering van
   existing_flags: Bestaande labels
   exit_full_screen: Volledig Schermmodus Verlaten
   examples_of_ranking_organizations: Voorbeelden van organisaties die zich bezighouden
@@ -1431,9 +1440,13 @@ nl:
     door de personen die ze aangemaakt hebben of door curatoren
   fields_merged: Velden samengevoegd
   file: Bestand
+  file_should_be_in_the_following_format: 'Het bestand moet in het volgende format
+    zijn: taxon, omschrijving'
   fill_out_project_observation_fields: Vul de vakjes in voor de waarnemingen in dit
     project
   fill_out_your_profile: Vervolledig uw profiel
+  filling_out_checklist_for_place: invullen van checklists voor plaatsen die je goed
+    kent
   filling_out_your_profile: Uw profiel invullen
   filter: Filteren
   filter_by: Filteren op
@@ -2293,6 +2306,7 @@ nl:
     ubio: uBio
   names: Namen
   names_for_taxon_html: Namen voor %{taxon}
+  naturalised: genaturaliseerd
   native: inheems
   native_to_place: Inheems in %{place}
   nav: Nav
@@ -2527,9 +2541,12 @@ nl:
   observing: aan het waarnemen
   occurrence_status_levels:
     present: aanwezig
+    common: gewoon
+    uncommon: ongewoon
     irregular: onregelmatig
     doubtful: twijfelachtig
     absent: afwezig
+  of: van
   of_observations: waarnemingen
   of_species: soort
   of_observers: waarnemers
@@ -2694,6 +2711,7 @@ nl:
       building: gebouw
       Canton: Kanton
       canton: kanton
+      Commune: gemeente
       Continent: Continent
       continent: continent
       Country: Land
@@ -2895,6 +2913,7 @@ nl:
     phylum: Stam
     subphylum: Onderstam
     class: Klasse
+    subclass: subklasse
     order: Orde
     family: Familie
     tribe: Tak
@@ -3047,6 +3066,7 @@ nl:
   search_for_a_location: Zoek naar een Locatie
   search_for_new_taxa: Zoek naar Nieuwe Taxa
   search_for_species: Zoek Soorten
+  search_list: zoeklijst
   search_obs: Zoek waarnemingen
   search_places: Zoek Plaatsen
   search_projects: Zoek Projecten
@@ -3091,6 +3111,7 @@ nl:
   share: Deel
   show: Weergeven
   show_active_and_inactive_taxa: Toon actieve en niet actieve taxa
+  show_common_names: Toon standaard namen
   show_default_taxon_photos: Toon standaard taxonfoto's
   show_keyboard_shortcuts: Toon sneltoetsen
   show_kml: Toon foto's van waarnemingen

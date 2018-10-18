@@ -468,6 +468,7 @@ et:
   android: Android
   animals: Loomad
   animated_observations_map: Animeeritud vaatluste kaart
+  annotation: Märge
   annotations: Märked
   announcement_was_successfully_created: Teate loomine õnnestus.
   announcement_was_successfully_updated: Teate uuendamine õnnestus.
@@ -1353,6 +1354,9 @@ et:
   exact_date: Täpne kuupäev
   exact_location: Täpne asukoht
   exact_rank: Täpne kategooria
+  except: väljaarvatud
+  exclude_x: Väljaarvatud %{x}
+  exclusion_filters: Välistusfiltrid
   existing_flags: Praegused märkused
   exit_full_screen: Sule täisekraan
   examples_of_ranking_organizations: Kategooriaid määravad organisatsioonid
@@ -2211,6 +2215,9 @@ et:
   meet: Teretulemast
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist võrgustiku</a>
     liige
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : '%{partial_inat_network_tag_html}iNaturalist võrgustiku</a> liige. %{cas_tag_html}
+    ja %{nat_geo_tag_html} ühisalgatus'
   members: Liikmed
   membership_model: Liikmelisuse mudel
   mentioned_you_in_noun_html: '%{user} mainis sind kohas %{noun}'
@@ -2799,6 +2806,7 @@ et:
   other_lexicons: Teised sõnastikud
   other_listings_of_this_taxon_for_this_place: Teised selles kohas antud taksoni kohta
     tehtud vaatlused
+  other_names: Teised nimed
   other_species_commonly_misidentified_as_this_species: Selle liigiga sageli segamini
     aetavad liigid
   other_species_commonly_misidentified_as_this_species_in_place_html: Kohas <a href="%{url}">%{place}</a>
@@ -2870,7 +2878,10 @@ et:
     mistõttu ei oma %{site_name} sellele fotole enam ligipääsuõigust.
   picasa_identity: Picasa kasutaja
   pick_a_username: Vali kasutajatunnus
+  pin_verb: Säilita
   pink: roosa
+  pinned_locations_desc: Säilita see koordinaatide, täpsuse, asukoha privaatsuse ja
+    asukoha märkuste komplekt hilisemaks kasutamiseks.
   place: Koht
   placeholder: Ajutine
   place_added_to_inat_by: Koha lisa lehele %{site_name} kasutaja
@@ -4195,6 +4206,8 @@ et:
     uue litsentsiga
   update_existing_photos_with_new_license: Täienda olemasolevaid fotosid uue litsentsiga
   update_existing_sounds_with_new_license: Täienda olemasolevaid helisid uue litsentsiga
+  update_observation: Uuenda vaatlust
+  update_observations: Uuenda vaatluseid
   update_past: Värskenda varasemaid %{type}
   update_photos: Värskenda fotosid
   update_search: Värskenda otsingut
@@ -4746,6 +4759,7 @@ et:
   your_projects: Sinu projektid
   your_google_account: sinu Google'i konto
   your_google_account_info: Sinu Google'i konto andmed
+  your_pinned_locations: Sinu säilitatud asukohad
   your_profile_was_successfully_updated: Profiili uuendamine õnnestus!
   your_recent_projects: Sinu hiljutised projektid
   your_should_recognize: Peaksid mõningaid neist fotodest tundma
@@ -5555,7 +5569,8 @@ et:
         or_drag_and_drop: (või lohista see siia)
         please_specify_the_requirements: Palun määra nõuded vaatlustele, mida sellele
           projektile lisada saab. Võid automaatseks lisamiseks valida korraga mitu
-          liiki, kohta ja kasutajat.
+          liiki, kohta ja kasutajat või jätta antud väli tühjaks, kui sul spetsiifilised
+          kriteeriumid puuduvad.
         project_background_color: Projekti kokkuvõtte tausta värv
         project_background_color_help: Vali kindlasti piisavalt tume värv, et valge
           pealistekst oleks loetav.
