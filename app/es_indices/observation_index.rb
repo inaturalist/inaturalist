@@ -268,12 +268,13 @@ class Observation < ActiveRecord::Base
 
       taxon_establishment_places = { }
       taxon_ids = observations.map(&:taxon_id).compact.uniq
-      puts "Fetching Listed Taxa"
+      uniq_place_ids = observations.map(&:indexed_private_place_ids).flatten.compact.uniq.join(',')
+      return if uniq_place_ids.empty?
       Observation.connection.execute("
         SELECT taxon_id, establishment_means, string_agg(place_id::text,',') as place_ids
         FROM listed_taxa
         WHERE taxon_id IN (#{ taxon_ids.join(',') })
-        AND place_id IN (#{ observations.map(&:indexed_private_place_ids).flatten.compact.uniq.join(',') })
+        AND place_id IN (#{ uniq_place_ids })
         AND establishment_means IS NOT NULL
         GROUP BY taxon_id, establishment_means").to_a.each do |r|
         taxon_establishment_places[r["taxon_id"]] ||= {}
@@ -289,7 +290,6 @@ class Observation < ActiveRecord::Base
           bbox_area: r["bbox_area"].to_f
         }
       end
-      # [taxon_id][establishment_means] = [place_ids]
       taxon_places = { }
       taxon_endemic_place_ids = { }
       taxon_establishment_places.each do |taxon_id, means_places|
