@@ -63,11 +63,9 @@ class Identification < ActiveRecord::Base
       vision: vision,
       disagreement: disagreement,
       previous_observation_taxon_id: previous_observation_taxon_id,
-      spam: known_spam? || owned_by_spammer?
+      spam: known_spam? || owned_by_spammer?,
+      taxon_id: taxon_id
     }
-    if options[:no_details]
-      json[:taxon_id] = taxon_id
-    end
     if observation && taxon && !options[:no_details]
       json.merge!({
         current_taxon: (taxon_id == observation.taxon_id),

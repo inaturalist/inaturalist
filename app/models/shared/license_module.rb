@@ -75,7 +75,12 @@ module Shared::LicenseModule
   def license_code
     LICENSE_INFO[license.to_i].try(:[], :code)
   end
-  
+
+  def index_license_code
+    (license_code.blank? || license.blank? || license == 0) ?
+        nil : license_code.downcase
+  end
+
   def license_url
     Shared::LicenseModule.license_url_for_number( license )
   end

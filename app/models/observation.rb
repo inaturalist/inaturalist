@@ -52,7 +52,8 @@ class Observation < ActiveRecord::Base
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
-    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete
+    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
+    :taxon_introduced, :taxon_endemic, :taxon_native
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
