@@ -1288,24 +1288,20 @@ class Taxon < ActiveRecord::Base
     means = [ means ] unless means.is_a?(Array)
     places = Place.param_to_array(place)
     return false if places.blank?
-    if association(:listed_taxa_with_establishment_means).loaded? || association(:listed_taxa).loaded?
-      lt = association(:listed_taxa_with_establishment_means).loaded? ?
-        listed_taxa_with_establishment_means : listed_taxa
-      place_ancestor_ids = (places.map(&:id) +
-        places.map{ |p| p.ancestry.to_s.split("/").map(&:to_i) }).flatten.uniq
-      if options[:closest]
-        most_specific_lt = lt.
-          select{ |l| l.establishment_means && place_ancestor_ids.include?(l.place_id) }.
-          sort_by{ |l| l.place.bbox_area || 0 }.first
-        return false if most_specific_lt.blank?
-        means.include?( most_specific_lt.establishment_means)
-      else
-        !!lt.
-          select{ |l| l.establishment_means && place_ancestor_ids.include?(l.place_id) }.
-          detect{ |l| means.include?( l.establishment_means) }
-      end
+    lt = association(:listed_taxa_with_establishment_means).loaded? ?
+      listed_taxa_with_establishment_means : listed_taxa
+    place_ancestor_ids = (places.map(&:id) +
+      places.map{ |p| p.ancestry.to_s.split("/").map(&:to_i) }).flatten.uniq
+    if options[:closest]
+      most_specific_lt = lt.
+        select{ |l| l.establishment_means && place_ancestor_ids.include?(l.place_id) }.
+        sort_by{ |l| l.place.bbox_area || 0 }.first
+      return false if most_specific_lt.blank?
+      means.include?( most_specific_lt.establishment_means)
     else
-      listed_taxa.with_establishment_means(means).where(place_id: places).exists?
+      !!lt.
+        select{ |l| l.establishment_means && place_ancestor_ids.include?(l.place_id) }.
+        detect{ |l| means.include?( l.establishment_means) }
     end
   end
 

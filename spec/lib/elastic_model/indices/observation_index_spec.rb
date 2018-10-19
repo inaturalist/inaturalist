@@ -45,33 +45,6 @@ describe "Observation Index" do
     expect( json[:created_at_details][:year] ).to eq 2014
   end
 
-  it "sorts photos by position and ID" do
-    o = Observation.make!(latitude: 3.0, longitude: 4.0)
-    p3 = LocalPhoto.make!
-    p1 = LocalPhoto.make!
-    p2 = LocalPhoto.make!
-    p4 = LocalPhoto.make!
-    p5 = LocalPhoto.make!
-    make_observation_photo(photo: p1, observation: o, position: 1)
-    make_observation_photo(photo: p2, observation: o, position: 2)
-    make_observation_photo(photo: p3, observation: o, position: 3)
-    # these without a position will be last in order of creation
-    make_observation_photo(photo: p4, observation: o)
-    make_observation_photo(photo: p5, observation: o)
-    o.reload
-    json = o.as_indexed_json
-    expect( json[:photos][0][:id] ).to eq p1.id
-    expect( json[:photos][1][:id] ).to eq p2.id
-    expect( json[:photos][2][:id] ).to eq p3.id
-    expect( json[:photos][3][:id] ).to eq p4.id
-    expect( json[:photos][4][:id] ).to eq p5.id
-  end
-
-  it "includes observation photo ID" do
-    o = make_research_grade_candidate_observation
-    expect( o.as_indexed_json[:observation_photos][0][:id] ).to eq o.observation_photos.first.id
-  end
-
   it "uses private_latitude/longitude to create private_geojson" do
     o = Observation.make!
     o.update_columns(private_latitude: 3.0, private_longitude: 4.0, private_geom: nil)
@@ -150,14 +123,12 @@ describe "Observation Index" do
     expect( o.as_indexed_json[:taxon][:endemic] ).to be true
   end
 
-  it "indexes identifications" do
+  it "indexes identifier_user_ids" do
     o = Observation.make!
     Identification.where(observation_id: o.id).destroy_all
     5.times{ Identification.make!(observation: o) }
     json = o.as_indexed_json
-    expect( json[:identifications].length ).to eq 5
-    expect( json[:identifications].first ).to eq o.identifications.first.
-      as_indexed_json(no_details: true)
+    expect( json[:identifier_user_ids].length ).to eq 5
   end
 
   it "indexes owners_identification_from_vision" do
@@ -322,12 +293,16 @@ describe "Observation Index" do
     end
 
     it "filters by presence of attributes" do
-      [ { http_param: :with_photos, es_field: "photos.url" },
-        { http_param: :with_sounds, es_field: "sounds" },
+      [ { http_param: :with_photos, es_field: ["photos.url", "photos_count"] },
+        { http_param: :with_sounds, es_field: ["sounds", "sounds_count"] },
         { http_param: :with_geo, es_field: "geojson" },
         { http_param: :identified, es_field: "taxon" },
       ].each do |filter|
-        f = { exists: { field: filter[:es_field] } }
+        if filter[:es_field].is_a?( Array )
+          f = { bool: { should: filter[:es_field].map{ |ff| { exists: { field: ff } } } } }
+        else
+          f = { exists: { field: filter[:es_field] } }
+        end
         expect( Observation.params_to_elastic_query({
           filter[:http_param] => "true" }) ).to include(
             filters: [ f ] )
@@ -396,13 +371,25 @@ describe "Observation Index" do
 
     it "filters by photo license" do
       expect( Observation.params_to_elastic_query({ photo_license: "any" }) ).to include(
-        filters: [ { exists: { field: "photos.license_code" } } ] )
+        filters: [ { bool: { should: [
+          { exists: { field: "photo_licenses" } },
+          { exists: { field: "photos.license_code" } }
+        ] } } ] )
       expect( Observation.params_to_elastic_query({ photo_license: "none" }) ).to include(
-        inverse_filters: [ { exists: { field: "photos.license_code" } } ] )
+        inverse_filters: [ { bool: { should: [
+          { exists: { field: "photo_licenses" } },
+          { exists: { field: "photos.license_code" } }
+        ] } } ] )
       expect( Observation.params_to_elastic_query({ photo_license: "CC-BY" }) ).to include(
-        filters: [ { terms: { "photos.license_code" => [ "cc-by" ] } } ] )
+        filters: [ { bool: { should: [
+          { terms: { "photo_licenses" => [ "cc-by" ] } },
+          { terms: { "photos.license_code" => [ "cc-by" ] } }
+        ] } } ] )
       expect( Observation.params_to_elastic_query({ photo_license: [ "CC-BY", "CC-BY-NC" ] }) ).to include(
-        filters: [ { terms: { "photos.license_code" => [ "cc-by", "cc-by-nc" ] } } ] )
+        filters: [ { bool: { should: [
+          { terms: { "photo_licenses" => [ "cc-by", "cc-by-nc" ] } },
+          { terms: { "photos.license_code" => [ "cc-by", "cc-by-nc" ] } }
+        ] } } ] )
     end
 
     it "filters by created_on year" do

@@ -268,19 +268,20 @@ class Observation < ActiveRecord::Base
 
       taxon_establishment_places = { }
       taxon_ids = observations.map(&:taxon_id).compact.uniq
-      uniq_place_ids = observations.map(&:indexed_private_place_ids).flatten.compact.uniq.join(',')
-      return if uniq_place_ids.empty?
+      uniq_obs_place_ids = observations.map(&:indexed_private_place_ids).flatten.compact.uniq.join(',')
+      return if uniq_obs_place_ids.empty? || taxon_ids.empty?
       Observation.connection.execute("
         SELECT taxon_id, establishment_means, string_agg(place_id::text,',') as place_ids
         FROM listed_taxa
         WHERE taxon_id IN (#{ taxon_ids.join(',') })
-        AND place_id IN (#{ uniq_place_ids })
+        AND place_id IN (#{ uniq_obs_place_ids })
         AND establishment_means IS NOT NULL
         GROUP BY taxon_id, establishment_means").to_a.each do |r|
         taxon_establishment_places[r["taxon_id"]] ||= {}
         taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] = r["place_ids"].split( "," )
       end
       place_ids = taxon_establishment_places.values.map(&:values).flatten.uniq
+      return if place_ids.empty?
       places = {}
       Place.connection.execute("
         SELECT id, bbox_area
@@ -394,12 +395,18 @@ class Observation < ActiveRecord::Base
     end
 
     # params that can check for presence of something
-    [ { http_param: :with_photos, es_field: "photos.url" },
-      { http_param: :with_sounds, es_field: "sounds" },
+    [ { http_param: :with_photos, es_field: ["photos.url", "photos_count"] },
+      { http_param: :with_sounds, es_field: ["sounds", "sounds_count"] },
       { http_param: :with_geo, es_field: "geojson" },
       { http_param: :identified, es_field: "taxon" },
     ].each do |filter|
-      f = { exists: { field: filter[:es_field] } }
+      if filter[:es_field].is_a?( Array )
+        f = { bool: { should: filter[:es_field].map{ |ff|
+          { exists: { field: ff } }
+        } } }
+      else
+        f = { exists: { field: filter[:es_field] } }
+      end
       if p[ filter[:http_param] ].yesish?
         search_filters << f
       elsif p[ filter[:http_param] ].noish?
@@ -431,12 +438,21 @@ class Observation < ActiveRecord::Base
         [ p[:license] ].flatten.map{ |l| l.downcase } } }
     end
     if p[:photo_license] == "any"
-      search_filters << { exists: { field: "photos.license_code" } }
+      search_filters << { bool: { should: [
+        { exists: { field: "photo_licenses" } },
+        { exists: { field: "photos.license_code" } }
+      ]}}
     elsif p[:photo_license] == "none"
-      inverse_filters << { exists: { field: "photos.license_code" } }
+      inverse_filters << { bool: { should: [
+        { exists: { field: "photo_licenses" } },
+        { exists: { field: "photos.license_code" } }
+      ]}}
     elsif p[:photo_license]
-      search_filters << { terms: { "photos.license_code" =>
-        [ p[:photo_license] ].flatten.map{ |l| l.downcase } } }
+      licenses = [ p[:photo_license] ].flatten.map{ |l| l.downcase }
+      search_filters << { bool: { should:[
+        { terms: { "photo_licenses" => licenses } },
+        { terms: { "photos.license_code" => licenses } }
+      ]}}
     end
     if d = Observation.split_date(p[:created_on], utc: true)
       [ :day, :month, :year ].each do |part|
@@ -649,18 +665,25 @@ class Observation < ActiveRecord::Base
     if p[:ident_user_id]
       vals = p[:ident_user_id].to_s.split( "," )
       if vals[0].to_i > 0
-        term_filter = { terms: { "identifications.user.id" => vals } }
+        nested_filter = { terms: { "identifications.user.id" => vals } }
       else
-        term_filter = { terms: { "identifications.user.login" => vals } }
+        nested_filter = { terms: { "identifications.user.login" => vals } }
       end
       search_filters << {
-        nested: {
-          path: "identifications",
-          query: {
-            bool: {
-              filter: term_filter
+        bool: {
+          should: [
+            { terms: { identifier_user_ids: vals } },
+            {
+              nested: {
+                path: "identifications",
+                query: {
+                  bool: {
+                    filter: nested_filter
+                  }
+                }
+              }
             }
-          }
+          ]
         }
       }
     end

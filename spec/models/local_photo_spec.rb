@@ -228,12 +228,10 @@ describe LocalPhoto, "flagging" do
   it "should change make associated observations research grade when resolved"
   it "should re-index the observation" do
     o = make_research_grade_observation
-    p = o.photos.first
-    es_p = Observation.elastic_search( where: { id: o.id } ).results.results.first.photos.first
-    expect( es_p.url ).not_to be =~ /copyright/
-    without_delay { Flag.make!( flaggable: p, flag: Flag::COPYRIGHT_INFRINGEMENT ) }
-    es_p = Observation.elastic_search( where: { id: o.id } ).results.results.first.photos.first
-    expect( es_p.url ).to be =~ /copyright/
+    original_last_indexed_at = o.last_indexed_at
+    without_delay { Flag.make!( flaggable: o.photos.first, flag: Flag::COPYRIGHT_INFRINGEMENT ) }
+    o.reload
+    expect( o.last_indexed_at ).to be > original_last_indexed_at
   end
 end
 
