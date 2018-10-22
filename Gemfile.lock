@@ -172,7 +172,7 @@ GEM
       tzinfo (~> 1.1)
     acts-as-taggable-on (4.0.0)
       activerecord (>= 4.0)
-    acts_as_votable (0.10.0)
+    acts_as_votable (0.11.1)
     addressable (2.5.2)
       public_suffix (>= 2.0.2, < 4.0)
     airbrake (7.4.0)
@@ -639,7 +639,7 @@ DEPENDENCIES
   activerecord-postgis-adapter!
   activerecord-session_store
   acts-as-taggable-on (~> 4.0)
-  acts_as_votable (~> 0.10.0)
+  acts_as_votable (~> 0.11.1)
   airbrake (~> 7.3)
   ancestry
   angular-rails-templates!
