@@ -1340,13 +1340,16 @@ nl:
   embed_place_widget: Plaatswidget invoegen
   embed_widget_project: Een widget invoegen voor dit project op uw website
   enable_offline_access: Offline toegang inschakelen
+  enable_offline_access_for_mobile: Zet offline toegang aan voor mobiel
   enlarge: Vergroten
   end: Einde
   end_date_time: Einddatum /Tijd
   endangered: Bedreigd
   endemic: Inheems
+  endemic_to_x: Endemisch in %{x}
   eol: EOL
   eol_collection_url: EOL verzameling URL
+  error_updating_photo: 'Fout bij bijwerken foto: %{photo_errors}'
   establishment:
     establishment: Aanstelling
     native: inheems
@@ -1380,6 +1383,7 @@ nl:
   exact_location: Exacte locatie
   exact_rank: Exacte rang
   except: met uitzondering van
+  exclude_x: '%{x} uitsluiten'
   existing_flags: Bestaande labels
   exit_full_screen: Volledig Schermmodus Verlaten
   examples_of_ranking_organizations: Voorbeelden van organisaties die zich bezighouden
@@ -1404,6 +1408,8 @@ nl:
   facebook_account_information: Uw Facebook-account informatie
   facebook_account_not_linked: '%{user} heeft geen gekoppeld Facebook-account meer,
     waardoor %{site_name} geen toegang meer heeft tot deze foto.'
+  facebook_access_token_expired: Access token is verlopen. %{user} moet opnieuw linken
+    naar hun Facebook account
   facebook_confirmation: Facebook wil dat je bevestigt dat je wilt dat je account
     is verbonden met %{site_name}.
   facebook_needs_the_owner_of_that_photo_to: Facebook heeft de eigenaar van die foto
@@ -1795,6 +1801,11 @@ nl:
   inat_believes_this_is_a_complete_listing: '%{site_name} vermoedt dat dit een volledige
     oplijsting is van dit taxon op deze plaats.'
   inat_user_profile: '%{site_name}: Profiel van %{user}'
+  inat_will_be_back_on: '%{site_name} zal terug komen op zijn voeten/vleugels/vinnen/tentakels/pseudopodia/schijnvoeten'
+  inaturalist_is_an_online_community: '%{site_name} is een online gemeenschap voor
+    naturalists! Door het toevoegen van je foto kun je wetenschappers helpen meer
+    te leren over'
+  inaturalist_is_catching_some_zs: '%{site_name} is vangen van enkele Zs'
   inaturalist_observations_by: '%{site_name} &#58; Waarnemingen door %{login}'
   inaturalist_places: '%{site_name} Plaatsen'
   inaturalist_places_are_way_record_what_lives_where: '%{site_name} Plaatsen zijn
@@ -1872,6 +1883,7 @@ nl:
     en <a href='%{invite_url}'>nodig enkele waarnemingen uit</a>
   join_this_project: Doe mee aan dit project
   joined!: Toegevoegd!
+  joined_any_projects: Nam deel aan willekeurige projecten
   joined_projects: Deelname aan projecten
   joined_with_date: Lid geworden op %{date}
   joining: Bezig met koppelen...
@@ -1991,6 +2003,12 @@ nl:
   life!: Levenǃ
   life_list: Levenslijst van %{user}
   life_list_updated: Life list bijgewerkt!
+  life_list_updated_we_also_saved_a: Life list bijgewerkt! We hebben ook een lege
+    waarneming van dit taxon bewaard.
+  life_lists_automatically_fill: Levenslijsten worden automatisch aangevuld met nieuwe
+    taxa als je ze opneemt, en ze kunnen worden beperkt tot bovenliggende taxa, b.v.
+    een levenslijst van kraaiachtigen (Corvidae).
+  life_list_first: levenslijst eerst
   link: Koppeling
   link_or_unlink_your_facebook_account: Koppel of verbreek uw Facebookaccount
   link_or_unlink_your_flickr_account: Koppel of verbreek uw Flickraccount
@@ -2034,12 +2052,16 @@ nl:
   linked_flickr_password_html: <strong>We vragen nooi naar je Flickr wachtwoord</strong>.
     Flickr kan de url controleren die door het drukken van de knop wordt verzonden
     om zeker te zijn dat het Flickr.com is.
+  linked_flickr_photo_copy_html: <strong>We slaan nooit kopieën van uw foto's op of
+    wijzigen uw Flickr-gegevens (tenzij u ons dat vraagt).</ strong> We geven te veel
+    om vogels, insekten en slakken om uw informatie te willen verprutsen!
   list: Lijst
   list_deleted: Lijst verwijderd.
   list_saved: Lijst opgeslagen.
   list_tooltip: Toon lijstweergave
   list_updated: Lijst bijgewerkt!
   list_views:
+    plain: Zonder opmaak
     taxonomic: taxonomisch
     photo: foto
   list_was_successfully_created: De lijst werd succesvol aangemaakt.
@@ -3567,6 +3589,7 @@ nl:
   user_added_x_observations_html: '%{user} voegde %{x} waarneming(en) toe'
   user_blocked: Gebruiker geblokkeerd
   user_commented: '%{user} reageerde'
+  user_disagrees_this_is_taxon: '%{user} is het niet eens dat dit %{taxon} si'
   user_follows: '%{user} volgt'
   user_invited_you_to_join_html: '%{user} nodigde je uit om aan te sluiten'
   user_invited_you_to_join_project: '%{user} nodigde je uit om aan te sluiten bij
