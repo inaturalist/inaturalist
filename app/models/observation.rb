@@ -2188,10 +2188,16 @@ class Observation < ActiveRecord::Base
     if coordinates_obscured?
       half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
       positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
-      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      if half_cell > positional_accuracy_degrees
+        uncertainty_cell_center_latlon = Observation.uncertainty_cell_center_latlon( latitude, longitude )
+        return [
+          uncertainty_cell_center_latlon[0] - half_cell,
+          uncertainty_cell_center_latlon[1] - half_cell
+        ]
+      end
       return [
-        private_latitude - max_half_cell,
-        private_longitude - max_half_cell
+        latitude - positional_accuracy_degrees,
+        longitude - positional_accuracy_degrees
       ]
     end
     private_sw_latlon
@@ -2215,10 +2221,16 @@ class Observation < ActiveRecord::Base
     if coordinates_obscured?
       half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
       positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
-      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      if half_cell > positional_accuracy_degrees
+        uncertainty_cell_center_latlon = Observation.uncertainty_cell_center_latlon( latitude, longitude )
+        return [
+          uncertainty_cell_center_latlon[0] + half_cell,
+          uncertainty_cell_center_latlon[1] + half_cell
+        ]
+      end
       return [
-        private_latitude + max_half_cell,
-        private_longitude + max_half_cell
+        latitude + positional_accuracy_degrees,
+        longitude + positional_accuracy_degrees
       ]
     end
     private_ne_latlon
