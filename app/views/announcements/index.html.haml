@@ -1,9 +1,20 @@
+= content_for(:extracss) do
+  :css
+    #controls { display: flex; justify-content: space-between; }
+    #controls .btn-primary { margin-right: 20px; }
+    #controls form { max-width: 50%; }
 .container
   .row
     .col-xs-12
       %h1= t :announcements
-      .stacked
+      #controls.stacked
         = link_to t(:new_announcement), new_announcement_path, class: "btn btn-primary"
+        = form_tag url_for, method: :get, class: "pull-right" do
+          = hidden_fields_for_params
+          .input-group
+            = text_field_tag :q, params[:q], class: "form-control"
+            .input-group-btn
+              %button.btn.btn-default=t :search
       %table.table
         %thead
           %tr

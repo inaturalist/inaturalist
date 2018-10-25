@@ -8,10 +8,24 @@ import SubprojectsList from "./subprojects_list";
 import UserText from "../../../shared/components/user_text";
 import UserLink from "../../../shared/components/user_link";
 import UserImage from "../../../shared/components/user_image";
+import FeatureButtonContainer from "../containers/feature_button_container";
 
 class About extends React.Component {
   render( ) {
-    const { project, setSelectedTab } = this.props;
+    const { project, setSelectedTab, config } = this.props;
+    const loggedIn = config.currentUser;
+    const userIsAdmin = loggedIn && config.currentUser.roles &&
+      config.currentUser.roles.indexOf( "admin" ) >= 0;
+    const userIsSiteAdmin = loggedIn && config.currentUser.site_admin;
+    let siteAdminTools;
+    if ( userIsAdmin || userIsSiteAdmin ) {
+      siteAdminTools = (
+        <div className="admin-tools">
+          <h4>{ I18n.t( "site_admin_tools" ) }</h4>
+          <FeatureButtonContainer />
+        </div>
+      );
+    }
     return (
       <div className="About">
         <Grid>
@@ -19,7 +33,9 @@ class About extends React.Component {
             <Col xs={ 12 }>
               <div
                 className="back linky"
-                onClick={ () => setSelectedTab( project.is_umbrella ? "umbrella_overview" : "overview" ) }
+                onClick={ () =>
+                  setSelectedTab( project.is_umbrella ? "umbrella_overview" : "overview" )
+                }
               >
                 <i className="fa fa-angle-left" />
                 { I18n.t( "back_to_x", { noun: project.title } ) }
@@ -71,6 +87,7 @@ class About extends React.Component {
                 ( <SubprojectsList {...this.props } /> ) :
                 ( <Requirements { ...this.props } /> )
               }
+              { siteAdminTools }
             </Col>
           </Row>
         </Grid>

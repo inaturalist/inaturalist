@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "Optimist"
 
-OPTS = Trollop::options do
+OPTS = Optimist::options do
     banner <<-EOS
 
 Export an archive for a particular site within this installation. The archive
@@ -27,7 +27,7 @@ start_time = Time.now
 @site = Site.find_by_name(@site_name)
 @site ||= Site.find_by_id(OPTS.site_id)
 unless @site
-  Trollop::die "No site with name '#{@site_name}'"
+  Optimist::die "No site with name '#{@site_name}'"
 end
 @site_name = @site.name
 

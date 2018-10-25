@@ -7,7 +7,7 @@ class ConservationStatus < ActiveRecord::Base
 
   before_save :set_geoprivacy
   after_save :update_observation_geoprivacies, :if => lambda {|record|
-    record.id_changed? || record.geoprivacy_changed?
+    record.id_changed? || record.geoprivacy_changed? || record.place_id_changed?
   }
   after_save :update_taxon_conservation_status
   after_destroy :update_observation_geoprivacies
@@ -109,9 +109,17 @@ class ConservationStatus < ActiveRecord::Base
   def update_observation_geoprivacies
     return true if skip_update_observation_geoprivacies
     Observation.delay(priority: USER_INTEGRITY_PRIORITY,
-      unique_hash: { "Observation::reassess_coordinates_for_observations_of": [
-        taxon_id, place: place_id ] }
-    ).reassess_coordinates_for_observations_of(taxon_id, place: place_id)
+      unique_hash: {
+        "Observation::reassess_coordinates_for_observations_of": [ taxon_id, place: place_id ]
+      }
+    ).reassess_coordinates_for_observations_of( taxon_id, place: place_id )
+    if place_id_changed?
+      Observation.delay(priority: USER_INTEGRITY_PRIORITY,
+        unique_hash: {
+          "Observation::reassess_coordinates_for_observations_of": [ taxon_id, place: place_id_was ]
+        }
+      ).reassess_coordinates_for_observations_of( taxon_id, place: place_id_was )
+    end
     true
   end
 

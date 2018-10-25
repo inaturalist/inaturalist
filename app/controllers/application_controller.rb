@@ -515,22 +515,57 @@ class ApplicationController < ActionController::Base
   private
 
   def admin_required
-    unless logged_in? && current_user.has_role?(:admin)
-      msg = t(:only_administrators_may_access_that_page)
-      respond_to do |format|
-        format.html do
-          flash[:error] = msg
-          redirect_to observations_path
-        end
-        format.js do
-          render :status => :unprocessable_entity, :text => msg
-        end
-        format.json do
-          render :status => :unprocessable_entity, :json => {:error => msg}
-        end
-      end
-      return false
+    unless logged_in? && current_user.is_admin?
+      only_admins_failure_state
     end
+  end
+
+  def admin_or_this_site_admin_required
+    unless logged_in? && ( current_user.is_admin? || ( @site && current_user.is_site_admin_of?( @site ) ) )
+      only_admins_failure_state
+    end
+  end
+
+  def admin_or_any_site_admin_required
+    unless logged_in? && ( current_user.is_admin? || current_user.site_admins.any? )
+      only_admins_failure_state
+    end
+  end
+
+  def only_admins_failure_state
+    msg = t(:only_administrators_may_access_that_page)
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_back_or_default( root_url )
+      end
+      format.js do
+        render :status => :unprocessable_entity, :text => msg
+      end
+      format.json do
+        render :status => :unprocessable_entity, :json => {:error => msg}
+      end
+    end
+    return false
+  end
+
+  def site_admin_required
+    return true if logged_in? && current_user.has_role?(:admin)
+    return true if logged_in? && @site && @site.site_admins.detect{|sa| sa.user_id == current_user.id}
+    msg = t(:only_administrators_may_access_that_page)
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_to observations_path
+      end
+      format.js do
+        render status: :unprocessable_entity, text: msg
+      end
+      format.json do
+        render status: :unprocessable_entity, json: { error: msg }
+      end
+    end
+    return false
   end
 
   def remove_header_and_footer_for_apps

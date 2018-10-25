@@ -9,6 +9,39 @@ describe UsersController, "dashboard" do
     get :dashboard
     expect(response).to be_success
   end
+  it "should show a site-specific announcement instead of a siteless one" do
+    site = Site.make!
+    a = Announcement.make!
+    site_a = Announcement.make!
+    site_a.sites << site
+    u = User.make!( site: site )
+    sign_in u
+    get :dashboard, inat_site_id: site.id
+    expect( assigns(:announcements) ).to include site_a
+    expect( assigns(:announcements) ).not_to include a
+  end
+  it "should show a locale-specific announcement instead of a localeless one" do
+    a = Announcement.make!
+    locale_a = Announcement.make!( locales: ["es"] )
+    u = User.make!( locale: "es" )
+    sign_in u
+    get :dashboard, locale: "es"
+    expect( assigns(:announcements) ).to include locale_a
+    expect( assigns(:announcements) ).not_to include a
+  end
+  it "should show a siteless, localeless announcement" do
+    a = Announcement.make!
+    sign_in User.make!
+    get :dashboard
+    expect( assigns(:announcements) ).to include a
+  end
+  it "should show a siteless, localeless announcement even if the user has a site and a locale" do
+    a = Announcement.make!
+    site = Site.make!
+    sign_in User.make!( locale: "es", site: site )
+    get :dashboard, inat_site_id: site.id
+    expect( assigns(:announcements) ).to include a
+  end
 end
 
 describe UsersController, "update" do

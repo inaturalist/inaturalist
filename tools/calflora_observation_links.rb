@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-opts = Trollop::options do
+opts = Optimist::options do
     banner <<-EOS
 Create ObservationLinks for observations that have been integrated into 
 Calflora.

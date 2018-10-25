@@ -910,6 +910,7 @@ class Taxon < ActiveRecord::Base
   
   def rank_level_must_be_finer_than_parent
     return if parent.nil?
+    return unless is_active
     
     if parent.rank_level.to_f <= rank_level.to_f
       errors.add(self.name, "rank level must be finer than parent")
@@ -918,7 +919,7 @@ class Taxon < ActiveRecord::Base
   
   def rank_level_must_be_coarser_than_children
     return if new_record?
-    if (children.any?{ |e| e.rank_level.nil? }  || rank_level.nil?) || (children.any?{ |e| e.rank_level.to_f >= rank_level.to_f })
+    if (children.where(is_active: true).any?{ |e| e.rank_level.nil? }  || rank_level.nil?) || (children.where(is_active: true).any?{ |e| e.rank_level.to_f >= rank_level.to_f })
       errors.add(self.name, "rank level must be coarser than children")
     end
   end

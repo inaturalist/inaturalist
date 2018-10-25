@@ -13,8 +13,7 @@ gem 'acts_as_votable', '~> 0.10.0'
 gem 'airbrake', '~> 7.3'
 gem 'ancestry'
 gem 'angular-rails-templates', git: "https://github.com/gaslight/angular-rails4-templates", ref: 'v0.1.5'
-# aws-sdk locked to pre 3.0; see https://github.com/thoughtbot/paperclip/issues/2484
-gem 'aws-sdk', '< 3.0'
+gem "aws-sdk-s3"
 gem 'biodiversity'
 gem 'bluecloth'
 gem 'bugguide', git: 'https://github.com/kueda/bugguide.git'
@@ -55,13 +54,13 @@ gem 'i18n-inflector-rails'
 gem 'i18n-js', :git => 'https://github.com/fnando/i18n-js.git'
 gem 'irwi', :git => 'https://github.com/Programatica/irwi.git'
 gem 'json'
-gem 'jquery-rails', "~> 4.0.4"
+gem 'jquery-rails', "~> 4.0"
 gem 'koala'
 gem 'dalli'
 gem "nokogiri", "~> 1.8.5"
 gem "non-stupid-digest-assets"
 gem "omniauth"
-gem "omniauth-oauth2", " 1.3.1"
+gem "omniauth-oauth2", "1.5.0"
 gem 'omniauth-facebook', '~> 5.0.0'
 gem 'omniauth-flickr'
 gem 'omniauth-openid'
@@ -69,7 +68,8 @@ gem "omniauth-google-oauth2", "~> 0.5.2"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
 gem 'objectify-xml', :require => 'objectify_xml'
-gem "paperclip", "~> 5.2.1"
+gem "paperclip", "~> 6.1.0"
+gem "optimist"
 gem 'pg'
 gem 'preferences', :git => 'https://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'https://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
@@ -86,7 +86,6 @@ gem 'sass-rails', '=5.0.1'
 gem 'soundcloud'
 gem 'sprockets', '~> 2.12.5'
 gem 'translate-rails3', :require => 'translate', :git => 'https://github.com/JayTeeSF/translate.git'
-gem 'trollop'
 gem 'uglifier'
 gem 'utf8-cleaner'
 gem "watu_table_builder", :require => "table_builder"
@@ -115,7 +114,7 @@ group :test, :development, :prod_dev do
   gem "better_errors"
   gem "byebug"
   gem "binding_of_caller"
-  gem 'thin', '~> 1.6.3'
+  gem 'thin', '~> 1.7'
   gem 'capybara', '~> 3.8'
   gem 'puma'
 end

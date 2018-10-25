@@ -262,10 +262,6 @@
         <fieldset class="admin">
           <legend><%= t :extra_properties %></legend>
 
-          <%= f.check_box :featured_at,
-            :label => t(:feature_this_project),
-            :label_after => true,
-            :checked => !@project.featured_at.nil? %>
           <%= f.text_field :group,
             :label => t(:project_group_label),
             :description => t(:project_group_description) %>

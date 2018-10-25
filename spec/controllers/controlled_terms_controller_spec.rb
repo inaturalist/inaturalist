@@ -14,7 +14,7 @@ describe ControlledTermsController do
       http_login(User.make!)
       post :create, controlled_term: { uri: "curatorterm" }
       expect(response).not_to be_success
-      expect(response.response_code).to eq 302
+      expect(response.response_code).to eq 303
     end
 
     it "allows admins to create terms" do

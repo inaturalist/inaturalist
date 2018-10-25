@@ -8,10 +8,11 @@
     DASHBOARD_FROM = "#{params[:from]}";
   = javascript_include_tag "map_bundle", "d3.min", "observations/observation_fields", "users/dashboard"
 .container
-  - if announcement = @announcements.detect{|a| a.placement == "users/dashboard"}
-    .row
-      .col-xs-12
-        = announcement.body.html_safe
+  - if ( announcements = @announcements.select{|a| a.placement == "users/dashboard"} ) && !announcements.blank?
+    - announcements.each do |announcement|
+      .row
+        .col-xs-12
+          = announcement.body.html_safe
   .row
     = render partial: "shared/by_login_header_bootstrap", locals: { user: current_user }
   .row
@@ -121,9 +122,12 @@
       = link_to upload_observations_path, id: "obsbutton", class: "btn btn-default btn-lg nav-justified" do
         %span.glyphicon.glyphicon-plus
         = t(:add_observations)
-      - announcement = @announcements.detect{|a| a.placement == "users/dashboard#sidebar"}
-      - if announcement && !user_seen_announcement?( announcement )
-        = announcement.body.html_safe
+      - announcements = @announcements.select{|a| a.placement == "users/dashboard#sidebar"}
+      - unless announcements.blank?
+        .upstacked
+          - announcements.each do |announcement|
+            - unless user_seen_announcement?( announcement )
+              = announcement.body.html_safe
       #subscriptions
         %h3.page-header
           = t :subscriptions

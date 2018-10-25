@@ -155,7 +155,6 @@ en:
   activity_settings: Activity settings
   adapted_by_name_from_a_work_by_original: "Adapted by %{name} from a work by %{original}"
   add: Add
-  add_a: Add a
   add_a_batch_of_observations: Add a Batch of Observations
   add_a_batch_of_observations_by_csv: Add a Batch of Observations By CSV
   add_a_batch_of_taxa: Add a Batch of Taxa
@@ -169,6 +168,8 @@ en:
   add_a_place_raquo: "Add a Place &raquo;"
   add_a_single_observation: Add a Single Observation.
   add_a_taxon: Add a Taxon
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: |
+    Add a <a target="_blank" href="%{url}">taxon swap</a> if you want to change the name
   add_all_your_matching_obs_of_this_taxon: Add all your matching obs. of this taxon to this project
   add_all_your_matching_obs_to_this_project: Add all your matching obs. to this project
   add_an_assessment: Add an Assessment
@@ -753,9 +754,6 @@ en:
   clear: clear
   clear_color_filters: Clear color filters
   clear_search: Clear search
-  clear_shapes: Clear shapes
-  click_add_an_observation_to_the_lower_right: "Welcome to %{site_name_short}! Click 'Add an observtion' to the lower right. You'll be prompted to sign in/sign up if you haven't already"
-  click_on_map_to_draw_shape_around_place: Click on the map to draw a shape around the place
   click_on_the_map_to: Click on the map to place your observation
   click_the_map: "<strong>Click the map</strong> to add a location."
   click_the_map_to_jump_new_place: Click the map to jump to a new place
@@ -1275,10 +1273,12 @@ en:
   favorites: "Favorites"
   fblocale: en_US
   feature_this_project: "Feature this project?"
+  feature_this_project_: "Feature this project"
   featured: Featured
   featured?: featured?
   featured_projects_from_everywhere: Featured projects from everywhere
   featured_projects_from_place: "Featured projects from %{place}"
+  featuring: Featuring
   feedback: Feedback
   feedback_group: Feedback Group
   feeds: 'Feeds'
@@ -2755,6 +2755,7 @@ en:
     belgium: Belgium
     bosnia_and_herzegovina: Bosnia and Herzegovina
     brazil: Brazil
+    canada: Canada
     central_america: Central America
     china: China
     colombia: Colombia
@@ -3047,6 +3048,7 @@ en:
   remove_curator_role: Remove curator role
   remove_curator_status: Remove curator status
   remove_from_batch: Remove from batch
+  remove_from_featured: Remove from featured
   remove_from_guide: Remove from guide
   remove_from_id_please?: Remove from ID Please?
   remove_from_list: Remove from list
@@ -3270,8 +3272,11 @@ en:
   sizes: Sizes
   skip_to_next_page: "Skip to next page"
   small: small
+  site_admin_tools: Site admin tools
   site_name_place: "%{site_name} place"
   site_observations_export_from_date: "%{site_name} observations export from %{date}"
+  site_site_admin: "%{site_name} Site Admin"
+  site_staff: "%{site_name} Staff"
   site_stats: Site Stats
   site_taxon_page: "%{site_name} taxon page"
   site_year_in_review: "%{site_name} Year In Review %{year}"
@@ -4383,7 +4388,7 @@ en:
       locales_desc: |
         CMD- or SHIFT-click to select multiple. Not selecting any will show the
         announcement for all users regardless of locale. Choosing a language
-        locale without a region will *not* target locales with regions, e.g. if
+        without a region will *not* target locales with regions, e.g. if
         you chose en it will not appear for people who have chosen en-US. If you
         want to target both, choose both. If you want to show an announcement
         for all members of a site, just leave this blank.
