@@ -330,6 +330,10 @@ class ProjectObservation < ActiveRecord::Base
     return true if observation.taxon.blank?
     taxon.id == observation.taxon_id || taxon.ancestor_of?(observation.taxon)
   end
+
+  def not_in_taxon?(taxon = nil)
+    !in_taxon?( taxon )
+  end
   
   def on_list?
     list = project.project_list
