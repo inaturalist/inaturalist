@@ -1,14 +1,25 @@
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { urlForTaxon } from "../../../taxa/shared/util";
 
-const TaxonPageMap = ( { taxon, bounds, latitude, longitude, zoomLevel } ) => {
+const TaxonPageMap = ( { taxon, bounds, latitude, longitude, zoomLevel, config } ) => {
   let loading;
   let taxonMap;
   if ( taxon ) {
     const t = Object.assign( { }, taxon, {
-      to_styled_s: `<i>${taxon.name}</i>`
+      forced_name: ReactDOMServer.renderToString(
+        <SplitTaxon
+          taxon={ taxon }
+          user={ config.currentUser }
+          noParens
+          iconLink
+          url={ urlForTaxon( taxon ) }
+        />
+      )
     } );
     if ( t.preferred_common_name ) {
       t.common_name = {
@@ -61,7 +72,8 @@ TaxonPageMap.propTypes = {
   bounds: PropTypes.object,
   latitude: PropTypes.number,
   longitude: PropTypes.number,
-  zoomLevel: PropTypes.number
+  zoomLevel: PropTypes.number,
+  config: PropTypes.object
 };
 
 export default TaxonPageMap;

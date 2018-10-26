@@ -29,10 +29,11 @@ const SplitTaxon = props => {
     }
     title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {
+      const comName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
       if ( user && user.prefers_scientific_name_first ) {
-        title = `${title} (${_.trim( taxon.preferred_common_name )})`;
+        title = `${title} (${_.trim( comName )})`;
       } else {
-        title = `${taxon.preferred_common_name} (${_.trim( title )})`;
+        title = `${comName} (${_.trim( title )})`;
       }
     }
   }
