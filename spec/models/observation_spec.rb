@@ -1058,6 +1058,17 @@ describe Observation do
           expect( o.taxon ).to be_blank
           expect( o.quality_grade ).to eq Observation::CASUAL
         end
+        it "should be casual if there are conservative disagreements with the observer and the community votes it out of needs_id" do
+          genus = Taxon.make!( rank: Taxon::GENUS )
+          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+          o = make_research_grade_candidate_observation( prefers_community_taxon: false, taxon: species )
+          2.times{ Identification.make!( observation: o, taxon: genus ) }
+          o.reload
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.reload
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
       end
 
       describe "when observer opts out of CID for a single observation" do
