@@ -16,6 +16,7 @@
 # Author: Hercule
 # Author: Hydros
 # Author: JamesP
+# Author: Jfn00
 # Author: Jujurenoult
 # Author: Ktmartins
 # Author: Linedwell
@@ -146,8 +147,9 @@ fr:
     créé automatiquement à partir de l’attribut du nom scientifique de ce taxon. \nQuand
     vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici
     (noms communs, noms scientifiques obsolètes, etc.)."
-  a_few_points_to_make_things_clear: 'Quelques éclaircissements :'
-  a_flag_for_x: un drapeau pour %{x}
+  a_few_points_to_make_things_clear: Quelques précisions pour rendre les choses plus
+    claires
+  a_flag_for_x: un repère pour %{x}
   a_greasemonkey_script: un script Greasemonkey
   a_member_of: Un membre de
   a_member_of_taxon_html: un membre de %{taxon}
@@ -168,7 +170,7 @@ fr:
   about_muting: À propos de réduire au silence
   about_names: À propos des noms
   about_places: À propos des lieux
-  about_taxon_changes: Sur les modifications de taxon
+  about_taxon_changes: À propos des changements de taxon
   about_the_cc_licenses: À propos des licences Creative Commons
   about_the_taxobox_raquo: À propos de taxobox &raquo;
   about_these_licenses: À propos de ces licences
@@ -198,24 +200,25 @@ fr:
   active_users: Utilisateurs actifs
   activity: Activité
   activity_settings: Paramètres d’activité
-  adapted_by_name_from_a_work_by_original: Adaptation du travail de %{original} par
-    %{name}
+  adapted_by_name_from_a_work_by_original: Adapté à partir d'un travail de %{original}
+    par %{name}
   add: Ajouter
-  add_a: Ajouter un
   add_a_batch_of_observations: Ajouter un lot d’observations
   add_a_batch_of_observations_by_csv: Ajouter un lot d’observations au format CSV
   add_a_batch_of_taxa: Ajouter un lot de taxons
-  add_a_comment: Ajouter un Commentaire
-  add_a_field: Ajouter un Champ
-  add_a_flag: Ajouter un Drapeau
+  add_a_comment: Ajouter un commentaire
+  add_a_field: Ajouter un champ
+  add_a_flag: Ajouter un repère
   add_a_link_raquo: Ajouter un Lien &raquo;
-  add_a_name: Ajouter un Nom
+  add_a_name: Ajoutez un nom
   add_a_new_change_group: Ajouter un nouveau groupe de modifications
-  add_a_new_observation_to_id_please!: Ajouter une nouvelle observation à Identifier,
-    SVP !
+  add_a_new_observation_to_id_please!: Veuillez ajouter une nouvelle observation à
+    l'ID !
   add_a_place_raquo: Ajouter un lieu &raquo;
   add_a_single_observation: Ajouter une observation unique.
   add_a_taxon: Ajouter un taxon
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Ajouter une <a target="_blank"
+    href="%{url}">permutation de taxon</a> si vous voulez changer le nom
   add_all_your_matching_obs_of_this_taxon: Ajouter à ce projet toutes vos observations
     correspondant à ce taxon
   add_all_your_matching_obs_to_this_project: Ajouter à ce projet toutes vos observations
@@ -939,12 +942,6 @@ fr:
   clear: effacer
   clear_color_filters: Effacer les filtres de couleur
   clear_search: Effacer la recherche
-  clear_shapes: Effacer les formes
-  click_add_an_observation_to_the_lower_right: -| Bienvenue sur %{site_name_short}
-     ! Cliquez sur 'Ajoutez une observation' en bas à droite. On vous demandera d’ouvrir
-    une session si ce n’est déjà fait
-  click_on_map_to_draw_shape_around_place: Cliquez sur la carte pour tracer une forme
-    autour du lieu
   click_on_the_map_to: Cliquez sur la carte pour placer votre observation
   click_the_map: <strong>Cliquez sur la carte</strong> pour ajouter un lieu.
   click_the_map_to_jump_new_place: Cliquez sur la carte pour aller à un nouveau lieu
@@ -1511,10 +1508,12 @@ fr:
   favorites: Favoris
   fblocale: aux_É.-U.
   feature_this_project: Mettre en valeur ce projet?
+  feature_this_project_: Mettre en valeur ce projet
   featured: Mis en valeur
   featured?: mis en valeur?
   featured_projects_from_everywhere: Projets mis en valeur de partout
   featured_projects_from_place: Projets mis en valeur à partir de %{place}
+  featuring: Mis en valeur
   feedback: Commentaires
   feedback_group: Groupe de commentaires
   feeds: Flux
@@ -3199,6 +3198,7 @@ fr:
     belgium: Belgique
     bosnia_and_herzegovina: Bosnie-Herzégovine
     brazil: Brésil
+    canada: Canada
     central_america: Amérique centrale
     china: Chine
     colombia: Colombie
@@ -3519,6 +3519,7 @@ fr:
   remove_curator_role: Supprimer le rôle du responsable de l’organisation
   remove_curator_status: Supprimer le statut du responsable de l’organisation
   remove_from_batch: Supprimer du lot
+  remove_from_featured: Supprimer des fonctionalités
   remove_from_guide: Supprimer du guide
   remove_from_id_please?: Supprimer d’Identification, SVP?
   remove_from_list: Supprimer de la liste
@@ -3761,9 +3762,12 @@ fr:
   sizes: Tailles
   skip_to_next_page: Passer à la page suivante
   small: petit
+  site_admin_tools: Outils de l'administrateur de site
   site_name_place: lieu d’%{site_name}
   site_observations_export_from_date: observations d’%{site_name} exportées depuis
     le %{date}
+  site_site_admin: Administrateur de site de %{site_name}
+  site_staff: Personnel de %{site_name}
   site_stats: Statistiques du site
   site_taxon_page: Page de taxon d’%{site_name}
   site_year_in_review: Année %{site_name} revue en %{year}
@@ -5092,13 +5096,10 @@ fr:
   views:
     views: Vues
     announcements:
-      locales_desc: "CMD- ou SHIFT-clic pour une sélection multiple. Ne rien sélectionner
-        affichera \nl’avertissement pour tous les utilisateurs quelle que soit leur
-        localisation. Choisir une langue\nsans région ne ciblera *pas* les localisations
-        avec région, par ex. si\nvous choisissez en, elle n’apparaîtra pas pour les
-        personnes qui ont choisi en-US. Si vous\nvoulez cibler l’ensemble, choisissez
-        les deux. Si vous voulez afficher un avertissement\npour tous les membres
-        du site, laissez-le simplement vide."
+      locales_desc: |-
+        CMD- ou SHIFT-clic pour une sélection multiple. Ne rien sélectionner affichera l’avertissement pour tous les utilisateurs quelle que soit leur localisation. Choisir une langue
+        sans région ne ciblera *pas* les localisations avec région, par exemple si
+        vous choisissez l'anglais en, il n’apparaîtra pas pour les personnes qui ont choisi l'anglais en-US. Si vous voulez cibler les deux, choisissez les deux. Si vous voulez afficher un avertissement pour tous les membres du site, laissez-le simplement vide.
     custom_projects:
       edit:
         custom_project_fields_warning: |-

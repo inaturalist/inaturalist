@@ -74,7 +74,6 @@ ko:
   activity_settings: 활동 설정
   adapted_by_name_from_a_work_by_original: '%{original}의 연구에서 %{name}이(가) 적용'
   add: 추가
-  add_a: 추가
   add_a_batch_of_observations: 관찰을 여러 개 추가하기
   add_a_batch_of_observations_by_csv: CSV를 이용해 관찰을 여러 개 추가하기
   add_a_batch_of_taxa: 분류군을 여러 개 추가하기
@@ -88,6 +87,8 @@ ko:
   add_a_place_raquo: 장소 추가하기 &raquo;
   add_a_single_observation: 관찰 하나를 추가합니다.
   add_a_taxon: 분류군 추가하기
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: 이름을 바꾸고 싶다면 <a target="_blank"
+    href="%{url}">taxon swap</a>을 추가하십시오
   add_all_your_matching_obs_of_this_taxon: 이 분류군과 일치하는 내 관찰을 모두 이 프로젝트에 추가하기
   add_all_your_matching_obs_to_this_project: 일치하는 내 관찰을 모두 이 프로젝트에 추가하기
   add_an_assessment: 평가 추가하기
@@ -582,10 +583,6 @@ ko:
   clear: 지우기
   clear_color_filters: 컬러 필터 지우기
   clear_search: 검색 지우기
-  clear_shapes: 도형 지우기
-  click_add_an_observation_to_the_lower_right: '%{site_name_short}에 오신 것을 환영합니다! 오른쪽
-    아래의 ''관찰 추가''를 클릭하세요. 이미 하지 않았다면 로그인/회원가입을 확인할 것입니다.'
-  click_on_map_to_draw_shape_around_place: 지도를 클릭하여 장소 주위에 도형을 그리세요.
   click_on_the_map_to: 지도를 클릭하여 당신의 관찰을 놓으세요
   click_the_map: <strong>지도를 클릭하여</strong> 장소를 추가하세요.
   click_the_map_to_jump_new_place: 지도를 클릭하여 새로운 장소로 이동하세요
@@ -1922,6 +1919,7 @@ ko:
     austria: 오스트리아
     belgium: 벨기에
     brazil: 브라질
+    canada: 캐나다
     central_america: 중앙 아메리카
     china: 중국
     colombia: 콜롬비아
@@ -2134,6 +2132,9 @@ ko:
   similar_species: 비슷한 종
   sizes: 크기
   small: 작게
+  site_admin_tools: 사이트 관리자 도구
+  site_site_admin: '%{site_name} 사이트 관리자'
+  site_staff: '%{site_name} 직원'
   sorry_google_isnt_responding_at_the_moment: 죄송합니다. 구글이 지금 응답하지 않습니다.
   sort_by: 정렬 기준
   sounds:

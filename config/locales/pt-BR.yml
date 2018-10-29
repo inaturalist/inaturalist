@@ -171,7 +171,6 @@ pt-BR:
   activity_settings: Configurações de atividade
   adapted_by_name_from_a_work_by_original: Adaptado por %{name} from a work by %{original}
   add: Adicionar
-  add_a: Adicionar uma
   add_a_batch_of_observations: Adicionar um grupo de observações
   add_a_batch_of_observations_by_csv: Adicionar um grupo de observações via CSV
   add_a_batch_of_taxa: Adicionar um grupo de táxons
@@ -186,6 +185,8 @@ pt-BR:
   add_a_place_raquo: Adicionar um local &raquo;
   add_a_single_observation: Adicione uma única observação.
   add_a_taxon: Adicionar um táxon
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Adicione um <a target="_blank"
+    href="%{url}">troca de táxon</a> se você quiser mudar o nome
   add_all_your_matching_obs_of_this_taxon: Adicionar todas as suas observações corretas
     deste táxon para este projeto
   add_all_your_matching_obs_to_this_project: Adicionar todas as suas observações que
@@ -883,12 +884,6 @@ pt-BR:
   clear: limpar
   clear_color_filters: Limpe os filtros de cor
   clear_search: Limpe a pesquisa
-  clear_shapes: Limpe as formas
-  click_add_an_observation_to_the_lower_right: Bem vindo a %{site_name_short}! Clique
-    aqui para'Adicionar uma observação' no canto inferior direito. Você será avisado
-    para se logar ou se registrar caso ainda não tenha se cadastrado.
-  click_on_map_to_draw_shape_around_place: Clique no mapa para desenhar uma forma
-    ao redor do lugar
   click_on_the_map_to: Clique no mapa para posicionar a sua observação
   click_the_map: <strong>Clique no mapa</strong> para adicionar uma localização.
   click_the_map_to_jump_new_place: Clique no mapa para ir para um novo lugar
@@ -1438,10 +1433,12 @@ pt-BR:
   favorites: Favoritos
   fblocale: inglês_US
   feature_this_project: Destacar este projeto?
+  feature_this_project_: Apresentar este projeto
   featured: Destacado
   featured?: destacado?
   featured_projects_from_everywhere: Projetos em destaque de todos os lugares
   featured_projects_from_place: Projetos em destaque de %{place}
+  featuring: Apresentando
   feedback: Feedback
   feedback_group: Grupo de Feedback
   feeds: Feeds
@@ -3087,6 +3084,7 @@ pt-BR:
     belgium: Bélgica
     bosnia_and_herzegovina: Bosnia e Herzegovina
     brazil: Brasil
+    canada: Canadá
     central_america: América Central
     china: China
     colombia: Colômbia
@@ -3404,6 +3402,7 @@ pt-BR:
   remove_curator_role: Remova a função de coordenador
   remove_curator_status: Remova o status de coordenador
   remove_from_batch: ' Remova do grupo'
+  remove_from_featured: Remover do destaque
   remove_from_guide: Remover da guia
   remove_from_id_please?: Remova de Identifique Por favor?
   remove_from_list: Remova da lista
@@ -3645,8 +3644,11 @@ pt-BR:
   sizes: Tamanhos
   skip_to_next_page: Ir para a próxima página
   small: pequeno
+  site_admin_tools: Ferramentas de administração do site
   site_name_place: '%{site_name} local'
   site_observations_export_from_date: '%{site_name} observações exportadas de %{date}'
+  site_site_admin: Administrador do site %{site_name}
+  site_staff: Equipe %{site_name}
   site_stats: Estatísticas do site
   site_taxon_page: '%{site_name} página do táxon'
   so_meta!: Metadados!
@@ -4829,6 +4831,14 @@ pt-BR:
   verifiable: verificável
   views:
     views: Visualizações
+    announcements:
+      locales_desc: |-
+        Clique em CMD ou SHIFT para selecionar vários. Não selecionar nenhum mostrará o
+        anúncio para todos os usuários, independentemente da localidade. Escolhendo um idioma
+        sem uma região, *não* segmentará localidades com regiões, por exemplo, E se
+        você escolheu en ele não aparecerá para as pessoas que escolheram en-US. Se vocês
+        quer segmentar ambos, escolha ambos. Se você quiser mostrar um anúncio
+        para todos os membros de um site, apenas deixe em branco.
     custom_projects:
       edit:
         custom_project_fields_warning: 'Por favor tenha cuidado: adicionar Javascript

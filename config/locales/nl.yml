@@ -184,7 +184,6 @@ nl:
   adapted_by_name_from_a_work_by_original: Aangepast door %{name} van een werk van
     %{original}
   add: Toevoegen
-  add_a: 'Toevoegen:'
   add_a_batch_of_observations: Verzameling observaties toevoegen
   add_a_batch_of_observations_by_csv: Verzameling observaties uit CSV toevoegen
   add_a_batch_of_taxa: Verzameling taxa toevoegen
@@ -890,12 +889,6 @@ nl:
   clear: wissen
   clear_color_filters: Verwijder kleur filters
   clear_search: Zoekopdracht wissen
-  clear_shapes: Duidelijke vormen
-  click_add_an_observation_to_the_lower_right: Welkom bij  %{site_name_short}! Klik
-    op 'Voeg een waarneming toe' rechtsonder. Je krijg dan de vraag om in te loggen
-    als je dat nog niet bent
-  click_on_map_to_draw_shape_around_place: Klik op de kaart om een vorm rond de plaats
-    te tekenen
   click_on_the_map_to: Klik op de kaart om je waarneming te plaatsen
   click_the_map: <strong>Klik op de kaart</strong> om een locatie toe te voegen.
   click_the_map_to_jump_new_place: Klik op de kaart om naar een nieuwe plaats te gaan
@@ -2764,6 +2757,7 @@ nl:
       state: staat
       Street: Straat
       street: straat
+      Street_Segment: Stuk straat
       Time_Zone: Tijdzone
       time_zone: Tijdzone
       Town: Stad
@@ -3429,6 +3423,9 @@ nl:
   the_world_is_full_of_interesting_places: |-
     De wereld zit vol met interessante plaatsen, elk gevuld met merkwaardige en
     prachtige levensvormen. Soms aan de andere kant van de wereld, soms gewoon in de straat! %{site_name} Surf langs plaatsen en ontdek het leven van onze planeet. Begin met ontdekken!
+  the_world_is_full_of_interesting_places_short: De wereld zit vol met interessante
+    plaatsen, elk met de meest bizarre en prachtige levensvormen. Sommige zijn aan
+    de andere kant van de wereld, terwijl anderen gewoon bij je in de straat zijn!
   then_keybord_sequence: dan
   there_is_no_wikipedia_page_matching: Er is geen overeenkomstige Wikipedia-pagina
   there_was_a_problem_saving_your_identification: 'Er was een probleem bij het opslaan
@@ -4097,6 +4094,8 @@ nl:
         adding_new_places: nieuwe plaatsen toevoegen
         confirming_identifications: identificaties bevestigen door ID's aan waarnemingen
           toe te voegen
+        filling_out_checklists: Maak soortenlijsten aan voor plaatsen die je goed
+          kent.
         you_can_help_out_by: Je kunt helpen onze informatie over plaatsen te verbeteren
           door
     projects:
