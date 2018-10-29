@@ -46,7 +46,15 @@
         padding: 3px 12px;
         border-top: 1px solid #eee;
         display: flex;
+        -webkit-box-align: start;
+        -webkit-align-items: flex-start;
+        -moz-box-align: start;
+        -ms-flex-align: start;
         align-items: flex-start;
+        -webkit-box-pack: justify;
+        -webkit-justify-content: space-between;
+        -moz-box-pack: justify;
+        -ms-flex-pack: justify;
         justify-content: space-between;
         &.current {
           background-color: #FAFAFA;
