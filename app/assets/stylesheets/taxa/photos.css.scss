@@ -30,10 +30,19 @@
 }
 
 #controls {
+  display: flex;
   margin-bottom: 20px;
 
   .btn-group.open .dropdown-toggle {
     box-shadow: none;
+  }
+
+  #layout-control {
+    min-width: 80px;
+  }
+
+  #filters {
+    line-height: 30px;
   }
 
   .control-group {

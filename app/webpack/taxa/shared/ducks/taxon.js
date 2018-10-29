@@ -198,10 +198,14 @@ export function fetchTerms( ) {
     }
     return inatjs.observations.popularFieldValues( params ).then( r => {
       const relevantResults = _.filter( r.results, f => (
+        !f.controlled_attribute.taxon_ids
+        ||
         _.intersection(
           s.taxon.taxon.ancestor_ids,
           f.controlled_attribute.taxon_ids
         ).length > 0
+        ||
+        f.controlled_attribute.taxon_ids.length === 0
       ) );
       dispatch( {
         type: SET_FIELD_VALUES,
