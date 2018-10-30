@@ -188,7 +188,7 @@ class Observation < ActiveRecord::Base
         sounds: sounds.map(&:as_indexed_json),
         identifier_user_ids: identifications.map(&:user_id),
         non_owner_identifier_user_ids: identifications.map(&:user_id) - [user_id],
-        identification_categories: identifications.map(&:category),
+        identification_categories: identifications.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
         comments: comments.map(&:as_indexed_json),
         comments_count: comments.size,
@@ -268,7 +268,7 @@ class Observation < ActiveRecord::Base
 
       taxon_establishment_places = { }
       taxon_ids = observations.map(&:taxon_id).compact.uniq
-      uniq_obs_place_ids = observations.map(&:indexed_private_place_ids).flatten.compact.uniq.join(',')
+      uniq_obs_place_ids = observations.map{ |o|o.indexed_private_places.map(&:path_ids) }.flatten.compact.uniq.join(',')
       return if uniq_obs_place_ids.empty? || taxon_ids.empty?
       Observation.connection.execute("
         SELECT taxon_id, establishment_means, string_agg(place_id::text,',') as place_ids
@@ -280,7 +280,7 @@ class Observation < ActiveRecord::Base
         taxon_establishment_places[r["taxon_id"]] ||= {}
         taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] = r["place_ids"].split( "," )
       end
-      place_ids = taxon_establishment_places.values.map(&:values).flatten.uniq
+      place_ids = taxon_establishment_places.values.map(&:values).flatten.uniq.map(&:to_i)
       return if place_ids.empty?
       places = {}
       Place.connection.execute("
@@ -304,13 +304,15 @@ class Observation < ActiveRecord::Base
             taxon_places[taxon_id][place_id][means] = true
           end
           if means == "endemic"
-            taxon_endemic_place_ids[taxon_id] += place_ids.map(&:to_i)
+            taxon_endemic_place_ids[taxon_id] += place_ids
           end
         end
       end
       observations.each do |o|
         if o.taxon && taxon_places[o.taxon.id.to_s]
-          closest = taxon_places[o.taxon.id.to_s].values.sort_by{ |p| p[:bbox_area] || 0 }.first
+          closest = taxon_places[o.taxon.id.to_s].
+            slice(*o.indexed_private_places.map(&:path_ids).flatten.compact.uniq.map(&:to_s)).
+            values.sort_by{ |p| p[:bbox_area] || 0 }.first
           o.taxon_introduced = !!(closest &&
             closest.values_at(*ListedTaxon::INTRODUCED_EQUIVALENTS).compact.any?)
           o.taxon_native = !!(closest &&
