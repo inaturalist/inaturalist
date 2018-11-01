@@ -30,6 +30,36 @@ describe PostsController, "spam" do
         get :index, login: spammer_content.user.login, format: :atom
       }.not_to raise_error
     end
+
+    it "returns posts new_than other posts" do
+      p1 = Post.make!(parent: Site.default)
+      p2 = Post.make!(parent: Site.default)
+      p1.update_attributes(published_at: Time.now)
+      p2.update_attributes(published_at: 1.minute.ago)
+      get :index, format: :json
+      expect( JSON.parse(response.body).length ).to eq( 2 )
+      get :index, format: :json, newer_than: p2.id
+      body = JSON.parse(response.body)
+      expect( JSON.parse(response.body).length ).to eq( 1 )
+      expect( body[0]["id"] ).to eq( p1.id )
+      get :index, format: :json, newer_than: p1.id
+      expect( JSON.parse(response.body).length ).to eq( 0 )
+    end
+
+    it "returns posts older_than other posts" do
+      p1 = Post.make!(parent: Site.default)
+      p2 = Post.make!(parent: Site.default)
+      p1.update_attributes(published_at: Time.now)
+      p2.update_attributes(published_at: 1.minute.ago)
+      get :index, format: :json
+      expect( JSON.parse(response.body).length ).to eq( 2 )
+      get :index, format: :json, older_than: p1.id
+      body = JSON.parse(response.body)
+      expect( JSON.parse(response.body).length ).to eq( 1 )
+      expect( body[0]["id"] ).to eq( p2.id )
+      get :index, format: :json, older_than: p2.id
+      expect( JSON.parse(response.body).length ).to eq( 0 )
+    end
   end
 end
 
