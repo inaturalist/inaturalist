@@ -133,7 +133,7 @@ class LocationChooser extends SelectionBasedComponent {
           <LocationChooserMap
             { ...this.props }
             containerElement={ <div className="map" /> }
-            mapElement={ <div style={{ height: "100%" }} /> }
+            mapElement={ <div className="map-inner" /> }
           />
           <div className="form">
             <div className="form-group">
