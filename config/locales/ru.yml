@@ -780,35 +780,35 @@ ru:
     Это наиболее приемлемый вариант предлагаемых лицензий. Рекомендуется для максимального
     распространения и использования лицензированных материалов.
   cc_0_name: Нет авторских прав (СС0)
-  cc_attribution_license: лицензии Creative Commons Attribution
+  cc_attribution_license: Лицензия Creative Commons "С указанием авторства"
   cc_by_description: Эта лицензия позволяет другим распространять, ремикшировать,
     настраивать и основываться на вашей работе, даже на коммерческой основе, если
     они признают вас как первоначального создателя.
-  cc_by_name: Атрибуция
+  cc_by_name: С указанием авторства
   cc_by_nc_description: Эта лицензия позволяет другим ремикшировать, настраивать и
     строить свою работу некоммерчески, и хотя их новые работы также должны признавать
     вас и быть некоммерческими, они не должны лицензировать свои производные работы
     на тех же условиях.
-  cc_by_nc_name: Attribution-NonCommercial
+  cc_by_nc_name: С указанием авторства-Некоммерческая
   cc_by_nc_nd_description: Эта лицензия является наиболее ограниченной из шести основных
     лицензий, позволяя другим только загружать ваши работы и делиться ими с другими
     при условии, что они выражают вам благодарность, но ваши работы не могут каким-либо
     образом изменены или использованы на коммерческой основе.
-  cc_by_nc_nd_name: Attribution-NonCommercial-NoDerivs
+  cc_by_nc_nd_name: С указанием авторства-Некоммерческая-Без производных
   cc_by_nc_sa_description: Эта лицензия позволяет другим делать ремиксы, и использовать
     вашу работу за основу для некоммерческих проектов, если они ссылаются на вас и
     назначают соответствующую лицензию своему готовому продукту.
-  cc_by_nc_sa_name: Attribution-NonCommercial-ShareAlike
+  cc_by_nc_sa_name: С указанием авторства-Некоммерческая-С сохранением условий
   cc_by_nd_description: Эта лицензия допускает распространение, коммерческое и не
     коммерческое, с условием что исходный продукт остается неизменным, с ссылкой на
     вас.
-  cc_by_nd_name: Attribution-NoDerivs
+  cc_by_nd_name: С указанием авторства-Без производных
   cc_by_sa_description: Эта лицензия позволяет другим делать ремиксы, и использовать
     вашу работу за основу даже для коммерческих проектов, если они ссылаются на вас
     и назначают соответствующую лицензию своему готовому продукту. Все новые работы
     основанные на вашей будут иметь такие же лицензии, таким образом для них будет
     разрешено коммерческое использование.
-  cc_by_sa_name: Attribution-ShareAlike
+  cc_by_sa_name: С указанием авторства-С сохранением условий
   cc_used_under_a: Creative Commons, используется по
   change: Изменить
   change_admin: Изменить администрирование
@@ -890,9 +890,9 @@ ru:
     идентифицировать.
   check_out_your_life_list: Проверьте свой список жизни
   check_this_box_if: "Установите этот флажок, если вы хотите использовать \n<a href='http://creativecommons.org/licenses/by-nc/3.0/'
-    target='_blank'>Creative Commons Attribution-NonCommercial license</a>\nдля ваших
-    фото. Позже вы можете выбрать другую лицензию или лицензию, но это лучшая лицензия
-    для совместного использования с исследователями."
+    target='_blank'>лицензию Creative Commons С указанием авторства-Некоммерческая</a>\nдля
+    ваших фото. Позже вы можете выбрать другую лицензию или лицензию, но это лучшая
+    лицензия для совместного использования с исследователями."
   checklist: Контрольный список
   checklists: Чеклисты
   checklist_places: Перечень мест с контрольными списками
@@ -1082,14 +1082,17 @@ ru:
     public_domain: общественное достояние
     copyright: авторские права
     no_copyright: нет авторских прав (СС0)
-    attribution_noncommercial_sharealike_license: Attribution-NonCommercial-ShareAlike
-      License
-    attribution_noncommercial_license: Attribution-NonCommercial License
-    attribution_noncommercial_noderivs_license: Attribution-NonCommercial-NoDerivs
-      License
-    attribution_license: Attribution License
-    attribution_sharealike_license: Attribution-ShareAlike License
-    attribution_noderivs_license: Attribution-NoDerivs License
+    attribution_noncommercial_sharealike_license: Лицензия "С указанием авторства-Некоммерческая-С
+      сохранением условий"
+    attribution_noncommercial_license: Лицензия "С указанием авторства-Некоммерческая"
+    attribution_noncommercial_noderivs_license: |-
+      Attribution-NonCommercial-NoDerivs License
+      Лицензия "С указанием авторства-Некоммерческая-Без производных"
+    attribution_license: Лицензия "С указанием авторства"
+    attribution_sharealike_license: |-
+      Attribution-ShareAlike License
+      Лицензия "С указанием авторства-С сохранением условий"
+    attribution_noderivs_license: Лицензия "С указанием авторства-Без производных"
     gnu_free_documentation_license: GNU Free Documentation License
   copyright_holder: Владелец авторских прав
   copyright_info: Информация об авторских правах
@@ -4501,8 +4504,8 @@ ru:
   users_year_on_site: Год %{user}'s на %{site} %{year}
   using_a_license: с использованием лицензии
   using_cc_license_makes_easier_use_your_data: Использование лицензии <strong>Creative
-    Commons Attribution</strong> облегчает исследователям использование данных. Если
-    захотите, вы можете выбрать другую лицензию после регистрации.
+    Commons "С указанием авторства"</strong> облегчает исследователям использование
+    данных. Если захотите, вы можете выбрать другую лицензию после регистрации.
   valid_interrogation: Действительный?
   valid_options_are: Допустимые параметры
   value: Значение

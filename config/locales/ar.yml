@@ -191,6 +191,8 @@ ar:
   add_a_place_raquo: أضف مكانا &raquo;
   add_a_single_observation: أضف ملاحظة واحدة
   add_a_taxon: إضافة أصنوفة
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: أضف a <a target="_blank" href="%{url}">تبديل
+    الأصنوفة</a> إذا كنت تريد تغيير الاسم
   add_all_your_matching_obs_of_this_taxon: إضافة كل مطابقتك للملاحظات، من هذه الأصنوفة
     لهذا المشروع
   add_all_your_matching_obs_to_this_project: إضافة كل مطابقتك للملاحظات لهذا المشروع
@@ -1375,10 +1377,12 @@ ar:
   favorites: المفضلة
   fblocale: ar
   feature_this_project: تمييز هذا المشروع؟
+  feature_this_project_: تمييز هذا المشروع
   featured: مميز
   featured?: مميز؟
   featured_projects_from_everywhere: مشاريع مميزة من كل مكان
   featured_projects_from_place: مشاريع مميزة من %{place}
+  featuring: تمييز
   feedback: ردود الفعل
   feedback_group: مجموعة ردود الفعل
   feeds: التلقيمات
@@ -2969,6 +2973,7 @@ ar:
     belgium: بلجيكا
     bosnia_and_herzegovina: البوسنة والهرسك
     brazil: البرازيل
+    canada: كندا
     central_america: أمريكا الوسطى
     china: الصين
     colombia: كولومبيا
@@ -3277,6 +3282,7 @@ ar:
   remove_curator_role: إزالة دور الأمين
   remove_curator_status: إزالة حالة الأمين
   remove_from_batch: إزالة من دفعة
+  remove_from_featured: إزالة من المميزة
   remove_from_guide: إزالة من دليل
   remove_from_id_please?: إزالة من معرف من فضلك؟
   remove_from_list: إزالة من قائمة
@@ -3507,8 +3513,11 @@ ar:
   sizes: الأحجام
   skip_to_next_page: انتقل إلى الصفحة التالية
   small: صغير
+  site_admin_tools: أدوات إداري الموقع
   site_name_place: مكان %{site_name}
   site_observations_export_from_date: تصدير ملاحظات %{site_name} من %{date}
+  site_site_admin: إداري موقع %{site_name}
+  site_staff: طاقم %{site_name}
   site_stats: إحصائيات الموقع
   site_taxon_page: صفحة أصنوفة %{site_name}
   site_year_in_review: '%{site_name} سنة قيد المراجعة %{year}'
@@ -4723,9 +4732,9 @@ ar:
     views: العروض
     announcements:
       locales_desc: "موجه الأوامر أو انقر فوق SHIFT لتحديد عدة، عدم تحديد أي منهم
-        سيعرض \nالإعلان لجميع المستخدمين بغض النظر عن اللغة، اختيار لغة \nلغة بدون
-        منطقة *لن* يستهدف اللغات مع المناطق، على سبيل المثال إذا \nاخترت en فإنه لن
-        يظهر للأشخاص الذين اختاروا en-US، إذا كنت \nتريد استهداف كليهما، فاختر كليهما،
+        سيعرض \nالإعلان لجميع المستخدمين بغض النظر عن اللغة، اختيار لغة \nبدون منطقة
+        *لن* يستهدف اللغات مع المناطق، على سبيل المثال إذا \nاخترت en فإنه لن يظهر
+        للأشخاص الذين اختاروا en-US، إذا كنت \nتريد استهداف كليهما، فاختر كليهما،
         إذا كنت تريد عرض إعلان \nلجميع أعضاء الموقع، ما عليك سوى ترك هذا الحقل فارغا."
     custom_projects:
       edit:

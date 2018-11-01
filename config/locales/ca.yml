@@ -187,6 +187,8 @@ ca:
   add_a_place_raquo: Afegiu un lloc »
   add_a_single_observation: Afegiu una única observació
   add_a_taxon: Afegiu un tàxon
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Afegiu un <a target="_blank"
+    href="%{url}">canvi de tàxon</a> si voleu canviar-li el nom
   add_all_your_matching_obs_of_this_taxon: Afegiu totes les vostres observacions d'aquest
     tàxon a aquest projecte
   add_all_your_matching_obs_to_this_project: Afegiu totes les teves observacions coincidents
@@ -282,6 +284,8 @@ ca:
   add_taxon_range: Afegiu un rang de tàxons
   add_taxonomic_tags_to: Afegiu etiquetes taxonòmiques a fotos seleccionades de Flickr
     »
+  add_taxonomic_tags_to_the_flickr_photos: Afegiu etiquetes taxonòmiques a les fotos
+    de Flickr associades amb les observacions seleccionades.
   add_to: Afegiu a
   add_to_a_scheme: Afegiu a un esquema
   add_to_a_project: Afegiu al projecte
@@ -319,6 +323,7 @@ ca:
   admin: administrador
   admin_s: Administrador/s
   admin_any_projects: administres cap projecte
+  admin_only: Només Administrador
   admin_tools: Eines administratives
   agree: d'acord
   agree_: D'acord
@@ -478,6 +483,7 @@ ca:
   android: Android
   animals: Animals
   animated_observations_map: Mapa d'Observacions Animat
+  annotation: Anotació
   annotations: Anotacions
   announcement_was_successfully_created: L'anunci s'ha creat amb èxit.
   announcement_was_successfully_updated: L'anunci s'ha creat amb èxit.
@@ -577,7 +583,7 @@ ca:
     mai no us demanarem la contrasenya.
   assessment: valoració
   assessment_has_benn_completed: S'ha completat la valoració
-  assessment_sections: Seccions de valoració
+  assessment_sections: Seccions de Valoració
   assessment_was_deleted: La valoració s'ha eliminat.
   assessment_was_successfully_created: La valoració s'ha actualitzat amb èxit.
   assessment_was_successfully_updated: La valoració s'ha actualitzat amb èxit.
@@ -630,6 +636,7 @@ ca:
   back_to_x_history: Torna a la història %{x}
   back_to_x_journal: Torna al diari de %{user}
   back_to_x_blog: Tornar al blog de %{x}
+  back_to_your_dashboard: Tornar al vostre panell
   back_to_x_observations: Torna a les observacions de %{user}
   back_to_your_lists: Torneu a les vostres llistes
   back_to_your_journal: Torneu al vostre diari
@@ -706,7 +713,7 @@ ca:
     no existeix
   cant_merge_a_taxon_with_itself: No podeu combinar aquest tàxon amb ell mateix.
   captive: Captiu
-  captive_cultivated: En captivitat / cultivat
+  captive_cultivated: En captivitat / Cultivat
   card: Targeta
   case_plural: s
   casual: casual
@@ -939,6 +946,7 @@ ca:
   comparing_list_to_list: Comparant %{list1} amb %{list2}
   comparing_versions_x_and_y: Comparant les versions de %{x} i %{y}
   comparing_observations_from: Comparació de les observacions de %{user} el %{dates}
+  complete_sets: Conjunts Complets
   compiled_by_name: Elaborat per %{name}
   completed: Completat
   completed_at: Completat a
@@ -1070,8 +1078,8 @@ ca:
   creative_commons_flickr_tagged: Fotos de Creative Commons etiquetades a Flickr
   creative_commons_unless_otherwise_noted: Creative Commons, llevat que s'indiqui
     el contrari.
-  critically_endangered: en perill crític
-  critically_imperiled: críticament en perill
+  critically_endangered: En perill crític
+  critically_imperiled: Críticament en Perill
   css_description: Això s'inclourà després de tots els altres CSS de la pàgina.
   csv: CSV
   csv_file: Arxiu CSV
@@ -1104,7 +1112,7 @@ ca:
   customize_location: Personalitzar la ubicació
   darr_apply_darr: ↓ Aplica ↓
   dashboard: Tauler
-  data_deficient: dades insuficients
+  data_deficient: Dades Insuficients
   data_quality: Qualitat de les dades
   data_quality_assessment: Avaluació de la qualitat de dades
   data_quality_assessment_: Avaluació de la qualitat de les dades
@@ -1285,9 +1293,9 @@ ca:
   edit_taxon_change: Modifica els canvis en el tàxon
   edit_taxon_link: Modifica l'enllaç del tàxon
   edit_taxon_range: Modifica el rang del tàxon
-  edit_the_observation: Modifica l'observació
+  edit_the_observation: Modifica l'Observació
   edit_this_link: Modifica aquest enllaç
-  edit_your_account: modifiqueu el vostre compte
+  edit_your_account: Modifiqueu el vostre compte
   edit_your_account_and_profile_html: Modifiqueu el vostre compte i perfil
   edit_your_default_settings: Editeu la vostra configuració predeterminada
   edit_your_global_project_settings: Editeu la vostra configuració global del projecte
@@ -1343,20 +1351,20 @@ ca:
   encompassing_places: Llocs abastats
   end: Final
   end_date_time: Data/Hora final
-  endangered: en perill
-  endemic: endèmica
+  endangered: En perill
+  endemic: Endèmica
   endemic_to_x: Endèmica de %{x}
   eol: EOL
   eol_collection_url: URL de la col·lecció EOL
   error_updating_photo: 'Error pujant la foto: %{photo_errors}'
   establishment:
     establishment: Establiment
-    native: nativa
-    endemic: endèmica
-    introduced: introduïda
-    naturalised: naturalitzada
-    invasive: invasiva
-    managed: captiva/conreada
+    native: Nativa
+    endemic: Endèmica
+    introduced: Introduïda
+    naturalised: Naturalitzada
+    invasive: Invasora
+    managed: Gestionada
   establishment_means: Forma d'establir-se.
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: nadiu, no succeeix a cap altre lloc
@@ -1380,12 +1388,15 @@ ca:
     pública d'espècies amenaçades.
   exact_date: Data exacta
   exact_location: Ubicació exacta
-  exact_rank: Tàxon exacte
+  exact_rank: Rang exacte
+  except: excepte
+  exclude_x: Exclou %{x}
+  exclusion_filters: Filtres d'exclusió
   existing_flags: Marques existents.
   exit_full_screen: Surt del mode de pantalla completa.
   examples_of_ranking_organizations: Exemples de Classificació d'Organitzacions
-  expand_days: expandeix dies
-  expand_updates: expandeix actualitzacions
+  expand_days: Expandeix dies
+  expand_updates: Expandeix actualitzacions
   explore!: Exploreu!
   explore: Exploreu-ne
   explore_everyones_observations: Llegiu les observacions de tots els usuaris.
@@ -1395,7 +1406,7 @@ ca:
   exporting: Exportant...
   external_links: Enllaços externs
   extinct: extint
-  extinct_in_the_wild: extingit en estat silvestre
+  extinct_in_the_wild: Extingit en estat silvestre
   extra_properties: Propietats extres
   extras: Extres
   evidence_of_organism: Evidència d'organisme
@@ -1421,14 +1432,16 @@ ca:
   faves: Favorits
   Family: Família
   faved_this_observation: fet favorita aquesta observació
-  favorite_taxa: tàxons preferits
+  favorite_taxa: Tàxons preferits
   favorites: Preferits
   fblocale: ca_ES
   feature_this_project: Voleu ressaltar aquest projecte?
-  featured: Destacats
+  feature_this_project_: Destacar aquest projecte
+  featured: Destacat
   featured?: Destacats?
   featured_projects_from_everywhere: Projectes destacats de qualsevol lloc
   featured_projects_from_place: Projectes destacats de %{place}
+  featuring: Mostrant
   feedback: Participa
   feedback_group: Grup de participació
   feeds: 'Fonts:'
@@ -1492,7 +1505,7 @@ ca:
   flag_as_non_spammer: Marca com a no-brossa
   flag_description: Marca aquest contingut perquè els supervisors sàpiguen que alguna
     cosa no va bé.
-  flag_for_curation: Marca per a supervisió.
+  flag_for_curation: Marca per revisió.
   flag_it!: Marca’l!
   flag_marked_as_resolved_html: <span class=meta>Marca com a</span> <strong>resolt.</strong>
   flag_reason: '"Marco aquest %{record} perquè'
@@ -1638,11 +1651,11 @@ ca:
   has_id_supported_by_two_or_more: Té una Identificació recolzada per dos o més
   has_one_or_more_faves: Té un o més favorits
   has_photo: Té foto
-  has_photos: té fotos
+  has_photos: Té fotos
   has_photo_and_sound: Té foto i so
   has_photos_or_sounds: Té fotos o sons
   has_sound: Té so
-  has_sounds: té sons
+  has_sounds: Té sons
   hasnt_contributed_any_observations: no heu fet cap observació en aquest projecte.
   hate_me_facebook: Desvincula els vostres comptes de Facebook i %{site_name}
   hate_me_flickr: Desvincula els vostres comptes de Flickr i %{site_name}
@@ -1679,7 +1692,7 @@ ca:
   hide: Oculta
   hide_details: Amaga detalls
   hide_uncountable_species: Amaga les espècies incomptables
-  high: alta
+  high: Alta
   highest_rank: Tàxon superior
   highlights: Destacats
   highlights_and_stats_from_year_on_site: Destacats i estadístiques des de%{year}

@@ -31,6 +31,9 @@ pt-BR:
   x_identifications:
     one: 1 identificação
     other: '%{count} identificações'
+  x_identifications_html:
+    one: <span class="count">1</span> identificação
+    other: <span class="count">%{count}</span> identificações
   x_identifications_:
     one: 1 identificação
     other: '%{count} Identificações'
@@ -43,6 +46,9 @@ pt-BR:
   x_journal_posts:
     one: 1 novo boletim informativo post
     other: '%{count} novos boletins informativos'
+  x_journal_posts_html:
+    one: <span class="count">1</span> publicação do boletim
+    other: <span class="count">%{count}</span> publicações do boletim
   x_matching_taxa:
     one: 1 táxon correspondente
     other: '%{count} taxa correspondente'
@@ -76,6 +82,9 @@ pt-BR:
   x_faves:
     one: 1 favorito
     other: '%{count} favoritos'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> sinalizador resolvido
+    other: <span class='count'>%{count}</span> sinalizadores resolvidos
   x_people_like_this:
     one: 1 pessoa gosta disso
     other: A %{count} pessoas gostam disso
@@ -105,9 +114,15 @@ pt-BR:
       ao nível de espécie ou menos</span>
     other: <span class='count'>%{count}</span> observações na categoria de pesquisa
       identificada ao nível de espécie ou menos</span>
+  x_taxa_curated_html:
+    one: <span class='count'>1</span> táxon verificado
+    other: <span class='count'>%{count}</span> táxons verificados
   x_taxa_matching_current_filters:
     one: 1 táxon corresponde com filtros selecionados
     other: '%{count} táxons correspondem com filtros selecionados'
+  x_taxon_changes_added_html:
+    one: 1 mudança de táxon adicionada
+    other: '%{count} mudanças de táxon adicionadas'
   _100_day_trends: Tendências de 100 dias
   _percent_ID_d: '% ID''d'
   a: uma
@@ -1897,6 +1912,7 @@ pt-BR:
   join_this_project: Entre neste projeto
   joined!: Participando!
   joined_any_projects: participações e projetos
+  joined_projects: Projetos a que aderiu
   joined_with_date: 'Entrou: %{date}'
   joining: Participando...
   journal: Boletim Informativo
@@ -3884,6 +3900,8 @@ pt-BR:
   taxa_observed: táxons observados
   taxa_to_include: Táxons a incluir
   taxon: Táxon
+  taxon_autocomplete_placeholder: Aves, monarca, etc.
+  taxon_is_a_rank: '%{taxon} é uma %{rank}'
   taxonomy: Taxonomia
   taxon_: táxon
   taxon_assessments_are: "Arquivos de avaliação de táxon são documentos conectados
@@ -4194,6 +4212,7 @@ pt-BR:
   to_add_ids: para adicionar IDentificações
   to_an: para uma
   to_configure_your_widget: para configurar seu widget.
+  to_include_your_google_with_inat: para incluir sua conta do Google com %{site_name}
   to_recipient: para
   to_suggest_an_identification: para sugerir uma identificação
   to_tag_your_flickr_from_here: para marcar suas fotos do Flickr a partir daqui sem
@@ -4303,7 +4322,9 @@ pt-BR:
   upload_a_csv_file_with_observation: Carregue um arquivo CSV com dados observados.
     Se você tem seus dados em uma planilha ou base de dados, provavelmente é melhor
     fazer deste jeito.
+  upload_photo: Carregar foto
   upload_photos: Carregue imagens
+  upload_range: Alcance de carregamento
   uploaded_by: Enviado por
   uploader:
     tooltips:
@@ -4330,7 +4351,7 @@ pt-BR:
   use_this_if_the_url_needs_genus_species_separated: Use este recurso se o URL exibi
     gêneros e espécies separadamente. Se o táxon não é uma espécie ou infraespécie,
     tudo entre [GÊNERO]  e [ESPÉCIE] será automaticamente substituído pelo nome do
-    táxon, seja cauteloso. <br/><br/> <strong>Exemplo:</strong><br/>
+    táxon, seja cauteloso.
   use_unique_file_names_for_separate_uploads: Utilize nomes diferenciados para carregar
     arquivos
   use_well_formed_csv: Utilize bons formatos de CSV. Isto significa que o texto com
@@ -4348,8 +4369,11 @@ pt-BR:
   user_added_an_x_to_noun_html: '%{user} adicionou uma %{x} a %{noun}'
   user_added_x_observations_html: '%{user} adicionou %{x} observações'
   user_already_authenticated: O usuário já está autenticado
+  user_autocomplete_placeholder: kueda, simon123, etc.
+  user_blocked: Usuário bloqueado
   user_commented: '%{user} comentado'
   user_commented_on: '%{user} comentou sobre seu %{title} %{time}'
+  user_disagrees_this_is_taxon: '%{user} discorda que seja um(a) %{taxon}'
   user_faved_a_noun_by_owner: '%{user} favorito %{noun} por %{owner}'
   user_follows: '%{user} segue'
   user_has_opted_out_of_community_id: O usuário rejeitou a identificação da comunidade
@@ -4367,6 +4391,8 @@ pt-BR:
   user_invited_your_x_to_a_project_html: '%{user} convidou você para %{x} um projeto'
   user_is_a_naturalist: '%{user} é um naturalista!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} do %{project}
+  user_muted: Usuário silenciado
+  user_observations: Observações do usuário
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas de %{user}
   user_suggested_an_id: '%{user} sugeriu uma identificação'
@@ -4529,6 +4555,7 @@ pt-BR:
     Nós tentamos processar seu upload com o nome %{filename} mas isto não deu certo.
     Por favor corrija o seguinte problema(s) e tente novamente.
   weather: Tempo
+  website: Site
   wed: Qua
   welcome!: Bem vindo!
   welcome_comma!: Bem vindo,
