@@ -1,0 +1,186 @@
+@import "../colors";
+
+#bodywrapper {
+  margin-bottom: 0;
+  &:after {
+    height: 0;
+  }
+}
+#header {
+  margin-bottom: 0;
+  #mainnav,
+  #headersearch {
+    display: none;
+  }
+}
+
+.flexrow {
+  display: flex;
+}
+#imgcol {
+  flex: 1;
+  background-color: deeppink;
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
+  width: 50%;
+  position: relative;
+
+  .about-observation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 30px;
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    color: #ebebeb;
+
+    .usericon {
+      width: 76px;
+      height: 76px;
+      margin-right: 20px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 100px;
+    }
+
+    .details {
+      line-height: 24px;
+      .username {
+        color: white;
+        font-size: 18px;
+      }
+    }
+  }
+}
+#formcol {
+  flex: 1;
+  h1 {
+    font-size: 27px;
+    line-height: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 33px;
+  }
+  .form-control {
+    box-shadow: none;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    border: 1px solid #ebebeb;
+    background-color: #f8f8f8;
+    color: #666;
+    border-radius: 7px;
+    padding-left: 41.3px;
+  }
+  .form-group.text-field {
+    position: relative;
+  }
+  .form-group.text-field:before {
+    position: absolute; 
+    top: 8px;
+    left: 13px;
+    font: normal normal normal 14px/1 FontAwesome;
+    color: $inat-green;
+    font-size: 18px;
+    width: 16px;
+    text-align: center;
+  }
+  .form-group.text-field.email:before {
+    content: "\f0e0";
+  }
+  .form-group.text-field.password:before {
+    content: "\f13e";
+  }
+  .form-group.text-field.password-confirmation:before {
+    content: "\f023";
+  }
+  .form-group.text-field.username:before {
+    font-family: "inaturalisticons";
+    content: "\e009";
+  }
+  form {
+    width: 304px;
+    margin: 0 auto;
+  }
+  .recaptcha {
+    margin: 30px 0;
+    .g-recaptcha {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0px;
+    }
+  }
+  .error {
+    margin-top: 5px;
+  }
+  #licensing {
+    label {
+      display: flex;
+      font-weight: normal;
+      font-size: 15px;
+      color: #666;
+      a {
+        font-weight: bold;
+        color: #666;
+      }
+    }
+    margin-bottom: 30px;
+  }
+
+  .btn-link {
+    font-size: 18px;
+    text-decoration: underline;
+    color: #666;
+  }
+
+  .bigtext {
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 30px;
+  }
+
+  .btn-inat {
+    width: 100%;
+    font-weight: bold;
+    &.btn-lg {
+      font-size: 20px;
+    }
+  }
+
+  .providerlink {
+    width: 100%;
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    &:before {
+      font-family: FontAwesome;
+      font-weight: normal;
+      font-size: 32px;
+      line-height: 32px;
+      margin-right: 10px;
+      vertical-align: middle;
+    }
+    &.facebook {
+      background-color: #405aa9;
+      border-color: #405aa9;
+    }
+    &.facebook:before {
+      content: "\f09a";
+    }
+    &.google {
+      background-color: #d74837;
+      border-color: #d74837;
+    }
+    &.google:before {
+      content: "\f1a0";
+    }
+  }
+
+  .provider-authorizations {
+    margin-bottom: 30px;
+  }
+}

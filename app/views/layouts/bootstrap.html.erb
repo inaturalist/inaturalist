@@ -8,7 +8,11 @@
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <%= favicon_link_tag %>
-    <meta name="viewport" content="width=980">
+    <% if responsive? %>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% else %>
+      <meta name="viewport" content="width=980">
+    <% end %>
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>

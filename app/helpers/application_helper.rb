@@ -321,6 +321,19 @@ module ApplicationHelper
     text.html_safe
   end
 
+  def formatted_error_sentence_for( record, attribute )
+    record.errors[attribute].map {|error|
+      t(
+        "errors.format",
+        attribute: I18n.t(
+          "activerecord.attributes.#{record.class.name.underscore}.#{attribute}",
+          default: t( attribute, default: attribute)
+        ),
+        message: error,
+      )
+    }.to_sentence.capitalize
+  end
+
   def simple_format_with_structure( text, options )
     new_text = ""
     chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>)/m )
@@ -1423,6 +1436,10 @@ module ApplicationHelper
       cas_tag_html: "<a href=\"https://calacademy.org\">California Academy of Sciences</a>",
       nat_geo_tag_html:  "<a href=\"https://www.nationalgeographic.org\">National Geographic Society</a>"
     ).html_safe
+  end
+
+  def responsive?
+    @responsive
   end
 
 end

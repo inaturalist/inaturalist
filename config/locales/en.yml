@@ -425,6 +425,7 @@ en:
   allowed_values: Allowed values
   alphabetical: Alphabetical
   alphabetical_order: Alphabetical Order
+  already_have_an_account_log_in_html: Already have an account? <strong>Log in.</strong>
   amphibians: amphibians
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb doesn't have any information about this species.
   amphibiaweb_taxonomy: AmphibiaWeb Taxonomy
@@ -715,10 +716,15 @@ en:
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
   check_out_your_life_list: Check out your Life List
   check_this_box_if: |
-                       Check this box if you want to apply a
-                       <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-                       to your photos. You can choose a different license or remove the license
-                       later, but this is the best license for sharing with researchers.
+    Check this box if you want to apply a
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
+    to your photos. You can choose a different license or remove the license
+    later, but this is the best license for sharing with researchers.
+  check_this_box_if_html: |
+    Check this box if you want to apply a
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
+    to your photos. You can choose a different license or remove the license
+    later, but this is the best license for sharing with researchers.
   checklist: Checklist
   checklists: Checklists
   checklist_places: Checklist places
@@ -910,16 +916,16 @@ en:
   country_stats: Country stats for observations created on
   cover: Cover
   create: Create
-  create_a_guide: Create a guide
-  create_a_list: Create a list
-  create_a_new_field: Create a new field
-  create_a_new_place: Create a new place
-  create_a_new_taxon: Create a new taxon
-  create_a_query: Create a query
-  create_an_account: Create an account
-  create_an_atlas: Create an atlas
-  create_new_taxon: Create a new taxon
-  create_observations: Create observations
+  create_a_guide: Create a Guide
+  create_a_list: Create a List
+  create_a_new_field: Create a New Field
+  create_a_new_place: Create a New Place
+  create_a_new_taxon: Create a New Taxon
+  create_a_query: Create a Query
+  create_an_account: Create an Account
+  create_an_atlas: Create an Atlas
+  create_new_taxon: Create a New Taxon
+  create_observations: Create Observations
   create_observations_by_uploading_photos_to: |
     Create observations by uploading photos to %{place}. When you upload %{place} will try to extract GPS coordinates and date/time from the photo.
     To get started,
@@ -1399,6 +1405,7 @@ en:
   from_this: from this
   from_photos: From photos
   from_place: From place
+  from_place_x: from %{place}
   from_soundcloud: From Soundcloud
   from_your_site_observations: "From %{site_name} observations"
   from_licensed_site_observations: "From licensed %{site_name} observations"
@@ -1687,6 +1694,7 @@ en:
   join_inat: Join %{site_name}!
   join_project: Join this project
   join_some_projects_and_invite_some_observations_html: "Join some <a href='%{join_url}'>projects</a> and <a href='%{invite_url}'>invite some observations</a>"
+  join_the_largest_group_of_naturalists_in_the_world: Join the largest group of naturalists in the world!
   join_this_project: Join this project
   'joined!': Joined!
   joined_any_projects: joined any projects
@@ -2524,6 +2532,7 @@ en:
   optional: optional
   optional_columns_note_for_any: "Optional columns (note: for any of these columns to be used in an observation, they must all be present)"
   or: or
+  or_all_caps: OR
   or_choose_high_level_taxa: "... or choose from some high-level taxa"
   or_if_you_dont_want_email: "Or if you just don't want any email..."
   or_invite_your_friends: or invite your friends
@@ -2595,6 +2604,7 @@ en:
   photo?: Photo?
   photo_attribution: "Photo %{attribution}"
   photo_browser: Photo Browser
+  photo_by: Photo by
   photo_by_id_attribution: "Photo %{id}, %{attribution}"
   photo_deleted: Photo deleted
   photo_destroyed_because_it_was_deleted_from: "Photo destroyed b/c it was deleted from the external site or %{site_name} no longer has permission to view it"
@@ -6045,7 +6055,7 @@ en:
     messages:
       accepted: must be accepted
       blank: can't be blank
-      confirmation: doesn't match confirmation
+      confirmation: didn't match password
       empty: can't be empty
       equal_to: must be equal to %{count}
       even: must be even
