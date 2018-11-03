@@ -1,1 +1,1 @@
-= render "new", resource: resource
+= render "users/registrations/new", resource: defined?( resource ) ? ( resource || @display_user || current_user ) : ( @display_user || current_user )
