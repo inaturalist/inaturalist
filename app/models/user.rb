@@ -252,7 +252,7 @@ class User < ActiveRecord::Base
 
   validates_format_of       :email,     with: email_regex, message: :must_look_like_an_email_address, allow_blank: true
   validates_length_of       :email,     within: 6..100, allow_blank: true
-  validates_length_of       :time_zone, minimum: 3, allow_nil: true
+  validates_length_of       :time_zone, minimum: 3, allow_blank: true
   validate :validate_email_pattern, on: :create
   
   scope :order_by, Proc.new { |sort_by, sort_dir|

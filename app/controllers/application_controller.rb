@@ -214,6 +214,16 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def load_registration_form_data
+    @footless = true
+    @no_footer_gap = true
+    @responsive = true
+    @observations = Observation.elastic_query( has: ["photos"], per_page: 50, order: "votes" ).to_a.select do |o|
+      r = o.photos.first.original_dimensions[:width].to_f / o.photos.first.original_dimensions[:height].to_f
+      r < 1
+    end
+  end
+
   def get_flickraw
     current_user ? FlickrPhoto.flickraw_for_user(current_user) : flickr
   end

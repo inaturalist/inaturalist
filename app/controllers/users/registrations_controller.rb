@@ -2,7 +2,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   layout "bootstrap"
 
-  before_filter :load_form_data, only: [:new, :create]
+  before_filter :load_registration_form_data, only: [:new, :create]
 
   def whitelist_params
     if params[:user]
@@ -26,7 +26,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
                                             remoteip: requestor_ip,
                                             secret: @site.google_recaptcha_secret )
         errors = [ I18n.t( :recaptcha_verification_failed ) ]
-        flash[:error] = errors.first
         resource.errors.add(:recaptcha, I18n.t( :recaptcha_verification_failed ) )
       end
     end
@@ -69,25 +68,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     clean_up_passwords resource
     respond_with(resource) do |format|
-      format.html do
-        @user = resource
-        render :new
-      end
+      format.html { render :new }
       format.json { render json: { errors: errors } }
     end
-  end
-
-  protected
-
-  def load_form_data
-    @footless = true
-    @no_footer_gap = true
-    @responsive = true
-    @observations = Observation.elastic_query( has: ["photos"], per_page: 50, order: "votes" ).to_a.select do |o|
-      r = o.photos.first.original_dimensions[:width].to_f / o.photos.first.original_dimensions[:height].to_f
-      r < 1
-    end
-    @user ||= User.new
   end
 
 end

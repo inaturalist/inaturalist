@@ -1,4 +1,9 @@
 class Users::SessionsController < Devise::SessionsController
+
+  before_filter :load_registration_form_data, only: [:new, :create]
+
+  layout "bootstrap"
+
   def create
     # attempt straight db auth first, then warden auth
     resource = legacy_authenticate if @site.legacy_rest_auth_key

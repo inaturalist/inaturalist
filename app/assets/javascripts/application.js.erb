@@ -664,12 +664,14 @@ $.fn.showInlineBlock = function() {
 }
 
 function currentTimeZone() {
-  var now = new Date(),
-      nowString = now.toString(),
-      timeZoneAbbr = nowString.match(/\(([A-Z]{3,4})\)$/)[1],
-      timeZoneOffset = nowString.match(/[+-]\d\d\d\d/)[0],
-      timeZoneOffsetHours = nowString.match(/([+-]\d\d)(\d\d)/)[1],
-      timeZoneOffsetMinutes = nowString.match(/([+-]\d\d)(\d\d)/)[2]
+  var now = new Date();
+  var nowString = now.toString();
+  console.log( "[DEBUG] nowString: ", nowString )
+  var timeZoneAbbrMatch = nowString.match(/\(([A-Z]{3,4})\)$/);
+  var timeZoneAbbr = timeZoneAbbrMatch ? nowString.match(/\(([A-Z]{3,4})\)$/)[1] : null;
+  var timeZoneOffset = nowString.match(/[+-]\d\d\d\d/)[0];
+  var timeZoneOffsetHours = nowString.match(/([+-]\d\d)(\d\d)/)[1];
+  var timeZoneOffsetMinutes = nowString.match(/([+-]\d\d)(\d\d)/)[2]
   return {
     abbreviation: timeZoneAbbr,
     offset: timeZoneOffset,
@@ -685,8 +687,8 @@ $.fn.selectLocalTimeZone = function() {
     if (tz.abbreviation) {
       var matches = $("option[data-time-zone-abbr='"+tz.abbreviation+"']", this)
       option = matches.first()
-    } else if (timeZoneOffsetHour) {
-      var formattedOffset = tz.offsetHours + ':' + tz.offsetMinutes
+    } else if (tz.timeZoneOffsetHours) {
+      var formattedOffset = tz.timeZoneOffsetHours + ':' + tz.timeZoneOffsetMinutes
       var matches = $("option[data-time-zone-formatted-offset='"+formattedOffset+"']", this)
       option = matches.first()
     }
