@@ -31,7 +31,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -218,6 +218,41 @@ class TaxaController < ApplicationController
     end
   end
 
+  def taxonomy_details
+    @rank_levels = Taxon::RANK_LEVELS.select{|k,v| !["genushybrid","hybrid","variety","form","infrahybrid"].include? k}
+    @concept = Concept.includes(:taxon).where(taxon_id: @taxon.id).first
+    
+    if @ancestor_concept = Concept.includes("taxon").joins("JOIN taxa b on b.id = concepts.taxon_id").
+      joins("JOIN taxa a on b.id = ANY(string_to_array(a.ancestry, '/')::int[])").
+      where("a.id = #{@taxon.id} AND concepts.rank_level IS NOT NULL AND concepts.rank_level <= a.rank_level").
+      order("b.rank_level ASC").first
+      
+      if @ancestor_concept.source
+        @taxon_reference = TaxonReference.includes("taxa","external_taxa").joins("JOIN taxa ON taxa.taxon_reference_id = taxon_references.id").where("taxa.id = ? AND concept_id = ?", @taxon, @ancestor_concept).first
+      end
+    end
+    
+    if @concept
+      if @concept.rank_level
+        @taxon_curators = TaxonCurator.includes(:user).where(concept_id: @concept )
+        ancestor_string = @taxon.rank == "stateofmatter" ? @taxon.id.to_s : "%/#{@taxon.id}"
+        @overlapping_downstream_concepts = Concept.includes("taxon", "source").
+          joins("INNER JOIN taxa ON concepts.taxon_id = taxa.id").
+          where("concepts.rank_level IS NOT NULL AND concepts.id != ? AND (taxa.ancestry LIKE (?) OR taxa.ancestry LIKE (?) OR taxa.id = ?) AND taxa.rank_level >= ?",
+          @concept.id, ancestor_string, "#{ancestor_string}/%", @taxon.id, @concept.rank_level)
+        if @concept.source_id
+          @deviations = TaxonReference.where("concept_id = ? AND relationship != 'match'", @concept.id)
+        end
+      end
+    end
+    
+    respond_to do |format|
+      format.html do
+        render layout: "bootstrap"
+      end
+    end
+  end
+  
   def tip
     @observation = Observation.find_by_id(params[:observation_id]) if params[:observation_id]
     if @observation
@@ -284,10 +319,12 @@ class TaxaController < ApplicationController
           "#{locked_ancestor.name}</a>).  Please consider merging this " + 
           "into an existing taxon instead."
       end
-      if @taxon.is_active && !@taxon.parent.is_active && (taxon_change = @taxon.parent.taxon_changes.where( "committed_on IS NULL" ).first)
-        flash[:notice] += " Heads up: the parent of this active taxon is inactive " + 
-          "but its the output of this <a href='/taxon_changes/#{taxon_change.id}'>" + 
-          "draft taxon change</a> that we assume you'll commit shortly."
+      if @taxon.parent
+        if @taxon.is_active && !@taxon.parent.is_active && (taxon_change = @taxon.parent.taxon_changes.where( "committed_on IS NULL" ).first)
+          flash[:notice] += " Heads up: the parent of this active taxon is inactive " + 
+            "but its the output of this <a href='/taxon_changes/#{taxon_change.id}'>" + 
+            "draft taxon change</a> that we assume you'll commit shortly."
+        end
       end
       Taxon.refresh_es_index
       redirect_to taxon_path(@taxon)

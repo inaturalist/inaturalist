@@ -1,0 +1,86 @@
+:ruby
+  if @taxon
+    @taxon.html = render(:partial => "taxa/chooser.html.erb", :object => @taxon)
+  end
+  @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
+    taxon.html = render(:partial => "taxa/chooser.html.erb", :object => taxon)
+    taxon
+  end
+  if @user
+    @user.html = render(:partial => "users/chooser", :object => @user)
+  end
+  @default_users = User.curators.limit(10).map do |user|
+    user.html = render(:partial => "users/chooser", :object => user)
+    user
+  end
+- content_for(:title) do
+  - @title = "Taxon References"
+  = strip_tags(@title)
+- content_for(:extracss) do
+  = stylesheet_link_tag 'autocomplete'
+  :css
+    .ui-chooser-choice {max-width:190px;}
+    form .text {width:200px;}
+    .taxon_reference {border-bottom: 1px solid #eee;margin-top:10px;padding-bottom:10px;}
+    .name {font-size: 110%; font-style: italic;}
+- content_for(:extrajs) do
+  :javascript
+    window.taxon = #{json_escape @taxon.to_json(:methods => [:html]).html_safe}
+    window.user = #{json_escape @user.to_json(:methods => [:html]).html_safe}
+    window.defaultTaxa = #{json_escape @default_taxa.to_json(:methods => [:html]).html_safe}
+    window.defaultUsers = #{json_escape @default_users.to_json(:methods => [:html]).html_safe}
+    $(document).ready(function() {      
+      $('#filters_user_id').chooser({
+        queryParam: 'q',
+        collectionUrl: '/people/search.json',
+        resourceUrl: '/people/{{id}}.json',
+        chosen: user,
+        defaultSources: defaultUsers
+      })
+      
+      $('#filters_taxon_name').taxonAutocomplete( {
+        idEl: $('#filters_taxon_id' ),
+        initialSelection: #{raw @taxon.to_json},
+        thumbnail: false,
+        bootstrapClear: true
+      } );
+      
+    })
+.container
+  .row
+    .col-xs-12
+      = link_to 'new taxon reference', new_taxon_reference_path, :class => "pull-right btn btn-default"
+      %h2= @title
+  .row
+    .col-xs-3
+      = form_for :filters, :builder => DefaultFormBuilder, :html => {:method => :get} do |f|
+        %fieldset#reference_relationships
+          - %w(match swap position_swap many_to_many lump split not_in_reference not_local unknown).each do |relationship|
+            = f.check_box relationship,                                            |
+              :wrapper => {:class => "inlineblock"},                               |
+              :label_after => true,                                                |
+              :label => relationship.gsub("_", " "),                               |
+              :checked => @relationships.include?(relationship.gsub("_"," "))      |
+        = f.select :concept_id, @concepts.map{|er| [er.taxon.name, er.id]}, :include_blank => t(:any), :selected => @concept.try(:id), :label => "taxonomic framework"
+        = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:taxon)
+        = f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil
+        = f.text_field :user_id, :value => @user ? @user.id : nil, :placeholder => t(:start_typing_someones_name), :label => t(:added_by)
+        = f.select :is_active, [t(:true), t(:false)], :include_blank => t(:either), :selected => @is_active, :label => t(:is_active)
+        = f.select :rank, Taxon::RANKS, :include_blank => t(:any), :selected => @rank, :label => t(:rank)
+        = f.submit t(:filter), :class => "default button", "data-loading-click" => t(:filtering)
+        = link_to t(:clear_filters), taxon_references_url, :class => "minor button"
+    .col-xs-9
+      - if @taxon_references.empty?
+        %p.description= 'no taxon references'
+      - for taxon_reference in @taxon_references
+        - if taxon_reference.relationship == "not local"
+          %h4 Taxon Reference for #{link_to "Non-local Taxon", taxon_reference_path(taxon_reference)}
+        - else
+          %h4 Taxon Reference for #{link_to taxon_reference.taxa.first.name, taxonomy_details_for_taxon_path(taxon_reference.taxa.first)}
+        .alert.alert-success
+          Covered by a 
+          #{link_to "Concept Framework for #{taxon_reference.concept.taxon.name}", taxonomy_details_for_taxon_path(taxon_reference.concept.taxon_id)}
+          referencing
+          #{link_to taxon_reference.concept.source.title, taxon_reference.concept.source.url} 
+          = render :partial => 'show_taxon_reference', object: { taxon_reference: taxon_reference }
+      = will_paginate @taxon_references

@@ -1,0 +1,100 @@
+- content_for :extrajs do
+  :javascript
+    $( document ).ready( function() {
+      var concept_table = $('.concept_table');
+      concept_table.hide();
+      $(".concept_count").find('a[href="#"]').click(function (e) {
+        e.preventDefault();
+        concept_table.slideToggle(500);
+      });
+      
+      $('[data-toggle="popover"]').popover();   
+    } );
+- content_for(:extracss) do
+  :css
+    .table.table-bordered{
+      border:0px;
+    }
+    .table.table-bordered > thead > tr > th{
+      border:0px;
+      border-bottom:1px solid gray;
+    }
+    .table.table-bordered > tbody > tr > td{
+      border:0px;
+    }
+    .info-link{
+      color: "green";
+    }
+.container
+  .row
+    .breadcrumbs
+      %strong= link_to "&laquo back to taxon".html_safe, taxon_path, :class => 'crumb'
+    .col-xs-12.prepend-12
+      %h3 Taxonomy Details for #{@taxon.name}
+      - if @ancestor_concept
+        .panel.panel-default
+          .panel-heading
+            - if @ancestor_concept.source && !@taxon_reference
+              .pull-right
+                = link_to "Add reference", new_taxon_reference_path({taxon_id: @taxon.id, concept_id: @ancestor_concept.id})
+            %h4
+              Covered by a #{link_to "Concept Framework for #{@ancestor_concept.taxon.name}", taxonomy_details_for_taxon_path(@ancestor_concept.taxon)}
+              - if @ancestor_concept.source
+                referencing #{link_to @ancestor_concept.source.title, @ancestor_concept.source.url}
+              %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon has an ancestor with a Concept Frameworks that is configured to cover this taxon. Concept Frameworks are a type of Concept that have downstream coverage to some rank ", "data-placement" => "top", "data-toggle" => "popover" }
+          - if @ancestor_concept.source && @taxon_reference
+            .panel-body
+              .pull-right
+                = link_to "Edit reference", edit_taxon_reference_path(@taxon_reference)
+              = render :partial => '/taxon_references/show_taxon_reference', object: { taxon_reference: @taxon_reference, taxon: @taxon }
+              - if @taxon_reference.description
+                %p= formatted_user_text @taxon_reference.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+      - else
+        .panel.panel-default
+          .panel-heading
+            Not covered by any concept frameworks
+      - if @concept
+        .panel.panel-default
+          - if @concept.rank_level
+            .panel-heading
+              %h4
+                Defines a Concept Framework for #{@taxon.name}
+                - if @concept.source
+                  referencing #{link_to @concept.source.title, @concept.source.url}
+                %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon defines a Concept Framework that covers some of its descendants", "data-placement" => "top", "data-toggle" => "popover" }
+          .panel-body
+            .pull-right
+              = link_to "Edit concept", edit_concept_path(@concept)
+            - if @concept.rank_level
+              %p Downstream coverage to rank #{@rank_levels.invert[@concept.rank_level]}
+              - if @concept.source  
+                - if @deviations
+                  %p Deviations: #{link_to @deviations.count, taxon_references_path(TaxonReference::RELATIONSHIPS.select{|r| r!="match"}.map{|r| [r, "1"] }.to_h.merge({concept_id: @concept.id, }))}
+                - if @overlapping_downstream_concepts.count > 0
+                  .concept_count Overlapping downstream Concept Frameworks: #{link_to @overlapping_downstream_concepts.count, '#'}
+                  .concept_table
+                    %table.table.table-bordered
+                      %thead
+                        %tr
+                          %th Concept Taxon
+                          %th Downstream covereage rank
+                          %th Source
+                      %tbody
+                        - @overlapping_downstream_concepts.each do |overlapping_downstream_concept|
+                          %tr
+                            %td= link_to overlapping_downstream_concept.taxon.name, taxonomy_details_for_taxon_path(overlapping_downstream_concept.taxon)
+                            %td= @rank_levels.invert[overlapping_downstream_concept.rank_level]
+                            - if overlapping_downstream_concept.source
+                              %td= overlapping_downstream_concept.source.title
+              - if @taxon_curators.count > 0
+                %h4 Taxon Curators:
+                - @taxon_curators.each do |taxon_curator|
+                  = taxon_curator.user.login
+              - if @concept.complete?
+                %p Complete
+            - if @concept.description
+              %p= formatted_user_text @concept.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+        %p [comments]
+      - else
+        .pull-right
+          = link_to "Add concept", new_concept_path({taxon_id: @taxon.id})

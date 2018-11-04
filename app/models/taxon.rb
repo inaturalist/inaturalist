@@ -61,6 +61,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, inverse_of: :taxon, dependent: :destroy
+  has_one :concept, inverse_of: :taxon, dependent: :destroy
   has_many :listed_taxon_alterations, inverse_of: :taxon, dependent: :delete_all
   has_many :observation_field_values,
     -> { joins(:observation_field).where( "observation_fields.datatype = ?", ObservationField::TAXON ) },
@@ -70,13 +71,13 @@ class Taxon < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   belongs_to :conservation_status_source, :class_name => "Source"
+  belongs_to :taxon_reference, touch: true
   has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
   has_one :en_wikipedia_description,
     -> { where("locale='en' AND provider='Wikipedia'") },
     class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
-  has_many :taxon_curators, inverse_of: :taxon, dependent: :destroy
   
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
@@ -91,7 +92,8 @@ class Taxon < ActiveRecord::Base
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :handle_after_move,
-             :handle_change_in_completeness
+             :update_taxon_reference
+
   after_commit :index_observations
 
   validates_presence_of :name, :rank
@@ -106,9 +108,9 @@ class Taxon < ActiveRecord::Base
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
-  validate :complete_rank_below_rank
   validate :graftable_if_complete
   validate :user_can_edit_attributes, on: :update
+  validate :graftable_destination_if_complete
   validate :rank_level_must_be_coarser_than_children
   validate :rank_level_must_be_finer_than_parent
   validate :rank_level_for_taxon_and_parent_must_not_be_nil
@@ -308,8 +310,6 @@ class Taxon < ActiveRecord::Base
     is_active
     rank
     rank_level
-    complete
-    complete_rank
   )
 
   scope :observed_by, lambda {|user|
@@ -435,8 +435,7 @@ class Taxon < ActiveRecord::Base
     const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
   end
 
-  # Callbacks ###############################################################
-  
+  # Callbacks ###############################################################  
   def handle_after_move
     return true unless ancestry_changed?
     set_iconic_taxon
@@ -463,32 +462,23 @@ class Taxon < ActiveRecord::Base
     true
   end
 
-  def handle_change_in_completeness
-    return true unless complete_changed? || complete_rank_changed?
-    Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_descendants_of": id } ).reindex_descendants_of( id )
-    taxon_curators.destroy_all if !complete && complete_was
-    TaxonCurator.
-      joins( taxon: :taxon_ancestors ).
-      where( "taxon_ancestors.ancestor_taxon_id = ?", id ).
-      where( "taxa.rank_level < ?", complete_rank_level.to_i ).
-      destroy_all
-    true
-  end
-
   def self.reindex_descendants_of( taxon )
     Taxon.elastic_index!( scope: Taxon.joins(:taxon_ancestors).where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ) )
   end
-
-  def complete_rank_level
-    RANK_LEVELS[complete_rank]
+  
+  def update_taxon_reference
+    return true unless self.taxon_reference
+    taxon_reference.set_relationship if (name_changed? || taxon_reference_id_changed?)
+    attrs = {}
+    attrs[:relationship] = taxon_reference.relationship
+    taxon_reference.update_attributes(attrs)
   end
-
+  
   def complete_species_count
     return nil if rank_level.to_i <= SPECIES_LEVEL
-    return nil if complete_rank && complete_rank_level.to_i > SPECIES_LEVEL
-    return nil unless complete_taxon
-    if RANK_LEVELS[complete_taxon.try(:complete_rank)].to_i > SPECIES_LEVEL
-      return nil
+    unless ( concept && concept.framework? && concept.complete && concept.rank_level <= SPECIES_LEVEL )
+      ac = get_ancestor_concept
+      return nil unless ( ac && ac.framework? && ac.complete && ac.rank_level <= SPECIES_LEVEL )
     end
     scope = taxon_ancestors_as_ancestor.
       select("distinct taxon_ancestors.taxon_id").
@@ -951,18 +941,41 @@ class Taxon < ActiveRecord::Base
         "locked taxon or merge this taxon with an existing one.")
     end
   end
+  
+  def get_ancestor_concept
+    ancestor_concept = Concept.includes("taxon").
+      joins("JOIN taxa ancestor on ancestor.id = concepts.taxon_id").
+      joins("JOIN taxa subject on ancestor.id = ANY(string_to_array(subject.ancestry, '/')::int[])").
+      where("subject.id = ? AND concepts.rank_level IS NOT NULL AND concepts.rank_level <= subject.rank_level", id).
+      order("ancestor.rank_level ASC").first
+  end
 
-  def complete_rank_below_rank
-    if complete_rank_level.to_i > rank_level.to_i
-      errors.add( :complete_rank, "must be below the rank" )
+  def is_mid_tree_for(ancestor_concept)
+    return false unless self.rank_level > ancestor_concept.rank_level
+    downstream_concepts = ancestor_concept.get_downstream_concepts
+    return false if downstream_concepts.select{|dc| dc.taxon_id == self.id}.count > 0
+    return true
+  end
+  
+  def graftable_destination_if_complete
+    return true unless new_record? || ancestry_changed?
+    return true if ancestry.nil?
+    fc = parent.concept
+    if !skip_complete && fc && fc.framework? && fc.taxon_curators.any? && ( current_user.blank? || !fc.taxon_curators.where( user: current_user ).exists? )
+      errors.add( :ancestry, "includes the complete taxon #{fc.taxon}. Contact the curators of that taxon to request changes." )
+    end
+    ac = parent.get_ancestor_concept
+    if !skip_complete && ac && parent.is_mid_tree_for(ac) && ac.taxon_curators.any? && ( current_user.blank? || !ac.taxon_curators.where( user: current_user ).exists? )
+      errors.add( :ancestry, "includes the complete taxon #{ac.taxon}. Contact the curators of that taxon to request changes." )
     end
     true
   end
-
+  
   def complete_taxon
-    return self if complete?
-    return @complete_taxon if @complete_taxon
-    unless @complete_taxon = ancestors.where( "complete" ).sort_by(&:rank_level).first
+    return self if concept && concept.framework?
+    
+    return @covered_taxon if @covered_taxon
+    unless @covered_taxon = ancestors.where( "complete" ).sort_by(&:rank_level).first
       return nil
     end
     if level_within_complete_range = @complete_taxon.complete_rank.blank? || @complete_taxon.complete_rank_level.to_i <= rank_level.to_i
@@ -977,9 +990,9 @@ class Taxon < ActiveRecord::Base
 
   def graftable_if_complete
     return true unless ancestry_changed?
-    ct = complete_taxon
-    if !skip_complete && ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
-      errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
+    ac = get_ancestor_concept
+    if !skip_complete && ac && ( current_user.blank? || !ac.taxon_curators.where( user: current_user ).exists? )
+      errors.add( :ancestry, "includes the complete taxon #{ac.taxon}. Contact the curators of that taxon to request changes." )
     end
     true
   end
@@ -996,19 +1009,13 @@ class Taxon < ActiveRecord::Base
   end
 
   def protected_attributes_editable_by?( user )
-    # Rails.logger.debug "[DEBUG] user.is_admin?: #{user.is_admin?}"
     return true if user && user.is_admin?
-    ct = if complete_changed? && complete_was
-      self
-    else
-      complete_taxon
-    end
-    # Rails.logger.debug "[DEBUG] ct: #{ct}"
-    return true unless ct
+    ac = get_ancestor_concept
+    return true unless ac
+    return true unless ac.taxon_curators.any?
     current_user_curates_taxon = false
-    # Rails.logger.debug "[DEBUG] t.taxon_curators.where( user: user ).exists?: #{t.taxon_curators.where( user: user ).exists?}"
     if user
-      current_user_curates_taxon = ct.taxon_curators.where( user: user ).exists?
+      current_user_curates_taxon = ac.taxon_curators.where( user: user ).exists?
     end
     current_user_curates_taxon
   end
@@ -1515,7 +1522,7 @@ class Taxon < ActiveRecord::Base
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
-    user.is_curator? && rank_level.to_i < ORDER_LEVEL
+    true #user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 
   def mergeable_by?(user, reject)

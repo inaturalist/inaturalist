@@ -4,6 +4,7 @@ class Source < ActiveRecord::Base
   has_many :taxon_ranges
   has_many :taxon_changes
   has_many :places
+  has_many :concepts
   has_many :place_geometries
   belongs_to :user
   

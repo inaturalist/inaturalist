@@ -1424,5 +1424,5 @@ module ApplicationHelper
       nat_geo_tag_html:  "<a href=\"https://www.nationalgeographic.org\">National Geographic Society</a>"
     ).html_safe
   end
-
+  
 end

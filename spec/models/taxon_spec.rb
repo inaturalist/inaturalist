@@ -1621,3 +1621,21 @@ describe Taxon, "set_photo_from_observations" do
     }.to_not raise_error
   end
 end
+
+describe "taxon_reference" do
+  describe "when taxon has reference" do
+    it "should update taxon reference relationship when taxon name changes" do
+      source = Source.make!
+      tr = TaxonReference.new(source: source)
+      tr.save
+      t = Taxon.make!(name: "Taricha torosa", taxon_reference_id: tr.id)
+      et = ExternalTaxon.new(name: "Taricha torosa", taxon_reference_id: tr.id)
+      et.save
+      tr.reload
+      expect(tr.relationship).to eq "match"
+      t.update_attributes( name: "Taricha granulosa" )
+      tr.reload
+      expect(tr.relationship).to eq "swap"
+    end
+  end
+end

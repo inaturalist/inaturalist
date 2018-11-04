@@ -16,11 +16,13 @@ class TaxonCuratorsController < ApplicationController
   # end
 
   def new
+    @concepts = Concept.includes(:taxon).where("rank_level IS NOT NULL").limit(100)
     @taxon_curator = TaxonCurator.new
     respond_with(@taxon_curator)
   end
 
   def edit
+    @concepts = Concept.includes(:taxon).where("rank_level IS NOT NULL").limit(100)
   end
 
   def create
@@ -28,7 +30,7 @@ class TaxonCuratorsController < ApplicationController
     @taxon_curator.save
     # respond_with(@taxon_curator)
     respond_to do |format|
-      format.html { redirect_to @taxon_curator.taxon }
+      format.html { redirect_to taxonomy_details_for_taxon_path(@taxon_curator.concept.taxon) }
       format.json { render json: @taxon_curator }
     end
   end
@@ -36,7 +38,7 @@ class TaxonCuratorsController < ApplicationController
   def update
     @taxon_curator.update(taxon_curator_params)
     respond_to do |format|
-      format.html { redirect_to @taxon_curator.taxon }
+      format.html { redirect_to taxonomy_details_for_taxon_path(@taxon_curator.concept.taxon) }
       format.json { render json: @taxon_curator }
     end
   end
@@ -44,7 +46,7 @@ class TaxonCuratorsController < ApplicationController
   def destroy
     @taxon_curator.destroy
     respond_to do |format|
-      format.html { redirect_to @taxon_curator.taxon }
+      format.html { redirect_to taxonomy_details_for_taxon_path(@taxon_curator.concept.taxon) }
       format.json { render json: @taxon_curator }
     end
   end
@@ -55,6 +57,6 @@ class TaxonCuratorsController < ApplicationController
     end
 
     def taxon_curator_params
-      params.require(:taxon_curator).permit(:taxon_id, :user_id)
+      params.require(:taxon_curator).permit(:concept_id, :user_id)
     end
 end
