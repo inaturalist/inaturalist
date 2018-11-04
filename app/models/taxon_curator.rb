@@ -1,14 +1,14 @@
 class TaxonCurator < ActiveRecord::Base
-  belongs_to :taxon
+  belongs_to :concept
   belongs_to :user
 
-  validate :taxon_is_complete
   validate :user_is_a_site_curator
 
   def to_s
     "<TaxonCurator #{id} user_id: #{user_id} taxon_id: #{taxon_id}>"
   end
 
+  #validation to be removed
   def taxon_is_complete
     return true if taxon.complete?
     complete_ancestor = taxon.complete_taxon
