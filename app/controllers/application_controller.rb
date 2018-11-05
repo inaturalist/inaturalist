@@ -220,7 +220,7 @@ class ApplicationController < ActionController::Base
     @responsive = true
     es_query = {
       has: ["photos"],
-      per_page: 50,
+      per_page: 100,
       order_by: "votes",
       order: "desc",
       place_id: @site.try(:place_id).blank? ? nil : @site.place_id
@@ -230,14 +230,15 @@ class ApplicationController < ActionController::Base
     end
     @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
     if @observations.blank?
-      es_query.delete(:project)
+      es_query.delete(:projects)
       @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
     end
     if @observations.blank?
       es_query.delete(:place_id)
       @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
     end
-    ratio = params[:ratio].to_f || 1
+    ratio = params[:ratio].to_f
+    ratio = 1 if ratio <= 0
     @observations = @observations.select do |o|
       r = o.photos.first.original_dimensions[:width].to_f / o.photos.first.original_dimensions[:height].to_f
       r < ratio
