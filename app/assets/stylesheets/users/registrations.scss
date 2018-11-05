@@ -56,9 +56,12 @@
 
     .details {
       line-height: 24px;
-      .username {
+      a {
         color: white;
+      }
+      .username {
         font-size: 18px;
+        font-weight: bold;
       }
     }
   }
@@ -143,6 +146,7 @@
 
   .btn-primary.btn-inat {
     margin-top: 20px;
+    padding-bottom: 7px;
   }
 
   .btn-link {
@@ -175,7 +179,7 @@
       font-weight: normal;
       font-size: 32px;
       line-height: 32px;
-      margin-right: 10px;
+      margin-right: 15px;
       vertical-align: middle;
     }
     &.facebook {
@@ -196,5 +200,9 @@
 
   .provider-authorizations {
     margin-bottom: 30px;
+    span {
+      position: relative;
+      top: 2px;
+    }
   }
 }

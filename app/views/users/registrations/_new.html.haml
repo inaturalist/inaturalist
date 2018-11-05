@@ -29,7 +29,8 @@
           =t :photo_by
         = link_to obs, class: "username" do
           = obs.user.published_name
-        %div=t :from_place_x, place: obs.place_guess
+        %div
+          = link_to t( :in_place_x, place: obs.place_guess ), observations_url( lat: obs.latitude, lng: obs.longitude )
 
   #formcol{ class: form_type }
     = form_for resource, url: form_url, html: { novalidate: form_type == "log-in" } do |f|
@@ -107,8 +108,7 @@
             - provider_name = ProviderAuthorization::PROVIDER_NAMES[provider].downcase
             .stacked
               = link_to url, class: "btn btn-primary btn-lg providerlink #{provider_name}" do
-                %i.fa{ class: "fa-#{}"}
                 - if form_type == "sign-up"
-                  = t(:sign_up_with_provider, provider: ProviderAuthorization::PROVIDER_NAMES[provider] )
+                  %span= t(:sign_up_with_provider, provider: ProviderAuthorization::PROVIDER_NAMES[provider] )
                 - else
-                  = t(:sign_in_with_provider, provider: ProviderAuthorization::PROVIDER_NAMES[provider] )
+                  %span= t(:sign_in_with_provider, provider: ProviderAuthorization::PROVIDER_NAMES[provider] )

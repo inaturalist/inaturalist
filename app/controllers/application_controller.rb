@@ -218,7 +218,26 @@ class ApplicationController < ActionController::Base
     @footless = true
     @no_footer_gap = true
     @responsive = true
-    @observations = Observation.elastic_query( has: ["photos"], per_page: 50, order_by: "votes", order: "desc" ).to_a.select do |o|
+    es_query = {
+      has: ["photos"],
+      per_page: 50,
+      order_by: "votes",
+      order: "desc",
+      place_id: @site.try(:place_id).blank? ? nil : @site.place_id
+    }
+    if params[:project_id]
+      es_query[:project] = params[:project_id]
+    end
+    @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
+    if @observations.blank?
+      es_query.delete(:project)
+      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
+    end
+    if @observations.blank?
+      es_query.delete(:place_id)
+      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
+    end
+    @observations = @observations.select do |o|
       r = o.photos.first.original_dimensions[:width].to_f / o.photos.first.original_dimensions[:height].to_f
       r < 1
     end
