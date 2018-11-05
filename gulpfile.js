@@ -19,3 +19,4 @@ const watchTask = ( ) => {
 };
 
 gulp.task( "default", gulp.series( webpackTask, watchTask ) );
+gulp.task( "webpack", webpackTask );
