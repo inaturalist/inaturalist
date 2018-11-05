@@ -81,7 +81,7 @@ gem 'rest-client', :require => 'rest_client'
 gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'https://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
-gem 'sass', '= 3.2.5'
+gem 'sass', '3.6.0'
 gem 'sass-rails', '=5.0.1'
 gem 'soundcloud'
 gem 'sprockets', '~> 2.12.5'
