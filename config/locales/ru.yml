@@ -244,6 +244,8 @@ ru:
   add_a_place_raquo: Добавить место &raquo;
   add_a_single_observation: Добавить одиночное наблюдение.
   add_a_taxon: Добавить таксон
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Добавьте <a target="_blank"
+    href="%{url}">замена таксона</a> если вы хотите изменить наименование
   add_all_your_matching_obs_of_this_taxon: Добавить все ваши соответствующие наблюдения
     этого таксона к этому проекту
   add_all_your_matching_obs_to_this_project: Добавить все ваши соответствующие наблюдения
@@ -1487,10 +1489,12 @@ ru:
   favorites: Фавориты
   fblocale: en_US
   feature_this_project: Особенность этого проекта?
+  feature_this_project_: Рекомендовать этот проект
   featured: Рекомендуемые
   featured?: рекомендуемые?
   featured_projects_from_everywhere: Рекомендуемые проекты отовсюду
   featured_projects_from_place: Интересные проекта для %{place}
+  featuring: Демонстрация
   feedback: Обратная связь
   feedback_group: Группа обратной связи
   feeds: Лента (feeds)
@@ -3458,6 +3462,7 @@ ru:
   remove_curator_role: Удалить роль куратора
   remove_curator_status: Удалить статус куратора
   remove_from_batch: Удалить из пакета
+  remove_from_featured: Убрать из рекомендованных
   remove_from_guide: Удалить из руководства
   remove_from_id_please?: Удалить идентификацию?
   remove_from_list: Удалить из списка
@@ -3700,8 +3705,11 @@ ru:
   sizes: Размеры
   skip_to_next_page: Перейти на следующую страницу
   small: маленький
+  site_admin_tools: Инструменты администрирования сайта
   site_name_place: '%{site_name} место'
   site_observations_export_from_date: экспорт наблюдений %{site_name} с %{date}
+  site_site_admin: Администратор сайта %{site_name}
+  site_staff: команда %{site_name}
   site_stats: Статистика сайта
   site_taxon_page: страница таксона %{site_name}
   site_year_in_review: Год %{site_name} в обзоре %{year}
@@ -4988,10 +4996,10 @@ ru:
     announcements:
       locales_desc: Удерживайте CMD- или SHIFT, чтобы сделать множественный выбор.
         Если не выбирать ничего, объявление будет отображаться для всех пользователей,
-        независимо от языкового стандарта. Выбор языкового стандарта без региона *не*
-        будет отображать целевые языки регионов, например, если вы выбрали en, объявление
-        не будет отображаться для людей, которые выбрали en-US. Если вы хотите нацелиться
-        на оба, выберите оба. Если вы хотите показать объявление для всех участников
+        независимо от языкового стандарта. Выбор языка без региона *не* будет отображать
+        языковые стандарты регионов, например, если вы выбрали en, объявление не будет
+        отображаться для людей, которые выбрали en-US. Если вы хотите нацелиться на
+        оба, выберите оба. Если вы хотите показать объявление для всех участников
         сайта, просто оставьте это поле пустым.
     custom_projects:
       edit:

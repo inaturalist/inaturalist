@@ -1494,7 +1494,7 @@ fi:
   improving: Parannus
   in: kohteessa
   in_n: paikassa %{n}
-  inaturalist_network_affiliation: iNaturalist-verkko kytkös
+  inaturalist_network_affiliation: iNaturalist Network -verkko kytkös
   inbox: saapuneet
   including: mukaan lukien
   in_order_to_login_and_using_site_visit_url: 'Jotta voit kirjautua sisään ja alkaa
@@ -1819,7 +1819,7 @@ fi:
     overlays:
       all_observations: Kaikki havainnot
       every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka
-        luotu iNaturalist-verkossa
+        luotu iNaturalist Network -verkossa
       gbif_network: GBIF-verkko
       observations: Havaintoa
       place_boundary: Paikan rajat
@@ -1833,7 +1833,7 @@ fi:
   media: Media
   medium: keskikokoinen
   meet: Tapaa
-  member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist-verkon</a>
+  member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist Network -verkon</a>
     jäsen
   members: Jäsenet
   mentioned_you_in_noun_html: '%{user} mainitsi sinut kohteessa %{noun}'
@@ -3601,6 +3601,9 @@ fi:
       index:
         obs_1_day: Havainnot (1 päivä)
         obs_1_day_desc: Yhden päivän aikana luodut havainnot
+        website_desc_html: |-
+          Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
+          tai <a href="%{url}">iNaturalist Network -verkon</a> verkkosivustojen kautta
     taxa:
       show:
         trending_desc: Eniten havaitut taksonit viime kuussa
