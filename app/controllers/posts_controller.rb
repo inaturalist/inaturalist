@@ -23,6 +23,13 @@ class PostsController < ApplicationController
     @posts = scope.not_flagged_as_spam.published.page(params[:page]).
       per_page( per_page ).order( "published_at DESC" )
     
+    if !params[:newer_than].blank? && ( newer_than_post = Post.find_by_id( params[:newer_than] ) )
+      @posts = @posts.where( "posts.published_at > ?", newer_than_post.published_at )
+    end
+    if !params[:older_than].blank? && ( older_than_post = Post.find_by_id( params[:older_than] ) )
+      @posts = @posts.where( "posts.published_at < ?", older_than_post.published_at )
+    end
+
     # Grab the monthly counts of all posts to show archives
     get_archives
     
