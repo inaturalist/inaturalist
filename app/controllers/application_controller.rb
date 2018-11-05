@@ -218,7 +218,7 @@ class ApplicationController < ActionController::Base
     @footless = true
     @no_footer_gap = true
     @responsive = true
-    @observations = Observation.elastic_query( has: ["photos"], per_page: 50, order: "votes" ).to_a.select do |o|
+    @observations = Observation.elastic_query( has: ["photos"], per_page: 50, order_by: "votes", order: "desc" ).to_a.select do |o|
       r = o.photos.first.original_dimensions[:width].to_f / o.photos.first.original_dimensions[:height].to_f
       r < 1
     end
