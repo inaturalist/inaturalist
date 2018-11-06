@@ -455,6 +455,7 @@ class Taxon < ActiveRecord::Base
       update_disagreement_identifications_for_taxon(id)
     annotation_taxon_ids_to_reassess = [ancestry_was.to_s.split( "/" ).map(&:to_i), id].flatten.compact.sort
     annotation_taxon_ids_to_reassess.each do |taxon_id|
+      next if Taxon::LIFE && taxon_id == Taxon::LIFE.id
       Annotation.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
         run_at: 1.day.from_now,
         unique_hash: { "Annotation::reassess_annotations_for_taxon_ids": [taxon_id] } ).

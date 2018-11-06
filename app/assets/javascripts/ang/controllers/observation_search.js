@@ -1075,6 +1075,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     delete urlParams.view;
     delete urlParams.subview;
     delete urlParams.viewer_id;
+    delete urlParams.observationFields;
     return $.param( urlParams );
   };
   $scope.showInfowindow = function( o ) {
