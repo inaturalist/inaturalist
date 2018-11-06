@@ -82,7 +82,7 @@
               %a{ href: "#", data: { toggle: "popover", content: t(:check_this_box_if_html), placement: "top" }, title: t(:about_licenses) }
                 =t :learn_more
         .form-group.hidden
-          = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { include_blank: true }, { class: "time_zone_select" }
+          = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { }, { class: "time_zone_select" }
       - elsif devise_mapping.rememberable?
         .form-group.checkbox
           %label

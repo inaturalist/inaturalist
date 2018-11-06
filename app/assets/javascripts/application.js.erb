@@ -666,7 +666,6 @@ $.fn.showInlineBlock = function() {
 function currentTimeZone() {
   var now = new Date();
   var nowString = now.toString();
-  console.log( "[DEBUG] nowString: ", nowString )
   var timeZoneAbbrMatch = nowString.match(/\(([A-Z]{3,4})\)$/);
   var timeZoneAbbr = timeZoneAbbrMatch ? nowString.match(/\(([A-Z]{3,4})\)$/)[1] : null;
   var timeZoneOffset = nowString.match(/[+-]\d\d\d\d/)[0];
