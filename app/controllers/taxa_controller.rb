@@ -21,7 +21,7 @@ class TaxaController < ApplicationController
   include TaxaHelper
   include Shared::WikipediaModule
   
-  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms]
+  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms, :browse_photos]
   before_filter :authenticate_user!, :only => [:edit_photos, :update_photos,
     :set_photos,
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,
@@ -171,7 +171,7 @@ class TaxaController < ApplicationController
         end
         api_url = "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}"
         options = {}
-        options[:api_token] = current_user.api_token if current_user
+        options[:authenticate] = current_user
         @node_taxon_json = INatAPIService.get_json( api_url, options )
         return render_404 unless @node_taxon_json
         @node_place_json = ( place_id.blank? || place_id == 0 ) ?

@@ -4,7 +4,8 @@ import Map from "../components/map";
 function mapStateToProps( state ) {
   return {
     observation: state.observation,
-    observationPlaces: state.observationPlaces
+    observationPlaces: state.observationPlaces,
+    config: state.config
   };
 }
 

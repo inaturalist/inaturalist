@@ -795,6 +795,7 @@ protected
     else
       elastic_params = { observed_on_year: year }
     end
+    elastic_params[:verifiable] = true
     elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
     elastic_query = Observation.params_to_elastic_query(elastic_params)
     counts = Observation.elastic_user_observation_counts(elastic_query, 5)
@@ -812,6 +813,7 @@ protected
     else
       elastic_params = { observed_on_year: year }
     end
+    elastic_params[:verifiable] = true
     elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
     elastic_query = Observation.params_to_elastic_query(elastic_params)
     counts = Observation.elastic_user_taxon_counts(elastic_query, limit: 5, batch: false)
@@ -825,7 +827,15 @@ protected
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
     site_filter = @site && @site.prefers_site_only_users?
-    filters = [ { term: { own_observation: false } } ]
+    filters = [
+      { term: { own_observation: false } }
+      # Uncomment if / when we want to only show ident stats from verifiable obs
+      # {
+      #   terms: {
+      #     "observation.quality_grade": [Observation::RESEARCH_GRADE, Observation::NEEDS_ID]
+      #   }
+      # }
+    ]
     if per == 'month'
       date = Date.parse("#{ year }-#{ month }-1")
       filters << { range: { created_at: {

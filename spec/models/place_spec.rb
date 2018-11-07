@@ -7,6 +7,13 @@ describe Place do
     place.check_list.add_taxon(taxon)
     expect(taxon.places).to_not be_empty
   end
+
+  it "bbox_contains_lat_lng_acc" do
+    place = Place.make!(swlat: 1, swlng: 1, nelat: 1, nelng: 180)
+    expect {
+      place.bbox_contains_lat_lng_acc?(1,1)
+    }.not_to raise_error
+  end
 end
 
 describe Place, "creation" do

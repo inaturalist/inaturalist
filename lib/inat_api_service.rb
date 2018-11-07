@@ -54,13 +54,13 @@ module INatAPIService
     if auth_user && auth_user.is_a?( User )
       headers["Authorization"] = auth_user.api_token
     end
-    unless params.blank? || !params.is_a?(Hash)
-      url += "?" + params.map{|k,v| "#{k}=#{[v].flatten.join(',')}"}.join("&")
-    end
     begin
       uri = URI.parse(url)
     rescue URI::InvalidURIError
       uri = URI.parse(URI.escape(url))
+    end
+    if !params.blank? && params.is_a?(Hash)
+      uri.query = URI.encode_www_form( Hash[URI.decode_www_form( uri.query || "" )].merge( params ) )
     end
     begin
       timed_out = Timeout::timeout( options[:timeout] ) do

@@ -1954,6 +1954,10 @@ user-icon .icon-person:before {
       border-top: 0 transparent;
     }
     .ac {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
       display: flex;
       background: white;
       &.ui-state-active {
@@ -1985,6 +1989,10 @@ user-icon .icon-person:before {
       }
       .ac-label {
         padding: 0 10px;
+        -webkit-box-flex: 2;
+        -webkit-flex: 2;
+        -moz-box-flex: 2;
+        -ms-flex: 2;
         flex: 2;
         .secondary-name {
           color: #aaa;
@@ -2134,6 +2142,10 @@ $header-line-height: 34px;
 
 
   padding: 0px 20px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
   display: flex;
   background-color: #eee;
   border-bottom: 1px solid #ddd;
@@ -2180,6 +2192,10 @@ $header-line-height: 34px;
   .search {
     margin-bottom: 0;
     margin-right: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
     input {
       width: $header-search-width;
@@ -2228,7 +2244,15 @@ $header-line-height: 34px;
   }
   #mainnav {
     text-align: left;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-flex: 2;
+    -webkit-flex-grow: 2;
+    -moz-box-flex: 2;
+    -ms-flex-positive: 2;
     flex-grow: 2;
     .navtab.active {
       border-bottom: 2px solid $inat-green;
@@ -2246,8 +2270,14 @@ $header-line-height: 34px;
     }
   }
   #usernav {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
     margin-right: 0;
+    -webkit-align-self: flex-end;
+    -ms-flex-item-align: end;
     align-self: flex-end;
     .usericon {
       width: $header-line-height - 2;
@@ -2283,7 +2313,15 @@ $header-line-height: 34px;
           margin-bottom: 0;
         }
         > a {
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
           display: flex;
+          -webkit-box-align: start;
+          -webkit-align-items: flex-start;
+          -moz-box-align: start;
+          -ms-flex-align: start;
           align-items: flex-start;
           line-height: 1.4;
           img {
@@ -2295,7 +2333,15 @@ $header-line-height: 34px;
     }
   }
   .add-obs {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     margin-right: 15px;
     .btn {

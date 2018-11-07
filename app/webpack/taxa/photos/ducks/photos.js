@@ -331,6 +331,12 @@ export function hydrateFromUrlParams( params ) {
     if ( params.order_by ) {
       newObservationParams.order_by = params.order_by;
     }
+    if ( params.photo_license ) {
+      newObservationParams.photo_license = params.photo_license;
+    }
+    if ( params.quality_grade ) {
+      newObservationParams.quality_grade = params.quality_grade;
+    }
     _.forEach( params, ( value, key ) => {
       if ( !key.match( /^term(_value)?_id$/ ) ) {
         return;

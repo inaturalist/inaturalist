@@ -1058,6 +1058,17 @@ describe Observation do
           expect( o.taxon ).to be_blank
           expect( o.quality_grade ).to eq Observation::CASUAL
         end
+        it "should be casual if there are conservative disagreements with the observer and the community votes it out of needs_id" do
+          genus = Taxon.make!( rank: Taxon::GENUS )
+          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+          o = make_research_grade_candidate_observation( prefers_community_taxon: false, taxon: species )
+          2.times{ Identification.make!( observation: o, taxon: genus ) }
+          o.reload
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.reload
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
       end
 
       describe "when observer opts out of CID for a single observation" do
@@ -2336,6 +2347,36 @@ describe Observation do
       expect( o ).to be_georeferenced
       expect( o.geoprivacy ).to be_blank
       expect( o.public_places ).to be_blank
+    end
+  end
+
+  describe "corners" do
+    describe "when obscured" do
+      let(:o) { Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED ) }
+      let(:uncertainty_cell_center_latlon) { Observation.uncertainty_cell_center_latlon( o.latitude, o.longitude ) }
+      let(:half_cell) { Observation::COORDINATE_UNCERTAINTY_CELL_SIZE / 2 }
+      let(:uncertainty_cell_ne_latlon) { uncertainty_cell_center_latlon.map{|c| (c + half_cell).to_f } }
+      let(:uncertainty_cell_sw_latlon) { uncertainty_cell_center_latlon.map{|c| (c - half_cell).to_f } }
+      it "should match the obscuration cell corners when positional_accuracy is blank" do
+        expect( o.positional_accuracy ).to be_blank
+        expect( o.ne_latlon.map(&:to_f) ).to eq uncertainty_cell_ne_latlon
+        expect( o.sw_latlon.map(&:to_f) ).to eq uncertainty_cell_sw_latlon
+      end
+      it "should match the positional_accuracy bounding box corners when positional_accuracy is greater than the obscuration cell" do
+        o.update_attributes( positional_accuracy: 100000 )
+        o.reload
+        positional_accuracy_degrees = o.positional_accuracy.to_i / (2*Math::PI*Observation::PLANETARY_RADIUS) * 360.0
+        positional_accuracy_ne_latlon = [
+          o.latitude + positional_accuracy_degrees,
+          o.longitude + positional_accuracy_degrees
+        ].map(&:to_f)
+        positional_accuracy_sw_latlon = [
+          o.latitude - positional_accuracy_degrees,
+          o.longitude - positional_accuracy_degrees
+        ].map(&:to_f)
+        expect( o.ne_latlon.map(&:to_f) ).to eq positional_accuracy_ne_latlon
+        # expect( o.sw_latlon.map(&:to_f) ).to eq positional_accuracy_sw_latlon
+      end
     end
   end
 

@@ -41,6 +41,10 @@ const PhotoBrowser = ( {
   } else {
     sortedGroupedPhotos = _.sortBy( _.values( groupedPhotos ), "groupName" );
   }
+  const photoLicenses = _.sortBy(
+    _.keys( _.pickBy( iNaturalist.Licenses, ( v, k ) => k.indexOf( "cc" ) === 0 ) ),
+    k => I18n.t( `${_.snakeCase( k )}_name`, { defaultValue: k } )
+  );
   const renderObservationPhotos = obsPhotos => (
     ( obsPhotos || [] ).map( observationPhoto => {
       let itemDim = 183;
@@ -128,6 +132,19 @@ const PhotoBrowser = ( {
     }
     return I18n.t( "faves" );
   };
+  const licenseDisplay = key => {
+    if ( key ) {
+      const licenseKey = _.snakeCase( key );
+      return I18n.t( `${licenseKey}_name`, { defaultValue: key } );
+    }
+    return I18n.t( "any_" );
+  };
+  const qualityGradeDisplay = key => {
+    if ( key && key !== "any" ) {
+      return I18n.t( "research_" );
+    }
+    return I18n.t( "any_" );
+  };
   const groupingDisplay = param => {
     if ( param === "taxon_id" ) {
       return I18n.t( "taxonomic" );
@@ -177,7 +194,7 @@ const PhotoBrowser = ( {
       <Row>
         <Col xs={12}>
           <div id="controls">
-            <ButtonGroup className="control-group">
+            <ButtonGroup className="control-group" id="layout-control">
               <Button
                 active={layout === "fluid"}
                 title={I18n.t( "fluid_layout" )}
@@ -193,98 +210,158 @@ const PhotoBrowser = ( {
                 <i className="icon-photo-grid"></i>
               </Button>
             </ButtonGroup>
-            { groupingMenuItems.length === 0 ? null : (
-              <span className="control-group">
-                <Dropdown
-                  id="grouping-control"
-                  onSelect={ key => {
-                    if ( key === "none" ) {
-                      setGrouping( null );
-                    } else if ( key === "taxon_id" ) {
-                      setGrouping( "taxon_id" );
-                    } else {
-                      setGrouping( `terms:${key.id}`, key.id );
-                    }
-                  } }
-                >
-                  <Dropdown.Toggle bsStyle="link">
-                    { I18n.t( "grouping" ) }: <strong>{ groupingDisplay( grouping.param ) }</strong>
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    { groupingMenuItems }
-                  </Dropdown.Menu>
-                </Dropdown>
-              </span>
-            ) }
-            { _.map( terms, values => {
-              const attr = values[0].controlled_attribute;
-              return (
-                <span key={`term-${attr.label}`} className="control-group">
+            <div id="filters">
+              { groupingMenuItems.length === 0 ? null : (
+                <span className="control-group">
                   <Dropdown
-                    id={`term-chooser-${attr.label}`}
-                    onSelect={ key => setTerm( attr.id, key ) }
+                    id="grouping-control"
+                    onSelect={ key => {
+                      if ( key === "none" ) {
+                        setGrouping( null );
+                      } else if ( key === "taxon_id" ) {
+                        setGrouping( "taxon_id" );
+                      } else {
+                        setGrouping( `terms:${key.id}`, key.id );
+                      }
+                    } }
                   >
                     <Dropdown.Toggle bsStyle="link">
-                      { I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } ) }:&nbsp;
-                      <strong>{
-                        ( selectedTerm && selectedTerm.id === attr.id && selectedTermValue ?
-                          I18n.t( `controlled_term_labels.${_.snakeCase( selectedTermValue.label )}`,
-                            { defaultValue: selectedTermValue.label } ) :
-                          I18n.t( "any" )
-                        ) }
-                      </strong>
+                      { I18n.t( "grouping" ) }: <strong>{ groupingDisplay( grouping.param ) }</strong>
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
-                      <MenuItem
-                        key={`term-chooser-item-${attr.label}-any`}
-                        eventKey={"any"}
-                        active={ !selectedTermValue }
-                      >
-                        { I18n.t( "any" ) }
-                      </MenuItem>
-                      { values.map( v => {
-                        const value = v.controlled_value;
-                        return (
-                          <MenuItem
-                            key={`term-chooser-item-${attr.label}-${value.label}`}
-                            eventKey={value.id}
-                            active={ selectedTermValue && selectedTermValue.id === value.id }
-                          >
-                            { I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}`, { defaultValue: value.label } ) }
-                          </MenuItem>
-                        );
-                      } ) }
+                      { groupingMenuItems }
                     </Dropdown.Menu>
                   </Dropdown>
                 </span>
-              );
-            } ) }
-            <span className="control-group">
-              <Dropdown
-                id="sort-control"
-                onSelect={ key => {
-                  setParam( "order_by", key );
-                } }
-              >
-                <Dropdown.Toggle bsStyle="link">
-                  { I18n.t( "order_by" ) }: <strong>{ orderByDisplay( params.order_by ) }</strong>
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <MenuItem
-                    eventKey={"votes"}
-                    active={params.order_by === "votes"}
-                  >
-                    { orderByDisplay( "votes" ) }
-                  </MenuItem>
-                  <MenuItem
-                    eventKey={"created_at"}
-                    active={grouping === "created_at"}
-                  >
-                    { orderByDisplay( "created_at" ) }
-                  </MenuItem>
-                </Dropdown.Menu>
-              </Dropdown>
-            </span>
+              ) }
+              { _.map( terms, values => {
+                const attr = values[0].controlled_attribute;
+                return (
+                  <span key={`term-${attr.label}`} className="control-group">
+                    <Dropdown
+                      id={`term-chooser-${attr.label}`}
+                      onSelect={ key => setTerm( attr.id, key ) }
+                    >
+                      <Dropdown.Toggle bsStyle="link">
+                        { I18n.t( `controlled_term_labels.${_.snakeCase( attr.label )}`, { defaultValue: attr.label } ) }:&nbsp;
+                        <strong>{
+                          ( selectedTerm && selectedTerm.id === attr.id && selectedTermValue ?
+                            I18n.t( `controlled_term_labels.${_.snakeCase( selectedTermValue.label )}`,
+                              { defaultValue: selectedTermValue.label } ) :
+                            I18n.t( "any_" )
+                          ) }
+                        </strong>
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <MenuItem
+                          key={`term-chooser-item-${attr.label}-any`}
+                          eventKey="any"
+                          active={ !selectedTermValue }
+                        >
+                          { I18n.t( "any_" ) }
+                        </MenuItem>
+                        { values.map( v => {
+                          const value = v.controlled_value;
+                          return (
+                            <MenuItem
+                              key={`term-chooser-item-${attr.label}-${value.label}`}
+                              eventKey={value.id}
+                              active={ selectedTermValue && selectedTermValue.id === value.id }
+                            >
+                              { I18n.t( `controlled_term_labels.${_.snakeCase( value.label )}`, { defaultValue: value.label } ) }
+                            </MenuItem>
+                          );
+                        } ) }
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </span>
+                );
+              } ) }
+              <span className="control-group">
+                <Dropdown
+                  id="sort-control"
+                  onSelect={ key => {
+                    setParam( "order_by", key );
+                  } }
+                >
+                  <Dropdown.Toggle bsStyle="link">
+                    { I18n.t( "order_by" ) }: <strong>{ orderByDisplay( params.order_by ) }</strong>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <MenuItem
+                      eventKey={"votes"}
+                      active={params.order_by === "votes"}
+                    >
+                      { orderByDisplay( "votes" ) }
+                    </MenuItem>
+                    <MenuItem
+                      eventKey={"created_at"}
+                      active={grouping === "created_at"}
+                    >
+                      { orderByDisplay( "created_at" ) }
+                    </MenuItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </span>
+              <span className="control-group">
+                <Dropdown
+                  id="license-control"
+                  onSelect={ key => {
+                    setParam( "photo_license", key );
+                  } }
+                >
+                  <Dropdown.Toggle bsStyle="link">
+                    { I18n.t( "photo_licensing" ) }: <strong>{ licenseDisplay( params.photo_license ) }</strong>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <MenuItem
+                      key="license-chooser-any"
+                      eventKey="any"
+                      active={ !params.photo_license }
+                    >
+                      { I18n.t( "any_" ) }
+                    </MenuItem>
+                    { _.map( photoLicenses, k => (
+                      <MenuItem
+                        key={ `license-chooser-${k}` }
+                        eventKey={ k }
+                        active={ params.photo_license === k }
+                      >
+                        { licenseDisplay( k ) }
+                      </MenuItem>
+                    ) ) }
+                  </Dropdown.Menu>
+                </Dropdown>
+              </span>
+              <span className="control-group">
+                <Dropdown
+                  id="quality-grade-control"
+                  onSelect={ key => {
+                    setParam( "quality_grade", key );
+                  } }
+                >
+                  <Dropdown.Toggle bsStyle="link">
+                    { I18n.t( "quality_grade_" ) }: <strong>{ qualityGradeDisplay( params.quality_grade ) }</strong>
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                    <MenuItem
+                      key="quality-grade-chooser-any"
+                      eventKey="any"
+                      active={ !params.quality_grade }
+                    >
+                      { I18n.t( "any_" ) }
+                    </MenuItem>
+                    <MenuItem
+                      key="quality-grade-chooser-research"
+                      eventKey="research"
+                      active={ params.quality_grade === "research" }
+                    >
+                      { qualityGradeDisplay( "research" ) }
+                    </MenuItem>
+                  </Dropdown.Menu>
+                </Dropdown>
+              </span>
+            </div>
           </div>
         </Col>
       </Row>

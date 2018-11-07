@@ -190,8 +190,8 @@ describe CheckList, "refresh_with_observation" do
   
   it "should remove taxa from ancestor lists"
   
-  it "should use private coordinates" do
-    p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0 )))")
+  it "should use private coordinates for admin-level places" do
+    p = make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0 )))", admin_level: Place::COUNTRY_LEVEL )
     l = p.check_list
     g = p.place_geometry.geom
     obscured_lat = g.envelope.lower_corner.y - 1

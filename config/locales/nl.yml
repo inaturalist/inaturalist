@@ -10,6 +10,7 @@
 # Author: Marjo
 # Author: MrLeopold
 # Author: Mwestra74
+# Author: Ndecouck
 # Author: Nienke74
 # Author: Optilete
 # Author: Pwijnsouw
@@ -950,9 +951,13 @@ nl:
   comparing_list_to_list: Vergeijken
   comparing_versions_x_and_y: Versies %{x} en %{y} vergelijken
   comparing_observations_from: Vergelijken van %{user} waarnemingen van %{dates}
+  complete_sets: Volledige sets
   compiled_by_name: Gecompileerd door %{name}
   completed: Voltooid
   completed_at: Voltooid op
+  comprehensive: uitgebreid
+  comprehensive?: Uitgebreid?
+  comprehensive_list: Uitgebreide lijst
   concept_status: Concept Status
   configure: Instellen
   configure_a_widget_to_show: Stel een widget in om de  %{site_name} waarnemingen
@@ -984,6 +989,7 @@ nl:
     place: Plek tot waar deze status is beperkt.
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
+    iucn: Equivalent van IUCN Rode Lijst code
   contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon
     die hier voorkomen?
   contest: wedstrijd
@@ -1011,6 +1017,7 @@ nl:
     juvenile: Juveniel
   controls: Besturing
   convert: Converteren
+  coordinate_systems: Coördinaatsystemen
   coordinates: Coördinaten
   coordinates_private: (coördinaten privé)
   copy: Kopiëren
@@ -1301,6 +1308,7 @@ nl:
   edited_by_name_html: Bewerkt door %{name}
   editing: Bewerken
   editing_announcement: Bewerk aankondiging
+  editing_custom_project_fields_for: Bewerk standaard project velden voor
   editing_observation_field: Bewerk waarnemingsveld
   editing_observation_id: Waarneming bewerken %{obs_id}
   editing_observations:
@@ -1332,13 +1340,16 @@ nl:
   embed_place_widget: Plaatswidget invoegen
   embed_widget_project: Een widget invoegen voor dit project op uw website
   enable_offline_access: Offline toegang inschakelen
+  enable_offline_access_for_mobile: Zet offline toegang aan voor mobiel
   enlarge: Vergroten
   end: Einde
   end_date_time: Einddatum /Tijd
   endangered: Bedreigd
   endemic: Inheems
+  endemic_to_x: Endemisch in %{x}
   eol: EOL
   eol_collection_url: EOL verzameling URL
+  error_updating_photo: 'Fout bij bijwerken foto: %{photo_errors}'
   establishment:
     establishment: Aanstelling
     native: inheems
@@ -1371,6 +1382,8 @@ nl:
   exact_date: Exacte datum
   exact_location: Exacte locatie
   exact_rank: Exacte rang
+  except: met uitzondering van
+  exclude_x: '%{x} uitsluiten'
   existing_flags: Bestaande labels
   exit_full_screen: Volledig Schermmodus Verlaten
   examples_of_ranking_organizations: Voorbeelden van organisaties die zich bezighouden
@@ -1395,6 +1408,8 @@ nl:
   facebook_account_information: Uw Facebook-account informatie
   facebook_account_not_linked: '%{user} heeft geen gekoppeld Facebook-account meer,
     waardoor %{site_name} geen toegang meer heeft tot deze foto.'
+  facebook_access_token_expired: Access token is verlopen. %{user} moet opnieuw linken
+    naar hun Facebook account
   facebook_confirmation: Facebook wil dat je bevestigt dat je wilt dat je account
     is verbonden met %{site_name}.
   facebook_needs_the_owner_of_that_photo_to: Facebook heeft de eigenaar van die foto
@@ -1431,9 +1446,13 @@ nl:
     door de personen die ze aangemaakt hebben of door curatoren
   fields_merged: Velden samengevoegd
   file: Bestand
+  file_should_be_in_the_following_format: 'Het bestand moet in het volgende format
+    zijn: taxon, omschrijving'
   fill_out_project_observation_fields: Vul de vakjes in voor de waarnemingen in dit
     project
   fill_out_your_profile: Vervolledig uw profiel
+  filling_out_checklist_for_place: invullen van checklists voor plaatsen die je goed
+    kent
   filling_out_your_profile: Uw profiel invullen
   filter: Filteren
   filter_by: Filteren op
@@ -1782,6 +1801,11 @@ nl:
   inat_believes_this_is_a_complete_listing: '%{site_name} vermoedt dat dit een volledige
     oplijsting is van dit taxon op deze plaats.'
   inat_user_profile: '%{site_name}: Profiel van %{user}'
+  inat_will_be_back_on: '%{site_name} zal terug komen op zijn voeten/vleugels/vinnen/tentakels/pseudopodia/schijnvoeten'
+  inaturalist_is_an_online_community: '%{site_name} is een online gemeenschap voor
+    naturalists! Door het toevoegen van je foto kun je wetenschappers helpen meer
+    te leren over'
+  inaturalist_is_catching_some_zs: '%{site_name} is vangen van enkele Zs'
   inaturalist_observations_by: '%{site_name} &#58; Waarnemingen door %{login}'
   inaturalist_places: '%{site_name} Plaatsen'
   inaturalist_places_are_way_record_what_lives_where: '%{site_name} Plaatsen zijn
@@ -1859,6 +1883,7 @@ nl:
     en <a href='%{invite_url}'>nodig enkele waarnemingen uit</a>
   join_this_project: Doe mee aan dit project
   joined!: Toegevoegd!
+  joined_any_projects: Nam deel aan willekeurige projecten
   joined_projects: Deelname aan projecten
   joined_with_date: Lid geworden op %{date}
   joining: Bezig met koppelen...
@@ -1978,6 +2003,12 @@ nl:
   life!: Levenǃ
   life_list: Levenslijst van %{user}
   life_list_updated: Life list bijgewerkt!
+  life_list_updated_we_also_saved_a: Life list bijgewerkt! We hebben ook een lege
+    waarneming van dit taxon bewaard.
+  life_lists_automatically_fill: Levenslijsten worden automatisch aangevuld met nieuwe
+    taxa als je ze opneemt, en ze kunnen worden beperkt tot bovenliggende taxa, b.v.
+    een levenslijst van kraaiachtigen (Corvidae).
+  life_list_first: levenslijst eerst
   link: Koppeling
   link_or_unlink_your_facebook_account: Koppel of verbreek uw Facebookaccount
   link_or_unlink_your_flickr_account: Koppel of verbreek uw Flickraccount
@@ -2021,12 +2052,16 @@ nl:
   linked_flickr_password_html: <strong>We vragen nooi naar je Flickr wachtwoord</strong>.
     Flickr kan de url controleren die door het drukken van de knop wordt verzonden
     om zeker te zijn dat het Flickr.com is.
+  linked_flickr_photo_copy_html: <strong>We slaan nooit kopieën van uw foto's op of
+    wijzigen uw Flickr-gegevens (tenzij u ons dat vraagt).</ strong> We geven te veel
+    om vogels, insekten en slakken om uw informatie te willen verprutsen!
   list: Lijst
   list_deleted: Lijst verwijderd.
   list_saved: Lijst opgeslagen.
   list_tooltip: Toon lijstweergave
   list_updated: Lijst bijgewerkt!
   list_views:
+    plain: Zonder opmaak
     taxonomic: taxonomisch
     photo: foto
   list_was_successfully_created: De lijst werd succesvol aangemaakt.
@@ -2293,6 +2328,7 @@ nl:
     ubio: uBio
   names: Namen
   names_for_taxon_html: Namen voor %{taxon}
+  naturalised: genaturaliseerd
   native: inheems
   native_to_place: Inheems in %{place}
   nav: Nav
@@ -2527,9 +2563,12 @@ nl:
   observing: aan het waarnemen
   occurrence_status_levels:
     present: aanwezig
+    common: gewoon
+    uncommon: ongewoon
     irregular: onregelmatig
     doubtful: twijfelachtig
     absent: afwezig
+  of: van
   of_observations: waarnemingen
   of_species: soort
   of_observers: waarnemers
@@ -2694,6 +2733,7 @@ nl:
       building: gebouw
       Canton: Kanton
       canton: kanton
+      Commune: gemeente
       Continent: Continent
       continent: continent
       Country: Land
@@ -2895,6 +2935,7 @@ nl:
     phylum: Stam
     subphylum: Onderstam
     class: Klasse
+    subclass: subklasse
     order: Orde
     family: Familie
     tribe: Tak
@@ -3047,6 +3088,7 @@ nl:
   search_for_a_location: Zoek naar een Locatie
   search_for_new_taxa: Zoek naar Nieuwe Taxa
   search_for_species: Zoek Soorten
+  search_list: zoeklijst
   search_obs: Zoek waarnemingen
   search_places: Zoek Plaatsen
   search_projects: Zoek Projecten
@@ -3091,6 +3133,7 @@ nl:
   share: Deel
   show: Weergeven
   show_active_and_inactive_taxa: Toon actieve en niet actieve taxa
+  show_common_names: Toon standaard namen
   show_default_taxon_photos: Toon standaard taxonfoto's
   show_keyboard_shortcuts: Toon sneltoetsen
   show_kml: Toon foto's van waarnemingen
@@ -3546,6 +3589,7 @@ nl:
   user_added_x_observations_html: '%{user} voegde %{x} waarneming(en) toe'
   user_blocked: Gebruiker geblokkeerd
   user_commented: '%{user} reageerde'
+  user_disagrees_this_is_taxon: '%{user} is het niet eens dat dit %{taxon} si'
   user_follows: '%{user} volgt'
   user_invited_you_to_join_html: '%{user} nodigde je uit om aan te sluiten'
   user_invited_you_to_join_project: '%{user} nodigde je uit om aan te sluiten bij

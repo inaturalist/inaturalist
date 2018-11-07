@@ -1177,6 +1177,7 @@ describe Taxon, "max_geoprivacy" do
   let(:t1) { Taxon.make!(rank: Taxon::SPECIES) }
   let(:t2) { Taxon.make!(rank: Taxon::SPECIES) }
   let(:taxon_ids) { [t1.id, t2.id] }
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
   it "should be private if one of the taxa has a private global status" do
     cs_global = ConservationStatus.make!( taxon: t1, geoprivacy: Observation::PRIVATE )
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE

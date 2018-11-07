@@ -25,7 +25,6 @@ shared_examples_for "a VotesController" do
     it "should allow multiple votes per user in different scopes" do
       post :vote, format: 'json', resource_type: 'observation', resource_id: o.id
       post :vote, format: 'json', resource_type: 'observation', resource_id: o.id, scope: 'beautiful'
-      expect( o.get_upvotes.size ).to eq 1
       expect( o.get_upvotes(vote_scope: 'beautiful').size ).to eq 1
       expect( o.votes_for.size ).to eq 2
     end

@@ -2358,7 +2358,7 @@ class ObservationsController < ApplicationController
       flash.now[:notice] = t(:preview_of_synced_observation, :url => url_for)
     end
     
-    if @existing_photo_observation = @local_photo.observations.where("observations.id != ?", @observation).first
+    if @existing_photo_observation = @local_photo.observations.where( "observations.id != ?", @observation.id ).first
       msg = t(:heads_up_this_photo_is_already_associated_with, :url => url_for(@existing_photo_observation))
       flash.now[:notice] = flash.now[:notice].blank? ? msg : "#{flash.now[:notice]}<br/>#{msg}"
     end
