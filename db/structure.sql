@@ -3553,7 +3553,6 @@ CREATE TABLE public.saved_locations (
 --
 
 CREATE SEQUENCE public.saved_locations_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -3661,7 +3660,6 @@ CREATE TABLE public.site_featured_projects (
 --
 
 CREATE SEQUENCE public.site_featured_projects_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -4038,7 +4036,6 @@ CREATE TABLE public.taxa (
     locked boolean DEFAULT false NOT NULL,
     conservation_status_source_identifier integer,
     is_active boolean DEFAULT true NOT NULL,
-    complete boolean,
     complete_rank character varying,
     taxon_reference_id integer
 );
@@ -4153,7 +4150,7 @@ CREATE TABLE public.taxon_curators (
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    taxon_id integer
+    concept_id integer
 );
 
 

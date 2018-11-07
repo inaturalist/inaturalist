@@ -68,6 +68,7 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do # index.html.erb
         @site_place = @site.place if @site
+        @root_taxon = Taxon.where(rank_level: Taxon::ROOT_LEVEL).first
         @featured_taxa = Taxon.where("taxa.featured_at IS NOT NULL"). 
           order("taxa.featured_at DESC").
           limit(100)
@@ -305,7 +306,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-      flash.now[:notice] ||= "This taxon is complete or descends from a complete taxon, so some taxonomic attributes can only be editable by curators of that complete taxon."
+      flash.now[:notice] ||= "This taxon is covered by a concept framework, so some taxonomic attributes can only be editable by taxon curators associated with that concept framework."
     end
   end
 

@@ -2,13 +2,16 @@ class TaxonReference < ActiveRecord::Base
   belongs_to :user
   belongs_to :concept
   has_many :external_taxa, dependent: :destroy
-  has_many :taxa, dependent: :nullify
+  has_many :taxa, before_add: :check_if_covered, dependent: :nullify
   
   accepts_nested_attributes_for :external_taxa, allow_destroy: true
   accepts_nested_attributes_for :taxa
   
   before_save :set_relationship
   before_validation :mark_external_taxa_for_destruction 
+  
+  validates :concept, presence: true
+  validate :concept_has_source
   
   RELATIONSHIPS = [
     'match',
@@ -54,6 +57,23 @@ class TaxonReference < ActiveRecord::Base
     end
   end
   
+  def concept_has_source
+    errors.add :concept_id, "concept must have source" unless concept.source_id.present?
+  end
+  
+  def taxa_covered_by_concept
+    return false unless taxa.map{|t| t.parent.id == concept.taxon_id || t.parent.is_internode_of(concept)}.all?
+    true
+  end
+  
+  def check_if_covered(taxon)
+    unless taxon.id.nil? || taxon.rank.nil?
+      raise if taxon.ancestry.nil?
+      raise unless taxon.parent.id == concept.taxon_id || taxon.parent.is_internode_of(concept)
+    end
+    true
+  end
+  
   def set_relationship
     external_taxa_count = external_taxa.count
     taxa_count = taxa.count
@@ -84,7 +104,5 @@ class TaxonReference < ActiveRecord::Base
     end
     true
   end
-  
-  validates :concept, presence: true
   
 end

@@ -27,70 +27,78 @@
 
 = form_for @taxon_reference do |f|
   .form-group
-    %label Concept
-    = f.collection_select(:concept_id, @concepts, :id, :concept_taxon_name)
-  
+    = label_tag 'concept_id', 'Concept Framework Taxon'
+    = f.collection_select(:concept_id, @concepts, :id, :concept_taxon_name, {}, {:class => "form-control"})
+    %smalll#conceptHelp.form-text.text-muted Ancestor taxon bearing associated Concept Framework
   .form-group
     %label Local Taxa
     = f.fields_for :taxa do |t|
-      .taxon
-        %input{:type => "text", :class => "text", placeholder: t(:start_typing_taxon_name)}
-        = t.hidden_field :id, value: t.object.id
-        = t.hidden_field :unlink, value: false
-        = link_to_function t(:remove), "$(this).prev().val(true); $(this).parents('.taxon').slideUp();", :class => "right"
+      .panel.panel-default
+        .panel-body
+          .taxon
+            %input{:type => "text", :class => "text", placeholder: t(:start_typing_taxon_name)}
+            = t.hidden_field :id, value: t.object.id
+            = t.hidden_field :unlink, value: false
+            = link_to_function t(:remove), "$(this).prev().val(true); $(this).parents('.taxon').slideUp();", :class => "right"
     - t_form_fields = capture do
       = f.fields_for :taxa, @taxon_reference.taxa.build do |t|
-        .taxon
-          %input{:type => "text", :class => "text", placeholder: t(:start_typing_taxon_name)}
-          = t.hidden_field :id, value: t.object.id
-          = t.hidden_field :unlink, value: false
-          = link_to_function t(:remove), "$(this).prev().val(true); $(this).parents('.taxon').slideUp();", :class => "right"
+        .panel.panel-default
+          .panel-body
+            .taxon
+              %input{:type => "text", :class => "text", placeholder: t(:start_typing_taxon_name)}
+              = t.hidden_field :id, value: t.object.id
+              = t.hidden_field :unlink, value: false
+              = link_to_function t(:remove), "$(this).prev().val(true); $(this).parents('.taxon').slideUp();", :class => "right"
     #new_taxa
-    =link_to_function "Connect a Local Taxon", "addTaxonField('#{escape_javascript(t_form_fields)}')"
+    =link_to_function "Associate a local taxon", "addTaxonField('#{escape_javascript(t_form_fields)}')"
   
   .form-group
     %label External Taxa
     = f.fields_for :external_taxa do |et|
-      .etaxon
-        .form-group
-          = et.label :name, "Scientific Name"
-          = et.text_field :name
-        .form-group
-          = et.label :rank, "Rank"
-          = et.text_field :rank
-        .form-group
-          = et.label :parent_name, "Parent Name"
-          = et.text_field :parent_name
-        .form-group
-          = et.label :parent_rank, "Parent Rank"
-          = et.text_field :parent_rank
-        .form-group
-          = et.label :url, "URL"
-          = et.text_field :url
-        = et.hidden_field "_destroy"
-        = link_to_function t(:remove), "$(this).prev().val(1); $(this).parents('.etaxon').slideUp();", :class => "right"
+      .panel.panel-default
+        .panel-body
+          .etaxon
+            .form-group
+              = et.label :name, "Scientific Name"
+              = et.text_field :name, {:class => "form-control"}
+            .form-group
+              = et.label :rank, "Rank"
+              = et.text_field :rank, {:class => "form-control"}
+            .form-group
+              = et.label :parent_name, "Parent Name"
+              = et.text_field :parent_name, {:class => "form-control"}
+            .form-group
+              = et.label :parent_rank, "Parent Rank"
+              = et.text_field :parent_rank, {:class => "form-control"}
+            .form-group
+              = et.label :url, "URL"
+              = et.text_field :url, {:class => "form-control"}
+            = et.hidden_field "_destroy"
+            = link_to_function t(:remove), "$(this).prev().val(1); $(this).parents('.etaxon').slideUp();", :class => "right"
     - et_form_fields = capture do
       = f.fields_for :external_taxa, @taxon_reference.external_taxa.build do |et|
-        .etaxon
-          .form-group
-            = et.label :name, "Scientific Name"
-            = et.text_field :name
-          .form-group
-            = et.label :rank, "Rank"
-            = et.text_field :rank
-          .form-group
-            = et.label :parent_name, "Parent Name"
-            = et.text_field :parent_name
-          .form-group
-            = et.label :parent_rank, "Parent Rank"
-            = et.text_field :parent_rank
-          .form-group
-            = et.label :url, "URL"
-            = et.text_field :url
-          = et.hidden_field "_destroy"
-          = link_to_function t(:remove), "$(this).prev().val(1); $(this).parents('.etaxon').slideUp();", :class => "right"
+        .panel.panel-default
+          .panel-body
+            .etaxon
+              .form-group
+                = et.label :name, "Scientific Name"
+                = et.text_field :name, {:class => "form-control"}
+              .form-group
+                = et.label :rank, "Rank"
+                = et.text_field :rank, {:class => "form-control"}
+              .form-group
+                = et.label :parent_name, "Parent Name"
+                = et.text_field :parent_name, {:class => "form-control"}
+              .form-group
+                = et.label :parent_rank, "Parent Rank"
+                = et.text_field :parent_rank, {:class => "form-control"}
+              .form-group
+                = et.label :url, "URL"
+                = et.text_field :url, {:class => "form-control"}
+              = et.hidden_field "_destroy"
+              = link_to_function t(:remove), "$(this).prev().val(1); $(this).parents('.etaxon').slideUp();", :class => "right"
     #new_external_taxa
-    =link_to_function "Connect an External taxon", "addExternalTaxonField('#{escape_javascript(et_form_fields)}')"
+    =link_to_function "Add an external taxon", "addExternalTaxonField('#{escape_javascript(et_form_fields)}')"
   
   .form-group
     %label Notes

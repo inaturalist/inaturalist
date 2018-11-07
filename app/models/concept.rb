@@ -5,8 +5,12 @@ class Concept < ActiveRecord::Base
   has_many :taxon_references, dependent: :destroy
   has_many :taxon_curators, inverse_of: :concept, dependent: :destroy
   
+  before_save :check_taxon_references
+  after_save :check_other_concept_taxon_references
+  
   accepts_nested_attributes_for :source
-  validate :rank_level_below_taxon_rank
+  validate :rank_level_below_taxon_rank  
+  validates :taxon_id, presence: true
   
   #after save? - relly should be handle change in rank_level (ie no longer a framework...)
   def handle_change_in_completeness
@@ -21,7 +25,26 @@ class Concept < ActiveRecord::Base
     true
   end
   
+  def check_taxon_references
+    return true if new_record?
+    return true if rank_level_was.nil? || source_id_was.nil?
+    return true unless rank_level_changed? || source_id_changed? || taxon_id_changed?
+    taxon_references.destroy_all
+    trued
+  end
+  
+  def check_other_concept_taxon_references
+    return true unless rank_level
+    return true unless new_record? || rank_level_changed? || source_id_changed? || taxon_id_changed?
+    
+    upstream_concepts = Concept.where("taxon_id IN (?)", taxon.ancestor_ids).pluck(:id)
+    ancestor_string = taxon.rank == "stateofmatter" ? taxon.id.to_s : "%/#{taxon.id}"
+    tr = TaxonReference.joins(:taxa).where("concept_id IN (?) AND (taxa.id = ? OR taxa.ancestry LIKE (?) OR taxa.ancestry LIKE (?))", upstream_concepts, taxon.id, "#{ancestor_string}", "#{ancestor_string}/%")
+    return tr.destroy_all
+  end
+  
   def rank_level_below_taxon_rank
+    return  true if rank_level.nil?
     if rank_level.to_i > taxon.rank_level.to_i
       errors.add( :rank_level, "must be below the taxon rank" )
     end

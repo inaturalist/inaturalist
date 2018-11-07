@@ -580,7 +580,7 @@ Rails.application.routes.draw do
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   
   resources :taxon_references
-  resources :concepts
+  resources :concepts, except: [:show, :index]
   
   resources :taxon_splits, :controller => :taxon_changes
   resources :taxon_merges, :controller => :taxon_changes

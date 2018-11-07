@@ -1,5 +1,5 @@
 class TaxonReferencesController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :except => [:index, :show]
   before_action :set_taxon_reference, except: [:index, :new, :create]
   
   layout "bootstrap"
@@ -55,17 +55,18 @@ class TaxonReferencesController < ApplicationController
   end
   
   def new
-    @concepts = Concept.all.limit(100)
     if (concept_id = params['concept_id']).present?
       @taxon_reference = TaxonReference.new(concept_id: concept_id)
     else
       @taxon_reference = TaxonReference.new
     end
     @taxon_reference.external_taxa.new
-    if (taxon_id = params['taxon_id']).present?
-      @taxon_reference.taxa.new(id: taxon_id)
+    if (taxon_id = params['taxon_id']).present? && taxon = Taxon.where(id: taxon_id).first
+      @taxon_reference.taxa.new(id: taxon_id, rank: nil)
+      @concepts = [Concept.joins("JOIN taxa ON taxa.id = concepts.taxon_id").where("concepts.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids).order("taxa.rank_level ASC").first]
     else
       @taxon_reference.taxa.new
+      @concepts = Concept.all.limit(100)
     end
   end
   
@@ -112,7 +113,13 @@ class TaxonReferencesController < ApplicationController
   end
   
   def edit
-    @concepts = Concept.all
+    if @taxon_reference.taxa.any?
+      taxon = @taxon_reference.taxa.first
+      @concepts = [Concept.joins("JOIN taxa ON taxa.id = concepts.taxon_id").where("concepts.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids).order("taxa.rank_level ASC").first]
+    else
+      @concepts = Concept.all.limit(100)
+    end
+    
   end
 
   def update

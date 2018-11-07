@@ -137,9 +137,8 @@ class Taxon < ActiveRecord::Base
         complete_species_count: complete_species_count,
         wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil
       })
-      if complete_taxon
-        json[:complete_rank] = complete_taxon.complete_rank
-        json[:complete_rank] = Taxon::SPECIES if json[:complete_rank].blank?
+      if internode_or_root_of_complete_framework_concept
+        json[:complete_rank] = Taxon::ONETOONERANKLEVELS.invert[internode_or_root_of_complete_framework_concept.rank_level]
       end
     end
     json

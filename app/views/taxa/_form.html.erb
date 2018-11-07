@@ -64,38 +64,6 @@
         <%= t(:locked_taxa_will_not_allow_new) %>
       </p>
     </div>
-
-    <% if taxon.rank_level && taxon.rank_level > Taxon::SPECIES_LEVEL %>
-      <div class="column span-23">
-        <% if is_admin? %>
-          <div class="admin">
-            <%= f.check_box :complete, label_after: true, description: t("views.taxa.edit.complete_desc_html") %>
-            <%= f.select :complete_rank, Taxon::RANK_LEVELS.reject {|rank, level| rank === "root" || level >= taxon.rank_level.to_i }.keys,
-              {
-                include_blank: true
-              },
-              {
-                class: "text",
-                description: t("views.taxa.edit.complete_rank_desc_html"),
-                wrapper: { style: taxon.complete ? "display: block;" : "display:none;" }
-              } %>
-          </div>
-        <% elsif taxon.complete? %>
-          <fieldset>
-            <legend><%=t :complete %></legend>
-            <p class="meta ui">
-              <%= t("views.taxa.edit.complete_desc_html") %>
-            </p>
-            <dl>
-              <dt><%=t :complete %></dt>
-              <dd><%= taxon.complete %></dd>
-              <dt><%=t :complete_rank %></dt>
-              <dd><%= taxon.complete_rank %></dd>
-            </dl>
-          </fieldset>
-        <% end %>
-      </div>
-    <% end %>
   </fieldset>
   
   <fieldset class="column span-24">

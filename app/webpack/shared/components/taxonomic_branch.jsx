@@ -32,7 +32,7 @@ const TaxonomicBranch = ( {
   }
   const renderTaxonomy = taxa => (
     <ul className="plain taxonomy">
-      { ( _.sortBy( taxa, t => t.name ) || [] ).map( t => {
+      { ( _.sortBy( taxa, t => [(100 - t.rank_level), t.name] ) || [] ).map( t => {
         let className = "";
         const isRoot = t.id === branch[0].id;
         const isTaxon = t.id === taxon.id;
@@ -83,7 +83,7 @@ const TaxonomicBranch = ( {
                 { isComplete ? (
                   <div className="inlineblock taxonomy-complete-notice">
                     <div className="label-complete">
-                      { I18n.t( `all_rank_added_to_the_database.${taxon.complete_rank || "species"}` ) }
+                      { I18n.t( `all_children_added_to_the_database` ) }
                     </div>
                     <OverlayTrigger
                       container={ $( ".suggestions-detail" ).get( 0 ) }

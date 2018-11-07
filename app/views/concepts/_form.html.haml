@@ -5,7 +5,15 @@
 - content_for :extrajs do
   :javascript
     $( document ).ready( function() {
+      
       $( "#taxon_name" ).taxonAutocomplete( { idEl: $( "#concept_taxon_id" ) } );
+      
+      var had_references = false;
+      function show_confirm() {
+        if(had_references == true){
+          $('input[type=submit]').attr("data-confirm","It looks like you might have changed the Source or the Rank level. If so saving will destroy all associated Taxon References. Are you sure?");
+        }
+      }
       
       if( $( "#concept_rank_level" ).val() != "" ) {
         $( "#framework" ).prop('checked', true);
@@ -13,6 +21,10 @@
         if( $( ".source_nested_form_fields" ).find( ".existing" ).val() != "" ) {
           $( "#external_reference" ).prop('checked', true);
           $( "#external_reference_details" ).show();
+          had_references = true;
+          $( "#concept_rank_level" ).change(show_confirm);
+          $( ".source_nested_form_fields" ).change(show_confirm);
+          $( "#taxon_name" ).attr("disabled", true).removeClass("text").addClass("form-control-plaintext");
         }
       }
 
@@ -23,10 +35,12 @@
           if( $( "#external_reference" ).is( ":checked" ) ){
             $( "#external_reference" ).prop( "checked", false);
             $( ".source_nested_form_fields" ).find( ".existing" ).chooser( "clear" );
+            show_confirm();
             $( "#external_reference_details" ).hide(500);
           }
           $( "#framework_details" ).hide(500);
           $( "#concept_rank_level" ).val("");
+          show_confirm();
           $( "#concept_complete" ).prop( "checked", false);
         }
       });
@@ -36,6 +50,7 @@
           $( "#external_reference_details" ).show(500);
         }else{
           $( ".source_nested_form_fields" ).find( ".existing" ).chooser( "clear" );
+          show_confirm();
           $( "#external_reference_details" ).hide(500);
         }
       });

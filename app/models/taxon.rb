@@ -93,6 +93,7 @@ class Taxon < ActiveRecord::Base
              :set_wikipedia_summary_later,
              :handle_after_move,
              :update_taxon_reference
+             
 
   after_commit :index_observations
 
@@ -116,6 +117,7 @@ class Taxon < ActiveRecord::Base
   validate :rank_level_for_taxon_and_parent_must_not_be_nil
   validate :only_inactive_children_if_inactive
   validate :active_parent_if_active
+  validate :has_ancestry_and_active_if_concept
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -185,6 +187,8 @@ class Taxon < ActiveRecord::Base
     end
   end
   ROOT_LEVEL = STATEOFMATTER_LEVEL
+  
+  ONETOONERANKLEVELS = RANK_LEVELS.select{|k,v| !["variety","form","infrahybrid","hybrid","genushybrid"].include? k}
   
   RANKS = RANK_LEVELS.keys
   VISIBLE_RANKS = RANKS - ['stateofmatter']
@@ -468,12 +472,12 @@ class Taxon < ActiveRecord::Base
   
   def update_taxon_reference
     return true unless self.taxon_reference
-    taxon_reference.set_relationship if (name_changed? || taxon_reference_id_changed?)
+    taxon_reference.set_relationship if (name_changed? || rank_changed? || ancestry_changed? || taxon_reference_id_changed?)
     attrs = {}
     attrs[:relationship] = taxon_reference.relationship
     taxon_reference.update_attributes(attrs)
   end
-  
+    
   def complete_species_count
     return nil if rank_level.to_i <= SPECIES_LEVEL
     unless ( concept && concept.framework? && concept.complete && concept.rank_level <= SPECIES_LEVEL )
@@ -950,42 +954,50 @@ class Taxon < ActiveRecord::Base
       order("ancestor.rank_level ASC").first
   end
 
-  def is_mid_tree_for(ancestor_concept)
+  def is_internode_of(ancestor_concept)
+    return false unless self.descendant_of?(ancestor_concept.taxon)
     return false unless self.rank_level > ancestor_concept.rank_level
     downstream_concepts = ancestor_concept.get_downstream_concepts
-    return false if downstream_concepts.select{|dc| dc.taxon_id == self.id}.count > 0
+    return false if downstream_concepts.select{|dc| dc.taxon_id == self.id || self.descendant_of?(dc.taxon)}.count > 0
     return true
+  end
+  
+  def has_ancestry_and_active_if_concept
+    return true unless concept && concept.framework?
+    return true unless ancestry_changed? || is_active_changed?
+    return true unless ancestry.nil? || is_active == false
+    errors.add( :concept, "framework bearing taxa must have ancestries and be active. Remove the concept framework first" )
+    true
   end
   
   def graftable_destination_if_complete
     return true unless new_record? || ancestry_changed?
     return true if ancestry.nil?
-    fc = parent.concept
-    if !skip_complete && fc && fc.framework? && fc.taxon_curators.any? && ( current_user.blank? || !fc.taxon_curators.where( user: current_user ).exists? )
+    cf = parent.concept
+    if !skip_complete && cf && cf.framework? && cf.taxon_curators.any? && ( current_user.blank? || !cf.taxon_curators.where( user: current_user ).exists? )
       errors.add( :ancestry, "includes the complete taxon #{fc.taxon}. Contact the curators of that taxon to request changes." )
     end
     ac = parent.get_ancestor_concept
-    if !skip_complete && ac && parent.is_mid_tree_for(ac) && ac.taxon_curators.any? && ( current_user.blank? || !ac.taxon_curators.where( user: current_user ).exists? )
+    if !skip_complete && ac && parent.is_internode_of(ac) && ac.taxon_curators.any? && ( current_user.blank? || !ac.taxon_curators.where( user: current_user ).exists? )
       errors.add( :ancestry, "includes the complete taxon #{ac.taxon}. Contact the curators of that taxon to request changes." )
     end
     true
   end
   
-  def complete_taxon
-    return self if concept && concept.framework?
-    
-    return @covered_taxon if @covered_taxon
-    unless @covered_taxon = ancestors.where( "complete" ).sort_by(&:rank_level).first
-      return nil
+  def ancestor_concept
+    return nil unless @ancestor_concept = get_ancestor_concept
+    return @ancestor_concept
+  end
+  
+  def internode_or_root_of_complete_framework_concept
+    if concept && concept.framework? && concept.complete
+      @ancestor_concept_including_root = concept
+    else
+      @ancestor_concept_including_root = get_ancestor_concept
+      return nil unless @ancestor_concept_including_root && @ancestor_concept_including_root.complete
+      return nil unless is_internode_of(@ancestor_concept_including_root)
     end
-    if level_within_complete_range = @complete_taxon.complete_rank.blank? || @complete_taxon.complete_rank_level.to_i <= rank_level.to_i
-      return @complete_taxon
-    end
-    parent_inside_complete_range = parent.rank_level.to_i > @complete_taxon.complete_rank_level.to_i
-    if parent_inside_complete_range
-      return @complete_taxon
-    end
-    @complete_taxon = nil
+    return @ancestor_concept_including_root
   end
 
   def graftable_if_complete
