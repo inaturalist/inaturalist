@@ -190,7 +190,6 @@ de:
   adapted_by_name_from_a_work_by_original: Angepasst von %{name} aus einer Arbeit
     von %{original}
   add: Hinzufügen
-  add_a: CANNOT BE TRANSLATED
   add_a_batch_of_observations: Beobachtungssatz hinzufügen
   add_a_batch_of_observations_by_csv: Beobachtungssatz im CSV-Format hinzufügen
   add_a_batch_of_taxa: Taxa-Satz hinzufügen
@@ -897,12 +896,6 @@ de:
   clear: löschen
   clear_color_filters: Farbfilter löschen
   clear_search: Suche löschen
-  clear_shapes: Umrisse löschen
-  click_add_an_observation_to_the_lower_right: Willkommen bei %{site_name_short}!
-    Klicke unten rechts auf "Beobachtung hinzufügen". Du wirst zur Anmeldung/Registrierung
-    aufgefordert, wenn noch nicht getan
-  click_on_map_to_draw_shape_around_place: Klick auf die Karte um einen Umriss um
-    diesen Ort zu zeichnen
   click_on_the_map_to: Klick auf die Karte, um deine Beobachtung zu verorten
   click_the_map: <strong>Klicke auf die Karte</strong> um ein Ort hinzuzufügen.
   click_the_map_to_jump_new_place: Klicke auf die Karte, um zu einem neuen Ort zu
@@ -2926,6 +2919,7 @@ de:
     belgium: Belgien
     bosnia_and_herzegovina: Bosnia und Herzegovina
     brazil: Brasilien
+    canada: Kanada
     central_america: Zentralamerika
     china: China
     colombia: Kolumbien
@@ -3423,6 +3417,7 @@ de:
   show_taxa_from_both: (Taxa von beiden Listen anzeigen)
   show_taxa_from_everywhere: Taxa von überall anzeigen
   show_taxa_from_place: Taxa von %{place} anzeigen
+  show_total_counts: Gesamtzahlen anzeigen
   show_total_listed_taxa: Insgesamt gelistete Taxa anzeigen
   show_uncountable_species: Unzählbare Spezies anzeigen
   showing_observations_by: Beobachtungen anzeigen nach
@@ -3443,6 +3438,7 @@ de:
   skip_to_next_page: Zur nächsten Seite springen
   small: klein
   site_name_place: '%{site_name} Orte'
+  site_staff: '%{site_name}-Mitarbeiter'
   site_stats: Seitenstatistik
   site_taxon_page: '%{site_name} Taxonseite'
   site_year_in_review: '%{site_name} Jahr in Überprüfung %{year}'
@@ -3695,6 +3691,7 @@ de:
   taxon_map:
     gbif_occurrences: GBIF Vorkommnisse
     data_url: Daten-URL
+    overlays: Ebenen
   taxon_changes: Taxon-Änderungen
   taxon_colors: Taxon-Farben
   taxon_curators: Taxon-Kuratoren
@@ -3834,6 +3831,7 @@ de:
   this_bioblitz_beings_in: Dieser bioblitz beginnt in
   this_is_a: Dies ist ein
   this_list_is_empty!: Diese Liste ist leer!
+  this_is_the_primary_listing: Dies ist die primäre Auflistung
   this_observation: Dieser Beobachtung
   this_observation_has_been_incorporated_into_the_following_external_websites: Diese
     Beobachtung wurde in die folgenden externen Websites aufgenommen
@@ -3923,6 +3921,7 @@ de:
   unknown_rank: (Unbekannter Rang)
   unfollow: Nicht mehr folgen
   unmute: Ton an
+  unobserved_listings: Nicht beobachtete Auflistungen
   updates_notification_email_subject: '%{prefix} Neue Aktualisierungen %{date}'
   updating: Aktualisiere…
   unprocessable: Unverarbeitbar
@@ -3940,6 +3939,7 @@ de:
   update_search: Suche aktualisieren
   update_selected_taxa: Ausgewählte Taxa aktualisieren
   update_your_content: Deinen Inhalt aktualisieren
+  update_with_eol_content: Mit EOL-Inhalt aktualisieren
   updated: Aktualisiert
   updated_by: Aktualisiert von
   updated_daily: Täglich aktualisiert
@@ -3953,6 +3953,7 @@ de:
   uploader:
     tooltips:
       add: Beobachtung(en) hinzufügen
+      combine: Ausgewählte Beobachtungen kombinieren
       photo_failed: Das Foto konnte nicht hochgeladen werden
       remove: Ausgewählte Beobachtungen entfernen
       remove_observation: Beobachtung entfernen

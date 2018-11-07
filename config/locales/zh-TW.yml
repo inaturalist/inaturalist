@@ -175,7 +175,6 @@ zh-TW:
   activity_settings: 動態設定
   adapted_by_name_from_a_work_by_original: 被 %{name} 套用來自 %{original} 的作業
   add: 新增
-  add_a: 新增一
   add_a_batch_of_observations: 新增一批觀察記錄
   add_a_batch_of_observations_by_csv: 以 CSV 檔案新增一批觀察記錄
   add_a_batch_of_taxa: 新增一批分類群
@@ -189,6 +188,8 @@ zh-TW:
   add_a_place_raquo: 新增地點&raquo;
   add_a_single_observation: 新增一項觀察記錄
   add_a_taxon: 新增分類群
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: 若您想更改名稱，請添加<a target="_blank"
+    href="%{url}">物種分類對換</a>
   add_all_your_matching_obs_of_this_taxon: 把這分類群中您所有符合的觀察記錄添加到此專案
   add_all_your_matching_obs_to_this_project: 把您所有符合的觀察記錄新增到此專案
   add_an_assessment: 新增評估
@@ -766,9 +767,6 @@ zh-TW:
   clear: 清除
   clear_color_filters: 清除色彩篩選
   clear_search: 清除搜尋
-  clear_shapes: 清除外觀
-  click_add_an_observation_to_the_lower_right: 歡迎來到 %{site_name_short}！請點擊右下方的「添加觀察」。若您尚未登入或註冊，頁面將會提醒您。
-  click_on_map_to_draw_shape_around_place: 在地圖上點擊於地點周圍畫出形狀
   click_on_the_map_to: 在地圖上點擊以放置您的觀察
   click_the_map: <strong>點擊地圖</strong>來添加一個位置。
   click_the_map_to_jump_new_place: 點擊地圖來跳換到新地點
@@ -1265,10 +1263,12 @@ zh-TW:
   favorites: 我的最愛
   fblocale: 美式英文
   feature_this_project: 精選此專案？
+  feature_this_project_: 精選此專案
   featured: 精選
   featured?: 精選？
   featured_projects_from_everywhere: 來自各處的精選專案
   featured_projects_from_place: 來自%{place}的精選專案
+  featuring: 精選
   feedback: 意見回饋
   feedback_group: 意見回饋群組
   feeds: 訊息來源
@@ -2689,6 +2689,7 @@ zh-TW:
     belgium: 比利時
     bosnia_and_herzegovina: 波士尼亞與赫塞哥維納
     brazil: 巴西
+    canada: 加拿大
     central_america: 中美洲
     china: 中國
     colombia: 哥倫比亞
@@ -2971,6 +2972,7 @@ zh-TW:
   remove_curator_role: 移除策展人身份
   remove_curator_status: 移除策展人狀態
   remove_from_batch: 從批量移除
+  remove_from_featured: 從精選裡移除
   remove_from_guide: 從指南移除
   remove_from_id_please?: 從需要鑑定裡移除？
   remove_from_list: 從清單移除
@@ -3190,8 +3192,11 @@ zh-TW:
   sizes: 大小
   skip_to_next_page: 跳至下一頁
   small: 小
+  site_admin_tools: 網站管理工具
   site_name_place: '%{site_name} 地點'
   site_observations_export_from_date: 自 %{date} %{site_name} 匯出的觀察
+  site_site_admin: '%{site_name} 網站管理員'
+  site_staff: '%{site_name} 成員'
   site_stats: 網站統計
   site_taxon_page: '%{site_name} 物種分類頁面'
   site_year_in_review: 回顧 %{year} 年的 %{site_name}
@@ -4209,7 +4214,7 @@ zh-TW:
   views:
     views: 查看數
     announcements:
-      locales_desc: 點擊 CMD 鍵或 SHIFT 鍵來選擇多個項目。若不作選擇，會忽略在地化條件直接向所有用戶顯示出公告。若挑選不帶區域的語言在地化，將
+      locales_desc: 點擊 CMD 鍵或 SHIFT 鍵來選擇多個項目。若不作選擇，會忽略在地化條件直接向所有用戶顯示出公告。若挑選不帶區域的語言，將
         *不會* 針對帶有區域條件的在地化，例如：如果您挑選「en」，會無法呈現在挑選「en-US」的人們上。如果您想要針對兩方，就請兩邊都挑選。如果您想要向此網站上所有成員顯示公告，就請直接留空。
     custom_projects:
       edit:
