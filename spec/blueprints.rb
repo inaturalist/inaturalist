@@ -410,8 +410,18 @@ TaxonChange.blueprint do
 end
 
 TaxonCurator.blueprint do
-  taxon { Taxon.make! }
+  concept { Concept.make! }
   user { make_curator }
+end
+
+Concept.blueprint do
+  taxon { Taxon.make! }
+  rank_level { 5 }
+  source { Source.make! }
+end
+
+TaxonReference.blueprint do
+  concept { Concept.make! }
 end
 
 TaxonDrop.blueprint do

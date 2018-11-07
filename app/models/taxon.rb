@@ -1534,7 +1534,7 @@ class Taxon < ActiveRecord::Base
   def editable_by?( user )
     return false unless user.is_a?( User )
     return true if user.is_admin?
-    true #user.is_curator? && rank_level.to_i < ORDER_LEVEL
+    user.is_curator? && rank_level.to_i < ORDER_LEVEL
   end
 
   def mergeable_by?(user, reject)

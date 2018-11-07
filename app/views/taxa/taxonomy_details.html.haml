@@ -125,5 +125,6 @@
               %p= formatted_user_text @concept.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
       - else
         - if is_admin?
-          .admin-box
-            = link_to "Add concept", new_concept_path({taxon_id: @taxon.id})
+          .pull-right
+            .admin-box
+              = link_to "Add concept", new_concept_path({taxon_id: @taxon.id})

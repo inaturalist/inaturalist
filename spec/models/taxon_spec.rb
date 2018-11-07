@@ -1307,10 +1307,11 @@ describe "complete" do
     family = Taxon.make!( rank: Taxon::FAMILY )
     genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
     species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+    concept = Concept.make!
     Delayed::Worker.new.work_off
     es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
     expect( es_genus.complete_species_count ).to be_nil
-    without_delay { family.update_attributes!( complete: true, current_user: make_admin ) }
+    without_delay { concept.update_attributes!( complete: true ) }
     genus.reload
     expect( genus.complete_species_count ).to eq 1
     es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
@@ -1490,39 +1491,40 @@ describe "complete_species_count" do
     end
   end
   describe "when taxon is complete" do
-    let(:complete_taxon) { Taxon.make!( complete: true, rank: Taxon::FAMILY ) }
-    let(:taxon_curator) { TaxonCurator.make!( taxon: complete_taxon ) }
+    let(:taxon) { Taxon.make!( rank: Taxon::FAMILY ) }
+    let(:concept) { Concept.make!( complete: true, taxon: taxon) }
+    let(:taxon_curator) { TaxonCurator.make!( concept: concept ) }
     it "should count species" do
-      species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, current_user: taxon_curator.user )
-      expect( complete_taxon.complete_species_count ).to eq 1
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
+      expect( taxon.complete_species_count ).to eq 1
     end
     it "should not count genera" do
-      genus = Taxon.make!( rank: Taxon::GENUS, parent: complete_taxon, current_user: taxon_curator.user )
-      expect( complete_taxon.complete_species_count ).to eq 0
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: taxon, current_user: taxon_curator.user )
+      expect( taxon.complete_species_count ).to eq 0
     end
     it "should not count hybrids" do
-      hybrid = Taxon.make!( rank: Taxon::HYBRID, parent: complete_taxon, current_user: taxon_curator.user )
-      expect( complete_taxon.complete_species_count ).to eq 0
+      hybrid = Taxon.make!( rank: Taxon::HYBRID, parent: taxon, current_user: taxon_curator.user )
+      expect( taxon.complete_species_count ).to eq 0
     end
     it "should not count extinct species" do
-      extinct_species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, current_user: taxon_curator.user )
+      extinct_species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
       ConservationStatus.make!( taxon: extinct_species, iucn: Taxon::IUCN_EXTINCT, status: "extinct" )
       extinct_species.reload
       expect( extinct_species.conservation_statuses.first.iucn ).to eq Taxon::IUCN_EXTINCT
       expect( extinct_species.conservation_statuses.first.place ).to be_blank
-      expect( complete_taxon.complete_species_count ).to eq 0
+      expect( taxon.complete_species_count ).to eq 0
     end
     it "should count species with place-specific non-extinct conservation statuses" do
-      cs_species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, current_user: taxon_curator.user )
+      cs_species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
       ConservationStatus.make!( taxon: cs_species, iucn: Taxon::IUCN_VULNERABLE, status: "VU" )
       cs_species.reload
       expect( cs_species.conservation_statuses.first.iucn ).to eq Taxon::IUCN_VULNERABLE
       expect( cs_species.conservation_statuses.first.place ).to be_blank
-      expect( complete_taxon.complete_species_count ).to eq 1
+      expect( taxon.complete_species_count ).to eq 1
     end
     it "should not count inactive taxa" do
-      species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, is_active: false, current_user: taxon_curator.user )
-      expect( complete_taxon.complete_species_count ).to eq 0
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, is_active: false, current_user: taxon_curator.user )
+      expect( taxon.complete_species_count ).to eq 0
     end
   end
 end
@@ -1626,11 +1628,13 @@ end
 describe "taxon_reference" do
   describe "when taxon has reference" do
     it "should update taxon reference relationship when taxon name changes" do
-      source = Source.make!
-      tr = TaxonReference.new(source: source)
-      tr.save
-      t = Taxon.make!(name: "Taricha torosa", taxon_reference_id: tr.id)
-      et = ExternalTaxon.new(name: "Taricha torosa", taxon_reference_id: tr.id)
+      tr = TaxonReference.make!
+      p = Taxon.make!(name: "Taricha", rank: "genus")
+      t = Taxon.make!(name: "Taricha torosa", rank: "species", taxon_reference_id: tr.id)
+      t.parent = p
+      t.save
+      t.reload
+      et = ExternalTaxon.new(name: "Taricha torosa", rank: "species", parent_name: "Taricha", parent_rank: "genus", taxon_reference_id: tr.id)
       et.save
       tr.reload
       expect(tr.relationship).to eq "match"
