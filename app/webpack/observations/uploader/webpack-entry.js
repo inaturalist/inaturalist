@@ -1,4 +1,4 @@
-import "babel-polyfill";
+import "@babel/polyfill";
 import thunkMiddleware from "redux-thunk";
 import { createStore, compose, applyMiddleware } from "redux";
 import React from "react";

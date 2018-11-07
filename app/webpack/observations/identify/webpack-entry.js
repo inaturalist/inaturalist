@@ -1,4 +1,4 @@
-import "babel-polyfill";
+import "@babel/polyfill";
 import moment from "moment";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
