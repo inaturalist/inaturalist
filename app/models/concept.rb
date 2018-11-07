@@ -30,7 +30,7 @@ class Concept < ActiveRecord::Base
     return true if rank_level_was.nil? || source_id_was.nil?
     return true unless rank_level_changed? || source_id_changed? || taxon_id_changed?
     taxon_references.destroy_all
-    trued
+    true
   end
   
   def check_other_concept_taxon_references

@@ -11,7 +11,11 @@
   %tbody
     - (0..([taxon_reference.taxa.count,taxon_reference.external_taxa.count].max-1)).each do |i|
       %tr
-        %td= link_to taxon_reference.external_taxa[i].rank.capitalize + " " + taxon_reference.external_taxa[i].name + " (parent: " + taxon_reference.external_taxa[i].parent_rank.capitalize + " " + taxon_reference.external_taxa[i].parent_name + ")", taxon_reference.external_taxa[i].url if taxon_reference.external_taxa[i]
+        - if taxon_reference.external_taxa[i]
+          - if taxon_reference.external_taxa[i].url
+            %td= link_to taxon_reference.external_taxa[i].rank.capitalize + " " + taxon_reference.external_taxa[i].name + " (parent: " + taxon_reference.external_taxa[i].parent_rank.capitalize + " " + taxon_reference.external_taxa[i].parent_name + ")", taxon_reference.external_taxa[i].url
+          - else
+            %td= taxon_reference.external_taxa[i].rank.capitalize + " " + taxon_reference.external_taxa[i].name + " (parent: " + taxon_reference.external_taxa[i].parent_rank.capitalize + " " + taxon_reference.external_taxa[i].parent_name + ")"
         %td= taxon_reference.relationship.capitalize if i==0
         - if taxon_reference.taxa[i]
           - if taxon && taxon_reference.taxa[i].id == taxon.id
