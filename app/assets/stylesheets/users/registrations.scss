@@ -167,6 +167,10 @@
     font-weight: bold;
     margin-bottom: 30px;
   }
+  &.log-in .bigtext {
+    font-size: 20px;
+    margin-top: 57px;
+  }
 
   .btn-inat {
     width: 100%;
@@ -177,31 +181,66 @@
   }
 
   .providerlink {
-    width: 100%;
-    color: white;
-    border-radius: 5px;
     font-weight: bold;
-    &:before {
-      font-family: FontAwesome;
+    color: white;
+    background-color: $border-grey;
+    i {
       font-weight: normal;
       font-size: 32px;
       line-height: 32px;
-      margin-right: 15px;
       vertical-align: middle;
     }
     &.facebook {
-      background-color: #405aa9;
-      border-color: #405aa9;
-    }
-    &.facebook:before {
-      content: "\f09a";
+      background-color: $facebook-blue;
+      border-color: $facebook-blue;
     }
     &.google {
-      background-color: #d74837;
-      border-color: #d74837;
+      background-color: $google-red;
+      border-color: $google-red;
     }
-    &.google:before {
-      content: "\f1a0";
+    &.twitter {
+      background-color: $twitter-blue;
+      border-color: $twitter-blue;
+    }
+    &.flickr {
+      background-color: black;
+      border-color: black;
+    }
+    &.yahoo {
+      background-color: $yahoo-purple;
+      border-color: $yahoo-purple;
+    }
+  }
+
+  .providerlink.btn-primary {
+    width: 100%;
+    border-radius: 5px;
+    i {
+      margin-right: 10px;
+    }
+  }
+  .providerlink.btn-circle {
+    border-radius: 100px;
+    width: 43px;
+    height: 43px;
+    line-height: 30px;
+    border-width: 0;
+    text-align: center;
+    i {
+      font-size: 21px;
+      line-height: 0;
+    }
+    &.twitter {
+      i {
+        font-size: 28px;
+        position: relative;
+        left: -2px;
+      }
+    }
+    &.yahoo {
+      i {
+        font-size: 20px;
+      }
     }
   }
 
@@ -211,5 +250,9 @@
       position: relative;
       top: 2px;
     }
+  }
+  &.log-in .provider-authorizations {
+    display: flex;
+    justify-content: space-between;
   }
 }

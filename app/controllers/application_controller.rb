@@ -237,11 +237,13 @@ class ApplicationController < ActionController::Base
       es_query.delete(:place_id)
       @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
     end
-    ratio = params[:ratio].to_f
-    ratio = 1 if ratio <= 0
-    @observations = @observations.select do |o|
-      r = o.photos.first.original_dimensions[:width].to_f / o.photos.first.original_dimensions[:height].to_f
-      r < ratio
+    if params[:project_id].blank?
+      ratio = params[:ratio].to_f
+      ratio = 1 if ratio <= 0
+      @observations = @observations.select do |o|
+        r = o.photos.first.original_dimensions[:width].to_f / o.photos.first.original_dimensions[:height].to_f
+        r < ratio
+      end
     end
   end
 
