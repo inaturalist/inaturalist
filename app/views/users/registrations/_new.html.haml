@@ -25,7 +25,10 @@
 
 .flexrow
   - obs = @observations[rand(@observations.size)]
-  #imgcol.hidden-xs.hidden-sm{ style: "background-image: url('#{obs.photos[0].large_url}');" }
+  - photo = obs.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
+  - place_guess = obs.public_places.select{|p| [Place::COUNTRY_LEVEL, Place::STATE_LEVEL].include?(p.admin_level)}.sort_by(&:admin_level).map(&:name).reverse.join( ", " )
+  - place_guess = obs.place_guess if place_guess.blank?
+  #imgcol.hidden-xs.hidden-sm{ style: "background-image: url('#{photo.large_url}');" }
     .about-observation
       = link_to_user obs.user, style: "background-image: url('#{obs.user.icon.url(:medium)}');", class: "usericon" do
         &nbsp;
@@ -35,7 +38,7 @@
         = link_to obs, class: "username" do
           = obs.user.published_name
         %div
-          = link_to t( :in_place_x, place: obs.place_guess ), observations_url( lat: obs.latitude, lng: obs.longitude )
+          = link_to t( :in_place_x, place: place_guess ), observations_url( lat: obs.latitude, lng: obs.longitude )
 
   #formcol{ class: form_type }
     .inner
@@ -62,12 +65,12 @@
               .error= formatted_error_sentence_for( resource, :login )
         - if form_type != "edit-after-auth"
           .form-group.text-field.password
-            = f.password_field :password, class: "text", required: true, placeholder: t(:password), class: "form-control"
+            = f.password_field :password, class: "text form-control", required: true, placeholder: t(:password)
             - unless resource.errors[:password].blank?
               .error= formatted_error_sentence_for( resource, :password )
         - if form_type == "sign-up"
           .form-group.text-field.password-confirmation
-            = f.password_field :password_confirmation, class: "text", required: true, placeholder: t(:password_confirmation), class: "form-control"
+            = f.password_field :password_confirmation, class: "text form-control", required: true, placeholder: t(:password_confirmation)
             - unless resource.errors[:password_confirmation].blank?
               .error= formatted_error_sentence_for( resource, :password_confirmation )
           - if @site.using_recaptcha?

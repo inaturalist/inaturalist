@@ -223,11 +223,9 @@ class ApplicationController < ActionController::Base
       per_page: 100,
       order_by: "votes",
       order: "desc",
-      place_id: @site.try(:place_id).blank? ? nil : @site.place_id
+      place_id: @site.try(:place_id).blank? ? nil : @site.place_id,
+      projects: ["log-in-photos"]
     }
-    unless params[:project_id].blank?
-      es_query[:projects] = [params[:project_id]]
-    end
     @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
     if @observations.blank?
       es_query.delete(:projects)
@@ -237,11 +235,12 @@ class ApplicationController < ActionController::Base
       es_query.delete(:place_id)
       @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
     end
-    if params[:project_id].blank?
+    if es_query[:projects].blank?
       ratio = params[:ratio].to_f
       ratio = 1 if ratio <= 0
       @observations = @observations.select do |o|
-        r = o.photos.first.original_dimensions[:width].to_f / o.photos.first.original_dimensions[:height].to_f
+        photo = o.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
+        r = photo.original_dimensions[:width].to_f / photo.original_dimensions[:height].to_f
         r < ratio
       end
     end

@@ -166,6 +166,7 @@
     font-size: 23px;
     font-weight: bold;
     margin-bottom: 30px;
+    margin-top: 20px;
   }
   &.log-in .bigtext {
     font-size: 20px;
@@ -232,14 +233,14 @@
     }
     &.twitter {
       i {
-        font-size: 28px;
+        font-size: 26px;
         position: relative;
-        left: -2px;
+        left: -1px;
       }
     }
     &.yahoo {
       i {
-        font-size: 20px;
+        font-size: 18px;
       }
     }
   }
