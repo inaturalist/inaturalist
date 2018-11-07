@@ -1,5 +1,5 @@
 import _ from "lodash";
-import "babel-polyfill";
+import "@babel/polyfill";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";

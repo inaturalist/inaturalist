@@ -33,8 +33,8 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       } );
       return modified;
     case UPDATE_OBS_CARD:
-      return Object.assign( { }, state, { obsCard:
-        Object.assign( { }, state.obsCard, action.obsCard ) } );
+      return Object.assign( { }, state,
+        { obsCard: Object.assign( { }, state.obsCard, action.obsCard ) } );
     default:
   }
   return state;
@@ -120,17 +120,17 @@ export function score( obsCard ) {
     if ( !_.isEmpty( params ) ) {
       fetchURL += `?${$.param( params )}`;
     }
-    fetch( fetchURL, { credentials: "same-origin" } ).
-      then( thenCheckStatus ).
-      then( thenText ).
-      then( thenJson ).
-      then( r => {
+    fetch( fetchURL, { credentials: "same-origin" } )
+      .then( thenCheckStatus )
+      .then( thenText )
+      .then( thenJson )
+      .then( r => {
         dispatch( updateObsCard( { visionResults: r, visionStatus: null } ) );
-      } ).catch( e => {
+      } )
+      .catch( e => {
         dispatch( updateObsCard( { visionStatus: "failed" } ) );
-        console.log( ["error", e] );
-      }
-    );
+        console.log( ["error", e] ); // eslint-disable-line no-console
+      } );
   };
 }
 
@@ -148,7 +148,7 @@ export function dataURLToBlob( dataURL ) {
   const raw = window.atob( parts[1] );
   const rawLength = raw.length;
   const uInt8Array = new Uint8Array( rawLength );
-  for ( let i = 0; i < rawLength; ++i ) {
+  for ( let i = 1; i <= rawLength; i += 1 ) {
     uInt8Array[i] = raw.charCodeAt( i );
   }
   return new Blob( [uInt8Array], { type: contentType } );
@@ -169,20 +169,24 @@ export function uploadImage( obsCard ) {
         headers,
         body
       };
-      fetch( "/computer_vision_demo_uploads", fetchOpts ).
-        then( thenCheckStatus ).
-        then( thenText ).
-        then( thenJson ).
-        then( r => {
+      fetch( "/computer_vision_demo_uploads", fetchOpts )
+        .then( thenCheckStatus )
+        .then( thenText )
+        .then( thenJson )
+        .then( r => {
           const serverMetadata = obsCard.uploadedFile.additionalPhotoMetadata( r );
-          dispatch( updateObsCard( { uploadedFile: Object.assign( { }, obsCard.uploadedFile, {
-            uploadState: "uploaded", photo: r, serverMetadata } ) } ) );
-        } ).catch( e => {
-          dispatch( updateObsCard( { uploadedFile:
-            Object.assign( { }, obsCard.uploadedFile, { uploadState: "failed" } ) } ) );
-          console.log( ["error", e] );
-        }
-      );
+          dispatch( updateObsCard( {
+            uploadedFile: Object.assign( { }, obsCard.uploadedFile,
+              { uploadState: "uploaded", photo: r, serverMetadata } )
+          } ) );
+        } )
+        .catch( e => {
+          dispatch( updateObsCard( {
+            uploadedFile: Object.assign( { }, obsCard.uploadedFile,
+              { uploadState: "failed" } )
+          } ) );
+          console.log( ["error", e] );// eslint-disable-line no-console
+        } );
     } );
   };
 }
@@ -207,4 +211,3 @@ export function onFileDrop( droppedFiles ) {
     }, 1 );
   };
 }
-
