@@ -91,6 +91,22 @@ describe ProjectsController, "search" do
     it "should filter by place" do
       with_place = Project.make!(place: place)
       without_place = Project.make!(title: "#{with_place.title} without place")
+      response_json = <<-JSON
+        {
+          "results": [
+            {
+              "record": {
+                "id": #{with_place.id}
+              }
+            }
+          ]
+        }
+      JSON
+      stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
+        status: 200,
+        body: response_json,
+        headers: { "Content-Type" => "application/json" }
+      )
       get :search, q: with_place.title
       expect( assigns(:projects) ).to include with_place
       expect( assigns(:projects) ).not_to include without_place
@@ -99,6 +115,27 @@ describe ProjectsController, "search" do
     it "should allow removal of the place filter" do
       with_place = Project.make!(place: place)
       without_place = Project.make!(title: "#{with_place.title} without place")
+      response_json = <<-JSON
+        {
+          "results": [
+            {
+              "record": {
+                "id": #{with_place.id}
+              }
+            },
+            {
+              "record": {
+                "id": #{without_place.id}
+              }
+            }
+          ]
+        }
+      JSON
+      stub_request(:get, /#{INatAPIService::ENDPOINT}/).to_return(
+        status: 200,
+        body: response_json,
+        headers: { "Content-Type" => "application/json" }
+      )
       get :search, q: with_place.title, everywhere: true
       expect( assigns(:projects) ).to include with_place
       expect( assigns(:projects) ).to include without_place

@@ -11,10 +11,14 @@ class ControlledTermsController < ApplicationController
     label_attrs = params[:controlled_term].delete(:controlled_term_label)
     term = ControlledTerm.new(params[:controlled_term])
     term.user = current_user
-    term.save
-    if label_attrs && !term.errors.any?
-      term.labels << ControlledTermLabel.create(label_attrs)
+    if term.save
+      if label_attrs
+        term.labels << ControlledTermLabel.create(label_attrs)
+      end
+    else
+      flash[:error] = term.errors.full_messages.to_sentence
     end
+
     redirect_to :controlled_terms
   end
 
@@ -33,7 +37,9 @@ class ControlledTermsController < ApplicationController
     end
 
     term = ControlledTerm.find(params[:id])
-    term.update_attributes(params[:controlled_term])
+    unless term.update_attributes(params[:controlled_term])
+      flash[:error] = term.errors.full_messages.to_sentence
+    end
     redirect_to :controlled_terms
   end
 

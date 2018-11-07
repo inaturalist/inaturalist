@@ -21,7 +21,7 @@ class TaxaController < ApplicationController
   include TaxaHelper
   include Shared::WikipediaModule
   
-  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms]
+  before_filter :return_here, :only => [:index, :show, :flickr_tagger, :curation, :synonyms, :browse_photos]
   before_filter :authenticate_user!, :only => [:edit_photos, :update_photos,
     :set_photos,
     :update_colors, :tag_flickr_photos, :tag_flickr_photos_from_observations,

@@ -1,7 +1,10 @@
 import _ from "lodash";
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import { Dropdown } from "react-bootstrap";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { urlForTaxon } from "../../../taxa/shared/util";
 import TaxonMap from "../../identify/components/taxon_map";
 import MapDetails from "./map_details";
 
@@ -38,10 +41,22 @@ class Map extends React.Component {
         "positional_accuracy",
         "public_positional_accuracy",
         "geoprivacy",
-        "taxon",
         "user",
         "map_scale"
       ] );
+      if ( observation.taxon ) {
+        obsForMap.taxon = Object.assign( { }, observation.taxon, {
+          forced_name: ReactDOMServer.renderToString(
+            <SplitTaxon
+              taxon={ observation.taxon }
+              user={ this.props.config.currentUser }
+              noParens
+              iconLink
+              url={ urlForTaxon( observation.taxon ) }
+            />
+          )
+        } );
+      }
       obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
       const mapKey = `map-for-${observation.id}-${observation.taxon ? observation.taxon.id : null}`;
       taxonMap = (
@@ -136,7 +151,8 @@ class Map extends React.Component {
 
 Map.propTypes = {
   observation: PropTypes.object,
-  observationPlaces: PropTypes.array
+  observationPlaces: PropTypes.array,
+  config: PropTypes.object
 };
 
 export default Map;

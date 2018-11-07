@@ -518,8 +518,22 @@ ul.obs > li .card {
           width: 170px;
           background-color: white;
           margin-bottom: 10px;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -moz-box;
+          display: -ms-flexbox;
           display: flex;
+          -webkit-box-orient: vertical;
+          -webkit-box-direction: normal;
+          -webkit-flex-direction: column;
+          -moz-box-orient: vertical;
+          -moz-box-direction: normal;
+          -ms-flex-direction: column;
           flex-direction: column;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+          -moz-box-align: center;
+          -ms-flex-align: center;
           align-items: center;
           small {
             display: block;
@@ -553,15 +567,39 @@ ul.obs > li .card {
 .modal {
   &.location {
 
+    display: -webkit-box !important;
+    display: -webkit-flex !important;
+    display: -moz-box !important;
+    display: -ms-flexbox !important;
     display: flex !important;
     padding-left: 0px !important;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 
     .modal-content {
       width: 100%;
       height: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -moz-box-orient: vertical;
+      -moz-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
       min-height: 508px;
       overflow: hidden;
@@ -577,14 +615,32 @@ ul.obs > li .card {
     .modal-dialog {
       width: 80%;
       height: 90%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
       display: flex;
     }
     .modal-body {
       min-height: 400px;
       padding: 10px;
+      -webkit-box-flex: 2;
+      -webkit-flex: 2;
+      -moz-box-flex: 2;
+      -ms-flex: 2;
       flex: 2;
       height: 100%;
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -moz-box;
+      display: -ms-flexbox;
       display: flex;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+      -webkit-flex-direction: column;
+      -moz-box-orient: vertical;
+      -moz-box-direction: normal;
+      -ms-flex-direction: column;
       flex-direction: column;
     }
     .modal-header {
@@ -607,19 +663,32 @@ ul.obs > li .card {
     .form-group {
       display: inline-block;
       margin: 0px 10px;
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      -moz-box-flex: 1;
+      -ms-flex: 1;
       flex: 1;
+
       .input,
       label {
         width: 100%;
       }
     }
     .notes-form-group {
+      -webkit-box-flex: 2;
+      -webkit-flex: 2;
+      -moz-box-flex: 2;
+      -ms-flex: 2;
       flex: 2;
     }
     .save-form-group {
       flex: 0;
       .btn-group {
-        display: flex; 
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
       }
     }
     .close {
@@ -633,7 +702,15 @@ ul.obs > li .card {
   }
   .map {
     min-height: 310px;
-    flex: 2;
+    -webkit-box-flex: 2;
+      -webkit-flex: 2;
+         -moz-box-flex: 2;
+          -ms-flex: 2;
+              flex: 2;
+    display: flex;
+    .map-inner {
+      flex: 2;
+    }
     .photo-marker {
       width: 50px;
       height: 50px;
@@ -650,6 +727,10 @@ ul.obs > li .card {
   }
   .form {
     margin-top: 10px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
     display: flex;
     option {
       height: 0px;

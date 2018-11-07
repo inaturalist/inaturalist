@@ -3,7 +3,7 @@ import TaxonPageMap from "../components/taxon_page_map";
 
 function mapStateToProps( state ) {
   const bounds = state.config.mapBounds;
-  const props = { taxon: state.taxon.taxon };
+  const props = { taxon: state.taxon.taxon, config: state.config };
   let chosenPlaceBounds;
   if ( state.config.chosenPlace && state.config.chosenPlace.bounding_box_geojson ) {
     chosenPlaceBounds = state.config.chosenPlace.bounding_box_geojson.coordinates[0];

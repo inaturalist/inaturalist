@@ -2,14 +2,14 @@ source 'http://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'rails', "~> 4.2.7.1"
+gem 'rails', '4.2.10'
 
 gem 'apipie-rails'
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
 gem 'activerecord-session_store'
 gem 'acts-as-taggable-on', '~> 4.0'
-gem 'acts_as_votable', '~> 0.10.0'
+gem 'acts_as_votable', '~> 0.11.1'
 gem 'airbrake', '~> 7.3'
 gem 'ancestry'
 gem 'angular-rails-templates', git: "https://github.com/gaslight/angular-rails4-templates", ref: 'v0.1.5'
@@ -81,7 +81,7 @@ gem 'rest-client', :require => 'rest_client'
 gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'https://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
-gem 'sass', '= 3.2.5'
+gem 'sass', '3.6.0'
 gem 'sass-rails', '=5.0.1'
 gem 'soundcloud'
 gem 'sprockets', '~> 2.12.5'

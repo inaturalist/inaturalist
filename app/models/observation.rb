@@ -1294,6 +1294,8 @@ class Observation < ActiveRecord::Base
         community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
       )
         RESEARCH_GRADE
+      elsif voted_out_of_needs_id?
+        CASUAL
       else
         NEEDS_ID
       end

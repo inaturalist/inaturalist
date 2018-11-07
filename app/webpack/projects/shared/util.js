@@ -7,7 +7,7 @@ const util = class util {
     if ( !dateString ) { return null; }
     const trimmedDateString = dateString.trim( );
     if ( _.isEmpty( trimmedDateString ) ) { return null; }
-    if ( trimmedDateString.match( /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2} [+-]\d{1,2}:\d{2}/ ) ) {
+    if ( trimmedDateString.match( /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2}(:\d{2})? [+-]\d{1,2}:?\d{2}/ ) ) {
       return moment( trimmedDateString, "YYYY-MM-DD HH:mm Z" ).parseZone( ).tz( TIMEZONE );
     }
     return moment( trimmedDateString );

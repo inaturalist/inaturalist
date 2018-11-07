@@ -978,24 +978,18 @@ class ProjectsController < ApplicationController
       @place = @site_place unless params[:everywhere].yesish?
     end
     if @q = params[:q]
-      filters = [
-        {
-          multi_match: {
-            query: @q,
-            operator: "and",
-            fields: [ :title, :description ],
-            type: "phrase"
-          }
-        }
-      ]
-      filters << { terms: { associated_place_ids: [@place.id] } } if @place
-      @projects = Project.elastic_paginate(
-        filters: filters,
-        inverse_filters: [
-          { term: { spam: true } }
-        ],
-        page: params[:page]
+      response = INatAPIService.get(
+        "/search",
+        q: @q,
+        page: params[:page],
+        sources: "projects",
+        place_id: @place.try(:id),
+        ttl: logged_in? ? "-1" : nil
       )
+      projects = Project.where( id: response.results.map{|r| r["record"]["id"]} ).index_by(&:id)
+      @projects = WillPaginate::Collection.create( response["page"] || 1, response["per_page"] || 0, response["total_results"] || 0 ) do |pager|
+        pager.replace( response.results.map{|r| projects[r["record"]["id"]]} )
+      end
     end
     respond_to do |format|
       format.html

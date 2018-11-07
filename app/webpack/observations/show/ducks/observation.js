@@ -63,10 +63,11 @@ export function windowStateForObservation( observation, state, opts = { } ) {
     if ( !observation.taxon.preferred_common_name ) {
       title = `${observation.taxon.name} ${title}`;
     } else {
+      const commonName = iNatModels.Taxon.titleCaseName( observation.taxon.preferred_common_name );
       if ( currentUser && currentUser.prefers_scientific_name_first ) {
-        title = `${observation.taxon.name} (${observation.taxon.preferred_common_name}) ${title}`;
+        title = `${observation.taxon.name} (${commonName}) ${title}`;
       } else {
-        title = `${observation.taxon.preferred_common_name} (${observation.taxon.name}) ${title}`;
+        title = `${commonName} (${observation.taxon.name}) ${title}`;
       }
     }
     observationState.observation.taxon = {
