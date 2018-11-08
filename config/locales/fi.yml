@@ -610,6 +610,7 @@ fi:
   back_to_x_history: Takaisin artikkelin %{x} historiaan
   back_to_x_journal: Takaisin käyttäjän %{user} päiväkirjaan
   back_to_x_blog: Takaisin sivun %{x} blogiin
+  back_to_your_dashboard: Takaisin kojelautaasi
   back_to_x_observations: Takaisin käyttäjän %{user} havaintoihin
   back_to_your_lists: Takaisin listoihisi
   back_to_your_journal: Takaisin päiväkirjaasi
@@ -664,6 +665,7 @@ fi:
   bulk_import_of_filename_is_complete: '%{filename} massasiirto on valmis'
   but_we_didnt_add_this_observation_to_the_x_project: Mutta emme lisänneet tätä havaintoa
     projektiin %{project} koska et hyväksynyt projektin ehtoja.
+  by: käyttäjältä
   by_adding_ids_to_observations: lisäämällä tunnisteet havaintoihin
   by_everyone: Kaikkien
   by_project_list: projektilistoittain
@@ -973,8 +975,8 @@ fi:
   creating_your_account: Käyttäjätiliäsi luodaan...
   creative_commons_flickr_tagged: Tunnisteet lisätty Creative Commons Flickr valokuviin
   creative_commons_unless_otherwise_noted: Creative Commons, ellei toisin mainita.
-  critically_endangered: äärimmäisen uhanalainen
-  critically_imperiled: äärimmäisen uhanalainen
+  critically_endangered: Äärimmäisen uhanalainen
+  critically_imperiled: Äärimmäisen uhanalainen
   csv: CSV
   csv_file: CSV-tiedosto
   csv_should_not_contain_a_header_row: CSV ei saa sisältää otsikkoriviä
@@ -1004,7 +1006,7 @@ fi:
   date_: Päivämäärä
   date?: Päivämäärä?
   date_added: Lisäyspäivämäärä
-  date_created: luontipäivämäärä
+  date_created: Luontipäivämäärä
   date_format:
     date_long:
       january: '%{day}. tammikuuta %{year}'
@@ -1074,8 +1076,8 @@ fi:
   deleted_vote: Poistettu äänestys
   deleting: Poistaa...
   deleting_verb: Poistaminen
-  desc: laskeva
-  descending: laskeva
+  desc: Laskeva
+  descending: Laskeva
   describe_purpose: Kuvaile tämän projektin tarkoitus.
   describe_your_interest_in_nature: Kuvaile kiinnostuksesi luontoa kohtaan!
   description: Kuvaus
@@ -1128,7 +1130,7 @@ fi:
   duplicate_verb: Monista
   edit: Muokkaa
   edit_a_batch_of_observations: Muokkaa Erä Havaintoja
-  edit_account_settings_and_profile: Muokkaa tiliasetuksia &amp; profiilia
+  edit_account_settings_and_profile: Muokkaa tiliäsi &amp; profiiliasi
   edit_assessment: Muokkaa arviointia
   edit_atlas: Muokkaa Atlasta
   edit_body: Muokkaa kappaletta
@@ -1152,11 +1154,11 @@ fi:
   edit_source: Muokkaa lähdettä
   edit_taxa: Muokkaa taksoneja
   edit_taxon: Muokkaa taksonia
-  edit_taxon_change: muokkaa taksonin muutosta
+  edit_taxon_change: Muokkaa taksonin muutosta
   edit_taxon_link: Muokkaa taksonin linkkiä
   edit_the_observation: Muokkaa havaintoa
   edit_this_link: Muokkaa tätä linkkiä
-  edit_your_account: muokkaa käyttäjätiliäsi
+  edit_your_account: Muokkaa tiliäsi
   edit_your_account_and_profile_html: Muokkaa tiliäsi ja profiiliasi
   edit_your_default_settings: Muokka oletusasetuksiasi
   edit_your_global_project_settings: Muokkaa yleisiä projektiasetuksiasi
@@ -1198,17 +1200,17 @@ fi:
   encompassing_places: Ympäröivät paikat
   end: Päättyy
   end_date_time: Päättymispäivä / aika
-  endangered: uhanalainen
-  endemic: endeeminen
+  endangered: Uhanalainen
+  endemic: Endeeminen
   endemic_to_x: Endeeminen paikassa %{x}
   eol: EOL
   eol_collection_url: EOL kokoelman web-osoite
   error_updating_photo: Virhe %{photo_errors} päivitettäessä kuvaa
   establishment:
-    native: kotoperäinen
-    endemic: endeeminen
-    introduced: esitelty
-    naturalised: luonnonmukaistunut
+    native: Kotoperäinen
+    endemic: Endeeminen
+    introduced: Esitelty
+    naturalised: Luonnonmukaistunut
   establishment_means: Vakiinnuttaminen tarkoittaa
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: kotoperäinen eikä esiinny missään muualla
@@ -1257,7 +1259,7 @@ fi:
   faves: Suosikit
   Family: Heimo
   faved_this_observation: suositteli tätä havaintoa
-  favorite_taxa: suosikkitaksonit
+  favorite_taxa: Suosikkitaksonit
   favorites: Suosikit
   fblocale: en_US
   feedback: Palaute
@@ -1281,8 +1283,10 @@ fi:
   filter: Suodatin
   filter_by: Suodata
   filter_by_place: Suodata paikan mukaan
+  filter_by_taxon: Suodata taksonin mukaan
   filter_by_place_taxon_and_color: Suodata paikan, taksonin ja värin mukaan käyttämällä
     ohjaimia.
+  filtering: Suodatus
   filters: Suodattimet
   find: Löydä
   find_a_guide: Löydä opas
@@ -1328,6 +1332,7 @@ fi:
   flagged_thing_explanation: 'Käyttäjät ovat liputtaneet tämän: %{thing}, koska'
   flagger: Liputtaja
   flags: Liput
+  flags_with_count: (%{count}) lippua
   flickr_account_information: Flickr Tilisi Tiedot
   flickr_description: Flickr on valokuvien jakopalvelu, ehkä olet jo tiennytkin siitä!
   flickr_has_no_creative_commons: Flickr'issä ei ole Creative Commons-lisensoituja
@@ -1349,6 +1354,9 @@ fi:
   follower: seuraaja
   followers: Seuraajat
   following: seurataan
+  following_x_people:
+    one: Seurataan 1 henkilöä
+    other: Seurataan %{count} henkilöä
   for_a_taxon: taksonille
   forgot_your_password: Unohditko salasanasi?
   fri: Pe
@@ -1389,6 +1397,7 @@ fi:
   go: Siirry
   go_back: Mene takaisin
   going_to_your_observations: Siirrytään havaintoihisi ...
+  google: Google
   got_it!: Selvä!
   gray: harmaa
   green: vihreä
@@ -1426,7 +1435,7 @@ fi:
   hi_user: Hei %{user}
   hide: Piilota
   hide_details: Piilota yksityiskohdat
-  high: korkea
+  high: Korkea
   highest_rank: Korkein arvo
   highlights: Kohokohtia
   highlights_and_stats_from_year_on_site: Kohokohdat ja tilastot vuodelta %{year}
@@ -1505,7 +1514,7 @@ fi:
   in_the_past: aiemmin
   in_the_past_week: menneellä viikolla
   inactive: ei käytössä
-  inactive_taxon: epäaktiivinen taksoni
+  inactive_taxon: Epäaktiivinen taksoni
   inappropriate: Sopimaton?
   inappropriate_content: Sopimatonta sisältöä?
   inat_account_action: '%{site_name} &#58; Tili &#58; %{action_name}'
@@ -1590,6 +1599,7 @@ fi:
   location_unknown: Tuntematon sijainti
   language_slash_type: Kieli / Tyyppi
   large: suuri
+  last_active_with_date: 'Viimeksi aktiivinen: %{date}'
   last_confirmed_observation: Viimeinen vahvistettu havainto
   last_inat_observation: Viimeisin %{site_name}-havainto
   last_observation: Viimeisin havainto
@@ -2028,6 +2038,7 @@ fi:
   no_species_on_this_list: Ei vielä lajeja tässä listassa!
   no_summary_from_wikipedia: Ei yhteenvetoa Wikipediasta
   no_taxa: Ei taksoneita
+  no_taxa_listed: Ei taksoneita listattuna
   no_taxa_selected: Ei valittuja taksoneita.
   no_taxa_yet: Ei vielä taksoneita!
   no_wikipedia_page_for_taxon: Ei Wikipedia-artikkelia tälle taksonille.
@@ -2427,7 +2438,7 @@ fi:
   please_confirm_your_inat_username: Ole hyvä ja vahvista %{site_name} käyttäjänimesi
   please_enter_a_new_pass: Ole hyvä ja anna uusi salasana ja vahvista se.
   please_fix_your_csv_and_try_again: Korjaa CSV:si ja yritä uudelleen.
-  popular: suosittu
+  popular: Suosittu
   position: Sijainti
   possessive_user: Käyttäjän %{user}
   post: Viesti
@@ -2509,15 +2520,15 @@ fi:
   rank: Luokka
   rank_position: Sija
   ranks:
-    kingdom: kunta
-    subkingdom: alakunta
-    phylum: pääjakso
-    subphylum: alaosasto
-    superclass: yläluokka
-    class: luokka
-    subclass: alaluokka
-    superorder: ylälahko
-    order: lahko
+    kingdom: Kunta
+    subkingdom: Alakunta
+    phylum: Pääjakso
+    subphylum: Alaosasto
+    superclass: Yläluokka
+    class: Luokka
+    subclass: Alaluokka
+    superorder: Ylälahko
+    order: Lahko
     suborder: alalahko
     infraorder: osalahko
     superfamily: yläheimo
