@@ -1248,15 +1248,18 @@ describe Taxon, "editable_by?" do
   it "should not be editable by curators if order or above" do
     expect( Taxon.make!( rank: Taxon::CLASS ) ).not_to be_editable_by( curator )
   end
-  describe "complete taxa" do
-    let(:taxon) { Taxon.make!( rank: Taxon::GENUS, complete: true ) }
+  describe "framework concept" do
+    curator2 = make_curator
+    family = Taxon.make!( rank: Taxon::FAMILY )
+    genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+    c = Concept.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+    tc = TaxonCurator.make!( concept: c, user: curator2 )
     it "should be editable by taxon curators of that taxon" do
-      tc = TaxonCurator.make!( taxon: taxon )
-      expect( taxon ).to be_editable_by( tc.user )
+      expect( species ).to be_editable_by( curator2 )
     end
     it "should be editable by other site curators" do
-      tc = TaxonCurator.make!( taxon: taxon )
-      expect( taxon ).to be_editable_by( curator )
+      expect( species ).to be_editable_by( curator )
     end
   end
 end
@@ -1318,9 +1321,10 @@ describe "complete" do
     expect( es_genus.complete_species_count ).to eq 1
   end
   it "should destroy TaxonCurators when set to false" do
-    t = Taxon.make!( complete: true, current_user: make_admin )
-    tc = TaxonCurator.make!( taxon: t )
-    t.update_attributes( complete: false, current_user: make_admin )
+    t = Taxon.make!
+    c = Concept.make!( taxon: t, rank_level: Taxon::RANK_LEVELS[Taxon::SUBSPECIES] )
+    tc = TaxonCurator.make!( concept: c )
+    c.update_attributes( rank_level: nil )
     expect( TaxonCurator.find_by_id( tc.id ) ).to be_nil
   end
   describe "when current_user" do

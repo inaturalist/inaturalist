@@ -6,6 +6,7 @@ class Concept < ActiveRecord::Base
   has_many :taxon_curators, inverse_of: :concept, dependent: :destroy
   
   before_save :check_taxon_references
+  before_save :check_taxon_curators
   after_save :check_other_concept_taxon_references
   
   accepts_nested_attributes_for :source
@@ -41,6 +42,14 @@ class Concept < ActiveRecord::Base
     ancestor_string = taxon.rank == "stateofmatter" ? taxon.id.to_s : "%/#{taxon.id}"
     tr = TaxonReference.joins(:taxa).where("concept_id IN (?) AND (taxa.id = ? OR taxa.ancestry LIKE (?) OR taxa.ancestry LIKE (?))", upstream_concepts, taxon.id, "#{ancestor_string}", "#{ancestor_string}/%")
     return tr.destroy_all
+  end
+  
+  def check_taxon_curators
+    return true if new_record?
+    return true if rank_level_was.nil?
+    return true unless rank_level_changed? && rank_level.nil?
+    taxon_curators.destroy_all
+    true
   end
   
   def rank_level_below_taxon_rank
