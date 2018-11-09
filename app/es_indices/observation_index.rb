@@ -580,6 +580,26 @@ class Observation < ActiveRecord::Base
         ] } }
       end
     end
+
+    if p[:created_d1] || p[:created_d2]
+      created_d1 = DateTime.parse(p[:created_d1]) rescue DateTime.parse("1800-01-01")
+      created_d2 = DateTime.parse(p[:created_d2]) rescue Time.now
+      if p[:created_d2] && created_d2.to_s =~ /00:00:00/ && p[:created_d2] !~ /00:00:00/
+        # if you provide a date like 2018-02-01, the DateTime will be Thu, 01
+        # Feb 2018 00:00:00 +0000, so to perform an inclusive search you want
+        # another day
+        created_d2 = created_d2 + 1.day
+      end
+      search_filters << {
+        range: {
+          "created_at": {
+            gte: created_d1.strftime( "%FT%T%:z" ),
+            lte: created_d2.strftime( "%FT%T%:z" )
+          }
+        }
+      }
+    end
+
     if p[:h1] && p[:h2]
       p[:h1] = p[:h1].to_i % 24
       p[:h2] = p[:h2].to_i % 24
