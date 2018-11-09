@@ -1305,194 +1305,136 @@ describe "rank helpers" do
   end
 end
 
-describe "complete" do
-  it "should reindex all descendants when changed" do
-    family = Taxon.make!( rank: Taxon::FAMILY )
-    genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
-    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
-    concept = Concept.make!
-    Delayed::Worker.new.work_off
-    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
-    expect( es_genus.complete_species_count ).to be_nil
-    without_delay { concept.update_attributes!( complete: true ) }
-    genus.reload
-    expect( genus.complete_species_count ).to eq 1
-    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
-    expect( es_genus.complete_species_count ).to eq 1
+describe "concept" do
+  let(:root) { Taxon.make!( rank: Taxon::FAMILY ) }
+  let(:internode) { Taxon.make!( rank: Taxon::GENUS, parent: root ) }
+  let!(:tip) { Taxon.make!( rank: Taxon::SPECIES, parent: internode ) }
+  let!(:concept) { Concept.make!( taxon: root, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] ) }
+  let!(:taxon_curator) { TaxonCurator.make!( concept: concept ) }
+  it "should recognize that its covered by a concept framework" do
+    expect( tip.ancestor_concept ).not_to be_blank
   end
-  it "should destroy TaxonCurators when set to false" do
-    t = Taxon.make!
-    c = Concept.make!( taxon: t, rank_level: Taxon::RANK_LEVELS[Taxon::SUBSPECIES] )
-    tc = TaxonCurator.make!( concept: c )
-    c.update_attributes( rank_level: nil )
-    expect( TaxonCurator.find_by_id( tc.id ) ).to be_nil
-  end
+  it "should recognize that its not covered by a concept framework" do
+    ssp = Taxon.make!( rank: Taxon::SUBSPECIES, parent: tip )
+    expect( ssp.ancestor_concept ).to be_blank
+  end  
   describe "when current_user" do
-    let(:superfamily) { Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true ) }
-    let(:taxon_curator) { TaxonCurator.make!( taxon: superfamily ) }
-    let(:family) { Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user ) }
-    let(:genus) { Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user ) }
-    let(:species) { Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user ) }
-    # Assume that it can only be blank if this is not happening in a
-    # controller... not the safest assumption, but assigning a user for every
-    # script that alters taxa is going to be tedious
-    describe "is blank" do
-      it "should prevent grafting to this taxon" do
-        t = Taxon.make( rank: Taxon::GENUS, parent: superfamily )
+    describe "is curator" do
+      let(:curator) { make_curator }
+      it "should prevent grafting to root" do
+        t = Taxon.make( rank: Taxon::GENUS, parent: root, current_user: curator )
         expect( t ).not_to be_valid
       end
-      it "should prevent grafting to a descendant" do
-        t = Taxon.make( rank: Taxon::SPECIES, parent: genus )
+      it "should prevent grafting to internode" do
+        t = Taxon.make( rank: Taxon::SPECIES, parent: internode, current_user: curator )
         expect( t ).not_to be_valid
       end
-      it "should allow grafting to taxa beyond the complete_rank" do
-        superfamily.update_attributes( complete_rank: Taxon::GENUS, current_user: make_admin )
-        expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species ) ).to be_valid
-      end
-    end
-    describe "is not a TaxonCurator" do
-      let(:current_user) { User.make! }
-      it "should prevent grafting to this taxon" do
-        t = Taxon.make( rank: Taxon::GENUS, parent: superfamily, current_user: current_user )
-        expect( t ).not_to be_valid
-      end
-      it "should prevent grafting to a descendant" do
-        t = Taxon.make( rank: Taxon::SPECIES, parent: genus, current_user: current_user )
-        expect( t ).not_to be_valid
-      end
-      it "should prevent editing rank" do
-        superfamily.update_attributes( rank: "superduperfamily", current_user: current_user )
-        expect( superfamily ).not_to be_valid
-      end
-      it "should prevent editing is_active" do
-        superfamily.update_attributes( is_active: false, current_user: current_user )
-        expect( superfamily ).not_to be_valid
-      end
-      it "should prevent editing complete" do
-        superfamily.update_attributes( complete: false, current_user: current_user )
-        expect( superfamily ).not_to be_valid
-      end
-      it "should prevent editing complete_rank" do
-        superfamily.update_attributes( complete_rank: Taxon::SUBFAMILY, current_user: current_user )
-        expect( superfamily ).not_to be_valid
-      end
-      describe "and complete taxon has a complete_rank" do
-        before do
-          superfamily.update_attributes( complete_rank: Taxon::GENUS )
-        end
-        it "should allow grafting to taxa beyond the complete_rank" do
-          expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species, current_user: current_user ) ).to be_valid
-        end
-        it "should not allow grafting taxa beyond the complete_rank to the complete taxon" do
-          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: current_user, parent: superfamily )
-          expect( poorly_grafted_species ).not_to be_valid
-        end
-        it "should not allow grafting taxa beyond the complete_rank to the taxa before the complete_rank" do
-          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: current_user, parent: family )
-          expect( poorly_grafted_species ).not_to be_valid
-        end
-      end
-    end
-    describe "is a TaxonCurator" do
-      it "should allow grafting to this taxon" do
-        t = Taxon.make( rank: Taxon::GENUS, parent: superfamily, current_user: taxon_curator.user )
+      it "should allow grafting to tip" do
+        t = Taxon.make( rank: Taxon::SUBSPECIES, parent: tip, current_user: curator )
         expect( t ).to be_valid
       end
-      it "should allow grafting to a descendant" do
-        t = Taxon.make( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
-        expect( t ).to be_valid
+      it "should prevent editing is_active on root" do
+        root.update_attributes( is_active: false, current_user: curator )
+        expect( root ).not_to be_valid
       end
-      it "should allow editing rank" do
-        superfamily.update_attributes( rank: "order", current_user: taxon_curator.user )
-        expect( superfamily ).to be_valid
+      it "should allow moving root" do
+        other_root = Taxon.make!( rank: Taxon::SUPERFAMILY )
+        root.update_attributes( parent: other_root, current_user: curator )
+        expect( root ).to be_valid
       end
-      it "should allow editing is_active" do
-        superfamily.update_attributes( is_active: false, current_user: taxon_curator.user )
-        expect( superfamily ).to be_valid
+      it "should prevent moving internode" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        internode.update_attributes( parent: other_root, current_user: curator )
+        expect( internode ).not_to be_valid
       end
-      it "should allow editing complete" do
-        superfamily.update_attributes( complete: false, current_user: taxon_curator.user )
-        expect( superfamily ).to be_valid
-      end
-      it "should allow editing complete_rank" do
-        superfamily.update_attributes( complete_rank: "subfamily", current_user: taxon_curator.user )
-        expect( superfamily ).to be_valid
-      end
-      describe "and complete taxon has a complete_rank" do
-        before do
-          superfamily.update_attributes( complete_rank: Taxon::GENUS )
-        end
-        it "should allow grafting to taxa beyond the complete_rank" do
-          expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species, current_user: taxon_curator.user ) ).to be_valid
-        end
-        it "should allow grafting taxa beyond the complete_rank to the complete taxon" do
-          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: taxon_curator.user, parent: superfamily )
-          expect( poorly_grafted_species ).to be_valid
-        end
-        it "should allow grafting taxa beyond the complete_rank to the taxa before the complete_rank" do
-          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: taxon_curator.user, parent: family )
-          expect( poorly_grafted_species ).to be_valid
-        end
+      it "should prevent moving tip" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        tip.update_attributes( parent: other_root, current_user: curator )
+        expect( tip ).not_to be_valid
       end
     end
-  end
-end
-
-describe "complete_rank" do
-  it "should reindex all descendants when changed" do
-    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
-    family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily )
-    genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
-    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
-    without_delay { superfamily.update_attributes!( complete: true ) }
-    Delayed::Worker.new.work_off
-    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
-    es_family = Taxon.elastic_search( where: { id: family.id } ).results.results.first
-    expect( es_genus.complete_species_count ).to eq 1
-    without_delay { superfamily.update_attributes!( complete_rank: Taxon::GENUS ) }
-    genus.reload
-    family.reload
-    expect( genus.complete_species_count ).to be_nil
-    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
-    es_family = Taxon.elastic_search( where: { id: family.id } ).results.results.first
-    expect( es_genus.complete_species_count ).to be_nil
-  end
-  it "should not be above the rank of the taxon" do
-    t = Taxon.make( rank: Taxon::FAMILY, complete_rank: Taxon::SUPERFAMILY )
-    expect( t ).not_to be_valid
-  end
-  it "should remove TaxonCurators of taxa that are no longer one of the complete descendants" do
-    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
-    taxon_curator = TaxonCurator.make!( taxon: superfamily )
-    family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user )
-    genus = Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user )
-    tc = TaxonCurator.make!( taxon: genus )
-    superfamily.update_attributes( complete_rank: Taxon::FAMILY )
-    expect( TaxonCurator.find_by_id( tc.id ) ).to be_nil
+    describe "is taxon curator" do
+      it "should alow grafting to root" do
+        t = Taxon.make( rank: Taxon::GENUS, parent: root, current_user: taxon_curator.user )
+        expect( t ).to be_valid
+      end
+      it "should prevent grafting to internode" do
+        t = Taxon.make( rank: Taxon::SPECIES, parent: internode, current_user: taxon_curator.user )
+        expect( t ).to be_valid
+      end
+      it "should allow grafting to tip" do
+        t = Taxon.make( rank: Taxon::SUBSPECIES, parent: tip, current_user: taxon_curator.user )
+        expect( t ).to be_valid
+      end
+      it "should prevent taxon_curator from grafting to node covered by a overlapping downstream concept" do
+        deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
+        deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        overlapping_downstream_concept = Concept.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_concept_taxon_curator = TaxonCurator.make!( concept: overlapping_downstream_concept )
+        t = Taxon.make( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        expect( t ).not_to be_valid
+      end
+      it "should allow taxon_curator to grafting to node with an overlapping upstream concept" do
+        deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
+        deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        overlapping_downstream_concept = Concept.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_concept_taxon_curator = TaxonCurator.make!( concept: overlapping_downstream_concept )
+        t = Taxon.make( rank: Taxon::SPECIES, parent: deeper_internode, current_user: overlapping_downstream_concept_taxon_curator.user )
+        expect( t ).to be_valid
+      end
+      it "should allow moving internode" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        internode.update_attributes( parent: other_root, current_user: taxon_curator.user )
+        expect( internode ).to be_valid
+      end
+      it "should allow moving tip" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        tip.update_attributes( parent: other_root, current_user: taxon_curator.user )
+        expect( tip ).to be_valid
+      end
+      it "should prevent taxon_curator from moving tip covered by a overlapping downstream concept" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
+        deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        overlapping_downstream_concept = Concept.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_concept_taxon_curator = TaxonCurator.make!( concept: overlapping_downstream_concept )
+        deepertip.update_attributes( parent: other_root, current_user: taxon_curator.user )
+        expect( deepertip ).not_to be_valid
+      end
+      it "should allow taxon_curator to move tip with overlapping upstream concept" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
+        deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        overlapping_downstream_concept = Concept.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_concept_taxon_curator = TaxonCurator.make!( concept: overlapping_downstream_concept )
+        deepertip.update_attributes( parent: other_root, current_user: overlapping_downstream_concept_taxon_curator.user )
+        expect( deepertip ).to be_valid
+      end
+    end
   end
 end
 
 describe "complete_species_count" do
-  describe "when taxon is not complete" do
-    it "should be nil if no complete ancestor" do
-      t = Taxon.make!
-      expect( t.complete_species_count ).to be_nil
-    end
-    it "should be set if complete ancestor exists" do
-      ancestor = Taxon.make!( complete: true, rank: Taxon::FAMILY )
-      taxon_curator = TaxonCurator.make!( taxon: ancestor )
-      t = Taxon.make!( parent: ancestor, rank: Taxon::GENUS, current_user: taxon_curator.user )
-      expect( t.complete_species_count ).not_to be_nil
-      expect( t.complete_species_count ).to eq 0
-    end
-    it "should be nil if complete ancestor exists but it is complete at a higher rank" do
-      superfamily = Taxon.make!( complete: true, rank: Taxon::SUPERFAMILY, complete_rank: Taxon::GENUS )
-      taxon_curator = TaxonCurator.make!( taxon: superfamily )
-      family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user )
-      genus = Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user )
-      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
-      expect( genus.complete_species_count ).to be_nil
-    end
+  it "should be nil if no complete concept framework" do
+    t = Taxon.make!
+    expect( t.complete_species_count ).to be_nil
+  end
+  it "should be set if complete concept framework exists" do
+    ancestor = Taxon.make!( rank: Taxon::FAMILY )
+    concept = Concept.make!( taxon: ancestor, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES], complete: true)
+    taxon_curator = TaxonCurator.make!( concept: concept )
+    t = Taxon.make!( parent: ancestor, rank: Taxon::GENUS, current_user: taxon_curator.user )
+    expect( t.complete_species_count ).not_to be_nil
+    expect( t.complete_species_count ).to eq 0
+  end
+  it "should be nil if complete ancestor exists but it is complete at a higher rank" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+    concept = Concept.make!( taxon: superfamily, rank_level: Taxon::RANK_LEVELS[Taxon::GENUS], complete: true)
+    taxon_curator = TaxonCurator.make!( concept: concept )
+    family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user )
+    genus = Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user )
+    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
+    expect( genus.complete_species_count ).to be_nil
   end
   describe "when taxon is complete" do
     let(:taxon) { Taxon.make!( rank: Taxon::FAMILY ) }

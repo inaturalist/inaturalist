@@ -16,9 +16,16 @@
             %td= link_to taxon_reference.external_taxa[i].rank.capitalize + " " + taxon_reference.external_taxa[i].name + " (parent: " + taxon_reference.external_taxa[i].parent_rank.capitalize + " " + taxon_reference.external_taxa[i].parent_name + ")", taxon_reference.external_taxa[i].url
           - else
             %td= taxon_reference.external_taxa[i].rank.capitalize + " " + taxon_reference.external_taxa[i].name + " (parent: " + taxon_reference.external_taxa[i].parent_rank.capitalize + " " + taxon_reference.external_taxa[i].parent_name + ")"
-        %td= taxon_reference.relationship.capitalize if i==0
+        - else
+          %td
+        - if i==0
+          %td= taxon_reference.relationship.capitalize
+        - else
+          %td
         - if taxon_reference.taxa[i]
           - if taxon && taxon_reference.taxa[i].id == taxon.id
             %td= taxon_reference.taxa[i].rank.capitalize + " " +taxon_reference.taxa[i].name + " (parent: " + taxon_reference.taxa[i].parent.rank.capitalize + " " + taxon_reference.taxa[i].parent.name + ")"
           - else
             %td= link_to taxon_reference.taxa[i].rank.capitalize + " " +taxon_reference.taxa[i].name + " (parent: " + taxon_reference.taxa[i].parent.rank.capitalize + " " + taxon_reference.taxa[i].parent.name + ")", taxonomy_details_for_taxon_path(taxon_reference.taxa[i])
+        - else
+          %td

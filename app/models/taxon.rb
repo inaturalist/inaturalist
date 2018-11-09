@@ -976,7 +976,7 @@ class Taxon < ActiveRecord::Base
     return true if ancestry.nil?
     cf = parent.concept
     if !skip_complete && cf && cf.framework? && cf.taxon_curators.any? && ( current_user.blank? || !cf.taxon_curators.where( user: current_user ).exists? )
-      errors.add( :ancestry, "includes the complete taxon #{fc.taxon}. Contact the curators of that taxon to request changes." )
+      errors.add( :ancestry, "includes the complete taxon #{cf.taxon}. Contact the curators of that taxon to request changes." )
     end
     ac = parent.get_ancestor_concept
     if !skip_complete && ac && parent.is_internode_of(ac) && ac.taxon_curators.any? && ( current_user.blank? || !ac.taxon_curators.where( user: current_user ).exists? )
