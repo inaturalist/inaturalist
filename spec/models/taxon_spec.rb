@@ -1436,7 +1436,7 @@ describe "complete_species_count" do
     species = Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
     expect( genus.complete_species_count ).to be_nil
   end
-  describe "when taxon is complete" do
+  describe "when complete concept framework" do
     let(:taxon) { Taxon.make!( rank: Taxon::FAMILY ) }
     let(:concept) { Concept.make!( complete: true, taxon: taxon) }
     let(:taxon_curator) { TaxonCurator.make!( concept: concept ) }

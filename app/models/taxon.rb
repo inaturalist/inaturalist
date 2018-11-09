@@ -949,9 +949,10 @@ class Taxon < ActiveRecord::Base
   
   def get_ancestor_concept
     ancestor_concept = Concept.includes("taxon").
-      joins("JOIN taxa ancestor on ancestor.id = concepts.taxon_id").
-      joins("JOIN taxa subject on ancestor.id = ANY(string_to_array(subject.ancestry, '/')::int[])").
-      where("subject.id = ? AND concepts.rank_level IS NOT NULL AND concepts.rank_level <= subject.rank_level", id).
+      joins("JOIN taxa ancestor ON ancestor.id = concepts.taxon_id").
+      joins("JOIN taxa subject ON ancestor.id = ANY(string_to_array(subject.ancestry, '/')::int[])").
+      joins("JOIN taxa parent ON parent.id = (string_to_array(subject.ancestry, '/')::int[])[array_upper(string_to_array(subject.ancestry, '/')::int[],1)]").
+      where("subject.id = ? AND concepts.rank_level IS NOT NULL AND concepts.rank_level < parent.rank_level", id).
       order("ancestor.rank_level ASC").first
   end
 

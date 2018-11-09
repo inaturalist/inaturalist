@@ -223,18 +223,14 @@ class TaxaController < ApplicationController
     @rank_levels = Taxon::RANK_LEVELS.select{|k,v| !["genushybrid","hybrid","variety","form","infrahybrid"].include? k}
     @concept = Concept.includes(:taxon).where(taxon_id: @taxon.id).first
     
-    if @ancestor_concept = Concept.includes("taxon").joins("JOIN taxa b on b.id = concepts.taxon_id").
-      joins("JOIN taxa a on b.id = ANY(string_to_array(a.ancestry, '/')::int[])").
-      where("a.id = #{@taxon.id} AND concepts.rank_level IS NOT NULL AND concepts.rank_level <= a.rank_level").
-      order("b.rank_level ASC").first
-      
-      if @ancestor_concept.source
+    if @ancestor_concept = @taxon.ancestor_concept
+      if @ancestor_concept.source_id
         @taxon_reference = TaxonReference.includes("taxa","external_taxa").joins("JOIN taxa ON taxa.taxon_reference_id = taxon_references.id").where("taxa.id = ? AND concept_id = ?", @taxon, @ancestor_concept).first
       end
     end
     
     if @concept
-      if @concept.rank_level
+      if @concept.framework?
         @taxon_curators = TaxonCurator.includes(:user).where(concept_id: @concept )
         ancestor_string = @taxon.rank == "stateofmatter" ? @taxon.id.to_s : "%/#{@taxon.id}"
         @overlapping_downstream_concepts = Concept.includes("taxon", "source").
