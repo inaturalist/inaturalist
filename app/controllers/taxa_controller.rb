@@ -220,8 +220,8 @@ class TaxaController < ApplicationController
   end
 
   def taxonomy_details
-    @rank_levels = Taxon::RANK_LEVELS.select{|k,v| !["genushybrid","hybrid","variety","form","infrahybrid"].include? k}
-    @concept = Concept.includes(:taxon).where(taxon_id: @taxon.id).first
+    @rank_levels = Taxon::RANK_FOR_RANK_LEVEL.invert
+    @concept = @taxon.concept
     
     if @ancestor_concept = @taxon.ancestor_concept
       if @ancestor_concept.source_id
@@ -231,14 +231,10 @@ class TaxaController < ApplicationController
     
     if @concept
       if @concept.framework?
-        @taxon_curators = TaxonCurator.includes(:user).where(concept_id: @concept )
-        ancestor_string = @taxon.rank == "stateofmatter" ? @taxon.id.to_s : "%/#{@taxon.id}"
-        @overlapping_downstream_concepts = Concept.includes("taxon", "source").
-          joins("INNER JOIN taxa ON concepts.taxon_id = taxa.id").
-          where("concepts.rank_level IS NOT NULL AND concepts.id != ? AND (taxa.ancestry LIKE (?) OR taxa.ancestry LIKE (?) OR taxa.id = ?) AND taxa.rank_level >= ?",
-          @concept.id, ancestor_string, "#{ancestor_string}/%", @taxon.id, @concept.rank_level)
+        @taxon_curators = @concept.taxon_curators
+        @overlapping_downstream_concepts = @concept.get_downstream_concepts
         if @concept.source_id
-          @deviations = TaxonReference.where("concept_id = ? AND relationship != 'match'", @concept.id)
+          @deviations_count = TaxonReference.where("concept_id = ? AND relationship != 'match'", @concept.id).count
         end
       end
     end

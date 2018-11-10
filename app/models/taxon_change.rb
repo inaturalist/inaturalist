@@ -167,7 +167,7 @@ class TaxonChange < ActiveRecord::Base
       t.update_attributes!(
         is_active: true,
         skip_only_inactive_children_if_inactive: move_children?,
-        skip_complete: true
+        skip_concept_checks: true
       )
     end
     update_attribute(:committed_on, Time.now)
@@ -383,9 +383,9 @@ class TaxonChange < ActiveRecord::Base
     end
     move_child = Proc.new do |child|
       child.skip_locks = true
-      child.skip_complete = true
+      child.skip_concept_checks = true
       output_taxon.skip_locks = true
-      output_taxon.skip_complete = true
+      output_taxon.skip_concept_checks = true
       child.move_to_child_of( output_taxon )
     end
     if (

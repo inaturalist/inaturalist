@@ -11,7 +11,7 @@ class Taxon < ActiveRecord::Base
   attr_accessor :skip_locks
   
   # Allow this taxon to be grafted to complete subtrees
-  attr_accessor :skip_complete
+  attr_accessor :skip_concept_checks
   
   # Allow this taxon to be inactivated despite having active children
   attr_accessor :skip_only_inactive_children_if_inactive
@@ -109,9 +109,9 @@ class Taxon < ActiveRecord::Base
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
-  validate :graftable_if_complete
+  validate :graftable_relative_to_concept_coverage
   validate :user_can_edit_attributes, on: :update
-  validate :graftable_destination_if_complete
+  validate :graftable_destination_relative_to_concept_coverage
   validate :rank_level_must_be_coarser_than_children
   validate :rank_level_must_be_finer_than_parent
   validate :rank_level_for_taxon_and_parent_must_not_be_nil
@@ -188,7 +188,7 @@ class Taxon < ActiveRecord::Base
   end
   ROOT_LEVEL = STATEOFMATTER_LEVEL
   
-  ONETOONERANKLEVELS = RANK_LEVELS.select{|k,v| !["variety","form","infrahybrid","hybrid","genushybrid"].include? k}
+  RANK_FOR_RANK_LEVEL = RANK_LEVELS.select{|k,v| !["variety","form","infrahybrid","hybrid","genushybrid"].include? k}.invert
   
   RANKS = RANK_LEVELS.keys
   VISIBLE_RANKS = RANKS - ['stateofmatter']
@@ -467,8 +467,30 @@ class Taxon < ActiveRecord::Base
     true
   end
 
-  def self.reindex_descendants_of( taxon )
-    Taxon.elastic_index!( scope: Taxon.joins(:taxon_ancestors).where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ) )
+  def self.get_local_taxa_covered_by_concept(concept_framework)
+    ancestry_string = concept_framework.taxon.rank == STATEOFMATTER ?
+      "#{ concept_framework.taxon_id }" : "#{ concept_framework.taxon.ancestry }/#{ concept_framework.taxon.id }"
+    other_concept_frameworks = Concept.joins(:taxon).
+      where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) )" ).
+      where( "taxa.rank_level > #{ concept_framework.rank_level } AND concepts.rank_level IS NOT NULL" )
+
+    other_concept_frameworks_taxa = ( other_concept_frameworks.count > 0 ) ?
+      Taxon.where(id: other_concept_frameworks.map(&:taxon_id)) : []
+
+    local_taxa = Taxon.where( "ancestry = ? OR ancestry LIKE ?", ancestry_string, "#{ancestry_string}/%" ).
+      where( is_active: true ).
+      where( "rank_level >= ? ", concept_framework.rank_level).
+      where("( select count(*) from conservation_statuses ct where ct.taxon_id=taxa.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0")
+
+    other_concept_frameworks_taxa.each do |t|
+      local_taxa = local_taxa.where("ancestry != ? AND ancestry NOT LIKE ?", "#{t.ancestry}/#{t.id}", "#{t.ancestry}/#{t.id}/%")
+    end
+
+    return local_taxa
+  end
+  
+  def self.reindex_taxa_covered_by( concept )
+    Taxon.elastic_index!( scope: Taxon.get_local_taxa_covered_by_concept(concept) )
   end
   
   def update_taxon_reference
@@ -948,22 +970,12 @@ class Taxon < ActiveRecord::Base
   end
   
   def get_ancestor_concept
-    ancestor_concept = Concept.includes("taxon").
-      joins("JOIN taxa ancestor ON ancestor.id = concepts.taxon_id").
-      joins("JOIN taxa subject ON ancestor.id = ANY(string_to_array(subject.ancestry, '/')::int[])").
-      joins("JOIN taxa parent ON parent.id = (string_to_array(subject.ancestry, '/')::int[])[array_upper(string_to_array(subject.ancestry, '/')::int[],1)]").
-      where("subject.id = ? AND concepts.rank_level IS NOT NULL AND concepts.rank_level < parent.rank_level", id).
-      order("ancestor.rank_level ASC").first
+    Concept.
+      includes("taxon").
+      where("taxon_id IN (?) AND concepts.rank_level IS NOT NULL AND concepts.rank_level <= ?", self.ancestor_ids, self.rank_level).
+      order("taxa.rank_level ASC").first
   end
-
-  def is_internode_of(ancestor_concept)
-    return false unless self.descendant_of?(ancestor_concept.taxon)
-    return false unless self.rank_level > ancestor_concept.rank_level
-    downstream_concepts = ancestor_concept.get_downstream_concepts
-    return false if downstream_concepts.select{|dc| dc.taxon_id == self.id || self.descendant_of?(dc.taxon)}.count > 0
-    return true
-  end
-  
+    
   def has_ancestry_and_active_if_concept
     return true unless concept && concept.framework?
     return true unless ancestry_changed? || is_active_changed?
@@ -972,16 +984,16 @@ class Taxon < ActiveRecord::Base
     true
   end
   
-  def graftable_destination_if_complete
+  def graftable_destination_relative_to_concept_coverage
     return true unless new_record? || ancestry_changed?
     return true if ancestry.nil?
     cf = parent.concept
-    if !skip_complete && cf && cf.framework? && cf.taxon_curators.any? && ( current_user.blank? || !cf.taxon_curators.where( user: current_user ).exists? )
-      errors.add( :ancestry, "includes the complete taxon #{cf.taxon}. Contact the curators of that taxon to request changes." )
+    if !skip_concept_checks && cf && cf.framework? && cf.taxon_curators.any? && !current_user.blank? && !cf.taxon_curators.where( user: current_user ).exists? 
+      errors.add( :ancestry, "destination covered by a curated concept framework attached to #{cf.taxon}. Contact the curators of that taxon to request changes." )
     end
     ac = parent.get_ancestor_concept
-    if !skip_complete && ac && parent.is_internode_of(ac) && ac.taxon_curators.any? && ( current_user.blank? || !ac.taxon_curators.where( user: current_user ).exists? )
-      errors.add( :ancestry, "includes the complete taxon #{ac.taxon}. Contact the curators of that taxon to request changes." )
+    if !skip_concept_checks && ac && ac.taxon_curators.any? && !current_user.blank? && ac.taxon_curators.where( user: current_user ).exists?
+      errors.add( :ancestry, "destination coevered by a curated concept framework attached to #{ac.taxon}. Contact the curators of that taxon to request changes." )
     end
     true
   end
@@ -991,22 +1003,22 @@ class Taxon < ActiveRecord::Base
     return @ancestor_concept
   end
   
-  def internode_or_root_of_complete_framework_concept
+  def get_complete_framework_concept_for_internode_or_root
     if concept && concept.framework? && concept.complete
       @ancestor_concept_including_root = concept
     else
       @ancestor_concept_including_root = get_ancestor_concept
       return nil unless @ancestor_concept_including_root && @ancestor_concept_including_root.complete
-      return nil unless is_internode_of(@ancestor_concept_including_root)
+      return nil unless @ancestor_concept_including_root.rank_level < rank_level
     end
     return @ancestor_concept_including_root
   end
 
-  def graftable_if_complete
+  def graftable_relative_to_concept_coverage
     return true unless ancestry_changed?
     ac = get_ancestor_concept
-    if !skip_complete && ac && ( current_user.blank? || !ac.taxon_curators.where( user: current_user ).exists? )
-      errors.add( :ancestry, "includes the complete taxon #{ac.taxon}. Contact the curators of that taxon to request changes." )
+    if !skip_concept_checks && ac && !current_user.blank? && ac.taxon_curators.where( user: current_user ).exists?
+      errors.add( :ancestry, "covered by a curated concept framework attached to #{ac.taxon}. Contact the curators of that taxon to request changes." )
     end
     true
   end

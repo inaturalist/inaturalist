@@ -108,8 +108,8 @@
                             %td= @rank_levels.invert[overlapping_downstream_concept.rank_level]
                             - if overlapping_downstream_concept.source
                               %td= overlapping_downstream_concept.source.title
-                - if @deviations
-                  %p Deviations: #{link_to @deviations.count, taxon_references_path(TaxonReference::RELATIONSHIPS.select{|r| r!="match"}.map{|r| [r, "1"] }.to_h.merge({concept_id: @concept.id, }))}
+                - if @deviations_count > 0
+                  %p Deviations: #{link_to @deviations_count, taxon_references_path(TaxonReference::RELATIONSHIPS.select{|r| r!="match"}.map{|r| [r, "1"] }.to_h.merge({concept_id: @concept.id, }))}
               - if @taxon_curators.count > 0
                 %p Taxon Curators:
                 .row

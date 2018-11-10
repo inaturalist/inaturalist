@@ -8,21 +8,15 @@ class Concept < ActiveRecord::Base
   before_save :check_taxon_references
   before_save :check_taxon_curators
   after_save :check_other_concept_taxon_references
+  after_save :handle_change_in_completeness
   
   accepts_nested_attributes_for :source
   validate :rank_level_below_taxon_rank  
   validates :taxon_id, presence: true
   
-  #after save? - relly should be handle change in rank_level (ie no longer a framework...)
   def handle_change_in_completeness
-    return true unless complete_changed? || complete_rank_changed?
-    Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_descendants_of": id } ).reindex_descendants_of( id )
-    taxon_curators.destroy_all if !complete && complete_was
-    TaxonCurator.
-      joins( taxon: :taxon_ancestors ).
-      where( "taxon_ancestors.ancestor_taxon_id = ?", id ).
-      where( "taxa.rank_level < ?", complete_rank_level.to_i ).
-      destroy_all
+    return true unless complete_changed? || rank_level_changed?
+    Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_taxa_covered_by": id } ).reindex_taxa_covered_by( self )
     true
   end
   
@@ -71,7 +65,7 @@ class Concept < ActiveRecord::Base
     downstream_concepts = Concept.includes("taxon").joins("JOIN taxa ON concepts.taxon_id = taxa.id").
       where("(taxa.ancestry LIKE ('#{ancestry_string}/%') OR taxa.ancestry LIKE ('#{ancestry_string}')) AND taxa.rank_level > #{rank_level} AND concepts.rank_level IS NOT NULL")
   end
-  
+    
   def concept_taxon_name
     taxon.name
   end

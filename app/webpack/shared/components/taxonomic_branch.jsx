@@ -83,7 +83,7 @@ const TaxonomicBranch = ( {
                 { isComplete ? (
                   <div className="inlineblock taxonomy-complete-notice">
                     <div className="label-complete">
-                      { I18n.t( `all_children_added_to_the_database` ) }
+                      { I18n.t( `all_rank_added_to_the_database.${taxon.complete_rank || "species"}` ) }
                     </div>
                     <OverlayTrigger
                       container={ $( ".suggestions-detail" ).get( 0 ) }
