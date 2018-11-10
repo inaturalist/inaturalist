@@ -16,6 +16,20 @@ describe Place do
   end
 end
 
+describe Place, "bbox_contains_lat_lng_acc?" do
+  it "should not complain about irrational place boundaries" do
+    place = Place.make!(swlat: 1, swlng: 1, nelat: 1, nelng: 180)
+    expect {
+      place.bbox_contains_lat_lng_acc?(1,1)
+    }.not_to raise_error
+  end
+
+  it "should be false if acc is so large the point cannot be buffered" do
+    place = make_place_with_geom
+    expect( place.bbox_contains_lat_lng_acc?( place.latitude, place.longitude, 99999999 ) ).to be false
+  end
+end
+
 describe Place, "creation" do
   before(:each) do
     enable_elastic_indexing( Observation, Place )
