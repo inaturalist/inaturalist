@@ -137,8 +137,8 @@ class Taxon < ActiveRecord::Base
         complete_species_count: complete_species_count,
         wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil
       })
-      if concept = get_complete_framework_concept_for_internode_or_root
-        json[:complete_rank] = Taxon::RANK_FOR_RANK_LEVEL[concept.rank_level]
+      if taxon_framework = get_complete_taxon_framework_for_internode_or_root
+        json[:complete_rank] = Taxon::RANK_FOR_RANK_LEVEL[taxon_framework.rank_level]
       end
     end
     json

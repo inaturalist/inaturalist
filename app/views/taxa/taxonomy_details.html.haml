@@ -1,16 +1,15 @@
 - content_for :extrajs do
   :javascript
     $( document ).ready( function() {
-      var concept_table = $('.concept_table');
-      concept_table.hide();
-      $(".concept_count").find('a[href="#"]').click(function (e) {
+      var taxon_framework_table = $( '.taxon_framework_table' );
+      taxon_framework_table.hide();
+      $( ".taxon_framework_count" ).find( 'a[href="#"]' ).click( function ( e ) {
         e.preventDefault();
-        concept_table.slideToggle(500);
-      });
-      
-      $('[data-toggle="popover"]').popover();   
+        taxon_framework_table.slideToggle( 500 );
+      } );      
+      $( '[data-toggle="popover"]' ).popover();
     } );
-- content_for(:extracss) do
+- content_for( :extracss ) do
   :css
     .table.table-bordered{
       border:0px;
@@ -39,77 +38,77 @@
     .breadcrumbs
       %strong= link_to "&laquo back to taxon".html_safe, taxon_path, :class => 'crumb'
     .col-xs-12.prepend-12
-      %h3 Taxonomy Details for #{@taxon.rank.capitalize} #{@taxon.name}
-      - if @ancestor_concept
+      %h3 Taxonomy Details for #{ @taxon.rank.capitalize } #{ @taxon.name }
+      - if @upstream_taxon_framework
         .panel.panel-default
           .panel-heading
-            - if @ancestor_concept.source && !@taxon_reference
+            - if @upstream_taxon_framework.source && !@taxon_framework_relationship
               .pull-right
-                = link_to "Add reference", new_taxon_reference_path({taxon_id: @taxon.id, concept_id: @ancestor_concept.id})
+                = link_to "Add relationship", new_taxon_framework_relationship_path( { taxon_id: @taxon.id, taxon_framework_id: @upstream_taxon_framework.id } )
             %h4
-              Covered by a #{link_to "Concept Framework for #{@ancestor_concept.taxon.rank.capitalize} #{@ancestor_concept.taxon.name}", taxonomy_details_for_taxon_path(@ancestor_concept.taxon)}
-              - if @ancestor_concept.source
-                referencing #{link_to @ancestor_concept.source.title, @ancestor_concept.source.url}
-              %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon has an ancestor with a Concept Frameworks that is configured to cover this taxon. Concept Frameworks are a type of Concept that have downstream coverage to some rank ", "data-placement" => "top", "data-toggle" => "popover" }
-          - if @ancestor_concept.source && @taxon_reference
+              Covered by a #{ link_to "Taxon Framework for #{ @upstream_taxon_framework.taxon.rank.capitalize } #{ @upstream_taxon_framework.taxon.name }", taxonomy_details_for_taxon_path( @upstream_taxon_framework.taxon ) }
+              - if @upstream_taxon_framework.source
+                sourced to #{ link_to @upstream_taxon_framework.source.title, @upstream_taxon_framework.source.url }
+              %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon descends from a taxon attached to a Taxon Framework that is configured to cover a branch of the tree that includes this taxon", "data-placement" => "top", "data-toggle" => "popover" }
+          - if @upstream_taxon_framework.source && @taxon_framework_relationship
             .panel-body
               - if is_curator?
-                - if ( @ancestor_concept.taxon_curators.count > 0 && @ancestor_concept.taxon_curators.select{|tc| tc.user_id == current_user.id } ) || ( @ancestor_concept.taxon_curators.count == 0 )
+                - if ( @upstream_taxon_framework.taxon_curators.count > 0 && @upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id } ) || ( @upstream_taxon_framework.taxon_curators.count == 0 )
                   .pull-right
-                    = link_to "Edit reference", edit_taxon_reference_path(@taxon_reference)
-              = render :partial => '/taxon_references/show_taxon_reference', object: { taxon_reference: @taxon_reference, taxon: @taxon }
-              - if @taxon_reference.description
-                %p= formatted_user_text @taxon_reference.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+                    = link_to "Edit relationship", edit_taxon_framework_relationship_path( @taxon_framework_relationship )
+              = render :partial => '/taxon_framework_relationships/show_taxon_framework_relationship', object: { taxon_framework_relationship: @taxon_framework_relationship, taxon: @taxon }
+              - if @taxon_framework_relationship.description
+                %p= formatted_user_text @taxon_framework_relationship.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
       - else
         .panel.panel-default
           .panel-heading
-            Not covered by any concept frameworks
+            Not covered by any taxon frameworks
             - if @taxon.rank_level == Taxon::ROOT_LEVEL
-              (#{@taxon.rank.capitalize} #{@taxon.name} is the root of the tree)
-      - if @concept
+              ( #{ @taxon.rank.capitalize } #{ @taxon.name } is the root of the tree )
+      - if @taxon_framework
         .panel.panel-default
-          - if @concept.rank_level
+          - if @taxon_framework.rank_level
             .panel-heading
               %h4
-                Defines a Concept Framework for #{@taxon.name}
-                - if @concept.source
-                  referencing #{link_to @concept.source.title, @concept.source.url}
-                %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon defines a Concept Framework that covers some of its descendants", "data-placement" => "top", "data-toggle" => "popover" }
+                Defines a Taxon Framework for #{@taxon.name}
+                - if @taxon_framework.source
+                  sourced to #{link_to @taxon_framework.source.title, @taxon_framework.source.url}
+                %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon is attached to a Taxon Framework that covers some of its descendants", "data-placement" => "top", "data-toggle" => "popover" }
           .panel-body
             - if is_admin?
               .pull-right
                 .admin-box
-                  = link_to "Edit concept", edit_concept_path(@concept)
-            - if @concept.rank_level
+                  = link_to "Edit taxon framework", edit_taxon_framework_path( @taxon_framework )
+            - if @taxon_framework.rank_level
               .row
                 .col-xs-4
                   %p
-                    Downstream coverage: rank #{@rank_levels.invert[@concept.rank_level]}
-                    %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This concept covers species descending from the associated taxon down to this rank excluding taxa covered by other downstream concepts and including unassigned finer rank taxa grafted the this clade above the downstream rank", "data-placement" => "top", "data-toggle" => "popover" }
-                - if @concept.complete?
+                    Downstream coverage: rank #{ @rank_levels.invert[@taxon_framework.rank_level] }
+                    %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This taxon framework covers species descending from the associated taxon down to this rank excluding taxa covered by other downstream taxon frameworks and including unassigned finer rank taxa grafted the this clade above the downstream rank", "data-placement" => "top", "data-toggle" => "popover" }
+                - if @taxon_framework.complete?
                   .col-xs-4
                     %p
-                      Complete: #{@concept.complete?}
-                      %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "All extant taxa covered by this concept have been added to the database", "data-placement" => "top", "data-toggle" => "popover" }
-              - if @concept.source  
-                - if @overlapping_downstream_concepts.count > 0
-                  .concept_count Overlapping downstream Concept Frameworks: #{link_to @overlapping_downstream_concepts.count, '#'}
-                  .concept_table
+                      Complete: #{@taxon_framework.complete?}
+                      %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "All extant taxa covered by this taxon framework have been added to the database", "data-placement" => "top", "data-toggle" => "popover" }
+              - if @taxon_framework.source  
+                - if @overlapping_downstream_taxon_frameworks.count > 0
+                  .taxon_framework_count Overlapping downstream Taxon Frameworks: #{link_to @overlapping_downstream_taxon_frameworks.count, '#'}
+                  .taxon_framework_table
                     %table.table.table-bordered
                       %thead
                         %tr
-                          %th Concept Taxon
+                          %th Attached Taxon
                           %th Downstream covereage rank
                           %th Source
                       %tbody
-                        - @overlapping_downstream_concepts.each do |overlapping_downstream_concept|
+                        - @overlapping_downstream_taxon_frameworks.each do |overlapping_downstream_taxon_framework|
                           %tr
-                            %td= link_to overlapping_downstream_concept.taxon.name, taxonomy_details_for_taxon_path(overlapping_downstream_concept.taxon)
-                            %td= @rank_levels.invert[overlapping_downstream_concept.rank_level]
-                            - if overlapping_downstream_concept.source
-                              %td= overlapping_downstream_concept.source.title
+                            %td= link_to overlapping_downstream_taxon_framework.taxon.name, taxonomy_details_for_taxon_path(overlapping_downstream_taxon_framework.taxon)
+                            %td= Taxon::RANK_FOR_RANK_LEVEL[overlapping_downstream_taxon_framework.rank_level]
+                            - if overlapping_downstream_taxon_framework.source
+                              %td= overlapping_downstream_taxon_framework.source.title
                 - if @deviations_count > 0
-                  %p Deviations: #{link_to @deviations_count, taxon_references_path(TaxonReference::RELATIONSHIPS.select{|r| r!="match"}.map{|r| [r, "1"] }.to_h.merge({concept_id: @concept.id, }))}
+                  %p Deviations: #{link_to @deviations_count, taxon_framework_relationship_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_framework_id: @taxon_framework.id } ) ) }
               - if @taxon_curators.count > 0
                 %p Taxon Curators:
                 .row
@@ -120,11 +119,11 @@
                           = link_to(image_tag(taxon_curator.user.icon.url(:thumb), :class => 'media-object img-circle followee', :width => 50), person_by_login_path(taxon_curator.user.login))                                          
                         .media-body
                           %h4.media-heading= link_to taxon_curator.user.login, person_by_login_path(taxon_curator.user.login)
-            - if @concept.description
-              %p Concept Notes:
-              %p= formatted_user_text @concept.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+            - if @taxon_framework.description
+              %p Taxon Framework Notes:
+              %p= formatted_user_text @taxon_framework.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
       - else
         - if is_admin?
           .pull-right
             .admin-box
-              = link_to "Add concept", new_concept_path({taxon_id: @taxon.id})
+              = link_to "Add Taxon Framework", new_taxon_framework_path( { taxon_id: @taxon.id } )

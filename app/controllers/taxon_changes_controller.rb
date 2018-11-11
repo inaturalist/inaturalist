@@ -79,9 +79,9 @@ class TaxonChangesController < ApplicationController
       @existing = @taxon_change.input_taxa.map do |it|
         TaxonChange.input_taxon(it).all.to_a
       end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id || !tc.committed_on.nil?}
-      @ancestor_concept = @taxon_change.input_taxa.detect{|t| t.ancestor_concept}.try(:ancestor_concept)
-      if current_user && @ancestor_concept.taxon_curators.count > 0 && @ancestor_concept.taxon_curators.select{|tc| tc.user_id != current_user}
-        @curated_ancestor_concept = @ancestor_concept
+      @upstream_taxon_framework = @taxon_change.input_taxa.detect{|t| t.upstream_taxon_framework}.try(:upstream_taxon_framework)
+      if current_user && @upstream_taxon_framework.taxon_curators.count > 0 && @upstream_taxon_framework.taxon_curators.select{|tc| tc.user_id != current_user}
+        @curated_upstream_taxon_framework = @upstream_taxon_framework
       end
     end
     respond_to do |format|

@@ -1,6 +1,8 @@
-class TaxonReference < ActiveRecord::Base
+class TaxonFrameworkRelationship < ActiveRecord::Base
+  alias_attribute :internal_taxa, :taxa
+  
   belongs_to :user
-  belongs_to :concept
+  belongs_to :taxon_framework
   has_many :external_taxa, dependent: :destroy
   has_many :taxa, before_add: :check_if_covered, dependent: :nullify
   
@@ -10,8 +12,8 @@ class TaxonReference < ActiveRecord::Base
   before_save :set_relationship
   before_validation :mark_external_taxa_for_destruction 
   
-  validates :concept, presence: true
-  validate :concept_has_source
+  validates :taxon_framework, presence: true
+  validate :taxon_framework_has_source
   
   RELATIONSHIPS = [
     'match',
@@ -20,17 +22,17 @@ class TaxonReference < ActiveRecord::Base
     'many_to_many',
     'lump',
     'split',
-    'not_in_reference',
-    'not_local',
+    'not_external',
+    'not_internal',
     'unknown'
   ]
   
   TAXON_JOINS = [
-    "LEFT OUTER JOIN taxa t ON t.taxon_reference_id = taxon_references.id"
+    "LEFT OUTER JOIN taxa t ON t.taxon_framework_relationship_id = taxon_framework_relationships.id"
   ]
   
-  scope :relationships, lambda {|relationships| where("taxon_references.relationship IN (?)", relationships)}
-  scope :concept, lambda{|concept| where("taxon_references.concept_id = ?", concept)}
+  scope :relationships, lambda {|relationships| where("taxon_framework_relationships.relationship IN (?)", relationships)}
+  scope :taxon_framework, lambda{|taxon_framework| where("taxon_framework_relationships.taxon_framework_id = ?", taxon_framework)}
   scope :by, lambda{|user| where(:user_id => user)}
   scope :active, -> {
     joins(TAXON_JOINS).
@@ -57,19 +59,19 @@ class TaxonReference < ActiveRecord::Base
     end
   end
   
-  def concept_has_source
-    errors.add :concept_id, "concept must have source" unless concept.source_id.present?
+  def taxon_framework_has_source
+    errors.add :taxon_framework_id, "taxon framework must have source" unless taxon_framework.source_id.present?
   end
   
-  def taxa_covered_by_concept
-    return false unless taxa.map{|t| t.parent.id == concept.taxon_id || t.parent.is_internode_of(concept)}.all?
+  def taxa_covered_by_taxon_framework
+    return false unless taxa.map{|t| t.parent.id == taxon_framework.taxon_id || taxon.upstream_taxon_framework.id == taxon_framework.id}.all?  ###II is internode 
     true
   end
   
   def check_if_covered(taxon)
     unless taxon.id.nil? || taxon.rank.nil?
       raise if taxon.ancestry.nil?
-      raise unless taxon.parent.id == concept.taxon_id || taxon.parent.is_internode_of(concept)
+      raise unless taxon.parent.id == taxon_framework.taxon_id || taxon.upstream_taxon_framework.id == taxon_framework.id
     end
     true
   end
@@ -96,9 +98,9 @@ class TaxonReference < ActiveRecord::Base
     elsif external_taxa_count == 1 && taxa_count > 1
       self.relationship = "split"
     elsif external_taxa_count == 0 && taxa_count == 1
-      self.relationship = "not in reference"
+      self.relationship = "not external"
     elsif external_taxa_count == 1 && taxa_count == 0
-      self.relationship = "not local"
+      self.relationship = "not internal"
     else
       self.relationship = "unknown"
     end

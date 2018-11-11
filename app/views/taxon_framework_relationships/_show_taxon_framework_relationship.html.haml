@@ -1,0 +1,31 @@
+:ruby
+  taxon_framework_relationship ||= show_taxon_framework_relationship[:taxon_framework_relationship]
+  taxon ||= show_taxon_framework_relationship[:taxon]
+%p Relationship: #{ taxon_framework_relationship.relationship == "match" ? "Match" : "Deviation" }
+%table.table.table-bordered
+  %thead
+    %tr
+      %th= taxon_framework_relationship.taxon_framework.source.title
+      %th 
+      %th iNaturalist
+  %tbody
+    - ( 0..( [taxon_framework_relationship.taxa.count, taxon_framework_relationship.external_taxa.count].max-1 ) ).each do |i|
+      %tr
+        - if taxon_framework_relationship.external_taxa[i]
+          - if taxon_framework_relationship.external_taxa[i].url
+            %td= link_to taxon_framework_relationship.external_taxa[i].rank.capitalize + " " + taxon_framework_relationship.external_taxa[i].name + " (parent: " + taxon_framework_relationship.external_taxa[i].parent_rank.capitalize + " " + taxon_framework_relationship.external_taxa[i].parent_name + ")", taxon_framework_relationship.external_taxa[i].url
+          - else
+            %td= taxon_framework_relationship.external_taxa[i].rank.capitalize + " " + taxon_framework_relationship.external_taxa[i].name + " (parent: " + taxon_framework_relationship.external_taxa[i].parent_rank.capitalize + " " + taxon_framework_relationship.external_taxa[i].parent_name + ")"
+        - else
+          %td
+        - if i==0
+          %td= taxon_framework_relationship.relationship.capitalize
+        - else
+          %td
+        - if taxon_framework_relationship.taxa[i]
+          - if taxon && taxon_framework_relationship.taxa[i].id == taxon.id
+            %td= taxon_framework_relationship.taxa[i].rank.capitalize + " " +taxon_framework_relationship.taxa[i].name + " (parent: " + taxon_framework_relationship.taxa[i].parent.rank.capitalize + " " + taxon_framework_relationship.taxa[i].parent.name + ")"
+          - else
+            %td= link_to taxon_framework_relationship.taxa[i].rank.capitalize + " " +taxon_framework_relationship.taxa[i].name + " (parent: " + taxon_framework_relationship.taxa[i].parent.rank.capitalize + " " + taxon_framework_relationship.taxa[i].parent.name + ")", taxonomy_details_for_taxon_path( taxon_framework_relationship.taxa[i] )
+        - else
+          %td

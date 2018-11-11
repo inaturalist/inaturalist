@@ -221,20 +221,20 @@ class TaxaController < ApplicationController
 
   def taxonomy_details
     @rank_levels = Taxon::RANK_FOR_RANK_LEVEL.invert
-    @concept = @taxon.concept
+    @taxon_framework = @taxon.taxon_framework
     
-    if @ancestor_concept = @taxon.ancestor_concept
-      if @ancestor_concept.source_id
-        @taxon_reference = TaxonReference.includes("taxa","external_taxa").joins("JOIN taxa ON taxa.taxon_reference_id = taxon_references.id").where("taxa.id = ? AND concept_id = ?", @taxon, @ancestor_concept).first
+    if @upstream_taxon_framework = @taxon.upstream_taxon_framework
+      if @upstream_taxon_framework.source_id
+        @taxon_framework_relationship = TaxonFrameworkRelationship.includes("taxa","external_taxa").joins("JOIN taxa ON taxa.taxon_framework_relationship_id = taxon_framework_relationships.id").where("taxa.id = ? AND taxon_framework_id = ?", @taxon, @upstream_taxon_framework).first
       end
     end
     
-    if @concept
-      if @concept.framework?
-        @taxon_curators = @concept.taxon_curators
-        @overlapping_downstream_concepts = @concept.get_downstream_concepts
-        if @concept.source_id
-          @deviations_count = TaxonReference.where("concept_id = ? AND relationship != 'match'", @concept.id).count
+    if @taxon_framework
+      if @taxon_framework.covers?
+        @taxon_curators = @taxon_framework.taxon_curators
+        @overlapping_downstream_taxon_frameworks = @taxon_framework.get_downstream_taxon_frameworks
+        if @taxon_framework.source_id
+          @deviations_count = TaxonFrameworkRelationship.where("taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id).count
         end
       end
     end
@@ -298,7 +298,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-      flash.now[:notice] ||= "This taxon is covered by a concept framework, so some taxonomic attributes can only be editable by taxon curators associated with that concept framework."
+      flash.now[:notice] ||= "This taxon is covered by a taxon framework, so some taxonomic attributes can only be editable by taxon curators associated with that taxon framework."
     end
   end
 

@@ -6,7 +6,7 @@ class CreateExternalTaxa < ActiveRecord::Migration
       t.string :parent_name
       t.string :parent_rank
       t.string :url
-      t.integer :taxon_reference_id
+      t.integer :taxon_framework_relationship_id
       t.timestamps null: false
     end
   end

@@ -1248,15 +1248,15 @@ describe Taxon, "editable_by?" do
   it "should not be editable by curators if order or above" do
     expect( Taxon.make!( rank: Taxon::CLASS ) ).not_to be_editable_by( curator )
   end
-  describe "framework concept" do
-    curator2 = make_curator
+  describe "taxon framework" do
+    second_curator = make_curator
     family = Taxon.make!( rank: Taxon::FAMILY )
     genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
     species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
-    c = Concept.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
-    tc = TaxonCurator.make!( concept: c, user: curator2 )
+    tf = TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+    tc = TaxonCurator.make!( taxon_framework: tf, user: second_curator )
     it "should be editable by taxon curators of that taxon" do
-      expect( species ).to be_editable_by( curator2 )
+      expect( species ).to be_editable_by( second_curator )
     end
     it "should be editable by other site curators" do
       expect( species ).to be_editable_by( curator )
@@ -1305,18 +1305,18 @@ describe "rank helpers" do
   end
 end
 
-describe "concept" do
+describe "taxon" do
   let(:root) { Taxon.make!( rank: Taxon::FAMILY ) }
   let(:internode) { Taxon.make!( rank: Taxon::GENUS, parent: root ) }
   let!(:tip) { Taxon.make!( rank: Taxon::SPECIES, parent: internode ) }
-  let!(:concept) { Concept.make!( taxon: root, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] ) }
-  let!(:taxon_curator) { TaxonCurator.make!( concept: concept ) }
-  it "should recognize that its covered by a concept framework" do
-    expect( tip.ancestor_concept ).not_to be_blank
+  let!(:taxon_framework) { TaxonFramework.make!( taxon: root, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] ) }
+  let!(:taxon_curator) { TaxonCurator.make!( taxon_framework: taxon_framework ) }
+  it "should recognize that its covered by a taxon framework" do
+    expect( tip.upstream_taxon_framework ).not_to be_blank
   end
-  it "should recognize that its not covered by a concept framework" do
+  it "should recognize that its not covered by a taxon framework" do
     ssp = Taxon.make!( rank: Taxon::SUBSPECIES, parent: tip )
-    expect( ssp.ancestor_concept ).to be_blank
+    expect( ssp.upstream_taxon_framework ).to be_blank
   end  
   describe "when current_user" do
     describe "is curator" do
@@ -1366,20 +1366,20 @@ describe "concept" do
         t = Taxon.make( rank: Taxon::SUBSPECIES, parent: tip, current_user: taxon_curator.user )
         expect( t ).to be_valid
       end
-      it "should prevent taxon_curator from grafting to node covered by a overlapping downstream concept" do
+      it "should prevent taxon_curator from grafting to node covered by a overlapping downstream taxon framework" do
         deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
         deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
-        overlapping_downstream_concept = Concept.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
-        overlapping_downstream_concept_taxon_curator = TaxonCurator.make!( concept: overlapping_downstream_concept )
+        overlapping_downstream_taxon_framework = TaxonFramework.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_taxon_framework_taxon_curator = TaxonCurator.make!( taxon_framework: overlapping_downstream_taxon_framework )
         t = Taxon.make( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
         expect( t ).not_to be_valid
       end
-      it "should allow taxon_curator to grafting to node with an overlapping upstream concept" do
+      it "should allow taxon_curator to grafting to node with an overlapping upstream taxon framework" do
         deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
         deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
-        overlapping_downstream_concept = Concept.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
-        overlapping_downstream_concept_taxon_curator = TaxonCurator.make!( concept: overlapping_downstream_concept )
-        t = Taxon.make( rank: Taxon::SPECIES, parent: deeper_internode, current_user: overlapping_downstream_concept_taxon_curator.user )
+        overlapping_downstream_taxon_framework = TaxonFramework.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_taxon_framework_taxon_curator = TaxonCurator.make!( taxon_framework: overlapping_downstream_taxon_framework )
+        t = Taxon.make( rank: Taxon::SPECIES, parent: deeper_internode, current_user: overlapping_downstream_taxon_framework_taxon_curator.user )
         expect( t ).to be_valid
       end
       it "should allow moving internode" do
@@ -1392,22 +1392,22 @@ describe "concept" do
         tip.update_attributes( parent: other_root, current_user: taxon_curator.user )
         expect( tip ).to be_valid
       end
-      it "should prevent taxon_curator from moving tip covered by a overlapping downstream concept" do
+      it "should prevent taxon_curator from moving tip covered by a overlapping downstream taxon framework" do
         other_root = Taxon.make!( rank: Taxon::FAMILY )
         deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
         deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
-        overlapping_downstream_concept = Concept.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
-        overlapping_downstream_concept_taxon_curator = TaxonCurator.make!( concept: overlapping_downstream_concept )
+        overlapping_downstream_taxon_framework = TaxonFramework.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_taxon_framework_taxon_curator = TaxonCurator.make!( taxon_framework: overlapping_downstream_taxon_framework )
         deepertip.update_attributes( parent: other_root, current_user: taxon_curator.user )
         expect( deepertip ).not_to be_valid
       end
-      it "should allow taxon_curator to move tip with overlapping upstream concept" do
+      it "should allow taxon_curator to move tip with overlapping upstream taxon framework" do
         other_root = Taxon.make!( rank: Taxon::FAMILY )
         deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
         deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
-        overlapping_downstream_concept = Concept.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
-        overlapping_downstream_concept_taxon_curator = TaxonCurator.make!( concept: overlapping_downstream_concept )
-        deepertip.update_attributes( parent: other_root, current_user: overlapping_downstream_concept_taxon_curator.user )
+        overlapping_downstream_taxon_framework = TaxonFramework.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_taxon_framework_taxon_curator = TaxonCurator.make!( taxon_framework: overlapping_downstream_taxon_framework )
+        deepertip.update_attributes( parent: other_root, current_user: overlapping_downstream_taxon_framework_taxon_curator.user )
         expect( deepertip ).to be_valid
       end
     end
@@ -1415,31 +1415,31 @@ describe "concept" do
 end
 
 describe "complete_species_count" do
-  it "should be nil if no complete concept framework" do
+  it "should be nil if no complete taxon framework" do
     t = Taxon.make!
     expect( t.complete_species_count ).to be_nil
   end
-  it "should be set if complete concept framework exists" do
+  it "should be set if complete taxon framework exists" do
     ancestor = Taxon.make!( rank: Taxon::FAMILY )
-    concept = Concept.make!( taxon: ancestor, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES], complete: true)
-    taxon_curator = TaxonCurator.make!( concept: concept )
+    taxon_framework = TaxonFramework.make!( taxon: ancestor, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES], complete: true)
+    taxon_curator = TaxonCurator.make!( taxon_framework: taxon_framework )
     t = Taxon.make!( parent: ancestor, rank: Taxon::GENUS, current_user: taxon_curator.user )
     expect( t.complete_species_count ).not_to be_nil
     expect( t.complete_species_count ).to eq 0
   end
   it "should be nil if complete ancestor exists but it is complete at a higher rank" do
     superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
-    concept = Concept.make!( taxon: superfamily, rank_level: Taxon::RANK_LEVELS[Taxon::GENUS], complete: true)
-    taxon_curator = TaxonCurator.make!( concept: concept )
+    taxon_framework = TaxonFramework.make!( taxon: superfamily, rank_level: Taxon::RANK_LEVELS[Taxon::GENUS], complete: true)
+    taxon_curator = TaxonCurator.make!( taxon_framework: taxon_framework )
     family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user )
     genus = Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user )
     species = Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
     expect( genus.complete_species_count ).to be_nil
   end
-  describe "when complete concept framework" do
+  describe "when complete taxon framework" do
     let(:taxon) { Taxon.make!( rank: Taxon::FAMILY ) }
-    let(:concept) { Concept.make!( complete: true, taxon: taxon) }
-    let(:taxon_curator) { TaxonCurator.make!( concept: concept ) }
+    let(:taxon_framework) { TaxonFramework.make!( complete: true, taxon: taxon) }
+    let(:taxon_curator) { TaxonCurator.make!( taxon_framework: taxon_framework ) }
     it "should count species" do
       species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
       expect( taxon.complete_species_count ).to eq 1
@@ -1571,22 +1571,22 @@ describe Taxon, "set_photo_from_observations" do
   end
 end
 
-describe "taxon_reference" do
-  describe "when taxon has reference" do
-    it "should update taxon reference relationship when taxon name changes" do
-      tr = TaxonReference.make!
+describe "taxon_framework_relationship" do
+  describe "when taxon has a taxon framework relationship" do
+    it "should update taxon framework relationship relationship when taxon name changes" do
+      tfr = TaxonFrameworkRelationship.make!
       p = Taxon.make!(name: "Taricha", rank: "genus")
-      t = Taxon.make!(name: "Taricha torosa", rank: "species", taxon_reference_id: tr.id)
+      t = Taxon.make!(name: "Taricha torosa", rank: "species", taxon_framework_relationship_id: tfr.id)
       t.parent = p
       t.save
       t.reload
-      et = ExternalTaxon.new(name: "Taricha torosa", rank: "species", parent_name: "Taricha", parent_rank: "genus", taxon_reference_id: tr.id)
+      et = ExternalTaxon.new(name: "Taricha torosa", rank: "species", parent_name: "Taricha", parent_rank: "genus", taxon_framework_relationship_id: tfr.id)
       et.save
-      tr.reload
-      expect(tr.relationship).to eq "match"
+      tfr.reload
+      expect(tfr.relationship).to eq "match"
       t.update_attributes( name: "Taricha granulosa" )
-      tr.reload
-      expect(tr.relationship).to eq "swap"
+      tfr.reload
+      expect(tfr.relationship).to eq "swap"
     end
   end
 end

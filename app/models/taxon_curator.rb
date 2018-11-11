@@ -1,17 +1,17 @@
 class TaxonCurator < ActiveRecord::Base
-  belongs_to :concept
+  belongs_to :taxon_framework
   belongs_to :user
 
-  validate :concept_is_framework
+  validate :taxon_framework_covers
   validate :user_is_a_site_curator
 
   def to_s
-    "<TaxonCurator #{id} user_id: #{user_id} taxon_id: #{taxon_id}>"
+    "<TaxonCurator #{ id } user_id: #{ user_id } taxon__framework_id: #{ taxon_framework_id }>"
   end
 
-  def concept_is_framework
-    return true if concept.framework?
-    errors.add( :concept_id, "must be a concept framework" )
+  def taxon_framework_covers
+    return true if taxon_framework.covers?
+    errors.add( :taxon_framework_id, "must be a taxon framework with coverage" )
   end
 
   def user_is_a_site_curator

@@ -17,7 +17,7 @@
       %ul
         - @taxon_curator.errors.full_messages.each do |message|
           %li= message
-  = f.collection_select(:concept_id, @concepts, :id, :concept_taxon_name)
+  = f.collection_select(:taxon_framework_id, @taxon_frameworks, :id, :taxon_framework_taxon_name)
   = f.form_field :user do
     = text_field_tag :user_name, "", class: "form-control", placeholder: t(:start_typing_someones_name)
     = f.hidden_field :user_id, value: f.object.user_id || params[:user_id]

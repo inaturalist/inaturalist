@@ -1,0 +1,87 @@
+- content_for :extracss do
+  :css
+    .source input.text {width: 300px;}
+    
+- content_for :extrajs do
+  :javascript
+    $( document ).ready( function() {
+      
+      $( "#taxon_name" ).taxonAutocomplete( { idEl: $( "#taxon_framework_taxon_id" ) } );
+      
+      var had_references = false;
+      function show_confirm() {
+        if( had_references == true ){
+          $( 'input[type=submit]' ).
+            attr( "data-confirm", "It looks like you might have changed the Source or the Rank level. If so saving will destroy all associated Taxon Framework Relationships. Are you sure?" );
+        }
+      }
+      
+      if( $( "#taxon_framework_rank_level" ).val() != "" ) {
+        $( "#covers" ).prop('checked', true);
+        $( "#covers_details" ).show();
+        if( $( ".source_nested_form_fields" ).find( ".existing" ).val() != "" ) {
+          $( "#add_source" ).prop('checked', true);
+          $( "#add_source_details" ).show();
+          had_references = true;
+          $( "#taxon_framework_rank_level" ).change( show_confirm );
+          $( ".source_nested_form_fields" ).change( show_confirm );
+          $( "#taxon_name" ).attr( "disabled", true ).removeClass( "text" ).
+            addClass("form-control-plaintext");
+        }
+      }
+
+      $( "#covers" ).click( function() {
+        if( this.checked ){
+          $( "#covers_details" ).show( 500 );
+        }else{
+          if( $( "#add_source" ).is( ":checked" ) ){
+            $( "#add_source" ).prop( "checked", false);
+            $( ".source_nested_form_fields" ).find( ".existing" ).chooser( "clear" );
+            show_confirm();
+            $( "#add_source_details" ).hide( 500 );
+          }
+          $( "#covers_details" ).hide( 500 );
+          $( "#taxon_framework_rank_level" ).val( "" );
+          show_confirm();
+          $( "#taxon_framework_complete" ).prop( "checked", false );
+        }
+      });
+      
+      $( "#add_source" ).click( function() {
+        if( this.checked ){
+          $( "#add_source_details" ).show( 500 );
+        }else{
+          $( ".source_nested_form_fields" ).find( ".existing" ).chooser( "clear" );
+          show_confirm();
+          $( "#add_source_details" ).hide( 500 );
+        }
+      } );
+      
+    } );
+= form_for @taxon_framework, builder: BootstrapFormBuilder do |f|
+  .form-group
+    = f.form_field :taxon do
+      = text_field_tag :taxon_name, "", class: "form-control", placeholder: t( :start_typing_taxon_name )
+      = f.hidden_field :taxon_id, value: f.object.taxon_id || params[:taxon_id]
+
+  .form-group
+    = f.text_area :description, class: "form-control"
+  
+  .form-group
+    = label_tag 'Make it a cover taxa downstream'
+    = check_box_tag :covers
+    
+    #covers_details{ :style=>"display:none;" }
+      = f.select :rank_level, @rank_levels, :include_blank => t( :none ), :selected => @taxon_framework.try( :rank_level ), :label=>t( :rank_level )
+      = f.check_box :complete
+
+      .form-group
+        = label_tag 'Add source'
+        = check_box_tag :add_source
+    
+      #add_source_details{:style=>"display:none;"}
+        .source
+          = render :partial => 'sources/nested_form_fields', :locals => {:f => f}
+   
+  .form-group
+    = f.submit t(:save), class: "btn btn-primary"

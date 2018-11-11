@@ -1,16 +1,14 @@
 class ExternalTaxon < ActiveRecord::Base
-  belongs_to :taxon_reference
+  belongs_to :taxon_framework_relationship
   
-  after_create :update_taxon_reference
-  after_update :update_taxon_reference
+  after_create :update_taxon_framework_relationship
+  after_update :update_taxon_framework_relationship
   
-  #validates_uniqueness_of :name, :scope => :taxon_reference_concept_id
-  
-  def update_taxon_reference
-    return true unless self.taxon_reference
-    taxon_reference.set_relationship if (name_changed? || new_record?)
+  def update_taxon_framework_relationship
+    return true unless self.taxon_framework_relationship
+    taxon_framework_relationship.set_relationship if ( name_changed? || new_record? )
     attrs = {}
-    attrs[:relationship] = taxon_reference.relationship
-    taxon_reference.update_attributes(attrs)
+    attrs[:relationship] = taxon_framework_relationship.relationship
+    taxon_framework_relationship.update_attributes( attrs )
   end
 end

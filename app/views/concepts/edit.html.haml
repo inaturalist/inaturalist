@@ -1,7 +1,0 @@
-.container
-  .row
-    .col-xs-6.prepend-6
-      %h2 Editing Concept
-      = render 'form'
-      = link_to t(:cancel), taxonomy_details_for_taxon_path(@concept.taxon), class: "btn btn-default"
-      = link_to t(:delete), @concept, :method => :delete, data: {:confirm => t(:are_you_sure?)}, class: "btn btn-danger"

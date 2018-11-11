@@ -11,7 +11,7 @@ class Taxon < ActiveRecord::Base
   attr_accessor :skip_locks
   
   # Allow this taxon to be grafted to complete subtrees
-  attr_accessor :skip_concept_checks
+  attr_accessor :skip_taxon_framework_checks
   
   # Allow this taxon to be inactivated despite having active children
   attr_accessor :skip_only_inactive_children_if_inactive
@@ -61,7 +61,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, inverse_of: :taxon, dependent: :destroy
-  has_one :concept, inverse_of: :taxon, dependent: :destroy
+  has_one :taxon_framework, inverse_of: :taxon, dependent: :destroy
   has_many :listed_taxon_alterations, inverse_of: :taxon, dependent: :delete_all
   has_many :observation_field_values,
     -> { joins(:observation_field).where( "observation_fields.datatype = ?", ObservationField::TAXON ) },
@@ -71,7 +71,7 @@ class Taxon < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   belongs_to :conservation_status_source, :class_name => "Source"
-  belongs_to :taxon_reference, touch: true
+  belongs_to :taxon_framework_relationship, touch: true
   has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
   has_one :en_wikipedia_description,
@@ -92,7 +92,7 @@ class Taxon < ActiveRecord::Base
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :handle_after_move,
-             :update_taxon_reference
+             :update_taxon_framework_relationship
              
 
   after_commit :index_observations
@@ -109,15 +109,15 @@ class Taxon < ActiveRecord::Base
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
-  validate :graftable_relative_to_concept_coverage
+  validate :graftable_relative_to_taxon_framework_coverage
   validate :user_can_edit_attributes, on: :update
-  validate :graftable_destination_relative_to_concept_coverage
+  validate :graftable_destination_relative_to_taxon_framework_coverage
   validate :rank_level_must_be_coarser_than_children
   validate :rank_level_must_be_finer_than_parent
   validate :rank_level_for_taxon_and_parent_must_not_be_nil
   validate :only_inactive_children_if_inactive
   validate :active_parent_if_active
-  validate :has_ancestry_and_active_if_concept
+  validate :has_ancestry_and_active_if_taxon_framework
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -467,45 +467,45 @@ class Taxon < ActiveRecord::Base
     true
   end
 
-  def self.get_local_taxa_covered_by_concept(concept_framework)
-    ancestry_string = concept_framework.taxon.rank == STATEOFMATTER ?
-      "#{ concept_framework.taxon_id }" : "#{ concept_framework.taxon.ancestry }/#{ concept_framework.taxon.id }"
-    other_concept_frameworks = Concept.joins(:taxon).
+  def self.get_local_taxa_covered_by(taxon_framework)
+    ancestry_string = taxon_framework.taxon.rank == STATEOFMATTER ?
+      "#{ taxon_framework.taxon_id }" : "#{ taxon_framework.taxon.ancestry }/#{ taxon_framework.taxon.id }"
+    other_taxon_frameworks = TaxonFramework.joins(:taxon).
       where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) )" ).
-      where( "taxa.rank_level > #{ concept_framework.rank_level } AND concepts.rank_level IS NOT NULL" )
+      where( "taxa.rank_level > #{ taxon_framework.rank_level } AND taxon_frameworks.rank_level IS NOT NULL" )
 
-    other_concept_frameworks_taxa = ( other_concept_frameworks.count > 0 ) ?
-      Taxon.where(id: other_concept_frameworks.map(&:taxon_id)) : []
+    other_taxon_frameworks_taxa = ( other_taxon_frameworks.count > 0 ) ?
+      Taxon.where(id: other_taxon_frameworks.map(&:taxon_id)) : []
 
-    local_taxa = Taxon.where( "ancestry = ? OR ancestry LIKE ?", ancestry_string, "#{ancestry_string}/%" ).
+    internal_taxa = Taxon.where( "ancestry = ? OR ancestry LIKE ?", ancestry_string, "#{ancestry_string}/%" ).
       where( is_active: true ).
-      where( "rank_level >= ? ", concept_framework.rank_level).
+      where( "rank_level >= ? ", taxon_framework.rank_level).
       where("( select count(*) from conservation_statuses ct where ct.taxon_id=taxa.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0")
 
-    other_concept_frameworks_taxa.each do |t|
-      local_taxa = local_taxa.where("ancestry != ? AND ancestry NOT LIKE ?", "#{t.ancestry}/#{t.id}", "#{t.ancestry}/#{t.id}/%")
+    other_taxon_frameworks_taxa.each do |t|
+      internal_taxa = ternal_taxa.where("ancestry != ? AND ancestry NOT LIKE ?", "#{t.ancestry}/#{t.id}", "#{t.ancestry}/#{t.id}/%")
     end
 
-    return local_taxa
+    return internal_taxa
   end
   
-  def self.reindex_taxa_covered_by( concept )
-    Taxon.elastic_index!( scope: Taxon.get_local_taxa_covered_by_concept(concept) )
+  def self.reindex_taxa_covered_by( taxon_framework )
+    Taxon.elastic_index!( scope: Taxon.get_local_taxa_covered_by(taxon_framework) )
   end
   
-  def update_taxon_reference
-    return true unless self.taxon_reference
-    taxon_reference.set_relationship if (name_changed? || rank_changed? || ancestry_changed? || taxon_reference_id_changed?)
+  def update_taxon_framework_relationship
+    return true unless self.taxon_framework_relationship
+    taxon_framework_relationship.set_relationship if (name_changed? || rank_changed? || ancestry_changed? || taxon_framework_relationship_id_changed?)
     attrs = {}
-    attrs[:relationship] = taxon_reference.relationship
-    taxon_reference.update_attributes(attrs)
+    attrs[:relationship] = taxon_framework_relationship.relationship
+    taxon_framework_relationship.update_attributes(attrs)
   end
     
   def complete_species_count
     return nil if rank_level.to_i <= SPECIES_LEVEL
-    unless ( concept && concept.framework? && concept.complete && concept.rank_level <= SPECIES_LEVEL )
-      ac = get_ancestor_concept
-      return nil unless ( ac && ac.framework? && ac.complete && ac.rank_level <= SPECIES_LEVEL )
+    unless ( taxon_framework && taxon_framework.covers? && taxon_framework.complete && taxon_framework.rank_level <= SPECIES_LEVEL )
+      upstream_taxon_framework = get_upstream_taxon_framework
+      return nil unless ( upstream_taxon_framework && upstream_taxon_framework.complete && upstream_taxon_framework.rank_level <= SPECIES_LEVEL )
     end
     scope = taxon_ancestors_as_ancestor.
       select("distinct taxon_ancestors.taxon_id").
@@ -969,56 +969,56 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  def get_ancestor_concept
-    Concept.
+  def get_upstream_taxon_framework
+    TaxonFramework.
       includes("taxon").
-      where("taxon_id IN (?) AND concepts.rank_level IS NOT NULL AND concepts.rank_level <= ?", self.ancestor_ids, self.rank_level).
+      where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", self.ancestor_ids, self.rank_level).
       order("taxa.rank_level ASC").first
   end
     
-  def has_ancestry_and_active_if_concept
-    return true unless concept && concept.framework?
+  def has_ancestry_and_active_if_taxon_framework
+    return true unless taxon_framework && taxon_framework.covers
     return true unless ancestry_changed? || is_active_changed?
     return true unless ancestry.nil? || is_active == false
-    errors.add( :concept, "framework bearing taxa must have ancestries and be active. Remove the concept framework first" )
+    errors.add( :base, "taxa with attached taxon frameworks must have ancestries and be active. Remove the taxon framework first" )
     true
   end
   
-  def graftable_destination_relative_to_concept_coverage
+  def graftable_destination_relative_to_taxon_framework_coverage
     return true unless new_record? || ancestry_changed?
     return true if ancestry.nil?
-    cf = parent.concept
-    if !skip_concept_checks && cf && cf.framework? && cf.taxon_curators.any? && !current_user.blank? && !cf.taxon_curators.where( user: current_user ).exists? 
-      errors.add( :ancestry, "destination covered by a curated concept framework attached to #{cf.taxon}. Contact the curators of that taxon to request changes." )
+    destination_taxon_framework = parent.taxon_framework
+    if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && !current_user.blank? && !cf.taxon_curators.where( user: current_user ).exists? 
+      errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
     end
-    ac = parent.get_ancestor_concept
-    if !skip_concept_checks && ac && ac.taxon_curators.any? && !current_user.blank? && ac.taxon_curators.where( user: current_user ).exists?
-      errors.add( :ancestry, "destination coevered by a curated concept framework attached to #{ac.taxon}. Contact the curators of that taxon to request changes." )
+    destination_upstream_taxon_framework = parent.get_upstream_taxon_framework
+    if !skip_taxon_framework_checks && destination_upstream_taxon_framework && destination_upstream_taxon_framework.taxon_curators.any? && !current_user.blank? && destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
+      errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} covered by a curated taxon framework. Contact the curators of that taxon to request changes." )
     end
     true
   end
   
-  def ancestor_concept
-    return nil unless @ancestor_concept = get_ancestor_concept
-    return @ancestor_concept
+  def upstream_taxon_framework
+    return nil unless @upstream_taxon_framework = get_upstream_taxon_framework
+    return @upstream_taxon_framework
   end
   
-  def get_complete_framework_concept_for_internode_or_root
-    if concept && concept.framework? && concept.complete
-      @ancestor_concept_including_root = concept
+  def get_complete_taxon_framework_for_internode_or_root
+    if taxon_framework && taxon_framework.covers? && taxon_framework.complete
+      @upstream_taxon_framework_including_root = taxon_framework
     else
-      @ancestor_concept_including_root = get_ancestor_concept
-      return nil unless @ancestor_concept_including_root && @ancestor_concept_including_root.complete
-      return nil unless @ancestor_concept_including_root.rank_level < rank_level
+      @upstream_taxon_framework_including_root = get_upstream_taxon_framework
+      return nil unless @upstream_taxon_framework_including_root && @upstream_taxon_framework_including_root.complete
+      return nil unless @upstream_taxon_framework_including_root.rank_level < rank_level
     end
-    return @ancestor_concept_including_root
+    return @upstream_taxon_framework_including_root
   end
 
-  def graftable_relative_to_concept_coverage
+  def graftable_relative_to_taxon_framework_coverage
     return true unless ancestry_changed?
-    ac = get_ancestor_concept
-    if !skip_concept_checks && ac && !current_user.blank? && ac.taxon_curators.where( user: current_user ).exists?
-      errors.add( :ancestry, "covered by a curated concept framework attached to #{ac.taxon}. Contact the curators of that taxon to request changes." )
+    upstream_taxon_framework = get_upstream_taxon_framework
+    if !skip_taxon_framework_checks && upstream_taxon_framework && !current_user.blank? && upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
+      errors.add( :ancestry, "covered by a curated taxon framework attached to #{upstream_taxon_framework.taxon}. Contact the curators of that taxon to request changes." )
     end
     true
   end
@@ -1036,12 +1036,12 @@ class Taxon < ActiveRecord::Base
 
   def protected_attributes_editable_by?( user )
     return true if user && user.is_admin?
-    ac = get_ancestor_concept
-    return true unless ac
-    return true unless ac.taxon_curators.any?
+    upstream_taxon_framework = get_upstream_taxon_framework
+    return true unless upstream_taxon_framework
+    return true unless upstream_taxon_framework.taxon_curators.any?
     current_user_curates_taxon = false
     if user
-      current_user_curates_taxon = ac.taxon_curators.where( user: user ).exists?
+      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
     end
     current_user_curates_taxon
   end
