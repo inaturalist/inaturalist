@@ -34,96 +34,98 @@
         padding: 5px;
     }
 .container
-  .row
-    .breadcrumbs
-      %strong= link_to "&laquo back to taxon".html_safe, taxon_path, :class => 'crumb'
-    .col-xs-12.prepend-12
-      %h3 Taxonomy Details for #{ @taxon.rank.capitalize } #{ @taxon.name }
-      - if @upstream_taxon_framework
-        .panel.panel-default
-          .panel-heading
-            - if @upstream_taxon_framework.source && !@taxon_framework_relationship
-              .pull-right
-                = link_to "Add relationship", new_taxon_framework_relationship_path( { taxon_id: @taxon.id, taxon_framework_id: @upstream_taxon_framework.id } )
-            %h4
-              Covered by a #{ link_to "Taxon Framework for #{ @upstream_taxon_framework.taxon.rank.capitalize } #{ @upstream_taxon_framework.taxon.name }", taxonomy_details_for_taxon_path( @upstream_taxon_framework.taxon ) }
-              - if @upstream_taxon_framework.source
-                sourced to #{ link_to @upstream_taxon_framework.source.title, @upstream_taxon_framework.source.url }
-              %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon descends from a taxon attached to a Taxon Framework that is configured to cover a branch of the tree that includes this taxon", "data-placement" => "top", "data-toggle" => "popover" }
-          - if @upstream_taxon_framework.source && @taxon_framework_relationship
-            .panel-body
-              - if is_curator?
-                - if ( @upstream_taxon_framework.taxon_curators.count > 0 && @upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id } ) || ( @upstream_taxon_framework.taxon_curators.count == 0 )
-                  .pull-right
-                    = link_to "Edit relationship", edit_taxon_framework_relationship_path( @taxon_framework_relationship )
-              = render :partial => '/taxon_framework_relationships/show_taxon_framework_relationship', object: { taxon_framework_relationship: @taxon_framework_relationship, taxon: @taxon }
-              - if @taxon_framework_relationship.description
-                %p= formatted_user_text @taxon_framework_relationship.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
-      - else
-        .panel.panel-default
-          .panel-heading
-            Not covered by any taxon frameworks
-            - if @taxon.rank_level == Taxon::ROOT_LEVEL
-              ( #{ @taxon.rank.capitalize } #{ @taxon.name } is the root of the tree )
-      - if @taxon_framework
-        .panel.panel-default
-          - if @taxon_framework.rank_level
-            .panel-heading
-              %h4
-                Defines a Taxon Framework for #{@taxon.name}
-                - if @taxon_framework.source
-                  sourced to #{link_to @taxon_framework.source.title, @taxon_framework.source.url}
-                %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon is attached to a Taxon Framework that covers some of its descendants", "data-placement" => "top", "data-toggle" => "popover" }
+  .col-md-12
+    %ul.breadcrumb
+      %li
+        = link_to t(:back_to_x, :noun => @taxon.name), @taxon, :class => "back crumb"
+    %h3
+      = t(:taxonomy_details_for)
+      \#{render :partial => "shared/taxon", :object => @taxon, :locals => { :link_url => url_for(@taxon) }}
+    - if @upstream_taxon_framework
+      .panel.panel-default
+        .panel-heading
+          - if @upstream_taxon_framework.source && !@taxon_framework_relationship
+            .pull-right
+              = link_to "Add relationship", new_taxon_framework_relationship_path( { taxon_id: @taxon.id, taxon_framework_id: @upstream_taxon_framework.id } )
+          %h4
+            Covered by a #{ link_to "Taxon Framework for #{ @upstream_taxon_framework.taxon.rank.capitalize } #{ @upstream_taxon_framework.taxon.name }", taxonomy_details_for_taxon_path( @upstream_taxon_framework.taxon ) }
+            - if @upstream_taxon_framework.source
+              sourced to #{ link_to @upstream_taxon_framework.source.title, @upstream_taxon_framework.source.url }
+            %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon descends from a taxon attached to a Taxon Framework that is configured to cover a branch of the tree that includes this taxon", "data-placement" => "top", "data-toggle" => "popover" }
+        - if @upstream_taxon_framework.source && @taxon_framework_relationship
           .panel-body
-            - if is_admin?
-              .pull-right
-                .admin-box
-                  = link_to "Edit taxon framework", edit_taxon_framework_path( @taxon_framework )
-            - if @taxon_framework.rank_level
-              .row
+            - if is_curator?
+              - if ( @upstream_taxon_framework.taxon_curators.count > 0 && @upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id } ) || ( @upstream_taxon_framework.taxon_curators.count == 0 )
+                .pull-right
+                  = link_to "Edit relationship", edit_taxon_framework_relationship_path( @taxon_framework_relationship )
+            = render :partial => '/taxon_framework_relationships/show_taxon_framework_relationship', object: { taxon_framework_relationship: @taxon_framework_relationship, taxon: @taxon }
+            - if @taxon_framework_relationship.description
+              %p= formatted_user_text @taxon_framework_relationship.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+    - else
+      .panel.panel-default
+        .panel-heading
+          Not covered by any taxon frameworks
+          - if @taxon.rank_level == Taxon::ROOT_LEVEL
+            ( #{ @taxon.rank.capitalize } #{ @taxon.name } is the root of the tree )
+    - if @taxon_framework
+      .panel.panel-default
+        - if @taxon_framework.rank_level
+          .panel-heading
+            %h4
+              Defines a Taxon Framework for #{@taxon.name}
+              - if @taxon_framework.source
+                sourced to #{link_to @taxon_framework.source.title, @taxon_framework.source.url}
+              %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon is attached to a Taxon Framework that covers some of its descendants", "data-placement" => "top", "data-toggle" => "popover" }
+        .panel-body
+          - if is_admin?
+            .pull-right
+              .admin-box
+                = link_to "Edit taxon framework", edit_taxon_framework_path( @taxon_framework )
+          - if @taxon_framework.rank_level
+            .row
+              .col-xs-4
+                %p
+                  Downstream coverage: rank #{ @rank_levels.invert[@taxon_framework.rank_level] }
+                  %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This taxon framework covers species descending from the associated taxon down to this rank excluding taxa covered by other downstream taxon frameworks and including unassigned finer rank taxa grafted the this clade above the downstream rank", "data-placement" => "top", "data-toggle" => "popover" }
+              - if @taxon_framework.complete?
                 .col-xs-4
                   %p
-                    Downstream coverage: rank #{ @rank_levels.invert[@taxon_framework.rank_level] }
-                    %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This taxon framework covers species descending from the associated taxon down to this rank excluding taxa covered by other downstream taxon frameworks and including unassigned finer rank taxa grafted the this clade above the downstream rank", "data-placement" => "top", "data-toggle" => "popover" }
-                - if @taxon_framework.complete?
-                  .col-xs-4
-                    %p
-                      Complete: #{@taxon_framework.complete?}
-                      %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "All extant taxa covered by this taxon framework have been added to the database", "data-placement" => "top", "data-toggle" => "popover" }
-              - if @taxon_framework.source  
-                - if @overlapping_downstream_taxon_frameworks.count > 0
-                  .taxon_framework_count Overlapping downstream Taxon Frameworks: #{link_to @overlapping_downstream_taxon_frameworks.count, '#'}
-                  .taxon_framework_table
-                    %table.table.table-bordered
-                      %thead
+                    Complete: #{@taxon_framework.complete?}
+                    %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "All extant taxa covered by this taxon framework have been added to the database", "data-placement" => "top", "data-toggle" => "popover" }
+            - if @taxon_framework.source  
+              - if @overlapping_downstream_taxon_frameworks.count > 0
+                .taxon_framework_count Overlapping downstream Taxon Frameworks: #{link_to @overlapping_downstream_taxon_frameworks.count, '#'}
+                .taxon_framework_table
+                  %table.table.table-bordered
+                    %thead
+                      %tr
+                        %th Attached Taxon
+                        %th Downstream covereage rank
+                        %th Source
+                    %tbody
+                      - @overlapping_downstream_taxon_frameworks.each do |overlapping_downstream_taxon_framework|
                         %tr
-                          %th Attached Taxon
-                          %th Downstream covereage rank
-                          %th Source
-                      %tbody
-                        - @overlapping_downstream_taxon_frameworks.each do |overlapping_downstream_taxon_framework|
-                          %tr
-                            %td= link_to overlapping_downstream_taxon_framework.taxon.name, taxonomy_details_for_taxon_path(overlapping_downstream_taxon_framework.taxon)
-                            %td= Taxon::RANK_FOR_RANK_LEVEL[overlapping_downstream_taxon_framework.rank_level]
-                            - if overlapping_downstream_taxon_framework.source
-                              %td= overlapping_downstream_taxon_framework.source.title
-                - if @deviations_count > 0
-                  %p Deviations: #{link_to @deviations_count, taxon_framework_relationship_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_framework_id: @taxon_framework.id } ) ) }
-              - if @taxon_curators.count > 0
-                %p Taxon Curators:
-                .row
-                  - @taxon_curators.each do |taxon_curator|
-                    .col-xs-2
-                      .media
-                        .media-left
-                          = link_to(image_tag(taxon_curator.user.icon.url(:thumb), :class => 'media-object img-circle followee', :width => 50), person_by_login_path(taxon_curator.user.login))                                          
-                        .media-body
-                          %h4.media-heading= link_to taxon_curator.user.login, person_by_login_path(taxon_curator.user.login)
-            - if @taxon_framework.description
-              %p Taxon Framework Notes:
-              %p= formatted_user_text @taxon_framework.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
-      - else
-        - if is_admin?
-          .pull-right
-            .admin-box
-              = link_to "Add Taxon Framework", new_taxon_framework_path( { taxon_id: @taxon.id } )
+                          %td= link_to overlapping_downstream_taxon_framework.taxon.name, taxonomy_details_for_taxon_path(overlapping_downstream_taxon_framework.taxon)
+                          %td= Taxon::RANK_FOR_RANK_LEVEL[overlapping_downstream_taxon_framework.rank_level]
+                          - if overlapping_downstream_taxon_framework.source
+                            %td= overlapping_downstream_taxon_framework.source.title
+              - if @deviations_count > 0
+                %p Deviations: #{link_to @deviations_count, taxon_framework_relationship_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_framework_id: @taxon_framework.id } ) ) }
+            - if @taxon_curators.count > 0
+              %p Taxon Curators:
+              .row
+                - @taxon_curators.each do |taxon_curator|
+                  .col-xs-2
+                    .media
+                      .media-left
+                        = link_to(image_tag(taxon_curator.user.icon.url(:thumb), :class => 'media-object img-circle followee', :width => 50), person_by_login_path(taxon_curator.user.login))                                          
+                      .media-body
+                        %h4.media-heading= link_to taxon_curator.user.login, person_by_login_path(taxon_curator.user.login)
+          - if @taxon_framework.description
+            %p Taxon Framework Notes:
+            %p= formatted_user_text @taxon_framework.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+    - else
+      - if is_admin?
+        .pull-right
+          .admin-box
+            = link_to "Add Taxon Framework", new_taxon_framework_path( { taxon_id: @taxon.id } )
