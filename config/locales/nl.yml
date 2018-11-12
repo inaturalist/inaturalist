@@ -2477,6 +2477,10 @@ nl:
   notify_me_of_mentions: Breng me op de hoogte van vermeldingen (bv. @gebruikersnaam)
   notify_me_about_redundant_identifications: Breng me op de hoogte van bevestiging
     van identificaties
+  notify_me_about_redundant_identifications_desc: Ontvang meldingen over determinaties
+    die overeenkomen met die van uzelf. Als u zich hiervoor afmeldt, ontvangt u alleen
+    meldingen over determinaties van taxa die anders zijn dan het taxon in uw eigen
+    determinatie.
   number_of_observations: Aantal waarnemingen
   number_selected: '# geselecteerd'
   numeric_: numeriek
@@ -3022,6 +3026,10 @@ nl:
   required_field: verplicht veld
   research: onderzoek
   research_: Onderzoek
+  research_grade: Research Grade
+  research_grade_observations_have: Waarnemingen met  "Research grade"  hebben een
+    datum, foto, coördinaten en een door de gemeenschap ondersteunde ID. Klik door
+    om de kwaliteitsbeoordeling van de gegevens te bekijken.
   research_grade_qualification: Onderzoeksniveau qualificatie
   reset_search_filters: Reset zoekfilters
   reset_your_password: Uw wachtwoord opnieuw instellen
@@ -3755,6 +3763,8 @@ nl:
   where_does_x_live: Waar leven %{taxa}?
   where_were_they?: Waar waren ze?
   where_were_you?: Waar was je?
+  which_projects_can_add_your_observations?: Welke traditionele projecten kunnen uw
+    waarnemingen toevoegen?
   white: wit
   who_can_add_observations_to_this_project?: Wie kan waarnemingen aan dit project
     toevoegen?
@@ -4047,6 +4057,13 @@ nl:
       community_id:
         agreement: Overeenkomst
         score: Score
+        explanation: "<P>\n   Als om een of andere reden een gebruiker het niet eens
+          is met het community taxon,\n   kunnen ze het weigeren, wat betekent dat
+          hun ID de naam is die gebruikt wordt\n   bij het koppelen aan andere waarnemingen,
+          levenslijsten bijwerken, etc. \n   Hun waarneming kan alleen Research Grade
+          worden als de\n   gemeenschap het met hen eens is.\n</ P>\n<P>\n   De community-ID
+          wordt echter nog steeds weergegeven, dus iedereen kan de\n   verschillende
+          ID's zien die zijn voorgesteld.\n</ P>"
       copy_tip: Voeg een nieuwe waarneming toe door de datum, plaats, foto's en waarnemingsvelden
         van deze waarneming te kopiëren.
       export:
@@ -4073,6 +4090,37 @@ nl:
       identify:
         review_all_tooltip: Markeer alle waarnemingen op de pagina als beoordeeld
       show:
+        community_taxon_desc_html: " class = \"ui\">\n  Het community taxon (of gemeenschapstaxon)
+          is de determinatie van \n  het taxon door de % {site_name} gemeenschap van
+          de afbeelding in de waarneming. Als je geïnteresseerd bent in hoe we het
+          kiezen\n  community taxon kiezen, kijk dan bij de opmerkingen over het algoritme
+          hieronder, maar in\n  algemeen proberen we <strong> een taxon te kiezen
+          waar meer dan 2/3 is\n  van de ID's onder valt </ strong>. Dit betekent
+          dat soms\n  een taxon op een hoger niveau wordt gekozen dat een aantal taxa
+          bevat\n  Taxa wat de sooort niet eens (u denkt bijvoorbeeld dat het een
+          Lampropeltis is en ik denk dat\n  het ratelslang is, dan kiest iNat voor
+          de suborde Serpentes die\n  alle slangen omvat). Het algoritme is bevooroordeeld
+          enigzins de \n  afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden
+          vaak gelijk hebben.\n</ P>\n<p class = \"ui\">\n  Het gemeenschapstaxon
+          is het taxon dat we gebruiken bij het delen van waarnemingen\n  met datapartners,
+          die waarnemingen van hetzelfde taxon koppelen aan de\n  site, het bijwerken
+          van uw levenslijst, enz. Als u om een ​​of andere reden niet \n  akkoord
+          gaat met het gemeenschapstaxon, kun je het afwijzen, wat betekent\n  dat
+          uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen
+          te linken,\n  het bijwerken van levenslijsten, enz. Het betekent ook dat
+          uw observatie alleen \n  Research Grade kan worden wanneer de community
+          het eens is met <em> u </ em>.\n  Als je het hele idee van community-taxa
+          niet leuk vindt, kun je \n  het volledig uitzetten in <a href=\"/users/edit\"
+          target=\"_blank\"> uw instellingen </a>.\n</ P>\n<p class = \"ui\">\n  <strong>
+          Het algoritme: </ strong> voor alle geïdentificeerde taxa en de taxa waarin
+          ze zijn opgenomen\n  (bijvoorbeeld geslacht <i> Homo </ i> bevat <i> Homo
+          sapiens </ i>), score\n  elk als de verhouding tussen het aantal cumulatieve
+          ID's voor\n  dat taxon over de som van de cumulatieve ID's, het aantal\n  meer
+          conservatieve ID's toegevoegd na de eerste ID van dat taxon,\n  en het aantal
+          ID's dat compleet verschillend is (dat wil zeggen ID's\n  van taxa die niet
+          het taxon bevatten dat gescoord wordt). Voor de\n  geïdentificeerde taxa
+          die een score hebben van meer dan 2/3 en minstens 2\n  identificaties, wordt
+          het laagst gerangschikte taxon gekozen.\n</ P>"
         curator_coordinate_access_disabled_desc_html: Dit project laat geen waarnemingen
           toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Indien
           je de coördinaten van je waarnemingen niet wenst te delen, verwijder ze
@@ -4204,6 +4252,7 @@ nl:
         rare_in_place_desc_html: Minst waargenomen bedreigde taxa in <a href="%{url}">%{place}</a>
         wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
         frequency:
+          research: Research Grade
           verifiable: Verifieerbaar
           Flowering Phenology=bare: Geen bloemen
           Flowering Phenology=flower: Bloeiend
@@ -4221,9 +4270,34 @@ nl:
           Vergeet niet dat projectcuratoren de privé en vervaagde
           coördinaten kunnen zien van waarnemingen die u toevoegt aan dit project.
       edit:
+        common_names_desc: Toon namen in de lokale taal. Uitschakelen als u alleen
+          wetenschappelijke namen wilt bekijken. Merk op dat u kunt bepalen welke
+          algemene namen u ziet door uw locale en plaatsinstellingen te wijzigen.
         project_addition_preferences:
           any: Alle
           none: Geen. U bent de enige die uw waarnemingen aan projecten kunt toevoegen
+        this_only_applies_to_traditional_projects: |-
+          Dit geldt alleen voor traditionele projecten. U kunt waarnemingen niet uitsluiten
+          van collectie- of parapluprojecten, die in wezen opgeslagen zoekopdrachten zijn.
+          U kunt <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a> meer lezen.
+        project_settings_desc: 'Let op: dit geeft geen projecten toestemming om toegang
+          te krijgen tot uw privé-coördinaten of om u nieuwtjes te sturen. U moet
+          deelnemen aan projecten om deze rechten toe te kennen, of ze van geval tot
+          geval verlenen.'
+        taxon_change_desc: Wanneer taxa worden samengevoegd of hernoemd op %{site_name},
+          worden uw waarnemingen, vermelde taxa, determinaties, etc. automatisch bijgewerkt
+          naar de nieuwe taxa als de wijziging ondubbelzinnig is. Als u zich afmeldt
+          of als de wijziging niet eenduidig is (bijvoorbeeld een splitsing), ontvangt
+          u een update over de wijziging die linkt naar een tool die u kunt gebruiken
+          om uw inhoud handmatig bij te werken als u dat wilt.
+        prefers_community_taxa_desc: '%{site_name} volgt wat je denkt dat je waarnemingen
+          zijn en wat de gemeenschap denkt dat ze zijn. De determinatie die we met
+          gegevenspartners delen, is de determinatie van de gemeenschap, maar als
+          u denkt dat de mening van de gemeenschap uw eigen mening nooit mag overrulen,
+          kunt u het hier uitzetten. Mensen kunnen nog steeds determinaties toevoegen,
+          maar de mening van de gemeenschap heeft geen voorkeur boven die van u. Dit
+          betekent dat uw waarnemingen niet in aanmerking komen voor onderzoekskwaliteit
+          tenzij u instemt met de gemeenschap.'
         youve_used_all_of_your_blocks: Je hebt al je blokkeringen opgebruikt. Verwijder
           een blokkering om een andere toe te voegen.
       show:

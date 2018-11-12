@@ -2196,6 +2196,10 @@ el:
           quadrillion: Τετράκις εκατομμύριο
           thousand: Χιλιάδα
           trillion: Τρισεκατομμύριο
+  activemodel:
+    errors:
+      messages:
+        confirmation: δεν αντιστοιχεί στον κωδικό
   activerecord:
     errors:
       models:

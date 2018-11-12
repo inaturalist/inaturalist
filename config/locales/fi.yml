@@ -440,8 +440,10 @@ fi:
     katsoa yksityisiä koordinaattejasi
   allowed_html: Sallitut HTML-koodit
   allowed_values: Sallitut arvot
+  almost_there_: Melkein siellä...
   alphabetical: Aakkosjärjestyksessä
   alphabetical_order: Aakkosjärjestys
+  already_have_an_account_log_in_html: Onko sinulla jo tili? <strong>Kirjaudu sisään.</strong>
   amphibians: sammakkoeläimet
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWebillä ei ole tietoja tästä
     lajista.
@@ -798,7 +800,7 @@ fi:
   check_out_your_life_list: Tarkista elämälistasi
   check_this_box_if: |-
     Valitse tämä laatikko jos haluat sallia
-    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Nimeä-EiKaupallinen -lisenssin</a>
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Nimeä-EiKaupallinen -lisenssin</a>
     kuviisi. Voit valita eri lisenssin tai poistaa tämän lisenssin
     myöhemmin, mutta tämä on paras lisenssi jakamiseen tutkijoiden kanssa.
   checklist: Lajiluettelo
@@ -916,6 +918,7 @@ fi:
     egg: Muna
     juvenile: Nuori
   controls: Ohjaimet
+  convert: Muunna
   coordinate_systems: Koordinaattijärjestelmät
   coordinates: Koordinaatit
   coordinates_private: (koordinaatit yksityiset)
@@ -999,7 +1002,7 @@ fi:
   customize_location: Muokkaa sijaintia
   darr_apply_darr: '&darr; Käytä &darr;'
   dashboard: Kojelauta
-  data_deficient: puutteellisesti tunnettu
+  data_deficient: Puutteellisesti tunnettu
   data_quality: Tiedon laatu
   data_quality_assessment: Tietojen laadun arviointi
   datatype: Tietotyyppi
@@ -1036,6 +1039,7 @@ fi:
       december: joulukuu
   date_is_accurate: Päivämäärä on paikkansapitävä
   date_observed: Havaintopäivämäärä
+  date_observed_: Havaintopäivämäärä
   date_picker:
     closeText: Sulje
     currentText: Tänään
@@ -1111,8 +1115,10 @@ fi:
   does_the_date_seem_accurate: Näyttääkö päiväys oikealta!
   doesnt_have_default_photo: ei ole vielä oletuskuvaa.
   doh_something_went_wrong: Pahus, jotain meni pieleen.
+  doh_something_went_wrong_error: 'D''oh, jotain meni vikaan: %{error}'
   done: Valmis
   dont_filter: Älä suodata
+  dont_have_an_account_sign_up_html: Sinulla ei vielä ole tiliä? <strong>Rekisteröidy.</strong>
   dont_send_me_email: Älä lähetä minulle mitään sähköpostia!
   dont_use_double_quotes: Älä käytä tuplalainausmerkkejä missään muualla
   drop_it: Pudota se
@@ -1262,6 +1268,8 @@ fi:
   favorite_taxa: Suosikkitaksonit
   favorites: Suosikit
   fblocale: en_US
+  featured: Suositeltu
+  featured_projects_from_everywhere: Suositellut projektit kaikkialta
   feedback: Palaute
   feedback_group: Palauteryhmä
   feeds: Syötteet
@@ -1417,11 +1425,11 @@ fi:
   has_id_supported_by_two_or_more: Onko tunnistetta kannattamassa kaksi tai enemmän
   has_one_or_more_faves: On yksi tai useampi suosittelu
   has_photo: On kuvia
-  has_photos: on kuvia
+  has_photos: On kuvia
   has_photo_and_sound: On sekä kuvia että ääniä
   has_photos_or_sounds: On kuvia tai ääniä
   has_sound: On ääniä
-  has_sounds: on ääniä
+  has_sounds: On ääniä
   hasnt_contributed_any_observations: ei ole avustanut yhdelläkään havainnolla tätä
     projektia.
   hate_me_facebook: Pura linkitys Facebook ja %{site_name} tileihisi
@@ -1434,7 +1442,7 @@ fi:
   hi: Hei,
   hi_user: Hei %{user}
   hide: Piilota
-  hide_details: Piilota yksityiskohdat
+  hide_details: Piilota tiedot
   high: Korkea
   highest_rank: Korkein arvo
   highlights: Kohokohtia
@@ -1501,7 +1509,7 @@ fi:
   import_tags_from_csv: Tuo tunnisteet CSV-tiedostosta
   importing: Tuodaan...
   improving: Parannus
-  in: kohteessa
+  in: paikassa
   in_n: paikassa %{n}
   inaturalist_network_affiliation: iNaturalist Network -verkko kytkös
   inbox: saapuneet
@@ -1513,7 +1521,7 @@ fi:
   in_taxon?: taksonissa
   in_the_past: aiemmin
   in_the_past_week: menneellä viikolla
-  inactive: ei käytössä
+  inactive: Ei käytössä
   inactive_taxon: Epäaktiivinen taksoni
   inappropriate: Sopimaton?
   inappropriate_content: Sopimatonta sisältöä?
@@ -1626,6 +1634,7 @@ fi:
   learn_more_raquo: Lisätietoja &raquo;
   learn_what_these_licenses_mean: Opi, mitä nämä lisenssit tarkoittavat
   least_concern: elinvoimainen
+  leave: Poistu
   leave_a_comment: Jätä kommentti
   leave_this_project: Jätä tämä projekti
   leaves: lehdet
@@ -1767,6 +1776,7 @@ fi:
     ko: Korea
     lb: Luxemburg
     mk: Makedonia
+    nl: Hollanti
     oc: Oksitaani
     pt-BR: Portugali (Brasilia)
     pt-PT: Portugali (Portugali)
@@ -1830,6 +1840,7 @@ fi:
       all_observations: Kaikki havainnot
       every_publicly_visible_observation: Jokainen julkisesti näkyvä havainto, joka
         luotu iNaturalist Network -verkossa
+      featured_observations: Suositut havainnot
       gbif_network: GBIF-verkko
       observations: Havaintoa
       place_boundary: Paikan rajat
@@ -1931,6 +1942,7 @@ fi:
   needs_id_expandable_html: <span class='full'>Tarvitsee </span>tunnisteen
   needs_to_be_identified: On tunnistettava
   new: Uusi
+  new_and_noteworthy: Uutta ja huomionarvoista
   new_announcement: Uusi ilmoitus
   new_assessment: Uusi arviointi
   new_check_list: Uusi lajiluettelo
@@ -2504,6 +2516,9 @@ fi:
   project_was_successfully_created: Projekti luotiin onnistuneesti.
   project_was_successfully_updated: Projekti päivitettiin onnistuneesti.
   projects: Projektit
+  projects_description: |-
+    Projektit antavat sinun jakaa havaintojasi muiden ihmisten kesken %{site_name}issa.
+    Olitpa sitten aloittamassa kansalaistiedettä tai pitämässä silmällä naapurustosi lintuja. Projektit ovat tapa mennä.
   projects_from_place: Projektit paikasta %{place}
   projects_in_x: Projektit paikassa %{x}
   projects_you_admin: Projektit joita hallinoit
@@ -2541,7 +2556,7 @@ fi:
     subgenus: alasuku
     section: osa
     subsection: momentti
-    species: laji
+    species: Laji
     hybrid: hybridi
     subspecies: alalaji
     variety: muunnos
@@ -2584,6 +2599,7 @@ fi:
   remove_all_tags: Poista kaikki tunnisteet.
   remove_comma_separated_tags: Poista pilkulla erotellut tunnisteet
   remove_curator: Poista kuraattori
+  remove_from_featured: Poista suositelluista
   remove_from_guide: Poista oppaasta
   remove_from_list: Poista listasta
   remove_from_project: Poista projektista
@@ -2705,7 +2721,7 @@ fi:
     olevat havaimattomat tiedot näytetään
   select_one_or_more_photos: Valitse yksi tai useampia kuvia
   select_none: Poista valinnat
-  select_observations_to_edit: Valitse muokattavat havainnot
+  select_observations_to_edit: Valitse muokattavat havainnot...
   select_one_of_your_albums: Valitse yksi albumeistasi
   select_options: Valitse vaihtoehtoja
   select_photos_to_display: Valitse näytettävät kuvat
@@ -2840,6 +2856,7 @@ fi:
   species_names: lajien nimet
   species_search: Lajihaku
   species_taxon_name: Laji / Taksonin nimi
+  species_unknown: Tuntematon laji
   src: Lähde
   standard: Normaali
   start: Alkaa
@@ -3061,6 +3078,7 @@ fi:
   type_species_name: Kirjoita lajin nimi
   type_taxon_name: Kirjoita taksonin nimi
   type_taxon_name_and_click_lookup: Kirjoitan taksonin nimi ja klikkaa hae
+  umbrella_projects: Umbrella-projektit
   unblock: Poista esto
   unique_observers: uniikit havainnoijat
   unique_observers_last_3_months: ainutlaatuiset havainnoijat viimeisten 3 kuukauden
@@ -3213,6 +3231,7 @@ fi:
   view_post: Näytä viesti
   view_projects_from_place: Näytä projektit paikasta %{place}
   view_real_time_stats_in_a_new_window: Näytä reaaliaikaiset tilastot uudessa ikkunassa
+  view_sample: Näytä näyte
   view_site_name_observations_html: Näytä <strong>%{site_name}</strong> havainnot
   view_stats: Näytä tilastot
   view_taxon_change: Näytä taksonimuutos
@@ -3520,7 +3539,7 @@ fi:
         well_email_you: Ok, lähetämme sinulle sähköpostia, kun se on valmis.
         date_range_help: Max ja min päivämäärät havaittu DD-MM-YYYY formaatissa, esim.
           17-01-2015
-        created_on_help: Päiväys jolloin havainnot luotu, ei havaittu, esim. 17-01-2015,
+        created_on_help: Päiväys jolloin havainnot luotiin, ei havaittu, esim. 17-01-2015,
           01-2015, 2015
       field_descriptions:
         time_zone: Havainnon aikavyöhyke
@@ -3584,8 +3603,12 @@ fi:
           any: kuka tahansa
           curators: projektin kuraattorit
       new:
+        can_be_included_in_multiple: Voidaan sisällyttää useisiin umbrella-projekteihin
+        collection_projects: Kokoelmaprojektit
+        data_visualizations: Tietojen visualisoinnit
         delete_project: Poista projekti
         display_project_name: Näytä projektin nimi
+        multiple_project_administrators: Useita projektin ylläpitäjiä
         or_drag_and_drop: (tai vedä ja pudota)
         project_banner: Projektin banneri (PNG, JPG, tai GIF)
         project_banner_help: Valinnainen bannerikuva. Ihanteelliset mitat ovat 760px
@@ -3594,6 +3617,7 @@ fi:
         project_icon: Projektin kuvake (PNG, JPG, tai GIF)
         project_name: Projektin nimi
         project_summary: Projektin yhteenveto
+        welcome_to_projects: Tervetuloa projekteihin!
       project_user_curator_coordinate_access_labels:
         observer: Kyllä, mutta vain jos itse lisään havainnon projektiin.
         any: Kyllä, ei väliä kuka lisää havainnon projektiin.
