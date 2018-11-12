@@ -21,7 +21,7 @@ describe ApplicationController do
         expect(JSON.parse response.body).to eq [ ]
         get :index, format: :nonsense
         expect(response.response_code).to eq 404
-        expect(response.body).to include "Sorry, that doesn't exist!"
+        expect(response.body).to match /doesn.*exist/
       end
     end
   end
