@@ -140,6 +140,7 @@ class Observation < ActiveRecord::Base
         for_identification: options[:for_identification]) : nil
     }
 
+    current_ids = identifications.select(&:current?)
     unless options[:no_details]
       json.merge!({
         created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
@@ -186,9 +187,9 @@ class Observation < ActiveRecord::Base
         photo_licenses: photos.map(&:index_license_code).compact.uniq,
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
         sounds: sounds.map(&:as_indexed_json),
-        identifier_user_ids: identifications.map(&:user_id),
-        non_owner_identifier_user_ids: identifications.map(&:user_id) - [user_id],
-        identification_categories: identifications.map(&:category).uniq,
+        identifier_user_ids: current_ids.map(&:user_id),
+        non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
+        identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
         comments: comments.map(&:as_indexed_json),
         comments_count: comments.size,
