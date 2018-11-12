@@ -110,7 +110,7 @@
                           - if overlapping_downstream_taxon_framework.source
                             %td= overlapping_downstream_taxon_framework.source.title
               - if @deviations_count > 0
-                %p Deviations: #{link_to @deviations_count, taxon_framework_relationship_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_framework_id: @taxon_framework.id } ) ) }
+                %p Deviations: #{link_to @deviations_count, taxon_framework_relationships_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_framework_id: @taxon_framework.id } ) ) }
             - if @taxon_curators.count > 0
               %p Taxon Curators:
               .row

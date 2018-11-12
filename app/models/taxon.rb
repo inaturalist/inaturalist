@@ -467,7 +467,7 @@ class Taxon < ActiveRecord::Base
     true
   end
 
-  def self.get_local_taxa_covered_by(taxon_framework)
+  def self.get_internal_taxa_covered_by(taxon_framework)
     ancestry_string = taxon_framework.taxon.rank == STATEOFMATTER ?
       "#{ taxon_framework.taxon_id }" : "#{ taxon_framework.taxon.ancestry }/#{ taxon_framework.taxon.id }"
     other_taxon_frameworks = TaxonFramework.joins(:taxon).
@@ -483,14 +483,14 @@ class Taxon < ActiveRecord::Base
       where("( select count(*) from conservation_statuses ct where ct.taxon_id=taxa.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0")
 
     other_taxon_frameworks_taxa.each do |t|
-      internal_taxa = ternal_taxa.where("ancestry != ? AND ancestry NOT LIKE ?", "#{t.ancestry}/#{t.id}", "#{t.ancestry}/#{t.id}/%")
+      internal_taxa = internal_taxa.where("ancestry != ? AND ancestry NOT LIKE ?", "#{t.ancestry}/#{t.id}", "#{t.ancestry}/#{t.id}/%")
     end
 
     return internal_taxa
   end
   
   def self.reindex_taxa_covered_by( taxon_framework )
-    Taxon.elastic_index!( scope: Taxon.get_local_taxa_covered_by(taxon_framework) )
+    Taxon.elastic_index!( scope: Taxon.get_internal_taxa_covered_by(taxon_framework) )
   end
   
   def update_taxon_framework_relationship
@@ -977,7 +977,7 @@ class Taxon < ActiveRecord::Base
   end
     
   def has_ancestry_and_active_if_taxon_framework
-    return true unless taxon_framework && taxon_framework.covers
+    return true unless taxon_framework && taxon_framework.covers?
     return true unless ancestry_changed? || is_active_changed?
     return true unless ancestry.nil? || is_active == false
     errors.add( :base, "taxa with attached taxon frameworks must have ancestries and be active. Remove the taxon framework first" )
