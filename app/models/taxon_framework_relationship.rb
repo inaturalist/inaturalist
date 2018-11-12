@@ -2,6 +2,7 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   alias_attribute :internal_taxa, :taxa
   
   belongs_to :user
+  belongs_to :updater, :class_name => 'User'
   belongs_to :taxon_framework
   has_many :external_taxa, dependent: :destroy
   has_many :taxa, before_add: :check_if_covered, dependent: :nullify

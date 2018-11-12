@@ -8,6 +8,11 @@
       
       $( "#taxon_name" ).taxonAutocomplete( { idEl: $( "#taxon_framework_taxon_id" ) } );
       
+      var is_admin = #{current_user ? (current_user.is_admin? ? true : false ) : false };
+      if(is_admin == false){
+        $( "#covers_section" ).hide();
+      }
+      
       var had_references = false;
       function show_confirm() {
         if( had_references == true ){
@@ -16,7 +21,7 @@
         }
       }
       
-      if( $( "#taxon_framework_rank_level" ).val() != "" ) {
+      if( $( "#taxon_framework_rank_level" ).val() != "" && is_admin == true) {
         $( "#covers" ).prop('checked', true);
         $( "#covers_details" ).show();
         if( $( ".source_nested_form_fields" ).find( ".existing" ).val() != "" ) {
@@ -67,7 +72,7 @@
   .form-group
     = f.text_area :description, class: "form-control"
   
-  .form-group
+  .form-group#covers_section
     = label_tag 'Make it a cover taxa downstream'
     = check_box_tag :covers
     

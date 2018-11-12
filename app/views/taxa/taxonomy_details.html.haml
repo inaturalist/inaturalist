@@ -7,6 +7,12 @@
         e.preventDefault();
         taxon_framework_table.slideToggle( 500 );
       } );      
+      var flagged_taxa_table = $( '.flagged_taxa_table' );
+      flagged_taxa_table.hide();
+      $( ".flagged_taxa_count" ).find( 'a[href="#"]' ).click( function ( e ) {
+        e.preventDefault();
+        flagged_taxa_table.slideToggle( 500 );
+      } );      
       $( '[data-toggle="popover"]' ).popover();
     } );
 - content_for( :extracss ) do
@@ -77,10 +83,9 @@
                 sourced to #{link_to @taxon_framework.source.title, @taxon_framework.source.url}
               %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => "This means that this taxon is attached to a Taxon Framework that covers some of its descendants", "data-placement" => "top", "data-toggle" => "popover" }
         .panel-body
-          - if is_admin?
+          - if is_curator?
             .pull-right
-              .admin-box
-                = link_to "Edit taxon framework", edit_taxon_framework_path( @taxon_framework )
+              = link_to "Edit taxon framework", edit_taxon_framework_path( @taxon_framework )
           - if @taxon_framework.rank_level
             .row
               .col-xs-4
@@ -121,11 +126,21 @@
                         = link_to(image_tag(taxon_curator.user.icon.url(:thumb), :class => 'media-object img-circle followee', :width => 50), person_by_login_path(taxon_curator.user.login))                                          
                       .media-body
                         %h4.media-heading= link_to taxon_curator.user.login, person_by_login_path(taxon_curator.user.login)
+            - if @flagged_taxa.count > 0
+              .flagged_taxa_count Flagged covered taxa: #{link_to @flagged_taxa.count, '#'}
+              .flagged_taxa_table
+                %table.table.table-bordered
+                  %thead
+                    %tr
+                      %th Flagged Taxon
+                  %tbody
+                    - @flagged_taxa.each do |flagged_taxon|
+                      %tr
+                        %td= link_to flagged_taxon.name, taxon_path(flagged_taxon)
           - if @taxon_framework.description
             %p Taxon Framework Notes:
             %p= formatted_user_text @taxon_framework.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
     - else
-      - if is_admin?
+      - if is_curator?
         .pull-right
-          .admin-box
-            = link_to "Add Taxon Framework", new_taxon_framework_path( { taxon_id: @taxon.id } )
+          = link_to "Add Taxon Framework", new_taxon_framework_path( { taxon_id: @taxon.id } )

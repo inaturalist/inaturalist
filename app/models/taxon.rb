@@ -975,7 +975,7 @@ class Taxon < ActiveRecord::Base
       where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", self.ancestor_ids, self.rank_level).
       order("taxa.rank_level ASC").first
   end
-    
+      
   def has_ancestry_and_active_if_taxon_framework
     return true unless taxon_framework && taxon_framework.covers?
     return true unless ancestry_changed? || is_active_changed?
