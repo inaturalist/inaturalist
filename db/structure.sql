@@ -8914,15 +8914,6 @@ CREATE INDEX taxon_names_lower_name_index ON taxon_names USING btree (lower((nam
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
 
-
---
--- Name: taxa fk_rails_14068d59f3; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY taxa
-    ADD CONSTRAINT fk_rails_14068d59f3 FOREIGN KEY (taxon_framework_relationship_id) REFERENCES taxon_framework_relationships(id);
-
-
 --
 -- PostgreSQL database dump complete
 --

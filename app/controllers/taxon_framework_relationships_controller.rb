@@ -81,7 +81,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
       taxa_attributes.values.each do |row|
         if taxon = Taxon.where( id: row["id"] ).first
          if !taxon.taxon_framework_relationship_id.nil? && row["unlink"] == "false"
-            flash[:error] = "#{ t.name } is already represented in a Taxon Framework Relationship"
+            flash[:error] = "#{ taxon.name } is already represented in a Taxon Framework Relationship"
             @taxon_frameworks = TaxonFramework.all.limit( 100 )
             render action: :new
             return
