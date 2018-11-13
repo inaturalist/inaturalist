@@ -60,8 +60,8 @@ end
 shared_examples_for "an ObservationsController" do
 
   describe "create" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    before(:each) { enable_elastic_indexing( Observation, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
     it "should create with an existing photo ID" do
       p = LocalPhoto.make!( user: user )

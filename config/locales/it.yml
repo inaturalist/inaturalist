@@ -195,7 +195,6 @@ it:
   activity_settings: Impostazioni dell'attività
   adapted_by_name_from_a_work_by_original: Adattato da %{name}, su un lavoro di %{original}
   add: Aggiungi
-  add_a: Aggiungi una
   add_a_batch_of_observations: Aggiungi un Gruppo di Osservazioni
   add_a_batch_of_observations_by_csv: Aggiungi un Gruppo di Osservazioni da CSV
   add_a_batch_of_taxa: Aggiungi un Gruppo di Taxa
@@ -904,12 +903,6 @@ it:
   clear: pulisci
   clear_color_filters: Rimuovi i filtri dei colori
   clear_search: Cancella la ricerca
-  clear_shapes: Rimuovi le forme
-  click_add_an_observation_to_the_lower_right: Benvenuti a %{site_name_short}! Clicca
-    su "Aggiungi un osservazione' in basso a destra. Se non l'hai già fatto, ti verrà
-    richiesto di accedere/registrarti
-  click_on_map_to_draw_shape_around_place: Clicca sulla mappa per disegnare il perimetro
-    del luogo
   click_on_the_map_to: Clicca sulla mappa per posizionare la tua osservazione
   click_the_map: <strong>Clicca sulla mappa</strong> per aggiungere una posizione.
   click_the_map_to_jump_new_place: Fai clic sulla cartina per spostarti
@@ -3112,6 +3105,7 @@ it:
     belgium: Belgio
     bosnia_and_herzegovina: Bosnia-Erzegovina
     brazil: Brasile
+    canada: Canada
     central_america: America Centrale
     china: Cina
     colombia: Colombia
@@ -4963,11 +4957,11 @@ it:
     announcements:
       locales_desc: CMD- o SHIFT-click per selezione multipla. Non selezionando niente
         verranno mostrate le notizie relative e tutti gli utenti indipendentemente
-        dalla posizione locale. Scegliendo una lingua locale senza una regione *non"
-        saranno selezionate le localizzazioni insieme alla regione, e.g. se scegli
-        en non appariranno alle persone che hanno scelto en-US. Se vuoi che appaiano
-        ad entrambe, sceglile entrambe. Se vuoi mostrare una notizia a tutti i membri
-        del sito, lascia vuoto.
+        dalla posizione locale. Scegliendo una lingua senza una regione *non" saranno
+        selezionate le localizzazioni insieme alla regione, e.g. se scegli en non
+        appariranno alle persone che hanno scelto en-US. Se vuoi che appaiano ad entrambe,
+        sceglile entrambe. Se vuoi mostrare una notizia a tutti i membri del sito,
+        lascia vuoto.
     custom_projects:
       edit:
         custom_project_fields_warning: 'Stai attento: aggiungendo Javascript e CSS

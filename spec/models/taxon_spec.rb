@@ -1062,21 +1062,21 @@ describe Taxon, "grafting" do
       i.reload
       expect( i.taxon ).not_to be_grafted
       expect( i.category ).to eq Identification::MAVERICK
-      es_o_idents = Observation.elastic_search( where: { id: o.id } ).results.results[0].identifications.sort_by(&:id)
-      expect( es_o_idents[0].category ).to eq Identification::IMPROVING
-      expect( es_o_idents[1].category ).to eq Identification::SUPPORTING
-      expect( es_o_idents[2].category ).to eq Identification::SUPPORTING
-      expect( es_o_idents[3].category ).to eq Identification::MAVERICK
+      categories = Observation.elastic_search( where: { id: o.id } ).results.
+        results[0].identification_categories.uniq.sort
+      expect( categories[0] ).to eq Identification::IMPROVING
+      expect( categories[1] ).to eq Identification::MAVERICK
+      expect( categories[2] ).to eq Identification::SUPPORTING
       without_delay { i.taxon.update_attributes( rank: Taxon::SPECIES ) }
       without_delay { i.taxon.update_attributes( parent: @Pseudacris ) }
       i.reload
       expect( i.taxon.ancestor_ids ).to include( @Pseudacris.id)
       expect( i.category ).to eq Identification::LEADING
-      es_o_idents = Observation.elastic_search( where: { id: o.id } ).results.results[0].identifications.sort_by(&:id)
-      expect( es_o_idents[0].category ).to eq Identification::IMPROVING
-      expect( es_o_idents[1].category ).to eq Identification::SUPPORTING
-      expect( es_o_idents[2].category ).to eq Identification::SUPPORTING
-      expect( es_o_idents[3].category ).to eq Identification::LEADING
+      categories = Observation.elastic_search( where: { id: o.id } ).results.
+        results[0].identification_categories.uniq.sort
+      expect( categories[0] ).to eq Identification::IMPROVING
+      expect( categories[1] ).to eq Identification::LEADING
+      expect( categories[2] ).to eq Identification::SUPPORTING
     end
   end
 end

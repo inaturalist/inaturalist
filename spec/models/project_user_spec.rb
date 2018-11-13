@@ -100,16 +100,14 @@ describe ProjectUser do
       o = Observation.make!( user: pu.user )
       po = ProjectObservation.make!( observation: o, project: pu.project )
       expect( po ).not_to be_prefers_curator_coordinate_access
-      eo = Observation.elastic_search( where: { id: o.id } ).results[0]
-      eo_pref = eo.project_observations.first.preferences.detect{|p| p.name == "curator_coordinate_access" }
-      expect( eo_pref.value ).to be_nil
+      o.reload
+      original_last_indexed_at = o.last_indexed_at
       pu.update_attributes( preferred_curator_coordinate_access: ProjectUser::CURATOR_COORDINATE_ACCESS_ANY )
       Delayed::Worker.new.work_off
       po.reload
+      o.reload
       expect( po ).to be_prefers_curator_coordinate_access
-      eo = Observation.elastic_search( where: { id: o.id } ).results[0]
-      eo_pref = eo.project_observations.first.preferences.detect{|p| p.name == "curator_coordinate_access" }
-      expect( eo_pref.value ).to be true
+      expect( o.last_indexed_at ).to be > original_last_indexed_at
     end
   end
 

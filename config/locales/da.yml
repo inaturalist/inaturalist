@@ -174,7 +174,6 @@ da:
   adapted_by_name_from_a_work_by_original: Tilpasset efter %{name} fra et værk af
     %{original}
   add: Tilføj
-  add_a: Tilføj en
   add_a_batch_of_observations: Tilføj et bundt af observationer
   add_a_batch_of_observations_by_csv: Tilføj bundt af observationer ved hjælp af CSV
     fil
@@ -189,6 +188,8 @@ da:
   add_a_place_raquo: Tilføj et sted &raquo;
   add_a_single_observation: Tilføj en enkelt observation.
   add_a_taxon: Tilføj en takson
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Tilføj en <a target="_blank"
+    href="%{url}">takson skifte</a> hvis du vil ændre navnet
   add_all_your_matching_obs_of_this_taxon: Tilføj alle dine matchende observationer
     af denne takson til dette projekt
   add_all_your_matching_obs_to_this_project: Tilføj alle dine matchende observationer
@@ -878,11 +879,6 @@ da:
   clear: ryd
   clear_color_filters: Ryd farvefiltre
   clear_search: Ryd søgning
-  clear_shapes: Ryd former
-  click_add_an_observation_to_the_lower_right: Velkommen til %{site_name_short}! klik
-    "Tilføj en observation" nederst til højre. Du vil blive bedt om at logge på/tilmelde
-    dig hvis du ikke allerede er det.
-  click_on_map_to_draw_shape_around_place: Klik på kortet for at tegne omrids af stedet
   click_on_the_map_to: Klik på kortet for at placere din observation
   click_the_map: <strong>Klik på kortet</strong> for at tilføje et sted.
   click_the_map_to_jump_new_place: Klik på kortet for at udforske et nyt sted
@@ -1423,10 +1419,12 @@ da:
   favorites: Favoritter
   fblocale: en_US
   feature_this_project: Fremhæv dette projekt?
+  feature_this_project_: Fremhæv dette projekt
   featured: Udvalgte
   featured?: fremhævet?
   featured_projects_from_everywhere: Udvalgte projekter fra overalt
   featured_projects_from_place: Udvalgte projekter fra %{place}
+  featuring: Indeholder
   feedback: Feedback
   feedback_group: Feedback gruppe
   feeds: Feeds
@@ -3066,6 +3064,7 @@ da:
     belgium: Belgien
     bosnia_and_herzegovina: Bosnien og Herzegovina
     brazil: Brasilien
+    canada: Canada
     central_america: Central Amerika
     china: Kina
     colombia: Colombia
@@ -3377,6 +3376,7 @@ da:
   remove_curator_role: Fjern kuratorrolle
   remove_curator_status: Fjern kuratorstatus
   remove_from_batch: Fjern fra bundt
+  remove_from_featured: Fjen fra fremhævet
   remove_from_guide: Fjern fra guide
   remove_from_id_please?: Fjern venligst fra ID?
   remove_from_list: Fjern fra liste
@@ -3615,8 +3615,11 @@ da:
   sizes: Størrelser
   skip_to_next_page: Spring til næste side
   small: lille
+  site_admin_tools: Side admin værktøjer
   site_name_place: '%{site_name} sted'
   site_observations_export_from_date: '%{site_name} observations eksport fra %{date}'
+  site_site_admin: '%{site_name}Side admin'
+  site_staff: '%{site_name}Personale'
   site_stats: Side statistik
   site_taxon_page: '%{site_name} takson side'
   site_year_in_review: '%{site_name} Tilbageblik på året %{year}'
@@ -4875,8 +4878,8 @@ da:
     announcements:
       locales_desc: |-
         CTRL- eller SHIFT -klik for at vælge flere på én gang. Hvis du ikke vælger nogen, vises meddelelsen til alle brugere uanset lokalitet. Valg af et lokalt sprog uden en region vil *ikke* målrette lokaliteter med regioner, f.eks. hvis du valgte "en" vises det ikke til personer der har valgt "en-us". Hvis du
-        vil nå ud til begge dele, så vælg begge. Hvis du vil vise en meddelelse
-        til alle medlemmer af et websted, skal du bare lade dette stå tomt.
+        vil nå ud til begge, så vælg begge. Hvis du vil vise en meddelelse
+        til alle medlemmer af en side, skal du bare lade dette stå tomt.
     custom_projects:
       edit:
         custom_project_fields_warning: |-

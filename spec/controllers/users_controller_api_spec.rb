@@ -83,14 +83,14 @@ shared_examples_for "a signed in UsersController" do
         user.update_attributes( preferred_photo_license: Observation::CC_BY )
         o = make_research_grade_observation( user: user )
         es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
-        expect( es_response.photos.first.license_code ).to eq Observation::CC_BY.downcase
+        expect( es_response.photo_licenses ).to include Observation::CC_BY.downcase
         put :update, id: user.id, format: :json, user: {
           preferred_photo_license: "",
           make_photo_licenses_same: "1"
         }
         Delayed::Worker.new.work_off
         es_response = Observation.elastic_search( where: { id: o.id } ).results.results.first
-        expect( es_response.photos.first.license_code ).to be_blank
+        expect( es_response.photo_licenses ).to be_blank
       end
     end
   end

@@ -164,7 +164,6 @@ et:
   adapted_by_name_from_a_work_by_original: Kohandanud %{name} originaalist, mille
     tegi %{original}
   add: Lisa
-  add_a: Lisa
   add_a_batch_of_observations: Lisa vaatluste komplekt
   add_a_batch_of_observations_by_csv: Lisa vaatluste komplekt CSV-formaadis
   add_a_batch_of_taxa: Lisa taksonite komplekt
@@ -853,11 +852,6 @@ et:
   clear: tühjenda
   clear_color_filters: Tühjenda värvifiltrid
   clear_search: Tühjenda otsing
-  clear_shapes: Tühjenda kujundid
-  click_add_an_observation_to_the_lower_right: Teretulemast lehele %{site_name_short}!
-    Vajuta all paremal 'Lisa vaatlus'. Kui sa pole juba sisse logitud või ei oma kasutajakontot,
-    siis palutakse sul seda teha.
-  click_on_map_to_draw_shape_around_place: Vajuta kaardile, et märkida koha piirjoon
   click_on_the_map_to: Vajuta kaardile, et määrata oma vaatluse asukoht
   click_the_map: Koha lisamiseks <strong>vajuta kaardile</strong>.
   click_the_map_to_jump_new_place: Vajuta kaardile, et vaadata järgmist kohta
@@ -4796,7 +4790,7 @@ et:
   views:
     views: Vaatamisi
     announcements:
-      locales_desc: Mitme valimiseks hoia enne hiirega vajutamist alla CMD- või SIFT-klahvi.
+      locales_desc: Mitme valimiseks hoia enne hiirega vajutamist alla CMD- või SHIFT-klahvi.
         Kui sa ühtegi ei vali, näidatakse teadet kõigile kasutajatele keelest hoolimata.
         Valides keele ilma regioonita *ei näidata* teadet regiooniga keeltelt. St
         kui valid en ei ilmu teade inimestele, kelle keel on en-US. Kui soovid mõlemale
