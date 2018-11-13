@@ -10,7 +10,7 @@ class Taxon < ActiveRecord::Base
   # Allow this taxon to be grafted to locked subtrees
   attr_accessor :skip_locks
   
-  # Allow this taxon to be grafted to complete subtrees
+  # Allow this taxon to be grafted to curated subtrees
   attr_accessor :skip_taxon_framework_checks
   
   # Allow this taxon to be inactivated despite having active children
@@ -309,7 +309,7 @@ class Taxon < ActiveRecord::Base
     "winged insect"
   ]
   
-  PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA = %w(
+  PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA = %w(
     ancestry
     is_active
     rank
@@ -468,15 +468,14 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.get_internal_taxa_covered_by(taxon_framework)
-    ancestry_string = taxon_framework.taxon.rank == STATEOFMATTER ?
+    ancestry_string = ( taxon_framework.taxon.rank == STATEOFMATTER || taxon_framework.taxon.ancestry.nil? ) ?
       "#{ taxon_framework.taxon_id }" : "#{ taxon_framework.taxon.ancestry }/#{ taxon_framework.taxon.id }"
     other_taxon_frameworks = TaxonFramework.joins(:taxon).
       where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) )" ).
       where( "taxa.rank_level > #{ taxon_framework.rank_level } AND taxon_frameworks.rank_level IS NOT NULL" )
-
     other_taxon_frameworks_taxa = ( other_taxon_frameworks.count > 0 ) ?
       Taxon.where(id: other_taxon_frameworks.map(&:taxon_id)) : []
-
+    
     internal_taxa = Taxon.where( "ancestry = ? OR ancestry LIKE ?", ancestry_string, "#{ancestry_string}/%" ).
       where( is_active: true ).
       where( "rank_level >= ? ", taxon_framework.rank_level).
@@ -501,17 +500,12 @@ class Taxon < ActiveRecord::Base
     taxon_framework_relationship.update_attributes(attrs)
   end
     
-  def complete_species_count
-    puts "hey"
-    puts rank_level
+  def get_complete_species_count
     return nil if rank_level.to_i <= SPECIES_LEVEL
-    puts "ho"
     unless ( taxon_framework && taxon_framework.covers? && taxon_framework.complete && taxon_framework.rank_level <= SPECIES_LEVEL )
-      puts "hi"
       upstream_taxon_framework = get_upstream_taxon_framework
       return nil unless ( upstream_taxon_framework && upstream_taxon_framework.complete && upstream_taxon_framework.rank_level <= SPECIES_LEVEL )
     end
-    puts "heyc"
     scope = taxon_ancestors_as_ancestor.
       select("distinct taxon_ancestors.taxon_id").
       joins(:taxon).
@@ -1030,7 +1024,7 @@ class Taxon < ActiveRecord::Base
   def user_can_edit_attributes
     return true if current_user.blank?
     current_user_curates_taxon = protected_attributes_editable_by?( current_user )
-    PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA.each do |a|
+    PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA.each do |a|
       if changes[a] && !current_user_curates_taxon
         errors.add( a, :can_only_be_changed_by_a_curator_of_this_taxon )
       end

@@ -134,7 +134,7 @@ class Taxon < ActiveRecord::Base
         taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
           select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
         atlas_id: atlas.try( :id ),
-        complete_species_count: complete_species_count,
+        complete_species_count: get_complete_species_count,
         wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil
       })
       if taxon_framework = get_complete_taxon_framework_for_internode_or_root

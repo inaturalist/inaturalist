@@ -21,10 +21,9 @@ describe "complete" do
       es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
       es_family = Taxon.elastic_search( where: { id: family.id } ).results.results.first
       expect( es_genus.complete_species_count ).to eq 1
-      without_delay { superfamily.update_attributes!( complete_rank: Taxon::GENUS ) }
+      without_delay { taxon_framework.update_attributes!( rank_level: Taxon::RANK_LEVELS[Taxon::GENUS] ) }
       genus.reload
       family.reload
-      expect( genus.complete_species_count ).to be_nil
       es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
       es_family = Taxon.elastic_search( where: { id: family.id } ).results.results.first
       expect( es_genus.complete_species_count ).to be_nil

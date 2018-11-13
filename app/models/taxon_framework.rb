@@ -17,7 +17,7 @@ class TaxonFramework < ActiveRecord::Base
   
   def handle_change_in_completeness
     return true unless complete_changed? || rank_level_changed?
-    Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_taxa_covered_by": id } ).reindex_taxa_covered_by( self )
+    Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_taxa_covered_by": self.id } ).reindex_taxa_covered_by( self )
     true
   end
   
