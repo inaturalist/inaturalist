@@ -6,7 +6,7 @@
   %meta{ name: "config:inaturalist_api_url", content: CONFIG.node_api_url }
   %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0, maximum-scale=1.0" }
   :javascript
-    SLIDESHOW_PROJECT = #{ @slideshow_project.to_json };
+    SLIDESHOW_PROJECT = #{ @slideshow_project.to_json.html_safe };
     TILESERVER = "#{ CONFIG.tile_servers.elasticsearch }";
 #app
 - content_for :delayed_js do
