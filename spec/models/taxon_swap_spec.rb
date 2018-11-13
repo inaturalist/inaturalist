@@ -317,7 +317,7 @@ describe TaxonSwap, "commit" do
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla" )
         tf = TaxonFramework.make!(taxon: @ancestor_taxon, rank_level: 5)
         user = make_curator
-        tc = TaxonCurator.make!( taxon_fraework: tf, user: user)
+        tc = TaxonCurator.make!( taxon_framework: tf, user: user)
         tc.reload
         [@input_taxon, @output_taxon, child].each(&:reload)
         @swap.committer = user
