@@ -502,11 +502,16 @@ class Taxon < ActiveRecord::Base
   end
     
   def complete_species_count
+    puts "hey"
+    puts rank_level
     return nil if rank_level.to_i <= SPECIES_LEVEL
+    puts "ho"
     unless ( taxon_framework && taxon_framework.covers? && taxon_framework.complete && taxon_framework.rank_level <= SPECIES_LEVEL )
+      puts "hi"
       upstream_taxon_framework = get_upstream_taxon_framework
       return nil unless ( upstream_taxon_framework && upstream_taxon_framework.complete && upstream_taxon_framework.rank_level <= SPECIES_LEVEL )
     end
+    puts "heyc"
     scope = taxon_ancestors_as_ancestor.
       select("distinct taxon_ancestors.taxon_id").
       joins(:taxon).
@@ -969,11 +974,10 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  def get_upstream_taxon_framework
-    TaxonFramework.
-      includes("taxon").
-      where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", self.ancestor_ids, self.rank_level).
-      order("taxa.rank_level ASC").first
+  def get_upstream_taxon_framework(supplied_ancestor_ids = self.ancestor_ids)
+    TaxonFramework.joins("JOIN taxa t ON t.id = taxon_frameworks.taxon_id").
+      where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", supplied_ancestor_ids, rank_level).
+      order("t.rank_level ASC").first
   end
       
   def has_ancestry_and_active_if_taxon_framework
@@ -988,12 +992,12 @@ class Taxon < ActiveRecord::Base
     return true unless new_record? || ancestry_changed?
     return true if ancestry.nil?
     destination_taxon_framework = parent.taxon_framework
-    if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && !current_user.blank? && !cf.taxon_curators.where( user: current_user ).exists? 
+    if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? 
       errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
     end
     destination_upstream_taxon_framework = parent.get_upstream_taxon_framework
-    if !skip_taxon_framework_checks && destination_upstream_taxon_framework && destination_upstream_taxon_framework.taxon_curators.any? && !current_user.blank? && destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
-      errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} covered by a curated taxon framework. Contact the curators of that taxon to request changes." )
+    if !skip_taxon_framework_checks && destination_upstream_taxon_framework && destination_upstream_taxon_framework.taxon_curators.any? && !current_user.blank? && !destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
+      errors.add( :ancestry, "destination #{destination_upstream_taxon_framework.taxon} covered by a curated taxon framework. Contact the curators of that taxon to request changes." )
     end
     true
   end
@@ -1015,9 +1019,9 @@ class Taxon < ActiveRecord::Base
   end
 
   def graftable_relative_to_taxon_framework_coverage
-    return true unless ancestry_changed?
-    upstream_taxon_framework = get_upstream_taxon_framework
-    if !skip_taxon_framework_checks && upstream_taxon_framework && !current_user.blank? && upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
+    return true unless ancestry_changed? && !ancestry_was.nil?
+    upstream_taxon_framework = get_upstream_taxon_framework( ancestry_was.split("/") )
+    if !skip_taxon_framework_checks && upstream_taxon_framework && !current_user.blank? && !upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
       errors.add( :ancestry, "covered by a curated taxon framework attached to #{upstream_taxon_framework.taxon}. Contact the curators of that taxon to request changes." )
     end
     true

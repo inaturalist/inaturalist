@@ -48,8 +48,10 @@ describe TaxonSwap, "creation" do
     genus = Taxon.make!( rank: Taxon::GENUS )
     tf = TaxonFramework.make!( taxon: genus, rank_level: 5 )
     tc = TaxonCurator.make!( taxon_framework: tf )
+    c = make_curator
+    input_taxon = Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: tc.user )
     swap = TaxonSwap.make
-    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: tc.user ) )
+    swap.add_input_taxon( input_taxon )
     swap.add_output_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
     expect( swap ).to be_valid
   end

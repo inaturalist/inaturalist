@@ -1249,12 +1249,12 @@ describe Taxon, "editable_by?" do
     expect( Taxon.make!( rank: Taxon::CLASS ) ).not_to be_editable_by( curator )
   end
   describe "taxon framework" do
-    second_curator = make_curator
-    family = Taxon.make!( rank: Taxon::FAMILY )
-    genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
-    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
-    tf = TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
-    tc = TaxonCurator.make!( taxon_framework: tf, user: second_curator )
+    let(:second_curator) { make_curator }
+    let(:family) { Taxon.make!( rank: Taxon::FAMILY ) }
+    let(:genus) { Taxon.make!( rank: Taxon::GENUS, parent: family ) }
+    let(:species) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
+    let!(:tf) { TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] ) }
+    let!(:tc) { TaxonCurator.make!( taxon_framework: tf, user: second_curator ) }
     it "should be editable by taxon curators of that taxon" do
       expect( species ).to be_editable_by( second_curator )
     end
@@ -1343,9 +1343,12 @@ describe "taxon" do
         expect( root ).to be_valid
       end
       it "should prevent moving internode" do
+        expect( internode.upstream_taxon_framework ).not_to be_blank
         other_root = Taxon.make!( rank: Taxon::FAMILY )
+        expect( internode.parent ).to eq root
         internode.update_attributes( parent: other_root, current_user: curator )
         expect( internode ).not_to be_valid
+        expect( internode.parent ).to eq other_root
       end
       it "should prevent moving tip" do
         other_root = Taxon.make!( rank: Taxon::FAMILY )
@@ -1358,7 +1361,7 @@ describe "taxon" do
         t = Taxon.make( rank: Taxon::GENUS, parent: root, current_user: taxon_curator.user )
         expect( t ).to be_valid
       end
-      it "should prevent grafting to internode" do
+      it "should allow grafting to internode" do
         t = Taxon.make( rank: Taxon::SPECIES, parent: internode, current_user: taxon_curator.user )
         expect( t ).to be_valid
       end

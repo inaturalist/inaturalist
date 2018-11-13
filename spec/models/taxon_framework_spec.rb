@@ -31,7 +31,7 @@ describe "complete" do
     end
     it "should not be above the rank of the taxon" do
       t = Taxon.make( rank: Taxon::FAMILY )
-      taxon_framework = TaxonFramwework.make( taxon: t, rank_level: Taxon::RANK_LEVELS[Taxon::ORDER] )
+      taxon_framework = TaxonFramework.make( taxon: t, rank_level: Taxon::RANK_LEVELS[Taxon::ORDER] )
       expect( taxon_framework ).not_to be_valid
     end
   end
