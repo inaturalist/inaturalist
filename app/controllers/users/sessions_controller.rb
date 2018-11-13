@@ -2,7 +2,7 @@ class Users::SessionsController < Devise::SessionsController
 
   before_filter :load_registration_form_data, only: [:new, :create]
 
-  layout "bootstrap"
+  layout "registrations"
 
   def create
     # attempt straight db auth first, then warden auth

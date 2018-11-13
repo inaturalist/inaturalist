@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  layout "bootstrap"
+  layout "registrations"
 
   before_filter :load_registration_form_data, only: [:new, :create]
 

@@ -535,7 +535,7 @@ class UsersController < ApplicationController
     load_registration_form_data
     respond_to do |format|
       format.html do
-        render "users/registrations/new", layout: "bootstrap"
+        render layout: "registrations"
       end
     end
   end

@@ -22,7 +22,9 @@
 #header {
   margin-bottom: 0;
   #mainnav,
-  #headersearch {
+  #headersearch,
+  .add-obs,
+  #usernav {
     display: none;
   }
 }
@@ -116,7 +118,7 @@
   .form-group.text-field.password:before {
     content: "\f13e";
   }
-  &.log-in .form-group.text-field.password:before,
+  .log-in .form-group.text-field.password:before,
   .form-group.text-field.password-confirmation:before {
     content: "\f023";
   }
@@ -168,7 +170,7 @@
     margin-bottom: 30px;
     margin-top: 20px;
   }
-  &.log-in .bigtext {
+  .log-in .bigtext {
     font-size: 20px;
     margin-top: 57px;
   }
@@ -252,7 +254,7 @@
       top: 2px;
     }
   }
-  &.log-in .provider-authorizations {
+  .log-in .provider-authorizations {
     display: flex;
     justify-content: space-between;
   }
