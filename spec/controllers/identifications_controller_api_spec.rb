@@ -198,8 +198,8 @@ shared_examples_for "an IdentificationsController" do
 
   describe "by_login" do
     before(:all) { load_test_taxa }
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    before(:each) { enable_elastic_indexing( Observation, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Identification ) }
     it "should return identifications by the selected user" do
       ident = Identification.make!( user: user )
       get :by_login, format: :json, login: user.login

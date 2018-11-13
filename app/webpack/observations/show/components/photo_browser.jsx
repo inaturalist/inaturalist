@@ -79,7 +79,7 @@ class PhotoBrowser extends React.Component {
       let original = photo.photoUrl( "original" );
       let large = photo.photoUrl( "large" );
       let square = photo.photoUrl( "square" );
-      if ( photo.flaggedAsCopyrighted( ) ) {
+      if ( photo.flags && photo.flaggedAsCopyrighted( ) ) {
         original = SITE.copyrighted_media_image_urls.original;
         large = SITE.copyrighted_media_image_urls.large;
         square = SITE.copyrighted_media_image_urls.square;
@@ -201,7 +201,7 @@ class PhotoBrowser extends React.Component {
               return ( <div className="loading_spinner" /> );
             }
             return (
-              <div>
+              <div className="image-gallery-thumbnail-inner">
                 <img
                   src={item.thumbnail}
                   alt={item.thumbnailAlt}

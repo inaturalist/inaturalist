@@ -9,29 +9,28 @@ class Observation < ActiveRecord::Base
   scope :load_for_index, -> { includes(
     { user: :flags }, :confirmed_reviews, :flags,
     :observation_links, :quality_metrics,
-    :votes_for, :stored_preferences,
-    { project_observations: :stored_preferences }, :tags,
+    :votes_for, :stored_preferences, :tags,
     { annotations: :votes_for },
+    :photos,
     { sounds: :user },
-    { photos: [ :user, :flags ] },
-    { taxon: [ { taxon_names: :place_taxon_names }, :conservation_statuses,
-      { listed_taxa_with_establishment_means: :place } ] },
+    { identifications: :stored_preferences }, :project_observations,
+    { taxon: [ :taxon_names, :conservation_statuses ] },
     { observation_field_values: :observation_field },
-    { identifications: [ { user: :flags }, :taxon, :stored_preferences, :flags, :taxon_change ] },
     { comments: [ { user: :flags }, :flags ] } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
       indexes :id, type: "integer"
       indexes :uuid, type: "keyword"
+      indexes :identifier_user_ids, type: "integer"
+      indexes :non_owner_identifier_user_ids, type: "integer"
+      indexes :identification_categories, type: "keyword"
+      indexes :photo_licenses, type: "keyword"
+      indexes :sound_licenses, type: "keyword"
       indexes :taxon do
         indexes :ancestry, type: "keyword"
         indexes :min_species_ancestry, type: "keyword"
         indexes :rank, type: "keyword"
         indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-        indexes :names do
-          indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-          indexes :locale, type: "keyword"
-        end
         indexes :statuses, type: :nested do
           indexes :authority, type: "keyword"
           indexes :status, type: "keyword"
@@ -45,26 +44,12 @@ class Observation < ActiveRecord::Base
         indexes :value, type: "keyword"
         indexes :value_ci, type: "text", analyzer: "keyword_analyzer"
         indexes :datatype, type: "keyword"
+        indexes :taxon_id, type: "integer"
       end
       indexes :annotations, type: :nested do
         indexes :uuid, type: "keyword"
         indexes :resource_type, type: "keyword"
         indexes :concatenated_attr_val, type: "keyword"
-      end
-      indexes :identifications, type: :nested do
-        indexes :uuid, type: "keyword"
-        indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
-        indexes :category, type: "keyword"
-        indexes :user do
-          indexes :login, type: "keyword"
-        end
-        indexes :taxon_change do
-          indexes :type, type: "keyword"
-        end
-        indexes :flags do
-          indexes :flag, type: "keyword"
-        end
-        indexes :created_at, type: "date"
       end
       indexes :comments do
         indexes :uuid, type: "keyword"
@@ -79,26 +64,8 @@ class Observation < ActiveRecord::Base
       indexes :flags do
         indexes :flag, type: "keyword"
       end
-      indexes :project_observations do
-        indexes :uuid, type: "keyword"
-        indexes :preferences do
-          indexes :name, type: "keyword", index: false
-          indexes :value, type: "keyword", index: false
-        end
-      end
-      indexes :observation_photos do
-        indexes :uuid, type: "keyword"
-      end
       indexes :user do
         indexes :login, type: "keyword"
-      end
-      indexes :photos do
-        indexes :attribution, type: "keyword", index: false
-        indexes :url, type: "keyword", index: false
-        indexes :license_code, type: "keyword"
-        indexes :flags do
-          indexes :flag, type: "keyword"
-        end
       end
       indexes :votes, type: :nested do
         indexes :vote_scope, type: "keyword"
@@ -132,7 +99,21 @@ class Observation < ActiveRecord::Base
       indexes :quality_grade, type: "keyword"
       indexes :time_zone_offset, type: "keyword", index: false
       indexes :uri, type: "keyword", index: false
+      indexes :identifications, type: :nested do
+      end
     end
+    mapping dynamic_templates: [
+      {
+        names_locales: {
+          path_match: "taxon.names_*",
+          match_mapping_type: "string",
+          mapping: {
+            type: "text",
+            analyzer: "ascii_snowball_analyzer"
+          }
+        }
+      }
+    ]
   end
 
   def as_indexed_json(options={})
@@ -159,6 +140,7 @@ class Observation < ActiveRecord::Base
         for_identification: options[:for_identification]) : nil
     }
 
+    current_ids = identifications.select(&:current?)
     unless options[:no_details]
       json.merge!({
         created_time_zone: timezone_object.blank? ? "UTC" : timezone_object.tzinfo.name,
@@ -196,13 +178,18 @@ class Observation < ActiveRecord::Base
           select{ |po| !po.curator_identification_id.nil? }.map(&:project_id).compact.uniq,
         project_ids_without_curator_id: project_observations.
           select{ |po| po.curator_identification_id.nil? }.map(&:project_id).compact.uniq,
-        project_observations: project_observations.map(&:as_indexed_json),
         reviewed_by: confirmed_reviews.map(&:user_id),
         tags: tags.map(&:name).compact.uniq,
         ofvs: observation_field_values.uniq.map(&:as_indexed_json),
         annotations: annotations.map(&:as_indexed_json),
+        photos_count: photos.any? ? photos.length : nil,
+        sounds_count: sounds.any? ? sounds.length : nil,
+        photo_licenses: photos.map(&:index_license_code).compact.uniq,
+        sound_licenses: sounds.map(&:index_license_code).compact.uniq,
         sounds: sounds.map(&:as_indexed_json),
-        identifications: identifications.map{ |i| i.as_indexed_json(no_details: true) },
+        identifier_user_ids: current_ids.map(&:user_id),
+        non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
+        identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
         comments: comments.map(&:as_indexed_json),
         comments_count: comments.size,
@@ -225,14 +212,6 @@ class Observation < ActiveRecord::Base
         quality_metrics: quality_metrics.map(&:as_indexed_json),
         spam: known_spam? || owned_by_spammer?
       })
-      json[:photos] = [ ]
-      json[:observation_photos] = [ ]
-      observation_photos.sort_by{ |op| op.position || op.id }.
-        reject{ |op| op.photo.blank? }.
-        each_with_index.map{ |op, i|
-          json[:photos] << op.photo.as_indexed_json
-          json[:observation_photos] << { id: op.id, uuid: op.uuid, photo_id: op.photo.id, position: i }
-        }
 
       add_taxon_statuses(json, t) if t && json[:taxon]
     end
@@ -247,6 +226,9 @@ class Observation < ActiveRecord::Base
       o.indexed_place_ids ||= [ ]
       o.indexed_private_place_ids ||= [ ]
       o.indexed_private_places ||= [ ]
+      o.taxon_introduced ||= false
+      o.taxon_native ||= false
+      o.taxon_endemic ||= false
     }
     observations_by_id = Hash[ observations.map{ |o| [ o.id, o ] } ]
     batch_ids_string = observations_by_id.keys.join(",")
@@ -282,6 +264,61 @@ class Observation < ActiveRecord::Base
               p.bbox_publicly_contains_observation?( o )
             }.map(&:id)
           end
+        end
+      end
+
+      taxon_establishment_places = { }
+      taxon_ids = observations.map(&:taxon_id).compact.uniq
+      uniq_obs_place_ids = observations.map{ |o|o.indexed_private_places.map(&:path_ids) }.flatten.compact.uniq.join(',')
+      return if uniq_obs_place_ids.empty? || taxon_ids.empty?
+      Observation.connection.execute("
+        SELECT taxon_id, establishment_means, string_agg(place_id::text,',') as place_ids
+        FROM listed_taxa
+        WHERE taxon_id IN (#{ taxon_ids.join(',') })
+        AND place_id IN (#{ uniq_obs_place_ids })
+        AND establishment_means IS NOT NULL
+        GROUP BY taxon_id, establishment_means").to_a.each do |r|
+        taxon_establishment_places[r["taxon_id"]] ||= {}
+        taxon_establishment_places[r["taxon_id"]][r["establishment_means"]] = r["place_ids"].split( "," )
+      end
+      place_ids = taxon_establishment_places.values.map(&:values).flatten.uniq.map(&:to_i)
+      return if place_ids.empty?
+      places = {}
+      Place.connection.execute("
+        SELECT id, bbox_area
+        FROM places WHERE id IN (#{ place_ids.join(',') })").to_a.each do |r|
+        places[r["id"]] = {
+          id: r["id"].to_i,
+          bbox_area: r["bbox_area"].to_f
+        }
+      end
+      taxon_places = { }
+      taxon_endemic_place_ids = { }
+      taxon_establishment_places.each do |taxon_id, means_places|
+        taxon_places[taxon_id] ||= { }
+        taxon_endemic_place_ids[taxon_id] ||= []
+        means_places.each do |means,place_ids|
+          taxon_establishment_places[taxon_id][means] ||= []
+          # keep a hash of all places for each taxon
+          place_ids.each do |place_id|
+            taxon_places[taxon_id][place_id] ||= places[place_id].dup
+            taxon_places[taxon_id][place_id][means] = true
+          end
+          if means == "endemic"
+            taxon_endemic_place_ids[taxon_id] += place_ids
+          end
+        end
+      end
+      observations.each do |o|
+        if o.taxon && taxon_places[o.taxon.id.to_s]
+          closest = taxon_places[o.taxon.id.to_s].
+            slice(*o.indexed_private_places.map(&:path_ids).flatten.compact.uniq.map(&:to_s)).
+            values.sort_by{ |p| p[:bbox_area] || 0 }.first
+          o.taxon_introduced = !!(closest &&
+            closest.values_at(*ListedTaxon::INTRODUCED_EQUIVALENTS).compact.any?)
+          o.taxon_native = !!(closest &&
+            closest.values_at(*ListedTaxon::NATIVE_EQUIVALENTS).compact.any?)
+          o.taxon_endemic = (o.indexed_private_place_ids & taxon_endemic_place_ids[o.taxon.id.to_s]).any?
         end
       end
     end
@@ -361,12 +398,18 @@ class Observation < ActiveRecord::Base
     end
 
     # params that can check for presence of something
-    [ { http_param: :with_photos, es_field: "photos.url" },
-      { http_param: :with_sounds, es_field: "sounds" },
+    [ { http_param: :with_photos, es_field: ["photos.url", "photos_count"] },
+      { http_param: :with_sounds, es_field: ["sounds", "sounds_count"] },
       { http_param: :with_geo, es_field: "geojson" },
       { http_param: :identified, es_field: "taxon" },
     ].each do |filter|
-      f = { exists: { field: filter[:es_field] } }
+      if filter[:es_field].is_a?( Array )
+        f = { bool: { should: filter[:es_field].map{ |ff|
+          { exists: { field: ff } }
+        } } }
+      else
+        f = { exists: { field: filter[:es_field] } }
+      end
       if p[ filter[:http_param] ].yesish?
         search_filters << f
       elsif p[ filter[:http_param] ].noish?
@@ -398,12 +441,21 @@ class Observation < ActiveRecord::Base
         [ p[:license] ].flatten.map{ |l| l.downcase } } }
     end
     if p[:photo_license] == "any"
-      search_filters << { exists: { field: "photos.license_code" } }
+      search_filters << { bool: { should: [
+        { exists: { field: "photo_licenses" } },
+        { exists: { field: "photos.license_code" } }
+      ]}}
     elsif p[:photo_license] == "none"
-      inverse_filters << { exists: { field: "photos.license_code" } }
+      inverse_filters << { bool: { should: [
+        { exists: { field: "photo_licenses" } },
+        { exists: { field: "photos.license_code" } }
+      ]}}
     elsif p[:photo_license]
-      search_filters << { terms: { "photos.license_code" =>
-        [ p[:photo_license] ].flatten.map{ |l| l.downcase } } }
+      licenses = [ p[:photo_license] ].flatten.map{ |l| l.downcase }
+      search_filters << { bool: { should:[
+        { terms: { "photo_licenses" => licenses } },
+        { terms: { "photos.license_code" => licenses } }
+      ]}}
     end
     if d = Observation.split_date(p[:created_on], utc: true)
       [ :day, :month, :year ].each do |part|
@@ -528,6 +580,26 @@ class Observation < ActiveRecord::Base
         ] } }
       end
     end
+
+    if p[:created_d1] || p[:created_d2]
+      created_d1 = DateTime.parse(p[:created_d1]) rescue DateTime.parse("1800-01-01")
+      created_d2 = DateTime.parse(p[:created_d2]) rescue Time.now
+      if p[:created_d2] && created_d2.to_s =~ /00:00:00/ && p[:created_d2] !~ /00:00:00/
+        # if you provide a date like 2018-02-01, the DateTime will be Thu, 01
+        # Feb 2018 00:00:00 +0000, so to perform an inclusive search you want
+        # another day
+        created_d2 = created_d2 + 1.day
+      end
+      search_filters << {
+        range: {
+          "created_at": {
+            gte: created_d1.strftime( "%FT%T%:z" ),
+            lte: created_d2.strftime( "%FT%T%:z" )
+          }
+        }
+      }
+    end
+
     if p[:h1] && p[:h2]
       p[:h1] = p[:h1].to_i % 24
       p[:h2] = p[:h2].to_i % 24
@@ -616,18 +688,25 @@ class Observation < ActiveRecord::Base
     if p[:ident_user_id]
       vals = p[:ident_user_id].to_s.split( "," )
       if vals[0].to_i > 0
-        term_filter = { terms: { "identifications.user.id" => vals } }
+        nested_filter = { terms: { "identifications.user.id" => vals } }
       else
-        term_filter = { terms: { "identifications.user.login" => vals } }
+        nested_filter = { terms: { "identifications.user.login" => vals } }
       end
       search_filters << {
-        nested: {
-          path: "identifications",
-          query: {
-            bool: {
-              filter: term_filter
+        bool: {
+          should: [
+            { terms: { identifier_user_ids: vals } },
+            {
+              nested: {
+                path: "identifications",
+                query: {
+                  bool: {
+                    filter: nested_filter
+                  }
+                }
+              }
             }
-          }
+          ]
         }
       }
     end
@@ -738,19 +817,20 @@ class Observation < ActiveRecord::Base
     end
     places = indexed_private_places ||
       Place.where(id: json[:place_ids]).select(:id, :ancestry).to_a
+    preloaded = taxon_introduced.yesish? || taxon_introduced.noish?
     json[:taxon][:threatened] = t.threatened?(place: places)
-    json[:taxon][:introduced] = t.establishment_means_in_place?(
-      ListedTaxon::INTRODUCED_EQUIVALENTS, places, closest: true)
+    json[:taxon][:introduced] = preloaded ? taxon_introduced :
+      t.establishment_means_in_place?(ListedTaxon::INTRODUCED_EQUIVALENTS, places, closest: true)
     # if the taxon is introduced it cannot be native or endemic
     if json[:taxon][:introduced]
       json[:taxon][:native] = false
       json[:taxon][:endemic] = false
       return
     end
-    json[:taxon][:native] = t.establishment_means_in_place?(
-      ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
-    json[:taxon][:endemic] = t.establishment_means_in_place?(
-      "endemic", places)
+    json[:taxon][:native] = preloaded ? taxon_native :
+      t.establishment_means_in_place?(ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
+    json[:taxon][:endemic] = preloaded ? taxon_endemic :
+      t.establishment_means_in_place?("endemic", places)
   end
 
 end

@@ -14,7 +14,7 @@ describe ErrorsController do
     it "should show the right page for .html" do
       [ :html ].each do |f|
         get :error_404, format: f
-        expect(response.body).to include "Sorry, that doesn't exist!"
+        expect(response.body).to match /doesn.*exist/
       end
     end
 
@@ -35,7 +35,7 @@ describe ErrorsController do
     it "should show the 404 page .html" do
       [ :html ].each do |f|
         get :error_422, format: f
-        expect(response.body).to include "Sorry, that doesn't exist!"
+        expect(response.body).to match /doesn.*exist/
       end
     end
 

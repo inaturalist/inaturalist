@@ -1,6 +1,6 @@
 - content_for :extrajs do
   :javascript
-    var taxon = #{ @atlas.taxon ? @atlas.taxon.as_indexed_json.to_json : "null" };
+    var taxon = #{ @atlas.taxon ? @atlas.taxon.as_indexed_json.to_json.html_safe : "null" };
     $( ".taxonchooser" ).taxonAutocomplete( {
       idEl: $( "#atlas_taxon_id" ),
       initialSelection: taxon ? new iNatModels.Taxon( taxon ) : null

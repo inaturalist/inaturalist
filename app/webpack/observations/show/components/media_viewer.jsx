@@ -71,7 +71,7 @@ class MediaViewer extends Component {
       let original = photo.photoUrl( "original" );
       let large = photo.photoUrl( "large" );
       let medium = photo.photoUrl( "medium" );
-      if ( photo.flaggedAsCopyrighted( ) ) {
+      if ( photo.flags && photo.flaggedAsCopyrighted( ) ) {
         original = SITE.copyrighted_media_image_urls.original;
         large = SITE.copyrighted_media_image_urls.large;
         medium = SITE.copyrighted_media_image_urls.medium;

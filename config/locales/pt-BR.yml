@@ -31,6 +31,9 @@ pt-BR:
   x_identifications:
     one: 1 identificação
     other: '%{count} identificações'
+  x_identifications_html:
+    one: <span class="count">1</span> identificação
+    other: <span class="count">%{count}</span> identificações
   x_identifications_:
     one: 1 identificação
     other: '%{count} Identificações'
@@ -43,6 +46,9 @@ pt-BR:
   x_journal_posts:
     one: 1 novo boletim informativo post
     other: '%{count} novos boletins informativos'
+  x_journal_posts_html:
+    one: <span class="count">1</span> publicação do boletim
+    other: <span class="count">%{count}</span> publicações do boletim
   x_matching_taxa:
     one: 1 táxon correspondente
     other: '%{count} taxa correspondente'
@@ -76,6 +82,9 @@ pt-BR:
   x_faves:
     one: 1 favorito
     other: '%{count} favoritos'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> sinalizador resolvido
+    other: <span class='count'>%{count}</span> sinalizadores resolvidos
   x_people_like_this:
     one: 1 pessoa gosta disso
     other: A %{count} pessoas gostam disso
@@ -105,9 +114,15 @@ pt-BR:
       ao nível de espécie ou menos</span>
     other: <span class='count'>%{count}</span> observações na categoria de pesquisa
       identificada ao nível de espécie ou menos</span>
+  x_taxa_curated_html:
+    one: <span class='count'>1</span> táxon verificado
+    other: <span class='count'>%{count}</span> táxons verificados
   x_taxa_matching_current_filters:
     one: 1 táxon corresponde com filtros selecionados
     other: '%{count} táxons correspondem com filtros selecionados'
+  x_taxon_changes_added_html:
+    one: 1 mudança de táxon adicionada
+    other: '%{count} mudanças de táxon adicionadas'
   _100_day_trends: Tendências de 100 dias
   _percent_ID_d: '% ID''d'
   a: uma
@@ -171,7 +186,6 @@ pt-BR:
   activity_settings: Configurações de atividade
   adapted_by_name_from_a_work_by_original: Adaptado por %{name} from a work by %{original}
   add: Adicionar
-  add_a: Adicionar uma
   add_a_batch_of_observations: Adicionar um grupo de observações
   add_a_batch_of_observations_by_csv: Adicionar um grupo de observações via CSV
   add_a_batch_of_taxa: Adicionar um grupo de táxons
@@ -186,6 +200,8 @@ pt-BR:
   add_a_place_raquo: Adicionar um local &raquo;
   add_a_single_observation: Adicione uma única observação.
   add_a_taxon: Adicionar um táxon
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Adicione um <a target="_blank"
+    href="%{url}">troca de táxon</a> se você quiser mudar o nome
   add_all_your_matching_obs_of_this_taxon: Adicionar todas as suas observações corretas
     deste táxon para este projeto
   add_all_your_matching_obs_to_this_project: Adicionar todas as suas observações que
@@ -883,12 +899,6 @@ pt-BR:
   clear: limpar
   clear_color_filters: Limpe os filtros de cor
   clear_search: Limpe a pesquisa
-  clear_shapes: Limpe as formas
-  click_add_an_observation_to_the_lower_right: Bem vindo a %{site_name_short}! Clique
-    aqui para'Adicionar uma observação' no canto inferior direito. Você será avisado
-    para se logar ou se registrar caso ainda não tenha se cadastrado.
-  click_on_map_to_draw_shape_around_place: Clique no mapa para desenhar uma forma
-    ao redor do lugar
   click_on_the_map_to: Clique no mapa para posicionar a sua observação
   click_the_map: <strong>Clique no mapa</strong> para adicionar uma localização.
   click_the_map_to_jump_new_place: Clique no mapa para ir para um novo lugar
@@ -1438,10 +1448,12 @@ pt-BR:
   favorites: Favoritos
   fblocale: inglês_US
   feature_this_project: Destacar este projeto?
+  feature_this_project_: Apresentar este projeto
   featured: Destacado
   featured?: destacado?
   featured_projects_from_everywhere: Projetos em destaque de todos os lugares
   featured_projects_from_place: Projetos em destaque de %{place}
+  featuring: Apresentando
   feedback: Feedback
   feedback_group: Grupo de Feedback
   feeds: Feeds
@@ -1900,6 +1912,7 @@ pt-BR:
   join_this_project: Entre neste projeto
   joined!: Participando!
   joined_any_projects: participações e projetos
+  joined_projects: Projetos a que aderiu
   joined_with_date: 'Entrou: %{date}'
   joining: Participando...
   journal: Boletim Informativo
@@ -3087,6 +3100,7 @@ pt-BR:
     belgium: Bélgica
     bosnia_and_herzegovina: Bosnia e Herzegovina
     brazil: Brasil
+    canada: Canadá
     central_america: América Central
     china: China
     colombia: Colômbia
@@ -3404,6 +3418,7 @@ pt-BR:
   remove_curator_role: Remova a função de coordenador
   remove_curator_status: Remova o status de coordenador
   remove_from_batch: ' Remova do grupo'
+  remove_from_featured: Remover do destaque
   remove_from_guide: Remover da guia
   remove_from_id_please?: Remova de Identifique Por favor?
   remove_from_list: Remova da lista
@@ -3645,8 +3660,11 @@ pt-BR:
   sizes: Tamanhos
   skip_to_next_page: Ir para a próxima página
   small: pequeno
+  site_admin_tools: Ferramentas de administração do site
   site_name_place: '%{site_name} local'
   site_observations_export_from_date: '%{site_name} observações exportadas de %{date}'
+  site_site_admin: Administrador do site %{site_name}
+  site_staff: Equipe %{site_name}
   site_stats: Estatísticas do site
   site_taxon_page: '%{site_name} página do táxon'
   so_meta!: Metadados!
@@ -3882,6 +3900,8 @@ pt-BR:
   taxa_observed: táxons observados
   taxa_to_include: Táxons a incluir
   taxon: Táxon
+  taxon_autocomplete_placeholder: Aves, monarca, etc.
+  taxon_is_a_rank: '%{taxon} é uma %{rank}'
   taxonomy: Taxonomia
   taxon_: táxon
   taxon_assessments_are: "Arquivos de avaliação de táxon são documentos conectados
@@ -4192,6 +4212,7 @@ pt-BR:
   to_add_ids: para adicionar IDentificações
   to_an: para uma
   to_configure_your_widget: para configurar seu widget.
+  to_include_your_google_with_inat: para incluir sua conta do Google com %{site_name}
   to_recipient: para
   to_suggest_an_identification: para sugerir uma identificação
   to_tag_your_flickr_from_here: para marcar suas fotos do Flickr a partir daqui sem
@@ -4301,7 +4322,9 @@ pt-BR:
   upload_a_csv_file_with_observation: Carregue um arquivo CSV com dados observados.
     Se você tem seus dados em uma planilha ou base de dados, provavelmente é melhor
     fazer deste jeito.
+  upload_photo: Carregar foto
   upload_photos: Carregue imagens
+  upload_range: Alcance de carregamento
   uploaded_by: Enviado por
   uploader:
     tooltips:
@@ -4328,7 +4351,7 @@ pt-BR:
   use_this_if_the_url_needs_genus_species_separated: Use este recurso se o URL exibi
     gêneros e espécies separadamente. Se o táxon não é uma espécie ou infraespécie,
     tudo entre [GÊNERO]  e [ESPÉCIE] será automaticamente substituído pelo nome do
-    táxon, seja cauteloso. <br/><br/> <strong>Exemplo:</strong><br/>
+    táxon, seja cauteloso.
   use_unique_file_names_for_separate_uploads: Utilize nomes diferenciados para carregar
     arquivos
   use_well_formed_csv: Utilize bons formatos de CSV. Isto significa que o texto com
@@ -4346,8 +4369,11 @@ pt-BR:
   user_added_an_x_to_noun_html: '%{user} adicionou uma %{x} a %{noun}'
   user_added_x_observations_html: '%{user} adicionou %{x} observações'
   user_already_authenticated: O usuário já está autenticado
+  user_autocomplete_placeholder: kueda, simon123, etc.
+  user_blocked: Usuário bloqueado
   user_commented: '%{user} comentado'
   user_commented_on: '%{user} comentou sobre seu %{title} %{time}'
+  user_disagrees_this_is_taxon: '%{user} discorda que seja um(a) %{taxon}'
   user_faved_a_noun_by_owner: '%{user} favorito %{noun} por %{owner}'
   user_follows: '%{user} segue'
   user_has_opted_out_of_community_id: O usuário rejeitou a identificação da comunidade
@@ -4365,6 +4391,8 @@ pt-BR:
   user_invited_your_x_to_a_project_html: '%{user} convidou você para %{x} um projeto'
   user_is_a_naturalist: '%{user} é um naturalista!'
   user_is_now_role_for_project_html: <strong>%{user}</strong> é agora %{role} do %{project}
+  user_muted: Usuário silenciado
+  user_observations: Observações do usuário
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas de %{user}
   user_suggested_an_id: '%{user} sugeriu uma identificação'
@@ -4527,6 +4555,7 @@ pt-BR:
     Nós tentamos processar seu upload com o nome %{filename} mas isto não deu certo.
     Por favor corrija o seguinte problema(s) e tente novamente.
   weather: Tempo
+  website: Site
   wed: Qua
   welcome!: Bem vindo!
   welcome_comma!: Bem vindo,
@@ -4829,6 +4858,14 @@ pt-BR:
   verifiable: verificável
   views:
     views: Visualizações
+    announcements:
+      locales_desc: |-
+        Clique em CMD ou SHIFT para selecionar vários. Não selecionar nenhum mostrará o
+        anúncio para todos os usuários, independentemente da localidade. Escolhendo um idioma
+        sem uma região, *não* segmentará localidades com regiões, por exemplo, E se
+        você escolheu en ele não aparecerá para as pessoas que escolheram en-US. Se vocês
+        quer segmentar ambos, escolha ambos. Se você quiser mostrar um anúncio
+        para todos os membros de um site, apenas deixe em branco.
     custom_projects:
       edit:
         custom_project_fields_warning: 'Por favor tenha cuidado: adicionar Javascript

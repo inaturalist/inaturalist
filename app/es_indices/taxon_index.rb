@@ -104,9 +104,14 @@ class Taxon < ActiveRecord::Base
     end
     # indexing originating Observations, not via another model
     unless options[:no_details]
-      json[:names] = taxon_names.
-        sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
-        map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
+      if options[:for_observation]
+        mapped = taxon_names.to_a.group_by{ |tn| "names_#{tn.locale_for_lexicon}" }
+        mapped.each{ |k,v| json[k] = v.map(&:name) }
+      else
+        json[:names] = taxon_names.
+          sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
+          map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
+      end
       json[:statuses] = conservation_statuses.map(&:as_indexed_json)
       json[:extinct] = conservation_statuses.select{|cs| cs.place_id.blank? && cs.iucn == Taxon::IUCN_EXTINCT }.size > 0
     end

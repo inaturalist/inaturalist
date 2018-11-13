@@ -885,7 +885,11 @@ class Place < ActiveRecord::Base
     # buffer the point to make a circle if accuracy set. Note that the method
     # takes accuracy in meters, not sure if it makes a conversion to degrees
     # with latitude in mind.
-    pt = pt.buffer(acc) if acc.to_f > 0
+    if acc.to_f > 0
+      pt = pt.buffer( acc )
+      # Buffering becomes irrational when the distance is too much, and rgeo will just return nil
+      return false if pt.nil?
+    end
 
     # Note that there's a serious problem here in that it doesn't seem to work
     # with geometries that cross longitude 180. The factory will automatically

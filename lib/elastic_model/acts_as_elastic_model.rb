@@ -41,6 +41,7 @@ module ActsAsElasticModel
       end
 
       def elastic_paginate(options={})
+        options = options.dup
         options[:page] ||= 1
         options[:per_page] ||= 20
         options[:source] ||= options[:keep_es_source] ? "*" : [ "id" ]

@@ -67,39 +67,32 @@ class IdentificationsController < ApplicationController
     block_if_spammer(@selected_user) && return
     params[:page] = params[:page].to_i
     params[:page] = 1 unless params[:page] > 0
-    user_filter = { term: { "identifications.user.id": @selected_user.id } }
-    ownership_filter = { term: { "identifications.own_observation": false } }
+    user_filter = { term: { "user.id": @selected_user.id } }
+    ownership_filter = { term: { "own_observation": false } }
     date_parts = Identification.conditions_for_date("col", params[:on])
     # only if conditions_for_date determines a valid range will it return
     # an array of [ condition_to_interpolate, min_date, max_date ]
     if date_parts.length == 3
       date_filters = [
-        { range: { "identifications.created_at": { gte: date_parts[1] } } },
-        { range: { "identifications.created_at": { lte: date_parts[2] } } }
+        { range: { "created_at": { gte: date_parts[1] } } },
+        { range: { "created_at": { lte: date_parts[2] } } }
       ]
     end
-    result = Observation.elastic_search(
-      filters: [ { nested: {
-        path: "identifications",
-        query: { bool: { must: [ user_filter, date_filters, ownership_filter ].flatten.compact } }
-      } } ],
+    result = Identification.elastic_search(
+      filters: [ user_filter, date_filters, ownership_filter ].flatten.compact,
       size: limited_per_page,
       from: (params[:page] - 1) * limited_per_page,
       sort: {
-        "identifications.created_at": {
+        "created_at": {
           order: "desc",
-          mode: "max",
-          nested_path: "identifications",
-          nested_filter: user_filter
+          mode: "max"
         }
-      }
+      },
+      source: ["id"]
     )
-    # pluck the proper Identification IDs from the obs results
     ids = result.response.hits.hits.map do |h|
-      ( h._source.identifications).detect{ |i|
-        i.user.id == @selected_user.id
-      }
-    end.compact.map{ |i| i.id }
+      h._source.id
+    end
     # fetch the Identification instances and preload
     instances = Identification.where(id: ids).order(id: :desc).includes(
       { observation: [ :user, :photos, { taxon: [{taxon_names: :place_taxon_names}, :photos] } ] },
