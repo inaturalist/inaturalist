@@ -500,7 +500,7 @@ class Taxon < ActiveRecord::Base
     taxon_framework_relationship.update_attributes(attrs)
   end
     
-  def get_complete_species_count
+  def complete_species_count
     return nil if rank_level.to_i <= SPECIES_LEVEL
     unless ( taxon_framework && taxon_framework.covers? && taxon_framework.complete && taxon_framework.rank_level <= SPECIES_LEVEL )
       upstream_taxon_framework = get_upstream_taxon_framework
