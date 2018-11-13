@@ -4,13 +4,13 @@
 - content_for :extrajs do
   :javascript
     var SERVER_PAYLOAD = {
-      taxon: #{ @node_taxon_json.encode }.results[0],
-      place: #{ @node_place_json ? @node_place_json.encode+".results[0]" : "null" },
-      chosenTab: #{ @chosen_tab.to_json },
-      ancestorsShown: #{ @ancestors_shown.to_json }
+      taxon: #{ @node_taxon_json.encode.html_safe }.results[0],
+      place: #{ @node_place_json ? @node_place_json.encode.html_safe+".results[0]" : "null" },
+      chosenTab: #{ @chosen_tab.to_json.html_safe },
+      ancestorsShown: #{ @ancestors_shown.to_json.html_safe }
     };
-    SERVER_PAYLOAD.taxon.wikipedia_summary = #{ @taxon.wikipedia_summary.to_json };
-    SERVER_PAYLOAD.taxon.auto_summary = #{ @taxon.wikipedia_summary.blank? ? @taxon.auto_summary.to_json : "null" };
+    SERVER_PAYLOAD.taxon.wikipedia_summary = #{ @taxon.wikipedia_summary.to_json.html_safe };
+    SERVER_PAYLOAD.taxon.auto_summary = #{ @taxon.wikipedia_summary.blank? ? @taxon.auto_summary.to_json.html_safe : "null" };
   = javascript_include_tag "taxa-show-webpack"
 - content_for :extracss do
   = stylesheet_link_tag "c3", "taxa/show2"

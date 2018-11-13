@@ -4,7 +4,7 @@
   = javascript_include_tag "angular_includes_bundle"
   = javascript_include_tag "angular_bundle"
   :javascript
-    var ICONIC_TAXA = #{Taxon::ICONIC_TAXA_BY_ID.to_json};
+    var ICONIC_TAXA = #{Taxon::ICONIC_TAXA_BY_ID.to_json.html_safe};
     var SELECTED_TAXON_ID = #{ params[:taxon_id] || "null" };
     var PREFERRED_SUBVIEW = "#{
       (logged_in? && current_user.prefers_observations_search_subview) ||

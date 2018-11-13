@@ -52,7 +52,7 @@
       window.map.controls[google.maps.ControlPosition.BOTTOM_LEFT].push(aboutDiv);
       
       // add the Taxon label to the top of the map
-      var taxon = #{ @taxon_hash.to_json };
+      var taxon = #{ @taxon_hash.to_json.html_safe };
       if( taxon && taxon.display_label ) {
         var taxonNameDiv = document.createElement("div");
         taxonNameDiv.style.padding = "5px";

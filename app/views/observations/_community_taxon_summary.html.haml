@@ -21,7 +21,7 @@
         row_class += " below_cutoff" if n[:score] <= Observation::COMMUNITY_TAXON_SCORE_CUTOFF || n[:cumulative_count] <= 1
         row_data = {
           :ident_count => n[:ident_count],
-          :taxon => t.to_json(:only => [:id, :ancestor_ids], :methods => [:ancestor_ids])
+          :taxon => t.to_json(:only => [:id, :ancestor_ids], :methods => [:ancestor_ids]).html_safe
         }
       %tr{:data => row_data}
         %td{:style => "padding-left: #{t.ancestor_ids.size * 10}px", :class => "#{row_class} taxon_links"}
