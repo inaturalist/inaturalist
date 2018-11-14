@@ -503,15 +503,15 @@ class Taxon < ActiveRecord::Base
   def complete_species_count
     return nil if rank_level.to_i <= SPECIES_LEVEL
     unless ( taxon_framework && taxon_framework.covers? && taxon_framework.complete && taxon_framework.rank_level <= SPECIES_LEVEL )
-      upstream_taxon_framework = get_upstream_taxon_framework
-      return nil unless ( upstream_taxon_framework && upstream_taxon_framework.complete && upstream_taxon_framework.rank_level <= SPECIES_LEVEL )
+      upstream_framework = upstream_taxon_framework
+      return nil unless ( upstream_framework && upstream_framework.complete && upstream_framework.rank_level <= SPECIES_LEVEL )
     end
     scope = taxon_ancestors_as_ancestor.
       select("distinct taxon_ancestors.taxon_id").
       joins(:taxon).
       where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, SPECIES ).
-      joins( "LEFT OUTER JOIN conservation_statuses cs ON cs.taxon_id = taxon_ancestors.taxon_id" ).
-      where( "cs.id IS NULL OR cs.place_id IS NOT NULL OR (cs.place_id IS NULL AND cs.iucn != ?)", Taxon::IUCN_EXTINCT )
+      where( "(select count(*) from conservation_statuses cs
+        WHERE cs.taxon_id = taxa.id AND cs.place_id IS NULL AND cs.iucn = ?) = 0", Taxon::IUCN_EXTINCT )
     scope.count
   end
 
@@ -997,19 +997,20 @@ class Taxon < ActiveRecord::Base
   end
   
   def upstream_taxon_framework
-    return nil unless @upstream_taxon_framework = get_upstream_taxon_framework
+    return @upstream_taxon_framework if @upstream_taxon_framework
+    @upstream_taxon_framework = get_upstream_taxon_framework
     return @upstream_taxon_framework
   end
   
   def get_complete_taxon_framework_for_internode_or_root
     if taxon_framework && taxon_framework.covers? && taxon_framework.complete
-      @upstream_taxon_framework_including_root = taxon_framework
+      upstream_taxon_framework_including_root = taxon_framework
     else
-      @upstream_taxon_framework_including_root = get_upstream_taxon_framework
-      return nil unless @upstream_taxon_framework_including_root && @upstream_taxon_framework_including_root.complete
-      return nil unless @upstream_taxon_framework_including_root.rank_level < rank_level
+      upstream_taxon_framework_including_root = upstream_taxon_framework
+      return nil unless upstream_taxon_framework_including_root && upstream_taxon_framework_including_root.complete
+      return nil unless upstream_taxon_framework_including_root.rank_level < rank_level
     end
-    return @upstream_taxon_framework_including_root
+    return upstream_taxon_framework_including_root
   end
 
   def graftable_relative_to_taxon_framework_coverage

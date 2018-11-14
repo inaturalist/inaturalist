@@ -12,11 +12,12 @@ class TaxonFramework < ActiveRecord::Base
   after_save :handle_change_in_completeness
   
   accepts_nested_attributes_for :source
-  validate :rank_level_below_taxon_rank  
+  validate :rank_level_below_taxon_rank
   validates :taxon_id, presence: true
   
   def handle_change_in_completeness
-    return true unless complete_changed? || rank_level_changed?
+    # would use new_record? here if this was called any time other than after_save
+    return true unless complete_changed? || ( rank_level_changed? && !id_changed? )
     Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_taxa_covered_by": self.id } ).reindex_taxa_covered_by( self )
     true
   end

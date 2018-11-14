@@ -32,6 +32,7 @@ class TaxonFrameworksController < ApplicationController
     if @taxon_framework.save
       redirect_to taxonomy_details_for_taxon_path(@taxon_framework.taxon)
     else
+      flash[:error] = @taxon_framework.errors.full_messages.to_sentence
       @rank_levels = prepare_rank_levels
       render action: :new
     end

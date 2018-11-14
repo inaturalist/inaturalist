@@ -68,7 +68,6 @@ class TaxaController < ApplicationController
     respond_to do |format|
       format.html do # index.html.erb
         @site_place = @site.place if @site
-        @root_taxon = Taxon.where(rank_level: Taxon::ROOT_LEVEL).first
         @featured_taxa = Taxon.where("taxa.featured_at IS NOT NULL"). 
           order("taxa.featured_at DESC").
           limit(100)

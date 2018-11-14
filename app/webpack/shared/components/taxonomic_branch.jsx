@@ -37,7 +37,7 @@ const TaxonomicBranch = ( {
         const isRoot = t.id === branch[0].id;
         const isTaxon = t.id === taxon.id;
         const isDescendant = t.ancestor_ids && t.ancestor_ids.indexOf( taxon.id ) >= 0;
-        const shouldLinkToTaxon = !isRoot && !isTaxon;
+        const shouldLinkToTaxon = !isTaxon;
         const isComplete = isTaxon && taxon.complete_rank && taxon.rank_level > RANK_LEVELS[taxon.complete_rank];
         const isHidable = isDescendant && ( t.rank === "hybrid" || !t.is_active || t.extinct );
         const numChildren = ( t.children || [] ).length;
