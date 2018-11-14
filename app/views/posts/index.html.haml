@@ -1,5 +1,5 @@
 - content_for(:title) do
-  = t(:x_journal, :user => @parent_display_name)
+  =raw t(:x_journal, user: @parent_display_name)
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
   %style{:media => "screen", :type => "text/css"}

@@ -20,8 +20,9 @@
   context_around ||= nil
   posted_at ||= item.created_at
   posted_at = item.updated_at if item.is_a?(Flag)
+  html_class = "#{item.class.name.humanize.underscore}_activity_item item clear stacked"
 -%>
-<div id="<%= dom_id(item, 'activity') %>" class="<%= item.class.name.humanize.underscore %>_activity_item item clear stacked">
+<div id="<%= dom_id(item, 'activity') %>" class="<%= html_class %>">
   <div class="item_user column">
     <% if user && !no_thumb -%>
       <%= link_to image_tag(user.icon.url(:thumb), :class => 'usericon'), person_path(user) %>
@@ -101,6 +102,12 @@
             <%=t :n_ago, :n => time_ago_in_words(posted_at) %>
           </abbr>
         </span>
+        <% if item.respond_to?(:flagged?) && item.flagged? && is_curator? && !is_me?( item.try(:user) ) %>
+          <%= link_to [item, :flags] do %>
+            <i class="fa fa-flag"></i>
+            <%=t :flagged_ %>
+          <% end %>
+        <% end %>
         <span class="comment_actions">
           <%-
             pieces = []
