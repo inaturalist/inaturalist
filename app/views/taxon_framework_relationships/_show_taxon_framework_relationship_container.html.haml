@@ -1,0 +1,24 @@
+:ruby
+  taxon_framework_relationship ||= show_taxon_framework_relationship_container[:taxon_framework_relationship] ||= @taxon_framework_relationship
+  taxon ||= show_taxon_framework_relationship_container[:taxon] ||= @taxon
+  upstream_taxon_framework ||= show_taxon_framework_relationship_container[:taxon_framework] || @upstream_taxon_framework || @taxon_framework
+.panel.panel-default
+  .panel-heading
+    - if is_admin? && upstream_taxon_framework.source && !taxon_framework_relationship
+      .pull-right
+        .admin-box
+          = link_to "Add relationship", new_taxon_framework_relationship_path( { taxon_id: taxon.id, taxon_framework_id: upstream_taxon_framework.id } )
+    %h4
+      = t( :covered_by_a_taxon_framework_html, href: link_to( t( :covered_by_a_taxon_framework_href, taxon_framework_rank: t( "ranks.#{ upstream_taxon_framework.taxon.rank }" ).capitalize, taxon_framework_name: upstream_taxon_framework.taxon.name ), taxonomy_details_for_taxon_path( upstream_taxon_framework.taxon ) ) )
+      - if upstream_taxon_framework.source
+        = t( :sourced_to )
+        = link_to upstream_taxon_framework.source.title, upstream_taxon_framework.source.url
+  - if upstream_taxon_framework.source && taxon_framework_relationship
+    .panel-body
+      - if is_admin? && ( ( upstream_taxon_framework.taxon_curators.count > 0 && upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id } ) || ( upstream_taxon_framework.taxon_curators.count == 0 ) )
+        .pull-right
+          .admin-box
+            = link_to "Edit relationship", edit_taxon_framework_relationship_path( taxon_framework_relationship )
+      = render :partial => '/taxon_framework_relationships/show_taxon_framework_relationship', object: { taxon_framework_relationship: taxon_framework_relationship, taxon: taxon }
+      - if taxon_framework_relationship.description
+        %p= formatted_user_text taxon_framework_relationship.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES

@@ -88,20 +88,20 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
         self.relationship = "match"
       elsif external_taxa.first.name == taxa.first.name && 
          external_taxa.first.rank == taxa.first.rank
-        self.relationship = "position swap"
+        self.relationship = "position_swap"
       else
         self.relationship = "swap"
       end
     elsif external_taxa_count > 1 && taxa_count > 1
-      self.relationship = "many to many"
+      self.relationship = "many_to_many"
     elsif external_taxa_count > 1 && taxa_count == 1
       self.relationship = "lump"
     elsif external_taxa_count == 1 && taxa_count > 1
       self.relationship = "split"
     elsif external_taxa_count == 0 && taxa_count == 1
-      self.relationship = "not external"
+      self.relationship = "not_external"
     elsif external_taxa_count == 1 && taxa_count == 0
-      self.relationship = "not internal"
+      self.relationship = "not_internal"
     else
       self.relationship = "unknown"
     end

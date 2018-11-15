@@ -1,5 +1,6 @@
 class TaxonFrameworkRelationshipsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :admin_required, :only => [:new, :create, :edit, :update, :destroy]
   before_action :set_taxon_framework_relationship, except: [:index, :new, :create]
   
   layout "bootstrap"
@@ -52,6 +53,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
   end
   
   def show
+    @taxon_framework = @taxon_framework_relationship.taxon_framework
   end
   
   def new

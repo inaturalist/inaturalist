@@ -1,6 +1,7 @@
 class TaxonFrameworksController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :curator_required, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :admin_required, :only => [:new, :create, :edit, :update, :destroy]
   before_action :set_taxon_framework
   
   layout "bootstrap"

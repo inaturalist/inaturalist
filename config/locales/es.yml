@@ -611,6 +611,7 @@ es:
   at_any_time_change: en cualquier lugar (<span class="button">cambio</span>)
   at_time: en %{time}
   atom: Atom
+  attached_taxon: Taxón adjunto
   attribute: Atributo
   authority_list:
     iucn_red_list: Lista roja UICN
@@ -899,6 +900,7 @@ es:
   classification: Clasificación
   clear: Limpiar
   clear_color_filters: Limpiar los filtros de color
+  clear_filters: Limpiar los filtros
   clear_search: Limpiar búsqueda
   click_on_the_map_to: Haga clic en el mapa para colocar su observación
   click_the_map: <strong>Clic al mapa</strong> para agregar una localización.
@@ -958,6 +960,8 @@ es:
   comparing_list_to_list: Comparando %{list1} con %{list2}
   comparing_versions_x_and_y: Comparando las versiones %{x} y %{y}
   comparing_observations_from: Comparación de las observaciones de %{user} en %{dates}
+  complete: Completo
+  complete_sets: Conjuntos completos
   compiled_by_name: Compilado por %{name}
   completed: Completado
   completed_at: Completado en
@@ -1060,6 +1064,8 @@ es:
   copyright_info_and_more: Información de copyright y más
   copyright_infringement_desc: Viola el derecho de autor o fue creado por una persona
     distinta del observador y carece de atribución
+  covered_by_a_taxon_framework_html: "Cubierto por un %{href}"
+  covered_by_a_taxon_framework_href: "marco de taxon para %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: 'Tu contraseña no pudo ser modificada: %{e}'
   couldnt_find_a_user_matching_x_param: 'No se pudo encontrar al usuario con parámetros:
     %{id}'
@@ -1181,6 +1187,7 @@ es:
   default_photo_license: 'Licencia para sus fotos:'
   default_sound_license: Licencias del sonido predeterminadas
   defaults_to_your_name_or_username: Por predeterminación tu nombre o nombre de usuario
+  defines_a_taxon_framework_for:  Define un marco de taxon para %{taxon_name}
   delete: Eliminar
   delete_all: Eliminar todo
   delete_conversation: Eliminar conversación
@@ -1216,6 +1223,8 @@ es:
   desription: Descripción
   destroy: Destruir
   details: Detalles
+  deviation: Desviacion
+  deviations: Desviaciones
   devise:
     failure:
       user:
@@ -1261,6 +1270,8 @@ es:
   download_csv: Descargar CSV
   download_csv_template: Descargar plantilla CSV
   download_kml: Descargar KML
+  downstream_coverage: Cobertura aguas abajo
+  downstream_coverage_rank: Rango de cobertura aguas abajo
   drag_and_drop_photos: arrastra y suelta la foto en esta ventana o
   draft: borrador
   draft_: Borrador
@@ -1519,7 +1530,9 @@ es:
   flag_this_photo: Marca esta foto con advertencia
   flagged: marcado
   flagged_: Marcado
+  flagged_covered_taxa: Taxones cubiertos marcados
   flagged_for_curation: Advertencia para curación
+  flagged_taxon: Taxón marcado
   flagged_thing_explanation: Los usuarios han marcado esta %{thing} porque
   flagger: Marcador
   flags: Marcas
@@ -1846,6 +1859,7 @@ es:
     ¡y ayudar a que otras personas identifiquen criaturas misteriosas!
   interactions: Interacciones
   internal_server_error: Error interno del servidor
+  internal_taxon: Taxon interno
   introduced: Introducida
   introduced_in_place: Introducción en %{place}
   invasive: Invasoras
@@ -2565,11 +2579,13 @@ es:
   no_x_this_y: No hay %{x} de este %{y}
   noble_curators: Curadores activos de %{site}
   non_human?: ¿No humano?
+  non_internal_taxon: Taxon no interno
   none: Ninguno
   none_found: No se encontró ninguno
   normal: normal
   not_absent: no ausente
   not_completed: No completado
+  not_covered_by_any_taxon_frameworks: No está cubierto por ningún marco de taxón
   not_evaluated: no evaluado
   not_filtering: Sin filtrar
   not_findig_what_you_want: ¿No encuentra lo que desea?
@@ -2897,6 +2913,7 @@ es:
   out_of_range: Fuera del área
   output_taxon: Taxón de salida
   overview: Visión de conjunto
+  overlapping_downstream_taxon_frameworks: Superposición de los marcos de taxis descendentes
   owner: Propietario
   parent: Padre
   parent_name: Nombre de la clase o especie padre
@@ -3391,6 +3408,17 @@ es:
   reject_the_community_id: Rehusar la identificación de la comunidad
   related_species: Especies relacionadas
   relative_observations: Observaciones relativas
+  relationship: Relación
+  relationships:
+      match: coinciden
+      swap: cambio
+      position_swap: cambio de posición
+      many_to_many: muchos a muchos
+      lump: agrupar
+      split: dividir
+      not_external: no externo
+      not_internal: no interno
+      unknown: desconocido
   reload_and_refresh: Volver a cargar y refrescar lista
   reload_from_observations: Volver a cargar sus observaciones
   reload_timed_out: El tiempo de carga expiró.  Por favor trate de nuevo en un momento.
@@ -3763,6 +3791,7 @@ es:
   source_url: Enlace fuente
   source_of_coordinates: Fuente de las coordenadas y la exactitud de las medidas,
     se pone automáticamente.
+  sourced_to: obtenido para
   sources: Fuentes
   sources_youve_added: Fuentes que has agregado
   sources_and_credits: Fuentes y Créditos
@@ -3965,6 +3994,11 @@ es:
   taxon_colors: Colores de taxón
   taxon_curators: Curadores de grupos
   taxon_extras: Extras taxón
+  taxon_framework_notes: Notas marco del taxón
+  taxon_framework_relationship_for: Relación marco taxón para
+  taxon_framework_relationship: Relación Marco Taxón
+  taxon_framework_relationships: Relaciónes Marco Taxón
+  taxon_framework_taxon: Taxon de marco de taxon
   taxon_merge: fusión de taxón
   taxon_name: Nombre del taxón
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe
@@ -4005,6 +4039,9 @@ es:
   taxonomic_status: Estado de la taxonomía
   taxonomic_tags_for_flickr: Etiquetas Taxonómicas para Flickr
   taxonomic_tree_browser: Explorador del Árbol Taxonómico
+  taxonomy_details: Detalles de taxonomia
+  taxonomy_details_for: Detalles de taxonomia para
+  taxonomy_details_info: 'La página Detalles de taxonomía utiliza los marcos de Taxon para ayudar a describir lo que entendemos por taxón. <a href="/pages/taxon_frameworks">Lee mas</a>.'
   taxonomy_settings: Configuración taxonómica
   tell_everyone_a_little_about_you: Cuéntales a todos un poco sobre ti
   tell_the_world_a_little_about_yourself: Cuéntanos acerca de ti
@@ -4134,6 +4171,7 @@ es:
   there_were_some_problems_with_fields: Hubo algunos problemas con los siguientes
     campos
   theres_also: también hay
+  theres_something_wrong_with_taxon_framework_relationship: Hay algo mal aquí - no podemos determinar la relación entre cualquier taxón interno y externo
   these_are_items_people_on: Son contenidos que las personas han marcado para su curación.
     Los contenidos de spam deberían borrarse y la persona que los añadió podría suspenderse
     (dirígete a la página de su perfil y en la parte inferior izquierda selecciona
@@ -4316,6 +4354,7 @@ es:
   unknown: Desconocido
   unknown_error: Error desconocido
   unknown_rank: (Clasificación desconocida)
+  unknown_taxon_framework_relationship: Relación marco taxón desconocido
   unfollow: Dejar de seguir
   unlink_your_google_account: Desenlazar tu cuenta de Google
   unmute: Activar sonido

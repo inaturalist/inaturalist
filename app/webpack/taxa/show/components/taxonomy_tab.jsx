@@ -47,7 +47,7 @@ const TaxonomyTab = ( {
                     rel="nofollow"
                     >
                     <i className="fa fa-sitemap accessory-icon"></i>
-                    { "Taxonomy Details" }
+                    { I18n.t( "taxonomy_details" ) }
                   </a>
                 </li>
                 <li className="list-group-item internal">
