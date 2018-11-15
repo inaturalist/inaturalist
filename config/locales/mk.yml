@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Bjankuloski06
+# Author: Vlad5250
 ---
 mk:
   x_followers:
@@ -1137,6 +1138,7 @@ mk:
   one_of_your_lists: еден од вашите списоци...
   open: отворено
   or: или
+  or_all_caps: ИЛИ
   orange: портокалова
   order: Редослед
   order_by: Подреди по
@@ -1943,7 +1945,7 @@ mk:
     messages:
       accepted: мора да се прифати
       blank: не може да стои празно
-      confirmation: не се совпаѓа со потврдата
+      confirmation: не се совпаѓа со лозинката
       empty: не може да стои празно
       equal_to: мора да е рамно на %{count}
       even: мора да биде парен број
@@ -2040,7 +2042,7 @@ mk:
       messages:
         accepted: мора да се прифати
         blank: не може да стои празно
-        confirmation: не се совпаѓа со потврдата
+        confirmation: не се совпаѓа со лозинката
         empty: не може да стои празно
         equal_to: мора да е рамно на %{count}
         even: мора да биде парен број
