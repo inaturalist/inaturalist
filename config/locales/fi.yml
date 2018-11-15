@@ -18,11 +18,11 @@ fi:
     one: 1 seuraaja
     other: '%{count} seuraajaa'
   x_identifications:
-    one: 1 tunnistus
+    one: 1 tunnistaminen
     other: '%{count} tunnistamista'
   x_identifications_html:
-    one: <span class="count">1</span> tunnistus
-    other: <span class="count">%{count}</span> tunnistusta
+    one: <span class="count">1</span> tunnistaminen
+    other: <span class="count">%{count}</span> tunnistamista
   x_identifications_:
     one: 1 tunnistus
     other: '%{count} tunnistamista'
@@ -1510,7 +1510,9 @@ fi:
   importing: Tuodaan...
   improving: Parannus
   in: paikassa
+  in_: paikassa
   in_n: paikassa %{n}
+  in_place_x: paikassa %{place}
   inaturalist_network_affiliation: iNaturalist Network -verkko kytkös
   inbox: saapuneet
   including: mukaan lukien
@@ -1540,7 +1542,7 @@ fi:
   insect_life_stage: Hyönteisen elämänvaihe
   interactions: Vuorovaikutukset
   internal_server_error: Sisäinen palvelinvirhe
-  introduced: esitelty
+  introduced: Esitelty
   introduced_in_place: Esitelty paikassa %{place}
   invitation: Kutsu
   invitations: Kutsut
@@ -1560,6 +1562,7 @@ fi:
   inviteonly: vain kutsusta
   invited: Kutsuttu
   invited_to_the_following_projects: 'Kutsuttu seuraaviin projekteihin:'
+  invited_x: Kutsuttu %{x}
   inviting: Kutsutaan...
   iphone: iPhone
   is_a: "on"
@@ -1573,6 +1576,8 @@ fi:
     tai vastenmielinen?
   is_this_place_a_duplicate: Onko tämä paikka kaksoiskappale?
   it: Se
+  it_can_now_be_used_for_research: Sitä voidaan nyt käyttää tutkimukseen ja esitellä
+    muilla verkkosivustoilla
   it_has: Sillä on
   its_important_that_you: On tärkeää, että napsautat
   january: Tammikuu
@@ -1625,7 +1630,7 @@ fi:
   leaderboard_most:
     species: Eniten lajeja %{time}
     observations: Eniten havaintoja %{time}
-    identifications: Eniten tunnistamisia ajassa %{time}
+    identifications: Eniten tunnistamisia %{time}
   leading: Johtava
   learn!: Opi!
   learn: Opi
@@ -1633,7 +1638,7 @@ fi:
   learn_more: Lue lisää
   learn_more_raquo: Lisätietoja &raquo;
   learn_what_these_licenses_mean: Opi, mitä nämä lisenssit tarkoittavat
-  least_concern: elinvoimainen
+  least_concern: Elinvoimainen
   leave: Poistu
   leave_a_comment: Jätä kommentti
   leave_this_project: Jätä tämä projekti
@@ -1811,7 +1816,7 @@ fi:
   looks_like_no_species_in_guide: Näyttää siltä, että sinulla ei ole vielä yhtään
     lajia oppaassasi.
   lookup: Hae
-  low: matala
+  low: Alhainen
   lowest_rank: Alhaisin arvo
   make_admin: Tee ylläpitäjä
   make_an_observation: tee havainto
@@ -1931,7 +1936,7 @@ fi:
     fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
   near: lähellä
-  near_threatened: silmälläpidettävä
+  near_threatened: Lähes uhattu
   nearby: Lähistöllä
   nearby_observations_: Läheiset havainnot
   nearby_observations: Läheiset havainnot
@@ -1997,7 +2002,7 @@ fi:
   no_flags: Ei lippuja tällä kertaa
   no_flickr_photos_tagged: Yhtään tunnistetta ei ole lisätty Flickr-valokuviin.
   no_header_row: Ei otsikkoriviä
-  no_identifications: Ei tunnistajia
+  no_identifications: Ei tunnistamisia
   no_identifications_added:
     current_user: Et ole lisännyt tunnisteita keidenkään havaintoihin.
     user: '%{user} ei ole lisännyt tunnisteita kenenkään havaintoihin.'
@@ -2022,7 +2027,7 @@ fi:
   no_nearby_observations: Ei läheisiä havaintoja.
   no_new_messages: Ei uusia viestejä
   no_news_yet: Ei vielä uutisia
-  no_observations: ei havaintoja
+  no_observations: Ei havaintoja
   no_observations_from_this_place_yet: Ei havaintoja tästä paikasta vielä.
   no_observations_matching_those_ids: Ei havaintoja, jotka vastaavat näitä tunnisteita
   no_observations_need_an_id: Havainnot eivät tarvitsee tunnisteita juuri nyt. Uskomatonta!
@@ -2161,7 +2166,7 @@ fi:
   of_identifiers: tunnisteet
   of_places: paikat
   of_this_taxon: tästä taksonista
-  offensive_inappropriate: loukkaava / sopimaton
+  offensive_inappropriate: Loukkaava / sopimaton
   official_blog: Virallinen blogi
   offline_access_enabled: Offline-yhteys käytössä
   old_observation_form: Vanha havaintomuoto (vanhentunut)
@@ -2262,7 +2267,7 @@ fi:
   per_day: Per päivä
   per_month: Per kuukausi
   per_week: Per viikko
-  person: henkilö
+  person: Henkilö
   personal_message: Henkilökohtainen viesti
   personal_message_description: Kukaan ei halua saada sähköpostia koneelta! Mikset
     antaisi ystäviesi tietää, miksi kutsut heidät?
@@ -2544,24 +2549,24 @@ fi:
     subclass: Alaluokka
     superorder: Ylälahko
     order: Lahko
-    suborder: alalahko
-    infraorder: osalahko
-    superfamily: yläheimo
-    family: heimo
-    subfamily: alaheimo
-    supertribe: ylätribus
-    tribe: tribus
-    subtribe: alatribus
-    genus: suku
-    subgenus: alasuku
-    section: osa
-    subsection: momentti
+    suborder: Alalahko
+    infraorder: Osalahko
+    superfamily: Yläheimo
+    family: Heimo
+    subfamily: Alaheimo
+    supertribe: Ylätribus
+    tribe: Tribus
+    subtribe: Alatribus
+    genus: Suku
+    subgenus: Alasuku
+    section: Osa
+    subsection: Momentti
     species: Laji
-    hybrid: hybridi
-    subspecies: alalaji
-    variety: muunnos
-    form: muoto
-    leaves: lehdet
+    hybrid: Hybridi
+    subspecies: Alalaji
+    variety: Muunnos
+    form: Muoto
+    leaves: Lehdet
   rare: Harvinainen
   ray_finned_fishes: viuhkaeväiset
   re_apply_list_rules: Hae listan säännöt uudelleen
@@ -2582,7 +2587,7 @@ fi:
   recent_atom_observations_by: Viimeaikaiset havainnot käyttäjältä %{login} (Atom)
   recent_observations_by: Viimeaikaiset havainnot käyttäjältä %{login}
   recent_updates: Viimeaikaiset päivitykset
-  recently_active: Äskettäin aktiiviset
+  recently_active: Äskettäin aktiivinen
   recently_created: Äskettäin luotu
   recently_created_projects_from_place: Äskettäin luodut projektit paikasta %{place}
   recently_observed: Äskettäin havaittu
@@ -2844,7 +2849,7 @@ fi:
   sources: Lähteet
   sources_youve_added: Lisäämäsi lähteet
   sources_and_credits: Lähteet ja tekijät
-  spam: roskaposti
+  spam: Roskaposti
   spanish: Espanja
   species: Lajit
   species_by_category: lajit luokan mukaan
@@ -3024,7 +3029,7 @@ fi:
   this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä tunnisteita Flickr-valokuvillesi.
     Jatketaan?
   this_year: Tänä vuonna
-  threatened: uhanalainen
+  threatened: Uhanalainen
   thu: To
   time_: aika
   time_ago: '%{time} sitten'
@@ -3051,7 +3056,7 @@ fi:
   top_observers: Ylimmät havainnoijat
   top_species: Huippulajit
   total: Yhteensä
-  totals: yhteensä
+  totals: Yhteensä
   total_members: Jäseniä yhteensä
   total_observations: Havaintoja yhteensä
   total_species_observed: Lajeja havaittu yhteensä
@@ -3172,7 +3177,7 @@ fi:
   user_suggested_an_id: '%{user} ehdotti tunnistetta'
   username: Käyttäjänimi
   username_or_email: Käyttäjänimi tai sähköposti
-  username_or_user_id: Käyttäjänimi tai käyttäjän ID
+  username_or_user_id: Käyttäjänimi tai käyttäjän tunniste
   users: Käyttäjät
   users_comment_html: Käyttäjän <a href='%{url}'>%{user}</a> kommentti
   users_highlights_and_stats_from_year_on_site: Käyttäjän %{user} kohokohdat ja tilastot
@@ -3451,7 +3456,7 @@ fi:
     kanssa."
   youve_successfully_linked_your_provider_account: Olet onnistuneesti linkittänyt
     %{provider}-tilisi
-  verifiable: todennettavissa
+  verifiable: Todennettavissa
   views:
     views: Näyttökerrat
     guides:
@@ -4029,7 +4034,7 @@ fi:
       gender:
         m: miespuolinen
         f: naispuolinen
-  wild: villi
+  wild: Villi
   will_paginate:
     previous_label: '&#8592; Edellinen'
     next_label: Seuraava &#8594;

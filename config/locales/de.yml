@@ -9,6 +9,7 @@
 # Author: Crazy1880
 # Author: Dellfalconer
 # Author: Eddie
+# Author: FF11
 # Author: GrelleForelle
 # Author: Herr Moser
 # Author: Hwboehm
@@ -468,6 +469,7 @@ de:
   allowed_values: Erlaubte Werte
   alphabetical: Alphabetisch
   alphabetical_order: Alphabetische Reihenfolge
+  already_have_an_account_log_in_html: Hast du schon einen Account? <strong>Anmelden</strong>
   amphibians: Amphibien
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb hat keine Informationen
     über diese Spezies.
@@ -859,6 +861,11 @@ de:
     stellen möchtest. Du kannst auch eine andere Lizenz auswählen oder die Lizenz
     später wieder entfernen, aber diese ist die beste Lizenz um deine Werke mit Forschern
     zu teilen.
+  check_this_box_if_html: Wähle dies aus, wenn Du Deine Fotos unter die <a href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons - Namensnennung-NichtKommerziell - Lizenz</a>
+    stellen möchtest. Du kannst auch eine andere Lizenz auswählen oder die Lizenz
+    später wieder entfernen, aber diese ist die beste Lizenz um deine Werke mit Forschern
+    zu teilen.
   checklist: Checkliste
   checklists: Prüflisten
   checklist_places: Prüfliste Orte
@@ -1245,6 +1252,7 @@ de:
   doh_something_went_wrong_error: 'Etwas ist schief gelaufen: %{error}'
   done: Fertig
   dont_filter: Nicht filtern
+  dont_have_an_account_sign_up_html: Hast du keinen Account? <strong>Registrieren</strong>
   dont_send_me_email: Senden Sie mir keine E-Mail!
   dont_use_double_quotes: Doppelten Anführungszeichen sonst nirgends benutzen
   drop_it: Fallen lassen
@@ -2693,9 +2701,11 @@ de:
   opt_in_for_this_observation: Für diese Beobachtung anmelden
   optional: optional
   or: oder
+  or_all_caps: ODER
   or_if_you_dont_want_email: Oder wenn Sie gar keine Emails möchten ...
   or_invite_your_friends: oder deine Freunde einladen
   or_invited: oder eingeladen.
+  or_log_in_with_colon: 'Oder melde dich an mit:'
   or_post_message_to_google_group: 'oder poste eine Nachicht in unsere Google Gruppe:'
   or_upload: Oder hochladen
   or_you_can: Oder du kannst...
@@ -2767,6 +2777,7 @@ de:
   photo?: Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Foto Browser
+  photo_by: Foto augenommen von
   photo_by_id_attribution: Foto %{id},%{attribution}
   photo_deleted: Foto gelöscht
   photo_hosting_accounts: Bilderhosting-Accounts
@@ -3427,6 +3438,7 @@ de:
   shown_publicly_as: Öffentlich dargestellt als
   sign_in: Anmelden
   sign_in_with_provider: Mit %{provider} anmelden
+  sign_up_with_provider: Mit %{provider} anmelden
   sign_out: Abmelden
   sign_up!: Registrieren!
   sign_up: Registrieren
@@ -3439,6 +3451,8 @@ de:
   skip_to_next_page: Zur nächsten Seite springen
   small: klein
   site_name_place: '%{site_name} Orte'
+  site_observations_export_from_date: '%{site_name}-Beobachtungsexport vom %{date}'
+  site_site_admin: '%{site_name}-Websiteadministrator'
   site_staff: '%{site_name}-Mitarbeiter'
   site_stats: Seitenstatistik
   site_taxon_page: '%{site_name} Taxonseite'
@@ -4113,6 +4127,7 @@ de:
   welcome_comma!: Willkommen,
   welcome: willkommen
   welcome_back: Willkommen zurück
+  welcome_back!: Willkommen zurück
   welcome_comma: Willkommen,
   welcome_login: Willkommen, %{login}
   welcome_to_inat: Willkommen bei %{site_name}!
