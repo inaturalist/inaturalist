@@ -64,11 +64,7 @@ module ApplicationHelper
       :format => "json"
     }
     
-    already_friends = if user.friends.loaded?
-      user.friends.include?(potential_friend)
-    else
-      already_friends = user.friendships.find_by_friend_id(potential_friend.id)
-    end
+    already_friends = user.friendships.where( friend_id: potential_friend.id ).exists?
     
     unfriend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:stop_following_user, :user => potential_friend.login)}".html_safe, 
       url_options.merge(:remove_friend_id => potential_friend.id), 

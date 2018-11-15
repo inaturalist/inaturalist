@@ -1413,7 +1413,9 @@ CREATE TABLE friendships (
     user_id integer,
     friend_id integer,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    following boolean DEFAULT true,
+    trust boolean DEFAULT false
 );
 
 
@@ -3963,8 +3965,8 @@ CREATE TABLE taxa (
     locked boolean DEFAULT false NOT NULL,
     conservation_status_source_identifier integer,
     is_active boolean DEFAULT true NOT NULL,
-    complete boolean,
-    complete_rank character varying
+    complete_rank character varying,
+    complete boolean
 );
 
 
@@ -4074,10 +4076,10 @@ ALTER SEQUENCE taxon_changes_id_seq OWNED BY taxon_changes.id;
 
 CREATE TABLE taxon_curators (
     id integer NOT NULL,
-    taxon_id integer,
     user_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    taxon_id integer
 );
 
 
@@ -6963,6 +6965,20 @@ CREATE INDEX index_flow_tasks_on_user_id ON flow_tasks USING btree (user_id);
 
 
 --
+-- Name: index_friendships_on_following; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_friendships_on_following ON friendships USING btree (following);
+
+
+--
+-- Name: index_friendships_on_trust; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_friendships_on_trust ON friendships USING btree (trust);
+
+
+--
 -- Name: index_friendships_on_user_id_and_friend_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9474,13 +9490,15 @@ INSERT INTO schema_migrations (version) VALUES ('20180821031507');
 
 INSERT INTO schema_migrations (version) VALUES ('20180822173011');
 
-INSERT INTO schema_migrations (version) VALUES ('20180911144001');
-
 INSERT INTO schema_migrations (version) VALUES ('20180905191330');
 
 INSERT INTO schema_migrations (version) VALUES ('20180906232956');
 
+INSERT INTO schema_migrations (version) VALUES ('20180911144001');
+
 INSERT INTO schema_migrations (version) VALUES ('20180911233322');
 
 INSERT INTO schema_migrations (version) VALUES ('20180914231617');
+
+INSERT INTO schema_migrations (version) VALUES ('20181110004422');
 
