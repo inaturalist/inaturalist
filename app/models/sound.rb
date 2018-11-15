@@ -125,7 +125,7 @@ class Sound < ActiveRecord::Base
   def as_indexed_json(options={})
     {
       id: id,
-      license_code: license_code,
+      license_code: index_license_code,
       attribution: attribution,
       native_sound_id: native_sound_id,
       secret_token: try(:secret_token),

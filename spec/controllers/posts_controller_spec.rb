@@ -219,5 +219,17 @@ describe PostsController, "show" do
     post = Post.make!( parent: user, body: body )
     get :show, id: post.id
     expect( assigns(:shareable_image_url) ).to eq single_quote_url
+
+  end
+
+  describe "spam comments" do
+    render_views
+    it "should not render" do
+      post = Post.make!( parent: user )
+      c = Comment.make!( parent: post )
+      Flag.make!( flaggable: c, flag: Flag::SPAM )
+      get :show, id: post.id
+      expect( response.body ).not_to include c.body
+    end
   end
 end

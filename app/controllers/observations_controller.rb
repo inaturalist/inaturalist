@@ -2497,7 +2497,7 @@ class ObservationsController < ApplicationController
   end
   
   def require_owner
-    unless logged_in? && current_user.id == @observation.user_id
+    unless ( logged_in? && current_user.id == @observation.user_id ) || current_user.is_admin?
       msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do

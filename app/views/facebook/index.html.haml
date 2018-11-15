@@ -19,7 +19,7 @@
       js.src = "//connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
-    var USER = #{json_escape @selected_user.to_json(User.default_json_options)}
+    var USER = #{json_escape @selected_user.to_json(User.default_json_options).html_safe}
     function loadObservations(options) {
       $('.observations').loadingShades('Loading...', {top: '85px'})
       options = options || {}

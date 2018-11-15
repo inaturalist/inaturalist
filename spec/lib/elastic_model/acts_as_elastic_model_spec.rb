@@ -90,6 +90,11 @@ describe ActsAsElasticModel do
       it "returns a WillPaginate collection" do
         expect(Observation.elastic_paginate).to be_a WillPaginate::Collection
       end
+      it "does not modify the options it receives" do
+        options = { max_id: 1 }
+        Observation.elastic_paginate( options )
+        expect( options[:where] ).to be_nil
+      end
     end
 
     describe "elastic_index!" do

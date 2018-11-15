@@ -34,6 +34,18 @@ shared_examples_for "ObservationsController basics" do
       delete :destroy, :format => :json, :id => o.id
       expect(Observation.find_by_id(o.id)).to be_blank
     end
+    it "should not be possible for non-observers" do
+      o = Observation.make!( user: User.make! )
+      delete :destroy, format: :json, id: o.id
+      expect( Observation.find_by_id( o.id ) ).not_to be_blank
+    end
+    it "should be possible for staff on other people's observations" do
+      o = Observation.make!( user: User.make! )
+      user.roles << Role.make!( name: User::JEDI_MASTER_ROLE )
+      user.reload
+      delete :destroy, format: :json, id: o.id
+      expect( Observation.find_by_id( o.id ) ).to be_blank
+    end
   end
 
   describe "show" do
@@ -60,8 +72,8 @@ end
 shared_examples_for "an ObservationsController" do
 
   describe "create" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    before(:each) { enable_elastic_indexing( Observation, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
     it "should create with an existing photo ID" do
       p = LocalPhoto.make!( user: user )

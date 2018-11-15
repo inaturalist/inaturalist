@@ -6,7 +6,7 @@
                         "bootstrap-image-gallery.min"
 = content_for :extrajs do
   :javascript
-    var GUIDE_TAXON = #{@guide_taxon.to_json(:only => [:id, :guide_id])}
+    var GUIDE_TAXON = #{@guide_taxon.to_json( only: [:id, :guide_id] ).html_safe}
   = javascript_include_tag "//blueimp.github.io/Gallery/js/jquery.blueimp-gallery.min.js", 
                            "bootstrap-image-gallery.min", 
                            "underscore.min", 

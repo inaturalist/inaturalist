@@ -1,6 +1,6 @@
 - content_for :extrajs do
   :javascript
-    var MAP_PARAMS = #{@params.to_json};
+    var MAP_PARAMS = #{@params.to_json.html_safe};
     window._.any = _.some; // Patch so torque won't miss underscore
   = javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"
   = javascript_include_tag "torque.full.uncompressed"

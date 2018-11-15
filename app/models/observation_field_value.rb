@@ -241,7 +241,10 @@ class ObservationFieldValue < ActiveRecord::Base
       value_ci: self.value,
       user_id: user_id
     }
-    json[:taxon_id] = value if observation_field.datatype == ObservationField::TAXON
+    # make sure taxon_id is an integer
+    if observation_field.datatype == ObservationField::TAXON && value.to_s =~ /\A[+-]?\d+\Z/
+      json[:taxon_id] = value
+    end
     json
   end
 
