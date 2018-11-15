@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Andreas Plank
 # Author: Aru
+# Author: BadDog
 # Author: BramEsposito
 # Author: Cellina
 # Author: Chestnut123tw
@@ -1022,7 +1023,7 @@ qqq:
   show_taxa_from_place: where place is the name of a place
   showing_taxa_from_place: where place is the name of a place
   sign_in: '{{Identical|Sign in}}'
-  sign_in_with_provider: where provider is an external provider like Facebook
+  sign_in_with_provider: '%{provider} — an external provider, like Facebook.'
   simple: '{{Identical|Simple}}'
   sign_in_exclamation: '{{Identical|Sign in}}'
   sizes: '{{Identical|Size}}'

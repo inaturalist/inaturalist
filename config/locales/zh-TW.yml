@@ -440,8 +440,10 @@ zh-TW:
   allowed_html: 允許的 HTML
   allowed_occurrence_status_values: 允許的發生狀態值
   allowed_values: 允許的值
+  almost_there_: 就要差不多了…
   alphabetical: 依字母順序
   alphabetical_order: 依字母排序
+  already_have_an_account_log_in_html: 已經有帳號了嗎？現在就<strong>登入</strong>。
   amphibians: 兩棲類
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb 沒有關於此物種的任何訊息。
   amphibiaweb_taxonomy: AmphibiaWeb 分類法
@@ -729,7 +731,9 @@ zh-TW:
   check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
   check_out_your_life_list: 退出及儲存您的生物清單
-  check_this_box_if: 如果您想套用<a href='https://creativecommons.org/licenses/by-nc/3.0/tw/'
+  check_this_box_if: 如果您想套用<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.zh_TW'
+    target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>至您的照片請勾選此框。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
+  check_this_box_if_html: 如果您想套用<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.zh_TW'
     target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>至您的照片請勾選此框。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
   checklist: 檢查列表
   checklists: 清單
@@ -1081,6 +1085,7 @@ zh-TW:
   doh_something_went_wrong_error: 哎呀，發生了一些錯誤：%{error}
   done: 完成
   dont_filter: 不用篩選
+  dont_have_an_account_sign_up_html: 還沒有帳號嗎？現在就<strong>註冊</strong>。
   dont_send_me_email: 不要替我寄送任何電子郵件！
   dont_use_double_quotes: 不要在任何其它地方使用雙引號
   drop_it: 放開
@@ -1577,6 +1582,7 @@ zh-TW:
   in: 在
   in_: 在
   in_n: 在%{n}
+  in_place_x: 於%{place}
   inaturalist_network_affiliation: iNaturalist 網路聯繫
   inbox: 收件匣
   including: 包含
@@ -1658,6 +1664,7 @@ zh-TW:
   join_project: 加入此專案
   join_some_projects_and_invite_some_observations_html: 加入一些<a href='%{join_url}'>專案</a>並<a
     href='%{invite_url}'>徵求一些觀察</a>
+  join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的博物學群組！
   join_this_project: 加入此專案
   joined!: 已加入！
   joined_any_projects: 已加入任何專案
@@ -2440,7 +2447,7 @@ zh-TW:
   only_curators_can_add_edit_scientific_names: 僅有策展人可添加/編輯學名。
   only_curators_can_access_that_page: 僅有策展人能存取該頁面。
   only_files_with_10000_rows_at_a_time: 檔案一次只能 10000 行，再麻煩了
-  only_letters_numbers: 僅允許使用英文字母和數字、不可包含空白、並且要以英文字母作為開頭
+  only_letters_numbers: 僅用英文和數字（無空白），並以英文作開頭
   only_one_coordinate_system_per_file: 每個檔案僅可使用一個座標，否則會發生不正確的轉換或顯示。
   only_project_curators_can_do_that: 僅專案策展人可做出此行為。
   only_receive_updates_about_this_taxon: 僅接收有關此物種分類的更新
@@ -2465,10 +2472,12 @@ zh-TW:
   optional: 可選
   optional_columns_note_for_any: 選用欄位（註：適用於存在觀察裡的任一可用欄位）
   or: 或
+  or_all_caps: 或
   or_choose_high_level_taxa: '...或從更高階物種分類挑選'
   or_if_you_dont_want_email: 或者是您不想要接受任何電子郵件...
   or_invite_your_friends: 或邀請您的好友
   or_invited: 或已邀請。
+  or_log_in_with_colon: 或登入以：
   or_post_message_to_google_group: 或發佈訊息至我們在 Google 上的群組：
   or_upload: 或上傳
   or_you_can: 或著您可以...
@@ -2534,6 +2543,7 @@ zh-TW:
   photo?: 照片？
   photo_attribution: 照片%{attribution}
   photo_browser: 照片瀏覽
+  photo_by: 照片提供由
   photo_by_id_attribution: 照片 %{id}， %{attribution}
   photo_deleted: 照片已刪除
   photo_destroyed_because_it_was_deleted_from: 照片已損毀，因為它被外部網站所刪除或 %{site_name} 不再有檢視它的權限
@@ -2918,7 +2928,7 @@ zh-TW:
   real_time_discussions: 即時討論
   reason: 原因
   reason_you_are_flagging_this_item: 您標記此項目原因。
-  recaptcha_verification_failed: reCaptcha 驗證失敗
+  recaptcha_verification_failed: reCAPTCHA 驗證失敗
   receive_email_notifications_when_people_leave_you: 接收電子郵件通知有關於在
   receive_updates_from_this_project: 從該專案接收更新
   received: 已接收
@@ -3180,6 +3190,7 @@ zh-TW:
   shown_publicly_as: 公開展示為
   sign_in: 登入
   sign_in_with_provider: 以 %{provider} 登入
+  sign_up_with_provider: 以 %{provider} 註冊
   sign_out: 登出
   sign_up!: 註冊！
   sign_up: 註冊
@@ -3966,6 +3977,7 @@ zh-TW:
   welcome_comma!: 歡迎，
   welcome: 歡迎
   welcome_back: 歡迎回來
+  welcome_back!: 歡迎回來！
   welcome_comma: 歡迎，
   welcome_login: 歡迎，%{login}
   welcome_message: 是個可讓您<strong>記錄</strong>您在自然裡所見事物、與其他自然愛好者<strong>交流</strong>，以及<strong>學習</strong>關於自然世界的地方。
@@ -5088,7 +5100,7 @@ zh-TW:
         find_a_project: 尋找一個有著您感興趣任務的專案，或是開始您自己擁有的專案。
         learn_about_nature: 了解關於自然
         build_your_knowledge: 透過與其他博物學友的交談，以及協助他人來建立您的知識。
-        run_a_bioblitz: 運作一個 Bioblitz
+        run_a_bioblitz: 舉行生態速查（Bioblitz）
         hold_an_event: 舉行一場能讓人們盡情來找尋物種的活動。
         works_on_all_your_devices: 在您的所有裝置上運作
         install_our_mobile_apps: 安裝我們的移動版應用程式，來讓您即使沒有手機信號或 wifi 也可以隨意觀察。
@@ -5216,7 +5228,7 @@ zh-TW:
     messages:
       accepted: 必須被接受
       blank: 不可留空
-      confirmation: 和確認資料不符合
+      confirmation: 密碼不符
       empty: 不能為空
       equal_to: 必須等於 %{count}
       even: 必須是偶數
@@ -5312,7 +5324,7 @@ zh-TW:
       messages:
         accepted: 必須被接受
         blank: 不可留空
-        confirmation: 和確認資料不符
+        confirmation: 密碼不符
         empty: 不能為空
         equal_to: 必須相同於%{count}
         even: 必須是偶數

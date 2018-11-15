@@ -489,8 +489,10 @@ fr:
   allowed_html: HTML autorisé
   allowed_occurrence_status_values: Valeurs de présence autorisées
   allowed_values: Valeurs autorisées
+  almost_there_: Vous y êtes presque ...
   alphabetical: Alphabétique
   alphabetical_order: Ordre alphabétique
+  already_have_an_account_log_in_html: Vous avez déjà un compte ?<strong>Connectez-vous.</strong>
   amphibians: amphibiens
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb n’a aucune information sur
     cette espèce.
@@ -897,7 +899,10 @@ fr:
   check_out_your_life_list: Consulter votre liste des êtres vivants
   check_this_box_if: |-
     Cochez cette case si vous voulez appliquer une
-    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>licence Creative Commons d’attribution non commerciale</a> à vos photos. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s’agit de la meilleure licence pour échanger avec les chercheurs.
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licence Creative Commons d’attribution non commerciale</a> à vos photos. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s’agit de la meilleure licence pour échanger avec les chercheurs.
+  check_this_box_if_html: |-
+    Cochez cette case si vous voulez appliquer une
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licence Creative Commons d’attribution non commerciale</a> à vos photos. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s’agit de la meilleure licence pour échanger avec les chercheurs.
   checklist: Liste de contrôle
   checklists: Check-listes
   checklist_places: Lieux de la liste de contrôle
@@ -1307,6 +1312,7 @@ fr:
   doh_something_went_wrong_error: 'Oh, quelque chose s’est mal passé : %{error}'
   done: Fait
   dont_filter: Ne pas filtrer
+  dont_have_an_account_sign_up_html: Vous n'avez pas encore de compte ? <strong>Enregistrez-vous.</strong>
   dont_send_me_email: Ne m’envoyez pas de courriel !
   dont_use_double_quotes: N’utilisez pas de guillemets ailleurs
   drop_it: Le déposer
@@ -1882,6 +1888,7 @@ fr:
   in: dans
   in_: dans
   in_n: dans %{n}
+  in_place_x: '%{place}'
   inaturalist_network_affiliation: Affiliation de Réseau iNaturalist
   inbox: boîte de réception
   including: y compris
@@ -1987,6 +1994,8 @@ fr:
   join_project: Joignez-vous à ce projet
   join_some_projects_and_invite_some_observations_html: Joignez des <a href='%{join_url}'>projets</a>
     et <a href='%{invite_url}'>invitez des gens à afficher quelques observations</a>
+  join_the_largest_group_of_naturalists_in_the_world: Rejoignez le plus grand groupe
+    de naturalistes du monde !
   join_this_project: Joignez-vous à ce projet
   joined!: Vous vous êtes joint!
   joined_any_projects: rejoint aucun projet
@@ -2961,10 +2970,12 @@ fr:
     laquelle de ces colonnes soit utilisée dans une observation, elles doivent toutes
     être présentes)'
   or: ou
+  or_all_caps: OU
   or_choose_high_level_taxa: '...ou choisissez à partir de taxons de haut niveau'
   or_if_you_dont_want_email: Ou si vous ne voulez juste pas de courriels...
   or_invite_your_friends: ou inviter vos amis
   or_invited: ou invité.
+  or_log_in_with_colon: 'Ou bien se connecter avec :'
   or_post_message_to_google_group: 'ou publiez un message sur notre groupe Google
     :'
   or_upload: Ou téléverser un
@@ -3036,6 +3047,7 @@ fr:
   photo?: Photo?
   photo_attribution: Photo de %{attribution}
   photo_browser: Navigateur de photos
+  photo_by: Photographie de
   photo_by_id_attribution: Photo %{id}, de %{attribution}
   photo_deleted: Photo supprimée
   photo_destroyed_because_it_was_deleted_from: Photo détruite, car elle a été supprimée
@@ -3461,7 +3473,7 @@ fr:
   real_time_discussions: Discussions en temps réel
   reason: Motif
   reason_you_are_flagging_this_item: Raison pour laquelle vous avez signalé cet élément.
-  recaptcha_verification_failed: échec de la vérification reCaptcha
+  recaptcha_verification_failed: échec de la vérification reCAPTCHA
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel
     sur
   receive_updates_from_this_project: Recevoir des avis pour ce projet
@@ -3748,7 +3760,8 @@ fr:
   showing_x_of_y_listings: Affiche %{x} de %{y} listes
   shown_publicly_as: Affiché publiquement comme
   sign_in: S’identifier
-  sign_in_with_provider: vous connecter avec %{provider}
+  sign_in_with_provider: Connectez-vous avec %{provider}
+  sign_up_with_provider: Signer avec %{provider}
   sign_out: Déconnexion
   sign_up!: Inscrivez-vous !
   sign_up: Inscrivez-vous
@@ -4750,6 +4763,7 @@ fr:
   welcome_comma!: Bienvenue,
   welcome: bienvenue
   welcome_back: Re-bonjour
+  welcome_back!: Re-bonjour !
   welcome_comma: Bienvenue,
   welcome_login: Bienvenue, %{login}
   welcome_message: où vous pouvez <strong>enregistrer</strong> ce que vous voyez dans
@@ -6775,7 +6789,7 @@ fr:
     messages:
       accepted: doit être accepté
       blank: ne peut pas être vide
-      confirmation: ne correspond pas à la confirmation
+      confirmation: ne correspond pas au mot de passe
       empty: ne peut pas être vide
       equal_to: doit être égal à %{count}
       even: doit être pair
@@ -6871,7 +6885,7 @@ fr:
       messages:
         accepted: doit être accepté
         blank: ne peut pas être vide
-        confirmation: ne correspond pas à la confirmation
+        confirmation: ne correspond pas au mot de passe
         empty: ne peut pas être vide
         equal_to: doit être égal à %{count}
         even: doit être pair

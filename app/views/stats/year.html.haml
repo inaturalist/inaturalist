@@ -6,7 +6,7 @@
     t( :year_on_site, site: @site.name, year: @year )
   end
 - content_for :title do
-  = @title
+  = @title.html_safe
 - content_for :extrajs do
   :javascript
     ROOT_TAXON_ID = #{ Taxon::LIFE.id };

@@ -5,8 +5,8 @@
     "jquery/plugins/inat/observation_selectors"              |
   - unless post.parent_type == 'Project'
     :javascript
-      var OBSERVATION_IDS = #{@post.observation_ids.join(',').inspect},
-          CURRENT_USER_ID = #{current_user.id}
+      var OBSERVATION_IDS = #{@post.observation_ids.join(',').inspect.html_safe},
+          CURRENT_USER_ID = #{current_user.id};
       $(document).ready(function() {
         $('#observation_selector').observationSelector({
           urlParams: {
@@ -14,8 +14,8 @@
             include: OBSERVATION_IDS,
             user_id: CURRENT_USER_ID
           }
-        })
-      })
+        });
+      });
 - content_for(:extracss) do
   :css
     a.button.nextlink {float: right;}
