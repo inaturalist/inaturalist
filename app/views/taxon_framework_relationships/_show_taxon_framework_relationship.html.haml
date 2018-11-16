@@ -2,7 +2,7 @@
   taxon_framework_relationship ||= show_taxon_framework_relationship[:taxon_framework_relationship]
   taxon ||= show_taxon_framework_relationship[:taxon]
 %p
-  = t :relationship, relationship: ( taxon_framework_relationship.relationship == "match" ? t(relationships.match) : t( :deviation ) )
+  = t :relationship_x, relationship: ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ) : t( :deviation ) )
 %table.table.table-bordered
   %thead
     %tr

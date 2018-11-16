@@ -334,16 +334,16 @@ def get_internal_taxa_covered_by_taxon(taxon_framework)
   return internal_taxa
 end
 
-taxon_framework = TaxonFramework.includes("taxon").where(taxon_id: Taxon.where(name: "Tracheophyta").first.id).first
+taxon_framework = TaxonFramework.includes("taxon").where(taxon_id: Taxon.where(name: "Life").first.id).first
 if taxon_framework
   ancestry_string = taxon_framework.taxon.rank == "stateofmatter" ? "#{ taxon_framework.taxon_id }" : "%/#{ taxon_framework.taxon_id }"
   other_taxon_frameworks = TaxonFramework.includes( "taxon" ).joins( "INNER JOIN taxa ON taxon_frameworks.taxon_id = taxa.id" ).
     where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) ) AND taxa.rank_level > #{ taxon_framework.rank_level } AND taxon_frameworks.rank_level IS NOT NULL" )
 
   #external_taxa = get_external_taxa_rd(other_taxon_frameworks)
-  #external_taxa = get_external_taxa_col(other_taxon_frameworks)
+  external_taxa = get_external_taxa_col(other_taxon_frameworks)
   #external_taxa = get_external_taxa_worms(other_taxon_frameworks)
-  external_taxa = get_external_taxa_powo_to_genus(other_taxon_frameworks)
+  #external_taxa = get_external_taxa_powo_to_genus(other_taxon_frameworks)
   external_taxa_uids = external_taxa.map{|row| [row[:name],row[:rank],row[:parent][:name],row[:parent][:rank]].join("~")}
 
   internal_taxa = get_internal_taxa_covered_by_taxon(taxon_framework); nil

@@ -84,7 +84,7 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
       if external_taxa.first.name == taxa.first.name && 
          external_taxa.first.rank == taxa.first.rank &&
          external_taxa.first.parent_name == taxa.first.parent.name &&
-         external_taxa.first.parent_rank == taxa.first.parent.rank
+         external_taxa.first.parent_rank.downcase == taxa.first.parent.rank
         self.relationship = "match"
       elsif external_taxa.first.name == taxa.first.name && 
          external_taxa.first.rank == taxa.first.rank
