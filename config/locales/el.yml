@@ -1425,6 +1425,7 @@ el:
   optional: προαιρετικό
   or: ή
   or_invite_your_friends: ή προσκαλέστε τους φίλους σας
+  or_log_in_with_colon: 'Η συνδεθείτε με:'
   or_upload: Ή μεταφορτώστε
   or_you_can: Ή μπορείτε...
   or_you_can_: ή μπορείτε
@@ -2156,7 +2157,7 @@ el:
     messages:
       accepted: Αποδεκτό
       blank: Δε μπορεί να είναι κενό
-      confirmation: δεν αντιστοιχεί στην επιβεβαίωση
+      confirmation: δεν αντιστοιχεί στον κωδικό
       empty: δεν πρέπει να είναι άδειο
       equal_to: πρέπει να είναι ίσο με %{count}
       even: πρέπει να είναι άρτιος
@@ -2196,6 +2197,10 @@ el:
           quadrillion: Τετράκις εκατομμύριο
           thousand: Χιλιάδα
           trillion: Τρισεκατομμύριο
+  activemodel:
+    errors:
+      messages:
+        confirmation: δεν αντιστοιχεί στον κωδικό
   activerecord:
     errors:
       models:

@@ -34,6 +34,18 @@ shared_examples_for "ObservationsController basics" do
       delete :destroy, :format => :json, :id => o.id
       expect(Observation.find_by_id(o.id)).to be_blank
     end
+    it "should not be possible for non-observers" do
+      o = Observation.make!( user: User.make! )
+      delete :destroy, format: :json, id: o.id
+      expect( Observation.find_by_id( o.id ) ).not_to be_blank
+    end
+    it "should be possible for staff on other people's observations" do
+      o = Observation.make!( user: User.make! )
+      user.roles << Role.make!( name: User::JEDI_MASTER_ROLE )
+      user.reload
+      delete :destroy, format: :json, id: o.id
+      expect( Observation.find_by_id( o.id ) ).to be_blank
+    end
   end
 
   describe "show" do
@@ -1559,7 +1571,7 @@ shared_examples_for "an ObservationsController" do
         # the angular app doesn't need to load any observations
         expect( Observation ).not_to receive(:get_search_params)
         get :index, format: :html
-        expect(response.body).to include "ng-controller='MapController'"
+        expect(response.body).to match /ng-controller=.MapController/
         expect( response.body ).to_not have_tag("div.user a", text: @o.user.login)
       end
 
