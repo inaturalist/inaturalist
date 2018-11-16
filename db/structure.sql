@@ -4001,6 +4001,8 @@ CREATE TABLE taxa (
     locked boolean DEFAULT false NOT NULL,
     conservation_status_source_identifier integer,
     is_active boolean DEFAULT true NOT NULL,
+    complete_rank character varying,
+    complete boolean,
     taxon_framework_relationship_id integer
 );
 
@@ -4114,6 +4116,7 @@ CREATE TABLE taxon_curators (
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
+    taxon_id integer,
     taxon_framework_id integer
 );
 
@@ -8559,6 +8562,13 @@ CREATE INDEX index_taxon_changes_on_user_id ON taxon_changes USING btree (user_i
 
 
 --
+-- Name: index_taxon_curators_on_taxon_framework_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxon_curators_on_taxon_framework_id ON taxon_curators USING btree (taxon_framework_id);
+
+
+--
 -- Name: index_taxon_descriptions_on_provider; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8913,6 +8923,7 @@ CREATE INDEX taxon_names_lower_name_index ON taxon_names USING btree (lower((nam
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+
 
 --
 -- PostgreSQL database dump complete

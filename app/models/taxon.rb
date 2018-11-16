@@ -78,6 +78,7 @@ class Taxon < ActiveRecord::Base
     -> { where("locale='en' AND provider='Wikipedia'") },
     class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
+  has_many :taxon_curators, inverse_of: :taxon  # deprecated, remove when we're sure transition to taxon frameworks is complete
   
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
