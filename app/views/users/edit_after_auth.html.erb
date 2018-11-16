@@ -1,0 +1,25 @@
+<%- content_for(:title) do -%>
+  <%= t(:confirm_your_info) %>
+<%- end -%>
+<div class="column prepend-4 span-8">
+  <%= image_tag @site.logo_square.url, :width => 300  %>
+</div>
+<div class="column span-12 last">
+
+  <%= form_for current_user, :builder => DefaultFormBuilder do |f| %>
+    <%= error_messages_for :display_user %>
+    <%= f.text_field :login, :label => t(:please_confirm_your_inat_username, :site_name => @site.preferred_site_name_short), :class => "text", :required => true %>
+    <%= f.text_field :email, :class => "text", :required => true %>
+    <%= hidden_field_tag 'from_edit_after_auth', true %>
+    
+    <%= f.time_zone_select(:time_zone, ActiveSupport::TimeZone.us_zones, {}, {
+      :label => t(:your_default_time_zone),
+      :description => t(:all_your_observations_will_default_this_time_zone),
+      :class => 'select'}) %>
+
+    <%= render :partial => 'users/license_fields', :locals => {:builder => f} %>
+
+    <%= f.submit t(:save_and_continue).html_safe, :class => "default button" %>
+  <% end %>
+</div>
+

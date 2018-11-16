@@ -1589,7 +1589,7 @@ describe "taxon_framework_relationship" do
       expect(tfr.relationship).to eq "match"
       t.update_attributes( name: "Taricha granulosa" )
       tfr.reload
-      expect(tfr.relationship).to eq "swap"
+      expect(tfr.relationship).to eq "one_to_one"
     end
   end
 end
