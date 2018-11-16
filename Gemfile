@@ -94,6 +94,7 @@ gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'yui-compressor'
 gem 'xmp', "~> 0.2.1", git: 'https://github.com/kueda/xmp.git'
+gem 'rubyzip'
 # these need to be loaded after will_paginate
 gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'

@@ -1,0 +1,10 @@
+:ruby
+  taxon_framework_relationship ||= show_taxon_framework_relationship_headings[:taxon_framework_relationship] ||= @taxon_framework_relationship
+- if taxon_framework_relationship.relationship == "not_internal"
+  = t( :taxon_framework_relationship_for )
+  = link_to t( :non_internal_taxon ).downcase, taxon_framework_relationship_path( taxon_framework_relationship )
+- elsif taxon_framework_relationship.relationship == "unknown"
+  = link_to t( :unknown_taxon_framework_relationship ), taxon_framework_relationship_path( taxon_framework_relationship )
+- else
+  = t( :taxon_framework_relationship_for )
+  = link_to taxon_framework_relationship.taxa.first.name, taxonomy_details_for_taxon_path( taxon_framework_relationship.taxa.first )

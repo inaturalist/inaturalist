@@ -2,33 +2,23 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe TaxonCurator, "creation" do
-  it "should be valid for complete taxa" do
-    t = Taxon.make!( complete: true )
-    tc = TaxonCurator.make( taxon: t )
+  it "should be valid for taxon framework with coverage" do
+    t = Taxon.make!
+    tf = TaxonFramework.make!( taxon: t, rank_level: Taxon::RANK_LEVELS[Taxon::SUBSPECIES] )
+    tc = TaxonCurator.make( taxon_framework: tf )
     expect( tc ).to be_valid
   end
-  it "should be valid for a descendant of a complete taxon" do
-    genus = Taxon.make!( rank: Taxon::GENUS, complete: true )
-    species = Taxon.make!(
-      rank: Taxon::SPECIES,
-      parent: genus,
-      current_user: TaxonCurator.make!( taxon: genus ).user
-    )
-    tc = TaxonCurator.make( taxon: species )
-    expect( tc ).to be_valid
-  end
-  it "should not be valid for non-complete taxa" do
-    t = Taxon.make!( complete: false )
-    tc = TaxonCurator.make( taxon: t )
+  it "should not be valid for taxon framework without coverage" do
+    t = Taxon.make!
+    tf = TaxonFramework.make!( taxon: t, rank_level: nil )
+    tc = TaxonCurator.make( taxon_framework: tf )
     expect( tc ).not_to be_valid
   end
-  it "should not be valid for a descendant of a complete taxon beyond its complete_rank" do
-    family = Taxon.make!( complete: true, rank: Taxon::FAMILY, complete_rank: Taxon::GENUS )
-    family_curator = TaxonCurator.make!( taxon: family )
-    genus = Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: family_curator.user )
-    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: family_curator.user )
-    tc = TaxonCurator.make( taxon: species )
+  it "should not be valid for non-curator" do
+    t = Taxon.make!
+    tf = TaxonFramework.make!( taxon: t, rank_level: Taxon::RANK_LEVELS[Taxon::SUBSPECIES] )
+    u = User.make!
+    tc = TaxonCurator.make( taxon_framework: tf, user: u )
     expect( tc ).not_to be_valid
   end
-
 end
