@@ -1076,8 +1076,8 @@ es:
   copyright_info_and_more: Información de copyright y más
   copyright_infringement_desc: Viola el derecho de autor o fue creado por una persona
     distinta del observador y carece de atribución
-  covered_by_a_taxon_framework_html: "Cubierto por un %{href}"
-  covered_by_a_taxon_framework_href: "marco de taxon para %{taxon_framework_rank} %{taxon_framework_name}"
+  covered_by_a_taxon_framework_html: "Cubierto por un %{link}"
+  covered_by_a_taxon_framework_link: "marco de taxon para %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: 'Tu contraseña no pudo ser modificada: %{e}'
   couldnt_find_a_user_matching_x_param: 'No se pudo encontrar al usuario con parámetros:
     %{id}'
@@ -3350,6 +3350,7 @@ es:
   rank_position: Posición
   rank_restrictions: Clasificar las restricciones
   ranks:
+    stateofmatter: Estado de la materia
     kingdom: Reino
     subkingdom: Subreino
     phylum: Filo
@@ -3439,14 +3440,14 @@ es:
   reject_the_community_id: Rehusar la identificación de la comunidad
   related_species: Especies relacionadas
   relative_observations: Observaciones relativas
-  relationship: Relación
+  relationship: "Relación: %{relationship}"
   relationships:
       match: coinciden
-      swap: cambio
-      position_swap: cambio de posición
-      many_to_many: muchos a muchos
-      lump: agrupar
-      split: dividir
+      one_to_one: uno-a-uno
+      alternate_position: cambio de posición
+      many_to_many: muchos-a-muchos
+      many_to_one: muchos-a-muchos
+      one_to_many: uno-a-muchos
       not_external: no externo
       not_internal: no interno
       unknown: desconocido
@@ -4770,6 +4771,7 @@ es:
   x_of_y: '%{x} de %{y}'
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} of %{y} gente (mas de 2/3) estan
     de acuerdo con esto'
+  x_is_the_root_of_the_tree: "%{rank} %{name} es la raiz del arbol"
   x_project_journal: '%{name} del proyecto %{project}'
   x_project_stats: Estadísticas de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} le envió un nuevo mensaje en %{y}'

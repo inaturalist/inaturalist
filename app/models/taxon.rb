@@ -467,7 +467,7 @@ class Taxon < ActiveRecord::Base
     true
   end
 
-  def self.get_internal_taxa_covered_by(taxon_framework)
+  def self.get_internal_taxa_covered_by( taxon_framework )
     ancestry_string = ( taxon_framework.taxon.rank == STATEOFMATTER || taxon_framework.taxon.ancestry.nil? ) ?
       "#{ taxon_framework.taxon_id }" : "#{ taxon_framework.taxon.ancestry }/#{ taxon_framework.taxon.id }"
     other_taxon_frameworks = TaxonFramework.joins(:taxon).

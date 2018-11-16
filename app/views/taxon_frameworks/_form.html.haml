@@ -76,7 +76,7 @@
     = label_tag 'Make it a cover taxa downstream'
     = check_box_tag :covers
     
-    #covers_details{ :style=>"display:none;" }
+    #covers_details.hidden
       = f.select :rank_level, @rank_levels, :include_blank => t( :none ), :selected => @taxon_framework.try( :rank_level ), :label=>t( :rank_level )
       = f.check_box :complete
 
@@ -84,7 +84,7 @@
         = label_tag 'Add source'
         = check_box_tag :add_source
     
-      #add_source_details{:style=>"display:none;"}
+      #add_source_details.hidden
         .source
           = render :partial => 'sources/nested_form_fields', :locals => {:f => f}
    

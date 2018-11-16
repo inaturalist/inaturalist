@@ -7,11 +7,11 @@ class TaxaController < ApplicationController
       ssl: c.request.ssl? } },
     :if => Proc.new {|c|
       !request.format.json? &&
-      (c.session.blank? || c.session['warden.user.user.key'].blank?) &&
+      ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
       c.params[:test].blank?
     }
   caches_action :describe, :expires_in => 1.day,
-    :cache_path => Proc.new { |c| c.params.merge(locale: I18n.locale) },
+    :cache_path => Proc.new { |c| c.params.merge( locale: I18n.locale ) },
     :if => Proc.new {|c|
       c.session.blank? || c.session['warden.user.user.key'].blank?
     }
@@ -45,8 +45,8 @@ class TaxaController < ApplicationController
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
-  ALLOWED_SHOW_PARTIALS = %w(chooser)
-  ALLOWED_PHOTO_PARTIALS = %w(photo)
+  ALLOWED_SHOW_PARTIALS = %w( chooser )
+  ALLOWED_PHOTO_PARTIALS = %w( photo )
   
   #
   # GET /observations
@@ -59,7 +59,7 @@ class TaxaController < ApplicationController
     find_taxa unless request.format.blank? || request.format.html?
     
     begin
-      @taxa.try(:total_entries)
+      @taxa.try( :total_entries )
     rescue => e
       Rails.logger.error "[ERROR] Taxon index failed: #{e}"
       @taxa = WillPaginate::Collection.new(1, 30, 0)
@@ -224,7 +224,10 @@ class TaxaController < ApplicationController
     
     if @upstream_taxon_framework = @taxon.upstream_taxon_framework
       if @upstream_taxon_framework.source_id
-        @taxon_framework_relationship = TaxonFrameworkRelationship.includes("taxa","external_taxa").joins("JOIN taxa ON taxa.taxon_framework_relationship_id = taxon_framework_relationships.id").where("taxa.id = ? AND taxon_framework_id = ?", @taxon, @upstream_taxon_framework).first
+        @taxon_framework_relationship = TaxonFrameworkRelationship.
+          includes( "taxa","external_taxa" ).
+          joins( "JOIN taxa ON taxa.taxon_framework_relationship_id = taxon_framework_relationships.id" ).
+          where( "taxa.id = ? AND taxon_framework_id = ?", @taxon, @upstream_taxon_framework ).first
       end
     end
     
@@ -234,7 +237,7 @@ class TaxaController < ApplicationController
         @overlapping_downstream_taxon_frameworks = @taxon_framework.get_downstream_taxon_frameworks
         @flagged_taxa = @taxon_framework.get_flagged_taxa
         if @taxon_framework.source_id
-          @deviations_count = TaxonFrameworkRelationship.where("taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id).count
+          @deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).count
         end
       end
     end
@@ -275,7 +278,7 @@ class TaxaController < ApplicationController
           "into an existing taxon instead."
       end
       if parent = @taxon.parent
-        if @taxon.is_active && !parent.is_active && (taxon_change = parent.taxon_changes.where( "committed_on IS NULL" ).first)
+        if @taxon.is_active && !parent.is_active && ( taxon_change = parent.taxon_changes.where( "committed_on IS NULL" ).first )
           flash[:notice] += " Heads up: the parent of this active taxon is inactive " + 
             "but its the output of this <a href='/taxon_changes/#{taxon_change.id}'>" + 
             "draft taxon change</a> that we assume you'll commit shortly."

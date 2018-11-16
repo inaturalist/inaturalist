@@ -913,8 +913,8 @@ en:
   copyright_info: Copyright Info
   copyright_info_and_more: Copyright Info and More
   copyright_infringement_desc: Violates copyright law or was created by someone other than the observer and lacks attribution
-  covered_by_a_taxon_framework_html: "Covered by a %{href}"
-  covered_by_a_taxon_framework_href: "taxon framework for %{taxon_framework_rank} %{taxon_framework_name}"
+  covered_by_a_taxon_framework_html: "Covered by a %{link}"
+  covered_by_a_taxon_framework_link: "taxon framework for %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
   couldnt_find_that_taxon: Could't find that taxon.
@@ -2976,6 +2976,7 @@ en:
   rank_position: Rank
   rank_restrictions: Rank restrictions
   ranks:
+      stateofmatter: State of matter
       kingdom: Kingdom
       subkingdom: Subkingdom
       phylum: Phylum
@@ -3062,14 +3063,14 @@ en:
   reject_the_community_id: reject the community ID
   related_species: Related Species
   relative_observations: Relative Observations
-  relationship: Relationship
+  relationship: "Relationship: %{relationship}"
   relationships:
       match: match
-      swap: swap
-      position_swap: position swap
-      many_to_many: many to many
-      lump: lump
-      split: split
+      one_to_one: one-to-one
+      alternate_position: alternate position
+      many_to_many: many-to-many
+      many_to_one: many-to-one
+      one_to_many: one-to-many
       not_external: not external
       not_internal: not internal
       unknown: unknown
@@ -4230,6 +4231,7 @@ en:
     other: "%{count} observations failed"
   x_of_y: "%{x} of %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} of %{y} people (over 2/3) agree it is"
+  x_is_the_root_of_the_tree: "%{rank} %{name} is the root of the tree"
   x_project_journal: "%{project}'s %{name}"
   x_project_stats: "%{project} Stats"
   x_sent_you_a_new_message_on_y_html: "%{x} sent you a new message on %{y}: "

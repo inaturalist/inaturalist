@@ -1,6 +1,6 @@
 class TaxonFrameworkRelationshipsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
-  before_filter :admin_required, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :admin_required, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_taxon_framework_relationship, except: [:index, :new, :create]
   
   layout "bootstrap"
@@ -10,7 +10,6 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     @relationships = filter_params[:relationships]
     @relationships ||= TaxonFrameworkRelationship::RELATIONSHIPS.map{ |r| filter_params[r] == "1" ? r : nil }
     @relationships.delete_if{ |r| r.blank? }
-    @relationships = @relationships.map{ |r| r.gsub( "_"," " ) }
     @taxon_framework = TaxonFramework.find_by_id( filter_params[:taxon_framework_id] ) unless filter_params[:taxon_framework_id].blank?    
     @taxon_frameworks = TaxonFramework.all.limit( 100 )
     @taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
@@ -25,9 +24,9 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     scope = scope.taxon(@taxon) if @taxon
     scope = scope.by(@user) if @user
     scope = scope.rank(@rank) if @rank
-    if @is_active == "True"
+    if @is_active.yesish?
       scope = scope.active
-    elsif @is_active == "False"
+    elsif @is_active.noish?
       scope = scope.inactive
     end
     
@@ -57,15 +56,17 @@ class TaxonFrameworkRelationshipsController < ApplicationController
   end
   
   def new
-    if (taxon_framework_id = params['taxon_framework_id']).present?
+    if ( taxon_framework_id = params["taxon_framework_id"] ).present?
       @taxon_framework_relationship = TaxonFrameworkRelationship.new(taxon_framework_id: taxon_framework_id)
     else
       @taxon_framework_relationship = TaxonFrameworkRelationship.new
     end
     @taxon_framework_relationship.external_taxa.new
-    if ( taxon_id = params['taxon_id'] ).present? && taxon = Taxon.where( id: taxon_id ).first
+    if ( taxon_id = params["taxon_id"] ).present? && taxon = Taxon.where( id: taxon_id ).first
       @taxon_framework_relationship.taxa.new( id: taxon_id, rank: nil )
-      @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).order( "taxa.rank_level ASC" ).first]
+      @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
+        where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
+        order( "taxa.rank_level ASC" ).first]
     else
       @taxon_framework_relationship.taxa.new
       @taxon_frameworks = TaxonFramework.all.limit( 100 )
@@ -118,7 +119,9 @@ class TaxonFrameworkRelationshipsController < ApplicationController
   def edit
     if @taxon_framework_relationship.taxa.any?
       taxon = @taxon_framework_relationship.taxa.first
-      @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).order( "taxa.rank_level ASC" ).first]
+      @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
+          where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
+          order( "taxa.rank_level ASC" ).first]
     else
       @taxon_frameworks = TaxonFramework.all.limit( 100 )
     end
@@ -138,7 +141,9 @@ class TaxonFrameworkRelationshipsController < ApplicationController
             flash[:error] = "#{ taxon.name } is already represented in a Taxon Framework Relationship"
             if @taxon_framework_relationship.taxa.any?
               taxon = @taxon_framework_relationship.taxa.first
-              @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).order( "taxa.rank_level ASC" ).first]
+              @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
+                  where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
+                  order( "taxa.rank_level ASC" ).first]
             else
               @taxon_frameworks = TaxonFramework.all.limit( 100 )
             end
@@ -169,7 +174,8 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     else
       if @taxon_framework_relationship.taxa.any?
         taxon = @taxon_framework_relationship.taxa.first
-        @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).order( "taxa.rank_level ASC" ).first]
+        @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
+            where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).order( "taxa.rank_level ASC" ).first]
       else
         @taxon_frameworks = TaxonFramework.all.limit( 100 )
       end
@@ -187,7 +193,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     else
       flash[:error] = "Something went wrong deleting the taxon framework relationship '#{ @taxon_framework_relationship.id }'!"
     end
-    redirect_to :action => 'index'
+    redirect_to action: "index"
   end
   
   private
@@ -197,7 +203,8 @@ class TaxonFrameworkRelationshipsController < ApplicationController
   end
   
   def taxon_framework_relationship_params
-    params.require( :taxon_framework_relationship ).permit( :description, :taxon_framework_id, external_taxa_attributes: [:id, :name, :rank, :parent_name, :parent_rank, :url, :_destroy], taxa_attributes: [:id, :unlink] )
+    params.require( :taxon_framework_relationship ).
+      permit( :description, :taxon_framework_id, external_taxa_attributes: [:id, :name, :rank, :parent_name, :parent_rank, :url, :_destroy], taxa_attributes: [:id, :unlink] )
   end
   
 end

@@ -22,19 +22,19 @@
       .row
         .col-xs-4
           %p
-            = "#{t( :downstream_coverage )}:"
+            = "#{ t( :downstream_coverage ) }:"
             = t( :rank ).downcase
             = t( "ranks.#{ @rank_levels.invert[@taxon_framework.rank_level] }" ).downcase
         - if taxon_framework.complete?
           .col-xs-4
             %p
-              = "#{t( :complete )}:"
+              = "#{ t( :complete ) }:"
               = t taxon_framework.complete?
       - if taxon_framework.source  
         - if overlapping_downstream_taxon_frameworks.count > 0
           .taxon_framework_count
-            = "#{t( :overlapping_downstream_taxon_frameworks )}:"
-            = link_to @overlapping_downstream_taxon_frameworks.count, '#'
+            = "#{ t( :overlapping_downstream_taxon_frameworks ) }:"
+            = link_to @overlapping_downstream_taxon_frameworks.count, "#"
           .taxon_framework_table
             %table.table.table-bordered
               %thead
@@ -45,14 +45,16 @@
               %tbody
                 - overlapping_downstream_taxon_frameworks.each do |overlapping_downstream_taxon_framework|
                   %tr
-                    %td= link_to overlapping_downstream_taxon_framework.taxon.name, taxonomy_details_for_taxon_path(overlapping_downstream_taxon_framework.taxon)
-                    %td= t("ranks.#{ Taxon::RANK_FOR_RANK_LEVEL[overlapping_downstream_taxon_framework.rank_level] }")
+                    %td= link_to overlapping_downstream_taxon_framework.taxon.name, taxonomy_details_for_taxon_path( overlapping_downstream_taxon_framework.taxon )
+                    %td= t( "ranks.#{ Taxon::RANK_FOR_RANK_LEVEL[overlapping_downstream_taxon_framework.rank_level] }" )
                     - if overlapping_downstream_taxon_framework.source
                       %td= overlapping_downstream_taxon_framework.source.title
         - if deviations_count > 0
           %p
             = "#{ t(:deviations) }:"
-            = link_to deviations_count, taxon_framework_relationships_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_framework_id: taxon_framework.id } ) )
+            = link_to |
+            deviations_count, |
+            taxon_framework_relationships_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_framework_id: taxon_framework.id } ) ) |
       - if taxon_curators.count > 0
         %p= "#{ t(:taxon_curators) }:"
         .row
@@ -60,22 +62,22 @@
             .col-xs-2
               .media
                 .media-left
-                  = link_to(image_tag(taxon_curator.user.icon.url(:thumb), :class => 'media-object img-circle followee', :width => 50), person_by_login_path(taxon_curator.user.login))                                          
+                  = link_to( image_tag( taxon_curator.user.icon.url( :thumb ), class: "media-object img-circle followee", width: 50 ), person_by_login_path( taxon_curator.user.login ) )
                 .media-body
-                  %h4.media-heading= link_to taxon_curator.user.login, person_by_login_path(taxon_curator.user.login)
+                  %h4.media-heading= link_to taxon_curator.user.login, person_by_login_path( taxon_curator.user.login )
       - if flagged_taxa.count > 0
         .flagged_taxa_count
-          = "#{ t(:flagged_covered_taxa) }:"
-          = link_to @flagged_taxa.count, '#'
+          = "#{ t( :flagged_covered_taxa ) }:"
+          = link_to @flagged_taxa.count, "#"
         .flagged_taxa_table
           %table.table.table-bordered
             %thead
               %tr
-                %th= t(:flagged_taxon)
+                %th= t( :flagged_taxon )
             %tbody
               - flagged_taxa.each do |flagged_taxon|
                 %tr
-                  %td= link_to flagged_taxon.name, taxon_path(flagged_taxon)
+                  %td= link_to flagged_taxon.name, taxon_path( flagged_taxon )
     - unless taxon_framework.description.blank?
-      %p= "#{ t(:taxon_framework_notes) }:"
+      %p= "#{ t( :taxon_framework_notes ) }:"
       %p= formatted_user_text taxon_framework.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES

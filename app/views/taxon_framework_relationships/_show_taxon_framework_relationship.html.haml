@@ -2,8 +2,7 @@
   taxon_framework_relationship ||= show_taxon_framework_relationship[:taxon_framework_relationship]
   taxon ||= show_taxon_framework_relationship[:taxon]
 %p
-  = "#{ t(:relationship) }:"
-  = taxon_framework_relationship.relationship == "match" ? t(relationships.match) : t(:deviation)
+  = t :relationship, relationship: ( taxon_framework_relationship.relationship == "match" ? t(relationships.match) : t( :deviation ) )
 %table.table.table-bordered
   %thead
     %tr
@@ -14,13 +13,24 @@
     - ( 0..( [taxon_framework_relationship.taxa.count, taxon_framework_relationship.external_taxa.count].max-1 ) ).each do |i|
       %tr
         - if taxon_framework_relationship.external_taxa[i]
-          - rank_name = ( Taxon::RANKS.include? taxon_framework_relationship.external_taxa[i].rank ) ? t( "ranks.#{ taxon_framework_relationship.external_taxa[i].rank }" ).capitalize : taxon_framework_relationship.external_taxa[i].rank
-          - parent_rank_name = ( Taxon::RANKS.include? taxon_framework_relationship.external_taxa[i].parent_rank ) ? t( "ranks.#{ taxon_framework_relationship.external_taxa[i].parent_rank }" ).capitalize : taxon_framework_relationship.external_taxa[i].parent_rank
+          - rank_name = ( Taxon::RANKS.include? taxon_framework_relationship.external_taxa[i].rank ) ? |
+          t( "ranks.#{ taxon_framework_relationship.external_taxa[i].rank }" ).capitalize : |
+          taxon_framework_relationship.external_taxa[i].rank |
+          - if taxon_framework_relationship.external_taxa[i]
+            - parent_rank_name = ( Taxon::RANKS.include? taxon_framework_relationship.external_taxa[i].parent_rank ) ? |
+            t( "ranks.#{ taxon_framework_relationship.external_taxa[i].parent_rank }" ).capitalize : |
+            taxon_framework_relationship.external_taxa[i].parent_rank |
           - if taxon_framework_relationship.external_taxa[i].url
             %td
-              = link_to rank_name + " " + taxon_framework_relationship.external_taxa[i].name + " (#{ t(:parent).downcase }: " + parent_rank_name + " " + taxon_framework_relationship.external_taxa[i].parent_name + ")", taxon_framework_relationship.external_taxa[i].url
+              = link_to |
+                rank_name + " " + taxon_framework_relationship.external_taxa[i].name + |
+                " (#{ t(:parent).downcase }: " + parent_rank_name + " " + |
+                taxon_framework_relationship.external_taxa[i].parent_name + ")", taxon_framework_relationship.external_taxa[i].url |
           - else
-            %td= rank_name + " " + taxon_framework_relationship.external_taxa[i].name + " (#{ t(:parent).downcase }: " + parent_rank_name + " " + taxon_framework_relationship.external_taxa[i].parent_name + ")"
+            %td
+              = rank_name + " " + taxon_framework_relationship.external_taxa[i].name + |
+              " (#{ t(:parent).downcase }: " + parent_rank_name + " " + |
+              taxon_framework_relationship.external_taxa[i].parent_name + ")" |
         - else
           %td
         - if i==0
@@ -29,8 +39,18 @@
           %td
         - if taxon_framework_relationship.taxa[i]
           - if taxon && taxon_framework_relationship.taxa[i].id == taxon.id
-            %td= t( "ranks.#{ taxon_framework_relationship.taxa[i].rank }" ).capitalize + " " +taxon_framework_relationship.taxa[i].name + " (#{ t(:parent).downcase }: " + t( "ranks.#{ taxon_framework_relationship.taxa[i].parent.rank }" ).capitalize + " " + taxon_framework_relationship.taxa[i].parent.name + ")"
+            %td
+              = t( "ranks.#{ taxon_framework_relationship.taxa[i].rank }" ).capitalize + " " + |
+              taxon_framework_relationship.taxa[i].name + " (#{ t(:parent).downcase }: " + |
+              t( "ranks.#{ taxon_framework_relationship.taxa[i].parent.rank }" ).capitalize + " " + |
+              taxon_framework_relationship.taxa[i].parent.name + ")" |
           - else
-            %td= link_to t( "ranks.#{ taxon_framework_relationship.taxa[i].rank }" ).capitalize + " " +taxon_framework_relationship.taxa[i].name + " (#{ t(:parent).downcase }: " + t( "ranks.#{ taxon_framework_relationship.taxa[i].parent.rank }" ).capitalize + " " + taxon_framework_relationship.taxa[i].parent.name + ")", taxonomy_details_for_taxon_path( taxon_framework_relationship.taxa[i] )
+            %td
+              = link_to |
+              t( "ranks.#{ taxon_framework_relationship.taxa[i].rank }" ).capitalize + " " + |
+              taxon_framework_relationship.taxa[i].name + " (#{ t(:parent).downcase }: " + |
+              t( "ranks.#{ taxon_framework_relationship.taxa[i].parent.rank }" ).capitalize + " " + |
+              taxon_framework_relationship.taxa[i].parent.name + ")", |
+              taxonomy_details_for_taxon_path( taxon_framework_relationship.taxa[i] ) |
         - else
           %td

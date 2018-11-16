@@ -2,7 +2,7 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   alias_attribute :internal_taxa, :taxa
   
   belongs_to :user
-  belongs_to :updater, :class_name => 'User'
+  belongs_to :updater, class_name: "User"
   belongs_to :taxon_framework
   has_many :external_taxa, dependent: :destroy
   has_many :taxa, before_add: :check_if_covered, dependent: :nullify
@@ -17,39 +17,39 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   validate :taxon_framework_has_source
   
   RELATIONSHIPS = [
-    'match',
-    'swap',
-    'position_swap',
-    'many_to_many',
-    'lump',
-    'split',
-    'not_external',
-    'not_internal',
-    'unknown'
+    "match",
+    "one_to_one",
+    "alternate_position",
+    "many_to_many",
+    "many_to_one",
+    "one_to_many",
+    "not_external",
+    "not_internal",
+    "unknown"
   ]
   
   TAXON_JOINS = [
     "LEFT OUTER JOIN taxa t ON t.taxon_framework_relationship_id = taxon_framework_relationships.id"
   ]
   
-  scope :relationships, lambda {|relationships| where("taxon_framework_relationships.relationship IN (?)", relationships)}
-  scope :taxon_framework, lambda{|taxon_framework| where("taxon_framework_relationships.taxon_framework_id = ?", taxon_framework)}
-  scope :by, lambda{|user| where(:user_id => user)}
+  scope :relationships, lambda { |relationships| where( "taxon_framework_relationships.relationship IN (?)", relationships ) }
+  scope :taxon_framework, lambda{ |taxon_framework| where("taxon_framework_relationships.taxon_framework_id = ?", taxon_framework ) }
+  scope :by, lambda{ |user| where( user_id: user ) }
   scope :active, -> {
-    joins(TAXON_JOINS).
-    where("t.is_active = true")
+    joins( TAXON_JOINS ).
+    where( "t.is_active = true" )
   }
   scope :inactive, -> {
-    joins(TAXON_JOINS).
-    where("t.is_active = false")
+    joins( TAXON_JOINS ).
+    where( "t.is_active = false" )
   }
-  scope :rank, lambda {|rank|
-    joins(TAXON_JOINS).
-    where("t.rank = ?", rank)
+  scope :rank, lambda { |rank|
+    joins( TAXON_JOINS ).
+    where( "t.rank = ?", rank )
   }
   scope :taxon, lambda{|taxon|
     joins(TAXON_JOINS).
-    where("t.id = ? OR t.ancestry LIKE (?) OR t.ancestry LIKE (?)", taxon.id, "%/#{taxon.id}", "%/#{taxon.id}/%")
+    where( "t.id = ? OR t.ancestry LIKE (?) OR t.ancestry LIKE (?)", taxon.id, "%/#{ taxon.id }", "%/#{ taxon.id }/%" )
   }
   
   def mark_external_taxa_for_destruction
@@ -65,7 +65,7 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   end
   
   def taxa_covered_by_taxon_framework
-    return false unless taxa.map{|t| t.parent.id == taxon_framework.taxon_id || taxon.upstream_taxon_framework.id == taxon_framework.id}.all?  ###II is internode 
+    return false unless taxa.map{ |t| t.parent.id == taxon_framework.taxon_id || taxon.upstream_taxon_framework.id == taxon_framework.id }.all?
     true
   end
   
@@ -88,16 +88,16 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
         self.relationship = "match"
       elsif external_taxa.first.name == taxa.first.name && 
          external_taxa.first.rank == taxa.first.rank
-        self.relationship = "position_swap"
+        self.relationship = "alternate_position"
       else
-        self.relationship = "swap"
+        self.relationship = "one_to_one"
       end
     elsif external_taxa_count > 1 && taxa_count > 1
       self.relationship = "many_to_many"
     elsif external_taxa_count > 1 && taxa_count == 1
-      self.relationship = "lump"
+      self.relationship = "many_to_one"
     elsif external_taxa_count == 1 && taxa_count > 1
-      self.relationship = "split"
+      self.relationship = "one_to_many"
     elsif external_taxa_count == 0 && taxa_count == 1
       self.relationship = "not_external"
     elsif external_taxa_count == 1 && taxa_count == 0

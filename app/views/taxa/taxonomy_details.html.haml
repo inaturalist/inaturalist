@@ -55,7 +55,7 @@
         .panel-heading
           = t :not_covered_by_any_taxon_frameworks
           - if @taxon.rank_level == Taxon::ROOT_LEVEL
-            ( #{ @taxon.rank.capitalize } #{ @taxon.name } is the root of the tree )
+            = "(" + t( :x_is_the_root_of_the_tree, rank: t("ranks.#{@taxon.rank}").capitalize, name: @taxon.name ) + ")"
     - if @taxon_framework
       = render :partial => 'defines_taxon_framework', object: { taxon_framework: @taxon_framework, taxon: @taxon, overlapping_downstream_taxon_frameworks: @overlapping_downstream_taxon_frameworks, deviations_count: @deviations_count, taxon_curators: @taxon_curators, flagged_taxa: @flagged_taxa }
     - else
