@@ -30,25 +30,25 @@
             %p
               = "#{ t( :complete ) }:"
               = t taxon_framework.complete?
-      - if taxon_framework.source  
-        - if overlapping_downstream_taxon_frameworks.count > 0
-          .taxon_framework_count
-            = "#{ t( :overlapping_downstream_taxon_frameworks ) }:"
-            = link_to @overlapping_downstream_taxon_frameworks.count, "#"
-          .taxon_framework_table
-            %table.table.table-bordered
-              %thead
+      - if overlapping_downstream_taxon_frameworks.count > 0
+        .taxon_framework_count
+          = "#{ t( :overlapping_downstream_taxon_frameworks ) }:"
+          = link_to @overlapping_downstream_taxon_frameworks.count, "#"
+        .taxon_framework_table
+          %table.table.table-bordered
+            %thead
+              %tr
+                %th= t(:attached_taxon)
+                %th= t(:downstream_coverage_rank)
+                %th= t(:source)
+            %tbody
+              - overlapping_downstream_taxon_frameworks.each do |overlapping_downstream_taxon_framework|
                 %tr
-                  %th= t(:attached_taxon)
-                  %th= t(:downstream_coverage_rank)
-                  %th= t(:source)
-              %tbody
-                - overlapping_downstream_taxon_frameworks.each do |overlapping_downstream_taxon_framework|
-                  %tr
-                    %td= link_to overlapping_downstream_taxon_framework.taxon.name, taxonomy_details_for_taxon_path( overlapping_downstream_taxon_framework.taxon )
-                    %td= t( "ranks.#{ Taxon::RANK_FOR_RANK_LEVEL[overlapping_downstream_taxon_framework.rank_level] }" )
-                    - if overlapping_downstream_taxon_framework.source
-                      %td= overlapping_downstream_taxon_framework.source.title
+                  %td= link_to overlapping_downstream_taxon_framework.taxon.name, taxonomy_details_for_taxon_path( overlapping_downstream_taxon_framework.taxon )
+                  %td= t( "ranks.#{ Taxon::RANK_FOR_RANK_LEVEL[overlapping_downstream_taxon_framework.rank_level] }" )
+                  - if overlapping_downstream_taxon_framework.source
+                    %td= overlapping_downstream_taxon_framework.source.title
+      - if taxon_framework.source  
         - if deviations_count > 0
           %p
             = "#{ t(:deviations) }:"
