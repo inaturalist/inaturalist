@@ -70,7 +70,7 @@ class TaxonFramework < ActiveRecord::Base
     return false unless covers?
     ancestry_string = taxon.rank == "stateofmatter" ? "#{ taxon_id }" : "%/#{ taxon_id }"
     downstream_taxon_frameworks = TaxonFramework.includes( "taxon" ).joins( "JOIN taxa ON taxon_frameworks.taxon_id = taxa.id" ).
-      where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) ) AND taxa.rank_level > #{ rank_level } AND taxon_frameworks.rank_level IS NOT NULL" )
+      where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) ) AND taxa.rank_level > #{ rank_level } AND taxon_frameworks.rank_level IS NOT NULL" ).order(rank_level: :desc)
   end
   
   def get_unassigned_taxa
@@ -97,10 +97,18 @@ class TaxonFramework < ActiveRecord::Base
     return unassigned_taxa
   end
   
+  def get_flagged_taxa_count
+    flagged_taxa_count = Taxon.get_internal_taxa_covered_by( self ).
+      joins( "INNER JOIN flags ON taxa.id = flags.flaggable_id AND flags.flaggable_type = 'Taxon'" ).
+      where( "flags.resolved = false").count
+
+    return flagged_taxa_count
+  end
+  
   def get_flagged_taxa
     flagged_taxa = Taxon.get_internal_taxa_covered_by( self ).
       joins( "INNER JOIN flags ON taxa.id = flags.flaggable_id AND flags.flaggable_type = 'Taxon'" ).
-      where( "flags.resolved = false").limit( 10 )
+      where( "flags.resolved = false").order( "taxa.rank_level desc" ).limit( 10 )
 
     return flagged_taxa
   end

@@ -32,7 +32,7 @@ const TaxonomicBranch = ( {
   }
   const renderTaxonomy = taxa => (
     <ul className="plain taxonomy">
-      { ( _.sortBy( taxa, t => [( t.rank_level || 0 ) * -1, t.name] ) || [] ).map( t => {
+      { ( _.sortBy( taxa, t => [(100 - t.rank_level), t.name] ) || [] ).map( t => {
         let className = "";
         const isRoot = t.id === branch[0].id;
         const isTaxon = t.id === taxon.id;
