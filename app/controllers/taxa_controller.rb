@@ -236,6 +236,7 @@ class TaxaController < ApplicationController
         @taxon_curators = @taxon_framework.taxon_curators
         @overlapping_downstream_taxon_frameworks = @taxon_framework.get_downstream_taxon_frameworks
         @flagged_taxa = @taxon_framework.get_flagged_taxa
+        @flagged_taxa_count = @taxon_framework.get_flagged_taxa_count
         if @taxon_framework.source_id
           @deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).count
         end

@@ -80,7 +80,7 @@ class TaxonChangesController < ApplicationController
         TaxonChange.input_taxon(it).all.to_a
       end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id || !tc.committed_on.nil?}
       @upstream_taxon_framework = @taxon_change.input_taxa.detect{|t| t.upstream_taxon_framework}.try(:upstream_taxon_framework)
-      if current_user && @upstream_taxon_framework.taxon_curators.count > 0 && @upstream_taxon_framework.taxon_curators.select{|tc| tc.user_id != current_user}
+      if current_user && @upstream_taxon_framework && @upstream_taxon_framework.taxon_curators.count > 0 && @upstream_taxon_framework.taxon_curators.select{|tc| tc.user_id != current_user}
         @curated_upstream_taxon_framework = @upstream_taxon_framework
       end
     end
