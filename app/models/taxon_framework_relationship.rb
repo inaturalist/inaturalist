@@ -87,6 +87,12 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
          external_taxa.first.parent_rank.downcase == taxa.first.parent.rank
         self.relationship = "match"
       elsif external_taxa.first.name == taxa.first.name && 
+        external_taxa.first.rank == taxa.first.rank &&
+        taxa.first.ancestors.map{|a| { name: a.name, rank: a.rank } }.
+          select{ |a| a[:name] == external_taxa.first.parent_name && a[:rank] == external_taxa.first.parent_rank.downcase }.
+          count > 0
+        self.relationship = "match"
+      elsif external_taxa.first.name == taxa.first.name && 
          external_taxa.first.rank == taxa.first.rank
         self.relationship = "alternate_position"
       else
