@@ -1802,6 +1802,7 @@ ca:
   in: a
   in_: a
   in_n: a %{n}
+  in_place_x: a %{place}
   inaturalist_network_affiliation: Afiliació a la Xarxa d'iNaturalist
   inbox: bústia
   including: inclou
@@ -1811,7 +1812,7 @@ ca:
   in_taxon?: al tàxon
   in_the_past: en el passat
   in_the_past_week: durant la setmana passada
-  inactive: inactiva
+  inactive: Inactiva
   inactive_taxon: Tàxon inactiu
   inactive_taxon_concepts_are: Les categories taxonòmiques inactives són tàxons antiquats
     o que han canviat el nom. Les categories inactives es conserven per mantenir la
@@ -1843,9 +1844,9 @@ ca:
     identificat, i ajudar que altres persones identifiquin criatures misterioses!
   interactions: Interaccions
   internal_server_error: S'ha produït un error intern del servidor
-  introduced: introduïda
+  introduced: Introduïda
   introduced_in_place: Introduït a %{place}
-  invasive: invasores
+  invasive: Invasora
   invitation: Invitació
   invitations: Invitacions
   invite: convida
@@ -2275,6 +2276,9 @@ ca:
   medium_url: URL de medi
   meet: Conegueu-ne
   member_of_the_inaturalist_network_html: Membre de la <a href="%{url}">Xarxa iNaturalist</a>
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : Membre de %{partial_inat_network_tag_html}iNaturalist Network</a> una iniciativa
+    conjunta de %{cas_tag_html} i %{nat_geo_tag_html}.
   members: Membres
   membership_model: Model d'adhesió
   mentioned_you_in_noun_html: '%{user} us ha esmentat a %{noun}'
@@ -2330,7 +2334,7 @@ ca:
   more_import_options: Més opcions d'importació
   more_info: Més informació
   more_info_title: Més informació
-  more_journal_posts: Més notes de revista
+  more_journal_posts: Més articles de revistes
   more_observations: Més observacions
   more_photos: Més Fotos
   most: Més
@@ -2343,9 +2347,10 @@ ca:
   most_recent_observation_by_date_observed: Observació més recents verificable per
     data
   most_species: La majoria de les espècies
-  most_observed_species: La majoria d'espècies observades
-  most_observed_introduced_species: Espècies introduïdes més observades
-  most_observed_threatened_species: Espècies en perill més observades
+  most_observed_species: Les espècies més observades
+  most_observed_introduced_species: Les espècies introduïdes més observades
+  most_observed_threatened_species: Les espècies en perill més observades
+  move_input_children_to_output?: Moure fills a la sortida
   multiple: múltiples
   multiple_select_option: -- múltiple --
   multiple_taxa_for_taxon_change: Múltiples tàxons (entrar per intercanviar/barrejar,
@@ -2396,7 +2401,7 @@ ca:
   ne_lat: Lat. N.E.
   ne_lon: Long. N.E.
   near: a prop
-  near_threatened: gairebé amenaçat
+  near_threatened: Quasi amenaçat
   nearby: Propera
   nearby_observations_: Observacions properes
   nearby_observations: Observacions properes
@@ -2511,7 +2516,7 @@ ca:
   no_nearby_observations: No hi ha observacions properes.
   no_new_messages: No hi ha nous missatges
   no_news_yet: No hi ha encara cap notícia
-  no_observations: no hi ha observacions
+  no_observations: Sense observacions
   no_observations_from_this_place_yet: Encara no hi ha observacions per a aquest lloc.
   no_observations_matching_those_ids: No hi ha observacions que coincideixin amb aquestes
     ID.
@@ -2743,7 +2748,7 @@ ca:
   of_identifiers: identificadors
   of_places: llocs
   of_this_taxon: D'aquest taxon
-  offensive_inappropriate: ofensiu/inadequat
+  offensive_inappropriate: Ofensiu/inadequat
   official_blog: Blog oficial
   offline_access_enabled: Accés fora de línia activat
   old_observation_form: Antic registre de l'observació (obsolet)
@@ -2854,10 +2859,12 @@ ca:
   optional_columns_note_for_any: 'Columnes opcionals (nota: per usar qualsevol d''aquestes
     columnes a una observació, totes han de ser-hi presents)'
   or: o
+  or_all_caps: O
   or_choose_high_level_taxa: '... O seleccioneu un tàxon de rang superior'
   or_if_you_dont_want_email: O si no voleu cap correu electrònic...
   or_invite_your_friends: o convideu els vostres amics
   or_invited: o convidades.
+  or_log_in_with_colon: O inicia ambː
   or_post_message_to_google_group: o envieu un missatge al nostre Grup de Google
   or_upload: O descarregueu el
   or_you_can: O bé podeu...
@@ -2883,6 +2890,7 @@ ca:
   other_lexicons: Altres Lèxics
   other_listings_of_this_taxon_for_this_place: Altres observacions d'aquesta espècie
     per a aquest lloc
+  other_names: Altres noms
   other_species_commonly_misidentified_as_this_species: Altres espècies habitualment
     identificades incorrectament com aquesta espècie
   other_species_commonly_misidentified_as_this_species_in_place_html: Altres espècies
@@ -2917,7 +2925,7 @@ ca:
   per_day: Per dia
   per_month: Per mes
   per_week: Per setmana
-  person: persona
+  person: Persona
   personal_message: Missatge personal
   personal_message_description: A ningú no li agrada rebre missatges automàtics. Hauríeu
     explicar als vostres amics per què els convideu.
@@ -2927,6 +2935,7 @@ ca:
   photo?: Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Navegador de fotografies
+  photo_by: Foto de
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_deleted: Foto esborrada
   photo_destroyed_because_it_was_deleted_from: La foto s'ha eliminat perquè s’ha esborrat
@@ -2955,6 +2964,8 @@ ca:
   picasa_identity: Usuari de Picasa
   pick_a_username: Trieu nom d'usuari
   pink: rosa
+  pinned_locations_desc: Enganxeu aquesta combinació de coordenades, precisió, geoprivacitat
+    i notes de localitat per utilitzar-les més tard.
   place: Lloc
   placeholder: Posició
   place_added_to_inat_by: Lloc afegit a %{site_name} per
@@ -3086,6 +3097,7 @@ ca:
     belgium: Bèlgica
     bosnia_and_herzegovina: Bòsnia i Hercegovina
     brazil: Brasil
+    canada: Canadà
     central_america: Amèrica Central
     china: Xina
     colombia: Colòmbia
@@ -3160,7 +3172,7 @@ ca:
     uns minuts per a llistes grans.
   please_hold_on_while_the_file_is_generated: Espereu mentre es genera l'arxiu. El
     procés pot trigar uns minuts per a llistes grans.
-  popular: popular
+  popular: Popular
   position: Posició
   positional_accuracy: Precisió de la ubicació
   possessive_user: de %{user}
@@ -3296,41 +3308,41 @@ ca:
   rank_position: Classificació
   rank_restrictions: Classifica les restriccions
   ranks:
-    kingdom: regne
-    subkingdom: subregne
-    phylum: fílum
-    subphylum: subfílum
-    superclass: superclasse
-    class: classe
-    subclass: subclasse
-    infraclass: infraclasse
-    superorder: superordre
-    order: ordre
-    suborder: subordre
-    infraorder: infra-ordre
+    kingdom: Regne
+    subkingdom: Subregne
+    phylum: Fílum
+    subphylum: Subfílum
+    superclass: Superclasse
+    class: Classe
+    subclass: Subclasse
+    infraclass: Infraclasse
+    superorder: Superordre
+    order: Ordre
+    suborder: Subordre
+    infraorder: Infra-ordre
     subterclass: Subterclasse
-    parvorder: parvordre
-    zoosection: zoosecció
-    zoosubsection: zoosubsecció
-    superfamily: superfamília
-    epifamily: epifamília
-    family: família
-    subfamily: subfamília
-    supertribe: supertribu
-    tribe: tribu
-    subtribe: subtribu
-    genus: gènere
-    genushybrid: gènere híbrid
-    subgenus: subgènere
-    section: secció
-    subsection: subsecció
-    species: espècies
-    hybrid: híbrid
-    subspecies: subespècies
-    variety: varietat
-    form: forma
-    infrahybrid: infrahíbrid
-    leaves: fulles
+    parvorder: Parvordre
+    zoosection: Zoosecció
+    zoosubsection: Zoosubsecció
+    superfamily: Superfamília
+    epifamily: Epifamília
+    family: Família
+    subfamily: Subfamília
+    supertribe: Supertribu
+    tribe: Tribu
+    subtribe: Subtribu
+    genus: Gènere
+    genushybrid: Gènere híbrid
+    subgenus: Subgènere
+    section: Secció
+    subsection: Subsecció
+    species: Espècie
+    hybrid: Híbrid
+    subspecies: Subespècie
+    variety: Varietat
+    form: Forma
+    infrahybrid: Infrahíbrid
+    leaves: Fulles
   ranges: Rangs
   rare: Rar
   ray_finned_fishes: peixos ossis
@@ -3360,7 +3372,7 @@ ca:
   recent_atom_observations_by: Observacions recents de %{login} (Atom)
   recent_observations_by: Observacions recents de %{login}
   recent_updates: Actualitzacions recents
-  recently_active: Actius recentment
+  recently_active: Actiu recentment
   recently_active_projects_from_everywhere: Projectes recentment actius de qualsevol
     lloc
   recently_active_projects_from_place: Projectes recentment actius de %{place}
@@ -3405,6 +3417,7 @@ ca:
   remove_curator_role: Elimina funció de supervisor
   remove_curator_status: Elimina estat de supervisor
   remove_from_batch: Elimina l'edició
+  remove_from_featured: Elimina dels presentats
   remove_from_guide: Eliminar de la guia
   remove_from_id_please?: Elimina del grup "ID Si us plau"?
   remove_from_list: Elimina de la llista
@@ -3453,7 +3466,7 @@ ca:
     de data, foto, coordenades i una ID recolzada per la comunitat. Feu clic aquí
     per veure l'avaluació de la qualitat de les dades.
   research_grade_qualification: Qualificació de Grau de Recerca
-  research_quality: Qualitat de la recerca
+  research_quality: Qualitat de recerca
   reset_search_filters: Refer els filtres de cerca
   reset_your_password: Restabliu la contrasenya
   resolve: Resol
@@ -3533,16 +3546,16 @@ ca:
   search_for_a_location: Cerqueu una ubicació
   search_for_new_taxa: cerca nous tàxons
   search_for_place_to_import_from_yahoo: Cerca un lloc per importar des de Yahoo.
-  search_for_species: Cerca d'espècies
+  search_for_species: Cerca d'espècie
   search_list: Cerca Llista
   search_obs: Cerca observacions
-  search_places: Busca llocs
-  search_projects: Cerca projectes
+  search_places: Cerca lloc
+  search_projects: Cerca projecte
   search_results_for: Cerca resultats per a
   search_results_for_query: Resultats de la cerca «%{query}»
   search_remote: Cerca remota
-  search_species: Cerca espècies
-  search_species_: Cerca espècies
+  search_species: Cerca espècie
+  search_species_: Cerca espècie
   search_taxa: Cerca tàxons...
   search_the_map: Cerca el mapa
   search_this_taxon: cerca aquest tàxon
@@ -3559,11 +3572,11 @@ ca:
   seen_one: N’heu vist un?
   select: Selecciona
   select_all: Selecciona-ho tot
-  select_an_album: Selecciona un àlbum
-  select_at_least_one: Selecciona com a mínim un
+  select_an_album: Seleccioneu un àlbum
+  select_at_least_one: Seleccioneu com a mínim un
   select_how_unobserved_listings_are_displayed: Selecciona com els mostren els llistats
     d'espècies no observades a la llista del projecte
-  select_one_or_more_photos: Selecciona una o més fotos
+  select_one_or_more_photos: Seleccioneu una o més fotos
   select_none: No en seleccioneu cap
   select_observations_to_edit: Seleccioneu observacions per a editar...
   select_one_of_friends_albums: Seleccioneu un dels àlbums de %{friend}
@@ -3630,11 +3643,12 @@ ca:
   shown_publicly_as: Mostra públicament com a
   sign_in: Inicieu sessió
   sign_in_with_provider: Inicieu sessió amb %{provider}
+  sign_up_with_provider: Registreu-vos amb %{provider}
   sign_out: Surtiu
   sign_up!: Registreu-vos!
   sign_up: Registreu-vos
   sign_up_exclamation: Registreu-vos!
-  similar_species: Espècies similars
+  similar_species: Espècie similar
   simple: Senzill
   sign_in_exclamation: Inicieu sessió!
   single_observation: Observació simple
@@ -3642,9 +3656,12 @@ ca:
   sizes: Mida
   skip_to_next_page: Aneu a la pàgina següent
   small: petit
+  site_admin_tools: Eines d'administració del lloc
   site_name_place: Llocs d’%{site_name}
   site_observations_export_from_date: Observacions de %{site_name} exportades des
     de %{date}
+  site_site_admin: '%{site_name} Lloc del Adminstrador'
+  site_staff: '%{site_name} Personal'
   site_stats: Estadístiques del lloc
   site_taxon_page: pàgina del tàxon a %{site_name}
   site_year_in_review: Resum de l'any %{year} a %{site_name}
@@ -3692,7 +3709,7 @@ ca:
   sorry_you_need_to_be_signed_in_and: Ho sentim, heu d’entrar al sistema i tenir un
     compte vinculat de Flickr per poder publicar etiquetes directament des de Flickr.
   sort: Ordenar
-  sort_by: Ordena per
+  sort_by: Ordeneu per
   sorting_by: Ordenant per
   soundcloud_needs_to_confirm: SoundCloud sol·licita la vostra confirmació per connectar
     el compte amb %{site_name}.
@@ -3760,7 +3777,7 @@ ca:
   sources_youve_added: Fonts que heu afegit
   sources_and_credits: Fonts i Crèdits
   sourcing: Posant la font
-  spam: contingut brossa
+  spam: Contingut brossa
   spanish: Castellà
   species: Espècies
   species_by_category: espècies per categoria
@@ -3780,14 +3797,14 @@ ca:
   src: Font
   standard: Estàndard
   start: Inici
-  start_a_new_list: Inicia una llista nova
-  start_a_new_project: Inicia un nou projecte
-  start_a_project: Inicia un projecte
+  start_a_new_list: Inicieu una llista nova
+  start_a_new_project: Inicieu un nou projecte
+  start_a_project: Inicieu un projecte
   start_adding_observations: Comenceu a afegir observacions
   start_date_time: Hora/Data d'inici
   start_new_account: Inicieu un nou compte
   start_new_project: Inicieu un nou projecte
-  start_one: inicieu un
+  start_one: Inicieu un
   start_one_now: Inicieu un ara!
   start_typing_field_name: Comenceu a escriure el nom del camp…
   start_typing_place_name: Comenceu a escriure el nom del lloc…
@@ -3953,6 +3970,7 @@ ca:
   taxon_colors: Colors del taxon
   taxon_curators: Conservadors del Taxon
   taxon_extras: Extres del taxon
+  taxon_links: Enllaç al Tàxon
   taxon_merge: fusió de tàxon
   taxon_name: Nom del tàxon
   taxon_name_must_match_an_existing_taxon_in_our_database: El nom del tàxon ha de
@@ -4227,7 +4245,7 @@ ca:
     moltes altres coses, com ara buscar i filtrar les teves observacions o modificar-les
     com a grup, però això hauria de ser autoexplicatiu.
   those_observations_no_longer_exist: Aquestes observacions ja no existeixen.
-  threatened: amenaçat
+  threatened: Amenaçat
   thu: Dj.
   thumb_url: Miniatura de l'URL
   time_: hora
@@ -4263,7 +4281,7 @@ ca:
   top_observers: Principal observadors
   top_species: Principals Espècies
   total: Total
-  totals: totals
+  totals: Totals
   total_members: Nombre total de membres
   total_observations: Nombre total d'observacions
   total_species_observed: Total d'espècies observades
@@ -4331,8 +4349,10 @@ ca:
     triada
   update_existing_sounds_with_new_license: Actualitza els sons existents amb la llicència
     triada
-  update_past: Actualitza %{type} passat
-  update_photos: Actualitza fotos
+  update_observation: Actualitzeu observació
+  update_observations: Actualitzeu observacions
+  update_past: Actualitzeu %{type} passat
+  update_photos: Actualitzeu fotos
   update_search: Actualitzeu la cerca
   update_selected_taxa: Actualitza els tàxons seleccionats
   update_subscription: Actualització de subscripció

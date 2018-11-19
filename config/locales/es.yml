@@ -18,6 +18,7 @@
 # Author: Isabelgg22
 # Author: Josecurioso
 # Author: KATRINE1992
+# Author: Laura Ospina
 # Author: Loarie
 # Author: Luanibraj
 # Author: Luisangelrg
@@ -37,13 +38,13 @@
 ---
 es:
   x_comments:
-    one: un comentario
+    one: 1 comentario
     other: '%{count} comentarios'
   x_followers:
     one: 1 seguidor
     other: '%{count} seguidores'
   x_identifications:
-    one: una identificación
+    one: 1 identificación
     other: '%{count} identificaciones'
   x_identifications_html:
     one: <span class="count">1</span> identificación
@@ -67,8 +68,8 @@ es:
     one: 1 taxón que coincide
     other: '%{count} taxones que coinciden'
   x_matching_taxa_html:
-    one: <span class="count">1</span> coincidencia de taxón
-    other: <span class="count">%{count}</span> coincidencia de los taxones
+    one: <span class="count">1</span> taxón que coincide
+    other: <span class="count">%{count}</span> taxones que coinciden
   x_misidentifications_of_this_species:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
@@ -91,14 +92,14 @@ es:
     one: 1 más
     other: '%{count} más'
   x_people_found_this_helpful:
-    one: A Una persona le ha resultado util
-    other: A %{count} personas les ha resultado util
+    one: Una persona encontró esto útil
+    other: '%{count} personas encontraron esto útil'
   x_faves:
     one: 1 favorito
     other: '%{count} favoritos'
   x_flags_resolved_html:
-    one: <span class='count'>1</span> grupo observado</span>
-    other: <span class='count'>%{count}</span> grupos observados</span>
+    one: <span class='count'>1</span> marca resuelta
+    other: <span class='count'>%{count}</span> marcas resueltas
   x_people_like_this:
     one: A 1 persona le gusta esto
     other: A %{count} personas les gusta esto
@@ -115,8 +116,8 @@ es:
     one: <a href='%{url}'>1 especie</a>
     other: <a href='%{url}'>%{count} especies</a>
   x_suggestions_filtered_by_colon:
-    one: '1 Sugerencias Filtrado por:'
-    other: '%{count} Sugerencias Filtrado por:'
+    one: '1 Sugerencia Filtrada por:'
+    other: '%{count} Sugerencias Filtradas por:'
   x_taxa_observed_html:
     one: <span class='count'>1</span> taxón observado</span>
     other: <span class='count'>%{count}</span> taxones observados</span>
@@ -129,23 +130,23 @@ es:
     other: <span class='count'>%{count}</span> identificaciones de observaciones con
       grado de investigación de especies o descendientes</span>
   x_taxa_curated_html:
-    one: <span class='count'>1</span> grupo observado</span>
-    other: <span class='count'>%{count}</span> grupos observados</span>
+    one: <span class='count'>1</span> taxón curado
+    other: <span class='count'>%{count}</span> taxones curados
   x_taxa_matching_current_filters:
     one: 1 taxón coincide con los filtros seleccionados
     other: '%{count} taxones coinciden con los filtros seleccionados'
   x_taxon_changes_added_html:
-    one: <span class='count'>1</span> grupo observado</span>
-    other: <span class='count'>%{count}</span> grupos observados</span>
+    one: <span class='count'>1</span> cambio de taxón agregado
+    other: <span class='count'>%{count}</span> cambios de taxón agregados</span>
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: '% identificados'
   a: un(a)
   a_: una
   a_community_for_naturalist: Una comunidad para naturalistas
-  a_default_taxon_name_will_automatically_created: Se creará un nombre predeterminado
-    para el taxón a partir de su atributo nombre científico. Cuando hayas guardado
-    este nuevo taxón, podrás añadirle aquí otros nombres (vernáculos, científicos
-    obsoletos, etc.)
+  a_default_taxon_name_will_automatically_created: Se creará automáticamente un nombre
+    de taxón predeterminado a partir del atributo de nombre científico para este taxón.
+    Después de guardar este nuevo taxón, se podrán añadir aquí otros nombres (nombres
+    comunes, nombres científicos obsoletos, etc.).
   a_few_points_to_make_things_clear: 'Unos cuantos puntos para hacer las cosas un
     poco más claras:'
   a_flag_for_x: una marca para %{x}
@@ -154,29 +155,29 @@ es:
   a_member_of_taxon_html: un miembro de %{taxon}
   able_to_connect_flickr: ¡Muy bien! Pudimos vincular tu cuenta de Flickr.
   about: Acerca de
-  about_bioblitz_results: sobre los resultados del "maratón naturalista" (evaluación
+  about_bioblitz_results: Acerca de los resultados de la "maratón naturalista" (evaluación
     rápida)
-  about_blocking: Acerca del bloqueo
+  about_blocking: Acerca de los bloqueos
   about_charts: Acerca de los gráficos
-  about_community_taxa: Sobre los taxones comunitarios
+  about_community_taxa: Acerca de los taxones comunitarios
   about_complete_taxa: Acerca de los taxones completos
   about_conservation_status: Acerca del estado de conservación
   about_editing_observation_fields: Acerca de la edición de campos de observación
   about_establishment_means: Acerca de los medios de establecimiento
   about_external_links: Acerca de los enlaces externos
-  about_licenses: Sobre las licencias
+  about_licenses: Acerca de las licencias
   about_licensing: Acerca de las licencias
-  about_life!: ¡Sobre la vida!
+  about_life!: ¡Acerca de la vida!
   about_muting: Acerca de silenciar
   about_names: Acerca de los nombres
-  about_places: Sobre Lugares
+  about_places: Acerca de los Lugares
   about_taxon_changes: Acerca de los cambios taxonómicos
-  about_the_cc_licenses: Sobre las licencias de Creative Commons
+  about_the_cc_licenses: Acerca de las licencias de Creative Commons
   about_the_taxobox_raquo: Acerca de la ficha de taxón &raquo;
-  about_these_licenses: Sobre estas licencias
-  about_this_bioblitz: Sobre este maratón naturalista
+  about_these_licenses: Acerca de estas licencias
+  about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
-  about_this_project: Sobre este proyecto
+  about_this_project: Acerca de este proyecto
   about_x: Acerca de %{x}
   acc: Prec.(m)
   account: Cuenta
@@ -186,10 +187,10 @@ es:
   accuracy: Precisión
   accuracy_m: Precisión (m)
   accuracy_meters: Precisión (metros)
-  accuracy_of_the_coordinates: Precisión de las coordenadas en metros. Las puedes
-    cambiar seleccionando el enlace "Modificar" o seleccionando el punto de tu ubicación
-    en el mapa. Trata de hacer el círculo lo suficientemente grande para asegurar
-    que estabas en algún lugar del área marcada.
+  accuracy_of_the_coordinates: Precisión de las coordenadas en metros. Se pueden cambiar
+    seleccionando el enlace "Modificar" arriba o seleccionando el punto de la ubicación
+    en el mapa y arrastrando las manillas. Procure hacer el círculo lo suficientemente
+    grande para asegurarse de que estaba en algún lugar dentro del área marcada.
   acquaintances: conocidos
   action: Acción
   actions: Acciones
@@ -199,123 +200,125 @@ es:
   activity: Actividad
   activity_settings: Configuración de la actividad
   adapted_by_name_from_a_work_by_original: Adaptado por %{name} de un trabajo de %{original}
-  add: Añade
-  add_a_batch_of_observations: Añade un grupo de observaciones
-  add_a_batch_of_observations_by_csv: Añadir un grupo de observaciones por CSV
-  add_a_batch_of_taxa: Añade un grupo de taxones
-  add_a_comment: Añade un comentario
-  add_a_field: Añade campo
-  add_a_flag: Añade una advertencia
-  add_a_link_raquo: Añade un vínculo &raquo;
-  add_a_name: Añade un nombre
-  add_a_new_change_group: Añade un nuevo cambio en grupo
-  add_a_new_observation_to_id_please!: ¡Añade una nueva observación a "ID por favor"!
-  add_a_place_raquo: Añade un lugar &raquo;
-  add_a_single_observation: Añade una sola observación
-  add_a_taxon: Añade un taxón
-  add_a_taxon_swap_if_you_want_to_change_the_name_html: Añade un <a target="_blank"
-    href="%{url}">cambio de taxón</a> si quieres cambiar el nombre
-  add_all_your_matching_obs_of_this_taxon: Añade todas tus observaciones encontradas
-    de este taxón para este proyecto
-  add_all_your_matching_obs_to_this_project: Añade todas las observaciones que coinciden
-    a este proyecto
-  add_an_assessment: Añade una evaluación
-  add_an_identification: Añade una identificación
-  add_an_observation: Añade una observación
-  add_an_observation?: ¿Añade una observación?
-  add_an_observation_of: Añade una observación de %{taxon}
-  add_annotations_for_x: Añade anotaciones para «%{x}»
+  add: Agregar
+  add_a_batch_of_observations: Agregar un grupo de observaciones
+  add_a_batch_of_observations_by_csv: Agregar un grupo de observaciones por CSV
+  add_a_batch_of_taxa: Agregar un grupo de taxones
+  add_a_comment: Agregar un comentario
+  add_a_field: Agregar un campo
+  add_a_flag: Agregar una marca
+  add_a_link_raquo: Agregar un enlace &raquo;
+  add_a_name: Agregar un nombre
+  add_a_new_change_group: Agregar un nuevo grupo de cambio
+  add_a_new_observation_to_id_please!: ¡Agregar una nueva observación para el ID,
+    por favor"!
+  add_a_place_raquo: Agregar un lugar &raquo;
+  add_a_single_observation: Agregar una sola observación
+  add_a_taxon: Agregar un taxón
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Agregar un <a target="_blank"
+    href="%{url}">cambio de taxón</a> si desea cambiar el nombre
+  add_all_your_matching_obs_of_this_taxon: Agregar a este proyecto todas las observaciones
+    encontradas de este taxón
+  add_all_your_matching_obs_to_this_project: Agregar a este proyecto todas las observaciones
+    encontradas
+  add_an_assessment: Agregar una evaluación
+  add_an_identification: Agregar una identificación
+  add_an_observation: Agregar una observación
+  add_an_observation?: ¿Agregar una observación?
+  add_an_observation_of: Agregar una observación de %{taxon}
+  add_annotations_for_x: Agregar anotaciones para «%{x}»
   add_annotations_for_controlled_attribute:
-    sex: Añade anotaciones para "Sexo"
-    plant_phenology: Añade anotaciones para "Fenología de planta"
-    life_stage: Añade anotaciones para "Etapa de vida"
-  add_another: Añade otra
-  add_another_flag: Añade otra advertencia
-  add_another_photo: Añade otra foto
+    sex: Agregar anotaciones para "Género"
+    plant_phenology: Agregar anotaciones para "Fenología de la planta"
+    life_stage: Agregar anotaciones para "Etapa de vida"
+  add_another: Agregar otra
+  add_another_flag: Agregar otra marca
+  add_another_photo: Agregar otra foto
   add_another_section: Añade otra sección
   add_another_subscription: Añade otra suscripción
-  add_asset: Añade activo
-  add_batch: Añade grupo
-  add_colors: Añade colores
-  add_comma_separated_tags: Añade etiquetas separadas por comas
-  add_comment: Añade un comentario
-  add_common_names_for: Añade nombres vernáculos para taxones existentes
-  add_conservation_status: Añade estado de conservación
+  add_asset: Agregar activo
+  add_batch: Agregar grupo
+  add_colors: Agregar colores
+  add_comma_separated_tags: Agregar etiquetas separadas por comas
+  add_comment: Agregar un comentario
+  add_common_names_for: Agregar nombres comunes para taxones existentes
+  add_conservation_status: Agregar estado de conservación
   add_countries: Añade países
-  add_custom_project_fields: Añade campos de proyecto personalizados
-  add_edit_flags: Añade/edita etiquetas
-  add_edit_more_fields: Añade/edita más campos
-  add_editor: Añade editor
-  add_description: Añade %{description_name}
-  add_field: Añade campo
-  add_from_your_observations: Añade de tus observaciones
-  add_link: Añade enlace
-  add_listed_taxa_from_observations: Añade taxones listados de las observaciones
+  add_custom_project_fields: Agregar campos de proyecto personalizados
+  add_edit_flags: Agregar/editar etiquetas
+  add_edit_more_fields: Agregar/editar más campos
+  add_editor: Agregar editor
+  add_description: Agregar %{description_name}
+  add_field: Agregar campo
+  add_from_your_observations: Agregar de sus observaciones
+  add_link: Agregar enlace
+  add_listed_taxa_from_observations: Agregar taxones listados de las observaciones
   add_higher_level_taxon: Añade un taxón de más alto nivel (por ejemplo "aves")
   add_id: Añade ID
-  add_it_to_place_raquo: Añádela a un lugar &raquo;
-  add_more_photos: Añade más fotos
-  add_new_lexicon: Añade léxico nuevo
-  add_new_observations: Añade observaciones nuevas
-  add_new_photos_by_their_ids: Añade nuevas fotos por sus identificadores en Flickr
+  add_it_to_place_raquo: Agregar a un lugar &raquo;
+  add_more_photos: Agregar más fotos
+  add_new_lexicon: Agregar léxico nuevo
+  add_new_observations: Agregar observaciones nuevas
+  add_new_photos_by_their_ids: Agregar nuevas fotos por sus identificadores en Flickr
     (¡Deben ser de Creative Commons!)
-  add_new_place: Añade un lugar nuevo
-  add_new_rule: Añade nueva regla
-  add_new_source: Añade una nueva fuente...
-  add_new_taxon_name: Añade un nuevo nombre de taxón
-  add_notes_about_this_taxon: Añade notas acerca de este taxón en este lugar, por
+  add_new_place: Agregar un lugar nuevo
+  add_new_rule: Agregar una nueva regla
+  add_new_source: Agregar una nueva fuente...
+  add_new_taxon_name: Agregar un nuevo nombre de taxón
+  add_notes_about_this_taxon: Agregar notas acerca de este taxón en este lugar, por
     ejemplo, dónde y cuándo está presente.
-  add_obs_from_a_link: Añade observaciones de una lista %{link}
-  add_obs_from_a_list: Añade observaciones de una lista
+  add_obs_from_a_link: Agregar observaciones de una lista %{link}
+  add_obs_from_a_list: Agregar observaciones de una lista
   add_observation: Añade observación
-  add_observations!: ¡Añade observaciones!
-  add_observations: Añadir observaciones
-  add_observations_by_checking_off: Añade observaciones seleccionando especies de
+  add_observations!: ¡Agregar observaciones!
+  add_observations: Agregar observaciones
+  add_observations_by_checking_off: Agregar observaciones seleccionando especies de
     una lista.
-  add_observations_from_list: Añade observaciones de una lista
-  add_observations_of_taxa_youve_added: Añade observaciones de taxones que agregaste
-    a una lista.  Estamos en desarrollo, todavía trabajamos en algunos detalles...
-  add_observations_project: Añade observaciones a este proyecto
-  add_one: ¡Añade una!
-  add_one_now: Añade uno ahora
-  add_photos: Añade Fotos
-  add_photos_to_this_observation: Añade fotos a esta observación
-  add_place: Añade lugar
-  add_plant_phenology_budding_annotation: 'Añade anotación "fenología de la planta:
-    con renuevos"'
-  add_plant_phenology_flowering_annotation: 'Añade nota "Fenología de la planta: floreciendo"'
-  add_plant_phenology_fruiting_annotation: 'Añade nota "Fenología de la planta: fructificando"
-    anotación'
-  add_life_stage_adult_annotation: 'Añade nota "Etapa de vida: adulto"'
-  add_life_stage_teneral_annotation: 'Añade nota "Etapa de vida: Imago tierno"'
-  add_life_stage_subimago_annotation: 'Añade anotación "Etapa vital: sub-imago"'
-  add_life_stage_pupa_annotation: 'Añade nota "Etapa de vida: pupa"'
-  add_life_stage_nymph_annotation: 'Añade nota "Etapa de vida: ninfa"'
-  add_life_stage_larva_annotation: 'Añade nota "Etapa de vida: larva"'
-  add_life_stage_juvenile_annotation: Añadir anotación "Etapa vital:juvenil"
-  add_life_stage_egg_annotation: 'Añade nota "Etapa de vida: huevo"'
-  add_section: Añade sección
-  add_several_observations_at_once: Añade varias observaciones de una sola vez
-  add_sex_female_annotation: 'Agrega anotación "Género: femenino"'
-  add_sex_male_annotation: 'Agrega anotación "Género: masculino"'
-  add_shape: Añade un límite
-  add_some_now: Añade algunas ahora
-  add_tag: Añade etiqueta
-  add_tags: Añade etiquetas
-  add_tags_to_selected_taxa: Añade las etiquetas a los taxones seleccionados
-  add_taxa: Añade taxones
-  add_taxa_to_places: Añade taxones a lugares
-  add_taxon_batch_to: Añade un grupo de taxones a %{list}
-  add_taxon_range: Añade área del taxón
-  add_taxonomic_tags_to: Añade etiquetas taxonómicas a fotos seleccionadas de Flickr
+  add_observations_from_list: Agregar observaciones de una lista
+  add_observations_of_taxa_youve_added: Agregar observaciones de taxones que ha agregado
+    a una lista.  En desarrollo, todavía trabajamos en algunos detalles...
+  add_observations_project: Agregar observaciones a este proyecto
+  add_one: ¡Agregar una!
+  add_one_now: Agregar uno ahora
+  add_photos: Agregar Fotos
+  add_photos_to_this_observation: Agregar fotos a esta observación
+  add_place: Agregar lugar
+  add_plant_phenology_budding_annotation: 'Agregar anotación "fenología de la planta:
+    en botón"'
+  add_plant_phenology_flowering_annotation: 'Agregar anotación "Fenología de la planta:
+    floreciendo"'
+  add_plant_phenology_fruiting_annotation: 'Agregar anotación "fenología de la planta:
+    fructificando"'
+  add_life_stage_adult_annotation: 'Agregar anotación "Etapa de vida: adulto"'
+  add_life_stage_teneral_annotation: 'Agregar anotación "Etapa de vida: Imago tierno"'
+  add_life_stage_subimago_annotation: 'Agregar anotación "Etapa de vida: sub-imago"'
+  add_life_stage_pupa_annotation: 'Agregar anotación"Etapa de vida: pupa"'
+  add_life_stage_nymph_annotation: 'Agregar anotación "Etapa de vida: ninfa"'
+  add_life_stage_larva_annotation: 'Agregar anotación "Etapa de vida: larva"'
+  add_life_stage_juvenile_annotation: 'Agregar anotación "Etapa de vida: juvenil"'
+  add_life_stage_egg_annotation: 'Agregar anotación "Etapa de vida: huevo"'
+  add_section: Agregar sección
+  add_several_observations_at_once: Agregar varias observaciones al mismo tiempo
+  add_sex_female_annotation: 'Agregar anotación "Género: femenino"'
+  add_sex_male_annotation: 'Agregar anotación "Género: masculino"'
+  add_shape: Agregar forma
+  add_some_now: Agregar algunas ahora
+  add_tag: Agregar etiqueta
+  add_tags: Agregar etiquetas
+  add_tags_to_selected_taxa: Agregar etiquetas a los taxones seleccionados
+  add_taxa: Agregar taxones
+  add_taxa_to_places: Agregar taxones a lugares
+  add_taxon_batch_to: Agregar un grupo de taxones a %{list}
+  add_taxon_range: Agregar alcance del taxón
+  add_taxonomic_tags_to: Agregar etiquetas taxonómicas a fotos seleccionadas de Flickr
     &raquo;
-  add_taxonomic_tags_to_the_flickr_photos: Añade etiquetas taxonómicas a las fotos
+  add_taxonomic_tags_to_the_flickr_photos: Agregar etiquetas taxonómicas a las fotos
     de Flickr asociadas con las observaciones seleccionadas.
-  add_to: Añade a
-  add_to_a_scheme: Añade a un esquema
-  add_to_a_project: Añade a un proyecto
+  add_to: Agregar a
+  add_to_a_scheme: Agregar a un esquema
+  add_to_a_project: Agregar a un proyecto
   add_to_calendar: Agrega al calendario
-  add_to_checklist: Añade a la lista de verificación
+  add_to_checklist: Agregar a la lista de verificación
   add_to_favorites: Añade a los favoritos
   add_to_id_please: Añade a "ID por favor"
   add_to_list: Añade a la lista

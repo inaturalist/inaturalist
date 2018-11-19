@@ -314,6 +314,7 @@ sv:
   admin: Administratör
   admin_s: Administratör(er)
   admin_any_projects: administrera vilket projekt som helst
+  admin_only: Endast admin.
   admin_tools: Adminverktyg
   agree: samtycker
   agree_: Jag godkänner
@@ -473,6 +474,7 @@ sv:
   android: Android
   animals: Djur
   animated_observations_map: Animerad karta över observationer
+  annotation: Anteckning
   annotations: Noteringar
   announcement_was_successfully_created: Meddelandet skapades.
   announcement_was_successfully_updated: Meddelandet uppdaterades.
@@ -660,11 +662,24 @@ sv:
   blue_butterfly_etc: blå, fjäril, etc.
   body: Innehåll
   bounding_box: Konturlinje
+  breadcrumbs: Brödsmulor
   brief_caption: Kort bildtext
   brief_description_on_what_you_observed: Kort beskrivning av vad du observerade
   brief_description_of_what_you_saw: Kort beskrivning av vad du såg
   brown: brun
   browse: Bläddra
+  browse_all_projects: Bläddra alla projekt
+  browse_all_species: Bläddra alla arter
+  browse_observations: Bläddra observationer
+  browse_people: Bläddra personer
+  browse_projects: Bläddra projekt
+  browse_species_that_occur_near_this_observation: Bläddra arter som förkommer nära
+    den här obvservationen
+  browse_your_observations: Bläddra dina observationer
+  built_with_site_guides_html: Byggt med <a href='%{url}'>%{site_name} Guides</a>
+  bulk_import_of_filename_is_complete: Multi import av %{filename} är utfört
+  but_we_didnt_add_this_observation_to_the_x_project: Men vi bifogade inte denna observation
+    till %{project} eftersom du inte godkände projektvillkoren.
   by: av
   by_everyone: Av alla
   by_user: Av %{user}
