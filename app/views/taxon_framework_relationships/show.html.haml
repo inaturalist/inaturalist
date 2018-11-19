@@ -17,5 +17,3 @@
     %h3
       = render :partial => 'show_taxon_framework_relationship_headings', object: { taxon_framework_relationship: @taxon_framework_relationship }
     = render :partial => '/taxon_framework_relationships/show_taxon_framework_relationship_container', object: { upstream_taxon_framework: @taxon_framework, taxon_framework_relationship: @taxon_framework_relationship, taxon: @taxon }
-    - unless @taxon_framework_relationship.description.blank?
-      = formatted_user_text @taxon_framework_relationship.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
