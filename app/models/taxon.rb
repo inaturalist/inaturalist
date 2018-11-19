@@ -94,6 +94,7 @@ class Taxon < ActiveRecord::Base
              :set_wikipedia_summary_later,
              :handle_after_move,
              :update_taxon_framework_relationship
+  after_destroy :update_taxon_framework_relationship
              
 
   after_commit :index_observations
@@ -495,7 +496,7 @@ class Taxon < ActiveRecord::Base
   
   def update_taxon_framework_relationship
     return true unless self.taxon_framework_relationship
-    taxon_framework_relationship.set_relationship if (name_changed? || rank_changed? || ancestry_changed? || taxon_framework_relationship_id_changed?)
+    taxon_framework_relationship.set_relationship if (destroyed? || name_changed? || rank_changed? || ancestry_changed? || taxon_framework_relationship_id_changed?)
     attrs = {}
     attrs[:relationship] = taxon_framework_relationship.relationship
     taxon_framework_relationship.update_attributes(attrs)
@@ -1017,7 +1018,7 @@ class Taxon < ActiveRecord::Base
   def graftable_relative_to_taxon_framework_coverage
     return true unless ancestry_changed? && !ancestry_was.nil?
     upstream_taxon_framework = get_upstream_taxon_framework( ancestry_was.split("/") )
-    if !skip_taxon_framework_checks && upstream_taxon_framework && !current_user.blank? && !upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
+    if !skip_taxon_framework_checks && upstream_taxon_framework && !current_user.blank? && upstream_taxon_framework.taxon_curators.any? && !upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
       errors.add( :ancestry, "covered by a curated taxon framework attached to #{upstream_taxon_framework.taxon}. Contact the curators of that taxon to request changes." )
     end
     true

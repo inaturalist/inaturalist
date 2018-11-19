@@ -2,6 +2,7 @@
   taxon_framework ||= @taxon_framework ||= defines_taxon_framework[:taxon_framework]
   taxon ||= @taxon ||= defines_taxon_framework[:taxon]
   overlapping_downstream_taxon_frameworks ||= @overlapping_downstream_taxon_frameworks ||= defines_taxon_framework[:overlapping_downstream_taxon_frameworks]
+  overlapping_downstream_taxon_frameworks_count ||= @overlapping_downstream_taxon_frameworks_count ||= defines_taxon_framework[:overlapping_downstream_taxon_frameworks_count]
   deviations_count ||= @deviations_count ||= defines_taxon_framework[:deviations_count]
   taxon_curators ||= @taxon_curators ||= defines_taxon_framework[:taxon_curators]
   flagged_taxa ||= @flagged_taxa ||= defines_taxon_framework[:flagged_taxa]
@@ -34,18 +35,20 @@
       - if overlapping_downstream_taxon_frameworks.count > 0
         .taxon_framework_count
           = "#{ t( :overlapping_downstream_taxon_frameworks ) }:"
-          = link_to @overlapping_downstream_taxon_frameworks.count, "#"
+          = link_to overlapping_downstream_taxon_frameworks_count, "#"
         .taxon_framework_table
           %table.table.table-bordered
             %thead
               %tr
                 %th= t(:attached_taxon)
+                %th= t(:rank)
                 %th= t(:downstream_coverage_rank)
                 %th= t(:source)
             %tbody
               - overlapping_downstream_taxon_frameworks.each do |overlapping_downstream_taxon_framework|
                 %tr
                   %td= link_to overlapping_downstream_taxon_framework.taxon.name, taxonomy_details_for_taxon_path( overlapping_downstream_taxon_framework.taxon )
+                  %td= t( "ranks.#{ overlapping_downstream_taxon_framework.taxon.rank }" )
                   %td= t( "ranks.#{ Taxon::RANK_FOR_RANK_LEVEL[overlapping_downstream_taxon_framework.rank_level] }" )
                   - if overlapping_downstream_taxon_framework.source
                     %td= overlapping_downstream_taxon_framework.source.title

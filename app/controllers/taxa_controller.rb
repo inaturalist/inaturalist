@@ -234,6 +234,7 @@ class TaxaController < ApplicationController
     if @taxon_framework
       if @taxon_framework.covers?
         @taxon_curators = @taxon_framework.taxon_curators
+        @overlapping_downstream_taxon_frameworks_count = @taxon_framework.get_downstream_taxon_frameworks_count
         @overlapping_downstream_taxon_frameworks = @taxon_framework.get_downstream_taxon_frameworks
         @flagged_taxa = @taxon_framework.get_flagged_taxa
         @flagged_taxa_count = @taxon_framework.get_flagged_taxa_count

@@ -66,11 +66,20 @@ class TaxonFramework < ActiveRecord::Base
     return false
   end
 
+  def get_downstream_taxon_frameworks_count
+    return false unless covers?
+    ancestry_string = taxon.rank == "stateofmatter" ? "#{ taxon_id }" : "%/#{ taxon_id }"
+    downstream_taxon_frameworks = TaxonFramework.includes( "taxon" ).joins( "JOIN taxa ON taxon_frameworks.taxon_id = taxa.id" ).
+      where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) ) AND taxa.rank_level > #{ rank_level } AND taxon_frameworks.rank_level IS NOT NULL" )
+    .count
+  end
+  
   def get_downstream_taxon_frameworks
     return false unless covers?
     ancestry_string = taxon.rank == "stateofmatter" ? "#{ taxon_id }" : "%/#{ taxon_id }"
     downstream_taxon_frameworks = TaxonFramework.includes( "taxon" ).joins( "JOIN taxa ON taxon_frameworks.taxon_id = taxa.id" ).
-      where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) ) AND taxa.rank_level > #{ rank_level } AND taxon_frameworks.rank_level IS NOT NULL" ).order(rank_level: :desc)
+      where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) ) AND taxa.rank_level > #{ rank_level } AND taxon_frameworks.rank_level IS NOT NULL" ).
+      order("taxa.rank_level desc").limit(30)
   end
   
   def get_unassigned_taxa
