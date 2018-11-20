@@ -415,7 +415,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
     netrc (0.11.0)
-    newrelic_rpm (5.4.0.347)
+    newrelic_rpm (5.5.0.348)
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     non-stupid-digest-assets (1.0.9)
@@ -706,7 +706,7 @@ DEPENDENCIES
   json
   koala
   machinist
-  newrelic_rpm (~> 5.4.0)
+  newrelic_rpm (~> 5.5.0)
   nokogiri (~> 1.8.5)
   non-stupid-digest-assets
   objectify-xml
