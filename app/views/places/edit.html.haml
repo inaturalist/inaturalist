@@ -15,7 +15,7 @@
   :javascript
     var PLACE = #{json_escape @place.to_json.html_safe},
         NPOINTS = #{@npoints.to_i},
-        BING_KEY = #{CONFIG.bing ? CONFIG.bing.key.inspect : "null"}
+        BING_KEY = #{CONFIG.bing ? CONFIG.bing.key.inspect.html_safe : "null"}
     $(document).ready(function() {
       $('#place_parent_id').chooser({
         collectionUrl: '/places/autocomplete.json',
