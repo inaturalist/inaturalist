@@ -225,7 +225,7 @@ describe "Observation Index" do
     it "queries names" do
       expect( Observation.params_to_elastic_query({ q: "s", search_on: "names" }) ).to include(
         filters: [ { multi_match:
-          { query: "s", operator: "and", fields: [ "taxon.names.name" ] } } ] )
+          { query: "s", operator: "and", fields: [ "taxon.names.name", "taxon.names_*" ] } } ] )
     end
 
     it "queries tags" do
@@ -250,7 +250,7 @@ describe "Observation Index" do
       expect( Observation.params_to_elastic_query({ q: "s" }) ).to include(
         filters: [ { multi_match:
           { query: "s", operator: "and",
-            fields: [ "taxon.names.name", :tags, :description, :place_guess ] } } ] )
+            fields: [ "taxon.names.name", "taxon.names_*", :tags, :description, :place_guess ] } } ] )
     end
 
     it "filters by param values" do
