@@ -339,7 +339,7 @@ class Observation < ActiveRecord::Base
     if q
       fields = case search_on
       when "names"
-        [ "taxon.names.name" ]
+        [ "taxon.names.name", "taxon.names_*" ]
       when "tags"
         [ :tags ]
       when "description"
@@ -347,7 +347,7 @@ class Observation < ActiveRecord::Base
       when "place"
         [ :place_guess ]
       else
-        [ "taxon.names.name", :tags, :description, :place_guess ]
+        [ "taxon.names.name", "taxon.names_*", :tags, :description, :place_guess ]
       end
       search_filters << { multi_match: { query: q, operator: "and", fields: fields } }
     end

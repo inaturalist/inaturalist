@@ -704,6 +704,7 @@ class Observation < ActiveRecord::Base
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
+      { identifications: :stored_preferences },
       { photos: [ :flags, :user ] },
       :stored_preferences, :flags, :quality_metrics ]
     # why do we need taxon_descriptions when logged in?
