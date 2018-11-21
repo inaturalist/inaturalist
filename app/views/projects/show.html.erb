@@ -265,7 +265,7 @@
         <span class="right sectioncount">
           <%=t :x_observations_html, count: @project_user.observations_count %>
         </span>
-        <%= link_to "<span class='lead'>&raquo;</span> #{t(:your_membership, default: 'Your membership').capitalize}".html_safe, project_show_contributor_path(@project, @project_user.user.login), :class => "navlink" %>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t(:your_membership, default: 'Your membership')}".html_safe, project_show_contributor_path(@project, @project_user.user.login), :class => "navlink" %>
       </li>
       <% if @project_user_invitation && @project_user_invitation.pending? -%>
         <li class="invited">
@@ -323,6 +323,10 @@
       <li>
         <%= link_to "<span class='lead'>&raquo;</span> #{t( :identify_observations )}".html_safe,
           identify_observations_url( project_id: @project ), class: "navlink" %>
+      </li>
+      <li>
+        <%= link_to "<span class='lead'>&raquo;</span> #{t( :new_journal_post )}".html_safe,
+          new_project_journal_post_path( @project.slug ), class: "navlink" %>
       </li>
       <% if @project.preferred_membership_model == Project::MEMBERSHIP_INVITE_ONLY -%>
         <li><%= link_to "<span class='lead'>&raquo;</span> #{t(:invite_people)}".html_safe, invite_to_project_path(@project), :class => "navlink" %></li>
