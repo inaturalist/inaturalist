@@ -52,23 +52,26 @@ class UserText extends React.Component {
 
   // Imperfect solution until we can get an API endpoint to check for the existence of these users
   hyperlinkMentions( text ) {
-    return text.replace( /(\B)@([\\\w][\\\w\\\-_]*)/g, "$1<a href=\"/people/$2\">@$2</a>" );
+    return text.replace( /(\B)@([A-z][\\\w\\\-_]*)/g, "$1<a href=\"/people/$2\">@$2</a>" );
   }
 
   render( ) {
-    const { text, truncate, config, moreToggle, stripWhitespace } = this.props;
+    const {
+      text,
+      truncate,
+      config,
+      moreToggle,
+      stripWhitespace
+    } = this.props;
+    const { more } = this.state;
     const { className } = Object.assign( { }, this.props );
     if ( !text || text.length === 0 ) {
-      return <div className={`UserText ${className}`}></div>;
+      return <div className={`UserText ${className}`} />;
     }
     const withBreaks = text.trim( ).replace( /\n/gm, "<br />" );
     const html = safeHtml( this.hyperlinkMentions( withBreaks ), config || CONFIG );
     let truncatedHtml;
-    const style = {
-      transition: "height 2s",
-      overflow: "hidden"
-    };
-    if ( truncate && truncate > 0 && !this.state.more ) {
+    if ( truncate && truncate > 0 && !more ) {
       truncatedHtml = htmlTruncate( html, truncate );
     }
     let moreLink;
@@ -81,15 +84,19 @@ class UserText extends React.Component {
           } }
           className={truncate && truncate > 0 ? "more" : "collapse"}
         >
-          { this.state.more ? I18n.t( "less" ) : I18n.t( "more" ) }
+          { more ? I18n.t( "less" ) : I18n.t( "more" ) }
         </a>
       );
     }
 
-    let htmlToDisplay = sanitizeHtml( linkifyHtml( truncatedHtml || html, { className: null, attributes: { rel: "nofollow" } } ), {
-      allowedTags: ALLOWED_TAGS, allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
-      exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
-    } );
+    let htmlToDisplay = sanitizeHtml(
+      linkifyHtml( truncatedHtml || html, { className: null, attributes: { rel: "nofollow" } } ),
+      {
+        allowedTags: ALLOWED_TAGS,
+        allowedAttributes: { "*": ALLOWED_ATTRIBUTES_NAMES },
+        exclusiveFilter: stripWhitespace && ( frame => ( frame.tag === "a" && !frame.text.trim( ) ) )
+      }
+    );
     if ( stripWhitespace ) {
       htmlToDisplay = htmlToDisplay.trim( ).replace( /^(<br *\/?>\s*)+/, "" );
     }
@@ -98,8 +105,7 @@ class UserText extends React.Component {
         <span
           className="content"
           dangerouslySetInnerHTML={ { __html: htmlToDisplay } }
-          style={style}
-        ></span> { moreLink }
+        /> { moreLink }
       </div>
     );
   }
