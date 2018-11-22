@@ -928,6 +928,7 @@ protected
       :prefers_common_names,
       :prefers_scientific_name_first,
       :prefers_no_place,
+      :prefers_coordinate_interpolation_protection,
       :search_place_id,
       :site_id,
       :test_groups,

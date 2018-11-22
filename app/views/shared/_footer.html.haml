@@ -1,4 +1,19 @@
 - site = @site || CONFIG
+- if is_admin?
+  .bootstrap
+    .container
+      .row
+        .col-xs-12
+          .box.text-center.upstacked.admin
+            - if current_user.prefers_coordinate_interpolation_protection?
+              = form_for current_user do |f|
+                = f.hidden_field :prefers_coordinate_interpolation_protection, value: false
+                = f.submit "Opt-out of coordinate obscuration by day", class: "btn btn-warning"
+            - else
+              = form_for current_user do |f|
+                = f.hidden_field :prefers_coordinate_interpolation_protection, value: true
+                = f.submit "Opt-in to coordinate obscuration by day", class: "btn btn-success"
+
 #footer.bootstrap
   .container
     .row

@@ -1392,6 +1392,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.max_geoprivacy( taxon_ids, options = {} )
+    return if taxon_ids.blank?
     target_taxon_ids = [
       taxon_ids,
       Taxon.where( "id IN (?)", taxon_ids).pluck(:ancestry).map{|a| a.to_s.split( "/" ).map(&:to_i)}

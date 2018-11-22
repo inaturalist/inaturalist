@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
   preference :common_names, :boolean, default: true 
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
+  preference :coordinate_interpolation_protection, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification

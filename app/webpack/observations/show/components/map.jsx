@@ -90,9 +90,7 @@ class Map extends React.Component {
       const obscured = observation.obscured && !observation.private_geojson
         && (
           <span className="obscured">
-            &lpar;
-            { I18n.t( "obscured" ) }
-            &rpar;
+            ({ I18n.t( "obscured" ) })
           </span>
         );
       const showLength = observation.obscured ? 22 : 32;
