@@ -238,6 +238,7 @@ class Identification < ActiveRecord::Base
     end
     observation.identifications.reload
     observation.set_community_taxon(force: true)
+    observation.set_taxon_geoprivacy
     observation.update_attributes(attrs)
     true
   end

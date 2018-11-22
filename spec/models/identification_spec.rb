@@ -404,6 +404,15 @@ describe Identification, "creation" do
     end
   end
 
+  it "should set the observation's taxon_geoprivacy if taxon was threatened" do
+    t = make_threatened_taxon
+    o = Observation.make!
+    expect( o.taxon_geoprivacy ).to be_blank
+    i = Identification.make!( taxon: t, observation: o )
+    o.reload
+    expect( o.taxon_geoprivacy ).to eq Observation::OBSCURED
+  end
+
 end
 
 describe Identification, "updating" do
@@ -422,6 +431,27 @@ describe Identification, "updating" do
     i2.reload
     expect(i1).not_to be_current
     expect(i2).to be_current
+  end
+
+  describe "observation taxon_geoprivacy" do
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+    
+    it "should change if becomes current" do
+      threatened = make_threatened_taxon( rank: Taxon::SPECIES )
+      not_threatened = Taxon.make!( rank: Taxon::SPECIES )
+      o = Observation.make!( taxon: threatened )
+      i1 = o.identifications.first
+      o.reload
+      expect( o.taxon_geoprivacy ).to eq Observation::OBSCURED
+      i2 = Identification.make!( user: i1.user, observation: o, taxon: not_threatened )
+      o.reload
+      expect( o.taxon_geoprivacy ).to be_blank
+      i1.reload
+      i1.update_attributes( current: true )
+      o.reload
+      expect( o.taxon_geoprivacy ).to eq Observation::OBSCURED
+    end
   end
 end
 

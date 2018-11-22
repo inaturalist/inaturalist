@@ -26,3 +26,4 @@
 //= require jquery/plugins/inat/datepicker
 //= require jquery.textcomplete
 //= require_tree ./ang/models
+

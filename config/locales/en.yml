@@ -313,6 +313,7 @@ en:
   all_photos: All photos
   all_places: "All Places"
   all_projects: All Projects
+  all_children_added_to_the_database: All children added to the database
   all_rank_added_to_the_database:
     phylum: All phyla added to the database
     subphylum: All subphyla added to the database
@@ -527,6 +528,7 @@ en:
   at_any_time_change: at any time (<span class="button">change</span>)
   at_time: "at %{time}"
   atom: Atom
+  attached_taxon: Attached Taxon
   attribute: Attribute
   authority_list:
     iucn_red_list: IUCN Red List
@@ -760,6 +762,7 @@ en:
   classification: Classification
   clear: clear
   clear_color_filters: Clear color filters
+  clear_filters: Clear filters
   clear_search: Clear search
   click_on_the_map_to: Click on the map to place your observation
   click_the_map: "<strong>Click the map</strong> to add a location."
@@ -816,6 +819,7 @@ en:
   comparing_list_to_list: "Comparing %{list1} with %{list2}"
   comparing_versions_x_and_y: "Comparing versions %{x} and %{y}"
   comparing_observations_from: "Comparing %{user} observations from %{dates}"
+  complete: Complete
   complete_sets: Complete Sets
   compiled_by_name: "Compiled by %{name}"
   completed: Completed
@@ -909,6 +913,8 @@ en:
   copyright_info: Copyright Info
   copyright_info_and_more: Copyright Info and More
   copyright_infringement_desc: Violates copyright law or was created by someone other than the observer and lacks attribution
+  covered_by_a_taxon_framework_html: "Covered by a %{link}"
+  covered_by_a_taxon_framework_link: "taxon framework for %{taxon_framework_rank} %{taxon_framework_name}"
   couldnt_change_your_password: "Couldn't change your password: %{e}"
   couldnt_find_a_user_matching_x_param: "Couldn't find a user matching %{id}"
   couldnt_find_that_taxon: Could't find that taxon.
@@ -1029,6 +1035,7 @@ en:
   default_photo_license: Default photo license
   default_sound_license: Default sound license
   defaults_to_your_name_or_username: Defaults to your name or username
+  defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
   delete: Delete
   delete_all: Delete all
   delete_conversation: Delete conversation
@@ -1064,6 +1071,8 @@ en:
   desription: Description
   destroy: Destroy
   details: Details
+  deviation: Deviation
+  deviations: Deviations
   devise:
     failure:
       user:
@@ -1109,6 +1118,8 @@ en:
   download_csv: Download CSV
   download_csv_template: Download CSV template
   download_kml: Download KML
+  downstream_coverage: Downstream coverage
+  downstream_coverage_rank: Downstream coverage rank
   drag_and_drop_photos: drag and drop photos onto this window or
   draft: draft
   draft_: Draft
@@ -1355,7 +1366,9 @@ en:
   flag_this_photo: Flag This Photo
   flagged: flagged
   flagged_: Flagged
+  flagged_covered_taxa: Flagged covered taxa
   flagged_for_curation: Flagged for Curation
+  flagged_taxon: Flagged Taxon
   flagged_thing_explanation: "Users have flagged this %{thing} because"
   flagger: Flagger
   flags: Flags
@@ -1642,6 +1655,7 @@ en:
   inspired_by_the_flickr_group: "Inspired by the Flickr group <a href='http://flickr.com/groups/idplease/'>ID Please</a>, this is a place to post observations of things you don't know, and to help people identify mysterious creatures!"
   interactions: Interactions
   internal_server_error: Internal Server Error
+  internal_taxon: Internal taxon
   introduced: Introduced
   introduced_in_place: "Introduced in %{place}"
   invasive: Invasive
@@ -2287,11 +2301,13 @@ en:
   no_x_this_y: "No %{x} this %{y}"
   noble_curators: "%{site}'s Noble Curators"
   non_human?: Non-human?
+  non_internal_taxon: Non internal taxon
   none: None
   none_found: None found
   normal: normal
   not_absent: not absent
   not_completed: Not Completed
+  not_covered_by_any_taxon_frameworks: Not covered by any taxon frameworks
   not_evaluated: not evaluated
   not_filtering: Not filtering
   not_findig_what_you_want: Not finding what you want?
@@ -2572,6 +2588,7 @@ en:
   out_of_range: Out of range
   output_taxon: Output taxon
   overview: Overview
+  overlapping_downstream_taxon_frameworks: Overlapping downstream Taxon Frameworks
   owner: Owner
   parent: Parent
   parent_name: Parent name
@@ -2959,6 +2976,7 @@ en:
   rank_position: Rank
   rank_restrictions: Rank restrictions
   ranks:
+      stateofmatter: State of matter
       kingdom: Kingdom
       subkingdom: Subkingdom
       phylum: Phylum
@@ -3045,6 +3063,18 @@ en:
   reject_the_community_id: reject the community ID
   related_species: Related Species
   relative_observations: Relative Observations
+  relationship: "Relationship"
+  relationship_x: "Relationship: %{relationship}"
+  relationships:
+      match: match
+      one_to_one: one-to-one
+      alternate_position: alternate position
+      many_to_many: many-to-many
+      many_to_one: many-to-one
+      one_to_many: one-to-many
+      not_external: not external
+      not_internal: not internal
+      unknown: unknown
   reload_and_refresh: Reload and refresh list
   reload_from_observations: Reload from observations
   reload_timed_out: 'Reload timed out.  Please try again later.'
@@ -3377,6 +3407,7 @@ en:
   source_unknown: "Source unknown"
   source_url: Source URL
   source_of_coordinates: 'Source of coordinates and accuracy measure, set automatically.'
+  sourced_to: Sourced to
   sources: Sources
   sources_youve_added: Sources you've added
   sources_and_credits: Sources and Credits
@@ -3562,6 +3593,11 @@ en:
   taxon_colors: Taxon Colors
   taxon_curators: Taxon Curators
   taxon_extras: Taxon Extras
+  taxon_framework_notes: Taxon Framework notes
+  taxon_framework_relationship_for: Taxon framework relationship for
+  taxon_framework_relationship: Taxon Framework Relationship
+  taxon_framework_relationships: Taxon Framework Relationships
+  taxon_framework_taxon: Taxon framework taxon
   taxon_links: Taxon Links
   taxon_merge: taxon merge
   taxon_name: Taxon name
@@ -3599,6 +3635,9 @@ en:
   taxonomic_status: Taxonomic status
   taxonomic_tags_for_flickr: Taxonomic Tags for Flickr
   taxonomic_tree_browser: Taxonomic Tree Browser
+  taxonomy_details: Taxonomy Details
+  taxonomy_details_for: Taxonomy details for
+  taxonomy_details_info: 'The Taxonomy Details page uses Taxon Frameworks to help to describe what we mean by a taxon. <a href="/pages/taxon_frameworks">Read more</a>.'
   taxonomy_settings: Taxonomy Settings
   tell_everyone_a_little_about_you: Tell everyone a little about yourself
   tell_the_world_a_little_about_yourself: Tell us about yourself
@@ -3704,6 +3743,7 @@ en:
     case, please let us know.
   there_were_some_problems_with_fields: "There were some problems with the following fields:"
   theres_also: there's also
+  theres_something_wrong_with_taxon_framework_relationship: There's something wrong here - we can't determine the relationship between any internal and external taxa
   these_are_items_people_on: |
     These are items people on the site have flagged for curation. Spam
     comments should be deleted and users who add spam should be suspended (go
@@ -3863,6 +3903,7 @@ en:
   unknown: Unknown
   unknown_error: Unknown error
   unknown_rank: '(Unknown Rank)'
+  unknown_taxon_framework_relationship: Unknown taxon framework relationship
   unfollow: Unfollow
   unlink_your_google_account: Unlink Your Google Account
   unmute: Unmute
@@ -4191,6 +4232,7 @@ en:
     other: "%{count} observations failed"
   x_of_y: "%{x} of %{y}"
   x_of_y_people_over_two_thirds_agree_it_is: "%{x} of %{y} people (over 2/3) agree it is"
+  x_is_the_root_of_the_tree: "%{rank} %{name} is the root of the tree"
   x_project_journal: "%{project}'s %{name}"
   x_project_stats: "%{project} Stats"
   x_sent_you_a_new_message_on_y_html: "%{x} sent you a new message on %{y}: "

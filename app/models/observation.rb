@@ -356,6 +356,7 @@ class Observation < ActiveRecord::Base
               :set_license,
               :trim_user_agent,
               :update_identifications,
+              :set_taxon_geoprivacy,
               :set_community_taxon_before_save,
               :set_taxon_from_probable_taxon,
               :obscure_coordinates_for_geoprivacy,
@@ -1778,6 +1779,19 @@ class Observation < ActiveRecord::Base
     return true if species_guess.blank?
     self.taxon_id = single_taxon_id_for_name(species_guess)
     true
+  end
+
+  def set_taxon_geoprivacy
+    taxon_ids = if identifications.loaded? 
+      identifications.select{|i| i.current? }.map(&:taxon_id)
+    else
+      identifications.current.pluck(:taxon_id)
+    end
+    self.taxon_geoprivacy = Taxon.max_geoprivacy(
+      taxon_ids,
+      latitude: latitude,
+      longitude: longitude
+    )
   end
   
   def single_taxon_for_name(name)

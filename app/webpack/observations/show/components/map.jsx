@@ -16,19 +16,20 @@ class Map extends React.Component {
 
   render( ) {
     let taxonMap;
-    const observation = this.props.observation;
-    const observationPlaces = this.props.observationPlaces;
+    const { observation, observationPlaces, config } = this.props;
     if ( !observation || !observation.latitude ) {
-      return ( <div className="Map">
-        <div className="TaxonMap empty">
-          <div className="no_location">
-            <i className="fa fa-map-marker" />
-            { observation.obscured && observation.geoprivacy === "private" ?
-              I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
+      return (
+        <div className="Map">
+          <div className="TaxonMap empty">
+            <div className="no_location">
+              <i className="fa fa-map-marker" />
+              { observation.obscured && observation.geoprivacy === "private"
+                ? I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
+            </div>
           </div>
+          <div className="map_details" />
         </div>
-        <div className="map_details" />
-      </div> );
+      );
     }
     if ( observation.latitude ) {
       // Select a small set of attributes that won't change wildy as the
@@ -49,7 +50,7 @@ class Map extends React.Component {
           forced_name: ReactDOMServer.renderToString(
             <SplitTaxon
               taxon={ observation.taxon }
-              user={ this.props.config.currentUser }
+              user={ config.currentUser }
               noParens
               iconLink
               url={ urlForTaxon( observation.taxon ) }
@@ -65,7 +66,10 @@ class Map extends React.Component {
           reloadKey={ mapKey }
           taxonLayers={[{
             taxon: obsForMap.taxon,
-            observations: { observation_id: obsForMap.id },
+            observations: {
+              observation_id: obsForMap.id,
+              verifiable: true
+            },
             places: { disabled: true },
             gbif: { disabled: true }
           }] }
@@ -83,10 +87,17 @@ class Map extends React.Component {
     let placeGuess = observation.private_place_guess || observation.place_guess;
     if ( placeGuess ) {
       let showMore;
-      const obscured = observation.obscured && !observation.private_geojson &&
-        ( <span className="obscured">({ I18n.t( "obscured" )})</span> );
+      const obscured = observation.obscured && !observation.private_geojson
+        && (
+          <span className="obscured">
+            &lpar;
+            { I18n.t( "obscured" ) }
+            &rpar;
+          </span>
+        );
       const showLength = observation.obscured ? 22 : 32;
-      if ( placeGuess.length > showLength && !this.state.showLongLabel ) {
+      const { showLongLabel } = this.state;
+      if ( placeGuess.length > showLength && !showLongLabel ) {
         placeGuess = `${placeGuess.substring( 0, showLength ).trim( )}...`;
         showMore = (
           <div className="show-more">

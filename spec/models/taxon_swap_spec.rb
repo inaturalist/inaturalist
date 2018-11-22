@@ -45,16 +45,20 @@ describe TaxonSwap, "creation" do
   end
 
   it "should be possible for a site curator who is not a taxon curator of a complete ancestor of the input taxon" do
-    genus = Taxon.make!( rank: Taxon::GENUS, complete: true )
-    tc = TaxonCurator.make!( taxon: genus )
+    genus = Taxon.make!( rank: Taxon::GENUS )
+    tf = TaxonFramework.make!( taxon: genus, rank_level: 5 )
+    tc = TaxonCurator.make!( taxon_framework: tf )
+    c = make_curator
+    input_taxon = Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: tc.user )
     swap = TaxonSwap.make
-    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: tc.user ) )
+    swap.add_input_taxon( input_taxon )
     swap.add_output_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
     expect( swap ).to be_valid
   end
   it "should be possible for a site curator who is not a taxon curator of a complete ancestor of the output taxon" do
-    genus = Taxon.make!( rank: Taxon::GENUS, complete: true )
-    tc = TaxonCurator.make!( taxon: genus )
+    genus = Taxon.make!( rank: Taxon::GENUS )
+    tf = TaxonFramework.make!( taxon: genus, rank_level: 5 )
+    tc = TaxonCurator.make!( taxon_framework: tf )
     swap = TaxonSwap.make
     swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
     swap.add_output_taxon( Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: tc.user ) )
@@ -294,26 +298,26 @@ describe TaxonSwap, "commit" do
         expect( child_swap.output_taxon.parent ).to eq @output_taxon
       end
       
-      it "should move children despite a complete ancestor" do
+      it "should move children despite a taxon framework with taxon curators" do
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::GENUS )
-        @ancestor_taxon.update_attributes( complete: true, complete_rank: "subspecies" )
-        @swap.reload
+        tf = TaxonFramework.make!(taxon: @ancestor_taxon, rank_level: 5)
         user = make_curator
-        tc = TaxonCurator.make!( taxon: @ancestor_taxon, user: user)
+        tc = TaxonCurator.make!( taxon_framework: tf, user: user)
         tc.reload
+        @swap.reload
         @swap.committer = user
         without_delay { @swap.commit }
         child.reload
         expect( child.parent ).to eq @output_taxon
       end
       
-      it "should swap child species despite a complete ancestor" do
+      it "should swap child species despite a taxon framework with taxon curators" do
         @input_taxon.update_attributes( rank: Taxon::GENUS, name: "Hyla" )
         @output_taxon.update_attributes( rank: Taxon::GENUS, name: "Pseudacris" )
         child = Taxon.make!( parent: @input_taxon, rank: Taxon::SPECIES, name: "Hyla regilla" )
-        @ancestor_taxon.update_attributes( complete: true, complete_rank: "subspecies" )
+        tf = TaxonFramework.make!(taxon: @ancestor_taxon, rank_level: 5)
         user = make_curator
-        tc = TaxonCurator.make!( taxon: @ancestor_taxon, user: user)
+        tc = TaxonCurator.make!( taxon_framework: tf, user: user)
         tc.reload
         [@input_taxon, @output_taxon, child].each(&:reload)
         @swap.committer = user
@@ -371,18 +375,20 @@ describe TaxonSwap, "commit" do
     }.to raise_error TaxonChange::RankLevelError
   end
 
-  it "should raise an error if commiter is not a taxon curator of a complete ancestor of the input taxon" do
-    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
-    tc = TaxonCurator.make!( taxon: superfamily )
+  it "should raise an error if commiter is not a taxon curator of a taxon framework of the input taxon" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+    tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
+    tc = TaxonCurator.make!( taxon_framework: tf )
     @swap.input_taxon.update_attributes( parent: superfamily, current_user: tc.user )
     expect {
       @swap.commit
     }.to raise_error TaxonChange::PermissionError
   end
   
-  it "should raise an error if commiter is not a taxon curator of a complete ancestor of the output taxon" do
-    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
-    tc = TaxonCurator.make!( taxon: superfamily )
+  it "should raise an error if commiter is not a taxon curator of a taxon framework of the output taxon" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+    tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
+    tc = TaxonCurator.make!( taxon_framework: tf )
     @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user )
     expect {
       @swap.commit
