@@ -2724,7 +2724,8 @@ CREATE TABLE observations (
     mappable boolean DEFAULT false,
     cached_votes_total integer DEFAULT 0,
     last_indexed_at timestamp without time zone,
-    private_place_guess character varying
+    private_place_guess character varying,
+    taxon_geoprivacy character varying
 );
 
 
@@ -9680,4 +9681,6 @@ INSERT INTO schema_migrations (version) VALUES ('20181028002405');
 INSERT INTO schema_migrations (version) VALUES ('20181102233037');
 
 INSERT INTO schema_migrations (version) VALUES ('20181110004422');
+
+INSERT INTO schema_migrations (version) VALUES ('20181120235404');
 
