@@ -207,7 +207,7 @@ fi:
   add_asset: Lisää ominaisuus
   add_batch: Lisää erä
   add_colors: Lisää värejä
-  add_comma_separated_tags: Lisää pilkulla erotellut tunnisteet
+  add_comma_separated_tags: Lisää pilkulla erotellut tagit
   add_comment: Lisää kommentti
   add_common_names_for: Lisää yleisnimiä nykyisiin taksoneihin
   add_conservation_status: Lisää suojelutaso
@@ -268,13 +268,13 @@ fi:
   add_shape: Lisää muoto
   add_some_now: Lisää jotain nyt
   add_tag: Lisää tunniste
-  add_tags: Lisää tunnisteita
+  add_tags: Lisää tageja
   add_tags_to_selected_taxa: Lisää tunnisteita valittuun taksoniin
   add_taxa: Lisää taksoni
   add_taxa_to_places: Lisää taksoni paikkoihin
   add_taxon_batch_to: Lisää taksonierä listaan %{list}
   add_taxon_range: Lisää taksonin levinneisyysalue
-  add_taxonomic_tags_to: Lisää taksonomiset tunnisteet valittuihin Flickr-kuviin &raquo;
+  add_taxonomic_tags_to: Lisää taksonomiset tagit valittuihin Flickr-kuviin &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Lisää taksonomisia tunnisteita Flickr -kuviin,
     jotka liittyvät valittuihin havaintoihin.
   add_to: Lisää
@@ -326,7 +326,7 @@ fi:
   all: Kaikki
   all_colors: '&laquo; Kaikki värit'
   all_comments: Kaikki kommentit
-  all_csv: Kaikki CSV't
+  all_csv: Kaikki CSV:t
   all_flags_must_be_resolved: Kaikki liput on ratkaistava
   all_life: Kaikki elämänmuodot
   all_names: Kaikki Nimet
@@ -533,8 +533,7 @@ fi:
   are_you_sure_you_want_to_delete_this_post: Haluatko varmasti poistaa tämän kirjoituksen?
   are_you_sure_you_want_to_delete_this_taxon_change: Oletko varma, että haluat poistaa
     tämän taksonimuutoksen?
-  are_you_sure_you_want_to_remove_all_tags: Oletko varma että haluat poistaa kaikki
-    tunnisteet?
+  are_you_sure_you_want_to_remove_all_tags: Haluatko varmasti poistaa kaikki tagit?
   are_you_sure_you_want_to_remove_curator: Oletko varma että haluat poistaa käyttäjältä
     %{user} kuraattorin oikeudet?
   are_you_sure_you_want_to_remove_from_project: Oletko varma, että haluat poistaa
@@ -831,7 +830,7 @@ fi:
   choose_place: Valitse paikka
   choose_rule: Valitse sääntö
   choose_subjects: Valitse aiheet
-  choose_tags: Valitse tunnisteet
+  choose_tags: Valitse tagit
   choose_taxon: Valitse taksoni
   choose_what_kind_of_change_youre_creating: Valitse millaisia muutoksia olet luomassa.
   choose_your_username: Valitse käyttäjätunnuksesi
@@ -863,7 +862,7 @@ fi:
   comment_deleted: Kommentti poistettu
   commented: kommentoi
   comments: Kommentit
-  comments_and_identifications: Kommentit ja tunnistukset
+  comments_and_identifications: Kommentit ja tunnistamiset
   comments_by_everyone: Kaikkien kommentit
   comments_by_me: Omat kommenttini
   comments_on: Kommentit
@@ -919,6 +918,7 @@ fi:
     flowering: Kukinta
     life_stage: Elämänvaihe
     adult: Aikuinen
+    subimago: Alaimago
     pupa: Kotelo
     nymph: Nymfi
     larva: Toukka
@@ -961,7 +961,7 @@ fi:
   couldnt_change_your_password: 'Ei voinut vaihtaa salasanaasi: %{e}'
   couldnt_find_a_user_matching_x_param: Emme löytäneet käyttäjää %{id}
   couldnt_find_that_taxon: Taksonin löytäminen ei onnistunut.
-  couldnt_log_you_in_x: Ei voinut kirjautua sisään käyttäjänä '%{x}'
+  couldnt_log_you_in_x: Ei voitu kirjautua sisään käyttäjänä '%{x}'
   countries: Maat
   cover: Kansi
   create: Luo
@@ -980,7 +980,7 @@ fi:
     valokuvasta. \nAloittaaksesi,"
   created: Luotu
   created_by: Luonut
-  created_by_user_on_date: Lisätty %{user} -käyttäjän toimesta %{date}
+  created_by_user_on_date: Lisännyt %{user} %{date}
   created_on: Laadittu
   creating_your_account: Käyttäjätiliäsi luodaan...
   creative_commons_flickr_tagged: Tunnisteet lisätty Creative Commons Flickr valokuviin
@@ -993,6 +993,7 @@ fi:
   cumulative_ids: Kumulatiiviset tunnisteet %{count}/%{total}
   curate_observations: Kuratoi havaintoja
   curate_taxa: Kuratoi taksoneita
+  curate_user: Kuratoi käyttäjää
   curate_users: Kuratoi käyttäjiä
   curated: kuratoitu
   curated_checklist: Kuratoitu lajiluettelo
@@ -1012,6 +1013,7 @@ fi:
   data_deficient: Puutteellisesti tunnettu
   data_quality: Tiedon laatu
   data_quality_assessment: Tietojen laadun arviointi
+  data_quality_assessment_: tietojen laadun arviointi
   datatype: Tietotyyppi
   date_: Päivämäärä
   date?: Päivämäärä?
@@ -1060,8 +1062,8 @@ fi:
   datetime_: Päiväys/Aika
   day: Päivä
   default: oletus
-  default_invite_comment: 'Hieno kuva! Sinun pitäisi lähettää sen osoitteeseen %{site_name}:
-    {{INVITE_LINK}}'
+  default_invite_comment: "Hieno kuva! Sinun pitäisi lähettää se \n%{site_name}iin
+    osoitteeseen {{INVITE_LINK}}"
   default_observation_license: Oletuslisenssi havainnoille
   default_photo_license: Oletuslisenssi kuville
   default_sound_license: Oletuslisenssi äänille
@@ -1194,7 +1196,7 @@ fi:
   editing_taxon_name: Muokataan Taksonin Nimeä
   editing_taxon_range: Muokataan taksonin aluetta
   editing_this: Muokataan %{elem}
-  editing_x_in_y: '%{x}:n Muokkaus %{y}:ssä'
+  editing_x_in_y: Muokataan %{x} %{y}:ssä
   editors: Muokkaajat
   eg: esim.
   either: Joko
@@ -1210,6 +1212,7 @@ fi:
   email_settings: Sähköpostiasetukset
   embed: Upota
   embed_place_widget: Upota paikkapienoisohjelma
+  embed_this_assessment: Upota tämä arviointi
   embed_widget_project: Upota pienoisohjelma tälle projektille verkkosivustossasi
   enable_offline_access: Ota offline-yhteys käyttöön
   enable_offline_access_for_mobile: Ota offline-yhteys käyttöön mobiililaitteille
@@ -1274,7 +1277,7 @@ fi:
   "false": Tarua
   faq: Usein Kysytyt Kysymykset
   fave: suositus
-  faves: Suosikit
+  faves: Suositukset
   Family: Heimo
   faved_this_observation: suositteli tätä havaintoa
   favorite_taxa: Suosikkitaksonit
@@ -1353,6 +1356,7 @@ fi:
   flagger: Liputtaja
   flags: Liput
   flags_with_count: (%{count}) lippua
+  flags_on_users_content: Liput käyttäjän %{user} sisällössä
   flickr_account_information: Flickr Tilisi Tiedot
   flickr_description: Flickr on valokuvien jakopalvelu, ehkä olet jo tiennytkin siitä!
   flickr_has_no_creative_commons: Flickr'issä ei ole Creative Commons-lisensoituja
@@ -1365,8 +1369,9 @@ fi:
   flickr_photos: Flickr-valokuvia
   flickr_style: Flickr-tyyli
   flickr_tagger: Flickr Tunnisteidenlisääjä
-  flickr_tags: Flickr Tunnisteet
+  flickr_tags: Flickr-tagit
   flickr_youre_all_set: Olet valmis aloittamaan %{site_name}in tutkimisen
+  flowering_phenology: Kukintafenologia
   follow: Seuraa
   follow_us: 'Seuraa meitä:'
   follow_us_on: 'Seuraa meitä:'
@@ -1404,7 +1409,7 @@ fi:
     other: sientä
   gbif_occurrences: GBIF Tapahtumia
   general: Yleinen
-  generate_taxonomic_tags_for_flickr: Luo taksonomisia tunnisteita Flickr valokuviisi.
+  generate_taxonomic_tags_for_flickr: Luo taksonomisia tageja Flickr-valokuviisi.
   generate_widget: Luo Pienoisohjelma
   Genus: Suku
   genus_slash_species: '[SUKU] / [LAJI]'
@@ -1482,13 +1487,15 @@ fi:
   identify_observations: Tunnista havaintoja
   identify_title: Tunnistus
   identification: määrittäjä
-  identification_by_user: Käyttäjän %{user} tunnistukset
+  identification_by_user: Käyttäjän %{user} tunnistamiset
+  identification_deleted: Tunnistaminen poistettu.
   identification_saved: Tunnistus tallennettu!
   identification_summary: Tunnisteen yhteenveto
   identification_updated: Tunnistus päivitetty!
   identification_withdrawn: Tunnistaminen peruutettu.
   identifications: Tunnistamiset
-  identifications_by: Käyttäjän %{user} tekemät tunnistukset
+  identifications_by: Käyttäjän %{user} tunnistamiset
+  identified?: tunnistettu
   identifiers: Tunnisteet
   ids: Tunnisteet
   ids_made_for_others: muille tehtyä tunnistetta
@@ -1496,6 +1503,8 @@ fi:
     tällä hetkellä?
   if_you_already_have_an_account: Jos sinulla on jo %{site_name} -tili...
   if_you_dont_want_us_to_share_your_data: Jos et halua meidän jakaa tietojasi
+  if_you_have_any_trouble_with_the_site_check_out: Jos sinulla on kysyttävää, tutustu
+    <a href="%{help_url}">apuosioomme</a> tai lähetä viesti <a href="%{feedback_url}">palauteryhmäämme</a>.
   if_you_use: Jos käytät
   if_you_want_to_change_the_name: jos haluat muuttaa nimeä
   if_your_project_is: Jos projekti koskee tiettyä paikkaa, aseta koordinaatit klikkaamalla
@@ -1519,7 +1528,7 @@ fi:
     tietokoneeltasi.
   import_photos: Tuo kuvia
   import_sounds: Tuo ääniä
-  import_tags_from_csv: Tuo tunnisteet CSV-tiedostosta
+  import_tags_from_csv: Tuo tagit CSV-tiedostosta
   importing: Tuodaan...
   improving: Parannus
   in: paikassa
@@ -1747,6 +1756,7 @@ fi:
   list_was_successfully_created: Lista luotiin onnistuneesti.
   listed_taxa: Luetellut taksonit
   listed_taxon: Lueteltu taksoni
+  listing_lists: Listauslistat
   lists: Listat
   lists_by_login:
     title:
@@ -1763,7 +1773,7 @@ fi:
   loading_observations: Ladataan havaintoja...
   loading_preview_and_code: Ladataan esikatselua ja koodia...
   loading_suggestions: Ladataan ehdotuksia...
-  loading_tags: Ladataan tunnisteita...
+  loading_tags: Ladataan tageja...
   loading_taxa_from_your: Ladataan taksoneita havainnoistasi...
   loading_wikipedia_description: Ladataan Wikipediakuvausta...
   locale_description: Maa asettaa kieli- ja päivämäärämuotoiluasetuksesi.
@@ -1837,8 +1847,8 @@ fi:
   make_curator: Tee kuraattori
   make_manager: Tee manageri
   make_new_place: Tee uusi paikka
-  make_taxonomic_flickr_tags_for_taxon_raquo: Tee taksonomisia Flickr tunnisteita
-    tähän taksoniin &raquo;
+  make_taxonomic_flickr_tags_for_taxon_raquo: Tee taksonomisia Flickr tageja tähän
+    taksoniin &raquo;
   make_this_your_default_license: Tee tästä oletus %{type} lisenssisi
   mammals: nisäkkäät
   manage: Hallitse
@@ -2133,7 +2143,7 @@ fi:
   observation_date?: Päiväys?
   observation_field: Havaintokenttä
   observation_fields: Havainnointikentät
-  observation_fields_by_preferences_description: Havaintokentät muistuttavat tägejä,
+  observation_fields_by_preferences_description: Havaintokentät muistuttavat tageja,
     paitsi kuka tahansa voi lisätä niitä havaintoosi oletuksena. Jos haluat mieluummin,
     että vain sinä tai vain sivuston kuraattorit voivat lisätä havaintokenttiä, sinun
     täytyy muuttaa oletusasetusta.
@@ -2172,6 +2182,7 @@ fi:
   observations_title: Kaikkien havainnot
   observations_total: Havaintoa yhteensä
   observations_w: Havainnot w/
+  observations_w_field: Havainnot w/ kenttä
   observations_was_successfully_updated: Havainto/havainnot päivitetty onnistuneesti.
   observations_week: Havainnot / Viikko
   observations_widget: Havaintojen pienoisohjelma
@@ -2253,6 +2264,7 @@ fi:
   open_street_map: OpenStreetMap
   optional: valinnainen
   or: tai
+  or_all_caps: TAI
   or_choose_high_level_taxa: '... tai valitse joistakin korkeatasoisista taksoneista'
   or_if_you_dont_want_email: Tai jos et vain halua mitään sähköpostia...
   or_invite_your_friends: tai kutsu ystäviäsi
@@ -2536,6 +2548,7 @@ fi:
   project_admins:
     one: Projektin ylläpitäjä
     other: Projektin ylläpitäjät
+  project_assessments: Projektin arvostelut
   project_cover: Projektikansi
   project_created_on: loi tämän projektin %{date}
   project_curator_changes: Projektin kuraattorin muutokset
@@ -2648,8 +2661,8 @@ fi:
   remarks_optional: Huomautukset <span class="small description">(valinnainen)</span>
   remember_me: Muista minut
   remove: Poista
-  remove_all_tags: Poista kaikki tunnisteet.
-  remove_comma_separated_tags: Poista pilkulla erotellut tunnisteet
+  remove_all_tags: Poista kaikki tagit.
+  remove_comma_separated_tags: Poista pilkulla erotellut tagit
   remove_curator: Poista kuraattori
   remove_from_featured: Poista esitellyistä
   remove_from_guide: Poista oppaasta
@@ -2662,7 +2675,7 @@ fi:
   remove_place: Poista paikka
   remove_project_user: Poista projektikäyttäjä
   remove_selected: Poista valitut
-  remove_tags: Poista tunnisteet
+  remove_tags: Poista tagit
   removed: Poistettu
   removed!: Poistettu!
   removed_project_user: Poista projektikäyttäjä
@@ -2678,6 +2691,8 @@ fi:
   research: tutkimus
   research_: Tutkimus
   research_grade: Tutkimusaste
+  research_grade_expandable_html: T<span class='full'>utkimus</span>a<span class='full'>ste</span>
+  research_grade_short_html: T<span class='full'>utkimus</span>a<span class='full'>ste</span>
   research_grade_qualification: Tutkimusasteen pätevyys
   research_quality: Tutkimuksen laatu
   reset_search_filters: Tyhjennä hakusuodattimet
@@ -2961,7 +2976,7 @@ fi:
   suggest_an_id: Ehdota tunnistetta
   suggest_an_identification: Ehdota tunnistusta
   suggestions: Ehdotukset
-  summary: Yhteenveto
+  summary: Tiivistelmä
   sun: Su
   sw_lat: SW leveysaste
   sw_lon: SW pituusaste
@@ -2972,7 +2987,7 @@ fi:
   table_of_contents: Sisällysluettelo
   tag: Tagi
   tagging: Tunnisteita lisätään...
-  tags: Tunnisteet
+  tags: Tagit
   take_me_facebook: Kyllä, vie minut Facebookiin!
   take_me_flickr!: Kyllä, vie minut Flickr:iin!
   take_me_back: Vie minut takaisin
@@ -3006,9 +3021,12 @@ fi:
   taxon_was_successfully_created: Taksoni luotiin onnistuneesti.
   taxon_was_successfully_updated: Taksoni päivitettiin onnistuneesti.
   taxonomic: Taksonominen
+  taxonomic_changes: Taksonomiset muutokset
+  taxonomic_changes_raquo_html: Taksonomiset <nobr>muutokset &raquo;</nobr>
   taxonomic_groups: Taksonomiset ryhmät
+  taxonomic_order: Taksonominen järjestys
   taxonomic_status: Taksonominen tila
-  taxonomic_tags_for_flickr: Flickr'in taksonomiset tunnisteet
+  taxonomic_tags_for_flickr: Flickr'in taksonomiset tagit
   taxonomy_settings: Taksonomia-asetukset
   tell_everyone_a_little_about_you: Kerro kaikille vähän itsestäsi
   tell_the_world_a_little_about_yourself: Kerro meille itsestäsi
@@ -3079,7 +3097,7 @@ fi:
   this_taxon_has_no_default_photo: Tällä taksonilla ei ole oletuskuvaa!
   this_will_add_listed_taxa: Tämä lisää havainnoista listatut taksonit. Tämä vie jonkin
     aikaa joten käytä tätä säästeliäästi ja vain pienissä lajilistoissa.
-  this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä tunnisteita Flickr-valokuvillesi.
+  this_will_try_to_add_tags_to_your_flickr: Tämä yrittää lisätä tageja Flickr-valokuvillesi.
     Jatketaan?
   this_year: Tänä vuonna
   threatened: Uhanalainen
@@ -3166,6 +3184,7 @@ fi:
   update_search: Päivitä haku
   update_selected_taxa: Päivitä valitut taksonit
   update_subscription: Päivitä tilaus
+  update_subscription_preferences: Päivitä tilausasetukset
   update_x_selected_taxa:
     one: Päivitä 1 valittu taksoni
     other: Päivitä %{count} valittua taksonia
@@ -3237,7 +3256,7 @@ fi:
   users_highlights_and_stats_from_year_on_site: Käyttäjän %{user} kohokohdat ja tilastot
     vuodelta %{year} %{site}issa
   users_id: Käyttäjän %{user} tunniste
-  users_identification_html: Käyttäjän <a href='%{url}'>%{user}</a> tunnistukset
+  users_identification_html: Käyttäjän <a href='%{url}'>%{user}</a> tunnistamiset
   users_latest_observations_on_site: Käyttäjän %{user} viimeisimmät havainnot sivustolla
     %{site}
   users_observations: Käyttäjän %{user} havainnot
@@ -3285,7 +3304,7 @@ fi:
   view_original_by: Näytä alkuperäinen käyttäjän %{by} kuva sivustolla %{photo}
   view_photos_ranges_observations_more: Katso valokuvia, lajeja, %{site_name}-havaintoja
     ja paljon muuta! Olemme koonneet tietoja monista eri lähteistä ja yhdistäneet
-    ne yhteen kunkin lajin nopeaan yhteenvetoon kussakin paikassa.
+    ne yhteen kunkin lajin nopeaan tiivistelmään kussakin paikassa.
   view_place: Näytä paikka
   view_post: Näytä viesti
   view_projects_from_place: Näytä projektit paikasta %{place}
@@ -3371,6 +3390,8 @@ fi:
   with_errors: Virheiden kera
   worldwide: Maailmanlaajuinen
   would_you_like_to: Haluaisitko
+  would_you_prefer_to_view_common_names_used_in_place_html: Haluaisitko mieluummin
+    nähdä paikassa <strong>%{place}</strong> käytetyt yleisnimet?
   x_admin: '%{login} ylläpitäjät'
   x_blog: '%{x}:n blogi'
   x_deleted: '%{x} poistettu'
@@ -3478,7 +3499,7 @@ fi:
   your_email_address: Sähköpostiosoitteesi
   your_flickr_account: sinun Flickr-tili
   your_hard_drive: kiintolevysi
-  your_home: Kotisi
+  your_home: Sinun koti
   your_id: Tunnisteesi
   your_identification: Tunnistamisesi
   your_inat_account_has_been_activated: '%{inat}-tilisi on aktivoitu.'
@@ -3578,7 +3599,7 @@ fi:
           %{site_name}iin, mutta se voi olla hieman hidasta, joten hyväksymme vain
           yhden latauksen kerrallaan. Flickr:in tai Googlen käyttäminen on todennäköisesti
           nopeampaa, jos käytät jo näitä palveluja.
-        what_are_tags?: Mitä ovat tunnisteet?
+        what_are_tags?: Mitä ovat tagit?
         what_is_geoprivacy?: Mikä on sijainnin tietosuoja?
         geoprivacy_is_a_setting_you_can: 'Sijainnin tietosuoja on asetus jota voit
           käyttää havainnoissasi kontrolloidaksesi miten havainnon kordinaatit (leveys-
@@ -3594,7 +3615,7 @@ fi:
     observations:
       community_id:
         agreement: Yksimielisyys
-        algorithm_summary: Algoritmin yhteenveto
+        algorithm_summary: Algoritmin tiivistelmä
         ancestor_disagreements: Kantaisä erimielisyydet
         cumulative_count: Kumulatiivinen määrä
         disagreement: Erimielisyys
@@ -3627,7 +3648,7 @@ fi:
         user_login: Havainnoijan käyttäjänimi
         url: Web-osoite havainnolle
         image_url: Web-osoite oletuskuvalle
-        tag_list: Pilkulla erotettu lista tunnisteista
+        tag_list: Pilkulla erotettu lista tageista
       import:
         date_column_format: DD-MM-YYYY HH:MM
         decimal_degrees_format: dd.dddd
@@ -3712,7 +3733,7 @@ fi:
         project_details: Projektin yksityiskohdat
         project_icon: Projektin kuvake (PNG, JPG, tai GIF)
         project_name: Projektin nimi
-        project_summary: Projektin yhteenveto
+        project_summary: Projektin tiivistelmä
         umbrella_project_features: 'Sateenvarjoprojektin ominaisuudet:'
         unique_url_for_outreach: Ainutlaatuinen URL-osoite tiedotusta varten
         users_can_follow_your_project: Käyttäjät voivat seurata projektisi päivityksiä
@@ -3901,15 +3922,15 @@ fi:
       1: tammikuu
       2: helmikuu
       3: maaliskuu
-      4: Huhtikuu
-      5: Toukokuu
+      4: huhtikuu
+      5: toukokuu
       6: kesäkuu
-      7: Heinäkuu
-      8: Elokuu
+      7: heinäkuu
+      8: elokuu
       9: syyskuu
-      10: Lokakuu
+      10: lokakuu
       11: marraskuu
-      12: Joulukuu
+      12: joulukuu
   datetime:
     distance_in_words:
       about_x_hours:
