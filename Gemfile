@@ -82,7 +82,7 @@ gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'https://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '3.6.0'
-gem 'sass-rails', '=5.0.1'
+gem 'sass-rails', '5.0.7'
 gem 'soundcloud'
 gem 'sprockets', '~> 2.12.5'
 gem 'translate-rails3', :require => 'translate', :git => 'https://github.com/JayTeeSF/translate.git'
