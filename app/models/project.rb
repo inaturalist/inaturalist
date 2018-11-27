@@ -925,36 +925,22 @@ class Project < ActiveRecord::Base
         where("updated_at >= ?", last_aggregated_at).distinct.pluck(:user_id)
       params[:aggregation_user_ids].uniq!
     end
-    list = params[:list_id] ? List.find_by_id(params[:list_id]) : nil
     page = 1
-    total_entries = nil
+    total_pages = nil
     last_observation_id = 0
     search_params = Observation.get_search_params(params)
     while true
       # stop if the project was deleted since the job started
       return unless Project.where(id: id).exists?
-      search_params.merge!({ min_id: last_observation_id + 1,
-        order_by: "id", order: "asc" })
-      observations = Observation.page_of_results(search_params)
-      break if observations.blank?
-      total_entries = observations.total_entries if page === 1
-      Rails.logger.debug "[DEBUG] Processing page #{observations.current_page} of #{observations.total_pages} for #{slug}"
-      observations.each do |o|
-        # don't use first_or_create here
-        po = transaction do
-          ProjectObservation.where(project: self, observation: o).first ||
-            ProjectObservation.create(project: self, observation: o)
-        end
-        if po && !po.errors.any?
-          added += 1
-        else
-          fails += 1
-          Rails.logger.debug "[DEBUG] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
-        end
-      end
-      last_observation_id = observations.last.id
-      observations = nil
+      batch_params = search_params.merge({ min_id: last_observation_id + 1, order_by: "id", order: "asc" })
+      batch_metadata = aggregate_observations_from_query(batch_params, { page: page, total_pages: total_pages })
+      break unless batch_metadata
+      total_pages = batch_metadata[:total_pages]
+      added += batch_metadata[:obs_ids_added].length
+      fails += batch_metadata[:fails]
+      last_observation_id = batch_metadata[:last_id]
       page += 1
+      Observation.elastic_index!(ids: batch_metadata[:obs_ids_added])
     end
     update_counts
     update_attributes(last_aggregated_at: Time.now)
@@ -1022,6 +1008,44 @@ class Project < ActiveRecord::Base
     return true if aggregation_allowed?
     errors.add(:base, I18n.t(:project_aggregator_filter_error))
     true
+  end
+
+  private
+
+  def aggregate_observations_from_query( search_params, options = { } )
+    page = options[:page] || 1
+    observations = Observation.page_of_results( search_params )
+    return nil if observations.blank?
+    total_pages = ( page === 1 ) ? observations.total_pages : options[:total_pages]
+    Rails.logger.debug "[DEBUG] Processing page #{page} of #{total_pages} for #{slug}"
+    obs_ids_added = []
+    fails = 0
+    Observation.preload_associations( observations, { user: [:stored_preferences, :project_users] } )
+    observations.each do |o|
+      # check user preferences upfront rather than relying on the ProjectObservation validations
+      if o.user.preferred_project_addition_by == User::PROJECT_ADDITION_BY_NONE || (
+        o.user.preferred_project_addition_by == User::PROJECT_ADDITION_BY_JOINED &&
+        !o.user.project_users.detect{ |pu| pu.project_id == self.id } )
+        next
+      end
+      # don't use first_or_create here
+      po = transaction do
+        ProjectObservation.where(project: self, observation: o).first ||
+          ProjectObservation.create(project: self, observation: o, skip_touch_observation: true)
+      end
+      if po && !po.errors.any?
+        obs_ids_added << o.id
+      else
+        fails += 1
+        Rails.logger.debug "[DEBUG] Failed to add #{po} to #{self}: #{po.errors.full_messages.to_sentence}"
+      end
+    end
+    {
+      last_id: observations.last.id,
+      total_pages: observations.total_pages,
+      obs_ids_added: obs_ids_added,
+      fails: fails
+    }
   end
 
 end
