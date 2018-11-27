@@ -1,0 +1,32 @@
+- content_for :title do
+  =t :support_inaturalist
+- content_for :extrajs do
+  = javascript_include_tag "https://donorbox.org/widget.js", paypalExpress: false
+  :javascript
+    $( ".sharing .btn" ).click( function( ) {
+      console.log( "$(this).text( ): ", $(this).text( ) );
+      return !window.open( this.href, $(this).text( ), "width=640,height=400" );
+    } );
+- content_for :extracss do
+  = stylesheet_link_tag :donate, media: "all", cache: true
+- content_for :extrahead do
+  %meta{ property: "og:description", content: t( "views.donate.donate_short_desc" ) }
+.container
+  .row
+    .col-md-10.col-md-offset-1.col-xs-12
+      %h1=t :support_inaturalist
+  .row
+    .col-md-5.col-md-offset-1.col-xs-12
+      %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/support-inaturalist", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
+    .col-md-5.col-xs-12
+      =t "views.donate.donate_desc_html"
+      .sharing
+        = link_to "https://www.facebook.com/sharer/sharer.php?u=#{URI.encode( request.original_url )}", class: "btn btn-inat btn-sm btn-facebook", target: "_blank" do
+          %i.fa.fa-facebook
+          = t(:facebook)
+        = link_to "https://www.linkedin.com/shareArticle?mini=true&url=#{URI.encode( request.original_url )}", class: "btn btn-inat btn-sm btn-linkedin", target: "_blank" do
+          %i.fa.fa-linkedin
+          = t(:linkedin)
+        = link_to "https://twitter.com/intent/tweet/?url=#{URI.encode( request.original_url )}&text=#{t( "views.donate.post_donate_social_media_text" )}", class: "btn btn-inat btn-sm btn-twitter", target: "_blank" do
+          %i.fa.fa-twitter
+          = t(:twitter)

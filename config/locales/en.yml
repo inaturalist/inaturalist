@@ -1860,6 +1860,7 @@ en:
   linked_flickr_hotwo: "You can activate your Flickr account with %{site_name} to add photos by clicking on this link."
   linked_flickr_password_html: "<strong>We will never ask you for your Flickr password</strong> (but Flickr might, check the url that the button sends you and make sure it's Flickr.com)."
   linked_flickr_photo_copy_html: "<strong>We will never store copies of your photos or change your Flickr data (unless you ask us to), ever.</strong> We care too much about birds, bugs and slugs to want to mess with your information!"
+  linkedin: LinkedIn
   list: List
   list_deleted: List deleted.
   list_saved: List saved.
@@ -3497,6 +3498,7 @@ en:
   suggestions: Suggestions
   summary: Summary
   supporting: Supporting
+  support_inaturalist: Support iNaturalist
   suspicious_photos: Suspicious photos
   siutable_observations: suitable observations
   sun: Sun
@@ -4466,6 +4468,30 @@ en:
           please_read_the_teachers_guide_html: |
             If so, please read our <a href="%{url}">Teacher's Guide</a> for
             tips on using %{site_name} with students.
+    donate:
+      donate_short_desc: "Help support iNaturalist with a donation!"
+      donate_desc_html: |
+        <p class="lead">
+          <strong>iNaturalist is one of the world’s largest communities dedicated to
+          exploring biodiversity. Thank you for being part of it!</strong>
+        </p>
+        <p class="lead">
+          If you believe in the power of this global community of nature lovers
+          to share knowledge and generate irreplaceable biodiversity data,
+          please consider a one-time or recurring gift.
+        </p>
+        <p class="lead">
+          Your donation helps support iNaturalist as the community grows, from
+          advancing computer vision and implementing new features to supporting
+          our servers and staff.
+        </p>
+        <p class="text-muted">
+          iNaturalist is a joint initiative of the California Academy of Science
+          and the National Geographic Society. All donations will be received by
+          the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-
+          profit organization based on the United States of America.
+        </p>
+      post_donate_social_media_text: I supported iNaturalist! You should check it out, too.
     guides:
       index:
         funding_html: |

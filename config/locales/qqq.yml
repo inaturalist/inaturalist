@@ -1360,6 +1360,14 @@ qqq:
   yours: '{{Identical|Your}}'
   youre_viewing_site_name_observations_html: where site_name is the name of the site
   views:
+    donate:
+      donate_desc_html: |
+        This is a pitch to donate to iNaturalist.org via the California
+        Academy of Sciences. It is *not* a pitch to donate to any of the
+        iNaturalist Network partner sites, so proper nouns like "iNaturalist"
+        should not be translated to the names of partner sites like
+        "NaturaLista." Also, please do not change or translate any of the html
+        markup code, including the class names.
     guides:
       edit:
         guide_place_desc: where site_name is the site name
