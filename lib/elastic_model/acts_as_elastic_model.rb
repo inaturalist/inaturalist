@@ -250,12 +250,8 @@ module ActsAsElasticModel
     end
 
     def elastic_index!
-      # indexing can preload a lot of associations which can hang around and cause
-      # memory usage to spike. To avoid that, create a deep copy of the current instance
-      # and use that, so any associations loaded purely for indexing will be garbage collected
-      cloned = Marshal.load(Marshal.dump(self))
       begin
-        cloned.__elasticsearch__.index_document
+        __elasticsearch__.index_document
         # in the test ENV, we will need to wait for changes to be applied
         self.class.__elasticsearch__.refresh_index! if Rails.env.test?
         if respond_to?(:last_indexed_at) && !destroyed?
