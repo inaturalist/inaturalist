@@ -37,7 +37,7 @@ gem 'devise_suspendable'
 gem 'diffy'
 gem 'doorkeeper', "~> 5.0.0"
 gem 'dynamic_form'
-gem 'exifr'
+gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem 'fastimage'
 # gem 'flickraw', "~> 0.9.8", :git => 'https://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "flickraw-cached"
