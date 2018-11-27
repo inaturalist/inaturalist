@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'rails', '4.2.10'
+gem 'rails', '4.2.11'
 
 gem 'apipie-rails'
 gem 'actionpack-action_caching'
