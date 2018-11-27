@@ -925,7 +925,8 @@ class ProjectsController < ApplicationController
     @errors = {}
     @project_observations = []
     @observations.each do |observation|
-      project_observation = ProjectObservation.create(project: @project, observation: observation, user: current_user)
+      project_observation = ProjectObservation.create( project: @project, observation: observation,
+        user: current_user, skip_touch_observation: true )
       if project_observation.valid?
         @project_observations << project_observation
       else
@@ -935,8 +936,8 @@ class ProjectsController < ApplicationController
       if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: observation.id).first
         @project_invitation.destroy
       end
-      
     end
+    Observation.elastic_index!( ids: @observations.map( &:id ) )
     
     @unique_errors = @errors.values.flatten.uniq.to_sentence
     
