@@ -745,11 +745,15 @@ class Project < ActiveRecord::Base
     # the current rules. The max_id prevents this from deleting the re-aggregated
     # obs and creating an endless loop of deletes and re-agg
     max_id = Observation.maximum(:id)
+    observation_ids = []
     proj.project_observations.joins(:observation).
          where("observations.user_id = ?", usr).
          where("observations.id <= ?", max_id).find_each do |po|
+      po.skip_touch_observation = true
       po.destroy
+      observation_ids << po.observation_id
     end
+    Observation.elastic_index!(ids: observation_ids)
   end
 
   def list_observed_and_total #denominator and numerator on project/show
