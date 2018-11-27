@@ -831,6 +831,7 @@ class Observation < ActiveRecord::Base
       t.establishment_means_in_place?(ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
     json[:taxon][:endemic] = preloaded ? taxon_endemic :
       t.establishment_means_in_place?("endemic", places)
+    t.listed_taxa_with_establishment_means.reset
   end
 
 end
