@@ -1,6 +1,7 @@
 module ActsAsElasticModel
 
   extend ActiveSupport::Concern
+  @@inserts = 0
 
   included do
     include Elasticsearch::Model
@@ -250,6 +251,7 @@ module ActsAsElasticModel
     end
 
     def elastic_index!
+      original_associations_loaded = self.association_cache.keys
       begin
         __elasticsearch__.index_document
         # in the test ENV, we will need to wait for changes to be applied
@@ -257,6 +259,19 @@ module ActsAsElasticModel
         if respond_to?(:last_indexed_at) && !destroyed?
           update_column(:last_indexed_at, Time.now)
         end
+        # indexing can preload a lot of associations which can hang around and cause
+        # memory usage to spike. To avoid that, reset (i.e. unload the association)
+        # any associations that were loaded purely for indexing
+        associations_added_for_indexing = self.association_cache.keys - original_associations_loaded
+        associations_added_for_indexing.each do |k|
+          if self.send( k ).is_a?( ActiveRecord::Associations::CollectionProxy )
+            self.send( k ).reset
+          end
+        end
+        @@inserts += 1
+        # garbage collect after a small batch of individual instance indexing
+        # don't do this for every elastic_index! as GC is somewhat expensive
+        GC.start if @@inserts % 10 == 0
       rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
         Logstasher.write_exception(e)
         Rails.logger.error "[Error] elastic_index! failed: #{ e }"
