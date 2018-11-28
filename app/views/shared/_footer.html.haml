@@ -23,7 +23,8 @@
         %p
           %a{ href: site.privacy_url }=t :privacy
       .col-xs-2
-        = link_to t(:support_inaturalist), donate_path, class: "btn btn-inat btn-primary btn-block btn-donate"
+        - if is_admin?
+          = link_to t(:support_inaturalist), donate_path, class: "btn btn-inat btn-primary btn-block btn-donate"
         .social-media
           - unless site.facebook_url.blank?
             = link_to t(:facebook), site.facebook_url, :class => "social-media-link facebook"

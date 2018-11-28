@@ -71,7 +71,7 @@
                                     </table>
                                   </td>
                                   <td style="width: 100%; -webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%;mso-table-lspace: 0pt;mso-table-rspace: 0pt;color: #808080;font-family: Helvetica;font-size: 10px;line-height: 150%;text-align: left;">
-                                    <%- if @site && @site.id == Site.default.id %>
+                                    <%- if @site && @site.id == Site.default.id && @user.is_admin? %>
                                       <a href="<%= donate_url %>" style="-webkit-text-size-adjust: 100%;-ms-text-size-adjust: 100%; background-color: #74ac00; color: white; border-radius: 50px; padding: 10px; font-size: 13px; text-decoration: none; display: block; text-align: center; margin-left: 10px;">
                                         <%=t :support_inaturalist %>
                                       </a>
