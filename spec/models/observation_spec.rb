@@ -1237,6 +1237,16 @@ describe Observation do
         o2.reload
         expect( o2 ).to be_coordinates_obscured
       end
+      it "should make same day obs private if this is private" do
+        o1 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: observer )
+        o2 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: observer )
+        o1.update_attributes!( geoprivacy: Observation::PRIVATE )
+        expect( o1 ).to be_coordinates_obscured
+        Delayed::Worker.new.work_off
+        o2.reload
+        expect( o2.private_latitude ).not_to be_blank
+        expect( o2.latitude ).to be_blank
+      end
       describe "when date changes" do
         let(:o1) {
           Observation.make!(
@@ -1933,6 +1943,9 @@ describe Observation do
       longitude: original_longitude,
       place_guess: original_place_guess
     } }
+
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
   
     it "should be set automatically if the taxon is threatened" do
       observation = Observation.make!( defaults )

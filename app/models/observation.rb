@@ -355,7 +355,6 @@ class Observation < ActiveRecord::Base
               :set_taxon_from_taxon_name,
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
-              :reset_private_coordinates_if_coordinates_changed,
               :normalize_geoprivacy,
               :set_license,
               :trim_user_agent,
@@ -1358,14 +1357,6 @@ class Observation < ActiveRecord::Base
     end
     false
   end
-  
-  def reset_private_coordinates_if_coordinates_changed
-    if (latitude_changed? || longitude_changed?)
-      self.private_latitude = nil
-      self.private_longitude = nil
-    end
-    true
-  end
 
   def normalize_geoprivacy
     self.geoprivacy = nil unless GEOPRIVACIES.include?(geoprivacy)
@@ -1400,20 +1391,17 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def taxon_geoprivacy
+    target_taxon_ids = [[taxon.try(:id)] + identifications.current.pluck(:taxon_id)].flatten.compact.uniq
+    lat = private_latitude.blank? ? latitude : private_latitude
+    lon = private_longitude.blank? ? longitude : private_longitude
+    Taxon.max_geoprivacy( target_taxon_ids, latitude: lat, longitude: lon )
+  end
+
   def hide_coordinates
     return if coordinates_private?
     obscure_coordinates
     self.latitude, self.longitude = [nil, nil]
-  end
-
-  def taxon_geoprivacy
-    unless @taxon_geoprivacy
-      target_taxon_ids = [[taxon.try(:id)] + identifications.current.pluck(:taxon_id)].flatten.compact.uniq
-      lat = private_latitude.blank? ? latitude : private_latitude
-      lon = private_longitude.blank? ? longitude : private_longitude
-      @taxon_geoprivacy = Taxon.max_geoprivacy( target_taxon_ids, latitude: lat, longitude: lon )
-    end
-    @taxon_geoprivacy
   end
   
   def obscure_coordinates
