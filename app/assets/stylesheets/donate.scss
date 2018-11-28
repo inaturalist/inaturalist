@@ -1,6 +1,11 @@
 @import "colors";
 @import "responsive";
 
+.bootstrap h1 {
+  margin: 40px 0 20px;
+  font-size: 33px;
+}
+
 #donorbox-iframe {
   min-width: 310px;
   max-height: none!important;
@@ -19,10 +24,11 @@
   margin: 50px 0;
   text-align: center;
   .btn {
-    margin-right: 20px;
     i {
       margin-right: 3px;
     }
+    font-size: 14px;
+    line-height: 14px;
     font-weight: bold;
     letter-spacing: 1.5;
   }
@@ -32,6 +38,7 @@
   .btn.btn-facebook:focus {
     background-color: $facebook-blue;
     border-color: $facebook-blue;
+    margin-right: 20px;
   }
   .btn.btn-twitter,
   .btn.btn-twitter:active,
@@ -39,6 +46,7 @@
   .btn.btn-twitter:focus {
     background-color: $twitter-blue;
     border-color: $twitter-blue;
+    margin-right: 20px;
   }
   .btn.btn-linkedin,
   .btn.btn-linkedin:active,
