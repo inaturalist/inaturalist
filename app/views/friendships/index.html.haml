@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-xs-12
+      %h2=t :your_relationships
+      %table.table
+        %tbody
+          - for friendship in @friendships
+            %tr
+              %td
+                = link_to( image_tag( friendship.friend.icon.url(:thumb), class: "usericon" ), person_path( friendship.friend ) )
+                = link_to_user friendship.friend
+                .meta= friendship.friend.name
+              %td
+                = form_for friendship, url: relationship_path( friendship, format: :json ), remote: true do |f|
+                  .form-group
+                    %label
+                      = f.check_box :following, data: { autosubmit: true }
+                      =t :receive_updates_about_new_observations
+                  .form-group
+                    %label
+                      = f.check_box :trust, data: { autosubmit: true }
+                      =t :trust_with_private_coordinates

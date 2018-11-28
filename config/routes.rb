@@ -168,6 +168,7 @@ Rails.application.routes.draw do
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
     end
   end
+  resources :relationships, controller: :friendships, only: [:index, :update]
   get '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   get '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   post 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }
@@ -318,8 +319,8 @@ Rails.application.routes.draw do
   resources :project_users, only: [:update]
 
   get 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
-  get 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
-  get 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => simplified_login_regex }, :following => 'following'
+  get "people/:login/followers" => 'users#followers', as: :followers_by_login, constraints: { login: simplified_login_regex }
+  get "people/:login/following" => 'users#following', as: :following_by_login, constraints: { login: simplified_login_regex }
   resources :lists, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'batch_edit'

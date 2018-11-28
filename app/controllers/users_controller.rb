@@ -7,8 +7,8 @@ class UsersController < ApplicationController
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
-    :show, :update, :relationships, :add_role, :remove_role, :set_spammer,
-    :merge ]
+    :show, :update, :followers, :following, :relationships, :add_role,
+    :remove_role, :set_spammer, :merge ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
@@ -279,7 +279,7 @@ class UsersController < ApplicationController
   def show
     @selected_user = @user
     @login = @selected_user.login
-    @followees = @selected_user.friends.where( "users.suspended_at IS NULL" ).paginate(:page => 1, :per_page => 15).order("id desc")
+    @followees = @selected_user.followees.page( 1 ).per_page( 15 ).order( "users.id desc" )
     @favorites_list = @selected_user.lists.find_by_title("Favorites")
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
@@ -311,14 +311,27 @@ class UsersController < ApplicationController
       format.json { render :json => @selected_user.to_json( opts ) }
     end
   end
+
+  def followers
+    @users = @user.followers
+    @users = @users.page( params[:page] ).order( :login )
+    counts_for_users
+    respond_to do |format|
+      format.html { render :friendship_users, layout: "bootstrap" }
+    end
+  end
+
+  def following
+    @users = @user.followees
+    @users = @users.page( params[:page] ).order( :login )
+    counts_for_users
+    respond_to do |format|
+      format.html { render :friendship_users, layout: "bootstrap" }
+    end
+  end
   
   def relationships
-    @users = if params[:following]
-      @user.friends.where( "users.suspended_at IS NULL" ).paginate(page: params[:page] || 1).order(:login)
-    else
-      @user.followers.where( "users.suspended_at IS NULL" ).paginate(page: params[:page] || 1).order(:login)
-    end
-    counts_for_users
+    @friendships = current_user.friendships.page( params[:page] )
   end
   
   def get_nearby_taxa_obs_counts search_params
