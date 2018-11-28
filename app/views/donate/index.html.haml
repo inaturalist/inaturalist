@@ -24,7 +24,7 @@
     .col-md-5.col-xs-12
       =t "views.donate.donate_desc_html"
       .sharing
-        %p.lead.text-center=t :share
+        %p.lead.text-center=t :share_colon, default: t(:share)
         = link_to "https://www.facebook.com/sharer/sharer.php?u=#{URI.encode( request.original_url )}", class: "btn btn-inat btn-sm btn-facebook", target: "_blank" do
           %i.fa.fa-facebook
           = t(:facebook)
