@@ -4090,37 +4090,41 @@ nl:
       identify:
         review_all_tooltip: Markeer alle waarnemingen op de pagina als beoordeeld
       show:
-        community_taxon_desc_html: " class = \"ui\">\n  Het community taxon (of gemeenschapstaxon)
-          is de determinatie van \n  het taxon door de % {site_name} gemeenschap van
-          de afbeelding in de waarneming. Als je geïnteresseerd bent in hoe we het
-          kiezen\n  community taxon kiezen, kijk dan bij de opmerkingen over het algoritme
-          hieronder, maar in\n  algemeen proberen we <strong> een taxon te kiezen
-          waar meer dan 2/3 is\n  van de ID's onder valt </ strong>. Dit betekent
-          dat soms\n  een taxon op een hoger niveau wordt gekozen dat een aantal taxa
-          bevat\n  Taxa wat de sooort niet eens (u denkt bijvoorbeeld dat het een
-          Lampropeltis is en ik denk dat\n  het ratelslang is, dan kiest iNat voor
-          de suborde Serpentes die\n  alle slangen omvat). Het algoritme is bevooroordeeld
-          enigzins de \n  afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden
-          vaak gelijk hebben.\n</ P>\n<p class = \"ui\">\n  Het gemeenschapstaxon
-          is het taxon dat we gebruiken bij het delen van waarnemingen\n  met datapartners,
-          die waarnemingen van hetzelfde taxon koppelen aan de\n  site, het bijwerken
-          van uw levenslijst, enz. Als u om een ​​of andere reden niet \n  akkoord
-          gaat met het gemeenschapstaxon, kun je het afwijzen, wat betekent\n  dat
-          uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen
-          te linken,\n  het bijwerken van levenslijsten, enz. Het betekent ook dat
-          uw observatie alleen \n  Research Grade kan worden wanneer de community
-          het eens is met <em> u </ em>.\n  Als je het hele idee van community-taxa
-          niet leuk vindt, kun je \n  het volledig uitzetten in <a href=\"/users/edit\"
-          target=\"_blank\"> uw instellingen </a>.\n</ P>\n<p class = \"ui\">\n  <strong>
-          Het algoritme: </ strong> voor alle geïdentificeerde taxa en de taxa waarin
-          ze zijn opgenomen\n  (bijvoorbeeld geslacht <i> Homo </ i> bevat <i> Homo
-          sapiens </ i>), score\n  elk als de verhouding tussen het aantal cumulatieve
-          ID's voor\n  dat taxon over de som van de cumulatieve ID's, het aantal\n  meer
-          conservatieve ID's toegevoegd na de eerste ID van dat taxon,\n  en het aantal
-          ID's dat compleet verschillend is (dat wil zeggen ID's\n  van taxa die niet
-          het taxon bevatten dat gescoord wordt). Voor de\n  geïdentificeerde taxa
-          die een score hebben van meer dan 2/3 en minstens 2\n  identificaties, wordt
-          het laagst gerangschikte taxon gekozen.\n</ P>"
+        community_taxon_desc_html: |-
+          <p class="ui">
+            Het community taxon (of gemeenschapstaxon) is de determinatie van 
+            het taxon door de %{site_name} gemeenschap van de afbeelding in de waarneming. Als je geïnteresseerd bent in hoe we het kiezen
+            community taxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in
+            algemeen proberen we <strong> een taxon te kiezen waar meer dan 2/3 is
+            van de ID's onder valt </strong>. Dit betekent dat soms
+            een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat
+            Taxa wat de sooort niet eens (u denkt bijvoorbeeld dat het een Lampropeltis is en ik denk dat
+            het ratelslang is, dan kiest iNat voor de suborde Serpentes die
+            alle slangen omvat). Het algoritme is bevooroordeeld enigzins de 
+            afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden vaak gelijk hebben.
+          </p>
+          <p class="ui">
+            Het gemeenschapstaxon is het taxon dat we gebruiken bij het delen van waarnemingen
+            met datapartners, die waarnemingen van hetzelfde taxon koppelen aan de
+            site, het bijwerken van uw levenslijst, enz. Als u om een ​​of andere reden niet 
+            akkoord gaat met het gemeenschapstaxon, kun je het afwijzen, wat betekent
+            dat uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen te linken,
+            het bijwerken van levenslijsten, enz. Het betekent ook dat uw observatie alleen 
+            Research Grade kan worden wanneer de community het eens is met <em>u</em>.
+            Als je het hele idee van community-taxa niet leuk vindt, kun je 
+            het volledig uitzetten in <a href="/users/edit" target="_blank">uw instellingen</a>.
+          </p>
+          <p class="ui">
+            <strong>Het algoritme:</strong> voor alle geïdentificeerde taxa en de taxa waarin ze zijn opgenomen
+            (bijvoorbeeld geslacht <i>Homo</i> bevat <i>Homo sapiens</i>), score
+            elk als de verhouding tussen het aantal cumulatieve ID's voor
+            dat taxon over de som van de cumulatieve ID's, het aantal
+            meer conservatieve ID's toegevoegd na de eerste ID van dat taxon,
+            en het aantal ID's dat compleet verschillend is (dat wil zeggen ID's
+            van taxa die niet het taxon bevatten dat gescoord wordt). Voor de
+            geïdentificeerde taxa die een score hebben van meer dan 2/3 en minstens 2
+            identificaties, wordt het laagst gerangschikte taxon gekozen.
+          </p>
         curator_coordinate_access_disabled_desc_html: Dit project laat geen waarnemingen
           toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Indien
           je de coördinaten van je waarnemingen niet wenst te delen, verwijder ze

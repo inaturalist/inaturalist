@@ -35,7 +35,7 @@
         <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
       <% else %>
         <div class="nocontent meta">
-          No photo of that size.
+          <%=t :no_photos_of_that_size %>
         </div>
       <% end -%>
     </td>

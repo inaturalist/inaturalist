@@ -24,7 +24,7 @@
               %i.fa-mobile.fa
               =t :offline_access_enabled
               - if @guide.editable_by?(current_user)
-                = link_to "(#{t(:disable)})".html_safe, guide_path(@guide, :guide => {:downloadable => false}), :method => :put
+                = link_to "(#{t(:disable, default: "Disable")})".html_safe, guide_path(@guide, :guide => {:downloadable => false}), :method => :put
           - else
             .btn.pull-left.btn-link{:disabled => true, :data => {:tip => t('views.guides.generating_mobile_archive_tip_html'), :tip_position_at => "bottom center", :tip_width => 200, :tip_hide_delay => 200}}
               %span.loading.status.inlineblock
@@ -40,7 +40,7 @@
         .btn-group.pull-right
           %button.btn.btn-default{:type => "button", :role => "button", "data-toggle" => "modal", "data-target" => "#print_dialog"}
             %i.fa.fa-print
-            =t :print
+            =t :print_verb
           - if @guide.editable_by?(current_user)
             = link_to edit_guide_path(@guide), :class => "btn btn-default" do
               %i.fa.fa-edit
@@ -207,13 +207,13 @@
           = references(:linked => true)
       = render :partial => "shared/flagging", :locals => { :instance => @guide }
 
-#print_dialog.modal.fade{tabindex: -1, role: 'dialog', 'aria-labelledby' => t(:print) }
+#print_dialog.modal.fade{tabindex: -1, role: 'dialog', 'aria-labelledby' => t(:print_verb) }
   .modal-dialog{role: 'document'}
     .modal-content
       .modal-header
         %button.close{:type => "button", "data-dismiss" => "modal"}
           .span{'aria-hidden' => "true"} &times;
-        %h4.modal-title=t :print
+        %h4.modal-title=t :print_verb
       = fields_for :print_dialog do |f|
         .modal-body
           .container-fluid
@@ -247,7 +247,7 @@
           .btn.btn-inter.text-muted
             .text-muted
               =t :most_browser_print_pdf
-          = link_to t(:print), guide_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn btn-primary", :target => "_blank"
+          = link_to t(:print_verb), guide_path(@guide, :layout => "grid", :print => "t"), :id => "printbtn", :class => "btn btn-primary", :target => "_blank"
 
 - if @guide.editable_by?(current_user)
   #mobile_dialog.modal.fade
