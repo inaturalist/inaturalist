@@ -1,4 +1,4 @@
-en:
+ en:
   x_comments:
     one: '1 comment'
     other: '%{count} comments'
@@ -1511,6 +1511,7 @@ en:
   help_confirm_observations!: Help confirm observations!
   help_faq: Help / FAQ
   help_out!: Help Out!
+  help_support_inaturalist: "Help Support iNaturalist!"
   helped_the_observer_make: helped the observer make their final ID (i.e. they were made before the final ID and they match it)
   here_are_3_examples: Here are 3 examples of well-formed data
   here_are_our_top_species_suggestions: Here are our top species suggestions
@@ -1860,6 +1861,7 @@ en:
   linked_flickr_hotwo: "You can activate your Flickr account with %{site_name} to add photos by clicking on this link."
   linked_flickr_password_html: "<strong>We will never ask you for your Flickr password</strong> (but Flickr might, check the url that the button sends you and make sure it's Flickr.com)."
   linked_flickr_photo_copy_html: "<strong>We will never store copies of your photos or change your Flickr data (unless you ask us to), ever.</strong> We care too much about birds, bugs and slugs to want to mess with your information!"
+  linkedin: LinkedIn
   list: List
   list_deleted: List deleted.
   list_saved: List saved.
@@ -3271,6 +3273,7 @@ en:
   set_license: Set license
   settings: settings
   share: Share
+  share_colon: "Share:"
   share_your_observation_with_researchers_by: Share your observation with researchers by
   short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
@@ -3497,6 +3500,7 @@ en:
   suggestions: Suggestions
   summary: Summary
   supporting: Supporting
+  support_inaturalist: Support iNaturalist
   suspicious_photos: Suspicious photos
   siutable_observations: suitable observations
   sun: Sun
@@ -4466,6 +4470,30 @@ en:
           please_read_the_teachers_guide_html: |
             If so, please read our <a href="%{url}">Teacher's Guide</a> for
             tips on using %{site_name} with students.
+    donate:
+      donate_short_desc: "Help support iNaturalist with a donation!"
+      donate_desc_html: |
+        <p class="lead">
+          <strong>iNaturalist is one of the world's largest communities dedicated to
+          exploring biodiversity. Thank you for being part of it!</strong>
+        </p>
+        <p class="lead">
+          If you believe in the power of this global community of nature lovers
+          to share knowledge and generate irreplaceable biodiversity data,
+          please consider a one-time or recurring gift.
+        </p>
+        <p class="lead">
+          Your donation helps support iNaturalist as the community grows, from
+          advancing computer vision and implementing new features to supporting
+          our servers and staff.
+        </p>
+        <p class="text-muted">
+          iNaturalist is a joint initiative of the California Academy of Sciences
+          and the National Geographic Society. All donations will be received by
+          the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
+          organization based in the United States of America.
+        </p>
+      post_donate_social_media_text: I supported iNaturalist! You should check it out, too.
     guides:
       index:
         funding_html: |
