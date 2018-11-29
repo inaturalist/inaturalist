@@ -2,7 +2,7 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  DEFAULT_ES_BATCH_SIZE = 500
+  DEFAULT_ES_BATCH_SIZE = 200
 
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
@@ -339,7 +339,7 @@ class Observation < ActiveRecord::Base
     if q
       fields = case search_on
       when "names"
-        [ "taxon.names.name" ]
+        [ "taxon.names.name", "taxon.names_*" ]
       when "tags"
         [ :tags ]
       when "description"
@@ -347,7 +347,7 @@ class Observation < ActiveRecord::Base
       when "place"
         [ :place_guess ]
       else
-        [ "taxon.names.name", :tags, :description, :place_guess ]
+        [ "taxon.names.name", "taxon.names_*", :tags, :description, :place_guess ]
       end
       search_filters << { multi_match: { query: q, operator: "and", fields: fields } }
     end
@@ -831,6 +831,7 @@ class Observation < ActiveRecord::Base
       t.establishment_means_in_place?(ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
     json[:taxon][:endemic] = preloaded ? taxon_endemic :
       t.establishment_means_in_place?("endemic", places)
+    t.listed_taxa_with_establishment_means.reset
   end
 
 end

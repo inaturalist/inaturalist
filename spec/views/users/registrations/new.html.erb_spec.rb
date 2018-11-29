@@ -1,7 +1,17 @@
 require "spec_helper"
 
 describe "users/registrations/new" do
-
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+  let(:user) { User.new }
+  before do
+    # stub @observations
+    assign( :observations, [make_research_grade_observation] )
+    # stub devise's resource method
+    allow( view ).to receive(:resource).and_return( user )
+    # convince the test that it's using the right controller
+    allow( controller ).to receive(:is_a?).with( Devise::RegistrationsController ).and_return( true )
+  end
   describe "recaptcha" do
     it "does not render recaptcha if the site is not configured" do
       @site = Site.make!

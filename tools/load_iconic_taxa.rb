@@ -12,7 +12,7 @@ else
   puts "Adding Life"
   life = Taxon.create(
     :name => "Life", 
-    :rank => 'none', 
+    :rank => 'stateofmatter', 
     :source => Source.find_by_title('iNaturalist'))
   life.iconic_taxon = life
   life.save

@@ -4,6 +4,4 @@
   - if user.name.blank?
     = user.login
   - else
-    = user.name
-    = surround '(', ')' do
-      = user.login
+    = "#{user.name} (#{user.login})"

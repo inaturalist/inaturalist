@@ -2,13 +2,13 @@ source 'http://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'rails', '4.2.10'
+gem 'rails', '4.2.11'
 
 gem 'apipie-rails'
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
 gem 'activerecord-session_store'
-gem 'acts-as-taggable-on', '~> 4.0'
+gem 'acts-as-taggable-on', '~> 5.0'
 gem 'acts_as_votable', '~> 0.11.1'
 gem 'airbrake', '~> 7.3'
 gem 'ancestry'
@@ -37,7 +37,7 @@ gem 'devise_suspendable'
 gem 'diffy'
 gem 'doorkeeper', "~> 5.0.0"
 gem 'dynamic_form'
-gem 'exifr'
+gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem 'fastimage'
 # gem 'flickraw', "~> 0.9.8", :git => 'https://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "flickraw-cached"
@@ -82,7 +82,7 @@ gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'https://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '3.6.0'
-gem 'sass-rails', '=5.0.1'
+gem 'sass-rails', '5.0.7'
 gem 'soundcloud'
 gem 'sprockets', '~> 2.12.5'
 gem 'translate-rails3', :require => 'translate', :git => 'https://github.com/JayTeeSF/translate.git'
@@ -94,6 +94,7 @@ gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'yui-compressor'
 gem 'xmp', "~> 0.2.1", git: 'https://github.com/kueda/xmp.git'
+gem 'rubyzip'
 # these need to be loaded after will_paginate
 gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
 gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
@@ -105,7 +106,7 @@ gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter', :git => 'https://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do
-  gem 'newrelic_rpm', '~> 5.4.0'
+  gem 'newrelic_rpm', '~> 5.5.0'
 end
 
 group :test, :development, :prod_dev do

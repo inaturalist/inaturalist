@@ -24,20 +24,6 @@ const TaxonomyTab = ( {
     currentUser.roles.indexOf( "admin" ) >= 0 || currentUser.roles.indexOf( "curator" ) >= 0
   );
   const sortedNames = _.sortBy( names, n => [n.lexicon, n.name] );
-  let taxonCurators;
-  if ( taxon.taxonCurators && taxon.taxonCurators.length > 0 ) {
-    taxonCurators = (
-      <div>
-        <h4>{ I18n.t( "taxon_curators" ) }</h4>
-        <UserText
-          text={ I18n.t( "views.taxa.show.about_taxon_curators_desc" ).replace( /\n+/gm, " " )}
-          truncate={400}
-        />
-        { _.map( taxon.taxonCurators, tc =>
-          <UserWithIcon user={ tc.user } key={ `taxon-curators-${tc.user.id}` } /> ) }
-      </div>
-    );
-  }
   return (
     <Grid className="TaxonomyTab">
       <Row className="tab-section">
@@ -55,6 +41,15 @@ const TaxonomyTab = ( {
             </Col>
             <Col xs={4}>
               <ul className="tab-links list-group">
+                <li className="list-group-item internal">
+                  <a
+                    href={`/taxa/${taxon.id}/taxonomy_details`}
+                    rel="nofollow"
+                    >
+                    <i className="fa fa-sitemap accessory-icon"></i>
+                    { I18n.t( "taxonomy_details" ) }
+                  </a>
+                </li>
                 <li className="list-group-item internal">
                   <a href={`/taxon_changes?taxon_id=${taxon.id}`}>
                     <span className="badge pull-right">
@@ -74,7 +69,6 @@ const TaxonomyTab = ( {
                   </a>
                 </li>
               </ul>
-              { taxonCurators }
             </Col>
           </Row>
         </Col>

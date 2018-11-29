@@ -704,6 +704,7 @@ class Observation < ActiveRecord::Base
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
+      { identifications: :stored_preferences },
       { photos: [ :flags, :user ] },
       :stored_preferences, :flags, :quality_metrics ]
     # why do we need taxon_descriptions when logged in?
@@ -2747,7 +2748,7 @@ class Observation < ActiveRecord::Base
 
   def calculate_mappable
     return false if latitude.blank? && longitude.blank?
-    return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
+    return false if public_positional_accuracy && public_positional_accuracy.to_i > uncertainty_cell_diagonal_meters.to_i
     return false if inaccurate_location?
     return false unless passes_quality_metric?( QualityMetric::EVIDENCE )
     return false unless appropriate?

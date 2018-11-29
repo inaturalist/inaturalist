@@ -7,11 +7,11 @@ class TaxaController < ApplicationController
       ssl: c.request.ssl? } },
     :if => Proc.new {|c|
       !request.format.json? &&
-      (c.session.blank? || c.session['warden.user.user.key'].blank?) &&
+      ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
       c.params[:test].blank?
     }
   caches_action :describe, :expires_in => 1.day,
-    :cache_path => Proc.new { |c| c.params.merge(locale: I18n.locale) },
+    :cache_path => Proc.new { |c| c.params.merge( locale: I18n.locale ) },
     :if => Proc.new {|c|
       c.session.blank? || c.session['warden.user.user.key'].blank?
     }
@@ -31,7 +31,7 @@ class TaxaController < ApplicationController
   before_filter :load_taxon, :only => [:edit, :update, :destroy, :photos, 
     :children, :graft, :describe, :edit_photos, :update_photos, :set_photos, :edit_colors,
     :update_colors, :add_places, :refresh_wikipedia_summary, :merge, 
-    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox]
+    :range, :schemes, :tip, :links, :map_layers, :browse_photos, :taxobox, :taxonomy_details]
   before_filter :taxon_curator_required, :only => [:edit, :update,
     :destroy, :merge, :graft]
   before_filter :limit_page_param_for_search, :only => [:index,
@@ -45,8 +45,8 @@ class TaxaController < ApplicationController
   GRID_VIEW = "grid"
   LIST_VIEW = "list"
   BROWSE_VIEWS = [GRID_VIEW, LIST_VIEW]
-  ALLOWED_SHOW_PARTIALS = %w(chooser)
-  ALLOWED_PHOTO_PARTIALS = %w(photo)
+  ALLOWED_SHOW_PARTIALS = %w( chooser )
+  ALLOWED_PHOTO_PARTIALS = %w( photo )
   
   #
   # GET /observations
@@ -59,7 +59,7 @@ class TaxaController < ApplicationController
     find_taxa unless request.format.blank? || request.format.html?
     
     begin
-      @taxa.try(:total_entries)
+      @taxa.try( :total_entries )
     rescue => e
       Rails.logger.error "[ERROR] Taxon index failed: #{e}"
       @taxa = WillPaginate::Collection.new(1, 30, 0)
@@ -208,7 +208,13 @@ class TaxaController < ApplicationController
       format.html do
         options = {}
         options[:api_token] = current_user.api_token if current_user
-        @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}", options )
+        site_place = @site && @site.place
+        user_place = current_user && current_user.place
+        preferred_place = user_place || site_place
+        @node_taxon_json = INatAPIService.get_json(
+          "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}",
+          options
+        )
         place_id = current_user.preferred_taxon_page_place_id if logged_in?
         place_id = session[:prefers_taxon_page_place_id] if place_id.blank?
         @place = Place.find_by_id( place_id )
@@ -218,6 +224,39 @@ class TaxaController < ApplicationController
     end
   end
 
+  def taxonomy_details
+    @rank_levels = Taxon::RANK_FOR_RANK_LEVEL.invert
+    @taxon_framework = @taxon.taxon_framework
+    
+    if @upstream_taxon_framework = @taxon.upstream_taxon_framework
+      if @upstream_taxon_framework.source_id
+        @taxon_framework_relationship = TaxonFrameworkRelationship.
+          includes( "taxa","external_taxa" ).
+          joins( "JOIN taxa ON taxa.taxon_framework_relationship_id = taxon_framework_relationships.id" ).
+          where( "taxa.id = ? AND taxon_framework_id = ?", @taxon, @upstream_taxon_framework ).first
+      end
+    end
+    
+    if @taxon_framework
+      if @taxon_framework.covers?
+        @taxon_curators = @taxon_framework.taxon_curators
+        @overlapping_downstream_taxon_frameworks_count = @taxon_framework.get_downstream_taxon_frameworks_count
+        @overlapping_downstream_taxon_frameworks = @taxon_framework.get_downstream_taxon_frameworks
+        @flagged_taxa = @taxon_framework.get_flagged_taxa
+        @flagged_taxa_count = @taxon_framework.get_flagged_taxa_count
+        if @taxon_framework.source_id
+          @deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).count
+        end
+      end
+    end
+    
+    respond_to do |format|
+      format.html do
+        render layout: "bootstrap"
+      end
+    end
+  end
+  
   def tip
     @observation = Observation.find_by_id(params[:observation_id]) if params[:observation_id]
     if @observation
@@ -247,7 +286,7 @@ class TaxaController < ApplicationController
           "into an existing taxon instead."
       end
       if parent = @taxon.parent
-        if @taxon.is_active && !parent.is_active && (taxon_change = parent.taxon_changes.where( "committed_on IS NULL" ).first)
+        if @taxon.is_active && !parent.is_active && ( taxon_change = parent.taxon_changes.where( "committed_on IS NULL" ).first )
           flash[:notice] += " Heads up: the parent of this active taxon is inactive " + 
             "but its the output of this <a href='/taxon_changes/#{taxon_change.id}'>" + 
             "draft taxon change</a> that we assume you'll commit shortly."
@@ -270,7 +309,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-      flash.now[:notice] ||= "This taxon is complete or descends from a complete taxon, so some taxonomic attributes can only be editable by curators of that complete taxon."
+      flash.now[:notice] ||= "This taxon is covered by a taxon framework, so some taxonomic attributes can only be editable by taxon curators associated with that taxon framework."
     end
   end
 
@@ -284,10 +323,12 @@ class TaxaController < ApplicationController
           "#{locked_ancestor.name}</a>).  Please consider merging this " + 
           "into an existing taxon instead."
       end
-      if @taxon.is_active && !@taxon.parent.is_active && (taxon_change = @taxon.parent.taxon_changes.where( "committed_on IS NULL" ).first)
-        flash[:notice] += " Heads up: the parent of this active taxon is inactive " + 
-          "but its the output of this <a href='/taxon_changes/#{taxon_change.id}'>" + 
-          "draft taxon change</a> that we assume you'll commit shortly."
+      if @taxon.parent
+        if @taxon.is_active && !@taxon.parent.is_active && (taxon_change = @taxon.parent.taxon_changes.where( "committed_on IS NULL" ).first)
+          flash[:notice] += " Heads up: the parent of this active taxon is inactive " + 
+            "but its the output of this <a href='/taxon_changes/#{taxon_change.id}'>" + 
+            "draft taxon change</a> that we assume you'll commit shortly."
+        end
       end
       Taxon.refresh_es_index
       redirect_to taxon_path(@taxon)

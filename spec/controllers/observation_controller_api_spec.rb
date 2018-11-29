@@ -1571,7 +1571,7 @@ shared_examples_for "an ObservationsController" do
         # the angular app doesn't need to load any observations
         expect( Observation ).not_to receive(:get_search_params)
         get :index, format: :html
-        expect(response.body).to include "ng-controller='MapController'"
+        expect(response.body).to match /ng-controller=.MapController/
         expect( response.body ).to_not have_tag("div.user a", text: @o.user.login)
       end
 

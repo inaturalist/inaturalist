@@ -37,37 +37,37 @@
              value="sounds" <% if @with_sounds %>checked="checked"<% end %>/>
       <label for="with_sounds_checkbox"><%=t :w_sounds %></label>
       <input type="checkbox" name="out_of_range" value="true" id="out_of_range_checkbox" <% if @out_of_range %>checked="checked"<% end %>>
-      <label for="out_of_range_checkbox"><%= t(:out_of_range, :default => "out of range").downcase %></label>
+      <label for="out_of_range_checkbox"><%= t(:out_of_range, default: "out of range" ) %></label>
     </nobr>
 
     <nobr>
       <strong><%=t :quality_grade %></strong>
       <input type="radio" name="quality_grade" value="any" id="any_grade_checkbox" <% unless Observation::QUALITY_GRADES.include?(@quality_grade) %>checked="checked"<% end %>>
-      <label for="any_grade_checkbox"><%= t(:any, :default => "any").downcase %></label>
+      <label for="any_grade_checkbox"><%= t(:any_, default: "Any" ) %></label>
       <input type="radio" name="quality_grade" value="<%= Observation::RESEARCH_GRADE %>" id="research_grade_checkbox" <% if @quality_grade == Observation::RESEARCH_GRADE %>checked="checked"<% end %>>
-      <label for="research_grade_checkbox"><%= t(:research, :default => "research") %></label>
+      <label for="research_grade_checkbox"><%= t( :research_, default: "Research" ) %></label>
       <input type="radio" name="quality_grade" value="<%= Observation::NEEDS_ID %>" id="needs_id_checkbox" <% if @quality_grade == Observation::NEEDS_ID %>checked="checked"<% end %>>
-      <label for="needs_id_checkbox"><%= t(:needs_id, :default => "Needs ID") %></label>
+      <label for="needs_id_checkbox"><%= t( :needs_id_, default: "Needs ID" ) %></label>
     </nobr>
 
     <nobr>
       <strong><%=t :reviewed %></strong>
       <input type="radio" name="reviewed" value="" id="any_reviewed_checkbox" <% unless @reviewed %>checked="checked"<% end %>>
-      <label for="any_reviewed_checkbox"><%= t(:any, :default => "any").downcase %></label>
+      <label for="any_reviewed_checkbox"><%= t( :any_, default: "any" ) %></label>
       <input type="radio" name="reviewed" value="true" id="reviewed_checkbox" <% if @reviewed.yesish? %>checked="checked"<% end %>>
-      <label for="reviewed_checkbox"><%= t(:yes).downcase %></label>
+      <label for="reviewed_checkbox"><%= t(:yes) %></label>
       <input type="radio" name="reviewed" value="false" id="unreviewed_checkbox" <% if !@reviewed.nil? && @reviewed.noish? %>checked="checked"<% end %>>
-      <label for="unreviewed_checkbox"><%= t(:no).downcase %></label>
+      <label for="unreviewed_checkbox"><%= t(:no) %></label>
     </nobr>
 
     <% if is_me?(@selected_user) -%>
       <nobr>
         <strong><%=t :geoprivacy %></strong>
         <%= select_tag :geoprivacy, options_for_select([
-          [t(:any, :default => "any").downcase, nil],
-          [t(Observation::OPEN, :default => Observation::OPEN).downcase, Observation::OPEN],
-          [t(Observation::OBSCURED, :default => Observation::OBSCURED).downcase, Observation::OBSCURED],
-          [t(Observation::PRIVATE, :default => Observation::PRIVATE).downcase, Observation::PRIVATE],
+          [t( :any_, default: "any" ), nil],
+          [t( Observation::OPEN, default: Observation::OPEN ), Observation::OPEN],
+          [t( Observation::OBSCURED, default: Observation::OBSCURED ), Observation::OBSCURED],
+          [t( Observation::PRIVATE, default: Observation::PRIVATE ), Observation::PRIVATE],
           [t('obscured_or_private', :default => "obscured or private"), "obscured_private"]
         ], @geoprivacy) %>
       </nobr>
@@ -82,7 +82,7 @@
         <% else %>
           <%= radio_button_tag :identifications, state %>
         <% end %>
-        <%= label :identifications, state, t(state, :default => state).downcase %>
+        <%= label :identifications, state, t( state, default: state ) %>
       <% end %>
     </nobr>
     
@@ -90,11 +90,11 @@
       <strong><%=t :captive_cultivated %></strong>
       <input type="radio" name="captive" value="" id="any_captive_checkbox" <%
         unless @captive === true || @captive === false %>checked="checked"<% end %>>
-      <label for="any_captive_checkbox"><%= t(:any, :default => "any").downcase %></label>
+      <label for="any_captive_checkbox"><%= t(:any_, default: "any" ) %></label>
       <input type="radio" name="captive" value="true" id="captive_checkbox" <% if @captive == true %>checked="checked"<% end %>>
-      <label for="captive_checkbox"><%= t(:yes, :default => "yes").downcase %></label>
+      <label for="captive_checkbox"><%= t( :yes, default: "Yes" ) %></label>
       <input type="radio" name="captive" value="false" id="wild_checkbox" <% if @captive == false %>checked="checked"<% end %>>
-      <label for="wild_checkbox"><%= t(:no, :default => "no").downcase %></label>
+      <label for="wild_checkbox"><%= t( :no, default: "No" ) %></label>
     </nobr>
   </fieldset>
 </div>
@@ -222,7 +222,7 @@
   </div>
   <% if @filters_open -%>
     <script type="text/javascript" charset="utf-8">
-      $('#filters input[name=taxon_name]').taxonAutocomplete()
+      $( "#filters input[name=taxon_name]" ).taxonAutocomplete( );
     </script>
   <% end -%>
   
@@ -243,7 +243,7 @@
     </div>
     <div class="left">
       <%= select_tag :order_by, observations_order_by_options %>
-      <%= select_tag :order, options_for_select(%w(asc desc).map{|o| t(o)}, @order) %>
+      <%= select_tag :order, options_for_select(%w(asc desc).map{|o| [t(o), o]}, @order) %>
     </div>
   </div>
 </div>
@@ -280,7 +280,7 @@
           <% else %>
             <%= radio_button_tag :pcid, state %>
           <% end %>
-          <%= label :pcid, state, t(state, :default => state).downcase %>
+          <%= label :pcid, state, t( state, default: state ) %>
         <% end %>
       </nobr>
     </div>
@@ -293,7 +293,7 @@
       <strong><%=t :exact_rank %></strong>
     </div>
     <div class="left">
-      <%= select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}, @rank), :include_blank => t(:any) %>
+      <%= select_tag :rank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t( "ranks.#{r}", default: r ), r]}, @rank), :include_blank => t(:any_) %>
     </div>
   </div>
   <div class="left">
@@ -301,7 +301,7 @@
       <strong><%=t :highest_rank %></strong>
     </div>
     <div class="left">
-      <%= select_tag :hrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}, @hrank), :include_blank => t(:any) %>
+      <%= select_tag :hrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t( "ranks.#{r}", default: r ), r]}, @hrank), :include_blank => t(:any_) %>
     </div>
   </div>
   <div class="left">
@@ -309,7 +309,7 @@
       <strong><%=t :lowest_rank %></strong>
     </div>
     <div class="left">
-      <%= select_tag :lrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t("ranks.#{r}", :default => r).downcase, r]}, @lrank), :include_blank => t(:any) %>
+      <%= select_tag :lrank, options_for_select(Taxon::VISIBLE_RANKS.map{|r| [t( "ranks.#{r}", default: r ), r]}, @lrank), :include_blank => t(:any_) %>
     </div>
   </div>
 </div>
@@ -323,7 +323,7 @@
       <div class="left">
         <% (1..12).to_a.each do |i| -%>
           <input type="checkbox" name="month[]" value="<%= i %>" id="month_<%= i %>" checked="<%= params[:month] && params[:month].include?(i.to_s) %>">
-          <label for="month_<%= i %>"><%= t("date_format.month.#{Date::MONTHNAMES[i].downcase}") %></label>
+          <label for="month_<%= i %>"><%= t( "date_format.month.#{Date::MONTHNAMES[i].downcase}" ) %></label>
         <% end -%>
       </div>
     </div>

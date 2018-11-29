@@ -481,6 +481,11 @@ qqq:
   hate_me_flickr: where site_name is the name of the site
   hello: '{{Identical|Test}}'
   help: '{{Identical|Help}}'
+  help_support_inaturalist: |
+    Imperative request to donate to iNaturalist. "iNaturalist" should not be
+    translated, as this explicitly refers to iNaturalist and not any of the
+    network partner sites, so please do not translate this to "NaturaLista" or
+    anything.
   hi_user: '{{Identical|Hi}}'
   hide: '{{Identical|Hide}}'
   high: '{{Identical|High}}'
@@ -1360,6 +1365,14 @@ qqq:
   yours: '{{Identical|Your}}'
   youre_viewing_site_name_observations_html: where site_name is the name of the site
   views:
+    donate:
+      donate_desc_html: |
+        This is a pitch to donate to iNaturalist.org via the California
+        Academy of Sciences. It is *not* a pitch to donate to any of the
+        iNaturalist Network partner sites, so proper nouns like "iNaturalist"
+        should not be translated to the names of partner sites like
+        "NaturaLista." Also, please do not change or translate any of the html
+        markup code, including the class names.
     guides:
       edit:
         guide_place_desc: where site_name is the site name
@@ -1414,7 +1427,7 @@ qqq:
           upload translated versions of these strings in their CSV the CSV
           import won't work.
       show:
-        community_taxon_desc_html: whre site_name is the site name
+        community_taxon_desc_html: where site_name is the site name
         flagged_photos_desc_html: where links is a URL
     photos:
       inviter:

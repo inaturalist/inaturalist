@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Users::RegistrationsController, "create" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+  
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     stub_request(:get, /#{INatAPIService::ENDPOINT}/).

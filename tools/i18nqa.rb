@@ -114,6 +114,12 @@ data.each do |key, translation|
       problems[one_key] << "**ERROR:** Missing part of a plural key"
     end
   end
+
+  # https://stackoverflow.com/a/3314572
+  if @levels.include?( "error" ) && translation =~ /<\/?\s+[^\s]+>/
+    problems[key] = problems[key] || []
+    problems[key] << "**ERROR:** HTML tag with leading space"
+  end
 end
 
 problems.each do |key, a|
