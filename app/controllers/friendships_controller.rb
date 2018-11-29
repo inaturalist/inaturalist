@@ -7,6 +7,9 @@ class FriendshipsController < ApplicationController
 
   def index
     @friendships = current_user.friendships.page( params[:page] )
+    if @q = params[:q]
+      @friendships = @friendships.joins( :friend ).where( "users.login ilike ?", "%#{@q}%" )
+    end
     respond_to do |format|
       format.html
     end

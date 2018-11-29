@@ -1,7 +1,18 @@
+- content_for :title do
+  =t :your_relationships
 .container
   .row
-    .col-xs-12
+    .col-xs-8
       %h2=t :your_relationships
+    .col-xs-4
+      .pull-right
+        = form_tag url_for, method: :get do
+          .input-group
+            = text_field_tag :q, @q, class: "form-control"
+            .input-group-btn
+              = submit_tag t(:search), class: "btn btn-default"
+  .row
+    .col-xs-12
       %table.table
         %tbody
           - for friendship in @friendships
@@ -20,3 +31,4 @@
                     %label
                       = f.check_box :trust, data: { autosubmit: true }
                       =t :trust_with_private_coordinates
+      = will_paginate @friendships
