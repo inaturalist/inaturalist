@@ -800,6 +800,8 @@ class ObservationsController < ApplicationController
       end
       
       observation.editing_user_id = current_user.id
+
+      observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
       
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
