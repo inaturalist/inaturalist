@@ -82,7 +82,7 @@ qqq:
   x_taxa_matching_current_filters: Number of taxa matching current filters
   a: can not be translated to Finnish as we don't have prepositions in our language
   a_: |-
-    can not be translated to Finnish as we don't have prepositions in our language
+    Note: can not be translated to Finnish as we don't have prepositions in our language
     Can not be translated precisely to German, since the knowledge of the following word is needed to choose the correct declination.
   a_flag_for_x: where x is the title of the resource being flagged
   a_member_of_taxon_html: where taxon is the name of a taxon such as Animalia
@@ -146,6 +146,8 @@ qqq:
     HTML entity
   alphabetical: '{{Identical|Alphabetical}}'
   amphibians: '{{Identical|Amphibians}}'
+  an: 'Note: can not be translated to Finnish as we don''t have prepositions in our
+    language'
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
@@ -481,11 +483,6 @@ qqq:
   hate_me_flickr: where site_name is the name of the site
   hello: '{{Identical|Test}}'
   help: '{{Identical|Help}}'
-  help_support_inaturalist: |
-    Imperative request to donate to iNaturalist. "iNaturalist" should not be
-    translated, as this explicitly refers to iNaturalist and not any of the
-    network partner sites, so please do not translate this to "NaturaLista" or
-    anything.
   hi_user: '{{Identical|Hi}}'
   hide: '{{Identical|Hide}}'
   high: '{{Identical|High}}'
@@ -1365,14 +1362,6 @@ qqq:
   yours: '{{Identical|Your}}'
   youre_viewing_site_name_observations_html: where site_name is the name of the site
   views:
-    donate:
-      donate_desc_html: |
-        This is a pitch to donate to iNaturalist.org via the California
-        Academy of Sciences. It is *not* a pitch to donate to any of the
-        iNaturalist Network partner sites, so proper nouns like "iNaturalist"
-        should not be translated to the names of partner sites like
-        "NaturaLista." Also, please do not change or translate any of the html
-        markup code, including the class names.
     guides:
       edit:
         guide_place_desc: where site_name is the site name

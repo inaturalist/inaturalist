@@ -1232,7 +1232,7 @@ fi:
   endemic: Endeeminen
   endemic_to_x: Endeeminen paikassa %{x}
   eol: EOL
-  eol_collection_url: EOL kokoelman web-osoite
+  eol_collection_url: EOL-kokoelman URL-osoite
   error_updating_photo: Virhe %{photo_errors} päivitettäessä kuvaa
   establishment:
     native: Kotoperäinen
@@ -1548,7 +1548,7 @@ fi:
   inbox: saapuneet
   including: mukaan lukien
   in_order_to_login_and_using_site_visit_url: 'Kirjautuaksesi sisään ja aloittaaksesi
-    sivuston käytön, sinun täytyy käydä tässä URL-osoitteessa,  aktivoidaksesi tilisi:'
+    sivuston käytön, sinun täytyy käydä tässä URL-osoitteessa aktivoidaksesi tilisi:'
   in_progress: käynnissä
   in_taxon?: taksonissa
   in_the_past: aiemmin
@@ -2001,9 +2001,8 @@ fi:
   new_comment_on_a_parent_by_user_link: Uusi kommentti kohteessa %{parent} käyttäjältä
     %{user_link}
   new_guide: Uusi opas
-  new_journal_post: Uusi päiväkirjakirjoitus
   new_lexicon: Uusi sanasto
-  new_list: Uusi lista
+  new_list: Uusi luettelo
   new_members: Uudet jäsenet
   new_message: Uusi viesti
   new_observation_field: Uusi havaintokenttä
@@ -2957,7 +2956,7 @@ fi:
       1:nen painos. University of California Press, 1997. Print.'
   source_identifier: Lähdetunniste
   source_unknown: Tuntematon lähde
-  source_url: Lähteen web-osoite
+  source_url: Lähteen URL-osoite
   source_of_coordinates: Koordinaattien lähde ja tarkkuusmitta, asetetaan automaattisesti
   sources: Lähteet
   sources_youve_added: Lisäämäsi lähteet
@@ -3714,7 +3713,7 @@ fi:
         private_longitude: Yksityinen pituusaste, asetettu jos havainto yksityinen
           tai piilotettu
         user_login: Havainnoijan käyttäjänimi
-        url: Web-osoite havainnolle
+        url: URL-osoite havainnolle
         image_url: Web-osoite oletuskuvalle
         tag_list: Pilkulla erotettu luettelo tageista
       import:
@@ -4204,13 +4203,13 @@ fi:
         status: Tila
         description: Kuvaus
         place_id: Paikka
-        url: Web-osoite
+        url: URL-osoite
         geoprivacy: Sijainnin tietosuoja
       flag:
         reason: Syy
         flag: Lippu
       guide:
-        source_url: Lähteen web-osoite
+        source_url: Lähteen URL-osoite
         published_at: Julkaisu
       observation:
         geo_y: Pohjoiseen
@@ -4230,7 +4229,7 @@ fi:
         preferred_submission_model: Ensisijainen jättömalli
         prefers_place_boundary_visible: Näytä paikan raja kartalla
         tracking_codes: Seurantakoodit
-        source_url: Lähteen web-osoite
+        source_url: Lähteen URL-osoite
         start_time: Aloitusaika
       place:
         code: Koodi
@@ -4244,7 +4243,7 @@ fi:
       source:
         title: Otsikko
         in_text: tekstissä
-        url: Web-osoite
+        url: URL-osoite
         citation: Viittaus
       taxon:
         name: Nimi
@@ -4253,7 +4252,7 @@ fi:
         wikipedia_title: Wikipedia-otsikko
         wikipedia_summary: Wikipedia-yhteenveto
         source_identifier: Lähdetunniste
-        source_url: Lähteen web-osoite
+        source_url: Lähteen URL-osoite
       taxon_name:
         source_url: Lähteen web-osoite
         source_identifier: Lähdetunniste
