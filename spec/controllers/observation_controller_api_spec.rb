@@ -584,7 +584,7 @@ shared_examples_for "an ObservationsController" do
       expect( o.identifications.count ).to eq 3
     end
 
-    it "shoudld remove the taxon when taxon_id is blank" do
+    it "should remove the taxon when taxon_id is blank" do
       o = Observation.make!( user: user, taxon: Taxon.make! )
       expect( o.taxon ).not_to be_blank
       put :update, format: :json, id: o.id, observation: { taxon_id: nil }
@@ -674,6 +674,24 @@ shared_examples_for "an ObservationsController" do
         put :update, format: :json, id: o.id, observation: { description: "foo" }
         o.reload
         expect( o.private_place_guess ).to eq original_place_guess
+      end
+      it "should not disappear when updating an obs made private by another obs" do
+        user.update_attributes( prefers_coordinate_interpolation_protection: true )
+        o1 = Observation.make!( observed_on_string: "2018-06-01", latitude: 1, longitude: 1, user: user, geoprivacy: Observation::PRIVATE, place_guess: "place guess 1" )
+        puts "made #{o1.id}"
+        o2 = Observation.make!( observed_on_string: "2018-06-01", latitude: 1, longitude: 1, user: user, place_guess: "place guess 2" )
+        puts "made #{o2.id}"
+        Delayed::Worker.new.work_off
+        o2.reload
+        puts "o2.latitude: #{o2.latitude}"
+        expect( o2 ).to be_coordinates_private
+        expect( o2.place_guess ).to be_blank
+        expect( o2.private_place_guess ).to eq "place guess 2"
+        put :update, format: :json, id: o.id, observation: { latitude: 1, longitude: 1, description: "what now" }
+        o2.reload
+        expect( o2 ).to be_coordinates_private
+        expect( o2.place_guess ).to be_blank
+        expect( o2.private_place_guess ).to eq "place guess 2"
       end
     end
 
