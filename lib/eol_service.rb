@@ -38,6 +38,8 @@ class EolService
   end
 
   def page(id, params = {})
+    eol_params = params.dup
+    eol_params[:language] ||= I18n.locale.to_s.split( "-" ).first
     request('pages', id, params)
   end
 
