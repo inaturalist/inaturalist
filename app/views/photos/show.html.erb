@@ -72,13 +72,19 @@
             </td>
           </tr>
         <% end -%>
+        <% unless @photo.source_title.blank? %>
+          <tr>
+            <th><%=t :source %></th>
+            <td>
+              <% if @photo.source_url.blank? %>
+                <%=t @photo.source_title.parameterize.downcase, default: @photo.source_title %>
+              <% else %>
+                <%= link_to t( @photo.source_title.parameterize.downcase, default: @photo.source_title ), @photo.source_url %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
         <% unless @photo.native_page_url.blank? -%>
-          <% unless @photo.source_title.blank? %>
-            <tr>
-              <th><%=t :source %></th>
-              <td><%= @photo.source_title %></td>
-            </tr>
-          <% end %>
           <tr>
             <th><%=t :original %></th>
             <td><%= link_to @photo.native_page_url, @photo.native_page_url %></td>
@@ -113,7 +119,7 @@
               <% %w(small medium large original).each do |size| %>
                 <%- next if @photo.send("#{size}_url").blank? -%>
                 <li>
-                  <%= link_to t(size), url_for(:size => size) %>
+                  <%= link_to t( "photos_size.#{size}", default: t( size ) ), url_for( size: size ) %>
                 </li>
               <% end -%>
             </ul>

@@ -14,8 +14,8 @@ class EolService
     if @api_endpoint.blank? || @api_endpoint.new_record? 
       @api_endpoint = ApiEndpoint.find_or_create_by!(
         title: "EOL Service",
-        documentation_url: "http://eol.org/api",
-        base_url: "http://eol.org/api/",
+        documentation_url: "https://eol.org/api",
+        base_url: "https://eol.org/api/",
         cache_hours: 720)
     end
     @api_endpoint
