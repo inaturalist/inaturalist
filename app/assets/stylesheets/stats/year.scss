@@ -38,6 +38,12 @@ $dark-gray: #333333;
   h4,
   h5 {
     color: white;
+    a {
+      color: white;
+    }
+    a:hover {
+      opacity: 1;
+    }
     font-weight: 100;
   }
   text {
@@ -344,6 +350,7 @@ $tip-opacity: 1;
     }
   }
 }
+
 @media (max-width: 600px) {
   .Summary .summary-panel .main {
     top: 10px;
@@ -521,5 +528,55 @@ $obs-grid-photo-size: 210px;
         bottom: 2px;
       }
     }
+  }
+}
+
+.Publications {
+  a {
+    color: $inat-green;
+  }
+  a:hover, a:active, a:focus {
+    color: lighten( $inat-green, 10% );
+  }
+  .data-dois {
+    a {
+      display: inline-block;
+      font-size: 75%;
+      padding: 0px 5px;
+      color: #888;
+      background-color: #2D2D2D;
+      border-radius: 3px;
+      margin-right: 5px;
+      line-height: 18px;
+    }
+  }
+  p.lead {
+    margin: 30px 0;
+  }
+  .altmetric-embed {
+    a[rel="popover"] {
+      position: relative;
+      img {
+        position: relative;
+        z-index: 1;
+        max-width: 100% !important;
+        height: auto;
+      }
+    }
+    a[rel="popover"]:before {
+      content: "";
+      display: block;
+      width: 70%;
+      height: 70%;
+      background-color: white;
+      position: absolute;
+      top: 12%;
+      left: 12%;
+      z-index: 0;
+      border-radius: 100px;
+    }
+  }
+  .row {
+    margin-bottom: 10px;
   }
 }

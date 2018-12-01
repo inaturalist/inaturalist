@@ -3466,6 +3466,7 @@
   stop_following_user: "Stop following %{user}"
   stop_testing: Stop Testing
   stop_updating_position: Stop updating position
+  studies_that_used_inaturalist_data_in_year: Studies That Used iNaturalist Data in %{year}
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
   subject_affecting_stuff_html: "%{subject} affecting %{stuff}"
@@ -4060,6 +4061,7 @@
   view_change: View Change
   view_check_list_page: View Check List Page
   view_contributions: View Contributions
+  view_data_used: "View data used:"
   view_details: View Details
   view_field_options: View Field Options
   view_flag: View Flag
@@ -5612,6 +5614,13 @@
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        publications_desc_html: |
+          Impact data and visualizations courtesy of
+          <a href="https://www.altmetric.com">Altmetric</a>. Information
+          about data usage courtesy of our friends at the
+          <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
+          <br/>
+          <a href="%{url}">View all %{numStudies} studies</a>
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
           of the hierarchy is at the center, starting with "Life" and ending

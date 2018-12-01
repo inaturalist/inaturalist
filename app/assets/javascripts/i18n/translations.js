@@ -11736,6 +11736,7 @@ I18n.translations["en"] = {
   "status_in_place": "%{status} in %{place}",
   "stay_and_try_again": "Stay and try again",
   "stop_testing": "Stop Testing",
+  "studies_that_used_inaturalist_data_in_year": "Studies That Used iNaturalist Data in %{year}",
   "submit_observations": {
     "one": "Submit 1 observation",
     "other": "Submit %{count} observations"
@@ -11852,6 +11853,7 @@ I18n.translations["en"] = {
   "view": "View",
   "view_all": "View All",
   "view_all_members": "View All Members",
+  "view_data_used": "View data used:",
   "view_field_options": "View Field Options",
   "view_flags": "View Flags",
   "view_license": "View License",
@@ -11981,6 +11983,7 @@ I18n.translations["en"] = {
         "recent_w_7_obs": "Recent w/ >= 7 obs"
       },
       "year": {
+        "publications_desc_html": "Impact data and visualizations courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
     },

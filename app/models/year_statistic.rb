@@ -23,6 +23,7 @@ class YearStatistic < ActiveRecord::Base
     content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     message: "must be JPG, PNG, or GIF"
 
+  # Generates stats for all of iNat for a single year
   def self.generate_for_year( year, options = {} )
     year_statistic = YearStatistic.where( year: year ).where( "user_id IS NULL" )
     if options[:site]
@@ -49,17 +50,20 @@ class YearStatistic < ActiveRecord::Base
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, options ),
         iconic_taxa_counts: iconic_taxa_counts( year, options )
-      }
+      },
+      publications: publications( year, options )
     }
     year_statistic.update_attributes( data: json )
     year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
     year_statistic
   end
 
+  # Generates stats for a specific network site for a single year
   def self.generate_for_site_year( site, year )
     generate_for_year( year, { site: site } )
   end
 
+  # Generates stats for a specific user for a single year
   def self.generate_for_user_year( user, year )
     user = user.is_a?( User ) ? user : User.find_by_id( user )
     return unless user
@@ -572,6 +576,48 @@ class YearStatistic < ActiveRecord::Base
         novel_taxon_ids: interval[:novel_taxon_ids]
       }
     end
+  end
+
+  def self.publications( year, options )
+    gbif_endpont = "https://www.gbif.org/api/resource/search"
+    gbif_params = {
+      contentType: "literature",
+      # iNat RG Observations dataset identifier on GBIF We don't publish site-
+      # specific datasets, so there's no reason not to hard-code it here.
+      gbifDatasetKey: "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+      literatureType: "journal",
+      year: year,
+      limit: 50
+    }
+    data = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
+    new_results = []
+    data["results"].each do |result|
+      if doi = result["identifiers"] && result["identifiers"]["doi"]
+        begin
+          am_response = RestClient.get( "https://api.altmetric.com/v1/doi/#{doi}" )
+          result["altmetric_score"] = JSON.parse( am_response )["score"]
+        rescue RestClient::NotFound => e
+          Rails.logger.debug "[DEBUG] Request failed: #{e}"
+        end
+        sleep( 1 )
+      end
+      result["_gbifDOIs"] = result["_gbifDOIs"][0..9]
+      new_results << result.slice(
+        "title",
+        "authors",
+        "year",
+        "source",
+        "websites",
+        "publisher",
+        "id",
+        "identifiers",
+        "_gbifDOIs",
+        "altmetric_score"
+      )
+    end
+    data["results"] = new_results.sort_by{|r| r["altmetric_score"].to_f * -1 }[0..9]
+    data[:url] = "https://www.gbif.org/resource/search?#{gbif_params.to_query}"
+    data
   end
 
   private
