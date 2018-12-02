@@ -1,16 +1,14 @@
 import React from "react";
-import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import UserImage from "../../../shared/components/user_image";
-import SplitTaxon from "../../../shared/components/split_taxon";
 import GenerateStatsButton from "./generate_stats_button";
 import Summary from "./summary";
 import Observations from "./observations";
 import Identifications from "./identifications";
-import TaxaSunburst from "./taxa_sunburst";
+import Taxa from "./taxa";
 import Publications from "./publications";
 
 const App = ( {
@@ -54,22 +52,13 @@ const App = ( {
         <Summary data={data} user={user} year={year} />
         <Observations data={data.observations} user={user} year={year} site={site} />
         <Identifications data={data.identifications} user={user} />
-        { user && data.taxa && data.taxa.tree_taxa && rootTaxonID && (
-          <TaxaSunburst
-            data={data.taxa.tree_taxa}
-            rootTaxonID={rootTaxonID}
-            labelForDatum={d => (
-              ReactDOMServer.renderToString(
-                <div>
-                  <SplitTaxon taxon={d.data} noInactive forceRank user={currentUser} />
-                  <div className="text-muted small">
-                    { I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } ) }
-                  </div>
-                </div>
-              )
-            )}
-          />
-        ) }
+        <Taxa
+          data={data.taxa}
+          rootTaxonID={rootTaxonID}
+          year={year}
+          user={user}
+          currentUser={currentUser}
+        />
         { user && currentUser && user.id === currentUser.id ? (
           <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
         ) : null }

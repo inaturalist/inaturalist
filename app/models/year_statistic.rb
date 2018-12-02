@@ -89,7 +89,8 @@ class YearStatistic < ActiveRecord::Base
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
-        tree_taxa: tree_taxa( year, user: user )
+        tree_taxa: tree_taxa( year, user: user ),
+        accumulation_by_created: observed_taxa_accumulation( user: user, date_field: "created_at", verifiable: true )
       }
     }
     year_statistic.update_attributes( data: json )

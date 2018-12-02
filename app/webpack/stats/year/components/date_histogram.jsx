@@ -1,3 +1,5 @@
+/* eslint indent: 0 */
+
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
@@ -17,6 +19,13 @@ class DateHistogram extends React.Component {
 
   renderHistogram( ) {
     const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    const {
+      series,
+      xExtent,
+      yExtent,
+      tickFormatBottom,
+      onClick
+    } = this.props;
     $( mountNode ).html( "" );
     const svg = d3.select( mountNode ).append( "svg" );
     const svgWidth = $( "svg", mountNode ).width( );
@@ -26,15 +35,17 @@ class DateHistogram extends React.Component {
       .attr( "height", svgHeight )
       .attr( "viewBox", `0 0 ${svgWidth} ${svgHeight}` )
       .attr( "preserveAspectRatio", "xMidYMid meet" );
-    const margin = { top: 20, right: 20, bottom: 30, left: 50 };
+    const margin = {
+      top: 20, right: 20, bottom: 30, left: 50
+    };
     const width = $( "svg", mountNode ).width( ) - margin.left - margin.right;
     const height = $( "svg", mountNode ).height( ) - margin.top - margin.bottom;
     const g = svg.append( "g" ).attr( "transform", `translate(${margin.left}, ${margin.top})` );
 
     const parseTime = d3.isoParse;
-    const series = {};
-    _.forEach( this.props.series, ( s, seriesName ) => {
-      series[seriesName] = _.map( s.data, d => ( {
+    const localSeries = {};
+    _.forEach( series, ( s, seriesName ) => {
+      localSeries[seriesName] = _.map( s.data, d => ( {
         date: parseTime( d.date ),
         value: d.value,
         seriesName
@@ -46,13 +57,13 @@ class DateHistogram extends React.Component {
       .x( d => x( d.date ) )
       .y( d => y( d.value ) );
 
-    const combinedData = _.flatten( _.values( series ) );
-    x.domain( this.props.xExtent || d3.extent( combinedData, d => d.date ) );
-    y.domain( this.props.yExtent || d3.extent( combinedData, d => d.value ) );
+    const combinedData = _.flatten( _.values( localSeries ) );
+    x.domain( xExtent || d3.extent( combinedData, d => d.date ) );
+    y.domain( yExtent || d3.extent( combinedData, d => d.value ) );
 
     let axisBottom = d3.axisBottom( x );
-    if ( this.props.tickFormatBottom ) {
-      axisBottom = axisBottom.tickFormat( this.props.tickFormatBottom );
+    if ( tickFormatBottom ) {
+      axisBottom = axisBottom.tickFormat( tickFormatBottom );
     }
 
     g.append( "g" )
@@ -69,10 +80,10 @@ class DateHistogram extends React.Component {
     const dateFormatter = d3.timeFormat( "%d %b" );
     const tip = d3tip()
       .attr( "class", "d3-tip" )
-      .offset( [-10, 0] ).
-      html( d => {
-        if ( this.props.series[d.seriesName] && this.props.series[d.seriesName].label ) {
-          return this.props.series[d.seriesName].label( d );
+      .offset( [-10, 0] )
+      .html( d => {
+        if ( series[d.seriesName] && series[d.seriesName].label ) {
+          return series[d.seriesName].label( d );
         }
         return `<strong>${dateFormatter( d.date )}</strong>: ${d.value}`;
       } );
@@ -80,15 +91,15 @@ class DateHistogram extends React.Component {
 
     const color = d3.scaleOrdinal( d3.schemeCategory10 );
     const colorForSeries = seriesName => {
-      if ( this.props.series[seriesName] && this.props.series[seriesName].color ) {
-        return this.props.series[seriesName].color;
+      if ( series[seriesName] && series[seriesName].color ) {
+        return series[seriesName].color;
       }
       return color( seriesName );
     };
-    _.forEach( series, ( seriesData, seriesName ) => {
+    _.forEach( localSeries, ( seriesData, seriesName ) => {
       const seriesGroup = g.append( "g" );
       seriesGroup.classed( _.snakeCase( seriesName ), true );
-      if ( this.props.series[seriesName].style === "bar" ) {
+      if ( series[seriesName].style === "bar" ) {
         const bars = seriesGroup.selectAll( "rect" ).data( seriesData )
           .enter( ).append( "rect" )
             .attr( "width", ( d, i ) => {
@@ -103,8 +114,8 @@ class DateHistogram extends React.Component {
             .attr( "transform", d => `translate( ${x( d.date )}, ${y( d.value )} )` )
             .on( "mouseover", tip.show )
             .on( "mouseout", tip.hide );
-        if ( this.props.onClick ) {
-          bars.on( "click", this.props.onClick ).style( "cursor", "pointer" );
+        if ( onClick ) {
+          bars.on( "click", onClick ).style( "cursor", "pointer" );
         }
       } else {
         seriesGroup.append( "path" ).datum( seriesData )
@@ -123,8 +134,8 @@ class DateHistogram extends React.Component {
             .style( "stroke", ( ) => colorForSeries( seriesName ) )
             .on( "mouseover", tip.show )
             .on( "mouseout", tip.hide );
-        if ( this.props.onClick ) {
-          points.on( "click", this.props.onClick ).style( "cursor", "pointer" );
+        if ( onClick ) {
+          points.on( "click", onClick ).style( "cursor", "pointer" );
         }
       }
     } );
@@ -133,10 +144,10 @@ class DateHistogram extends React.Component {
       .attr( "class", "legendOrdinal" )
       .attr( "transform", `translate(${width - 20},20)` );
     const legendScale = d3.scaleOrdinal( )
-      .domain( _.keys( series ) )
-      .range( _.map( series, ( v, k ) => colorForSeries( k ) ) );
+      .domain( _.keys( localSeries ) )
+      .range( _.map( localSeries, ( v, k ) => colorForSeries( k ) ) );
     const legendOrdinal = legend.legendColor()
-      .labels( _.map( this.props.series, ( v, k ) => ( v.title || k ) ) )
+      .labels( _.map( series, ( v, k ) => ( v.title || k ) ) )
       .classPrefix( "legend" )
       .shape( "path", d3.symbol( ).type( d3.symbolCircle ).size( 100 )( ) )
       .shapePadding( 5 )
@@ -148,7 +159,7 @@ class DateHistogram extends React.Component {
   render( ) {
     return (
       <div className="DateHistogram">
-        <div className="chart"></div>
+        <div className="chart" />
       </div>
     );
   }
