@@ -58,11 +58,11 @@ describe GuideSection, "new_from_eol_data_object" do
   end
 
   it "should set license" do
-    expect(@guide_section.license.to_s.downcase).to be =~ /by-nc/
+    expect(@guide_section.license.to_s.downcase).to be =~ /by-sa/
   end
 
   it "should set rights_holder" do
-    expect(@guide_section.rights_holder).to be =~ /NatureServe/
+    expect(@guide_section.rights_holder).to be =~ /Wikipedia/
   end
 
   it "should set rights_holder to compiler if no rightsHolder" do
