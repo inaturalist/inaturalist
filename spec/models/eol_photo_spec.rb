@@ -27,7 +27,7 @@ describe EolPhoto, "new_from_api_response" do
   end
 end
 
-describe "repair" do
+describe EolPhoto, "repair", disabled: ENV["TRAVIS_CI"] do
   before(:each) { enable_elastic_indexing( Observation ) }
   after(:each) { disable_elastic_indexing( Observation ) }
   it "should not fail" do
@@ -39,7 +39,7 @@ describe "repair" do
   end
 end
 
-describe EolPhoto, "sync" do
+describe EolPhoto, "sync", disabled: ENV["TRAVIS_CI"] do
   before(:each) { enable_elastic_indexing( Observation ) }
   after(:each) { disable_elastic_indexing( Observation ) }
   let(:api_response) { EolPhoto.get_api_response( 5246083 ) }
