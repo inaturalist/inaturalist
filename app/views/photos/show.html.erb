@@ -45,7 +45,7 @@
         <tr>
           <th><%=t :attribution %></th>
           <td width="100%">
-            <%= rights @photo %>
+            <%= rights @photo, rel: "license" %>
             <% if @photo.editable_by?(current_user) -%>
               <span class="button">
                 <%= link_to_function t(:edit_license), "$('#editlicense').dialog({modal:true, width:'auto', title: I18n.t('edit_license')})" %>

@@ -879,7 +879,7 @@ module ApplicationHelper
       record.attribution
     end
     s ||= "&copy; #{user_name}"
-    content_tag(:span, s.html_safe, class: "rights verticalmiddle", rel: "license")
+    content_tag(:span, s.html_safe, class: "rights verticalmiddle")
   end
 
   def rights_for_observation( record, options = {} )
@@ -898,15 +898,12 @@ module ApplicationHelper
         c = if options[:skip_image]
           ""
         else
-          link_to(image_tag("#{record.license}_small.png"),
-            url_for_license(record.license), rel: "license") + " "
+          link_to(image_tag("#{record.license}_small.png"), url_for_license(record.license)) + " "
         end
         if record.license == Observation::CC0
-          c + link_to(I18n.t('copyright.no_rights_reserved'),
-            url_for_license(record.license), rel: "license")
+          c + link_to(I18n.t('copyright.no_rights_reserved'), url_for_license(record.license))
         else
-          c + link_to(I18n.t(:some_rights_reserved),
-            url_for_license(record.license), rel: "license")
+          c + link_to(I18n.t(:some_rights_reserved), url_for_license(record.license))
         end
       end
     end
@@ -938,14 +935,14 @@ module ApplicationHelper
         c = if options[:skip_image]
           ""
         else
-          link_to(image_tag("#{code}_small.png"), url, rel: "license") + " "
+          link_to(image_tag("#{code}_small.png"), url, rel: options[:rel]) + " "
         end
         license_blurb = if record.license_code == Observation::CC0
           I18n.t("copyright.no_rights_reserved")
         else
           I18n.t(:some_rights_reserved)
         end
-        c.html_safe + link_to(license_blurb, url, rel: "license")
+        c.html_safe + link_to(license_blurb, url, rel: options[:rel])
       end
     end
     s
