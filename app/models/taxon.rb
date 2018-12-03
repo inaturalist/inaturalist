@@ -29,7 +29,6 @@ class Taxon < ActiveRecord::Base
   acts_as_flaggable
   has_ancestry
 
-  has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
   has_many :taxon_changes
   has_many :taxon_change_taxa, inverse_of: :taxon

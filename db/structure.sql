@@ -3975,7 +3975,6 @@ CREATE TABLE taxa (
     rank character varying(255),
     source_identifier character varying(255),
     source_url character varying(255),
-    parent_id integer,
     source_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -8475,13 +8474,6 @@ CREATE INDEX index_taxa_on_lower_name_and_id ON taxa USING btree (lower((name)::
 --
 
 CREATE INDEX index_taxa_on_observations_count ON taxa USING btree (observations_count);
-
-
---
--- Name: index_taxa_on_parent_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_taxa_on_parent_id ON taxa USING btree (parent_id);
 
 
 --
