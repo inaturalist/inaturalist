@@ -1,6 +1,7 @@
 # Messages for Mexican Spanish (español de México)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Carrieseltzer
 # Author: Cgalindo
 # Author: Fitoschido
 # Author: Kueda
@@ -69,8 +70,8 @@ es-MX:
     one: 1 Favorito
     other: '%{count} Favoritos'
   x_flags_resolved_html:
-    one: <span class='count'>1</span> marca resuelta
-    other: <span class='count'>%{count}</span> marcas resueltas
+    one: <span class='count'>1</span> advertencia resuelta
+    other: <span class='count'>%{count}</span> advertencias resueltas
   x_people_like_this:
     one: A 1 persona le gusta esto
     other: A %{count} personas les gusta esto
@@ -174,8 +175,8 @@ es-MX:
   add_a_batch_of_observations_by_csv: Añade un grupo de observaciones mediante CSV
   add_a_batch_of_taxa: Añade un grupo de taxa
   add_a_comment: Añade un comentario
-  add_a_field: Agrega un campo
-  add_a_flag: Agrega una marca
+  add_a_field: Añade un campo
+  add_a_flag: Añade una alerta
   add_a_link_raquo: Añade un enlace &raquo;
   add_a_name: Añade un nombre
   add_a_new_change_group: Añade un nuevo cambio en grupo
@@ -183,7 +184,7 @@ es-MX:
     por favor!
   add_a_place_raquo: Añade un lugar &raquo;
   add_a_single_observation: Añade una sola observación
-  add_a_taxon: Agrega un taxón
+  add_a_taxon: Añade una especie o grupo
   add_a_taxon_swap_if_you_want_to_change_the_name_html: Agrega un <a target="_blank"
     href="%{url}">intercambio de taxón</a> si deseas cambiar el nombre
   add_all_your_matching_obs_of_this_taxon: . Añade todas las observaciones encontradas
@@ -195,13 +196,13 @@ es-MX:
   add_an_observation: Añade una observación
   add_an_observation?: ¿Quieres añadir una observación?
   add_an_observation_of: Añade una observación de %{taxon}
-  add_annotations_for_x: Agrega Anotaciones para "%{x}"
+  add_annotations_for_x: Añade anotaciones para "%{x}"
   add_annotations_for_controlled_attribute:
     sex: Agrega anotaciones para "Género"
-    plant_phenology: Agrega anotaciones para "Fenología de la planta"
-    life_stage: Agrega anotaciones para "Etapa de vida"
+    plant_phenology: Añade anotaciones para "fenología de la planta"
+    life_stage: Añade anotaciones para "etapa de vida"
   add_another: Añade otra
-  add_another_flag: Añade otra marca
+  add_another_flag: Añade otra advertencia
   add_another_photo: Añade otra foto
   add_another_section: Añade otra sección
   add_another_subscription: Añade otra suscripción
@@ -210,17 +211,17 @@ es-MX:
   add_colors: Añade colores
   add_comma_separated_tags: Añade etiquetas separadas por comas
   add_comment: Añade un comentario
-  add_common_names_for: Agrega nombres comunes para taxones existentes
+  add_common_names_for: añadir nombres vernáculos para taxones existentes
   add_conservation_status: Añade estado de conservación
   add_countries: Añade países
-  add_custom_project_fields: Agrega campos a la medida del proyecto
+  add_custom_project_fields: Añade campos a la medida del proyecto
   add_edit_flags: Agrega/edita etiquetas
   add_edit_more_fields: Añade / Edita más campos
   add_editor: Agrega editor
   add_description: Añade %{description_name}
   add_field: Agrega campo
   add_from_your_observations: Añade de tus observaciones
-  add_link: Agrega enlace
+  add_link: Añade enlace
   add_listed_taxa_from_observations: Añade a los taxoxones de la lista a partir de
     las observaciones
   add_higher_level_taxon: Añade un grupo de nivel superior (por ejemplo, "aves")
@@ -234,7 +235,7 @@ es-MX:
   add_new_place: Añade un nuevo lugar
   add_new_rule: Añade una nueva regla
   add_new_source: Añade una nueva fuente...
-  add_new_taxon_name: Agrega un nuevo nombre de taxón
+  add_new_taxon_name: Añade el nombre de un grupo nuevo
   add_notes_about_this_taxon: Añade notas acerca de esta especie o grupo en este lugar,
     por ejemplo, dónde y cuándo ocurre.
   add_obs_from_a_link: Añade observación de la %{link}
@@ -251,32 +252,32 @@ es-MX:
   add_one: ¡Añade una!
   add_photos: Añade fotos
   add_photos_to_this_observation: Añade fotos a esta observación
-  add_place: Agrega lugar
-  add_plant_phenology_budding_annotation: 'Agrega anotación "fenología de la planta:
+  add_place: Añade lugar
+  add_plant_phenology_budding_annotation: 'Añade anotación "fenología de la planta:
     en botón"'
   add_plant_phenology_flowering_annotation: 'Agrega anotación "Fenología de la planta:
     floreciendo"'
-  add_plant_phenology_fruiting_annotation: 'Agrega anotación "Fenología de la planta:
+  add_plant_phenology_fruiting_annotation: 'Añade anotación "fenología de la planta:
     fructificando"'
-  add_life_stage_adult_annotation: 'Agrega anotación "Etapa de vida: adulto"'
-  add_life_stage_teneral_annotation: 'Agrega anotación "Etapa de vida: Imago tierno"'
-  add_life_stage_subimago_annotation: 'Agrega anotación "Etapa de vida: sub-imago"'
-  add_life_stage_pupa_annotation: 'Agrega anotación"Etapa de vida: pupa"'
-  add_life_stage_nymph_annotation: 'Agrega anotación "Etapa de vida: ninfa"'
-  add_life_stage_larva_annotation: 'Agrega anotación "Etapa de vida: larva"'
-  add_life_stage_juvenile_annotation: 'Agrega anotación "Etapa de vida: juvenil"'
-  add_life_stage_egg_annotation: 'Agrega anotación "Etapa de vida: huevo"'
-  add_section: Agrega sección
+  add_life_stage_adult_annotation: 'Añade anotación "etapa de vida: adulto"'
+  add_life_stage_teneral_annotation: 'Añade anotación "etapa de vida: imago tierno"'
+  add_life_stage_subimago_annotation: 'Añade anotación "etapa de vida: sub-imago"'
+  add_life_stage_pupa_annotation: 'Añade anotación"etapa de vida: pupa"'
+  add_life_stage_nymph_annotation: 'Añade anotación "etapa de vida: ninfa"'
+  add_life_stage_larva_annotation: 'Añade anotación "etapa de vida: larva"'
+  add_life_stage_juvenile_annotation: 'Añade anotación "etapa de vida: juvenil"'
+  add_life_stage_egg_annotation: 'Añade anotación "etapa de vida: huevo"'
+  add_section: Añade sección
   add_several_observations_at_once: Añade varias observaciones al mismo tiempo.
-  add_sex_female_annotation: 'Agrega anotación "Género: femenino"'
-  add_sex_male_annotation: 'Agrega anotación "Género: masculino"'
+  add_sex_female_annotation: 'Añade anotación "género: femenino"'
+  add_sex_male_annotation: 'Añade anotación "Género: masculino"'
   add_shape: Añade una forma
-  add_some_now: Agrega algunas ahora
+  add_some_now: Añade unas ahora
   add_tag: Añade etiqueta
   add_tags: Añade etiquetas
-  add_tags_to_selected_taxa: Agrega etiquetas a los taxones seleccionados
-  add_taxa: Agrega taxones
-  add_taxa_to_places: Agrega taxones a lugares
+  add_tags_to_selected_taxa: Añade las etiquetas al taxa seleccionado
+  add_taxa: Añade taxones
+  add_taxa_to_places: Añade taxones a lugares
   add_taxon_batch_to: Añade un grupo de taxones a %{list}
   add_taxon_range: Añade la distribución del taxón
   add_taxonomic_tags_to: Añade etiquetas taxonómicas para seleccionar fotos de Flickr
@@ -286,7 +287,7 @@ es-MX:
   add_to: Añade a
   add_to_a_scheme: Añade a un esquema
   add_to_a_project: Añade a un proyecto
-  add_to_calendar: Agrega al calendario
+  add_to_calendar: Añade al calendario
   add_to_checklist: Añade a lista de comprobación
   add_to_favorites: Añade a los favoritos
   add_to_id_please: Añadir a la identificación, por favor
@@ -332,7 +333,7 @@ es-MX:
   all_colors: '&laquo; Todos los colores'
   all_comments: Todos los comentarios
   all_csv: Todos los CSV
-  all_flags_must_be_resolved: Se deben resolver todas las marcas
+  all_flags_must_be_resolved: Se deben resolver todas las advertencias
   all_life: Toda la vida
   all_names: Todos los nombres
   all_observations: Todas las observaciones
@@ -691,7 +692,7 @@ es-MX:
   by_adding_ids_to_observations: Añadiendo identificación a las observaciones
   by_everyone: De todos
   by_project_list: por lista de proyecto
-  by_user: Por %{user}
+  by_user: por %{user}
   by_you: Por ti
   calendar: Calendario
   calendars_only_show_x_observations_at_time: Los calendarios sólo muestran %{x} observaciones
@@ -1080,7 +1081,7 @@ es-MX:
     del proyecto y sus identificaciones son mostradas en ciertas vistas (como referencia).
     Además pueden ver las coordenadas oscurecidas o privadas del proyecto.
   curator_identification: Identificación de curador
-  current_flags: Marcas actuales
+  current_flags: Advertencias actuales
   current_password: Contraseña actual
   custom_field_values: Valores de campos personalizados
   custom_project_fields: Campos a la medida del proyecto
@@ -1096,7 +1097,7 @@ es-MX:
   date_: Fecha
   date?: ¿Fecha?
   date_added: Fecha añadida
-  date_created: Fecha de creación
+  date_created: fecha de creación
   date_format:
     date_long:
       january: enero %{day} %{year}
@@ -2129,6 +2130,7 @@ es-MX:
   new_custom_field_for: Nuevo campo para
   new_flag_for: Nuevas advertencias por
   new_guide: Nueva Guía
+  new_journal_post: Nueva nota de Diario
   new_list: Nueva lista
   new_members: Nuevos miembros
   new_message: Nuevo mensaje

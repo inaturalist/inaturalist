@@ -339,6 +339,7 @@ ar:
   all_photos: كل الصور
   all_places: كل الأماكن
   all_projects: كل المشاريع
+  all_children_added_to_the_database: تمت إضافة جميع الأطفال إلى قاعدة البيانات
   all_rank_added_to_the_database:
     phylum: تُضَاف جميع الشعب إلى قاعدة البيانات
     subphylum: تُضَاف جميع الشعب إلى قاعدة البيانات
@@ -577,7 +578,9 @@ ar:
   at_any_time_change: في أي وقت (<span class="button">تغيير</span>)
   at_time: في %{time}
   atom: ذرة
+  attached_taxon: الأصنوفة المتعلقة
   attribute: سمة
+  attribution: النسبة
   authority_list:
     iucn_red_list: القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية
   authorize_permissions_from_provider: مصادقة الأذونات من %{provider}
@@ -848,6 +851,7 @@ ar:
   classification: تصنيف
   clear: مسح
   clear_color_filters: مسح مرشحات الألوان
+  clear_filters: مسح المرشحات
   clear_search: مسح البحث
   click_on_the_map_to: انقر على الخريطة لوضع ملاحظتك
   click_the_map: <strong>انقر على الخريطة</strong> لإضافة موقع.
@@ -906,6 +910,7 @@ ar:
   comparing_list_to_list: مقارنة %{list1} مع %{list2}
   comparing_versions_x_and_y: مقارنة الإصدارات %{x} و%{y}
   comparing_observations_from: مقارنة %{user} الملاحظات من %{dates}
+  complete: اكتمال
   complete_sets: مجموعات كاملة
   compiled_by_name: تم تجميعها بواسطة %{name}
   completed: اكتمل
@@ -1006,6 +1011,9 @@ ar:
   copyright_info_and_more: معلومات حقوق الطبع والنشر والمزيد
   copyright_infringement_desc: ينتهك قانون حقوق الطبع والنشر أو تم إنشاؤه بواسطة شخص
     آخر بخلاف المراقب ويفتقر إلى الإحالة
+  covered_by_a_taxon_framework_html: مغطاة بنسبة %{link}
+  covered_by_a_taxon_framework_link: إطار العمل التصنيفي ل%{taxon_framework_rank}
+    %{taxon_framework_name}
   couldnt_change_your_password: 'تعذر تغيير كلمة مرورك: %{e}'
   couldnt_find_a_user_matching_x_param: تعذر العثور على مستخدم يطابق %{id}
   couldnt_find_that_taxon: لا يمكن العثور على أصنوفة.
@@ -1125,6 +1133,7 @@ ar:
   default_sound_license: ترخيص الصوت الافتراضي
   defaults_to_your_name_or_username: الإعدادات الافتراضية للاسم أو اسم المستخدم الخاص
     بك
+  defines_a_taxon_framework_for: يحدد إطار عمل تصنيفيا ل%{taxon_name}
   delete: حذف
   delete_all: حذف الكل
   delete_conversation: مسح المحادثة
@@ -1159,6 +1168,8 @@ ar:
   desription: الوصف
   destroy: تدمير
   details: تفاصيل
+  deviation: الانحراف
+  deviations: الانحرافات
   devise:
     failure:
       user:
@@ -1169,6 +1180,7 @@ ar:
   did_not_send_invitations_because: لم يتم إرسال دعوات إلى ما يلي بسبب...
   did_you_mean: هل تقصد
   did_you_photos_flickr?: هل وضعت أي صور على فليكر؟
+  disable: تعطيل
   disagree: أعارض
   disagree_: أعارض
   disconnect_provider: افصل %{provider}
@@ -1203,6 +1215,8 @@ ar:
   download_csv: تحميل بصيغة CSV
   download_csv_template: تنزيل قالب CSV
   download_kml: تنزيل بصيغة KML
+  downstream_coverage: تغطية المصب
+  downstream_coverage_rank: مستوى تغطية المصب
   drag_and_drop_photos: سحب وإسقاط الصور على هذه النافذة أو
   draft: مسودة
   draft_: مسودة
@@ -1461,7 +1475,9 @@ ar:
   flag_this_photo: التعليم على هذه الصورة
   flagged: مُعلَّم
   flagged_: مُعلَّم
+  flagged_covered_taxa: الأصناف المغطاة المعلمة
   flagged_for_curation: تم التعليم للمشرفين
+  flagged_taxon: الأصنوفة المعلمة
   flagged_thing_explanation: علم المستخدمون هذا %{thing} لأنه
   flagger: المعلم
   flags: أعلام
@@ -1616,6 +1632,7 @@ ar:
   help_confirm_observations!: المساعدة في تأكيد الملاحظات!
   help_faq: مساعدة / أسئلة مكررة
   help_out!: مساعدة!
+  help_support_inaturalist: مساعدة دعم إيناتوراليست!
   helped_the_observer_make: ساعد المراقب في صنع معرفهم النهائي (أي أنهم قُدِّموا قبل
     المعرف النهائي وطابقوه)
   here_are_3_examples: في ما يلي 3 أمثلة للبيانات التي تم تشكيلها بشكل جيد
@@ -1779,6 +1796,7 @@ ar:
     في تحديد المخلوقات الغامضة!
   interactions: التفاعلات
   internal_server_error: خطأ في الخادم الداخلي
+  internal_taxon: أصنوفة داخلية
   introduced: أُدخِلت
   introduced_in_place: قُدِّم في %{place}
   invasive: مجتاح
@@ -2009,6 +2027,7 @@ ar:
   linked_flickr_photo_copy_html: <strong>لن نخزن نسخا من صورك أو نغير بيانات فليكر
     (ما لم تطلب منا ذلك).</strong> نحن نهتم كثيرا بالطيور والبق والبزاق التي تريد
     أن تفسد معلوماتك!
+  linkedin: لينكد إن
   list: قائمة
   list_deleted: تم حذف القائمة.
   list_saved: تم حفظ القائمة.
@@ -2339,6 +2358,7 @@ ar:
   new_custom_field_for: حقل مخصص جديد لـ
   new_flag_for: علم جديد لـ
   new_guide: دليل جديد
+  new_journal_post: مجلة مشاركة جديدة
   new_lexicon: معجم جديد
   new_list: قائمة جديدة
   new_members: أعضاء جدد
@@ -2441,6 +2461,7 @@ ar:
   no_ones_observed: لم يلاحظ أحد
   no_photo: لا توجد صورة
   no_photos: لا توجد صور
+  no_photos_of_that_size: لا صورة بهذا الحجم.
   no_places_available: لا تتوفر أماكن
   no_places_selected: لم يتم تحديد أماكن.
   no_post_yet: لا توجد مشاركات حتى الآن!
@@ -2478,11 +2499,13 @@ ar:
   no_x_this_y: لا %{x} هذا %{y}
   noble_curators: '%{site} قيمو نوبل'
   non_human?: غير بشري؟
+  non_internal_taxon: أصنوفة غير داخلية
   none: لا شيء
   none_found: لم يتم العثور على شيء
   normal: عادي
   not_absent: ليس غائبا
   not_completed: غير مكتمل
+  not_covered_by_any_taxon_frameworks: لا تغطيها أية أطر عمل تصنيفية
   not_evaluated: لم يتم تقييمه
   not_filtering: عدم التصفية
   not_findig_what_you_want: لم تجد ما تريد؟
@@ -2786,6 +2809,7 @@ ar:
   out_of_range: خارج النطاق
   output_taxon: إخراج الأصنوفة
   overview: نظرة عامة
+  overlapping_downstream_taxon_frameworks: تداخل أطر عمل تصنيفية مع التيار
   owner: المالك
   parent: الأصل
   parent_name: اسم الوالدين
@@ -2825,6 +2849,7 @@ ar:
   photo_browser: متصفح الصور
   photo_by: الصورة بواسطة
   photo_by_id_attribution: صورة %{id}، %{attribution}
+  photo_credits: نسب صور
   photo_deleted: تم حذف الصورة
   photo_destroyed_because_it_was_deleted_from: تم حذف الصورة المدمرة ب/ك من الموقع
     الخارجي أو لم يعد لدى %{site_name} إذنا لمشاهدتها
@@ -3188,6 +3213,7 @@ ar:
   rank_position: المرتبة
   rank_restrictions: قيود المرتبة
   ranks:
+    stateofmatter: حالة من المسألة
     kingdom: المملكة
     subkingdom: تحت مملكة
     phylum: الشعبة
@@ -3276,6 +3302,18 @@ ar:
   reject_the_community_id: رفض معرف المجتمع
   related_species: الأنواع ذات الصلة
   relative_observations: ملاحظات مرتبطة
+  relationship: العلاقة
+  relationship_x: 'العلاقة: %{relationship}'
+  relationships:
+    match: مطابقة
+    one_to_one: من واحد لواحد
+    alternate_position: موقف بديل
+    many_to_many: كثير لكثير
+    many_to_one: كثير لواحد
+    one_to_many: واحد لكثير
+    not_external: ليس خارجيا
+    not_internal: ليس داخليا
+    unknown: غير معروف
   reload_and_refresh: إعادة تحميل وتحديث القائمة
   reload_from_observations: إعادة تحميل من الملاحظات
   reload_timed_out: انتهت مهلة التحميل; الرجاء معاودة المحاولة في وقت لاحق.
@@ -3480,6 +3518,7 @@ ar:
   set_license: تعيين الترخيص
   settings: الإعدادات
   share: مشاركة
+  share_colon: 'شارك:'
   share_your_observation_with_researchers_by: شارك الملاحظة مع الباحثين من قبل
   short_code_for_this_place: رمز قصير لهذا المكان، مثل وم للولايات المتحدة
   short_or_abbreviated_title_for_display: عنوان مختصر للعرض في المناطق محدودة المساحة،
@@ -3634,6 +3673,7 @@ ar:
   source_unknown: المصدر غير معروف
   source_url: مسار المصدر
   source_of_coordinates: مصدر الإحداثيات ودقة قياس، تعيين تلقائي.
+  sourced_to: من المصدر
   sources: مصادر
   sources_youve_added: المصادر التي أضفتها
   sources_and_credits: المصادر والتصديق
@@ -3724,6 +3764,7 @@ ar:
   suggestions: اقتراحات
   summary: الملخص
   supporting: دعم
+  support_inaturalist: دعم إيناتوراليست
   suspicious_photos: الصور المشبوهة
   siutable_observations: ملاحظات مناسبة
   sun: الأحد
@@ -3827,6 +3868,11 @@ ar:
   taxon_colors: ألوان الأصنوفة
   taxon_curators: أمناء الأصنوفة
   taxon_extras: إضافات الأصنوفة
+  taxon_framework_notes: ملاحظات إطار العمل التصنيفي
+  taxon_framework_relationship_for: علاقة إطار العمل التصنيفي لـ
+  taxon_framework_relationship: علاقة إطار العمل التصنيفي
+  taxon_framework_relationships: علاقات إطار العمل التصنيفي
+  taxon_framework_taxon: أصنوفة إطار العمل التصنيفي
   taxon_links: روابط الأصنوفة
   taxon_merge: دمج الأصنوفة
   taxon_name: اسم الأصنوفة
@@ -3867,6 +3913,10 @@ ar:
   taxonomic_status: الحالة التصنيفية
   taxonomic_tags_for_flickr: العلامات التصنيفية لفليكر
   taxonomic_tree_browser: متصفح شجرة التصنيف
+  taxonomy_details: تفاصيل تصنيفية
+  taxonomy_details_for: تفاصيل تصنيفية لـ
+  taxonomy_details_info: تستخدم صفحة التفاصيل التصنيفة إطارات عمل تصنيفية للمساعدة
+    في وصف ما نعنيه بأصنوفة. <a href="/pages/taxon_frameworks">قراءة المزيد</a>.
   taxonomy_settings: إعدادات التصنيف
   tell_everyone_a_little_about_you: أخبر الجميع قليلا عن نفسك
   tell_the_world_a_little_about_yourself: أخبرنا عن نفسك
@@ -3985,6 +4035,8 @@ ar:
     \nالحال، اسمح لنا أن نعرف."
   there_were_some_problems_with_fields: 'كانت هناك بعض المشاكل في الحقول التالية:'
   theres_also: هناك أيضا
+  theres_something_wrong_with_taxon_framework_relationship: هناك شيء خطأ هنا; لا يمكننا
+    تحديد العلاقة بين أية أصناف داخلية وخارجية
   these_are_items_people_on: "هؤلاء هم أشخاص العناصر التي تم وضع علامة عليهم في الموقع
     للمعالجة،\nيجب حذف التعليقات غير المرغوب فيها ويجب تعليق المستخدمين الذين يضيفون
     محتوى غير مرغوب فيه (انتقل \nإلى صفحات ملفاتهم الشخصية وانقر على \"تعليق المستخدم\"
@@ -4156,6 +4208,7 @@ ar:
   unknown: غير معروف
   unknown_error: خطأ غير معروف
   unknown_rank: (رتبة غير معروفة)
+  unknown_taxon_framework_relationship: علاقة إطار عمل غير معروفة
   unfollow: إلغاء المتابعة
   unlink_your_google_account: إلغاء ربط حسابك في جوجل
   unmute: تنشيط الصوت
@@ -4512,6 +4565,7 @@ ar:
   x_of_y: '%{x} من %{y}'
   x_of_y_people_over_two_thirds_agree_it_is: يوافق %{x} من الأشخاص %{y} (أكثر من 2/3)
     على ذلك
+  x_is_the_root_of_the_tree: '%{rank} %{name} هو جذر الشجرة'
   x_project_journal: '%{project} %{name}'
   x_project_stats: '%{project} Stats'
   x_sent_you_a_new_message_on_y_html: 'أرسل %{x} إليك رسالة جديدة في %{y}:'
@@ -4767,6 +4821,21 @@ ar:
           please_read_the_teachers_guide_html: |-
             إذا كان الأمر كذلك، الرجاء قراءة <a href="%{url}">دليل المعلم لدينا</a>
             للحصول على نصائح حول استخدام %{site_name} مع الطلاب.
+    donate:
+      donate_short_desc: ساعد في دعم إيناتوراليست بتبرع!
+      donate_desc_html: "<p class=\"lead\">\n<strong>إيناتوراليست هو واحد من أكبر
+        المجتمعات في العالم المخصصة \n  لاستكشاف التنوع البيولوجي، نشكرك على كونك
+        جزءً منه!</strong>\n</p>\n<p class=\"lead\">\n  إذا كنت تؤمن بقوة هذا المجتمع
+        العالمي لمحبي الطبيعة،\n  في مشاركة المعرفة وتوليد بيانات التنوع البيولوجي
+        التي لا يمكن الاستغناء عنها، \n  فالرجاء التفكير لمرة واحدة أو هدية متكررة.
+        \n</p>\n<p class=\"lead\">\n  يساعد تبرعك في دعم إيناتوراليست مع نمو المجتمع،
+        من \n  تطوير رؤية الحاسوب وتنفيذ ميزات جديدة لدعم \n  خوادمنا وموظفينا. \n</p>\n<p
+        class=\"text-muted\">\n  إيناتوراليست هي مبادرة مشتركة من أكاديمية كاليفورنيا
+        للعلوم\n  وجمعية ناشيونال جيوغرافيك، سيتم استلام جميع التبرعات من قبل \n  أكاديمية
+        كاليفورنيا للعلوم، وهي مؤسسة غير ربحية 501(c)(3) معفاة من الضرائب \n  مقرها
+        في الولايات المتحدة. \n</p>"
+      post_donate_social_media_text: أنا دعمت إيناتوراليست! يجب عليك التحقق من ذلك،
+        أيضا.
     guides:
       index:
         funding_html: |-

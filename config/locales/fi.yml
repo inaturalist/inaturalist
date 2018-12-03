@@ -577,6 +577,7 @@ fi:
   at_time: klo %{time}
   atom: Atom
   attribute: Määrite
+  attribution: Nimeäminen
   authority_list:
     iucn_red_list: IUCN Uhanalaisuusluokitus
   authorize_permissions_from_provider: Valtuuta %{provider} käyttöoikeudet
@@ -841,6 +842,7 @@ fi:
   classification: Luokitus
   clear: tyhjennä
   clear_color_filters: Tyhjennä kaikki värisuodattimet
+  clear_filters: Tyhjennä suodattimet
   clear_search: Tyhjennä haku
   click_on_the_map_to: Klikkaa karttaa sijoittaaksesi havaintosi
   click_the_map: <strong>Klikkaa karttaa</strong> lisätäksesi sijainnin.
@@ -892,9 +894,13 @@ fi:
   comprehensive?: Kattava?
   comprehensive_list: Kattava lista
   configure: Määritä
+  configure_a_widget_to_show: Määritä pienoisohjelma joka näyttää %{site_name} havainnot
+    verkkosivullasi tai blogissasi. Saatat joutua sisällyttämään sulautetun CSS:n
+    <code>&lt;head&gt;</code> osioon HTML:ssäsi. Voit vapaasti uudelleenkirjoittaa
+    CSS:n.
   confirm: Vahvista
   confirm_membership: Vahvista jäsenyys
-  confirm_new_password: Vahvista Uusi Salasana
+  confirm_new_password: Vahvista uusi salasana
   confirm_now: Vahvista nyt
   confirm_your_info: Vahvista tietosi
   confirmed: vahvistettu
@@ -970,7 +976,7 @@ fi:
   cover: Kansi
   create: Luo
   create_a_guide: Luo opas
-  create_a_list: Luo lista
+  create_a_list: Luo luettelo
   create_a_new_field: Luo uusi kenttä
   create_a_new_place: Luo uusi paikka
   create_a_new_taxon: Luo uusi taksoni
@@ -1115,6 +1121,7 @@ fi:
   did_not_send_invitations_because: Älä lähetä kutsuja seuraaville koska...
   did_you_mean: Tarkoititko
   did_you_photos_flickr?: Laitoitko mitään kuvia Flickr'iin?
+  disable: Poista käytöstä
   disagree: eri mieltä
   disagree_: Eri mieltä
   disconnect_provider: Katkaise yhteys palveluun %{provider}
@@ -1648,7 +1655,7 @@ fi:
   last_observation: Viimeisin havainto
   last_seen: Nähty viimeksi
   last_year: Viime vuosi
-  lat: Lat
+  lat: Leveysaste
   latitude: Leveysaste
   latitude_in_decimals: Leveyttä desimaaliasteina, esim. 38.123
   latitude_slash_y_coord_slash_northing: Leveysaste / y koord / pohjoiseen
@@ -2001,6 +2008,7 @@ fi:
   new_comment_on_a_parent_by_user_link: Uusi kommentti kohteessa %{parent} käyttäjältä
     %{user_link}
   new_guide: Uusi opas
+  new_journal_post: Uusi päiväkirjakirjoitus
   new_lexicon: Uusi sanasto
   new_list: Uusi luettelo
   new_members: Uudet jäsenet
@@ -2279,6 +2287,8 @@ fi:
   one_of_your_lists: yksi listoistasi...
   only_administrators_may_access_that_page: Vain ylläpitäjät voivat päästä tälle sivulle
   only_an_admin_can_remove_project_users: Vain ylläpitäjä voi poistaa projektin käyttäjiä
+  only_country_state_and_county: Vain maat, osavaltiot ja lääniä vastaavat paikat
+    näytetään nyt. Lähennä nähdäksesi pienemmät paikat.
   only_letters_numbers: Vain kirjaimia ja numeroita, ei välejä, täytyy alkaa kirjaimella
   only_receive_updates_about_this_taxon: Vastaanota päivityksiä vain tästä taksonista
   only_show_active_taxa: Näytä vain aktiiviset taksonit
@@ -3033,12 +3043,16 @@ fi:
   sw_lon: SW pituusaste
   sync: Synkronoi?
   sync_with_eol: Synkronoi EOL:n kanssa
+  sync_obs_with_photo_metadata: Syknronoi havainnot kuvien metatietojen kanssa
   synonyms: Synonyymit
   table: Taulukko
   table_of_contents: Sisällysluettelo
   tag: Tagi
   tagging: Tunnisteita lisätään...
   tags: Tagit
+  tags_are_a_way: Tunnisteet ovat tapa järjestää havaintojasi. Esimerkiksi, saatat
+    merkitä kaikki tidepool-havaintosi "tidepools" helpottaaksesi niiden löytämistä
+    myöhemmin.
   take_me_facebook: Kyllä, vie minut Facebookiin!
   take_me_flickr!: Kyllä, vie minut Flickr:iin!
   take_me_back: Vie minut takaisin
@@ -3102,7 +3116,7 @@ fi:
   that_observation_no_longer_exists: Tätä havaintoa ei ole enää olemassa.
   that_project_doesnt_exist: Tätä projektia ei ole olemassa.
   that_role_doesnt_exist: Tätä roolia ei ole olemassa
-  thats_not_a_real_date: Se ei ole oikea päivämäärä!
+  thats_not_a_real_date: Tuo ei ole oikea päivämäärä!
   the_admin_is_the_person_who: Ylläpitäjä on henkilö joka loi projektin. He voivat
     tehdä kaiken mitä managerit ja kuraattorit voivat tehdä, yhtä hyvin poistaa projektin.
   the_below_items_are_needed_to_achieve: 'Alla olevia kohteita tarvitaan <span className="bold">Tutkimusasteen</span>
@@ -3165,7 +3179,7 @@ fi:
   title: otsikko
   title_and_description: Otsikko & kuvaus
   titled_favorites_and_the_most_recent_additions: nimeltään "Suosikit" ja viimeisimmät
-    lisäykset ilmestyvät tähän tilaan.
+    lisäykset ilmestyvät tähän paikkaan.
   to_add_comments: lisätäksesi kommentteja
   to_add_identifications: lisätäksesi tunnistuksia
   to_add_ids: lisätäksesi tunnisteita
@@ -3203,7 +3217,7 @@ fi:
   type: Kirjoita
   type_a_name_and_click: Kirjoita nimi ja klikkaa HAE
   type_a_place_name_and_click_search: Kirjoita paikan nimi ja klikkaa HAE hakeaksesi
-  type_date_time_or_use_the_calendar: Kirjoita päivä/aika tai käytä kalenteria
+  type_date_time_or_use_the_calendar: Kirjoita päivämäärä/aika tai käytä kalenteria
   type_one_name_per_line: Kirjoita yksi nimi per rivi
   type_place_name: Kirjoita paikan nimi
   type_project_name: Kirjoita projektin nimi
@@ -3252,11 +3266,11 @@ fi:
   updated_by: Päivittänyt
   updated_daily: Päivitetään päivittäin
   updated_photo: Päivitetty kuva
-  upload: Tallenna
+  upload: Lähetä
   upload_a_csv_file: Lataa CSV-tiedosto
-  upload_photo: Tallenna kuva
+  upload_photo: Lähetä kuva
   upload_photos: Lataa kuvia
-  uploaded_by: Tallentanut
+  uploaded_by: Lähettänyt
   uploader:
     tooltips:
       add: Lisää havainto(ja)
@@ -3348,9 +3362,12 @@ fi:
   view_more: Näytä lisää
   view_more_about_x: Katso lisätietoja kohteesta %{x}
   view_more_observations: Näytä lisää havaintoja
+  view_more_observations_from_x: Näytä lisää havaintoja käyttäjältä %{x}
   view_more_observations_from: Näytä lisää havaintoja paikasta
   view_more_observations_of_x_project: Näytä lisää havaintoja projektista %{project}
     sivustolla <nobr>%{site_name} &raquo;</nobr>
+  view_more_observations_of_x_taxon: Näytä lisää havaintoja taksonista %{taxon} <nobr>%{site_name}issa
+    &raquo;</nobr>
   view_more_recent_observations: Näytä lisää viimeaikaisia havaintoja
   view_observation: Näytä havainto
   view_observations: Näytä havainnot
@@ -3358,6 +3375,7 @@ fi:
   view_observations_by_everyone: Näytä kaikkien havainnot
   view_observations_of_this_taxon_by: Näytä tämän taksonin havainnot käyttäjältä
   view_observations_raquo: Näytä havainnot &raquo;
+  view_on: Näytä sivustolla
   view_on_amphibiaweb: Näytä AmphibiaWebissä
   view_on_flickr: Näytä Flickrissä
   view_on_wikipedia: Näytä Wikipediassa
@@ -3396,7 +3414,7 @@ fi:
   w_photos_only: kuvia
   w_sounds: ääniä
   want_to_add_one: Haluatko lisätä yhden?
-  want_to_show_off_some_of_your_favorite_taxa: Haluatko esitellä joitakin suosikkitaksoneitasi
+  want_to_show_off_some_of_your_favorite_taxa: Haluatko esitellä joitakin lempitaksoneitasi
     täällä?
   want_to_test_a_new_version_of_this_page: Haluatko testata uutta versiota tästä sivusta?
   was_it_captive_cultivated?: Oliko se vangittu / viljelty
@@ -3432,7 +3450,7 @@ fi:
   whats_this?: Mikä tämä on?
   when: Milloin
   when_did_you_see_it?: Milloin näit sen?
-  when_did_you_see_them?: <em>Milloin</em> näit sen?
+  when_did_you_see_them?: <em>Milloin</em> näit ne?
   where: Missä
   where_did_you_see_it: Missä näit sen?
   where_were_they?: Missä he olivat?
@@ -3490,7 +3508,7 @@ fi:
     & havaintoni jotta tutkijat voivat käyttää tietojani!
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
-  yesterday_at: ', eilen kello 4 illalla'
+  yesterday_at: ', eilen kello 16:00'
   you: sinä
   you_: Sinä
   you_admin: joita ylläpidät
@@ -3662,10 +3680,10 @@ fi:
         can_i_add_photos_without_a_flickr_account?: Voinko lisätä kuvia ilman Flickr-tiliä?
         we_also_support_google_html: 'Me tuemme myös Google Kuvat -palvelua: <a href="%{url}">Määritä
           Google-tilisi &raquo;</a>'
-        we_also_support_uploading_photos: Me tuemme myös suoraa kuvien talennusta
-          %{site_name}iin, mutta se voi olla hieman hidasta, joten hyväksymme vain
-          yhden latauksen kerrallaan. Flickr:in tai Googlen käyttäminen on todennäköisesti
-          nopeampaa, jos käytät jo näitä palveluja.
+        we_also_support_uploading_photos: Me tuemme myös suoraa kuvien lähetystä %{site_name}iin,
+          mutta se voi olla hieman hidasta, joten hyväksymme vain yhden lähetyksen
+          kerrallaan. Flickr:in tai Googlen käyttäminen on todennäköisesti nopeampaa,
+          jos käytät jo näitä palveluja.
         what_are_tags?: Mitä ovat tagit?
         what_is_geoprivacy?: Mikä on sijainnin tietosuoja?
         geoprivacy_is_a_setting_you_can: 'Sijainnin tietosuoja on asetus jota voit
@@ -4132,7 +4150,7 @@ fi:
     formats:
       default: '%d. %Bta %Y %H:%M:%S %z'
       long: '%d. %Bta %Y %I:%M %p'
-      short: '%d. %b %H:%M'
+      short: '%d. %bkuuta %H:%M'
       observed_at: '%I:%M %p %Z'
       rfc: '%d. %Bta %Y'
       day_month_year: '%d. %Bta %Y'

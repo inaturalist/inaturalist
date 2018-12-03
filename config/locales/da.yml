@@ -339,6 +339,7 @@ da:
   all_photos: Alle fotos
   all_places: Alle steder
   all_projects: Alle projekter
+  all_children_added_to_the_database: Alle underordnede tilføjet til databasen
   all_rank_added_to_the_database:
     phylum: Alle rækker tilføjet databasen
     subphylum: Alle underrækker tilføjet databasen
@@ -593,7 +594,9 @@ da:
   at_any_time_change: når som helst (<span class="button">change</span>)
   at_time: ved %{time}
   atom: Atom
+  attached_taxon: Tilknyttet takson
   attribute: Egenskab
+  attribution: Kildeangivelse
   authority_list:
     iucn_red_list: IUCN rødliste
   authorize_permissions_from_provider: Godkend tilladelser fra %{provider}
@@ -885,6 +888,7 @@ da:
   classification: Klassifikation
   clear: ryd
   clear_color_filters: Ryd farvefiltre
+  clear_filters: Ryd filtre
   clear_search: Ryd søgning
   click_on_the_map_to: Klik på kortet for at placere din observation
   click_the_map: <strong>Klik på kortet</strong> for at tilføje et sted.
@@ -940,6 +944,7 @@ da:
   comparing_list_to_list: Sammenligner %{list1} med %{list2}
   comparing_versions_x_and_y: Sammenligner versioner %{x} og %{y}
   comparing_observations_from: Sammenligner %{user} observationer fra %{dates}
+  complete: Fuldendt
   complete_sets: Komplette sæt
   compiled_by_name: Samlet af %{name}
   completed: Fuldført
@@ -1042,6 +1047,8 @@ da:
   copyright_info_and_more: Ophavsret info og mere
   copyright_infringement_desc: Overtræder ophavsretsloven eller er blevet oprettet
     af en anden end observatøren og mangler kildeangivelse
+  covered_by_a_taxon_framework_html: Dækket at en %{link}
+  covered_by_a_taxon_framework_link: taksonramme for %{taxon_framework_rank} %{taxon_framework_name}
   couldnt_change_your_password: 'Kunne ikke ændre din adgangskode: %{e}'
   couldnt_find_a_user_matching_x_param: Kunne ikke finde en matchende bruger %{id}
   couldnt_find_that_taxon: Kunne ikke finde den takson.
@@ -1161,6 +1168,7 @@ da:
   default_photo_license: Standard foto licens
   default_sound_license: Standard lyd licens
   defaults_to_your_name_or_username: Standard til dit navn eller brugernavn
+  defines_a_taxon_framework_for: Definerer en taksonramme for %{taxon_name}
   delete: Slet
   delete_all: Slet alle
   delete_conversation: Slet samtale
@@ -1196,6 +1204,8 @@ da:
   desription: Beskrivelse
   destroy: Ødelæg
   details: Detaljer
+  deviation: Afvigelse
+  deviations: Afvigelser
   devise:
     failure:
       user:
@@ -1206,6 +1216,7 @@ da:
   did_not_send_invitations_because: Sendte ikke invitationer til følgende, fordi ...
   did_you_mean: Mente du
   did_you_photos_flickr?: Har du lagt billeder på Flickr?
+  disable: Deaktiver
   disagree: uenig
   disagree_: Uenig
   disconnect_provider: Frakobl %{provider}
@@ -1240,6 +1251,8 @@ da:
   download_csv: Download CSV
   download_csv_template: Download CSV skabelon
   download_kml: Download KML
+  downstream_coverage: Downstream dækning
+  downstream_coverage_rank: Downstream dækning rang
   drag_and_drop_photos: træk og slip billeder til dette vindue eller
   draft: kladde
   draft_: Kladde
@@ -1505,7 +1518,9 @@ da:
   flag_this_photo: Markér dette foto
   flagged: markeret
   flagged_: Markeret
+  flagged_covered_taxa: Markeret dækket taksa
   flagged_for_curation: Markeret for kuration
+  flagged_taxon: Markeret taksa
   flagged_thing_explanation: Bruger har markeret dette %{thing} fordi
   flagger: Markør
   flags: Markéringer
@@ -1666,6 +1681,7 @@ da:
   help_confirm_observations!: Hjælp med at bekræfte observationer!
   help_faq: Hjælp / FAQ
   help_out!: Hjælp!
+  help_support_inaturalist: Hjælp med at støtte iNaturalist!
   helped_the_observer_make: hjalp observatøren til at finde deres endelige Id (dvs.
     de blev lavet før det endelige Id og de matcher det)
   here_are_3_examples: Her er 3 eksempler på data i korrekt formattering
@@ -1833,6 +1849,7 @@ da:
     mystiske skabninger!
   interactions: Interaktioner
   internal_server_error: Intern serverfejl
+  internal_taxon: Intern takson
   introduced: indført
   introduced_in_place: indført i %{place}
   invasive: invasiv
@@ -2075,6 +2092,7 @@ da:
   linked_flickr_photo_copy_html: <strong> Vi gemmer aldrig kopier af dine billeder
     eller ændrer i dine Flickr data (medmindre du spørger os). </ strong> Vi holder
     så meget af fugle, insekter og snegle, til at vi vil rode med dine oplysninger!
+  linkedin: LinkedIn
   list: Liste
   list_deleted: Liste slettet.
   list_saved: Liste gemt.
@@ -2410,6 +2428,7 @@ da:
   new_custom_field_for: Nyt brugerdefineret felt for
   new_flag_for: Ny markering for
   new_guide: Ny guide
+  new_journal_post: Nyt journal indlæg
   new_lexicon: Nyt leksikon
   new_list: Ny liste
   new_members: Nye medlemmer
@@ -2515,6 +2534,7 @@ da:
   no_ones_observed: Ingen har observeret
   no_photo: Intet foto
   no_photos: Ingen foto´s
+  no_photos_of_that_size: Intet foto af den størrelse.
   no_places_available: Ingen steder tilgængelige
   no_places_selected: Ingen steder valgt.
   no_post_yet: Ingen indlæg endnu!
@@ -2553,11 +2573,13 @@ da:
   no_x_this_y: Ingen %{x} denne %{y}
   noble_curators: '%{site}''s noble kuratorer'
   non_human?: Ikke menneskelig?
+  non_internal_taxon: Ingen intern taksa
   none: Ingen
   none_found: Ingen fundet
   normal: normal
   not_absent: til stede
   not_completed: Ikke afsluttet
+  not_covered_by_any_taxon_frameworks: Ikke dækket af nogen taksonramme
   not_evaluated: Ikke evalueret
   not_filtering: Ikke filtreret
   not_findig_what_you_want: Kan du ikke finde hvad du ønsker?
@@ -2877,6 +2899,7 @@ da:
   out_of_range: Udenfor område
   output_taxon: Output takson
   overview: Overblik
+  overlapping_downstream_taxon_frameworks: Overlappende downstream taksonramme
   owner: Ejer
   parent: Overordnet
   parent_name: Overordnets navn
@@ -2915,6 +2938,7 @@ da:
   photo_browser: Foto browser
   photo_by: Billede af
   photo_by_id_attribution: Foto %{id},%{attribution}
+  photo_credits: Fotokrediteringer
   photo_deleted: Foto slettet
   photo_destroyed_because_it_was_deleted_from: Foto ødelagt fordi det blev slettet
     fra det eksterne websted eller %{site_name} ikke længere har tilladelse til at
@@ -3284,6 +3308,7 @@ da:
   rank_position: Rang
   rank_restrictions: Rangrestriktioner
   ranks:
+    stateofmatter: Sagens kerne
     kingdom: Rige
     subkingdom: Underrige
     phylum: Række
@@ -3370,6 +3395,18 @@ da:
   reject_the_community_id: afvis fællesskabs ID
   related_species: Beslægtede arter
   relative_observations: Relative observationer
+  relationship: Forhold
+  relationship_x: 'Relation: %{relationship}'
+  relationships:
+    match: match
+    one_to_one: en-til-en
+    alternate_position: alternativ position
+    many_to_many: mange-til-mange
+    many_to_one: mange-til-en
+    one_to_many: en-til-mange
+    not_external: ikke eksternt
+    not_internal: ikke internt
+    unknown: ukendt
   reload_and_refresh: Genindlæs og opdatér liste
   reload_from_observations: Genindlæs fra observationer
   reload_timed_out: Genindlæsning fejlede. Prøv igen senere.
@@ -3581,6 +3618,7 @@ da:
   set_license: Indstil licens
   settings: indstillinger
   share: Del
+  share_colon: 'Del:'
   share_your_observation_with_researchers_by: Del din observation med forskere ved
   short_code_for_this_place: Forkortelse for dette sted, f.eks. US for United States
   short_or_abbreviated_title_for_display: Kort eller forkortet titel til visning i
@@ -3831,6 +3869,7 @@ da:
   suggestions: Forslag
   summary: Oversigt
   supporting: Støtter
+  support_inaturalist: Støt iNaturalist
   suspicious_photos: Mistænkelige foto´s
   siutable_observations: Mistænkelige observationer
   sun: Søn
@@ -3934,6 +3973,11 @@ da:
   taxon_colors: Taksonfarver
   taxon_curators: Takson kuratorer
   taxon_extras: Takson ekstra
+  taxon_framework_notes: Taksonramme noter
+  taxon_framework_relationship_for: Taksonramme relation for
+  taxon_framework_relationship: Taksonramme relation
+  taxon_framework_relationships: Taksonramme relationer
+  taxon_framework_taxon: Taksonramme takson
   taxon_links: Takson links
   taxon_merge: takson sammenlægning
   taxon_name: Takson navn
@@ -3974,6 +4018,11 @@ da:
   taxonomic_status: Taksonomisk status
   taxonomic_tags_for_flickr: Taksonomiske tags til Flickr
   taxonomic_tree_browser: Taksonomisk Tree Browser
+  taxonomy_details: Taksonomi detaljer
+  taxonomy_details_for: Taksonomi detaljer for
+  taxonomy_details_info: Siden med taksonomi detaljer anvender taksonrammer til at
+    hjælpe med at beskrive hvad vi mener med en takson. <a href="/pages/taxon_frameworks">Læs
+    mere</a>.
   taxonomy_settings: Taksonomi indstillinger
   tell_everyone_a_little_about_you: Fortæl lidt om dig selv
   tell_the_world_a_little_about_yourself: Fortæl os om dig selv
@@ -4095,6 +4144,8 @@ da:
     tilfældet, så fortæl os det.
   there_were_some_problems_with_fields: 'Der var nogle problemer med følgende felter:'
   theres_also: der er også
+  theres_something_wrong_with_taxon_framework_relationship: Der er noget galt her
+    - vi kan ikke bestemme forholdet mellem intern og ekstern taksa
   these_are_items_people_on: |-
     Dette er emner andre personer på siden har markeret til kuration. Spam
     kommentarer skal slettes, og brugere, der tilføjer spam, skal suspenderes (gå
@@ -4275,6 +4326,7 @@ da:
   unknown: Ukendt
   unknown_error: Ukendt fejl
   unknown_rank: (Ukendt rang)
+  unknown_taxon_framework_relationship: Ukendt taksonramme relation
   unfollow: Følg ikke længere
   unlink_your_google_account: Frakobl din Google konto
   unmute: Tænd
@@ -4643,6 +4695,7 @@ da:
   x_of_y: '%{x} af %{y}'
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} af %{y} personer (over 2/3) er
     enig i det er'
+  x_is_the_root_of_the_tree: '%{rank} %{name} er roden af træet'
   x_project_journal: '%{project}''s %{name}'
   x_project_stats: '%{project} statistikker'
   x_sent_you_a_new_message_on_y_html: '%{x} sendte dig en ny besked på %{y}:'
@@ -4912,6 +4965,29 @@ da:
           please_read_the_teachers_guide_html: |-
             Hvis ja, læs venligst vores <a href="%{url}"> lærervejledning </a> med
             tips til at bruge %{site_name} med studerende.
+    donate:
+      donate_short_desc: Hjælp iNaturalist med en donation!
+      donate_desc_html: |-
+        <p class ="lead">
+           <strong> iNaturalist er et af verdens største fællesskaber, som er dedikeret til
+           udforske biodiversitet. Tak for at du er en del af det!</ Strong>
+        </ P>
+        <p class = "lead">
+           Hvis du tror på styrken i dette globale fællesskab af naturelskere,
+           som deler viden og skaber uerstattelige biodiversitets data,
+           Overvej venligst en engangs- eller tilbagevendende donation.
+        </ P>
+        <p class = "lead">
+           Din donation hjælper med at støtte iNaturalist efterhånden som fællesskabet vokser, lige  fra at forbedre det visuelle på computerskærmen til at implementere nye funktioner, som understøtter vores servere og medarbejdere.
+        </ P>
+        <p class = "text-muted">
+           iNaturalist er et fælles initiativ fra California Academy of Sciences
+           og National Geographic Society. Alle donationer vil blive modtaget af
+           California Academy of Sciences, en 501 (c) (3) skattefritaget nonprofit
+           organisation med base i USA.
+        </ P>
+      post_donate_social_media_text: Jeg støttede iNaturalist! Du skulle også prøve
+        at tjekke det ud.
     guides:
       index:
         funding_html: |-

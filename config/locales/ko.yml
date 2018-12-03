@@ -584,6 +584,7 @@ ko:
   classification: 분류
   clear: 지우기
   clear_color_filters: 컬러 필터 지우기
+  clear_filters: 필터 지움
   clear_search: 검색 지우기
   click_on_the_map_to: 지도를 클릭하여 당신의 관찰을 놓으세요
   click_the_map: <strong>지도를 클릭하여</strong> 장소를 추가하세요.
@@ -840,6 +841,7 @@ ko:
   did_not_send_invitations_because: '초대장을 보내지 않은 이유:'
   did_you_mean: '이것을 찾으셨나요:'
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
+  disable: 비활성화
   disagree: 동의하지 않음
   disagree_: 동의하지 않음
   disconnect_provider: '%{provider} 연결 끊기'
@@ -1450,6 +1452,7 @@ ko:
     Flickr은 물어볼 수 있기에 URL이 Flickr로 가는지 주소를 꼭 확인해 주십시오).
   linked_flickr_photo_copy_html: <strong>우리는 당신이 원하지 않는 한 절대로 당신의 Flickr 정보를 변형하거나
     사진들을 저장하지 않을 것입니다.<strong/> 우리는 당신의 개인정보를 조작하기에는 새와 벌레와 민달팽이를 너무나도 사랑합니다!
+  linkedin: 링크드인
   list: 목록
   list_deleted: 목록 삭제됨.
   list_saved: 목록 저장됨.
@@ -1634,6 +1637,7 @@ ko:
   new_custom_field_for: 새로운 자체지정 필드
   new_flag_for: 새로운 플래그
   new_guide: 새로운 가이드
+  new_journal_post: 새로운 일지
   new_list: 새 목록
   new_members: 새 회원
   new_message: 새 메시지
@@ -1723,6 +1727,7 @@ ko:
   no_ones_observed: 관찰한 사람이 없습니다.
   no_photo: 사진 없음
   no_photos: 사진 없음
+  no_photos_of_that_size: 해당 크기의 사진이 없습니다.
   no_places_available: 사용 가능한 장소 없음
   no_places_selected: 선택된 사진 없음
   no_post_yet: 아직 게시글이 없습니다!
@@ -2038,6 +2043,14 @@ ko:
   recently_created: 최근 생성함
   recently_finished: 최근에 완료됨
   recently_resolved: 최근 해결됨
+  relationship: 관계
+  relationship_x: '관계: %{relationship}'
+  relationships:
+    one_to_one: 일대일
+    many_to_many: 다대다
+    many_to_one: 다대일
+    one_to_many: 일대다
+    unknown: 알 수 없음
   reload_from_observations: 관찰에서 다시 불러오기
   remove: 제거
   remove_all_tags: 모든 태그를 제거
@@ -2118,6 +2131,7 @@ ko:
   set_license: 라이선스 설정
   settings: 설정
   share: 공유
+  share_colon: '공유:'
   show: 보이기
   show_keyboard_shortcuts: 단축 키 표시
   show_kml: KML 보이기

@@ -605,7 +605,9 @@ pt-BR:
   at_any_time_change: a qualquer hora (<span class="button">change</span>)
   at_time: às %{time}
   atom: Átomo
+  attached_taxon: Taxon anexado
   attribute: Atributo
+  attribution: Atribuição
   authority_list:
     iucn_red_list: Lista Vermelha IUCN
   authorize_permissions_from_provider: Autorizar permissões de %{provider}
@@ -904,6 +906,7 @@ pt-BR:
   classification: Classificação
   clear: limpar
   clear_color_filters: Limpe os filtros de cor
+  clear_filters: Limpar filtros
   clear_search: Limpe a pesquisa
   click_on_the_map_to: Clique no mapa para posicionar a sua observação
   click_the_map: <strong>Clique no mapa</strong> para adicionar uma localização.
@@ -960,6 +963,7 @@ pt-BR:
   comparing_list_to_list: Comparando %{list1} com %{list2}
   comparing_versions_x_and_y: Comparando as versões %{x} e %{y}
   comparing_observations_from: Comparando %{user} observações de %{dates}
+  complete: Completo
   complete_sets: Conjuntos Completos
   compiled_by_name: Compilada por %{name}
   completed: Concluído
@@ -1065,6 +1069,7 @@ pt-BR:
   copyright_info_and_more: Informação sobre copyright e Mais
   copyright_infringement_desc: Viola o direito autoral ou foi criada por alguém que
     não é o observador e está sem atribuição
+  covered_by_a_taxon_framework_html: Coberto por um %{link}
   couldnt_change_your_password: 'Não foi possível mudas a sua senha: %{e}'
   couldnt_find_a_user_matching_x_param: Não foi possível encontrar um usuário com
     parâmetros %{id}
@@ -1224,6 +1229,8 @@ pt-BR:
   desription: Descrição
   destroy: Destruir
   details: Detalhes
+  deviation: Desvio
+  deviations: Desvios
   devise:
     failure:
       user:
@@ -1235,6 +1242,7 @@ pt-BR:
     porque...
   did_you_mean: Você quis dizer
   did_you_photos_flickr?: Você incluiu alguma foto no Flickr?
+  disable: Desativar
   disagree: não concordo
   disagree_: Não concordo
   disconnect_provider: Desconecte-se de %{provider}
@@ -1694,6 +1702,7 @@ pt-BR:
   help_confirm_observations!: Ajude confirmar observações!
   help_faq: Ajuda /  Perguntas Frequentes
   help_out!: Ajude!
+  help_support_inaturalist: Ajude a apoiar o iNaturalist!
   helped_the_observer_make: ajudou o observador a realizar a identificação final (realizado
     antes da identificação final e correspondem)
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
@@ -1859,6 +1868,7 @@ pt-BR:
     não conhece, e também ajudar outras pessoas a identificar misteriosas criaturas!
   interactions: Interações
   internal_server_error: Erro interno do servidor
+  internal_taxon: Táxon interno
   introduced: Introduzida
   introduced_in_place: Introduzido em %{place}
   invasive: Invasoras
@@ -2100,6 +2110,7 @@ pt-BR:
     fotos ou mudar seus dados do Flickr (a não ser que você solicite isto para nós).</strong>
     Nós nos preocupamos muito sobre aves, insetos e lesmas para querer causar qualquer
     confusão com suas informações!
+  linkedin: LinkedIn
   list: Lista
   list_deleted: Lista excluída.
   list_saved: Lista salva.
@@ -2437,6 +2448,7 @@ pt-BR:
   new_custom_field_for: Novo campo personalizado para
   new_flag_for: Novo alerta para
   new_guide: Nova Guia
+  new_journal_post: Nova publicação no Boletim Informativo
   new_lexicon: Lèxico novo
   new_list: Nova entrada
   new_members: Novos membros
@@ -2543,6 +2555,7 @@ pt-BR:
   no_ones_observed: Nada foi observado
   no_photo: Não existem fotos
   no_photos: Não existem fotos
+  no_photos_of_that_size: Nenhuma foto desse tamanho.
   no_places_available: Não há lugares disponíveis
   no_places_selected: Nenhum lugar selecionado.
   no_post_yet: Nenhuma publicação ainda!
@@ -2582,6 +2595,7 @@ pt-BR:
   no_x_this_y: Não existe %{x} deste %{y}
   noble_curators: Nobres Coordenadores de %{site}
   non_human?: Não-humano?
+  non_internal_taxon: Táxon não interno
   none: Nenhum
   none_found: Não encontrado
   normal: normal
@@ -2950,6 +2964,7 @@ pt-BR:
   photo_browser: Navegador de Fotos
   photo_by: Foto por
   photo_by_id_attribution: Foto %{id}, %{attribution}
+  photo_credits: Créditos fotográficos
   photo_deleted: Foto apagada
   photo_destroyed_because_it_was_deleted_from: A foto foi excluída do sistema por
     que foi apagada do site de origem ou %{site_name} você não tem mais permissão
@@ -3321,6 +3336,7 @@ pt-BR:
   rank_position: Classificação
   rank_restrictions: Restrição para classificação
   ranks:
+    stateofmatter: Estado da matéria
     kingdom: Reino
     subkingdom: Subreino
     phylum: Filo
@@ -3411,6 +3427,14 @@ pt-BR:
   reject_the_community_id: Rejeitar a identificação da comunidade
   related_species: Espécies relacionadas
   relative_observations: Observações Relacionadas
+  relationship: Relação
+  relationship_x: 'Relação: %{relationship}'
+  relationships:
+    alternate_position: posição alternativa
+    one_to_many: um para muitos
+    not_external: não externo
+    not_internal: não interno
+    unknown: desconhecido
   reload_and_refresh: Recarregue e atualize a lista
   reload_from_observations: Atualizar a partir das observações
   reload_timed_out: O tempo expirou. Por favor, tente em alguns instantes novamente.
@@ -3622,6 +3646,7 @@ pt-BR:
   set_license: Definir licença
   settings: confirgurações
   share: Compartilhar
+  share_colon: 'Compartilhar:'
   share_your_observation_with_researchers_by: Compartilhar suas observações pessoais
     com pesquisadores através de
   short_code_for_this_place: Abreviação para este local, exemplo EUA para Estados
@@ -3787,6 +3812,7 @@ pt-BR:
   source_unknown: Fonte desconhecida
   source_url: URL de origem
   source_of_coordinates: Base das coordenadas e medidas de acurácia, ajustados automaticamente.
+  sourced_to: Originado de
   sources: Fontes
   sources_youve_added: Fontes que você adicionou
   sources_and_credits: Fontes e Créditos
@@ -3882,6 +3908,7 @@ pt-BR:
   suggestions: Sugestões
   summary: Resumo
   supporting: Suortando
+  support_inaturalist: Apoiar iNaturalist
   suspicious_photos: Fotos suspeitas
   siutable_observations: observações adequadas
   sun: Dom
@@ -3980,6 +4007,7 @@ pt-BR:
   taxonomic_status: Estado Taxonômico
   taxonomic_tags_for_flickr: Marcações Taxonômicas para Flickr
   taxonomic_tree_browser: Explorador da Árvore Taxonômica
+  taxonomy_details_for: Detalhes de taxonomia para
   taxonomy_settings: Configuração de taxonomia
   tell_everyone_a_little_about_you: Conte um pouco sobre você
   tell_the_world_a_little_about_yourself: Conte-nos sobre você
@@ -4640,6 +4668,7 @@ pt-BR:
   x_observations_failed:
     one: 1 falha na observação
     other: '%{count} falha nas observações'
+  x_is_the_root_of_the_tree: '%{rank} %{name} é a raiz da árvore'
   x_project_journal: '%{name} do projeto %{project}'
   x_project_stats: Estatísticas do Projeto %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} enviou uma nova mensagem em %{y}:'
@@ -4887,6 +4916,9 @@ pt-BR:
           potencialmente permitir que malware afetem a forma que as pessoas visualizam
           a página. Se você não sabe o que uma parte em particular dos códigos faz,
           por favor não adicione.'
+    donate:
+      post_donate_social_media_text: Eu apoiei o iNaturalist! Você deveria dar uma
+        olhada também.
     guides:
       index:
         funding_html: Os recursos financeiros para o desenvolvimento destes Guias

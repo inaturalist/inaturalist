@@ -398,6 +398,7 @@ ru:
   all_photos: Все фотографии
   all_places: Все Места
   all_projects: Все Проекты
+  all_children_added_to_the_database: Все дочерние элементы, добавленные в базу данных
   all_rank_added_to_the_database:
     phylum: Все филы добавленные в базу данных
     subphylum: Все субфилы добавленные в базу данных
@@ -653,7 +654,9 @@ ru:
   at_any_time_change: в любое время (<span class="button">change</span>)
   at_time: в %{time}
   atom: Атом
+  attached_taxon: Прикрепленный таксон
   attribute: Атрибут
+  attribution: Авторство
   authority_list:
     iucn_red_list: Красный список МСОП
   authorize_permissions_from_provider: Авторизовать разрешения от %{provider}
@@ -732,7 +735,7 @@ ru:
   blue_icons_represent_political_units: Синие значки представляют собой политические
     единицы, такие как страны, штаты, провинции, графства и так далее, в то время
     как зелёные - различные типы открытых пространств (парки, заповедники). Если вы
-    увеличите масштаб, вы увидите больше объектов.
+    увеличите масштаб, вы увидите больше объектов меньшего размера.
   body: 'Текст:'
   bounding_box: Ограничительная рамка
   breadcrumbs: Панировочные сухари
@@ -942,6 +945,7 @@ ru:
   classification: Классификация
   clear: очистить
   clear_color_filters: Очистить цветовые фильтры
+  clear_filters: Очистить фильтры
   clear_search: Очистить поиск
   click_on_the_map_to: Щелкните на карте, чтобы указать место вашего наблюдения
   click_the_map: <strong>Кликните на карту</strong> чтобы добавить местоположение.
@@ -1001,6 +1005,7 @@ ru:
   comparing_list_to_list: Сравнение %{list1} с %{list2}
   comparing_versions_x_and_y: Сравнение версий %{x} и %{y}
   comparing_observations_from: Сравнение наблюдений %{user} за %{dates}
+  complete: Завершено
   complete_sets: Полные наборы
   compiled_by_name: составлено %{name}
   completed: Завершено
@@ -1107,7 +1112,9 @@ ru:
   copyright_info: Информация об авторских правах
   copyright_info_and_more: Информация об авторских правах и другое
   copyright_infringement_desc: Нарушает закон об авторском праве или был создан кем-то,
-    кроме наблюдателя, и не имеет атрибутов
+    кроме наблюдателя, и нарушает авторское право
+  covered_by_a_taxon_framework_html: Охватывается %{link}
+  covered_by_a_taxon_framework_link: основа таксона для %{taxon_framework_rank} %{taxon_framework_name}
   couldnt_change_your_password: 'Не удалось сменить пароль: %{e}'
   couldnt_find_a_user_matching_x_param: Не удается найти пользователя, соответствующего
     %{id}
@@ -1228,6 +1235,7 @@ ru:
   default_photo_license: Лицензия фото по умолчанию
   default_sound_license: Лицензия аудио по умолчанию
   defaults_to_your_name_or_username: Значения по умолчанию для вашего имени или логина
+  defines_a_taxon_framework_for: Задаёт основу таксона для %{taxon_name}
   delete: Удалить
   delete_all: Удалить всё
   delete_conversation: Удалить разговор
@@ -1263,6 +1271,8 @@ ru:
   desription: Описание
   destroy: Уничтожить
   details: Подробности
+  deviation: Отклонение
+  deviations: Отклонения
   devise:
     failure:
       user:
@@ -1273,6 +1283,7 @@ ru:
   did_not_send_invitations_because: Не отправляйте приглашения следующим, потому что...
   did_you_mean: Возможно, вы имеете в виду
   did_you_photos_flickr?: Размещаете ли вы фото на Flickr?
+  disable: Отключить
   disagree: не согласен
   disagree_: Не согласен
   disconnect_provider: Отключить %{provider}
@@ -1307,6 +1318,8 @@ ru:
   download_csv: Скачать как CSV
   download_csv_template: Загрузить шаблон в формате CSV
   download_kml: Загрузить в формате KML
+  downstream_coverage: Охват вниз
+  downstream_coverage_rank: Ранг охвата вниз
   drag_and_drop_photos: перетащите и отпустите фото в этом окне или
   draft: черновик
   draft_: Черновик
@@ -1575,7 +1588,9 @@ ru:
   flag_this_photo: Пометить это фото
   flagged: помечено
   flagged_: Помечено
+  flagged_covered_taxa: Помеченные флагом охваченные таксоны
   flagged_for_curation: Помечено для курирования
+  flagged_taxon: Помеченный флагом таксон
   flagged_thing_explanation: Пользователи пометили флагом этот %{thing}, потому что
   flagger: Флажок
   flags: Флаги
@@ -1740,6 +1755,7 @@ ru:
   help_confirm_observations!: Помогите подтвердить наблюдения!
   help_faq: Помощь / FAQ
   help_out!: Помогите!
+  help_support_inaturalist: Помогите нам Вашей поддержкой!
   helped_the_observer_make: помогли наблюдателю сделать окончатльное определение (т.е.
     первичные определения соответствуют окончательному)
   here_are_3_examples: Три примера хорошо сформированных данных
@@ -1904,6 +1920,7 @@ ru:
     не знаете, и помогать людям определять загадочные создания!
   interactions: взаимодействия
   internal_server_error: Внутренняя ошибка сервера
+  internal_taxon: Внутренний таксон
   introduced: Интродуцированный
   introduced_in_place: Интродуцирован в %{place}
   invasive: Инвазивный
@@ -2150,6 +2167,7 @@ ru:
     меняем ваши  данные Flickr (если только вы не попросите нас об этом), когда-либо.</strong>
     Мы слишком заботимся о птицах, насекомых и слизнях, чтобы связываться с вашей
     информацией!
+  linkedin: LinkedIn
   list: Список
   list_deleted: Список удален.
   list_saved: Список сохранен.
@@ -2483,6 +2501,7 @@ ru:
   new_custom_field_for: Новое пользовательское поле для
   new_flag_for: Новый флаг для
   new_guide: Новое руководство
+  new_journal_post: Новое сообщение журнала
   new_lexicon: Новый язык
   new_list: Новый Список
   new_members: Новые участники
@@ -2589,6 +2608,7 @@ ru:
   no_ones_observed: Нет наблюдений
   no_photo: Нет фото
   no_photos: Нет фото
+  no_photos_of_that_size: Нет фото такого размера.
   no_places_available: Нет доступных мест
   no_places_selected: Не выбраны места.
   no_post_yet: Пока ещё нет сообщений!
@@ -2627,11 +2647,13 @@ ru:
   no_x_this_y: Нет %{x} за этот %{y}
   noble_curators: Почетные кураторы %{site}
   non_human?: Не человек?
+  non_internal_taxon: Не внутренний таксон
   none: Ничего
   none_found: Ничего не найдено
   normal: обычный
   not_absent: не отсутствует
   not_completed: Незавершенный
+  not_covered_by_any_taxon_frameworks: Не охвачен никакой основой таксонов
   not_evaluated: не оцененный
   not_filtering: Нет фильтрации
   not_findig_what_you_want: Не нашли то, что искали?
@@ -2961,6 +2983,8 @@ ru:
   out_of_range: Вне диапазона
   output_taxon: Выходной таксон
   overview: Обзор
+  overlapping_downstream_taxon_frameworks: Перекрытие основ таксона в направлении
+    вниз
   owner: Владелец
   parent: Родитель
   parent_name: Название родительского таксона
@@ -3000,6 +3024,7 @@ ru:
   photo_browser: Фото-браузер
   photo_by: Фото
   photo_by_id_attribution: Фото %{id}, %{attribution}
+  photo_credits: Благодарности за фото
   photo_deleted: Фото удалено
   photo_destroyed_because_it_was_deleted_from: Фото либо удалено с внешнего сайта,
     либо %{site_name} больше не имеет разрешения на его просмотр
@@ -3369,6 +3394,7 @@ ru:
   rank_position: Ранг
   rank_restrictions: Ограничения ранга
   ranks:
+    stateofmatter: Состояние дел
     kingdom: Царство
     subkingdom: Подцарство
     phylum: Тип
@@ -3455,6 +3481,18 @@ ru:
   reject_the_community_id: отклонить идентификатор сообщества
   related_species: Связанные виды
   relative_observations: Относительные наблюдения
+  relationship: Связи
+  relationship_x: 'Связь: %{relationship}'
+  relationships:
+    match: соответствие
+    one_to_one: один-к-одному
+    alternate_position: альтернативная позиция
+    many_to_many: многие-к-многим
+    many_to_one: многие-к-одному
+    one_to_many: один-ко-многим
+    not_external: не внешние
+    not_internal: не внутренние
+    unknown: неизвестно
   reload_and_refresh: Перезагрузиться и обновить список
   reload_from_observations: Перезагрузка из наблюдений
   reload_timed_out: Перезагрузка отключена. Пожалуйста, повторите попытку позже.
@@ -3667,6 +3705,7 @@ ru:
   set_license: Задать лицензию
   settings: настройки
   share: Поделиться
+  share_colon: 'Поделиться:'
   share_your_observation_with_researchers_by: Поделитесь вашим наблюдением с исследователями
     посредством
   short_code_for_this_place: Краткое обозначение этого места, например, US для Соединенных
@@ -3836,6 +3875,7 @@ ru:
   source_url: URL-адрес источника
   source_of_coordinates: Источник координат и точность измерения, устанавливаются
     автоматически.
+  sourced_to: Источником является
   sources: Источники
   sources_youve_added: Источники, которые вы добавили
   sources_and_credits: Источники и благодарности
@@ -3929,6 +3969,7 @@ ru:
   suggestions: Предложения
   summary: Обзор
   supporting: Поддерживающий
+  support_inaturalist: Поддержать iNaturalist
   suspicious_photos: Подозрительные фото
   siutable_observations: подходящие наблюдения
   sun: Вск
@@ -4032,6 +4073,11 @@ ru:
   taxon_colors: Цвета таксона
   taxon_curators: Кураторы таксона
   taxon_extras: Дополнения к таксону
+  taxon_framework_notes: Заметки к основам таксона
+  taxon_framework_relationship_for: Связь основы таксона для
+  taxon_framework_relationship: Связь основы таксона
+  taxon_framework_relationships: Связи основы таксона
+  taxon_framework_taxon: Таксон основы таксона
   taxon_links: Ссылки на таксон
   taxon_merge: слияния таксонов
   taxon_name: Наименование таксона
@@ -4073,6 +4119,10 @@ ru:
   taxonomic_status: Таксономический статус
   taxonomic_tags_for_flickr: Таксономические теги для Flickr
   taxonomic_tree_browser: Браузер таксономического дерева
+  taxonomy_details: Таксономические детали
+  taxonomy_details_for: Детали таксономии для
+  taxonomy_details_info: Страница Таксономические детали использует Основы Таксона
+    для описания того, что мы имеем в виду под таксоном. <a href="/pages/taxon_frameworks">Подробнее</a>.
   taxonomy_settings: Таксономические настройки
   tell_everyone_a_little_about_you: Расскажите всем немного о себе
   tell_the_world_a_little_about_yourself: Расскажите нам о себе
@@ -4201,6 +4251,8 @@ ru:
   there_were_some_problems_with_fields: 'Возникли некоторые проблемы со следующими
     полями:'
   theres_also: существует также
+  theres_something_wrong_with_taxon_framework_relationship: Здесь что-то не так -
+    мы не можем определить связь между внутренними и внешними таксонами
   these_are_items_people_on: Это элементы, которые люди на сайте отметили для курирования.
     Спам-комментарии должны быть удалены, а пользователи, которые добавляют спам,
     должны быть приостановлены (перейдите на страницу своего профиля и нажмите "приостановить
@@ -4384,6 +4436,7 @@ ru:
   unknown: Неизвестно
   unknown_error: Неизвестная ошибка
   unknown_rank: (Неизвестный ранг)
+  unknown_taxon_framework_relationship: Неизвестная связь основ таксона
   unfollow: Не отслеживать
   unlink_your_google_account: Отвязать ваш аккаунт Google
   unmute: Включить звук
@@ -4757,6 +4810,7 @@ ru:
   x_of_y: '%{x} из %{y}'
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} из %{y} человек (более 2/3) согласны
     с этим'
+  x_is_the_root_of_the_tree: '%{rank}%{name} - это корень дерева'
   x_project_journal: '%{project}%{name}'
   x_project_stats: Статистика %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} послал вам новое сообщение на %{y}:'
@@ -5033,6 +5087,17 @@ ru:
           please_read_the_teachers_guide_html: Если так, ознакомьтесь с нашим <a href="%{url}">Руководством
             для преподавателя</a>, чтобы получить советы по использованию %{site_name}
             студентами.
+    donate:
+      donate_short_desc: Помогите поддержать iNaturalist Вашим пожертвованием!
+      donate_desc_html: |-
+        </p>
+        <p class="lead">
+          Ваше пожертвование помогает поддерживать iNaturalist по мере роста сообщества, начиная с продвинутой системы компьютерного распознавания и кончая поддержкой наших серверов и персонала.
+          </p>
+        <p class="text-muted">
+          iNaturalist - это объединённая инициатива Калифорнийской Академии наук и Национального Географического общества. Все пожертвования будут получены Калифорнийской академией наук, 501(c)(3) некоммерческой организацией, не облагаемой налогом, базирующейся в Соединенных Штатах Америки.
+        </p>
+      post_donate_social_media_text: Я поддержал iNaturalist! Вы тоже можете это проверить.
     guides:
       index:
         funding_html: Финансирование разработки руководств было обеспечено <a href="http://eol.org"><img
