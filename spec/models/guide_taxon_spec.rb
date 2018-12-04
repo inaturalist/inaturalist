@@ -173,7 +173,7 @@ describe GuideTaxon, "sync_eol" do
     expect(gt.guide_ranges.count).to eq 0
   end
 
-  it "should add at least one secion if overview requested" do
+  it "should add at least one secion if overview requested", disabled: ENV["TRAVIS_CI"] do
     expect(gt.guide_sections).to be_blank
     gt.sync_eol(:page => @mflagellum_page, :overview => true)
     gt.reload
