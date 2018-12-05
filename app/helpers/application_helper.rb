@@ -353,7 +353,7 @@ module ApplicationHelper
         end
         new_text += html.to_s.html_safe
       else
-        new_text += simple_format( chunk, options ).html_safe
+        new_text += simple_format( chunk, {}, options ).html_safe
       end
     end
     new_text.html_safe
