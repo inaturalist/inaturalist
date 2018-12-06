@@ -24,7 +24,8 @@ class DateHistogram extends React.Component {
       xExtent,
       yExtent,
       tickFormatBottom,
-      onClick
+      onClick,
+      legendPosition
     } = this.props;
     $( mountNode ).html( "" );
     const svg = d3.select( mountNode ).append( "svg" );
@@ -45,9 +46,10 @@ class DateHistogram extends React.Component {
     const parseTime = d3.isoParse;
     const localSeries = {};
     _.forEach( series, ( s, seriesName ) => {
-      localSeries[seriesName] = _.map( s.data, d => ( {
+      localSeries[seriesName] = _.map( s.data, d => Object.assign( {}, d, {
         date: parseTime( d.date ),
         value: d.value,
+        offset: d.offset,
         seriesName
       } ) );
     } );
@@ -111,7 +113,12 @@ class DateHistogram extends React.Component {
             } )
             .attr( "height", d => height - y( d.value ) )
             .attr( "fill", colorForSeries( seriesName ) )
-            .attr( "transform", d => `translate( ${x( d.date )}, ${y( d.value )} )` )
+            .attr( "transform", d => {
+              if ( d.offset ) {
+                return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
+              }
+              return `translate( ${x( d.date )}, ${y( d.value )} )`;
+            } )
             .on( "mouseover", tip.show )
             .on( "mouseout", tip.hide );
         if ( onClick ) {
@@ -142,7 +149,12 @@ class DateHistogram extends React.Component {
 
     svg.append( "g" )
       .attr( "class", "legendOrdinal" )
-      .attr( "transform", `translate(${width - 20},20)` );
+      .attr( "transform", ( ) => {
+        if ( legendPosition === "nw" ) {
+          return "translate(70,20)";
+        }
+        return `translate(${width - 20},20)`;
+      } );
     const legendScale = d3.scaleOrdinal( )
       .domain( _.keys( localSeries ) )
       .range( _.map( localSeries, ( v, k ) => colorForSeries( k ) ) );
@@ -170,11 +182,13 @@ DateHistogram.propTypes = {
   tickFormatBottom: PropTypes.func,
   onClick: PropTypes.func,
   xExtent: PropTypes.array,
-  yExtent: PropTypes.array
+  yExtent: PropTypes.array,
+  legendPosition: PropTypes.string
 };
 
 DateHistogram.defaultProps = {
-  series: {}
+  series: {},
+  legendPosition: "ne"
 };
 
 export default DateHistogram;

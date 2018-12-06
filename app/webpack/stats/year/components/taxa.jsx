@@ -11,31 +11,55 @@ const Taxa = ( {
   user,
   data,
   rootTaxonID,
-  currentUser
+  currentUser,
+  year
 } ) => {
   let accumulation;
-  if ( data && data.accumulation_by_created ) {
+  if ( data && data.accumulation ) {
     const series = {};
     const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
     series.accumulated = {
-      title: I18n.t( "total" ),
-      data: _.map( data.accumulation_by_created, i => ( { date: i.date, value: i.accumulated_taxa_count } ) ),
-      style: "line",
+      title: I18n.t( "running_total" ),
+      data: _.map( data.accumulation, i => ( {
+        date: i.date,
+        value: i.accumulated_taxa_count
+      } ) ),
+      style: "bar",
       color: grayColor,
-      label: d => `<strong>${moment( d.date ).format( "MMMM" )}</strong>: ${d.value}`
+      label: d => `<strong>${moment( d.date ).add( 1, "month" ).format( "MMMM" )}</strong>: ${d.value}`
     };
     series.novel = {
-      title: I18n.t( "new" ),
-      data: _.map( data.accumulation_by_created, i => ( { date: i.date, value: i.novel_taxon_ids.length } ) ),
-      style: "line",
-      label: d => `<strong>${moment( d.date ).format( "MMMM" )}</strong>: ${d.value}`
+      title: I18n.t( "newly_observed" ),
+      data: _.map( data.accumulation, i => ( {
+        date: i.date,
+        value: i.novel_taxon_ids.length,
+        novel_taxon_ids: i.novel_taxon_ids,
+        offset: i.accumulated_taxa_count - i.novel_taxon_ids.length
+      } ) ),
+      style: "bar",
+      label: d => `<strong>${moment( d.date ).add( 1, "month" ).format( "MMMM" )}</strong>: ${d.value}`
     };
     accumulation = (
       <div>
         <h1>{ I18n.t( "new_species_this_year" ) }</h1>
         <DateHistogram
           series={series}
-          tickFormatBottom={d => moment( d ).format( "MMM YY" )}
+          tickFormatBottom={d => moment( d ).format( "MMM 'YY" )}
+          legendPosition="nw"
+          onClick={d => {
+            if ( d.seriesName === "accumulated" ) {
+              return false;
+            }
+
+            let url = `/observations?place_id=any&verifiable=true&view=species&taxon_ids=${d.novel_taxon_ids.join( "," )}`;
+            url += `&year=${d.date.getFullYear( )}&month=${d.date.getMonth() + 2}`;
+            if ( user ) {
+              url += `&user_id=${user.login}`;
+            }
+            window.open( url, "_blank" );
+            return false;
+          }}
+          // xExtent={[moment( `${year}-02-01` ), moment( `${year + 1}-01-01` )]}
         />
       </div>
     );
@@ -67,7 +91,12 @@ Taxa.propTypes = {
   data: PropTypes.object,
   user: PropTypes.object,
   currentUser: PropTypes.object,
-  rootTaxonID: PropTypes.number
+  rootTaxonID: PropTypes.number,
+  year: PropTypes.number
+};
+
+Taxa.defaultProps = {
+  year: ( new Date( ) ).getFullYear( )
 };
 
 export default Taxa;

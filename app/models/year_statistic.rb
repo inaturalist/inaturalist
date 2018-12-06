@@ -92,7 +92,10 @@ class YearStatistic < ActiveRecord::Base
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
-        accumulation_by_created: observed_taxa_accumulation( user: user, date_field: "created_at", verifiable: true )
+        accumulation: observed_taxa_accumulation(
+          user: user,
+          verifiable: true
+        )
       }
     }
     year_statistic.update_attributes( data: json )
@@ -570,9 +573,15 @@ class YearStatistic < ActiveRecord::Base
     interval = params.delete(:interval) || "month"
     date_field = params.delete(:date_field) || "observed_on"
     params[:user_id] = params[:user].id if params[:user]
+    params[:quality_grade] =  params[:quality_grade] || "research,needs_id"
     if site = params[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
+    params[:hrank] = Taxon::SPECIES
     elastic_params = Observation.params_to_elastic_query( params )
     histogram_buckets = Observation.elastic_search( elastic_params.merge(
       size: 0,
@@ -595,6 +604,7 @@ class YearStatistic < ActiveRecord::Base
     accumulation_with_all_taxon_ids = histogram_buckets.each_with_index.inject([]) do |memo, pair|
       bucket, i = pair
       interval_taxon_ids = bucket.taxon_ids.buckets.map{|b| b["key"].split( "," ).map(&:to_i)}.flatten.uniq
+      interval_taxon_ids = Taxon.where( id: interval_taxon_ids, rank: Taxon::SPECIES ).pluck(:id)
       accumulated_taxon_ids = if i > 0 && memo[i-1]
         memo[i-1][:accumulated_taxon_ids]
       else
