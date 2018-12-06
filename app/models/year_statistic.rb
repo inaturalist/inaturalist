@@ -50,9 +50,11 @@ class YearStatistic < ActiveRecord::Base
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, options ),
         iconic_taxa_counts: iconic_taxa_counts( year, options )
-      },
-      publications: publications( year, options )
+      }
     }
+    if options[:site].blank?
+      json[:publications] = publications( year, options )
+    end
     year_statistic.update_attributes( data: json )
     year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
     year_statistic
@@ -110,13 +112,25 @@ class YearStatistic < ActiveRecord::Base
     end
   end
 
+  def self.regenerate_defaults_for_year( year )
+    generate_for_year( 2018 )
+    Site.find_each do |site|
+      next if Site.default && Site.default.id == site.id
+      generate_for_site_year( site, year )
+    end
+  end
+
   def self.tree_taxa( year, options = {} )
     params = { year: year }
     if user = options[:user]
       params[:user_id] = user.id
     end
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     if user
       if place = user.place || user.site.try(:place)
@@ -147,7 +161,11 @@ class YearStatistic < ActiveRecord::Base
       params[:user_id] = user.id
     end
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     JSON.parse( INatAPIService.get_json("/observations/histogram", params, { timeout: 30 } ) )["results"][params[:interval]]
   end
@@ -179,7 +197,11 @@ class YearStatistic < ActiveRecord::Base
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
     if site = options[:site]
-      es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
+      if site.place
+        es_params[:filters] << { terms: { "observation.place_ids": [site.place.id] } }
+      else
+        es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
+      end
     end
     histogram = {}
     Identification.elastic_search( es_params ).response.aggregations.histogram.buckets.each {|b|
@@ -208,7 +230,11 @@ class YearStatistic < ActiveRecord::Base
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
     if site = options[:site]
-      es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
+      if site.place
+        es_params[:filters] << { terms: { "observation.place_ids": [site.place.id] } }
+      else
+        es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
+      end
     end
     Identification.elastic_search( es_params ).response.aggregations.categories.buckets.inject({}) do |memo, bucket|
       memo[bucket["key"]] = bucket.doc_count
@@ -236,7 +262,11 @@ class YearStatistic < ActiveRecord::Base
     params = { year: year }
     params[:user_id] = options[:user].id if options[:user]
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     elastic_params = Observation.params_to_elastic_query( params )
     Observation.elastic_search( elastic_params.merge(
@@ -254,7 +284,11 @@ class YearStatistic < ActiveRecord::Base
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     # Observation.elastic_taxon_leaf_counts( Observation.params_to_elastic_query( params ) ).size
     JSON.parse( INatAPIService.get_json( "/observations/species_counts", params, { timeout: 30 } ) )["total_results"].to_i
@@ -264,7 +298,11 @@ class YearStatistic < ActiveRecord::Base
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     elastic_params = Observation.params_to_elastic_query( params )
     Observation.elastic_search( elastic_params.merge(
