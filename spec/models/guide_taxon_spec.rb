@@ -118,6 +118,7 @@ describe GuideTaxon, "sync_eol" do
   before(:all) { enable_elastic_indexing( Observation ) }
   after(:all) { disable_elastic_indexing( Observation ) }
   before(:all) do
+    Site.make!
     eol = EolService.new(:timeout => 30)
     @mflagellum_page ||= eol.page( 47046719,
       common_names: true,
@@ -173,7 +174,7 @@ describe GuideTaxon, "sync_eol" do
     expect(gt.guide_ranges.count).to eq 0
   end
 
-  it "should add at least one secion if overview requested", disabled: ENV["TRAVIS_CI"] do
+  it "should add at least one secion if overview requested" do
     expect(gt.guide_sections).to be_blank
     gt.sync_eol(:page => @mflagellum_page, :overview => true)
     gt.reload
