@@ -54,13 +54,13 @@ const MoreFromUser = ( { observation, otherObservations, showNewObservation, con
           />
           <div className="links">
             <span className="view">{ I18n.t( "view" ) }:</span>
-            <a href={ `/observations?user_id=${userLogin}&place_id=any` }>
+            <a href={ `/observations?user_id=${userLogin}&place_id=any&verifiable=any` }>
               { I18n.t( "all" ) }
             </a>
             { dateObserved ? (
               <span>
                 <span className="separator">·</span>
-                <a href={ `/observations?user_id=${userLogin}&on=${onDate}&place_id=any` }>
+                <a href={ `/observations?user_id=${userLogin}&on=${onDate}&place_id=any&verifiable=any` }>
                   { dateObserved.format( "MMMM D, YYYY" ) }
                 </a>
                 <span className="separator">·</span>

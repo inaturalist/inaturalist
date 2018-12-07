@@ -160,21 +160,29 @@ class GuideTaxon < ActiveRecord::Base
       self.name ||= name
     end
     if options[:replace] || self.display_name.blank?
-      common_names = page.search('commonName')
+      common_names = page.search( "vernacularName" )
       locale = options[:locale]
       locale = guide.user.locale if locale.blank?
       locale = I18n.locale if locale.blank?
       lang = locale.to_s.split('-').first
-      common_name = common_names.detect{|cn| cn['lang'] == lang && cn['eol_preferred'] == "true"}
-      common_name ||= common_names.detect{|cn| cn['lang'] == lang}
-      common_name ||= common_names.detect{|cn| cn['eol_preferred'] == "true"}
-      if common_name && !common_name.inner_text.blank?
-        self.display_name = common_name.inner_text
+      common_name = common_names.detect{|cn|
+        cn.at( "language" ) && cn.at( "language" ).content == lang &&
+        cn.at( "eol-preferred" ) && cn.at( "eol-preferred" ).content == "true"
+      }
+      # common_name ||= common_names.detect{|cn| cn["language"] == lang}
+      common_name ||= common_names.detect{|cn|
+        cn.at( "language" ) && cn.at( "language" ).content == lang
+      }
+      # common_name ||= common_names.detect{|cn| cn["eol_preferred"] == "true"}
+      common_name = common_names.detect{|cn|
+        cn.at( "eol-preferred" ) && cn.at( "eol-preferred" ).content == "true"
+      }
+      if common_name && common_name.at( "vernacularName" ) && !common_name.at( "vernacularName" ).inner_text.blank?
+        self.display_name = common_name.at( "vernacularName" ).inner_text
       end
     end
     sync_eol_photos(options.merge(:page => page)) if options[:photos].yesish?
     sync_eol_ranges(options.merge(:page => page)) if options[:ranges].yesish?
-    Rails.logger.debug "[DEBUG] options[:subjects]: #{options[:subjects].inspect}"
     sync_eol_sections(options.merge(:page => page)) if options[:sections].yesish? || options[:overview].yesish?
     save!
   end
@@ -187,7 +195,7 @@ class GuideTaxon < ActiveRecord::Base
     guide_photos.destroy_all if options[:replace].yesish?
     max_pos = guide_photos.calculate(:maximum, :position) || 0
     img_data_objects[0..5].each do |img_data_object|
-      p = if (data_object_id = img_data_object.at('dataObjectID').try(:content))
+      p = if (data_object_id = img_data_object.at('dataObjectVersionID').try(:content))
         EolPhoto.find_by_native_photo_id(data_object_id)
       end
       p ||= EolPhoto.new_from_api_response(img_data_object)
@@ -232,10 +240,12 @@ class GuideTaxon < ActiveRecord::Base
     else
       unique_data_objects = ActiveSupport::OrderedHash.new
       data_objects.each do |data_object| 
-        data_object_subject = if (s = data_object.at('subject'))
-          s.content.split('#').last
-        end
-        if subjects.include?(data_object_subject)
+        # data_object_subject = if (s = data_object.at('subject'))
+        #   s.content.split('#').last
+        # end
+        data_object_subjects = data_object.search( "subject/subject" ).map{|s| s.content}
+        # if subjects.include?(data_object_subject)
+        if ( data_object_subjects & subjects ).size > 0
           unique_data_objects[data_object_subject] ||= data_object
         end
       end
@@ -258,11 +268,13 @@ class GuideTaxon < ActiveRecord::Base
     collection = options[:collection]
     subjects = (options[:subjects] || []).select{|t| !t.blank?}
     page_request_params = {
-      :common_names => true,
-      :images => 5, 
-      :maps => 5, 
-      :texts => subjects.size == 0 ? 5 : subjects.size * 5,
-      :details => true}
+      common_names: true,
+      images_per_page: 5,
+      maps_per_page: 5,
+      texts_per_page: subjects.size == 0 ? 5 : subjects.size * 5,
+      details: true,
+      cache_ttl: -1
+    }
     page_request_params[:subjects] = if subjects.blank?
       "overview"
     else
@@ -282,8 +294,8 @@ class GuideTaxon < ActiveRecord::Base
 
     unless page
       search_results = eol.search(name, :exact => true)
-      if result = search_results.search('entry').first #detect{|e| e.at('title').to_s.downcase =~ /#{name.downcase}/}
-        page = eol.page(result.at('id').content, page_request_params)
+      if result = search_results.search( "result" ).first
+        page = eol.page( result.at( "id" ).content, page_request_params )
       end
     end
 

@@ -1987,7 +1987,7 @@ class Observation < ActiveRecord::Base
     elsif captive_flag.noish? && force_quality_metrics
       QualityMetric.vote( user, self, QualityMetric::WILD, true )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
-      qm.update_attributes( agree: true)
+      qm.update_attributes( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
     end

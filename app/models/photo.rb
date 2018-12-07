@@ -139,7 +139,19 @@ class Photo < ActiveRecord::Base
   end
 
   def source_title
-    self.class.name.gsub(/Photo$/, '').underscore.humanize.titleize
+    ( subtype || type ).gsub( /Photo$/, "" ).underscore.humanize.titleize
+  end
+
+  def source_url
+    # If it used to be an EOL photo and its native photo ID isn't an integer,
+    # it's probably an EOL v2 data object identifier that EOL has lost track of
+    if subtype == "EolPhoto" && !native_photo_id.blank? && native_photo_id.index( /[A-z]/ ).nil?
+      return "https://eol.org/media/#{native_photo_id}"
+    end
+    if native_page_url =~ /#{source_title}/i
+      return native_page_url
+    end
+    nil
   end
 
   def best_url(size = "medium")
@@ -281,6 +293,33 @@ class Photo < ActiveRecord::Base
       # image must return 200 and have a valid image mime-type
       return head.code == "200" &&
         head.to_hash["content-type"].any?{ |t| t =~ /(jpe?g|png|gif|octet-stream)/i }
+    end
+    false
+  end
+
+  # Like valid_remote_photo_url? this sends a HEAD request to see if an image is
+  # still there, but it returns the URL if it is and will follow redirects up to
+  # 5 times and return a valid URL if it finds one.
+  def self.valid_remote_photo_url( remote_photo_url, options = {} )
+    depth = options[:depth].to_i
+    return false if depth > 5
+    # Flickr's unavailable photo URL. When served from yimg they don't always
+    # return a 404 status, so just checking the URL here.
+    if remote_photo_url =~ /photo_unavailable\.png/
+      return false
+    end
+    head = begin
+      Timeout::timeout( 5 ) { fetch_head( remote_photo_url ) }
+    rescue Timeout::Error
+      false
+    end
+    return false unless head
+    headers = head.to_hash
+    if %w(301 302 303 307 308).include?( head.code ) && headers["location"]
+      return valid_remote_photo_url( headers["location"][0], depth: depth + 1 )
+    end
+    if head.code == "200" && headers["content-type"].any?{ |t| t =~ /(jpe?g|png|gif|octet-stream)/i }
+      return remote_photo_url
     end
     false
   end

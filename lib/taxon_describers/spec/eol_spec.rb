@@ -5,6 +5,6 @@ describe TaxonDescribers::Eol do
     load_test_taxa
   end
   it "should describe Calypte anna" do
-    TaxonDescribers::Eol.desc(@Calypte_anna).should_not be_blank
+    expect( TaxonDescribers::Eol.desc( @Calypte_anna ) ).not_to be_blank
   end
 end
