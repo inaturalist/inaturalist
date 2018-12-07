@@ -6595,32 +6595,41 @@ fr:
           les coordonnées privées ou masquées des observations que vous ajoutez à
           ce projet.
       edit:
-        blocking_desc_html: "<p>\n  Bloquer quelqu'un l'empêche de vous envoyer des
-          messages, de commenter vos\n  observations, d'identifier vos observations
-          et d'interagir autrement\n  avec vous sur %{site_name}. Cela supprime également
-          ses observations de vos\n  résultats de recherche et supprime vos observations
-          ses résultats de \n  recherche. Cependant, cela ne vous rend pas invisible
-          pour lui. Il peut toujours \n  trouver vos observations et regardez votre
-          profil, il ne peut tout simplement pas\n  interagir avec vous.\n</ p>\n<p>\n
-          \ Le blocage est pour des situations où vous ne pouvez simplement pas vous
-          entendre\n  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
-          pour\n  régler les différends d'une manière civilisée. Ce n'est pas un moyen
-          pour se cacher de\n  personnes, pour empêcher les identifications de personnes
-          dont vous ne partagez pas les opinions, ou de retirer votre identifiant
-          de la communauté (il y en a un autre moyen \n  de régler cela). Ainsi, le
-          blocage fonctionne dans les deux sens: si vous bloquez\n  quelqu'un, ils
-          ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir\n
-          \ avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
-          vos\n  observations, vous vous empêchez également d'identifier ses\n  observations.\n</
-          p>\n<p>\n  Vous ne pouvez bloquer que trois personnes. Nous pensons que
-          c'est un nombre raisonnable\n  qui accueille les personnes qui ont besoin
-          de bloquer et\n  prévenir les abus de blocage. Si vous sentez que vous devez
-          bloquer plus\n  <a href=\"mailto:%{help_email}\"> contactez-nous </a>.\n</
-          p>\n<p>\n  Si quelqu'un vous harcèle ou vous traque sur %{site_name},\n
-          \ <a href=\"mailto:%{help_email}\"> merci de nous le faire savoir </a>.
-          Si\n  cela représente une violation de nos conditions d'utilisation ou représente\n
-          \ autre comportement que nous considérons inapproprié pour notre site, nous\n
-          \ enquêterons.\n</ p>"
+        blocking_desc_html: |
+          <p>
+            Bloquer quelqu'un l'empêche de vous envoyer des
+            messages, de commenter vos  observations, d'identifier vos observations
+            et d'interagir autrement  avec vous sur %{site_name}. Cela supprime également
+            ses observations de vos  résultats de recherche et supprime vos observations
+            ses résultats de   recherche. Cependant, cela ne vous rend pas invisible
+            pour lui. Il peut toujours   trouver vos observations et regardez votre
+            profil, il ne peut tout simplement pas  interagir avec vous.
+          </p>
+          <p>
+            Le blocage est pour des situations où vous ne pouvez simplement pas vous
+            entendre  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
+            pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen
+            pour se cacher de  personnes, pour empêcher les identifications de personnes
+            dont vous ne partagez pas les opinions, ou de retirer votre identifiant
+            de la communauté (il y en a un autre moyen   de régler cela). Ainsi, le
+            blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils
+            ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir
+            avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
+            vos  observations, vous vous empêchez également d'identifier ses  observations.
+          </p>
+          <p>
+            Vous ne pouvez bloquer que trois personnes. Nous pensons que
+            c'est un nombre raisonnable  qui accueille les personnes qui ont besoin
+            de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez
+            bloquer plus  <a href="mailto:%{help_email}"> contactez-nous </a>.
+          </p>
+          <p>
+            Si quelqu'un vous harcèle ou vous traque sur %{site_name},
+            <a href="mailto:%{help_email}"> merci de nous le faire savoir </a>.
+            Si cela représente une violation de nos conditions d'utilisation ou représente
+            autre comportement que nous considérons inapproprié pour notre site, nous
+            enquêterons.
+          </p>
         common_names_desc: |-
           Afficher les noms vulgaires. À désactiver si vous ne voulez voir que les noms scientifiques.
           Notez que vous pouvez contrôler le type de noms vulgaires que vous voyez en changeant vos paramètres régionaux et votre localisation.
