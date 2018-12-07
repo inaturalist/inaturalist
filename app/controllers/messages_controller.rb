@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   before_filter :load_message, :only => [:show, :destroy]
   before_filter :require_owner, :only => [:show, :destroy]
   before_filter :load_box, :only => [:show, :new, :index]
+  check_spam only: [:create, :update], instance: :message
 
   def index
     @messages = case @box
