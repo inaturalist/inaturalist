@@ -108,7 +108,8 @@ class EolPhoto < Photo
   end
 
   def repair(options = {})
-    unless r = EolPhoto.get_api_response( native_photo_id )
+    r = EolPhoto.get_api_response( native_photo_id )
+    if r.blank? || r.children.blank?
       return [self, { photo_missing: "photo not found #{self}" } ]
     end
     p = EolPhoto.new_from_api_response( r )

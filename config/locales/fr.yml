@@ -374,6 +374,8 @@ fr:
   all_photos: Toutes les photos
   all_places: Tous les lieux
   all_projects: Tous les projets
+  all_children_added_to_the_database: Tous les enfants ont été ajoutés dans la base
+    de données
   all_rank_added_to_the_database:
     phylum: Tous les embranchements ajoutés à la base de données
     subphylum: Tous les sous-embranchements ajoutés à la base de données
@@ -635,7 +637,9 @@ fr:
   at_any_time_change: n’importe quand (<span class="button">modifier</span>)
   at_time: à %{time}
   atom: Atom
+  attached_taxon: Taxon attaché
   attribute: Attribut
+  attribution: Attribution
   authority_list:
     iucn_red_list: Liste rouge de l’UICN
   authorize_permissions_from_provider: Autoriser les permissions de %{provider}
@@ -946,6 +950,7 @@ fr:
   classification: Classification
   clear: effacer
   clear_color_filters: Effacer les filtres de couleur
+  clear_filters: Effacer les filtres
   clear_search: Effacer la recherche
   click_on_the_map_to: Cliquez sur la carte pour placer votre observation
   click_the_map: <strong>Cliquez sur la carte</strong> pour ajouter un lieu.
@@ -1009,6 +1014,7 @@ fr:
   comparing_list_to_list: Comparaison de %{list1} avec %{list2}
   comparing_versions_x_and_y: Comparaison des versions %{x} et %{y}
   comparing_observations_from: Comparaison des observations de %{user} du %{dates}
+  complete: Terminer
   complete_sets: Ensembles complets
   compiled_by_name: Compilé par %{name}
   completed: Complétée
@@ -1116,6 +1122,8 @@ fr:
   copyright_info_and_more: Information de Copyright et Plus
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne
     autre que l’observateur et attribution manquante
+  covered_by_a_taxon_framework_html: Couvert par un %{link}
+  covered_by_a_taxon_framework_link: Cadre du taxon pour %{taxon_framework_rank} %{taxon_framework_name}
   couldnt_change_your_password: 'Impossible de modifier votre mot de passe : %{e}'
   couldnt_find_a_user_matching_x_param: Impossible de trouver un utilisateur correspondant
     à %{id}
@@ -1241,6 +1249,7 @@ fr:
   default_photo_license: Licence des photos par défaut
   default_sound_license: Licence des sons par défaut
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
+  defines_a_taxon_framework_for: Définit un cadre de taxon pour %{taxon_name}
   delete: Supprimer
   delete_all: Supprimer tout
   delete_conversation: Supprimer la conversation
@@ -1275,6 +1284,8 @@ fr:
   desription: Description
   destroy: Détruiser
   details: Détails
+  deviation: Déviation
+  deviations: Déviations
   devise:
     failure:
       user:
@@ -1286,6 +1297,7 @@ fr:
     suivantes parce que…
   did_you_mean: Voulez-vous dire
   did_you_photos_flickr?: Avez-vous mis des photos sur Flickr ?
+  disable: Désactiver
   disagree: pas d’accord
   disagree_: Désapprouver
   disconnect_provider: Déconnecter %{provider}
@@ -1324,6 +1336,8 @@ fr:
   download_csv: Télécharger le format CSV
   download_csv_template: Télécharger le modèle "CSV"
   download_kml: Téléchargez le format KML
+  downstream_coverage: Couverture en aval
+  downstream_coverage_rank: Niveau de couverture en aval
   drag_and_drop_photos: Glissez et déplacez les photos dans cette fenêtre, ou
   draft: brouillon
   draft_: Brouillon
@@ -1597,7 +1611,9 @@ fr:
   flag_this_photo: Signaler cette photo
   flagged: a signalé
   flagged_: Marqué
+  flagged_covered_taxa: Taxons couverts marqués
   flagged_for_curation: Marqué pour supervision
+  flagged_taxon: Taxon marqué
   flagged_thing_explanation: Les utilisateurs ont signalé ce %{thing} parce que
   flagger: Signaleur
   flags: Drapeaux
@@ -1760,6 +1776,7 @@ fr:
   help_confirm_observations!: Aider à confirmer les observations!
   help_faq: Aide/FAQ
   help_out!: Dépannez!
+  help_support_inaturalist: Aider à soutenir iNaturalist !
   helped_the_observer_make: a aidé l’observateur à faire leurs identifications finales
     (c.-à-d. qu’elles ont été faites avant l’identification finale et qu’elles y correspondent)
   here_are_3_examples: Voici 3 exemples de données bien formées
@@ -1931,6 +1948,7 @@ fr:
     des créatures mystérieuses !
   interactions: Interactions
   internal_server_error: Erreur interne du serveur
+  internal_taxon: Taxon interne
   introduced: Introduite
   introduced_in_place: Introduit dans %{place}
   invasive: Invasive
@@ -2181,6 +2199,7 @@ fr:
     vos photos ni ne modifierons vos données Flickr sans votre consentement.</strong>
     Nous sommes trop occupés avec les oiseaux, les insectes et les limaces pour vouloir
     modifier vos informations !
+  linkedin: LinkedIn
   list: Liste
   list_deleted: Liste supprimée.
   list_saved: Liste enregistrée.
@@ -2629,6 +2648,7 @@ fr:
   no_ones_observed: Personne n’a observé
   no_photo: Aucune photo
   no_photos: Aucune photo
+  no_photos_of_that_size: Pas de photo de cette taille.
   no_places_available: Aucun endroit disponible
   no_places_selected: Aucun lieu sélectionné.
   no_post_yet: Aucune note jusqu’à présent!
@@ -2668,11 +2688,13 @@ fr:
   no_x_this_y: Aucun %{x} durant %{y}
   noble_curators: Responsables éminents de l’organisation d’%{site}
   non_human?: Non-humain ?
+  non_internal_taxon: N'est pas un taxon interne
   none: Aucun
   none_found: Aucun trouvé
   normal: normal
   not_absent: non absent
   not_completed: Incomplet
+  not_covered_by_any_taxon_frameworks: Non couvert par aucun cadre de taxon
   not_evaluated: non évalué
   not_filtering: Le filtrage n’a pas lieu
   not_findig_what_you_want: Vous n’avez pas trouvé ce que vous vouliez?
@@ -3010,6 +3032,7 @@ fr:
   out_of_range: Hors de portée
   output_taxon: Taxon en sortie
   overview: Vue d’ensemble
+  overlapping_downstream_taxon_frameworks: Chevauchement des cadres de taxon en aval
   owner: Propriétaire
   parent: Taxon de rang supérieur
   parent_name: Nom du taxon de rang supérieur
@@ -3049,6 +3072,7 @@ fr:
   photo_browser: Navigateur de photos
   photo_by: Photographie de
   photo_by_id_attribution: Photo %{id}, de %{attribution}
+  photo_credits: Crédits photos
   photo_deleted: Photo supprimée
   photo_destroyed_because_it_was_deleted_from: Photo détruite, car elle a été supprimée
     sur le site externe ou %{site_name} n’a plus le droit de la voir
@@ -3425,6 +3449,7 @@ fr:
   rank_position: Rang
   rank_restrictions: Restrictions de rang
   ranks:
+    stateofmatter: État des choses
     kingdom: Royaume
     subkingdom: Sous-royaume
     phylum: Embranchement
@@ -3512,6 +3537,18 @@ fr:
   reject_the_community_id: rejeter l’ID de la communauté
   related_species: Espèces apparentées
   relative_observations: Observations relatives
+  relationship: Relation
+  relationship_x: 'Relation : %{relationship}'
+  relationships:
+    match: correspond
+    one_to_one: de un à un
+    alternate_position: changer de position
+    many_to_many: de plusieurs à plusieurs
+    many_to_one: de plusieurs à un
+    one_to_many: de un vers plusieurs
+    not_external: pas externe
+    not_internal: non interne
+    unknown: inconnu
   reload_and_refresh: Recharger et rafraîchir la liste
   reload_from_observations: Recharger à partir des observations
   reload_timed_out: Délai de rechargement écoulé. Veuillez réessayer plus tard.
@@ -3725,6 +3762,7 @@ fr:
   set_license: Établir la licence
   settings: paramètres
   share: Partager
+  share_colon: 'Partager:'
   share_your_observation_with_researchers_by: Échangez vos observations avec les chercheurs
     en
   short_code_for_this_place: Abréviation pour ce lieu, par ex. É.-U. pour États-Unis
@@ -3895,6 +3933,7 @@ fr:
   source_unknown: Source inconnue
   source_url: URL de la source
   source_of_coordinates: Source des coordonnées et mesure de précision établies automatiquement.
+  sourced_to: Obtenu depuis
   sources: Sources
   sources_youve_added: Sources que vous avez ajoutées
   sources_and_credits: Sources et générique
@@ -3991,6 +4030,7 @@ fr:
   suggestions: Suggestions
   summary: Résumé
   supporting: Soutenir
+  support_inaturalist: Supporter iNaturalist
   suspicious_photos: Photos suspectes
   siutable_observations: observations appropriées
   sun: Dim
@@ -4098,6 +4138,11 @@ fr:
   taxon_colors: Couleurs des taxons
   taxon_curators: Superviseurs des taxons
   taxon_extras: Taxons additionnels
+  taxon_framework_notes: Notes du cadre de taxon
+  taxon_framework_relationship_for: Relation du cadre de taxon pour
+  taxon_framework_relationship: Relation du cadre de taxon
+  taxon_framework_relationships: Relations du cadre de taxon
+  taxon_framework_taxon: Taxon du cadre de taxon
   taxon_links: Liens de taxon
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
@@ -4138,6 +4183,11 @@ fr:
   taxonomic_status: Situation taxinomique
   taxonomic_tags_for_flickr: Étiquettes taxinomiques pour Flickr
   taxonomic_tree_browser: Explorateur de l’arborescence taxinomique
+  taxonomy_details: Détails de la taxonomie
+  taxonomy_details_for: Détail de la taxonomie pour
+  taxonomy_details_info: La page de détails de la taxonomie utilise les cadres de
+    taxon pour aider à décrire ce que nous voulons dire par taxon. <a href="/pages/taxon_frameworks">En
+    savoir plus</a>.
   taxonomy_settings: Configuration de taxinomie
   tell_everyone_a_little_about_you: Dites-en un peu sur vous à tout le monde
   tell_the_world_a_little_about_yourself: Parlez-nous de vous
@@ -4271,6 +4321,9 @@ fr:
   there_were_some_problems_with_fields: 'Il y a eu des problèmes avec les champs suivants
     :'
   theres_also: il y a aussi
+  theres_something_wrong_with_taxon_framework_relationship: Il y a quelque chose en
+    erreur ici — nous ne pouvons pas déterminer la relation entre des taxons interne
+    et externe
   these_are_items_people_on: Il y a des articles que les personnes membres de ce site
     ont signalés aux fins d’organisation. Le pourriel doit être supprimé et les utilisateurs
     responsables doivent être suspendus (allez sur leur page de profil et cliquez
@@ -4459,6 +4512,7 @@ fr:
   unknown: Inconnu
   unknown_error: Erreur inconnue
   unknown_rank: (Rang inconnu)
+  unknown_taxon_framework_relationship: Relation de cadre de taxon inconnue
   unfollow: Ne plus suivre
   unlink_your_google_account: Supprimer le lien de votre compte Google
   unmute: Supprimer la mise en silence
@@ -4841,6 +4895,7 @@ fr:
   x_of_y: '%{x} sur %{y}'
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} sur %{y} personnes (plus de 2/3)
     sont d’accord que c’est'
+  x_is_the_root_of_the_tree: '%{rank} %{name} est la racine de l’arbre'
   x_project_journal: '%{name} de %{project}'
   x_project_stats: Stats de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} vous a envoyé un nouveau message sur %{y}:'
@@ -5132,6 +5187,31 @@ fr:
           please_read_the_teachers_guide_html: Si c’est le cas, veuillez lire notre
             <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation
             de %{site_name} avec des étudiants.
+    donate:
+      donate_short_desc: Aider à soutenir iNaturalist avec un don !
+      donate_desc_html: |-
+        <p class="lead">
+          <strong>iNaturalist est une des plus grandes communautés du monde dédiée à
+          l’exploration de la biodiversité. Merci d’en faire partie !</strong>
+        </p>
+        <p class="lead">
+          Si vous croyez en la puissance de cette communauté globale d’amateurs de la nature
+          pour partager la connaissance et générer des données de biodiversité irremplaçables,
+          veuillez envisager un don ponctuel ou récurrent.
+        </p>
+        <p class="lead">
+          Votre don aide à soutenir iNaturalist au fur et à mesure que la communauté s’accroît, pour
+          une vision avancée des machines et l’implémentation de nouvelles fonctionnalités pour soutenir
+          nos serveurs et notre équipe.
+        </p>
+        <p class="text-muted">
+          iNaturalist est une initiative conjointe de l’Académie des Sciences de Californie
+          et de la Société Géographique Nationale. Tous les dons seront reçus par
+          l’Académie des Sciences de Californie, une organisation à but non lucratif 501 (c)(3)
+          non soumise à l’impôt basée aux États-Unis d’Amérique.
+        </p>
+      post_donate_social_media_text: J’ai soutenu iNaturalist ! Vous devriez le faire
+        aussi.
     guides:
       index:
         funding_html: |-
@@ -6515,32 +6595,41 @@ fr:
           les coordonnées privées ou masquées des observations que vous ajoutez à
           ce projet.
       edit:
-        blocking_desc_html: "<p>\n  Bloquer quelqu'un l'empêche de vous envoyer des
-          messages, de commenter vos\n  observations, d'identifier vos observations
-          et d'interagir autrement\n  avec vous sur %{site_name}. Cela supprime également
-          ses observations de vos\n  résultats de recherche et supprime vos observations
-          ses résultats de \n  recherche. Cependant, cela ne vous rend pas invisible
-          pour lui. Il peut toujours \n  trouver vos observations et regardez votre
-          profil, il ne peut tout simplement pas\n  interagir avec vous.\n</ p>\n<p>\n
-          \ Le blocage est pour des situations où vous ne pouvez simplement pas vous
-          entendre\n  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
-          pour\n  régler les différends d'une manière civilisée. Ce n'est pas un moyen
-          pour se cacher de\n  personnes, pour empêcher les identifications de personnes
-          dont vous ne partagez pas les opinions, ou de retirer votre identifiant
-          de la communauté (il y en a un autre moyen \n  de régler cela). Ainsi, le
-          blocage fonctionne dans les deux sens: si vous bloquez\n  quelqu'un, ils
-          ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir\n
-          \ avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
-          vos\n  observations, vous vous empêchez également d'identifier ses\n  observations.\n</
-          p>\n<p>\n  Vous ne pouvez bloquer que trois personnes. Nous pensons que
-          c'est un nombre raisonnable\n  qui accueille les personnes qui ont besoin
-          de bloquer et\n  prévenir les abus de blocage. Si vous sentez que vous devez
-          bloquer plus\n  <a href=\"mailto:%{help_email}\"> contactez-nous </a>.\n</
-          p>\n<p>\n  Si quelqu'un vous harcèle ou vous traque sur %{site_name},\n
-          \ <a href=\"mailto:%{help_email}\"> merci de nous le faire savoir </a>.
-          Si\n  cela représente une violation de nos conditions d'utilisation ou représente\n
-          \ autre comportement que nous considérons inapproprié pour notre site, nous\n
-          \ enquêterons.\n</ p>"
+        blocking_desc_html: |
+          <p>
+            Bloquer quelqu'un l'empêche de vous envoyer des
+            messages, de commenter vos  observations, d'identifier vos observations
+            et d'interagir autrement  avec vous sur %{site_name}. Cela supprime également
+            ses observations de vos  résultats de recherche et supprime vos observations
+            ses résultats de   recherche. Cependant, cela ne vous rend pas invisible
+            pour lui. Il peut toujours   trouver vos observations et regardez votre
+            profil, il ne peut tout simplement pas  interagir avec vous.
+          </p>
+          <p>
+            Le blocage est pour des situations où vous ne pouvez simplement pas vous
+            entendre  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
+            pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen
+            pour se cacher de  personnes, pour empêcher les identifications de personnes
+            dont vous ne partagez pas les opinions, ou de retirer votre identifiant
+            de la communauté (il y en a un autre moyen   de régler cela). Ainsi, le
+            blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils
+            ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir
+            avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
+            vos  observations, vous vous empêchez également d'identifier ses  observations.
+          </p>
+          <p>
+            Vous ne pouvez bloquer que trois personnes. Nous pensons que
+            c'est un nombre raisonnable  qui accueille les personnes qui ont besoin
+            de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez
+            bloquer plus  <a href="mailto:%{help_email}"> contactez-nous </a>.
+          </p>
+          <p>
+            Si quelqu'un vous harcèle ou vous traque sur %{site_name},
+            <a href="mailto:%{help_email}"> merci de nous le faire savoir </a>.
+            Si cela représente une violation de nos conditions d'utilisation ou représente
+            autre comportement que nous considérons inapproprié pour notre site, nous
+            enquêterons.
+          </p>
         common_names_desc: |-
           Afficher les noms vulgaires. À désactiver si vous ne voulez voir que les noms scientifiques.
           Notez que vous pouvez contrôler le type de noms vulgaires que vous voyez en changeant vos paramètres régionaux et votre localisation.
