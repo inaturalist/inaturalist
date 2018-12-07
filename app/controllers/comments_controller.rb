@@ -6,6 +6,7 @@ class CommentsController < ApplicationController
   before_filter :admin_required, :only => [:user]
   before_filter :load_comment, :only => [:show, :edit, :update, :destroy]
   before_filter :owner_required, :only => [:edit, :update]
+  check_spam only: [:create, :update], instance: :comment
   
   def index
     find_options = {

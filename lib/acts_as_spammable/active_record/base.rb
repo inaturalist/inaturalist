@@ -7,19 +7,26 @@ module ActiveRecord
         include Rakismet::Model
         acts_as_flaggable
 
+        attr_accessor :acts_as_spammable_user_ip
+        attr_accessor :acts_as_spammable_user_agent
+        attr_accessor :acts_as_spammable_referrer
+
         rakismet_fields = options[:fields]
         rakismet_user = options[:user] || :user
         # set up the rakismet attributes. Concatenate multiple
         # fields using periods as if sentences
         rakismet_attrs author: proc { user_responsible ? user_responsible.name : nil },
                        author_email: proc { user_responsible ? user_responsible.email : nil },
+                       user_ip: proc { acts_as_spammable_user_ip || user_responsible.try(:last_ip) },
+                       user_agent: proc { acts_as_spammable_user_agent },
+                       referrer: proc { acts_as_spammable_referrer },
                        content: proc {
                          options[:fields].map{ |f|
                            self.respond_to?(f) ? self.send(f) : nil
                          }.compact.join(". ")
                        },
                        comment_type: options[:comment_type],
-                       blog_lang: "en,fr,es,zh,gl,th,jp"
+                       blog_lang: I18N_SUPPORTED_LOCALES.join( "," )
 
         validate :user_cannot_be_spammer
         after_save :evaluate_user_spammer_status, unless: proc {

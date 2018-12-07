@@ -52,6 +52,7 @@ class ObservationsController < ApplicationController
   before_filter :load_observation, :only => load_only
   blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
     :instance => :observation
+  check_spam only: [:create, :update], instance: :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]

@@ -1033,6 +1033,24 @@ describe User do
     end
   end
 
+  describe "description spam check" do
+    it "should happen on create" do
+      Rakismet.disabled = false
+      user = User.make( description: "this is spam" )
+      allow( user ).to receive(:spam?).and_return( true )
+      user.save!
+      expect( user ).to be_flagged_as_spam
+    end
+    it "should happen on update" do
+      user = User.make!( description: "this is ok" )
+      expect( user ).not_to be_flagged_as_spam
+      Rakismet.disabled = false
+      allow( user ).to receive(:spam?).and_return( true )
+      user.update_attributes( description: "buy this watch!" )
+      expect( user ).to be_flagged_as_spam
+    end
+  end
+
   protected
   def create_user(options = {})
     opts = {
