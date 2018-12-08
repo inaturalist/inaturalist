@@ -15,7 +15,7 @@ module ActiveRecord
         rakismet_user = options[:user] || :user
         # set up the rakismet attributes. Concatenate multiple
         # fields using periods as if sentences
-        rakismet_attrs author: proc { user_responsible ? user_responsible.name : nil },
+        rakismet_attrs author: proc { user_responsible ? user_responsible.published_name : nil },
                        author_email: proc { user_responsible ? user_responsible.email : nil },
                        user_ip: proc { acts_as_spammable_user_ip || user_responsible.try(:last_ip) },
                        user_agent: proc { acts_as_spammable_user_agent },

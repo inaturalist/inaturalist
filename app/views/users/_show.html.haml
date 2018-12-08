@@ -86,10 +86,14 @@
         - else
           = t(:user_is_a_naturalist, :user => @user.login)
       - else
-        - @description = formatted_user_text(@user.description)
-        %p.lead
-          = stripped_first_paragraph_of_text(@description, "\n\n")
-        = remaining_paragraphs_of_text(@description, "\n\n")
+        - if @user.spammer.nil?
+          .alert.alert-warning
+            =t :profile_visibility_pending_account_verification
+        - if @user.known_non_spammer? || is_curator? || is_me?( @user )
+          - description = formatted_user_text( @user.description )
+          %p.lead
+            = stripped_first_paragraph_of_text( description, "\n\n" )
+          = remaining_paragraphs_of_text( description, "\n\n" )
     %h3.page-header
       = t(:following_x_people, :count => @user.friendships.count)
     - unless @followees.blank?

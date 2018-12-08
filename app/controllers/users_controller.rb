@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   check_spam only: [:create, :update], instance: :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation, :merge]
-  before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]
+  before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer, :recent]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
 
@@ -639,6 +639,24 @@ class UsersController < ApplicationController
       else
         @observations = Observation.page_of_results( user_id: @display_user.id )
       end
+    end
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
+
+  def recent
+    @users = User.order( "id desc" ).page( 1 ).per_page( 10 )
+    @spam = params[:spam]
+    if @spam.nil? || @spam == "unknown"
+      @users = @users.where( "spammer IS NULL" )
+    elsif @spam.yesish?
+      @users = @users.where( "spammer" )
+    elsif @spam.noish?
+      @users = @users.where( "NOT spammer" )
+    end
+    if params[:from].to_i > 0
+      @users = @users.where( "id < ?", params[:from].to_i )
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }

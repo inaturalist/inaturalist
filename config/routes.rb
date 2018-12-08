@@ -155,6 +155,9 @@ Rails.application.routes.draw do
   
   resources :users, :except => [:new, :create] do
     resources :flags
+    collection do
+      get :recent
+    end
     member do
       put :join_test
       put :leave_test

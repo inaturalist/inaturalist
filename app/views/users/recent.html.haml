@@ -1,0 +1,47 @@
+.container
+  .row
+    .col-xs-12
+      .pull-right
+        %ul.nav.nav-pills
+          %li{ role: "presentation", class: @spam.yesish? ? "active" : nil }
+            = link_to t(:spam), url_for_params( spam: true, without: [:from] )
+          %li{ role: "presentation", class: @spam.noish? ? "active" : nil }
+            = link_to t(:not_spam), url_for_params( spam: false, without: [:from] )
+          %li{ role: "presentation", class: @spam == "unknown" || @spam.nil? ? "active" : nil }
+            = link_to t(:unknown), url_for_params( spam: "unknown", without: [:from] )
+      %h2=t :recent_users
+      - if @users.blank?
+        .alert.alert-warning=t :no_more_results_found
+      - else
+        %table.table
+          %thead
+            %tr
+              %th=t :user
+              %th=t :created
+              %th=t :obs
+              %th=t :ids
+              %th=t :description
+              %th=t :actions
+          %tbody
+            - for user in @users
+              %tr
+                %td.nobr
+                  = link_to_user user do
+                    = user_image( user, size: "thumb" )
+                  = link_to_user user
+                %td=l user.created_at
+                %td= link_to user.observations_count, observations_path( user_id: user.login, verifiable: "any", place_id: "any" )
+                %td= link_to user.identifications_count, identifications_path( user_id: user.login )
+                %td= formatted_user_text( user.description )
+                %td
+                  - unless user.spammer?
+                    = link_to t(:flag_as_spammer), set_spammer_path( user, spammer: true ), method: :post, class: "btn btn-danger btn-block btn-sm"
+                  - unless user.known_non_spammer?
+                    = link_to t(:flag_as_non_spammer), set_spammer_path( user, spammer: false ), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }, class: "btn btn-success btn-block btn-sm"
+                  - if user.active?
+                    = link_to t(:suspend_user), suspend_user_path( user ), class: "btn btn-warning btn-block btn-sm"
+                  - elsif user.suspended?
+                    = link_to t(:unsuspend_user), unsuspend_user_path( user ), class: "btn btn-success btn-block btn-sm"
+      - if @users.size == @users.per_page
+        .text-center
+          = link_to t(:more), url_for( from: @users.last.id ), class: "btn btn-default"
