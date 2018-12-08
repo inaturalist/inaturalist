@@ -57,6 +57,22 @@ module ActionController
         end
       end
 
+      # Set instance variables on an instance that acts_as_spammable will use
+      # when checking with akismet. It seems like user_ip is the only one that's
+      # really required, which we set for all users anyway, so this probably
+      # isn't necessary, but it would probably help.
+      def check_spam( options = {} )
+        before_filter :set_akismet_params_on_record, only: options[:only], except: options[:except]
+
+        define_method( :set_akismet_params_on_record ) do
+          return if current_user && current_user.known_non_spammer?
+          return unless record = instance_variable_get( "@" + options[:instance].to_s )
+          record.acts_as_spammable_user_ip = Logstasher.ip_from_request_env( request.env )
+          record.acts_as_spammable_user_agent = request.user_agent
+          record.acts_as_spammable_referrer = request.referrer
+        end
+      end
+
     end
   end
 end

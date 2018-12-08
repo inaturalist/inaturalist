@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
   blocks_spam :only => load_only - [ :set_spammer ], :instance => :user
+  check_spam only: [:create, :update], instance: :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation, :merge]
   before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]

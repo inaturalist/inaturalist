@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
   load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
   before_filter :load_project, except: load_except
   blocks_spam except: load_except, instance: :project
+  check_spam only: [:create, :update], instance: :project
   before_filter :ensure_current_project_url, only: :show
   before_filter :load_project_user,
     except: [ :index, :search, :new_traditional, :by_login, :new, :feature, :unfeature ]
