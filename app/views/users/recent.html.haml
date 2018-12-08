@@ -32,7 +32,7 @@
                 %td=l user.created_at
                 %td= link_to user.observations_count, observations_path( user_id: user.login, verifiable: "any", place_id: "any" )
                 %td= link_to user.identifications_count, identifications_path( user_id: user.login )
-                %td= formatted_user_text( user.description )
+                %td= truncate_with_more( formatted_user_text( user.description ), length: 500 )
                 %td
                   - unless user.spammer?
                     = link_to t(:flag_as_spammer), set_spammer_path( user, spammer: true ), method: :post, class: "btn btn-danger btn-block btn-sm"
@@ -44,4 +44,4 @@
                     = link_to t(:unsuspend_user), unsuspend_user_path( user ), class: "btn btn-success btn-block btn-sm"
       - if @users.size == @users.per_page
         .text-center
-          = link_to t(:more), url_for( from: @users.last.id ), class: "btn btn-default"
+          = link_to t(:more), url_for_params( from: @users.last.id ), class: "btn btn-default"
