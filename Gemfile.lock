@@ -315,7 +315,7 @@ GEM
     flickraw (0.9.9)
     flickraw-cached (20120701)
       flickraw (>= 0.9)
-    friendly_id (5.1.0)
+    friendly_id (5.2.4)
       activerecord (>= 4.0.0)
     geocoder (1.2.7)
     geoplanet (0.2.7)
@@ -690,7 +690,7 @@ DEPENDENCIES
   faker
   fastimage
   flickraw-cached
-  friendly_id (~> 5.1.0)
+  friendly_id (~> 5.2.4)
   gdata!
   geocoder
   geoplanet
