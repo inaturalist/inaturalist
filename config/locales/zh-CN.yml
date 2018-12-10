@@ -542,6 +542,7 @@ zh-CN:
   at_time: 在 %{time}
   atom: 原子
   attribute: 属性
+  attribution: 署名
   authority_list:
     iucn_red_list: IUCN红色名录
   authorize_permissions_from_provider: 来自%{provider}的授权权限
@@ -813,6 +814,7 @@ zh-CN:
   comparing_list_to_list: 比较 %{list1} 与 %{list2}
   comparing_versions_x_and_y: 比较版本 %{x} 和 %{y}
   comparing_observations_from: 比较 %{user} 在 %{dates} 做出的观察
+  complete: 完成
   complete_sets: 完整集
   compiled_by_name: 由 %{name} 编译
   completed: 已完成
@@ -1049,6 +1051,7 @@ zh-CN:
   desription: 描述
   destroy: 破坏
   details: 详情
+  deviations: 偏差
   devise:
     failure:
       user:
@@ -1059,6 +1062,7 @@ zh-CN:
   did_not_send_invitations_because: 未向以下地址发送邀请，因为...
   did_you_mean: 您是不是要找
   did_you_photos_flickr?: 您在Flickr上放照片了么？
+  disable: 停用
   disagree: 不同意
   disagree_: 不同意
   disconnect_provider: 取消连接 %{provider}
@@ -1086,6 +1090,7 @@ zh-CN:
   download_csv: 下载CSV
   download_csv_template: 下载CSV模板
   download_kml: 下载KML
+  downstream_coverage: 下游覆盖
   drag_and_drop_photos: 请将照片拖拽到这一窗口，或者
   draft: 草稿
   draft_: 草稿
@@ -2188,6 +2193,7 @@ zh-CN:
   no_ones_observed: 没有人进行过观察
   no_photo: 没有照片
   no_photos: 无照片
+  no_photos_of_that_size: 没有那种尺寸大小的照片
   no_places_available: 没有可用的地点
   no_places_selected: 没有选择地点。
   no_post_yet: 尚无帖子！
@@ -2223,11 +2229,13 @@ zh-CN:
   no_x_this_y: 不是%{x}这个%{y}
   noble_curators: '%{site}的博物馆长'
   non_human?: 非人类？
+  non_internal_taxon: 非内分类群
   none: 无
   none_found: 未找到
   normal: 一般
   not_absent: 毫不稀有
   not_completed: 未完成
+  not_covered_by_any_taxon_frameworks: 没有被任何分类单元所覆盖
   not_evaluated: 未评估
   not_filtering: 未过滤
   not_findig_what_you_want: 找不到您想找的东西么？
@@ -2839,6 +2847,7 @@ zh-CN:
   rank_position: 排名
   rank_restrictions: 排名限制
   ranks:
+    stateofmatter: 事件的国家
     kingdom: 界
     subkingdom: 亚界
     phylum: 门
@@ -2924,6 +2933,17 @@ zh-CN:
   reject_the_community_id: 拒绝社群ID
   related_species: 相关物种
   relative_observations: 相关观察
+  relationship: 关联
+  relationships:
+    match: 比赛
+    one_to_one: 一对一
+    alternate_position: 交替位置
+    many_to_many: 多对多
+    many_to_one: 多对一
+    one_to_many: 一对多
+    not_external: 非外部
+    not_internal: 非外部
+    unknown: 未知
   reload_and_refresh: 重新加载和刷新列表
   reload_from_observations: 从观察里重新加载
   reload_timed_out: 加载超时。请过一会再试。
@@ -3428,6 +3448,8 @@ zh-CN:
   taxon_colors: 分类单元颜色
   taxon_curators: 物种馆长
   taxon_extras: 分类单元额外值
+  taxon_framework_notes: 分类单元注释
+  taxon_framework_relationship_for: 类群框架关系
   taxon_links: 分类单元链接
   taxon_merge: 分类单元合并
   taxon_name: 分类单元名称
@@ -3465,6 +3487,7 @@ zh-CN:
   taxonomic_status: 分类状态
   taxonomic_tags_for_flickr: Flickr的分类学标签
   taxonomic_tree_browser: 分类树浏览器
+  taxonomy_details_for: 分类细节
   taxonomy_settings: 分类学设置
   tell_everyone_a_little_about_you: 向大家介绍您自己
   tell_the_world_a_little_about_yourself: 告诉我们有关您自己
@@ -4178,6 +4201,9 @@ zh-CN:
           are_you_planning_on_using_in_the_classroom: 您打算在教室中使用%{site_name}么？
           community_guidelines_html: <a href="%{url}">查阅社区指南</a>获得让iNaturalist持续成为一个友好并受欢迎的地方的提示。
           please_read_the_teachers_guide_html: 如果可以，请阅读我们的<a href="%{url}">教师指南</a>获得与学生使用%{site_name}的提示。
+    donate:
+      donate_short_desc: 帮助捐赠者支持捐赠！
+      post_donate_social_media_text: 我支持主义者！你也应该检查一下。
     guides:
       index:
         funding_html: 指南开发的资金由<a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>提供

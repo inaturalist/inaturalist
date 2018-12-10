@@ -467,6 +467,7 @@ de:
   allowed_html: Erlaubtes HTML
   allowed_occurrence_status_values: Erlaubte Vorkommensstatus-Werte
   allowed_values: Erlaubte Werte
+  almost_there_: Fast geschafft...
   alphabetical: Alphabetisch
   alphabetical_order: Alphabetische Reihenfolge
   already_have_an_account_log_in_html: Hast du schon einen Account? <strong>Anmelden</strong>
@@ -4005,6 +4006,7 @@ de:
   user_hasnt: '%{user} hat nicht'
   user_is_a_naturalist: '%{user} ist ein Naturalist!'
   user_muted: Benutzer gesperrt
+  user_observations: Benutzerbeobachtungen
   user_s_lists: Listen von %{user}
   user_suggested_an_id: '%{user} hat eine Bestimmung (ID) vorgeschlagen'
   username: Benutzername
@@ -4068,8 +4070,12 @@ de:
   view_place: Ort ansehen
   view_post: Eintrag anzeigen
   view_stats: Statistiken ansehen
+  view_taxon_change: Taxonänderung ansehen
   view_taxon_changes: Taxonänderungen ansehen
   view_taxon_page: Taxonseite ansehen
+  view_taxon_page_for: Taxonseite für dies ansehen
+  view_taxon_page_for_this_x: Taxonseite für dieses %{x} ansehen
+  view_taxonomic_changes: Taxonomische Änderungen ansehen
   view_the_observation: Die Beobachtung ansehen
   view_the_range: Den Bereich ansehen
   view_unidentified_observations: Nicht identifizierte Beobachtungen anzeigen...
@@ -4190,6 +4196,7 @@ de:
   x_doesnt: '%{login} hat nicht'
   x_flagged: '%{x} wurde gemeldet'
   x_flagged_as_flag: '%{x} wurde als %{flag} gemeldet'
+  x_hasnt: '%{login} hat nicht'
   x_journal: '%{user}#s Journal'
   x_journal_middot: '%{user}''s Journal •'
   x_journal_new_post: '%{user}''s Journal • Neuer Eintrag'
@@ -4210,6 +4217,7 @@ de:
   yes_i_want_to_join: JA, ich will beitreten
   yes_reject_it: Ja, ablehnen!
   yesterday: Gestern
+  yesterday_at: ', gestern um 16 Uhr'
   you: dir
   you_: Du
   you_admin: du administrierst
@@ -4253,6 +4261,8 @@ de:
     Bilder zu bearbeiten.
   you_faved_this: Du hast dies favorisiert!
   you_have_left_x_project: Du hast %{project} verlassen
+  you_have_to: Du musst
+  you_havent: Du hast nicht
   you_joined_this_project: Du bist diesem Projekt beigetreten!
   you_must_be_a_member_of_this_project_to_do_that: Du musst ein Mitglied dieses Projektes
     sein um dies tun zu können

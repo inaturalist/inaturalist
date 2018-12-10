@@ -914,6 +914,8 @@ zh-TW:
   copyright_info: 版權訊息
   copyright_info_and_more: 更多版權訊息
   copyright_infringement_desc: 違反版權法律，或由非由觀察者所創建並缺乏姓名標示。
+  covered_by_a_taxon_framework_html: 由%{link}涵蓋
+  covered_by_a_taxon_framework_link: '%{taxon_framework_rank} %{taxon_framework_name}的物種分類框架'
   couldnt_change_your_password: 無法更改您的密碼：%{e}
   couldnt_find_a_user_matching_x_param: 查無用戶符合 %{id}
   couldnt_find_that_taxon: 找不到分類。
@@ -1029,6 +1031,7 @@ zh-TW:
   default_photo_license: 預設照片許可權
   default_sound_license: 預設聲音許可權
   defaults_to_your_name_or_username: 預設成您的名稱或用戶名稱
+  defines_a_taxon_framework_for: 定義用於%{taxon_name}的物種分類群框架
   delete: 刪除
   delete_all: 刪除全部
   delete_conversation: 刪除對話
@@ -1344,7 +1347,9 @@ zh-TW:
   flag_this_photo: 標記此照片
   flagged: 已標記
   flagged_: 已標記
+  flagged_covered_taxa: 已標記的涵蓋物種分類
   flagged_for_curation: 已標記為策展
+  flagged_taxon: 已標記物種分類群
   flagged_thing_explanation: 用戶已標記此%{thing}因為
   flagger: 加旗號標記者
   flags: 標記
@@ -2268,6 +2273,7 @@ zh-TW:
   normal: 一般
   not_absent: 不缺失
   not_completed: 未完成
+  not_covered_by_any_taxon_frameworks: 未被任何物種分類框架涵蓋
   not_evaluated: 未評估
   not_filtering: 未篩選
   not_findig_what_you_want: 沒有找到您要的東西嗎？
@@ -2553,6 +2559,7 @@ zh-TW:
   photo_browser: 照片瀏覽
   photo_by: 照片提供由
   photo_by_id_attribution: 照片 %{id}， %{attribution}
+  photo_credits: 照片出處
   photo_deleted: 照片已刪除
   photo_destroyed_because_it_was_deleted_from: 照片已損毀，因為它被外部網站所刪除或 %{site_name} 不再有檢視它的權限
   photo_hosting_accounts: 照片託管帳號
@@ -3490,6 +3497,8 @@ zh-TW:
   taxon_colors: 物種分類色彩
   taxon_curators: 物種分類策展人
   taxon_extras: 物種分類附加
+  taxon_framework_relationship: 物種分類群框架關聯
+  taxon_framework_relationships: 物種分類群框架關聯
   taxon_links: 物種分類連結
   taxon_merge: 物種分類合併
   taxon_name: 物種分類名稱
@@ -3748,6 +3757,7 @@ zh-TW:
   unknown: 未知
   unknown_error: 不明錯誤
   unknown_rank: （未知級別）
+  unknown_taxon_framework_relationship: 未知的物種分類群框架關聯
   unfollow: 取消追蹤
   unlink_your_google_account: 取消連結您的 Google 帳號
   unmute: 取消禁言
@@ -4277,6 +4287,7 @@ zh-TW:
         <p class="text-muted">
           iNaturalist 為加利福尼亞州科學院與國家地理學會的聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
         </p>
+      post_donate_social_media_text: 我有對 iNaturalist 作出了支持！您也該試試看。
     guides:
       index:
         funding_html: 指南開發的資金由 <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
