@@ -34,7 +34,10 @@
     .col-xs-6
       #controls.pull-right
         %form.form-inline
-          - [:spammer, :obs, :ids, :description].each do |fp|
+          .form-group
+            %label{ for: "controls-spammer" }=t :spammer
+            = select_tag :spammer, options_for_select( %w(yes no unknown).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[:spammer] || "unknown" ), class: "form-control", id: "controls-spammer", data: { autosubmit: true }
+          - [:obs, :ids, :description].each do |fp|
             .form-group
               %label{ for: "controls-#{fp}" }=t fp
               = select_tag fp, options_for_select( %w(yes no any).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[fp] || "any" ), class: "form-control", id: "controls-#{fp}", data: { autosubmit: true }
