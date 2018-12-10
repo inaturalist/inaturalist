@@ -300,6 +300,7 @@ class Taxon < ActiveRecord::Base
     "chiton",
     "cicada",
     "gall",
+    "hong kong",
     "larva",
     "lichen",
     "lizard",

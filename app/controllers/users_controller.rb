@@ -647,16 +647,49 @@ class UsersController < ApplicationController
 
   def recent
     @users = User.order( "id desc" ).page( 1 ).per_page( 10 )
-    @spam = params[:spam]
-    if @spam.nil? || @spam == "unknown"
+    @spammer = params[:spammer]
+    if @spammer.nil? || @spammer == "unknown"
       @users = @users.where( "spammer IS NULL" )
-    elsif @spam.yesish?
+    elsif @spammer.yesish?
       @users = @users.where( "spammer" )
-    elsif @spam.noish?
+    elsif @spammer.noish?
       @users = @users.where( "NOT spammer" )
+    end
+    if params[:obs].yesish?
+      @users = @users.where( "observations_count > 0" )
+    elsif params[:obs].noish?
+      @users = @users.where( "observations_count = 0" )
+    end
+    if params[:ids].yesish?
+      @users = @users.where( "identifications_count > 0" )
+    elsif params[:ids].noish?
+      @users = @users.where( "identifications_count = 0" )
+    end
+    if params[:description].yesish?
+      @users = @users.where( "description IS NOT NULL AND description != ''" )
+    elsif params[:description].noish?
+      @users = @users.where( "description IS NULL OR description = ''" )
     end
     if params[:from].to_i > 0
       @users = @users.where( "id < ?", params[:from].to_i )
+    end
+    if params[:chart]
+      start_date = 3.months.ago.to_date
+      total_new_user_counts = User.where( "created_at > ?", start_date ).group( "created_at::date" ).count
+      new_automated_spam_flag_counts = Flag.
+        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND user_id = 0", start_date ).
+        group( "created_at::date" ).count
+      new_manual_spam_flag_counts = Flag.
+        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND user_id > 0", start_date ).
+        group( "created_at::date" ).count
+      @stats = ( start_date..Date.today ).map do |d|
+        {
+          date: d.to_s,
+          new_users: total_new_user_counts[d],
+          auto_spam: new_automated_spam_flag_counts[d],
+          manual_spam: new_manual_spam_flag_counts[d]
+        }
+      end
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }

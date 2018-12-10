@@ -1,15 +1,48 @@
+- content_for :title do
+  =t :recent_new_users
+- content_for :extracss do
+  :css
+    #controls { margin-top: 20px; }
+    #vis { height: 300px; }
+- content_for :extrajs do
+  = javascript_include_tag :stats
+  = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
+  - if @stats
+    :javascript
+      var STATS_JSON = #{ @stats.to_json.html_safe };
+      google.setOnLoadCallback( Stats.simpleChart( {
+        element_id: "vis",
+        chartType: google.visualization.AnnotationChart,
+        series: [
+          { label: "total new users" },
+          { label: "users automatically marked as spam" },
+          { label: "users manually marked as spam" },
+        ],
+        data: _.map( STATS_JSON, function( stat ) {
+          return [
+            new Date( stat.date ),
+            stat.new_users || 0,
+            stat.auto_spam || 0,
+            stat.manual_spam || 0
+          ];
+        })
+      }));
 .container
   .row
+    .col-xs-6
+      %h2=t :recent_new_users
+    .col-xs-6
+      #controls.pull-right
+        %form.form-inline
+          - [:spammer, :obs, :ids, :description].each do |fp|
+            .form-group
+              %label{ for: "controls-#{fp}" }=t fp
+              = select_tag fp, options_for_select( %w(yes no any).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[fp] || "any" ), class: "form-control", id: "controls-#{fp}", data: { autosubmit: true }
+          = link_to t(:reset), url_for, class: "btn btn-link"
+  .row
     .col-xs-12
-      .pull-right
-        %ul.nav.nav-pills
-          %li{ role: "presentation", class: @spam.yesish? ? "active" : nil }
-            = link_to t(:spam), url_for_params( spam: true, without: [:from] )
-          %li{ role: "presentation", class: @spam.noish? ? "active" : nil }
-            = link_to t(:not_spam), url_for_params( spam: false, without: [:from] )
-          %li{ role: "presentation", class: @spam == "unknown" || @spam.nil? ? "active" : nil }
-            = link_to t(:unknown), url_for_params( spam: "unknown", without: [:from] )
-      %h2=t :recent_users
+      - if @stats
+        #vis
       - if @users.blank?
         .alert.alert-warning=t :no_more_results_found
       - else
