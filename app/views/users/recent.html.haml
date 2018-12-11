@@ -15,15 +15,17 @@
         chartType: google.visualization.AnnotationChart,
         series: [
           { label: "total new users" },
-          { label: "users automatically marked as spam" },
-          { label: "users manually marked as spam" },
+          { label: "users automatically marked as spamers" },
+          { label: "users manually marked as spamers" },
+          { label: "users that are probably spammers" },
         ],
         data: _.map( STATS_JSON, function( stat ) {
           return [
             new Date( stat.date ),
             stat.new_users || 0,
             stat.auto_spam || 0,
-            stat.manual_spam || 0
+            stat.manual_spam || 0,
+            stat.probable_spam || 0
           ];
         })
       }));

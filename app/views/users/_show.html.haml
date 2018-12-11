@@ -86,9 +86,9 @@
         - else
           = t(:user_is_a_naturalist, :user => @user.login)
       - else
-        - if @user.spammer.nil?
+        - if @user.spammer.nil? && ( is_curator? || is_me?( @user ) )
           .alert.alert-warning
-            =t :profile_visibility_pending_account_verification
+            =t :profile_visibility_desc, site_name: @site.name
         - if @user.known_non_spammer? || is_curator? || is_me?( @user )
           - description = formatted_user_text( @user.description )
           %p.lead

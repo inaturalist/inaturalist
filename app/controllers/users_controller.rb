@@ -682,12 +682,18 @@ class UsersController < ApplicationController
       new_manual_spam_flag_counts = Flag.
         where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND user_id > 0", start_date ).
         group( "created_at::date" ).count
+      probable_spam_user_counts = User.
+        where( "spammer IS NULL" ).
+        where( "observations_count = 0 AND identifications_count = 0" ).
+        where( "description IS NOT NULL AND description != ''" ).
+        where( "created_at > ?", start_date ).group( "created_at::date" ).count
       @stats = ( start_date...Date.today ).map do |d|
         {
           date: d.to_s,
           new_users: total_new_user_counts[d],
           auto_spam: new_automated_spam_flag_counts[d],
-          manual_spam: new_manual_spam_flag_counts[d]
+          manual_spam: new_manual_spam_flag_counts[d],
+          probable_spam: probable_spam_user_counts
         }
       end
     end
