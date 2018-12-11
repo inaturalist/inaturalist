@@ -1,5 +1,5 @@
 - content_for :title do
-  = @title = @page.title
+  = @title = raw @page.title
 - content_for :extracss do
   = stylesheet_link_tag 'wiki'
 - content_for :extrajs do

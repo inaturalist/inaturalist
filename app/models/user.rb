@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   include ActsAsElasticModel
 
   acts_as_voter
-  acts_as_spammable :fields => [ :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :description ],
+                    comment_type: "signup"
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'

@@ -84,7 +84,7 @@ module ActiveRecord
         # If any of the rakismet fields have been modified, then
         # call the akismet API and update the flags on this object.
         # Flags are made with user_id = 0, representing automated flags
-        define_method(:check_for_spam) do
+        define_method(:check_for_spam) do |options = {}|
           return if default_life_list?
           # leveraging the new attribute `disabled`, which we set to
           # true if we are running tests. This can be overridden by using
@@ -101,6 +101,11 @@ module ActiveRecord
               elsif self.flagged_as_spam?
                 Flag.destroy_all(flaggable_id: self.id, flaggable_type: self.class,
                   user_id: 0, flag: Flag::SPAM, resolved: false)
+              elsif options[:retry].to_i < 2
+                delay(
+                  run_at: 15.minutes.from_now,
+                  unique_hash: { "#{self.class.name}::check_for_spam": id }
+                ).check_for_spam( retry: options[:retry].to_i + 1 )
               end
             end
           end
