@@ -693,7 +693,7 @@ class UsersController < ApplicationController
           new_users: total_new_user_counts[d],
           auto_spam: new_automated_spam_flag_counts[d],
           manual_spam: new_manual_spam_flag_counts[d],
-          probable_spam: probable_spam_user_counts
+          probable_spam: probable_spam_user_counts[d]
         }
       end
     end
