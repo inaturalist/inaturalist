@@ -23,7 +23,7 @@
         %p
           %a{ href: site.privacy_url }=t :privacy
       .col-xs-2
-        - if is_admin?
+        - if Site.default && @site && @site.id == Site.default.id
           = link_to t(:support_inaturalist), donate_path, class: "btn btn-inat btn-primary btn-block btn-donate"
         .social-media
           - unless site.facebook_url.blank?
