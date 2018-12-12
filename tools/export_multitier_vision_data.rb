@@ -58,8 +58,12 @@ ranks[1..-1].each do |i|
     end
   end
 end
-#enough_set = [enough.map{ |row| row[:taxon_id] },root.id].flatten.to_set
-enough_set = [enough.map{ |row| row[:taxon_id] }].flatten.to_set; nil
+if root.rank_level == Taxon::ROOT_LEVEL
+  enough_set = [enough.map{ |row| row[:taxon_id] }].flatten.to_set; nil
+else
+  enough_set = [enough.map{ |row| row[:taxon_id] },root.id].flatten.to_set
+end
+
 
 # Fetch the taxa
 taxa = Taxon.find( enough_set.to_a ); nil
@@ -150,7 +154,7 @@ unless root.rank_level == Taxon::ROOT_LEVEL
 end
 
 # Export the taxonomy
-CSV.open( "/home/inaturalist/taxonomy_data.csv", "wb" ) do |csv|
+CSV.open( "#{directory}/taxonomy_data.csv", "wb" ) do |csv|
   csv << ["parent_taxon_id", "taxon_id", "class_id", "rank_level", "name"]
   new_res.each do |row|
     csv << [ row[:ancestors].last, row[:id], class_hash[row[:id]], row[:rank_level].to_i, row[:name] ]
