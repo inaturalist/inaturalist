@@ -11078,6 +11078,7 @@ I18n.translations["en"] = {
   "has_sounds": "Has Sounds",
   "heads_up": "Heads up",
   "here_are_our_top_species_suggestions": "Here are our top species suggestions",
+  "hide_running_total": "Hide Running Total",
   "hide_uncountable_species": "Hide Uncountable Species",
   "high": "High",
   "history": "History",
@@ -11290,8 +11291,10 @@ I18n.translations["en"] = {
   "new": "New",
   "new_and_noteworthy": "New & Noteworthy",
   "new_observation_field": "New observation field",
-  "new_species_observed_this_year": "New Species Observed This Year",
-  "newly_observed": "Newly Observed",
+  "new_species_observed_in_interval": "New Species Observed In %{interval}",
+  "new_species_observed_in_interval_x_of_y": "New Species Observed In %{interval} (Showing %{x} of %{y})",
+  "newly_added": "Newly Added",
+  "newly_added_species": "Newly Added Species",
   "news": "News",
   "next": "Next",
   "next_observation": "Next Observation",
@@ -11695,6 +11698,7 @@ I18n.translations["en"] = {
   "show": "Show",
   "show_keyboard_shortcuts": "Show Keyboard Shortcuts",
   "show_relative_proportions_of_all_observations": "Show relative proportions of all observations",
+  "show_running_total": "Show Running Total",
   "show_taxa_from_everywhere": "Show taxa from everywhere",
   "show_taxa_from_place": "Show taxa from %{place}",
   "show_total_counts": "Show total counts",
@@ -11724,7 +11728,6 @@ I18n.translations["en"] = {
   "source_wikipedia": "Source: Wikipedia",
   "spam": "Spam",
   "species": "Species",
-  "species_accumulation": "Species Accumulation",
   "species_by_category": "species by category",
   "species_name_cap": "Species name",
   "species_unknown": "Species unknown",
@@ -11987,8 +11990,7 @@ I18n.translations["en"] = {
         "recent_w_7_obs": "Recent w/ >= 7 obs"
       },
       "year": {
-        "accumulation_desc_html": "This chart shows species observed in verifiable observations over\ntime. It does not include higher or lower level taxa, so an\nobservation identified as Mammalia doesn't count, and an observation\nof <i>Canis lupus</i> ssp. <i>arctos</i> will just count as\n<i>Canis lupus</i>.\n",
-        "new_species_desc": "Species that were observed for the first time on %{site_name} this year.\nShowing %{x} of <a href=\"%{url}\">%{y} species</a>.\n",
+        "new_species_desc_html": "Species that were added for the first time on %{site_name} this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
         "publications_desc_html": "Impact data and visualizations courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }

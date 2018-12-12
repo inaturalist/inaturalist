@@ -43,7 +43,7 @@ const App = ( {
     body = (
       <div>
         <center>
-          <a href="#sharing" className="btn btn-default btn-share">
+          <a href="#sharing" className="btn btn-default btn-share btn-bordered">
             { I18n.t( "share" ) }
             { " " }
             <i className="fa fa-share-square-o" />
@@ -176,7 +176,7 @@ const App = ( {
             <div id="view-stats-buttons">
               { !currentUser || !user || ( user.id !== currentUser.id ) ? (
                 <div>
-                  <a href={`/stats/${year}/you`} className="btn btn-default">
+                  <a href={`/stats/${year}/you`} className="btn btn-default btn-bordered">
                     <i className="fa fa-pie-chart" />
                     { " " }
                     { I18n.t( "view_your_year_stats", { year } ) }
@@ -185,7 +185,7 @@ const App = ( {
               ) : null }
               { user ? (
                 <div>
-                  <a href={`/stats/${year}`} className="btn btn-default">
+                  <a href={`/stats/${year}`} className="btn btn-default btn-bordered">
                     <i className="fa fa-bar-chart-o" />
                     { " " }
                     { I18n.t( "view_year_stats_for_site", { year, site: site.name } ) }

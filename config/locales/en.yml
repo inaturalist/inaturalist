@@ -1528,6 +1528,7 @@ en:
   hi_user: "Hi %{user}"
   hide: Hide
   hide_details: Hide Details
+  hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
   high: High
   highest_rank: Highest Rank
@@ -2192,7 +2193,8 @@ en:
   new_project_asset: New project_asset
   new_project_asset_for: New Project Asset for
   new_source: New Source
-  new_species_observed_this_year: New Species Observed This Year
+  new_species_observed_in_interval: New Species Observed In %{interval}
+  new_species_observed_in_interval_x_of_y: New Species Observed In %{interval} (Showing %{x} of %{y})
   new_taxon_change: New taxon change
   new_taxon_link: New Taxon Link
   new_taxon_name: New taxon name
@@ -2205,7 +2207,8 @@ en:
   new_users: New Users
   new_users_w_7_obs: New Users w/ 7 Obs
   new_users_week: New Users / Week
-  newly_observed: Newly Observed
+  newly_added: Newly Added
+  newly_added_species: Newly Added Species
   news: News
   next: Next
   next_observation: Next Observation
@@ -3301,6 +3304,7 @@ en:
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
   show_relative_proportions_of_all_observations: Show relative proportions of all observations
+  show_running_total: Show Running Total
   show_scientific_name_first: Show scientific names first
   show_taxa_from_both: (show taxa from both lists)
   show_taxa_from_everywhere: "Show taxa from everywhere"
@@ -3428,7 +3432,6 @@ en:
   spam: Spam
   spanish: Spanish
   species: Species
-  species_accumulation: Species Accumulation
   species_by_category: species by category
   species_from_around_the_world: Species from around the world
   species_guess: species guess
@@ -5621,12 +5624,16 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
-        accumulation_desc_html: |
-          This chart shows species observed in verifiable observations over
-          time. It does not include higher or lower level taxa, so an
-          observation identified as Mammalia doesn't count, and an observation
-          of <i>Canis lupus</i> ssp. <i>arctos</i> will just count as
-          <i>Canis lupus</i>.
+        new_species_desc_html: |
+          Species that were added for the first time on %{site_name} this year.
+          Click on a month to view some of the new species added in that month.
+          You can also view the total species accumulation, or move the slider
+          back in time to see other newly observed species. This chart shows
+          species from verifiable observations by the month they were uploaded
+          to %{site_name} (not the month they were observed). It does not
+          include higher or lower level taxa, so an observation identified as
+          Mammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.
+          <i>arctos</i> will just count as <i>Canis lupus</i>.
         publications_desc_html: |
           Impact data and visualizations courtesy of
           <a href="https://www.altmetric.com">Altmetric</a>. Information

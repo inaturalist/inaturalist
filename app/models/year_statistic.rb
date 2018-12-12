@@ -54,8 +54,7 @@ class YearStatistic < ActiveRecord::Base
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, options ),
         iconic_taxa_counts: iconic_taxa_counts( year, options ),
-        accumulation: accumulation,
-        new_species_observations: new_species_observations( year, accumulation, options )
+        accumulation: accumulation
       }
     }
     if options[:site].blank?
@@ -102,8 +101,7 @@ class YearStatistic < ActiveRecord::Base
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
         tree_taxa: tree_taxa( year, user: user ),
-        accumulation: accumulation,
-        new_species_observations: new_species_observations( year, accumulation, user: user )
+        accumulation: accumulation
       }
     }
     year_statistic.update_attributes( data: json )
@@ -583,7 +581,7 @@ class YearStatistic < ActiveRecord::Base
   def self.observed_species_accumulation( params = { } )
     # params = { year: year }
     interval = params.delete(:interval) || "month"
-    date_field = params.delete(:date_field) || "observed_on"
+    date_field = params.delete(:date_field) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
     params[:quality_grade] =  params[:quality_grade] || "research,needs_id"
     if site = params[:site]
@@ -637,62 +635,6 @@ class YearStatistic < ActiveRecord::Base
         novel_species_ids: interval[:novel_species_ids]
       }
     end
-  end
-
-  def self.new_species_observations( year, accumulation, options = {} )
-    taxon_ids = []
-    accumulation.each do |interval|
-      next unless interval[:date].index( "#{year}-" ) == 0
-      taxon_ids += interval[:novel_species_ids]
-    end
-    taxon_ids = taxon_ids.uniq[0..100]
-    if user = options.delete(:user)
-      options[:user_id] = user.id
-    end
-    if site = options.delete(:site)
-      if site.place
-        options[:place_id] = site.place.id
-      else
-        options[:site_id] = site.id
-      end
-    end
-    params = options.merge( year: year, has_photos: true, verifiable: true, taxon_ids: taxon_ids.join( "," ) )
-    es_params = Observation.params_to_elastic_query( params )
-    es_params_with_sort = es_params.merge(
-      sort: [
-        { "id": "asc" }
-      ]
-    )
-    r = Observation.elastic_search( es_params_with_sort ).per_page( 200 ).response
-    ids = r.hits.hits.uniq{|h| h._source.taxon.min_species_ancestry}.map{|h| h._source.id }
-    return [] if ids.blank?
-    api_params = {
-      id: ids,
-      per_page: 20,
-      order: "asc",
-      order_by: "observed_on"
-    }
-    if user
-      if place = user.place || user.site.try(:place)
-        api_params[:preferred_place_id] = place.id
-      end
-      if locale = user.locale || user.site.try(:locale)
-        api_params[:locale] = locale
-      end
-    elsif site
-      if place = site.place
-        api_params[:preferred_place_id] = place.id
-      end
-      if locale = site.locale
-        api_params[:locale] = locale
-      end
-    end
-      
-    JSON.
-        parse( INatAPIService.get_json( "/observations", api_params, { timeout: 30 } ) )["results"].
-        each_with_index.map do |o,i|
-      o.select{|k,v| %w(id taxon community_taxon user photos comments_count cached_votes_total observed_on).include?( k ) }
-    end.compact
   end
 
   def self.publications( year, options )

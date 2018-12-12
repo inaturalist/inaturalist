@@ -7,14 +7,200 @@ import _ from "lodash";
 import * as d3 from "d3";
 import d3tip from "d3-tip";
 import legend from "d3-svg-legend";
+import { objectToComparable } from "../../../shared/util";
 
 class DateHistogram extends React.Component {
+  constructor( props ) {
+    super( props );
+    this.state = {
+      width: null,
+      height: null,
+      x: null,
+      y: null,
+      clipID: null,
+      tip: null
+    };
+  }
+
   componentDidMount( ) {
     this.renderHistogram( );
   }
 
-  componentDidUpdate( ) {
-    this.renderHistogram( );
+  shouldComponentUpdate( nextProps ) {
+    const { series } = this.props;
+    return objectToComparable( nextProps.series ) !== objectToComparable( series );
+  }
+
+  componentDidUpdate( prevProps ) {
+    const { series } = this.props;
+    if ( objectToComparable( prevProps.series ) !== objectToComparable( series ) ) {
+      this.enterSeries( );
+    }
+  }
+
+  colorForSeries( seriesName ) {
+    const { series } = this.props;
+    const color = d3.scaleOrdinal( d3.schemeCategory10 );
+    if ( series[seriesName] && series[seriesName].color ) {
+      return series[seriesName].color;
+    }
+    return color( seriesName );
+  }
+
+  enterSeries( newState = {} ) {
+    const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    const svg = d3.select( mountNode ).select( "svg" );
+    const { series, onClick } = this.props;
+    const {
+      width,
+      height,
+      x,
+      y,
+      clipID,
+      tip
+    } = Object.assign( {}, this.state, newState );
+    if ( !x ) {
+      return;
+    }
+    const parseTime = d3.isoParse;
+    const localSeries = {};
+    _.forEach( series, ( s, seriesName ) => {
+      localSeries[seriesName] = _.map( s.data, d => Object.assign( {}, d, {
+        date: parseTime( d.date ),
+        value: d.value,
+        offset: d.offset,
+        seriesName
+      } ) );
+    } );
+    const combinedData = _.flatten( _.values( localSeries ) );
+    y.domain( d3.extent( combinedData, d => d.value ) );
+    const line = d3.line( )
+      .x( d => x( d.date ) )
+      .y( d => y( d.value ) );
+    const focus = svg.select( ".focus" );
+    const seriesGroups = focus.selectAll( ".series" ).data( _.keys( localSeries ), d => d );
+    seriesGroups.enter( )
+      .append( "g" )
+        .attr( "style", `clip-path: url(#${clipID})` )
+        .attr( "class", d => `series ${_.snakeCase( d )}` );
+    seriesGroups.exit( ).remove( );
+    _.forEach( localSeries, ( seriesData, seriesName ) => {
+      const seriesGroup = focus.select( `.${_.snakeCase( seriesName )}` );
+      if ( series[seriesName].style === "bar" ) {
+        const bars = seriesGroup.selectAll( "rect" ).data( seriesData );
+        // update selection, these things happens when the data changes
+        bars
+          .attr( "width", ( d, i ) => {
+            let nextX = width;
+            if ( seriesData[i + 1] ) {
+              nextX = x( seriesData[i + 1].date );
+            }
+            return nextX - x( d.date );
+          } )
+          .attr( "height", d => height - y( d.value ) )
+          .attr( "transform", d => {
+            if ( d.offset ) {
+              return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
+            }
+            return `translate( ${x( d.date )}, ${y( d.value )} )`;
+          } );
+        const barsEnter = bars.enter( )
+            .append( "rect" )
+              .attr( "width", ( d, i ) => {
+                let nextX = width;
+                if ( seriesData[i + 1] ) {
+                  nextX = x( seriesData[i + 1].date );
+                }
+                return nextX - x( d.date );
+              } )
+              .attr( "height", d => height - y( d.value ) )
+              .attr( "transform", d => {
+                if ( d.offset ) {
+                  return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
+                }
+                return `translate( ${x( d.date )}, ${y( d.value )} )`;
+              } )
+              .attr( "fill", this.colorForSeries( seriesName ) )
+              .on( "mouseover", tip.show )
+              .on( "mouseout", tip.hide );
+        bars.exit( ).remove( );
+        if ( onClick ) {
+          barsEnter.on( "click", onClick ).style( "cursor", "pointer" );
+        }
+      } else {
+        seriesGroup.append( "path" ).datum( seriesData )
+            .attr( "fill", "none" )
+            .attr( "stroke", this.colorForSeries( seriesName ) )
+            .attr( "stroke-linejoin", "round" )
+            .attr( "stroke-linecap", "round" )
+            .attr( "stroke-width", 1.5 )
+            .attr( "d", line );
+        const points = seriesGroup.selectAll( "circle" ).data( seriesData )
+          .enter().append( "circle" )
+            .attr( "cx", d => x( d.date ) )
+            .attr( "cy", d => y( d.value ) )
+            .attr( "r", 2 )
+            .attr( "fill", "white" )
+            .style( "stroke", ( ) => this.colorForSeries( seriesName ) )
+            .on( "mouseover", tip.show )
+            .on( "mouseout", tip.hide );
+        if ( onClick ) {
+          points.on( "click", onClick ).style( "cursor", "pointer" );
+        }
+      }
+    } );
+    const legendScale = d3.scaleOrdinal( )
+      .domain( _.keys( localSeries ) )
+      .range( _.map( localSeries, ( v, k ) => this.colorForSeries( k ) ) );
+    const legendOrdinal = legend.legendColor()
+      .labels( _.map( series, ( v, k ) => ( v.title || k ) ) )
+      .classPrefix( "legend" )
+      .shape( "path", d3.symbol( ).type( d3.symbolCircle ).size( 100 )( ) )
+      .shapePadding( 5 )
+      .scale( legendScale );
+    svg.select( ".legendOrdinal" )
+      .call( legendOrdinal );
+    this.setState( { x, y } );
+  }
+
+  rescaleSeries( newState ) {
+    const mountNode = $( ".chart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    const { series } = this.props;
+    const localSeries = {};
+    const parseTime = d3.isoParse;
+    const {
+      width,
+      x,
+      y
+    } = Object.assign( {}, this.state, newState );
+    if ( !x ) {
+      return;
+    }
+    _.forEach( series, ( s, seriesName ) => {
+      localSeries[seriesName] = _.map( s.data, d => Object.assign( {}, d, {
+        date: parseTime( d.date ),
+        value: d.value,
+        offset: d.offset,
+        seriesName
+      } ) );
+    } );
+    _.forEach( localSeries, ( seriesData, seriesName ) => {
+      const seriesClass = _.snakeCase( seriesName );
+      d3.select( mountNode ).selectAll( `.focus .${seriesClass} rect` )
+        .attr( "width", ( d, i ) => {
+          let nextX = width;
+          if ( seriesData[i + 1] ) {
+            nextX = x( seriesData[i + 1].date );
+          }
+          return Math.max( nextX - x( d.date ), 0 );
+        } )
+        .attr( "transform", d => {
+          if ( d.offset ) {
+            return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
+          }
+          return `translate( ${x( d.date )}, ${y( d.value )} )`;
+        } );
+    } );
   }
 
   renderHistogram( ) {
@@ -46,7 +232,6 @@ class DateHistogram extends React.Component {
     let height = $( "svg", mountNode ).height( ) - margin.top - margin.bottom;
     if ( showContext ) {
       height -= height2;
-      height -= space;
     }
     const margin2 = {
       top: height + space,
@@ -82,9 +267,6 @@ class DateHistogram extends React.Component {
     } );
     const x = d3.scaleTime( ).rangeRound( [0, width] );
     const y = d3.scaleLinear( ).rangeRound( [height, 0] );
-    const line = d3.line( )
-      .x( d => x( d.date ) )
-      .y( d => y( d.value ) );
 
     const combinedData = _.flatten( _.values( localSeries ) );
     x.domain( d3.extent( combinedData, d => d.date ) );
@@ -119,63 +301,14 @@ class DateHistogram extends React.Component {
       } );
     svg.call( tip );
 
-    const color = d3.scaleOrdinal( d3.schemeCategory10 );
-    const colorForSeries = seriesName => {
-      if ( series[seriesName] && series[seriesName].color ) {
-        return series[seriesName].color;
-      }
-      return color( seriesName );
+    const newState = {
+      width,
+      height,
+      x,
+      y,
+      clipID,
+      tip
     };
-    _.forEach( localSeries, ( seriesData, seriesName ) => {
-      const seriesGroup = g.append( "g" )
-        .attr( "style", `clip-path: url(#${clipID})` )
-        .attr( "class", "series" );
-      seriesGroup.classed( _.snakeCase( seriesName ), true );
-      if ( series[seriesName].style === "bar" ) {
-        const bars = seriesGroup.selectAll( "rect" ).data( seriesData )
-          .enter( ).append( "rect" )
-            .attr( "width", ( d, i ) => {
-              let nextX = width;
-              if ( seriesData[i + 1] ) {
-                nextX = x( seriesData[i + 1].date );
-              }
-              return nextX - x( d.date );
-            } )
-            .attr( "height", d => height - y( d.value ) )
-            .attr( "fill", colorForSeries( seriesName ) )
-            .attr( "transform", d => {
-              if ( d.offset ) {
-                return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
-              }
-              return `translate( ${x( d.date )}, ${y( d.value )} )`;
-            } )
-            .on( "mouseover", tip.show )
-            .on( "mouseout", tip.hide );
-        if ( onClick ) {
-          bars.on( "click", onClick ).style( "cursor", "pointer" );
-        }
-      } else {
-        seriesGroup.append( "path" ).datum( seriesData )
-            .attr( "fill", "none" )
-            .attr( "stroke", colorForSeries( seriesName ) )
-            .attr( "stroke-linejoin", "round" )
-            .attr( "stroke-linecap", "round" )
-            .attr( "stroke-width", 1.5 )
-            .attr( "d", line );
-        const points = seriesGroup.selectAll( "circle" ).data( seriesData )
-          .enter().append( "circle" )
-            .attr( "cx", d => x( d.date ) )
-            .attr( "cy", d => y( d.value ) )
-            .attr( "r", 2 )
-            .attr( "fill", "white" )
-            .style( "stroke", ( ) => colorForSeries( seriesName ) )
-            .on( "mouseover", tip.show )
-            .on( "mouseout", tip.hide );
-        if ( onClick ) {
-          points.on( "click", onClick ).style( "cursor", "pointer" );
-        }
-      }
-    } );
 
     svg.append( "g" )
       .attr( "class", "legendOrdinal" )
@@ -185,18 +318,9 @@ class DateHistogram extends React.Component {
         }
         return `translate(${width - 20},20)`;
       } );
-    const legendScale = d3.scaleOrdinal( )
-      .domain( _.keys( localSeries ) )
-      .range( _.map( localSeries, ( v, k ) => colorForSeries( k ) ) );
-    const legendOrdinal = legend.legendColor()
-      .labels( _.map( series, ( v, k ) => ( v.title || k ) ) )
-      .classPrefix( "legend" )
-      .shape( "path", d3.symbol( ).type( d3.symbolCircle ).size( 100 )( ) )
-      .shapePadding( 5 )
-      .scale( legendScale );
-    svg.select( ".legendOrdinal" )
-      .call( legendOrdinal );
-
+    this.setState( newState );
+    this.enterSeries( newState );
+    
     // Zoom and Brush
     if ( showContext ) {
       const x2 = d3.scaleTime( ).rangeRound( [0, width] );
@@ -204,30 +328,12 @@ class DateHistogram extends React.Component {
       x2.domain( d3.extent( combinedData, d => d.date ) );
       y2.domain( d3.extent( combinedData, d => d.value ) );
       const focus = g;
-      const rescaleSeries = ( ) => {
-        _.forEach( localSeries, ( seriesData, seriesName ) => {
-          const seriesClass = _.snakeCase( seriesName );
-          focus.selectAll( `.${seriesClass} rect` )
-            .attr( "width", ( d, i ) => {
-              let nextX = width;
-              if ( seriesData[i + 1] ) {
-                nextX = x( seriesData[i + 1].date );
-              }
-              return Math.max( nextX - x( d.date ), 0 );
-            } )
-            .attr( "transform", d => {
-              if ( d.offset ) {
-                return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
-              }
-              return `translate( ${x( d.date )}, ${y( d.value )} )`;
-            } );
-        } );
-      };
       const zoomed = ( ) => {
         if ( d3.event.sourceEvent && d3.event.sourceEvent.type === "brush" ) return; // ignore zoom-by-brush
         const t = d3.event.transform;
         x.domain( t.rescaleX( x2 ).domain( ) );
-        rescaleSeries( );
+        this.setState( { x } );
+        this.rescaleSeries( );
         focus.select( ".axis--x" ).call( axisBottom );
         context.select( ".brush" ).call( brush.move, x.range( ).map( t.invertX, t ) );
       };
@@ -240,7 +346,8 @@ class DateHistogram extends React.Component {
         if ( d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom" ) return; // ignore brush-by-zoom
         const s = d3.event.selection || x2.range();
         x.domain( s.map( x2.invert, x2 ) );
-        rescaleSeries( );
+        this.setState( { x } );
+        this.rescaleSeries( { x, y } );
         focus.select( ".axis--x" ).call( axisBottom );
         svg.select( ".zoom" ).call(
           zoom.transform,
@@ -263,7 +370,7 @@ class DateHistogram extends React.Component {
             return nextX - x( d.date );
           } )
           .attr( "height", d => height2 - y2( d.value ) )
-          .attr( "fill", colorForSeries( contextSeriesName ) )
+          .attr( "fill", this.colorForSeries( contextSeriesName ) )
           .attr( "transform", d => {
             if ( d.offset ) {
               return `translate( ${x( d.date )}, ${y2( d.value + d.offset )} )`;
