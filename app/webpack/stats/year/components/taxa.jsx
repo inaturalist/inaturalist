@@ -26,7 +26,7 @@ const Taxa = ( {
       } ) ),
       style: "bar",
       color: grayColor,
-      label: d => `<strong>${moment( d.date ).add( 1, "month" ).format( "MMMM" )}</strong>: ${d.value}`
+      label: d => `<strong>${moment( d.date ).add( 1, "month" ).format( "MMMM YYYY" )}</strong>: ${I18n.t( "x_species", { count: d.value } )}`
     };
     series.novel = {
       title: I18n.t( "newly_observed" ),
@@ -37,15 +37,20 @@ const Taxa = ( {
         offset: i.accumulated_taxa_count - i.novel_taxon_ids.length
       } ) ),
       style: "bar",
-      label: d => `<strong>${moment( d.date ).add( 1, "month" ).format( "MMMM" )}</strong>: ${d.value}`
+      label: d => `<strong>${moment( d.date ).add( 1, "month" ).format( "MMMM YYYY" )}</strong>: ${I18n.t( "x_new_species", { count: d.value } )}`
     };
     accumulation = (
       <div>
-        <h1>{ I18n.t( "new_species_this_year" ) }</h1>
+        <h3><span>{ I18n.t( "species_accumulation" ) }</span></h3>
+        <p
+          className="text-muted"
+          dangerouslySetInnerHTML={{ __html: I18n.t( "views.stats.year.accumulation_desc_html" ) }}
+        />
         <DateHistogram
+          id="accumulation"
           series={series}
-          tickFormatBottom={d => moment( d ).format( "MMM 'YY" )}
           legendPosition="nw"
+          showContext
           onClick={d => {
             if ( d.seriesName === "accumulated" ) {
               return false;
@@ -59,7 +64,7 @@ const Taxa = ( {
             window.open( url, "_blank" );
             return false;
           }}
-          // xExtent={[moment( `${year}-02-01` ), moment( `${year + 1}-01-01` )]}
+          xExtent={[new Date( `${year}-01-01` ), new Date( `${year}-12-31` )]}
         />
       </div>
     );
