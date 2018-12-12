@@ -6,6 +6,7 @@ import moment from "moment";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import DateHistogram from "./date_histogram";
 import TaxaSunburst from "./taxa_sunburst";
+import ObservationsGrid from "./observations_grid";
 
 const Taxa = ( {
   user,
@@ -22,7 +23,7 @@ const Taxa = ( {
       title: I18n.t( "running_total" ),
       data: _.map( data.accumulation, i => ( {
         date: i.date,
-        value: i.accumulated_taxa_count
+        value: i.accumulated_species_count
       } ) ),
       style: "bar",
       color: grayColor,
@@ -32,9 +33,9 @@ const Taxa = ( {
       title: I18n.t( "newly_observed" ),
       data: _.map( data.accumulation, i => ( {
         date: i.date,
-        value: i.novel_taxon_ids.length,
-        novel_taxon_ids: i.novel_taxon_ids,
-        offset: i.accumulated_taxa_count - i.novel_taxon_ids.length
+        value: i.novel_species_ids.length,
+        novel_species_ids: i.novel_species_ids,
+        offset: i.accumulated_species_count - i.novel_species_ids.length
       } ) ),
       style: "bar",
       label: d => `<strong>${moment( d.date ).add( 1, "month" ).format( "MMMM YYYY" )}</strong>: ${I18n.t( "x_new_species", { count: d.value } )}`
@@ -56,7 +57,7 @@ const Taxa = ( {
               return false;
             }
 
-            let url = `/observations?place_id=any&verifiable=true&view=species&taxon_ids=${d.novel_taxon_ids.join( "," )}`;
+            let url = `/observations?place_id=any&verifiable=true&view=species&taxon_ids=${d.novel_species_ids.join( "," )}`;
             url += `&year=${d.date.getFullYear( )}&month=${d.date.getMonth() + 2}`;
             if ( user ) {
               url += `&user_id=${user.login}`;
@@ -65,6 +66,41 @@ const Taxa = ( {
             return false;
           }}
           xExtent={[new Date( `${year}-01-01` ), new Date( `${year}-12-31` )]}
+        />
+      </div>
+    );
+  }
+  let newSpeciesObservations;
+  if ( data && data.new_species_observations ) {
+    let totalNovelSpecies;
+    if ( data.accumulation ) {
+      totalNovelSpecies = _.uniq(
+        _.flatten(
+          _.filter( data.accumulation, i => i.date.indexOf( `${year}-` ) === 0 ).map( i => i.novel_species_ids )
+        )
+      );
+    }
+    newSpeciesObservations = (
+      <div>
+        <h3><span>{ I18n.t( "new_species_observed_this_year" ) }</span></h3>
+        <p
+          className="text-muted"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t(
+              "views.stats.year.new_species_desc", {
+                x: 18,
+                y: totalNovelSpecies.length,
+                site_name: SITE.name,
+                url: `/observations?place_id=any&verifiable=true&view=species&taxon_ids=${totalNovelSpecies.join( "," )}`
+              }
+            )
+          }}
+        />
+        <ObservationsGrid
+          observations={data.new_species_observations}
+          identifier="NewSpecies"
+          columns={6}
+          max={18}
         />
       </div>
     );
@@ -88,6 +124,7 @@ const Taxa = ( {
         />
       ) }
       { accumulation }
+      { newSpeciesObservations }
     </div>
   );
 };

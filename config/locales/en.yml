@@ -1,4 +1,4 @@
- en:
+en:
   x_comments:
     one: '1 comment'
     other: '%{count} comments'
@@ -2192,6 +2192,7 @@
   new_project_asset: New project_asset
   new_project_asset_for: New Project Asset for
   new_source: New Source
+  new_species_observed_this_year: New Species Observed This Year
   new_taxon_change: New taxon change
   new_taxon_link: New Taxon Link
   new_taxon_name: New taxon name
@@ -5633,6 +5634,9 @@
           <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
           <br/>
           <a href="%{url}">View all %{numStudies} studies</a>
+        new_species_desc: |
+          Species that were observed for the first time on %{site_name} this year.
+          Showing %{x} of <a href="%{url}">%{y} species</a>.
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
           of the hierarchy is at the center, starting with "Life" and ending

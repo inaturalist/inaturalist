@@ -1,13 +1,11 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment";
-import inatjs from "inaturalistjs";
-import ObservationsGridItem from "../../../shared/components/observations_grid_item";
 import DateHistogram from "./date_histogram";
 import TorqueMap from "../../../shared/components/torque_map";
 import GlobalMap from "./global_map";
+import ObservationsGrid from "./observations_grid";
 
 const Observations = ( {
   data,
@@ -63,43 +61,7 @@ const Observations = ( {
   let popular;
   if ( data.popular && data.popular.length > 0 ) {
     popular = (
-      <div className={`popular ${user ? "for-user" : ""}`}>
-        { _.map( _.chunk( data.popular.slice( 0, 8 ), 4 ), ( chunk, i ) => (
-          <Row key={`popular-obs-chunk-${i}`}>
-            { chunk.map( o => (
-              <Col xs={3} key={`popular-obs-${o.id}`}>
-                <ObservationsGridItem
-                  observation={new inatjs.Observation( o )}
-                  splitTaxonOptions={{ noParens: true }}
-                  controls={(
-                    <div>
-                      <span className="activity">
-                        <span className="stat">
-                          <i className="icon-chatbubble" />
-                          { " " }
-                          { o.comments_count }
-                        </span>
-                        <span className="stat">
-                          <i className="fa fa-star" />
-                          { " " }
-                          { o.cached_votes_total }
-                        </span>
-                      </span>
-                      <time
-                        className="time pull-right"
-                        dateTime={o.created_at}
-                        title={moment( o.observed_on ).format( "LLL" )}
-                      >
-                        { moment( o.observed_on ).format( "YY MMM" ) }
-                      </time>
-                    </div>
-                  )}
-                />
-              </Col>
-            ) ) }
-          </Row>
-        ) ) }
-      </div>
+      <ObservationsGrid observations={data.popular} identifier="popular" />
     );
   }
   moment.locale( I18n.locale );

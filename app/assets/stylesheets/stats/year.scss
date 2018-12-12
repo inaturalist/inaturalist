@@ -593,3 +593,12 @@ $obs-grid-photo-size: 210px;
     margin-bottom: 10px;
   }
 }
+
+.NewSpecies {
+  $obs-grid-photo-size: 210px;
+  .ObservationsGridItem.borderless.thumbnail {
+    .photo {
+      height: 131px;
+    }
+  }
+}

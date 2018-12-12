@@ -11290,6 +11290,7 @@ I18n.translations["en"] = {
   "new": "New",
   "new_and_noteworthy": "New & Noteworthy",
   "new_observation_field": "New observation field",
+  "new_species_observed_this_year": "New Species Observed This Year",
   "newly_observed": "Newly Observed",
   "news": "News",
   "next": "Next",
@@ -11986,7 +11987,8 @@ I18n.translations["en"] = {
         "recent_w_7_obs": "Recent w/ >= 7 obs"
       },
       "year": {
-        "accumulation_desc_html": "This chart shows the species observed in verifiable observations over\ntime. It does not include higher or lower level taxa, so an\nobservation identified as Mammalia doesn't count, and an observation\nof <i>Canis lupus</i> ssp. <i>arctos</i> will just count as\n<i>Canis lupus</i>.\n",
+        "accumulation_desc_html": "This chart shows species observed in verifiable observations over\ntime. It does not include higher or lower level taxa, so an\nobservation identified as Mammalia doesn't count, and an observation\nof <i>Canis lupus</i> ssp. <i>arctos</i> will just count as\n<i>Canis lupus</i>.\n",
+        "new_species_desc": "Species that were observed for the first time on %{site_name} this year.\nShowing %{x} of <a href=\"%{url}\">%{y} species</a>.\n",
         "publications_desc_html": "Impact data and visualizations courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
