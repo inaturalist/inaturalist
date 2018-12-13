@@ -13,7 +13,11 @@
 - content_for :extracss do
   = stylesheet_link_tag :donate, media: "all", cache: true
 - content_for :extrahead do
+  %meta{ property: "og:title", content: t( :help_support_inaturalist ) }
   %meta{ property: "og:description", content: t( "views.donate.donate_short_desc" ) }
+  %meta{ property: "og:image", content: @shareable_image_url }
+  %meta{ property: "twitter:image", content: @shareable_image_url }
+  %meta{ name: "twitter:card", content: "summary_large_image" }
 .container
   .row
     .col-md-10.col-md-offset-1.col-xs-12
