@@ -634,8 +634,8 @@ fi:
   batch_edit: Erän muokkaus
   batch_operations: Erätoiminnot
   be_the_first_to_fave_this_observation: Ole ensimmäinen tätä suositteleva!
-  beacuse_we_recently_changed_auth_system: Koska olemme hiljattain muuttaneet käyttäjien
-    tunnistautumisjärjestelmäämme, oli tarpeen uusia salasanasi.
+  beacuse_we_recently_changed_auth_system: Koska muutimme äskettäin käyttäjien tunnistautumisjärjestelmäämme,
+    oli tarpeen uusia salasanasi.
   because: koska
   because_of: koska
   before_importing_photos: ennen kuvien tuontia
@@ -885,6 +885,7 @@ fi:
   community_id_heading: Yhteisön tunniste
   community_id_at_species_level_or_lower: Yhteisön tunniste lajitasolla tai pienempi
   community_moderation_settings: Yhteisön moderointiasetukset
+  community_supported_id: Yhteisö-tuettu tunniste?
   compare: Vertaa
   compare_with: Vertaa
   comparing: verrataan
@@ -990,9 +991,9 @@ fi:
   create_an_atlas: Luo atlas
   create_new_taxon: Luo uusi taksoni
   create_observations: Luo havaintoja
-  create_observations_by_uploading_photos_to: "Luo havaintoja lähettämällä kuvia paikkaan
-    %{place}. Kun lähetät, %{place} yrittää poimia GPS-koordinaatit ja päivämäärän/ajan
-    valokuvasta. \nAloittaaksesi,"
+  create_observations_by_uploading_photos_to: "Luo havaintoja tallentamalla kuvia
+    paikkaan %{place}. Kun tallennat, %{place} yrittää poimia GPS-koordinaatit ja
+    päivämäärän/ajan valokuvasta. \nAloittaaksesi,"
   created: Luotu
   created_by: Luonut
   created_by_user_on_date: Lisännyt %{user} %{date}
@@ -1490,17 +1491,24 @@ fi:
     projektia.
   hate_me_facebook: Pura linkitys Facebook ja %{site_name} tileihisi
   hate_me_flickr: Pura linkitys Flickr- ja %{site_name}-tileihisi
+  heads_up: Huomio
+  heads_up_observation_search_can_only_load: 'Huomio: havaintohaku voi ladata enintään
+    vain 50 sivua'
   heads_up_this_observation_has_been_flagged: Tämä havainto on liputettu.
   heads_up_this_photo_has_been_flagged: Tämä kuva on liputettu.
+  heads_up_this_photo_is_already_associated_with: 'Huomio: tämä kuva on jo yhdistetty
+    <a target=''_blank'' href=''%{url}''>toisen havainnon</a> kanssa'
   hello: <test>
   help: Apua
   help_confirm_observations!: Auta vahvistamaan havaintoja!
   help_faq: Apua / UKK
+  help_support_inaturalist: Auta tukemaan iNaturalistia!
   hex_color_eg: Hex-väri, esim. 65644F
   hi: Hei,
   hi_user: Hei %{user}
   hide: Piilota
   hide_details: Piilota tiedot
+  hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
   highest_rank: Korkein arvo
   highlights: Kohokohtia
@@ -1622,6 +1630,7 @@ fi:
   invite_people_to_project: Kutsu ihmisiä projektiin %{project}
   invite_photos_from_other_sites: Kutsu kuvia muilta sivustoilta
   invite_photos_to: Kutsu kuvia %{site_name}iin
+  invite_photos_to_raquo_html: Kutsu kuvia <nobr>%{site_name}iin &raquo;</nobr>
   invite_someone_to: Kutsu joku %{name}iin!
   invite_to_project: Kutsu projektiin
   invite_your_friends: Kutsu ystäviäsi
@@ -1965,6 +1974,7 @@ fi:
     yhdistetään, samoin kuin kaikki maantieteelliset tiedot.
   message: Viesti
   messages: Viestit
+  misidentifications: Virhetunnistukset
   misleading_or_illegal_content_html: "Harhaanjohtavaa tai laitonta sisältöä, rodun
     tai kansan loukkaaminen, yms. Lisätietoa\nmääritelmästämme \"sopivasta\", katso
     \n<a href=\"/help#inappropriate\">UKK</a>."
@@ -2182,6 +2192,7 @@ fi:
   none_found: Ei löytynyt
   normal: normaali
   not_evaluated: arvioimatta jätetty
+  not_filtering: Ei suodatusta
   not_findig_what_you_want: Et löydä mitä haluat?
   not_finding_place_you_want?: Et löydä haluamaasi paikkaa?
   not_finding_what_looking_for: Et löydä sitä, mitä etsit?
@@ -2367,7 +2378,7 @@ fi:
   or_invited: tai kutsuttu.
   or_log_in_with_colon: 'Tai kirjadu sisään seuraavilla:'
   or_post_message_to_google_group: 'tai lähetä viesti Google-ryhmäämme:'
-  or_upload: Tai lähetä
+  or_upload: Tai tallenna
   or_you_can: Tai voit...
   or_you_can_: tai voit
   orange: oranssi
@@ -2458,6 +2469,7 @@ fi:
     yksityisyydestä ja sijainnista myöhempää käyttöä varten.
   place: Paikka
   place_added_to_inat_by: Paikan %{site_name}iin lisännyt
+  place_autocomplete_placeholder: Zionin kansallispuisto, Miami, yms.
   place_deleted: Paikka poistettu.
   place_geo:
     geo_planet_place_types:
@@ -2691,6 +2703,7 @@ fi:
   projects_description: |-
     Projektit antavat sinun jakaa havaintojasi muiden ihmisten kesken %{site_name}issa.
     Olitpa sitten aloittamassa kansalaistiedettä tai pitämässä silmällä naapurustosi lintuja. Projektit ovat tapa mennä.
+  projects_from_everywhere: Projektit kaikkialta
   projects_from_place: Projektit paikasta %{place}
   projects_in_x: Projektit paikassa %{x}
   projects_you_admin: Projektit joita hallinoit
@@ -2746,6 +2759,7 @@ fi:
   real_time_discussions: Reaaliaikaiset keskustelut
   reason: Syy
   reason_you_are_flagging_this_item: Syy, jonka vuoksi liputat tätä kohdetta.
+  recaptcha_verification_failed: reCAPTCHA-varmistus epäonnistui
   receive_email_notifications_when_people_leave_you: Vastaanota sähköposti-ilmoituksia
   receive_updates_from_this_project: Haluan saada tätä projektia koskevia päivityksiä
   received: vastaanotetut
@@ -2754,8 +2768,10 @@ fi:
   recent_evidence?: Viimeaikaiset todisteet?
   recent_evidence_of_organism: Viimeaikainen todiste eliöstä
   recent_observations: Viimeaikaiset havainnot
+  recent_observations_: Viimeaikaiset havainnot
+  recent_post: Viimeaikainen viesti
   recent_atom_observations_by: Viimeaikaiset havainnot käyttäjältä %{login} (Atom)
-  recent_observations_by: Viimeaikaiset havainnot käyttäjältä %{login}
+  recent_observations_by: Tuoreet havainnot käyttäjältä %{login}
   recent_updates: Viimeaikaiset päivitykset
   recently_active: Äskettäin aktiivinen
   recently_created: Äskettäin luotu
@@ -2933,6 +2949,7 @@ fi:
   set_license: Aseta lisenssi
   settings: asetukset
   share: Jaa
+  share_colon: 'Jaa:'
   short_or_abbreviated_title_for_display: Lyhyt tai lyhennetty otsikko näytettäväksi
     avaruus-rajoitetuilla alueilla. Enintään 10 merkkiä.
   show: Näytä
@@ -3214,7 +3231,7 @@ fi:
   theres_also: siellä on myös
   these_folks_kindly_volunteer_to: Nämä ystävät ylläpitävät kiltisti ja vapaaehtoisesti
     taksonomiaamme ja käsittelevät muita asioita.
-  these_observations_have_not_been_uploaded_yet: Näitä havaintoja ei ole vielä lähetetty.
+  these_observations_have_not_been_uploaded_yet: Näitä havaintoja ei ole vielä tallennettu.
   they_already_have_iNat_accounts: '...heillä on jo %{site_name}-tilit'
   they_have_been_invited: '...heidät on jo kutsuttu'
   third_person_possessive_singular: Käyttäjän %{object_phrase} %{noun}
@@ -3341,22 +3358,22 @@ fi:
   updated_by: Päivittänyt
   updated_daily: Päivitetään päivittäin
   updated_photo: Päivitetty kuva
-  upload: Lähetä
+  upload: Tallenna
   upload_a_csv_file: Lataa CSV-tiedosto
-  upload_photo: Lähetä kuva
+  upload_photo: Tallenna kuva
   upload_photos: Lataa kuvia
-  uploaded_by: Lähettänyt
+  uploaded_by: Tallentanut
   uploader:
     tooltips:
       add: Lisää havainto(ja)
-      photo_failed: Kuvan lähettäminen epäonnistui
+      photo_failed: Kuvan tallentaminen epäonnistui
       remove: Poista valitut havainnot
       remove_observation: Poista havainto
       remove_photo: Poista kuva
       select_all: Valitse kaikki havainnot
   uploading_num_of_count_photos:
-    one: Lähetetään kuvaa...
-    other: Lähetetään %{num} of %{count} kuvaa...
+    one: Tallennetaan kuvaa...
+    other: Tallennetaan %{num}/%{count} kuvaa...
   US_states: US osavaltiot
   usage_stats: Käyttötilastot
   user: Käyttäjä
@@ -3631,7 +3648,7 @@ fi:
   you_joined_this_project: Liityit tähän projektiin!
   you_must_be_a_member_of_this_project_to_do_that: Sinun täytyy olla tämän projektin
     jäsen tehdäksesi tuon
-  you_must_select_a_csv_file_to_upload: Sinun on valittava lähetettävä CSV-tiedosto.
+  you_must_select_a_csv_file_to_upload: Sinun on valittava tallennettava CSV-tiedosto.
   you_must_select_at_least_one_taxon: Sinun on valittava vähintään yksi taksoni
   you_need_to_select_at_least_one_photo: Sinun täytyy valita ainakin yksi kuva!
   you_retain_full_copyright: Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta
@@ -3683,6 +3700,7 @@ fi:
   your_google_account: Google-tilisi
   your_pinned_locations: Kiinnitetyt sijainnit
   your_profile_was_successfully_updated: Profiilisi päivitettiin onnistuneesti!
+  your_recent_projects: Viimeaikaiset projektisi
   your_should_recognize: Sinun pitäisi tunnistaa jotkin näistä valokuvista
   your_site_account_has_been_created: '%{site}-tilisi on luotu.'
   your_subscriptions: Tilauksesi
@@ -3711,6 +3729,19 @@ fi:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Suunnitteletko käyttäväsi %{site_name}ia
             luokkahuoneessa?
+    donate:
+      donate_desc_html: "<p class=\"lead\">\n  <strong>iNaturalist on yksi maailman
+        suurimmista luonnon monimuotoisuuden tutkimiseen omistautuneista yhteisöistä.
+        Kiitos, että olet osa sitä!</strong>\n</p>\n<p class=\"lead\">\n  Jos uskot
+        tämän luonnonystävien maailmanlaajuisen yhteisön kykyyn \n  jakaa tietoa ja
+        tuottaa korvaamattomia luonnon monimuotoisuutta koskevia tietoja,\n  harkitse
+        kertaluonteista tai toistuvaa lahjaa.\n</p>\n<p class=\"lead\">\n  Lahjoituksesi
+        auttavat tukemaan iNaturalistia kun yhteisö kasvaa, \n  tietokonevision kehittämisestä
+        ja uusien ominaisuuksien tuomisesta palveliememme ja henkilökuntamme tukemiseen.\n</p>\n<p
+        class=\"text-muted\">\n  iNaturalist on Kalifornian tiedeakatemian \n  ja
+        National Geographic Societyn yhteinen aloite. Kaikki lahjoitukset vastaanottaa\n
+        \ Kalifornian tiedeakatemia, 501(c)(3) verovapaa voittoa tavoittelematon\n
+        \ järjestö joka sijaitsee Yhdysvalloissa.\n</p>"
     guides:
       index:
         funding_html: Rahoituksen oppaiden kehittämiseen toimitti <a href="http://eol.org"><img
@@ -3762,10 +3793,10 @@ fi:
         can_i_add_photos_without_a_flickr_account?: Voinko lisätä kuvia ilman Flickr-tiliä?
         we_also_support_google_html: 'Me tuemme myös Google Kuvat -palvelua: <a href="%{url}">Määritä
           Google-tilisi &raquo;</a>'
-        we_also_support_uploading_photos: Me tuemme myös suoraa kuvien lähetystä %{site_name}iin,
-          mutta se voi olla hieman hidasta, joten hyväksymme vain yhden lähetyksen
-          kerrallaan. Flickr:in tai Googlen käyttäminen on todennäköisesti nopeampaa,
-          jos käytät jo näitä palveluja.
+        we_also_support_uploading_photos: Me tuemme myös suoraa kuvien tallennusta
+          %{site_name}iin, mutta se voi olla hieman hidasta, joten hyväksymme vain
+          yhden tallennuksen kerrallaan. Flickr:in tai Googlen käyttäminen on todennäköisesti
+          nopeampaa, jos käytät jo näitä palveluja.
         what_are_tags?: Mitä ovat tagit?
         what_is_geoprivacy?: Mikä on sijainnin tietosuoja?
         geoprivacy_is_a_setting_you_can: 'Sijainnin tietosuoja on asetus jota voit
@@ -3789,6 +3820,8 @@ fi:
         disagreement_count: Erimielisyyksien määrä
         identification_count: Tunnisteiden määrä
         score: Pisteet
+        your_id_does_not_match: Tunnisteesi (<span class="bold">%{taxon_name}</span>)
+          ei vastaa yhteisön tunnistetta
       export:
         choose_columns_desc: Valitse sarakkeet, jotka haluat viedä
         create_a_query_desc_html: "Luo havaintokysely aivan kuten voisit muualla sivustolla.
