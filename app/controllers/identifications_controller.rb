@@ -5,6 +5,7 @@ class IdentificationsController < ApplicationController
   load_only = [ :show, :edit, :update, :destroy ]
   before_filter :load_identification, :only => load_only
   blocks_spam :only => load_only, :instance => :identification
+  check_spam only: [:create, :update], instance: :identification
   before_filter :require_owner, :only => [:edit, :update, :destroy]
   cache_sweeper :comment_sweeper, :only => [:create, :update, :destroy, :agree]
   caches_action :bold, :expires_in => 6.hours, :cache_path => Proc.new {|c| 

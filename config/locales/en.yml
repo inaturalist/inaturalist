@@ -2335,6 +2335,7 @@ en:
   not_on_this_list: Not on this list.
   not_recorded: Not recorded
   not_seeing_what_looking_for: Not Seeing What You're Looking For?
+  not_spam: Not Spam
   not_yet: Not yet
   note: Note
   notes: Notes
@@ -2907,6 +2908,11 @@ en:
   processing: Processing
   processing3p: "Processing..."
   profile: Profile
+  profile_visibility_pending_account_verification: Profile visibility pending account verification
+  profile_visibility_desc: |
+    In an effort to keep spam off of %{site_name}, user profiles are only
+    publicly visible after a user has contributed several Research Grade
+    observations.
   project: Project
   project_added_your_observations: Project added your observations
   project_admins:
@@ -3049,6 +3055,7 @@ en:
   recent_comments_on_your_stuff: Recent Comments on Your Stuff
   recent_evidence?: Recent evidence?
   recent_evidence_of_organism: Recent evidence of an organism
+  recent_new_users: Recent New Users
   recent_observations: Recent observations
   recent_observations_: Recent Observations
   recent_post: Recent post
@@ -3431,6 +3438,7 @@ en:
   sources_and_credits: Sources and Credits
   sourcing: Sourcing
   spam: Spam
+  spammer: Spammer
   spanish: Spanish
   species: Species
   species_by_category: species by category

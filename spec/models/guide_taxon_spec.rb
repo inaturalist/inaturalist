@@ -118,6 +118,7 @@ describe GuideTaxon, "sync_eol" do
   before(:all) { enable_elastic_indexing( Observation ) }
   after(:all) { disable_elastic_indexing( Observation ) }
   before(:all) do
+    Site.make!
     eol = EolService.new(:timeout => 30)
     @mflagellum_page ||= eol.page( 47046719,
       common_names: true,

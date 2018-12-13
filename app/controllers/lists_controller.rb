@@ -7,6 +7,7 @@ class ListsController < ApplicationController
   load_except = [ :index, :new, :create, :by_login ]
   before_filter :load_list, :except => load_except
   blocks_spam :except => load_except, :instance => :list
+  check_spam only: [:create, :update], instance: :list
   before_filter :owner_required, :only => [:edit, :update, :destroy, 
     :remove_taxon, :reload_from_observations]
   before_filter :require_listed_taxa_editor, :only => [:add_taxon_batch, :batch_edit]

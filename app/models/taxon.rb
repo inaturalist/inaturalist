@@ -211,7 +211,6 @@ class Taxon < ActiveRecord::Base
     'subsp'           => 'subspecies',
     'trinomial'       => 'subspecies',
     'var'             => 'variety',
-    'fo'              => 'form',
     'unranked'        => nil
   }
   
@@ -301,6 +300,7 @@ class Taxon < ActiveRecord::Base
     "chiton",
     "cicada",
     "gall",
+    "hong kong",
     "larva",
     "lichen",
     "lizard",

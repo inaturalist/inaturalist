@@ -10,6 +10,7 @@ class GuidesController < ApplicationController
     :import_tags_from_csv_template ]
   before_filter :load_record, :only => load_only
   blocks_spam :only => load_only, :instance => :guide
+  check_spam only: [:create, :update], instance: :guide
   before_filter :require_owner, :only => [:destroy]
   before_filter :require_guide_user, :only => [
     :edit, :update, :import_taxa, :reorder, :add_color_tags,

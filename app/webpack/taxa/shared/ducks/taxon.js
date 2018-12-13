@@ -443,7 +443,7 @@ export function fetchTaxonChange( taxon ) {
     fetch( `/taxon_changes.json?taxon_id=${t.id}`, opts )
       .then( response => response.json( ) )
       .then( json => {
-        if ( !json[0] ) {
+        if ( !json[0] || _.isEmpty( json[0].input_taxa ) ) {
           return;
         }
         let taxonChange = json[0];

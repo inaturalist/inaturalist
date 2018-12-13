@@ -353,7 +353,7 @@ module ApplicationHelper
         end
         new_text += html.to_s.html_safe
       else
-        new_text += simple_format( chunk, options ).html_safe
+        new_text += simple_format( chunk, {}, options ).html_safe
       end
     end
     new_text.html_safe
@@ -879,7 +879,7 @@ module ApplicationHelper
       record.attribution
     end
     s ||= "&copy; #{user_name}"
-    content_tag(:span, s.html_safe, :class => "rights verticalmiddle")
+    content_tag(:span, s.html_safe, class: "rights verticalmiddle")
   end
 
   def rights_for_observation( record, options = {} )
@@ -935,14 +935,14 @@ module ApplicationHelper
         c = if options[:skip_image]
           ""
         else
-          link_to(image_tag("#{code}_small.png"), url) + " "
+          link_to(image_tag("#{code}_small.png"), url, rel: options[:rel]) + " "
         end
         license_blurb = if record.license_code == Observation::CC0
           I18n.t("copyright.no_rights_reserved")
         else
           I18n.t(:some_rights_reserved)
         end
-        c.html_safe + link_to(license_blurb, url)
+        c.html_safe + link_to(license_blurb, url, rel: options[:rel])
       end
     end
     s

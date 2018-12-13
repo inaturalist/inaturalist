@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Ilmarine
+# Author: Pyscowicz
 ---
 et:
   x_comments:
@@ -444,8 +445,10 @@ et:
   allowed_html: HTML lubatud
   allowed_occurrence_status_values: Lubatud leidumuse väärtused
   allowed_values: Lubatud väärtused
+  almost_there_: Peaaegu kohal...
   alphabetical: Tähestikuline
   alphabetical_order: Tähestikuline järjekord
+  already_have_an_account_log_in_html: On juba konto? <strong>Logi sisse.</strong>
   amphibians: kahepaiksed
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb-is pole selle liigi kohta
     infot.
@@ -679,6 +682,7 @@ et:
   bulk_import_of_filename_is_complete: Faili %{filename} massimport on lõppenud
   but_we_didnt_add_this_observation_to_the_x_project: Aga me ei lisanud seda vaatlus
     projekti %{project} alla, sest sa ei nõustunud selle projekti tingimustega.
+  by: kasutajalt
   by_adding_ids_to_observations: lisades vaatlustele määratlusi
   by_everyone: Kõikidelt
   by_project_list: projekti nimekirja järgi
@@ -1200,6 +1204,7 @@ et:
   doh_something_went_wrong_error: 'Hmm, miski läks valesti: %{error}'
   done: Lisa
   dont_filter: Ära filtreeri
+  dont_have_an_account_sign_up_html: Ei ole kontot? <strong>Registreeru.</strong>
   dont_send_me_email: Ära saada mulle e-kirju!
   dont_use_double_quotes: Ära kasuta kusagil mujal topeltjutumärke
   drop_it: Eemalda see
@@ -2771,10 +2776,12 @@ et:
   optional_columns_note_for_any: 'Valikulised tulbad (nb: selleks, et neid tulpasid
     vaatluse juures kasutada saaks, peavad nad kõik olemas olema)'
   or: või
+  or_all_caps: VÕI
   or_choose_high_level_taxa: '... või vali mõni kõrgema taseme takson'
   or_if_you_dont_want_email: Või kui sa ei taha e-posti...
   or_invite_your_friends: või kutsu oma sõpru
   or_invited: või kutsutud.
+  or_log_in_with_colon: 'Või logige sisse koos:'
   or_post_message_to_google_group: 'või postita teade meie Google Groupi:'
   or_upload: Või lae üles
   or_you_can: Võid ka...
@@ -2845,6 +2852,7 @@ et:
   photo?: Foto?
   photo_attribution: 'Foto: %{attribution}'
   photo_browser: Fotodevalija
+  photo_by: Pildistatud
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_deleted: Foto kustutatud
   photo_destroyed_because_it_was_deleted_from: Foto on hävinud, sest see kustutati
@@ -3007,6 +3015,7 @@ et:
     belgium: Belgia
     bosnia_and_herzegovina: Bosnia ja Hertsegoviina
     brazil: Brasiilia
+    canada: Kanada
     central_america: Kesk-Ameerika
     china: Hiina
     colombia: Colombia
@@ -3535,6 +3544,7 @@ et:
   shown_publicly_as: Näita avalikult kui
   sign_in: Logi sisse
   sign_in_with_provider: Logi sisse %{provider} kontoga
+  sign_up_with_provider: Registreeri koos %{provider}
   sign_out: Logi välja
   sign_up!: Registreeru!
   sign_up: Registreeru!
@@ -4471,6 +4481,7 @@ et:
   welcome_comma!: Tere tulemast,
   welcome: tere tulemast
   welcome_back: Tere tulemast tagasi
+  welcome_back!: Tere tulemast tagasi!
   welcome_comma: Tere tulemast,
   welcome_login: Tere tulemast, %{login}
   welcome_message: kus saad <strong>talletada</strong> enda poolt looduses nähtut,

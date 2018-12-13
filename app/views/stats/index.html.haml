@@ -7,6 +7,9 @@
   = javascript_include_tag :stats, "d3.min"
   :javascript
     var STATS_JSON = #{ @stats.to_json.html_safe };
+    $(document).ready(function( ) {
+      Stats.loadCharts( );
+    });
 .container
   %h2=t :site_stats
   .row.sparks

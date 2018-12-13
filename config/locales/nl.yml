@@ -6,6 +6,7 @@
 # Author: Goefie
 # Author: Hansmuller
 # Author: KlaasZ4usV
+# Author: Kueda
 # Author: Lies Van Rompaey
 # Author: Marjo
 # Author: MrLeopold
@@ -846,7 +847,7 @@ nl:
   check_out_your_life_list: Bekijk je Life List
   check_this_box_if: |-
     Vink dit vakje aan als u een
-    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'> Creative Commons Attribution-NonCommercial-licentie </a>
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'> Creative Commons Attribution-NonCommercial-licentie </a>
     aan je foto's wilt toekennen. U kunt een andere licentie kiezen of de licentie later verwijderen, maar dit is de beste licentie om te delen met onderzoekers.
   checklist: Checklist
   checklists: Checklists
@@ -1644,7 +1645,7 @@ nl:
   heads_up_this_photo_has_been_flagged: 'OPGELET: deze foto is gemarkeerd.'
   heads_up_this_photo_is_already_associated_with: 'Opgelet: deze foto is al gelinkt
     met een <a target=''_blank'' href=''%{url}''>andere waarneming</a>'
-  heads_up_this_taxon_locked_users_cant_add_descendants: <strong>Let op:</ strong>dit
+  heads_up_this_taxon_locked_users_cant_add_descendants: <strong>Let op:</strong>dit
     taxon is vergrendeld, wat betekent dat de meeste gebruikers geen nieuwe nakomelingen
     kunnen toevoegen door taxa te importeren. Curatoren kunnen dit nog steeds doen
     door taxa te bewerken en een ouder te kiezen, maar overweeg alsjeblieft om taxa
@@ -2046,7 +2047,7 @@ nl:
     Flickr kan de url controleren die door het drukken van de knop wordt verzonden
     om zeker te zijn dat het Flickr.com is.
   linked_flickr_photo_copy_html: <strong>We slaan nooit kopieën van uw foto's op of
-    wijzigen uw Flickr-gegevens (tenzij u ons dat vraagt).</ strong> We geven te veel
+    wijzigen uw Flickr-gegevens (tenzij u ons dat vraagt).</strong> We geven te veel
     om vogels, insekten en slakken om uw informatie te willen verprutsen!
   list: Lijst
   list_deleted: Lijst verwijderd.
@@ -2135,7 +2136,7 @@ nl:
   location_specified: Locatie opgegeven
   locked_taxa_will_not_allow_new: Gesloten taxa staan niet toe dat nieuwe afgeleide
     taxa aan hen worden toegevoegd. Dus als je Amphibia afsloot en iemand probeerde
-    <i>Rana catesbeiana</ i> van een externe naamaanbieder te importeren, dan zou
+    <i>Rana catesbeiana</i> van een externe naamaanbieder te importeren, dan zou
     het nieuwe taxon gecreëerd worden, maar het kon niet geclassificeerd worden als
     een amfibie. Wanneer dit gebeurt, moet de nieuw toegevoegde taxa worden gemarkeerd
     voor de curator. Dit zou eigenlijk alleen voor taxa moeten worden gebruikt waarvan
@@ -2597,7 +2598,7 @@ nl:
       van waarnemingen van flora en fauna. Hieronder zijn nu discussies gaande. (Opmerking:
       u bent automatisch geabonneerd op discussies waaraan u opmerkingen of determinaties
       bijdraagt. Beheer deze nieuwtjes in het gedeelte ''Abonnementen'' aan de rechterkant.)
-      </ P>'
+      </p>'
     updates_by_you_panel_title: Dit tabblad is een snelle manier om alleen nieuws
       over je eigen content te filteren
     updates_by_you_panel_body: Houd er rekening mee dat u op het tabblad 'Alle updates'
@@ -2608,11 +2609,11 @@ nl:
     youve_got_updates_panel_body_p1: Blijf op de hoogte met nieuwtjes over ...
     youve_got_updates_panel_body_p2: |-
       <Ul>
-         <li> <strong> Uw inhoud: </ strong> Reacties op uw waarnemingen, zoals opmerkingen, determinaties of markeren als favoriet van de %{site_name} gemeenschap. U ontvangt ook updates wanneer iemand uw opmerking toevoegt aan een project of annoteert met extra velden. </ Li>
-         <li> <strong> Mensen: </ strong> nieuwe waarnemingen of dagboekberichten van de mensen die je volgt. </ li>
-         <li> <strong> Organismen, projecten en plaatsen: </ strong> Nieuwe waarnemingen van specifieke organismen of plaatsen waarop u bent geabonneerd. U kunt ook deelnemen aan projecten, zodat u wordt geïnformeerd wanneer ze projectjournaalposts publiceren. </ Li>
-         <li> <strong> Discussies waar u aan deelneemt: </ strong> als u opmerkingen of determinaties toevoegt aan de inhoud van iemand anders, abonneert u zich automatisch op nieuwe activiteiten van deze inhoud. Gebruik de tool 'Beheer uw abonnementen' om geen nieuwtjes meer te ontvangen. </ Li>
-      </ Ul>
+         <li> <strong> Uw inhoud: </strong> Reacties op uw waarnemingen, zoals opmerkingen, determinaties of markeren als favoriet van de %{site_name} gemeenschap. U ontvangt ook updates wanneer iemand uw opmerking toevoegt aan een project of annoteert met extra velden. </Li>
+         <li> <strong> Mensen: </strong> nieuwe waarnemingen of dagboekberichten van de mensen die je volgt. </li>
+         <li> <strong> Organismen, projecten en plaatsen: </strong> Nieuwe waarnemingen van specifieke organismen of plaatsen waarop u bent geabonneerd. U kunt ook deelnemen aan projecten, zodat u wordt geïnformeerd wanneer ze projectjournaalposts publiceren. </Li>
+         <li> <strong> Discussies waar u aan deelneemt: </strong> als u opmerkingen of determinaties toevoegt aan de inhoud van iemand anders, abonneert u zich automatisch op nieuwe activiteiten van deze inhoud. Gebruik de tool 'Beheer uw abonnementen' om geen nieuwtjes meer te ontvangen. </Li>
+      </Ul>
   one_by_one: Eén voor één
   one_of_your_lists: één van uw lijsten ...
   only_administrators_may_access_that_page: Alleen beheerders hebben toegang tot deze
@@ -4061,9 +4062,9 @@ nl:
           is met het community taxon,\n   kunnen ze het weigeren, wat betekent dat
           hun ID de naam is die gebruikt wordt\n   bij het koppelen aan andere waarnemingen,
           levenslijsten bijwerken, etc. \n   Hun waarneming kan alleen Research Grade
-          worden als de\n   gemeenschap het met hen eens is.\n</ P>\n<P>\n   De community-ID
+          worden als de\n   gemeenschap het met hen eens is.\n</p>\n<P>\n   De community-ID
           wordt echter nog steeds weergegeven, dus iedereen kan de\n   verschillende
-          ID's zien die zijn voorgesteld.\n</ P>"
+          ID's zien die zijn voorgesteld.\n</p>"
       copy_tip: Voeg een nieuwe waarneming toe door de datum, plaats, foto's en waarnemingsvelden
         van deze waarneming te kopiëren.
       export:
@@ -4090,41 +4091,37 @@ nl:
       identify:
         review_all_tooltip: Markeer alle waarnemingen op de pagina als beoordeeld
       show:
-        community_taxon_desc_html: |-
-          <p class="ui">
-            Het community taxon (of gemeenschapstaxon) is de determinatie van 
-            het taxon door de %{site_name} gemeenschap van de afbeelding in de waarneming. Als je geïnteresseerd bent in hoe we het kiezen
-            community taxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in
-            algemeen proberen we <strong> een taxon te kiezen waar meer dan 2/3 is
-            van de ID's onder valt </strong>. Dit betekent dat soms
-            een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat
-            Taxa wat de sooort niet eens (u denkt bijvoorbeeld dat het een Lampropeltis is en ik denk dat
-            het ratelslang is, dan kiest iNat voor de suborde Serpentes die
-            alle slangen omvat). Het algoritme is bevooroordeeld enigzins de 
-            afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden vaak gelijk hebben.
-          </p>
-          <p class="ui">
-            Het gemeenschapstaxon is het taxon dat we gebruiken bij het delen van waarnemingen
-            met datapartners, die waarnemingen van hetzelfde taxon koppelen aan de
-            site, het bijwerken van uw levenslijst, enz. Als u om een ​​of andere reden niet 
-            akkoord gaat met het gemeenschapstaxon, kun je het afwijzen, wat betekent
-            dat uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen te linken,
-            het bijwerken van levenslijsten, enz. Het betekent ook dat uw observatie alleen 
-            Research Grade kan worden wanneer de community het eens is met <em>u</em>.
-            Als je het hele idee van community-taxa niet leuk vindt, kun je 
-            het volledig uitzetten in <a href="/users/edit" target="_blank">uw instellingen</a>.
-          </p>
-          <p class="ui">
-            <strong>Het algoritme:</strong> voor alle geïdentificeerde taxa en de taxa waarin ze zijn opgenomen
-            (bijvoorbeeld geslacht <i>Homo</i> bevat <i>Homo sapiens</i>), score
-            elk als de verhouding tussen het aantal cumulatieve ID's voor
-            dat taxon over de som van de cumulatieve ID's, het aantal
-            meer conservatieve ID's toegevoegd na de eerste ID van dat taxon,
-            en het aantal ID's dat compleet verschillend is (dat wil zeggen ID's
-            van taxa die niet het taxon bevatten dat gescoord wordt). Voor de
-            geïdentificeerde taxa die een score hebben van meer dan 2/3 en minstens 2
-            identificaties, wordt het laagst gerangschikte taxon gekozen.
-          </p>
+        community_taxon_desc_html: "<p class=\"ui\">\n  Het community taxon (of gemeenschapstaxon)
+          is de determinatie van \n  het taxon door de %{site_name} gemeenschap van
+          de afbeelding in de waarneming. Als je geïnteresseerd bent in hoe we het
+          kiezen\n  community taxon kiezen, kijk dan bij de opmerkingen over het algoritme
+          hieronder, maar in\n  algemeen proberen we <strong> een taxon te kiezen
+          waar meer dan 2/3 is\n  van de ID's onder valt </strong>. Dit betekent dat
+          soms\n  een taxon op een hoger niveau wordt gekozen dat een aantal taxa
+          bevat\n  Taxa wat de sooort niet eens (u denkt bijvoorbeeld dat het een
+          Lampropeltis is en ik denk dat\n  het ratelslang is, dan kiest iNat voor
+          de suborde Serpentes die\n  alle slangen omvat). Het algoritme is bevooroordeeld
+          enigzins de \n  afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden
+          vaak gelijk hebben.\n</p>\n<p class=\"ui\">\n  Het gemeenschapstaxon is
+          het taxon dat we gebruiken bij het delen van waarnemingen\n  met datapartners,
+          die waarnemingen van hetzelfde taxon koppelen aan de\n  site, het bijwerken
+          van uw levenslijst, enz. Als u om een ​​of andere reden niet \n  akkoord
+          gaat met het gemeenschapstaxon, kun je het afwijzen, wat betekent\n  dat
+          uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen
+          te linken,\n  het bijwerken van levenslijsten, enz. Het betekent ook dat
+          uw observatie alleen \n  Research Grade kan worden wanneer de community
+          het eens is met <em>u</em>.\n  Als je het hele idee van community-taxa niet
+          leuk vindt, kun je \n  het volledig uitzetten in <a href=\"/users/edit\"
+          target=\"_blank\">uw instellingen</a>.\n</p>\n<p class=\"ui\">\n  <strong>Het
+          algoritme:</strong> voor alle geïdentificeerde taxa en de taxa waarin ze
+          zijn opgenomen\n  (bijvoorbeeld geslacht <i>Homo</i> bevat <i>Homo sapiens</i>),
+          score\n  elk als de verhouding tussen het aantal cumulatieve ID's voor\n  dat
+          taxon over de som van de cumulatieve ID's, het aantal\n  meer conservatieve
+          ID's toegevoegd na de eerste ID van dat taxon,\n  en het aantal ID's dat
+          compleet verschillend is (dat wil zeggen ID's\n  van taxa die niet het taxon
+          bevatten dat gescoord wordt). Voor de\n  geïdentificeerde taxa die een score
+          hebben van meer dan 2/3 en minstens 2\n  identificaties, wordt het laagst
+          gerangschikte taxon gekozen.\n</p>"
         curator_coordinate_access_disabled_desc_html: Dit project laat geen waarnemingen
           toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Indien
           je de coördinaten van je waarnemingen niet wenst te delen, verwijder ze
@@ -4174,17 +4171,17 @@ nl:
           any: iedereen
           curators: projectcuratoren
       invite:
-        description_html: "<h3> Over uitnodigingen </ h3>\n<p class = \"ui\">\n  
+        description_html: "<h3> Over uitnodigingen </h3>\n<p class = \"ui\">\n  
           Mensen uitnodigen voor uw project is een beetje anders dan een uitnodiging
-          \n   voor individuele waarnemingen. Uitnodigende mensen zullen \n</ P>\n<Ol>\n  
+          \n   voor individuele waarnemingen. Uitnodigende mensen zullen \n</p>\n<Ol>\n  
           <li> Stuur ze een e-mail met de uitnodiging om deel te nemen aan uw project
-          </ li>\n   <li> Een uitnodiging op hun controle paneel weergeven </ li>\n  
+          </li>\n   <li> Een uitnodiging op hun controle paneel weergeven </li>\n  
           <li> Stel ze in staat om deel te nemen aan uw project als dit is ingesteld
-          op alleen-uitnodigen </ li>\n</ Ol>\n<p class = \"ui\">\n   Alleen projectconservatoren
+          op alleen-uitnodigen </li>\n</Ol>\n<p class = \"ui\">\n   Alleen projectconservatoren
           kunnen mensen uitnodigen om deel te nemen aan een project. U\n   moet in
           staat zijn om mensen te zoeken op hun iNat-gebruikersnaam of\n   hun <em>
-          complete </ em> e-mailadres, ervan uitgaande dat we dat hebben in \n   het
-          dossier.\n</ P>"
+          complete </em> e-mailadres, ervan uitgaande dat we dat hebben in \n   het
+          dossier.\n</p>"
       new:
         delete_project: Project verwijderen
         multiple_project_administrators: Meerdere projectbeheerders

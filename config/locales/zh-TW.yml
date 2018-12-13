@@ -330,6 +330,7 @@ zh-TW:
   all_photos: 所有相片
   all_places: 所有地點
   all_projects: 所有專案
+  all_children_added_to_the_database: 所有添加到資料庫的子項
   all_rank_added_to_the_database:
     phylum: 所有添加到資料庫的「門」
     subphylum: 所有添加到資料庫的「亞門」
@@ -545,6 +546,7 @@ zh-TW:
   at_time: 在%{time}
   atom: Atom
   attribute: 屬性
+  attribution: 姓名標示
   authority_list:
     iucn_red_list: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄
   authorize_permissions_from_provider: 來自於%{provider}的授權許可
@@ -770,6 +772,7 @@ zh-TW:
   classification: 分類
   clear: 清除
   clear_color_filters: 清除色彩篩選
+  clear_filters: 清除篩選
   clear_search: 清除搜尋
   click_on_the_map_to: 在地圖上點擊以放置您的觀察
   click_the_map: <strong>點擊地圖</strong>來添加一個位置。
@@ -812,13 +815,14 @@ zh-TW:
   community_id_at_genus_level_or_lower: 在「屬」或較低階層的社群鑑定
   community_id_at_species_level_or_lower: 屬於物種層級或是較低階層級的社群鑑定
   community_moderation_settings: 社群管制設定
-  community_supported_id: 社群支援的鑑定？
+  community_supported_id: 社群支持的鑑定？
   compare: 比較
   compare_with: 比較與
   comparing: 比較
   comparing_list_to_list: 比較%{list1}與%{list2}
   comparing_versions_x_and_y: 比較版本 %{x} 和 %{y}
   comparing_observations_from: 比較 %{user} 自 %{dates} 的觀察
+  complete: 完成
   complete_sets: 全集
   compiled_by_name: 編譯由%{name}
   completed: 已完成
@@ -1066,6 +1070,7 @@ zh-TW:
   did_not_send_invitations_because: 未對以下寄出邀請原因是...
   did_you_mean: 您是指
   did_you_photos_flickr?: 您有上傳任何圖片在 Flickr 上嗎？
+  disable: 停用
   disagree: 不同意
   disagree_: 不同意
   disconnect_provider: 中斷連接%{provider}
@@ -1337,7 +1342,7 @@ zh-TW:
   flag_saved_thanks: 標記已儲存。感謝！
   flag_this_observation: 為本觀察紀錄加上旗號標記。
   flag_this_photo: 標記此照片
-  flagged: 已加上旗號標記
+  flagged: 已標記
   flagged_: 已標記
   flagged_for_curation: 已標記為策展
   flagged_thing_explanation: 用戶已標記此%{thing}因為
@@ -1482,6 +1487,7 @@ zh-TW:
   help_confirm_observations!: 幫助確認觀察！
   help_faq: 幫助 / 常見問題
   help_out!: 幫個忙！
+  help_support_inaturalist: 協助支持 iNaturalist！
   helped_the_observer_make: 協助觀察者製作他們的最終鑑定（註：就是在最終鑑定之前，他們所作出符合的）
   here_are_3_examples: 此為 3 個良好格式資料的範例
   here_are_our_top_species_suggestions: 這是我們熱門的物種建議
@@ -1513,7 +1519,7 @@ zh-TW:
   id_: 鑑定
   id_categories:
     tooltips:
-      leading: 來自於社群的物種分類。此鑑定有機會引導至正確解答。
+      leading: 來自於社群的物種分類。此鑑定有機會引導至正確結果。
       improving: 首先建議此物種分類來讓社群後續同意。這有助於改進社群物種分類。
       maverick: 不是社群物種分類的祖先或派生，即代表著社群不同意此物種分類。
   id_more_in_id_please: 在鑑定請求裡頭有更多鑑定
@@ -1772,7 +1778,7 @@ zh-TW:
     tokelauan: 托克勞語
     turkish: 土耳其語
     waray_waray: 瓦瑞瓦瑞語
-  less: 更少
+  less: 較少
   license_descriptions_and_images: 許可協議描述和圖片
   licensed_site_photos: 已授權的 %{site_name} 照片
   license: 許可協議
@@ -1817,6 +1823,7 @@ zh-TW:
   linked_flickr_password_html: <strong>我們不會詢問您的 Flickr 密碼</strong>（但 Flickr 也許會檢查按鍵所傳給您的
     URL 來確認是屬於 Flickr.com）。
   linked_flickr_photo_copy_html: <strong>我們絕不會儲存您照片的副本或更改您的 Flickr 資料（除非您有要求我們這樣做）。</strong>我們只關注在小鳥、蟲子，以及蛞蝓等生物上，因此決不會想去擾亂您的相關資訊！
+  linkedin: LinkedIn
   list: 清單
   list_deleted: 列表已刪除。
   list_saved: 清單已儲存。
@@ -2220,6 +2227,7 @@ zh-TW:
   no_ones_observed: 皆未被觀察到
   no_photo: 沒有照片
   no_photos: 沒有照片
+  no_photos_of_that_size: 沒有這樣大小的照片。
   no_places_available: 沒有可用的地點
   no_places_selected: 沒有選擇地點
   no_post_yet: 尚未有發佈文章！
@@ -2966,6 +2974,14 @@ zh-TW:
   reject_the_community_id: 駁回社群鑑定
   related_species: 相關物種
   relative_observations: 相關觀察
+  relationship: 關聯
+  relationship_x: 關聯：%{relationship}
+  relationships:
+    one_to_one: 一對一
+    many_to_many: 多對多
+    many_to_one: 多對一
+    one_to_many: 一對多
+    unknown: 不明
   reload_and_refresh: 重新載入及重整清單
   reload_from_observations: 從觀察來重新載入
   reload_timed_out: 重新載入時間逾時，請再重試。
@@ -3026,7 +3042,7 @@ zh-TW:
   research_grade: 研究等級
   research_grade_expandable_html: <span class='full'>研究</span><span class='full'>等級</span>
   research_grade_short_html: <span class='full'>研究</span><span class='full'>等級</span>
-  research_grade_observations_have: 「研究等級」觀察擁有日期、照片、座標，以及社群支援的鑑定內容。點擊來查看資料品質評估。
+  research_grade_observations_have: 「研究等級」觀察擁有日期、照片、座標，以及社群支持的鑑定內容。點擊來查看資料品質評估。
   research_grade_qualification: 研究等級資格
   research_quality: 研究品質
   reset_search_filters: 重新設定搜尋篩選
@@ -3158,6 +3174,7 @@ zh-TW:
   set_license: 設定許可協議
   settings: 設定
   share: 分享
+  share_colon: 分享：
   share_your_observation_with_researchers_by: 與研究人員分享您的觀察依
   short_code_for_this_place: 此地點的簡短代碼，例如 US 用於代表美國
   short_or_abbreviated_title_for_display: 用於顯示在內容有限區域裡的簡短或縮寫標題。最多 10 個字元。
@@ -3294,6 +3311,7 @@ zh-TW:
   source_unknown: 來源不明
   source_url: 來源 URL
   source_of_coordinates: 座標來源和準確測量，自動設定。
+  sourced_to: 來源
   sources: 來源
   sources_youve_added: 您添加的來源
   sources_and_credits: 來源和製作群
@@ -3374,7 +3392,8 @@ zh-TW:
   suggest_or_require_that: 建議或請求貢獻者填好在他們添加至您專案之觀察的那些欄位。
   suggestions: 建議
   summary: 摘要
-  supporting: 支援
+  supporting: 支持
+  support_inaturalist: 支持 iNaturalist
   suspicious_photos: 可移照片
   siutable_observations: 合適的觀察
   sun: 週日
@@ -3508,6 +3527,9 @@ zh-TW:
   taxonomic_status: 物種分類狀態
   taxonomic_tags_for_flickr: 用於 Flickr 的物種分類標籤
   taxonomic_tree_browser: 樹狀物種分類瀏覽器
+  taxonomy_details: 分類法詳情
+  taxonomy_details_for: 分類法詳情用於
+  taxonomy_details_info: 分類法詳情頁面使用了物種分類框架，來協助描述出依據物種分類所要表達的意思。<a href="/pages/taxon_frameworks">了解更多</a>。
   taxonomy_settings: 分類法設定
   tell_everyone_a_little_about_you: 向大家介紹一些關於您的事
   tell_the_world_a_little_about_yourself: 向我們介紹您自己
@@ -4046,6 +4068,7 @@ zh-TW:
     other: '%{count} 個觀察失敗'
   x_of_y: '%{y}中的%{x}'
   x_of_y_people_over_two_thirds_agree_it_is: 在 %{y} 人之中有 %{x} 人（超過 2/3）同意此是
+  x_is_the_root_of_the_tree: '%{rank} %{name}是樹狀的根源'
   x_project_journal: '%{project}的%{name}'
   x_project_stats: '%{project}統計'
   x_sent_you_a_new_message_on_y_html: '%{x} 寄送您一份新訊息於 %{y}：'
@@ -4239,6 +4262,21 @@ zh-TW:
             是個友善且熱情的地方。
           please_read_the_teachers_guide_html: 若是如此，在與學生使用 %{site_name} 時，請閱讀我們的<a
             href="%{url}">教師指南</a>來取得提示。
+    donate:
+      donate_short_desc: 以捐款來協助支持 iNaturalist！
+      donate_desc_html: |-
+        <p class="lead">
+          <strong>iNaturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
+        </p>
+        <p class="lead">
+          若您肯定這份分享知識、產生出無可替代生物多樣性資料的全球自然愛好者社群力量，您可以考慮一次性或經常性的捐款。
+        </p>
+        <p class="lead">
+          您的捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。
+        </p>
+        <p class="text-muted">
+          iNaturalist 為加利福尼亞州科學院與國家地理學會的聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
+        </p>
     guides:
       index:
         funding_html: 指南開發的資金由 <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
@@ -4568,7 +4606,7 @@ zh-TW:
           </p>
           <ul>
             <li>
-              <strong>位置不精準</strong>（例如：例如猴子位在海洋裡，或是河馬位在辦公大樓等等）
+              <strong>位置不精準</strong>（例如：猴子位在海洋裡，或是河馬位在辦公大樓等等）
             </li>
             <li>
               <strong>不是野生/歸化的生物</strong>（例如：是被人類、或外星智慧生命給圈養或栽培）
@@ -5180,8 +5218,8 @@ zh-TW:
         one: 約 1 年
         other: 約 %{count} 年
       almost_x_years:
-        one: 幾乎 1 年
-        other: 幾乎 %{count} 年
+        one: 大約 1 年
+        other: 大約 %{count} 年
       half_a_minute: 半分鐘
       less_than_x_minutes:
         one: 小於 1 分
