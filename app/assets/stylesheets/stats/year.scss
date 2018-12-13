@@ -108,7 +108,6 @@ $dark-gray: #333333;
     text-transform: uppercase;
     padding: 10px 20px;
     font-weight: 100;
-    // font-size: 18px;
   }
   .btn-bordered:hover {
     border-color: $inat-green;
@@ -456,7 +455,7 @@ $tip-opacity: 1;
 // https://css-tricks.com/snippets/css/ribbon/
 .ribbon-container {
   margin: 0 auto;
-  width: 600px;
+  max-width: 600px;
   position: relative;
   z-index: 1;
 }

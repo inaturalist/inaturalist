@@ -105,7 +105,6 @@ const Observations = ( {
           window.open( url, "_blank" );
         }}
       />
-      <h3><span>{ I18n.t( "animated_observations_map" ) }</span></h3>
       { user ? (
         <TorqueMap
           params={{ user_id: user.id, year }}

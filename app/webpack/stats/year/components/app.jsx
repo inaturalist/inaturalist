@@ -108,6 +108,10 @@ const App = ( {
       montageObservations = montageObservations.concat( montageObservations );
     }
   }
+  // https://gist.github.com/59naga/ed6714519284d36792ba
+  const isTouchDevice = navigator.userAgent.match(
+    /(Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone)/i
+  ) !== null;
   return (
     <div id="YearStats">
       <div className="banner">
@@ -158,7 +162,7 @@ const App = ( {
         ) }
 
       </div>
-      <Grid>
+      <Grid fluid={isTouchDevice}>
         <Row>
           <Col xs={12}>
             <h1>

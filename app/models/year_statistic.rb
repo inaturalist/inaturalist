@@ -79,6 +79,8 @@ class YearStatistic < ActiveRecord::Base
       user: user,
       verifiable: true
     )
+    users_who_helped_arr, total_users_who_helped, total_ids_received = users_who_helped( year, user )
+    users_helped_arr, total_users_helped, total_ids_given = users_helped( year, user )
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, user: user ),
@@ -93,8 +95,12 @@ class YearStatistic < ActiveRecord::Base
         month_histogram: identifications_histogram( year, user: user, interval: "month" ),
         week_histogram: identifications_histogram( year, user: user, interval: "week" ),
         day_histogram: identifications_histogram( year, user: user, interval: "day" ),
-        users_helped: users_helped( year, user ),
-        users_who_helped: users_who_helped( year, user ),
+        users_helped: users_helped_arr,
+        total_users_helped: total_users_helped,
+        total_ids_given: total_ids_given,
+        users_who_helped: users_who_helped_arr,
+        total_users_who_helped: total_users_who_helped,
+        total_ids_received: total_ids_received,
         iconic_taxon_counts: identification_counts_by_iconic_taxon( year, user )
       },
       taxa: {
@@ -402,13 +408,13 @@ class YearStatistic < ActiveRecord::Base
     es_params[:aggregate] = {
       users_helped: { terms: { field: "observation.user.id" } }
     }
-    Identification.
-        elastic_search( es_params ).
-        response.
-        aggregations.
-        users_helped.
-        buckets[0..2].
-        inject( [] ) do |memo, bucket|
+    buckets = Identification.
+      elastic_search( es_params ).
+      response.
+      aggregations.
+      users_helped.
+      buckets
+    users = buckets[0..2].inject( [] ) do |memo, bucket|
       helped_user = User.find_by_id( bucket["key"] )
       next unless helped_user
       memo << {
@@ -417,6 +423,7 @@ class YearStatistic < ActiveRecord::Base
       }
       memo
     end.compact
+    [users, buckets.size, buckets.map(&:doc_count).sum]
   end
 
   def self.users_who_helped( year, user )
@@ -426,13 +433,13 @@ class YearStatistic < ActiveRecord::Base
     es_params[:aggregate] = {
       users_helped: { terms: { field: "user.id" } }
     }
-    Identification.
-        elastic_search( es_params ).
-        response.
-        aggregations.
-        users_helped.
-        buckets[0..2].
-        inject( [] ) do |memo, bucket|
+    buckets = Identification.
+      elastic_search( es_params ).
+      response.
+      aggregations.
+      users_helped.
+      buckets
+    users = buckets[0..2].inject( [] ) do |memo, bucket|
       helped_user = User.find_by_id( bucket["key"] )
       next unless helped_user
       memo << {
@@ -441,6 +448,7 @@ class YearStatistic < ActiveRecord::Base
       }
       memo
     end.compact
+    [users, buckets.size, buckets.map(&:doc_count).sum]
   end
 
   def generate_shareable_image

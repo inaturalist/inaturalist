@@ -101,6 +101,7 @@ en:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> taxon change added"
     other: "<span class='count'>%{count}</span> taxon changes added"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   _100_day_trends: 100 Day Trends
   _percent_ID_d: "% ID'd"
   a: a
@@ -4023,6 +4024,7 @@ en:
   user_has_opted_out_of_community_ids: "%{user} has chosen to retain control over the taxa associated with their observations"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} has chosen to retain control over the taxa associated with this observation"
   user_hasnt:  "%{user} hasnt"
+  user_helped_x_people_with_y_ids_html: "%{user} helped <strong>%{x} people</strong> with <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
   user_invited_you_to_join_html: "%{user} invited you to join"
   user_invited_you_to_join_project: "%{user} invited you to join %{project}"
