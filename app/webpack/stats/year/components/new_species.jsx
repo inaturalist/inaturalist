@@ -108,7 +108,8 @@ class NewSpecies extends React.Component {
             if ( d.seriesName === "accumulated" ) {
               return false;
             }
-            this.getObservationsOfSpecies( d.novel_species_ids, d.date.getFullYear( ), d.date.getMonth( ) + 2 );
+            const date = moment( d.date ).add( 2, "days" );
+            this.getObservationsOfSpecies( d.novel_species_ids, date.year( ), date.month( ) + 1 );
             return false;
           }}
           xExtent={[new Date( `${year}-01-01` ), new Date( `${year}-12-31` )]}

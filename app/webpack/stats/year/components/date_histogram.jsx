@@ -160,6 +160,10 @@ class DateHistogram extends React.Component {
       .scale( legendScale );
     svg.select( ".legendOrdinal" )
       .call( legendOrdinal );
+    focus.select( ".axis--y" )
+      .call( d3.axisLeft( y ) )
+      .select( ".domain" )
+        .remove( );
     this.setState( { x, y } );
   }
 
@@ -285,6 +289,7 @@ class DateHistogram extends React.Component {
         .remove();
 
     g.append( "g" )
+      .attr( "class", "axis--y" )
       .call( d3.axisLeft( y ) )
       .select( ".domain" )
         .remove( );
