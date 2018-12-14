@@ -140,7 +140,7 @@ class TaxonChangesController < ApplicationController
       return
     else
       @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
-      render :action => 'edit'
+      render action: "edit", layout: "application"
     end
   end
   
