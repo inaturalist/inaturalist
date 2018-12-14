@@ -78,7 +78,7 @@ class NewSpecies extends React.Component {
         } ) ),
         style: "bar",
         color: grayColor,
-        label: d => `<strong>${moment( d.date ).add( 1, "month" ).format( "MMMM YYYY" )}</strong>: ${I18n.t( "x_species", { count: d.value } )}`
+        label: d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )}</strong>: ${I18n.t( "x_species", { count: d.value } )}`
       };
     }
     series.novel = {
@@ -90,7 +90,7 @@ class NewSpecies extends React.Component {
         offset: showAccumulation ? i.accumulated_species_count - i.novel_species_ids.length : 0
       } ) ),
       style: "bar",
-      label: d => `<strong>${moment( d.date ).add( 1, "month" ).format( "MMMM YYYY" )}</strong>: ${I18n.t( "x_new_species", { count: d.value } )}`
+      label: d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )}</strong>: ${I18n.t( "x_new_species", { count: d.value } )}`
     };
     return (
       <div className="NewSpecies">

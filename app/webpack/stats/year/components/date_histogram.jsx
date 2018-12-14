@@ -18,7 +18,8 @@ class DateHistogram extends React.Component {
       x: null,
       y: null,
       clipID: null,
-      tip: null
+      tip: null,
+      color: d3.scaleOrdinal( d3.schemeCategory10 )
     };
   }
 
@@ -40,7 +41,7 @@ class DateHistogram extends React.Component {
 
   colorForSeries( seriesName ) {
     const { series } = this.props;
-    const color = d3.scaleOrdinal( d3.schemeCategory10 );
+    const { color } = this.state;
     if ( series[seriesName] && series[seriesName].color ) {
       return series[seriesName].color;
     }
@@ -87,16 +88,19 @@ class DateHistogram extends React.Component {
     _.forEach( localSeries, ( seriesData, seriesName ) => {
       const seriesGroup = focus.select( `.${_.snakeCase( seriesName )}` );
       if ( series[seriesName].style === "bar" ) {
+        const barWidth = ( d, i ) => {
+          let nextX = width;
+          if ( seriesData[i + 1] ) {
+            nextX = x( seriesData[i + 1].date );
+          } else if ( seriesData[i - 1] ) {
+            return x( d.date ) - x( seriesData[i - 1].date );
+          }
+          return nextX - x( d.date );
+        };
         const bars = seriesGroup.selectAll( "rect" ).data( seriesData );
         // update selection, these things happens when the data changes
         bars
-          .attr( "width", ( d, i ) => {
-            let nextX = width;
-            if ( seriesData[i + 1] ) {
-              nextX = x( seriesData[i + 1].date );
-            }
-            return nextX - x( d.date );
-          } )
+          .attr( "width", barWidth )
           .attr( "height", d => height - y( d.value ) )
           .attr( "transform", d => {
             if ( d.offset ) {
@@ -106,13 +110,7 @@ class DateHistogram extends React.Component {
           } );
         const barsEnter = bars.enter( )
             .append( "rect" )
-              .attr( "width", ( d, i ) => {
-                let nextX = width;
-                if ( seriesData[i + 1] ) {
-                  nextX = x( seriesData[i + 1].date );
-                }
-                return nextX - x( d.date );
-              } )
+              .attr( "width", barWidth )
               .attr( "height", d => height - y( d.value ) )
               .attr( "transform", d => {
                 if ( d.offset ) {
@@ -152,7 +150,7 @@ class DateHistogram extends React.Component {
     const legendScale = d3.scaleOrdinal( )
       .domain( _.keys( localSeries ) )
       .range( _.map( localSeries, ( v, k ) => this.colorForSeries( k ) ) );
-    const legendOrdinal = legend.legendColor()
+    const legendOrdinal = legend.legendColor( )
       .labels( _.map( series, ( v, k ) => ( v.title || k ) ) )
       .classPrefix( "legend" )
       .shape( "path", d3.symbol( ).type( d3.symbolCircle ).size( 100 )( ) )
@@ -299,8 +297,9 @@ class DateHistogram extends React.Component {
       .attr( "class", "d3-tip" )
       .offset( [-10, 0] )
       .html( d => {
-        if ( series[d.seriesName] && series[d.seriesName].label ) {
-          return series[d.seriesName].label( d );
+        const { series: currentSeries } = this.props;
+        if ( currentSeries[d.seriesName] && currentSeries[d.seriesName].label ) {
+          return currentSeries[d.seriesName].label( d );
         }
         return `<strong>${dateFormatter( d.date )}</strong>: ${d.value}`;
       } );

@@ -620,3 +620,12 @@ $obs-grid-photo-size: 210px;
     }
   }
 }
+
+.Growth {
+  .DateHistogram {
+    .chart svg {
+      min-height: 200px;
+      height: 200px;
+    }
+  }
+}

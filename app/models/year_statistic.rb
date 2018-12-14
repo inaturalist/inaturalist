@@ -55,6 +55,10 @@ class YearStatistic < ActiveRecord::Base
         leaf_taxa_count: leaf_taxa_count( year, options ),
         iconic_taxa_counts: iconic_taxa_counts( year, options ),
         accumulation: accumulation
+      },
+      growth: {
+        observations: observations_histogram_by_created_month,
+        users: users_histogram_by_created_month
       }
     }
     if options[:site].blank?
@@ -403,10 +407,10 @@ class YearStatistic < ActiveRecord::Base
 
   def self.users_helped( year, user )
     return unless user
-    es_params = identifications_es_base_params( year )
+    es_params = YearStatistic.identifications_es_base_params( year )
     es_params[:filters] << { terms: { "user.id" => [user.id] } }
     es_params[:aggregate] = {
-      users_helped: { terms: { field: "observation.user.id" } }
+      users_helped: { terms: { field: "observation.user.id", size: 40000 } },
     }
     buckets = Identification.
       elastic_search( es_params ).
@@ -428,10 +432,10 @@ class YearStatistic < ActiveRecord::Base
 
   def self.users_who_helped( year, user )
     return unless user
-    es_params = identifications_es_base_params( year )
+    es_params = YearStatistic.identifications_es_base_params( year )
     es_params[:filters] << { terms: { "observation.user.id" => [user.id] } }
     es_params[:aggregate] = {
-      users_helped: { terms: { field: "user.id" } }
+      users_helped: { terms: { field: "user.id", size: 40000 } }
     }
     buckets = Identification.
       elastic_search( es_params ).
@@ -685,6 +689,36 @@ class YearStatistic < ActiveRecord::Base
     data["results"] = new_results.sort_by{|r| r["altmetric_score"].to_f * -1 }[0..9]
     data[:url] = "https://www.gbif.org/resource/search?#{gbif_params.to_query}"
     data
+  end
+
+  def self.observations_histogram_by_created_month
+    es_params = {
+      size: 0,
+      filters: [
+        { terms: { "quality_grade": ["research", "needs_id"] } },
+      ],
+      aggregate: {
+        histogram: {
+          date_histogram: {
+            field: "created_at_details.date",
+            interval: "month",
+            format: "yyyy-MM-dd"
+          }
+        }
+      }
+    }
+    histogram = {}
+    Observation.elastic_search( es_params ).response.aggregations.histogram.buckets.each {|b|
+      histogram[b.key_as_string] = b.doc_count
+    }
+    histogram
+  end
+
+  def self.users_histogram_by_created_month
+    Hash[User.group( "EXTRACT('year' FROM created_at) || '-' || EXTRACT('month' FROM created_at)" ).
+        where( "suspended_at IS NULL AND created_at > '2008-03-01'" ).count.map do |k,v|
+      ["#{k.split( "-" ).map{|s| s.rjust( 2, "0" )}.join( "-" )}-01", v]
+    end.sort]
   end
 
   private

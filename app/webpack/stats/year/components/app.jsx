@@ -10,6 +10,7 @@ import Observations from "./observations";
 import Identifications from "./identifications";
 import Taxa from "./taxa";
 import Publications from "./publications";
+import Growth from "./growth";
 
 const App = ( {
   year,
@@ -52,6 +53,7 @@ const App = ( {
         <Summary data={data} user={user} year={year} />
         <Observations data={data.observations} user={user} year={year} site={site} />
         <Identifications data={data.identifications} user={user} />
+        
         <Taxa
           data={data.taxa}
           rootTaxonID={rootTaxonID}
@@ -59,6 +61,12 @@ const App = ( {
           user={user}
           currentUser={currentUser}
         />
+        { data && data.growth && (
+          <Growth
+            data={Object.assign( {}, data.growth, { taxa: data.taxa.accumulation } )}
+            year={year}
+          />
+        ) }
         { user && currentUser && user.id === currentUser.id ? (
           <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
         ) : null }

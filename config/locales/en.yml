@@ -2183,6 +2183,7 @@ en:
   new_observation_field: New observation field
   new_observation_rules: New Observation Rules
   new_observations: New observations
+  new_observations_this_year: New Observations This Year
   new_observations_ellispsis: "New observations..."
   new_observations_from_place_html: "New observations from %{place}"
   new_observations_may_take_up_to:
@@ -2206,10 +2207,13 @@ en:
   new_updates_in_the_last_24_hours_from: "New updates in the last 24 hours from %{site_name}"
   new_user_rules: New User Rules
   new_users: New Users
+  new_users_this_year: New Users This Year
   new_users_w_7_obs: New Users w/ 7 Obs
   new_users_week: New Users / Week
   newly_added: Newly Added
   newly_added_species: Newly Added Species
+  newly_observed_species: Newly Observed Species
+  newly_observed_species_this_year: Newly Added Species This Year
   news: News
   next: Next
   next_observation: Next Observation
@@ -5634,6 +5638,10 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        growth_title: Growth
+        new_species_desc: |
+          Species that were observed for the first time on %{site_name} this year.
+          Showing %{x} of <a href="%{url}">%{y} species</a>.
         new_species_desc_html: |
           Species that were added for the first time on %{site_name} this year.
           Click on a month to view some of the new species added in that month.
@@ -5651,9 +5659,6 @@ en:
           <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
           <br/>
           <a href="%{url}">View all %{numStudies} studies</a>
-        new_species_desc: |
-          Species that were observed for the first time on %{site_name} this year.
-          Showing %{x} of <a href="%{url}">%{y} species</a>.
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
           of the hierarchy is at the center, starting with "Life" and ending
