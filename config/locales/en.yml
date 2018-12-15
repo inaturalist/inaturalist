@@ -1,4 +1,4 @@
- en:
+en:
   x_comments:
     one: '1 comment'
     other: '%{count} comments'
@@ -68,6 +68,9 @@
   x_people_agree_html:
     one: '<span class="count">1</span> person agrees'
     other: '<span class="count">%{count}</span> people agree'
+  x_new_species:
+    one: "1 New Species"
+    other: "%{count} New Species"
   x_species:
     one: '1 Species'
     other: '%{count} Species'
@@ -98,6 +101,7 @@
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> taxon change added"
     other: "<span class='count'>%{count}</span> taxon changes added"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   _100_day_trends: 100 Day Trends
   _percent_ID_d: "% ID'd"
   a: a
@@ -1525,6 +1529,7 @@
   hi_user: "Hi %{user}"
   hide: Hide
   hide_details: Hide Details
+  hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
   high: High
   highest_rank: Highest Rank
@@ -2178,6 +2183,7 @@
   new_observation_field: New observation field
   new_observation_rules: New Observation Rules
   new_observations: New observations
+  new_observations_this_year: New Observations This Year
   new_observations_ellispsis: "New observations..."
   new_observations_from_place_html: "New observations from %{place}"
   new_observations_may_take_up_to:
@@ -2189,6 +2195,8 @@
   new_project_asset: New project_asset
   new_project_asset_for: New Project Asset for
   new_source: New Source
+  new_species_observed_in_interval: New Species Observed In %{interval}
+  new_species_observed_in_interval_x_of_y: New Species Observed In %{interval} (Showing %{x} of %{y})
   new_taxon_change: New taxon change
   new_taxon_link: New Taxon Link
   new_taxon_name: New taxon name
@@ -2199,8 +2207,13 @@
   new_updates_in_the_last_24_hours_from: "New updates in the last 24 hours from %{site_name}"
   new_user_rules: New User Rules
   new_users: New Users
+  new_users_this_year: New Users This Year
   new_users_w_7_obs: New Users w/ 7 Obs
   new_users_week: New Users / Week
+  newly_added: Newly Added
+  newly_added_species: Newly Added Species
+  newly_observed_species: Newly Observed Species
+  newly_observed_species_this_year: Newly Added Species This Year
   news: News
   next: Next
   next_observation: Next Observation
@@ -3183,6 +3196,7 @@
     must_be_observed_in_place: must be observed in Place
     must_be_in: must be in taxon
     must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
+  running_total: Running Total
   said: said
   sat: Sat
   satellite: satellite
@@ -3302,6 +3316,7 @@
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
   show_relative_proportions_of_all_observations: Show relative proportions of all observations
+  show_running_total: Show Running Total
   show_scientific_name_first: Show scientific names first
   show_taxa_from_both: (show taxa from both lists)
   show_taxa_from_everywhere: "Show taxa from everywhere"
@@ -3474,6 +3489,7 @@
   stop_following_user: "Stop following %{user}"
   stop_testing: Stop Testing
   stop_updating_position: Stop updating position
+  studies_that_used_inaturalist_data_in_year: Studies That Used iNaturalist Data in %{year}
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
   subject_affecting_stuff_html: "%{subject} affecting %{stuff}"
@@ -4020,6 +4036,7 @@
   user_has_opted_out_of_community_ids: "%{user} has chosen to retain control over the taxa associated with their observations"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} has chosen to retain control over the taxa associated with this observation"
   user_hasnt:  "%{user} hasnt"
+  user_helped_x_people_with_y_ids_html: "%{user} helped <strong>%{x} people</strong> with <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
   user_invited_you_to_join_html: "%{user} invited you to join"
   user_invited_you_to_join_project: "%{user} invited you to join %{project}"
@@ -4068,6 +4085,7 @@
   view_change: View Change
   view_check_list_page: View Check List Page
   view_contributions: View Contributions
+  view_data_used: "View data used:"
   view_details: View Details
   view_field_options: View Field Options
   view_flag: View Flag
@@ -5620,6 +5638,27 @@
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        growth_title: Growth
+        new_species_desc: |
+          Species that were observed for the first time on %{site_name} this year.
+          Showing %{x} of <a href="%{url}">%{y} species</a>.
+        new_species_desc_html: |
+          Species that were added for the first time on %{site_name} this year.
+          Click on a month to view some of the new species added in that month.
+          You can also view the total species accumulation, or move the slider
+          back in time to see other newly observed species. This chart shows
+          species from verifiable observations by the month they were uploaded
+          to %{site_name} (not the month they were observed). It does not
+          include higher or lower level taxa, so an observation identified as
+          Mammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.
+          <i>arctos</i> will just count as <i>Canis lupus</i>.
+        publications_desc_html: |
+          Impact data and visualizations courtesy of
+          <a href="https://www.altmetric.com">Altmetric</a>. Information
+          about data usage courtesy of our friends at the
+          <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
+          <br/>
+          <a href="%{url}">View all %{numStudies} studies</a>
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
           of the hierarchy is at the center, starting with "Life" and ending

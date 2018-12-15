@@ -27,6 +27,11 @@ $dark-gray: #333333;
   box-shadow: 0 0 20px black;
   min-height: 500px;
   .loading_spinner {
+    border-right-color: $medium-gray;
+    border-bottom-color: $medium-gray;
+    border-left-color: $medium-gray;
+  }
+  #initial-loading .loading_spinner {
     border-right: 15px solid $medium-gray;
     border-bottom: 15px solid $medium-gray;
     border-left: 15px solid $medium-gray;
@@ -38,6 +43,12 @@ $dark-gray: #333333;
   h4,
   h5 {
     color: white;
+    a {
+      color: white;
+    }
+    a:hover {
+      opacity: 1;
+    }
     font-weight: 100;
   }
   text {
@@ -89,7 +100,7 @@ $dark-gray: #333333;
     opacity: 0.5;
   }
 
-  .btn {
+  .btn-bordered {
     background-color: $background-color;
     color: white;
     border: 2px solid darken( $inat-green, 10% );
@@ -97,9 +108,8 @@ $dark-gray: #333333;
     text-transform: uppercase;
     padding: 10px 20px;
     font-weight: 100;
-    // font-size: 18px;
   }
-  .btn:hover {
+  .btn-bordered:hover {
     border-color: $inat-green;
   }
 
@@ -261,6 +271,19 @@ $dark-gray: #333333;
     fill: rgba( 0, 0, 0, 0 );
     stroke: rgba( 0, 0, 0, 0 ) !important;
   }
+  .zoom {
+    cursor: move;
+    fill: none;
+    pointer-events: all;
+  }
+}
+
+#accumulation.DateHistogram {
+  .chart {
+    svg {
+      height: 400px;
+    }
+  }
 }
 
 $tip-opacity: 1;
@@ -344,6 +367,7 @@ $tip-opacity: 1;
     }
   }
 }
+
 @media (max-width: 600px) {
   .Summary .summary-panel .main {
     top: 10px;
@@ -431,7 +455,7 @@ $tip-opacity: 1;
 // https://css-tricks.com/snippets/css/ribbon/
 .ribbon-container {
   margin: 0 auto;
-  width: 600px;
+  max-width: 600px;
   position: relative;
   z-index: 1;
 }
@@ -520,6 +544,88 @@ $obs-grid-photo-size: 210px;
         position: relative;
         bottom: 2px;
       }
+    }
+  }
+}
+
+.Publications {
+  a {
+    color: $inat-green;
+  }
+  a:hover, a:active, a:focus {
+    color: lighten( $inat-green, 10% );
+  }
+  .data-dois {
+    a {
+      display: inline-block;
+      font-size: 75%;
+      padding: 0px 5px;
+      color: #888;
+      background-color: #2D2D2D;
+      border-radius: 3px;
+      margin-right: 5px;
+      line-height: 18px;
+    }
+  }
+  p.lead {
+    margin: 30px 0;
+  }
+  .altmetric-embed {
+    a[rel="popover"] {
+      position: relative;
+      img {
+        position: relative;
+        z-index: 1;
+        max-width: 100% !important;
+        height: auto;
+      }
+    }
+    a[rel="popover"]:before {
+      content: "";
+      display: block;
+      width: 70%;
+      height: 70%;
+      background-color: white;
+      position: absolute;
+      top: 12%;
+      left: 12%;
+      z-index: 0;
+      border-radius: 100px;
+    }
+  }
+  .row {
+    margin-bottom: 10px;
+  }
+}
+
+.NewSpecies {
+  $obs-grid-photo-size: 210px;
+  margin-bottom: 50px;
+  .ObservationsGridItem.borderless.thumbnail {
+    .photo {
+      height: 131px;
+    }
+  }
+
+  > .controls {
+    margin: 20px 0;
+    .btn-default {
+      border-color: $dark-gray;
+      background-color: $dark-gray;
+      color: #eee;
+    }
+    .btn-primary {
+      background-color: $inat-green;
+      border-color: $inat-green;
+    }
+  }
+}
+
+.Growth {
+  .DateHistogram {
+    .chart svg {
+      min-height: 200px;
+      height: 200px;
     }
   }
 }
