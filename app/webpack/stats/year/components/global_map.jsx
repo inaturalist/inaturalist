@@ -37,7 +37,11 @@ class GlobalMap extends React.Component {
       ttl: 86400
     };
     if ( site && site.id !== DEFAULT_SITE_ID ) {
-      baseOptions.site_id = site.id;
+      if ( site.place_id ) {
+        baseOptions.place_id = site.place_id
+      } else {
+        baseOptions.site_id = site.id;
+      }
     }
     const thisYearOptions = Object.assign( { }, baseOptions, {
       year,

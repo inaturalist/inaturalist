@@ -1,0 +1,85 @@
+- content_for :title do
+  =t :recent_new_users
+- content_for :extracss do
+  :css
+    #controls { margin-top: 20px; }
+    #vis { height: 300px; }
+- content_for :extrajs do
+  = javascript_include_tag :stats
+  = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
+  - if @stats
+    :javascript
+      var STATS_JSON = #{ @stats.to_json.html_safe };
+      google.setOnLoadCallback( Stats.simpleChart( {
+        element_id: "vis",
+        chartType: google.visualization.AnnotationChart,
+        series: [
+          { label: "total new users" },
+          { label: "users automatically marked as spamers" },
+          { label: "users manually marked as spamers" },
+          { label: "users that are probably spammers" },
+        ],
+        data: _.map( STATS_JSON, function( stat ) {
+          return [
+            new Date( stat.date ),
+            stat.new_users || 0,
+            stat.auto_spam || 0,
+            stat.manual_spam || 0,
+            stat.probable_spam || 0
+          ];
+        })
+      }));
+.container
+  .row
+    .col-xs-4
+      %h2=t :recent_new_users
+    .col-xs-8
+      #controls.pull-right
+        %form.form-inline
+          .form-group
+            %label{ for: "controls-spammer" }=t :spammer
+            = select_tag :spammer, options_for_select( %w(yes no unknown).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[:spammer] || "unknown" ), class: "form-control", id: "controls-spammer", data: { autosubmit: true }
+          - [:obs, :ids, :description].each do |fp|
+            .form-group
+              %label{ for: "controls-#{fp}" }=t fp
+              = select_tag fp, options_for_select( %w(yes no any).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[fp] || "any" ), class: "form-control", id: "controls-#{fp}", data: { autosubmit: true }
+          = link_to t(:reset), url_for, class: "btn btn-link"
+  .row
+    .col-xs-12
+      - if @stats
+        #vis
+      - if @users.blank?
+        .alert.alert-warning=t :no_more_results_found
+      - else
+        %table.table
+          %thead
+            %tr
+              %th=t :user
+              %th=t :created
+              %th=t :obs
+              %th=t :ids
+              %th=t :description
+              %th=t :actions
+          %tbody
+            - for user in @users
+              %tr
+                %td.nobr
+                  = link_to_user user do
+                    = user_image( user, size: "thumb" )
+                  = link_to_user user
+                %td=l user.created_at
+                %td= link_to user.observations_count, observations_path( user_id: user.login, verifiable: "any", place_id: "any" )
+                %td= link_to user.identifications_count, identifications_path( user_id: user.login )
+                %td= truncate_with_more( formatted_user_text( user.description ), length: 500 )
+                %td
+                  - unless user.spammer?
+                    = link_to t(:flag_as_spammer), set_spammer_path( user, spammer: true ), method: :post, class: "btn btn-danger btn-block btn-sm"
+                  - unless user.known_non_spammer?
+                    = link_to t(:flag_as_non_spammer), set_spammer_path( user, spammer: false ), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }, class: "btn btn-success btn-block btn-sm"
+                  - if user.active?
+                    = link_to t(:suspend_user), suspend_user_path( user ), class: "btn btn-warning btn-block btn-sm"
+                  - elsif user.suspended?
+                    = link_to t(:unsuspend_user), unsuspend_user_path( user ), class: "btn btn-success btn-block btn-sm"
+      - if @users.size == @users.per_page
+        .text-center
+          = link_to t(:more), url_for_params( from: @users.last.id ), class: "btn btn-default"

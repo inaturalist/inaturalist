@@ -13,9 +13,10 @@ class UsersController < ApplicationController
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
   blocks_spam :only => load_only - [ :set_spammer ], :instance => :user
+  check_spam only: [:create, :update], instance: :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation, :merge]
-  before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]
+  before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer, :recent]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
 
@@ -637,6 +638,63 @@ class UsersController < ApplicationController
         flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
       else
         @observations = Observation.page_of_results( user_id: @display_user.id )
+      end
+    end
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
+
+  def recent
+    @users = User.order( "id desc" ).page( 1 ).per_page( 10 )
+    @spammer = params[:spammer]
+    if @spammer.nil? || @spammer == "unknown"
+      @users = @users.where( "spammer IS NULL" )
+    elsif @spammer.yesish?
+      @users = @users.where( "spammer" )
+    elsif @spammer.noish?
+      @users = @users.where( "NOT spammer" )
+    end
+    if params[:obs].yesish?
+      @users = @users.where( "observations_count > 0" )
+    elsif params[:obs].noish?
+      @users = @users.where( "observations_count = 0" )
+    end
+    if params[:ids].yesish?
+      @users = @users.where( "identifications_count > 0" )
+    elsif params[:ids].noish?
+      @users = @users.where( "identifications_count = 0" )
+    end
+    if params[:description].yesish?
+      @users = @users.where( "description IS NOT NULL AND description != ''" )
+    elsif params[:description].noish?
+      @users = @users.where( "description IS NULL OR description = ''" )
+    end
+    if params[:from].to_i > 0
+      @users = @users.where( "id < ?", params[:from].to_i )
+    end
+    if params[:chart]
+      start_date = 3.months.ago.to_date
+      total_new_user_counts = User.where( "created_at > ?", start_date ).group( "created_at::date" ).count
+      new_automated_spam_flag_counts = Flag.
+        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND user_id = 0", start_date ).
+        group( "created_at::date" ).count
+      new_manual_spam_flag_counts = Flag.
+        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND user_id > 0", start_date ).
+        group( "created_at::date" ).count
+      probable_spam_user_counts = User.
+        where( "spammer IS NULL" ).
+        where( "observations_count = 0 AND identifications_count = 0" ).
+        where( "description IS NOT NULL AND description != ''" ).
+        where( "created_at > ?", start_date ).group( "created_at::date" ).count
+      @stats = ( start_date...Date.today ).map do |d|
+        {
+          date: d.to_s,
+          new_users: total_new_user_counts[d],
+          auto_spam: new_automated_spam_flag_counts[d],
+          manual_spam: new_manual_spam_flag_counts[d],
+          probable_spam: probable_spam_user_counts[d]
+        }
       end
     end
     respond_to do |format|

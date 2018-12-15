@@ -1,9 +1,5 @@
 var Stats = { };
 
-$(document).ready(function( ) {
-  Stats.loadCharts( );
-});
-
 Stats.dateForStat = function( stat ) {
   var date = new Date( stat.created_at );
   var timezoneOffsetInMilliseconds = date.getTimezoneOffset( ) * 60 * 1000;

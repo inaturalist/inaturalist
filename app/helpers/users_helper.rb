@@ -33,8 +33,8 @@ module UsersHelper
     if block_given?
       content_text = capture(&block)
     else
-      content_text      = options.delete(:content_text)
-      content_text    ||= user.send(options.delete(:content_method))
+      content_text = options.delete(:content_text)
+      content_text ||= user.send(options.delete(:content_method))
     end
     options[:title] ||= user.send(options.delete(:title_method))
     link_to content_text, url, options

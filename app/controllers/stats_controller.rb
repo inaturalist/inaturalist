@@ -61,9 +61,13 @@ class StatsController < ApplicationController
     end
     @year_statistic = if @display_user
       YearStatistic.where( "user_id = ? AND year = ?", @display_user, @year ).first
+    elsif Site.default.try(:id) == @site.id
+      YearStatistic.where( "user_id IS NULL and site_id IS NULL and year = ?", @year ).first
     else
-      @year_statistic = YearStatistic.where( site_id: @site, year: @year ).where( "user_id IS NULL" ).first
-      @year_statistic ||= YearStatistic.where( year: @year ).where( "user_id IS NULL AND site_id IS NULL" ).first
+      YearStatistic.where( site_id: @site, year: @year ).where( "user_id IS NULL" ).first
+    end
+    unless @year_statistic
+      return render_404
     end
     @headless = @footless = true
     @shareable_image_url = if @year_statistic && @year_statistic.shareable_image?

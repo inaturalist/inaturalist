@@ -27,7 +27,7 @@ class TaxonMerge < TaxonChange
   end
 
   def has_more_than_one_input
-    unless taxon_change_taxa.size > 1
+    unless taxon_change_taxa.select{|tct| !tct.destroyed? && tct._destroy != true }.size > 1
       errors.add( :base, "must have more than one input taxon" )
     end
   end

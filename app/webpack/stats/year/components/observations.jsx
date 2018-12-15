@@ -1,15 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Row, Col } from "react-bootstrap";
 import _ from "lodash";
 import moment from "moment";
-import inatjs from "inaturalistjs";
-import ObservationsGridItem from "../../../shared/components/observations_grid_item";
 import DateHistogram from "./date_histogram";
 import TorqueMap from "../../../shared/components/torque_map";
 import GlobalMap from "./global_map";
+import ObservationsGrid from "./observations_grid";
 
-const Observations = ( { data, site, user, year } ) => {
+const Observations = ( {
+  data,
+  site,
+  user,
+  year
+} ) => {
   const series = {};
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
   if ( data.month_histogram ) {
@@ -58,39 +61,7 @@ const Observations = ( { data, site, user, year } ) => {
   let popular;
   if ( data.popular && data.popular.length > 0 ) {
     popular = (
-      <div className={ `popular ${user ? "for-user" : ""}` }>
-        { _.map( _.chunk( data.popular.slice( 0, 8 ), 4 ), ( chunk, i ) => (
-          <Row key={ `popular-obs-chunk-${i}` }>
-            { chunk.map( o => (
-              <Col xs={3} key={ `popular-obs-${o.id}` }>
-                <ObservationsGridItem
-                  observation={ new inatjs.Observation( o ) }
-                  splitTaxonOptions={ { noParens: true } }
-                  controls={
-                    <div>
-                      <span className="activity">
-                        <span className="stat">
-                          <i className="icon-chatbubble"></i> { o.comments_count }
-                        </span>
-                        <span className="stat">
-                          <i className="fa fa-star"></i> { o.cached_votes_total }
-                        </span>
-                      </span>
-                      <time
-                        className="time pull-right"
-                        dateTime={ o.created_at }
-                        title={ moment( o.observed_on ).format( "LLL" ) }
-                      >
-                        { moment( o.observed_on ).format( "YY MMM" ) }
-                      </time>
-                    </div>
-                  }
-                />
-              </Col>
-            ) ) }
-          </Row>
-        ) ) }
-      </div>
+      <ObservationsGrid observations={data.popular} identifier="popular" />
     );
   }
   moment.locale( I18n.locale );
@@ -98,9 +69,9 @@ const Observations = ( { data, site, user, year } ) => {
     <div className="Observations">
       <h3><span>{ I18n.t( "verifiable_observations_by_observation_date" ) }</span></h3>
       <DateHistogram
-        series={ series }
-        tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
-        onClick={ d => {
+        series={series}
+        tickFormatBottom={d => moment( d ).format( "MMM D" )}
+        onClick={d => {
           let url = "/observations?place_id=any&verifiable=true";
           if ( d.seriesName === "month" ) {
             url += `&year=${d.date.getFullYear( )}&month=${d.date.getMonth() + 1}`;
@@ -115,13 +86,13 @@ const Observations = ( { data, site, user, year } ) => {
             url += `&user_id=${user.login}`;
           }
           window.open( url, "_blank" );
-        } }
+        }}
       />
       <h3><span>{ I18n.t( "observations_this_year_vs_last_year" ) }</span></h3>
       <DateHistogram
-        series={ comparisonSeries }
-        tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
-        onClick={ d => {
+        series={comparisonSeries}
+        tickFormatBottom={d => moment( d ).format( "MMM D" )}
+        onClick={d => {
           let url = "/observations?place_id=any&verifiable=true";
           if ( d.seriesName === "last_year" ) {
             url += `&on=${d.date.getFullYear( ) - 1}-${d.date.getMonth( ) + 1}-${d.date.getDate( )}`;
@@ -132,17 +103,16 @@ const Observations = ( { data, site, user, year } ) => {
             url += `&user_id=${user.login}`;
           }
           window.open( url, "_blank" );
-        } }
+        }}
       />
-      <h3><span>{ I18n.t( "animated_observations_map" ) }</span></h3>
       { user ? (
         <TorqueMap
-          params={ { user_id: user.id, year } }
-          interval={ user ? "weekly" : "monthly" }
+          params={{ user_id: user.id, year }}
+          interval={user ? "weekly" : "monthly"}
           basemap="dark_nolabels"
           color="#74ac00"
-        /> ) :
-        ( <GlobalMap year={ year } site={ site } /> )
+        /> )
+        : ( <GlobalMap year={year} site={site} /> )
       }
       <h3><span>{ I18n.t( "most_comments_and_faves" ) }</span></h3>
       { popular }
@@ -153,8 +123,8 @@ const Observations = ( { data, site, user, year } ) => {
 Observations.propTypes = {
   site: PropTypes.object,
   user: PropTypes.object,
-  year: PropTypes.number,
-  data: PropTypes.object
+  year: PropTypes.number.isRequired,
+  data: PropTypes.object.isRequired
 };
 
 export default Observations;
