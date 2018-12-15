@@ -7,6 +7,7 @@ import _ from "lodash";
 import * as d3 from "d3";
 import d3tip from "d3-tip";
 import legend from "d3-svg-legend";
+import moment from "moment";
 import { objectToComparable } from "../../../shared/util";
 
 class DateHistogram extends React.Component {
@@ -275,6 +276,20 @@ class DateHistogram extends React.Component {
     let axisBottom = d3.axisBottom( x );
     if ( tickFormatBottom ) {
       axisBottom = axisBottom.tickFormat( tickFormatBottom );
+    } else {
+      axisBottom = axisBottom.tickFormat( d => {
+        const md = moment( d );
+        if ( d3.timeSecond( d ) < d ) return md.format( ".SSS" );
+        if ( d3.timeMinute( d ) < d ) return md.format( ":s" );
+        if ( d3.timeHour( d ) < d ) return md.format( "hh:mm" );
+        if ( d3.timeDay( d ) < d ) return md.format( "h A" );
+        if ( d3.timeMonth( d ) < d ) {
+          if ( d3.timeWeek( d ) < d ) return md.format( "MMM D" );
+          return md.format( "MMM D" );
+        }
+        if ( d3.timeYear( d ) < d ) return md.format( "MMM D" );
+        return md.format( "YYYY" );
+      } );
     }
 
     g.append( "g" )

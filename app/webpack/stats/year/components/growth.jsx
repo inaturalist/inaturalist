@@ -12,6 +12,12 @@ const Growth = ( {
 } ) => {
   const label = d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`;
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
+  const emptyJan = {
+    date: `${year + 1}-01-01`,
+    total: 0,
+    novel: 0,
+    value: 0
+  };
   let runningTotal = 0;
   let obsData = _.sortBy(
     _.map( data.observations, ( value, date ) => ( { date, value } ) ),
@@ -25,6 +31,7 @@ const Growth = ( {
       novel: interval.value
     };
   } );
+  obsData.push( emptyJan );
   const obsSeries = {
     total: {
       title: I18n.t( "running_total" ),
@@ -58,11 +65,17 @@ const Growth = ( {
   };
   let taxaSeries;
   if ( data.taxa ) {
+    const taxaData = data.taxa.map( i => i );
+    taxaData.push( {
+      date: `${year + 1}-01-01`,
+      accumulated_species_count: 0,
+      novel_species_ids: []
+    } );
     taxaSeries = {
       total: {
         title: I18n.t( "running_total" ),
         style: "bar",
-        data: _.map( data.taxa, i => ( {
+        data: _.map( taxaData, i => ( {
           date: i.date,
           value: i.accumulated_species_count
         } ) ),
@@ -72,7 +85,7 @@ const Growth = ( {
       novel: {
         title: I18n.t( "newly_observed_species" ),
         style: "bar",
-        data: _.map( data.taxa, i => ( {
+        data: _.map( taxaData, i => ( {
           date: i.date,
           value: i.novel_species_ids.length,
           offset: i.accumulated_species_count - i.novel_species_ids.length
@@ -83,7 +96,7 @@ const Growth = ( {
       novelThisYear: {
         title: I18n.t( "newly_observed_species_this_year" ),
         style: "bar",
-        data: _.map( data.taxa, i => ( {
+        data: _.map( taxaData, i => ( {
           date: i.date,
           value: i.novel_species_ids.length,
           offset: i.accumulated_species_count - i.novel_species_ids.length
@@ -105,6 +118,7 @@ const Growth = ( {
       };
     }
   );
+  userData.push( emptyJan );
   const usersSeries = {
     total: {
       title: I18n.t( "running_total" ),
