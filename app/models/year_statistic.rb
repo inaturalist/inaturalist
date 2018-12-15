@@ -691,12 +691,20 @@ class YearStatistic < ActiveRecord::Base
     data
   end
 
-  def self.observations_histogram_by_created_month
+  def self.observations_histogram_by_created_month( options = {} )
+    filters = [
+      { terms: { "quality_grade": ["research", "needs_id"] } }
+    ]
+    if site = options[:site]
+      if site.place
+        filters << { terms: { place_ids: [site.place.id] } }
+      else
+        filters << { terms: { site_id: [site.id] } }
+      end
+    end
     es_params = {
       size: 0,
-      filters: [
-        { terms: { "quality_grade": ["research", "needs_id"] } },
-      ],
+      filters: filters,
       aggregate: {
         histogram: {
           date_histogram: {
@@ -714,9 +722,13 @@ class YearStatistic < ActiveRecord::Base
     histogram
   end
 
-  def self.users_histogram_by_created_month
-    Hash[User.group( "EXTRACT('year' FROM created_at) || '-' || EXTRACT('month' FROM created_at)" ).
-        where( "suspended_at IS NULL AND created_at > '2008-03-01'" ).count.map do |k,v|
+  def self.users_histogram_by_created_month( options  = {} )
+    scope = User.group( "EXTRACT('year' FROM created_at) || '-' || EXTRACT('month' FROM created_at)" ).
+      where( "suspended_at IS NULL AND created_at > '2008-03-01' AND observations_count > 0" )
+    if options[:site]
+      scope = scope.where( "site_id = ?", site )
+    end
+    Hash[scope.count.map do |k,v|
       ["#{k.split( "-" ).map{|s| s.rjust( 2, "0" )}.join( "-" )}-01", v]
     end.sort]
   end
