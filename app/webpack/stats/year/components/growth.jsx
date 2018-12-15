@@ -10,7 +10,7 @@ const Growth = ( {
   data,
   year
 } ) => {
-  const label = d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )}</strong>: ${d.value}`;
+  const label = d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM YYYY" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`;
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
   let runningTotal = 0;
   let obsData = _.sortBy(
@@ -139,9 +139,9 @@ const Growth = ( {
   return (
     <div className="Growth">
       <h3><span>{ I18n.t( "views.stats.year.growth_title" ) }</span></h3>
-      <DateHistogram series={obsSeries} legendPosition="nw" />
-      { taxaSeries && <DateHistogram series={taxaSeries} legendPosition="nw" /> }
-      <DateHistogram series={usersSeries} legendPosition="nw" />
+      <DateHistogram series={obsSeries} legendPosition="nw" margin={{ left: 60 }} />
+      { taxaSeries && <DateHistogram series={taxaSeries} legendPosition="nw" margin={{ left: 60 }} /> }
+      <DateHistogram series={usersSeries} legendPosition="nw" margin={{ left: 60 }} />
     </div>
   );
 };

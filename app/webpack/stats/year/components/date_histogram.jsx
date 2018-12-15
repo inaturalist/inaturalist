@@ -211,10 +211,10 @@ class DateHistogram extends React.Component {
       series,
       xExtent,
       tickFormatBottom,
-      onClick,
       legendPosition,
       showContext,
-      id
+      id,
+      margin: propMargin
     } = this.props;
     $( mountNode ).html( "" );
     const svg = d3.select( mountNode ).append( "svg" );
@@ -225,9 +225,7 @@ class DateHistogram extends React.Component {
       .attr( "height", svgHeight )
       .attr( "viewBox", `0 0 ${svgWidth} ${svgHeight}` )
       .attr( "preserveAspectRatio", "xMidYMid meet" );
-    const margin = {
-      top: 20, right: 20, bottom: 30, left: 50
-    };
+    const margin = Object.assign( { }, DateHistogram.defaultProps.margin, propMargin );
     const width = $( "svg", mountNode ).width( ) - margin.left - margin.right;
     const height2 = 50;
     const space = 50;
@@ -425,12 +423,24 @@ DateHistogram.propTypes = {
   legendPosition: PropTypes.string,
   showContext: PropTypes.bool,
   className: PropTypes.string,
-  id: PropTypes.string
+  id: PropTypes.string,
+  margin: PropTypes.shape( {
+    top: PropTypes.number,
+    right: PropTypes.number,
+    bottom: PropTypes.number,
+    left: PropTypes.number
+  } )
 };
 
 DateHistogram.defaultProps = {
   series: {},
-  legendPosition: "ne"
+  legendPosition: "ne",
+  margin: {
+    top: 20,
+    right: 20,
+    bottom: 30,
+    left: 50
+  }
 };
 
 export default DateHistogram;

@@ -63,6 +63,7 @@ const Identifications = ( { data, user } ) => {
               }
               window.open( url, "_blank" );
             }}
+            margin={{ left: 60 }}
           />
         </Col>
       </Row>
