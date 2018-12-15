@@ -729,6 +729,8 @@ ul.leafylist li li:first-child {
   .btn-donate {
     margin-bottom: 20px;
     font-weight: bold;
+    overflow: hidden;
+    text-overflow: ellipsis;
     @media (min-width: 768px) {
       font-size: 9px;
     }

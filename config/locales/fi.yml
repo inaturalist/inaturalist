@@ -18,11 +18,11 @@ fi:
     one: 1 seuraaja
     other: '%{count} seuraajaa'
   x_identifications:
-    one: 1 tunnistaminen
-    other: '%{count} tunnistamista'
+    one: 1 tunnistus
+    other: '%{count} tunnistusta'
   x_identifications_html:
-    one: <span class="count">1</span> tunnistaminen
-    other: <span class="count">%{count}</span> tunnistamista
+    one: <span class="count">1</span> tunnistus
+    other: <span class="count">%{count}</span> tunnistusta
   x_identifications_:
     one: 1 tunnistus
     other: '%{count} tunnistamista'
@@ -43,8 +43,8 @@ fi:
     one: <span class="count">1</span> vastaava taksoni
     other: <span class="count">%{count}</span> vastaavaa taksonia
   x_misidentifications_of_this_species:
-    one: 1 virheellinen tämän lajin tunnistaminen
-    other: '%{count} virheellistä tämän lajin tunnistamista'
+    one: 1 virheellinen tämän lajin tunnistus
+    other: '%{count} virheellistä tämän lajin tunnistusta'
   x_observations:
     one: 1 havainto
     other: '%{count} havaintoa'
@@ -152,7 +152,7 @@ fi:
   account: Käyttäjätili
   account_settings: Tiliasetukset
   accept: hyväksy
-  accept_community_identifications: Hyväksy yhteisön tunnistamisapu
+  accept_community_identifications: Hyväksy yhteisön tunnistusapu
   accuracy: Tarkkuus
   accuracy_m: Tarkkuus (m)
   accuracy_meters: Tarkkuus (metreinä)
@@ -180,7 +180,7 @@ fi:
   add_a_link_raquo: Lisää linkki &raquo;
   add_a_name: Lisää nimi
   add_a_new_change_group: Lisää uusi muutosryhmä
-  add_a_new_observation_to_id_please!: Lisää uusi havainto tunnistamista varten kiitos!
+  add_a_new_observation_to_id_please!: Lisää uusi havainto tunnistusta varten kiitos!
   add_a_place_raquo: Lisää paikka &raquo;
   add_a_single_observation: Lisää yksittäinen havainto.
   add_a_taxon: Lisää taksoni
@@ -191,7 +191,7 @@ fi:
   add_all_your_matching_obs_to_this_project: Lisää kaikki vastaavat havaintosi tähän
     projektiin
   add_an_assessment: Lisää arviointi
-  add_an_identification: Lisää tunnistaminen
+  add_an_identification: Lisää tunnistus
   add_an_observation: Lisää havainto
   add_an_observation?: Lisätäänkö havainto?
   add_an_observation_of: Lisää havainto taksonista %{taxon}
@@ -287,7 +287,7 @@ fi:
   add_to_list: Lisää listaan
   add_to_project: Lisää projektiin
   add_to_your_life_list: Lisää elämälistaasi!
-  add_to_your_list: Lisää listaasi
+  add_to_your_list: Lisää luetteloosi
   add_your_email_to_get: |-
     Lisää sähköpostiosoitteesi saadaksesi palautetta yhteisöltä.
     Jos et halua jakaa sitä, seuraa tätä sivustoa säännöllisesti.
@@ -334,6 +334,7 @@ fi:
   all_photos: Kaikki kuvat
   all_places: Kaikki paikat
   all_projects: Kaikki projektit
+  all_children_added_to_the_database: Kaikki lapset lisätty tietokantaan
   all_rank_added_to_the_database:
     phylum: Kaikki pääjaksot lisätty tietokantaan
     subphylum: Kaikki alajaksot lisätty tietokantaan
@@ -539,8 +540,8 @@ fi:
   are_you_sure_you_want_to_remove_all_tags: Haluatko varmasti poistaa kaikki tagit?
   are_you_sure_you_want_to_remove_curator: Haluatko varmasti poistaa käyttäjältä %{user}
     kuraattorin oikeudet?
-  are_you_sure_you_want_to_remove_from_project: Oletko varma, että haluat poistaa
-    käyttäjän %{user} tästä projektista?
+  are_you_sure_you_want_to_remove_from_project: Haluatko varmasti poistaa käyttäjän
+    %{user} tästä projektista?
   are_you_sure_you_want_to_remove_manager: Haluatko varmasti poistaa käyttäjältä %{user}
     managerin oikeudet?
   are_you_sure_you_want_to_remove_spammer: |-
@@ -621,7 +622,7 @@ fi:
   back_to_x_blog: Takaisin sivun %{x} blogiin
   back_to_your_dashboard: Takaisin kojelautaasi
   back_to_x_observations: Takaisin käyttäjän %{user} havaintoihin
-  back_to_your_lists: Takaisin listoihisi
+  back_to_your_lists: Takaisin luetteloihisi
   back_to_your_journal: Takaisin päiväkirjaasi
   back_to_your_observations: Takaisin havaintoihisi
   back_to_your_profile: Takaisin profiiliisi
@@ -632,9 +633,9 @@ fi:
   batch: Erä
   batch_edit: Erän muokkaus
   batch_operations: Erätoiminnot
-  be_the_first_to_fave_this_observation: Ole ensimmäinen joka suosittelee tätä!
-  beacuse_we_recently_changed_auth_system: Koska olemme hiljattain muuttaneet käyttäjien
-    tunnistautumisjärjestelmäämme, oli tarpeen uusia salasanasi.
+  be_the_first_to_fave_this_observation: Ole ensimmäinen tätä suositteleva!
+  beacuse_we_recently_changed_auth_system: Koska muutimme äskettäin käyttäjien tunnistautumisjärjestelmäämme,
+    oli tarpeen uusia salasanasi.
   because: koska
   because_of: koska
   before_importing_photos: ennen kuvien tuontia
@@ -826,7 +827,7 @@ fi:
   choose_file: Valitse tiedosto
   choose_files: Valitse tiedostot
   choose_files_from_your_computer: valitse tiedostot omalta tietokoneeltasi
-  choose_from_your_lists: Valitse listoistasi
+  choose_from_your_lists: Valitse luetteloistasi
   choose_photos: Valitse valokuvat
   choose_photos_for_this_taxon: Valitse kuvat tälle taksoninille
   choose_photos_to_tag_from_photostream: Valitse kuvia valokuvavirrastasi tunnisteiden
@@ -867,11 +868,13 @@ fi:
   comment_deleted: Kommentti poistettu
   commented: kommentoi
   comments: Kommentit
-  comments_and_identifications: Kommentit ja tunnistamiset
+  comments_and_identifications: Kommentit ja tunnistukset
   comments_by_everyone: Kaikkien kommentit
   comments_by_me: Omat kommenttini
   comments_on: Kommentit
   comments_on_my_observations: Kommentit omissa havainnoissani
+  comments_youve_made_with_others: Tekemäsi kommentit (muiden kanssa)<br/><span class="description">viime
+    viikolla</span>
   commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
   commit: Sitoutua
   committed: Sitoutunut
@@ -882,6 +885,7 @@ fi:
   community_id_heading: Yhteisön tunniste
   community_id_at_species_level_or_lower: Yhteisön tunniste lajitasolla tai pienempi
   community_moderation_settings: Yhteisön moderointiasetukset
+  community_supported_id: Yhteisö-tuettu tunniste?
   compare: Vertaa
   compare_with: Vertaa
   comparing: verrataan
@@ -905,6 +909,7 @@ fi:
   confirm_your_info: Vahvista tietosi
   confirmed: vahvistettu
   confirmed_observations_are: Varmistetut havainnot ovat
+  confirming_identifications: vahvistetaan tunnistuksia
   connect_to_provider: Yhdistä palveluun %{provider}
   connected_accounts: Yhdistetyt tilit
   connecting_flickr: Otetaan yhteyttä Flickr'iin...
@@ -917,6 +922,7 @@ fi:
     geoprivacy: Sijainnin tietosuojan oletusarvo havainnoille tässä taksonissa.
   continue: Jatka
   contributions: muokkaukset
+  contributions_from: Muokkaukset käyttäjältä
   contributor_cannot_be_found: Osallistujaa ei löydy
   contributors_to_project: Projektin %{project} osallistujat
   controlled_term_labels:
@@ -966,8 +972,8 @@ fi:
   copyright_holder: Tekijänoikeuden omistaja
   copyright_info: Tekijänoikeustiedot
   copyright_info_and_more: Tekijänoikeustiedot ja muuta
-  copyright_infringement_desc: Rikkoo tekijänoikeuslakia tai luotiin jonkun muun kuin
-    havainnoijan toimesta ja on vailla atribuutiota
+  copyright_infringement_desc: Loukkaa tekijänoikeuslakia tai luotiin jonkun muun
+    kuin havainnoijan toimesta ja on vailla nimeämistä
   couldnt_change_your_password: 'Ei voinut vaihtaa salasanaasi: %{e}'
   couldnt_find_a_user_matching_x_param: Emme löytäneet käyttäjää %{id}
   couldnt_find_that_taxon: Taksonin löytäminen ei onnistunut.
@@ -985,13 +991,13 @@ fi:
   create_an_atlas: Luo atlas
   create_new_taxon: Luo uusi taksoni
   create_observations: Luo havaintoja
-  create_observations_by_uploading_photos_to: "Luo havaintoja lähettämällä kuvia paikkaan
-    %{place}. Kun lähetät, %{place} yrittää poimia GPS-koordinaatit ja päivämäärän/ajan
-    valokuvasta. \nAloittaaksesi,"
+  create_observations_by_uploading_photos_to: "Luo havaintoja tallentamalla kuvia
+    paikkaan %{place}. Kun tallennat, %{place} yrittää poimia GPS-koordinaatit ja
+    päivämäärän/ajan valokuvasta. \nAloittaaksesi,"
   created: Luotu
   created_by: Luonut
   created_by_user_on_date: Lisännyt %{user} %{date}
-  created_on: Laadittu
+  created_on: Luotu
   creating_your_account: Käyttäjätiliäsi luodaan...
   creative_commons_flickr_tagged: Tunnisteet lisätty Creative Commons Flickr valokuviin
   creative_commons_unless_otherwise_noted: Creative Commons, ellei toisin mainita.
@@ -1000,7 +1006,7 @@ fi:
   csv: CSV
   csv_file: CSV-tiedosto
   csv_should_not_contain_a_header_row: CSV ei saa sisältää otsikkoriviä
-  cumulative_ids: Kumulatiiviset tunnisteet %{count}/%{total}
+  cumulative_ids: 'Kumulatiiviset tunnisteet: %{count}/%{total}'
   curate_observations: Kuratoi havaintoja
   curate_taxa: Kuratoi taksoneita
   curate_user: Kuratoi käyttäjää
@@ -1023,8 +1029,8 @@ fi:
   dashboard: Kojelauta
   data_deficient: Puutteellisesti tunnettu
   data_quality: Tiedon laatu
-  data_quality_assessment: Tietojen laadun arviointi
-  data_quality_assessment_: tietojen laadun arviointi
+  data_quality_assessment: Tietojen laadunarviointi
+  data_quality_assessment_: Tietojen laadunarviointi
   datatype: Tietotyyppi
   date_: Päivämäärä
   date?: Päivämäärä?
@@ -1057,7 +1063,7 @@ fi:
       october: lokakuu
       november: marraskuu
       december: joulukuu
-  date_is_accurate: Päivämäärä on paikkansapitävä
+  date_is_accurate: Päivämäärä on oikea
   date_observed: Havaintopäivämäärä
   date_observed_: Havaintopäivämäärä
   date_observed_on: Havaintopäivämäärä
@@ -1074,8 +1080,8 @@ fi:
   datetime_: Päiväys/Aika
   day: Päivä
   default: oletus
-  default_invite_comment: "Hieno kuva! Sinun pitäisi lähettää se \n%{site_name}iin
-    osoitteeseen {{INVITE_LINK}}"
+  default_invite_comment: "Hieno kuva! Sinun pitäisi lähettää se \n%{site_name}iin:
+    {{INVITE_LINK}}"
   default_observation_license: Oletuslisenssi havainnoille
   default_photo_license: Oletuslisenssi kuville
   default_sound_license: Oletuslisenssi äänille
@@ -1092,7 +1098,8 @@ fi:
     sen tiedoista toiseen taksoniin. Käytä tätä työkalua <strong>poistaaksesi kaksinkertaiset
     taksonit</strong>. Jos haluat poistaa vanhentuneen synonyymin, ole ystävällinen
     ja luo taksonin vaihto. <strong>OLE VAROVAINEN!</strong> Taksoneiden poisto voi
-    olla erittäin tuhoisaa. Lue <a href="%{curator_url}">Curator Guide</a>'sta lisätietoja.
+    olla erittäin tuhoisaa. Tarkista <a href="%{curator_url}">Kuraattorioppaasta</a>
+    lisätietoja.
   delete_this_name: Poista tämä nimi
   delete_user: Poista käyttäjä
   delete_your_account: Poista tilisi
@@ -1111,6 +1118,8 @@ fi:
   desription: Kuvaus
   destroy: Tuhoa
   details: Tiedot
+  deviation: Poikkeama
+  deviations: Poikkeamat
   devise:
     failure:
       user:
@@ -1133,7 +1142,7 @@ fi:
   do_not_show_this_message_again: Älä näytä tätä viestiä uudelleen
   do_you_know_where_this_species_lives: Tiedätkö, missä tämä laji elää?
   do_you_want_to_proceed: Haluatko jatkaa?
-  does_the_location_seem_accurate: Näyttääkö sijainti oikealta!
+  does_the_location_seem_accurate: Näyttääkö sijainti oikealta?
   does_the_date_seem_accurate: Näyttääkö päiväys oikealta!
   doesnt_have_default_photo: ei ole vielä oletuskuvaa.
   doh_something_went_wrong: Pahus, jotain meni pieleen.
@@ -1156,6 +1165,11 @@ fi:
   drafts: Luonnokset
   drag_and_drop_some_photos_or_sounds: Vedä ja pudota joitain valokuvia tai ääniä
   duplicate_verb: Monista
+  each_place_displays_all_species_inat_knows: Jokainen paikkasivu esittelee kaikki
+    lajit, jotka %{site_name} tietää tästä paikasta, mukaan lukien tiedot niiden runsaudesta,
+    suojelutilasta ja kuka ensimmäisenä havaitsi tämän lajin tästä paikasta %{site_name}issa.
+    Voit suodattaa lajeja taksonomisen ryhmän, värin, suojelutilan, tai pelkän vanhan
+    haun mukaan.
   edit: Muokkaa
   edit_a_batch_of_observations: Muokkaa erä havaintoja
   edit_account_settings_and_profile: Muokkaa tiliäsi &amp; profiiliasi
@@ -1217,7 +1231,7 @@ fi:
     jo häntä.
   email: Sähköposti
   email_addresses_description: Pilkulla erotellut sähköpostiosoitteet, enintään 60
-    aina 30 päivän välein.
+    joka 30 päivä.
   email_address_for_comments_and_other_feedback: Sähköpostiosoite kommenteille ja
     muulle palautteelle
   email_addresses_to_receive_invites: Sähköpostiosoitteet kutsujen vastaanottamiseen
@@ -1246,7 +1260,7 @@ fi:
     endemic: Endeeminen
     introduced: Esitelty
     naturalised: Luonnonmukaistunut
-  establishment_means: Vakiinnuttaminen tarkoittaa
+  establishment_means: Perustamisen keinot
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: kotoperäinen eikä esiinny missään muualla
     arrived_in_the_region_via_anthropogenic_means: saapunut alueelle ihmisen toiminnan
@@ -1263,14 +1277,18 @@ fi:
   exact_rank: Tarkka arvo
   except: paitsi
   exit_full_screen: Poistu kokoruututilasta
+  expand_days: Laajenna päivät
+  expand_updates: Laajenna päivitykset
   explore!: Tutki!
   explore: Tutki
+  explore_everyones_observations: Tutki kaikkien havaintoja
   export: Vie
   export_observations: Vie havaintoja
   export_with_private_coordinates: Vie yksityisiä koordinaatteja
   exporting: Viedään...
   external_links: Ulkoiset linkit
   extinct: kuollut sukupuuttoon
+  extinct_in_the_wild: Sukupuuttoon kuollut luonnossa
   extra_properties: Lisäominaisuudet
   extras: Ekstrat
   evidence_of_organism: Todiste eliöstä
@@ -1289,7 +1307,7 @@ fi:
   facts_and_stats: Faktat ja tilastot
   failed_to_find_your_location: Sijaintisi paikantaminen epäonnistui.
   failed_to_repair_photo: 'Kuvan korjaus epäonnistui: %{errors}'
-  "false": Tarua
+  "false": Ei
   faq: Usein Kysytyt Kysymykset
   fave: suositus
   faves: Suositukset
@@ -1308,8 +1326,8 @@ fi:
     jos joku muu on jo tehnyt sen päällekkäisyyden välttämiseksi."
   fields: kentät
   fields_: Kentät
-  fields_can_only_be_edited_by_the_people_who: Kenttiä voi muokata vain ihmiset, jotka
-    ovat luoneet ne sekä sivustokuraattorit
+  fields_can_only_be_edited_by_the_people_who: Kenttiä voivat muokata vain henkilöt,
+    jotka ovat luoneet ne ja sivuston kuraattorit
   fields_merged: Kentät yhdistetään
   file: Tiedosto
   file_should_be_in_the_following_format: 'Tiedoston pitäisi olla seuraavassa muodossa:
@@ -1318,7 +1336,7 @@ fi:
   fill_out_your_profile: täydennä profiilisi
   filling_out_checklist_for_place: täyttämällä hyvien tuntemiesi paikkojen lajiluetteloita
   filling_out_your_profile: täyttämällä profiilisi
-  filter: Suodatin
+  filter: Suodata
   filter_by: Suodata
   filter_by_place: Suodata paikan mukaan
   filter_by_taxon: Suodata taksonin mukaan
@@ -1354,8 +1372,7 @@ fi:
   flag_an_item: Liputa kohde
   flag_as_spammer: Liputa spammaajaksi
   flag_as_non_spammer: Liputa ei-spammaajaksi
-  flag_description: Liputa tämä sisältö jotta kuraattorit tietävät, että jotain on
-    vialla.
+  flag_description: Liputa tämä sisältö jotta kuraattorit tietävät jonkin olevan vialla.
   flag_for_curation: Liputa kuraattorin tunnistusta varten
   flag_it!: Liputa!
   flag_marked_as_resolved_html: <span class="meta">Lippu merkitty</span> <strong>ratkaistuksi.</strong>
@@ -1371,6 +1388,9 @@ fi:
   flagger: Liputtaja
   flags: Liput
   flags_with_count: (%{count}) lippua
+  flags_explanation: '%{site_name}in käyttäjät liputtavat asioita kun he löytävät
+    jotain, joka ei ole oikein. Tässä on muutamia juttuja, joita kuraattorit eivät
+    ole vielä ratkaisseet.'
   flags_on_users_content: Liput käyttäjän %{user} sisällössä
   flickr_account_information: Flickr Tilisi Tiedot
   flickr_description: Flickr on valokuvien jakopalvelu, ehkä olet jo tiennytkin siitä!
@@ -1401,6 +1421,7 @@ fi:
   for_a_taxon: taksonille
   formatting: Muotoilu
   forgot_your_password: Unohditko salasanasi?
+  frequency: Lukumäärä
   fri: Pe
   from: paikasta
   from_a_place: paikasta
@@ -1414,7 +1435,7 @@ fi:
   from_soundcloud: Soundcloudista
   from_your_site_observations: Sivuston %{site_name} havainnot
   full_id_please: Tunniste kiitos!
-  full_id_please!: tunniste kiitos!
+  full_id_please!: Tunniste kiitos!
   full_id_please?: Tunniste kiitos?
   full_screen: Koko ruutu
   fungi:
@@ -1427,6 +1448,7 @@ fi:
   general: Yleinen
   generate_taxonomic_tags_for_flickr: Luo taksonomisia tageja Flickr-valokuviisi.
   generate_widget: Luo Pienoisohjelma
+  generating: Tuotetaan...
   Genus: Suku
   genus_slash_species: '[SUKU] / [LAJI]'
   geoprivacy: Sijainnin tietosuoja
@@ -1435,6 +1457,7 @@ fi:
   getting_started: Aloittaminen
   getting_started_guide: Aloitusopas
   give_it_some_detail: Anna sille joitakin yksityiskohtia!
+  global_names: Maailmanlaajuiset nimet
   globally: maailmanlaajuisesti
   go: Siirry
   go_back: Mene takaisin
@@ -1468,15 +1491,24 @@ fi:
     projektia.
   hate_me_facebook: Pura linkitys Facebook ja %{site_name} tileihisi
   hate_me_flickr: Pura linkitys Flickr- ja %{site_name}-tileihisi
+  heads_up: Huomio
+  heads_up_observation_search_can_only_load: 'Huomio: havaintohaku voi ladata enintään
+    vain 50 sivua'
+  heads_up_this_observation_has_been_flagged: Tämä havainto on liputettu.
+  heads_up_this_photo_has_been_flagged: Tämä kuva on liputettu.
+  heads_up_this_photo_is_already_associated_with: 'Huomio: tämä kuva on jo yhdistetty
+    <a target=''_blank'' href=''%{url}''>toisen havainnon</a> kanssa'
   hello: <test>
   help: Apua
   help_confirm_observations!: Auta vahvistamaan havaintoja!
   help_faq: Apua / UKK
+  help_support_inaturalist: Auta tukemaan iNaturalistia!
   hex_color_eg: Hex-väri, esim. 65644F
   hi: Hei,
   hi_user: Hei %{user}
   hide: Piilota
   hide_details: Piilota tiedot
+  hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
   highest_rank: Korkein arvo
   highlights: Kohokohtia
@@ -1495,6 +1527,10 @@ fi:
   iconic_taxon: Ikoninen taksoni
   id: Tunniste
   id_: Tunniste
+  id_categories:
+    tooltips:
+      improving: Ensimmäinen ehdotus tästä taksosta, jonka yhteisö on myöhemmin hyväksyi.
+        Tämä auttoi kohentamaan yhteisön taksonia.
   id_please!: Tunniste kiitos!
   id_please: Tunniste kiitos
   id_please_expandable_html: Tunniste<span class='full'> kiitos</span>!
@@ -1503,16 +1539,18 @@ fi:
   identify_observations: Tunnista havaintoja
   identify_title: Tunnistus
   identification: määrittäjä
-  identification_by_user: Käyttäjän %{user} tunnistamiset
-  identification_deleted: Tunnistaminen poistettu.
+  identification_by_user: Käyttäjän %{user} tunnistus
+  identification_deleted: Tunnistus poistettu.
   identification_saved: Tunnistus tallennettu!
   identification_summary: Tunnisteen yhteenveto
   identification_updated: Tunnistus päivitetty!
-  identification_withdrawn: Tunnistaminen peruutettu.
-  identifications: Tunnistamiset
-  identifications_by: Käyttäjän %{user} tunnistamiset
+  identification_withdrawn: Tunnistus peruutettu.
+  identifications: Tunnistukset
+  identifications_by: Käyttäjän %{user} tunnistukset
   identified?: tunnistettu
   identifiers: Tunnisteet
+  identotron: Identotron
+  identotron_help: Identotron ohje
   ids: Tunnisteet
   ids_made_for_others: muille tehtyä tunnistetta
   if_this_is_a_scientific_name: Jos tämä on tieteellinen nimi, onko se hyväksytty
@@ -1579,6 +1617,7 @@ fi:
   insect_life_stage: Hyönteisen elämänvaihe
   interactions: Vuorovaikutukset
   internal_server_error: Sisäinen palvelinvirhe
+  internal_taxon: Sisäinen taksoni
   introduced: Esitelty
   introduced_in_place: Esitelty paikassa %{place}
   invitation: Kutsu
@@ -1591,6 +1630,7 @@ fi:
   invite_people_to_project: Kutsu ihmisiä projektiin %{project}
   invite_photos_from_other_sites: Kutsu kuvia muilta sivustoilta
   invite_photos_to: Kutsu kuvia %{site_name}iin
+  invite_photos_to_raquo_html: Kutsu kuvia <nobr>%{site_name}iin &raquo;</nobr>
   invite_someone_to: Kutsu joku %{name}iin!
   invite_to_project: Kutsu projektiin
   invite_your_friends: Kutsu ystäviäsi
@@ -1604,6 +1644,9 @@ fi:
   iphone: iPhone
   is_a: "on"
   is_an: "on"
+  is_an_evaluation: |-
+    on havaintojen tarkkuuden arviointia.
+    Tutkijat saattavat käyttää tutkimusastehavaintoja tutkimukseen. Anna äänesi alla:
   is_not_following_anyone: ei seuraa ketään.
   is_now: on nyt
   is_the_organism_wild: Onko tämä eliö villi/luonnollinen?
@@ -1616,6 +1659,12 @@ fi:
   it_can_now_be_used_for_research: Sitä voidaan nyt käyttää tutkimukseen ja esitellä
     muilla verkkosivustoilla
   it_has: Sillä on
+  item_flagged_notice_html: |-
+    Tämä on liputettu roskapostina eikä enää ole
+    julkisesti nähtävissä. Voit nähdä sen, koska olet luonut sen, tai olet
+    sivuston kuraattori. Jos luulet, että tämä on erehdys,
+    <a href="mailto:%{help_email}" class="contact"ota yhteyttä meihin</a>.
+    <a href="%{manage_flags_path}">Hallitse lippuja</a>
   its_important_that_you: On tärkeää, että napsautat
   january: Tammikuu
   join: Liity
@@ -1624,6 +1673,8 @@ fi:
   join_project: Liity tähän projektiin
   join_some_projects_and_invite_some_observations_html: Liity joihinkin <a href='%{join_url}'>projekteihin</a>
     ja <a href='%{invite_url}'>pyydä joitakin havaintoja</a>
+  join_the_largest_group_of_naturalists_in_the_world: Liity maailman suurimpaan luonnontieteilijöiden
+    joukkoon!
   join_this_project: Liity tähän projektiin
   joined!: Liitytty!
   joined_any_projects: liittynyt mihinkään projektiin
@@ -1667,7 +1718,7 @@ fi:
   leaderboard_most:
     species: Eniten lajeja %{time}
     observations: Eniten havaintoja %{time}
-    identifications: Eniten tunnistamisia %{time}
+    identifications: Eniten tunnistuksia %{time}
   leading: Johtava
   learn!: Opi!
   learn: Opi
@@ -1680,6 +1731,9 @@ fi:
   leave_a_comment: Jätä kommentti
   leave_this_project: Jätä tämä projekti
   leaves: lehdet
+  legacy_authentication_notice_html: |-
+    Näyttää siltä, että käytät salasanaa verkkosivuston vanhasta versiosta.
+    Muista <a href="%{url}">vaihtaa salasanasi</a> uudelle versiolle.
   let_us_walk_you_through: Käykäämme läpi tämän sivuston pääpiirteet.
   lexicon: Sanakirja
   lexicons:
@@ -1744,7 +1798,7 @@ fi:
     kuten
   life: Elämä
   life!: Elämä!
-  life_list: Käyttäjän %{user} elämälista
+  life_list: Käyttäjän %{user} elämäluettelo
   life_list_updated: Elämänlista päivitetty!
   life_list_updated_we_also_saved_a: Elämälista päivitetty! Säästimme myös tämän taksonin
     tyhjän havainnon.
@@ -1760,6 +1814,7 @@ fi:
   link_your_google_account: Linkitä Google-tilisi
   linked_facebook: '%{site_name}-tilisi on tällä hetkellä linkitetty Facebook-tiliisi.'
   linked_flickr: '%{site_name}-tilisi on tällä hetkellä linkitetty Flickr-tiliisi.'
+  linkedin: LinkedIn
   list: Luettelo
   list_deleted: Lista poistettu.
   list_saved: Lista tallennettu.
@@ -1773,11 +1828,14 @@ fi:
   listed_taxa: Luetellut taksonit
   listed_taxon: Lueteltu taksoni
   listing_lists: Listauslistat
+  listing_taxa: Taksonien luettelointi
+  listing_taxon_names: Taksoninimien luettelointi
   lists: Luettelot
   lists_by_login:
     title:
       current_user: Luettelosi
-      login: Luettelot käyttäjältä %{login}
+      login: Käyttäjän %{login} luettelot
+  lists_come_in_three: 'Luetteloita on kolmea eri tyyppiä:'
   load: Lataa
   loading: Ladataan...
   loading_flickr_photos: Ladataan Flickr kuvia...
@@ -1831,7 +1889,7 @@ fi:
   location: Sijainti
   location_: Sijainti
   locations: Sijainnit
-  location_is_accurate: Sijainti on tarkka
+  location_is_accurate: Sijainti on oikea
   location_is_exact: sijainti on tarkka
   location_is_public: Sijainti on julkinen
   location_is_obscured: Sijainti on piilotettu
@@ -1907,6 +1965,8 @@ fi:
     ja %{nat_geo_tag_html} yhteinen aloite'
   members: Jäsenet
   mentioned_you_in_noun_html: '%{user} mainitsi sinut kohteessa %{noun}'
+  mentioned_you_in_noun_by_html: '%{user} mainitsi sinut kohteessa %{noun} käyttäjältä
+    %{by}'
   mentions: Maininnat
   merge: Yhdistä
   merge_it_with_another_place: Yhdistä se toisen paikan kanssa
@@ -1914,6 +1974,10 @@ fi:
     yhdistetään, samoin kuin kaikki maantieteelliset tiedot.
   message: Viesti
   messages: Viestit
+  misidentifications: Virhetunnistukset
+  misleading_or_illegal_content_html: "Harhaanjohtavaa tai laitonta sisältöä, rodun
+    tai kansan loukkaaminen, yms. Lisätietoa\nmääritelmästämme \"sopivasta\", katso
+    \n<a href=\"/help#inappropriate\">UKK</a>."
   mobile: Mobiili
   mobile_app_for: Mobiilisovellus
   mobile_apps_for: Mobiilisovellus
@@ -1982,6 +2046,7 @@ fi:
   names: Nimet
   names_for_taxon_html: Nimet taksonille %{taxon}
   native: kotoperäinen
+  nav: Nav
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
     quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -2005,8 +2070,8 @@ fi:
   new_assessment: Uusi arviointi
   new_check_list: Uusi lajiluettelo
   new_check_list_for: Luo uusi lajiluettelo paikalle %{place} &raquo;
-  new_comment_on_a_parent_by_user_link: Uusi kommentti kohteessa %{parent} käyttäjältä
-    %{user_link}
+  new_comment_on_a_parent_by_user_link: Uusi kommentti käyttäjän %{user_link} kohteessa
+    %{parent}
   new_guide: Uusi opas
   new_journal_post: Uusi päiväkirjakirjoitus
   new_lexicon: Uusi sanasto
@@ -2057,9 +2122,9 @@ fi:
   no_flags: Ei lippuja tällä kertaa
   no_flickr_photos_tagged: Yhtään tunnistetta ei ole lisätty Flickr-valokuviin.
   no_header_row: Ei otsikkoriviä
-  no_identifications: Ei tunnistamisia
+  no_identifications: Ei tunnistuksia
   no_identifications_added:
-    current_user: Et ole lisännyt tunnistamisia kenenkään havaintoihin.
+    current_user: Et ole lisännyt tunnistuksia kenenkään havaintoihin.
     user: '%{user} ei ole lisännyt tunnisteita kenenkään havaintoihin.'
   no_ids_have_been_suggested_yet: Tunnistetta ei ole vielä ehdotettu
   no_its_as_good_as_it_can_be: Ei, se on niin hyvä kuin se voi olla
@@ -2112,6 +2177,7 @@ fi:
   no_species_on_this_list_for_owner_html: Voit aloittaa lisäämällä lajeja suoraan
     tähän luetteloon, tai jos tämä on elämäluettelo, se päivitetään automaattisesti
     lajien kanssa kun <a href="%{url}" class="nobr">lisäät havaintoja</a>.
+  no_suggestions_available: Ehdotuksia ei saatavissa
   no_summary_from_wikipedia: Ei yhteenvetoa Wikipediasta
   no_taxa: Ei taksoneita
   no_taxa_listed: Ei taksoneita luetteloituna
@@ -2121,10 +2187,12 @@ fi:
   no_x_this_y: Ei %{x} tämä %{y}
   noble_curators: '%{site}in mahtavat kuraattorit'
   non_human?: Ei-ihminen?
+  non_internal_taxon: Ei sisäinen taksoni
   none: Ei mitään
   none_found: Ei löytynyt
   normal: normaali
   not_evaluated: arvioimatta jätetty
+  not_filtering: Ei suodatusta
   not_findig_what_you_want: Et löydä mitä haluat?
   not_finding_place_you_want?: Et löydä haluamaasi paikkaa?
   not_finding_what_looking_for: Et löydä sitä, mitä etsit?
@@ -2138,13 +2206,13 @@ fi:
   not_seeing_what_looking_for: Etkö näe etsimääsi?
   not_yet: Ei vielä
   note: Huomautus
-  notes: Huomautukset
+  notes: Muistiinpanot
   notify_me_of_mentions: Ilmoita minulle maininnoista (esim. @käyttäjänimi)
   notify_me_about_redundant_identifications: Ilmoita minulle vahvistetuista havainnoista
   number_of_observations: Havaintojen lukumäärä
   number_selected: '# valittu'
   numeric_: numeerinen
-  noun_by_you: sinun %{noun}
+  noun_by_you: Sinun %{noun}
   obs: Havainnot
   obscured_: piilotettu
   obscured_or_private: piilotettu tai yksityinen
@@ -2176,7 +2244,7 @@ fi:
   observation_rules: Havainnointisäännöt
   observation_was_deleted: Havainto poistettiin.
   observation_without_media: Havainto ilman mediaa
-  observation_would_like_some_help: '%{user} haluaisi vähän apua tämän tunnistamisessa!'
+  observation_would_like_some_help: '%{user} haluaisi vähän apua tämän tunnistuksessa!'
   observations: Havainnot
   observations_: havaintoa
   observations_added_by_x_html: Havainnon lisäsi %{x}
@@ -2217,7 +2285,7 @@ fi:
   observed_in_place?: havaittu paikallaan
   observed_on: Havaittu
   observed_one: havaitsi yhden
-  observer: Havainnoija
+  observer: Havainnoi
   observers: Havainnoijat
   observer_short: Havainnoija
   observing: havainnointi
@@ -2231,7 +2299,7 @@ fi:
   of: /
   of_observations: havainnot
   of_species: laji
-  of_observers: havainnoijat
+  of_observers: havainnoijaa
   of_identifiers: tunnisteet
   of_places: paikat
   of_this_taxon: tästä taksonista
@@ -2240,9 +2308,7 @@ fi:
   offline_access_enabled: Offline-yhteys käytössä
   old_observation_form: Vanha havaintomuoto (vanhentunut)
   ok: OK
-  on_: päivänä
   on_date: '%{date}'
-  on_day: päivänä
   on_edit_date: '%{editdate}'
   on_list?: luettelossa
   on_submit_date: '%{submitdate}'
@@ -2255,8 +2321,8 @@ fi:
       eliöitä...
     observe_panel_body_p2: Mene ulos, ja tarkkaile yksittäistä eliötä. Valitse jotakin
       villiä ja ota selvä, täyskehyskuva. Jos sinulla on jo valokuva jostain villistä,
-      <a href="%{new_observation_path}">lisää se nyt</a>. Voit myös käyttää %{site_name}
-      mobiilisovelluksia tallentaaksesi havaintoja.
+      <a href="%{new_observation_path}">lisää se nyt</a>. Voit myös käyttää %{site_name}-mobiilisovelluksia
+      tallentaaksesi havaintoja.
     follow_panel_title_local: Seuraa joitakin läheisiä luonnontieteilijöitä
     follow_panel_title_global: Seuraa joitakin aktiivisia luonnontieteilijöitä
     follow_panel_body: Jos vierailet näissä profiileissa ja klikkaat seuraa-painiketta,
@@ -2267,9 +2333,9 @@ fi:
       kirjaa näiden lajien uusista havainnoista, tai tee sama asia paikkojen kanssa.'
     comments_panel_title: Utelias siitä, millaisia keskusteluja %{site_name}issa tapahtuu?
     comments_panel_body: '<p>%{site_name}issa on kyse elävien asioiden havaintojen
-      jakamisesta ja keskustelusta. Alla on tämänhetkisiä keskusteluja. (Note: Sinut
-      automaattisesti merkitään tilaajaksi keskusteluihin joihin teet kommentteja
-      tai tunnistamisia. Hallinnoi näitä päivityksiä ''Tilaukset'' osuudessa oikealla.)</p>'
+      jakamisesta ja keskustelusta. Alla on tämänhetkisiä keskusteluja. (Huomautus:
+      Sinut automaattisesti merkitään tilaajaksi keskusteluihin joihin teet kommentteja
+      tai tunnistuksia. Hallinnoi näitä päivityksiä ''Tilaukset'' osuudessa oikealla.)</p>'
     updates_by_you_panel_title: Tämä välilehti on nopea tapa suodattaa vain oman sisältösi
       päivitykset.
     updates_by_you_panel_body: Muista, 'Kaikki päivitykset' välilehdellä saat päivityksiä
@@ -2278,10 +2344,10 @@ fi:
     youve_got_updates_panel_title: Sinulla on päivityksiä!
     youve_got_updates_panel_body_p2: |-
       <ul>
-        <li><strong>Sisältösi:</strong> Toiminta havainnoissasi kuten kommentit, tunnistamiset ja suositukset %{site_name} yhteisöltä. Saat myös päivityksiä, kun joku lisää havaintosi projektiin, tai merkitsee sen lisäkentillä</li>
+        <li><strong>Sisältösi:</strong> Toiminta havainnoissasi kuten kommentit, tunnistukset ja suositukset %{site_name} yhteisöltä. Saat myös päivityksiä, kun joku lisää havaintosi projektiin, tai merkitsee sen lisäkentillä</li>
         <li><strong>Ihmiset:</strong> Uudet havainnot tai päiväkirjamerkinnät seuraamiltasi ihmisiltä.</li>
         <li><strong>Eliöt, projektit & paikat:</strong> Uudet havainnot tietyistä eliöistä tai paikoista, joita olet tilannut. Voit myös liittyä projekteihin, joten sinua päivitetään, kun he julkaisevat projektin päiväkirjamerkintöjä.</li>
-        <li><strong>Keskustelut, joihin olet osallistunut:</strong> Kommentoimalla tai lisäämällä tunnistamisia jonkun muun sisältöön automaattisesti tilaa sinut tähän sisältöön. Käytä 'Hallitse tilauksiasi' työkalua pysäyttääksesi päivitysten vastaanottamisen.</li>
+        <li><strong>Keskustelut, joihin olet osallistunut:</strong> Kommentoimalla tai lisäämällä tunnistuksia jonkun muun sisältöön automaattisesti tilaa sinut tähän sisältöön. Käytä 'Hallitse tilauksiasi' työkalua pysäyttääksesi päivitysten vastaanottamisen.</li>
       </ul>
   one_by_one: Yksi kerrallaan
   one_of_your_lists: yksi listoistasi...
@@ -2312,7 +2378,7 @@ fi:
   or_invited: tai kutsuttu.
   or_log_in_with_colon: 'Tai kirjadu sisään seuraavilla:'
   or_post_message_to_google_group: 'tai lähetä viesti Google-ryhmäämme:'
-  or_upload: Tai lähetä
+  or_upload: Tai tallenna
   or_you_can: Tai voit...
   or_you_can_: tai voit
   orange: oranssi
@@ -2354,12 +2420,12 @@ fi:
   people_added:
     observation: lisäsi %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
     identification:
-      with_observation: lisäsi <strong>tunnisteen</strong> %{observation_link}on käyttäjältä
-        %{user_link}
+      with_observation: lisäsi <strong>tunnisteen</strong> käyttäjän %{user_link}
+        %{observation_link}on
       without_observation: lisäsi <strong>tunnisteen</strong>
     post: tehty %{post_link}
     comment:
-      with_by: kommentoi kohdetta %{comment_subject_link} käyttäjältä %{by_link}
+      with_by: kommentoi käyttäjän %{by_link} kohdetta %{comment_subject_link}
       without_by: kommentoi kohteessa %{comment_subject_link}
   per_day: Per päivä
   per_month: Per kuukausi
@@ -2403,6 +2469,7 @@ fi:
     yksityisyydestä ja sijainnista myöhempää käyttöä varten.
   place: Paikka
   place_added_to_inat_by: Paikan %{site_name}iin lisännyt
+  place_autocomplete_placeholder: Zionin kansallispuisto, Miami, yms.
   place_deleted: Paikka poistettu.
   place_geo:
     geo_planet_place_types:
@@ -2486,6 +2553,7 @@ fi:
       zone: vyöhyke
   place_imported: Paikka tuotu!
   place_name: Paikan nimi
+  place_notes: Paikkamerkinnät
   place_subscription: paikan tilaus
   place_updated: Paikka pävitetty!
   placement: Sijoitus
@@ -2614,7 +2682,7 @@ fi:
   project_list_defaults:
     title: Lajiluettelo / %{owner_name}
     description: Lajilista käyttäjälle %{owner_name}
-  project_curators_added_some_of_your_observations_html: <a href="%{url}">%{project}</a>
+  project_curators_added_some_of_your_observations_html: Projektin <a href="%{url}">%{project}</a>
     kuraattorit lisäsivät joitain havaintojasi
   project_id: Projektin tunniste
   project_members: Projektin %{project} jäsenet
@@ -2635,6 +2703,7 @@ fi:
   projects_description: |-
     Projektit antavat sinun jakaa havaintojasi muiden ihmisten kesken %{site_name}issa.
     Olitpa sitten aloittamassa kansalaistiedettä tai pitämässä silmällä naapurustosi lintuja. Projektit ovat tapa mennä.
+  projects_from_everywhere: Projektit kaikkialta
   projects_from_place: Projektit paikasta %{place}
   projects_in_x: Projektit paikassa %{x}
   projects_you_admin: Projektit joita hallinoit
@@ -2690,6 +2759,7 @@ fi:
   real_time_discussions: Reaaliaikaiset keskustelut
   reason: Syy
   reason_you_are_flagging_this_item: Syy, jonka vuoksi liputat tätä kohdetta.
+  recaptcha_verification_failed: reCAPTCHA-varmistus epäonnistui
   receive_email_notifications_when_people_leave_you: Vastaanota sähköposti-ilmoituksia
   receive_updates_from_this_project: Haluan saada tätä projektia koskevia päivityksiä
   received: vastaanotetut
@@ -2698,8 +2768,10 @@ fi:
   recent_evidence?: Viimeaikaiset todisteet?
   recent_evidence_of_organism: Viimeaikainen todiste eliöstä
   recent_observations: Viimeaikaiset havainnot
+  recent_observations_: Viimeaikaiset havainnot
+  recent_post: Viimeaikainen viesti
   recent_atom_observations_by: Viimeaikaiset havainnot käyttäjältä %{login} (Atom)
-  recent_observations_by: Viimeaikaiset havainnot käyttäjältä %{login}
+  recent_observations_by: Tuoreet havainnot käyttäjältä %{login}
   recent_updates: Viimeaikaiset päivitykset
   recently_active: Äskettäin aktiivinen
   recently_created: Äskettäin luotu
@@ -2708,10 +2780,21 @@ fi:
   recently_resolved: Äskettäin ratkaistut
   red: punainen
   redo_search_in_map: Tee haku uudestaan kartalla
+  redo_search_in_map_area: Tee haku uudestaan kartalla
   refresh: Päivitä
   refreshing: päivitetään
   regenerate_stats: Uudelleenluo tilastot
   reject_the_community_id: hylkää yhteisön tunniste
+  relationship: Suhde
+  relationship_x: 'Suhde: %{relationship}'
+  relationships:
+    one_to_one: yksi-yhteen
+    alternate_position: vaihtoehtoinen sijainti
+    many_to_many: monta-moneen
+    one_to_many: yksi-moneen
+    not_external: ei ulkoinen
+    not_internal: ei sisäinen
+    unknown: tuntematon
   reload_and_refresh: Lataa uudelleen ja päivitä luettelo
   reload_from_observations: Päivitä havainnoista
   remarks_optional: Huomautukset <span class="small description">(valinnainen)</span>
@@ -2866,6 +2949,7 @@ fi:
   set_license: Aseta lisenssi
   settings: asetukset
   share: Jaa
+  share_colon: 'Jaa:'
   short_or_abbreviated_title_for_display: Lyhyt tai lyhennetty otsikko näytettäväksi
     avaruus-rajoitetuilla alueilla. Enintään 10 merkkiä.
   show: Näytä
@@ -2891,6 +2975,7 @@ fi:
   showing_x_of_y_listings: Näytetään %{x}/%{y} listauksesta
   sign_in: Kirjaudu sisään
   sign_in_with_provider: Kirjaudu sisään %{provider}-tilillä
+  sign_up_with_provider: Kirjaudu sisään %{provider}-tilillä
   sign_out: Kirjaudu ulos
   sign_up!: Rekisteröidy!
   sign_up: Rekisteröidy
@@ -2997,6 +3082,7 @@ fi:
   start_typing_field_name: Aloita näppäilemällä nimi kenttään...
   start_typing_place_name: Aloita näppäilemällä paikan nimi...
   start_typing_taxon_name: Aloita näppäilemällä taksonin nimi...
+  start_typing_someones_name: Aloita näppäilemällä jonkun nimi...
   stats: Tilastot
   stats_title: Sivun tilastot
   status: Tila
@@ -3018,7 +3104,7 @@ fi:
   submitted: Lähetetty
   subscribe_to_a_taxon: Tilaa taksoni
   subscribe_to_a_place: Tilaa paikka
-  subscribe_to_observations_in_a_taxon: Tilaa kaikki lajien tai organismiryhmien havainnot
+  subscribe_to_observations_in_a_taxon: Tilaa kaikki lajien tai eliöryhmien havainnot
     (esim. 'skorpioonit')
   subscribe_to_observations_in_a_place: Tilaa kaikki tähän paikkaan asetetut havainnot.
     Voit myös lisätä valinnaisen taksonisuodattimen (esim. 'skorpionit Texasista'
@@ -3057,7 +3143,7 @@ fi:
   take_me_flickr!: Kyllä, vie minut Flickr:iin!
   take_me_back: Vie minut takaisin
   taxa: Taksonit
-  taxa_info: Taksonitiedot
+  taxa_info: Taksonien tiedot
   taxa_all_species_html: Kaikki lajit
   taxa_observed: taksonia havaittu
   taxon: Taksoni
@@ -3092,6 +3178,7 @@ fi:
   taxonomic_order: Taksonominen järjestys
   taxonomic_status: Taksonominen tila
   taxonomic_tags_for_flickr: Flickr'in taksonomiset tagit
+  taxonomy_details_for: Taksonomiset tiedot kohteelle
   taxonomy_settings: Taksonomia-asetukset
   tell_everyone_a_little_about_you: Kerro kaikille vähän itsestäsi
   tell_the_world_a_little_about_yourself: Kerro meille itsestäsi
@@ -3122,13 +3209,18 @@ fi:
   the_below_items_are_needed_to_achieve: 'Alla olevia kohteita tarvitaan <span className="bold">Tutkimusasteen</span>
     saavuttamiseen:'
   the_community_id_requires_at_least_two_identifications: Yhteisön tunniste edellyttää
-    ainakin kahta tunnistamisesta.
+    ainakin kahta tunnistusta.
+  the_community_must_feel_that: Yhteisön on tunnettava, että Yhteisön tunniste on
+    paras että se voi perustua näyttöön
   the_following_photos_have_been_tagged: 'Seuraaviin kuviin on lisätty tunnisteet:'
   the_list: luettelo
   the_past: menneisyys
   the_people_of_inat: '%{site_name}in väki'
   the_project: projekti
   the_world: Maailma
+  the_world_is_full_of_interesting_places: |-
+    Maailma on täynnä mielenkiintoisia paikkoja, jokainen täynnä outoja ja
+    ihmeellisiä elämänmuotoja. Jotkut ovat toisella puolella maailmaa, kun taas toiset ovat pitkin katuja! %{site_name} paikat antavat sinun selata elämää ympäri planeettaa. Aloita tutkiminen!
   then_keybord_sequence: sitten
   there_were_problems_adding_that_observation_to_this_project: 'Havainnon lisääminen
     tähän projektiin epäonnistui:'
@@ -3139,7 +3231,7 @@ fi:
   theres_also: siellä on myös
   these_folks_kindly_volunteer_to: Nämä ystävät ylläpitävät kiltisti ja vapaaehtoisesti
     taksonomiaamme ja käsittelevät muita asioita.
-  these_observations_have_not_been_uploaded_yet: Näitä havaintoja ei ole vielä lähetetty.
+  these_observations_have_not_been_uploaded_yet: Näitä havaintoja ei ole vielä tallennettu.
   they_already_have_iNat_accounts: '...heillä on jo %{site_name}-tilit'
   they_have_been_invited: '...heidät on jo kutsuttu'
   third_person_possessive_singular: Käyttäjän %{object_phrase} %{noun}
@@ -3189,7 +3281,7 @@ fi:
     kanssa
   today: Tänään
   tools: Työkalut
-  top_5_identifiers: 5 ylintä tunnistajaa
+  top_5_identifiers: 5 parasta tunnistajaa
   top_contributors: Huippuavustajat
   top_identifier: Huipputunnistaja
   top_identifiers: Huipputunnistajat
@@ -3205,7 +3297,7 @@ fi:
   total_unique_observers: Uniikit havainnoijat yhteensä
   total_users: käyttäjää yhteensä,
   translated_languages: Käännetyt kielet
-  "true": Totta
+  "true": Kyllä
   trending: Nousussa
   trends: Trendit
   trusted_project?: Luotettava projekti?
@@ -3266,22 +3358,22 @@ fi:
   updated_by: Päivittänyt
   updated_daily: Päivitetään päivittäin
   updated_photo: Päivitetty kuva
-  upload: Lähetä
+  upload: Tallenna
   upload_a_csv_file: Lataa CSV-tiedosto
-  upload_photo: Lähetä kuva
+  upload_photo: Tallenna kuva
   upload_photos: Lataa kuvia
-  uploaded_by: Lähettänyt
+  uploaded_by: Tallentanut
   uploader:
     tooltips:
       add: Lisää havainto(ja)
-      photo_failed: Kuvan lähettäminen epäonnistui
+      photo_failed: Kuvan tallentaminen epäonnistui
       remove: Poista valitut havainnot
       remove_observation: Poista havainto
       remove_photo: Poista kuva
       select_all: Valitse kaikki havainnot
   uploading_num_of_count_photos:
-    one: Lähetetään kuvaa...
-    other: Lähetetään %{num} of %{count} kuvaa...
+    one: Tallennetaan kuvaa...
+    other: Tallennetaan %{num}/%{count} kuvaa...
   US_states: US osavaltiot
   usage_stats: Käyttötilastot
   user: Käyttäjä
@@ -3328,7 +3420,7 @@ fi:
   users_highlights_and_stats_from_year_on_site: Käyttäjän %{user} kohokohdat ja tilastot
     vuodelta %{year} %{site}issa
   users_id: Käyttäjän %{user} tunniste
-  users_identification_html: Käyttäjän <a href='%{url}'>%{user}</a> tunnistamiset
+  users_identification_html: Käyttäjän <a href='%{url}'>%{user}</a> tunnistukset
   users_identification_short_html: Käyttäjän <a href='%{url}'>%{user}</a> tunniste
   users_latest_observations_on_site: Käyttäjän %{user} viimeisimmät havainnot sivustolla
     %{site}
@@ -3512,12 +3604,19 @@ fi:
   you: sinä
   you_: Sinä
   you_admin: joita ylläpidät
+  you_appear_offline_try_again: Näytät olevan offline-tilassa. Yritä uudelleen, kun
+    olet yhteydessä Internetiin.
   you_are_now: Olet nyt
   you_are_now_following_x: Seuraat nyt ystävää %{friend_user}.
   you_are_now_role_for_project_html: <strong>olet</strong> nyt %{role} projektissa
     %{project}
+  you_are_not_editing_any_guides_add_one_html: Et muokkaa yhtään oppaita. <a href="/guides/new">Lisää
+    yksi</a>
   you_are_already_a_member_of_this_project: Olet jo tämän projektin jäsen!
   you_are_no_longer_following_x: Et enää seuraa ystävää %{friend}.
+  you_are_submitting_obs_without_photos_and_names: |-
+    Olet lähettämässä havaintoja ilman kuvia ja taksoninimiä.
+    Nämä havainnot tulevat olemaan erittäin vaikeita tunnistaa tarkasti.
   you_arent_a_member_of_that_project: Et ole tuon projektin jäsen.
   you_arent_following_that_person: Et seuraa tätä henkilöä.
   you_can_accept_invitations: Voit hyväksyä kutsun täällä
@@ -3549,7 +3648,7 @@ fi:
   you_joined_this_project: Liityit tähän projektiin!
   you_must_be_a_member_of_this_project_to_do_that: Sinun täytyy olla tämän projektin
     jäsen tehdäksesi tuon
-  you_must_select_a_csv_file_to_upload: Sinun on valittava lähetettävä CSV-tiedosto.
+  you_must_select_a_csv_file_to_upload: Sinun on valittava tallennettava CSV-tiedosto.
   you_must_select_at_least_one_taxon: Sinun on valittava vähintään yksi taksoni
   you_need_to_select_at_least_one_photo: Sinun täytyy valita ainakin yksi kuva!
   you_retain_full_copyright: Säilytät täydet tekijänoikeudet sisältöösi, lukuun ottamatta
@@ -3585,9 +3684,9 @@ fi:
   your_email_address: Sähköpostiosoitteesi
   your_flickr_account: Flickr-tilisi
   your_hard_drive: kiintolevysi
-  your_home: Sinun koti
+  your_home: Kotisi
   your_id: Tunnisteesi
-  your_identification: Tunnistamisesi
+  your_identification: Tunnistuksesi
   your_inat_account_has_been_activated: '%{inat}-tilisi on aktivoitu.'
   your_life_list: elämäluettelosi
   your_membership: Jäsenyytesi
@@ -3601,6 +3700,7 @@ fi:
   your_google_account: Google-tilisi
   your_pinned_locations: Kiinnitetyt sijainnit
   your_profile_was_successfully_updated: Profiilisi päivitettiin onnistuneesti!
+  your_recent_projects: Viimeaikaiset projektisi
   your_should_recognize: Sinun pitäisi tunnistaa jotkin näistä valokuvista
   your_site_account_has_been_created: '%{site}-tilisi on luotu.'
   your_subscriptions: Tilauksesi
@@ -3614,7 +3714,7 @@ fi:
     sallii sinun helposti seurata heidän viimeisimpiä havaintojaan. Selvitä mitä ihmiset
     <a href="%{observations_path}">havainnoivat</a> ja tee joitain uusia <a href="%{people_path}">tuttavuuksia</a>.
   youre_viewing_all_observations: Olet katselemassa kaikkia havaintoja
-  youve_already_added_an_identification: Olet jo lisännyt tunnistamisen ja voit lisätä
+  youve_already_added_an_identification: Olet jo lisännyt tunnistuksen, ja voit lisätä
     vain yhden
   youve_linked_your_inaturalist_google_account: "Olet linkittänyt %{site_name}- ja
     Google-tilisi. \nTämä sallii sinun yhdistää Google-valokuvasi %{site_name}-havaintojesi
@@ -3629,6 +3729,19 @@ fi:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Suunnitteletko käyttäväsi %{site_name}ia
             luokkahuoneessa?
+    donate:
+      donate_desc_html: "<p class=\"lead\">\n  <strong>iNaturalist on yksi maailman
+        suurimmista luonnon monimuotoisuuden tutkimiseen omistautuneista yhteisöistä.
+        Kiitos, että olet osa sitä!</strong>\n</p>\n<p class=\"lead\">\n  Jos uskot
+        tämän luonnonystävien maailmanlaajuisen yhteisön kykyyn \n  jakaa tietoa ja
+        tuottaa korvaamattomia luonnon monimuotoisuutta koskevia tietoja,\n  harkitse
+        kertaluonteista tai toistuvaa lahjaa.\n</p>\n<p class=\"lead\">\n  Lahjoituksesi
+        auttavat tukemaan iNaturalistia kun yhteisö kasvaa, \n  tietokonevision kehittämisestä
+        ja uusien ominaisuuksien tuomisesta palveliememme ja henkilökuntamme tukemiseen.\n</p>\n<p
+        class=\"text-muted\">\n  iNaturalist on Kalifornian tiedeakatemian \n  ja
+        National Geographic Societyn yhteinen aloite. Kaikki lahjoitukset vastaanottaa\n
+        \ Kalifornian tiedeakatemia, 501(c)(3) verovapaa voittoa tavoittelematon\n
+        \ järjestö joka sijaitsee Yhdysvalloissa.\n</p>"
     guides:
       index:
         funding_html: Rahoituksen oppaiden kehittämiseen toimitti <a href="http://eol.org"><img
@@ -3664,7 +3777,7 @@ fi:
           <a href="http://ubio.org/">uBion</a> tietolähteitä taksonomista dataa varten.
         what_can_i_do_to_help_inaturalist?: Mitä voin tehdä auttaakseni %{site_name}ia
         you_can_help_inaturalist_by_giving_us_your_feedback_html: "Voit auttaa %{site_name}ia
-          antamalla meille palautettasi: liity meidän <a href=\"%{feedback_url}\">palauteryhmään</a>
+          antamalla meille palautettasi: liity <a href=\"%{feedback_url}\">palauteryhmäämme</a>
           \nilmoittaaksesi virheistä ja pyytääksesi uusia\nominaisuuksia. Voit myös
           auttaa %{site_name}ia lisäämällä havaintoja ja auttamalla muita yhteisön
           jäseniä tunnistamaan heidän\ntunnistamatttomia havaintoja. Jos osaat koodata
@@ -3680,10 +3793,10 @@ fi:
         can_i_add_photos_without_a_flickr_account?: Voinko lisätä kuvia ilman Flickr-tiliä?
         we_also_support_google_html: 'Me tuemme myös Google Kuvat -palvelua: <a href="%{url}">Määritä
           Google-tilisi &raquo;</a>'
-        we_also_support_uploading_photos: Me tuemme myös suoraa kuvien lähetystä %{site_name}iin,
-          mutta se voi olla hieman hidasta, joten hyväksymme vain yhden lähetyksen
-          kerrallaan. Flickr:in tai Googlen käyttäminen on todennäköisesti nopeampaa,
-          jos käytät jo näitä palveluja.
+        we_also_support_uploading_photos: Me tuemme myös suoraa kuvien tallennusta
+          %{site_name}iin, mutta se voi olla hieman hidasta, joten hyväksymme vain
+          yhden tallennuksen kerrallaan. Flickr:in tai Googlen käyttäminen on todennäköisesti
+          nopeampaa, jos käytät jo näitä palveluja.
         what_are_tags?: Mitä ovat tagit?
         what_is_geoprivacy?: Mikä on sijainnin tietosuoja?
         geoprivacy_is_a_setting_you_can: 'Sijainnin tietosuoja on asetus jota voit
@@ -3707,6 +3820,8 @@ fi:
         disagreement_count: Erimielisyyksien määrä
         identification_count: Tunnisteiden määrä
         score: Pisteet
+        your_id_does_not_match: Tunnisteesi (<span class="bold">%{taxon_name}</span>)
+          ei vastaa yhteisön tunnistetta
       export:
         choose_columns_desc: Valitse sarakkeet, jotka haluat viedä
         create_a_query_desc_html: "Luo havaintokysely aivan kuten voisit muualla sivustolla.
@@ -3718,7 +3833,7 @@ fi:
         taxon_extras_help_html: 'Huomautus: nämä sarakkeet hidastavat vientisi luontia'
         receive_an_email_with_your_data: Vastaanota sähköpostia tiedoistasi
         well_email_you: Ok, lähetämme sinulle sähköpostia, kun se on valmis.
-        date_range_help: Max ja min päivämäärät havaittu TT-KK-VVVV formaatissa, esim.
+        date_range_help: Max ja min päivämäärät havaittu PP-KK-VVVV formaatissa, esim.
           17-01-2015
         created_on_help: Päiväys jolloin havainnot luotiin, ei havaittu, esim. 17-01-2015,
           01-2015, 2015
@@ -3747,7 +3862,7 @@ fi:
     places:
       index:
         adding_new_places: lisäämällä uusia paikkoja
-        confirming_identifications: varmistamalla tunnistamisia lisäämällä tunnisteita
+        confirming_identifications: varmistamalla tunnistuksia lisäämällä tunnisteita
           havaintoihin
         filling_out_checklists: täyttämällä hyvien tuntemiesi paikkojen lajiluetteloita
         you_can_help_out_by: Voit auttaa parantamaan paikkatietojamme
@@ -3882,7 +3997,7 @@ fi:
         recent_w_0_obs_desc: Rekisteröitynyt edeltävinä 7 päivänä ja lisännyt 0 havaintoa
         recent_w_7_obs_desc: Rekisteröitynyt edeltävänä 7 päivänä ja lisännyt >= 7
           havaintoa
-        TTID_desc: Aika saada tunnistaminen joltakulta
+        TTID_desc: Aika saada tunnistus joltakulta
         website_desc_html: |-
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
           tai <a href="%{url}">iNaturalist Network -verkon</a> verkkosivustojen kautta
@@ -3948,14 +4063,16 @@ fi:
           kuin havainnoida.
         nature_at_your_fingertips: Luonto käden ulottuvilla
         keep_track: Seuraa luonnon tapahtumia
+        record_your_encounters: Tallenna kohtaamisesi muiden eliöiden kanssa ja ylläpidä
+          elämäluetteloita, kaikki pilvessä.
         create_useful_data: Tuota käyttökelpoista tietoa
-        help_scientists: Auta tutkijoita ja resurssienhoitajia ymmärtämään, milloin
+        help_scientists: Auta tutkijoita ja resurssienhallitsijoita ymmärtämään, milloin
           ja missä eliöitä esiintyy.
-        crowdsource_identifications: Crowdsource-tunnistamiset
+        crowdsource_identifications: Crowdsource-tunnistukset
         connect_with_experts: Ole yhteydessä asiantuntijoihin, jotka voivat tunnistaa
           havaitsemasi eliölajin.
         become_a_citizen_scientist: Ryhdy amatööritutkijaksi
-        find_a_project: Löydä sinua kiinnostava projekti, tai aloita oma projektisi.
+        find_a_project: Löydä sinua kiinnostava projekti, tai aloita omasi.
         learn_about_nature: Opi luonnosta
         build_your_knowledge: Rakenna tietämystäsi keskustelemalla muiden luonnontieteilijöiden
           kanssa ja auttamalla muita.
@@ -4011,11 +4128,11 @@ fi:
       7: La
     formats:
       default: '%d-%m-%Y'
-      long: '%d. %Bta %Y'
-      short: '%d. %b'
-      short_with_year: '%d. %b %Y'
+      long: '%-d. %Bta %Y'
+      short: '%-d. %bkuuta'
+      short_with_year: '%-d. %b %Y'
       month_year: '%B %Y'
-      month_day_year: '%d. %Bta %Y'
+      month_day_year: '%-d. %Bta %Y'
     month_names:
       1: tammikuu
       2: helmikuu
@@ -4148,12 +4265,12 @@ fi:
   time:
     am: ap.
     formats:
-      default: '%d. %Bta %Y %H:%M:%S %z'
-      long: '%d. %Bta %Y %I:%M %p'
-      short: '%d. %bkuuta %H:%M'
+      default: '%-d. %Bta %Y %H:%M:%S %z'
+      long: '%-d. %Bta %Y %I:%M %p'
+      short: '%-d. %bkuuta %H:%M'
       observed_at: '%I:%M %p %Z'
-      rfc: '%d. %Bta %Y'
-      day_month_year: '%d. %Bta %Y'
+      rfc: '%-d. %Bta %Y'
+      day_month_year: '%-d. %Bta %Y'
       hours: '%l:%M %p'
     pm: ip.
   activemodel:
@@ -4229,6 +4346,8 @@ fi:
       guide:
         source_url: Lähteen URL-osoite
         published_at: Julkaisu
+      listed_taxon:
+        establishment_means: Perustamisen keinot
       observation:
         geo_y: Pohjoiseen
       observation_field_value:

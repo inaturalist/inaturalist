@@ -352,6 +352,7 @@ pt-BR:
   all_photos: Todas as fotos
   all_places: Todos os lugares
   all_projects: Todos os Projetos
+  all_children_added_to_the_database: Todas as crianças adicionadas ao banco de dados
   all_rank_added_to_the_database:
     phylum: Todos os filos adicionados à base de dados
     subphylum: Todos os subfilos adicionados à base de dados
@@ -1070,6 +1071,7 @@ pt-BR:
   copyright_infringement_desc: Viola o direito autoral ou foi criada por alguém que
     não é o observador e está sem atribuição
   covered_by_a_taxon_framework_html: Coberto por um %{link}
+  covered_by_a_taxon_framework_link: marco de táxon para %{taxon_framework_rank} %{taxon_framework_name}
   couldnt_change_your_password: 'Não foi possível mudas a sua senha: %{e}'
   couldnt_find_a_user_matching_x_param: Não foi possível encontrar um usuário com
     parâmetros %{id}
@@ -1194,6 +1196,7 @@ pt-BR:
   default_photo_license: Licença padrão para suas fotos
   default_sound_license: Licença padrão para sons
   defaults_to_your_name_or_username: Padrão para seu nome e nome de usuário
+  defines_a_taxon_framework_for: Definir um quadro de táxon para %{taxon_name}
   delete: Apagar
   delete_all: Excluir tudo
   delete_conversation: Excluir conversa
@@ -1277,6 +1280,8 @@ pt-BR:
   download_csv: Baixar CSV
   download_csv_template: Baixar modelo CSV
   download_kml: Baixar KML
+  downstream_coverage: Cobertura a jusante
+  downstream_coverage_rank: Classificação de cobertura a jusante
   drag_and_drop_photos: arraste e solte fotos nesta janela ou
   draft: rascunho
   draft_: Rascunho
@@ -1543,7 +1548,9 @@ pt-BR:
   flag_this_photo: Faça um alerta sobre esta foto
   flagged: Marcados
   flagged_: Marcado
+  flagged_covered_taxa: Taxa coberta sinalizada
   flagged_for_curation: Marcada com alerta para moderação.
+  flagged_taxon: Taxon sinalizado
   flagged_thing_explanation: Usuários marcaram isto %{thing} porque
   flagger: Sinalizador
   flags: Sinalizações
@@ -1579,6 +1586,9 @@ pt-BR:
   follower: seguidor
   followers: Seguidores
   following: seguindo
+  following_x_people:
+    one: Seguindo 1 pessoa
+    other: Seguindo %{count} pessoas
   for: para
   for_a_taxon: para um táxon
   for_a_widget_showing_recent_observations_from: Para um widget que mostre as observações
@@ -2601,6 +2611,7 @@ pt-BR:
   normal: normal
   not_absent: não ausente
   not_completed: Incompleto
+  not_covered_by_any_taxon_frameworks: Não coberto por nenhuma estrutura de táxon
   not_evaluated: Não avaliado
   not_filtering: Não filtrar
   not_findig_what_you_want: Não está encontrando o que você deseja?
@@ -2926,6 +2937,7 @@ pt-BR:
   out_of_range: Fora de alcance
   output_taxon: Taxón de saída
   overview: Visão geral
+  overlapping_downstream_taxon_frameworks: Superposição dos quadros de táxon descendente
   owner: Proprietário
   parent: Pai
   parent_name: Nome da espécie pai
@@ -3430,7 +3442,11 @@ pt-BR:
   relationship: Relação
   relationship_x: 'Relação: %{relationship}'
   relationships:
+    match: coincidem
+    one_to_one: um-a-um
     alternate_position: posição alternativa
+    many_to_many: muitos-para-muitos
+    many_to_one: muitos-para-um
     one_to_many: um para muitos
     not_external: não externo
     not_internal: não interno
@@ -3705,6 +3721,7 @@ pt-BR:
   site_staff: Equipe %{site_name}
   site_stats: Estatísticas do site
   site_taxon_page: '%{site_name} página do táxon'
+  site_year_in_review: Resumo do ano %{year} no %{site_name}
   so_meta!: Metadados!
   some_agree: alguns concordam
   some_observations_failed_to_be_added: Algumas observações não foram adicionadas
@@ -3880,7 +3897,7 @@ pt-BR:
     one: Submeter 1 observação?
     other: Submeter %{count} observações
   submitted: Enviado
-  subscribe_to_a_taxon: REgistre-se para um Táxon
+  subscribe_to_a_taxon: Registre-se para um táxon
   subscribe_to_a_place: Registre-se para um Local
   subscribe_to_observations_in_a_taxon: Registre-se para todas as observações postadas
     de espécies ou grupos de organismos (exemplo 'escorpiões').
@@ -3935,6 +3952,7 @@ pt-BR:
   take_me_flickr!: Sim, acesse o Flickr!
   take_me_back: Me leve de volta
   taxa: Táxons
+  taxa_info: Informações sobre taxa
   taxa_all_species_html: Todas as espécies
   taxa_needing_curation: Táxons que requerem administração
   taxa_observed: táxons observados
@@ -3968,6 +3986,10 @@ pt-BR:
   taxon_curators: |2-
 
     Curadores de táxons
+  taxon_extras: Táxon extras
+  taxon_framework_notes: Notas do quadro do táxon
+  taxon_framework_relationship_for: Relação de estrutura de táxon para
+  taxon_framework_relationship: Relação de marco do táxon
   taxon_links: Links Taxon
   taxon_merge: Fundir táxon
   taxon_name: Nome de táxon
@@ -3981,6 +4003,7 @@ pt-BR:
     Por favor aguarde alguns minutos até que apareça nos mapas.
   taxon_range_updated_notice: A área de distribuição do táxon foi atualizada com sucesso.
     Por favor aguarde alguns minutos até que as mudanças seja carregadas nos mapas.
+  taxon_ranks: Linhas de táxon
   taxon_removed_from_list: Táxon excluído da lista
   taxon_scheme: Esquema de taxonomía
   taxon_schemes: Esquemas do Táxon
@@ -4007,6 +4030,7 @@ pt-BR:
   taxonomic_status: Estado Taxonômico
   taxonomic_tags_for_flickr: Marcações Taxonômicas para Flickr
   taxonomic_tree_browser: Explorador da Árvore Taxonômica
+  taxonomy_details: Detalhes da taxonomia
   taxonomy_details_for: Detalhes de taxonomia para
   taxonomy_settings: Configuração de taxonomia
   tell_everyone_a_little_about_you: Conte um pouco sobre você
@@ -4135,6 +4159,8 @@ pt-BR:
     Se este for o caso, por favor avise-nos.
   there_were_some_problems_with_fields: 'Ocorreram alguns erros com os seguintes campos:'
   theres_also: há também
+  theres_something_wrong_with_taxon_framework_relationship: Há algo errado aqui -
+    não podemos determinar a relação entre quaisquer taxa interna e externa
   these_are_items_people_on: Estes são itens que foram marcados com alerta para avaliação.
     Comentários spam devem ser deletados e os usuários que adicionam spam devem ser
     suspensos (vá até a página de perfil deles e clique em "Suspenda usuário" que
@@ -4158,6 +4184,7 @@ pt-BR:
   they_have_been_invited: '...eles já foram convidados'
   third_person_possessive_singular: '%{noun} de %{object_phrase}'
   this: este
+  this_bioblitz_beings_in: Esta maratona naturalista começa em
   this_id_was_added_due_to_a: Esta identificação foi adicionada devido a
   this_is_a: Isto é um
   this_is_a_cached_summary_based_on: Este é um resumo em cache deste táxon baseado
@@ -4266,8 +4293,8 @@ pt-BR:
   top_5_identifiers: Top 5 naturalistas
   top_contributors: Principais colaboradores
   top_identifier: Top Identificador
-  top_identifiers: Top Identificadores
-  top_identifiers_of_taxon: Top Identificadores por %{taxon}
+  top_identifiers: Principais Identificadores
+  top_identifiers_of_taxon: Principais Identificadores de %{taxon}
   top_observer: Top Observador
   top_observers: Principais Observadores
   top_species: Top Espécies
@@ -4405,7 +4432,7 @@ pt-BR:
   user_added_an_observation_field_html: '%{user} adicionou um valor para "%{field_name}"
     em uma observação de %{owner}'
   user_added_an_observation_html: '%{user} adicionou uma observação'
-  user_added_an_x: '%{user} adicionar um %{x}'
+  user_added_an_x: '%{user} adicionou um(a) %{x}'
   user_added_an_x_to_noun_by_html: '%{user} adicionou uma %{x} a %{noun} de %{by}'
   user_added_an_x_to_noun_html: '%{user} adicionou uma %{x} a %{noun}'
   user_added_x_observations_html: '%{user} adicionou %{x} observações'
@@ -4560,6 +4587,7 @@ pt-BR:
     favoritos aqui?
   want_to_test_a_new_version_of_this_page: Gostaria de testar uma nova versão desta
     página?
+  wanted: Procurado
   was_it_captive_cultivated?: Era cultivada / mantida em cativeiro?
   we_also_support: |-
     Também suportamos <a href="http://flickr.com">Flickr</a>,
@@ -4598,6 +4626,7 @@ pt-BR:
   weather: Tempo
   website: Site
   wed: Qua
+  week_of_date: Semana de %{date}
   welcome!: Bem vindo!
   welcome_comma!: Bem vindo,
   welcome: bem vindo
@@ -4612,6 +4641,7 @@ pt-BR:
   welcome_to_guides: Seja bem Vindo às Guias do %{site_name}!
   welcome_to_x_project: Seja bem vindo ao projeto %{project}
   were_currently_down_for: Estamos indisponíveis para
+  were_pretty_sure_this_is_in_the_rank: Temos certeza que isso é no %{rank}
   were_sorry_but_your_bulk_import_of_filename_has_failed: Pedimos desculpas mas a
     importação em massa de %{filename} falhou.
   what: Qual
@@ -4622,6 +4652,7 @@ pt-BR:
   what_do_you_want_to_list: O que você deseja listar?
   what_to_keep: O que guardar
   what_want_to_list?: O que você deseja listar?
+  whats_this?: O que é isso?
   when: Quando
   when_did_you_see_it?: Quando você viu?
   when_did_you_see_them?: <em>Quando</em> você os viu?
@@ -4634,6 +4665,8 @@ pt-BR:
   which_projects_can_add_your_observations?: Quais projetos tradicionais podem adicionar
     suas observações?
   white: branco
+  who_can_add_observations_to_this_project?: Quem pode adicionar observações a este
+    projeto?
   with_annotation: Com anotação
   without_annotation: Sem anotação
   widget: Widget
@@ -4647,6 +4680,7 @@ pt-BR:
   withdrawing: Retirando...
   with_errors: Com erros
   within_inaturalist: Dentro de %{site_name}
+  worldwide: Global
   wondering_what_to_do_next: Seguem algumas dicas para lhe ajudar a seguir o caminho
     das observações e identificações do mundo natural
   would_you_like_to: Você gostaria
@@ -4659,15 +4693,18 @@ pt-BR:
   x_deleted: '%{x} apagado'
   x_does_not_exist: '"%{x}" não existe'
   x_doesnt: '%{login} não'
+  x_flagged: '%{x} sinalizado(a)'
+  x_flagged_as_flag: '%{x} sinalizado(a) como %{flag}'
   x_hasnt: '%{login} não é'
   x_journal: Boletim Informativo de %{user}
-  x_journal_archives_for_y: Boletim Informativo de %{user} &middot; Arquivos de
-  x_journal_editing: Boletim Informativo de %{user} &middot; Modificando
-  x_journal_middot: Boletim Informativo de %{user} &middot;
-  x_journal_new_post: Boletim Informativo de %{user} &middot; Nova Publicação
+  x_journal_archives_for_y: Boletim Informativo de %{user} • Arquivos de
+  x_journal_editing: Boletim Informativo de %{user} • Editar
+  x_journal_middot: Boletim Informativo de %{user} •
+  x_journal_new_post: Boletim Informativo de %{user} • Nova Publicação
   x_observations_failed:
     one: 1 falha na observação
     other: '%{count} falha nas observações'
+  x_of_y: '%{x} de %{y}'
   x_is_the_root_of_the_tree: '%{rank} %{name} é a raiz da árvore'
   x_project_journal: '%{name} do projeto %{project}'
   x_project_stats: Estatísticas do Projeto %{project}
@@ -4851,6 +4888,7 @@ pt-BR:
   your_identification: Sua identificação
   your_inat_account_has_been_activated: Sua conta %{inat} foi ativada.
   your_life_list: Sua life list!
+  your_membership: Sua filiação
   your_month_observations: suas observações de %{month}
   your_name_was_saved: Seu nome foi salvo.
   your_new_password_is: Sua nova senha é
@@ -4866,9 +4904,12 @@ pt-BR:
   your_observations_couldnt_be_added_to_that_project: 'Suas observações não puderam
     ser adicionadas neste projeto: %{errors}'
   your_photos_have_been_tagged: Suas fotos foram marcadas!
+  your_projects: Seus projetos
   your_google_account: sua conta do Google
+  your_google_account_info: As informações da sua Conta do Google
   your_pinned_locations: Seus locais fixados
   your_profile_was_successfully_updated: Seu perfil foi atualizado com sucesso!
+  your_recent_projects: Seus projetos recentes
   your_should_recognize: Você deve reconhecer algumas destas fotos
   your_site_account_has_been_created: Sua conta %{site} foi criada.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -4877,6 +4918,7 @@ pt-BR:
   your_sure_delete_list?: Você tem certeza que deseja apagar esta lista?
   your_sure_delete_taxon_from_list?: Você tem certeza que deseja remover %{taxon}
     desta lista?
+  your_tags: Suas etiquetas
   your_world!: seu mundo!
   yours: Suas
   youre_following: você está seguindo
@@ -4888,6 +4930,9 @@ pt-BR:
   youre_viewing_site_name_observations_html: Você está vendo as observações de <strong>%{site_name}</strong>
   youve_already_added_an_identification: Você já adicionou uma identificação, e só
     pode adicionar uma
+  youve_linked_your_inaturalist_google_account: Você vinculou sua conta %{site_name}
+    e sua conta do Google. Isso permitirá que você associe suas Google Fotos a suas
+    observações no %{site_name}.
   youve_opted_out_of_community_ids: Você optou por sair da comunidade de identificações
   youve_opted_out_of_community_ids_for_this_obs: Você optou por sair da comunidade
     de identificações para esta observação
@@ -4916,7 +4961,40 @@ pt-BR:
           potencialmente permitir que malware afetem a forma que as pessoas visualizam
           a página. Se você não sabe o que uma parte em particular dos códigos faz,
           por favor não adicione.'
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: Você está planejando usar o
+            %{site_name} na sala de aula?
+          community_guidelines_html: <a href="%{url}">Verificar as Diretrizes de Comunidade</a>
+            para as dicas sobre como manter o iNaturalist um lugar amigável e acolhedor.
+          please_read_the_teachers_guide_html: Em caso afirmativo, por favor leia
+            o nosso <a href="%{url}">Guia do Professor</a> onde encontrará dicas sobre
+            como usar o %{site_name} com os alunos.
     donate:
+      donate_short_desc: Ajude a apoiar o iNaturalist com uma doação!
+      donate_desc_html: |-
+        <p class="lead">
+          <strong>A iNaturalist é uma das maiores comunidades do mundo dedicada a
+           explorando a biodiversidade. Obrigado por fazer parte disso!</strong>
+        </p>
+        <p class="lead">
+          Se você acredita no poder desta comunidade global de amantes da
+          natureza compartilhar conhecimento e gerar dados insubstituíveis sobre
+          a biodiversidade, por favor considere um presente único ou recorrente.
+        </p>
+        <p class="lead">
+          Sua doação ajuda a apoiar o iNaturalist à medida que a comunidade
+          cresce, de avançar a visão computacional e implementar novos recursos
+          para apoiar nossos servidores e funcionários.
+        </p>
+        <p class="text-muted">
+          O iNaturalist é uma iniciativa conjunta da Academia de Ciências da
+          Califórnia. e a National Geographic Society. Todas as doações serão
+          recebidas por a Academia de Ciências da Califórnia, um 501 (c) (3)
+          isento de impostos, sem fins lucrativos organização baseada nos
+          Estados Unidos da América.
+        </p>
       post_donate_social_media_text: Eu apoiei o iNaturalist! Você deveria dar uma
         olhada também.
     guides:
@@ -5154,10 +5232,12 @@ pt-BR:
           fotos de maneira que você não deseja.'
         can_i_add_photos_without_a_flickr_account?: Posso adicionar fotos sem ter
           uma conta do Flickr?
+        we_also_support_google_html: 'Também suportamos o Google Fotos: <a href="%{url}">Configure
+          sua conta do Google &rarr;</a>'
         we_also_support_uploading_photos: Nós também encorajamos que as fotos sejam
           adicionadas diretamente ao %{site_name}, mas isto pode ser um pouco lento,
           então nós só permitimos que você adicione uma por vez. Utilizando o Flickr
-          ou o Picasa é provavelmente a maneira mais rápida se você já utiliza estes
+          ou o Google é provavelmente a maneira mais rápida se você já utiliza estes
           serviços.
         what_are_tags?: O que são marcações?
         tags_are_keywords_you_can_add_to_an_html: Marcações são palavras-chave que
@@ -5306,6 +5386,7 @@ pt-BR:
           de  observações de outra parte do site. Você deve especificar um <strong>táxon</strong>,
           <strong>lugar</strong>, <strong>usuário</strong>, \n<strong>projeto</strong>,
           ou <strong>busca de consultas</strong>."
+        ident_by_user_desc_html: Colunas para a identificação atual por %{user}
         query_placeholder: Selecione as ferramentas de pesquisa abaixo ou cole a URL
           de uma observação
         taxon_extras_help_html: 'Nota: estas colunas vão tornar lenta a exportação'
@@ -5371,6 +5452,10 @@ pt-BR:
         sound_url: URL para o som padrão. Observe que isso só funcionará para carregamentos
           diretos, não para sons hospedados em serviços de terceiros
         tag_list: Lista de Marcações separadas por vírgulas
+        place_admin1_name: Nome do lugar administrativo uma classificação abaixo do
+          nível do país
+        place_admin2_name: Nome do lugar administrativo duas fileiras abaixo do nível
+          do país
         positioning_method: Como as coordenadas foram determinadas
         positioning_device: Equipamento utilizado para determinar coordenadas
       identify:
@@ -5389,6 +5474,11 @@ pt-BR:
           Se suas coordenadas são da unidade GPS, verifique as configurações para
           o nome utilizado no sistema de coordenadas. Note que não armazenamos essas
           coordenadas personalizadas, somente a conversão delas em lat/lon.'
+        date_column_format: AAAA-MM-DD HH:MM
+        decimal_degrees_format: dd.dddd
+        geoprivacy_must_be_in_english: |-
+          A coluna de geoprivacidade deve estar em inglês e deve estar em branco ou ter
+          valor de "obscurecido" ou "privado"
         project_csv_template_notice_html: Existe um arquivo modelo para este projeto
           que pode pode ajudá-lo com a estrutura do arquivo CSV. <a href="%{url}">Faça
           o download do arquivo modelo</a>
@@ -5598,6 +5688,11 @@ pt-BR:
       formatting_simple_help: Associar automaticamente os URLs e inserir a linha de
         intervalo.
     projects:
+      project_type: Tipo de projeto
+      collection: Coleção
+      umbrella: Guarda-chuvas
+      tracks_multiple_projects: rastreia vários projetos
+      projects_included: Projetos Incluídos
       collection_and_umbrellas_do_not_support: Os projetos de coleta e guarda-chuva
         não suportam atualmente o acesso a coordenadas privadas.
       curator_coordinate_access_desc_html: |-
@@ -5715,6 +5810,8 @@ pt-BR:
           contate um dos administradores abaixo e solicite um convite.
       new:
         contain_entire_image_without_cropping: Contém imagem inteira sem cortar
+        data_visualizations: Visualizações de dados
+        delete_project: Apagar Projeto
         please_specify_the_requirements: |-
           Por favor, especifique os requisitos para as observações a serem adicionadas a este projeto.
           Você pode especificar várias espécies, locais, usuários ou notas de qualidade para serem automaticamente
@@ -5924,6 +6021,41 @@ pt-BR:
           as coordenadas privadas e protegidas das observações que você adicionou
           neste projeto.
       edit:
+        blocking_desc_html: |-
+          <p>
+            Bloquear alguém impede que você envie mensagens para você, comentando
+             observações, identificando suas observações e, de outra forma, interagindo
+             com você no %{site_name}. Também remove suas observações do seu
+             resultados de pesquisa e remove suas observações da pesquisa
+             resultados. No entanto, isso não o torna invisível para eles. Eles podem
+             ainda encontrar suas observações e ver o seu perfil, eles simplesmente não podem
+             interaja com você.
+          </p>
+          <p>
+          O bloqueio é para situações em que você simplesmente não consegue se entender
+             alguém e eles não vão deixar você sozinho, apesar de seus melhores esforços para
+             resolver disputas de maneira civilizada. Não é uma maneira de se esconder
+             pessoas, para impedir a identificação de pessoas cujas opiniões você
+             não confie ou exclua a ID da comunidade (há outra
+             definição para isso). Assim, o bloqueio funciona nos dois sentidos: se você bloquear
+             alguém, eles não podem interagir com você, mas você também não pode interagir
+             com eles. Se você usá-lo incorretamente para impedir que alguém identifique sua
+             observações, você também evita identificar suas
+             observações.
+          </p>
+          <p>
+          Você só pode bloquear três pessoas. Achamos que isso é razoável
+             número que acomoda as pessoas que precisam de bloqueio enquanto
+             prevenir o abuso do bloqueio. Se você acha que precisa bloquear mais
+             pessoas, por favor <a href="mailto:%{help_email}">Contate-nos</a>.
+          </p>
+          <p>
+            Se alguém está assediando ou perseguindo você no %{site_name},
+            <a href="mailto:%{help_email}">Por favor nos informe</a>. E se
+             isso representa uma violação dos nossos Termos de Serviço ou representa
+             outro comportamento que consideramos inapropriado para o nosso site, nós
+             investigar.
+          </p>
         common_names_desc: |-
           Mostrar nomes comuns. Desabilite se você quiser apenas ver nomes científicos.
           Observe que você pode controlar quais nomes comuns você vê alterando

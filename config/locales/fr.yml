@@ -138,7 +138,7 @@ fr:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> modification de taxon ajoutée
     other: <span class='count'>%{count}</span> modifications de taxon ajoutées
-  _100_day_trends: Tendance à 100 jours
+  _100_day_trends: Tendances à 100 jours
   _percent_ID_d: '% ID assigné(s)'
   a: un
   a_: un
@@ -147,8 +147,8 @@ fr:
     créé automatiquement à partir de l’attribut du nom scientifique de ce taxon. \nQuand
     vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici
     (noms communs, noms scientifiques obsolètes, etc.)."
-  a_few_points_to_make_things_clear: Quelques précisions pour rendre les choses plus
-    claires
+  a_few_points_to_make_things_clear: 'Quelques précisions pour rendre les choses plus
+    claires :'
   a_flag_for_x: un repère pour %{x}
   a_greasemonkey_script: un script Greasemonkey
   a_member_of: Un membre de
@@ -6595,7 +6595,7 @@ fr:
           les coordonnées privées ou masquées des observations que vous ajoutez à
           ce projet.
       edit:
-        blocking_desc_html: |
+        blocking_desc_html: |-
           <p>
             Bloquer quelqu'un l'empêche de vous envoyer des
             messages, de commenter vos  observations, d'identifier vos observations

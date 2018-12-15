@@ -5085,48 +5085,24 @@ ca:
           quan cerquen llocs, i mostra els límits del lloc al mapa de %{site_name}
           que els tenen si s'ha establert (per exemple a la vista "targeta", les pàgines
           del tàxon, etc.)
-        import_tags_from_csv_help_html: |-
-          <p>
-            Pugeu un fitxer CSV que contingui les etiquetes per als tàxons
-            d'aquesta guia. L'arxiu CSV ha de tenir un aspecte semblant a
-            aquest:
-          </p>
-          <table class="taula">
-            <tbody>
-              <tr>
-                <th>Nom</th>
-                <th>color</th>
-                <th>Nombre de mans</th>
-                <th></th>
-              </tr>
-              <tr>
-                <td>Homo sapiens</td>
-                <td></td>
-                <td>2</td>
-                <td>bípeda</td>
-              </tr>
-              <tr>
-                <td>Vulpes vulpes</td>
-                <td>vermell | negre</td>
-                <td>0</td>
-                <td>quadrúpeda</td>
-              </tr>
-            </tbody>
-          </table>
-          <p>
-            La primera fila comença amb "Nom", seguit de les etiquetes de 
-            propietats/categories. A continuació, cada una de les següents 
-            files s'inicia amb el nom de tàxon, seguida per les etiquetes 
-            corresponents a la propietat de la part superior de la columna. 
-            En aquest exemple, <i>Homo sapiens</i> té les etiquetes
-            <code>bípeda</code> i <code>Nombre de mans=2</code> i
-            <i>Vulpes vulpes</i> és <code>quadrúpeda</code>,
-            <code>color=rojo</code>, <code>color=negre</code> i
-            <code>Nombre de mans=0</code>. Els espais en blanc s'ignoren, i
-            pot afegir diverses línies per cada tàxon. També podeu afegir
-            diversos valors per cel·la, separats pel caràcter de barra
-            vertical (|).
-          </p>
+        import_tags_from_csv_help_html: "<p>\n  Pugeu un fitxer CSV que contingui
+          les etiquetes per als tàxons\n  d'aquesta guia. L'arxiu CSV ha de tenir
+          un aspecte semblant a\n  aquest:\n</p>\n<table class=\"taula\">\n  <tbody>\n
+          \   <tr>\n      <th>Nom</th>\n      <th>color</th>\n      <th>Nombre de
+          mans</th>\n      <th></th>\n    </tr>\n    <tr>\n      <td>Homo sapiens</td>\n
+          \     <td></td>\n      <td>2</td>\n      <td>bípeda</td>\n    </tr>\n    <tr>\n
+          \     <td>Vulpes vulpes</td>\n      <td>vermell | negre</td>\n      <td>0</td>\n
+          \     <td>quadrúpeda</td>\n    </tr>\n  </tbody>\n</table>\n<p>\n  La primera
+          fila comença amb \"Nom\", seguit de les etiquetes de \n  propietats/categories.
+          A continuació, cada una de les següents \n  files s'inicia amb el nom de
+          tàxon, seguida per les etiquetes \n  corresponents a la propietat de la
+          part superior de la columna. \n  En aquest exemple, <i>Homo sapiens</i>
+          té les etiquetes\n  <code>bípeda</code> i <code>Nombre de mans=2</code>
+          i\n  <i>Vulpes vulpes</i> és <code>quadrúpeda</code>,\n  <code>color=rojo</code>,
+          <code>color=negre</code> i\n  <code>Nombre de mans=0</code>. Els espais
+          en blanc s'ignoren, i\n  pot afegir diverses línies per cada tàxon. També
+          podeu afegir\n  diversos valors per cel·la, separats pel caràcter de barra\n
+          \ vertical (|).\n</p>"
         licensing_explanation: 'Llicenciar el vostre contingut permet que altres persones
           tinguin dret a copiar-ho i modificar-ho sense demanar permís. Això fa que
           sigui molt més fàcil compartir el vostre treball, i si incorporeu continguts
@@ -6567,6 +6543,10 @@ ca:
                 inclinades
         user:
           attributes:
+            login:
+              must_begin_with_a_letter: ha de començar per una lletra, no contenir
+                espai i utilitzar únicament lletres, xifres, guionets i guions baixos
+                (subratllat)
             email:
               must_look_like_an_email_address: ha de semblar una adreça de correu
                 electrònic
@@ -6596,7 +6576,7 @@ ca:
         source_url: URL d'origen
         published_at: Publicació
       listed_taxon:
-        occurrence_status_level: Estatus d'ocurrència
+        occurrence_status_level: Nivell d'estat d'ocurrència
         establishment_means: Forma d'establiment.
       observation:
         geo_x: Est

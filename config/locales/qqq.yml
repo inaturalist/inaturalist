@@ -377,6 +377,7 @@ qqq:
   details: '{{Identical|Detail}}'
   developers: '{{Identical|Developer}}'
   device: '{{Identical|Device}}'
+  disable: '{{Identical|Disable}}'
   disagree_: '{{Identical|Disagree}}'
   disconnect_provider: where provider is the name of an external provider like Facebook
   dna_: '{{Identical|DNA}}'
@@ -777,7 +778,7 @@ qqq:
   observations_by_user_on_date: where user is the name of a user and date is a date
   observations_by_you_on_date: where date is a date
   observation_calendar_for: where user is the name of a user and year is a year such
-    as 2014
+    as 2018
   observation_date: '{{Identical|Date}}'
   observation_date?: '{{Identical|Date}}'
   observation_removed_from_the_project: where project is the name of a project
@@ -1086,6 +1087,11 @@ qqq:
   suggestions: '{{Identical|Suggestion}}'
   summary: '{{Identical|Summary}}'
   sun: Abbreviation for Sunday, a day of the week.
+  support_inaturalist: |
+    Label for a button link to donate money to iNaturalist. These donations go
+    to iNaturalist and not any of the partner sites so this name should not be
+    translated to something like NaturaLista. This text should also be kept
+    short, about the length of the English translation or shorter.
   table: '{{Identical|Table}}'
   table_of_contents: '{{Identical|Table of contents}}'
   tag: |-
