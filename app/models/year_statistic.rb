@@ -57,8 +57,8 @@ class YearStatistic < ActiveRecord::Base
         accumulation: accumulation
       },
       growth: {
-        observations: observations_histogram_by_created_month,
-        users: users_histogram_by_created_month
+        observations: observations_histogram_by_created_month( options ),
+        users: users_histogram_by_created_month( options )
       }
     }
     if options[:site].blank?

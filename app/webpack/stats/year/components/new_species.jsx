@@ -147,13 +147,13 @@ class NewSpecies extends React.Component {
             <h4>
               <span>
                 { observations.length < totalSpeciesIDsForMonth ? (
-                  I18n.t( "new_species_observed_in_interval_x_of_y", {
+                  I18n.t( "new_species_added_in_interval_x_of_y", {
                     interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" ),
                     x: observations.length,
                     y: totalSpeciesIDsForMonth
                   } )
                 ) : (
-                  I18n.t( "new_species_observed_in_interval", {
+                  I18n.t( "new_species_added_in_interval", {
                     interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" )
                   } )
                 ) }
