@@ -122,6 +122,8 @@ nl:
   x_taxon_changes_added_html:
     one: '<span class=''count''>1</span> taxon wijziging toegevoegd '
     other: <span class='count'>%{count}</span> taxon wijzigingen toegevoegd
+  x_people_helped_user_with_y_ids_html: <strong>%{x} mensen</strong> hielpen %{user}
+    met <strong>%{y} determinaties</strong>
   _100_day_trends: 100-daagse trends
   _percent_ID_d: '% gedetermineerd'
   a: een
@@ -3374,6 +3376,8 @@ nl:
   still_no_luck?: Nog steeds geen geluk?
   stop_following_user: Stop met %{user} te volgen
   stop_testing: Stop testing
+  subject_committed_thing_affecting_stuff_html: '%{subject} voerde een %{thing} uit
+    met effect op %{stuff}'
   submission_model_description: Wie kan waarnemingen toevoegen aan uw project?
   submit: Verzenden
   submit_comment: Reactie toevoegen
@@ -3461,6 +3465,8 @@ nl:
     other: '%{taxon} is een rijk met %{count} waarnemingen'
   taxonomy: Taxonomie
   taxon_: taxon
+  taxon_change_must_be_committed_to_update_records: Er moet een taxon wijziging worden
+    doorgevoerd om de records bij te werken
   taxon_deleted: Taxon verwijderd.
   taxon_id: Taxon-ID
   taxon_ids: Taxon ID's
@@ -3573,6 +3579,14 @@ nl:
     van deze kleuren: %{error}'
   there_were_some_problems_with_fields: 'Er was een probleem met de volgende velden:'
   theres_also: er is eveneens
+  these_are_items_people_on: |-
+    Dit zijn items die mensen op de site hebben gemarkeerd voor het beheer. Spam
+    reacties moeten worden verwijderd en gebruikers die spam toevoegen, moeten worden opgeschort (ga
+    naar hun profielpagina en klik op 'Gebruiker opschorten' rechtsonder in om te voorkomen
+    dat ze inloggen). Andere gemarkeerde items mogen alleen worden verwijderd
+    als ze duidelijk haatdragend, illegaal, etc. zijn. Roekeloos, beledigend taalgebruik,
+    etc. moet worden behandeld met een beleefde opmerking. Herhaaldelijke overtreders zouden moeten zijn
+    gerapporteerd aan een websitebeheerder of %{email}
   these_observations_have_not_been_uploaded_yet: Deze waarnemingen werden nog niet
     geüpload.
   they_already_have_iNat_accounts: '... ze hebben reeds %{site_name}-accounts'
@@ -3601,6 +3615,9 @@ nl:
   this_photo_is_already_associated: Deze foto is reeds verbonden met één van je waarnemingen.
   this_place_has_no_check_list: Deze plaats heeft geen checklist.
   this_species: deze soort
+  this_taxon_change_has_been_commited: |-
+    <strong>Deze taxonwijziging is doorgevoerd!</strong>
+    Bewerk alsjeblieft de taxa niet. Het bewerken van andere velden mag wel.
   this_taxon_concept_is_inactive: Dit taxonconcept is niet actief
   this_taxon_has_no_default_photo: Dit taxon heeft geen standaardfoto!
   this_user_has_been_suspended: Deze gebruiker werd geschorst
@@ -3702,6 +3719,9 @@ nl:
       select_all: Selecteer alle waarnemingen
   US_states: VS Staten
   usage_stats: Gebruiksstatistieken
+  use_this_form_to_create_a_new: Gebruik dit formulier om een nieuwe voorstel voor
+    een taxonomische wijziging te maken die een voorgestelde splitsing, samenvoeging
+    of verwisseling beschrijft van actieve taxa om later te worden vastgelegd.
   use_unique_file_names_for_separate_uploads: Gebruik unieke bestandsnamen voor afzonderlijke
     uploads
   user: Gebruiker
@@ -3717,6 +3737,8 @@ nl:
   user_commented: '%{user} reageerde'
   user_disagrees_this_is_taxon: '%{user} is het niet eens dat dit %{taxon} si'
   user_follows: '%{user} volgt'
+  user_helped_x_people_with_y_ids_html: '%{user} hielpen <strong>%{x} mensen</strong>
+    met <strong>%{y} determinaties</strong>'
   user_invited_you_to_join_html: '%{user} nodigde je uit om aan te sluiten'
   user_invited_you_to_join_project: '%{user} nodigde je uit om aan te sluiten bij
     %{project}'
@@ -3983,6 +4005,8 @@ nl:
     te kunnen labelen.
   you_need_to_select_at_least_one_photo: Je moet ten minste één foto selecteren!
   you_need_to_select_some_observations_first: Je moet eerste enkele waarnemingen selecteren.
+  you_sure_delete_check_list: Weet je zeker dat je deze lijst wilt verwijderen? Sommige
+    mensen hebben er misschien veel werk in gestopt...
   you_sure_delete_comment?: Weet u zeker dat u deze reactie wilt verwijderen?
   you_sure_delete_flag?: Weet u zeker dat u deze markering wil verwijderen?
   you_sure_delete_project?: Weet u zeker dat u dit project wil verwijderen?
@@ -4045,6 +4069,8 @@ nl:
             in de klas te gebruiken?
     guides:
       edit:
+        coordinates_desc: Door je gidscoördinaten te geven kunnen mensen het vinden
+          wanneer ze de locatie opzoeken.
         import_tags_from_csv_help_html: |-
           <p>
             Upload een CSV-bestand dat labels bevat voor taxa in deze gids. Uw CSV-bestand hoort er als volgt uit te zien:
@@ -4086,6 +4112,9 @@ nl:
           importeren
       eolupdate_notice: Even geduld, inhoud uit EOL importeren kan enkele minuten
         duren.
+      show:
+        draft_desc: Deze gids is alleen zichtbaar voor mensen die deze kunnen bewerken
+          totdat u deze publiceert.
       generating_mobile_archive_tip_html: Dit kan even duren, vernieuw de pagina binnen
         enkele minuten.
       mobile_downloads_tip_html: Deze gids kan gedownload worden naar de mobiele app
@@ -4123,6 +4152,12 @@ nl:
         inat_admins_are_the_people_who: '%{site_name}beheerders zijn mensen die de
           site beheren. Zij hebben directe toegang tot de onderliggende code en de
           database, en zij kunnen alles op de site wijzigen.'
+        curators_are_inat_users_who_volunteer_to_html: "Curatoren zijn %{site_name}-gebruikers
+          die zich vrijwillig aanmelden om onze taxonomische gegevens bij de tijd
+          te houden. Als je interesse hebt om curator te worden, mail \n<a href=\"mailto:%{help_email}\">Neem
+          contact met ons op</a>. Curatoren kunnen\nook andere gebruikers naar de
+          status van curator promoten. Promoot alleen mensen\ndie je vertrouwt en
+          waarvan je weet dat die wat taxonomische kennis hebben"
         what_is_considered_inappropriate_content?: Wat wordt beschouwd als ongepaste
           inhoud?
         what_is_an_observation?: Wat is een waarneming?
@@ -4167,6 +4202,11 @@ nl:
           lijst met mensen, net zoals je kunt met een gewone lijst. De soort jij
           handmatig toevoegen wordt niet verwijderd als u ze waarneemt vervolgens verwijdert
           de waarnemingen.
+        inat_users_can_also: |-
+          Gebruikers van %{site_name} kunnen ook extra controlelijsten toevoegen aan plaatsen maar
+          deze checklists worden niet automatisch bijgewerkt. Ze bieden voornamelijk
+          een manier voor mensen om externe bronnen van gegevens binnen te halen of
+          maken gewoon checklists op basis van hun eigen ervaring.
         i_observed_a_species: Ik heb een soort waargenomen, waarom verschijnt hij
           niet in mijn levenslijst?
         while_the_life_list_is_automatically_populated: Alhoewel de levenslijst automatisch
@@ -4246,6 +4286,21 @@ nl:
           toe met coördinaten die niet zichtbaar zijn voor de projectcuratoren. Indien
           je de coördinaten van je waarnemingen niet wenst te delen, verwijder ze
           dan uit het project.
+    observation_fields:
+      about_editing_observation_fields_desc_html: |-
+        <p class='ui'> U kunt dit waarnemingsveld bewerken omdat u het hebt gemaakt of omdat u een site-curator bent. Als u een site-curator bent, volgt u deze richtlijnen </p>
+        <ol>
+           <li> Maak geen willekeurige naamswijzigingen (bijvoorbeeld het veranderen van "eten" in "nectaring") </li>
+           <li> Houd er rekening mee dat waarnemingsvelden kunnen worden gebruikt voor waarnemingen van elk taxon, dus probeer geen taxon-specifieke terminologie te gebruiken </li>
+           <li> Verwijder geen velden die mensen gebruiken </li>
+           <li> Vertaal geen bestaande veldnamen in verschillende talen. Engels is de lingua franca van deze site. Als u echt een veld wilt dat hetzelfde concept bevat maar in een andere taal dan maakt u een nieuw waarnemingsveld.</li>
+        </ol>
+      merge:
+        warning_html: |-
+          Respecteer de gegevens van andere mensen en <strong> praat met de maker
+          van een waarnemingsveld vóór samenvoeging </strong>. Deze tool zal het
+          waarnemingsveld samengevoegen en verplaatst alle waarnemingen die het gebruiken
+          naar de keeper. <strong> Dit proces kan niet ongedaan worden gemaakt </strong>, dus wees voorzichtig.
     emailer:
       users_updates_suspended:
         message: "Je bent al een tijdje inactief op %{site_name}, dus we hebben \nje
@@ -4258,6 +4313,11 @@ nl:
         automatically_id_the_new_obs_as: Identificeer de nieuwe waarneming automatisch
           als
         invite_other_photographers_to_inat: Nodig andere fotografen uit op %{site_name}
+        invite_your_friends_description: "Je kunt het super gemakkelijk maken voor
+          mensen op Facebook en Flickr om hun foto's toe te voegen\nals %{site_name}
+          waarnemingen. Laat een reactie achter zoals deze\nspeciale uitnodigings-URL
+          hieronder. U kunt ook een taxon en project vooraf selecteren voor \nde nieuwe
+          waarneming."
     places:
       index:
         adding_new_places: nieuwe plaatsen toevoegen
@@ -4389,6 +4449,25 @@ nl:
         TTID_desc: Tijd om een identificatie van een ander te ontvangen
     taxa:
       show:
+        about_names_desc: "<P>\n  De meeste categorieën organismen hebben \"lokale
+          namen\". Deze namen zijn meestal herkenbaar, gemakkelijk uit te spreken,\n  en
+          stabiel in de tijd, maar veel organismen hebben verschillende\n  namen op
+          verschillende plaatsen, zelfs in dezelfde taal, die kunnen maken\n  het
+          is moeilijk om zonder verwarring over deze organismen te communiceren.\n  Wetenschappers
+          pakken dit probleem aan door een enkele \"wetenschappelijke naam\" te gebruiken\n  voor
+          elke categorie organismen die voldoet aan de regels van\n  <a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">biologische
+          nomenclatuur</a>,\n  maar deze namen zijn meestal gebaseerd op het Latijn,
+          een taal die niemand kent\n  spreekt, dus ze zijn niet zo gemakkelijk te
+          onthouden als gewone namen voor velen\n  mensen. Wetenschappelijke namen
+          kunnen ook de taxonomie van een organisme weerspiegelen\n  , zodat ze veranderen
+          wanneer wetenschappers meer \n  accurate theorieën ontwikkelen over de evolutionaire
+          relaties tussen\n  verschillende organismen, opnieuw hun nut verminderen
+          in\n  communicatie, zelfs tussen mensen die wetenschappelijke namen kennen.\n</P>\n<P>\n  Het
+          oude gezegde vat het samen: \"lokale namen veranderen van plaats naar plaats\n  en
+          wetenschappelijke namen veranderen van tijd tot tijd. \"\n</P>\n<P>\n  We
+          proberen deze tekortkomingen aan te pakken door ze beide te laten zien\n  en
+          wetenschappelijke namen waar mogelijk en het kiezen van gemeenschappelijke
+          namen\n  op basis van de taal en geografische voorkeuren van de kijker.\n</P>"
         about_taxon_curators_desc: Deze mensen onderhouden het gedeelte van de taxonomische
           boom waartoe dit taxon behoort. Indien je wijzigingen wenst aan te brengen,
           markeer dan dit taxon of neem met een van hen contact op.
@@ -4404,6 +4483,12 @@ nl:
           zuidelijk halfrond en niet omdat libellen actiever zijn
           juni, dus bekijk de kaart wanneer u deze grafieken overweegt. Het is altijd een
           goed idee om sceptisch te zijn over deze grafieken als er weinig waarnemingen zijn en/of grote discrepanties tussen het aantal "Verifieerbare" en "Research Grade"-waarnemingen.
+        charts_help_history: |-
+          Deze grafiek toont het aantal waarnemingen van dit taxon per maand voor
+          de afgelopen tien jaar. Nogmaals, het is bevooroordeeld door het aantal mensen
+          die waarnemingen invoeren maar het zal je opmerkelijke pieken in waarnemingen laten zien en zo
+          lijkt het plat of dalend ondanks een toenemend aantal waarnemers,
+          dat zou een verandering in het voorkomen kunnen suggereren.
         charts_help_other: 'We tonen ook seizoensgebonden grafieken aantekeningen
           bij waarnemingen. Aantekeningen zijn een nieuw systeem om metadata toe te
           voegen aan waarnemingen door gebruik te maken van een gecontrolleerde woordenschat
@@ -4468,12 +4553,41 @@ nl:
           informatie over vertaling</a>\n    </p>\n  </li>\n</ul>"
     users:
       dashboard:
+        taxon_change_desc: |-
+          Taxon wijzigingen vertegenwoordigen wijzigingen in de taxonomie van %{site_name}.
+          Meestal zal %{site_name} zich automatisch je inhoud up-to-date houden wanneer deze veranderingen plaatsvinden (tenzij je dat hebt uitzet door een opt-out), maar we willen u nog steeds laten weten wanneer en hoe uw gegevens zijn
+          verandert.
         your_content_will_be_updated: Uw inhoud met betrekking tot deze taxa wordt
           automatisch bijgewerkt.
         curators_can_see: |-
           Vergeet niet dat projectcuratoren de privé en vervaagde
           coördinaten kunnen zien van waarnemingen die u toevoegt aan dit project.
       edit:
+        blocking_desc_html: "<p>\n  Door iemand te blokkeren kunnen ze je berichten
+          niet meer zien en commentaar leveren op jouw\n  waarnemingen, het determineren
+          van uw waarnemingen en andere interacties\n  met u op %{site_name}. Het
+          verwijdert ook hun waarnemingen uit uw\n  zoekresultaten en verwijdert uw
+          waarnemingen uit hun zoekopdracht\n  resultaten. Het maakt u echter niet
+          onzichtbaar voor hen. Ze kunnen\n  nog steeds je waarnemingen vinden en
+          je profiel bekijken, ze kunnen echter geen\n  interactie met jou aangaan.\n</p>\n<p>\n  Blokkeren
+          is voor situaties waar je gewoon niet kunt opschieten met \n  iemand en
+          zij zullen je niet alleen laten, ondanks je inspanningen\n  om geschillen
+          op een beschaafde manier regelen. Het is geen manier om je te verbergen
+          voor \n  mensen, om identificaties te voorkomen van mensen van wie u van
+          mening bent\n  vertrouw niet, of kies niet voor de community-ID (er is nog
+          een andere\n  instelling daarvoor). Blokkeren werkt dus in beide richtingen:
+          als je blokkeert\n  iemand, ze kunnen geen interactie met je hebben, maar
+          je kunt ook geen interactie hebben\n  met hen. Als u het misbruikt om te
+          voorkomen dat iemand uw identiteit identificeert\n  waarnemingen, voorkomt
+          u ook dat u ze identificeert\n  observaties.\n</p>\n<p>\n  Je kunt maar
+          drie mensen blokkeren. We denken dat dit een redelijk aantal is\n  dat geschikt
+          is voor de mensen die blokkering nodig hebben. Dit om het misbruik van blokkering
+          te voorkomen. Als je vindt dat je meer mensen moet kunnen blokkeren\n  
+          <a href=\"mailto:%{help_email}\"> neem contact met ons op </a>.\n</p>\n<p>\n  Als
+          iemand je lastig valt of stalkt op %{site_name},\n  <a href=\"mailto:%{help_email}\">
+          laat het ons weten </a>. Als\n  dit is een schending van onze Servicevoorwaarden
+          is of het vertegenwoordigt\n  ander gedrag dat we ongepast achten voor onze
+          site, zullen we doen\n  onderzoeken.\n</p>"
         common_names_desc: Toon namen in de lokale taal. Uitschakelen als u alleen
           wetenschappelijke namen wilt bekijken. Merk op dat u kunt bepalen welke
           algemene namen u ziet door uw locale en plaatsinstellingen te wijzigen.

@@ -88,6 +88,9 @@ ar:
   x_people_agree_html:
     one: <span class="count">1</span> شخص يوافق
     other: <span class="count">%{count}</span> اشخاص يوافقون
+  x_new_species:
+    one: 1 نوع جديد
+    other: '%{count} أنواع جديدة'
   x_species:
     one: 1 نوع
     other: '%{count} أنواع'
@@ -119,6 +122,8 @@ ar:
   x_taxon_changes_added_html:
     one: تمت إضافة <span class='count'>1</span> تغيير أصنوفة
     other: <span class=تمت إضافة 'count'>%{count}</span> تغييرات أصناف
+  x_people_helped_user_with_y_ids_html: <strong>%{x} أشخاص </strong> ساعدوا %{user}
+    ب<strong>%{y}المعرفات</strong>
   _100_day_trends: اتجاهات 100 يوم
   _percent_ID_d: '% معرف'
   a: أ
@@ -1632,7 +1637,7 @@ ar:
   help_confirm_observations!: المساعدة في تأكيد الملاحظات!
   help_faq: مساعدة / أسئلة مكررة
   help_out!: مساعدة!
-  help_support_inaturalist: مساعدة دعم إيناتوراليست!
+  help_support_inaturalist: مساعدة دعم إيناتوراليست
   helped_the_observer_make: ساعد المراقب في صنع معرفهم النهائي (أي أنهم قُدِّموا قبل
     المعرف النهائي وطابقوه)
   here_are_3_examples: في ما يلي 3 أمثلة للبيانات التي تم تشكيلها بشكل جيد
@@ -1647,6 +1652,7 @@ ar:
   hi_user: مرحبا %{user}
   hide: إخفاء
   hide_details: أخفِ التفاصيل
+  hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
   high: مرتفع
   highest_rank: أعلى رتبة
@@ -2366,6 +2372,7 @@ ar:
   new_observation_field: حقل ملاحظة جديد
   new_observation_rules: قواعد ملاحظة جديدة
   new_observations: ملاحظات جديدة
+  new_observations_this_year: ملاحظات جديدة هذا العام
   new_observations_ellispsis: ملاحظات جديدة...
   new_observations_from_place_html: ملاحظات جديدة من %{place}
   new_observations_may_take_up_to: قد تستغرق الملاحظات الجديدة ما يصل إلى %{widget_expiration}
@@ -2377,6 +2384,9 @@ ar:
   new_project_asset: أصول المشروع الجديد
   new_project_asset_for: أصول المشروع الجديد لـ
   new_source: مصدر جديد
+  new_species_added_in_interval: الأنواع الجديدة المضافة في %{interval}
+  new_species_added_in_interval_x_of_y: الأنواع الجديدة المضافة في %{interval} (عرض
+    %{x} من %{y})
   new_taxon_change: تغيير الأصنوفة الجديد
   new_taxon_link: رابط الأصنوفة الجديدة
   new_taxon_name: اسم الأصنوفة الجديدة
@@ -2387,8 +2397,13 @@ ar:
   new_updates_in_the_last_24_hours_from: تحديثات جديدة في آخر 24 ساعة من %{site_name}
   new_user_rules: قواعد المستخدم الجديد
   new_users: مستخدمون جدد
+  new_users_this_year: مستخدمون جدد هذا العام
   new_users_w_7_obs: المستخدمون الجدد w/ 7 ملا
   new_users_week: المستخدمون الجدد / الأسبوع
+  newly_added: مضاف حديثا
+  newly_added_species: الأنواع المضافة حديثا
+  newly_observed_species: الأنواع الملاحظة حديثا
+  newly_observed_species_this_year: الأنواع المضافة حديثا هذا العام
   news: الأخبار
   next: التالي
   next_observation: الملاحظة التالية
@@ -2519,6 +2534,7 @@ ar:
   not_on_this_list: ليس في هذه القائمة.
   not_recorded: غير مسجل
   not_seeing_what_looking_for: لم تر ما كنت تبحث عنه؟
+  not_spam: ليس بريدا موذيا
   not_yet: ليس بعد
   note: ملحوظة
   notes: ملاحظات
@@ -3129,6 +3145,11 @@ ar:
   processing: معالجة
   processing3p: تجري المعالجة...
   profile: الملف الشخصي
+  profile_visibility_pending_account_verification: إمكانية رؤية الملف الشخصي في انتظار
+    التحقق من الحساب
+  profile_visibility_desc: "في محاولة لمنع الرسائل غير المرغوب فيها من الوصول إلى
+    %{site_name}، تكون ملفات تعريف المستخدمين مرئية \nبشكل عام فقط بعد أن يساهم المستخدم
+    في العديد من ملاحظات \nدرجة البحث."
   project: المشروع
   project_added_your_observations: أضاف المشروع ملاحظاتك
   project_admins:
@@ -3272,6 +3293,7 @@ ar:
   recent_comments_on_your_stuff: التعليقات الأخيرة على أشيائك
   recent_evidence?: دليل حديث؟
   recent_evidence_of_organism: دليل حديث لكائن حي
+  recent_new_users: أحدث المستخدمين الجدد
   recent_observations: الملاحظات الأخيرة
   recent_observations_: الملاحظات الأخيرة
   recent_post: المنشور الأخير
@@ -3413,6 +3435,7 @@ ar:
     must_be_in: يجب أن يكون في أصنوفة
     must_be_coordinates_shareable_by_project_curators: يجب أن يسمح المراقب لأمناء
       المشروع بعرض الإحداثيات.
+  running_total: مجموع التشغيل
   said: قال
   sat: قم
   satellite: القمر الصناعي
@@ -3537,6 +3560,7 @@ ar:
   show_off_your_recent_observations: إظهار ملاحظاتك الأخيرة في مدونتك أو موقعك!
   show_only: أظهر فقط
   show_relative_proportions_of_all_observations: إظهار النسب المرتبطة لجميع الملاحظات
+  show_running_total: إظهار تشغيل الاجمالي
   show_scientific_name_first: عرض الأسماء العلمية أولا
   show_taxa_from_both: (عرض أصناف من كلا القائمتين)
   show_taxa_from_everywhere: عرض أصناف من كل مكان
@@ -3679,6 +3703,7 @@ ar:
   sources_and_credits: المصادر والتصديق
   sourcing: إمداد مصادر
   spam: سخام
+  spammer: مرسلو البريد المزعج
   spanish: الإسبانية
   species: نوع
   species_by_category: الأنواع حسب التصنيف
@@ -3726,6 +3751,8 @@ ar:
   stop_following_user: توقف عن متابعة %{user}
   stop_testing: وقف الاختبار
   stop_updating_position: توقف عن تحديث الموضع
+  studies_that_used_inaturalist_data_in_year: الدراسات التي استخدمت بيانات إيناتوراليست
+    في %{year}
   stuff_just_added: العناصر التي أضفتها للتو...
   subject_resolved_noun_html: '%{subject} حل %{noun}'
   subject_affecting_stuff_html: '%{subject} يؤثر على %{stuff}'
@@ -4311,6 +4338,8 @@ ar:
   user_has_opted_out_of_community_ids_for_this_obs: اختار %{user} الاحتفاظ بالسيطرة
     على الأصناف المرتبطة  بهذه الملاحظة
   user_hasnt: '%{user} ليس لديه'
+  user_helped_x_people_with_y_ids_html: '%{user} ساعد <strong>%{x} من الأشخاص </strong>
+    ب<strong>%{y} المعرفات</strong>'
   user_invite_observation_to_project: يريد %{user} دعوة ملاحظتك "%{observation}" إلى
     مشروع %{project}.
   user_invited_you_to_join_html: دعاك %{user} للانضمام
@@ -4366,6 +4395,7 @@ ar:
   view_change: عرض التغيير
   view_check_list_page: عرض صفحة قائمة الفحص
   view_contributions: عرض المساهمات
+  view_data_used: 'عرض البيانات المستخدمة:'
   view_details: عرض التفاصيل
   view_field_options: عرض خيارات الحقل
   view_flag: عرض العلم
@@ -4822,7 +4852,7 @@ ar:
             إذا كان الأمر كذلك، الرجاء قراءة <a href="%{url}">دليل المعلم لدينا</a>
             للحصول على نصائح حول استخدام %{site_name} مع الطلاب.
     donate:
-      donate_short_desc: ساعد في دعم إيناتوراليست بتبرع!
+      donate_short_desc: تبرع الآن لإظهار دعمك!
       donate_desc_html: "<p class=\"lead\">\n<strong>إيناتوراليست هو واحد من أكبر
         المجتمعات في العالم المخصصة \n  لاستكشاف التنوع البيولوجي، نشكرك على كونك
         جزءً منه!</strong>\n</p>\n<p class=\"lead\">\n  إذا كنت تؤمن بقوة هذا المجتمع
@@ -4834,8 +4864,7 @@ ar:
         للعلوم\n  وجمعية ناشيونال جيوغرافيك، سيتم استلام جميع التبرعات من قبل \n  أكاديمية
         كاليفورنيا للعلوم، وهي مؤسسة غير ربحية 501(c)(3) معفاة من الضرائب \n  مقرها
         في الولايات المتحدة. \n</p>"
-      post_donate_social_media_text: أنا دعمت إيناتوراليست! يجب عليك التحقق من ذلك،
-        أيضا.
+      post_donate_social_media_text: أنا أدعم إيناتوراليست لأن.
     guides:
       index:
         funding_html: |-
@@ -5741,6 +5770,22 @@ ar:
           تم إنشاؤها عبر <a href="https://www.inaturalist.org">إيناتوراليست</a>
           أو مواقع <a href="%{url}">شبكة إيناتوراليست</a>
       year:
+        growth_title: النمو
+        new_species_desc: |-
+          الأنواع التي تمت ملاحظتها للمرة الأولى في %{site_name} هذا العام،
+          عرض %{x} من <a href="%{url}">%{y} أنواع</a>.
+        new_species_desc_html: "الأنواع التي تمت إضافتها للمرة الأولى في %{site_name}
+          هذا العام،\nانقر على شهر لعرض بعض الأنواع الجديدة المضافة في ذلك الشهر،\nيمكنك
+          أيضا عرض إجمالي تراكم الأنواع، أو تحريك شريط التمرير \nفي الوقت المناسب
+          لرؤية الأنواع الأخرى التي تمت ملاحظتها حديثا، يعرض هذا المخطط \nأنواعا من
+          الملاحظات القابلة للتحقق منها في الشهر الذي تم رفعها فيه \nإلى %{site_name}
+          (وليس الشهر عندما تمت الملاحظة)، لا \nيتضمن أصنافا أعلى أو أقل; لذا فإن
+          الملاحظة التي تم تحديدها على أنها \nثدييات لا تحسب، وملاحظة <i>ذئب رمادي</i>
+          نويع.\n<i>دب</i> ستحسب فقط <i>ذئب رمادي</i>."
+        publications_desc_html: "بيانات التأثير والمرئيات مجاملة من\n<a href=\"https://www.altmetric.com\">Altmetric</a>،
+          معلومات\nحول استخدام البيانات من قبل أصدقائنا في \n<a href=\"https://www.gbif.org/\">مرفق
+          معلومات التنوع البيولوجي العالمي</a>.\n<br/>\n<a href=\"%{url}\">عرض جميع
+          %{numStudies} الدراسات</a>"
         sunburst_desc_html: "أصناف ملاحظة رُتِّبت كرسم \"سونبورست\" الهرمي، قاعدة
           \nالتسلسل الهرمي في المركز، تبدأ من \"الحياة\" وتنتهي \nمع الأنواع على الحواف
           الخارجية، حجم كل قوس يتناسب \nمع عدد ملاحظات هذه الأصنوفة، والألوان الحمراء

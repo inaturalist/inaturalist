@@ -24,6 +24,7 @@
 # Author: Mailman
 # Author: Movses
 # Author: Nina
+# Author: Nk88
 # Author: Okras
 # Author: Patrick Star
 # Author: Pplex.vhs
@@ -125,6 +126,10 @@ ru:
     one: <span class="count">1</span> человек согласен
     few: <span class="count">%{count}</span> человека согласны
     other: <span class="count">%{count}</span> человек согласны
+  x_new_species:
+    one: 1 Новый вид
+    few: '%{count} Новых вида'
+    other: '%{count} Новых видов'
   x_species:
     one: 1 вид
     few: '%{count} вида'
@@ -168,6 +173,8 @@ ru:
     one: <span class='count'>1</span> изменение таксона добавлено
     few: <span class='count'>%{count}</span> изменения таксонов добавлено
     other: <span class='count'>%{count}</span> изменений таксонов добавлено
+  x_people_helped_user_with_y_ids_html: <strong>%{x} человек</strong> оказавшие помощь
+    %{user} с <strong>%{y} идентификацией</strong>
   _100_day_trends: 100-дневный тренд
   _percent_ID_d: '% идентифицированных'
   a: это
@@ -1755,7 +1762,7 @@ ru:
   help_confirm_observations!: Помогите подтвердить наблюдения!
   help_faq: Помощь / FAQ
   help_out!: Помогите!
-  help_support_inaturalist: Помогите нам Вашей поддержкой!
+  help_support_inaturalist: Помогите поддержать iNaturalist
   helped_the_observer_make: помогли наблюдателю сделать окончатльное определение (т.е.
     первичные определения соответствуют окончательному)
   here_are_3_examples: Три примера хорошо сформированных данных
@@ -1770,6 +1777,7 @@ ru:
   hi_user: Здравствуйте, %{user}
   hide: Скрыть
   hide_details: Скрыть подробности
+  hide_running_total: Скрыть текущий итог
   hide_uncountable_species: Не показывать неисчислимые виды
   high: Высокий
   highest_rank: Наивысший ранг
@@ -2509,6 +2517,7 @@ ru:
   new_observation_field: Новое поле наблюдения
   new_observation_rules: Новые Правила Наблюдений
   new_observations: Новые наблюдения
+  new_observations_this_year: Новые наблюдения этого года
   new_observations_ellispsis: Новые наблюдения...
   new_observations_from_place_html: Новые наблюдения из %{place}
   new_observations_may_take_up_to: Может пройти до %{widget_expiration} минут, прежде
@@ -2520,6 +2529,9 @@ ru:
   new_project_asset: Новые активы проекта
   new_project_asset_for: Новый актив проекта для
   new_source: Новый Источник
+  new_species_added_in_interval: Новые наблюдения, добавленные в %{interval}
+  new_species_added_in_interval_x_of_y: Новые наблюдения, добавленные в %{interval}
+    (показывающие %{x} из %{y})
   new_taxon_change: Новое изменение таксона
   new_taxon_link: Новая ссылка на таксон
   new_taxon_name: Новое имя таксона
@@ -2531,8 +2543,13 @@ ru:
     %{site_name}
   new_user_rules: Новые Пользовательские Правила
   new_users: Новые участники
+  new_users_this_year: Новые пользователи этого года
   new_users_w_7_obs: Новые участники с 7 набл за неделю
   new_users_week: Новые пользователи / Неделя
+  newly_added: Вновь добавленные
+  newly_added_species: Новые виды
+  newly_observed_species: Новые наблюдаемые виды
+  newly_observed_species_this_year: Новые виды в этом году
   news: Новости
   next: След
   next_observation: Следующее наблюдение
@@ -2669,6 +2686,7 @@ ru:
   not_on_this_list: Нет в этом списке.
   not_recorded: Не указана
   not_seeing_what_looking_for: Не нашли то, что искали?
+  not_spam: Не спам
   not_yet: Еще нет
   note: Примечание
   notes: Примечания
@@ -2838,6 +2856,7 @@ ru:
   offline_access_enabled: Включён автономный доступ
   old_observation_form: Старая форма наблюдения (устарела)
   ok: ОК
+  on_: вкл
   on_date: на %{date}
   on_day: в день
   on_edit_date: на %{editdate}
@@ -3306,6 +3325,11 @@ ru:
   processing: Обработка
   processing3p: Обработка…
   profile: Профиль
+  profile_visibility_pending_account_verification: Видимость профиля в ожидании подтверждения
+    аккаунта
+  profile_visibility_desc: В целях защиты от спама в %{site_name}, профили пользователей
+    становятся общедоступными только после того, как пользователь предоставил несколько
+    наблюдений исследовательского уровня.
   project: Проект
   project_added_your_observations: Добавлении проекта к вашим наблюдениям
   project_admins:
@@ -3452,6 +3476,7 @@ ru:
   recent_comments_on_your_stuff: Последние комментарии ваших материалов
   recent_evidence?: Каковы последние данные?
   recent_evidence_of_organism: Свежие свидетельства существования организма
+  recent_new_users: Последние новые пользователи
   recent_observations: Последние наблюдения
   recent_observations_: Недавние наблюдения
   recent_post: Последние сообщения
@@ -3597,6 +3622,7 @@ ru:
     must_be_in: должен быть привязан к таксону
     must_be_coordinates_shareable_by_project_curators: наблюдатель должен разрешить
       куратору проекта видеть координаты.
+  running_total: Текущий итог
   said: упомянутый
   sat: Сб
   satellite: спутниковый
@@ -3728,6 +3754,7 @@ ru:
   show_only: Показывать только
   show_relative_proportions_of_all_observations: Показать относительные доли всех
     наблюдений
+  show_running_total: Показать текущий итог
   show_scientific_name_first: Показать научные наименования вначале
   show_taxa_from_both: (показать таксоны из обоих списков)
   show_taxa_from_everywhere: Показывать таксоны отовсюду
@@ -3881,6 +3908,7 @@ ru:
   sources_and_credits: Источники и благодарности
   sourcing: Задание источников
   spam: Спам
+  spammer: Спамер
   spanish: Испанский
   species: Вид
   species_by_category: виды по категориям
@@ -3929,6 +3957,8 @@ ru:
   stop_following_user: Отменить отслеживание %{user}
   stop_testing: Завершить тестирование
   stop_updating_position: Остановить обновление позиции
+  studies_that_used_inaturalist_data_in_year: Исследования, в которых использовались
+    данные iNaturalist в %{year}
   stuff_just_added: Материал, который вы только что добавили ...
   subject_resolved_noun_html: '%{subject} разрешил %{noun}'
   subject_affecting_stuff_html: '%{subject}, влияющий на %{stuff}'
@@ -4544,6 +4574,8 @@ ru:
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} решил сохранить контроль
     над таксонами, связанными с этим наблюдением'
   user_hasnt: '%{user} не'
+  user_helped_x_people_with_y_ids_html: '%{user} помог <strong>%{x} людям</strong>
+    с <strong>%{y} идентификацией</strong>'
   user_invite_observation_to_project: '%{user} приглашает вас добавить ваше наблюдение
     %{observation} к проекту %{project}'
   user_invited_you_to_join_html: '%{user} приглашает вас присоединиться'
@@ -4599,6 +4631,7 @@ ru:
   view_change: Просмотр изменений
   view_check_list_page: Просмотреть страницу контрольного списка
   view_contributions: Просмотреть вклад
+  view_data_used: 'Просмотр используемых данных:'
   view_details: Просмотреть подробности
   view_field_options: Просмотр параметров поля
   view_flag: Просмотр флага
@@ -5088,7 +5121,7 @@ ru:
             для преподавателя</a>, чтобы получить советы по использованию %{site_name}
             студентами.
     donate:
-      donate_short_desc: Помогите поддержать iNaturalist Вашим пожертвованием!
+      donate_short_desc: Пожертвуйте сейчас, чтобы показать свою поддержку!
       donate_desc_html: |-
         <p class="lead">
           Ваше пожертвование помогает поддерживать iNaturalist по мере роста
@@ -5098,7 +5131,7 @@ ru:
         <p class="text-muted">
           iNaturalist - это объединённая инициатива Калифорнийской Академии наук и Национального Географического общества. Все пожертвования будут получены Калифорнийской академией наук, 501(c)(3) некоммерческой организацией, не облагаемой налогом, базирующейся в Соединенных Штатах Америки.
         </p>
-      post_donate_social_media_text: Я поддержал iNaturalist! Вы тоже можете это проверить.
+      post_donate_social_media_text: Я оказываю поддержку, потому что...
     guides:
       index:
         funding_html: Финансирование разработки руководств было обеспечено <a href="http://eol.org"><img
@@ -6086,6 +6119,25 @@ ru:
           Создано с помощью веб-сайтов <a href="https://www.inaturalist.org">iNaturalist</a>
           или <a href="%{url}">сети веб-сайтов iNaturalist</a>
       year:
+        growth_title: Рост
+        new_species_desc: |-
+          Виды, впервые наблюдавшиеся на %{site_name} в этом году.
+          Показано %{x} из <a href="%{url}">%{y} видов</a>.
+        new_species_desc_html: Виды, которые были впервые были добавлены на %{site_name}
+          в этом году. Нажмите на месяц, чтобы увидеть некоторые новые виды, добавленные
+          в этом месяце. Вы также можете просмотреть общее накопленное количество
+          видов или переместить ползунок назад во времени, чтобы увидеть другие впервые
+          наблюдаемые виды. Диаграмма показывает виды проверяемых наблюдений по месяцам
+          загрузки в %{site_name} (а не по месяцу, когда они наблюдались). Она не
+          включает таксоны более высокого или более низкого уровня, поэтому наблюдение,
+          идентифицированное как Млекопитающее, не учитывается, а наблюдение <i>Canis
+          lupus</i> ssp. <i>arctos</i> будет учтено как <i>Canis lupus</i>.
+        publications_desc_html: |-
+          Данные по воздействию и визуализации любезно предоставлены
+          <a href="https://www.altmetric.com">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из
+          <a href="https://www.gbif.org/">Глобальный информационный центр по биоразнообразию</a>.
+          <br/>
+          <a href="%{url}">Посмотреть все исследования %{numStudies}</a>
         sunburst_desc_html: Наблюдаемые таксоны упорядочены как иерархическая диаграмма
           «солнечные лучи». Основание иерархии находится в центре, начиная с «Жизни»,
           и заканчивается видами на внешних краях. Размер каждой дуги пропорционален

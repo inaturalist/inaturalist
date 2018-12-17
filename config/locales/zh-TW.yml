@@ -88,6 +88,9 @@ zh-TW:
   x_people_agree_html:
     one: <span class="count">1</span> 位認同
     other: <span class="count">%{count}</span> 位認同
+  x_new_species:
+    one: 1 個新物種
+    other: '%{count} 個新物種'
   x_species:
     one: 1 物種
     other: '%{count} 物種'
@@ -118,6 +121,8 @@ zh-TW:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> 個物種變更已新增
     other: <span class='count'>%{count}</span> 個物種變更已新增
+  x_people_helped_user_with_y_ids_html: <strong>%{x}</strong> 個人以 <strong>%{y}</strong>
+    個鑑定幫助了%{user}
   _100_day_trends: 100 天裡的趨勢
   _percent_ID_d: '% 已鑑定'
   a: 一個
@@ -1301,9 +1306,9 @@ zh-TW:
   file: 檔案
   file_should_be_in_the_following_format: 檔案應為以下格式：物種分類、描述
   fill_out_project_observation_fields: 填寫專案觀察欄位
-  fill_out_your_profile: 完成您的個人資料
+  fill_out_your_profile: 完成您的個人檔案
   filling_out_checklist_for_place: 在清單上填寫您所了解的地方
-  filling_out_your_profile: 填寫您的個人資料
+  filling_out_your_profile: 填寫您的個人檔案
   filter: 篩選
   filter_by: 篩選依
   filter_by_curator_identification: 依策展人鑑定篩選
@@ -1497,7 +1502,7 @@ zh-TW:
   help_confirm_observations!: 幫助確認觀察！
   help_faq: 幫助 / 常見問題
   help_out!: 幫個忙！
-  help_support_inaturalist: 協助支持 iNaturalist！
+  help_support_inaturalist: 協助支持 iNaturalist
   helped_the_observer_make: 協助觀察者製作他們的最終鑑定（註：就是在最終鑑定之前，他們所作出符合的）
   here_are_3_examples: 此為 3 個良好格式資料的範例
   here_are_our_top_species_suggestions: 這是我們熱門的物種建議
@@ -1509,6 +1514,7 @@ zh-TW:
   hi_user: 嗨 %{user}
   hide: 隱藏
   hide_details: 隱藏詳細資料
+  hide_running_total: 隱藏運行總計
   hide_uncountable_species: 隱藏無法計數的物種
   high: 高
   highest_rank: 最高級別
@@ -1614,7 +1620,7 @@ zh-TW:
   inappropriate_content: 不適當內容？
   inat_account_action: '%{site_name} &#58;帳號&#58; %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name} 相信這是此地區物種分類的完整清單。'
-  inat_user_profile: '%{site_name}： %{user}的個人資料'
+  inat_user_profile: '%{site_name}：%{user}的個人檔案'
   inat_will_be_back_on: '%{site_name} 將會返回它的足/翼/鰭/觸手/偽足'
   inaturalist_is_an_online_community: '%{site_name} 線上的博物學友社群！透過添加您的照片，您可協助研究員學習更多有關'
   inaturalist_is_catching_some_zs: '%{site_name} 正在獲取一些 Zs'
@@ -2149,6 +2155,7 @@ zh-TW:
   new_observation_field: 新觀察欄位
   new_observation_rules: 新觀察規則
   new_observations: 新觀察
+  new_observations_this_year: 此年度的新觀察
   new_observations_ellispsis: 新觀察...
   new_observations_from_place_html: 來自於%{place}的新觀察
   new_observations_may_take_up_to: 新的觀察可能需要 %{widget_expiration} 分鐘才能出現在小工具裡。
@@ -2159,6 +2166,8 @@ zh-TW:
   new_project_asset: 新專案_項目
   new_project_asset_for: 新專案可用物件用於
   new_source: 新來源
+  new_species_added_in_interval: 在%{interval}內所添加的新物種
+  new_species_added_in_interval_x_of_y: 在%{interval}期間所添加的新物種（顯示 %{y} 個裡的 %{x} 個）
   new_taxon_change: 新物種分類更改
   new_taxon_link: 新物種分類連結
   new_taxon_name: 新物種分類名稱
@@ -2169,8 +2178,13 @@ zh-TW:
   new_updates_in_the_last_24_hours_from: 來自於 %{site_name} 在最近 24 小時內新的更新
   new_user_rules: 新用戶規範
   new_users: 新使用者
+  new_users_this_year: 此年度的新使用者
   new_users_w_7_obs: 具有 7 個觀察的新使用者
   new_users_week: 新用戶 / 週
+  newly_added: 新的添加
+  newly_added_species: 新進的添加物種
+  newly_observed_species: 新進的觀察物種
+  newly_observed_species_this_year: 此年度的新添加物種
   news: 最新消息
   next: 下一個
   next_observation: 下一個觀察
@@ -2294,6 +2308,7 @@ zh-TW:
   not_on_this_list: 未在清單裡。
   not_recorded: 未記錄
   not_seeing_what_looking_for: 沒有看到您要尋找的嗎？
+  not_spam: 非垃圾訊息
   not_yet: 尚未
   note: 註解
   notes: 註解
@@ -2827,7 +2842,9 @@ zh-TW:
   proceed: 繼續
   processing: 處理中
   processing3p: 處理中...
-  profile: 個人資料
+  profile: 個人檔案
+  profile_visibility_pending_account_verification: 個人檔案可見性待帳號驗證
+  profile_visibility_desc: 為防止在 %{site_name} 上出現垃圾訊息，使用者的個人檔案僅在使用者有貢獻出數個研究等級的觀察後，才會公開可見。
   project: 專案
   project_added_your_observations: 專案已添加您的觀察
   project_admins:
@@ -2961,6 +2978,7 @@ zh-TW:
   recent_comments_on_your_stuff: 在您事物上的近期評論
   recent_evidence?: 近期證據？
   recent_evidence_of_organism: 近期的生物證據
+  recent_new_users: 近期的新使用者
   recent_observations: 最近觀察
   recent_observations_: 最近觀察
   recent_post: 最近文章
@@ -3097,6 +3115,7 @@ zh-TW:
     must_be_observed_in_place: 需在地點裡觀察
     must_be_in: 需在物種分類中
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
+  running_total: 運行總計
   said: 說
   sat: 週六
   satellite: 衛星
@@ -3212,6 +3231,7 @@ zh-TW:
   show_off_your_recent_observations: 展現出在您個人部落格或網站上的近期觀察！
   show_only: 僅顯示
   show_relative_proportions_of_all_observations: 顯示所有觀察的相對比例
+  show_running_total: 顯示運行總計
   show_scientific_name_first: 顯示學名優先
   show_taxa_from_both: （從兩項清單顯示物種分類群）
   show_taxa_from_everywhere: 顯示來自於任何地點的物種分類
@@ -3337,6 +3357,7 @@ zh-TW:
   sources_and_credits: 來源和製作群
   sourcing: 來源
   spam: 垃圾訊息
+  spammer: 濫發垃圾訊息者
   spanish: 西班牙語
   species: 物種
   species_by_category: 依分類區分物種
@@ -3383,6 +3404,7 @@ zh-TW:
   stop_following_user: 停止關注 %{user}
   stop_testing: 停止測試
   stop_updating_position: 停止更新位置
+  studies_that_used_inaturalist_data_in_year: 在 %{year} 使用到 iNaturalist 資料的研究
   stuff_just_added: 您剛添加的東西...
   subject_resolved_noun_html: '%{subject} 解決了 %{noun}'
   subject_affecting_stuff_html: '%{subject}正對%{stuff}起作用'
@@ -3863,6 +3885,8 @@ zh-TW:
   user_has_opted_out_of_community_ids: '%{user} 已選擇保留對於關聯於他們觀察之物種分類群方面的控制'
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} 已選擇保留對於關聯於此觀察之物種分類群方面的控制'
   user_hasnt: '%{user}沒有'
+  user_helped_x_people_with_y_ids_html: '%{user}以 <strong>%{y} 個鑑定</strong>幫助到了 <strong>%{x}
+    個人</strong>'
   user_invite_observation_to_project: '%{user} 想要徵求您的觀察「%{observation}」至 %{project}
     專案。'
   user_invited_you_to_join_html: '%{user}邀請您加入'
@@ -3913,6 +3937,7 @@ zh-TW:
   view_change: 檢視變更
   view_check_list_page: 檢視清單頁面
   view_contributions: 檢視貢獻
+  view_data_used: 檢視所使用資料：
   view_details: 檢視詳細資料
   view_field_options: 檢視欄位選項
   view_flag: 檢視標記
@@ -4246,7 +4271,7 @@ zh-TW:
   your_google_account: 您的 Google 帳號
   your_google_account_info: 您的 Google 帳號訊息
   your_pinned_locations: 您所釘選的位置
-  your_profile_was_successfully_updated: 您的個人資料更新成功！
+  your_profile_was_successfully_updated: 您的個人檔案更新成功！
   your_recent_projects: 您最近的專案
   your_should_recognize: 您應該辨別其中一些照片
   your_site_account_has_been_created: 您的 %{site} 帳號已被創建。
@@ -4290,13 +4315,13 @@ zh-TW:
           please_read_the_teachers_guide_html: 若是如此，在與學生使用 %{site_name} 時，請閱讀我們的<a
             href="%{url}">教師指南</a>來取得提示。
     donate:
-      donate_short_desc: 以捐款來協助支持 iNaturalist！
+      donate_short_desc: 現在進行捐款來表現出您的支持！
       donate_desc_html: |-
         <p class="lead">
           <strong>iNaturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
         </p>
         <p class="lead">
-          若您肯定這份分享知識、產生出無可替代生物多樣性資料的全球自然愛好者社群力量，您可以考慮一次性或經常性的捐款。
+          若您肯定這份分享知識、產生出無可替代生物多樣性資料的全球自然愛好者社群力量，您可以考慮一次性或定期的捐款。
         </p>
         <p class="lead">
           您的捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。
@@ -4304,7 +4329,7 @@ zh-TW:
         <p class="text-muted">
           iNaturalist 為加利福尼亞州科學院與國家地理學會的聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
         </p>
-      post_donate_social_media_text: 我有對 iNaturalist 作出了支持！您也該試試看。
+      post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
     guides:
       index:
         funding_html: 指南開發的資金由 <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
@@ -4988,6 +5013,10 @@ zh-TW:
           代表透過 <a href="https://www.inaturalist.org">iNaturalist</a>
           或 <a href="%{url}">iNaturalist 網路</a>網站建立
       year:
+        growth_title: 成長
+        new_species_desc: |-
+          此年度在 %{site_name} 上首次被觀察的物種。
+          顯示 <a href="%{url}">%{y}</a> 個裡的 %{x} 個物種。
         sunburst_desc_html: |-
           已觀察物種分類群會被整理為分層「放射」狀的圖表。以中間層作為「生命」起始，外環邊緣作為結束。圖表上任一弧線長度比例是基於物種分類的觀察數量，色彩部份會簡略對應到我們常用的「代表性」物種分類顏色（綠色用在植物上；橘色用在昆蟲上；藍色用在多數其它動物上，等等。）， 因此如果您看到許多綠色，這代表著您有觀察過許多植物。
           <strong>點擊弧線來放置到有子項目圍繞的物種分類中心點</strong>，或是<strong>點擊中心點來移動層次結構</strong>。
@@ -5172,7 +5201,7 @@ zh-TW:
         install_our_mobile_apps: 安裝我們的移動版應用程式，來讓您即使沒有手機信號或 wifi 也可以隨意觀察。
         who_uses_site_name: 誰使用 %{site_name}?
         what_are_you_waiting_for: 還有什麼好等待呢？
-        join_today: 今天就加入
+        join_today: 今天就加入！
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: 儲存並編輯以添加附件
