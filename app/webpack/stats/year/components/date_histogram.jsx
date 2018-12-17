@@ -7,6 +7,7 @@ import _ from "lodash";
 import * as d3 from "d3";
 import d3tip from "d3-tip";
 import legend from "d3-svg-legend";
+import moment from "moment";
 import { objectToComparable } from "../../../shared/util";
 
 class DateHistogram extends React.Component {
@@ -97,11 +98,18 @@ class DateHistogram extends React.Component {
           }
           return nextX - x( d.date );
         };
+        const barHeight = d => {
+          const h = height - y( d.value );
+          if ( d.value > 0 && h < 1 ) {
+            return 1;
+          }
+          return h;
+        };
         const bars = seriesGroup.selectAll( "rect" ).data( seriesData );
         // update selection, these things happens when the data changes
         bars
           .attr( "width", barWidth )
-          .attr( "height", d => height - y( d.value ) )
+          .attr( "height", barHeight )
           .attr( "transform", d => {
             if ( d.offset ) {
               return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
@@ -110,8 +118,9 @@ class DateHistogram extends React.Component {
           } );
         const barsEnter = bars.enter( )
             .append( "rect" )
+              .attr( "data-date", d => d.date.toString( ) )
               .attr( "width", barWidth )
-              .attr( "height", d => height - y( d.value ) )
+              .attr( "height", barHeight )
               .attr( "transform", d => {
                 if ( d.offset ) {
                   return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
@@ -275,6 +284,20 @@ class DateHistogram extends React.Component {
     let axisBottom = d3.axisBottom( x );
     if ( tickFormatBottom ) {
       axisBottom = axisBottom.tickFormat( tickFormatBottom );
+    } else {
+      axisBottom = axisBottom.tickFormat( d => {
+        const md = moment( d );
+        if ( d3.timeSecond( d ) < d ) return md.format( ".SSS" );
+        if ( d3.timeMinute( d ) < d ) return md.format( ":s" );
+        if ( d3.timeHour( d ) < d ) return md.format( "hh:mm" );
+        if ( d3.timeDay( d ) < d ) return md.format( "h A" );
+        if ( d3.timeMonth( d ) < d ) {
+          if ( d3.timeWeek( d ) < d ) return md.format( "MMM D" );
+          return md.format( "MMM D" );
+        }
+        if ( d3.timeYear( d ) < d ) return md.format( "MMM D" );
+        return md.format( "YYYY" );
+      } );
     }
 
     g.append( "g" )
@@ -299,7 +322,7 @@ class DateHistogram extends React.Component {
         if ( currentSeries[d.seriesName] && currentSeries[d.seriesName].label ) {
           return currentSeries[d.seriesName].label( d );
         }
-        return `<strong>${dateFormatter( d.date )}</strong>: ${d.value}`;
+        return `<strong>${dateFormatter( d.date )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`;
       } );
     svg.call( tip );
 

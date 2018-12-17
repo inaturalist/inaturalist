@@ -26,15 +26,14 @@ const Publications = ( { data, year } ) => {
         <Col xs={9}>
           <p>
             { authors }
-            { ". " }
             { pub.year }
             { ". " }
-            <a href={pub.websites[0]}>{ `"${pub.title}."` }</a>
+            <a href={pub.websites[0]}>{ `"${pub.title}." ` }</a>
             <i>{ pub.source }</i>
             { ". " }
             { pub._gbifDOIs && (
               <span className="data-dois">
-                { I18n.t( "view_data_used" )}
+                { I18n.t( "data_used" )}
                 { " " }
                 { pub._gbifDOIs.map( doi => (
                   <a

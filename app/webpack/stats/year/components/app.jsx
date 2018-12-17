@@ -188,7 +188,7 @@ const App = ( {
             <div id="view-stats-buttons">
               { !currentUser || !user || ( user.id !== currentUser.id ) ? (
                 <div>
-                  <a href={`/stats/${year}/you`} className="btn btn-default btn-bordered">
+                  <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered">
                     <i className="fa fa-pie-chart" />
                     { " " }
                     { I18n.t( "view_your_year_stats", { year } ) }
@@ -197,13 +197,26 @@ const App = ( {
               ) : null }
               { user ? (
                 <div>
-                  <a href={`/stats/${year}`} className="btn btn-default btn-bordered">
+                  <a href={`/stats/${year}`} className="btn btn-primary btn-bordered">
                     <i className="fa fa-bar-chart-o" />
                     { " " }
                     { I18n.t( "view_year_stats_for_site", { year, site: site.name } ) }
                   </a>
                 </div>
               ) : null }
+              { (
+                !site || site.id === 1 || (
+                  user && ( user.site_id === null || user.site_id === 1 )
+                )
+              ) && (
+                <div>
+                  <a href="/donate?utm_content=year-in-review-2018" className="btn btn-default btn-bordered btn-donate">
+                    <i className="fa fa-heart" />
+                    { " " }
+                    { I18n.t( "support_inaturalist" ) }
+                  </a>
+                </div>
+              ) }
             </div>
           </Col>
         </Row>
