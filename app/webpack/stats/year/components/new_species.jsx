@@ -30,8 +30,8 @@ class NewSpecies extends React.Component {
       locale: I18n.locale,
       preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null,
       per_page: 100,
-      created_d1: moment( `${year}-${month}-10` ).startOf( "month" ).format( "YYYY-MM-DD" ),
-      created_d2: moment( `${year}-${month}-10` ).endOf( "month" ).format( "YYYY-MM-DD" )
+      created_d1: moment( `${year}-${month}-10` ).startOf( "month" ).format( ),
+      created_d2: moment( `${year}-${month}-10` ).endOf( "month" ).format( )
     };
     if ( user ) {
       params.user_id = user.id;
