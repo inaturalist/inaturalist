@@ -68,11 +68,17 @@ class NewSpecies extends React.Component {
       totalSpeciesIDsForMonth
     } = this.state;
     const series = {};
+    const data = accumulation.map( i => i );
+    data.push( {
+      date: `${year + 1}-01-01`,
+      accumulated_species_count: 0,
+      novel_species_ids: []
+    } );
     const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
     if ( showAccumulation ) {
       series.accumulated = {
         title: I18n.t( "running_total" ),
-        data: _.map( accumulation, i => ( {
+        data: _.map( data, i => ( {
           date: i.date,
           value: i.accumulated_species_count
         } ) ),
@@ -85,7 +91,7 @@ class NewSpecies extends React.Component {
     }
     series.novel = {
       title: I18n.t( "newly_added" ),
-      data: _.map( accumulation, i => ( {
+      data: _.map( data, i => ( {
         date: i.date,
         value: i.novel_species_ids.length,
         novel_species_ids: i.novel_species_ids,

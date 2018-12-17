@@ -986,6 +986,7 @@ en:
   data_quality: Data Quality
   data_quality_assessment: Data Quality Assessment
   data_quality_assessment_: data quality assessment
+  data_used: "Data used:"
   datatype: Datatype
   date_: Date
   date?: Date?
@@ -4085,7 +4086,6 @@ en:
   view_change: View Change
   view_check_list_page: View Check List Page
   view_contributions: View Contributions
-  view_data_used: "View data used:"
   view_details: View Details
   view_field_options: View Field Options
   view_flag: View Flag
@@ -5646,7 +5646,7 @@ en:
           Species that were added for the first time on %{site_name} this year.
           Click on a month to view some of the new species added in that month.
           You can also view the total species accumulation, or move the slider
-          back in time to see other newly observed species. This chart shows
+          back in time to see other newly-observed species. This chart shows
           species from verifiable observations by the month they were uploaded
           to %{site_name} (not the month they were observed). It does not
           include higher or lower level taxa, so an observation identified as

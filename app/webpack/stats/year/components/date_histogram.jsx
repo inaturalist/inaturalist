@@ -98,11 +98,18 @@ class DateHistogram extends React.Component {
           }
           return nextX - x( d.date );
         };
+        const barHeight = d => {
+          const h = height - y( d.value );
+          if ( d.value > 0 && h < 1 ) {
+            return 1;
+          }
+          return h;
+        };
         const bars = seriesGroup.selectAll( "rect" ).data( seriesData );
         // update selection, these things happens when the data changes
         bars
           .attr( "width", barWidth )
-          .attr( "height", d => height - y( d.value ) )
+          .attr( "height", barHeight )
           .attr( "transform", d => {
             if ( d.offset ) {
               return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
@@ -111,8 +118,9 @@ class DateHistogram extends React.Component {
           } );
         const barsEnter = bars.enter( )
             .append( "rect" )
+              .attr( "data-date", d => d.date.toString( ) )
               .attr( "width", barWidth )
-              .attr( "height", d => height - y( d.value ) )
+              .attr( "height", barHeight )
               .attr( "transform", d => {
                 if ( d.offset ) {
                   return `translate( ${x( d.date )}, ${y( d.value + d.offset )} )`;
@@ -314,7 +322,7 @@ class DateHistogram extends React.Component {
         if ( currentSeries[d.seriesName] && currentSeries[d.seriesName].label ) {
           return currentSeries[d.seriesName].label( d );
         }
-        return `<strong>${dateFormatter( d.date )}</strong>: ${d.value}`;
+        return `<strong>${dateFormatter( d.date )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`;
       } );
     svg.call( tip );
 

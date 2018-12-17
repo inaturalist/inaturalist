@@ -108,6 +108,13 @@ $dark-gray: #333333;
     text-transform: uppercase;
     padding: 10px 20px;
     font-weight: 100;
+    i {
+      margin-right: 5px;
+    }
+    &.btn-primary {
+      background-color: $inat-green;
+      border-color: $inat-green;
+    }
   }
   .btn-bordered:hover {
     border-color: $inat-green;
