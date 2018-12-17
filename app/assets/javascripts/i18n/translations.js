@@ -545,6 +545,7 @@ I18n.translations["ar"] = {
   "has_sounds": "لديه أصوات",
   "heads_up": "انتباه",
   "here_are_our_top_species_suggestions": "فيما يلي أهم اقتراحات الأنواع",
+  "hide_running_total": "إخفاء تشغيل الاجمالي",
   "hide_uncountable_species": "إخفاء الأنواع التي لا تحصى",
   "high": "مرتفع",
   "history": "التاريخ",
@@ -757,7 +758,15 @@ I18n.translations["ar"] = {
   "new_and_noteworthy": "جديد وجدير بالملاحظة",
   "new_observation_field": "حقل ملاحظة جديد",
   "new_observations": "ملاحظات جديدة",
+  "new_observations_this_year": "ملاحظات جديدة هذا العام",
+  "new_species_added_in_interval": "الأنواع الجديدة المضافة في %{interval}",
+  "new_species_added_in_interval_x_of_y": "الأنواع الجديدة المضافة في %{interval} (عرض %{x} من %{y})",
   "new_users": "مستخدمون جدد",
+  "new_users_this_year": "مستخدمون جدد هذا العام",
+  "newly_added": "مضاف حديثا",
+  "newly_added_species": "الأنواع المضافة حديثا",
+  "newly_observed_species": "الأنواع الملاحظة حديثا",
+  "newly_observed_species_this_year": "الأنواع المضافة حديثا هذا العام",
   "news": "الأخبار",
   "next": "التالي",
   "next_observation": "الملاحظة التالية",
@@ -1128,6 +1137,7 @@ I18n.translations["ar"] = {
   "review_all": "مراجعة الكل",
   "reviewed": "تمت مراجعتها",
   "rg_observations": "ملاحظات على درجة البحث",
+  "running_total": "مجموع التشغيل",
   "satellite": "القمر الصناعي",
   "save": "حفظ",
   "save_photos": "حفظ الصور",
@@ -1160,6 +1170,7 @@ I18n.translations["ar"] = {
   "show": "أظهر",
   "show_keyboard_shortcuts": "عرض اختصارات لوحة المفاتيح",
   "show_relative_proportions_of_all_observations": "إظهار النسب المرتبطة لجميع الملاحظات",
+  "show_running_total": "إظهار تشغيل الاجمالي",
   "show_taxa_from_everywhere": "عرض أصناف من كل مكان",
   "show_taxa_from_place": "عرض أصناف من %{place}",
   "show_total_counts": "إظهار العدد الإجمالي",
@@ -1204,6 +1215,7 @@ I18n.translations["ar"] = {
   "status_in_place": "%{status} في %{place}",
   "stay_and_try_again": "البقاء والمحاولة مرة أخرى",
   "stop_testing": "وقف الاختبار",
+  "studies_that_used_inaturalist_data_in_year": "الدراسات التي استخدمت بيانات إيناتوراليست في %{year}",
   "submit_observations": {
     "one": "أرسل ملاحظة واحدة",
     "other": "أرسل %{count} ملاحظة"
@@ -1309,6 +1321,7 @@ I18n.translations["ar"] = {
   "user_commented": "علق %{user}",
   "user_disagrees_this_is_taxon": "%{user}غير موافق على هذا %{taxon}",
   "user_has_opted_out_of_community_id": "لقد اختار المستخدم تعطيل معرف المجتمع",
+  "user_helped_x_people_with_y_ids_html": "%{user} ساعد <strong>%{x} من الأشخاص </strong> ب<strong>%{y} المعرفات</strong>",
   "user_suggested_an_id": "اقترح %{user} معرفا",
   "username_or_user_id": "اسم المستخدم أو معرف المستخدم",
   "users": "المستخدمون",
@@ -1450,6 +1463,9 @@ I18n.translations["ar"] = {
         "recent_w_7_obs": "ملا w/ 0 w/ >= 7 الأخيرة"
       },
       "year": {
+        "growth_title": "النمو",
+        "new_species_desc_html": "الأنواع التي تمت إضافتها للمرة الأولى في %{site_name} هذا العام،\nانقر على شهر لعرض بعض الأنواع الجديدة المضافة في ذلك الشهر،\nيمكنك أيضا عرض إجمالي تراكم الأنواع، أو تحريك شريط التمرير \nفي الوقت المناسب لرؤية الأنواع الأخرى التي تمت ملاحظتها حديثا، يعرض هذا المخطط \nأنواعا من الملاحظات القابلة للتحقق منها في الشهر الذي تم رفعها فيه \nإلى %{site_name} (وليس الشهر عندما تمت الملاحظة)، لا \nيتضمن أصنافا أعلى أو أقل; لذا فإن الملاحظة التي تم تحديدها على أنها \nثدييات لا تحسب، وملاحظة <i>ذئب رمادي</i> نويع.\n<i>دب</i> ستحسب فقط <i>ذئب رمادي</i>.",
+        "publications_desc_html": "بيانات التأثير والمرئيات مجاملة من\n<a href=\"https://www.altmetric.com\">Altmetric</a>، معلومات\nحول استخدام البيانات من قبل أصدقائنا في \n<a href=\"https://www.gbif.org/\">مرفق معلومات التنوع البيولوجي العالمي</a>.\n<br/>\n<a href=\"%{url}\">عرض جميع %{numStudies} الدراسات</a>",
         "sunburst_desc_html": "أصناف ملاحظة رُتِّبت كرسم \"سونبورست\" الهرمي، قاعدة \nالتسلسل الهرمي في المركز، تبدأ من \"الحياة\" وتنتهي \nمع الأنواع على الحواف الخارجية، حجم كل قوس يتناسب \nمع عدد ملاحظات هذه الأصنوفة، والألوان الحمراء \nتتوافق مع ألوان الأصناف المعتادة لدينا \"iconic\" (الأخضر للنباتات \nوالبرتقالي للحشرات والأزرق لمعظم الحيوانات الأخرى، وما إلى ذلك); لذلك إذا كنت \" \nترى الكثير من الأخضر: هذا يعني أنك لاحظت الكثير من النباتات. \n<strong> انقر على القوس لوضع هذه الأصنوفة في المركز</strong> \nوأطفالها حولها، أو <strong> انقر على المركز لنقل وإرجاع \nالتسلسل الهرمي </strong>."
       }
     },
@@ -1545,6 +1561,10 @@ I18n.translations["ar"] = {
     "one": "1 عدم تعرف على هذا النوع",
     "other": "%{count} عدم تعرف على هذا النوع"
   },
+  "x_new_species": {
+    "one": "1 نوع جديد",
+    "other": "%{count} أنواع جديدة"
+  },
   "x_observations": {
     "one": "1 ملاحظة",
     "other": "%{count} ملاحظات"
@@ -1575,6 +1595,7 @@ I18n.translations["ar"] = {
     "one": "1 آخر",
     "other": "%{count} آخرون"
   },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} أشخاص </strong> ساعدوا %{user} ب<strong>%{y}المعرفات</strong>",
   "x_species": {
     "one": "1 نوع",
     "other": "%{count} أنواع"
@@ -7002,8 +7023,8 @@ I18n.translations["da"] = {
   "edit_your_global_project_settings": "Redigér dine globale projektindstillinger",
   "edit_your_settings_for_this_project": "Redigér dine indstillinger for dette projekt",
   "editing_observations": {
-    "one": "Redigering <span class=\"antal\">1</span> observation:",
-    "other": "Redigering <span class=\"antal\">%{count}</span> observationer:"
+    "one": "Redigering <span class=\"count\">1</span> observation:",
+    "other": "Redigering <span class=\"count\">%{count}</span> observationer:"
   },
   "eligible_for_research_grade": "Kvalificeret til forskningskvalitet",
   "encompassing_places": "Omfatter steder",
@@ -7095,6 +7116,7 @@ I18n.translations["da"] = {
   "has_sounds": "Har lyde",
   "heads_up": "OBS",
   "here_are_our_top_species_suggestions": "Her er vores topforslag til art",
+  "hide_running_total": "Skjul igangværende total",
   "hide_uncountable_species": "Skjul arter der ikke medregnes",
   "high": "Høj",
   "history": "Historik",
@@ -7307,7 +7329,15 @@ I18n.translations["da"] = {
   "new_and_noteworthy": "Nyt og bemærkelsesværdigt",
   "new_observation_field": "Nyt observationsfelt",
   "new_observations": "Nye observationer",
+  "new_observations_this_year": "Nye observationer dette år",
+  "new_species_added_in_interval": "Nye arter tilføjet i %{interval}",
+  "new_species_added_in_interval_x_of_y": "Nye arter tilføjet i %{interval}(viser %{x} of %{y})",
   "new_users": "Nye brugere",
+  "new_users_this_year": "Nye brugere i år",
+  "newly_added": "Nyligt tilføjet",
+  "newly_added_species": "Nyligt tilføjede arter",
+  "newly_observed_species": "Nyligt observerede arter",
+  "newly_observed_species_this_year": "Nyligt tilføjet arter dette år",
   "news": "Nyheder",
   "next": "Næste",
   "next_observation": "Næste observation",
@@ -8000,6 +8030,7 @@ I18n.translations["da"] = {
         "recent_w_7_obs": "Nylige m/> 7 obs"
       },
       "year": {
+        "growth_title": "Vækst",
         "sunburst_desc_html": "Observeret taksa arrangeret som hierarkisk \"solstråle\" diagram. Basen\naf hierarkiet er i centrum, begyndende med \"liv\" og slutter\nmed arter ved yderkanterne. Størrelsen af hver \"bue\" er proportional\nmed antallet af observationer af den pågældende takson og farver\nsvarer groft til vores sædvanlige \"ikoniske\" taksonfarver (grøn til planter,\norange til insekter, blå for de fleste andre dyr osv.), så hvis du er\nser meget grønt, det betyder at du har observeret mange planter.\n<strong> Klik på en \"bue\" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </strong>."
       }
     },
@@ -8084,16 +8115,20 @@ I18n.translations["da"] = {
     "other": "%{count} Identifikationer"
   },
   "x_identifications_html": {
-    "one": "<span class=\"antal\">1</span> identifikation",
-    "other": "<span class=\"antal\">%{count}</span> identifikationer"
+    "one": "<span class=\"count\">1</span> identifikation",
+    "other": "<span class=\"count\">%{count}</span> identifikationer"
   },
   "x_matching_taxa_html": {
-    "one": "<span class=\"antal\">1</span> matchende takson",
-    "other": "<span class=\"antal\">%{count}</span> matchende taksa"
+    "one": "<span class=\"count\">1</span> matchende takson",
+    "other": "<span class=\"count\">%{count}</span> matchende taksa"
   },
   "x_misidentifications_of_this_species": {
     "one": "1 fejlidentifikation af denne art",
     "other": "%{count} fejlidentifikationer af denne art"
+  },
+  "x_new_species": {
+    "one": "1 Ny art",
+    "other": "%{count} Nye arter"
   },
   "x_observations": {
     "one": "1 observation",
@@ -8108,16 +8143,16 @@ I18n.translations["da"] = {
     "other": "%{count} observationer fejlede"
   },
   "x_observations_html": {
-    "one": "<span class='antal'>1</span> observation",
-    "other": "<span class='antal'>%{count}</span> observationer"
+    "one": "<span class='count'>1</span> observation",
+    "other": "<span class='count'>%{count}</span> observationer"
   },
   "x_observations_link_html": {
     "one": "<a href='%{url}'>1 observation</a>",
     "other": "<a href='%{url}'>%{count} observationer</a>"
   },
   "x_observations_reviewed_html": {
-    "one": "<span class='antal'>1</span> observation gennemgået",
-    "other": "<span class='antal'>%{count}</span> observationer gennemgået"
+    "one": "<span class='count'>1</span> observation gennemgået",
+    "other": "<span class='count'>%{count}</span> observationer gennemgået"
   },
   "x_of_y": "%{x} af %{y}",
   "x_of_y_people_over_two_thirds_agree_it_is": "%{x} af %{y} personer (over 2/3) er enig i det er",
@@ -8125,13 +8160,14 @@ I18n.translations["da"] = {
     "one": "1 anden",
     "other": "%{count} andre"
   },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} personer</strong> hjalp %{user} med <strong>%{y} IDs</strong>",
   "x_species": {
     "one": "1 art",
     "other": "%{count} arter"
   },
   "x_species_html": {
-    "one": "<span class='antal'>1</span> art",
-    "other": "<span class='antal'>%{count}</span> arter"
+    "one": "<span class='count'>1</span> art",
+    "other": "<span class='count'>%{count}</span> arter"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 art</a>",
@@ -8896,6 +8932,7 @@ I18n.translations["de"] = {
   "new_and_noteworthy": "Neu & Nennenswert",
   "new_observation_field": "Neues Beobachtungsfeld",
   "new_observations": "Neue Beobachtung",
+  "new_observations_this_year": "Neue Beobachtungen in diesem Jahr",
   "new_users": "Neue Benutzer",
   "news": "Neuigkeiten",
   "next": "Weiter",
@@ -9336,6 +9373,7 @@ I18n.translations["de"] = {
   "submitted": "Hinzugefügt",
   "suggest_an_identification": "eine Bestimmung vorschlagen",
   "suggestions": "Vorschläge",
+  "support_inaturalist": "iNaturalist unterstützen",
   "supporting": "Unterstützen",
   "table": "Tabelle",
   "tagging": "Tagge...",
@@ -9347,6 +9385,7 @@ I18n.translations["de"] = {
   "taxon_map": {
     "overlays": "Ebenen"
   },
+  "taxon_merge": "Taxon-Zusammenführung",
   "taxon_schemes": "Taxonschemen",
   "taxon_swap": "Taxon-Tausch",
   "taxonomic": "Taxonomisch",
@@ -12494,7 +12533,7 @@ I18n.translations["es"] = {
   "admin_s": "Administrador(es)",
   "agree": "de acuerdo",
   "agree_": "Aceptar",
-  "agree_with_current_taxon": "De acuerdo con el taxón",
+  "agree_with_current_taxon": "De acuerdo con el taxón actual",
   "aka": "alias",
   "all": "Todos",
   "all_flags_must_be_resolved": "Se deben solucionar todos los indicadores",
@@ -12518,7 +12557,7 @@ I18n.translations["es"] = {
     "suborder": "Se añadieron todos los subórdenes a la base de datos",
     "subphylum": "Se añadieron todos los subphyla a la base de datos",
     "subsection": "Se añadieron todas las subsecciones a la base de datos",
-    "subspecies": "Todas las subespecies se añadieron a la base de datos",
+    "subspecies": "Se añadieron todas las subespecies a la base de datos",
     "subtribe": "Se añadieron todas las subtribus a la base de datos",
     "superclass": "Se añadieron todas las superclases a la base de datos",
     "superfamily": "Se añadieron todas las superfamilias a la base de datos",
@@ -12621,20 +12660,20 @@ I18n.translations["es"] = {
   "any": "cualquiera",
   "any_": "Cualquiera",
   "arachnids": "arácnidos",
-  "are_you_sure?": "¿Lo confirmas?",
-  "are_you_sure_leave_this_project": "¿Confirmas que quieres abandonar este proyecto?",
-  "are_you_sure_remove_photo": "¿Confirmas que quieres eliminar esta foto?",
-  "are_you_sure_you_want_to_remove_all_tags": "¿Confirmas que quieres quitar todas las etiquetas?",
-  "are_you_sure_you_want_to_remove_these_x_taxa?": "¿Confirmas que quieres quitar estos %{x} taxones?",
+  "are_you_sure?": "¿Estás seguro?",
+  "are_you_sure_leave_this_project": "¿Estás seguro que quieres abandonar este proyecto?",
+  "are_you_sure_remove_photo": "¿Estás seguro que quieres eliminar esta foto?",
+  "are_you_sure_you_want_to_remove_all_tags": "¿Estás seguro que quieres eliminar todas las etiquetas?",
+  "are_you_sure_you_want_to_remove_these_x_taxa?": "¿Estás seguro que quieres eliminar estos %{x} taxones?",
   "asc": "asc",
   "ascending": "Ascendente",
   "atom": "Átomo",
   "attention": "Atención",
   "attribute": "Atributo",
-  "back_to_suggestions": "Vuelve a las sugerencias",
+  "back_to_suggestions": "Regresa a sugerencias",
   "back_to_x": "Regresa a %{noun}",
-  "based_on_the_evidence_can_id_be_improved": "¿Basándose en la evidencia, el ID de la comunidad puede aún ser confirmado o mejorado?",
-  "be_the_first_to_fave_this_observation": "Se el primero en decir que le agrada esta observación.",
+  "based_on_the_evidence_can_id_be_improved": "Basándose en la evidencia, ¿el ID de la comunidad puede aún ser confirmado o mejorado?",
+  "be_the_first_to_fave_this_observation": "¡Se el primero en decir que le agrada esta observación!",
   "birds": "aves",
   "black": "negro",
   "blue": "azul",
@@ -12650,43 +12689,43 @@ I18n.translations["es"] = {
   "casual": "casual",
   "casual_": "Casual",
   "categories": "Categorías",
-  "cc_0_description": "Esta licencia ofrece tu trabajo al dominio público, permite a otros copiar, modificar, distribuir y construir en base en su trabajo, sin pedirte o darte reconocimiento. Esta es la licencia más abierta ofrecida. Se recomienda para dar la máxima difusión y uso de los  materiales con licencia.",
+  "cc_0_description": "Esta licencia libera tu trabajo al dominio público, permite a otros copiar, modificar, distribuir y construir en base en su trabajo, incluso con fines comerciales, sin pedirte permiso o darte reconocimiento. Esta es la licencia más abierta que se ofrece. Se recomienda para dar máxima difusión y uso de los materiales con licencia.",
   "cc_0_name": "No hay derechos de autor (CC0)",
-  "cc_by_description": "Esta licencia permite a otros distribuir, mezclar, ajustar y construir con base en su trabajo, incluso con fines comerciales, siempre y cuando se de crédito para la creación original.",
+  "cc_by_description": "Esta licencia le permite a otros distribuir, mezclar, ajustar y construir con base en tu trabajo, incluso con fines comerciales, siempre y cuando se te dé crédito de la creación original.",
   "cc_by_name": "Atribución",
-  "cc_by_nc_description": "Esta licencia permite a otros transformar, modificar, y construir sobre tu trabajo de forma no comercial, y a pesar de sus nuevas obras deben también reconocerte y no ser comerciales, no tienen la licencia de obras derivadas en las mismas condiciones.",
-  "cc_by_nc_name": "Atribución-No comercial",
-  "cc_by_nc_nd_description": "Esta licencia es la más restrictiva de las seis licencias principales, sólo permitiendo a otros para descargar sus obras y compartirlas con los demás, siempre y cuando se de crédito, pero no se pueden cambiar en ninguna forma o utilizarlos con fines comerciales.",
-  "cc_by_nc_nd_name": "Atribución-No comercial-No derivados",
-  "cc_by_nc_sa_description": "Esta licencia permite a otros entremezclar, ajustar y construir con base en su trabajo para fines no comerciales, siempre y cuando se de crédito y licencia de sus nuevas creaciones, en los términos idénticos.",
-  "cc_by_nc_sa_name": "Atribución-No comercial-Compartir igual",
-  "cc_by_nd_description": "Esta licencia permite la redistribución, comercial y no comercial, siempre y cuando se pase sin cambios y en su totalidad, con tu crédito.",
+  "cc_by_nc_description": "Esta licencia permite a otros mezclar, modificar, y construir sobre tu trabajo sin fines comerciales, y a pesar de que sus nuevas obras deben también darte reconocimineto y no tener fines comerciales, no tienen la licencia de obras derivadas en las mismas condiciones.",
+  "cc_by_nc_name": "Atribución-Sin fin comercial",
+  "cc_by_nc_nd_description": "Esta licencia es la más restrictiva de las seis licencias principales, sólo permite a otros descargar tus obras y compartirlas con los demás, siempre y cuando se te dé crédito, pero no se pueden cambiarlas en ninguna forma o utilizarlas con fines comerciales.",
+  "cc_by_nc_nd_name": "Atribución-Sin fin comercial-No derivados",
+  "cc_by_nc_sa_description": "Esta licencia permite a otros mezclar, ajustar y construir con base en tu trabajo sin fines comerciales, siempre y cuando se te dé crédito y licencien sus nuevas creaciones en idénticos términos.",
+  "cc_by_nc_sa_name": "Atribución-Sin fin comercial-Compartir similar",
+  "cc_by_nd_description": "Esta licencia permite la redistribución, con o sin fin comercial, siempre y cuando se transfiera sin cambios y en su totalidad, con crédito a ti.",
   "cc_by_nd_name": "Atribución-No derivados",
-  "cc_by_sa_description": "Esta licencia permite a otros entremezclar, ajustar y construir con base en su trabajo, incluso para fines comerciales, siempre y cuando se de crédito y licencia de sus nuevas creaciones, en los términos idénticos. Esta licencia es a menudo comparado con \"copyleft\" licencias de software libre y de código abierto. Todos los nuevos trabajos basados ​​en el suyo portarán la misma licencia, por lo que todos los derivados también permitirá el uso comercial. Esta es la licencia usada por la Wikipedia, y se recomienda para los materiales que podrían beneficiarse de la incorporación de contenidos de Wikipedia y los proyectos de manera similar con licencia.",
-  "cc_by_sa_name": "Atribución-Compartir igual",
+  "cc_by_sa_description": "Esta licencia permite a otros mezclar, ajustar y construir con base en tu trabajo, incluso para fines comerciales, siempre y cuando se te dé crédito y licencien sus nuevas creaciones en términos idénticos. Todos los nuevos trabajos basados ​​en el tuyo portarán la misma licencia, por lo que todos los derivados también permitirán el uso comercial.",
+  "cc_by_sa_name": "Atribución-Compartir similar",
   "change_types": {
-    "input_taxa_were_merged_into_output_taxon_html": "%{input_taxa} se han incluido en %{output_taxon}",
-    "input_taxa_will_be_merged_into_output_taxon_html": "%{input_taxa} será incluido en %{output_taxon}",
+    "input_taxa_were_merged_into_output_taxon_html": "%{input_taxa} fueron combinados en %{output_taxon}",
+    "input_taxa_will_be_merged_into_output_taxon_html": "%{input_taxa} será combinado en %{output_taxon}",
     "input_taxon_was_dropped_html": "%{input_taxon} ha sido eliminado",
-    "input_taxon_was_replaced_by_output_taxon_html": "%{input_taxon} fue sustituido por %{output_taxon}",
-    "input_taxon_was_split_into_output_taxa_html": "%{input_taxon} se separó en %{output_taxa}",
+    "input_taxon_was_replaced_by_output_taxon_html": "%{input_taxon} fue reemplazado por %{output_taxon}",
+    "input_taxon_was_split_into_output_taxa_html": "%{input_taxon} se dividió en %{output_taxa}",
     "input_taxon_will_be_dropped_html": "%{input_taxon} será eliminado",
-    "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon} será sustituido por %{output_taxon}",
-    "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon} será separado en %{output_taxa}"
+    "input_taxon_will_be_replaced_by_output_taxon_html": "%{input_taxon} será reemplazado por %{output_taxon}",
+    "input_taxon_will_be_split_into_output_taxa_html": "%{input_taxon} será dividido en %{output_taxa}"
   },
-  "check_above_for_errors": "Revisa errores anteriores",
-  "check_back_soon": "¡Regresa pronto para revisar!",
-  "checklist": "Lista de comprobación",
-  "choose_a_field": "Elige un campo",
-  "choose_file": "Elige un archivo",
+  "check_above_for_errors": "Revisa errores en lo anterior",
+  "check_back_soon": "¡Regresa pronto para verificar!",
+  "checklist": "Lista de verificación",
+  "choose_a_field": "Selecciona un campo",
+  "choose_file": "Selecciona un archivo",
   "choose_files": "Selecciona archivos",
   "choose_photos_for_this_taxon": "Selecciona fotos para este taxón",
-  "clear": "limpia",
-  "close": "Cerrar",
+  "clear": "elimina",
+  "close": "Cierra",
   "colors": "Colores",
   "combine": "Combina",
   "comment_": "Comentario",
-  "commercial_solicitation": "Publicidad comercial, enlaces a ningún lugar, etc.",
+  "commercial_solicitation": "Publicidad comercial, enlaces no llevan a ningún lugar, etc.",
   "community_curated": "Supervisado por la comunidad",
   "community_id_at_genus_level_or_lower": "ID de la comunidad a nivel de género o más bajo",
   "community_id_at_species_level_or_lower": "ID de la comunidad a nivel de especie o más bajo",
@@ -12985,6 +13024,7 @@ I18n.translations["es"] = {
   "has_sounds": "Tiene sonidos",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Éstas son nuestras sugerencias principales de especies",
+  "hide_running_total": "Esconder Total Acumulado",
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "Alta",
   "history": "Historial",
@@ -13197,7 +13237,15 @@ I18n.translations["es"] = {
   "new_and_noteworthy": "Nuevo y notable",
   "new_observation_field": "Nuevo campo de observación",
   "new_observations": "Nuevas observaciones",
+  "new_observations_this_year": "Observaciones nuevas Este año",
+  "new_species_added_in_interval": "Nuevas especies Añadidas En %{interval}",
+  "new_species_added_in_interval_x_of_y": "Nuevas especies Añadidas En %{interval} (Showing %{x} de %{y})",
   "new_users": "Usuarios nuevos",
+  "new_users_this_year": "Usuarios nuevos Este año",
+  "newly_added": "Añadido Recientemente",
+  "newly_added_species": "Especie Añadida recientemente",
+  "newly_observed_species": "Especie Observada recientemente",
+  "newly_observed_species_this_year": "Especie Añadida recientemente Este año",
   "news": "Noticias",
   "next": "Siguiente",
   "next_observation": "Siguiente observación",
@@ -13568,6 +13616,7 @@ I18n.translations["es"] = {
   "review_all": "Revisar todas",
   "reviewed": "Revisada",
   "rg_observations": "GI Observaciones",
+  "running_total": "Total acumulado",
   "satellite": "satélite",
   "save": "Guardar",
   "save_photos": "Guardar fotos",
@@ -13600,6 +13649,7 @@ I18n.translations["es"] = {
   "show": "Mostrar",
   "show_keyboard_shortcuts": "Mostrar Atajos de Teclado",
   "show_relative_proportions_of_all_observations": "Enseña proporciones relativas de todas las observaciones",
+  "show_running_total": "Mostrar Total Acumulado",
   "show_taxa_from_everywhere": "Mostrar taxones de todas partes",
   "show_taxa_from_place": "Muestra taxones de %{place}",
   "show_total_counts": "Enseña conteos totales",
@@ -13644,6 +13694,7 @@ I18n.translations["es"] = {
   "status_in_place": "%{status} en %{place}",
   "stay_and_try_again": "Permanecer e intentar de nuevo",
   "stop_testing": "Detén prueba",
+  "studies_that_used_inaturalist_data_in_year": "Estudios Que Utilizaron Datos de iNaturalist en %{year}",
   "submit_observations": {
     "one": "Enviar 1 observación",
     "other": "Enviar %{count} observaciones"
@@ -13651,6 +13702,7 @@ I18n.translations["es"] = {
   "submitted": "Enviado",
   "suggest_an_identification": "Sugerir una identificación",
   "suggestions": "Sugerencias",
+  "support_inaturalist": "Apoya iNaturalist",
   "supporting": "Apoyo a",
   "table": "Tabla",
   "tagging": "Etiquetando…",
@@ -13748,6 +13800,7 @@ I18n.translations["es"] = {
   "user_commented": "%{user} comentó",
   "user_disagrees_this_is_taxon": "%{user} no está de acuerdo que es %{taxon}",
   "user_has_opted_out_of_community_id": "El usuario ha rechazado la Identificación de la Comunidad",
+  "user_helped_x_people_with_y_ids_html": "%{user} ayudó a <strong>%{x} usuarios</strong> con <strong>%{y} IDs</strong>",
   "user_suggested_an_id": "%{user} sugirió una identificación",
   "username_or_user_id": "Nombre o identificador del usuario",
   "users": "Usuarios",
@@ -13889,6 +13942,9 @@ I18n.translations["es"] = {
         "recent_w_7_obs": "Reciente w/ >= 7 observaciones"
       },
       "year": {
+        "growth_title": "Crecimiento",
+        "new_species_desc_html": "Especies que fueron añadidas por primera vez en %{site_name} este año.\nClic en un mes para ver algunas de las especies nuevas añadidas en ese mes.\nTambién puedes ver el total acumulado de la especie, o mover el cursor \nhacia atrás en el cronograma para ver otras especies observadas por primera vez. Este gráfico muestra especies a partir de observaciones verificables el mes en que fueron añadidas a %{site_name} (no el mes en que fueron observadas). No incluye nivel más alto o más bajo de taxones, de manera que una observación identificada como Mammalia no cuenta, y una observación de <i>Canis lupus</i> ssp. <i>arctos</i> contará solo como <i>Canis lupus</i>.",
+        "publications_desc_html": "Datos de impacto y visualizaciones cortesía de <a href=\"https://www.altmetric.com\">Altmetric</a>. Información\nsobre uso de los datos cortesía de nuestros amigos en <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n<br/>\n<a href=\"%{url}\">Ver todos %{numStudies} estudios</a>",
         "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de \"resplandor solar\". La base de la jerarquía está en el centro, comenzando con \"Vida\" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón \"icónico\" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>"
       }
     },
@@ -13984,6 +14040,10 @@ I18n.translations["es"] = {
     "one": "1 error de identificación de esta especie",
     "other": "%{count} errores de identificación de esta especie"
   },
+  "x_new_species": {
+    "one": "1 Nueva especie",
+    "other": "%{count} Nuevas especies"
+  },
   "x_observations": {
     "one": "1 observación",
     "other": "%{count} observaciones"
@@ -14014,6 +14074,7 @@ I18n.translations["es"] = {
     "one": "1 más",
     "other": "%{count} más"
   },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} usuarios</strong> contribuyeron %{user} con <strong>%{y} IDs</strong>",
   "x_species": {
     "one": "1 especie",
     "other": "%{count} especies"
@@ -17369,6 +17430,10 @@ I18n.translations["et"] = {
     "one": "1 liigi valestimääratlus",
     "other": "%{count} liigi valestimääratlust"
   },
+  "x_new_species": {
+    "one": "1 uus liik",
+    "other": "%{count} uut liiki"
+  },
   "x_observations": {
     "one": "1 vaatlus",
     "other": "%{count} vaatlust"
@@ -17399,6 +17464,7 @@ I18n.translations["et"] = {
     "one": "1 muu",
     "other": "%{count} muud"
   },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} inimest</strong> aitasid kasutajat %{user} <strong>%{y} määratlusega</strong>",
   "x_species": {
     "one": "1 liik",
     "other": "%{count} liiki"
@@ -18478,6 +18544,7 @@ I18n.translations["fi"] = {
   "add_a_field": "Lisää kenttä",
   "add_a_name": "Lisää nimi",
   "add_an_identification": "Lisää tunnistus",
+  "add_annotations_for_x": "Lisää huomautus kohteelle \"%{x}\"",
   "add_edit_flags": "Lisää/muokkaa merkintöjä",
   "add_id": "Lisää tunniste",
   "add_life_stage_adult_annotation": "Lisää \"Life Stage: Adult\" selitys",
@@ -18493,8 +18560,8 @@ I18n.translations["fi"] = {
   "add_plant_phenology_fruiting_annotation": "Lisää \"Plant Phenology: Fruiting\" selitys",
   "add_sex_female_annotation": "Lisää \"Sukupuoli: Nainen\" selitys",
   "add_sex_male_annotation": "Lisää \"Sex: Male\" selitys",
-  "add_tag": "Lisää tunniste",
-  "add_tags": "Lisää tageja",
+  "add_tag": "Lisää merkintä",
+  "add_tags": "Lisää merkintöjä",
   "add_to_a_project": "Lisää projektiin",
   "add_to_favorites": "Lisää suosikkeihin",
   "add_to_project": "Lisää projektiin",
@@ -18635,7 +18702,7 @@ I18n.translations["fi"] = {
   "are_you_sure?": "Oletko varma?",
   "are_you_sure_leave_this_project": "Haluatko varmasti lähteä pois tästä projektista?",
   "are_you_sure_remove_photo": "Haluatko varmasti poistaa tämän kuvan?",
-  "are_you_sure_you_want_to_remove_all_tags": "Haluatko varmasti poistaa kaikki tagit?",
+  "are_you_sure_you_want_to_remove_all_tags": "Haluatko varmasti poistaa kaikki merkinnät?",
   "are_you_sure_you_want_to_remove_these_x_taxa?": "Haluatko varmasti poistaa nämä %{x} taksonia?",
   "asc": "Nouseva",
   "ascending": "Nouseva",
@@ -18701,7 +18768,7 @@ I18n.translations["fi"] = {
   "community_id_at_species_level_or_lower": "Yhteisön tunniste lajitasolla tai pienempi",
   "community_id_heading": "Yhteisön tunniste",
   "compare": "Vertaa",
-  "comprehensive_list": "Kattava lista",
+  "comprehensive_list": "Kattava luettelo",
   "confirm": "Vahvista",
   "confirmed": "vahvistettu",
   "conservation_status": "Uhanalaisuusluokitus",
@@ -18872,7 +18939,7 @@ I18n.translations["fi"] = {
   "desc": "Laskeva",
   "descending": "Laskeva",
   "description": "Kuvaus",
-  "description_slash_tags": "Kuvaus / Tunnisteet",
+  "description_slash_tags": "Kuvaus / Merkinnät",
   "details": "Tiedot",
   "did_you_mean": "Tarkoititko",
   "disagree_": "Eri mieltä",
@@ -18912,6 +18979,7 @@ I18n.translations["fi"] = {
   "event_in_progress": "Tapahtuma käynnissä",
   "everyone_": "Kaikki",
   "evidence_of_organism": "Todiste eliöstä",
+  "exact": "Tarkka",
   "exact_date": "Tarkka päivämäärä",
   "exact_location": "Tarkka_sijainti",
   "except": "paitsi",
@@ -18931,9 +18999,9 @@ I18n.translations["fi"] = {
   "filter_by_place": "Suodata paikan mukaan",
   "filter_by_taxon": "Suodata taksonin mukaan",
   "filters": "Suodattimet",
-  "find": "Löydä",
+  "find": "Hae",
   "find_observations": "Löydä havaintoja",
-  "find_photos": "Löydä valokuvia",
+  "find_photos": "Hae valokuvia",
   "find_your_current_location": "Hae tämänhetkinen sijaintisi",
   "finished": "Valmis",
   "finished_with_page": "Sivu Valmis",
@@ -18947,6 +19015,7 @@ I18n.translations["fi"] = {
   "flags_with_count": "(%{count}) lippua",
   "flickr_has_no_creative_commons": "Flickr'issä ei ole Creative Commons-lisensoituja kuvia tästä paikasta.",
   "flowering_phenology": "Kukintafenologia",
+  "fluid_layout": "Virtaava asettelu",
   "follow": "Seuraa",
   "frequency": "Lukumäärä",
   "from": "paikasta",
@@ -18958,6 +19027,7 @@ I18n.translations["fi"] = {
     "other": "sientä"
   },
   "gbif_occurrences": "GBIF Tapahtumia",
+  "generate_your_stats": "Tuota tilastosi",
   "geoprivacy": "Sijainnin tietosuoja",
   "get_started": "Aloitetaan",
   "globally": "maailmanlaajuisesti",
@@ -18968,6 +19038,7 @@ I18n.translations["fi"] = {
   "green": "vihreä",
   "grey": "harmaa",
   "grid": "Ruudukko",
+  "grid_layout": "Ruudukkoasettelu",
   "grid_tooltip": "Näytä ruudukkonäkymä",
   "grouping": "Ryhmitys",
   "has_id_supported_by_two_or_more": "Onko tunnistetta kannattamassa kaksi tai enemmän",
@@ -19084,11 +19155,12 @@ I18n.translations["fi"] = {
   },
   "life": "Elämä",
   "list": "Luettelo",
-  "list_tooltip": "Näytä listana",
+  "list_tooltip": "Näytä luettelona",
   "lists": "Luettelot",
   "loading": "Ladataan...",
   "loading_metadata": "Ladataan metadataa...",
   "loading_suggestions": "Ladataan ehdotuksia...",
+  "locality_notes": "Paikkamerkinnät",
   "location": "Sijainti",
   "location_is_accurate": "Sijainti on oikea",
   "location_is_obscured": "Sijainti on piilotettu",
@@ -19107,6 +19179,7 @@ I18n.translations["fi"] = {
   "manage_names": "Hallitse nimiä",
   "map": "Kartta",
   "map_legend": "karttamerkintä",
+  "map_marker_size": "karttamerkin koko",
   "map_of_observations": "Havaintojen kartta",
   "map_tooltip": "Näytä karttanäkymä",
   "maps": {
@@ -19124,6 +19197,7 @@ I18n.translations["fi"] = {
   "mark_all_as_reviewed": "Merkitse kaikki tarkistetuksi",
   "mark_all_as_unreviewed": "Merkitse kaikki tarkistamattomaksi",
   "mark_as_reviewed": "Merkitse tarkistetuksi",
+  "maverick": "Itsenäinen",
   "media": "Media",
   "members": "Jäsenet",
   "messages": "Viestit",
@@ -19179,6 +19253,7 @@ I18n.translations["fi"] = {
   "next": "Seuraava",
   "next_observation": "Seuraava havainto",
   "next_photo": "Uusi kuva",
+  "next_tab": "Seuraava välilehti",
   "no": "Ei",
   "no_but_it_is_a_member_of_taxon": "Ei, mutta se on taksonin %{taxon} jäsen",
   "no_identifications": "Ei tunnistuksia",
@@ -19489,6 +19564,7 @@ I18n.translations["fi"] = {
   "restore": "Palauta",
   "review_all": "Tarkista kaikki",
   "reviewed": "Tarkistettu",
+  "rg_observations": "RG havainnot",
   "satellite": "satelliitti",
   "save": "Tallenna",
   "save_photos": "Tallenna valokuvat",
@@ -19503,7 +19579,8 @@ I18n.translations["fi"] = {
   "search_by_taxon_name_or_flickr_photo_id": "Hae taksonin nimellä tai Flick-kuvan tunnisteella",
   "search_by_taxon_name_or_observation_id": "Hae taksonin nimellä tai havainnon ID:llä",
   "search_external_name_providers": "Hae ulkoisia nimitarjoajia",
-  "search_species_": "Etsi lajeja...",
+  "search_for_a_location": "Hae sijaintia",
+  "search_species_": "Hae lajeja...",
   "seasonality": "Kausivaihtelu",
   "seen_nearby": "Nähty lähellä",
   "select": "Valitse",
@@ -19518,12 +19595,13 @@ I18n.translations["fi"] = {
   "share": "Jaa",
   "show": "Näytä",
   "show_keyboard_shortcuts": "Näytä pikanäppäimet",
+  "show_relative_proportions_of_all_observations": "Näytä kaikkien havaintojen suhteelliset mittasuhteet",
   "show_taxa_from_everywhere": "Näytä taksonit kaikkialta",
   "show_taxa_from_place": "Näytä taksonit paikasta %{place}",
   "show_uncountable_species": "Näytä ei-laskettavat lajit",
   "showing_taxa_from_everywhere": "Näytetään taksonit kaikkialta",
   "showing_taxa_from_place": "Näytetään taksonit paikasta %{place}",
-  "showing_x_of_y_listings": "Näytetään %{x}/%{y} listauksesta",
+  "showing_x_of_y_listings": "Näytetään %{x}/%{y} luettelointia",
   "sign_out": "Kirjaudu ulos",
   "sign_up": "Rekisteröidy",
   "similar_species": "Samanlaiset ​​lajit",
@@ -19553,6 +19631,7 @@ I18n.translations["fi"] = {
   "status": "Tila",
   "status_in_place": "%{status} paikassa %{place}",
   "stay_and_try_again": "Jää ja yritä uudelleen",
+  "stop_testing": "Lopeta testaaminen",
   "submit_observations": {
     "one": "Lähetä 1 havainto",
     "other": "Lähetä %{count} havaintoa"
@@ -19560,9 +19639,11 @@ I18n.translations["fi"] = {
   "submitted": "Lähetetty",
   "suggest_an_identification": "Ehdota tunnistusta",
   "suggestions": "Ehdotukset",
+  "support_inaturalist": "Tue iNaturalistia",
+  "supporting": "Tukeminen",
   "table": "Taulukko",
   "tagging": "Tunnisteita lisätään...",
-  "tags": "Tagit",
+  "tags": "Merkinnät",
   "taxa": "Taksonit",
   "taxon": "Taksoni",
   "taxon_autocomplete_placeholder": "Linnut, monarkki, yms.",
@@ -19572,6 +19653,7 @@ I18n.translations["fi"] = {
   "taxonomic": "Taksonominen",
   "taxonomic_groups": "Taksonomiset ryhmät",
   "taxonomy": "Taksonomia",
+  "taxonomy_details": "Taksonomiset tiedot",
   "tell_us_why": "Kerro meille miksi...",
   "terrain": "maasto",
   "the_below_items_are_needed_to_achieve": "Alla olevia kohteita tarvitaan <span className=\"bold\">Tutkimusasteen</span> saavuttamiseen:",
@@ -19591,12 +19673,12 @@ I18n.translations["fi"] = {
   "threatened": "Uhanalainen",
   "to_add_comments": "lisätäksesi kommentteja",
   "today": "Tänään",
-  "top_identifier": "Huipputunnistaja",
-  "top_identifiers": "Huipputunnistajat",
-  "top_identifiers_of_taxon": "Taksonin %{taxon} huipputunnistajat",
-  "top_observer": "Huippuhavainnoitsija",
+  "top_identifier": "Parhain tunnistaja",
+  "top_identifiers": "Parhaimmat tunnistajat",
+  "top_identifiers_of_taxon": "Taksonin %{taxon} parhaimmat tunnistajat",
+  "top_observer": "Parhain tunnistaja",
   "top_observers": "Ylimmät havainnoijat",
-  "top_species": "Huippulajit",
+  "top_species": "Kaikkein edustavimmat lajit",
   "total": "Yhteensä",
   "total_observations": "Havaintoja yhteensä",
   "total_species_observed": "Lajeja havaittu yhteensä",
@@ -20410,6 +20492,7 @@ I18n.translations["fr"] = {
   "has_sounds": "A des sons",
   "heads_up": "Avertissement",
   "here_are_our_top_species_suggestions": "Voici les suggestions concernant nos espèces favorites",
+  "hide_running_total": "Masquer le total actuel",
   "hide_uncountable_species": "Masquer les espèces indénombrables",
   "high": "Haut",
   "history": "Historique",
@@ -20622,7 +20705,15 @@ I18n.translations["fr"] = {
   "new_and_noteworthy": "Nouveau & Marquant",
   "new_observation_field": "Nouveau champ de l’observation",
   "new_observations": "Nouvelles observations",
+  "new_observations_this_year": "Nouvelles observations cette année",
+  "new_species_added_in_interval": "Nouvelles espèces ajoutées en %{interval}",
+  "new_species_added_in_interval_x_of_y": "Nouvelles espèces ajoutées en %{interval} (affichage de %{x} sur %{y})",
   "new_users": "Nouveaux utilisateurs",
+  "new_users_this_year": "Nouveaux utilisateurs cette année",
+  "newly_added": "Ajouté récemment",
+  "newly_added_species": "Espèces ajoutées récemment",
+  "newly_observed_species": "Nouvelles espèces observées",
+  "newly_observed_species_this_year": "Espèces nouvellement ajoutées cette année",
   "news": "Actualités",
   "next": "Suivant",
   "next_observation": "Observation suivante",
@@ -20993,6 +21084,7 @@ I18n.translations["fr"] = {
   "review_all": "Relire tout",
   "reviewed": "Relu",
   "rg_observations": "Observations RG",
+  "running_total": "Total actuel",
   "satellite": "satellite",
   "save": "Enregistrer",
   "save_photos": "Enregistrer les photos",
@@ -21025,6 +21117,7 @@ I18n.translations["fr"] = {
   "show": "Afficher",
   "show_keyboard_shortcuts": "Afficher les raccourcis clavier",
   "show_relative_proportions_of_all_observations": "Afficher les proportions relatives de toutes les observations",
+  "show_running_total": "Afficher le total actuel",
   "show_taxa_from_everywhere": "Afficher les taxons de partout",
   "show_taxa_from_place": "Afficher les taxons de %{place}",
   "show_total_counts": "Afficher les compteurs totaux",
@@ -21069,6 +21162,7 @@ I18n.translations["fr"] = {
   "status_in_place": "%{status} dans %{place}",
   "stay_and_try_again": "Rester et réessayer",
   "stop_testing": "Arrêter le test",
+  "studies_that_used_inaturalist_data_in_year": "Etudes ayant utilisé les données de iNaturalist en %{year}",
   "submit_observations": {
     "one": "Soumettre 1 observation",
     "other": "Soumettre %{count} observations"
@@ -21174,6 +21268,7 @@ I18n.translations["fr"] = {
   "user_commented": "%{user} a commenté",
   "user_disagrees_this_is_taxon": "%{user} ne pense pas que ce soit %{taxon}",
   "user_has_opted_out_of_community_id": "L’utilisateur a refusé l’ID de la communauté",
+  "user_helped_x_people_with_y_ids_html": "%{user} a aidé <strong>%{x} personne(s)</strong> avec <strong>%{y} IDs</strong>",
   "user_suggested_an_id": "%{user} a suggéré un ID",
   "username_or_user_id": "Nom ou ID d’utilisateur",
   "users": "Utilisateurs",
@@ -21315,6 +21410,8 @@ I18n.translations["fr"] = {
         "recent_w_7_obs": "Récent avec au moins sept observations"
       },
       "year": {
+        "growth_title": "Croissance",
+        "publications_desc_html": "Données d'impact et affichages, avec l'amabilté de\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nconcernant l'utilisation des données, avec l'amabilité de nos amis de la \n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Voir toutes les %{numStudies} études</a>",
         "sunburst_desc_html": "Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base\nde la hiérarchie est au centre, en commençant par « Vie » et en se terminant\npar les espèces aux bords extérieurs. La taille de chaque arc est proportionnelle\nau nombre d’observations de ce taxon, et les couleurs correspondent\nà peu près à nos couleurs de taxon « iconiques » habituelles (vert pour les plantes,\norange pour les insectes, bleu pour la plupart des autres animaux, etc.), donc si vous\nvoyez beaucoup de vert, cela veut dire que vous observez beaucoup de plantes.\n<strong>Cliquez sur un arc pour placer ce taxon au centre</strong> et\nses enfants autour, ou <strong>cliquez sur le centre pour remonter dans\nla hiérarchie</strong>."
       }
     },
@@ -21410,6 +21507,10 @@ I18n.translations["fr"] = {
     "one": "1 mauvaise identification de cette espèce",
     "other": "%{count} mauvaises identifications de cette espèce"
   },
+  "x_new_species": {
+    "one": "1 nouvelle espèce",
+    "other": "%{count} nouvelles espèces"
+  },
   "x_observations": {
     "one": "1 observation",
     "other": "%{count} observations"
@@ -21440,6 +21541,7 @@ I18n.translations["fr"] = {
     "one": "1 autre",
     "other": "%{count} autres"
   },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} personne(s)</strong> a/ont aidé %{user} avec <strong>%{y} IDs</strong>",
   "x_species": {
     "one": "1 espèce",
     "other": "%{count} espèces"
@@ -24044,7 +24146,9 @@ I18n.translations["it"] = {
   "faved_this_observation": "ha aggiunto ai preferiti questa osservazione",
   "faves": "Preferiti",
   "favorites": "Contenuto preferito",
+  "feature_this_project_": "Evidenzia questo progetto",
   "featured": "In evidenza",
+  "featuring": "Presentando",
   "fields_": "Campi",
   "fill_out_project_observation_fields": "Compila i campi dell'osservazione del progetto",
   "filter_by_place": "Filtra per luogo",
@@ -24103,6 +24207,7 @@ I18n.translations["it"] = {
   "has_sounds": "Ha suoni",
   "heads_up": "Avviso",
   "here_are_our_top_species_suggestions": "Questi sono i nostri migliori suggerimenti per la specie",
+  "hide_running_total": "Nascondi il totale attuale",
   "hide_uncountable_species": "Nascondi le specie non conteggiabili",
   "high": "Superiore",
   "history": "Cronologia",
@@ -24315,7 +24420,15 @@ I18n.translations["it"] = {
   "new_and_noteworthy": "Novità & Di Interesse",
   "new_observation_field": "Nuovo campo di osservazione",
   "new_observations": "Nuove osservazioni",
+  "new_observations_this_year": "Nuove Osservazioni Quest'Anno",
+  "new_species_added_in_interval": "Nuove Specie Aggiunte In %{interval}",
+  "new_species_added_in_interval_x_of_y": "Nuove Specie Aggiunte In %{interval} (Visualizzando %{x} di %{y})",
   "new_users": "Nuovi utenti",
+  "new_users_this_year": "Nuovi Utenti Quest'Anno",
+  "newly_added": "Appena Aggiunti",
+  "newly_added_species": "Specie Appena Aggiunte",
+  "newly_observed_species": "Specie Appena Osservate",
+  "newly_observed_species_this_year": "Specie Appena Aggiunte Quest'Anno",
   "news": "Notizie",
   "next": "Successivo",
   "next_observation": "Prossima osservazione",
@@ -24616,6 +24729,7 @@ I18n.translations["it"] = {
   "rank": "Rango",
   "rank_position": "Rango",
   "ranks": {
+    "stateofmatter": "Stato delle cose",
     "kingdom": "Regno",
     "subkingdom": "Sottoregno",
     "phylum": "Phylum",
@@ -24664,6 +24778,7 @@ I18n.translations["it"] = {
   "relative_observations": "Osservazioni relative",
   "reload_timed_out": "Tempo del caricamento scaduto. Riprova più tardi.",
   "remove": "Rimuovi",
+  "remove_from_featured": "Rimuovi dagli evidenziati",
   "remove_from_project": "Rimuovi dal progetto",
   "remove_observations": {
     "one": "Rimuovere quest'osservazione?",
@@ -24684,6 +24799,7 @@ I18n.translations["it"] = {
   "review_all": "Controlla tutto",
   "reviewed": "Revisionata",
   "rg_observations": "Osservazioni LR",
+  "running_total": "Totale attuale",
   "satellite": "satellite",
   "save": "Salva",
   "save_photos": "Salva le foto",
@@ -24716,6 +24832,7 @@ I18n.translations["it"] = {
   "show": "Mostra",
   "show_keyboard_shortcuts": "Mostra Scorciatoie di Tastiera",
   "show_relative_proportions_of_all_observations": "Mostra le proporzioni relative di tutte le osservazioni",
+  "show_running_total": "Mostra il totale attuale",
   "show_taxa_from_everywhere": "Visualizza i taxa di tutto il mondo",
   "show_taxa_from_place": "Mostra i taxa in %{place}",
   "show_total_counts": "Mostra tutti i conteggi",
@@ -24726,6 +24843,7 @@ I18n.translations["it"] = {
   "sign_out": "Esci",
   "sign_up": "Registrati",
   "similar_species": "Specie simili",
+  "site_admin_tools": "Strumenti amministratore del sito",
   "skip_to_next_page": "Passa alla pagina successiva",
   "some_observations_failed_to_be_added": "Alcune osservazioni non sono state aggiunte al progetto",
   "some_observations_failed_to_save": "Alcune osservazioni non sono state salvate",
@@ -24759,6 +24877,7 @@ I18n.translations["it"] = {
   "status_in_place": "%{status} in %{place}",
   "stay_and_try_again": "Rimani e prova ancora",
   "stop_testing": "Termina il test",
+  "studies_that_used_inaturalist_data_in_year": "Studi che hanno utilizzato i dati di iNaturalist nel %{year}",
   "submit_observations": {
     "one": "Invia 1 osservazione",
     "other": "Invia %{count} osservazioni"
@@ -24766,6 +24885,7 @@ I18n.translations["it"] = {
   "submitted": "Inviato",
   "suggest_an_identification": "Suggerisci un'identificazione",
   "suggestions": "Suggerimenti",
+  "support_inaturalist": "Sostieni iNaturalist",
   "supporting": "Di supporto",
   "table": "Tabella",
   "tagging": "Etichettatura in corso...",
@@ -24786,6 +24906,7 @@ I18n.translations["it"] = {
   "taxonomic": "Tassonomico",
   "taxonomic_groups": "Gruppi Tassonomici",
   "taxonomy": "Tassonomia",
+  "taxonomy_details": "Dettagli tassonomici",
   "tell_us_why": "Dicci perché...",
   "terrain": "terreno",
   "that_was_the_last_observation_matching_the_current_filters": "Questa era l'ultima osservazione corrispondente ai filtri impostati.",
@@ -24862,6 +24983,7 @@ I18n.translations["it"] = {
   "user_commented": "%{user} ha commentato",
   "user_disagrees_this_is_taxon": "%{user} non concorda che sia %{taxon}",
   "user_has_opted_out_of_community_id": "L'utente ha deselezionato l'ID della comunità",
+  "user_helped_x_people_with_y_ids_html": "%{user} ha aiutato strong>%{x} persone</strong> con <strong>%{y} le ID</strong>",
   "user_suggested_an_id": "%{user} ha suggerito un ID",
   "username_or_user_id": "Nome Utente o ID Utente",
   "users": "Utenti",
@@ -25003,6 +25125,9 @@ I18n.translations["it"] = {
         "recent_w_7_obs": "Recenti con >= 7 osservazioni"
       },
       "year": {
+        "growth_title": "Crescita",
+        "new_species_desc_html": "Specie che sono state aggiunte per la prima volta su %{site_name} quest'anno. Clicca su un mese per vedere alcune delle specie aggiunte in quel mese. Puoi vedere anche il totale accumulato, oppure muovere il disco indietro nel tempo per vedere altre specie osservate recentemente. Questo grafico mostra le specie dalle osservazioni verificabili per il mese in cui queste sono state caricate su %{site_name} (non per il mese in cui sono state osservate). Non include taxa di livello superiore od inferiore, perciò una osservazione identificata come Mammifero non è conteggiata, e una osservazione di <i>Canis lupus</i> ssp.\n<i>arctos</i> sarà conteggiata come <i>Canis lupus</i>.",
+        "publications_desc_html": "I dati di impatto e visualizzazioni per gentile concessione di <a href=\"https://www.altmetric.com\">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici al <a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Visualizza tutti gli %{numStudies} studi</a>",
         "sunburst_desc_html": "Taxa osservati disposti secondo un diagramma gerarchico \"raggi di sole\". La base è al centro, inizia on \"Organismo\" e finisce con le specie ai margini. La dimensione do ogni arco è proporzionale al numero di osservazioni di quel taxon, e i colori corrispondono approssimativamente ai nostri soliti colori \"iconici\" (verde per le piante, arancione per gli insetti, blu per la maggior parte degli altri animali, etc.), così nel caso tu veda molto verde, significa che ha osservato un mucchio di piante.\n<strong>Clicca su un arco per posizionare quel taxon al centro</strong> e i suoi discendenti attorno ad esso, o <strong>clicca al centro per tornare indietro nella gerarchia</strong>."
       }
     },
@@ -25098,6 +25223,10 @@ I18n.translations["it"] = {
     "one": "1 identificazione errata di questa specie",
     "other": "%{count} identificazioni errate di questa specie"
   },
+  "x_new_species": {
+    "one": "1 nuova specie",
+    "other": "%{count} nuove specie"
+  },
   "x_observations": {
     "one": "1 osservazione",
     "other": "%{count} osservazioni"
@@ -25128,6 +25257,7 @@ I18n.translations["it"] = {
     "one": "un altro",
     "other": "%{count} altri"
   },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} persone</strong> hanno aiutato %{user} con <strong>%{y} le ID</strong>",
   "x_species": {
     "one": "1 specie",
     "other": "%{count} specie"
@@ -26920,6 +27050,8 @@ I18n.translations["ko"] = {
   "new_observation_field": "새로운 관찰 필드",
   "new_observations": "새로운 관찰",
   "new_users": "새 사용자",
+  "newly_added": "새로 추가됨",
+  "newly_added_species": "새로 추가된 종",
   "news": "새 소식",
   "next": "다음",
   "next_observation": "다음 관찰",
@@ -27152,6 +27284,7 @@ I18n.translations["ko"] = {
   "stop_testing": "테스트 중지",
   "submitted": "제출됨",
   "suggestions": "제안",
+  "support_inaturalist": "iNaturalist 지원",
   "tags": "태그",
   "taxon_map": {
   },
@@ -30431,6 +30564,7 @@ I18n.translations["nl"] = {
   "user": "Gebruiker",
   "user_commented": "%{user} reageerde",
   "user_disagrees_this_is_taxon": "%{user} is het niet eens dat dit %{taxon} si",
+  "user_helped_x_people_with_y_ids_html": "%{user} hielpen <strong>%{x} mensen</strong> met <strong>%{y} determinaties</strong>",
   "user_suggested_an_id": "%{user} stelde een ID voor",
   "username_or_user_id": "Gebruikersnaam of Gebruikers-ID",
   "users": "Gebruikers",
@@ -30513,6 +30647,8 @@ I18n.translations["nl"] = {
     },
     "taxa": {
       "show": {
+        "about_names_desc": "<P>\n  De meeste categorieën organismen hebben \"lokale namen\". Deze namen zijn meestal herkenbaar, gemakkelijk uit te spreken,\n  en stabiel in de tijd, maar veel organismen hebben verschillende\n  namen op verschillende plaatsen, zelfs in dezelfde taal, die kunnen maken\n  het is moeilijk om zonder verwarring over deze organismen te communiceren.\n  Wetenschappers pakken dit probleem aan door een enkele \"wetenschappelijke naam\" te gebruiken\n  voor elke categorie organismen die voldoet aan de regels van\n  <a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">biologische nomenclatuur</a>,\n  maar deze namen zijn meestal gebaseerd op het Latijn, een taal die niemand kent\n  spreekt, dus ze zijn niet zo gemakkelijk te onthouden als gewone namen voor velen\n  mensen. Wetenschappelijke namen kunnen ook de taxonomie van een organisme weerspiegelen\n  , zodat ze veranderen wanneer wetenschappers meer \n  accurate theorieën ontwikkelen over de evolutionaire relaties tussen\n  verschillende organismen, opnieuw hun nut verminderen in\n  communicatie, zelfs tussen mensen die wetenschappelijke namen kennen.\n</P>\n<P>\n  Het oude gezegde vat het samen: \"lokale namen veranderen van plaats naar plaats\n  en wetenschappelijke namen veranderen van tijd tot tijd. \"\n</P>\n<P>\n  We proberen deze tekortkomingen aan te pakken door ze beide te laten zien\n  en wetenschappelijke namen waar mogelijk en het kiezen van gemeenschappelijke namen\n  op basis van de taal en geografische voorkeuren van de kijker.\n</P>",
+        "charts_help_history": "Deze grafiek toont het aantal waarnemingen van dit taxon per maand voor\nde afgelopen tien jaar. Nogmaals, het is bevooroordeeld door het aantal mensen\ndie waarnemingen invoeren maar het zal je opmerkelijke pieken in waarnemingen laten zien en zo\nlijkt het plat of dalend ondanks een toenemend aantal waarnemers,\ndat zou een verandering in het voorkomen kunnen suggereren.",
         "charts_help_other": "We tonen ook seizoensgebonden grafieken aantekeningen bij waarnemingen. Aantekeningen zijn een nieuw systeem om metadata toe te voegen aan waarnemingen door gebruik te maken van een gecontrolleerde woordenschat van termen. Tot nu toe gebruiken we enkel \"Levensfase\" en \"Plantenfenologie\" (wanneer de plant bloeit of vruchten draagt). We hebben nog geen manier om aantekeningen rechtstreeks toe te voegen, voorlopig converteren we gegevens van velden op waarnemingen naar aantekeningen. Als je niet kan wachten tot we ons aantekeningen systeem hebben gebouwd, kan je bijdragen tot de \"Levensfase\" aantekeningen door een veld met een van de volgende waarden toe te voegen op een waarneming: Adult, Teneral, Pop, Nimf, Larve, Ei of Juveniel. Meer specifiek zijn dus de \"Levensfase\" en Insect Levensfase\" velden goed. Voor Plantenfenologie kijken we naar elk veld met het woord \"fenologie\" in de naam en \"bloem\" of \"fruit\" in de waarde, dus is het veld \"Bloeifenologie\" een aangeraden veld om te gebruiken.",
         "charts_help_relative_observations": "Het tonen van de frequentie als een relatieve eigenschap van alle waarnemingen helpt het \neffenen van het effect van de algehele groei van de site. Als bijvoorbeeld de site groeit naarmate we meer waarnemingen krijgen van elke afgelopen jaar krijgen we meer waarnemingen van elk individueel taxon, wat niet aangeeft dat er meer van dat taxon in de buurt is, alleen maar dat er meer mensen het taxon waarnemen. De rrelatieve eigenschap toont aan dat als er 100 waarnemingen in totaal zijn en maar\n20 waarnemingen van dit taxon, het aandeel van dit taxon is 0,2 (20/100) is. Als het volgende jaar\ner 2000 waarnemingen worden genoteerd en 400 waarnemingen van\ndit taxon dan is het aandeel nog steeds 0,2 (400/2000). Dit veroorzaakt wat\nabberaties als er maar heel weinig waarnemers in een gebied zijn of voor taxa\ndie zeer zelden worden waargenomen, maar dat geldt voor de totale tellingen\nook.",
         "charts_help_seasonality": "Deze grafiek toont het aantal waarnemingen van dit taxon gegroepeerd per\nmaand. Houd er rekening mee dat dit een aantal waarnemingen zijn, dus zij\nworden beïnvloed door zowel wanneer het organisme kan worden waargenomen en wanneer\nmensen moeite doen om ze te observeren (waarnemerseffect). Dus een vogel lijkt erg actief\nin mei, maar dat zou ook veroorzaakt kunnen worden door het feit dat er in mei meer mensen vogelen\nen de neiging om die soort in latere maanden te negeren. Evenzo, als je ziet\ndat er meer libellen in juni dan in januari zijn komt dat waarschijnlijk omdat er\nmeer mensen waarnemingen invoeren op het noordelijk halfrond dan in de\nzuidelijk halfrond en niet omdat libellen actiever zijn\njuni, dus bekijk de kaart wanneer u deze grafieken overweegt. Het is altijd een\ngoed idee om sceptisch te zijn over deze grafieken als er weinig waarnemingen zijn en/of grote discrepanties tussen het aantal \"Verifieerbare\" en \"Research Grade\"-waarnemingen.",
@@ -30611,6 +30747,7 @@ I18n.translations["nl"] = {
     "one": "1 overige",
     "other": "%{count} overige"
   },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} mensen</strong> hielpen %{user} met <strong>%{y} determinaties</strong>",
   "x_species": {
     "one": "1 soort",
     "other": "%{count} soorten"
@@ -35156,6 +35293,7 @@ I18n.translations["ru"] = {
   "has_sounds": "Имеет звуки",
   "heads_up": "Осторожно",
   "here_are_our_top_species_suggestions": "Вот наши лучшие предложения видов",
+  "hide_running_total": "Скрыть текущий итог",
   "hide_uncountable_species": "Не показывать неисчислимые виды",
   "high": "Высокий",
   "history": "История",
@@ -35368,7 +35506,15 @@ I18n.translations["ru"] = {
   "new_and_noteworthy": "Новые и значимые",
   "new_observation_field": "Новое поле наблюдения",
   "new_observations": "Новые наблюдения",
+  "new_observations_this_year": "Новые наблюдения этого года",
+  "new_species_added_in_interval": "Новые наблюдения, добавленные в %{interval}",
+  "new_species_added_in_interval_x_of_y": "Новые наблюдения, добавленные в %{interval} (показывающие %{x} из %{y})",
   "new_users": "Новые участники",
+  "new_users_this_year": "Новые пользователи этого года",
+  "newly_added": "Вновь добавленные",
+  "newly_added_species": "Новые виды",
+  "newly_observed_species": "Новые наблюдаемые виды",
+  "newly_observed_species_this_year": "Новые виды в этом году",
   "news": "Новости",
   "next": "След",
   "next_observation": "Следующее наблюдение",
@@ -35738,6 +35884,7 @@ I18n.translations["ru"] = {
   "review_all": "Просмотреть всё",
   "reviewed": "Проверено",
   "rg_observations": "Наблюдения статуса \"исследовательский\"",
+  "running_total": "Текущий итог",
   "satellite": "спутниковый",
   "save": "Сохранить",
   "save_photos": "Сохранить фото",
@@ -35770,6 +35917,7 @@ I18n.translations["ru"] = {
   "show": "Показать",
   "show_keyboard_shortcuts": "Показать сочетания клавиш",
   "show_relative_proportions_of_all_observations": "Показать относительные доли всех наблюдений",
+  "show_running_total": "Показать текущий итог",
   "show_taxa_from_everywhere": "Показывать таксоны отовсюду",
   "show_taxa_from_place": "Показать таксоны из %{place}",
   "show_total_counts": "Показать общее количество",
@@ -35814,6 +35962,7 @@ I18n.translations["ru"] = {
   "status_in_place": "%{status} в %{place}",
   "stay_and_try_again": "Остановитесь и попробуйте еще раз",
   "stop_testing": "Завершить тестирование",
+  "studies_that_used_inaturalist_data_in_year": "Исследования, в которых использовались данные iNaturalist в %{year}",
   "submit_observations": {
     "one": "Подтверждение 1 наблюдения",
     "other": "Подтверждение %{count} наблюдений"
@@ -35920,6 +36069,7 @@ I18n.translations["ru"] = {
   "user_commented": "%{user} прокомментировал",
   "user_disagrees_this_is_taxon": "%{user} не  согласен с тем, что это %{taxon}",
   "user_has_opted_out_of_community_id": "Пользователь отказался от идентификации сообщества",
+  "user_helped_x_people_with_y_ids_html": "%{user} помог <strong>%{x} людям</strong> с <strong>%{y} идентификацией</strong>",
   "user_suggested_an_id": "%{user} предложил идентификацию",
   "username_or_user_id": "Имя пользователя или его идентификатор",
   "users": "Пользователи",
@@ -36061,6 +36211,9 @@ I18n.translations["ru"] = {
         "recent_w_7_obs": "Недавние с набл>= 7"
       },
       "year": {
+        "growth_title": "Рост",
+        "new_species_desc_html": "Виды, которые были впервые были добавлены на %{site_name} в этом году. Нажмите на месяц, чтобы увидеть некоторые новые виды, добавленные в этом месяце. Вы также можете просмотреть общее накопленное количество видов или переместить ползунок назад во времени, чтобы увидеть другие впервые наблюдаемые виды. Диаграмма показывает виды проверяемых наблюдений по месяцам загрузки в %{site_name} (а не по месяцу, когда они наблюдались). Она не включает таксоны более высокого или более низкого уровня, поэтому наблюдение, идентифицированное как Млекопитающее, не учитывается, а наблюдение <i>Canis lupus</i> ssp. <i>arctos</i> будет учтено как <i>Canis lupus</i>.",
+        "publications_desc_html": "Данные по воздействию и визуализации любезно предоставлены\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из\n<a href=\"https://www.gbif.org/\">Глобальный информационный центр по биоразнообразию</a>.\n<br/>\n<a href=\"%{url}\">Посмотреть все исследования %{numStudies}</a>",
         "sunburst_desc_html": "Наблюдаемые таксоны упорядочены как иерархическая диаграмма «солнечные лучи». Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>."
       }
     },
@@ -36163,6 +36316,11 @@ I18n.translations["ru"] = {
     "few": "%{count} ошибочные идентификации этого вида",
     "other": "%{count} ошибочных идентификаций этого вида"
   },
+  "x_new_species": {
+    "one": "1 Новый вид",
+    "few": "%{count} Новых вида",
+    "other": "%{count} Новых видов"
+  },
   "x_observations": {
     "one": "1 наблюдение",
     "few": "%{count} наблюдения",
@@ -36199,6 +36357,7 @@ I18n.translations["ru"] = {
     "one": "1 другой",
     "other": "%{count} других"
   },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x} человек</strong> оказавшие помощь %{user} с <strong>%{y} идентификацией</strong>",
   "x_species": {
     "one": "1 вид",
     "few": "%{count} вида",
@@ -38422,6 +38581,7 @@ I18n.translations["sv"] = {
     "other": "Skicka %{count} observationer"
   },
   "suggestions": "Förslag",
+  "support_inaturalist": "Stöd iNaturalist",
   "supporting": "Stödjer",
   "taxon_map": {
   },
@@ -41217,6 +41377,7 @@ I18n.translations["zh-TW"] = {
   "has_sounds": "擁有聲音",
   "heads_up": "注意",
   "here_are_our_top_species_suggestions": "這是我們熱門的物種建議",
+  "hide_running_total": "隱藏運行總計",
   "hide_uncountable_species": "隱藏無法計數的物種",
   "high": "高",
   "history": "歷史",
@@ -41429,7 +41590,15 @@ I18n.translations["zh-TW"] = {
   "new_and_noteworthy": "新事物與關注事項",
   "new_observation_field": "新觀察欄位",
   "new_observations": "新觀察",
+  "new_observations_this_year": "此年度的新觀察",
+  "new_species_added_in_interval": "在%{interval}內所添加的新物種",
+  "new_species_added_in_interval_x_of_y": "在%{interval}期間所添加的新物種（顯示 %{y} 個裡的 %{x} 個）",
   "new_users": "新使用者",
+  "new_users_this_year": "此年度的新使用者",
+  "newly_added": "新的添加",
+  "newly_added_species": "新進的添加物種",
+  "newly_observed_species": "新進的觀察物種",
+  "newly_observed_species_this_year": "此年度的新添加物種",
   "news": "最新消息",
   "next": "下一個",
   "next_observation": "下一個觀察",
@@ -41710,7 +41879,7 @@ I18n.translations["zh-TW"] = {
   "previous_tab": "上一個頁籤",
   "private_": "私人的",
   "proceed": "繼續",
-  "profile": "個人資料",
+  "profile": "個人檔案",
   "project": "專案",
   "project_admins": {
     "one": "專案管理員",
@@ -41800,6 +41969,7 @@ I18n.translations["zh-TW"] = {
   "review_all": "檢閱全部",
   "reviewed": "已檢閱",
   "rg_observations": "RG 觀察",
+  "running_total": "運行總計",
   "satellite": "衛星",
   "save": "儲存",
   "save_photos": "儲存照片",
@@ -41832,6 +42002,7 @@ I18n.translations["zh-TW"] = {
   "show": "顯示",
   "show_keyboard_shortcuts": "顯示鍵盤快捷鍵",
   "show_relative_proportions_of_all_observations": "顯示所有觀察的相對比例",
+  "show_running_total": "顯示運行總計",
   "show_taxa_from_everywhere": "顯示來自於任何地點的物種分類",
   "show_taxa_from_place": "顯示來自於%{place}的物種分類",
   "show_total_counts": "顯示總計計數",
@@ -41876,6 +42047,7 @@ I18n.translations["zh-TW"] = {
   "status_in_place": "%{status}在%{place}",
   "stay_and_try_again": "延遲並重試",
   "stop_testing": "停止測試",
+  "studies_that_used_inaturalist_data_in_year": "在 %{year} 使用到 iNaturalist 資料的研究",
   "submit_observations": {
     "one": "提交 1 個觀察",
     "other": "提交 %{count} 個觀察"
@@ -41981,6 +42153,7 @@ I18n.translations["zh-TW"] = {
   "user_commented": "%{user} 已評論",
   "user_disagrees_this_is_taxon": "%{user} 不同意這是%{taxon}",
   "user_has_opted_out_of_community_id": "用戶已選擇退出社群鑑定",
+  "user_helped_x_people_with_y_ids_html": "%{user}以 <strong>%{y} 個鑑定</strong>幫助到了 <strong>%{x} 個人</strong>",
   "user_suggested_an_id": "%{user} 建議了一個鑑定",
   "username_or_user_id": "用戶名稱或用戶 ID",
   "users": "使用者",
@@ -42122,6 +42295,7 @@ I18n.translations["zh-TW"] = {
         "recent_w_7_obs": "最近帶有 >= 7 個觀察"
       },
       "year": {
+        "growth_title": "成長",
         "sunburst_desc_html": "已觀察物種分類群會被整理為分層「放射」狀的圖表。以中間層作為「生命」起始，外環邊緣作為結束。圖表上任一弧線長度比例是基於物種分類的觀察數量，色彩部份會簡略對應到我們常用的「代表性」物種分類顏色（綠色用在植物上；橘色用在昆蟲上；藍色用在多數其它動物上，等等。）， 因此如果您看到許多綠色，這代表著您有觀察過許多植物。\n<strong>點擊弧線來放置到有子項目圍繞的物種分類中心點</strong>，或是<strong>點擊中心點來移動層次結構</strong>。"
       }
     },
@@ -42217,6 +42391,10 @@ I18n.translations["zh-TW"] = {
     "one": "此物種有 1 個錯誤鑑定",
     "other": "%{count} 此物種有 %{count} 個錯誤鑑定"
   },
+  "x_new_species": {
+    "one": "1 個新物種",
+    "other": "%{count} 個新物種"
+  },
   "x_observations": {
     "one": "1 項觀察記錄",
     "other": "%{count} 項觀察記錄"
@@ -42247,6 +42425,7 @@ I18n.translations["zh-TW"] = {
     "one": "1 個其它",
     "other": "%{count} 個其它"
   },
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x}</strong> 個人以 <strong>%{y}</strong> 個鑑定幫助了%{user}",
   "x_species": {
     "one": "1 物種",
     "other": "%{count} 物種"

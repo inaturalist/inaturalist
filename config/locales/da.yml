@@ -21,8 +21,8 @@ da:
     one: 1 identifikation
     other: '%{count} identifikationer'
   x_identifications_html:
-    one: <span class="antal">1</span> identifikation
-    other: <span class="antal">%{count}</span> identifikationer
+    one: <span class="count">1</span> identifikation
+    other: <span class="count">%{count}</span> identifikationer
   x_identifications_:
     one: 1 Identifikation
     other: '%{count} Identifikationer'
@@ -36,14 +36,14 @@ da:
     one: 1 journalindlæg
     other: '%{count} journalindlæg'
   x_journal_posts_html:
-    one: <span class="antal">1</span> journalindlæg
-    other: <span class="antal">%{count}</span> journalindlæg
+    one: <span class="count">1</span> journalindlæg
+    other: <span class="count">%{count}</span> journalindlæg
   x_matching_taxa:
     one: 1 matchende takson
     other: '%{count} matchende taksa'
   x_matching_taxa_html:
-    one: <span class="antal">1</span> matchende takson
-    other: <span class="antal">%{count}</span> matchende taksa
+    one: <span class="count">1</span> matchende takson
+    other: <span class="count">%{count}</span> matchende taksa
   x_misidentifications_of_this_species:
     one: 1 fejlidentifikation af denne art
     other: '%{count} fejlidentifikationer af denne art'
@@ -54,14 +54,14 @@ da:
     one: 1 Observation
     other: '%{count} Observationer'
   x_observations_html:
-    one: <span class='antal'>1</span> observation
-    other: <span class='antal'>%{count}</span> observationer
+    one: <span class='count'>1</span> observation
+    other: <span class='count'>%{count}</span> observationer
   x_observations_link_html:
     one: <a href='%{url}'>1 observation</a>
     other: <a href='%{url}'>%{count} observationer</a>
   x_observations_reviewed_html:
-    one: <span class='antal'>1</span> observation gennemgået
-    other: <span class='antal'>%{count}</span> observationer gennemgået
+    one: <span class='count'>1</span> observation gennemgået
+    other: <span class='count'>%{count}</span> observationer gennemgået
   x_others:
     one: 1 anden
     other: '%{count} andre'
@@ -72,14 +72,14 @@ da:
     one: 1 favorit
     other: '%{count} favoritter'
   x_flags_resolved_html:
-    one: <span class='antal'>1</span> markering løst
-    other: <span class='antal'>%{count}</span> markeringer løst
+    one: <span class='count'>1</span> markering løst
+    other: <span class='count'>%{count}</span> markeringer løst
   x_people_like_this:
     one: 1 person kan lide dette
     other: '%{count} personer kan lide dette'
   x_people_agree_html:
-    one: <span class="antal">1</span> person er enig
-    other: <span class="antal">%{count}</span> personer er enige
+    one: <span class="count">1</span> person er enig
+    other: <span class="count">%{count}</span> personer er enige
   x_new_species:
     one: 1 Ny art
     other: '%{count} Nye arter'
@@ -87,8 +87,8 @@ da:
     one: 1 art
     other: '%{count} arter'
   x_species_html:
-    one: <span class='antal'>1</span> art
-    other: <span class='antal'>%{count}</span> arter
+    one: <span class='count'>1</span> art
+    other: <span class='count'>%{count}</span> arter
   x_species_link_html:
     one: <a href='%{url}'>1 art</a>
     other: <a href='%{url}'>%{count} arter</a>
@@ -96,25 +96,25 @@ da:
     one: '1 forslag filtreret af:'
     other: '%{count} forslag filtreret af:'
   x_taxa_observed_html:
-    one: <span class='antal'>1</span> takson observeret
-    other: <span class='antal'>%{count}</span> taksa observeret
+    one: <span class='count'>1</span> takson observeret
+    other: <span class='count'>%{count}</span> taksa observeret
   x_research_grade_observations_html:
-    one: <span class='antal'>1</span> observation af forskningskvalitet</span>
-    other: <span class='antal'>%{count}</span> observationer af forskningskvalitet</span>
+    one: <span class='count'>1</span> observation af forskningskvalitet</span>
+    other: <span class='count'>%{count}</span> observationer af forskningskvalitet</span>
   x_research_grade_observations_to_species_html:
-    one: <span class='antal'>1</span> observation af forskningskvalitet identificeret
+    one: <span class='count'>1</span> observation af forskningskvalitet identificeret
       til art eller lavere</span>
-    other: <span class='antal'>%{count}</span> observationer af forskningskvalitet
+    other: <span class='count'>%{count}</span> observationer af forskningskvalitet
       identificerede til art eller lavere</span>
   x_taxa_curated_html:
-    one: <span class='antal'>1</span> takson kurateret
-    other: <span class='antal'>%{count}</span> taksa kurateret
+    one: <span class='count'>1</span> takson kurateret
+    other: <span class='count'>%{count}</span> taksa kurateret
   x_taxa_matching_current_filters:
     one: 1 takson matcher nuværende filtre
     other: '%{count} taksa matcher nuværende filtre'
   x_taxon_changes_added_html:
-    one: <span class='antal'>1</span> taksonændring tilføjet
-    other: <span class='antal'>%{count}</span> taksonændringer tilføjet
+    one: <span class='count'>1</span> taksonændring tilføjet
+    other: <span class='count'>%{count}</span> taksonændringer tilføjet
   x_people_helped_user_with_y_ids_html: <strong>%{x} personer</strong> hjalp %{user}
     med <strong>%{y} IDs</strong>
   _100_day_trends: 100 dage tendens
@@ -1325,8 +1325,8 @@ da:
   editing_observation_field: Redigering af observationsfelter
   editing_observation_id: Redigering af observation %{obs_id}
   editing_observations:
-    one: 'Redigering <span class="antal">1</span> observation:'
-    other: 'Redigering <span class="antal">%{count}</span> observationer:'
+    one: 'Redigering <span class="count">1</span> observation:'
+    other: 'Redigering <span class="count">%{count}</span> observationer:'
   editing_project: Redigering af %{project}
   editing_project_asset: Redigering af projektvurderinger for
   editing_subscription_to_x_html: Redigerer abonnement på %{x}
