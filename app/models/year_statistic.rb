@@ -725,7 +725,7 @@ class YearStatistic < ActiveRecord::Base
   def self.users_histogram_by_created_month( options  = {} )
     scope = User.group( "EXTRACT('year' FROM created_at) || '-' || EXTRACT('month' FROM created_at)" ).
       where( "suspended_at IS NULL AND created_at > '2008-03-01' AND observations_count > 0" )
-    if options[:site]
+    if site = options[:site]
       scope = scope.where( "site_id = ?", site )
     end
     Hash[scope.count.map do |k,v|

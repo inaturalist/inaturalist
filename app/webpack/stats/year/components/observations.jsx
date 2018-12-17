@@ -21,7 +21,7 @@ const Observations = ( {
       data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
       style: "bar",
       color: grayColor,
-      label: d => `<strong>${moment( d.date ).format( "MMMM" )}</strong>: ${d.value}`
+      label: d => `<strong>${moment( d.date ).format( "MMMM" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
     };
   }
   if ( data.week_histogram ) {
@@ -30,7 +30,7 @@ const Observations = ( {
       data: _.map( data.week_histogram, ( value, date ) => ( { date, value } ) ),
       color: "rgba( 168, 204, 9, 0.2 )",
       style: "bar",
-      label: d => `<strong>${I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } )}</strong>: ${d.value}`
+      label: d => `<strong>${I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
     };
   }
   if ( data.day_histogram ) {
