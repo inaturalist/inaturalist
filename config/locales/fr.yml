@@ -106,6 +106,9 @@ fr:
   x_people_agree_html:
     one: <span class="count">1</span> personne est d’accord
     other: <span class="count">%{count}</span> personnes sont d’accord
+  x_new_species:
+    one: 1 nouvelle espèce
+    other: '%{count} nouvelles espèces'
   x_species:
     one: 1 espèce
     other: '%{count} espèces'
@@ -138,6 +141,8 @@ fr:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> modification de taxon ajoutée
     other: <span class='count'>%{count}</span> modifications de taxon ajoutées
+  x_people_helped_user_with_y_ids_html: <strong>%{x} personne(s)</strong> a/ont aidé
+    %{user} avec <strong>%{y} IDs</strong>
   _100_day_trends: Tendances à 100 jours
   _percent_ID_d: '% ID assigné(s)'
   a: un
@@ -1776,7 +1781,7 @@ fr:
   help_confirm_observations!: Aider à confirmer les observations!
   help_faq: Aide/FAQ
   help_out!: Dépannez!
-  help_support_inaturalist: Aider à soutenir iNaturalist !
+  help_support_inaturalist: Aider à soutenir iNaturalist 
   helped_the_observer_make: a aidé l’observateur à faire leurs identifications finales
     (c.-à-d. qu’elles ont été faites avant l’identification finale et qu’elles y correspondent)
   here_are_3_examples: Voici 3 exemples de données bien formées
@@ -1792,6 +1797,7 @@ fr:
   hi_user: Bonjour %{user}
   hide: Masquer
   hide_details: Masquer les détails
+  hide_running_total: Masquer le total actuel
   hide_uncountable_species: Masquer les espèces indénombrables
   high: Haut
   highest_rank: Rang le plus élevé
@@ -2547,6 +2553,7 @@ fr:
   new_observation_field: Nouveau champ de l’observation
   new_observation_rules: Nouvelles règles d’observation
   new_observations: Nouvelles observations
+  new_observations_this_year: Nouvelles observations cette année
   new_observations_ellispsis: Nouvelles observations…
   new_observations_from_place_html: Nouvelles observations à %{place}
   new_observations_may_take_up_to: Les nouvelles observations peuvent prendre jusqu’à
@@ -2558,6 +2565,9 @@ fr:
   new_project_asset: Nouveau project_asset
   new_project_asset_for: Nouveau bien de projet pour
   new_source: Nouvelle source
+  new_species_added_in_interval: Nouvelles espèces ajoutées en %{interval}
+  new_species_added_in_interval_x_of_y: Nouvelles espèces ajoutées en %{interval}
+    (affichage de %{x} sur %{y})
   new_taxon_change: Nouvelle modification de taxon
   new_taxon_link: Nouveau lien de taxon
   new_taxon_name: Nouveau nom de taxon
@@ -2569,8 +2579,13 @@ fr:
     24 heures d’%{site_name}
   new_user_rules: Nouvelles règles utilisateur
   new_users: Nouveaux utilisateurs
+  new_users_this_year: Nouveaux utilisateurs cette année
   new_users_w_7_obs: Nouveaux utilisateurs avec 7 Obs
   new_users_week: Nouveaux utilisateurs/semaine
+  newly_added: Ajouté récemment
+  newly_added_species: Espèces ajoutées récemment
+  newly_observed_species: Nouvelles espèces observées
+  newly_observed_species_this_year: Espèces nouvellement ajoutées cette année
   news: Actualités
   next: Suivant
   next_observation: Observation suivante
@@ -2708,6 +2723,7 @@ fr:
   not_on_this_list: Pas dans cette liste.
   not_recorded: Non enregistré
   not_seeing_what_looking_for: Vous ne voyez pas ce que vous cherchez?
+  not_spam: N'est pas du pourriel
   not_yet: Pas encore
   note: Note
   notes: Notes
@@ -3359,6 +3375,11 @@ fr:
   processing: Traitement
   processing3p: Traitement en cours…
   profile: Profil
+  profile_visibility_pending_account_verification: Vérification de la visibilité du
+    profil des comptes en attente
+  profile_visibility_desc: Dans l'effort de vouloir combattre les spams sur %{site_name},
+    les profils des utilisateurs ne sont visibles publiquement uniquement après qu'un
+    utilisateur a contribué à plusieurs observations Research Grade.
   project: Projet
   project_added_your_observations: Vos observations ont été ajoutées au projet
   project_admins:
@@ -3508,6 +3529,7 @@ fr:
   recent_comments_on_your_stuff: Commentaires récents sur vos trucs
   recent_evidence?: Preuve récente ?
   recent_evidence_of_organism: Preuve récente d’un organisme
+  recent_new_users: Nouveaux utilisateurs récents
   recent_observations: Observations récentes
   recent_observations_: Observations récentes
   recent_post: Note récente
@@ -3651,6 +3673,7 @@ fr:
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser
       les superviseurs du projet à voir les coordonnées.
+  running_total: Total actuel
   said: a dit
   sat: Sam
   satellite: satellite
@@ -3784,6 +3807,7 @@ fr:
   show_only: 'Montrer seulement :'
   show_relative_proportions_of_all_observations: Afficher les proportions relatives
     de toutes les observations
+  show_running_total: Afficher le total actuel
   show_scientific_name_first: Afficher les noms scientifiques en premier
   show_taxa_from_both: (afficher les taxons des deux listes)
   show_taxa_from_everywhere: Afficher les taxons de partout
@@ -3939,6 +3963,7 @@ fr:
   sources_and_credits: Sources et générique
   sourcing: Source
   spam: Pourriel
+  spammer: Pollueur
   spanish: Espagnol
   species: Espèces
   species_by_category: espèces par catégorie
@@ -3987,6 +4012,8 @@ fr:
   stop_following_user: Arrêter de suivre %{user}
   stop_testing: Arrêter le test
   stop_updating_position: Arrêter la mise à jour de l’emplacement
+  studies_that_used_inaturalist_data_in_year: Etudes ayant utilisé les données de
+    iNaturalist en %{year}
   stuff_just_added: Trucs que vous venez d’ajouter…
   subject_resolved_noun_html: '%{subject} a réglé %{noun}'
   subject_affecting_stuff_html: '%{subject} touchant %{stuff}'
@@ -4620,6 +4647,8 @@ fr:
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} a choisi de maintenir
     le contrôle des taxons associés à cette observation'
   user_hasnt: '%{user} n’a pas'
+  user_helped_x_people_with_y_ids_html: '%{user} a aidé <strong>%{x} personne(s)</strong>
+    avec <strong>%{y} IDs</strong>'
   user_invite_observation_to_project: '%{user} aimerait obtenir votre observation
     « %{observation} » dans le projet %{project}.'
   user_invited_you_to_join_html: '%{user} vous a invité à vous joindre'
@@ -4676,6 +4705,7 @@ fr:
   view_change: Afficher la modification
   view_check_list_page: Afficher la page de la liste de contrôle
   view_contributions: Afficher les contributions
+  view_data_used: 'Voir les données utilisées:'
   view_details: Afficher les détails
   view_field_options: Afficher les options du champ
   view_flag: Afficher le drapeau
@@ -5188,7 +5218,8 @@ fr:
             <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation
             de %{site_name} avec des étudiants.
     donate:
-      donate_short_desc: Aider à soutenir iNaturalist avec un don !
+      donate_short_desc: Faites un don maintenant pour montrer que vous nous soutenez
+         !
       donate_desc_html: |-
         <p class="lead">
           <strong>iNaturalist est une des plus grandes communautés du monde dédiée à
@@ -5210,8 +5241,7 @@ fr:
           l’Académie des Sciences de Californie, une organisation à but non lucratif 501 (c)(3)
           non soumise à l’impôt basée aux États-Unis d’Amérique.
         </p>
-      post_donate_social_media_text: J’ai soutenu iNaturalist ! Vous devriez le faire
-        aussi.
+      post_donate_social_media_text: Je soutiens iNaturalist  parce que...
     guides:
       index:
         funding_html: |-
@@ -6357,6 +6387,15 @@ fr:
           Créé via <a href="https://www.inaturalist.org">iNaturalist</a>
           ou les sites web <a href="%{url}">Réseau iNaturalist</a>
       year:
+        growth_title: Croissance
+        new_species_desc: |-
+          Espèces ayant été observées pour la première fois cette année sur %{site_name} .
+          Affichage de %{x} sur <a href="%{url}">%{y} espèces</a>.
+        publications_desc_html: "Données d'impact et affichages, avec l'amabilté de\n<a
+          href=\"https://www.altmetric.com\">Altmetric</a>. Information\nconcernant
+          l'utilisation des données, avec l'amabilité de nos amis de la \n<a href=\"https://www.gbif.org/\">Global
+          Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Voir
+          toutes les %{numStudies} études</a>"
         sunburst_desc_html: |-
           Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base
           de la hiérarchie est au centre, en commençant par « Vie » et en se terminant

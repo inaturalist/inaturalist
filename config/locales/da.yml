@@ -21,8 +21,8 @@ da:
     one: 1 identifikation
     other: '%{count} identifikationer'
   x_identifications_html:
-    one: <span class="antal">1</span> identifikation
-    other: <span class="antal">%{count}</span> identifikationer
+    one: <span class="count">1</span> identifikation
+    other: <span class="count">%{count}</span> identifikationer
   x_identifications_:
     one: 1 Identifikation
     other: '%{count} Identifikationer'
@@ -36,14 +36,14 @@ da:
     one: 1 journalindlæg
     other: '%{count} journalindlæg'
   x_journal_posts_html:
-    one: <span class="antal">1</span> journalindlæg
-    other: <span class="antal">%{count}</span> journalindlæg
+    one: <span class="count">1</span> journalindlæg
+    other: <span class="count">%{count}</span> journalindlæg
   x_matching_taxa:
     one: 1 matchende takson
     other: '%{count} matchende taksa'
   x_matching_taxa_html:
-    one: <span class="antal">1</span> matchende takson
-    other: <span class="antal">%{count}</span> matchende taksa
+    one: <span class="count">1</span> matchende takson
+    other: <span class="count">%{count}</span> matchende taksa
   x_misidentifications_of_this_species:
     one: 1 fejlidentifikation af denne art
     other: '%{count} fejlidentifikationer af denne art'
@@ -54,14 +54,14 @@ da:
     one: 1 Observation
     other: '%{count} Observationer'
   x_observations_html:
-    one: <span class='antal'>1</span> observation
-    other: <span class='antal'>%{count}</span> observationer
+    one: <span class='count'>1</span> observation
+    other: <span class='count'>%{count}</span> observationer
   x_observations_link_html:
     one: <a href='%{url}'>1 observation</a>
     other: <a href='%{url}'>%{count} observationer</a>
   x_observations_reviewed_html:
-    one: <span class='antal'>1</span> observation gennemgået
-    other: <span class='antal'>%{count}</span> observationer gennemgået
+    one: <span class='count'>1</span> observation gennemgået
+    other: <span class='count'>%{count}</span> observationer gennemgået
   x_others:
     one: 1 anden
     other: '%{count} andre'
@@ -72,20 +72,23 @@ da:
     one: 1 favorit
     other: '%{count} favoritter'
   x_flags_resolved_html:
-    one: <span class='antal'>1</span> markering løst
-    other: <span class='antal'>%{count}</span> markeringer løst
+    one: <span class='count'>1</span> markering løst
+    other: <span class='count'>%{count}</span> markeringer løst
   x_people_like_this:
     one: 1 person kan lide dette
     other: '%{count} personer kan lide dette'
   x_people_agree_html:
-    one: <span class="antal">1</span> person er enig
-    other: <span class="antal">%{count}</span> personer er enige
+    one: <span class="count">1</span> person er enig
+    other: <span class="count">%{count}</span> personer er enige
+  x_new_species:
+    one: 1 Ny art
+    other: '%{count} Nye arter'
   x_species:
     one: 1 art
     other: '%{count} arter'
   x_species_html:
-    one: <span class='antal'>1</span> art
-    other: <span class='antal'>%{count}</span> arter
+    one: <span class='count'>1</span> art
+    other: <span class='count'>%{count}</span> arter
   x_species_link_html:
     one: <a href='%{url}'>1 art</a>
     other: <a href='%{url}'>%{count} arter</a>
@@ -93,25 +96,27 @@ da:
     one: '1 forslag filtreret af:'
     other: '%{count} forslag filtreret af:'
   x_taxa_observed_html:
-    one: <span class='antal'>1</span> takson observeret
-    other: <span class='antal'>%{count}</span> taksa observeret
+    one: <span class='count'>1</span> takson observeret
+    other: <span class='count'>%{count}</span> taksa observeret
   x_research_grade_observations_html:
-    one: <span class='antal'>1</span> observation af forskningskvalitet</span>
-    other: <span class='antal'>%{count}</span> observationer af forskningskvalitet</span>
+    one: <span class='count'>1</span> observation af forskningskvalitet</span>
+    other: <span class='count'>%{count}</span> observationer af forskningskvalitet</span>
   x_research_grade_observations_to_species_html:
-    one: <span class='antal'>1</span> observation af forskningskvalitet identificeret
+    one: <span class='count'>1</span> observation af forskningskvalitet identificeret
       til art eller lavere</span>
-    other: <span class='antal'>%{count}</span> observationer af forskningskvalitet
+    other: <span class='count'>%{count}</span> observationer af forskningskvalitet
       identificerede til art eller lavere</span>
   x_taxa_curated_html:
-    one: <span class='antal'>1</span> takson kurateret
-    other: <span class='antal'>%{count}</span> taksa kurateret
+    one: <span class='count'>1</span> takson kurateret
+    other: <span class='count'>%{count}</span> taksa kurateret
   x_taxa_matching_current_filters:
     one: 1 takson matcher nuværende filtre
     other: '%{count} taksa matcher nuværende filtre'
   x_taxon_changes_added_html:
-    one: <span class='antal'>1</span> taksonændring tilføjet
-    other: <span class='antal'>%{count}</span> taksonændringer tilføjet
+    one: <span class='count'>1</span> taksonændring tilføjet
+    other: <span class='count'>%{count}</span> taksonændringer tilføjet
+  x_people_helped_user_with_y_ids_html: <strong>%{x} personer</strong> hjalp %{user}
+    med <strong>%{y} IDs</strong>
   _100_day_trends: 100 dage tendens
   _percent_ID_d: '% ID''et'
   a: en
@@ -1320,8 +1325,8 @@ da:
   editing_observation_field: Redigering af observationsfelter
   editing_observation_id: Redigering af observation %{obs_id}
   editing_observations:
-    one: 'Redigering <span class="antal">1</span> observation:'
-    other: 'Redigering <span class="antal">%{count}</span> observationer:'
+    one: 'Redigering <span class="count">1</span> observation:'
+    other: 'Redigering <span class="count">%{count}</span> observationer:'
   editing_project: Redigering af %{project}
   editing_project_asset: Redigering af projektvurderinger for
   editing_subscription_to_x_html: Redigerer abonnement på %{x}
@@ -1681,7 +1686,7 @@ da:
   help_confirm_observations!: Hjælp med at bekræfte observationer!
   help_faq: Hjælp / FAQ
   help_out!: Hjælp!
-  help_support_inaturalist: Hjælp med at støtte iNaturalist!
+  help_support_inaturalist: Hjælp med at støtte iNaturalist
   helped_the_observer_make: hjalp observatøren til at finde deres endelige Id (dvs.
     de blev lavet før det endelige Id og de matcher det)
   here_are_3_examples: Her er 3 eksempler på data i korrekt formattering
@@ -1695,6 +1700,7 @@ da:
   hi_user: Hej,%{user}
   hide: Skjul
   hide_details: Skjul detaljer
+  hide_running_total: Skjul igangværende total
   hide_uncountable_species: Skjul arter der ikke medregnes
   high: Høj
   highest_rank: Højeste rang
@@ -2436,6 +2442,7 @@ da:
   new_observation_field: Nyt observationsfelt
   new_observation_rules: Nye observationsregler
   new_observations: Nye observationer
+  new_observations_this_year: Nye observationer dette år
   new_observations_ellispsis: Nye observationer...
   new_observations_from_place_html: Nye observationer fra %{place}
   new_observations_may_take_up_to: Nye observationer kan tage op til %{widget_expiration}
@@ -2447,6 +2454,9 @@ da:
   new_project_asset: Ny projekt_vurdering
   new_project_asset_for: Ny projektvurdering for
   new_source: Ny kilde
+  new_species_added_in_interval: Nye arter tilføjet i %{interval}
+  new_species_added_in_interval_x_of_y: Nye arter tilføjet i %{interval}(viser %{x}
+    of %{y})
   new_taxon_change: Ny takson ændring
   new_taxon_link: Nyt takson link
   new_taxon_name: Nyt takson navn
@@ -2458,8 +2468,13 @@ da:
     %{site_name}
   new_user_rules: Nye brugerregler
   new_users: Nye brugere
+  new_users_this_year: Nye brugere i år
   new_users_w_7_obs: Nye brugere m/ 7 obs
   new_users_week: Nye brugere / Uge
+  newly_added: Nyligt tilføjet
+  newly_added_species: Nyligt tilføjede arter
+  newly_observed_species: Nyligt observerede arter
+  newly_observed_species_this_year: Nyligt tilføjet arter dette år
   news: Nyheder
   next: Næste
   next_observation: Næste observation
@@ -2593,6 +2608,7 @@ da:
   not_on_this_list: Ikke på denne liste.
   not_recorded: Ikke registreret
   not_seeing_what_looking_for: Kan du ikke finde det du leder efter?
+  not_spam: Ikke spam
   not_yet: Ikke endnu
   note: Bemærkning
   notes: Noter
@@ -3221,6 +3237,8 @@ da:
   processing: Bearbejder
   processing3p: Bearbejder...
   profile: Profil
+  profile_visibility_pending_account_verification: Synlighed af profil afhænger af
+    konto verifikation
   project: Projekt
   project_added_your_observations: Projekt tilføjede dine observationer
   project_admins:
@@ -3366,6 +3384,7 @@ da:
   recent_comments_on_your_stuff: Seneste kommentarer på dine ting
   recent_evidence?: Nylige beviser?
   recent_evidence_of_organism: Nylige beviser på en organisme
+  recent_new_users: Seneste nye brugere
   recent_observations: Seneste observationer
   recent_observations_: Seneste observationer
   recent_post: Seneste indlæg
@@ -3777,11 +3796,13 @@ da:
   source_url: Kilde URL
   source_of_coordinates: Kilde for koordinater og nøjagtigheds måling, indstilles
     automatisk.
+  sourced_to: Hentet til
   sources: Kilder
   sources_youve_added: Kilder du har tilføjet
   sources_and_credits: Kildeangivelse og kreditering
   sourcing: Oprindelse
   spam: spam
+  spammer: Spammer
   spanish: Spansk
   species: Arter
   species_by_category: arter efter kategori
@@ -4972,7 +4993,7 @@ da:
             Hvis ja, læs venligst vores <a href="%{url}"> lærervejledning </a> med
             tips til at bruge %{site_name} med studerende.
     donate:
-      donate_short_desc: Hjælp iNaturalist med en donation!
+      donate_short_desc: Donér nu for at vise din støtte!
       donate_desc_html: |-
         <p class="lead">
            <strong> iNaturalist er et af verdens største fællesskaber, som er dedikeret til
@@ -4992,8 +5013,7 @@ da:
            California Academy of Sciences, en 501 (c) (3) skattefritaget nonprofit
            organisation med base i USA.
         </p>
-      post_donate_social_media_text: Jeg støttede iNaturalist! Du skulle også prøve
-        at tjekke det ud.
+      post_donate_social_media_text: Jeg støtter iNaturalist fordi...
     guides:
       index:
         funding_html: |-
@@ -6029,6 +6049,7 @@ da:
           Oprettet via <a href="https://www.inaturalist.org">iNaturalist</a>
           eller<a href="%{url}">iNaturalist Network</a> hjemmesider
       year:
+        growth_title: Vækst
         sunburst_desc_html: |-
           Observeret taksa arrangeret som hierarkisk "solstråle" diagram. Basen
           af hierarkiet er i centrum, begyndende med "liv" og slutter
@@ -6766,6 +6787,15 @@ da:
         search_place_id: Søgested
         place_id: Sted
         preferred_observation_fields_by: Tillad observationsfelter fra
+  i18n:
+    inflections:
+      :@vow_or_con:
+        vow: vokal
+        con: konsonant
+      gender:
+        m: hankøn
+        f: hunkøn
+        "n": intetkøn
   wild: vild
   will_paginate:
     previous_label: '&#8592; Forrige.'

@@ -1200,6 +1200,7 @@ ko:
   help_confirm_observations!: 관찰을 인증하는 것을 도와주세요!
   help_faq: 도움말 / FAQ
   help_out!: 도와주세요!
+  help_support_inaturalist: iNaturalist 지원 돕기
   here_are_3_examples: 잘 만들어진 데이터의 3가지 예시이다
   here_are_some_things_you_can_do_meantime: '그 동안 하실 수 있는 몇 가지 일들은 다음와 같습니다:'
   hi: 안녕하세요,
@@ -1665,6 +1666,8 @@ ko:
   new_user_rules: 새로운 사용자 규칙
   new_users: 새 사용자
   new_users_week: 이 주의 새로운 사용자
+  newly_added: 새로 추가됨
+  newly_added_species: 새로 추가된 종
   news: 새 소식
   next: 다음
   next_observation: 다음 관찰
@@ -2037,6 +2040,7 @@ ko:
   receive_updates_from_this_project: 이 프로젝트에서 업데이트 전송
   recent_additions: 최근 추가 항목
   recent_evidence?: 최근의 증거가 있습니까?
+  recent_new_users: 최근 신규 사용자
   recent_observations: 최근 관찰
   recent_atom_observations_by: '%{login}의 최근 관찰 (Atom)'
   recent_updates: 최근 업데이트
@@ -2191,6 +2195,7 @@ ko:
   submitted: 제출됨
   subscriptions: 구독
   suggestions: 제안
+  support_inaturalist: iNaturalist 지원
   siutable_observations: 적합한 관찰
   sync: 동기화하시겠습니까?
   sync_with_eol: EOL과 동기화하기
@@ -2394,6 +2399,8 @@ ko:
       mailer:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: 교실에서 %{site_name}을(를) 사용할 예정이십니까?
+    donate:
+      donate_short_desc: 지원을 표하려면 지금 기부하세요!
     guides:
       edit:
         add_rank_tags_help_html: |-

@@ -74,6 +74,9 @@ et:
   x_people_agree_html:
     one: <span class="count">1</span> isik nõustub
     other: <span class="count">%{count}</span> isikut nõustub
+  x_new_species:
+    one: 1 uus liik
+    other: '%{count} uut liiki'
   x_species:
     one: 1 liik
     other: '%{count} liiki'
@@ -105,6 +108,8 @@ et:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> taksonimuudatus lisatud
     other: <span class='count'>%{count}</span> taksonimuudatust lisatud
+  x_people_helped_user_with_y_ids_html: <strong>%{x} inimest</strong> aitasid kasutajat
+    %{user} <strong>%{y} määratlusega</strong>
   _100_day_trends: 100 päeva trendid
   _percent_ID_d: '% määratud'
   a: '&nbsp;'
@@ -178,6 +183,8 @@ et:
   add_a_place_raquo: Lisa koht &raquo;
   add_a_single_observation: Lisa üks vaatlus.
   add_a_taxon: Lisa takson
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Nime muutmiseks lisa <a target="_blank"
+    href="%{url}">taksonivahetus</a>
   add_all_your_matching_obs_of_this_taxon: Lisa kõik selle taksoni kohta tehtud sobivad
     vaatlused selle projekti alla
   add_all_your_matching_obs_to_this_project: Lisa kõik sobivad vaatlused selle projekti
@@ -332,6 +339,7 @@ et:
   all_photos: Kõik fotod
   all_places: Kõik kohad
   all_projects: Kõik projektid
+  all_children_added_to_the_database: Kõik alamad lisatud andmebaasi
   all_rank_added_to_the_database:
     phylum: Kõik hõimkonnad lisatud andmebaasi
     subphylum: Kõik alamhõimkonnad lisatud andmebaasi
@@ -581,7 +589,9 @@ et:
   at_any_time_change: igal ajal (<span class="button">muuda</span>)
   at_time: kell %{time}
   atom: Atom
+  attached_taxon: Lisatud takson
   attribute: Omadus
+  attribution: Omistus
   authority_list:
     iucn_red_list: IUCNi punane nimestik
   authorize_permissions_from_provider: Autoriseeri lehe %{provider} õigused
@@ -855,6 +865,7 @@ et:
   classification: Klassifikatsioon
   clear: tühjenda
   clear_color_filters: Tühjenda värvifiltrid
+  clear_filters: Eemalda filtrid
   clear_search: Tühjenda otsing
   click_on_the_map_to: Vajuta kaardile, et määrata oma vaatluse asukoht
   click_the_map: Koha lisamiseks <strong>vajuta kaardile</strong>.
@@ -913,6 +924,7 @@ et:
   comparing_list_to_list: Võrdlen nimekirja %{list1} nimekirjaga %{list2}
   comparing_versions_x_and_y: Võrdlen versiooni %{x} versiooniga %{y}
   comparing_observations_from: Võrdlen kasutaja %{user} vaatlusi kuupäevadel %{dates}
+  complete: Valmis
   complete_sets: Täiskomplektid
   compiled_by_name: Koostanud %{name}
   completed: Lõpetatud
