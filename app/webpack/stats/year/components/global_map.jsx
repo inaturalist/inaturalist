@@ -38,7 +38,7 @@ class GlobalMap extends React.Component {
     };
     if ( site && site.id !== DEFAULT_SITE_ID ) {
       if ( site.place_id ) {
-        baseOptions.place_id = site.place_id
+        baseOptions.place_id = site.place_id;
       } else {
         baseOptions.site_id = site.id;
       }
@@ -54,9 +54,11 @@ class GlobalMap extends React.Component {
       color: "#ffee91"
     } );
     const thisYear = L.tileLayer(
-      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( thisYearOptions )}` ).addTo( map );
+      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( thisYearOptions )}`
+    ).addTo( map );
     const lastYear = L.tileLayer(
-      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( lastYearOptions )}` ).addTo( map );
+      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( lastYearOptions )}`
+    ).addTo( map );
     L.control.layers( { },
       {
         [I18n.t( "x_observations", { count: year - 1 } )]: lastYear,

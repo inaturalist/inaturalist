@@ -9,25 +9,30 @@ import PieChartForIconicTaxonCounts from "./pie_chart_for_iconic_taxon_counts";
 const Summary = ( {
   data,
   user,
-  year
+  year,
+  site
 } ) => {
-  const pieMargin = { top: 0, bottom: 120, left: 0, right: 0 };
+  const pieMargin = {
+    top: 0, bottom: 120, left: 0, right: 0
+  };
   const donutWidth = 20;
   return (
     <Row className="Summary">
-      <Col xs={ 4 }>
+      <Col xs={4}>
         { data.observations.quality_grade_counts ? (
           <div className="summary-panel">
             <div
               className="main"
-              dangerouslySetInnerHTML={ { __html: I18n.t( "x_observations_html", {
-                count: I18n.toNumber(
-                  ( data.observations.quality_grade_counts.research || 0 ) + ( data.observations.quality_grade_counts.needs_id || 0 ),
-                  { precision: 0 }
-                )
-              } ) } }
-            >
-            </div>
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "x_observations_html", {
+                  count: I18n.toNumber(
+                    ( data.observations.quality_grade_counts.research || 0 )
+                    + ( data.observations.quality_grade_counts.needs_id || 0 ),
+                    { precision: 0 }
+                  )
+                } )
+              }}
+            />
             <PieChart
               data={[
                 {
@@ -49,41 +54,50 @@ const Summary = ( {
                   qualityGrade: "research"
                 }
               ]}
-              legendColumnWidth={ 50 }
-              margin={ pieMargin }
-              donutWidth={ donutWidth }
-              onClick={ d => {
-                let url = `/observations?place_id=any&quality_grade=${d.data.qualityGrade}&${year}-01-01&d2=${year + 1}-01-01`;
+              legendColumnWidth={50}
+              margin={pieMargin}
+              donutWidth={donutWidth}
+              onClick={d => {
+                let url = `/observations?quality_grade=${d.data.qualityGrade}&d1=${year}-01-01&d2=${year}-12-31`;
                 if ( user ) {
                   url += `&user_id=${user.login}`;
                 }
+                if ( site && site.id !== 1 ) {
+                  if ( site.place_id ) {
+                    url += `&place_id=${site.place_id}`;
+                  } else {
+                    url += `&site_id=${site.id}`;
+                  }
+                } else {
+                  url += "&place_id=any";
+                }
                 window.open( url, "_blank" );
-              } }
+              }}
             />
           </div>
         ) : null }
       </Col>
-      <Col xs={ 4 }>
+      <Col xs={4}>
         { data.taxa && data.taxa.iconic_taxa_counts ? (
           <div className="summary-panel">
             <div
               className="main"
-              dangerouslySetInnerHTML={ { __html: I18n.t( "x_species_html", {
+              dangerouslySetInnerHTML={{ __html: I18n.t( "x_species_html", {
                 count: I18n.toNumber(
                   (
                     data.taxa.leaf_taxa_count
                   ),
                   { precision: 0 }
                 )
-              } ) } }
+              } ) }}
             />
             <PieChartForIconicTaxonCounts
-              data={ data.taxa.iconic_taxa_counts }
-              margin={ pieMargin }
-              donutWidth={ donutWidth }
-              user={ user }
-              year={ year }
-              labelForDatum={ d => {
+              data={data.taxa.iconic_taxa_counts}
+              margin={pieMargin}
+              donutWidth={donutWidth}
+              user={user}
+              year={year}
+              labelForDatum={d => {
                 const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
                 const percent = _.round( degrees / 360 * 100, 2 );
                 const value = I18n.t( "x_observations", {
@@ -95,17 +109,17 @@ const Summary = ( {
           </div>
         ) : null }
       </Col>
-      <Col xs={ 4 }>
+      <Col xs={4}>
         { data.identifications && data.identifications.category_counts ? (
           <div className="summary-panel">
             <div
               className="main"
-              dangerouslySetInnerHTML={ { __html: I18n.t( "x_identifications_html", {
+              dangerouslySetInnerHTML={{ __html: I18n.t( "x_identifications_html", {
                 count: I18n.toNumber(
                   _.sum( _.map( data.identifications.category_counts, v => v ) ),
                   { precision: 0 }
                 )
-              } ) } }
+              } ) }}
             />
             <PieChart
               data={[
@@ -134,17 +148,17 @@ const Summary = ( {
                   category: "maverick"
                 }
               ]}
-              legendColumns={ 2 }
-              legendColumnWidth={ 100 }
-              margin={ pieMargin }
-              donutWidth={ donutWidth }
-              onClick={ d => {
-                let url = `/identifications?for=others&current=true&category=${d.data.category}&d1=${year}-01-01&d2=${year + 1}-01-01`;
+              legendColumns={2}
+              legendColumnWidth={100}
+              margin={pieMargin}
+              donutWidth={donutWidth}
+              onClick={d => {
+                let url = `/identifications?for=others&current=true&category=${d.data.category}&d1=${year}-01-01&d2=${year}-12-31`;
                 if ( user ) {
                   url += `&user_id=${user.login}`;
                 }
                 window.open( url, "_blank" );
-              } }
+              }}
             />
           </div>
         ) : null }
@@ -156,7 +170,8 @@ const Summary = ( {
 Summary.propTypes = {
   data: PropTypes.object,
   year: PropTypes.number,
-  user: PropTypes.object
+  user: PropTypes.object,
+  site: PropTypes.object
 };
 
 export default Summary;

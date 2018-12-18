@@ -72,18 +72,28 @@ const Observations = ( {
         series={series}
         tickFormatBottom={d => moment( d ).format( "MMM D" )}
         onClick={d => {
-          let url = "/observations?place_id=any&verifiable=true";
+          let url = "/observations?verifiable=true";
+          const md = moment( d.date );
           if ( d.seriesName === "month" ) {
-            url += `&year=${d.date.getFullYear( )}&month=${d.date.getMonth() + 1}`;
+            url += `&year=${md.year( )}&month=${md.add( 2, "days" ).month( ) + 1}`;
           } else if ( d.seriesName === "week" ) {
-            const d1 = moment( d.date ).format( "YYYY-MM-DD" );
-            const d2 = moment( d.date ).add( 8, "days" ).format( "YYYY-MM-DD" );
+            const d1 = md.format( "YYYY-MM-DD" );
+            const d2 = md.add( 8, "days" ).format( "YYYY-MM-DD" );
             url += `&d1=${d1}&d2=${d2}`;
           } else {
-            url += `&on=${d.date.getFullYear( )}-${d.date.getMonth( ) + 1}-${d.date.getDate( )}`;
+            url += `&on=${md.year( )}-${md.month( ) + 1}-${md.date( )}`;
           }
           if ( user ) {
             url += `&user_id=${user.login}`;
+          }
+          if ( site && site.id !== 1 ) {
+            if ( site.place_id ) {
+              url += `&place_id=${site.place_id}`;
+            } else {
+              url += `&site_id=${site.id}`;
+            }
+          } else {
+            url += "&place_id=any";
           }
           window.open( url, "_blank" );
         }}
@@ -93,7 +103,7 @@ const Observations = ( {
         series={comparisonSeries}
         tickFormatBottom={d => moment( d ).format( "MMM D" )}
         onClick={d => {
-          let url = "/observations?place_id=any&verifiable=true";
+          let url = "/observations?verifiable=true";
           if ( d.seriesName === "last_year" ) {
             url += `&on=${d.date.getFullYear( ) - 1}-${d.date.getMonth( ) + 1}-${d.date.getDate( )}`;
           } else {
@@ -101,6 +111,15 @@ const Observations = ( {
           }
           if ( user ) {
             url += `&user_id=${user.login}`;
+          }
+          if ( site && site.id !== 1 ) {
+            if ( site.place_id ) {
+              url += `&place_id=${site.place_id}`;
+            } else {
+              url += `&site_id=${site.id}`;
+            }
+          } else {
+            url += "&place_id=any";
           }
           window.open( url, "_blank" );
         }}

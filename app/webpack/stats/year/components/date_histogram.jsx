@@ -64,7 +64,7 @@ class DateHistogram extends React.Component {
     if ( !x ) {
       return;
     }
-    const parseTime = d3.isoParse;
+    const parseTime = date => moment( date ).toDate( );
     const localSeries = {};
     _.forEach( series, ( s, seriesName ) => {
       localSeries[seriesName] = _.map( s.data, d => Object.assign( {}, d, {
