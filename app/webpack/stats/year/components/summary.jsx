@@ -96,6 +96,7 @@ const Summary = ( {
               margin={pieMargin}
               donutWidth={donutWidth}
               user={user}
+              site={site}
               year={year}
               labelForDatum={d => {
                 const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;

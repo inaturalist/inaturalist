@@ -33,7 +33,7 @@ const Identifications = ( { data, user } ) => {
   }
   if ( data.day_histogram ) {
     series.day = {
-      title: "Per Day",
+      title: I18n.t( "per_day" ),
       data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
       color: "#74ac00"
     };

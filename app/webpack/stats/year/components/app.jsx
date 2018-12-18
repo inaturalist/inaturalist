@@ -50,7 +50,7 @@ const App = ( {
             <i className="fa fa-share-square-o" />
           </a>
         </center>
-        <Summary data={data} user={user} year={year} />
+        <Summary data={data} user={user} year={year} site={site} />
         <Observations data={data.observations} user={user} year={year} site={site} />
         <Identifications data={data.identifications} user={user} />
         

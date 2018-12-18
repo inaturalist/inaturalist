@@ -9,16 +9,16 @@
   = @title.html_safe
 - content_for :extrajs do
   :javascript
-    ROOT_TAXON_ID = #{ Taxon::LIFE.id };
-    YEAR_DATA = #{ @year_statistic.try(:data).to_json.html_safe };
-    YEAR = #{ @year };
-    DISPLAY_USER = #{ @display_user ? 
+    var ROOT_TAXON_ID = #{ Taxon::LIFE.id };
+    var YEAR_DATA = #{ @year_statistic.try(:data).to_json.html_safe };
+    var YEAR = #{ @year };
+    var DISPLAY_USER = #{ @display_user ? 
       @display_user.as_indexed_json.merge( icon_url: @display_user.medium_user_icon_url ).to_json.html_safe
       :
       "null"
     };
-    SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json.html_safe };
-    DEFAULT_SITE_ID = #{ Site.default.id };
+    var YEAR_SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json.html_safe };
+    var DEFAULT_SITE_ID = #{ Site.default.id };
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;

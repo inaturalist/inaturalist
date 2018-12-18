@@ -82,11 +82,15 @@ class GlobalMap extends React.Component {
     const { site, year } = this.props;
     if ( !site || site.id === DEFAULT_SITE_ID ) { return; }
     const searchParams = {
-      site_id: site.id,
       year,
       return_bounds: true,
       per_page: 1
     };
+    if ( site.place_id ) {
+      searchParams.place_id = site.place_id;
+    } else {
+      searchParams.site_id = site.id;
+    }
     inaturalistjs.observations.search( searchParams ).then( r => {
       map.fitBounds( [
         [r.total_bounds.nelat, r.total_bounds.nelng],
