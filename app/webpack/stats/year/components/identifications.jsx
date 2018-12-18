@@ -7,7 +7,7 @@ import UserWithIcon from "../../../observations/show/components/user_with_icon";
 import DateHistogram from "./date_histogram";
 import PieChartForIconicTaxonCounts from "./pie_chart_for_iconic_taxon_counts";
 
-const Identifications = ( { data, user } ) => {
+const Identifications = ( { data, user, currentUser, year } ) => {
   if ( _.isEmpty( data ) ) {
     return <div />;
   }
@@ -46,23 +46,23 @@ const Identifications = ( { data, user } ) => {
           <DateHistogram
             series={series}
             tickFormatBottom={d => moment( d ).format( "MMM D" )}
-            onClick={d => {
+            onClick={currentUser && currentUser.id ? d => {
               let url = "/identifications?for=others&current=true";
               const d1 = moment( d.date ).format( "YYYY-MM-DD" );
               let d2;
               if ( d.seriesName === "month" ) {
-                d2 = moment( d.date ).endOf( "month" ).add( 1, "day" ).format( "YYYY-MM-DD" );
+                d2 = moment( d.date ).add( 2, "days" ).endOf( "month" ).format( "YYYY-MM-DD" );
               } else if ( d.seriesName === "week" ) {
-                d2 = moment( d.date ).add( 8, "days" ).format( "YYYY-MM-DD" );
+                d2 = moment( d.date ).endOf( "week" ).add( 1, "day" ).format( "YYYY-MM-DD" );
               } else {
-                d2 = moment( d.date ).add( 1, "day" ).format( "YYYY-MM-DD" );
+                d2 = moment( d.date ).format( "YYYY-MM-DD" );
               }
               url += `&d1=${d1}&d2=${d2}`;
               if ( user ) {
                 url += `&user_id=${user.login}`;
               }
               window.open( url, "_blank" );
-            }}
+            } : null}
             margin={{ left: 60 }}
           />
         </Col>
@@ -99,6 +99,7 @@ const Identifications = ( { data, user } ) => {
           <Col xs={4}>
             <h3><span>{ I18n.t( "ids_by_taxon" ) }</span></h3>
             <PieChartForIconicTaxonCounts
+              year={year}
               data={data.iconic_taxon_counts}
               donutWidth={20}
               labelForDatum={d => {
@@ -146,7 +147,9 @@ const Identifications = ( { data, user } ) => {
 
 Identifications.propTypes = {
   data: PropTypes.object,
-  user: PropTypes.object
+  user: PropTypes.object,
+  currentUser: PropTypes.object,
+  year: PropTypes.number
 };
 
 export default Identifications;

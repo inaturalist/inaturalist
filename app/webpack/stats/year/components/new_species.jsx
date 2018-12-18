@@ -13,6 +13,7 @@ class NewSpecies extends React.Component {
       focusYear: null,
       focusMonth: null,
       observations: [],
+      obsParams: null,
       showAccumulation: false,
       loadingObservations: false,
       totalSpeciesIDsForMonth: 0
@@ -20,9 +21,8 @@ class NewSpecies extends React.Component {
   }
 
   getObservationsOfSpecies( speciesIDs, year, month ) {
-    const { user } = this.props;
+    const { user, site } = this.props;
     const params = {
-      place_id: "any",
       verifiable: true,
       taxon_ids: speciesIDs.slice( 0, 200 ).join( "," ),
       order: "desc",
@@ -30,14 +30,24 @@ class NewSpecies extends React.Component {
       locale: I18n.locale,
       preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null,
       per_page: 100,
-      created_d1: moment( `${year}-${month}-10` ).startOf( "month" ).format( ),
-      created_d2: moment( `${year}-${month}-10` ).endOf( "month" ).format( )
+      created_d1: moment( `${year}-${month}-10` ).startOf( "month" ).format( "YYYY-MM-DD" ),
+      created_d2: moment( `${year}-${month}-10` ).endOf( "month" ).format( "YYYY-MM-DD" )
     };
     if ( user ) {
       params.user_id = user.id;
     }
+    if ( site && site.id !== DEFAULT_SITE_ID ) {
+      if ( site.place_id ) {
+        params.place_id = site.place_id;
+      } else {
+        params.site_id = site.id;
+      }
+    } else {
+      params.place_id = "any";
+    }
     this.setState( {
       observations: [],
+      obsParams: params,
       loadingObservations: true,
       focusYear: year,
       focusMonth: month,
@@ -63,6 +73,7 @@ class NewSpecies extends React.Component {
       showAccumulation,
       loadingObservations,
       observations,
+      obsParams,
       focusYear,
       focusMonth,
       totalSpeciesIDsForMonth
@@ -172,17 +183,19 @@ class NewSpecies extends React.Component {
           { observations && observations.length > 0 && (
             <h4>
               <span>
-                { observations.length < totalSpeciesIDsForMonth ? (
-                  I18n.t( "new_species_added_in_interval_x_of_y", {
-                    interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" ),
-                    x: observations.length,
-                    y: totalSpeciesIDsForMonth
-                  } )
-                ) : (
-                  I18n.t( "new_species_added_in_interval", {
-                    interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" )
-                  } )
-                ) }
+                <a href={`/observations?${_.map( obsParams, ( v, k ) => `${k}=${v}` ).join( "&" )}`}>
+                  { observations.length < totalSpeciesIDsForMonth ? (
+                    I18n.t( "new_species_added_in_interval_x_of_y", {
+                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" ),
+                      x: observations.length,
+                      y: totalSpeciesIDsForMonth
+                    } )
+                  ) : (
+                    I18n.t( "new_species_added_in_interval", {
+                      interval: moment( `${focusYear}-${focusMonth}-10` ).format( "MMMM YYYY" )
+                    } )
+                  ) }
+                </a>
               </span>
             </h4>
           ) }
@@ -192,6 +205,7 @@ class NewSpecies extends React.Component {
             columns={6}
             max={observations.length}
             user={currentUser}
+            dateField="created_at"
           />
         </div>
       </div>
@@ -202,6 +216,7 @@ class NewSpecies extends React.Component {
 NewSpecies.propTypes = {
   accumulation: PropTypes.array,
   user: PropTypes.object,
+  site: PropTypes.object,
   currentUser: PropTypes.object,
   year: PropTypes.number
 };

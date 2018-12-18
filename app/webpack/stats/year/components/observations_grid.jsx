@@ -11,7 +11,8 @@ const ObservationsGrid = ( {
   user,
   columns,
   max,
-  identifier
+  identifier,
+  dateField
 } ) => (
   <div className={`${identifier} ${user ? "for-user" : ""}`}>
     { _.map( _.chunk( observations.slice( 0, max ), columns ), ( chunk, i ) => (
@@ -38,9 +39,9 @@ const ObservationsGrid = ( {
                   <time
                     className="time pull-right"
                     dateTime={o.created_at}
-                    title={moment( o.observed_on ).format( "LLL" )}
+                    title={moment( o[dateField] ).format( "LLL" )}
                   >
-                    { moment( o.observed_on ).format( "DD MMM" ) }
+                    { moment( o[dateField] ).format( "DD MMM" ) }
                   </time>
                 </div>
               )}
@@ -57,12 +58,14 @@ ObservationsGrid.propTypes = {
   user: PropTypes.object,
   columns: PropTypes.number,
   max: PropTypes.number,
-  identifier: PropTypes.string.isRequired
+  identifier: PropTypes.string.isRequired,
+  dateField: PropTypes.string
 };
 
 ObservationsGrid.defaultProps = {
   columns: 4,
-  max: 8
+  max: 8,
+  dateField: "observed_on"
 };
 
 export default ObservationsGrid;

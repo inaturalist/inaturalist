@@ -9,6 +9,7 @@ import PieChartForIconicTaxonCounts from "./pie_chart_for_iconic_taxon_counts";
 const Summary = ( {
   data,
   user,
+  currentUser,
   year,
   site
 } ) => {
@@ -16,6 +17,19 @@ const Summary = ( {
     top: 0, bottom: 120, left: 0, right: 0
   };
   const donutWidth = 20;
+  let baseObsUrl = `/observations?d1=${year}-01-01&d2=${year}-12-31`;
+  if ( user ) {
+    baseObsUrl += `&user_id=${user.login}`;
+  }
+  if ( site && site.id !== DEFAULT_SITE_ID ) {
+    if ( site.place_id ) {
+      baseObsUrl += `&place_id=${site.place_id}`;
+    } else {
+      baseObsUrl += `&site_id=${site.id}`;
+    }
+  } else {
+    baseObsUrl += "&place_id=any";
+  }
   return (
     <Row className="Summary">
       <Col xs={4}>
@@ -58,18 +72,9 @@ const Summary = ( {
               margin={pieMargin}
               donutWidth={donutWidth}
               onClick={d => {
-                let url = `/observations?quality_grade=${d.data.qualityGrade}&d1=${year}-01-01&d2=${year}-12-31`;
-                if ( user ) {
-                  url += `&user_id=${user.login}`;
-                }
-                if ( site && site.id !== 1 ) {
-                  if ( site.place_id ) {
-                    url += `&place_id=${site.place_id}`;
-                  } else {
-                    url += `&site_id=${site.id}`;
-                  }
-                } else {
-                  url += "&place_id=any";
+                let url = `${baseObsUrl}&quality_grade=${d.data.qualityGrade}`;
+                if ( d.data.qualityGrade === "casual" ) {
+                  url += "&verifiable=any";
                 }
                 window.open( url, "_blank" );
               }}
@@ -82,14 +87,16 @@ const Summary = ( {
           <div className="summary-panel">
             <div
               className="main"
-              dangerouslySetInnerHTML={{ __html: I18n.t( "x_species_html", {
-                count: I18n.toNumber(
-                  (
-                    data.taxa.leaf_taxa_count
-                  ),
-                  { precision: 0 }
-                )
-              } ) }}
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "x_species_html", {
+                  count: I18n.toNumber(
+                    (
+                      data.taxa.leaf_taxa_count
+                    ),
+                    { precision: 0 }
+                  )
+                } )
+              }}
             />
             <PieChartForIconicTaxonCounts
               data={data.taxa.iconic_taxa_counts}
@@ -115,12 +122,14 @@ const Summary = ( {
           <div className="summary-panel">
             <div
               className="main"
-              dangerouslySetInnerHTML={{ __html: I18n.t( "x_identifications_html", {
-                count: I18n.toNumber(
-                  _.sum( _.map( data.identifications.category_counts, v => v ) ),
-                  { precision: 0 }
-                )
-              } ) }}
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "x_identifications_html", {
+                  count: I18n.toNumber(
+                    _.sum( _.map( data.identifications.category_counts, v => v ) ),
+                    { precision: 0 }
+                  )
+                } )
+              }}
             />
             <PieChart
               data={[
@@ -153,13 +162,13 @@ const Summary = ( {
               legendColumnWidth={100}
               margin={pieMargin}
               donutWidth={donutWidth}
-              onClick={d => {
+              onClick={currentUser && currentUser.id ? d => {
                 let url = `/identifications?for=others&current=true&category=${d.data.category}&d1=${year}-01-01&d2=${year}-12-31`;
                 if ( user ) {
                   url += `&user_id=${user.login}`;
                 }
                 window.open( url, "_blank" );
-              }}
+              } : null}
             />
           </div>
         ) : null }
@@ -172,6 +181,7 @@ Summary.propTypes = {
   data: PropTypes.object,
   year: PropTypes.number,
   user: PropTypes.object,
+  currentUser: PropTypes.object,
   site: PropTypes.object
 };
 

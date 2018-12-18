@@ -372,6 +372,9 @@ $tip-opacity: 1;
         color: white;
       }
     }
+    .PieChart {
+      position: relative;
+    }
   }
 }
 
@@ -476,6 +479,9 @@ $tip-opacity: 1;
   text-align: center;
   padding: 0.5em 1em;
   margin: 10px auto 3em;
+  a, a:hover, a:active {
+    color: white;
+  }
 }
 $ribbon-border-width: 20px;
 .ribbon:before, .ribbon:after {

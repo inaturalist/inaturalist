@@ -92,9 +92,14 @@ class GlobalMap extends React.Component {
       searchParams.site_id = site.id;
     }
     inaturalistjs.observations.search( searchParams ).then( r => {
+      // Deal with the date line for our friends in NZ
+      const b = r.total_bounds;
+      if ( b.swlng > 0 && b.nelng < 0 ) {
+        b.nelng = 180 + 180 + b.nelng;
+      }
       map.fitBounds( [
-        [r.total_bounds.nelat, r.total_bounds.nelng],
-        [r.total_bounds.swlat, r.total_bounds.swlng]
+        [b.nelat, b.nelng],
+        [b.swlat, b.swlng]
       ] );
     } );
   }

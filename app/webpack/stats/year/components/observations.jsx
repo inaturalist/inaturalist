@@ -78,7 +78,7 @@ const Observations = ( {
             url += `&year=${md.year( )}&month=${md.add( 2, "days" ).month( ) + 1}`;
           } else if ( d.seriesName === "week" ) {
             const d1 = md.format( "YYYY-MM-DD" );
-            const d2 = md.add( 8, "days" ).format( "YYYY-MM-DD" );
+            const d2 = md.endOf( "week" ).add( 1, "day" ).format( "YYYY-MM-DD" );
             url += `&d1=${d1}&d2=${d2}`;
           } else {
             url += `&on=${md.year( )}-${md.month( ) + 1}-${md.date( )}`;

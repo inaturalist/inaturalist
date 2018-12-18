@@ -50,10 +50,14 @@ const App = ( {
             <i className="fa fa-share-square-o" />
           </a>
         </center>
-        <Summary data={data} user={user} year={year} site={site} />
+        <Summary data={data} user={user} year={year} site={site} currentUser={currentUser} />
         <Observations data={data.observations} user={user} year={year} site={site} />
-        <Identifications data={data.identifications} user={user} />
-        
+        <Identifications
+          data={data.identifications}
+          user={user}
+          currentUser={currentUser}
+          year={year}
+        />
         <Taxa
           data={data.taxa}
           rootTaxonID={rootTaxonID}
@@ -157,12 +161,12 @@ const App = ( {
         ) : (
           <div className="protector">
             <div className="site-icon">
-              <img src={site.icon_url} alt={site.name} />
+              <a href={site.url}><img src={site.icon_url} alt={site.name} /></a>
             </div>
             <div className="ribbon-container">
               <div className="ribbon">
                 <div className="ribbon-content">
-                  { site.name }
+                  <a href={site.url}>{ site.name }</a>
                 </div>
               </div>
             </div>
