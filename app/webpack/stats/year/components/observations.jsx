@@ -21,7 +21,7 @@ const Observations = ( {
       data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
       style: "bar",
       color: grayColor,
-      label: d => `<strong>${moment( d.date ).format( "MMMM" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
+      label: d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
     };
   }
   if ( data.week_histogram ) {

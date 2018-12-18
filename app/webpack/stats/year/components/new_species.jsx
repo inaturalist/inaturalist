@@ -68,7 +68,27 @@ class NewSpecies extends React.Component {
       totalSpeciesIDsForMonth
     } = this.state;
     const series = {};
-    const data = accumulation.map( i => i );
+    const data = [];
+    const minDate = moment( _.sortBy( accumulation.map( i => i.date ), i => i.date )[0] || `${year}-01-01` );
+    const minYear = minDate.year( );
+    const minMonth = minDate.month( ) + 1;
+    for ( let y = minYear; y <= year; y += 1 ) {
+      const startMonth = ( y === minYear ) ? minMonth : 1;
+      for ( let month = startMonth; month <= 12; month += 1 ) {
+        const date = `${y}-${month < 10 ? `0${month}` : month}-01`;
+        const interval = _.find( accumulation, i => i.date === date );
+        if ( interval ) {
+          data.push( interval );
+        } else {
+          const prev = _.findLast( _.sortBy( accumulation, i => i.date ), i => i.date < date );
+          data.push( {
+            date,
+            accumulated_species_count: prev ? prev.accumulated_species_count : 0,
+            novel_species_ids: []
+          } );
+        }
+      }
+    }
     data.push( {
       date: `${year + 1}-01-01`,
       accumulated_species_count: 0,

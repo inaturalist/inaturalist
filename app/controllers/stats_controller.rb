@@ -79,6 +79,7 @@ class StatsController < ApplicationController
     end
     respond_to do |format|
       format.html { render layout: "bootstrap" }
+      format.json { render json: @year_statistic.data }
     end
   end
 

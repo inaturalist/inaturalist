@@ -4,6 +4,7 @@ import _ from "lodash";
 import moment from "moment";
 import { color as d3color } from "d3";
 import { COLORS } from "../../../shared/util";
+import { histogramWithoutGaps } from "../util";
 import DateHistogram from "./date_histogram";
 
 const Growth = ( {
@@ -18,19 +19,24 @@ const Growth = ( {
     novel: 0,
     value: 0
   };
+  const endDate = `${year + 1}-01-01`;
   let runningTotal = 0;
-  let obsData = _.sortBy(
+  let obsData = _.map(
     _.map( data.observations, ( value, date ) => ( { date, value } ) ),
-    i => i.date
+    interval => {
+      runningTotal += interval.value;
+      return {
+        date: interval.date,
+        total: runningTotal,
+        novel: interval.value
+      };
+    }
   );
-  obsData = _.map( obsData, interval => {
-    runningTotal += interval.value;
-    return {
-      date: interval.date,
-      total: runningTotal,
-      novel: interval.value
-    };
-  } );
+  obsData = histogramWithoutGaps( obsData, { endDate }, ( date, prev ) => ( {
+    date,
+    total: prev ? prev.total : 0,
+    novel: 0
+  } ) );
   obsData.push( emptyJan );
   const obsSeries = {
     total: {
@@ -65,7 +71,11 @@ const Growth = ( {
   };
   let taxaSeries;
   if ( data.taxa ) {
-    const taxaData = data.taxa.map( i => i );
+    const taxaData = histogramWithoutGaps( data.taxa, { endDate }, ( date, prev ) => ( {
+      date,
+      accumulated_species_count: prev ? prev.accumulated_species_count : 0,
+      novel_species_ids: []
+    } ) );
     taxaData.push( {
       date: `${year + 1}-01-01`,
       accumulated_species_count: 0,
@@ -107,7 +117,7 @@ const Growth = ( {
     };
   }
   runningTotal = 0;
-  const userData = _.map(
+  const sortedUserData = _.map(
     _.sortBy( _.map( data.users, ( value, date ) => ( { date, value } ) ), i => i.date ),
     i => {
       runningTotal += i.value;
@@ -118,6 +128,11 @@ const Growth = ( {
       };
     }
   );
+  const userData = histogramWithoutGaps( sortedUserData, { endDate }, ( date, prev ) => ( {
+    date,
+    total: prev ? prev.total : 0,
+    novel: 0
+  } ) );
   userData.push( emptyJan );
   const usersSeries = {
     total: {
