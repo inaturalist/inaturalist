@@ -66,9 +66,6 @@ class StatsController < ApplicationController
     else
       YearStatistic.where( site_id: @site, year: @year ).where( "user_id IS NULL" ).first
     end
-    unless @year_statistic
-      return render_404
-    end
     @headless = @footless = true
     @shareable_image_url = if @year_statistic && @year_statistic.shareable_image?
       @year_statistic.shareable_image
