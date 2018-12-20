@@ -1981,12 +1981,17 @@ class Observation < ActiveRecord::Base
   end
 
   def update_quality_metrics
+    Rails.logger.debug "[DEBUG] update_quality_metrics"
     return true if skip_quality_metrics
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
-    elsif captive_flag.noish? && force_quality_metrics
-      QualityMetric.vote( user, self, QualityMetric::WILD, true )
+    # elsif captive_flag.noish? && force_quality_metrics
+    #   Rails.logger.debug "captive_flag: #{captive_flag}"
+    #   Rails.logger.debug "captive_flag.noish?: #{captive_flag.noish?}"
+    #   QualityMetric.vote( user, self, QualityMetric::WILD, true )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+      Rails.logger.debug "existing: #{qm}, captive_flag: #{captive_flag}"
+      Rails.logger.debug "existing: #{qm}, captive_flag.noish?: #{captive_flag.noish?}"
       qm.update_attributes( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy

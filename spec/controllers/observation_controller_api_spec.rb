@@ -600,9 +600,18 @@ shared_examples_for "an ObservationsController" do
       expect( o ).to be_captive_cultivated
     end
     
-    it "should mark as wild in response to captive_flag" do
+    it "should not mark as wild in response to captive_flag=0 if there is no existing quality metric" do
       o = Observation.make!(user: user)
       expect( o ).not_to be_captive_cultivated
+      put :update, format: :json, id: o.id, observation: { captive_flag: "0" }
+      o.reload
+      qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
+      expect( qm ).to be_blank
+    end
+
+    it "should mark as wild in response to captive_flag=0 if there is an existing quality metric" do
+      o = Observation.make!( user: user, captive_flag: true )
+      expect( o ).to be_captive_cultivated
       put :update, format: :json, id: o.id, observation: { captive_flag: "0" }
       o.reload
       qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
