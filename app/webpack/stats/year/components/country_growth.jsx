@@ -25,7 +25,7 @@ class CountryGrowth extends React.Component {
     // d3.json( "https://unpkg.com/world-atlas@1/world/50m.json", world => this.setState( { world } ) );
     // d3.tsv( "https://unpkg.com/world-atlas@1/world/50m.tsv", worldData => this.setState( { worldData: _.keyBy( worldData, d => d.un_a3 ) } ) );
     d3.json( WORLD_ATLAS_50M_JSON_URL, world => this.setState( { world } ) );
-    d3.tsv( WORLD_ATLAS_50M_TSV_URL, worldData => this.setState( { worldData: _.keyBy( worldData, d => d.un_a3 ) } ) );
+    d3.tsv( WORLD_ATLAS_50M_TSV_URL, worldData => this.setState( { worldData: _.keyBy( worldData, d => d.iso_n3 ) } ) );
   }
 
   componentDidUpdate( prevProps, prevState ) {
@@ -75,13 +75,15 @@ class CountryGrowth extends React.Component {
         if ( country ) {
           newProperties = Object.assign( newProperties, country );
           newProperties.difference = newProperties.observations - newProperties.observations_last_year;
-          newProperties.difference_per_capita = newProperties.difference / newProperties.pop_est;
+          newProperties.differencePercent = (
+            newProperties.observations - newProperties.observations_last_year
+          ) / newProperties.observations_last_year * 100;
         }
       }
       f.properties = Object.assign( newProperties, f.properties );
       return f;
     } );
-    const color = d3.scaleLog( )
+    const color = d3.scaleLinear( )
       .domain( [1, d3.max( _.map( worldFeatures, d => parseInt( d.properties[metric], 0 ) ) )] );
     g.selectAll( "path" )
       .data( worldFeatures, d => d.id )
@@ -156,9 +158,20 @@ class CountryGrowth extends React.Component {
       c => c.properties[metric] * -1
     );
     const bars = barsContainer.selectAll( ".bar" )
-      .data( barData, ( d, i ) => `${d.id}-${i}` )
-        .style( "width", d => `${color( d.properties[metric] ) * 100}%` )
-        .style( "color", d => d3.color( d3.interpolatePlasma( color( d.properties[metric] ) ) ).darker( 2 ) );
+      .data( barData, ( d, i ) => `${metric}-${d.id}-${i}` );
+    bars.exit( ).remove( );
+    const valueText = country => {
+      const v = I18n.toNumber( _.round( country.properties[metric], 2 ), { precision: 0 } );
+      if ( metric === "differencePercent" ) {
+        return `${v}%`;
+      }
+      return v;
+    };
+    bars
+      .style( "width", d => `${color( d.properties[metric] ) * 100}%` )
+      .style( "color", d => d3.color( d3.interpolatePlasma( color( d.properties[metric] ) ) ).darker( 2 ) )
+      .select( ".value" )
+        .text( valueText );
     const enterBars = bars.enter( )
       .append( "button" )
         .attr( "class", "bar" )
@@ -173,15 +186,30 @@ class CountryGrowth extends React.Component {
         .text( ( country, i ) => i + 1 );
     enterBars
       .append( "span" )
+        .attr( "class", "place-name" )
         .text( country => {
-          if ( color( country.properties.observations || 0 ) < 0.4 ) {
+          if ( color( country.properties[metric] || 0 ) < 0.4 ) {
             return country.properties.place_code;
           }
           return I18n.t( `place_names.${_.snakeCase( country.properties.name )}`, {
             defaultValue: country.properties.name
           } );
         } );
-    bars.exit( ).remove( );
+    enterBars
+      .append( "span" )
+        .attr( "class", d => {
+          if ( color( d.properties[metric] || 0 ) < 0.5 ) {
+            return "value outside";
+          }
+          return "value";
+        } )
+        .text( country => {
+          const v = I18n.toNumber( _.round( country.properties[metric], 2 ), { precision: 0 } );
+          if ( metric === "differencePercent" ) {
+            return `${v}%`;
+          }
+          return v;
+        } );
   }
 
   renderVisualization( ) {
@@ -222,8 +250,8 @@ class CountryGrowth extends React.Component {
             >
               <option value="observations">Obs in {year}</option>
               <option value="observations_last_year">Obs in {year - 1 }</option>
-              <option value="difference">Difference</option>
-              <option value="difference_per_capita">Difference per capita</option>
+              <option value="difference">Growth in {year}</option>
+              <option value="differencePercent">Growth in {year} (percent)</option>
             </select>
             <div className="chart" />
           </div>

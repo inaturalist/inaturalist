@@ -655,7 +655,6 @@ $obs-grid-photo-size: 210px;
     select { width: 100%; }
   }
   .bar {
-    display: block;
     border: 0 transparent;
     padding: 2px 5px;
     text-transform: uppercase;
@@ -664,10 +663,20 @@ $obs-grid-photo-size: 210px;
     text-overflow: ellipsis;
     text-align: left;
     display: flex;
+    position: relative;
     .rank {
       width: 10px;
       margin-right: 5px;
       text-align: right;
+    }
+    .place-name {
+      flex: 1;
+    }
+    .outside {
+      position: absolute;
+      left: 100%;
+      margin-left: 10px;
+      color: white;
     }
   }
 }
