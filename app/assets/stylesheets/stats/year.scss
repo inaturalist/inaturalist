@@ -647,36 +647,51 @@ $obs-grid-photo-size: 210px;
       height: 500px;
       min-height: 500px;
     }
-  }
-  .bars {
-    height: 500px;
-    overflow-x: hidden;
-    overflow-y: scroll;
-    select { width: 100%; }
-  }
-  .bar {
-    border: 0 transparent;
-    padding: 2px 5px;
-    text-transform: uppercase;
-    font-size: 9px;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    text-align: left;
-    display: flex;
-    position: relative;
-    .rank {
-      width: 10px;
-      margin-right: 5px;
-      text-align: right;
+    .controls {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      select {
+        flex-grow: 5;
+      }
     }
-    .place-name {
-      flex: 1;
+    .bars {
+      height: 500px;
+      overflow-x: hidden;
+      overflow-y: scroll;
+      select { width: 100%; }
     }
-    .outside {
-      position: absolute;
-      left: 100%;
-      margin-left: 10px;
-      color: white;
+    .bar {
+      border: 0 transparent;
+      padding: 2px 5px;
+      text-transform: uppercase;
+      font-size: 9px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      text-align: left;
+      display: flex;
+      position: relative;
+      > * {
+        display: none;
+      }
+      &:hover > *,
+      &.current > * {
+        display: inline-block;
+      }
+      .rank {
+        width: 10px;
+        margin-right: 5px;
+        text-align: right;
+      }
+      .place-name {
+        flex: 1;
+      }
+      .outside {
+        position: absolute;
+        left: 100%;
+        margin-left: 10px;
+        color: white;
+      }
     }
   }
 }

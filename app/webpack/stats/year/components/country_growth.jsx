@@ -9,14 +9,16 @@ import * as topojson from "topojson-client";
 import { objectToComparable } from "../../../shared/util";
 
 class CountryGrowth extends React.Component {
-
   constructor( props ) {
     super( props );
     this.state = {
       world: null,
       worldData: null,
       path: d3.geoPath( d3.geoNaturalEarth1( ) ),
-      metric: "observations"
+      metric: "observations",
+      dataScaleType: "linear",
+      includeUS: true,
+      currentFeatureID: null
     };
   }
 
@@ -30,13 +32,23 @@ class CountryGrowth extends React.Component {
 
   componentDidUpdate( prevProps, prevState ) {
     const { data } = this.props;
-    const { world, worldData, metric } = this.state;
+    const {
+      world,
+      worldData,
+      metric,
+      dataScaleType,
+      includeUS,
+      currentFeatureID
+    } = this.state;
     if (
       data && world && worldData && (
         ( objectToComparable( prevProps.data ) !== objectToComparable( data ) )
         || ( prevState.world === null && world !== null )
         || ( prevState.worldData === null && worldData !== null )
         || prevState.metric !== metric
+        || prevState.includeUS !== includeUS
+        || prevState.dataScaleType !== dataScaleType
+        || prevState.currentFeatureID !== currentFeatureID
       )
     ) {
       this.enterVisualization( );
@@ -48,14 +60,18 @@ class CountryGrowth extends React.Component {
       path,
       world,
       worldData,
-      metric
+      metric,
+      dataScaleType,
+      includeUS,
+      currentFeatureID
     } = this.state;
     const { data: countries } = this.props;
     const countriesByCode = _.keyBy( countries, "place_code" );
     if ( !world || !worldData ) {
       return;
     }
-    const mountNode = $( ".map .chart", ReactDOM.findDOMNode( this ) ).get( 0 );
+    const domNode = ReactDOM.findDOMNode( this )
+    const mountNode = $( ".map .chart", domNode ).get( 0 );
     const svg = d3.select( mountNode ).select( "svg" );
     const width = svg.attr( "width" );
     const height = svg.attr( "height" );
@@ -66,7 +82,7 @@ class CountryGrowth extends React.Component {
       .on( "zoom", zoomed );
     let active = d3.select( null );
     svg.select( "rect" ).on( "click", reset );
-    const worldFeatures = _.map( topojson.feature( world, world.objects.countries ).features, f => {
+    let worldFeatures = _.map( topojson.feature( world, world.objects.countries ).features, f => {
       let newProperties = {};
       const worldCountry = worldData[f.id];
       if ( worldCountry ) {
@@ -74,32 +90,67 @@ class CountryGrowth extends React.Component {
         const country = countriesByCode[worldCountry.iso_a2];
         if ( country ) {
           newProperties = Object.assign( newProperties, country );
-          newProperties.difference = newProperties.observations - newProperties.observations_last_year;
+          newProperties.difference = ( newProperties.observations || 0 ) - ( newProperties.observations_last_year || 0 );
           newProperties.differencePercent = (
             newProperties.observations - newProperties.observations_last_year
           ) / newProperties.observations_last_year * 100;
+        } else {
+          // // TEST
+          // newProperties.observations = 100;
+          // newProperties.observations_last_year = 50;
+          // newProperties.difference = newProperties.observations - newProperties.observations_last_year;
+          // newProperties.differencePercent = (
+          //   newProperties.observations - newProperties.observations_last_year
+          // ) / newProperties.observations_last_year * 100;
         }
       }
       f.properties = Object.assign( newProperties, f.properties );
       return f;
     } );
-    const color = d3.scaleLinear( )
+    if ( !includeUS ) {
+      worldFeatures = _.filter( worldFeatures, f => !f.properties.name.match( /United States/ ) );
+    }
+    const totalObs = _.reduce(
+      worldFeatures,
+      ( sum, f ) => ( sum + ( f.properties.observations || 0 ) ),
+      0
+    );
+    const totalObsLastYear = _.reduce(
+      worldFeatures,
+      ( sum, f ) => ( sum + ( f.properties.observations_last_year || 0 ) ),
+      0
+    );
+    const totalDifference = totalObs - totalObsLastYear;
+    _.forEach( worldFeatures, ( f, i ) => {
+      if ( f.properties.difference && f.properties.difference > 0 ) {
+        worldFeatures[i].properties.percentOfTotalGrowth = ( f.properties.difference || 0 ) / totalDifference * 100;
+      }
+    } );
+    const dataScale = ( dataScaleType === "linear" ? d3.scaleLinear( ) : d3.scaleLog( ) )
       .domain( [1, d3.max( _.map( worldFeatures, d => parseInt( d.properties[metric], 0 ) ) )] );
-    g.selectAll( "path" )
+    const countryPaths = g.selectAll( "path" )
       .data( worldFeatures, d => d.id )
         .attr( "fill", d => {
           if ( !d.properties[metric] ) {
             return "#000000";
           }
-          return d3.interpolatePlasma( color( d.properties[metric] ) );
-        } )
+          return d3.interpolatePlasma( dataScale( d.properties[metric] ) );
+        } );
+    countryPaths
+      .attr( "fill", d => {
+        if ( !d.properties[metric] ) {
+          return "#000000";
+        }
+        return d3.interpolatePlasma( dataScale( d.properties[metric] ) );
+      } );
+    countryPaths
       .enter( ).append( "path" )
         .attr( "id", d => d.id )
         .attr( "fill", d => {
           if ( !d.properties[metric] ) {
             return "#000000";
           }
-          return d3.interpolatePlasma( color( d.properties[metric] ) );
+          return d3.interpolatePlasma( dataScale( d.properties[metric] ) );
         } )
         .attr( "stroke", "rgba(255,255,255,100)" )
         .attr( "stroke-width", 0 )
@@ -122,9 +173,15 @@ class CountryGrowth extends React.Component {
               defaultValue: d.properties.name
             } );
           } );
+    countryPaths.exit( ).remove( );
+    const that = this;
     function clicked( d ) {
-      let current = svg.select( `[id="${d.id}"]` );
-      if ( active.node( ) === current ) return reset( );
+      const current = svg.select( `[id="${d.id}"]` );
+      if ( active.node( ) === current ) {
+        that.setState( { currentFeatureID: null } );
+        return reset( );
+      }
+      that.setState( { currentFeatureID: d.id } );
       active.classed( "active", false );
       active = current.classed( "active", true );
       const bounds = path.bounds( d );
@@ -152,33 +209,36 @@ class CountryGrowth extends React.Component {
       g.attr( "transform", d3.event.transform );
     }
 
-    const barsContainer = d3.select( $( ".bars .chart", ReactDOM.findDOMNode( this ) ).get( 0 ) );
+    const barsContainer = d3.select( $( ".bars .chart", domNode ).get( 0 ) );
     const barData = _.sortBy(
       _.filter( worldFeatures, c => parseInt( c.properties[metric], 0 ) > 0 ),
       c => c.properties[metric] * -1
     );
     const bars = barsContainer.selectAll( ".bar" )
-      .data( barData, ( d, i ) => `${metric}-${d.id}-${i}` );
+      .data( barData, ( d, i ) => `${metric}-${d.id}-${i}-${dataScale( d.properties[metric] )}` );
     bars.exit( ).remove( );
     const valueText = country => {
       const v = I18n.toNumber( _.round( country.properties[metric], 2 ), { precision: 0 } );
-      if ( metric === "differencePercent" ) {
+      if ( metric.match( /percent/i ) ) {
         return `${v}%`;
       }
       return v;
     };
     bars
-      .style( "width", d => `${color( d.properties[metric] ) * 100}%` )
-      .style( "color", d => d3.color( d3.interpolatePlasma( color( d.properties[metric] ) ) ).darker( 2 ) )
+      .style( "width", d => `${dataScale( d.properties[metric] ) * 100}%` )
+      .style( "color", d => d3.color( d3.interpolatePlasma( dataScale( d.properties[metric] ) ) ).darker( 2 ) )
+      .style( "background-color", d => d3.interpolatePlasma( dataScale( d.properties[metric] ) ) )
+      .attr( "class", d => `bar ${currentFeatureID === d.id ? "current" : ""}` )
       .select( ".value" )
         .text( valueText );
     const enterBars = bars.enter( )
       .append( "button" )
-        .attr( "class", "bar" )
-        .attr( "title", d => d.properties[metric] )
-        .style( "width", d => `${color( d.properties[metric] ) * 100}%` )
-        .style( "color", d => d3.color( d3.interpolatePlasma( color( d.properties[metric] ) ) ).darker( 2 ) )
-        .style( "background-color", d => d3.interpolatePlasma( color( d.properties[metric] ) ) )
+        .attr( "class", d => `bar ${currentFeatureID === d.id ? "current" : ""}` )
+        .attr( "title", d => `${d.properties.name} (${valueText( d )})` )
+        .attr( "data-feature-id", d => d.id )
+        .style( "width", d => `${dataScale( d.properties[metric] ) * 100}%` )
+        .style( "color", d => d3.color( d3.interpolatePlasma( dataScale( d.properties[metric] ) ) ).darker( 2 ) )
+        .style( "background-color", d => d3.interpolatePlasma( dataScale( d.properties[metric] ) ) )
         .on( "click", d => clicked( d ) );
     enterBars
       .append( "span" )
@@ -188,7 +248,7 @@ class CountryGrowth extends React.Component {
       .append( "span" )
         .attr( "class", "place-name" )
         .text( country => {
-          if ( color( country.properties[metric] || 0 ) < 0.4 ) {
+          if ( dataScale( country.properties[metric] || 0 ) < 0.4 ) {
             return country.properties.place_code;
           }
           return I18n.t( `place_names.${_.snakeCase( country.properties.name )}`, {
@@ -198,18 +258,13 @@ class CountryGrowth extends React.Component {
     enterBars
       .append( "span" )
         .attr( "class", d => {
-          if ( color( d.properties[metric] || 0 ) < 0.5 ) {
+          if ( dataScale( d.properties[metric] || 0 ) < 0.5 ) {
             return "value outside";
           }
           return "value";
         } )
-        .text( country => {
-          const v = I18n.toNumber( _.round( country.properties[metric], 2 ), { precision: 0 } );
-          if ( metric === "differencePercent" ) {
-            return `${v}%`;
-          }
-          return v;
-        } );
+        .text( valueText );
+    $( ".bars", domNode ).scrollTo( $( `.bars [data-feature-id=${currentFeatureID}]`, domNode ) );
   }
 
   renderVisualization( ) {
@@ -235,6 +290,7 @@ class CountryGrowth extends React.Component {
 
   render( ) {
     const { id, className, year } = this.props;
+    const { dataScaleType, includeUS } = this.state;
     return (
       <div id={id} className={`CountryGrowth ${className}`}>
         <div className="row">
@@ -242,17 +298,63 @@ class CountryGrowth extends React.Component {
             <div className="chart" />
           </div>
           <div className="bars col-xs-3">
-            <select
-              className="form-control stacked"
-              onChange={e => {
-                this.setState( { metric: e.target.value } );
-              }}
-            >
-              <option value="observations">Obs in {year}</option>
-              <option value="observations_last_year">Obs in {year - 1 }</option>
-              <option value="difference">Growth in {year}</option>
-              <option value="differencePercent">Growth in {year} (percent)</option>
-            </select>
+            <div className="controls">
+              <select
+                className="form-control stacked"
+                onChange={e => {
+                  this.setState( { metric: e.target.value } );
+                }}
+              >
+                <option value="observations">Obs in {year}</option>
+                <option value="observations_last_year">Obs in {year - 1 }</option>
+                <option value="difference">Growth in {year}</option>
+                <option value="differencePercent">Growth in {year} (%)</option>
+                <option value="percentOfTotalGrowth">% of Total Growth</option>
+              </select>
+              <label htmlFor="CountryGrowth-include-us">
+                <input
+                  id="CountryGrowth-include-us"
+                  type="checkbox"
+                  checked={includeUS}
+                  onChange={( ) => {
+                    this.setState( { includeUS: !includeUS } );
+                  }}
+                />
+                { " " }
+                Include US
+              </label>
+              <div>
+                Scale:
+                { " " }
+                <label htmlFor="CountryGrowth-data-scale-type-linear">
+                  <input
+                    id="CountryGrowth-data-scale-type-linear"
+                    type="radio"
+                    value="linear"
+                    checked={dataScaleType === "linear"}
+                    onChange={e => {
+                      this.setState( { dataScaleType: e.target.value } );
+                    }}
+                  />
+                  { " " }
+                  Linear
+                </label>
+                { " " }
+                <label htmlFor="CountryGrowth-data-scale-type-log">
+                  <input
+                    id="CountryGrowth-data-scale-type-log"
+                    type="radio"
+                    value="log"
+                    checked={dataScaleType === "log"}
+                    onChange={e => {
+                      this.setState( { dataScaleType: e.target.value } );
+                    }}
+                  />
+                  { " " }
+                  Log
+                </label>
+              </div>
+            </div>
             <div className="chart" />
           </div>
         </div>
