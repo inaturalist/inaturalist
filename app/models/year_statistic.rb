@@ -419,12 +419,12 @@ class YearStatistic < ActiveRecord::Base
       users_helped.
       buckets
     users = buckets[0..2].inject( [] ) do |memo, bucket|
-      helped_user = User.find_by_id( bucket["key"] )
-      next unless helped_user
-      memo << {
-        count: bucket.doc_count,
-        user: helped_user.as_indexed_json
-      }
+      if helped_user = User.find_by_id( bucket["key"] )
+        memo << {
+          count: bucket.doc_count,
+          user: helped_user.as_indexed_json
+        }
+      end
       memo
     end.compact
     [users, buckets.size, buckets.map(&:doc_count).sum]

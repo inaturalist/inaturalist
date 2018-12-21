@@ -2926,12 +2926,8 @@ class Observation < ActiveRecord::Base
     description.mentioned_users & description_was.to_s.mentioned_users
   end
 
-  # Show count of all faves on this observation. cached_votes_total stores the
-  # count of all votes without a vote_scope, which for an Observation means
-  # the faves, but since that might vary from model to model based on how we
-  # use acts_as_votable, faves_count seems clearer.
   def faves_count
-    cached_votes_total
+    votes_for.select{|v| v.vote_scope.blank?}.size
   end
 
   def probably_captive?

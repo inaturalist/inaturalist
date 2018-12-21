@@ -161,7 +161,7 @@ class Observation < ActiveRecord::Base
         map_scale: map_scale,
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,
-        faves_count: cached_votes_total,
+        faves_count: faves_count,
         cached_votes_total: cached_votes_total,
         num_identification_agreements: num_identification_agreements,
         num_identification_disagreements: num_identification_disagreements,
