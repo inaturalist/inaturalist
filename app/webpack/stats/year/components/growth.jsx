@@ -6,6 +6,7 @@ import { color as d3color } from "d3";
 import { COLORS } from "../../../shared/util";
 import { histogramWithoutGaps } from "../util";
 import DateHistogram from "./date_histogram";
+import CountryGrowth from "./country_growth";
 
 const Growth = ( {
   data,
@@ -171,6 +172,7 @@ const Growth = ( {
       <DateHistogram series={obsSeries} legendPosition="nw" margin={{ left: 60 }} />
       { taxaSeries && <DateHistogram series={taxaSeries} legendPosition="nw" margin={{ left: 60 }} /> }
       <DateHistogram series={usersSeries} legendPosition="nw" margin={{ left: 60 }} />
+      <CountryGrowth data={data.countries} year={year} />
     </div>
   );
 };

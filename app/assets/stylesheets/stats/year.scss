@@ -100,7 +100,8 @@ $dark-gray: #333333;
     opacity: 0.5;
   }
 
-  .btn-bordered {
+  .btn-bordered,
+  select {
     background-color: $background-color;
     color: white;
     border: 2px solid darken( $inat-green, 10% );
@@ -639,6 +640,34 @@ $obs-grid-photo-size: 210px;
     .chart svg {
       min-height: 200px;
       height: 200px;
+    }
+  }
+  .CountryGrowth {
+    .chart svg {
+      height: 500px;
+      min-height: 500px;
+    }
+  }
+  .bars {
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    select { width: 100%; }
+  }
+  .bar {
+    display: block;
+    border: 0 transparent;
+    padding: 2px 5px;
+    text-transform: uppercase;
+    font-size: 9px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: left;
+    display: flex;
+    .rank {
+      width: 10px;
+      margin-right: 5px;
+      text-align: right;
     }
   }
 }

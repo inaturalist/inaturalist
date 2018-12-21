@@ -58,7 +58,8 @@ class YearStatistic < ActiveRecord::Base
       },
       growth: {
         observations: observations_histogram_by_created_month( options ),
-        users: users_histogram_by_created_month( options )
+        users: users_histogram_by_created_month( options ),
+        countries: observation_counts_by_country( year, options )
       }
     }
     if options[:site].blank?
@@ -731,6 +732,36 @@ class YearStatistic < ActiveRecord::Base
     Hash[scope.count.map do |k,v|
       ["#{k.split( "-" ).map{|s| s.rjust( 2, "0" )}.join( "-" )}-01", v]
     end.sort]
+  end
+
+  def self.observation_counts_by_country( year, params = {} )
+    data = Place.where( admin_level: 0 ).all.inject( [] ) do |memo, p|
+      r = INatAPIService.observations( per_page: 0, verifiable: true,
+        created_d1: "#{year}-01-01",
+        created_d2: "#{year}-12-31",
+        place_id: p.id
+      )
+      year_count = r ? r.total_results : 0
+      r = INatAPIService.observations( per_page: 0, verifiable: true,
+        created_d1: "#{year - 1}-01-01",
+        created_d2: "#{year - 1}-12-31",
+        place_id: p.id
+      )
+      last_year_count = r ? r.total_results : 0
+      if year_count.to_i <= 0
+        memo
+      else
+        memo << {
+          place_id: p.id,
+          place_code: p.code,
+          place_bounding_box: p.bounding_box,
+          name: p.name,
+          observations: year_count,
+          observations_last_year: last_year_count
+        }
+        memo
+      end
+    end
   end
 
   private

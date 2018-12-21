@@ -19,6 +19,8 @@
     };
     var YEAR_SITE = #{ @site.as_json( only: [:id, :name, :site_name_short, :url, :place_id] ).merge( icon_url: FakeView.asset_url( @site.logo_square.url ), logo_url: FakeView.asset_url( @site.logo.url ) ).to_json.html_safe };
     var DEFAULT_SITE_ID = #{ Site.default.id };
+    var WORLD_ATLAS_50M_JSON_URL = "#{image_url( "50m.json" )}";
+    var WORLD_ATLAS_50M_TSV_URL = "#{image_url( "50m.tsv" )}";
     (function(d, s, id) {
       var js, fjs = d.getElementsByTagName(s)[0];
       if (d.getElementById(id)) return;
