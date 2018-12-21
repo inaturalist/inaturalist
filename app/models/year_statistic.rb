@@ -363,7 +363,7 @@ class YearStatistic < ActiveRecord::Base
     # )
     es_params_with_sort = es_params.merge(
       sort: [
-        { "cached_votes_total": "desc" },
+        { "faves_count": "desc" },
         { "comments_count": "desc" }
       ]
     )
@@ -392,10 +392,10 @@ class YearStatistic < ActiveRecord::Base
       
     JSON.
         parse( INatAPIService.get_json( "/observations", api_params, { timeout: 30 } ) )["results"].
-        sort_by{|o| [0 - o["cached_votes_total"].to_i, 0 - o["comments_count"].to_i] }.
+        sort_by{|o| [0 - o["faves_count"].to_i, 0 - o["comments_count"].to_i] }.
         each_with_index.map do |o,i|
       if i < 10
-        o.select{|k,v| %w(id taxon community_taxon user photos comments_count cached_votes_total observed_on).include?( k ) }
+        o.select{|k,v| %w(id taxon community_taxon user photos comments_count faves_count observed_on).include?( k ) }
       elsif !o["photos"].blank?
         {
           "id": o["id"],
