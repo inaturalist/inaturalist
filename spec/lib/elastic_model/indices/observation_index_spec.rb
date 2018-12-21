@@ -174,6 +174,17 @@ describe "Observation Index" do
     expect( o.as_indexed_json[:private_place_ids] ).to include place.id
   end
 
+  it "should not count needs_id votes toward faves_count" do
+    o = Observation.make!
+    o.vote_by voter: User.make!, vote: true, vote_scope: "needs_id"
+    expect( o.cached_votes_total ).to eq 1
+    expect( o.faves_count ).to eq 0
+    o.reload
+    o.vote_by voter: User.make!, vote: true
+    expect( o.cached_votes_total ).to eq 2
+    expect( o.faves_count ).to eq 1
+  end
+
   describe "place_ids" do
     it "should include places that contain the uncertainty cell" do
       place = make_place_with_geom

@@ -33,7 +33,7 @@ const ObservationsGrid = ( {
                     <span className="stat">
                       <i className="fa fa-star" />
                       { " " }
-                      { o.cached_votes_total }
+                      { o.faves_count === null || o.faves_count === undefined ? o.cached_votes_total : o.faves_count }
                     </span>
                   </span>
                   <time
