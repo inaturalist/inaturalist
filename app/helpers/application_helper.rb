@@ -336,7 +336,7 @@ module ApplicationHelper
 
   def simple_format_with_structure( text, options )
     new_text = ""
-    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>)/m )
+    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>|<pre.*?pre>)/m )
     chunks.each do |chunk|
       if chunk =~ /<(table|ul|ol)>/
         html = Nokogiri::HTML::DocumentFragment.parse( chunk )
@@ -352,6 +352,8 @@ module ApplicationHelper
           end
         end
         new_text += html.to_s.html_safe
+      elsif chunk =~ /<pre>/
+        new_text += chunk.html_safe
       else
         new_text += simple_format( chunk, {}, options ).html_safe
       end
