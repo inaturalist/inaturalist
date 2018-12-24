@@ -671,12 +671,25 @@ $obs-grid-photo-size: 210px;
       text-align: left;
       display: flex;
       position: relative;
+      min-width: 20px;
       > * {
         display: none;
       }
       &:hover > *,
-      &.current > * {
+      &.expand > * {
         display: inline-block;
+      }
+      &:hover:before,
+      &.current:before {
+        content: "";
+        display: block;
+        border-radius: 50px;
+        width: 5px;
+        height: 5px;
+        position: absolute;
+        left: -15px;
+        top: 9px;
+        background-color: white;
       }
       .rank {
         width: 10px;

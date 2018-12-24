@@ -15,9 +15,9 @@ class CountryGrowth extends React.Component {
       world: null,
       worldData: null,
       path: d3.geoPath( d3.geoNaturalEarth1( ) ),
-      metric: "observations",
-      dataScaleType: "linear",
-      includeUS: true,
+      metric: "percentOfTotalGrowth",
+      dataScaleType: "log",
+      includeUS: false,
       currentFeatureID: null
     };
   }
@@ -70,7 +70,7 @@ class CountryGrowth extends React.Component {
     if ( !world || !worldData ) {
       return;
     }
-    const domNode = ReactDOM.findDOMNode( this )
+    const domNode = ReactDOM.findDOMNode( this );
     const mountNode = $( ".map .chart", domNode ).get( 0 );
     const svg = d3.select( mountNode ).select( "svg" );
     const width = svg.attr( "width" );
@@ -92,8 +92,8 @@ class CountryGrowth extends React.Component {
           newProperties = Object.assign( newProperties, country );
           newProperties.difference = ( newProperties.observations || 0 ) - ( newProperties.observations_last_year || 0 );
           newProperties.differencePercent = (
-            newProperties.observations - newProperties.observations_last_year
-          ) / newProperties.observations_last_year * 100;
+            ( newProperties.observations || 0 ) - ( newProperties.observations_last_year || 0 )
+          ) / ( newProperties.observations_last_year || 0 ) * 100;
         } else {
           // // TEST
           // newProperties.observations = 100;
@@ -128,57 +128,71 @@ class CountryGrowth extends React.Component {
     } );
     const dataScale = ( dataScaleType === "linear" ? d3.scaleLinear( ) : d3.scaleLog( ) )
       .domain( [1, d3.max( _.map( worldFeatures, d => parseInt( d.properties[metric], 0 ) ) )] );
+    const colorizer = d => {
+      if ( parseInt( d.properties[metric], 0 ) <= 0 ) {
+        return "#000000";
+      }
+      return d3.interpolateViridis( dataScale( d.properties[metric] ) );
+    };
+    const valueText = ( country, options = { } ) => {
+      const noBar = options.noBar === true;
+      let precision = 0;
+      if ( metric.match( /percent/i ) ) {
+        precision = 2;
+      }
+      let v = I18n.toNumber( country.properties[metric], { precision } );
+      if ( !noBar && dataScale( country.properties[metric] ) < 0.4 ) {
+        v = `${country.properties.name} ${v}`;
+      }
+      if ( metric.match( /percent/i ) ) {
+        if ( country.properties[metric] === Infinity ) {
+          return "infinity%";
+        }
+        if ( _.isNaN( country.properties[metric] ) || _.isUndefined( country.properties[metric] ) ) {
+          return "0%";
+        }
+        return `${v}%`;
+      }
+      if ( _.isNaN( country.properties[metric] ) || _.isUndefined( country.properties[metric] ) ) {
+        return "0";
+      }
+      return v;
+    };
+    const pathTitle = d => {
+      let text = I18n.t( `place_names.${_.snakeCase( d.properties.name )}`, {
+        defaultValue: d.properties.name
+      } );
+      if ( !d.properties.name ) {
+        text = I18n.t( `place_names.${_.snakeCase( d.properties.admin )}`, {
+          defaultValue: d.properties.admin
+        } );
+      }
+      text = `${text} (${valueText( d, { noBar: true } )})`;
+      return text;
+    };
     const countryPaths = g.selectAll( "path" )
       .data( worldFeatures, d => d.id )
-        .attr( "fill", d => {
-          if ( !d.properties[metric] ) {
-            return "#000000";
-          }
-          return d3.interpolatePlasma( dataScale( d.properties[metric] ) );
-        } );
+        .attr( "fill", colorizer );
     countryPaths
-      .attr( "fill", d => {
-        if ( !d.properties[metric] ) {
-          return "#000000";
-        }
-        return d3.interpolatePlasma( dataScale( d.properties[metric] ) );
-      } );
+      .attr( "fill", colorizer )
+      .select( "title" )
+        .text( pathTitle );
     countryPaths
       .enter( ).append( "path" )
         .attr( "id", d => d.id )
-        .attr( "fill", d => {
-          if ( !d.properties[metric] ) {
-            return "#000000";
-          }
-          return d3.interpolatePlasma( dataScale( d.properties[metric] ) );
-        } )
+        .attr( "fill", colorizer )
         .attr( "stroke", "rgba(255,255,255,100)" )
         .attr( "stroke-width", 0 )
         .attr( "stroke-linejoin", "round" )
         .attr( "d", path )
         .on( "click", clicked )
         .append( "title" )
-          .text( d => {
-            // const worldCountry = worldData[d.id];
-            // if ( !worldCountry ) {
-            //   return I18n.t( "unknown" );
-            // }
-            // const country = countriesByCode[worldCountry.iso_a2];
-            if ( !d.properties.name ) {
-              return I18n.t( `place_names.${_.snakeCase( d.properties.admin )}`, {
-                defaultValue: d.properties.admin
-              } );
-            }
-            return I18n.t( `place_names.${_.snakeCase( d.properties.name )}`, {
-              defaultValue: d.properties.name
-            } );
-          } );
+          .text( pathTitle );
     countryPaths.exit( ).remove( );
     const that = this;
     function clicked( d ) {
       const current = svg.select( `[id="${d.id}"]` );
-      if ( active.node( ) === current ) {
-        that.setState( { currentFeatureID: null } );
+      if ( that.state.currentFeatureID === d.id ) {
         return reset( );
       }
       that.setState( { currentFeatureID: d.id } );
@@ -198,6 +212,7 @@ class CountryGrowth extends React.Component {
         .call( zoom.transform, d3.zoomIdentity.translate( translate[0], translate[1] ).scale( scale ) );
     }
     function reset() {
+      that.setState( { currentFeatureID: null } );
       active.classed( "active", false );
       active = d3.select( null );
       svg.transition( )
@@ -211,34 +226,50 @@ class CountryGrowth extends React.Component {
 
     const barsContainer = d3.select( $( ".bars .chart", domNode ).get( 0 ) );
     const barData = _.sortBy(
-      _.filter( worldFeatures, c => parseInt( c.properties[metric], 0 ) > 0 ),
+      _.uniqBy(
+        _.filter( worldFeatures, c => parseInt( c.properties[metric], 0 ) > 0 ),
+        c => c.properties.iso_a2
+      ),
       c => c.properties[metric] * -1
     );
     const bars = barsContainer.selectAll( ".bar" )
       .data( barData, ( d, i ) => `${metric}-${d.id}-${i}-${dataScale( d.properties[metric] )}` );
     bars.exit( ).remove( );
-    const valueText = country => {
-      const v = I18n.toNumber( _.round( country.properties[metric], 2 ), { precision: 0 } );
-      if ( metric.match( /percent/i ) ) {
-        return `${v}%`;
+    const nameText = country => {
+      if ( dataScale( country.properties[metric] || 0 ) < 0.4 ) {
+        // return country.properties.place_code;
+        return "";
       }
-      return v;
+      return I18n.t( `place_names.${_.snakeCase( country.properties.name )}`, {
+        defaultValue: country.properties.name
+      } );
     };
-    bars
+    const valueClass = d => {
+      if ( dataScale( d.properties[metric] || 0 ) < 0.8 ) {
+        return "value outside";
+      }
+      return "value";
+    };
+    const updateBars = bars
       .style( "width", d => `${dataScale( d.properties[metric] ) * 100}%` )
-      .style( "color", d => d3.color( d3.interpolatePlasma( dataScale( d.properties[metric] ) ) ).darker( 2 ) )
-      .style( "background-color", d => d3.interpolatePlasma( dataScale( d.properties[metric] ) ) )
-      .attr( "class", d => `bar ${currentFeatureID === d.id ? "current" : ""}` )
+      .style( "color", d => d3.color( d3.interpolateViridis( dataScale( d.properties[metric] ) ) ).darker( 2 ) )
+      .style( "background-color", d => d3.interpolateViridis( dataScale( d.properties[metric] ) ) )
+      .attr( "class", d => `bar ${currentFeatureID === d.id ? "current expand" : ""} ${barData.length < 50 ? "expand" : ""}` );
+    updateBars
       .select( ".value" )
-        .text( valueText );
+        .text( valueText )
+        .attr( "class", valueClass );
+    updateBars
+      .select( ".place-name" )
+        .text( nameText );
     const enterBars = bars.enter( )
       .append( "button" )
-        .attr( "class", d => `bar ${currentFeatureID === d.id ? "current" : ""}` )
-        .attr( "title", d => `${d.properties.name} (${valueText( d )})` )
+        .attr( "class", d => `bar ${currentFeatureID === d.id ? "current expand" : ""} ${barData.length < 50 ? "expand" : ""}` )
+        .attr( "title", d => `${d.properties.name} (${valueText( d, { noBar: true } )})` )
         .attr( "data-feature-id", d => d.id )
         .style( "width", d => `${dataScale( d.properties[metric] ) * 100}%` )
-        .style( "color", d => d3.color( d3.interpolatePlasma( dataScale( d.properties[metric] ) ) ).darker( 2 ) )
-        .style( "background-color", d => d3.interpolatePlasma( dataScale( d.properties[metric] ) ) )
+        .style( "color", d => d3.color( d3.interpolateViridis( dataScale( d.properties[metric] ) ) ).darker( 2 ) )
+        .style( "background-color", d => d3.interpolateViridis( dataScale( d.properties[metric] ) ) )
         .on( "click", d => clicked( d ) );
     enterBars
       .append( "span" )
@@ -247,22 +278,10 @@ class CountryGrowth extends React.Component {
     enterBars
       .append( "span" )
         .attr( "class", "place-name" )
-        .text( country => {
-          if ( dataScale( country.properties[metric] || 0 ) < 0.4 ) {
-            return country.properties.place_code;
-          }
-          return I18n.t( `place_names.${_.snakeCase( country.properties.name )}`, {
-            defaultValue: country.properties.name
-          } );
-        } );
+        .text( nameText );
     enterBars
       .append( "span" )
-        .attr( "class", d => {
-          if ( dataScale( d.properties[metric] || 0 ) < 0.5 ) {
-            return "value outside";
-          }
-          return "value";
-        } )
+        .attr( "class", valueClass )
         .text( valueText );
     $( ".bars", domNode ).scrollTo( $( `.bars [data-feature-id=${currentFeatureID}]`, domNode ) );
   }
@@ -270,14 +289,12 @@ class CountryGrowth extends React.Component {
   renderVisualization( ) {
     const mountNode = $( ".map .chart", ReactDOM.findDOMNode( this ) ).get( 0 );
     const svg = d3.select( mountNode ).append( "svg" );
-    // const svgWidth = $( "svg", mountNode ).width( );
     const svgHeight = $( "svg", mountNode ).height( );
     svg
       .attr( "width", 960 )
       .attr( "height", 600 )
       .style( "width", "100%" )
       .style( "height", svgHeight )
-      // .attr( "viewBox", `0 0 ${svgWidth} ${svgHeight}` )
       .attr( "viewBox", `0 0 960 ${svgHeight}` )
       .attr( "preserveAspectRatio", "xMidYMid meet" );
     svg.append( "rect" )
@@ -290,9 +307,29 @@ class CountryGrowth extends React.Component {
 
   render( ) {
     const { id, className, year } = this.props;
-    const { dataScaleType, includeUS } = this.state;
+    const { dataScaleType, includeUS, metric } = this.state;
+    window.d3 = d3;
     return (
       <div id={id} className={`CountryGrowth ${className}`}>
+        <h3><span>Growth By Country</span></h3>
+        <p className="text-muted">
+          
+          Where is growth happening? This map and chart attempt to break this
+          down by country, which turns out to be complicated because growth by
+          country can be very imbalanced. Here we've chosen to omit the United
+          States and use a log scale by default to accentuate differences
+          between other countries. If a country is black that means it did not
+          contribute signicantly to a percentage, or it had no growth this year,
+          or did not have more observations this year than last year. <strong>"%
+          of total growth"</strong> means how much of worldwide growth was from
+          a particular country, e.g. if there were 20 observations in 2018 and
+          10 in 2017, that would be 10 observations of growth, and if 5 of those
+          observations were from Benin, then Benin contributed 50% of total
+          growth. <strong>"% growth"</strong> means the number of observations
+          this year as a percent of last year, so if there were 10 observations
+          in Laos last year but 20 this year, that would be 100% growth.
+
+        </p>
         <div className="row">
           <div className="map col-xs-9">
             <div className="chart" />
@@ -304,12 +341,13 @@ class CountryGrowth extends React.Component {
                 onChange={e => {
                   this.setState( { metric: e.target.value } );
                 }}
+                value={metric}
               >
+                <option value="percentOfTotalGrowth">% of Total Growth</option>
+                <option value="differencePercent">% Growth in {year}</option>
+                <option value="difference">Growth in {year} (obs)</option>
                 <option value="observations">Obs in {year}</option>
                 <option value="observations_last_year">Obs in {year - 1 }</option>
-                <option value="difference">Growth in {year}</option>
-                <option value="differencePercent">Growth in {year} (%)</option>
-                <option value="percentOfTotalGrowth">% of Total Growth</option>
               </select>
               <label htmlFor="CountryGrowth-include-us">
                 <input
