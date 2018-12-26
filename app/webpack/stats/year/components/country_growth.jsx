@@ -1,5 +1,7 @@
 /* eslint indent: 0 */
 
+// Adapted from https://bl.ocks.org/iamkevinv/0a24e9126cd2fa6b283c6f2d774b69a2
+
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
@@ -24,8 +26,6 @@ class CountryGrowth extends React.Component {
 
   componentDidMount( ) {
     this.renderVisualization( );
-    // d3.json( "https://unpkg.com/world-atlas@1/world/50m.json", world => this.setState( { world } ) );
-    // d3.tsv( "https://unpkg.com/world-atlas@1/world/50m.tsv", worldData => this.setState( { worldData: _.keyBy( worldData, d => d.un_a3 ) } ) );
     d3.json( WORLD_ATLAS_50M_JSON_URL, world => this.setState( { world } ) );
     d3.tsv( WORLD_ATLAS_50M_TSV_URL, worldData => this.setState( { worldData: _.keyBy( worldData, d => d.iso_n3 ) } ) );
   }
@@ -73,8 +73,6 @@ class CountryGrowth extends React.Component {
     const domNode = ReactDOM.findDOMNode( this );
     const mountNode = $( ".map .chart", domNode ).get( 0 );
     const svg = d3.select( mountNode ).select( "svg" );
-    const width = svg.attr( "width" );
-    const height = svg.attr( "height" );
     const g = svg.select( "g" );
     const maxScale = 100;
     const zoom = d3.zoom( )
@@ -84,6 +82,7 @@ class CountryGrowth extends React.Component {
     svg.select( "rect" ).on( "click", reset );
     let worldFeatures = _.map( topojson.feature( world, world.objects.countries ).features, f => {
       let newProperties = {};
+      if ( f.id === "-99" ) return f;
       const worldCountry = worldData[f.id];
       if ( worldCountry ) {
         newProperties = Object.assign( newProperties, worldCountry );
@@ -108,7 +107,7 @@ class CountryGrowth extends React.Component {
       return f;
     } );
     if ( !includeUS ) {
-      worldFeatures = _.filter( worldFeatures, f => !f.properties.name.match( /United States/ ) );
+      worldFeatures = _.filter( worldFeatures, f => !( f.properties.name && f.properties.name.match( /United States/ ) ) );
     }
     const totalObs = _.reduce(
       worldFeatures,
@@ -134,6 +133,13 @@ class CountryGrowth extends React.Component {
       }
       return d3.interpolateViridis( dataScale( d.properties[metric] ) );
     };
+    const translatedPlaceName = d => I18n.t( `place_names.${_.snakeCase( d.properties.name )}`, {
+      defaultValue: (
+        I18n.t( `place_names.${_.snakeCase( d.properties.admin )}`, {
+          defaultValue: d.properties.name || d.properties.admin || I18n.t( "unknown" )
+        } )
+      )
+    } );
     const valueText = ( country, options = { } ) => {
       const noBar = options.noBar === true;
       let precision = 0;
@@ -142,7 +148,7 @@ class CountryGrowth extends React.Component {
       }
       let v = I18n.toNumber( country.properties[metric], { precision } );
       if ( !noBar && dataScale( country.properties[metric] ) < 0.4 ) {
-        v = `${country.properties.name} ${v}`;
+        v = `${translatedPlaceName( country )} ${v}`;
       }
       if ( metric.match( /percent/i ) ) {
         if ( country.properties[metric] === Infinity ) {
@@ -158,23 +164,13 @@ class CountryGrowth extends React.Component {
       }
       return v;
     };
-    const pathTitle = d => {
-      let text = I18n.t( `place_names.${_.snakeCase( d.properties.name )}`, {
-        defaultValue: d.properties.name
-      } );
-      if ( !d.properties.name ) {
-        text = I18n.t( `place_names.${_.snakeCase( d.properties.admin )}`, {
-          defaultValue: d.properties.admin
-        } );
-      }
-      text = `${text} (${valueText( d, { noBar: true } )})`;
-      return text;
-    };
+    const pathTitle = d => `${translatedPlaceName( d )} (${valueText( d, { noBar: true } )})`;
     const countryPaths = g.selectAll( "path" )
       .data( worldFeatures, d => d.id )
         .attr( "fill", colorizer );
     countryPaths
       .attr( "fill", colorizer )
+      .attr( "class", d => ( d.id === currentFeatureID ? "current" : "" ) )
       .select( "title" )
         .text( pathTitle );
     countryPaths
@@ -182,7 +178,6 @@ class CountryGrowth extends React.Component {
         .attr( "id", d => d.id )
         .attr( "fill", colorizer )
         .attr( "stroke", "rgba(255,255,255,100)" )
-        .attr( "stroke-width", 0 )
         .attr( "stroke-linejoin", "round" )
         .attr( "d", path )
         .on( "click", clicked )
@@ -191,25 +186,49 @@ class CountryGrowth extends React.Component {
     countryPaths.exit( ).remove( );
     const that = this;
     function clicked( d ) {
-      const current = svg.select( `[id="${d.id}"]` );
+      const svgWidth = $( "svg", domNode ).width( );
+      const svgHeight = $( "svg", domNode ).height( );
+      const current = svg.selectAll( `[id="${d.id}"]` );
       if ( that.state.currentFeatureID === d.id ) {
         return reset( );
       }
       that.setState( { currentFeatureID: d.id } );
       active.classed( "active", false );
       active = current.classed( "active", true );
-      const bounds = path.bounds( d );
+      let bounds = path.bounds( d );
+      // prefer iNat bounds when available
+      if ( d.properties.place_bounding_box ) {
+        const projection = path.projection( );
+        const swlat = parseFloat( d.properties.place_bounding_box[0], 0 );
+        const swlng = parseFloat( d.properties.place_bounding_box[1], 0 );
+        const nelat = parseFloat( d.properties.place_bounding_box[2], 0 );
+        const nelng = parseFloat( d.properties.place_bounding_box[3], 0 );
+        let ne = projection( [nelng, nelat] );
+        let sw = projection( [swlng, swlat] );
+        // if the bounding box straddles the date line
+        if ( swlng > 0 && nelng < 0 ) {
+          // if it's more to the west of the dateline than to the east
+          if ( 0 - swlng > nelng ) {
+            // set ne corner to just about 180`
+            ne = projection( [179.999, nelat] );
+          } else {
+            // set sw corner to just about -180
+            sw = projection( [-179.9999, swlat] );
+          }
+        }
+        bounds = [sw, ne];
+      }
       const boundsWidth = bounds[1][0] - bounds[0][0];
       const boundsHeight = bounds[1][1] - bounds[0][1];
       const boundsCenterX = ( bounds[0][0] + bounds[1][0] ) / 2;
       const boundsCenterY = ( bounds[0][1] + bounds[1][1] ) / 2;
-      const maxDimRatio = Math.max( boundsWidth / width, boundsHeight / height );
-      const maxCurrentScale = Math.min( maxScale, 0.9 / maxDimRatio );
-      const scale = Math.max( 1, maxCurrentScale );
-      const translate = [width / 2 - scale * boundsCenterX, height / 2 - scale * boundsCenterY];
-      svg.transition()
+      const maxDimRatio = Math.max( boundsWidth / svgWidth, boundsHeight / svgHeight );
+      const maxCurrentScale = Math.min( maxScale, 0.5 / maxDimRatio );
+      const newScale = Math.max( 1, maxCurrentScale );
+      const translate = [svgWidth / 2 - newScale * boundsCenterX, svgHeight / 2 - newScale * boundsCenterY];
+      svg.transition( )
         .duration( 1000 )
-        .call( zoom.transform, d3.zoomIdentity.translate( translate[0], translate[1] ).scale( scale ) );
+        .call( zoom.transform, d3.zoomIdentity.translate( translate[0], translate[1] ).scale( newScale ) );
     }
     function reset() {
       that.setState( { currentFeatureID: null } );
@@ -219,11 +238,13 @@ class CountryGrowth extends React.Component {
         .duration( 750 )
         .call( zoom.transform, d3.zoomIdentity );
     }
-    function zoomed() {
-      g.style( "stroke-width", `${0.5 / d3.event.transform.k}px` );
+    function zoomed( ) {
+      g.selectAll( "path" ).style( "stroke-width", "0px" );
+      g.selectAll( ".current" ).style( "stroke-width", `${1.5 / d3.event.transform.k}px` );
       g.attr( "transform", d3.event.transform );
     }
-
+    // Enable free pan and zoom
+    svg.call( zoom );
     const barsContainer = d3.select( $( ".bars .chart", domNode ).get( 0 ) );
     const barData = _.sortBy(
       _.uniqBy(
@@ -237,12 +258,9 @@ class CountryGrowth extends React.Component {
     bars.exit( ).remove( );
     const nameText = country => {
       if ( dataScale( country.properties[metric] || 0 ) < 0.4 ) {
-        // return country.properties.place_code;
         return "";
       }
-      return I18n.t( `place_names.${_.snakeCase( country.properties.name )}`, {
-        defaultValue: country.properties.name
-      } );
+      return translatedPlaceName( country );
     };
     const valueClass = d => {
       if ( dataScale( d.properties[metric] || 0 ) < 0.8 ) {
@@ -265,7 +283,7 @@ class CountryGrowth extends React.Component {
     const enterBars = bars.enter( )
       .append( "button" )
         .attr( "class", d => `bar ${currentFeatureID === d.id ? "current expand" : ""} ${barData.length < 50 ? "expand" : ""}` )
-        .attr( "title", d => `${d.properties.name} (${valueText( d, { noBar: true } )})` )
+        .attr( "title", d => `${translatedPlaceName( d )} (${valueText( d, { noBar: true } )})` )
         .attr( "data-feature-id", d => d.id )
         .style( "width", d => `${dataScale( d.properties[metric] ) * 100}%` )
         .style( "color", d => d3.color( d3.interpolateViridis( dataScale( d.properties[metric] ) ) ).darker( 2 ) )
@@ -311,25 +329,13 @@ class CountryGrowth extends React.Component {
     window.d3 = d3;
     return (
       <div id={id} className={`CountryGrowth ${className}`}>
-        <h3><span>Growth By Country</span></h3>
-        <p className="text-muted">
-          
-          Where is growth happening? This map and chart attempt to break this
-          down by country, which turns out to be complicated because growth by
-          country can be very imbalanced. Here we've chosen to omit the United
-          States and use a log scale by default to accentuate differences
-          between other countries. If a country is black that means it did not
-          contribute signicantly to a percentage, or it had no growth this year,
-          or did not have more observations this year than last year. <strong>"%
-          of total growth"</strong> means how much of worldwide growth was from
-          a particular country, e.g. if there were 20 observations in 2018 and
-          10 in 2017, that would be 10 observations of growth, and if 5 of those
-          observations were from Benin, then Benin contributed 50% of total
-          growth. <strong>"% growth"</strong> means the number of observations
-          this year as a percent of last year, so if there were 10 observations
-          in Laos last year but 20 this year, that would be 100% growth.
-
-        </p>
+        <h3><span>{ I18n.t( "views.stats.year.growth_by_country_title" ) }</span></h3>
+        <p
+          className="text-muted"
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "views.stats.year.growth_by_country_desc_html" )
+          }}
+        />
         <div className="row">
           <div className="map col-xs-9">
             <div className="chart" />
@@ -343,11 +349,11 @@ class CountryGrowth extends React.Component {
                 }}
                 value={metric}
               >
-                <option value="percentOfTotalGrowth">% of Total Growth</option>
-                <option value="differencePercent">% Growth in {year}</option>
-                <option value="difference">Growth in {year} (obs)</option>
-                <option value="observations">Obs in {year}</option>
-                <option value="observations_last_year">Obs in {year - 1 }</option>
+                <option value="percentOfTotalGrowth">{ I18n.t( "views.stats.year.percent_of_total_growth" ) }</option>
+                <option value="differencePercent">{ I18n.t( "views.stats.year.percent_growth_in_year", { year } ) }</option>
+                <option value="difference">{ I18n.t( "views.stats.year.growth_in_year_obs", { year } ) }</option>
+                <option value="observations">{ I18n.t( "views.stats.year.obs_in_year", { year } ) }</option>
+                <option value="observations_last_year">{ I18n.t( "views.stats.year.obs_in_year", { year: year - 1 } ) }</option>
               </select>
               <label htmlFor="CountryGrowth-include-us">
                 <input
@@ -359,10 +365,10 @@ class CountryGrowth extends React.Component {
                   }}
                 />
                 { " " }
-                Include US
+                { I18n.t( "views.stats.year.include_usa" ) }
               </label>
               <div>
-                Scale:
+                { I18n.t( "scale_colon" ) }
                 { " " }
                 <label htmlFor="CountryGrowth-data-scale-type-linear">
                   <input
@@ -375,7 +381,7 @@ class CountryGrowth extends React.Component {
                     }}
                   />
                   { " " }
-                  Linear
+                  { I18n.t( "linear_scale_label" ) }
                 </label>
                 { " " }
                 <label htmlFor="CountryGrowth-data-scale-type-log">
@@ -389,7 +395,7 @@ class CountryGrowth extends React.Component {
                     }}
                   />
                   { " " }
-                  Log
+                  { I18n.t( "log_scale_label" ) }
                 </label>
               </div>
             </div>

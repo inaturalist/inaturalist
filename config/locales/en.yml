@@ -1849,6 +1849,7 @@ en:
   life_lists_automatically_fill: Life lists automatically fill up with new taxa as you observe them, and they can be restricted to higher level parent taxa, e.g. a life list of birds in the crow family (Corvidae).
   life_list_first: "life list first"
   life_list_firsts: "life list firsts"
+  linear_scale_label: Linear
   link: Link
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
   link_or_unlink_your_flickr_account: Link or unlink your Flickr account
@@ -1958,6 +1959,7 @@ en:
   location_specified: Location specified
   locked_taxa_will_not_allow_new: Locked taxa will not allow new descendent taxa to be added to them. So if you locked Amphibia and someone tried to import <i>Rana catesbeiana</i> from an external name provider, the new taxon would be created but it could not be classified as an amphibian. When this happens, the newly added taxa should be flagged for curator attention.  This should really only be used for taxa for which we think we already have all the descendants. Curator can override this by editing taxa and entering parent IDs directly, but please consider merging new taxa into existing ones instead.
   log_in: Log In
+  log_scale_label: Log
   logged_in_as: Logged in as
   login_slash_username: Login / username
   logo:
@@ -3225,6 +3227,7 @@ en:
     one: Saving observation...
     other: Saving %{num} of %{count} observations...
   saving_verb: Saving
+  scale_colon: "Scale:"
   schemes: Schemes
   schemes_including: Schemes including
   scientific_names: Scientific names
@@ -5638,6 +5641,26 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        include_usa: Include US
+        growth_by_country_desc_html: |
+          Where is growth happening? This map and chart attempt to break this
+          down by country, which turns out to be complicated because growth by
+          country can be very imbalanced. Here we've chosen to omit the United
+          States and use a log scale by default to accentuate differences
+          between other countries. If a country is black that means it did not
+          contribute signicantly to a percentage, or it had no growth this year,
+          or did not have more observations this year than last year (hover over
+          a country to see a little more detail). <strong>"% of total
+          growth"</strong> means how much of worldwide growth came from a
+          particular country, e.g. if there were 20 observations in 2018 and 10
+          in 2017, that would be 10 observations of growth, and if 5 of those
+          observations were from Benin, then Benin contributed 50% of total
+          growth. <strong>"% growth"</strong> means the number of observations
+          this year as a percent of last year, so if there were 10 observations
+          in Laos last year but 20 this year, that would be 100% growth, and if
+          there were 0 last year and 1 this year, that's infinity % growth.
+        growth_by_country_title: Growth By Country
+        growth_in_year_obs: "Growth in %{year} (obs)"
         growth_title: Growth
         new_species_desc: |
           Species that were observed for the first time on %{site_name} this year.
@@ -5652,6 +5675,9 @@ en:
           include higher or lower level taxa, so an observation identified as
           Mammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.
           <i>arctos</i> will just count as <i>Canis lupus</i>.
+        obs_in_year: Obs in %{year}
+        percent_growth_in_year: "% Growth in %{year}"
+        percent_of_total_growth: "% of Total Growth"
         publications_desc_html: |
           Impact data and visualizations courtesy of
           <a href="https://www.altmetric.com">Altmetric</a>. Information

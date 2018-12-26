@@ -655,9 +655,12 @@ $obs-grid-photo-size: 210px;
         flex-grow: 5;
       }
     }
+    path {
+      stroke-width: 0;
+    }
     .bars {
       height: 500px;
-      overflow-x: hidden;
+      overflow-x: visible;
       overflow-y: scroll;
       select { width: 100%; }
     }
@@ -691,6 +694,7 @@ $obs-grid-photo-size: 210px;
         top: 9px;
         background-color: white;
       }
+      outline: none;
       .rank {
         width: 10px;
         margin-right: 5px;
