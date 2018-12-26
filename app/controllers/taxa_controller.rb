@@ -760,16 +760,13 @@ class TaxaController < ApplicationController
       end
       obs
     else
-      filters = [ { bool: { should: [
-        { exists: { field: "photos_count" } },
-        { exists: { field: "photos" } }
-      ]}}]
+      filters = [ { exists: { field: "photos_count" } } ]
       unless params[:q].blank?
         filters << {
           multi_match: {
             query: params[:q],
             operator: "and",
-            fields: [ :description, "taxon.names.name", "taxon.names_*", "user.login", "field_values.value" ]
+            fields: [ :description, "taxon.names_*", "user.login", "field_values.value" ]
           }
         }
       end
