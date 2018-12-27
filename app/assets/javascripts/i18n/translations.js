@@ -11264,6 +11264,7 @@ I18n.translations["en"] = {
     "waray_waray": "Waray-Waray"
   },
   "life": "Life",
+  "linear_scale_label": "Linear",
   "list": "List",
   "list_tooltip": "Show list view",
   "lists": "Lists",
@@ -11280,6 +11281,7 @@ I18n.translations["en"] = {
   "location_specified": "Location specified",
   "location_unknown": "Location Unknown",
   "log_in": "Log In",
+  "log_scale_label": "Log",
   "long": "Lon",
   "longitude": "Longitude",
   "lookup": "Lookup",
@@ -11758,6 +11760,7 @@ I18n.translations["en"] = {
     "other": "Saving %{num} of %{count} observations..."
   },
   "saving_verb": "Saving",
+  "scale_colon": "Scale:",
   "search": "Search",
   "search_by_taxon_name_or_flickr_photo_id": "Search by taxon name or Flickr photo ID",
   "search_by_taxon_name_or_observation_id": "Search by taxon name or observation ID",
@@ -12073,8 +12076,15 @@ I18n.translations["en"] = {
         "recent_w_7_obs": "Recent w/ >= 7 obs"
       },
       "year": {
+        "growth_by_country_desc_html": "Where is growth happening? This map and chart attempt to break this\ndown by country, which turns out to be complicated because growth by\ncountry can be very imbalanced. Here we've chosen to omit the United\nStates and use a log scale by default to accentuate differences\nbetween other countries. If a country is black that means it did not\ncontribute signicantly to a percentage, or it had no growth this year,\nor did not have more observations this year than last year (hover over\na country to see a little more detail). <strong>\"% of total\ngrowth\"</strong> means how much of worldwide growth came from a\nparticular country, e.g. if there were 20 observations in 2018 and 10\nin 2017, that would be 10 observations of growth, and if 5 of those\nobservations were from Benin, then Benin contributed 50% of total\ngrowth. <strong>\"% growth\"</strong> means the number of observations\nthis year as a percent of last year, so if there were 10 observations\nin Laos last year but 20 this year, that would be 100% growth, and if\nthere were 0 last year and 1 this year, that's infinity % growth.\n",
+        "growth_by_country_title": "Growth By Country",
+        "growth_in_year_obs": "Growth in %{year} (obs)",
         "growth_title": "Growth",
-        "new_species_desc_html": "Species that were added for the first time on %{site_name} this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly-observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
+        "include_usa": "Include US",
+        "new_species_desc_html": "Species that were added for the first time this year.\nClick on a month to view some of the new species added in that month.\nYou can also view the total species accumulation, or move the slider\nback in time to see other newly-observed species. This chart shows\nspecies from verifiable observations by the month they were uploaded\nto %{site_name} (not the month they were observed). It does not\ninclude higher or lower level taxa, so an observation identified as\nMammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.\n<i>arctos</i> will just count as <i>Canis lupus</i>.\n",
+        "obs_in_year": "Obs in %{year}",
+        "percent_growth_in_year": "% Growth in %{year}",
+        "percent_of_total_growth": "% of Total Growth",
         "publications_desc_html": "Impact data and visualizations courtesy of\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nabout data usage courtesy of our friends at the\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">View all %{numStudies} studies</a>\n",
         "sunburst_desc_html": "Observed taxa arranged as a hierarchical \"sunburst\" diagram. The base\nof the hierarchy is at the center, starting with \"Life\" and ending\nwith species at the outer edges. The size of each arc is proportional\nto the number of observations of that taxon, and colors rougly\ncorrespond to our usual \"iconic\" taxon colors (green for plants,\norange for insects, blue for most other animals, etc.), so if you're\nseeing a lot of green, that means you observed a lot of plants.\n<strong>Click an arc to place that taxon at the center</strong> and\nits children around it, or <strong>click the center to move back up\nthe hierarchy</strong>.\n"
       }
