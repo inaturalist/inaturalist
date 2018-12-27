@@ -107,7 +107,6 @@ $dark-gray: #333333;
     border: 2px solid darken( $inat-green, 10% );
     border-radius: 100px;
     text-transform: uppercase;
-    padding: 10px 20px;
     font-weight: 100;
     i {
       margin-right: 5px;
@@ -116,6 +115,9 @@ $dark-gray: #333333;
       background-color: $inat-green;
       border-color: $inat-green;
     }
+  }
+  .btn-bordered {
+    padding: 10px 20px;
   }
   .btn-bordered:hover {
     border-color: $inat-green;

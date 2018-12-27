@@ -5647,18 +5647,19 @@ en:
           down by country, which turns out to be complicated because growth by
           country can be very imbalanced. Here we've chosen to omit the United
           States and use a log scale by default to accentuate differences
-          between other countries. If a country is black that means it did not
-          contribute signicantly to a percentage, or it had no growth this year,
-          or did not have more observations this year than last year (hover over
-          a country to see a little more detail). <strong>"% of total
-          growth"</strong> means how much of worldwide growth came from a
+          between other countries. If a country is colored black that means it
+          did not contribute signicantly to a percentage, or it had no growth
+          this year, or did not have more observations this year than last year
+          (hover over a country to see a little more detail). <strong>"% of
+          total growth"</strong> means how much of worldwide growth came from a
           particular country, e.g. if there were 20 observations in 2018 and 10
           in 2017, that would be 10 observations of growth, and if 5 of those
           observations were from Benin, then Benin contributed 50% of total
           growth. <strong>"% growth"</strong> means the number of observations
-          this year as a percent of last year, so if there were 10 observations
-          in Laos last year but 20 this year, that would be 100% growth, and if
-          there were 0 last year and 1 this year, that's infinity % growth.
+          this year in that country as a percent of observations last year in
+          that country, so if there were 10 observations in Laos last year but
+          20 this year, that would be 100% growth, and if there were 0 last year
+          and 1 this year, that's infinity % growth.
         growth_by_country_title: Growth By Country
         growth_in_year_obs: "Growth in %{year} (obs)"
         growth_title: Growth
