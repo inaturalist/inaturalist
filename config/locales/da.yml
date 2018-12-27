@@ -7,6 +7,7 @@
 # Author: Jorn Ari
 # Author: Lars dalby
 # Author: Oskarlphansen
+# Author: Pyscowicz
 # Author: Saederup92
 # Author: Tinamalmgren
 ---
@@ -1119,6 +1120,7 @@ da:
   data_quality: Datakvalitet
   data_quality_assessment: Vurdering af datakvalitet
   data_quality_assessment_: vurdering af datakvalitet
+  data_used: 'Data anvendt:'
   datatype: Datatype
   date_: Dato
   date?: Dato?
@@ -1325,8 +1327,8 @@ da:
   editing_observation_field: Redigering af observationsfelter
   editing_observation_id: Redigering af observation %{obs_id}
   editing_observations:
-    one: 'Redigering <span class="count">1</span> observation:'
-    other: 'Redigering <span class="count">%{count}</span> observationer:'
+    one: 'Redigerer <span class="count">1</span> observation:'
+    other: 'Redigerer <span class="count">%{count}</span> observationer:'
   editing_project: Redigering af %{project}
   editing_project_asset: Redigering af projektvurderinger for
   editing_subscription_to_x_html: Redigerer abonnement på %{x}
@@ -1686,7 +1688,7 @@ da:
   help_confirm_observations!: Hjælp med at bekræfte observationer!
   help_faq: Hjælp / FAQ
   help_out!: Hjælp!
-  help_support_inaturalist: Hjælp med at støtte iNaturalist
+  help_support_inaturalist: Hjælp med støtte til iNaturalist
   helped_the_observer_make: hjalp observatøren til at finde deres endelige Id (dvs.
     de blev lavet før det endelige Id og de matcher det)
   here_are_3_examples: Her er 3 eksempler på data i korrekt formattering
@@ -2434,7 +2436,7 @@ da:
   new_custom_field_for: Nyt brugerdefineret felt for
   new_flag_for: Ny markering for
   new_guide: Ny guide
-  new_journal_post: Nyt journal indlæg
+  new_journal_post: Nyt journalindlæg
   new_lexicon: Nyt leksikon
   new_list: Ny liste
   new_members: Nye medlemmer
@@ -2806,11 +2808,11 @@ da:
       På %{site_name} kan du følge personer og på den måde følge med i de observationer, de har indsendt. Du kan også abonnere på specifikke
       arter,og følge med i når der er nye observationer af disse arter eller du kan gøre det samme for steder.
     comments_panel_title: Nysgerrig på hvilken slags diskussioner der pågår på %{site_name}?
-    comments_panel_body: '<p> %{site_name} handler om at dele og diskutere observationer
-      af levende ting. Nedenfor finder du diskussioner, der pågår lige nu. (Bemærk:
-      Du abonnerer automatisk på diskussioner som du kommenterer på eller bidrager
-      med identifikationer til. Administrer disse underretninger i afsnittet ''Abonnementer''
-      til højre.) </p>'
+    comments_panel_body: '<p> %{site_name} handler om at dele og samtale om observationer
+      af levende ting. Nedenfor finder du samtaler, der pågår lige nu. (Bemærk: Du
+      abonnerer automatisk på samtaler som du kommenterer på eller bidrager med identifikationer
+      til. Administrer disse underretninger i afsnittet ''Abonnementer'' til højre.)
+      </p>'
     updates_by_you_panel_title: Denne fane er en hurtig måde at filtrere opdateringer
       alene på dit indhold.
     updates_by_you_panel_body: Husk, at i fanen 'Alle opdateringer' får du opdateringer,
@@ -3239,6 +3241,9 @@ da:
   profile: Profil
   profile_visibility_pending_account_verification: Synlighed af profil afhænger af
     konto verifikation
+  profile_visibility_desc: For at undgå spam på%{site_name}, er brugerprofiler kun
+    offentligt synlige efter at en bruger har bidraget med flere observationer af
+    forskningskvalitet.
   project: Projekt
   project_added_your_observations: Projekt tilføjede dine observationer
   project_admins:
@@ -3423,8 +3428,8 @@ da:
     many_to_many: mange-til-mange
     many_to_one: mange-til-en
     one_to_many: en-til-mange
-    not_external: ikke eksternt
-    not_internal: ikke internt
+    not_external: ikke ekstern
+    not_internal: ikke intern
     unknown: ukendt
   reload_and_refresh: Genindlæs og opdatér liste
   reload_from_observations: Genindlæs fra observationer
@@ -3528,6 +3533,7 @@ da:
     must_be_in: skal være takson
     must_be_coordinates_shareable_by_project_curators: observatør skal tillade projektkuratorer
       at se koordinater.
+  running_total: Igangværende total
   said: sagde
   sat: Lør
   satellite: satellit
@@ -3658,6 +3664,7 @@ da:
   show_only: Vis kun
   show_relative_proportions_of_all_observations: Vis relative proportioner for alle
     observationer
+  show_running_total: Vis igangværende total
   show_scientific_name_first: Vis videnskabelige navne først
   show_taxa_from_both: (vis taksa fra begge lister)
   show_taxa_from_everywhere: Viser taksa fra overalt
@@ -3851,6 +3858,8 @@ da:
   stop_following_user: Stop med at følge %{user}
   stop_testing: Stop test
   stop_updating_position: Stop med at opdatere position
+  studies_that_used_inaturalist_data_in_year: Studier der brugte iNaturalist data
+    i %{year}
   stuff_just_added: Ting du lige har tilføjet ...
   subject_resolved_noun_html: '%{subject} løst %{noun}'
   subject_affecting_stuff_html: '%{subject} påvirker %{stuff}'
@@ -3911,8 +3920,8 @@ da:
     for at gøre det nemmere at finde dem senere.
   tags_like_taxonomy_binomial: 'Tags som <code> taksonomi: binomial = Pseudacris crucifer
     </code> er <a href="http://www.flickr.com/help/tags#613430"> maskinetags </a>.
-    De hjælper ingeniører programmatisk fornemmelse af dine tags, og de kræves af
-    nogle Flickr-grupper som gruppen <a href="http://www.flickr.com/groups/encyclopedia_of_life/">
+    De hjælper ingeniører med programmatisk fornemmelse af dine tags, og de kræves
+    af nogle Flickr-grupper som gruppen <a href="http://www.flickr.com/groups/encyclopedia_of_life/">
     Encyclopedia of Life Images </a>.'
   take_me_facebook: Ja, før mig til Facebook!
   take_me_flickr!: Ja, før mig til Flickr!
@@ -4087,7 +4096,7 @@ da:
     ikke ser korrekt ud </strong> (f.eks aber midt i havet, flodheste i kontorbygninger
     mv.)
   the_community_agrees_organism_isnt: fællesskabet er enig i <strong> at organismen
-    ikke er vild / fra naturen </strong> (f.eks i fangenskab eller dyrket af mennesker
+    ikke er vild/fra naturen </strong> (f.eks i fangenskab eller dyrket af mennesker
     eller intelligente rumvæsener)
   the_community_id_requires_at_least_two_identifications: Fællesskabs ID kræver mindst
     to identifikationer.
@@ -4104,7 +4113,7 @@ da:
     Identotronen er et værktøj, der kan hjælpe dig med at identificere
     observationer baseret på %{place} 's tjekliste data. Givet et højere niveau
     taksonnavn og et sted (f.eks. pattedyr i Indien), vil %{place} søge efter
-    tjeklister, der matcher denne taxon på dettt sted, lidt ligesom en dynamisk
+    tjeklister, der matcher denne taxon på dette sted, lidt ligesom en dynamisk
     feltguide til hele planeten. De fleste %{place} tjeklister er igangværende
     arbejder, men hvis der findes en omfattende liste, dvs. en, der viser <em>
     alle </em> repræsentanter for dens taksoner på et sted, vil identotronen
@@ -4457,6 +4466,8 @@ da:
   user_has_opted_out_of_community_ids_for_this_obs: '%{user}har valgt at bevare kontrollen
     over taksa tilknyttet denne observation'
   user_hasnt: '%{user}har ikke'
+  user_helped_x_people_with_y_ids_html: '%{user} hjalp <strong>%{x} personer</strong>
+    med <strong>%{y} IDs</strong>'
   user_invite_observation_to_project: '%{user}vil gerne invitere din observation%{observation}til%{project}projekt.'
   user_invited_you_to_join_html: '%{user}inviterede dig til at deltage'
   user_invited_you_to_join_project: '%{user}inviterede dig til at deltage i%{project}'
@@ -4648,7 +4659,7 @@ da:
   welcome_comma: Velkommen,
   welcome_login: Velkommen, %{login}
   welcome_message: hvor du kan <strong> registrere </strong>, hvad du ser i naturen,
-    <strong> møde </strong> andre naturelskere, og <strong> lær </strong> om verdens
+    <strong> møde </strong> andre naturelskere, og <strong> lære </strong> om verdens
     natur.
   welcome_to_inat: Velkommen til %{site_name}
   welcome_to_guides: Velkommen til  %{site_name} guides!
@@ -5002,7 +5013,7 @@ da:
         <p class="lead">
            Hvis du tror på styrken i dette globale fællesskab af naturelskere,
            som deler viden og skaber uerstattelige biodiversitets data,
-           Overvej venligst en engangs- eller tilbagevendende donation.
+           Overvej venligst en engangs- eller en tilbagevendende donation.
         </p>
         <p class="lead">
            Din donation hjælper med at støtte iNaturalist efterhånden som fællesskabet vokser, lige  fra at forbedre det visuelle på computerskærmen til at implementere nye funktioner, som understøtter vores servere og medarbejdere.
@@ -5119,7 +5130,7 @@ da:
           Dette vil oprette et arkiv til download af alle de data og medier
           tilknyttet denne Guide, så mobilapp brugere kan se alt indhold i denne
           Guide uden internetforbindelse. Det vil tage nogle få minutter at
-          generere arkivet, men når først det er udført vil arkivet opdateres,
+          generere arkivet, og når først det er genereret, vil arkivet opdateres
           hver gang du ændrer i denne Guide.
         </p>
         <p class="alert status">
@@ -5372,7 +5383,7 @@ da:
         you_have_opted_out: Du fravalgte fælleskabs identifikationerne
         opt_in_for_this_observation: Opt ind for denne observation
         your_id_does_not_match: Dit ID (<span class="bold">%{taxon_name}</span>) matcher
-          ikke fællesskabs ID'et
+          ikke fællesskabs ID
       copy_tip: Tilføj en ny observation ved at kopiere denne observations dato, sted,
         fotos og observationsfelter.
       captive_help_html: |-
@@ -5900,7 +5911,7 @@ da:
            tilbagekalder denne tilladelse, og de vil være i stand til at tilføje nogle af dine observationer til dette projekt, medmindre du <a href="/users/edit"> ændrer i dine indstillinger </a>. Du kan også give eller tilbagekalde adgang til projektets observationer fra gang til gang.
         </p>
         <P>
-           Hvis du er bekymret for lokalitetsbeskyttelse, skal du ikke deltage i projekter medmindre du stoler på projektets kuratorer.
+           Hvis du er bekymret for lokalitets beskyttelse, skal du ikke deltage i projekter medmindre du stoler på projektets kuratorer.
         </p>
       project_user_curator_coordinate_access_labels:
         observer: Ja, men kun hvis jeg selv tilføjer observationen til projektet.
@@ -6050,6 +6061,25 @@ da:
           eller<a href="%{url}">iNaturalist Network</a> hjemmesider
       year:
         growth_title: Vækst
+        new_species_desc: |-
+          Arter der blev observeret for første gang på%{site_name} dette år.
+          Viser %{x} af <a href="%{url}">%{y} arter</a>.
+        new_species_desc_html: |-
+          Arter, der blev tilføjet for første gang på %{site_name} i år.
+          Klik på en måned for at se nogle af de nye arter, der er tilføjet i den pågældende måned.
+          Du kan også se den samlede arts akkumulering, eller flytte skyderen
+          tilbage i tiden for at se andre nyligt observerede arter. Dette diagram viser
+          arter fra verificerbare observationer i den måned de blev uploadet
+          til %{site_name} (ikke den måned, de blev observeret). Det inkludere ikke højere eller lavere niveau taksa, så en observation identificeret som
+          Mammalia tæller ikke, og en observation af <i> Canis lupus </ i> ssp.
+          <i> arctos </ i> vil bare tælle som <i> Canis lupus </ i>.
+        publications_desc_html: |-
+          Indvirkningsdata og visualiseringer takker vi
+          <a href="https://www.altmetric.com"> Altmetric </a> for. Information
+          om dataanvendelse takker vi vores venner på
+          <a href="https://www.gbif.org/"> Global Biodiversity Information Facility </a> for.
+          <br/>
+          <a href="%{url}"> Se alle %{numStudies} studier</a>
         sunburst_desc_html: |-
           Observeret taksa arrangeret som hierarkisk "solstråle" diagram. Basen
           af hierarkiet er i centrum, begyndende med "liv" og slutter
@@ -6314,8 +6344,8 @@ da:
     welcome:
       index:
         welcome_message_html: til%{image}hvor du kan <strong> registrere </strong>,
-          hvad du ser i naturen, <strong> møde </strong> andre naturentusiaster, og
-          <strong> lære </strong> om verdens natur.
+          hvad du ser i naturen, <strong> møde </strong> andre naturelskere, og <strong>
+          lære </strong> om verdens natur.
         connect_with_nature: I kontakt med naturen
         explore_and_share: Udforsk og del dine observationer fra naturen.
         observations_to_date: Observationer til dato

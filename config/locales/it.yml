@@ -1148,6 +1148,7 @@ it:
   data_quality: Qualità dei dati
   data_quality_assessment: Valutazione della qualità dei dati
   data_quality_assessment_: Valutazione della qualità dei dati
+  data_used: 'Dati utilizzati:'
   datatype: Tipo di dati
   date_: Data
   date?: Data?
@@ -2088,6 +2089,7 @@ it:
     corvi (Corvidae)
   life_list_first: visto la prima volta
   life_list_firsts: visti la prima volta
+  linear_scale_label: Lineare
   link: Collegamento
   link_or_unlink_your_facebook_account: Collega o scollega il tuo account Facebook
   link_or_unlink_your_flickr_account: Collega o scollega il tuo account Flickr
@@ -2231,6 +2233,7 @@ it:
     gli ID di rango superiore, ma per favore assicurati che non sia meglio invece
     unire i nuovi taxa in quelli già esistenti.
   log_in: Accedi
+  log_scale_label: Registro
   logged_in_as: Accesso effettuato come
   login_slash_username: Login / nome utente
   logo:
@@ -3613,6 +3616,7 @@ it:
     one: Salvataggio dell’osservazione...
     other: Salvataggio di %{num} su %{count} osservazioni...
   saving_verb: Salvataggio
+  scale_colon: 'Scala:'
   schemes: Schemi
   schemes_including: Schemi che includono
   scientific_names: Nomi scientifici
@@ -4593,7 +4597,6 @@ it:
   view_change: Visualizza la modifica
   view_check_list_page: Visualizza la pagina della checklist
   view_contributions: Visualizza i contributi
-  view_data_used: 'Mostra i dati usati:'
   view_details: Visualizza i dettagli
   view_field_options: Visualizzare le opzioni del campo
   view_flag: Visualizza contrassegno
@@ -6107,12 +6110,17 @@ it:
         website_desc_html: Creato tramite i siti internet <a href="https://www.inaturalist.org">iNaturalist</a>
           o <a href="%{url}">iNaturalist Network<a/>
       year:
+        include_usa: Includi Stati Uniti
+        growth_by_country_title: Crescita per paese
+        growth_in_year_obs: Crescita in %{year} (obs)
         growth_title: Crescita
         new_species_desc: Specie che sono state osservate per la prima volta su %{site_name}
           quest'anno. Visualizzando %{x} di <a href="%{url}">%{y} specie</a>.
         new_species_desc_html: |-
-          Specie che sono state aggiunte per la prima volta su %{site_name} quest'anno. Clicca su un mese per vedere alcune delle specie aggiunte in quel mese. Puoi vedere anche il totale accumulato, oppure muovere il disco indietro nel tempo per vedere altre specie osservate recentemente. Questo grafico mostra le specie dalle osservazioni verificabili per il mese in cui queste sono state caricate su %{site_name} (non per il mese in cui sono state osservate). Non include taxa di livello superiore od inferiore, perciò una osservazione identificata come Mammifero non è conteggiata, e una osservazione di <i>Canis lupus</i> ssp.
+          Specie che sono state aggiunte per la prima volta quest'anno. Clicca su un mese per vedere alcune delle specie aggiunte in quel mese. Puoi vedere anche il totale accumulato, oppure muovere il disco indietro nel tempo per vedere altre specie osservate recentemente. Questo grafico mostra le specie dalle osservazioni verificabili per il mese in cui queste sono state caricate su %{site_name} (non per il mese in cui sono state osservate). Non include taxa di livello superiore od inferiore, perciò una osservazione identificata come Mammifero non è conteggiata, e una osservazione di <i>Canis lupus</i> ssp.
           <i>arctos</i> sarà conteggiata come <i>Canis lupus</i>.
+        percent_growth_in_year: '% Crescita in %{year}'
+        percent_of_total_growth: '% di crescita totale'
         publications_desc_html: |-
           I dati di impatto e visualizzazioni per gentile concessione di <a href="https://www.altmetric.com">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici al <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
           <br/>

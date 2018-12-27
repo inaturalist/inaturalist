@@ -88,6 +88,9 @@ pt-PT:
   x_people_agree_html:
     one: <span class="count">Uma</span> pessoa concorda
     other: <span class="count">%{count}</span> pessoas concordam
+  x_new_species:
+    one: 1 Nova Espécie
+    other: '%{count} Novas Espécies'
   x_species:
     one: 1 Espécie
     other: '%{count} Espécies'
@@ -120,6 +123,8 @@ pt-PT:
   x_taxon_changes_added_html:
     one: 1 mudança de táxon adicionada
     other: '%{count} mudanças de táxon adicionadas'
+  x_people_helped_user_with_y_ids_html: <strong>%{x} pessoas</strong> ajudaram %{user}
+    com <strong>%{y} IDs</strong>
   _100_day_trends: Tendências de 100 dias
   _percent_ID_d: '% Identificados'
   a: um(a)
@@ -191,7 +196,7 @@ pt-PT:
   add_a_new_observation_to_id_please!: Adicionar uma Nova Observação para Identificar,
     Por favor!
   add_a_place_raquo: Adicionar um Lugar &raquo;
-  add_a_single_observation: Adicionar uma única observação.
+  add_a_single_observation: Adicionar uma Única Observação.
   add_a_taxon: Adicione um Táxon
   add_all_your_matching_obs_of_this_taxon: Adicione todas as suas observações deste
     táxon para este projeto
@@ -216,16 +221,16 @@ pt-PT:
   add_batch: Adicionar um Conjunto
   add_colors: Adicionar Cores
   add_comma_separated_tags: Adicionar Etiquetas Separadas por Vírgulas
-  add_comment: Adicionar um comentário
-  add_common_names_for: adicionar nomes comuns aos táxons já existentes
-  add_conservation_status: adicionar estatuto de conservação
+  add_comment: Adicionar um Comentário
+  add_common_names_for: Adicionar Nomes Comuns aos Táxons já Existentes
+  add_conservation_status: Adicionar Estatuto de Conservação
   add_countries: Adicionar Países
-  add_custom_project_fields: Adicionar campos de projeto personalizados
+  add_custom_project_fields: Adicionar Campos de Projeto Personalizados
   add_edit_flags: Adicionar/Editar Sinalizadores
-  add_edit_more_fields: Adicionar/editar mais campos
+  add_edit_more_fields: Adicionar/Editar Mais Campos
   add_editor: Adicionar Editor
   add_description: Adicionar %{description_name}
-  add_field: Adicionar campo
+  add_field: Adicionar Campo
   add_from_your_observations: Adicionar a partir das suas observações
   add_link: Adicionar Link
   add_listed_taxa_from_observations: Adicionar táxons listados a partir das observações
