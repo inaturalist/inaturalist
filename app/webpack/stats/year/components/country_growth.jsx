@@ -176,6 +176,7 @@ class CountryGrowth extends React.Component {
     countryPaths
       .enter( ).append( "path" )
         .attr( "id", d => d.id )
+        .attr( "class", d => ( d.id === currentFeatureID ? "current" : "" ) )
         .attr( "fill", colorizer )
         .attr( "stroke", "rgba(255,255,255,100)" )
         .attr( "stroke-linejoin", "round" )
