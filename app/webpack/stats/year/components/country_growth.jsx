@@ -133,9 +133,9 @@ class CountryGrowth extends React.Component {
       }
       return d3.interpolateViridis( dataScale( d.properties[metric] ) );
     };
-    const translatedPlaceName = d => I18n.t( `place_names.${_.snakeCase( d.properties.name )}`, {
+    const translatedPlaceName = d => I18n.t( `places_name.${_.snakeCase( d.properties.name )}`, {
       defaultValue: (
-        I18n.t( `place_names.${_.snakeCase( d.properties.admin )}`, {
+        I18n.t( `places_name.${_.snakeCase( d.properties.admin )}`, {
           defaultValue: d.properties.name || d.properties.admin || I18n.t( "unknown" )
         } )
       )
