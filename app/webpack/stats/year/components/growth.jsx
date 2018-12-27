@@ -172,7 +172,7 @@ const Growth = ( {
       <DateHistogram series={obsSeries} legendPosition="nw" margin={{ left: 60 }} />
       { taxaSeries && <DateHistogram series={taxaSeries} legendPosition="nw" margin={{ left: 60 }} /> }
       <DateHistogram series={usersSeries} legendPosition="nw" margin={{ left: 60 }} />
-      <CountryGrowth data={data.countries} year={year} />
+      { data.countries && <CountryGrowth data={data.countries} year={year} /> }
     </div>
   );
 };
