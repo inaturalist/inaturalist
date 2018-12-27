@@ -1648,6 +1648,7 @@ et:
   help_confirm_observations!: Aita vaatlusi kinnitada!
   help_faq: Abi / KKK
   help_out!: Aita!
+  help_support_inaturalist: Toeta iNaturalisti
   helped_the_observer_make: aitasid vaatlejat tema lõpliku määratlusega (st need tehti
     enne lõpliku määratlust ja kattusid sellega)
   here_are_3_examples: Siin on kolm korrektsete andmete näidist
@@ -1660,6 +1661,7 @@ et:
   hi_user: Tere %{user}
   hide: Peida
   hide_details: Peida üksikasjad
+  hide_running_total: Peida hetke koguarv
   hide_uncountable_species: Peida loendamatud liigid
   high: Kõrge
   highest_rank: Kõrgeim kategooria
@@ -2402,6 +2404,8 @@ et:
   new_users: Uued kasutajad
   new_users_w_7_obs: Uued kasutajad 7 vaatlusega
   new_users_week: Uued kasutajad nädalas
+  newly_added: Äsjalisatud
+  newly_observed_species: Äsjavaadeldud liigid
   news: Uudised
   next: Edasi
   next_observation: Järgmine vaatlus
@@ -3374,7 +3378,7 @@ et:
   required_: Nõutav
   required_field: nõutav väli
   required_columns_in_order: Nõutavad tulbad järjekorras
-  research: teadus
+  research: teaduslik
   research_: Teaduslik
   research_grade: Teaduskõlbulik
   research_grade_expandable_html: T<span class='full'>eaduskõlbulik</span>
@@ -3417,6 +3421,7 @@ et:
     must_be_in: peab olema taksonis
     must_be_coordinates_shareable_by_project_curators: vaatleja peab lubama projekti
       kuraatoritel koordinaate näha.
+  running_total: Hetke koguarv
   said: ütles
   sat: L
   satellite: satelliit
@@ -3541,6 +3546,7 @@ et:
   show_off_your_recent_observations: Näita hiljutisi vaatluseid oma blogis või kodulehel!
   show_only: Näita ainult
   show_relative_proportions_of_all_observations: Näita kõigi vaatluste suhtelisi proportsioone
+  show_running_total: Näita hetke koguarvu
   show_scientific_name_first: Näita esmalt teaduslikku nimetust
   show_taxa_from_both: (näita taksoneid mõlemast nimekirjast)
   show_taxa_from_everywhere: Näita taksoneid kõikjalt
@@ -3730,6 +3736,8 @@ et:
   stop_following_user: Lõpeta kasutaja %{user} jälgimine
   stop_testing: Lõpeta testimine
   stop_updating_position: Lõpeta asukoha täiendamine
+  studies_that_used_inaturalist_data_in_year: Uurimused, mis kasutasid aastal %{year}
+    iNaturalisti andmeid
   stuff_just_added: Sinu poolt hiljuti lisatud...
   subject_resolved_noun_html: '%{subject} lahendas: %{noun}'
   subject_affecting_stuff_html: '%{subject}, mis mõjutas: %{stuff}'
@@ -3768,6 +3776,7 @@ et:
   suggestions: Pakkumised
   summary: Kokkuvõte
   supporting: Toetab
+  support_inaturalist: Toeta iNaturalisti
   suspicious_photos: Kahtlased fotod
   siutable_observations: sobivad vaatlused
   sun: P
@@ -4835,6 +4844,8 @@ et:
           please_read_the_teachers_guide_html: Kui see on nõna, siis palun loe meie
             <a href="%{url}">õpetajate juhendist</a> näpunäiteid, kuidas kasutada
             lehte %{site_name} õpilastega.
+    donate:
+      donate_short_desc: Anneta, et näidata oma toetust!
     guides:
       index:
         funding_html: "Juhendite arendamist rahastas \n<a href=\"http://eol.org\"><img
@@ -5760,6 +5771,16 @@ et:
         website_desc_html: Loodud <a href="https://www.inaturalist.org">iNaturalist</a>
           või <a href="%{url}">iNaturalist võrgustiku</a> leheküljel
       year:
+        growth_title: Kasv
+        new_species_desc: Liigid, mida lehel %{site_name} sellel aastal esimest korda
+          vaadeldi. Näita kokku %{x} liiki <a href="%{url}">%{y} liigist</a>.
+        new_species_desc_html: |-
+          Lehele %{site_name} selle aasta jooksul esimest korda lisatud liigid. Vajuta mõnele kuule, et näha siis lisatud liike. Võid vaadata ka kogu liikide kasvutrendi või liigutada ajavalikud minevikku, et näha teisi äsja vaadeldud liike. Selles graafikus sisalduvad ainult tõendatavad vaatlused vastavalt lehele %{site_name} üles laadimise kuule (mitte vaatlemise kuule). Siin ei sisaldu kõrgema või madalama leveli taksonid, mis tähendab, et vaatlus määratlusega imetajad ei lähe arvesse ning <i>Canis lupus</i> alamliigi
+          <i>arctos</i> vaatlus võrdub <i>Canis lupus</i> omaga.
+        publications_desc_html: |-
+          Mõju andmed ja visualiseering <a href="https://www.altmetric.com">Altmetricu</a> poolt. Info andmete kasutamise kohta pärineb meie sõpradelt lehel <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
+          <br/>
+          <a href="%{url}">Vaata kõiki %{numStudies} uurimust</a>
         sunburst_desc_html: Vaadeldud taksonid on seatud mitmetasemelisse sektordiagrammi.
           Hierarhia alguspunkt on keskel alates sektoriga "Elu" ning lõppeb välisperimeetril
           olevate liikidega. Iga kaare suurus on võrdväärne tolle taksoni vaatluste

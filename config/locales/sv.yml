@@ -82,9 +82,12 @@ sv:
   x_people_agree_html:
     one: <span class="count">1</span> person håller med
     other: <span class="count">%{count}</span> personer håller med
+  x_new_species:
+    one: 1 ny art
+    other: '%{count} ny arter'
   x_species:
-    one: 1 Art
-    other: '%{count} Arter'
+    one: 1 art
+    other: '%{count} arter'
   x_species_html:
     one: <span class='count'>1</span> art
     other: <span class='count'>%{count}</span> arter
@@ -114,6 +117,8 @@ sv:
   x_taxon_changes_added_html:
     one: <span class='antal'>1</span> taxonändring tillagd
     other: <span class='antal'>%{count}</span> taxonändringar tillagda
+  x_people_helped_user_with_y_ids_html: <strong>%{x} personer</strong> hjälpte %{user}
+    med <strong>%{y} ID:n</strong>
   _100_day_trends: 100 dagars trend
   _percent_ID_d: '% ID''erat'
   a: en
@@ -831,6 +836,7 @@ sv:
   current_password: Nuvarande lösenord
   darr_apply_darr: '&darr; Verkställ &darr;'
   data_quality: Datakvalitet
+  data_used: 'Data som används:'
   datatype: Datatyp
   date_: Datum
   date?: Datum?
@@ -956,6 +962,7 @@ sv:
   email_copyright: Copyright &copy; %{x}, alla rättigheter reserverade
   email_settings: E-postinställningar
   embed: Bädda in
+  end: Slut
   end_date_time: Slutdatum/-tid
   eol: EOL
   everyone_: Alla
@@ -1023,6 +1030,9 @@ sv:
   follower: följare
   followers: Följare
   following: följer
+  following_x_people:
+    one: Följande 1 människa
+    other: Följande %{count} människor
   for: för
   formatting: Formatering
   forgot_your_password: Glömt ditt lösenord?
@@ -1056,7 +1066,7 @@ sv:
   has_photo: Har foto
   help: Hjälp
   help_faq: Hjälp / FAQ
-  help_support_inaturalist: Hjälp stöd iNaturalist!
+  help_support_inaturalist: Hjälp till att stödja iNaturalist
   here_are_our_top_species_suggestions: Här är våra populäraste förslag på arter
   heres_a_litle_about: Här är lite om
   hi_user: Hej %{user}
@@ -1121,7 +1131,10 @@ sv:
     title:
       current_user: Dina listor
       login: Listor av %{login}
+  loading: Laddar...
+  loading_map: Laddar karta...
   loading_metadata: Laddar metadata...
+  loading_observations: Laddar observationer...
   loading_suggestions: Läser in förslag...
   locales:
     ar: Arabiska
@@ -1143,6 +1156,7 @@ sv:
   make_admin: Gör admin
   manage: Hantera
   manage_your_projects: Hantera dina projekt
+  map: Karta
   maps:
     overlays:
       all_observations: Alla observationer
@@ -1164,13 +1178,18 @@ sv:
   most_comments_and_faves: Flest kommentarer och favoriter
   multiple: flera
   multiple_select_option: -- flera --
+  name: Namn
   name_or_username: Namn eller användarnamn
   new: Ny
   new_comment_on_a_parent_by_user_link: Ny kommentar på @vow_or_con{vow:an|a} %{parent}
     av %{user_link}
   new_list: Ny lista
+  new_observations_this_year: Nya observationer i år
   new_password: Nytt lösenord
+  new_species_added_in_interval_x_of_y: Nya arter som lades till i %{interval} (Visar
+    %{x} av %{y})
   new_users: Nya användare
+  new_users_this_year: Ny användare i år
   news: Nyheter
   next_photo: Nästa foto
   next_tab: Nästa flik
@@ -1185,6 +1204,7 @@ sv:
   not_linked_facebook: Ditt %{site_name}-konto är inte länkat till ditt Facebook-konto
   not_linked_flickr: Ditt %{site_name}-konto är inte länkat till ditt Flickr-konto
   not_logged_in: Inte inloggad
+  not_spam: Inte spam
   notes: Kommentarer
   number_selected: Antal valda
   observation_: observation
@@ -1194,6 +1214,7 @@ sv:
   observations_: observationer
   observations_from_people_taxa_and_places_youre_following: Observationer från människor,
     platser och arter som du följer
+  observed: Observerade
   observer: Observatör
   observers: Observatörer
   observer_short: Observatör
@@ -1225,6 +1246,7 @@ sv:
   google_account_not_linked: '%{user} har inte ett länkat Google-konto längre, så
     %{site_name} har inte behörighet att komma åt detta foto.'
   pin_verb: Fäst
+  place: Plats
   placeholder: Platshållare
   place_autocomplete_placeholder: Zion National Park, Miami, etc.
   place_geo:
@@ -1281,6 +1303,8 @@ sv:
   receive_updates_from_this_project: Hämta uppdateringar från detta projekt
   regenerate_stats: Generera statistik igen
   reject?: Förkasta?
+  relationships:
+    unknown: okänd
   remember_me: Kom ihåg mig
   remove_observations:
     one: Ta bort 1 observation?
@@ -1324,6 +1348,7 @@ sv:
   sign_in: Logga in
   sign_in_with_provider: Logga in med %{provider}
   sign_up_with_provider: Registrera med %{provider}
+  sign_out: Logga ut
   sign_up: Registrera
   skip_to_next_page: Hoppa till nästa sida
   site_site_admin: '%{site_name}s webbplatsadministratör'
@@ -1338,12 +1363,15 @@ sv:
     add_media: Lägg till media
   source_wikipedia: 'Källa: Wikipedia'
   source_list_: Källista
+  spammer: Spammare
   species: Arter
   species_header: Arter
   species_name: artnamn
   species_name_cap: Artnamn
   species_names: artnamn
   species_search: Arter sök
+  species_unknown: Arter ökand
+  start: Starta
   stats_for_this_year_have_not_been_generated: Statistik för detta år har ännu inte
     genererats.
   stats_title: Sajt statistik
@@ -1351,6 +1379,8 @@ sv:
   status_in_place: '%{status} i %{place}'
   stay_and_try_again: Stanna kvar och försök igen
   stop_testing: Sluta testa
+  studies_that_used_inaturalist_data_in_year: Studier som använde iNaturalists data
+    under %{year}
   submit_observations:
     one: Skicka 1 observation
     other: Skicka %{count} observationer
@@ -1367,9 +1397,11 @@ sv:
   taxonomy_details: Taxonomi detaljer
   tell_the_world_a_little_about_yourself: Berätta om dig själv
   terms_of_service: Användarvillkor
+  terms_service: Användarvillkor
   text: Text
   thanks_from_all_of_us_here_at: Tack från alla här på
   the_: Den
+  the_world: Värld
   then_keybord_sequence: sedan
   these_observations_have_not_been_uploaded_yet: Dessa observationer har ännu inte
     laddats upp.
@@ -1379,12 +1411,14 @@ sv:
   thu: Tor
   to_include_your_google_with_inat: för att inkludera ditt Google-konto med %{site_name}
   to_suggest_an_identification: för att föreslå en identifikation
+  today: Idag
   translated_languages: Översatta språk
   trending: Trender
   trends: Trender
   try_it_out: Prova
   tue: Tis
   unblock: Ta bort blockering
+  unknown: Okänd
   unknown_error: Okänt fel
   unlink_your_google_account: Avlänka ditt Google-konto
   update_observation: Uppdatera observation
@@ -1408,6 +1442,8 @@ sv:
   user_added_an_x: '%{user} lade till en %{x}'
   user_blocked: Användare blockerad
   user_commented: '%{user} kommentar'
+  user_helped_x_people_with_y_ids_html: '%{user} hjälpte <strong>%{x} personer</strong>
+    med <strong>%{y} ID:n</strong>'
   username: Användarnamn
   username_or_email: Användarnamn eller e-post
   username_or_user_id: Användarnamn eller användar-ID
@@ -1512,6 +1548,8 @@ sv:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Planerar du att använda %{site_name}
             i klassrummet?
+    donate:
+      donate_short_desc: Donera nu för att visa ditt stöd!
     guides:
       mobile_downloads_tip_html: Denna guide kan laddas ned till mobilappen för att
         kunna användas offline.
@@ -1557,6 +1595,9 @@ sv:
         youve_blocked_desc: |-
           Du har blockerat ägaren av denna resurs, vilket förhindrar dig från att
           kommunicera med dem. De flesta interaktiva funktionerna på denna sida kommer inte att fungera.
+    stats:
+      year:
+        growth_title: Tillväxt
     taxa:
       show:
         discoveries_desc: Senast upptäckta arter i denna taxon

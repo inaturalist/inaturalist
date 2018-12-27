@@ -74,8 +74,8 @@ zh-TW:
     one: 1 個其它
     other: '%{count} 個其它'
   x_people_found_this_helpful:
-    one: 1 個人覺得這個是有助益的
-    other: '%{count} 個人發現這個是有益處的'
+    one: 1 個人覺得這個是有幫助的
+    other: '%{count} 個人發現這個是有幫助的'
   x_faves:
     one: 1 個最愛
     other: '%{count} 個最愛'
@@ -983,6 +983,7 @@ zh-TW:
   data_quality: 資料品質
   data_quality_assessment: 資料品質估計
   data_quality_assessment_: 資料品質估計
+  data_used: 資料使用：
   datatype: 資料類型
   date_: 日期
   date?: 日期？
@@ -2009,7 +2010,8 @@ zh-TW:
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist Network</a>
     的成員
   ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
-  : '%{partial_inat_network_tag_html}iNaturalist 網路</a>成員是聯合 %{cas_tag_html} 與 %{nat_geo_tag_html}。'
+  : '%{partial_inat_network_tag_html}iNaturalist 網路</a>成員是 %{cas_tag_html} 與 %{nat_geo_tag_html}
+    所共同發起。'
   members: 成員
   membership_model: 成員模組
   mentioned_you_in_noun_html: '%{user} 在 %{noun} 提到了您'
@@ -3937,7 +3939,6 @@ zh-TW:
   view_change: 檢視變更
   view_check_list_page: 檢視清單頁面
   view_contributions: 檢視貢獻
-  view_data_used: 檢視所使用資料：
   view_details: 檢視詳細資料
   view_field_options: 檢視欄位選項
   view_flag: 檢視標記
@@ -4327,7 +4328,7 @@ zh-TW:
           您的捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。
         </p>
         <p class="text-muted">
-          iNaturalist 為加利福尼亞州科學院與國家地理學會的聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
+          iNaturalist 為加利福尼亞州科學院與國家地理學會所共同發起。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
         </p>
       post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
     guides:
@@ -5017,6 +5018,15 @@ zh-TW:
         new_species_desc: |-
           此年度在 %{site_name} 上首次被觀察的物種。
           顯示 <a href="%{url}">%{y}</a> 個裡的 %{x} 個物種。
+        new_species_desc_html: |-
+          此年度在 %{site_name} 上首次添加的物種。
+          在月份上點擊來檢視添加在該月份的新物種。
+          您也可以檢視物種累積的總數目，或是在時段裡移動滑桿返回來查看其它新進的觀察物種。此圖表顯示依照物種被上傳至 %{site_name} 的月份（不是牠們被觀察到的月份）之可驗證觀察來顯示出。這不會包含到較高或較低層級的物種分類，因此當一個觀察被鑑定為是哺乳類便不會被計入，所以屬於 <i>Canis lupus</i> ssp.
+          <i>arctos</i> 的觀察只會被計在 <i>Canis lupus</i> 裡。
+        publications_desc_html: |-
+          <a href="https://www.altmetric.com">Altmetric</a> 上的影響力資料以及可見的肯定。有關我們的朋友在<a href="https://www.gbif.org/">全球生物多樣性資訊機構</a>上被感謝到的資料使用方面資訊。
+          <br/>
+          <a href="%{url}">檢視全部 %{numStudies} 份研究</a>
         sunburst_desc_html: |-
           已觀察物種分類群會被整理為分層「放射」狀的圖表。以中間層作為「生命」起始，外環邊緣作為結束。圖表上任一弧線長度比例是基於物種分類的觀察數量，色彩部份會簡略對應到我們常用的「代表性」物種分類顏色（綠色用在植物上；橘色用在昆蟲上；藍色用在多數其它動物上，等等。）， 因此如果您看到許多綠色，這代表著您有觀察過許多植物。
           <strong>點擊弧線來放置到有子項目圍繞的物種分類中心點</strong>，或是<strong>點擊中心點來移動層次結構</strong>。

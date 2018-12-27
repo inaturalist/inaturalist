@@ -933,6 +933,12 @@ bg:
   help: Помощ
   help_confirm_observations!: Помогнете с потвърждаването на наблюденията!
   help_faq: Помощ / ЧЗВ
+  here_are_our_top_species_suggestions: Ето нашите най-добри предложения за видове
+  here_are_some_things_you_can_do_meantime: 'Ето няколко неща, които бихте могли да
+    правите през това време:'
+  here_are_some_things_you_can_do_in_the_meantime: Ето няколко неща, които бихте могли
+    да правите през това време
+  hi: Привет,
   hi_user: Здравей %{user}
   hide: Скриване
   hide_details: Скриване на детайлите
@@ -940,6 +946,7 @@ bg:
   history: История
   home: Начало
   home_faq: ЧЗВ
+  hybrid: хибрид
   i_agree_to_the_project_terms: Съгласен съм с условията на проекта
   icon: Иконка
   icon_size: Размер на иконката
@@ -1275,11 +1282,23 @@ bg:
   more_photos: Още снимки
   most_browser_print_pdf: 'Забележка: Повечето браузъри предлагат възможност за принтиране
     в PDF'
+  most_comments_and_faves: Най-много коментари и харесвания
   most_observations: Най-много наблюдения
   most_species: Най-много видове
   most_observed_species: Най-наблюдавани видове
+  must_be_observed_after: трябва да е наблюдавано след %{operand}
+  must_be_observed_before: трябва да е наблюдавано преди %{operand}
+  must_be_observed_in: трябва да е наблюдавано във
+  must_be_less_than_x_MB: Трябва да е по-малко от %{x} MB
+  must_have_observation_field: трябва да има попълнено поле за наблюдения '%{operand}'
+  must_have_x: трябва да има %{x}
+  mute_user: Заглуши потребителя
+  mute_removed: Заглушаването е отменено
   muted_users: Заглушени потребители
+  n_ago: преди %{n}
+  n_people_agrees: '%{amount} човека са съгласни'
   n_people_disagrees: '%{amount} човека не са съгласни'
+  n_person_agrees: '%{amount} човек е съгласен'
   n_person_disagrees: '%{amount} човек не е съгласен'
   name: Име
   name_or_slug: Име или (част от) уебадрес
@@ -1598,8 +1617,12 @@ bg:
       airport: летище
       Building: Сграда
       building: сграда
+      Canton: Кантон
+      canton: кантон
       Colloquial: Разговорно
       colloquial: разговорно
+      Commune: Комуна
+      commune: комуна
       Continent: Континент
       continent: континент
       Country: Държава
@@ -1610,6 +1633,8 @@ bg:
       drainage: канализация
       Estate: Имот
       estate: имот
+      Governorate: Губерния
+      governorate: губерния
       Historical_County: Исторически окръг
       historical_county: исторически окръг
       Historical_State: Историческа провинция
@@ -1638,6 +1663,8 @@ bg:
       open_space: отворено пространство
       Parish: Eнория
       parish: енория
+      Prefecture_City: Център на префектура
+      prefecture_city: център на префектура
       Point_of_Interest: Място от интерес
       point_of_interest: място от интерес
       Postal_Code: Пощенски код
@@ -1648,12 +1675,18 @@ bg:
       region: регион
       Republic: Република
       republic: република
+      Shire: Графство
+      shire: графство
       Sports_Team: Спортен отбор
       sports_team: спортен отбор
+      State: Щат
+      state: щат
       Street: Улица
       street: улица
       Street_Segment: Уличен сегмент
       street_segment: уличен сегмент
+      Subdivision: Подразделение
+      subdivision: подразделение
       Suburb: Предградие
       suburb: предградие
       Supername: Надиме
@@ -1684,6 +1717,7 @@ bg:
     belgium: Белгия
     bosnia_and_herzegovina: Босна и Херцеговина
     brazil: Бразилия
+    canada: Канада
     central_america: Централна Америка
     china: Китай
     colombia: Колумбия
@@ -1771,7 +1805,8 @@ bg:
   previous_observation: Предишно наблюдение
   previous_page: Пред. страница
   previous_photo: Предишна снимка
-  print_in_browser: Принтирай в браузъра
+  print_verb: Печат
+  print_in_browser: Отпечатай в браузъра
   privacy: Защита на лични данни
   privacy_policy: Защита на лични данни
   private: поверително
@@ -1819,49 +1854,62 @@ bg:
   rank_position: Ранг
   rank_restrictions: Рангови ограничения
   ranks:
-    kingdom: царство
-    subkingdom: подцарство
-    phylum: тип
-    subphylum: подтип
-    superclass: надклас
-    class: клас
-    subclass: подклас
-    infraclass: инфраклас
-    superorder: надразред
-    order: разред
-    suborder: подразред
-    infraorder: инфраразред
-    parvorder: парворазред
-    superfamily: надсемейство
-    epifamily: еписемейство
-    family: семейство
-    subfamily: подсемейство
-    supertribe: надтрибус
-    tribe: трибус
-    subtribe: подтрибус
-    genus: род
-    genushybrid: родов хибрид
-    subgenus: подрод
-    section: секция
-    subsection: подсекция
-    species: вид
-    hybrid: хибрид
-    subspecies: подвид
-    variety: вариетет
-    form: форма
+    kingdom: Царство
+    subkingdom: Подцарство
+    phylum: Тип
+    subphylum: Подтип
+    superclass: Надклас
+    class: Клас
+    subclass: Подклас
+    infraclass: Инфраклас
+    superorder: Надразред
+    order: Разред
+    suborder: Подразред
+    infraorder: Инфраразред
+    parvorder: Парворазред
+    superfamily: Надсемейство
+    epifamily: Еписемейство
+    family: Семейство
+    subfamily: Подсемейство
+    supertribe: Надтрибус
+    tribe: Трибус
+    subtribe: Подтрибус
+    genus: Род
+    genushybrid: Родов хибрид
+    subgenus: Подрод
+    section: Секция
+    subsection: Подсекция
+    species: Вид
+    hybrid: Хибрид
+    subspecies: Подвид
+    variety: Вариетет
+    form: Форма
+    infrahybrid: Инфрахибрид
+    leaves: Листа
+  rare: Рядък
   ray_finned_fishes: лъчеперки
   re_apply_list_rules: Приложи списъчните правила наново
   re_order_photos: Размести снимките &raquo;
+  read_more: Прочетете още
   read_our_getting_started_guide: прочетете нашето Ръководство за начинаещи
+  read_the_full_wikipedia: Прочети пълното описание от Уикипедия
+  ready_to_get_started?: Готови ли сте да започнете?
   real_time_stats: Статистика в реално време
   real_time_discussions: Дискусии в реално време
   reason: Причина
   receive_email_notifications_when_people_leave_you: Получаване на известия по имейл
     за
+  receive_updates_from_this_project: Получавай обновления от този проект
   received: получени
   recent: Последни
+  recent_additions: Последни допълнения
+  recent_comments_on_your_stuff: Скорошни коментари на Вашите материали
   recent_evidence_of_organism: Скорошно свидетелство за организъм
-  recent_observations: Последни наблюдения
+  recent_new_users: Скорошни нови потребители
+  recent_observations: Скорошни наблюдения
+  recent_observations_: Скорошни наблюдения
+  recent_atom_observations_by: Скорошни наблюдения от %{login} (Atom)
+  recent_observations_by: Скорошни наблюдения от %{login}
   recent_updates: Последни промени
   recently_active: Последно активни
   recently_active_projects_from_everywhere: Последно активни проекти от всякъде
@@ -1870,6 +1918,7 @@ bg:
   recently_observed: Наскоро наблюдавано
   red: червено
   redo_search_in_map: Повтори търсенето на картата
+  redo_search_in_map_area: Повтори търсенето в площта на картата
   refresh: Опресни
   refreshing: опресняване
   reject?: Отхвърли?
@@ -1918,6 +1967,7 @@ bg:
   rotate_left: Завърти наляво
   rotate_right: Завърти надясно
   row_singular_or_plural: Ред(ове)
+  rules_for_adding_observations: Правила за добавяне на наблюдения
   said: каза
   sat: сб
   satellite: сателит
@@ -1937,6 +1987,7 @@ bg:
   save_observation: Запази наблюдението
   save_photos: Запази снимките
   save_place: Запази мястото
+  saved: Запазено
   saving: Запазване...
   saving_num_of_count_observations:
     one: Запазване на наблюдение...
@@ -1959,7 +2010,9 @@ bg:
   search_places: Търси места
   search_projects: Търси проекти
   search_results_for: Резултати от търсенето за
+  search_results_for_query: Резултати от търсенето за "%{query}"
   search_species: Търси видове
+  search_species_: Търси видове...
   search_taxa: Търси таксони...
   search_the_map: Търси на картата
   search_this_taxon: търси този таксон
@@ -2021,7 +2074,7 @@ bg:
   sizes: Размери
   skip_to_next_page: Направо към следващата страница
   small: малък
-  site_stats: Статистика на сайта
+  site_stats: Статистика за сайта
   some_rights_reserved: някои права запазени
   something: Нещо
   something_: нещо
@@ -2068,8 +2121,10 @@ bg:
   source_url: Уебадрес на източника
   sources: Източници
   spam: Спам
+  spammer: Спамър
   spanish: испански
   species: Видове
+  species_by_category: видове по категории
   species_from_around_the_world: Видове от целия свят
   species_header: Вид
   species_name: име на вид
@@ -2089,7 +2144,7 @@ bg:
   start_typing_taxon_name: Започни да въвеждаш таксон...
   start_typing_someones_name: Започни да въвеждаш нечие име...
   stats: Статистика
-  stats_title: Статистика на сайта
+  stats_title: Статистика за сайта
   status: Статус
   stop_following_user: Спри да следваш %{user}
   submit_observations:
@@ -2260,6 +2315,8 @@ bg:
     с новите избрани лицензи
   update_existing_sounds_with_new_license: Обнови съществуващите звуци с новите избрани
     лицензи
+  update_observation: Обнови наблюдението
+  update_observations: Обнови наблюденията
   update_photos: Обнови снимките
   update_search: Обнови търсенето
   updated: Обновено
@@ -2372,7 +2429,8 @@ bg:
   view_your_year_stats: Виж своята статистика за %{year}
   view_yours: Виж своите
   view_all_of_your_observations_from_x: Виж всичките си наблюдения от %{x}
-  vulnerable: уязвим
+  visually_similar: Визуално подобен
+  vulnerable: Уязвим
   w_photos_only: със снимка
   w_sounds: със звук
   want_to_show_off_some_of_your_favorite_taxa: Искате ли да покажете някои от любимите
@@ -2413,12 +2471,16 @@ bg:
   x_journal_editing: Дневникът на %{user} • Редактиране
   x_journal_middot: Дневникът на %{user} •;
   x_journal_new_post: Дневникът на %{user} • Нова публикация
+  x_project_stats: Статистика за %{project}
+  x_sent_you_a_new_message_on_y_html: '%{x} Ви изпрати ново съобщение на %{y}:'
   x_wrote_a_new_post_html: '%{x} написа нова публикация'
   x_wrote_y_new_posts_html: '%{x} написа %{y} нови публикации'
   year: Година
   year_month: година/месец
   yellow: жълто
   "yes": Да
+  yes_find_them!: Да, намери ги!
+  yes_i_want_to_join: Да, искам да се присъединя
   yes_license_my_observations_so_scientists_can_use: Да, лицензирай снимките, звуците
     и наблюденията ми така, че учените да могат да използват данните ми!
   yesterday: Вчера
@@ -2969,6 +3031,18 @@ bg:
       x_seconds:
         one: 1 секунда
         other: '%{count} секунди'
+    countdown_x_days:
+      one: ден
+      other: дена
+    countdown_x_hours:
+      one: час
+      other: часа
+    countdown_x_minutes:
+      one: мин
+      other: мин
+    countdown_x_seconds:
+      one: сек
+      other: сек
     prompts:
       day: Ден
       hour: Час
@@ -3023,10 +3097,71 @@ bg:
       format:
         delimiter: .
         format: '%n %u'
+        precision: "2"
         separator: ','
     format:
       delimiter: .
+      precision: "3"
       separator: ','
+    human:
+      decimal_units:
+        units:
+          billion:
+            one: милиард
+            other: милиарда
+          million:
+            one: милион
+            other: милиона
+          quadrillion:
+            one: квадрилион
+            other: квадрилиона
+          thousand:
+            one: хиляда
+            other: хиляди
+          trillion:
+            one: трилион
+            other: трилиона
+      format:
+        precision: "3"
+        significant: "1"
+        strip_insignificant_zeros: "1"
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: байт
+            other: байта
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+  support:
+    array:
+      last_word_connector: ' и'
+      two_words_connector: ' и'
+      words_connector: ','
+  activemodel:
+    errors:
+      messages:
+        blank: не може да е празно
+        confirmation: не съвпада с паролата
+        empty: не може да е празно
+        equal_to: трябва да е равно на %{count}
+        even: трябва да е четно
+        exclusion: е резервирано
+        greater_than: трябва да е повече от %{count}
+        greater_than_or_equal_to: трябва да е по-голямо или равно на %{count}
+        inclusion: не фигурира в списъка
+        invalid: е невалидно
+        less_than: трябва да е по-малко от %{count}
+        less_than_or_equal_to: трябва да е по-малко или равно на %{count}
+        not_a_number: не е число
+        not_an_integer: трябва да е цяло число
+        odd: трябва да е нечетно
+        record_invalid: 'Неуспешна проверка: %{errors}'
+        taken: вече е заето
+      template:
+        body: 'Възникнаха проблеми със следните полета:'
   activerecord:
     errors:
       models:
@@ -3056,6 +3191,8 @@ bg:
         url: URL
         geoprivacy: Геоповерителност
         iucn: Съответствие по IUCN
+      flag:
+        reason: Причина
       guide:
         source_url: Уебадрес на източника
         published_at: Публикация
@@ -3098,7 +3235,7 @@ bg:
         search_place_id: Място за търсене
         place_id: Място
         preferred_observation_fields_by: Позволявай полета за наблюдения от
-  wild: див
+  wild: Див
   will_paginate:
     previous_label: '&#8592; Пред.'
     next_label: След. &#8594;

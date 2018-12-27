@@ -30,6 +30,7 @@
 # Author: Spasmedevivre
 # Author: Tartare
 # Author: Thibaut120094
+# Author: Tomri5
 # Author: Urhixidur
 # Author: Verdy p
 # Author: Wladek92
@@ -1199,6 +1200,7 @@ fr:
   data_quality: Qualité des données
   data_quality_assessment: Évaluation de la qualité des données
   data_quality_assessment_: évaluation de la qualité de la donnée
+  data_used: 'Données utilisées :'
   datatype: Type de données
   date_: Date
   date?: Date?
@@ -4705,7 +4707,6 @@ fr:
   view_change: Afficher la modification
   view_check_list_page: Afficher la page de la liste de contrôle
   view_contributions: Afficher les contributions
-  view_data_used: 'Voir les données utilisées:'
   view_details: Afficher les détails
   view_field_options: Afficher les options du champ
   view_flag: Afficher le drapeau
@@ -6391,6 +6392,16 @@ fr:
         new_species_desc: |-
           Espèces ayant été observées pour la première fois cette année sur %{site_name} .
           Affichage de %{x} sur <a href="%{url}">%{y} espèces</a>.
+        new_species_desc_html: |-
+          Espèces ajoutées pour la première fois à %{site_name} cette année.
+          Cliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.
+          Vous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur
+          dans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre
+          les espèces dont l'observation est vérifiable en fonction du mois où elles ont été chargées
+          sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas
+          de taxons de niveau supérieur ou inférieur, donc une observation identifiée comme
+          Mammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>
+          <i>arctos</i> comptera seulement comme <i>Canis lupus</i>.
         publications_desc_html: "Données d'impact et affichages, avec l'amabilté de\n<a
           href=\"https://www.altmetric.com\">Altmetric</a>. Information\nconcernant
           l'utilisation des données, avec l'amabilité de nos amis de la \n<a href=\"https://www.gbif.org/\">Global
