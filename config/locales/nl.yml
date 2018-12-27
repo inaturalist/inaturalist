@@ -4523,7 +4523,7 @@ nl:
           Aan waarnemingen gehechte foto's moeten van het waargenomen organisme zijn
           op het moment van de waarneming. Als u een boom invoert en een dag later terug gaat om een foto te maken, maak dan een nieuwe waarneming aan voor deze foto, omdat deze foto de boom op een ander tijdstip weergeeft.
         please_do_not_upload_pictures_you_didnt_take_html: |-
-          <em>Upload alsjeblieft geen afbeeldingen die je niet zelf hebt gemaakt</ em> tenzij je
+          <em>Upload alsjeblieft geen afbeeldingen die je niet zelf hebt gemaakt</em> tenzij je
           toestemming hebt van de fotograaf. Het is illegaal om auteursrechtelijk beschermde werken te publiceren zonder enige vorm van licentie verleend door de maker
           van het werk. Alle fotografen hebben standaard volledige auteursrechten op hun
           foto's. Als de foto van het organisme was dat u waarnam en
@@ -4552,11 +4552,12 @@ nl:
           lijst met mensen, net zoals je kunt met een gewone lijst. De soort jij
           handmatig toevoegen wordt niet verwijderd als u ze waarneemt vervolgens verwijdert
           de waarnemingen.
-        a_check_list_is_html: "Een checklist is een lijst met taxa die op een plaats
-          voorkomen. Elke plaats\nheeft een default check list en wanneer een waarneming
-          wordt gedaan\nbinnen de grenzen van de plaats <em>en</ em> research-grade
-          status is bereikt\nwordt de waargenomen soort automatisch \ntoegevoegd aan
-          de checklist van de plaats."
+        a_check_list_is_html: |
+          Een checklist is een lijst met taxa die op een plaats voorkomen. Elke
+          plaats heeft een default check list en wanneer een waarneming wordt
+          gedaan binnen de grenzen van de plaats <em>en</em> research-grade
+          status is bereikt wordt de waargenomen soort automatisch toegevoegd
+          aan de checklist van de plaats.
         inat_users_can_also: |-
           Gebruikers van %{site_name} kunnen ook extra controlelijsten toevoegen aan plaatsen maar
           deze checklists worden niet automatisch bijgewerkt. Ze bieden voornamelijk
