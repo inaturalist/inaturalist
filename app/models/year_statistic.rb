@@ -58,12 +58,12 @@ class YearStatistic < ActiveRecord::Base
       },
       growth: {
         observations: observations_histogram_by_created_month( options ),
-        users: users_histogram_by_created_month( options ),
-        countries: observation_counts_by_country( year, options )
+        users: users_histogram_by_created_month( options )
       }
     }
     if options[:site].blank?
       json[:publications] = publications( year, options )
+      json[:growth][:countries] = observation_counts_by_country( year, options )
     end
     year_statistic.update_attributes( data: json )
     year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
