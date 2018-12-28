@@ -1196,4 +1196,43 @@ class User < ActiveRecord::Base
       where("(type IN ('LifeList', 'List') OR type IS NULL)")
   end
 
+  # Iterates over recently created accounts of unknown spammer status, zero
+  # obs or ids, and a description with a link. Attempts to run them past
+  # akismet three times, which seems to catch most spammers
+  def self.check_recent_probable_spammers
+    spammers = []
+    num_checks = {}
+    User.order( "id desc" ).limit( 100 ).
+        where( "spammer is null " ).
+        where( "created_at < ? ", 12.hours.ago ). # half day grace period
+        where( "description is not null and description != '' and description ilike '%http%'" ).
+        where( "observations_count = 0 and identifications_count = 0" ).
+        pluck(:id).
+        in_groups_of( 10 ) do |ids|
+      puts
+      puts "BATCH #{ids[0]}"
+      puts
+      3.times do |i|
+        batch = User.where( "id IN (?)", ids )
+        puts "Try #{i}"
+        batch.each do |u|
+          next if spammers.include?( u.login )
+          num_checks[u.login] ||= 0
+          puts "#{u}, checked #{num_checks[u.login]} times already"
+          num_checks[u.login] += 1
+          u.description_will_change!
+          u.check_for_spam
+          puts "\tu.akismet_response: #{u.akismet_response}"
+          u.reload
+          if u.spammer == true
+            puts "\tSPAM"
+            spammers << u.login
+          end
+          sleep 1
+        end
+        sleep 10
+      end
+    end
+  end
+
 end

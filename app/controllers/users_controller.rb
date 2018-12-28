@@ -648,6 +648,18 @@ class UsersController < ApplicationController
   def recent
     @users = User.order( "id desc" ).page( 1 ).per_page( 10 )
     @spammer = params[:spammer]
+    case params[:preset]
+    when "probably_spam"
+      @spammer = "unknown"
+      params[:obs] = "yes"
+      params[:ids] = "any"
+      params[:description] = "yes"
+    when "welcome"
+      @spammer = "unknwon"
+      params[:obs] = "yes"
+      params[:ids] = "any"
+      params[:description] = "any"
+    end
     if @spammer.nil? || @spammer == "unknown"
       @users = @users.where( "spammer IS NULL" )
     elsif @spammer.yesish?
@@ -687,7 +699,7 @@ class UsersController < ApplicationController
         where( "observations_count = 0 AND identifications_count = 0" ).
         where( "description IS NOT NULL AND description != ''" ).
         where( "created_at > ?", start_date ).group( "created_at::date" ).count
-      @stats = ( start_date...Date.today ).map do |d|
+      @stats = ( start_date...Date.tomorrow ).map do |d|
         {
           date: d.to_s,
           new_users: total_new_user_counts[d],

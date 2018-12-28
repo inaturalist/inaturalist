@@ -2,8 +2,11 @@
   =t :recent_new_users
 - content_for :extracss do
   :css
-    #controls { margin-top: 20px; }
-    #vis { height: 300px; }
+    #vis {
+      width: 100%;
+      padding: 0;
+      height: 300px;
+    }
 - content_for :extrajs do
   = javascript_include_tag :stats
   = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
@@ -13,11 +16,14 @@
       google.setOnLoadCallback( Stats.simpleChart( {
         element_id: "vis",
         chartType: google.visualization.AnnotationChart,
+        chartOptions: {
+          colors: ["green", "red", "orange", "purple"]
+        },
         series: [
           { label: "total new users" },
-          { label: "users automatically marked as spamers" },
-          { label: "users manually marked as spamers" },
-          { label: "users that are probably spammers" },
+          { label: "auto spam" },
+          { label: "manual spam" },
+          { label: "probably spam" },
         ],
         data: _.map( STATS_JSON, function( stat ) {
           return [
@@ -31,10 +37,11 @@
       }));
 .container
   .row
-    .col-xs-4
+    .col-xs-12
       %h2=t :recent_new_users
-    .col-xs-8
-      #controls.pull-right
+  .row
+    .col-xs-12
+      #controls.stacked
         %form.form-inline
           .form-group
             %label{ for: "controls-spammer" }=t :spammer
@@ -43,6 +50,12 @@
             .form-group
               %label{ for: "controls-#{fp}" }=t fp
               = select_tag fp, options_for_select( %w(yes no any).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[fp] || "any" ), class: "form-control", id: "controls-#{fp}", data: { autosubmit: true }
+          .form-group
+            %label{ for: "controls-preset" }=t :preset
+            = select_tag :preset, options_for_select( %w(none welcome probably_spam).map{|o| [t( o, default: o.humanize ), o] }, params[:preset] || "none" ), id: "controls-preset", class: "form-control", data: { autosubmit: true }
+          %label.form-group
+            %input{ type: "checkbox", name: "chart", checked: params[:chart].yesish?, data: { autosubmit: true }, value: "yes" }
+            =t :chart
           = link_to t(:reset), url_for, class: "btn btn-link"
   .row
     .col-xs-12
@@ -68,8 +81,8 @@
                     = user_image( user, size: "thumb" )
                   = link_to_user user
                 %td=l user.created_at
-                %td= link_to user.observations_count, observations_path( user_id: user.login, verifiable: "any", place_id: "any" )
-                %td= link_to user.identifications_count, identifications_path( user_id: user.login )
+                %td= link_to user.observations_count, observations_path( user_id: user.login, verifiable: "any", place_id: "any" ), class: "badge"
+                %td= link_to user.identifications_count, identifications_path( user_id: user.login ), class: "badge"
                 %td= truncate_with_more( formatted_user_text( user.description ), length: 500 )
                 %td
                   - unless user.spammer?
