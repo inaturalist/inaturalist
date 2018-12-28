@@ -272,7 +272,7 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
     } ) );
   }
   if ( layer.observationLayers ) {
-    _.forEach( layer.observationLayers, lyr => {
+    _.forEach( layer.observationLayers, function( lyr ) {
       map.addObservationsLayer( lyr.label || options.taxonObservationsLayerLabel, _.defaults( lyr, {
         taxon: layer.taxon,
         description: options.taxonObservationsLayerDescription,
