@@ -969,6 +969,7 @@ protected
       :prefers_comment_email_notification,
       :prefers_identification_email_notification,
       :prefers_message_email_notification,
+      :prefers_medialess_obs_maps,
       :prefers_project_invitation_email_notification,
       :prefers_mention_email_notification,
       :prefers_project_journal_post_email_notification,

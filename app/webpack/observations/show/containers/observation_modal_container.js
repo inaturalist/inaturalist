@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { updateCurrentUser } from "../../../shared/ducks/config";
 import ObservationModal from "../../identify/components/observation_modal";
 import { addID } from "../ducks/observation";
 import {
@@ -8,7 +9,7 @@ import {
 
 function mapStateToProps( state ) {
   let images;
-  const observation = state.observation;
+  const { observation } = state;
   if ( observation && observation.photos && observation.photos.length > 0 ) {
     let defaultPhotoSize = "medium";
     if ( $( ".ObservationModal .image-gallery" ).width( ) > 600 ) {
@@ -43,7 +44,8 @@ function mapDispatchToProps( dispatch ) {
     chooseSuggestedTaxon: ( taxon, options ) => {
       dispatch( addID( Object.assign( {}, taxon, { isVisionResult: options.vision } ) ) );
       dispatch( hideCurrentObservation( ) );
-    }
+    },
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
   };
 }
 
