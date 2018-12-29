@@ -7,6 +7,9 @@
       padding: 0;
       height: 300px;
     }
+    #controls-preset {
+      width: 50px;
+    }
 - content_for :extrajs do
   = javascript_include_tag :stats
   = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
@@ -46,17 +49,22 @@
           .form-group
             %label{ for: "controls-spammer" }=t :spammer
             = select_tag :spammer, options_for_select( %w(yes no unknown).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[:spammer] || "unknown" ), class: "form-control", id: "controls-spammer", data: { autosubmit: true }
+          .form-group
+            %label{ for: "controls-flagged-by" }=t :flagged_by
+            = select_tag :flagged_by, options_for_select( %w(any auto manual).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[:flagged_by] || "any" ), class: "form-control", id: "controls-flagged-by", data: { autosubmit: true }
           - [:obs, :ids, :description].each do |fp|
             .form-group
               %label{ for: "controls-#{fp}" }=t fp
               = select_tag fp, options_for_select( %w(yes no any).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[fp] || "any" ), class: "form-control", id: "controls-#{fp}", data: { autosubmit: true }
-          .form-group
-            %label{ for: "controls-preset" }=t :preset
-            = select_tag :preset, options_for_select( %w(none welcome probably_spam).map{|o| [t( o, default: o.humanize ), o] }, params[:preset] || "none" ), id: "controls-preset", class: "form-control", data: { autosubmit: true }
           %label.form-group
             %input{ type: "checkbox", name: "chart", checked: params[:chart].yesish?, data: { autosubmit: true }, value: "yes" }
             =t :chart
           = link_to t(:reset), url_for, class: "btn btn-link"
+          .form-group.pull-right
+            %label=t :presets
+            .btn-group
+              = link_to t(:welcome), url_for( obs: "yes" ), class: "btn btn-default"
+              = link_to t(:probably_spam), url_for( obs: "no", ids: "no", description: "yes" ), class: "btn btn-default"
   .row
     .col-xs-12
       - if @stats

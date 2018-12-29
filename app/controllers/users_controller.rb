@@ -648,18 +648,6 @@ class UsersController < ApplicationController
   def recent
     @users = User.order( "id desc" ).page( 1 ).per_page( 10 )
     @spammer = params[:spammer]
-    case params[:preset]
-    when "probably_spam"
-      @spammer = "unknown"
-      params[:obs] = "yes"
-      params[:ids] = "any"
-      params[:description] = "yes"
-    when "welcome"
-      @spammer = "unknwon"
-      params[:obs] = "yes"
-      params[:ids] = "any"
-      params[:description] = "any"
-    end
     if @spammer.nil? || @spammer == "unknown"
       @users = @users.where( "spammer IS NULL" )
     elsif @spammer.yesish?
@@ -682,6 +670,11 @@ class UsersController < ApplicationController
     elsif params[:description].noish?
       @users = @users.where( "description IS NULL OR description = ''" )
     end
+    if params[:flagged_by] == "auto"
+      @users = @users.joins(:flags).where( "NOT resolved AND flag = 'spam'" ).where( "flags.user_id = 0" )
+    elsif params[:flagged_by] == "manual"
+      @users = @users.joins(:flags).where( "NOT flags.resolved AND flag = 'spam'" ).where( "flags.user_id > 0" )
+    end
     if params[:from].to_i > 0
       @users = @users.where( "id < ?", params[:from].to_i )
     end
@@ -689,10 +682,10 @@ class UsersController < ApplicationController
       start_date = 3.months.ago.to_date
       total_new_user_counts = User.where( "created_at > ?", start_date ).group( "created_at::date" ).count
       new_automated_spam_flag_counts = Flag.
-        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND user_id = 0", start_date ).
+        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id = 0", start_date ).
         group( "created_at::date" ).count
       new_manual_spam_flag_counts = Flag.
-        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND user_id > 0", start_date ).
+        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id > 0", start_date ).
         group( "created_at::date" ).count
       probable_spam_user_counts = User.
         where( "spammer IS NULL" ).
