@@ -1199,10 +1199,10 @@ class User < ActiveRecord::Base
   # Iterates over recently created accounts of unknown spammer status, zero
   # obs or ids, and a description with a link. Attempts to run them past
   # akismet three times, which seems to catch most spammers
-  def self.check_recent_probable_spammers
+  def self.check_recent_probable_spammers( limit = 100 )
     spammers = []
     num_checks = {}
-    User.order( "id desc" ).limit( 100 ).
+    User.order( "id desc" ).limit( limit ).
         where( "spammer is null " ).
         where( "created_at < ? ", 12.hours.ago ). # half day grace period
         where( "description is not null and description != '' and description ilike '%http%'" ).

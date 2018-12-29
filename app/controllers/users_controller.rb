@@ -308,7 +308,7 @@ class UsersController < ApplicationController
       end
       opts = User.default_json_options
       opts[:only] ||= []
-      opts[:only] << :description
+      opts[:only] << :description if @selected_user.known_non_spammer?
       format.json { render :json => @selected_user.to_json( opts ) }
     end
   end
@@ -652,6 +652,11 @@ class UsersController < ApplicationController
       @users = @users.where( "spammer IS NULL" )
     elsif @spammer.yesish?
       @users = @users.where( "spammer" )
+      if params[:flagged_by] == "auto"
+        @users = @users.joins(:flags).where( "NOT resolved AND flag = 'spam'" ).where( "flags.user_id = 0" )
+      elsif params[:flagged_by] == "manual"
+        @users = @users.joins(:flags).where( "NOT flags.resolved AND flag = 'spam'" ).where( "flags.user_id > 0" )
+      end
     elsif @spammer.noish?
       @users = @users.where( "NOT spammer" )
     end
@@ -670,13 +675,8 @@ class UsersController < ApplicationController
     elsif params[:description].noish?
       @users = @users.where( "description IS NULL OR description = ''" )
     end
-    if params[:flagged_by] == "auto"
-      @users = @users.joins(:flags).where( "NOT resolved AND flag = 'spam'" ).where( "flags.user_id = 0" )
-    elsif params[:flagged_by] == "manual"
-      @users = @users.joins(:flags).where( "NOT flags.resolved AND flag = 'spam'" ).where( "flags.user_id > 0" )
-    end
     if params[:from].to_i > 0
-      @users = @users.where( "id < ?", params[:from].to_i )
+      @users = @users.where( "users.id < ?", params[:from].to_i )
     end
     if params[:chart]
       start_date = 3.months.ago.to_date
