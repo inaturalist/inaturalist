@@ -247,4 +247,5 @@ describe UsersController, "without authentication" do
       expect(JSON.parse(response.body).map{ |r| r["login"] }).to eq [ "acc", "aaa", "abb" ]
     end
   end
+
 end

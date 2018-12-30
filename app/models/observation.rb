@@ -1877,7 +1877,8 @@ class Observation < ActiveRecord::Base
   def set_license
     return true if license_changed? && license.blank?
     self.license ||= user.preferred_observation_license
-    self.license = nil unless LICENSE_CODES.include?(license)
+    self.license = Shared::LicenseModule.normalize_license_code( license )
+    self.license = nil unless LICENSE_CODES.include?( license )
     true
   end
 

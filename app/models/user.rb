@@ -340,6 +340,10 @@ class User < ActiveRecord::Base
   end
   
   def whitelist_licenses
+    self.preferred_observation_license = Shared::LicenseModule.normalize_license_code( preferred_observation_license )
+    self.preferred_photo_license = Shared::LicenseModule.normalize_license_code( preferred_photo_license )
+    self.preferred_sound_license = Shared::LicenseModule.normalize_license_code( preferred_sound_license )
+    
     unless preferred_observation_license.blank? || Observation::LICENSE_CODES.include?( preferred_observation_license )
       self.preferred_observation_license = nil
     end
