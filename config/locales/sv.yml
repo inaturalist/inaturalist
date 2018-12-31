@@ -659,6 +659,7 @@ sv:
   because_of: eftersom
   before_importing_photos: innan foton importeras
   bg_color: Bakgrundsfärg
+  bioblitz: Bioblitz
   birds: fåglar
   black: svart
   block_user: Blockera användare
@@ -745,6 +746,7 @@ sv:
   columns: Kolumner
   combine: Kombinera
   comment: kommentar
+  comment_: Kommentar
   comment_feed: Kommentarsflöde
   comment_deleted: Kommentar raderad
   comments: Kommentarer
@@ -835,6 +837,7 @@ sv:
   curators: Kuratorer
   current_password: Nuvarande lösenord
   darr_apply_darr: '&darr; Verkställ &darr;'
+  dashboard: Kontrollpanel
   data_quality: Datakvalitet
   data_used: 'Data som används:'
   datatype: Datatyp
@@ -1109,6 +1112,7 @@ sv:
   last_year: Senaste året
   learn: Lär dig
   learn_more: Läs mer
+  leave_a_comment: Lämna en kommentar
   lexicons:
     czech: Tjeckiska
     danish: Danska
@@ -1123,6 +1127,7 @@ sv:
     När du licensierar dina bidrag får andra laglig rätt använda dem så längde de fäljer licensvillkoren. %{site_name} använder Creative
     Commons-licensierat innehåll som delas med data partners som <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
     (GBIF).
+  linear_scale_label: Linjärt
   link_or_unlink_your_google_account: Länka eller avlänka ditt Google-konto
   link_your_google_account: Länka ditt Google-konto
   list: Lista
@@ -1152,6 +1157,7 @@ sv:
   location_is_public: Platsen är offentlig
   location_is_private: Platsen är privat
   log_in: Logga in
+  log_scale_label: Logg
   logged_in_as: Inloggad som
   make_admin: Gör admin
   manage: Hantera
@@ -1166,6 +1172,13 @@ sv:
   meet: Möt
   member_of_the_inaturalist_network_html: Medlem av <a href="%{url}">iNaturalist Network</a>
   mobile: Mobil
+  momentjs:
+    shortRelativeTime:
+      mm: '%dm'
+      hh: '%dt'
+      dd: '%dd'
+      MM: '%dmå'
+      yy: '%då'
   mon: Mån
   months: Månader
   more: Mer
@@ -1238,6 +1251,10 @@ sv:
   overview: Översikt
   password: Lösenord
   people: Människor
+  people_added:
+    comment:
+      with_by: kommenterat på %{comment_subject_link} av %{by_link}
+      without_by: kommenterat på %{comment_subject_link}
   per_day: Per dag
   per_month: Per månad
   per_week: Per vecka
@@ -1301,6 +1318,7 @@ sv:
   real_time_discussions: Realtidsdiskussioner
   recaptcha_verification_failed: reCaptcha-verifiering misslyckades
   receive_updates_from_this_project: Hämta uppdateringar från detta projekt
+  recent_new_users: Senaste nya användare
   regenerate_stats: Generera statistik igen
   reject?: Förkasta?
   relationships:
@@ -1319,10 +1337,12 @@ sv:
   review_all: Granska alla
   sat: Lör
   save_and_continue: Spara och fortsätt...
+  save_comment: Spara kommentar
   saved: Sparades
   saving_num_of_count_observations:
     one: Spara observation...
     other: Sparar %{num} av %{count} observationer...
+  scale_colon: 'Skala:'
   search: Sök
   search_by_name_or_email: Sök efter namn eller e-post
   search_for_a_location: Sök efter en plats
@@ -1381,6 +1401,7 @@ sv:
   stop_testing: Sluta testa
   studies_that_used_inaturalist_data_in_year: Studier som använde iNaturalists data
     under %{year}
+  submit_comment: Skicka kommentarer
   submit_observations:
     one: Skicka 1 observation
     other: Skicka %{count} observationer
@@ -1462,6 +1483,9 @@ sv:
   view_original: Visa original
   view_x: Visa %{x}
   view_year_stats_for_site: Visa statistik för %{site} under %{year}
+  view_your_dashboard: Visa din kontrollpanel
+  view_your_dashboard_for_more_updates_html: <a href='%{url}'>Visa din kontrollpanel</a>
+    för fler uppdateringar
   view_your_inbox: Visa din inkorg
   view_your_observations: Visa dina observationer
   view_your_year_stats: Visa din statistik för %{year}
@@ -1550,6 +1574,7 @@ sv:
             i klassrummet?
     donate:
       donate_short_desc: Donera nu för att visa ditt stöd!
+      post_donate_social_media_text: Jag stöder iNaturalist eftersom...
     guides:
       mobile_downloads_tip_html: Denna guide kan laddas ned till mobilappen för att
         kunna användas offline.
@@ -1570,6 +1595,8 @@ sv:
         review_all_tooltip: Markera alla observationer på denna sida som granskade
         you_reviewed_message: Du granskade %{reviewed} av %{pageTotal} observationer
           på denna sida av %{total} matchande observationer.
+      import:
+        date_column_format: ÅÅÅÅ-MM-DD TT:MM
     projects:
       collection: Samling
       edit:
@@ -1597,7 +1624,13 @@ sv:
           kommunicera med dem. De flesta interaktiva funktionerna på denna sida kommer inte att fungera.
     stats:
       year:
+        include_usa: Inkludera USA
+        growth_by_country_title: Tillväxt efter land
+        growth_in_year_obs: Tillväxt i %{year} (obs)
         growth_title: Tillväxt
+        obs_in_year: Obs i %{year}
+        percent_growth_in_year: '% tillväxt i %{year}'
+        percent_of_total_growth: '% av total tillväxt'
     taxa:
       show:
         discoveries_desc: Senast upptäckta arter i denna taxon
@@ -1657,6 +1690,7 @@ sv:
     formats:
       default: '%d-%m-%Y'
       long: '%d. %B %Y'
+      short: '%d %b'
       short_with_year: '%d %b %Y'
       month_year: '%B %Y'
       month_day_year: '%d. %B %Y'
@@ -1688,7 +1722,9 @@ sv:
   time:
     formats:
       default: '%d. %b %Y %H:%M:%S %z'
+      long: '%-d %B %Y %H:%M'
       rfc: '%d. %B %Y'
+      day_month_year: '%-d %B %Y'
   activemodel:
     errors:
       messages:

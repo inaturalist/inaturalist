@@ -1512,6 +1512,7 @@ ko:
   location_is_obscured: 위치가 가려져 있다
   location_is_private: 위치가 비공개이다
   log_in: 로그인
+  log_scale_label: 로그
   logged_in_as: '로그인한 사용자:'
   login_slash_username: 로그인 / 사용자 이름
   logo:
@@ -1928,53 +1929,123 @@ ko:
   places_name:
     afghanistan: 아프가니스탄
     africa: 아프리카
+    albania: 알바니아
+    angola: 앙골라
+    antarctica: 남극
+    argentina: 아르헨티나
+    armenia: 아르메니아
     australia: 오스트레일리아
     austria: 오스트리아
+    bangladesh: 방글라데시
+    barbados: 바바도스
     belgium: 벨기에
+    bhutan: 부탄
     brazil: 브라질
+    bulgaria: 불가리아
+    cambodia: 캄보디아
     canada: 캐나다
     central_america: 중앙 아메리카
+    chile: 칠레
     china: 중국
     colombia: 콜롬비아
+    costa_rica: 코스타리카
+    croatia: 크로아티아
+    cuba: 쿠바
+    czech_republic: 체코 공화국
     denmark: 덴마크
+    dominica: 도미니카
+    east_timor: 동티모르
+    ecuador: 에콰도르
     egypt: 이집트
     equatorial_guinea: 적도 기니
     europe: 유럽
+    fiji: 피지
+    finland: 핀란드
     france: 프랑스
+    gambia: 감비아
+    georgia: 조지아
     germany: 독일
+    ghana: 가나
     greece: 그리스
+    guam: 괌
+    guatemala: 과테말라
+    guinea: 기니
     hong_kong: 홍콩
     hungary: 헝가리
-    italy: 이탈리아
     india: 인도
+    iran: 이란
     iraq: 이라크
+    israel: 이스라엘
+    italy: 이탈리아
+    jamaica: 자메이카
     japan: 일본
+    kenya: 케냐
     korea: 한국
+    kosovo: 코소보
+    kuwait: 쿠웨이트
+    laos: 라오스
+    latvia: 라트비아
+    lebanon: 레바논
+    libya: 리비아
+    lithuania: 리투아니아
+    macao: 마카오
+    macedonia: 마케도니아
+    madagascar: 마다가스카르
+    malawi: 말라위
+    marshall_islands: 마셜 제도
     mexico: 멕시코
+    moldova: 몰도바
+    morocco: 모로코
+    nepal: 네팔
     netherlands: 네덜란드
     new_guinea: 뉴 기니
     new_zealand: 뉴질랜드
     north_africa: 북아프리카
     north_america: 북아메리카
+    north_korea: 조선민주주의인민공화국
+    norway: 노르웨이
+    palau: 팔라우
     panama: 파나마
+    paraguay: 파라과이
     peru: 페루
+    philippines: 필리핀
     poland: 폴란드
     portugal: 포르투갈
     republic_of_congo: 콩고 민주 공화국
+    romania: 루마니아
     russia: 러시아
+    rwanda: 르완다
+    samoa: 사모아
     saudi_arabia: 사우디아라비아
+    senegal: 세네갈
     singapore: 싱가포르
+    solomon_islands: 솔로몬 제도
+    somalia: 소말리아
     south_africa: 남아프리카
     south_america: 남아메리카
+    south_korea: 대한민국
+    south_sudan: 남수단
     spain: 스페인
+    sri_lanka: 스리랑카
+    sudan: 수단
+    swaziland: 스와질란드
     sweden: 스웨덴
     switzerland: 스위스
     syria: 시리아
+    taiwan: 타이완
+    tajikistan: 타지키스탄
     thailand: 태국
+    tunisia: 튀니지
     turkey: 터키
+    ukraine: 우크라이나
     united_kingdom: 영국
     united_states: 미국
+    uzbekistan: 우즈베키스탄
+    vietnam: 베트남
     west_africa: 서아프리카
+    yemen: 예멘
+    zambia: 잠비아
+    zimbabwe: 짐바브웨
   places_merged_successfully: 장소가 성공적으로 합쳐졌습니다!
   plants: 식물
   please_be_careful_particulary_when: 특히 분류군을 삭제할 때 조심해 주세요. 연관된 관찰이나 동정, 다른 분류군 등이
@@ -2505,6 +2576,8 @@ ko:
         new_users_desc: 오늘 가입함
         TTCID: TTCID
         TTID: TTID
+      year:
+        include_usa: 미국 포함
     taxa:
       show:
         frequency:

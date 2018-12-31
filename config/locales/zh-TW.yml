@@ -1814,6 +1814,7 @@ zh-TW:
     Corvidae）的分類清單會列該科的鳥類。
   life_list_first: 首次加入生命清單
   life_list_firsts: 首次加入生物清單
+  linear_scale_label: 線性
   link: 連結
   link_or_unlink_your_facebook_account: 連結或取消連結至您的 Facebook 帳號
   link_or_unlink_your_flickr_account: 連結或取消連結至您的 Flickr 帳號
@@ -1930,6 +1931,7 @@ zh-TW:
   location_specified: 位置指定
   locked_taxa_will_not_allow_new: 被鎖定的物種分類群不允許添加派生物種分類群在裡頭。因此如果您鎖定了兩棲動物，當其他人嘗試從外部名稱提供者匯入美洲牛蛙時，新的物種分類群創建後不會被歸類為兩棲動物。在以上情況發生時，新添加物種分類群應被標記來讓策展人關注。這應僅用在我們認為內容已包含所有相關派生的物種分類群上。雖然策展人可以透過直接編輯物種分類群以及輸入父級鑑定來覆蓋掉，但請考慮以合併新物種分類群至現有內容為主。
   log_in: 登入
+  log_scale_label: 日誌
   logged_in_as: 已登入為
   login_slash_username: 登入 / 用戶名稱
   logo:
@@ -2733,60 +2735,268 @@ zh-TW:
   places_name:
     afghanistan: 阿富汗
     africa: 非洲
+    akrotiri_and_dhekelia: 亞克羅提利與德凱利亞
+    aland: 奧蘭
+    albania: 阿爾巴尼亞
+    algeria: 阿爾及利亞
+    american_samoa: 美屬薩摩亞
+    andorra: 安道爾
+    angola: 安哥拉
+    anguilla: 安圭拉
+    antarctica: 南極洲
     antigua_and_barbuda: 安地卡及巴布達
+    argentina: 阿根廷
+    armenia: 亞美尼亞
+    aruba: 阿魯巴
     australia: 澳洲
     austria: 奧地利
+    azerbaijan: 亞塞拜然
+    bahamas: 巴哈馬
+    bahrain: 巴林
+    bangladesh: 孟加拉
+    barbados: 巴貝多
+    belarus: 白俄羅斯
     belgium: 比利時
+    belize: 貝里斯
+    benin: 貝南
+    bermuda: 百慕達
+    bhutan: 不丹
+    bolivia: 玻利維亞
+    bonaire_saint_eustatius_and_saba: 波奈、聖佑達修斯及沙巴
     bosnia_and_herzegovina: 波士尼亞與赫塞哥維納
+    botswana: 波札那
+    bouvet_island: 布威島
     brazil: 巴西
+    british_indian_ocean_territory: 英屬印度洋領地
+    british_virgin_islands: 英屬維京群島
+    brunei: 汶萊
+    bulgaria: 保加利亞
+    burkina_faso: 布吉納法索
+    burundi: 蒲隆地
+    cambodia: 柬埔寨
+    cameroon: 喀麥隆
     canada: 加拿大
+    cape_verde: 維德角
+    cayman_islands: 開曼群島
+    central_african_republic: 中非共和國
     central_america: 中美洲
+    chad: 查德
+    chile: 智利
     china: 中國
+    christmas_island: 聖誕島
+    clipperton_island: 克利珀頓島
+    cocos_islands: 科科斯群島
     colombia: 哥倫比亞
+    commonwealth_of_the_northern_mariana_islands: 北馬里亞納群島
+    comoros: 葛摩
+    cook_islands: 庫克群島
+    costa_rica: 哥斯大黎加
+    cote_d_ivoire: 象牙海岸
+    croatia: 克羅埃西亞
+    cuba: 古巴
+    curacao: 古拉索
+    cyprus: 賽普勒斯
+    czech_republic: 捷克
+    democratic_republic_of_the_congo: 剛果民主共和國
     denmark: 丹麥
+    djibouti: 吉布地
+    dominica: 多米尼克
+    dominican_republic: 多明尼加
+    east_timor: 東帝汶
+    ecuador: 厄瓜多
     egypt: 埃及
+    el_salvador: 薩爾瓦多
     equatorial_guinea: 赤道幾內亞
+    eritrea: 厄利垂亞
+    estonia: 愛沙尼亞
+    ethiopia: 衣索比亞
     europe: 歐洲
+    falkland_islands: 福克蘭群島
+    faroe_islands: 法羅群島
+    fiji: 斐濟
+    finland: 芬蘭
     france: 法國
+    french_guiana: 法屬圭亞那
+    french_polynesia: 法屬玻里尼西亞
+    french_southern_territories: 法屬南部領地
+    gabon: 加彭
+    gambia: 甘比亞
+    georgia: 喬治亞
     germany: 德國
+    ghana: 迦納
+    gibraltar: 直布羅陀
     greece: 希臘
+    greenland: 格陵蘭
+    grenada: 格瑞那達
+    guadeloupe: 瓜德羅普
+    guam: 關島
+    guatemala: 瓜地馬拉
+    guernsey: 耿西
+    guinea: 幾內亞
+    guinea_bissau: 幾內亞比索
+    guyana: 蓋亞那
+    haiti: 海地
+    heard_island_and_mcdonald_islands: 赫德島和麥克唐納群島
+    honduras: 宏都拉斯
     hong_kong: 香港
     hungary: 匈牙利
-    italy: 義大利
+    iceland: 冰島
     india: 印度
+    indonesia: 印尼
+    iran: 伊朗
     iraq: 伊拉克
+    ireland: 愛爾蘭
+    isle_of_man: 曼島
+    israel: 以色列
+    italy: 義大利
+    jamaica: 牙買加
     japan: 日本
+    jersey: 澤西
+    jordan: 約旦
+    kazakhstan: 哈薩克
+    kenya: 肯亞
+    kiribati: 吉里巴斯
     korea: 韓國
+    kosovo: 科索沃
+    kuwait: 科威特
+    kyrgyzstan: 吉爾吉斯
+    laos: 寮國
+    latvia: 拉脫維亞
+    lebanon: 黎巴嫩
+    lesotho: 賴索托
+    liberia: 賴比瑞亞
+    libya: 利比亞
+    liechtenstein: 列支敦斯登
+    lithuania: 立陶宛
+    luxembourg: 盧森堡
+    macao: 澳門
+    macedonia: 馬其頓
+    madagascar: 馬達加斯加
+    malawi: 馬拉威
+    malaysia: 馬來西亞
+    maldives: 馬爾地夫
+    mali: 馬利
+    malta: 馬爾他
+    marshall_islands: 馬紹爾群島
     martinique: 馬丁尼克
+    mauritania: 茅利塔尼亞
+    mauritius: 模里西斯
+    mayotte: 馬約特
     mexico: 墨西哥
+    micronesia: 密克羅尼西亞
+    moldova: 摩爾多瓦
+    monaco: 摩納哥
+    mongolia: 蒙古
+    montenegro: 蒙特內哥羅
+    montserrat: 蒙哲臘
+    morocco: 摩洛哥
+    mozambique: 莫三比克
+    myanmar: 緬甸
+    namibia: 納米比亞
+    nauru: 諾魯
+    nepal: 尼泊爾
     netherlands: 荷蘭
+    new_caledonia: 新喀里多尼亞
     new_guinea: 新幾內亞
     new_zealand: 紐西蘭
+    nicaragua: 尼加拉瓜
+    niger: 尼日
+    nigeria: 奈及利亞
+    niue: 紐埃
+    norfolk_island: 諾福克島
     north_africa: 北非
     north_america: 北美洲
+    north_korea: 北韓
+    northern_cyprus: 北賽普勒斯
+    norway: 挪威
+    oman: 阿曼
+    pakistan: 巴基斯坦
+    palau: 帛琉
+    palestina: 巴勒斯坦
     palestine: 巴勒斯坦
     panama: 巴拿馬
+    papua_new_guinea: 巴布亞紐幾內亞
+    paraguay: 巴拉圭
     peru: 秘魯
+    philippines: 菲律賓
+    pitcairn_islands: 皮特肯群島
     poland: 波蘭
     portugal: 葡萄牙
+    puerto_rico: 波多黎各
+    qatar: 卡達
     republic_of_congo: 剛果共和國
+    reunion: 留尼旺
+    romania: 羅馬尼亞
     russia: 俄羅斯
-    saudi_arabia: 沙烏地阿拉伯
+    rwanda: 盧安達
+    saint_barthelemy: 聖巴瑟米
+    saint_helena: 聖赫倫那
+    saint_kitts_and_nevis: 聖克里斯多福及尼維斯
+    saint_lucia: 聖露西亞
+    saint_martin: 聖馬丁島
+    saint_pierre_and_miquelon: 聖皮耶與密克隆
+    saint_vincent_and_the_grenadines: 聖文森及格瑞那丁
+    samoa: 薩摩亞
+    san_marino: 聖馬利諾
     sao_tome_and_principe: 聖多美普林西比
+    saudi_arabia: 沙烏地阿拉伯
+    senegal: 塞內加爾
+    serbia: 塞爾維亞
+    seychelles: 塞席爾
+    sierra_leone: 獅子山
     singapore: 新加坡
+    sint_maarten: 荷屬聖馬丁
+    slovakia: 斯洛伐克
+    slovenia: 斯洛維尼亞
+    solomon_islands: 索羅門群島
+    somalia: 索馬利亞
     south_africa: 南非
     south_america: 南美洲
+    south_georgia_and_the_south_sandwich_islands: 南喬治亞與南桑威奇
+    south_korea: 南韓
+    south_sudan: 南蘇丹
     spain: 西班牙
+    sri_lanka: 斯里蘭卡
+    sudan: 蘇丹
+    suriname: 蘇利南
+    svalbard_and_jan_mayen: 斯瓦巴和揚馬延
+    swaziland: 史瓦帝尼
     sweden: 瑞典
     switzerland: 瑞士
     syria: 敘利亞
+    taiwan: 台灣
+    tajikistan: 塔吉克
+    tanzania: 坦尚尼亞
     thailand: 泰國
+    togo: 多哥
+    tokelau: 托克勞
+    tonga: 東加
     trinidad_and_tobago: 千里達及托巴哥
+    tunisia: 突尼西亞
     turkey: 土耳其
+    turkmenistan: 土庫曼
+    turks_and_caicos_islands: 土克凱可群島
+    tuvalu: 吐瓦魯
+    uganda: 烏干達
+    ukraine: 烏克蘭
+    united_arab_emirates: 阿拉伯聯合大公國
     united_kingdom: 英國
     united_states: 美國
+    united_states_minor_outlying_islands: 美國本土外小島嶼
+    united_states_virgin_islands: 美屬維京群島
+    uruguay: 烏拉圭
+    uzbekistan: 烏茲別克
+    vanuatu: 萬那杜
+    vatican_city: 梵蒂岡
+    venezuela: 委內瑞拉
+    vietnam: 越南
     virgin_islands: 維京群島
+    wallis_and_futuna: 瓦利斯和富圖納
     west_africa: 西非
+    western_sahara: 西撒哈拉
+    yemen: 葉門
+    zambia: 尚比亞
+    zimbabwe: 辛巴威
   places_of_interest: 名勝
   places_merged_successfully: 合併地點成功！
   plants: 植物
@@ -3145,6 +3355,7 @@ zh-TW:
     one: 正在儲存觀察...
     other: 正在儲存 %{count} 裡的 %{num} 個觀察...
   saving_verb: 儲存中
+  scale_colon: 比例：
   schemes: 綱要
   schemes_including: 包含綱要
   scientific_names: 學名
@@ -5014,15 +5225,25 @@ zh-TW:
           代表透過 <a href="https://www.inaturalist.org">iNaturalist</a>
           或 <a href="%{url}">iNaturalist 網路</a>網站建立
       year:
+        include_usa: 包含美國
+        growth_by_country_desc_html: 成長是在哪裡發生的呢？成長的結果會複雜難懂，是因為按國家來區分成長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有成長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。
+          <strong>"% 總成長"</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 個觀察、2017
+          有 10 個觀察，這代表成長了 10 個觀察，假如當中有 5 個觀察是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>"% 成長"</strong>代表某國家此年度觀察數量與去年觀察數量增加的百分比，假如寮國去年有
+          10 個觀察而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。
+        growth_by_country_title: 按國家區分的成長
+        growth_in_year_obs: 在%{year}的成長（觀察）
         growth_title: 成長
         new_species_desc: |-
           此年度在 %{site_name} 上首次被觀察的物種。
           顯示 <a href="%{url}">%{y}</a> 個裡的 %{x} 個物種。
         new_species_desc_html: |-
-          此年度在 %{site_name} 上首次添加的物種。
+          此年度首次添加的物種。
           在月份上點擊來檢視添加在該月份的新物種。
           您也可以檢視物種累積的總數目，或是在時段裡移動滑桿返回來查看其它新進的觀察物種。此圖表顯示依照物種被上傳至 %{site_name} 的月份（不是牠們被觀察到的月份）之可驗證觀察來顯示出。這不會包含到較高或較低層級的物種分類，因此當一個觀察被鑑定為是哺乳類便不會被計入，所以屬於 <i>Canis lupus</i> ssp.
           <i>arctos</i> 的觀察只會被計在 <i>Canis lupus</i> 裡。
+        obs_in_year: 在%{year}觀察
+        percent_growth_in_year: '% 成長在%{year}'
+        percent_of_total_growth: '% 總成長'
         publications_desc_html: |-
           <a href="https://www.altmetric.com">Altmetric</a> 上的影響力資料以及可見的肯定。有關我們的朋友在<a href="https://www.gbif.org/">全球生物多樣性資訊機構</a>上被感謝到的資料使用方面資訊。
           <br/>
