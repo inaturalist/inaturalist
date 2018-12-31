@@ -5,6 +5,7 @@
 # Author: IBDJ
 # Author: Joedalton
 # Author: Jorn Ari
+# Author: Kranix
 # Author: Lars dalby
 # Author: Oskarlphansen
 # Author: Pyscowicz
@@ -2054,6 +2055,7 @@ da:
     f.eks. en livsliste over fugle i kragefamilien (Corvidae).
   life_list_first: livsliste først
   life_list_firsts: livslister først
+  linear_scale_label: Lineær
   link: Link
   link_or_unlink_your_facebook_account: Tilknyt eller frakobl din Facebook konto
   link_or_unlink_your_flickr_account: Tilknyt eller frakobl din Flickr konto
@@ -2199,6 +2201,7 @@ da:
     ID'er direkte, men vær venlig at overveje, at sammenlægge nye taksa med eksisterende
     i stedet.
   log_in: Login
+  log_scale_label: Log
   logged_in_as: Logget ind som
   login_slash_username: Login / brugernavn
   logo:
@@ -3113,60 +3116,269 @@ da:
   places_name:
     afghanistan: Afghanistan
     africa: Afrika
+    akrotiri_and_dhekelia: Akrotiri og Dhekelia
+    aland: Åland
+    albania: Albanien
+    algeria: Algeriet
+    american_samoa: Amerikansk Samoa
+    andorra: Andorra
+    angola: Angola
+    anguilla: Anguilla
+    antarctica: Antarktis
     antigua_and_barbuda: Antigua og Barbuda
+    argentina: Argentina
+    armenia: Armenien
+    aruba: Aruba
     australia: Australien
     austria: Østrig
+    azerbaijan: Aserbajdsjan
+    bahamas: Bahamas
+    bahrain: Bahrain
+    bangladesh: Bangladesh
+    barbados: Barbados
+    belarus: Hviderusland
     belgium: Belgien
+    belize: Belize
+    benin: Benin
+    bermuda: Bermuda
+    bhutan: Bhutan
+    bolivia: Bolivia
+    bonaire_saint_eustatius_and_saba: Bonaire, Saint Eustatius og Saba
     bosnia_and_herzegovina: Bosnien og Herzegovina
+    botswana: Botswana
+    bouvet_island: Bouvetøen
     brazil: Brasilien
+    british_indian_ocean_territory: Det britiske territorium i Det Indiske Ocean
+    british_virgin_islands: Britiske Jomfruøer
+    brunei: Brunei
+    bulgaria: Bulgarien
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Cambodia
+    cameroon: Cameroun
     canada: Canada
+    cape_verde: Kap Verde
+    cayman_islands: Caymanøerne
+    central_african_republic: Centralafrikanske Republik
     central_america: Central Amerika
+    chad: Tchad
+    chile: Chile
     china: Kina
+    christmas_island: Christmas Island
+    clipperton_island: Clippertonøen
+    cocos_islands: Cocosøerne
     colombia: Colombia
+    commonwealth_of_the_northern_mariana_islands: Nordmarianerne
+    comoros: Comorerne
+    cook_islands: Cookøerne
+    costa_rica: Costa Rica
+    cote_d_ivoire: Elfenbenskysten
+    croatia: Kroatien
+    cuba: Cuba
+    curacao: Curaçao
+    cyprus: Cypern
+    czech_republic: Tjekkiet
+    democratic_republic_of_the_congo: Demokratiske Republik Congo
     denmark: Danmark
+    djibouti: Djibouti
+    dominica: Dominica
+    dominican_republic: Dominikanske Republik
+    east_timor: Østtimor
+    ecuador: Ecuador
     egypt: Egypten
+    el_salvador: El Salvador
     equatorial_guinea: Equatorial Guinea
+    eritrea: Eritrea
+    estonia: Estland
+    ethiopia: Etiopien
     europe: Europa
+    falkland_islands: Falkland-øerne
+    faroe_islands: Færøerne
+    fiji: Fiji
+    finland: Finland
     france: Frankrig
+    french_guiana: Fransk Guyana
+    french_polynesia: Fransk Polynesien
+    french_southern_territories: Franske Sydlige og Antarktiske Territorier
+    gabon: Gabon
+    gambia: Gambia
+    georgia: Georgien
     germany: Tyskland
+    ghana: Ghana
+    gibraltar: Gibraltar
     greece: Grækenland
+    greenland: Grønland
+    grenada: Grenada
+    guadeloupe: Guadeloupe
+    guam: Guam
+    guatemala: Guatemala
+    guernsey: Guernsey
+    guinea: Guinea
+    guinea_bissau: Guinea-Bissau
+    guyana: Guyana
+    haiti: Haiti
+    heard_island_and_mcdonald_islands: Heard Island og McDonald Islands
+    honduras: Honduras
     hong_kong: Hongkong
     hungary: Ungarn
-    italy: Italien
+    iceland: Island
     india: Indien
+    indonesia: Indonesien
+    iran: Iran
     iraq: Irak
+    ireland: Irland
+    isle_of_man: Isle of Man
+    israel: Israel
+    italy: Italien
+    jamaica: Jamaica
     japan: Japan
+    jersey: Jersey
+    jordan: Jordan
+    kazakhstan: Kasakhstan
+    kenya: Kenya
+    kiribati: Kiribati
     korea: Korea
+    kosovo: Kosovo
+    kuwait: Kuwait
+    kyrgyzstan: Kirgisistan
+    laos: Laos
+    latvia: Letland
+    lebanon: Libanon
+    lesotho: Lesotho
+    liberia: Liberia
+    libya: Libyen
+    liechtenstein: Liechtenstein
+    lithuania: Litauen
+    luxembourg: Luxembourg
+    macao: Macao
+    macedonia: Makedonien
+    madagascar: Madagaskar
+    malawi: Malawi
+    malaysia: Malaysia
+    maldives: Maldiverne
+    mali: Mali
+    malta: Malta
+    marshall_islands: Marshalløerne
     martinique: Martinique
+    mauritania: Mauretanien
+    mauritius: Mauritius
+    mayotte: Mayotte
     mexico: Mexico
+    micronesia: Mikronesien
+    moldova: Moldova
+    monaco: Monaco
+    mongolia: Mongoliet
+    montenegro: Montenegro
+    montserrat: Montserrat
+    morocco: Marokko
+    mozambique: Mozambique
+    myanmar: Myanmar
+    namibia: Namibia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Holland
+    new_caledonia: Ny Kaledonien
     new_guinea: Ny Guinea
     new_zealand: New Zealand
+    nicaragua: Nicaragua
+    niger: Niger
+    nigeria: Nigeria
+    niue: Niue
+    norfolk_island: Norfolk Island
     north_africa: Nordafrika
     north_america: Nordamerika
+    north_korea: Nordkorea
+    northern_cyprus: Nordcypern
+    norway: Norge
+    oman: Oman
+    pakistan: Pakistan
+    palau: Palau
+    palestina: Palæstina
     palestine: Palæstina
     panama: Panama
+    papua_new_guinea: Papua Ny Guinea
+    paraguay: Paraguay
     peru: Peru
+    philippines: Filippinerne
+    pitcairn_islands: Pitcairn
     poland: Polen
     portugal: Portugal
+    puerto_rico: Puerto Rico
+    qatar: Qatar
     republic_of_congo: Demokratiske Republik Congo
+    reunion: Réunion
+    romania: Rumænien
     russia: Rusland
-    saudi_arabia: Saudi Arabien
+    rwanda: Rwanda
+    saint_barthelemy: Saint-Barthélemy
+    saint_helena: Sankt Helena
+    saint_kitts_and_nevis: Saint Kitts og Nevis
+    saint_lucia: Saint Lucia
+    saint_martin: Saint Martin
+    saint_pierre_and_miquelon: Saint-Pierre og Miquelon
+    saint_vincent_and_the_grenadines: Saint Vincent og Grenadinerne
+    samoa: Samoa
+    san_marino: San Marino
     sao_tome_and_principe: Sao Tome og Principe
+    saudi_arabia: Saudi Arabien
+    senegal: Senegal
+    serbia: Serbien
+    seychelles: Seychellerne
+    sierra_leone: Sierra Leone
     singapore: Singapore
+    sint_maarten: Sint Maarten
+    slovakia: Slovakiet
+    slovenia: Slovenien
+    solomon_islands: Salomonøerne
+    somalia: Somalia
     south_africa: Sydafrika
     south_america: Sydamerika
+    south_georgia_and_the_south_sandwich_islands: South Georgia og South Sandwich
+      Islands
+    south_korea: Sydkorea
+    south_sudan: Sydsudan
     spain: Spanien
+    sri_lanka: Sri Lanka
+    sudan: Sudan
+    suriname: Suriname
+    svalbard_and_jan_mayen: Svalbard og Jan Mayen
+    swaziland: Swaziland
     sweden: Sverige
     switzerland: Schweiz
     syria: Syrien
+    taiwan: Taiwan
+    tajikistan: Tadsjikistan
+    tanzania: Tanzania
     thailand: Thailand
+    togo: Togo
+    tokelau: Tokelau
+    tonga: Tonga
     trinidad_and_tobago: Trinidad og Tobago
+    tunisia: Tunesien
     turkey: Tyrkiet
+    turkmenistan: Turkmenistan
+    turks_and_caicos_islands: Turks- og Caicosøerne
+    tuvalu: Tuvalu
+    uganda: Uganda
+    ukraine: Ukraine
+    united_arab_emirates: Forenede Arabiske Emirater
     united_kingdom: Storbritannien
     united_states: De Forenede Stater
+    united_states_minor_outlying_islands: USA's ydre småøer
+    united_states_virgin_islands: Amerikanske Jomfruøer
+    uruguay: Uruguay
+    uzbekistan: Usbekistan
+    vanuatu: Vanuatu
+    vatican_city: Vatikanstaten
+    venezuela: Venezuela
+    vietnam: Vietnam
     virgin_islands: Jomfruøerne
+    wallis_and_futuna: Wallis og Futuna
     west_africa: Vestafrika
+    western_sahara: Vestsahara
+    yemen: Yemen
+    zambia: Zambia
+    zimbabwe: Zimbabwe
   places_of_interest: Interessante steder
   places_merged_successfully: Steder sammenlagt!
   plants: planter
@@ -3561,6 +3773,7 @@ da:
     one: Gemmer observation...
     other: Gemmer %{num} af %{count} observationer...
   saving_verb: Gemmer
+  scale_colon: 'Skala:'
   schemes: Ordninger
   schemes_including: Ordninger der inkluderer
   scientific_names: Videnskabelige navne
@@ -6060,6 +6273,20 @@ da:
           Oprettet via <a href="https://www.inaturalist.org">iNaturalist</a>
           eller<a href="%{url}">iNaturalist Network</a> hjemmesider
       year:
+        include_usa: Inkludér USA
+        growth_by_country_desc_html: |-
+          Hvor er sker væksten? Dette kort og diagram forsøger at bryde dette
+          ned på landniveau, hvilket viser sig at være kompliceret, fordi væksten kan være meget ubalanceret på landeniveau. Vi har valgt at udelade USA og bruge en log-skala som standard for at fremhæve forskelle mellem andre lande. Hvis et land er farvet sort betyder det at det ikke har bidraget ikke signifikant, eller det ingen vækst havde i år, eller ikke havde flere observationer i år end sidste år
+          (Hold musen over et land for at se lidt mere detaljeret). <strong> "% af
+          total vækst "</ strong> betyder, hvor meget af den verdensomspændende vækst kom fra et bestemt land, f.eks. hvis der var 20 observationer i 2018 og 10
+          i 2017 ville det være en vækst på 10 observationer, og hvis 5 af de
+          observationer var fra Benin, så bidrog Benin med 50% af den samlede vækst. <strong> "% vækst" </ strong> betyder antallet af observationer
+          i år i det pågældende land som en procent af observationer sidste år i
+          det land, så hvis der var 10 observationer i Laos sidste år, men
+          20 i år, ville det være 100% vækst, og hvis der var 0 sidste år
+          og 1 i år er det uendelig% vækst.
+        growth_by_country_title: Vækst efter land
+        growth_in_year_obs: Vækst i %{year} (obs)
         growth_title: Vækst
         new_species_desc: |-
           Arter der blev observeret for første gang på%{site_name} dette år.
@@ -6067,12 +6294,15 @@ da:
         new_species_desc_html: |-
           Arter, der blev tilføjet for første gang på %{site_name} i år.
           Klik på en måned for at se nogle af de nye arter, der er tilføjet i den pågældende måned.
-          Du kan også se den samlede arts akkumulering, eller flytte skyderen
+          Du kan også se den samlede arts akkumulation, eller flytte skyderen
           tilbage i tiden for at se andre nyligt observerede arter. Dette diagram viser
           arter fra verificerbare observationer i den måned de blev uploadet
           til %{site_name} (ikke den måned, de blev observeret). Det inkludere ikke højere eller lavere niveau taksa, så en observation identificeret som
           Mammalia tæller ikke, og en observation af <i>Canis lupus</i> ssp.
           <i>arctos</i> vil bare tælle som <i>Canis lupus</i>.
+        obs_in_year: Obs i %{year}
+        percent_growth_in_year: '% Vækst i %{year}'
+        percent_of_total_growth: '% af samlet vækst'
         publications_desc_html: |-
           Indvirkningsdata og visualiseringer takker vi
           <a href="https://www.altmetric.com"> Altmetric </a> for. Information

@@ -132,7 +132,7 @@ pt-BR:
   _percent_ID_d: '% ID''d'
   a: uma
   a_: uma
-  a_community_for_naturalist: Uma Comunidade para Naturalistas
+  a_community_for_naturalist: Uma comunidade para naturalistas
   a_default_taxon_name_will_automatically_created: |-
     Um nome de táxon padrão será automaticamente criado a partir do nome científico deste táxon.
 
@@ -2080,6 +2080,7 @@ pt-BR:
     de grupos ou espécies, ex: uma lista de vida de aves na família dos corvos (Corvidae)'
   life_list_first: primeiro da lista da vida
   life_list_firsts: primeiros da lista da vida
+  linear_scale_label: Linear
   link: Link
   link_or_unlink_your_facebook_account: Conecte ou desconecte sua conta do Facebook
   link_or_unlink_your_flickr_account: Conecte ou desconecte sua conta do Flickr
@@ -2227,6 +2228,7 @@ pt-BR:
     incluindo identificações parentes diretamente, mas por favor considere mesclar
     novos táxons em um táxon já presente.
   log_in: Entrar
+  log_scale_label: Registro
   logged_in_as: Entrou como
   login_slash_username: Login / nome de usuário
   logo:
@@ -2852,7 +2854,7 @@ pt-BR:
       terá acesso não apenas ao seu próprio conteúdo mas, também, ao conteúdo de pessoas
       que você segue e, táxons ou lugares aos quais você se inscreveu utilizando a
       ferramenta de inscrição à direita.
-    youve_got_updates_panel_title: Viva! Você tem novas atualizações!
+    youve_got_updates_panel_title: Você tem atualizações!
     youve_got_updates_panel_body_p1: Se mantenha atento as atualizações...
     youve_got_updates_panel_body_p2: |-
       <ul>
@@ -3150,60 +3152,269 @@ pt-BR:
   places_name:
     afghanistan: Afeganistão
     africa: África
+    akrotiri_and_dhekelia: Acrotíri e Deceleia
+    aland: Alanda
+    albania: Albânia
+    algeria: Argélia
+    american_samoa: Samoa Americana
+    andorra: Andorra
+    angola: Angola
+    anguilla: Anguilla
+    antarctica: Antártida
     antigua_and_barbuda: Antígua e Barbuda
+    argentina: Argentina
+    armenia: Armênia
+    aruba: Aruba
     australia: Austrália
     austria: Áustria
+    azerbaijan: Azerbaijão
+    bahamas: Bahamas
+    bahrain: Bahrein
+    bangladesh: Bangladesh
+    barbados: Barbados
+    belarus: Bielorrússia
     belgium: Bélgica
+    belize: Belize
+    benin: Benim
+    bermuda: Bermudas
+    bhutan: Butão
+    bolivia: Bolívia
+    bonaire_saint_eustatius_and_saba: Bonaire, Santo Eustáquio e Saba
     bosnia_and_herzegovina: Bosnia e Herzegovina
+    botswana: Botswana
+    bouvet_island: Ilha Bouvet
     brazil: Brasil
+    british_indian_ocean_territory: Território Britânico do Oceano Índico
+    british_virgin_islands: Ilhas Virgens Britânicas
+    brunei: Brunei
+    bulgaria: Bulgária
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Camboja
+    cameroon: Camarões
     canada: Canadá
+    cape_verde: Cabo Verde
+    cayman_islands: Ilhas Cayman
+    central_african_republic: República Centro-Africana
     central_america: América Central
+    chad: Chade
+    chile: Chile
     china: China
+    christmas_island: Ilha Christmas
+    clipperton_island: Ilha de Clipperton
+    cocos_islands: Ilhas Cocos
     colombia: Colômbia
+    commonwealth_of_the_northern_mariana_islands: Ilhas Marianas Setentrionais
+    comoros: Comores
+    cook_islands: Ilhas Cook
+    costa_rica: Costa Rica
+    cote_d_ivoire: Costa do Marfim
+    croatia: Croácia
+    cuba: Cuba
+    curacao: Curaçao
+    cyprus: Chipre
+    czech_republic: República Checa
+    democratic_republic_of_the_congo: República Democrática do Congo
     denmark: Dinamarca
+    djibouti: Djibouti
+    dominica: Dominica
+    dominican_republic: República Dominicana
+    east_timor: Timor-Leste
+    ecuador: Equador
     egypt: Egito
+    el_salvador: El Salvador
     equatorial_guinea: Guiné Equatorial
+    eritrea: Eritreia
+    estonia: Estônia
+    ethiopia: Etiópia
     europe: Europa
+    falkland_islands: Ilhas Malvinas
+    faroe_islands: Ilhas Feroe
+    fiji: Fiji
+    finland: Finlândia
     france: França
+    french_guiana: Guiana Francesa
+    french_polynesia: Polinésia Francesa
+    french_southern_territories: Terras Austrais e Antárticas Francesas
+    gabon: Gabão
+    gambia: Gâmbia
+    georgia: Geórgia
     germany: Alemanha
+    ghana: Gana
+    gibraltar: Gibraltar
     greece: Grécia
+    greenland: Groenlândia
+    grenada: Granada
+    guadeloupe: Guadalupe
+    guam: Guam
+    guatemala: Guatemala
+    guernsey: Guernsey
+    guinea: Guiné
+    guinea_bissau: Guiné-Bissau
+    guyana: Guiana
+    haiti: Haiti
+    heard_island_and_mcdonald_islands: Ilha Heard e Ilhas McDonald
+    honduras: Honduras
     hong_kong: Hong Kong
     hungary: Hungria
-    italy: Itália
+    iceland: Islândia
     india: Índia
+    indonesia: Indonésia
+    iran: Irã
     iraq: Iraque
+    ireland: Irlanda
+    isle_of_man: Ilha do Homem
+    israel: Israel
+    italy: Itália
+    jamaica: Jamaica
     japan: Japão
+    jersey: Jersey
+    jordan: Jordânia
+    kazakhstan: Cazaquistão
+    kenya: Quênia
+    kiribati: Kiribati
     korea: Coréia
+    kosovo: Kosovo
+    kuwait: Kuwait
+    kyrgyzstan: Quirguistão
+    laos: Laos
+    latvia: Letônia
+    lebanon: Líbano
+    lesotho: Lesoto
+    liberia: Libéria
+    libya: Líbia
+    liechtenstein: Liechtenstein
+    lithuania: Lituânia
+    luxembourg: Luxemburgo
+    macao: Macau
+    macedonia: Macedônia
+    madagascar: Madagáscar
+    malawi: Malawi
+    malaysia: Malásia
+    maldives: Maldivas
+    mali: Mali
+    malta: Malta
+    marshall_islands: Ilhas Marshall
     martinique: Martinica
+    mauritania: Mauritânia
+    mauritius: Maurício
+    mayotte: Mayotte
     mexico: México
+    micronesia: Micronésia
+    moldova: Moldávia
+    monaco: Mônaco
+    mongolia: Ilhas Marianas Setentrionais
+    montenegro: Montenegro
+    montserrat: Montserrat
+    morocco: Marrocos
+    mozambique: Moçambique
+    myanmar: Myanmar
+    namibia: Namíbia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Países Baixos
+    new_caledonia: Nova Caledónia
     new_guinea: Nova Guiné
     new_zealand: Nova Zelândia
+    nicaragua: Nicarágua
+    niger: Níger
+    nigeria: Nigéria
+    niue: Niue
+    norfolk_island: Ilha Norfolk
     north_africa: África do Norte
     north_america: América do Norte
+    north_korea: Coreia do Norte
+    northern_cyprus: Chipre do Norte
+    norway: Noruega
+    oman: Omã
+    pakistan: Paquistão
+    palau: Palau
+    palestina: Estado da Palestina
     palestine: Palestina
     panama: Panamá
+    papua_new_guinea: Papua-Nova Guiné
+    paraguay: Paraguai
     peru: Peru
+    philippines: Filipinas
+    pitcairn_islands: Ilhas Pitcairn
     poland: Polônia
     portugal: Portugal
+    puerto_rico: Porto Rico
+    qatar: Catar
     republic_of_congo: República do Congo
+    reunion: Reunião
+    romania: Romênia
     russia: Russia
-    saudi_arabia: Arabia Saudita
+    rwanda: Ruanda
+    saint_barthelemy: São Bartolomeu
+    saint_helena: Santa Helena
+    saint_kitts_and_nevis: São Cristóvão e Nevis
+    saint_lucia: Santa Lúcia
+    saint_martin: São Martinho
+    saint_pierre_and_miquelon: São Pedro e Miquelão
+    saint_vincent_and_the_grenadines: São Vicente e Granadinas
+    samoa: Samoa
+    san_marino: São Marinho
     sao_tome_and_principe: São Tomé e Príncipe
+    saudi_arabia: Arabia Saudita
+    senegal: Senegal
+    serbia: Sérvia
+    seychelles: Seicheles
+    sierra_leone: Serra Leoa
     singapore: Cingapura
+    sint_maarten: São Martinho
+    slovakia: Eslováquia
+    slovenia: Eslovênia
+    solomon_islands: Ilhas Salomão
+    somalia: Somália
     south_africa: África do Sul
     south_america: América do Sul
+    south_georgia_and_the_south_sandwich_islands: Ilhas Geórgia do Sul e Sandwich
+      do Sul
+    south_korea: Coreia do Sul
+    south_sudan: Sudão do Sul
     spain: Espanha
+    sri_lanka: Sri Lanka
+    sudan: Sudão
+    suriname: Suriname
+    svalbard_and_jan_mayen: Svalbard e Jan Mayen
+    swaziland: Suazilândia
     sweden: Suécia
     switzerland: Suíça
     syria: Siria
+    taiwan: Taiwan
+    tajikistan: Tajiquistão
+    tanzania: Tanzânia
     thailand: Tailândia
+    togo: Togo
+    tokelau: Tokelau
+    tonga: Tonga
     trinidad_and_tobago: Trindade e Tobago
+    tunisia: Tunísia
     turkey: Turquía
+    turkmenistan: Turcomenistão
+    turks_and_caicos_islands: Ilhas Turcas e Caicos
+    tuvalu: Tuvalu
+    uganda: Uganda
+    ukraine: Ucrânia
+    united_arab_emirates: Emirados Árabes Unidos
     united_kingdom: Reino Unido
     united_states: Estados Unidos
+    united_states_minor_outlying_islands: Ilhas Menores Distantes dos Estados Unidos
+    united_states_virgin_islands: Ilhas Virgens Americanas
+    uruguay: Uruguai
+    uzbekistan: Uzbequistão
+    vanuatu: Vanuatu
+    vatican_city: Cidade do Vaticano
+    venezuela: Venezuela
+    vietnam: Vietnã
     virgin_islands: Ilhas Virgens
+    wallis_and_futuna: Wallis e Futuna
     west_africa: África Ocidental
+    western_sahara: Saara Ocidental
+    yemen: Iêmen
+    zambia: Zâmbia
+    zimbabwe: Zimbábue
   places_of_interest: Locais de interesse
   places_merged_successfully: Lugares combinados com sucesso!
   plants: plantas
@@ -3605,6 +3816,7 @@ pt-BR:
     one: Salvando observação...
     other: Salvando %{num} de %{count} observações...
   saving_verb: Salvando
+  scale_colon: 'Escala:'
   schemes: Esquemas
   schemes_including: Esquemas que incluem
   scientific_names: Nomes científicos
@@ -3989,6 +4201,9 @@ pt-BR:
   taxon: Táxon
   taxon_autocomplete_placeholder: Aves, monarca, etc.
   taxon_is_a_rank: '%{taxon} é uma %{rank}'
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: '%{taxon} é um reino com uma observação'
+    other: '%{taxon} é um reino com %{count} observações'
   taxonomy: Taxonomia
   taxon_: táxon
   taxon_assessments_are: "Arquivos de avaliação de táxon são documentos conectados
@@ -4020,6 +4235,7 @@ pt-BR:
   taxon_framework_relationship_for: Relação de estrutura de táxon para
   taxon_framework_relationship: Relação de marco do táxon
   taxon_framework_relationships: Relações de marco do táxon
+  taxon_framework_taxon: Táxon de estrutura de táxon
   taxon_links: Links Taxon
   taxon_merge: Fundir táxon
   taxon_name: Nome de táxon
@@ -4062,6 +4278,9 @@ pt-BR:
   taxonomic_tree_browser: Explorador da Árvore Taxonômica
   taxonomy_details: Detalhes da taxonomia
   taxonomy_details_for: Detalhes de taxonomia para
+  taxonomy_details_info: A página Detalhes da taxonomia usa os quadros do Táxon para
+    ajudar a descrever o que entendemos por táxon. <a href="/pages/taxon_frameworks">Ler
+    mais</a>.
   taxonomy_settings: Configuração de taxonomia
   tell_everyone_a_little_about_you: Conte um pouco sobre você
   tell_the_world_a_little_about_yourself: Conte-nos sobre você
@@ -5895,6 +6114,8 @@ pt-BR:
           personalizados ou adicionar observações individuais que não podem ser filtradas
           automaticamente?
         leaderboards_among_individuals: Classificações entre <strong>indivíduos</strong>
+        leaderboards_among_projects_and_bioblitzes: Classificações entre <strong>projetos
+          e maratonas</strong>
         multiple_project_administrators: Administradores de vários projetos
         name_placeholder: Aves de Chicago, Libélulas Incríveis, etc.
         no_need_to_rely_on_manual_addition: Não há necessidade de confiar na adição
@@ -5930,6 +6151,8 @@ pt-BR:
         unique_url_for_outreach: URL exclusivo para divulgação
         users_can_follow_your_project: Os usuários podem acompanhar seu projeto para
           atualizações por meio de publicações em diário
+        use_this_link_to_create_html: Use <a href="%{url}">esse link</a> para criar
+          um projeto tradicional.
         visual_comparison_of_data_among: Comparações visuais de dados entre projetos
           sob o guarda-chuva
         we_have_redesigned_projects: |-
@@ -5995,10 +6218,40 @@ pt-BR:
         curated_checklist_desc: Esta é a lista de verificação moderada e a lista de
           contagem dos táxons de observações explicitas adicionadas à esta projeto,
           nem todas as observações foram gravadas neste local e neste período do evento.
+        make_sure_you_have_read_about_the_differences: |-
+          Certifique-se de que você leu as diferenças
+          Nossa <a href="%{url}">postagem de blog sobre Projetos de coleção</a>.
         this_is_a_preview: Esta é uma prévia do que este projeto parecerá como um
           Projeto de Coleção.
       updates_desc: Receba atualizações sobre este projeto em seu painel de controle
         e, através de e-mails diários.
+    search:
+      index:
+        no_taxa_options_html: |-
+          <p>Você tem algumas opções:</p>
+          <ul class="list-unstyled">
+            <li>
+              <strong>Adicionar uma bandeira a um táxon de nível superior</strong>
+              <p>
+          Por exemplo. o gênero que contém uma espécie. Espero que um amistoso
+                 O curador adicionará o táxon se ele puder ser adicionado.
+              </p>
+            </li>
+            <li>
+              <strong><a href="%{feedback_url}">Entre em contato com o grupo de feedback</a></strong>
+              <p>
+                Muitos curadores de sites acompanham os e-mails para o Grupo de Feedback.
+              </p>
+            </li>
+            <li>
+              <strong>
+                <a href="mailto:%{help_email}">Fale com o Suporte</a>
+              </strong>
+              <p>
+          Por favor, seja paciente, não temos muitos funcionários de suporte dedicados.
+              </p>
+            </li>
+          </ul>
     shared:
       blocked:
         youve_been_blocked: Você foi bloqueado
@@ -6045,6 +6298,8 @@ pt-BR:
         obs_desc: Criado nos últimos 7 dias
         obs_id_d_desc: Criado nos últimos 7 dias e ter uma identificação (pode ser
           do observador)
+        other_desc_html: Criado por outros aplicativos <a href="%{url}">criado por
+          desenvolvedores</a>
         recent_desc: Conectado nos últimos 7 dias
         recent_w_0_obs: Recente com/ 0 observações
         recent_w_0_obs_desc: Conectado nos últimos 7 dias e adicionado 0 observações
@@ -6067,12 +6322,33 @@ pt-BR:
           Criado via <a href="https://www.naturalista.mx">NaturaList</a>
           o <a href="%{url}">a rede iNaturalist</a>
       year:
+        include_usa: Incluir EUA
+        growth_by_country_desc_html: |-
+          Onde o crescimento está acontecendo? Este mapa e gráfico tentam quebrar isso
+          para baixo por país, o que acaba por ser complicado porque o crescimento por
+          país pode ser muito desequilibrado. Aqui nós escolhemos omitir o United
+          Estados e usar uma escala de log por padrão para acentuar diferenças
+          entre outros países. Se um país é preto, isso significa que
+          não contribuiu signicativamente para uma porcentagem, ou não teve crescimento
+          este ano, ou não teve mais observações este ano do que no ano passado
+          (passe o mouse sobre um país para ver um pouco mais de detalhes). <strong>"% do
+          crescimento total"</strong> significa quanto do crescimento mundial veio de um
+          determinado pas, por exemplo se houvesse 20 observações em 2018 e 10
+          em 2017, seriam 10 observações de crescimento, e se 5 delas
+          observações foram do Benim, Benin contribuiu com 50% do total
+          crescimento. <strong>"% de crescimento"</strong> significa o número de observações
+          este ano no país como um percentual de observações no ano passado em
+          esse país, por isso, se houvesse 10 observações no Laos no ano passado, mas
+          20 este ano, que seria de crescimento de 100%, e se houvesse 0 no ano passado
+          e 1 este ano, esse é% de crescimento infinito.
+        growth_by_country_title: Crescimento por país
+        growth_in_year_obs: Crescimento em %{year} (observações)
         growth_title: Crescimento
         new_species_desc: |-
           Espécies que foram observadas pela primeira vez no %{site_name} este ano.
           Mostrando %{x} de <a href="%{url}">%{y} espécies</a>.
         new_species_desc_html: |-
-          Espécies que foram adicionadas pela primeira vez no %{site_name} este ano.
+          Espécies que foram adicionadas pela primeira vez este ano.
           Clique em um mês para ver algumas das novas espécies adicionadas naquele mês.
           Você também pode ver o acúmulo total de espécies ou mover o controle deslizante
           de volta no tempo para ver outras espécies recém-observadas. Este gráfico mostra
@@ -6081,6 +6357,9 @@ pt-BR:
           incluem taxa de nível mais alto ou mais baixo, então uma observação identificada como
           Mammalia não conta, e uma observação de <i>Canis lupus</i> ssp.
           <i>arctos</i> contará apenas como <i>Canis lupus</i>.
+        obs_in_year: Observadas em %{year}
+        percent_growth_in_year: '% crescimento em %{year}'
+        percent_of_total_growth: '% do crescimento total'
         publications_desc_html: |-
           Dados de impacto e visualizações cortesia de
           <a href="https://www.altmetric.com">Altmetric</a>. Em formação
@@ -6103,6 +6382,9 @@ pt-BR:
           para um grupo maior afeta as observações de todas as espécies neste táxon.
           Por favor, não adicione status para taxa que contenha espécies sem status,
           pois escurecerá incorretamente as coordenadas para observações dessas espécies.
+        complete_desc_html: |-
+          Um táxon "completo" contém <em>todos</em> os descendentes conhecidos em um
+          intervalo especificado que atenda às políticas de curadoria de táxons do iNaturalist, independentemente de terem sido ou não observadas. Somente os administradores do site podem declarar o taxa completo no momento.
         complete_rank_desc_html: |-
           Classificação em que este táxon está completo, p. ex. se esta família contiver
           todos os seus gêneros, mas nem todas as suas espécies, isso seria indicado para "gênero". A resposta padrão é gentil.
@@ -6382,11 +6664,11 @@ pt-BR:
         observations_to_date: Observações até agora
         species_observed: Espécies observadas
         people_signed_up: Pessoas Se Inscreveram
-        how_it_works: Como Funciona
+        how_it_works: Como funciona
         record_your_observations: Registre suas observações
         share_with_fellow_naturalists: Compartilhe com outros naturalistas
         discuss_your_findings: Troque ideias sobre suas descobertas
-        contribute_to_science: Contribuir para a Ciência
+        contribute_to_science: Contribuir para a ciência
         science_desc_html: |-
           Cada uma das observações no iNat podem contribuir para a conservação da biodiversidade, desde a mais rara borboleta até a erva daninha mais comum. Nós compartilhamos nossas descobertas com repositórios de dados científicos como <a href='http://gbif.org' target='_blank'>Global Biodiversity Information Facility</a>
           para auxiliar cientistas do mundo a encontrar e utilizar os seus dados. Tudo o que você precisa fazer é observar e registrar.
@@ -6395,27 +6677,27 @@ pt-BR:
         keep_track: Siga de perto
         record_your_encounters: Registre seus encontros de primeiro grau com outros
           organismos e, mantenha listas atualizadas, todas na nuvem.
-        create_useful_data: Criar Dados Úteis
+        create_useful_data: Criar dados úteis
         help_scientists: Ajude cientistas e gestores ambientais a entender quando
           e onde os organismos ocorrem.
-        crowdsource_identifications: Identificações Colaborativas
+        crowdsource_identifications: Identificações colaborativas
         connect_with_experts: Se conecte a especialista que podem identificar os organismos
           observados por você.
-        become_a_citizen_scientist: Torne-se um Super Cidadão Cientista
+        become_a_citizen_scientist: Torne-se um super cidadão cientista
         find_a_project: Encontre um projeto para se apaixonar, ou, comece o seu hoje
           mesmo.
-        learn_about_nature: Aprenda mais sobre a Natureza
+        learn_about_nature: Aprenda mais sobre a natureza
         build_your_knowledge: Aumente seu conhecimento conversando com outros naturalistas
           e ajudando outros membros.
-        run_a_bioblitz: Organize uma BioBlitz
+        run_a_bioblitz: Organize uma maratona naturalista
         hold_an_event: Organize um evento onde as pessoas se esforcem ao máximo para
           encontrar o maior número de espécies possível.
         works_on_all_your_devices: Funciona em todos os dispositivos
         install_our_mobile_apps: Instale agora nossos aplicativos, com eles você será
           capaz de registrar observações mesmo sem rede ou, wifi.
-        who_uses_site_name: Quem Usa %{site_name}?
+        who_uses_site_name: Quem usa %{site_name}?
         what_are_you_waiting_for: Afinal, o que você está esperando?
-        join_today: Junte-se hoje ao Bando
+        join_today: Junte-se hoje
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: Salve e modifique para adicionar anexos

@@ -353,6 +353,7 @@ fi:
     suborder: Kaikki alalahkot lisätty tietokantaan
     infraorder: Kaikki osalahkot lisätty tietokantaan
     superfamily: Kaikki yläheimot lisätty tietokantaan
+    epifamily: Kaikki epiheimot lisätty tietokantaan
     family: Kaikki heimot lisätty tietokantaan
     subfamily: Kaikki alaheimot lisätty tietokantaan
     supertribe: Kaikki ylätribukset lisätty tietokantaan
@@ -696,7 +697,7 @@ fi:
   captive_cultivated: Tarhattu / viljelty
   card: Kortti
   case_plural: a
-  casual: rento
+  casual: tilapäinen
   casual_: Harrastelija
   catalogue_of_life: Catalogue of Life
   categories: Luokat
@@ -1150,6 +1151,10 @@ fi:
   documentation_for_developers_html: Dokumentaatio <a href="/pages/developers">kehittäjille</a>
   do_not_show_this_message_again: Älä näytä tätä viestiä uudelleen
   do_you_know_where_this_species_lives: Tiedätkö, missä tämä laji elää?
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: "Opiskeletko sukkulamadoista?
+    Oletko maailman johtava asiantuntija takiaisten\ntaksonomiassa? Tykkäätkö vain
+    katsella kauniita kukkia? \nProfiilisi täyttäminen lisää hieman persoonallisuutta
+    ja auttaa luomaan uskottavuuttasi kun\nautat ihmisiä tunnistuksissa."
   do_you_want_to_proceed: Haluatko jatkaa?
   does_the_location_seem_accurate: Näyttääkö sijainti oikealta?
   does_the_date_seem_accurate: Näyttääkö päiväys oikealta!
@@ -1408,7 +1413,7 @@ fi:
     jotain, joka ei ole oikein. Tässä on muutamia juttuja, joita kuraattorit eivät
     ole vielä ratkaisseet.'
   flags_on_users_content: Liput käyttäjän %{user} sisällössä
-  flickr_account_information: Flickr Tilisi Tiedot
+  flickr_account_information: Flickr-tilisi tiedot
   flickr_description: Flickr on valokuvien jakopalvelu, ehkä olet jo tiennytkin siitä!
   flickr_has_no_creative_commons: Flickr'issä ei ole Creative Commons-lisensoituja
     kuvia tästä paikasta.
@@ -1580,7 +1585,7 @@ fi:
   ids_made_for_others: muille tehtyä tunnistetta
   if_this_is_a_scientific_name: Jos tämä on tieteellinen nimi, onko se hyväksytty
     tällä hetkellä?
-  if_you_already_have_an_account: Jos sinulla on jo %{site_name} -tili...
+  if_you_already_have_an_account: Jos sinulla on jo %{site_name}-tili...
   if_you_dont_want_us_to_share_your_data: Jos et halua meidän jakaa tietojasi
   if_you_have_any_trouble_with_the_site_check_out: Jos sinulla on kysyttävää, tutustu
     <a href="%{help_url}">apuosioomme</a> tai lähetä viesti <a href="%{feedback_url}">palauteryhmäämme</a>.
@@ -1594,6 +1599,7 @@ fi:
     korkea
   imperiled: Vaarantunut
   import: Tuo
+  import_all_photos_as_observations: Tuo kaikki kuvat havaintoina
   import_as_an_observation: Tuo havaintona
   import_as_another_observation: Tuo toisena havaintona?
   import_date_time_location_taxonomic: Tuo päivämäärä, aika, sijainti, kuvaus, ja
@@ -1945,6 +1951,8 @@ fi:
   made_a: teki
   make_admin: Tee ylläpitäjä
   make_an_observation: tee havainto
+  mail_disclaimer: '%{site_name} ei salli käyttäjiensä lähettää sinulle lisäkutsuja
+    kutsujamme kautta. Ilmoita kutsujen väärinkäytöstä %{site}.'
   main_content: Pääsisältö
   make_a_new_place: Tee uusi paikka
   make_a_taxon_swap_instead?: Tee sen sijaan Taksoninvaihto?
@@ -2479,7 +2487,7 @@ fi:
   pdf: PDF
   people: Ihmiset
   people_agree: ihmistä samaa mieltä
-  people_following_user: Ihmiset jotka seuraavat käyttäjää %{user}
+  people_following_user: Käyttäjän %{user} seuraajat
   people_user_follows: Ihmiset, joita %{user} seuraa
   people_added:
     observation: lisäsi %{observation_link} of @vow_or_con{vow:an|a} %{taxon_link}
@@ -2541,6 +2549,7 @@ fi:
       airport: lentokenttä
       Building: Rakennus
       building: rakennus
+      Canton: Canton
       Colloquial: Puhekielinen
       colloquial: puhekielinen
       Commune: Kunta
@@ -2626,60 +2635,268 @@ fi:
   places_name:
     afghanistan: Afganistan
     africa: Afrikka
+    akrotiri_and_dhekelia: Akrotíri ja Dekéleia
+    aland: Ahvenanmaa
+    albania: Albania
+    algeria: Algeria
+    american_samoa: Amerikan Samoa
+    andorra: Andorra
+    angola: Angola
+    anguilla: Anguilla
+    antarctica: Etelämanner
     antigua_and_barbuda: Antigua ja Barbuda
+    argentina: Argentiina
+    armenia: Armenia
+    aruba: Aruba
     australia: Australia
     austria: Itävalta
+    azerbaijan: Azerbaidžan
+    bahamas: Bahama
+    bahrain: Bahrain
+    bangladesh: Bangladesh
+    barbados: Barbados
+    belarus: Valko-Venäjä
     belgium: Belgia
+    belize: Belize
+    benin: Benin
+    bermuda: Bermuda
+    bhutan: Bhutan
+    bolivia: Bolivia
+    bonaire_saint_eustatius_and_saba: Bonaire, Sint Eustatius ja Saba
     bosnia_and_herzegovina: Bosnia ja Hertsegovina
+    botswana: Botswana
+    bouvet_island: Bouvet’nsaari
     brazil: Brasilia
+    british_indian_ocean_territory: Brittiläinen Intian valtameren alue
+    british_virgin_islands: Brittiläiset Neitsytsaaret
+    brunei: Brunei
+    bulgaria: Bulgaria
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Cambodia
+    cameroon: Cameroon
     canada: Kanada
+    cape_verde: Kap Verde
+    cayman_islands: Caymansaaret
+    central_african_republic: Keski-Afrikan tasavalta
     central_america: Keski-Amerikka
+    chad: Chad
+    chile: Chile
     china: Kiina
+    christmas_island: Joulusaari
+    clipperton_island: Clippertoninsaari
+    cocos_islands: Kookossaaret
     colombia: Kolumbia
+    commonwealth_of_the_northern_mariana_islands: Pohjois-Mariaanit
+    comoros: Komorit
+    cook_islands: Cookinsaaret
+    costa_rica: Costa Rica
+    cote_d_ivoire: Norsunluurannikko
+    croatia: Kroatia
+    cuba: Kuba
+    curacao: Curaçao
+    cyprus: Kypros
+    czech_republic: Tšekki
+    democratic_republic_of_the_congo: Kongon demokraattinen tasavalta
     denmark: Tanska
+    djibouti: Djibouti
+    dominica: Dominica
+    dominican_republic: Dominikaaninen tasavalta
+    east_timor: Itä-Timor
+    ecuador: Ecuador
     egypt: Egypti
+    el_salvador: El Salvador
     equatorial_guinea: Päiväntasaajan Guinea
+    eritrea: Eritrea
+    estonia: Viro
+    ethiopia: Etiopia
     europe: Eurooppa
+    falkland_islands: Falklandinsaaret
+    faroe_islands: Färsaaret
+    fiji: Fidži
+    finland: Suomi
     france: Ranska
+    french_guiana: Ranskan Guayana
+    french_polynesia: Ranskan Polynesia
+    french_southern_territories: Ranskan eteläiset ja antarktiset alueet
+    gabon: Gabon
+    gambia: Gambia
+    georgia: Georgia
     germany: Saksa
+    ghana: Ghana
+    gibraltar: Gibraltar
     greece: Kreikka
+    greenland: Grönlanti
+    grenada: Grenada
+    guadeloupe: Guadeloupe
+    guam: Guam
+    guatemala: Guatemala
+    guernsey: Guernsey
+    guinea: Guinea
+    guinea_bissau: Guinea-Bissau
+    guyana: Guyana
+    haiti: Haiti
+    heard_island_and_mcdonald_islands: Heard ja McDonaldinsaaret
+    honduras: Honduras
     hong_kong: Hong Kong
     hungary: Unkari
-    italy: Italia
+    iceland: Islanti
     india: Intia
+    indonesia: Indonesia
+    iran: Iran
     iraq: Irak
+    ireland: Irlanti
+    isle_of_man: Mansaari
+    israel: Israel
+    italy: Italia
+    jamaica: Jamaika
     japan: Japani
+    jersey: Jersey
+    jordan: Jordan
+    kazakhstan: Kazakhstan
+    kenya: Kenia
+    kiribati: Kiribati
     korea: Korea
+    kosovo: Kosovo
+    kuwait: Kuwait
+    kyrgyzstan: Kyrgyzstan
+    laos: Laos
+    latvia: Latvia
+    lebanon: Lebanon
+    lesotho: Lesotho
+    liberia: Liberia
+    libya: Libya
+    liechtenstein: Liechtenstein
+    lithuania: Liettua
+    luxembourg: Luxemburg
+    macao: Macao
+    macedonia: Makedonia
+    madagascar: Madagaskar
+    malawi: Malawi
+    malaysia: Malesia
+    maldives: Maldives
+    mali: Mali
+    malta: Malta
+    marshall_islands: Marshallsaaret
     martinique: Martinique
+    mauritania: Mauritania
+    mauritius: Mauritius
+    mayotte: Mayotte
     mexico: Meksiko
+    micronesia: Mikronesia
+    moldova: Moldova
+    monaco: Monaco
+    mongolia: Mongolia
+    montenegro: Montenegro
+    montserrat: Montserrat
+    morocco: Morocco
+    mozambique: Mozambique
+    myanmar: Myanmar
+    namibia: Namibia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Alankomaat
+    new_caledonia: Uusi-Kaledonia
     new_guinea: Uusi-Guinea
     new_zealand: Uusi-Seelanti
+    nicaragua: Nicaragua
+    niger: Niger
+    nigeria: Nigeria
+    niue: Niue
+    norfolk_island: Norfolkinsaari
     north_africa: Pohjois-Afrikka
     north_america: Pohjois-Amerikka
+    north_korea: Pohjois-Korea
+    northern_cyprus: Pohjois-Kypros
+    norway: Norja
+    oman: Oman
+    pakistan: Pakistan
+    palau: Palau
+    palestina: Palestiina
     palestine: Palestiina
     panama: Panama
+    papua_new_guinea: Papua-Uusi-Guinea
+    paraguay: Paraguay
     peru: Peru
+    philippines: Filippiinit
+    pitcairn_islands: Pitcairn
     poland: Puola
     portugal: Portugali
+    puerto_rico: Puerto Rico
+    qatar: Qatar
     republic_of_congo: Kongon tasavalta
+    reunion: Réunion
+    romania: Romania
     russia: Venäjä
-    saudi_arabia: Saudi-Arabia
+    rwanda: Ruanda
+    saint_barthelemy: Saint-Barthélemy
+    saint_helena: Saint Helena
+    saint_kitts_and_nevis: Saint Kitts ja Nevis
+    saint_lucia: Saint Lucia
+    saint_martin: Saint-Martin
+    saint_pierre_and_miquelon: Saint-Pierre ja Miquelon
+    saint_vincent_and_the_grenadines: Saint Vincent ja Grenadiinit
+    samoa: Samoa
+    san_marino: San Marino
     sao_tome_and_principe: São Tomé ja Príncipe
+    saudi_arabia: Saudi-Arabia
+    senegal: Senegal
+    serbia: Serbia
+    seychelles: Seychellit
+    sierra_leone: Sierra Leone
     singapore: Singapore
+    sint_maarten: Sint Maarten
+    slovakia: Slovakia
+    slovenia: Slovenia
+    solomon_islands: Salomonsaaret
+    somalia: Somalia
     south_africa: Etelä-Afrikka
     south_america: Etelä-Amerikka
+    south_georgia_and_the_south_sandwich_islands: Etelä-Georgia ja Eteläiset Sandwichsaaret
+    south_korea: Etelä-Korea
+    south_sudan: Etelä-Sudan
     spain: Espanja
+    sri_lanka: Sri Lanka
+    sudan: Sudan
+    suriname: Suriname
+    svalbard_and_jan_mayen: Huippuvuoret ja Jan Mayen
+    swaziland: Swazimaa
     sweden: Ruotsi
     switzerland: Sveitsi
     syria: Syyria
+    taiwan: Taiwan
+    tajikistan: Tadžikistan
+    tanzania: Tansania
     thailand: Thaimaa
+    togo: Togo
+    tokelau: Tokelau
+    tonga: Tonga
     trinidad_and_tobago: Trinidad ja Tobago
+    tunisia: Tunisia
     turkey: Turkki
+    turkmenistan: Turkmenistan
+    turks_and_caicos_islands: Turks- ja Caicossaaret
+    tuvalu: Tuvalu
+    uganda: Uganda
+    ukraine: Ukraina
+    united_arab_emirates: Yhdistyneet arabiemiirikunnat
     united_kingdom: Yhdistynyt kuningaskunta
     united_states: Yhdysvallat
+    united_states_minor_outlying_islands: Yhdysvaltain pienet erillissaaret
+    united_states_virgin_islands: Yhdysvaltain Neitsytsaaret
+    uruguay: Uruguay
+    uzbekistan: Uzbekistan
+    vanuatu: Vanuatu
+    vatican_city: Vatikaanivaltio
+    venezuela: Venezuela
+    vietnam: Vietnam
     virgin_islands: Neitsytsaaret
+    wallis_and_futuna: Wallis ja Futuna
     west_africa: Länsi-Afrikka
+    western_sahara: Länsi-Sahara
+    yemen: Jemen
+    zambia: Sambia
+    zimbabwe: Zimbabwe
   places_of_interest: Mielenkiintoiset paikat
   places_merged_successfully: Paikat yhdistettiin onnistuneesti!
   plants: kasvit
@@ -2706,6 +2923,7 @@ fi:
   present: nykyisyys
   press: Lehdistö
   preview: Esikatsele
+  preview_observations: Esikatsele havaintoja
   preview_personal_message: Haluaisin sinun liittyvän %{site}iin, verkkosivulle missä
     voit tallentaa havaintojasi kasveista ja eläimistä, pitää kirjaa elämäluettelostasi
     ja oppia luonnollisesta maailmasta!
@@ -2801,6 +3019,7 @@ fi:
     suborder: Alalahko
     infraorder: Osalahko
     superfamily: Yläheimo
+    epifamily: Epiheimo
     family: Heimo
     subfamily: Alaheimo
     supertribe: Ylätribus
@@ -3032,6 +3251,7 @@ fi:
   settings: asetukset
   share: Jaa
   share_colon: 'Jaa:'
+  short_code_for_this_place: Lyhyt koodi tälle paikalle, esim. US Yhdysvalloille
   short_or_abbreviated_title_for_display: Lyhyt tai lyhennetty otsikko näytettäväksi
     avaruus-rajoitetuilla alueilla. Enintään 10 merkkiä.
   show: Näytä
@@ -3211,6 +3431,8 @@ fi:
     myös tilausten kautta, joten jos haluat nähdä mitä olet tilannut ja perua asioiden
     tilauksia, voit klikata "Hallitse kaikkia tilauksiasi" alta. Sinun pitäisi voida
     myös perua tilauksia mistä tahansa sivustolla katselemalla sen sivua.
+  subscribe_to_this: Tilaa tämä
+  subscribe_to_this_observation: Tilaa tämä havainto
   subscribe_to_x_from_this_y_html: |-
     <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Tilaa</a>
     %{x} tästä %{y}sta.
@@ -3245,7 +3467,9 @@ fi:
   taxa: Taksonit
   taxa_info: Taksonien tiedot
   taxa_all_species_html: Kaikki lajit
+  taxa_needing_curation: Kuraatiota tarvitsevat taksonit
   taxa_observed: taksonia havaittu
+  taxa_to_include: Sisällytettävät taksonit
   taxon: Taksoni
   taxon_autocomplete_placeholder: Linnut, monarkki, yms.
   taxon_is_a_rank: '%{taxon} on %{rank}'
@@ -3323,6 +3547,9 @@ fi:
     ainakin kahta tunnistusta.
   the_community_must_feel_that: Yhteisön on tunnettava, että Yhteisön tunniste on
     paras että se voi perustua näyttöön
+  the_data_quality_assessment_is: Tietojen laadunarviointi on tiivistelmä havaintojen
+    tarkkuudesta. Kaikki havainnot aloittavat <strong>"tilapäis"</strong>asteisena
+    ja saavuttavat <strong>"tutkimus"</strong>asteen kun
   the_following_photos_have_been_tagged: 'Seuraaviin kuviin on lisätty merkinnät:'
   the_list: luettelo
   the_observation_has_date: havainnolla <strong>on päivämäärä</strong>
@@ -3718,7 +3945,9 @@ fi:
   x_wrote_a_new_post_html: '%{x} kirjoitti uuden viestin'
   x_wrote_y_new_posts_html: '%{x} kirjoitti %{y} uutta viestiä'
   year: Vuosi
+  year_in_review: Vuosikatsaus %{year}
   year_month: vuosi/kuukausi
+  year_on_site: Vuosi %{year} %{site}issa
   yellow: keltainen
   "yes": Kyllä
   yes_find_them!: Kyllä, hae ne!
@@ -3922,6 +4151,8 @@ fi:
         what_is_an_observation?: Mikä on havainto?
         why_doesnt_inaturalist_recognize_the_name_ive_entered?: Miksei %{site_name}
           tunnista syöttämääni nimeä?
+        how_can_i_get_help_identifying_what_i_saw?: Miten voin saada apua näkemäni
+          tunnistukseen?
         what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: Mitä tarkoittaa
           %{site_name}in linkittäminen Flickr-tiliini?
         can_i_add_photos_without_a_flickr_account?: Voinko lisätä kuvia ilman Flickr-tiliä?
@@ -3989,6 +4220,36 @@ fi:
       show:
         allow_curator_coordinate_access_desc_html: Salli projektin kuraattorien nähdä
           yksityiset koordinaatit tälle havainnolle.
+        quality_assessment_help_html: "<p>\n  Tietojen laadunarviointi on yhteenveto
+          havaintojen tarkkuudesta. Kaikki\n  havainnot aloittavat <strong>\"tilapäinen\"</strong>
+          asteesta, ja siirtyvät\n  <strong>\"tarvitsee tunnisteen\"</strong> asteeseen
+          kun\n</p>\n\n<ul>\n  <li>havainnolla <strong>on päivämäärä</strong></li>\n
+          \ <li>havainto <strong>on georeferoitu</strong> (ts. on lat/lon koordinaatit)</li>\n
+          \ <li>havainnolla <strong>on kuvia ja ääntä</strong></li>\n  <li>havainto
+          <strong>ei ole ihmisestä</strong></li>\n</ul>\n<p>\n  Havainnot tulevat
+          <strong>\"tutkimusasteeseen\"</strong> kun\n</p>\n<ul>\n  <li>\n    %{site_name}
+          <strong>yhteisö hyväksyy lajitason tunnisteen tai pienempi</strong>, ts.\n
+          \   kun enemmän kuin 2/3 tunnistajaa hyväksyy taksonin\n  </li>\n</ul>\n<p>\n
+          \ Havainnot palaavat <strong>\"tilapäisiksi\"</strong> \n  jos edellä mainitut
+          ehdot eivät täyty tai yhteisö on samaa mieltä\n</p>\n<ul>\n  <li>\n    <strong>sijainti
+          ei näytä\n    oikealta</strong> (esim. apinat keskellä merta,\n    virtahepoja
+          toimistorakennuksissa, jne.)\n  </li>\n  <li>\n    <strong>eliö ei ole luonnonvarainen/luonnollistettu</strong>
+          (esim. vangittu ihmisten tai\n    älykkäiden avaruusolentojen toimesta)\n
+          \ </li>\n  <li>\n    havainto <strong>ei esitä todisteita eliöstä</strong>,
+          esim. kuvia maisemista, water features,\n    kalliot, yms.\n  </li>\n  <li>\n
+          \   havainto <strong>ei esitä tuoreita (~100 vuotta) todisteita\n    eliöstä</strong>
+          (esim. fossiilit, mutta jäljet, sonta, ja kuolleet lehdet\n    ovat ok)\n
+          \ </li>\n  <li>\n    havainto ei enää tarvitse tunnistetta <em>ja</em> yhteisön
+          tunniste on perheen yläpuolella\n  </li>\n  <li>\n    havainnoija hylkäsi
+          yhteisön tunnisteen ja yhteisön\n    tunnisteen taksoni ei ole havainnoijan
+          tunnisteeseen liittyvän taksonin esi-isä tai jälkeläinen\n  </li>\n</ul>\n<p>\n
+          \ Ja jos se ei ollut tarpeeksi monimutkaista, on myös tilanteita, joissa
+          järjestelmä äänestää:\n</p>\n<ul>\n  <li>\n    Järjestelmä äänestää, että
+          havainto ei ole luonnonvarainen tai luonnollinen\n    jos on ainakin 10
+          muuta suvun havaintoa tai pienempi \n    pienimmässä maassa-, osavaltiossa-,
+          tai maata vastaavassa paikassa joka\n    sisältää tämän havainnon ja 80
+          prosenttia tai enemmän näistä havainnoista\n    on merkitty ei luonnonvaraiseksi/luonnolliseksi\n
+          \ </li>\n</ul>"
     photos:
       inviter:
         automatically_add_to_project: Lisää automaattisesti projektiin

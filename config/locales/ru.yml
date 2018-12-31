@@ -4,6 +4,7 @@
 # Author: Alexandr Efremov
 # Author: ArtyomMatrokov
 # Author: Av6
+# Author: BadDog
 # Author: Cat1987
 # Author: DevilishSkull
 # Author: Dumasya
@@ -2126,6 +2127,7 @@ ru:
     высокого уровня, например, список птиц в семье ворон (Corvidae).
   life_list_first: первый список жизни
   life_list_firsts: первые списки жизни
+  linear_scale_label: Линейная
   link: Ссылка
   link_or_unlink_your_facebook_account: Привязать или отвязать свою учетную запись
     Facebook
@@ -2276,6 +2278,7 @@ ru:
     и введя родительские идентификаторы напрямую, но, пожалуйста, подумайте вместо
     этого о слиянии новых таксонов с существующими.
   log_in: Вход
+  log_scale_label: Логарифмическая
   logged_in_as: Вошел как
   login_slash_username: Логин / имя пользователя
   logo:
@@ -2513,7 +2516,7 @@ ru:
   new_journal_post: Новое сообщение журнала
   new_lexicon: Новый язык
   new_list: Новый Список
-  new_members: Новые участники
+  new_members: Новые члены
   new_message: Новое сообщение
   new_observation_field: Новое поле наблюдения
   new_observation_rules: Новые Правила Наблюдений
@@ -2859,7 +2862,7 @@ ru:
   ok: ОК
   on_: вкл
   on_date: на %{date}
-  on_day: в день
+  on_day: за день
   on_edit_date: на %{editdate}
   on_list?: в списке
   on_submit_date: на %{submitdate}
@@ -3029,7 +3032,7 @@ ru:
       with_by: добавлен комментарий к @vow_or_con{vow:an|a} %{comment_subject_link}
         пользователя %{by_link}
       without_by: добавлен комментарий к @vow_or_con{vow:an|a} %{comment_subject_link}
-  per_day: В день
+  per_day: За день
   per_month: За месяц
   per_week: За неделю
   person: Человек
@@ -3198,60 +3201,269 @@ ru:
   places_name:
     afghanistan: Афганистан
     africa: Африка
+    akrotiri_and_dhekelia: Акротири и Декелия
+    aland: Аланды
+    albania: Албания
+    algeria: Алжир
+    american_samoa: Американское Самоа
+    andorra: Андорра
+    angola: Ангола
+    anguilla: Ангилья
+    antarctica: Антарктика
     antigua_and_barbuda: Антигуа и Барбуда
+    argentina: Аргентина
+    armenia: Армения
+    aruba: Аруба
     australia: Австралия
     austria: Австрия
+    azerbaijan: Азербайджан
+    bahamas: Багамы
+    bahrain: Бахрейн
+    bangladesh: Бангладеш
+    barbados: Барбадос
+    belarus: Беларусь
     belgium: Бельгия
+    belize: Белиз
+    benin: Бенин
+    bermuda: Бермуды
+    bhutan: Бутан
+    bolivia: Боливия
+    bonaire_saint_eustatius_and_saba: Бонэйр, Синт-Эстатиус и Саба
     bosnia_and_herzegovina: Босния и Герцеговина
+    botswana: Ботсвана
+    bouvet_island: Остров Буве
     brazil: Бразилия
+    british_indian_ocean_territory: Британская Территория в Индийском Океане
+    british_virgin_islands: Британские Виргинские Острова
+    brunei: Бруней
+    bulgaria: Болгария
+    burkina_faso: Буркина-Фасо
+    burundi: Бурунди
+    cambodia: Камбоджа
+    cameroon: Камерун
     canada: Канада
+    cape_verde: Кабо-Верде
+    cayman_islands: Острова Кайман
+    central_african_republic: Центральноафриканская Республика
     central_america: Центральная Америка
+    chad: Чад
+    chile: Чили
     china: Китай
+    christmas_island: Остров Рождества
+    clipperton_island: Клиппертон
+    cocos_islands: Кокосовые острова
     colombia: Колумбия
+    commonwealth_of_the_northern_mariana_islands: Северные Марианские Острова
+    comoros: Коморы
+    cook_islands: Острова Кука
+    costa_rica: Коста-Рика
+    cote_d_ivoire: Кот-д’Ивуар
+    croatia: Хорватия
+    cuba: Куба
+    curacao: Кюрасао
+    cyprus: Кипр
+    czech_republic: Чехия
+    democratic_republic_of_the_congo: ДР Конго
     denmark: Дания
+    djibouti: Джибути
+    dominica: Доминика
+    dominican_republic: Доминиканская Республика
+    east_timor: Восточный Тимор
+    ecuador: Эквадор
     egypt: Египет
+    el_salvador: Сальвадор
     equatorial_guinea: Экваториальная Гвинея
+    eritrea: Эритрея
+    estonia: Эстония
+    ethiopia: Эфиопия
     europe: Европа
+    falkland_islands: Фолклендские острова
+    faroe_islands: Фарерские острова
+    fiji: Фиджи
+    finland: Финляндия
     france: Франция
+    french_guiana: Гвиана
+    french_polynesia: Французская Полинезия
+    french_southern_territories: Французские Южные и Антарктические территории (ФЮАТ)
+    gabon: Габон
+    gambia: Гамбия
+    georgia: Грузия
     germany: Германия
+    ghana: Гана
+    gibraltar: Гибралтар
     greece: Греция
+    greenland: Гренландия
+    grenada: Гренада
+    guadeloupe: Гваделупа
+    guam: Гуам
+    guatemala: Гватемала
+    guernsey: Гернси
+    guinea: Гвинея
+    guinea_bissau: Гвинея-Бисау
+    guyana: Гайана
+    haiti: Гаити
+    heard_island_and_mcdonald_islands: Остров Херд и острова Макдональд
+    honduras: Гондурас
     hong_kong: Гонконг
     hungary: Венгрия
-    italy: Италия
+    iceland: Исландия
     india: Индия
+    indonesia: Индонезия
+    iran: Иран
     iraq: Ирак
+    ireland: Ирландия
+    isle_of_man: Остров Мэн
+    israel: Израиль
+    italy: Италия
+    jamaica: Ямайка
     japan: Япония
+    jersey: Джерси
+    jordan: Иордан
+    kazakhstan: Казахстан
+    kenya: Кения
+    kiribati: Кирибати
     korea: Корея
+    kosovo: Республика Косово
+    kuwait: Кувейт
+    kyrgyzstan: Киргизия
+    laos: Лаос
+    latvia: Латвия
+    lebanon: Ливан
+    lesotho: Лесото
+    liberia: Либерия
+    libya: Ливия
+    liechtenstein: Лихтенштейн
+    lithuania: Литва
+    luxembourg: Люксембург
+    macao: Макао
+    macedonia: Македония
+    madagascar: Мадагаскар
+    malawi: Малави
+    malaysia: Малайзия
+    maldives: Мальдивы
+    mali: Мали
+    malta: Мальта
+    marshall_islands: Маршалловы Острова
     martinique: Мартиника
+    mauritania: Мавритания
+    mauritius: Маврикий
+    mayotte: Майотта
     mexico: Мексика
+    micronesia: Микронезия
+    moldova: Молдавия
+    monaco: Монако
+    mongolia: Монголия
+    montenegro: Черногория
+    montserrat: Монтсеррат
+    morocco: Марокко
+    mozambique: Мозамбик
+    myanmar: Мьянма
+    namibia: Намибия
+    nauru: Науру
+    nepal: Непал
     netherlands: Нидерланды
+    new_caledonia: Новая Каледония
     new_guinea: Новая Гвинея
     new_zealand: Новая Зеландия
+    nicaragua: Никарагуа
+    niger: Нигер
+    nigeria: Нигерия
+    niue: Ниуэ
+    norfolk_island: Остров Норфолк
     north_africa: Северная Африка
     north_america: Северная Америка
+    north_korea: Северная Корея
+    northern_cyprus: Северный Кипр
+    norway: Норвегия
+    oman: Оман
+    pakistan: Пакистан
+    palau: Палау
+    palestina: Палестина
     palestine: Палестина
     panama: Панама
+    papua_new_guinea: Папуа-Новая Гвинея
+    paraguay: Парагвай
     peru: Перу
+    philippines: Филиппины
+    pitcairn_islands: Острова Питкэрн
     poland: Польша
     portugal: Португалия
-    republic_of_congo: Республика Конго
+    puerto_rico: Пуэрто-Рико
+    qatar: Катар
+    republic_of_congo: Конго
+    reunion: Реюньон
+    romania: Румыния
     russia: Россия
-    saudi_arabia: Саудовская Аравия
+    rwanda: Руанда
+    saint_barthelemy: Сен-Бартелеми
+    saint_helena: Остров Святой Елены
+    saint_kitts_and_nevis: Сент-Китс и Невис
+    saint_lucia: Сент-Люсия
+    saint_martin: Сен-Мартен
+    saint_pierre_and_miquelon: Сен-Пьер и Микелон
+    saint_vincent_and_the_grenadines: Сент-Винсент и Гренадины
+    samoa: Самоа
+    san_marino: Сан-Марино
     sao_tome_and_principe: Сан-Томе и Принсипи
+    saudi_arabia: Саудовская Аравия
+    senegal: Сенегал
+    serbia: Сербия
+    seychelles: Сейшельские Острова
+    sierra_leone: Сьерра-Леоне
     singapore: Сингапур
+    sint_maarten: Синт-Мартен
+    slovakia: Словакия
+    slovenia: Словения
+    solomon_islands: Соломоновы Острова
+    somalia: Сомали
     south_africa: Южная Африка
     south_america: Южная Америка
+    south_georgia_and_the_south_sandwich_islands: Южная Георгия и Южные Сандвичевы
+      Острова
+    south_korea: Южная Корея
+    south_sudan: Южный Судан
     spain: Испания
+    sri_lanka: Шри-Ланка
+    sudan: Судан
+    suriname: Суринам
+    svalbard_and_jan_mayen: Шпицберген и Ян-Майен
+    swaziland: Свазиленд
     sweden: Швеция
     switzerland: Швейцария
     syria: Сирия
+    taiwan: Тайвань
+    tajikistan: Таджикистан
+    tanzania: Танзания
     thailand: Таиланд
+    togo: Того
+    tokelau: Токелау
+    tonga: Тонга
     trinidad_and_tobago: Тринидад и Тобаго
+    tunisia: Тунис
     turkey: Турция
+    turkmenistan: Туркмения
+    turks_and_caicos_islands: Теркс и Кайкос
+    tuvalu: Тувалу
+    uganda: Уганда
+    ukraine: Украина
+    united_arab_emirates: Объединённые Арабские Эмираты
     united_kingdom: Великобритания
     united_states: Соединенные Штаты Америки
+    united_states_minor_outlying_islands: Внешние малые острова США
+    united_states_virgin_islands: Виргинские Острова
+    uruguay: Уругвай
+    uzbekistan: Узбекистан
+    vanuatu: Вануату
+    vatican_city: Ватикан
+    venezuela: Венесуэла
+    vietnam: Вьетнам
     virgin_islands: Виргинские острова
+    wallis_and_futuna: Уоллис и Футуна
     west_africa: Западная Африка
+    western_sahara: Западная Сахара
+    yemen: Йемен
+    zambia: Замбия
+    zimbabwe: Зимбабве
   places_of_interest: Достопримечательности
   places_merged_successfully: Места объединены успешно!
   plants: растения
@@ -3651,6 +3863,7 @@ ru:
     one: Сохранение наблюдения...
     other: Сохранение %{num} из %{count} наблюдений...
   saving_verb: Сохраняется
+  scale_colon: 'Масштаб:'
   schemes: Схемы
   schemes_including: Схемы, включающие
   scientific_names: Научные наименования
@@ -4802,7 +5015,7 @@ ru:
   who_can_add_observations_to_this_project?: Кто может добавлять наблюдения к этому
     проекту?
   who_helped_user_the_most: Кто больше всего помогал %{user}
-  who_user_helped_the_most: Какой %{user} Помогал Больше всего
+  who_user_helped_the_most: Кому %{user} помогал больше всего
   with_annotation: Со значением
   without_annotation: Без значения
   widget: Виджет
@@ -4856,7 +5069,7 @@ ru:
   x_wrote_a_new_post_html: '%{x} написал новое сообщение'
   x_wrote_y_new_posts_html: '%{x} написал %{y} новых сообщений'
   year: Год
-  year_in_review: Год в обзоре %{year}
+  year_in_review: Год обзора %{year}
   year_month: год/месяц
   year_on_site: Год на %{site}%{year}
   yellow: жёлтый
@@ -6119,35 +6332,43 @@ ru:
           Создано с помощью веб-сайтов <a href="https://www.inaturalist.org">iNaturalist</a>
           или <a href="%{url}">сети веб-сайтов iNaturalist</a>
       year:
+        include_usa: Включая США
+        growth_by_country_desc_html: |-
+          Где происходит рост? Эти карта и график пытаются разбить это по странам, что оказывается сложным, поскольку рост по странам может быть очень несбалансированным. Здесь мы решили опустить США и использовать логарифмическую шкалу по умолчанию, чтобы подчеркнуть различия между другими странами. Если страна окрашена в черный цвет, это означает, что она не внесла существенного вклада в процент, или у нее не было роста в этом году, или не было больше наблюдений в этом году, чем в прошлом году (наведите курсор на страну, чтобы увидеть немного больше деталей). <strong>"% от
+          общего роста"</strong> означает, сколько мирового роста пришло из конкретной страны, например, если было 20 наблюдений в 2018 году и 10 в 2017 году, то это было бы 10 наблюдений роста, и если 5 из этих наблюдений были из Бенина, то Бенин обеспечил 50% общего роста. strong>"% роста"</strong> означает число наблюдений в этом году в этой стране в процентах от наблюдений в прошлом году в этой стране, поэтому если в Лаосе было 10 наблюдений в прошлом году, а в этом году 20, это было бы 100% роста, а если в прошлом году было 0 и 1 в этом году, то это бесконечный % роста.
+        growth_by_country_title: Рост по странам
+        growth_in_year_obs: Рост в %{year} (набл)
         growth_title: Рост
         new_species_desc: |-
           Виды, впервые наблюдавшиеся на %{site_name} в этом году.
           Показано %{x} из <a href="%{url}">%{y} видов</a>.
-        new_species_desc_html: Виды, которые были впервые были добавлены на %{site_name}
-          в этом году. Нажмите на месяц, чтобы увидеть некоторые новые виды, добавленные
-          в этом месяце. Вы также можете просмотреть общее накопленное количество
-          видов или переместить ползунок назад во времени, чтобы увидеть другие впервые
-          наблюдаемые виды. Диаграмма показывает виды проверяемых наблюдений по месяцам
-          загрузки в %{site_name} (а не по месяцу, когда они наблюдались). Она не
-          включает таксоны более высокого или более низкого уровня, поэтому наблюдение,
-          идентифицированное как Млекопитающее, не учитывается, а наблюдение <i>Canis
-          lupus</i> ssp. <i>arctos</i> будет учтено как <i>Canis lupus</i>.
+        new_species_desc_html: Виды, которые были впервые были добавлены в этом году.
+          Нажмите на месяц, чтобы увидеть некоторые новые виды, добавленные в этом
+          месяце. Вы также можете просмотреть общее накопленное количество видов или
+          переместить ползунок назад во времени, чтобы увидеть другие впервые наблюдаемые
+          виды. Диаграмма показывает виды проверяемых наблюдений по месяцам загрузки
+          на %{site_name} (а не по месяцам, когда они наблюдались). Она не включает
+          таксоны более высокого или более низкого уровня, поэтому наблюдение, идентифицированное
+          как Млекопитающее, не учитывается, а наблюдение <i>Canis lupus</i> ssp.
+          <i>arctos</i> будет учтено как <i>Canis lupus</i>.
+        obs_in_year: Набл в %{year}
+        percent_growth_in_year: '% роста в %{year}'
+        percent_of_total_growth: '% от общего роста'
         publications_desc_html: |-
           Данные по воздействию и визуализации любезно предоставлены
           <a href="https://www.altmetric.com">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из
-          <a href="https://www.gbif.org/">Глобальный информационный центр по биоразнообразию</a>.
+          <a href="https://www.gbif.org/">Глобального информационного центра по биоразнообразию (GBIF)</a>.
           <br/>
-          <a href="%{url}">Посмотреть все исследования %{numStudies}</a>
-        sunburst_desc_html: Наблюдаемые таксоны упорядочены как иерархическая диаграмма
-          «солнечные лучи». Основание иерархии находится в центре, начиная с «Жизни»,
-          и заканчивается видами на внешних краях. Размер каждой дуги пропорционален
-          количеству наблюдений этого таксона, а цвета примерно соответствуют нашим
-          обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых,
-          синий для большинства других животных и т. д.), поэтому, если вы видите
-          много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите
-          на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы
-          окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной
-          иерархии</strong>.
+          <a href="%{url}">Посмотреть все %{numStudies} исследований</a>
+        sunburst_desc_html: Наблюдаемые таксоны упорядочены в виде иерархической диаграммы
+          Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается
+          видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений
+          этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок
+          таксона (зеленый для растений, оранжевый для насекомых, синий для большинства
+          других животных и т. д.), поэтому, если вы видите много зеленого, это означает,
+          что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить
+          этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него,
+          или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: Добавление природоохранного статуса
@@ -6429,7 +6650,7 @@ ru:
         explore_and_share: Просматривайте и делитесь вашими наблюдениями природного
           мира
         observations_to_date: наблюдений
-        species_observed: видов содержат наблюдения
+        species_observed: Наблюдаемые виды
         people_signed_up: человек зарегистрировалось
         how_it_works: 'Как это работает:'
         record_your_observations: Зарегистрируйте ваши наблюдения
