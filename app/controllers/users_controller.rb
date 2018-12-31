@@ -308,7 +308,7 @@ class UsersController < ApplicationController
       end
       opts = User.default_json_options
       opts[:only] ||= []
-      opts[:only] << :description
+      opts[:only] << :description if @selected_user.known_non_spammer?
       format.json { render :json => @selected_user.to_json( opts ) }
     end
   end
@@ -652,6 +652,11 @@ class UsersController < ApplicationController
       @users = @users.where( "spammer IS NULL" )
     elsif @spammer.yesish?
       @users = @users.where( "spammer" )
+      if params[:flagged_by] == "auto"
+        @users = @users.joins(:flags).where( "NOT resolved AND flag = 'spam'" ).where( "flags.user_id = 0" )
+      elsif params[:flagged_by] == "manual"
+        @users = @users.joins(:flags).where( "NOT flags.resolved AND flag = 'spam'" ).where( "flags.user_id > 0" )
+      end
     elsif @spammer.noish?
       @users = @users.where( "NOT spammer" )
     end
@@ -671,23 +676,25 @@ class UsersController < ApplicationController
       @users = @users.where( "description IS NULL OR description = ''" )
     end
     if params[:from].to_i > 0
-      @users = @users.where( "id < ?", params[:from].to_i )
+      @users = @users.where( "users.id < ?", params[:from].to_i )
     end
     if params[:chart]
       start_date = 3.months.ago.to_date
       total_new_user_counts = User.where( "created_at > ?", start_date ).group( "created_at::date" ).count
       new_automated_spam_flag_counts = Flag.
-        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND user_id = 0", start_date ).
-        group( "created_at::date" ).count
+        where( "u.created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id = 0", start_date ).
+        joins( "JOIN users u ON u.id = flags.flaggable_id" ).
+        group( "u.created_at::date" ).count
       new_manual_spam_flag_counts = Flag.
-        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND user_id > 0", start_date ).
-        group( "created_at::date" ).count
+        where( "u.created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id > 0", start_date ).
+        joins( "JOIN users u ON u.id = flags.flaggable_id" ).
+        group( "u.created_at::date" ).count
       probable_spam_user_counts = User.
         where( "spammer IS NULL" ).
         where( "observations_count = 0 AND identifications_count = 0" ).
         where( "description IS NOT NULL AND description != ''" ).
         where( "created_at > ?", start_date ).group( "created_at::date" ).count
-      @stats = ( start_date...Date.today ).map do |d|
+      @stats = ( start_date...Date.tomorrow ).map do |d|
         {
           date: d.to_s,
           new_users: total_new_user_counts[d],

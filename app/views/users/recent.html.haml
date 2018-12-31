@@ -2,8 +2,14 @@
   =t :recent_new_users
 - content_for :extracss do
   :css
-    #controls { margin-top: 20px; }
-    #vis { height: 300px; }
+    #vis {
+      width: 100%;
+      padding: 0;
+      height: 300px;
+    }
+    #controls-preset {
+      width: 50px;
+    }
 - content_for :extrajs do
   = javascript_include_tag :stats
   = javascript_include_tag "https://www.google.com/jsapi?autoload={'modules':[{'name':'visualization','version':'1','packages':['corechart','annotationchart']}]}"
@@ -13,15 +19,23 @@
       google.setOnLoadCallback( Stats.simpleChart( {
         element_id: "vis",
         chartType: google.visualization.AnnotationChart,
+        chartOptions: {
+          colors: ["green", "red", "orange", "purple"]
+        },
         series: [
           { label: "total new users" },
-          { label: "users automatically marked as spamers" },
-          { label: "users manually marked as spamers" },
-          { label: "users that are probably spammers" },
+          { label: "auto spam" },
+          { label: "manual spam" },
+          { label: "probably spam" },
         ],
         data: _.map( STATS_JSON, function( stat ) {
+          var localDateString = ( new Date( ) ).toISOString( ).replace( /\d{4}-\d{2}-\d{2}/, stat.date );
+          var localDate = new Date( localDateString );
+          localDate.setHours( 0 );
+          localDate.setMinutes( 0 );
+          localDate.setSeconds( 1 );
           return [
-            new Date( stat.date ),
+            localDate,
             stat.new_users || 0,
             stat.auto_spam || 0,
             stat.manual_spam || 0,
@@ -31,19 +45,32 @@
       }));
 .container
   .row
-    .col-xs-4
+    .col-xs-12
       %h2=t :recent_new_users
-    .col-xs-8
-      #controls.pull-right
+  .row
+    .col-xs-12
+      #controls.stacked
         %form.form-inline
           .form-group
             %label{ for: "controls-spammer" }=t :spammer
             = select_tag :spammer, options_for_select( %w(yes no unknown).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[:spammer] || "unknown" ), class: "form-control", id: "controls-spammer", data: { autosubmit: true }
+          - if params[:spammer].yesish?
+            .form-group
+              %label{ for: "controls-flagged-by" }=t :flagged_by
+              = select_tag :flagged_by, options_for_select( %w(any auto manual).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[:flagged_by] || "any" ), class: "form-control", id: "controls-flagged-by", data: { autosubmit: true }
           - [:obs, :ids, :description].each do |fp|
             .form-group
               %label{ for: "controls-#{fp}" }=t fp
               = select_tag fp, options_for_select( %w(yes no any).map{|o| [t( "#{o}_", default: t(o) ), o]}, params[fp] || "any" ), class: "form-control", id: "controls-#{fp}", data: { autosubmit: true }
+          %label.form-group
+            %input{ type: "checkbox", name: "chart", checked: params[:chart].yesish?, data: { autosubmit: true }, value: "yes" }
+            =t :chart
           = link_to t(:reset), url_for, class: "btn btn-link"
+          .form-group.pull-right
+            %label=t :presets
+            .btn-group
+              = link_to t(:welcome), url_for( obs: "yes" ), class: "btn btn-default"
+              = link_to t(:probably_spam), url_for( obs: "no", ids: "no", description: "yes" ), class: "btn btn-default"
   .row
     .col-xs-12
       - if @stats
@@ -68,8 +95,8 @@
                     = user_image( user, size: "thumb" )
                   = link_to_user user
                 %td=l user.created_at
-                %td= link_to user.observations_count, observations_path( user_id: user.login, verifiable: "any", place_id: "any" )
-                %td= link_to user.identifications_count, identifications_path( user_id: user.login )
+                %td= link_to user.observations_count, observations_path( user_id: user.login, verifiable: "any", place_id: "any" ), class: "badge"
+                %td= link_to user.identifications_count, identifications_path( user_id: user.login ), class: "badge"
                 %td= truncate_with_more( formatted_user_text( user.description ), length: 500 )
                 %td
                   - unless user.spammer?
@@ -80,6 +107,15 @@
                     = link_to t(:suspend_user), suspend_user_path( user ), class: "btn btn-warning btn-block btn-sm"
                   - elsif user.suspended?
                     = link_to t(:unsuspend_user), unsuspend_user_path( user ), class: "btn btn-success btn-block btn-sm"
-      - if @users.size == @users.per_page
-        .text-center
-          = link_to t(:more), url_for_params( from: @users.last.id ), class: "btn btn-default"
+
+  - if @users.size == @users.per_page
+    .row
+      .col-xs-12
+        .text-center.stacked
+          = link_to t(:view_more), url_for_params( from: @users.last.id ), class: "btn btn-primary"
+  - if @users.map(&:observations_count).sum > 0
+    .row
+      .col-xs-12
+        .text-center.stacked
+          = link_to t(:view_observations_by_these_users), observations_url( place_id: "any", user_id: @users.map(&:id).join( "," ) ), class: "btn btn-link"
+          = link_to t(:identify_observations_by_these_users), identify_observations_url( place_id: "any", user_id: @users.map(&:id).join( "," ) ), class: "btn btn-link"

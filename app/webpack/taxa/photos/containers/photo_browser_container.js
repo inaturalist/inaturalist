@@ -39,13 +39,14 @@ function mapStateToProps( state ) {
       observationPhotos: state.photos.observationPhotos,
       hasMorePhotos: ( state.photos.totalResults > state.photos.page * state.photos.perPage )
     } );
-  } else if ( state.photos.observationPhotos ) {
+  }
+  if ( state.photos.observationPhotos ) {
     props.observationPhotos = [];
   }
   if (
-    !state.taxon.taxon ||
-    !state.taxon.taxon.children ||
-    state.taxon.taxon.children.length === 0
+    !state.taxon.taxon
+    || !state.taxon.taxon.children
+    || state.taxon.taxon.children.length === 0
   ) {
     props.showTaxonGrouping = false;
   }
@@ -66,10 +67,9 @@ function mapDispatchToProps( dispatch ) {
     },
     setTerm: ( term, value ) => {
       const clear = ( value === "any" );
-      dispatch( setConfigAndUrl( { grouping: { } } ) );
       dispatch( updateObservationParamsAndUrl( {
-        term_id: clear ? null : term,
-        term_value_id: clear ? null : value
+        term_id: clear ? null : parseInt( term, 0 ),
+        term_value_id: clear ? null : parseInt( value, 0 )
       } ) );
       dispatch( reloadPhotos( ) );
     },
