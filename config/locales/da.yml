@@ -6276,15 +6276,22 @@ da:
         include_usa: Inkludér USA
         growth_by_country_desc_html: |-
           Hvor er sker væksten? Dette kort og diagram forsøger at bryde dette
-          ned på landniveau, hvilket viser sig at være kompliceret, fordi væksten kan være meget ubalanceret på landeniveau. Vi har valgt at udelade USA og bruge en log-skala som standard for at fremhæve forskelle mellem andre lande. Hvis et land er farvet sort betyder det at det ikke har bidraget ikke signifikant, eller det ingen vækst havde i år, eller ikke havde flere observationer i år end sidste år
-          (Hold musen over et land for at se lidt mere detaljeret). <strong> "% af
-          total vækst "</ strong> betyder, hvor meget af den verdensomspændende vækst kom fra et bestemt land, f.eks. hvis der var 20 observationer i 2018 og 10
-          i 2017 ville det være en vækst på 10 observationer, og hvis 5 af de
-          observationer var fra Benin, så bidrog Benin med 50% af den samlede vækst. <strong> "% vækst" </ strong> betyder antallet af observationer
-          i år i det pågældende land som en procent af observationer sidste år i
-          det land, så hvis der var 10 observationer i Laos sidste år, men
-          20 i år, ville det være 100% vækst, og hvis der var 0 sidste år
-          og 1 i år er det uendelig% vækst.
+          ned på landniveau, hvilket viser sig at være kompliceret, fordi
+          væksten kan være meget ubalanceret på landeniveau. Vi har valgt at
+          udelade USA og bruge en log-skala som standard for at fremhæve
+          forskelle mellem andre lande. Hvis et land er farvet sort betyder det
+          at det ikke har bidraget ikke signifikant, eller det ingen vækst havde
+          i år, eller ikke havde flere observationer i år end sidste år (Hold
+          musen over et land for at se lidt mere detaljeret). <strong> "% af
+          total vækst "</strong> betyder, hvor meget af den verdensomspændende
+          vækst kom fra et bestemt land, f.eks. hvis der var 20 observationer i
+          2018 og 10 i 2017 ville det være en vækst på 10 observationer, og hvis
+          5 af de observationer var fra Benin, så bidrog Benin med 50% af den
+          samlede vækst. <strong> "% vækst" </strong> betyder antallet af
+          observationer i år i det pågældende land som en procent af
+          observationer sidste år i det land, så hvis der var 10 observationer i
+          Laos sidste år, men 20 i år, ville det være 100% vækst, og hvis der
+          var 0 sidste år og 1 i år er det uendelig% vækst.
         growth_by_country_title: Vækst efter land
         growth_in_year_obs: Vækst i %{year} (obs)
         growth_title: Vækst
