@@ -29,8 +29,13 @@
           { label: "probably spam" },
         ],
         data: _.map( STATS_JSON, function( stat ) {
+          var localDateString = ( new Date( ) ).toISOString( ).replace( /\d{4}-\d{2}-\d{2}/, stat.date );
+          var localDate = new Date( localDateString );
+          localDate.setHours( 0 );
+          localDate.setMinutes( 0 );
+          localDate.setSeconds( 1 );
           return [
-            new Date( stat.date ),
+            localDate,
             stat.new_users || 0,
             stat.auto_spam || 0,
             stat.manual_spam || 0,
@@ -102,6 +107,15 @@
                     = link_to t(:suspend_user), suspend_user_path( user ), class: "btn btn-warning btn-block btn-sm"
                   - elsif user.suspended?
                     = link_to t(:unsuspend_user), unsuspend_user_path( user ), class: "btn btn-success btn-block btn-sm"
-      - if @users.size == @users.per_page
-        .text-center
-          = link_to t(:more), url_for_params( from: @users.last.id ), class: "btn btn-default"
+
+  - if @users.size == @users.per_page
+    .row
+      .col-xs-12
+        .text-center.stacked
+          = link_to t(:view_more), url_for_params( from: @users.last.id ), class: "btn btn-primary"
+  - if @users.map(&:observations_count).sum > 0
+    .row
+      .col-xs-12
+        .text-center.stacked
+          = link_to t(:view_observations_by_these_users), observations_url( place_id: "any", user_id: @users.map(&:id).join( "," ) ), class: "btn btn-link"
+          = link_to t(:identify_observations_by_these_users), identify_observations_url( place_id: "any", user_id: @users.map(&:id).join( "," ) ), class: "btn btn-link"

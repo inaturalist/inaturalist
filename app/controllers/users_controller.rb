@@ -682,11 +682,13 @@ class UsersController < ApplicationController
       start_date = 3.months.ago.to_date
       total_new_user_counts = User.where( "created_at > ?", start_date ).group( "created_at::date" ).count
       new_automated_spam_flag_counts = Flag.
-        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id = 0", start_date ).
-        group( "created_at::date" ).count
+        where( "u.created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id = 0", start_date ).
+        joins( "JOIN users u ON u.id = flags.flaggable_id" ).
+        group( "u.created_at::date" ).count
       new_manual_spam_flag_counts = Flag.
-        where( "created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id > 0", start_date ).
-        group( "created_at::date" ).count
+        where( "u.created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id > 0", start_date ).
+        joins( "JOIN users u ON u.id = flags.flaggable_id" ).
+        group( "u.created_at::date" ).count
       probable_spam_user_counts = User.
         where( "spammer IS NULL" ).
         where( "observations_count = 0 AND identifications_count = 0" ).
