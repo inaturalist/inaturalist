@@ -670,6 +670,7 @@ class ObservationsController < ApplicationController
       end
       format.json do
         if errors
+          Rails.logger.debug "[DEBUG] errors: #{@observations[0].errors.full_messages.to_sentence}"
           json = if @observations.size == 1 && is_iphone_app_2?
             {:error => @observations.map{|o| o.errors.full_messages}.flatten.uniq.compact.to_sentence}
           else

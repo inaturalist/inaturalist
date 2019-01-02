@@ -25,7 +25,7 @@ gem 'chroma'
 gem 'chronic'
 gem 'coffee-rails'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
-gem 'dbf'
+gem "dbf" # Needed for georuby shapefile support
 gem 'delayed_job', '~> 4.1.5'
 gem 'delayed_job_active_record',
   git: 'https://github.com/hugueslamy/delayed_job_active_record.git',

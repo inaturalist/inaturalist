@@ -1042,6 +1042,7 @@ en:
   default_sound_license: Default sound license
   defaults_to_your_name_or_username: Defaults to your name or username
   defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
+  definitions: Definitions
   delete: Delete
   delete_all: Delete all
   delete_conversation: Delete conversation
@@ -1568,6 +1569,7 @@ en:
   ids_by_taxon: IDs By Taxon
   identify: Identify
   identify_observations: "Identify Observations"
+  identify_observations_by_these_users: Identify Observations By These Users
   identify_title: "Identify"
   identification: identification
   identification_by_user: Identification by %{user}
@@ -3119,6 +3121,7 @@ en:
   private: private
   private_: Private
   private_description: "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. Observations with private coordinates will still be used to verify place check lists."
+  probably_spam: Probably Spam
   proceed: Proceed
   processing: Processing
   processing3p: "Processing..."
@@ -4325,6 +4328,7 @@ en:
   view_observations: View Observations
   view_observation_flags: View observation flags
   view_observations_by_everyone: View observations by everyone
+  view_observations_by_these_users: View Observations By These Users
   view_observations_of_this_taxon_by: View observations of this taxon by
   view_observations_raquo: "View observations &raquo;"
   view_on: View on
@@ -6245,6 +6249,34 @@ en:
         scientific_name_first_desc: |
           Show scientific names before common names.
         youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
+      recent:
+        about_recent_users: About
+        definitions_html:
+          <dl>
+            <dt>Probably Spam</dt>
+            <dd>
+              User that is probably a spammer, which means they have no
+              observations or identifications but they do have a profile
+              description.
+            </dd>
+            <dt>Auto Spam</dt>
+            <dd>
+              Spammer that was automatically marked as a spammer by the system.
+            </dd>
+            <dt>Manual Spam</dt>
+            <dd>
+              Spammer that was manually marked as a spammer by a site curator.
+            </dd>
+          </dl>
+        recent_users_desc_html: |
+          <p>
+            We want to welcome new users, but we also want to combat
+            spammers. Hopefully this tool will help with both. We are
+            automatically flagging many users as spammers using <a
+            href="https://akismet.com/">Akismet</a>, but Akismet isn't perfect,
+            so if you want to put in a few minutes marking new accounts as
+            spammers or not spammers, it would help.
+          </p>
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended

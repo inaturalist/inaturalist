@@ -119,3 +119,11 @@
         .text-center.stacked
           = link_to t(:view_observations_by_these_users), observations_url( place_id: "any", user_id: @users.map(&:id).join( "," ) ), class: "btn btn-link"
           = link_to t(:identify_observations_by_these_users), identify_observations_url( place_id: "any", user_id: @users.map(&:id).join( "," ) ), class: "btn btn-link"
+  .row
+    .col-xs-12.text-muted
+      %h3=t :about_recent_users
+      =t "views.users.recent.recent_users_desc_html"
+      %h3=t :definitions
+      =t "views.users.recent.definitions_html"
+
+
