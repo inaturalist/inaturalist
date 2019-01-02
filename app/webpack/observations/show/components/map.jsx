@@ -16,7 +16,14 @@ class Map extends React.Component {
 
   render( ) {
     let taxonMap;
-    const { observation, observationPlaces, config } = this.props;
+    const {
+      observation,
+      observationPlaces,
+      config,
+      updateCurrentUser
+    } = this.props;
+    const currentUserPrefersMedialessObs = config.currentUser
+      && config.currentUser.prefers_medialess_obs_maps;
     if ( !observation || !observation.latitude ) {
       return (
         <div className="Map">
@@ -62,19 +69,29 @@ class Map extends React.Component {
       const mapKey = `map-for-${observation.id}-${observation.taxon ? observation.taxon.id : null}`;
       taxonMap = (
         <TaxonMap
-          key={ mapKey }
-          reloadKey={ mapKey }
+          key={mapKey}
+          reloadKey={mapKey}
           taxonLayers={[{
             taxon: obsForMap.taxon,
-            observations: {
-              observation_id: obsForMap.id,
-              verifiable: true
-            },
+            observationLayers: [
+              {
+                label: I18n.t( "verifiable_observations" ),
+                verifiable: true,
+                observation_id: obsForMap.id
+              },
+              {
+                label: I18n.t( "observations_without_media" ),
+                verifiable: false,
+                disabled: !currentUserPrefersMedialessObs,
+                observation_id: obsForMap.id,
+                onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+              }
+            ],
             places: { disabled: true },
             gbif: { disabled: true }
-          }] }
+          }]}
           observations={[obsForMap]}
-          zoomLevel={ observation.map_scale || 8 }
+          zoomLevel={observation.map_scale || 8}
           showAccuracy
           enableShowAllLayer={false}
           overlayMenu
@@ -161,7 +178,8 @@ class Map extends React.Component {
 Map.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateCurrentUser: PropTypes.func
 };
 
 export default Map;

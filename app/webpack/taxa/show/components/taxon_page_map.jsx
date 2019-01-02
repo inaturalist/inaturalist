@@ -4,20 +4,30 @@ import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../../../taxa/shared/util";
+import { urlForTaxon } from "../../shared/util";
 
-const TaxonPageMap = ( { taxon, bounds, latitude, longitude, zoomLevel, config } ) => {
+const TaxonPageMap = ( {
+  taxon,
+  bounds,
+  latitude,
+  longitude,
+  zoomLevel,
+  config,
+  updateCurrentUser
+} ) => {
   let loading;
   let taxonMap;
+  const currentUserPrefersMedialessObs = config.currentUser
+    && config.currentUser.prefers_medialess_obs_maps;
   if ( taxon ) {
     const t = Object.assign( { }, taxon, {
       forced_name: ReactDOMServer.renderToString(
         <SplitTaxon
-          taxon={ taxon }
-          user={ config.currentUser }
+          taxon={taxon}
+          user={config.currentUser}
           noParens
           iconLink
-          url={ urlForTaxon( taxon ) }
+          url={urlForTaxon( taxon )}
         />
       )
     } );
@@ -33,20 +43,26 @@ const TaxonPageMap = ( { taxon, bounds, latitude, longitude, zoomLevel, config }
         gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
         taxonLayers={[{
           taxon: t,
-          observations: {
-            verifiable: true
-          },
+          observationLayers: [
+            { label: I18n.t( "verifiable_observations" ), verifiable: true },
+            {
+              label: I18n.t( "observations_without_media" ),
+              verifiable: false,
+              disabled: !currentUserPrefersMedialessObs,
+              onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+            }
+          ],
           gbif: { disabled: true },
           places: true,
           ranges: true
         }]}
-        minX={ bounds ? bounds.swlng : null }
-        minY={ bounds ? bounds.swlat : null }
-        maxX={ bounds ? bounds.nelng : null }
-        maxY={ bounds ? bounds.nelat : null }
-        latitude={ latitude }
-        longitude={ longitude }
-        zoomLevel={ zoomLevel }
+        minX={bounds ? bounds.swlng : null}
+        minY={bounds ? bounds.swlat : null}
+        maxX={bounds ? bounds.nelng : null}
+        maxY={bounds ? bounds.nelat : null}
+        latitude={latitude}
+        longitude={longitude}
+        zoomLevel={zoomLevel}
         gestureHandling="auto"
       />
     );
@@ -73,7 +89,8 @@ TaxonPageMap.propTypes = {
   latitude: PropTypes.number,
   longitude: PropTypes.number,
   zoomLevel: PropTypes.number,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateCurrentUser: PropTypes.func
 };
 
 export default TaxonPageMap;

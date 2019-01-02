@@ -15,7 +15,8 @@ const SuggestionRow = ( {
   chooseTaxon,
   setDetailTaxon,
   source,
-  config
+  config,
+  updateCurrentUser
 } ) => {
   const taxonPhotos = _
     .uniq( taxon.taxonPhotos, tp => `${tp.photo.id}-${tp.taxon.id}` )
@@ -28,6 +29,8 @@ const SuggestionRow = ( {
   ) {
     backgroundSize = "contain";
   }
+  const currentUserPrefersMedialessObs = config.currentUser
+    && config.currentUser.prefers_medialess_obs_maps;
   return (
     <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
       <h3 className="clearfix">
@@ -99,7 +102,15 @@ const SuggestionRow = ( {
             gestureHandling="auto"
             taxonLayers={[{
               taxon,
-              observations: { observation_id: observation.id },
+              observationLayers: [
+                { label: I18n.t( "verifiable_observations" ), verifiable: true },
+                {
+                  label: I18n.t( "observations_without_media" ),
+                  verifiable: false,
+                  disabled: !currentUserPrefersMedialessObs,
+                  onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+                }
+              ],
               gbif: { disabled: true },
               places: true,
               ranges: true
@@ -121,7 +132,8 @@ SuggestionRow.propTypes = {
   chooseTaxon: PropTypes.func.isRequired,
   setDetailTaxon: PropTypes.func.isRequired,
   source: PropTypes.string,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateCurrentUser: PropTypes.func
 };
 
 SuggestionRow.defaultProps = {
