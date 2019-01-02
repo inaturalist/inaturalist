@@ -41,7 +41,7 @@ gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem 'fastimage'
 # gem 'flickraw', "~> 0.9.8", :git => 'https://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "flickraw-cached"
-gem "friendly_id", "~> 5.1.0"
+gem "friendly_id", "~> 5.2.4"
 gem 'gdata', :git => 'https://github.com/pleary/gdata.git'
 gem 'geocoder'
 gem 'geoplanet'
