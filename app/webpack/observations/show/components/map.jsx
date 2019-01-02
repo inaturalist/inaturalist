@@ -30,7 +30,7 @@ class Map extends React.Component {
           <div className="TaxonMap empty">
             <div className="no_location">
               <i className="fa fa-map-marker" />
-              { observation.obscured && observation.geoprivacy === "private"
+              { observation.obscured && !observation.geojson
                 ? I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
             </div>
           </div>

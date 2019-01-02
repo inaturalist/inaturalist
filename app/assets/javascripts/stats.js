@@ -335,7 +335,7 @@ Stats.yearAgoDate = function( ) {
 
 Stats.monthAgoDate = function( ) {
   var date = new Date( );
-  return date.getFullYear( ) + "-" + date.getMonth( ) + "-" + date.getDate( );
+  return date.getFullYear( ) + "-" + ( ( date.getMonth( ) + 11 ) % 12 ) + "-" + date.getDate( );
 };
 
 Stats.simpleChart = function( options ) {
