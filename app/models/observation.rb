@@ -1297,7 +1297,8 @@ class Observation < ActiveRecord::Base
             community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
           ) || (
             owners_identification.taxon.rank_level == Taxon::GENUS_LEVEL &&
-            community_taxon == owners_identification.taxon
+            community_taxon == owners_identification.taxon &&
+            voted_out_of_needs_id?
           )
         )
       )
