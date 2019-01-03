@@ -1444,4 +1444,17 @@ module ApplicationHelper
     @responsive
   end
 
+  def photo_type_label( type )
+    case type
+    when "FlickrPhoto"
+      "Flickr"
+    when "FacebookPhoto"
+      "Facebook"
+    when "PicasaPhoto"
+      "Google Picasa"
+    else
+      I18n.t( :unknown )
+    end
+  end
+
 end
