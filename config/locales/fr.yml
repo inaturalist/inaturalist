@@ -6601,6 +6601,25 @@ fr:
           ou les sites web <a href="%{url}">Réseau iNaturalist</a>
       year:
         include_usa: NOUS inclure
+        growth_by_country_desc_html: Où y-a-t-il croissance ? Cette carte et ce graphe
+          essaient de partager cette information par pays, ce qui est compliqué parce
+          que la croissance par pays peut être très déséquilibrée. Ici nous avons
+          choisi d'omettre les États-Unis et d'utiliser une échelle logarithmique
+          par défaut pour accentuer les différences avec les autres pays. Si un pays
+          apparaît en noir cela signifie qu'il n'a pas contribué significativement
+          au pourcentage, ou qu'il n'a pas présenté de croissance cette année, ou
+          il n'a pas eu plus d'observations cet année que l'année dernière (passer
+          le curseur sur un pays pour avoir plus de détails). <strong>"% de la croissance
+          totale"</strong> signifie la part de la croissance mondiale provenant d'un
+          pays particulier, par exemple s'il y a 20 observations en 2018 et 10 en
+          2017, cela représente 10 observations de croissance, et si 5 d'entre elles
+          concernent le Bénin, alors le Bénin a contribué à 50% du total de la croissance.
+          <strong>"% de croissance"</strong> représente le pourcentage d'observations
+          de cette année dans ce pays par rapport aux observations de l'année dernière
+          dans ce pays, donc si il a eu 10 observations sur le Laos l'an passé et
+          20 cette année, cela représente une croissance de 100%, et s'il y en a eu
+          0 l'an passé et 1 cette année, cela représente un pourcentage de croissance
+          infinie.
         growth_by_country_title: Croissance par pays
         growth_in_year_obs: Croissance pendant %{year} (obs)
         growth_title: Croissance

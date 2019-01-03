@@ -696,7 +696,9 @@ sv:
   calendars_only_show_x_observations_at_time: Kalendrar visar endast %{x} observationer
     åt gången
   cancel: Avbryt
+  catalogue_of_life: Catalogue of Life
   categories: Kategorier
+  cc_0_name: Ingen upphovsrätt (CC0)
   cc_attribution_license: Creative Commons Erkännande licens
   cc_by_name: Erkännande
   cc_by_nc_name: Erkännande-IckeKommersiell
@@ -740,6 +742,7 @@ sv:
   choose_your_username: Välj din användarnamn
   clear_color_filters: Rensa färgfilter
   clear_search: Rensa sökning
+  click_the_map: <strong>Klicka på kartan</strong> för lägg till plats.
   close: Stäng
   code: Kod
   colors: Färg
@@ -757,6 +760,7 @@ sv:
   comments_on_my_observations: Kommentarer på mina observationer
   comments_youve_made_with_others: Kommentarer du (och andra) har gjort<br /><span
     class="description">den senaste veckan</span>
+  committed_on: Engagerad på %{date}
   community: Gemenskap
   community_guidelines: Gemenskapsriktlinjer
   compare_with: Jämför med
@@ -804,9 +808,11 @@ sv:
     anonymous: anonym
     attribution_noncommercial_sharealike_license: Erkännande-IckeKommersiell-DelaLika
       Licens
+    attribution_noncommercial_license: Erkännande-IckeKommersiell licens
     attribution_noncommercial_noderivs_license: Erkännande-Ickekommersiell-IngaBearbetningar
       Licens
     attribution_sharealike_license: Erkännande-DelaLika Licens
+    attribution_noderivs_license: Erkännande-IngaBearbetningar
   countries: Länder
   create: Skapa
   create_a_guide: Skapa en guide
@@ -836,6 +842,7 @@ sv:
   curator: Kurator
   curators: Kuratorer
   current_password: Nuvarande lösenord
+  customize_location: Anpassa plats
   darr_apply_darr: '&darr; Verkställ &darr;'
   dashboard: Kontrollpanel
   data_quality: Datakvalitet
@@ -997,6 +1004,7 @@ sv:
   fields_: Fält
   fill_out_your_profile: slutför din profil
   filling_out_your_profile: fyller i din profil
+  filter: Filter
   filters: Filter
   find: Hitta
   find_a_guide: Hitta en guide
@@ -1037,6 +1045,7 @@ sv:
     one: Följande 1 människa
     other: Följande %{count} människor
   for: för
+  for_a_taxon: för en taxon
   formatting: Formatering
   forgot_your_password: Glömt ditt lösenord?
   frequency: Frekvens
@@ -1059,12 +1068,17 @@ sv:
     one: svamp
     other: svampar
   generate_your_stats: Generera din statistik
+  get_started_raquo: Kom igång &raquo;
   get_started: Kom igång
+  getting_started_guide: Komma igång guide
   go: Gå
   go_back: Gå tillbaka
   google: Google
   got_it!: Uppfattat!
+  green: grön
   grid_layout: Rutnätslayout
+  group: Grupp
+  grouping: Gruppering
   guides: Guider
   has_photo: Har foto
   help: Hjälp
@@ -1072,6 +1086,7 @@ sv:
   help_support_inaturalist: Hjälp till att stödja iNaturalist
   here_are_our_top_species_suggestions: Här är våra populäraste förslag på arter
   heres_a_litle_about: Här är lite om
+  hi: Hej,
   hi_user: Hej %{user}
   hide_uncountable_species: Dölj oräkneliga arter
   highlights_and_stats_from_year_on_site: Höjdpunkter och statistik från %{year} på
@@ -1086,6 +1101,9 @@ sv:
   identification_by_user: Identifiering av %{user}
   identification_user_short: Ident. användare
   identifications: Identifieringar
+  identifications_by: Identifieringar av %{user}
+  identifiers: Identifierare
+  identotron_for: Identotron för
   ignore_and_continue: Ignorera och fortsätt
   import: Importera
   import_observations: Importera observationer
@@ -1095,7 +1113,11 @@ sv:
   in_progress: pågår
   inappropriate: Olämplig?
   inat_user_profile: '%{site_name}: %{user}''s profil'
+  inaturalist_observations_by: '%{site_name} &#58; Observationer av %{login}'
   inaturalist_places: '%{site_name} platser'
+  iphone: iPhone
+  is_a: är en
+  is_an: är en
   is_now: är nu
   january: Januari
   join: Gå med
@@ -1110,27 +1132,55 @@ sv:
   language_slash_type: Språk / Typ
   last_active_with_date: 'Senast aktiv: %{date}'
   last_year: Senaste året
+  leaderboard_most:
+    identifications: Mest identifieringar i %{time}
   learn: Lär dig
   learn_more: Läs mer
   leave_a_comment: Lämna en kommentar
   lexicons:
+    afrikaans: Afrikaans
+    albanian: Albanska
+    bengali: Bengaliska
+    catalan: Katalanska
+    chinese_simplified: Kinesiska (förenklad)
+    chinese_traditional: Kinesiska (traditionelt)
+    creole_french: kreol (Franska)
+    creole_portuguese: kreol (Portugisiska)
     czech: Tjeckiska
     danish: Danska
+    dutch: Holländska
     english: Engelska
     estonian: Estniska
     finnish: Finska
     french: Franska
+    german: Tyska
     greek: Grekiska
+    hawaiian: Hawaiiska
+    hebrew: Hebreiska
+    icelandic: Isländska
+    italian: Italienska
+    japanese: Japanska
+    korean: Koreanska
     luxembourgish: Luxemburgiska
+    norwegian: Norska
+    portuguese: Portugisiska
+    romanian: Rumänska
+    russian: Ryska
+    spanish: Spanska
+    swedish: Svenska
+    turkish: Turkiska
   license: Licens
   licensing_your_content: |-
     När du licensierar dina bidrag får andra laglig rätt använda dem så längde de fäljer licensvillkoren. %{site_name} använder Creative
     Commons-licensierat innehåll som delas med data partners som <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
     (GBIF).
   linear_scale_label: Linjärt
+  link: Länk
   link_or_unlink_your_google_account: Länka eller avlänka ditt Google-konto
   link_your_google_account: Länka ditt Google-konto
   list: Lista
+  list_views:
+    photo: foto
   lists: Listor
   lists_by_login:
     title:
@@ -1146,19 +1196,24 @@ sv:
     cs: Tjeckiska
     de: Tyska
     el: Grekiska
+    en-US: Engelska (USA)
     et: Estniska
     fi: Finska
     it: Italienska
     ko: Koreanska
     mk: Makedonska
     pt-BR: Portugisiska (Brasilien)
+    pt-PT: Portugisiska (Portugal)
     ru: Ryska
+  location: Plats
   locations: Platser
   location_is_public: Platsen är offentlig
   location_is_private: Platsen är privat
   log_in: Logga in
   log_scale_label: Logg
   logged_in_as: Inloggad som
+  logo:
+    none: ingen
   make_admin: Gör admin
   manage: Hantera
   manage_your_projects: Hantera dina projekt
@@ -1171,6 +1226,11 @@ sv:
   media_type: Mediatyp
   meet: Möt
   member_of_the_inaturalist_network_html: Medlem av <a href="%{url}">iNaturalist Network</a>
+  mentioned_you_in_noun_by_html: '%{user} nämnde dig i %{noun} av %{by}'
+  mentioned_you_in_a_x_on_noun_html: '%{user} nämnde dig i %{x} på %{noun}'
+  mentioned_you_in_a_x_on_noun_by_html: '%{user} nämnde dig i %{x} på %{noun} av %{by}'
+  mentioned_you_in_an_x_on_noun_by_html: '%{user} nämnde dig i en %{x} på %{noun}
+    av %{by}'
   mobile: Mobil
   momentjs:
     shortRelativeTime:
@@ -1182,6 +1242,7 @@ sv:
   mon: Mån
   months: Månader
   more: Mer
+  more_filters: Mer filtrerar
   more_import_options: Fler importalternativ
   more_info: Mer info
   more_observations: Mer observationer
@@ -1193,14 +1254,18 @@ sv:
   multiple_select_option: -- flera --
   name: Namn
   name_or_username: Namn eller användarnamn
+  names_for_taxon_html: Namn för %{taxon}
   new: Ny
   new_comment_on_a_parent_by_user_link: Ny kommentar på @vow_or_con{vow:an|a} %{parent}
     av %{user_link}
   new_list: Ny lista
   new_observations_this_year: Nya observationer i år
   new_password: Nytt lösenord
+  new_project: Nytt projekt
   new_species_added_in_interval_x_of_y: Nya arter som lades till i %{interval} (Visar
     %{x} av %{y})
+  new_taxon_name: Ny taxon namn
+  new_taxon_name_for: Ny takson namn för
   new_users: Nya användare
   new_users_this_year: Ny användare i år
   news: Nyheter
@@ -1211,23 +1276,43 @@ sv:
   no_identifications: Inga identifieringar
   no_new_messages: Inga nya inlägg
   no_news_yet: Inga nyheter ännu
+  no_photo: Inga foto
+  no_recent_activity: Inte senaste aktivitet
+  no_results_found: Inga resultat hittades
+  no_results_for: Inga resultat för
   no_suggestions_available: Inga förslag tillgängliga
   non_human?: Icke-mänsklig?
+  none: Ingen
   none_found: Ingen hittades
   not_linked_facebook: Ditt %{site_name}-konto är inte länkat till ditt Facebook-konto
   not_linked_flickr: Ditt %{site_name}-konto är inte länkat till ditt Flickr-konto
   not_logged_in: Inte inloggad
+  not_on_this_list: Inte på denna lista.
   not_spam: Inte spam
   notes: Kommentarer
   number_selected: Antal valda
+  noun_by_you: '%{noun} av dej'
   observation_: observation
   observations_by_category: Observationer efter kategori
+  observations_by_app: Observationer av app
+  observations_by_rank: Observationer av rang
+  observations_by_user_on_date: Observationer av %{user} på %{date}
+  observations_by_you_on_date: Observationer av dig på %{date}
   observation_calendar_for: Observationskalender för %{user} i %{year}
   observations: Observationer
   observations_: observationer
+  observations_added_by_x_html: Observationer lades till av %{x}
+  observations_by: Observationer av
+  observations_by_everyone: Observationer av alla
+  observations_by_user: Observationer av %{user}
+  observations_for: Observationer för
   observations_from_people_taxa_and_places_youre_following: Observationer från människor,
     platser och arter som du följer
+  observations_from_you: Observationer av dig
+  observations_title: Observationer av alla
   observed: Observerade
+  observed_by: Observerade av
+  observed_one: observerade ett
   observer: Observatör
   observers: Observatörer
   observer_short: Observatör
@@ -1236,8 +1321,14 @@ sv:
   of_observers: observatörer
   of_identifiers: identifierare
   of_places: platser
+  official_blog: Officiell blogg
   ok: OK
+  on_: på
+  on_day: på
+  on_edit_date: på %{editdate}
+  on_submit_date: på %{submitdate}
   onboarding:
+    follow_panel_title_local: Följ några närliggande naturister
     following_panel_title: Håll reda på personer, arter och platser
     youve_got_updates_panel_title: Du har fått uppdateringar!
   only_you: Endast dig
@@ -1258,48 +1349,75 @@ sv:
   per_day: Per dag
   per_month: Per månad
   per_week: Per vecka
+  photo: Foto
+  photo_attribution: Foto %{attribution}
   photo_by: Foto av
+  photo_by_id_attribution: Foto %{id}, %{attribution}
+  photos_of_taxon_html: Foton av %{taxon}
   photos_or_sounds: Foton eller ljud
   google_account_not_linked: '%{user} har inte ett länkat Google-konto längre, så
     %{site_name} har inte behörighet att komma åt detta foto.'
   pin_verb: Fäst
   place: Plats
   placeholder: Platshållare
+  place_added_to_inat_by: Plats lades till i %{site_name} av
   place_autocomplete_placeholder: Zion National Park, Miami, etc.
   place_geo:
     geo_planet_place_types:
+      Island: Ö
       Municipality: Kommun
       municipality: Kommun
       Unknown: Okänd
       unknown: Okänd
   places: Platser
   places_name:
+    aland: Åland
     australia: Australien
     austria: Österrike
     canada: Kanada
     china: Kina
+    cocos_islands: Kokosöarna
     colombia: Colombia
     denmark: Danmark
+    finland: Finland
+    french_polynesia: Franska Polynesien
+    germany: Tyskland
     hong_kong: Hongkong
     india: Indien
+    ireland: Irland
+    italy: Italien
     korea: Korea
+    latvia: Lettland
+    lithuania: Litauen
     netherlands: Nederländerna
+    norway: Norge
+    poland: Polen
     portugal: Portugal
+    russia: Ryska
     south_africa: Sydafrika
+    sweden: Sverige
     switzerland: Schweiz
+    ukraine: Ukraina
+    united_arab_emirates: Förenade Arabemiraten
+    united_kingdom: Storbritannien
+    united_states: USA
+    united_states_virgin_islands: Amerikanska Jungfruöarna
+    vatican_city: Vatikanstaten
   post_from_journal_by_parent_html: Inlägg från <a href="%{url}">journalen av %{parent}</a>
   post_from_your_journal_html: Inlägg från <a href="%{url}">din journal</a>
   powered_by: Drivs av
   powered_by_inaturalist_open_source_software_html: Drivs av <a href="https://github.com/inaturalist/inaturalist"
-    target="_new" >iNaturalist öppen källkods programvara</a>
+    target="_new" >iNaturalist programvara med öppen källkod</a>
   press: Press
   previous_photo: Föregående foto
   previous_tab: Föregående flik
   print_verb: Skriv ut
   privacy: Integritetspolicy
+  privacy_policy: Integritetspolicy
   private_: Privat
   proceed: Fortsätt
   profile: Profil
+  project: Projekt
   project_home: Projekt hem
   project_id: Projekt-ID
   project_requirements: Projektkrav
@@ -1315,10 +1433,12 @@ sv:
     species: Art
   ranges: Intervall
   read_more: Läs mer
+  read_our_getting_started_guide: läs vår komma igång guide
   real_time_discussions: Realtidsdiskussioner
   recaptcha_verification_failed: reCaptcha-verifiering misslyckades
   receive_updates_from_this_project: Hämta uppdateringar från detta projekt
   recent_new_users: Senaste nya användare
+  recently_observed: Nyligt observerade
   regenerate_stats: Generera statistik igen
   reject?: Förkasta?
   relationships:
@@ -1336,12 +1456,18 @@ sv:
   restoring: Återställer...
   review_all: Granska alla
   sat: Lör
+  save: Spara
+  save_all: Spara alla
+  save_and_add_another: Spara och lägg till en annan
   save_and_continue: Spara och fortsätt...
   save_comment: Spara kommentar
+  save_photos: Spara foton
   saved: Sparades
+  saving: Sparar...
   saving_num_of_count_observations:
     one: Spara observation...
     other: Sparar %{num} av %{count} observationer...
+  saving_verb: Sparar
   scale_colon: 'Skala:'
   search: Sök
   search_by_name_or_email: Sök efter namn eller e-post
@@ -1354,14 +1480,18 @@ sv:
   search_species_: Sök arter...
   searching: Söker...
   second_person_possessive_singular: Ditt %{noun}
+  second_person_possessive_singular_: Din %{noun}
   seen_one: Sett en?
   select_at_least_one: Välj minst en
+  select_none: Välj ingen
   select_observations_to_edit: Markera observationer att redigera...
   select_this_taxon: Välj detta taxon
   september: September
   share: Dela
+  show: Visa
   show_less: Visa mindre
   show_more: Visa mer
+  show_observations_from: Visa observationer av
   show_scientific_name_first: Visa vetenskapliga namn först
   show_uncountable_species: Visa oräkneliga arter
   showing_x_of_y_listings: Visar %{x} av %{y} listor
@@ -1369,7 +1499,9 @@ sv:
   sign_in_with_provider: Logga in med %{provider}
   sign_up_with_provider: Registrera med %{provider}
   sign_out: Logga ut
+  sign_up!: Registrera!
   sign_up: Registrera
+  sign_up_exclamation: Registrera!
   skip_to_next_page: Hoppa till nästa sida
   site_site_admin: '%{site_name}s webbplatsadministratör'
   site_staff: '%{site_name}s personal'
@@ -1379,10 +1511,20 @@ sv:
     till i projekt
   some_observations_failed_to_save: Några observationer kunde inte sparas
   sorry_google_isnt_responding_at_the_moment: Tyvärr, Google svarar inte för tillfället.
+  sort_by: Sortera efter
   sounds:
     add_media: Lägg till media
+    listen: Lyssna
+    no_photos_sounds: Inga foton eller ljud
+    photos_sounds: Foton / ljud
+  source: Källa
+  source_: 'Källa:'
   source_wikipedia: 'Källa: Wikipedia'
   source_list_: Källista
+  source_list:
+    ubio: uBio
+    catalogue_of_life: Catalogue of Life
+    inaturalist: iNaturalist
   spammer: Spammare
   species: Arter
   species_header: Arter
@@ -1390,21 +1532,28 @@ sv:
   species_name_cap: Artnamn
   species_names: artnamn
   species_search: Arter sök
+  species_taxon_name: Arter / Taxon namn
   species_unknown: Arter ökand
   start: Starta
+  start_a_new_list: Starta en ny lista
+  start_a_project: Starta ett projekt
+  start_new_project: Starta en ny projekt
   stats_for_this_year_have_not_been_generated: Statistik för detta år har ännu inte
     genererats.
   stats_title: Sajt statistik
+  status: Status
   status_globally: '%{status} Globalt'
   status_in_place: '%{status} i %{place}'
   stay_and_try_again: Stanna kvar och försök igen
   stop_testing: Sluta testa
   studies_that_used_inaturalist_data_in_year: Studier som använde iNaturalists data
     under %{year}
+  submit: Skicka
   submit_comment: Skicka kommentarer
   submit_observations:
     one: Skicka 1 observation
     other: Skicka %{count} observationer
+  submitted: Skickades
   suggestions: Förslag
   supporting: Stödjer
   support_inaturalist: Stöd iNaturalist
@@ -1413,24 +1562,39 @@ sv:
   take_me_back: Ta mig tillbaka
   taxa_info: Taxainfo
   taxa_all_species_html: Alla arter
+  taxon_is_a_rank: '%{taxon} är en %{rank}'
   taxonomy: Taxonomi
+  taxon_name: Taxon namn
   taxon_observed_by_user: '%{taxon} observerades av %{user}'
   taxonomy_details: Taxonomi detaljer
   tell_the_world_a_little_about_yourself: Berätta om dig själv
+  terms: Villkor
+  terms_and_rules_html: Villkor &amp; regler
   terms_of_service: Användarvillkor
   terms_service: Användarvillkor
   text: Text
   thanks_from_all_of_us_here_at: Tack från alla här på
   the_: Den
+  the_people_of_inat: Människor av %{site_name}
+  the_project: projekt
   the_world: Värld
   then_keybord_sequence: sedan
   these_observations_have_not_been_uploaded_yet: Dessa observationer har ännu inte
     laddats upp.
+  this: detta
+  this_is_a: Detta här är ett
+  this_observation: Denna observation
   this_place_has_no_check_list: Denna plats har ingen checklista.
+  this_species: denna art
   this_user_has_been_suspended: Denna användare har stängts av
   this_year: Detta år
   thu: Tor
+  time_ago: '%{time} sedan'
+  to: till
+  to_: till
+  to_an: till en
   to_include_your_google_with_inat: för att inkludera ditt Google-konto med %{site_name}
+  to_recipient: till
   to_suggest_an_identification: för att föreslå en identifikation
   today: Idag
   translated_languages: Översatta språk
@@ -1438,13 +1602,17 @@ sv:
   trends: Trender
   try_it_out: Prova
   tue: Tis
+  type_taxon_name: Skriv taxon namn
   unblock: Ta bort blockering
   unknown: Okänd
   unknown_error: Okänt fel
   unlink_your_google_account: Avlänka ditt Google-konto
   update_observation: Uppdatera observation
   update_observations: Uppdatera observationer
+  update_search: Uppdatera sök
+  updated_by: Uppdaterad av
   upload: Ladda upp
+  upload_photo: Ladda upp foto
   upload_photos: Ladda upp foton
   uploaded_by: Uppladdad av
   uploader:
@@ -1460,9 +1628,12 @@ sv:
     other: Laddar upp %{num} av %{count} foton...
   user: Användare
   user_added_a_x: '%{user} lade till en %{x}'
+  user_added_a_x_to_noun_by_html: '%{user} lades till en %{x} till %{noun} av %{by}'
   user_added_an_x: '%{user} lade till en %{x}'
+  user_added_an_x_to_noun_by_html: '%{user} lades till en %{x} till %{noun} av %{by}'
   user_blocked: Användare blockerad
   user_commented: '%{user} kommentar'
+  user_commented_on: '%{user} kommenterade på din %{title} %{time}'
   user_helped_x_people_with_y_ids_html: '%{user} hjälpte <strong>%{x} personer</strong>
     med <strong>%{y} ID:n</strong>'
   username: Användarnamn
@@ -1473,14 +1644,27 @@ sv:
     från %{year} på %{site}'
   users_identification_short_html: <a href='%{url}'>%{user}</a>s ID
   users_profile: '%{user}s profil'
+  users_projects: '%{user}s projekt'
   view: Visa
+  view_all: Visa alla
+  view_all_from_x: Visa alla från %{x}
   view_all_members: Visa alla medlemmar
+  view_all_n: Visa alla %{n}
+  view_all_observations: Visa alla observationer
+  view_all_photocount_photos: Visa alla %{photo_count} foton
+  view_all_your_projects: Visa alla dina projekt
   view_flag: Visa flagga
   view_license: Visa licens
   view_more: Visa mer
   view_more_observations: Visa mer observationer
   view_more_observations_from: Visa mer observationer från
+  view_observation: Visa observation
+  view_observations: Visa observationer
+  view_observations_by_everyone: Visa observationer av alla
+  view_on: Visa på
+  view_on_flickr: Visa på Flickr
   view_original: Visa original
+  view_original_by: Visa original av %{by} på %{photo}
   view_x: Visa %{x}
   view_year_stats_for_site: Visa statistik för %{site} under %{year}
   view_your_dashboard: Visa din kontrollpanel
@@ -1502,14 +1686,19 @@ sv:
   weather: Väder
   website: Webbplats
   wed: Ons
+  welcome!: Välkommen!
+  welcome_comma!: Välkommen,
   welcome: välkommen
   welcome_back: Välkommen tillbaka
   welcome_back!: Välkommen tillbaka!
+  welcome_comma: Välkommen,
   welcome_login: Välkommen, %{login}
   welcome_to_inat: Välkommen till %{site_name}!
   welcome_to_guides: Välkommen till %{site_name} guider!
   welcome_to_x_project: Välkommen till %{project}
+  what: Vad
   whats_this?: Vad är detta?
+  where: Var
   white: vit
   who_can_add_observations_to_this_project?: Vem kan lägga till observationer i detta
     projekt?
@@ -1530,6 +1719,9 @@ sv:
   year_on_site: År %{year} på %{site}
   yellow: gul
   "yes": Ja
+  yesterday: I går
+  yesterday_at: ', i går kl. 16:00'
+  you: du
   you_: Du
   you_appear_offline_try_again: Du verkar vara offline. Försök igen när du är ansluten
     till Internet.
@@ -1541,6 +1733,7 @@ sv:
   you_cant_leave_a_project_you_created: Du kan inte lämna ett projekt som du har skapat.
   you_dont: Du behöver inte
   you_have_logget_out: Du har loggats ut. Kom snart tillbaka!
+  you_have_to: Du måste
   you_havent_linked_your_inaturalist_google_account: Du har inte länkat ditt %{site_name}-konto
     och ditt Google-konto ännu
   you_think_observation_inacurate: |-
@@ -1560,8 +1753,10 @@ sv:
   your_google_account_info: Din Google-kontoinformation
   your_pinned_locations: Dina fästa platser
   your_recent_projects: Dina senaste projekt
+  your_subscriptions: Dina prenumerationer
   your_sure_delete_taxon_from_list?: Är du säker på att du vill ta bort %{taxon} från
     den här listan?
+  your_world!: Din värld!
   youve_linked_your_inaturalist_google_account: Du har länkat ditt %{site_name}-konto
     och ditt Google-konto. Detta kommer att låta dig associera dina Google-foton med
     dina %{site_name}-observationer.
@@ -1578,10 +1773,14 @@ sv:
     guides:
       mobile_downloads_tip_html: Denna guide kan laddas ned till mobilappen för att
         kunna användas offline.
+      pdf_layouts:
+        book: bok
     help:
       index:
+        what_is_inaturalist?: Vad är %{site_name}?
         who_is_behind_inaturalist?: Vem är bakom %{site_name}?
         who_is_behind_inaturalist: Vem är bakom %{site_name}?
+        what_is_an_observation?: Vad är en observation?
         we_also_support_uploading_photos: "Vi stöder att ladda upp foton direkt till
           %{site_name}, men det kan vara lite \nlångsamt, så vi kan bara tillåta en
           uppladdning åt gången. Flickr eller Google\när förmodligen snabbare om du
@@ -1597,6 +1796,7 @@ sv:
           på denna sida av %{total} matchande observationer.
       import:
         date_column_format: ÅÅÅÅ-MM-DD TT:MM
+        decimal_degrees_format: gg.gggg
     projects:
       collection: Samling
       edit:
@@ -1604,6 +1804,7 @@ sv:
           has_a_photo: har ett foto
       new:
         collection_projects: Samlingsprojekt
+        delete_project: Radera projekt
         multiple_project_administrators: Flera projektadministratörer
         or_drag_and_drop: (eller dra och släpp)
         project_name: Projektnamn
@@ -1658,9 +1859,19 @@ sv:
     welcome:
       index:
         connect_with_nature: Anslut med naturen
+        explore_and_share: Utforska och dela dina observationer från naturlig värld.
         species_observed: Arter observerade
         people_signed_up: Människor registrerade
         how_it_works: Hur den fungerar
+        contribute_to_science: Bidra till vetenskap
+        nature_at_your_fingertips: Naturen till dina fingertoppar
+        keep_track: Håll koll
+        create_useful_data: Skapa användbar data
+        crowdsource_identifications: Crowdsource identifieringar
+        become_a_citizen_scientist: Bli en medborgarforskare
+        learn_about_nature: Lära om naturen
+        run_a_bioblitz: Kör Bioblitz
+        works_on_all_your_devices: Fungerar på alla dina enheter
         who_uses_site_name: Vem använder %{site_name}?
         what_are_you_waiting_for: Vad väntar du på?
         join_today: Gå med idag
@@ -1677,7 +1888,14 @@ sv:
       1: jan
       2: feb
       3: mar
+      4: apr
       5: maj
+      6: jun
+      7: jul
+      8: aug
+      9: sep
+      10: okt
+      11: nov
       12: dec
     day_names:
     - Söndag
@@ -1687,11 +1905,19 @@ sv:
     - Torsdag
     - Fredag
     - Lördag
+    day_names_min:
+      1: Sö
+      2: Må
+      3: Ti
+      4: "On"
+      5: To
+      6: Fr
+      7: Lö
     formats:
-      default: '%d-%m-%Y'
-      long: '%d. %B %Y'
-      short: '%d %b'
-      short_with_year: '%d %b %Y'
+      default: '%-d-%m-%Y'
+      long: '%-d %B %Y'
+      short: '%-d %b'
+      short_with_year: '%-d %b %Y'
       month_year: '%B %Y'
       month_day_year: '%d. %B %Y'
     month_names:
@@ -1708,6 +1934,29 @@ sv:
       11: november
       12: december
   datetime:
+    distance_in_words:
+      half_a_minute: en halv minut
+      over_x_years:
+        one: över 1 år
+        other: över %{count} år
+      x_days:
+        one: 1 dag
+        other: '%{count} dagar'
+      x_minutes:
+        one: 1 minut
+        other: '%{count} minuter'
+      x_months:
+        one: 1 månad
+        other: '%{count} månader'
+      x_seconds:
+        one: 1 sekund
+        other: '%{count} sekunder'
+    countdown_x_days:
+      one: dag
+      other: dagar
+    countdown_x_hours:
+      one: timme
+      other: timmar
     countdown_x_minutes:
       one: min
       other: min
@@ -1715,18 +1964,60 @@ sv:
       one: sek
       other: sek
     prompts:
+      day: Dag
+      hour: Timme
+      minute: Minut
       month: Månad
+      second: Sekunder
+      year: År
   errors:
+    format: '%{attribute} %{message}'
     messages:
       confirmation: stämde inte överens med lösenordet
+  number:
+    currency:
+      format:
+        delimiter: ','
+        format: '%u%n'
+        precision: "2"
+        separator: .
+        unit: $
+    format:
+      delimiter: ','
+      precision: "3"
+      separator: .
+    human:
+      decimal_units:
+        format: '%n %u'
+        units:
+          billion: Miljard
+          million: Miljon
+          quadrillion: Kvadriljon
+          thousand: Tusen
+          trillion: Biljon
+      format:
+        precision: "3"
+        significant: "1"
+        strip_insignificant_zeros: "1"
+      storage_units:
+        format: '%n %u'
+  support:
+    array:
+      last_word_connector: ', och'
+      two_words_connector: och
+      words_connector: ','
   time:
     formats:
-      default: '%d. %b %Y %H:%M:%S %z'
+      default: '%-d %b %Y %H:%M:%S %z'
       long: '%-d %B %Y %H:%M'
-      rfc: '%d. %B %Y'
+      short: '%-d %b %H:%M'
+      observed_at: '%H:%M %Z'
+      rfc: '%-d %B %Y'
       day_month_year: '%-d %B %Y'
+      hours: '%H:%M'
   activemodel:
     errors:
+      format: '%{attribute} %{message}'
       messages:
         confirmation: stämde inte överens med lösenordet
   activerecord:
@@ -1748,6 +2039,16 @@ sv:
     models:
       TaxonLink: Taxonlänk
     attributes:
+      assessment:
+        description: Beskrivning
+      assessment_section:
+        title: Titel
+      project:
+        terms: Villkor
+      place:
+        code: Kod
+      source:
+        url: URL
       user:
         email: E-post
         login: Användarnamn
@@ -1756,5 +2057,7 @@ sv:
         time_zone: Tidszon
         search_place_id: Sökplats
         place_id: Plats
+  zoom_in: Zooma in
+  zoom_out: Zooma ut
   zoom_photo: Zooma foto
 ...

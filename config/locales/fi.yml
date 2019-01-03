@@ -883,6 +883,7 @@ fi:
   commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
   commit: Sitoutua
   committed: Sitoutunut
+  committed_on: Tehty %{date}
   community: Yhteisö
   community_curated: Yhteisön kuratoimat
   community_guidelines: Yhteisön suuntaviivat
@@ -2090,6 +2091,7 @@ fi:
   name_providers:
     col: Catalogue of Life
     ubio: uBio
+    nzor: New Zealand Organisms Register
   names: Nimet
   names_for_taxon_html: Nimet taksonille %{taxon}
   native: kotoperäinen
@@ -2578,7 +2580,7 @@ fi:
       historical_town: historiallinen kaupunki
       Intersection: Leikkauspiste
       intersection: intersection
-      Island: Islanti
+      Island: Saari
       island: saari
       Miscellaneous: Sekalainen
       miscellaneous: sekalainen
@@ -3346,6 +3348,7 @@ fi:
     ubio: uBio
     catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
+    new_zeland_organisms_register: New Zealand Organisms Register
     nzbrn_birds: NZBRN Linnut
     nzbrn_fungi: NZBRN Sienet
     nzbrn_invertebrates: NZBRN Selkärangattomat
@@ -4203,6 +4206,7 @@ fi:
         created_on_help: Päiväys jolloin havainnot luotiin, ei havaittu, esim. 17-01-2015,
           01-2015, 2015
       field_descriptions:
+        observed_on: Normalisoitu havainnon päivämäärä
         time_zone: Havainnon aikavyöhyke
         latitude: Julkisesti näkyvä leveysaste
         longitude: Julkisesti näkyvä pituusaste
@@ -4211,8 +4215,9 @@ fi:
         private_longitude: Yksityinen pituusaste, asetettu jos havainto yksityinen
           tai piilotettu
         user_login: Havainnoijan käyttäjänimi
+        license: Lisenssi jonka havainnoija on valinnut tälle havainnolle
         url: URL-osoite havainnolle
-        image_url: Web-osoite oletuskuvalle
+        image_url: URL-osoite oletuskuvalle
         tag_list: Pilkulla erotettu luettelo merkinnöistä
       import:
         date_column_format: VVVV-KK-PP TT:MM
@@ -4704,7 +4709,7 @@ fi:
       observed_at: '%H:%M %Z'
       rfc: '%-d. %Bta %Y'
       day_month_year: '%-d. %Bta %Y'
-      hours: '%l:%M %p'
+      hours: '%H:%M'
     pm: ip.
   activemodel:
     errors:
@@ -4832,7 +4837,7 @@ fi:
         source_url: Lähteen URL-osoite
       taxon_name:
         name_provider: Nimipankki
-        source_url: Lähteen web-osoite
+        source_url: Lähteen URL-osoite
         source_identifier: Lähdetunniste
       user:
         email: Sähköposti

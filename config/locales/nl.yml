@@ -1484,8 +1484,7 @@ nl:
   file: Bestand
   file_should_be_in_the_following_format: 'Het bestand moet in het volgende format
     zijn: taxon, omschrijving'
-  fill_out_project_observation_fields: Vul de vakjes in voor de waarnemingen in dit
-    project
+  fill_out_project_observation_fields: Vul de waarnemingsvelden in voor dit project
   fill_out_your_profile: Vervolledig uw profiel
   filling_out_checklist_for_place: invullen van checklists voor plaatsen die je goed
     kent
@@ -2304,7 +2303,7 @@ nl:
   matching_species_will_shown_up_here: Overeenkomende soorten worden hier weergegeven.
     De kaarten tonen een bereik als %{place} er een heeft voor die soort.
   maverick: buitenbeentje
-  maybe_your_signed_in_with: Misschien bent u ingelogd met uw %{omniauth}-account?
+  maybe_your_signed_in_with: Misschien bent u ingelogd met je %{omniauth}-account?
   media: Media
   media_type: Mediatype
   medium: gemiddeld
@@ -2711,9 +2710,8 @@ nl:
   observations_confirmed: Waarnemingen (bevestigd)
   observations_deleted: Waarnemingen verwijderd.
   observations_fields_are: |-
-    Observatievelden zijn extra gegevens die zijn gekoppeld aan een
-    waarneming, zoals het aantal waargenomen individuen, habitat
-    beschrijving of wat je maar wilt! Projecten kunnen ook velden specificeren
+    Waarnemingsvelden zijn extra gegevens die zijn gekoppeld aan een
+    waarneming, zoals het aantal waargenomen individuen, habitatbeschrijving of wat je maar wilt! projecten kunnen ook velden specificeren
     die ze graag ingevuld willen hebben.
   observations_for: Waarnemingen van
   observations_for_project: Waarnemingen voor %{project}
@@ -3029,6 +3027,7 @@ nl:
       Canton: Kanton
       canton: kanton
       Commune: gemeente
+      commune: commune
       Continent: Continent
       continent: continent
       Country: Land
@@ -3190,59 +3189,97 @@ nl:
     fiji: Fiji
     finland: Finland
     france: Frankrijk
+    french_southern_territories: Franse Zuidelijke en Antarctische Gebieden
     gabon: Gabon
     gambia: Gambia
+    georgia: Georgië
     germany: Duitsland
     ghana: Ghana
     gibraltar: Gibraltar
     greece: Griekenland
+    greenland: Groenland
     grenada: Grenada
     guadeloupe: Guadeloupe
+    guam: Guam
     guatemala: Guatemala
     guernsey: Guernsey
+    guinea: Guinee
+    guinea_bissau: Guinee-Bissau
+    guyana: Guyana
+    haiti: Haïti
+    heard_island_and_mcdonald_islands: Heard en McDonaldeilanden
     honduras: Honduras
     hong_kong: Hong Kong
     hungary: Hongarije
     iceland: IJsland
     india: India
+    indonesia: Indonesië
     iran: Iran
     iraq: Irak
     ireland: Ierland
+    israel: Israël
     italy: Italië
     jamaica: Jamaica
     japan: Japan
     jersey: Jersey
+    jordan: Jordanië
+    kazakhstan: Kazachstan
     kenya: Kenia
+    kiribati: Kiribati
     korea: Korea
     kosovo: Kosovo
+    kuwait: Koeweit
+    kyrgyzstan: Kirgizië
+    laos: Laos
+    latvia: Letland
     lebanon: Libanon
     lesotho: Lesotho
     liberia: Liberia
+    libya: Libië
     liechtenstein: Liechtenstein
+    lithuania: Litouwen
     luxembourg: Luxemburg
     macao: Macao
+    macedonia: Macedonië
     madagascar: Madagascar
     malawi: Malawi
     malaysia: Maleisië
     maldives: Maldiven
     mali: Mali
     malta: Malta
+    marshall_islands: Marshalleilanden
     martinique: Martinique
+    mauritania: Mauritanië
     mauritius: Mauritius
+    mayotte: Mayotte
     mexico: Mexico
+    micronesia: |2-
+
+      Micronesia
+    moldova: Moldavië
     monaco: Monaco
+    mongolia: Mongolië
     montenegro: Montenegro
     montserrat: Montserrat
+    morocco: Marokko
     mozambique: Mozambique
+    myanmar: Myanmar
+    namibia: Namibië
     nauru: Nauru
     nepal: Nepal
     netherlands: Nederland
+    new_caledonia: Nieuw-Caledonië
     new_guinea: Nieuw-Guinea
     new_zealand: Nieuw-Zeeland
+    nicaragua: Nicaragua
+    niger: Niger
     nigeria: Nigeria
+    niue: Niue
+    norfolk_island: Norfolk
     north_africa: Noord-Afrika
     north_america: Noord-Amerika
     north_korea: Noord-Korea
+    northern_cyprus: Noord-Cyprus
     norway: Noorwegen
     oman: Oman
     pakistan: Pakistan
@@ -3253,28 +3290,46 @@ nl:
     papua_new_guinea: Papua Nieuw Guinea
     paraguay: Paraguay
     peru: Peru
+    philippines: Filipijnen
+    pitcairn_islands: Pitcairneilanden
     poland: Polen
     portugal: Portugal
     puerto_rico: Puerto Rico
+    qatar: Qatar
     republic_of_congo: Republiek Congo
     reunion: Reunion
+    romania: Roemenië
     russia: Rusland
     rwanda: Rwanda
     saint_barthelemy: Saint-Barthélemy
     saint_helena: Sint Helena
+    saint_kitts_and_nevis: Saint Kitts en Nevis
+    saint_lucia: Saint Lucia
+    saint_martin: Sint-Maarten
+    saint_pierre_and_miquelon: Saint-Pierre en Miquelon
+    saint_vincent_and_the_grenadines: Saint Vincent en de Grenadines
     samoa: Samoa
     san_marino: San Marino
     sao_tome_and_principe: Sao Tomé en Principe
     saudi_arabia: Saoedi-Arabië
     senegal: Senegal
+    serbia: Servië
+    seychelles: Seychellen
     sierra_leone: Sierra Leone
     singapore: Singapore
     sint_maarten: Sint Maarten
+    slovakia: Slowakije
+    slovenia: Slovenië
+    solomon_islands: Salomonseilanden
+    somalia: Somalië
     south_africa: Zuid-Afrika
     south_america: Zuid-Amerika
+    south_georgia_and_the_south_sandwich_islands: Zuid-Georgia en de Zuidelijke Sandwicheilanden
     south_korea: Zuid-Korea
     south_sudan: Zuid Soedan
     spain: Spanje
+    sri_lanka: Sri Lanka
+    sudan: Soedan
     suriname: Suriname
     svalbard_and_jan_mayen: Spitsbergen en Jan Mayen
     swaziland: Swaziland
@@ -3299,6 +3354,9 @@ nl:
     united_arab_emirates: Verenigde Arabische Emiraten
     united_kingdom: Verenigd Koninkrijk
     united_states: Verenigde Staten
+    united_states_minor_outlying_islands: Kleine afgelegen eilanden van de Verenigde
+      Staten
+    united_states_virgin_islands: Amerikaanse Maagdeneilanden
     uruguay: Uruguay
     uzbekistan: Uzbekistan
     vanuatu: Vanuatu
@@ -3306,7 +3364,9 @@ nl:
     venezuela: Venezuela
     vietnam: Vietnam
     virgin_islands: Maagdeneilanden
+    wallis_and_futuna: Wallis en Futuna
     west_africa: West-Afrika
+    western_sahara: Westelijke Sahara
     yemen: Yemen
     zambia: Zambia
     zimbabwe: Zimbabwe
@@ -3323,16 +3383,28 @@ nl:
     taxa, enzovoort heeft,
   please_check_for_you_confirmation_email: Welkom bij %{site_name}! Controleer alstublieft
     je bevestigingsmail, maar je kunt alvast beginnen de site te verkennen.
+  please_cite_the_published_source_of_taxon: Vermeld de gepubliceerde bron van dit
+    taxon
+  please_complete_the_following_to_add_project: 'Vul het volgende in om deze waarneming
+    aan het project toe te voegen:'
   please_confirm_your_inat_username: Bevestig uw %{site_name} gebruikersnaam
+  please_confirm_your_account_html: Neem even de tijd om <a href="%{url}">uw account
+    te bevestigen</a>.
+  please_enter_a_new_pass: Voer een nieuw wachtwoord in en bevestig het.
+  please_fix_your_csv_and_try_again: Corrigeer uw CSV en probeer het opnieuw.
   please_hold_on_while_the_file: Even geduld, het bestand wordt aangemaakt. Als je
     veel waarnemingen hebt kan dit enkele minuten duren.
   please_hold_on_while_the_file_is_generated: Even geduld, het bestand wordt aangemaakt.
     Voor lange lijsten kan dit enkele minuten duren.
   popular: populair
   position: Positie
+  positional_accuracy: Positienauwkeurigheid
   possessive_user: van %{user}
   post: Bericht
+  post_from_journal_by_parent_html: Post vanuit <a href="%{url}">journaal van %{parent}</a>
+  post_from_your_journal_html: Post vanuit <a href="%{url}">je dagboek</a>
   post_published: Bericht gepubliceeed!
+  post_some_new_stuff: post wat nieuwe dingen
   posted_by: Geplaatst door
   posted_on: Geplaatst op
   posts: Berichten
@@ -3444,13 +3516,18 @@ nl:
   public_domain: Publiek domein
   publish: Publiceren
   purple: purper
+  quality_grade: Kwaliteitsklasse
+  quality_grade_: Kwaliteitsniveau
+  quality_grade_colon: 'Kwaliteitsklasse:'
   queued: In wachtrij
   query: Zoekopdracht
   random: Willekeurig
   range: Bereik
   rank: Rang
   rank_position: Rang
+  rank_restrictions: Rangbeperkingen
   ranks:
+    stateofmatter: Toestand van de materie
     kingdom: Rijk
     phylum: Stam
     subphylum: Onderstam
@@ -3469,15 +3546,19 @@ nl:
     subspecies: Ondersoort
     variety: Variëteit
     form: Vorm
+    leaves: Sluiten
+  ranges: Bereik
   rare: Zeldzaam
+  ray_finned_fishes: Straalvinnigen
   re_order_photos: Foto's herschikken &raquo;
   read_more: Meer lezen
   read_our_getting_started_guide: raadpleeg onze Getting Started gids
   read_the_full_wikipedia: Lees de volledige Wikipedia-beschrijving
   ready_to_get_started?: Klaar om te beginnen?
-  real_time_stats: Real Time Statistieken
-  real_time_discussions: Real Time Discussies
+  real_time_stats: Actuele Statistieken
+  real_time_discussions: Lopende Discussies
   reason: Reden
+  reason_you_are_flagging_this_item: Reden waarom je dit item gemarkeerd hebt.
   recaptcha_verification_failed: reCaptcha-verificatie mislukt
   receive_email_notifications_when_people_leave_you: Ontvang e-mailmeldingen over
   receive_updates_from_this_project: Updates ontvangen voor dit project
@@ -3487,6 +3568,7 @@ nl:
   recent_comments_on_your_stuff: Recente opmerkingen over je gegevens
   recent_evidence?: Recent bewijs
   recent_evidence_of_organism: Recent bewijs van een organisme
+  recent_new_users: Recente Nieuwe Gebruikers
   recent_observations: Recente waarnemingen
   recent_observations_: Recente waarnemingen
   recent_post: Recent bericht
@@ -3510,7 +3592,10 @@ nl:
   reject?: Verwerpen?
   related_species: Verwante soorten
   relative_observations: Verwante waarnemingen
+  relationships:
+    unknown: onbekend
   reload_and_refresh: Opnieuw laden en bijwerken lijst
+  reload_from_observations: Opnieuw laden vanuit de waarnemingen
   remember_its_a_lot_easier_to_id: Vergeet niet dat het veel gemakkelijker is om iets
     te determineren als u zoveel mogelijk beschrijvende informatie geeft. Het belangrijkste
     is om een <strong>plaats</strong>, een <strong>datum/tijd</strong> en wat informatie
@@ -3523,6 +3608,7 @@ nl:
   remove_curator: Curator verwijderen
   remove_curator_role: Curator rol verwijderen
   remove_curator_status: Curator status verwijderen
+  remove_from_batch: Verwijderen uit batch
   remove_from_guide: Verwijder uit gids
   remove_from_list: Verwijder van lijst
   remove_from_project: Verwijder uit project
@@ -3551,6 +3637,7 @@ nl:
   report_any_problems: Probleem melden
   reptiles: reptielen
   request_failed: Verzoek geweigerd
+  request_password: Wachtwoord aanvragen
   required: vereist
   required_: Vereist
   required_field: verplicht veld
@@ -3561,6 +3648,7 @@ nl:
     hebben een datum, foto, coördinaten en een door de gemeenschap ondersteunde determinatie.
     Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.
   research_grade_qualification: Onderzoekskwaliteitqualificatie
+  research_quality: Kwaliteitsklasse
   reset_search_filters: Reset zoekfilters
   reset_your_password: Uw wachtwoord opnieuw instellen
   resolve: Oplossen
@@ -3573,6 +3661,7 @@ nl:
   review_all: Alles beoordeeld
   review_verb: Beoordelen
   reviewed: Beoordeeld
+  rg_observations: RG Waarnemingen
   roadmap: roadmap
   role: Rol
   rotate_left: Linksom draaien
@@ -3673,9 +3762,12 @@ nl:
   set_license: Licentie bepalen
   settings: instellingen
   share: Deel
+  short_or_abbreviated_title_for_display: Korte of verkorte titel voor weergave in
+    beperkte ruimte. Maximaal 10 tekens.
   show: Weergeven
   show_active_and_inactive_taxa: Toon actieve en niet actieve taxa
-  show_common_names: Toon standaard namen
+  show_common_names: Toon lokale namen
+  show_counts: Tellingen tonen op basis van de lijst
   show_default_taxon_photos: Toon standaard taxonfoto's
   show_keyboard_shortcuts: Toon sneltoetsen
   show_kml: Toon foto's van waarnemingen
@@ -3686,6 +3778,8 @@ nl:
   show_off_your_recent_observations: Schep op met je recente waarnemingen op blog
     of website!
   show_only: Alleen weergeven
+  show_relative_proportions_of_all_observations: Toon relatieve verhoudingen van alle
+    waarnemingen
   show_running_total: Toon geaccumuleerd totaal
   show_scientific_name_first: Toon eerst wetenschappelijke namen
   show_taxa_from_both: (toon taxa van beide lijsten)
@@ -3798,6 +3892,9 @@ nl:
     catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: 2012 Annual Checklist'
     catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: 2013 Annual Checklist'
   source_eg:
+    title: 'bijv. Snakes: The Evolution of Mystery in Nature'
+    in_text: bijv. Greene, 2000
+    url: bijv. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
     citation: 'bijv. Greene, Harry W. Snakes: The Evolution of Mystery in Nature.
       1st ed. University of California Press, 1997. Print.'
   source_identifier: Bronidentificatie
@@ -3913,6 +4010,9 @@ nl:
   taxon_is_a_rank_of_plantae_with_x_observations:
     one: '%{taxon} is een %{rank} van planten met 1 waarneming'
     other: '%{taxon} is een %{rank} van planten met %{count} waarnemingen'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} is een %{rank} van straalvinnigen met 1 waarneming'
+    other: '%{taxon} is een %{rank} van straalvinnigen met %{count} waarnemingen'
   taxon_is_a_rank_of_animalia_with_x_observations:
     one: '%{taxon} is een %{rank} van dieren met 1 waarneming'
     other: '%{taxon} is een %{rank} van dieren met %{count} waarnemingen'
@@ -3931,11 +4031,19 @@ nl:
   taxon_is_a_rank_of_mollusca_with_x_observations:
     one: '%{taxon} is een %{rank} van weekdieren met 1 waarneming'
     other: '%{taxon} is een %{rank} van weekdieren met %{count} waarnemingen'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} is een %{rank} van Chromista (bruine algen en verwanten) met 1
+      waarneming'
+    other: '%{taxon} is een %{rank} van Chromista (bruine algen en verwanten) met
+      %{count} waarnemingen'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} is een rijk met 1 waarneming'
     other: '%{taxon} is een rijk met %{count} waarnemingen'
   taxonomy: Taxonomie
   taxon_: taxon
+  taxon_assessments_are: |-
+    Taxonbeoordelingen zijn documenten die de huidige status van een soort beoordelen, meestal de staat van instandhouding.
+    Een regionale organisatie voor natuurbehoud kan deze bijvoorbeeld gebruiken om informatie te organiseren en om feedback te vragen over de status van verschillende bedreigde taxa in de regio.
   taxon_change: Taxon wijzigingen
   taxon_change_must_be_committed_to_update_records: Er moet een taxon wijziging worden
     doorgevoerd om de records bij te werken
@@ -3944,6 +4052,8 @@ nl:
   taxon_ids: Taxon ID's
   taxon_map:
     gbif_occurrences: GBIF verspreidingsdata
+    it_may_take_google_a_while_to: Het kan enige tijd duren voor Google om deze gegevens
+      te laden, ervan uitgaande dat GBIF dit heeft.
     data_url: Gegevens URL
   taxon_changes: Taxon wijzigingen
   taxon_colors: Taxon Kleuren
@@ -3956,6 +4066,8 @@ nl:
   taxon_observed_by_user: '%{taxon} waargenomen door %{user}'
   taxon_or_place_observations: Waarnemingen van taxon of plaats
   taxon_photos_updated: Taxon foto's bijgewerkt!
+  taxon_range_created_notice: Het taxon-bereik is succesvol gemaakt. Wacht een paar
+    minuten voordat dit op de kaarten verschijnt.
   taxon_range_updated_notice: Het taxon-bereik is succesvol bijgewerkt. Wacht een
     paar minuten totdat de wijzigingen op de kaarten worden weergegeven.
   taxon_ranks: Taxon Rangen
@@ -4007,6 +4119,9 @@ nl:
   thats_not_a_real_date: Dit is geen echte datum!
   the: de
   the_: De
+  the_admin_is_the_person_who: |-
+    De admin is de persoon die het project heeft gemaakt. Ze kunnen alles doen
+    managers en curatoren kunnen doen, ook het project verwijderen.
   the_below_items_are_needed_to_achieve: 'De onderstaande items zijn nodig om <span
     className="bold">Onderzoekskwaliteit</span> te bereiken:'
   the_community_agrees_location_doesnt: de gemeenschap vindt dat de <strong>lokatie
@@ -4014,6 +4129,9 @@ nl:
     in kantoorgebouwen, enzovoort)
   the_community_id_requires_at_least_two_identifications: Het Gemeenschaps-ID vereist
     ten minste twee identificaties.
+  the_data_quality_assessment_is: De gegevenskwaliteitsbeoordeling is een samenvatting
+    van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"casual"</strong>
+    rang en bereiken <strong>"onderzoeks"</strong>kwaliteit wanneer
   the_following_lists: de volgende lijsten
   the_following_observations_could: De volgende waarnemingen konden niet toegevoegd
     worden aan %{link}
@@ -4841,6 +4959,8 @@ nl:
         you_can_also_obscure_the_coordinates_html: Je kan de coördinaten van je eigen
           waarnemingen altijd versluieren ongeacht het taxon. Raadpleeg <a href="#geoprivacy">geoprivacy</a>
           hierboven.
+        what_is_the_quality_assessment: Wat is de kwaliteitsbeoordeling en hoe komen
+          waarnemingen in aanmerking om een "onderzoekskwaliteit" te worden?
         what_is_a_life_list?: Wat is een levenslijst?
         automatically_updates_based_on_your_observations: |-
           Automatisch nieuws op basis van uw waarnemingen. Iedereen op %{site_name}
@@ -4906,6 +5026,8 @@ nl:
         receive_an_email_with_your_data_help: Je ontvangt een e-mail met je export
           als bijlage.
         well_email_you: OK, we mailen je wanneer het klaar is.
+        created_on_help: Datumwaarnemingen werden gecreëerd, niet waargenomen, bijv.
+          2015-01-17, 2015-01, 2015
       field_descriptions:
         id: Unieke identificeerder voor de waarneming
         species_guess: Naam door de waarnemer ingegeven voor het waargenomen taxon
@@ -4916,6 +5038,8 @@ nl:
         time_zone: Tijdzone van de waarneming
         user_login: Gebruikersnaam van de waarnemer
         created_at: Datumtijd waarneming werd aangemaakt
+        quality_grade: Kwaliteitsklasse van deze waarneming. Zie het Help-gedeelte
+          voor details over betekenis
         url: URL voor de waarneming
         image_url: URL van de standaardafbeelding
         tag_list: Lijst van label door komma's gescheiden
@@ -4926,6 +5050,8 @@ nl:
         you_reviewed_message: U heeft %{reviewed} van %{pageTotal} waarnemingen beoordeeld
           op deze pagina van %{total} overeenkomende waarnemingen.
       show:
+        ancestor_disagreements_desc: '# geïdentificeerde taxa die behoren tot de voorouders
+          van een taxon, maar zijn gemaakt na de eerste determinatie met dit taxon'
         community_taxon_desc_html: "<p class=\"ui\">\n  Het community taxon (of gemeenschapstaxon)
           is de determinatie van \n  het taxon door de %{site_name} gemeenschap van
           de afbeelding in de waarneming. Als je geïnteresseerd bent in hoe we het
@@ -4995,6 +5121,12 @@ nl:
           van een genus zijn of lager in\n     de kleinste provincie-, staats- of
           land-equivalent plaats die\n     deze waarneming bevat en 80% of meer van
           die waarnemingen\n     zijn gemarkeerd als niet wild/ingeburgerd.\n  </li>\n</ul>"
+        observation_flagged_notice_html: |-
+          Deze waarneming is gemarkeerd als spam en is niet langer
+          openbaar. Je kunt het zien omdat je het hebt gemaakt of je bent een
+          website-curator. Als je denkt dat dit een vergissing is, alstublieft
+          <a href="mailto:%{help_email}" class="contact">Neem contact met ons op</a>.
+          <a href="/observations/%{observation_id}/flags">Markeringen beheren</a>
     observation_fields:
       about_editing_observation_fields_desc_html: |-
         <p class='ui'> U kunt dit waarnemingsveld bewerken omdat u het hebt gemaakt of omdat u een site-curator bent. Als u een site-curator bent, volgt u deze richtlijnen </p>
@@ -5110,6 +5242,10 @@ nl:
         delete_project: Project verwijderen
         multiple_project_administrators: Meerdere projectbeheerders
         or_drag_and_drop: (of sleep en plaats)
+        please_specify_the_requirements: |-
+          Specificeer de vereisten voor de waarnemingen die aan dit project moeten worden toegevoegd.
+          U kunt meerdere soorten, plaatsen, gebruikers of kwaliteitsklassen opgeven
+          die automatisch worden opgenomen, of laat een veld leeg als u er geen specifieke vereiste voor hebt.
         project_banner: Project banner (PNG, JPG, of GIF)
         project_details: Projects details
         project_icon: Project icoon (PNG, JPG, of GIF)
@@ -5196,6 +5332,9 @@ nl:
         youve_been_blocked: Je werd geblokkeerd
         youve_blocked: Je blokkeerde deze persoon
       spam:
+        message_for_owner_and_curators_html: |-
+          Deze record is gemarkeerd als spam en is niet langer openbaar. Je kunt het zien omdat je het hebt gemaakt of omdat je een site beheerder bent. Als je denkt dat dit een vergissing is, alstublieft
+          <a href="mailto:%{email}">Neem contact met ons op</a>.
         this_has_been_flagged_as_spam: Deze werd gemarkeerd als spam
       not_found:
         sorry_that_doesnt_exist: Sorry, deze bestaat niet!
@@ -5208,7 +5347,16 @@ nl:
         active_users_desc: Heeft in de afgelopen 30 dagen een determinatie, waarneming,
           reactie of bericht gemaakt
         iphone_desc_html: Aangemaakt via de <a href="%{url}">iNaturalist iPhone app</a>
+        new_users_desc: Aangemeld op deze dag
         obs_1_day_desc: Waarnemingen op een enkele dag gemaakt
+        obs_cid_d_desc: Gemaakt in de afgelopen 7 dagen met een gemeenschap-ID
+        obs_cid_d_to_genus_desc: Gemaakt in de afgelopen 7 dagen met een gemeenschap-ID
+          op of beneden genus-level
+        obs_id_d_desc: Gemaakt in de afgelopen 7 dagen met een ID (kan van de waarnemer
+          zijn)
+        recent_desc: Aangemeld in de afgelopen 7 dagen
+        recent_w_0_obs_desc: Aangemeld in de afgelopen 7 dagen en 0 wrn toegevoegd
+        recent_w_7_obs_desc: Aangemeld in de afgelopen 7 dagen en >=7 wrn toegevoegd
         TTCID_desc: Tijd om een determinatie van iemand anders te ontvangen die overeenkomt
           met het community taxon.
         TTID_desc: Tijd om een identificatie van een ander te ontvangen
@@ -5219,6 +5367,9 @@ nl:
           ze opnieuw berekend zouden worden. Ze zijn wel een goede maatstaf voor de
           snelheid waarmee de gemeenschap waarnemingen determineert in een window
           van 1\nweek. \nLet op: deze statistieken zijn alleen voor waarnemingen met\nfoto's."
+        website_desc_html: |-
+          Gemaakt met <a href="https://www.inaturalist.org">iNaturalist</a>
+          of <a href="%{url}">iNaturalist Network</a> websites
       year:
         growth_by_country_desc_html: "Waar vindt de groei plaats? \nDeze kaart en
           grafiel proberen dit op te splitsen naar land, wat ingewikkeld blijkt te
@@ -5274,25 +5425,25 @@ nl:
           Een "compleet" taxon bevat <em>alle</em> bekende afstammelingstaxa bij een
           gespecificeerde rangorde die voldoet aan de taxonomiebeleid van iNaturalist ongeacht of deze zijn waargenomen. Alleen sitebeheerders kunnen op dit moment taxa invullen.
       show:
-        about_names_desc: "<P>\n  De meeste categorieën organismen hebben \"lokale
-          namen\". Deze namen zijn meestal herkenbaar, gemakkelijk uit te spreken,\n  en
-          stabiel in de tijd, maar veel organismen hebben verschillende\n  namen op
-          verschillende plaatsen, zelfs in dezelfde taal, die kunnen maken\n  het
-          is moeilijk om zonder verwarring over deze organismen te communiceren.\n  Wetenschappers
+        about_names_desc: "<P>\n De meeste categorieën organismen hebben \"lokale
+          namen\". Deze namen zijn meestal herkenbaar, gemakkelijk uit te spreken,
+          en stabiel in de tijd, maar veel organismen hebben verschillende\n  namen
+          op verschillende plaatsen, zelfs in dezelfde taal, die kunnen maken\n  dat
+          het moeilijk is om zonder verwarring over deze organismen te praten.\n  Wetenschappers
           pakken dit probleem aan door een enkele \"wetenschappelijke naam\" te gebruiken\n  voor
           elke categorie organismen die voldoet aan de regels van\n  <a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">biologische
           nomenclatuur</a>,\n  maar deze namen zijn meestal gebaseerd op het Latijn,
-          een taal die niemand kent\n  spreekt, dus ze zijn niet zo gemakkelijk te
-          onthouden als gewone namen voor velen\n  mensen. Wetenschappelijke namen
-          kunnen ook de taxonomie van een organisme weerspiegelen\n  , zodat ze veranderen
-          wanneer wetenschappers meer \n  accurate theorieën ontwikkelen over de evolutionaire
-          relaties tussen\n  verschillende organismen, opnieuw hun nut verminderen
-          in\n  communicatie, zelfs tussen mensen die wetenschappelijke namen kennen.\n</P>\n<P>\n  Het
+          een taal die niemand kent en \n  spreekt, dus ze zijn niet zo gemakkelijk
+          te onthouden als lokale namen voor veel\n  mensen. Wetenschappelijke namen
+          kunnen ook de taxonomie van een organisme weerspiegelen, zodat ze veranderen
+          wanneer wetenschappers meer accurate theorieën ontwikkelen over de evolutionaire
+          relaties tussen verschillende organismen, opnieuw hun nut verminderen in communicatie,
+          zelfs tussen mensen die wetenschappelijke namen kennen.\n</P>\n<P>\n  Het
           oude gezegde vat het samen: \"lokale namen veranderen van plaats naar plaats\n  en
           wetenschappelijke namen veranderen van tijd tot tijd. \"\n</P>\n<P>\n  We
           proberen deze tekortkomingen aan te pakken door ze beide te laten zien\n  en
-          wetenschappelijke namen waar mogelijk en het kiezen van gemeenschappelijke
-          namen\n  op basis van de taal en geografische voorkeuren van de kijker.\n</P>"
+          wetenschappelijke namen waar mogelijk en het kiezen van lokale namen\n  op
+          basis van de taal en geografische voorkeuren van de gebruiker.\n</P>"
         about_taxon_curators_desc: Deze mensen onderhouden het gedeelte van de taxonomische
           boom waartoe dit taxon behoort. Indien je wijzigingen wenst aan te brengen,
           markeer dan dit taxon of neem met een van hen contact op.
@@ -5960,7 +6111,7 @@ nl:
         time_zone: Tijdzone
         search_place_id: Plaats zoeken
         place_id: Plaats
-        preferred_observation_fields_by: Sta observatievelden toe van
+        preferred_observation_fields_by: Sta waarnemingsvelden toe van
   wild: wild
   will_paginate:
     previous_label: '&#8592; Vorg'
