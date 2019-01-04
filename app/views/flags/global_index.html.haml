@@ -20,7 +20,7 @@
     .col-xs-12
       .controls.form-inline
         = form_tag( flags_path, method: "get" ) do
-          = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name] )
+          = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :page] )
           .form-group
             %label=t :content_type
             :ruby
@@ -99,23 +99,4 @@
   .row
     .col-xs-12
       - if @flags.respond_to?(:total_pages)
-        = will_paginate @flags, renderer: INatLinkRenderer
-
-/ #flags
-/   .right.inline.smallbuttons.buttonrow
-/     = form_tag( flags_path, method: "get" ) do
-/       = hidden_fields_for_params( without: [:user_id] )
-/       = label_tag :user_id, t(:search), default: params[:user_id]
-/       = text_field_tag :user_id, nil, placeholder: t(:start_typing_someones_name), data: { autosubmit: true }
-/     = form_tag( flags_path, method: "get" ) do
-/       = hidden_fields_for_params( without: [:flag] )
-/       = select_tag :flag, options_for_select([["all", nil],
-/         ["copyright infringement", :copyright_infringement],
-/         ["inappropriate", :inappropriate], ["spam", :spam]], params[:flag]), data: { autosubmit: true }
-/   #pageheader.column
-/     %h2= @title
-/   .description
-/     %p= t(:flags_explanation, site_name: @site.name)
-/   = render :partial => "flag_list", locals: { flags: @flags }
-/   - if @flags.respond_to?(:total_pages)
-/     = will_paginate @flags, renderer: INatLinkRenderer
+        = will_paginate @flags, url_helper: :flags_path, renderer: INatLinkRenderer
