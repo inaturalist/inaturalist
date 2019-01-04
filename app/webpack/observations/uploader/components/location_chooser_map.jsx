@@ -229,7 +229,12 @@ class LocationChooserMap extends React.Component {
       lng = lng || geometry.location.lng( );
       // Set the locality notes using political entity names and omitting
       // street-level information
-      if ( places[0].address_components && places[0].address_components.length > 0 ) {
+      const storeStreetAddress = false; // disabling until we figure out what we really want
+      if (
+        storeStreetAddress
+        && places[0].address_components
+        && places[0].address_components.length > 0
+      ) {
         const goodTypes = ["political", "neighborhood"];
         const goodComponents = _.filter( places[0].address_components,
           p => _.intersection( p.types, goodTypes ).length > 0 );
