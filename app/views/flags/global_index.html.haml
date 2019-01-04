@@ -38,7 +38,7 @@
             =t :content_author
             %input#user_name.form-control{ type: "text", name: "user_name", value: @user ? @user.login : nil, placeholder: t(:start_typing_someones_name) }
             %input#user_id.form-control{ type: "hidden", name: "user_id", value: @user ? @user.id : nil }
-          %label.form-group=t :reason
+          %label.form-group=t :reason_label
           - [Flag::SPAM, Flag::COPYRIGHT_INFRINGEMENT, Flag::INAPPROPRIATE, "other"].each do |f|
             %label.form-group
               %input{ type: "checkbox", name: "flags[]", value: f, checked: @flag_types.include?( f ) }
@@ -66,12 +66,12 @@
             %tr
               %td
                 - if flag.user
-                  = link_to_user(flag.user) {|| flag.user.login}
+                  = link_to_user(flag.user) {|| char_wrap( flag.user.login, 20 )}
                 - else
                   = @site.site_name_short
               %td
                 - if flag.flaggable_user
-                  = link_to_user( flag.flaggable_user ) {|| flag.flaggable_user.login}
+                  = link_to_user( flag.flaggable_user ) {|| char_wrap( flag.flaggable_user.login, 20 )}
                   .small.text-muted
                     = link_to t(:view_all), url_for_params( user_id: flag.flaggable_user.login, without: [:user_id] )
               %td= flaggable_class.name.humanize
