@@ -1381,7 +1381,7 @@ en:
   flagger: Flagger
   flags: Flags
   flags_with_count: Flags (%{count})
-  flags_explanation: "%{site_name} users flag things when they find something that's not right. Here are some issues that haven't been resolved by the curators yet."
+  flags_explanation: "%{site_name} users flag things that need attention from site curators and/or site admins."
   flags_for: Flags for
   flags_on_users_content: "Flags on %{user}'s content"
   flickr_account_information: Your Flickr Account Information
@@ -3385,6 +3385,7 @@ en:
   resolve_this_flag: Resolve this Flag
   resolved: Resolved
   resolved_by: Resolved by
+  resolved_by_user_on_date_html: Resolved by %{user} on %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
   restore: Restore
   restoring: Restoring...
@@ -4247,6 +4248,8 @@ en:
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
+  user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
+  user_flagged_as_a_spammer_html: "%{user} marked as a non-spammer"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_id: User has opted-out of Community ID
   user_has_opted_out_of_community_ids: "%{user} has chosen to retain control over the taxa associated with their observations"
@@ -4741,6 +4744,12 @@ en:
           organization based in the United States of America.
         </p>
       post_donate_social_media_text: I support iNaturalist because...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |
+          Please resolve <code>spam</code> and <code>copyright
+          infringement</code> flags only if the content is not spam or not an
+          infringement of copyright, respectively.
     guides:
       index:
         funding_html: |

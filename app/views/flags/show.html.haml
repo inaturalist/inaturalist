@@ -1,0 +1,53 @@
+- content_for(:title) do
+  - @title = "Flag for #{link_to(@object.to_plain_s, @object) rescue @object.to_plain_s}".html_safe
+  = strip_tags @title
+
+.container
+  .row
+    .col-xs-12
+      .breadcrumbs
+        %strong
+          = link_to "&laquo; #{t :back_to_x, :noun => "#{t(:flags_for).downcase} #{@object.to_plain_s}"}".html_safe, send("#{@object.class.name.underscore}_flags_url", @object), class: "crumb"
+      %h2= @title
+  .row
+    .col-xs-12
+      - if [Flag::SPAM, Flag::COPYRIGHT_INFRINGEMENT].include?( @flag.flag )
+        .alert.alert-warning
+          =t "views.flags.show.flags_that_should_not_be_resolved_desc_html"
+      %table.table
+        %thead
+          %tr
+            %th=t :created
+            %th=t :object
+            %th=t :flagger
+            %th=t :reason
+            %th=t :resolved_by
+            %th=t :resolve_comment
+        %tbody
+          %tr
+            %td=l @flag.created_at
+            %td= link_to @object.to_plain_s, @object
+            %td
+              - if @flag.user
+                = link_to @flag.user.login, @flag.user
+              - else
+                = @site.site_name_short
+            %td=formatted_user_text @flag.flag
+            %td
+              - unless @flag.resolver.nil?
+                = link_to @flag.resolver.login, @flag.resolver
+              - else
+                =t :not_resolved
+            %td.nobr
+              - if is_curator?
+                = form_for(@flag, :action => "update") do |f|
+                  = f.text_field :comment, class: "text inline"
+                  = f.hidden_field :resolver_id, value: current_user.id
+                  = f.hidden_field :resolved, value: true
+                  = f.submit t(:resolve), class: "inline button"
+              - else
+                =formatted_user_text @flag.comment
+  .row
+    .col-xs-12
+      = render "comments/comments", parent: @flag
+
