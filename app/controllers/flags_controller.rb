@@ -1,5 +1,5 @@
 class FlagsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:show]
   before_filter :set_model, :except => [:update, :show, :destroy, :on]
   before_filter :model_required, :except => [:index, :update, :show, :destroy, :on]
   before_filter :load_flag, :only => [:show, :destroy, :update]
