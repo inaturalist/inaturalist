@@ -4,6 +4,12 @@ ruby '2.3.1'
 
 gem 'rails', '4.2.11'
 
+gem 'paperclip-azure'
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'rmagick'
+gem 'carrierwave-azure_rm', git: "https://github.com/krismichalski/carrierwave-azure_rm"
+
 gem 'apipie-rails'
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'

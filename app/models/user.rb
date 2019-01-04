@@ -167,26 +167,28 @@ class User < ActiveRecord::Base
     }
   }
 
-  if CONFIG.usingS3
-    has_attached_file :icon, file_options.merge(
-      storage: :s3,
-      s3_credentials: "#{Rails.root}/config/s3.yml",
-      s3_protocol: CONFIG.s3_protocol || "https",
-      s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
-      s3_region: CONFIG.s3_region,
-      bucket: CONFIG.s3_bucket,
-      path: "/attachments/users/icons/:id/:style.:icon_type_extension",
-      default_url: ":root_url/attachment_defaults/users/icons/defaults/:style.png",
-      url: ":s3_alias_url"
-    )
-    invalidate_cloudfront_caches :icon, "attachments/users/icons/:id/*"
-  else
-    has_attached_file :icon, file_options.merge(
-      path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
-      url: "/attachments/:class/:attachment/:id-:style.:icon_type_extension",
-      default_url: "/attachment_defaults/:class/:attachment/defaults/:style.png"
-    )
-  end
+  # if CONFIG.usingS3
+  #   has_attached_file :icon, file_options.merge(
+  #     storage: :s3,
+  #     s3_credentials: "#{Rails.root}/config/s3.yml",
+  #     s3_protocol: CONFIG.s3_protocol || "https",
+  #     s3_host_alias: CONFIG.s3_host || CONFIG.s3_bucket,
+  #     s3_region: CONFIG.s3_region,
+  #     bucket: CONFIG.s3_bucket,
+  #     path: "/attachments/users/icons/:id/:style.:icon_type_extension",
+  #     default_url: ":root_url/attachment_defaults/users/icons/defaults/:style.png",
+  #     url: ":s3_alias_url"
+  #   )
+  #   invalidate_cloudfront_caches :icon, "attachments/users/icons/:id/*"
+  # else
+  #   has_attached_file :icon, file_options.merge(
+  #     path: ":rails_root/public/attachments/:class/:attachment/:id-:style.:icon_type_extension",
+  #     url: "/attachments/:class/:attachment/:id-:style.:icon_type_extension",
+  #     default_url: "/attachment_defaults/:class/:attachment/defaults/:style.png"
+  #   )
+  # end
+
+  mount_uploader :icon, UserIconUploader, mount_on: :icon_file_name
 
   # Roles
   has_and_belongs_to_many :roles, -> { uniq }
@@ -227,8 +229,8 @@ class User < ActiveRecord::Base
   after_destroy :reindex_faved_observations_after_destroy_later
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
-  validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
-    :message => "must be JPG, PNG, or GIF"
+  # validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
+  #   :message => "must be JPG, PNG, or GIF"
 
   validates_presence_of     :login
   

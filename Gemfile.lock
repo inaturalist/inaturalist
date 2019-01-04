@@ -64,6 +64,14 @@ GIT
       rdoc
 
 GIT
+  remote: https://github.com/krismichalski/carrierwave-azure_rm
+  revision: 295a3e11cfbd6335081140e5e7b389c03a4055cb
+  specs:
+    carrierwave-azure_rm (0.1.2)
+      azure-storage (~> 0.12.1.preview)
+      carrierwave
+
+GIT
   remote: https://github.com/kueda/activerecord-postgis-adapter.git
   revision: 4d7c4c91720e4824582fb3b1b271ba85ac06a391
   branch: activerecord42
@@ -206,6 +214,23 @@ GEM
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.0)
     aws-sigv4 (1.0.3)
+    azure (0.7.10)
+      addressable (~> 2.3)
+      azure-core (~> 0.1)
+      faraday (~> 0.9)
+      faraday_middleware (~> 0.10)
+      mime-types (>= 1, < 4.0)
+      nokogiri (~> 1.6)
+      systemu (~> 2.6)
+      thor (~> 0.19)
+    azure-core (0.1.15)
+      faraday (~> 0.9)
+      faraday_middleware (~> 0.10)
+      nokogiri (~> 1.6)
+    azure-storage (0.12.3.preview)
+      azure-core (~> 0.1)
+      faraday (~> 0.9)
+      faraday_middleware (~> 0.10)
     bcrypt (3.1.12)
     better_errors (2.5.0)
       coderay (>= 1.0.0)
@@ -244,6 +269,10 @@ GEM
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       xpath (~> 3.1)
+    carrierwave (1.3.0)
+      activemodel (>= 4.0.0)
+      activesupport (>= 4.0.0)
+      mime-types (>= 1.16)
     chroma (0.2.0)
     chronic (0.10.2)
     climate_control (0.2.0)
@@ -310,6 +339,8 @@ GEM
       i18n (>= 0.7)
     faraday (0.15.4)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.12.2)
+      faraday (>= 0.7.4, < 1.0)
     fastercsv (1.5.5)
     fastimage (2.1.4)
     ffi (1.9.25)
@@ -401,6 +432,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
     mimemagic (0.3.2)
+    mini_magick (4.9.2)
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
@@ -462,6 +494,11 @@ GEM
       mime-types
       mimemagic (~> 0.3.0)
       terrapin (~> 0.6.0)
+    paperclip-azure (1.0.4)
+      addressable (~> 2.5)
+      azure (~> 0.7)
+      azure-storage (~> 0.12)
+      hashie (~> 3.5)
     parallel (1.6.1)
     pg (0.18.1)
     polyglot (0.3.5)
@@ -524,6 +561,7 @@ GEM
     rgeo-geojson (0.3.1)
       rgeo (~> 0.3)
     rinku (2.0.4)
+    rmagick (2.16.0)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -596,6 +634,7 @@ GEM
     sshkit (1.17.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
+    systemu (2.6.5)
     temple (0.8.0)
     terrapin (0.6.0)
       climate_control (>= 0.0.3, < 1.0)
@@ -663,6 +702,8 @@ DEPENDENCIES
   capistrano-rails (~> 1.1)
   capistrano-rvm (~> 0.1)
   capybara (~> 3.8)
+  carrierwave
+  carrierwave-azure_rm!
   chroma
   chronic
   cocoon
@@ -703,6 +744,7 @@ DEPENDENCIES
   json
   koala
   machinist
+  mini_magick
   newrelic_rpm (~> 5.5.0)
   nokogiri (~> 1.8.5)
   non-stupid-digest-assets
@@ -717,6 +759,7 @@ DEPENDENCIES
   omniauth-twitter
   optimist
   paperclip (~> 6.1.0)
+  paperclip-azure
   pg
   preferences!
   puma
@@ -731,6 +774,7 @@ DEPENDENCIES
   rgeo-geojson
   rinku
   riparian!
+  rmagick
   rspec (~> 3.8.0)
   rspec-html-matchers
   rspec-rails (~> 3.8.0)
