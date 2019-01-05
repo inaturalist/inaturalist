@@ -38,9 +38,14 @@ class FlagsController < ApplicationController
         "no"
       end
       @flaggable_type = params[:flaggable_type] if FLAG_MODELS.include?( params[:flaggable_type] )
-      @flags = Flag.order( "created_at desc" )
       @user = User.where( login: params[:user_id] ).first || User.where( id: params[:user_id] ).first
       @user ||= User.where( login: params[:user_name] ).first
+      @resolver = User.where( login: params[:resolver_id] ).first || User.where( id: params[:resolver_id] ).first
+      @resolver ||= User.where( login: params[:resolver_name] ).first
+      @flagger_type = params[:flagger_type] if %w(any auto user).include?( params[:flagger_type] )
+      @flagger_type ||= "any"
+      @taxon = Taxon.find_by_id( params[:taxon_id] )
+      @flags = Flag.order( "created_at desc" )
       @flags = @flags.where( flaggable_user_id: @user.id ) if @user
       unless @flag_type.blank?
         @flags = @flags.where(flag: @flag_type)
@@ -55,6 +60,23 @@ class FlagsController < ApplicationController
         @flags = @flags.where( "resolved" )
       elsif @resolved == "no"
         @flags = @flags.where( "NOT resolved" )
+      end
+      if @flagger_type == "auto"
+        @flags = @flags.where( "flags.user_id = 0 OR flags.user_id IS NULL" )
+      elsif @flagger_type == "user"
+        @flagger = User.find_by_id( params[:flagger_user_id] )
+        @flagger ||= User.find_by_login( params[:flagger_name] )
+        if @flagger
+          @flags = @flags.where( "flags.user_id = ?", @flagger )
+        end
+      end
+      if @taxon && @flaggable_type == "Taxon"
+        @flags = @flags.
+          joins( "LEFT OUTER JOIN taxon_ancestors ta ON ta.taxon_id = flags.flaggable_id" ).
+          where( "ta.ancestor_taxon_id = ?", @taxon )
+      end
+      if @resolver
+        @flags = @flags.where( resolver_id: @resolver )
       end
       @flags = @flags.paginate(per_page: 50, page: params[:page])
       render :global_index, layout: "bootstrap"
