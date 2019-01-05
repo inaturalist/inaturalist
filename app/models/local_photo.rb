@@ -277,8 +277,10 @@ class LocalPhoto < Photo
           candidate_description = metadata[:image_description]
         end
       end
-      candidate_description = candidate_description.strip
-      o.description = candidate_description unless BRANDED_DESCRIPTIONS.include?( candidate_description )
+      if candidate_description
+        candidate_description = candidate_description.strip
+        o.description = candidate_description unless BRANDED_DESCRIPTIONS.include?( candidate_description )
+      end
 
       o.build_observation_fields_from_tags(to_tags)
       o.tag_list = to_tags
