@@ -83,7 +83,7 @@
             .col-xs-12
               = submit_tag t(:filter), class: "btn btn-primary"
               = link_to t(:reset), url_for, class: "btn btn-link"
-              = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :page] )
+              = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolved, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :page] )
   .row
     .col-xs-12
       %table.table
@@ -133,7 +133,8 @@
               %td.resolution
                 - if flag.resolved?
                   = formatted_user_text flag.comment
-                  .text-muted=t :resolved_by_user_on_date_html, user: link_to_user( flag.resolver ), date: l( flag.resolved_at || flag.updated_at )
+                  - resolved_at = flag.resolved_at || flag.updated_at
+                  .text-muted=t :resolved_by_user_on_date_html, user: link_to_user( flag.resolver ), date: resolved_at ? l( resolved_at ) : t(:unknown)
   .row
     .col-xs-12
       - if @flags.respond_to?(:total_pages)
