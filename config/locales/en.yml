@@ -1588,6 +1588,13 @@ en:
   identifications: Identifications
   identifications_by: "Identifications by %{user}"
   identified?: identified
+  computer_vision_suggestion: Computer Vision Suggestion
+  computer_vision_suggestion_desc: |
+    Computer vision is the process of teaching computers to recognize patterns
+    in images. We provide tools that use computer vision models trained on the
+    community's photos to provide identification suggestions, like the auto-
+    complete and comparison features. This label indicates when a person added
+    an identification using one of these tools.
   identifiers: Identifiers
   identotron: Identotron
   identotron_for: Identotron for
@@ -3362,6 +3369,7 @@ en:
   removed_project_user: Removed project user
   removing: "Removing..."
   reorder_by_taxonomy: Reorder by taxonomy
+  repair_broken_urls: Repair broken URLs
   repair_doesnt_work_for_that_kind_of_photo: Repair doesn't work for that kind of photo
   repair_external_photos: Repair External Photos
   replace_boundary_with_kml: Replace boundary with KML
@@ -3909,6 +3917,7 @@ en:
   terrain: terrain
   text: Text
   text_: text
+  thanks!: Thanks!
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_using: Thanks for using
   thanks_from_all_of_us_here_at: Thanks from all of us here at
@@ -5440,6 +5449,29 @@ en:
           You have been inactive on %{site_name} for a while, so we have suspended
           your subscriptions. To resume getting updates on site activity, please
           <a href="%{login_url}">log in to your account</a> again.
+      photos_missing:
+        subject: Some photos need repairing
+        we_have_been_housekeeping: |
+          We have been doing some housekeeping and found photos connected to your observations
+          that are no longer accessible from their original source. The photos are being hosted
+          by %{providers}.
+        we_would_like_to_remove: |
+          We would like to remove all references to broken photos in the near future, but we
+          don't want to get rid of anything that can be saved. It is possible some of these photos
+          still exist at their external hosts and can be repaired. Some photos may have been
+          uploaded by connecting your <a href='%{account_url}'>%{site_name} account</a> to another
+          photo hosting account, and this connection has expired and needs to be refreshed.
+        you_can_attempt_repair: |
+          You can attempt to repair the photos by visiting the photo page and clicking the
+          "%{repair_link_text}" link. If you know the photo no longer exists, you can choose to
+          delete it.
+        please_address: |
+          Please address these issues <b>in the next 30 days</b>. After 30
+          days we will begin to delete broken photos from iNaturalist. All of your observations
+          will remain. They will be reassessed after the photos are deleted, and it is possible
+          some research grade observations will become casual if they no longer have any photos.
+        we_included_links: |
+          We've included links to the affected photos below.
     photos:
       inviter:
         automatically_add_to_project: Automatically add to project
@@ -6287,6 +6319,11 @@ en:
             <dt>Manual Spam</dt>
             <dd>
               Spammer that was manually marked as a spammer by a site curator.
+            </dd>
+            <dt>False Positives</dt>
+            <dd>
+              Users that were flagged as spammers but the flags were resolved
+              by site curators because they weren't really spammers.
             </dd>
           </dl>
         recent_users_desc_html: |

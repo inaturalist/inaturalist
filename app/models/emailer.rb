@@ -190,6 +190,18 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def photos_missing(user, grouped_photos)
+    @user = user
+    @site = user.site || Site.default
+    @grouped_photos = grouped_photos
+    set_locale
+    @subject = I18n.t( "views.emailer.photos_missing.subject" )
+    mail(set_site_specific_opts.merge(
+      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
+    ))
+    reset_locale
+  end
+
   private
   def default_url_options
     opts = (Rails.application.config.action_mailer.default_url_options || {}).dup

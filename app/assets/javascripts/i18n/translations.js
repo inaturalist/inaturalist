@@ -11720,6 +11720,8 @@ I18n.translations["en"] = {
   "community_id_heading": "Community ID",
   "compare": "Compare",
   "comprehensive_list": "Comprehensive list",
+  "computer_vision_suggestion": "Computer Vision Suggestion",
+  "computer_vision_suggestion_desc": "Computer vision is the process of teaching computers to recognize patterns\nin images. We use computer vision systems trained on our own photos and\nobservations to provide automated species identification suggestions. This\nlabel indicates when a person added an identification based on one of these\nsuggestions.\n",
   "confirm": "Confirm",
   "confirmed": "confirmed",
   "conservation_status": "Conservation Status",

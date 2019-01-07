@@ -696,13 +696,18 @@ class UsersController < ApplicationController
         where( "observations_count = 0 AND identifications_count = 0" ).
         where( "description IS NOT NULL AND description != ''" ).
         where( "created_at > ?", start_date ).group( "created_at::date" ).count
+      false_positive_counts = Flag.
+        where( "u.created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND resolved", start_date ).
+        joins( "JOIN users u ON u.id = flags.flaggable_id" ).
+        group( "u.created_at::date" ).count
       @stats = ( start_date...Date.tomorrow ).map do |d|
         {
           date: d.to_s,
           new_users: total_new_user_counts[d],
           auto_spam: new_automated_spam_flag_counts[d],
           manual_spam: new_manual_spam_flag_counts[d],
-          probable_spam: probable_spam_user_counts[d]
+          probable_spam: probable_spam_user_counts[d],
+          false_positives: false_positive_counts[d]
         }
       end
     end

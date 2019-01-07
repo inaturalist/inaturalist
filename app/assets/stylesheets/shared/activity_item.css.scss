@@ -85,6 +85,17 @@ body > [role="dialog"] .ActivityItem {
     .ident-inactive {
       color: $bootstrap-link-color;
     }
+    .vision-status {
+      cursor: pointer;
+      color: #999;
+      margin-right: 10px;
+      i {
+        font-size: 18px;
+        vertical-align: middle;
+        position: relative;
+        bottom: 4px;
+      }
+    }
   }
   .panel.flagged .panel-heading {
     background: #fcf8e3;

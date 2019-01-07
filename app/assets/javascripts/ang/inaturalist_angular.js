@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var iNatAPI = angular.module( "iNatAPI", [ ]);
 
 iNatAPI.factory( "shared", [ "$http", "$rootScope", "$filter",

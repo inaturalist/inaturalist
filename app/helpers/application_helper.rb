@@ -1442,6 +1442,19 @@ module ApplicationHelper
     @responsive
   end
 
+  def photo_type_label( type )
+    case type
+    when "FlickrPhoto"
+      "Flickr"
+    when "FacebookPhoto"
+      "Facebook"
+    when "PicasaPhoto"
+      "Google Picasa"
+    else
+      I18n.t( :unknown )
+    end
+  end
+
   def url_for_referrer_or_default( default )
     back_url = request.env["HTTP_REFERER"]
     if back_url && ![request.path, request.url].include?( back_url )
