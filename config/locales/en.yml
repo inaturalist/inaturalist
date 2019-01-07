@@ -1585,10 +1585,10 @@ en:
   computer_vision_suggestion: Computer Vision Suggestion
   computer_vision_suggestion_desc: |
     Computer vision is the process of teaching computers to recognize patterns
-    in images. We use computer vision systems trained on our own photos and
-    observations to provide automated species identification suggestions. This
-    label indicates when a person added an identification based on one of these
-    suggestions.
+    in images. We provide tools that use computer vision models trained on the
+    community's photos to provide identification suggestions, like the auto-
+    complete and comparison features. This label indicates when a person added
+    an identification using one of these tools.
   identifiers: Identifiers
   identotron: Identotron
   identotron_for: Identotron for
@@ -6300,6 +6300,11 @@ en:
             <dt>Manual Spam</dt>
             <dd>
               Spammer that was manually marked as a spammer by a site curator.
+            </dd>
+            <dt>False Positives</dt>
+            <dd>
+              Users that were flagged as spammers but the flags were resolved
+              by site curators because they weren't really spammers.
             </dd>
           </dl>
         recent_users_desc_html: |
