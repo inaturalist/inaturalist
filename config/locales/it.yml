@@ -2233,7 +2233,7 @@ it:
     gli ID di rango superiore, ma per favore assicurati che non sia meglio invece
     unire i nuovi taxa in quelli già esistenti.
   log_in: Accedi
-  log_scale_label: Registro
+  log_scale_label: Logaritmica
   logged_in_as: Accesso effettuato come
   login_slash_username: Login / nome utente
   logo:
@@ -6320,6 +6320,24 @@ it:
           o <a href="%{url}">iNaturalist Network<a/>
       year:
         include_usa: Includi Stati Uniti
+        growth_by_country_desc_html: Dove è la crescita? Qusta mappa e il grafico
+          cercano di declinare la crescita per Nazione, cosa un po' complicata perché
+          la crescita per Nazione può essere molto sbilanciata. Qui abbiamo deciso
+          di omettere gli Stati Uniti e usare la scala logaritmica in maniera predefinita
+          per accentuare le differenza tra gli altri Stati. Se una Nazione è colorata
+          di nero significa che non contribuisce in maniera significativa, o non è
+          cresciuta quest'anno, o non ha avuto più osservazioni quest'anno rispetto
+          a quello precedente (muoviti sulla nazione per vedere più dettagli).  <strong>"%
+          di crescita totale"</strong> significa quanto della crescita mondiale è
+          dovuta a quella Nazione particolare, per esempio, se ci fossero state 20
+          osservazioni nel 2018 e 10 nel 2017, la crescita sarebbe stata di 10 osservazioni,
+          e se 5 di quelle osservazioni fossero state in Benin, il Benin avrebbe contribuito
+          col 50% della crescita totale. <strong>"% di crescita"</strong> indica il
+          numero di osservazioni quest'anno in quella Nazione come percentuale delle
+          osservazioni dell'anno precedente nella stessa Nazione, così se ci fossero
+          state 10 osservazioni in Laos l'anno precedente ma 20 quest'anno, la crescita
+          sarebbe del 100%, e se ci fossero state 0 osservazioni l'anno precedente
+          e 1 quest'anno, risulterebbe una crescita infinita.
         growth_by_country_title: Crescita per paese
         growth_in_year_obs: Crescita in %{year} (obs)
         growth_title: Crescita

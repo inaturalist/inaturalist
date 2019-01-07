@@ -3568,6 +3568,9 @@ fi:
     paikkoja, jokainen täynnä outoja ja \nihmeellisiä elämänmuotoja. Jotkut ovat maailman
     toisella puolella, kun taas \ntoisia on katuja pitkin!"
   then_keybord_sequence: sitten
+  there_are_x_synonyms_html:
+    one: Täällä on <span class='count'>1</span> synonyymi</span>
+    other: Täällä on <span class='count'>%{count}</span> synonyymiä</span>
   there_were_problems_adding_that_observation_to_this_project: 'Havainnon lisääminen
     tähän projektiin epäonnistui:'
   there_were_some_problems_saving_this_observation: Tämän havainnon tallentamisessa
@@ -3683,6 +3686,7 @@ fi:
   unsubscribe: Peruuta tilaus
   unsubscribe_from_this: Peruuta tilaus tältä
   unsuspend_user: Jäädytetty käyttäjä
+  upcoming_bioblitzes: Tulevat bioblitzit
   update: Päivitä
   update_existing_observations_with_new_license: Päivitä olemassa olevat havainnot
     uusilla lisenssivaihtoehdoilla
