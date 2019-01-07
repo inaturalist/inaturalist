@@ -1442,4 +1442,12 @@ module ApplicationHelper
     @responsive
   end
 
+  def url_for_referrer_or_default( default )
+    back_url = request.env["HTTP_REFERER"]
+    if back_url && ![request.path, request.url].include?( back_url )
+      return back_url
+    end
+    default
+  end
+
 end

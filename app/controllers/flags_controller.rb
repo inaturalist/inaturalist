@@ -15,7 +15,7 @@ class FlagsController < ApplicationController
   PARTIALS = %w(dialog)
 
   def index
-    if @model && @object = @model.find_by_id(params[@param])
+    if request.path != "/flags" && @model && @object = @model.find_by_id(params[@param])
       # The default acts_as_flaggable index route
       @object = @object.becomes(Photo) if @object.is_a?(Photo)
       @flags = @object.flags.includes(:user, :resolver).
@@ -77,6 +77,9 @@ class FlagsController < ApplicationController
       end
       if @resolver
         @flags = @flags.where( resolver_id: @resolver )
+      end
+      if @reason_query = params[:reason_query]
+        @flags = @flags.where( "flag ILIKE ?", "%#{@reason_query}%" )
       end
       @flags = @flags.paginate(per_page: 50, page: params[:page])
       render :global_index, layout: "bootstrap"

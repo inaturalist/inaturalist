@@ -7,7 +7,7 @@
     .col-xs-12
       .breadcrumbs
         %strong
-          = link_to "&laquo; #{t :back_to_x, :noun => "#{t(:flags_for).downcase} #{@object.to_plain_s}"}".html_safe, send("#{@object.class.name.underscore}_flags_url", @object), class: "crumb"
+          = link_to t(:back_to_flags_html), url_for_referrer_or_default( url_for( @flag.flaggable ) )
       %h2= @title
   .row
     .col-xs-12
@@ -38,16 +38,23 @@
                 = link_to @flag.resolver.login, @flag.resolver
               - else
                 =t :not_resolved
-            %td.nobr
+            %td.nobr.form-inline
               - if is_curator?
-                = form_for(@flag, :action => "update") do |f|
-                  = f.text_field :comment, class: "text inline"
+                = form_for( @flag, action: "update", html: { class: "inlineblock" } ) do |f|
+                  = f.text_field :comment, class: "form-control"
                   = f.hidden_field :resolver_id, value: current_user.id
                   = f.hidden_field :resolved, value: true
-                  = f.submit t(:resolve), class: "inline button"
+                  = f.submit t(:resolve), class: "btn btn-success"
               - else
                 =formatted_user_text @flag.comment
+              - if is_me?( @flag.user )
+                = link_to @flag, class: "btn btn-link", data: { confirm: t(:you_sure_delete_flag?) }, method: :delete do
+                  %i.fa.fa-trash
+                  = t(:delete)
   .row
-    .col-xs-6
+    .col-xs-7
       = render "comments/comments", parent: @flag
+      - unless is_me?( @flag.user )
+        .upstacked
+          = render "subscriptions/subscription", resource: @flag
 

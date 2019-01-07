@@ -67,6 +67,8 @@
                   %label.chekcbox
                     %input{ type: "checkbox", name: "flags[]", value: f, checked: @flag_types.include?( f ) }
                     =t f
+              .form-group
+                %input.form-control{ type: "search", name: "reason_query", value: @reason_query, placeholder: t(:search_reasons, default: "Search Reasons") }
             .col-xs-3
               .form-group
                 %label=t :resolved
@@ -83,7 +85,7 @@
             .col-xs-12
               = submit_tag t(:filter), class: "btn btn-primary"
               = link_to t(:reset), url_for, class: "btn btn-link"
-              = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolved, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :page] )
+              = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolved, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :reason_query, :page] )
   .row
     .col-xs-12
       %table.table
@@ -121,15 +123,13 @@
                     = link_to_user flaggable.user, class: "text-muted" do
                       = t(:added_by_user_on_date_html, user: flaggable.user.login, date: l( flaggable.created_at) )
               %td.reason=formatted_user_text flag.flag
-              %td= link_to flag.comments.count, flag, class: "badge"
+              %td
+                - if flag.comments.count > 0
+                  = link_to flag.comments.count, flag, class: "badge"
               %td.actions.nobr
-                .btn-group
-                  = link_to flag, class: "btn btn-info btn-sm" do
-                    %i.fa.fa-info
-                    = t(:details)
-                  = link_to flag, class: "btn btn-link btn-sm", data: { confirm: t(:you_sure_delete_flag?) }, method: :delete do
-                    %i.fa.fa-trash
-                    = t(:delete)
+                = link_to flag, class: "btn btn-info btn-sm" do
+                  %i.fa.fa-info
+                  = t(:details)
               %td.resolution
                 - if flag.resolved?
                   = formatted_user_text flag.comment
