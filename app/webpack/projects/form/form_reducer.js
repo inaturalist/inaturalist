@@ -216,9 +216,13 @@ export function removeProjectUser( projectUser ) {
 
 export function setRulePreference( field, value ) {
   return ( dispatch, getState ) => {
+    console.log( ["setRulePreference", field, value] );
     const project = getState( ).form.project;
     if ( !project || !field ) { return; }
     project.rule_preferences = _.reject( project.rule_preferences, pref => pref.field === field );
+    if ( field === "quality_grade" && value === "research,needs_id,casual" ) {
+      value = null;
+    }
     project.rule_preferences.push( { field, value } );
     let dateType = project.date_type;
     if ( field === "observed_on" ) {
@@ -317,11 +321,13 @@ export function submitProject( ) {
       cover: project.droppedBanner ? project.droppedBanner : null,
       preferred_banner_color: project.banner_color,
       prefers_hide_title: project.hide_title,
+      prefers_hide_umbrella_map_flags: project.hide_umbrella_map_flags,
       prefers_banner_contain: project.header_image_contain,
       prefers_rule_quality_grade: project.rule_quality_grade
         ? _.keys( project.rule_quality_grade ).join( "," ) : "",
       prefers_rule_photos: _.isEmpty( project.rule_photos ) ? "" : project.rule_photos,
       prefers_rule_sounds: _.isEmpty( project.rule_sounds ) ? "" : project.rule_sounds,
+      prefers_rule_captive: _.isEmpty( project.rule_captive ) ? "" : project.rule_captive,
       prefers_rule_term_id: _.isEmpty( project.rule_term_id ) ? "" : project.rule_term_id,
       prefers_rule_term_value_id:
         ( _.isEmpty( project.rule_term_value_id ) || _.isEmpty( project.rule_term_id ) )
@@ -347,11 +353,11 @@ export function submitProject( ) {
     payload.project.project_observation_rules_attributes =
       payload.project.project_observation_rules_attributes || [];
     _.each( project.project_observation_rules, rule => {
-      if ( ( project.project_type === "umbrella" && rule.operand_type === "Project" ) ||
-           ( project.project_type !== "umbrella" &&
-             ( rule.operand_type === "Taxon" ||
-               rule.operand_type === "User" ||
-               rule.operand_type === "Place" ) ) ) {
+      if ( rule.operand_type === "Project" || (
+        project.project_type !== "umbrella" && (
+          rule.operand_type === "Taxon"
+          || rule.operand_type === "User"
+          || rule.operand_type === "Place" ) ) ) {
         const rulePayload = {
           operator: rule.operator,
           operand_type: rule.operand_type,
@@ -409,6 +415,7 @@ export function confirmSubmitProject( ) {
     if ( !_.isEmpty( project.rule_sounds ) ) { empty = false; }
     if ( !_.isEmpty( project.rule_term_id ) ) { empty = false; }
     if ( !_.isEmpty( project.rule_term_value_id ) ) { empty = false; }
+    if ( !_.isEmpty( project.rule_captive ) ) { empty = false; }
     if ( dateType === "exact" && !_.isEmpty( project.rule_observed_on ) ) { empty = false; }
     if ( dateType === "range" && !_.isEmpty( project.rule_d1 ) ) { empty = false; }
     if ( dateType === "range" && !_.isEmpty( project.rule_d2 ) ) { empty = false; }

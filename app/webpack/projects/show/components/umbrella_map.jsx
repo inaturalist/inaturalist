@@ -8,15 +8,17 @@ import { definePopupClass } from "../util";
 import colors from "../umbrella_project_colors";
 
 class UmbrellaMap extends Component {
-
   componentDidMount( ) {
+    const { project } = this.props;
+    if ( project.hide_umbrella_map_flags ) {
+      return;
+    }
     setTimeout( ( ) => {
       const map = $( ".TaxonMap", ReactDOM.findDOMNode( this ) ).data( "taxonMap" );
       const Popup = definePopupClass( );
-      const projectColors = _.fromPairs( _.map( this.props.project.umbrella_stats.results, ( ps, index ) =>
-        [ps.project.id, colors[index % colors.length]]
-      ) );
-      _.each( this.props.project.projectRules, rule => {
+      const projectColors = _.fromPairs( _.map( project.umbrella_stats.results, ( ps, index ) =>
+        [ps.project.id, colors[index % colors.length]] ) );
+      _.each( project.projectRules, rule => {
         const color = projectColors[rule.project.id];
         if ( rule.project.place && rule.project.place.point_geojson ) {
           const coords = rule.project.place.point_geojson.coordinates;
@@ -58,11 +60,11 @@ class UmbrellaMap extends Component {
               scrollwheel={ false }
               overlayMenu={ false }
               mapTypeControl
-              mapTypeControlOptions={{
+              mapTypeControlOptions={ {
                 style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
                 position: google.maps.ControlPosition.TOP_LEFT
-              }}
-              zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+              } }
+              zoomControlOptions={ { position: google.maps.ControlPosition.TOP_LEFT } }
               placeLayers={ [{ place: { id: placeIDs.join( "," ), name: "Places" } }] }
               minZoom={ 2 }
               maxX={ totalBounds && totalBounds.nelng }
@@ -78,9 +80,7 @@ class UmbrellaMap extends Component {
 }
 
 UmbrellaMap.propTypes = {
-  setConfig: PropTypes.func,
-  project: PropTypes.object,
-  config: PropTypes.object
+  project: PropTypes.object.isRequired
 };
 
 export default UmbrellaMap;

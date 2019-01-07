@@ -9,14 +9,34 @@ import JQueryUIMultiselect from "../../../observations/identify/components/jquer
 import TaxonSelector from "./taxon_selector";
 import PlaceSelector from "./place_selector";
 import UserSelector from "./user_selector";
+import ProjectSelector from "./project_selector";
 
 class RegularForm extends React.Component {
-
   constructor( props ) {
     super( props );
     this.state = {
       inverseFiltersOpen: false
     };
+  }
+
+  setCaptive( ) {
+    const { setRulePreference } = this.props;
+    const wildChecked = $( "input[name=wild]:checked", ReactDOM.findDOMNode( this ) ).length;
+    const captiveChecked = $( "input[name=captive]:checked", ReactDOM.findDOMNode( this ) ).length;
+    let captiveParamValue = null;
+    if ( wildChecked && !captiveChecked ) {
+      captiveParamValue = "false";
+    }
+    if ( !wildChecked && captiveChecked ) {
+      captiveParamValue = "true";
+    }
+    console.log( ["Captive", wildChecked, captiveChecked, captiveParamValue] );
+    setRulePreference( "captive", captiveParamValue );
+  }
+
+  setQualityGrade( ) {
+    const { setRulePreference } = this.props;
+    setRulePreference( "quality_grade", this.qualityGradeValues( ) );
   }
 
   qualityGradeValues( ) {
@@ -31,17 +51,21 @@ class RegularForm extends React.Component {
       updateProject,
       allControlledTerms
     } = this.props;
-    const monthNames = ( "january february march april may june july august " +
-      "september october november december" ).split( " " );
-    const inverseFilterCount = _.size( project.notTaxonRules ) +
-      _.size( project.notPlaceRules ) + _.size( project.notUserRules );
-    const chosenTerm = project.rule_term_id ?
-      allControlledTerms.find( t => t.id === _.toInteger( project.rule_term_id ) ) : null;
+    const monthNames = ( "january february march april may june july august "
+      + "september october november december" ).split( " " );
+    const inverseFilterCount = _.size( project.notTaxonRules )
+      + _.size( project.notPlaceRules ) + _.size( project.notUserRules )
+      + _.size( project.notProjectRules );
+    const chosenTerm = project.rule_term_id
+      ? allControlledTerms.find( t => t.id === _.toInteger( project.rule_term_id ) )
+      : null;
+    const qualityEmpty = _.isEmpty( project.rule_quality_grade );
+    const captiveEmpty = _.isEmpty( project.rule_captive );
     return (
-      <div id="RegularForm" className="Form">
+      <div id="RegularForm" className="Form" key={ project.previewSearchParamsString }>
         <Grid>
           <Row className="text">
-            <Col xs={12}>
+            <Col xs={ 12 }>
               <h2>{ I18n.t( "observation_requirements" ) }</h2>
               <div className="help-text">
                 { I18n.t( "views.projects.new.please_specify_the_requirements" ) }
@@ -49,16 +73,21 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={12} className="autocompletes">
+            <Col xs={ 12 } className="autocompletes">
               <Row>
-                <Col xs={4}>
+                <Col xs={ 4 }>
                   <TaxonSelector { ...this.props } />
                 </Col>
-                <Col xs={4}>
+                <Col xs={ 4 }>
                   <PlaceSelector { ...this.props } />
                 </Col>
-                <Col xs={4}>
+              </Row>
+              <Row>
+                <Col xs={ 4 }>
                   <UserSelector { ...this.props } />
+                </Col>
+                <Col xs={ 4 }>
+                  <ProjectSelector { ...this.props } />
                 </Col>
               </Row>
               <label className="inverse-toggle collapsible"
@@ -81,14 +110,19 @@ class RegularForm extends React.Component {
               >
                 <Panel.Collapse>
                   <Row>
-                    <Col xs={4}>
+                    <Col xs={ 4 }>
                       <TaxonSelector { ...this.props } inverse />
                     </Col>
-                    <Col xs={4}>
+                    <Col xs={ 4 }>
                       <PlaceSelector { ...this.props } inverse />
                     </Col>
-                    <Col xs={4}>
+                  </Row>
+                  <Row>
+                    <Col xs={ 4 }>
                       <UserSelector { ...this.props } inverse />
+                    </Col>
+                    <Col xs={ 4 }>
+                      <ProjectSelector { ...this.props } inverse />
                     </Col>
                   </Row>
                 </Panel.Collapse>
@@ -96,7 +130,7 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={6}>
+            <Col xs={ 6 }>
               <div className="form-group annotations-form-group">
                 <label className="sectionlabel">{ I18n.t( "with_annotation" ) }</label>
                 <select
@@ -150,15 +184,15 @@ class RegularForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={4}>
-              <label>Data Quality</label>
+            <Col xs={ 12 }>
+              <label>{ I18n.t( "data_quality" ) }</label>
               <input
                 type="checkbox"
                 id="project-quality-research"
                 name="quality_grade"
                 value="research"
-                defaultChecked={ project.rule_quality_grade.research }
-                onChange={ ( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) ) }
+                defaultChecked={ project.rule_quality_grade.research || qualityEmpty }
+                onChange={ ( ) => this.setQualityGrade( ) }
               />
               <label className="inline" htmlFor="project-quality-research">
                 { I18n.t( "research_" ) }
@@ -168,8 +202,8 @@ class RegularForm extends React.Component {
                 id="project-quality-needs-id"
                 name="quality_grade"
                 value="needs_id"
-                defaultChecked={ project.rule_quality_grade.needs_id }
-                onChange={ ( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) ) }
+                defaultChecked={ project.rule_quality_grade.needs_id || qualityEmpty }
+                onChange={ ( ) => this.setQualityGrade( ) }
               />
               <label className="inline" htmlFor="project-quality-needs-id">
                 { I18n.t( "needs_id_" ) }
@@ -179,71 +213,66 @@ class RegularForm extends React.Component {
                 id="project-quality-casual"
                 name="quality_grade"
                 value="casual"
-                defaultChecked={ project.rule_quality_grade.casual }
-                onChange={ ( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) ) }
+                defaultChecked={ project.rule_quality_grade.casual || qualityEmpty }
+                onChange={ ( ) => this.setQualityGrade( ) }
               />
               <label className="inline" htmlFor="project-quality-casual">
                 { I18n.t( "casual_" ) }
               </label>
             </Col>
-            <Col xs={8}>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
               <label>{ I18n.t( "media_type" ) }</label>
               <input
-                type="radio"
-                name="project-media"
-                id="project-media-any"
-                defaultChecked={ !project.rule_photos && !project.rule_sounds }
-                onChange={ ( ) => {
-                  setRulePreference( "photos", null );
-                  setRulePreference( "sounds", null );
-                } }
-              />
-              <label className="inline" htmlFor="project-media-any">
-                { I18n.t( "any_" ) }
-              </label>
-              <input
-                type="radio"
-                name="project-media"
-                id="project-media-sounds"
-                defaultChecked={ project.rule_sounds && !project.rule_photos }
-                onChange={ ( ) => {
-                  setRulePreference( "sounds", "true" );
-                  setRulePreference( "photos", null );
-                } }
-              />
-              <label className="inline" htmlFor="project-media-sounds">
-                { I18n.t( "has_sound" ) }
-              </label>
-              <input
-                type="radio"
-                name="project-media"
+                type="checkbox"
                 id="project-media-photos"
-                defaultChecked={ project.rule_photos && !project.rule_sounds }
-                onChange={ ( ) => {
-                  setRulePreference( "photos", "true" );
-                  setRulePreference( "sounds", null );
-                } }
+                name="photos"
+                defaultChecked={ project.rule_photos }
+                onChange={ e => setRulePreference( "photos", e.target.checked ? "true" : null ) }
               />
               <label className="inline" htmlFor="project-media-photos">
-                { I18n.t( "has_photo" ) }
+                { I18n.t( "has_photos" ) }
               </label>
               <input
-                type="radio"
-                name="project-media"
-                id="project-media-both"
-                defaultChecked={ project.rule_photos && project.rule_sounds }
-                onChange={ ( ) => {
-                  setRulePreference( "photos", "true" );
-                  setRulePreference( "sounds", "true" );
-                } }
+                type="checkbox"
+                id="project-media-sounds"
+                name="sounds"
+                defaultChecked={ project.rule_sounds }
+                onChange={ e => setRulePreference( "sounds", e.target.checked ? "true" : null ) }
               />
-              <label className="inline" htmlFor="project-media-both">
-                { I18n.t( "has_photo_and_sound" ) }
+              <label className="inline" htmlFor="project-media-sounds">
+                { I18n.t( "has_sounds" ) }
+              </label>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <label>{ I18n.t( "captive_cultivated" ) }</label>
+              <input
+                type="checkbox"
+                id="project-wild"
+                name="wild"
+                defaultChecked={ project.rule_captive === "false" || captiveEmpty }
+                onChange={ e => this.setCaptive( ) }
+              />
+              <label className="inline" htmlFor="project-wild">
+                { I18n.t( "wild" ) }
+              </label>
+              <input
+                type="checkbox"
+                id="project-captive"
+                name="captive"
+                defaultChecked={ project.rule_captive === "true" || captiveEmpty }
+                onChange={ e => this.setCaptive( ) }
+              />
+              <label className="inline" htmlFor="project-captive">
+                { I18n.t( "captive" ) }
               </label>
             </Col>
           </Row>
           <Row className="date-row">
-            <Col xs={12}>
+            <Col xs={ 12 }>
               <label>{ I18n.t( "date_observed_" ) }</label>
               <input
                 type="radio"

@@ -103,6 +103,7 @@ const Project = class Project {
     this.placeRules = [];
     this.notPlaceRules = [];
     this.projectRules = [];
+    this.notProjectRules = [];
     _.each( this.project_observation_rules, rule => {
       if ( !rule._destroy ) {
         if ( rule.operand_type === "Taxon" && rule.operator === "not_in_taxon?" ) {
@@ -117,6 +118,8 @@ const Project = class Project {
           this.notPlaceRules.push( rule );
         } else if ( rule.operand_type === "Place" ) {
           this.placeRules.push( rule );
+        } else if ( rule.operand_type === "Project" && rule.operator === "not_in_project?" ) {
+          this.notProjectRules.push( rule );
         } else if ( rule.operand_type === "Project" ) {
           this.projectRules.push( rule );
         }
@@ -172,6 +175,14 @@ const Project = class Project {
       if ( !_.isEmpty( this.userRules ) ) {
         this.previewSearchParamsObject.user_id =
           _.map( this.userRules, r => r.operand_id ).join( "," );
+      }
+      if ( !_.isEmpty( this.notProjectRules ) ) {
+        this.previewSearchParamsObject.not_in_project =
+          _.map( this.notProjectRules, r => r.operand_id ).join( "," );
+      }
+      if ( !_.isEmpty( this.projectRules ) ) {
+        this.previewSearchParamsObject.project_id =
+          _.map( this.projectRules, r => r.operand_id ).join( "," );
       }
     }
     if ( !this.date_type ) {

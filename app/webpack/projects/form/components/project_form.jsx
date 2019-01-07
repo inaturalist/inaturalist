@@ -11,25 +11,22 @@ import ConfirmModalContainer from "../../shared/containers/confirm_modal_contain
 class ProjectForm extends React.Component {
   render( ) {
     const {
-      config,
       project,
       addManager,
       removeProjectUser,
-      confirmSubmitProject,
-      updateProject } = this.props;
+      confirmSubmitProject
+    } = this.props;
     if ( !project ) { return ( <span /> ); }
-    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles &&
-      config.currentUser.roles.indexOf( "admin" ) >= 0;
     return (
       <div className="Form">
         <SharedForm { ...this.props } />
-        { project.project_type === "umbrella" ?
-            ( <UmbrellaForm { ...this.props } /> ) :
-            ( <RegularForm { ...this.props } /> )
+        { project.project_type === "umbrella"
+          ? ( <UmbrellaForm { ...this.props } /> )
+          : ( <RegularForm { ...this.props } /> )
         }
         <Grid>
           <Row>
-            <Col xs={12}>
+            <Col xs={ 12 }>
               <div className="preview">
                 <button
                   className="btn-white"
@@ -43,7 +40,7 @@ class ProjectForm extends React.Component {
             </Col>
           </Row>
           <Row className="admins-row">
-            <Col xs={12}>
+            <Col xs={ 12 }>
               <label>{ I18n.t( "admin_s" ) }</label>
               <div className="help-text">
                 { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
@@ -78,7 +75,7 @@ class ProjectForm extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col xs={12}>
+            <Col xs={ 12 }>
               * { I18n.t( "required_" ) }
               <div className="buttons">
                 <button

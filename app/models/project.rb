@@ -62,6 +62,7 @@ class Project < ActiveRecord::Base
   preference :banner_color, :string
   preference :banner_contain, :boolean, default: false
   preference :hide_title, :boolean, default: false
+  preference :hide_umbrella_map_flags, :boolean, default: false
   preference :rule_quality_grade, :string
   preference :rule_photos, :boolean
   preference :rule_sounds, :boolean
@@ -71,10 +72,11 @@ class Project < ActiveRecord::Base
   preference :rule_month, :string
   preference :rule_term_id, :integer
   preference :rule_term_value_id, :integer
+  preference :rule_captive, :boolean
   RULE_PREFERENCES = [
     "rule_quality_grade", "rule_photos", "rule_sounds",
     "rule_observed_on", "rule_d1", "rule_d2", "rule_month",
-    "rule_term_id", "rule_term_value_id"
+    "rule_term_id", "rule_term_value_id", "rule_captive"
   ]
   
   SUBMISSION_BY_ANYONE = 'any'
@@ -411,15 +413,6 @@ class Project < ActiveRecord::Base
   # TODO: probably merge most of this logic with observations_url_params
   def collection_search_parameters(options = {})
     params = { }
-    if project_type == "umbrella"
-      project_ids = []
-      project_observation_rules.each do |rule|
-        project_ids << rule.operand_id if rule.operator === "in_project?"
-      end
-      project_ids = project_ids.compact.uniq
-      params.merge!(project_id: project_ids) unless project_ids.blank?
-      return params
-    end
     if start_time && end_time
       params[:d1] = preferred_start_date_or_time
       params[:d2] = preferred_end_date_or_time
@@ -430,6 +423,8 @@ class Project < ActiveRecord::Base
     not_user_ids = [ ]
     place_ids = [ place_id ]
     not_place_ids = [ ]
+    project_ids = [ ]
+    not_project_ids = [ ]
     project_observation_rules.each do |rule|
       case rule.operator
       when "not_in_taxon?"
@@ -448,6 +443,10 @@ class Project < ActiveRecord::Base
         user_ids << rule.operand_id
       when "not_observed_by_user?"
         not_user_ids << rule.operand_id
+      when "in_project?"
+        project_ids << rule.operand_id
+      when "not_in_project?"
+        not_project_ids << rule.operand_id
       when "verifiable?"
         params[:quality_grade] = "research,needs_id"
       end
@@ -472,12 +471,20 @@ class Project < ActiveRecord::Base
     place_ids = place_ids.compact.uniq
     not_user_ids = not_user_ids.compact.uniq
     user_ids = user_ids.compact.uniq
+    project_ids = project_ids.compact.uniq
+    not_project_ids = not_project_ids.compact.uniq
+    if project_type == "umbrella"
+      # umbrellas can only have project rules
+      return project_ids.any? ? { project_id: project_ids } : { }
+    end
     params.merge!(without_taxon_id: without_taxon_ids) unless without_taxon_ids.blank?
     params.merge!(taxon_id: taxon_ids) unless taxon_ids.blank?
     params.merge!(not_in_place: not_place_ids) unless not_place_ids.blank?
     params.merge!(place_id: place_ids) unless place_ids.blank?
     params.merge!(not_user_id: not_user_ids) unless not_user_ids.blank?
     params.merge!(user_id: user_ids) unless user_ids.blank?
+    params.merge!(not_in_project: not_project_ids) unless not_project_ids.blank?
+    params.merge!(project_id: project_ids) unless project_ids.blank?
     params
   end
 

@@ -1,60 +1,43 @@
-import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
-import ProjectAutocomplete from "../../../observations/identify/components/project_autocomplete";
+import ProjectSelector from "./project_selector";
 
 class UmbrellaForm extends React.Component {
   render( ) {
     const {
       project,
       addProjectRule,
-      removeProjectRule
+      removeProjectRule,
+      updateProject
     } = this.props;
     return (
       <div id="UmbrellaForm" className="Form">
         <Grid>
           <Row className="text">
-            <Col xs={12}>
-              <h2>Observation Requirements</h2>
+            <Col xs={ 12 }>
+              <h2>{ I18n.t( "observation_requirements" ) }</h2>
               <div className="help-text">
-                Please specify the requirements for the observations to be added to this project.
-                You can have multiple species and places.
+                { I18n.t( "views.projects.new.please_specify_the_requirements" ) }
               </div>
             </Col>
           </Row>
           <Row className="first-row">
-            <Col xs={4}>
-              <label>Projects</label>
-              <div className="input-group">
-                <span className="input-group-addon fa fa-briefcase"></span>
-                <ProjectAutocomplete
-                  ref="ua"
-                  key={ _.map( project.projectRules, rule => rule.project.id ).join( "," ) }
-                  afterSelect={ e => {
-                    addProjectRule( "in_project?", "Project", e.item );
-                    this.refs.ua.inputElement( ).val( "" );
-                  } }
-                  notIDs={ _.map( project.projectRules, rule => rule.project.id ) }
-                  notTypes={ ["umbrella"] }
-                  bootstrapClear
-                />
-              </div>
-              { !_.isEmpty( project.projectRules ) && (
-                <div className="icon-previews">
-                  { _.map( project.projectRules, projectRule => (
-                    <div className="badge-div" key={ `project_rule_${projectRule.project.id}` }>
-                      <span className="badge">
-                        { projectRule.project.title }
-                        <i
-                          className="fa fa-times-circle-o"
-                          onClick={ ( ) => removeProjectRule( projectRule ) }
-                        />
-                      </span>
-                    </div>
-                  ) ) }
-                </div>
-              ) }
+            <Col xs={ 4 }>
+              <ProjectSelector { ...this.props } />
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={ 12 }>
+              <input
+                type="checkbox"
+                id="project-umbrella-flags"
+                defaultChecked={ !project.hide_umbrella_map_flags }
+                onChange={ e => updateProject( { hide_umbrella_map_flags: !e.target.checked } ) }
+              />
+              <label className="inline" htmlFor="project-umbrella-flags">
+                { I18n.t( "views.projects.new.show_projects_as_flags" ) }
+              </label>
             </Col>
           </Row>
         </Grid>
@@ -66,7 +49,8 @@ class UmbrellaForm extends React.Component {
 UmbrellaForm.propTypes = {
   project: PropTypes.object,
   addProjectRule: PropTypes.func,
-  removeProjectRule: PropTypes.func
+  removeProjectRule: PropTypes.func,
+  updateProject: PropTypes.func
 };
 
 export default UmbrellaForm;

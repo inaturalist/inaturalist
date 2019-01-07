@@ -9,7 +9,8 @@ class ProjectObservationRule < Rule
     "not_observed_by_user?" => "User",
     "observed_by_user?" => "User",
     "observed_before?" => "Time",
-    "in_project?" => "Project"
+    "in_project?" => "Project",
+    "not_in_project?" => "Project"
   }
   OPERAND_OPERATORS = OPERAND_OPERATORS_CLASSES.keys
   
