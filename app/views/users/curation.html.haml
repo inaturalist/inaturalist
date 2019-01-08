@@ -104,7 +104,7 @@
               - else
                 %ul.plain
                   - @display_user.user_mutes.limit( 100 ).each do |um|
-                    %li= link_to_user um.muteed_user
+                    %li= link_to_user um.muted_user
                 %p.text-muted
                   = @display_user.user_mutes.count
                   total
