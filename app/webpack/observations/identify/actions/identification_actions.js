@@ -18,7 +18,8 @@ function postIdentification( params ) {
   return function ( dispatch ) {
     const body = { identification: Object.assign( {}, params ) };
     if ( body.identification.observation ) {
-      body.identification.observation_id = body.identification.observation_id || body.identification.observation.id;
+      body.identification.observation_id = body.identification.observation_id
+        || body.identification.observation.id;
       delete body.identification.observation;
     }
     if ( body.identification.taxon ) {
@@ -97,16 +98,16 @@ function submitIdentificationWithConfirmation( identification, options = {} ) {
     dispatch( loadingDiscussionItem( identification ) );
     const boundPostIdentification = ( ) => {
       dispatch( postIdentification( identification ) )
-      .catch( ( ) => {
-        dispatch( stopLoadingDiscussionItem( identification ) );
-      } )
-      .then( ( ) => {
-        dispatch( fetchCurrentObservation( identification.observation ) ).then( ( ) => {
-          $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+        .catch( ( ) => {
+          dispatch( stopLoadingDiscussionItem( identification ) );
+        } )
+        .then( ( ) => {
+          dispatch( fetchCurrentObservation( identification.observation ) ).then( ( ) => {
+            $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+          } );
+          dispatch( fetchObservationsStats( ) );
+          dispatch( fetchIdentifiers( ) );
         } );
-        dispatch( fetchObservationsStats( ) );
-        dispatch( fetchIdentifiers( ) );
-      } );
     };
     if ( options.confirmationText ) {
       dispatch( showAlert( options.confirmationText, {
