@@ -7,7 +7,7 @@
     .col-xs-12
       .breadcrumbs
         %strong
-          = link_to t(:back_to_flags_html), url_for_referrer_or_default( url_for( @flag.flaggable ) )
+          = link_to t(:back_to_flags_html), url_for_referrer_or_default( url_for( @flag.flaggable.is_a?( Photo ) ? @flag.flaggable.becomes( Photo ) : @flag.flaggable ) )
       %h2= @title
   .row
     .col-xs-12
