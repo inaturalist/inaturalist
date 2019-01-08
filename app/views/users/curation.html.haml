@@ -72,6 +72,54 @@
                       = observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe
               - else
                 No observations to check
+          %tr
+            %th Blocks
+            %td
+              - if @display_user.user_blocks.count == 0
+                None
+              - else
+                %ul.plain
+                  - @display_user.user_blocks.limit( 100 ).each do |ub|
+                    %li= link_to_user ub.blocked_user
+                %p.text-muted
+                  = @display_user.user_blocks.count
+                  total
+          %tr
+            %th Blocked by
+            %td
+              - if @display_user.user_blocks_as_blocked_user.count == 0
+                None
+              - else
+                %ul.plain
+                  - @display_user.user_blocks_as_blocked_user.limit( 100 ).each do |ub|
+                    %li= link_to_user ub.user
+                %p.text-muted
+                  = @display_user.user_blocks_as_blocked_user.count
+                  total
+          %tr
+            %th Mutes
+            %td
+              - if @display_user.user_mutes.count == 0
+                None
+              - else
+                %ul.plain
+                  - @display_user.user_mutes.limit( 100 ).each do |um|
+                    %li= link_to_user um.muteed_user
+                %p.text-muted
+                  = @display_user.user_mutes.count
+                  total
+          %tr
+            %th Muted by
+            %td
+              - if @display_user.user_mutes_as_muted_user.count == 0
+                None
+              - else
+                %ul.plain
+                  - @display_user.user_mutes_as_muted_user.limit( 100 ).each do |um|
+                    %li= link_to_user um.user
+                %p.text-muted
+                  = @display_user.user_mutes_as_muted_user.count
+                  total
           - if @display_user.curator_sponsor
             %tr
               %th User who made this user a curator
