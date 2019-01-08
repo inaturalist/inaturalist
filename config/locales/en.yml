@@ -539,6 +539,7 @@ en:
     iucn_red_list: IUCN Red List
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
+  automatic_short: Auto
   automatically_add_to_project: Automatically add to project
   automatically_add_observations_to_this_project: Automatically add observations to this project
   automatically_share_your_observations_on: Automatically share your observations on
@@ -552,6 +553,7 @@ en:
   back_to_calendar: "Back to %{user} calendar"
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
+  back_to_flags_html: "&laquo; Back to flags"
   back_to_help: Back to Help
   back_to_import: Back to Import
   back_to_lists: "Back to %{name} lists"
@@ -1378,10 +1380,14 @@ en:
   flagged_for_curation: Flagged for Curation
   flagged_taxon: Flagged Taxon
   flagged_thing_explanation: "Users have flagged this %{thing} because"
+  flagging_desc: |
+    Flagging brings something to the attention of volunteer site curators.
+    Please don't flag problems you can address with identifications, the Data
+    Quality Assessment, or by talking to the person who made the content.
   flagger: Flagger
   flags: Flags
   flags_with_count: Flags (%{count})
-  flags_explanation: "%{site_name} users flag things when they find something that's not right. Here are some issues that haven't been resolved by the curators yet."
+  flags_explanation: "%{site_name} users flag things that need attention from site curators and/or site admins."
   flags_for: Flags for
   flags_on_users_content: "Flags on %{user}'s content"
   flickr_account_information: Your Flickr Account Information
@@ -3271,6 +3277,7 @@ en:
   real_time_stats: Real Time Stats
   real_time_discussions: Real Time Discussions
   reason: Reason
+  reason_label: "Reason:"
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   recaptcha_verification_failed: reCAPTCHA verification failed
   receive_email_notifications_when_people_leave_you: Receive email notifications about
@@ -3393,6 +3400,7 @@ en:
   resolve_this_flag: Resolve this Flag
   resolved: Resolved
   resolved_by: Resolved by
+  resolved_by_user_on_date_html: Resolved by %{user} on %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
   restore: Restore
   restoring: Restoring...
@@ -3583,6 +3591,9 @@ en:
   some_observations_failed_to_save: Some observations failed to save
   some_of_those_photos_couldnt_be_saved: "Some of those photos couldn't be saved: %{error}"
   some_other_reason: Some other reason you can explain below.
+  duplicate_observation_flag_warning: |
+    For duplicate observations, please ask the observer to address the issue
+    instead of adding a flag, because site curators cannot remove observations.
   some_people: Some people
   some_people_that: Some people that
   some_rights_reserved: some rights reserved
@@ -4256,6 +4267,8 @@ en:
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
+  user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
+  user_flagged_as_a_spammer_html: "%{user} marked as a non-spammer"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_id: User has opted-out of Community ID
   user_has_opted_out_of_community_ids: "%{user} has chosen to retain control over the taxa associated with their observations"
@@ -4750,6 +4763,12 @@ en:
           organization based in the United States of America.
         </p>
       post_donate_social_media_text: I support iNaturalist because...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |
+          Please resolve <code>spam</code> and <code>copyright
+          infringement</code> flags only if the content is not spam or not an
+          infringement of copyright, respectively.
     guides:
       index:
         funding_html: |
