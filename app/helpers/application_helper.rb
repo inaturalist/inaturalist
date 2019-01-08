@@ -213,7 +213,7 @@ module ApplicationHelper
   # :without => [:some, :keys]
   # Example: url_for_params(:taxon_id => 1, :without => :page)
   def url_for_params(options = {})
-    new_params = params.dup.to_h
+    new_params = params.clone
     if without = options.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)

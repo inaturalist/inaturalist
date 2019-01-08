@@ -220,6 +220,8 @@
                   = succeed ":" do
                     = t :because_of
                   = flag.flag
+            .panel-footer
+              = link_to t(:view_all), flags_path, class: "btn btn-primary btn-sm"
         .panel.panel-default
           .panel-heading
             %h3.panel-title
