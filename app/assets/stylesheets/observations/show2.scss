@@ -145,6 +145,9 @@ a.linky,
     margin-top: 20px;
     line-height: 30px;
   }
+  h3.popover-title {
+    line-height: 1.1;
+  }
   a {
     color: inherit;
   }
@@ -852,7 +855,8 @@ h3, h4 {
     padding-right: 15px;
   }
   .top_info,
-  .places {
+  .places,
+  .obscured {
     border-bottom: 1px solid $border-grey;
     padding-bottom: 15px;
   }

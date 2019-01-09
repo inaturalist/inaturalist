@@ -3,9 +3,9 @@ module TaxonDescribers
     def describe(taxon)
       pages = eol_service.search(taxon.name, :exact => true)
       return if pages.blank?
-      id = pages.at('entry/id').try(:content)
+      id = pages.at( "result/id" ).try(:content)
       return unless id
-      page = eol_service.page(id, :text => 50, :subjects => "all", :details => true)
+      page = eol_service.page( id, texts_per_page: 50, subjects: "all", details: true )
       return unless page
       page.remove_namespaces!
       data_objects = data_objects_from_page(page).to_a.uniq do |data_object|

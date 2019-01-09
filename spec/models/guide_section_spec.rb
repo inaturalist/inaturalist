@@ -47,9 +47,9 @@ end
 describe GuideSection, "new_from_eol_data_object" do
   before(:all) do
     @eol = EolService.new(:timeout => 30)
-    response = @eol.data_objects('dd57f96ecfd345de4dc59c358bb1de49')
+    response = @eol.data_objects( 12618489 )
     response.remove_namespaces!
-    @data_object = response.at('dataObject')
+    @data_object = response.at( "dataObject" )
     @guide_section = GuideSection.new_from_eol_data_object(@data_object)
   end
 
@@ -58,15 +58,15 @@ describe GuideSection, "new_from_eol_data_object" do
   end
 
   it "should set license" do
-    expect(@guide_section.license.to_s.downcase).to be =~ /by-nc/
+    expect(@guide_section.license.to_s.downcase).to be =~ /by-sa/
   end
 
   it "should set rights_holder" do
-    expect(@guide_section.rights_holder).to be =~ /NatureServe/
+    expect(@guide_section.rights_holder).to be =~ /Wikipedia/
   end
 
   it "should set rights_holder to compiler if no rightsHolder" do
-    r = @eol.data_objects('ecea27fefc7a2961d4af0361b90d3f69')
+    r = @eol.data_objects( 12618489 )
     r.remove_namespaces!
     data_object = r.at('dataObject')
     guide_section = GuideSection.new_from_eol_data_object(data_object)

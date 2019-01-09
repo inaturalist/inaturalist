@@ -5,5 +5,7 @@ NonStupidDigestAssets.whitelist += [
   /spritesheet/,
   /\.xsl$/,
   /\.kml$/,
-  /iconic_taxa/
+  /iconic_taxa/,
+  /^homepage-/,
+  /^donate-/
 ]

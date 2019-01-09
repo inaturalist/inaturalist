@@ -16,14 +16,21 @@ class Map extends React.Component {
 
   render( ) {
     let taxonMap;
-    const { observation, observationPlaces, config } = this.props;
+    const {
+      observation,
+      observationPlaces,
+      config,
+      updateCurrentUser
+    } = this.props;
+    const currentUserPrefersMedialessObs = config.currentUser
+      && config.currentUser.prefers_medialess_obs_maps;
     if ( !observation || !observation.latitude ) {
       return (
         <div className="Map">
           <div className="TaxonMap empty">
             <div className="no_location">
               <i className="fa fa-map-marker" />
-              { observation.obscured && observation.geoprivacy === "private"
+              { observation.obscured && !observation.geojson
                 ? I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
             </div>
           </div>
@@ -62,19 +69,29 @@ class Map extends React.Component {
       const mapKey = `map-for-${observation.id}-${observation.taxon ? observation.taxon.id : null}`;
       taxonMap = (
         <TaxonMap
-          key={ mapKey }
-          reloadKey={ mapKey }
+          key={mapKey}
+          reloadKey={mapKey}
           taxonLayers={[{
             taxon: obsForMap.taxon,
-            observations: {
-              observation_id: obsForMap.id,
-              verifiable: true
-            },
+            observationLayers: [
+              {
+                label: I18n.t( "verifiable_observations" ),
+                verifiable: true,
+                observation_id: obsForMap.id
+              },
+              {
+                label: I18n.t( "observations_without_media" ),
+                verifiable: false,
+                disabled: !currentUserPrefersMedialessObs,
+                observation_id: obsForMap.id,
+                onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+              }
+            ],
             places: { disabled: true },
             gbif: { disabled: true }
-          }] }
+          }]}
           observations={[obsForMap]}
-          zoomLevel={ observation.map_scale || 8 }
+          zoomLevel={observation.map_scale || 8}
           showAccuracy
           enableShowAllLayer={false}
           overlayMenu
@@ -128,9 +145,9 @@ class Map extends React.Component {
         { taxonMap }
         <div className="map_details">
           <i
-            className={ `geoprivacy-icon ${geoprivacyIconClass}` }
-            title={ geoprivacyTitle }
-            alt={ geoprivacyTitle }
+            className={`geoprivacy-icon ${geoprivacyIconClass}`}
+            title={geoprivacyTitle}
+            alt={geoprivacyTitle}
           />
           <div className="place-guess">
             { placeGuessElement }
@@ -145,8 +162,9 @@ class Map extends React.Component {
               <Dropdown.Menu className="dropdown-menu-right">
                 <li>
                   <MapDetails
-                    observation={ observation }
-                    observationPlaces={ observationPlaces }
+                    observation={observation}
+                    observationPlaces={observationPlaces}
+                    config={config}
                   />
                 </li>
               </Dropdown.Menu>
@@ -161,7 +179,8 @@ class Map extends React.Component {
 Map.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateCurrentUser: PropTypes.func
 };
 
 export default Map;

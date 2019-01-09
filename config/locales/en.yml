@@ -68,6 +68,9 @@ en:
   x_people_agree_html:
     one: '<span class="count">1</span> person agrees'
     other: '<span class="count">%{count}</span> people agree'
+  x_new_species:
+    one: "1 New Species"
+    other: "%{count} New Species"
   x_species:
     one: '1 Species'
     other: '%{count} Species'
@@ -98,6 +101,7 @@ en:
   x_taxon_changes_added_html:
     one: "<span class='count'>1</span> taxon change added"
     other: "<span class='count'>%{count}</span> taxon changes added"
+  x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   _100_day_trends: 100 Day Trends
   _percent_ID_d: "% ID'd"
   a: a
@@ -530,10 +534,12 @@ en:
   atom: Atom
   attached_taxon: Attached Taxon
   attribute: Attribute
+  attribution: Attribution
   authority_list:
     iucn_red_list: IUCN Red List
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
+  automatic_short: Auto
   automatically_add_to_project: Automatically add to project
   automatically_add_observations_to_this_project: Automatically add observations to this project
   automatically_share_your_observations_on: Automatically share your observations on
@@ -547,6 +553,7 @@ en:
   back_to_calendar: "Back to %{user} calendar"
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
+  back_to_flags_html: "&laquo; Back to flags"
   back_to_help: Back to Help
   back_to_import: Back to Import
   back_to_lists: "Back to %{name} lists"
@@ -981,6 +988,7 @@ en:
   data_quality: Data Quality
   data_quality_assessment: Data Quality Assessment
   data_quality_assessment_: data quality assessment
+  data_used: "Data used:"
   datatype: Datatype
   date_: Date
   date?: Date?
@@ -1036,6 +1044,7 @@ en:
   default_sound_license: Default sound license
   defaults_to_your_name_or_username: Defaults to your name or username
   defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
+  definitions: Definitions
   delete: Delete
   delete_all: Delete all
   delete_conversation: Delete conversation
@@ -1083,6 +1092,7 @@ en:
   did_not_send_invitations_because: Did not send invites to the following because...
   did_you_mean: 'Did you mean'
   did_you_photos_flickr?: Did you put any photos on Flickr?
+  disable: Disable
   disagree: disagree
   disagree_: Disagree
   disconnect_provider: "Disconnect %{provider}"  
@@ -1292,7 +1302,7 @@ en:
   favorites: "Favorites"
   fblocale: en_US
   feature_this_project: "Feature this project?"
-  feature_this_project_: "Feature this project"
+  feature_this_project_: "Feature This Project"
   featured: Featured
   featured?: featured?
   featured_projects_from_everywhere: Featured projects from everywhere
@@ -1319,7 +1329,7 @@ en:
   filling_out_your_profile: filling out your profile
   filter: Filter
   filter_by: Filter by
-  filter_by_curator_identification: Filter by curator identification
+  filter_by_curator_identification: Filter by Curator Identification
   filter_by_place: Filter by Place
   filter_by_taxon: Filter by Taxon
   filter_by_place_taxon_and_color: Filter by place, taxon, and color using the controls.
@@ -1338,8 +1348,8 @@ en:
   find_some_people_to_follow: find some people to follow
   find_some_people_to_follow: "Find some people to follow"
   find_species: Find Species
-  find_suitable_observations: Find suitable observations
-  find_unsuitable_observations: Find unsuitable observations
+  find_suitable_observations: Find Suitable Observations
+  find_unsuitable_observations: Find Unsuitable Observations
   find_your_current_location: Find your current location
   finished: Finished
   finished_with_page: Finished With Page
@@ -1370,10 +1380,14 @@ en:
   flagged_for_curation: Flagged for Curation
   flagged_taxon: Flagged Taxon
   flagged_thing_explanation: "Users have flagged this %{thing} because"
+  flagging_desc: |
+    Flagging brings something to the attention of volunteer site curators.
+    Please don't flag problems you can address with identifications, the Data
+    Quality Assessment, or by talking to the person who made the content.
   flagger: Flagger
   flags: Flags
   flags_with_count: Flags (%{count})
-  flags_explanation: "%{site_name} users flag things when they find something that's not right. Here are some issues that haven't been resolved by the curators yet."
+  flags_explanation: "%{site_name} users flag things that need attention from site curators and/or site admins."
   flags_for: Flags for
   flags_on_users_content: "Flags on %{user}'s content"
   flickr_account_information: Your Flickr Account Information
@@ -1511,6 +1525,7 @@ en:
   help_confirm_observations!: Help confirm observations!
   help_faq: Help / FAQ
   help_out!: Help Out!
+  help_support_inaturalist: "Help Support iNaturalist"
   helped_the_observer_make: helped the observer make their final ID (i.e. they were made before the final ID and they match it)
   here_are_3_examples: Here are 3 examples of well-formed data
   here_are_our_top_species_suggestions: Here are our top species suggestions
@@ -1522,6 +1537,7 @@ en:
   hi_user: "Hi %{user}"
   hide: Hide
   hide_details: Hide Details
+  hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
   high: High
   highest_rank: Highest Rank
@@ -1558,7 +1574,8 @@ en:
   id_withdrawn: ID Withdrawn
   ids_by_taxon: IDs By Taxon
   identify: Identify
-  identify_observations: "Identify observations"
+  identify_observations: "Identify Observations"
+  identify_observations_by_these_users: Identify Observations By These Users
   identify_title: "Identify"
   identification: identification
   identification_by_user: Identification by %{user}
@@ -1571,6 +1588,13 @@ en:
   identifications: Identifications
   identifications_by: "Identifications by %{user}"
   identified?: identified
+  computer_vision_suggestion: Computer Vision Suggestion
+  computer_vision_suggestion_desc: |
+    Computer vision is the process of teaching computers to recognize patterns
+    in images. We provide tools that use computer vision models trained on the
+    community's photos to provide identification suggestions, like the auto-
+    complete and comparison features. This label indicates when a person added
+    an identification using one of these tools.
   identifiers: Identifiers
   identotron: Identotron
   identotron_for: Identotron for
@@ -1840,6 +1864,7 @@ en:
   life_lists_automatically_fill: Life lists automatically fill up with new taxa as you observe them, and they can be restricted to higher level parent taxa, e.g. a life list of birds in the crow family (Corvidae).
   life_list_first: "life list first"
   life_list_firsts: "life list firsts"
+  linear_scale_label: Linear
   link: Link
   link_or_unlink_your_facebook_account: Link or unlink your Facebook account
   link_or_unlink_your_flickr_account: Link or unlink your Flickr account
@@ -1860,6 +1885,7 @@ en:
   linked_flickr_hotwo: "You can activate your Flickr account with %{site_name} to add photos by clicking on this link."
   linked_flickr_password_html: "<strong>We will never ask you for your Flickr password</strong> (but Flickr might, check the url that the button sends you and make sure it's Flickr.com)."
   linked_flickr_photo_copy_html: "<strong>We will never store copies of your photos or change your Flickr data (unless you ask us to), ever.</strong> We care too much about birds, bugs and slugs to want to mess with your information!"
+  linkedin: LinkedIn
   list: List
   list_deleted: List deleted.
   list_saved: List saved.
@@ -1948,6 +1974,7 @@ en:
   location_specified: Location specified
   locked_taxa_will_not_allow_new: Locked taxa will not allow new descendent taxa to be added to them. So if you locked Amphibia and someone tried to import <i>Rana catesbeiana</i> from an external name provider, the new taxon would be created but it could not be classified as an amphibian. When this happens, the newly added taxa should be flagged for curator attention.  This should really only be used for taxa for which we think we already have all the descendants. Curator can override this by editing taxa and entering parent IDs directly, but please consider merging new taxa into existing ones instead.
   log_in: Log In
+  log_scale_label: Log
   logged_in_as: Logged in as
   login_slash_username: Login / username
   logo:
@@ -2166,7 +2193,7 @@ en:
   new_custom_field_for: New custom field for
   new_flag_for: New Flag for 
   new_guide: New Guide
-  new_journal_posts: New Journal Post
+  new_journal_post: New Journal Post
   new_lexicon: New Lexicon
   new_list: New List
   new_members: "New members"
@@ -2174,6 +2201,7 @@ en:
   new_observation_field: New observation field
   new_observation_rules: New Observation Rules
   new_observations: New observations
+  new_observations_this_year: New Observations This Year
   new_observations_ellispsis: "New observations..."
   new_observations_from_place_html: "New observations from %{place}"
   new_observations_may_take_up_to:
@@ -2185,6 +2213,8 @@ en:
   new_project_asset: New project_asset
   new_project_asset_for: New Project Asset for
   new_source: New Source
+  new_species_added_in_interval: New Species Added In %{interval}
+  new_species_added_in_interval_x_of_y: New Species Added In %{interval} (Showing %{x} of %{y})
   new_taxon_change: New taxon change
   new_taxon_link: New Taxon Link
   new_taxon_name: New taxon name
@@ -2195,8 +2225,13 @@ en:
   new_updates_in_the_last_24_hours_from: "New updates in the last 24 hours from %{site_name}"
   new_user_rules: New User Rules
   new_users: New Users
+  new_users_this_year: New Users This Year
   new_users_w_7_obs: New Users w/ 7 Obs
   new_users_week: New Users / Week
+  newly_added: Newly Added
+  newly_added_species: Newly Added Species
+  newly_observed_species: Newly Observed Species
+  newly_observed_species_this_year: Newly Added Species This Year
   news: News
   next: Next
   next_observation: Next Observation
@@ -2264,6 +2299,7 @@ en:
   no_ones_observed: No one's observed
   no_photo: No Photo
   no_photos: No photos
+  no_photos_of_that_size: No photo of that size.
   no_places_available: No places available
   no_places_selected: No places selected.
   no_post_yet: No posts yet!
@@ -2321,6 +2357,7 @@ en:
   not_on_this_list: Not on this list.
   not_recorded: Not recorded
   not_seeing_what_looking_for: Not Seeing What You're Looking For?
+  not_spam: Not Spam
   not_yet: Not yet
   note: Note
   notes: Notes
@@ -2445,6 +2482,7 @@ en:
   observations_will_revert_to_casual: Observations will revert to "casual" grade if the above conditions aren't met or
   observations_with_this_field: Observations with this field
   observations_with_this_field_and_value: Observations with this field and value
+  observations_without_media: Observations w/o Media
   observationcounts_refreshed: Observation counts refreshed
   observed: Observed
   observed_by: Observed by
@@ -2626,6 +2664,7 @@ en:
   photo_browser: Photo Browser
   photo_by: Photo by
   photo_by_id_attribution: "Photo %{id}, %{attribution}"
+  photo_credits: Photo Credits
   photo_deleted: Photo deleted
   photo_destroyed_because_it_was_deleted_from: "Photo destroyed b/c it was deleted from the external site or %{site_name} no longer has permission to view it"
   photo_hosting_accounts: Photo hosting accounts
@@ -2779,60 +2818,268 @@ en:
   places_name:
     afghanistan: Afghanistan
     africa: Africa
+    akrotiri_and_dhekelia: Akrotiri and Dhekelia
+    aland: Åland
+    albania: Albania
+    algeria: Algeria
+    american_samoa: American Samoa
+    andorra: Andorra
+    angola: Angola
+    anguilla: Anguilla
+    antarctica: Antarctica
     antigua_and_barbuda: Antigua and Barbuda
+    argentina: Argentina
+    armenia: Armenia
+    aruba: Aruba
     australia: Australia
     austria: Austria
+    azerbaijan: Azerbaijan
+    bahamas: Bahamas
+    bahrain: Bahrain
+    bangladesh: Bangladesh
+    barbados: Barbados
+    belarus: Belarus
     belgium: Belgium
+    belize: Belize
+    benin: Benin
+    bermuda: Bermuda
+    bhutan: Bhutan
+    bolivia: Bolivia
+    bonaire_saint_eustatius_and_saba: Bonaire, Saint Eustatius and Saba
     bosnia_and_herzegovina: Bosnia and Herzegovina
+    botswana: Botswana
+    bouvet_island: Bouvet Island
     brazil: Brazil
+    british_indian_ocean_territory: British Indian Ocean Territory
+    british_virgin_islands: British Virgin Islands
+    brunei: Brunei
+    bulgaria: Bulgaria
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Cambodia
+    cameroon: Cameroon
     canada: Canada
+    cape_verde: Cape Verde
+    cayman_islands: Cayman Islands
+    central_african_republic: Central African Republic
     central_america: Central America
+    chad: Chad
+    chile: Chile
     china: China
+    christmas_island: Christmas Island
+    clipperton_island: Clipperton Island
+    cocos_islands: Cocos Islands
     colombia: Colombia
+    commonwealth_of_the_northern_mariana_islands: Commonwealth of the Northern Mariana Islands
+    comoros: Comoros
+    cook_islands: Cook Islands
+    costa_rica: Costa Rica
+    cote_d_ivoire: Côte d'Ivoire
+    croatia: Croatia
+    cuba: Cuba
+    curacao: Curaçao
+    cyprus: Cyprus
+    czech_republic: Czech Republic
+    democratic_republic_of_the_congo: Democratic Republic of the Congo
     denmark: Denmark
+    djibouti: Djibouti
+    dominica: Dominica
+    dominican_republic: Dominican Republic
+    east_timor: East Timor
+    ecuador: Ecuador
     egypt: Egypt
+    el_salvador: El Salvador
     equatorial_guinea: Equatorial Guinea
+    eritrea: Eritrea
+    estonia: Estonia
+    ethiopia: Ethiopia
     europe: Europe
+    falkland_islands: Falkland Islands
+    faroe_islands: Faroe Islands
+    fiji: Fiji
+    finland: Finland
     france: France
+    french_guiana: French Guiana
+    french_polynesia: French Polynesia
+    french_southern_territories: French Southern Territories
+    gabon: Gabon
+    gambia: Gambia
+    georgia: Georgia
     germany: Germany
+    ghana: Ghana
+    gibraltar: Gibraltar
     greece: Greece
+    greenland: Greenland
+    grenada: Grenada
+    guadeloupe: Guadeloupe
+    guam: Guam
+    guatemala: Guatemala
+    guernsey: Guernsey
+    guinea: Guinea
+    guinea_bissau: Guinea-Bissau
+    guyana: Guyana
+    haiti: Haiti
+    heard_island_and_mcdonald_islands: Heard Island and McDonald Islands
+    honduras: Honduras
     hong_kong: Hong Kong
     hungary: Hungary
-    italy: Italy
+    iceland: Iceland
     india: India
+    indonesia: Indonesia
+    iran: Iran
     iraq: Iraq
+    ireland: Ireland
+    isle_of_man: Isle of Man
+    israel: Israel
+    italy: Italy
+    jamaica: Jamaica
     japan: Japan
+    jersey: Jersey
+    jordan: Jordan
+    kazakhstan: Kazakhstan
+    kenya: Kenya
+    kiribati: Kiribati
     korea: Korea
+    kosovo: Kosovo
+    kuwait: Kuwait
+    kyrgyzstan: Kyrgyzstan
+    laos: Laos
+    latvia: Latvia
+    lebanon: Lebanon
+    lesotho: Lesotho
+    liberia: Liberia
+    libya: Libya
+    liechtenstein: Liechtenstein
+    lithuania: Lithuania
+    luxembourg: Luxembourg
+    macao: Macao
+    macedonia: Macedonia
+    madagascar: Madagascar
+    malawi: Malawi
+    malaysia: Malaysia
+    maldives: Maldives
+    mali: Mali
+    malta: Malta
+    marshall_islands: Marshall Islands
     martinique: Martinique
-    mexico: México
+    mauritania: Mauritania
+    mauritius: Mauritius
+    mayotte: Mayotte
+    mexico: Mexico
+    micronesia: Micronesia
+    moldova: Moldova
+    monaco: Monaco
+    mongolia: Mongolia
+    montenegro: Montenegro
+    montserrat: Montserrat
+    morocco: Morocco
+    mozambique: Mozambique
+    myanmar: Myanmar
+    namibia: Namibia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Netherlands
+    new_caledonia: New Caledonia
     new_guinea: New Guinea
     new_zealand: New Zealand
+    nicaragua: Nicaragua
+    niger: Niger
+    nigeria: Nigeria
+    niue: Niue
+    norfolk_island: Norfolk Island
     north_africa: North Africa
     north_america: North America
+    north_korea: North Korea
+    northern_cyprus: Northern Cyprus
+    norway: Norway
+    oman: Oman
+    pakistan: Pakistan
+    palau: Palau
+    palestina: Palestina
     palestine: Palestine
     panama: Panama
+    papua_new_guinea: Papua New Guinea
+    paraguay: Paraguay
     peru: Peru
+    philippines: Philippines
+    pitcairn_islands: Pitcairn Islands
     poland: Poland
     portugal: Portugal
+    puerto_rico: Puerto Rico
+    qatar: Qatar
     republic_of_congo: Republic of Congo
+    reunion: Reunion
+    romania: Romania
     russia: Russia
-    saudi_arabia: Saudi Arabia
+    rwanda: Rwanda
+    saint_barthelemy: Saint-Barthélemy
+    saint_helena: Saint Helena
+    saint_kitts_and_nevis: Saint Kitts and Nevis
+    saint_lucia: Saint Lucia
+    saint_martin: Saint-Martin
+    saint_pierre_and_miquelon: Saint Pierre and Miquelon
+    saint_vincent_and_the_grenadines: Saint Vincent and the Grenadines
+    samoa: Samoa
+    san_marino: San Marino
     sao_tome_and_principe: Sao Tome and Principe
+    saudi_arabia: Saudi Arabia
+    senegal: Senegal
+    serbia: Serbia
+    seychelles: Seychelles
+    sierra_leone: Sierra Leone
     singapore: Singapore
+    sint_maarten: Sint Maarten
+    slovakia: Slovakia
+    slovenia: Slovenia
+    solomon_islands: Solomon Islands
+    somalia: Somalia
     south_africa: South Africa
     south_america: South America
+    south_georgia_and_the_south_sandwich_islands: South Georgia and the South Sandwich Islands
+    south_korea: South Korea
+    south_sudan: South Sudan
     spain: Spain
+    sri_lanka: Sri Lanka
+    sudan: Sudan
+    suriname: Suriname
+    svalbard_and_jan_mayen: Svalbard and Jan Mayen
+    swaziland: Swaziland
     sweden: Sweden
     switzerland: Switzerland
     syria: Syria
+    taiwan: Taiwan
+    tajikistan: Tajikistan
+    tanzania: Tanzania
     thailand: Thailand
+    togo: Togo
+    tokelau: Tokelau
+    tonga: Tonga
     trinidad_and_tobago: Trinidad and Tobago
+    tunisia: Tunisia
     turkey: Turkey
+    turkmenistan: Turkmenistan
+    turks_and_caicos_islands: Turks and Caicos Islands
+    tuvalu: Tuvalu
+    uganda: Uganda
+    ukraine: Ukraine
+    united_arab_emirates: United Arab Emirates
     united_kingdom: United Kingdom
     united_states: United States
+    united_states_minor_outlying_islands: United States Minor Outlying Islands
+    united_states_virgin_islands: United States Virgin Islands
+    uruguay: Uruguay
+    uzbekistan: Uzbekistan
+    vanuatu: Vanuatu
+    vatican_city: Vatican City
+    venezuela: Venezuela
+    vietnam: Vietnam
     virgin_islands: Virgin Islands
+    wallis_and_futuna: Wallis and Futuna
     west_africa: West Africa
+    western_sahara: Western Sahara
+    yemen: Yemen
+    zambia: Zambia
+    zimbabwe: Zimbabwe
   places_of_interest: Places of Interest
   places_merged_successfully: Places merged successfully!
   plants: plants
@@ -2888,10 +3135,16 @@ en:
   private: private
   private_: Private
   private_description: "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. Observations with private coordinates will still be used to verify place check lists."
+  probably_spam: Probably Spam
   proceed: Proceed
   processing: Processing
   processing3p: "Processing..."
   profile: Profile
+  profile_visibility_pending_account_verification: Profile visibility pending account verification
+  profile_visibility_desc: |
+    In an effort to keep spam off of %{site_name}, user profiles are only
+    publicly visible after a user has contributed several Research Grade
+    observations.
   project: Project
   project_added_your_observations: Project added your observations
   project_admins:
@@ -2907,7 +3160,7 @@ en:
   project_created_on: created this project on %{date}
   project_curator_changes: Project curator changes
   project_curator_id: Project curator ID
-  project_curator_tools: Project curator tools
+  project_curator_tools: Project Curator Tools
   project_curators: Project Curators
   project_group_label: Group
   project_group_description: Group the project belongs to
@@ -3024,6 +3277,7 @@ en:
   real_time_stats: Real Time Stats
   real_time_discussions: Real Time Discussions
   reason: Reason
+  reason_label: "Reason:"
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   recaptcha_verification_failed: reCAPTCHA verification failed
   receive_email_notifications_when_people_leave_you: Receive email notifications about
@@ -3034,6 +3288,7 @@ en:
   recent_comments_on_your_stuff: Recent Comments on Your Stuff
   recent_evidence?: Recent evidence?
   recent_evidence_of_organism: Recent evidence of an organism
+  recent_new_users: Recent New Users
   recent_observations: Recent observations
   recent_observations_: Recent Observations
   recent_post: Recent post
@@ -3114,6 +3369,7 @@ en:
   removed_project_user: Removed project user
   removing: "Removing..."
   reorder_by_taxonomy: Reorder by taxonomy
+  repair_broken_urls: Repair broken URLs
   repair_doesnt_work_for_that_kind_of_photo: Repair doesn't work for that kind of photo
   repair_external_photos: Repair External Photos
   replace_boundary_with_kml: Replace boundary with KML
@@ -3144,6 +3400,7 @@ en:
   resolve_this_flag: Resolve this Flag
   resolved: Resolved
   resolved_by: Resolved by
+  resolved_by_user_on_date_html: Resolved by %{user} on %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
   restore: Restore
   restoring: Restoring...
@@ -3170,6 +3427,7 @@ en:
     must_be_observed_in_place: must be observed in Place
     must_be_in: must be in taxon
     must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
+  running_total: Running Total
   said: said
   sat: Sat
   satellite: satellite
@@ -3197,6 +3455,7 @@ en:
     one: Saving observation...
     other: Saving %{num} of %{count} observations...
   saving_verb: Saving
+  scale_colon: "Scale:"
   schemes: Schemes
   schemes_including: Schemes including
   scientific_names: Scientific names
@@ -3271,6 +3530,7 @@ en:
   set_license: Set license
   settings: settings
   share: Share
+  share_colon: "Share:"
   share_your_observation_with_researchers_by: Share your observation with researchers by
   short_code_for_this_place: Short code for this place, e.g. US for the United States
   short_or_abbreviated_title_for_display: Short or abbreviated title for display in space-limited areas. Max 10 characters.
@@ -3288,6 +3548,7 @@ en:
   show_off_your_recent_observations: Show off your recent observations on your own blog or website!
   show_only: Show only
   show_relative_proportions_of_all_observations: Show relative proportions of all observations
+  show_running_total: Show Running Total
   show_scientific_name_first: Show scientific names first
   show_taxa_from_both: (show taxa from both lists)
   show_taxa_from_everywhere: "Show taxa from everywhere"
@@ -3330,6 +3591,9 @@ en:
   some_observations_failed_to_save: Some observations failed to save
   some_of_those_photos_couldnt_be_saved: "Some of those photos couldn't be saved: %{error}"
   some_other_reason: Some other reason you can explain below.
+  duplicate_observation_flag_warning: |
+    For duplicate observations, please ask the observer to address the issue
+    instead of adding a flag, because site curators cannot remove observations.
   some_people: Some people
   some_people_that: Some people that
   some_rights_reserved: some rights reserved
@@ -3413,6 +3677,7 @@ en:
   sources_and_credits: Sources and Credits
   sourcing: Sourcing
   spam: Spam
+  spammer: Spammer
   spanish: Spanish
   species: Species
   species_by_category: species by category
@@ -3459,6 +3724,7 @@ en:
   stop_following_user: "Stop following %{user}"
   stop_testing: Stop Testing
   stop_updating_position: Stop updating position
+  studies_that_used_inaturalist_data_in_year: Studies That Used iNaturalist Data in %{year}
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
   subject_affecting_stuff_html: "%{subject} affecting %{stuff}"
@@ -3497,6 +3763,7 @@ en:
   suggestions: Suggestions
   summary: Summary
   supporting: Supporting
+  support_inaturalist: Support iNaturalist
   suspicious_photos: Suspicious photos
   siutable_observations: suitable observations
   sun: Sun
@@ -3650,6 +3917,7 @@ en:
   terrain: terrain
   text: Text
   text_: text
+  thanks!: Thanks!
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_using: Thanks for using
   thanks_from_all_of_us_here_at: Thanks from all of us here at
@@ -3999,11 +4267,14 @@ en:
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
+  user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
+  user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_id: User has opted-out of Community ID
   user_has_opted_out_of_community_ids: "%{user} has chosen to retain control over the taxa associated with their observations"
   user_has_opted_out_of_community_ids_for_this_obs: "%{user} has chosen to retain control over the taxa associated with this observation"
   user_hasnt:  "%{user} hasnt"
+  user_helped_x_people_with_y_ids_html: "%{user} helped <strong>%{x} people</strong> with <strong>%{y} IDs</strong>"
   user_invite_observation_to_project: '%{user} would like to invite your observation "%{observation}" to the %{project} project.'
   user_invited_you_to_join_html: "%{user} invited you to join"
   user_invited_you_to_join_project: "%{user} invited you to join %{project}"
@@ -4080,6 +4351,7 @@ en:
   view_observations: View Observations
   view_observation_flags: View observation flags
   view_observations_by_everyone: View observations by everyone
+  view_observations_by_these_users: View Observations By These Users
   view_observations_of_this_taxon_by: View observations of this taxon by
   view_observations_raquo: "View observations &raquo;"
   view_on: View on
@@ -4439,6 +4711,7 @@ en:
   youve_successfully_linked_your_provider_account: "You've successfully linked your %{provider} account"
   your_dashboard_helps_you: "Your dashboard helps you keep track of what people are doing on the site. To follow someone's updates, click the 'Follow [name]' link in the header when viewing their observations or profile."
   verifiable: Verifiable
+  verifiable_observations: Verifiable Observations
   views:
     views: 'Views'
     announcements:
@@ -4466,6 +4739,36 @@ en:
           please_read_the_teachers_guide_html: |
             If so, please read our <a href="%{url}">Teacher's Guide</a> for
             tips on using %{site_name} with students.
+    donate:
+      donate_short_desc: "Donate now to show your support!"
+      donate_desc_html: |
+        <p class="lead">
+          <strong>iNaturalist is one of the world's largest communities dedicated to
+          exploring biodiversity. Thank you for being part of it!</strong>
+        </p>
+        <p class="lead">
+          If you believe in the power of this global community of nature lovers
+          to share knowledge and generate irreplaceable biodiversity data,
+          please consider a one-time or recurring gift.
+        </p>
+        <p class="lead">
+          Your donation helps support iNaturalist as the community grows, from
+          advancing computer vision and implementing new features to supporting
+          our servers and staff.
+        </p>
+        <p class="text-muted">
+          iNaturalist is a joint initiative of the California Academy of Sciences
+          and the National Geographic Society. All donations will be received by
+          the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
+          organization based in the United States of America.
+        </p>
+      post_donate_social_media_text: I support iNaturalist because...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |
+          Please resolve <code>spam</code> and <code>copyright
+          infringement</code> flags only if the content is not spam or not an
+          infringement of copyright, respectively.
     guides:
       index:
         funding_html: |
@@ -5146,6 +5449,29 @@ en:
           You have been inactive on %{site_name} for a while, so we have suspended
           your subscriptions. To resume getting updates on site activity, please
           <a href="%{login_url}">log in to your account</a> again.
+      photos_missing:
+        subject: Some photos need repairing
+        we_have_been_housekeeping: |
+          We have been doing some housekeeping and found photos connected to your observations
+          that are no longer accessible from their original source. The photos are being hosted
+          by %{providers}.
+        we_would_like_to_remove: |
+          We would like to remove all references to broken photos in the near future, but we
+          don't want to get rid of anything that can be saved. It is possible some of these photos
+          still exist at their external hosts and can be repaired. Some photos may have been
+          uploaded by connecting your <a href='%{account_url}'>%{site_name} account</a> to another
+          photo hosting account, and this connection has expired and needs to be refreshed.
+        you_can_attempt_repair: |
+          You can attempt to repair the photos by visiting the photo page and clicking the
+          "%{repair_link_text}" link. If you know the photo no longer exists, you can choose to
+          delete it.
+        please_address: |
+          Please address these issues <b>in the next 30 days</b>. After 30
+          days we will begin to delete broken photos from iNaturalist. All of your observations
+          will remain. They will be reassessed after the photos are deleted, and it is possible
+          some research grade observations will become casual if they no longer have any photos.
+        we_included_links: |
+          We've included links to the affected photos below.
     photos:
       inviter:
         automatically_add_to_project: Automatically add to project
@@ -5580,6 +5906,51 @@ en:
           Created via <a href="https://www.inaturalist.org">iNaturalist</a>
           or <a href="%{url}">iNaturalist Network</a> websites
       year:
+        include_usa: Include US
+        growth_by_country_desc_html: |
+          Where is growth happening? This map and chart attempt to break this
+          down by country, which turns out to be complicated because growth by
+          country can be very imbalanced. Here we've chosen to omit the United
+          States and use a log scale by default to accentuate differences
+          between other countries. If a country is colored black that means it
+          did not contribute signicantly to a percentage, or it had no growth
+          this year, or did not have more observations this year than last year
+          (hover over a country to see a little more detail). <strong>"% of
+          total growth"</strong> means how much of worldwide growth came from a
+          particular country, e.g. if there were 20 observations in 2018 and 10
+          in 2017, that would be 10 observations of growth, and if 5 of those
+          observations were from Benin, then Benin contributed 50% of total
+          growth. <strong>"% growth"</strong> means the number of observations
+          this year in that country as a percent of observations last year in
+          that country, so if there were 10 observations in Laos last year but
+          20 this year, that would be 100% growth, and if there were 0 last year
+          and 1 this year, that's infinity % growth.
+        growth_by_country_title: Growth By Country
+        growth_in_year_obs: "Growth in %{year} (obs)"
+        growth_title: Growth
+        new_species_desc: |
+          Species that were observed for the first time on %{site_name} this year.
+          Showing %{x} of <a href="%{url}">%{y} species</a>.
+        new_species_desc_html: |
+          Species that were added for the first time this year.
+          Click on a month to view some of the new species added in that month.
+          You can also view the total species accumulation, or move the slider
+          back in time to see other newly-observed species. This chart shows
+          species from verifiable observations by the month they were uploaded
+          to %{site_name} (not the month they were observed). It does not
+          include higher or lower level taxa, so an observation identified as
+          Mammalia doesn't count, and an observation of <i>Canis lupus</i> ssp.
+          <i>arctos</i> will just count as <i>Canis lupus</i>.
+        obs_in_year: Obs in %{year}
+        percent_growth_in_year: "% Growth in %{year}"
+        percent_of_total_growth: "% of Total Growth"
+        publications_desc_html: |
+          Impact data and visualizations courtesy of
+          <a href="https://www.altmetric.com">Altmetric</a>. Information
+          about data usage courtesy of our friends at the
+          <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
+          <br/>
+          <a href="%{url}">View all %{numStudies} studies</a>
         sunburst_desc_html: |
           Observed taxa arranged as a hierarchical "sunburst" diagram. The base
           of the hierarchy is at the center, starting with "Life" and ending
@@ -5931,6 +6302,39 @@ en:
         scientific_name_first_desc: |
           Show scientific names before common names.
         youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
+      recent:
+        about_recent_users: About
+        definitions_html:
+          <dl>
+            <dt>Probably Spam</dt>
+            <dd>
+              User that is probably a spammer, which means they have no
+              observations or identifications but they do have a profile
+              description.
+            </dd>
+            <dt>Auto Spam</dt>
+            <dd>
+              Spammer that was automatically marked as a spammer by the system.
+            </dd>
+            <dt>Manual Spam</dt>
+            <dd>
+              Spammer that was manually marked as a spammer by a site curator.
+            </dd>
+            <dt>False Positives</dt>
+            <dd>
+              Users that were flagged as spammers but the flags were resolved
+              by site curators because they weren't really spammers.
+            </dd>
+          </dl>
+        recent_users_desc_html: |
+          <p>
+            We want to welcome new users, but we also want to combat
+            spammers. Hopefully this tool will help with both. We are
+            automatically flagging many users as spammers using <a
+            href="https://akismet.com/">Akismet</a>, but Akismet isn't perfect,
+            so if you want to put in a few minutes marking new accounts as
+            spammers or not spammers, it would help.
+          </p>
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended

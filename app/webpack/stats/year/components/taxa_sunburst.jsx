@@ -1,10 +1,12 @@
+/* eslint indent: 0 */
+/* global inaturalist */
+/* global iNaturalist */
+
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
 import _ from "lodash";
 import * as d3 from "d3";
-/* global inaturalist */
-/* global iNaturalist */
 
 // Based on https://bl.ocks.org/maybelinot/5552606564ef37b5de7e47ed2b7dc099
 class TaxaSunburst extends React.Component {
@@ -32,27 +34,27 @@ class TaxaSunburst extends React.Component {
 
     // This draws the d attribute for the visible arcs
     const arc = d3.arc( )
-        .startAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x0 ) ) ) )
-        .endAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) ) )
-        .innerRadius( d => Math.max( 0, y( d.y0 ) ) )
-        .outerRadius( d => Math.max( 0, y( d.y1 ) ) );
-    
+      .startAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x0 ) ) ) )
+      .endAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) ) )
+      .innerRadius( d => Math.max( 0, y( d.y0 ) ) )
+      .outerRadius( d => Math.max( 0, y( d.y1 ) ) );
+
     // These arcs are for the text labels in the center of the visible arcs
     const centerArc = d3.arc( )
-        .startAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x0 ) ) ) )
-        .endAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) ) )
-        .innerRadius( d => {
-          const sectionWidth = Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) );
-          return Math.max( 0, y( d.y0 ) ) + sectionWidth / 2;
-        } )
-        .outerRadius( d => {
-          const sectionWidth = Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) );
-          return Math.max( 0, y( d.y0 ) ) + sectionWidth / 2;
-        } );
+      .startAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x0 ) ) ) )
+      .endAngle( d => Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) ) )
+      .innerRadius( d => {
+        const sectionWidth = Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) );
+        return Math.max( 0, y( d.y0 ) ) + sectionWidth / 2;
+      } )
+      .outerRadius( d => {
+        const sectionWidth = Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) );
+        return Math.max( 0, y( d.y0 ) ) + sectionWidth / 2;
+      } );
     svg = svg.attr( "width", width )
-       .attr( "height", height )
-       .append( "g" )
-       .attr( "transform", `translate(${width / 2},${height / 2})` );
+      .attr( "height", height )
+      .append( "g" )
+      .attr( "transform", `translate(${width / 2},${height / 2})` );
 
     // This strategy seems to result in a bunch of zero-angle arcs for things
     // that shouldn't be visible. This makes sure they're invisible
@@ -60,7 +62,8 @@ class TaxaSunburst extends React.Component {
       const startAngle = Math.max( 0, Math.min( 2 * Math.PI, x( d.x0 ) ) );
       const endAngle = Math.max( 0, Math.min( 2 * Math.PI, x( d.x1 ) ) );
       const angle = endAngle - startAngle;
-      const arcRadius = Math.max( 0, y( d.y1 ) ) - ( Math.max( 0, y( d.y1 ) ) - Math.max( 0, y( d.y0 ) ) );
+      const arcRadius = Math.max( 0, y( d.y1 ) ) - ( Math.max( 0, y( d.y1 ) )
+        - Math.max( 0, y( d.y0 ) ) );
       const arcWidth = arcRadius * angle;
       const charWidth = 8;
       const labelWidth = ( d.data.preferred_common_name || d.data.name ).length * charWidth;
@@ -83,16 +86,16 @@ class TaxaSunburst extends React.Component {
         return;
       }
       const tween = svg.transition( )
-          .duration( 750 )
-          .tween( "scale", ( ) => {
-            const xd = d3.interpolate( x.domain( ), [d.x0, d.x1] );
-            const yd = d3.interpolate( y.domain( ), [d.y0, 1] );
-            const yr = d3.interpolate( y.range( ), [d.y0 ? 20 : 0, radius] );
-            return t => {
-              x.domain( xd( t ) );
-              y.domain( yd( t ) ).range( yr( t ) );
-            };
-          } );
+        .duration( 750 )
+        .tween( "scale", ( ) => {
+          const xd = d3.interpolate( x.domain( ), [d.x0, d.x1] );
+          const yd = d3.interpolate( y.domain( ), [d.y0, 1] );
+          const yr = d3.interpolate( y.range( ), [d.y0 ? 20 : 0, radius] );
+          return t => {
+            x.domain( xd( t ) );
+            y.domain( yd( t ) ).range( yr( t ) );
+          };
+        } );
       tween.selectAll( "path.sunburst-arc" )
         .attrTween( "d", dd => ( ) => arc( dd ) )
         .styleTween( "visibility", dd => ( ) => {
@@ -108,21 +111,22 @@ class TaxaSunburst extends React.Component {
     };
 
     // Set up the hierarchy
-    const taxaCounts = _.keyBy( this.props.data, r => r.taxon.id );
+    const { data, rootTaxonID } = this.props;
+    const taxaCounts = _.keyBy( data, r => r.taxon.id );
     const children = { };
-    _.each( this.props.data, result => {
+    _.each( data, result => {
       if ( !result.isLeaf ) { return; }
-      if ( result.taxon.ancestor_ids[0] !== this.props.rootTaxonID ) { return; }
+      if ( result.taxon.ancestor_ids[0] !== rootTaxonID ) { return; }
       let lastAncestorID;
       _.each( result.taxon.ancestor_ids, ancestorID => {
-        if ( ancestorID !== this.props.rootTaxonID && ancestorID !== lastAncestorID ) {
+        if ( ancestorID !== rootTaxonID && ancestorID !== lastAncestorID ) {
           children[lastAncestorID] = children[lastAncestorID] || { };
           children[lastAncestorID][ancestorID] = true;
         }
         lastAncestorID = ancestorID;
       } );
     } );
-    const recurse = ( taxonID ) => {
+    const recurse = taxonID => {
       const thisData = {
         id: taxonID,
         name: taxaCounts[taxonID] ? taxaCounts[taxonID].taxon.name : I18n.t( "unknown" ),
@@ -139,14 +143,14 @@ class TaxaSunburst extends React.Component {
       }
       return thisData;
     };
-    const rootData = recurse( this.props.rootTaxonID );
+    const rootData = recurse( rootTaxonID );
     const theRoot = d3.hierarchy( rootData );
     theRoot.sum( d => d.size );
 
     const colorForDatum = d => {
       if ( d.data.iconicTaxonID && inaturalist.ICONIC_TAXA[d.data.iconicTaxonID] ) {
-        const iconicTaxonColor = iNaturalist.Map.
-          ICONIC_TAXON_COLORS[inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name];
+        const iconicTaxonColor = iNaturalist.Map
+          .ICONIC_TAXON_COLORS[inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name];
         let c = d3.color( iconicTaxonColor );
         if ( inaturalist.ICONIC_TAXA[d.data.iconicTaxonID].name === "Mollusca" ) {
           c = c.brighter( );
@@ -180,6 +184,7 @@ class TaxaSunburst extends React.Component {
     };
 
     // Draw the arcs
+    const { labelForDatum } = this.props;
     svg.selectAll( "path" )
         .data( partition( theRoot ).descendants( ) )
       .enter( ).append( "path" )
@@ -189,17 +194,19 @@ class TaxaSunburst extends React.Component {
         .classed( "sunburst-arc", true )
         .on( "click", click )
         .on( "mouseover", d => {
-          if ( this.props.labelForDatum ) {
-            tooltip.html( this.props.labelForDatum( d ) );
+          if ( labelForDatum ) {
+            tooltip.html( labelForDatum( d ) );
           } else {
             tooltip.html( d.data.name );
           }
           tooltip.style( "background-color", d3.color( colorForDatum( d ) ).darker( 2 ) );
           return tooltip.style( "visibility", "visible" );
         } )
-        .on( "mousemove", ( ) => tooltip.style(
-          "top", `${event.offsetY - 10}px` ).style( "left", `${event.offsetX + 10}px`
-        ) )
+        .on( "mousemove", ( ) => {
+          const pos = d3.mouse( mountNode );
+          return tooltip.style( "top", `${pos[1] - 10}px` )
+            .style( "left", `${pos[0] + 10}px` );
+        } )
         .on( "mouseout", ( ) => tooltip.style( "visibility", "hidden" ) );
 
     const labels = svg.append( "g" );
@@ -237,9 +244,9 @@ class TaxaSunburst extends React.Component {
         <h3><span>{ I18n.t( "views.welcome.index.species_observed" ) }</span></h3>
         <p
           className="text-muted"
-          dangerouslySetInnerHTML={ { __html: I18n.t( "views.stats.year.sunburst_desc_html" ) } }
+          dangerouslySetInnerHTML={{ __html: I18n.t( "views.stats.year.sunburst_desc_html" ) }}
         />
-        <div className="chart"></div>
+        <div className="chart" />
       </div>
     );
   }

@@ -52,6 +52,7 @@ class ObservationsController < ApplicationController
   before_filter :load_observation, :only => load_only
   blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
     :instance => :observation
+  check_spam only: [:create, :update], instance: :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
@@ -669,6 +670,7 @@ class ObservationsController < ApplicationController
       end
       format.json do
         if errors
+          Rails.logger.debug "[DEBUG] errors: #{@observations[0].errors.full_messages.to_sentence}"
           json = if @observations.size == 1 && is_iphone_app_2?
             {:error => @observations.map{|o| o.errors.full_messages}.flatten.uniq.compact.to_sentence}
           else
@@ -800,6 +802,8 @@ class ObservationsController < ApplicationController
       end
       
       observation.editing_user_id = current_user.id
+
+      observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
       
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true

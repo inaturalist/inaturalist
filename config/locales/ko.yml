@@ -584,6 +584,7 @@ ko:
   classification: 분류
   clear: 지우기
   clear_color_filters: 컬러 필터 지우기
+  clear_filters: 필터 지움
   clear_search: 검색 지우기
   click_on_the_map_to: 지도를 클릭하여 당신의 관찰을 놓으세요
   click_the_map: <strong>지도를 클릭하여</strong> 장소를 추가하세요.
@@ -747,6 +748,7 @@ ko:
   data_deficient: 데이터 부족
   data_quality: 데이터 품질
   data_quality_assessment: 데이터 품질 평가
+  data_used: '사용된 데이터:'
   datatype: 데이터 유형
   date_: 날짜
   date?: 날짜?
@@ -840,6 +842,7 @@ ko:
   did_not_send_invitations_because: '초대장을 보내지 않은 이유:'
   did_you_mean: '이것을 찾으셨나요:'
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
+  disable: 비활성화
   disagree: 동의하지 않음
   disagree_: 동의하지 않음
   disconnect_provider: '%{provider} 연결 끊기'
@@ -1198,6 +1201,7 @@ ko:
   help_confirm_observations!: 관찰을 인증하는 것을 도와주세요!
   help_faq: 도움말 / FAQ
   help_out!: 도와주세요!
+  help_support_inaturalist: iNaturalist 지원 돕기
   here_are_3_examples: 잘 만들어진 데이터의 3가지 예시이다
   here_are_some_things_you_can_do_meantime: '그 동안 하실 수 있는 몇 가지 일들은 다음와 같습니다:'
   hi: 안녕하세요,
@@ -1450,6 +1454,7 @@ ko:
     Flickr은 물어볼 수 있기에 URL이 Flickr로 가는지 주소를 꼭 확인해 주십시오).
   linked_flickr_photo_copy_html: <strong>우리는 당신이 원하지 않는 한 절대로 당신의 Flickr 정보를 변형하거나
     사진들을 저장하지 않을 것입니다.<strong/> 우리는 당신의 개인정보를 조작하기에는 새와 벌레와 민달팽이를 너무나도 사랑합니다!
+  linkedin: 링크드인
   list: 목록
   list_deleted: 목록 삭제됨.
   list_saved: 목록 저장됨.
@@ -1507,6 +1512,7 @@ ko:
   location_is_obscured: 위치가 가려져 있다
   location_is_private: 위치가 비공개이다
   log_in: 로그인
+  log_scale_label: 로그
   logged_in_as: '로그인한 사용자:'
   login_slash_username: 로그인 / 사용자 이름
   logo:
@@ -1634,7 +1640,7 @@ ko:
   new_custom_field_for: 새로운 자체지정 필드
   new_flag_for: 새로운 플래그
   new_guide: 새로운 가이드
-  new_journal_posts: 새로운 일지
+  new_journal_post: 새로운 일지
   new_list: 새 목록
   new_members: 새 회원
   new_message: 새 메시지
@@ -1662,6 +1668,9 @@ ko:
   new_user_rules: 새로운 사용자 규칙
   new_users: 새 사용자
   new_users_week: 이 주의 새로운 사용자
+  newly_added: 새로 추가됨
+  newly_added_species: 새로 추가된 종
+  newly_observed_species_this_year: 올해 새로 추가된 종
   news: 새 소식
   next: 다음
   next_observation: 다음 관찰
@@ -1724,6 +1733,7 @@ ko:
   no_ones_observed: 관찰한 사람이 없습니다.
   no_photo: 사진 없음
   no_photos: 사진 없음
+  no_photos_of_that_size: 해당 크기의 사진이 없습니다.
   no_places_available: 사용 가능한 장소 없음
   no_places_selected: 선택된 사진 없음
   no_post_yet: 아직 게시글이 없습니다!
@@ -1908,8 +1918,8 @@ ko:
       street: 길
       Time_Zone: '시간대:'
       time_zone: 시간대
-      Town: 마을
-      town: 마을
+      Town: 읍·면·동
+      town: 읍·면·동
       Unknown: 알 수 없음
       unknown: 알 수 없음
   place_name: 지역 이름
@@ -1919,53 +1929,123 @@ ko:
   places_name:
     afghanistan: 아프가니스탄
     africa: 아프리카
+    albania: 알바니아
+    angola: 앙골라
+    antarctica: 남극
+    argentina: 아르헨티나
+    armenia: 아르메니아
     australia: 오스트레일리아
     austria: 오스트리아
+    bangladesh: 방글라데시
+    barbados: 바바도스
     belgium: 벨기에
+    bhutan: 부탄
     brazil: 브라질
+    bulgaria: 불가리아
+    cambodia: 캄보디아
     canada: 캐나다
     central_america: 중앙 아메리카
+    chile: 칠레
     china: 중국
     colombia: 콜롬비아
+    costa_rica: 코스타리카
+    croatia: 크로아티아
+    cuba: 쿠바
+    czech_republic: 체코 공화국
     denmark: 덴마크
+    dominica: 도미니카
+    east_timor: 동티모르
+    ecuador: 에콰도르
     egypt: 이집트
     equatorial_guinea: 적도 기니
     europe: 유럽
+    fiji: 피지
+    finland: 핀란드
     france: 프랑스
+    gambia: 감비아
+    georgia: 조지아
     germany: 독일
+    ghana: 가나
     greece: 그리스
+    guam: 괌
+    guatemala: 과테말라
+    guinea: 기니
     hong_kong: 홍콩
     hungary: 헝가리
-    italy: 이탈리아
     india: 인도
+    iran: 이란
     iraq: 이라크
+    israel: 이스라엘
+    italy: 이탈리아
+    jamaica: 자메이카
     japan: 일본
+    kenya: 케냐
     korea: 한국
+    kosovo: 코소보
+    kuwait: 쿠웨이트
+    laos: 라오스
+    latvia: 라트비아
+    lebanon: 레바논
+    libya: 리비아
+    lithuania: 리투아니아
+    macao: 마카오
+    macedonia: 마케도니아
+    madagascar: 마다가스카르
+    malawi: 말라위
+    marshall_islands: 마셜 제도
     mexico: 멕시코
+    moldova: 몰도바
+    morocco: 모로코
+    nepal: 네팔
     netherlands: 네덜란드
     new_guinea: 뉴 기니
     new_zealand: 뉴질랜드
     north_africa: 북아프리카
     north_america: 북아메리카
+    north_korea: 조선민주주의인민공화국
+    norway: 노르웨이
+    palau: 팔라우
     panama: 파나마
+    paraguay: 파라과이
     peru: 페루
+    philippines: 필리핀
     poland: 폴란드
     portugal: 포르투갈
     republic_of_congo: 콩고 민주 공화국
+    romania: 루마니아
     russia: 러시아
+    rwanda: 르완다
+    samoa: 사모아
     saudi_arabia: 사우디아라비아
+    senegal: 세네갈
     singapore: 싱가포르
+    solomon_islands: 솔로몬 제도
+    somalia: 소말리아
     south_africa: 남아프리카
     south_america: 남아메리카
+    south_korea: 대한민국
+    south_sudan: 남수단
     spain: 스페인
+    sri_lanka: 스리랑카
+    sudan: 수단
+    swaziland: 스와질란드
     sweden: 스웨덴
     switzerland: 스위스
     syria: 시리아
+    taiwan: 타이완
+    tajikistan: 타지키스탄
     thailand: 태국
+    tunisia: 튀니지
     turkey: 터키
+    ukraine: 우크라이나
     united_kingdom: 영국
     united_states: 미국
+    uzbekistan: 우즈베키스탄
+    vietnam: 베트남
     west_africa: 서아프리카
+    yemen: 예멘
+    zambia: 잠비아
+    zimbabwe: 짐바브웨
   places_merged_successfully: 장소가 성공적으로 합쳐졌습니다!
   plants: 식물
   please_be_careful_particulary_when: 특히 분류군을 삭제할 때 조심해 주세요. 연관된 관찰이나 동정, 다른 분류군 등이
@@ -2033,12 +2113,21 @@ ko:
   receive_updates_from_this_project: 이 프로젝트에서 업데이트 전송
   recent_additions: 최근 추가 항목
   recent_evidence?: 최근의 증거가 있습니까?
+  recent_new_users: 최근 신규 사용자
   recent_observations: 최근 관찰
   recent_atom_observations_by: '%{login}의 최근 관찰 (Atom)'
   recent_updates: 최근 업데이트
   recently_created: 최근 생성함
   recently_finished: 최근에 완료됨
   recently_resolved: 최근 해결됨
+  relationship: 관계
+  relationship_x: '관계: %{relationship}'
+  relationships:
+    one_to_one: 일대일
+    many_to_many: 다대다
+    many_to_one: 다대일
+    one_to_many: 일대다
+    unknown: 알 수 없음
   reload_from_observations: 관찰에서 다시 불러오기
   remove: 제거
   remove_all_tags: 모든 태그를 제거
@@ -2119,6 +2208,7 @@ ko:
   set_license: 라이선스 설정
   settings: 설정
   share: 공유
+  share_colon: '공유:'
   show: 보이기
   show_keyboard_shortcuts: 단축 키 표시
   show_kml: KML 보이기
@@ -2178,6 +2268,7 @@ ko:
   submitted: 제출됨
   subscriptions: 구독
   suggestions: 제안
+  support_inaturalist: iNaturalist 지원
   siutable_observations: 적합한 관찰
   sync: 동기화하시겠습니까?
   sync_with_eol: EOL과 동기화하기
@@ -2381,6 +2472,8 @@ ko:
       mailer:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: 교실에서 %{site_name}을(를) 사용할 예정이십니까?
+    donate:
+      donate_short_desc: 지원을 표하려면 지금 기부하세요!
     guides:
       edit:
         add_rank_tags_help_html: |-
@@ -2483,6 +2576,8 @@ ko:
         new_users_desc: 오늘 가입함
         TTCID: TTCID
         TTID: TTID
+      year:
+        include_usa: 미국 포함
     taxa:
       show:
         frequency:

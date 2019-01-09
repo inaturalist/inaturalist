@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { updateCurrentUser } from "../../../shared/ducks/config";
 import ObservationModal from "../components/observation_modal";
 import {
   hideCurrentObservation,
@@ -16,7 +17,7 @@ import {
 
 function mapStateToProps( state ) {
   let images;
-  const observation = state.currentObservation.observation;
+  const { observation } = state.currentObservation;
   if ( observation && observation.photos && observation.photos.length > 0 ) {
     let defaultPhotoSize = "medium";
     if ( $( ".image-gallery" ).width( ) > 600 ) {
@@ -65,7 +66,7 @@ function mapDispatchToProps( dispatch ) {
     showPrevObservation: ( ) => {
       dispatch( showPrevObservation( ) );
     },
-    chooseTab: ( tab ) => {
+    chooseTab: tab => {
       dispatch( updateCurrentObservation( { tab } ) );
       dispatch( fetchDataForTab( ) );
     },
@@ -85,7 +86,8 @@ function mapDispatchToProps( dispatch ) {
       dispatch( submitIdentificationWithConfirmation( ident, {
         confirmationText: options.confirmationText
       } ) );
-    }
+    },
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
   };
 }
 

@@ -5,6 +5,7 @@ class GuideSectionsController < ApplicationController
   before_filter :only => [:edit, :update, :destroy] do |c|
     require_guide_user
   end
+  check_spam only: [:create, :update], instance: :guide_section
 
   # GET /guide_sections
   # GET /guide_sections.json

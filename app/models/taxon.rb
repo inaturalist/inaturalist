@@ -211,7 +211,6 @@ class Taxon < ActiveRecord::Base
     'subsp'           => 'subspecies',
     'trinomial'       => 'subspecies',
     'var'             => 'variety',
-    'fo'              => 'form',
     'unranked'        => nil
   }
   
@@ -301,6 +300,7 @@ class Taxon < ActiveRecord::Base
     "chiton",
     "cicada",
     "gall",
+    "hong kong",
     "larva",
     "lichen",
     "lizard",
@@ -1322,8 +1322,7 @@ class Taxon < ActiveRecord::Base
     means = [ means ] unless means.is_a?(Array)
     places = Place.param_to_array(place)
     return false if places.blank?
-    lt = association(:listed_taxa_with_establishment_means).loaded? ?
-      listed_taxa_with_establishment_means : listed_taxa
+    lt = listed_taxa_with_establishment_means
     place_ancestor_ids = (places.map(&:id) +
       places.map{ |p| p.ancestry.to_s.split("/").map(&:to_i) }).flatten.uniq
     if options[:closest]

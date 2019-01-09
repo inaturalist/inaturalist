@@ -1,9 +1,5 @@
 var Stats = { };
 
-$(document).ready(function( ) {
-  Stats.loadCharts( );
-});
-
 Stats.dateForStat = function( stat ) {
   var date = new Date( stat.created_at );
   var timezoneOffsetInMilliseconds = date.getTimezoneOffset( ) * 60 * 1000;
@@ -339,7 +335,13 @@ Stats.yearAgoDate = function( ) {
 
 Stats.monthAgoDate = function( ) {
   var date = new Date( );
-  return date.getFullYear( ) + "-" + date.getMonth( ) + "-" + date.getDate( );
+  var year = date.getFullYear( );
+  var month = ( ( date.getMonth( ) + 11 ) % 12 ) + 1;
+  if ( date.getMonth( ) === 0 ) {
+    year -= 1;
+  }
+  var monthAgo = year + "-" + month + "-" + date.getDate( );
+  return monthAgo;
 };
 
 Stats.simpleChart = function( options ) {

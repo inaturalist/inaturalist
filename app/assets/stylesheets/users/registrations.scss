@@ -1,33 +1,5 @@
 @import "../colors";
-
-#bodywrapper {
-  margin-bottom: 0;
-  &:after {
-    height: 0;
-  }
-  display: flex;
-  flex-direction: column;
-
-  #wrapper {
-    display: flex;
-    flex: 2;
-
-    .flexrow {
-      display: flex;
-      flex: 2;
-    }
-  }
-}
-
-#header {
-  margin-bottom: 0;
-  #mainnav,
-  #headersearch,
-  .add-obs,
-  #usernav {
-    display: none;
-  }
-}
+@import "../responsive";
 
 #imgcol {
   flex: 1;

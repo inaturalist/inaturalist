@@ -208,7 +208,13 @@ class TaxaController < ApplicationController
       format.html do
         options = {}
         options[:api_token] = current_user.api_token if current_user
-        @node_taxon_json = INatAPIService.get_json( "/taxa/#{@taxon.id}", options )
+        site_place = @site && @site.place
+        user_place = current_user && current_user.place
+        preferred_place = user_place || site_place
+        @node_taxon_json = INatAPIService.get_json(
+          "/taxa/#{@taxon.id}?preferred_place_id=#{preferred_place.try(:id)}&place_id=#{@place.try(:id)}&locale=#{I18n.locale}",
+          options
+        )
         place_id = current_user.preferred_taxon_page_place_id if logged_in?
         place_id = session[:prefers_taxon_page_place_id] if place_id.blank?
         @place = Place.find_by_id( place_id )
@@ -754,16 +760,13 @@ class TaxaController < ApplicationController
       end
       obs
     else
-      filters = [ { bool: { should: [
-        { exists: { field: "photos_count" } },
-        { exists: { field: "photos" } }
-      ]}}]
+      filters = [ { exists: { field: "photos_count" } } ]
       unless params[:q].blank?
         filters << {
           multi_match: {
             query: params[:q],
             operator: "and",
-            fields: [ :description, "taxon.names.name", "taxon.names_*", "user.login", "field_values.value" ]
+            fields: [ :description, "taxon.names_*", "user.login", "field_values.value" ]
           }
         }
       end

@@ -110,6 +110,13 @@ describe Taxon, "creation" do
     expect(@taxon.name).to eq 'Quercus agrifolia agrifolia'
   end
 
+  it "should allow fo as a specific epithet" do
+    name = "Mahafalytenus fo"
+    @taxon.name = name
+    @taxon.save
+    expect( @taxon.name ).to eq name
+  end
+
   it "should create TaxonAncestors" do
     t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
     t.reload

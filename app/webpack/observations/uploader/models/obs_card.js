@@ -143,11 +143,18 @@ const ObsCard = class ObsCard {
       const err = util.errorJSON( e.message );
       if ( err && err.errors && err.errors[0] ) {
         errors = err.errors[0];
-      } else {
-        errors = [I18n.t( "unknown_error" )];
       }
-      console.log( "Save failed:", e );
-      dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
+      if ( errors ) {
+        dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
+      } else {
+        e.response.json( ).then( errorJSON => {
+          errors = [I18n.t( "unknown_error" )];
+          if ( errorJSON && errorJSON.errors && errorJSON.errors[0] ) {
+            errors = errorJSON.errors[0];
+          }
+          dispatch( actions.updateObsCard( this, { saveState: "failed", saveErrors: errors } ) );
+        } );
+      }
     } );
   }
 };

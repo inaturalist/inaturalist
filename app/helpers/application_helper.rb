@@ -213,12 +213,10 @@ module ApplicationHelper
     if without = options.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)
-      new_params.reject! {|k,v| without.include?(k) }
+      new_params = new_params.reject {|k,v| without.include?(k) }
     end
-    
-    new_params.merge!(options) unless options.empty?
-    
-    url_for(new_params)
+    new_params = new_params.merge( options ) unless options.empty?
+    url_for( new_params )
   end
   
   def hidden_fields_for_params(options = {})
@@ -332,7 +330,7 @@ module ApplicationHelper
 
   def simple_format_with_structure( text, options )
     new_text = ""
-    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>)/m )
+    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>|<pre.*?pre>)/m )
     chunks.each do |chunk|
       if chunk =~ /<(table|ul|ol)>/
         html = Nokogiri::HTML::DocumentFragment.parse( chunk )
@@ -348,8 +346,10 @@ module ApplicationHelper
           end
         end
         new_text += html.to_s.html_safe
+      elsif chunk =~ /<pre>/
+        new_text += chunk.html_safe
       else
-        new_text += simple_format( chunk, options ).html_safe
+        new_text += simple_format( chunk, {}, options ).html_safe
       end
     end
     new_text.html_safe
@@ -875,7 +875,7 @@ module ApplicationHelper
       record.attribution
     end
     s ||= "&copy; #{user_name}"
-    content_tag(:span, s.html_safe, :class => "rights verticalmiddle")
+    content_tag(:span, s.html_safe, class: "rights verticalmiddle")
   end
 
   def rights_for_observation( record, options = {} )
@@ -931,14 +931,14 @@ module ApplicationHelper
         c = if options[:skip_image]
           ""
         else
-          link_to(image_tag("#{code}_small.png"), url) + " "
+          link_to(image_tag("#{code}_small.png"), url, rel: options[:rel]) + " "
         end
         license_blurb = if record.license_code == Observation::CC0
           I18n.t("copyright.no_rights_reserved")
         else
           I18n.t(:some_rights_reserved)
         end
-        c.html_safe + link_to(license_blurb, url)
+        c.html_safe + link_to(license_blurb, url, rel: options[:rel])
       end
     end
     s
@@ -1436,6 +1436,27 @@ module ApplicationHelper
 
   def responsive?
     @responsive
+  end
+
+  def photo_type_label( type )
+    case type
+    when "FlickrPhoto"
+      "Flickr"
+    when "FacebookPhoto"
+      "Facebook"
+    when "PicasaPhoto"
+      "Google Picasa"
+    else
+      I18n.t( :unknown )
+    end
+  end
+
+  def url_for_referrer_or_default( default )
+    back_url = request.env["HTTP_REFERER"]
+    if back_url && ![request.path, request.url].include?( back_url )
+      return back_url
+    end
+    default
   end
 
 end
