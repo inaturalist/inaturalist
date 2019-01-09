@@ -65,8 +65,15 @@ module ActionController
         before_filter :set_akismet_params_on_record, only: options[:only], except: options[:except]
 
         define_method( :set_akismet_params_on_record ) do
-          return if current_user && current_user.known_non_spammer?
           return unless record = instance_variable_get( "@" + options[:instance].to_s )
+          # if we checking for spam when creating / updating a user and the
+          # current user is not that user (e.g. curator or admin action), we
+          # don't want to send akismet the current user's info
+          if record.is_a?( User ) && current_user && current_user != record
+            return
+          end
+          # No point in setting this info if we know this user isn't a spammer
+          return if current_user && current_user.known_non_spammer?
           record.acts_as_spammable_user_ip = Logstasher.ip_from_request_env( request.env )
           record.acts_as_spammable_user_agent = request.user_agent
           record.acts_as_spammable_referrer = request.referrer

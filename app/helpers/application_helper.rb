@@ -217,12 +217,10 @@ module ApplicationHelper
     if without = options.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)
-      new_params.reject! {|k,v| without.include?(k) }
+      new_params = new_params.reject {|k,v| without.include?(k) }
     end
-    
-    new_params.merge!(options) unless options.empty?
-    
-    url_for(new_params)
+    new_params = new_params.merge( options ) unless options.empty?
+    url_for( new_params )
   end
   
   def hidden_fields_for_params(options = {})
@@ -1442,6 +1440,27 @@ module ApplicationHelper
 
   def responsive?
     @responsive
+  end
+
+  def photo_type_label( type )
+    case type
+    when "FlickrPhoto"
+      "Flickr"
+    when "FacebookPhoto"
+      "Facebook"
+    when "PicasaPhoto"
+      "Google Picasa"
+    else
+      I18n.t( :unknown )
+    end
+  end
+
+  def url_for_referrer_or_default( default )
+    back_url = request.env["HTTP_REFERER"]
+    if back_url && ![request.path, request.url].include?( back_url )
+      return back_url
+    end
+    default
   end
 
 end

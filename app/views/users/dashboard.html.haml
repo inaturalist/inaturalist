@@ -220,6 +220,8 @@
                   = succeed ":" do
                     = t :because_of
                   = flag.flag
+            .panel-footer
+              = link_to t(:view_all), flags_path, class: "btn btn-primary btn-sm"
         .panel.panel-default
           .panel-heading
             %h3.panel-title
@@ -235,3 +237,4 @@
           .panel-footer
             = link_to t(:curate_taxa), curate_taxa_path, class: "btn btn-primary btn-sm"
             = link_to t(:create_a_new_taxon), new_taxon_path, class: "btn btn-primary btn-sm"
+        = link_to t(:recent_users), recent_users_path, class: "btn btn-primary btn-block btn-sm"

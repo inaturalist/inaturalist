@@ -1,4 +1,94 @@
 I18n.translations || (I18n.translations = {});
+I18n.translations["af"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ar"] = {
   "<%= name": {
     "parameterize": {
@@ -656,6 +746,7 @@ I18n.translations["ar"] = {
     "waray_waray": "الواراي-واراي"
   },
   "life": "حياة",
+  "linear_scale_label": "خطي",
   "list": "قائمة",
   "list_tooltip": "عرض طريقة عرض القائمة",
   "lists": "قوائم",
@@ -672,6 +763,7 @@ I18n.translations["ar"] = {
   "location_specified": "الموقع محدد",
   "location_unknown": "الموقع غير معروف",
   "log_in": "تسجيل الدخول",
+  "log_scale_label": "سجل",
   "long": "خط الطول",
   "longitude": "خط الطول",
   "lookup": "ابحث عن",
@@ -978,60 +1070,268 @@ I18n.translations["ar"] = {
   "places_name": {
     "afghanistan": "أفغانستان",
     "africa": "أفريقيا",
+    "akrotiri_and_dhekelia": "أكروتيري ودكليا",
+    "aland": "أولاند",
+    "albania": "ألبانيا",
+    "algeria": "الجزائر",
+    "american_samoa": "ساموا الأمريكية",
+    "andorra": "أندورا",
+    "angola": "أنجولا",
+    "anguilla": "أنجويلا",
+    "antarctica": "أنتاركتيكا",
     "antigua_and_barbuda": "أنتيغوا وبربودا",
+    "argentina": "الأرجنتين",
+    "armenia": "أرمينيا",
+    "aruba": "أروبا",
     "australia": "أستراليا",
     "austria": "النمسا",
+    "azerbaijan": "أذربيدجان",
+    "bahamas": "البهاماس",
+    "bahrain": "البحرين",
+    "bangladesh": "بنجلاديش",
+    "barbados": "باربادوس",
+    "belarus": "بيلاروسيا",
     "belgium": "بلجيكا",
+    "belize": "بليز",
+    "benin": "بنين",
+    "bermuda": "برمودا",
+    "bhutan": "بوتان",
+    "bolivia": "بوليفيا",
+    "bonaire_saint_eustatius_and_saba": "بونير، سينت أوستاتيوس وسابا",
     "bosnia_and_herzegovina": "البوسنة والهرسك",
+    "botswana": "بوتسوانا",
+    "bouvet_island": "جزيرة بوفيه",
     "brazil": "البرازيل",
+    "british_indian_ocean_territory": "منطقة المحيط الهندي البريطانية",
+    "british_virgin_islands": "جزر العذراء البريطانية",
+    "brunei": "بروناي",
+    "bulgaria": "بلغاريا",
+    "burkina_faso": "بوركينا فاسو",
+    "burundi": "بوروندي",
+    "cambodia": "كمبوديا",
+    "cameroon": "الكاميرون",
     "canada": "كندا",
+    "cape_verde": "الرأس الأخضر",
+    "cayman_islands": "جزر كايمان",
+    "central_african_republic": "جمهورية أفريقيا الوسطى",
     "central_america": "أمريكا الوسطى",
+    "chad": "تشاد",
+    "chile": "تشيلي",
     "china": "الصين",
+    "christmas_island": "جزيرة كريسماس",
+    "clipperton_island": "جزيرة كليبرتون",
+    "cocos_islands": "جزر كوكوس",
     "colombia": "كولومبيا",
+    "commonwealth_of_the_northern_mariana_islands": "كومونولث جزر ماريانا الشمالية",
+    "comoros": "جزر القمر",
+    "cook_islands": "جزر كوك",
+    "costa_rica": "كوستا ريكا",
+    "cote_d_ivoire": "كوت ديفوار",
+    "croatia": "كرواتيا",
+    "cuba": "كوبا",
+    "curacao": "كوراساو",
+    "cyprus": "قبرص",
+    "czech_republic": "جمهورية التشيك",
+    "democratic_republic_of_the_congo": "جمهورية الكونغو الديمقراطية",
     "denmark": "الدنمارك",
+    "djibouti": "جيبوتي",
+    "dominica": "الدومينيكان",
+    "dominican_republic": "جمهورية الدومينيكان",
+    "east_timor": "تيمور الشرقية",
+    "ecuador": "الإكوادور",
     "egypt": "مصر",
+    "el_salvador": "السلفادور",
     "equatorial_guinea": "غينيا الاستوائية",
+    "eritrea": "إرتريا",
+    "estonia": "إستونيا",
+    "ethiopia": "إثيوبيا",
     "europe": "أوروبا",
+    "falkland_islands": "جزر فوكلاند",
+    "faroe_islands": "جزر فارو",
+    "fiji": "فيجي",
+    "finland": "فنلندا",
     "france": "فرنسا",
+    "french_guiana": "غويانا الفرنسية",
+    "french_polynesia": "بولينزيا الفرنسية",
+    "french_southern_territories": "المناطق الجنوبية الفرنسية",
+    "gabon": "الجابون",
+    "gambia": "جامبيا",
+    "georgia": "جورجيا",
     "germany": "ألمانيا",
+    "ghana": "غانا",
+    "gibraltar": "جبل طارق",
     "greece": "اليونان",
+    "greenland": "جرينلاند",
+    "grenada": "جرينادا",
+    "guadeloupe": "جواديلوب",
+    "guam": "جوام",
+    "guatemala": "جواتيمالا",
+    "guernsey": "جويرنسي",
+    "guinea": "غينيا",
+    "guinea_bissau": "غينيا-بيساو",
+    "guyana": "جوايانا",
+    "haiti": "هايتي",
+    "heard_island_and_mcdonald_islands": "جزيرة هيرد وجزر ماكدونالد",
+    "honduras": "هندوراس",
     "hong_kong": "هونغ كونغ",
     "hungary": "المجر",
-    "italy": "إيطاليا",
+    "iceland": "أيسلندا",
     "india": "الهند",
+    "indonesia": "إندونيسيا",
+    "iran": "إيران",
     "iraq": "العراق",
+    "ireland": "أيرلندا",
+    "isle_of_man": "جزيرة مان",
+    "israel": "إسرائيل",
+    "italy": "إيطاليا",
+    "jamaica": "جامايكا",
     "japan": "اليابان",
+    "jersey": "جيرسي",
+    "jordan": "الأردن",
+    "kazakhstan": "كازاخستان",
+    "kenya": "كينيا",
+    "kiribati": "كيريباتي",
     "korea": "كوريا",
+    "kosovo": "كوسوفو",
+    "kuwait": "الكويت",
+    "kyrgyzstan": "قيرغيزستان",
+    "laos": "لاوس",
+    "latvia": "لاتفيا",
+    "lebanon": "لبنان",
+    "lesotho": "ليسوتو",
+    "liberia": "ليبيريا",
+    "libya": "ليبيا",
+    "liechtenstein": "ليختنشتاين",
+    "lithuania": "ليتوانيا",
+    "luxembourg": "لوكسمبورج",
+    "macao": "ماكاو",
+    "macedonia": "مقدونيا",
+    "madagascar": "مدغشقر",
+    "malawi": "مالاوي",
+    "malaysia": "ماليزيا",
+    "maldives": "المالديف",
+    "mali": "مالي",
+    "malta": "مالطا",
+    "marshall_islands": "جزر مارشال",
     "martinique": "مارتينيك",
+    "mauritania": "موريتانيا",
+    "mauritius": "موريشيوس",
+    "mayotte": "مايوت",
     "mexico": "المكسيك",
+    "micronesia": "ميكرونيسيا",
+    "moldova": "مولدوفا",
+    "monaco": "موناكو",
+    "mongolia": "مونغوليا",
+    "montenegro": "الجبل الأسود",
+    "montserrat": "مونتسرات",
+    "morocco": "المغرب",
+    "mozambique": "موزمبيق",
+    "myanmar": "ميانمار",
+    "namibia": "ناميبيا",
+    "nauru": "ناورو",
+    "nepal": "نيبال",
     "netherlands": "هولندا",
+    "new_caledonia": "كاليدونيا الجديدة",
     "new_guinea": "غينيا الجديدة",
     "new_zealand": "نيوزيلاندا",
+    "nicaragua": "نيكارجوا",
+    "niger": "النيجر",
+    "nigeria": "نيجيريا",
+    "niue": "نييوي",
+    "norfolk_island": "جزيرة نورفولك",
     "north_africa": "شمال أفريقيا",
     "north_america": "أمريكا الشمالية",
+    "north_korea": "كوريا الشمالية",
+    "northern_cyprus": "قبرص الشمالية",
+    "norway": "النرويج",
+    "oman": "عمان",
+    "pakistan": "باكستان",
+    "palau": "بالاو",
+    "palestina": "فلسطين",
     "palestine": "فلسطين",
     "panama": "بنما",
+    "papua_new_guinea": "بابوا غينيا الجديدة",
+    "paraguay": "باراجواي",
     "peru": "بيرو",
+    "philippines": "الفلبين",
+    "pitcairn_islands": "جزر بيتكيرن",
     "poland": "بولندا",
     "portugal": "البرتغال",
+    "puerto_rico": "بورتريكو",
+    "qatar": "قطر",
     "republic_of_congo": "الكونغو",
+    "reunion": "رينيون",
+    "romania": "رومانيا",
     "russia": "روسيا",
-    "saudi_arabia": "السعودية",
+    "rwanda": "رواندا",
+    "saint_barthelemy": "سان بارتيلمي",
+    "saint_helena": "سانت هيلانة",
+    "saint_kitts_and_nevis": "سانت كيتس ونيفيس",
+    "saint_lucia": "سانت لوشيا",
+    "saint_martin": "سانت-مارتين",
+    "saint_pierre_and_miquelon": "سان بيير وميكلون",
+    "saint_vincent_and_the_grenadines": "سانت فينسنت والغرينادين",
+    "samoa": "ساموا",
+    "san_marino": "سان مارينو",
     "sao_tome_and_principe": "ساو تومي وبرينسيبي",
+    "saudi_arabia": "السعودية",
+    "senegal": "السنغال",
+    "serbia": "صربيا",
+    "seychelles": "سيشل",
+    "sierra_leone": "سيراليون",
     "singapore": "سنغافورة",
+    "sint_maarten": "سينت مارتن",
+    "slovakia": "سلوفاكيا",
+    "slovenia": "سلوفينيا",
+    "solomon_islands": "جزر سليمان",
+    "somalia": "الصومال",
     "south_africa": "جنوب أفريقيا",
     "south_america": "أمريكا الجنوبية",
+    "south_georgia_and_the_south_sandwich_islands": "جورجيا الجنوبية وجزر ساندويتش الجنوبية",
+    "south_korea": "كوريا الجنوبية",
+    "south_sudan": "جنوب السودان",
     "spain": "إسبانيا",
+    "sri_lanka": "سريلانكا",
+    "sudan": "السودان",
+    "suriname": "سورينام",
+    "svalbard_and_jan_mayen": "سفالبارد ويان ماين",
+    "swaziland": "سوازيلاند",
     "sweden": "السويد",
     "switzerland": "سويسرا",
     "syria": "سوريا",
+    "taiwan": "تايوان",
+    "tajikistan": "طاجيكستان",
+    "tanzania": "تنزانيا",
     "thailand": "تايلاند",
+    "togo": "توجو",
+    "tokelau": "توكيلاو",
+    "tonga": "تونجا",
     "trinidad_and_tobago": "ترينداد وتوباغو",
+    "tunisia": "تونس",
     "turkey": "تركيا",
+    "turkmenistan": "تركمانستان",
+    "turks_and_caicos_islands": "جزر توركس وكايكوس",
+    "tuvalu": "توفالو",
+    "uganda": "أوغندا",
+    "ukraine": "أكرانيا",
+    "united_arab_emirates": "الإمارات العربية المتحدة",
     "united_kingdom": "المملكة المتحدة",
     "united_states": "الولايات المتحدة",
+    "united_states_minor_outlying_islands": "جزر الولايات المتحدة الصغيرة النائية",
+    "united_states_virgin_islands": "جزر العذراء الأمريكية",
+    "uruguay": "أورجواي",
+    "uzbekistan": "أوزبكيستان",
+    "vanuatu": "فانواتو",
+    "vatican_city": "مدينة الفاتيكان",
+    "venezuela": "فنزويلا",
+    "vietnam": "فيتنام",
     "virgin_islands": "جزر العذراء",
-    "west_africa": "غرب أفريقيا"
+    "wallis_and_futuna": "واليس وفوتونا",
+    "west_africa": "غرب أفريقيا",
+    "western_sahara": "الصحراء الغربية",
+    "yemen": "اليمن",
+    "zambia": "زامبيا",
+    "zimbabwe": "زيمبابوي"
   },
   "places_of_interest": "الأماكن ذات الأهمية",
   "plants": "النباتات",
@@ -1149,6 +1449,7 @@ I18n.translations["ar"] = {
     "other": "جارٍ حفظ %{num} %{count} ملاحظات..."
   },
   "saving_verb": "جارٍ الحفظ",
+  "scale_colon": "المقياس:",
   "search": "بحث",
   "search_by_taxon_name_or_flickr_photo_id": "البحث عن طريق اسم الأصنوفة أو معرف صورة فليكر",
   "search_by_taxon_name_or_observation_id": "البحث عن طريق اسم الأصنوفة أو معرف الملاحظة",
@@ -1464,8 +1765,15 @@ I18n.translations["ar"] = {
         "recent_w_7_obs": "ملا w/ 0 w/ >= 7 الأخيرة"
       },
       "year": {
+        "growth_by_country_desc_html": "أين يحدث النمو؟ تحاول هذه الخريطة والرسم البياني تحطيم هذا\nحسب البلد، والذي يتبين أنه معقد لأن النمو حسب \nالبلد يمكن أن يكون غير متوازن للغاية، لقد اخترنا هنا حذف الولايات \nالمتحدة واستخدام مقياس سجل بشكل افتراضي لإبراز الفروق \nبين البلدان الأخرى، إذا كان بلد ما أسود فهذا يعني أنه لم \nيسهم بشكل ملحوظ في نسبة مئوية، أو لم يكن لديه نمو هذا العام، \nأو لم يكن لديه المزيد من الملاحظات هذا العام مقارنةً بالعام الماضي (حُم حول \nبلد لرؤية تفاصيل أكثر قليلا)، تشير <strong>\"% إجمالي \nالنمو\"</strong> إلى مقدار النمو العالمي من \nبلد معين، على سبيل المثال، إذا كانت هناك 20 ملاحظة في 2018 و10\nفي 2017، سيكون هذا نموا بمقدار 10 ملاحظات، وإذا كانت 5 من هذه \nالملاحظات من بنين، فإن بنين ساهمت بنسبة 50% من إجمالي \nالنمو،<strong> \"% للنمو\"</strong> تعني عدد الملاحظات \nهذا العام في ذلك البلد كنسبة مئوية من ملاحظات العام الماضي في ذلك البلد; لذلك إذا كانت هناك 10 ملاحظات \nفي لاوس العام الماضي ولكن 20 هذا العام، فسيكون ذلك نموا بنسبة 100%، وإذا كان \nهناك 0 في العام الماضي و1 هذا العام، فهذا هو ما لا نهاية % من النمو.",
+        "growth_by_country_title": "النمو حسب البلد",
+        "growth_in_year_obs": "النمو في %{year} (ملاحظات)",
         "growth_title": "النمو",
-        "new_species_desc_html": "الأنواع التي تمت إضافتها للمرة الأولى في %{site_name} هذا العام،\nانقر على شهر لعرض بعض الأنواع الجديدة المضافة في ذلك الشهر،\nيمكنك أيضا عرض إجمالي تراكم الأنواع، أو تحريك شريط التمرير \nفي الوقت المناسب لرؤية الأنواع الأخرى التي تمت ملاحظتها حديثا، يعرض هذا المخطط \nأنواعا من الملاحظات القابلة للتحقق منها في الشهر الذي تم رفعها فيه \nإلى %{site_name} (وليس الشهر عندما تمت الملاحظة)، لا \nيتضمن أصنافا أعلى أو أقل; لذا فإن الملاحظة التي تم تحديدها على أنها \nثدييات لا تحسب، وملاحظة <i>ذئب رمادي</i> نويع.\n<i>دب</i> ستحسب فقط <i>ذئب رمادي</i>.",
+        "include_usa": "تضمين الولايات المتحدة",
+        "new_species_desc_html": "الأنواع التي تمت إضافتها للمرة الأولى هذا العام،\nانقر على شهر لعرض بعض الأنواع الجديدة المضافة في ذلك الشهر،\nيمكنك أيضا عرض إجمالي تراكم الأنواع، أو تحريك شريط التمرير \nفي الوقت المناسب لرؤية الأنواع الأخرى التي تمت ملاحظتها حديثا، يعرض هذا المخطط \nأنواعا من الملاحظات القابلة للتحقق منها في الشهر الذي تم رفعها فيه \nإلى %{site_name} (وليس الشهر عندما تمت الملاحظة)، لا \nيتضمن أصنافا أعلى أو أقل; لذا فإن الملاحظة التي تم تحديدها على أنها \nثدييات لا تحسب، وملاحظة <i>ذئب رمادي</i> نويع.\n<i>دب</i> ستحسب فقط <i>ذئب رمادي</i>.",
+        "obs_in_year": "الملاحظات في %{year}",
+        "percent_growth_in_year": "% النمو في %{year}",
+        "percent_of_total_growth": "للنمو الإجمالي",
         "publications_desc_html": "بيانات التأثير والمرئيات مجاملة من\n<a href=\"https://www.altmetric.com\">Altmetric</a>، معلومات\nحول استخدام البيانات من قبل أصدقائنا في \n<a href=\"https://www.gbif.org/\">مرفق معلومات التنوع البيولوجي العالمي</a>.\n<br/>\n<a href=\"%{url}\">عرض جميع %{numStudies} الدراسات</a>",
         "sunburst_desc_html": "أصناف ملاحظة رُتِّبت كرسم \"سونبورست\" الهرمي، قاعدة \nالتسلسل الهرمي في المركز، تبدأ من \"الحياة\" وتنتهي \nمع الأنواع على الحواف الخارجية، حجم كل قوس يتناسب \nمع عدد ملاحظات هذه الأصنوفة، والألوان الحمراء \nتتوافق مع ألوان الأصناف المعتادة لدينا \"iconic\" (الأخضر للنباتات \nوالبرتقالي للحشرات والأزرق لمعظم الحيوانات الأخرى، وما إلى ذلك); لذلك إذا كنت \" \nترى الكثير من الأخضر: هذا يعني أنك لاحظت الكثير من النباتات. \n<strong> انقر على القوس لوضع هذه الأصنوفة في المركز</strong> \nوأطفالها حولها، أو <strong> انقر على المركز لنقل وإرجاع \nالتسلسل الهرمي </strong>."
       }
@@ -1642,6 +1950,96 @@ I18n.translations["ar"] = {
   "zoom_photo": "تكبير الصورة"
 };
 I18n.translations["az"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["be"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -2470,9 +2868,9 @@ I18n.translations["bg"] = {
     "greece": "Гърция",
     "hong_kong": "Хонконг",
     "hungary": "Унгария",
-    "italy": "Италия",
     "india": "Индия",
     "iraq": "Ирак",
+    "italy": "Италия",
     "japan": "Япония",
     "korea": "Корея",
     "martinique": "Мартиника",
@@ -2489,8 +2887,8 @@ I18n.translations["bg"] = {
     "portugal": "Португалия",
     "republic_of_congo": "Република Конго",
     "russia": "Русия",
-    "saudi_arabia": "Саудитска Арабия",
     "sao_tome_and_principe": "Сао Томе и Принсипи",
+    "saudi_arabia": "Саудитска Арабия",
     "singapore": "Сингапур",
     "south_africa": "Южна Африка",
     "south_america": "Южна Америка",
@@ -2851,6 +3249,96 @@ I18n.translations["bg"] = {
   "yours": "Вашите",
   "zoom_in": "Приближи",
   "zoom_out": "Отдалечи"
+};
+I18n.translations["bn"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["br"] = {
   "<%= name": {
@@ -3306,8 +3794,8 @@ I18n.translations["br"] = {
     "germany": "Alamagn",
     "greece": "Gres",
     "hungary": "Hungaria",
-    "italy": "Italia",
     "iraq": "Iraq",
+    "italy": "Italia",
     "japan": "Japan",
     "martinique": "Martinik",
     "mexico": "Mec'hiko",
@@ -3321,8 +3809,8 @@ I18n.translations["br"] = {
     "poland": "Polonia",
     "republic_of_congo": "Republik Kongo",
     "russia": "Rusia",
-    "saudi_arabia": "Arabia Saoudat",
     "sao_tome_and_principe": "São Tomé ha Príncipe",
+    "saudi_arabia": "Arabia Saoudat",
     "south_america": "Su Amerika",
     "spain": "Spagn",
     "sweden": "Sveden",
@@ -4517,9 +5005,9 @@ I18n.translations["ca"] = {
     "greece": "Grècia",
     "hong_kong": "Hong Kong",
     "hungary": "Hongria",
-    "italy": "Itàlia",
     "india": "Índia",
     "iraq": "Iraq",
+    "italy": "Itàlia",
     "japan": "Japó",
     "korea": "Corea",
     "martinique": "Martinica",
@@ -4536,8 +5024,8 @@ I18n.translations["ca"] = {
     "portugal": "Portugal",
     "republic_of_congo": "República del Congo",
     "russia": "Rússia",
-    "saudi_arabia": "Aràbia Saudita",
     "sao_tome_and_principe": "São Tomé i Principe",
+    "saudi_arabia": "Aràbia Saudita",
     "singapore": "Singapur",
     "south_africa": "Sud-àfrica",
     "south_america": "Amèrica del Sud",
@@ -6077,9 +6565,9 @@ I18n.translations["cs"] = {
     "greece": "Řecko",
     "hong_kong": "Hong Kong",
     "hungary": "Maďarsko",
-    "italy": "Itálie",
     "india": "Indie",
     "iraq": "Irák",
+    "italy": "Itálie",
     "japan": "Japonsko",
     "korea": "Korea",
     "martinique": "Martinik",
@@ -6096,8 +6584,8 @@ I18n.translations["cs"] = {
     "portugal": "Portugalsko",
     "republic_of_congo": "Republika Kongo",
     "russia": "Rusko",
-    "saudi_arabia": "Saúdská Arábie",
     "sao_tome_and_principe": "Svatý Tomáš a Princův ostrov",
+    "saudi_arabia": "Saúdská Arábie",
     "singapore": "Singapur",
     "south_africa": "Jižní Afrika",
     "south_america": "Jižní Amerika",
@@ -7272,6 +7760,7 @@ I18n.translations["da"] = {
     "waray_waray": "Waray-Waray"
   },
   "life": "Liv",
+  "linear_scale_label": "Lineær",
   "list": "Liste",
   "list_tooltip": "Vis listevisning",
   "lists": "Lister",
@@ -7288,6 +7777,7 @@ I18n.translations["da"] = {
   "location_specified": "Stedet er specificeret",
   "location_unknown": "Sted ukendt",
   "log_in": "Login",
+  "log_scale_label": "Log",
   "long": "Læn.",
   "longitude": "Længdegrad",
   "lookup": "Slå op",
@@ -7594,60 +8084,268 @@ I18n.translations["da"] = {
   "places_name": {
     "afghanistan": "Afghanistan",
     "africa": "Afrika",
+    "akrotiri_and_dhekelia": "Akrotiri og Dhekelia",
+    "aland": "Åland",
+    "albania": "Albanien",
+    "algeria": "Algeriet",
+    "american_samoa": "Amerikansk Samoa",
+    "andorra": "Andorra",
+    "angola": "Angola",
+    "anguilla": "Anguilla",
+    "antarctica": "Antarktis",
     "antigua_and_barbuda": "Antigua og Barbuda",
+    "argentina": "Argentina",
+    "armenia": "Armenien",
+    "aruba": "Aruba",
     "australia": "Australien",
     "austria": "Østrig",
+    "azerbaijan": "Aserbajdsjan",
+    "bahamas": "Bahamas",
+    "bahrain": "Bahrain",
+    "bangladesh": "Bangladesh",
+    "barbados": "Barbados",
+    "belarus": "Hviderusland",
     "belgium": "Belgien",
+    "belize": "Belize",
+    "benin": "Benin",
+    "bermuda": "Bermuda",
+    "bhutan": "Bhutan",
+    "bolivia": "Bolivia",
+    "bonaire_saint_eustatius_and_saba": "Bonaire, Saint Eustatius og Saba",
     "bosnia_and_herzegovina": "Bosnien og Herzegovina",
+    "botswana": "Botswana",
+    "bouvet_island": "Bouvetøen",
     "brazil": "Brasilien",
+    "british_indian_ocean_territory": "Det britiske territorium i Det Indiske Ocean",
+    "british_virgin_islands": "Britiske Jomfruøer",
+    "brunei": "Brunei",
+    "bulgaria": "Bulgarien",
+    "burkina_faso": "Burkina Faso",
+    "burundi": "Burundi",
+    "cambodia": "Cambodia",
+    "cameroon": "Cameroun",
     "canada": "Canada",
+    "cape_verde": "Kap Verde",
+    "cayman_islands": "Caymanøerne",
+    "central_african_republic": "Centralafrikanske Republik",
     "central_america": "Central Amerika",
+    "chad": "Tchad",
+    "chile": "Chile",
     "china": "Kina",
+    "christmas_island": "Christmas Island",
+    "clipperton_island": "Clippertonøen",
+    "cocos_islands": "Cocosøerne",
     "colombia": "Colombia",
+    "commonwealth_of_the_northern_mariana_islands": "Nordmarianerne",
+    "comoros": "Comorerne",
+    "cook_islands": "Cookøerne",
+    "costa_rica": "Costa Rica",
+    "cote_d_ivoire": "Elfenbenskysten",
+    "croatia": "Kroatien",
+    "cuba": "Cuba",
+    "curacao": "Curaçao",
+    "cyprus": "Cypern",
+    "czech_republic": "Tjekkiet",
+    "democratic_republic_of_the_congo": "Demokratiske Republik Congo",
     "denmark": "Danmark",
+    "djibouti": "Djibouti",
+    "dominica": "Dominica",
+    "dominican_republic": "Dominikanske Republik",
+    "east_timor": "Østtimor",
+    "ecuador": "Ecuador",
     "egypt": "Egypten",
+    "el_salvador": "El Salvador",
     "equatorial_guinea": "Equatorial Guinea",
+    "eritrea": "Eritrea",
+    "estonia": "Estland",
+    "ethiopia": "Etiopien",
     "europe": "Europa",
+    "falkland_islands": "Falkland-øerne",
+    "faroe_islands": "Færøerne",
+    "fiji": "Fiji",
+    "finland": "Finland",
     "france": "Frankrig",
+    "french_guiana": "Fransk Guyana",
+    "french_polynesia": "Fransk Polynesien",
+    "french_southern_territories": "Franske Sydlige og Antarktiske Territorier",
+    "gabon": "Gabon",
+    "gambia": "Gambia",
+    "georgia": "Georgien",
     "germany": "Tyskland",
+    "ghana": "Ghana",
+    "gibraltar": "Gibraltar",
     "greece": "Grækenland",
+    "greenland": "Grønland",
+    "grenada": "Grenada",
+    "guadeloupe": "Guadeloupe",
+    "guam": "Guam",
+    "guatemala": "Guatemala",
+    "guernsey": "Guernsey",
+    "guinea": "Guinea",
+    "guinea_bissau": "Guinea-Bissau",
+    "guyana": "Guyana",
+    "haiti": "Haiti",
+    "heard_island_and_mcdonald_islands": "Heard Island og McDonald Islands",
+    "honduras": "Honduras",
     "hong_kong": "Hongkong",
     "hungary": "Ungarn",
-    "italy": "Italien",
+    "iceland": "Island",
     "india": "Indien",
+    "indonesia": "Indonesien",
+    "iran": "Iran",
     "iraq": "Irak",
+    "ireland": "Irland",
+    "isle_of_man": "Isle of Man",
+    "israel": "Israel",
+    "italy": "Italien",
+    "jamaica": "Jamaica",
     "japan": "Japan",
+    "jersey": "Jersey",
+    "jordan": "Jordan",
+    "kazakhstan": "Kasakhstan",
+    "kenya": "Kenya",
+    "kiribati": "Kiribati",
     "korea": "Korea",
+    "kosovo": "Kosovo",
+    "kuwait": "Kuwait",
+    "kyrgyzstan": "Kirgisistan",
+    "laos": "Laos",
+    "latvia": "Letland",
+    "lebanon": "Libanon",
+    "lesotho": "Lesotho",
+    "liberia": "Liberia",
+    "libya": "Libyen",
+    "liechtenstein": "Liechtenstein",
+    "lithuania": "Litauen",
+    "luxembourg": "Luxembourg",
+    "macao": "Macao",
+    "macedonia": "Makedonien",
+    "madagascar": "Madagaskar",
+    "malawi": "Malawi",
+    "malaysia": "Malaysia",
+    "maldives": "Maldiverne",
+    "mali": "Mali",
+    "malta": "Malta",
+    "marshall_islands": "Marshalløerne",
     "martinique": "Martinique",
+    "mauritania": "Mauretanien",
+    "mauritius": "Mauritius",
+    "mayotte": "Mayotte",
     "mexico": "Mexico",
+    "micronesia": "Mikronesien",
+    "moldova": "Moldova",
+    "monaco": "Monaco",
+    "mongolia": "Mongoliet",
+    "montenegro": "Montenegro",
+    "montserrat": "Montserrat",
+    "morocco": "Marokko",
+    "mozambique": "Mozambique",
+    "myanmar": "Myanmar",
+    "namibia": "Namibia",
+    "nauru": "Nauru",
+    "nepal": "Nepal",
     "netherlands": "Holland",
+    "new_caledonia": "Ny Kaledonien",
     "new_guinea": "Ny Guinea",
     "new_zealand": "New Zealand",
+    "nicaragua": "Nicaragua",
+    "niger": "Niger",
+    "nigeria": "Nigeria",
+    "niue": "Niue",
+    "norfolk_island": "Norfolk Island",
     "north_africa": "Nordafrika",
     "north_america": "Nordamerika",
+    "north_korea": "Nordkorea",
+    "northern_cyprus": "Nordcypern",
+    "norway": "Norge",
+    "oman": "Oman",
+    "pakistan": "Pakistan",
+    "palau": "Palau",
+    "palestina": "Palæstina",
     "palestine": "Palæstina",
     "panama": "Panama",
+    "papua_new_guinea": "Papua Ny Guinea",
+    "paraguay": "Paraguay",
     "peru": "Peru",
+    "philippines": "Filippinerne",
+    "pitcairn_islands": "Pitcairn",
     "poland": "Polen",
     "portugal": "Portugal",
+    "puerto_rico": "Puerto Rico",
+    "qatar": "Qatar",
     "republic_of_congo": "Demokratiske Republik Congo",
+    "reunion": "Réunion",
+    "romania": "Rumænien",
     "russia": "Rusland",
-    "saudi_arabia": "Saudi Arabien",
+    "rwanda": "Rwanda",
+    "saint_barthelemy": "Saint-Barthélemy",
+    "saint_helena": "Sankt Helena",
+    "saint_kitts_and_nevis": "Saint Kitts og Nevis",
+    "saint_lucia": "Saint Lucia",
+    "saint_martin": "Saint Martin",
+    "saint_pierre_and_miquelon": "Saint-Pierre og Miquelon",
+    "saint_vincent_and_the_grenadines": "Saint Vincent og Grenadinerne",
+    "samoa": "Samoa",
+    "san_marino": "San Marino",
     "sao_tome_and_principe": "Sao Tome og Principe",
+    "saudi_arabia": "Saudi Arabien",
+    "senegal": "Senegal",
+    "serbia": "Serbien",
+    "seychelles": "Seychellerne",
+    "sierra_leone": "Sierra Leone",
     "singapore": "Singapore",
+    "sint_maarten": "Sint Maarten",
+    "slovakia": "Slovakiet",
+    "slovenia": "Slovenien",
+    "solomon_islands": "Salomonøerne",
+    "somalia": "Somalia",
     "south_africa": "Sydafrika",
     "south_america": "Sydamerika",
+    "south_georgia_and_the_south_sandwich_islands": "South Georgia og South Sandwich Islands",
+    "south_korea": "Sydkorea",
+    "south_sudan": "Sydsudan",
     "spain": "Spanien",
+    "sri_lanka": "Sri Lanka",
+    "sudan": "Sudan",
+    "suriname": "Suriname",
+    "svalbard_and_jan_mayen": "Svalbard og Jan Mayen",
+    "swaziland": "Swaziland",
     "sweden": "Sverige",
     "switzerland": "Schweiz",
     "syria": "Syrien",
+    "taiwan": "Taiwan",
+    "tajikistan": "Tadsjikistan",
+    "tanzania": "Tanzania",
     "thailand": "Thailand",
+    "togo": "Togo",
+    "tokelau": "Tokelau",
+    "tonga": "Tonga",
     "trinidad_and_tobago": "Trinidad og Tobago",
+    "tunisia": "Tunesien",
     "turkey": "Tyrkiet",
+    "turkmenistan": "Turkmenistan",
+    "turks_and_caicos_islands": "Turks- og Caicosøerne",
+    "tuvalu": "Tuvalu",
+    "uganda": "Uganda",
+    "ukraine": "Ukraine",
+    "united_arab_emirates": "Forenede Arabiske Emirater",
     "united_kingdom": "Storbritannien",
     "united_states": "De Forenede Stater",
+    "united_states_minor_outlying_islands": "USA's ydre småøer",
+    "united_states_virgin_islands": "Amerikanske Jomfruøer",
+    "uruguay": "Uruguay",
+    "uzbekistan": "Usbekistan",
+    "vanuatu": "Vanuatu",
+    "vatican_city": "Vatikanstaten",
+    "venezuela": "Venezuela",
+    "vietnam": "Vietnam",
     "virgin_islands": "Jomfruøerne",
-    "west_africa": "Vestafrika"
+    "wallis_and_futuna": "Wallis og Futuna",
+    "west_africa": "Vestafrika",
+    "western_sahara": "Vestsahara",
+    "yemen": "Yemen",
+    "zambia": "Zambia",
+    "zimbabwe": "Zimbabwe"
   },
   "places_of_interest": "Interessante steder",
   "plants": "planter",
@@ -7765,6 +8463,7 @@ I18n.translations["da"] = {
     "other": "Gemmer %{num} af %{count} observationer..."
   },
   "saving_verb": "Gemmer",
+  "scale_colon": "Skala:",
   "search": "Søg",
   "search_by_taxon_name_or_flickr_photo_id": "Søg efter takson navn eller Fkickr foto ID",
   "search_by_taxon_name_or_observation_id": "Søg efter takson navn eller observations ID",
@@ -8080,8 +8779,15 @@ I18n.translations["da"] = {
         "recent_w_7_obs": "Nylige m/> 7 obs"
       },
       "year": {
+        "growth_by_country_desc_html": "Hvor er sker væksten? Dette kort og diagram forsøger at bryde dette\nned på landniveau, hvilket viser sig at være kompliceret, fordi\nvæksten kan være meget ubalanceret på landeniveau. Vi har valgt at\nudelade USA og bruge en log-skala som standard for at fremhæve\nforskelle mellem andre lande. Hvis et land er farvet sort betyder det\nat det ikke har bidraget ikke signifikant, eller det ingen vækst havde\ni år, eller ikke havde flere observationer i år end sidste år (Hold\nmusen over et land for at se lidt mere detaljeret). <strong> \"% af\ntotal vækst \"</strong> betyder, hvor meget af den verdensomspændende\nvækst kom fra et bestemt land, f.eks. hvis der var 20 observationer i\n2018 og 10 i 2017 ville det være en vækst på 10 observationer, og hvis\n5 af de observationer var fra Benin, så bidrog Benin med 50% af den\nsamlede vækst. <strong> \"% vækst\" </strong> betyder antallet af\nobservationer i år i det pågældende land som en procent af\nobservationer sidste år i det land, så hvis der var 10 observationer i\nLaos sidste år, men 20 i år, ville det være 100% vækst, og hvis der\nvar 0 sidste år og 1 i år er det uendelig% vækst.",
+        "growth_by_country_title": "Vækst efter land",
+        "growth_in_year_obs": "Vækst i %{year} (obs)",
         "growth_title": "Vækst",
-        "new_species_desc_html": "Arter, der blev tilføjet for første gang på %{site_name} i år.\nKlik på en måned for at se nogle af de nye arter, der er tilføjet i den pågældende måned.\nDu kan også se den samlede arts akkumulering, eller flytte skyderen\ntilbage i tiden for at se andre nyligt observerede arter. Dette diagram viser\narter fra verificerbare observationer i den måned de blev uploadet\ntil %{site_name} (ikke den måned, de blev observeret). Det inkludere ikke højere eller lavere niveau taksa, så en observation identificeret som\nMammalia tæller ikke, og en observation af <i>Canis lupus</i> ssp.\n<i>arctos</i> vil bare tælle som <i>Canis lupus</i>.",
+        "include_usa": "Inkludér USA",
+        "new_species_desc_html": "Arter, der blev tilføjet for første gang på %{site_name} i år.\nKlik på en måned for at se nogle af de nye arter, der er tilføjet i den pågældende måned.\nDu kan også se den samlede arts akkumulation, eller flytte skyderen\ntilbage i tiden for at se andre nyligt observerede arter. Dette diagram viser\narter fra verificerbare observationer i den måned de blev uploadet\ntil %{site_name} (ikke den måned, de blev observeret). Det inkludere ikke højere eller lavere niveau taksa, så en observation identificeret som\nMammalia tæller ikke, og en observation af <i>Canis lupus</i> ssp.\n<i>arctos</i> vil bare tælle som <i>Canis lupus</i>.",
+        "obs_in_year": "Obs i %{year}",
+        "percent_growth_in_year": "% Vækst i %{year}",
+        "percent_of_total_growth": "% af samlet vækst",
         "publications_desc_html": "Indvirkningsdata og visualiseringer takker vi\n<a href=\"https://www.altmetric.com\"> Altmetric </a> for. Information\nom dataanvendelse takker vi vores venner på\n<a href=\"https://www.gbif.org/\"> Global Biodiversity Information Facility </a> for.\n<br/>\n<a href=\"%{url}\"> Se alle %{numStudies} studier</a>",
         "sunburst_desc_html": "Observeret taksa arrangeret som hierarkisk \"solstråle\" diagram. Basen\naf hierarkiet er i centrum, begyndende med \"liv\" og slutter\nmed arter ved yderkanterne. Størrelsen af hver \"bue\" er proportional\nmed antallet af observationer af den pågældende takson og farver\nsvarer groft til vores sædvanlige \"ikoniske\" taksonfarver (grøn til planter,\norange til insekter, blå for de fleste andre dyr osv.), så hvis du er\nser meget grønt, det betyder at du har observeret mange planter.\n<strong> Klik på en \"bue\" for at placere den pågældende takson i midten </strong> og dens underordnede omkring den, eller <strong> klik på midten for at flytte op op i hierarkiet igen </strong>."
       }
@@ -9203,22 +9909,30 @@ I18n.translations["de"] = {
     "belgium": "Belgien",
     "bosnia_and_herzegovina": "Bosnia und Herzegovina",
     "brazil": "Brasilien",
+    "bulgaria": "Bulgarien",
     "canada": "Kanada",
     "central_america": "Zentralamerika",
     "china": "China",
     "colombia": "Kolumbien",
+    "cuba": "Kuba",
     "denmark": "Dänemark",
+    "east_timor": "Osttimor",
     "egypt": "Ägypten",
     "equatorial_guinea": "Equatorial Guinea",
     "europe": "Europa",
+    "falkland_islands": "Falklandinseln",
+    "finland": "Finnland",
     "france": "Frankreich",
+    "georgia": "Georgien",
     "germany": "Deutschland",
     "greece": "Griechenland",
+    "greenland": "Grönland",
     "hong_kong": "Hong Kong",
     "hungary": "Ungarn",
-    "italy": "Italien",
     "india": "Indien",
+    "indonesia": "Indonesien",
     "iraq": "Irak",
+    "italy": "Italien",
     "japan": "Japan",
     "korea": "Korea",
     "martinique": "Martinique",
@@ -9235,8 +9949,8 @@ I18n.translations["de"] = {
     "portugal": "Portugal",
     "republic_of_congo": "Republik Kongo",
     "russia": "Russland",
-    "saudi_arabia": "Saudi-Arabien",
     "sao_tome_and_principe": "São Tomé und Príncipe",
+    "saudi_arabia": "Saudi-Arabien",
     "singapore": "Singapur",
     "south_africa": "Südafrika",
     "south_america": "Südamerika",
@@ -9456,6 +10170,7 @@ I18n.translations["de"] = {
   "the_community_must_feel_that": "Die Community muss das Gefühl haben, dass die Community-ID die beste ist, die auf der vorhandenen Evidenz basieren kann.",
   "the_world": "Die Welt",
   "then_keybord_sequence": "dann",
+  "there_were_problems_adding_taxa": "Es gab Probleme beim Hinzufügen dieser Taxa: %{errors}",
   "these_observations_have_not_been_uploaded_yet": "Diese Beobachtungen wurden noch nicht hochgeladen.",
   "this_bioblitz_beings_in": "Dieser bioblitz beginnt in",
   "this_observation": "Dieser Beobachtung",
@@ -9707,6 +10422,96 @@ I18n.translations["de"] = {
   "yours": "Dein",
   "zoom_in": "Heranzoomen",
   "zoom_out": "Herauszoomen"
+};
+I18n.translations["de-CH"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["el"] = {
   "<%= name": {
@@ -10397,9 +11202,9 @@ I18n.translations["el"] = {
     "greece": "Ελλάδα",
     "hong_kong": "Χονγκ Κονγκ",
     "hungary": "Ουγγαρία",
-    "italy": "Ιταλία",
     "india": "Ινδία",
     "iraq": "Ιράκ",
+    "italy": "Ιταλία",
     "japan": "Ιαπωνία",
     "korea": "Κορέα",
     "martinique": "Μαρτινίκα",
@@ -10416,8 +11221,8 @@ I18n.translations["el"] = {
     "portugal": "Πορτογαλία",
     "republic_of_congo": "Δημοκρατία του Κονγκό",
     "russia": "Ρωσία",
-    "saudi_arabia": "Σαουδική Αραβία",
     "sao_tome_and_principe": "Άγιος Θωμάς και Πρίγκιπας",
+    "saudi_arabia": "Σαουδική Αραβία",
     "singapore": "Σιγκαπούρη",
     "south_africa": "Νότια Αφρική",
     "south_america": "Νότια Αμερική",
@@ -10915,6 +11720,8 @@ I18n.translations["en"] = {
   "community_id_heading": "Community ID",
   "compare": "Compare",
   "comprehensive_list": "Comprehensive list",
+  "computer_vision_suggestion": "Computer Vision Suggestion",
+  "computer_vision_suggestion_desc": "Computer vision is the process of teaching computers to recognize patterns\nin images. We use computer vision systems trained on our own photos and\nobservations to provide automated species identification suggestions. This\nlabel indicates when a person added an identification based on one of these\nsuggestions.\n",
   "confirm": "Confirm",
   "confirmed": "confirmed",
   "conservation_status": "Conservation Status",
@@ -11102,6 +11909,7 @@ I18n.translations["en"] = {
   "download": "Download",
   "drag_and_drop_some_photos_or_sounds": "Drag & drop some photos or sounds",
   "drop_it": "Drop it",
+  "duplicate_observation_flag_warning": "For duplicate observations, please ask the observer to address the issue\ninstead of adding a flag, because site curators cannot remove observations.\n",
   "duplicate_verb": "Duplicate",
   "edit": "Edit",
   "edit_atlas": "Edit Atlas",
@@ -11170,6 +11978,7 @@ I18n.translations["en"] = {
   "flag_as_inappropriate": "Flag As Inappropriate",
   "flag_for_curation": "Flag for Curation",
   "flagged_": "Flagged",
+  "flagging_desc": "Flagging brings something to the attention of volunteer site curators.\nPlease don't flag problems you can address with identifications, the Data\nQuality Assessment, or by talking to the person who made the content.\n",
   "flags_with_count": "Flags (%{count})",
   "flickr_has_no_creative_commons": "Flickr has no Creative Commons-licensed photos from this place.",
   "flowering_phenology": "Flowering Phenology",
@@ -11494,6 +12303,7 @@ I18n.translations["en"] = {
   "observations_total": "Observations Total",
   "observations_with_this_field": "Observations with this field",
   "observations_with_this_field_and_value": "Observations with this field and value",
+  "observations_without_media": "Observations w/o Media",
   "observed": "Observed",
   "observed_on": "Observed on",
   "observers": "Observers",
@@ -11645,60 +12455,268 @@ I18n.translations["en"] = {
   "places_name": {
     "afghanistan": "Afghanistan",
     "africa": "Africa",
+    "akrotiri_and_dhekelia": "Akrotiri and Dhekelia",
+    "aland": "Åland",
+    "albania": "Albania",
+    "algeria": "Algeria",
+    "american_samoa": "American Samoa",
+    "andorra": "Andorra",
+    "angola": "Angola",
+    "anguilla": "Anguilla",
+    "antarctica": "Antarctica",
     "antigua_and_barbuda": "Antigua and Barbuda",
+    "argentina": "Argentina",
+    "armenia": "Armenia",
+    "aruba": "Aruba",
     "australia": "Australia",
     "austria": "Austria",
+    "azerbaijan": "Azerbaijan",
+    "bahamas": "Bahamas",
+    "bahrain": "Bahrain",
+    "bangladesh": "Bangladesh",
+    "barbados": "Barbados",
+    "belarus": "Belarus",
     "belgium": "Belgium",
+    "belize": "Belize",
+    "benin": "Benin",
+    "bermuda": "Bermuda",
+    "bhutan": "Bhutan",
+    "bolivia": "Bolivia",
+    "bonaire_saint_eustatius_and_saba": "Bonaire, Saint Eustatius and Saba",
     "bosnia_and_herzegovina": "Bosnia and Herzegovina",
+    "botswana": "Botswana",
+    "bouvet_island": "Bouvet Island",
     "brazil": "Brazil",
+    "british_indian_ocean_territory": "British Indian Ocean Territory",
+    "british_virgin_islands": "British Virgin Islands",
+    "brunei": "Brunei",
+    "bulgaria": "Bulgaria",
+    "burkina_faso": "Burkina Faso",
+    "burundi": "Burundi",
+    "cambodia": "Cambodia",
+    "cameroon": "Cameroon",
     "canada": "Canada",
+    "cape_verde": "Cape Verde",
+    "cayman_islands": "Cayman Islands",
+    "central_african_republic": "Central African Republic",
     "central_america": "Central America",
+    "chad": "Chad",
+    "chile": "Chile",
     "china": "China",
+    "christmas_island": "Christmas Island",
+    "clipperton_island": "Clipperton Island",
+    "cocos_islands": "Cocos Islands",
     "colombia": "Colombia",
+    "commonwealth_of_the_northern_mariana_islands": "Commonwealth of the Northern Mariana Islands",
+    "comoros": "Comoros",
+    "cook_islands": "Cook Islands",
+    "costa_rica": "Costa Rica",
+    "cote_d_ivoire": "Côte d'Ivoire",
+    "croatia": "Croatia",
+    "cuba": "Cuba",
+    "curacao": "Curaçao",
+    "cyprus": "Cyprus",
+    "czech_republic": "Czech Republic",
+    "democratic_republic_of_the_congo": "Democratic Republic of the Congo",
     "denmark": "Denmark",
+    "djibouti": "Djibouti",
+    "dominica": "Dominica",
+    "dominican_republic": "Dominican Republic",
+    "east_timor": "East Timor",
+    "ecuador": "Ecuador",
     "egypt": "Egypt",
+    "el_salvador": "El Salvador",
     "equatorial_guinea": "Equatorial Guinea",
+    "eritrea": "Eritrea",
+    "estonia": "Estonia",
+    "ethiopia": "Ethiopia",
     "europe": "Europe",
+    "falkland_islands": "Falkland Islands",
+    "faroe_islands": "Faroe Islands",
+    "fiji": "Fiji",
+    "finland": "Finland",
     "france": "France",
+    "french_guiana": "French Guiana",
+    "french_polynesia": "French Polynesia",
+    "french_southern_territories": "French Southern Territories",
+    "gabon": "Gabon",
+    "gambia": "Gambia",
+    "georgia": "Georgia",
     "germany": "Germany",
+    "ghana": "Ghana",
+    "gibraltar": "Gibraltar",
     "greece": "Greece",
+    "greenland": "Greenland",
+    "grenada": "Grenada",
+    "guadeloupe": "Guadeloupe",
+    "guam": "Guam",
+    "guatemala": "Guatemala",
+    "guernsey": "Guernsey",
+    "guinea": "Guinea",
+    "guinea_bissau": "Guinea-Bissau",
+    "guyana": "Guyana",
+    "haiti": "Haiti",
+    "heard_island_and_mcdonald_islands": "Heard Island and McDonald Islands",
+    "honduras": "Honduras",
     "hong_kong": "Hong Kong",
     "hungary": "Hungary",
-    "italy": "Italy",
+    "iceland": "Iceland",
     "india": "India",
+    "indonesia": "Indonesia",
+    "iran": "Iran",
     "iraq": "Iraq",
+    "ireland": "Ireland",
+    "isle_of_man": "Isle of Man",
+    "israel": "Israel",
+    "italy": "Italy",
+    "jamaica": "Jamaica",
     "japan": "Japan",
+    "jersey": "Jersey",
+    "jordan": "Jordan",
+    "kazakhstan": "Kazakhstan",
+    "kenya": "Kenya",
+    "kiribati": "Kiribati",
     "korea": "Korea",
+    "kosovo": "Kosovo",
+    "kuwait": "Kuwait",
+    "kyrgyzstan": "Kyrgyzstan",
+    "laos": "Laos",
+    "latvia": "Latvia",
+    "lebanon": "Lebanon",
+    "lesotho": "Lesotho",
+    "liberia": "Liberia",
+    "libya": "Libya",
+    "liechtenstein": "Liechtenstein",
+    "lithuania": "Lithuania",
+    "luxembourg": "Luxembourg",
+    "macao": "Macao",
+    "macedonia": "Macedonia",
+    "madagascar": "Madagascar",
+    "malawi": "Malawi",
+    "malaysia": "Malaysia",
+    "maldives": "Maldives",
+    "mali": "Mali",
+    "malta": "Malta",
+    "marshall_islands": "Marshall Islands",
     "martinique": "Martinique",
-    "mexico": "México",
+    "mauritania": "Mauritania",
+    "mauritius": "Mauritius",
+    "mayotte": "Mayotte",
+    "mexico": "Mexico",
+    "micronesia": "Micronesia",
+    "moldova": "Moldova",
+    "monaco": "Monaco",
+    "mongolia": "Mongolia",
+    "montenegro": "Montenegro",
+    "montserrat": "Montserrat",
+    "morocco": "Morocco",
+    "mozambique": "Mozambique",
+    "myanmar": "Myanmar",
+    "namibia": "Namibia",
+    "nauru": "Nauru",
+    "nepal": "Nepal",
     "netherlands": "Netherlands",
+    "new_caledonia": "New Caledonia",
     "new_guinea": "New Guinea",
     "new_zealand": "New Zealand",
+    "nicaragua": "Nicaragua",
+    "niger": "Niger",
+    "nigeria": "Nigeria",
+    "niue": "Niue",
+    "norfolk_island": "Norfolk Island",
     "north_africa": "North Africa",
     "north_america": "North America",
+    "north_korea": "North Korea",
+    "northern_cyprus": "Northern Cyprus",
+    "norway": "Norway",
+    "oman": "Oman",
+    "pakistan": "Pakistan",
+    "palau": "Palau",
+    "palestina": "Palestina",
     "palestine": "Palestine",
     "panama": "Panama",
+    "papua_new_guinea": "Papua New Guinea",
+    "paraguay": "Paraguay",
     "peru": "Peru",
+    "philippines": "Philippines",
+    "pitcairn_islands": "Pitcairn Islands",
     "poland": "Poland",
     "portugal": "Portugal",
+    "puerto_rico": "Puerto Rico",
+    "qatar": "Qatar",
     "republic_of_congo": "Republic of Congo",
+    "reunion": "Reunion",
+    "romania": "Romania",
     "russia": "Russia",
-    "saudi_arabia": "Saudi Arabia",
+    "rwanda": "Rwanda",
+    "saint_barthelemy": "Saint-Barthélemy",
+    "saint_helena": "Saint Helena",
+    "saint_kitts_and_nevis": "Saint Kitts and Nevis",
+    "saint_lucia": "Saint Lucia",
+    "saint_martin": "Saint-Martin",
+    "saint_pierre_and_miquelon": "Saint Pierre and Miquelon",
+    "saint_vincent_and_the_grenadines": "Saint Vincent and the Grenadines",
+    "samoa": "Samoa",
+    "san_marino": "San Marino",
     "sao_tome_and_principe": "Sao Tome and Principe",
+    "saudi_arabia": "Saudi Arabia",
+    "senegal": "Senegal",
+    "serbia": "Serbia",
+    "seychelles": "Seychelles",
+    "sierra_leone": "Sierra Leone",
     "singapore": "Singapore",
+    "sint_maarten": "Sint Maarten",
+    "slovakia": "Slovakia",
+    "slovenia": "Slovenia",
+    "solomon_islands": "Solomon Islands",
+    "somalia": "Somalia",
     "south_africa": "South Africa",
     "south_america": "South America",
+    "south_georgia_and_the_south_sandwich_islands": "South Georgia and the South Sandwich Islands",
+    "south_korea": "South Korea",
+    "south_sudan": "South Sudan",
     "spain": "Spain",
+    "sri_lanka": "Sri Lanka",
+    "sudan": "Sudan",
+    "suriname": "Suriname",
+    "svalbard_and_jan_mayen": "Svalbard and Jan Mayen",
+    "swaziland": "Swaziland",
     "sweden": "Sweden",
     "switzerland": "Switzerland",
     "syria": "Syria",
+    "taiwan": "Taiwan",
+    "tajikistan": "Tajikistan",
+    "tanzania": "Tanzania",
     "thailand": "Thailand",
+    "togo": "Togo",
+    "tokelau": "Tokelau",
+    "tonga": "Tonga",
     "trinidad_and_tobago": "Trinidad and Tobago",
+    "tunisia": "Tunisia",
     "turkey": "Turkey",
+    "turkmenistan": "Turkmenistan",
+    "turks_and_caicos_islands": "Turks and Caicos Islands",
+    "tuvalu": "Tuvalu",
+    "uganda": "Uganda",
+    "ukraine": "Ukraine",
+    "united_arab_emirates": "United Arab Emirates",
     "united_kingdom": "United Kingdom",
     "united_states": "United States",
+    "united_states_minor_outlying_islands": "United States Minor Outlying Islands",
+    "united_states_virgin_islands": "United States Virgin Islands",
+    "uruguay": "Uruguay",
+    "uzbekistan": "Uzbekistan",
+    "vanuatu": "Vanuatu",
+    "vatican_city": "Vatican City",
+    "venezuela": "Venezuela",
+    "vietnam": "Vietnam",
     "virgin_islands": "Virgin Islands",
-    "west_africa": "West Africa"
+    "wallis_and_futuna": "Wallis and Futuna",
+    "west_africa": "West Africa",
+    "western_sahara": "Western Sahara",
+    "yemen": "Yemen",
+    "zambia": "Zambia",
+    "zimbabwe": "Zimbabwe"
   },
   "places_of_interest": "Places of Interest",
   "plants": "plants",
@@ -11999,6 +13017,7 @@ I18n.translations["en"] = {
   "value": "Value",
   "verbing_x_of_y": "%{verb} %{x} of %{y}...",
   "verifiable": "Verifiable",
+  "verifiable_observations": "Verifiable Observations",
   "verifiable_observations_by_observation_date": "Verifiable Observations By Observation Date",
   "view": "View",
   "view_all": "View All",
@@ -13201,6 +14220,7 @@ I18n.translations["es"] = {
     "waray_waray": "Samareño"
   },
   "life": "Vida",
+  "linear_scale_label": "Lineal",
   "list": "Lista",
   "list_tooltip": "Muestra la vista de lista",
   "lists": "Listas",
@@ -13217,6 +14237,7 @@ I18n.translations["es"] = {
   "location_specified": "Ubicación especificada",
   "location_unknown": "Ubicación desconocida",
   "log_in": "Acceder",
+  "log_scale_label": "Registro",
   "long": "Longitud",
   "longitude": "Longitud",
   "lookup": "Buscar",
@@ -13523,60 +14544,263 @@ I18n.translations["es"] = {
   "places_name": {
     "afghanistan": "Afganistán",
     "africa": "África",
+    "akrotiri_and_dhekelia": "Acrotiri y Dhekelia",
+    "aland": "Åland",
+    "albania": "Albania",
+    "algeria": "Argelia",
+    "american_samoa": "Samoa americana",
+    "andorra": "Andorra",
+    "angola": "Angola",
+    "anguilla": "Anguila",
+    "antarctica": "Antártida",
     "antigua_and_barbuda": "Antigua y Barbuda",
+    "argentina": "Argentina",
+    "armenia": "Armenia",
+    "aruba": "Aruba",
     "australia": "Australia",
     "austria": "Austria",
+    "azerbaijan": "Azerbaiyán",
+    "bahamas": "Bahamas",
+    "bahrain": "Baréin",
+    "bangladesh": "Bangladesh",
+    "barbados": "Barbados",
+    "belarus": "Belarús",
     "belgium": "Bélgica",
+    "belize": "Belice",
+    "benin": "Benín",
+    "bermuda": "Bermudas",
+    "bhutan": "Bután",
+    "bolivia": "Bolivia",
+    "bonaire_saint_eustatius_and_saba": "Bonaire, San Eustaquio y Saba",
     "bosnia_and_herzegovina": "Bosnia y Herzegovina",
+    "botswana": "Botsuana",
+    "bouvet_island": "Isla Bouvet",
     "brazil": "Brasil",
+    "british_indian_ocean_territory": "Territorio Británico del Océano Índico",
+    "british_virgin_islands": "Islas Vírgenes Británicas",
+    "brunei": "Brunei",
+    "bulgaria": "Bulgaria",
+    "burkina_faso": "Burkina Faso",
+    "burundi": "Burundi",
+    "cambodia": "Camboya",
+    "cameroon": "Camerún",
     "canada": "Canadá",
+    "cape_verde": "Cabo Verde",
+    "cayman_islands": "Islas Caimán",
+    "central_african_republic": "República Centroafricana",
     "central_america": "América central",
+    "chad": "Chad",
+    "chile": "Chile",
     "china": "China",
+    "clipperton_island": "Isla Clipperton",
+    "cocos_islands": "Islas Cocos",
     "colombia": "Colombia",
+    "commonwealth_of_the_northern_mariana_islands": "Islas Marianas Del norte",
+    "comoros": "Comoras",
+    "cook_islands": "Islas Cook",
+    "costa_rica": "Costa Rica",
+    "cote_d_ivoire": "Costa de Marfil",
+    "croatia": "Croacia",
+    "cuba": "Cuba",
+    "curacao": "Curazao",
+    "cyprus": "Chipre",
+    "czech_republic": "República Checa",
+    "democratic_republic_of_the_congo": "República democrática del Congo",
     "denmark": "Dinamarca",
+    "djibouti": "Yibuti",
+    "dominica": "Dominica",
+    "dominican_republic": "República dominicana",
+    "east_timor": "Timor Oriental",
+    "ecuador": "Ecuador",
     "egypt": "Egipto",
+    "el_salvador": "El Salvador",
     "equatorial_guinea": "Guinea Ecuatorial",
+    "eritrea": "Eritrea",
+    "estonia": "Estonia",
+    "ethiopia": "Etiopía",
     "europe": "Europa",
+    "falkland_islands": "Islas Malvinas",
+    "fiji": "Fiyi",
+    "finland": "Finlandia",
     "france": "Francia",
+    "french_guiana": "Guayana Francesa",
+    "french_polynesia": "Polinesia Francesa",
+    "gabon": "Gabón",
+    "gambia": "Gambia",
+    "georgia": "Georgia",
     "germany": "Alemania",
+    "ghana": "Ghana",
+    "gibraltar": "Gibraltar",
     "greece": "Grecia",
+    "greenland": "Groenlandia",
+    "grenada": "Granada",
+    "guadeloupe": "Guadalupe",
+    "guam": "Guam",
+    "guatemala": "Guatemala",
+    "guernsey": "Guernsey",
+    "guinea": "Guinea",
+    "guinea_bissau": "Guinea-Bisáu",
+    "guyana": "Guyana",
+    "haiti": "Haití",
+    "heard_island_and_mcdonald_islands": "Islas Heard y McDonald",
+    "honduras": "Honduras",
     "hong_kong": "Hong Kong",
     "hungary": "Hungría",
-    "italy": "Italia",
+    "iceland": "Islandia",
     "india": "India",
+    "indonesia": "Indonesia",
+    "iran": "Irán",
     "iraq": "Irak",
+    "ireland": "Irlanda",
+    "isle_of_man": "Isla de Man",
+    "israel": "Israel",
+    "italy": "Italia",
+    "jamaica": "Jamaica",
     "japan": "Japón",
+    "jersey": "Jersey",
+    "jordan": "Jordania",
+    "kazakhstan": "Kazajistán",
+    "kenya": "Kenia",
+    "kiribati": "Kiribati",
     "korea": "Corea",
+    "kosovo": "Kosovo",
+    "kuwait": "Kuwait",
+    "kyrgyzstan": "Kirguistán",
+    "laos": "Laos",
+    "latvia": "Letonia",
+    "lebanon": "Líbano",
+    "lesotho": "Lesoto",
+    "liberia": "Liberia",
+    "libya": "Libia",
+    "liechtenstein": "Liechtenstein",
+    "lithuania": "Lituania",
+    "luxembourg": "Luxemburgo",
+    "macao": "Macao",
+    "macedonia": "Macedonia",
+    "madagascar": "Madagascar",
+    "malawi": "Malawi",
+    "malaysia": "Malasia",
+    "maldives": "Maldivas",
+    "mali": "Malí",
+    "malta": "Malta",
+    "marshall_islands": "Islas Marshall",
     "martinique": "Martinica",
+    "mauritania": "Mauritania",
+    "mauritius": "Mauricio",
+    "mayotte": "Mayotte",
     "mexico": "México",
+    "micronesia": "Micronesia",
+    "moldova": "Moldova",
+    "monaco": "Mónaco",
+    "mongolia": "Mongolia",
+    "montenegro": "Montenegro",
+    "montserrat": "Montserrat",
+    "morocco": "Marruecos",
+    "mozambique": "Mozambique",
+    "myanmar": "Myanmar",
+    "namibia": "Namibia",
+    "nauru": "Nauru",
+    "nepal": "Nepal",
     "netherlands": "Países Bajos",
+    "new_caledonia": "Nueva Caledonia",
     "new_guinea": "Nueva Guinea",
     "new_zealand": "Nueva Zelanda",
+    "nicaragua": "Nicaragua",
+    "niger": "Níger",
+    "nigeria": "Nigeria",
+    "niue": "Niue",
+    "norfolk_island": "Isla Norfolk",
     "north_africa": "África del norte",
     "north_america": "América del norte",
+    "north_korea": "Corea del Norte",
+    "northern_cyprus": "Chipre del norte",
+    "norway": "Noruega",
+    "oman": "Omán",
+    "pakistan": "Pakistán",
+    "palau": "Palau",
+    "palestina": "Palestina",
     "palestine": "Palestina",
     "panama": "Panamá",
+    "papua_new_guinea": "Papúa Nueva Guinea",
+    "paraguay": "Paraguay",
     "peru": "Perú",
+    "philippines": "Filipinas",
+    "pitcairn_islands": "Islas Pitcairn",
     "poland": "Polonia",
     "portugal": "Portugal",
+    "puerto_rico": "Puerto Rico",
+    "qatar": "Qatar",
     "republic_of_congo": "República del Congo",
+    "reunion": "Reunión",
+    "romania": "Rumanía",
     "russia": "Rusia",
-    "saudi_arabia": "Arabia Saudita",
+    "rwanda": "Ruanda",
+    "saint_barthelemy": "Saint-Barthélemy",
+    "saint_helena": "Santa Helena",
+    "saint_kitts_and_nevis": "San Cristóbal y Nieves",
+    "saint_lucia": "Santa Lucía",
+    "saint_pierre_and_miquelon": "San Pedro y Miquelón",
+    "saint_vincent_and_the_grenadines": "San Vicente y las Granadinas",
+    "samoa": "Samoa",
+    "san_marino": "San Marino",
     "sao_tome_and_principe": "Santo Tomé y Príncipe",
+    "saudi_arabia": "Arabia Saudita",
+    "senegal": "Senegal",
+    "serbia": "Serbia",
+    "seychelles": "Seychelles",
+    "sierra_leone": "Sierra Leona",
     "singapore": "Singapur",
+    "sint_maarten": "Sint Maarten",
+    "slovakia": "Eslovaquia",
+    "slovenia": "Eslovenia",
+    "solomon_islands": "Islas Salomón",
+    "somalia": "Somalia",
     "south_africa": "Sudáfrica",
     "south_america": "América del sur",
+    "south_georgia_and_the_south_sandwich_islands": "Islas Georgias del Sur y Sandwich del Sur",
+    "south_korea": "Corea del Sur",
+    "south_sudan": "Sudán del sur",
     "spain": "España",
+    "sri_lanka": "Sri Lanka",
+    "sudan": "Sudán",
+    "suriname": "Surinam",
+    "svalbard_and_jan_mayen": "Svalbard y Jan Mayen",
+    "swaziland": "Suazilandia",
     "sweden": "Suecia",
     "switzerland": "Suiza",
     "syria": "Siria",
+    "taiwan": "Taiwán",
+    "tajikistan": "Tayikistán",
+    "tanzania": "Tanzania",
     "thailand": "Tailandia",
+    "togo": "Togo",
+    "tokelau": "Tokelau",
+    "tonga": "Tonga",
     "trinidad_and_tobago": "Trinidad y Tobago",
+    "tunisia": "Túnez",
     "turkey": "Turquía",
+    "turkmenistan": "Turkmenistán",
+    "turks_and_caicos_islands": "Islas Turcas y Caicos",
+    "tuvalu": "Tuvalu",
+    "uganda": "Uganda",
+    "ukraine": "Ucrania",
+    "united_arab_emirates": "Emiratos Árabes Unidos",
     "united_kingdom": "Reino Unido",
     "united_states": "Estados Unidos",
+    "united_states_virgin_islands": "Islas Vírgenes de los Estados Unidos",
+    "uruguay": "Uruguay",
+    "uzbekistan": "Uzbekistán",
+    "vanuatu": "Vanuatu",
+    "vatican_city": "Ciudad de Vaticano",
+    "venezuela": "Venezuela",
+    "vietnam": "Vietnam",
     "virgin_islands": "Islas Vírgenes",
-    "west_africa": "África occidental"
+    "wallis_and_futuna": "Wallis y Futuna",
+    "west_africa": "África occidental",
+    "western_sahara": "Sáhara occidental",
+    "yemen": "Yemen",
+    "zambia": "Zambia",
+    "zimbabwe": "Zimbabue"
   },
   "places_of_interest": "Lugares de Interés",
   "plants": "plantas",
@@ -13694,6 +14918,7 @@ I18n.translations["es"] = {
     "other": "Guardando %{num} de %{count} observaciones..."
   },
   "saving_verb": "Guardando",
+  "scale_colon": "Escala:",
   "search": "Buscar",
   "search_by_taxon_name_or_flickr_photo_id": "Busqueda por ID foto de Flickr o nombre taxonómico.",
   "search_by_taxon_name_or_observation_id": "Búsqueda por nombre taxonómico o por Identificación de la observación",
@@ -14009,8 +15234,15 @@ I18n.translations["es"] = {
         "recent_w_7_obs": "Reciente w/ >= 7 observaciones"
       },
       "year": {
+        "growth_by_country_desc_html": "¿Dónde está hay crecimiento? Este mapa y gráfico intentan segmentar esta información por país, lo cual resulta complicado porque el crecimiento por\npaís puede ser muy desequilidrado. Hemos optado por omitir a los Estados Unidos y utilizar una escala de registro por defecto para acentuar diferencias\nentre países. Si un país aparece en negro esto significa que no contribuyó significativamente a un porcentaje, o que no se presentó ningún crecimiento\neste año, o no ha tenido más observaciones este año que el año pasado\n(pasa el cursor sobre un país para ver un poco más de detalle). <strong>\"% del crecimiento total\"<strong> significa cuánto del crecimiento mundial provino de un país particular, por ejemplo si hubo 20 observaciones en 2018 y 10\nen 2017, eso serían 10 observaciones de crecimiento, y si 5 de ellas\nse dieron en Benín, quiere decir que Benín contribuyó 50% del total\ndel crecimiento. <strong>\"% del crecimiento\"<strong> significa el número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, eso sería un crecimiento del 100%, y si hubo 0 el año\npasado y 1 este año, eso sería un % de crecimiento infinito.",
+        "growth_by_country_title": "Crecimiento Por País",
+        "growth_in_year_obs": "Crecimiento en %{year} (obs)",
         "growth_title": "Crecimiento",
-        "new_species_desc_html": "Especies que fueron añadidas por primera vez en %{site_name} este año.\nClic en un mes para ver algunas de las especies nuevas añadidas en ese mes.\nTambién puedes ver el total acumulado de la especie, o mover el cursor \nhacia atrás en el cronograma para ver otras especies observadas por primera vez. Este gráfico muestra especies a partir de observaciones verificables el mes en que fueron añadidas a %{site_name} (no el mes en que fueron observadas). No incluye nivel más alto o más bajo de taxones, de manera que una observación identificada como Mammalia no cuenta, y una observación de <i>Canis lupus</i> ssp. <i>arctos</i> contará solo como <i>Canis lupus</i>.",
+        "include_usa": "Incluye EE.UU.",
+        "new_species_desc_html": "Especies que fueron añadidas por primera vez en este año.\nMarca sobre un mes para ver algunas de las especies nuevas añadidas en ese mes.\nTambién puedes ver el total acumulado de la especie, o mover el cursor \nhacia atrás en el cronograma para ver otras especies observadas por primera vez. Este gráfico muestra especies a partir de observaciones verificables el mes en que fueron añadidas a %{site_name} (no el mes en que fueron observadas). No incluye nivel más alto o más bajo de taxones, de manera que una observación identificada como Mammalia no cuenta, y una observación de <i>Canis lupus</i> ssp. <i>arctos</i> contará solo como <i>Canis lupus</i>.",
+        "obs_in_year": "Obs En %{year}",
+        "percent_growth_in_year": "% Crecimiento en %{year}",
+        "percent_of_total_growth": "% del Crecimiento Total",
         "publications_desc_html": "Datos de impacto y visualizaciones cortesía de <a href=\"https://www.altmetric.com\">Altmetric</a>. Información\nsobre uso de los datos cortesía de nuestros amigos en <a href=\"https://www.gbif.org/\">Global Biodiversity Information Facility</a>.\n<br/>\n<a href=\"%{url}\">Ver todos %{numStudies} estudios</a>",
         "sunburst_desc_html": "Taxones observados dispuestos como un diagrama jerárquico de \"resplandor solar\". La base de la jerarquía está en el centro, comenzando con \"Vida\" y terminando con especies en los bordes exteriores. El tamaño de cada arco es proporcional al número de observaciones de ese taxón, y los colores se corresponden con los colores de nuestro taxón \"icónico\" habitual (verde para las plantas, naranja para los insectos, azul para la mayoría de los otros animales, etc.), así que si ves mucho verde, eso significa que has observado muchas plantas. <strong>Has clic en un arco para colocar ese taxón en el centro</strong> y sus dependentes a su alrededor, o <strong>has clic en el centro para volver a subir la jerarquía.</strong>"
       }
@@ -14564,6 +15796,7 @@ I18n.translations["es-ES"] = {
   "other": "otro",
   "person": "persona",
   "photo": "foto",
+  "photos": "Fotos",
   "pink": "rosa",
   "place": "Lugar",
   "place_geo": {
@@ -15602,6 +16835,7 @@ I18n.translations["es-MX"] = {
   "places_name": {
     "afghanistan": "Afganistán",
     "africa": "África",
+    "antarctica": "Antártica",
     "antigua_and_barbuda": "Antigua y Barbuda",
     "belgium": "Bélgica",
     "bosnia_and_herzegovina": "Bosnia y Herzegovina",
@@ -15614,8 +16848,8 @@ I18n.translations["es-MX"] = {
     "germany": "Alemania",
     "greece": "Grecia",
     "hungary": "Hungaría",
-    "italy": "Italia",
     "iraq": "Irak",
+    "italy": "Italia",
     "japan": "Japón",
     "martinique": "Martinica",
     "mexico": "México",
@@ -15629,8 +16863,8 @@ I18n.translations["es-MX"] = {
     "poland": "Polonia",
     "republic_of_congo": "República del Congo",
     "russia": "Rusia",
-    "saudi_arabia": "Arabia Saudita",
     "sao_tome_and_principe": "Santo Tomé and Príncipe",
+    "saudi_arabia": "Arabia Saudita",
     "south_america": "América del sur",
     "spain": "España",
     "sweden": "Suecia",
@@ -16952,9 +18186,9 @@ I18n.translations["et"] = {
     "greece": "Kreeka",
     "hong_kong": "Hong Kong",
     "hungary": "Ungari",
-    "italy": "Itaalia",
     "india": "India",
     "iraq": "Iraak",
+    "italy": "Itaalia",
     "japan": "Jaapan",
     "korea": "Korea",
     "martinique": "Martinique",
@@ -16971,8 +18205,8 @@ I18n.translations["et"] = {
     "portugal": "Portugal",
     "republic_of_congo": "Kongo Vabariik",
     "russia": "Venemaa",
-    "saudi_arabia": "Saudi Araabia",
     "sao_tome_and_principe": "São Tomé ja Príncipe",
+    "saudi_arabia": "Saudi Araabia",
     "singapore": "Singapur",
     "south_africa": "Lõuna-Aafrika",
     "south_america": "Lõuna-Ameerika",
@@ -18243,8 +19477,8 @@ I18n.translations["eu"] = {
     "germany": "Alemania",
     "greece": "Grezia",
     "hungary": "Hungaria",
-    "italy": "Italia",
     "iraq": "Irak",
+    "italy": "Italia",
     "japan": "Japonia",
     "martinique": "Martinika",
     "mexico": "Mexiko",
@@ -18258,8 +19492,8 @@ I18n.translations["eu"] = {
     "poland": "Polonia",
     "republic_of_congo": "Kongo",
     "russia": "Errusia",
-    "saudi_arabia": "Saudi Arabia",
     "sao_tome_and_principe": "Sao Tome eta Principe",
+    "saudi_arabia": "Saudi Arabia",
     "south_america": "Hego Amerika",
     "spain": "Espainia",
     "sweden": "Suedia",
@@ -18656,6 +19890,7 @@ I18n.translations["fi"] = {
   "all_flags_must_be_resolved": "Kaikki liput on ratkaistava",
   "all_rank_added_to_the_database": {
     "class": "Kaikki luokat lisätty tietokantaan",
+    "epifamily": "Kaikki epiheimot lisätty tietokantaan",
     "family": "Kaikki heimot lisätty tietokantaan",
     "form": "Kaikki muodot lisätty tietokantaan",
     "genus": "Kaikki suvut lisätty tietokantaan",
@@ -18802,7 +20037,7 @@ I18n.translations["fi"] = {
   "cancel": "Peruuta",
   "captive": "Tarhattu",
   "captive_cultivated": "Tarhattu / viljelty",
-  "casual": "rento",
+  "casual": "tilapäinen",
   "casual_": "Harrastelija",
   "categories": "Luokat",
   "cc_0_description": "Tämä lisenssi tekee teoksestasi tekijänoikeudettoman. Muilla on oikeus kopioida, muokata, jakaa ja esittää teostasi, myös kaupallisessa tarkoituksessa, kysymättä sinulta lupaa tai mainitsematta nimeäsi käytön yhteydessä. Tämä on tarjolla olevista lisensseistä kaikkein sallivin. Suositellaan teoksille, joille toivotaan mahdollisimman suurta levitystä ja käyttöä.",
@@ -19429,6 +20664,7 @@ I18n.translations["fi"] = {
       "airport": "lentokenttä",
       "Building": "Rakennus",
       "building": "rakennus",
+      "Canton": "Canton",
       "Colloquial": "Puhekielinen",
       "colloquial": "puhekielinen",
       "Commune": "Kunta",
@@ -19510,60 +20746,268 @@ I18n.translations["fi"] = {
   "places_name": {
     "afghanistan": "Afganistan",
     "africa": "Afrikka",
+    "akrotiri_and_dhekelia": "Akrotíri ja Dekéleia",
+    "aland": "Ahvenanmaa",
+    "albania": "Albania",
+    "algeria": "Algeria",
+    "american_samoa": "Amerikan Samoa",
+    "andorra": "Andorra",
+    "angola": "Angola",
+    "anguilla": "Anguilla",
+    "antarctica": "Etelämanner",
     "antigua_and_barbuda": "Antigua ja Barbuda",
+    "argentina": "Argentiina",
+    "armenia": "Armenia",
+    "aruba": "Aruba",
     "australia": "Australia",
     "austria": "Itävalta",
+    "azerbaijan": "Azerbaidžan",
+    "bahamas": "Bahama",
+    "bahrain": "Bahrain",
+    "bangladesh": "Bangladesh",
+    "barbados": "Barbados",
+    "belarus": "Valko-Venäjä",
     "belgium": "Belgia",
+    "belize": "Belize",
+    "benin": "Benin",
+    "bermuda": "Bermuda",
+    "bhutan": "Bhutan",
+    "bolivia": "Bolivia",
+    "bonaire_saint_eustatius_and_saba": "Bonaire, Sint Eustatius ja Saba",
     "bosnia_and_herzegovina": "Bosnia ja Hertsegovina",
+    "botswana": "Botswana",
+    "bouvet_island": "Bouvet’nsaari",
     "brazil": "Brasilia",
+    "british_indian_ocean_territory": "Brittiläinen Intian valtameren alue",
+    "british_virgin_islands": "Brittiläiset Neitsytsaaret",
+    "brunei": "Brunei",
+    "bulgaria": "Bulgaria",
+    "burkina_faso": "Burkina Faso",
+    "burundi": "Burundi",
+    "cambodia": "Cambodia",
+    "cameroon": "Cameroon",
     "canada": "Kanada",
+    "cape_verde": "Kap Verde",
+    "cayman_islands": "Caymansaaret",
+    "central_african_republic": "Keski-Afrikan tasavalta",
     "central_america": "Keski-Amerikka",
+    "chad": "Chad",
+    "chile": "Chile",
     "china": "Kiina",
+    "christmas_island": "Joulusaari",
+    "clipperton_island": "Clippertoninsaari",
+    "cocos_islands": "Kookossaaret",
     "colombia": "Kolumbia",
+    "commonwealth_of_the_northern_mariana_islands": "Pohjois-Mariaanit",
+    "comoros": "Komorit",
+    "cook_islands": "Cookinsaaret",
+    "costa_rica": "Costa Rica",
+    "cote_d_ivoire": "Norsunluurannikko",
+    "croatia": "Kroatia",
+    "cuba": "Kuba",
+    "curacao": "Curaçao",
+    "cyprus": "Kypros",
+    "czech_republic": "Tšekki",
+    "democratic_republic_of_the_congo": "Kongon demokraattinen tasavalta",
     "denmark": "Tanska",
+    "djibouti": "Djibouti",
+    "dominica": "Dominica",
+    "dominican_republic": "Dominikaaninen tasavalta",
+    "east_timor": "Itä-Timor",
+    "ecuador": "Ecuador",
     "egypt": "Egypti",
+    "el_salvador": "El Salvador",
     "equatorial_guinea": "Päiväntasaajan Guinea",
+    "eritrea": "Eritrea",
+    "estonia": "Viro",
+    "ethiopia": "Etiopia",
     "europe": "Eurooppa",
+    "falkland_islands": "Falklandinsaaret",
+    "faroe_islands": "Färsaaret",
+    "fiji": "Fidži",
+    "finland": "Suomi",
     "france": "Ranska",
+    "french_guiana": "Ranskan Guayana",
+    "french_polynesia": "Ranskan Polynesia",
+    "french_southern_territories": "Ranskan eteläiset ja antarktiset alueet",
+    "gabon": "Gabon",
+    "gambia": "Gambia",
+    "georgia": "Georgia",
     "germany": "Saksa",
+    "ghana": "Ghana",
+    "gibraltar": "Gibraltar",
     "greece": "Kreikka",
+    "greenland": "Grönlanti",
+    "grenada": "Grenada",
+    "guadeloupe": "Guadeloupe",
+    "guam": "Guam",
+    "guatemala": "Guatemala",
+    "guernsey": "Guernsey",
+    "guinea": "Guinea",
+    "guinea_bissau": "Guinea-Bissau",
+    "guyana": "Guyana",
+    "haiti": "Haiti",
+    "heard_island_and_mcdonald_islands": "Heard ja McDonaldinsaaret",
+    "honduras": "Honduras",
     "hong_kong": "Hong Kong",
     "hungary": "Unkari",
-    "italy": "Italia",
+    "iceland": "Islanti",
     "india": "Intia",
+    "indonesia": "Indonesia",
+    "iran": "Iran",
     "iraq": "Irak",
+    "ireland": "Irlanti",
+    "isle_of_man": "Mansaari",
+    "israel": "Israel",
+    "italy": "Italia",
+    "jamaica": "Jamaika",
     "japan": "Japani",
+    "jersey": "Jersey",
+    "jordan": "Jordan",
+    "kazakhstan": "Kazakhstan",
+    "kenya": "Kenia",
+    "kiribati": "Kiribati",
     "korea": "Korea",
+    "kosovo": "Kosovo",
+    "kuwait": "Kuwait",
+    "kyrgyzstan": "Kyrgyzstan",
+    "laos": "Laos",
+    "latvia": "Latvia",
+    "lebanon": "Lebanon",
+    "lesotho": "Lesotho",
+    "liberia": "Liberia",
+    "libya": "Libya",
+    "liechtenstein": "Liechtenstein",
+    "lithuania": "Liettua",
+    "luxembourg": "Luxemburg",
+    "macao": "Macao",
+    "macedonia": "Makedonia",
+    "madagascar": "Madagaskar",
+    "malawi": "Malawi",
+    "malaysia": "Malesia",
+    "maldives": "Maldives",
+    "mali": "Mali",
+    "malta": "Malta",
+    "marshall_islands": "Marshallsaaret",
     "martinique": "Martinique",
+    "mauritania": "Mauritania",
+    "mauritius": "Mauritius",
+    "mayotte": "Mayotte",
     "mexico": "Meksiko",
+    "micronesia": "Mikronesia",
+    "moldova": "Moldova",
+    "monaco": "Monaco",
+    "mongolia": "Mongolia",
+    "montenegro": "Montenegro",
+    "montserrat": "Montserrat",
+    "morocco": "Morocco",
+    "mozambique": "Mozambique",
+    "myanmar": "Myanmar",
+    "namibia": "Namibia",
+    "nauru": "Nauru",
+    "nepal": "Nepal",
     "netherlands": "Alankomaat",
+    "new_caledonia": "Uusi-Kaledonia",
     "new_guinea": "Uusi-Guinea",
     "new_zealand": "Uusi-Seelanti",
+    "nicaragua": "Nicaragua",
+    "niger": "Niger",
+    "nigeria": "Nigeria",
+    "niue": "Niue",
+    "norfolk_island": "Norfolkinsaari",
     "north_africa": "Pohjois-Afrikka",
     "north_america": "Pohjois-Amerikka",
+    "north_korea": "Pohjois-Korea",
+    "northern_cyprus": "Pohjois-Kypros",
+    "norway": "Norja",
+    "oman": "Oman",
+    "pakistan": "Pakistan",
+    "palau": "Palau",
+    "palestina": "Palestiina",
     "palestine": "Palestiina",
     "panama": "Panama",
+    "papua_new_guinea": "Papua-Uusi-Guinea",
+    "paraguay": "Paraguay",
     "peru": "Peru",
+    "philippines": "Filippiinit",
+    "pitcairn_islands": "Pitcairn",
     "poland": "Puola",
     "portugal": "Portugali",
+    "puerto_rico": "Puerto Rico",
+    "qatar": "Qatar",
     "republic_of_congo": "Kongon tasavalta",
+    "reunion": "Réunion",
+    "romania": "Romania",
     "russia": "Venäjä",
-    "saudi_arabia": "Saudi-Arabia",
+    "rwanda": "Ruanda",
+    "saint_barthelemy": "Saint-Barthélemy",
+    "saint_helena": "Saint Helena",
+    "saint_kitts_and_nevis": "Saint Kitts ja Nevis",
+    "saint_lucia": "Saint Lucia",
+    "saint_martin": "Saint-Martin",
+    "saint_pierre_and_miquelon": "Saint-Pierre ja Miquelon",
+    "saint_vincent_and_the_grenadines": "Saint Vincent ja Grenadiinit",
+    "samoa": "Samoa",
+    "san_marino": "San Marino",
     "sao_tome_and_principe": "São Tomé ja Príncipe",
+    "saudi_arabia": "Saudi-Arabia",
+    "senegal": "Senegal",
+    "serbia": "Serbia",
+    "seychelles": "Seychellit",
+    "sierra_leone": "Sierra Leone",
     "singapore": "Singapore",
+    "sint_maarten": "Sint Maarten",
+    "slovakia": "Slovakia",
+    "slovenia": "Slovenia",
+    "solomon_islands": "Salomonsaaret",
+    "somalia": "Somalia",
     "south_africa": "Etelä-Afrikka",
     "south_america": "Etelä-Amerikka",
+    "south_georgia_and_the_south_sandwich_islands": "Etelä-Georgia ja Eteläiset Sandwichsaaret",
+    "south_korea": "Etelä-Korea",
+    "south_sudan": "Etelä-Sudan",
     "spain": "Espanja",
+    "sri_lanka": "Sri Lanka",
+    "sudan": "Sudan",
+    "suriname": "Suriname",
+    "svalbard_and_jan_mayen": "Huippuvuoret ja Jan Mayen",
+    "swaziland": "Swazimaa",
     "sweden": "Ruotsi",
     "switzerland": "Sveitsi",
     "syria": "Syyria",
+    "taiwan": "Taiwan",
+    "tajikistan": "Tadžikistan",
+    "tanzania": "Tansania",
     "thailand": "Thaimaa",
+    "togo": "Togo",
+    "tokelau": "Tokelau",
+    "tonga": "Tonga",
     "trinidad_and_tobago": "Trinidad ja Tobago",
+    "tunisia": "Tunisia",
     "turkey": "Turkki",
+    "turkmenistan": "Turkmenistan",
+    "turks_and_caicos_islands": "Turks- ja Caicossaaret",
+    "tuvalu": "Tuvalu",
+    "uganda": "Uganda",
+    "ukraine": "Ukraina",
+    "united_arab_emirates": "Yhdistyneet arabiemiirikunnat",
     "united_kingdom": "Yhdistynyt kuningaskunta",
     "united_states": "Yhdysvallat",
+    "united_states_minor_outlying_islands": "Yhdysvaltain pienet erillissaaret",
+    "united_states_virgin_islands": "Yhdysvaltain Neitsytsaaret",
+    "uruguay": "Uruguay",
+    "uzbekistan": "Uzbekistan",
+    "vanuatu": "Vanuatu",
+    "vatican_city": "Vatikaanivaltio",
+    "venezuela": "Venezuela",
+    "vietnam": "Vietnam",
     "virgin_islands": "Neitsytsaaret",
-    "west_africa": "Länsi-Afrikka"
+    "wallis_and_futuna": "Wallis ja Futuna",
+    "west_africa": "Länsi-Afrikka",
+    "western_sahara": "Länsi-Sahara",
+    "yemen": "Jemen",
+    "zambia": "Sambia",
+    "zimbabwe": "Zimbabwe"
   },
   "places_of_interest": "Mielenkiintoiset paikat",
   "plants": "kasvit",
@@ -19572,6 +21016,7 @@ I18n.translations["fi"] = {
   "potential_disagreement": "Mahdollinen erimielisyys",
   "prev": "Edellinen",
   "preview": "Esikatsele",
+  "preview_observations": "Esikatsele havaintoja",
   "previous": "Edellinen",
   "previous_observation": "Edellinen havainto",
   "previous_photo": "Edellinen kuva",
@@ -19607,6 +21052,7 @@ I18n.translations["fi"] = {
     "suborder": "Alalahko",
     "infraorder": "Osalahko",
     "superfamily": "Yläheimo",
+    "epifamily": "Epiheimo",
     "family": "Heimo",
     "subfamily": "Alaheimo",
     "supertribe": "Ylätribus",
@@ -19851,6 +21297,7 @@ I18n.translations["fi"] = {
       "identify": {
       },
       "show": {
+        "quality_assessment_help_html": "<p>\n  Tietojen laadunarviointi on yhteenveto havaintojen tarkkuudesta. Kaikki\n  havainnot aloittavat <strong>\"tilapäinen\"</strong> asteesta, ja siirtyvät\n  <strong>\"tarvitsee tunnisteen\"</strong> asteeseen kun\n</p>\n\n<ul>\n  <li>havainnolla <strong>on päivämäärä</strong></li>\n  <li>havainto <strong>on georeferoitu</strong> (ts. on lat/lon koordinaatit)</li>\n  <li>havainnolla <strong>on kuvia ja ääntä</strong></li>\n  <li>havainto <strong>ei ole ihmisestä</strong></li>\n</ul>\n<p>\n  Havainnot tulevat <strong>\"tutkimusasteeseen\"</strong> kun\n</p>\n<ul>\n  <li>\n    %{site_name} <strong>yhteisö hyväksyy lajitason tunnisteen tai pienempi</strong>, ts.\n    kun enemmän kuin 2/3 tunnistajaa hyväksyy taksonin\n  </li>\n</ul>\n<p>\n  Havainnot palaavat <strong>\"tilapäisiksi\"</strong> \n  jos edellä mainitut ehdot eivät täyty tai yhteisö on samaa mieltä\n</p>\n<ul>\n  <li>\n    <strong>sijainti ei näytä\n    oikealta</strong> (esim. apinat keskellä merta,\n    virtahepoja toimistorakennuksissa, jne.)\n  </li>\n  <li>\n    <strong>eliö ei ole luonnonvarainen/luonnollistettu</strong> (esim. vangittu ihmisten tai\n    älykkäiden avaruusolentojen toimesta)\n  </li>\n  <li>\n    havainto <strong>ei esitä todisteita eliöstä</strong>, esim. kuvia maisemista, water features,\n    kalliot, yms.\n  </li>\n  <li>\n    havainto <strong>ei esitä tuoreita (~100 vuotta) todisteita\n    eliöstä</strong> (esim. fossiilit, mutta jäljet, sonta, ja kuolleet lehdet\n    ovat ok)\n  </li>\n  <li>\n    havainto ei enää tarvitse tunnistetta <em>ja</em> yhteisön tunniste on perheen yläpuolella\n  </li>\n  <li>\n    havainnoija hylkäsi yhteisön tunnisteen ja yhteisön\n    tunnisteen taksoni ei ole havainnoijan tunnisteeseen liittyvän taksonin esi-isä tai jälkeläinen\n  </li>\n</ul>\n<p>\n  Ja jos se ei ollut tarpeeksi monimutkaista, on myös tilanteita, joissa järjestelmä äänestää:\n</p>\n<ul>\n  <li>\n    Järjestelmä äänestää, että havainto ei ole luonnonvarainen tai luonnollinen\n    jos on ainakin 10 muuta suvun havaintoa tai pienempi \n    pienimmässä maassa-, osavaltiossa-, tai maata vastaavassa paikassa joka\n    sisältää tämän havainnon ja 80 prosenttia tai enemmän näistä havainnoista\n    on merkitty ei luonnonvaraiseksi/luonnolliseksi\n  </li>\n</ul>"
       }
     },
     "projects": {
@@ -20025,6 +21472,7 @@ I18n.translations["fi"] = {
     "one": "1 ehdotuksen suodattanut:",
     "other": "%{count} ehdotusta suodattanut:"
   },
+  "year_in_review": "Vuosikatsaus %{year}",
   "yellow": "keltainen",
   "yes": "Kyllä",
   "yes_reject_it": "Kyllä, hylkää se",
@@ -20704,6 +22152,7 @@ I18n.translations["fr"] = {
     "waray_waray": "Waray-Waray"
   },
   "life": "Êtres vivants",
+  "linear_scale_label": "Linéaire",
   "list": "Liste",
   "list_tooltip": "Afficher la vue de la liste",
   "lists": "Listes",
@@ -20720,6 +22169,7 @@ I18n.translations["fr"] = {
   "location_specified": "Emplacement spécifié",
   "location_unknown": "Emplacement inconnu",
   "log_in": "Connexion",
+  "log_scale_label": "Trace",
   "long": "Lon",
   "longitude": "Longitude",
   "lookup": "Chercher",
@@ -21026,60 +22476,268 @@ I18n.translations["fr"] = {
   "places_name": {
     "afghanistan": "Afghanistan",
     "africa": "Afrique",
+    "akrotiri_and_dhekelia": "Akrotiri et Dhekelia",
+    "aland": "Åland",
+    "albania": "Albanie",
+    "algeria": "Algérie",
+    "american_samoa": "Samoa Américaines",
+    "andorra": "Andorre",
+    "angola": "Angola",
+    "anguilla": "Anguilla",
+    "antarctica": "Antarctique",
     "antigua_and_barbuda": "Antigua-et-Barbuda",
+    "argentina": "Argentine",
+    "armenia": "Arménie",
+    "aruba": "Aruba",
     "australia": "Australie",
     "austria": "Autriche",
+    "azerbaijan": "Azerbaïdjan",
+    "bahamas": "Bahamas",
+    "bahrain": "Bahreïn",
+    "bangladesh": "Bangladesh",
+    "barbados": "Barbades",
+    "belarus": "Biélorussie",
     "belgium": "Belgique",
+    "belize": "Bélize",
+    "benin": "Bénin",
+    "bermuda": "Bermudes",
+    "bhutan": "Bhoutan",
+    "bolivia": "Bolivie",
+    "bonaire_saint_eustatius_and_saba": "Bonaire, Saint-Eustache et Saba",
     "bosnia_and_herzegovina": "Bosnie-Herzégovine",
+    "botswana": "Botswana",
+    "bouvet_island": "Île Bouvet",
     "brazil": "Brésil",
+    "british_indian_ocean_territory": "Territoires britanniques de l'océan Indien",
+    "british_virgin_islands": "Iles Vierges Britanniques",
+    "brunei": "Brunei",
+    "bulgaria": "Bulgarie",
+    "burkina_faso": "Burkina Faso",
+    "burundi": "Burundi",
+    "cambodia": "Cambodge",
+    "cameroon": "Cameroun",
     "canada": "Canada",
+    "cape_verde": "Cap Vert",
+    "cayman_islands": "Îles Caïmans",
+    "central_african_republic": "République Centrafricaine",
     "central_america": "Amérique centrale",
+    "chad": "Tchad",
+    "chile": "Chili",
     "china": "Chine",
+    "christmas_island": "Ile Christmas",
+    "clipperton_island": "Île de Clipperton",
+    "cocos_islands": "Îles Cocos",
     "colombia": "Colombie",
+    "commonwealth_of_the_northern_mariana_islands": "Îles Mariannes du Nord",
+    "comoros": "Comores",
+    "cook_islands": "Iles Cook",
+    "costa_rica": "Costa Rica",
+    "cote_d_ivoire": "Côte d'Ivoire",
+    "croatia": "Croatie",
+    "cuba": "Cuba",
+    "curacao": "Curaçao",
+    "cyprus": "Chypre",
+    "czech_republic": "République Tchèque",
+    "democratic_republic_of_the_congo": "République démocratique du Congo",
     "denmark": "Danemark",
+    "djibouti": "Djibouti",
+    "dominica": "Dominique",
+    "dominican_republic": "République Dominicaine",
+    "east_timor": "Timor oriental",
+    "ecuador": "Equateur",
     "egypt": "Égypte",
+    "el_salvador": "Le Salvador",
     "equatorial_guinea": "Guinée équatoriale",
+    "eritrea": "Erythrée",
+    "estonia": "Estonie",
+    "ethiopia": "Ethiopie",
     "europe": "Europe",
+    "falkland_islands": "Iles Falkland",
+    "faroe_islands": "Îles Féroés",
+    "fiji": "Fidji",
+    "finland": "Finlande",
     "france": "France",
+    "french_guiana": "Guinée Française",
+    "french_polynesia": "Polynésie Française",
+    "french_southern_territories": "Territoires Français du Sud",
+    "gabon": "Gabon",
+    "gambia": "Gambie",
+    "georgia": "Géorgie",
     "germany": "Allemagne",
+    "ghana": "Ghana",
+    "gibraltar": "Gibraltar",
     "greece": "Grèce",
+    "greenland": "Groenland",
+    "grenada": "Grenade",
+    "guadeloupe": "Guadeloupe",
+    "guam": "Guam",
+    "guatemala": "Guatémala",
+    "guernsey": "Guernesey",
+    "guinea": "Guinée",
+    "guinea_bissau": "Guinée-Bissau",
+    "guyana": "Guyane",
+    "haiti": "Haïti",
+    "heard_island_and_mcdonald_islands": "Îles Heard-et-MacDonald",
+    "honduras": "Honduras",
     "hong_kong": "Hong-Kong",
     "hungary": "Hongrie",
-    "italy": "Italie",
+    "iceland": "Icelande",
     "india": "Inde",
+    "indonesia": "Indonésie",
+    "iran": "Iran",
     "iraq": "Iraq",
+    "ireland": "Irelande",
+    "isle_of_man": "Ile de Man",
+    "israel": "Israel",
+    "italy": "Italie",
+    "jamaica": "Jamaïque",
     "japan": "Japon",
+    "jersey": "Jersey",
+    "jordan": "Jordanie",
+    "kazakhstan": "Kazakhstan",
+    "kenya": "Kénya",
+    "kiribati": "Kiribati",
     "korea": "Corée",
+    "kosovo": "Kosovo",
+    "kuwait": "Koweit",
+    "kyrgyzstan": "Kyrgyzstan",
+    "laos": "Laos",
+    "latvia": "Lettonie",
+    "lebanon": "Liban",
+    "lesotho": "Lesotho",
+    "liberia": "Libéria",
+    "libya": "Libye",
+    "liechtenstein": "Liechtenstein",
+    "lithuania": "Lithuanie",
+    "luxembourg": "Luxembourg",
+    "macao": "Macao",
+    "macedonia": "Macédoine",
+    "madagascar": "Madagascar",
+    "malawi": "Malawi",
+    "malaysia": "Malaisie",
+    "maldives": "Maldives",
+    "mali": "Mali",
+    "malta": "Malte",
+    "marshall_islands": "Îles Marshall",
     "martinique": "Martinique",
+    "mauritania": "Mauritanie",
+    "mauritius": "Maurice",
+    "mayotte": "Mayotte",
     "mexico": "Mexique",
+    "micronesia": "Micronésie",
+    "moldova": "Moldavie",
+    "monaco": "Monaco",
+    "mongolia": "Mongolie",
+    "montenegro": "Monténégro",
+    "montserrat": "Montserrat",
+    "morocco": "Maroc",
+    "mozambique": "Mozambique",
+    "myanmar": "Myanmar",
+    "namibia": "Namibie",
+    "nauru": "Nauru",
+    "nepal": "Népal",
     "netherlands": "Pays-Bas",
+    "new_caledonia": "Nouvelle Calédonie",
     "new_guinea": "Nouvelle-Guinée",
     "new_zealand": "Nouvelle-Zélande",
+    "nicaragua": "Nicaragua",
+    "niger": "Niger",
+    "nigeria": "Nigéria",
+    "niue": "Niue",
+    "norfolk_island": "Île Norfolk",
     "north_africa": "Afrique du Nord",
     "north_america": "Amérique du Nord",
+    "north_korea": "Corée du Nord",
+    "northern_cyprus": "Chypre du nord",
+    "norway": "Norvège",
+    "oman": "Oman",
+    "pakistan": "Pakistan",
+    "palau": "Palau",
+    "palestina": "Palestine",
     "palestine": "Palestine",
     "panama": "Panama",
+    "papua_new_guinea": "Papouasie Nouvelle Guinée",
+    "paraguay": "Paraguay",
     "peru": "Pérou",
+    "philippines": "Philippines",
+    "pitcairn_islands": "Îles Pitcairn",
     "poland": "Pologne",
     "portugal": "Portugal",
+    "puerto_rico": "Porto Rico",
+    "qatar": "Quatar",
     "republic_of_congo": "Congo",
+    "reunion": "Réunion",
+    "romania": "Roumanie",
     "russia": "Russie",
-    "saudi_arabia": "Arabie saoudite",
+    "rwanda": "Rwanda",
+    "saint_barthelemy": "Saint-Barthélémy",
+    "saint_helena": "Sainte Hélène",
+    "saint_kitts_and_nevis": "Saint Kitts et Nevis",
+    "saint_lucia": "Sainte Lucie",
+    "saint_martin": "Saint-Martin",
+    "saint_pierre_and_miquelon": "Saint Pierre et Miquelon",
+    "saint_vincent_and_the_grenadines": "Saint Vincent et les Grenadines",
+    "samoa": "Samoa",
+    "san_marino": "Saint Marin",
     "sao_tome_and_principe": "Sao Tomé-et-Principe",
+    "saudi_arabia": "Arabie saoudite",
+    "senegal": "Sénégal",
+    "serbia": "Serbie",
+    "seychelles": "Seychelles",
+    "sierra_leone": "Sierra Leone",
     "singapore": "Singapour",
+    "sint_maarten": "Saint Martin",
+    "slovakia": "Slovaquie",
+    "slovenia": "Slovénie",
+    "solomon_islands": "Iles Salomon",
+    "somalia": "Somalie",
     "south_africa": "Afrique du Sud",
     "south_america": "Amérique du Sud",
+    "south_georgia_and_the_south_sandwich_islands": "Géorgie du sud et îles Sandwich du sud",
+    "south_korea": "Corée du Sud",
+    "south_sudan": "Soudan du Sud",
     "spain": "Espagne",
+    "sri_lanka": "Sri Lanka",
+    "sudan": "Soudan",
+    "suriname": "Surinam",
+    "svalbard_and_jan_mayen": "Svalbard et Jan Mayen",
+    "swaziland": "Swaziland",
     "sweden": "Suède",
     "switzerland": "Suisse",
     "syria": "Syrie",
+    "taiwan": "Taïwan",
+    "tajikistan": "Tajikistan",
+    "tanzania": "Tanzanie",
     "thailand": "Thaïlande",
+    "togo": "Togo",
+    "tokelau": "Tokelau",
+    "tonga": "Tonga",
     "trinidad_and_tobago": "Trinité-et-Tobago",
+    "tunisia": "Tunisie",
     "turkey": "Turquie",
+    "turkmenistan": "Turkménistan",
+    "turks_and_caicos_islands": "Îles Turques-et-Caïques",
+    "tuvalu": "Tuvalu",
+    "uganda": "Ouganda",
+    "ukraine": "Ukraine",
+    "united_arab_emirates": "Union des Emirats Arabes",
     "united_kingdom": "Royaume-Uni",
     "united_states": "États-Unis",
+    "united_states_minor_outlying_islands": "Îles mineures éloignées des États-Unis",
+    "united_states_virgin_islands": "Îles Vierges des États-Unis",
+    "uruguay": "Uruguay",
+    "uzbekistan": "Ouzbékistan",
+    "vanuatu": "Vanuatu",
+    "vatican_city": "Cité du Vatican",
+    "venezuela": "Vénézuela",
+    "vietnam": "Vietnam",
     "virgin_islands": "Îles Vierges",
-    "west_africa": "Afrique occidentale"
+    "wallis_and_futuna": "Wallis et Futuna",
+    "west_africa": "Afrique occidentale",
+    "western_sahara": "Sahara Occidental",
+    "yemen": "Yémen",
+    "zambia": "Zambie",
+    "zimbabwe": "Zimbabwe"
   },
   "places_of_interest": "Endroits intéressants",
   "plants": "plantes",
@@ -21197,6 +22855,7 @@ I18n.translations["fr"] = {
     "other": "Enregistrement de %{num} sur %{count} observations…"
   },
   "saving_verb": "Enregistrement",
+  "scale_colon": "Échelle :",
   "search": "Rechercher",
   "search_by_taxon_name_or_flickr_photo_id": "Recherche par nom de taxon ou d'identité photo Flickr",
   "search_by_taxon_name_or_observation_id": "Recherche par nom de taxon ou ID d'observation",
@@ -21512,8 +23171,14 @@ I18n.translations["fr"] = {
         "recent_w_7_obs": "Récent avec au moins sept observations"
       },
       "year": {
+        "growth_by_country_title": "Croissance par pays",
+        "growth_in_year_obs": "Croissance pendant %{year} (obs)",
         "growth_title": "Croissance",
-        "new_species_desc_html": "Espèces ajoutées pour la première fois à %{site_name} cette année.\nCliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.\nVous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur\ndans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre\nles espèces dont l'observation est vérifiable en fonction du mois où elles ont été chargées\nsur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas\nde taxons de niveau supérieur ou inférieur, donc une observation identifiée comme\nMammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>\n<i>arctos</i> comptera seulement comme <i>Canis lupus</i>.",
+        "include_usa": "NOUS inclure",
+        "new_species_desc_html": "Espèces ajoutées pour la première fois cette année.\nCliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.\nVous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur\ndans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre\nles espèces dont l'observation est vérifiable en fonction du mois où elles ont été chargées\nsur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas\nde taxons de niveau supérieur ou inférieur, donc une observation identifiée comme\nMammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>\n<i>arctos</i> comptera seulement comme <i>Canis lupus</i>.",
+        "obs_in_year": "Obs en %{year}",
+        "percent_growth_in_year": "% de croissance en %{year}",
+        "percent_of_total_growth": "% de croissance totale",
         "publications_desc_html": "Données d'impact et affichages, avec l'amabilté de\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Information\nconcernant l'utilisation des données, avec l'amabilité de nos amis de la \n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Voir toutes les %{numStudies} études</a>",
         "sunburst_desc_html": "Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base\nde la hiérarchie est au centre, en commençant par « Vie » et en se terminant\npar les espèces aux bords extérieurs. La taille de chaque arc est proportionnelle\nau nombre d’observations de ce taxon, et les couleurs correspondent\nà peu près à nos couleurs de taxon « iconiques » habituelles (vert pour les plantes,\norange pour les insectes, bleu pour la plupart des autres animaux, etc.), donc si vous\nvoyez beaucoup de vert, cela veut dire que vous observez beaucoup de plantes.\n<strong>Cliquez sur un arc pour placer ce taxon au centre</strong> et\nses enfants autour, ou <strong>cliquez sur le centre pour remonter dans\nla hiérarchie</strong>."
       }
@@ -21688,6 +23353,96 @@ I18n.translations["fr"] = {
   "zoom_in": "Zoom avant",
   "zoom_out": "Zoom arrière",
   "zoom_photo": "Élargir la photo"
+};
+I18n.translations["fr-CA"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["gl"] = {
   "<%= name": {
@@ -22220,8 +23975,8 @@ I18n.translations["gl"] = {
     "germany": "Alemaña",
     "greece": "Grecia",
     "hungary": "Hungría",
-    "italy": "Italia",
     "iraq": "Iraq",
+    "italy": "Italia",
     "japan": "Xapón",
     "martinique": "Martinica",
     "mexico": "México",
@@ -22235,8 +23990,8 @@ I18n.translations["gl"] = {
     "poland": "Polonia",
     "republic_of_congo": "República do Congo",
     "russia": "Rusia",
-    "saudi_arabia": "Arabia Saudita",
     "sao_tome_and_principe": "Santo Tomé e Príncipe",
+    "saudi_arabia": "Arabia Saudita",
     "south_america": "América do Sur",
     "spain": "España",
     "sweden": "Suecia",
@@ -22443,6 +24198,96 @@ I18n.translations["gl"] = {
   "your_default": "os teus valores por defecto",
   "your_hard_drive": "O teu disco duro",
   "your_observations": "As túas observacións"
+};
+I18n.translations["ha"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["he"] = {
   "<%= name": {
@@ -23395,8 +25240,8 @@ I18n.translations["id"] = {
     "germany": "Jerman",
     "greece": "Yunani",
     "hungary": "Hungaria",
-    "italy": "Italia",
     "iraq": "Irak",
+    "italy": "Italia",
     "japan": "Jepang",
     "martinique": "Martinique",
     "mexico": "Meksiko",
@@ -23410,8 +25255,8 @@ I18n.translations["id"] = {
     "poland": "Polandia",
     "republic_of_congo": "Kongo Republik",
     "russia": "Russia",
-    "saudi_arabia": "Arab Saudi",
     "sao_tome_and_principe": "Sao Tome dan Principe",
+    "saudi_arabia": "Arab Saudi",
     "south_america": "Amerika Selatan",
     "spain": "Spanyol",
     "sweden": "Swedia",
@@ -23673,6 +25518,96 @@ I18n.translations["id"] = {
   "your_observations": "Pengamatan anda",
   "zoom_in": "Perdekat",
   "zoom_out": "Perjauh"
+};
+I18n.translations["ig"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["is"] = {
   "<%= name": {
@@ -24745,60 +26680,268 @@ I18n.translations["it"] = {
   "places_name": {
     "afghanistan": "Afghanistan",
     "africa": "Africa",
+    "akrotiri_and_dhekelia": "Akrotiri e Dhekelia",
+    "aland": "Åland",
+    "albania": "Albania",
+    "algeria": "Algeria",
+    "american_samoa": "Samoa Americane",
+    "andorra": "Andorra",
+    "angola": "Angola",
+    "anguilla": "Anguilla",
+    "antarctica": "Antartide",
     "antigua_and_barbuda": "Antigua e Barbuda",
+    "argentina": "Argentina",
+    "armenia": "Armenia",
+    "aruba": "Aruba",
     "australia": "Australia",
     "austria": "Austria",
+    "azerbaijan": "Azerbaigian",
+    "bahamas": "Bahamas",
+    "bahrain": "Bahrein",
+    "bangladesh": "Bangladesh",
+    "barbados": "Barbados",
+    "belarus": "Bielorussia",
     "belgium": "Belgio",
+    "belize": "Belize",
+    "benin": "Benin",
+    "bermuda": "Bermuda",
+    "bhutan": "Bhutan",
+    "bolivia": "Bolivia",
+    "bonaire_saint_eustatius_and_saba": "Bonaire, Sint Eustatius e Saba",
     "bosnia_and_herzegovina": "Bosnia-Erzegovina",
+    "botswana": "Botswana",
+    "bouvet_island": "Isola Bouvet",
     "brazil": "Brasile",
+    "british_indian_ocean_territory": "Territorio britannico dell'Oceano Indiano",
+    "british_virgin_islands": "Isole Vergini britanniche",
+    "brunei": "Brunei",
+    "bulgaria": "Bulgaria",
+    "burkina_faso": "Burkina Faso",
+    "burundi": "Burundi",
+    "cambodia": "Cambogia",
+    "cameroon": "Camerun",
     "canada": "Canada",
+    "cape_verde": "Capo Verde",
+    "cayman_islands": "Isole Caimán",
+    "central_african_republic": "Repubblica Centrafricana",
     "central_america": "America Centrale",
+    "chad": "Ciad",
+    "chile": "Cile",
     "china": "Cina",
+    "christmas_island": "Isola di Natale",
+    "clipperton_island": "Isola Clipperton",
+    "cocos_islands": "Isole Cocos",
     "colombia": "Colombia",
+    "commonwealth_of_the_northern_mariana_islands": "Isole Marianne Settentrionali",
+    "comoros": "Comore",
+    "cook_islands": "Isole Cook",
+    "costa_rica": "Costa Rica",
+    "cote_d_ivoire": "Costa d'Avorio",
+    "croatia": "Croazia",
+    "cuba": "Cuba",
+    "curacao": "Curaçao",
+    "cyprus": "Cipro",
+    "czech_republic": "Repubblica Ceca",
+    "democratic_republic_of_the_congo": "Repubblica democratica del Congo",
     "denmark": "Danimarca",
+    "djibouti": "Gibuti",
+    "dominica": "Dominica",
+    "dominican_republic": "Repubblica Dominicana",
+    "east_timor": "Timor Est",
+    "ecuador": "Ecuador",
     "egypt": "Egitto",
+    "el_salvador": "El Salvatore",
     "equatorial_guinea": "Guinea Equatoriale",
+    "eritrea": "Eritrea",
+    "estonia": "Estonia",
+    "ethiopia": "Etiopia",
     "europe": "Europa",
+    "falkland_islands": "Isole Falkland",
+    "faroe_islands": "Fær Øer",
+    "fiji": "Figi",
+    "finland": "Finlandia",
     "france": "Francia",
+    "french_guiana": "Guayana Francese",
+    "french_polynesia": "Polinesia Francese",
+    "french_southern_territories": "Terre australi e antartiche francesi",
+    "gabon": "Gabon",
+    "gambia": "Gambia",
+    "georgia": "Georgia",
     "germany": "Germania",
+    "ghana": "Ghana",
+    "gibraltar": "Gibilterra",
     "greece": "Grecia",
+    "greenland": "Groenlandia",
+    "grenada": "Grenada",
+    "guadeloupe": "Guadalupe",
+    "guam": "Guam",
+    "guatemala": "Guatemala",
+    "guernsey": "Guernsey",
+    "guinea": "Guinea",
+    "guinea_bissau": "Guinea-Bissau",
+    "guyana": "Guyana",
+    "haiti": "Haiti",
+    "heard_island_and_mcdonald_islands": "Isole Heard e McDonald",
+    "honduras": "Honduras",
     "hong_kong": "Hong Kong",
     "hungary": "Ungheria",
-    "italy": "Italia",
+    "iceland": "Islanda",
     "india": "India",
+    "indonesia": "Indonesia",
+    "iran": "Iran",
     "iraq": "Iraq",
+    "ireland": "Irlanda",
+    "isle_of_man": "Isola di Man",
+    "israel": "Israele",
+    "italy": "Italia",
+    "jamaica": "Giamaica",
     "japan": "Giappone",
+    "jersey": "Jersey",
+    "jordan": "Giordania",
+    "kazakhstan": "Kazakistan",
+    "kenya": "Kenya",
+    "kiribati": "Kiribati",
     "korea": "Corea",
+    "kosovo": "Kosovo",
+    "kuwait": "Kuwait",
+    "kyrgyzstan": "Kirghizistan",
+    "laos": "Laos",
+    "latvia": "Lettonia",
+    "lebanon": "Libano",
+    "lesotho": "Lesoto",
+    "liberia": "Liberia",
+    "libya": "Libia",
+    "liechtenstein": "Liechtenstein",
+    "lithuania": "Lituania",
+    "luxembourg": "Lussemburgo",
+    "macao": "Macao",
+    "macedonia": "Macedonia",
+    "madagascar": "Madagascar",
+    "malawi": "Malawi",
+    "malaysia": "Malesia",
+    "maldives": "Maldive",
+    "mali": "Mali",
+    "malta": "Malta",
+    "marshall_islands": "Isole Marshall",
     "martinique": "Martinica",
+    "mauritania": "Mauritania",
+    "mauritius": "Mauritius",
+    "mayotte": "Mayotte",
     "mexico": "Messico",
+    "micronesia": "Micronesia",
+    "moldova": "Moldavia",
+    "monaco": "Monaco",
+    "mongolia": "Mongolia",
+    "montenegro": "Montenegro",
+    "montserrat": "Montserrat",
+    "morocco": "Marocco",
+    "mozambique": "Mozambico",
+    "myanmar": "Birmania",
+    "namibia": "Namibia",
+    "nauru": "Nauru",
+    "nepal": "Nepal",
     "netherlands": "Paesi Bassi",
+    "new_caledonia": "Nuova Caledonia",
     "new_guinea": "Nuova Guinea",
     "new_zealand": "Nuova Zelanda",
+    "nicaragua": "Nicaragua",
+    "niger": "Niger",
+    "nigeria": "Nigeria",
+    "niue": "Niue",
+    "norfolk_island": "Isola Norfolk",
     "north_africa": "Nord Africa",
     "north_america": "Nord America",
+    "north_korea": "Corea del Nord",
+    "northern_cyprus": "Cipro del Nord",
+    "norway": "Norvegia",
+    "oman": "Omán",
+    "pakistan": "Pakistan",
+    "palau": "Palau",
+    "palestina": "Palestina",
     "palestine": "Palestina",
     "panama": "Panama",
+    "papua_new_guinea": "Papúa Nuova Guinea",
+    "paraguay": "Paraguay",
     "peru": "Perù",
+    "philippines": "Filippine",
+    "pitcairn_islands": "Isole Pitcairn",
     "poland": "Polonia",
     "portugal": "Portogallo",
+    "puerto_rico": "Porto Rico",
+    "qatar": "Qatar",
     "republic_of_congo": "Repubblica del Congo",
+    "reunion": "Riunione",
+    "romania": "Romania",
     "russia": "Russia",
-    "saudi_arabia": "Arabia Saudita",
+    "rwanda": "Ruanda",
+    "saint_barthelemy": "Saint-Barthélemy",
+    "saint_helena": "Sant'Elena",
+    "saint_kitts_and_nevis": "Saint Christopher e Nevis",
+    "saint_lucia": "Saint Lucia",
+    "saint_martin": "Saint-Martin",
+    "saint_pierre_and_miquelon": "Saint-Pierre e Miquelon",
+    "saint_vincent_and_the_grenadines": "Saint Vincent e Grenadine",
+    "samoa": "Samoa",
+    "san_marino": "San Marino",
     "sao_tome_and_principe": "Sao Tome e Principe",
+    "saudi_arabia": "Arabia Saudita",
+    "senegal": "Senegal",
+    "serbia": "Serbia",
+    "seychelles": "Seychelles",
+    "sierra_leone": "Sierra Leone",
     "singapore": "Singapore",
+    "sint_maarten": "Sint Maarten",
+    "slovakia": "Slovacchia",
+    "slovenia": "Slovenia",
+    "solomon_islands": "Isole Salomone",
+    "somalia": "Somalia",
     "south_africa": "Sud Africa",
     "south_america": "Sud America",
+    "south_georgia_and_the_south_sandwich_islands": "Georgia del Sud e Isole Sandwich Australi",
+    "south_korea": "Corea del Sud",
+    "south_sudan": "Sudan del sud",
     "spain": "Spagna",
+    "sri_lanka": "Sri Lanka",
+    "sudan": "Sudan",
+    "suriname": "Suriname",
+    "svalbard_and_jan_mayen": "Svalbard e Jan Mayen",
+    "swaziland": "Swaziland",
     "sweden": "Svezia",
     "switzerland": "Svizzera",
     "syria": "Siria",
+    "taiwan": "Taiwan",
+    "tajikistan": "Tagikistan",
+    "tanzania": "Tanzania",
     "thailand": "Thailandia",
+    "togo": "Togo",
+    "tokelau": "Tokelau",
+    "tonga": "Tonga",
     "trinidad_and_tobago": "Trinidad e Tobago",
+    "tunisia": "Tunisia",
     "turkey": "Turchia",
+    "turkmenistan": "Turkmenistán",
+    "turks_and_caicos_islands": "Isole Turche e Caicos",
+    "tuvalu": "Tuvalu",
+    "uganda": "Uganda",
+    "ukraine": "Ucraina",
+    "united_arab_emirates": "Emirati Arabi Uniti",
     "united_kingdom": "Regno Unito",
     "united_states": "Stati Uniti",
+    "united_states_minor_outlying_islands": "Isole minori esterne degli Stati Uniti d'America",
+    "united_states_virgin_islands": "Isole Vergini americane",
+    "uruguay": "Uruguay",
+    "uzbekistan": "Uzbekistán",
+    "vanuatu": "Vanuatu",
+    "vatican_city": "Città del Vaticano",
+    "venezuela": "Venezuela",
+    "vietnam": "Vietnam",
     "virgin_islands": "Isole Vergini",
-    "west_africa": "Africa Occidentale"
+    "wallis_and_futuna": "Wallis e Futuna",
+    "west_africa": "Africa Occidentale",
+    "western_sahara": "Sáhara occidentale",
+    "yemen": "Yemen",
+    "zambia": "Zambia",
+    "zimbabwe": "Zimbabwe"
   },
   "places_of_interest": "Luoghi di interesse",
   "plants": "piante",
@@ -25237,6 +27380,7 @@ I18n.translations["it"] = {
         "growth_title": "Crescita",
         "include_usa": "Includi Stati Uniti",
         "new_species_desc_html": "Specie che sono state aggiunte per la prima volta quest'anno. Clicca su un mese per vedere alcune delle specie aggiunte in quel mese. Puoi vedere anche il totale accumulato, oppure muovere il disco indietro nel tempo per vedere altre specie osservate recentemente. Questo grafico mostra le specie dalle osservazioni verificabili per il mese in cui queste sono state caricate su %{site_name} (non per il mese in cui sono state osservate). Non include taxa di livello superiore od inferiore, perciò una osservazione identificata come Mammifero non è conteggiata, e una osservazione di <i>Canis lupus</i> ssp.\n<i>arctos</i> sarà conteggiata come <i>Canis lupus</i>.",
+        "obs_in_year": "Obs In %{year}",
         "percent_growth_in_year": "% Crescita in %{year}",
         "percent_of_total_growth": "% di crescita totale",
         "publications_desc_html": "I dati di impatto e visualizzazioni per gentile concessione di <a href=\"https://www.altmetric.com\">Altmetric</a>. Le informazioni sull'utilizzo dei dati per gentile concessione dei nostri amici al <a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Visualizza tutti gli %{numStudies} studi</a>",
@@ -26226,9 +28370,9 @@ I18n.translations["ja"] = {
     "greece": "ギリシア",
     "hong_kong": "香港",
     "hungary": "ハンガリー",
-    "italy": "イタリア",
     "india": "インド",
     "iraq": "イラク",
+    "italy": "イタリア",
     "japan": "日本",
     "korea": "韓国",
     "martinique": "マルティニーク",
@@ -26245,8 +28389,8 @@ I18n.translations["ja"] = {
     "portugal": "ポルトガル",
     "republic_of_congo": "コンゴ共和国",
     "russia": "ロシア",
-    "saudi_arabia": "サウジアラビア",
     "sao_tome_and_principe": "サントメプリンシペ",
+    "saudi_arabia": "サウジアラビア",
     "singapore": "シンガポール",
     "south_africa": "南アフリカ",
     "south_america": "南米",
@@ -26617,6 +28761,96 @@ I18n.translations["ja"] = {
   "your_observations": "あなたの観察記録",
   "zoom_in": "拡大",
   "zoom_out": "縮小"
+};
+I18n.translations["ka"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["ko"] = {
   "<%= name": {
@@ -27106,6 +29340,7 @@ I18n.translations["ko"] = {
   "location_private": "위치 비공개",
   "location_unknown": "위치 알 수 없음",
   "log_in": "로그인",
+  "log_scale_label": "로그",
   "long": "경도",
   "longitude": "경도",
   "lookup": "검색",
@@ -27264,53 +29499,123 @@ I18n.translations["ko"] = {
   "places_name": {
     "afghanistan": "아프가니스탄",
     "africa": "아프리카",
+    "albania": "알바니아",
+    "angola": "앙골라",
+    "antarctica": "남극",
+    "argentina": "아르헨티나",
+    "armenia": "아르메니아",
     "australia": "오스트레일리아",
     "austria": "오스트리아",
+    "bangladesh": "방글라데시",
+    "barbados": "바바도스",
     "belgium": "벨기에",
+    "bhutan": "부탄",
     "brazil": "브라질",
+    "bulgaria": "불가리아",
+    "cambodia": "캄보디아",
     "canada": "캐나다",
     "central_america": "중앙 아메리카",
+    "chile": "칠레",
     "china": "중국",
     "colombia": "콜롬비아",
+    "costa_rica": "코스타리카",
+    "croatia": "크로아티아",
+    "cuba": "쿠바",
+    "czech_republic": "체코 공화국",
     "denmark": "덴마크",
+    "dominica": "도미니카",
+    "east_timor": "동티모르",
+    "ecuador": "에콰도르",
     "egypt": "이집트",
     "equatorial_guinea": "적도 기니",
     "europe": "유럽",
+    "fiji": "피지",
+    "finland": "핀란드",
     "france": "프랑스",
+    "gambia": "감비아",
+    "georgia": "조지아",
     "germany": "독일",
+    "ghana": "가나",
     "greece": "그리스",
+    "guam": "괌",
+    "guatemala": "과테말라",
+    "guinea": "기니",
     "hong_kong": "홍콩",
     "hungary": "헝가리",
-    "italy": "이탈리아",
     "india": "인도",
+    "iran": "이란",
     "iraq": "이라크",
+    "israel": "이스라엘",
+    "italy": "이탈리아",
+    "jamaica": "자메이카",
     "japan": "일본",
+    "kenya": "케냐",
     "korea": "한국",
+    "kosovo": "코소보",
+    "kuwait": "쿠웨이트",
+    "laos": "라오스",
+    "latvia": "라트비아",
+    "lebanon": "레바논",
+    "libya": "리비아",
+    "lithuania": "리투아니아",
+    "macao": "마카오",
+    "macedonia": "마케도니아",
+    "madagascar": "마다가스카르",
+    "malawi": "말라위",
+    "marshall_islands": "마셜 제도",
     "mexico": "멕시코",
+    "moldova": "몰도바",
+    "morocco": "모로코",
+    "nepal": "네팔",
     "netherlands": "네덜란드",
     "new_guinea": "뉴 기니",
     "new_zealand": "뉴질랜드",
     "north_africa": "북아프리카",
     "north_america": "북아메리카",
+    "north_korea": "조선민주주의인민공화국",
+    "norway": "노르웨이",
+    "palau": "팔라우",
     "panama": "파나마",
+    "paraguay": "파라과이",
     "peru": "페루",
+    "philippines": "필리핀",
     "poland": "폴란드",
     "portugal": "포르투갈",
     "republic_of_congo": "콩고 민주 공화국",
+    "romania": "루마니아",
     "russia": "러시아",
+    "rwanda": "르완다",
+    "samoa": "사모아",
     "saudi_arabia": "사우디아라비아",
+    "senegal": "세네갈",
     "singapore": "싱가포르",
+    "solomon_islands": "솔로몬 제도",
+    "somalia": "소말리아",
     "south_africa": "남아프리카",
     "south_america": "남아메리카",
+    "south_korea": "대한민국",
+    "south_sudan": "남수단",
     "spain": "스페인",
+    "sri_lanka": "스리랑카",
+    "sudan": "수단",
+    "swaziland": "스와질란드",
     "sweden": "스웨덴",
     "switzerland": "스위스",
     "syria": "시리아",
+    "taiwan": "타이완",
+    "tajikistan": "타지키스탄",
     "thailand": "태국",
+    "tunisia": "튀니지",
     "turkey": "터키",
+    "ukraine": "우크라이나",
     "united_kingdom": "영국",
     "united_states": "미국",
-    "west_africa": "서아프리카"
+    "uzbekistan": "우즈베키스탄",
+    "vietnam": "베트남",
+    "west_africa": "서아프리카",
+    "yemen": "예멘",
+    "zambia": "잠비아",
+    "zimbabwe": "짐바브웨"
   },
   "plants": "식물",
   "prev": "이전",
@@ -27501,6 +29806,7 @@ I18n.translations["ko"] = {
         "avg_ttid": "평균 TTID"
       },
       "year": {
+        "include_usa": "미국 포함"
       }
     },
     "taxa": {
@@ -28125,9 +30431,9 @@ I18n.translations["lb"] = {
     "greece": "Griicheland",
     "hong_kong": "Hong-Kong",
     "hungary": "Ungarn",
-    "italy": "Italien",
     "india": "Indien",
     "iraq": "Irak",
+    "italy": "Italien",
     "japan": "Japan",
     "korea": "Korea",
     "mexico": "Mexiko",
@@ -28399,6 +30705,96 @@ I18n.translations["lb"] = {
   "zoom_photo": "Zoom Foto"
 };
 I18n.translations["lexicons"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["lo-LA"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -29154,8 +31550,8 @@ I18n.translations["mk"] = {
     "germany": "Германија",
     "greece": "Грција",
     "hungary": "Унгарија",
-    "italy": "Италија",
     "iraq": "Ирак",
+    "italy": "Италија",
     "japan": "Јапонија",
     "martinique": "Мартиник",
     "mexico": "Мексико",
@@ -29169,8 +31565,8 @@ I18n.translations["mk"] = {
     "poland": "Полска",
     "republic_of_congo": "Република Конго",
     "russia": "Русија",
-    "saudi_arabia": "Саудиска Арабија",
     "sao_tome_and_principe": "Сао Томе и Принсипе",
+    "saudi_arabia": "Саудиска Арабија",
     "south_america": "Јужна Америка",
     "spain": "Шпанија",
     "sweden": "Шведска",
@@ -29362,7 +31758,7 @@ I18n.translations["mk"] = {
   "yes": "Да",
   "your_observations": "Ваши набљудувања"
 };
-I18n.translations["my"] = {
+I18n.translations["ms"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -29553,7 +31949,7 @@ I18n.translations["nl"] = {
   "about_community_taxa": "Over gemeenschapstaxa",
   "about_complete_taxa": "Over complete taxa",
   "about_conservation_status": "Over de natuurbeschermingsstatus",
-  "about_establishment_means": "Over Bron van Aanwezigheid",
+  "about_establishment_means": "Over vestigingswijze",
   "about_names": "Over namen",
   "about_this_bioblitz": "Over deze bioblitz",
   "acc": "Prec. (m)",
@@ -29727,7 +32123,7 @@ I18n.translations["nl"] = {
   "are_you_sure?": "Weet u het zeker?",
   "are_you_sure_leave_this_project": "Weet u zeker dat u dit project wilt verlaten?",
   "are_you_sure_remove_photo": "Weet u zeker dat u deze foto wilt verwijderen?",
-  "are_you_sure_you_want_to_remove_all_tags": "Weet u zeker dat u alle labels wilt verwijderen?",
+  "are_you_sure_you_want_to_remove_all_tags": "Weet u zeker dat u alle tags wilt verwijderen?",
   "are_you_sure_you_want_to_remove_these_x_taxa?": "Weet u zeker dat u deze %{x} taxa wilt verwijderen?",
   "asc": "opl.",
   "ascending": "Oplopend",
@@ -29969,7 +32365,7 @@ I18n.translations["nl"] = {
   "desc": "afl.",
   "descending": "aflopend",
   "description": "Beschrijving",
-  "description_slash_tags": "Beschrijving / Labels",
+  "description_slash_tags": "Beschrijving / Tags",
   "details": "Details",
   "did_you_mean": "Bedoelde u",
   "disagree_": "Niet akkoord",
@@ -30199,6 +32595,7 @@ I18n.translations["nl"] = {
     "waray_waray": "Winaray"
   },
   "life": "Leven",
+  "linear_scale_label": "Lineair",
   "list": "Lijst",
   "list_tooltip": "Toon lijstweergave",
   "lists": "Lijsten",
@@ -30214,6 +32611,7 @@ I18n.translations["nl"] = {
   "location_specified": "Locatie opgegeven",
   "location_unknown": "Locatie onbekend",
   "log_in": "Aanmelden",
+  "log_scale_label": "Logboek",
   "long": "Len:",
   "longitude": "Lengtegraad",
   "lookup": "Opzoeken",
@@ -30266,7 +32664,8 @@ I18n.translations["nl"] = {
       "MM": "%d maand",
       "y": "1 jaar",
       "yy": "%d jaar"
-    }
+    },
+    "datetime_with_zone": "MMM D, YYYY · LT z"
   },
   "months": "Maanden",
   "more": "Meer",
@@ -30351,7 +32750,9 @@ I18n.translations["nl"] = {
   "observation": "Waarneming",
   "observation_": "waarneming",
   "observation_date": "Datum",
+  "observation_field_details": "waarnemingsveld details",
   "observation_fields": "Waarnemingsvelden",
+  "observation_requirements": "waarnemingsvereisten",
   "observation_without_media": "Waarneming zonder media",
   "observations": "Waarnemingen",
   "observations_": "waarnemingen",
@@ -30374,6 +32775,7 @@ I18n.translations["nl"] = {
   "of_places": "plaatsen",
   "of_species": "soort",
   "of_this_taxon": "Van dit taxon",
+  "offensive_inappropriate": "Aanstootgevend/ongepast",
   "ok": "OK",
   "old_observation_form": "Oud waarnemingsformulier (verouderd)",
   "open": "openen",
@@ -30382,8 +32784,10 @@ I18n.translations["nl"] = {
   "or": "of",
   "orange": "oranje",
   "order_by": "Sorteren op",
+  "organism_appears_captive_cultivated": "Het organisme lijkt gevangen/gecultiveerd",
   "organism_is_wild": "Organisme is wild",
   "other": "Anders",
+  "other_species_commonly_misidentified_as_this_species": "Andere soorten die vaak verkeerd worden geïdentificeerd als deze soort",
   "other_species_commonly_misidentified_as_this_species_in_place_html": "Andere soorten die vaak verkeerd worden geïdentificeerd als deze soort in <a href=\"%{url}\">%{place}</a>",
   "output_taxon": "Uitvoer taxon",
   "overview": "Overzicht",
@@ -30417,18 +32821,34 @@ I18n.translations["nl"] = {
       "continent": "continent",
       "Country": "Land",
       "country": "land",
+      "County": "County",
+      "county": "county",
       "District": "District",
       "district": "district",
       "Division": "Divisie",
       "division": "divisie",
+      "Drainage": "Afvoer",
+      "drainage": "afvoer",
+      "Estate": "Landgoed",
+      "estate": "landgoed",
+      "Historical_Town": "Historische stad",
+      "historical_town": "historische stad",
       "Island": "Eiland",
       "island": "eiland",
+      "Miscellaneous": "Overige",
+      "miscellaneous": "overige",
+      "Municipality": "Gemeente",
+      "municipality": "gemeente",
       "Nationality": "Nationaliteit",
       "nationality": "nationaliteit",
       "Nearby_Building": "Gebouw Dichtbij",
       "nearby_building": "gebouw dichtbij",
       "Open_Space": "Open Ruimte",
       "open_space": "open ruimte",
+      "Parish": "Parochie",
+      "parish": "parochie",
+      "Point_of_Interest": "Nuttige plaats",
+      "point_of_interest": "nuttige plaats",
       "Postal_Code": "Postcode",
       "postal_code": "postcode",
       "Province": "Provincie",
@@ -30437,6 +32857,8 @@ I18n.translations["nl"] = {
       "region": "regio",
       "Republic": "Republiek",
       "republic": "Republiek",
+      "Shire": "Delen",
+      "shire": "delen",
       "Sports_Team": "Sportteam",
       "sports_team": "sportteam",
       "State": "Staat",
@@ -30444,6 +32866,9 @@ I18n.translations["nl"] = {
       "Street": "Straat",
       "street": "straat",
       "Street_Segment": "Stuk straat",
+      "street_segment": "Stuk straat",
+      "Subdivision": "Onderverdeling",
+      "subdivision": "onderverdeling",
       "Time_Zone": "Tijdzone",
       "time_zone": "Tijdzone",
       "Town": "Stad",
@@ -30463,62 +32888,211 @@ I18n.translations["nl"] = {
   "places_name": {
     "afghanistan": "Afghanistan",
     "africa": "Afrika",
+    "akrotiri_and_dhekelia": "Akrotiri en Dhekelia",
+    "aland": "Åland",
+    "albania": "Albanië",
+    "algeria": "Algerije",
+    "american_samoa": "Amerikaans-Samoa",
+    "andorra": "Andorra",
+    "angola": "Angola",
+    "anguilla": "Anguilla",
+    "antarctica": "Antarctica",
     "antigua_and_barbuda": "Antigua en Barbuda",
+    "argentina": "Argentinië",
+    "armenia": "Armenië",
+    "aruba": "Aruba",
     "australia": "Australië",
     "austria": "Oostenrijk",
+    "azerbaijan": "Azerbeidzjan",
+    "bahamas": "Bahamas",
+    "bahrain": "Bahrein",
+    "bangladesh": "Bangladesh",
+    "barbados": "Barbados",
+    "belarus": "Wit-Rusland",
     "belgium": "België",
+    "belize": "Belize",
+    "benin": "Benin",
+    "bermuda": "Bermuda",
+    "bhutan": "Bhutan",
+    "bolivia": "Bolivia",
+    "bonaire_saint_eustatius_and_saba": "Bonaire, Sint Eustatius en Saba",
     "bosnia_and_herzegovina": "Bosnië en Herzegovina",
+    "botswana": "Botswana",
+    "bouvet_island": "Bouveteiland",
     "brazil": "Brazilië",
+    "british_indian_ocean_territory": "Brits Indische Oceaanterritorium",
+    "british_virgin_islands": "Britse Maagdeneilanden",
+    "brunei": "Brunei",
+    "bulgaria": "Bulgarije",
+    "burkina_faso": "Burkina Faso",
+    "burundi": "Burundi",
+    "cambodia": "Cambodja",
+    "cameroon": "Kameroen",
+    "canada": "Canada",
+    "cape_verde": "Kaapverdië",
+    "cayman_islands": "Kaaimaneilanden",
+    "central_african_republic": "Centraal-Afrikaanse Republiek",
     "central_america": "Centraal-Amerika",
+    "chad": "Tsjaad",
+    "chile": "Chili",
     "china": "China",
+    "christmas_island": "Christmaseiland",
+    "clipperton_island": "Clipperton eiland",
+    "cocos_islands": "Cocoseilanden",
     "colombia": "Colombia",
+    "commonwealth_of_the_northern_mariana_islands": "Noordelijke Marianen",
+    "comoros": "Comoren",
+    "cook_islands": "Cookeilanden",
+    "costa_rica": "Costa Rica",
+    "cote_d_ivoire": "Ivoorkust",
+    "croatia": "Kroatië",
+    "cuba": "Cuba",
+    "curacao": "Curaçao",
+    "cyprus": "Cyprus",
+    "czech_republic": "Tsjechië",
+    "democratic_republic_of_the_congo": "Democratische Republiek Congo",
     "denmark": "Denemarken",
+    "djibouti": "Djibouti",
+    "dominica": "Dominica",
+    "dominican_republic": "Dominicaanse Republiek",
+    "east_timor": "Oost-Timor",
+    "ecuador": "Ecuador",
     "egypt": "Egypte",
+    "el_salvador": "El Salvador",
     "equatorial_guinea": "Equatoriaal-Guinea",
+    "eritrea": "Eritrea",
+    "estonia": "Estland",
+    "ethiopia": "Ethiopië",
     "europe": "Europa",
+    "falkland_islands": "Falklandeilanden",
+    "faroe_islands": "Faeröer",
+    "fiji": "Fiji",
+    "finland": "Finland",
     "france": "Frankrijk",
+    "gabon": "Gabon",
+    "gambia": "Gambia",
     "germany": "Duitsland",
+    "ghana": "Ghana",
+    "gibraltar": "Gibraltar",
     "greece": "Griekenland",
+    "grenada": "Grenada",
+    "guadeloupe": "Guadeloupe",
+    "guatemala": "Guatemala",
+    "guernsey": "Guernsey",
+    "honduras": "Honduras",
     "hong_kong": "Hong Kong",
     "hungary": "Hongarije",
-    "italy": "Italië",
+    "iceland": "IJsland",
     "india": "India",
+    "iran": "Iran",
     "iraq": "Irak",
+    "ireland": "Ierland",
+    "italy": "Italië",
+    "jamaica": "Jamaica",
     "japan": "Japan",
+    "jersey": "Jersey",
+    "kenya": "Kenia",
     "korea": "Korea",
+    "kosovo": "Kosovo",
+    "lebanon": "Libanon",
+    "lesotho": "Lesotho",
+    "liberia": "Liberia",
+    "liechtenstein": "Liechtenstein",
+    "luxembourg": "Luxemburg",
+    "macao": "Macao",
+    "madagascar": "Madagascar",
+    "malawi": "Malawi",
+    "malaysia": "Maleisië",
+    "maldives": "Maldiven",
+    "mali": "Mali",
+    "malta": "Malta",
     "martinique": "Martinique",
+    "mauritius": "Mauritius",
     "mexico": "Mexico",
+    "monaco": "Monaco",
+    "montenegro": "Montenegro",
+    "montserrat": "Montserrat",
+    "mozambique": "Mozambique",
+    "nauru": "Nauru",
+    "nepal": "Nepal",
     "netherlands": "Nederland",
     "new_guinea": "Nieuw-Guinea",
     "new_zealand": "Nieuw-Zeeland",
+    "nigeria": "Nigeria",
     "north_africa": "Noord-Afrika",
     "north_america": "Noord-Amerika",
+    "north_korea": "Noord-Korea",
+    "norway": "Noorwegen",
+    "oman": "Oman",
+    "pakistan": "Pakistan",
+    "palau": "Palau",
+    "palestina": "Palestina",
     "palestine": "Palestina",
     "panama": "Panama",
+    "papua_new_guinea": "Papua Nieuw Guinea",
+    "paraguay": "Paraguay",
     "peru": "Peru",
     "poland": "Polen",
     "portugal": "Portugal",
+    "puerto_rico": "Puerto Rico",
     "republic_of_congo": "Republiek Congo",
+    "reunion": "Reunion",
     "russia": "Rusland",
-    "saudi_arabia": "Saoedi-Arabië",
+    "rwanda": "Rwanda",
+    "saint_barthelemy": "Saint-Barthélemy",
+    "saint_helena": "Sint Helena",
+    "samoa": "Samoa",
+    "san_marino": "San Marino",
     "sao_tome_and_principe": "Sao Tomé en Principe",
+    "saudi_arabia": "Saoedi-Arabië",
+    "senegal": "Senegal",
+    "sierra_leone": "Sierra Leone",
     "singapore": "Singapore",
+    "sint_maarten": "Sint Maarten",
     "south_africa": "Zuid-Afrika",
     "south_america": "Zuid-Amerika",
+    "south_korea": "Zuid-Korea",
+    "south_sudan": "Zuid Soedan",
     "spain": "Spanje",
+    "suriname": "Suriname",
+    "svalbard_and_jan_mayen": "Spitsbergen en Jan Mayen",
+    "swaziland": "Swaziland",
     "sweden": "Zweden",
     "switzerland": "Zwitserland",
     "syria": "Syrië",
+    "taiwan": "Taiwan",
+    "tajikistan": "Tajikistan",
+    "tanzania": "Tanzania",
     "thailand": "Thailand",
+    "togo": "Togo",
+    "tokelau": "Tokelau",
+    "tonga": "Tonga",
     "trinidad_and_tobago": "Trinidad en Tobago",
+    "tunisia": "Tunesië",
     "turkey": "Turkije",
+    "turkmenistan": "Turkmenistan",
+    "turks_and_caicos_islands": "Turks- en Caicoseilanden",
+    "tuvalu": "Tuvalu",
+    "uganda": "Oeganda",
+    "ukraine": "Oekraïne",
+    "united_arab_emirates": "Verenigde Arabische Emiraten",
     "united_kingdom": "Verenigd Koninkrijk",
     "united_states": "Verenigde Staten",
+    "uruguay": "Uruguay",
+    "uzbekistan": "Uzbekistan",
+    "vanuatu": "Vanuatu",
+    "vatican_city": "Vaticaanstad",
+    "venezuela": "Venezuela",
+    "vietnam": "Vietnam",
     "virgin_islands": "Maagdeneilanden",
-    "west_africa": "West-Afrika"
+    "west_africa": "West-Afrika",
+    "yemen": "Yemen",
+    "zambia": "Zambia",
+    "zimbabwe": "Zimbabwe"
   },
   "places_of_interest": "Interessante plaatsen",
   "plants": "planten",
+  "please_allow_a_few_weeks_for_external_sites": "Wacht een paar weken zodat externe sites de wijzigingen van deze waarneming kunnen synchroniseren",
   "popular": "populair",
   "prev": "Prev",
   "preview": "Preview",
@@ -30585,8 +33159,8 @@ I18n.translations["nl"] = {
   "required_": "Vereist",
   "research": "onderzoek",
   "research_": "Onderzoek",
-  "research_grade": "Research Grade",
-  "research_grade_qualification": "Research Grade qualificatie",
+  "research_grade": "Onderzoekskwaliteit",
+  "research_grade_qualification": "Onderzoekskwaliteitqualificatie",
   "reset_search_filters": "Reset zoekfilters",
   "restore": "Herstellen",
   "review_all": "Alles beoordeeld",
@@ -30651,6 +33225,7 @@ I18n.translations["nl"] = {
   "stats": "Statistieken",
   "stats_for_this_year_have_not_been_generated": "Statistieken voor dit jaar zijn niet gegenereerd.",
   "status": "Status",
+  "status_globally": "%{status} Wereldwijd",
   "stop_testing": "Stop testing",
   "studies_that_used_inaturalist_data_in_year": "Studies die iNaturalist-gegevens in %{year} hebben gebruikt",
   "submit_observations": {
@@ -30660,6 +33235,7 @@ I18n.translations["nl"] = {
   "submitted": "Verzonden",
   "suggest_an_identification": "Stel een identificatie voor",
   "suggestions": "Suggesties",
+  "supporting": "Steun",
   "table": "Tabel",
   "tagging": "Tagging ...",
   "tags": "Labels",
@@ -30676,6 +33252,7 @@ I18n.translations["nl"] = {
   "tell_us_why": "Vertel ons waarom ...",
   "terrain": "terrein",
   "the_": "De",
+  "the_below_items_are_needed_to_achieve": "De onderstaande items zijn nodig om <span className=\"bold\">Onderzoekskwaliteit</span> te bereiken:",
   "the_community_id_requires_at_least_two_identifications": "Het Gemeenschaps-ID vereist ten minste twee identificaties.",
   "the_world": "De wereld",
   "then_keybord_sequence": "dan",
@@ -30689,7 +33266,7 @@ I18n.translations["nl"] = {
     "one": "Deze waarneming is te zien op 1 site",
     "other": "Deze waarneming is te zien op %{count} sites"
   },
-  "this_observation_is_research_grade": "Deze waarneming heeft Research Grade behaald!",
+  "this_observation_is_research_grade": "Deze waarneming heeft Onderzoekskwaliteit behaald!",
   "this_observation_was_created_using": "Deze waarneming werd aangemaakt met behulp van:",
   "this_taxon_concept_is_inactive": "Dit taxonconcept is niet actief",
   "this_taxon_has_no_default_photo": "Dit taxon heeft geen standaardfoto!",
@@ -30729,6 +33306,7 @@ I18n.translations["nl"] = {
     "other": "Uploading %{num} van %{count} fotos..."
   },
   "user": "Gebruiker",
+  "user_autocomplete_placeholder": "kueda, simon123, enz.",
   "user_commented": "%{user} reageerde",
   "user_disagrees_this_is_taxon": "%{user} is het niet eens dat dit %{taxon} si",
   "user_helped_x_people_with_y_ids_html": "%{user} hielpen <strong>%{x} mensen</strong> met <strong>%{y} determinaties</strong>",
@@ -30759,7 +33337,7 @@ I18n.translations["nl"] = {
     "observations": {
       "community_id": {
         "agreement": "Overeenkomst",
-        "explanation": "<P>\n   Als om een of andere reden een gebruiker het niet eens is met het community taxon,\n   kunnen ze het weigeren, wat betekent dat hun ID de naam is die gebruikt wordt\n   bij het koppelen aan andere waarnemingen, levenslijsten bijwerken, etc. \n   Hun waarneming kan alleen Research Grade worden als de\n   gemeenschap het met hen eens is.\n</p>\n<P>\n   De community-ID wordt echter nog steeds weergegeven, dus iedereen kan de\n   verschillende ID's zien die zijn voorgesteld.\n</p>",
+        "explanation": "<P>\n   Als om een of andere reden een gebruiker het niet eens is met het community taxon,\n   kunnen ze het weigeren, wat betekent dat hun ID de naam is die gebruikt wordt\n   bij het koppelen aan andere waarnemingen, levenslijsten bijwerken, etc. \n   Hun waarneming kan alleen Onderzoekskwaliteit worden als de\n   gemeenschap het met hen eens is.\n</p>\n<P>\n   De community-ID wordt echter nog steeds weergegeven, dus iedereen kan de\n   verschillende ID's zien die zijn voorgesteld.\n</p>",
         "score": "Score"
       },
       "export": {
@@ -30770,8 +33348,8 @@ I18n.translations["nl"] = {
         "you_reviewed_message": "U heeft %{reviewed} van %{pageTotal} waarnemingen beoordeeld op deze pagina van %{total} overeenkomende waarnemingen."
       },
       "show": {
-        "community_taxon_desc_html": "<p class=\"ui\">\n  Het community taxon (of gemeenschapstaxon) is de determinatie van \n  het taxon door de %{site_name} gemeenschap van de afbeelding in de waarneming. Als je geïnteresseerd bent in hoe we het kiezen\n  community taxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in\n  algemeen proberen we <strong> een taxon te kiezen waar meer dan 2/3 is\n  van de ID's onder valt </strong>. Dit betekent dat soms\n  een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat\n  Taxa wat de sooort niet eens (u denkt bijvoorbeeld dat het een Lampropeltis is en ik denk dat\n  het ratelslang is, dan kiest iNat voor de suborde Serpentes die\n  alle slangen omvat). Het algoritme is bevooroordeeld enigzins de \n  afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden vaak gelijk hebben.\n</p>\n<p class=\"ui\">\n  Het gemeenschapstaxon is het taxon dat we gebruiken bij het delen van waarnemingen\n  met datapartners, die waarnemingen van hetzelfde taxon koppelen aan de\n  site, het bijwerken van uw levenslijst, enz. Als u om een ​​of andere reden niet \n  akkoord gaat met het gemeenschapstaxon, kun je het afwijzen, wat betekent\n  dat uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen te linken,\n  het bijwerken van levenslijsten, enz. Het betekent ook dat uw observatie alleen \n  Research Grade kan worden wanneer de community het eens is met <em>u</em>.\n  Als je het hele idee van community-taxa niet leuk vindt, kun je \n  het volledig uitzetten in <a href=\"/users/edit\" target=\"_blank\">uw instellingen</a>.\n</p>\n<p class=\"ui\">\n  <strong>Het algoritme:</strong> voor alle geïdentificeerde taxa en de taxa waarin ze zijn opgenomen\n  (bijvoorbeeld geslacht <i>Homo</i> bevat <i>Homo sapiens</i>), score\n  elk als de verhouding tussen het aantal cumulatieve ID's voor\n  dat taxon over de som van de cumulatieve ID's, het aantal\n  meer conservatieve ID's toegevoegd na de eerste ID van dat taxon,\n  en het aantal ID's dat compleet verschillend is (dat wil zeggen ID's\n  van taxa die niet het taxon bevatten dat gescoord wordt). Voor de\n  geïdentificeerde taxa die een score hebben van meer dan 2/3 en minstens 2\n  identificaties, wordt het laagst gerangschikte taxon gekozen.\n</p>",
-        "quality_assessment_help_html": "<p>\nDe gegevenskwaliteit is een weergave van de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>\"casual\"</strong> en worden <strong>\"needs ID\"</strong> als\n</p>\n\n<ul>\n   <li>de waarneming <strong>een datum heeft</strong></li>\n   <li>de waarneming <strong>geografische referenties heeft</strong>(heeft coördinaten)</li>\n   <li>de waarneming <strong>foto's of geluiden heeft </strong></li>\n   <li>de waarneming <strong>geen mens is</strong></li>\n</ul>\n<p>\n  Waarnemingen worden <strong>\"research grade\"</strong> als\n</p>\n<ul>\n  <li>\n     de %{site_name} <strong>gemeenschap het eens is over de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens over een taxon\n  </li>\n</ul>\n<p>\n    Waarnemingen worden teruggezet naar <strong>\"casual\"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de community hiermee instemt\n</p>\n<ul>\n  <li>\n      de locatie <strong>lijkt niet nauwkeurig</strong> (bijvoorbeeld apen in het midden van \n      de oceaan, nijlpaarden in kantoorgebouwen, etc.)\n  </li>\n  <li>\n      het <strong>organisme is niet wild/genaturaliseerd</strong> (bijvoorbeeld gevangen of \n      gekweekt door mensen of intelligente ruimtewezens)\n  </li>\n  <li>\n      de waarneming <strong>levert geen bewijs op van een organisme </strong>, b.v. \n      afbeeldingen van landschappen, waterpartijen, rotsen, etc.\n  </li>\n  <li>\n      de waarneming <strong>bevat geen recent (~100 jaar) bewijs van\n     het organisme</strong> (bijvoorbeeld fossielen, maar sporen, poep en dode bladeren\n     zijn oke)\n  </li>\n  <li>\n    de waarneming heeft niet langer een naam <em>en</em> nodig, de ID van de gemeenschap is boven de familie\n  </li>\n  <li>\n     de waarnemer heeft zich afgemeld voor de gemeenschaps-ID en de gemeenschaps\n     ID taxon is geen voorouder of afstammeling van het taxon van de waarnemer\n  </li>\n</ul>\n<p>\n   En als dat niet ingewikkeld genoeg was er zijn ook situaties waarin het systeem een stem krijgt:\n</p>\n<ul>\n  <li>\n     Het systeem zal aangeven dat de waarneming niet wild/ingeburgerd is\n     als er minstens 10 andere waarnemingen van een genus zijn of lager in\n     de kleinste provincie-, staats- of land-equivalent plaats die\n     deze waarneming bevat en 80% of meer van die waarnemingen\n     zijn gemarkeerd als niet wild/ingeburgerd.\n  </li>\n</ul>"
+        "community_taxon_desc_html": "<p class=\"ui\">\n  Het community taxon (of gemeenschapstaxon) is de determinatie van \n  het taxon door de %{site_name} gemeenschap van de afbeelding in de waarneming. Als je geïnteresseerd bent in hoe we het kiezen\n  community taxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in\n  algemeen proberen we <strong> een taxon te kiezen waar meer dan 2/3 is\n  van de ID's onder valt </strong>. Dit betekent dat soms\n  een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat\n  Taxa wat de sooort niet eens (u denkt bijvoorbeeld dat het een Lampropeltis is en ik denk dat\n  het ratelslang is, dan kiest iNat voor de suborde Serpentes die\n  alle slangen omvat). Het algoritme is bevooroordeeld enigzins de \n  afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden vaak gelijk hebben.\n</p>\n<p class=\"ui\">\n  Het gemeenschapstaxon is het taxon dat we gebruiken bij het delen van waarnemingen\n  met datapartners, die waarnemingen van hetzelfde taxon koppelen aan de\n  site, het bijwerken van uw levenslijst, enz. Als je om een ​​of andere reden niet \n  akkoord gaat met het gemeenschapstaxon, kun je het afwijzen, wat betekent\n  dat uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen te linken,\n  het bijwerken van levenslijsten, enz. Het betekent ook dat jouw waarneming alleen \n  Onderzoekskwaliteit kan worden wanneer de community het eens is met <em>u</em>.\n  Als je het hele idee van community-taxa niet leuk vindt, kun je \n  het volledig uitzetten in <a href=\"/users/edit\" target=\"_blank\">uw instellingen</a>.\n</p>\n<p class=\"ui\">\n  <strong>Het algoritme:</strong> voor alle geïdentificeerde taxa en de taxa waarin ze zijn opgenomen\n  (bijvoorbeeld geslacht <i>Homo</i> bevat <i>Homo sapiens</i>), score\n  elk als de verhouding tussen het aantal cumulatieve ID's voor\n  dat taxon over de som van de cumulatieve ID's, het aantal\n  meer conservatieve ID's toegevoegd na de eerste ID van dat taxon,\n  en het aantal ID's dat compleet verschillend is (dat wil zeggen ID's\n  van taxa die niet het taxon bevatten dat gescoord wordt). Voor de\n  geïdentificeerde taxa die een score hebben van meer dan 2/3 en minstens 2\n  identificaties, wordt het laagst gerangschikte taxon gekozen.\n</p>",
+        "quality_assessment_help_html": "<p>\nDe gegevenskwaliteit is een weergave van de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>\"casual\"</strong> en worden <strong>\"needs ID\"</strong> als\n</p>\n\n<ul>\n   <li>de waarneming <strong>een datum heeft</strong></li>\n   <li>de waarneming <strong>geografische referenties heeft</strong>(heeft coördinaten)</li>\n   <li>de waarneming <strong>foto's of geluiden heeft </strong></li>\n   <li>de waarneming <strong>geen mens is</strong></li>\n</ul>\n<p>\n  Waarnemingen worden <strong>\"Onderzoekskwaliteit\"</strong> als\n</p>\n<ul>\n  <li>\n     de %{site_name} <strong>gemeenschap het eens is over de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens over een taxon\n  </li>\n</ul>\n<p>\n    Waarnemingen worden teruggezet naar <strong>\"casual\"</strong> als niet aan de bovenstaande voorwaarden wordt voldaan of als de community hiermee instemt\n</p>\n<ul>\n  <li>\n      de locatie <strong>lijkt niet nauwkeurig</strong> (bijvoorbeeld apen in het midden van \n      de oceaan, nijlpaarden in kantoorgebouwen, etc.)\n  </li>\n  <li>\n      het <strong>organisme is niet wild/genaturaliseerd</strong> (bijvoorbeeld gevangen of \n      gekweekt door mensen of intelligente ruimtewezens)\n  </li>\n  <li>\n      de waarneming <strong>levert geen bewijs op van een organisme </strong>, b.v. \n      afbeeldingen van landschappen, waterpartijen, rotsen, etc.\n  </li>\n  <li>\n      de waarneming <strong>bevat geen recent (~100 jaar) bewijs van\n     het organisme</strong> (bijvoorbeeld fossielen, maar sporen, poep en dode bladeren\n     zijn oke)\n  </li>\n  <li>\n    de waarneming heeft niet langer een naam <em>en</em> nodig, de ID van de gemeenschap is boven de familie\n  </li>\n  <li>\n     de waarnemer heeft zich afgemeld voor de gemeenschaps-ID en de gemeenschaps\n     ID taxon is geen voorouder of afstammeling van het taxon van de waarnemer\n  </li>\n</ul>\n<p>\n   En als dat niet ingewikkeld genoeg was er zijn ook situaties waarin het systeem een stem krijgt:\n</p>\n<ul>\n  <li>\n     Het systeem zal aangeven dat de waarneming niet wild/ingeburgerd is\n     als er minstens 10 andere waarnemingen van een genus zijn of lager in\n     de kleinste provincie-, staats- of land-equivalent plaats die\n     deze waarneming bevat en 80% of meer van die waarnemingen\n     zijn gemarkeerd als niet wild/ingeburgerd.\n  </li>\n</ul>"
       }
     },
     "projects": {
@@ -30812,9 +33390,14 @@ I18n.translations["nl"] = {
       "index": {
       },
       "year": {
+        "growth_by_country_desc_html": "Waar vindt de groei plaats? \nDeze kaart en grafiel proberen dit op te splitsen naar land, wat ingewikkeld blijkt te zijn omdat groei door een land zeer onregelmatig kan zijn. We hebben hier ervoor gekozen om de VS weg te laten en een logschaal te gebruiken om verschillen te accentueren\ntussen andere landen. Als een land zwart gekleurd is, betekent dat het niet\nniet significant heeft bijgedragen met een percentage of het had geen groei\ndit jaar, of had dit jaar niet meer waarnemingen dan vorig jaar\n(beweeg over een land om een ​​meer details te zien).\n \n<strong>\"% van totale groei\"</strong> betekent hoeveel van de wereldwijde groei afkomstig was van een bepaald land, bijv. als er 20 waarnemingen waren in 2018 en 10\nin 2017 zouden dat een groei van 10 waarnemingen zijn en als 5 daarvan\nafkomstig waren uit Benin dan droeg Benin 50% van het totaal bij aan de\ngroei. \n<strong>'% groei'</strong> is het aantal waarnemingen\ndit jaar in dat land als een percentage van de waarnemingen van vorig jaar in\ndat land, dus als er vorig jaar in Laos 10 waarnemingen waren, maar\n20 dit jaar dan zou dat 100% groei zijn, en als het vorig jaar het aantal 0 was\nen dit jaar 1 dan is groei% oneindig.",
+        "growth_in_year_obs": "Groei in %{year} (wrn)",
         "growth_title": "Groei",
-        "new_species_desc_html": "Soorten die dit jaar voor het eerst zijn toegevoegd op %{site_name}.\nKlik op een maand om enkele van de nieuwe soorten te bekijken die in die maand zijn toegevoegd. Je kunt ook de totale soortaccumulatie bekijken of de schuifregelaar \nterug in de tijd verplaatsen om andere nieuw waargenomen soorten te zien. Dit schema toont\nsoorten van verifieerbare waarnemingen tegen de maand waarin ze zijn geüpload\nop %{site_name} (niet de maand waarin ze werden waargenomen). Het bevat geen\ntaxa van een hoger of lager niveau, dus een waarneming geïdentificeerd als\nMammalia telt niet en een waarneming van <i>Canis lupus</i> ssp.\n<i>arctos</i> telt slechts als <i>Canis lupus</i>.",
-        "publications_desc_html": "Met dank aan <a href=\"https://www.altmetric.com\">Altmetric</a> voor de mpactgegevens en visualisaties. Informatie over het gebruik van de gegevens met dank aan onze vrienden op de\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Toon alle %{numStudies} studies</a>"
+        "new_species_desc_html": "Soorten die dit jaar voor het eerst zijn toegevoegd.\nKlik op een maand om enkele van de nieuwe soorten te bekijken die in die maand zijn toegevoegd. Je kunt ook de totale soortaccumulatie bekijken of de schuifregelaar \nterug in de tijd verplaatsen om andere nieuw waargenomen soorten te zien. Dit schema toont\nsoorten van verifieerbare waarnemingen tegen de maand waarin ze zijn geüpload\nop %{site_name} (niet de maand waarin ze werden waargenomen). Het bevat geen\ntaxa van een hoger of lager niveau, dus een waarneming geïdentificeerd als\nMammalia telt niet en een waarneming van <i>Canis lupus</i> ssp.\n<i>arctos</i> telt slechts als <i>Canis lupus</i>.",
+        "percent_growth_in_year": "% Groei in %{year}",
+        "percent_of_total_growth": "% of Totaal Groei",
+        "publications_desc_html": "Met dank aan <a href=\"https://www.altmetric.com\">Altmetric</a> voor de impactgegevens en visualisaties. Informatie over het gebruik van de gegevens met dank aan onze vrienden op de\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Toon alle %{numStudies} studies</a>",
+        "sunburst_desc_html": "Waargenomen taxa zijn gerangschikt als een hiërarchisch \"sunburst\"-diagram. De basis\nvan de hiërarchie staat centraal, beginnend met \"Leven\" en eindigend\nmet soorten aan de buitenranden. De grootte van elke boog is evenredig\nnaar het aantal waarnemingen van dat taxon en de kleuren \nkomen ongeveer overeen met onze gebruikelijke \"iconische\" taxonkleuren (groen voor planten,\noranje voor insecten, blauw voor de meeste andere dieren, enz.), dus als je\nveel groen ziet, betekent dit dat je veel planten hebt waargenomen.\n<strong>Klik op een boog om dat taxon in het midden te plaatsen</strong> en\nde kinderen eromheen of <strong>klik op het midden om terug omhoog te gaan\nde hiërarchie</strong>."
       }
     },
     "taxa": {
@@ -30823,10 +33406,10 @@ I18n.translations["nl"] = {
         "charts_help_history": "Deze grafiek toont het aantal waarnemingen van dit taxon per maand voor\nde afgelopen tien jaar. Nogmaals, het is bevooroordeeld door het aantal mensen\ndie waarnemingen invoeren maar het zal je opmerkelijke pieken in waarnemingen laten zien en zo\nlijkt het plat of dalend ondanks een toenemend aantal waarnemers,\ndat zou een verandering in het voorkomen kunnen suggereren.",
         "charts_help_other": "We tonen ook seizoensgebonden grafieken aantekeningen bij waarnemingen. Aantekeningen zijn een nieuw systeem om metadata toe te voegen aan waarnemingen door gebruik te maken van een gecontrolleerde woordenschat van termen. Tot nu toe gebruiken we enkel \"Levensfase\" en \"Plantenfenologie\" (wanneer de plant bloeit of vruchten draagt). We hebben nog geen manier om aantekeningen rechtstreeks toe te voegen, voorlopig converteren we gegevens van velden op waarnemingen naar aantekeningen. Als je niet kan wachten tot we ons aantekeningen systeem hebben gebouwd, kan je bijdragen tot de \"Levensfase\" aantekeningen door een veld met een van de volgende waarden toe te voegen op een waarneming: Adult, Teneral, Pop, Nimf, Larve, Ei of Juveniel. Meer specifiek zijn dus de \"Levensfase\" en Insect Levensfase\" velden goed. Voor Plantenfenologie kijken we naar elk veld met het woord \"fenologie\" in de naam en \"bloem\" of \"fruit\" in de waarde, dus is het veld \"Bloeifenologie\" een aangeraden veld om te gebruiken.",
         "charts_help_relative_observations": "Het tonen van de frequentie als een relatieve eigenschap van alle waarnemingen helpt het \neffenen van het effect van de algehele groei van de site. Als bijvoorbeeld de site groeit naarmate we meer waarnemingen krijgen van elke afgelopen jaar krijgen we meer waarnemingen van elk individueel taxon, wat niet aangeeft dat er meer van dat taxon in de buurt is, alleen maar dat er meer mensen het taxon waarnemen. De rrelatieve eigenschap toont aan dat als er 100 waarnemingen in totaal zijn en maar\n20 waarnemingen van dit taxon, het aandeel van dit taxon is 0,2 (20/100) is. Als het volgende jaar\ner 2000 waarnemingen worden genoteerd en 400 waarnemingen van\ndit taxon dan is het aandeel nog steeds 0,2 (400/2000). Dit veroorzaakt wat\nabberaties als er maar heel weinig waarnemers in een gebied zijn of voor taxa\ndie zeer zelden worden waargenomen, maar dat geldt voor de totale tellingen\nook.",
-        "charts_help_seasonality": "Deze grafiek toont het aantal waarnemingen van dit taxon gegroepeerd per\nmaand. Houd er rekening mee dat dit een aantal waarnemingen zijn, dus zij\nworden beïnvloed door zowel wanneer het organisme kan worden waargenomen en wanneer\nmensen moeite doen om ze te observeren (waarnemerseffect). Dus een vogel lijkt erg actief\nin mei, maar dat zou ook veroorzaakt kunnen worden door het feit dat er in mei meer mensen vogelen\nen de neiging om die soort in latere maanden te negeren. Evenzo, als je ziet\ndat er meer libellen in juni dan in januari zijn komt dat waarschijnlijk omdat er\nmeer mensen waarnemingen invoeren op het noordelijk halfrond dan in de\nzuidelijk halfrond en niet omdat libellen actiever zijn\njuni, dus bekijk de kaart wanneer u deze grafieken overweegt. Het is altijd een\ngoed idee om sceptisch te zijn over deze grafieken als er weinig waarnemingen zijn en/of grote discrepanties tussen het aantal \"Verifieerbare\" en \"Research Grade\"-waarnemingen.",
+        "charts_help_seasonality": "Deze grafiek toont het aantal waarnemingen van dit taxon gegroepeerd per\nmaand. Houd er rekening mee dat dit een aantal waarnemingen zijn, dus zij\nworden beïnvloed door zowel wanneer het organisme kan worden waargenomen en wanneer\nmensen moeite doen om ze te observeren (waarnemerseffect). Dus een vogel lijkt erg actief\nin mei, maar dat zou ook veroorzaakt kunnen worden door het feit dat er in mei meer mensen vogelen\nen de neiging om die soort in latere maanden te negeren. Evenzo, als je ziet\ndat er meer libellen in juni dan in januari zijn komt dat waarschijnlijk omdat er\nmeer mensen waarnemingen invoeren op het noordelijk halfrond dan in de\nzuidelijk halfrond en niet omdat libellen actiever zijn\njuni, dus bekijk de kaart wanneer u deze grafieken overweegt. Het is altijd een\ngoed idee om sceptisch te zijn over deze grafieken als er weinig waarnemingen zijn en/of grote discrepanties tussen het aantal \"Verifieerbare\" en \"Onderzoekskwaliteit\"-waarnemingen.",
         "discoveries_desc": "Meest recente nieuw-geïdentificeerde soorten in dit taxon",
         "frequency": {
-          "research": "Research Grade",
+          "research": "Onderzoekskwaliteit",
           "verifiable": "Verifieerbaar",
           "Flowering Phenology=bare": "Geen bloemen",
           "Flowering Phenology=flower": "Bloeiend",
@@ -30955,6 +33538,7 @@ I18n.translations["nl"] = {
   "you_faved_this": "Je hebt dit aan je favorieten toegevoegd!",
   "you_must_fill_out_the_required_fields": "Je moet de verplichte velden invullen",
   "you_must_select_at_least_one_taxon": "Je moet ten minste één taxon selecteren",
+  "you_retain_full_copyright": "Je behoudt het volledige auteursrecht op je inhoud met uitzondering van de rechten die zijn verleend aan %{site_name} in onze Servicevoorwaarden.",
   "you_sure_delete_comment?": "Weet u zeker dat u deze reactie wilt verwijderen?",
   "you_sure_delete_this_observation": "Weet u zeker dat u deze waarneming wil verwijderen?",
   "your_hard_drive": "uw harde schijf",
@@ -30963,6 +33547,96 @@ I18n.translations["nl"] = {
   "zoom_in": "Inzoomen",
   "zoom_out": "Uitzoomen",
   "zoom_photo": "Inzoomen op foto"
+};
+I18n.translations["nn-NO"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["no"] = {
   "<%= name": {
@@ -31779,6 +34453,186 @@ I18n.translations["oc"] = {
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 espècia</a>",
     "other": "<a href='%{url}'>%{count} espècias</a>"
+  }
+};
+I18n.translations["pap-AW"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["pap-CW"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
   }
 };
 I18n.translations["pl"] = {
@@ -32618,6 +35472,7 @@ I18n.translations["pt-BR"] = {
     "waray_waray": "Samarenho"
   },
   "life": "Vida",
+  "linear_scale_label": "Linear",
   "list": "Lista",
   "list_tooltip": "Exibir visualização de lista",
   "lists": "Listas",
@@ -32634,6 +35489,7 @@ I18n.translations["pt-BR"] = {
   "location_specified": "Localização especifica",
   "location_unknown": "Localização Desconhecida",
   "log_in": "Entrar",
+  "log_scale_label": "Registro",
   "long": "Lon",
   "longitude": "Longitude",
   "lookup": "Procurar",
@@ -32940,60 +35796,268 @@ I18n.translations["pt-BR"] = {
   "places_name": {
     "afghanistan": "Afeganistão",
     "africa": "África",
+    "akrotiri_and_dhekelia": "Acrotíri e Deceleia",
+    "aland": "Alanda",
+    "albania": "Albânia",
+    "algeria": "Argélia",
+    "american_samoa": "Samoa Americana",
+    "andorra": "Andorra",
+    "angola": "Angola",
+    "anguilla": "Anguilla",
+    "antarctica": "Antártida",
     "antigua_and_barbuda": "Antígua e Barbuda",
+    "argentina": "Argentina",
+    "armenia": "Armênia",
+    "aruba": "Aruba",
     "australia": "Austrália",
     "austria": "Áustria",
+    "azerbaijan": "Azerbaijão",
+    "bahamas": "Bahamas",
+    "bahrain": "Bahrein",
+    "bangladesh": "Bangladesh",
+    "barbados": "Barbados",
+    "belarus": "Bielorrússia",
     "belgium": "Bélgica",
+    "belize": "Belize",
+    "benin": "Benim",
+    "bermuda": "Bermudas",
+    "bhutan": "Butão",
+    "bolivia": "Bolívia",
+    "bonaire_saint_eustatius_and_saba": "Bonaire, Santo Eustáquio e Saba",
     "bosnia_and_herzegovina": "Bosnia e Herzegovina",
+    "botswana": "Botswana",
+    "bouvet_island": "Ilha Bouvet",
     "brazil": "Brasil",
+    "british_indian_ocean_territory": "Território Britânico do Oceano Índico",
+    "british_virgin_islands": "Ilhas Virgens Britânicas",
+    "brunei": "Brunei",
+    "bulgaria": "Bulgária",
+    "burkina_faso": "Burkina Faso",
+    "burundi": "Burundi",
+    "cambodia": "Camboja",
+    "cameroon": "Camarões",
     "canada": "Canadá",
+    "cape_verde": "Cabo Verde",
+    "cayman_islands": "Ilhas Cayman",
+    "central_african_republic": "República Centro-Africana",
     "central_america": "América Central",
+    "chad": "Chade",
+    "chile": "Chile",
     "china": "China",
+    "christmas_island": "Ilha Christmas",
+    "clipperton_island": "Ilha de Clipperton",
+    "cocos_islands": "Ilhas Cocos",
     "colombia": "Colômbia",
+    "commonwealth_of_the_northern_mariana_islands": "Ilhas Marianas Setentrionais",
+    "comoros": "Comores",
+    "cook_islands": "Ilhas Cook",
+    "costa_rica": "Costa Rica",
+    "cote_d_ivoire": "Costa do Marfim",
+    "croatia": "Croácia",
+    "cuba": "Cuba",
+    "curacao": "Curaçao",
+    "cyprus": "Chipre",
+    "czech_republic": "República Checa",
+    "democratic_republic_of_the_congo": "República Democrática do Congo",
     "denmark": "Dinamarca",
+    "djibouti": "Djibouti",
+    "dominica": "Dominica",
+    "dominican_republic": "República Dominicana",
+    "east_timor": "Timor-Leste",
+    "ecuador": "Equador",
     "egypt": "Egito",
+    "el_salvador": "El Salvador",
     "equatorial_guinea": "Guiné Equatorial",
+    "eritrea": "Eritreia",
+    "estonia": "Estônia",
+    "ethiopia": "Etiópia",
     "europe": "Europa",
+    "falkland_islands": "Ilhas Malvinas",
+    "faroe_islands": "Ilhas Feroe",
+    "fiji": "Fiji",
+    "finland": "Finlândia",
     "france": "França",
+    "french_guiana": "Guiana Francesa",
+    "french_polynesia": "Polinésia Francesa",
+    "french_southern_territories": "Terras Austrais e Antárticas Francesas",
+    "gabon": "Gabão",
+    "gambia": "Gâmbia",
+    "georgia": "Geórgia",
     "germany": "Alemanha",
+    "ghana": "Gana",
+    "gibraltar": "Gibraltar",
     "greece": "Grécia",
+    "greenland": "Groenlândia",
+    "grenada": "Granada",
+    "guadeloupe": "Guadalupe",
+    "guam": "Guam",
+    "guatemala": "Guatemala",
+    "guernsey": "Guernsey",
+    "guinea": "Guiné",
+    "guinea_bissau": "Guiné-Bissau",
+    "guyana": "Guiana",
+    "haiti": "Haiti",
+    "heard_island_and_mcdonald_islands": "Ilha Heard e Ilhas McDonald",
+    "honduras": "Honduras",
     "hong_kong": "Hong Kong",
     "hungary": "Hungria",
-    "italy": "Itália",
+    "iceland": "Islândia",
     "india": "Índia",
+    "indonesia": "Indonésia",
+    "iran": "Irã",
     "iraq": "Iraque",
+    "ireland": "Irlanda",
+    "isle_of_man": "Ilha do Homem",
+    "israel": "Israel",
+    "italy": "Itália",
+    "jamaica": "Jamaica",
     "japan": "Japão",
+    "jersey": "Jersey",
+    "jordan": "Jordânia",
+    "kazakhstan": "Cazaquistão",
+    "kenya": "Quênia",
+    "kiribati": "Kiribati",
     "korea": "Coréia",
+    "kosovo": "Kosovo",
+    "kuwait": "Kuwait",
+    "kyrgyzstan": "Quirguistão",
+    "laos": "Laos",
+    "latvia": "Letônia",
+    "lebanon": "Líbano",
+    "lesotho": "Lesoto",
+    "liberia": "Libéria",
+    "libya": "Líbia",
+    "liechtenstein": "Liechtenstein",
+    "lithuania": "Lituânia",
+    "luxembourg": "Luxemburgo",
+    "macao": "Macau",
+    "macedonia": "Macedônia",
+    "madagascar": "Madagáscar",
+    "malawi": "Malawi",
+    "malaysia": "Malásia",
+    "maldives": "Maldivas",
+    "mali": "Mali",
+    "malta": "Malta",
+    "marshall_islands": "Ilhas Marshall",
     "martinique": "Martinica",
+    "mauritania": "Mauritânia",
+    "mauritius": "Maurício",
+    "mayotte": "Mayotte",
     "mexico": "México",
+    "micronesia": "Micronésia",
+    "moldova": "Moldávia",
+    "monaco": "Mônaco",
+    "mongolia": "Ilhas Marianas Setentrionais",
+    "montenegro": "Montenegro",
+    "montserrat": "Montserrat",
+    "morocco": "Marrocos",
+    "mozambique": "Moçambique",
+    "myanmar": "Myanmar",
+    "namibia": "Namíbia",
+    "nauru": "Nauru",
+    "nepal": "Nepal",
     "netherlands": "Países Baixos",
+    "new_caledonia": "Nova Caledónia",
     "new_guinea": "Nova Guiné",
     "new_zealand": "Nova Zelândia",
+    "nicaragua": "Nicarágua",
+    "niger": "Níger",
+    "nigeria": "Nigéria",
+    "niue": "Niue",
+    "norfolk_island": "Ilha Norfolk",
     "north_africa": "África do Norte",
     "north_america": "América do Norte",
+    "north_korea": "Coreia do Norte",
+    "northern_cyprus": "Chipre do Norte",
+    "norway": "Noruega",
+    "oman": "Omã",
+    "pakistan": "Paquistão",
+    "palau": "Palau",
+    "palestina": "Estado da Palestina",
     "palestine": "Palestina",
     "panama": "Panamá",
+    "papua_new_guinea": "Papua-Nova Guiné",
+    "paraguay": "Paraguai",
     "peru": "Peru",
+    "philippines": "Filipinas",
+    "pitcairn_islands": "Ilhas Pitcairn",
     "poland": "Polônia",
     "portugal": "Portugal",
+    "puerto_rico": "Porto Rico",
+    "qatar": "Catar",
     "republic_of_congo": "República do Congo",
+    "reunion": "Reunião",
+    "romania": "Romênia",
     "russia": "Russia",
-    "saudi_arabia": "Arabia Saudita",
+    "rwanda": "Ruanda",
+    "saint_barthelemy": "São Bartolomeu",
+    "saint_helena": "Santa Helena",
+    "saint_kitts_and_nevis": "São Cristóvão e Nevis",
+    "saint_lucia": "Santa Lúcia",
+    "saint_martin": "São Martinho",
+    "saint_pierre_and_miquelon": "São Pedro e Miquelão",
+    "saint_vincent_and_the_grenadines": "São Vicente e Granadinas",
+    "samoa": "Samoa",
+    "san_marino": "São Marinho",
     "sao_tome_and_principe": "São Tomé e Príncipe",
+    "saudi_arabia": "Arabia Saudita",
+    "senegal": "Senegal",
+    "serbia": "Sérvia",
+    "seychelles": "Seicheles",
+    "sierra_leone": "Serra Leoa",
     "singapore": "Cingapura",
+    "sint_maarten": "São Martinho",
+    "slovakia": "Eslováquia",
+    "slovenia": "Eslovênia",
+    "solomon_islands": "Ilhas Salomão",
+    "somalia": "Somália",
     "south_africa": "África do Sul",
     "south_america": "América do Sul",
+    "south_georgia_and_the_south_sandwich_islands": "Ilhas Geórgia do Sul e Sandwich do Sul",
+    "south_korea": "Coreia do Sul",
+    "south_sudan": "Sudão do Sul",
     "spain": "Espanha",
+    "sri_lanka": "Sri Lanka",
+    "sudan": "Sudão",
+    "suriname": "Suriname",
+    "svalbard_and_jan_mayen": "Svalbard e Jan Mayen",
+    "swaziland": "Suazilândia",
     "sweden": "Suécia",
     "switzerland": "Suíça",
     "syria": "Siria",
+    "taiwan": "Taiwan",
+    "tajikistan": "Tajiquistão",
+    "tanzania": "Tanzânia",
     "thailand": "Tailândia",
+    "togo": "Togo",
+    "tokelau": "Tokelau",
+    "tonga": "Tonga",
     "trinidad_and_tobago": "Trindade e Tobago",
+    "tunisia": "Tunísia",
     "turkey": "Turquía",
+    "turkmenistan": "Turcomenistão",
+    "turks_and_caicos_islands": "Ilhas Turcas e Caicos",
+    "tuvalu": "Tuvalu",
+    "uganda": "Uganda",
+    "ukraine": "Ucrânia",
+    "united_arab_emirates": "Emirados Árabes Unidos",
     "united_kingdom": "Reino Unido",
     "united_states": "Estados Unidos",
+    "united_states_minor_outlying_islands": "Ilhas Menores Distantes dos Estados Unidos",
+    "united_states_virgin_islands": "Ilhas Virgens Americanas",
+    "uruguay": "Uruguai",
+    "uzbekistan": "Uzbequistão",
+    "vanuatu": "Vanuatu",
+    "vatican_city": "Cidade do Vaticano",
+    "venezuela": "Venezuela",
+    "vietnam": "Vietnã",
     "virgin_islands": "Ilhas Virgens",
-    "west_africa": "África Ocidental"
+    "wallis_and_futuna": "Wallis e Futuna",
+    "west_africa": "África Ocidental",
+    "western_sahara": "Saara Ocidental",
+    "yemen": "Iêmen",
+    "zambia": "Zâmbia",
+    "zimbabwe": "Zimbábue"
   },
   "places_of_interest": "Locais de interesse",
   "plants": "plantas",
@@ -33111,6 +36175,7 @@ I18n.translations["pt-BR"] = {
     "other": "Salvando %{num} de %{count} observações..."
   },
   "saving_verb": "Salvando",
+  "scale_colon": "Escala:",
   "search": "Pesquisar",
   "search_by_taxon_name_or_flickr_photo_id": "Busca por nome taxonômico ou por ID de foto do Flickr.",
   "search_by_taxon_name_or_observation_id": "Buscar por táxon or identificação de osbervação",
@@ -33363,6 +36428,7 @@ I18n.translations["pt-BR"] = {
         "display_project_name": "Exibir nome do projeto",
         "do_you_need_features_from_traditional": "Você precisa de características de projetos tradicionais, como acessar coordenadas reais, campos de observação personalizados ou adicionar observações individuais que não podem ser filtradas automaticamente?",
         "leaderboards_among_individuals": "Classificações entre <strong>indivíduos</strong>",
+        "leaderboards_among_projects_and_bioblitzes": "Classificações entre <strong>projetos e maratonas</strong>",
         "multiple_project_administrators": "Administradores de vários projetos",
         "name_placeholder": "Aves de Chicago, Libélulas Incríveis, etc.",
         "no_need_to_rely_on_manual_addition": "Não há necessidade de confiar na adição manual de observações ou no agregador para indexar observações",
@@ -33384,6 +36450,7 @@ I18n.translations["pt-BR"] = {
         "start_and_end_times_for_bioblitzes": "Horário de início e fim dos bioblitzes",
         "umbrella_project_features": "Recursos do projeto guarda-chuva:",
         "unique_url_for_outreach": "URL exclusivo para divulgação",
+        "use_this_link_to_create_html": "Use <a href=\"%{url}\">esse link</a> para criar um projeto tradicional.",
         "users_can_follow_your_project": "Os usuários podem acompanhar seu projeto para atualizações por meio de publicações em diário",
         "visual_comparison_of_data_among": "Comparações visuais de dados entre projetos sob o guarda-chuva",
         "we_have_redesigned_projects": "Redesenhamos os projetos para incluir automaticamente todas as observações apropriadas de sites, taxa, usuários, qualidade e datas que você define. Escolha entre dois tipos:\nProjetos de coleta e projetos guarda-chuva, que compartilham as seguintes características:",
@@ -33395,6 +36462,7 @@ I18n.translations["pt-BR"] = {
       "show": {
         "are_you_sure_you_want_to_convert": "Tem certeza de que deseja converter este projeto em um projeto de coleção?",
         "click_here_to_convert_this_project": "Clique aqui para converter este projeto em um projeto de coleção.",
+        "make_sure_you_have_read_about_the_differences": "Certifique-se de que você leu as diferenças\nNossa <a href=\"%{url}\">postagem de blog sobre Projetos de coleção</a>.",
         "this_is_a_preview": "Esta é uma prévia do que este projeto parecerá como um Projeto de Coleção."
       },
       "tracks_multiple_projects": "rastreia vários projetos",
@@ -33423,8 +36491,15 @@ I18n.translations["pt-BR"] = {
         "recent_w_7_obs": "Recentes w /> = 7 observações"
       },
       "year": {
+        "growth_by_country_desc_html": "Onde o crescimento está acontecendo? Este mapa e gráfico tentam quebrar isso\npara baixo por país, o que acaba por ser complicado porque o crescimento por\npaís pode ser muito desequilibrado. Aqui nós escolhemos omitir o United\nEstados e usar uma escala de log por padrão para acentuar diferenças\nentre outros países. Se um país é preto, isso significa que\nnão contribuiu signicativamente para uma porcentagem, ou não teve crescimento\neste ano, ou não teve mais observações este ano do que no ano passado\n(passe o mouse sobre um país para ver um pouco mais de detalhes). <strong>\"% do\ncrescimento total\"</strong> significa quanto do crescimento mundial veio de um\ndeterminado pas, por exemplo se houvesse 20 observações em 2018 e 10\nem 2017, seriam 10 observações de crescimento, e se 5 delas\nobservações foram do Benim, Benin contribuiu com 50% do total\ncrescimento. <strong>\"% de crescimento\"</strong> significa o número de observações\neste ano no país como um percentual de observações no ano passado em\nesse país, por isso, se houvesse 10 observações no Laos no ano passado, mas\n20 este ano, que seria de crescimento de 100%, e se houvesse 0 no ano passado\ne 1 este ano, esse é% de crescimento infinito.",
+        "growth_by_country_title": "Crescimento por país",
+        "growth_in_year_obs": "Crescimento em %{year} (observações)",
         "growth_title": "Crescimento",
-        "new_species_desc_html": "Espécies que foram adicionadas pela primeira vez no %{site_name} este ano.\nClique em um mês para ver algumas das novas espécies adicionadas naquele mês.\nVocê também pode ver o acúmulo total de espécies ou mover o controle deslizante\nde volta no tempo para ver outras espécies recém-observadas. Este gráfico mostra\nespécies de observações verificáveis pelo mês em que foram carregadas\npara %{site_name} (não o mês em que foram observados). Isso não\nincluem taxa de nível mais alto ou mais baixo, então uma observação identificada como\nMammalia não conta, e uma observação de <i>Canis lupus</i> ssp.\n<i>arctos</i> contará apenas como <i>Canis lupus</i>.",
+        "include_usa": "Incluir EUA",
+        "new_species_desc_html": "Espécies que foram adicionadas pela primeira vez este ano.\nClique em um mês para ver algumas das novas espécies adicionadas naquele mês.\nVocê também pode ver o acúmulo total de espécies ou mover o controle deslizante\nde volta no tempo para ver outras espécies recém-observadas. Este gráfico mostra\nespécies de observações verificáveis pelo mês em que foram carregadas\npara %{site_name} (não o mês em que foram observados). Isso não\nincluem taxa de nível mais alto ou mais baixo, então uma observação identificada como\nMammalia não conta, e uma observação de <i>Canis lupus</i> ssp.\n<i>arctos</i> contará apenas como <i>Canis lupus</i>.",
+        "obs_in_year": "Observadas em %{year}",
+        "percent_growth_in_year": "% crescimento em %{year}",
+        "percent_of_total_growth": "% do crescimento total",
         "publications_desc_html": "Dados de impacto e visualizações cortesia de\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Em formação\nsobre o uso de dados cortesia de nossos amigos no\n<a href=\"https://www.gbif.org/\">Global Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Ver tudos %{numStudies} estudos</a>",
         "sunburst_desc_html": "Os táxons observados são organizados como um diagrama hierárquico \"sunburst\". A base da hierarquia está no centro, começando com \"Vida\" e terminando com espécies nas bordas externas. O tamanho de cada arco é proporcional ao número de observações desse táxon, e as cores correspondem às cores do nosso habitual táxon \"icônico\" (verde para plantas, laranja para insetos, azul para a maioria dos outros animais, etc), então se você vê muito verde, isso significa que você observou muitas plantas. <strong>Clique em um arco para colocar esse táxon no centro</strong> e seus dependentes em torno dele, ou<strong>clique no centro para voltar à hierarquia.</strong>"
       }
@@ -34564,9 +37639,9 @@ I18n.translations["pt-PT"] = {
     "greece": "Grécia",
     "hong_kong": "Hong Kong",
     "hungary": "Hungria",
-    "italy": "Itália",
     "india": "Índia",
     "iraq": "Iraque",
+    "italy": "Itália",
     "japan": "Japão",
     "korea": "Coreia",
     "martinique": "Martinica",
@@ -34583,8 +37658,8 @@ I18n.translations["pt-PT"] = {
     "portugal": "Portugal",
     "republic_of_congo": "República do Congo",
     "russia": "Rússia",
-    "saudi_arabia": "Arábia Saudita",
     "sao_tome_and_principe": "São Tomé e Príncipe",
+    "saudi_arabia": "Arábia Saudita",
     "singapore": "Singapura",
     "south_africa": "África do Sul",
     "south_america": "América do Sul",
@@ -34810,6 +37885,7 @@ I18n.translations["pt-PT"] = {
   "users": "Utilizadores",
   "users_comment_html": "Comentário de <a href='%{url}'>%{user}</a>",
   "users_identification_short_html": "Identificação de <a href='%{url}'>%{user}</a>",
+  "verifiable_observations_by_observation_date": "Observações verificáveis por data de observação",
   "view_flags": "Ver sinalizadores",
   "view_more": "Ver mais",
   "view_observation": "Ver observação",
@@ -34842,6 +37918,7 @@ I18n.translations["pt-PT"] = {
       "index": {
       },
       "year": {
+        "growth_title": "Crescimento"
       }
     },
     "taxa": {
@@ -35692,6 +38769,7 @@ I18n.translations["ru"] = {
     "waray_waray": "варайский"
   },
   "life": "Жизнь",
+  "linear_scale_label": "Линейная",
   "list": "Список",
   "list_tooltip": "Показать вид списка",
   "lists": "Списки",
@@ -35708,6 +38786,7 @@ I18n.translations["ru"] = {
   "location_specified": "Указано местоположение",
   "location_unknown": "Местоположение неизвестно",
   "log_in": "Вход",
+  "log_scale_label": "Логарифмическая",
   "long": "Долгота:",
   "longitude": "Долгота",
   "lookup": "Поиск",
@@ -35889,7 +38968,7 @@ I18n.translations["ru"] = {
   "other_species_commonly_misidentified_as_this_species_in_place_html": "Другие виды, которые обычно ошибочно идентифицируются как этот вид в <a href=\"%{url}\">%{place}</a>",
   "output_taxon": "Выходной таксон",
   "overview": "Обзор",
-  "per_day": "В день",
+  "per_day": "За день",
   "per_month": "За месяц",
   "per_week": "За неделю",
   "person": "Человек",
@@ -36012,60 +39091,268 @@ I18n.translations["ru"] = {
   "places_name": {
     "afghanistan": "Афганистан",
     "africa": "Африка",
+    "akrotiri_and_dhekelia": "Акротири и Декелия",
+    "aland": "Аланды",
+    "albania": "Албания",
+    "algeria": "Алжир",
+    "american_samoa": "Американское Самоа",
+    "andorra": "Андорра",
+    "angola": "Ангола",
+    "anguilla": "Ангилья",
+    "antarctica": "Антарктика",
     "antigua_and_barbuda": "Антигуа и Барбуда",
+    "argentina": "Аргентина",
+    "armenia": "Армения",
+    "aruba": "Аруба",
     "australia": "Австралия",
     "austria": "Австрия",
+    "azerbaijan": "Азербайджан",
+    "bahamas": "Багамы",
+    "bahrain": "Бахрейн",
+    "bangladesh": "Бангладеш",
+    "barbados": "Барбадос",
+    "belarus": "Беларусь",
     "belgium": "Бельгия",
+    "belize": "Белиз",
+    "benin": "Бенин",
+    "bermuda": "Бермуды",
+    "bhutan": "Бутан",
+    "bolivia": "Боливия",
+    "bonaire_saint_eustatius_and_saba": "Бонэйр, Синт-Эстатиус и Саба",
     "bosnia_and_herzegovina": "Босния и Герцеговина",
+    "botswana": "Ботсвана",
+    "bouvet_island": "Остров Буве",
     "brazil": "Бразилия",
+    "british_indian_ocean_territory": "Британская Территория в Индийском Океане",
+    "british_virgin_islands": "Британские Виргинские Острова",
+    "brunei": "Бруней",
+    "bulgaria": "Болгария",
+    "burkina_faso": "Буркина-Фасо",
+    "burundi": "Бурунди",
+    "cambodia": "Камбоджа",
+    "cameroon": "Камерун",
     "canada": "Канада",
+    "cape_verde": "Кабо-Верде",
+    "cayman_islands": "Острова Кайман",
+    "central_african_republic": "Центральноафриканская Республика",
     "central_america": "Центральная Америка",
+    "chad": "Чад",
+    "chile": "Чили",
     "china": "Китай",
+    "christmas_island": "Остров Рождества",
+    "clipperton_island": "Клиппертон",
+    "cocos_islands": "Кокосовые острова",
     "colombia": "Колумбия",
+    "commonwealth_of_the_northern_mariana_islands": "Северные Марианские Острова",
+    "comoros": "Коморы",
+    "cook_islands": "Острова Кука",
+    "costa_rica": "Коста-Рика",
+    "cote_d_ivoire": "Кот-д’Ивуар",
+    "croatia": "Хорватия",
+    "cuba": "Куба",
+    "curacao": "Кюрасао",
+    "cyprus": "Кипр",
+    "czech_republic": "Чехия",
+    "democratic_republic_of_the_congo": "ДР Конго",
     "denmark": "Дания",
+    "djibouti": "Джибути",
+    "dominica": "Доминика",
+    "dominican_republic": "Доминиканская Республика",
+    "east_timor": "Восточный Тимор",
+    "ecuador": "Эквадор",
     "egypt": "Египет",
+    "el_salvador": "Сальвадор",
     "equatorial_guinea": "Экваториальная Гвинея",
+    "eritrea": "Эритрея",
+    "estonia": "Эстония",
+    "ethiopia": "Эфиопия",
     "europe": "Европа",
+    "falkland_islands": "Фолклендские острова",
+    "faroe_islands": "Фарерские острова",
+    "fiji": "Фиджи",
+    "finland": "Финляндия",
     "france": "Франция",
+    "french_guiana": "Гвиана",
+    "french_polynesia": "Французская Полинезия",
+    "french_southern_territories": "Французские Южные и Антарктические территории (ФЮАТ)",
+    "gabon": "Габон",
+    "gambia": "Гамбия",
+    "georgia": "Грузия",
     "germany": "Германия",
+    "ghana": "Гана",
+    "gibraltar": "Гибралтар",
     "greece": "Греция",
+    "greenland": "Гренландия",
+    "grenada": "Гренада",
+    "guadeloupe": "Гваделупа",
+    "guam": "Гуам",
+    "guatemala": "Гватемала",
+    "guernsey": "Гернси",
+    "guinea": "Гвинея",
+    "guinea_bissau": "Гвинея-Бисау",
+    "guyana": "Гайана",
+    "haiti": "Гаити",
+    "heard_island_and_mcdonald_islands": "Остров Херд и острова Макдональд",
+    "honduras": "Гондурас",
     "hong_kong": "Гонконг",
     "hungary": "Венгрия",
-    "italy": "Италия",
+    "iceland": "Исландия",
     "india": "Индия",
+    "indonesia": "Индонезия",
+    "iran": "Иран",
     "iraq": "Ирак",
+    "ireland": "Ирландия",
+    "isle_of_man": "Остров Мэн",
+    "israel": "Израиль",
+    "italy": "Италия",
+    "jamaica": "Ямайка",
     "japan": "Япония",
+    "jersey": "Джерси",
+    "jordan": "Иордан",
+    "kazakhstan": "Казахстан",
+    "kenya": "Кения",
+    "kiribati": "Кирибати",
     "korea": "Корея",
+    "kosovo": "Республика Косово",
+    "kuwait": "Кувейт",
+    "kyrgyzstan": "Киргизия",
+    "laos": "Лаос",
+    "latvia": "Латвия",
+    "lebanon": "Ливан",
+    "lesotho": "Лесото",
+    "liberia": "Либерия",
+    "libya": "Ливия",
+    "liechtenstein": "Лихтенштейн",
+    "lithuania": "Литва",
+    "luxembourg": "Люксембург",
+    "macao": "Макао",
+    "macedonia": "Македония",
+    "madagascar": "Мадагаскар",
+    "malawi": "Малави",
+    "malaysia": "Малайзия",
+    "maldives": "Мальдивы",
+    "mali": "Мали",
+    "malta": "Мальта",
+    "marshall_islands": "Маршалловы Острова",
     "martinique": "Мартиника",
+    "mauritania": "Мавритания",
+    "mauritius": "Маврикий",
+    "mayotte": "Майотта",
     "mexico": "Мексика",
+    "micronesia": "Микронезия",
+    "moldova": "Молдавия",
+    "monaco": "Монако",
+    "mongolia": "Монголия",
+    "montenegro": "Черногория",
+    "montserrat": "Монтсеррат",
+    "morocco": "Марокко",
+    "mozambique": "Мозамбик",
+    "myanmar": "Мьянма",
+    "namibia": "Намибия",
+    "nauru": "Науру",
+    "nepal": "Непал",
     "netherlands": "Нидерланды",
+    "new_caledonia": "Новая Каледония",
     "new_guinea": "Новая Гвинея",
     "new_zealand": "Новая Зеландия",
+    "nicaragua": "Никарагуа",
+    "niger": "Нигер",
+    "nigeria": "Нигерия",
+    "niue": "Ниуэ",
+    "norfolk_island": "Остров Норфолк",
     "north_africa": "Северная Африка",
     "north_america": "Северная Америка",
+    "north_korea": "Северная Корея",
+    "northern_cyprus": "Северный Кипр",
+    "norway": "Норвегия",
+    "oman": "Оман",
+    "pakistan": "Пакистан",
+    "palau": "Палау",
+    "palestina": "Палестина",
     "palestine": "Палестина",
     "panama": "Панама",
+    "papua_new_guinea": "Папуа-Новая Гвинея",
+    "paraguay": "Парагвай",
     "peru": "Перу",
+    "philippines": "Филиппины",
+    "pitcairn_islands": "Острова Питкэрн",
     "poland": "Польша",
     "portugal": "Португалия",
-    "republic_of_congo": "Республика Конго",
+    "puerto_rico": "Пуэрто-Рико",
+    "qatar": "Катар",
+    "republic_of_congo": "Конго",
+    "reunion": "Реюньон",
+    "romania": "Румыния",
     "russia": "Россия",
-    "saudi_arabia": "Саудовская Аравия",
+    "rwanda": "Руанда",
+    "saint_barthelemy": "Сен-Бартелеми",
+    "saint_helena": "Остров Святой Елены",
+    "saint_kitts_and_nevis": "Сент-Китс и Невис",
+    "saint_lucia": "Сент-Люсия",
+    "saint_martin": "Сен-Мартен",
+    "saint_pierre_and_miquelon": "Сен-Пьер и Микелон",
+    "saint_vincent_and_the_grenadines": "Сент-Винсент и Гренадины",
+    "samoa": "Самоа",
+    "san_marino": "Сан-Марино",
     "sao_tome_and_principe": "Сан-Томе и Принсипи",
+    "saudi_arabia": "Саудовская Аравия",
+    "senegal": "Сенегал",
+    "serbia": "Сербия",
+    "seychelles": "Сейшельские Острова",
+    "sierra_leone": "Сьерра-Леоне",
     "singapore": "Сингапур",
+    "sint_maarten": "Синт-Мартен",
+    "slovakia": "Словакия",
+    "slovenia": "Словения",
+    "solomon_islands": "Соломоновы Острова",
+    "somalia": "Сомали",
     "south_africa": "Южная Африка",
     "south_america": "Южная Америка",
+    "south_georgia_and_the_south_sandwich_islands": "Южная Георгия и Южные Сандвичевы Острова",
+    "south_korea": "Южная Корея",
+    "south_sudan": "Южный Судан",
     "spain": "Испания",
+    "sri_lanka": "Шри-Ланка",
+    "sudan": "Судан",
+    "suriname": "Суринам",
+    "svalbard_and_jan_mayen": "Шпицберген и Ян-Майен",
+    "swaziland": "Свазиленд",
     "sweden": "Швеция",
     "switzerland": "Швейцария",
     "syria": "Сирия",
+    "taiwan": "Тайвань",
+    "tajikistan": "Таджикистан",
+    "tanzania": "Танзания",
     "thailand": "Таиланд",
+    "togo": "Того",
+    "tokelau": "Токелау",
+    "tonga": "Тонга",
     "trinidad_and_tobago": "Тринидад и Тобаго",
+    "tunisia": "Тунис",
     "turkey": "Турция",
+    "turkmenistan": "Туркмения",
+    "turks_and_caicos_islands": "Теркс и Кайкос",
+    "tuvalu": "Тувалу",
+    "uganda": "Уганда",
+    "ukraine": "Украина",
+    "united_arab_emirates": "Объединённые Арабские Эмираты",
     "united_kingdom": "Великобритания",
     "united_states": "Соединенные Штаты Америки",
+    "united_states_minor_outlying_islands": "Внешние малые острова США",
+    "united_states_virgin_islands": "Виргинские Острова",
+    "uruguay": "Уругвай",
+    "uzbekistan": "Узбекистан",
+    "vanuatu": "Вануату",
+    "vatican_city": "Ватикан",
+    "venezuela": "Венесуэла",
+    "vietnam": "Вьетнам",
     "virgin_islands": "Виргинские острова",
-    "west_africa": "Западная Африка"
+    "wallis_and_futuna": "Уоллис и Футуна",
+    "west_africa": "Западная Африка",
+    "western_sahara": "Западная Сахара",
+    "yemen": "Йемен",
+    "zambia": "Замбия",
+    "zimbabwe": "Зимбабве"
   },
   "places_of_interest": "Достопримечательности",
   "plants": "растения",
@@ -36184,6 +39471,7 @@ I18n.translations["ru"] = {
     "other": "Сохранение %{num} из %{count} наблюдений..."
   },
   "saving_verb": "Сохраняется",
+  "scale_colon": "Масштаб:",
   "search": "Поиск",
   "search_by_taxon_name_or_flickr_photo_id": "Поиск по имени таксона или идентификатору фото на Фликр",
   "search_by_taxon_name_or_observation_id": "Поиск по наименованию таксона или идентификатору наблюдения",
@@ -36500,10 +39788,17 @@ I18n.translations["ru"] = {
         "recent_w_7_obs": "Недавние с набл>= 7"
       },
       "year": {
+        "growth_by_country_desc_html": "Где происходит рост? Эти карта и график пытаются разбить это по странам, что оказывается сложным, поскольку рост по странам может быть очень несбалансированным. Здесь мы решили опустить США и использовать логарифмическую шкалу по умолчанию, чтобы подчеркнуть различия между другими странами. Если страна окрашена в черный цвет, это означает, что она не внесла существенного вклада в процент, или у нее не было роста в этом году, или не было больше наблюдений в этом году, чем в прошлом году (наведите курсор на страну, чтобы увидеть немного больше деталей). <strong>\"% от\nобщего роста\"</strong> означает, сколько мирового роста пришло из конкретной страны, например, если было 20 наблюдений в 2018 году и 10 в 2017 году, то это было бы 10 наблюдений роста, и если 5 из этих наблюдений были из Бенина, то Бенин обеспечил 50% общего роста. strong>\"% роста\"</strong> означает число наблюдений в этом году в этой стране в процентах от наблюдений в прошлом году в этой стране, поэтому если в Лаосе было 10 наблюдений в прошлом году, а в этом году 20, это было бы 100% роста, а если в прошлом году было 0 и 1 в этом году, то это бесконечный % роста.",
+        "growth_by_country_title": "Рост по странам",
+        "growth_in_year_obs": "Рост в %{year} (набл)",
         "growth_title": "Рост",
-        "new_species_desc_html": "Виды, которые были впервые были добавлены на %{site_name} в этом году. Нажмите на месяц, чтобы увидеть некоторые новые виды, добавленные в этом месяце. Вы также можете просмотреть общее накопленное количество видов или переместить ползунок назад во времени, чтобы увидеть другие впервые наблюдаемые виды. Диаграмма показывает виды проверяемых наблюдений по месяцам загрузки в %{site_name} (а не по месяцу, когда они наблюдались). Она не включает таксоны более высокого или более низкого уровня, поэтому наблюдение, идентифицированное как Млекопитающее, не учитывается, а наблюдение <i>Canis lupus</i> ssp. <i>arctos</i> будет учтено как <i>Canis lupus</i>.",
-        "publications_desc_html": "Данные по воздействию и визуализации любезно предоставлены\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из\n<a href=\"https://www.gbif.org/\">Глобальный информационный центр по биоразнообразию</a>.\n<br/>\n<a href=\"%{url}\">Посмотреть все исследования %{numStudies}</a>",
-        "sunburst_desc_html": "Наблюдаемые таксоны упорядочены как иерархическая диаграмма «солнечные лучи». Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>."
+        "include_usa": "Включая США",
+        "new_species_desc_html": "Виды, которые были впервые были добавлены в этом году. Нажмите на месяц, чтобы увидеть некоторые новые виды, добавленные в этом месяце. Вы также можете просмотреть общее накопленное количество видов или переместить ползунок назад во времени, чтобы увидеть другие впервые наблюдаемые виды. Диаграмма показывает виды проверяемых наблюдений по месяцам загрузки на %{site_name} (а не по месяцам, когда они наблюдались). Она не включает таксоны более высокого или более низкого уровня, поэтому наблюдение, идентифицированное как Млекопитающее, не учитывается, а наблюдение <i>Canis lupus</i> ssp. <i>arctos</i> будет учтено как <i>Canis lupus</i>.",
+        "obs_in_year": "Набл в %{year}",
+        "percent_growth_in_year": "% роста в %{year}",
+        "percent_of_total_growth": "% от общего роста",
+        "publications_desc_html": "Данные по воздействию и визуализации любезно предоставлены\n<a href=\"https://www.altmetric.com\">Altmetric</a>. Информация об использовании данных любезно предоставлена нашими друзьями из\n<a href=\"https://www.gbif.org/\">Глобального информационного центра по биоразнообразию (GBIF)</a>.\n<br/>\n<a href=\"%{url}\">Посмотреть все %{numStudies} исследований</a>",
+        "sunburst_desc_html": "Наблюдаемые таксоны упорядочены в виде иерархической диаграммы Санбёрст. Основание иерархии находится в центре, начиная с «Жизни», и заканчивается видами на внешних краях. Размер каждой дуги пропорционален количеству наблюдений этого таксона, а цвета примерно соответствуют нашим обычным цветам иконок таксона (зеленый для растений, оранжевый для насекомых, синий для большинства других животных и т. д.), поэтому, если вы видите много зеленого, это означает, что вы наблюдали множество растений. <strong>Нажмите на дугу, чтобы поместить этот таксон в центр</strong>, и его дочерние элементы окажутся вокруг него, или <strong>нажмите на центр, чтобы вернуться к первоначальной иерархии</strong>."
       }
     },
     "taxa": {
@@ -36547,7 +39842,7 @@ I18n.translations["ru"] = {
     },
     "welcome": {
       "index": {
-        "species_observed": "видов содержат наблюдения"
+        "species_observed": "Наблюдаемые виды"
       }
     }
   },
@@ -36562,7 +39857,7 @@ I18n.translations["ru"] = {
   "whats_this?": "Что это?",
   "white": "белый",
   "who_helped_user_the_most": "Кто больше всего помогал %{user}",
-  "who_user_helped_the_most": "Какой %{user} Помогал Больше всего",
+  "who_user_helped_the_most": "Кому %{user} помогал больше всего",
   "wild": "Дикий",
   "with_annotation": "Со значением",
   "withdraw": "Отозвать",
@@ -36667,7 +39962,7 @@ I18n.translations["ru"] = {
     "few": "%{count} Предложения, отфильтрованных по:",
     "other": "%{count} Предложений, отфильтрованных по:"
   },
-  "year_in_review": "Год в обзоре %{year}",
+  "year_in_review": "Год обзора %{year}",
   "yellow": "жёлтый",
   "yes": "Да",
   "yes_reject_it": "Да, отклоните это",
@@ -36694,6 +39989,96 @@ I18n.translations["ru"] = {
   "zoom_in": "Увеличить",
   "zoom_out": "Уменьшить",
   "zoom_photo": "Увеличить фото"
+};
+I18n.translations["si"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
 I18n.translations["sk"] = {
   "<%= name": {
@@ -37775,9 +41160,9 @@ I18n.translations["sq"] = {
     "greece": "Greqi",
     "hong_kong": "Hong Kong",
     "hungary": "Hungari",
-    "italy": "Itali",
     "india": "Indi",
     "iraq": "Irak",
+    "italy": "Itali",
     "japan": "Japoni",
     "korea": "Kore",
     "martinique": "Martinik",
@@ -37794,8 +41179,8 @@ I18n.translations["sq"] = {
     "portugal": "Portugali",
     "republic_of_congo": "Republikë e Kongos",
     "russia": "Rusi",
-    "saudi_arabia": "Arabi Saudite",
     "sao_tome_and_principe": "Sao Tome dhe Principe",
+    "saudi_arabia": "Arabi Saudite",
     "singapore": "Singapor",
     "south_africa": "Afrikë e Jugut",
     "south_america": "Amerikë e Jugut",
@@ -38524,6 +41909,7 @@ I18n.translations["sv"] = {
   "close": "Stäng",
   "colors": "Färg",
   "combine": "Kombinera",
+  "comment_": "Kommentar",
   "confirm": "Bekräfta",
   "confirmed": "bekräftad",
   "continue": "Fortsätt",
@@ -38552,6 +41938,7 @@ I18n.translations["sv"] = {
   "created_on": "Skapades den",
   "csv": "CSV",
   "curation": "Kurering",
+  "dashboard": "Kontrollpanel",
   "data_quality": "Datakvalitet",
   "data_used": "Data som används:",
   "date": {
@@ -38719,6 +42106,7 @@ I18n.translations["sv"] = {
   "keyboard_shortcuts": "Kortkommandon",
   "language_slash_type": "Språk / Typ",
   "last_year": "Senaste året",
+  "leave_a_comment": "Lämna en kommentar",
   "lexicons": {
     "czech": "Tjeckiska",
     "danish": "Danska",
@@ -38729,6 +42117,7 @@ I18n.translations["sv"] = {
     "greek": "Grekiska",
     "luxembourgish": "Luxemburgiska"
   },
+  "linear_scale_label": "Linjärt",
   "list": "Lista",
   "lists": "Listor",
   "loading": "Laddar...",
@@ -38739,6 +42128,7 @@ I18n.translations["sv"] = {
   "location_private": "Privat plats",
   "location_unknown": "Plats okänd",
   "log_in": "Logga in",
+  "log_scale_label": "Logg",
   "map": "Karta",
   "maps": {
     "overlays": {
@@ -38749,6 +42139,13 @@ I18n.translations["sv"] = {
   "mark_all_as_reviewed": "Markera alla som granskade",
   "media_type": "Mediatyp",
   "momentjs": {
+    "shortRelativeTime": {
+      "mm": "%dm",
+      "hh": "%dt",
+      "dd": "%dd",
+      "MM": "%dmå",
+      "yy": "%då"
+    }
   },
   "months": "Månader",
   "more": "Mer",
@@ -38851,6 +42248,7 @@ I18n.translations["sv"] = {
     "one": "Spara observation...",
     "other": "Sparar %{num} av %{count} observationer..."
   },
+  "scale_colon": "Skala:",
   "search": "Sök",
   "search_for_a_location": "Sök efter en plats",
   "search_species_": "Sök arter...",
@@ -38969,7 +42367,13 @@ I18n.translations["sv"] = {
       "index": {
       },
       "year": {
-        "growth_title": "Tillväxt"
+        "growth_by_country_title": "Tillväxt efter land",
+        "growth_in_year_obs": "Tillväxt i %{year} (obs)",
+        "growth_title": "Tillväxt",
+        "include_usa": "Inkludera USA",
+        "obs_in_year": "Obs i %{year}",
+        "percent_growth_in_year": "% tillväxt i %{year}",
+        "percent_of_total_growth": "% av total tillväxt"
       }
     },
     "taxa": {
@@ -39091,6 +42495,96 @@ I18n.translations["sv"] = {
   "zoom_photo": "Zooma foto"
 };
 I18n.translations["th"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["tl"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -39360,7 +42854,187 @@ I18n.translations["uk"] = {
     }
   }
 };
+I18n.translations["ur"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["vi"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["yo"] = {
   "<%= name": {
     "parameterize": {
     }
@@ -40411,6 +44085,7 @@ I18n.translations["zh-CN"] = {
   "places_name": {
     "afghanistan": "阿富汗",
     "africa": "非洲",
+    "antarctica": "南极洲",
     "antigua_and_barbuda": "安提瓜和巴布达",
     "australia": "澳大利亚",
     "austria": "奥地利",
@@ -40429,9 +44104,9 @@ I18n.translations["zh-CN"] = {
     "greece": "希腊",
     "hong_kong": "香港",
     "hungary": "匈牙利",
-    "italy": "意大利",
     "india": "印度",
     "iraq": "伊拉克",
+    "italy": "意大利",
     "japan": "日本",
     "korea": "韩国",
     "martinique": "马提尼克",
@@ -40448,8 +44123,8 @@ I18n.translations["zh-CN"] = {
     "portugal": "葡萄牙",
     "republic_of_congo": "刚果共和国",
     "russia": "俄罗斯",
-    "saudi_arabia": "沙特阿拉伯",
     "sao_tome_and_principe": "圣多美和普林西比",
+    "saudi_arabia": "沙特阿拉伯",
     "singapore": "新加坡",
     "south_africa": "南非",
     "south_america": "南美洲",
@@ -41801,6 +45476,7 @@ I18n.translations["zh-TW"] = {
     "waray_waray": "瓦瑞瓦瑞語"
   },
   "life": "生物",
+  "linear_scale_label": "線性",
   "list": "清單",
   "list_tooltip": "顯示清單檢視",
   "lists": "清單",
@@ -41817,6 +45493,7 @@ I18n.translations["zh-TW"] = {
   "location_specified": "位置指定",
   "location_unknown": "位置不明",
   "log_in": "登入",
+  "log_scale_label": "日誌",
   "long": "經度",
   "longitude": "經度",
   "lookup": "查詢",
@@ -42123,60 +45800,268 @@ I18n.translations["zh-TW"] = {
   "places_name": {
     "afghanistan": "阿富汗",
     "africa": "非洲",
+    "akrotiri_and_dhekelia": "亞克羅提利與德凱利亞",
+    "aland": "奧蘭",
+    "albania": "阿爾巴尼亞",
+    "algeria": "阿爾及利亞",
+    "american_samoa": "美屬薩摩亞",
+    "andorra": "安道爾",
+    "angola": "安哥拉",
+    "anguilla": "安圭拉",
+    "antarctica": "南極洲",
     "antigua_and_barbuda": "安地卡及巴布達",
+    "argentina": "阿根廷",
+    "armenia": "亞美尼亞",
+    "aruba": "阿魯巴",
     "australia": "澳洲",
     "austria": "奧地利",
+    "azerbaijan": "亞塞拜然",
+    "bahamas": "巴哈馬",
+    "bahrain": "巴林",
+    "bangladesh": "孟加拉",
+    "barbados": "巴貝多",
+    "belarus": "白俄羅斯",
     "belgium": "比利時",
+    "belize": "貝里斯",
+    "benin": "貝南",
+    "bermuda": "百慕達",
+    "bhutan": "不丹",
+    "bolivia": "玻利維亞",
+    "bonaire_saint_eustatius_and_saba": "波奈、聖佑達修斯及沙巴",
     "bosnia_and_herzegovina": "波士尼亞與赫塞哥維納",
+    "botswana": "波札那",
+    "bouvet_island": "布威島",
     "brazil": "巴西",
+    "british_indian_ocean_territory": "英屬印度洋領地",
+    "british_virgin_islands": "英屬維京群島",
+    "brunei": "汶萊",
+    "bulgaria": "保加利亞",
+    "burkina_faso": "布吉納法索",
+    "burundi": "蒲隆地",
+    "cambodia": "柬埔寨",
+    "cameroon": "喀麥隆",
     "canada": "加拿大",
+    "cape_verde": "維德角",
+    "cayman_islands": "開曼群島",
+    "central_african_republic": "中非共和國",
     "central_america": "中美洲",
+    "chad": "查德",
+    "chile": "智利",
     "china": "中國",
+    "christmas_island": "聖誕島",
+    "clipperton_island": "克利珀頓島",
+    "cocos_islands": "科科斯群島",
     "colombia": "哥倫比亞",
+    "commonwealth_of_the_northern_mariana_islands": "北馬里亞納群島",
+    "comoros": "葛摩",
+    "cook_islands": "庫克群島",
+    "costa_rica": "哥斯大黎加",
+    "cote_d_ivoire": "象牙海岸",
+    "croatia": "克羅埃西亞",
+    "cuba": "古巴",
+    "curacao": "古拉索",
+    "cyprus": "賽普勒斯",
+    "czech_republic": "捷克",
+    "democratic_republic_of_the_congo": "剛果民主共和國",
     "denmark": "丹麥",
+    "djibouti": "吉布地",
+    "dominica": "多米尼克",
+    "dominican_republic": "多明尼加",
+    "east_timor": "東帝汶",
+    "ecuador": "厄瓜多",
     "egypt": "埃及",
+    "el_salvador": "薩爾瓦多",
     "equatorial_guinea": "赤道幾內亞",
+    "eritrea": "厄利垂亞",
+    "estonia": "愛沙尼亞",
+    "ethiopia": "衣索比亞",
     "europe": "歐洲",
+    "falkland_islands": "福克蘭群島",
+    "faroe_islands": "法羅群島",
+    "fiji": "斐濟",
+    "finland": "芬蘭",
     "france": "法國",
+    "french_guiana": "法屬圭亞那",
+    "french_polynesia": "法屬玻里尼西亞",
+    "french_southern_territories": "法屬南部領地",
+    "gabon": "加彭",
+    "gambia": "甘比亞",
+    "georgia": "喬治亞",
     "germany": "德國",
+    "ghana": "迦納",
+    "gibraltar": "直布羅陀",
     "greece": "希臘",
+    "greenland": "格陵蘭",
+    "grenada": "格瑞那達",
+    "guadeloupe": "瓜德羅普",
+    "guam": "關島",
+    "guatemala": "瓜地馬拉",
+    "guernsey": "耿西",
+    "guinea": "幾內亞",
+    "guinea_bissau": "幾內亞比索",
+    "guyana": "蓋亞那",
+    "haiti": "海地",
+    "heard_island_and_mcdonald_islands": "赫德島和麥克唐納群島",
+    "honduras": "宏都拉斯",
     "hong_kong": "香港",
     "hungary": "匈牙利",
-    "italy": "義大利",
+    "iceland": "冰島",
     "india": "印度",
+    "indonesia": "印尼",
+    "iran": "伊朗",
     "iraq": "伊拉克",
+    "ireland": "愛爾蘭",
+    "isle_of_man": "曼島",
+    "israel": "以色列",
+    "italy": "義大利",
+    "jamaica": "牙買加",
     "japan": "日本",
+    "jersey": "澤西",
+    "jordan": "約旦",
+    "kazakhstan": "哈薩克",
+    "kenya": "肯亞",
+    "kiribati": "吉里巴斯",
     "korea": "韓國",
+    "kosovo": "科索沃",
+    "kuwait": "科威特",
+    "kyrgyzstan": "吉爾吉斯",
+    "laos": "寮國",
+    "latvia": "拉脫維亞",
+    "lebanon": "黎巴嫩",
+    "lesotho": "賴索托",
+    "liberia": "賴比瑞亞",
+    "libya": "利比亞",
+    "liechtenstein": "列支敦斯登",
+    "lithuania": "立陶宛",
+    "luxembourg": "盧森堡",
+    "macao": "澳門",
+    "macedonia": "馬其頓",
+    "madagascar": "馬達加斯加",
+    "malawi": "馬拉威",
+    "malaysia": "馬來西亞",
+    "maldives": "馬爾地夫",
+    "mali": "馬利",
+    "malta": "馬爾他",
+    "marshall_islands": "馬紹爾群島",
     "martinique": "馬丁尼克",
+    "mauritania": "茅利塔尼亞",
+    "mauritius": "模里西斯",
+    "mayotte": "馬約特",
     "mexico": "墨西哥",
+    "micronesia": "密克羅尼西亞",
+    "moldova": "摩爾多瓦",
+    "monaco": "摩納哥",
+    "mongolia": "蒙古",
+    "montenegro": "蒙特內哥羅",
+    "montserrat": "蒙哲臘",
+    "morocco": "摩洛哥",
+    "mozambique": "莫三比克",
+    "myanmar": "緬甸",
+    "namibia": "納米比亞",
+    "nauru": "諾魯",
+    "nepal": "尼泊爾",
     "netherlands": "荷蘭",
+    "new_caledonia": "新喀里多尼亞",
     "new_guinea": "新幾內亞",
     "new_zealand": "紐西蘭",
+    "nicaragua": "尼加拉瓜",
+    "niger": "尼日",
+    "nigeria": "奈及利亞",
+    "niue": "紐埃",
+    "norfolk_island": "諾福克島",
     "north_africa": "北非",
     "north_america": "北美洲",
+    "north_korea": "北韓",
+    "northern_cyprus": "北賽普勒斯",
+    "norway": "挪威",
+    "oman": "阿曼",
+    "pakistan": "巴基斯坦",
+    "palau": "帛琉",
+    "palestina": "巴勒斯坦",
     "palestine": "巴勒斯坦",
     "panama": "巴拿馬",
+    "papua_new_guinea": "巴布亞紐幾內亞",
+    "paraguay": "巴拉圭",
     "peru": "秘魯",
+    "philippines": "菲律賓",
+    "pitcairn_islands": "皮特肯群島",
     "poland": "波蘭",
     "portugal": "葡萄牙",
+    "puerto_rico": "波多黎各",
+    "qatar": "卡達",
     "republic_of_congo": "剛果共和國",
+    "reunion": "留尼旺",
+    "romania": "羅馬尼亞",
     "russia": "俄羅斯",
-    "saudi_arabia": "沙烏地阿拉伯",
+    "rwanda": "盧安達",
+    "saint_barthelemy": "聖巴瑟米",
+    "saint_helena": "聖赫倫那",
+    "saint_kitts_and_nevis": "聖克里斯多福及尼維斯",
+    "saint_lucia": "聖露西亞",
+    "saint_martin": "聖馬丁島",
+    "saint_pierre_and_miquelon": "聖皮耶與密克隆",
+    "saint_vincent_and_the_grenadines": "聖文森及格瑞那丁",
+    "samoa": "薩摩亞",
+    "san_marino": "聖馬利諾",
     "sao_tome_and_principe": "聖多美普林西比",
+    "saudi_arabia": "沙烏地阿拉伯",
+    "senegal": "塞內加爾",
+    "serbia": "塞爾維亞",
+    "seychelles": "塞席爾",
+    "sierra_leone": "獅子山",
     "singapore": "新加坡",
+    "sint_maarten": "荷屬聖馬丁",
+    "slovakia": "斯洛伐克",
+    "slovenia": "斯洛維尼亞",
+    "solomon_islands": "索羅門群島",
+    "somalia": "索馬利亞",
     "south_africa": "南非",
     "south_america": "南美洲",
+    "south_georgia_and_the_south_sandwich_islands": "南喬治亞與南桑威奇",
+    "south_korea": "南韓",
+    "south_sudan": "南蘇丹",
     "spain": "西班牙",
+    "sri_lanka": "斯里蘭卡",
+    "sudan": "蘇丹",
+    "suriname": "蘇利南",
+    "svalbard_and_jan_mayen": "斯瓦巴和揚馬延",
+    "swaziland": "史瓦帝尼",
     "sweden": "瑞典",
     "switzerland": "瑞士",
     "syria": "敘利亞",
+    "taiwan": "台灣",
+    "tajikistan": "塔吉克",
+    "tanzania": "坦尚尼亞",
     "thailand": "泰國",
+    "togo": "多哥",
+    "tokelau": "托克勞",
+    "tonga": "東加",
     "trinidad_and_tobago": "千里達及托巴哥",
+    "tunisia": "突尼西亞",
     "turkey": "土耳其",
+    "turkmenistan": "土庫曼",
+    "turks_and_caicos_islands": "土克凱可群島",
+    "tuvalu": "吐瓦魯",
+    "uganda": "烏干達",
+    "ukraine": "烏克蘭",
+    "united_arab_emirates": "阿拉伯聯合大公國",
     "united_kingdom": "英國",
     "united_states": "美國",
+    "united_states_minor_outlying_islands": "美國本土外小島嶼",
+    "united_states_virgin_islands": "美屬維京群島",
+    "uruguay": "烏拉圭",
+    "uzbekistan": "烏茲別克",
+    "vanuatu": "萬那杜",
+    "vatican_city": "梵蒂岡",
+    "venezuela": "委內瑞拉",
+    "vietnam": "越南",
     "virgin_islands": "維京群島",
-    "west_africa": "西非"
+    "wallis_and_futuna": "瓦利斯和富圖納",
+    "west_africa": "西非",
+    "western_sahara": "西撒哈拉",
+    "yemen": "葉門",
+    "zambia": "尚比亞",
+    "zimbabwe": "辛巴威"
   },
   "places_of_interest": "名勝",
   "plants": "植物",
@@ -42294,6 +46179,7 @@ I18n.translations["zh-TW"] = {
     "other": "正在儲存 %{count} 裡的 %{num} 個觀察..."
   },
   "saving_verb": "儲存中",
+  "scale_colon": "比例：",
   "search": "搜尋",
   "search_by_taxon_name_or_flickr_photo_id": "依物種分類名稱或 Flickr 照片鑑定來做搜尋",
   "search_by_taxon_name_or_observation_id": "依物種分類名稱或觀察鑑定來做搜尋",
@@ -42609,8 +46495,15 @@ I18n.translations["zh-TW"] = {
         "recent_w_7_obs": "最近帶有 >= 7 個觀察"
       },
       "year": {
+        "growth_by_country_desc_html": "成長是在哪裡發生的呢？成長的結果會複雜難懂，是因為按國家來區分成長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有成長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。 <strong>\"% 總成長\"</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 個觀察、2017 有 10 個觀察，這代表成長了 10 個觀察，假如當中有 5 個觀察是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>\"% 成長\"</strong>代表某國家此年度觀察數量與去年觀察數量增加的百分比，假如寮國去年有 10 個觀察而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。",
+        "growth_by_country_title": "按國家區分的成長",
+        "growth_in_year_obs": "在%{year}的成長（觀察）",
         "growth_title": "成長",
-        "new_species_desc_html": "此年度在 %{site_name} 上首次添加的物種。\n在月份上點擊來檢視添加在該月份的新物種。\n您也可以檢視物種累積的總數目，或是在時段裡移動滑桿返回來查看其它新進的觀察物種。此圖表顯示依照物種被上傳至 %{site_name} 的月份（不是牠們被觀察到的月份）之可驗證觀察來顯示出。這不會包含到較高或較低層級的物種分類，因此當一個觀察被鑑定為是哺乳類便不會被計入，所以屬於 <i>Canis lupus</i> ssp.\n<i>arctos</i> 的觀察只會被計在 <i>Canis lupus</i> 裡。",
+        "include_usa": "包含美國",
+        "new_species_desc_html": "此年度首次添加的物種。\n在月份上點擊來檢視添加在該月份的新物種。\n您也可以檢視物種累積的總數目，或是在時段裡移動滑桿返回來查看其它新進的觀察物種。此圖表顯示依照物種被上傳至 %{site_name} 的月份（不是牠們被觀察到的月份）之可驗證觀察來顯示出。這不會包含到較高或較低層級的物種分類，因此當一個觀察被鑑定為是哺乳類便不會被計入，所以屬於 <i>Canis lupus</i> ssp.\n<i>arctos</i> 的觀察只會被計在 <i>Canis lupus</i> 裡。",
+        "obs_in_year": "在%{year}觀察",
+        "percent_growth_in_year": "% 成長在%{year}",
+        "percent_of_total_growth": "% 總成長",
         "publications_desc_html": "<a href=\"https://www.altmetric.com\">Altmetric</a> 上的影響力資料以及可見的肯定。有關我們的朋友在<a href=\"https://www.gbif.org/\">全球生物多樣性資訊機構</a>上被感謝到的資料使用方面資訊。\n<br/>\n<a href=\"%{url}\">檢視全部 %{numStudies} 份研究</a>",
         "sunburst_desc_html": "已觀察物種分類群會被整理為分層「放射」狀的圖表。以中間層作為「生命」起始，外環邊緣作為結束。圖表上任一弧線長度比例是基於物種分類的觀察數量，色彩部份會簡略對應到我們常用的「代表性」物種分類顏色（綠色用在植物上；橘色用在昆蟲上；藍色用在多數其它動物上，等等。）， 因此如果您看到許多綠色，這代表著您有觀察過許多植物。\n<strong>點擊弧線來放置到有子項目圍繞的物種分類中心點</strong>，或是<strong>點擊中心點來移動層次結構</strong>。"
       }
@@ -42785,4 +46678,94 @@ I18n.translations["zh-TW"] = {
   "zoom_in": "放大",
   "zoom_out": "縮小",
   "zoom_photo": "縮放照片"
+};
+I18n.translations["zh-YUE"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };

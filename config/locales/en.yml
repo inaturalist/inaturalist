@@ -539,6 +539,7 @@ en:
     iucn_red_list: IUCN Red List
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
+  automatic_short: Auto
   automatically_add_to_project: Automatically add to project
   automatically_add_observations_to_this_project: Automatically add observations to this project
   automatically_share_your_observations_on: Automatically share your observations on
@@ -552,6 +553,7 @@ en:
   back_to_calendar: "Back to %{user} calendar"
   back_to_editing_observation: Back to editing observation
   back_to_friends: Back to friends
+  back_to_flags_html: "&laquo; Back to flags"
   back_to_help: Back to Help
   back_to_import: Back to Import
   back_to_lists: "Back to %{name} lists"
@@ -1042,6 +1044,7 @@ en:
   default_sound_license: Default sound license
   defaults_to_your_name_or_username: Defaults to your name or username
   defines_a_taxon_framework_for:  Defines a Taxon Framework for %{taxon_name}
+  definitions: Definitions
   delete: Delete
   delete_all: Delete all
   delete_conversation: Delete conversation
@@ -1377,10 +1380,14 @@ en:
   flagged_for_curation: Flagged for Curation
   flagged_taxon: Flagged Taxon
   flagged_thing_explanation: "Users have flagged this %{thing} because"
+  flagging_desc: |
+    Flagging brings something to the attention of volunteer site curators.
+    Please don't flag problems you can address with identifications, the Data
+    Quality Assessment, or by talking to the person who made the content.
   flagger: Flagger
   flags: Flags
   flags_with_count: Flags (%{count})
-  flags_explanation: "%{site_name} users flag things when they find something that's not right. Here are some issues that haven't been resolved by the curators yet."
+  flags_explanation: "%{site_name} users flag things that need attention from site curators and/or site admins."
   flags_for: Flags for
   flags_on_users_content: "Flags on %{user}'s content"
   flickr_account_information: Your Flickr Account Information
@@ -1568,6 +1575,7 @@ en:
   ids_by_taxon: IDs By Taxon
   identify: Identify
   identify_observations: "Identify Observations"
+  identify_observations_by_these_users: Identify Observations By These Users
   identify_title: "Identify"
   identification: identification
   identification_by_user: Identification by %{user}
@@ -1580,6 +1588,13 @@ en:
   identifications: Identifications
   identifications_by: "Identifications by %{user}"
   identified?: identified
+  computer_vision_suggestion: Computer Vision Suggestion
+  computer_vision_suggestion_desc: |
+    Computer vision is the process of teaching computers to recognize patterns
+    in images. We provide tools that use computer vision models trained on the
+    community's photos to provide identification suggestions, like the auto-
+    complete and comparison features. This label indicates when a person added
+    an identification using one of these tools.
   identifiers: Identifiers
   identotron: Identotron
   identotron_for: Identotron for
@@ -2467,6 +2482,7 @@ en:
   observations_will_revert_to_casual: Observations will revert to "casual" grade if the above conditions aren't met or
   observations_with_this_field: Observations with this field
   observations_with_this_field_and_value: Observations with this field and value
+  observations_without_media: Observations w/o Media
   observationcounts_refreshed: Observation counts refreshed
   observed: Observed
   observed_by: Observed by
@@ -3119,6 +3135,7 @@ en:
   private: private
   private_: Private
   private_description: "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. Observations with private coordinates will still be used to verify place check lists."
+  probably_spam: Probably Spam
   proceed: Proceed
   processing: Processing
   processing3p: "Processing..."
@@ -3260,6 +3277,7 @@ en:
   real_time_stats: Real Time Stats
   real_time_discussions: Real Time Discussions
   reason: Reason
+  reason_label: "Reason:"
   reason_you_are_flagging_this_item: Reason you're flagging this item.
   recaptcha_verification_failed: reCAPTCHA verification failed
   receive_email_notifications_when_people_leave_you: Receive email notifications about
@@ -3351,6 +3369,7 @@ en:
   removed_project_user: Removed project user
   removing: "Removing..."
   reorder_by_taxonomy: Reorder by taxonomy
+  repair_broken_urls: Repair broken URLs
   repair_doesnt_work_for_that_kind_of_photo: Repair doesn't work for that kind of photo
   repair_external_photos: Repair External Photos
   replace_boundary_with_kml: Replace boundary with KML
@@ -3381,6 +3400,7 @@ en:
   resolve_this_flag: Resolve this Flag
   resolved: Resolved
   resolved_by: Resolved by
+  resolved_by_user_on_date_html: Resolved by %{user} on %{date}
   resolver_said_x_html: '<span class="meta">%{resolver} said,</span> "%{x}"'
   restore: Restore
   restoring: Restoring...
@@ -3571,6 +3591,9 @@ en:
   some_observations_failed_to_save: Some observations failed to save
   some_of_those_photos_couldnt_be_saved: "Some of those photos couldn't be saved: %{error}"
   some_other_reason: Some other reason you can explain below.
+  duplicate_observation_flag_warning: |
+    For duplicate observations, please ask the observer to address the issue
+    instead of adding a flag, because site curators cannot remove observations.
   some_people: Some people
   some_people_that: Some people that
   some_rights_reserved: some rights reserved
@@ -3894,6 +3917,7 @@ en:
   terrain: terrain
   text: Text
   text_: text
+  thanks!: Thanks!
   thanks_for_signing_up: Thanks for signing up!
   thanks_for_using: Thanks for using
   thanks_from_all_of_us_here_at: Thanks from all of us here at
@@ -4243,6 +4267,8 @@ en:
   user_commented_on: "%{user} commented on your %{title} %{time}"
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
+  user_flagged_as_a_spammer_html: "%{user} flagged as a spammer"
+  user_flagged_as_a_non_spammer_html: "%{user} marked as a non-spammer"
   user_follows: "%{user} follows"
   user_has_opted_out_of_community_id: User has opted-out of Community ID
   user_has_opted_out_of_community_ids: "%{user} has chosen to retain control over the taxa associated with their observations"
@@ -4325,6 +4351,7 @@ en:
   view_observations: View Observations
   view_observation_flags: View observation flags
   view_observations_by_everyone: View observations by everyone
+  view_observations_by_these_users: View Observations By These Users
   view_observations_of_this_taxon_by: View observations of this taxon by
   view_observations_raquo: "View observations &raquo;"
   view_on: View on
@@ -4684,6 +4711,7 @@ en:
   youve_successfully_linked_your_provider_account: "You've successfully linked your %{provider} account"
   your_dashboard_helps_you: "Your dashboard helps you keep track of what people are doing on the site. To follow someone's updates, click the 'Follow [name]' link in the header when viewing their observations or profile."
   verifiable: Verifiable
+  verifiable_observations: Verifiable Observations
   views:
     views: 'Views'
     announcements:
@@ -4735,6 +4763,12 @@ en:
           organization based in the United States of America.
         </p>
       post_donate_social_media_text: I support iNaturalist because...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |
+          Please resolve <code>spam</code> and <code>copyright
+          infringement</code> flags only if the content is not spam or not an
+          infringement of copyright, respectively.
     guides:
       index:
         funding_html: |
@@ -5415,6 +5449,29 @@ en:
           You have been inactive on %{site_name} for a while, so we have suspended
           your subscriptions. To resume getting updates on site activity, please
           <a href="%{login_url}">log in to your account</a> again.
+      photos_missing:
+        subject: Some photos need repairing
+        we_have_been_housekeeping: |
+          We have been doing some housekeeping and found photos connected to your observations
+          that are no longer accessible from their original source. The photos are being hosted
+          by %{providers}.
+        we_would_like_to_remove: |
+          We would like to remove all references to broken photos in the near future, but we
+          don't want to get rid of anything that can be saved. It is possible some of these photos
+          still exist at their external hosts and can be repaired. Some photos may have been
+          uploaded by connecting your <a href='%{account_url}'>%{site_name} account</a> to another
+          photo hosting account, and this connection has expired and needs to be refreshed.
+        you_can_attempt_repair: |
+          You can attempt to repair the photos by visiting the photo page and clicking the
+          "%{repair_link_text}" link. If you know the photo no longer exists, you can choose to
+          delete it.
+        please_address: |
+          Please address these issues <b>in the next 30 days</b>. After 30
+          days we will begin to delete broken photos from iNaturalist. All of your observations
+          will remain. They will be reassessed after the photos are deleted, and it is possible
+          some research grade observations will become casual if they no longer have any photos.
+        we_included_links: |
+          We've included links to the affected photos below.
     photos:
       inviter:
         automatically_add_to_project: Automatically add to project
@@ -6245,6 +6302,39 @@ en:
         scientific_name_first_desc: |
           Show scientific names before common names.
         youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
+      recent:
+        about_recent_users: About
+        definitions_html:
+          <dl>
+            <dt>Probably Spam</dt>
+            <dd>
+              User that is probably a spammer, which means they have no
+              observations or identifications but they do have a profile
+              description.
+            </dd>
+            <dt>Auto Spam</dt>
+            <dd>
+              Spammer that was automatically marked as a spammer by the system.
+            </dd>
+            <dt>Manual Spam</dt>
+            <dd>
+              Spammer that was manually marked as a spammer by a site curator.
+            </dd>
+            <dt>False Positives</dt>
+            <dd>
+              Users that were flagged as spammers but the flags were resolved
+              by site curators because they weren't really spammers.
+            </dd>
+          </dl>
+        recent_users_desc_html: |
+          <p>
+            We want to welcome new users, but we also want to combat
+            spammers. Hopefully this tool will help with both. We are
+            automatically flagging many users as spammers using <a
+            href="https://akismet.com/">Akismet</a>, but Akismet isn't perfect,
+            so if you want to put in a few minutes marking new accounts as
+            spammers or not spammers, it would help.
+          </p>
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended

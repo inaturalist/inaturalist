@@ -1011,14 +1011,23 @@ describe Observation do
           expect( o.taxon ).to eq genus
           expect( o.quality_grade ).to eq Observation::NEEDS_ID
         end
-        it "should be research if the taxon is a genus and the CID is the same genus" do
-          genus = Taxon.make!( rank: Taxon::GENUS )
-          o = make_research_grade_candidate_observation( taxon: genus, user: u )
-          3.times { Identification.make!( observation: o, taxon: genus ) }
-          o.reload
-          expect( o.community_taxon ).to eq genus
-          expect( o.taxon ).to eq genus
-          expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        describe "if the taxon is a genus and the CID is the same genus" do
+          let(:genus) { Taxon.make!( rank: Taxon::GENUS ) }
+          let(:o) { make_research_grade_candidate_observation( taxon: genus, user: u ) }
+          before do
+            3.times { Identification.make!( observation: o, taxon: genus ) }
+            o.reload
+            expect( o.community_taxon ).to eq genus
+            expect( o.taxon ).to eq genus
+          end
+          it "should be needs_id if it hasn't been voted out of needs_id" do
+            expect( o.quality_grade ).to eq Observation::NEEDS_ID
+          end
+          it "should be research if it has been voted out of needs_id" do
+            o.downvote_from User.make!, vote_scope: "needs_id"
+            o.reload
+            expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+          end
         end
         it "should be needs_id if the CID taxon is an ancestor of the taxon" do
           genus = Taxon.make!( rank: Taxon::GENUS )

@@ -20,13 +20,14 @@
         element_id: "vis",
         chartType: google.visualization.AnnotationChart,
         chartOptions: {
-          colors: ["green", "red", "orange", "purple"]
+          colors: ["green", "red", "orange", "purple", "dodgerblue"]
         },
         series: [
           { label: "total new users" },
           { label: "auto spam" },
           { label: "manual spam" },
           { label: "probably spam" },
+          { label: "false positives" },
         ],
         data: _.map( STATS_JSON, function( stat ) {
           var localDateString = ( new Date( ) ).toISOString( ).replace( /\d{4}-\d{2}-\d{2}/, stat.date );
@@ -39,7 +40,8 @@
             stat.new_users || 0,
             stat.auto_spam || 0,
             stat.manual_spam || 0,
-            stat.probable_spam || 0
+            stat.probable_spam || 0,
+            stat.false_positives || 0
           ];
         })
       }));
@@ -100,7 +102,7 @@
                 %td= truncate_with_more( formatted_user_text( user.description ), length: 500 )
                 %td
                   - unless user.spammer?
-                    = link_to t(:flag_as_spammer), set_spammer_path( user, spammer: true ), method: :post, class: "btn btn-danger btn-block btn-sm"
+                    = link_to t(:flag_as_spammer), set_spammer_path( user, spammer: true ), method: :post, class: "btn btn-danger btn-block btn-sm", data: { confirm: t(:are_you_sure?) }
                   - unless user.known_non_spammer?
                     = link_to t(:flag_as_non_spammer), set_spammer_path( user, spammer: false ), method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) }, class: "btn btn-success btn-block btn-sm"
                   - if user.active?
@@ -119,3 +121,11 @@
         .text-center.stacked
           = link_to t(:view_observations_by_these_users), observations_url( place_id: "any", user_id: @users.map(&:id).join( "," ) ), class: "btn btn-link"
           = link_to t(:identify_observations_by_these_users), identify_observations_url( place_id: "any", user_id: @users.map(&:id).join( "," ) ), class: "btn btn-link"
+  .row
+    .col-xs-12.text-muted
+      %h3=t :about_recent_users
+      =t "views.users.recent.recent_users_desc_html"
+      %h3=t :definitions
+      =t "views.users.recent.definitions_html"
+
+

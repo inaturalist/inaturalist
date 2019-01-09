@@ -25,7 +25,7 @@ gem 'chroma'
 gem 'chronic'
 gem 'coffee-rails'
 gem 'cocoon' # JY: Added to support nested attributes for assessment_sections on assessments
-gem 'dbf'
+gem "dbf" # Needed for georuby shapefile support
 gem 'delayed_job', '~> 4.1.5'
 gem 'delayed_job_active_record',
   git: 'https://github.com/hugueslamy/delayed_job_active_record.git',
@@ -41,7 +41,7 @@ gem "exifr", require: ["exifr", "exifr/jpeg", "exifr/tiff"]
 gem 'fastimage'
 # gem 'flickraw', "~> 0.9.8", :git => 'https://github.com/kueda/flickraw.git', :branch => 'ssl-cert'
 gem "flickraw-cached"
-gem "friendly_id", "~> 5.1.0"
+gem "friendly_id", "~> 5.2.4"
 gem 'gdata', :git => 'https://github.com/pleary/gdata.git'
 gem 'geocoder'
 gem 'geoplanet'

@@ -129,12 +129,14 @@ class UsersController < ApplicationController
     if [ "true", "false" ].include?(params[:spammer])
       @user.update_attributes(spammer: params[:spammer])
       if params[:spammer] === "false"
+        flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: FakeView.link_to_user( @user ) )
         @user.flags_on_spam_content.each do |flag|
           flag.update_attributes(resolved: true)
         end
         @user.flags.where(flag: Flag::SPAM).update_all(resolved: true)
         @user.unsuspend!
       else
+        flash[:notice] = t(:user_flagged_as_a_spammer_html, user: FakeView.link_to_user( @user ) )
         @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
       end
     end
@@ -694,13 +696,18 @@ class UsersController < ApplicationController
         where( "observations_count = 0 AND identifications_count = 0" ).
         where( "description IS NOT NULL AND description != ''" ).
         where( "created_at > ?", start_date ).group( "created_at::date" ).count
+      false_positive_counts = Flag.
+        where( "u.created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND resolved", start_date ).
+        joins( "JOIN users u ON u.id = flags.flaggable_id" ).
+        group( "u.created_at::date" ).count
       @stats = ( start_date...Date.tomorrow ).map do |d|
         {
           date: d.to_s,
           new_users: total_new_user_counts[d],
           auto_spam: new_automated_spam_flag_counts[d],
           manual_spam: new_manual_spam_flag_counts[d],
-          probable_spam: probable_spam_user_counts[d]
+          probable_spam: probable_spam_user_counts[d],
+          false_positives: false_positive_counts[d]
         }
       end
     end
@@ -976,6 +983,7 @@ protected
       :prefers_comment_email_notification,
       :prefers_identification_email_notification,
       :prefers_message_email_notification,
+      :prefers_medialess_obs_maps,
       :prefers_project_invitation_email_notification,
       :prefers_mention_email_notification,
       :prefers_project_journal_post_email_notification,

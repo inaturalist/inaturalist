@@ -87,9 +87,12 @@ class Suggestions extends React.Component {
       chooseTaxon,
       prevTaxon,
       nextTaxon,
-      config
+      config,
+      updateCurrentUser
     } = this.props;
     let detailTaxonImages;
+    const currentUserPrefersMedialessObs = config.currentUser
+      && config.currentUser.prefers_medialess_obs_maps;
     if ( detailTaxon && detailTaxon.taxonPhotos && detailTaxon.taxonPhotos.length > 0 ) {
       // Note key is critical here. See comment below on renderItem
       detailTaxonImages = detailTaxon.taxonPhotos.map( taxonPhoto => ( {
@@ -277,93 +280,102 @@ class Suggestions extends React.Component {
               ) : null }
               { response.results.map( r => (
                 <SuggestionRow
-                  key={ `suggestion-row-${r.taxon.id}` }
-                  taxon={ r.taxon }
-                  observation={ observation }
-                  details={ r.sourceDetails }
-                  chooseTaxon={ chooseTaxon }
-                  source={ query.source }
-                  config={ config }
-                  setDetailTaxon={ ( taxon, options = {} ) => {
+                  key={`suggestion-row-${r.taxon.id}`}
+                  taxon={r.taxon}
+                  observation={observation}
+                  details={r.sourceDetails}
+                  chooseTaxon={chooseTaxon}
+                  source={query.source}
+                  config={config}
+                  updateCurrentUser={updateCurrentUser}
+                  setDetailTaxon={( taxon, options = {} ) => {
                     this.scrollToTop( );
                     setDetailTaxon( taxon, options );
-                  } }
+                  }}
                 />
               ) ) }
             </div>
           </div>
           <div className="suggestions-detail">
             <div className="suggestions-inner">
-                <div className="column-header">
-                  <a
-                    href="#"
-                    onClick={ e => {
-                      e.preventDefault( );
-                      setDetailTaxon( null );
-                      this.resetScrollTop( );
-                      return false;
-                    } }
+              <div className="column-header">
+                <a
+                  href="#"
+                  onClick={ e => {
+                    e.preventDefault( );
+                    setDetailTaxon( null );
+                    this.resetScrollTop( );
+                    return false;
+                  } }
+                >
+                  <i className="fa fa-chevron-circle-left"></i> { I18n.t( "back_to_suggestions" ) }
+                </a>
+                <div className="prevnext pull-right">
+                  <Button
+                    disabled={ prevTaxon === null }
+                    onClick={ ( ) => setDetailTaxon( prevTaxon ) }
+                    className="prev"
                   >
-                    <i className="fa fa-chevron-circle-left"></i> { I18n.t( "back_to_suggestions" ) }
-                  </a>
-                  <div className="prevnext pull-right">
-                    <Button
-                      disabled={ prevTaxon === null }
-                      onClick={ ( ) => setDetailTaxon( prevTaxon ) }
-                      className="prev"
-                    >
-                      <i className="fa fa-chevron-circle-left"></i> { I18n.t( "prev" ) }
-                    </Button>
-                    <Button
-                      disabled={ nextTaxon === null }
-                      onClick={ ( ) => setDetailTaxon( nextTaxon ) }
-                      className="next"
-                    >
-                      { I18n.t( "next" ) } <i className="fa fa-chevron-circle-right"></i>
-                    </Button>
-                  </div>
+                    <i className="fa fa-chevron-circle-left"></i> { I18n.t( "prev" ) }
+                  </Button>
+                  <Button
+                    disabled={ nextTaxon === null }
+                    onClick={ ( ) => setDetailTaxon( nextTaxon ) }
+                    className="next"
+                  >
+                    { I18n.t( "next" ) } <i className="fa fa-chevron-circle-right"></i>
+                  </Button>
                 </div>
-                { detailTaxon ? (
-                  <div className={ `detail-taxon ${detailTaxonImages && detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}` }>
-                    { detailPhotos }
-                    <div className="obs-modal-header">
-                      <SplitTaxon
-                        taxon={ detailTaxon }
-                        url={ urlForTaxon( detailTaxon ) }
-                        target="_blank"
-                        noParens
-                        user={ config.currentUser }
-                        iconLink
-                      />
-                    </div>
-                    { detailTaxon.wikipedia_summary ?
-                      <UserText text={`${detailTaxon.wikipedia_summary} (${I18n.t( "source_wikipedia" )})`} /> : null
-                    }
-                    <h4>{ I18n.t( "observations_map" ) }</h4>
-                    <TaxonMap
-                      showAllLayer={false}
-                      minZoom={2}
-                      gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
-                      observations={[observation]}
-                      gestureHandling="auto"
-                      taxonLayers={[{
-                        taxon: detailTaxon,
-                        observations: { observation_id: observation.id },
-                        gbif: { disabled: true },
-                        places: true,
-                        ranges: true
-                      }]}
-                    />
-                    <h4>{ I18n.t( "taxonomy" ) }</h4>
-                    <TaxonomicBranch
+              </div>
+              { detailTaxon ? (
+                <div className={ `detail-taxon ${detailTaxonImages && detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}` }>
+                  { detailPhotos }
+                  <div className="obs-modal-header">
+                    <SplitTaxon
                       taxon={ detailTaxon }
-                      chooseTaxon={ t => setDetailTaxon( t ) }
-                      noHideable
+                      url={ urlForTaxon( detailTaxon ) }
+                      target="_blank"
+                      noParens
+                      user={ config.currentUser }
+                      iconLink
                     />
                   </div>
-                ) : null }
-              </div>
+                  { detailTaxon.wikipedia_summary ?
+                    <UserText text={`${detailTaxon.wikipedia_summary} (${I18n.t( "source_wikipedia" )})`} /> : null
+                  }
+                  <h4>{ I18n.t( "observations_map" ) }</h4>
+                  <TaxonMap
+                    showAllLayer={false}
+                    minZoom={2}
+                    gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
+                    observations={[observation]}
+                    gestureHandling="auto"
+                    taxonLayers={[{
+                      taxon: detailTaxon,
+                      observationLayers: [
+                        { label: I18n.t( "verifiable_observations" ), verifiable: true },
+                        {
+                          label: I18n.t( "observations_without_media" ),
+                          verifiable: false,
+                          disabled: !currentUserPrefersMedialessObs,
+                          onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+                        }
+                      ],
+                      gbif: { disabled: true },
+                      places: true,
+                      ranges: true
+                    }]}
+                  />
+                  <h4>{ I18n.t( "taxonomy" ) }</h4>
+                  <TaxonomicBranch
+                    taxon={ detailTaxon }
+                    chooseTaxon={ t => setDetailTaxon( t ) }
+                    noHideable
+                  />
+                </div>
+              ) : null }
             </div>
+          </div>
         </div>
         { detailTaxon ? (
           <div className="suggestions-tools tools">
@@ -401,7 +413,8 @@ Suggestions.propTypes = {
   chooseTaxon: PropTypes.func,
   prevTaxon: PropTypes.object,
   nextTaxon: PropTypes.object,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateCurrentUser: PropTypes.func
 };
 
 Suggestions.defaultProps = {

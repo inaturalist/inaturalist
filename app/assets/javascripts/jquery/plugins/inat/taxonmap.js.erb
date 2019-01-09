@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var inatTaxonMap = { };
 
 (function($) {
@@ -267,7 +269,18 @@ inatTaxonMap.addTaxonLayer = function( map, layer, options, taxonData ) {
       hover: options.taxonObservationsLayerHover,
       controlPosition: options.controlPosition,
       mapStyle: options.mapStyle
-    }));
+    } ) );
+  }
+  if ( layer.observationLayers ) {
+    _.forEach( layer.observationLayers, function( lyr ) {
+      map.addObservationsLayer( lyr.label || options.taxonObservationsLayerLabel, _.defaults( lyr, {
+        taxon: layer.taxon,
+        description: options.taxonObservationsLayerDescription,
+        hover: options.taxonObservationsLayerHover,
+        controlPosition: options.controlPosition,
+        mapStyle: options.mapStyle
+      } ) );
+    } );
   }
   if( layer.gbif && taxonData.gbif_id ) {
     layerOptions = _.isObject( layer.gbif ) ? layer.gbif : { };
