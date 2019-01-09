@@ -4,9 +4,10 @@ class EmailerPreview < ActionMailer::Preview
     set_locale
     set_user
     recently_notified_user_id = UpdateAction.elastic_paginate(
-      filters: {
-        exists: { field: :subscriber_ids }
-      },
+      filters: [
+        { exists: { field: :subscriber_ids } }
+        # { term: { subscriber_ids: 1 } }
+      ],
       per_page: 1,
       sort: { id: :desc },
       keep_es_source: true
@@ -21,6 +22,7 @@ class EmailerPreview < ActionMailer::Preview
     # m = if message_id = @rack_env["QUERY_STRING"].to_s[/message_id=([^&]+)/, 1]
     #   Message.find_by_id(message_id)
     # end
+    m = Message.where( to_user_id: 1, user_id: 1 ).first
     m ||= Message.last
     Emailer.new_message(m)
   end

@@ -30,22 +30,22 @@ function mapDispatchToProps( dispatch, ownProps ) {
         observation: ownProps.observation
       } );
       dispatch( loadingDiscussionItem( ident ) );
-      const boundPostIdentification = ( disagreement ) => {
+      const boundPostIdentification = disagreement => {
         const params = Object.assign( { }, ident );
         if ( _.isNil( ident.disagreement ) ) {
           params.disagreement = disagreement || false;
         }
         dispatch( postIdentification( params ) )
-        .catch( ( ) => {
-          dispatch( stopLoadingDiscussionItem( ident ) );
-        } )
-        .then( ( ) => {
-          dispatch( fetchCurrentObservation( ownProps.observation ) ).then( ( ) => {
-            $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+          .catch( ( ) => {
+            dispatch( stopLoadingDiscussionItem( ident ) );
+          } )
+          .then( ( ) => {
+            dispatch( fetchCurrentObservation( ownProps.observation ) ).then( ( ) => {
+              $( ".ObservationModal:first" ).find( ".sidebar" ).scrollTop( $( window ).height( ) );
+            } );
+            dispatch( fetchObservationsStats( ) );
+            dispatch( fetchIdentifiers( ) );
           } );
-          dispatch( fetchObservationsStats( ) );
-          dispatch( fetchIdentifiers( ) );
-        } );
       };
       if ( options.confirmationText ) {
         dispatch( showAlert( options.confirmationText, {
@@ -60,8 +60,8 @@ function mapDispatchToProps( dispatch, ownProps ) {
         const o = options.observation;
         let observationTaxon = o.taxon;
         if (
-          o.preferences.prefers_community_taxon === false ||
-          o.user.preferences.prefers_community_taxa === false
+          o.preferences.prefers_community_taxon === false
+          || o.user.preferences.prefers_community_taxa === false
         ) {
           observationTaxon = o.community_taxon || o.taxon;
         }

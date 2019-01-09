@@ -174,6 +174,17 @@ describe "Observation Index" do
     expect( o.as_indexed_json[:private_place_ids] ).to include place.id
   end
 
+  it "should not count needs_id votes toward faves_count" do
+    o = Observation.make!
+    o.vote_by voter: User.make!, vote: true, vote_scope: "needs_id"
+    expect( o.cached_votes_total ).to eq 1
+    expect( o.faves_count ).to eq 0
+    o.reload
+    o.vote_by voter: User.make!, vote: true
+    expect( o.cached_votes_total ).to eq 2
+    expect( o.faves_count ).to eq 1
+  end
+
   describe "place_ids" do
     it "should include places that contain the uncertainty cell" do
       place = make_place_with_geom
@@ -225,7 +236,7 @@ describe "Observation Index" do
     it "queries names" do
       expect( Observation.params_to_elastic_query({ q: "s", search_on: "names" }) ).to include(
         filters: [ { multi_match:
-          { query: "s", operator: "and", fields: [ "taxon.names.name" ] } } ] )
+          { query: "s", operator: "and", fields: [ "taxon.names_*" ] } } ] )
     end
 
     it "queries tags" do
@@ -250,12 +261,11 @@ describe "Observation Index" do
       expect( Observation.params_to_elastic_query({ q: "s" }) ).to include(
         filters: [ { multi_match:
           { query: "s", operator: "and",
-            fields: [ "taxon.names.name", :tags, :description, :place_guess ] } } ] )
+            fields: [ "taxon.names_*", :tags, :description, :place_guess ] } } ] )
     end
 
     it "filters by param values" do
       [ { http_param: :rank, es_field: "taxon.rank" },
-        { http_param: :sound_license, es_field: "sounds.license_code" },
         { http_param: :observed_on_day, es_field: "observed_on_details.day" },
         { http_param: :observed_on_month, es_field: "observed_on_details.month" },
         { http_param: :observed_on_year, es_field: "observed_on_details.year" },
@@ -293,16 +303,12 @@ describe "Observation Index" do
     end
 
     it "filters by presence of attributes" do
-      [ { http_param: :with_photos, es_field: ["photos.url", "photos_count"] },
-        { http_param: :with_sounds, es_field: ["sounds", "sounds_count"] },
+      [ { http_param: :with_photos, es_field: "photos_count" },
+        { http_param: :with_sounds, es_field: "sounds_count" },
         { http_param: :with_geo, es_field: "geojson" },
         { http_param: :identified, es_field: "taxon" },
       ].each do |filter|
-        if filter[:es_field].is_a?( Array )
-          f = { bool: { should: filter[:es_field].map{ |ff| { exists: { field: ff } } } } }
-        else
-          f = { exists: { field: filter[:es_field] } }
-        end
+        f = { exists: { field: filter[:es_field] } }
         expect( Observation.params_to_elastic_query({
           filter[:http_param] => "true" }) ).to include(
             filters: [ f ] )
@@ -371,25 +377,24 @@ describe "Observation Index" do
 
     it "filters by photo license" do
       expect( Observation.params_to_elastic_query({ photo_license: "any" }) ).to include(
-        filters: [ { bool: { should: [
-          { exists: { field: "photo_licenses" } },
-          { exists: { field: "photos.license_code" } }
-        ] } } ] )
+        filters: [ { exists: { field: "photo_licenses" } } ] )
       expect( Observation.params_to_elastic_query({ photo_license: "none" }) ).to include(
-        inverse_filters: [ { bool: { should: [
-          { exists: { field: "photo_licenses" } },
-          { exists: { field: "photos.license_code" } }
-        ] } } ] )
+        inverse_filters: [ { exists: { field: "photo_licenses" } } ] )
       expect( Observation.params_to_elastic_query({ photo_license: "CC-BY" }) ).to include(
-        filters: [ { bool: { should: [
-          { terms: { "photo_licenses" => [ "cc-by" ] } },
-          { terms: { "photos.license_code" => [ "cc-by" ] } }
-        ] } } ] )
+        filters: [ { terms: { "photo_licenses" => [ "cc-by" ] } } ] )
       expect( Observation.params_to_elastic_query({ photo_license: [ "CC-BY", "CC-BY-NC" ] }) ).to include(
-        filters: [ { bool: { should: [
-          { terms: { "photo_licenses" => [ "cc-by", "cc-by-nc" ] } },
-          { terms: { "photos.license_code" => [ "cc-by", "cc-by-nc" ] } }
-        ] } } ] )
+        filters: [ { terms: { "photo_licenses" => [ "cc-by", "cc-by-nc" ] } } ] )
+    end
+
+    it "filters by sound license" do
+      expect( Observation.params_to_elastic_query({ sound_license: "any" }) ).to include(
+        filters: [ { exists: { field: "sound_licenses" } } ] )
+      expect( Observation.params_to_elastic_query({ sound_license: "none" }) ).to include(
+        inverse_filters: [ { exists: { field: "sound_licenses" } } ] )
+      expect( Observation.params_to_elastic_query({ sound_license: "CC-BY" }) ).to include(
+        filters: [ { terms: { "sound_licenses" => [ "cc-by" ] } } ] )
+      expect( Observation.params_to_elastic_query({ sound_license: [ "CC-BY", "CC-BY-NC" ] }) ).to include(
+        filters: [ { terms: { "sound_licenses" => [ "cc-by", "cc-by-nc" ] } } ] )
     end
 
     it "filters by created_on year" do

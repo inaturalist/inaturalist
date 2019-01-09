@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/terms", to: redirect( "/pages/terms" )
   get "/privacy", to: redirect( "/pages/privacy" )
   get "/users/new.mobile", to: redirect( "/signup" )
+  get "/donate", to: "donate#index"
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
@@ -154,6 +155,9 @@ Rails.application.routes.draw do
   
   resources :users, :except => [:new, :create] do
     resources :flags
+    collection do
+      get :recent
+    end
     member do
       put :join_test
       put :leave_test

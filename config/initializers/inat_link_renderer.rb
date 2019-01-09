@@ -27,7 +27,11 @@ class INatLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
     url_params = @base_url_params.dup
     add_current_page_param(url_params, page)
 
-    @template.url_for(url_params)
+    if @options[:url_helper]
+      @template.send( @options[:url_helper], url_params )
+    else
+      @template.url_for(url_params)
+    end
   end
 
   def merge_get_params(url_params)

@@ -2,7 +2,7 @@ class Observation < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  DEFAULT_ES_BATCH_SIZE = 500
+  DEFAULT_ES_BATCH_SIZE = 200
 
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
@@ -161,7 +161,7 @@ class Observation < ActiveRecord::Base
         map_scale: map_scale,
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,
-        faves_count: cached_votes_total,
+        faves_count: faves_count,
         cached_votes_total: cached_votes_total,
         num_identification_agreements: num_identification_agreements,
         num_identification_disagreements: num_identification_disagreements,
@@ -339,7 +339,7 @@ class Observation < ActiveRecord::Base
     if q
       fields = case search_on
       when "names"
-        [ "taxon.names.name" ]
+        [ "taxon.names_*" ]
       when "tags"
         [ :tags ]
       when "description"
@@ -347,7 +347,7 @@ class Observation < ActiveRecord::Base
       when "place"
         [ :place_guess ]
       else
-        [ "taxon.names.name", :tags, :description, :place_guess ]
+        [ "taxon.names_*", :tags, :description, :place_guess ]
       end
       search_filters << { multi_match: { query: q, operator: "and", fields: fields } }
     end
@@ -361,7 +361,6 @@ class Observation < ActiveRecord::Base
 
     # params to search based on value
     [ { http_param: :rank, es_field: "taxon.rank" },
-      { http_param: :sound_license, es_field: "sounds.license_code" },
       { http_param: :observed_on_day, es_field: "observed_on_details.day" },
       { http_param: :observed_on_month, es_field: "observed_on_details.month" },
       { http_param: :observed_on_year, es_field: "observed_on_details.year" },
@@ -398,18 +397,12 @@ class Observation < ActiveRecord::Base
     end
 
     # params that can check for presence of something
-    [ { http_param: :with_photos, es_field: ["photos.url", "photos_count"] },
-      { http_param: :with_sounds, es_field: ["sounds", "sounds_count"] },
+    [ { http_param: :with_photos, es_field: "photos_count" },
+      { http_param: :with_sounds, es_field: "sounds_count" },
       { http_param: :with_geo, es_field: "geojson" },
       { http_param: :identified, es_field: "taxon" },
     ].each do |filter|
-      if filter[:es_field].is_a?( Array )
-        f = { bool: { should: filter[:es_field].map{ |ff|
-          { exists: { field: ff } }
-        } } }
-      else
-        f = { exists: { field: filter[:es_field] } }
-      end
+      f = { exists: { field: filter[:es_field] } }
       if p[ filter[:http_param] ].yesish?
         search_filters << f
       elsif p[ filter[:http_param] ].noish?
@@ -441,21 +434,20 @@ class Observation < ActiveRecord::Base
         [ p[:license] ].flatten.map{ |l| l.downcase } } }
     end
     if p[:photo_license] == "any"
-      search_filters << { bool: { should: [
-        { exists: { field: "photo_licenses" } },
-        { exists: { field: "photos.license_code" } }
-      ]}}
+      search_filters << { exists: { field: "photo_licenses" } }
     elsif p[:photo_license] == "none"
-      inverse_filters << { bool: { should: [
-        { exists: { field: "photo_licenses" } },
-        { exists: { field: "photos.license_code" } }
-      ]}}
+      inverse_filters << { exists: { field: "photo_licenses" } }
     elsif p[:photo_license]
       licenses = [ p[:photo_license] ].flatten.map{ |l| l.downcase }
-      search_filters << { bool: { should:[
-        { terms: { "photo_licenses" => licenses } },
-        { terms: { "photos.license_code" => licenses } }
-      ]}}
+      search_filters << { terms: { "photo_licenses" => licenses } }
+    end
+    if p[:sound_license] == "any"
+      search_filters << { exists: { field: "sound_licenses" } }
+    elsif p[:sound_license] == "none"
+      inverse_filters << { exists: { field: "sound_licenses" } }
+    elsif p[:sound_license]
+      licenses = [ p[:sound_license] ].flatten.map{ |l| l.downcase }
+      search_filters << { terms: { "sound_licenses" => licenses } }
     end
     if d = Observation.split_date(p[:created_on], utc: true)
       [ :day, :month, :year ].each do |part|
@@ -687,28 +679,7 @@ class Observation < ActiveRecord::Base
 
     if p[:ident_user_id]
       vals = p[:ident_user_id].to_s.split( "," )
-      if vals[0].to_i > 0
-        nested_filter = { terms: { "identifications.user.id" => vals } }
-      else
-        nested_filter = { terms: { "identifications.user.login" => vals } }
-      end
-      search_filters << {
-        bool: {
-          should: [
-            { terms: { identifier_user_ids: vals } },
-            {
-              nested: {
-                path: "identifications",
-                query: {
-                  bool: {
-                    filter: nested_filter
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
+      search_filters << { terms: { identifier_user_ids: vals } }
     end
 
     # conservation status
@@ -831,6 +802,7 @@ class Observation < ActiveRecord::Base
       t.establishment_means_in_place?(ListedTaxon::NATIVE_EQUIVALENTS, places, closest: true)
     json[:taxon][:endemic] = preloaded ? taxon_endemic :
       t.establishment_means_in_place?("endemic", places)
+    t.listed_taxa_with_establishment_means.reset
   end
 
 end

@@ -5,12 +5,11 @@ import moment from "moment";
 import { urlForTaxon, commasAnd } from "../../shared/util";
 
 const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
-  if ( !taxonChange || ( taxon.is_active && taxonChange.input_taxa[0].id !== taxon.id ) ) {
-    return ( <div></div> );
+  if ( !taxonChange || ( taxon.is_active && taxonChange.input_taxa[0] && taxonChange.input_taxa[0].id !== taxon.id ) ) {
+    return ( <div /> );
   }
   const committedOn = taxonChange.committed_on ? moment( taxonChange.committed_on ) : null;
-  const linkToTaxon = ( t ) =>
-    `<a href=${urlForTaxon( t )} class="sciname ${t.rank.toLowerCase( )}">${t.name} [${t.id}]</a>`;
+  const linkToTaxon = t => `<a href=${urlForTaxon( t )} class="sciname ${t.rank.toLowerCase( )}">${t.name} [${t.id}]</a>`;
   const renderTaxonSwap = ( ) => {
     if ( committedOn ) {
       return I18n.t( "change_types.input_taxon_was_replaced_by_output_taxon_html", {
@@ -78,15 +77,19 @@ const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
     <Row>
       <Col xs={12}>
         <div className="alert alert-warning">
-          <strong>{
-            I18n.t( "heads_up" )
-          }:</strong> {
-            taxon.is_active ? null : `${I18n.t( "this_taxon_concept_is_inactive" )}.`
-          } {
+          <strong>{ I18n.t( "heads_up" ) }:</strong>
+          { " " }
+          { taxon.is_active ? null : `${I18n.t( "this_taxon_concept_is_inactive" )}.` }
+          { " " }
+          {
             content ? (
-              <span><span dangerouslySetInnerHTML={ { __html: content } } /><span>.</span></span>
+              <span>
+                <span dangerouslySetInnerHTML={{ __html: content }} />.
+              </span>
             ) : null
-          } <a className="readmore" href={`/taxon_changes/${taxonChange.id}`}>
+          }
+          { " " }
+          <a className="readmore" href={`/taxon_changes/${taxonChange.id}`}>
             { I18n.t( "view_taxon_change" ) }
           </a>
         </div>

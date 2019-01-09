@@ -19,12 +19,17 @@ class Activity extends React.Component {
       // I really wish this timeout wasn't necessary but without it Chrome just
       // seems to scroll back to the top. Note that $.scrollTo doesn't seem to
       // work in Safari.
+      let targetHash = window.location.hash;
+      if ( $( targetHash ).length === 0 ) {
+        targetHash = _.snakeCase( `activity_${targetHash.replace( "#", "" )}` );
+        targetHash = `#${targetHash}`;
+      }
       const isFirefox = navigator.userAgent.toLowerCase( ).indexOf( "firefox" ) > -1;
       if ( isFirefox ) {
-        $.scrollTo( window.location.hash );
+        $.scrollTo( targetHash );
       } else {
         setTimeout( ( ) => {
-          const $hashElt = $( window.location.hash );
+          const $hashElt = $( targetHash );
           if ( $hashElt.length > 0 ) {
             $( document ).scrollTop( $hashElt.offset( ).top );
           }
@@ -42,7 +47,7 @@ class Activity extends React.Component {
   }
 
   currentUserIcon( ) {
-    const config = this.props.config;
+    const { config } = this.props;
     return config ? (
       <div className="icon">
         <UserImage user={ config.currentUser } />
@@ -53,35 +58,38 @@ class Activity extends React.Component {
   }
 
   doneButton( ) {
-    const config = this.props.config;
+    const { config, addComment, addID } = this.props;
     return config && config.currentUser ? (
-      <Button className="comment_id" bsSize="small" onClick={
-        ( ) => {
-          if ( $( ".comment_tab" ).is( ":visible" ) ) {
-            const comment = $( ".comment_tab textarea" ).val( );
-            if ( comment ) {
-              this.props.addComment( $( ".comment_tab textarea" ).val( ) );
-              $( ".comment_tab textarea" ).val( "" );
+      <Button
+        className="comment_id"
+        bsSize="small"
+        onClick={
+          ( ) => {
+            if ( $( ".comment_tab" ).is( ":visible" ) ) {
+              const comment = $( ".comment_tab textarea" ).val( );
+              if ( comment ) {
+                addComment( $( ".comment_tab textarea" ).val( ) );
+                $( ".comment_tab textarea" ).val( "" );
+              }
+            } else {
+              const input = $( ".id_tab input[name='taxon_name']" );
+              const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
+              if ( selectedTaxon ) {
+                addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
+                input.trigger( "resetSelection" );
+                input.val( "" );
+                input.data( "uiAutocomplete" ).selectedItem = null;
+                $( ".id_tab textarea" ).val( "" );
+              }
             }
-          } else {
-            const input = $( ".id_tab input[name='taxon_name']" );
-            const selectedTaxon = input.data( "uiAutocomplete" ).selectedItem;
-            if ( selectedTaxon ) {
-              this.props.addID( selectedTaxon, { body: $( ".id_tab textarea" ).val( ) } );
-              input.trigger( "resetSelection" );
-              input.val( "" );
-              input.data( "uiAutocomplete" ).selectedItem = null;
-              $( ".id_tab textarea" ).val( "" );
-            }
-          }
-        } }
+          } }
       >
         { I18n.t( "done" ) }
       </Button> ) : null;
   }
 
   review( ) {
-    const { observation, config } = this.props;
+    const { observation, config, review, unreview } = this.props;
     return config && config.currentUser ? (
       <div className="review">
         <input
@@ -91,9 +99,9 @@ class Activity extends React.Component {
           checked={ _.includes( observation.reviewed_by, config.currentUser.id ) }
           onChange={ ( ) => {
             if ( $( "#reviewed" ).is( ":checked" ) ) {
-              this.props.review( );
+              review( );
             } else {
-              this.props.unreview( );
+              unreview( );
             }
           }}
         />
@@ -104,15 +112,14 @@ class Activity extends React.Component {
   }
 
   render( ) {
-    const observation = this.props.observation;
+    const { observation, config, commentIDPanel, setActiveTab } = this.props;
     if ( !observation ) { return ( <div /> ); }
-    const config = this.props.config;
     const loggedIn = config && config.currentUser;
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
       i.current && i.user && i.user.id === config.currentUser.id
     ) );
-    let activity = _.compact( ( observation.identifications || [] ).
-      concat( observation.comments ) );
+    let activity = _.compact( ( observation.identifications || [] )
+      .concat( observation.comments ) );
     activity = _.sortBy( activity, a => ( moment.parseZone( a.created_at ) ) );
     // attempting to match the logic in the computervision/score_observation endpoint
     // so we don't attempt to fetch vision results for obs which will have no results
@@ -124,8 +131,8 @@ class Activity extends React.Component {
       }
       return null;
     } ) );
-    const commentContent = loggedIn ?
-      (
+    const commentContent = loggedIn
+      ? (
         <div className="form-group">
           <textarea
             placeholder={ I18n.t( "leave_a_comment" ) }
@@ -141,8 +148,8 @@ class Activity extends React.Component {
           </a> { I18n.t( "to_add_comments" ) }.
         </span>
       );
-    const idContent = loggedIn ?
-      (
+    const idContent = loggedIn
+      ? (
         <div>
           <TaxonAutocomplete
             bootstrap
@@ -172,9 +179,9 @@ class Activity extends React.Component {
     const tabs = (
       <Tabs
         id="comment-id-tabs"
-        activeKey={ this.props.commentIDPanel.activeTab }
+        activeKey={ commentIDPanel.activeTab }
         onSelect={ key => {
-          this.props.setActiveTab( key );
+          setActiveTab( key );
         } }
       >
         <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">

@@ -16,6 +16,8 @@ class TaxonFramework < ActiveRecord::Base
   validates :taxon_id, presence: true
 
   attr_accessor :skip_reindexing_taxa
+  attr_accessor :skip_check_frameworks
+  attr_accessor :skip_check_curators
   
   def handle_change_in_completeness
     # would use new_record? here if this was called any time other than after_save
@@ -28,6 +30,7 @@ class TaxonFramework < ActiveRecord::Base
   end
   
   def check_taxon_framework_relationships
+    return true if skip_check_frameworks
     return true if new_record?
     return true if rank_level_was.nil? || source_id_was.nil?
     return true unless rank_level_changed? || source_id_changed? || taxon_id_changed?
@@ -36,6 +39,7 @@ class TaxonFramework < ActiveRecord::Base
   end
   
   def check_other_taxon_framework_relationships
+    return true if skip_check_frameworks
     return true unless rank_level
     return true unless new_record? || rank_level_changed? || source_id_changed? || taxon_id_changed?
     
@@ -46,6 +50,7 @@ class TaxonFramework < ActiveRecord::Base
   end
   
   def check_taxon_curators
+    return true if skip_check_curators
     return true if new_record?
     return true if rank_level_was.nil?
     return true unless rank_level_changed? && rank_level.nil?

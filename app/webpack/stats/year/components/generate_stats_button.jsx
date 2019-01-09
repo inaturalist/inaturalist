@@ -34,16 +34,18 @@ class GenerateStatsButton extends React.Component {
       console.log( "[DEBUG] error: ", error );
     } );
   }
+
   render( ) {
     return (
-      <Button
-        className="GenerateStatsButton"
-        onClick={ ( ) => this.generateStats( ) }
-        disabled={ this.state.loading }
+      <button
+        type="button"
+        className="GenerateStatsButton btn btn-bordered"
+        onClick={( ) => this.generateStats( )}
+        disabled={this.state.loading}
       >
         <i className={`fa fa-refresh ${this.state.loading ? "fa-spin" : ""}`}>
         </i> { this.state.loading ? I18n.t( "loading" ) : this.props.text }
-      </Button>
+      </button>
     );
   }
 }

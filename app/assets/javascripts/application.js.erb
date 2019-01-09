@@ -1430,7 +1430,7 @@ $.fn.textcompleteUsers = function( ) {
   var field = this;
   field.textcomplete([{
     index: 1,
-    match: /\B@([\\\w][\\\w\\\-_]*)$/,
+    match: /\B@([A-z][\\\w\\\-_]*)$/,
     search: function( term, callback ) {
       $.getJSON( "/people/search.json", { q: term, order: "activity" } ).
         done(function( data ) {
@@ -1443,9 +1443,9 @@ $.fn.textcompleteUsers = function( ) {
     replace: function( html ) {
       var login, matches;
       // extract the username from the HTML
-      if( matches = html.match( /\(([^ ]+)\)<\/div>/ )) {
+      if( matches = html.match( /\(([^\s\<\>]+)\)<\/div>/ )) {
         login = matches[1];
-      } else if( matches = html.match( / ([^ ]+)<\/div>/ )) {
+      } else if( matches = html.match( /([^\s\<\>]+)<\/div>/ )) {
         login = matches[1];
       }
       // setTimeout(function(){ field.data("highlighter").highlight() }, 10);

@@ -744,7 +744,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if (options.taxon) {
     // Stopgap solution to dealing with multiple taxon maps on a single page.
     // Will break if multiple maps have the same taxon
-    id += '-' + options.taxon.id;
+    id += '-' + options.taxon.id + "-" + options.label;
   }
   li.attr('data-title', title)
   var label = $("<label/>").attr("for", id).html(title)
@@ -763,7 +763,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if( options.taxon ) {
     addWindshaftOverlayTaxonDiv( ul, li, options );
   }
-  checkbox.change( function( ) {
+  checkbox.change( function( e ) {
     var checked = $( this ).prop( "checked" );
     _.each( layers, function( layerData ) {
       map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : emptyLayer);
@@ -773,6 +773,9 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     // as one checkox is checked, the taxon's checkbox will also be checked
     if ( taxonID = $(this).parent().data( "taxon-id" ) ) {
       updateTaxonCheckboxState( ul, taxonID );
+    }
+    if ( typeof( options.onChange ) === "function" ) {
+      options.onChange( e );
     }
   })
   if( description ) {
@@ -1081,9 +1084,9 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // using a less generic name for the elasticmaps param to not show
   // an observation on a tile, because we have a Google marker for it
-  if( options.observation_id && typeof options.observation_id == "number" ) {
-    options.featured_observation_id = options.observation_id;
-  }
+  // if( options.observation_id && typeof options.observation_id == "number" ) {
+  //   options.featured_observation_id = options.observation_id;
+  // }
   // these are the parameters that will be sent to the node API
   var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
     'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2',

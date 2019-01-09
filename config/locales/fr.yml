@@ -30,6 +30,7 @@
 # Author: Spasmedevivre
 # Author: Tartare
 # Author: Thibaut120094
+# Author: Tomri5
 # Author: Urhixidur
 # Author: Verdy p
 # Author: Wladek92
@@ -106,6 +107,9 @@ fr:
   x_people_agree_html:
     one: <span class="count">1</span> personne est d’accord
     other: <span class="count">%{count}</span> personnes sont d’accord
+  x_new_species:
+    one: 1 nouvelle espèce
+    other: '%{count} nouvelles espèces'
   x_species:
     one: 1 espèce
     other: '%{count} espèces'
@@ -138,7 +142,9 @@ fr:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> modification de taxon ajoutée
     other: <span class='count'>%{count}</span> modifications de taxon ajoutées
-  _100_day_trends: Tendance à 100 jours
+  x_people_helped_user_with_y_ids_html: <strong>%{x} personne(s)</strong> a/ont aidé
+    %{user} avec <strong>%{y} IDs</strong>
+  _100_day_trends: Tendances à 100 jours
   _percent_ID_d: '% ID assigné(s)'
   a: un
   a_: un
@@ -147,8 +153,8 @@ fr:
     créé automatiquement à partir de l’attribut du nom scientifique de ce taxon. \nQuand
     vous aurez enregistré ce nouveau taxon, vous pourrez ajouter d’autres noms ici
     (noms communs, noms scientifiques obsolètes, etc.)."
-  a_few_points_to_make_things_clear: Quelques précisions pour rendre les choses plus
-    claires
+  a_few_points_to_make_things_clear: 'Quelques précisions pour rendre les choses plus
+    claires :'
   a_flag_for_x: un repère pour %{x}
   a_greasemonkey_script: un script Greasemonkey
   a_member_of: Un membre de
@@ -374,6 +380,8 @@ fr:
   all_photos: Toutes les photos
   all_places: Tous les lieux
   all_projects: Tous les projets
+  all_children_added_to_the_database: Tous les enfants ont été ajoutés dans la base
+    de données
   all_rank_added_to_the_database:
     phylum: Tous les embranchements ajoutés à la base de données
     subphylum: Tous les sous-embranchements ajoutés à la base de données
@@ -635,7 +643,9 @@ fr:
   at_any_time_change: n’importe quand (<span class="button">modifier</span>)
   at_time: à %{time}
   atom: Atom
+  attached_taxon: Taxon attaché
   attribute: Attribut
+  attribution: Attribution
   authority_list:
     iucn_red_list: Liste rouge de l’UICN
   authorize_permissions_from_provider: Autoriser les permissions de %{provider}
@@ -946,6 +956,7 @@ fr:
   classification: Classification
   clear: effacer
   clear_color_filters: Effacer les filtres de couleur
+  clear_filters: Effacer les filtres
   clear_search: Effacer la recherche
   click_on_the_map_to: Cliquez sur la carte pour placer votre observation
   click_the_map: <strong>Cliquez sur la carte</strong> pour ajouter un lieu.
@@ -1009,6 +1020,7 @@ fr:
   comparing_list_to_list: Comparaison de %{list1} avec %{list2}
   comparing_versions_x_and_y: Comparaison des versions %{x} et %{y}
   comparing_observations_from: Comparaison des observations de %{user} du %{dates}
+  complete: Terminer
   complete_sets: Ensembles complets
   compiled_by_name: Compilé par %{name}
   completed: Complétée
@@ -1116,6 +1128,8 @@ fr:
   copyright_info_and_more: Information de Copyright et Plus
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne
     autre que l’observateur et attribution manquante
+  covered_by_a_taxon_framework_html: Couvert par un %{link}
+  covered_by_a_taxon_framework_link: Cadre du taxon pour %{taxon_framework_rank} %{taxon_framework_name}
   couldnt_change_your_password: 'Impossible de modifier votre mot de passe : %{e}'
   couldnt_find_a_user_matching_x_param: Impossible de trouver un utilisateur correspondant
     à %{id}
@@ -1186,6 +1200,7 @@ fr:
   data_quality: Qualité des données
   data_quality_assessment: Évaluation de la qualité des données
   data_quality_assessment_: évaluation de la qualité de la donnée
+  data_used: 'Données utilisées :'
   datatype: Type de données
   date_: Date
   date?: Date?
@@ -1241,6 +1256,7 @@ fr:
   default_photo_license: Licence des photos par défaut
   default_sound_license: Licence des sons par défaut
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
+  defines_a_taxon_framework_for: Définit un cadre de taxon pour %{taxon_name}
   delete: Supprimer
   delete_all: Supprimer tout
   delete_conversation: Supprimer la conversation
@@ -1275,6 +1291,8 @@ fr:
   desription: Description
   destroy: Détruiser
   details: Détails
+  deviation: Déviation
+  deviations: Déviations
   devise:
     failure:
       user:
@@ -1286,6 +1304,7 @@ fr:
     suivantes parce que…
   did_you_mean: Voulez-vous dire
   did_you_photos_flickr?: Avez-vous mis des photos sur Flickr ?
+  disable: Désactiver
   disagree: pas d’accord
   disagree_: Désapprouver
   disconnect_provider: Déconnecter %{provider}
@@ -1324,6 +1343,8 @@ fr:
   download_csv: Télécharger le format CSV
   download_csv_template: Télécharger le modèle "CSV"
   download_kml: Téléchargez le format KML
+  downstream_coverage: Couverture en aval
+  downstream_coverage_rank: Niveau de couverture en aval
   drag_and_drop_photos: Glissez et déplacez les photos dans cette fenêtre, ou
   draft: brouillon
   draft_: Brouillon
@@ -1597,7 +1618,9 @@ fr:
   flag_this_photo: Signaler cette photo
   flagged: a signalé
   flagged_: Marqué
+  flagged_covered_taxa: Taxons couverts marqués
   flagged_for_curation: Marqué pour supervision
+  flagged_taxon: Taxon marqué
   flagged_thing_explanation: Les utilisateurs ont signalé ce %{thing} parce que
   flagger: Signaleur
   flags: Drapeaux
@@ -1760,6 +1783,7 @@ fr:
   help_confirm_observations!: Aider à confirmer les observations!
   help_faq: Aide/FAQ
   help_out!: Dépannez!
+  help_support_inaturalist: Aider à soutenir iNaturalist 
   helped_the_observer_make: a aidé l’observateur à faire leurs identifications finales
     (c.-à-d. qu’elles ont été faites avant l’identification finale et qu’elles y correspondent)
   here_are_3_examples: Voici 3 exemples de données bien formées
@@ -1775,6 +1799,7 @@ fr:
   hi_user: Bonjour %{user}
   hide: Masquer
   hide_details: Masquer les détails
+  hide_running_total: Masquer le total actuel
   hide_uncountable_species: Masquer les espèces indénombrables
   high: Haut
   highest_rank: Rang le plus élevé
@@ -1931,6 +1956,7 @@ fr:
     des créatures mystérieuses !
   interactions: Interactions
   internal_server_error: Erreur interne du serveur
+  internal_taxon: Taxon interne
   introduced: Introduite
   introduced_in_place: Introduit dans %{place}
   invasive: Invasive
@@ -2136,6 +2162,7 @@ fr:
     (Corvidés).
   life_list_first: première inscription à la liste des êtres vivants
   life_list_firsts: taxons nouveaux
+  linear_scale_label: Linéaire
   link: Lien
   link_or_unlink_your_facebook_account: Lier ou dissocier votre compte Facebook
   link_or_unlink_your_flickr_account: Lier ou dissocier votre compte Flickr
@@ -2181,6 +2208,7 @@ fr:
     vos photos ni ne modifierons vos données Flickr sans votre consentement.</strong>
     Nous sommes trop occupés avec les oiseaux, les insectes et les limaces pour vouloir
     modifier vos informations !
+  linkedin: LinkedIn
   list: Liste
   list_deleted: Liste supprimée.
   list_saved: Liste enregistrée.
@@ -2282,6 +2310,7 @@ fr:
     directement les identifications de rang supérieur, mais il est préférable de fusionner
     les nouveaux taxons avec les taxons existants.
   log_in: Connexion
+  log_scale_label: Trace
   logged_in_as: Vous êtes connecté en tant que
   login_slash_username: Connexion/nom d’utilisateur
   logo:
@@ -2520,7 +2549,7 @@ fr:
   new_custom_field_for: Nouveau champ personnalisé pour
   new_flag_for: Nouveau drapeau pour
   new_guide: Nouveau guide
-  new_journal_posts: Nouvelle note du journal
+  new_journal_post: Nouvelle note du journal
   new_lexicon: Nouveau lexique
   new_list: Nouvelle liste d'observations
   new_members: Nouveaux membres…
@@ -2528,6 +2557,7 @@ fr:
   new_observation_field: Nouveau champ de l’observation
   new_observation_rules: Nouvelles règles d’observation
   new_observations: Nouvelles observations
+  new_observations_this_year: Nouvelles observations cette année
   new_observations_ellispsis: Nouvelles observations…
   new_observations_from_place_html: Nouvelles observations à %{place}
   new_observations_may_take_up_to: Les nouvelles observations peuvent prendre jusqu’à
@@ -2539,6 +2569,9 @@ fr:
   new_project_asset: Nouveau project_asset
   new_project_asset_for: Nouveau bien de projet pour
   new_source: Nouvelle source
+  new_species_added_in_interval: Nouvelles espèces ajoutées en %{interval}
+  new_species_added_in_interval_x_of_y: Nouvelles espèces ajoutées en %{interval}
+    (affichage de %{x} sur %{y})
   new_taxon_change: Nouvelle modification de taxon
   new_taxon_link: Nouveau lien de taxon
   new_taxon_name: Nouveau nom de taxon
@@ -2550,8 +2583,13 @@ fr:
     24 heures d’%{site_name}
   new_user_rules: Nouvelles règles utilisateur
   new_users: Nouveaux utilisateurs
+  new_users_this_year: Nouveaux utilisateurs cette année
   new_users_w_7_obs: Nouveaux utilisateurs avec 7 Obs
   new_users_week: Nouveaux utilisateurs/semaine
+  newly_added: Ajouté récemment
+  newly_added_species: Espèces ajoutées récemment
+  newly_observed_species: Nouvelles espèces observées
+  newly_observed_species_this_year: Espèces nouvellement ajoutées cette année
   news: Actualités
   next: Suivant
   next_observation: Observation suivante
@@ -2629,6 +2667,7 @@ fr:
   no_ones_observed: Personne n’a observé
   no_photo: Aucune photo
   no_photos: Aucune photo
+  no_photos_of_that_size: Pas de photo de cette taille.
   no_places_available: Aucun endroit disponible
   no_places_selected: Aucun lieu sélectionné.
   no_post_yet: Aucune note jusqu’à présent!
@@ -2668,11 +2707,13 @@ fr:
   no_x_this_y: Aucun %{x} durant %{y}
   noble_curators: Responsables éminents de l’organisation d’%{site}
   non_human?: Non-humain ?
+  non_internal_taxon: N'est pas un taxon interne
   none: Aucun
   none_found: Aucun trouvé
   normal: normal
   not_absent: non absent
   not_completed: Incomplet
+  not_covered_by_any_taxon_frameworks: Non couvert par aucun cadre de taxon
   not_evaluated: non évalué
   not_filtering: Le filtrage n’a pas lieu
   not_findig_what_you_want: Vous n’avez pas trouvé ce que vous vouliez?
@@ -2686,6 +2727,7 @@ fr:
   not_on_this_list: Pas dans cette liste.
   not_recorded: Non enregistré
   not_seeing_what_looking_for: Vous ne voyez pas ce que vous cherchez?
+  not_spam: N'est pas du pourriel
   not_yet: Pas encore
   note: Note
   notes: Notes
@@ -3010,6 +3052,7 @@ fr:
   out_of_range: Hors de portée
   output_taxon: Taxon en sortie
   overview: Vue d’ensemble
+  overlapping_downstream_taxon_frameworks: Chevauchement des cadres de taxon en aval
   owner: Propriétaire
   parent: Taxon de rang supérieur
   parent_name: Nom du taxon de rang supérieur
@@ -3049,6 +3092,7 @@ fr:
   photo_browser: Navigateur de photos
   photo_by: Photographie de
   photo_by_id_attribution: Photo %{id}, de %{attribution}
+  photo_credits: Crédits photos
   photo_deleted: Photo supprimée
   photo_destroyed_because_it_was_deleted_from: Photo détruite, car elle a été supprimée
     sur le site externe ou %{site_name} n’a plus le droit de la voir
@@ -3204,60 +3248,269 @@ fr:
   places_name:
     afghanistan: Afghanistan
     africa: Afrique
+    akrotiri_and_dhekelia: Akrotiri et Dhekelia
+    aland: Åland
+    albania: Albanie
+    algeria: Algérie
+    american_samoa: Samoa Américaines
+    andorra: Andorre
+    angola: Angola
+    anguilla: Anguilla
+    antarctica: Antarctique
     antigua_and_barbuda: Antigua-et-Barbuda
+    argentina: Argentine
+    armenia: Arménie
+    aruba: Aruba
     australia: Australie
     austria: Autriche
+    azerbaijan: Azerbaïdjan
+    bahamas: Bahamas
+    bahrain: Bahreïn
+    bangladesh: Bangladesh
+    barbados: Barbades
+    belarus: Biélorussie
     belgium: Belgique
+    belize: Bélize
+    benin: Bénin
+    bermuda: Bermudes
+    bhutan: Bhoutan
+    bolivia: Bolivie
+    bonaire_saint_eustatius_and_saba: Bonaire, Saint-Eustache et Saba
     bosnia_and_herzegovina: Bosnie-Herzégovine
+    botswana: Botswana
+    bouvet_island: Île Bouvet
     brazil: Brésil
+    british_indian_ocean_territory: Territoires britanniques de l'océan Indien
+    british_virgin_islands: Iles Vierges Britanniques
+    brunei: Brunei
+    bulgaria: Bulgarie
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Cambodge
+    cameroon: Cameroun
     canada: Canada
+    cape_verde: Cap Vert
+    cayman_islands: Îles Caïmans
+    central_african_republic: République Centrafricaine
     central_america: Amérique centrale
+    chad: Tchad
+    chile: Chili
     china: Chine
+    christmas_island: Ile Christmas
+    clipperton_island: Île de Clipperton
+    cocos_islands: Îles Cocos
     colombia: Colombie
+    commonwealth_of_the_northern_mariana_islands: Îles Mariannes du Nord
+    comoros: Comores
+    cook_islands: Iles Cook
+    costa_rica: Costa Rica
+    cote_d_ivoire: Côte d'Ivoire
+    croatia: Croatie
+    cuba: Cuba
+    curacao: Curaçao
+    cyprus: Chypre
+    czech_republic: République Tchèque
+    democratic_republic_of_the_congo: République démocratique du Congo
     denmark: Danemark
+    djibouti: Djibouti
+    dominica: Dominique
+    dominican_republic: République Dominicaine
+    east_timor: Timor oriental
+    ecuador: Equateur
     egypt: Égypte
+    el_salvador: Le Salvador
     equatorial_guinea: Guinée équatoriale
+    eritrea: Erythrée
+    estonia: Estonie
+    ethiopia: Ethiopie
     europe: Europe
+    falkland_islands: Iles Falkland
+    faroe_islands: Îles Féroés
+    fiji: Fidji
+    finland: Finlande
     france: France
+    french_guiana: Guinée Française
+    french_polynesia: Polynésie Française
+    french_southern_territories: Territoires Français du Sud
+    gabon: Gabon
+    gambia: Gambie
+    georgia: Géorgie
     germany: Allemagne
+    ghana: Ghana
+    gibraltar: Gibraltar
     greece: Grèce
+    greenland: Groenland
+    grenada: Grenade
+    guadeloupe: Guadeloupe
+    guam: Guam
+    guatemala: Guatémala
+    guernsey: Guernesey
+    guinea: Guinée
+    guinea_bissau: Guinée-Bissau
+    guyana: Guyane
+    haiti: Haïti
+    heard_island_and_mcdonald_islands: Îles Heard-et-MacDonald
+    honduras: Honduras
     hong_kong: Hong-Kong
     hungary: Hongrie
-    italy: Italie
+    iceland: Icelande
     india: Inde
+    indonesia: Indonésie
+    iran: Iran
     iraq: Iraq
+    ireland: Irelande
+    isle_of_man: Ile de Man
+    israel: Israel
+    italy: Italie
+    jamaica: Jamaïque
     japan: Japon
+    jersey: Jersey
+    jordan: Jordanie
+    kazakhstan: Kazakhstan
+    kenya: Kénya
+    kiribati: Kiribati
     korea: Corée
+    kosovo: Kosovo
+    kuwait: Koweit
+    kyrgyzstan: Kyrgyzstan
+    laos: Laos
+    latvia: Lettonie
+    lebanon: Liban
+    lesotho: Lesotho
+    liberia: Libéria
+    libya: Libye
+    liechtenstein: Liechtenstein
+    lithuania: Lithuanie
+    luxembourg: Luxembourg
+    macao: Macao
+    macedonia: Macédoine
+    madagascar: Madagascar
+    malawi: Malawi
+    malaysia: Malaisie
+    maldives: Maldives
+    mali: Mali
+    malta: Malte
+    marshall_islands: Îles Marshall
     martinique: Martinique
+    mauritania: Mauritanie
+    mauritius: Maurice
+    mayotte: Mayotte
     mexico: Mexique
+    micronesia: Micronésie
+    moldova: Moldavie
+    monaco: Monaco
+    mongolia: Mongolie
+    montenegro: Monténégro
+    montserrat: Montserrat
+    morocco: Maroc
+    mozambique: Mozambique
+    myanmar: Myanmar
+    namibia: Namibie
+    nauru: Nauru
+    nepal: Népal
     netherlands: Pays-Bas
+    new_caledonia: Nouvelle Calédonie
     new_guinea: Nouvelle-Guinée
     new_zealand: Nouvelle-Zélande
+    nicaragua: Nicaragua
+    niger: Niger
+    nigeria: Nigéria
+    niue: Niue
+    norfolk_island: Île Norfolk
     north_africa: Afrique du Nord
     north_america: Amérique du Nord
+    north_korea: Corée du Nord
+    northern_cyprus: Chypre du nord
+    norway: Norvège
+    oman: Oman
+    pakistan: Pakistan
+    palau: Palau
+    palestina: Palestine
     palestine: Palestine
     panama: Panama
+    papua_new_guinea: Papouasie Nouvelle Guinée
+    paraguay: Paraguay
     peru: Pérou
+    philippines: Philippines
+    pitcairn_islands: Îles Pitcairn
     poland: Pologne
     portugal: Portugal
+    puerto_rico: Porto Rico
+    qatar: Quatar
     republic_of_congo: Congo
+    reunion: Réunion
+    romania: Roumanie
     russia: Russie
-    saudi_arabia: Arabie saoudite
+    rwanda: Rwanda
+    saint_barthelemy: Saint-Barthélémy
+    saint_helena: Sainte Hélène
+    saint_kitts_and_nevis: Saint Kitts et Nevis
+    saint_lucia: Sainte Lucie
+    saint_martin: Saint-Martin
+    saint_pierre_and_miquelon: Saint Pierre et Miquelon
+    saint_vincent_and_the_grenadines: Saint Vincent et les Grenadines
+    samoa: Samoa
+    san_marino: Saint Marin
     sao_tome_and_principe: Sao Tomé-et-Principe
+    saudi_arabia: Arabie saoudite
+    senegal: Sénégal
+    serbia: Serbie
+    seychelles: Seychelles
+    sierra_leone: Sierra Leone
     singapore: Singapour
+    sint_maarten: Saint Martin
+    slovakia: Slovaquie
+    slovenia: Slovénie
+    solomon_islands: Iles Salomon
+    somalia: Somalie
     south_africa: Afrique du Sud
     south_america: Amérique du Sud
+    south_georgia_and_the_south_sandwich_islands: Géorgie du sud et îles Sandwich
+      du sud
+    south_korea: Corée du Sud
+    south_sudan: Soudan du Sud
     spain: Espagne
+    sri_lanka: Sri Lanka
+    sudan: Soudan
+    suriname: Surinam
+    svalbard_and_jan_mayen: Svalbard et Jan Mayen
+    swaziland: Swaziland
     sweden: Suède
     switzerland: Suisse
     syria: Syrie
+    taiwan: Taïwan
+    tajikistan: Tajikistan
+    tanzania: Tanzanie
     thailand: Thaïlande
+    togo: Togo
+    tokelau: Tokelau
+    tonga: Tonga
     trinidad_and_tobago: Trinité-et-Tobago
+    tunisia: Tunisie
     turkey: Turquie
+    turkmenistan: Turkménistan
+    turks_and_caicos_islands: Îles Turques-et-Caïques
+    tuvalu: Tuvalu
+    uganda: Ouganda
+    ukraine: Ukraine
+    united_arab_emirates: Union des Emirats Arabes
     united_kingdom: Royaume-Uni
     united_states: États-Unis
+    united_states_minor_outlying_islands: Îles mineures éloignées des États-Unis
+    united_states_virgin_islands: Îles Vierges des États-Unis
+    uruguay: Uruguay
+    uzbekistan: Ouzbékistan
+    vanuatu: Vanuatu
+    vatican_city: Cité du Vatican
+    venezuela: Vénézuela
+    vietnam: Vietnam
     virgin_islands: Îles Vierges
+    wallis_and_futuna: Wallis et Futuna
     west_africa: Afrique occidentale
+    western_sahara: Sahara Occidental
+    yemen: Yémen
+    zambia: Zambie
+    zimbabwe: Zimbabwe
   places_of_interest: Endroits intéressants
   places_merged_successfully: Les lieux ont bien été fusionnés!
   plants: plantes
@@ -3335,6 +3588,11 @@ fr:
   processing: Traitement
   processing3p: Traitement en cours…
   profile: Profil
+  profile_visibility_pending_account_verification: Vérification de la visibilité du
+    profil des comptes en attente
+  profile_visibility_desc: Dans l'effort de vouloir combattre les spams sur %{site_name},
+    les profils des utilisateurs ne sont visibles publiquement uniquement après qu'un
+    utilisateur a contribué à plusieurs observations Research Grade.
   project: Projet
   project_added_your_observations: Vos observations ont été ajoutées au projet
   project_admins:
@@ -3425,6 +3683,7 @@ fr:
   rank_position: Rang
   rank_restrictions: Restrictions de rang
   ranks:
+    stateofmatter: État des choses
     kingdom: Royaume
     subkingdom: Sous-royaume
     phylum: Embranchement
@@ -3483,6 +3742,7 @@ fr:
   recent_comments_on_your_stuff: Commentaires récents sur vos trucs
   recent_evidence?: Preuve récente ?
   recent_evidence_of_organism: Preuve récente d’un organisme
+  recent_new_users: Nouveaux utilisateurs récents
   recent_observations: Observations récentes
   recent_observations_: Observations récentes
   recent_post: Note récente
@@ -3512,6 +3772,18 @@ fr:
   reject_the_community_id: rejeter l’ID de la communauté
   related_species: Espèces apparentées
   relative_observations: Observations relatives
+  relationship: Relation
+  relationship_x: 'Relation : %{relationship}'
+  relationships:
+    match: correspond
+    one_to_one: de un à un
+    alternate_position: changer de position
+    many_to_many: de plusieurs à plusieurs
+    many_to_one: de plusieurs à un
+    one_to_many: de un vers plusieurs
+    not_external: pas externe
+    not_internal: non interne
+    unknown: inconnu
   reload_and_refresh: Recharger et rafraîchir la liste
   reload_from_observations: Recharger à partir des observations
   reload_timed_out: Délai de rechargement écoulé. Veuillez réessayer plus tard.
@@ -3614,6 +3886,7 @@ fr:
     must_be_in: doit être dans le taxon
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser
       les superviseurs du projet à voir les coordonnées.
+  running_total: Total actuel
   said: a dit
   sat: Sam
   satellite: satellite
@@ -3641,6 +3914,7 @@ fr:
     one: Enregistrement de l’observation…
     other: Enregistrement de %{num} sur %{count} observations…
   saving_verb: Enregistrement
+  scale_colon: 'Échelle :'
   schemes: Plans
   schemes_including: Plans comprenant
   scientific_names: Noms scientifiques
@@ -3725,6 +3999,7 @@ fr:
   set_license: Établir la licence
   settings: paramètres
   share: Partager
+  share_colon: 'Partager:'
   share_your_observation_with_researchers_by: Échangez vos observations avec les chercheurs
     en
   short_code_for_this_place: Abréviation pour ce lieu, par ex. É.-U. pour États-Unis
@@ -3746,6 +4021,7 @@ fr:
   show_only: 'Montrer seulement :'
   show_relative_proportions_of_all_observations: Afficher les proportions relatives
     de toutes les observations
+  show_running_total: Afficher le total actuel
   show_scientific_name_first: Afficher les noms scientifiques en premier
   show_taxa_from_both: (afficher les taxons des deux listes)
   show_taxa_from_everywhere: Afficher les taxons de partout
@@ -3895,11 +4171,13 @@ fr:
   source_unknown: Source inconnue
   source_url: URL de la source
   source_of_coordinates: Source des coordonnées et mesure de précision établies automatiquement.
+  sourced_to: Obtenu depuis
   sources: Sources
   sources_youve_added: Sources que vous avez ajoutées
   sources_and_credits: Sources et générique
   sourcing: Source
   spam: Pourriel
+  spammer: Pollueur
   spanish: Espagnol
   species: Espèces
   species_by_category: espèces par catégorie
@@ -3948,6 +4226,8 @@ fr:
   stop_following_user: Arrêter de suivre %{user}
   stop_testing: Arrêter le test
   stop_updating_position: Arrêter la mise à jour de l’emplacement
+  studies_that_used_inaturalist_data_in_year: Etudes ayant utilisé les données de
+    iNaturalist en %{year}
   stuff_just_added: Trucs que vous venez d’ajouter…
   subject_resolved_noun_html: '%{subject} a réglé %{noun}'
   subject_affecting_stuff_html: '%{subject} touchant %{stuff}'
@@ -3991,6 +4271,7 @@ fr:
   suggestions: Suggestions
   summary: Résumé
   supporting: Soutenir
+  support_inaturalist: Supporter iNaturalist
   suspicious_photos: Photos suspectes
   siutable_observations: observations appropriées
   sun: Dim
@@ -4098,6 +4379,11 @@ fr:
   taxon_colors: Couleurs des taxons
   taxon_curators: Superviseurs des taxons
   taxon_extras: Taxons additionnels
+  taxon_framework_notes: Notes du cadre de taxon
+  taxon_framework_relationship_for: Relation du cadre de taxon pour
+  taxon_framework_relationship: Relation du cadre de taxon
+  taxon_framework_relationships: Relations du cadre de taxon
+  taxon_framework_taxon: Taxon du cadre de taxon
   taxon_links: Liens de taxon
   taxon_merge: fusion de taxon
   taxon_name: Nom du taxon
@@ -4138,6 +4424,11 @@ fr:
   taxonomic_status: Situation taxinomique
   taxonomic_tags_for_flickr: Étiquettes taxinomiques pour Flickr
   taxonomic_tree_browser: Explorateur de l’arborescence taxinomique
+  taxonomy_details: Détails de la taxonomie
+  taxonomy_details_for: Détail de la taxonomie pour
+  taxonomy_details_info: La page de détails de la taxonomie utilise les cadres de
+    taxon pour aider à décrire ce que nous voulons dire par taxon. <a href="/pages/taxon_frameworks">En
+    savoir plus</a>.
   taxonomy_settings: Configuration de taxinomie
   tell_everyone_a_little_about_you: Dites-en un peu sur vous à tout le monde
   tell_the_world_a_little_about_yourself: Parlez-nous de vous
@@ -4271,6 +4562,9 @@ fr:
   there_were_some_problems_with_fields: 'Il y a eu des problèmes avec les champs suivants
     :'
   theres_also: il y a aussi
+  theres_something_wrong_with_taxon_framework_relationship: Il y a quelque chose en
+    erreur ici — nous ne pouvons pas déterminer la relation entre des taxons interne
+    et externe
   these_are_items_people_on: Il y a des articles que les personnes membres de ce site
     ont signalés aux fins d’organisation. Le pourriel doit être supprimé et les utilisateurs
     responsables doivent être suspendus (allez sur leur page de profil et cliquez
@@ -4459,6 +4753,7 @@ fr:
   unknown: Inconnu
   unknown_error: Erreur inconnue
   unknown_rank: (Rang inconnu)
+  unknown_taxon_framework_relationship: Relation de cadre de taxon inconnue
   unfollow: Ne plus suivre
   unlink_your_google_account: Supprimer le lien de votre compte Google
   unmute: Supprimer la mise en silence
@@ -4566,6 +4861,8 @@ fr:
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} a choisi de maintenir
     le contrôle des taxons associés à cette observation'
   user_hasnt: '%{user} n’a pas'
+  user_helped_x_people_with_y_ids_html: '%{user} a aidé <strong>%{x} personne(s)</strong>
+    avec <strong>%{y} IDs</strong>'
   user_invite_observation_to_project: '%{user} aimerait obtenir votre observation
     « %{observation} » dans le projet %{project}.'
   user_invited_you_to_join_html: '%{user} vous a invité à vous joindre'
@@ -4841,6 +5138,7 @@ fr:
   x_of_y: '%{x} sur %{y}'
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} sur %{y} personnes (plus de 2/3)
     sont d’accord que c’est'
+  x_is_the_root_of_the_tree: '%{rank} %{name} est la racine de l’arbre'
   x_project_journal: '%{name} de %{project}'
   x_project_stats: Stats de %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} vous a envoyé un nouveau message sur %{y}:'
@@ -5132,6 +5430,31 @@ fr:
           please_read_the_teachers_guide_html: Si c’est le cas, veuillez lire notre
             <a href="%{url}">Guide de l’enseignant</a> pour des conseils sur l’utilisation
             de %{site_name} avec des étudiants.
+    donate:
+      donate_short_desc: Faites un don maintenant pour montrer que vous nous soutenez
+         !
+      donate_desc_html: |-
+        <p class="lead">
+          <strong>iNaturalist est une des plus grandes communautés du monde dédiée à
+          l’exploration de la biodiversité. Merci d’en faire partie !</strong>
+        </p>
+        <p class="lead">
+          Si vous croyez en la puissance de cette communauté globale d’amateurs de la nature
+          pour partager la connaissance et générer des données de biodiversité irremplaçables,
+          veuillez envisager un don ponctuel ou récurrent.
+        </p>
+        <p class="lead">
+          Votre don aide à soutenir iNaturalist au fur et à mesure que la communauté s’accroît, pour
+          une vision avancée des machines et l’implémentation de nouvelles fonctionnalités pour soutenir
+          nos serveurs et notre équipe.
+        </p>
+        <p class="text-muted">
+          iNaturalist est une initiative conjointe de l’Académie des Sciences de Californie
+          et de la Société Géographique Nationale. Tous les dons seront reçus par
+          l’Académie des Sciences de Californie, une organisation à but non lucratif 501 (c)(3)
+          non soumise à l’impôt basée aux États-Unis d’Amérique.
+        </p>
+      post_donate_social_media_text: Je soutiens iNaturalist  parce que...
     guides:
       index:
         funding_html: |-
@@ -6277,6 +6600,31 @@ fr:
           Créé via <a href="https://www.inaturalist.org">iNaturalist</a>
           ou les sites web <a href="%{url}">Réseau iNaturalist</a>
       year:
+        include_usa: NOUS inclure
+        growth_by_country_title: Croissance par pays
+        growth_in_year_obs: Croissance pendant %{year} (obs)
+        growth_title: Croissance
+        new_species_desc: |-
+          Espèces ayant été observées pour la première fois cette année sur %{site_name} .
+          Affichage de %{x} sur <a href="%{url}">%{y} espèces</a>.
+        new_species_desc_html: |-
+          Espèces ajoutées pour la première fois cette année.
+          Cliquez sur un mois pour voir certaines des nouvelles espèces ajoutées pendant le mois en question.
+          Vous pouvez aussi afficher le total des espèces accumulées, ou faire remonter le curseur
+          dans le temps pour voir d’autres espèces nouvellement observées. Ce graphique montre
+          les espèces dont l'observation est vérifiable en fonction du mois où elles ont été chargées
+          sur %{site_name} (et non pas le mois de leur observation). Il n’inclut pas
+          de taxons de niveau supérieur ou inférieur, donc une observation identifiée comme
+          Mammifère ne compte pas, et une observation d’une sous-espèce de <i>Canis lupus</i>
+          <i>arctos</i> comptera seulement comme <i>Canis lupus</i>.
+        obs_in_year: Obs en %{year}
+        percent_growth_in_year: '% de croissance en %{year}'
+        percent_of_total_growth: '% de croissance totale'
+        publications_desc_html: "Données d'impact et affichages, avec l'amabilté de\n<a
+          href=\"https://www.altmetric.com\">Altmetric</a>. Information\nconcernant
+          l'utilisation des données, avec l'amabilité de nos amis de la \n<a href=\"https://www.gbif.org/\">Global
+          Biodiversity Information Faciltity</a>.\n<br/>\n<a href=\"%{url}\">Voir
+          toutes les %{numStudies} études</a>"
         sunburst_desc_html: |-
           Taxons observés arrangés sous forme d’un diagramme « soleil » hiérarchisé. La base
           de la hiérarchie est au centre, en commençant par « Vie » et en se terminant
@@ -6515,32 +6863,41 @@ fr:
           les coordonnées privées ou masquées des observations que vous ajoutez à
           ce projet.
       edit:
-        blocking_desc_html: "<p>\n  Bloquer quelqu'un l'empêche de vous envoyer des
-          messages, de commenter vos\n  observations, d'identifier vos observations
-          et d'interagir autrement\n  avec vous sur %{site_name}. Cela supprime également
-          ses observations de vos\n  résultats de recherche et supprime vos observations
-          ses résultats de \n  recherche. Cependant, cela ne vous rend pas invisible
-          pour lui. Il peut toujours \n  trouver vos observations et regardez votre
-          profil, il ne peut tout simplement pas\n  interagir avec vous.\n</ p>\n<p>\n
-          \ Le blocage est pour des situations où vous ne pouvez simplement pas vous
-          entendre\n  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
-          pour\n  régler les différends d'une manière civilisée. Ce n'est pas un moyen
-          pour se cacher de\n  personnes, pour empêcher les identifications de personnes
-          dont vous ne partagez pas les opinions, ou de retirer votre identifiant
-          de la communauté (il y en a un autre moyen \n  de régler cela). Ainsi, le
-          blocage fonctionne dans les deux sens: si vous bloquez\n  quelqu'un, ils
-          ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir\n
-          \ avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
-          vos\n  observations, vous vous empêchez également d'identifier ses\n  observations.\n</
-          p>\n<p>\n  Vous ne pouvez bloquer que trois personnes. Nous pensons que
-          c'est un nombre raisonnable\n  qui accueille les personnes qui ont besoin
-          de bloquer et\n  prévenir les abus de blocage. Si vous sentez que vous devez
-          bloquer plus\n  <a href=\"mailto:%{help_email}\"> contactez-nous </a>.\n</
-          p>\n<p>\n  Si quelqu'un vous harcèle ou vous traque sur %{site_name},\n
-          \ <a href=\"mailto:%{help_email}\"> merci de nous le faire savoir </a>.
-          Si\n  cela représente une violation de nos conditions d'utilisation ou représente\n
-          \ autre comportement que nous considérons inapproprié pour notre site, nous\n
-          \ enquêterons.\n</ p>"
+        blocking_desc_html: |-
+          <p>
+            Bloquer quelqu'un l'empêche de vous envoyer des
+            messages, de commenter vos  observations, d'identifier vos observations
+            et d'interagir autrement  avec vous sur %{site_name}. Cela supprime également
+            ses observations de vos  résultats de recherche et supprime vos observations
+            ses résultats de   recherche. Cependant, cela ne vous rend pas invisible
+            pour lui. Il peut toujours   trouver vos observations et regardez votre
+            profil, il ne peut tout simplement pas  interagir avec vous.
+          </p>
+          <p>
+            Le blocage est pour des situations où vous ne pouvez simplement pas vous
+            entendre  avec quelqu'un et il ne vous laissera pas seul, malgré vos efforts
+            pour  régler les différends d'une manière civilisée. Ce n'est pas un moyen
+            pour se cacher de  personnes, pour empêcher les identifications de personnes
+            dont vous ne partagez pas les opinions, ou de retirer votre identifiant
+            de la communauté (il y en a un autre moyen   de régler cela). Ainsi, le
+            blocage fonctionne dans les deux sens: si vous bloquez  quelqu'un, ils
+            ne peuvent pas interagir avec vous, mais vous ne pouvez pas non plus interagir
+            avec eux. Si vous l'utilisez mal pour empêcher quelqu'un d'identifier
+            vos  observations, vous vous empêchez également d'identifier ses  observations.
+          </p>
+          <p>
+            Vous ne pouvez bloquer que trois personnes. Nous pensons que
+            c'est un nombre raisonnable  qui accueille les personnes qui ont besoin
+            de bloquer et  prévenir les abus de blocage. Si vous sentez que vous devez
+            bloquer plus  <a href="mailto:%{help_email}"> contactez-nous </a>.
+          </p>
+          <p>
+            Si quelqu'un vous harcèle ou vous traque sur %{site_name},
+            <a href="mailto:%{help_email}"> merci de nous le faire savoir </a>.
+            Si cela représente une violation de nos conditions d'utilisation ou représente
+            autre comportement que nous considérons inapproprié pour notre site, nous
+            enquêterons.
+          </p>
         common_names_desc: |-
           Afficher les noms vulgaires. À désactiver si vous ne voulez voir que les noms scientifiques.
           Notez que vous pouvez contrôler le type de noms vulgaires que vous voyez en changeant vos paramètres régionaux et votre localisation.

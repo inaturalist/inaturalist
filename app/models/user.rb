@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   include ActsAsElasticModel
 
   acts_as_voter
-  acts_as_spammable :fields => [ :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :description ],
+                    comment_type: "signup"
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
   preference :common_names, :boolean, default: true 
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
+  preference :medialess_obs_maps, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
@@ -340,6 +341,10 @@ class User < ActiveRecord::Base
   end
   
   def whitelist_licenses
+    self.preferred_observation_license = Shared::LicenseModule.normalize_license_code( preferred_observation_license )
+    self.preferred_photo_license = Shared::LicenseModule.normalize_license_code( preferred_photo_license )
+    self.preferred_sound_license = Shared::LicenseModule.normalize_license_code( preferred_sound_license )
+    
     unless preferred_observation_license.blank? || Observation::LICENSE_CODES.include?( preferred_observation_license )
       self.preferred_observation_license = nil
     end
@@ -1194,6 +1199,45 @@ class User < ActiveRecord::Base
   def personal_lists
     lists.not_flagged_as_spam.
       where("(type IN ('LifeList', 'List') OR type IS NULL)")
+  end
+
+  # Iterates over recently created accounts of unknown spammer status, zero
+  # obs or ids, and a description with a link. Attempts to run them past
+  # akismet three times, which seems to catch most spammers
+  def self.check_recent_probable_spammers( limit = 100 )
+    spammers = []
+    num_checks = {}
+    User.order( "id desc" ).limit( limit ).
+        where( "spammer is null " ).
+        where( "created_at < ? ", 12.hours.ago ). # half day grace period
+        where( "description is not null and description != '' and description ilike '%http%'" ).
+        where( "observations_count = 0 and identifications_count = 0" ).
+        pluck(:id).
+        in_groups_of( 10 ) do |ids|
+      puts
+      puts "BATCH #{ids[0]}"
+      puts
+      3.times do |i|
+        batch = User.where( "id IN (?)", ids )
+        puts "Try #{i}"
+        batch.each do |u|
+          next if spammers.include?( u.login )
+          num_checks[u.login] ||= 0
+          puts "#{u}, checked #{num_checks[u.login]} times already"
+          num_checks[u.login] += 1
+          u.description_will_change!
+          u.check_for_spam
+          puts "\tu.akismet_response: #{u.akismet_response}"
+          u.reload
+          if u.spammer == true
+            puts "\tSPAM"
+            spammers << u.login
+          end
+          sleep 1
+        end
+        sleep 10
+      end
+    end
   end
 
 end

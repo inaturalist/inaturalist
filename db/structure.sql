@@ -1265,7 +1265,9 @@ CREATE TABLE flags (
     user_id integer DEFAULT 0 NOT NULL,
     resolver_id integer,
     resolved boolean DEFAULT false,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    resolved_at timestamp without time zone,
+    flaggable_user_id integer
 );
 
 
@@ -9681,6 +9683,8 @@ INSERT INTO schema_migrations (version) VALUES ('20181028002405');
 INSERT INTO schema_migrations (version) VALUES ('20181102233037');
 
 INSERT INTO schema_migrations (version) VALUES ('20181110004422');
+
+INSERT INTO schema_migrations (version) VALUES ('20190104024910');
 
 INSERT INTO schema_migrations (version) VALUES ('20181120235404');
 

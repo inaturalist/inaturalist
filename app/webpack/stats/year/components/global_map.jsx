@@ -37,7 +37,11 @@ class GlobalMap extends React.Component {
       ttl: 86400
     };
     if ( site && site.id !== DEFAULT_SITE_ID ) {
-      baseOptions.site_id = site.id;
+      if ( site.place_id ) {
+        baseOptions.place_id = site.place_id;
+      } else {
+        baseOptions.site_id = site.id;
+      }
     }
     const thisYearOptions = Object.assign( { }, baseOptions, {
       year,
@@ -50,9 +54,11 @@ class GlobalMap extends React.Component {
       color: "#ffee91"
     } );
     const thisYear = L.tileLayer(
-      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( thisYearOptions )}` ).addTo( map );
+      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( thisYearOptions )}`
+    ).addTo( map );
     const lastYear = L.tileLayer(
-      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( lastYearOptions )}` ).addTo( map );
+      `${apiURL}/colored_heatmap/{z}/{x}/{y}.png?${$.param( lastYearOptions )}`
+    ).addTo( map );
     L.control.layers( { },
       {
         [I18n.t( "x_observations", { count: year - 1 } )]: lastYear,
@@ -76,15 +82,24 @@ class GlobalMap extends React.Component {
     const { site, year } = this.props;
     if ( !site || site.id === DEFAULT_SITE_ID ) { return; }
     const searchParams = {
-      site_id: site.id,
       year,
       return_bounds: true,
       per_page: 1
     };
+    if ( site.place_id ) {
+      searchParams.place_id = site.place_id;
+    } else {
+      searchParams.site_id = site.id;
+    }
     inaturalistjs.observations.search( searchParams ).then( r => {
+      // Deal with the date line for our friends in NZ
+      const b = r.total_bounds;
+      if ( b.swlng > 0 && b.nelng < 0 ) {
+        b.nelng = 180 + 180 + b.nelng;
+      }
       map.fitBounds( [
-        [r.total_bounds.nelat, r.total_bounds.nelng],
-        [r.total_bounds.swlat, r.total_bounds.swlng]
+        [b.nelat, b.nelng],
+        [b.swlat, b.swlng]
       ] );
     } );
   }

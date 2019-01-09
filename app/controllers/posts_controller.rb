@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   load_only = [ :show, :edit, :update, :destroy ]
   before_filter :load_post, :only => load_only
   blocks_spam :only => load_only, :instance => :post
+  check_spam only: [:create, :update], instance: :post
   before_filter :load_parent, :except => [:browse, :for_project_user, :for_user]
   before_filter :load_new_post, :only => [:new, :create]
   before_filter :owner_required, :only => [:create, :edit, :update, :destroy]

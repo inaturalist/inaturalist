@@ -217,7 +217,7 @@ input.failed, textarea.failed {
     .panel-title {
       font-weight: normal;
       font-size: 14px;
-      .glyphicon {
+      .glyphicon.toggle {
         margin-left: 10px;
         font-size: 0.8em;
         -moz-transition: all 0.2s ease;
@@ -226,7 +226,7 @@ input.failed, textarea.failed {
         transition: all 0.2s ease;
       }
       .collapsed {
-        .glyphicon {
+        .glyphicon.toggle {
           -moz-transform: rotate(90deg);
           -webkit-transform: rotate(90deg);
           -ms-transform: rotate(90deg);
