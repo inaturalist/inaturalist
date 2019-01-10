@@ -32,12 +32,12 @@ const TaxonomicBranch = ( {
   }
   const renderTaxonomy = taxa => (
     <ul className="plain taxonomy">
-      { ( _.sortBy( taxa, t => t.name ) || [] ).map( t => {
+      { ( _.sortBy( taxa, t => [(100 - t.rank_level), t.name] ) || [] ).map( t => {
         let className = "";
         const isRoot = t.id === branch[0].id;
         const isTaxon = t.id === taxon.id;
         const isDescendant = t.ancestor_ids && t.ancestor_ids.indexOf( taxon.id ) >= 0;
-        const shouldLinkToTaxon = !isRoot && !isTaxon;
+        const shouldLinkToTaxon = !isTaxon;
         const isComplete = isTaxon && taxon.complete_rank && taxon.rank_level > RANK_LEVELS[taxon.complete_rank];
         const isHidable = isDescendant && ( t.rank === "hybrid" || !t.is_active || t.extinct );
         const numChildren = ( t.children || [] ).length;

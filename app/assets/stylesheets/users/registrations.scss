@@ -1,0 +1,234 @@
+@import "../colors";
+@import "../responsive";
+
+#imgcol {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
+  width: 50%;
+  position: relative;
+
+  .about-observation {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 30px;
+    display: flex;
+    background-color: rgba(0,0,0,0.5);
+    color: #ebebeb;
+
+    .usericon {
+      width: 76px;
+      height: 76px;
+      margin-right: 20px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 100px;
+    }
+
+    .details {
+      line-height: 24px;
+      a {
+        color: white;
+      }
+      .username {
+        font-size: 18px;
+        font-weight: bold;
+      }
+    }
+  }
+}
+#formcol {
+  flex: 1;
+  position: relative;
+  .inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+  h1 {
+    font-size: 27px;
+    line-height: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 33px;
+    margin-top: 40px;
+  }
+  .form-control {
+    box-shadow: none;
+  }
+  input[type="text"],
+  input[type="email"],
+  input[type="password"] {
+    border: 1px solid #ebebeb;
+    background-color: #f8f8f8;
+    color: #666;
+    border-radius: 7px;
+    padding-left: 41.3px;
+    font-size: 15px;
+    font-weight: 100;
+  }
+  .form-group.text-field {
+    position: relative;
+  }
+  .form-group.text-field:before {
+    position: absolute; 
+    top: 8px;
+    left: 13px;
+    font: normal normal normal 14px/1 FontAwesome;
+    color: $inat-green;
+    font-size: 18px;
+    width: 16px;
+    text-align: center;
+  }
+  .form-group.text-field.email:before {
+    content: "\f0e0";
+  }
+  .form-group.text-field.password:before {
+    content: "\f13e";
+  }
+  .log-in .form-group.text-field.password:before,
+  .form-group.text-field.password-confirmation:before {
+    content: "\f023";
+  }
+  .form-group.text-field.username:before {
+    font-family: "inaturalisticons";
+    content: "\e009";
+  }
+  form {
+    width: 304px;
+    margin: 0 auto;
+  }
+  .recaptcha {
+    margin: 30px 0;
+    .g-recaptcha {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 0px;
+    }
+  }
+  .error {
+    margin-top: 5px;
+  }
+  label {
+    display: flex;
+    font-weight: normal;
+    font-size: 15px;
+    color: #666;
+    a {
+      font-weight: bold;
+      color: #666;
+    }
+  }
+
+  .btn-primary.btn-inat {
+    margin-top: 20px;
+    padding-bottom: 7px;
+  }
+
+  .btn-link {
+    font-size: 18px;
+    text-decoration: underline;
+    color: #666;
+    white-space: normal;
+  }
+
+  .bigtext {
+    font-size: 23px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    margin-top: 20px;
+  }
+  .log-in .bigtext {
+    font-size: 20px;
+    margin-top: 57px;
+  }
+
+  .btn-inat {
+    width: 100%;
+    font-weight: bold;
+    &.btn-lg {
+      font-size: 20px;
+    }
+  }
+
+  .providerlink {
+    font-weight: bold;
+    color: white;
+    background-color: $border-grey;
+    i {
+      font-weight: normal;
+      font-size: 32px;
+      line-height: 32px;
+      vertical-align: middle;
+    }
+    &.facebook {
+      background-color: $facebook-blue;
+      border-color: $facebook-blue;
+    }
+    &.google {
+      background-color: $google-red;
+      border-color: $google-red;
+    }
+    &.twitter {
+      background-color: $twitter-blue;
+      border-color: $twitter-blue;
+    }
+    &.flickr {
+      background-color: black;
+      border-color: black;
+    }
+    &.yahoo {
+      background-color: $yahoo-purple;
+      border-color: $yahoo-purple;
+    }
+  }
+
+  .providerlink.btn-primary {
+    width: 100%;
+    border-radius: 5px;
+    i {
+      margin-right: 10px;
+    }
+  }
+  .providerlink.btn-circle {
+    border-radius: 100px;
+    width: 43px;
+    height: 43px;
+    line-height: 30px;
+    border-width: 0;
+    text-align: center;
+    i {
+      font-size: 21px;
+      line-height: 0;
+    }
+    &.twitter {
+      i {
+        font-size: 26px;
+        position: relative;
+        left: -1px;
+      }
+    }
+    &.yahoo {
+      i {
+        font-size: 18px;
+      }
+    }
+  }
+
+  .provider-authorizations {
+    margin-bottom: 30px;
+    span {
+      position: relative;
+      top: 2px;
+    }
+  }
+  .log-in .provider-authorizations {
+    display: flex;
+    justify-content: space-between;
+  }
+}

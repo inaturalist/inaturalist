@@ -704,6 +704,7 @@ class Observation < ActiveRecord::Base
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
+      { identifications: :stored_preferences },
       { photos: [ :flags, :user ] },
       :stored_preferences, :flags, :quality_metrics ]
     # why do we need taxon_descriptions when logged in?
@@ -1290,9 +1291,16 @@ class Observation < ActiveRecord::Base
         CASUAL
       elsif (
         owners_identification &&
-        owners_identification.taxon.rank_level &&
-        owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
-        community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+        owners_identification.taxon.rank_level && (
+          (
+            owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
+            community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+          ) || (
+            owners_identification.taxon.rank_level == Taxon::GENUS_LEVEL &&
+            community_taxon == owners_identification.taxon &&
+            voted_out_of_needs_id?
+          )
+        )
       )
         RESEARCH_GRADE
       elsif voted_out_of_needs_id?
@@ -1871,7 +1879,8 @@ class Observation < ActiveRecord::Base
   def set_license
     return true if license_changed? && license.blank?
     self.license ||= user.preferred_observation_license
-    self.license = nil unless LICENSE_CODES.include?(license)
+    self.license = Shared::LicenseModule.normalize_license_code( license )
+    self.license = nil unless LICENSE_CODES.include?( license )
     true
   end
 
@@ -1981,13 +1990,18 @@ class Observation < ActiveRecord::Base
   end
 
   def update_quality_metrics
+    Rails.logger.debug "[DEBUG] update_quality_metrics"
     return true if skip_quality_metrics
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
-    elsif captive_flag.noish? && force_quality_metrics
-      QualityMetric.vote( user, self, QualityMetric::WILD, true )
+    # elsif captive_flag.noish? && force_quality_metrics
+    #   Rails.logger.debug "captive_flag: #{captive_flag}"
+    #   Rails.logger.debug "captive_flag.noish?: #{captive_flag.noish?}"
+    #   QualityMetric.vote( user, self, QualityMetric::WILD, true )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
-      qm.update_attributes( agree: true)
+      Rails.logger.debug "existing: #{qm}, captive_flag: #{captive_flag}"
+      Rails.logger.debug "existing: #{qm}, captive_flag.noish?: #{captive_flag.noish?}"
+      qm.update_attributes( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
     end
@@ -2748,7 +2762,7 @@ class Observation < ActiveRecord::Base
 
   def calculate_mappable
     return false if latitude.blank? && longitude.blank?
-    return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
+    return false if public_positional_accuracy && public_positional_accuracy.to_i > uncertainty_cell_diagonal_meters.to_i
     return false if inaccurate_location?
     return false unless passes_quality_metric?( QualityMetric::EVIDENCE )
     return false unless appropriate?
@@ -2921,12 +2935,8 @@ class Observation < ActiveRecord::Base
     description.mentioned_users & description_was.to_s.mentioned_users
   end
 
-  # Show count of all faves on this observation. cached_votes_total stores the
-  # count of all votes without a vote_scope, which for an Observation means
-  # the faves, but since that might vary from model to model based on how we
-  # use acts_as_votable, faves_count seems clearer.
   def faves_count
-    cached_votes_total
+    votes_for.select{|v| v.vote_scope.blank?}.size
   end
 
   def probably_captive?

@@ -10,8 +10,8 @@ class Taxon < ActiveRecord::Base
   # Allow this taxon to be grafted to locked subtrees
   attr_accessor :skip_locks
   
-  # Allow this taxon to be grafted to complete subtrees
-  attr_accessor :skip_complete
+  # Allow this taxon to be grafted to curated subtrees
+  attr_accessor :skip_taxon_framework_checks
   
   # Allow this taxon to be inactivated despite having active children
   attr_accessor :skip_only_inactive_children_if_inactive
@@ -61,6 +61,7 @@ class Taxon < ActiveRecord::Base
   has_many :taxon_ancestors_as_ancestor, :class_name => "TaxonAncestor", :foreign_key => :ancestor_taxon_id, :dependent => :delete_all
   has_many :ancestor_taxa, :class_name => "Taxon", :through => :taxon_ancestors
   has_one :atlas, inverse_of: :taxon, dependent: :destroy
+  has_one :taxon_framework, inverse_of: :taxon, dependent: :destroy
   has_many :listed_taxon_alterations, inverse_of: :taxon, dependent: :delete_all
   has_many :observation_field_values,
     -> { joins(:observation_field).where( "observation_fields.datatype = ?", ObservationField::TAXON ) },
@@ -70,13 +71,14 @@ class Taxon < ActiveRecord::Base
   belongs_to :creator, :class_name => 'User'
   belongs_to :updater, :class_name => 'User'
   belongs_to :conservation_status_source, :class_name => "Source"
+  belongs_to :taxon_framework_relationship, touch: true
   has_and_belongs_to_many :colors, -> { uniq }
   has_many :taxon_descriptions, :dependent => :destroy
   has_one :en_wikipedia_description,
     -> { where("locale='en' AND provider='Wikipedia'") },
     class_name: "TaxonDescription"
   has_many :controlled_term_taxa, inverse_of: :taxon, dependent: :destroy
-  has_many :taxon_curators, inverse_of: :taxon, dependent: :destroy
+  has_many :taxon_curators, inverse_of: :taxon  # deprecated, remove when we're sure transition to taxon frameworks is complete
   
   accepts_nested_attributes_for :conservation_status_source
   accepts_nested_attributes_for :source
@@ -91,7 +93,10 @@ class Taxon < ActiveRecord::Base
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
              :handle_after_move,
-             :handle_change_in_completeness
+             :update_taxon_framework_relationship
+  after_destroy :update_taxon_framework_relationship
+             
+
   after_commit :index_observations
 
   validates_presence_of :name, :rank
@@ -106,14 +111,15 @@ class Taxon < ActiveRecord::Base
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
-  validate :complete_rank_below_rank
-  validate :graftable_if_complete
+  validate :graftable_relative_to_taxon_framework_coverage
   validate :user_can_edit_attributes, on: :update
+  validate :graftable_destination_relative_to_taxon_framework_coverage
   validate :rank_level_must_be_coarser_than_children
   validate :rank_level_must_be_finer_than_parent
   validate :rank_level_for_taxon_and_parent_must_not_be_nil
   validate :only_inactive_children_if_inactive
   validate :active_parent_if_active
+  validate :has_ancestry_and_active_if_taxon_framework
 
   has_subscribers :to => {
     :observations => {:notification => "new_observations", :include_owner => false}
@@ -184,6 +190,8 @@ class Taxon < ActiveRecord::Base
   end
   ROOT_LEVEL = STATEOFMATTER_LEVEL
   
+  RANK_FOR_RANK_LEVEL = RANK_LEVELS.select{|k,v| !["variety","form","infrahybrid","hybrid","genushybrid"].include? k}.invert
+  
   RANKS = RANK_LEVELS.keys
   VISIBLE_RANKS = RANKS - ['stateofmatter']
   
@@ -203,7 +211,6 @@ class Taxon < ActiveRecord::Base
     'subsp'           => 'subspecies',
     'trinomial'       => 'subspecies',
     'var'             => 'variety',
-    'fo'              => 'form',
     'unranked'        => nil
   }
   
@@ -293,6 +300,7 @@ class Taxon < ActiveRecord::Base
     "chiton",
     "cicada",
     "gall",
+    "hong kong",
     "larva",
     "lichen",
     "lizard",
@@ -303,13 +311,11 @@ class Taxon < ActiveRecord::Base
     "winged insect"
   ]
   
-  PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA = %w(
+  PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA = %w(
     ancestry
     is_active
     rank
     rank_level
-    complete
-    complete_rank
   )
 
   scope :observed_by, lambda {|user|
@@ -435,8 +441,7 @@ class Taxon < ActiveRecord::Base
     const_set('ICONIC_TAXA_BY_NAME', Taxon::ICONIC_TAXA.index_by(&:name))
   end
 
-  # Callbacks ###############################################################
-  
+  # Callbacks ###############################################################  
   def handle_after_move
     return true unless ancestry_changed?
     set_iconic_taxon
@@ -464,39 +469,51 @@ class Taxon < ActiveRecord::Base
     true
   end
 
-  def handle_change_in_completeness
-    return true unless complete_changed? || complete_rank_changed?
-    Taxon.delay( priority: INTEGRITY_PRIORITY, unique_hash: { "Taxon::reindex_descendants_of": id } ).reindex_descendants_of( id )
-    taxon_curators.destroy_all if !complete && complete_was
-    TaxonCurator.
-      joins( taxon: :taxon_ancestors ).
-      where( "taxon_ancestors.ancestor_taxon_id = ?", id ).
-      where( "taxa.rank_level < ?", complete_rank_level.to_i ).
-      destroy_all
-    true
-  end
+  def self.get_internal_taxa_covered_by( taxon_framework )
+    ancestry_string = ( taxon_framework.taxon.rank == STATEOFMATTER || taxon_framework.taxon.ancestry.nil? ) ?
+      "#{ taxon_framework.taxon_id }" : "#{ taxon_framework.taxon.ancestry }/#{ taxon_framework.taxon.id }"
+    other_taxon_frameworks = TaxonFramework.joins(:taxon).
+      where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) )" ).
+      where( "taxa.rank_level > #{ taxon_framework.rank_level } AND taxon_frameworks.rank_level IS NOT NULL" )
+    other_taxon_frameworks_taxa = ( other_taxon_frameworks.count > 0 ) ?
+      Taxon.where(id: other_taxon_frameworks.map(&:taxon_id)) : []
+    
+    internal_taxa = Taxon.where( "ancestry = ? OR ancestry LIKE ?", ancestry_string, "#{ancestry_string}/%" ).
+      where( is_active: true ).
+      where( "rank_level >= ? ", taxon_framework.rank_level).
+      where("( select count(*) from conservation_statuses ct where ct.taxon_id=taxa.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0")
 
-  def self.reindex_descendants_of( taxon )
-    Taxon.elastic_index!( scope: Taxon.joins(:taxon_ancestors).where( "taxon_ancestors.ancestor_taxon_id = ?", taxon ) )
-  end
+    other_taxon_frameworks_taxa.each do |t|
+      internal_taxa = internal_taxa.where("ancestry != ? AND ancestry NOT LIKE ?", "#{t.ancestry}/#{t.id}", "#{t.ancestry}/#{t.id}/%")
+    end
 
-  def complete_rank_level
-    RANK_LEVELS[complete_rank]
+    return internal_taxa
   end
-
+  
+  def self.reindex_taxa_covered_by( taxon_framework )
+    Taxon.elastic_index!( scope: Taxon.get_internal_taxa_covered_by(taxon_framework) )
+  end
+  
+  def update_taxon_framework_relationship
+    return true unless self.taxon_framework_relationship
+    taxon_framework_relationship.set_relationship if (destroyed? || name_changed? || rank_changed? || ancestry_changed? || taxon_framework_relationship_id_changed?)
+    attrs = {}
+    attrs[:relationship] = taxon_framework_relationship.relationship
+    taxon_framework_relationship.update_attributes(attrs)
+  end
+    
   def complete_species_count
     return nil if rank_level.to_i <= SPECIES_LEVEL
-    return nil if complete_rank && complete_rank_level.to_i > SPECIES_LEVEL
-    return nil unless complete_taxon
-    if RANK_LEVELS[complete_taxon.try(:complete_rank)].to_i > SPECIES_LEVEL
-      return nil
+    unless ( taxon_framework && taxon_framework.covers? && taxon_framework.complete && taxon_framework.rank_level <= SPECIES_LEVEL )
+      upstream_framework = upstream_taxon_framework
+      return nil unless ( upstream_framework && upstream_framework.complete && upstream_framework.rank_level <= SPECIES_LEVEL )
     end
     scope = taxon_ancestors_as_ancestor.
       select("distinct taxon_ancestors.taxon_id").
       joins(:taxon).
       where( "taxon_ancestors.taxon_id != ? AND rank = ? AND is_active", id, SPECIES ).
-      joins( "LEFT OUTER JOIN conservation_statuses cs ON cs.taxon_id = taxon_ancestors.taxon_id" ).
-      where( "cs.id IS NULL OR cs.place_id IS NOT NULL OR (cs.place_id IS NULL AND cs.iucn != ?)", Taxon::IUCN_EXTINCT )
+      where( "(select count(*) from conservation_statuses cs
+        WHERE cs.taxon_id = taxa.id AND cs.place_id IS NULL AND cs.iucn = ?) = 0", Taxon::IUCN_EXTINCT )
     scope.count
   end
 
@@ -952,35 +969,57 @@ class Taxon < ActiveRecord::Base
         "locked taxon or merge this taxon with an existing one.")
     end
   end
-
-  def complete_rank_below_rank
-    if complete_rank_level.to_i > rank_level.to_i
-      errors.add( :complete_rank, "must be below the rank" )
+  
+  def get_upstream_taxon_framework(supplied_ancestor_ids = self.ancestor_ids)
+    TaxonFramework.joins("JOIN taxa t ON t.id = taxon_frameworks.taxon_id").
+      where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", supplied_ancestor_ids, rank_level).
+      order("t.rank_level ASC").first
+  end
+      
+  def has_ancestry_and_active_if_taxon_framework
+    return true unless taxon_framework && taxon_framework.covers?
+    return true unless ancestry_changed? || is_active_changed?
+    return true unless ancestry.nil? || is_active == false
+    errors.add( :base, "taxa with attached taxon frameworks must have ancestries and be active. Remove the taxon framework first" )
+    true
+  end
+  
+  def graftable_destination_relative_to_taxon_framework_coverage
+    return true unless new_record? || ancestry_changed?
+    return true if ancestry.nil?
+    destination_taxon_framework = parent.taxon_framework
+    if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? 
+      errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
+    end
+    destination_upstream_taxon_framework = parent.get_upstream_taxon_framework
+    if !skip_taxon_framework_checks && destination_upstream_taxon_framework && parent.rank_level > destination_upstream_taxon_framework.rank_level && destination_upstream_taxon_framework.taxon_curators.any? && !current_user.blank? && !destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
+      errors.add( :ancestry, "destination #{destination_upstream_taxon_framework.taxon} covered by a curated taxon framework. Contact the curators of that taxon to request changes." )
     end
     true
   end
-
-  def complete_taxon
-    return self if complete?
-    return @complete_taxon if @complete_taxon
-    unless @complete_taxon = ancestors.where( "complete" ).sort_by(&:rank_level).first
-      return nil
+  
+  def upstream_taxon_framework
+    return @upstream_taxon_framework if @upstream_taxon_framework
+    @upstream_taxon_framework = get_upstream_taxon_framework
+    return @upstream_taxon_framework
+  end
+  
+  def get_complete_taxon_framework_for_internode_or_root
+    if taxon_framework && taxon_framework.covers? && taxon_framework.complete
+      upstream_taxon_framework_including_root = taxon_framework
+    else
+      upstream_taxon_framework_including_root = upstream_taxon_framework
+      return nil unless upstream_taxon_framework_including_root && upstream_taxon_framework_including_root.complete
+      return nil unless upstream_taxon_framework_including_root.rank_level < rank_level
     end
-    if level_within_complete_range = @complete_taxon.complete_rank.blank? || @complete_taxon.complete_rank_level.to_i <= rank_level.to_i
-      return @complete_taxon
-    end
-    parent_inside_complete_range = parent.rank_level.to_i > @complete_taxon.complete_rank_level.to_i
-    if parent_inside_complete_range
-      return @complete_taxon
-    end
-    @complete_taxon = nil
+    return upstream_taxon_framework_including_root
   end
 
-  def graftable_if_complete
-    return true unless ancestry_changed?
-    ct = complete_taxon
-    if !skip_complete && ct && ( current_user.blank? || !ct.taxon_curators.where( user: current_user ).exists? )
-      errors.add( :ancestry, "includes the complete taxon #{complete_taxon}. Contact the curators of that taxon to request changes." )
+  def graftable_relative_to_taxon_framework_coverage
+    return true unless ancestry_changed? && !ancestry_was.nil?
+    upstream_taxon_framework = get_upstream_taxon_framework( ancestry_was.split("/") )
+    if !skip_taxon_framework_checks && upstream_taxon_framework && !current_user.blank? && upstream_taxon_framework.taxon_curators.any? && !upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
+      errors.add( :ancestry, "covered by a curated taxon framework attached to #{upstream_taxon_framework.taxon}. Contact the curators of that taxon to request changes." )
     end
     true
   end
@@ -988,7 +1027,7 @@ class Taxon < ActiveRecord::Base
   def user_can_edit_attributes
     return true if current_user.blank?
     current_user_curates_taxon = protected_attributes_editable_by?( current_user )
-    PROTECTED_ATTRIBUTES_FOR_COMPLETE_TAXA.each do |a|
+    PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA.each do |a|
       if changes[a] && !current_user_curates_taxon
         errors.add( a, :can_only_be_changed_by_a_curator_of_this_taxon )
       end
@@ -997,19 +1036,13 @@ class Taxon < ActiveRecord::Base
   end
 
   def protected_attributes_editable_by?( user )
-    # Rails.logger.debug "[DEBUG] user.is_admin?: #{user.is_admin?}"
     return true if user && user.is_admin?
-    ct = if complete_changed? && complete_was
-      self
-    else
-      complete_taxon
-    end
-    # Rails.logger.debug "[DEBUG] ct: #{ct}"
-    return true unless ct
+    upstream_taxon_framework = get_upstream_taxon_framework
+    return true unless upstream_taxon_framework
+    return true unless upstream_taxon_framework.taxon_curators.any?
     current_user_curates_taxon = false
-    # Rails.logger.debug "[DEBUG] t.taxon_curators.where( user: user ).exists?: #{t.taxon_curators.where( user: user ).exists?}"
     if user
-      current_user_curates_taxon = ct.taxon_curators.where( user: user ).exists?
+      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
     end
     current_user_curates_taxon
   end
@@ -1289,8 +1322,7 @@ class Taxon < ActiveRecord::Base
     means = [ means ] unless means.is_a?(Array)
     places = Place.param_to_array(place)
     return false if places.blank?
-    lt = association(:listed_taxa_with_establishment_means).loaded? ?
-      listed_taxa_with_establishment_means : listed_taxa
+    lt = listed_taxa_with_establishment_means
     place_ancestor_ids = (places.map(&:id) +
       places.map{ |p| p.ancestry.to_s.split("/").map(&:to_i) }).flatten.uniq
     if options[:closest]

@@ -1,0 +1,23 @@
+.container
+  .alert-info
+    Admin only for now
+  .row
+    .col-xs-6.prepend-6
+      %h2 Editing Taxon Framework
+      = render 'form'
+      = link_to t(:cancel), taxonomy_details_for_taxon_path(@taxon_framework.taxon), class: "btn btn-default"
+      = link_to t(:delete), @taxon_framework, :method => :delete, data: {:confirm => t(:are_you_sure?)}, class: "btn btn-danger"
+  - if @taxon_framework.user
+    %br/
+    .row.meta
+      .col-md-12
+        = t(:created_by, gender: 'taxon')
+        = link_to @taxon_framework.user.login, @taxon_framework.user
+        = t :on_day
+        = l(@taxon_framework.created_at.to_date, :format => :long)
+        %br/
+        - if @taxon_framework.updater
+          = t(:updated_by)
+          = link_to @taxon_framework.updater.login, @taxon_framework.updater
+          = t :on_day
+          = l(@taxon_framework.updated_at.to_date, :format => :long)

@@ -8,6 +8,7 @@ class Taxon < ActiveRecord::Base
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
+    :taxon_framework,
     :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
@@ -142,9 +143,8 @@ class Taxon < ActiveRecord::Base
         complete_species_count: complete_species_count,
         wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil
       })
-      if complete_taxon
-        json[:complete_rank] = complete_taxon.complete_rank
-        json[:complete_rank] = Taxon::SPECIES if json[:complete_rank].blank?
+      if taxon_framework = get_complete_taxon_framework_for_internode_or_root
+        json[:complete_rank] = Taxon::RANK_FOR_RANK_LEVEL[taxon_framework.rank_level]
       end
     end
     json

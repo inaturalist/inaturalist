@@ -14,10 +14,12 @@ class Charts extends React.Component {
       helpModalVisible: false
     };
   }
+
   componentDidMount( ) {
     this.renderSeasonalityChart( );
     this.resetChartTabEvents( );
   }
+
   shouldComponentUpdate( nextProps, nextState ) {
     if (
       this.props.scaled === nextProps.scaled
@@ -42,18 +44,22 @@ class Charts extends React.Component {
     }
     return true;
   }
+
   componentDidUpdate( ) {
     this.renderSeasonalityChart( );
     this.renderHistoryChart( );
     this.renderFieldValueCharts( );
     this.resetChartTabEvents( );
   }
+
   showHelpModal( ) {
     this.setState( { helpModalVisible: true } );
   }
+
   hideHelpModal( ) {
     this.setState( { helpModalVisible: false } );
   }
+
   formatNumber( number ) {
     const precision = this.props.scaled ? 4 : 0;
     if ( number > 0 && number < 0.0001 ) {
@@ -64,6 +70,7 @@ class Charts extends React.Component {
     }
     return I18n.toNumber( number, { precision } );
   }
+
   resetChartTabEvents( ) {
     const domNode = ReactDOM.findDOMNode( this );
     $( "a[data-toggle=tab]", domNode ).unbind( "shown.bs.tab" );
@@ -84,6 +91,7 @@ class Charts extends React.Component {
       }
     } );
   }
+
   defaultC3Config( ) {
     return {
       data: {
@@ -124,6 +132,7 @@ class Charts extends React.Component {
       }
     };
   }
+
   tooltipContent( data, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
     const order = _.map( this.props.seasonalityColumns, c => ( c[0] ) );
     const items = _.compact( order.map( seriesName => _.find( data, series => series.name === seriesName ) ) );
@@ -153,6 +162,7 @@ class Charts extends React.Component {
       </div>
     `;
   }
+
   seasonalityConfigForColumns( columns, options = { } ) {
     const that = this;
     const pointSearchOptions = { };
@@ -193,6 +203,7 @@ class Charts extends React.Component {
       }
     } );
   }
+
   renderSeasonalityChart( ) {
     const config = this.seasonalityConfigForColumns(
       _.filter( this.props.seasonalityColumns, column =>
@@ -201,20 +212,23 @@ class Charts extends React.Component {
     const mountNode = $( "#SeasonalityChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.seasonalityChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
+
   renderFieldValueCharts( ) {
     this.fieldValueCharts = this.fieldValueCharts || { };
-    if ( !this.props.chartedFieldValues ) { return; }
-    _.each( this.props.chartedFieldValues, ( values, termID ) => {
-      const columns = _.filter( this.props.seasonalityColumns, column =>
-        _.startsWith( column[0], `${values[0].controlled_attribute.label}=` )
+    const { chartedFieldValues, seasonalityColumns } = this.props;
+    if ( !chartedFieldValues ) { return; }
+    _.each( chartedFieldValues, ( values, termID ) => {
+      const columns = _.filter(
+        seasonalityColumns,
+        column => _.startsWith( column[0], `${values[0].controlled_attribute.label}=` )
       );
-      const verifiableColumn = _.find( this.props.seasonalityColumns, c => c[0] === "verifiable" );
+      const verifiableColumn = _.find( seasonalityColumns, c => c[0] === "verifiable" );
       if ( verifiableColumn ) {
         const unAnnotatedColumn = verifiableColumn.slice( 0 );
         unAnnotatedColumn[0] = "unannotated";
         _.each( columns, column => {
-          for ( let i = 1; i < column.length; i++ ) {
-            unAnnotatedColumn[i] = unAnnotatedColumn[i] - column[i];
+          for ( let i = 1; i < column.length; i += 1 ) {
+            unAnnotatedColumn[i] -= column[i];
           }
         } );
         columns.unshift( unAnnotatedColumn );
@@ -224,9 +238,10 @@ class Charts extends React.Component {
           v.controlled_value.id] ) ) );
       const config = this.seasonalityConfigForColumns( columns, {
         controlled_attribute: values[0].controlled_attribute,
-        labels_to_value_ids: labelsToValueIDs } );
+        labels_to_value_ids: labelsToValueIDs
+      } );
       config.data.types = { };
-      for ( let i = 0; i < columns.length; i++ ) {
+      for ( let i = 0; i < columns.length; i += 1 ) {
         config.data.types[columns[i][0]] = "area-spline";
       }
       config.data.order = null;
@@ -236,6 +251,7 @@ class Charts extends React.Component {
       );
     } );
   }
+
   renderHistoryChart( ) {
     const dates = this.props.historyKeys;
     const years = _.uniq( dates.map( d => new Date( d ).getFullYear( ) ) ).sort( );
@@ -291,6 +307,7 @@ class Charts extends React.Component {
     const mountNode = $( ".HistoryChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.historyChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
   }
+
   render( ) {
     const {
       chartedFieldValues,
@@ -303,8 +320,8 @@ class Charts extends React.Component {
     } = this.props;
     const noHistoryData = _.isEmpty( historyKeys );
     const noSeasonalityData = _.isEmpty( seasonalityKeys );
-    let fieldValueTabs = [];
-    let fieldValuePanels = [];
+    const fieldValueTabs = [];
+    const fieldValuePanels = [];
     if ( chartedFieldValues ) {
       _.each( chartedFieldValues, ( values, termID ) => {
         fieldValueTabs.push( (

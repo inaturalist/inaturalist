@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Athena in Wonderland
 # Author: Duartefrade
+# Author: Eduardo Addad de Oliveira
 # Author: Fitoschido
 # Author: Hamilton Abreu
 # Author: Imperadeiro90
@@ -88,6 +89,9 @@ pt-PT:
   x_people_agree_html:
     one: <span class="count">Uma</span> pessoa concorda
     other: <span class="count">%{count}</span> pessoas concordam
+  x_new_species:
+    one: 1 Nova Espécie
+    other: '%{count} Novas Espécies'
   x_species:
     one: 1 Espécie
     other: '%{count} Espécies'
@@ -120,11 +124,13 @@ pt-PT:
   x_taxon_changes_added_html:
     one: 1 mudança de táxon adicionada
     other: '%{count} mudanças de táxon adicionadas'
+  x_people_helped_user_with_y_ids_html: <strong>%{x} pessoas</strong> ajudaram %{user}
+    com <strong>%{y} IDs</strong>
   _100_day_trends: Tendências de 100 dias
   _percent_ID_d: '% Identificados'
   a: um(a)
   a_: um(a)
-  a_community_for_naturalist: Uma Comunidade para Naturalistas
+  a_community_for_naturalist: Uma comunidade para naturalistas
   a_default_taxon_name_will_automatically_created: |-
     Um nome predefinido será automaticamente criado a partir do nome científico deste táxon.
     Quando tiver guardado este novo táxon, vai ter a possibilidade de acrescentar outros nomes aqui (nomes comuns, nomes científicos desatualizados, etc.).
@@ -191,7 +197,7 @@ pt-PT:
   add_a_new_observation_to_id_please!: Adicionar uma Nova Observação para Identificar,
     Por favor!
   add_a_place_raquo: Adicionar um Lugar &raquo;
-  add_a_single_observation: Adicionar uma única observação.
+  add_a_single_observation: Adicionar uma Única Observação.
   add_a_taxon: Adicione um Táxon
   add_all_your_matching_obs_of_this_taxon: Adicione todas as suas observações deste
     táxon para este projeto
@@ -216,16 +222,16 @@ pt-PT:
   add_batch: Adicionar um Conjunto
   add_colors: Adicionar Cores
   add_comma_separated_tags: Adicionar Etiquetas Separadas por Vírgulas
-  add_comment: Adicionar um comentário
-  add_common_names_for: adicionar nomes comuns aos táxons já existentes
-  add_conservation_status: adicionar estatuto de conservação
+  add_comment: Adicionar um Comentário
+  add_common_names_for: Adicionar Nomes Comuns aos Táxons já Existentes
+  add_conservation_status: Adicionar Estatuto de Conservação
   add_countries: Adicionar Países
-  add_custom_project_fields: Adicionar campos de projeto personalizados
+  add_custom_project_fields: Adicionar Campos de Projeto Personalizados
   add_edit_flags: Adicionar/Editar Sinalizadores
-  add_edit_more_fields: Adicionar/editar mais campos
+  add_edit_more_fields: Adicionar/Editar Mais Campos
   add_editor: Adicionar Editor
   add_description: Adicionar %{description_name}
-  add_field: Adicionar campo
+  add_field: Adicionar Campo
   add_from_your_observations: Adicionar a partir das suas observações
   add_link: Adicionar Link
   add_listed_taxa_from_observations: Adicionar táxons listados a partir das observações
@@ -2396,7 +2402,7 @@ pt-PT:
   new_custom_field_for: Novo campo personalizado para
   new_flag_for: Novo Sinalizador para
   new_guide: Novo Guia
-  new_journal_posts: Nova publicação no Boletim
+  new_journal_post: Nova publicação no Boletim
   new_lexicon: Lèxico novo
   new_list: Nova Lista
   new_members: Novos membros
@@ -3066,9 +3072,9 @@ pt-PT:
     greece: Grécia
     hong_kong: Hong Kong
     hungary: Hungria
-    italy: Itália
     india: Índia
     iraq: Iraque
+    italy: Itália
     japan: Japão
     korea: Coreia
     martinique: Martinica
@@ -3085,8 +3091,8 @@ pt-PT:
     portugal: Portugal
     republic_of_congo: República do Congo
     russia: Rússia
-    saudi_arabia: Arábia Saudita
     sao_tome_and_principe: São Tomé e Príncipe
+    saudi_arabia: Arábia Saudita
     singapore: Singapura
     south_africa: África do Sul
     south_america: América do Sul
@@ -3962,6 +3968,8 @@ pt-PT:
   users_observations: Observações de %{user}
   users_profile: Perfil de %{user}
   users_projects: Projetos de %{user}
+  verifiable_observations_by_observation_date: Observações verificáveis por data de
+    observação
   view_all_your_projects: Ver todos os seus projetos
   view_flag: Ver sinalizador
   view_flags: Ver sinalizadores
@@ -4042,6 +4050,9 @@ pt-PT:
           que os curadores vejam as coordenadas privadas
       new:
         welcome_to_projects: Bem-vindo ao projeto!
+    stats:
+      year:
+        growth_title: Crescimento
     users:
       edit:
         project_addition_preferences:
@@ -4055,7 +4066,7 @@ pt-PT:
         connect_with_nature: Ligue-se à Natureza
         species_observed: Espécies observadas
         people_signed_up: Pessoas Registadas
-        how_it_works: Como Funciona
+        how_it_works: Como funciona
         record_your_observations: Registre suas observações
         crowdsource_identifications: Identificações pela comunidade
         join_today: Aderir hoje

@@ -127,6 +127,11 @@ module Shared::LicenseModule
     def license_url_for_code( code )
       license_url_for_number( license_number_for_code( code ) )
     end
+
+    def normalize_license_code( code )
+      return nil if code.blank?
+      code.strip.gsub( /[\W\-_]/, "-" ).upcase
+    end
   end
 
   def self.included(base)

@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Ilmarine
+# Author: Pyscowicz
 ---
 et:
   x_comments:
@@ -73,6 +74,9 @@ et:
   x_people_agree_html:
     one: <span class="count">1</span> isik nõustub
     other: <span class="count">%{count}</span> isikut nõustub
+  x_new_species:
+    one: 1 uus liik
+    other: '%{count} uut liiki'
   x_species:
     one: 1 liik
     other: '%{count} liiki'
@@ -104,6 +108,8 @@ et:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> taksonimuudatus lisatud
     other: <span class='count'>%{count}</span> taksonimuudatust lisatud
+  x_people_helped_user_with_y_ids_html: <strong>%{x} inimest</strong> aitasid kasutajat
+    %{user} <strong>%{y} määratlusega</strong>
   _100_day_trends: 100 päeva trendid
   _percent_ID_d: '% määratud'
   a: '&nbsp;'
@@ -177,6 +183,8 @@ et:
   add_a_place_raquo: Lisa koht &raquo;
   add_a_single_observation: Lisa üks vaatlus.
   add_a_taxon: Lisa takson
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Nime muutmiseks lisa <a target="_blank"
+    href="%{url}">taksonivahetus</a>
   add_all_your_matching_obs_of_this_taxon: Lisa kõik selle taksoni kohta tehtud sobivad
     vaatlused selle projekti alla
   add_all_your_matching_obs_to_this_project: Lisa kõik sobivad vaatlused selle projekti
@@ -331,6 +339,7 @@ et:
   all_photos: Kõik fotod
   all_places: Kõik kohad
   all_projects: Kõik projektid
+  all_children_added_to_the_database: Kõik alamad lisatud andmebaasi
   all_rank_added_to_the_database:
     phylum: Kõik hõimkonnad lisatud andmebaasi
     subphylum: Kõik alamhõimkonnad lisatud andmebaasi
@@ -444,8 +453,10 @@ et:
   allowed_html: HTML lubatud
   allowed_occurrence_status_values: Lubatud leidumuse väärtused
   allowed_values: Lubatud väärtused
+  almost_there_: Peaaegu kohal...
   alphabetical: Tähestikuline
   alphabetical_order: Tähestikuline järjekord
+  already_have_an_account_log_in_html: On juba konto? <strong>Logi sisse.</strong>
   amphibians: kahepaiksed
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb-is pole selle liigi kohta
     infot.
@@ -578,7 +589,9 @@ et:
   at_any_time_change: igal ajal (<span class="button">muuda</span>)
   at_time: kell %{time}
   atom: Atom
+  attached_taxon: Lisatud takson
   attribute: Omadus
+  attribution: Omistus
   authority_list:
     iucn_red_list: IUCNi punane nimestik
   authorize_permissions_from_provider: Autoriseeri lehe %{provider} õigused
@@ -679,6 +692,7 @@ et:
   bulk_import_of_filename_is_complete: Faili %{filename} massimport on lõppenud
   but_we_didnt_add_this_observation_to_the_x_project: Aga me ei lisanud seda vaatlus
     projekti %{project} alla, sest sa ei nõustunud selle projekti tingimustega.
+  by: kasutajalt
   by_adding_ids_to_observations: lisades vaatlustele määratlusi
   by_everyone: Kõikidelt
   by_project_list: projekti nimekirja järgi
@@ -810,7 +824,7 @@ et:
   check_out_your_life_list: Vaata oma elunimekirja
   check_this_box_if: |-
     Pane siia kasti linnuke, kui soovid oma fotodele määrata
-    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Viitamine-Mitteäriline litsentsi</a>. Võid hiljem valida erineva litsentsi või litsentsi eemaldada, kuid antud litsents on uurijatega andmete jagamiseks kõige parem.
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Viitamine-Mitteäriline litsentsi</a>. Võid hiljem valida erineva litsentsi või litsentsi eemaldada, kuid antud litsents on uurijatega andmete jagamiseks kõige parem.
   checklist: Kontrollnimekiri
   checklists: Kontrollnimekirjad
   checklist_places: Kontrollnimekirja kohad
@@ -851,6 +865,7 @@ et:
   classification: Klassifikatsioon
   clear: tühjenda
   clear_color_filters: Tühjenda värvifiltrid
+  clear_filters: Eemalda filtrid
   clear_search: Tühjenda otsing
   click_on_the_map_to: Vajuta kaardile, et määrata oma vaatluse asukoht
   click_the_map: Koha lisamiseks <strong>vajuta kaardile</strong>.
@@ -909,6 +924,7 @@ et:
   comparing_list_to_list: Võrdlen nimekirja %{list1} nimekirjaga %{list2}
   comparing_versions_x_and_y: Võrdlen versiooni %{x} versiooniga %{y}
   comparing_observations_from: Võrdlen kasutaja %{user} vaatlusi kuupäevadel %{dates}
+  complete: Valmis
   complete_sets: Täiskomplektid
   compiled_by_name: Koostanud %{name}
   completed: Lõpetatud
@@ -1200,6 +1216,7 @@ et:
   doh_something_went_wrong_error: 'Hmm, miski läks valesti: %{error}'
   done: Lisa
   dont_filter: Ära filtreeri
+  dont_have_an_account_sign_up_html: Ei ole kontot? <strong>Registreeru.</strong>
   dont_send_me_email: Ära saada mulle e-kirju!
   dont_use_double_quotes: Ära kasuta kusagil mujal topeltjutumärke
   drop_it: Eemalda see
@@ -1631,6 +1648,7 @@ et:
   help_confirm_observations!: Aita vaatlusi kinnitada!
   help_faq: Abi / KKK
   help_out!: Aita!
+  help_support_inaturalist: Toeta iNaturalisti
   helped_the_observer_make: aitasid vaatlejat tema lõpliku määratlusega (st need tehti
     enne lõpliku määratlust ja kattusid sellega)
   here_are_3_examples: Siin on kolm korrektsete andmete näidist
@@ -1643,6 +1661,7 @@ et:
   hi_user: Tere %{user}
   hide: Peida
   hide_details: Peida üksikasjad
+  hide_running_total: Peida hetke koguarv
   hide_uncountable_species: Peida loendamatud liigid
   high: Kõrge
   highest_rank: Kõrgeim kategooria
@@ -2354,7 +2373,7 @@ et:
   new_custom_field_for: 'Uus spetsiaalväli:'
   new_flag_for: 'Uus märkus:'
   new_guide: Uus juhend
-  new_journal_posts: Uus päevikukanne
+  new_journal_post: Uus päevikukanne
   new_lexicon: Uus leksikon
   new_list: Uus nimekiri
   new_members: Uued liikmed
@@ -2385,6 +2404,8 @@ et:
   new_users: Uued kasutajad
   new_users_w_7_obs: Uued kasutajad 7 vaatlusega
   new_users_week: Uued kasutajad nädalas
+  newly_added: Äsjalisatud
+  newly_observed_species: Äsjavaadeldud liigid
   news: Uudised
   next: Edasi
   next_observation: Järgmine vaatlus
@@ -2771,10 +2792,12 @@ et:
   optional_columns_note_for_any: 'Valikulised tulbad (nb: selleks, et neid tulpasid
     vaatluse juures kasutada saaks, peavad nad kõik olemas olema)'
   or: või
+  or_all_caps: VÕI
   or_choose_high_level_taxa: '... või vali mõni kõrgema taseme takson'
   or_if_you_dont_want_email: Või kui sa ei taha e-posti...
   or_invite_your_friends: või kutsu oma sõpru
   or_invited: või kutsutud.
+  or_log_in_with_colon: 'Või logige sisse koos:'
   or_post_message_to_google_group: 'või postita teade meie Google Groupi:'
   or_upload: Või lae üles
   or_you_can: Võid ka...
@@ -2845,6 +2868,7 @@ et:
   photo?: Foto?
   photo_attribution: 'Foto: %{attribution}'
   photo_browser: Fotodevalija
+  photo_by: Pildistatud
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_deleted: Foto kustutatud
   photo_destroyed_because_it_was_deleted_from: Foto on hävinud, sest see kustutati
@@ -3007,6 +3031,7 @@ et:
     belgium: Belgia
     bosnia_and_herzegovina: Bosnia ja Hertsegoviina
     brazil: Brasiilia
+    canada: Kanada
     central_america: Kesk-Ameerika
     china: Hiina
     colombia: Colombia
@@ -3019,9 +3044,9 @@ et:
     greece: Kreeka
     hong_kong: Hong Kong
     hungary: Ungari
-    italy: Itaalia
     india: India
     iraq: Iraak
+    italy: Itaalia
     japan: Jaapan
     korea: Korea
     martinique: Martinique
@@ -3038,8 +3063,8 @@ et:
     portugal: Portugal
     republic_of_congo: Kongo Vabariik
     russia: Venemaa
-    saudi_arabia: Saudi Araabia
     sao_tome_and_principe: São Tomé ja Príncipe
+    saudi_arabia: Saudi Araabia
     singapore: Singapur
     south_africa: Lõuna-Aafrika
     south_america: Lõuna-Ameerika
@@ -3353,7 +3378,7 @@ et:
   required_: Nõutav
   required_field: nõutav väli
   required_columns_in_order: Nõutavad tulbad järjekorras
-  research: teadus
+  research: teaduslik
   research_: Teaduslik
   research_grade: Teaduskõlbulik
   research_grade_expandable_html: T<span class='full'>eaduskõlbulik</span>
@@ -3396,6 +3421,7 @@ et:
     must_be_in: peab olema taksonis
     must_be_coordinates_shareable_by_project_curators: vaatleja peab lubama projekti
       kuraatoritel koordinaate näha.
+  running_total: Hetke koguarv
   said: ütles
   sat: L
   satellite: satelliit
@@ -3520,6 +3546,7 @@ et:
   show_off_your_recent_observations: Näita hiljutisi vaatluseid oma blogis või kodulehel!
   show_only: Näita ainult
   show_relative_proportions_of_all_observations: Näita kõigi vaatluste suhtelisi proportsioone
+  show_running_total: Näita hetke koguarvu
   show_scientific_name_first: Näita esmalt teaduslikku nimetust
   show_taxa_from_both: (näita taksoneid mõlemast nimekirjast)
   show_taxa_from_everywhere: Näita taksoneid kõikjalt
@@ -3535,6 +3562,7 @@ et:
   shown_publicly_as: Näita avalikult kui
   sign_in: Logi sisse
   sign_in_with_provider: Logi sisse %{provider} kontoga
+  sign_up_with_provider: Registreeri koos %{provider}
   sign_out: Logi välja
   sign_up!: Registreeru!
   sign_up: Registreeru!
@@ -3708,6 +3736,8 @@ et:
   stop_following_user: Lõpeta kasutaja %{user} jälgimine
   stop_testing: Lõpeta testimine
   stop_updating_position: Lõpeta asukoha täiendamine
+  studies_that_used_inaturalist_data_in_year: Uurimused, mis kasutasid aastal %{year}
+    iNaturalisti andmeid
   stuff_just_added: Sinu poolt hiljuti lisatud...
   subject_resolved_noun_html: '%{subject} lahendas: %{noun}'
   subject_affecting_stuff_html: '%{subject}, mis mõjutas: %{stuff}'
@@ -3746,6 +3776,7 @@ et:
   suggestions: Pakkumised
   summary: Kokkuvõte
   supporting: Toetab
+  support_inaturalist: Toeta iNaturalisti
   suspicious_photos: Kahtlased fotod
   siutable_observations: sobivad vaatlused
   sun: P
@@ -4471,6 +4502,7 @@ et:
   welcome_comma!: Tere tulemast,
   welcome: tere tulemast
   welcome_back: Tere tulemast tagasi
+  welcome_back!: Tere tulemast tagasi!
   welcome_comma: Tere tulemast,
   welcome_login: Tere tulemast, %{login}
   welcome_message: kus saad <strong>talletada</strong> enda poolt looduses nähtut,
@@ -4812,6 +4844,8 @@ et:
           please_read_the_teachers_guide_html: Kui see on nõna, siis palun loe meie
             <a href="%{url}">õpetajate juhendist</a> näpunäiteid, kuidas kasutada
             lehte %{site_name} õpilastega.
+    donate:
+      donate_short_desc: Anneta, et näidata oma toetust!
     guides:
       index:
         funding_html: "Juhendite arendamist rahastas \n<a href=\"http://eol.org\"><img
@@ -5737,6 +5771,16 @@ et:
         website_desc_html: Loodud <a href="https://www.inaturalist.org">iNaturalist</a>
           või <a href="%{url}">iNaturalist võrgustiku</a> leheküljel
       year:
+        growth_title: Kasv
+        new_species_desc: Liigid, mida lehel %{site_name} sellel aastal esimest korda
+          vaadeldi. Näita kokku %{x} liiki <a href="%{url}">%{y} liigist</a>.
+        new_species_desc_html: |-
+          Lehele %{site_name} selle aasta jooksul esimest korda lisatud liigid. Vajuta mõnele kuule, et näha siis lisatud liike. Võid vaadata ka kogu liikide kasvutrendi või liigutada ajavalikud minevikku, et näha teisi äsja vaadeldud liike. Selles graafikus sisalduvad ainult tõendatavad vaatlused vastavalt lehele %{site_name} üles laadimise kuule (mitte vaatlemise kuule). Siin ei sisaldu kõrgema või madalama leveli taksonid, mis tähendab, et vaatlus määratlusega imetajad ei lähe arvesse ning <i>Canis lupus</i> alamliigi
+          <i>arctos</i> vaatlus võrdub <i>Canis lupus</i> omaga.
+        publications_desc_html: |-
+          Mõju andmed ja visualiseering <a href="https://www.altmetric.com">Altmetricu</a> poolt. Info andmete kasutamise kohta pärineb meie sõpradelt lehel <a href="https://www.gbif.org/">Global Biodiversity Information Faciltity</a>.
+          <br/>
+          <a href="%{url}">Vaata kõiki %{numStudies} uurimust</a>
         sunburst_desc_html: Vaadeldud taksonid on seatud mitmetasemelisse sektordiagrammi.
           Hierarhia alguspunkt on keskel alates sektoriga "Elu" ning lõppeb välisperimeetril
           olevate liikidega. Iga kaare suurus on võrdväärne tolle taksoni vaatluste
@@ -6073,7 +6117,7 @@ et:
     messages:
       accepted: peab olema sobilik
       blank: ei saa olla tühi
-      confirmation: ei vasta kinnitusele
+      confirmation: ei vasta salasõnale
       empty: ei saa olla tühi
       equal_to: peab olema võrdne numbriga %{count}
       even: peab olema paarisarv
@@ -6169,7 +6213,7 @@ et:
       messages:
         accepted: peab olema valitud
         blank: ei tohi olla tühi
-        confirmation: ei vasta kinnitusele
+        confirmation: ei vasta salasõnale
         empty: ei või olla tühi
         equal_to: peab olema võrdne numbriga %{count}
         even: peab olema paarisarv

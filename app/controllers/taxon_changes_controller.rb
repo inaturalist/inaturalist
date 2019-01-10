@@ -79,8 +79,10 @@ class TaxonChangesController < ApplicationController
       @existing = @taxon_change.input_taxa.map do |it|
         TaxonChange.input_taxon(it).all.to_a
       end.flatten.compact.uniq.reject{|tc| tc.id == @taxon_change.id || !tc.committed_on.nil?}
-      @complete_taxon = @taxon_change.input_taxa.detect{|t| t.complete_taxon}.try(:complete_taxon)
-      @complete_taxon ||= @taxon_change.output_taxa.detect{|t| t.complete_taxon}.try(:complete_taxon)
+      @upstream_taxon_framework = @taxon_change.input_taxa.detect{|t| t.upstream_taxon_framework}.try(:upstream_taxon_framework)
+      if current_user && @upstream_taxon_framework && @upstream_taxon_framework.taxon_curators.count > 0 && @upstream_taxon_framework.taxon_curators.select{|tc| tc.user_id != current_user}
+        @curated_upstream_taxon_framework = @upstream_taxon_framework
+      end
     end
     respond_to do |format|
       format.html
@@ -138,7 +140,7 @@ class TaxonChangesController < ApplicationController
       return
     else
       @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
-      render :action => 'edit'
+      render action: "edit", layout: "application"
     end
   end
   

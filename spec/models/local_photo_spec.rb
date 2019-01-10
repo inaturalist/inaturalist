@@ -21,8 +21,8 @@ describe LocalPhoto, "creation" do
     end
 
     it "requires user unless it has a subtype" do
-      expect{ LocalPhoto.make!(user: nil) }.to raise_error
-      expect{ LocalPhoto.make!(user: nil, subtype: "FlickrPhoto") }.to_not raise_error
+      expect{ LocalPhoto.make!(user: nil) }.to raise_error( ActiveRecord::RecordInvalid )
+      expect{ LocalPhoto.make!(user: nil, subtype: "FlickrPhoto") }.to_not raise_error( ActiveRecord::RecordInvalid )
     end
 
     it "uses id as native_photo id unless it has a subtype" do

@@ -24,7 +24,7 @@ class EolPhoto < Photo
     per_page = 100 if per_page > 100
     eol_page_xml = begin
       eol.page(eol_page_id,
-        licenses: "any",
+        licenses: "all",
         images_page: options[:page],
         images_per_page: per_page,
         maps_per_page: 0,
@@ -41,19 +41,18 @@ class EolPhoto < Photo
     end.compact
   end
         
-  def self.get_api_response(photo_id)
-    xml = eol.data_objects(photo_id)
-    return nil if xml.at('error')
+  def self.get_api_response( photo_id )
+    xml = eol.data_objects( photo_id )
+    return nil if xml.at( "error" )
     xml
   end
   
   def self.new_from_api_response(api_response, options = {})
     api_response.remove_namespaces! if api_response.respond_to?(:remove_namespaces!)
-    native_photo_id = api_response.at('dataObjectID').try(:content)
-    native_photo_id ||= api_response.at('dataObject identifier').try(:content)
+    native_photo_id = api_response.at( "dataObjectVersionID" ).try(:content)
     return unless native_photo_id
-    if license = api_response.at('license')
-      license_string = api_response.search('license').children.first.inner_text
+    if license = api_response.at( "license" )
+      license_string = license.content
       license_number = Photo::C
       if license_string.include? "publicdomain"
         license_number = PD
@@ -68,14 +67,14 @@ class EolPhoto < Photo
       license_number = PD
     end
     square_url, thumb_url, small_url, medium_url, original_url = nil
-    image_url = api_response.search('mediaURL').children.last.try(:inner_text)
+    image_url = api_response.at( "eolMediaURL" ).content
     unless image_url.blank?
-      square_url = image_url.gsub("_orig", "_88_88")
-      small_url = image_url.gsub("_orig", "_260_190")
-      medium_url = image_url.gsub("_orig", "_580_360")
+      square_url = image_url.gsub( /(\.\w+?)$/, ".88x88\\1" )
+      small_url = image_url.gsub( /(\.\w+?)$/, ".260x190\\1" )
+      medium_url = image_url.gsub( /(\.\w+?)$/, ".580x360\\1" )
     end
-    thumb_url = api_response.search('thumbnailURL').children.last.inner_text
-    rights_holder = api_response.search('dataObject rightsHolder')
+    thumb_url = api_response.at( "eolThumbnailURL" ).content
+    rights_holder = api_response.search( "dataObject rightsHolder" )
     if rights_holder.count == 0
       agent = api_response.search('agent[role=creator]').first
       agent ||= api_response.search('agent[role=photographer]').first
@@ -86,29 +85,34 @@ class EolPhoto < Photo
       native_username = rights_holder.content
     end
 
-    native_page_url = if (verson_id = api_response.at('dataObjectVersionID').try(:content))
-      "http://eol.org/data_objects/#{verson_id}"
-    elsif (eol_taxon_id = api_response.at('taxon identifier').try(:content))
+    native_page_url = if source = api_response.at( "dataObject source" )
+      source.content
+    elsif verson_id = api_response.at( "dataObjectVersionID" ).try(:content)
+      "https://eol.org/media/#{verson_id}"
+    elsif (eol_taxon_id = api_response.at( "taxon identifier" ).try(:content))
       "http://eol.org/pages/#{eol_taxon_id}"
     end
     
-    new(options.merge(
-      :medium_url => medium_url,
-      :small_url => small_url,
-      :thumb_url => thumb_url,
-      :native_photo_id => native_photo_id,
-      :square_url => thumb_url,
-      :original_url => image_url,
-      :native_page_url => native_page_url,
-      :native_username => native_username,
-      :native_realname => native_username,
-      :license =>  license_number
-    ))
+    new( options.merge(
+      medium_url: medium_url,
+      small_url: small_url,
+      thumb_url: thumb_url,
+      native_photo_id: native_photo_id,
+      square_url: thumb_url,
+      original_url: image_url,
+      native_page_url: native_page_url,
+      native_username: native_username,
+      native_realname: native_username,
+      license: license_number
+    ) )
   end
 
   def repair(options = {})
-    r = EolPhoto.get_api_response(native_photo_id)
-    p = EolPhoto.new_from_api_response(r)
+    r = EolPhoto.get_api_response( native_photo_id )
+    if r.blank? || r.children.blank?
+      return [self, { photo_missing: "photo not found #{self}" } ]
+    end
+    p = EolPhoto.new_from_api_response( r )
     (EolPhoto.column_names - %w(id created_at updated_at)).each do |a|
       send("#{a}=", p.send(a))
     end

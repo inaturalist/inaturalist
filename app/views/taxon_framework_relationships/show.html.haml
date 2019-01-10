@@ -1,0 +1,19 @@
+- content_for( :extracss ) do
+  :css
+    .admin-box {
+        border-width: 2px;
+        border-style: dotted;
+        position: relative;
+        padding: 5px;
+    }
+.container
+  .col-md-12
+    %ul.list-unstyled
+      %li
+        = link_to t(:back_to_x, :noun => t(:taxon_framework_relationship)), taxon_framework_relationships_path, :class => "back crumb"
+    -if @taxon_framework_relationship.relationship == "unknown"
+      .alert
+        = t(:theres_something_wrong_with_taxon_framework_relationship)
+    %h3
+      = render :partial => 'show_taxon_framework_relationship_headings', object: { taxon_framework_relationship: @taxon_framework_relationship }
+    = render :partial => '/taxon_framework_relationships/show_taxon_framework_relationship_container', object: { upstream_taxon_framework: @taxon_framework, taxon_framework_relationship: @taxon_framework_relationship, taxon: @taxon }

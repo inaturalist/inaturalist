@@ -4,7 +4,7 @@ const webpack = require( "webpack" );
 const webpackAssetsPath = path.join( "app", "webpack" );
 
 const config = {
-  mode: "production",
+  mode: "none",
   context: path.resolve( webpackAssetsPath ),
   entry: {
     // list out the various bundles we need to make for different apps

@@ -595,15 +595,24 @@ shared_examples_for "an ObservationsController" do
     it "should mark as captive in response to captive_flag" do
       o = Observation.make!(user: user)
       expect( o ).not_to be_captive_cultivated
-      put :update, format: :json, id: o.id, observation: {captive_flag: "1", force_quality_metrics: true}
+      put :update, format: :json, id: o.id, observation: { captive_flag: "1" }
       o.reload
       expect( o ).to be_captive_cultivated
     end
     
-    it "should mark as wild in response to captive_flag" do
+    it "should not mark as wild in response to captive_flag=0 if there is no existing quality metric" do
       o = Observation.make!(user: user)
       expect( o ).not_to be_captive_cultivated
-      put :update, format: :json, id: o.id, observation: {captive_flag: "0", force_quality_metrics: true}
+      put :update, format: :json, id: o.id, observation: { captive_flag: "0" }
+      o.reload
+      qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
+      expect( qm ).to be_blank
+    end
+
+    it "should mark as wild in response to captive_flag=0 if there is an existing quality metric" do
+      o = Observation.make!( user: user, captive_flag: true )
+      expect( o ).to be_captive_cultivated
+      put :update, format: :json, id: o.id, observation: { captive_flag: "0" }
       o.reload
       qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
       expect( qm ).to be_agree
@@ -1571,7 +1580,7 @@ shared_examples_for "an ObservationsController" do
         # the angular app doesn't need to load any observations
         expect( Observation ).not_to receive(:get_search_params)
         get :index, format: :html
-        expect(response.body).to include "ng-controller='MapController'"
+        expect(response.body).to match /ng-controller=.MapController/
         expect( response.body ).to_not have_tag("div.user a", text: @o.user.login)
       end
 

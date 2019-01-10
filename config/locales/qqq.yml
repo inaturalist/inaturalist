@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Andreas Plank
 # Author: Aru
+# Author: BadDog
 # Author: BramEsposito
 # Author: Cellina
 # Author: Chestnut123tw
@@ -19,6 +20,7 @@
 # Author: Liuxinyu970226
 # Author: Macofe
 # Author: Nike
+# Author: Optilete
 # Author: Phil.pav
 # Author: Pihlaviita
 # Author: Purodha
@@ -79,9 +81,11 @@ qqq:
     Number of research-grade observations identified to rank species or lower,
     with the count in a span of class 'count'
   x_taxa_matching_current_filters: Number of taxa matching current filters
-  a: can not be translated to Finnish as we don't have prepositions in our language
+  a: |-
+    Note: can not be translated to Finnish as we don't have prepositions in our language
+    Can not be translated precisely to German, since the knowledge of the following word is needed to choose the correct declination.
   a_: |-
-    can not be translated to Finnish as we don't have prepositions in our language
+    Note: can not be translated to Finnish as we don't have prepositions in our language
     Can not be translated precisely to German, since the knowledge of the following word is needed to choose the correct declination.
   a_flag_for_x: where x is the title of the resource being flagged
   a_member_of_taxon_html: where taxon is the name of a taxon such as Animalia
@@ -145,6 +149,8 @@ qqq:
     HTML entity
   alphabetical: '{{Identical|Alphabetical}}'
   amphibians: '{{Identical|Amphibians}}'
+  an: 'Note: can not be translated to Finnish as we don''t have prepositions in our
+    language'
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
@@ -374,6 +380,7 @@ qqq:
   details: '{{Identical|Detail}}'
   developers: '{{Identical|Developer}}'
   device: '{{Identical|Device}}'
+  disable: '{{Identical|Disable}}'
   disagree_: '{{Identical|Disagree}}'
   disconnect_provider: where provider is the name of an external provider like Facebook
   dna_: '{{Identical|DNA}}'
@@ -480,6 +487,11 @@ qqq:
   hate_me_flickr: where site_name is the name of the site
   hello: '{{Identical|Test}}'
   help: '{{Identical|Help}}'
+  help_support_inaturalist: |-
+    Imperative request to donate to iNaturalist. "iNaturalist" should not be
+    translated, as this explicitly refers to iNaturalist and not any of the
+    network partner sites, so please do not translate this to "NaturaLista" or
+    anything.
   hi_user: '{{Identical|Hi}}'
   hide: '{{Identical|Hide}}'
   high: '{{Identical|High}}'
@@ -769,7 +781,7 @@ qqq:
   observations_by_user_on_date: where user is the name of a user and date is a date
   observations_by_you_on_date: where date is a date
   observation_calendar_for: where user is the name of a user and year is a year such
-    as 2014
+    as 2018
   observation_date: '{{Identical|Date}}'
   observation_date?: '{{Identical|Date}}'
   observation_removed_from_the_project: where project is the name of a project
@@ -1022,7 +1034,7 @@ qqq:
   show_taxa_from_place: where place is the name of a place
   showing_taxa_from_place: where place is the name of a place
   sign_in: '{{Identical|Sign in}}'
-  sign_in_with_provider: where provider is an external provider like Facebook
+  sign_in_with_provider: '%{provider} — an external provider, like Facebook.'
   simple: '{{Identical|Simple}}'
   sign_in_exclamation: '{{Identical|Sign in}}'
   sizes: '{{Identical|Size}}'
@@ -1070,13 +1082,18 @@ qqq:
     resolved
   subject_affecting_stuff_html: where subject is a resource like a taxon change and
     stuff is a resource like a taxon
-  subject_committed_thing_affecting_stuff_html: |-
-    where subject is the user name and thing is a resource like a taxon change
-    and stuff is a resource like a taxon
+  subject_committed_thing_affecting_stuff_html: "where subject is the user name and
+    thing is a resource like a taxon change\nand stuff is a resource like a taxon,
+    e.g.: \t\n%{subject}  committed een taxon swap affecting Pratia"
   submit: '{{Identical|Submit}}'
   submitted: '{{Identical|Submitted}}'
   suggestions: '{{Identical|Suggestion}}'
   summary: '{{Identical|Summary}}'
+  support_inaturalist: |-
+    Label for a button link to donate money to iNaturalist. These donations go
+    to iNaturalist and not any of the partner sites so this name should not be
+    translated to something like NaturaLista. This text should also be kept
+    short, about the length of the English translation or shorter.
   sun: Abbreviation for Sunday, a day of the week.
   table: '{{Identical|Table}}'
   table_of_contents: '{{Identical|Table of contents}}'
@@ -1359,6 +1376,18 @@ qqq:
   yours: '{{Identical|Your}}'
   youre_viewing_site_name_observations_html: where site_name is the name of the site
   views:
+    donate:
+      donate_desc_html: |-
+        This is a pitch to donate to iNaturalist.org via the California
+        Academy of Sciences. It is *not* a pitch to donate to any of the
+        iNaturalist Network partner sites, so proper nouns like "iNaturalist"
+        should not be translated to the names of partner sites like
+        "NaturaLista." Also, please do not change or translate any of the html
+        markup code, including the class names.
+      post_donate_social_media_text: |-
+        Text included in social media post when sharing the donate page. Proper
+        nouns like "iNaturalist" should not be translated to the names of
+        partner sites like "NaturaLista."
     guides:
       edit:
         guide_place_desc: where site_name is the site name
@@ -1413,7 +1442,7 @@ qqq:
           upload translated versions of these strings in their CSV the CSV
           import won't work.
       show:
-        community_taxon_desc_html: whre site_name is the site name
+        community_taxon_desc_html: where site_name is the site name
         flagged_photos_desc_html: where links is a URL
     photos:
       inviter:

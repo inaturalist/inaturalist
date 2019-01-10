@@ -88,6 +88,9 @@ ar:
   x_people_agree_html:
     one: <span class="count">1</span> شخص يوافق
     other: <span class="count">%{count}</span> اشخاص يوافقون
+  x_new_species:
+    one: 1 نوع جديد
+    other: '%{count} أنواع جديدة'
   x_species:
     one: 1 نوع
     other: '%{count} أنواع'
@@ -119,6 +122,8 @@ ar:
   x_taxon_changes_added_html:
     one: تمت إضافة <span class='count'>1</span> تغيير أصنوفة
     other: <span class=تمت إضافة 'count'>%{count}</span> تغييرات أصناف
+  x_people_helped_user_with_y_ids_html: <strong>%{x} أشخاص </strong> ساعدوا %{user}
+    ب<strong>%{y}المعرفات</strong>
   _100_day_trends: اتجاهات 100 يوم
   _percent_ID_d: '% معرف'
   a: أ
@@ -339,6 +344,7 @@ ar:
   all_photos: كل الصور
   all_places: كل الأماكن
   all_projects: كل المشاريع
+  all_children_added_to_the_database: تمت إضافة جميع الأطفال إلى قاعدة البيانات
   all_rank_added_to_the_database:
     phylum: تُضَاف جميع الشعب إلى قاعدة البيانات
     subphylum: تُضَاف جميع الشعب إلى قاعدة البيانات
@@ -452,8 +458,10 @@ ar:
   allowed_html: HTML المسموح به
   allowed_occurrence_status_values: قيم حالة الحدوث المسموح بها
   allowed_values: القيم المسموح بها
+  almost_there_: أوشكت على الوصول...
   alphabetical: أبجديًا
   alphabetical_order: ترتيب أبجدي
+  already_have_an_account_log_in_html: لديك حساب بالفعل؟ <strong>قم بتسجيل الدخول.</strong>
   amphibians: برمائيات
   amphibiaweb_doesnt_have_info_about_species: البرمائيات ليست لديها أية معلومات حول
     هذا النوع.
@@ -575,7 +583,9 @@ ar:
   at_any_time_change: في أي وقت (<span class="button">تغيير</span>)
   at_time: في %{time}
   atom: ذرة
+  attached_taxon: الأصنوفة المتعلقة
   attribute: سمة
+  attribution: النسبة
   authority_list:
     iucn_red_list: القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية
   authorize_permissions_from_provider: مصادقة الأذونات من %{provider}
@@ -801,9 +811,13 @@ ar:
   check_out_what_the_observation: تحقق مما تبدو عليه الملاحظة التي تحاول تحديدها.
   check_out_your_life_list: تحقق من قائمة الحياة الخاصة بك
   check_this_box_if: |-
-    حدد هذا المربع إذا كنت تريد تطبيق
-    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>ترخيص المشاع الإبداعي النسبة غير التجاري license</a>
-    لصورك، يمكنك اختيار ترخيص مختلف أو إزالة الترخيص لاحقا، ولكن هذا هو أفضل ترخيص في لمشاركة مع الباحثين.
+    حدد هذا الصندوق إذا كنت تريد تطبيق
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>ترخيص المشاع الإبداعي النسبة غير التجاري</a>
+    لصورك، يمكنك اختيار ترخيص مختلف أو إزالة الترخيص لاحقا، ولكن هذا هو أفضل ترخيص للمشاركة مع الباحثين.
+  check_this_box_if_html: |-
+    حدد هذا الصندوق إذا كنت تريد تطبيق
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>ترخيص المشاع الإبداعي النسبة غير التجاري</a>
+    لصورك، يمكنك اختيار ترخيص مختلف أو إزالة الترخيص لاحقا، ولكن هذا هو أفضل ترخيص للمشاركة مع الباحثين.
   checklist: قائمة التدقيق
   checklists: قوائم التدقيق
   checklist_places: قائمة تحقق الأماكن
@@ -842,6 +856,7 @@ ar:
   classification: تصنيف
   clear: مسح
   clear_color_filters: مسح مرشحات الألوان
+  clear_filters: مسح المرشحات
   clear_search: مسح البحث
   click_on_the_map_to: انقر على الخريطة لوضع ملاحظتك
   click_the_map: <strong>انقر على الخريطة</strong> لإضافة موقع.
@@ -900,6 +915,7 @@ ar:
   comparing_list_to_list: مقارنة %{list1} مع %{list2}
   comparing_versions_x_and_y: مقارنة الإصدارات %{x} و%{y}
   comparing_observations_from: مقارنة %{user} الملاحظات من %{dates}
+  complete: اكتمال
   complete_sets: مجموعات كاملة
   compiled_by_name: تم تجميعها بواسطة %{name}
   completed: اكتمل
@@ -1000,6 +1016,9 @@ ar:
   copyright_info_and_more: معلومات حقوق الطبع والنشر والمزيد
   copyright_infringement_desc: ينتهك قانون حقوق الطبع والنشر أو تم إنشاؤه بواسطة شخص
     آخر بخلاف المراقب ويفتقر إلى الإحالة
+  covered_by_a_taxon_framework_html: مغطاة بنسبة %{link}
+  covered_by_a_taxon_framework_link: إطار العمل التصنيفي ل%{taxon_framework_rank}
+    %{taxon_framework_name}
   couldnt_change_your_password: 'تعذر تغيير كلمة مرورك: %{e}'
   couldnt_find_a_user_matching_x_param: تعذر العثور على مستخدم يطابق %{id}
   couldnt_find_that_taxon: لا يمكن العثور على أصنوفة.
@@ -1064,6 +1083,7 @@ ar:
   data_quality: جودة البيانات
   data_quality_assessment: تقييم جودة البيانات
   data_quality_assessment_: تقييم جودة البيانات
+  data_used: 'البيانات المستخدمة:'
   datatype: نوع البيانات
   date_: تاريخ
   date?: تاريخ؟
@@ -1119,6 +1139,7 @@ ar:
   default_sound_license: ترخيص الصوت الافتراضي
   defaults_to_your_name_or_username: الإعدادات الافتراضية للاسم أو اسم المستخدم الخاص
     بك
+  defines_a_taxon_framework_for: يحدد إطار عمل تصنيفيا ل%{taxon_name}
   delete: حذف
   delete_all: حذف الكل
   delete_conversation: مسح المحادثة
@@ -1153,6 +1174,8 @@ ar:
   desription: الوصف
   destroy: تدمير
   details: تفاصيل
+  deviation: الانحراف
+  deviations: الانحرافات
   devise:
     failure:
       user:
@@ -1163,6 +1186,7 @@ ar:
   did_not_send_invitations_because: لم يتم إرسال دعوات إلى ما يلي بسبب...
   did_you_mean: هل تقصد
   did_you_photos_flickr?: هل وضعت أي صور على فليكر؟
+  disable: تعطيل
   disagree: أعارض
   disagree_: أعارض
   disconnect_provider: افصل %{provider}
@@ -1185,6 +1209,7 @@ ar:
   doh_something_went_wrong_error: 'عفوا، حدث خطأ ما: %{error}'
   done: تم
   dont_filter: عدم التصفية
+  dont_have_an_account_sign_up_html: ليس لديك حساب؟ <strong>قم بالاشتراك.</strong>
   dont_send_me_email: لا ترسل لي أي بريد إلكتروني!
   dont_use_double_quotes: لا تستخدم علامات الاقتباس المزدوجة في أي مكان آخر
   drop_it: إسقاطه
@@ -1196,6 +1221,8 @@ ar:
   download_csv: تحميل بصيغة CSV
   download_csv_template: تنزيل قالب CSV
   download_kml: تنزيل بصيغة KML
+  downstream_coverage: تغطية المصب
+  downstream_coverage_rank: مستوى تغطية المصب
   drag_and_drop_photos: سحب وإسقاط الصور على هذه النافذة أو
   draft: مسودة
   draft_: مسودة
@@ -1454,7 +1481,9 @@ ar:
   flag_this_photo: التعليم على هذه الصورة
   flagged: مُعلَّم
   flagged_: مُعلَّم
+  flagged_covered_taxa: الأصناف المغطاة المعلمة
   flagged_for_curation: تم التعليم للمشرفين
+  flagged_taxon: الأصنوفة المعلمة
   flagged_thing_explanation: علم المستخدمون هذا %{thing} لأنه
   flagger: المعلم
   flags: أعلام
@@ -1609,6 +1638,7 @@ ar:
   help_confirm_observations!: المساعدة في تأكيد الملاحظات!
   help_faq: مساعدة / أسئلة مكررة
   help_out!: مساعدة!
+  help_support_inaturalist: مساعدة دعم إيناتوراليست
   helped_the_observer_make: ساعد المراقب في صنع معرفهم النهائي (أي أنهم قُدِّموا قبل
     المعرف النهائي وطابقوه)
   here_are_3_examples: في ما يلي 3 أمثلة للبيانات التي تم تشكيلها بشكل جيد
@@ -1623,6 +1653,7 @@ ar:
   hi_user: مرحبا %{user}
   hide: إخفاء
   hide_details: أخفِ التفاصيل
+  hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
   high: مرتفع
   highest_rank: أعلى رتبة
@@ -1732,6 +1763,7 @@ ar:
   in: في
   in_: في
   in_n: في %{n}
+  in_place_x: في %{place}
   inaturalist_network_affiliation: شبكة انتماء إيناتوراليست
   inbox: صندوق الوارد
   including: يتضمن
@@ -1771,6 +1803,7 @@ ar:
     في تحديد المخلوقات الغامضة!
   interactions: التفاعلات
   internal_server_error: خطأ في الخادم الداخلي
+  internal_taxon: أصنوفة داخلية
   introduced: أُدخِلت
   introduced_in_place: قُدِّم في %{place}
   invasive: مجتاح
@@ -1829,6 +1862,8 @@ ar:
   join_project: انضم إلى هذا المشروع
   join_some_projects_and_invite_some_observations_html: انضم إلى بعض <a href='%{join_url}'>المشاريع</a>
     و<a href='%{invite_url}'>ادعُ بعض الملاحظات</a>
+  join_the_largest_group_of_naturalists_in_the_world: انضم إلى أكبر مجموعة من علماء
+    الطبيعة في العالم!
   join_this_project: انضم إلى هذا المشروع
   joined!: تم الانضام!
   joined_any_projects: انضم إلى أي المشاريع
@@ -1961,6 +1996,7 @@ ar:
     في أسرة الغراب (غرابيات).
   life_list_first: قائمة الحياة أولا
   life_list_firsts: أوليات قائمة الحياة
+  linear_scale_label: خطي
   link: وصلة
   link_or_unlink_your_facebook_account: ربط أو إلغاء ربط حساب فيسبوك الخاص بك
   link_or_unlink_your_flickr_account: ربط أو إلغاء ربط حساب فليكر الخاص بك
@@ -1999,6 +2035,7 @@ ar:
   linked_flickr_photo_copy_html: <strong>لن نخزن نسخا من صورك أو نغير بيانات فليكر
     (ما لم تطلب منا ذلك).</strong> نحن نهتم كثيرا بالطيور والبق والبزاق التي تريد
     أن تفسد معلوماتك!
+  linkedin: لينكد إن
   list: قائمة
   list_deleted: تم حذف القائمة.
   list_saved: تم حفظ القائمة.
@@ -2095,6 +2132,7 @@ ar:
     للأمين تجاوز هذا الأمر عن طريق تعديل الأصناف وإدخال معرفات الوالدين مباشرة، ولكن
     الرجاء مراعاة دمج الأصناف الجديدة في أصناف موجودة بدلا من ذلك.
   log_in: تسجيل الدخول
+  log_scale_label: سجل
   logged_in_as: تسجيل الدخول كـ
   login_slash_username: تسجيل الدخول / اسم المستخدم
   logo:
@@ -2329,7 +2367,7 @@ ar:
   new_custom_field_for: حقل مخصص جديد لـ
   new_flag_for: علم جديد لـ
   new_guide: دليل جديد
-  new_journal_posts: مجلة مشاركة جديدة
+  new_journal_post: مجلة مشاركة جديدة
   new_lexicon: معجم جديد
   new_list: قائمة جديدة
   new_members: أعضاء جدد
@@ -2337,6 +2375,7 @@ ar:
   new_observation_field: حقل ملاحظة جديد
   new_observation_rules: قواعد ملاحظة جديدة
   new_observations: ملاحظات جديدة
+  new_observations_this_year: ملاحظات جديدة هذا العام
   new_observations_ellispsis: ملاحظات جديدة...
   new_observations_from_place_html: ملاحظات جديدة من %{place}
   new_observations_may_take_up_to: قد تستغرق الملاحظات الجديدة ما يصل إلى %{widget_expiration}
@@ -2348,6 +2387,9 @@ ar:
   new_project_asset: أصول المشروع الجديد
   new_project_asset_for: أصول المشروع الجديد لـ
   new_source: مصدر جديد
+  new_species_added_in_interval: الأنواع الجديدة المضافة في %{interval}
+  new_species_added_in_interval_x_of_y: الأنواع الجديدة المضافة في %{interval} (عرض
+    %{x} من %{y})
   new_taxon_change: تغيير الأصنوفة الجديد
   new_taxon_link: رابط الأصنوفة الجديدة
   new_taxon_name: اسم الأصنوفة الجديدة
@@ -2358,8 +2400,13 @@ ar:
   new_updates_in_the_last_24_hours_from: تحديثات جديدة في آخر 24 ساعة من %{site_name}
   new_user_rules: قواعد المستخدم الجديد
   new_users: مستخدمون جدد
+  new_users_this_year: مستخدمون جدد هذا العام
   new_users_w_7_obs: المستخدمون الجدد w/ 7 ملا
   new_users_week: المستخدمون الجدد / الأسبوع
+  newly_added: مضاف حديثا
+  newly_added_species: الأنواع المضافة حديثا
+  newly_observed_species: الأنواع الملاحظة حديثا
+  newly_observed_species_this_year: الأنواع المضافة حديثا هذا العام
   news: الأخبار
   next: التالي
   next_observation: الملاحظة التالية
@@ -2432,6 +2479,7 @@ ar:
   no_ones_observed: لم يلاحظ أحد
   no_photo: لا توجد صورة
   no_photos: لا توجد صور
+  no_photos_of_that_size: لا صورة بهذا الحجم.
   no_places_available: لا تتوفر أماكن
   no_places_selected: لم يتم تحديد أماكن.
   no_post_yet: لا توجد مشاركات حتى الآن!
@@ -2469,11 +2517,13 @@ ar:
   no_x_this_y: لا %{x} هذا %{y}
   noble_curators: '%{site} قيمو نوبل'
   non_human?: غير بشري؟
+  non_internal_taxon: أصنوفة غير داخلية
   none: لا شيء
   none_found: لم يتم العثور على شيء
   normal: عادي
   not_absent: ليس غائبا
   not_completed: غير مكتمل
+  not_covered_by_any_taxon_frameworks: لا تغطيها أية أطر عمل تصنيفية
   not_evaluated: لم يتم تقييمه
   not_filtering: عدم التصفية
   not_findig_what_you_want: لم تجد ما تريد؟
@@ -2487,6 +2537,7 @@ ar:
   not_on_this_list: ليس في هذه القائمة.
   not_recorded: غير مسجل
   not_seeing_what_looking_for: لم تر ما كنت تبحث عنه؟
+  not_spam: ليس بريدا موذيا
   not_yet: ليس بعد
   note: ملحوظة
   notes: ملاحظات
@@ -2738,10 +2789,12 @@ ar:
   optional_columns_note_for_any: 'الأعمدة الاختيارية (ملاحظة: لاستخدام أي من هذه الأعمدة
     في ملاحظة; يجب أن تكون جميعها موجودة)'
   or: أو
+  or_all_caps: أو
   or_choose_high_level_taxa: '...أو الاختيار من بعض الأصناف عالية المستوى'
   or_if_you_dont_want_email: أو إذا كنت لا تريد أي بريد إلكتروني...
   or_invite_your_friends: أو ادعُ أصدقاءك
   or_invited: أو مدعو.
+  or_log_in_with_colon: 'أو قم بتسجيل الدخول باستخدام:'
   or_post_message_to_google_group: 'أو نشر رسالة إلى مجموعة جوجل الخاصة بنا:'
   or_upload: أو تحميل
   or_you_can: أو يمكنك...
@@ -2775,6 +2828,7 @@ ar:
   out_of_range: خارج النطاق
   output_taxon: إخراج الأصنوفة
   overview: نظرة عامة
+  overlapping_downstream_taxon_frameworks: تداخل أطر عمل تصنيفية مع التيار
   owner: المالك
   parent: الأصل
   parent_name: اسم الوالدين
@@ -2812,7 +2866,9 @@ ar:
   photo?: صورة؟
   photo_attribution: صورة %{attribution}
   photo_browser: متصفح الصور
+  photo_by: الصورة بواسطة
   photo_by_id_attribution: صورة %{id}، %{attribution}
+  photo_credits: نسب صور
   photo_deleted: تم حذف الصورة
   photo_destroyed_because_it_was_deleted_from: تم حذف الصورة المدمرة ب/ك من الموقع
     الخارجي أو لم يعد لدى %{site_name} إذنا لمشاهدتها
@@ -2967,60 +3023,268 @@ ar:
   places_name:
     afghanistan: أفغانستان
     africa: أفريقيا
+    akrotiri_and_dhekelia: أكروتيري ودكليا
+    aland: أولاند
+    albania: ألبانيا
+    algeria: الجزائر
+    american_samoa: ساموا الأمريكية
+    andorra: أندورا
+    angola: أنجولا
+    anguilla: أنجويلا
+    antarctica: أنتاركتيكا
     antigua_and_barbuda: أنتيغوا وبربودا
+    argentina: الأرجنتين
+    armenia: أرمينيا
+    aruba: أروبا
     australia: أستراليا
     austria: النمسا
+    azerbaijan: أذربيدجان
+    bahamas: البهاماس
+    bahrain: البحرين
+    bangladesh: بنجلاديش
+    barbados: باربادوس
+    belarus: بيلاروسيا
     belgium: بلجيكا
+    belize: بليز
+    benin: بنين
+    bermuda: برمودا
+    bhutan: بوتان
+    bolivia: بوليفيا
+    bonaire_saint_eustatius_and_saba: بونير، سينت أوستاتيوس وسابا
     bosnia_and_herzegovina: البوسنة والهرسك
+    botswana: بوتسوانا
+    bouvet_island: جزيرة بوفيه
     brazil: البرازيل
+    british_indian_ocean_territory: منطقة المحيط الهندي البريطانية
+    british_virgin_islands: جزر العذراء البريطانية
+    brunei: بروناي
+    bulgaria: بلغاريا
+    burkina_faso: بوركينا فاسو
+    burundi: بوروندي
+    cambodia: كمبوديا
+    cameroon: الكاميرون
     canada: كندا
+    cape_verde: الرأس الأخضر
+    cayman_islands: جزر كايمان
+    central_african_republic: جمهورية أفريقيا الوسطى
     central_america: أمريكا الوسطى
+    chad: تشاد
+    chile: تشيلي
     china: الصين
+    christmas_island: جزيرة كريسماس
+    clipperton_island: جزيرة كليبرتون
+    cocos_islands: جزر كوكوس
     colombia: كولومبيا
+    commonwealth_of_the_northern_mariana_islands: كومونولث جزر ماريانا الشمالية
+    comoros: جزر القمر
+    cook_islands: جزر كوك
+    costa_rica: كوستا ريكا
+    cote_d_ivoire: كوت ديفوار
+    croatia: كرواتيا
+    cuba: كوبا
+    curacao: كوراساو
+    cyprus: قبرص
+    czech_republic: جمهورية التشيك
+    democratic_republic_of_the_congo: جمهورية الكونغو الديمقراطية
     denmark: الدنمارك
+    djibouti: جيبوتي
+    dominica: الدومينيكان
+    dominican_republic: جمهورية الدومينيكان
+    east_timor: تيمور الشرقية
+    ecuador: الإكوادور
     egypt: مصر
+    el_salvador: السلفادور
     equatorial_guinea: غينيا الاستوائية
+    eritrea: إرتريا
+    estonia: إستونيا
+    ethiopia: إثيوبيا
     europe: أوروبا
+    falkland_islands: جزر فوكلاند
+    faroe_islands: جزر فارو
+    fiji: فيجي
+    finland: فنلندا
     france: فرنسا
+    french_guiana: غويانا الفرنسية
+    french_polynesia: بولينزيا الفرنسية
+    french_southern_territories: المناطق الجنوبية الفرنسية
+    gabon: الجابون
+    gambia: جامبيا
+    georgia: جورجيا
     germany: ألمانيا
+    ghana: غانا
+    gibraltar: جبل طارق
     greece: اليونان
+    greenland: جرينلاند
+    grenada: جرينادا
+    guadeloupe: جواديلوب
+    guam: جوام
+    guatemala: جواتيمالا
+    guernsey: جويرنسي
+    guinea: غينيا
+    guinea_bissau: غينيا-بيساو
+    guyana: جوايانا
+    haiti: هايتي
+    heard_island_and_mcdonald_islands: جزيرة هيرد وجزر ماكدونالد
+    honduras: هندوراس
     hong_kong: هونغ كونغ
     hungary: المجر
-    italy: إيطاليا
+    iceland: أيسلندا
     india: الهند
+    indonesia: إندونيسيا
+    iran: إيران
     iraq: العراق
+    ireland: أيرلندا
+    isle_of_man: جزيرة مان
+    israel: إسرائيل
+    italy: إيطاليا
+    jamaica: جامايكا
     japan: اليابان
+    jersey: جيرسي
+    jordan: الأردن
+    kazakhstan: كازاخستان
+    kenya: كينيا
+    kiribati: كيريباتي
     korea: كوريا
+    kosovo: كوسوفو
+    kuwait: الكويت
+    kyrgyzstan: قيرغيزستان
+    laos: لاوس
+    latvia: لاتفيا
+    lebanon: لبنان
+    lesotho: ليسوتو
+    liberia: ليبيريا
+    libya: ليبيا
+    liechtenstein: ليختنشتاين
+    lithuania: ليتوانيا
+    luxembourg: لوكسمبورج
+    macao: ماكاو
+    macedonia: مقدونيا
+    madagascar: مدغشقر
+    malawi: مالاوي
+    malaysia: ماليزيا
+    maldives: المالديف
+    mali: مالي
+    malta: مالطا
+    marshall_islands: جزر مارشال
     martinique: مارتينيك
+    mauritania: موريتانيا
+    mauritius: موريشيوس
+    mayotte: مايوت
     mexico: المكسيك
+    micronesia: ميكرونيسيا
+    moldova: مولدوفا
+    monaco: موناكو
+    mongolia: مونغوليا
+    montenegro: الجبل الأسود
+    montserrat: مونتسرات
+    morocco: المغرب
+    mozambique: موزمبيق
+    myanmar: ميانمار
+    namibia: ناميبيا
+    nauru: ناورو
+    nepal: نيبال
     netherlands: هولندا
+    new_caledonia: كاليدونيا الجديدة
     new_guinea: غينيا الجديدة
     new_zealand: نيوزيلاندا
+    nicaragua: نيكارجوا
+    niger: النيجر
+    nigeria: نيجيريا
+    niue: نييوي
+    norfolk_island: جزيرة نورفولك
     north_africa: شمال أفريقيا
     north_america: أمريكا الشمالية
+    north_korea: كوريا الشمالية
+    northern_cyprus: قبرص الشمالية
+    norway: النرويج
+    oman: عمان
+    pakistan: باكستان
+    palau: بالاو
+    palestina: فلسطين
     palestine: فلسطين
     panama: بنما
+    papua_new_guinea: بابوا غينيا الجديدة
+    paraguay: باراجواي
     peru: بيرو
+    philippines: الفلبين
+    pitcairn_islands: جزر بيتكيرن
     poland: بولندا
     portugal: البرتغال
+    puerto_rico: بورتريكو
+    qatar: قطر
     republic_of_congo: الكونغو
+    reunion: رينيون
+    romania: رومانيا
     russia: روسيا
-    saudi_arabia: السعودية
+    rwanda: رواندا
+    saint_barthelemy: سان بارتيلمي
+    saint_helena: سانت هيلانة
+    saint_kitts_and_nevis: سانت كيتس ونيفيس
+    saint_lucia: سانت لوشيا
+    saint_martin: سانت-مارتين
+    saint_pierre_and_miquelon: سان بيير وميكلون
+    saint_vincent_and_the_grenadines: سانت فينسنت والغرينادين
+    samoa: ساموا
+    san_marino: سان مارينو
     sao_tome_and_principe: ساو تومي وبرينسيبي
+    saudi_arabia: السعودية
+    senegal: السنغال
+    serbia: صربيا
+    seychelles: سيشل
+    sierra_leone: سيراليون
     singapore: سنغافورة
+    sint_maarten: سينت مارتن
+    slovakia: سلوفاكيا
+    slovenia: سلوفينيا
+    solomon_islands: جزر سليمان
+    somalia: الصومال
     south_africa: جنوب أفريقيا
     south_america: أمريكا الجنوبية
+    south_georgia_and_the_south_sandwich_islands: جورجيا الجنوبية وجزر ساندويتش الجنوبية
+    south_korea: كوريا الجنوبية
+    south_sudan: جنوب السودان
     spain: إسبانيا
+    sri_lanka: سريلانكا
+    sudan: السودان
+    suriname: سورينام
+    svalbard_and_jan_mayen: سفالبارد ويان ماين
+    swaziland: سوازيلاند
     sweden: السويد
     switzerland: سويسرا
     syria: سوريا
+    taiwan: تايوان
+    tajikistan: طاجيكستان
+    tanzania: تنزانيا
     thailand: تايلاند
+    togo: توجو
+    tokelau: توكيلاو
+    tonga: تونجا
     trinidad_and_tobago: ترينداد وتوباغو
+    tunisia: تونس
     turkey: تركيا
+    turkmenistan: تركمانستان
+    turks_and_caicos_islands: جزر توركس وكايكوس
+    tuvalu: توفالو
+    uganda: أوغندا
+    ukraine: أكرانيا
+    united_arab_emirates: الإمارات العربية المتحدة
     united_kingdom: المملكة المتحدة
     united_states: الولايات المتحدة
+    united_states_minor_outlying_islands: جزر الولايات المتحدة الصغيرة النائية
+    united_states_virgin_islands: جزر العذراء الأمريكية
+    uruguay: أورجواي
+    uzbekistan: أوزبكيستان
+    vanuatu: فانواتو
+    vatican_city: مدينة الفاتيكان
+    venezuela: فنزويلا
+    vietnam: فيتنام
     virgin_islands: جزر العذراء
+    wallis_and_futuna: واليس وفوتونا
     west_africa: غرب أفريقيا
+    western_sahara: الصحراء الغربية
+    yemen: اليمن
+    zambia: زامبيا
+    zimbabwe: زيمبابوي
   places_of_interest: الأماكن ذات الأهمية
   places_merged_successfully: تم دمج الأماكن بنجاح!
   plants: النباتات
@@ -3092,6 +3356,11 @@ ar:
   processing: معالجة
   processing3p: تجري المعالجة...
   profile: الملف الشخصي
+  profile_visibility_pending_account_verification: إمكانية رؤية الملف الشخصي في انتظار
+    التحقق من الحساب
+  profile_visibility_desc: "في محاولة لمنع الرسائل غير المرغوب فيها من الوصول إلى
+    %{site_name}، تكون ملفات تعريف المستخدمين مرئية \nبشكل عام فقط بعد أن يساهم المستخدم
+    في العديد من ملاحظات \nدرجة البحث."
   project: المشروع
   project_added_your_observations: أضاف المشروع ملاحظاتك
   project_admins:
@@ -3176,6 +3445,7 @@ ar:
   rank_position: المرتبة
   rank_restrictions: قيود المرتبة
   ranks:
+    stateofmatter: حالة من المسألة
     kingdom: المملكة
     subkingdom: تحت مملكة
     phylum: الشعبة
@@ -3234,6 +3504,7 @@ ar:
   recent_comments_on_your_stuff: التعليقات الأخيرة على أشيائك
   recent_evidence?: دليل حديث؟
   recent_evidence_of_organism: دليل حديث لكائن حي
+  recent_new_users: أحدث المستخدمين الجدد
   recent_observations: الملاحظات الأخيرة
   recent_observations_: الملاحظات الأخيرة
   recent_post: المنشور الأخير
@@ -3264,6 +3535,18 @@ ar:
   reject_the_community_id: رفض معرف المجتمع
   related_species: الأنواع ذات الصلة
   relative_observations: ملاحظات مرتبطة
+  relationship: العلاقة
+  relationship_x: 'العلاقة: %{relationship}'
+  relationships:
+    match: مطابقة
+    one_to_one: من واحد لواحد
+    alternate_position: موقف بديل
+    many_to_many: كثير لكثير
+    many_to_one: كثير لواحد
+    one_to_many: واحد لكثير
+    not_external: ليس خارجيا
+    not_internal: ليس داخليا
+    unknown: غير معروف
   reload_and_refresh: إعادة تحميل وتحديث القائمة
   reload_from_observations: إعادة تحميل من الملاحظات
   reload_timed_out: انتهت مهلة التحميل; الرجاء معاودة المحاولة في وقت لاحق.
@@ -3363,6 +3646,7 @@ ar:
     must_be_in: يجب أن يكون في أصنوفة
     must_be_coordinates_shareable_by_project_curators: يجب أن يسمح المراقب لأمناء
       المشروع بعرض الإحداثيات.
+  running_total: مجموع التشغيل
   said: قال
   sat: قم
   satellite: القمر الصناعي
@@ -3390,6 +3674,7 @@ ar:
     one: جارٍ حفظ الملاحظة...
     other: جارٍ حفظ %{num} %{count} ملاحظات...
   saving_verb: جارٍ الحفظ
+  scale_colon: 'المقياس:'
   schemes: مخططات
   schemes_including: مخططات بما في ذلك
   scientific_names: الأسماء العلمية
@@ -3468,6 +3753,7 @@ ar:
   set_license: تعيين الترخيص
   settings: الإعدادات
   share: مشاركة
+  share_colon: 'شارك:'
   share_your_observation_with_researchers_by: شارك الملاحظة مع الباحثين من قبل
   short_code_for_this_place: رمز قصير لهذا المكان، مثل وم للولايات المتحدة
   short_or_abbreviated_title_for_display: عنوان مختصر للعرض في المناطق محدودة المساحة،
@@ -3486,6 +3772,7 @@ ar:
   show_off_your_recent_observations: إظهار ملاحظاتك الأخيرة في مدونتك أو موقعك!
   show_only: أظهر فقط
   show_relative_proportions_of_all_observations: إظهار النسب المرتبطة لجميع الملاحظات
+  show_running_total: إظهار تشغيل الاجمالي
   show_scientific_name_first: عرض الأسماء العلمية أولا
   show_taxa_from_both: (عرض أصناف من كلا القائمتين)
   show_taxa_from_everywhere: عرض أصناف من كل مكان
@@ -3501,6 +3788,7 @@ ar:
   shown_publicly_as: يظهر بشكل عام كـ
   sign_in: تسجيل الدخول
   sign_in_with_provider: تسجيل الدخول باستخدام %{provider}
+  sign_up_with_provider: الاشتراك باستخدام %{provider}
   sign_out: تسجيل الخروج
   sign_up!: أنشئ حسابًا!
   sign_up: أنشئ حسابًا
@@ -3621,11 +3909,13 @@ ar:
   source_unknown: المصدر غير معروف
   source_url: مسار المصدر
   source_of_coordinates: مصدر الإحداثيات ودقة قياس، تعيين تلقائي.
+  sourced_to: من المصدر
   sources: مصادر
   sources_youve_added: المصادر التي أضفتها
   sources_and_credits: المصادر والتصديق
   sourcing: إمداد مصادر
   spam: سخام
+  spammer: مرسلو البريد المزعج
   spanish: الإسبانية
   species: نوع
   species_by_category: الأنواع حسب التصنيف
@@ -3673,6 +3963,8 @@ ar:
   stop_following_user: توقف عن متابعة %{user}
   stop_testing: وقف الاختبار
   stop_updating_position: توقف عن تحديث الموضع
+  studies_that_used_inaturalist_data_in_year: الدراسات التي استخدمت بيانات إيناتوراليست
+    في %{year}
   stuff_just_added: العناصر التي أضفتها للتو...
   subject_resolved_noun_html: '%{subject} حل %{noun}'
   subject_affecting_stuff_html: '%{subject} يؤثر على %{stuff}'
@@ -3711,6 +4003,7 @@ ar:
   suggestions: اقتراحات
   summary: الملخص
   supporting: دعم
+  support_inaturalist: دعم إيناتوراليست
   suspicious_photos: الصور المشبوهة
   siutable_observations: ملاحظات مناسبة
   sun: الأحد
@@ -3814,6 +4107,11 @@ ar:
   taxon_colors: ألوان الأصنوفة
   taxon_curators: أمناء الأصنوفة
   taxon_extras: إضافات الأصنوفة
+  taxon_framework_notes: ملاحظات إطار العمل التصنيفي
+  taxon_framework_relationship_for: علاقة إطار العمل التصنيفي لـ
+  taxon_framework_relationship: علاقة إطار العمل التصنيفي
+  taxon_framework_relationships: علاقات إطار العمل التصنيفي
+  taxon_framework_taxon: أصنوفة إطار العمل التصنيفي
   taxon_links: روابط الأصنوفة
   taxon_merge: دمج الأصنوفة
   taxon_name: اسم الأصنوفة
@@ -3854,6 +4152,10 @@ ar:
   taxonomic_status: الحالة التصنيفية
   taxonomic_tags_for_flickr: العلامات التصنيفية لفليكر
   taxonomic_tree_browser: متصفح شجرة التصنيف
+  taxonomy_details: تفاصيل تصنيفية
+  taxonomy_details_for: تفاصيل تصنيفية لـ
+  taxonomy_details_info: تستخدم صفحة التفاصيل التصنيفة إطارات عمل تصنيفية للمساعدة
+    في وصف ما نعنيه بأصنوفة. <a href="/pages/taxon_frameworks">قراءة المزيد</a>.
   taxonomy_settings: إعدادات التصنيف
   tell_everyone_a_little_about_you: أخبر الجميع قليلا عن نفسك
   tell_the_world_a_little_about_yourself: أخبرنا عن نفسك
@@ -3972,6 +4274,8 @@ ar:
     \nالحال، اسمح لنا أن نعرف."
   there_were_some_problems_with_fields: 'كانت هناك بعض المشاكل في الحقول التالية:'
   theres_also: هناك أيضا
+  theres_something_wrong_with_taxon_framework_relationship: هناك شيء خطأ هنا; لا يمكننا
+    تحديد العلاقة بين أية أصناف داخلية وخارجية
   these_are_items_people_on: "هؤلاء هم أشخاص العناصر التي تم وضع علامة عليهم في الموقع
     للمعالجة،\nيجب حذف التعليقات غير المرغوب فيها ويجب تعليق المستخدمين الذين يضيفون
     محتوى غير مرغوب فيه (انتقل \nإلى صفحات ملفاتهم الشخصية وانقر على \"تعليق المستخدم\"
@@ -4143,6 +4447,7 @@ ar:
   unknown: غير معروف
   unknown_error: خطأ غير معروف
   unknown_rank: (رتبة غير معروفة)
+  unknown_taxon_framework_relationship: علاقة إطار عمل غير معروفة
   unfollow: إلغاء المتابعة
   unlink_your_google_account: إلغاء ربط حسابك في جوجل
   unmute: تنشيط الصوت
@@ -4245,6 +4550,8 @@ ar:
   user_has_opted_out_of_community_ids_for_this_obs: اختار %{user} الاحتفاظ بالسيطرة
     على الأصناف المرتبطة  بهذه الملاحظة
   user_hasnt: '%{user} ليس لديه'
+  user_helped_x_people_with_y_ids_html: '%{user} ساعد <strong>%{x} من الأشخاص </strong>
+    ب<strong>%{y} المعرفات</strong>'
   user_invite_observation_to_project: يريد %{user} دعوة ملاحظتك "%{observation}" إلى
     مشروع %{project}.
   user_invited_you_to_join_html: دعاك %{user} للانضمام
@@ -4424,6 +4731,7 @@ ar:
   welcome_comma!: أهلا بك،
   welcome: أهلا بك
   welcome_back: مرحبا بعودتك
+  welcome_back!: مرحبا بعودتك!
   welcome_comma: أهلا بك،
   welcome_login: مرحبا، %{login}
   welcome_message: حيث يمكنك <strong>تسجيل</strong> ما تراه في الطبيعة، و<strong>مقابلة</strong>
@@ -4498,6 +4806,7 @@ ar:
   x_of_y: '%{x} من %{y}'
   x_of_y_people_over_two_thirds_agree_it_is: يوافق %{x} من الأشخاص %{y} (أكثر من 2/3)
     على ذلك
+  x_is_the_root_of_the_tree: '%{rank} %{name} هو جذر الشجرة'
   x_project_journal: '%{project} %{name}'
   x_project_stats: '%{project} Stats'
   x_sent_you_a_new_message_on_y_html: 'أرسل %{x} إليك رسالة جديدة في %{y}:'
@@ -4753,6 +5062,20 @@ ar:
           please_read_the_teachers_guide_html: |-
             إذا كان الأمر كذلك، الرجاء قراءة <a href="%{url}">دليل المعلم لدينا</a>
             للحصول على نصائح حول استخدام %{site_name} مع الطلاب.
+    donate:
+      donate_short_desc: تبرع الآن لإظهار دعمك!
+      donate_desc_html: "<p class=\"lead\">\n<strong>إيناتوراليست هو واحد من أكبر
+        المجتمعات في العالم المخصصة \n  لاستكشاف التنوع البيولوجي، نشكرك على كونك
+        جزءً منه!</strong>\n</p>\n<p class=\"lead\">\n  إذا كنت تؤمن بقوة هذا المجتمع
+        العالمي لمحبي الطبيعة،\n  في مشاركة المعرفة وتوليد بيانات التنوع البيولوجي
+        التي لا يمكن الاستغناء عنها، \n  فالرجاء التفكير لمرة واحدة أو هدية متكررة.
+        \n</p>\n<p class=\"lead\">\n  يساعد تبرعك في دعم إيناتوراليست مع نمو المجتمع،
+        من \n  تطوير رؤية الحاسوب وتنفيذ ميزات جديدة لدعم \n  خوادمنا وموظفينا. \n</p>\n<p
+        class=\"text-muted\">\n  إيناتوراليست هي مبادرة مشتركة من أكاديمية كاليفورنيا
+        للعلوم\n  وجمعية ناشيونال جيوغرافيك، سيتم استلام جميع التبرعات من قبل \n  أكاديمية
+        كاليفورنيا للعلوم، وهي مؤسسة غير ربحية 501(c)(3) معفاة من الضرائب \n  مقرها
+        في الولايات المتحدة. \n</p>"
+      post_donate_social_media_text: أنا أدعم إيناتوراليست لأن.
     guides:
       index:
         funding_html: |-
@@ -5658,6 +5981,42 @@ ar:
           تم إنشاؤها عبر <a href="https://www.inaturalist.org">إيناتوراليست</a>
           أو مواقع <a href="%{url}">شبكة إيناتوراليست</a>
       year:
+        include_usa: تضمين الولايات المتحدة
+        growth_by_country_desc_html: "أين يحدث النمو؟ تحاول هذه الخريطة والرسم البياني
+          تحطيم هذا\nحسب البلد، والذي يتبين أنه معقد لأن النمو حسب \nالبلد يمكن أن
+          يكون غير متوازن للغاية، لقد اخترنا هنا حذف الولايات \nالمتحدة واستخدام مقياس
+          سجل بشكل افتراضي لإبراز الفروق \nبين البلدان الأخرى، إذا كان بلد ما أسود
+          فهذا يعني أنه لم \nيسهم بشكل ملحوظ في نسبة مئوية، أو لم يكن لديه نمو هذا
+          العام، \nأو لم يكن لديه المزيد من الملاحظات هذا العام مقارنةً بالعام الماضي
+          (حُم حول \nبلد لرؤية تفاصيل أكثر قليلا)، تشير <strong>\"% إجمالي \nالنمو\"</strong>
+          إلى مقدار النمو العالمي من \nبلد معين، على سبيل المثال، إذا كانت هناك 20
+          ملاحظة في 2018 و10\nفي 2017، سيكون هذا نموا بمقدار 10 ملاحظات، وإذا كانت
+          5 من هذه \nالملاحظات من بنين، فإن بنين ساهمت بنسبة 50% من إجمالي \nالنمو،<strong>
+          \"% للنمو\"</strong> تعني عدد الملاحظات \nهذا العام في ذلك البلد كنسبة مئوية
+          من ملاحظات العام الماضي في ذلك البلد; لذلك إذا كانت هناك 10 ملاحظات \nفي
+          لاوس العام الماضي ولكن 20 هذا العام، فسيكون ذلك نموا بنسبة 100%، وإذا كان
+          \nهناك 0 في العام الماضي و1 هذا العام، فهذا هو ما لا نهاية % من النمو."
+        growth_by_country_title: النمو حسب البلد
+        growth_in_year_obs: النمو في %{year} (ملاحظات)
+        growth_title: النمو
+        new_species_desc: |-
+          الأنواع التي تمت ملاحظتها للمرة الأولى في %{site_name} هذا العام،
+          عرض %{x} من <a href="%{url}">%{y} أنواع</a>.
+        new_species_desc_html: "الأنواع التي تمت إضافتها للمرة الأولى هذا العام،\nانقر
+          على شهر لعرض بعض الأنواع الجديدة المضافة في ذلك الشهر،\nيمكنك أيضا عرض إجمالي
+          تراكم الأنواع، أو تحريك شريط التمرير \nفي الوقت المناسب لرؤية الأنواع الأخرى
+          التي تمت ملاحظتها حديثا، يعرض هذا المخطط \nأنواعا من الملاحظات القابلة للتحقق
+          منها في الشهر الذي تم رفعها فيه \nإلى %{site_name} (وليس الشهر عندما تمت
+          الملاحظة)، لا \nيتضمن أصنافا أعلى أو أقل; لذا فإن الملاحظة التي تم تحديدها
+          على أنها \nثدييات لا تحسب، وملاحظة <i>ذئب رمادي</i> نويع.\n<i>دب</i> ستحسب
+          فقط <i>ذئب رمادي</i>."
+        obs_in_year: الملاحظات في %{year}
+        percent_growth_in_year: '% النمو في %{year}'
+        percent_of_total_growth: للنمو الإجمالي
+        publications_desc_html: "بيانات التأثير والمرئيات مجاملة من\n<a href=\"https://www.altmetric.com\">Altmetric</a>،
+          معلومات\nحول استخدام البيانات من قبل أصدقائنا في \n<a href=\"https://www.gbif.org/\">مرفق
+          معلومات التنوع البيولوجي العالمي</a>.\n<br/>\n<a href=\"%{url}\">عرض جميع
+          %{numStudies} الدراسات</a>"
         sunburst_desc_html: "أصناف ملاحظة رُتِّبت كرسم \"سونبورست\" الهرمي، قاعدة
           \nالتسلسل الهرمي في المركز، تبدأ من \"الحياة\" وتنتهي \nمع الأنواع على الحواف
           الخارجية، حجم كل قوس يتناسب \nمع عدد ملاحظات هذه الأصنوفة، والألوان الحمراء
@@ -6088,7 +6447,7 @@ ar:
     messages:
       accepted: يجب أن تكون مقبولة
       blank: لا يمكن تركها فارغة
-      confirmation: لا تطابق التأكيد
+      confirmation: كلمة المرور لم تطابق
       empty: لا يمكن تركها فارغة
       equal_to: يجب أن تساوي %{count}
       even: يجب أن يكون عددا زوجيا
@@ -6184,7 +6543,7 @@ ar:
       messages:
         accepted: يجب أن تكون مقبولة
         blank: لا يمكن تركها فارغة
-        confirmation: لا تطابق التأكيد
+        confirmation: كلمة المرور لم تطابق
         empty: لا يمكن تركها فارغة
         equal_to: يجب أن تساوي %{count}
         even: يجب أن يكون عددا زوجيا

@@ -155,7 +155,7 @@ class FiltersButton extends React.Component {
       return (
         <Button
           className={cssClass}
-          title={ I18n.t( `all_taxa.${t.label}` ) }
+          title={ I18n.t( `all_taxa.${t.label}`, { defaultValue: I18n.t( t.label ) } ) }
           key={`btn-${t.name}`}
           onClick={ ( ) => {
             let newIconicTaxa;

@@ -1216,6 +1216,42 @@ ALTER SEQUENCE exploded_atlas_places_id_seq OWNED BY exploded_atlas_places.id;
 
 
 --
+-- Name: external_taxa; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE external_taxa (
+    id integer NOT NULL,
+    name character varying,
+    rank character varying,
+    parent_name character varying,
+    parent_rank character varying,
+    url character varying,
+    taxon_framework_relationship_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: external_taxa_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE external_taxa_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: external_taxa_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE external_taxa_id_seq OWNED BY external_taxa.id;
+
+
+--
 -- Name: flags; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1229,7 +1265,9 @@ CREATE TABLE flags (
     user_id integer DEFAULT 0 NOT NULL,
     resolver_id integer,
     resolved boolean DEFAULT false,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    resolved_at timestamp without time zone,
+    flaggable_user_id integer
 );
 
 
@@ -3966,7 +4004,8 @@ CREATE TABLE taxa (
     conservation_status_source_identifier integer,
     is_active boolean DEFAULT true NOT NULL,
     complete_rank character varying,
-    complete boolean
+    complete boolean,
+    taxon_framework_relationship_id integer
 );
 
 
@@ -4079,7 +4118,8 @@ CREATE TABLE taxon_curators (
     user_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    taxon_id integer
+    taxon_id integer,
+    taxon_framework_id integer
 );
 
 
@@ -4134,6 +4174,78 @@ CREATE SEQUENCE taxon_descriptions_id_seq
 --
 
 ALTER SEQUENCE taxon_descriptions_id_seq OWNED BY taxon_descriptions.id;
+
+
+--
+-- Name: taxon_framework_relationships; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE taxon_framework_relationships (
+    id integer NOT NULL,
+    description text,
+    relationship text DEFAULT 'unknown'::text,
+    user_id integer,
+    updater_id integer,
+    taxon_framework_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: taxon_framework_relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE taxon_framework_relationships_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxon_framework_relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE taxon_framework_relationships_id_seq OWNED BY taxon_framework_relationships.id;
+
+
+--
+-- Name: taxon_frameworks; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE taxon_frameworks (
+    id integer NOT NULL,
+    taxon_id integer,
+    description text,
+    rank_level integer,
+    complete boolean DEFAULT false,
+    source_id integer,
+    user_id integer,
+    updater_id integer,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: taxon_frameworks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE taxon_frameworks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taxon_frameworks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE taxon_frameworks_id_seq OWNED BY taxon_frameworks.id;
 
 
 --
@@ -5016,6 +5128,13 @@ ALTER TABLE ONLY exploded_atlas_places ALTER COLUMN id SET DEFAULT nextval('expl
 
 
 --
+-- Name: external_taxa id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY external_taxa ALTER COLUMN id SET DEFAULT nextval('external_taxa_id_seq'::regclass);
+
+
+--
 -- Name: flags id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5513,6 +5632,20 @@ ALTER TABLE ONLY taxon_descriptions ALTER COLUMN id SET DEFAULT nextval('taxon_d
 
 
 --
+-- Name: taxon_framework_relationships id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY taxon_framework_relationships ALTER COLUMN id SET DEFAULT nextval('taxon_framework_relationships_id_seq'::regclass);
+
+
+--
+-- Name: taxon_frameworks id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY taxon_frameworks ALTER COLUMN id SET DEFAULT nextval('taxon_frameworks_id_seq'::regclass);
+
+
+--
 -- Name: taxon_links id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -5844,6 +5977,14 @@ ALTER TABLE ONLY deleted_users
 
 ALTER TABLE ONLY exploded_atlas_places
     ADD CONSTRAINT exploded_atlas_places_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: external_taxa external_taxa_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY external_taxa
+    ADD CONSTRAINT external_taxa_pkey PRIMARY KEY (id);
 
 
 --
@@ -6412,6 +6553,22 @@ ALTER TABLE ONLY taxon_curators
 
 ALTER TABLE ONLY taxon_descriptions
     ADD CONSTRAINT taxon_descriptions_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taxon_framework_relationships taxon_framework_relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY taxon_framework_relationships
+    ADD CONSTRAINT taxon_framework_relationships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taxon_frameworks taxon_frameworks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY taxon_frameworks
+    ADD CONSTRAINT taxon_frameworks_pkey PRIMARY KEY (id);
 
 
 --
@@ -8337,6 +8494,13 @@ CREATE INDEX index_taxa_on_rank_level ON taxa USING btree (rank_level);
 
 
 --
+-- Name: index_taxa_on_taxon_framework_relationship_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxa_on_taxon_framework_relationship_id ON taxa USING btree (taxon_framework_relationship_id);
+
+
+--
 -- Name: index_taxa_on_unique_name; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -8397,6 +8561,13 @@ CREATE INDEX index_taxon_changes_on_taxon_id ON taxon_changes USING btree (taxon
 --
 
 CREATE INDEX index_taxon_changes_on_user_id ON taxon_changes USING btree (user_id);
+
+
+--
+-- Name: index_taxon_curators_on_taxon_framework_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_taxon_curators_on_taxon_framework_id ON taxon_curators USING btree (taxon_framework_id);
 
 
 --
@@ -9500,5 +9671,17 @@ INSERT INTO schema_migrations (version) VALUES ('20180911233322');
 
 INSERT INTO schema_migrations (version) VALUES ('20180914231617');
 
+INSERT INTO schema_migrations (version) VALUES ('20181016064445');
+
+INSERT INTO schema_migrations (version) VALUES ('20181016064507');
+
+INSERT INTO schema_migrations (version) VALUES ('20181016064523');
+
+INSERT INTO schema_migrations (version) VALUES ('20181028002405');
+
+INSERT INTO schema_migrations (version) VALUES ('20181102233037');
+
 INSERT INTO schema_migrations (version) VALUES ('20181110004422');
+
+INSERT INTO schema_migrations (version) VALUES ('20190104024910');
 

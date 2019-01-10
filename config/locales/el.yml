@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Fitoschido
 # Author: KATRINE1992
+# Author: KATRINE1993
 # Author: Kostas20142
 # Author: Nikosgranturismogt
 # Author: Tgkarounos
@@ -183,6 +184,7 @@ el:
   all_photos: Όλες οι φωτογραφίες
   all_places: Όλα τα μέρη
   all_projects: Όλα τα εγχειρήματα
+  all_children_added_to_the_database: Όλα τα παιδιά προστέθηκαν στην βάση δεδομένων
   all_rights_reserved: όλα τα δικαιώματα διατηρούνται
   all_species: Όλα τα είδη
   all_taxa:
@@ -271,6 +273,7 @@ el:
   at_time: στις %{time}
   atom: Άτομο
   attribute: Ιδιότητες
+  attribution: Απόδοση
   authority_list:
     iucn_red_list: Κόκκινη Λίστα της ΔΕΠΦ
   automatically_add_to_project: Προσθήκη στο εγχείρημα αυτόματα
@@ -427,6 +430,7 @@ el:
   choose_your_username: Επιλογή του ονόματος χρήστη σας
   clear: Εκκαθάριση
   clear_color_filters: Εκκαθάριση φίλτρων χρωμάτων
+  clear_filters: Εκκαθάριση φίλτρων
   clear_search: Εκκαθάριση αναζήτησης
   close: Κλείσιμο
   code: Κωδικός
@@ -498,6 +502,7 @@ el:
     gnu_free_documentation_license: Ελεύθερη Άδεια GNU
   copyright_holder: Ιδιοκτήτης των πνευματικών δικαιωμάτων
   copyright_info: Πληροφορίες πνευματικών δικαιωμάτων
+  covered_by_a_taxon_framework_html: Καλύφθηκε από %{link}
   countries: Χώρες
   create: Δημιουργία
   create_a_guide: Δημιουργία οδηγού
@@ -619,6 +624,7 @@ el:
   download_csv: Λήψη του CSV
   download_csv_template: Λήψη προτύπου CSV
   download_kml: Λήψη του KML
+  downstream_coverage: Κάλυψη με φορά προς τα κάτω
   draft: Πρόχειρο
   draft_: Πρόχειρο
   draft_saved: Το πρόχειρο αποθηκεύτηκε!
@@ -708,6 +714,7 @@ el:
   Family: Οικογένεια
   favorites: Αγαπημένα
   fblocale: en_US
+  feature_this_project_: Παρουσιάστε Αυτό το Πρότζεκτ
   featuring: Χαρακτηριστικό
   feeds: Ροές
   failed: Απέτυχε
@@ -719,6 +726,7 @@ el:
   fill_out_your_profile: ολοκλήρωση του προφίλ σας
   filter: Φιλτράρισμα
   filter_by: Φιλτράρισμα με βάση
+  filter_by_curator_identification: Φίλτρο από το Χειριστή Ταυτοποίησης
   filter_by_place: Φιλτράρισμα ανά μέρος
   filtering: Διήθηση
   filters: Φίλτρα
@@ -822,6 +830,7 @@ el:
   help: Βοήθεια
   help_confirm_observations!: Βοήθεια για την επιβεβαίωση παρατηρήσεων!
   help_faq: Βοήθεια / Συχνές ερωτήσεις
+  help_support_inaturalist: Βοήθησε στην υποστήριξη του iNaturalist!
   hi: Γεια,
   hi_user: Γεια %{user}
   hide: Απόκρυψη
@@ -1025,6 +1034,7 @@ el:
   link_your_flickr_account_with_inat_so: Συνδέστε τον λογαριασμό σας στο Flickr με
     το %{site_name} για να μπορέσετε να προσθέσετε φωτογραφίες των παρατηρήσεων σας.
   link_your_google_account: Συνδέστε τον λογαριασμό σας στο Google
+  linkedin: LinkedIn
   list: Κατάλογος
   list_deleted: Η λίστα διαγράφηκε.
   list_saved: Η λίστα αποθηκεύτηκε.
@@ -1238,7 +1248,7 @@ el:
   new_custom_field_for: Νέο εξατομικευμένο πεδίο για
   new_flag_for: Νέα αναφορά για
   new_guide: Νέος οδηγός
-  new_journal_posts: Νέα ανάρτηση ημερολογίου
+  new_journal_post: Νέα ανάρτηση ημερολογίου
   new_lexicon: Νέο Λεξικό
   new_list: Νέος κατάλογος
   new_members: Νέα μέλη
@@ -1321,6 +1331,7 @@ el:
     να αντιστοιχούν σε αυτά τα κριτήρια
   no_x_this_y: Κανένα %{x} σε αυτό το %{y}
   non_human?: Μη άνθρωπος;
+  non_internal_taxon: Δεν υπάρχει εσωτερικό taxon
   none: Κανένα
   none_found: Δεν βρέθηκε
   normal: κανονικό
@@ -1425,6 +1436,7 @@ el:
   optional: προαιρετικό
   or: ή
   or_invite_your_friends: ή προσκαλέστε τους φίλους σας
+  or_log_in_with_colon: 'Η συνδεθείτε με:'
   or_upload: Ή μεταφορτώστε
   or_you_can: Ή μπορείτε...
   or_you_can_: ή μπορείτε
@@ -1599,9 +1611,9 @@ el:
     greece: Ελλάδα
     hong_kong: Χονγκ Κονγκ
     hungary: Ουγγαρία
-    italy: Ιταλία
     india: Ινδία
     iraq: Ιράκ
+    italy: Ιταλία
     japan: Ιαπωνία
     korea: Κορέα
     martinique: Μαρτινίκα
@@ -1618,8 +1630,8 @@ el:
     portugal: Πορτογαλία
     republic_of_congo: Δημοκρατία του Κονγκό
     russia: Ρωσία
-    saudi_arabia: Σαουδική Αραβία
     sao_tome_and_principe: Άγιος Θωμάς και Πρίγκιπας
+    saudi_arabia: Σαουδική Αραβία
     singapore: Σιγκαπούρη
     south_africa: Νότια Αφρική
     south_america: Νότια Αμερική
@@ -1674,6 +1686,7 @@ el:
   processing3p: Γίνεται επεξεργασία...
   profile: Προφίλ
   project: Εγχείρημα
+  project_curator_tools: Εργαλεία Project Curator
   project_group_label: Ομάδα
   project_home: Αρχική του εγχειρήματος
   project_name: Όνομα εγχειρήματος
@@ -1756,6 +1769,13 @@ el:
   reject_the_community_id: Απόρριψη του αναγνωριστικού κοινότητας
   related_species: Σχετικά είδη
   relative_observations: Σχετικές παρατηρήσεις
+  relationship: Σχέση
+  relationships:
+    alternate_position: εναλλακτική θέση
+    many_to_many: πολλά-σε-πολλά
+    many_to_one: καθοδικά
+    not_external: μη εξωτερικό
+    unknown: άγνωστο
   remember_me: Να με θυμάσαι
   remove: Αφαίρεση
   remove_boundary: Αφαίρεση συνόρου
@@ -1855,6 +1875,7 @@ el:
   set_license: Ορίστε άδεια
   settings: ρυθμίσεις
   share: Κοινοποίηση
+  share_colon: Κοινοποίηση
   share_your_observation_with_researchers_by: Κοινοποιήστε τις παρατηρήσεις σας με
     ερευνητές από
   short_code_for_this_place: Σύντομος κώδικας για αυτό το μέρος, π.χ. US για τις Ηνωμένες
@@ -1926,6 +1947,7 @@ el:
   source_identifier: Αναγνωριστικό πηγής
   source_unknown: Αγνωστη πηγή
   source_url: Πηγή URL
+  sourced_to: Πηγή
   sources: Πηγές
   sources_youve_added: Πηγές που έχετε προσθέσει
   sourcing: Πηγές
@@ -1975,6 +1997,7 @@ el:
   successfully_changed_your_password: Ο κωδικός σας άλλαξε επιτυχώς.
   suggestions: Προτάσεις
   summary: Περίληψη
+  support_inaturalist: Υποστήριξη του iNaturalist
   sun: Κυ
   synonyms: Συνώνυμα
   table: Πίνακας
@@ -1986,7 +2009,12 @@ el:
   taxon_autocomplete_placeholder: Πουλιά, μονάρχης, κτλ.
   taxon_colors: Χρώματα ταξινόμησης
   taxon_extras: Πρόσθετα ταξινόμησης
+  taxon_framework_taxon: Taxon πλαίσιο εργασίας taxon
   taxon_ranks: Κατάταξη ταξινόμησης
+  taxonomy_details: Στοιχεία Ταξονομίας
+  taxonomy_details_info: Τα Στοιχεία Ταξινόμησης που χρησιμοποιεί το Taxon Frameworks
+    βοηθά στον ορισμό αυτού που λέμε ταξινόμηση. <a href="/pages/taxon_frameworks">Read
+    more</a>.
   taxonomy_settings: Parametros de Taxonomia
   terms: Όροι
   terms_of_service: Όροι Χρήσης
@@ -2027,6 +2055,7 @@ el:
   translated_languages: Μεταφρασμένες γλώσσες
   "true": Αληθές
   trends: Τάσεις
+  unknown_taxon_framework_relationship: Σχέση αγνώστου πλαισίου εργασίας taxon
   update_observation: Ενημέρωση παρατήρησης
   update_observations: Ενημέρωση παρατηρήσεων
   upload_photo: Ανέβασμα φωτογραφίας
@@ -2039,12 +2068,16 @@ el:
   worldwide: Παγκόσμιες
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} de %{y} la gente (mas que 2/3)
     son d''acuerdo que esto s valido'
+  x_is_the_root_of_the_tree: '%{rank} %{name} δεν είναι η ρίζα του δένδρου'
   your_membership: Η συμμετοχή σας
   your_projects: Τα εγχειρήματά σας
   your_google_account: ο Google λογαριασμό σας
   your_recent_projects: Τα πρόσφατα εγχειρήματά σας
   your_tags: Οι ετικέτες σας
   views:
+    donate:
+      post_donate_social_media_text: Υποστήριξα το iNaturalist! Πρέπει να το ελέγξεις
+        και εσύ επίσης.
     observations:
       import:
         decimal_degrees_format: dd.dddd
@@ -2156,7 +2189,7 @@ el:
     messages:
       accepted: Αποδεκτό
       blank: Δε μπορεί να είναι κενό
-      confirmation: δεν αντιστοιχεί στην επιβεβαίωση
+      confirmation: δεν αντιστοιχεί στον κωδικό
       empty: δεν πρέπει να είναι άδειο
       equal_to: πρέπει να είναι ίσο με %{count}
       even: πρέπει να είναι άρτιος
@@ -2196,6 +2229,10 @@ el:
           quadrillion: Τετράκις εκατομμύριο
           thousand: Χιλιάδα
           trillion: Τρισεκατομμύριο
+  activemodel:
+    errors:
+      messages:
+        confirmation: δεν αντιστοιχεί στον κωδικό
   activerecord:
     errors:
       models:

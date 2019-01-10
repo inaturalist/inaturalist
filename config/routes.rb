@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/terms", to: redirect( "/pages/terms" )
   get "/privacy", to: redirect( "/pages/privacy" )
   get "/users/new.mobile", to: redirect( "/signup" )
+  get "/donate", to: "donate#index"
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
@@ -111,7 +112,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
-    confirmations: 'users/confirmations'
+    confirmations: 'users/confirmations',
+    passwords: "users/passwords"
   }
   devise_scope :user do
     get "login", :to => "users/sessions#new"
@@ -153,6 +155,9 @@ Rails.application.routes.draw do
   
   resources :users, :except => [:new, :create] do
     resources :flags
+    collection do
+      get :recent
+    end
     member do
       put :join_test
       put :leave_test
@@ -375,6 +380,7 @@ Rails.application.routes.draw do
       get 'links'
       get "map_layers"
       get "browse_photos"
+      get "taxonomy_details", as: "taxonomy_details_for"
       get "show_google"
       get "taxobox"
     end
@@ -488,6 +494,7 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :queries
+      get :stop_query
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do
@@ -578,6 +585,9 @@ Rails.application.routes.draw do
   resources :taxon_schemes, :only => [:index, :show], :constraints => {:format => [:html]}
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
+  
+  resources :taxon_framework_relationships
+  resources :taxon_frameworks, except: [:show, :index]
   
   resources :taxon_splits, :controller => :taxon_changes
   resources :taxon_merges, :controller => :taxon_changes

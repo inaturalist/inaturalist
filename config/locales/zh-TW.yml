@@ -74,8 +74,8 @@ zh-TW:
     one: 1 個其它
     other: '%{count} 個其它'
   x_people_found_this_helpful:
-    one: 1 個人覺得這個是有助益的
-    other: '%{count} 個人發現這個是有益處的'
+    one: 1 個人覺得這個是有幫助的
+    other: '%{count} 個人發現這個是有幫助的'
   x_faves:
     one: 1 個最愛
     other: '%{count} 個最愛'
@@ -88,6 +88,9 @@ zh-TW:
   x_people_agree_html:
     one: <span class="count">1</span> 位認同
     other: <span class="count">%{count}</span> 位認同
+  x_new_species:
+    one: 1 個新物種
+    other: '%{count} 個新物種'
   x_species:
     one: 1 物種
     other: '%{count} 物種'
@@ -118,6 +121,8 @@ zh-TW:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> 個物種變更已新增
     other: <span class='count'>%{count}</span> 個物種變更已新增
+  x_people_helped_user_with_y_ids_html: <strong>%{x}</strong> 個人以 <strong>%{y}</strong>
+    個鑑定幫助了%{user}
   _100_day_trends: 100 天裡的趨勢
   _percent_ID_d: '% 已鑑定'
   a: 一個
@@ -330,6 +335,7 @@ zh-TW:
   all_photos: 所有相片
   all_places: 所有地點
   all_projects: 所有專案
+  all_children_added_to_the_database: 所有添加到資料庫的子項
   all_rank_added_to_the_database:
     phylum: 所有添加到資料庫的「門」
     subphylum: 所有添加到資料庫的「亞門」
@@ -440,8 +446,10 @@ zh-TW:
   allowed_html: 允許的 HTML
   allowed_occurrence_status_values: 允許的發生狀態值
   allowed_values: 允許的值
+  almost_there_: 就要差不多了…
   alphabetical: 依字母順序
   alphabetical_order: 依字母排序
+  already_have_an_account_log_in_html: 已經有帳號了嗎？現在就<strong>登入</strong>。
   amphibians: 兩棲類
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb 沒有關於此物種的任何訊息。
   amphibiaweb_taxonomy: AmphibiaWeb 分類法
@@ -542,7 +550,9 @@ zh-TW:
   at_any_time_change: 在任何時間（<span class="button">更改</span>）
   at_time: 在%{time}
   atom: Atom
+  attached_taxon: 依附物種分類
   attribute: 屬性
+  attribution: 姓名標示
   authority_list:
     iucn_red_list: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄
   authorize_permissions_from_provider: 來自於%{provider}的授權許可
@@ -729,7 +739,9 @@ zh-TW:
   check_out_our_blog: 看看我們的部落格
   check_out_what_the_observation: 查看您所嘗試鑑定物種的外型模樣。
   check_out_your_life_list: 退出及儲存您的生物清單
-  check_this_box_if: 如果您想套用<a href='https://creativecommons.org/licenses/by-nc/3.0/tw/'
+  check_this_box_if: 如果您想套用<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.zh_TW'
+    target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>至您的照片請勾選此框。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
+  check_this_box_if_html: 如果您想套用<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.zh_TW'
     target='_blank'>創用 CC 姓名標示-非商業性許可版權</a>至您的照片請勾選此框。您可在事後移除或挑選其它版權，但對於分享給研究人員來說這是最合適的許可版權。
   checklist: 檢查列表
   checklists: 清單
@@ -766,6 +778,7 @@ zh-TW:
   classification: 分類
   clear: 清除
   clear_color_filters: 清除色彩篩選
+  clear_filters: 清除篩選
   clear_search: 清除搜尋
   click_on_the_map_to: 在地圖上點擊以放置您的觀察
   click_the_map: <strong>點擊地圖</strong>來添加一個位置。
@@ -808,13 +821,14 @@ zh-TW:
   community_id_at_genus_level_or_lower: 在「屬」或較低階層的社群鑑定
   community_id_at_species_level_or_lower: 屬於物種層級或是較低階層級的社群鑑定
   community_moderation_settings: 社群管制設定
-  community_supported_id: 社群支援的鑑定？
+  community_supported_id: 社群支持的鑑定？
   compare: 比較
   compare_with: 比較與
   comparing: 比較
   comparing_list_to_list: 比較%{list1}與%{list2}
   comparing_versions_x_and_y: 比較版本 %{x} 和 %{y}
   comparing_observations_from: 比較 %{user} 自 %{dates} 的觀察
+  complete: 完成
   complete_sets: 全集
   compiled_by_name: 編譯由%{name}
   completed: 已完成
@@ -906,6 +920,8 @@ zh-TW:
   copyright_info: 版權訊息
   copyright_info_and_more: 更多版權訊息
   copyright_infringement_desc: 違反版權法律，或由非由觀察者所創建並缺乏姓名標示。
+  covered_by_a_taxon_framework_html: 由%{link}涵蓋
+  covered_by_a_taxon_framework_link: '%{taxon_framework_rank} %{taxon_framework_name}的物種分類框架'
   couldnt_change_your_password: 無法更改您的密碼：%{e}
   couldnt_find_a_user_matching_x_param: 查無用戶符合 %{id}
   couldnt_find_that_taxon: 找不到分類。
@@ -967,6 +983,7 @@ zh-TW:
   data_quality: 資料品質
   data_quality_assessment: 資料品質估計
   data_quality_assessment_: 資料品質估計
+  data_used: 資料使用：
   datatype: 資料類型
   date_: 日期
   date?: 日期？
@@ -1021,6 +1038,7 @@ zh-TW:
   default_photo_license: 預設照片許可權
   default_sound_license: 預設聲音許可權
   defaults_to_your_name_or_username: 預設成您的名稱或用戶名稱
+  defines_a_taxon_framework_for: 定義用於%{taxon_name}的物種分類群框架
   delete: 刪除
   delete_all: 刪除全部
   delete_conversation: 刪除對話
@@ -1052,6 +1070,8 @@ zh-TW:
   desription: 描述
   destroy: 破壞
   details: 詳細資料
+  deviation: 偏差
+  deviations: 偏差
   devise:
     failure:
       user:
@@ -1062,6 +1082,7 @@ zh-TW:
   did_not_send_invitations_because: 未對以下寄出邀請原因是...
   did_you_mean: 您是指
   did_you_photos_flickr?: 您有上傳任何圖片在 Flickr 上嗎？
+  disable: 停用
   disagree: 不同意
   disagree_: 不同意
   disconnect_provider: 中斷連接%{provider}
@@ -1081,6 +1102,7 @@ zh-TW:
   doh_something_went_wrong_error: 哎呀，發生了一些錯誤：%{error}
   done: 完成
   dont_filter: 不用篩選
+  dont_have_an_account_sign_up_html: 還沒有帳號嗎？現在就<strong>註冊</strong>。
   dont_send_me_email: 不要替我寄送任何電子郵件！
   dont_use_double_quotes: 不要在任何其它地方使用雙引號
   drop_it: 放開
@@ -1092,6 +1114,8 @@ zh-TW:
   download_csv: 下載 CSV
   download_csv_template: 下載 CSV 模板
   download_kml: 下載 KML
+  downstream_coverage: 下游涵蓋
+  downstream_coverage_rank: 下游涵蓋級別
   drag_and_drop_photos: 拖拉照片到此視窗或
   draft: 草稿
   draft_: 草稿
@@ -1283,9 +1307,9 @@ zh-TW:
   file: 檔案
   file_should_be_in_the_following_format: 檔案應為以下格式：物種分類、描述
   fill_out_project_observation_fields: 填寫專案觀察欄位
-  fill_out_your_profile: 完成您的個人資料
+  fill_out_your_profile: 完成您的個人檔案
   filling_out_checklist_for_place: 在清單上填寫您所了解的地方
-  filling_out_your_profile: 填寫您的個人資料
+  filling_out_your_profile: 填寫您的個人檔案
   filter: 篩選
   filter_by: 篩選依
   filter_by_curator_identification: 依策展人鑑定篩選
@@ -1332,9 +1356,11 @@ zh-TW:
   flag_saved_thanks: 標記已儲存。感謝！
   flag_this_observation: 為本觀察紀錄加上旗號標記。
   flag_this_photo: 標記此照片
-  flagged: 已加上旗號標記
+  flagged: 已標記
   flagged_: 已標記
+  flagged_covered_taxa: 已標記的涵蓋物種分類
   flagged_for_curation: 已標記為策展
+  flagged_taxon: 已標記物種分類群
   flagged_thing_explanation: 用戶已標記此%{thing}因為
   flagger: 加旗號標記者
   flags: 標記
@@ -1477,6 +1503,7 @@ zh-TW:
   help_confirm_observations!: 幫助確認觀察！
   help_faq: 幫助 / 常見問題
   help_out!: 幫個忙！
+  help_support_inaturalist: 協助支持 iNaturalist
   helped_the_observer_make: 協助觀察者製作他們的最終鑑定（註：就是在最終鑑定之前，他們所作出符合的）
   here_are_3_examples: 此為 3 個良好格式資料的範例
   here_are_our_top_species_suggestions: 這是我們熱門的物種建議
@@ -1488,6 +1515,7 @@ zh-TW:
   hi_user: 嗨 %{user}
   hide: 隱藏
   hide_details: 隱藏詳細資料
+  hide_running_total: 隱藏運行總計
   hide_uncountable_species: 隱藏無法計數的物種
   high: 高
   highest_rank: 最高級別
@@ -1508,7 +1536,7 @@ zh-TW:
   id_: 鑑定
   id_categories:
     tooltips:
-      leading: 來自於社群的物種分類。此鑑定有機會引導至正確解答。
+      leading: 來自於社群的物種分類。此鑑定有機會引導至正確結果。
       improving: 首先建議此物種分類來讓社群後續同意。這有助於改進社群物種分類。
       maverick: 不是社群物種分類的祖先或派生，即代表著社群不同意此物種分類。
   id_more_in_id_please: 在鑑定請求裡頭有更多鑑定
@@ -1577,6 +1605,7 @@ zh-TW:
   in: 在
   in_: 在
   in_n: 在%{n}
+  in_place_x: 於%{place}
   inaturalist_network_affiliation: iNaturalist 網路聯繫
   inbox: 收件匣
   including: 包含
@@ -1592,7 +1621,7 @@ zh-TW:
   inappropriate_content: 不適當內容？
   inat_account_action: '%{site_name} &#58;帳號&#58; %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name} 相信這是此地區物種分類的完整清單。'
-  inat_user_profile: '%{site_name}： %{user}的個人資料'
+  inat_user_profile: '%{site_name}：%{user}的個人檔案'
   inat_will_be_back_on: '%{site_name} 將會返回它的足/翼/鰭/觸手/偽足'
   inaturalist_is_an_online_community: '%{site_name} 線上的博物學友社群！透過添加您的照片，您可協助研究員學習更多有關'
   inaturalist_is_catching_some_zs: '%{site_name} 正在獲取一些 Zs'
@@ -1606,6 +1635,7 @@ zh-TW:
   inspired_by_the_flickr_group: 受到來自於 Flickr 群組<a href='http://flickr.com/groups/idplease/'>鑑定請求</a>的啟發，這裡是用於發佈您所不了解觀察事物的地點，來協助人們鑑定神祕生物吧！
   interactions: 互動
   internal_server_error: 內部伺服器錯誤
+  internal_taxon: 內部物種分類
   introduced: 引進
   introduced_in_place: 在%{place}引進
   invasive: 侵入
@@ -1658,6 +1688,7 @@ zh-TW:
   join_project: 加入此專案
   join_some_projects_and_invite_some_observations_html: 加入一些<a href='%{join_url}'>專案</a>並<a
     href='%{invite_url}'>徵求一些觀察</a>
+  join_the_largest_group_of_naturalists_in_the_world: 加入世界上最大的博物學群組！
   join_this_project: 加入此專案
   joined!: 已加入！
   joined_any_projects: 已加入任何專案
@@ -1765,7 +1796,7 @@ zh-TW:
     tokelauan: 托克勞語
     turkish: 土耳其語
     waray_waray: 瓦瑞瓦瑞語
-  less: 更少
+  less: 較少
   license_descriptions_and_images: 許可協議描述和圖片
   licensed_site_photos: 已授權的 %{site_name} 照片
   license: 許可協議
@@ -1783,6 +1814,7 @@ zh-TW:
     Corvidae）的分類清單會列該科的鳥類。
   life_list_first: 首次加入生命清單
   life_list_firsts: 首次加入生物清單
+  linear_scale_label: 線性
   link: 連結
   link_or_unlink_your_facebook_account: 連結或取消連結至您的 Facebook 帳號
   link_or_unlink_your_flickr_account: 連結或取消連結至您的 Flickr 帳號
@@ -1810,6 +1842,7 @@ zh-TW:
   linked_flickr_password_html: <strong>我們不會詢問您的 Flickr 密碼</strong>（但 Flickr 也許會檢查按鍵所傳給您的
     URL 來確認是屬於 Flickr.com）。
   linked_flickr_photo_copy_html: <strong>我們絕不會儲存您照片的副本或更改您的 Flickr 資料（除非您有要求我們這樣做）。</strong>我們只關注在小鳥、蟲子，以及蛞蝓等生物上，因此決不會想去擾亂您的相關資訊！
+  linkedin: LinkedIn
   list: 清單
   list_deleted: 列表已刪除。
   list_saved: 清單已儲存。
@@ -1898,6 +1931,7 @@ zh-TW:
   location_specified: 位置指定
   locked_taxa_will_not_allow_new: 被鎖定的物種分類群不允許添加派生物種分類群在裡頭。因此如果您鎖定了兩棲動物，當其他人嘗試從外部名稱提供者匯入美洲牛蛙時，新的物種分類群創建後不會被歸類為兩棲動物。在以上情況發生時，新添加物種分類群應被標記來讓策展人關注。這應僅用在我們認為內容已包含所有相關派生的物種分類群上。雖然策展人可以透過直接編輯物種分類群以及輸入父級鑑定來覆蓋掉，但請考慮以合併新物種分類群至現有內容為主。
   log_in: 登入
+  log_scale_label: 日誌
   logged_in_as: 已登入為
   login_slash_username: 登入 / 用戶名稱
   logo:
@@ -1978,7 +2012,8 @@ zh-TW:
   member_of_the_inaturalist_network_html: <a href="%{url}">iNaturalist Network</a>
     的成員
   ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
-  : '%{partial_inat_network_tag_html}iNaturalist 網路</a>成員是聯合 %{cas_tag_html} 與 %{nat_geo_tag_html}。'
+  : '%{partial_inat_network_tag_html}iNaturalist 網路</a>成員是 %{cas_tag_html} 與 %{nat_geo_tag_html}
+    所共同發起。'
   members: 成員
   membership_model: 成員模組
   mentioned_you_in_noun_html: '%{user} 在 %{noun} 提到了您'
@@ -2116,7 +2151,7 @@ zh-TW:
   new_custom_field_for: 新自訂欄位用於
   new_flag_for: 新標記用於
   new_guide: 新指南
-  new_journal_posts: 新日誌發佈文章
+  new_journal_post: 新日誌發佈文章
   new_lexicon: 新詞彙
   new_list: 新清單
   new_members: 新成員
@@ -2124,6 +2159,7 @@ zh-TW:
   new_observation_field: 新觀察欄位
   new_observation_rules: 新觀察規則
   new_observations: 新觀察
+  new_observations_this_year: 此年度的新觀察
   new_observations_ellispsis: 新觀察...
   new_observations_from_place_html: 來自於%{place}的新觀察
   new_observations_may_take_up_to: 新的觀察可能需要 %{widget_expiration} 分鐘才能出現在小工具裡。
@@ -2134,6 +2170,8 @@ zh-TW:
   new_project_asset: 新專案_項目
   new_project_asset_for: 新專案可用物件用於
   new_source: 新來源
+  new_species_added_in_interval: 在%{interval}內所添加的新物種
+  new_species_added_in_interval_x_of_y: 在%{interval}期間所添加的新物種（顯示 %{y} 個裡的 %{x} 個）
   new_taxon_change: 新物種分類更改
   new_taxon_link: 新物種分類連結
   new_taxon_name: 新物種分類名稱
@@ -2144,8 +2182,13 @@ zh-TW:
   new_updates_in_the_last_24_hours_from: 來自於 %{site_name} 在最近 24 小時內新的更新
   new_user_rules: 新用戶規範
   new_users: 新使用者
+  new_users_this_year: 此年度的新使用者
   new_users_w_7_obs: 具有 7 個觀察的新使用者
   new_users_week: 新用戶 / 週
+  newly_added: 新的添加
+  newly_added_species: 新進的添加物種
+  newly_observed_species: 新進的觀察物種
+  newly_observed_species_this_year: 此年度的新添加物種
   news: 最新消息
   next: 下一個
   next_observation: 下一個觀察
@@ -2213,6 +2256,7 @@ zh-TW:
   no_ones_observed: 皆未被觀察到
   no_photo: 沒有照片
   no_photos: 沒有照片
+  no_photos_of_that_size: 沒有這樣大小的照片。
   no_places_available: 沒有可用的地點
   no_places_selected: 沒有選擇地點
   no_post_yet: 尚未有發佈文章！
@@ -2248,11 +2292,13 @@ zh-TW:
   no_x_this_y: 不是在 %{y} 的%{x}
   noble_curators: '%{site} 的高階策展人'
   non_human?: 非人類？
+  non_internal_taxon: 非內部物種分類
   none: 無
   none_found: 未找到
   normal: 一般
   not_absent: 不缺失
   not_completed: 未完成
+  not_covered_by_any_taxon_frameworks: 未被任何物種分類框架涵蓋
   not_evaluated: 未評估
   not_filtering: 未篩選
   not_findig_what_you_want: 沒有找到您要的東西嗎？
@@ -2266,6 +2312,7 @@ zh-TW:
   not_on_this_list: 未在清單裡。
   not_recorded: 未記錄
   not_seeing_what_looking_for: 沒有看到您要尋找的嗎？
+  not_spam: 非垃圾訊息
   not_yet: 尚未
   note: 註解
   notes: 註解
@@ -2440,7 +2487,7 @@ zh-TW:
   only_curators_can_add_edit_scientific_names: 僅有策展人可添加/編輯學名。
   only_curators_can_access_that_page: 僅有策展人能存取該頁面。
   only_files_with_10000_rows_at_a_time: 檔案一次只能 10000 行，再麻煩了
-  only_letters_numbers: 僅允許使用英文字母和數字、不可包含空白、並且要以英文字母作為開頭
+  only_letters_numbers: 僅用英文和數字（無空白），並以英文作開頭
   only_one_coordinate_system_per_file: 每個檔案僅可使用一個座標，否則會發生不正確的轉換或顯示。
   only_project_curators_can_do_that: 僅專案策展人可做出此行為。
   only_receive_updates_about_this_taxon: 僅接收有關此物種分類的更新
@@ -2465,10 +2512,12 @@ zh-TW:
   optional: 可選
   optional_columns_note_for_any: 選用欄位（註：適用於存在觀察裡的任一可用欄位）
   or: 或
+  or_all_caps: 或
   or_choose_high_level_taxa: '...或從更高階物種分類挑選'
   or_if_you_dont_want_email: 或者是您不想要接受任何電子郵件...
   or_invite_your_friends: 或邀請您的好友
   or_invited: 或已邀請。
+  or_log_in_with_colon: 或登入以：
   or_post_message_to_google_group: 或發佈訊息至我們在 Google 上的群組：
   or_upload: 或上傳
   or_you_can: 或著您可以...
@@ -2500,6 +2549,7 @@ zh-TW:
   out_of_range: 超出範圍
   output_taxon: 輸出物種分類
   overview: 概要
+  overlapping_downstream_taxon_frameworks: 部份涵蓋下游物種分類框架
   owner: 擁有者
   parent: 父級
   parent_name: 父名稱
@@ -2534,7 +2584,9 @@ zh-TW:
   photo?: 照片？
   photo_attribution: 照片%{attribution}
   photo_browser: 照片瀏覽
+  photo_by: 照片提供由
   photo_by_id_attribution: 照片 %{id}， %{attribution}
+  photo_credits: 照片出處
   photo_deleted: 照片已刪除
   photo_destroyed_because_it_was_deleted_from: 照片已損毀，因為它被外部網站所刪除或 %{site_name} 不再有檢視它的權限
   photo_hosting_accounts: 照片託管帳號
@@ -2683,60 +2735,268 @@ zh-TW:
   places_name:
     afghanistan: 阿富汗
     africa: 非洲
+    akrotiri_and_dhekelia: 亞克羅提利與德凱利亞
+    aland: 奧蘭
+    albania: 阿爾巴尼亞
+    algeria: 阿爾及利亞
+    american_samoa: 美屬薩摩亞
+    andorra: 安道爾
+    angola: 安哥拉
+    anguilla: 安圭拉
+    antarctica: 南極洲
     antigua_and_barbuda: 安地卡及巴布達
+    argentina: 阿根廷
+    armenia: 亞美尼亞
+    aruba: 阿魯巴
     australia: 澳洲
     austria: 奧地利
+    azerbaijan: 亞塞拜然
+    bahamas: 巴哈馬
+    bahrain: 巴林
+    bangladesh: 孟加拉
+    barbados: 巴貝多
+    belarus: 白俄羅斯
     belgium: 比利時
+    belize: 貝里斯
+    benin: 貝南
+    bermuda: 百慕達
+    bhutan: 不丹
+    bolivia: 玻利維亞
+    bonaire_saint_eustatius_and_saba: 波奈、聖佑達修斯及沙巴
     bosnia_and_herzegovina: 波士尼亞與赫塞哥維納
+    botswana: 波札那
+    bouvet_island: 布威島
     brazil: 巴西
+    british_indian_ocean_territory: 英屬印度洋領地
+    british_virgin_islands: 英屬維京群島
+    brunei: 汶萊
+    bulgaria: 保加利亞
+    burkina_faso: 布吉納法索
+    burundi: 蒲隆地
+    cambodia: 柬埔寨
+    cameroon: 喀麥隆
     canada: 加拿大
+    cape_verde: 維德角
+    cayman_islands: 開曼群島
+    central_african_republic: 中非共和國
     central_america: 中美洲
+    chad: 查德
+    chile: 智利
     china: 中國
+    christmas_island: 聖誕島
+    clipperton_island: 克利珀頓島
+    cocos_islands: 科科斯群島
     colombia: 哥倫比亞
+    commonwealth_of_the_northern_mariana_islands: 北馬里亞納群島
+    comoros: 葛摩
+    cook_islands: 庫克群島
+    costa_rica: 哥斯大黎加
+    cote_d_ivoire: 象牙海岸
+    croatia: 克羅埃西亞
+    cuba: 古巴
+    curacao: 古拉索
+    cyprus: 賽普勒斯
+    czech_republic: 捷克
+    democratic_republic_of_the_congo: 剛果民主共和國
     denmark: 丹麥
+    djibouti: 吉布地
+    dominica: 多米尼克
+    dominican_republic: 多明尼加
+    east_timor: 東帝汶
+    ecuador: 厄瓜多
     egypt: 埃及
+    el_salvador: 薩爾瓦多
     equatorial_guinea: 赤道幾內亞
+    eritrea: 厄利垂亞
+    estonia: 愛沙尼亞
+    ethiopia: 衣索比亞
     europe: 歐洲
+    falkland_islands: 福克蘭群島
+    faroe_islands: 法羅群島
+    fiji: 斐濟
+    finland: 芬蘭
     france: 法國
+    french_guiana: 法屬圭亞那
+    french_polynesia: 法屬玻里尼西亞
+    french_southern_territories: 法屬南部領地
+    gabon: 加彭
+    gambia: 甘比亞
+    georgia: 喬治亞
     germany: 德國
+    ghana: 迦納
+    gibraltar: 直布羅陀
     greece: 希臘
+    greenland: 格陵蘭
+    grenada: 格瑞那達
+    guadeloupe: 瓜德羅普
+    guam: 關島
+    guatemala: 瓜地馬拉
+    guernsey: 耿西
+    guinea: 幾內亞
+    guinea_bissau: 幾內亞比索
+    guyana: 蓋亞那
+    haiti: 海地
+    heard_island_and_mcdonald_islands: 赫德島和麥克唐納群島
+    honduras: 宏都拉斯
     hong_kong: 香港
     hungary: 匈牙利
-    italy: 義大利
+    iceland: 冰島
     india: 印度
+    indonesia: 印尼
+    iran: 伊朗
     iraq: 伊拉克
+    ireland: 愛爾蘭
+    isle_of_man: 曼島
+    israel: 以色列
+    italy: 義大利
+    jamaica: 牙買加
     japan: 日本
+    jersey: 澤西
+    jordan: 約旦
+    kazakhstan: 哈薩克
+    kenya: 肯亞
+    kiribati: 吉里巴斯
     korea: 韓國
+    kosovo: 科索沃
+    kuwait: 科威特
+    kyrgyzstan: 吉爾吉斯
+    laos: 寮國
+    latvia: 拉脫維亞
+    lebanon: 黎巴嫩
+    lesotho: 賴索托
+    liberia: 賴比瑞亞
+    libya: 利比亞
+    liechtenstein: 列支敦斯登
+    lithuania: 立陶宛
+    luxembourg: 盧森堡
+    macao: 澳門
+    macedonia: 馬其頓
+    madagascar: 馬達加斯加
+    malawi: 馬拉威
+    malaysia: 馬來西亞
+    maldives: 馬爾地夫
+    mali: 馬利
+    malta: 馬爾他
+    marshall_islands: 馬紹爾群島
     martinique: 馬丁尼克
+    mauritania: 茅利塔尼亞
+    mauritius: 模里西斯
+    mayotte: 馬約特
     mexico: 墨西哥
+    micronesia: 密克羅尼西亞
+    moldova: 摩爾多瓦
+    monaco: 摩納哥
+    mongolia: 蒙古
+    montenegro: 蒙特內哥羅
+    montserrat: 蒙哲臘
+    morocco: 摩洛哥
+    mozambique: 莫三比克
+    myanmar: 緬甸
+    namibia: 納米比亞
+    nauru: 諾魯
+    nepal: 尼泊爾
     netherlands: 荷蘭
+    new_caledonia: 新喀里多尼亞
     new_guinea: 新幾內亞
     new_zealand: 紐西蘭
+    nicaragua: 尼加拉瓜
+    niger: 尼日
+    nigeria: 奈及利亞
+    niue: 紐埃
+    norfolk_island: 諾福克島
     north_africa: 北非
     north_america: 北美洲
+    north_korea: 北韓
+    northern_cyprus: 北賽普勒斯
+    norway: 挪威
+    oman: 阿曼
+    pakistan: 巴基斯坦
+    palau: 帛琉
+    palestina: 巴勒斯坦
     palestine: 巴勒斯坦
     panama: 巴拿馬
+    papua_new_guinea: 巴布亞紐幾內亞
+    paraguay: 巴拉圭
     peru: 秘魯
+    philippines: 菲律賓
+    pitcairn_islands: 皮特肯群島
     poland: 波蘭
     portugal: 葡萄牙
+    puerto_rico: 波多黎各
+    qatar: 卡達
     republic_of_congo: 剛果共和國
+    reunion: 留尼旺
+    romania: 羅馬尼亞
     russia: 俄羅斯
-    saudi_arabia: 沙烏地阿拉伯
+    rwanda: 盧安達
+    saint_barthelemy: 聖巴瑟米
+    saint_helena: 聖赫倫那
+    saint_kitts_and_nevis: 聖克里斯多福及尼維斯
+    saint_lucia: 聖露西亞
+    saint_martin: 聖馬丁島
+    saint_pierre_and_miquelon: 聖皮耶與密克隆
+    saint_vincent_and_the_grenadines: 聖文森及格瑞那丁
+    samoa: 薩摩亞
+    san_marino: 聖馬利諾
     sao_tome_and_principe: 聖多美普林西比
+    saudi_arabia: 沙烏地阿拉伯
+    senegal: 塞內加爾
+    serbia: 塞爾維亞
+    seychelles: 塞席爾
+    sierra_leone: 獅子山
     singapore: 新加坡
+    sint_maarten: 荷屬聖馬丁
+    slovakia: 斯洛伐克
+    slovenia: 斯洛維尼亞
+    solomon_islands: 索羅門群島
+    somalia: 索馬利亞
     south_africa: 南非
     south_america: 南美洲
+    south_georgia_and_the_south_sandwich_islands: 南喬治亞與南桑威奇
+    south_korea: 南韓
+    south_sudan: 南蘇丹
     spain: 西班牙
+    sri_lanka: 斯里蘭卡
+    sudan: 蘇丹
+    suriname: 蘇利南
+    svalbard_and_jan_mayen: 斯瓦巴和揚馬延
+    swaziland: 史瓦帝尼
     sweden: 瑞典
     switzerland: 瑞士
     syria: 敘利亞
+    taiwan: 台灣
+    tajikistan: 塔吉克
+    tanzania: 坦尚尼亞
     thailand: 泰國
+    togo: 多哥
+    tokelau: 托克勞
+    tonga: 東加
     trinidad_and_tobago: 千里達及托巴哥
+    tunisia: 突尼西亞
     turkey: 土耳其
+    turkmenistan: 土庫曼
+    turks_and_caicos_islands: 土克凱可群島
+    tuvalu: 吐瓦魯
+    uganda: 烏干達
+    ukraine: 烏克蘭
+    united_arab_emirates: 阿拉伯聯合大公國
     united_kingdom: 英國
     united_states: 美國
+    united_states_minor_outlying_islands: 美國本土外小島嶼
+    united_states_virgin_islands: 美屬維京群島
+    uruguay: 烏拉圭
+    uzbekistan: 烏茲別克
+    vanuatu: 萬那杜
+    vatican_city: 梵蒂岡
+    venezuela: 委內瑞拉
+    vietnam: 越南
     virgin_islands: 維京群島
+    wallis_and_futuna: 瓦利斯和富圖納
     west_africa: 西非
+    western_sahara: 西撒哈拉
+    yemen: 葉門
+    zambia: 尚比亞
+    zimbabwe: 辛巴威
   places_of_interest: 名勝
   places_merged_successfully: 合併地點成功！
   plants: 植物
@@ -2794,7 +3054,9 @@ zh-TW:
   proceed: 繼續
   processing: 處理中
   processing3p: 處理中...
-  profile: 個人資料
+  profile: 個人檔案
+  profile_visibility_pending_account_verification: 個人檔案可見性待帳號驗證
+  profile_visibility_desc: 為防止在 %{site_name} 上出現垃圾訊息，使用者的個人檔案僅在使用者有貢獻出數個研究等級的觀察後，才會公開可見。
   project: 專案
   project_added_your_observations: 專案已添加您的觀察
   project_admins:
@@ -2870,6 +3132,7 @@ zh-TW:
   rank_position: 級別
   rank_restrictions: 級別限制
   ranks:
+    stateofmatter: 事件狀態
     kingdom: 界
     subkingdom: 亞界
     phylum: 門
@@ -2918,7 +3181,7 @@ zh-TW:
   real_time_discussions: 即時討論
   reason: 原因
   reason_you_are_flagging_this_item: 您標記此項目原因。
-  recaptcha_verification_failed: reCaptcha 驗證失敗
+  recaptcha_verification_failed: reCAPTCHA 驗證失敗
   receive_email_notifications_when_people_leave_you: 接收電子郵件通知有關於在
   receive_updates_from_this_project: 從該專案接收更新
   received: 已接收
@@ -2927,6 +3190,7 @@ zh-TW:
   recent_comments_on_your_stuff: 在您事物上的近期評論
   recent_evidence?: 近期證據？
   recent_evidence_of_organism: 近期的生物證據
+  recent_new_users: 近期的新使用者
   recent_observations: 最近觀察
   recent_observations_: 最近觀察
   recent_post: 最近文章
@@ -2956,6 +3220,18 @@ zh-TW:
   reject_the_community_id: 駁回社群鑑定
   related_species: 相關物種
   relative_observations: 相關觀察
+  relationship: 關聯
+  relationship_x: 關聯：%{relationship}
+  relationships:
+    match: 相配
+    one_to_one: 一對一
+    alternate_position: 代替
+    many_to_many: 多對多
+    many_to_one: 多對一
+    one_to_many: 一對多
+    not_external: 非外部
+    not_internal: 非內部
+    unknown: 不明
   reload_and_refresh: 重新載入及重整清單
   reload_from_observations: 從觀察來重新載入
   reload_timed_out: 重新載入時間逾時，請再重試。
@@ -3016,7 +3292,7 @@ zh-TW:
   research_grade: 研究等級
   research_grade_expandable_html: <span class='full'>研究</span><span class='full'>等級</span>
   research_grade_short_html: <span class='full'>研究</span><span class='full'>等級</span>
-  research_grade_observations_have: 「研究等級」觀察擁有日期、照片、座標，以及社群支援的鑑定內容。點擊來查看資料品質評估。
+  research_grade_observations_have: 「研究等級」觀察擁有日期、照片、座標，以及社群支持的鑑定內容。點擊來查看資料品質評估。
   research_grade_qualification: 研究等級資格
   research_quality: 研究品質
   reset_search_filters: 重新設定搜尋篩選
@@ -3051,6 +3327,7 @@ zh-TW:
     must_be_observed_in_place: 需在地點裡觀察
     must_be_in: 需在物種分類中
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
+  running_total: 運行總計
   said: 說
   sat: 週六
   satellite: 衛星
@@ -3078,6 +3355,7 @@ zh-TW:
     one: 正在儲存觀察...
     other: 正在儲存 %{count} 裡的 %{num} 個觀察...
   saving_verb: 儲存中
+  scale_colon: 比例：
   schemes: 綱要
   schemes_including: 包含綱要
   scientific_names: 學名
@@ -3148,6 +3426,7 @@ zh-TW:
   set_license: 設定許可協議
   settings: 設定
   share: 分享
+  share_colon: 分享：
   share_your_observation_with_researchers_by: 與研究人員分享您的觀察依
   short_code_for_this_place: 此地點的簡短代碼，例如 US 用於代表美國
   short_or_abbreviated_title_for_display: 用於顯示在內容有限區域裡的簡短或縮寫標題。最多 10 個字元。
@@ -3165,6 +3444,7 @@ zh-TW:
   show_off_your_recent_observations: 展現出在您個人部落格或網站上的近期觀察！
   show_only: 僅顯示
   show_relative_proportions_of_all_observations: 顯示所有觀察的相對比例
+  show_running_total: 顯示運行總計
   show_scientific_name_first: 顯示學名優先
   show_taxa_from_both: （從兩項清單顯示物種分類群）
   show_taxa_from_everywhere: 顯示來自於任何地點的物種分類
@@ -3180,6 +3460,7 @@ zh-TW:
   shown_publicly_as: 公開展示為
   sign_in: 登入
   sign_in_with_provider: 以 %{provider} 登入
+  sign_up_with_provider: 以 %{provider} 註冊
   sign_out: 登出
   sign_up!: 註冊！
   sign_up: 註冊
@@ -3283,11 +3564,13 @@ zh-TW:
   source_unknown: 來源不明
   source_url: 來源 URL
   source_of_coordinates: 座標來源和準確測量，自動設定。
+  sourced_to: 來源
   sources: 來源
   sources_youve_added: 您添加的來源
   sources_and_credits: 來源和製作群
   sourcing: 來源
   spam: 垃圾訊息
+  spammer: 濫發垃圾訊息者
   spanish: 西班牙語
   species: 物種
   species_by_category: 依分類區分物種
@@ -3334,6 +3617,7 @@ zh-TW:
   stop_following_user: 停止關注 %{user}
   stop_testing: 停止測試
   stop_updating_position: 停止更新位置
+  studies_that_used_inaturalist_data_in_year: 在 %{year} 使用到 iNaturalist 資料的研究
   stuff_just_added: 您剛添加的東西...
   subject_resolved_noun_html: '%{subject} 解決了 %{noun}'
   subject_affecting_stuff_html: '%{subject}正對%{stuff}起作用'
@@ -3363,7 +3647,8 @@ zh-TW:
   suggest_or_require_that: 建議或請求貢獻者填好在他們添加至您專案之觀察的那些欄位。
   suggestions: 建議
   summary: 摘要
-  supporting: 支援
+  supporting: 支持
+  support_inaturalist: 支持 iNaturalist
   suspicious_photos: 可移照片
   siutable_observations: 合適的觀察
   sun: 週日
@@ -3460,6 +3745,11 @@ zh-TW:
   taxon_colors: 物種分類色彩
   taxon_curators: 物種分類策展人
   taxon_extras: 物種分類附加
+  taxon_framework_notes: 物種分類框架備註
+  taxon_framework_relationship_for: 物種分類框架關聯用於
+  taxon_framework_relationship: 物種分類群框架關聯
+  taxon_framework_relationships: 物種分類框架關聯
+  taxon_framework_taxon: 物種分類框架的分類單元
   taxon_links: 物種分類連結
   taxon_merge: 物種分類合併
   taxon_name: 物種分類名稱
@@ -3497,6 +3787,9 @@ zh-TW:
   taxonomic_status: 物種分類狀態
   taxonomic_tags_for_flickr: 用於 Flickr 的物種分類標籤
   taxonomic_tree_browser: 樹狀物種分類瀏覽器
+  taxonomy_details: 分類法詳情
+  taxonomy_details_for: 分類法詳情用於
+  taxonomy_details_info: 分類法詳情頁面使用了物種分類框架，來協助描述出依據物種分類所要表達的意思。<a href="/pages/taxon_frameworks">了解更多</a>。
   taxonomy_settings: 分類法設定
   tell_everyone_a_little_about_you: 向大家介紹一些關於您的事
   tell_the_world_a_little_about_yourself: 向我們介紹您自己
@@ -3577,6 +3870,7 @@ zh-TW:
   there_were_some_problems_with: 在您的 CSV 檔案裡有一些問題。請重新修改失效的行列。當然問題也會可能是出在我們這裡，若真是如此的話，請讓我們知道。
   there_were_some_problems_with_fields: 以下欄位出現了一些問題：
   theres_also: 這裡也有
+  theres_something_wrong_with_taxon_framework_relationship: 發生錯誤 - 我們無法判斷任何內部與外部物種分類群之間的關聯
   these_are_items_people_on: 這些是人們在網站上標記為策展的項目。垃圾評論會被刪除，而添加該內容的用戶會被停用（前往他們的個人檔案頁面，並在右下點擊「停用用戶」來防止他們登入）。評論應以禮儀方式進行，若其它被標記項目有著仇恨、非法、粗魯、冒犯等等言行，該項目會被刪除。如有多次重犯情況應回報給網站管理員或電郵至
     %{email}
   these_are_taxa_that: 出於某些原因，%{site} 的物種分類群不能自動添加至我們的分類樹。您可透過編輯物種分類且選擇父級記錄來添加它們。例如智人的父級分類會是人屬。您也可檢查同義的物種分類群來合併它們。
@@ -3715,6 +4009,7 @@ zh-TW:
   unknown: 未知
   unknown_error: 不明錯誤
   unknown_rank: （未知級別）
+  unknown_taxon_framework_relationship: 未知的物種分類框架關聯
   unfollow: 取消追蹤
   unlink_your_google_account: 取消連結您的 Google 帳號
   unmute: 取消禁言
@@ -3803,6 +4098,8 @@ zh-TW:
   user_has_opted_out_of_community_ids: '%{user} 已選擇保留對於關聯於他們觀察之物種分類群方面的控制'
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} 已選擇保留對於關聯於此觀察之物種分類群方面的控制'
   user_hasnt: '%{user}沒有'
+  user_helped_x_people_with_y_ids_html: '%{user}以 <strong>%{y} 個鑑定</strong>幫助到了 <strong>%{x}
+    個人</strong>'
   user_invite_observation_to_project: '%{user} 想要徵求您的觀察「%{observation}」至 %{project}
     專案。'
   user_invited_you_to_join_html: '%{user}邀請您加入'
@@ -3966,6 +4263,7 @@ zh-TW:
   welcome_comma!: 歡迎，
   welcome: 歡迎
   welcome_back: 歡迎回來
+  welcome_back!: 歡迎回來！
   welcome_comma: 歡迎，
   welcome_login: 歡迎，%{login}
   welcome_message: 是個可讓您<strong>記錄</strong>您在自然裡所見事物、與其他自然愛好者<strong>交流</strong>，以及<strong>學習</strong>關於自然世界的地方。
@@ -4034,6 +4332,7 @@ zh-TW:
     other: '%{count} 個觀察失敗'
   x_of_y: '%{y}中的%{x}'
   x_of_y_people_over_two_thirds_agree_it_is: 在 %{y} 人之中有 %{x} 人（超過 2/3）同意此是
+  x_is_the_root_of_the_tree: '%{rank} %{name}是樹狀的根源'
   x_project_journal: '%{project}的%{name}'
   x_project_stats: '%{project}統計'
   x_sent_you_a_new_message_on_y_html: '%{x} 寄送您一份新訊息於 %{y}：'
@@ -4184,7 +4483,7 @@ zh-TW:
   your_google_account: 您的 Google 帳號
   your_google_account_info: 您的 Google 帳號訊息
   your_pinned_locations: 您所釘選的位置
-  your_profile_was_successfully_updated: 您的個人資料更新成功！
+  your_profile_was_successfully_updated: 您的個人檔案更新成功！
   your_recent_projects: 您最近的專案
   your_should_recognize: 您應該辨別其中一些照片
   your_site_account_has_been_created: 您的 %{site} 帳號已被創建。
@@ -4227,6 +4526,22 @@ zh-TW:
             是個友善且熱情的地方。
           please_read_the_teachers_guide_html: 若是如此，在與學生使用 %{site_name} 時，請閱讀我們的<a
             href="%{url}">教師指南</a>來取得提示。
+    donate:
+      donate_short_desc: 現在進行捐款來表現出您的支持！
+      donate_desc_html: |-
+        <p class="lead">
+          <strong>iNaturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
+        </p>
+        <p class="lead">
+          若您肯定這份分享知識、產生出無可替代生物多樣性資料的全球自然愛好者社群力量，您可以考慮一次性或定期的捐款。
+        </p>
+        <p class="lead">
+          您的捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。
+        </p>
+        <p class="text-muted">
+          iNaturalist 為加利福尼亞州科學院與國家地理學會所共同發起。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
+        </p>
+      post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
     guides:
       index:
         funding_html: 指南開發的資金由 <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
@@ -4556,7 +4871,7 @@ zh-TW:
           </p>
           <ul>
             <li>
-              <strong>位置不精準</strong>（例如：例如猴子位在海洋裡，或是河馬位在辦公大樓等等）
+              <strong>位置不精準</strong>（例如：猴子位在海洋裡，或是河馬位在辦公大樓等等）
             </li>
             <li>
               <strong>不是野生/歸化的生物</strong>（例如：是被人類、或外星智慧生命給圈養或栽培）
@@ -4910,6 +5225,29 @@ zh-TW:
           代表透過 <a href="https://www.inaturalist.org">iNaturalist</a>
           或 <a href="%{url}">iNaturalist 網路</a>網站建立
       year:
+        include_usa: 包含美國
+        growth_by_country_desc_html: 成長是在哪裡發生的呢？成長的結果會複雜難懂，是因為按國家來區分成長會是比例失真的，此地圖和圖表便是用來嘗試突破這一點。在此我們預設上選擇忽略美國，並使用對數尺度來顯著出與其它國家之間的差異。如果國家被塗成黑色，這代表貢獻程度不到百分比、貢獻沒有成長、或是貢獻比去年少（可將游標覆蓋到國家上來查看更多詳情）。
+          <strong>"% 總成長"</strong>代表著某一特定國家在全球成長裡所佔百分比的，例如假設在 2018 年有 20 個觀察、2017
+          有 10 個觀察，這代表成長了 10 個觀察，假如當中有 5 個觀察是來自於非洲的貝南，那貝南就貢獻了 50% 總成長。<strong>"% 成長"</strong>代表某國家此年度觀察數量與去年觀察數量增加的百分比，假如寮國去年有
+          10 個觀察而今年是 20 個，這代表有 100% 的成長，其中如果去年是 0 個觀察而今年是 1 個，會呈現為無限百分比成長。
+        growth_by_country_title: 按國家區分的成長
+        growth_in_year_obs: 在%{year}的成長（觀察）
+        growth_title: 成長
+        new_species_desc: |-
+          此年度在 %{site_name} 上首次被觀察的物種。
+          顯示 <a href="%{url}">%{y}</a> 個裡的 %{x} 個物種。
+        new_species_desc_html: |-
+          此年度首次添加的物種。
+          在月份上點擊來檢視添加在該月份的新物種。
+          您也可以檢視物種累積的總數目，或是在時段裡移動滑桿返回來查看其它新進的觀察物種。此圖表顯示依照物種被上傳至 %{site_name} 的月份（不是牠們被觀察到的月份）之可驗證觀察來顯示出。這不會包含到較高或較低層級的物種分類，因此當一個觀察被鑑定為是哺乳類便不會被計入，所以屬於 <i>Canis lupus</i> ssp.
+          <i>arctos</i> 的觀察只會被計在 <i>Canis lupus</i> 裡。
+        obs_in_year: 在%{year}觀察
+        percent_growth_in_year: '% 成長在%{year}'
+        percent_of_total_growth: '% 總成長'
+        publications_desc_html: |-
+          <a href="https://www.altmetric.com">Altmetric</a> 上的影響力資料以及可見的肯定。有關我們的朋友在<a href="https://www.gbif.org/">全球生物多樣性資訊機構</a>上被感謝到的資料使用方面資訊。
+          <br/>
+          <a href="%{url}">檢視全部 %{numStudies} 份研究</a>
         sunburst_desc_html: |-
           已觀察物種分類群會被整理為分層「放射」狀的圖表。以中間層作為「生命」起始，外環邊緣作為結束。圖表上任一弧線長度比例是基於物種分類的觀察數量，色彩部份會簡略對應到我們常用的「代表性」物種分類顏色（綠色用在植物上；橘色用在昆蟲上；藍色用在多數其它動物上，等等。）， 因此如果您看到許多綠色，這代表著您有觀察過許多植物。
           <strong>點擊弧線來放置到有子項目圍繞的物種分類中心點</strong>，或是<strong>點擊中心點來移動層次結構</strong>。
@@ -5088,13 +5426,13 @@ zh-TW:
         find_a_project: 尋找一個有著您感興趣任務的專案，或是開始您自己擁有的專案。
         learn_about_nature: 了解關於自然
         build_your_knowledge: 透過與其他博物學友的交談，以及協助他人來建立您的知識。
-        run_a_bioblitz: 運作一個 Bioblitz
+        run_a_bioblitz: 舉行生態速查（Bioblitz）
         hold_an_event: 舉行一場能讓人們盡情來找尋物種的活動。
         works_on_all_your_devices: 在您的所有裝置上運作
         install_our_mobile_apps: 安裝我們的移動版應用程式，來讓您即使沒有手機信號或 wifi 也可以隨意觀察。
         who_uses_site_name: 誰使用 %{site_name}?
         what_are_you_waiting_for: 還有什麼好等待呢？
-        join_today: 今天就加入
+        join_today: 今天就加入！
     wiki_pages:
       form:
         save_and_edit_to_add_attachments: 儲存並編輯以添加附件
@@ -5168,8 +5506,8 @@ zh-TW:
         one: 約 1 年
         other: 約 %{count} 年
       almost_x_years:
-        one: 幾乎 1 年
-        other: 幾乎 %{count} 年
+        one: 大約 1 年
+        other: 大約 %{count} 年
       half_a_minute: 半分鐘
       less_than_x_minutes:
         one: 小於 1 分
@@ -5216,7 +5554,7 @@ zh-TW:
     messages:
       accepted: 必須被接受
       blank: 不可留空
-      confirmation: 和確認資料不符合
+      confirmation: 密碼不符
       empty: 不能為空
       equal_to: 必須等於 %{count}
       even: 必須是偶數
@@ -5312,7 +5650,7 @@ zh-TW:
       messages:
         accepted: 必須被接受
         blank: 不可留空
-        confirmation: 和確認資料不符
+        confirmation: 密碼不符
         empty: 不能為空
         equal_to: 必須相同於%{count}
         even: 必須是偶數

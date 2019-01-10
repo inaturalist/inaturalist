@@ -386,6 +386,18 @@ module ObservationSearch
         p[:user] ||= User.find_by_login(p[:login])
       end
 
+      unless p[:ident_user_id].blank?
+        ident_users = p[:ident_user_id].is_a?( Array ) ?
+          p[:ident_user_id] : [p[:ident_user_id].to_s.split( "," )].flatten
+        ident_user_ids = []
+        ident_users.each do |id_or_login|
+          ident_user = User.find_by_id(p[:ident_user_id])
+          ident_user ||= User.find_by_login(p[:ident_user_id])
+          ident_user_ids << ident_user.id if ident_user
+        end
+        p[:ident_user_id] = ident_user_ids.join( "," )
+      end
+
       unless p[:projects].blank?
         project_ids = [p[:projects]].flatten
         p[:projects] = Project.find(Project.slugs_to_ids(project_ids))

@@ -343,6 +343,8 @@ ca:
   all_photos: Totes les fotos
   all_places: Tots els llocs
   all_projects: Tots els projectes
+  all_children_added_to_the_database: Tots els fills han estat afegits a la base de
+    dades
   all_rank_added_to_the_database:
     phylum: Tots els phyla s'han afegit a la base de dades
     subphylum: Tots els subphyla s'han afegit a la base de dades
@@ -456,8 +458,10 @@ ca:
   allowed_html: Etiquetes HTML permeses
   allowed_occurrence_status_values: Valors permesos pels estats d'ocurrència
   allowed_values: Valors permesos
+  almost_there_: Gairebé està...
   alphabetical: Alfabètic
   alphabetical_order: Ordre alfabètic
+  already_have_an_account_log_in_html: Ja teniu un compte?
   amphibians: amfibis
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb no disposa d'informació
     sobre aquesta espècie.
@@ -594,7 +598,9 @@ ca:
   at_any_time_change: en qualsevol lloc (<span class="button">canvi</span>)
   at_time: a %{time}
   atom: Atom
+  attached_taxon: Tàxon unit
   attribute: Atribut
+  attribution: Reconeixement
   authority_list:
     iucn_red_list: Llista vermella d'UICN
   authorize_permissions_from_provider: Autoritza permisos de %{provider}
@@ -848,7 +854,11 @@ ca:
   check_out_your_life_list: Reviseu la vostra Llista de vida
   check_this_box_if: |-
     Seleccioneu aquesta caixa si voleu aplicar una
-    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Llicència de reconeixement no comercial Creative Commons</a> a les vostres fotos. Podeu escollir una llicència diferent o eliminar-la després, però aquesta és la millor llicència per compartir dades amb altres investigadors.
+    <a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca' target='_blank'>Llicència de reconeixement no comercial Creative Commons</a> a les vostres fotos. Podeu escollir una llicència diferent o eliminar-la després, però aquesta és la millor llicència per compartir dades amb altres investigadors.
+  check_this_box_if_html: "Seleccioneu aquest botó si voleu aplicar \n<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca'
+    target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> a
+    les seves fotos. Podeu escollir una llicència diferent o retirar la llicència
+    més tard, però aquesta és la millor llicència per compartir amb investigadors."
   checklist: Llista de comprovació
   checklists: Llistes de comprovació
   checklist_places: Llocs amb llista de comprovació
@@ -889,6 +899,7 @@ ca:
   classification: Classificació
   clear: Neteja
   clear_color_filters: Esborra els filtres de color
+  clear_filters: Netegeu filtres
   clear_search: Esborra la cerca
   click_on_the_map_to: Feu clic al mapa per afegir-hi la vostra observació
   click_the_map: <strong>Feu clic al mapa</strong> per afegir-hi una localització.
@@ -946,6 +957,7 @@ ca:
   comparing_list_to_list: Comparant %{list1} amb %{list2}
   comparing_versions_x_and_y: Comparant les versions de %{x} i %{y}
   comparing_observations_from: Comparació de les observacions de %{user} el %{dates}
+  complete: Complet
   complete_sets: Conjunts Complets
   compiled_by_name: Elaborat per %{name}
   completed: Completat
@@ -1048,6 +1060,8 @@ ca:
   copyright_info_and_more: Informació del Copyright i més
   copyright_infringement_desc: Incompleix la llei de drets d'autor o va ser creat
     per algú altre que no pas l'observador i manca el reconeixement
+  covered_by_a_taxon_framework_html: Cobert per un %{link}
+  covered_by_a_taxon_framework_link: taxó marc de %{taxon_framework_rank}%{taxon_framework_name}
   couldnt_change_your_password: 'La contrasenya no s’ha pogut modificar: %{e}'
   couldnt_find_a_user_matching_x_param: 'No s’ha pogut trobar l''usuari amb els paràmetres
     següents: %{id}'
@@ -1170,6 +1184,7 @@ ca:
   default_photo_license: 'Llicència per a les vostres fotos:'
   default_sound_license: Llicències del so predeterminades
   defaults_to_your_name_or_username: Per defecte al vostre nom o nom d'usuari
+  defines_a_taxon_framework_for: Definiu un taxó marc per a %{taxon_name}
   delete: Elimina
   delete_all: Elimineu tot
   delete_conversation: Elimineu conversa
@@ -1204,6 +1219,8 @@ ca:
   desription: Descripció
   destroy: Destrueix
   details: Detalls
+  deviation: Desviació
+  deviations: Desviacions
   devise:
     failure:
       user:
@@ -1214,6 +1231,7 @@ ca:
   did_not_send_invitations_because: 'No ho compartirem amb els seguidors perquè:'
   did_you_mean: Es refereix a
   did_you_photos_flickr?: Heu pujat fotos a Flickr?
+  disable: Deshabilita
   disagree: en desacord
   disagree_: En desacord
   disconnect_provider: Desconnecteu-vos de %{provider}
@@ -1237,6 +1255,7 @@ ca:
   doh_something_went_wrong_error: 'Oh, alguna cosa ha anat malament: %{error}'
   done: Fet
   dont_filter: No filtreu
+  dont_have_an_account_sign_up_html: No teniu un compte?<strong>Registreu-vos</strong>
   dont_send_me_email: No m'envieu cap correu electrònic!
   dont_use_double_quotes: No utilitzeu cometes dobles en cap altre lloc
   drop_it: Desar-la
@@ -1248,6 +1267,8 @@ ca:
   download_csv: Descarrega CSV
   download_csv_template: Descarrega plantilla CSV
   download_kml: Descarrega KML
+  downstream_coverage: Cobertura cap endarrera
+  downstream_coverage_rank: Rang de cobertura cap endarrera
   drag_and_drop_photos: arrosseguei i deixeu anar la foto en aquesta finestra o
   draft: esborrany
   draft_: Esborrany
@@ -1515,7 +1536,9 @@ ca:
   flag_this_photo: Marca aquesta foto
   flagged: marcat
   flagged_: Marcat
+  flagged_covered_taxa: Taxons coberts marcats
   flagged_for_curation: Marcat per a supervisió
+  flagged_taxon: Tàxon marcat
   flagged_thing_explanation: Els usuaris han marcat aquest %{thing} perquè
   flagger: Marcador
   flags: Marques
@@ -1678,6 +1701,7 @@ ca:
   help_confirm_observations!: Ajuda'ns a confirmar observacions!
   help_faq: Ajuda / Preguntes freqüents
   help_out!: Ajudeu-nos!
+  help_support_inaturalist: Ajudeu a iNaturalist!
   helped_the_observer_make: heu ajudat l'observador a fer la identificació final (és
     a dir, es van fer abans de la identificació final i coincideixen)
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
@@ -1800,6 +1824,7 @@ ca:
   in: a
   in_: a
   in_n: a %{n}
+  in_place_x: a %{place}
   inaturalist_network_affiliation: Afiliació a la Xarxa d'iNaturalist
   inbox: bústia
   including: inclou
@@ -1809,7 +1834,7 @@ ca:
   in_taxon?: al tàxon
   in_the_past: en el passat
   in_the_past_week: durant la setmana passada
-  inactive: inactiva
+  inactive: Inactiva
   inactive_taxon: Tàxon inactiu
   inactive_taxon_concepts_are: Les categories taxonòmiques inactives són tàxons antiquats
     o que han canviat el nom. Les categories inactives es conserven per mantenir la
@@ -1841,9 +1866,10 @@ ca:
     identificat, i ajudar que altres persones identifiquin criatures misterioses!
   interactions: Interaccions
   internal_server_error: S'ha produït un error intern del servidor
-  introduced: introduïda
+  internal_taxon: Taxó intern
+  introduced: Introduïda
   introduced_in_place: Introduït a %{place}
-  invasive: invasores
+  invasive: Invasora
   invitation: Invitació
   invitations: Invitacions
   invite: convida
@@ -1900,6 +1926,8 @@ ca:
   join_project: Uniu-vos a aquest projecte
   join_some_projects_and_invite_some_observations_html: Uniu-vos a certs <a href='%{join_url}'>projectes</a>
     i <a href='%{invite_url}'>compartiu algunes observacions</a>
+  join_the_largest_group_of_naturalists_in_the_world: Uniu-vos al major grup de naturalistes
+    del món!
   join_this_project: Uniu-vos a aquest projecte
   joined!: Unit!
   joined_any_projects: unit a cap projecte.
@@ -1955,7 +1983,7 @@ ca:
   learn_more: Informeu-vos més
   learn_more_raquo: Per saber-ne més »
   learn_what_these_licenses_mean: Informeu-vos sobre què signifiquen aquestes llicències
-  least_concern: preocupació menor
+  least_concern: Preocupació menor
   leave: Sortir
   leave_a_comment: Deixeu un comentari
   leave_this_project: Sortiu d'aquest projecte
@@ -2084,6 +2112,7 @@ ca:
   linked_flickr_photo_copy_html: <strong>Mai no desarem còpies de les vostres fotos
     ni canviarem les dades de Flickr (tret que ho sol·liciteu).</strong> Ens importen
     massa les aus, els insectes i els llimacs per anar remenant la vostra informació!
+  linkedin: LinkedIn
   list: Llista
   list_deleted: Llista eliminada.
   list_saved: Llista desada.
@@ -2201,7 +2230,7 @@ ca:
     guia.
   lookup: Cerca
   lookup_user_rarr: Busca usuari →
-  low: baixa
+  low: Baixa
   lowest_rank: Tàxon inferior
   made_a: creà una
   make_admin: Fer administrador
@@ -2259,7 +2288,7 @@ ca:
   map_for: Mapa per a
   mark_as_reviewed: Marqueu-ho com a revisat
   mark_all_as_reviewed: Marca-ho tot com a revisat
-  mark_all_as_unreviewed: Marca-ho tot com No revisat
+  mark_all_as_unreviewed: Marqueu-ho tot com a No revisat
   matched_several_different_taxa: coincideix amb diferents tàxons
   matching_species_will_shown_up_here: Les espècies trobades es mostraran aquí. El
     mapa mostrarà un rang si %{place} té alguna d'aquestes espècies.
@@ -2271,6 +2300,9 @@ ca:
   medium_url: URL de medi
   meet: Conegueu-ne
   member_of_the_inaturalist_network_html: Membre de la <a href="%{url}">Xarxa iNaturalist</a>
+  ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
+  : Membre de %{partial_inat_network_tag_html}iNaturalist Network</a> una iniciativa
+    conjunta de %{cas_tag_html} i %{nat_geo_tag_html}.
   members: Membres
   membership_model: Model d'adhesió
   mentioned_you_in_noun_html: '%{user} us ha esmentat a %{noun}'
@@ -2326,7 +2358,7 @@ ca:
   more_import_options: Més opcions d'importació
   more_info: Més informació
   more_info_title: Més informació
-  more_journal_posts: Més notes de revista
+  more_journal_posts: Més articles de revistes
   more_observations: Més observacions
   more_photos: Més Fotos
   most: Més
@@ -2339,9 +2371,10 @@ ca:
   most_recent_observation_by_date_observed: Observació més recents verificable per
     data
   most_species: La majoria de les espècies
-  most_observed_species: La majoria d'espècies observades
-  most_observed_introduced_species: Espècies introduïdes més observades
-  most_observed_threatened_species: Espècies en perill més observades
+  most_observed_species: Les espècies més observades
+  most_observed_introduced_species: Les espècies introduïdes més observades
+  most_observed_threatened_species: Les espècies en perill més observades
+  move_input_children_to_output?: Moure fills a la sortida
   multiple: múltiples
   multiple_select_option: -- múltiple --
   multiple_taxa_for_taxon_change: Múltiples tàxons (entrar per intercanviar/barrejar,
@@ -2392,7 +2425,7 @@ ca:
   ne_lat: Lat. N.E.
   ne_lon: Long. N.E.
   near: a prop
-  near_threatened: gairebé amenaçat
+  near_threatened: Quasi amenaçat
   nearby: Propera
   nearby_observations_: Observacions properes
   nearby_observations: Observacions properes
@@ -2415,7 +2448,7 @@ ca:
   new_custom_field_for: Nou camp personalitzat per a
   new_flag_for: Nova marca per a
   new_guide: Guia nova
-  new_journal_posts: Nou article de Revista
+  new_journal_post: Nou article de Revista
   new_lexicon: Lèxic nou
   new_list: Llista nova
   new_members: Nous membres
@@ -2507,7 +2540,7 @@ ca:
   no_nearby_observations: No hi ha observacions properes.
   no_new_messages: No hi ha nous missatges
   no_news_yet: No hi ha encara cap notícia
-  no_observations: no hi ha observacions
+  no_observations: Sense observacions
   no_observations_from_this_place_yet: Encara no hi ha observacions per a aquest lloc.
   no_observations_matching_those_ids: No hi ha observacions que coincideixin amb aquestes
     ID.
@@ -2522,6 +2555,7 @@ ca:
   no_ones_observed: Ningú ha fet cap observació
   no_photo: Sense fotos
   no_photos: No hi ha fotos
+  no_photos_of_that_size: No hi ha fotos d'aquesta mida
   no_places_available: No hi ha llocs disponibles
   no_places_selected: No s'han seleccionat llocs
   no_post_yet: Encara no hi ha cap entrada!
@@ -2560,11 +2594,13 @@ ca:
   no_x_this_y: No hi ha %{x} d’aquest %{y}
   noble_curators: Supervisors actius d'%{site}
   non_human?: No humà?
+  non_internal_taxon: No hi ha tàxons interns
   none: Cap
   none_found: No s'ha trobat cap
   normal: normal
   not_absent: no absent
   not_completed: No Finalitzat
+  not_covered_by_any_taxon_frameworks: No està cobert per cap marc de taxons
   not_evaluated: no avaluat
   not_filtering: Sense filtrar
   not_findig_what_you_want: No trobeu el que cercàveu?
@@ -2738,8 +2774,8 @@ ca:
   of_observers: observadors
   of_identifiers: identificadors
   of_places: llocs
-  of_this_taxon: D'aquest taxon
-  offensive_inappropriate: ofensiu/inadequat
+  of_this_taxon: D'aquest tàxon
+  offensive_inappropriate: Ofensiu/inadequat
   official_blog: Blog oficial
   offline_access_enabled: Accés fora de línia activat
   old_observation_form: Antic registre de l'observació (obsolet)
@@ -2850,10 +2886,12 @@ ca:
   optional_columns_note_for_any: 'Columnes opcionals (nota: per usar qualsevol d''aquestes
     columnes a una observació, totes han de ser-hi presents)'
   or: o
+  or_all_caps: O
   or_choose_high_level_taxa: '... O seleccioneu un tàxon de rang superior'
   or_if_you_dont_want_email: O si no voleu cap correu electrònic...
   or_invite_your_friends: o convideu els vostres amics
   or_invited: o convidades.
+  or_log_in_with_colon: O inicia ambː
   or_post_message_to_google_group: o envieu un missatge al nostre Grup de Google
   or_upload: O descarregueu el
   or_you_can: O bé podeu...
@@ -2879,6 +2917,7 @@ ca:
   other_lexicons: Altres Lèxics
   other_listings_of_this_taxon_for_this_place: Altres observacions d'aquesta espècie
     per a aquest lloc
+  other_names: Altres noms
   other_species_commonly_misidentified_as_this_species: Altres espècies habitualment
     identificades incorrectament com aquesta espècie
   other_species_commonly_misidentified_as_this_species_in_place_html: Altres espècies
@@ -2887,6 +2926,7 @@ ca:
   out_of_range: Fora del rang
   output_taxon: Tàxon de sortida
   overview: Vista general
+  overlapping_downstream_taxon_frameworks: Solapant marcs de tàxons cap endarrere
   owner: Propietari
   parent: Pare
   parent_name: Nom de la classe o espècie pare
@@ -2913,7 +2953,7 @@ ca:
   per_day: Per dia
   per_month: Per mes
   per_week: Per setmana
-  person: persona
+  person: Persona
   personal_message: Missatge personal
   personal_message_description: A ningú no li agrada rebre missatges automàtics. Hauríeu
     explicar als vostres amics per què els convideu.
@@ -2923,7 +2963,9 @@ ca:
   photo?: Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Navegador de fotografies
+  photo_by: Foto de
   photo_by_id_attribution: Foto %{id}, %{attribution}
+  photo_credits: Crèdit de la foto
   photo_deleted: Foto esborrada
   photo_destroyed_because_it_was_deleted_from: La foto s'ha eliminat perquè s’ha esborrat
     d'un web extern o perquè %{site_name} no té permís per mostrar-la.
@@ -2950,7 +2992,10 @@ ca:
     Google, per tant %{site_name} no té permís per accedir a aquesta fotografia.
   picasa_identity: Usuari de Picasa
   pick_a_username: Trieu nom d'usuari
+  pin_verb: Posar al mapa
   pink: rosa
+  pinned_locations_desc: Enganxeu aquesta combinació de coordenades, precisió, geoprivacitat
+    i notes de localitat per utilitzar-les més tard.
   place: Lloc
   placeholder: Posició
   place_added_to_inat_by: Lloc afegit a %{site_name} per
@@ -3082,6 +3127,7 @@ ca:
     belgium: Bèlgica
     bosnia_and_herzegovina: Bòsnia i Hercegovina
     brazil: Brasil
+    canada: Canadà
     central_america: Amèrica Central
     china: Xina
     colombia: Colòmbia
@@ -3094,9 +3140,9 @@ ca:
     greece: Grècia
     hong_kong: Hong Kong
     hungary: Hongria
-    italy: Itàlia
     india: Índia
     iraq: Iraq
+    italy: Itàlia
     japan: Japó
     korea: Corea
     martinique: Martinica
@@ -3113,8 +3159,8 @@ ca:
     portugal: Portugal
     republic_of_congo: República del Congo
     russia: Rússia
-    saudi_arabia: Aràbia Saudita
     sao_tome_and_principe: São Tomé i Principe
+    saudi_arabia: Aràbia Saudita
     singapore: Singapur
     south_africa: Sud-àfrica
     south_america: Amèrica del Sud
@@ -3156,7 +3202,7 @@ ca:
     uns minuts per a llistes grans.
   please_hold_on_while_the_file_is_generated: Espereu mentre es genera l'arxiu. El
     procés pot trigar uns minuts per a llistes grans.
-  popular: popular
+  popular: Popular
   position: Posició
   positional_accuracy: Precisió de la ubicació
   possessive_user: de %{user}
@@ -3292,41 +3338,42 @@ ca:
   rank_position: Classificació
   rank_restrictions: Classifica les restriccions
   ranks:
-    kingdom: regne
-    subkingdom: subregne
-    phylum: fílum
-    subphylum: subfílum
-    superclass: superclasse
-    class: classe
-    subclass: subclasse
-    infraclass: infraclasse
-    superorder: superordre
-    order: ordre
-    suborder: subordre
-    infraorder: infra-ordre
+    stateofmatter: Estat de l'assumpte
+    kingdom: Regne
+    subkingdom: Subregne
+    phylum: Fílum
+    subphylum: Subfílum
+    superclass: Superclasse
+    class: Classe
+    subclass: Subclasse
+    infraclass: Infraclasse
+    superorder: Superordre
+    order: Ordre
+    suborder: Subordre
+    infraorder: Infra-ordre
     subterclass: Subterclasse
-    parvorder: parvordre
-    zoosection: zoosecció
-    zoosubsection: zoosubsecció
-    superfamily: superfamília
-    epifamily: epifamília
-    family: família
-    subfamily: subfamília
-    supertribe: supertribu
-    tribe: tribu
-    subtribe: subtribu
-    genus: gènere
-    genushybrid: gènere híbrid
-    subgenus: subgènere
-    section: secció
-    subsection: subsecció
-    species: espècies
-    hybrid: híbrid
-    subspecies: subespècies
-    variety: varietat
-    form: forma
-    infrahybrid: infrahíbrid
-    leaves: fulles
+    parvorder: Parvordre
+    zoosection: Zoosecció
+    zoosubsection: Zoosubsecció
+    superfamily: Superfamília
+    epifamily: Epifamília
+    family: Família
+    subfamily: Subfamília
+    supertribe: Supertribu
+    tribe: Tribu
+    subtribe: Subtribu
+    genus: Gènere
+    genushybrid: Gènere híbrid
+    subgenus: Subgènere
+    section: Secció
+    subsection: Subsecció
+    species: Espècie
+    hybrid: Híbrid
+    subspecies: Subespècie
+    variety: Varietat
+    form: Forma
+    infrahybrid: Infrahíbrid
+    leaves: Fulles
   ranges: Rangs
   rare: Rar
   ray_finned_fishes: peixos ossis
@@ -3356,7 +3403,7 @@ ca:
   recent_atom_observations_by: Observacions recents de %{login} (Atom)
   recent_observations_by: Observacions recents de %{login}
   recent_updates: Actualitzacions recents
-  recently_active: Actius recentment
+  recently_active: Actiu recentment
   recently_active_projects_from_everywhere: Projectes recentment actius de qualsevol
     lloc
   recently_active_projects_from_place: Projectes recentment actius de %{place}
@@ -3372,7 +3419,7 @@ ca:
   redo_search_in_map: Refer la cerca al mapa
   redo_search_in_map_area: Torneu a realitzar la cerca a l'àrea del mapa
   refresh: Actualitza
-  refresh_listed_taxa: actualitzar el taxons inclosos
+  refresh_listed_taxa: actualitzar el tàxons inclosos
   refreshing: actualitzant
   regenerate_stats: Torna a generar les estadístiques
   regenerate_url: Torna a generar l'enllaç
@@ -3381,6 +3428,18 @@ ca:
   reject_the_community_id: Refusar la Identificació de la comunitat
   related_species: Espècies relacionades
   relative_observations: Observacions relacionades
+  relationship: Relacions
+  relationship_x: 'Relació: %{relationship}'
+  relationships:
+    match: coincideix
+    one_to_one: un a un
+    alternate_position: posició alterna
+    many_to_many: molts a molts
+    many_to_one: molts a un
+    one_to_many: un a molts
+    not_external: no extern
+    not_internal: no intern
+    unknown: desconegut
   reload_and_refresh: Torna a carregar i actualitzar la llista
   reload_from_observations: Torna a carregar des de les observacions
   reload_timed_out: El temps de càrrega ha caducat. Torneu a intentar-ho d’aquí una
@@ -3401,6 +3460,7 @@ ca:
   remove_curator_role: Elimina funció de supervisor
   remove_curator_status: Elimina estat de supervisor
   remove_from_batch: Elimina l'edició
+  remove_from_featured: Elimina dels presentats
   remove_from_guide: Eliminar de la guia
   remove_from_id_please?: Elimina del grup "ID Si us plau"?
   remove_from_list: Elimina de la llista
@@ -3449,7 +3509,7 @@ ca:
     de data, foto, coordenades i una ID recolzada per la comunitat. Feu clic aquí
     per veure l'avaluació de la qualitat de les dades.
   research_grade_qualification: Qualificació de Grau de Recerca
-  research_quality: Qualitat de la recerca
+  research_quality: Qualitat de recerca
   reset_search_filters: Refer els filtres de cerca
   reset_your_password: Restabliu la contrasenya
   resolve: Resol
@@ -3529,16 +3589,16 @@ ca:
   search_for_a_location: Cerqueu una ubicació
   search_for_new_taxa: cerca nous tàxons
   search_for_place_to_import_from_yahoo: Cerca un lloc per importar des de Yahoo.
-  search_for_species: Cerca d'espècies
+  search_for_species: Cerca d'espècie
   search_list: Cerca Llista
   search_obs: Cerca observacions
-  search_places: Busca llocs
-  search_projects: Cerca projectes
+  search_places: Cerca lloc
+  search_projects: Cerca projecte
   search_results_for: Cerca resultats per a
   search_results_for_query: Resultats de la cerca «%{query}»
   search_remote: Cerca remota
-  search_species: Cerca espècies
-  search_species_: Cerca espècies
+  search_species: Cerca espècie
+  search_species_: Cerca espècie
   search_taxa: Cerca tàxons...
   search_the_map: Cerca el mapa
   search_this_taxon: cerca aquest tàxon
@@ -3555,11 +3615,11 @@ ca:
   seen_one: N’heu vist un?
   select: Selecciona
   select_all: Selecciona-ho tot
-  select_an_album: Selecciona un àlbum
-  select_at_least_one: Selecciona com a mínim un
+  select_an_album: Seleccioneu un àlbum
+  select_at_least_one: Seleccioneu com a mínim un
   select_how_unobserved_listings_are_displayed: Selecciona com els mostren els llistats
     d'espècies no observades a la llista del projecte
-  select_one_or_more_photos: Selecciona una o més fotos
+  select_one_or_more_photos: Seleccioneu una o més fotos
   select_none: No en seleccioneu cap
   select_observations_to_edit: Seleccioneu observacions per a editar...
   select_one_of_friends_albums: Seleccioneu un dels àlbums de %{friend}
@@ -3590,6 +3650,7 @@ ca:
   set_license: Estableix llicència
   settings: Propietats
   share: Compartiu
+  share_colon: 'Compartiu:'
   share_your_observation_with_researchers_by: Compartiu la vostra observació amb investigadors
     a través de
   short_code_for_this_place: Codi curt per al país, ex. MX per a Mèxic
@@ -3626,11 +3687,12 @@ ca:
   shown_publicly_as: Mostra públicament com a
   sign_in: Inicieu sessió
   sign_in_with_provider: Inicieu sessió amb %{provider}
+  sign_up_with_provider: Registreu-vos amb %{provider}
   sign_out: Surtiu
   sign_up!: Registreu-vos!
   sign_up: Registreu-vos
   sign_up_exclamation: Registreu-vos!
-  similar_species: Espècies similars
+  similar_species: Espècie similar
   simple: Senzill
   sign_in_exclamation: Inicieu sessió!
   single_observation: Observació simple
@@ -3638,9 +3700,12 @@ ca:
   sizes: Mida
   skip_to_next_page: Aneu a la pàgina següent
   small: petit
+  site_admin_tools: Eines d'administració del lloc
   site_name_place: Llocs d’%{site_name}
   site_observations_export_from_date: Observacions de %{site_name} exportades des
     de %{date}
+  site_site_admin: '%{site_name} Lloc del Adminstrador'
+  site_staff: '%{site_name} Personal'
   site_stats: Estadístiques del lloc
   site_taxon_page: pàgina del tàxon a %{site_name}
   site_year_in_review: Resum de l'any %{year} a %{site_name}
@@ -3688,7 +3753,7 @@ ca:
   sorry_you_need_to_be_signed_in_and: Ho sentim, heu d’entrar al sistema i tenir un
     compte vinculat de Flickr per poder publicar etiquetes directament des de Flickr.
   sort: Ordenar
-  sort_by: Ordena per
+  sort_by: Ordeneu per
   sorting_by: Ordenant per
   soundcloud_needs_to_confirm: SoundCloud sol·licita la vostra confirmació per connectar
     el compte amb %{site_name}.
@@ -3752,11 +3817,12 @@ ca:
   source_url: URL de la Font
   source_of_coordinates: La font de les coordenades i l'exactitud de les mesures s’estableixen
     de manera automàtica.
+  sourced_to: Obtingut a
   sources: Fonts
   sources_youve_added: Fonts que heu afegit
   sources_and_credits: Fonts i Crèdits
   sourcing: Posant la font
-  spam: contingut brossa
+  spam: Contingut brossa
   spanish: Castellà
   species: Espècies
   species_by_category: espècies per categoria
@@ -3776,14 +3842,14 @@ ca:
   src: Font
   standard: Estàndard
   start: Inici
-  start_a_new_list: Inicia una llista nova
-  start_a_new_project: Inicia un nou projecte
-  start_a_project: Inicia un projecte
+  start_a_new_list: Inicieu una llista nova
+  start_a_new_project: Inicieu un nou projecte
+  start_a_project: Inicieu un projecte
   start_adding_observations: Comenceu a afegir observacions
   start_date_time: Hora/Data d'inici
   start_new_account: Inicieu un nou compte
   start_new_project: Inicieu un nou projecte
-  start_one: inicieu un
+  start_one: Inicieu un
   start_one_now: Inicieu un ara!
   start_typing_field_name: Comenceu a escriure el nom del camp…
   start_typing_place_name: Comenceu a escriure el nom del lloc…
@@ -3845,6 +3911,7 @@ ca:
   suggestions: Suggeriments
   summary: Resum
   supporting: Recolzar
+  support_inaturalist: Ajudeu iNaturalist
   suspicious_photos: Fotos sospitoses
   siutable_observations: observacions que podeu convidar
   sun: Dg.
@@ -3949,7 +4016,13 @@ ca:
   taxon_colors: Colors del taxon
   taxon_curators: Conservadors del Taxon
   taxon_extras: Extres del taxon
-  taxon_merge: fusió de tàxon
+  taxon_framework_notes: Notes del Marc de Tàxon
+  taxon_framework_relationship_for: Relació del marc del tàxon
+  taxon_framework_relationship: Relació del Marc del Tàxon
+  taxon_framework_relationships: Relació del Marc del Tàxon
+  taxon_framework_taxon: Tàxon marc de tàxon
+  taxon_links: Enllaç al Tàxon
+  taxon_merge: fusiona tàxons
   taxon_name: Nom del tàxon
   taxon_name_must_match_an_existing_taxon_in_our_database: El nom del tàxon ha de
     correspondre amb un d'existent a la nostra base de dades
@@ -3989,6 +4062,11 @@ ca:
   taxonomic_status: Situació taxonòmica
   taxonomic_tags_for_flickr: Etiquetes taxonòmiques per a Flickr
   taxonomic_tree_browser: Explorador de l'arbre taxonòmic
+  taxonomy_details: Detalls Taxonòmics
+  taxonomy_details_for: Detalls taxonòmics de
+  taxonomy_details_info: La pàgina de Detalls Taxonòmics utilitza un Marc de Tàxon
+    per descriure el que entenem per tàxon. <a href="/pages/taxon_frameworks">Llegiu
+    més</a>.
   taxonomy_settings: Paràmetres taxonòmics
   tell_everyone_a_little_about_you: Digueu a tothom quelcom de vosaltres mateixos
   tell_the_world_a_little_about_yourself: Parleu-nos una mica de vosaltres
@@ -4118,6 +4196,8 @@ ca:
     és així, si us plau, feu-nos-ho saber.
   there_were_some_problems_with_fields: Hi ha hagut problemes amb els següents camps
   theres_also: també hi ha
+  theres_something_wrong_with_taxon_framework_relationship: Hi ha alguna errada -
+    no podem determinar la relacio entre tàxons interns i externs
   these_are_items_people_on: Hi ha continguts que altres han marcat per ser supervisats.
     Els continguts brossa s’esborraran i l’usuari que els va introduir podria ser
     suspès (aneu a la pàgina del seu perfil i a la part inferior esquerra seleccioneu
@@ -4223,7 +4303,7 @@ ca:
     moltes altres coses, com ara buscar i filtrar les teves observacions o modificar-les
     com a grup, però això hauria de ser autoexplicatiu.
   those_observations_no_longer_exist: Aquestes observacions ja no existeixen.
-  threatened: amenaçat
+  threatened: Amenaçat
   thu: Dj.
   thumb_url: Miniatura de l'URL
   time_: hora
@@ -4259,7 +4339,7 @@ ca:
   top_observers: Principal observadors
   top_species: Principals Espècies
   total: Total
-  totals: totals
+  totals: Totals
   total_members: Nombre total de membres
   total_observations: Nombre total d'observacions
   total_species_observed: Total d'espècies observades
@@ -4304,6 +4384,7 @@ ca:
   unknown: Desconegut
   unknown_error: Error desconegut
   unknown_rank: (Classificació desconeguda)
+  unknown_taxon_framework_relationship: Relació del marc de tàxons desconeguda
   unfollow: Deixeu de seguir
   unlink_your_google_account: Desvinculeu el vostre compte de Google
   unmute: No silenciar
@@ -4327,12 +4408,14 @@ ca:
     triada
   update_existing_sounds_with_new_license: Actualitza els sons existents amb la llicència
     triada
-  update_past: Actualitza %{type} passat
-  update_photos: Actualitza fotos
+  update_observation: Actualitzeu observació
+  update_observations: Actualitzeu observacions
+  update_past: Actualitzeu %{type} passat
+  update_photos: Actualitzeu fotos
   update_search: Actualitzeu la cerca
   update_selected_taxa: Actualitza els tàxons seleccionats
-  update_subscription: Actualització de subscripció
-  update_subscription_preferences: actualitza les preferències de subscripció
+  update_subscription: Actualitzeu la subscripció
+  update_subscription_preferences: Actualitzeu les Preferències de la subscripció
   update_x_selected_taxa:
     one: Actualitzar el tàxon seleccionat
     other: Actualitzar els %{count} tàxons seleccionats
@@ -4454,37 +4537,37 @@ ca:
     d'observació
   view: Mostra
   view_all: Mostra-ho tot
-  view_all_from_x: Vista tot de %{x}
-  view_all_members: Mostra tots els membres
-  view_all_n: Mostra totes les %{n}
-  view_all_observations: Mostra totes les observacions
-  view_all_photocount_photos: Mostra les %{photo_count} fotos
+  view_all_from_x: Veure tot el de %{x}
+  view_all_members: Veure tots els membres
+  view_all_n: Veure tots els %{n}
+  view_all_observations: Veure totes les observacions
+  view_all_photocount_photos: Veure les %{photo_count} fotos
   view_all_photos_tagged_taxon_html: Mostra totes les fotos etiquetades %{taxon} a
     <nobr>Flickr »</nobr>
-  view_all_your_projects: Mostra tots els vostres projectes
-  view_assessment: Mostra valoració
-  view_change: Mostra canvi
-  view_check_list_page: Mostra la pàgina de la llista de comprovació
+  view_all_your_projects: Veure tots els vostres projectes
+  view_assessment: Veure valoració
+  view_change: Veure canvi
+  view_check_list_page: Veure la pàgina de la llista de comprovació
   view_contributions: Veure contribucions
-  view_details: Mostra els detalls
+  view_details: Veure els detalls
   view_field_options: Veure el camp Opcions
-  view_flag: Veure marca
-  view_flags: Mostra les marques
-  view_flags_for_x_html: Veure etiquetes per %{x}
-  view_full_observation: Mostra l’observació completa
-  view_invitation: Mostra invitació
-  view_journal: Mostra el diari
-  view_leaderboard: Mostra la classificació
+  view_flag: Veure etiqueta
+  view_flags: Veure les etiquetes
+  view_flags_for_x_html: Veure les etiquetes per %{x}
+  view_full_observation: Veure l’observació completa
+  view_invitation: Veure invitació
+  view_journal: Veure el diari
+  view_leaderboard: Veure la classificació
   view_leaderboard_from_last_month: Mostra els més actius del mes passat
   view_leaderboard_from_last_year: Mostra els més actius de l'any passat
-  view_license: Mostra la llicència
-  view_lists: Mostra les llistes
-  view_listing: Mostra les llistes
-  view_more: Mostra més
-  view_more_about_x: Mostra més sobre %{x}
-  view_more_observations: Mostra més observacions
-  view_more_observations_from_x: Mostra més observacions de %{x}
-  view_more_observations_from: Mostra més observacions de
+  view_license: Veure la llicència
+  view_lists: Veure les llistes
+  view_listing: Veure les llistes
+  view_more: Veure més
+  view_more_about_x: Veures més sobre %{x}
+  view_more_observations: Veure més observacions
+  view_more_observations_from_x: Veure més observacions de %{x}
+  view_more_observations_from: Veure més observacions de
   view_more_observations_near_x_place: Mostra més observacions a prop de %{place}
     a <nobr>%{site_name} »</nobr>
   view_more_observations_of_x_project: Mostra més observacions del projecte %{project}
@@ -4493,8 +4576,8 @@ ca:
     »</nobr>
   view_more_recent_observations: Mostra més observacions recents
   view_more_unreviewed: Veure més no revisats
-  view_observation: Mostra observació
-  view_observations: Mostra observacions
+  view_observation: Veure observació
+  view_observations: Veure observacions
   view_observation_flags: Veure marques de l'observació
   view_observations_by_everyone: Veure observacions de tothom
   view_observations_of_this_taxon_by: Veure observacions d'aquest tàxon de
@@ -4546,8 +4629,8 @@ ca:
   view_all_of_your_observations_from_x: Veure totes les vostres observacions des de
     %{x}
   visually_similar: Visualment Semblant
-  vulnerable: vulnerable
-  w00t_no_ungrafted_taxa: Ep! No s'accepten taxons sense relacions taxonòmiques!
+  vulnerable: Vulnerable
+  w00t_no_ungrafted_taxa: Ep! No s'accepten tàxons sense relacions taxonòmiques!
   w_photos_only: amb fotos
   w_sounds: amb sons
   wait_file_generation: Espereu mentre es genera l'arxiu. El procés pot trigar uns
@@ -4598,6 +4681,7 @@ ca:
   welcome_comma!: Benvingut!
   welcome: benvingut
   welcome_back: Benvingut de nou
+  welcome_back!: Benvingut de nou!
   welcome_comma: Benvingut,
   welcome_login: Benvingut %{login}
   welcome_message: on podeu <strong>registrar</strong> les vostres observacions a
@@ -4629,8 +4713,8 @@ ca:
   where_does_x_live: On viu el %{taxa}?
   where_were_they?: <em>On</em> es trobaven?
   where_were_you?: <em>On</em> estàveu?
-  which_projects_can_add_your_observations?: Quins projectes poden incorporar les
-    vostres observacions?
+  which_projects_can_add_your_observations?: Quins projectes tradicionals poden incorporar
+    les vostres observacions?
   white: blanc
   who_can_add_observations_to_this_project?: Qui pot afegir observacions a aquest
     projecte?
@@ -4675,6 +4759,7 @@ ca:
   x_of_y: '%{x} de %{y}'
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} de %{y} persones (per sobre de
     2/3) estan d''acord amb això'
+  x_is_the_root_of_the_tree: '%{rank}%{name} és l''arrel de l''arbre'
   x_project_journal: '%{name} del projecte %{project}'
   x_project_stats: Estadístiques del projecte %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} us ha enviat un nou missatge sobre %{y}:'
@@ -4889,6 +4974,7 @@ ca:
   your_projects: Els vostres Projectes
   your_google_account: el vostre compte de Google
   your_google_account_info: Informació del vostre compte de Google
+  your_pinned_locations: Les vostres localitzacions marcades
   your_profile_was_successfully_updated: El vostre perfil s’ha actualitzat satisfactòriament.
   your_recent_projects: Els vostres projectes recents
   your_should_recognize: Hauríeu de reconèixer algunes d'aquestes fotos
@@ -4924,17 +5010,16 @@ ca:
     usuaris. Per seguir les actualitzacions d'altres usuaris, seleccioneu l'enllaç
     ‘Segueix a [nom]’ a l'encapçalament quan vegeu les seves observacions o el seu
     perfil.
-  verifiable: verificable
+  verifiable: Verificable
   views:
     views: Vistes
     announcements:
       locales_desc: Premeu CMD- o SHIFT- per a seleccions múltiples. Si no seleccioneu
         cap es mostrarà un avís a tots els usuaris, amb independència de la seva localització.
-        Si escolliu un idioma local, sense cap regió, *no* seleccionarà les regions
-        locals, per exemple, si escolliu en no li apareixerà a les persines que hagin
-        escollit en-US. Si voleu dirigir-ho a ambdues, cal que es escolliu ambdues.
-        Si voleu mostrar l'anunci per a tots els membres de un lloc, deixeu-lo en
-        blanc.
+        Si escolliu un idioma, sense cap regió, *no* seleccionarà les regions locals,
+        per exemple, si escolliu en no li apareixerà a les persines que hagin escollit
+        en-US. Si voleu dirigir-ho a ambdues, cal que es escolliu ambdues. Si voleu
+        mostrar l'anunci per a tots els membres de un lloc, deixeu-lo en blanc.
     custom_projects:
       edit:
         custom_project_fields_warning: 'Si us plau, aneu amb compte: Si afegiu Javascript
@@ -4953,6 +5038,23 @@ ca:
           please_read_the_teachers_guide_html: Si és així, si us plau llegiu la nostra
             <a href="%{url}">Guia del Professor</a> per consells sobre com utilitzar
             %{site_name} amb els alumnes.
+    donate:
+      donate_short_desc: Ajudeu iNaturalist amb una donació!
+      donate_desc_html: |-
+        <p class="lead">
+          <strong>iNaturalist és una de les majors comunitats del món dedicades a explorar la Biodiversitat. Gràcies per formar part d'ella!</strong>
+        </p>
+        <p class="lead">
+          Si creus en el potencial d'aquesta comunitat global d'amants de la natura, us agrairem feu una donació puntual o recurrent.
+        </p>
+        <p class="lead">
+          La teva donació ajuda ak desenvolupament d'iNaturalist a mesura la nostra comunitat creix, a incorporar els sistemes artificials de reconeixement d'imatges i a implementar noves característiques, els nostres servidors i personal.
+        </p>
+        <p class="text-muted">
+          iNaturalist és una iniciativa conjunta entre la California Academy of Sciences y la National Geographic Society. Totes les donations es reben a la California Academy of Sciences, organització 501(c)(3) establerta ala Estats Units de Nord-Amèrica, beneficiària d'una exempció de taxes.
+        </p>
+      post_donate_social_media_text: Jo ajudo iNaturalist! Hauries de comprovar-ho
+        també.
     guides:
       index:
         funding_html: El finançament per al desenvolupament de les Guies ha estat
@@ -4983,32 +5085,24 @@ ca:
           quan cerquen llocs, i mostra els límits del lloc al mapa de %{site_name}
           que els tenen si s'ha establert (per exemple a la vista "targeta", les pàgines
           del tàxon, etc.)
-        import_tags_from_csv_help_html: |-
-          <p>Pugeu un fitxer CSV que contingui les etiquetes per als tàxons d'aquesta guia. L'arxiu CSV ha de tenir un aspecte semblant a aquest:</p>
-          <table class="taula">
-          <tbody>
-          <tr>
-          <th>Nom</th>
-          <th>color</th>
-          <th>Nombre de mans</th>
-          <th></th>
-          </tr>
-          <tr>
-          <td>Homo sapiens</td>
-          <td></td>
-          <td>2</td>
-          <td>bípeda</td>
-          </tr>
-          <tr>
-          <td>Vulpes vulpes</td>
-          <td>vermell | negre</td>
-          <td>0</td>
-          <td>quadrúpeda</td>
-          </tr>
-          </tbody>
-          </table>
-          <p> La primera fila comença amb "Nom", seguit de les etiquetes de propietats/categories. A continuació, cada una de les següents files s'inicia amb el nom de tàxon, seguida per les etiquetes corresponents a la propietat de la part superior de la columna. En aquest exemple, <i>Homo sapiens</i> té les etiquetes <code>bípeda</code> i <code>Nombre de mans=2</code> i <i>Vulpes vulpes</i> és <code>quadrúpeda</code>, <code>color=rojo</ code>, <code>color=negre</ code> i <code>Nombre de mans=0</code>. Els espais en blanc s'ignoren, i pot afegir diverses línies per cada tàxon. També podeu afegir diversos valors per cel·la, separats pel caràcter de barra vertical (|).
-          </ul>
+        import_tags_from_csv_help_html: "<p>\n  Pugeu un fitxer CSV que contingui
+          les etiquetes per als tàxons\n  d'aquesta guia. L'arxiu CSV ha de tenir
+          un aspecte semblant a\n  aquest:\n</p>\n<table class=\"taula\">\n  <tbody>\n
+          \   <tr>\n      <th>Nom</th>\n      <th>color</th>\n      <th>Nombre de
+          mans</th>\n      <th></th>\n    </tr>\n    <tr>\n      <td>Homo sapiens</td>\n
+          \     <td></td>\n      <td>2</td>\n      <td>bípeda</td>\n    </tr>\n    <tr>\n
+          \     <td>Vulpes vulpes</td>\n      <td>vermell | negre</td>\n      <td>0</td>\n
+          \     <td>quadrúpeda</td>\n    </tr>\n  </tbody>\n</table>\n<p>\n  La primera
+          fila comença amb \"Nom\", seguit de les etiquetes de \n  propietats/categories.
+          A continuació, cada una de les següents \n  files s'inicia amb el nom de
+          tàxon, seguida per les etiquetes \n  corresponents a la propietat de la
+          part superior de la columna. \n  En aquest exemple, <i>Homo sapiens</i>
+          té les etiquetes\n  <code>bípeda</code> i <code>Nombre de mans=2</code>
+          i\n  <i>Vulpes vulpes</i> és <code>quadrúpeda</code>,\n  <code>color=rojo</code>,
+          <code>color=negre</code> i\n  <code>Nombre de mans=0</code>. Els espais
+          en blanc s'ignoren, i\n  pot afegir diverses línies per cada tàxon. També
+          podeu afegir\n  diversos valors per cel·la, separats pel caràcter de barra\n
+          \ vertical (|).\n</p>"
         licensing_explanation: 'Llicenciar el vostre contingut permet que altres persones
           tinguin dret a copiar-ho i modificar-ho sense demanar permís. Això fa que
           sigui molt més fàcil compartir el vostre treball, i si incorporeu continguts
@@ -5426,33 +5520,70 @@ ca:
           implica que esteu d'acord amb les <a href="%{url}" target="_blank">condicions
           del projecte</a>.
         quality_assessment_help_html: |-
-          <p>L'avaluació de la qualitat de les dades és un resum de l'exactitud d'una observació. Totes les observacions comencen tenint un grau <strong>"casual"</strong>, i es classifiquen com <strong>"necessita ID"</strong> quan</p>
+          <p>
+            L'avaluació de la qualitat de les dades és un resum de l'exactitud
+            d'una observació. Totes les observacions comencen tenint un grau
+            <strong>"casual"</strong>, i es classifiquen com
+            <strong>"necessita ID"</strong> quan
+          </p>
           <ul>
              <li>l'observació <strong>té una data</​strong></li>
              <li>l'observació <strong>està georeferenciada</strong> (és a dir, té unes coordenades Lat/Long)</li>
-             <li>l'observació <strong>s'acompanya de fotos o sons</ strong></li>
-          <li>l'observació <strong>no és d'un humà</strong></li>
+             <li>l'observació <strong>s'acompanya de fotos o sons</strong></li>
+            <li>l'observació <strong>no és d'un humà</strong></li>
           </ul>
           <p>Les observacions en transformen en <strong> "grau de recerca"</strong> quan</p>
           <ul>
-            <li>la comunitat de %{site_name} <strong>està d'acord amb la ID donada a nivell específic o inferior</strong>, p.e. més de 2/3 dels identificadors estan d'acuerdo amb el taxon</li>
-          </ul>
-          <p>Les observacions tornaran a ser <strong>"casual"</strong> si no es compleixen les condicions anteriors o la comunitat està d'acord en que:</p>
-          <ul>
-            <li>la <strong>ubicació no és prou adequada</strong> (per exemple: indica micos al mig de l'oceà, hipopòtams en edificis d'oficines, dofins al desert, etc.)</li>
-            <li>l'<strong>organisme no és salvatge/naturalitzat </strong> (per exemple, captiu o conreat per humans o extraterrestres intel·ligents d'altres planetes)</li>
-           <li>l'observació <strong>no mostra evidències de cap organisme</strong>, p.e. imatges de paisatges, figures a l'aigua, pedres, rocks, etc.
+            <li>
+              la comunitat de %{site_name} <strong>està d'acord amb la ID donada
+              a nivell específic o inferior</strong>, p.e. més de 2/3 dels
+              identificadors estan d'acuerdo amb el taxon
             </li>
-            <li>l'observació <strong>no és una evidència recent (~100 anys) d'existència de l'organismes</strong> (p.ex. fòssils, però sí s'accepten pistes, excrements i fulles mortes)
-            </li>
-            <li>l'observació no necessita una ID <em>i</ em> el grau d'identificació ofert per la comunitat ha quedat per sobre del de família</li>
           </ul>
           <p>
-            I per si això no fos ja prou complicat, també hi ha situacions en què el sistema també pot modificar la qualificació:
-          </ P>
+            Les observacions tornaran a ser <strong>"casual"</strong> si no es
+            compleixen les condicions anteriors o la comunitat està d'acord en
+            que:
+          </p>
           <ul>
             <li>
-              El sistema considera que l'observació no és d'un individu salvatge/naturalitzat si hi ha, almenys altres 10 observacions del mateix gènere o inferior en un territori de menor amplitut(municipi o província) que contenen aquesta observació i el 80% o més d'aquestes han estat marcades com a <strong>no</stron> salvatge/naturalitzat.
+              la <strong>ubicació no és prou adequada</strong> (per exemple:
+              indica micos al mig de l'oceà, hipopòtams en edificis d'oficines,
+              dofins al desert, etc.)
+            </li>
+            <li>
+              l'<strong>organisme no és salvatge/naturalitzat</strong> (per
+              exemple, captiu o conreat per humans o extraterrestres
+              intel·ligents d'altres planetes)
+            </li>
+            <li>
+              l'observació <strong>no mostra evidències de cap
+              organisme</strong>, p.e. imatges de paisatges, figures a l'aigua,
+              pedres, rocks, etc.
+            </li>
+            <li>
+              l'observació <strong>no és una evidència recent (~100 anys)
+              d'existència de l'organismes</strong> (p.ex. fòssils, però sí
+              s'accepten pistes, excrements i fulles mortes)
+            </li>
+            <li>
+              l'observació no necessita una ID <em>i</em> el grau
+              d'identificació ofert per la comunitat ha quedat per sobre del de
+              família
+            </li>
+          </ul>
+          <p>
+            I per si això no fos ja prou complicat, també hi ha situacions en
+            què el sistema també pot modificar la qualificació:
+          </p>
+          <ul>
+            <li>
+              El sistema considera que l'observació no és d'un individu
+              salvatge/naturalitzat si hi ha, almenys altres 10 observacions del
+              mateix gènere o inferior en un territori de menor
+              amplitut(municipi o província) que contenen aquesta observació i
+              el 80% o més d'aquestes han estat marcades com a
+              <strong>no</strong> salvatge/naturalitzat.
             </li>
           </ul>
         score_desc: puntuació = recompte acumulat / (recompte acumulat + recomptes
@@ -5552,6 +5683,8 @@ ca:
       umbrella: Paraigua
       tracks_multiple_projects: segueix diversos projectes
       projects_included: Projectes inclosos
+      collection_and_umbrellas_do_not_support: Projectes Col·lecció i Paraigües no
+        permet accedir a coordenades privades.
       curator_coordinate_access_desc_html: Recordeu, <strong>els gestors del projecte
         poden afegir qualsevol de les vostres observacions al seu projecte</strong>
         a menys que ho hagueu desmarcat a la vostra <a href=" users="" edit"="">configuració
@@ -5690,6 +5823,9 @@ ca:
           i visualitzar les observacions emprant les eines de cerca del nucli d'iNaturalist.
           Això elimina la necessitat d'afegir manualment les observacions perquè tot
           allò que compleix els paràmetres del projecte s'inclouen automàticament.
+        an_umbrella_project_can_be_used_to: |-
+          Un projecte paraigües pot ser emprat per comparar estadístiques de dos o més Projectes de Col·lecció o
+          Tradicionals. L'altre projecte ha d'existir abans que el pugueu afegir a un Projecte Paraigües. Podeu incloure centenars de projectes sota un únic paraigua. Els Projectes Paraigües no poden contenir altres projectes Paraigua.
         can_be_included_in_multiple: Pot ser inclòs en diversos projectes paraigua
         click_through_to_individual_projects: Clic a través de projectes individuals
         collection_projects: Col·lecció de Projectes
@@ -5753,10 +5889,32 @@ ca:
           en un Projecte de Col·lecció?
         bioblitz_results_desc_html: |-
           <p>
-          A diferència dels projectes regulars, bioblitzes mostra estadístiques de <em> totes </ em> les observacions d'un lloc i període de temps, i no només observacions que les persones han afegit intencionadament al projecte. Això permet evitar la dificultat d'afegir observacions a un projecte únicament per obtenir les estadístiques en temps real. Recordeu que les observacions no estaran disponibles per a l'exportació o la visualització en algunes vistes de projecte com contribucions dels membres en el lloc web o en cerques d'observacions del projecte a les aplicacions mòbils a menys que l'equip del projecte i els participants incorporin activament les observacions pertinents com ho farien en un projecte normal.
+            A diferència dels projectes regulars, bioblitzes mostra
+            estadístiques de <em>totes</em> les observacions d'un lloc i
+            període de temps, i no només observacions que les persones han
+            afegit intencionadament al projecte. Això permet evitar la
+            dificultat d'afegir observacions a un projecte únicament per obtenir
+            les estadístiques en temps real. Recordeu que les observacions no
+            estaran disponibles per a l'exportació o la visualització en algunes
+            vistes de projecte com contribucions dels membres en el lloc web o
+            en cerques d'observacions del projecte a les aplicacions mòbils a
+            menys que l'equip del projecte i els participants incorporin
+            activament les observacions pertinents com ho farien en un projecte
+            normal.
           </p>
           <p>
-          Recordeu que, si bé aquest tipus de projecte mostra les estadístiques per a les observacions que no s'han afegit deliberadament al projecte, no permet que els gestor puguin veure les coordenades privades o ocultes d'aquestes o assumir que els observadors estan d'acord amb les condicions del projecte. Si sou gestor del projecte i necessiteu accés a les coordenades privades, cal que els participants estiguin d'acord amb les normes del projecte o, si vols que els recomptes de les observacions s'incorporin a la llista de comprovació del projecte gestionat, assegureu-vos que els seus participants s'uneixen al projecte i afegeixen les seves observacions com ho farien en un projecte normal.
+            Recordeu que, si bé aquest tipus de projecte mostra les
+            estadístiques per a les observacions que no s'han afegit
+            deliberadament al projecte, no permet que els gestor puguin veure
+            les coordenades privades o ocultes d'aquestes o assumir que els
+            observadors estan d'acord amb les condicions del projecte. Si sou
+            gestor del projecte i necessiteu accés a les coordenades privades,
+            cal que els participants estiguin d'acord amb les normes del
+            projecte o, si vols que els recomptes de les observacions
+            s'incorporin a la llista de comprovació del projecte gestionat,
+            assegureu-vos que els seus participants s'uneixen al projecte i
+            afegeixen les seves observacions com ho farien en un projecte
+            normal.
           </p>
         click_here_to_convert_this_project: Prem aquí per convertir aquest projecte
           en un Projecte de Col·lecció.
@@ -6385,6 +6543,10 @@ ca:
                 inclinades
         user:
           attributes:
+            login:
+              must_begin_with_a_letter: ha de començar per una lletra, no contenir
+                espai i utilitzar únicament lletres, xifres, guionets i guions baixos
+                (subratllat)
             email:
               must_look_like_an_email_address: ha de semblar una adreça de correu
                 electrònic
@@ -6414,7 +6576,7 @@ ca:
         source_url: URL d'origen
         published_at: Publicació
       listed_taxon:
-        occurrence_status_level: Estatus d'ocurrència
+        occurrence_status_level: Nivell d'estat d'ocurrència
         establishment_means: Forma d'establiment.
       observation:
         geo_x: Est
@@ -6508,7 +6670,7 @@ ca:
         observation_field: :@m
         post: :@m
         taxon: :@m
-  wild: salvatge
+  wild: Salvatge
   will_paginate:
     previous_label: ← Anterior
     next_label: Següent →

@@ -1,20 +1,18 @@
 class TaxonCurator < ActiveRecord::Base
-  belongs_to :taxon
+  belongs_to :taxon # deprecated, remove when we're sure transition to taxon frameworks is complete
+  belongs_to :taxon_framework
   belongs_to :user
 
-  validate :taxon_is_complete
+  validate :taxon_framework_covers
   validate :user_is_a_site_curator
 
   def to_s
-    "<TaxonCurator #{id} user_id: #{user_id} taxon_id: #{taxon_id}>"
+    "<TaxonCurator #{ id } user_id: #{ user_id } taxon__framework_id: #{ taxon_framework_id }>"
   end
 
-  def taxon_is_complete
-    return true if taxon.complete?
-    complete_ancestor = taxon.complete_taxon
-    if !complete_ancestor || Taxon::RANK_LEVELS[complete_ancestor.try(:complete_rank)].to_i > taxon.rank_level.to_i
-      errors.add( :taxon_id, "must be complete or a complete descendant" )
-    end
+  def taxon_framework_covers
+    return true if taxon_framework.covers?
+    errors.add( :taxon_framework_id, "must be a taxon framework with coverage" )
   end
 
   def user_is_a_site_curator

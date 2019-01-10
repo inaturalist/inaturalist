@@ -14,8 +14,8 @@ class EolService
     if @api_endpoint.blank? || @api_endpoint.new_record? 
       @api_endpoint = ApiEndpoint.find_or_create_by!(
         title: "EOL Service",
-        documentation_url: "http://eol.org/api",
-        base_url: "http://eol.org/api/",
+        documentation_url: "https://eol.org/api",
+        base_url: "https://eol.org/api/",
         cache_hours: 720)
     end
     @api_endpoint
@@ -38,6 +38,8 @@ class EolService
   end
 
   def page(id, params = {})
+    eol_params = params.dup
+    eol_params[:language] ||= I18n.locale.to_s.split( "-" ).first
     request('pages', id, params)
   end
 
