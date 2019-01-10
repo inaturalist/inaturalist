@@ -160,6 +160,7 @@ class Observation < ActiveRecord::Base
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
         taxon_geoprivacy: taxon_geoprivacy,
+        context_geoprivacy: context_geoprivacy,
         map_scale: map_scale,
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,

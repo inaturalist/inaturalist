@@ -41,7 +41,7 @@ class MapDetails extends React.Component {
     let geoprivacy = I18n.t( "open_" );
     if ( observation.geoprivacy === "private" ) {
       geoprivacy = I18n.t( "private_" );
-    } else if ( observation.obscured ) {
+    } else if ( observation.geoprivacy === "obscured" ) {
       geoprivacy = I18n.t( "obscured" );
     } else if ( observation.geoprivacy ) {
       geoprivacy = I18n.t( observation.geoprivacy );
@@ -80,20 +80,24 @@ class MapDetails extends React.Component {
             <span className="value">{ geoprivacy }</span>
           </div>
         </div>
-        <div className="places clearfix">
-          <h4>{ I18n.t( "encompassing_places" ) }</h4>
-          <div className="standard">
-            <span className="attr">{ I18n.t( "standard" ) }:</span>
-            { MapDetails.placeList( observationPlaces.filter( op => ( op.admin_level !== null ) ) ) }
+        { observationPlaces.length > 0 && (
+          <div className="places clearfix">
+            <h4>{ I18n.t( "encompassing_places" ) }</h4>
+            <div className="standard">
+              <span className="attr">{ I18n.t( "standard" ) }:</span>
+              { MapDetails.placeList( observationPlaces.filter( op => ( op.admin_level !== null ) ) ) }
+            </div>
+            <div className="community">
+              <span className="attr">{ I18n.t( "community_curated" ) }:</span>
+              { MapDetails.placeList( observationPlaces.filter( op => ( op.admin_level === null ) ) ) }
+            </div>
           </div>
-          <div className="community">
-            <span className="attr">{ I18n.t( "community_curated" ) }:</span>
-            { MapDetails.placeList( observationPlaces.filter( op => ( op.admin_level === null ) ) ) }
-          </div>
-        </div>
+        ) }
         { observation.obscured && (
           <div className="obscured">
-            <h4>Why the Coordinates Are Obscured</h4>
+            <h4>
+              { observation.geojson ? "Why the Coordinates Are Obscured" : "Why the Coordinates Are Hidden" }
+            </h4>
             <ul>
               { observation.geoprivacy === "obscured" && (
                 <li>
@@ -123,8 +127,27 @@ class MapDetails extends React.Component {
                   this taxon is known to extremelely vulnerable to human exploitation so its location has been obscured.
                 </li>
               ) }
+              { observation.context_geoprivacy === "obscured" && (
+                <li>
+                  <strong>Another observation by this user on this day is obscured: </strong>
+                  { " " }
+                  Obscuring an observation obscures all other observations by
+                  that person on that day to prevent people from guessing the
+                  coordinates based on observations made on the same day.
+                </li>
+              ) }
+              { observation.context_geoprivacy === "private" && (
+                <li>
+                  <strong>Another observation by this user on this day is private: </strong>
+                  { " " }
+                  Hiding the coordinates of an observation hides the
+                  coordinates of all other observations by that person on that
+                  day to prevent people from guessing the coordinates based on
+                  observations made on the same day.
+                </li>
+              ) }
             </ul>
-            { observation.geojson && (
+            { observation.private_geojson && (
               <div>
                 <h4>Why You Can See the Coordinates</h4>
                 <ul>
@@ -186,7 +209,8 @@ MapDetails.propTypes = {
 };
 
 MapDetails.defaultProps = {
-  config: {}
+  config: {},
+  observationPlaces: []
 };
 
 export default MapDetails;
