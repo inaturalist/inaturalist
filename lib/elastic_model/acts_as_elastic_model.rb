@@ -76,7 +76,9 @@ module ActsAsElasticModel
           scope = scope.where(id: filter_ids)
         end
         if indexed_before = options.delete(:indexed_before)
-          scope = scope.where("last_indexed_at IS NULL OR last_indexed_at < ?", indexed_before)
+          if column_names.include?( "last_indexed_at" )
+            scope = scope.where("last_indexed_at IS NULL OR last_indexed_at < ?", indexed_before)
+          end
         end
         # indexing can be delayed
         if options.delete(:delay)
