@@ -493,6 +493,7 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :queries
+      get :stop_query
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do
