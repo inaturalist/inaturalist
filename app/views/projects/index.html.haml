@@ -79,7 +79,7 @@
         - unless @featured.blank?
           .row
             .col-xs-12
-              %h2=t :featured_
+              %h2=t :featured
           - @featured.in_groups_of( 4 ) do |group|
             .row
               - group.compact.each do |project|
