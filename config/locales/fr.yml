@@ -651,6 +651,7 @@ fr:
   authorize_permissions_from_provider: Autoriser les permissions de %{provider}
   automatic_descriptions_have_been_disabled: Les descriptions automatiques ont été
     désactivées pour ce taxon.
+  automatic_short: Auto
   automatically_add_to_project: Ajouter automatiquement au projet
   automatically_add_observations_to_this_project: Ajouter automatiquement des observations
     à ce projet
@@ -667,6 +668,7 @@ fr:
   back_to_calendar: Retourner au calendrier de %{user}
   back_to_editing_observation: Retourner à la modification des observations
   back_to_friends: Retour aux amis
+  back_to_flags_html: '&laquo; Retour aux marques'
   back_to_help: Retourner à l’aide
   back_to_import: Retourner à l’importation
   back_to_lists: Retourner aux listes de %{name}
@@ -1257,6 +1259,7 @@ fr:
   default_sound_license: Licence des sons par défaut
   defaults_to_your_name_or_username: Utilise par défaut votre nom ou nom d’utilisateur
   defines_a_taxon_framework_for: Définit un cadre de taxon pour %{taxon_name}
+  definitions: Définitions
   delete: Supprimer
   delete_all: Supprimer tout
   delete_conversation: Supprimer la conversation
@@ -1622,11 +1625,15 @@ fr:
   flagged_for_curation: Marqué pour supervision
   flagged_taxon: Taxon marqué
   flagged_thing_explanation: Les utilisateurs ont signalé ce %{thing} parce que
+  flagging_desc: Le marquage attire l’attention des superviseurs bénévoles du site
+    sur quelque chose. Veuillez ne pas marquer des problèmes que vous pouvez régler
+    avec des identifications, par l’Évaluation de la qualité des données, ou en parlant
+    à la personne qui a rédigé le contenu.
   flagger: Signaleur
   flags: Drapeaux
   flags_with_count: Indicateurs (%{count})
-  flags_explanation: les utilisateurs d’%{site_name} signalent les problèmes. Voici
-    quelques problèmes qui n’ont pas encore été résolus par les responsables de l’organisation.
+  flags_explanation: Les utilisateurs de %{site_name} signalent les choses qui méritent
+    l’attention des superviseurs ou des administrateurs du site.
   flags_for: Drapeaux pour
   flags_on_users_content: Drapeaux sur le contenu de %{user}
   flickr_account_information: Informations sur votre compte Flickr
@@ -1838,6 +1845,7 @@ fr:
   ids_by_taxon: IDs par taxon
   identify: Identifier
   identify_observations: Identifier les observations
+  identify_observations_by_these_users: Identifier les observations par ces utilisateurs
   identify_title: Identifier
   identification: identification
   identification_by_user: Identification par %{user}
@@ -1850,6 +1858,13 @@ fr:
   identifications: Identifications
   identifications_by: Identifications de %{user}
   identified?: identifié
+  computer_vision_suggestion: Suggestion de vision par l’ordinateur
+  computer_vision_suggestion_desc: La vision par l’ordinateur est le processus d’apprendre
+    aux ordinateurs à reconnaître es motifs dans les images. Nous fournissons des
+    outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos
+    de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités
+    de complétude automatique et de comparaison. Ce libellé indique quand une personne
+    a ajouté une identification en utilisant un de ces outils.
   identifiers: Identificateurs
   identotron: Identotron
   identotron_for: Identotron pour
@@ -2866,6 +2881,7 @@ fr:
     « occasionnelles » si les conditions suivantes ne sont pas satisfaites ou si
   observations_with_this_field: Observations avec ce champ
   observations_with_this_field_and_value: Observations avec ce champ et cette valeur
+  observations_without_media: Observations sans média
   observationcounts_refreshed: Comptes des observations rafraîchis
   observed: Observé
   observed_by: Observé par
@@ -3584,6 +3600,7 @@ fr:
     des projets auxquels vous avez ajouté l’observation. Les observations avec des
     coordonnées privées seront toujours utilisées pour vérifier les listes de contrôle
     des lieux.
+  probably_spam: Sans doute du pourriel
   proceed: Procéder
   processing: Traitement
   processing3p: Traitement en cours…
@@ -3731,6 +3748,7 @@ fr:
   real_time_stats: Statistiques en temps réel
   real_time_discussions: Discussions en temps réel
   reason: Motif
+  reason_label: 'Motif :'
   reason_you_are_flagging_this_item: Raison pour laquelle vous avez signalé cet élément.
   recaptcha_verification_failed: échec de la vérification reCAPTCHA
   receive_email_notifications_when_people_leave_you: Recevoir des avis par courriel
@@ -3826,6 +3844,7 @@ fr:
   removed_project_user: Utilisateur de projet supprimé
   removing: Suppression en cours…
   reorder_by_taxonomy: Réorganiser l’ordre par taxinomie
+  repair_broken_urls: Réparer les URL cassées
   repair_doesnt_work_for_that_kind_of_photo: La réparation ne fonctionne pas pour
     ce type de photo
   repair_external_photos: Réparer les photos externes
@@ -3859,6 +3878,7 @@ fr:
   resolve_this_flag: Régler ce drapeau
   resolved: Réglé
   resolved_by: Réglé par
+  resolved_by_user_on_date_html: Résolu par %{user} sur %{date}
   resolver_said_x_html: <span class="meta">%{resolver} a dit,</span> « %{x} »
   restore: Rétablir
   restoring: Rétablissement…
@@ -4068,6 +4088,9 @@ fr:
   some_of_those_photos_couldnt_be_saved: 'Certaines de ces photos n’ont pas pu être
     enregistrées : %{error}'
   some_other_reason: Une autre raison que vous pouvez expliquer ci-dessous.
+  duplicate_observation_flag_warning: Pour les observations dupliquées, veuillez demander
+    à l’observateur de régler le problème au lieu de mettre un marquage, parce que
+    les superviseurs du site ne peuvent pas supprimer les observations.
   some_people: Certaines personnes
   some_people_that: Certaines personnes qui
   some_rights_reserved: certains droits réservés
@@ -4442,6 +4465,7 @@ fr:
   terrain: terrain
   text: Texte
   text_: texte
+  thanks!: Merci !
   thanks_for_signing_up: Merci de votre inscription!
   thanks_for_using: Merci d’utiliser
   thanks_from_all_of_us_here_at: Merci de nous tous ici à
@@ -4854,6 +4878,8 @@ fr:
   user_commented_on: '%{user} a fait un commentaire sur votre %{title} à %{time}'
   user_disagrees_this_is_taxon: '%{user} ne pense pas que ce soit %{taxon}'
   user_faved_a_noun_by_owner: '%{user} a mis en favori %{noun} par %{owner}'
+  user_flagged_as_a_spammer_html: '%{user} marqué comme pollueur'
+  user_flagged_as_a_non_spammer_html: '%{user} marqué comme non pollueur'
   user_follows: '%{user} suit'
   user_has_opted_out_of_community_id: L’utilisateur a refusé l’ID de la communauté
   user_has_opted_out_of_community_ids: '%{user} a choisi de maintenir le contrôle
@@ -4950,6 +4976,7 @@ fr:
   view_observations: Afficher les observations
   view_observation_flags: Afficher les observations
   view_observations_by_everyone: Afficher les observations de tout le monde
+  view_observations_by_these_users: Afficher les observations faites par ces utilisateurs
   view_observations_of_this_taxon_by: Afficher les observations de ce taxon par
   view_observations_raquo: Afficher les observations &raquo;
   view_on: Afficher sur

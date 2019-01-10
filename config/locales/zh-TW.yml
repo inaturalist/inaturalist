@@ -557,6 +557,7 @@ zh-TW:
     iucn_red_list: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄
   authorize_permissions_from_provider: 來自於%{provider}的授權許可
   automatic_descriptions_have_been_disabled: 用於此物種分類的自動描述已被停用。
+  automatic_short: 自動
   automatically_add_to_project: 自動添加至專案
   automatically_add_observations_to_this_project: 自動添加觀察至此專案
   automatically_share_your_observations_on: 自動分享您的觀察於
@@ -570,6 +571,7 @@ zh-TW:
   back_to_calendar: 返回至%{user}行事曆
   back_to_editing_observation: 返回至編輯觀察
   back_to_friends: 返回好友
+  back_to_flags_html: '&laquo; 返回至標記'
   back_to_help: 返回至協助
   back_to_import: 返回至匯入
   back_to_lists: 返回至%{name}清單
@@ -1039,6 +1041,7 @@ zh-TW:
   default_sound_license: 預設聲音許可權
   defaults_to_your_name_or_username: 預設成您的名稱或用戶名稱
   defines_a_taxon_framework_for: 定義用於%{taxon_name}的物種分類群框架
+  definitions: 定義
   delete: 刪除
   delete_all: 刪除全部
   delete_conversation: 刪除對話
@@ -1365,7 +1368,7 @@ zh-TW:
   flagger: 加旗號標記者
   flags: 標記
   flags_with_count: 標記（%{count}）
-  flags_explanation: '%{site_name} 用戶標記了一些他們所發現錯誤的事物。這裏有一些尚未被策展人解決的問題。'
+  flags_explanation: '%{site_name} 使用者標記了自網站策展人以及/或網站管理員所需關注的事物。'
   flags_for: 標記為
   flags_on_users_content: 標記在 %{user} 的內容
   flickr_account_information: 您的 Flickr 帳號訊息
@@ -1547,6 +1550,7 @@ zh-TW:
   ids_by_taxon: 按物種分類的鑑定
   identify: 鑑定
   identify_observations: 鑑定觀察
+  identify_observations_by_these_users: 由這些使用者所鑑定的觀察
   identify_title: 鑑定
   identification: 鑑定
   identification_by_user: 由 %{user} 做的鑑定
@@ -2411,6 +2415,7 @@ zh-TW:
   observations_will_revert_to_casual: 觀察會被列為「粗略」等級，是在不符合以上條件情況或
   observations_with_this_field: 帶有此欄位的觀察
   observations_with_this_field_and_value: 帶有此欄位與內容值的觀察
+  observations_without_media: 包含/不包含媒體的觀察
   observationcounts_refreshed: 觀察次數已重整
   observed: 已觀察
   observed_by: 觀察由
@@ -3180,6 +3185,7 @@ zh-TW:
   real_time_stats: 即時統計
   real_time_discussions: 即時討論
   reason: 原因
+  reason_label: 原因：
   reason_you_are_flagging_this_item: 您標記此項目原因。
   recaptcha_verification_failed: reCAPTCHA 驗證失敗
   receive_email_notifications_when_people_leave_you: 接收電子郵件通知有關於在
@@ -3301,6 +3307,7 @@ zh-TW:
   resolve_this_flag: 解決此標籤
   resolved: 已解決
   resolved_by: 已解決由
+  resolved_by_user_on_date_html: 由%{user}於 %{date} 所解決
   resolver_said_x_html: <span class="meta">%{resolver} 說：</span>「%{x}」
   restore: 還原
   restoring: 正在還原...
@@ -3802,6 +3809,7 @@ zh-TW:
   terrain: 地形
   text: 文字
   text_: 文字
+  thanks!: 感謝！
   thanks_for_signing_up: 感謝註冊！
   thanks_for_using: 感謝使用
   thanks_from_all_of_us_here_at: 感謝所有每一位來自於
@@ -4093,6 +4101,8 @@ zh-TW:
   user_commented_on: '%{user} 已評論您的 %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} 不同意這是%{taxon}'
   user_faved_a_noun_by_owner: '%{user} 將一共 %{noun} 個由 %{owner} 所作內容加為個人最愛'
+  user_flagged_as_a_spammer_html: '%{user}已被標記為濫發垃圾訊息者'
+  user_flagged_as_a_non_spammer_html: '%{user}已被標記為並不是濫發垃圾訊息者'
   user_follows: '%{user}關注'
   user_has_opted_out_of_community_id: 用戶已選擇退出社群鑑定
   user_has_opted_out_of_community_ids: '%{user} 已選擇保留對於關聯於他們觀察之物種分類群方面的控制'
@@ -4178,6 +4188,7 @@ zh-TW:
   view_observations: 檢視觀察
   view_observation_flags: 檢視觀察標記
   view_observations_by_everyone: 檢視每個人的觀察
+  view_observations_by_these_users: 檢視由這些使用者所做的觀察
   view_observations_of_this_taxon_by: 檢視此分類群的觀察，由
   view_observations_raquo: 檢視觀察&raquo;
   view_on: 檢視在
@@ -4510,6 +4521,7 @@ zh-TW:
   your_dashboard_helps_you: 您的控制面板協助您保持追蹤在此網站上運作的人們。要關注一些人們的更新內容，請在檢視他們的觀察或個人檔案頁面時，點選標題列的「關注
     [名稱]」的連結。
   verifiable: 可證實
+  verifiable_observations: 可證實觀察
   views:
     views: 查看數
     announcements:
@@ -4927,6 +4939,8 @@ zh-TW:
           %{site_name} 資料庫裡。您會需要添加此名稱才能讓大量上傳成功運作。使用在搜尋頁面下方的方框來匯入新名稱。若名稱已提供但套用在多項有效物種分類群裡，請嘗試使用更多或更少的特定名稱，來符合單一的物種分類。
       users_updates_suspended:
         message: 您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
+      photos_missing:
+        subject: 一些照片需要回報問題
     photos:
       inviter:
         automatically_add_to_project: 自動添加至專案
@@ -5397,6 +5411,8 @@ zh-TW:
         search_place_help_html: 用於觀察搜尋的預設地點。
         scientific_name_first_desc: 學名顯示優於通用名稱。
         youve_used_all_of_your_blocks: 您已經用完所有的封鎖數量額度，請移除舊有項目來新增其它封鎖。
+      recent:
+        about_recent_users: 關於
       show:
         take_a_chance_to_review_html: 來試試看<a href="%{link}">我們的指南</a>。
         this_user_was_banned: 此用戶已被停用

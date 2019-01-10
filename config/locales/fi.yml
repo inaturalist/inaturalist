@@ -1543,7 +1543,7 @@ fi:
   highlights_and_stats_from_year_on_site: Kohokohdat ja tilastot vuodelta %{year}
     %{site}issa
   history: Historia
-  home: Koti
+  home: Etusivu
   home_faq: UKK
   hybrid: risteymä
   i_agree_to_the_project_terms: Hyväksyn projektin ehdot
@@ -2582,12 +2582,16 @@ fi:
       intersection: intersection
       Island: Saari
       island: saari
+      Land_Feature: Maamerkki
+      land_feature: maamerkki
       Miscellaneous: Sekalainen
       miscellaneous: sekalainen
       Municipality: Kunta
       municipality: kunta
       Nationality: Kunta
       nationality: kunta
+      Nearby_Building: Läheinen rakennus
+      nearby_building: läheinen rakennus
       Open_Space: Avoin paikka
       open_space: avoin paikka
       Parish: Pitäjä
@@ -2960,7 +2964,7 @@ fi:
   project_curator_changes: Projektin kuraattorin muutokset
   project_curators: Projektin kuraattorit
   project_group_label: Ryhmä
-  project_home: Projektin koti
+  project_home: Projektin etusivu
   project_icon: Projektikuvake
   project_id_or_url_slug: Projektin tunniste tai URL-polkutunnus, esim. 333 tai minun-projekti
   project_invitations: Projektikutsut
@@ -3299,8 +3303,10 @@ fi:
   site_staff: '%{site_name} henkilökunta'
   site_stats: Sivuston tilastot
   site_taxon_page: '%{site_name} taksonisivu'
+  site_year_in_review: '%{site_name}in vuosikatsaus %{year}'
   so_meta!: niin meta!
   some_agree: jotkut ovat samaa mieltä
+  some_observations_failed_to_save: Joidenkin havaintojen tallentaminen epäonnistui
   some_of_those_photos_couldnt_be_saved: 'Joitakin näistä valokuvista ei voitu tallentaa:
     %{error}'
   some_other_reason: Jokin muu syy jonka voit selittää alla.
@@ -4053,7 +4059,7 @@ fi:
   your_inat_account_has_been_activated: '%{inat}-tilisi on aktivoitu.'
   your_life_list: elämäluettelosi
   your_membership: Jäsenyytesi
-  your_month_observations: '%{month}n havaintosi'
+  your_month_observations: 'Havaintosi: %{month}'
   your_name_was_saved: Nimesi tallettiin.
   your_new_password_is: Uusi salasanasi on
   your_observations: Havaintosi
@@ -4488,7 +4494,7 @@ fi:
       index:
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa luontohavaintosi.
-        observations_to_date: havaintoa
+        observations_to_date: havaintoa tällä hetkellä
         species_observed: lajia havaittu
         people_signed_up: rekisteröitynyttä käyttäjää
         how_it_works: Näin se toimii
