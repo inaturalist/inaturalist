@@ -25,10 +25,12 @@
 # Author: Mack
 # Author: Macofe
 # Author: MarcoAurelio
+# Author: MetteHHH
 # Author: Ncontinanza
 # Author: Ohlila
 # Author: Pato
 # Author: PoLuX124
+# Author: Pyscowicz
 # Author: RicardoSGZ
 # Author: Tiberius1701
 # Author: Tifdogo12
@@ -3184,7 +3186,7 @@ es:
     azerbaijan: Azerbaiyán
     bahamas: Bahamas
     bahrain: Baréin
-    bangladesh: Bangladesh
+    bangladesh: Bangladés
     barbados: Barbados
     belarus: Belarús
     belgium: Bélgica
@@ -3242,6 +3244,7 @@ es:
     ethiopia: Etiopía
     europe: Europa
     falkland_islands: Islas Malvinas
+    faroe_islands: Islas Feroe
     fiji: Fiyi
     finland: Finlandia
     france: Francia
@@ -3300,7 +3303,7 @@ es:
     macao: Macao
     macedonia: Macedonia
     madagascar: Madagascar
-    malawi: Malawi
+    malawi: Malaui
     malaysia: Malasia
     maldives: Maldivas
     mali: Malí
@@ -3351,7 +3354,7 @@ es:
     poland: Polonia
     portugal: Portugal
     puerto_rico: Puerto Rico
-    qatar: Qatar
+    qatar: Catar
     republic_of_congo: República del Congo
     reunion: Reunión
     romania: Rumanía
@@ -4052,7 +4055,7 @@ es:
   source_list:
     ubio: uBio
     catalogue_of_life: Catálogo de la vida
-    inaturalist: NaturaLista
+    inaturalist: iNaturalist
     new_zeland_organisms_register: Registro de organismos de Nueva Zelanda
     nzbrn_birds: NZBRN Aves
     nzbrn_fungi: NZBRN Hongos
@@ -6346,7 +6349,7 @@ es:
           Creado vía <a href="https://www.naturalista.mx">NaturaList</a>
           o <a href="%{url}">la red iNaturalist</a>
       year:
-        include_usa: Incluye EE.UU.
+        include_usa: Incluir Estados Unidos
         growth_by_country_desc_html: |-
           ¿Dónde está hay crecimiento? Este mapa y gráfico intentan segmentar esta información por país, lo cual resulta complicado porque el crecimiento por
           país puede ser muy desequilidrado. Hemos optado por omitir a los Estados Unidos y utilizar una escala de registro por defecto para acentuar diferencias
@@ -6357,7 +6360,7 @@ es:
           se dieron en Benín, quiere decir que Benín contribuyó 50% del total
           del crecimiento. <strong>"% del crecimiento"<strong> significa el número de observaciones este año en ese país como porcentaje de las observaciones del año pasado en ese país, así que si hubo 10 observaciones en Laos el año pasado pero 20 este año, eso sería un crecimiento del 100%, y si hubo 0 el año
           pasado y 1 este año, eso sería un % de crecimiento infinito.
-        growth_by_country_title: Crecimiento Por País
+        growth_by_country_title: Crecimiento por país
         growth_in_year_obs: Crecimiento en %{year} (obs)
         growth_title: Crecimiento
         new_species_desc: |-

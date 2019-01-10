@@ -9,6 +9,7 @@
 # Author: Jaumeortola
 # Author: Lib2know
 # Author: Macofe
+# Author: Marcelhospers
 # Author: Quel.soler
 ---
 ca:
@@ -81,6 +82,9 @@ ca:
   x_people_agree_html:
     one: <span class='count'>1</span> persona està d'acord
     other: <span class='count'>%{count}</span> persones estan d'acord
+  x_new_species:
+    one: 1 Espècie Nova
+    other: '%{count} Espècies Noves'
   x_species:
     one: 1 espècie
     other: '%{count} espècies'
@@ -113,6 +117,8 @@ ca:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> canvi de tàxon afegit
     other: <span class='count'>%{count}</span> canvis de tàxon afegits
+  x_people_helped_user_with_y_ids_html: <strong>%{x} Persones</strong> han ajudat
+    %{user} amb <strong>%{y} IDs</strong>
   _100_day_trends: Tendències de 100 dies
   _percent_ID_d: '% Identificats'
   a: una
@@ -1130,6 +1136,7 @@ ca:
   data_quality: Qualitat de les dades
   data_quality_assessment: Avaluació de la qualitat de dades
   data_quality_assessment_: Avaluació de la qualitat de les dades
+  data_used: 'Dades usades:'
   datatype: Tipus de dades
   date_: Data
   date?: Data?
@@ -1701,7 +1708,7 @@ ca:
   help_confirm_observations!: Ajuda'ns a confirmar observacions!
   help_faq: Ajuda / Preguntes freqüents
   help_out!: Ajudeu-nos!
-  help_support_inaturalist: Ajudeu a iNaturalist!
+  help_support_inaturalist: Ajudeu a iNaturalist
   helped_the_observer_make: heu ajudat l'observador a fer la identificació final (és
     a dir, es van fer abans de la identificació final i coincideixen)
   here_are_3_examples: Aquí trobareu 3 exemples de dades ben formades
@@ -1715,6 +1722,7 @@ ca:
   hi_user: Hola %{user}
   hide: Oculta
   hide_details: Amaga detalls
+  hide_running_total: Amagar el total acumulat
   hide_uncountable_species: Amaga les espècies incomptables
   high: Alta
   highest_rank: Tàxon superior
@@ -2067,6 +2075,7 @@ ca:
     de vida d'ocells de la família del corb (Corvidae)
   life_list_first: primera llista de vida
   life_list_firsts: primers de la llista
+  linear_scale_label: Lineal
   link: Vincle
   link_or_unlink_your_facebook_account: Vinculeu o desvinculeu el compte de Facebook
   link_or_unlink_your_flickr_account: Vinculeu o desvinculeu el compte de Flickr
@@ -2212,6 +2221,7 @@ ca:
     identificadors pares directament, però et recomanem que en lloc d’això intentis
     combinar els tàxons nous amb els ja existents.
   log_in: Inicieu sessió
+  log_scale_label: Registre
   logged_in_as: Heu iniciat sessió com
   login_slash_username: Entrada/nom d'usuari
   logo:
@@ -2456,6 +2466,7 @@ ca:
   new_observation_field: Nou camp d'observació
   new_observation_rules: Noves normes d'observació
   new_observations: Noves observacions
+  new_observations_this_year: Nova observació aquest any
   new_observations_ellispsis: Noves observacions...
   new_observations_from_place_html: Noves observacions a %{place}
   new_observations_may_take_up_to: Les noves observacions poden trigar al voltant
@@ -2467,6 +2478,9 @@ ca:
   new_project_asset: Nou arxiu del projecte
   new_project_asset_for: Nou arxiu del projecte per a
   new_source: Font nova
+  new_species_added_in_interval: Noves espècies afegides en %{interval}
+  new_species_added_in_interval_x_of_y: Noves espècies afegides en %{interval}(Es
+    mostren %{x} de %{y})
   new_taxon_change: Nou canvi taxonòmic
   new_taxon_link: Nou enllaç de tàxon
   new_taxon_name: Nou nom de tàxon
@@ -2478,8 +2492,13 @@ ca:
     d’%{site_name}
   new_user_rules: Noves normes d'usuari
   new_users: Usuaris nous
+  new_users_this_year: Nous usuaris aquest any
   new_users_w_7_obs: Usuaris nous amb 7 Obs
   new_users_week: Nous usuaris / setmana
+  newly_added: Afegit recentment
+  newly_added_species: Espècies afegides recentment
+  newly_observed_species: Espècies observades recentment
+  newly_observed_species_this_year: Espècies afegides recentment aquest any
   news: Notícies
   next: Següent
   next_observation: Propera observació
@@ -2614,6 +2633,7 @@ ca:
   not_on_this_list: No sou en aquesta llista.
   not_recorded: No enregistrat
   not_seeing_what_looking_for: No trobeu el que buscàveu?
+  not_spam: No és Spam
   not_yet: Encara no
   note: Nota
   notes: Notes
@@ -3121,60 +3141,269 @@ ca:
   places_name:
     afghanistan: Afganistan
     africa: Àfrica
+    akrotiri_and_dhekelia: Akrotiri i Dekélia
+    aland: Aland
+    albania: Albània
+    algeria: Algèria
+    american_samoa: Samoa Nord-americana
+    andorra: Andorra
+    angola: Angola
+    anguilla: Anguilla
+    antarctica: Antàrtida
     antigua_and_barbuda: Antigua i Barbuda
+    argentina: Argentina
+    armenia: Armènia
+    aruba: Aruba
     australia: Austràlia
     austria: Àustria
+    azerbaijan: Azerbaidjan
+    bahamas: Bahames
+    bahrain: Bahrain
+    bangladesh: Bangla Desh
+    barbados: Barbados
+    belarus: Bielorússia
     belgium: Bèlgica
+    belize: Belize
+    benin: Benín
+    bermuda: Bermudes
+    bhutan: Bhutan
+    bolivia: Bolívia
+    bonaire_saint_eustatius_and_saba: Illes Bonaire, Sint Eustatius i Saba
     bosnia_and_herzegovina: Bòsnia i Hercegovina
+    botswana: Botswana
+    bouvet_island: Bouvet
     brazil: Brasil
+    british_indian_ocean_territory: Territori Britànic de l'Oceà Índic
+    british_virgin_islands: Illes Verges Britàniques
+    brunei: Brunei
+    bulgaria: Bulgària
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Cambodja
+    cameroon: Camerun
     canada: Canadà
+    cape_verde: Cap Verd
+    cayman_islands: Illes Caiman
+    central_african_republic: República Centreafricana
     central_america: Amèrica Central
+    chad: Txad
+    chile: Xile
     china: Xina
+    christmas_island: Illa Christmas
+    clipperton_island: Illa Clipperton
+    cocos_islands: Illes Cocos
     colombia: Colòmbia
+    commonwealth_of_the_northern_mariana_islands: Illes Mariannes Septentrionals
+    comoros: Comores
+    cook_islands: Illes Cook
+    costa_rica: Costa Rica
+    cote_d_ivoire: Costa d'Ivori
+    croatia: Croàcia
+    cuba: Cuba
+    curacao: Curaçao
+    cyprus: Xipre
+    czech_republic: República Txeca
+    democratic_republic_of_the_congo: República democràtica del Congo
     denmark: Dinamarca
+    djibouti: Djibouti
+    dominica: Dominica
+    dominican_republic: República dominicana
+    east_timor: Timor Oriental
+    ecuador: Equador
     egypt: Egipte
+    el_salvador: El Salvador
     equatorial_guinea: Guinea Equatorial
+    eritrea: Eritrea
+    estonia: Estònia
+    ethiopia: Etiòpia
     europe: Europa
+    falkland_islands: Illes Falkland (Illes Malvines)
+    faroe_islands: Illes Fèroe
+    fiji: Fiji
+    finland: Finlàndia
     france: França
+    french_guiana: Guaiana Francesa
+    french_polynesia: Polinèsia Francesa
+    french_southern_territories: Terres Australs i Antàrtiques Franceses
+    gabon: Gabon
+    gambia: Gàmbia
+    georgia: Georgia
     germany: Alemanya
+    ghana: Ghana
+    gibraltar: Gibraltar
     greece: Grècia
+    greenland: Groenlàndia
+    grenada: Granada
+    guadeloupe: Guadalupe
+    guam: Guam
+    guatemala: Guatemala
+    guernsey: Guernsey
+    guinea: Guinea
+    guinea_bissau: Guinea Bissau
+    guyana: Guyana
+    haiti: Haití
+    heard_island_and_mcdonald_islands: Illes Heard i McDonald
+    honduras: Hondures
     hong_kong: Hong Kong
     hungary: Hongria
+    iceland: Islàndia
     india: Índia
+    indonesia: Indonèsia
+    iran: Iran
     iraq: Iraq
+    ireland: Irlanda
+    isle_of_man: Illa de Man
+    israel: Israel
     italy: Itàlia
+    jamaica: Jamaica
     japan: Japó
+    jersey: Jersey
+    jordan: Jordània
+    kazakhstan: Kazakhstan
+    kenya: Kenya
+    kiribati: Kiribati
     korea: Corea
+    kosovo: Kosovo
+    kuwait: Kuwait
+    kyrgyzstan: Kirguizistan
+    laos: Laos
+    latvia: Letònia
+    lebanon: Líban
+    lesotho: Lesotho
+    liberia: Libèria
+    libya: Líbia
+    liechtenstein: Liechtenstein
+    lithuania: Lituània
+    luxembourg: Luxemburg
+    macao: Macao
+    macedonia: Macedònia
+    madagascar: Madagascar
+    malawi: Malawi
+    malaysia: Malàisia
+    maldives: Maldives
+    mali: Mali
+    malta: Malta
+    marshall_islands: Illes Marshall
     martinique: Martinica
+    mauritania: Mauritània
+    mauritius: Maurici
+    mayotte: Mayotte
     mexico: Mèxic
+    micronesia: Micronèsia
+    moldova: Moldàvia
+    monaco: Mònaco
+    mongolia: Mongòlia
+    montenegro: Montenegro
+    montserrat: Montserrat
+    morocco: Marroc
+    mozambique: Moçambic
+    myanmar: Birmània
+    namibia: Namíbia
+    nauru: Nauru
+    nepal: Nepal
     netherlands: Països Baixos
+    new_caledonia: Nova Caledònia
     new_guinea: Nova Guinea
     new_zealand: Nova Zelanda
+    nicaragua: Nicaragua
+    niger: Níger
+    nigeria: Nigèria
+    niue: Niue
+    norfolk_island: Illa Norfolk
     north_africa: Àfrica del Nord
     north_america: Amèrica del Nord
+    north_korea: Corea del Nord
+    northern_cyprus: Xipre del nord
+    norway: Noruega
+    oman: Oman
+    pakistan: Pakistan
+    palau: Palau
+    palestina: Palestina
     palestine: Palestina
     panama: Panamà
+    papua_new_guinea: Papua Nova Guinea
+    paraguay: Paraguai
     peru: Perú
+    philippines: Filipines
+    pitcairn_islands: Illes Pitcairn
     poland: Polònia
     portugal: Portugal
+    puerto_rico: Puerto Rico
+    qatar: Qatar
     republic_of_congo: República del Congo
+    reunion: Illa de la Reunió
+    romania: Romania
     russia: Rússia
+    rwanda: Ruanda
+    saint_barthelemy: Saint-Barthélemy
+    saint_helena: Santa Helena
+    saint_kitts_and_nevis: Saint Christopher i Nevis
+    saint_lucia: Saint Lucia
+    saint_martin: Illa de Sant Martí
+    saint_pierre_and_miquelon: Saint-Pierre i Miquelon
+    saint_vincent_and_the_grenadines: Saint Vincent i les Grenadines
+    samoa: Samoa
+    san_marino: San Marino
     sao_tome_and_principe: São Tomé i Principe
     saudi_arabia: Aràbia Saudita
+    senegal: Senegal
+    serbia: Sèrbia
+    seychelles: Seychelles
+    sierra_leone: Sierra Leone
     singapore: Singapur
+    sint_maarten: Sint Maarten
+    slovakia: Eslovàquia
+    slovenia: Eslovènia
+    solomon_islands: Salomó
+    somalia: Somàlia
     south_africa: Sud-àfrica
     south_america: Amèrica del Sud
+    south_georgia_and_the_south_sandwich_islands: Illes Geòrgia del Sud i Sandwich
+      del Sud
+    south_korea: Corea del Sud
+    south_sudan: Sudan del Sud
     spain: Espanya
+    sri_lanka: Sri Lanka
+    sudan: Sudan
+    suriname: Surinam
+    svalbard_and_jan_mayen: Svalbard i Jan Mayen
+    swaziland: Swazilàndia
     sweden: Suècia
     switzerland: Suïssa
     syria: Síria
+    taiwan: Taiwan
+    tajikistan: Tadjikistan
+    tanzania: Tanzània
     thailand: Tailàndia
+    togo: Togo
+    tokelau: Tokelau
+    tonga: Tonga
     trinidad_and_tobago: Trinidad i Tobago
+    tunisia: Tunísia
     turkey: Turquia
+    turkmenistan: Turkmenistan
+    turks_and_caicos_islands: Illes Turks i Caicos
+    tuvalu: Tuvalu
+    uganda: Uganda
+    ukraine: Ucraïna
+    united_arab_emirates: Emirats Àrabs Units
     united_kingdom: Regne Unit
     united_states: Estats Units
+    united_states_minor_outlying_islands: Illes Perifèriques Menors dels EUA
+    united_states_virgin_islands: Illes Verges Nord-americanes
+    uruguay: Uruguai
+    uzbekistan: Uzbekistan
+    vanuatu: Vanuatu
+    vatican_city: Ciutat de Vaticà
+    venezuela: Veneçuela
+    vietnam: Vietnam
     virgin_islands: Illes Verges
+    wallis_and_futuna: Wallis i Futuna
     west_africa: Àfrica occidental
+    western_sahara: Sàhara occidental
+    yemen: Iemen
+    zambia: Zàmbia
+    zimbabwe: Zimbabwe
   places_of_interest: Llocs d'interès
   places_merged_successfully: Els llocs s'han combinat satisfactòriament!
   plants: Plantes
@@ -3250,6 +3479,11 @@ ca:
   processing: Processant
   processing3p: Processant...
   profile: Perfil
+  profile_visibility_pending_account_verification: Visibilitat del perfil pendent
+    de la verificació del compte
+  profile_visibility_desc: En un esforç per evitar l'spam a %{site_name}, els perfils
+    dels usuaris només són visibles públicament una vegada que aquest hagi contribuït
+    amb diverses observacions amb Grau de Recerca.
   project: Projecte
   project_added_your_observations: El projecte ha afegit les vostres observacions
   project_admins:
@@ -3397,6 +3631,7 @@ ca:
   recent_comments_on_your_stuff: Comentaris recents sobre els vostres continguts
   recent_evidence?: Proves recents?
   recent_evidence_of_organism: Evidència recent d'un organisme
+  recent_new_users: Nous Usuaris recents
   recent_observations: Observacions recents
   recent_observations_: Observacions recents
   recent_post: Notes recents
@@ -3543,6 +3778,7 @@ ca:
     must_be_in: ha d'estar en el tàxon
     must_be_coordinates_shareable_by_project_curators: l'observador ha de permetre
       als supervisors del projecte veure les coordenades.
+  running_total: Acumulat total
   said: deia
   sat: Ds
   satellite: satèl·lit
@@ -3570,6 +3806,7 @@ ca:
     one: Desant observació...
     other: Desant %{num} de %{count} observacions...
   saving_verb: Desant
+  scale_colon: 'Escala:'
   schemes: Esquemes
   schemes_including: Esquemes que inclouen
   scientific_names: Noms científics
@@ -3672,6 +3909,7 @@ ca:
   show_only: Mostra només
   show_relative_proportions_of_all_observations: Mostra les proporcions relatives
     de totes les observacions
+  show_running_total: Mostrar l'acumulat total
   show_scientific_name_first: Mostra noms científics primer
   show_taxa_from_both: (mostra un altre cop tàxons d'ambdues llistes)
   show_taxa_from_everywhere: Mostra tàxons de tot arreu
@@ -3823,6 +4061,7 @@ ca:
   sources_and_credits: Fonts i Crèdits
   sourcing: Posant la font
   spam: Contingut brossa
+  spammer: Spammer
   spanish: Castellà
   species: Espècies
   species_by_category: espècies per categoria
@@ -3872,6 +4111,8 @@ ca:
   stop_following_user: Deixa de seguir a %{user}
   stop_testing: Atureu la prova
   stop_updating_position: Deixa d'actualitzar posició
+  studies_that_used_inaturalist_data_in_year: Estudi que han utilitzat dades d'iNaturalist
+    l'any %{year}
   stuff_just_added: El que acabeu d'afegir ...
   subject_resolved_noun_html: '%{subject} resol %{noun}'
   subject_affecting_stuff_html: '%{subject} afecta %{stuff}'
@@ -4492,6 +4733,8 @@ ca:
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} ha optat per mantenir
     el control sobre els tàxons associats amb aquesta observació'
   user_hasnt: '%{user} no ha'
+  user_helped_x_people_with_y_ids_html: '%{user} ha ajudat <strong>%{x} persones</strong>
+    amb <strong>%{y} IDs</strong>'
   user_invite_observation_to_project: '%{user} vol compartir la vostra observació
     "%{observation}" al projecte %{project}.'
   user_invited_you_to_join_html: '%{user} us ha convidat a unir-vos'
@@ -5039,7 +5282,7 @@ ca:
             <a href="%{url}">Guia del Professor</a> per consells sobre com utilitzar
             %{site_name} amb els alumnes.
     donate:
-      donate_short_desc: Ajudeu iNaturalist amb una donació!
+      donate_short_desc: Doneu ara per mostrar el vostre suport!
       donate_desc_html: |-
         <p class="lead">
           <strong>iNaturalist és una de les majors comunitats del món dedicades a explorar la Biodiversitat. Gràcies per formar part d'ella!</strong>
@@ -5053,8 +5296,7 @@ ca:
         <p class="text-muted">
           iNaturalist és una iniciativa conjunta entre la California Academy of Sciences y la National Geographic Society. Totes les donations es reben a la California Academy of Sciences, organització 501(c)(3) establerta ala Estats Units de Nord-Amèrica, beneficiària d'una exempció de taxes.
         </p>
-      post_donate_social_media_text: Jo ajudo iNaturalist! Hauries de comprovar-ho
-        també.
+      post_donate_social_media_text: Jo ajudo iNaturalist perquè...
     guides:
       index:
         funding_html: El finançament per al desenvolupament de les Guies ha estat
@@ -5839,6 +6081,7 @@ ca:
         multiple_project_administrators: Administradors múltiples del projecte
         name_placeholder: Ocells de Chicago, Libèl·lules increïbles, etc.
         or_drag_and_drop: (o arrossegar i enganxar)
+        project_background_color: Color de fons del resum del Projecte
         project_banner: Banner del projecte (PNG, JPG, o GIF)
         project_banner_help: Imatge del banner opcional. Les dimensions ideals són
           760px per 320px.
@@ -5973,7 +6216,7 @@ ca:
         obs_1_day: Obs (1 dia)
         obs_1_day_desc: Les observacions creades en un únic dia
         obs_cid_d_desc: Creat en 7 dies anteriors i té una ID de comunitat
-        obs_cid_d_to_genus: CID de l'observació d'un gèners
+        obs_cid_d_to_genus: CID de l'observació d'un gènere
         obs_cid_d_to_genus_desc: Creat els darrers 7 dies i amb una ID de la comunitat
           a un nivell de gènere o inferior
         obs_desc: Creat en els 7 dies anteriors
@@ -5991,6 +6234,21 @@ ca:
           el tàxon de la comunitat.
         TTID: TTID
         TTID_desc: Temps fins a rebre una identificació per part d'algú més
+      year:
+        include_usa: Incloure EUA
+        growth_by_country_title: Creixement per país
+        growth_in_year_obs: Creixement l'any %{year} (obs.)
+        growth_title: Creixement
+        new_species_desc: Espècies que han estat observades per primer cop a %{site_name}
+          aquest any. Mostrant %{x} de <a href="%{url}">%{y} espècies</a>.
+        new_species_desc_html: |-
+          Espècies que han estat afegides per primer cop enguany.
+          Cliqueu en un mes per veure algunes de les noves espècies afegides en aquell mes.
+          També podeu veure el nombre total d'espècies, o moure la barra del temps enrera a temps per veure altres espècie observades de nou. Aquesta fitxa nostra les espècies amb observacions verificables pel mes en el qual van ser pujades a %{site_name} (no el mes quan van ser observats). No inclou les observacions amb nivell de taxó superior o inferior, així que una observació identificada com "Mamífer" no compta, i una observació de Canis lupus ssp.
+          arctos només comptarà com a <i>Canis lupus</i>.
+        obs_in_year: Obs. l'any %{year}
+        percent_growth_in_year: '% creixement l''any %{year}'
+        percent_of_total_growth: '% de creixement total'
     taxa:
       edit:
         complete_desc_html: Un tàxon "complet" inclou <em>tots</em> els tàxons descendents
@@ -6335,7 +6593,7 @@ ca:
     messages:
       accepted: s'ha d'acceptar
       blank: no pot estar en blanc
-      confirmation: no coincideix amb la confirmació
+      confirmation: no coincideix amb la contrasenya
       empty: no pot estar buit
       equal_to: ha de ser igual a %{count}
       even: ha de ser parell
@@ -6436,7 +6694,7 @@ ca:
       messages:
         accepted: ha de ser acceptat
         blank: no pot estar en blanc
-        confirmation: no coincideix amb la confirmació
+        confirmation: no coincideix amb la contrasenya
         empty: no pot estar buit
         equal_to: ha de ser igual a %{count}
         even: ha de ser parell
@@ -6541,6 +6799,9 @@ ca:
             lexicon:
               should_not_contain_commas_or_slashes: no pot contenir comes o barres
                 inclinades
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: no es
+                pot trobar cap coincidència d'aquest nom científic amb aquest lèxic
         user:
           attributes:
             login:

@@ -2233,7 +2233,7 @@ it:
     gli ID di rango superiore, ma per favore assicurati che non sia meglio invece
     unire i nuovi taxa in quelli già esistenti.
   log_in: Accedi
-  log_scale_label: Registro
+  log_scale_label: Logaritmica
   logged_in_as: Accesso effettuato come
   login_slash_username: Login / nome utente
   logo:
@@ -3228,7 +3228,7 @@ it:
     east_timor: Timor Est
     ecuador: Ecuador
     egypt: Egitto
-    el_salvador: El Salvatore
+    el_salvador: El Salvador
     equatorial_guinea: Guinea Equatoriale
     eritrea: Eritrea
     estonia: Estonia
@@ -3286,7 +3286,7 @@ it:
     laos: Laos
     latvia: Lettonia
     lebanon: Libano
-    lesotho: Lesoto
+    lesotho: Lesotho
     liberia: Liberia
     libya: Libia
     liechtenstein: Liechtenstein
@@ -3332,13 +3332,13 @@ it:
     north_korea: Corea del Nord
     northern_cyprus: Cipro del Nord
     norway: Norvegia
-    oman: Omán
+    oman: Oman
     pakistan: Pakistan
     palau: Palau
     palestina: Palestina
     palestine: Palestina
     panama: Panama
-    papua_new_guinea: Papúa Nuova Guinea
+    papua_new_guinea: Papua Nuova Guinea
     paraguay: Paraguay
     peru: Perù
     philippines: Filippine
@@ -3354,7 +3354,7 @@ it:
     rwanda: Ruanda
     saint_barthelemy: Saint-Barthélemy
     saint_helena: Sant'Elena
-    saint_kitts_and_nevis: Saint Christopher e Nevis
+    saint_kitts_and_nevis: Saint Kitts e Nevis
     saint_lucia: Saint Lucia
     saint_martin: Saint-Martin
     saint_pierre_and_miquelon: Saint-Pierre e Miquelon
@@ -3378,7 +3378,7 @@ it:
     south_georgia_and_the_south_sandwich_islands: Georgia del Sud e Isole Sandwich
       Australi
     south_korea: Corea del Sud
-    south_sudan: Sudan del sud
+    south_sudan: Sudan del Sud
     spain: Spagna
     sri_lanka: Sri Lanka
     sudan: Sudan
@@ -3398,8 +3398,8 @@ it:
     trinidad_and_tobago: Trinidad e Tobago
     tunisia: Tunisia
     turkey: Turchia
-    turkmenistan: Turkmenistán
-    turks_and_caicos_islands: Isole Turche e Caicos
+    turkmenistan: Turkmenistan
+    turks_and_caicos_islands: Turks e Caicos
     tuvalu: Tuvalu
     uganda: Uganda
     ukraine: Ucraina
@@ -3409,7 +3409,7 @@ it:
     united_states_minor_outlying_islands: Isole minori esterne degli Stati Uniti d'America
     united_states_virgin_islands: Isole Vergini americane
     uruguay: Uruguay
-    uzbekistan: Uzbekistán
+    uzbekistan: Uzbekistan
     vanuatu: Vanuatu
     vatican_city: Città del Vaticano
     venezuela: Venezuela
@@ -3417,7 +3417,7 @@ it:
     virgin_islands: Isole Vergini
     wallis_and_futuna: Wallis e Futuna
     west_africa: Africa Occidentale
-    western_sahara: Sáhara occidentale
+    western_sahara: Sahara Occidentale
     yemen: Yemen
     zambia: Zambia
     zimbabwe: Zimbabwe
@@ -6320,6 +6320,24 @@ it:
           o <a href="%{url}">iNaturalist Network<a/>
       year:
         include_usa: Includi Stati Uniti
+        growth_by_country_desc_html: Dove è la crescita? Qusta mappa e il grafico
+          cercano di declinare la crescita per Nazione, cosa un po' complicata perché
+          la crescita per Nazione può essere molto sbilanciata. Qui abbiamo deciso
+          di omettere gli Stati Uniti e usare la scala logaritmica in maniera predefinita
+          per accentuare le differenza tra gli altri Stati. Se una Nazione è colorata
+          di nero significa che non contribuisce in maniera significativa, o non è
+          cresciuta quest'anno, o non ha avuto più osservazioni quest'anno rispetto
+          a quello precedente (muoviti sulla nazione per vedere più dettagli).  <strong>"%
+          di crescita totale"</strong> significa quanto della crescita mondiale è
+          dovuta a quella Nazione particolare, per esempio, se ci fossero state 20
+          osservazioni nel 2018 e 10 nel 2017, la crescita sarebbe stata di 10 osservazioni,
+          e se 5 di quelle osservazioni fossero state in Benin, il Benin avrebbe contribuito
+          col 50% della crescita totale. <strong>"% di crescita"</strong> indica il
+          numero di osservazioni quest'anno in quella Nazione come percentuale delle
+          osservazioni dell'anno precedente nella stessa Nazione, così se ci fossero
+          state 10 osservazioni in Laos l'anno precedente ma 20 quest'anno, la crescita
+          sarebbe del 100%, e se ci fossero state 0 osservazioni l'anno precedente
+          e 1 quest'anno, risulterebbe una crescita infinita.
         growth_by_country_title: Crescita per paese
         growth_in_year_obs: Crescita in %{year} (obs)
         growth_title: Crescita
@@ -6328,7 +6346,7 @@ it:
         new_species_desc_html: |-
           Specie che sono state aggiunte per la prima volta quest'anno. Clicca su un mese per vedere alcune delle specie aggiunte in quel mese. Puoi vedere anche il totale accumulato, oppure muovere il disco indietro nel tempo per vedere altre specie osservate recentemente. Questo grafico mostra le specie dalle osservazioni verificabili per il mese in cui queste sono state caricate su %{site_name} (non per il mese in cui sono state osservate). Non include taxa di livello superiore od inferiore, perciò una osservazione identificata come Mammifero non è conteggiata, e una osservazione di <i>Canis lupus</i> ssp.
           <i>arctos</i> sarà conteggiata come <i>Canis lupus</i>.
-        obs_in_year: Obs In %{year}
+        obs_in_year: Osservazioni nel %{year}
         percent_growth_in_year: '% Crescita in %{year}'
         percent_of_total_growth: '% di crescita totale'
         publications_desc_html: |-
