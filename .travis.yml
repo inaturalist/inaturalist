@@ -32,6 +32,7 @@ before_install:
   - echo "deb http://apt.postgresql.org/pub/repos/apt/ trusty-pgdg 11" | sudo tee -a /etc/apt/sources.list.d/postgres-11.list
   - sudo apt-get update
   - sudo apt-get remove --purge -y postgresql-common postgresql-client-common postgresql-9.2 postgresql-client-9.2 postgresql-9.3 postgresql-client-9.3 postgresql-9.4 postgresql-client-9.4 postgresql-9.5 postgresql-client-9.5 postgresql-9.6 postgresql-client-9.6
+  - sudo apt-cache search postgis
   - sudo apt-get install -y postgresql-11 postgresql-client-11 postgresql-11-postgis-2.5 libpq-dev
   - sudo apt-get install -y gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev
   - export DISPLAY=:99.0
