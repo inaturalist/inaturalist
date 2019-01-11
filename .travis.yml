@@ -42,10 +42,10 @@ before_install:
   - sh -e /etc/init.d/xvfb start
   - sudo cat /etc/postgresql/11/main/postgresql.conf
   - sudo cat /etc/postgresql/11/main/pg_hba.conf
-  - psql -U postgres -c "create extension postgis"
-  - psql -U postgres -c 'create extension "uuid-ossp"'
+  - psql -U postgres -c "create extension postgis" -h 127.0.0.1
+  - psql -U postgres -c 'create extension "uuid-ossp"' -h 127.0.0.1
   - createdb -O postgres template_postgis
-  - psql -U postgres template_postgis -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
+  - psql -U postgres template_postgis -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'" -h 127.0.0.1
   - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-5.6.4.deb && sudo dpkg -i --force-confnew elasticsearch-5.6.4.deb
   - export JAVA_HOME='/usr'
   - sudo cat /usr/share/elasticsearch/bin/elasticsearch-plugin
