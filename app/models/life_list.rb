@@ -57,7 +57,7 @@ class LifeList < List
         taxa_ids = taxa.map do |taxon|
           if taxon.is_a?(Taxon)
             taxon.id
-          elsif taxon.is_a?(Fixnum)
+          elsif taxon.is_a?(Integer)
             taxon
           else
             nil

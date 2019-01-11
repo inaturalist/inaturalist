@@ -8,10 +8,10 @@ cache:
   bundler: true
 
 rvm:
-  - 2.3.1
+  - 2.6.0
 
 node_js:
-  - "8.9.1"
+  - "10.13.0"
 
 jdk:
   - openjdk8
@@ -25,12 +25,12 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-  postgresql: "9.6"
+  postgresql: 11.1
 
 before_install:
   - sudo apt-get -qq update
   - sudo apt-cache search postgis
-  - sudo apt-get install -y postgresql-9.6-postgis-2.4 gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev
+  - sudo apt-get install -y postgresql-11-postgis-2.5 gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
   - psql -U postgres -c "create extension postgis"

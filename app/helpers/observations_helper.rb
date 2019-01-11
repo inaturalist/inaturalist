@@ -58,7 +58,7 @@ module ObservationsHelper
     osm_coords_link = link_to("OSM", osm_coords_url, :target => "_blank")
     
     if coordinate_truncation = options[:truncate_coordinates]
-      coordinate_truncation = 6 unless coordinate_truncation.is_a?(Fixnum)
+      coordinate_truncation = 6 unless coordinate_truncation.is_a?(Integer)
       display_lat = display_lat.to_s[0..coordinate_truncation] + "..." unless display_lat.blank?
       display_lon = display_lon.to_s[0..coordinate_truncation] + "..." unless display_lon.blank?
     end

@@ -65,7 +65,7 @@ module ActiveRecord
     def self.split_date(date, options={})
       return unless date
       # we expect date to be a date, time or string object
-      date_copy = date.is_a?(Fixnum) ? date.to_s : date.dup
+      date_copy = date.is_a?(Integer) ? date.to_s : date.dup
       if date_copy.is_a?(String) && date_copy == "today"
         date_copy = Time.now
       end

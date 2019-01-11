@@ -49,7 +49,7 @@ describe FalseClass do
   end
 end
 
-describe Fixnum do
+describe Integer do
   it "knows which numbers are yesish" do
     expect( 0.yesish? ).to be false
     expect( 1.yesish? ).to be true
