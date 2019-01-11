@@ -18,6 +18,10 @@ jdk:
 
 env:
   - CXX=g++-4.8
+  global:
+    - PGUSER=travis
+    - PGHOST=""
+    - PGPORT=5433
 
 addons:
   apt:
@@ -37,6 +41,8 @@ before_install:
   - sudo apt-get install -y gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
+  - sudo cat /etc/postgresql/11/main/postgresql.conf
+  - sudo cat /etc/postgresql/11/main/pg_hba.conf
   - psql -U postgres -c "create extension postgis"
   - psql -U postgres -c 'create extension "uuid-ossp"'
   - createdb -O postgres template_postgis
