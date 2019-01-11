@@ -25,7 +25,7 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-  postgresql: 11.1
+  postgresql: 11
 
 before_install:
   - sudo apt-get -qq update
