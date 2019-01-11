@@ -4,44 +4,22 @@ dist: xenial
 
 language: ruby
 
-cache:
-  bundler: true
+cache: bundler
 
-rvm:
-  - 2.6.0
+rvm: 2.6.0
 
-node_js:
-  - "10.13.0"
+node_js: 10.13.0
 
-jdk:
-  - openjdk8
-
-env:
-  global:
-    - PGUSER=travis
-    - PGHOST=""
-    - PGPORT=5433
+jdk: openjdk8
 
 addons:
-  apt:
-    sources:
-      - ubuntu-toolchain-r-test
-    packages:
-      - g++-4.8
+  postgresql: 10
 
 before_install:
   - sudo apt-get -qq update
-  - curl 'https://www.postgresql.org/media/keys/ACCC4CF8.asc' | sudo apt-key add
-  - echo "deb http://apt.postgresql.org/pub/repos/apt/ xenial-pgdg main 11" | sudo tee -a /etc/apt/sources.list.d/postgres-11.list
-  - sudo apt-get update
-  - sudo apt-get remove --purge -y postgresql-common postgresql-client-common postgresql-9.2 postgresql-client-9.2 postgresql-9.3 postgresql-client-9.3 postgresql-9.4 postgresql-client-9.4 postgresql-9.5 postgresql-client-9.5 postgresql-9.6 postgresql-client-9.6
-  - sudo apt-cache search postgis
-  - sudo apt-get install -y postgresql-11 postgresql-client-11 postgresql-11-postgis-2.5 libpq-dev
-  - sudo apt-get install -y gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev
+  - sudo apt-get install -y postgresql-10-postgis-2.4 gdal-bin proj-bin libgeos-dev libgeos++-dev libproj-dev
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-  - sudo cat /etc/postgresql/11/main/postgresql.conf
-  - sudo cat /etc/postgresql/11/main/pg_hba.conf
   - psql -U postgres -c "create extension postgis"
   - psql -U postgres -c 'create extension "uuid-ossp"'
   - createdb -O postgres template_postgis
