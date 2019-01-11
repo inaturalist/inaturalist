@@ -17,7 +17,6 @@ jdk:
   - openjdk8
 
 env:
-  - CXX=g++-4.8
   global:
     - PGUSER=travis
     - PGHOST=""
