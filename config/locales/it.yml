@@ -630,6 +630,7 @@ it:
   authorize_permissions_from_provider: Autorizza i permessi da %{provider}
   automatic_descriptions_have_been_disabled: Le descrizioni automatiche sono state
     disabilitate per questo taxon
+  automatic_short: Auto
   automatically_add_to_project: Aggiungi automaticamente al progetto
   automatically_add_observations_to_this_project: Aggiungi automaticamente le osservazioni
     a questo progetto
@@ -646,6 +647,7 @@ it:
   back_to_calendar: Torna al calendario di %{user}
   back_to_editing_observation: Torna alla modifica dell'osservazione
   back_to_friends: Torna agli amici
+  back_to_flags_html: '&laquo; Torna ai contrassegni'
   back_to_help: Torna all'Aiuto
   back_to_import: Torna all'Importazione
   back_to_lists: Torna alle liste di %{name}
@@ -1205,6 +1207,7 @@ it:
   defaults_to_your_name_or_username: Utilizza in maniera predefinita il tuo nome o
     il tuo nome utente
   defines_a_taxon_framework_for: Definisce un quadro del taxon per %{taxon_name}
+  definitions: Definizioni
   delete: Cancella
   delete_all: Cancella tutto
   delete_conversation: Elimina conversazione
@@ -1563,12 +1566,15 @@ it:
   flagged_for_curation: Contrassegnato per il controllo
   flagged_taxon: Taxon segnato
   flagged_thing_explanation: Gli utenti hanno contrassegnato questa %{thing} perché
+  flagging_desc: Contrassegnare porta qualcosa all'attenzione dei curatori volontari
+    del sito. Per favore non contrassegnare problemi che si possono risolvere con
+    le identificazioni, La Valutazione della Qualità dei Dati, o parlando con la persona
+    responsabile del contenuto.
   flagger: Segnalatore
   flags: Contrassegni
   flags_with_count: Contrassegni (%{count})
-  flags_explanation: Gli utenti di %{site_name} contrassegnano gli elementi quando
-    trovano qualcosa che non va. Qui ci sono alcuni problemi che non sono ancora stati
-    risolti dai curatori.
+  flags_explanation: Gli utenti di %{site_name} contrassegnano gli elementi che richiedono
+    attenzione dai curatori del sito e/o dagli amministratori del sito.
   flags_for: Contrassegni per
   flags_on_users_content: Contrassegni sui contenuti di %{user}
   flickr_account_information: Informazioni del tuo account Flickr
@@ -1777,6 +1783,7 @@ it:
   ids_by_taxon: ID per Taxon
   identify: Identifica
   identify_observations: Identifica osservazioni
+  identify_observations_by_these_users: Identificare Osservazioni di Questi Utenti
   identify_title: Identifica
   identification: identificazione
   identification_by_user: Identificazione di %{user}
@@ -1789,6 +1796,13 @@ it:
   identifications: Identificazioni
   identifications_by: Identificazioni di %{user}
   identified?: identificati
+  computer_vision_suggestion: Suggerimento della Visione Artificiale
+  computer_vision_suggestion_desc: La visione artificiale è il processo di addestramento
+    dei computer a riconoscere gli schemi nelle immagini. Noi forniamo gli strumenti
+    che usano i modelli di visione artificiale allenati sulle foto della comunità
+    per fornire suggerimenti di identificazione, come l'auto-completamento e i confronti.
+    Questa etichetta indica quando una persona ha aggiunto una identificazione per
+    mezzo di uno di questi strumenti.
   identifiers: Identificatori
   identotron: Identotron
   identotron_for: Identotron per
@@ -2200,6 +2214,7 @@ it:
     gl: Galiziano
     id: Indonesiano
     it: Italiano
+    iw: Ebraico
     ja: Giapponese
     ko: Coreano
     lb: Lussemburghese
@@ -2210,6 +2225,7 @@ it:
     pt-PT: Portoghese (Portogallo)
     ru: Russo
     sq: Albanese
+    sv: Svedese
     zh-CN: Cinese (tradizionale)
     zh-TW: Cinese (tradizionale)
   locality_notes: Note locali
@@ -2781,6 +2797,7 @@ it:
     se le condizioni precedenti non sono rispettate o
   observations_with_this_field: Osservazioni con questo campo
   observations_with_this_field_and_value: Osservazioni con questo stesso campo e valore
+  observations_without_media: Osservazioni senza Contenuti Multimediali
   observationcounts_refreshed: Conteggio delle osservazioni aggiornato
   observed: Osservata
   observed_by: Osservata da
@@ -3492,6 +3509,7 @@ it:
     reali sono visibili solo a te e ai curatori dei progetti a cui ha aggiunto l'osservazione.
     Le osservazioni con coordinate private saranno comunque usate per verificare le
     checklist di un luogo.
+  probably_spam: Probabilmente spam
   proceed: Procedi
   processing: Elaborazione in corso
   processing3p: Elaborazione...
@@ -3639,6 +3657,7 @@ it:
   real_time_stats: Statistiche in tempo reale
   real_time_discussions: Discussioni in tempo reale
   reason: Motivo
+  reason_label: 'Motivo:'
   reason_you_are_flagging_this_item: Motivo per cui stai segnalando questo elemento.
   recaptcha_verification_failed: verifica reCAPTCHA fallita
   receive_email_notifications_when_people_leave_you: Ricevi notifiche email su
@@ -3735,6 +3754,7 @@ it:
   removed_project_user: Utente del progetto rimosso
   removing: Rimozione in corso...
   reorder_by_taxonomy: Riordina per tassonomia
+  repair_broken_urls: Ripara URL danneggiati
   repair_doesnt_work_for_that_kind_of_photo: La riparazione non funziona per questo
     tipo di foto
   repair_external_photos: Riparare le foto esterne
@@ -3770,6 +3790,7 @@ it:
   resolve_this_flag: Risolvi questo contrassegno
   resolved: Risolte
   resolved_by: Risolto da
+  resolved_by_user_on_date_html: Risolto da %{user} il %{date}
   resolver_said_x_html: <span class="meta">%{resolver} ha detto,</span> "%{x}"
   restore: Ripristina
   restoring: Ripristino in corso...
@@ -3972,6 +3993,9 @@ it:
   some_observations_failed_to_save: Alcune osservazioni non sono state salvate
   some_of_those_photos_couldnt_be_saved: 'Alcune foto non sono state salvate: %{error}'
   some_other_reason: Qualche altro motivo che puoi spiegare qui sotto.
+  duplicate_observation_flag_warning: Per le osservazioni duplicate, per favore chiedi
+    all'osservatore di risolvere il problema al posto di aggiungere un contrassegno,
+    perché i curatori del sito non possono rimuovere le osservazioni.
   some_people: Alcune persone
   some_people_that: Alcune persone che
   some_rights_reserved: Alcuni diritti riservati
@@ -4340,6 +4364,7 @@ it:
   terrain: terreno
   text: Testo
   text_: testo
+  thanks!: Grazie!
   thanks_for_signing_up: Grazie per la registrazione!
   thanks_for_using: Grazie per l'utilizzo
   thanks_from_all_of_us_here_at: Grazie da tutti noi a
@@ -4738,6 +4763,8 @@ it:
   user_commented_on: '%{user} ha commentato la tua %{title} alle ore %{time}'
   user_disagrees_this_is_taxon: '%{user} non concorda che sia %{taxon}'
   user_faved_a_noun_by_owner: '%{user} ha messo nei preferiti %{noun} di %{owner}'
+  user_flagged_as_a_spammer_html: '%{user} l''ha contrassegnato come uno spammer'
+  user_flagged_as_a_non_spammer_html: '%{user} l''ha segnato come un non-spammer'
   user_follows: '%{user} segue'
   user_has_opted_out_of_community_id: L'utente ha deselezionato l'ID della comunità
   user_has_opted_out_of_community_ids: '%{user} ha scelto di mantenere il controllo
@@ -4837,6 +4864,7 @@ it:
   view_observations: Visualizza osservazioni
   view_observation_flags: Visualizza i contrassegni delle osservazioni
   view_observations_by_everyone: Visualizza le osservazioni di tutti
+  view_observations_by_these_users: Visualizza osservazioni di questi utenti
   view_observations_of_this_taxon_by: Visualizza osservazioni di questo taxon per
   view_observations_raquo: Visualizza le osservazioni &raquo;
   view_on: Visualizza su
@@ -5270,6 +5298,7 @@ it:
     persona, clicca il link 'Segui [nome]' nell'intestazione quando visualizzi le
     sue osservazioni o il suo profilo.
   verifiable: Verificabile
+  verifiable_observations: Osservazioni verificabili
   views:
     views: Visualizzazioni
     announcements:
@@ -5314,6 +5343,11 @@ it:
           iNaturalist è un'iniziativa congiunta della California Academy of Sciences e della National Geographic Society. Tutte le donazioni saranno ricevute dalla California Academy of Sciences, una organizzazione no-profit esente tasse 501(c)(3) con base negli United States of America.
         </p>
       post_donate_social_media_text: Io sostengo iNaturalist perchè...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: Per favore risolvi i contrassegni
+          <code>spam</code> e <code> violazione del copyright</code> solo se il contenuto
+          non è spam o violazione del copyright, rispettivamente.
     guides:
       index:
         funding_html: I finanziamenti per lo sviluppo delle Guide sono forniti da
@@ -5927,6 +5961,27 @@ it:
         message: Sei stato inattivo su%{site_name} per un po', così abbiamo sospeso
           la tua iscrizione. Per riattivarla, per favore, <a href="%{login_url}">accedi
           al tuo account</a>.
+      photos_missing:
+        subject: Alcune foto necessitano di riparazione
+        we_have_been_housekeeping: Abbiamo fatto un po' di riordino e abbiamo trovato
+          foto connesse alle tue osservazioni che non sono più accessibili dalla loro
+          fonte originale. Le foto erano ospitate da %{providers}
+        we_would_like_to_remove: Vorremmo rimuovere tutti i riferimenti a foto danneggiate
+          nel prossimo futuro, ma non vogliamo buttare niente di ciò che può essere
+          salvato. È possibile che alcune di queste foto esistano ancora presso i
+          provider esterni e possano essere riparate. Alcune foto possono essere state
+          caricate connettendo il tuo <a href='%{account_url}'>account %{site_name}</a>
+          ad un altro account di archiviazione foto, e questa connessione sia scaduta
+          debba essere aggiornata.
+        you_can_attempt_repair: Puoi tentare di riparare le foto visitando la pagina
+          della foto e clixxando il link %{repair_link_text}. Se sai che la foto non
+          esiste più, puoi scegliere di cancellarla.
+        please_address: Per favore risolvi il problema <b>nei prossimi 30 giorni</b>.
+          Dopo 30 giorni inizieremo a cancellare le foto danneggiate da iNaturalist.
+          Tutte le tue osservazioni rimarranno. Saranno rivalutate dopo che le foto
+          sono state cancellate, ed è possibile che alcune delle osservazioni a livello
+          ricerca diventeranno di livello casuale se non hanno più foto.
+        we_included_links: Abbiamo incluso i link delle foto interessate qui sotto.
     photos:
       inviter:
         automatically_add_to_project: Aggiungi automaticamente al progetto
@@ -6595,6 +6650,20 @@ it:
         scientific_name_first_desc: Mostra il nome scientifico prima di quello comune.
         youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi
           un blocco per poterne aggiungere un altro.
+      recent:
+        about_recent_users: A proposito di
+        definitions_html: <dl> <dt>Probabilmente Spam</dt> <dd> Utenti che sono probabilmente
+          uno spammer, significa che non hanno osservazioni o identificazioni ma hanno
+          una descrizione del profilo. </dd> <dt>Auto Spam</dt> <dd> Spammer che sono
+          automaticamente segnati come spammer dal sistema. </dd> <dt>Spam Manulae</dt>
+          <dd> Spammer che sono segnati manualmente come spammer dai curatori del
+          sito. </dd> <dt>Falsi Positivi</dt> <dd> Utenti che sono stati segnati come
+          spammer ma per cui le segnalazioni sono state risolte dai curatori del sito
+          perché non erano veramente spammer. </dd> </dl>
+        recent_users_desc_html: |-
+          <p>
+          Vogliamo dare il benvenuto ai nuovi utenti, ma vogliamo anche combattere gli spammer. Fiduciosamente questo strumento ci aiuterà per entrambe le cose. Stiamo automaticamente segnando molti utenti come spammers utilizzando <a href="https://akismet.com/">Akismet</a>, ma Akismet non è perfetto, perciò se vuoi dedicare qualche minuto a segnare i nuovi account come spammer o non spammer, ci aiuterebbe.
+          </p>
       show:
         take_a_chance_to_review_html: Prova a revisionare le <a href="%{link}">nostre
           linee guida</a>.

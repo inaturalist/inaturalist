@@ -112,8 +112,8 @@ da:
     one: <span class='count'>1</span> takson kurateret
     other: <span class='count'>%{count}</span> taksa kurateret
   x_taxa_matching_current_filters:
-    one: 1 takson matcher nuværende filtre
-    other: '%{count} taksa matcher nuværende filtre'
+    one: 1 takson matcher aktuelle filtre
+    other: '%{count} taksa matcher aktuelle filtre'
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> taksonændring tilføjet
     other: <span class='count'>%{count}</span> taksonændringer tilføjet
@@ -609,6 +609,7 @@ da:
   authorize_permissions_from_provider: Godkend tilladelser fra %{provider}
   automatic_descriptions_have_been_disabled: Automatiske beskrivelser er blevet deaktiveret
     for denne takson.
+  automatic_short: Auto
   automatically_add_to_project: Tilføj automatisk til projekt
   automatically_add_observations_to_this_project: Tilføj automatisk observationer
     til dette projekt
@@ -624,6 +625,7 @@ da:
   back_to_calendar: Tilbage til %{user} kalender
   back_to_editing_observation: Tilbage til redigering af observation
   back_to_friends: Tilbage til venner
+  back_to_flags_html: '&laquo;Tilbage til markeringer'
   back_to_help: Tilbage til Hjælp
   back_to_import: Tilbage til Importér
   back_to_lists: Tilbage til %{name} lister
@@ -1177,6 +1179,7 @@ da:
   default_sound_license: Standard lyd licens
   defaults_to_your_name_or_username: Standard til dit navn eller brugernavn
   defines_a_taxon_framework_for: Definerer en taksonramme for %{taxon_name}
+  definitions: Definitioner
   delete: Slet
   delete_all: Slet alle
   delete_conversation: Slet samtale
@@ -1247,7 +1250,7 @@ da:
   doh_something_went_wrong_error: 'Øhhh, noget gik galt: %{error}'
   done: Udført
   dont_filter: Filtrér ikke
-  dont_have_an_account_sign_up_html: Har du ikke en konto?<strong>Opret konto.</strong>
+  dont_have_an_account_sign_up_html: Har du ikke en konto?  <strong>Opret konto.</strong>
   dont_send_me_email: Send mig ikke nogen e-mail!
   dont_use_double_quotes: Brug ikke anførselstegn andre steder
   drop_it: Drop det
@@ -1498,7 +1501,7 @@ da:
   find_species: Find arter
   find_suitable_observations: Find egnede observationer
   find_unsuitable_observations: Find uegnede observationer
-  find_your_current_location: Find din nuværende placering
+  find_your_current_location: Find din aktuelle placering
   finished: Afsluttet
   finished_with_page: Færdig med side
   first_confirmed_inat_observation: Først bekræftet %{site_name} observation
@@ -1530,12 +1533,15 @@ da:
   flagged_for_curation: Markeret for kuration
   flagged_taxon: Markeret taksa
   flagged_thing_explanation: Bruger har markeret dette %{thing} fordi
+  flagging_desc: |-
+    De frivillige side-kuratorer bliver gjort opmærksomme på noget med en markering.
+    Du må ikke markere de problemer, du kan klare med identifikationer, data
+    kvalitetsvurdering, eller ved at kommunikere med den person, der lavede indholdet.
   flagger: Markør
   flags: Markéringer
   flags_with_count: Markeringer (%{count})
-  flags_explanation: '%{site_name} brugere markerer ting, når de finder noget, der
-    ikke er rigtigt. Her er nogle problemer, som ikke er blevet løst af kuratorerne
-    endnu.'
+  flags_explanation: '%{site_name} brugere markerer ting, når de finder noget der
+    har brug for opmærksomhed fra side-kuratorer eller sideadministratorer.'
   flags_for: Markeringer for
   flags_on_users_content: Markeringer for %{user}´s indhold
   flickr_account_information: Dine Flickr kontooplysninger
@@ -1614,7 +1620,7 @@ da:
   geoprivacy: geofortrolighed
   georeferenced: Georefererede?
   georeferenced?: georefererede
-  get_current_position: Få nuværende position
+  get_current_position: Få aktuelle position
   get_started_raquo: Kom igang &raquo;
   get_started: Kom igang
   getting_started: Kom igang
@@ -1679,7 +1685,7 @@ da:
     forbundet med <a target=''_blank'' href=''%{url}''> en anden observation</a>'
   heads_up_this_taxon_locked_users_cant_add_descendants: '<strong>OBS: </strong> Denne
     takson er låst, hvilket betyder, at de fleste brugere ikke kan tilføje nye efterkommere
-    til den ved at importere taksa. Kuratorer kan stadig gøre det ved at redigere
+    til den, ved at importere taksa. Kuratorer kan stadig gøre det ved at redigere
     taksa og vælge en overordnet, men vær venlig at overveje at sammenlægge taksa
     i stedet.'
   heads_up_you_have_multiple: 'Heads up: Du har flere taksonomiske maskinetags til
@@ -1741,6 +1747,7 @@ da:
   ids_by_taxon: IDs efter takson
   identify: Identificér
   identify_observations: Identificér observationer
+  identify_observations_by_these_users: Identificér observationer af disse brugere
   identify_title: Identificér
   identification: identifikation
   identification_by_user: Identifikation af %{user}
@@ -1753,6 +1760,13 @@ da:
   identifications: Identifikationer
   identifications_by: Identifikationer af %{user}
   identified?: Identificeret
+  computer_vision_suggestion: Computer vision forslag
+  computer_vision_suggestion_desc: |-
+    Computer vision er processen, at lære computere at genkende mønstre
+    i billeder. Vi leverer værktøjer, der bruger computer vision modeller, der er trænet via
+    fællesskabets fotos til, at give identifikations forslag, som auto-
+    komplette og sammenligningsfunktioner. Denne etiket angiver, hvornår en person tilføjede
+    en identifikation ved hjælp af et af disse værktøjer.
   identifiers: identifikatorer
   identotron: Identotron
   identotron_for: Identotron for
@@ -1918,7 +1932,7 @@ da:
   join_project: Bliv medlem af dette projekt
   join_some_projects_and_invite_some_observations_html: Tilslut dig <a href='%{join_url}'>projekter</a>
     og <a href='%{invite_url}'>invitér nogle observationer</a>
-  join_the_largest_group_of_naturalists_in_the_world: Tilslut dig til verdens største
+  join_the_largest_group_of_naturalists_in_the_world: Tilslut dig verdens største
     gruppe af naturelskere
   join_this_project: Bliv medlem af dette projekt
   joined!: Tilsluttet!
@@ -2168,6 +2182,7 @@ da:
     gl: Galicisk
     id: Indonesisk
     it: Italiensk
+    iw: Hebraisk
     ja: Japansk
     ko: Koreansk
     lb: Luxembursk
@@ -2178,6 +2193,7 @@ da:
     pt-PT: Portugisisk (Portugal)
     ru: Russisk
     sq: Albansk
+    sv: Svensk
     zh-CN: Kinesisk (simplificeret)
     zh-TW: Kinesisk (traditionel)
   locality_notes: Lokalitetsnotater
@@ -2192,14 +2208,13 @@ da:
   location_is_private: Stedet er privat
   location_specified: Stedet er specificeret
   locked_taxa_will_not_allow_new: Låst taksa vil ikke tillade nye tilføjelser af efterkommer
-    til taksa. Så hvis du har låst Padder, og nogen forsøgte at importere <i>Rana
-    catesbeiana </i> fra en ekstern navneudbyder, ville det nye takson blive oprettet,
-    men det ville ikke kunne klassificeres som en padde. Når dette sker, skal den
-    nyligt tilføjede taksa markeres for at gøre kurator opmærksom på det. Dette bør
-    egentlig kun bruges til taksa, da vi mener, at vi allerede har alle efterkommere.
-    Kuratorer kan tilsidesætte dette ved at redigere taksa og indtaste overordnet
-    ID'er direkte, men vær venlig at overveje, at sammenlægge nye taksa med eksisterende
-    i stedet.
+    til taksa. Så hvis du har låst Padder og nogen forsøgte at importere <i>Rana catesbeiana
+    </i> fra en ekstern navneudbyder, ville det nye takson blive oprettet, men det
+    ville ikke kunne klassificeres som en padde. Når dette sker, skal den nyligt tilføjede
+    taksa markeres, for at gøre kurator opmærksom på det. Dette bør egentlig kun bruges
+    til taksa, da vi mener, at vi allerede har alle efterkommere. Kuratorer kan tilsidesætte
+    dette, ved at redigere taksa og indtaste overordnet ID'er direkte, men vær venlig
+    at overveje, at sammenlægge nye taksa med eksisterende i stedet.
   log_in: Login
   log_scale_label: Log
   logged_in_as: Logget ind som
@@ -2746,6 +2761,7 @@ da:
     kvalitet, hvis ovennævnte betingelser ikke er opfyldt eller
   observations_with_this_field: Observationer med dette felt
   observations_with_this_field_and_value: Observationer med dette felt og værdi
+  observations_without_media: Observationer uden media
   observationcounts_refreshed: Observations antal genopfrisket
   observed: Observeret
   observed_by: Observeret af
@@ -3447,6 +3463,7 @@ da:
     koordinater er kun synlige for dig og kuratorerne for de projekter, du tilføjer
     observationen til. Observationer med private koordinater vil stadig blive brugt
     til at verificere tjeklister for steder.
+  probably_spam: Sikkert spam
   proceed: Fortsæt
   processing: Bearbejder
   processing3p: Bearbejder...
@@ -3591,6 +3608,7 @@ da:
   real_time_stats: Realtid statistik
   real_time_discussions: Live diskussioner
   reason: Årsag
+  reason_label: 'Årsag:'
   reason_you_are_flagging_this_item: Årsag til at du markerer dette emne.
   recaptcha_verification_failed: reCAPTCHA verifikation mislykkedes
   receive_email_notifications_when_people_leave_you: Modtag e-mail meddelelser om
@@ -3685,6 +3703,7 @@ da:
   removed_project_user: Fjernet projektbruger
   removing: Fjerner...
   reorder_by_taxonomy: Sortér efter taksonomi
+  repair_broken_urls: Reparér ødelagte URLs
   repair_doesnt_work_for_that_kind_of_photo: Reparation virker ikke for den slags
     foto
   repair_external_photos: Reparér eksterne foto´s
@@ -3718,6 +3737,7 @@ da:
   resolve_this_flag: Løs denne markering
   resolved: Løst
   resolved_by: Løst af
+  resolved_by_user_on_date_html: Løst af %{user} den %{date}
   resolver_said_x_html: <span class="meta">%{resolver} sagde,</span> "%{x}"
   restore: Gendan
   restoring: Gendanner...
@@ -3921,6 +3941,9 @@ da:
   some_observations_failed_to_save: Nogle observationer kunne ikke gemmes
   some_of_those_photos_couldnt_be_saved: Nogle af disse fotos kunne ikke gemmes:%{error}
   some_other_reason: Andre grunde kan du forklare nedenfor.
+  duplicate_observation_flag_warning: |-
+    For dobbelte observationer, bed venligst observatøren rette op på problemet
+    i stedet for at tilføje et markering, fordi side-kuratorer ikke kan fjerne observationer.
   some_people: Nogle personer
   some_people_that: Nogle personer der
   some_rights_reserved: nogle rettigheder forbeholdes
@@ -4279,6 +4302,7 @@ da:
   terrain: terræn
   text: Tekst
   text_: tekst
+  thanks!: Tak!
   thanks_for_signing_up: Tak for din tilmelding!
   thanks_for_using: Tak fordi du bruger
   thanks_from_all_of_us_here_at: Tak fra alle os her hos
@@ -4291,7 +4315,7 @@ da:
   that_project_doesnt_exist: Dette projekt eksisterer ikke.
   that_role_doesnt_exist: Denne rolle eksisterer ikke
   that_was_the_last_observation_matching_the_current_filters: Det var den sidste observation,
-    der matchede de nuværende filtre.
+    der matchede de aktuelle filtre.
   that_will_insert_a_link_to: der vil indsætte et link til dette værktøj på hver Flickr
     fotoside.
   thats_okay_we_forget: Det er okay! Vi glemmer også vores. Send os den e-mail adresse,
@@ -4672,6 +4696,8 @@ da:
   user_commented_on: '%{user} kommenterede på din %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} er uenig i denne %{taxon}'
   user_faved_a_noun_by_owner: '%{user} synes godt om %{noun} af %{owner}'
+  user_flagged_as_a_spammer_html: '%{user} markeret som spammer'
+  user_flagged_as_a_non_spammer_html: '%{user} markeret som ikke-spammer'
   user_follows: '%{user} følger'
   user_has_opted_out_of_community_id: Bruger er blevet afmeldt af fællesskabs ID
   user_has_opted_out_of_community_ids: '%{user}har valgt at bevare kontrollen over
@@ -4767,6 +4793,7 @@ da:
   view_observations: Vis observationer
   view_observation_flags: Vis observations markeringer
   view_observations_by_everyone: Vis observation af alle
+  view_observations_by_these_users: Vis observationer af disse brugere
   view_observations_of_this_taxon_by: Vis observationer af denne takson af
   view_observations_raquo: Vis observationer &raquo;
   view_on: Vis på
@@ -5192,6 +5219,7 @@ da:
     du klikke på linket "Følg [navn]" i overskriften, når du ser deres observationer
     eller profil.
   verifiable: verificerbare
+  verifiable_observations: Verificérbare observationer
   views:
     views: Visninger
     announcements:
@@ -5238,6 +5266,11 @@ da:
            organisation med base i USA.
         </p>
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |-
+          Løs venligst <code> spam </code> og <code> krænkelse af ophavsret </ code> markér kun hvis indholdet ikke er spam eller ikke en
+          krænkelse af ophavsret.
     guides:
       index:
         funding_html: |-
@@ -5861,6 +5894,26 @@ da:
           Du har været inaktiv på %{site_name} et stykke tid, så vi har suspenderet
           dine abonnementer. For at genoptage underretningerne, bedes du venligst
           <a href="%{login_url}">logge ind på din konto</a>igen.
+      photos_missing:
+        subject: Nogle billeder behøver reparation
+        we_have_been_housekeeping: |2-
+
+          Vi har støvet lidt af, og fundet billeder forbundet med dine observationer
+          der ikke længere er tilgængelige fra deres oprindelige kilde. Billederne er placeret hos %{providers}.
+        we_would_like_to_remove: |-
+          Vi vil gerne fjerne alle forbindelser til ødelagte fotos i den nærmeste fremtid, men vi
+          vil ikke fjerne noget, der kan reddes. Det er muligt at nogle af disse billeder
+          stadig findes hos deres eksterne værter og kan repareres. Nogle billeder kan have været
+          uploadet via en forbindelse mellem din <a href='%{account_url}'>%{site_name} konto </a> og en anden fototjeneste konto, og at denne forbindelse er udløbet og skal genetableres.
+        you_can_attempt_repair: |-
+          Du kan forsøge at reparere billederne ved at besøge fotosiden og klikke på
+          "%{repair_link_text}" linket. Hvis du ved, at billedet ikke længere eksisterer, kan du vælge at slette det.
+        please_address: |-
+          Løs venligst disse problemer <b> inden for de næste 30 dage </ b>. Efter 30
+          dage vil vi begynde at slette ødelagte fotos fra iNaturalist. Alle dine observationer
+          vil forblive. De vil blive revurderet, efter at billederne er slettet, og det er muligt
+          nogle observationer af forskningskvalitet vil blive almindelige, hvis de ikke længere har nogen billeder.
+        we_included_links: Vi har medtaget links til de berørte billeder nedenfor.
     photos:
       inviter:
         automatically_add_to_project: Tilføj automatisk til projekt
@@ -6574,6 +6627,22 @@ da:
         scientific_name_first_desc: Vis videnskabelige navne før lokale navne.
         youve_used_all_of_your_blocks: Du har brugt alle dine blokeringer. Fjern en
           blokering for at tilføje en anden.
+      recent:
+        about_recent_users: Om
+        definitions_html: <dl> <dt> Sandsynligvis Spam </dt><dd> Bruger der sandsynligvis
+          er en spammer, hvilket betyder, at de ikke har nogen observationer eller
+          identifikationer, men de har en profilbeskrivelse. </dd><dt> Auto Spam </dt><dd>
+          Spammer, der automatisk blev markeret som en spammer af systemet. </dd><dt>
+          Manuel spam </dt><dd> Spammer, der blev manuelt markeret som en spammer
+          af en side-kurator. </dd><dt> Fejl positive </dt><dd> Brugere, der blev
+          markeret som spammere, men markeringerne blev løst af sidens kuratorer,
+          fordi de ikke var virkelig spammere. </dd></ dl>
+        recent_users_desc_html: "<P>\n   Vi ønsker at byde nye brugere velkommen,
+          men vi ønsker også at bekæmpe\n   spammere. Forhåbentlig hjælper dette værktøj
+          med begge. Vi markerer automatisk mange \n   brugere som spammere ved hjælp
+          af <a\n   href = \"https://akismet.com/\">Akismet</a>, men Akismet er ikke
+          perfekt,\n   så hvis du vil bruge et par minutter på at markere nye konti
+          som\n   spammere eller ikke spammere, vil det hjælpe.\n</ P>"
       show:
         take_a_chance_to_review_html: Grib chancen for at gennemse <a href="%{link}">vores
           retningslinjer</a>

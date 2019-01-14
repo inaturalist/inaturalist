@@ -619,6 +619,7 @@ pt-BR:
   authorize_permissions_from_provider: Autorizar permissões de %{provider}
   automatic_descriptions_have_been_disabled: Descrições automáticas foram desativadas
     para este táxon.
+  automatic_short: Automático
   automatically_add_to_project: Adicione automaticamente ao projeto
   automatically_add_observations_to_this_project: Adicionar automaticamente observações
     a este projeto
@@ -1203,6 +1204,7 @@ pt-BR:
   default_sound_license: Licença padrão para sons
   defaults_to_your_name_or_username: Padrão para seu nome e nome de usuário
   defines_a_taxon_framework_for: Definir um quadro de táxon para %{taxon_name}
+  definitions: Definições
   delete: Apagar
   delete_all: Excluir tudo
   delete_conversation: Excluir conversa
@@ -1768,6 +1770,7 @@ pt-BR:
   ids_by_taxon: Identificações por táxon
   identify: Identificar
   identify_observations: Identifique observações
+  identify_observations_by_these_users: Identifique observações desses usuários
   identify_title: Identificar
   identification: Identificação
   identification_by_user: Identificação por %{user}
@@ -1780,6 +1783,7 @@ pt-BR:
   identifications: Identificações
   identifications_by: Identificações por %{user}
   identified?: identificado
+  computer_vision_suggestion: Sugestão de visão por computador
   identifiers: Identificadores
   identotron: Auto-Identificador
   identotron_for: Auto-Identificador para
@@ -2195,6 +2199,7 @@ pt-BR:
     gl: Galego
     id: Indonesio
     it: Italiano
+    iw: Hebraico
     ja: Japonês
     ko: Coreano
     lb: Luxemburguês
@@ -2205,6 +2210,7 @@ pt-BR:
     pt-PT: Português (Portugal)
     ru: Russo
     sq: Albanês
+    sv: Sueco
     zh-CN: Chinês (Simplificado)
     zh-TW: Chinês (tradicional)
   locality_notes: Notas por localidade
@@ -2776,6 +2782,7 @@ pt-BR:
     "casuais" caso não atendam as condições acima ou
   observations_with_this_field: Observações com este campo
   observations_with_this_field_and_value: Observações com este campo e valor
+  observations_without_media: Observações sem mídia
   observationcounts_refreshed: Contagem de observações atualizada
   observed: Observado
   observed_by: Observado por
@@ -3485,6 +3492,7 @@ pt-BR:
     reais só serão visíveis a você e para os coordenadores de projetos aos quais vocês
     adicionar a observação. Ainda assim, mesmo coordenadas configuradas como privadas
     serão utilizadas na verificação de checklists locais.
+  probably_spam: Provavelmente spam
   proceed: Avançar
   processing: Processando
   processing3p: Processando…
@@ -3630,6 +3638,7 @@ pt-BR:
   real_time_stats: Estatísticas em Tempo Real
   real_time_discussions: Discussões em Tempo Real
   reason: Razão
+  reason_label: 'Motivo:'
   reason_you_are_flagging_this_item: Motivo pelo qual está marcando com alerta este
     item.
   recaptcha_verification_failed: Verificação reCAPTCHA falhou
@@ -4294,6 +4303,7 @@ pt-BR:
   terrain: terreno
   text: Texto
   text_: texto
+  thanks!: Obrigado!
   thanks_for_signing_up: Obrigada por registrar!
   thanks_for_using: Obrigada por usar
   thanks_from_all_of_us_here_at: Obrigado por todos nós aqui em
@@ -5218,6 +5228,7 @@ pt-BR:
     , clique em 'Seguir [nome]' link no topo da página de visualização de observações
     ou no perfil.
   verifiable: verificável
+  verifiable_observations: Observações verificáveis
   views:
     views: Visualizações
     announcements:
@@ -5911,6 +5922,9 @@ pt-BR:
         message: Você esteve inativo em %{site_name} por algum tempo, por este motivo
           suspendemos suas inscrições. Para receber o resumo de atualizações neste
           local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
+      photos_missing:
+        subject: Algumas fotos precisam de reparos
+        we_included_links: Incluímos links para as fotos afetadas abaixo.
     photos:
       inviter:
         automatically_add_to_project: Adicione ao projeto automaticamente
@@ -6649,6 +6663,8 @@ pt-BR:
         scientific_name_first_desc: Mostre nomes científicos antes dos nomes comuns.
         youve_used_all_of_your_blocks: Você usou todos os seus blocos. Remova um bloco
           para adicionar outro.
+      recent:
+        about_recent_users: Sobre
       show:
         take_a_chance_to_review_html: Quando puder revise <a href="%{link}">nossas
           orientações</a>.
