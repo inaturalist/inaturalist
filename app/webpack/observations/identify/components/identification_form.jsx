@@ -52,6 +52,7 @@ const IdentificationForm = ( {
       // this doesn't feel right... somehow submitting an ID should alter
       // the app state and this stuff should flow three here as props
       $( "input[name='taxon_name']", e.target ).trigger( "resetAll" );
+      $( "input[name='taxon_name']", e.target ).blur( );
       $( e.target.elements.body ).val( null );
     }}
   >

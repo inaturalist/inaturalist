@@ -1,7 +1,9 @@
 import { connect } from "react-redux";
 import Activity from "../components/activity";
-import { addComment, confirmDeleteComment, addID, deleteID, restoreID,
-  review, unreview } from "../ducks/observation";
+import {
+  addComment, confirmDeleteComment, addID, deleteID, restoreID,
+  review, unreview
+} from "../ducks/observation";
 import { setFlaggingModalState } from "../ducks/flagging_modal";
 import { createFlag, deleteFlag } from "../ducks/flags";
 import { setActiveTab } from "../ducks/comment_id_panel";
@@ -12,6 +14,7 @@ import {
 import {
   showCurrentObservation as showObservationModal
 } from "../../identify/actions/current_observation_actions";
+import { trustUser, untrustUser } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
   const observation = Object.assign( {}, state.observation, {
@@ -26,7 +29,9 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setFlaggingModalState: ( newState ) => { dispatch( setFlaggingModalState( newState ) ); },
+    setFlaggingModalState: newState => {
+      dispatch( setFlaggingModalState( newState ) );
+    },
     addComment: body => { dispatch( addComment( body ) ); },
     deleteComment: id => { dispatch( confirmDeleteComment( id ) ); },
     addID: ( taxon, options ) => { dispatch( addID( taxon, options ) ); },
@@ -46,6 +51,12 @@ function mapDispatchToProps( dispatch ) {
       dispatch( showObservationModal( observation ) );
       e.preventDefault( );
       return false;
+    },
+    trustUser: user => {
+      dispatch( trustUser( user ) );
+    },
+    untrustUser: user => {
+      dispatch( untrustUser( user ) );
     }
   };
 }

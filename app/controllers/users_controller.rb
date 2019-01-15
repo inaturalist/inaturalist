@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
     :show, :update, :followers, :following, :relationships, :add_role,
-    :remove_role, :set_spammer, :merge ]
+    :remove_role, :set_spammer, :merge, :trust, :untrust ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
@@ -787,6 +787,26 @@ class UsersController < ApplicationController
     groups = ( current_user.test_groups_array - [params[:test]].flatten ).compact.uniq
     current_user.update_attributes( test_groups: groups.join( "|" ) )
     redirect_back_or_default( root_path )
+  end
+
+  def trust
+    if friendship = current_user.friendships.where( friend_id: params[:id] ).first
+      friendship.update_attributes( trust: true )
+    else
+      friendship = current_user.friendships.create!( friend: @user, trust: true, following: false )
+    end
+    respond_to do |format|
+      format.json { render json: { friendship: friendship } }
+    end
+  end
+
+  def untrust
+    if friendship = current_user.friendships.where( friend_id: params[:id] ).first
+      friendship.update_attributes( trust: false )
+    end
+    respond_to do |format|
+      format.json { render json: { friendship: friendship } }
+    end
   end
 
 protected

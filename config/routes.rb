@@ -162,6 +162,8 @@ Rails.application.routes.draw do
       put :join_test
       put :leave_test
       put :merge
+      put :trust
+      put :untrust
     end
   end
   # resource :session
@@ -494,6 +496,7 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :queries
+      get :stop_query
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do

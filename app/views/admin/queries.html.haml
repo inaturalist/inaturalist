@@ -1,3 +1,26 @@
+- content_for :extrajs do
+  :javascript
+    $( function( ) {
+      $( ".kill a" ).each( function( ) {
+        var link = $( this );
+        var validation = $( "<p/>" ).append(
+          $( "<input type='text' id='comfirm_validation' />" )
+        );
+        link.confirmModal( {
+          additionalContent: validation,
+          text: function( ) {
+            return "Are you sure you want to kill this query? Type \"yes\" to continue:";
+          },
+          confirmValidation: function( ) {
+            return $( "#comfirm_validation" ).val( ) === "yes";
+          },
+          onConfirm: function( ) {
+            window.location = link.data( "url" );
+          }
+        } );
+      } );
+    } );
+
 %h2.sub-header= "Active Queries (#{ @queries.count })"
 %table-responsive
   %table.table.table-striped
@@ -8,7 +31,12 @@
     %tbody
       - @queries.each do |query|
         %tr
-          %td= t(:n_ago, n: time_ago_in_words(query["state_change"]))
+          %td
+            = t(:n_ago, n: time_ago_in_words( query["state_change"] ))
+            %br
+            %span.kill<
+              = surround "(", ")" do
+                = link_to "kill", "#", data: { url: stop_query_admin_url( pid: query["pid"] ) }, onclick: "return false;"
           %td
             - query.each do |k,v|
               %strong= "#{ k }:"
