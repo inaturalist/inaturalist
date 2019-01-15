@@ -81,7 +81,7 @@ export function untrustUser( user ) {
     const { currentUser } = getState( ).config;
     const currentTrustedUserIds = currentUser.trusted_user_ids || [];
     dispatch( updateCurrentUser( {
-      trusted_user_ids: _.without( currentTrustedUserIds, [user.id] )
+      trusted_user_ids: _.without( currentTrustedUserIds, user.id )
     } ) );
   };
 }
