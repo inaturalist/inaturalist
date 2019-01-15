@@ -162,6 +162,8 @@ Rails.application.routes.draw do
       put :join_test
       put :leave_test
       put :merge
+      put :trust
+      put :untrust
     end
   end
   # resource :session
