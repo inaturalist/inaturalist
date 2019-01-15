@@ -162,6 +162,17 @@ class MapDetails extends React.Component {
                       chosen to share coordinates with curators of that project.
                     </li>
                   ) }
+                  { observation.viewer_trusted_by_observer && (
+                    <li>
+                      <strong>
+                        { observation.user.login }
+                        { " " }
+                        trusts you with their private coordinates:
+                      </strong>
+                      The observer has chosen to trust you with the private
+                      coordinates of all their observations.
+                    </li>
+                  ) }
                 </ul>
               </div>
             ) }
