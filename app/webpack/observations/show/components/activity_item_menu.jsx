@@ -197,7 +197,7 @@ const ActivityItemMenu = ( {
           eventKey="remove-trust"
           className="search"
         >
-          <i className="icon-person" style={{ "text-decoration": "linethrough" }} />
+          <i className="icon-person" />
           Stop trusting this person with your private coordinates.
         </MenuItem>
       ) );
@@ -214,14 +214,12 @@ const ActivityItemMenu = ( {
       ) );
     }
     menuItems.push( (
-      <MenuItem
-        key={`manage-relationships-${item.id}`}
-        eventKey="manage-relationships"
-        className="search"
-      >
-        <i className="fa fa-users" />
-        Manage your relationships.
-      </MenuItem>
+      <li key={`comment-delete-${item.id}`} className="search">
+        <a href="/relationships" target="_blank">
+          <i className="fa fa-users" />
+          Manage your relationships.
+        </a>
+      </li>
     ) );
   }
   return (
