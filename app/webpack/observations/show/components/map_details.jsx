@@ -225,6 +225,17 @@ class MapDetails extends React.Component {
                       { I18n.t( "you_curate_a_project_that_contains_this_observation_desc" ) }
                     </li>
                   ) }
+                  { observation.viewer_trusted_by_observer && (
+                    <li>
+                      <strong>
+                        { observation.user.login }
+                        { " " }
+                        trusts you with their private coordinates:
+                      </strong>
+                      The observer has chosen to trust you with the private
+                      coordinates of all their observations.
+                    </li>
+                  ) }
                 </ul>
               </div>
             ) }
