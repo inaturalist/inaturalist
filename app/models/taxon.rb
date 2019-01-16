@@ -1058,6 +1058,18 @@ class Taxon < ActiveRecord::Base
     current_user_curates_taxon
   end
   
+  def activated_protected_attributes_editable_by?( user )
+    return true if user && user.is_admin?
+    upstream_taxon_framework = get_upstream_taxon_framework
+    return true unless upstream_taxon_framework
+    return true unless upstream_taxon_framework.taxon_curators.any?
+    current_user_curates_taxon = false
+    if user
+      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
+    end
+    current_user_curates_taxon
+  end
+  
   #
   # Determine whether this taxon is at or below the rank of species
   #
