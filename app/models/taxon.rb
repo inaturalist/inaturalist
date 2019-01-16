@@ -986,7 +986,7 @@ class Taxon < ActiveRecord::Base
   
   def graftable_destination_relative_to_taxon_framework_coverage
     return true unless new_record? || ancestry_changed?
-    return true if ancestry.nil?
+    return true if ancestry.nil? || !is_active
     destination_taxon_framework = parent.taxon_framework
     if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? 
       errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
@@ -1025,6 +1025,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def user_can_edit_attributes
+    return true unless is_active
     return true if current_user.blank?
     current_user_curates_taxon = protected_attributes_editable_by?( current_user )
     PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA.each do |a|
@@ -1036,6 +1037,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def protected_attributes_editable_by?( user )
+    return true unless is_active
     return true if user && user.is_admin?
     upstream_taxon_framework = get_upstream_taxon_framework
     return true unless upstream_taxon_framework
