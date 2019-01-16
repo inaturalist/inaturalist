@@ -3,6 +3,7 @@ class ExternalTaxon < ActiveRecord::Base
   
   after_create :update_taxon_framework_relationship
   after_update :update_taxon_framework_relationship
+  after_destroy :update_taxon_framework_relationship
   
   def update_taxon_framework_relationship
     return true unless self.taxon_framework_relationship
