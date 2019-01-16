@@ -972,6 +972,7 @@ class TaxaController < ApplicationController
       @taxon.elastic_index!
       Taxon.refresh_es_index
     else
+      Rails.logger.debug "[DEBUG] error: #{@taxon.errors.full_messages.to_sentence}"
       respond_to do |format|
         format.json do
           render status: :unprocessable_entity, json: {
