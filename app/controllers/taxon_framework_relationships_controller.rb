@@ -1,9 +1,18 @@
 class TaxonFrameworkRelationshipsController < ApplicationController
+  before_filter :find_taxon_framework_relationship, only: [:show, :edit]
   before_filter :authenticate_user!, except: [:index, :show]
   before_filter :admin_required, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_taxon_framework_relationship, except: [:index, :new, :create]
   
   layout "bootstrap"
+  
+  def find_taxon_framework_relationship
+    begin
+      @taxon_framework_relationship = TaxonFrameworkRelationship.find(params[:id])
+    rescue
+      render_404
+    end
+  end
   
   def index
     filter_params = params[:filters] || params
