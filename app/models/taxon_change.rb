@@ -118,7 +118,7 @@ class TaxonChange < ActiveRecord::Base
     uneditable_input_taxon = input_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
     uneditable_output_taxon = nil
     unless uneditable_input_taxon
-      uneditable_output_taxon = output_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
+      uneditable_output_taxon = output_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) && !t.is_active }
     end
     uneditable_input_taxon.blank? && uneditable_output_taxon.blank?
   end
