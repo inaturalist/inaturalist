@@ -1,0 +1,31 @@
+// Allows a bootstrap modal dialog to fill both the width and the height of the
+// screen. For this to work, the element with the `modal` class must have the
+// `FullScreenModal` class AND the .modal-content element must have a child of
+// class `inner` that wraps all the content.
+
+.FullScreenModal,
+body > [role="dialog"] .FullScreenModal {
+  .modal-dialog {
+    width: 90% !important;
+    height: 90%;
+    display: flex;
+
+    .modal-content,
+    .modal-content .inner {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .modal-content {
+      .inner {
+        border-radius: 6px;
+        overflow: hidden;
+        .modal-body {
+          max-height: none;
+          flex: 2;
+        }
+      }
+    }
+  }
+}
