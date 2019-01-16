@@ -2,16 +2,12 @@ module DarwinCore
   class Metadata < FakeView
     def initialize(options = {})
       super()
-      @contact = ( options[:site] || Site.default ).contact || {}
+      observations_params = options[:observations_params] || {}
+      site = options[:site] || Site.find_by_id( options[:site_id] ) || Site.default
+      @contact = site.contact || {}
       @creator = @contact || {}
       @metadata_provider = @contact || {}
-      scope = Observation.all
-      if options[:quality] == "research"
-        scope = scope.has_quality_grade(Observation::RESEARCH_GRADE)
-      elsif options[:quality] == "casual"
-        scope = scope.has_quality_grade(Observation::CASUAL_GRADE)
-      end
-      scope = scope.license('any')
+      scope = Observation.query( observations_params )
       if options[:extensions] && 
           (options[:extensions].include?("EolMedia") || options[:extensions].include?("SimpleMultimedia"))
         scope = scope.has_photos
@@ -20,7 +16,7 @@ module DarwinCore
       @start_date = scope.minimum(:observed_on)
       @end_date   = scope.maximum(:observed_on)
       @license    = options[:license]
-      @uri        = options[:uri]
+      @uri        = FakeView.observations_url( observations_params )
     end
   end
 end
