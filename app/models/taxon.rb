@@ -971,9 +971,18 @@ class Taxon < ActiveRecord::Base
   end
   
   def get_upstream_taxon_framework(supplied_ancestor_ids = self.ancestor_ids)
-    TaxonFramework.joins("JOIN taxa t ON t.id = taxon_frameworks.taxon_id").
+    candidate = TaxonFramework.joins("JOIN taxa t ON t.id = taxon_frameworks.taxon_id").
       where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", supplied_ancestor_ids, rank_level).
       order("t.rank_level ASC").first
+    
+    if candidate
+      blocker = TaxonFramework.joins("JOIN taxa t ON t.id = taxon_frameworks.taxon_id").
+        where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND t.rank_level < ?", supplied_ancestor_ids, candidate.taxon.rank_level).first
+      unless blocker
+        return candidate
+      end
+      return nil
+    end
   end
       
   def has_ancestry_and_active_if_taxon_framework
