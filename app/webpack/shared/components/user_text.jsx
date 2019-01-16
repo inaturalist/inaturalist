@@ -20,7 +20,7 @@ const ALLOWED_ATTRIBUTES_NAMES = (
 const ALLOWED_ATTRIBUTES = {
   href: {
     allowedTags: ["a"],
-    filter: ( value ) => {
+    filter: value => {
       // Only let through http urls
       if ( /^https?:/i.exec( value ) ) {
         return value;
@@ -29,7 +29,7 @@ const ALLOWED_ATTRIBUTES = {
     }
   }
 };
-for ( let i = 0; i < ALLOWED_ATTRIBUTES_NAMES.length; i++ ) {
+for ( let i = 0; i < ALLOWED_ATTRIBUTES_NAMES.length; i += 1 ) {
   ALLOWED_ATTRIBUTES[ALLOWED_ATTRIBUTES_NAMES[i]] = { allTags: true };
 }
 
@@ -61,15 +61,19 @@ class UserText extends React.Component {
       truncate,
       config,
       moreToggle,
-      stripWhitespace
+      stripWhitespace,
+      className
     } = this.props;
     const { more } = this.state;
-    const { className } = Object.assign( { }, this.props );
     if ( !text || text.length === 0 ) {
       return <div className={`UserText ${className}`} />;
     }
-    const withBreaks = text.trim( ).replace( /\n/gm, "<br />" );
-    const html = safeHtml( this.hyperlinkMentions( withBreaks ), config || CONFIG );
+    // use BRs for newlines
+    let html = text.trim( ).replace( /\n/gm, "<br />" );
+    // replace ampersands in URL params with entities so they don't get
+    // interpretted by safeHtml
+    html = html.replace( /&(\w+=)/g, "&amp;$1" );
+    html = safeHtml( this.hyperlinkMentions( html ), config || CONFIG );
     let truncatedHtml;
     if ( truncate && truncate > 0 && !more ) {
       truncatedHtml = htmlTruncate( html, truncate );
@@ -78,10 +82,10 @@ class UserText extends React.Component {
     if ( truncate && ( truncatedHtml !== html ) && moreToggle ) {
       moreLink = (
         <a
-          onClick={ ( ) => {
+          onClick={( ) => {
             this.toggle( );
             return false;
-          } }
+          }}
           className={truncate && truncate > 0 ? "more" : "collapse"}
         >
           { more ? I18n.t( "less" ) : I18n.t( "more" ) }
@@ -104,8 +108,10 @@ class UserText extends React.Component {
       <div className={`UserText ${className}`}>
         <span
           className="content"
-          dangerouslySetInnerHTML={ { __html: htmlToDisplay } }
-        /> { moreLink }
+          dangerouslySetInnerHTML={{ __html: htmlToDisplay }}
+        />
+        { " " }
+        { moreLink }
       </div>
     );
   }

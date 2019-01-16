@@ -313,7 +313,7 @@ class ObservationModal extends React.Component {
         onHide={onClose}
         bsSize="large"
         backdrop
-        className={`ObservationModal ${blind ? "blind" : ""}`}
+        className={`ObservationModal FullScreenModal ${blind ? "blind" : ""}`}
       >
         <div className="nav-buttons">
           { hidePrevNext ? null : (
