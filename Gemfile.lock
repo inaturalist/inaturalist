@@ -65,6 +65,13 @@ GIT
       rdoc
 
 GIT
+  remote: https://github.com/inaturalist/xmp.git
+  revision: dbb92b555e3e085acb31d8bbec600aacd1146f02
+  specs:
+    xmp (0.2.1)
+      nokogiri (>= 1.8.1)
+
+GIT
   remote: https://github.com/kueda/activerecord-postgis-adapter.git
   revision: 4d7c4c91720e4824582fb3b1b271ba85ac06a391
   branch: activerecord42
@@ -109,13 +116,6 @@ GIT
   revision: 85805f4f077357ceafce89c34073fa163944d7d4
   specs:
     gdata (1.1.2)
-
-GIT
-  remote: https://github.com/pleary/xmp.git
-  revision: cbaa094c9f1c89e12bd84c6bec77a1953aa7c78b
-  specs:
-    xmp (0.2.1)
-      nokogiri (>= 1.8.1)
 
 GIT
   remote: https://github.com/ratafire/omniauth-soundcloud.git
@@ -411,7 +411,7 @@ GEM
     net-ssh (5.1.0)
     netrc (0.11.0)
     newrelic_rpm (5.5.0.348)
-    nokogiri (1.10.0)
+    nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
