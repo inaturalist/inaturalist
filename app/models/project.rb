@@ -50,6 +50,9 @@ class Project < ActiveRecord::Base
     if candidate.to_i > 0
       candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
     end
+    if candidate =~ /^\d+$/
+      candidate = ["project", id, candidate].compact.join( "-" )
+    end
     candidate
   end
   

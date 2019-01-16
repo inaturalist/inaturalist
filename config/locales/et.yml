@@ -2,6 +2,8 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Ilmarine
+# Author: Marcelhospers
+# Author: Optilete
 # Author: Pyscowicz
 ---
 et:
@@ -113,6 +115,7 @@ et:
   _100_day_trends: 100 päeva trendid
   _percent_ID_d: '% määratud'
   a: '&nbsp;'
+  a_: een
   a_community_for_naturalist: Loodusloolaste kogukond
   a_default_taxon_name_will_automatically_created: Vaikimisi taksoni nimi luuakse
     automaatselt sellele määratud teaduslikust nimetusest. Kui oled uue taksoni salvestanud,
@@ -461,6 +464,8 @@ et:
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb-is pole selle liigi kohta
     infot.
   amphibiaweb_taxonomy: AmphibiaWeb-i taksonoomia
+  an: een
+  an_: een
   and: ja
   and_choose_a_matching_taxon: ja vali nimekirjast sobiv takson. Kui tulemuseks pole
   and_help_the_inaturalist_community_grow: ja aita %{site_name} kogukonnal kasvada.
@@ -586,6 +591,7 @@ et:
   assessment_x: hinnang %{assessment}
   assessments: hinnangud
   associations: Seosed
+  at: op
   at_any_time_change: igal ajal (<span class="button">muuda</span>)
   at_time: kell %{time}
   atom: Atom
@@ -3025,30 +3031,44 @@ et:
   places_name:
     afghanistan: Afganistan
     africa: Aafrika
+    antarctica: Antarktis
     antigua_and_barbuda: Antigua ja Barbuda
+    armenia: Armeenia
+    aruba: Aruba
     australia: Austraalia
     austria: Austria
+    azerbaijan: Aserbaidžaan
     belgium: Belgia
     bosnia_and_herzegovina: Bosnia ja Hertsegoviina
     brazil: Brasiilia
     canada: Kanada
     central_america: Kesk-Ameerika
     china: Hiina
+    christmas_island: Jõulusaar
     colombia: Colombia
     denmark: Taani
     egypt: Egiptus
     equatorial_guinea: Ekvatoriaal-Guinea
+    estonia: Eesti
     europe: Euroopa
+    faroe_islands: Fääri saared
+    finland: Soome
     france: Prantsusmaa
+    georgia: Gruusia
     germany: Saksamaa
     greece: Kreeka
     hong_kong: Hong Kong
     hungary: Ungari
     india: India
     iraq: Iraak
+    ireland: Iirimaa
+    israel: Iisrael
     italy: Itaalia
+    jamaica: Jamaica
     japan: Jaapan
     korea: Korea
+    lithuania: Leedu
+    luxembourg: Luksemburg
     martinique: Martinique
     mexico: Mehhiko
     netherlands: Holland
@@ -3056,12 +3076,16 @@ et:
     new_zealand: Uus-Meremaa
     north_africa: Põhja-Aafrika
     north_america: Põhja-Ameerika
+    north_korea: Põhja-Korea
+    norway: Norra
     palestine: Palestiina
     panama: Panama
     peru: Peruu
+    philippines: Filipiinid
     poland: Poola
     portugal: Portugal
     republic_of_congo: Kongo Vabariik
+    romania: Rumeenia
     russia: Venemaa
     sao_tome_and_principe: São Tomé ja Príncipe
     saudi_arabia: Saudi Araabia
@@ -3072,11 +3096,15 @@ et:
     sweden: Rootsi
     switzerland: Šveits
     syria: Süüria
+    taiwan: Taiwan
     thailand: Tai
     trinidad_and_tobago: Trinidad ja Tobago
     turkey: Türgi
+    ukraine: Ukraina
     united_kingdom: Ühendkuningriik
     united_states: Ameerika Ühendriigid
+    vatican_city: Vatikan
+    vietnam: Vietnam
     virgin_islands: Neitsisaared
     west_africa: Lääne-Aafrika
   places_of_interest: Huviväärsused

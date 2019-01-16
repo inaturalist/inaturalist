@@ -155,7 +155,7 @@
                 - if txt.blank?
                   =t :no_description
                 - else
-                  = highlight( strip_tags( truncate( txt, length: 300 ) ), matched_terms || @q )
+                  = highlight( truncate( strip_tags( txt ), length: 300 ), matched_terms || @q )
                 
           - elsif record.is_a?( User )
             .media-left{ class: record.icon? ? nil : "icon" }
@@ -168,6 +168,10 @@
             .media-body
               %h4.media-heading
                 = highlight link_to( record.login, person_path( record ) ), matched_terms || @q
+                - unless record.name.blank?
+                  %span.text-muted
+                    = surround "(", ")" do
+                      = highlight link_to( record.name, person_path( record ) ), matched_terms || @q
                 %span.text-muted= "|"
                 = link_to t(:view_observations), observations_path( user_id: record.login ), class: "view-obs-link"
               %p

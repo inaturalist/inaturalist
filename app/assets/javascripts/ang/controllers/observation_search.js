@@ -774,7 +774,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.setupDatepicker = function( ) {
     $('.date-picker').datepicker({
-      yearRange: "c-100:c+0",
+      yearRange: "c-100:" + ( new Date( ) ).getFullYear( ),
       maxDate: '+0d',
       constrainInput: false,
       firstDay: 0,
