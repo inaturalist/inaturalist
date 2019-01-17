@@ -309,7 +309,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-      flash.now[:notice] ||= "This taxon is covered by a taxon framework, so some taxonomic attributes can only be editable by taxon curators associated with that taxon framework."
+      flash.now[:notice] ||= "This active taxon is covered by a taxon framework, so some taxonomic attributes can only be editable by taxon curators associated with that taxon framework."
     end
   end
 

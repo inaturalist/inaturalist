@@ -1332,6 +1332,17 @@ describe "taxon" do
         t = Taxon.make( rank: Taxon::GENUS, parent: root, current_user: curator )
         expect( t ).not_to be_valid
       end
+      it "should allow grafting to root when inactive" do
+        t = Taxon.make( rank: Taxon::GENUS, parent: root, current_user: curator, is_active: false )
+        expect( t ).to be_valid
+        t.save
+        t.reload
+        t.update_attributes( rank: Taxon::SUBGENUS, current_user: curator )
+        expect( t ).to be_valid
+        t.reload
+        t.update_attributes( is_active: true, current_user: curator )
+        expect( t ).not_to be_valid
+      end
       it "should prevent grafting to internode" do
         t = Taxon.make( rank: Taxon::SPECIES, parent: internode, current_user: curator )
         expect( t ).not_to be_valid
