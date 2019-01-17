@@ -124,6 +124,22 @@ class MapDetails extends React.Component {
                 </li>
               ) }
             </ul>
+            <h4>Who Can See the Coordinates</h4>
+            <ul>
+              <li>The person who made the observation</li>
+              <li>iNaturalist staff</li>
+              <li>
+                Curators of the following projects:
+                <ul>
+                  { _.filter(
+                    observation.project_observations,
+                    po => po.preferences && po.preferences.allows_curator_coordinate_access
+                  ).map( po => (
+                    <li key={`map-details-projects-${po.id}`}>{ po.project.title }</li>
+                  ) ) }
+                </ul>
+              </li>
+            </ul>
             { observation.geojson && (
               <div>
                 <h4>Why You Can See the Coordinates</h4>
