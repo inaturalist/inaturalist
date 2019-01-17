@@ -258,7 +258,7 @@ nl:
   add_new_taxon_name: Nieuwe taxonnaam toevoegen
   add_notes_about_this_taxon: Opmerkingen toevoegen over dit taxon op deze plaats,
     bijvoorbeeld waar en wanneer het voorkomt.
-  add_obs_from_a_link: Voeg waarnemingen uit lijst %{link} toe
+  add_obs_from_a_link: 'Voeg Wrn uit lijst: %{link} toe'
   add_obs_from_a_list: Voeg waarnemingen toe van een lijst
   add_observation: Waarneming toevoegen
   add_observations!: Voeg waarnemingen toeǃ
@@ -627,7 +627,7 @@ nl:
   automatically_add_observations_to_this_project: Voeg automatisch waarnemingen aan
     dit project toe
   automatically_share_your_observations_on: Deel uw waarnemingen automatisch op
-  automatically_id_new: Determineer de nieuwe waarnemingen automatisch als
+  automatically_id_new: Determineer de nieuwe wrn automatisch als
   automatically_update_my_content_for_taxon_changes: Werk mijn inhoud automatisch
     bij voor aanpassingen van het taxon
   back: Terug
@@ -1143,7 +1143,7 @@ nl:
   datatype: Gegevenstype
   date_: Datum
   date?: Datum?
-  date_added: Toegevoegd op
+  date_added: Invoerdatum
   date_created: Aangemaakt op
   date_format:
     date_long:
@@ -1175,7 +1175,7 @@ nl:
   date_is_accurate: Datum is accuraat
   date_observed: Datum waarneming
   date_observed_: Datum waarneming
-  date_observed_on: Waarnemingsdatum op
+  date_observed_on: Waarnemingsdatum
   date_picker:
     closeText: Sluiten
     currentText: Vandaag
@@ -1386,7 +1386,7 @@ nl:
   eol_collection_url: EOL verzameling URL
   error_updating_photo: 'Fout bij bijwerken foto: %{photo_errors}'
   establishment:
-    establishment: Aanstelling
+    establishment: Vestiging (Statuscodes voorkomen)
     native: inheems
     endemic: endemisch
     introduced: geïntroduceerd
@@ -1992,9 +1992,9 @@ nl:
   latitude_slash_y_coord_slash_northing: Latitude / y coord / northing
   layers: Lagen
   layout: Layout
-  leaderboard: Rangschikking
-  leaderboard_for_x: Rangschikking van %{x}
-  leaderboards: Rangschikkingen
+  leaderboard: Toplijst
+  leaderboard_for_x: Toplijst voor %{x}
+  leaderboards: Toplijsten
   leaderboard_most:
     species: Meeste soorten in %{time}
     observations: Meeste waarnemingen in %{time}
@@ -2242,7 +2242,7 @@ nl:
   login_slash_username: Login / gebruikersnaam
   logo:
     logo: Logo
-    white_bg_gif: wit achtergrond GIF
+    white_bg_gif: witte achtergrond GIF
     transparent_png: transparante PNG
     white_text_transparent_png: witte tekst in transparant PNG
     none: geen
@@ -2934,7 +2934,7 @@ nl:
   or_you_can: Ofwel kan je ...
   or_you_can_: of u kan
   orange: oranje
-  order: Rangschik
+  order: Sorteer
   order_by: Sorteren op
   organism_is_wild: Organisme is wild
   organisms: Organismen
@@ -3614,7 +3614,7 @@ nl:
     family: Familie
     subfamily: Subfamily
     supertribe: Supertribe
-    tribe: Tak
+    tribe: Tribe
     subtribe: Ondertak
     genus: Geslacht
     genushybrid: Genushybrid
@@ -4134,7 +4134,7 @@ nl:
   subject_resolved_noun_html: '%{subject} lost %{noun} op'
   subject_affecting_stuff_html: '%{subject} van invloed op %{stuff}'
   subject_committed_thing_affecting_stuff_html: '%{subject} voerde een %{thing} uit
-    met effect op %{stuff}'
+    met gevolgen voor %{stuff}'
   submission_model: Submission Model
   submission_model_description: Wie kan waarnemingen toevoegen aan uw project?
   submit: Verzenden
@@ -4818,9 +4818,9 @@ nl:
   view_full_observation: Volledige waarneming weergeven
   view_invitation: Uitnodiging weergeven
   view_journal: Dagboek weergeven
-  view_leaderboard: Rangschikking weergeven
-  view_leaderboard_from_last_month: Rangschikking van vorige maand weergeven
-  view_leaderboard_from_last_year: Bekijk rangschikking van vorig jaar
+  view_leaderboard: Toplijst weergeven
+  view_leaderboard_from_last_month: Toplijst van vorige maand weergeven
+  view_leaderboard_from_last_year: Bekijk Toplijst van vorig jaar
   view_license: Licentie weergeven
   view_lists: Lijsten weergeven
   view_listing: Oplijsting weergeven
@@ -5957,8 +5957,7 @@ nl:
     photos:
       inviter:
         automatically_add_to_project: Automatisch aan project toevoegen
-        automatically_id_the_new_obs_as: Identificeer de nieuwe waarneming automatisch
-          als
+        automatically_id_the_new_obs_as: Identificeer de nieuwe wrn als
         dont_forget_the_invite_link_placeholder: vergeet de {{INVITE_LINK}} placeholder
           niet
         invite_other_photographers_to_inat: Nodig andere fotografen uit op %{site_name}

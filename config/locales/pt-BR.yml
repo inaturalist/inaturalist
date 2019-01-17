@@ -635,6 +635,7 @@ pt-BR:
   back_to_calendar: Voltar para calendário %{user}
   back_to_editing_observation: Voltar para observação editada
   back_to_friends: Voltar a amigos
+  back_to_flags_html: '&laquo; De volta a bandeiras'
   back_to_help: Voltar para Ajuda
   back_to_import: Voltar para Importar
   back_to_lists: Voltar para %{name} lists
@@ -1560,12 +1561,15 @@ pt-BR:
   flagged_for_curation: Marcada com alerta para moderação.
   flagged_taxon: Taxon sinalizado
   flagged_thing_explanation: Usuários marcaram isto %{thing} porque
+  flagging_desc: |-
+    A sinalização chama a atenção dos curadores voluntários do site.
+    Por favor, não sinalizar problemas que você pode resolver com identificações, os dados
+    Avaliação de Qualidade ou conversando com a pessoa que fez o conteúdo.
   flagger: Sinalizador
   flags: Sinalizações
   flags_with_count: Linhas (%{count})
-  flags_explanation: '%{site_name} usuários marcam com alertas aquilo que eles encontram
-    e percebem que não está correto. Aqui estão alguns aspectos que ainda não foram
-    resolvidos pelos administradores.'
+  flags_explanation: '%{site_name} os usuários sinalizam coisas que precisam de atenção
+    dos curadores do site e/ou dos administradores do site.'
   flags_for: Sinalizações para
   flags_on_users_content: Marcações no conteúdo de %{user}
   flickr_account_information: Informações da sua conta Flickr
@@ -1784,6 +1788,11 @@ pt-BR:
   identifications_by: Identificações por %{user}
   identified?: identificado
   computer_vision_suggestion: Sugestão de visão por computador
+  computer_vision_suggestion_desc: Visão computacional é o processo de ensinar computadores
+    a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão
+    computacional focados em fotos da comunidade para fornecer sugestões de identificação,
+    como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa
+    adicionou um ID usando uma dessas ferramentas.
   identifiers: Identificadores
   identotron: Auto-Identificador
   identotron_for: Auto-Identificador para
@@ -3737,6 +3746,7 @@ pt-BR:
   removed_project_user: Usuário removido do projeto
   removing: Removendo...
   reorder_by_taxonomy: Reordenar por taxonomia
+  repair_broken_urls: Reparar URLs quebrados
   repair_doesnt_work_for_that_kind_of_photo: Reparação não funciona para este tipo
     de imagem
   repair_external_photos: Reparar fotos externas
@@ -3770,6 +3780,7 @@ pt-BR:
   resolve_this_flag: Solucionar esta marcação
   resolved: Solucionado
   resolved_by: Solucionado por
+  resolved_by_user_on_date_html: Resolvido por %{user} em %{date}
   resolver_said_x_html: <span class="meta">%{resolver} disse,</span> "%{x}"
   restore: Restaurar
   restoring: Restaurando...
@@ -3977,6 +3988,9 @@ pt-BR:
   some_of_those_photos_couldnt_be_saved: 'Algumas destas fotos não puderam ser carregadas:
     %{error}'
   some_other_reason: Alguma outra razão que você pode explicar depois.
+  duplicate_observation_flag_warning: Para observações duplicadas, peça ao observador
+    para resolver o problema em vez de adicionar uma marca, os curadores não podem
+    excluir observações.
   some_people: Algumas pessoas
   some_people_that: Algumas pessoas que
   some_rights_reserved: Alguns direitos reservados
@@ -4703,6 +4717,8 @@ pt-BR:
   user_commented_on: '%{user} comentou sobre seu %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} discorda que seja um(a) %{taxon}'
   user_faved_a_noun_by_owner: '%{user} favorito %{noun} por %{owner}'
+  user_flagged_as_a_spammer_html: '%{user} sinalizado como spammer'
+  user_flagged_as_a_non_spammer_html: '%{user} marcado como não-spammer'
   user_follows: '%{user} segue'
   user_has_opted_out_of_community_id: O usuário rejeitou a identificação da comunidade
   user_has_opted_out_of_community_ids: '%{user} escolheu ter controle sobre os táxons
@@ -4799,6 +4815,7 @@ pt-BR:
   view_observations: Ver observações
   view_observation_flags: Ver observações marcadas
   view_observations_by_everyone: Ver as observações de todos
+  view_observations_by_these_users: Veja as observações desses usuários
   view_observations_of_this_taxon_by: Ver observações deste táxon por
   view_observations_raquo: Ver observações &raquo;
   view_on: Ver em
@@ -5924,6 +5941,9 @@ pt-BR:
           local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
       photos_missing:
         subject: Algumas fotos precisam de reparos
+        we_have_been_housekeeping: Temos feito um pouco de limpeza e encontrado algumas
+          fotos conectadas às suas observações que não são mais acessíveis a partir
+          de sua fonte original. As fotos estão hospedadas em %{providers}.
         we_included_links: Incluímos links para as fotos afetadas abaixo.
     photos:
       inviter:
