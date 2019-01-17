@@ -971,13 +971,13 @@ class Taxon < ActiveRecord::Base
   end
   
   def get_upstream_taxon_framework(supplied_ancestor_ids = self.ancestor_ids)
-    candidate = TaxonFramework.joins("JOIN taxa t ON t.id = taxon_frameworks.taxon_id").
-      where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", supplied_ancestor_ids, rank_level).
-      order("t.rank_level ASC").first
+    candidate = TaxonFramework.joins( "JOIN taxa t ON t.id = taxon_frameworks.taxon_id" ).
+      where( "taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", supplied_ancestor_ids, rank_level ).
+      order( "t.rank_level ASC" ).first
     
     if candidate
-      blocker = TaxonFramework.joins("JOIN taxa t ON t.id = taxon_frameworks.taxon_id").
-        where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND t.rank_level < ?", supplied_ancestor_ids, candidate.taxon.rank_level).first
+      blocker = TaxonFramework.joins( "JOIN taxa t ON t.id = taxon_frameworks.taxon_id" ).
+        where( "taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND t.rank_level < ?", supplied_ancestor_ids, candidate.taxon.rank_level ).first
       unless blocker
         return candidate
       end

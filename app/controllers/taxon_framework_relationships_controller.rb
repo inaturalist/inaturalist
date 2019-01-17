@@ -8,7 +8,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
   
   def find_taxon_framework_relationship
     begin
-      @taxon_framework_relationship = TaxonFrameworkRelationship.find(params[:id])
+      @taxon_framework_relationship = TaxonFrameworkRelationship.find( params[:id] )
     rescue
       render_404
     end
@@ -20,7 +20,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     @relationships ||= TaxonFrameworkRelationship::RELATIONSHIPS.map{ |r| filter_params[r] == "1" ? r : nil }
     @relationships.delete_if{ |r| r.blank? }
     @taxon_framework = TaxonFramework.find_by_id( filter_params[:taxon_framework_id] ) unless filter_params[:taxon_framework_id].blank?    
-    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order('taxa.name').limit( 100 )
+    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
     @taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
     user_id = filter_params[:user_id] || params[:user_id]
     @user = User.find_by_id(user_id) || User.find_by_login(user_id) unless user_id.blank?
@@ -78,7 +78,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
         order( "taxa.rank_level ASC" ).first]
     else
       @taxon_framework_relationship.taxa.new
-      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order('taxa.name').limit( 100 )
+      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
     end
   end
   
@@ -94,7 +94,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
         if taxon = Taxon.where( id: row["id"] ).first
          if !taxon.taxon_framework_relationship_id.nil? && row["unlink"] == "false"
             flash[:error] = "#{ taxon.name } is already represented in a Taxon Framework Relationship"
-            @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order('taxa.name').limit( 100 )
+            @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
             render action: :new
             return
           end
@@ -120,7 +120,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
         redirect_to @taxon_framework_relationship
       end
     else
-      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order('taxa.name').limit( 100 )
+      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
       render action: :new
     end
   end
@@ -132,7 +132,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
           where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
           order( "taxa.rank_level ASC" ).first]
     else
-      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order('taxa.name').limit( 100 )
+      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
     end
   end
 
@@ -154,7 +154,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
                   where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
                   order( "taxa.rank_level ASC" ).first]
             else
-              @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order('taxa.name').limit( 100 )
+              @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
             end
             render action: :edit
             return
@@ -186,7 +186,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
         @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
             where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).order( "taxa.rank_level ASC" ).first]
       else
-        @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order('taxa.name').limit( 100 )
+        @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
       end
       render action: :edit
     end

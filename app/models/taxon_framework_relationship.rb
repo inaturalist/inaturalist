@@ -50,9 +50,9 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
     joins( TAXON_JOINS ).
     where( "t.rank = ?", rank )
   }
-  scope :taxon, lambda{|taxon|
-    joins(TAXON_JOINS).
-    joins(EXTERNAL_JOINS).
+  scope :taxon, lambda{ |taxon|
+    joins( TAXON_JOINS ).
+    joins( EXTERNAL_JOINS ).
     where( "t.id = ? OR t.ancestry LIKE (?) OR t.ancestry LIKE (?) OR et.name = ? OR et.parent_name = ?", taxon.id, "%/#{ taxon.id }", "%/#{ taxon.id }/%", taxon.name, taxon.name)
   }
   

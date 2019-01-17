@@ -16,13 +16,13 @@ class TaxonCuratorsController < ApplicationController
   # end
 
   def new
-    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order('taxa.name').limit( 100 )
+    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
     @taxon_curator = TaxonCurator.new
     respond_with( @taxon_curator )
   end
 
   def edit
-    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order('taxa.name').limit( 100 )
+    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
   end
 
   def create
