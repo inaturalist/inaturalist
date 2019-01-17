@@ -116,7 +116,7 @@ module ElasticModel
       elastic_hash[:aggs] = Hash[options[:aggregate].map{ |k, v|
         # some aggregations are simple like
         #   { aggregate: { "colors.id": 12 } }
-        if v.first[1].is_a?(Fixnum)
+        if v.first[1].is_a?(Integer)
           [ k, { terms: { field: v.first[0], size: v.first[1] } } ]
         else
           # others are more complicated and are passed on verbatim

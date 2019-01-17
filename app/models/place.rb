@@ -981,14 +981,14 @@ class Place < ActiveRecord::Base
     if places.is_a?(Place)
       # single places become arrays
       [ places ]
-    elsif places.is_a?(Fixnum)
+    elsif places.is_a?(Integer)
       # single IDs become an array of instances
       Place.where(id: places)
     elsif places.is_a?(Array) && places.size > 0
       if places.first.is_a?(Place)
         # muliple places need no modification
         places
-      elsif places.first.is_a?(Fixnum)
+      elsif places.first.is_a?(Integer)
         # multiple IDs become an array of instances
         Place.where(id: places)
       end

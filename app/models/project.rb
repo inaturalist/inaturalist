@@ -766,7 +766,7 @@ class Project < ActiveRecord::Base
   def self.slugs_to_ids(slugs)
     slugs = slugs.split(',') if slugs.is_a?(String)
     [slugs].flatten.compact.map do |p|
-      project_id = p if p.is_a? Fixnum
+      project_id = p if p.is_a? Integer
       project_id ||= p.id if p.is_a? Project
       project_id ||= Project.find(p).try(:id) rescue nil
       project_id

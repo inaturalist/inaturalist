@@ -69,7 +69,7 @@ class AdminController < ApplicationController
   private
 
   def kill_postgresql_pid( pid )
-    return unless pid && pid.is_a?( Fixnum )
+    return unless pid && pid.is_a?( Integer )
     ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
   end
 

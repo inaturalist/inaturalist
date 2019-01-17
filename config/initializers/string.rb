@@ -44,7 +44,7 @@ class FalseClass
   end
 end
 
-class Fixnum
+class Integer
   def yesish?
     self == 1
   end

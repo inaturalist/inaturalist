@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.6.0'
 
 gem 'rails', '4.2.11'
 
@@ -46,7 +46,7 @@ gem 'gdata', :git => 'https://github.com/pleary/gdata.git'
 gem 'geocoder'
 gem 'geoplanet'
 gem 'google-api-client', "=0.8.6"
-gem 'georuby', :git => 'https://github.com/kueda/georuby.git'
+gem "georuby"
 gem 'haml'
 gem 'htmlentities'
 gem 'icalendar', :require => ['icalendar', 'icalendar/tzinfo']
@@ -57,7 +57,7 @@ gem 'json'
 gem 'jquery-rails', "~> 4.0"
 gem 'koala'
 gem 'dalli'
-gem "nokogiri", "~> 1.8.5"
+gem "nokogiri", "~> 1.10.0"
 gem "non-stupid-digest-assets"
 gem "omniauth"
 gem "omniauth-oauth2", "1.5.0"
@@ -67,10 +67,9 @@ gem 'omniauth-openid'
 gem "omniauth-google-oauth2", "~> 0.5.2"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
 gem 'omniauth-twitter'
-gem 'objectify-xml', :require => 'objectify_xml'
 gem "paperclip", "~> 6.1.0"
 gem "optimist"
-gem 'pg'
+gem "pg"
 gem 'preferences', :git => 'https://github.com/kueda/preferences.git'
 gem 'rack-google-analytics', :git => 'https://github.com/kueda/rack-google-analytics.git', :branch => 'eval-blocks-per-request'
 gem "rack-mobile-detect"
@@ -78,7 +77,6 @@ gem 'rails-observers'
 gem "rails-html-sanitizer", "~> 1.0.4"
 gem 'rakismet'
 gem 'rest-client', :require => 'rest_client'
-gem 'rinku', :require => 'rails_rinku'
 gem 'riparian', :git => 'https://github.com/inaturalist/riparian.git'
 gem 'savon'   #allow to consume soap services with WSDL
 gem 'sass', '3.7.2'
@@ -93,11 +91,11 @@ gem 'will_paginate'
 gem 'whenever', :require => false
 gem 'ya2yaml'
 gem 'yui-compressor'
-gem 'xmp', "~> 0.2.1", git: 'https://github.com/kueda/xmp.git'
+gem "xmp", :git => 'https://github.com/inaturalist/xmp.git'
 gem 'rubyzip'
 # these need to be loaded after will_paginate
-gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
-gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-rails.git'
+gem 'elasticsearch-model', git: 'https://github.com/elasticsearch/elasticsearch-rails.git', branch: '5.x'
+gem 'elasticsearch-rails', git: 'https://github.com/elasticsearch/elasticsearch-rails.git', branch: '5.x'
 gem 'elasticsearch', '~> 5.0'
 gem 'elasticsearch-api', '~> 5.0'
 
@@ -111,7 +109,11 @@ end
 
 group :test, :development, :prod_dev do
   gem "database_cleaner"
-  gem "machinist"
+
+  # this fork fixes the `warning: constant ::Fixnum is deprecated` warnings
+  # See https://github.com/notahat/machinist/pull/133
+  gem "machinist", git: "https://github.com/narze/machinist", branch: "eaf5a447ff0d59a1fb2c49b91c6e1b2d95d8e4ee"
+
   gem "better_errors"
   gem "byebug"
   gem "binding_of_caller"
