@@ -13,6 +13,8 @@ class TaxonPhoto < ActiveRecord::Base
   validates_associated :photo
   validates_uniqueness_of :photo_id, :scope => [:taxon_id], :message => "has already been added to that taxon"
 
+  attr_accessor :skip_taxon_indexing
+
   def to_s
     "<TaxonPhoto #{id} taxon_id: #{taxon_id} photo_id: #{photo_id}>"
   end
@@ -47,6 +49,7 @@ class TaxonPhoto < ActiveRecord::Base
   end
 
   def index_taxon
+    return if skip_taxon_indexing
     taxon.elastic_index!
     Taxon.delay( priority: INTEGRITY_PRIORITY ).index_taxa( taxon.ancestor_ids )
     true

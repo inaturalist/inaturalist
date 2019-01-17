@@ -965,6 +965,7 @@ class TaxaController < ApplicationController
       taxon_photo = @taxon.taxon_photos.detect{ |tp| tp.photo_id == photo.id }
       taxon_photo ||= TaxonPhoto.new( taxon: @taxon, photo: photo )
       taxon_photo.position = photos.index( photo )
+      taxon_photo.skip_taxon_indexing = true
       taxon_photo
     end
     if @taxon.save
