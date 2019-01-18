@@ -18,14 +18,14 @@ GIT
 
 GIT
   remote: https://github.com/elasticsearch/elasticsearch-rails.git
-  revision: bfdd2243f0de298547b2dc199e9a671cf72ccde6
-  branch: 5.x
+  revision: 64f31b41c073f05eac7d089aeea07c4366b7adca
+  branch: 64f31b41c073f05eac7d089aeea07c4366b7adca
   specs:
-    elasticsearch-model (5.1.0)
+    elasticsearch-model (6.0.0.alpha1)
       activesupport (> 3)
-      elasticsearch (~> 5)
+      elasticsearch (> 1)
       hashie
-    elasticsearch-rails (5.1.0)
+    elasticsearch-rails (6.0.0.alpha1)
 
 GIT
   remote: https://github.com/fnando/i18n-js.git
@@ -293,12 +293,12 @@ GEM
     doorkeeper (5.0.2)
       railties (>= 4.2)
     dynamic_form (1.1.4)
-    elasticsearch (5.0.5)
-      elasticsearch-api (= 5.0.5)
-      elasticsearch-transport (= 5.0.5)
-    elasticsearch-api (5.0.5)
+    elasticsearch (5.0.4)
+      elasticsearch-api (= 5.0.4)
+      elasticsearch-transport (= 5.0.4)
+    elasticsearch-api (5.0.4)
       multi_json
-    elasticsearch-transport (5.0.5)
+    elasticsearch-transport (5.0.4)
       faraday
       multi_json
     erubi (1.8.0)
@@ -672,8 +672,8 @@ DEPENDENCIES
   diffy
   doorkeeper (~> 5.0.0)
   dynamic_form
-  elasticsearch (~> 5.0)
-  elasticsearch-api (~> 5.0)
+  elasticsearch (= 5.0.4)
+  elasticsearch-api (= 5.0.4)
   elasticsearch-model!
   elasticsearch-rails!
   exifr
