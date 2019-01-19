@@ -62,7 +62,7 @@ gem "non-stupid-digest-assets"
 gem "omniauth"
 gem "omniauth-oauth2", "1.5.0"
 gem 'omniauth-facebook', '~> 5.0.0'
-gem 'omniauth-flickr'
+gem 'omniauth-flickr', :git => 'https://github.com/IDolgirev/omniauth-flickr.git', :branch => 'bcd202b0825659cbd984e611f6151f67c4aae591'
 gem 'omniauth-openid'
 gem "omniauth-google-oauth2", "~> 0.5.2"
 gem 'omniauth-soundcloud', git: "https://github.com/ratafire/omniauth-soundcloud.git"
@@ -104,7 +104,7 @@ gem 'rgeo-geojson'
 gem 'activerecord-postgis-adapter', :git => 'https://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do
-  gem 'newrelic_rpm', '~> 5.5.0'
+  gem 'newrelic_rpm', '~> 5.7.0'
 end
 
 group :test, :development, :prod_dev do
