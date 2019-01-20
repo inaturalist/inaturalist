@@ -634,6 +634,7 @@ GEM
     xpath (3.2.0)
       nokogiri (~> 1.8)
     ya2yaml (0.31)
+    yajl-ruby (1.4.1)
     yui-compressor (0.12.0)
 
 PLATFORMS
@@ -748,6 +749,7 @@ DEPENDENCIES
   will_paginate
   xmp!
   ya2yaml
+  yajl-ruby
   yui-compressor
 
 RUBY VERSION
