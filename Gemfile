@@ -69,6 +69,7 @@ gem "omniauth-soundcloud", git: "https://github.com/ratafire/omniauth-soundcloud
 gem "omniauth-twitter"
 gem "paperclip", "~> 6.1.0"
 gem "optimist"
+gem "patron"
 gem "pg"
 gem "preferences", git: "https://github.com/kueda/preferences.git"
 gem "rack-google-analytics", git: "https://github.com/kueda/rack-google-analytics.git", branch: "eval-blocks-per-request"
