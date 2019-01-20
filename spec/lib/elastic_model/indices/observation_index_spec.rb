@@ -258,10 +258,16 @@ describe "Observation Index" do
     end
 
     it "queries all fields by default" do
-      expect( Observation.params_to_elastic_query({ q: "s" }) ).to include(
-        filters: [ { multi_match:
-          { query: "s", operator: "and",
-            fields: [ "taxon.names_*", :tags, :description, :place_guess ] } } ] )
+      eq = Observation.params_to_elastic_query({ q: "s" })
+      multi_match = eq[:filters][0][:multi_match]
+      expect( multi_match[:query] ).to eq( "s" )
+      expect( multi_match[:operator] ).to eq( "and" )
+      expect( multi_match[:fields] ).to include( "taxon.names_sci" )
+      expect( multi_match[:fields] ).to include( "taxon.names_en" )
+      expect( multi_match[:fields] ).to include( "taxon.names_fr" )
+      expect( multi_match[:fields] ).to include( :tags )
+      expect( multi_match[:fields] ).to include( :description )
+      expect( multi_match[:fields] ).to include( :place_guess )
     end
 
     it "filters by param values" do
