@@ -860,7 +860,7 @@ nl:
   check_out_our_blog: Bekijk onze Blog
   check_out_what_the_observation: Bekijk hoe de waarneming die je probeert te identificeren
     er uitziet.
-  check_out_your_life_list: Bekijk je Life List
+  check_out_your_life_list: Bekijk je Lifelist
   check_this_box_if: |-
     Vink dit vakje aan als u een
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'> Creative Commons Attribution-NonCommercial-licentie </a>
@@ -1117,7 +1117,7 @@ nl:
   curated_checklist: Opgevolgde checklist
   curated_count: Opgevolgde telling
   curating: Aan het opvolgen
-  curation: Opvolging
+  curation: Beoordeling
   curator: Curator
   curators_changed_for_x_html: Curatoren voor %{x} gewijzigd
   curators: Curatoren
@@ -1534,7 +1534,7 @@ nl:
   flag_as_non_spammer: Markeer als niet-spammer
   flag_description: Markeer deze content zodat de curators weten dat er iets fout
     mee is.
-  flag_for_curation: Voor opvolging markeren
+  flag_for_curation: Voor Beoordeling markeren
   flag_it!: Markeer!
   flag_marked_as_resolved_html: <span class="meta">Gemarkeerd als</span> <strong>opgelost.</strong>
   flag_reason: '&ldquo;Ik markeer dit %{record} omdat'
@@ -1545,7 +1545,7 @@ nl:
   flagged: gemarkeerd
   flagged_: Gemarkeerd
   flagged_covered_taxa: Markeer covered taxa
-  flagged_for_curation: Gemarkeerd voor opvolging
+  flagged_for_curation: Gemarkeerd voor Beoordeling
   flagged_taxon: Gemarkeerd Taxon
   flagged_thing_explanation: Gebruikers hebben dit %{thing} gemarkeerd omdat
   flagging_desc: |-
@@ -1778,10 +1778,8 @@ nl:
   identified?: geïdentificeerd
   computer_vision_suggestion: Computer Vision Voorstel
   computer_vision_suggestion_desc: |-
-    Computervisie is het proces waarbij computers wordt geleerd om patronen te herkennen
-    in afbeeldingen. We bieden tools die gebruikmaken van computer vision models die zijn getraind in de
-    community's foto's om soorten voor te stellen, zoals de auto-
-    complete en vergelijkende functies. Dit label geeft aan wanneer een persoon een determinatie heeft toegevoegd met behulp van een van deze tools.
+    Computer Vision is het proces waarbij computers wordt geleerd om patronen te herkennen
+    in afbeeldingen. We bieden tools die gebruik maken van computer vision modellen die zijn getraind in de gemeenschaps' foto's. Het model doet een voorstel voor een soortnaam voor een afgebeeelde soort op een foto, net zoals de auto- complete en vergelijkbare functies. Dit label geeft aan wanneer een persoon een determinatie heeft toegevoegd met behulp van één van deze tools.
   identifiers: Soortexpert
   identotron: Identotron
   identotron_for: Identotron voor
@@ -1866,7 +1864,7 @@ nl:
   inappropriate_content: Ongepaste inhoud?
   inat_account_action: '%{site_name} &#58; Account &#58; %{action_name}'
   inat_believes_this_is_a_complete_listing: '%{site_name} vermoedt dat dit een volledige
-    oplijsting is van dit taxon op deze plaats.'
+    lijst is van dit taxon op deze plaats.'
   inat_user_profile: '%{site_name}: Profiel van %{user}'
   inat_will_be_back_on: '%{site_name} zal terug komen op zijn voeten/vleugels/vinnen/tentakels/pseudopodia/schijnvoeten'
   inaturalist_is_an_online_community: '%{site_name} is een online gemeenschap voor
@@ -1885,7 +1883,7 @@ nl:
   insects: insecten
   insect_life_stage: Levensstadium van het insect
   inspired_by_the_flickr_group: Geïnspireerd door de Flickr-groep <a href='http://flickr.com/groups/idplease/'>ID
-    alstublieft</a>, dit is een plaats om waarnemingen te plaatsen van dingen die
+    alstublieft</a>, is dit een plaats om waarnemingen te plaatsen van dingen die
     je niet kent en om mensen te helpen bij het determineren van mysterieuze wezens!
   interactions: Interacties
   internal_server_error: Er is een interne fout opgetreden
@@ -1932,7 +1930,7 @@ nl:
   is_this_place_a_duplicate: Is deze plaats een duplicaat?
   it: Het
   it_can_now_be_used_for_research: Het kan nu worden gebruikt voor onderzoek en getoond
-    worden op andere websites.
+    worden op andere websites
   it_has: Het heeft
   it_instead: daarentegen
   item_flagged_notice_html: "Dit is gemarkeerd als spam en is niet langer\npubliekelijk
@@ -2690,7 +2688,7 @@ nl:
   observations_by_you_on_date: Uw waarnemingen op %{date}
   observation_calendar_for: Waarnemingen kalender van %{user} in %{year}
   observation_contest: observatiewedstrijd
-  observation_curation: Waarneming Curation
+  observation_curation: Waarneming Beoordelen
   observation_date: Datum
   observation_date?: Datum?
   observation_field: Waarnemingsveld
@@ -2755,7 +2753,7 @@ nl:
     rond de grens van de locatie, wat kan resulteren in een aantal onnauwkeurige resultaten
     voor locaties die niet op rechthoeken lijken. Dit komt door een beperking van
     onze database die we proberen op te lossen.
-  observations_needing_curation: Waarnemingen die opvolging vereisen
+  observations_needing_curation: Waarnemingen die Beoordeling vereisen
   observations_obscured: Waarnemingen (versluierd)
   observations_observed_this_month: Waarnemingen <em>waargenomen</em> deze maand,
     maar niet in deze maand toegevoegd. Ga naar buiten!
@@ -2952,8 +2950,8 @@ nl:
     one: ander dier
     other: andere dieren
   other_lexicons: Andere Lexicons
-  other_listings_of_this_taxon_for_this_place: Andere oplijstingen van dit taxon voor
-    deze plaats
+  other_listings_of_this_taxon_for_this_place: Andere lijsten met dit taxon voor deze
+    plaats
   other_names: Andere namen
   other_species_commonly_misidentified_as_this_species: Andere soorten die vaak verkeerd
     worden geïdentificeerd als deze soort
@@ -3147,8 +3145,9 @@ nl:
   place_subscription: plaatsbeschrijving
   place_too_big_for_check_list: Deze plaats is te groot voor een checklist. Het berekenen
     van checklist-statistieken is best duur, dus we staan ze niet toe voor zeer grote
-    plaatsen (groter dan Texas), tenzij ze zijn toegevoegd door de sitebeheerders.
-    Je kunt deze plaats echter nog steeds gebruiken voor projectgrenzen en waarnemingsqueries.
+    plaatsen (gebieden groter dan twee keer Duitsland), tenzij ze zijn toegevoegd
+    door de sitebeheerders. Je kunt deze plaats echter nog steeds gebruiken voor projectgrenzen
+    en waarnemingsqueries.
   place_type_name: Plaats type naam
   place_updated: Plaats bijgewerkt!
   placement: plaatsing
@@ -4384,9 +4383,7 @@ nl:
     worden aan %{link}
   the_following_photos_have_been_tagged: 'Volgende foto''s werden getagd:'
   the_identotron_is_a_tool_to: |-
-    De Identotron is een hulpmiddel om u te helpen bij het determineren van waarnemingen op basis van
-    %{place}'s controlelijstgegevens. Gegeven een taxon op een hoger niveau en een plaats (bijv.
-    zoogdieren van India), zoekt %{place} naar controlelijsten die overeenkomen met dit
+    De Identotron is een hulpmiddel om u te helpen bij het determineren van waarnemingen op basis van %{place}'s checklist gegevens. Gegeven een taxon op een hoger niveau en een plaats (bijv. zoogdieren van Belgie), zoekt %{place} naar controlelijsten die overeenkomen met dit
     taxon op die plaats, een beetje als een dynamische veldgids voor de gehele
     planeet. De meeste %{place} checklists zijn 'onderhanden werk', maar als er een is
     die alomvattend is, d.w.z. het bevat <em>alle</em> vertegenwoordigers van
@@ -4408,8 +4405,8 @@ nl:
     soorten werden niet in de %{site_name}-database teruggevonden.
   the_title_of_the_wikipedia_article_we_use: |-
     De titel van het Wikipedia-artikel dat we gebruiken voor de beschrijving. Als de
-    Wikipedia-URL <code>http://en.wikipedia.org/wiki/Bird</code> is dan is dit
-    de titel: <code>Bird</code>. Indien het blanco is moet de wetenschappelijke naam van
+    Wikipedia-URL <code>https://nl.wikipedia.org/wiki/Vogels</code> is dan is dit
+    de titel: <code>Vogels</code>. Indien het blanco is moet de wetenschappelijke naam van
     het taxon worden gebruikt (dat werkt meestal).
   the_user_x_has_been_suspended: Gebruiker %{user} werd geschorst
   the_user_x_has_been_unsuspended: De schorsing van gebruiker %{user} werd opgeheven
@@ -4427,9 +4424,9 @@ nl:
   there_is_no_wikipedia_page_matching: Er is geen overeenkomstige Wikipedia-pagina
   there_isnt_wiki_article: Er is geen Wikipedia-artikel of omleiding getiteld '<i>%{taxon}</i>'.
     Misschien zou je willen
-  there_isnt_a_wikipedia_article_titled_x_html: Er is geen Wikipedia-artikel of omleiding
-    met de titel '%{x}'. Misschien zou je graag <a href='http://nl.wikipedia.org/wiki/%{x}'>
-    er één aan willen maken</a>?
+  there_isnt_a_wikipedia_article_titled_x_html: Er is geen Wikipedia-artikel of doorverwijspagina
+    met de titel '%{x}'. Misschien zou je er graag <a href='http://nl.wikipedia.org/wiki/%{x}'>één
+    aan willen maken</a>?
   there_merge_problems_with_the_merge: 'Er zijn samenvoegproblemen bij het samenvoegen:
     %{merged_errors}'
   there_was_a_problem_saving_your_identification: 'Er was een probleem bij het opslaan
@@ -4457,13 +4454,11 @@ nl:
   theres_something_wrong_with_taxon_framework_relationship: Er is hier iets mis. We
     kunnen de relatie tussen interne en externe taxa niet bepalen
   these_are_items_people_on: |-
-    Dit zijn items die mensen op de site hebben gemarkeerd voor het beheer. Spam
-    reacties moeten worden verwijderd en gebruikers die spam toevoegen, moeten worden opgeschort (ga
-    naar hun profielpagina en klik op 'Gebruiker opschorten' rechtsonder in om te voorkomen
+    Dit zijn items die mensen op de site hebben gemarkeerd voor een beoordeling. Spam
+    reacties moeten worden verwijderd en gebruikers die spam toevoegen, moeten worden opgeschort (ga naar hun profielpagina en klik op 'Gebruiker opschorten' rechtsonder in om te voorkomen
     dat ze inloggen). Andere gemarkeerde items mogen alleen worden verwijderd
     als ze duidelijk haatdragend, illegaal, etc. zijn. Roekeloos, beledigend taalgebruik,
-    etc. moet worden behandeld met een beleefde opmerking. Herhaaldelijke overtreders zouden moeten zijn
-    gerapporteerd aan een websitebeheerder of %{email}
+    etc. moet worden behandeld met een beleefde opmerking. Herhaaldelijke overtreders zouden moeten zijn gerapporteerd aan een websitebeheerder of %{email}
   these_are_taxa_that: |-
     Dit zijn taxa die %{site} niet automatisch aan onze taxonomische boom kan toevoegen om de één of andere reden. Je kunt ze aan de boom toevoegen door het taxon te bewerken
     en het kiezen van een bovenliggend record. De ouder van Homo sapiens zou bijvoorbeeld het geslacht Homo zijn. Misschien wilt u ook synoniemen taxa controleren
@@ -4477,7 +4472,7 @@ nl:
   they_already_have_iNat_accounts: '... ze hebben reeds %{site_name}-accounts'
   they_have_been_invited: '... zij werden reeds uitgenodigd'
   third_person_possessive_singular: '%{noun} van %{object_phrase}'
-  this: Dit
+  this: deze
   this_bioblitz_beings_in: Deze bioblitz start in
   this_id_was_added_due_to_a: Dit ID werd toegevoegd wegens een
   this_is_a: Dit is een
@@ -5325,8 +5320,8 @@ nl:
     guides:
       index:
         funding_html: |-
-          Financiering voor de ontwikkeling van gidsen werd verstrekt door
-          <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+          Financiering voor de ontwikkeling van de Gidsen werd verstrekt door
+          <a href="http://eol.org"><img src="https://eol.org/assets/large_logo-61d6036612463aa36f3a2561bf2e258d133eb693a737a7169af0efb2b31d5454.png"></a>
         welcome_message_html: |-
           Gidsen leren je over de biodiversiteit van de gehele wereld.
           Of je nu de Serengeti verkent of alleen je plaatselijke park (wat de Serengeti zou kunnen zijn), Gidsen kunnen je helpen een idee te geven van de verbluffende diversiteit van het leven van onze planeet.
@@ -5393,13 +5388,9 @@ nl:
             kunt meerdere regels per taxon toevoegen. U kunt ook meerdere
             waarden per cel toevoegen, gescheiden door het pijp-teken.
           </p>
-        licensing_explanation: "Als je een licentie verleent aan andere mensen geeft
-          dat hen het recht om je informatie te kopiëren en te \nwijzigen zonder dat
-          ze je om toestemming hoeven te vragen. Het maakt het veel gemakkelijker
-          om\nje werk te delen en als je inhoud van derden opneemt van andere\nbronnen
-          die Creative Commons ShareAlike-licenties gebruiken (zoals\nWikipedia),
-          dan ben je wettelijk verplicht om een vergelijkbare licentie te gebruiken.
-          Hier is\neen overzicht van alle Creative Commons-licenties en wat ze betekenen:"
+        licensing_explanation: |-
+          Als je een licentie verleent aan andere mensen geeft dat hen het recht om je informatie te kopiëren en te wijzigen zonder dat ze je om toestemming hoeven te vragen. Het maakt het veel gemakkelijker om je werk te delen en als je inhoud van derden opneemt van andere
+          bronnen die Creative Commons ShareAlike-licenties gebruiken (zoals Wikipedia), dan ben je wettelijk verplicht om een vergelijkbare licentie te gebruiken. Hier is een overzicht van alle Creative Commons-licenties en wat ze betekenen:
         paste_note_html: |-
           Plak maximaal 500 soortnamen, één per regel. %{site_name} zal proberen om lokale namen te koppelen aan soortenconcepten, maar om dubbelzinnigheid te vermijden is het beter om wetenschappelijke namen te gebruiken. Als je wilt geef ze dan allebei op, scheid de wetenschappelijke naam van de algemene naam
           met een komma, bijvoorbeeld <code>Homo sapiens, Human</code>.
@@ -5512,17 +5503,19 @@ nl:
           waarvan je weet dat die wat taxonomische kennis hebben"
         what_is_considered_inappropriate_content?: Wat wordt beschouwd als ongepaste
           inhoud?
-        you_know_it_when_you_see_it_html: |-
-          Je <a href="http://en.wikipedia.org/wiki/Jacobellis_v._Ohio"> weet het wanneer je het ziet </a>,
-          of niet? Dingen die in strijd zijn met sectie 2 van onze <a href="/terms.html">Servicevoorwaarden</a>
-          zijn absoluut ongepast en waard om te markeren of anderszins te melden
-          aan de admins. Mildere vormen van onbeschoftheid zijn ongelukkig, maar
-          waarschijnlijk niet iets dat we zullen verwijderen. Waarnemingen van huisdieren, gevangenen
-          dieren, mensen en andere organismen die de meeste natuuronderzoekers misschien niet
-          interessant vinden zijn ok (ze leven tenslotte nog). Waarnemingen van dingen
-          die geen organismen zijn vormen een grijs gebied. Dingen die duidelijk niets met de natuur te maken hebben, zoals wat iemand voor de lunch had, loont het de moeite om te
-          markeren en kunnen verwijderd worden, maar als er geen bewijs is van vervuiling of verstoring
-          kan interessant zijn en zal het waarschijnlijk niet worden verwijderd.
+        you_know_it_when_you_see_it_html: "Je <a href=\"http://en.wikipedia.org/wiki/Jacobellis_v._Ohio\">gaat
+          het pas zien als je het doorhebt</a>,of niet? \nDingen die in strijd zijn
+          met sectie 2 van onze <a href=\"/terms.html\">Servicevoorwaarden</a>\nzijn
+          absoluut ongepast en waard om te markeren of anderszins te melden\naan de
+          admins. Mildere vormen van onbeschoftheid zijn ongelukkig, maar\nwaarschijnlijk
+          niet iets dat we zullen verwijderen. Waarnemingen van huisdieren, gevangenen\ndieren,
+          mensen en andere organismen die de meeste natuuronderzoekers misschien niet\ninteressant
+          vinden zijn OK (ze leven tenslotte nog). Waarnemingen van dingen\ndie geen
+          organismen zijn vormen een grijs gebied. Voorwerpen die duidelijk niets
+          met de natuur te maken hebben, zoals de lunch van iemand, loont het de moeite
+          om te\nmarkeren en kunnen verwijderd worden, maar als er geen bewijs is
+          van vervuiling of verstoring kan interessant zijn en zal het waarschijnlijk
+          niet worden verwijderd."
         what_is_an_observation?: Wat is een waarneming?
         an_observation_is_the_what_where_and_when_html: |-
           Een waarneming is het wat, waar en wanneer van een bevinding in de natuur.
@@ -5974,8 +5967,8 @@ nl:
       kml_field_desc: "KML van de gebiedsgrens. Je kunt er één maken met behulp van
         Google Maps, Google\nEarth of met de meeste GIS-applicaties. Moet ten minste
         één polygoon hebben van \nminder dan 1 MB (5 MB voor website-curatoren) en
-        het gebied mag maximaal de oppervlakte hebben als bijv. de staat Texas (VS)
-        of iets groter dan de staat Oekraïne (=grootste Europese land)"
+        het gebied mag maximaal de oppervlakte hebben als bijv. de staat Texas, dat
+        is ongeveer twee keer Duitsland."
       edit:
         complex_boundary_note_html: |-
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt echter
@@ -6423,30 +6416,21 @@ nl:
           dan de coördinaten ten onrechte vervaagd worden voor waaremingen van die soorten.
         complete_desc_html: |-
           Een "compleet" taxon bevat <em>alle</em> bekende afstammelingstaxa bij een
-          gespecificeerde rangorde die voldoet aan de taxonomiebeleid van iNaturalist ongeacht of deze zijn waargenomen. Alleen sitebeheerders kunnen op dit moment taxa invullen.
+          gespecificeerde rangorde die voldoet aan de taxonomiebeoordelingsbeleid van iNaturalist ongeacht of deze zijn waargenomen. Alleen sitebeheerders kunnen op dit moment taxa invullen.
         complete_rank_desc_html: Rang waarop dit taxon voltooid is, bijv. als deze
           familie al zijn geslachten bevat, maar niet alle soorten, zou dit worden
           ingesteld op 'genus'. Standaard is de soort.
       show:
-        about_names_desc: "<P>\n De meeste categorieën organismen hebben \"lokale
-          namen\". Deze namen zijn meestal herkenbaar, gemakkelijk uit te spreken,
-          en stabiel in de tijd, maar veel organismen hebben verschillende\n  namen
-          op verschillende plaatsen, zelfs in dezelfde taal, die kunnen maken\n  dat
-          het moeilijk is om zonder verwarring over deze organismen te praten.\n  Wetenschappers
-          pakken dit probleem aan door een enkele \"wetenschappelijke naam\" te gebruiken\n  voor
-          elke categorie organismen die voldoet aan de regels van\n  <a href=\"https://en.wikipedia.org/wiki/Binomial_nomenclature\">biologische
-          nomenclatuur</a>,\n  maar deze namen zijn meestal gebaseerd op het Latijn,
-          een taal die niemand kent en \n  spreekt, dus ze zijn niet zo gemakkelijk
-          te onthouden als lokale namen voor veel\n  mensen. Wetenschappelijke namen
-          kunnen ook de taxonomie van een organisme weerspiegelen, zodat ze veranderen
-          wanneer wetenschappers meer accurate theorieën ontwikkelen over de evolutionaire
-          relaties tussen verschillende organismen, opnieuw hun nut verminderen in communicatie,
-          zelfs tussen mensen die wetenschappelijke namen kennen.\n</P>\n<P>\n  Het
-          oude gezegde vat het samen: \"lokale namen veranderen van plaats naar plaats\n  en
-          wetenschappelijke namen veranderen van tijd tot tijd. \"\n</P>\n<P>\n  We
-          proberen deze tekortkomingen aan te pakken door ze beide te laten zien\n  en
-          wetenschappelijke namen waar mogelijk en het kiezen van lokale namen\n  op
-          basis van de taal en geografische voorkeuren van de gebruiker.\n</P>"
+        about_names_desc: |-
+          <p>
+           De meeste categorieën organismen hebben "lokale namen". Deze namen zijn meestal herkenbaar, gemakkelijk uit te spreken en stabiel in de tijd. Maar veel organismen hebben verschillende namen op verschillende plaatsen, zelfs in dezelfde taal, zodat het moeilijk is om zonder verwarring over deze organismen te praten. Wetenschappers pakken dit probleem aan door één "wetenschappelijke naam" te gebruiken voor elk organisme dat voldoet aan de regels van <a href="https://nl.wikipedia.org/wiki/Binomiale_nomenclatuur">Binomiale nomenclatuur</a>, maar deze namen zijn meestal gebaseerd op het Latijn, een taal die niemand kent en spreekt, dus ze zijn niet zo gemakkelijk te onthouden als lokale namen voor veel mensen. Wetenschappelijke namen kunnen ook de taxonomie van een organisme weerspiegelen, zodat ze veranderen wanneer wetenschappers meer accurate theorieën ontwikkelen over de evolutionaire relaties tussen verschillende organismen, zodat opnieuw hun nut wordt verminderd in de communicatie, zelfs tussen mensen die wetenschappelijke namen kennen.
+          </p>
+          <p>
+            Het oude gezegde vat het samen: "lokale namen veranderen van plaats naar plaats en wetenschappelijke namen veranderen van tijd tot tijd."
+          </p>
+          <p>
+            We proberen deze tekortkomingen aan te pakken door ze beide te laten zien waar mogelijk. Lokale namen worden gekozen op basis van de taal en geografische voorkeuren van de gebruiker.
+          </p>
         about_conservation_status_desc: De natuurbeschermingstatus vat het risico
           van uitsterven samen voor een groep organismen.
         about_establishment_desc: |-
@@ -6558,20 +6542,23 @@ nl:
     taxon_names:
       form:
         new_name_guidelines_html: "<ul>\n  <li><p>Probeer namen toe te voegen die
-          elders in gebruikt zijn. Maak geen nieuwe namen.</p></li>\n  <li><p>Voeg
-          geen dubbele namen toe, bijvoorbeeld noem niet veel haviken \"havik\"</p></li>\n  <li><p>Probeer
-          taxa op een hoger niveau te gebruiken met namen die alle afstammelingen
-          bevatten, zoals 'reigers en bondgenoten' of 'heidefamilies' </p></li>\n  <li>\n    <p>\n      Voeg
-          geen informatie toe die niet de naam is, bijvoorbeeld paranthetical\n      informatie
-          over hoe u denkt dat de naam moet worden gebruikt\n    </p>\n  </li>\n  <li>\n    <p>\n      Nieuwe
+          elders in gebruik zijn. Maak geen nieuwe namen.</p> \n  </li>\n  <li><p>Voeg
+          geen dubbele namen toe, bijv. noem niet meer dan één havik \"havik\"</p>
+          \n  </li>\n  <li><p>Probeer bij taxa op een hoger niveau namen te gebruiken
+          die alle afstammelingen \n      bevatten, zoals 'Rallen, koeten en waterhoentjes'
+          bij Rallidae, 'Fregatvogels, genten, aalscholvers en slangenhalsvogels'
+          bij Suliformes, 'Schoenlappers, parelmoervlinders en zandoogjes' bij Nymphalidae
+          of 'Kleine pages, vuurvlinders en blauwtjes' bij Lycaenidae</p>\n  </li>\n  <li>\n    <p>Voeg
+          geen informatie toe die geen naam is, bijvoorbeeld paranthetical\n      informatie
+          over hoe de naam gebruikt zou moet worden \n    </p>\n  </li>\n  <li>\n    <p>Nieuwe
           lexicons moeten in het Engels zijn. Voeg geen vertalingen toe van \n      taalnamen
-          zoals \"Frans, Français\" omdat dat dit \n      het moeilijk of onmogelijk
-          voor ons zal maken om gelokaliseerde namen voor mensen te tonen\n      die
-          de site in verschillende talen gebruiken.\n    </p>\n  </li>\n  <li>\n    <p>\n      Algemene
+          zoals \"Dutch, Nederlands\" omdat dat dit het moeilijk of onmogelijk voor
+          ons zal maken om gelokaliseerde namen voor mensen te tonen die de site in
+          verschillende talen gebruiken.\n    </p>\n  </li>\n  <li>\n    <p>Lokale
           namen die zijn gekoppeld aan vertaalde talen verschijnen\n      als de standaard
-          algemene naam voor die taal (met behoud van het\n      effect van plaatsvoorkeuren,
+          lokale naam voor die taal (met behoud van het\n      effect van plaatsvoorkeuren,
           naamvolgorde, etc.).\n      <a class=\"readmore\" href=\"/pages/translate\">Meer
-          informatie over vertaling</a>\n    </p>\n  </li>\n</ul>"
+          informatie over het vertalen voor iNaturalist</a>\n    </p>\n  </li>\n</ul>"
         places_help_html: |-
           Voeg een naam toe aan een plaats om deze prioriteit te geven aan sites en gebruikers van
           die plaats. Als er meerdere namen per plaats zijn, kunt u <a href="%{url}">hier</a> prioriteiten stellen aan ze. Geef <strong>geen</ strong> namen op voor ELKE plaats waar de naam wordt gebruikt, alleen voor plaatsen die conflicteren met andere plaatsen.
@@ -6646,7 +6633,7 @@ nl:
           zonder uw toestemming te vragen als ze zich houden aan de voorwaarden van de
           licentie. %{site_name} gebruikt uw door Creative Commons gelicentieerde inhoud om te delen
           met gegevenspartners zoals de <a href="http://www.gbif.org/">Global
-          Biodiversity Information Facility</a> (GBIF), een internationale,
+          Biodiversity Information Facility</a>(GBIF), een internationale,
           intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
         muting_desc_html: |-
           <p>

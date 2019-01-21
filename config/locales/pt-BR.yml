@@ -5944,6 +5944,14 @@ pt-BR:
         we_have_been_housekeeping: Temos feito um pouco de limpeza e encontrado algumas
           fotos conectadas às suas observações que não são mais acessíveis a partir
           de sua fonte original. As fotos estão hospedadas em %{providers}.
+        you_can_attempt_repair: Você pode tentar reparar as fotos visitando a página
+          da foto e marcando o link "%{repair_link_text}". Se você souber que a foto
+          não existe mais, poderá excluí-la.
+        please_address: Por favor, abordar estas questões <b>nos próximos 30 dias</b>.
+          Após 30 dias, começaremos a excluir fotos que não funcionam no iNaturalist.
+          Todas as suas observações permanecerão. Eles serão reavaliados depois que
+          as fotos forem excluídas, e é possível que algumas observações das notas
+          da pesquisa se tornem informais se não tiverem mais fotos.
         we_included_links: Incluímos links para as fotos afetadas abaixo.
     photos:
       inviter:
@@ -6685,6 +6693,15 @@ pt-BR:
           para adicionar outro.
       recent:
         about_recent_users: Sobre
+        recent_users_desc_html: |-
+          <p>
+            Queremos receber novos usuários, mas também queremos combater
+             spammers Espero que esta ferramenta ajude com ambos. Nós somos
+             automaticamente sinalizando muitos usuários como spammers usando <a
+            href="https://akismet.com/">Akismet</a>, mas Akismet não é perfeito
+            então, se você quiser colocar em alguns minutos marcando novas contas como
+             spammers ou não spammers, ajudaria.
+          </p>
       show:
         take_a_chance_to_review_html: Quando puder revise <a href="%{link}">nossas
           orientações</a>.
