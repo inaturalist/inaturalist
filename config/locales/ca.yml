@@ -612,6 +612,7 @@ ca:
   authorize_permissions_from_provider: Autoritza permisos de %{provider}
   automatic_descriptions_have_been_disabled: S'han inhabilitat les descripcions automàtiques
     per a aquest tàxon.
+  automatic_short: Automàtic
   automatically_add_to_project: Afegeix al projecte automàticament
   automatically_add_observations_to_this_project: Afegeix automàticament observacions
     a aquest projecte
@@ -627,6 +628,7 @@ ca:
   back_to_calendar: Torna al calendari de %{user}
   back_to_editing_observation: Torna a modificar l'observació
   back_to_friends: Torneu a amics
+  back_to_flags_html: '&laquo: Tornar a les marques'
   back_to_help: Torna a l'Ajuda
   back_to_import: Torna a Importar
   back_to_lists: Torna a les llistes de %{name}
@@ -1192,6 +1194,7 @@ ca:
   default_sound_license: Llicències del so predeterminades
   defaults_to_your_name_or_username: Per defecte al vostre nom o nom d'usuari
   defines_a_taxon_framework_for: Definiu un taxó marc per a %{taxon_name}
+  definitions: Definicions
   delete: Elimina
   delete_all: Elimineu tot
   delete_conversation: Elimineu conversa
@@ -1550,9 +1553,8 @@ ca:
   flagger: Marcador
   flags: Marques
   flags_with_count: Etiquetes (%{count})
-  flags_explanation: Els usuaris de %{site_name} marquen coses quan troben alguna
-    cosa que no és correcte. Aquí hi ha alguns temes que no han estat encara resolts
-    pels supervisors.
+  flags_explanation: Els usuaris de %{site_name} marquen coses que necessiten l'atenció
+    dels supervisors o els administradors del lloc.
   flags_for: Marques per a
   flags_on_users_content: Marca el contingut de %{user}
   flickr_account_information: Informació del vostre compte de Flickr
@@ -1758,6 +1760,7 @@ ca:
   ids_by_taxon: Ids. per tàxon
   identify: Identificar
   identify_observations: Identifiqueu observacions
+  identify_observations_by_these_users: Identificar Observacions d'aquests Usuaris
   identify_title: Identificar
   identification: identificació
   identification_by_user: Identificació de %{user}
@@ -1770,6 +1773,13 @@ ca:
   identifications: Identificacions
   identifications_by: Identificacions de %{user}
   identified?: identificat
+  computer_vision_suggestion: Suggeriment per Reconeixement Visual Artificial
+  computer_vision_suggestion_desc: El Reconeixement Visual Artificial és el procés
+    pel qual ordinadors ensinistrats per a reconèixer patrons a les imatges. Proporcionem
+    eines que utilitzen models de visió artificial obtinguts a partir d'imatges de
+    la comunitat d'usuaris per oferir suggeriments d'identificació com l'auto-completat
+    i la comparació de característiques. Aquesta etiqueta indica que una persona ha
+    afegit una identificació emprant una d'aquestes eines.
   identifiers: Identificadors
   identotron: Identotron
   identotron_for: Identotron per a
@@ -2188,6 +2198,7 @@ ca:
     gl: Gallec
     id: Indonesi
     it: Italià
+    iw: Hebreu
     ja: Japonès
     ko: Coreà
     lb: Luxemburguès
@@ -2198,6 +2209,7 @@ ca:
     pt-PT: Portuguès (Portugal)
     ru: Rus
     sq: Albanès
+    sv: Suec
     zh-CN: Xinès (simplificat)
     zh-TW: Xinès (tradicional)
   locality_notes: Notes locals
@@ -2764,6 +2776,7 @@ ca:
     si les condicions anteriors no es compleixen o
   observations_with_this_field: Observacions amb aquest camp
   observations_with_this_field_and_value: Observacions amb aquest camp i valor
+  observations_without_media: Observacions sense Suport gràfic
   observationcounts_refreshed: Nombre actualitzat d'observacions
   observed: Observat el
   observed_by: Observat per
@@ -3475,6 +3488,7 @@ ca:
     reals només les podeu veure vosaltres i els supervisors dels projectes als que
     hi afegiu l'observació. Les observacions amb coordenades privades encara es poden
     utilitzar per verificar les llistes de comprovació del lloc.
+  probably_spam: Spam Probable
   proceed: Procedir
   processing: Processant
   processing3p: Processant...
@@ -3620,6 +3634,7 @@ ca:
   real_time_stats: Estadístiques en temps real
   real_time_discussions: Discussions en temps real
   reason: Raó
+  reason_label: 'Motiu:'
   reason_you_are_flagging_this_item: Raó per la qual esteu comunicant aquest contingut.
   recaptcha_verification_failed: La verificació reCaptcha ha fallat
   receive_email_notifications_when_people_leave_you: Rebeu una notificació per correu
@@ -3718,6 +3733,7 @@ ca:
   removed_project_user: Usuari eliminat del projecte
   removing: Eliminant...
   reorder_by_taxonomy: Reordenar per taxonomia
+  repair_broken_urls: Repareu URLs trencades
   repair_doesnt_work_for_that_kind_of_photo: La reparació no funciona per a aquest
     tipus de foto.
   repair_external_photos: Reparar Fotos Externes
@@ -3751,6 +3767,7 @@ ca:
   resolve_this_flag: Resol aquesta marca
   resolved: Resolt
   resolved_by: Resolt per
+  resolved_by_user_on_date_html: Resolt per %{user} el %{date}
   resolver_said_x_html: <span class="meta">"%{resolver}" va dir:</span> "%{x}"
   restore: Restaura
   restoring: Restaurant...
@@ -3954,6 +3971,9 @@ ca:
   some_observations_failed_to_save: Algunes observacions no s'han pogut desar
   some_of_those_photos_couldnt_be_saved: 'Algunes fotos no s’han pogut desar: %{error}'
   some_other_reason: Una altra raó que podeu explicar després.
+  duplicate_observation_flag_warning: Per observacions duplicades, si us plau, contacteu
+    amb l'observador per resoldre-les en comptes d'afegir una marca, perquè els supervisors
+    del lloc no poden retirar les observacions.
   some_people: Algunes persones
   some_people_that: Algunes persones que
   some_rights_reserved: alguns drets reservats
@@ -4321,6 +4341,7 @@ ca:
   terrain: terreny
   text: Text
   text_: text
+  thanks!: Gràcies"
   thanks_for_signing_up: Gràcies per registrar-vos!
   thanks_for_using: Gràcies per utilitzar
   thanks_from_all_of_us_here_at: Gràcies de tots els que estem darrere de
@@ -4726,6 +4747,8 @@ ca:
   user_commented_on: '%{user} ha comentat el teu %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} no creu que sigui %{taxon}'
   user_faved_a_noun_by_owner: '%{user} preferit %{noun} per %{owner}'
+  user_flagged_as_a_spammer_html: '%{user} marcat com spammer'
+  user_flagged_as_a_non_spammer_html: '%{user} marca com a no spammer'
   user_follows: '%{user} segueix'
   user_has_opted_out_of_community_id: L'usuari ha refusat la identificació de la Comunitat
   user_has_opted_out_of_community_ids: '%{user} ha optat per mantenir el control sobre
@@ -4823,6 +4846,7 @@ ca:
   view_observations: Veure observacions
   view_observation_flags: Veure marques de l'observació
   view_observations_by_everyone: Veure observacions de tothom
+  view_observations_by_these_users: Veure Observacions d'aquests Usuaris
   view_observations_of_this_taxon_by: Veure observacions d'aquest tàxon de
   view_observations_raquo: Mostra observacions »
   view_on: Mostra a
@@ -5254,6 +5278,7 @@ ca:
     ‘Segueix a [nom]’ a l'encapçalament quan vegeu les seves observacions o el seu
     perfil.
   verifiable: Verificable
+  verifiable_observations: Observacions verificables
   views:
     views: Vistes
     announcements:
@@ -5297,6 +5322,11 @@ ca:
           iNaturalist és una iniciativa conjunta entre la California Academy of Sciences y la National Geographic Society. Totes les donations es reben a la California Academy of Sciences, organització 501(c)(3) establerta ala Estats Units de Nord-Amèrica, beneficiària d'una exempció de taxes.
         </p>
       post_donate_social_media_text: Jo ajudo iNaturalist perquè...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: Si us plau, retireu les marques  per
+          <code>spam</code> i <code>d'incompliment de copyright</code> únicament si
+          els contingut no és spam o no hi ha cap incompliment del copyright, respectivament.
     guides:
       index:
         funding_html: El finançament per al desenvolupament de les Guies ha estat
@@ -5878,6 +5908,8 @@ ca:
         message: |-
           Heu estat inactiu a %{site_name} per molt de temps, així que hem suspès les vostres subscripcions. Per continuar rebent actualitzacions sobre l'activitat del lloc, si us plau
           <a href="%{login_url}">inicieu la sessió al vostre compte</a> de nou.
+      photos_missing:
+        subject: Algunes fotos s'han de reparar
     photos:
       inviter:
         automatically_add_to_project: Afegeix automàticament al projecte
@@ -6420,6 +6452,16 @@ ca:
         scientific_name_first_desc: Mostra els noms científics abans dels vernàculs.
         youve_used_all_of_your_blocks: Heu utilitzat tots els vostres bloquejos. Elimineu
           un bloqueix per afegir un altre.
+      recent:
+        about_recent_users: Quant a
+        definitions_html: <dl> <dt>Spam Probable</dt> <dd> L'usuari probablement sigui
+          un spammer, el que significa que no té cap observació o identificació però
+          sí que té una descripció al perfil. </dd> <dt>Spam Automàtic</dt> <dd> Spammer
+          que ha estat identificats pel sistema com Spammer, de forma automàtica.
+          </dd> <dt>Spam Manual</dt> <dd> Spammer que ha estat considerat així per
+          un supervisor del lloc. </dd> <dt>Falsos Positius</dt> <dd> Usuaris que
+          van ser marcats com spammers però resolts pels supervisors del lloc perquè
+          no eren realment spammers. </dd> </dl>
       show:
         take_a_chance_to_review_html: Preneu un moment per revisar <a href="%{link}">les
           nostres directrius</a>.

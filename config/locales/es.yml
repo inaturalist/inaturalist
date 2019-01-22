@@ -640,6 +640,7 @@ es:
   authorize_permissions_from_provider: Autoriza permisos de %{provider}
   automatic_descriptions_have_been_disabled: Se han deshabilitado las descripciones
     automáticas para este taxón.
+  automatic_short: Autom.
   automatically_add_to_project: Añade al proyecto automáticamente
   automatically_add_observations_to_this_project: Añade automáticamente observaciones
     a este proyecto
@@ -656,6 +657,7 @@ es:
   back_to_calendar: Regresa al calendario de %{user}
   back_to_editing_observation: Regresa a editar la observación
   back_to_friends: Regresa a amigos
+  back_to_flags_html: '&laquo; Regresa a las marcas'
   back_to_help: Regresa a Ayuda
   back_to_import: Regresa a Importar
   back_to_lists: Regresa a las listas de %{name}
@@ -1216,6 +1218,7 @@ es:
   default_sound_license: Licencia predeterminada de sonido
   defaults_to_your_name_or_username: Por predeterminación tu nombre o nombre de usuario
   defines_a_taxon_framework_for: Define un marco de taxon para %{taxon_name}
+  definitions: Definiciones
   delete: Elimina
   delete_all: Elimina todo
   delete_conversation: Elimina conversación
@@ -1569,12 +1572,14 @@ es:
   flagged_for_curation: Advertencia para curación
   flagged_taxon: Taxón marcado
   flagged_thing_explanation: Los usuarios han marcado esta %{thing} porque
+  flagging_desc: "Agregar marcas llama la atención de curadores voluntarios del sitio.\nPor
+    favor no marques problemas que se pueden resolver con identificaciones, la \nValoración
+    de la calidad de los datos, o contactándo a la persona quién creó el contenido."
   flagger: Marcador
   flags: Marcas
   flags_with_count: Advertencias (%{count})
-  flags_explanation: Los usuarios de %{site_name} marcan cosas cuando encuentran algo
-    que no está bien. Aquí hay algunos problemas que los curadores no han resuelto
-    todavía.
+  flags_explanation: Los usuarios de %{site_name} marcan asuntos que requieren la
+    atención de los curadores o administradores del sitio.
   flags_for: Marcas para
   flags_on_users_content: Marcas en el contenido de %{user}
   flickr_account_information: Información de tu cuenta de Flickr
@@ -1780,6 +1785,7 @@ es:
   ids_by_taxon: Identificación por taxón
   identify: Identifica
   identify_observations: Identificar observaciones
+  identify_observations_by_these_users: Identificar observaciones de estos usuarios
   identify_title: Identificar
   identification: identificación
   identification_by_user: Identificación por %{user}
@@ -1792,6 +1798,13 @@ es:
   identifications: Identificaciones
   identifications_by: Identificaciones de %{user}
   identified?: con identificación
+  computer_vision_suggestion: Sugerencia de la visión artificial
+  computer_vision_suggestion_desc: Visión de computador es el proceso de enseñar a
+    los computadores a reconocer patrones en imágenes. Proporcionamos herramientas
+    que utilizan modelos de visión de computador enfocadas en las fotos de la comunidad
+    para proporcionar sugerencias de identificación, por ejemplo el auto-completar
+    y características de comparación. Esta etiqueta indica cuándo una persona añadió
+    una identificación utilizando una de estas herramientas.
   identifiers: Identificadores
   identotron: Identotrón
   identotron_for: Identotrón para
@@ -2205,6 +2218,7 @@ es:
     gl: Gallego
     id: Indonesio
     it: Italiano
+    iw: Hebreo
     ja: Japonés
     ko: Coreano
     lb: Luxemburgués
@@ -2215,6 +2229,7 @@ es:
     pt-PT: Portugués (Portugal)
     ru: Ruso
     sq: Albanés
+    sv: Sueco
     zh-CN: Chino (simplificado)
     zh-TW: Chino (tradicional)
   locality_notes: Notas por localidad
@@ -2791,6 +2806,7 @@ es:
     si no se cumplen las condiciones anteriores o
   observations_with_this_field: Observaciones con este campo
   observations_with_this_field_and_value: Observaciones con este campo y valor
+  observations_without_media: Observaciones sin imágenes
   observationcounts_refreshed: Condes de observación refrescados
   observed: Observado el
   observed_by: Observado por
@@ -3216,6 +3232,7 @@ es:
     chad: Chad
     chile: Chile
     china: China
+    christmas_island: Isla de Navidad
     clipperton_island: Isla Clipperton
     cocos_islands: Islas Cocos
     colombia: Colombia
@@ -3250,6 +3267,7 @@ es:
     france: Francia
     french_guiana: Guayana Francesa
     french_polynesia: Polinesia Francesa
+    french_southern_territories: Tierras Australes Francesas
     gabon: Gabón
     gambia: Gambia
     georgia: Georgia
@@ -3364,6 +3382,7 @@ es:
     saint_helena: Santa Helena
     saint_kitts_and_nevis: San Cristóbal y Nieves
     saint_lucia: Santa Lucía
+    saint_martin: San Martín
     saint_pierre_and_miquelon: San Pedro y Miquelón
     saint_vincent_and_the_grenadines: San Vicente y las Granadinas
     samoa: Samoa
@@ -3413,6 +3432,7 @@ es:
     united_arab_emirates: Emiratos Árabes Unidos
     united_kingdom: Reino Unido
     united_states: Estados Unidos
+    united_states_minor_outlying_islands: Islas Ultramarinas Menores de Estados Unidos
     united_states_virgin_islands: Islas Vírgenes de los Estados Unidos
     uruguay: Uruguay
     uzbekistan: Uzbekistán
@@ -3495,6 +3515,7 @@ es:
     las  coordenadas verdaderas sólo son visibles para ti y los curadores de los proyectos
     a los que se agrega la observación. Las observaciones con coordenadas privadas
     se utilizarán para verificar las listas de lugar de verificación.
+  probably_spam: Probablemente basura
   proceed: Continuar
   processing: Procesando
   processing3p: Procesando...
@@ -3641,6 +3662,7 @@ es:
   real_time_stats: Estadísticas en tiempo real
   real_time_discussions: Discusiones en tiempo real
   reason: Razón
+  reason_label: 'Motivo:'
   reason_you_are_flagging_this_item: Razón por la cual estas marcando este elemento.
   recaptcha_verification_failed: falló la verificación de reCaptcha
   receive_email_notifications_when_people_leave_you: Reciba notificaciones por correo
@@ -3738,6 +3760,7 @@ es:
   removed_project_user: Usuario eliminado del proyecto
   removing: Eliminando...
   reorder_by_taxonomy: Reordenar por taxonomía
+  repair_broken_urls: Reparar URL inactivos
   repair_doesnt_work_for_that_kind_of_photo: Reparar no funciona para ese tipo de
     foto.
   repair_external_photos: Reparar fotos externas
@@ -3771,6 +3794,7 @@ es:
   resolve_this_flag: Resuelve esta advertencia
   resolved: Resuelto
   resolved_by: Resuelto por
+  resolved_by_user_on_date_html: Resuelto por %{user} en %{date}
   resolver_said_x_html: <span class="meta">%{resolver} dijo:</span> "%{x}"
   restore: Restaurar
   restoring: Restaurando...
@@ -3977,6 +4001,9 @@ es:
   some_of_those_photos_couldnt_be_saved: 'Algunas de las fotos no pudierón ser guardadas:
     %{error}'
   some_other_reason: Otra razón que puedes explicar después.
+  duplicate_observation_flag_warning: Para observaciones duplicadas, por favor pregunte
+    a quien hizo la observación para que resuelva el asunto en vez de añadir una marca,
+    los curadores del sitio no pueden eliminar observaciones.
   some_people: Algunas personas
   some_people_that: Algunas personas que
   some_rights_reserved: algunos derechos reservados
@@ -4348,6 +4375,7 @@ es:
   terrain: terreno
   text: Texto
   text_: texto
+  thanks!: ¡Gracias!
   thanks_for_signing_up: ¡Gracias por registrarse!
   thanks_for_using: Gracias por usar
   thanks_from_all_of_us_here_at: Gracias de parte de los que trabajamos en
@@ -4749,6 +4777,8 @@ es:
   user_commented_on: '%{user} comentó sobre tu %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} no está de acuerdo que es %{taxon}'
   user_faved_a_noun_by_owner: '%{user} preferido %{noun} por %{owner}'
+  user_flagged_as_a_spammer_html: '%{user} marcado como spammer'
+  user_flagged_as_a_non_spammer_html: '%{user} marcado como no-spammer'
   user_follows: '%{user} sigue a'
   user_has_opted_out_of_community_id: El usuario ha rechazado la Identificación de
     la Comunidad
@@ -4847,6 +4877,7 @@ es:
   view_observations: Ve observaciones
   view_observation_flags: Ver marcas de observación
   view_observations_by_everyone: Ver las observaciones de todos
+  view_observations_by_these_users: Ver observaciones de estos usuarios
   view_observations_of_this_taxon_by: Ver observaciones de este taxón por
   view_observations_raquo: Ver observaciones &raquo;
   view_on: Ver en
@@ -5275,6 +5306,7 @@ es:
     enlace 'Seguir a [nombre]' en el encabezado cuando veas sus observaciones o su
     perfil.
   verifiable: Verificable
+  verifiable_observations: Observaciones verificables
   views:
     views: Visualizaciones
     announcements:
@@ -5317,6 +5349,11 @@ es:
           iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la Sociedad de National Geographic. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización 501(c)(3), sin ánimo de lucro, exenta de impuestos con sede en los Estados Unidos de América.
         </p>
       post_donate_social_media_text: Apoyo iNaturalist porque...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |-
+          Por favor resolver marcas de <code>basura</code> y <code>contravenciones de derechos de autor</code> solamente si el contenido no es basura o no es una
+          contravención de los derechos de autor, respectivamente.
     guides:
       index:
         funding_html: "Los fondos para el desarrollo de Guías fue proporcionada por
@@ -5937,6 +5974,27 @@ es:
           tus suscripciones. Para reanudar la obtención de actualizaciones sobre la
           actividad del sitio, por favor <a href="%{login_url}">inicia sesión en tu
           cuenta</a> de nuevo.
+      photos_missing:
+        subject: Algunas fotos necesitan reparación
+        we_have_been_housekeeping: Hemos estado haciendo un poco de limpieza y encontramos
+          algunas fotos conectadas a tus observaciones que ya no son accesibles desde
+          su fuente original. Las fotos están alojadas en %{providers}.
+        we_would_like_to_remove: Nos gustaría eliminar todas las referencias a fotos
+          que no funcionan en un futuro próximo, pero no queremos deshacernos de nada
+          que pueda guardarse. Es posible que algunas de estas fotos todavía existan
+          en sus sitios externos y puedan ser reparadas. Algunas fotos pueden haber
+          sido cargadas conectando tu cuenta de <a href='%{account_url}'>%{site_name}
+          a otra cuenta</a> de alojamiento de fotos, y esa conexión ha caducado y
+          debe ser actualizada.
+        you_can_attempt_repair: Puedes intentar reparar las fotos visitando la página
+          de la foto y marcando el enlace "%{repair_link_text}". Si sabes que la foto
+          ya no existe, puedes eliminarla.
+        please_address: Por favor, aborda estas cuestiones <b>en los próximos 30 días</b>.
+          Después de 30 días empezaremos a eliminar fotos que no funcionen en iNaturalist.
+          Todas tus observaciones permanecerán. Serán reevaluadas después de que las
+          fotos sean eliminadas, y es posible que algunas observaciones de los grados
+          de investigación se convertirán en informales si ya no tienen fotos.
+        we_included_links: Hemos incluido enlaces a las fotos afectadas abajo.
     photos:
       inviter:
         automatically_add_to_project: Añadir automáticamente al proyecto
@@ -6646,6 +6704,26 @@ es:
         scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
         youve_used_all_of_your_blocks: Has utilizado todos tus bloques. Quita un bloque
           para añadir otro.
+      recent:
+        about_recent_users: Acerca de
+        definitions_html: <dl><dt>Probablemente Spam</dt><dd> Usuario que probablemente
+          es un spammer, lo que significa que no tienen observaciones o identificaciones
+          pero sí una descripción de perfil. </dd><dt>Auto Spam</dt><dd> Spammer que
+          fue marcado automáticamente como spammer por el sistema. </dd><dt>Manual
+          Spam</dt><dd> Spammer que fue marcado manualmente como spammer por un curador
+          del sitio. </dd><dt>False Positives</dt><dd> Usuarios que fueron marcados
+          como spammers pero las marcas fueron resueltas por los curadores del sitio
+          porque no eran realmente spammers.</dd></dl>
+        recent_users_desc_html: |-
+          <p>
+            Queremos dar la bienvenida a nuevos usuarios, pero también queremos combatir
+            spammers. Esperamos que esta herramienta ayude a lograr los dos objetivos. Estamos marcando automáticamente a muchos usuarios como spammers usando <a
+            href="https://akismet.com/">Akismet</a>, pero Akismet no es perfecto,
+            así que si quieres dedicar unos minutos a marcar las nuevas cuentas como
+            spammers o no spammers, esto nos ayudaría.
+          </p>
+
+          Traducción realizada con el traductor www.DeepL.com/Translator
       show:
         take_a_chance_to_review_html: Aprovecha a revisar <a href="%{link}">nuestras
           directrices</a>.

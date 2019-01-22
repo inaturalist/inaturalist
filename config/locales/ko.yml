@@ -378,6 +378,7 @@ ko:
     iucn_red_list: IUCN 적색 목록
   authorize_permissions_from_provider: '%{provider}의 허용을 수락함'
   automatic_descriptions_have_been_disabled: 이 분류군은 자동 설명이 해제되었습니다.
+  automatic_short: 자동
   automatically_add_to_project: 자동으로 프로젝트에 추가
   automatically_add_observations_to_this_project: 이 프로젝트에 자동으로 관찰 추가
   automatically_share_your_observations_on: 자동으로 관찰 공유
@@ -801,6 +802,7 @@ ko:
   default_photo_license: 사진 라이선스 기본값
   default_sound_license: 음원 라이선스 기본값
   defaults_to_your_name_or_username: 기본 이름/아이디
+  definitions: 정의
   delete: 삭제
   delete_all: 모두 삭제
   delete_conversation: 대화 내역 삭제
@@ -1495,6 +1497,7 @@ ko:
     fi: 핀란드어
     fr: 프랑스어
     gl: 갈리시아어
+    iw: 히브리어
     ja: 일본어
     ko: 한국어
     mk: 마케도니아어
@@ -1502,6 +1505,7 @@ ko:
     pt-PT: 포르투갈어 (포르투갈)
     ru: 러시아어
     sq: 알바니아어
+    sv: 스웨덴어
     zh-CN: 중국어(간체)
   location: 위치
   location_: 위치
@@ -2202,6 +2206,7 @@ ko:
   private_: 비공개
   private_description: 공개된 지도에서 좌표가 표시되지 않습니다. 실제 좌표는 본인과 관찰이 속해있는 프로젝트의 큐레이터만 볼 수
     있습니다. 사적인 좌표의 관찰이라도 장소 체크리스트를 확인하는 데에는 사용됩니다.
+  probably_spam: 스팸으로 추정
   processing3p: 처리 중...
   profile: 프로필
   project: 프로젝트
@@ -2247,6 +2252,7 @@ ko:
   read_more: 더 읽어보기
   real_time_discussions: 실시간 토론
   reason: 이유
+  reason_label: '이유:'
   recaptcha_verification_failed: reCAPTCHA 확인 실패
   receive_updates_from_this_project: 이 프로젝트에서 업데이트 전송
   recent_additions: 최근 추가 항목
@@ -2287,6 +2293,7 @@ ko:
   removed_project_user: 제거된 프로젝트 사용자
   removing: 제거 중...
   reorder_by_taxonomy: 분류학별로 순서 바꾸기
+  repair_broken_urls: 깨진 URL 해결
   reply: 답변
   request_failed: 요청이 실패했습니다
   required: 필수
@@ -2423,6 +2430,7 @@ ko:
   tell_the_world_a_little_about_yourself: ​우리에게 당신에 대해 말해주세요.
   tell_us_why: 이유를 말해주세요...
   text: 텍스트
+  thanks!: 감사합니다!
   the_following_observations_could: '%{link}에 관찰을 추가하지 못했습니다.'
   then_keybord_sequence: 다음에
   there_were_problems_adding_that_observation_to_this_project: '이 프로젝트의 관찰을 추가하는 문제가
@@ -2733,6 +2741,8 @@ ko:
         project_addition_preferences:
           none: 없음, 프로젝트에 관찰만 추가할 수 있습니다
         scientific_name_first_desc: 보통 명사 앞에 학명을 표시합니다.
+      recent:
+        about_recent_users: 정보
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.
