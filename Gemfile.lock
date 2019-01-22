@@ -518,6 +518,9 @@ GEM
       rgeo (~> 0.3)
     rgeo-geojson (0.4.3)
       rgeo (~> 0.5)
+    rgeo-shapefile (0.2.3)
+      dbf (>= 1.7.0)
+      rgeo (>= 0.3.3)
     rspec (3.8.0)
       rspec-core (~> 3.8.0)
       rspec-expectations (~> 3.8.0)
@@ -721,6 +724,7 @@ DEPENDENCIES
   rest-client
   rgeo
   rgeo-geojson
+  rgeo-shapefile
   riparian!
   rspec (~> 3.8.0)
   rspec-html-matchers

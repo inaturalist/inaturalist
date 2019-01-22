@@ -101,6 +101,7 @@ gem 'elasticsearch-api', '~> 5.0'
 
 gem 'rgeo'
 gem 'rgeo-geojson'
+gem "rgeo-shapefile"
 gem 'activerecord-postgis-adapter', :git => 'https://github.com/kueda/activerecord-postgis-adapter.git', :branch => 'activerecord42'
 
 group :production do
