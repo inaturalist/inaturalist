@@ -128,6 +128,7 @@ class Taxon < ActiveRecord::Base
         taxon_changes_count: taxon_changes_count,
         taxon_schemes_count: taxon_schemes_count,
         observations_count: observations_count,
+        universal_search_rank: observations_count,
         flag_counts: {
           resolved: flag_counts[true] || 0,
           unresolved: flag_counts[false] || 0

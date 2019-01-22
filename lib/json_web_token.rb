@@ -8,7 +8,7 @@ class JsonWebToken
   end
 
   def self.decode(token)
-    JWT.decode(token, CONFIG.jwt_secret || "secret").first
+    JWT.decode(token, CONFIG.jwt_secret || "secret", true, { algorithm: "HS512" }).first
   end
 
   def self.applicationToken(expiration = 5.minutes.from_now)

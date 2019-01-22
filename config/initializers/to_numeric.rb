@@ -2,7 +2,7 @@
 require 'bigdecimal'
 module ToNumeric
   def to_numeric
-    num = BigDecimal.new(to_s)
+    num = BigDecimal(to_s == "" ? 0 : to_s)
     if num.frac == 0
       num.to_i
     else
@@ -10,7 +10,7 @@ module ToNumeric
     end
   end
 end
-class Fixnum
+class Integer
   include ToNumeric
 end
 class String

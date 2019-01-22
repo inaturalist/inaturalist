@@ -4,31 +4,31 @@
   = javascript_include_tag "users/registrations"
 - content_for( :content ) do
   .flexrow
-    :ruby
-      obs = @observations[rand(@observations.size)]
-      photo = obs.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
-      place_guess = obs.public_places.select{|p| [Place::COUNTRY_LEVEL, Place::STATE_LEVEL].include?(p.admin_level)}.sort_by(&:admin_level).map{|p|
-        t(
-          p.name.parameterize.underscore,
-          default: t(
-            "places_name.#{p.name.parameterize.underscore}",
-            default: p.name
+    - if @observations && @observations.size > 0
+      :ruby
+        obs = @observations[rand(@observations.size)]
+        photo = obs.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
+        place_guess = obs.public_places.select{|p| [Place::COUNTRY_LEVEL, Place::STATE_LEVEL].include?(p.admin_level)}.sort_by(&:admin_level).map{|p|
+          t(
+            p.name.parameterize.underscore,
+            default: t(
+              "places_name.#{p.name.parameterize.underscore}",
+              default: p.name
+            )
           )
-        )
-      }.reverse.join( ", " )
-      place_guess = obs.place_guess if place_guess.blank?
-    #imgcol.hidden-xs.hidden-sm{ style: "background-image: url('#{photo.large_url}');" }
-      .about-observation
-        = link_to_user obs.user, style: "background-image: url('#{obs.user.icon.url(:medium)}');", class: "usericon" do
-          &nbsp;
-        .details
-          %div
-            =t :photo_by
-          = link_to obs, class: "username" do
-            = obs.user.published_name
-          %div
-            = link_to t( :in_place_x, place: place_guess ), observations_url( lat: obs.latitude, lng: obs.longitude )
-
+        }.reverse.join( ", " )
+        place_guess = obs.place_guess if place_guess.blank?
+      #imgcol.hidden-xs.hidden-sm{ style: "background-image: url('#{photo.large_url}');" }
+        .about-observation
+          = link_to_user obs.user, style: "background-image: url('#{obs.user.icon.url(:medium)}');", class: "usericon" do
+            &nbsp;
+          .details
+            %div
+              =t :photo_by
+            = link_to obs, class: "username" do
+              = obs.user.published_name
+            %div
+              = link_to t( :in_place_x, place: place_guess ), observations_url( lat: obs.latitude, lng: obs.longitude )
     #formcol
       .inner
         = yield

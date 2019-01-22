@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // This is a VERY light wrapper around the JQueryUI datepicker plugin for use
 // in iNat.
 (function($){
@@ -19,7 +21,7 @@
       buttonImageOnly: true,
       showButtonPanel: true,
       showAnim: 'fadeIn',
-      yearRange: "c-100:c+0",
+      yearRange: "c-100:" + ( new Date( ) ).getFullYear( ),
       maxDate: '+0d',
       constrainInput: false,
       firstDay: 0,

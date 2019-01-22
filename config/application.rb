@@ -115,8 +115,10 @@ Encoding.default_external = Encoding::UTF_8
 
 # TODO: is the geo_ruby stuff still used?
 # make sure we have geojson support
-require 'geo_ruby'
+require 'georuby'
+require 'geo_ruby/ewk'
 require 'geo_ruby/geojson'
+require 'geo_ruby/shp'
 require 'geo_ruby/shp4r/shp'
 require 'geo_ruby/kml'
 # geojson via RGeo

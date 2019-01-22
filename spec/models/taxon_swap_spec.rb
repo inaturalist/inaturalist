@@ -385,14 +385,25 @@ describe TaxonSwap, "commit" do
     }.to raise_error TaxonChange::PermissionError
   end
   
-  it "should raise an error if commiter is not a taxon curator of a taxon framework of the output taxon" do
+  it "should raise an error if commiter is not a taxon curator of a taxon framework of inactive output taxon" do
     superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
     tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
     tc = TaxonCurator.make!( taxon_framework: tf )
-    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user )
+    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user, is_active: false )
     expect {
       @swap.commit
     }.to raise_error TaxonChange::PermissionError
+  end
+  
+  it "should not raise an error if commiter is not a taxon curator of a taxon framework of active output taxon" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+    tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
+    tc = TaxonCurator.make!( taxon_framework: tf )
+    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user, is_active: true )
+    @output_taxon.reload
+    expect {
+      @swap.commit
+    }.not_to raise_error TaxonChange::PermissionError
   end
   
   it "should raise an error if input taxon has active children" do
