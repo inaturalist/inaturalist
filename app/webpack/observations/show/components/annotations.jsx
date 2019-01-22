@@ -160,17 +160,30 @@ class Annotations extends React.Component {
   }
 
   render( ) {
-    const observation = this.props.observation;
-    const config = this.props.config;
-    const controlledTerms = this.props.controlledTerms;
+    const {
+      observation,
+      config,
+      controlledTerms,
+      showEmptyState,
+      addAnnotation,
+      collapsible,
+      updateSession
+    } = this.props;
+    const {
+      open: isOpen
+    } = this.state;
     const availableControlledTerms = termsForTaxon(
       controlledTerms,
       observation ? observation.taxon : null
     );
-    if ( !observation || !observation.user || _.isEmpty( availableControlledTerms ) ) {
+    if (
+      !observation
+      || !observation.user
+      || _.isEmpty( availableControlledTerms )
+      || !config.currentUser
+    ) {
       if (
-          this.props.showEmptyState &&
-          ( !availableControlledTerms || availableControlledTerms.length === 0 )
+        showEmptyState && ( !availableControlledTerms || availableControlledTerms.length === 0 )
       ) {
         return (
           <div className="noresults">
@@ -185,10 +198,9 @@ class Annotations extends React.Component {
     if ( !this.loggedIn && _.isEmpty( observation.annotations ) ) {
       return ( <span /> );
     }
-    const annotations = observation.annotations.filter( a =>
-      a.controlled_attribute && a.controlled_value );
+    const annotations = observation.annotations.filter( a => a.controlled_attribute && a.controlled_value );
     const groupedAnnotations = _.groupBy( annotations, a => a.controlled_attribute.id );
-    let rows = [];
+    const rows = [];
     _.each( availableControlledTerms, ct => {
       if ( groupedAnnotations[ct.id] ) {
         const sorted = _.sortBy( groupedAnnotations[ct.id], a => (
@@ -226,13 +238,13 @@ class Annotations extends React.Component {
       } );
       const termPopover = (
         <Popover
-          id={ `annotation-popover-${ct.id}` }
+          id={`annotation-popover-${ct.id}`}
           className="AnnotationPopover"
         >
           <div className="contents">
             <div className="view">{ I18n.t( "view" ) }:</div>
             <div className="search">
-              <a href={ `/observations?term_id=${ct.id}` }>
+              <a href={`/observations?term_id=${ct.id}`}>
                 <i className="fa fa-arrow-circle-o-right" />
                 { I18n.t( "observations_annotated_with_annotation", { annotation: ctLabel } ) }
               </a>
@@ -240,12 +252,14 @@ class Annotations extends React.Component {
           </div>
         </Popover>
       );
-      if ( availableValues.length > 0 &&
-           !( groupedAnnotations[ct.id] && !ct.multivalued ) &&
-           ( this.loggedIn || !_.isEmpty( groupedAnnotations[ct.id] ) ) ) {
+      if (
+        availableValues.length > 0
+        && !( groupedAnnotations[ct.id] && !ct.multivalued )
+        && ( this.loggedIn || !_.isEmpty( groupedAnnotations[ct.id] ) )
+      ) {
         rows.push( (
           <tr
-            key={ `term-row-${ct.id}` }
+            key={`term-row-${ct.id}`}
           >
             <td className="attribute">
               <OverlayTrigger
@@ -261,8 +275,8 @@ class Annotations extends React.Component {
             <td>
               <Dropdown
                 id="grouping-control"
-                onSelect={ index => {
-                  this.props.addAnnotation( ct, availableValues[index] );
+                onSelect={index => {
+                  addAnnotation( ct, availableValues[index] );
                 }}
               >
                 <Dropdown.Toggle>
@@ -274,8 +288,8 @@ class Annotations extends React.Component {
                   {
                     availableValues.map( ( v, index ) => (
                       <MenuItem
-                        key={ `term-${v.id}` }
-                        eventKey={ index }
+                        key={`term-${v.id}`}
+                        eventKey={index}
                       >
                         {
                           I18n.t( `controlled_term_labels.${_.snakeCase( v.label )}`, {
@@ -288,8 +302,8 @@ class Annotations extends React.Component {
                 </Dropdown.Menu>
               </Dropdown>
             </td>
-            <td></td>
-            <td></td>
+            <td />
+            <td />
           </tr>
         ) );
       }
@@ -311,7 +325,7 @@ class Annotations extends React.Component {
       </table>
     );
 
-    if ( !this.props.collapsible ) {
+    if ( !collapsible ) {
       return (
         <div className="Annotations">
           { table }
@@ -319,24 +333,24 @@ class Annotations extends React.Component {
       );
     }
 
-    const count = observation.annotations.length > 0 ?
-      `(${observation.annotations.length})` : "";
+    const count = observation.annotations.length > 0 ? `(${observation.annotations.length})` : "";
     return (
       <div className="Annotations collapsible-section">
         <h4
           className="collapsible"
-          onClick={ ( ) => {
+          onClick={( ) => {
             if ( this.loggedIn ) {
-              this.props.updateSession( {
-                prefers_hide_obs_show_annotations: this.state.open } );
+              updateSession( { prefers_hide_obs_show_annotations: isOpen } );
             }
-            this.setState( { open: !this.state.open } );
-          } }
+            this.setState( { open: !isOpen } );
+          }}
         >
-          <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-          { I18n.t( "annotations" ) } { count }
+          <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
+          { I18n.t( "annotations" ) }
+          { " " }
+          { count }
         </h4>
-        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+        <Panel expanded={isOpen} onToggle={() => {}}>
           <Panel.Collapse>{ table }</Panel.Collapse>
         </Panel>
       </div>
