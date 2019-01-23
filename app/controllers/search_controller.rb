@@ -15,6 +15,9 @@ class SearchController < ApplicationController
         sources: @sources.join( "," ),
         ttl: logged_in? ? "-1" : nil
       )
+      if response.blank?
+        return
+      end
       record_ids_by_type = response.results.inject( {} ) do |memo, result|
         memo[result["type"]] ||= []
         memo[result["type"]] << result["record"]["id"]

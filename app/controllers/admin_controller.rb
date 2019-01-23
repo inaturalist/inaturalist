@@ -59,7 +59,20 @@ class AdminController < ApplicationController
     render layout: "admin"
   end
 
+  def stop_query
+    if params[:pid] && params[:pid].match( /^\d+$/ )
+      kill_postgresql_pid( params[:pid].to_i )
+    end
+    redirect_to :queries_admin
+  end
+
   private
+
+  def kill_postgresql_pid( pid )
+    return unless pid && pid.is_a?( Integer )
+    ActiveRecord::Base.connection.execute( "SELECT pg_cancel_backend(#{ pid })" )
+  end
+
   def load_user_content_info
     user_id = params[:id] || params[:user_id]
     @display_user = User.find_by_id(user_id)

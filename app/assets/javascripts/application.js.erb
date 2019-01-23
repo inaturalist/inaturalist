@@ -1642,12 +1642,20 @@ $.fn.confirmModal = function( options ) {
       attr({ type: "button", value: I18n.t( "cancel" ) });
     // prepare Proceed/Cancel actions
     confirm.on( "click", function( ) {
+      if ( _.isFunction( options.confirmValidation ) ) {
+        if ( !options.confirmValidation( ) ) {
+          return;
+        }
+      }
       dialogDiv.dialog( "close" );
       that.trigger( action, { forceSubmit: true } );
+      if ( _.isFunction( options.onConfirm ) ) {
+        options.onConfirm( );
+      }
     });
     cancel.on( "click", function( ) {
       dialogDiv.dialog( "close" );
-      if( _.isFunction( options.onCancel ) ) {
+      if ( _.isFunction( options.onCancel ) ) {
         options.onCancel( );
       }
     });
@@ -1655,7 +1663,7 @@ $.fn.confirmModal = function( options ) {
     // populate and display the modal dialog
     var buttonsDiv =  $( "<div/>" ).addClass( "foot" ).
       append( confirm ).append( cancel );
-    if( options.silencePreference ) {
+    if ( options.silencePreference ) {
       var checkbox = $( "<input type='checkbox' id='silence' />" );
       checkbox.on( "click", function( ) {
         var pref = { };
@@ -1668,7 +1676,11 @@ $.fn.confirmModal = function( options ) {
     }
     // text might be a method that is evaluated in real time
     var text = _.isFunction( options.text ) ? options.text( ) : options.text; 
-    dialogDiv.append( $( "<p/>" ).append( text ) ).append( buttonsDiv );
+    dialogDiv.append( $( "<p/>" ).append( text ) );
+    if ( options.additionalContent ) {
+      dialogDiv.append( options.additionalContent );
+    }
+    dialogDiv.append( buttonsDiv );
     $( document.body ).append( dialogDiv )
     dialogDiv.dialog({ modal: true, title: I18n.t( "attention" ),
       dialogClass: "confirm-modal", minWidth: 450, maxWidth: 600 });

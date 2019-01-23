@@ -99,7 +99,7 @@ class Taxon < ActiveRecord::Base
 
   after_commit :index_observations
 
-  validates_presence_of :name, :rank
+  validates_presence_of :name, :rank, :rank_level
   validates_uniqueness_of :name, 
                           :scope => [:ancestry, :is_active],
                           :unless => Proc.new { |taxon| (taxon.ancestry.blank? || !taxon.is_active)},
@@ -971,9 +971,18 @@ class Taxon < ActiveRecord::Base
   end
   
   def get_upstream_taxon_framework(supplied_ancestor_ids = self.ancestor_ids)
-    TaxonFramework.joins("JOIN taxa t ON t.id = taxon_frameworks.taxon_id").
-      where("taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", supplied_ancestor_ids, rank_level).
-      order("t.rank_level ASC").first
+    candidate = TaxonFramework.joins( "JOIN taxa t ON t.id = taxon_frameworks.taxon_id" ).
+      where( "taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND taxon_frameworks.rank_level <= ?", supplied_ancestor_ids, rank_level ).
+      order( "t.rank_level ASC" ).first
+    
+    if candidate
+      blocker = TaxonFramework.joins( "JOIN taxa t ON t.id = taxon_frameworks.taxon_id" ).
+        where( "taxon_id IN (?) AND taxon_frameworks.rank_level IS NOT NULL AND t.rank_level < ?", supplied_ancestor_ids, candidate.taxon.rank_level ).first
+      unless blocker
+        return candidate
+      end
+      return nil
+    end
   end
       
   def has_ancestry_and_active_if_taxon_framework
@@ -986,7 +995,7 @@ class Taxon < ActiveRecord::Base
   
   def graftable_destination_relative_to_taxon_framework_coverage
     return true unless new_record? || ancestry_changed?
-    return true if ancestry.nil?
+    return true if ancestry.nil? || !is_active
     destination_taxon_framework = parent.taxon_framework
     if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? 
       errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
@@ -1025,6 +1034,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def user_can_edit_attributes
+    return true unless is_active
     return true if current_user.blank?
     current_user_curates_taxon = protected_attributes_editable_by?( current_user )
     PROTECTED_ATTRIBUTES_FOR_CURATED_TAXA.each do |a|
@@ -1036,6 +1046,19 @@ class Taxon < ActiveRecord::Base
   end
 
   def protected_attributes_editable_by?( user )
+    return true unless is_active
+    return true if user && user.is_admin?
+    upstream_taxon_framework = get_upstream_taxon_framework
+    return true unless upstream_taxon_framework
+    return true unless upstream_taxon_framework.taxon_curators.any?
+    current_user_curates_taxon = false
+    if user
+      current_user_curates_taxon = upstream_taxon_framework.taxon_curators.where( user: user ).exists?
+    end
+    current_user_curates_taxon
+  end
+  
+  def activated_protected_attributes_editable_by?( user )
     return true if user && user.is_admin?
     upstream_taxon_framework = get_upstream_taxon_framework
     return true unless upstream_taxon_framework

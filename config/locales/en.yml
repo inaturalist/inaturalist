@@ -104,8 +104,6 @@ en:
   x_people_helped_user_with_y_ids_html: "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>"
   _100_day_trends: 100 Day Trends
   _percent_ID_d: "% ID'd"
-  a: a
-  a_: a
   a_community_for_naturalist: A Community for Naturalists
   a_default_taxon_name_will_automatically_created: |
     A default taxon name will automatically be created from the scientific name attribute of this taxon. 
@@ -260,7 +258,6 @@ en:
   add_taxon_range: Add Taxon Range
   add_taxonomic_tags_to: "Add taxonomic tags to selected Flickr photos &raquo;"
   add_taxonomic_tags_to_the_flickr_photos: Add taxonomic tags to the Flickr photos associated with the selected observations.
-  add_to: Add to
   add_to_a_scheme: Add to a Scheme
   add_to_a_project: Add to a Project
   add_to_calendar: Add to Calendar
@@ -546,7 +543,6 @@ en:
   automatically_id_new: Automatically ID the new obs as
   automatically_update_my_content_for_taxon_changes: Automatically update my content for taxon changes
   back: Back
-  back_to: Back to
   back_to_albums: Back to albums
   back_to_all_species: Back to All Species
   back_to_browsing_people: Back to browsing people
@@ -1182,8 +1178,9 @@ en:
   edit_your_settings_for_this_project: Edit Your Settings For This Project
   edit_your_settings_to_unsubscribe_html: "<a href='%{url}'>Edit your settings</a> to change the kinds of updates you receive or unsubscribe completely."
   edited: Edited
-  edited_by: Edited by
   edited_by_name_html: "Edited by %{name}"
+  edited_by_name_some_rights_reserved_html: |
+    Edited by %{name}, some rights reserved (%{license})
   editing: Editing
   editing_announcement: Editing announcement
   editing_custom_project_fields_for: Editing custom project fields for
@@ -1328,7 +1325,6 @@ en:
   filling_out_checklist_for_place: filling out checklists for places you know well
   filling_out_your_profile: filling out your profile
   filter: Filter
-  filter_by: Filter by
   filter_by_curator_identification: Filter by Curator Identification
   filter_by_place: Filter by Place
   filter_by_taxon: Filter by Taxon
@@ -1388,7 +1384,7 @@ en:
   flags: Flags
   flags_with_count: Flags (%{count})
   flags_explanation: "%{site_name} users flag things that need attention from site curators and/or site admins."
-  flags_for: Flags for
+  flags_for_x_html: Flags for %{x}
   flags_on_users_content: "Flags on %{user}'s content"
   flickr_account_information: Your Flickr Account Information
   flickr_description: Flickr is an online photo hosting service, maybe you already know about it!
@@ -1406,8 +1402,6 @@ en:
   fluid_layout: Fluid Layout
   fluid: fluid
   follow: Follow
-  follow_us: Follow us on
-  follow_us_on: Follow us on
   follow_user: "Follow %{user}"
   followed_projects: Followed Projects
   follower: follower
@@ -1426,10 +1420,8 @@ en:
   fri: Fri
   from: From
   from_a_place: from a place
-  from_anywhere_change: from anywhere (<span class="button">change</span>)
   from_eol_collection: From EOL collection
   from_flickr_facebook_etc: From Flickr, Facebook, etc.
-  from_in_this_place: from in this place
   from_list: From list
   from_this: from this
   from_photos: From photos
@@ -1644,8 +1636,6 @@ en:
   import_tags_from_csv: Import tags from CSV
   importing: "Importing..."
   improving: Improving
-  in: in
-  in_: in
   in_n: "in %{n}"
   in_place_x: in %{place}
   inaturalist_network_affiliation: iNaturalist Network Affiliation
@@ -1704,8 +1694,6 @@ en:
   invited_x: "Invited %{x}"
   inviting: Inviting...
   iphone: iPhone
-  is_a: 'is a'
-  is_an: 'is an'
   is_an_evaluation: |
     is an evaluation of an observation’s accuracy.
     Research Grade observations may be used by scientists for research. Cast your vote below:
@@ -1949,6 +1937,7 @@ en:
     gl: Galician
     id: Indonesian
     it: Italian
+    iw: Hebrew
     ja: Japanese
     ko: Korean
     lb: Luxembourgish
@@ -1959,6 +1948,7 @@ en:
     pt-PT: Portuguese (Portugal)
     ru: Russian
     sq: Albanian
+    sv: Swedish
     zh-CN: Chinese (simplified)
     zh-TW: Chinese (traditional)
   locality_notes: Locality notes
@@ -4109,7 +4099,6 @@ en:
   to_add_comments: to add comments
   to_add_identifications: to add identifications
   to_add_ids: to add IDs
-  to_an: to an
   to_configure_your_widget: to configure your widget.
   to_include_your_google_with_inat: "to include your Google account with %{site_name}"
   to_recipient: to
@@ -4773,7 +4762,7 @@ en:
       index:
         funding_html: |
           Funding for the development of Guides was provided by
-          <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |
           Guides help you learn about biodiversity all around the world.
           Whether you're exploring the Serengeti or just your local park

@@ -589,6 +589,7 @@ fi:
   authorize_permissions_from_provider: Valtuuta %{provider} käyttöoikeudet
   automatic_descriptions_have_been_disabled: Automaattiset kuvaukset on poistettu
     käytöstä tälle taksonille.
+  automatic_short: Auto
   automatically_add_to_project: Lisää automaattisesti projektiin
   automatically_add_observations_to_this_project: Lisää automaattisesti kaikki havainnot
     tähän projektiin
@@ -734,7 +735,7 @@ fi:
     alkuperäisen teoksen tekijänä ja uusi teos lisensoidaan tällä samalla lisenssillä.
     Teokseesi pohjautuvia uusia teoksia voidaan siis käyttää myös kaupallisiin tarkoituksiin.
   cc_by_sa_name: Nimeä-JaaSamoin
-  cc_used_under_a: Creative Commons, käytetään alla
+  cc_used_under_a: Creative Commons, käytetty lisenssillä
   change: Muuta
   change_admin: Vaihda ylläpitäjä
   change_cover: Vaihda kansi
@@ -883,6 +884,7 @@ fi:
   commercial_solicitation: Kaupallinen tarjous, linkit ei mihinkään, yms.
   commit: Sitoutua
   committed: Sitoutunut
+  committed_on: Tehty %{date}
   community: Yhteisö
   community_curated: Yhteisön kuratoimat
   community_guidelines: Yhteisön suuntaviivat
@@ -1542,7 +1544,7 @@ fi:
   highlights_and_stats_from_year_on_site: Kohokohdat ja tilastot vuodelta %{year}
     %{site}issa
   history: Historia
-  home: Koti
+  home: Etusivu
   home_faq: UKK
   hybrid: risteymä
   i_agree_to_the_project_terms: Hyväksyn projektin ehdot
@@ -1904,6 +1906,7 @@ fi:
     gl: Galicia
     id: Indonesia
     it: Italia
+    iw: Heprea
     ja: Japani
     ko: Korea
     lb: Luxemburg
@@ -1914,6 +1917,7 @@ fi:
     pt-PT: Portugali (Portugali)
     ru: Venäjä
     sq: Albania
+    sv: Ruotsi
     zh-CN: Kiina (yksinkertaistettu)
     zh-TW: Kiina (perinteinen)
   locality_notes: Paikkamerkinnät
@@ -2090,6 +2094,7 @@ fi:
   name_providers:
     col: Catalogue of Life
     ubio: uBio
+    nzor: New Zealand Organisms Register
   names: Nimet
   names_for_taxon_html: Nimet taksonille %{taxon}
   native: kotoperäinen
@@ -2578,14 +2583,18 @@ fi:
       historical_town: historiallinen kaupunki
       Intersection: Leikkauspiste
       intersection: intersection
-      Island: Islanti
+      Island: Saari
       island: saari
+      Land_Feature: Maamerkki
+      land_feature: maamerkki
       Miscellaneous: Sekalainen
       miscellaneous: sekalainen
       Municipality: Kunta
       municipality: kunta
       Nationality: Kunta
       nationality: kunta
+      Nearby_Building: Läheinen rakennus
+      nearby_building: läheinen rakennus
       Open_Space: Avoin paikka
       open_space: avoin paikka
       Parish: Pitäjä
@@ -2958,7 +2967,7 @@ fi:
   project_curator_changes: Projektin kuraattorin muutokset
   project_curators: Projektin kuraattorit
   project_group_label: Ryhmä
-  project_home: Projektin koti
+  project_home: Projektin etusivu
   project_icon: Projektikuvake
   project_id_or_url_slug: Projektin tunniste tai URL-polkutunnus, esim. 333 tai minun-projekti
   project_invitations: Projektikutsut
@@ -3297,8 +3306,10 @@ fi:
   site_staff: '%{site_name} henkilökunta'
   site_stats: Sivuston tilastot
   site_taxon_page: '%{site_name} taksonisivu'
+  site_year_in_review: '%{site_name}in vuosikatsaus %{year}'
   so_meta!: niin meta!
   some_agree: jotkut ovat samaa mieltä
+  some_observations_failed_to_save: Joidenkin havaintojen tallentaminen epäonnistui
   some_of_those_photos_couldnt_be_saved: 'Joitakin näistä valokuvista ei voitu tallentaa:
     %{error}'
   some_other_reason: Jokin muu syy jonka voit selittää alla.
@@ -3346,6 +3357,7 @@ fi:
     ubio: uBio
     catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
+    new_zeland_organisms_register: New Zealand Organisms Register
     nzbrn_birds: NZBRN Linnut
     nzbrn_fungi: NZBRN Sienet
     nzbrn_invertebrates: NZBRN Selkärangattomat
@@ -3565,6 +3577,9 @@ fi:
     paikkoja, jokainen täynnä outoja ja \nihmeellisiä elämänmuotoja. Jotkut ovat maailman
     toisella puolella, kun taas \ntoisia on katuja pitkin!"
   then_keybord_sequence: sitten
+  there_are_x_synonyms_html:
+    one: Täällä on <span class='count'>1</span> synonyymi</span>
+    other: Täällä on <span class='count'>%{count}</span> synonyymiä</span>
   there_were_problems_adding_that_observation_to_this_project: 'Havainnon lisääminen
     tähän projektiin epäonnistui:'
   there_were_some_problems_saving_this_observation: Tämän havainnon tallentamisessa
@@ -3680,6 +3695,7 @@ fi:
   unsubscribe: Peruuta tilaus
   unsubscribe_from_this: Peruuta tilaus tältä
   unsuspend_user: Jäädytetty käyttäjä
+  upcoming_bioblitzes: Tulevat bioblitzit
   update: Päivitä
   update_existing_observations_with_new_license: Päivitä olemassa olevat havainnot
     uusilla lisenssivaihtoehdoilla
@@ -4046,7 +4062,7 @@ fi:
   your_inat_account_has_been_activated: '%{inat}-tilisi on aktivoitu.'
   your_life_list: elämäluettelosi
   your_membership: Jäsenyytesi
-  your_month_observations: '%{month}n havaintosi'
+  your_month_observations: 'Havaintosi: %{month}'
   your_name_was_saved: Nimesi tallettiin.
   your_new_password_is: Uusi salasanasi on
   your_observations: Havaintosi
@@ -4105,7 +4121,7 @@ fi:
     guides:
       index:
         funding_html: Rahoituksen oppaiden kehittämiseen toimitti <a href="http://eol.org"><img
-          src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+          src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |-
           Oppaat auttavat sinua tutustumaan luonnon monimuotoisuuteen kaikkialla maailmassa.
           Olitpa tutkimassa Serengetiä tai vain paikallista puistoasi
@@ -4203,6 +4219,7 @@ fi:
         created_on_help: Päiväys jolloin havainnot luotiin, ei havaittu, esim. 17-01-2015,
           01-2015, 2015
       field_descriptions:
+        observed_on: Normalisoitu havainnon päivämäärä
         time_zone: Havainnon aikavyöhyke
         latitude: Julkisesti näkyvä leveysaste
         longitude: Julkisesti näkyvä pituusaste
@@ -4211,8 +4228,9 @@ fi:
         private_longitude: Yksityinen pituusaste, asetettu jos havainto yksityinen
           tai piilotettu
         user_login: Havainnoijan käyttäjänimi
+        license: Lisenssi jonka havainnoija on valinnut tälle havainnolle
         url: URL-osoite havainnolle
-        image_url: Web-osoite oletuskuvalle
+        image_url: URL-osoite oletuskuvalle
         tag_list: Pilkulla erotettu luettelo merkinnöistä
       import:
         date_column_format: VVVV-KK-PP TT:MM
@@ -4479,7 +4497,7 @@ fi:
       index:
         connect_with_nature: Vietä aikaa luonnossa
         explore_and_share: Tutki luontoa ja jaa luontohavaintosi.
-        observations_to_date: havaintoa
+        observations_to_date: havaintoa tällä hetkellä
         species_observed: lajia havaittu
         people_signed_up: rekisteröitynyttä käyttäjää
         how_it_works: Näin se toimii
@@ -4704,7 +4722,7 @@ fi:
       observed_at: '%H:%M %Z'
       rfc: '%-d. %Bta %Y'
       day_month_year: '%-d. %Bta %Y'
-      hours: '%l:%M %p'
+      hours: '%H:%M'
     pm: ip.
   activemodel:
     errors:
@@ -4832,7 +4850,7 @@ fi:
         source_url: Lähteen URL-osoite
       taxon_name:
         name_provider: Nimipankki
-        source_url: Lähteen web-osoite
+        source_url: Lähteen URL-osoite
         source_identifier: Lähdetunniste
       user:
         email: Sähköposti

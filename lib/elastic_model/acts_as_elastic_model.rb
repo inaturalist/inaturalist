@@ -75,6 +75,11 @@ module ActsAsElasticModel
           end
           scope = scope.where(id: filter_ids)
         end
+        if indexed_before = options.delete(:indexed_before)
+          if column_names.include?( "last_indexed_at" )
+            scope = scope.where("last_indexed_at IS NULL OR last_indexed_at < ?", indexed_before)
+          end
+        end
         # indexing can be delayed
         if options.delete(:delay)
           # make sure to fetch the results of the scope and store
@@ -88,7 +93,10 @@ module ActsAsElasticModel
           return self.delay(
             unique_hash: { "#{self.name}::delayed_index": id_hash },
             queue: queue
-          ).elastic_index!( options.merge( ids: result_ids ) )
+          ).elastic_index!( options.merge(
+            ids: result_ids,
+            indexed_before: 5.minutes.from_now.strftime("%FT%T")
+          ) )
         end
         # now we can preload all associations needed for efficient indexing
         if self.respond_to?(:load_for_index)

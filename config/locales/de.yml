@@ -99,6 +99,9 @@ de:
   x_people_agree_html:
     one: <span class="count">Eine</span> zustimmende Person
     other: <span class="count">%{count}</span> zustimmende Personen
+  x_new_species:
+    one: Eine Art
+    other: '%{count} Arten'
   x_species:
     one: Eine Art
     other: '%{count} Arten'
@@ -1510,9 +1513,8 @@ de:
   flagger: Markierer
   flags: Meldungen
   flags_with_count: Markierungen (%{count})
-  flags_explanation: '%{site_name} Benutzer melden Dinge, wenn sie etwas finden, das
-    nicht in Ordnung ist. Hier einige Fälle, die von den Kuratoren noch nicht geklärt
-    wurden.'
+  flags_explanation: '%{site_name}-Benutzer markieren Dinge, die die Aufmerksamkeit
+    von Website-Kuratoren und/oder -Administratoren benötigen.'
   flags_for: Meldungen für
   flags_on_users_content: Gemeldete Inhalte von %{user}
   flickr_account_information: Informationen zu deinem Flickr-Konto
@@ -2079,6 +2081,7 @@ de:
     gl: Galicisch
     id: Indonesisch
     it: Italienisch
+    iw: Hebräisch
     ja: Japanisch
     ko: Koreanisch
     lb: Luxemburgisch
@@ -2089,6 +2092,7 @@ de:
     pt-PT: Portugiesisch (Portugal)
     ru: Russisch
     sq: Albanisch
+    sv: Schwedisch
     zh-CN: Chinesisch (vereinfacht)
     zh-TW: Chinesisch (traditionell)
   localized_species_accounts: Lokalisierter Arten-Überblick
@@ -2772,8 +2776,8 @@ de:
   people_added:
     observation: ': %{observation_link} von @vow_or_con{vow:an|a} %{taxon_link} hinzugefügt'
     identification:
-      with_observation: hat eine <strong>ID</strong> zu einer %{observation_link}
-        von %{user_link} hinzugefügt
+      with_observation: ': <strong>ID</strong> zu %{observation_link} von %{user_link}
+        hinzugefügt'
       without_observation: hat eine <strong>ID</strong> hinzugefügt
     post: hat einen %{post_link} gemacht
     comment:
@@ -2941,9 +2945,11 @@ de:
     afghanistan: Afghanistan
     africa: Afrika
     antigua_and_barbuda: Antigua und Barbuda
+    argentina: Argentinien
     australia: Australien
     austria: Österreich
     belgium: Belgien
+    bolivia: Bolivien
     bosnia_and_herzegovina: Bosnia und Herzegovina
     brazil: Brasilien
     bulgaria: Bulgarien
@@ -2951,27 +2957,41 @@ de:
     central_america: Zentralamerika
     china: China
     colombia: Kolumbien
+    croatia: Kroatien
     cuba: Kuba
+    cyprus: Zypern
     denmark: Dänemark
+    dominican_republic: Dominikanische Republik
     east_timor: Osttimor
     egypt: Ägypten
     equatorial_guinea: Equatorial Guinea
+    estonia: Estland
     europe: Europa
     falkland_islands: Falklandinseln
     finland: Finnland
     france: Frankreich
+    french_polynesia: Französisch-Polynesien
     georgia: Georgien
     germany: Deutschland
+    gibraltar: Gibraltar
     greece: Griechenland
     greenland: Grönland
+    honduras: Honduras
     hong_kong: Hong Kong
     hungary: Ungarn
+    iceland: Island
     india: Indien
     indonesia: Indonesien
     iraq: Irak
+    ireland: Irland
+    israel: Israel
     italy: Italien
     japan: Japan
     korea: Korea
+    kosovo: Kosovo
+    luxembourg: Luxemburg
+    madagascar: Madagaskar
+    maldives: Malediven
     martinique: Martinique
     mexico: Mexiko
     netherlands: Niederlande
@@ -2991,6 +3011,7 @@ de:
     singapore: Singapur
     south_africa: Südafrika
     south_america: Südamerika
+    south_korea: Südkorea
     spain: Spanien
     sweden: Schweden
     switzerland: Schweiz
