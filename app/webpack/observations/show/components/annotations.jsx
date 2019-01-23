@@ -265,7 +265,6 @@ class Annotations extends React.Component {
         this.loggedIn
         && availableValues.length > 0
         && !( groupedAnnotations[ct.id] && !ct.multivalued )
-        && !_.isEmpty( groupedAnnotations[ct.id] )
       ) {
         rows.push( (
           <tr
