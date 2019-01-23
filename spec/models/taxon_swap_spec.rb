@@ -36,14 +36,6 @@ describe TaxonSwap, "creation" do
       u.id, notifier_type: "TaxonChange", notifier_id: tc.id) ).to eq true
   end
 
-  it "should not bail if a taxon has no rank_level" do
-    swap = TaxonSwap.make
-    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
-    swap.add_output_taxon( Taxon.make!( rank: "something ridiculous" ) )
-    expect( swap.output_taxon.rank_level ).to be_blank
-    expect(swap).to be_valid
-  end
-
   it "should be possible for a site curator who is not a taxon curator of a complete ancestor of the input taxon" do
     genus = Taxon.make!( rank: Taxon::GENUS )
     tf = TaxonFramework.make!( taxon: genus, rank_level: 5 )

@@ -99,7 +99,7 @@ class Taxon < ActiveRecord::Base
 
   after_commit :index_observations
 
-  validates_presence_of :name, :rank
+  validates_presence_of :name, :rank, :rank_level
   validates_uniqueness_of :name, 
                           :scope => [:ancestry, :is_active],
                           :unless => Proc.new { |taxon| (taxon.ancestry.blank? || !taxon.is_active)},
