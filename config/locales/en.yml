@@ -1451,6 +1451,10 @@ en:
   Genus: Genus
   genus_slash_species: "[GENUS] / [SPECIES]"
   geoprivacy: Geoprivacy
+  geoprivacy_is_obscured: Geoprivacy is obscured
+  geoprivacy_is_obscured_desc: Observer has chosen to obscure the coordinates.
+  geoprivacy_is_private: Geoprivacy is private
+  geoprivacy_is_private_desc: Observer has chosen to hide the coordinates.
   georeferenced: Georeferenced?
   georeferenced?: georeferenced
   get_current_position: Get current position
@@ -1461,7 +1465,7 @@ en:
   give_it_some_detail: Give it some detail!
   global_conservation_status: "Global conservation status:"
   global_names: Global Names
-  globally: globally
+  globally: Globally
   go: Go
   go_back: Go back
   going_to_your_observations: Going to your observations...
@@ -1743,6 +1747,7 @@ en:
   keyboard_shortcuts: Keyboard Shortcuts
   kml: KML
   kml_file_size_error: "KML must be less than 1 MB in size"
+  label_colon: "%{label}:"
   labels: Labels
   label_to_group_a_batch_of_taxon_changes: Label to group a batch of taxon changes
   location_private: Location Private
@@ -3829,6 +3834,18 @@ en:
   taxon_is_kingdom_of_life_with_x_observations:
     one: "%{taxon} is a kingdom of life with 1 observation"
     other: "%{taxon} is a kingdom of life with %{count} observations"
+  taxon_is_threatened_coordinates_hidden: |
+    Taxon is threatened, coordinates hidden by default
+  taxon_is_threatened_coordinates_hidden_desc: |
+    One of the taxa suggested in the identifications, or one of the taxa that
+    contain any of these taxa, is known to be rare and/or threatened, so the
+    location of this observation has been obscured.
+  taxon_is_threatened_coordinates_obscured: |
+    Taxon is threatened, coordinates obscured by default
+  taxon_is_threatened_coordinates_obscured_desc: |
+    One of the taxa suggested in the identifications, or one of the taxa that
+    contain any of these taxa, is known to be rare and/or threatened, so the
+    location of this observation has been obscured.
   taxonomy: Taxonomy
   taxon_: taxon
   taxon_assessments_are: |
@@ -4035,9 +4052,11 @@ en:
     This is a more convenient way to find a taxon ID. It's the taxon ID
     that actually gets saved. This search only works for active taxa.
   this_is_taking_forever: This is taking forever.  Please try again later.
+  this_is_the_primary_listing: This is the primary listing
+  this_is_your_observation: This is your observation
+  this_is_your_observation_desc: You can always see the coordinates of your own observations.
   this_job_failed_to_run: This job failed to run. Please contact %{email}
   this_list_is_empty!: This list is empty!
-  this_is_the_primary_listing: This is the primary listing 
   this_list_only_accepts_taxa_that_are: This list only accepts taxa that are
   this_observation: This observation
   this_observation_has_been_incorporated_into_the_following_external_websites: This observation has been incorporated into the following external websites
@@ -4454,9 +4473,15 @@ en:
   where_were_you?: Where were you?
   which_projects_can_add_your_observations?: Which traditional projects can add your observations?
   white: white
+  why_you_can_see_the_coordinates: Why You Can See the Coordinates
   who_can_add_observations_to_this_project?: Who can add observations to this project?
+  who_can_see_the_coordinates: Who Can See the Coordinates
+  who_can_see_the_coordinates_observer: The person who made the observation
+  who_can_see_the_coordinates_staff: iNaturalist staff
+  who_can_see_the_coordinates_projects: Curators of the following projects
   who_helped_user_the_most: "Who Helped %{user} the Most"
   who_user_helped_the_most: "Who %{user} Helped the Most"
+  why_the_coordinates_are_obscured: Why the Coordinates Are Obscured
   with_annotation: With Annotation
   without_annotation: Without Annotation
   widget: Widget
@@ -4575,6 +4600,12 @@ en:
   you_cant_leave_a_project_you_created: You can't leave a project you created.
   you_cant_remove_other_peoples_observations: You can't remove other people's observations.
   you_cant_rotate_photos_hostde_outside: "You can't rotate photos hosted outside of %{site_name}."
+  you_curate_a_project_that_contains_this_observation: |
+    You curate a project that contains this observation
+  you_curate_a_project_that_contains_this_observation_desc: |
+    You can see obscured coordinates when you curate a project that contains an
+    observation and the observer has chosen to share coordinates with curators
+    of that project.
   you_didnt_select_any_observations: You didn't select any observations.
   you_didnt_select_any_photos_to_tag: You didn't select any photos to tag!
   you_dont: You don't

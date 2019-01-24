@@ -801,7 +801,7 @@ h3, h4 {
       background: none !important;
     }
     .details_menu {
-      button {
+      .dropdown-toggle {
         margin: 0px 0px 2px 12px;
         padding: 0;
         border: none;
@@ -814,6 +814,12 @@ h3, h4 {
       .dropdown-menu {
         margin: 0;
         padding: 0;
+      }
+      .btn-more {
+        padding: 0;
+      }
+      .btn-more:hover, .btn-more:focus {
+        text-decoration: none;
       }
     }
   }
@@ -880,6 +886,38 @@ h3, h4 {
     }
     .info:first-child:before {
       visibility: hidden;
+    }
+  }
+
+  .links,
+  .obscured {
+    a {
+      color: $bootstrap-link-color;
+    }
+  }
+
+  .obscured {
+    ul.plain {
+      > li {
+        padding-left: 20px;
+        position: relative;
+        margin-bottom: 10px;
+        i {
+          position: absolute;
+          left: 0;
+          margin-right: 3px;
+          color: $inat-green;
+          &.fa { top: 3px; }
+          &.icon-person { top: -2px; }
+          &.icon-icn-location-obscured,
+          &.icon-icn-location-private { top: -1px; }
+          &.icon-iconic-aves {
+            top: -2px;
+            left: -2px;
+            font-size: 18px;
+          }
+        }
+      }
     }
   }
 }

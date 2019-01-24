@@ -27,8 +27,16 @@ class MapDetails extends React.Component {
     } );
   }
 
+  constructor( ) {
+    super( );
+    this.state = {
+      showAllPlaces: false
+    };
+  }
+
   render( ) {
     const { observation, observationPlaces, config } = this.props;
+    const { showAllPlaces } = this.state;
     const { currentUser } = config;
     if ( !observation ) { return ( <div /> ); }
     let accuracy = observation.private_geojson
@@ -46,36 +54,46 @@ class MapDetails extends React.Component {
     } else if ( observation.geoprivacy ) {
       geoprivacy = I18n.t( observation.geoprivacy );
     }
-    const currentUserHasProjectCuratorCoordinateAccess = _.find(
+    let currentUserHasProjectCuratorCoordinateAccess;
+    if ( currentUser && currentUser.id ) {
+      currentUserHasProjectCuratorCoordinateAccess = _.find(
+        observation.project_observations,
+        po => (
+          po.preferences
+          && po.preferences.allows_curator_coordinate_access
+          && po.project.admins.map( a => a.user_id ).indexOf( currentUser.id ) >= 0
+        )
+      );
+    }
+    const projectObservationsWithCoordinateAccess = _.filter(
       observation.project_observations,
-      po => (
-        po.preferences
-        && po.preferences.allows_curator_coordinate_access
-        && po.project.admins.map( a => a.user_id ).indexOf( currentUser.id ) >= 0
-      )
+      po => po.preferences && po.preferences.allows_curator_coordinate_access
     );
+    const adminPlaces = observationPlaces.filter( op => ( op.admin_level !== null ) );
+    const communityPlaces = observationPlaces.filter( op => ( op.admin_level === null ) );
+    const defaultNumberOfCommunityPlaces = 10;
     return (
       <div className="MapDetails">
         <div className="top_info">
           <div className="info">
-            <span className="attr">{ I18n.t( "lat" ) }:</span>
+            <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "lat" ) } ) }</span>
             { " " }
             <span className="value">{ _.round( observation.latitude, 6 ) }</span>
           </div>
           <div className="info">
-            <span className="attr">{ I18n.t( "long" ) }:</span>
+            <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "long" ) } ) }</span>
             { " " }
             <span className="value">{ _.round( observation.longitude, 6 ) }</span>
           </div>
           <div className="info">
-            <span className="attr">{ I18n.t( "accuracy" ) }:</span>
+            <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "accuracy" ) } ) }</span>
             { " " }
             <span className="value">
               { accuracy ? `${accuracy}${accuracyUnits}` : I18n.t( "not_recorded" ) }
             </span>
           </div>
           <div className="info">
-            <span className="attr">{ I18n.t( "geoprivacy" ) }:</span>
+            <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "geoprivacy" ) } ) }</span>
             { " " }
             <span className="value">{ geoprivacy }</span>
           </div>
@@ -83,76 +101,128 @@ class MapDetails extends React.Component {
         <div className="places clearfix">
           <h4>{ I18n.t( "encompassing_places" ) }</h4>
           <div className="standard">
-            <span className="attr">{ I18n.t( "standard" ) }:</span>
-            { MapDetails.placeList( observationPlaces.filter( op => ( op.admin_level !== null ) ) ) }
+            <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "standard" ) } ) }</span>
+            { MapDetails.placeList( adminPlaces ) }
           </div>
           <div className="community">
-            <span className="attr">{ I18n.t( "community_curated" ) }:</span>
-            { MapDetails.placeList( observationPlaces.filter( op => ( op.admin_level === null ) ) ) }
+            <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "community_curated" ) } ) }</span>
+            { communityPlaces.lenght < defaultNumberOfCommunityPlaces ? (
+              MapDetails.placeList( communityPlaces )
+            ) : (
+              <div>
+                { MapDetails.placeList( communityPlaces.slice(
+                  0,
+                  showAllPlaces ? communityPlaces.length : defaultNumberOfCommunityPlaces
+                ) ) }
+                { communityPlaces.length > defaultNumberOfCommunityPlaces && (
+                  showAllPlaces ? (
+                    <button className="btn btn-link btn-more" type="button" onClick={( ) => this.setState( { showAllPlaces: false } )}>
+                      { I18n.t( "less" ) }
+                    </button>
+                  ) : (
+                    <button className="btn btn-link btn-more" type="button" onClick={( ) => this.setState( { showAllPlaces: true } )}>
+                      { I18n.t( "more" ) }
+                    </button>
+                  )
+                ) }
+              </div>
+            ) }
           </div>
         </div>
-        { observation.obscured && (
+        { observation.obscured && ( observation.geoprivacy || observation.taxon_geoprivacy ) && (
           <div className="obscured">
-            <h4>Why the Coordinates Are Obscured</h4>
-            <ul>
+            <h4>{ I18n.t( "why_the_coordinates_are_obscured" ) }</h4>
+            <ul className="plain">
               { observation.geoprivacy === "obscured" && (
                 <li>
-                  <strong>Geoprivacy is obscured:</strong>
+                  <strong>
+                    <i className="icon-icn-location-obscured" />
+                    { I18n.t( "label_colon", { label: I18n.t( "geoprivacy_is_obscured" ) } ) }
+                  </strong>
                   { " " }
-                  observer has chosen to obscure the coordinates.
+                  { I18n.t( "geoprivacy_is_obscured_desc" ) }
                 </li>
               ) }
               { observation.geoprivacy === "private" && (
                 <li>
-                  <strong>Geoprivacy is private:</strong>
+                  <strong>
+                    <i className="icon-icn-location-private" />
+                    { I18n.t( "label_colon", { label: I18n.t( "geoprivacy_is_private" ) } ) }
+                  </strong>
                   { " " }
-                  observer has chosen to hide the coordinates.
+                  { I18n.t( "geoprivacy_is_private_desc" ) }
                 </li>
               ) }
               { observation.taxon_geoprivacy === "obscured" && (
                 <li>
-                  <strong>Taxon is threatened, coordinates obscured by default:</strong>
+                  <strong>
+                    <i className="fa fa-flag" />
+                    { I18n.t( "label_colon", { label: I18n.t( "taxon_is_threatened_coordinates_obscured" ) } ) }
+                  </strong>
                   { " " }
-                  this taxon is known to be rare and/or threatened so its location has been obscured.
+                  { I18n.t( "taxon_is_threatened_coordinates_obscured_desc" ) }
                 </li>
               ) }
               { observation.taxon_geoprivacy === "private" && (
                 <li>
-                  <strong>Taxon is threatened, coordinates hidden by default:</strong>
+                  <strong>
+                    <i className="fa fa-flag" />
+                    { I18n.t( "label_colon", { label: I18n.t( "taxon_is_threatened_coordinates_hidden" ) } ) }
+                  </strong>
                   { " " }
-                  this taxon is known to extremelely vulnerable to human exploitation so its location has been obscured.
+                  { I18n.t( "taxon_is_threatened_coordinates_hidden_desc" ) }
                 </li>
               ) }
             </ul>
-            <h4>Who Can See the Coordinates</h4>
-            <ul>
-              <li>The person who made the observation</li>
-              <li>iNaturalist staff</li>
+            <h4>{ I18n.t( "who_can_see_the_coordinates" ) }</h4>
+            <ul className="plain">
               <li>
-                Curators of the following projects:
-                <ul>
-                  { _.filter(
-                    observation.project_observations,
-                    po => po.preferences && po.preferences.allows_curator_coordinate_access
-                  ).map( po => (
-                    <li key={`map-details-projects-${po.id}`}>{ po.project.title }</li>
-                  ) ) }
-                </ul>
+                <i className="icon-person" />
+                { I18n.t( "who_can_see_the_coordinates_observer" ) }
               </li>
+              <li>
+                <i className="icon-iconic-aves" />
+                <a href="/pages/about">{ I18n.t( "who_can_see_the_coordinates_staff" ) }</a>
+              </li>
+              { projectObservationsWithCoordinateAccess
+                && projectObservationsWithCoordinateAccess.length > 0 && (
+                <li>
+                  <i className="fa fa-briefcase" />
+                  { I18n.t( "label_colon", { label: I18n.t( "who_can_see_the_coordinates_projects" ) } ) }
+                  <ul>
+                    { projectObservationsWithCoordinateAccess.map( po => (
+                      <li key={`map-details-projects-${po.id}`}>
+                        <a href={`/projects/${po.project.slug}`}>
+                          { po.project.title }
+                        </a>
+                      </li>
+                    ) ) }
+                  </ul>
+                </li>
+              ) }
             </ul>
-            { observation.geojson && (
+            { observation.private_geojson && (
               <div>
-                <h4>Why You Can See the Coordinates</h4>
-                <ul>
+                <h4>{ I18n.t( "why_you_can_see_the_coordinates" ) }</h4>
+                <ul className="plain">
                   { currentUser && currentUser.id === observation.user.id && (
-                    <li><strong>This is your observation: </strong> You can always see the coordinates of your own observations.</li>
+                    <li>
+                      <strong>
+                        <i className="icon-person" />
+                        { I18n.t( "label_colon", { label: I18n.t( "this_is_your_observation" ) } ) }
+                      </strong>
+                      { " " }
+                      { I18n.t( "this_is_your_observation_desc" ) }
+                    </li>
                   ) }
                   { currentUserHasProjectCuratorCoordinateAccess && (
                     <li>
-                      <strong>You curate a project that contains this observation: </strong>
-                      You can see obscured coordinates when you curate a
-                      project that contains an observation and the observer has
-                      chosen to share coordinates with curators of that project.
+                      <strong>
+                        <i className="fa fa-briefcase" />
+                        { I18n.t( "label_colon", { label: I18n.t( "you_curate_a_project_that_contains_this_observation" ) } ) }
+                      </strong>
+                      { " " }
+                      { I18n.t( "you_curate_a_project_that_contains_this_observation_desc" ) }
                     </li>
                   ) }
                 </ul>
