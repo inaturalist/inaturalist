@@ -71,6 +71,8 @@ EOS
   opt :post_taxon_archive_as_url, "URL the second archive will be posted as", type: :string
   opt :community_taxon, "Use the community taxon for the taxon associated with the occurrence, not the default taxon",
     type: :boolean
+  opt :created_d1, "Mininum date of observation creation", type: :string
+  opt :created_d2, "Maximum date of observation creation", type: :string
 end
 
 if opts.debug

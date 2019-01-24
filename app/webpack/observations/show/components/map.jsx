@@ -145,9 +145,9 @@ class Map extends React.Component {
         { taxonMap }
         <div className="map_details">
           <i
-            className={ `geoprivacy-icon ${geoprivacyIconClass}` }
-            title={ geoprivacyTitle }
-            alt={ geoprivacyTitle }
+            className={`geoprivacy-icon ${geoprivacyIconClass}`}
+            title={geoprivacyTitle}
+            alt={geoprivacyTitle}
           />
           <div className="place-guess">
             { placeGuessElement }
@@ -162,8 +162,9 @@ class Map extends React.Component {
               <Dropdown.Menu className="dropdown-menu-right">
                 <li>
                   <MapDetails
-                    observation={ observation }
-                    observationPlaces={ observationPlaces }
+                    observation={observation}
+                    observationPlaces={observationPlaces}
+                    config={config}
                   />
                 </li>
               </Dropdown.Menu>

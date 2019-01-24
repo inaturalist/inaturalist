@@ -181,7 +181,7 @@ describe ActsAsElasticModel do
         Delayed::Worker.new.work_off
         obs.reload
         # obs index more than 5 minutes after delay request aren't re-indexed
-        expect( obs.last_indexed_at ).to eq more_than_five_minutes
+        expect( ( obs.last_indexed_at - more_than_five_minutes ).abs ).to be < 1
       end
 
     end

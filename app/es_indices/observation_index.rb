@@ -95,6 +95,7 @@ class Observation < ActiveRecord::Base
       indexes :private_geojson, type: "geo_shape"
       indexes :created_time_zone, type: "keyword", index: false
       indexes :geoprivacy, type: "keyword"
+      indexes :taxon_geoprivacy, type: "keyword"
       indexes :observed_time_zone, type: "keyword", index: false
       indexes :quality_grade, type: "keyword"
       indexes :time_zone_offset, type: "keyword", index: false
@@ -158,6 +159,7 @@ class Observation < ActiveRecord::Base
         out_of_range: out_of_range,
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
+        taxon_geoprivacy: taxon_geoprivacy,
         map_scale: map_scale,
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,
@@ -324,6 +326,10 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def self.elasticsearch_taxon_names_fields
+    @@taxon_names_fields ||= TaxonName::LOCALES.values.map{ |l| "taxon.names_#{l}" }.sort
+  end
+
   def self.params_to_elastic_query(params, options = {})
     current_user = options[:current_user] || params[:viewer]
     p = params[:_query_params_set] ? params : query_params(params)
@@ -339,7 +345,7 @@ class Observation < ActiveRecord::Base
     if q
       fields = case search_on
       when "names"
-        [ "taxon.names_*" ]
+        elasticsearch_taxon_names_fields
       when "tags"
         [ :tags ]
       when "description"
@@ -347,7 +353,7 @@ class Observation < ActiveRecord::Base
       when "place"
         [ :place_guess ]
       else
-        [ "taxon.names_*", :tags, :description, :place_guess ]
+        elasticsearch_taxon_names_fields + [ :tags, :description, :place_guess ]
       end
       search_filters << { multi_match: { query: q, operator: "and", fields: fields } }
     end

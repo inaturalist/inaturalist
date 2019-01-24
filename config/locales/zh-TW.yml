@@ -557,6 +557,7 @@ zh-TW:
     iucn_red_list: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄
   authorize_permissions_from_provider: 來自於%{provider}的授權許可
   automatic_descriptions_have_been_disabled: 用於此物種分類的自動描述已被停用。
+  automatic_short: 自動
   automatically_add_to_project: 自動添加至專案
   automatically_add_observations_to_this_project: 自動添加觀察至此專案
   automatically_share_your_observations_on: 自動分享您的觀察於
@@ -570,6 +571,7 @@ zh-TW:
   back_to_calendar: 返回至%{user}行事曆
   back_to_editing_observation: 返回至編輯觀察
   back_to_friends: 返回好友
+  back_to_flags_html: '&laquo; 返回至標記'
   back_to_help: 返回至協助
   back_to_import: 返回至匯入
   back_to_lists: 返回至%{name}清單
@@ -1039,6 +1041,7 @@ zh-TW:
   default_sound_license: 預設聲音許可權
   defaults_to_your_name_or_username: 預設成您的名稱或用戶名稱
   defines_a_taxon_framework_for: 定義用於%{taxon_name}的物種分類群框架
+  definitions: 定義
   delete: 刪除
   delete_all: 刪除全部
   delete_conversation: 刪除對話
@@ -1362,10 +1365,13 @@ zh-TW:
   flagged_for_curation: 已標記為策展
   flagged_taxon: 已標記物種分類群
   flagged_thing_explanation: 用戶已標記此%{thing}因為
+  flagging_desc: |-
+    標記會引起網站策展人志工的注意。
+    請不要標記一些您可以透過鑑定、資料品質估計、或是與建立出內容的人們互相討論來處理掉的問題。
   flagger: 加旗號標記者
   flags: 標記
   flags_with_count: 標記（%{count}）
-  flags_explanation: '%{site_name} 用戶標記了一些他們所發現錯誤的事物。這裏有一些尚未被策展人解決的問題。'
+  flags_explanation: '%{site_name} 使用者標記了自網站策展人以及/或網站管理員所需關注的事物。'
   flags_for: 標記為
   flags_on_users_content: 標記在 %{user} 的內容
   flickr_account_information: 您的 Flickr 帳號訊息
@@ -1447,7 +1453,7 @@ zh-TW:
   give_it_some_detail: 為它提供一些詳細內容！
   global_conservation_status: 全球保育狀態
   global_names: 全域名稱
-  globally: 全域
+  globally: 全球
   go: 前往
   go_back: 返回
   going_to_your_observations: 前往您的觀察…
@@ -1547,6 +1553,7 @@ zh-TW:
   ids_by_taxon: 按物種分類的鑑定
   identify: 鑑定
   identify_observations: 鑑定觀察
+  identify_observations_by_these_users: 由這些使用者所鑑定的觀察
   identify_title: 鑑定
   identification: 鑑定
   identification_by_user: 由 %{user} 做的鑑定
@@ -1559,6 +1566,8 @@ zh-TW:
   identifications: 鑑定
   identifications_by: 由 %{user} 做的鑑定
   identified?: 已鑑定
+  computer_vision_suggestion: 電腦視覺建議
+  computer_vision_suggestion_desc: 電腦視覺是一種教導電腦識別圖片方面形態的程序。我們所提供的工具，使用了以社群照片所培訓出的電腦視覺模組來提供鑑定建議，像是自動完成與比較的功能。此標籤代表著有人是使用這些工具其一來添加鑑定。
   identifiers: 鑑定者
   identotron: Identotron
   identotron_for: Identotron 用於
@@ -1906,6 +1915,7 @@ zh-TW:
     gl: 加利西亞語
     id: 印尼語
     it: 義大利語
+    iw: 希伯來語
     ja: 日語
     ko: 韓語
     lb: 盧森堡語
@@ -1916,6 +1926,7 @@ zh-TW:
     pt-PT: 葡萄牙語 (葡萄牙)
     ru: 俄語
     sq: 阿爾巴尼亞
+    sv: 瑞典語
     zh-CN: 簡體中文
     zh-TW: 繁體中文
   locality_notes: 位置註解
@@ -2411,6 +2422,7 @@ zh-TW:
   observations_will_revert_to_casual: 觀察會被列為「粗略」等級，是在不符合以上條件情況或
   observations_with_this_field: 帶有此欄位的觀察
   observations_with_this_field_and_value: 帶有此欄位與內容值的觀察
+  observations_without_media: 包含/不包含媒體的觀察
   observationcounts_refreshed: 觀察次數已重整
   observed: 已觀察
   observed_by: 觀察由
@@ -3051,6 +3063,7 @@ zh-TW:
   private: 私有
   private_: 私人的
   private_description: 座標已完全從公開地圖裡隱藏，實際的座標僅對於您、以及您所添加觀察的專案之策展人可見。帶有私有座標的觀察仍可用於驗證地點清單。
+  probably_spam: 可能是垃圾訊息
   proceed: 繼續
   processing: 處理中
   processing3p: 處理中...
@@ -3180,6 +3193,7 @@ zh-TW:
   real_time_stats: 即時統計
   real_time_discussions: 即時討論
   reason: 原因
+  reason_label: 原因：
   reason_you_are_flagging_this_item: 您標記此項目原因。
   recaptcha_verification_failed: reCAPTCHA 驗證失敗
   receive_email_notifications_when_people_leave_you: 接收電子郵件通知有關於在
@@ -3271,6 +3285,7 @@ zh-TW:
   removed_project_user: 已移除的專案用戶
   removing: 正在移除...
   reorder_by_taxonomy: 依分類法重新排序
+  repair_broken_urls: 回報毀損 URL
   repair_doesnt_work_for_that_kind_of_photo: 此類型照片無法修復
   repair_external_photos: 修復外界照片
   replace_boundary_with_kml: 替換帶有 KML 的邊界
@@ -3301,6 +3316,7 @@ zh-TW:
   resolve_this_flag: 解決此標籤
   resolved: 已解決
   resolved_by: 已解決由
+  resolved_by_user_on_date_html: 由%{user}於 %{date} 所解決
   resolver_said_x_html: <span class="meta">%{resolver} 說：</span>「%{x}」
   restore: 還原
   restoring: 正在還原...
@@ -3487,6 +3503,7 @@ zh-TW:
   some_observations_failed_to_save: 部份觀察儲存失敗
   some_of_those_photos_couldnt_be_saved: 一些照片無法儲存：%{error}
   some_other_reason: 您可在下方說明一些其它原因。
+  duplicate_observation_flag_warning: 對於重複觀察方面，請要求觀察者處理問題而非添加標記，因為網站策展人無法移除觀察。
   some_people: 有些人們
   some_people_that: 有些人們
   some_rights_reserved: 保留部分權利
@@ -3607,7 +3624,7 @@ zh-TW:
   stats_for_this_year_have_not_been_generated: 今年份尚未產生的統計內容。
   stats_title: 網站統計
   status: 狀態
-  status_globally: '%{status} 全域'
+  status_globally: '%{status} 全球'
   status_in_place: '%{status}在%{place}'
   stay_and_try_again: 延遲並重試
   still_no_luck?: 仍然運氣糟嗎？
@@ -3802,6 +3819,7 @@ zh-TW:
   terrain: 地形
   text: 文字
   text_: 文字
+  thanks!: 感謝！
   thanks_for_signing_up: 感謝註冊！
   thanks_for_using: 感謝使用
   thanks_from_all_of_us_here_at: 感謝所有每一位來自於
@@ -4093,6 +4111,8 @@ zh-TW:
   user_commented_on: '%{user} 已評論您的 %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} 不同意這是%{taxon}'
   user_faved_a_noun_by_owner: '%{user} 將一共 %{noun} 個由 %{owner} 所作內容加為個人最愛'
+  user_flagged_as_a_spammer_html: '%{user}已被標記為濫發垃圾訊息者'
+  user_flagged_as_a_non_spammer_html: '%{user}已被標記為並不是濫發垃圾訊息者'
   user_follows: '%{user}關注'
   user_has_opted_out_of_community_id: 用戶已選擇退出社群鑑定
   user_has_opted_out_of_community_ids: '%{user} 已選擇保留對於關聯於他們觀察之物種分類群方面的控制'
@@ -4178,6 +4198,7 @@ zh-TW:
   view_observations: 檢視觀察
   view_observation_flags: 檢視觀察標記
   view_observations_by_everyone: 檢視每個人的觀察
+  view_observations_by_these_users: 檢視由這些使用者所做的觀察
   view_observations_of_this_taxon_by: 檢視此分類群的觀察，由
   view_observations_raquo: 檢視觀察&raquo;
   view_on: 檢視在
@@ -4510,6 +4531,7 @@ zh-TW:
   your_dashboard_helps_you: 您的控制面板協助您保持追蹤在此網站上運作的人們。要關注一些人們的更新內容，請在檢視他們的觀察或個人檔案頁面時，點選標題列的「關注
     [名稱]」的連結。
   verifiable: 可證實
+  verifiable_observations: 可證實觀察
   views:
     views: 查看數
     announcements:
@@ -4542,9 +4564,14 @@ zh-TW:
           iNaturalist 為加利福尼亞州科學院與國家地理學會所共同發起。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
         </p>
       post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |-
+          若內容不是垃圾訊息或侵犯版權，請分別解決 <code>spam</code> 與 <code>copyright
+          infringement</code> 標記。
     guides:
       index:
-        funding_html: 指南開發的資金由 <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+        funding_html: 指南開發的資金由 <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
           提供
         welcome_message_html: 指南協助您學習有關世界上的生物多樣性。不論您現正在探索坦尚尼亞的塞倫蓋提，或是在您當地的公園裡（我們猜您比較可能是在塞倫蓋提），指南可協助您理解我們星球上令人驚豔的多樣生物。
       edit:
@@ -4927,6 +4954,14 @@ zh-TW:
           %{site_name} 資料庫裡。您會需要添加此名稱才能讓大量上傳成功運作。使用在搜尋頁面下方的方框來匯入新名稱。若名稱已提供但套用在多項有效物種分類群裡，請嘗試使用更多或更少的特定名稱，來符合單一的物種分類。
       users_updates_suspended:
         message: 您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
+      photos_missing:
+        subject: 一些照片需要回報問題
+        we_have_been_housekeeping: 我們在管控時有發現到連接至您的觀察的一些照片，已無法從原有來源存取。那些照片已被%{providers}所託管。
+        we_would_like_to_remove: 我們會在不久之後移除掉有被引用到的所有毀損照片，但我們不會捨棄掉可被保存下來的事物。這些照片當中有可能仍存在它們的外部主機且可被修復。一些照片可能已透過將您的<a
+          href='%{account_url}'>%{site_name}帳號</a>與其他照片託管帳號做連接來上傳過，而該連接已逾期需要重新更新。
+        you_can_attempt_repair: 您可以透過瀏覽照片頁面與點擊「%{repair_link_text}」連結來嘗試回報照片。若您曉得該照片已不存在，您可以選擇來刪除掉。
+        please_address: 請在<b>接下來的 30 天裡</b>處理這些問題。超過 30 天候，我們將會從 iNaturalist 上刪除損毀的照片，但您所有的觀察仍會保留下來。照片在刪除後觀察會被重新評估，一些原本是研究等級的觀察有可能會因為缺少照片而降為粗略等級。
+        we_included_links: 我們已包含下列受影響照片的連結。
     photos:
       inviter:
         automatically_add_to_project: 自動添加至專案
@@ -5397,6 +5432,17 @@ zh-TW:
         search_place_help_html: 用於觀察搜尋的預設地點。
         scientific_name_first_desc: 學名顯示優於通用名稱。
         youve_used_all_of_your_blocks: 您已經用完所有的封鎖數量額度，請移除舊有項目來新增其它封鎖。
+      recent:
+        about_recent_users: 關於
+        definitions_html: <dl> <dt>可能是垃圾訊息</dt> <dd> 使用者可能是濫發垃圾訊息者代表著他們雖有個人檔案描述，但沒有觀察或鑑定。
+          </dd> <dt>自動垃圾訊息</dt> <dd> 被系統自動標記為濫發垃圾訊息者的人。 </dd> <dt>手動垃圾訊息</dt> <dd>
+          由網站策展人手動標記為濫發垃圾訊息者的人。 </dd> <dt>誤判</dt> <dd> 由網站策展人處理掉誤標，本身並非濫發垃圾訊息者但被誤標的使用者。
+          </dd> </dl>
+        recent_users_desc_html: |-
+          <p>
+            我們歡迎新來的使用者，同時也會防範濫發垃圾訊息的人。希望此工具對以上情況有幫助。我們使用 <a
+            href="https://akismet.com/">Akismet</a> 將許多使用者自動標記為濫發垃圾訊息者，但 Akismet 並非完美，因此若您花個幾分鐘來決定新帳號是否為濫發垃圾訊息者，這會很有幫助的。
+          </p>
       show:
         take_a_chance_to_review_html: 來試試看<a href="%{link}">我們的指南</a>。
         this_user_was_banned: 此用戶已被停用

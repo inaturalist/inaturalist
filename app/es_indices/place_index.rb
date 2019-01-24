@@ -35,7 +35,15 @@ class Place < ActiveRecord::Base
 
   def as_indexed_json(options={})
     preload_for_elastic_index
-    obs_result = INatAPIService.observations( per_page: 0, verifiable: true, place_id: id )
+    universal_search_rank = if obs_result = INatAPIService.observations( per_page: 0, verifiable: true, place_id: id )
+      if admin_level.nil?
+        obs_result.total_results / 2
+      else
+        obs_result.total_results
+      end
+    else
+      nil
+    end
     {
       id: id,
       slug: slug,
@@ -54,7 +62,8 @@ class Place < ActiveRecord::Base
       location: ElasticModel.point_latlon(latitude, longitude),
       point_geojson: ElasticModel.point_geojson(latitude, longitude),
       without_check_list: check_list_id.blank? ? true : nil,
-      observations_count: obs_result ? obs_result.total_results : nil
+      observations_count: universal_search_rank,
+      universal_search_rank: universal_search_rank
     }
   end
 

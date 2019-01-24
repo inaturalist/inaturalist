@@ -356,6 +356,7 @@ class Observation < ActiveRecord::Base
               :set_license,
               :trim_user_agent,
               :update_identifications,
+              :set_taxon_geoprivacy,
               :set_community_taxon_before_save,
               :set_taxon_from_probable_taxon,
               :obscure_coordinates_for_geoprivacy,
@@ -1710,7 +1711,8 @@ class Observation < ActiveRecord::Base
     observations.each do |o|
       o.obscure_coordinates_for_threatened_taxa
       o.obscure_place_guess
-      next unless o.coordinates_changed? || o.place_guess_changed?
+      o.set_taxon_geoprivacy
+      next unless o.coordinates_changed? || o.place_guess_changed? || o.taxon_geoprivacy_changed?
       Observation.where( id: o.id ).update_all(
         latitude: o.latitude,
         longitude: o.longitude,
@@ -1719,7 +1721,8 @@ class Observation < ActiveRecord::Base
         geom: o.geom,
         private_geom: o.private_geom,
         place_guess: o.place_guess,
-        private_place_guess: o.private_place_guess
+        private_place_guess: o.private_place_guess,
+        taxon_geoprivacy: o.taxon_geoprivacy
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id) )
@@ -1787,6 +1790,19 @@ class Observation < ActiveRecord::Base
     return true if species_guess.blank?
     self.taxon_id = single_taxon_id_for_name(species_guess)
     true
+  end
+
+  def set_taxon_geoprivacy
+    taxon_ids = if identifications.loaded? 
+      identifications.select{|i| i.current? }.map(&:taxon_id)
+    else
+      identifications.current.pluck(:taxon_id)
+    end
+    self.taxon_geoprivacy = Taxon.max_geoprivacy(
+      taxon_ids,
+      latitude: latitude,
+      longitude: longitude
+    )
   end
   
   def single_taxon_for_name(name)

@@ -619,6 +619,7 @@ pt-BR:
   authorize_permissions_from_provider: Autorizar permissões de %{provider}
   automatic_descriptions_have_been_disabled: Descrições automáticas foram desativadas
     para este táxon.
+  automatic_short: Automático
   automatically_add_to_project: Adicione automaticamente ao projeto
   automatically_add_observations_to_this_project: Adicionar automaticamente observações
     a este projeto
@@ -634,6 +635,7 @@ pt-BR:
   back_to_calendar: Voltar para calendário %{user}
   back_to_editing_observation: Voltar para observação editada
   back_to_friends: Voltar a amigos
+  back_to_flags_html: '&laquo; De volta a bandeiras'
   back_to_help: Voltar para Ajuda
   back_to_import: Voltar para Importar
   back_to_lists: Voltar para %{name} lists
@@ -1203,6 +1205,7 @@ pt-BR:
   default_sound_license: Licença padrão para sons
   defaults_to_your_name_or_username: Padrão para seu nome e nome de usuário
   defines_a_taxon_framework_for: Definir um quadro de táxon para %{taxon_name}
+  definitions: Definições
   delete: Apagar
   delete_all: Excluir tudo
   delete_conversation: Excluir conversa
@@ -1558,12 +1561,15 @@ pt-BR:
   flagged_for_curation: Marcada com alerta para moderação.
   flagged_taxon: Taxon sinalizado
   flagged_thing_explanation: Usuários marcaram isto %{thing} porque
+  flagging_desc: |-
+    A sinalização chama a atenção dos curadores voluntários do site.
+    Por favor, não sinalizar problemas que você pode resolver com identificações, os dados
+    Avaliação de Qualidade ou conversando com a pessoa que fez o conteúdo.
   flagger: Sinalizador
   flags: Sinalizações
   flags_with_count: Linhas (%{count})
-  flags_explanation: '%{site_name} usuários marcam com alertas aquilo que eles encontram
-    e percebem que não está correto. Aqui estão alguns aspectos que ainda não foram
-    resolvidos pelos administradores.'
+  flags_explanation: '%{site_name} os usuários sinalizam coisas que precisam de atenção
+    dos curadores do site e/ou dos administradores do site.'
   flags_for: Sinalizações para
   flags_on_users_content: Marcações no conteúdo de %{user}
   flickr_account_information: Informações da sua conta Flickr
@@ -1768,6 +1774,7 @@ pt-BR:
   ids_by_taxon: Identificações por táxon
   identify: Identificar
   identify_observations: Identifique observações
+  identify_observations_by_these_users: Identifique observações desses usuários
   identify_title: Identificar
   identification: Identificação
   identification_by_user: Identificação por %{user}
@@ -1780,6 +1787,12 @@ pt-BR:
   identifications: Identificações
   identifications_by: Identificações por %{user}
   identified?: identificado
+  computer_vision_suggestion: Sugestão de visão por computador
+  computer_vision_suggestion_desc: Visão computacional é o processo de ensinar computadores
+    a reconhecer padrões em imagens. Fornecemos ferramentas que usam modelos de visão
+    computacional focados em fotos da comunidade para fornecer sugestões de identificação,
+    como recursos de autocompletar e comparar. Esta etiqueta indica quando uma pessoa
+    adicionou um ID usando uma dessas ferramentas.
   identifiers: Identificadores
   identotron: Auto-Identificador
   identotron_for: Auto-Identificador para
@@ -2195,6 +2208,7 @@ pt-BR:
     gl: Galego
     id: Indonesio
     it: Italiano
+    iw: Hebraico
     ja: Japonês
     ko: Coreano
     lb: Luxemburguês
@@ -2205,6 +2219,7 @@ pt-BR:
     pt-PT: Português (Portugal)
     ru: Russo
     sq: Albanês
+    sv: Sueco
     zh-CN: Chinês (Simplificado)
     zh-TW: Chinês (tradicional)
   locality_notes: Notas por localidade
@@ -2776,6 +2791,7 @@ pt-BR:
     "casuais" caso não atendam as condições acima ou
   observations_with_this_field: Observações com este campo
   observations_with_this_field_and_value: Observações com este campo e valor
+  observations_without_media: Observações sem mídia
   observationcounts_refreshed: Contagem de observações atualizada
   observed: Observado
   observed_by: Observado por
@@ -3485,6 +3501,7 @@ pt-BR:
     reais só serão visíveis a você e para os coordenadores de projetos aos quais vocês
     adicionar a observação. Ainda assim, mesmo coordenadas configuradas como privadas
     serão utilizadas na verificação de checklists locais.
+  probably_spam: Provavelmente spam
   proceed: Avançar
   processing: Processando
   processing3p: Processando…
@@ -3630,6 +3647,7 @@ pt-BR:
   real_time_stats: Estatísticas em Tempo Real
   real_time_discussions: Discussões em Tempo Real
   reason: Razão
+  reason_label: 'Motivo:'
   reason_you_are_flagging_this_item: Motivo pelo qual está marcando com alerta este
     item.
   recaptcha_verification_failed: Verificação reCAPTCHA falhou
@@ -3728,6 +3746,7 @@ pt-BR:
   removed_project_user: Usuário removido do projeto
   removing: Removendo...
   reorder_by_taxonomy: Reordenar por taxonomia
+  repair_broken_urls: Reparar URLs quebrados
   repair_doesnt_work_for_that_kind_of_photo: Reparação não funciona para este tipo
     de imagem
   repair_external_photos: Reparar fotos externas
@@ -3761,6 +3780,7 @@ pt-BR:
   resolve_this_flag: Solucionar esta marcação
   resolved: Solucionado
   resolved_by: Solucionado por
+  resolved_by_user_on_date_html: Resolvido por %{user} em %{date}
   resolver_said_x_html: <span class="meta">%{resolver} disse,</span> "%{x}"
   restore: Restaurar
   restoring: Restaurando...
@@ -3968,6 +3988,9 @@ pt-BR:
   some_of_those_photos_couldnt_be_saved: 'Algumas destas fotos não puderam ser carregadas:
     %{error}'
   some_other_reason: Alguma outra razão que você pode explicar depois.
+  duplicate_observation_flag_warning: Para observações duplicadas, peça ao observador
+    para resolver o problema em vez de adicionar uma marca, os curadores não podem
+    excluir observações.
   some_people: Algumas pessoas
   some_people_that: Algumas pessoas que
   some_rights_reserved: Alguns direitos reservados
@@ -4294,6 +4317,7 @@ pt-BR:
   terrain: terreno
   text: Texto
   text_: texto
+  thanks!: Obrigado!
   thanks_for_signing_up: Obrigada por registrar!
   thanks_for_using: Obrigada por usar
   thanks_from_all_of_us_here_at: Obrigado por todos nós aqui em
@@ -4693,6 +4717,8 @@ pt-BR:
   user_commented_on: '%{user} comentou sobre seu %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} discorda que seja um(a) %{taxon}'
   user_faved_a_noun_by_owner: '%{user} favorito %{noun} por %{owner}'
+  user_flagged_as_a_spammer_html: '%{user} sinalizado como spammer'
+  user_flagged_as_a_non_spammer_html: '%{user} marcado como não-spammer'
   user_follows: '%{user} segue'
   user_has_opted_out_of_community_id: O usuário rejeitou a identificação da comunidade
   user_has_opted_out_of_community_ids: '%{user} escolheu ter controle sobre os táxons
@@ -4789,6 +4815,7 @@ pt-BR:
   view_observations: Ver observações
   view_observation_flags: Ver observações marcadas
   view_observations_by_everyone: Ver as observações de todos
+  view_observations_by_these_users: Veja as observações desses usuários
   view_observations_of_this_taxon_by: Ver observações deste táxon por
   view_observations_raquo: Ver observações &raquo;
   view_on: Ver em
@@ -5218,6 +5245,7 @@ pt-BR:
     , clique em 'Seguir [nome]' link no topo da página de visualização de observações
     ou no perfil.
   verifiable: verificável
+  verifiable_observations: Observações verificáveis
   views:
     views: Visualizações
     announcements:
@@ -5273,7 +5301,7 @@ pt-BR:
     guides:
       index:
         funding_html: Os recursos financeiros para o desenvolvimento destes Guias
-          foram capitados graças ao apoio de <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+          foram capitados graças ao apoio de <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: Guias oferecem informações sobre a biodiversidade mundial.
           Esteja você explorando a Amazônia ou apenas uma praça ao lado da sua casa
           (que pode na verdade ser tão importante quanto a Amazônia), Guias virtuais
@@ -5911,6 +5939,20 @@ pt-BR:
         message: Você esteve inativo em %{site_name} por algum tempo, por este motivo
           suspendemos suas inscrições. Para receber o resumo de atualizações neste
           local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
+      photos_missing:
+        subject: Algumas fotos precisam de reparos
+        we_have_been_housekeeping: Temos feito um pouco de limpeza e encontrado algumas
+          fotos conectadas às suas observações que não são mais acessíveis a partir
+          de sua fonte original. As fotos estão hospedadas em %{providers}.
+        you_can_attempt_repair: Você pode tentar reparar as fotos visitando a página
+          da foto e marcando o link "%{repair_link_text}". Se você souber que a foto
+          não existe mais, poderá excluí-la.
+        please_address: Por favor, abordar estas questões <b>nos próximos 30 dias</b>.
+          Após 30 dias, começaremos a excluir fotos que não funcionam no iNaturalist.
+          Todas as suas observações permanecerão. Eles serão reavaliados depois que
+          as fotos forem excluídas, e é possível que algumas observações das notas
+          da pesquisa se tornem informais se não tiverem mais fotos.
+        we_included_links: Incluímos links para as fotos afetadas abaixo.
     photos:
       inviter:
         automatically_add_to_project: Adicione ao projeto automaticamente
@@ -6649,6 +6691,17 @@ pt-BR:
         scientific_name_first_desc: Mostre nomes científicos antes dos nomes comuns.
         youve_used_all_of_your_blocks: Você usou todos os seus blocos. Remova um bloco
           para adicionar outro.
+      recent:
+        about_recent_users: Sobre
+        recent_users_desc_html: |-
+          <p>
+            Queremos receber novos usuários, mas também queremos combater
+             spammers Espero que esta ferramenta ajude com ambos. Nós somos
+             automaticamente sinalizando muitos usuários como spammers usando <a
+            href="https://akismet.com/">Akismet</a>, mas Akismet não é perfeito
+            então, se você quiser colocar em alguns minutos marcando novas contas como
+             spammers ou não spammers, ajudaria.
+          </p>
       show:
         take_a_chance_to_review_html: Quando puder revise <a href="%{link}">nossas
           orientações</a>.

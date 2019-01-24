@@ -7,6 +7,7 @@
 @import "../shared/observations_grid_item";
 @import "../shared/user_with_icon";
 @import "../shared/taxonomic_branch";
+@import "../shared/full_screen_modal";
 
 #app {
   min-height: 600px;
@@ -935,32 +936,50 @@ $nav-btn-dim: 40px;
 .PhotoChooserDropArea.hovering {
   border: 2px dashed #ddd;
 }
-body > [role="dialog"] .PhotoChooserModal .modal-title {
-  line-height: 1;
-  padding: 0;
+
+.PhotoChooserModal,
+body > [role="dialog"] .PhotoChooserModal {
+  .inner {
+    flex-direction: column;
+  }
+  .modal-title {
+    line-height: 1;
+    padding: 0;
+  }
+  .search-control {
+    margin-bottom: 5px;
+  }
+  .photos {
+    margin: -2.5px;
+  }
+  .modal-body {
+    flex: 2;
+    display: flex;
+
+    .choosercol {
+      display: flex;
+      flex-direction: column;
+      .photos {
+        flex: 2;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .photocols {
+    display: flex;
+    align-items: stretch;
+  }
+  .photocols > div {
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-left: 20px;
+    width: 50%;
+  }
+  .photocols > div:first-child {
+    margin-left: 0;
+  }
 }
-.PhotoChooserModal .search-control {
-  margin-bottom: 5px;
-}
-.PhotoChooserModal .photos {
-  margin: -2.5px;
-}
-.PhotoChooserModal .modal-body {
-  display: flex;
-}
-.PhotoChooserModal .photocols {
-  display: flex;
-  align-items: stretch;
-}
-.PhotoChooserModal .photocols > div {
-  overflow-x: hidden;
-  overflow-y: auto;
-  margin-left: 20px;
-  width: 50%;
-}
-.PhotoChooserModal .photocols > div:first-child {
-  margin-left: 0;
-}
+
 .comma-separated-list > *:before {
   content: ', ';
 }
