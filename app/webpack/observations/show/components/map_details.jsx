@@ -129,7 +129,7 @@ class MapDetails extends React.Component {
             ) }
           </div>
         </div>
-        { observation.obscured && ( observation.geoprivacy || observation.taxon_geoprivacy ) && (
+        { currentUser && currentUser.roles.indexOf( "admin" ) >= 0 && observation.obscured && ( observation.geoprivacy || observation.taxon_geoprivacy ) && (
           <div className="obscured">
             <h4>{ I18n.t( "why_the_coordinates_are_obscured" ) }</h4>
             <ul className="plain">
@@ -181,6 +181,10 @@ class MapDetails extends React.Component {
                 { I18n.t( "who_can_see_the_coordinates_observer" ) }
               </li>
               <li>
+                <i className="icon-people" />
+                { I18n.t( "who_can_see_the_coordinates_trusted" ) }
+              </li>
+              <li>
                 <i className="icon-iconic-aves" />
                 <a href="/pages/about">{ I18n.t( "who_can_see_the_coordinates_staff" ) }</a>
               </li>
@@ -228,12 +232,12 @@ class MapDetails extends React.Component {
                   { observation.viewer_trusted_by_observer && (
                     <li>
                       <strong>
-                        { observation.user.login }
-                        { " " }
-                        trusts you with their private coordinates:
+                        <i className="icon-person" />
+                        { I18n.t( "label_colon", {
+                          label: I18n.t( "user_trusts_you_with_their_private_coordinates", { user: observation.user.login } )
+                        } ) }
                       </strong>
-                      The observer has chosen to trust you with the private
-                      coordinates of all their observations.
+                      { I18n.t( "user_trusts_you_with_their_private_coordinates_desc" ) }
                     </li>
                   ) }
                 </ul>

@@ -108,7 +108,7 @@ const ActivityItemMenu = ( {
     menuItems.push(
       <li key={`id-menu-links-${item.id}`} className="search-links">
         <div className="text-muted">
-          { I18n.t( "view_observations_of_this_taxon_by" ) }:
+          { I18n.t( "label_colon", { label: I18n.t( "view_observations_of_this_taxon_by" ) } ) }
         </div>
         { searchLinks }
       </li>
@@ -118,7 +118,7 @@ const ActivityItemMenu = ( {
       menuItems.push(
         <li key={`id-identify-menu-links-${item.id}`} className="search-links">
           <div className="text-muted">
-            { I18n.t( "identify_observations" ) }:
+            { I18n.t( "label_colon", { label: I18n.t( "identify_observations" ) } ) }
           </div>
           <div className="search">
             <a
@@ -187,6 +187,7 @@ const ActivityItemMenu = ( {
     && !viewerIsActor
     && observation
     && observation.user.id === loggedInUser.id
+    && loggedInUser.roles.indexOf( "admin" ) >= 0
   ) {
     menuItems.push( ( <MenuItem divider key={`trust-divider-${item.id}`} /> ) );
     loggedInUser.trusted_user_ids = loggedInUser.trusted_user_ids || [];
@@ -198,7 +199,7 @@ const ActivityItemMenu = ( {
           className="search"
         >
           <i className="icon-person" />
-          Stop trusting this person with your private coordinates.
+          { I18n.t( "stop_trusting_this_person_with_your_private_coordinates" ) }
         </MenuItem>
       ) );
     } else {
@@ -209,15 +210,15 @@ const ActivityItemMenu = ( {
           className="search"
         >
           <i className="icon-person" />
-          Trust this person with your private coordinates.
+          { I18n.t( "trust_this_person_with_your_private_coordinates" )}
         </MenuItem>
       ) );
     }
     menuItems.push( (
       <li key={`comment-delete-${item.id}`} className="search">
         <a href="/relationships" target="_blank">
-          <i className="fa fa-users" />
-          Manage your relationships.
+          <i className="icon-people" />
+          { I18n.t( "manage_your_relationships" ) }
         </a>
       </li>
     ) );
