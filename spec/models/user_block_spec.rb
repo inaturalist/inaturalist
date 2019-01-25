@@ -15,15 +15,15 @@ describe UserBlock do
   describe "creation" do
     it "unfollows the user from the blocked user" do
       Friendship.create!( user: user, friend: blocked_user )
-      expect( user.friends ).to include blocked_user
+      expect( user.followees ).to include blocked_user
       UserBlock.create!( user: user, blocked_user: blocked_user )
-      expect( user.friends ).not_to include blocked_user
+      expect( user.followees ).not_to include blocked_user
     end
     it "unfollows the blocked user from the user" do
       Friendship.create!( user: blocked_user, friend: user )
-      expect( blocked_user.friends ).to include user
+      expect( blocked_user.followees ).to include user
       UserBlock.create!( user: user, blocked_user: blocked_user )
-      expect( blocked_user.friends ).not_to include user
+      expect( blocked_user.followees ).not_to include user
     end
   end
   describe "prevents" do

@@ -93,6 +93,35 @@ shared_examples_for "a signed in UsersController" do
         expect( es_response.photo_licenses ).to be_blank
       end
     end
+
+    describe "friend_id" do
+      it "should create a friendship if one doesn't exist" do
+        friend = User.make!
+        expect( user.followees ).not_to include friend
+        put :update, format: :json, id: user.id, friend_id: friend.id
+        user.reload
+        expect( user.followees ).to include friend
+      end
+      it "should update a friendship if one exists" do
+        friendship = Friendship.make!( user: user, following: false, trust: true )
+        expect( user.followees ).not_to include friendship.friend
+        put :update, format: :json, id: user.id, friend_id: friendship.friend.id
+        expect( user.followees ).to include friendship.friend
+        friendship.reload
+        expect( friendship ).to be_following
+      end
+    end
+
+    describe "remove_friend_id" do
+      it "should update a friendship if one exist" do
+        friendship = Friendship.make!( user: user, following: false, trust: true )
+        expect( user.followees ).not_to include friendship.friend
+        put :update, format: :json, id: user.id, remove_friend_id: friendship.friend.id
+        expect( user.followees ).not_to include friendship.friend
+        friendship.reload
+        expect( friendship ).not_to be_following
+      end
+    end
   end
 
   describe "new_updates" do
@@ -185,13 +214,6 @@ describe UsersController, "oauth authentication" do
   before do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
-  end
-  it_behaves_like "a signed in UsersController"
-end
-
-describe UsersController, "devise authentication" do
-  before do
-    http_login user
   end
   it_behaves_like "a signed in UsersController"
 end

@@ -239,7 +239,9 @@ Activity.propTypes = {
   setActiveTab: PropTypes.func,
   setFlaggingModalState: PropTypes.func,
   unreview: PropTypes.func,
-  onClickCompare: PropTypes.func
+  onClickCompare: PropTypes.func,
+  trustUser: PropTypes.func,
+  untrustUser: PropTypes.func
 };
 
 export default Activity;

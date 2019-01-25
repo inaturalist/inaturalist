@@ -95,6 +95,7 @@ class Observation < ActiveRecord::Base
       indexes :private_geojson, type: "geo_shape"
       indexes :created_time_zone, type: "keyword", index: false
       indexes :geoprivacy, type: "keyword"
+      indexes :taxon_geoprivacy, type: "keyword"
       indexes :observed_time_zone, type: "keyword", index: false
       indexes :quality_grade, type: "keyword"
       indexes :time_zone_offset, type: "keyword", index: false
@@ -158,6 +159,7 @@ class Observation < ActiveRecord::Base
         out_of_range: out_of_range,
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
+        taxon_geoprivacy: taxon_geoprivacy,
         map_scale: map_scale,
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,

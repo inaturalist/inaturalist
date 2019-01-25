@@ -77,7 +77,7 @@ body > [role="dialog"] .ActivityItem {
     }
     .item-status {
       margin-right: 15px;
-     .fa {
+     .fa, i {
         width: 20px;
         text-align: center;
       }
@@ -254,7 +254,7 @@ body > [role="dialog"] .ActivityItemMenu {
   .search {
     line-height: 24px;
     white-space: nowrap;
-    .fa {
+    .fa, i {
       color: $inat-green;
       margin-right: 5px;
     }

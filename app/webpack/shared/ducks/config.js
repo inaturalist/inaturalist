@@ -1,5 +1,3 @@
-/* global setPreference */
-
 import _ from "lodash";
 import { fetch } from "../util";
 
@@ -59,5 +57,31 @@ export function updateCurrentUser( updates ) {
   return {
     type: UPDATE_CURRENT_USER,
     updates
+  };
+}
+
+export function trustUser( user ) {
+  const body = new FormData( );
+  body.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
+  fetch( `/users/${user.id}/trust`, { method: "PUT", body } );
+  return ( dispatch, getState ) => {
+    const { currentUser } = getState( ).config;
+    const currentTrustedUserIds = currentUser.trusted_user_ids || [];
+    dispatch( updateCurrentUser( {
+      trusted_user_ids: _.uniq( currentTrustedUserIds.concat( [user.id] ) )
+    } ) );
+  };
+}
+
+export function untrustUser( user ) {
+  const body = new FormData( );
+  body.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
+  fetch( `/users/${user.id}/untrust`, { method: "PUT", body } );
+  return ( dispatch, getState ) => {
+    const { currentUser } = getState( ).config;
+    const currentTrustedUserIds = currentUser.trusted_user_ids || [];
+    dispatch( updateCurrentUser( {
+      trusted_user_ids: _.without( currentTrustedUserIds, user.id )
+    } ) );
   };
 }

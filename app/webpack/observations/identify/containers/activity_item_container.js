@@ -17,8 +17,9 @@ import { setFlaggingModalState } from "../../show/ducks/flagging_modal";
 function mapStateToProps( state, ownProps ) {
   return {
     config: state.config,
-    currentUserID: ( ownProps.observation.identifications || [] ).find( ident =>
-      ident.user.id === state.config.currentUser.id && ident.current ),
+    currentUserID: ( ownProps.observation.identifications || [] ).find(
+      ident => ident.user.id === state.config.currentUser.id && ident.current
+    ),
     hideCompare: true,
     hideDisagreement: state.config.blind,
     hideCategory: state.config.blind,
@@ -90,7 +91,9 @@ function mapDispatchToProps( dispatch, ownProps ) {
           dispatch( fetchCurrentObservation( ) );
         } );
     },
-    setFlaggingModalState: ( newState ) => { dispatch( setFlaggingModalState( newState ) ); }
+    setFlaggingModalState: newState => {
+      dispatch( setFlaggingModalState( newState ) );
+    }
   };
 }
 

@@ -32,7 +32,9 @@ const ActivityItem = ( {
   hideDisagreement,
   hideCategory,
   noTaxonLink,
-  onClickCompare
+  onClickCompare,
+  trustUser,
+  untrustUser
 } ) => {
   if ( !item ) { return ( <div /> ); }
   const { taxon } = item;
@@ -312,12 +314,15 @@ const ActivityItem = ( {
             </time>
             <ActivityItemMenu
               item={item}
+              observation={observation}
               config={config}
               deleteComment={deleteComment}
               deleteID={deleteID}
               restoreID={restoreID}
               setFlaggingModalState={setFlaggingModalState}
               linkTarget={linkTarget}
+              trustUser={trustUser}
+              untrustUser={untrustUser}
             />
           </Panel.Title>
         </Panel.Heading>
@@ -349,7 +354,9 @@ ActivityItem.propTypes = {
   hideDisagreement: PropTypes.bool,
   hideCategory: PropTypes.bool,
   noTaxonLink: PropTypes.bool,
-  onClickCompare: PropTypes.func
+  onClickCompare: PropTypes.func,
+  trustUser: PropTypes.func,
+  untrustUser: PropTypes.func
 };
 
 export default ActivityItem;

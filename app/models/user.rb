@@ -106,13 +106,22 @@ class User < ActiveRecord::Base
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
-  
-  # Some interesting ways to map self-referential relationships in rails
-  has_many :friendships, :dependent => :destroy
-  has_many :friends, :through => :friendships
-  has_many :followerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
-  has_many :followers, :through => :followerships,  :source => 'user'
-  
+  has_many :friendships, dependent: :destroy
+
+  def followees
+    User.where( "friendships.user_id = ?", id ).
+      joins( "JOIN friendships ON friendships.friend_id = users.id" ).
+      where( "friendships.following" ).
+      where( "users.suspended_at IS NULL" )
+  end
+
+  def followers
+    User.where( "friendships.friend_id = ?", id ).
+      joins( "JOIN friendships ON friendships.user_id = users.id" ).
+      where( "friendships.following" ).
+      where( "users.suspended_at IS NULL" )
+  end
+
   has_many :lists, :dependent => :destroy
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
