@@ -3772,6 +3772,26 @@ describe Observation, "and update_quality_metrics" do
   end
 end
 
+describe Observation, "taxon_geoprivacy" do
+  it "should be set using private coordinates" do
+    p = make_place_with_geom
+    cs = ConservationStatus.make!( place: p )
+    o = Observation.make!
+    Observation.where( id: o.id ).update_all(
+      latitude: p.latitude + 10,
+      longitude: p.longitude + 10,
+      private_latitude: p.latitude,
+      private_longitude: p.longitude,
+    )
+    o.reload
+    expect( p ).to be_contains_lat_lng( o.private_latitude, o.private_longitude )
+    expect( p ).not_to be_contains_lat_lng( o.latitude, o.longitude )
+    i = Identification.make!( observation: o, taxon: cs.taxon )
+    o.reload
+    expect( o.taxon_geoprivacy ).to eq cs.geoprivacy
+  end
+end
+
 def setup_test_case_taxonomy
   # Tree:
   #          sf
