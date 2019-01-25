@@ -8,7 +8,7 @@
     .col-xs-12
       #controls
         = form_tag url_for, method: :get, class: "form-inline" do
-          = hidden_fields_for_params( without: [:page, :order, :order_by] )
+          = hidden_fields_for_params( without: [:q, :following, :trusted, :page, :order, :order_by] )
           .form-group
             .input-group
               %input.form-control{ type: "search", name: "q", value: @q, placeholder: t(:username) }
