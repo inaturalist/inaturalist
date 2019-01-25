@@ -160,6 +160,7 @@ class Taxon < ActiveRecord::Base
     "subgenus"        => 15,
     "section"         => 13,
     "subsection"      => 12,
+    "complex"         => 11,
     "species"         => 10,
     "hybrid"          => 10,
     "subspecies"      => 5,
@@ -714,7 +715,7 @@ class Taxon < ActiveRecord::Base
       parent_name = name.split(' ')[0..-2].join(' ')
       parent = Taxon.single_taxon_for_name(parent_name)
       parent ||= Taxon.import(parent_name, :exact => true)
-      if parent && rank_level && parent.rank_level && parent.rank_level > rank_level && [GENUS, SPECIES].include?( parent.rank )
+      if parent && parent.can_be_grafted_to && rank_level && parent.rank_level && parent.rank_level > rank_level && [GENUS, SPECIES].include?( parent.rank )
         self.update_attributes(:parent => parent)
       end
     end
@@ -997,12 +998,23 @@ class Taxon < ActiveRecord::Base
     return true unless new_record? || ancestry_changed?
     return true if ancestry.nil? || !is_active
     destination_taxon_framework = parent.taxon_framework
-    if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? 
+    if !skip_taxon_framework_checks && destination_taxon_framework && destination_taxon_framework.covers? && destination_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
       errors.add( :ancestry, "destination #{destination_taxon_framework.taxon} has a curated taxon framework attached to it. Contact the curators of that taxon to request changes." )
     end
     destination_upstream_taxon_framework = parent.get_upstream_taxon_framework
-    if !skip_taxon_framework_checks && destination_upstream_taxon_framework && parent.rank_level > destination_upstream_taxon_framework.rank_level && destination_upstream_taxon_framework.taxon_curators.any? && !current_user.blank? && !destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
+    if !skip_taxon_framework_checks && destination_upstream_taxon_framework && parent.rank_level > destination_upstream_taxon_framework.rank_level && destination_upstream_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !destination_upstream_taxon_framework.taxon_curators.where( user: current_user ).exists? ) ) 
       errors.add( :ancestry, "destination #{destination_upstream_taxon_framework.taxon} covered by a curated taxon framework. Contact the curators of that taxon to request changes." )
+    end
+    true
+  end
+  
+  def can_be_grafted_to
+    if !skip_taxon_framework_checks && taxon_framework && taxon_framework.covers? && taxon_framework.taxon_curators.any? && (current_user.blank? || ( !current_user.blank? && !taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
+      return false
+    end
+    upstream_taxon_framework = get_upstream_taxon_framework
+    if !skip_taxon_framework_checks && upstream_taxon_framework && rank_level > upstream_taxon_framework.rank_level && upstream_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !upstream_taxon_framework.taxon_curators.where( user: current_user ).exists? ) ) 
+      return false
     end
     true
   end
@@ -1027,7 +1039,7 @@ class Taxon < ActiveRecord::Base
   def graftable_relative_to_taxon_framework_coverage
     return true unless ancestry_changed? && !ancestry_was.nil?
     upstream_taxon_framework = get_upstream_taxon_framework( ancestry_was.split("/") )
-    if !skip_taxon_framework_checks && upstream_taxon_framework && !current_user.blank? && upstream_taxon_framework.taxon_curators.any? && !upstream_taxon_framework.taxon_curators.where( user: current_user ).exists?
+    if !skip_taxon_framework_checks && upstream_taxon_framework && upstream_taxon_framework.taxon_curators.any? && ( current_user.blank? || ( !current_user.blank? && !upstream_taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
       errors.add( :ancestry, "covered by a curated taxon framework attached to #{upstream_taxon_framework.taxon}. Contact the curators of that taxon to request changes." )
     end
     true
