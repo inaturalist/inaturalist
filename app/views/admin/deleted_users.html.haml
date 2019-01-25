@@ -1,0 +1,22 @@
+- content_for :title do
+  = @title = "Deleted Users"
+
+%table.table
+  %thead
+    %tr
+      %th user ID
+      %th login
+      %th email
+      %th deleted at
+      %th user created at
+      %th obs count
+  %tbody
+    - for du in @deleted_users
+      %tr
+        %td= du.user_id
+        %td= du.login
+        %td= du.email
+        %td=l du.created_at
+        %td=l du.user_created_at
+        %td=l du.observations_count
+= will_paginate @deleted_users

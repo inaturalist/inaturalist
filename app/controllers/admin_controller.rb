@@ -14,6 +14,41 @@ class AdminController < ApplicationController
     render layout: "admin"
   end
 
+  def users
+    @users = User.paginate(page: params[:page]).order(id: :desc)
+    @comment_counts_by_user_id = Comment.where(user_id: @users).group(:user_id).count
+    @q = params[:q]
+    @users = @users.where(
+      "login ILIKE ? OR name ILIKE ? OR email ILIKE ? OR last_ip LIKE ?", "%#{@q}%", "%#{@q}%", "%#{@q}%", "%#{@q}%"
+    )
+    respond_to do |format|
+      format.html { render layout: "admin" }
+    end
+  end
+
+  def user_detail
+    @display_user = User.find_by_id(params[:id].to_i)
+    @display_user ||= User.find_by_login(params[:id])
+    @display_user ||= User.find_by_email(params[:id])
+    @observations = Observation.page_of_results( user_id: @display_user.id ) if @display_user
+
+    respond_to do |format|
+      format.html do
+        if !@display_user
+          redirect_back_or_default( users_admin_path )
+        end
+        render layout: "admin"
+      end
+    end
+  end
+
+  def deleted_users
+    @deleted_users = DeletedUser.order( "id desc" ).page( params[:page] ).per_page( 100 )
+    respond_to do |format|
+      format.html { render layout: "admin" }
+    end
+  end
+
   def user_content
     return unless load_user_content_info
     @records = @display_user.send(@reflection_name).page(params[:page]) rescue []

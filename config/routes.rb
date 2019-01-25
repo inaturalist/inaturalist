@@ -497,6 +497,9 @@ Rails.application.routes.draw do
       get :index
       get :queries
       get :stop_query
+      get :users
+      get "users/:id" => "admin#user_detail", as: :user_detail
+      get :deleted_users
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do
