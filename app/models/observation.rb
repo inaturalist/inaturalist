@@ -1800,8 +1800,8 @@ class Observation < ActiveRecord::Base
     end
     self.taxon_geoprivacy = Taxon.max_geoprivacy(
       taxon_ids,
-      latitude: latitude,
-      longitude: longitude
+      latitude: private_latitude.blank? ? latitude : private_latitude,
+      longitude: private_longitude.blank? ? longitude : private_longitude
     )
   end
   
