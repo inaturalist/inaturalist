@@ -10,8 +10,20 @@ class FriendshipsController < ApplicationController
     if @q = params[:q]
       @friendships = @friendships.joins( :friend ).where( "users.login ilike ?", "%#{@q}%" )
     end
-    @friendships = @friendships.where( "following" ) if params[:following] && params[:following].yesish?
-    @friendships = @friendships.where( "trust" ) if params[:trusted] && params[:trusted].yesish?
+    @trusted = params[:trusted]
+    @trusted = "any" unless %w(yes no any).include?( @trusted )
+    @following = params[:following]
+    @following = "any" unless %w(yes no any).include?( @following )
+    if @following == "yes"
+      @friendships = @friendships.where( "following" )
+    elsif @following == "no"
+      @friendships = @friendships.where( "NOT following" )
+    end
+    if @trusted == "yes"
+      @friendships = @friendships.where( "trust" )
+    elsif @trusted == "no"
+      @friendships = @friendships.where( "NOT trust" )
+    end
     @order = params[:order]
     @order = "desc" unless %w(asc desc).include?( @order )
     @order_by = params[:order_by]
