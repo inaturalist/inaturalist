@@ -19,7 +19,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     set_taxon_framework_relationship
     taxon_framework = @taxon_framework_relationship.taxon_framework
     unless logged_in? && current_user.is_curator? && ( !taxon_framework.taxon_curators.any? || ( taxon_framework.taxon_curators.any? && taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
-    flash[:notice] = "only taxon curators can access that page"
+    flash[:notice] = "only taxon curators for #{taxon_framework.taxon.name} can access that page"
       if session[:return_to] == request.fullpath
         redirect_to root_url
       else

@@ -111,22 +111,29 @@ class TaxonFramework < ActiveRecord::Base
     return unassigned_taxa
   end
   
-  def get_flagged_taxa_count
+  def get_flagged_taxa_count(options = {})
+    taxon_clause = ""
+    if t = options[:taxon]
+      taxon_clause = " AND ( taxa.id = #{ t.id } OR taxa.ancestry = '#{ t.ancestry }/#{ t.id }' OR taxa.ancestry LIKE '#{ t.ancestry }/#{ t.id }/%' )"
+    end
     flagged_taxa_count = Taxon.get_internal_taxa_covered_by( self ).
       joins( "INNER JOIN flags ON taxa.id = flags.flaggable_id AND flags.flaggable_type = 'Taxon'" ).
-      where( "flags.resolved = false").count
+      where( "flags.resolved = false#{taxon_clause}").count
 
     return flagged_taxa_count
   end
   
-  def get_flagged_taxa
+  def get_flagged_taxa(options = {})
+    taxon_clause = ""
+    if t = options[:taxon]
+      taxon_clause = " AND ( taxa.id = #{ t.id } OR taxa.ancestry = '#{ t.ancestry }/#{ t.id }' OR taxa.ancestry LIKE '#{ t.ancestry }/#{ t.id }/%' )"
+    end
     flagged_taxa = Taxon.get_internal_taxa_covered_by( self ).
       joins( "INNER JOIN flags ON taxa.id = flags.flaggable_id AND flags.flaggable_type = 'Taxon'" ).
-      where( "flags.resolved = false").order( "taxa.rank_level desc" ).limit( 10 )
+      where( "flags.resolved = false#{taxon_clause}").order( "taxa.rank_level desc" ).limit( 10 )
 
     return flagged_taxa
   end
-  
   
   def taxon_framework_taxon_name
     taxon.name
