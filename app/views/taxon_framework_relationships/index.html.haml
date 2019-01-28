@@ -54,10 +54,9 @@
 .container
   .row
     .col-xs-12
-      - if is_admin?
+      - if !current_user.blank? && current_user.is_curator?
         .pull-right
-          .admin-box
-            = link_to "new taxon framework relationship", new_taxon_framework_relationship_path, class: "btn btn-default"
+          = link_to "new taxon framework relationship", new_taxon_framework_relationship_path, class: "btn btn-default"
       %h2= @title
   .row
     .col-xs-3

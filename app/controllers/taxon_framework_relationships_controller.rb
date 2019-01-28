@@ -1,6 +1,8 @@
 class TaxonFrameworkRelationshipsController < ApplicationController
   before_filter :find_taxon_framework_relationship, only: [:show, :edit]
   before_filter :authenticate_user!, except: [:index, :show]
+  before_filter :curator_required, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :taxon_curator_required, only: [:edit, :update, :destroy]
   before_action :set_taxon_framework_relationship, except: [:index, :new, :create]
   
   layout "bootstrap"
@@ -10,6 +12,20 @@ class TaxonFrameworkRelationshipsController < ApplicationController
       @taxon_framework_relationship = TaxonFrameworkRelationship.find( params[:id] )
     rescue
       render_404
+    end
+  end
+  
+  def taxon_curator_required
+    set_taxon_framework_relationship
+    taxon_framework = @taxon_framework_relationship.taxon_framework
+    unless logged_in? && current_user.is_curator? && ( !taxon_framework.taxon_curators.any? || ( taxon_framework.taxon_curators.any? && taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
+    flash[:notice] = "only taxon curators can access that page"
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
     end
   end
   
@@ -87,6 +103,13 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     local_params.delete("taxa_attributes")
     @taxon_framework_relationship = current_user.taxon_framework_relationships.new( local_params )
     @taxon_framework_relationship.updater = current_user
+    
+    if @taxon_framework_relationship.taxon_framework.taxon_curators.any? && !@taxon_framework_relationship.taxon_framework.taxon_curators.where( user: current_user ).exists?
+      flash[:error] = "only taxon curators can add taxon framework relationships to that taxon framework"
+      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
+      render action: :new
+      return
+    end
     
     if taxa_attributes
       taxa_attributes.values.each do |row|
