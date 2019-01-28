@@ -5,7 +5,7 @@
 .panel.panel-default
   .panel-heading
     - if upstream_taxon_framework.source && !taxon_framework_relationship && !current_user.blank? && current_user.is_curator? && |
-      ( ( upstream_taxon_framework.taxon_curators.count > 0 && upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id } ) || |
+      ( ( upstream_taxon_framework.taxon_curators.count > 0 && upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id }.count > 0 ) || |
       ( upstream_taxon_framework.taxon_curators.count == 0 ) ) |
       .pull-right
         = link_to "Add relationship", new_taxon_framework_relationship_path( { taxon_id: taxon.id, taxon_framework_id: upstream_taxon_framework.id } )
@@ -21,7 +21,7 @@
   - if upstream_taxon_framework.source && taxon_framework_relationship
     .panel-body
       - if !current_user.blank? && current_user.is_curator? && |
-        ( ( upstream_taxon_framework.taxon_curators.count > 0 && upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id } ) || |
+        ( ( upstream_taxon_framework.taxon_curators.count > 0 && upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id }.count > 0 ) || |
         ( upstream_taxon_framework.taxon_curators.count == 0 ) ) |
         .pull-right
           = link_to "Edit relationship", edit_taxon_framework_relationship_path( taxon_framework_relationship )
