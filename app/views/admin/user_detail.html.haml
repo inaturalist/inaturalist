@@ -1,0 +1,201 @@
+- content_for(:title) do
+  = t(:curating)
+  = @user ? @user.login : t(:users)
+- content_for :extrajs do
+  :javascript
+    $( document ).ready( function( ) {
+      $( "#reject_user_name" ).userAutocomplete( {
+        idEl: $( "#reject_user_id" ),
+        afterSelect: function( ui ) {
+          $( "#reject_user_id" ).val( ui.item.user_id );
+        }
+      } );
+      $( "#site-admins .dropdown-menu" ).on( "click", function( e ) {
+        e.stopPropagation( );
+      } );
+    } );
+  :javascript
+    $( document ).ready( function( ) {
+      $( "#site-admins input[type='checkbox']" ).on( "change", function( e ) {
+        $.ajax({
+          type: $( this ).is( ":checked" ) ? "POST" : "DELETE",
+          url: "/site_admins",
+          data: {
+            site_admin: {
+              user_id: #{ @display_user.id },
+              site_id: $( this ).val( )
+            }
+          },
+          success: function( data ) {
+            console.log( "success" );
+          },
+          error: function( data ) {
+            console.log( "error" );
+          },
+          dataType: "JSON"
+        });
+      } );
+    } );
+= content_for :extracss do
+  :css
+    .dropdown-menu.site-admins li {
+      padding: 3px 10px;
+    }
+.container
+  .row
+    .col-xs-12
+      %form.stacked.form-inline{ method: "get", action: users_admin_path }
+        %input.form-control#id{ name: "q", type: "search", value: @q }
+        %input.btn.btn-default{ type: "submit", value: "Search" }
+  .row
+    .col-xs-8
+      %table.table
+        - for user_attr in User.column_names
+          %tr
+            %th= user_attr
+            %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
+        - @display_user.preferences.each do |pref,val|
+          %tr
+            %th= pref
+            %td= val
+        %tr
+          %th Recent user agents
+          %td
+            - if !@observations.blank?
+              %ul
+                - for observation in @observations
+                  - next if observation.user_agent.blank?
+                  %li
+                    = observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe
+            - else
+              No observations to check
+        %tr
+          %th Blocks
+          %td
+            - if @display_user.user_blocks.count == 0
+              None
+            - else
+              %ul.plain
+                - @display_user.user_blocks.limit( 100 ).each do |ub|
+                  %li= link_to_user ub.blocked_user
+              %p.text-muted
+                = @display_user.user_blocks.count
+                total
+        %tr
+          %th Blocked by
+          %td
+            - if @display_user.user_blocks_as_blocked_user.count == 0
+              None
+            - else
+              %ul.plain
+                - @display_user.user_blocks_as_blocked_user.limit( 100 ).each do |ub|
+                  %li= link_to_user ub.user
+              %p.text-muted
+                = @display_user.user_blocks_as_blocked_user.count
+                total
+        %tr
+          %th Mutes
+          %td
+            - if @display_user.user_mutes.count == 0
+              None
+            - else
+              %ul.plain
+                - @display_user.user_mutes.limit( 100 ).each do |um|
+                  %li= link_to_user um.muted_user
+              %p.text-muted
+                = @display_user.user_mutes.count
+                total
+        %tr
+          %th Muted by
+          %td
+            - if @display_user.user_mutes_as_muted_user.count == 0
+              None
+            - else
+              %ul.plain
+                - @display_user.user_mutes_as_muted_user.limit( 100 ).each do |um|
+                  %li= link_to_user um.user
+              %p.text-muted
+                = @display_user.user_mutes_as_muted_user.count
+                total
+        - if @display_user.curator_sponsor
+          %tr
+            %th User who made this user a curator
+            %td= link_to_user @display_user.curator_sponsor
+    .col-xs-4
+      %p
+        = user_image( @display_user, size: "large", class: "img-responsive center-block" )
+      - if @display_user.is_curator?
+        = link_to t(:remove_curator_status), remove_role_path(@display_user, :role => "curator"), :method => :delete, class: "btn btn-block btn-warning"
+      - else
+        = link_to t(:make_curator), add_role_path(@display_user, :role => "curator"), :method => :post, class: "btn btn-block btn-success"
+      - if @display_user.active?
+        = link_to "Suspend user", suspend_user_path(@display_user), class: "btn btn-block btn-warning"
+      - else
+        = link_to "Unsuspend user", unsuspend_user_path(@display_user), class: "btn btn-block btn-success"
+      - unless @display_user.spammer?
+        = link_to t(:flag_as_spammer), set_spammer_path(@display_user, spammer: true), method: :post, class: "btn btn-block btn-warning"
+      - unless @display_user.known_non_spammer?
+        = link_to t(:flag_as_non_spammer), set_spammer_path(@display_user, spammer: false), |
+          method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
+          class: "btn btn-block btn-success"
+      = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"
+      .dropdown.btn-block#site-admins
+        .btn.btn-block.btn-success.dropdown-toggle{ "data-toggle" => "dropdown" }
+          = t :make_site_admin
+          %span.caret
+        %ul.dropdown-menu.site-admins{ style: "width:100%" }
+          - Site.order(:id).map do |s|
+            %li
+              %label
+                %input{                                                                |
+                  type: "checkbox",                                                    |
+                  id: "site-#{s.id}",                                                  |
+                  value: s.id,                                                         |
+                  checked: @display_user.site_admins.detect{ |sa| sa.site_id == s.id } |
+                }                                                                      |
+                = s.name
+                = " [#{ s.short_url }]"
+                - if s.draft
+                  = " (#{ I18n.t(:draft) })"
+      = link_to "Log in as #{@display_user.login}", { controller: "admin", action: "login_as", id: @display_user.id }, class: "btn btn-block btn-info"
+      = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
+      = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,
+        :data => {:confirm => t(:are_you_sure_no_undo)},
+        class: "btn btn-block btn-danger"
+      = link_to "Delete user photo", admin_update_user_path( @display_user.id, icon_delete: true ), method: :put,
+        :data => {:confirm => t(:are_you_sure_no_undo)},
+        class: "btn btn-block btn-danger"
+      = link_to t(:delete_user), @display_user, :method => :delete,           |
+        :data => {:confirm => t(:are_you_really_sure_want_delete_this_user)}, |
+        class: "btn btn-block btn-danger"
+      = separator
+      - extra = capture do
+        = link_to comments_by_login_path(@display_user.login), class: "list-group-item" do
+          %span.badge= @display_user.comments.count
+          %i.fa.fa-comments
+          Comments
+      = render :partial => '/users/glance', :locals => {:user => @display_user, :extra => extra}
+      - unless @display_user.provider_authorizations.blank?
+        %h3= t(:provider_authorizations)
+        %ul
+          - for pa in @display_user.provider_authorizations
+            %li
+              = pa.provider_name
+              (#{pa.provider_uid})
+              .small.meta
+                = t(:created_on)
+                = l pa.created_at
+      - if fi = @display_user.flickr_identity
+        %h3= t(:flickr_identity)
+        = link_to fi.flickr_username, "http://flickr.com/photos/#{fi.flickr_username}"
+        = link_to "(#{fi.flickr_user_id})", "http://flickr.com/photos/#{fi.flickr_user_id}"
+        .small.meta
+          = t(:created_on)
+          = l fi.created_at
+      .merge.box.upstacked
+        %h3 Merge User
+        = form_tag merge_user_path( @display_user ), class: "form", method: :put do
+          .form-group
+            = text_field_tag :reject_user_name, "", class: "form-control", placeholder: "User to delete"
+            = hidden_field_tag :reject_user_id
+          = submit_tag "Merge Into #{@display_user.login}", class: "btn btn-danger", data: { confirm: "This will delete the user you just chose and move all their content over to #{@display_user.login}. This can't be undone. Proceed?" }

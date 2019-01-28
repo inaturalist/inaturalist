@@ -174,6 +174,11 @@ module DarwinCore
       params[:site_id] = @opts[:site_id]
       params[:created_d1] = @opts[:created_d1]
       params[:created_d2] = @opts[:created_d2] || ( @generate_started_at || Time.now ).iso8601
+      if @opts[:photos].to_s == "true"
+        params[:with_photos] = true
+      elsif @opts[:photos].to_s == "false"
+        params[:with_photos] = false
+      end
       params
     end
 
@@ -206,7 +211,6 @@ module DarwinCore
       if @opts[:community_taxon]
         preloads  << { community_taxon: :ancestor_taxa }
       end
-      
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers

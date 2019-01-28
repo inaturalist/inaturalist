@@ -1,0 +1,2 @@
+require "ruby_picasa"
+

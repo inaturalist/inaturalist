@@ -1,5 +1,8 @@
 - content_for :title do
   =t :your_relationships
+- content_for :extracss do
+  :css
+    .edit_friendship .form-group { margin-bottom: 5px; }
 .container
   .row
     .col-xs-12
@@ -14,17 +17,18 @@
               %input.form-control{ type: "search", name: "q", value: @q, placeholder: t(:username) }
               .input-group-btn
                 = submit_tag t(:search), class: "btn btn-default"
-          %label.form-group
-            %input{ type: "checkbox", name: "following", value: "yes", checked: params[:following].yesish?, data: { autosubmit: true } }
-            =t :following
-          %label.form-group
-            %input{ type: "checkbox", name: "trusted", value: "yes", checked: params[:trusted].yesish?, data: { autosubmit: true } }
-            =t :trusted
+          .form-group
+            %label{ for: "following" }=t :following
+            = select_tag :following, options_for_select( %w(any yes no).map {|t| [I18n.t( "#{t}_", default: I18n.t( t, default: t ) ), t]}, @following ), class: "select form-control", data: { autosubmit: true }
+          .form-group
+            %label{ for: "trusted" }=t :trusted
+            = select_tag :trusted, options_for_select( %w(any yes no).map {|t| [I18n.t( "#{t}_", default: I18n.t( t, default: t ) ), t]}, @trusted ), class: "select form-control", data: { autosubmit: true }
   .row
     .col-xs-12
       %table.table
         %thead
           %tr
+            %th
             %th
               = link_to url_for_params( order_by: "user", order: @order == "desc" ? "asc" : "desc" ) do
                 = t(:name)
@@ -48,6 +52,7 @@
             %tr
               %td
                 = link_to( image_tag( friendship.friend.icon.url(:thumb), class: "usericon" ), person_path( friendship.friend ) )
+              %td
                 = link_to_user friendship.friend
                 .meta= friendship.friend.name
               %td=l friendship.created_at
