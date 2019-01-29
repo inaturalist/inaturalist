@@ -2120,11 +2120,9 @@ $header-line-height: 34px;
     .dropdown-menu {
       .header-xs { display: block; }
     }
-    .add-obs {
-      .btn {
-        font-size: 15px !important;
-        padding: 5px 7px !important;
-      }
+    .btn-focus {
+      font-size: 15px !important;
+      padding: 5px 7px !important;
     }
   }
   @media (min-width: 768px) and (max-width: 991px) {
@@ -2132,11 +2130,9 @@ $header-line-height: 34px;
     .dropdown-menu {
       .header-sm { display: block; }
     }
-    .add-obs {
-      .btn {
-        font-size: 15px !important;
-        padding: 5px 7px !important;
-      }
+    .btn-focus {
+      font-size: 15px !important;
+      padding: 5px 7px !important;
     }
     &.search-open {
       .header-sm { display: none; }
@@ -2157,11 +2153,9 @@ $header-line-height: 34px;
       .dropdown-menu {
         .header-xs { display: block; }
       }
-      .add-obs {
-        .btn {
-          font-size: 15px !important;
-          padding: 5px 7px !important;
-        }
+      .btn-focus {
+        font-size: 15px !important;
+        padding: 5px 7px !important;
       }
     }
   }
@@ -2239,9 +2233,9 @@ $header-line-height: 34px;
       transition: width 0.5s ease;
       overflow: hidden;
     }
-    .btn {
+    .hide-btn {
       font-size: 18px;
-      height: 34px;
+      height: $header-line-height;
       line-height: 36px;
       padding: 0 5px;
       color: #333;
@@ -2249,6 +2243,10 @@ $header-line-height: 34px;
         font-size: 20px;
         font-weight: bold;
       }
+    }
+    .show-btn {
+      width: 30px;
+      padding: 0;
     }
     .hide-btn {
       display: none;
@@ -2377,16 +2375,17 @@ $header-line-height: 34px;
     -ms-flex-align: center;
     align-items: center;
     margin-right: 15px;
-    .btn {
-      background-color: $inat-green;
-      border-color: $inat-green;
-      color: white;
-      i { color: white; }
-      font-size: 14px;
-      font-weight: 700;
-      padding: 6px 10px 5px;
-      line-height: 15px;
-    }
+  }
+  .btn-focus {
+    background-color: $inat-green;
+    border-color: $inat-green;
+    color: white;
+    i { color: white; }
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 10px 5px;
+    line-height: 15px;
+    margin: 3px 0;
   }
 }
 #footer-locale-chooser {
