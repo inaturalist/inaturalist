@@ -1043,6 +1043,7 @@ protected
       :prefers_scientific_name_first,
       :prefers_no_place,
       :prefers_coordinate_interpolation_protection,
+      :prefers_coordinate_interpolation_protection_test,
       :search_place_id,
       :site_id,
       :test_groups,

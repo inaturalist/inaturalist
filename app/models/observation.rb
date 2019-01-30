@@ -1387,10 +1387,14 @@ class Observation < ActiveRecord::Base
   # day.
   def context_geoprivacy
     return if observed_on.blank?
-    return unless user && user.prefers_coordinate_interpolation_protection?
+    return unless user && user.prefers_coordinate_interpolation_protection_test?
     scope = user.observations.on( observed_on )
     scope = scope.where( "id != ?", id ) if persisted?
-    geoprivacies = scope.pluck(:geoprivacy, :taxon_geoprivacy).flatten.uniq
+    geoprivacies = if user.prefers_coordinate_interpolation_protection?
+      scope.pluck(:geoprivacy, :taxon_geoprivacy).flatten.uniq
+    else
+      scope.pluck(:taxon_geoprivacy).flatten.uniq
+    end
     if geoprivacies.include?( PRIVATE )
       return PRIVATE
     end

@@ -129,7 +129,11 @@ class MapDetails extends React.Component {
             ) }
           </div>
         </div>
-        { currentUser && currentUser.roles.indexOf( "admin" ) >= 0 && observation.obscured && ( observation.geoprivacy || observation.taxon_geoprivacy ) && (
+        { currentUser
+          && currentUser.roles.indexOf( "admin" ) >= 0
+          && observation.obscured
+          // && ( observation.geoprivacy || observation.taxon_geoprivacy )
+          && (
           <div className="obscured">
             <h4>{ I18n.t( "why_the_coordinates_are_obscured" ) }</h4>
             <ul className="plain">
@@ -175,21 +179,22 @@ class MapDetails extends React.Component {
               ) }
               { observation.context_geoprivacy === "obscured" && (
                 <li>
-                  <strong>Another observation by this user on this day is obscured: </strong>
+                  <strong>
+                    <i className="fa fa-calendar" />
+                    { I18n.t( "label_colon", { label: I18n.t( "same_day_obscured" ) } ) }
+                  </strong>
                   { " " }
-                  Obscuring an observation obscures all other observations by
-                  that person on that day to prevent people from guessing the
-                  coordinates based on observations made on the same day.
+                  { I18n.t( "same_day_obscured_desc" ) }
                 </li>
               ) }
               { observation.context_geoprivacy === "private" && (
                 <li>
-                  <strong>Another observation by this user on this day is private: </strong>
+                  <strong>
+                    <i className="fa fa-calendar" />
+                    { I18n.t( "label_colon", { label: I18n.t( "same_day_private" ) } ) }
+                  </strong>
                   { " " }
-                  Hiding the coordinates of an observation hides the
-                  coordinates of all other observations by that person on that
-                  day to prevent people from guessing the coordinates based on
-                  observations made on the same day.
+                  { I18n.t( "same_day_private_desc" ) }
                 </li>
               ) }
             </ul>

@@ -153,6 +153,14 @@
           [t(:curators), User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS],
           [t(:only_you), User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER]
         ], :description => t(:observation_fields_by_preferences_description) %>
+
+      <% if current_user.prefers_coordinate_interpolation_protection_test? %>
+        <h3><%=t :privacy %></h3>
+        <%= f.check_box "prefers_coordinate_interpolation_protection", 
+          label: t( "views.users.edit.same_day_geoprivacy_protection" ),
+          label_after: true,
+          description: t( "views.users.edit.prefers_coordinate_interpolation_protection_desc" ) %>
+      <% end %>
     </div>
     
     <div class="column span-18">

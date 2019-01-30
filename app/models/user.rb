@@ -84,6 +84,7 @@ class User < ActiveRecord::Base
   preference :no_place, :boolean, default: false
   preference :medialess_obs_maps, :boolean, default: false
   preference :coordinate_interpolation_protection, default: false
+  preference :coordinate_interpolation_protection_test, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
