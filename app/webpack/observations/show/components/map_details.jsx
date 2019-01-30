@@ -184,10 +184,6 @@ class MapDetails extends React.Component {
                 <i className="icon-people" />
                 { I18n.t( "who_can_see_the_coordinates_trusted" ) }
               </li>
-              <li>
-                <i className="icon-iconic-aves" />
-                <a href="/pages/about">{ I18n.t( "who_can_see_the_coordinates_staff" ) }</a>
-              </li>
               { projectObservationsWithCoordinateAccess
                 && projectObservationsWithCoordinateAccess.length > 0 && (
                 <li>
