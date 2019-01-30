@@ -24,8 +24,8 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @messages = Message.where( thread_id: @message.thread_id ).order( "id asc" )
-    if current_user.is_admin?
+    @messages = Message.where( user_id: @message.user_id, thread_id: @message.thread_id ).order( "id asc" )
+    if current_user.is_admin? && current_user.id != @message.user_id
       flash.now[:notice] =  "You can see this because you're on staff. Please be careful"
     else
       Message.where( id: @messages, read_at: nil ).update_all( read_at: Time.now )
