@@ -605,7 +605,7 @@ Rails.application.routes.draw do
   end
   resources :computer_vision_demo_uploads do
     member do
-      get :score
+      post :score
     end
   end
 
