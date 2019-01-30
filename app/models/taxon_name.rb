@@ -239,7 +239,8 @@ class TaxonName < ActiveRecord::Base
     language_name = language_for_locale( locale )
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name }
 
-    # We want Maori names to show up in New Zealand even for English speakers, but we don't want North American English names to show in Mexcio
+    # We want Maori names to show up in New Zealand even for English speakers,
+    # but we don't want North American English names to show in Mexcio
     locale_and_place_names = place_names.select {|n| n.localizable_lexicon == language_name }
     exact_locale_and_place_names = exact_place_names.select {|n| n.localizable_lexicon == language_name }
     
