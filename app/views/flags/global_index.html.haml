@@ -120,7 +120,7 @@
               %td= flaggable_class.name.humanize
               %td
                 = link_to(flaggable.to_plain_s, flaggable) if flaggable.respond_to?(:to_plain_s)
-                - if flaggable.respond_to?( :body ) || flaggable.respond_to?( :description )
+                - if !flaggable.is_a?( Message ) && flaggable.respond_to?( :body ) || flaggable.respond_to?( :description )
                   = truncate_with_more( formatted_user_text( flaggable.try_methods(:body, :description) ), length: 200 )
                 - if flaggable.respond_to?(:user) && flaggable.user
                   .small
