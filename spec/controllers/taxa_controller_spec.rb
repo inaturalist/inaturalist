@@ -273,4 +273,23 @@ describe TaxaController do
     end
   end
 
+  describe "set_photos" do
+    before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+    after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+    it "should reindex the taxon new photos even if there are existing photos" do
+      sign_in User.make!
+      taxon = Taxon.make!
+      existing_tp = TaxonPhoto.make!( taxon: taxon )
+      photo = LocalPhoto.make!
+      es_taxon = Taxon.elastic_search( where: { id: taxon.id } ).results.results[0]
+      expect( es_taxon.default_photo.id ).to eq existing_tp.photo.id
+      post :set_photos, format: :json, id: taxon.id, photos: [
+        { id: photo.id, type: "LocalPhoto", native_photo_id: photo.id },
+        { id: existing_tp.photo.id, type: "LocalPhoto", native_photo_id: existing_tp.photo.id }
+      ]
+      expect( response ).to be_ok
+      es_taxon = Taxon.elastic_search( where: { id: taxon.id } ).results.results[0]
+      expect( es_taxon.default_photo.id ).to eq photo.id
+    end
+  end
 end

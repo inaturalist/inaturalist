@@ -1626,8 +1626,8 @@ fr:
   flagged_taxon: Taxon marqué
   flagged_thing_explanation: Les utilisateurs ont signalé ce %{thing} parce que
   flagging_desc: Le marquage attire l’attention des superviseurs bénévoles du site
-    sur quelque chose. Veuillez ne pas marquer des problèmes que vous pouvez régler
-    avec des identifications, par l’Évaluation de la qualité des données, ou en parlant
+    sur quelque chose. Veuillez ne pas marquer les problèmes que vous pouvez régler
+    par les identifications, par l’Évaluation de la qualité des données, ou en parlant
     à la personne qui a rédigé le contenu.
   flagger: Signaleur
   flags: Drapeaux
@@ -1859,12 +1859,13 @@ fr:
   identifications_by: Identifications de %{user}
   identified?: identifié
   computer_vision_suggestion: Suggestion de vision par l’ordinateur
-  computer_vision_suggestion_desc: La vision par l’ordinateur est le processus d’apprendre
-    aux ordinateurs à reconnaître es motifs dans les images. Nous fournissons des
-    outils qui utilisent des modèles de vision d’ordinateur entraînés sur des photos
-    de la communauté pour fournir des suggestions d’identification, comme les fonctionnalités
-    de complétude automatique et de comparaison. Ce libellé indique quand une personne
-    a ajouté une identification en utilisant un de ces outils.
+  computer_vision_suggestion_desc: La vision par l’ordinateur est le processus par
+    lequel l'ordinateur apprend à reconnaître les motifs présents dans les images.
+    Nous fournissons des outils qui utilisent des modèles de vision d’ordinateur entraînés
+    sur des photos de la communauté pour fournir des suggestions d’identification,
+    comme les fonctionnalités de complétude automatique et de comparaison. Ce libellé
+    indique quand une personne a ajouté une identification en utilisant un de ces
+    outils.
   identifiers: Identificateurs
   identotron: Identotron
   identotron_for: Identotron pour
@@ -2291,6 +2292,7 @@ fr:
     gl: Galicien
     id: Indonésien
     it: Italien
+    iw: Hébreu
     ja: Japonais
     ko: Coréen
     lb: Luxembourgeois
@@ -2301,6 +2303,7 @@ fr:
     pt-PT: Portugais (du Portugal)
     ru: Russe
     sq: Albanais
+    sv: Suédois
     zh-CN: Chinois (simplifié)
     zh-TW: Chinois (traditionnel)
   locality_notes: Notes localisées
@@ -3878,7 +3881,7 @@ fr:
   resolve_this_flag: Régler ce drapeau
   resolved: Réglé
   resolved_by: Réglé par
-  resolved_by_user_on_date_html: Résolu par %{user} sur %{date}
+  resolved_by_user_on_date_html: Résolu par %{user} le %{date}
   resolver_said_x_html: <span class="meta">%{resolver} a dit,</span> « %{x} »
   restore: Rétablir
   restoring: Rétablissement…
@@ -5432,6 +5435,7 @@ fr:
     gens sur le site. Pour suivre les mises à jour de quelqu’un, cliquez sur le lien
     'Suivez [nom]' dans l’entête quand leur observation ou profil est affiché.
   verifiable: Vérifiable
+  verifiable_observations: Observations vérifiables
   views:
     views: Vues
     announcements:
@@ -5482,11 +5486,16 @@ fr:
           non soumise à l’impôt basée aux États-Unis d’Amérique.
         </p>
       post_donate_social_media_text: Je soutiens iNaturalist  parce que...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |-
+          Veuillez résoudre les marques <code>spam</code> et <code>copyright
+          infringement</code> uniquement si le contenu n’est pas du pourriel ou une violation de droit d’auteur, respectivement.
     guides:
       index:
         funding_html: |-
           Le financement du développement des Guides a été fourni par
-          <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
         welcome_message_html: |-
           Les guides vous aident à en apprendre davantage sur la biodiversité dans le monde entier.
           Que vous exploriez le Sérengéti ou simplement votre parc voisin
@@ -6181,6 +6190,26 @@ fr:
           Vous avez été inactif sur %{site_name} depuis un moment, nous avons donc suspendu
           vos abonnements. Pour reprendre l’obtention des mises à jour de l’activité du site, veuillez
           <a href="%{login_url}">vous connecter à votre compte</a> de nouveau.
+      photos_missing:
+        subject: Certaines photos ont besoin de réparation
+        we_have_been_housekeeping: |-
+          Nous avons fait un peu de ménage et avons trouvé des photos connectées à vos observations
+          qui ne sont plus accessibles depuis leur source d’origine. Les photos sont hébergées
+          par %{providers}.
+        we_would_like_to_remove: |-
+          Nous aimerions supprimer toutes les références cassées à des photos, dans un futur proche, mais nous ne voulons pas nous débarrasser de quoi que ce soit qui puise être enregistré. Il est possible que certaines de ces photos existent encore sur leurs hôtes externes et puissent être réparées. Certaines photos peuvent avoir été téléchargées en connectant votre <a href='%{account_url}'>compte de %{site_name}</a> à un autre
+          compte d’hébergeur de photo, et cette connexion a expiré et doit être rafraîchie.
+        you_can_attempt_repair: |-
+          Vous pouvez tenter de réparer les photos en allant sur la page de la photo et en cliquant sur le lien
+          « %{repair_link_text} ». Si vous ne savez plus si la photo existe, vous pouvez choisir de
+          la supprimer.
+        please_address: |-
+          Veuillez régler ces problèmes <b>dans les trente jours</b>. Après trente
+          jours nous commencerons à supprimer les photos cassées de iNaturalist. Toutes vos observations
+          seront conservées. Elles seront réexaminées une fois les photos supprimées, et il est possible
+          que certaines observations de niveau recherche deviennent ponctuelles, si elles n’ont plus de photo.
+        we_included_links: Nous avons inclus les liens vers les photos concernées
+          ci-dessous.
     photos:
       inviter:
         automatically_add_to_project: Ajouter automatiquement au projet
@@ -7018,6 +7047,26 @@ fr:
           communs.
         youve_used_all_of_your_blocks: Vous avez utilisé tous vos blocages. Supprimez
           un blocage pour en ajouter un autre.
+      recent:
+        about_recent_users: À propos
+        definitions_html: <dl> <dt>Sans doute du pourriel</dt> <dd> Utilisateur qui
+          est sans doute un pollueur, ce qui veut dire qu’ils n’ont pas d’observations
+          ou d’identifications, mais une description e profil. </dd> <dt>Pourriel
+          automatique</dt> <dd> Pollueur qui a été marqué automatiquement comme tel
+          par le système. </dd> <dt>Pourriel manuel</dt> <dd> Pollueur qui a été marqué
+          comme tel par un superviseur du site. </dd> <dt>Faux positifs</dt> <dd>
+          Utilisateurs qui ont été marqués comme pollueurs mais les marquages ont
+          été résolus par les superviseurs du site parce qu’ils ne sont pas vraiment
+          des pollueurs. </dd> </dl>
+        recent_users_desc_html: |-
+          <p>
+            Nous voulons accueillir les nouveaux utilisateurs, mais aussi combattre
+            les pollueurs. Heureusement, cet outil aidera les deux. Nous marquons
+            automatiquement beaucoup d’utilisateurs comme pollueurs en utilisant <a
+            href="https://akismet.com/">Akismet</a>, mais Akismet n’est pas parfait,
+            donc si vous voulez consacrer quelques minutes à marquer les nouveaux comptes comme
+            pollueurs ou non, cela aiderait.
+          </p>
       show:
         take_a_chance_to_review_html: Prenez le temps de revoir <a href="%{link}">nos
           lignes directrices</a>.

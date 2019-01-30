@@ -1174,7 +1174,10 @@ qqq:
   they_already_have_iNat_accounts: where site_name is the name of a site
   third_person_possessive_singular: where object_phrase is the name of a user and
     nown is a resource like an observation
-  this: '{{Identical|This}}'
+  this: |-
+    {{Identical|This}}
+
+    https://www.inaturalist.org/places/offshore-waters-netherlands : Abonneer op waarnemingen dit plaats.
   this_is_a_life_list_of_taxon_in_place: where taxon the name of a taxon and place
     is the name of a place
   this_job_failed_to_run: where email is an email address

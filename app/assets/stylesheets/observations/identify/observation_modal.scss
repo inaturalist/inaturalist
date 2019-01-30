@@ -18,22 +18,7 @@ body > [role="dialog"] .ObservationModal {
     font-size: 110%;
   }
   .modal-dialog {
-    width: 90% !important;
-    height: 90%;
-    display: flex;
-
-    .modal-content,
-    .modal-content .inner {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-    }
-
     .modal-content {
-      .inner {
-        border-radius: 6px;
-        overflow: hidden;
-      }
       .left-col,
       .right-col {
         width: 50%;

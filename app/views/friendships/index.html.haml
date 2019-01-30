@@ -1,34 +1,71 @@
 - content_for :title do
   =t :your_relationships
+- content_for :extracss do
+  :css
+    .edit_friendship .form-group { margin-bottom: 5px; }
 .container
   .row
-    .col-xs-8
+    .col-xs-12
       %h2=t :your_relationships
-    .col-xs-4
-      .pull-right
-        = form_tag url_for, method: :get do
-          .input-group
-            = text_field_tag :q, @q, class: "form-control"
-            .input-group-btn
-              = submit_tag t(:search), class: "btn btn-default"
+  .row
+    .col-xs-12
+      #controls
+        = form_tag url_for, method: :get, class: "form-inline" do
+          = hidden_fields_for_params( without: [:q, :following, :trusted, :page, :order, :order_by] )
+          .form-group
+            .input-group
+              %input.form-control{ type: "search", name: "q", value: @q, placeholder: t(:username) }
+              .input-group-btn
+                = submit_tag t(:search), class: "btn btn-default"
+          .form-group
+            %label{ for: "following" }=t :following
+            = select_tag :following, options_for_select( %w(any yes no).map {|t| [I18n.t( "#{t}_", default: I18n.t( t, default: t ) ), t]}, @following ), class: "select form-control", data: { autosubmit: true }
+          .form-group
+            %label{ for: "trusted" }=t :trusted
+            = select_tag :trusted, options_for_select( %w(any yes no).map {|t| [I18n.t( "#{t}_", default: I18n.t( t, default: t ) ), t]}, @trusted ), class: "select form-control", data: { autosubmit: true }
   .row
     .col-xs-12
       %table.table
+        %thead
+          %tr
+            %th
+            %th
+              = link_to url_for_params( order_by: "user", order: @order == "desc" ? "asc" : "desc" ) do
+                = t(:name)
+                - if @order_by == "user"
+                  - if @order == "desc"
+                    &darr;
+                  - else
+                    &uarr;
+            %th
+              = link_to url_for_params( order_by: "date", order: @order == "desc" ? "asc" : "desc" ) do
+                = t(:date_added)
+                - if @order_by == "date"
+                  - if @order == "desc"
+                    &darr;
+                  - else
+                    &uarr;
+            %th=t :settings
+            %th=t :actions
         %tbody
           - for friendship in @friendships
             %tr
               %td
                 = link_to( image_tag( friendship.friend.icon.url(:thumb), class: "usericon" ), person_path( friendship.friend ) )
+              %td
                 = link_to_user friendship.friend
                 .meta= friendship.friend.name
+              %td=l friendship.created_at
               %td
                 = form_for friendship, url: relationship_path( friendship, format: :json ), remote: true do |f|
                   .form-group
                     %label
                       = f.check_box :following, data: { autosubmit: true }
-                      =t :receive_updates_about_new_observations
+                      =t :follow_receive_updates_about_new_observations
                   .form-group
                     %label
                       = f.check_box :trust, data: { autosubmit: true }
                       =t :trust_with_private_coordinates
+              %td
+                = button_to t(:remove_relationship), relationship_path( friendship ), method: :delete, data: { confirm: t(:are_you_sure_remove_relationship) }, class: "btn btn-default"
       = will_paginate @friendships

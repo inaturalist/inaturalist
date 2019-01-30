@@ -1,6 +1,8 @@
 class TaxonFrameworkRelationship < ActiveRecord::Base
   alias_attribute :internal_taxa, :taxa
   
+  attr_accessor :current_user
+  
   belongs_to :user
   belongs_to :updater, class_name: "User"
   belongs_to :taxon_framework
@@ -31,6 +33,9 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   TAXON_JOINS = [
     "LEFT OUTER JOIN taxa t ON t.taxon_framework_relationship_id = taxon_framework_relationships.id"
   ]
+  EXTERNAL_JOINS = [
+    "LEFT OUTER JOIN external_taxa et ON et.taxon_framework_relationship_id = taxon_framework_relationships.id"
+  ]
   
   scope :relationships, lambda { |relationships| where( "taxon_framework_relationships.relationship IN (?)", relationships ) }
   scope :taxon_framework, lambda{ |taxon_framework| where("taxon_framework_relationships.taxon_framework_id = ?", taxon_framework ) }
@@ -47,9 +52,10 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
     joins( TAXON_JOINS ).
     where( "t.rank = ?", rank )
   }
-  scope :taxon, lambda{|taxon|
-    joins(TAXON_JOINS).
-    where( "t.id = ? OR t.ancestry LIKE (?) OR t.ancestry LIKE (?)", taxon.id, "%/#{ taxon.id }", "%/#{ taxon.id }/%" )
+  scope :taxon, lambda{ |taxon|
+    joins( TAXON_JOINS ).
+    joins( EXTERNAL_JOINS ).
+    where( "t.id = ? OR t.ancestry LIKE (?) OR t.ancestry LIKE (?) OR et.name = ? OR et.parent_name = ?", taxon.id, "%/#{ taxon.id }", "%/#{ taxon.id }/%", taxon.name, taxon.name)
   }
   
   def mark_external_taxa_for_destruction
@@ -59,7 +65,7 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
       end
     end
   end
-  
+    
   def taxon_framework_has_source
     errors.add :taxon_framework_id, "taxon framework must have source" unless taxon_framework.source_id.present?
   end

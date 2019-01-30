@@ -187,13 +187,14 @@ module PlaceSources
   def self.new_place_from_census_shape(shape, options = {})
     options = options.clone
     geoplanet_type = nil
-    name = options[:name] || shape.data['NAME'] || shape.data['NAME10'] || shape.data['NAMELSAD']
+    data = shape.respond_to?(:data) ? shape.data : shape.attributes
+    name = options[:name] || data['NAME'] || data['NAME10'] || data['NAMELSAD']
     options[:name] = name
     case options[:place_type_name]
     when 'State'
       geoplanet_query = if FIPS_STATES.values.include?(name)
         "#{name} State, US"
-        options[:code] ||= FIPS_STATE_CODES[shape.data['STATEFP']]
+        options[:code] ||= FIPS_STATE_CODES[data['STATEFP']]
       else
         name
       end
@@ -202,15 +203,15 @@ module PlaceSources
       options[:admin_level] = Place::STATE_LEVEL
       options[:parent] ||= Place.place_type('Country').where("name LIKE 'United States%'").first
     when 'County'
-      state = FIPS_STATE_CODES[shape.data['STATEFP'] || shape.data['STATE']]
+      state = FIPS_STATE_CODES[data['STATEFP'] || data['STATE']]
       geoplanet_query = "#{name} County, #{state}, US"
       geoplanet_type = "County"
       options[:place_type] ||= Place::PLACE_TYPE_CODES['County']
       options[:admin_level] = Place::COUNTY_LEVEL
-      options[:code] ||= shape.data['COUNTY']
-      options[:parent] ||= Place.place_type('State').where(:code => state, :name => FIPS_STATES[shape.data['STATEFP'] || shape.data['STATE']]).first
+      options[:code] ||= data['COUNTY']
+      options[:parent] ||= Place.place_type('State').where(:code => state, :name => FIPS_STATES[data['STATEFP'] || data['STATE']]).first
     when 'place'
-      geoplanet_query = "#{name}, #{FIPS_STATE_CODES[shape.data['STATEFP']]}, US"
+      geoplanet_query = "#{name}, #{FIPS_STATE_CODES[data['STATEFP']]}, US"
       geoplanet_type = "Town,City,Local+Administrative+Area"
     else
       geoplanet_query = "#{name}, US"
@@ -223,7 +224,7 @@ module PlaceSources
     # The county files often contain a lot of weird county-like stuff that we 
     # probably don't want...
     if options[:place_type_name] == 'County'
-      return nil unless LSAD[shape.data['LSAD']] == 'county' || shape.data['LSAD'].to_s.downcase == 'county'
+      return nil unless LSAD[data['LSAD']] == 'county' || data['LSAD'].to_s.downcase == 'county'
     end
     
     place = Place.new_from_shape(shape, options)
@@ -232,11 +233,11 @@ module PlaceSources
     # they are ONLY unique whithin their state
     place.source_identifier = case options[:place_type_name]
     when 'State'
-      shape.data['STATEFP']
+      data['STATEFP']
     when 'County'
-      shape.data['GEOID']
+      data['GEOID']
     when 'place'
-      shape.data['PLACEFP']
+      data['PLACEFP']
     end
     
     place
@@ -252,7 +253,8 @@ module PlaceSources
   # India).  Might want to write a script that derives national boundaries...
   #
   def self.new_place_from_esri_world_shape(shape, options = {})
-    geoplanet_query = "#{shape.data['ADMIN_NAME']}, #{shape.data['FIPS_CNTRY']}"
+    data = shape.respond_to?(:data) ? shape.data : shape.attributes
+    geoplanet_query = "#{data['ADMIN_NAME']}, #{data['FIPS_CNTRY']}"
     options = {
       :geoplanet_query => geoplanet_query,
       :geoplanet_options => {
@@ -261,12 +263,12 @@ module PlaceSources
     }.merge(options)
 
     place = Place.new_from_shape(shape, options)
-    place.source_identifier = shape.data['FIPS_ADMIN']
+    place.source_identifier = data['FIPS_ADMIN']
     
     # If GeoPlanet does something stupid like thinking Chugoku Prefecture, 
     # Japan is actually a country named China, ditch it.
     if !options[:skip_woeid] && place.geoplanet_response && 
-        place.geoplanet_response.country != shape.data['CNTRY_NAME']
+        place.geoplanet_response.country != data['CNTRY_NAME']
       place = nil
     end
     
@@ -284,12 +286,13 @@ module PlaceSources
   #  ogr2ogr -t_srs "+proj=longlat +ellps=GRS80 +datum=NAD83 +no_defs" Units_Fee_09_longlat.shp Units_Fee_09.shp
   #
   def self.new_place_from_cpad_units_fee(shape, options = {})
-    return nil if ['XA', 'No Access'].include?(shape.data['Access'])
+    data = shape.respond_to?(:data) ? shape.data : shape.attributes
+    return nil if ['XA', 'No Access'].include?(data['Access'])
     
     # options = {:geoplanet_query => geoplanet_query}.merge(options)
     place = Place.new_from_shape(shape, options.merge(:skip_woeid => true))
     
-    name = shape.data['Unit_Name'] || shape.data['UNIT_NAME']
+    name = data['Unit_Name'] || data['UNIT_NAME']
     name.gsub!(/SP$/, 'State Park')
     name.gsub!(/SB$/, 'State Beach')
     name.gsub!(/NP$/, 'National Park')
@@ -298,7 +301,7 @@ module PlaceSources
     name.gsub!(/WA$/, 'Wildlife Area')
     place.name = name
     
-    unit_id = shape.data['UNIT_ID']
+    unit_id = data['UNIT_ID']
     
     # Sometimes single parks have many units, so we lump them
     place.source_name = name
@@ -309,7 +312,7 @@ module PlaceSources
       :type => "Land+Feature")
     if ydn_places
       ydn_place = ydn_places.find do |ydnp|
-        ydnp.name == shape.data['Label_Name'] && ydnp.admin1 == 'California'
+        ydnp.name == data['Label_Name'] && ydnp.admin1 == 'California'
       end
       if ydn_place
         puts "[INFO] \t\tFound unique GeoPlanet place: #{ydn_place.name}, #{ydn_place.woeid}, #{ydn_place.placetype}, #{ydn_place.admin2}, #{ydn_place.admin1}, #{ydn_place.country}"

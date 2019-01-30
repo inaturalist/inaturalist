@@ -108,6 +108,8 @@
               %td
                 - if flag.user
                   = link_to_user(flag.user) {|| char_wrap( flag.user.login, 20 )}
+                  .small.text-muted
+                    = link_to t(:view_all), url_for_params( flagger_type: "user", flagger_user_id: flag.user.id, without: [:flagger_type, :flagger_user_id] )
                 - else
                   = @site.site_name_short
               %td
@@ -118,6 +120,8 @@
               %td= flaggable_class.name.humanize
               %td
                 = link_to(flaggable.to_plain_s, flaggable) if flaggable.respond_to?(:to_plain_s)
+                - if !flaggable.is_a?( Message ) && flaggable.respond_to?( :body ) || flaggable.respond_to?( :description )
+                  = truncate_with_more( formatted_user_text( flaggable.try_methods(:body, :description) ), length: 200 )
                 - if flaggable.respond_to?(:user) && flaggable.user
                   .small
                     = link_to_user flaggable.user, class: "text-muted" do

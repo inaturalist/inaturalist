@@ -289,7 +289,7 @@ class ListsController < ApplicationController
   # Takes a block that sets the @job instance var
   def delayed_task(cache_key)
     @job_id = Rails.cache.read(cache_key)
-    @job = Delayed::Job.find_by_id(@job_id) if @job_id && @job_id.is_a?(Fixnum)
+    @job = Delayed::Job.find_by_id(@job_id) if @job_id && @job_id.is_a?(Integer)
     @tries = params[:tries].to_i
     @start = @tries == 0 && @job.blank?
     @done = @tries > 0 && @job.blank?

@@ -174,7 +174,7 @@ Rails.application.routes.draw do
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
     end
   end
-  resources :relationships, controller: :friendships, only: [:index, :update]
+  resources :relationships, controller: :friendships, only: [:index, :update, :destroy]
   get '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   get '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   post 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }
@@ -497,6 +497,9 @@ Rails.application.routes.draw do
       get :index
       get :queries
       get :stop_query
+      get :users
+      get "users/:id" => "admin#user_detail", as: :user_detail
+      get :deleted_users
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do

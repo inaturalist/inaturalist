@@ -2,7 +2,7 @@ class AddPrivateGeomToObservations < ActiveRecord::Migration
   def up
     begin
       execute "SELECT AddGeometryColumn('observations'::varchar,'private_geom'::varchar,-1,'POINT'::varchar,2,true)"
-    rescue PGError
+    rescue PG::Error
       execute "SELECT AddGeometryColumn('observations'::varchar,'private_geom'::varchar,-1,'POINT'::varchar,2)"
     end
     add_index :observations, :private_geom, :spatial => true

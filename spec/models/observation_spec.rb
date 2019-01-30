@@ -77,7 +77,7 @@ describe Observation do
         ['December 27, 2012 8:09:50 AM GMT+01:00', :month => 12, :day => 27, :hour => 8, :offset => "+01:00"],
 
         ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
-        ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
+        # ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
         ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"],
         ["2017-03-12 12:17:00 pm PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
         ["2017/03/12 12:17 PM PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
@@ -3938,6 +3938,26 @@ describe Observation, "and update_quality_metrics" do
     expect{
       o.get_quality_grade
     }.to_not raise_error
+  end
+end
+
+describe Observation, "taxon_geoprivacy" do
+  it "should be set using private coordinates" do
+    p = make_place_with_geom
+    cs = ConservationStatus.make!( place: p )
+    o = Observation.make!
+    Observation.where( id: o.id ).update_all(
+      latitude: p.latitude + 10,
+      longitude: p.longitude + 10,
+      private_latitude: p.latitude,
+      private_longitude: p.longitude,
+    )
+    o.reload
+    expect( p ).to be_contains_lat_lng( o.private_latitude, o.private_longitude )
+    expect( p ).not_to be_contains_lat_lng( o.latitude, o.longitude )
+    i = Identification.make!( observation: o, taxon: cs.taxon )
+    o.reload
+    expect( o.taxon_geoprivacy ).to eq cs.geoprivacy
   end
 end
 

@@ -63,7 +63,15 @@
           - if @site.blank? || @site.place_id.blank?
             %li= link_to t(:site_stats), stats_path
           %li.divider{role: "separator"}
-          %li= link_to t(:help), help_path
+          - if @site && @site.id == Site.default.id && I18n.locale =~ /^en/
+            %li.dropdown-header=t :help
+            %li= link_to t(:faq), wiki_page_url( "faq" )
+            %li= link_to t(:video_tutorials), wiki_page_url( "video+tutorials" )
+            %li= link_to t(:managing_projects), wiki_page_url( "managing-projects" )
+            %li= link_to t(:teachers_guide), wiki_page_url( "teacher's+guide" )
+            %li= link_to t(:more_help), help_path
+          - else
+            %li= link_to t(:help), help_path
   - if logged_in?
     .navtabs.add-obs
       = link_to upload_observations_path, class: "btn btn-default btn-inat" do

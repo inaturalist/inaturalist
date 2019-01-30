@@ -601,6 +601,7 @@ sv:
   authorize_permissions_from_provider: Godkänn tillstånd från %{provider}
   automatic_descriptions_have_been_disabled: Automatiska beskrivningar har deaktiverats
     för denna takson.
+  automatic_short: Auto
   automatically_add_to_project: Lägg till automatiskt i projektet
   automatically_add_observations_to_this_project: Lägg till observationer automatiskt
     till detta projekt
@@ -616,6 +617,7 @@ sv:
   back_to_calendar: Tillbaka till %{user}s kalender
   back_to_editing_observation: Tillbaka till att ändra observation
   back_to_friends: Tillbaka till vänner
+  back_to_flags_html: '&laquo; Tillbaka till flaggor'
   back_to_help: Tillbaka till hjälp
   back_to_import: Tillbaka till import
   back_to_lists: Tillbaka till %{name} listor
@@ -1174,6 +1176,7 @@ sv:
   last_active_with_date: 'Senast aktiv: %{date}'
   last_year: Senaste året
   leaderboard_most:
+    species: Mest arter i %{time}
     observations: Mest observationer i %{time}
     identifications: Mest identifieringar i %{time}
   learn: Lär dig
@@ -1257,6 +1260,7 @@ sv:
     gl: Galiciska
     id: Indonesiska
     it: Italienska
+    iw: Hebreiska
     ja: Japanska
     ko: Koreanska
     lb: Luxemburgiska
@@ -1267,6 +1271,7 @@ sv:
     pt-PT: Portugisiska (Portugal)
     ru: Ryska
     sq: Albanska
+    sv: Svenska
     zh-CN: Kinesiska (förenklad)
     zh-TW: Kinesiska (traditionell)
   location: Plats
@@ -1324,10 +1329,12 @@ sv:
   more_info: Mer info
   more_observations: Mer observationer
   more_photos: Fler foton
+  most: Mest
   most_browser_print_pdf: 'OBS: De flesta webbläsare har ett alternativ att skriva
     ut till PDF'
   most_comments_and_faves: Flest kommentarer och favoriter
   most_observations: Mest observationer
+  most_species: Mest arter
   multiple: flera
   multiple_select_option: -- flera --
   n_ago: '%{n} sedan'
@@ -1485,40 +1492,135 @@ sv:
       unknown: Okänd
   places: Platser
   places_name:
+    akrotiri_and_dhekelia: Akrotiri och Dhekelia
     aland: Åland
+    albania: Albanien
+    algeria: Algeriet
+    american_samoa: Amerikanska Samoa
     andorra: Andorra
+    angola: Angola
+    anguilla: Anguilla
+    antarctica: Antarktis
     argentina: Argentina
+    armenia: Armenien
+    aruba: Aruba
     australia: Australien
     austria: Österrike
+    azerbaijan: Azerbajdzjan
+    bahamas: Bahamas
+    bahrain: Bahrain
+    bangladesh: Bangladesh
+    barbados: Barbados
+    belarus: Vitryssland
+    belize: Belize
+    benin: Benin
+    bermuda: Bermuda
+    bhutan: Bhutan
+    bolivia: Bolivia
+    botswana: Botswana
+    british_virgin_islands: Brittiska Jungfruöarna
+    brunei: Brunei
     bulgaria: Bulgarien
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Cambodia
+    cameroon: Kamerun
     canada: Kanada
+    cape_verde: Kap Verde
+    cayman_islands: Kajmanöarna
+    central_african_republic: Centralafrikanska republiken
+    chad: Chad
     chile: Chile
     china: Kina
+    christmas_island: Julön
     cocos_islands: Kokosöarna
     colombia: Colombia
+    cook_islands: Cooköarna
+    costa_rica: Costa Rica
+    cote_d_ivoire: Elfenbenskusten
+    croatia: Kroatien
     cuba: Kuba
+    curacao: Curaçao
+    cyprus: Cypern
     czech_republic: Tjeckien
+    democratic_republic_of_the_congo: Demokratiska Republiken Congo
     denmark: Danmark
+    djibouti: Djibouti
+    dominica: Dominica
+    dominican_republic: Dominikanska Republiken
+    east_timor: Östtimor
+    ecuador: Ecuador
+    el_salvador: El Salvador
+    eritrea: Eritrea
+    estonia: Estland
+    ethiopia: Etiopien
+    falkland_islands: Falklandsöarna
     faroe_islands: Färöarna
+    fiji: Fiji
     finland: Finland
     france: Frankrike
+    french_guiana: Fransk Guyana
     french_polynesia: Franska Polynesien
+    gabon: Gabon
+    gambia: Gambia
+    georgia: Georgien
     germany: Tyskland
+    ghana: Ghana
+    gibraltar: Gibraltar
     greenland: Grönland
+    grenada: Grenada
+    guadeloupe: Guadeloupe
+    guam: Guam
+    guatemala: Guatemala
+    guinea: Guinea
+    guinea_bissau: Guinea-Bissau
+    guyana: Guyana
+    haiti: Haiti
+    honduras: Honduras
     hong_kong: Hongkong
+    iceland: Island
     india: Indien
     indonesia: Indonesien
     iran: Iran
     ireland: Irland
+    isle_of_man: Isle of Man
     israel: Israel
     italy: Italien
     jamaica: Jamaica
+    jersey: Jersey
+    jordan: Jordanien
+    kazakhstan: Kazakstan
+    kenya: Kenya
+    kiribati: Kiribati
     korea: Korea
+    kosovo: Kosovo
+    kuwait: Kuwait
+    kyrgyzstan: Kirgizistan
+    laos: Laos
     latvia: Lettland
+    lebanon: Libanon
+    lesotho: Lesotho
+    liberia: Liberia
+    libya: Libyen
+    liechtenstein: Liechtenstein
     lithuania: Litauen
+    luxembourg: Luxemburg
+    macao: Macao
+    macedonia: Makedonien
     madagascar: Madagaskar
+    malawi: Malawi
+    malaysia: Malaysia
+    maldives: Maldiverna
+    mali: Mali
+    malta: Malta
+    marshall_islands: Marshallöarna
+    mauritania: Mauretanien
+    mauritius: Mauritius
+    mayotte: Mayotte
     mexico: Mexiko
+    micronesia: Mikronesien
     moldova: Moldavien
+    monaco: Monaco
     mongolia: Mongoliet
     montenegro: Montenegro
     montserrat: Montserrat
@@ -1651,6 +1753,7 @@ sv:
   privacy_policy: Integritetspolicy
   private: privat
   private_: Privat
+  probably_spam: Förmodligen skräppost
   proceed: Fortsätt
   profile: Profil
   project: Projekt
@@ -1678,9 +1781,11 @@ sv:
   read_more: Läs mer
   read_our_getting_started_guide: läs vår komma igång guide
   real_time_discussions: Realtidsdiskussioner
+  reason_label: 'Anledning:'
   recaptcha_verification_failed: reCAPTCHA-verifiering misslyckades
   receive_updates_from_this_project: Hämta uppdateringar från detta projekt
   recent_new_users: Senaste nya användare
+  recently_active: Senaste aktiva
   recently_observed: Nyligt observerade
   red: röd
   refresh: Uppdatera
@@ -1699,10 +1804,12 @@ sv:
     one: Ta bort 1 observation?
     other: Ta bort %{count} observationer?
   remove_photo: Ta bort foto
+  repair_broken_urls: Reparera brutna webblänkar
   request_failed: Begäran misslyckades
   request_password: Begäran lösenord
   required_: Nödvändig
   reset_your_password: Återställ ditt lösenord
+  resolved_by_user_on_date_html: Löstes av %{user} den %{date}
   restore: Återställ
   restoring: Återställer...
   review_all: Granska alla
@@ -1834,6 +1941,7 @@ sv:
   terms_of_service: Användarvillkor
   terms_service: Användarvillkor
   text: Text
+  thanks!: Tack!
   thanks_from_all_of_us_here_at: Tack från alla här på
   the_: Den
   the_people_of_inat: Människor av %{site_name}
@@ -2027,6 +2135,7 @@ sv:
   youve_linked_your_inaturalist_google_account: Du har länkat ditt %{site_name}-konto
     och ditt Google-konto. Detta kommer att låta dig associera dina Google-foton med
     dina %{site_name}-observationer.
+  verifiable_observations: Observationer som kan bekräftas
   views:
     views: Visningar
     devise:
@@ -2129,6 +2238,8 @@ sv:
         scientific_name_first_desc: Visa vetenskapliga namn före vanliga namn.
         youve_used_all_of_your_blocks: Du har använt alla dina blockeringar. Ta bort
           en blockering för att lägga till en annan.
+      recent:
+        about_recent_users: Om
       show:
         this_user_was_banned: Denna användare har stängts av
     welcome:

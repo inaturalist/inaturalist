@@ -234,6 +234,11 @@ class TaxaController < ApplicationController
           includes( "taxa","external_taxa" ).
           joins( "JOIN taxa ON taxa.taxon_framework_relationship_id = taxon_framework_relationships.id" ).
           where( "taxa.id = ? AND taxon_framework_id = ?", @taxon, @upstream_taxon_framework ).first
+        unless @taxon_framework
+          @downstream_deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @upstream_taxon_framework.id ).taxon(@taxon).uniq.count
+          @downstream_flagged_taxa = @upstream_taxon_framework.get_flagged_taxa({taxon: @taxon})
+          @downstream_flagged_taxa_count = @upstream_taxon_framework.get_flagged_taxa_count({taxon: @taxon})
+        end
       end
     end
     
@@ -309,7 +314,7 @@ class TaxaController < ApplicationController
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-      flash.now[:notice] ||= "This taxon is covered by a taxon framework, so some taxonomic attributes can only be editable by taxon curators associated with that taxon framework."
+      flash.now[:notice] ||= "This active taxon is covered by a taxon framework, so some taxonomic attributes can only be editable by taxon curators associated with that taxon framework."
     end
   end
 
@@ -965,6 +970,7 @@ class TaxaController < ApplicationController
       taxon_photo = @taxon.taxon_photos.detect{ |tp| tp.photo_id == photo.id }
       taxon_photo ||= TaxonPhoto.new( taxon: @taxon, photo: photo )
       taxon_photo.position = photos.index( photo )
+      taxon_photo.skip_taxon_indexing = true
       taxon_photo
     end
     if @taxon.save
@@ -972,6 +978,7 @@ class TaxaController < ApplicationController
       @taxon.elastic_index!
       Taxon.refresh_es_index
     else
+      Rails.logger.debug "[DEBUG] error: #{@taxon.errors.full_messages.to_sentence}"
       respond_to do |format|
         format.json do
           render status: :unprocessable_entity, json: {

@@ -138,13 +138,15 @@ new_res = results.select{ |a| standard_ranks.include? a[:rank_level].to_i }.
     }
     }; nil
 unless root.rank_level == Taxon::ROOT_LEVEL
-  root_ancestors.each do |row|
+  j = 2
+  root_ancestors.reverse.each do |row|
     new_res << {
       id: row.id,
       name: row.name,
       rank_level: row.rank_level,
-      ancestors: root_ancestors
+      ancestors: root_ancestors.map{|i| i.id}[0..-j]
     }
+    j+=1
   end
 end
 
@@ -157,15 +159,16 @@ standard_ranks.each do |j|
   indexes = ( 0..( taxon_ids.count - 1 ) ).step( 1 ).to_a
   CLASS_HASH = CLASS_HASH.merge( taxon_ids.zip( indexes ).to_h )
 end
-unless root.rank_level == Taxon::ROOT_LEVEL
-  CLASS_HASH = CLASS_HASH.merge( root_ancestors.map{ |a| a }.zip( [0,0] ).to_h ); nil
-end
+
+taxon_ids = new_res.select{ |i| !INTERNODES.include? i[:id] }.map{ |i| i[:id] }
+indexes = ( 0..( taxon_ids.count - 1 ) ).step( 1 ).to_a
+LEAF_CLASS_HASH = taxon_ids.zip( indexes ).to_h
 
 # Export the taxonomy
 CSV.open( "#{directory}/taxonomy_data.csv", "wb" ) do |csv|
-  csv << ["parent_taxon_id", "taxon_id", "class_id", "rank_level", "name"]
+  csv << ["parent_taxon_id", "taxon_id", "class_id", "rank_level", "leaf_class_id", "name"]
   new_res.each do |row|
-    csv << [ row[:ancestors].last, row[:id], CLASS_HASH[row[:id]], row[:rank_level].to_i, row[:name] ]
+    csv << [ row[:ancestors].last, row[:id], CLASS_HASH[row[:id]], row[:rank_level].to_i, LEAF_CLASS_HASH[row[:id]], row[:name] ]
   end
 end
 
@@ -229,14 +232,17 @@ def process_photos_for_taxon_row( row, test_csv, train_csv, val_csv )
     CLASS_HASH[row[:id]]
   ].flatten
   multitask_labels = multitask_labels.append( Array.new(7 - multitask_labels.count, 0) ).flatten
+  multitask_labels = multitask_labels.append( LEAF_CLASS_HASH[row[:id]].nil? ? 0 : LEAF_CLASS_HASH[row[:id]]  ).flatten
   multitask_texts = [
     row[:ancestors], 
     row[:id]
   ].flatten.map{|i| i.to_s}
   multitask_texts = multitask_texts.append( Array.new(7 - multitask_texts.count, nil) ).flatten
+  multitask_texts = multitask_texts.append( LEAF_CLASS_HASH[row[:id]].nil? ? nil : row[:id].to_s  ).flatten
   
   multitask_weights = Array.new( 7, 1 )
   multitask_weights[( 7 + 1 ) - row[:rank_level] / 10..7] = Array.new( row[:rank_level] / 10 - 1, 0 )
+  multitask_weights = multitask_weights.append( LEAF_CLASS_HASH[row[:id]].nil? ? 0 : 1  ).flatten
   
   rank_level_clause = ""
   if INTERNODES.include? row_id

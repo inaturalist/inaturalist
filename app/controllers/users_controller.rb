@@ -814,11 +814,15 @@ protected
   def add_friend
     error_msg, notice_msg = [nil, nil]
     friend_user = User.find_by_id(params[:friend_id])
-    if friend_user.blank? || friendship = current_user.friendships.find_by_friend_id(friend_user.id)
+    if friend_user.blank? || friendship = current_user.friendships.where( friend_id: friend_user.id, following: true ).first
       error_msg = t(:either_that_user_doesnt_exist_or)
     else
       notice_msg = t(:you_are_now_following_x, :friend_user => friend_user.login)
-      friendship = current_user.friendships.create(:friend => friend_user)
+      if friendship = current_user.friendships.where( friend_id: friend_user.id ).first
+        friendship.update_attributes( following: true )
+      else
+        friendship = current_user.friendships.create( friend: friend_user, following: true )
+      end
     end
     respond_to do |format|
       format.html do
@@ -834,7 +838,11 @@ protected
     error_msg, notice_msg = [nil, nil]
     if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
       notice_msg = t(:you_are_no_longer_following_x, :friend => friendship.friend.login)
-      friendship.destroy
+      if friendship.trust?
+        friendship.update_attributes( following: false )
+      else
+        friendship.destroy
+      end
     else
       error_msg = t(:you_arent_following_that_person)
     end

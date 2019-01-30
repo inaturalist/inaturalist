@@ -290,6 +290,13 @@
   
   <%= separator %>
 
+  <% if is_admin? %>
+    <h3><%=t :your_relationships %></h3>
+    <p class="ui">
+      <%= link_to t(:manage_your_relationships), relationships_path, class: "readmore" %>
+    </p>
+  <% end %>
+
   <div class="clear quiet box">
     <%= link_to_toggle t(:blocked_users), "#blocked-users", class: "ui" %>
     <div id="blocked-users" style="display:none">
@@ -355,6 +362,8 @@
       <% end %>
     </div>
   </div>
+
+  <%= separator %>
   
   <div class="clear box">
     <%= link_to_toggle @user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>
