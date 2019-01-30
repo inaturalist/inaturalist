@@ -18,6 +18,7 @@
 # Author: Peter Fernando
 # Author: Piterkeo
 # Author: Tim Vincent
+# Author: Tks4Fish
 # Author: Vonmatter
 # Author: Walesson
 ---
@@ -130,8 +131,6 @@ pt-BR:
     com <strong>%{y} IDs</strong>
   _100_day_trends: Tendências de 100 dias
   _percent_ID_d: '% ID''d'
-  a: uma
-  a_: uma
   a_community_for_naturalist: Uma comunidade para naturalistas
   a_default_taxon_name_will_automatically_created: |-
     Um nome de táxon padrão será automaticamente criado a partir do nome científico deste táxon.
@@ -301,7 +300,6 @@ pt-BR:
     Flickr &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Adicione etiquetas taxonômicas às fotos
     do Flickr associadas às observações selecionadas.
-  add_to: Adicione a
   add_to_a_scheme: Adicione a um esquema
   add_to_a_project: Adicionar a um projeto
   add_to_calendar: Adicionar ao calendário
@@ -538,6 +536,9 @@ pt-BR:
   are_you_sure_remove_from_project: Você tem certeza que deseja remover %{user} deste
     projeto?
   are_you_sure_remove_photo: Tem certeza de que deseja remover esta foto?
+  are_you_sure_remove_relationship: Tem certeza de que deseja excluir este relacionamento?
+    Isso fará com que você pare de seguir essa pessoa e revogue o acesso às suas coordenadas
+    particulares, se já tiver ativado esse acesso.
   are_you_sure_remove_taxon_from_list: Você tem certeza que quer remover este táxon
     da lista?
   are_you_sure_remove_taxon_from_place: Confirme a exclusão deste táxon de %{place}'s
@@ -628,7 +629,6 @@ pt-BR:
   automatically_update_my_content_for_taxon_changes: Atualiza automaticamente o seu
     conteúdo quando existir uma mudança de espécies e grupos
   back: Voltar
-  back_to: Voltar para
   back_to_albums: Voltar para álbuns
   back_to_all_species: Voltar para Todas as Espécies
   back_to_browsing_people: Voltar para a busca de pessoas
@@ -1349,7 +1349,6 @@ pt-BR:
     para mudar os tipos de atualização que você recebe ou cancelar completamente a
     inscrição.
   edited: Editado
-  edited_by: Editado por
   edited_by_name_html: Modificado por %{name}
   editing: Editando
   editing_announcement: Modificando anúncio
@@ -1505,7 +1504,6 @@ pt-BR:
     você conhece bem
   filling_out_your_profile: preenchendo seu perfil
   filter: Filtrar
-  filter_by: Filtrar por
   filter_by_curator_identification: Filtrar pela identificação do administrador
   filter_by_place: Filtrar por lugar
   filter_by_taxon: Filtrar por táxon
@@ -1570,7 +1568,7 @@ pt-BR:
   flags_with_count: Linhas (%{count})
   flags_explanation: '%{site_name} os usuários sinalizam coisas que precisam de atenção
     dos curadores do site e/ou dos administradores do site.'
-  flags_for: Sinalizações para
+  flags_for_x_html: Marcas para %{x}
   flags_on_users_content: Marcações no conteúdo de %{user}
   flickr_account_information: Informações da sua conta Flickr
   flickr_description: Flickr é um serviço online de hospedagem de fotos, talvez você
@@ -1591,13 +1589,13 @@ pt-BR:
   fluid_layout: Layout Fluído
   fluid: fluído
   follow: Seguir
-  follow_us: Siga no
-  follow_us_on: Siga no
+  follow_receive_updates_about_new_observations: Seguir (recebe atualizações sobre
+    novas observações)
   follow_user: Seguir %{user}
   followed_projects: Projetos seguidos
   follower: seguidor
   followers: Seguidores
-  following: seguindo
+  following: Seguindo
   following_x_people:
     one: Seguindo 1 pessoa
     other: Seguindo %{count} pessoas
@@ -1612,10 +1610,8 @@ pt-BR:
   fri: Sex
   from: De
   from_a_place: de um local
-  from_anywhere_change: de qualquer lugar
   from_eol_collection: Da coleção da EOL
   from_flickr_facebook_etc: Do Flickr, Facebook, etc.
-  from_in_this_place: Deste local
   from_list: Da lista
   from_this: Deste
   from_photos: De fotos
@@ -1648,6 +1644,10 @@ pt-BR:
   Genus: Gênero
   genus_slash_species: '[GÊNERO] / [ESPÉCIES]'
   geoprivacy: Geoprivacidade
+  geoprivacy_is_obscured: A geoprivacidade é obscurecida
+  geoprivacy_is_obscured_desc: O observador optou por obscurecer as coordenadas.
+  geoprivacy_is_private: A geoprivacidade é privada
+  geoprivacy_is_private_desc: Observador optou por esconder as coordenadas.
   georeferenced: Geo referenciado?
   georeferenced?: georeferenciado
   get_current_position: Obtenha a posição atual
@@ -1658,7 +1658,7 @@ pt-BR:
   give_it_some_detail: Inclua alguns detalhes!
   global_conservation_status: Estado de conservação global
   global_names: Nomes globais
-  globally: globalmente
+  globally: Globalmente
   go: Ir
   go_back: Voltar
   going_to_your_observations: Indo para suas observações...
@@ -1852,8 +1852,6 @@ pt-BR:
   import_tags_from_csv: Importar etiquetas de CSV
   importing: Importando...
   improving: Melhorando
-  in: em
-  in_: em
   in_n: em %{n}
   in_place_x: no %{place}
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
@@ -1924,8 +1922,6 @@ pt-BR:
   invited_x: Convidado %{x}
   inviting: Convidando...
   iphone: iPhone
-  is_a: é um
-  is_an: é uma
   is_an_evaluation: |-
     é uma avaliação de uma observação acurada.
     Observações ao Nível de Pesquisa podem ser utilizadas por cientistas. Vote abaixo:
@@ -1980,6 +1976,7 @@ pt-BR:
   keyboard_shortcuts: Atalhos de Teclado
   kml: KML
   kml_file_size_error: KML deve ter menos que 1 MB de tamanho
+  label_colon: '%{label}:'
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Etiqueta para agrupar mudanças em espécies
   location_private: Localização Privada
@@ -2290,6 +2287,7 @@ pt-BR:
   manage_names: Gerencie nomes
   manage_your_projects: Gerenciar seus projetos
   manage_your_project_invitations: Administre os convites para projetos
+  manage_your_relationships: Gerenciar seus relacionamentos
   manage_subscriptions: Administrar Inscrições
   managed: administrado
   manager: Moderador
@@ -3737,6 +3735,7 @@ pt-BR:
   remove_place: Remover local
   remove_project_user: Remova usuário do projeto
   remove_range: Remover a área de distribuição
+  remove_relationship: Remover relacionamento
   remove_section: Remover a seção
   remove_selected: Remova selecionado
   remove_tags: Remova marcações
@@ -3917,7 +3916,7 @@ pt-BR:
     apenas a táxons de uma determinada área. Deixe em branco caso se aplique a táxons
     do mundo todo.
   set_license: Definir licença
-  settings: confirgurações
+  settings: Configurações
   share: Compartilhar
   share_colon: 'Compartilhar:'
   share_your_observation_with_researchers_by: Compartilhar suas observações pessoais
@@ -4145,6 +4144,8 @@ pt-BR:
   stop_editing: Pare de Editar
   stop_following_user: Deixe de seguir %{user}
   stop_testing: Parar Testes
+  stop_trusting_this_person_with_your_private_coordinates: Parar de confiar suas coordenadas
+    privadas à esta pessoa
   stop_updating_position: Deixe de atualizar sua localização
   studies_that_used_inaturalist_data_in_year: Estudos que usaram dados do iNaturalist
     em %{year}
@@ -4227,6 +4228,16 @@ pt-BR:
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} é um reino com uma observação'
     other: '%{taxon} é um reino com %{count} observações'
+  taxon_is_threatened_coordinates_hidden: Taxon está ameaçado, coordenadas ocultas
+    por padrão
+  taxon_is_threatened_coordinates_hidden_desc: |-
+    Um dos táxons sugeridos nas identificações, ou um dos táxons incluídos em qualquer deles, é considerado raro e/ou ameaçado,
+    a localização desta observação foi ocultada.
+  taxon_is_threatened_coordinates_obscured: Taxon está ameaçado, coordenadas obscurecidas
+    por padrão
+  taxon_is_threatened_coordinates_obscured_desc: |-
+    Um dos táxons sugeridos nas identificações, ou um dos táxons incluídos em qualquer deles, é considerado raro e/ou ameaçado,
+    a localização desta observação foi ocultada.
   taxonomy: Taxonomia
   taxon_: táxon
   taxon_assessments_are: "Arquivos de avaliação de táxon são documentos conectados
@@ -4472,9 +4483,12 @@ pt-BR:
     busca funciona apenas para táxons ativos.
   this_is_taking_forever: Isto está levando muito tempo. Por favor tente novamente
     mais tarde.
+  this_is_the_primary_listing: Esta é a lista de espécie principal
+  this_is_your_observation: Esta é a sua observação
+  this_is_your_observation_desc: Você sempre pode ver as coordenadas de suas próprias
+    observações.
   this_job_failed_to_run: Este processo falhou. Por favor entre em contato %{email}
   this_list_is_empty!: Esta lista está vazia!
-  this_is_the_primary_listing: Esta é a lista de espécie principal
   this_list_only_accepts_taxa_that_are: Esta lista somente aceita táxons que são
   this_observation: Esta observação
   this_observation_has_been_incorporated_into_the_following_external_websites: Esta
@@ -4551,7 +4565,6 @@ pt-BR:
   to_add_comments: para adicionar comentários
   to_add_identifications: para adicionar identificações
   to_add_ids: para adicionar IDentificações
-  to_an: para uma
   to_configure_your_widget: para configurar seu widget.
   to_include_your_google_with_inat: para incluir sua conta do Google com %{site_name}
   to_recipient: para
@@ -4582,7 +4595,11 @@ pt-BR:
   "true": Verdadeiro
   trending: Tendências
   trends: Tendências
+  trusted: Confiável
   trusted_project?: É um projeto confiável?
+  trust_this_person_with_your_private_coordinates: Confiar nessa pessoa com suas coordenadas
+    particulares
+  trust_with_private_coordinates: Confiar com coordenadas privadas
   try_adding_species_form: Tente adicionar alguma espécie usando o formulário desta
     página.
   try_it_out: Experimente
@@ -4743,6 +4760,10 @@ pt-BR:
   user_s_lists: Listas de %{user}
   user_suggested_an_id: '%{user} sugeriu uma identificação'
   user_thinks_yours_is: '%{user} %{noun} a sua observação %{observation} é'
+  user_trusts_you_with_their_private_coordinates: '%{user} confia em você com suas
+    coordenadas privadas'
+  user_trusts_you_with_their_private_coordinates_desc: O observador escolheu confiar
+    em você com as coordenadas particulares de todas as suas observações.
   username: Nome de usuário
   username_or_email: Nome de usuário ou email
   username_or_user_id: Nome de usuário ou identificação do usuário
@@ -4952,10 +4973,18 @@ pt-BR:
   which_projects_can_add_your_observations?: Quais projetos tradicionais podem adicionar
     suas observações?
   white: branco
+  why_you_can_see_the_coordinates: Por que você pode ver as coordenadas
   who_can_add_observations_to_this_project?: Quem pode adicionar observações a este
     projeto?
+  who_can_see_the_coordinates: Quem pode ver as coordenadas
+  who_can_see_the_coordinates_observer: A pessoa que fez a observação
+  who_can_see_the_coordinates_staff: Equipe do iNaturalista
+  who_can_see_the_coordinates_projects: Curadores dos seguintes projetos
+  who_can_see_the_coordinates_trusted: Indivíduos que o observador confiou em suas
+    coordenadas particulares
   who_helped_user_the_most: Quem ajudou %{user} mais
   who_user_helped_the_most: Quem %{user} ajudou mais
+  why_the_coordinates_are_obscured: Por que as coordenadas são obscurecidas
   with_annotation: Com anotação
   without_annotation: Sem anotação
   widget: Widget
@@ -5090,6 +5119,12 @@ pt-BR:
     outras pessoas.
   you_cant_rotate_photos_hostde_outside: Você não pode rotacionar imagens que estão
     hospedadas fora de %{site_name}.
+  you_curate_a_project_that_contains_this_observation: Você curou um projeto que contém
+    esta observação
+  you_curate_a_project_that_contains_this_observation_desc: |-
+    Você pode ver coordenadas ocultas quando tiver curado um projeto que contenha
+    observação eo observador optou por compartilhar coordenadas com curadores de
+    esse projeto.
   you_didnt_select_any_observations: Você não selecionou nenhuma observação.
   you_didnt_select_any_photos_to_tag: Você não marcou nenhuma foto para marcar!
   you_dont: Você não
@@ -5211,6 +5246,7 @@ pt-BR:
   your_pinned_locations: Seus locais fixados
   your_profile_was_successfully_updated: Seu perfil foi atualizado com sucesso!
   your_recent_projects: Seus projetos recentes
+  your_relationships: Seus relacionamentos
   your_should_recognize: Você deve reconhecer algumas destas fotos
   your_site_account_has_been_created: Sua conta %{site} foi criada.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -6693,6 +6729,14 @@ pt-BR:
           para adicionar outro.
       recent:
         about_recent_users: Sobre
+        definitions_html: <dl> <dt>Provável Spam</dt> <dd> Usuário que provavelmente
+          é um spammer, o que significa que não possui observações ou identificações,
+          mas possuem uma descrição do perfil. </dd> <dt>Auto Spam</dt> <dd> Spammer
+          que foi automaticamente marcado como spammer pelo sistema. </dd> <dt>Spam
+          Manual</dt> <dd> Spammer que foi marcado manualmente como spammer por um
+          curador do site. </dd> <dt>Falsos Positivos</dt> <dd> Usuários que foram
+          marcados como spammers mas cujas marcas foram resolvidas pelos curadores
+          do site, já que não eram realmente spammers. </dd> </dl>
         recent_users_desc_html: |-
           <p>
             Queremos receber novos usuários, mas também queremos combater

@@ -103,8 +103,6 @@ ja:
     one: <span class='count'>1</span>件の種もしくはそれ以下の研究用観察記録</span>
     other: <span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録</span>
   _percent_ID_d: '%件判定済み'
-  a: 一つの
-  a_: 一つの
   a_community_for_naturalist: ナチュラリストのためのコミュニティー
   a_default_taxon_name_will_automatically_created: |-
     当分類群の学名がデフォルト名となります。
@@ -234,7 +232,6 @@ ja:
   add_taxon_batch_to: 分類群を一括で%{list}に追加
   add_taxon_range: 分類群の分布・生息区域を追加
   add_taxonomic_tags_to: 選択されたFlickr写真に分類群タグを付ける &raquo;
-  add_to: 次のフィールドに追加：
   add_to_a_scheme: スキームに追加
   add_to_a_project: プロジェクトに追加
   add_to_calendar: カレンダーに追加
@@ -457,7 +454,6 @@ ja:
   automatically_id_new: 新規観察記録を自動的に次のIDを付与：
   automatically_update_my_content_for_taxon_changes: 分類群の変更を自分のデータに自動的に反映
   back: 戻る
-  back_to: 次へ戻る：
   back_to_albums: アルバムに戻る
   back_to_all_species: すべての種に戻る
   back_to_browsing_people: ユーザー閲覧へ戻る
@@ -920,7 +916,6 @@ ja:
   edit_your_settings_for_this_project: プロジェクトの個人設定を編集
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>設定を変更</a>すれば、新着情報の受信の変更及び情報送信停止などができます。
   edited: 編集済み
-  edited_by: 編集者：
   edited_by_name_html: '%{name}によって編集されました'
   editing: 編集中
   editing_announcement: お知らせを編集中
@@ -1033,7 +1028,6 @@ ja:
   filling_out_checklist_for_place: あなたがよく知っている場所のチェックリストを完成させること
   filling_out_your_profile: あなたのプロフィールを完成させましょう
   filter: 絞り込む
-  filter_by: 絞り込み条件
   filter_by_curator_identification: キュレーターの同定で絞り込む
   filter_by_place: 場所でフィルター
   filter_by_place_taxon_and_color: 場所、分類群、そして色でフィルター
@@ -1075,7 +1069,6 @@ ja:
   flagged_thing_explanation: 次の理由により、この%{thing}にフラグが付けられました：
   flagger: フラグ付けたユーザー：
   flags: フラグ
-  flags_for: フラグ目的：
   flags_on_users_content: '%{user}のコンテンツに付けられたフラグ'
   flickr_account_information: あなたのFlickrアカウント情報
   flickr_has_no_creative_commons: Flickrにはこの場所からのクリエイティブ・コモンズライセンス写真がありません
@@ -1086,8 +1079,6 @@ ja:
   flickr_tagger: Flickrタグ付け機能
   flickr_tags: Flickrタグ
   flickr_youre_all_set: 只今より、%{site_name}お楽しみいただけます。
-  follow_us: 次のサービスでフォローしてください
-  follow_us_on: 次のサービスでフォローしてください
   follow_user: '%{user}をフォロー'
   follower: フォロワー
   following: フォロー中
@@ -1099,7 +1090,6 @@ ja:
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
   from_flickr_facebook_etc: Flickr、Facebookなどから
-  from_in_this_place: この場所のなかから
   from_list: リストから
   from_this: こちらから
   from_photos: 写真から
@@ -1298,8 +1288,6 @@ ja:
   invited_x: '%{x}を招待しました'
   inviting: 招待中...
   iphone: iPhone
-  is_a: は
-  is_an: は
   is_not_following_anyone: 誰もフォローしていません
   is_now: は今
   is_the_organism_wild: 野生または帰化していますか？
@@ -2785,9 +2773,9 @@ ja:
   this_is_a_life_list_from_place_html: '%{place}のライフリスト'
   this_is_a_life_list_of_taxon_in_place: '%{place}における%{taxon}のライフリスト'
   this_is_taking_forever: 予想以上に時間がかかっています。後ほどまたお試しください。
+  this_is_the_primary_listing: 主要記載です
   this_job_failed_to_run: 実行できませんでした。%{email}にご連絡ください。
   this_list_is_empty!: このリストに項目がありません！
-  this_is_the_primary_listing: 主要記載です
   this_list_only_accepts_taxa_that_are: このリストは次の条件を満たす分類群のみを追加することができます：
   this_observation_has_been_incorporated_into_the_following_external_websites: この観察記録データが次の外部サイトに提供されています：
   this_observation_lies_outside_the: この観察記録が%{site_name}のデータベース上にあるこの種の生息域の外にあるようです。もしかしたら、${site_name}の生息域データに不備があるか、IDが異なるか、迷鳥のような突発的な移動なのか、また生息域拡大なのかもしれません

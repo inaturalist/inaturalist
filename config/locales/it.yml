@@ -140,8 +140,6 @@ it:
     %{user} con <strong>%{y} le ID</strong>
   _100_day_trends: Andamento di 100 giorni
   _percent_ID_d: '% identificati'
-  a: una
-  a_: una
   a_community_for_naturalist: Una Community per Naturalisti
   a_default_taxon_name_will_automatically_created: "Un taxon di default sarà creato
     automaticamente a partire dal nome scientifico di questa unità tassonomica. \nNon
@@ -312,7 +310,6 @@ it:
     &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Aggiungi etichette tassonomiche alle foto
     Fickr associate alle osservazioni selezionate.
-  add_to: Aggiungi a
   add_to_a_scheme: Aggiungi a uno schema
   add_to_a_project: Aggiungi a un progetto
   add_to_calendar: Aggiungi al calendario
@@ -640,7 +637,6 @@ it:
   automatically_update_my_content_for_taxon_changes: Aggiorna automaticamente i miei
     contenuti con le modifiche del taxon
   back: Indietro
-  back_to: Torna a
   back_to_albums: Torna all'album
   back_to_all_species: Torna a Tutte le Specie
   back_to_browsing_people: Torna a navigare tra le persone
@@ -1351,7 +1347,6 @@ it:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Modifica le tue impostazioni</a>
     per variare il tipo di aggiornamenti che ricevi o disiscriverti completamente.
   edited: Modificato
-  edited_by: Modificato da
   edited_by_name_html: Modificato da %{name}
   editing: Modifica in corso
   editing_announcement: Modifica annuncio in corso
@@ -1509,7 +1504,6 @@ it:
     che conosci bene
   filling_out_your_profile: compilando il tuo profilo
   filter: Filtra
-  filter_by: Filtra per
   filter_by_curator_identification: Filtra in base all'identificazione dei curatori
   filter_by_place: Filtra per luogo
   filter_by_taxon: Filtra per taxon
@@ -1575,7 +1569,6 @@ it:
   flags_with_count: Contrassegni (%{count})
   flags_explanation: Gli utenti di %{site_name} contrassegnano gli elementi che richiedono
     attenzione dai curatori del sito e/o dagli amministratori del sito.
-  flags_for: Contrassegni per
   flags_on_users_content: Contrassegni sui contenuti di %{user}
   flickr_account_information: Informazioni del tuo account Flickr
   flickr_description: Flickr è un servizio di hosting per le foto, magari già lo conoscete!
@@ -1595,13 +1588,13 @@ it:
   fluid_layout: Layout fluido
   fluid: fluido
   follow: Segui
-  follow_us: Seguici su
-  follow_us_on: Seguici su
+  follow_receive_updates_about_new_observations: Segui (ricevi aggiornamenti sulle
+    nuove osservazioni)
   follow_user: Segui %{user}
   followed_projects: Progetti seguiti
   follower: seguace
   followers: Seguaci
-  following: segui
+  following: Seguito
   following_x_people:
     one: Seguendo 1 Persona
     other: Seguendo %{count} Persone
@@ -1616,10 +1609,8 @@ it:
   fri: Ven
   from: Da
   from_a_place: da un luogo
-  from_anywhere_change: da qualsiasi luogo (<span class="button">change</span>)
   from_eol_collection: Da una collezione EOL
   from_flickr_facebook_etc: Da Flickr, Facebook, etc.
-  from_in_this_place: da questo luogo
   from_list: Da una lista
   from_this: da questo
   from_photos: Da foto
@@ -1661,7 +1652,7 @@ it:
   give_it_some_detail: Aggiungi un po' di dettagli
   global_conservation_status: 'Stato di conservazione globale:'
   global_names: Nomi globali
-  globally: a livello globale
+  globally: A livello globale
   go: Vai
   go_back: Indietro
   going_to_your_observations: Stai andando alle tue osservazioni...
@@ -1862,8 +1853,6 @@ it:
   import_tags_from_csv: Importare i tag da file CSV
   importing: Importazione in corso...
   improving: Miglioramento
-  in: in
-  in_: in
   in_n: in %{n}
   in_place_x: in %{place}
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
@@ -1931,8 +1920,6 @@ it:
   invited_x: '%{x} invitato(i)'
   inviting: Invito in corso...
   iphone: iPhone
-  is_a: è un
-  is_an: è un
   is_an_evaluation: |-
     è una valutazione dell'accuratezza dell'osservazione.
     Le osservazioni di Livello Ricerca possono essere utilizzate dagli scienziati per le ricerche. Vota qui sotto:
@@ -3924,7 +3911,7 @@ it:
     si applica ai taxa di un luogo specifico. Lascia vuoto se si applica ai taxa di
     tutto il mondo.
   set_license: Imposta la licenza
-  settings: impostazioni
+  settings: Impostazioni
   share: Condividi
   share_colon: 'Condividi:'
   share_your_observation_with_researchers_by: Condividi la tua osservazione con i
@@ -4520,9 +4507,10 @@ it:
     ricerca funziona solo per i taxa attivi.
   this_is_taking_forever: Quest'operazione ci mette una vita. Per favore prova più
     tardi.
+  this_is_the_primary_listing: Questa è la lista principale
+  this_is_your_observation: Questa è la tua osservazione
   this_job_failed_to_run: L'operazione è fallita. Per favore contatta %{email}
   this_list_is_empty!: Questa lista è vuota!
-  this_is_the_primary_listing: Questa è la lista principale
   this_list_only_accepts_taxa_that_are: Questa lista accetta solo taxa che sono
   this_observation: Questa osservazione
   this_observation_has_been_incorporated_into_the_following_external_websites: Questa
@@ -4599,7 +4587,6 @@ it:
   to_add_comments: per aggiungere commenti
   to_add_identifications: per aggiungere le identificazioni
   to_add_ids: per aggiungere ID
-  to_an: ad una
   to_configure_your_widget: per configurare il tuo widget.
   to_include_your_google_with_inat: per includere il tuo account Google con %{site_name}
   to_recipient: a
@@ -5003,10 +4990,12 @@ it:
   which_projects_can_add_your_observations?: Quali progetti tradizionali possono aggiungere
     le tue osservazioni?
   white: bianco
+  why_you_can_see_the_coordinates: Perché puoi vedere le coordinate
   who_can_add_observations_to_this_project?: Chi può aggiungere osservazioni al questo
     progetto?
   who_helped_user_the_most: Chi ha aiutato maggiormente %{user}
   who_user_helped_the_most: Chi %{user} ha aiutato di più
+  why_the_coordinates_are_obscured: Perché le coordinate sono oscurate
   with_annotation: Con annotazione
   without_annotation: Senza annotazione
   widget: Widget

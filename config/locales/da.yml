@@ -121,8 +121,6 @@ da:
     med <strong>%{y} IDs</strong>
   _100_day_trends: 100 dage tendens
   _percent_ID_d: '% ID''et'
-  a: en
-  a_: en
   a_community_for_naturalist: Et fællesskab for naturelskere
   a_default_taxon_name_will_automatically_created: Et standard taksonnavn vil automatisk
     blive dannet ud fra det videnskabelige navn af denne takson. Når du har gemt den
@@ -290,7 +288,6 @@ da:
   add_taxonomic_tags_to: Tilføj taksonomiske tags til valgte Flickr foto´s &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Tilføj taksonomiske tags til valgte Flickr
     foto´s forbundet med de valgte observationer.
-  add_to: Tilføj til
   add_to_a_scheme: Tilføj til en ordning
   add_to_a_project: Tilføj til et projekt
   add_to_calendar: Tilføj til kalender
@@ -526,6 +523,9 @@ da:
   are_you_sure_remove_from_project: Er du sikker på, at du ønsker at fjerne %{user}
     fra dette projekt?
   are_you_sure_remove_photo: Er du sikker på, at du ønsker at fjerne dette foto?
+  are_you_sure_remove_relationship: Er du sikker på, at du vil fjerne dette forbindelse?
+    Personen vil ikke blive fulgt længere og adgang til dine private koordinater vil
+    blive annulleret, hvis du havde aktiveret sådan adgang.
   are_you_sure_remove_taxon_from_list: Er du sikker på at du vil fjerne denne takson
     fra listen?
   are_you_sure_remove_taxon_from_place: Er du sikker på, at du vil fjerne denne takson
@@ -618,7 +618,6 @@ da:
   automatically_update_my_content_for_taxon_changes: Opdatér automatisk mit indhold
     med taksonændringer
   back: Tilbage
-  back_to: Tilbage til
   back_to_albums: Tilbage til album
   back_to_all_species: Tilbage til Alle arter
   back_to_browsing_people: Tilbage til "at browse" personer
@@ -1322,8 +1321,9 @@ da:
     for at ændre den type af underretninger du vil modtage eller afmelding af dit
     abonnement.
   edited: Redigeret
-  edited_by: Redigeret af
   edited_by_name_html: Redigeret af %{name}
+  edited_by_name_some_rights_reserved_html: Redigeret af%{name}, nogle rettigheder
+    forbeholdes %{license}
   editing: Redigering
   editing_announcement: Redigerings meddelelse
   editing_custom_project_fields_for: Redigering af brugerdefinerede projektfelter
@@ -1478,7 +1478,6 @@ da:
   filling_out_checklist_for_place: udfylde tjeklister for steder du kender godt
   filling_out_your_profile: udfylder din profil
   filter: Filtrér
-  filter_by: Sortér efter
   filter_by_curator_identification: Sortér efter kurator identifikation
   filter_by_place: Sortér efter sted
   filter_by_taxon: Sortér efter takson
@@ -1542,7 +1541,7 @@ da:
   flags_with_count: Markeringer (%{count})
   flags_explanation: '%{site_name} brugere markerer ting, når de finder noget der
     har brug for opmærksomhed fra side-kuratorer eller sideadministratorer.'
-  flags_for: Markeringer for
+  flags_for_x_html: Markeringer for %{x}
   flags_on_users_content: Markeringer for %{user}´s indhold
   flickr_account_information: Dine Flickr kontooplysninger
   flickr_description: Flickr er en online fotodelingstjeneste, måske kender du allerede
@@ -1563,13 +1562,12 @@ da:
   fluid_layout: Flydende visning
   fluid: flydende
   follow: Følg
-  follow_us: Følg os på
-  follow_us_on: Følg os på
+  follow_receive_updates_about_new_observations: Følg (modtag besked om nye observationer)
   follow_user: Følg %{user}
   followed_projects: Projekter der følges
   follower: følger
   followers: Følgere
-  following: følger
+  following: Følger
   following_x_people:
     one: Følger 1 person
     other: Følger %{count} personer
@@ -1584,10 +1582,8 @@ da:
   fri: Fre
   from: Fra
   from_a_place: fra et sted
-  from_anywhere_change: fra hvor som helst (<span class="button">change</span>)
   from_eol_collection: Fra EOL-samling
   from_flickr_facebook_etc: Fra Flickr, Facebook, etc.
-  from_in_this_place: fra dette sted
   from_list: Fra liste
   from_this: fra dette
   from_photos: Fra foto´s
@@ -1618,6 +1614,10 @@ da:
   Genus: Slægt
   genus_slash_species: '[SLÆGT] / [ARTER]'
   geoprivacy: geofortrolighed
+  geoprivacy_is_obscured: Geofortrolighed er sløret
+  geoprivacy_is_obscured_desc: Observatør har valgt at sløre koordinaterne.
+  geoprivacy_is_private: Geofortrolighed er privat
+  geoprivacy_is_private_desc: Observatør har valgt at skjule koordinaterne.
   georeferenced: Georefererede?
   georeferenced?: georefererede
   get_current_position: Få aktuelle position
@@ -1628,7 +1628,7 @@ da:
   give_it_some_detail: Giv det nogle detaljer!
   global_conservation_status: 'Global bevaringsstatus:'
   global_names: Globale navne
-  globally: globalt
+  globally: Globalt
   go: Start
   go_back: Gå tilbage
   going_to_your_observations: Går til dine observationer ...
@@ -1826,8 +1826,6 @@ da:
   import_tags_from_csv: Importér tags fra CSV
   importing: Importerer...
   improving: Forbedring
-  in: i
-  in_: i
   in_n: i %{n}
   in_place_x: i %{place}
   inaturalist_network_affiliation: iNaturalist Network tilknytning
@@ -1898,8 +1896,6 @@ da:
   invited_x: Inviteret %{x}
   inviting: Inviterer...
   iphone: iPhone
-  is_a: er en
-  is_an: er en
   is_an_evaluation: |-
     er en evaluering af en observations nøjagtighed.
     Observationer af forskningsklasse kan blive brugt af forskere. Giv din mening til kende herunder:
@@ -1955,6 +1951,7 @@ da:
   keyboard_shortcuts: Tastatur genveje
   kml: KML
   kml_file_size_error: KML skal være mindre end 1 MB i størrelse
+  label_colon: '%{label}'
   labels: Mærkater
   label_to_group_a_batch_of_taxon_changes: Mærke til at grupperer et bundt af takson
     ændringer
@@ -2262,6 +2259,7 @@ da:
   manage_names: Administrér navne
   manage_your_projects: Administrer dine projekter
   manage_your_project_invitations: Administrer dine projekt invitationer
+  manage_your_relationships: Administrér dine forbindelser
   manage_subscriptions: Administrer abonnementer
   managed: lykkedes
   manager: Leder
@@ -3649,8 +3647,8 @@ da:
   reject_the_community_id: afvis fællesskabs ID
   related_species: Beslægtede arter
   relative_observations: Relative observationer
-  relationship: Forhold
-  relationship_x: 'Relation: %{relationship}'
+  relationship: Forbindelse
+  relationship_x: 'Forbindelse: %{relationship}'
   relationships:
     match: match
     one_to_one: en-til-en
@@ -3680,7 +3678,7 @@ da:
   remove_curator_role: Fjern kuratorrolle
   remove_curator_status: Fjern kuratorstatus
   remove_from_batch: Fjern fra bundt
-  remove_from_featured: Fjen fra fremhævet
+  remove_from_featured: Fjern fra udvalgte
   remove_from_guide: Fjern fra guide
   remove_from_id_please?: Fjern venligst fra ID?
   remove_from_list: Fjern fra liste
@@ -3694,6 +3692,7 @@ da:
   remove_place: Fjern sted
   remove_project_user: Fjern projektbruger
   remove_range: Fjern område
+  remove_relationship: Fjern forbindelse
   remove_section: Fjern sektion
   remove_selected: Fjern valgte
   remove_tags: Fjern tags
@@ -3794,8 +3793,8 @@ da:
     other: Gemmer %{num} af %{count} observationer...
   saving_verb: Gemmer
   scale_colon: 'Skala:'
-  schemes: Ordninger
-  schemes_including: Ordninger der inkluderer
+  schemes: Systemer
+  schemes_including: Systemer der inkluderer
   scientific_names: Videnskabelige navne
   search: Søg
   search_all_fields: søg i alle felter
@@ -3874,7 +3873,7 @@ da:
     for taksa fra et bestemt sted. Lad det være tomt, hvis det gælder taksa over hele
     verden.
   set_license: Indstil licens
-  settings: indstillinger
+  settings: Indstillinger
   share: Del
   share_colon: 'Del:'
   share_your_observation_with_researchers_by: Del din observation med forskere ved
@@ -4093,6 +4092,8 @@ da:
   stop_editing: Stop redigering
   stop_following_user: Stop med at følge %{user}
   stop_testing: Stop test
+  stop_trusting_this_person_with_your_private_coordinates: Stol ikke længere på denne
+    person angående dine private koordinater
   stop_updating_position: Stop med at opdatere position
   studies_that_used_inaturalist_data_in_year: Studier der brugte iNaturalist data
     i %{year}
@@ -4216,6 +4217,18 @@ da:
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} er et rige af liv med 1 observation'
     other: '%{taxon} er et rige af liv med %{count} observationer'
+  taxon_is_threatened_coordinates_hidden: Takson er truet og koordinater er som standard
+    skjult
+  taxon_is_threatened_coordinates_hidden_desc: |-
+    En af de taksa, der er foreslået i identifikationerne, eller en af de taksa, der
+    indeholder nogen af disse taksa, er kendt for at være sjældne og/eller truede, så
+    stedet for denne observation er blevet skjult.
+  taxon_is_threatened_coordinates_obscured: Takson er truet og koordinaterne er som
+    standard sløret
+  taxon_is_threatened_coordinates_obscured_desc: |-
+    En af de taksa, der er foreslået i identifikationerne, eller en af de taksa, der
+    indeholder nogen af disse taksa, er kendt for at være sjældne og/eller truede, så
+    stedet for denne observation er blevet sløret.
   taxonomy: Taksonomi
   taxon_: takson
   taxon_assessments_are: |-
@@ -4260,7 +4273,7 @@ da:
   taxon_ranks: Taksonrangeringer
   taxon_removed_from_list: Takson fjernet fra liste.
   taxon_scheme: Taksonordning
-  taxon_schemes: Taksonordninger
+  taxon_schemes: Taksonsystemer
   taxon_schemes_raquo_html: Takson <nobr>schemes &raquo;</nobr>
   taxon_search: Takson søgning
   taxon_search_results_for: Takson søgeresultater for
@@ -4268,7 +4281,7 @@ da:
   taxon_stage: takson stadie
   taxon_subscription: takson abonnement
   taxon_swap: takson skifte
-  taxon_swap_only_has_one_input: kun ét input tilladt pr. byt
+  taxon_swap_only_has_one_input: kun ét input tilladt for et skifte
   taxon_swap_has_inputs_and_outputs: byt skal have både input og output
   taxon_to_delete: Takson der skal slettes
   taxon_to_keep: Takson der skal beholdes
@@ -4418,7 +4431,7 @@ da:
   there_were_some_problems_with_fields: 'Der var nogle problemer med følgende felter:'
   theres_also: der er også
   theres_something_wrong_with_taxon_framework_relationship: Der er noget galt her
-    - vi kan ikke bestemme forholdet mellem intern og ekstern taksa
+    - vi kan ikke bestemme forbindelsen mellem intern og ekstern taksa
   these_are_items_people_on: |-
     Dette er emner andre personer på siden har markeret til kuration. Spam
     kommentarer skal slettes, og brugere, der tilføjer spam, skal suspenderes (gå
@@ -4454,9 +4467,11 @@ da:
     Dette er en mere bekvem måde at finde et takson ID på. Det er takson IDet
     det bliver gemt. Denne søgning fungerer kun for aktive taksa.
   this_is_taking_forever: Dette tager en evighed. Prøv igen senere.
+  this_is_the_primary_listing: Dette er den primære liste
+  this_is_your_observation: Dette er din observation
+  this_is_your_observation_desc: Du kan altid se koordinaterne for dine egne observationer.
   this_job_failed_to_run: Dette job kunne ikke køres. Venligst kontakt%{email}
   this_list_is_empty!: Denne liste er tom!
-  this_is_the_primary_listing: Dette er den primære liste
   this_list_only_accepts_taxa_that_are: Denne liste accepterer kun taksa, der er
   this_observation: Denne observation
   this_observation_has_been_incorporated_into_the_following_external_websites: Denne
@@ -4533,7 +4548,6 @@ da:
   to_add_comments: for at tilføje kommentarer
   to_add_identifications: for at tilføje identifikationer
   to_add_ids: for at tilføje IDs
-  to_an: til en
   to_configure_your_widget: for at konfigurere din widget.
   to_include_your_google_with_inat: for at inkludere din Google konto med %{site_name}
   to_recipient: til
@@ -4548,8 +4562,8 @@ da:
   top_5_identifiers: Top 5 identifikatorer
   top_contributors: Top bidragsydere
   top_identifier: Top identifikator
-  top_identifiers: Top identifikatorer
-  top_identifiers_of_taxon: Top identifikatorer af %{taxon}
+  top_identifiers: Flest identifikationer
+  top_identifiers_of_taxon: Flest identifikationer af %{taxon}
   top_observer: Top observatør
   top_observers: Top observatører
   top_species: Top arter
@@ -4564,7 +4578,11 @@ da:
   "true": Sandt
   trending: Tendenser
   trends: Tendenser
+  trusted: Betroet
   trusted_project?: Tillidsprojekt?
+  trust_this_person_with_your_private_coordinates: Betro denne person med dine private
+    koordinater
+  trust_with_private_coordinates: Betro med private koordinater
   try_adding_species_form: Prøv at tilføje nogle arter ved hjælp af skemaet på denne
     side.
   try_it_out: Prøv det
@@ -4721,6 +4739,10 @@ da:
   user_s_lists: '%{user}''s lister'
   user_suggested_an_id: '%{user} foreslog et ID'
   user_thinks_yours_is: '%{user} %{noun} din observation %{observation} er'
+  user_trusts_you_with_their_private_coordinates: '%{user} har betroet dig med deres
+    private koordinater'
+  user_trusts_you_with_their_private_coordinates_desc: Observatøren har valgt at betro
+    dig med alle private koordinater for alle sine observationer.
   username: Brugernavn
   username_or_email: Brugernavn eller e-mail
   username_or_user_id: Brugernavn eller bruger ID
@@ -4776,7 +4798,7 @@ da:
   view_license: Vis licens
   view_lists: Vis lister
   view_listing: Vis opførelse
-  view_more: Vis mere
+  view_more: Se flere
   view_more_about_x: Vis mere om %{x}
   view_more_observations: Vis flere observationer
   view_more_observations_from_x: Vis flere observationer fra%{x}
@@ -4929,10 +4951,18 @@ da:
   which_projects_can_add_your_observations?: Hvilke traditionelle projekter kan tilføje
     dine observationer?
   white: hvid
+  why_you_can_see_the_coordinates: Hvorfor du kan se koordinaterne
   who_can_add_observations_to_this_project?: Hvem kan tilføje observationer til dette
     projekt?
+  who_can_see_the_coordinates: Hvem kan se koordinaterne
+  who_can_see_the_coordinates_observer: Personen der foretog observationen
+  who_can_see_the_coordinates_staff: iNaturalist ansatte
+  who_can_see_the_coordinates_projects: Kuratorer for følgende projekter
+  who_can_see_the_coordinates_trusted: Personer som observatøren har betroet sine
+    private koordinater til
   who_helped_user_the_most: Hvem hjalp %{user} mest
   who_user_helped_the_most: Hvem %{user} hjalp mest
+  why_the_coordinates_are_obscured: Hvorfor er koordinaterne sløret
   with_annotation: Med anmærkning
   without_annotation: Uden note
   widget: Widget
@@ -5063,6 +5093,11 @@ da:
   you_cant_remove_other_peoples_observations: Du kan ikke fjerne andre personers observationer.
   you_cant_rotate_photos_hostde_outside: Du kan ikke rotere foto´s lagret udenfor
     %{site_name}.
+  you_curate_a_project_that_contains_this_observation: Du er kurator på et projekt,
+    som indeholder denne observation
+  you_curate_a_project_that_contains_this_observation_desc: Du kan se slørede koordinater
+    når du er kurator på et projekt, som indeholder en observation, og observatøren
+    har valgt at dele koordinaterne med projektets kurator
   you_didnt_select_any_observations: Du har ikke valgt nogen observationer.
   you_didnt_select_any_photos_to_tag: Du har ikke valgt nogle foto´s der skal tagges!
   you_dont: Du har ikke
@@ -5184,6 +5219,7 @@ da:
   your_pinned_locations: Dine gemte placeringer
   your_profile_was_successfully_updated: Din profil blev opdateret!
   your_recent_projects: Dine seneste projekter
+  your_relationships: Dine forbindelser
   your_should_recognize: Du bør kunne genkende nogle af disse billeder
   your_site_account_has_been_created: Din %{site} konto er blevet oprettet.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -5274,7 +5310,7 @@ da:
     guides:
       index:
         funding_html: |-
-          Finansiering til udvikling af "Guider" blev sponseret af
+          Støtte til udvikling af "Guider" blev sponseret af
           <a href="http://eol.org"> <img src = "https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"> </a>
         welcome_message_html: |-
           Guider hjælper dig med at lære om biodiversitet over hele verden.
@@ -6115,7 +6151,7 @@ da:
         collection_projects: Samlingsprojekter
         collection_project_features: 'Samlingsprojekt egenskaber:'
         contain_entire_image_without_cropping: Bibehold hele billedet uden beskæring
-        custom_banner_icon_and_project_description: Brugerdefiberet banner, ikon og
+        custom_banner_icon_and_project_description: Brugerdefineret banner, ikon og
           projektbeskrivelse
         data_visualizations: Data visualiseringer
         delete_project: Slet projekt
@@ -6487,7 +6523,7 @@ da:
           takson vil dog blive vist først. Det første billede vil blive et standardbillede, og det vil blive brugt på tværs af websiden.
     taxon_changes:
       move_children_desc: |-
-        Underordnede af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive byttet ind i
+        Underordnede af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
         ækvivalenter med den nye slægt eller artsnavn.
       form:
         move_children_desc_html: "Ved at tjekke denne boks flyttes underordnede i

@@ -19,6 +19,7 @@
 # Author: Kruczoczarna
 # Author: Liuxinyu970226
 # Author: Macofe
+# Author: Marcelhospers
 # Author: Nike
 # Author: Optilete
 # Author: Phil.pav
@@ -81,12 +82,6 @@ qqq:
     Number of research-grade observations identified to rank species or lower,
     with the count in a span of class 'count'
   x_taxa_matching_current_filters: Number of taxa matching current filters
-  a: |-
-    Note: can not be translated to Finnish as we don't have prepositions in our language
-    Can not be translated precisely to German, since the knowledge of the following word is needed to choose the correct declination.
-  a_: |-
-    Note: can not be translated to Finnish as we don't have prepositions in our language
-    Can not be translated precisely to German, since the knowledge of the following word is needed to choose the correct declination.
   a_flag_for_x: where x is the title of the resource being flagged
   a_member_of_taxon_html: where taxon is the name of a taxon such as Animalia
   about: '{{Identical|About}}'
@@ -977,6 +972,9 @@ qqq:
   rank: '{{Identical|Rank}}'
   rank_position: Rank, as in position in a list
   ranks:
+    stateofmatter: |-
+      Taxon Framework Relationships
+      https://www.inaturalist.org/taxon_framework_relationships?alternate_position=1&many_to_many=1&many_to_one=1&not_external=1&not_internal=1&one_to_many=1&one_to_one=1&taxon_framework_id=9&unknown=1
     kingdom: '{{Identical|Kingdom}}'
     class: '{{Identical|Class}}'
     subclass: '{{Identical|Subclass}}'
@@ -1080,6 +1078,9 @@ qqq:
   species_header: '{{Identical|Species}}'
   standard: '{{Identical|Standard}}'
   start: '{{Identical|Start}}'
+  start_one: https://www.inaturalist.org/places/offshore-waters-netherlands ''Er is
+    geen overeenkomstige Wikipedia-pagina Offshore waters - Netherlands Zou jij willen
+    start eén ?''
   states: '{{Identical|State}}'
   status: '{{Identical|Status}}'
   subject_resolved_noun_html: where subject is a user name and stuff is the thing
@@ -1328,6 +1329,8 @@ qqq:
   widget: '{{Identical|Widget}}'
   withdraw: '{{Identical|Withdraw}}'
   within_inaturalist: where site_name is the name of a site
+  would_you_like_to: https://www.inaturalist.org/places/houten-nieuw-wulven tab [Wikipedia
+    Beschrijving]
   x_admin: where login is the name of a user
   x_deleted: where x is the name of something that was deleted
   x_does_not_exist: where x is the name of something that doesn't exist
@@ -1487,6 +1490,9 @@ qqq:
             En Wikipedia, «Teneral» redirige a «Ecdysis», y en la versión en castellano «Muda».
             {{Identical|Teneral}}
           Life Stage=adult: '{{Identical|Adult}}'
+    taxon_names:
+      form:
+        new_name_guidelines_html: https://www.inaturalist.org/taxa/133387/taxon_names/new
     users:
       dashboard:
         taxon_change_desc: where site_name is the site name

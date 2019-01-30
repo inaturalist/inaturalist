@@ -11,6 +11,7 @@
 # Author: Cruzan
 # Author: Csbotero
 # Author: Dgstranz
+# Author: Dschultz
 # Author: Eduardo Martinez
 # Author: ErrE
 # Author: Fitoschido
@@ -147,8 +148,6 @@ es:
     %{user} con <strong>%{y} IDs</strong>
   _100_day_trends: Tendencias de 100 días
   _percent_ID_d: '% identificados'
-  a: un(a)
-  a_: una
   a_community_for_naturalist: Una comunidad para naturalistas
   a_default_taxon_name_will_automatically_created: Se creará automáticamente un nombre
     de taxón predeterminado a partir del atributo de nombre científico para este taxón.
@@ -321,7 +320,6 @@ es:
     &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Agregar etiquetas taxonómicas a las fotos
     de Flickr asociadas con las observaciones seleccionadas.
-  add_to: Agregar a
   add_to_a_scheme: Agregar a un esquema
   add_to_a_project: Agregar a un proyecto
   add_to_calendar: Agrega al calendario
@@ -560,6 +558,9 @@ es:
   are_you_sure_remove_from_project: ¿Estás seguro que quieres eliminar a %{user} de
     este proyecto?
   are_you_sure_remove_photo: ¿Estás seguro que quieres eliminar esta foto?
+  are_you_sure_remove_relationship: ¿Estás seguro que deseas eliminar esta relación?
+    Esto hará que dejes de seguir a esta persona y revocará el acceso a tus coordenadas
+    privadas si ya habías habilitado tal acceso.
   are_you_sure_remove_taxon_from_list: ¿Estás seguro que quieres eliminar a este taxón
     de la lista?
   are_you_sure_remove_taxon_from_place: ¿Estás seguro que deseas eliminar este taxón
@@ -650,7 +651,6 @@ es:
   automatically_update_my_content_for_taxon_changes: Actualiza mi contenido automáticamente
     cuando exista un cambio en el taxón
   back: Regresa
-  back_to: Regresa a
   back_to_albums: Volver a los álbumes
   back_to_all_species: Regresa a todas las especies
   back_to_browsing_people: Regresa a búsqueda de personas
@@ -1362,8 +1362,9 @@ es:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Edita la configuración</a>
     para cambiar los tipos de actualizaciones que recibes o darte de baja por completo.
   edited: Modificado
-  edited_by: Editado por
   edited_by_name_html: Editado por %{name}
+  edited_by_name_some_rights_reserved_html: Editado por %{name}, algunos derechos
+    reservados (%{license})
   editing: Modificando
   editing_announcement: Modificando anuncio
   editing_custom_project_fields_for: Editando campos a la medida para
@@ -1517,7 +1518,6 @@ es:
     que conoces bien
   filling_out_your_profile: completando tu perfil
   filter: Filtro
-  filter_by: Filtra por
   filter_by_curator_identification: Filtra por identificación del curador
   filter_by_place: Filtra por lugar
   filter_by_taxon: Filtra por taxón
@@ -1580,7 +1580,7 @@ es:
   flags_with_count: Advertencias (%{count})
   flags_explanation: Los usuarios de %{site_name} marcan asuntos que requieren la
     atención de los curadores o administradores del sitio.
-  flags_for: Marcas para
+  flags_for_x_html: Marcas para %{x}
   flags_on_users_content: Marcas en el contenido de %{user}
   flickr_account_information: Información de tu cuenta de Flickr
   flickr_description: Flickr es un servicio de alojamiento de fotos en línea, tal
@@ -1601,13 +1601,13 @@ es:
   fluid_layout: Diseño fluido
   fluid: fluida
   follow: Seguir
-  follow_us: Síguenos en
-  follow_us_on: Síguenos en
+  follow_receive_updates_about_new_observations: Sigue (recibe actualizaciones sobre
+    observaciones nuevas)
   follow_user: Sigue a %{user}
   followed_projects: Proyectos seguidos
   follower: seguidor
   followers: Seguidores
-  following: siguiendo
+  following: Siguiendo
   following_x_people:
     one: Siguiendo 1 persona
     other: Siguiendo %{count} personas
@@ -1622,10 +1622,8 @@ es:
   fri: vie
   from: de
   from_a_place: de un lugar
-  from_anywhere_change: de cualquier lugar (<span class="button">change</span>)
   from_eol_collection: De colección EOL
   from_flickr_facebook_etc: De Flickr, Facebook, etc.
-  from_in_this_place: de este lugar
   from_list: De la lista
   from_this: de esta
   from_photos: De fotos
@@ -1657,6 +1655,10 @@ es:
   Genus: Género
   genus_slash_species: '[GÉNERO] / [ESPECIE]'
   geoprivacy: Geoprivacidad
+  geoprivacy_is_obscured: Geoprivacidad está oculto
+  geoprivacy_is_obscured_desc: El observador ha escogido ocultar las coordenadas.
+  geoprivacy_is_private: Geoprivacidad es privada
+  geoprivacy_is_private_desc: El observador ha escogido ocultar las coordenadas.
   georeferenced: ¿Geo referenciado?
   georeferenced?: con georeferencia
   get_current_position: Obtén la posición actual
@@ -1667,7 +1669,7 @@ es:
   give_it_some_detail: ¡Pónle algún detalle!
   global_conservation_status: Estado de conservación global
   global_names: Nombres globales
-  globally: globalmente
+  globally: Globalmente
   go: Busca
   go_back: Regresa
   going_to_your_observations: Dirigiéndote a tus observaciones ...
@@ -1865,8 +1867,6 @@ es:
   import_tags_from_csv: Importar etiquetas de CSV
   importing: Importando...
   improving: Mejorando
-  in: en
-  in_: de
   in_n: en %{n}
   in_place_x: en %{place}
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
@@ -1936,8 +1936,6 @@ es:
   invited_x: Invitado %{x}
   inviting: invitando...
   iphone: iPhone
-  is_a: es un
-  is_an: es un
   is_an_evaluation: 'es una evaluación de la exactitud de una observación. Las observaciones
     de Grado de Investigación pueden ser usadas por los científicos para su investigación.
     Vota aquí abajo:'
@@ -1992,6 +1990,7 @@ es:
   keyboard_shortcuts: Teclas de acceso rápido
   kml: KML
   kml_file_size_error: KML debe ser menor a 1 MB de tamaño
+  label_colon: '%{label}:'
   labels: Etiquetas
   label_to_group_a_batch_of_taxon_changes: Nombre de la etiqueta para agrupar los
     cambios de especie o grupo
@@ -2298,6 +2297,7 @@ es:
   manage_names: Administra nombres
   manage_your_projects: Administra tus proyectos
   manage_your_project_invitations: Administra las invitaciones de tus proyectos
+  manage_your_relationships: Administrar tus relaciones
   manage_subscriptions: Administra las suscripciones
   managed: gestionado
   manager: Gerente
@@ -3751,6 +3751,7 @@ es:
   remove_place: Quitar lugar
   remove_project_user: Quitar usuario de proyecto
   remove_range: Quitar distribución
+  remove_relationship: Eliminar relación
   remove_section: Quitar sección
   remove_selected: Eliminar los elementos seleccionados
   remove_tags: Quite las etiquetas
@@ -3931,7 +3932,7 @@ es:
     se encuentra ese lugar. Déjalo en blanco si la especie o grupo aplica para cualquier
     parte del mundo.
   set_license: Fijar licencia
-  settings: Propiedades
+  settings: Configuración
   share: Comparte
   share_colon: 'Compartir:'
   share_your_observation_with_researchers_by: Comparte tu observación con investigadores
@@ -4159,6 +4160,8 @@ es:
   stop_editing: Detener modificación
   stop_following_user: Dejar de seguir a %{user}
   stop_testing: Detén prueba
+  stop_trusting_this_person_with_your_private_coordinates: No confiar a esta persona
+    mis coordenadas
   stop_updating_position: Dejar de actualizar posición
   studies_that_used_inaturalist_data_in_year: Estudios Que Utilizaron Datos de iNaturalist
     en %{year}
@@ -4286,6 +4289,17 @@ es:
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} es un reino con una observación'
     other: '%{taxon} es un reino con %{count} observaciones'
+  taxon_is_threatened_coordinates_hidden: Este taxón está amenazado, coordenadas ocultas
+    por defecto
+  taxon_is_threatened_coordinates_hidden_desc: "Uno de los taxones sugeridos en las
+    identificaciones, o uno de los taxones incluídos en cualquiera de ellos, se consideran
+    raros y/o amenazados, así que \nla ubicación de esta observación ha sido ocultada."
+  taxon_is_threatened_coordinates_obscured: Este taxón está amenzado, las coordenadas
+    se ocultan por defecto.
+  taxon_is_threatened_coordinates_obscured_desc: "Uno de los taxones sugeridos en
+    las identificaciones, o uno de los taxones incluídos en cualquiera de ellos, se
+    consideran raros y/o amenazados, así que \nla ubicación de esta observación ha
+    sido ocultada."
   taxonomy: Taxonomía
   taxon_: Taxón
   taxon_assessments_are: Las evaluaciones del taxón son documentos que evalúan el
@@ -4530,10 +4544,13 @@ es:
     para encontrar el identificador del taxón. Es el identificador del taxón que quedará
     guardado. Esta búsqueda solo funciona para taxones activos.
   this_is_taking_forever: Esto está tardando demasiado. Por favor inténtalo más tarde.
+  this_is_the_primary_listing: Es la especies listado principal
+  this_is_your_observation: Esta es tu observación
+  this_is_your_observation_desc: Siempre puedes ver las coordenadas de tus propias
+    observaciones.
   this_job_failed_to_run: El proceso falló al ser procesado. Por favor contactanos
     a %{email}
   this_list_is_empty!: ¡Esta lista está vacía!
-  this_is_the_primary_listing: Es la especies listado principal
   this_list_only_accepts_taxa_that_are: Esta lista acepta solamente taxones que son
   this_observation: Esta observación
   this_observation_has_been_incorporated_into_the_following_external_websites: Esta
@@ -4610,7 +4627,6 @@ es:
   to_add_comments: para agregar comentarios.
   to_add_identifications: a agregar identificaciones.
   to_add_ids: para agregar identificaciones
-  to_an: a una
   to_configure_your_widget: para configurar tu widget.
   to_include_your_google_with_inat: para incluir tu cuenta de Google con %{site_name}
   to_recipient: a
@@ -4641,7 +4657,11 @@ es:
   "true": Verdadero
   trending: Tendencias
   trends: Tendencias
+  trusted: De confianza
   trusted_project?: ¿Es un projecto verificicado?
+  trust_this_person_with_your_private_coordinates: Confiar a esta persona con mis
+    coordenadas privadas
+  trust_with_private_coordinates: Confiar con coordenadas privadas
   try_adding_species_form: Trate de agregar algunas especies usando el formulario
     en esta página.
   try_it_out: Pruébalo
@@ -4805,6 +4825,11 @@ es:
   user_s_lists: Listas de %{user}
   user_suggested_an_id: '%{user} sugirió una identificación'
   user_thinks_yours_is: '%{user} %{noun} su observación %{observation} es'
+  user_trusts_you_with_their_private_coordinates: |2-
+
+    %{user} confía en ti con sus coordenadas privadas
+  user_trusts_you_with_their_private_coordinates_desc: El observador ha escogido confiar
+    en ti con las coordenadas privadas de todas sus observaciones.
   username: Nombre de usuario
   username_or_email: Nombre de usuario o correo electrónico
   username_or_user_id: Nombre o identificador del usuario
@@ -5016,10 +5041,18 @@ es:
   which_projects_can_add_your_observations?: ¿Qué proyectos tradicionales pueden añadir
     tus observaciones?
   white: blanco
+  why_you_can_see_the_coordinates: Por qué Puedes Ver las Coordenadas
   who_can_add_observations_to_this_project?: ¿Quiénes pueden añadir observaciones
     a este proyecto?
+  who_can_see_the_coordinates: Quiénes Pueden Ver las Coordenadas
+  who_can_see_the_coordinates_observer: La persona quién hizo la observación
+  who_can_see_the_coordinates_staff: Personal de iNaturalist
+  who_can_see_the_coordinates_projects: Curadores de los proyectos siguientes
+  who_can_see_the_coordinates_trusted: Individuos a quién el observador ha confiado
+    con sus coordenadas privadas
   who_helped_user_the_most: Quién ayudó a %{user} más
   who_user_helped_the_most: Quien %{user} ayudó más
+  why_the_coordinates_are_obscured: Por qué las Coordenadas Están Ocultas
   with_annotation: Con anotación
   without_annotation: Sin anotación
   widget: Widget
@@ -5154,6 +5187,12 @@ es:
     de otras personas.
   you_cant_rotate_photos_hostde_outside: No puedes rotar fotos que son almacenadas
     fuera de %{site_name}.
+  you_curate_a_project_that_contains_this_observation: Tu curaste un proyecto que
+    incluye esta observación
+  you_curate_a_project_that_contains_this_observation_desc: |-
+    Puedes ver coordenadas ocultas cuándo has curado un proyecto que contiene una
+    observación y el observador ha escogido compartir coordenadas con curadores de
+    ese proyecto.
   you_didnt_select_any_observations: No seleccionaste ninguna observación.
   you_didnt_select_any_photos_to_tag: ¡No seleccionaste ninguna foto para etiquetar!
   you_dont: Tu no
@@ -5273,6 +5312,7 @@ es:
   your_pinned_locations: Tus ubicaciones seleccionadas
   your_profile_was_successfully_updated: Tu perfil fue actualizado satisfactoriamente.
   your_recent_projects: Tus proyectos recientes
+  your_relationships: Tus Relaciones
   your_should_recognize: Deberías reconocer algunas de estas fotos
   your_site_account_has_been_created: Su cuenta de %{site} ha sido creada.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -5356,8 +5396,8 @@ es:
           contravención de los derechos de autor, respectivamente.
     guides:
       index:
-        funding_html: "Los fondos para el desarrollo de Guías fue proporcionada por
-          \n<a href=\"http://eol.org\"><img src=\"https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png\"></a>"
+        funding_html: "Los fondos para el desarrollo de Guías fueron proporcionados
+          por \n<a href=\"http://eol.org\"><img src=\"https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png\"></a>"
         welcome_message_html: |-
           Las Guías ayudan a aprender acerca de la biodiversidad en todo el mundo.
           Si estás explorando el Serengeti o simplemente tu parque local
