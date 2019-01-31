@@ -23,6 +23,7 @@
 # Author: Lst
 # Author: Lugimax
 # Author: Mailman
+# Author: Marcelhospers
 # Author: Movses
 # Author: Nina
 # Author: Nk88
@@ -178,8 +179,6 @@ ru:
     %{user} с <strong>%{y} идентификацией</strong>
   _100_day_trends: 100-дневный тренд
   _percent_ID_d: '% идентифицированных'
-  a: это
-  a_: a
   a_community_for_naturalist: Сообщество натуралистов
   a_default_taxon_name_will_automatically_created: Наименование таксона по умолчанию
     будет автоматически создано из атрибута научного наименования этого таксона. Когда
@@ -349,7 +348,6 @@ ru:
   add_taxonomic_tags_to: Добавьте таксономические теги к выбранным фото Flickr &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Добавьте таксономические теги к фото Fickr,
     связанными с выбранным наблюдением.
-  add_to: Добавить к(в)
   add_to_a_scheme: Добавить к схеме
   add_to_a_project: Добавить в проект
   add_to_calendar: Добавить в календарь
@@ -594,6 +592,9 @@ ru:
   are_you_sure_remove_from_project: Вы уверены, что хотите удалить пользователя %{user}
     из этого проекта?
   are_you_sure_remove_photo: Вы уверены, что хотите удалить это фото?
+  are_you_sure_remove_relationship: Вы уверены, что хотите удалить эту связь? Это
+    приведёт к отмене отслеживания данной персоны и отменит доступ к вашим частным
+    координатам, если вы включили такой доступ.
   are_you_sure_remove_taxon_from_list: Вы уверены что хотите удалить этот таксон из
     списка?
   are_you_sure_remove_taxon_from_place: Вы уверены что хотите удалить этот таксон
@@ -680,7 +681,6 @@ ru:
   automatically_update_my_content_for_taxon_changes: Автоматически обновлять мой контент
     при изменении таксона
   back: Назад
-  back_to: Вернуться к
   back_to_albums: Назад к альбомам
   back_to_all_species: Назад ко Всем Видам
   back_to_browsing_people: Вернуться к поиску людей
@@ -993,8 +993,8 @@ ru:
     class="description">на прошлой неделе</span>
   commercial_solicitation: Коммерческое ходатайство, ссылки и т.д.
   commit: Совершить
-  committed: Совершено
-  committed_on: Совершено %{date}
+  committed: Выполнено
+  committed_on: Выполнено %{date}
   committing: В процессе ...
   community: Сообщество
   community_curated: Управляется сообществом
@@ -1265,7 +1265,7 @@ ru:
   delete_this_name: Удалить это имя
   delete_user: Удалить пользователя
   delete_your_account: Удалить вашу учётную запись
-  deleted_synonyms: Удалить синонимы
+  deleted_synonyms: Удалённые синонимы
   deleted_user: удаленный пользователь
   deleted_vote: Удаленный комментарий
   deleting: Удаление...
@@ -1389,8 +1389,9 @@ ru:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Отредактируйте свои настройки</a>,
     чтобы изменить вид получаемых вами обновлений или полностью отказаться от подписки.
   edited: Редактор
-  edited_by: Отредактировано
   edited_by_name_html: Редактор %{name}
+  edited_by_name_some_rights_reserved_html: Отредактировано %{name}, некоторые права
+    защищены (%{license})
   editing: Редактирование
   editing_announcement: Редактирование объявления
   editing_custom_project_fields_for: Редактирование пользовательских полей проекта
@@ -1549,7 +1550,6 @@ ru:
     вы хорошо знаете
   filling_out_your_profile: заполнение вашего профиля
   filter: Фильтр
-  filter_by: Фильтровать по
   filter_by_curator_identification: Фильтровать по определению куратором
   filter_by_place: Фильтр по месту
   filter_by_taxon: Фильтр по таксону
@@ -1612,7 +1612,7 @@ ru:
   flags_with_count: Флаги %{count}
   flags_explanation: Пользователи %{site_name} помечают флагом то, что требует внимания
     кураторов и/или администраторов сайта.
-  flags_for: Флаги для
+  flags_for_x_html: Флаги для %{x}
   flags_on_users_content: Флаги в контенте %{user}
   flickr_account_information: Информация о вашей учётной записи Flickr
   flickr_description: Flickr - это онлайн фото-хостинг, возможно, вы уже об этом знаете!
@@ -1632,8 +1632,8 @@ ru:
   fluid_layout: Гибкая разметка
   fluid: жидкий
   follow: Отслеживать
-  follow_us: Подпишитесь на нас в
-  follow_us_on: Подпишитесь на нас в
+  follow_receive_updates_about_new_observations: Отслеживать (получать обновления
+    о новых наблюдениях)
   follow_user: Отслеживать %{user}
   followed_projects: Отслеживаемые проекты
   follower: последователь
@@ -1654,10 +1654,8 @@ ru:
   fri: Пт
   from: Из
   from_a_place: в месте
-  from_anywhere_change: откуда угодно (<span class="button">change</span>)
   from_eol_collection: Из коллекции EOL
   from_flickr_facebook_etc: Из Flickr, Facebook и т.д.
-  from_in_this_place: в этом месте
   from_list: Из списка
   from_this: из этого
   from_photos: Из фотографий
@@ -1692,6 +1690,10 @@ ru:
   Genus: Род
   genus_slash_species: '[GENUS] / [SPECIES]'
   geoprivacy: Приватность местоположения
+  geoprivacy_is_obscured: Информация о местоположении скрыта
+  geoprivacy_is_obscured_desc: Наблюдатель решил скрыть координаты.
+  geoprivacy_is_private: Информация о местоположении является частной
+  geoprivacy_is_private_desc: Наблюдатель решил скрыть координаты.
   georeferenced: Имеет геопривязку?
   georeferenced?: имеет геопривязку
   get_current_position: Получить настоящее местоположение
@@ -1702,7 +1704,7 @@ ru:
   give_it_some_detail: Предоставьте некоторые подробности!
   global_conservation_status: Глобальный природоохранный статус
   global_names: Глобальные имена
-  globally: глобально
+  globally: Глобально
   go: Вперед
   go_back: Назад
   going_to_your_observations: Переходим к вашим наблюдениям...
@@ -1899,8 +1901,6 @@ ru:
   import_tags_from_csv: Импорт тегов формата CSV
   importing: Импортирование …
   improving: Улучшение
-  in: в
-  in_: в
   in_n: в %{n}
   in_place_x: в %{place}
   inaturalist_network_affiliation: Присоединившиеся к сети iNaturalist
@@ -1969,8 +1969,6 @@ ru:
   invited_x: Приглашённое %{x}
   inviting: Процесс приглашения...
   iphone: iPhone
-  is_a: это
-  is_an: это
   is_an_evaluation: |-
     - это оценка точности наблюдения.
     Наблюдения исследовательского уровня могут использоваться учёными для исследований. Оставьте свой голос ниже:
@@ -2025,6 +2023,7 @@ ru:
   keyboard_shortcuts: Горячие клавиши
   kml: KML
   kml_file_size_error: Размер KML-файла должен быть меньше 1 Мб
+  label_colon: '%{label}:'
   labels: Метки
   label_to_group_a_batch_of_taxon_changes: Метка для группировки пакета изменений
     таксона
@@ -2338,6 +2337,7 @@ ru:
   manage_names: Управление именами
   manage_your_projects: Управление вашими проектами
   manage_your_project_invitations: Управление вашими приглашениями в проект
+  manage_your_relationships: Управлять вашими связями
   manage_subscriptions: Управление подписками
   managed: управляемый
   manager: Менеджер
@@ -2876,7 +2876,7 @@ ru:
   offline_access_enabled: Включён автономный доступ
   old_observation_form: Старая форма наблюдения (устарела)
   ok: ОК
-  on_: вкл
+  on_: за день
   on_date: на %{date}
   on_day: за день
   on_edit_date: на %{editdate}
@@ -3591,7 +3591,7 @@ ru:
   project_curators_added_some_of_your_observations_html: кураторы добавили некоторые
     из ваших наблюдений к <a href="%{url}">%{project}</a>
   project_id: Идентификатор проекта
-  project_members: '%{project} Участники'
+  project_members: Участники %{project}
   project_membership_model_description: Ваш проект открыт для всех или только для
     людей, которых вы приглашаете?
   project_name: Наименование проекта
@@ -3783,6 +3783,7 @@ ru:
   remove_place: Удалить место
   remove_project_user: Удалить участника проекта
   remove_range: Удалить диапазон
+  remove_relationship: Удалить связь
   remove_section: Удалить раздел
   remove_selected: Удалить выбранное
   remove_tags: Удалить теги
@@ -3963,7 +3964,7 @@ ru:
     эта ссылка относится к таксонам из определенного места. Оставить место пустым,
     если она относится к таксонам по всему миру.
   set_license: Задать лицензию
-  settings: настройки
+  settings: Настройки
   share: Поделиться
   share_colon: 'Поделиться:'
   share_your_observation_with_researchers_by: Поделитесь вашим наблюдением с исследователями
@@ -4193,6 +4194,8 @@ ru:
   stop_editing: Завершить редактирование
   stop_following_user: Отменить отслеживание %{user}
   stop_testing: Завершить тестирование
+  stop_trusting_this_person_with_your_private_coordinates: Перестать доверять этому
+    человеку ваши частные координаты
   stop_updating_position: Остановить обновление позиции
   studies_that_used_inaturalist_data_in_year: Исследования, в которых использовались
     данные iNaturalist в %{year}
@@ -4317,6 +4320,18 @@ ru:
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} это царство жизни с 1 наблюдением'
     other: '%{taxon} это царство жизни с %{count} наблюдениями'
+  taxon_is_threatened_coordinates_hidden: Таксон находится под угрозой, координаты
+    скрыты по умолчанию
+  taxon_is_threatened_coordinates_hidden_desc: Один из таксонов, предложенных в идентификации,
+    или один из таксонов, которые содержат любой из этих таксонов, является редким
+    и/или находится под угрозой исчезновения, поэтому местоположение этого наблюдения
+    было скрыто.
+  taxon_is_threatened_coordinates_obscured: Таксон находится под угрозой, координаты
+    скрыты по умолчанию
+  taxon_is_threatened_coordinates_obscured_desc: Один из таксонов, предложенных в
+    идентификациях, или один из таксонов, которые содержат какие-либо из этих таксонов,
+    являются редкими и / или находятся под угрозой исчезновения, поэтому местоположение
+    этого наблюдения было скрыто.
   taxonomy: Таксономия
   taxon_: таксон
   taxon_assessments_are: |-
@@ -4556,10 +4571,12 @@ ru:
     идентификатор таксона. Это идентификатор таксона, который фактически сохраняется.
     Этот поиск работает только для активных таксонов.
   this_is_taking_forever: Это займет целую вечность.  Повторите попытку позже.
+  this_is_the_primary_listing: Это основной список
+  this_is_your_observation: Это ваше наблюдение
+  this_is_your_observation_desc: Вы всегда можете увидеть координаты своих наблюдений.
   this_job_failed_to_run: Это задание не удалось запустить. Пожалуйста, свяжитесь
     с %{email}
   this_list_is_empty!: Этот список пуст!
-  this_is_the_primary_listing: Это основной список
   this_list_only_accepts_taxa_that_are: В этом списке допустимы только те таксоны,
     которые
   this_observation: Данное наблюдение
@@ -4669,7 +4686,11 @@ ru:
   "true": Да
   trending: Анализ тенденций
   trends: Тенденции
+  trusted: Доверенный
   trusted_project?: Надежный проект?
+  trust_this_person_with_your_private_coordinates: Доверить этому человеку ваши частные
+    координаты
+  trust_with_private_coordinates: Доверить частные координаты
   try_adding_species_form: Попробуйте добавить некоторые виды, используя форму на
     этой странице.
   try_it_out: Попробуйте
@@ -4832,6 +4853,10 @@ ru:
   user_s_lists: Списки %{user}
   user_suggested_an_id: '%{user} предложил идентификацию'
   user_thinks_yours_is: '%{user} %{noun} ваше %{observation}'
+  user_trusts_you_with_their_private_coordinates: '%{user} доверяет вам свои частные
+    координаты'
+  user_trusts_you_with_their_private_coordinates_desc: Наблюдатель решил доверить
+    вам частные координаты всех своих наблюдений.
   username: Имя пользователя
   username_or_email: Имя пользователя или адрес электронной почты
   username_or_user_id: Имя пользователя или его идентификатор
@@ -4952,6 +4977,7 @@ ru:
   view_all_of_your_observations_from_x: Посмотреть все ваши наблюдения из %{x}
   visually_similar: Визуально Похожие
   vulnerable: Уязвимый
+  w00t_no_ungrafted_taxa: w00t!  Нет привитых таксонов!
   w_photos_only: с фото
   w_sounds: со звуком
   wait_file_generation: Пожалуйста, подождите, пока файл будет сгенерирован. Для больших
@@ -5039,10 +5065,18 @@ ru:
   which_projects_can_add_your_observations?: Какие традиционные проекты могут воспользоваться
     вашими наблюдениями?
   white: белый
+  why_you_can_see_the_coordinates: Почему вы можете видеть координаты
   who_can_add_observations_to_this_project?: Кто может добавлять наблюдения к этому
     проекту?
+  who_can_see_the_coordinates: Кто может видеть координаты
+  who_can_see_the_coordinates_observer: Тот, кто делает наблюдение
+  who_can_see_the_coordinates_staff: персонал iNaturalist
+  who_can_see_the_coordinates_projects: Кураторы следующих проектов
+  who_can_see_the_coordinates_trusted: Лица, которым наблюдатель доверил свои личные
+    координаты
   who_helped_user_the_most: Кто больше всего помогал %{user}
   who_user_helped_the_most: Кому %{user} помогал больше всего
+  why_the_coordinates_are_obscured: Почему координаты скрыты
   with_annotation: Со значением
   without_annotation: Без значения
   widget: Виджет
@@ -5176,6 +5210,11 @@ ru:
     людей.
   you_cant_rotate_photos_hostde_outside: Вы не можете повернуть фото, размещённые
     за пределами %{site_name}.
+  you_curate_a_project_that_contains_this_observation: Вы курируете проект, который
+    содержит это наблюдение
+  you_curate_a_project_that_contains_this_observation_desc: Вы можете видеть скрытые
+    координаты, когда курируете проект, содержащий наблюдение, и когда наблюдатель
+    решил поделиться координатами с кураторами этого проекта.
   you_didnt_select_any_observations: Вы не выбрали ни одного наблюдения.
   you_didnt_select_any_photos_to_tag: Вы не выбрали ни одного фото для проставления
     тегов!
@@ -5300,6 +5339,7 @@ ru:
   your_pinned_locations: Ваши закреплённые местоположения
   your_profile_was_successfully_updated: Ваш профиль был успешно обновлён!
   your_recent_projects: Ваши последние проекты
+  your_relationships: Ваши связи
   your_should_recognize: Вы должны опознать некоторые из этих фото
   your_site_account_has_been_created: Ваша учетная запись %{site} создана.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -6555,7 +6595,7 @@ ru:
       form:
         move_children_desc_html: Установка этого флажка приведет к перемещению потомков
           входного таксона в выходной таксон для свопов и слияний, когда это изменение
-          будет совершено. Если это изменение будет применено на уровне рода или ниже,
+          будет выполнено. Если это изменение будет применено на уровне рода или ниже,
           оно создаст таксонные свопы для всех потомков, у которых предполагается
           изменение имени. Например, если вы замените семейство Canidae на Dogidae,
           это изменит родителя рода <i>Canis</i> с Canidae до Dogidae. Если вы замените

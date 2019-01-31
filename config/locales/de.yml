@@ -136,8 +136,6 @@ de:
     other: <span class='count'>%{count}</span> Taxon-Änderungen gemacht
   _100_day_trends: 100-Tage-Trends
   _percent_ID_d: '% identifiziert'
-  a: ein
-  a_: ein
   a_community_for_naturalist: Eine Community für Naturfreunde
   a_default_taxon_name_will_automatically_created: |-
     Ein voreingestellter Taxonname wird automatisch aus dem Attribut des Wissenschaftsnamens dieses Taxons erstellt.
@@ -301,7 +299,6 @@ de:
   add_taxon_range: Taxonrang hinzufügen
   add_taxonomic_tags_to: Taxonomie-Tags zu ausgewählten Flickr-Bildern hinzufügen
     &raquo;
-  add_to: Hinzufügen zu
   add_to_a_scheme: Zu einem Schema hinzufügen
   add_to_a_project: Zu einem Projekt hinzufügen
   add_to_calendar: Zum Kalender hinzufügen
@@ -633,7 +630,6 @@ de:
   automatically_update_my_content_for_taxon_changes: Automatisch meine Inhalte bei
     Taxonänderungen aktualisieren
   back: Zurück
-  back_to: Zurück zu
   back_to_albums: Zurück zu den Alben
   back_to_all_species: Zurück zu Alle Arten
   back_to_browsing_people: Zurück zur Personensuche
@@ -1192,6 +1188,7 @@ de:
   default_photo_license: Standard-Fotolizenz
   default_sound_license: Standardtonlizenz
   defaults_to_your_name_or_username: Standard ist dein Name oder Benutzername
+  definitions: Definitionen
   delete: Löschen
   delete_all: Alle löschen
   delete_conversation: Unterhaltung löschen
@@ -1331,7 +1328,6 @@ de:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Einstellungen bearbeiten</a>,
     um die erhaltenen Updates anzupassen oder diese komplett abzubestellen.
   edited: Bearbeitet
-  edited_by: Bearbeitet von
   edited_by_name_html: Bearbeitet von %{name}
   editing: Bearbeiten
   editing_announcement: Ankündigung bearbeiten
@@ -1462,7 +1458,6 @@ de:
   filling_out_checklist_for_place: Checklisten für dir gut bekannte Orte ausfüllst
   filling_out_your_profile: dein Profil ausfüllen
   filter: Filtern
-  filter_by: Filtern nach
   filter_by_curator_identification: Filtern nach Identifikation (Kurator)
   filter_by_place: nach Ort filtern
   filter_by_taxon: Nach Taxon filtern
@@ -1515,7 +1510,6 @@ de:
   flags_with_count: Markierungen (%{count})
   flags_explanation: '%{site_name}-Benutzer markieren Dinge, die die Aufmerksamkeit
     von Website-Kuratoren und/oder -Administratoren benötigen.'
-  flags_for: Meldungen für
   flags_on_users_content: Gemeldete Inhalte von %{user}
   flickr_account_information: Informationen zu deinem Flickr-Konto
   flickr_identity: Flickr-Identität
@@ -1527,8 +1521,6 @@ de:
   flickr_tags: Flickr Tags
   flowering_phenology: Blütenphänologie
   follow: Folgen
-  follow_us: Folge uns auf
-  follow_us_on: Folge uns auf
   follow_user: Folge %{user}
   followed_projects: Gefolgte Projekte
   follower: Follower
@@ -1543,10 +1535,8 @@ de:
   fri: Fr
   from: Von
   from_a_place: von einem Ort
-  from_anywhere_change: von irgendwo <span class="button">change</span>)
   from_eol_collection: Aus EOL Sammlung
   from_flickr_facebook_etc: Von Flickr, Facebook, usw.
-  from_in_this_place: von diesem Ort
   from_list: Von Liste
   from_this: von diesem
   from_photos: Von Bildern
@@ -1582,7 +1572,7 @@ de:
   getting_started_guide: Anleitung für den Einstieg
   give_it_some_detail: Bitte detaillieren!
   global_names: Globale Namen
-  globally: global
+  globally: Global
   go: Los
   go_back: Zurück gehen
   going_to_your_observations: Gehe zu deinen Beobachtungen...
@@ -1739,8 +1729,6 @@ de:
   import_tags_from_csv: Tags aus CSV importieren
   importing: Importiere …
   improving: Wird besser
-  in: in
-  in_: in
   in_n: in %{n}
   inaturalist_network_affiliation: iNaturalist Zusammenschluss
   inbox: Inbox
@@ -1807,8 +1795,6 @@ de:
   invited_x: Eingeladen %{x}
   inviting: Einladen...
   iphone: iPhone
-  is_a: ist ein
-  is_an: ist ein
   is_an_evaluation: |-
     ist eine Bewertung der Richtigkeit einer Beobachtung.
     Beobachtungen mit Forschungsqualität können von Wissenschaftlern für Forschungszwecke genutzt werden. Gib unten deine Stimme ab:
@@ -2020,6 +2006,7 @@ de:
     oder deine Flickr-Daten ändern (es sei denn, du bittest uns darum), niemals.</strong>
     Wir sorgen uns viel zu sehr um Vögel, Käfer und Nacktschnecken, als um mit deinen
     Informationen spielen zu wollen!
+  linkedin: LinkedIn
   list: Liste
   list_deleted: Liste gelöscht
   list_saved: Liste gespeichert.
@@ -3897,8 +3884,8 @@ de:
   this: dies
   this_bioblitz_beings_in: Dieser bioblitz beginnt in
   this_is_a: Dies ist ein
-  this_list_is_empty!: Diese Liste ist leer!
   this_is_the_primary_listing: Dies ist die primäre Auflistung
+  this_list_is_empty!: Diese Liste ist leer!
   this_observation: Dieser Beobachtung
   this_observation_has_been_incorporated_into_the_following_external_websites: Diese
     Beobachtung wurde in die folgenden externen Websites aufgenommen
@@ -3935,7 +3922,6 @@ de:
   to_: nach
   to_add_comments: um Kommentare hinzuzufügen
   to_add_ids: um Kennungen hinzuzufügen
-  to_an: zu einer
   to_recipient: an
   to_suggest_an_identification: eine Identifikation vorschlagen
   to_tag_your_flickr_from_here: um deine Flickr-Bilder von hier aus ohne Ausschneiden
@@ -4303,6 +4289,8 @@ de:
     nicht entfernen.
   you_cant_rotate_photos_hostde_outside: Du kannst Bilder nicht drehen, welche außerhalb
     von %{site_name} gehostet sind.
+  you_curate_a_project_that_contains_this_observation: Du kuratierst ein Projekt,
+    das diese Beobachtung enthält.
   you_didnt_select_any_observations: Du hast keine Beobachtungen ausgewählt.
   you_didnt_select_any_photos_to_tag: Du hast keine Bilder zum Taggen ausgewählt!
   you_dont: Du hast nicht

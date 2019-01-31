@@ -126,8 +126,6 @@ ar:
     ب<strong>%{y}المعرفات</strong>
   _100_day_trends: اتجاهات 100 يوم
   _percent_ID_d: '% معرف'
-  a: أ
-  a_: أ
   a_community_for_naturalist: تجمع لعلماء الطبيعة
   a_default_taxon_name_will_automatically_created: |-
     سيتم تلقائيا إنشاء اسم أصنوفة افتراضي من سمة الاسم العلمي لهذه الأصنوفة
@@ -187,10 +185,10 @@ ar:
   add_a_batch_of_observations_by_csv: أضف دفعة من الملاحظات عبر CSV
   add_a_batch_of_taxa: إضافة دفعة من الأصناف
   add_a_comment: إضافة تعليق
-  add_a_field: أضف حقلاً
-  add_a_flag: أضف وسماً
+  add_a_field: أضف حقلا
+  add_a_flag: أضف وسما
   add_a_link_raquo: أضف رابطا &raquo;
-  add_a_name: اضف اسماً
+  add_a_name: أضف اسما
   add_a_new_change_group: أضف تعديلا جديدا للمجموعة
   add_a_new_observation_to_id_please!: الرجاء إضافة ملاحظة جديدة إلى المعرف!
   add_a_place_raquo: أضف مكانا &raquo;
@@ -289,7 +287,6 @@ ar:
   add_taxonomic_tags_to: إضافة علامات تصنيفية إلى صور فليكر المحددة &raquo;
   add_taxonomic_tags_to_the_flickr_photos: إضافة وسوم تصنيفية إلى صور فيكر المرتبطة
     بالملاحظات المحددة.
-  add_to: أضف إلى
   add_to_a_scheme: إضافة إلى جدولة
   add_to_a_project: إضافة إلى مشروع
   add_to_calendar: إضافة إلى تقويم
@@ -459,7 +456,7 @@ ar:
   allowed_occurrence_status_values: قيم حالة الحدوث المسموح بها
   allowed_values: القيم المسموح بها
   almost_there_: أوشكت على الوصول...
-  alphabetical: أبجديًا
+  alphabetical: أبجديا
   alphabetical_order: ترتيب أبجدي
   already_have_an_account_log_in_html: لديك حساب بالفعل؟ <strong>قم بتسجيل الدخول.</strong>
   amphibians: برمائيات
@@ -521,6 +518,9 @@ ar:
   are_you_sure_remove_curator: هل تريد بالتأكيد إزالة %{user} كأمين؟
   are_you_sure_remove_from_project: هل تريد بالتأكيد إزالة %{user} من هذا المشروع؟
   are_you_sure_remove_photo: هل تريد بالتأكيد إزالة هذه الصورة؟
+  are_you_sure_remove_relationship: هل أنت متأكد من أنك تريد إزالة هذه العلاقة؟ سيؤدي
+    هذا إلى إلغاء متابعة هذا الشخص وإلغاء الوصول إلى الإحداثيات الخاصة إذا كنت قد
+    مكنت هذا الوصول.
   are_you_sure_remove_taxon_from_list: هل تريد بالتأكيد إزالة هذه الأصنوفة من القائمة؟
   are_you_sure_remove_taxon_from_place: هل تريد بالتأكيد إزالة هذه الأصنوفة من قائمة
     تحقق %{place}؟
@@ -599,7 +599,6 @@ ar:
   automatically_update_my_content_for_taxon_changes: تحديث المحتوى الخاص بي تلقائيا
     لتغييرات الأصناف
   back: عودة
-  back_to: رجوع إلى
   back_to_albums: العودة للألبومات
   back_to_all_species: عودة إلى كل الأنواع
   back_to_browsing_people: العودة إلى تصفح الأشخاص
@@ -1282,8 +1281,9 @@ ar:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>عدل إعداداتك</a> لتغيير
     أنواع التحديثات التي تتلقاها أو إلغاء الاشتراك تماما.
   edited: عُدِّل
-  edited_by: عُدِّل بواسطة
   edited_by_name_html: تم التعديل بواسطة %{name}
+  edited_by_name_some_rights_reserved_html: تم التعديل بواسطة %{name}، بعض الحقوق
+    محفوظة (%{license})
   editing: تعديل
   editing_announcement: تعديل الإعلان
   editing_custom_project_fields_for: تعديل حقول المشروع المخصصة ل
@@ -1434,7 +1434,6 @@ ar:
   filling_out_checklist_for_place: املأ قوائم الفحص للأماكن التي تعرفها جيدا
   filling_out_your_profile: املأ ملفك الشخصي
   filter: رشح
-  filter_by: رشح حسب
   filter_by_curator_identification: تصفية حسب تحديد المشرف
   filter_by_place: التصفية حسب المكان
   filter_by_taxon: تصفية حسب الأصنوفة
@@ -1496,7 +1495,7 @@ ar:
   flags_with_count: الأعلام (%{count})
   flags_explanation: يضع مستخدمو %{site_name} علامة على أشياء تحتاج إلى اهتمام من
     أمناء الموقع و/أو إداريي الموقع.
-  flags_for: أعلام ل
+  flags_for_x_html: أعلام ل%{x}
   flags_on_users_content: أعلام على محتوى %{user}
   flickr_account_information: معلومات حساب فليكر الخاص بك
   flickr_description: فليكر خدمة استضافة صور على الإنترنت، وربما كنت تعرف ذلك بالفعل!
@@ -1514,8 +1513,8 @@ ar:
   fluid_layout: تصميم السائل
   fluid: مائع
   follow: تابع
-  follow_us: اتبعنا في
-  follow_us_on: اتبعنا في
+  follow_receive_updates_about_new_observations: تابع (تلقى آخر المعلومات حول الملاحظات
+    الجديدة)
   follow_user: اتبع %{user}
   followed_projects: المشاريع المتبعة
   follower: متابع
@@ -1535,10 +1534,8 @@ ar:
   fri: جم
   from: من
   from_a_place: من مكان
-  from_anywhere_change: (<span class="button">تغيير</span>) من أي مكان
   from_eol_collection: من مجموعة موسوعة الحياة
   from_flickr_facebook_etc: من فليكر، فيسبوك، إلخ.
-  from_in_this_place: من داخل هذا المكان
   from_list: من قائمة
   from_this: من هذا
   from_photos: من الصور
@@ -1570,6 +1567,10 @@ ar:
   Genus: جنس
   genus_slash_species: '[جنس] / [نوع]'
   geoprivacy: خصوصية جغرافية
+  geoprivacy_is_obscured: الخصوصية الجغرافية محجوبة
+  geoprivacy_is_obscured_desc: اختار المراقب إخفاء الإحداثيات.
+  geoprivacy_is_private: الخصوصية الجغرافية خاصة
+  geoprivacy_is_private_desc: اختار المراقب إخفاء الإحداثيات.
   georeferenced: المرجعية الجغرافية؟
   georeferenced?: المرجعية الجغرافية
   get_current_position: الحصول على الموقف الحالي
@@ -1772,8 +1773,6 @@ ar:
   import_tags_from_csv: استيراد وسوم من CSV
   importing: استيراد...
   improving: تحسين
-  in: في
-  in_: في
   in_n: في %{n}
   in_place_x: في %{place}
   inaturalist_network_affiliation: شبكة انتماء إيناتوراليست
@@ -1841,8 +1840,6 @@ ar:
   invited_x: تمت دعوة %{x}
   inviting: تجري الدعوة...
   iphone: آيفون
-  is_a: هو
-  is_an: هو
   is_an_evaluation: |-
     هو تقييم لدقة المراقبة.
     قد يستخدم علماء البحوث بحوث التقييم العلمي. أرسل تصويتك أدناه:
@@ -1897,6 +1894,7 @@ ar:
   keyboard_shortcuts: اختصارات لوحة المفاتيح
   kml: KML
   kml_file_size_error: يجب أن يكون حجم KML أقل من 1 ميغابايت
+  label_colon: '%{label}:'
   labels: تسميات
   label_to_group_a_batch_of_taxon_changes: تسمية لتجميع دفعة تغييرات الأصنوفة
   location_private: الموقع خاص
@@ -2191,6 +2189,7 @@ ar:
   manage_names: إدارة الأسماء
   manage_your_projects: إدارة مشاريعك
   manage_your_project_invitations: إدارة دعوات مشروعك
+  manage_your_relationships: إدارة علاقاتك
   manage_subscriptions: إدارة الاشتراكات
   managed: يديره
   manager: المدير
@@ -3596,6 +3595,7 @@ ar:
   remove_place: إزالة المكان
   remove_project_user: إزالة مستخدم المشروع
   remove_range: إزالة النطاق
+  remove_relationship: إزالة العلاقة
   remove_section: إزالة القسم
   remove_selected: إزالة المختار
   remove_tags: إزالة العلامات
@@ -3984,6 +3984,8 @@ ar:
   stop_editing: إيقاف التحرير
   stop_following_user: توقف عن متابعة %{user}
   stop_testing: وقف الاختبار
+  stop_trusting_this_person_with_your_private_coordinates: توقف عن ثقة هذا الشخص بإحداثياتك
+    الخاصة
   stop_updating_position: توقف عن تحديث الموضع
   studies_that_used_inaturalist_data_in_year: الدراسات التي استخدمت بيانات إيناتوراليست
     في %{year}
@@ -4106,6 +4108,16 @@ ar:
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} هي مملكة حياة بملاحظة واحدة'
     other: '%{taxon} هي مملكة حياة بـ%{count} ملاحظات'
+  taxon_is_threatened_coordinates_hidden: الأصنوفة مهددة; يتم إخفاء الإحداثيات بشكل
+    افتراضي
+  taxon_is_threatened_coordinates_hidden_desc: "من المعروف أن أحد الأصناف المقترحة
+    في التعريفات، أو أحد الأصناف التي\nتحتوي على أي من هذه الأصناف، نادرة و/أو مهددة;
+    ولذلك \nتم حجب موقع هذه الملاحظة."
+  taxon_is_threatened_coordinates_obscured: الأصنوفة مهددة; يتم تشويش الإحداثيات بشكل
+    افتراضي
+  taxon_is_threatened_coordinates_obscured_desc: "من المعروف أن أحد الأصناف المقترحة
+    في التعريفات، أو أحد الأصناف التي\nتحتوي على أي من هذه الأصناف، نادرة و/أو مهددة;
+    ولذلك \nتم حجب موقع هذه الملاحظة."
   taxonomy: التصنيف
   taxon_: أصنوفة
   taxon_assessments_are: |-
@@ -4332,9 +4344,11 @@ ar:
     هذه وسيلة أكثر ملاءمة للعثور على معرف أصنوفة، هذا هو معرف الأصنوفة
     الذي يحصل في الواقع، هذا البحث يعمل فقط على الأصناف النشطة.
   this_is_taking_forever: هذا يأخذ إلى الأبد; الرجاء معاودة المحاولة في وقت لاحق.
+  this_is_the_primary_listing: هذه هي القائمة الأساسية
+  this_is_your_observation: هذه هي ملاحظتك
+  this_is_your_observation_desc: يمكنك دائما مشاهدة إحداثيات ملاحظاتك الخاصة.
   this_job_failed_to_run: فشل تشغيل هذه الوظيفة; يُرجَى الاتصال بـ%{email}
   this_list_is_empty!: هذه القائمة فارغة!
-  this_is_the_primary_listing: هذه هي القائمة الأساسية
   this_list_only_accepts_taxa_that_are: هذه القائمة لا تقبل سوى الأصناف التي هي
   this_observation: هذه الملاحظة
   this_observation_has_been_incorporated_into_the_following_external_websites: لقد
@@ -4406,7 +4420,6 @@ ar:
   to_add_comments: لإضافة تعليقات
   to_add_identifications: لإضافة هويات
   to_add_ids: لإضافة معرفات
-  to_an: إلى
   to_configure_your_widget: لتكوين أداتك.
   to_include_your_google_with_inat: لتضمين حسابك في جوجل مع %{site_name}
   to_recipient: إلى
@@ -4436,7 +4449,10 @@ ar:
   "true": صحيح
   trending: الشائع
   trends: الاتجاهات
+  trusted: موثوق
   trusted_project?: مشروع موثوق به؟
+  trust_this_person_with_your_private_coordinates: ثق بهذا الشخص مع إحداثياتك الخاصة
+  trust_with_private_coordinates: الثقة مع الإحداثيات الخاصة
   try_adding_species_form: حاول إضافة بعض الأنواع باستخدام النموذج الموجود في هذه
     الصفحة.
   try_it_out: جرب هذا
@@ -4593,6 +4609,10 @@ ar:
   user_s_lists: قوائم %{user}
   user_suggested_an_id: اقترح %{user} معرفا
   user_thinks_yours_is: '%{user} %{noun} ملاحظتك %{observation}'
+  user_trusts_you_with_their_private_coordinates: يثق بك %{user} بإحداثياته الخاصة
+  user_trusts_you_with_their_private_coordinates_desc: |-
+    اختار المراقب أن يثق بك بالإحداثيات الخاصة لجميع
+    ملاحظاته.
   username: اسم المستخدم
   username_or_email: اسم المستخدم أو البريد الإلكتروني
   username_or_user_id: اسم المستخدم أو معرف المستخدم
@@ -4791,9 +4811,16 @@ ar:
   which_projects_can_add_your_observations?: ما هي المشاريع التقليدية التي يمكنها
     إضافة ملاحظاتك؟
   white: أبيض
+  why_you_can_see_the_coordinates: لماذا يمكنك مشاهدة الإحداثيات
   who_can_add_observations_to_this_project?: من يمكنه إضافة ملاحظات إلى هذا المشروع؟
+  who_can_see_the_coordinates: من يستطيع أن يرى الإحداثيات
+  who_can_see_the_coordinates_observer: الشخص الذي صنع الملاحظة
+  who_can_see_the_coordinates_staff: طاقم إيناتوراليست
+  who_can_see_the_coordinates_projects: القيمون على المشاريع التالية
+  who_can_see_the_coordinates_trusted: الأفراد الذين يثق بهم المراقب بإحداثياته الخاصة
   who_helped_user_the_most: من ساعد %{user} أكثر
   who_user_helped_the_most: من ساعده %{user} أكثر
+  why_the_coordinates_are_obscured: لماذا يتم حجب الإحداثيات
   with_annotation: مع التعليق التوضيحي
   without_annotation: بدون تعليق توضيحي
   widget: أداة
@@ -4921,6 +4948,11 @@ ar:
   you_cant_leave_a_project_you_created: لا يمكنك ترك مشروع قمت بإنشائه.
   you_cant_remove_other_peoples_observations: لا يمكنك إزالة ملاحظات الآخرين.
   you_cant_rotate_photos_hostde_outside: لا يمكنك تدوير الصور المستضافة خارج %{site_name}.
+  you_curate_a_project_that_contains_this_observation: أنت تشرف على مشروع يحتوي على
+    هذه الملاحظة
+  you_curate_a_project_that_contains_this_observation_desc: "يمكنك مشاهدة إحداثيات
+    غامضة عند تنظيم مشروع يحتوي على \nملاحظة وقد اختار المراقب مشاركة إحداثيات مع
+    القيمين \nعلى هذا المشروع."
   you_didnt_select_any_observations: لم تقم بتحديد أية ملاحظات.
   you_didnt_select_any_photos_to_tag: لم تقم بتحديد أية صور للوسم!
   you_dont: أنت لست
@@ -5035,6 +5067,7 @@ ar:
   your_pinned_locations: مواقعك المثبتة
   your_profile_was_successfully_updated: تم تحديث ملفك الشخصي بنجاح!
   your_recent_projects: مشاريعك الحديثة
+  your_relationships: علاقاتك
   your_should_recognize: يجب عليك التعرف على بعض هذه الصور
   your_site_account_has_been_created: تم إنشاء حسابك في %{site}.
   your_site_needs_your_to_authorize_more_permissions_from_provider: 'يحتاج%{site_name}

@@ -121,8 +121,6 @@ sv:
     med <strong>%{y} ID:n</strong>
   _100_day_trends: 100 dagars trend
   _percent_ID_d: '% ID''erat'
-  a: en
-  a_: en
   a_community_for_naturalist: En gemenskap för naturälskare
   a_default_taxon_name_will_automatically_created: Ett standard taxanamn kommer automatiskt
     skapas utifrån det vetenskapliga namnet av den här arten. När du har sparat den
@@ -285,7 +283,6 @@ sv:
   add_taxon_batch_to: Lägg till en bunt av taxon till %{list}
   add_taxon_range: Lägg till en serie av taxon
   add_taxonomic_tags_to: Bifoga taxonomiska taggar till valda Flickr foton &raquo;
-  add_to: Lägg till
   add_to_a_scheme: Lägg till i ett schema
   add_to_a_project: Lägg till ett projekt
   add_to_calendar: Lägg till i kalender
@@ -610,7 +607,6 @@ sv:
   automatically_update_my_content_for_taxon_changes: Automatiskt uppdatera mitt innehåll
     för taxon ändringar
   back: Tillbaka
-  back_to: Tillbaka till
   back_to_albums: Tillbaka till album
   back_to_all_species: Tillbaka till alla arter
   back_to_browsing_people: Tillbaka till att bläddra bland personer
@@ -983,7 +979,6 @@ sv:
   edit_your_profile: Redigera din profil
   edit_your_settings_for_this_project: Ändra dina inställningar för detta projekt
   edited: Redigerad
-  edited_by: Redigerad av
   edited_by_name_html: Redigerad av %{name}
   editing: Redigerar
   editing_observations:
@@ -1060,14 +1055,12 @@ sv:
   flagged: flaggades
   flags: Flaggor
   flags_with_count: Flaggor (%{count})
-  flags_for: Flaggor för
+  flags_for_x_html: Flaggor för %{x}
   flags_on_users_content: Flaggor på %{user}s innehåll
-  follow_us: Följ oss på
-  follow_us_on: Följ oss på
   follow_user: Följ %{user}
   follower: följare
   followers: Följare
-  following: följer
+  following: Följer
   following_x_people:
     one: Följande 1 människa
     other: Följande %{count} människor
@@ -1079,7 +1072,6 @@ sv:
   fri: Fre
   from: Från
   from_a_place: från en plats
-  from_anywhere_change: från var som helst (<span class="button">ändra</span>)
   from_eol_collection: Från EOL-samling
   from_flickr_facebook_etc: Från Flickr, Facebook, etc.
   from_list: Från lista
@@ -1098,6 +1090,7 @@ sv:
   get_started_raquo: Kom igång &raquo;
   get_started: Kom igång
   getting_started_guide: Komma igång guide
+  globally: Globalt
   go: Gå
   go_back: Gå tillbaka
   google: Google
@@ -1144,8 +1137,6 @@ sv:
   import_observations: Importera observationer
   import_photos: Importera foton
   import_sounds: Importera ljud
-  in: i
-  in_: i
   in_n: i %{n}
   in_place_x: i %{place}
   inaturalist_network_affiliation: iNaturalist Network anknytning
@@ -1155,8 +1146,6 @@ sv:
   inaturalist_observations_by: '%{site_name} &#58; Observationer av %{login}'
   inaturalist_places: '%{site_name} platser'
   iphone: iPhone
-  is_a: är en
-  is_an: är en
   is_now: är nu
   january: Januari
   join: Gå med
@@ -1170,6 +1159,7 @@ sv:
   jpg_png_or_gif: JPG, PNG, eller GIF
   keep_editing: Fortsätt redigera
   keyboard_shortcuts: Kortkommandon
+  label_colon: '%{label}:'
   location_private: Privat plats
   location_unknown: Plats okänd
   language_slash_type: Språk / Typ
@@ -1852,6 +1842,7 @@ sv:
   selected_taxon: Valda taxon
   select_this_taxon: Välj detta taxon
   september: September
+  settings: Inställningar
   share: Dela
   show: Visa
   show_common_names: Visa vanliga namn
@@ -1961,7 +1952,6 @@ sv:
   time_ago: '%{time} sedan'
   to: till
   to_: till
-  to_an: till en
   to_include_your_google_with_inat: för att inkludera ditt Google-konto med %{site_name}
   to_recipient: till
   to_suggest_an_identification: för att föreslå en identifiering
@@ -2128,6 +2118,7 @@ sv:
   your_google_account_info: Din Google-kontoinformation
   your_pinned_locations: Dina fästa platser
   your_recent_projects: Dina senaste projekt
+  your_relationships: Dina relationer
   your_subscriptions: Dina prenumerationer
   your_sure_delete_taxon_from_list?: Är du säker på att du vill ta bort %{taxon} från
     den här listan?

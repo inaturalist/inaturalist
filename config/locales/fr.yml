@@ -32,6 +32,7 @@
 # Author: Thibaut120094
 # Author: Tomri5
 # Author: Urhixidur
+# Author: Vbhttb
 # Author: Verdy p
 # Author: Wladek92
 # Author: Yasten
@@ -146,8 +147,6 @@ fr:
     %{user} avec <strong>%{y} IDs</strong>
   _100_day_trends: Tendances à 100 jours
   _percent_ID_d: '% ID assigné(s)'
-  a: un
-  a_: un
   a_community_for_naturalist: Une communauté pour les naturalistes
   a_default_taxon_name_will_automatically_created: "Un nom de taxon par défaut sera
     créé automatiquement à partir de l’attribut du nom scientifique de ce taxon. \nQuand
@@ -322,7 +321,6 @@ fr:
     &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Ajouter les balises taxonomiques aux photos
     Flickr associées avec les observations sélectionnées.
-  add_to: Ajouter à
   add_to_a_scheme: Ajouter à un programme
   add_to_a_project: Ajouter à un projet
   add_to_calendar: Ajouter au calendrier
@@ -565,6 +563,9 @@ fr:
   are_you_sure_remove_from_project: Êtes-vous certain de vouloir retirer %{user} du
     projet?
   are_you_sure_remove_photo: Êtes-vous sûr de vouloir supprimer cette photo ?
+  are_you_sure_remove_relationship: Etes-vous sûr de vouloir supprimer cette relation
+    ? Ceci arrêtera le suivi de cette personne et supprimera l'accès à vos coordonnées
+    privées si vous en avez autorisé l'accès.
   are_you_sure_remove_taxon_from_list: Êtes-vous certain de vouloir enlever ce taxon
     de la liste?
   are_you_sure_remove_taxon_from_place: Êtes-vous certain de vouloir enlever ce taxon
@@ -661,7 +662,6 @@ fr:
   automatically_update_my_content_for_taxon_changes: Automatiquement mettre à jour
     mon contenu des modifications de taxon
   back: Retourner
-  back_to: Retourner à
   back_to_albums: Retourner aux albums
   back_to_all_species: Retourner à Toutes les Espèces
   back_to_browsing_people: Retourner à l’exploration par personne
@@ -1407,8 +1407,9 @@ fr:
     pour modifier les sortes de mises à jour que vous recevez ou vous désinscrire
     complètement.
   edited: Modifié
-  edited_by: Modifié par
   edited_by_name_html: Modifié par %{name}
+  edited_by_name_some_rights_reserved_html: Modifié par %{name}, quelques droits réservés
+    (%{license})
   editing: Modification en cours
   editing_announcement: Modification de l’annonce
   editing_custom_project_fields_for: Modification des champs de projet personnalisés
@@ -1568,7 +1569,6 @@ fr:
     vous connaissez bien
   filling_out_your_profile: remplissant votre profil
   filter: Filtrer
-  filter_by: Filtrer par
   filter_by_curator_identification: Filtrer par identification du chef de projet
   filter_by_place: Filtrer par lieu
   filter_by_taxon: Filtrer par taxon
@@ -1634,7 +1634,7 @@ fr:
   flags_with_count: Indicateurs (%{count})
   flags_explanation: Les utilisateurs de %{site_name} signalent les choses qui méritent
     l’attention des superviseurs ou des administrateurs du site.
-  flags_for: Drapeaux pour
+  flags_for_x_html: Etioquettes pour %{x}
   flags_on_users_content: Drapeaux sur le contenu de %{user}
   flickr_account_information: Informations sur votre compte Flickr
   flickr_description: Flickr est un service en ligne d’hébergement de photos. Peut-être
@@ -1655,13 +1655,13 @@ fr:
   fluid_layout: Mise en page fluide
   fluid: fluide
   follow: Suivre
-  follow_us: Suivez-nous sur
-  follow_us_on: Suivez-nous sur
+  follow_receive_updates_about_new_observations: Suivre (recevoir les modifications
+    sur les nouvelles observations)
   follow_user: Suivre %{user}
   followed_projects: Projets suivis
   follower: abonné
   followers: Abonnés
-  following: vous suivez
+  following: Suivant
   following_x_people:
     one: 1 personne suivie
     other: '%{count} personnes suivies'
@@ -1676,10 +1676,8 @@ fr:
   fri: Ven
   from: À partir de
   from_a_place: À partir d’un lieu
-  from_anywhere_change: À partir de n’importe où (<span class="button">modifier</span>)
   from_eol_collection: À partir de la collection de l’EdlV
   from_flickr_facebook_etc: Depuis Flickr, Facebook, etc.
-  from_in_this_place: à partir de ce lieu
   from_list: À partir de la liste
   from_this: À partir de ceci
   from_photos: À partir des photos
@@ -1711,6 +1709,10 @@ fr:
   Genus: Genre
   genus_slash_species: '[GENRE] / [ESPÈCE]'
   geoprivacy: Géoconfidentialité
+  geoprivacy_is_obscured: La confidentialité géographique est dissimulée
+  geoprivacy_is_obscured_desc: L'observateur a choisi de griser les coordonnées.
+  geoprivacy_is_private: La confidentialité géographique est privée
+  geoprivacy_is_private_desc: L'observateur a choisi de masquer les coordonnées.
   georeferenced: Géolocalisé?
   georeferenced?: géolocalisé
   get_current_position: Obtenenir la position actuelle
@@ -1721,7 +1723,7 @@ fr:
   give_it_some_detail: Fournissez des détails !
   global_conservation_status: 'Situation quant à la conservation à l’échelle mondiale:'
   global_names: Noms globaux
-  globally: à l’échelle mondiale
+  globally: A l’échelle mondiale
   go: Continuer
   go_back: Revenir en arrière
   going_to_your_observations: Aller à vos observations…
@@ -1926,8 +1928,6 @@ fr:
   import_tags_from_csv: Importer des balises à partir d'un fichier CSV
   importing: Importation en cours…
   improving: Amélioration
-  in: dans
-  in_: dans
   in_n: dans %{n}
   in_place_x: '%{place}'
   inaturalist_network_affiliation: Affiliation de Réseau iNaturalist
@@ -2000,8 +2000,6 @@ fr:
   invited_x: '%{x} invité(e)'
   inviting: Invitation en cours…
   iphone: iPhone
-  is_a: est un
-  is_an: est un
   is_an_evaluation: |-
     est une évaluation de la précision d’une observation.
     Les observations de niveau recherche peuvent être utilisées par les scientifiques pour leurs recherches. Donnez votre vote ci-dessous :
@@ -2059,6 +2057,7 @@ fr:
   keyboard_shortcuts: Raccourcis clavier
   kml: KML
   kml_file_size_error: Le format KML doit être moins de 1Mo
+  label_colon: '%{label}:'
   labels: Étiquettes
   label_to_group_a_batch_of_taxon_changes: Apposer une étiquette pour regrouper un
     lot de modifications de taxons
@@ -2375,6 +2374,7 @@ fr:
   manage_names: Gérer les noms
   manage_your_projects: Gérer vos projets
   manage_your_project_invitations: Gérer vos invitations à se joindre à des projets
+  manage_your_relationships: Gérer vos relations
   manage_subscriptions: Gérer les abonnements
   managed: géré
   manager: Gestionnaire
@@ -3838,6 +3838,7 @@ fr:
   remove_place: Supprimer lieu
   remove_project_user: Supprimer l’utilisateur du projet
   remove_range: Supprimer la classification
+  remove_relationship: Supprimer la relation
   remove_section: Supprimer la section
   remove_selected: Supprimer la sélection
   remove_tags: Supprimer les étiquettes
@@ -4020,7 +4021,7 @@ fr:
     qu’aux taxons d’un certain lieu. Laissez-en en blanc s’il s’applique aux taxons
     de partout au monde.
   set_license: Établir la licence
-  settings: paramètres
+  settings: Paramètres
   share: Partager
   share_colon: 'Partager:'
   share_your_observation_with_researchers_by: Échangez vos observations avec les chercheurs
@@ -4251,6 +4252,8 @@ fr:
   stop_editing: Arrêter la modification
   stop_following_user: Arrêter de suivre %{user}
   stop_testing: Arrêter le test
+  stop_trusting_this_person_with_your_private_coordinates: Arretez de confier à cette
+    personne vos coordonnées privées
   stop_updating_position: Arrêter la mise à jour de l’emplacement
   studies_that_used_inaturalist_data_in_year: Etudes ayant utilisé les données de
     iNaturalist en %{year}
@@ -4382,6 +4385,16 @@ fr:
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} est un domaine de la vie avec 1 observation'
     other: '%{taxon} est un domaine de la vie avec %{count} observations'
+  taxon_is_threatened_coordinates_hidden: Le taxon est menacé, les coordonnées sont
+    masquées par défaut
+  taxon_is_threatened_coordinates_hidden_desc: Un des taxons suggéré dans les identifications,
+    ou un des taxons qui contiennent un de ces taxons, est connu pour être rare ou
+    menacé, donc l’emplacement de cette observation a été dissimulé.
+  taxon_is_threatened_coordinates_obscured: Le taxon est menacé, les coordonnées ont
+    été dissimulées par défaut
+  taxon_is_threatened_coordinates_obscured_desc: Un des taxons suggérés dans les identifications,
+    ou un des taxons qui contiennent un de ceux-ci, est connu pour être rare ou menacé,
+    donc l’emplacement de cette observation a été dissimulé.
   taxonomy: Taxinomie
   taxon_: taxon
   taxon_assessments_are: |-
@@ -4631,9 +4644,12 @@ fr:
     enregistré. Cette recherche ne fonctionne que pour les taxons actifs.
   this_is_taking_forever: Cette action prend trop de temps. Veuillez réessayer plus
     tard.
+  this_is_the_primary_listing: C’est la liste principale
+  this_is_your_observation: Ceci est votre observation
+  this_is_your_observation_desc: Vous pouvez toujours voir les coordonnées de vos
+    propres observations.
   this_job_failed_to_run: Cette tâche ne s’est pas exécutée. Veuillez contacter %{email}
   this_list_is_empty!: Cette liste est vide!
-  this_is_the_primary_listing: C’est la liste principale
   this_list_only_accepts_taxa_that_are: Cette liste n’accepte que des taxons qui sont
   this_observation: Cette observation
   this_observation_has_been_incorporated_into_the_following_external_websites: Cette
@@ -4713,7 +4729,6 @@ fr:
   to_add_comments: pour ajouter des commentaires
   to_add_identifications: pour ajouter des identifications
   to_add_ids: pour ajouter des ID
-  to_an: pour un
   to_configure_your_widget: pour configurer votre widget.
   to_include_your_google_with_inat: pour inclure votre compte Google avec %{site_name}
   to_recipient: À
@@ -4744,7 +4759,11 @@ fr:
   "true": Oui
   trending: Tendance
   trends: Tendances
+  trusted: Fiable
   trusted_project?: Projet digne de confiance?
+  trust_this_person_with_your_private_coordinates: Faire confiance à cette personne
+    avec vos coordonnées personnelles
+  trust_with_private_coordinates: De confiance, avec coordonnées privées
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire
     sur cette page.
   try_it_out: Essayez le
@@ -4908,6 +4927,10 @@ fr:
   user_s_lists: Listes de %{user}
   user_suggested_an_id: '%{user} a suggéré un ID'
   user_thinks_yours_is: '%{user} %{noun} que votre observation %{observation} est'
+  user_trusts_you_with_their_private_coordinates: '%{user} vous a fait confiance avec
+    ses coordonnées privées'
+  user_trusts_you_with_their_private_coordinates_desc: L'observateur a choisi de vous
+    faire confiance pour les coordonnées privées relatives aux observations associées.
   username: Nom d’utilisateur
   username_or_email: Nom d’utilisateur ou adresse électronique
   username_or_user_id: Nom ou ID d’utilisateur
@@ -5125,10 +5148,18 @@ fr:
   which_projects_can_add_your_observations?: Quels projets traditionnels peuvent ajouter
     vos observations ?
   white: blanc
+  why_you_can_see_the_coordinates: Pourquoi vous pouvez voir les coordonnées
   who_can_add_observations_to_this_project?: Qui peut ajouter des observations à ce
     projet ?
+  who_can_see_the_coordinates: Qui peut voir les coordonnées
+  who_can_see_the_coordinates_observer: La personne qui fait l'observation
+  who_can_see_the_coordinates_staff: l'équipe iNaturalist
+  who_can_see_the_coordinates_projects: Superviseurs des projets suivants
+  who_can_see_the_coordinates_trusted: Particuliers à qui l'observateur a fait confiance,
+    avec leur coordonnées privées
   who_helped_user_the_most: Qui a le plus aidé %{user}
   who_user_helped_the_most: Qui %{user} a le plus aidé
+  why_the_coordinates_are_obscured: Pourquoi les coordonnées sont grisées
   with_annotation: Avec annotation
   without_annotation: Sans annotation
   widget: Widget
@@ -5268,6 +5299,12 @@ fr:
     d’autres personnes.
   you_cant_rotate_photos_hostde_outside: Vous ne pouvez pas faire pivoter des photos
     hébergées hors d’%{site_name}.
+  you_curate_a_project_that_contains_this_observation: Vous organisez a projet qui
+    contient cette remarque
+  you_curate_a_project_that_contains_this_observation_desc: Vous pouvez voir les coordonnées
+    dissimulées quand vous supervisez un projet qui contient une observation et que
+    l’observateur a choisi de partager les coordonnées avec les superviseurs de ce
+    projet.
   you_didnt_select_any_observations: Vous n’avez sélectionné aucune observation.
   you_didnt_select_any_photos_to_tag: Vous n’avez sélectionné aucune photo à étiquetée!
   you_dont: Vous n’avez pas
@@ -5399,6 +5436,7 @@ fr:
   your_pinned_locations: Vos emplacements épinglés
   your_profile_was_successfully_updated: Votre profil a bien été mis à jour!
   your_recent_projects: Vos projets récents
+  your_relationships: Vos relations
   your_should_recognize: Vous devriez reconnaître certaines de ces photos
   your_site_account_has_been_created: Votre compte %{site} a été créé.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
