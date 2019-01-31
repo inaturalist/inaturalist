@@ -65,7 +65,7 @@
           - if taxon_framework.source
             = t( :sourced_to )
             = link_to taxon_framework.source.title, taxon_framework.source.url
-            = t( :relationship_html, 
+            %br= t( :relationship_html, 
             link: link_to( ( taxon_framework_relationship.nil? ? t( :none ) : t( "relationships.#{ taxon_framework_relationship.relationship }" ).capitalize ),
             taxonomy_details_for_taxon_path( change_taxon ) ) )
             
