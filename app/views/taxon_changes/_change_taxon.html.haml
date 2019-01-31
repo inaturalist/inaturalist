@@ -18,7 +18,6 @@
     taxon_framework = taxon_framework_relationship.taxon_framework
   else
     taxon_framework = change_taxon.upstream_taxon_framework
-    taxon_framework = nil if taxon_framework.source_id.nil? 
   end
 .change_taxon.clear{"data-taxon-id" => "#{change_taxon.id}", :id => "change_taxon_#{change_taxon.id}"}
   = image_and_content taxon_image(change_taxon), :image_size => 75 do
@@ -66,9 +65,9 @@
           - if taxon_framework.source
             = t( :sourced_to )
             = link_to taxon_framework.source.title, taxon_framework.source.url
-          = t( :relationship_html, 
-          link: link_to( ( taxon_framework_relationship.nil? ? t( :none ) : t( "relationships.#{ taxon_framework_relationship.relationship }" ).capitalize ),
-          taxonomy_details_for_taxon_path( change_taxon ) ) )
+            = t( :relationship_html, 
+            link: link_to( ( taxon_framework_relationship.nil? ? t( :none ) : t( "relationships.#{ taxon_framework_relationship.relationship }" ).capitalize ),
+            taxonomy_details_for_taxon_path( change_taxon ) ) )
             
     - if show_change_links && taxon_change && @type
       .text-muted
