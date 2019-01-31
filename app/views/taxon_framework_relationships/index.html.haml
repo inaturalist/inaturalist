@@ -95,4 +95,6 @@
               = t( :sourced_to )
               = link_to taxon_framework_relationship.taxon_framework.source.title, taxon_framework_relationship.taxon_framework.source.url
             = render partial: "show_taxon_framework_relationship", object: { taxon_framework_relationship: taxon_framework_relationship }
+            - if taxon_framework_relationship.description
+              %p= formatted_user_text stripped_first_paragraph_of_text( taxon_framework_relationship.description,"\n" ), tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
       = will_paginate @taxon_framework_relationships
