@@ -24,8 +24,12 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @messages = current_user.messages.where(:thread_id => @message.thread_id).order("id asc")
-    Message.where(id: @messages, read_at: nil).update_all(read_at: Time.now)
+    @messages = Message.where( user_id: @message.user_id, thread_id: @message.thread_id ).order( "id asc" )
+    if current_user.is_admin? && current_user.id != @message.user_id
+      flash.now[:notice] =  "You can see this because you're on staff. Please be careful"
+    else
+      Message.where( id: @messages, read_at: nil ).update_all( read_at: Time.now )
+    end
     @thread_message = @messages.first
     @reply_to = @thread_message.from_user == current_user ? @thread_message.to_user : @thread_message.from_user
     @flaggable_message = if m = @messages.detect{|m| m.from_user && m.from_user != current_user}
@@ -40,7 +44,7 @@ class MessagesController < ApplicationController
       joins("JOIN messages ON messages.to_user_id = users.id").
       where("messages.from_user_id = ?", current_user).
       limit(100)
-    @contacts = current_user.friends.limit(100) if @contacts.blank?
+    @contacts = current_user.followees.limit(100) if @contacts.blank?
     unless @contacts.blank?
       @contacts.each_with_index do |u,i|
         @contacts[i].html = view_context.render_in_format(:html, :partial => "users/chooser", :object => u).gsub(/\n/, '')

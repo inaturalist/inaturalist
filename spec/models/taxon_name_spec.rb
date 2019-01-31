@@ -158,6 +158,14 @@ describe TaxonName, "choose_common_name" do
     expect(TaxonName.choose_common_name([tn_en, tn_zh_cn], :locale => "zh-CN")).to eq tn_zh_cn
   end
 
+  it "should choose respect position when choosing a locale-specific name" do
+    tn_romanji = TaxonName.make!( name: "Hamachi", lexicon: "Japanese", taxon: t )
+    tn_ja = TaxonName.make!( name: "ブリ", lexicon: "Japanese", taxon: t )
+    tn_ja.update_attributes( position: 1 )
+    tn_romanji.update_attributes( position: 2 )
+    expect( TaxonName.choose_common_name( [tn_romanji, tn_ja], locale: "ja" ) ).to eq tn_ja
+  end
+
   it "should choose a locale-specific place-specific name" do
     california = Place.make!
     oregon = Place.make!

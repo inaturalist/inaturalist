@@ -1255,17 +1255,22 @@ describe Taxon, "editable_by?" do
   it "should not be editable by curators if order or above" do
     expect( Taxon.make!( rank: Taxon::CLASS ) ).not_to be_editable_by( curator )
   end
-  describe "taxon framework" do
+  describe "when taxon framework" do
     let(:second_curator) { make_curator }
-    let(:family) { Taxon.make!( rank: Taxon::FAMILY ) }
-    let(:genus) { Taxon.make!( rank: Taxon::GENUS, parent: family ) }
-    let(:species) { Taxon.make!( rank: Taxon::SPECIES, parent: genus ) }
-    let!(:tf) { TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] ) }
-    let!(:tc) { TaxonCurator.make!( taxon_framework: tf, user: second_curator ) }
     it "should be editable by taxon curators of that taxon" do
+      family = Taxon.make!( rank: Taxon::FAMILY )
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      tf = TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+      tc = TaxonCurator.make!( taxon_framework: tf, user: second_curator )
       expect( species ).to be_editable_by( second_curator )
     end
     it "should be editable by other site curators" do
+      family = Taxon.make!( rank: Taxon::FAMILY )
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      tf = TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+      tc = TaxonCurator.make!( taxon_framework: tf, user: second_curator )
       expect( species ).to be_editable_by( curator )
     end
   end

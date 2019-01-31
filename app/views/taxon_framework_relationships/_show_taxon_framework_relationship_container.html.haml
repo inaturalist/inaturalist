@@ -1,13 +1,18 @@
 :ruby
   taxon_framework_relationship ||= show_taxon_framework_relationship_container[:taxon_framework_relationship] ||= @taxon_framework_relationship
   taxon ||= show_taxon_framework_relationship_container[:taxon] ||= @taxon
-  upstream_taxon_framework ||= show_taxon_framework_relationship_container[:taxon_framework] || @upstream_taxon_framework || @taxon_framework
+  upstream_taxon_framework ||= show_taxon_framework_relationship_container[:upstream_taxon_framework] || @upstream_taxon_framework
+  taxon_framework ||= show_taxon_framework_relationship_container[:taxon_framework] || @taxon_framework
+  downstream_deviations_count ||= show_taxon_framework_relationship_container[:downstream_deviations_count] ||= @downstream_deviations_count
+  downstream_flagged_taxa_count ||= show_taxon_framework_relationship_container[:downstream_flagged_taxa_count] ||= @downstream_flagged_taxa_count
+  downstream_flagged_taxa ||= show_taxon_framework_relationship_container[:downstream_flagged_taxa] ||= @downstream_flagged_taxa
 .panel.panel-default
   .panel-heading
-    - if is_admin? && upstream_taxon_framework.source && !taxon_framework_relationship
+    - if upstream_taxon_framework.source && !taxon_framework_relationship && !current_user.blank? && current_user.is_curator? && |
+      ( ( upstream_taxon_framework.taxon_curators.count > 0 && upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id }.count > 0 ) || |
+      ( upstream_taxon_framework.taxon_curators.count == 0 ) ) |
       .pull-right
-        .admin-box
-          = link_to "Add relationship", new_taxon_framework_relationship_path( { taxon_id: taxon.id, taxon_framework_id: upstream_taxon_framework.id } )
+        = link_to "Add relationship", new_taxon_framework_relationship_path( { taxon_id: taxon.id, taxon_framework_id: upstream_taxon_framework.id } )
     %h4
       = t( :covered_by_a_taxon_framework_html, 
       link: link_to( t( :covered_by_a_taxon_framework_link, 
@@ -19,12 +24,31 @@
         = link_to upstream_taxon_framework.source.title, upstream_taxon_framework.source.url
   - if upstream_taxon_framework.source && taxon_framework_relationship
     .panel-body
-      - if is_admin? && |
-        ( ( upstream_taxon_framework.taxon_curators.count > 0 && upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id } ) || |
+      - if !current_user.blank? && current_user.is_curator? && |
+        ( ( upstream_taxon_framework.taxon_curators.count > 0 && upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id }.count > 0 ) || |
         ( upstream_taxon_framework.taxon_curators.count == 0 ) ) |
         .pull-right
-          .admin-box
-            = link_to "Edit relationship", edit_taxon_framework_relationship_path( taxon_framework_relationship )
+          = link_to "Edit relationship", edit_taxon_framework_relationship_path( taxon_framework_relationship )
       = render partial: "/taxon_framework_relationships/show_taxon_framework_relationship", object: { taxon_framework_relationship: taxon_framework_relationship, taxon: taxon }
       - if taxon_framework_relationship.description
         %p= formatted_user_text taxon_framework_relationship.description, tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
+      - unless taxon_framework
+        - if downstream_deviations_count > 0
+          %p
+            = "#{ t(:downstream_deviations) }:"
+            = link_to |
+            downstream_deviations_count, |
+            taxon_framework_relationships_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_id: taxon.id, taxon_framework_id: upstream_taxon_framework.id } ) ) |
+        - if downstream_flagged_taxa_count > 0
+          .flagged_taxa_count
+            = "#{ t( :downstream_flagged_covered_taxa ) }:"
+            = link_to downstream_flagged_taxa_count, "#"
+          .flagged_taxa_table
+            %table.table.table-bordered
+              %thead
+                %tr
+                  %th= t( :flagged_taxon )
+              %tbody
+                - downstream_flagged_taxa.each do |flagged_taxon|
+                  %tr
+                    %td= link_to flagged_taxon.name, taxon_path( flagged_taxon )

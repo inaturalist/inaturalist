@@ -338,6 +338,7 @@ en:
     subgenus: All subgenera added to the database
     section: All sections added to the database
     subsection: All subsections added to the database
+    complex: All complexes added to the database
     species: All species added to the database
     hybrid: All hybrids added to the database
     subspecies: All subspecies added to the database
@@ -1127,6 +1128,8 @@ en:
   download_kml: Download KML
   downstream_coverage: Downstream coverage
   downstream_coverage_rank: Downstream coverage rank
+  downstream_deviations: Downstream deviations
+  downstream_flagged_covered_taxa: Downstream flagged covered taxa
   drag_and_drop_photos: drag and drop photos onto this window or
   draft: draft
   draft_: Draft
@@ -2020,6 +2023,7 @@ en:
   manager: Manager
   managers: Managers
   managers_can_do: Managers can do everything curators can do as well as editing project settings and write project journal posts.
+  managing_projects: Managing Projects
   manually_create_new_place: Manually create a new place
   map: Map
   map_legend: map legend
@@ -2107,6 +2111,7 @@ en:
   more_fields: More Fields
   more_filters: More Filters
   more_from_x: More from %{x}
+  more_help: More Help
   more_import_options: More Import Options
   more_info: More Info
   more_info_title: More Info
@@ -3256,6 +3261,7 @@ en:
       subgenus: Subgenus
       section: Section
       subsection: Subsection
+      complex: Complex
       species: Species
       hybrid: Hybrid
       subspecies: Subspecies
@@ -3328,6 +3334,7 @@ en:
       not_external: not external
       not_internal: not internal
       unknown: unknown
+  relationship_html: "Relationship: %{link}"
   reload_and_refresh: Reload and refresh list
   reload_from_observations: Reload from observations
   reload_timed_out: 'Reload timed out.  Please try again later.'
@@ -3916,6 +3923,7 @@ en:
   taxonomy_details_for: Taxonomy details for
   taxonomy_details_info: 'The Taxonomy Details page uses Taxon Frameworks to help to describe what we mean by a taxon. <a href="/pages/taxon_frameworks">Read more</a>.'
   taxonomy_settings: Taxonomy Settings
+  teachers_guide: Teacher's Guide
   tell_everyone_a_little_about_you: Tell everyone a little about yourself
   tell_the_world_a_little_about_yourself: Tell us about yourself
   tell_us_why: Tell us why...
@@ -4413,6 +4421,7 @@ en:
   view_your_year_stats: "View Your %{year} Stats"
   view_yours: View Yours
   view_all_of_your_observations_from_x: "View all of your observations from %{x}"
+  video_tutorials: Video Tutorials
   visually_similar: Visually Similar
   vulnerable: Vulnerable
   w00t_no_ungrafted_taxa: w00t!  No ungrafted taxa!
@@ -4487,7 +4496,6 @@ en:
   who_can_add_observations_to_this_project?: Who can add observations to this project?
   who_can_see_the_coordinates: Who Can See the Coordinates
   who_can_see_the_coordinates_observer: The person who made the observation
-  who_can_see_the_coordinates_staff: iNaturalist staff
   who_can_see_the_coordinates_projects: Curators of the following projects
   who_can_see_the_coordinates_trusted: Individuals who the observer has trusted with their private coordinates
   who_helped_user_the_most: "Who Helped %{user} the Most"

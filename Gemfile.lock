@@ -63,6 +63,12 @@ GIT
       delayed_job (>= 3.0, < 5)
 
 GIT
+  remote: https://github.com/inaturalist/objectify_xml.git
+  revision: 85347a02896480775dbb8b6bbd479afc2c11ce8d
+  specs:
+    objectify-xml (0.2.3)
+
+GIT
   remote: https://github.com/inaturalist/riparian.git
   revision: 083846b15272cb8f4979d2bd331140fe868735cb
   specs:
@@ -710,6 +716,7 @@ DEPENDENCIES
   newrelic_rpm (~> 5.7.0)
   nokogiri (~> 1.10.0)
   non-stupid-digest-assets
+  objectify-xml!
   omniauth
   omniauth-facebook (~> 5.0.0)
   omniauth-flickr!
