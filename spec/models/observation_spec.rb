@@ -146,6 +146,13 @@ describe Observation do
       expect( o_cot.time_zone ).to eq u_cot.time_zone
     end
 
+    it "should handle a user without a time zone" do
+      u = User.make!( time_zone: nil )
+      expect( u.time_zone ).to be_nil
+      o = Observation.make!( user: u, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00" )
+      expect( o.observed_on ).not_to be_blank
+    end
+
     it "should handle unparsable times gracefully" do
       @observation.observed_on_string = "2013-03-02, 1430hrs"
       @observation.save

@@ -880,7 +880,7 @@ class Observation < ActiveRecord::Base
           self.time_zone = user.time_zone
         end
       rescue ArgumentError => e
-        raise e unless e.message =~ /offset/
+        raise e unless e.message =~ /offset/ || e.message =~ /invalid argument to TimeZone/
         # This means the user didn't have a time zone or had a time zone that
         # shouldn't exist, so just ignore it
       end
