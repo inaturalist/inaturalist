@@ -58,6 +58,17 @@
         .pull-right
           = link_to "new taxon framework relationship", new_taxon_framework_relationship_path, class: "btn btn-default"
       %h2= @title
+      .panel.panel-info
+        .panel-heading
+          %h3.panel-title
+            = "About Taxon Frameworks"
+        .panel-body
+          %p
+            = "Taxon Frameworks help us describe 'what we mean' by a taxon."
+            = "Taxon Framework Relationships"
+            = "are mappings between taxa on #{@site.name} (internal taxa) and taxa"
+            = "on sources (external taxa) associated with a Taxon Framework."
+            = link_to "Read more", "/pages/taxon_frameworks"
   .row
     .col-xs-3
       = form_for :filters, builder: DefaultFormBuilder, html: { method: :get } do |f|
@@ -83,8 +94,13 @@
       - for taxon_framework_relationship in @taxon_framework_relationships
         .panel.panel-default
           .panel-heading
+            - if !current_user.blank? && current_user.is_curator? && |
+              ( ( taxon_framework_relationship.taxon_framework.taxon_curators.count > 0 && taxon_framework_relationship.taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id }.count > 0 ) || |
+              ( taxon_framework_relationship.taxon_framework.taxon_curators.count == 0 ) ) |
+              .pull-right
+                = link_to "Edit relationship", edit_taxon_framework_relationship_path( taxon_framework_relationship )
             %h4
-              = render partial: "show_taxon_framework_relationship_headings", object: { taxon_framework_relationship: taxon_framework_relationship }
+              = link_to "Taxon Framework Relatonship #{taxon_framework_relationship.id}", taxon_framework_relationship_path( taxon_framework_relationship )
           .panel-body
             = t( :covered_by_a_taxon_framework_html, 
             link: link_to( t( :covered_by_a_taxon_framework_link, 

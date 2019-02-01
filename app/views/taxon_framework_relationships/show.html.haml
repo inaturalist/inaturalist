@@ -17,3 +17,5 @@
     %h3
       = render :partial => 'show_taxon_framework_relationship_headings', object: { taxon_framework_relationship: @taxon_framework_relationship }
     = render :partial => '/taxon_framework_relationships/show_taxon_framework_relationship_container', object: { upstream_taxon_framework: @taxon_framework, taxon_framework_relationship: @taxon_framework_relationship, taxon: @taxon }
+    = render partial: "/taxon_framework_relationships/show_downstream_deviations", object: { downstream_deviations_counts: @downstream_deviations_counts, taxon_framework: @taxon_framework}
+    
