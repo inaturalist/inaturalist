@@ -36,18 +36,22 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     @relationships.delete_if{ |r| r.blank? }
     @taxon_framework = TaxonFramework.find_by_id( filter_params[:taxon_framework_id] ) unless filter_params[:taxon_framework_id].blank?    
     @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
-    @taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
+    @internal_taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
+    @external_taxon_name = filter_params[:external_taxon_name] unless filter_params[:external_taxon_name].blank?
+    @internal_rank = filter_params[:internal_rank] unless filter_params[:internal_rank].blank?
+    @external_rank = filter_params[:external_rank] unless filter_params[:external_rank].blank?
     user_id = filter_params[:user_id] || params[:user_id]
     @user = User.find_by_id(user_id) || User.find_by_login(user_id) unless user_id.blank?
     @is_active = filter_params[:is_active]
-    @rank = filter_params[:rank] unless filter_params[:rank].blank?
     
     scope = TaxonFrameworkRelationship.all
     scope = scope.relationships(@relationships) unless @relationships.blank?
     scope = scope.taxon_framework(@taxon_framework) if @taxon_framework
-    scope = scope.taxon(@taxon) if @taxon
+    scope = scope.internal_taxon(@internal_taxon) if @internal_taxon
+    scope = scope.external_taxon(@external_taxon_name) if @external_taxon_name
+    scope = scope.internal_rank(@internal_rank) if @internal_rank
+    scope = scope.external_rank(@external_rank) if @external_rank
     scope = scope.by(@user) if @user
-    scope = scope.rank(@rank) if @rank
     if @is_active.yesish?
       scope = scope.active
     elsif @is_active.noish?
@@ -77,6 +81,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
   
   def show
     @taxon_framework = @taxon_framework_relationship.taxon_framework
+    @downstream_deviations_counts = @taxon_framework_relationship.internal_taxa.map{|it| {internal_taxon: it, count: TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).internal_taxon(it).uniq.count } }
   end
   
   def new
@@ -136,11 +141,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
           end
         end
       end
-      if taxon = @taxon_framework_relationship.taxa.first
-        redirect_to taxonomy_details_for_taxon_path( taxon )
-      else
-        redirect_to @taxon_framework_relationship
-      end
+      redirect_to @taxon_framework_relationship
     else
       @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
       render action: :new
@@ -197,11 +198,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
           end
         end
       end
-      if taxon = @taxon_framework_relationship.taxa.first
-        redirect_to taxonomy_details_for_taxon_path( taxon )
-      else
-        redirect_to @taxon_framework_relationship
-      end
+      redirect_to @taxon_framework_relationship
     else
       if @taxon_framework_relationship.taxa.any?
         taxon = @taxon_framework_relationship.taxa.first
