@@ -76,6 +76,9 @@ describe Observation do
         # This *does* work b/c in December, Amsterdam is in CET, standard time
         ['December 27, 2012 8:09:50 AM GMT+01:00', :month => 12, :day => 27, :hour => 8, :offset => "+01:00"],
 
+        # Spacy AM, offset w/o named zone
+        ["2019-01-29 9:21:46 a. m. GMT-05:00", month: 1, day: 29, hour: 9, offset: "-05:00"],
+
         ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
         # ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
         ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"],
@@ -121,6 +124,26 @@ describe Observation do
       zone = ActiveSupport::TimeZone[@observation.time_zone]
       expect(zone).not_to be_blank
       expect(zone.formatted_offset).to eq "-05:00"
+    end
+
+    it "should use the user's time zone if the date string only has an offset and it matches the user's time zone" do
+      u_est = User.make!( time_zone: "Eastern Time (US & Canada)" )
+      u_cot = User.make!( time_zone: "Bogota" )
+      observed_on_string = "2019-01-29 9:21:46 a. m. GMT-05:00"
+      o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
+      expect( o_est.time_zone ).to eq u_est.time_zone
+      o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
+      expect( o_cot.time_zone ).to eq u_cot.time_zone
+    end
+
+    it "should use the user's time zone if the date string only has an offset and it matches the user's time zone during daylight savings time" do
+      u_est = User.make!( time_zone: "Eastern Time (US & Canada)" )
+      u_cot = User.make!( time_zone: "Bogota" )
+      observed_on_string = "2018-06-29 9:21:46 a. m. GMT-05:00"
+      o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
+      expect( o_est.time_zone ).to eq u_est.time_zone
+      o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
+      expect( o_cot.time_zone ).to eq u_cot.time_zone
     end
 
     it "should handle unparsable times gracefully" do
