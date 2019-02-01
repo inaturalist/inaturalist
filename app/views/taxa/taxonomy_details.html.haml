@@ -44,6 +44,9 @@
     %ul.list-unstyled
       %li
         = link_to t(:back_to_x, :noun => @taxon.name), @taxon, :class => "back crumb"
+    - if @upstream_taxon_framework
+      .pull-right
+        = link_to t(:view_taxon_framework_relationship), taxon_framework_relationship_path( @taxon_framework_relationship )
     %h3
       = t(:taxonomy_details_for)
       \#{render :partial => "shared/taxon", :object => @taxon, :locals => { :link_url => url_for(@taxon) }}

@@ -1276,6 +1276,8 @@ en:
   export_with_private_coordinates: Export with Private Coordinates
   exporting: "Exporting..."
   external_links: External Links
+  external_taxon_including_children: External taxon (including children)
+  external_taxon_rank: External taxon rank
   extinct: EXTINCT
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
@@ -1680,6 +1682,8 @@ en:
   interactions: Interactions
   internal_server_error: Internal Server Error
   internal_taxon: Internal taxon
+  internal_taxon_including_descendants: Internal taxon (including descendants)
+  internal_taxon_rank: Internal taxon rank
   introduced: Introduced
   introduced_in_place: "Introduced in %{place}"
   invasive: Invasive
@@ -3879,8 +3883,9 @@ en:
   taxon_curators: Taxon Curators
   taxon_extras: Taxon Extras
   taxon_framework_notes: Taxon Framework notes
-  taxon_framework_relationship_for: Taxon framework relationship for
   taxon_framework_relationship: Taxon Framework Relationship
+  taxon_framework_relationship_for: Taxon framework relationship for
+  taxon_framework_relationship_number: "Taxon Framework Relationship %{number}"
   taxon_framework_relationships: Taxon Framework Relationships
   taxon_framework_taxon: Taxon framework taxon
   taxon_links: Taxon Links
@@ -4399,10 +4404,12 @@ en:
   view_stats: View stats
   view_taxon_change: View taxon change
   view_taxon_changes: View taxon changes
+  view_taxon_framework_relationship: View taxon framework relationship
   view_taxon_page: View taxon page
   view_taxon_page_for: View taxon page for this
   view_taxon_page_for_this_x: "View taxon page for this %{x}"
   view_taxonomic_changes: View taxonomic changes
+  view_taxononomy_details_for_taxon: "View taxononomy details for %{taxon}"
   view_terms: View terms
   view_the: "View the %{action}&#59; %{link}"
   view_the_observation: View the observation
