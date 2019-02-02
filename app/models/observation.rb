@@ -851,25 +851,39 @@ class Observation < ActiveRecord::Base
     if parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev]
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     elsif (offset = date_string[tz_offset_pattern, 1]) && 
         (n = offset.to_f / 100) && 
         (key = n == 0 ? 0 : n.floor + (n%n.floor)/0.6) && 
         (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_offset_pattern, '')
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     elsif (offset = date_string[tz_js_offset_pattern, 2]) && 
         (n = offset.to_f / 100) && 
         (key = n == 0 ? 0 : n.floor + (n%n.floor)/0.6) && 
         (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_js_offset_pattern, '')
       date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && 
-        (t = Time.parse(offset)) && 
-        (parsed_time_zone = ActiveSupport::TimeZone[t.hour+t.min/60.0])
+    elsif ( offset = date_string[tz_colon_offset_pattern, 2] ) &&
+        ( t = Time.parse(offset ) ) &&
+        ( negpos = offset.to_i > 0 ? 1 : -1 ) &&
+        ( parsed_time_zone = ActiveSupport::TimeZone[negpos * t.hour+t.min/60.0] )
       date_string = date_string.sub(/#{tz_colon_offset_pattern}|#{tz_failed_abbrev_pattern}/, '')
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
+    end
+    
+    if parsed_time_zone && observed_on_string_changed?
+      self.time_zone = parsed_time_zone.name
+      begin
+        if (
+          ( user_time_zone = ActiveSupport::TimeZone[user.time_zone] ) &&
+          user_time_zone != parsed_time_zone &&
+          user_time_zone.utc_offset == parsed_time_zone.utc_offset
+        )
+          self.time_zone = user.time_zone
+        end
+      rescue ArgumentError => e
+        raise e unless e.message =~ /offset/ || e.message =~ /invalid argument to TimeZone/
+        # This means the user didn't have a time zone or had a time zone that
+        # shouldn't exist, so just ignore it
+      end
     end
     
     date_string.sub!('T', ' ') if date_string =~ /\d{4}-\d{2}-\d{2}T/
