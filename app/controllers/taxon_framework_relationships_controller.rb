@@ -81,7 +81,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
   
   def show
     @taxon_framework = @taxon_framework_relationship.taxon_framework
-    @downstream_deviations_counts = @taxon_framework_relationship.internal_taxa.map{|it| {internal_taxon: it, count: TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).internal_taxon(it).uniq.count } }
+    @downstream_deviations_counts = @taxon_framework_relationship.internal_taxa.map{|it| {internal_taxon: it, count: TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).internal_taxon(it).uniq.count - 1 } }
   end
   
   def new

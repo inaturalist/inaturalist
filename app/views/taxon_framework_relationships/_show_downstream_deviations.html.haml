@@ -4,7 +4,7 @@
 - downstream_deviations_counts.each do |downstream_deviations_count|
   - if downstream_deviations_count[:count] > 0
     %p
-      - if downstream_deviations_count[:count] == 1
+      - if downstream_deviations_counts.count == 1
         = "#{ t(:downstream_deviations) }:"
       - else
         = t :downstream_deviations_for_taxon, taxon: downstream_deviations_count[:internal_taxon].name

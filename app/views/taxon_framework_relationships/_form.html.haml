@@ -27,11 +27,11 @@
 
 = form_for @taxon_framework_relationship do |f|
   .form-group
-    = label_tag 'taxon_framework_id', 'Taxib Framework Taxon'
+    = label_tag 'taxon_framework_id', t( :taxon_framework_taxon)
     = f.collection_select( :taxon_framework_id, @taxon_frameworks, :id, :taxon_framework_taxon_name, {}, { :class => "form-control" } )
     %smalll#taxonFrameworkHelp.form-text.text-muted Ancestor taxon with an attached Taxon Framework
   .form-group
-    %label Internal Taxa
+    %label= t( :internal_taxa )
     = f.fields_for :taxa do |t|
       .panel.panel-default
         .panel-body
@@ -53,7 +53,7 @@
     = link_to_function "Associate an internal taxon", "addTaxonField( '#{ escape_javascript( t_form_fields ) }' )"
   
   .form-group
-    %label External Taxa
+    %label= t( :external_taxa )
     = f.fields_for :external_taxa do |et|
       .panel.panel-default
         .panel-body
@@ -101,7 +101,7 @@
     =link_to_function "Add an external taxon", "addExternalTaxonField('#{ escape_javascript( et_form_fields ) }')"
   
   .form-group
-    %label Notes
+    %label= t( :notes )
     = f.text_area :description, class: "form-control"
   
   .form-group

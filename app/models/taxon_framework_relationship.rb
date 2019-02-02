@@ -62,7 +62,7 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   }
   scope :external_taxon, lambda{ |taxon_name|
     joins( EXTERNAL_TAXON_JOINS ).
-    where( "et.name = ? OR et.parent_name = ?", taxon_name, taxon_name)
+    where( "lower(et.name) = ? OR lower(et.parent_name) = ?", taxon_name.downcase.strip, taxon_name.downcase.strip)
   }
   
   def mark_external_taxa_for_destruction
