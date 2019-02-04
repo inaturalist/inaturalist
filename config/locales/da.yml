@@ -367,6 +367,7 @@ da:
     subgenus: Alle underslægter føjet til databasen
     section: Alle sektioner føjet til databasen
     subsection: Alle undersektioner føjet til databasen
+    complex: Alle komplekser tilføjet til databasen
     species: Alle arter føjet til databasen
     hybrid: Alle hybrider tilføjet til databasen
     subspecies: Alle underarter føjet til databasen
@@ -1263,6 +1264,8 @@ da:
   download_kml: Download KML
   downstream_coverage: Downstream dækning
   downstream_coverage_rank: Downstream dækning rang
+  downstream_deviations: Nedstrøms afvigelser
+  downstream_flagged_covered_taxa: Nedstrøms markeret dækket taksa
   drag_and_drop_photos: træk og slip billeder til dette vindue eller
   draft: kladde
   draft_: Kladde
@@ -2266,6 +2269,7 @@ da:
   managers: Ledere
   managers_can_do: Ledere kan gøre alt, hvad kuratorer kan gøre, samt redigere projektindstillinger
     og skrive projekt journalindlæg.
+  managing_projects: Administrerer projekter
   manually_create_new_place: Opret et nyt sted manuelt
   map: Kort
   map_legend: legende
@@ -2357,6 +2361,7 @@ da:
   more_fields: Flere felter
   more_filters: Flere filtre
   more_from_x: Flere af %{x}
+  more_help: Mere hjælp
   more_import_options: Flere import muligheder
   more_info: Mere info
   more_info_title: Mere info
@@ -3587,6 +3592,7 @@ da:
     subgenus: Underslægt
     section: Sektion
     subsection: Undersektion
+    complex: Kompleks
     species: Arter
     hybrid: Hybrid
     subspecies: Underarter
@@ -3659,6 +3665,7 @@ da:
     not_external: ikke ekstern
     not_internal: ikke intern
     unknown: ukendt
+  relationship_html: 'Forbindelse: %{link}'
   reload_and_refresh: Genindlæs og opdatér liste
   reload_from_observations: Genindlæs fra observationer
   reload_timed_out: Genindlæsning fejlede. Prøv igen senere.
@@ -4303,6 +4310,7 @@ da:
     hjælpe med at beskrive hvad vi mener med en takson. <a href="/pages/taxon_frameworks">Læs
     mere</a>.
   taxonomy_settings: Taksonomi indstillinger
+  teachers_guide: Lærervejledning
   tell_everyone_a_little_about_you: Fortæl lidt om dig selv
   tell_the_world_a_little_about_yourself: Fortæl os om dig selv
   tell_us_why: Fortæl os hvorfor...
@@ -4862,6 +4870,7 @@ da:
   view_your_year_stats: Vis dine %{year} statistikker
   view_yours: Vis dine
   view_all_of_your_observations_from_x: Vis alle dine observationer fra %{x}
+  video_tutorials: Video selvstudier
   visually_similar: Visuelt lignende
   vulnerable: Sårbar
   w00t_no_ungrafted_taxa: w00t!  Ingen upodede taksa!
@@ -4956,7 +4965,6 @@ da:
     projekt?
   who_can_see_the_coordinates: Hvem kan se koordinaterne
   who_can_see_the_coordinates_observer: Personen der foretog observationen
-  who_can_see_the_coordinates_staff: iNaturalist ansatte
   who_can_see_the_coordinates_projects: Kuratorer for følgende projekter
   who_can_see_the_coordinates_trusted: Personer som observatøren har betroet sine
     private koordinater til

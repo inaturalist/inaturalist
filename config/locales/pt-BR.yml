@@ -379,6 +379,7 @@ pt-BR:
     subgenus: Todos os subgêneros adicionados à base de dados
     section: Todas as seções adicionadas à base de dados
     subsection: Todas as subseções adicionadas à base de dados
+    complex: Todos os complexos adicionados ao banco de dados
     species: Todas as espécies adicionadas à base de dados
     hybrid: Todos os híbridos adicionados à base de dados
     subspecies: Todas as subespécies adicionadas à base de dados
@@ -1291,6 +1292,8 @@ pt-BR:
   download_kml: Baixar KML
   downstream_coverage: Cobertura a jusante
   downstream_coverage_rank: Classificação de cobertura a jusante
+  downstream_deviations: Desvios a jusante
+  downstream_flagged_covered_taxa: Taxa coberta sinalizada a jusante
   drag_and_drop_photos: arraste e solte fotos nesta janela ou
   draft: rascunho
   draft_: Rascunho
@@ -1350,6 +1353,8 @@ pt-BR:
     inscrição.
   edited: Editado
   edited_by_name_html: Modificado por %{name}
+  edited_by_name_some_rights_reserved_html: Editado por %{name}, alguns direitos reservados
+    (%{license})
   editing: Editando
   editing_announcement: Modificando anúncio
   editing_custom_project_fields_for: Modificando os campos de projeto personalizados
@@ -2295,6 +2300,7 @@ pt-BR:
   managers_can_do: Moderadores podem fazer tudo que os coordenadores fazem, assim
     como editar a configuração dos projetos e escrever as publicações dos boletins
     informativos.
+  managing_projects: Gerenciando projetos
   manually_create_new_place: Crie um novo lugar manualmente
   map: Mapa
   map_legend: legenda do mapa
@@ -2386,6 +2392,7 @@ pt-BR:
   more_fields: Mais campos
   more_filters: Mais filtros
   more_from_x: Mais de %{x}
+  more_help: Mais ajuda
   more_import_options: Mais opções de importação
   more_info: Mais informações
   more_info_title: Maiores informações
@@ -3626,6 +3633,7 @@ pt-BR:
     subgenus: Subgênero
     section: Seção
     subsection: Subseção
+    complex: Complexo
     species: Espécies
     hybrid: Híbrido
     subspecies: Subespécies
@@ -3702,6 +3710,7 @@ pt-BR:
     not_external: não externo
     not_internal: não interno
     unknown: desconhecido
+  relationship_html: 'Relação: %{link}'
   reload_and_refresh: Recarregue e atualize a lista
   reload_from_observations: Atualizar a partir das observações
   reload_timed_out: O tempo expirou. Por favor, tente em alguns instantes novamente.
@@ -4316,6 +4325,7 @@ pt-BR:
     ajudar a descrever o que entendemos por táxon. <a href="/pages/taxon_frameworks">Ler
     mais</a>.
   taxonomy_settings: Configuração de taxonomia
+  teachers_guide: Guia do professor
   tell_everyone_a_little_about_you: Conte um pouco sobre você
   tell_the_world_a_little_about_yourself: Conte-nos sobre você
   tell_us_why: Oras, nos diga por que...
@@ -4883,6 +4893,7 @@ pt-BR:
   view_your_year_stats: Veja suas estatísticas de %{year}
   view_yours: Veja os Seus
   view_all_of_your_observations_from_x: Ver todas as suas observações de %{x}
+  video_tutorials: Tutoriais em vídeo
   visually_similar: Visualmente Similar
   vulnerable: Vulnerável
   w00t_no_ungrafted_taxa: Ops! Não são aceitos táxons sem relações taxonômicas@
@@ -4978,7 +4989,6 @@ pt-BR:
     projeto?
   who_can_see_the_coordinates: Quem pode ver as coordenadas
   who_can_see_the_coordinates_observer: A pessoa que fez a observação
-  who_can_see_the_coordinates_staff: Equipe do iNaturalista
   who_can_see_the_coordinates_projects: Curadores dos seguintes projetos
   who_can_see_the_coordinates_trusted: Indivíduos que o observador confiou em suas
     coordenadas particulares
