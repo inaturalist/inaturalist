@@ -443,8 +443,8 @@ GEM
       rack (>= 1.6.2, < 3)
     omniauth-facebook (5.0.0)
       omniauth-oauth2 (~> 1.2)
-    omniauth-google-oauth2 (0.5.4)
-      jwt (>= 1.5)
+    omniauth-google-oauth2 (0.6.0)
+      jwt (>= 2.0)
       omniauth (>= 1.1.1)
       omniauth-oauth2 (>= 1.5)
     omniauth-oauth (1.1.0)
@@ -720,7 +720,7 @@ DEPENDENCIES
   omniauth
   omniauth-facebook (~> 5.0.0)
   omniauth-flickr!
-  omniauth-google-oauth2 (~> 0.5.2)
+  omniauth-google-oauth2 (~> 0.6.0)
   omniauth-oauth2 (= 1.5.0)
   omniauth-openid
   omniauth-soundcloud!
