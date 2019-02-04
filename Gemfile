@@ -123,7 +123,7 @@ group :test, :development, :prod_dev do
   gem "byebug"
   gem "binding_of_caller"
   gem "thin", "~> 1.7"
-  gem "capybara", "~> 3.8"
+  gem "capybara", "~> 3.13"
   gem "puma"
 end
 
