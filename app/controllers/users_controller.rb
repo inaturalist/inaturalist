@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action -> { doorkeeper_authorize! :login, :write },
     only: [ :edit ],
     if: lambda { authenticate_with_oauth? }
-  before_action :doorkeeper_authorize!,
+  before_action -> { doorkeeper_authorize! :write },
     only: [ :create, :update, :dashboard, :new_updates, :api_token ],
     if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!,
