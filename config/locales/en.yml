@@ -535,7 +535,7 @@ en:
   attribute: Attribute
   attribution: Attribution
   authority_list:
-    iucn_red_list: IUCN Red List
+  authorize: Authorize
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
   automatic_short: Auto
@@ -1065,6 +1065,7 @@ en:
   deleted_vote: Deleted vote
   deleting: Deleting...
   deleting_verb: Deleting
+  deny: Deny
   desc: Desc
   descendant_taxa:  descendant taxa
   descending: Descending
@@ -1729,6 +1730,7 @@ en:
     <a href="mailto:%{help_email}" class="contact">contact us</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
   its_important_that_you:  It's important that you click
+  iucn_red_list: IUCN Red List
   iucn_red_list_status: IUCN Red List status
   january: January
   join: Join
@@ -5190,6 +5192,12 @@ en:
         project_list_desc: |
           Taxa manually added by project curators and taxa represented by
           research-grade observations added to the project are listed on project lists.
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: Authorize %{application} to use your account?
+          this_application_will_be_able_to_colon: "This application will be able to:"
+          more_about_application: More about %{application}
     observations:
       community_id:
         agreement: Agreement
@@ -6853,8 +6861,13 @@ en:
               must_look_like_an_email_address: must look like an email address
   doorkeeper:
     scopes:
-      write: "Create, update, and delete your observations, identifications, and other content on your behalf"
-      login: "Access informtion relevant to sign in, like email address, username, name, and user icon"
+      write: |
+        Create, update, and delete your observations, identifications, and other
+        content on your behalf, and access your private coordinates and any
+        other information you can access on the site.
+      login: |
+        Access informtion relevant to sign in, like email address, username,
+        name, and user icon
     errors:
       messages:
         # Common error messages

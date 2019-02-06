@@ -1,6 +1,8 @@
 class OauthAuthorizationsController < Doorkeeper::AuthorizationsController
   include Ambidextrous
+  layout "bootstrap"
   prepend_before_filter :return_here, :only => [:new]
+  prepend_before_filter :set_site
 
   private
   def return_here
@@ -13,5 +15,12 @@ class OauthAuthorizationsController < Doorkeeper::AuthorizationsController
       session[:return_to] = request.fullpath
     end
     true
+  end
+  def set_site
+    if params[:inat_site_id]
+      @site ||= Site.find( params[:inat_site_id] )
+    end
+    @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
+    @site ||= Site.default
   end
 end

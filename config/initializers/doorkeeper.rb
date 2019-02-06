@@ -44,7 +44,7 @@ Doorkeeper.configure do
 
   # Define access token scopes for your provider
   # For more information go to https://github.com/applicake/doorkeeper/wiki/Using-Scopes
-  default_scopes  :write
+  default_scopes  :write, :login
   optional_scopes :write, :login
 
   # Change the way client credentials are retrieved from the request object.
