@@ -34,7 +34,7 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
           { sortedStatuses.map( status => {
             let text = status.statusText( );
             text = I18n.t( text, { defaultValue: text } );
-            if ( !text.match(new RegExp(`\${status.status}\`)  ) {
+            if ( !text.match(new RegExp(`(${status.status})`)  ) {
               text += ` (${status.status})`;
             }
             let flagClass;
