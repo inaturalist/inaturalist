@@ -467,6 +467,9 @@ class Taxon < ActiveRecord::Base
         unique_hash: { "Annotation::reassess_annotations_for_taxon_ids": [taxon_id] } ).
         reassess_annotations_for_taxon_ids( [taxon_id] )
     end
+    if has_taxon_framework_relationship
+      reasess_taxon_framework_relationship_after_move
+    end
     true
   end
 
@@ -1019,6 +1022,21 @@ class Taxon < ActiveRecord::Base
     true
   end
   
+  def has_taxon_framework_relationship
+    return false if taxon_framework_relationship_id.nil?
+    true
+  end
+  
+  def reasess_taxon_framework_relationship_after_move
+    tfr = taxon_framework_relationship
+    if tf = tfr.taxon_framework
+      unless upstream_taxon_framework == tf
+        tfr.destroy
+        update_attributes( taxon_framework_relationship_id: nil )
+      end
+    end
+  end
+ 
   def upstream_taxon_framework
     return @upstream_taxon_framework if @upstream_taxon_framework
     @upstream_taxon_framework = get_upstream_taxon_framework

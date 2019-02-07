@@ -4,7 +4,7 @@ import moment from "moment-timezone";
 import util from "../util";
 
 const Project = class Project {
-  constructor( attrs ) {
+  constructor( attrs, additionalSearchParams = { } ) {
     Object.assign( this, attrs );
     this.is_traditional = this.project_type !== "collection" && this.project_type !== "umbrella";
     this.is_umbrella = ( this.project_type === "umbrella" );
@@ -36,6 +36,7 @@ const Project = class Project {
     if ( this.is_traditional ) {
       this.search_params.collection_preview = true;
     }
+    Object.assign( this.search_params, additionalSearchParams );
     this.setPreviewSearchParams( );
     const start = this.rule_observed_on || this.rule_d1;
     const end = this.rule_observed_on || this.rule_d2;

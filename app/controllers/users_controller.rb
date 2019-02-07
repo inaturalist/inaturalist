@@ -1,7 +1,10 @@
 #encoding: utf-8
 class UsersController < ApplicationController
-  before_action :doorkeeper_authorize!,
-    only: [ :create, :update, :edit, :dashboard, :new_updates, :api_token ],
+  before_action -> { doorkeeper_authorize! :login, :write },
+    only: [ :edit ],
+    if: lambda { authenticate_with_oauth? }
+  before_action -> { doorkeeper_authorize! :write },
+    only: [ :create, :update, :dashboard, :new_updates, :api_token ],
     if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },

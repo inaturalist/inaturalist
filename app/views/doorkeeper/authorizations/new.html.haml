@@ -1,0 +1,27 @@
+.container
+  .row
+    .col-xs-4
+      = image_tag @pre_auth.client.application.becomes( OauthApplication ).image.url(:medium), class: "img-responsive"
+    .col-xs-8
+      %h2=t "views.oauth.authorizations.new.authorize_application_to_use_your_account?", application: @pre_auth.client.name
+      - if @pre_auth.scopes
+        %p=t "views.oauth.authorizations.new.this_application_will_be_able_to_colon"
+        %ul
+          - @pre_auth.scopes.each do |scope|
+            %li= t scope, :scope => [:doorkeeper, :scopes]
+      #auth-buttons
+        = form_tag oauth_authorization_path, method: :post, class: "inlineblock" do
+          = hidden_field_tag :client_id, @pre_auth.client.uid
+          = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
+          = hidden_field_tag :state, @pre_auth.state
+          = hidden_field_tag :response_type, @pre_auth.response_type
+          = hidden_field_tag :scope, @pre_auth.scope
+          = submit_tag t(:authorize), :class => "btn btn-success"
+        = form_tag oauth_authorization_path, method: :delete, class: "inlineblock", style: "margin-left: 10px;" do
+          = hidden_field_tag :client_id, @pre_auth.client.uid
+          = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
+          = hidden_field_tag :state, @pre_auth.state
+          = hidden_field_tag :response_type, @pre_auth.response_type
+          = hidden_field_tag :scope, @pre_auth.scope
+          = submit_tag t(:deny), :class => "btn btn-default"
+        = link_to t("views.oauth.authorizations.new.more_about_application", application: @pre_auth.client.name ), @pre_auth.client.application.becomes( OauthApplication ), target: "_blank", class: "btn btn-link pull-right"

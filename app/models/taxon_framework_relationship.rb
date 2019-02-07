@@ -30,10 +30,10 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
     "unknown"
   ]
   
-  TAXON_JOINS = [
+  INTERNAL_TAXON_JOINS = [
     "LEFT OUTER JOIN taxa t ON t.taxon_framework_relationship_id = taxon_framework_relationships.id"
   ]
-  EXTERNAL_JOINS = [
+  EXTERNAL_TAXON_JOINS = [
     "LEFT OUTER JOIN external_taxa et ON et.taxon_framework_relationship_id = taxon_framework_relationships.id"
   ]
   
@@ -41,21 +41,28 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
   scope :taxon_framework, lambda{ |taxon_framework| where("taxon_framework_relationships.taxon_framework_id = ?", taxon_framework ) }
   scope :by, lambda{ |user| where( user_id: user ) }
   scope :active, -> {
-    joins( TAXON_JOINS ).
+    joins( INTERNAL_TAXON_JOINS ).
     where( "t.is_active = true" )
   }
   scope :inactive, -> {
-    joins( TAXON_JOINS ).
+    joins( INTERNAL_TAXON_JOINS ).
     where( "t.is_active = false" )
   }
-  scope :rank, lambda { |rank|
-    joins( TAXON_JOINS ).
+  scope :internal_rank, lambda { |rank|
+    joins( INTERNAL_TAXON_JOINS ).
     where( "t.rank = ?", rank )
   }
-  scope :taxon, lambda{ |taxon|
-    joins( TAXON_JOINS ).
-    joins( EXTERNAL_JOINS ).
-    where( "t.id = ? OR t.ancestry LIKE (?) OR t.ancestry LIKE (?) OR et.name = ? OR et.parent_name = ?", taxon.id, "%/#{ taxon.id }", "%/#{ taxon.id }/%", taxon.name, taxon.name)
+  scope :external_rank, lambda { |rank|
+    joins( EXTERNAL_TAXON_JOINS ).
+    where( "et.rank = ?", rank )
+  }
+  scope :internal_taxon, lambda{ |taxon|
+    joins( INTERNAL_TAXON_JOINS ).
+    where( "t.id = ? OR t.ancestry LIKE (?) OR t.ancestry LIKE (?)", taxon.id, "%/#{ taxon.id }", "%/#{ taxon.id }/%")
+  }
+  scope :external_taxon, lambda{ |taxon_name|
+    joins( EXTERNAL_TAXON_JOINS ).
+    where( "lower(et.name) = ? OR lower(et.parent_name) = ?", taxon_name.downcase.strip, taxon_name.downcase.strip)
   }
   
   def mark_external_taxa_for_destruction
