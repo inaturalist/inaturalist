@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   include Ambidextrous
+  include Shared::FiltersModule
 
   # many people try random URLs like wordpress login pages with format .php
   # for any format we do not recognize, make sure we render a proper 404
@@ -60,14 +61,6 @@ class ApplicationController < ActionController::Base
     session[:return_to] = request.fullpath
   end
 
-  def set_site
-    if params[:inat_site_id]
-      @site ||= Site.find( params[:inat_site_id] )
-    end
-    @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
-    @site ||= Site.default
-  end
-
   def draft_site_requires_login
     return unless @site && @site.draft?
     return if [ login_path, user_session_path, session_path ].include?( request.path )
@@ -97,23 +90,6 @@ class ApplicationController < ActionController::Base
       trackers << [ @site.name.gsub(/\s+/, '').underscore, @site.google_analytics_tracker_id ]
     end
     request.env[ "inat_ga_trackers" ] = trackers unless trackers.blank?
-  end
-
-  def set_request_locale
-    # use params[:locale] for single-request locale settings,
-    # otherwise use the session, user's preferred, or site default,
-    # or application default locale
-    locale = params[:locale]
-    locale = session[:locale] if locale.blank?
-    locale = current_user.try(:locale) if locale.blank?
-    locale = @site.locale if locale.blank?
-    locale = locale_from_header if locale.blank?
-    locale = I18n.default_locale if locale.blank?
-    I18n.locale = locale
-    unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
-      I18n.locale = I18n.default_locale
-    end
-    true
   end
 
   def locale_from_header
