@@ -390,6 +390,7 @@ it:
     subgenus: Tutti i subgeneri aggiunti al database
     section: Tutte le sezioni aggiunte al database
     subsection: Tutte le subsezioni aggiunte al database
+    complex: Tutti i complessi aggiunti al database
     species: Tutte le specie aggiunte al database
     hybrid: Tutti gli ibridi aggiunti al database
     subspecies: Tutte le sottospecie aggiunte al database
@@ -547,6 +548,9 @@ it:
   are_you_sure_remove_from_project: Sei sicuro di voler rimuovere %{user} da questo
     progetto?
   are_you_sure_remove_photo: Sei sicuro di voler rimuovere questa foto?
+  are_you_sure_remove_relationship: Sei sicuro di voler rimuovere questa relazione?
+    In questo modo non seguirai questa persona e revocherai il suo accesso alle tue
+    coordinate private se glielo avevi permesso.
   are_you_sure_remove_taxon_from_list: Sei sicuro di voler rimuovere questo taxon
     dall'elenco?
   are_you_sure_remove_taxon_from_place: Sei sicuro di voler rimuovere questo taxon
@@ -1289,6 +1293,8 @@ it:
   download_kml: Scarica il file KML
   downstream_coverage: Copertura a valle
   downstream_coverage_rank: Rango di copertura a valle
+  downstream_deviations: Deviazioni a valle
+  downstream_flagged_covered_taxa: Taxa coperti segnalati a valle
   drag_and_drop_photos: trascina e rilascia le foto in tale finestra o
   draft: bozza
   draft_: Bozza
@@ -1348,6 +1354,8 @@ it:
     per variare il tipo di aggiornamenti che ricevi o disiscriverti completamente.
   edited: Modificato
   edited_by_name_html: Modificato da %{name}
+  edited_by_name_some_rights_reserved_html: Modificato da %{name}, alcuni diritti
+    riservati (%{license})
   editing: Modifica in corso
   editing_announcement: Modifica annuncio in corso
   editing_custom_project_fields_for: Modifica in corso dei campi del progetto personalizzato
@@ -1569,6 +1577,7 @@ it:
   flags_with_count: Contrassegni (%{count})
   flags_explanation: Gli utenti di %{site_name} contrassegnano gli elementi che richiedono
     attenzione dai curatori del sito e/o dagli amministratori del sito.
+  flags_for_x_html: Segnalazioni per %{x}
   flags_on_users_content: Contrassegni sui contenuti di %{user}
   flickr_account_information: Informazioni del tuo account Flickr
   flickr_description: Flickr è un servizio di hosting per le foto, magari già lo conoscete!
@@ -1642,6 +1651,10 @@ it:
   Genus: Genere
   genus_slash_species: '[GENERE] / [SPECIE]'
   geoprivacy: Geoprivacy
+  geoprivacy_is_obscured: La geoprivacy è oscurata
+  geoprivacy_is_obscured_desc: L'osservatore ha scelto di nascondere le coordinate.
+  geoprivacy_is_private: La geoprivacy è privata
+  geoprivacy_is_private_desc: L'osservatore ha scelto di nascondere le coordinate.
   georeferenced: Georeferenziata?
   georeferenced?: georeferenziata
   get_current_position: Ottieni la posizione attuale
@@ -1973,6 +1986,7 @@ it:
   keyboard_shortcuts: Scorciatoie a tastiera
   kml: KML
   kml_file_size_error: Il KML deve essere meno di 1 MB
+  label_colon: '%{label}:'
   labels: Etichette
   label_to_group_a_batch_of_taxon_changes: Etichetta per raggruppare una serie di
     modifiche dei taxa
@@ -2282,6 +2296,7 @@ it:
   manage_names: Gestisci i nomi
   manage_your_projects: Gestisci i Tuoi Progetti
   manage_your_project_invitations: Gestisci i tuoi inviti al progetto
+  manage_your_relationships: Organizza le tue relazioni
   manage_subscriptions: Gestisci iscrizioni
   managed: gestito
   manager: Gestore
@@ -2382,6 +2397,7 @@ it:
   more_fields: Più campi
   more_filters: Più filtri
   more_from_x: Più info su %{x}
+  more_help: Più aiuto
   more_import_options: Più opzioni di importazione
   more_info: Ulteriori Informazioni
   more_info_title: Ulteriori Informazioni
@@ -3701,6 +3717,7 @@ it:
     not_external: non esterno
     not_internal: non interno
     unknown: sconosciuto
+  relationship_html: 'Relazioni: %{link}'
   reload_and_refresh: Ricarica ed aggiorna la lista
   reload_from_observations: Ricarica dalle osservazioni
   reload_timed_out: Tempo del caricamento scaduto. Riprova più tardi.
@@ -3734,6 +3751,7 @@ it:
   remove_place: Rimuovi luogo
   remove_project_user: Rimuovi l'utente del progetto
   remove_range: Rimuovi l'areale
+  remove_relationship: Rimuovi relazione
   remove_section: Rimuovi sezione
   remove_selected: Rimuovi i selezionati
   remove_tags: Rimuovi i tag
@@ -4140,6 +4158,8 @@ it:
   stop_editing: Termina la modifica
   stop_following_user: Smetti di seguire %{user}
   stop_testing: Termina il test
+  stop_trusting_this_person_with_your_private_coordinates: Smetti di rivelare a questa
+    persona le tue coordinate private
   stop_updating_position: Arresta l'aggiornamento del posizionamento
   studies_that_used_inaturalist_data_in_year: Studi che hanno utilizzato i dati di
     iNaturalist nel %{year}
@@ -4266,6 +4286,16 @@ it:
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} è un regno animale con 1 osservazione'
     other: '%{taxon} è un regno animale con %{count} osservazioni'
+  taxon_is_threatened_coordinates_hidden: Il taxon è minacciato, le coordinate sono
+    nascoste in maniera predefinita
+  taxon_is_threatened_coordinates_hidden_desc: Uno dei taxa suggeriti nelle identificazioni,
+    o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato,
+    sicché l'ubicazione di questa osservazione è stata nascosta.
+  taxon_is_threatened_coordinates_obscured: Il taxon è minacciato, le coordinate sono
+    nascoste in maniera predefinita
+  taxon_is_threatened_coordinates_obscured_desc: Uno dei taxa suggeriti nelle identificazioni,
+    o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato,
+    sicché l'ubicazione di questa osservazione è stata nascosta.
   taxonomy: Tassonomia
   taxon_: taxon
   taxon_assessments_are: |-
@@ -4341,6 +4371,7 @@ it:
     per aiutare a descrivere cosa intendiamo per un taxon. <a href="/pages/taxon_frameworks">Leggi
     di più</a>.
   taxonomy_settings: Impostazioni tassonomiche
+  teachers_guide: Guida per l'insegnante
   tell_everyone_a_little_about_you: Dì a tutti qualcosa di te
   tell_the_world_a_little_about_yourself: Parlaci di te
   tell_us_why: Dicci perché...
@@ -4511,6 +4542,7 @@ it:
     tardi.
   this_is_the_primary_listing: Questa è la lista principale
   this_is_your_observation: Questa è la tua osservazione
+  this_is_your_observation_desc: Puoi sempre vedere le coordinate delle tue osservazioni.
   this_job_failed_to_run: L'operazione è fallita. Per favore contatta %{email}
   this_list_is_empty!: Questa lista è vuota!
   this_list_only_accepts_taxa_that_are: Questa lista accetta solo taxa che sono
@@ -4619,7 +4651,11 @@ it:
   "true": Vero
   trending: Tendenze
   trends: Tendenze
+  trusted: Affidabile
   trusted_project?: Progetto fidato?
+  trust_this_person_with_your_private_coordinates: Rivela a questa persona le tue
+    coordinate private
+  trust_with_private_coordinates: Rivela le coordinate private
   try_adding_species_form: Prova ad aggiungere alcune specie utilizzando il modulo
     in questa pagina.
   try_it_out: Provala
@@ -4781,6 +4817,10 @@ it:
   user_s_lists: Elenchi di %{user}
   user_suggested_an_id: '%{user} ha suggerito un ID'
   user_thinks_yours_is: '%{user} %{noun} che la tua osservazione %{observation} sia'
+  user_trusts_you_with_their_private_coordinates: '%{user} ti ha rivelato le sue coordinate
+    private'
+  user_trusts_you_with_their_private_coordinates_desc: L'osservatore ha deciso di
+    rivelarti le coordinate private di tutte le sue osservazioni.
   username: Nome utente
   username_or_email: Nome utente o email
   username_or_user_id: Nome Utente o ID Utente
@@ -4901,6 +4941,7 @@ it:
   view_your_year_stats: Visualizza le tue statistiche %{year}
   view_yours: Visualizza le tue
   view_all_of_your_observations_from_x: Visualizza tutte le tue osservazioni da %{x}
+  video_tutorials: Tutorial video
   visually_similar: Visivamente simili
   vulnerable: Vulnerabile
   w00t_no_ungrafted_taxa: Ops! Non si accettano taxa senza relazioni tassonomiche!
@@ -4995,6 +5036,11 @@ it:
   why_you_can_see_the_coordinates: Perché puoi vedere le coordinate
   who_can_add_observations_to_this_project?: Chi può aggiungere osservazioni al questo
     progetto?
+  who_can_see_the_coordinates: Chi può vedere le coordinate
+  who_can_see_the_coordinates_observer: La persona che ha fatto l'osservazione
+  who_can_see_the_coordinates_projects: I curatori dei seguenti progetti
+  who_can_see_the_coordinates_trusted: Le persone a cui l'osservatore ha rivelato
+    le sue coordinate private
   who_helped_user_the_most: Chi ha aiutato maggiormente %{user}
   who_user_helped_the_most: Chi %{user} ha aiutato di più
   why_the_coordinates_are_obscured: Perché le coordinate sono oscurate
@@ -5132,6 +5178,11 @@ it:
     altre persone!
   you_cant_rotate_photos_hostde_outside: Non puoi ruotare le foto ospitate al di fuori
     di %{site_name}.
+  you_curate_a_project_that_contains_this_observation: Tu curi un progetto che contiene
+    questa osservazione
+  you_curate_a_project_that_contains_this_observation_desc: Tu puoi vedere le coordinate
+    oscurate quando curi un progetto che contiene un osservazione e l'osservatore
+    ha scelto di condividere le coordinate con i curatori di quel progetto.
   you_didnt_select_any_observations: Non hai selezionato nessuna osservazione.
   you_didnt_select_any_photos_to_tag: Non hai selezionato nessuna foto da etichettare!
   you_dont: Non hai
@@ -5254,6 +5305,7 @@ it:
   your_pinned_locations: Le tue località memorizzate
   your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
   your_recent_projects: I tuoi progetti recenti
+  your_relationships: Le tue relazioni
   your_should_recognize: Dovresti riconosce alcune di queste foto
   your_site_account_has_been_created: Il tuo account %{site} è stato creato.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}

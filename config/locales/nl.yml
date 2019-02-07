@@ -269,7 +269,7 @@ nl:
     een lijst hebt toegevoegd. In ontwikkeling, we werken de bugs nog weg...
   add_observations_project: Voeg waarnemingen toe aan dit project
   add_one: Voeg er één toe!
-  add_one_now: Voeg er een toe
+  add_one_now: Voeg er nu één toe
   add_photos: Foto's toevoegen
   add_photos_to_this_observation: Voeg foto's toe bij deze waarneming
   add_place: Plaats toevoegen
@@ -720,8 +720,8 @@ nl:
   browse_your_observations: Doorblader je waarnemingen
   built_with_site_guides_html: Gebouwd met <a href='%{url}'>%{site_name} Gidsen</a>
   bulk_import_of_filename_is_complete: Bulk import van %{filename} is klaar
-  but_we_didnt_add_this_observation_to_the_x_project: De waarneming werd echter niet
-    aan het %{project} project toegevoegd aangezien je je nog niet akkoord verklaarde
+  but_we_didnt_add_this_observation_to_the_x_project: De waarneming werd niet aan
+    het %{project}-project toegevoegd aangezien je je nog niet akkoord verklaarde
     met de projectvoorwaarden.
   by: door
   by_adding_ids_to_observations: door ID's aan waarnemingen toe te voegen
@@ -1403,7 +1403,7 @@ nl:
   establishment_means: Vestigingswijze
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: inheems en komt nergens anders voor
-    arrived_in_the_region_via_anthropogenic_means: in de regio beland op anthopogene
+    arrived_in_the_region_via_anthropogenic_means: in de regio gekomen op antropogene
       wijze
   establishment_means_describes_how: Vestigingswijze beschrijft hoe het taxon zich
     heeft kunnen vestigen in een gebied. Zie DarwinCore voor <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">meer
@@ -1745,7 +1745,7 @@ nl:
   home_faq: Veelgestelde vragen
   however_there_were_some_issues: 'Helaas, er zijn nog een paar issues: %{issues}'
   hybrid: hybride
-  i_agree_to_the_project_terms: Ik ga akkoord met de voorwaarden van dit project
+  i_agree_to_the_project_terms: Ik ga akkoord met de projectvoorwaarden.
   i_dont_know_but_i_am_sure_this_is_taxon: Ik weet het niet maar ik weet zeker dat
     het %{taxon} is
   icon: Pictogram
@@ -2254,8 +2254,7 @@ nl:
   longitude_slash_x_coord_slash_easting: Longitude / x coord / easting
   look_up_name: Naam opzoeken
   looks_like_neither_have!: Het lijkt er op dat geen van beide een taxon bevat!
-  looks_like_no_species_in_guide: Het lijkt erop dat er nog geen soort in uw gids
-    aanwezig is.
+  looks_like_no_species_in_guide: Er is nog geen soort in uw gids aanwezig.
   lookup: Opzoeken
   lookup_user_rarr: Gebruiker &rarr; opzoeken
   low: Laag
@@ -2869,12 +2868,12 @@ nl:
     youve_got_updates_panel_title: Updates beschikbaar!
     youve_got_updates_panel_body_p1: Blijf op de hoogte met nieuwtjes over ...
     youve_got_updates_panel_body_p2: |-
-      <Ul>
-         <li> <strong> Uw inhoud: </strong> Reacties op uw waarnemingen, zoals opmerkingen, determinaties of markeren als favoriet van de %{site_name} gemeenschap. U ontvangt ook updates wanneer iemand uw opmerking toevoegt aan een project of annoteert met extra velden. </Li>
-         <li> <strong> Mensen: </strong> nieuwe waarnemingen of dagboekberichten van de mensen die je volgt. </li>
-         <li> <strong> Organismen, projecten en plaatsen: </strong> Nieuwe waarnemingen van specifieke organismen of plaatsen waarop u bent geabonneerd. U kunt ook deelnemen aan projecten, zodat u wordt geïnformeerd wanneer ze projectjournaalposts publiceren. </Li>
-         <li> <strong> Discussies waar u aan deelneemt: </strong> als u opmerkingen of determinaties toevoegt aan de inhoud van iemand anders, abonneert u zich automatisch op nieuwe activiteiten van deze inhoud. Gebruik de tool 'Beheer uw abonnementen' om geen nieuwtjes meer te ontvangen. </Li>
-      </Ul>
+      <ul>
+         <li><strong>Uw inhoud:</strong> Reacties op uw waarnemingen, bijv. opmerkingen, determinaties of markeringen als favoriet van de %{site_name} gemeenschap. U ontvangt ook updates wanneer iemand uw opmerking toevoegt aan een project of annoteert met extra velden.</li>
+         <li><strong>Mensen:</strong> Nieuwe waarnemingen of dagboekberichten van de mensen die je volgt.</li>
+         <li><strong>Organismen, projecten en plaatsen:</strong> Nieuwe waarnemingen van specifieke organismen of plaatsen waarop u bent geabonneerd. U kunt ook deelnemen aan projecten, zodat u wordt geïnformeerd wanneer ze projectjournaalposts publiceren.</li>
+         <li><strong>Discussies waar u aan deelneemt:</strong> als u opmerkingen of determinaties toevoegt aan de inhoud van iemand anders, abonneert u zich automatisch op nieuwe activiteiten van deze inhoud. Gebruik de tool 'Beheer uw abonnementen' om geen nieuwtjes meer te ontvangen. </li>
+      </ul>
   one_by_one: Eén voor één
   one_of_your_lists: één van uw lijsten ...
   only_a_project_manager_can_add: Alleen een projectmanager kan de projectcuratorstatus
@@ -3149,7 +3148,7 @@ nl:
   place_must_have_a_boundary_defined: Plaats moet een grens gedefinieerd hebben.
   place_name: Plaatsnaam
   place_notes: Notities plaatsen
-  place_subscription: plaatsbeschrijving
+  place_subscription: plaats abonnement
   place_too_big_for_check_list: Deze plaats is te groot voor een checklist. Het berekenen
     van checklist-statistieken is best duur, dus we staan ze niet toe voor zeer grote
     plaatsen (gebieden groter dan twee keer Duitsland), tenzij ze zijn toegevoegd
@@ -3553,7 +3552,7 @@ nl:
   project_requirements: Project Vereisten
   project_rules: Project Regels
   project_settings: Projectinstellingen
-  project_terms_and_rules: project voorwaarden en regels
+  project_terms_and_rules: projectvoorwaarden &amp; regels
   project_that_does_not_contain_these_observations: Project dat deze waarnemingen
     niet bevat
   project_type_description: |-
@@ -3618,7 +3617,7 @@ nl:
     superfamily: Superfamilie
     epifamily: Epifamily
     family: Familie
-    subfamily: Subfamily
+    subfamily: Onderfamilie
     supertribe: Supertribe
     tribe: Tribe
     subtribe: Ondertak
@@ -4161,10 +4160,12 @@ nl:
   subscribe_to_observations_in_a_place: Abonneer je op alle waarnemingen die op deze
     locatie worden gemeld. Je kan ook een optioneel taxon filter toevoegen (bijvoorbeeld
     'paardenbloemen in Utrecht').
-  subscribe_to_places_to: |-
-    Abonneer u op plaatsen om nieuwe waarnemingen te ontvangen die daar gedaan zijn. Nieuws van mensen die je volgt en onderwerpen waar je op gereageerd hebt worden ook beheerd via abonnementen, dus als je het wilt zien waar je op geabonneerd bent en of als je je wilt afmelden voor onderwerpen, dat kan
-    klik op "Beheer al uw abonnementen" hieronder. Je zou je ook moeten
-    kunnen afmelden voor alles op de site door de betreffende pagina te bekijken.
+  subscribe_to_places_to: Abonneer u op plaatsen om de nieuwe waarnemingen van die
+    plaats te ontvangen. Nieuws van mensen die je volgt en onderwerpen waar je op
+    gereageerd hebt worden ook beheerd via abonnementen. Als je wilt zien waar je
+    op geabonneerd bent of als je je wilt afmelden voor onderwerpen, klik dan op "Beheer
+    al uw abonnementen" hieronder. Je zou je ook moeten kunnen afmelden voor alles
+    op de site door de betreffende pagina te bekijken.
   subscribe_to_this: Abonneer u hierop
   subscribe_to_this_observation: Abonneer je op deze waarneming
   subscribe_to_x_from_this_y_html: |-
@@ -4352,7 +4353,7 @@ nl:
   tell_everyone_a_little_about_you: Vertel eens iets over je zelf
   tell_the_world_a_little_about_yourself: Vertel ons over jezelf
   tell_us_why: Vertel ons waarom ...
-  terms: Termen
+  terms: Voorwaarden
   terms_and_rules_html: Voorwaarden en regels
   terms_new_users: Als je voorwaarden toevoegd moeten nieuwe gebruikers daar mee akkoord
     gaan voordat ze deel kunnen nemen aan het dit project.
@@ -4699,7 +4700,7 @@ nl:
     one: Werk 1 geselecteerd taxon bij
     other: Werk %{count} geselecteerde taxa bij
   update_your_content: Inhoud bijwerken
-  update_with_eol_content: Bjiwerken met EOL content
+  update_with_eol_content: Bijwerken met EOL content
   update_with_site_content: Bijwerken met %{site_name} content
   updated: Bijgewerkt
   updated_by: Bijgewerkt door
@@ -4898,7 +4899,7 @@ nl:
   view_taxon_page_for: Bekijk hier de taxon-pagina voor
   view_taxon_page_for_this_x: Taxonpagine voor dit %{x} weergeven
   view_taxonomic_changes: Taxonomische wijzigingen weergeven
-  view_terms: Termen bekijken
+  view_terms: Voorwaarden bekijken
   view_the: De %{action}&#59; %{link} weergeven
   view_the_observation: Bekijk de waarneming
   view_the_range: Bekijk het bereik
@@ -4945,7 +4946,7 @@ nl:
     aan te melden.
   we_currently_support_flickr_for_image_hosting: We ondersteunen Flickr momenteel
     voor image hosting.
-  we_didnt_find_any_photos: We konden geen foto's vinden die overeenkomen met uw zoekopdracht.
+  we_didnt_find_any_photos: Er zijn geen foto's die overeenkomen met je zoekopdracht.
   we_had_a_problem_flagging_that_item: 'Er was een probleem met het markeren van dit
     item: %{flag_error}'
   we_had_trouble_saving_comment: 'We hadden moeite om die opmerking te bewaren:'
@@ -5100,7 +5101,7 @@ nl:
   you_are_now_following_x: Je volgt nu %{friend_user}
   you_are_now_role_for_project_html: <strong>Je</strong> bent nu %{role} voor %{project}
   you_are_not_editing_any_guides_add_one_html: Je bewerkt geen gidsen. <a href="/guides/new">Voeg
-    er een toe</a>
+    er één toe</a>
   you_are_already_a_member_of_this_project: Je bent reeds lid van dit project!
   you_are_no_longer_following_x: Je volgt niet langer %{friend}
   you_are_setting_this_project_to_aggregate: 'U stelt dit project in om alle waarnemingen
@@ -5370,18 +5371,18 @@ nl:
           <a href="http://eol.org"><img src="https://eol.org/assets/large_logo-61d6036612463aa36f3a2561bf2e258d133eb693a737a7169af0efb2b31d5454.png"></a>
         welcome_message_html: |-
           Gidsen leren je over de biodiversiteit van de gehele wereld.
-          Of je nu de Serengeti verkent of alleen je plaatselijke park (wat de Serengeti zou kunnen zijn), Gidsen kunnen je helpen een idee te geven van de verbluffende diversiteit van het leven van onze planeet.
+          Of je nu de Vondelpark verkent of alleen je plaatselijke park (wat de Serengeti zou kunnen zijn), Gidsen kunnen je helpen een idee te geven van de verbluffende diversiteit van het leven van onze planeet.
       edit:
         add_eol_content: Voeg EOL-inhoud toe aan geselecteerde taxa als een batch.
           Dit kan even duren, dus wees geduldig.
         add_color_tags_help: Voeg kleurtags toe uit kleuren die aan de geselecteerde
           taxa zijn gekoppeld.
         add_rank_tags_help_html: |-
-          Voeg taxonrangetags toe op basis van onze taxonomie, bijvoorbeeld
-          <Code>familie = Laridae</code>
+          Voeg taxonranktags toe op basis van onze taxonomie, bijvoorbeeld
+          <code>familie=Bucerotiformes</code>
           of
-          <code>familie = meeuwen en soortgelijken</code>
-        coordinates_desc: Door je gidscoördinaten te geven kunnen mensen het vinden
+          <code>familie=Hoppen, boomhoppen en neushoornvogels</code>
+        coordinates_desc: Door je gids coördinaten te geven kunnen mensen het vinden
           wanneer ze de locatie opzoeken.
         eol_subjects_desc: EOL publiceert inhoud onder een aantal verschillende onderwerprubrieken,
           die niet allemaal beschikbaar zijn voor elk taxon. "Overzicht" kiezen zal
@@ -5392,10 +5393,9 @@ nl:
           aarde. Bij EOL kun je \n<a href=\"http://eol.org/info/252\" target=\"_blank\">verzamelingen</a>\nvan
           soorten creëren. Als je soorten uit een EOL-verzameling wilt importeren,\nplak
           dan hier de URL van die verzameling."
-        guide_place_desc: |-
-          Door uw gids aan een plaats te koppelen, kunnen mensen hem vinden wanneer zev
-          zoeken naar plaatsen en het zal de plaatsgrens tonen
-          %{site_name} brengt in kaart waar ze worden weergegeven als een grens is ingesteld
+        guide_place_desc: Door jouw gids aan een plaats te koppelen kunnen mensen
+          hem vinden wanneer ze zoeken naar plaatsen en het zal de plaatsgrens tonen
+          op %{site_name}-kaart waar ze worden weergegeven als een grens is ingesteld
           (bijvoorbeeld "kaart"-weergave, taxon-pagina's, etc.)
         import_tags_from_csv_help_html: |-
           <p>
@@ -5457,15 +5457,10 @@ nl:
       mobile_downloads_tip_html: Deze gids kan gedownload worden naar de mobiele app
         voor offline-gebruik.
       mobile_downloads_help_html: |-
-        <p>Hiermee wordt een downloadbaar archief gemaakt van alle gegevens en media
-        gekoppeld aan deze handleiding, zodat gebruikers van mobiele apps de
-        inhoud in de gids kunnen raadplegen zonder internetverbinding. Het duurt
-        enkele minuten om het archief te genereren, maar zodra dit is ingeschakeld, is het
-        archief wordt bijgewerkt wanneer u deze handleiding wijzigt.</p>
+        <p>Hiermee wordt een downloadbaar archief gemaakt van alle gegevens en media gekoppeld aan deze handleiding, zodat gebruikers van mobiele apps de inhoud in de gids kunnen raadplegen zonder internetverbinding. Het duurt
+        enkele minuten om het archief te genereren, maar zodra dit is ingeschakeld, is het archief wordt bijgewerkt wanneer u deze handleiding wijzigt.</p>
         <p class="alert status">
-          <strong>Schakel offline mobiele downloads alleen in als je
-          daadwerkelijk van plan bent om ze te gebruiken.</strong> Ze
-          veroorzaken een aanzienlijk belasting van ons systeem.
+          <strong>Schakel offline mobiele downloads alleen in als je daadwerkelijk van plan bent om ze te gebruiken.</strong> Ze veroorzaken een aanzienlijk belasting van ons systeem.
         </p>
       pdf_layouts:
         grid: raster
@@ -5479,13 +5474,11 @@ nl:
           meerdere pagina's.
       pdf_generation_notice: Even geduld, het genereren van grote PDF's kan een minuut
         of twee duren.
-      tags_help_html: "Tags zijn als categorieën voor de soorten in je gids, maar
-        \nmeerdere soorten kunnen dezelfde tag hebben. Voer tags in als een komma\ngescheiden
-        lijst bijv. <code>klein, harig</code>. Om benoemde categorieën toe te voegen
-        gebruik je tags zoals <code>category_name=category_value</code>,\nbijv. <Code>color=
-        geel</code>."
+      tags_help_html: |-
+        Tags zijn als categorieën voor de soorten in je gids, maar meerdere soorten kunnen dezelfde tag hebben. Voer tags in als een komma gescheiden lijst bijv. <code>klein, harig</code>. Om benoemde categorieën toe te voegen gebruik je tags zoals <code>category_name=category_value</code>,
+        bijv. <Code>color= geel</code>.
       sorts:
-        default: Gids volgorde
+        default: Gidsvolgorde
         alphaname: Alfabetisch op wetenschappelijke naam
         alphadisplay: Alfabetisch op weergavenaam
     guide_taxa:
@@ -5500,11 +5493,11 @@ nl:
           als je dat niet bent, zal het alleen de gelicentieerde inhoud kopiëren.
     help:
       index:
-        welcome_message_html: "Howdy. Als je net bent begonnen met %{site_name}, bekijk
-          dan eens de \n<a href=\"%{url}\">%{getting_started}</a>gids om een aantal
-          mogelijkheden van deze site te bekijken. Als je een vraag over de site hebt,
-          kijk dan in de FAQ hieronder. Als je nog op zoek bent naar antwoorden, <a
-          href=\"%{feedback_url}\">plaats dan je vraag in onze feedbackgroep</a>."
+        welcome_message_html: Howdy. Als je net bent begonnen met %{site_name}, bekijk
+          dan eens de <a href="%{url}">%{getting_started}</a>gids om een aantal mogelijkheden
+          van deze site te bekijken. Als je een vraag over de site hebt, kijk dan
+          in de FAQ hieronder. Als je nog op zoek bent naar antwoorden, <a href="%{feedback_url}">plaats
+          dan je vraag in onze feedbackgroep</a>.
         what_is_inaturalist?: Wat is %{site_name}?
         who_is_behind_inaturalist?: Wie zit er achter %{site_name}?
         what_technologies_does_the_project_use?: Welke technologieën en databronnen
@@ -5716,13 +5709,12 @@ nl:
         disagreement_count: Onenigheid Aantal
         identification_count: Determinatie Aantal
         score: Score
-        explanation: "<P>\n   Als om een of andere reden een gebruiker het niet eens
-          is met het community taxon,\n   kunnen ze het weigeren, wat betekent dat
-          hun ID de naam is die gebruikt wordt\n   bij het koppelen aan andere waarnemingen,
-          levenslijsten bijwerken, etc. \n   Hun waarneming kan alleen Onderzoekskwaliteit
-          worden als de\n   gemeenschap het met hen eens is.\n</p>\n<P>\n   De community-ID
-          wordt echter nog steeds weergegeven, dus iedereen kan de\n   verschillende
-          ID's zien die zijn voorgesteld.\n</p>"
+        explanation: |-
+          <p>Als een gebruiker het niet eens is met het gemeenschapstaxon kan zij het weigeren. Haar determinatie is de naam die gebruikt wordt bij het koppelen aan andere waarnemingen, levenslijsten bijwerken, etc. De waarneming kan alleen Onderzoekskwaliteit worden als de
+             gemeenschap het met haar eens is.
+          </p>
+          <p>De gemeenschapsID wordt echter nog steeds weergegeven, dus iedereen kan de verschillende ID's zien die zijn voorgesteld.
+          </p>
         you_have_opted_out: Je hebt je afgemeld voor community-determinaties
         opt_in_for_this_observation: Opt in voor deze waarneming
         your_id_does_not_match: Je determinatie (<span class = "bold">%{taxon_name}</span>)
@@ -5865,22 +5857,23 @@ nl:
         flagged_photos_desc_html: |-
           Sommige van deze foto's zijn gemarkeerd wegens ongepaste inhoud of
           auteursrechtinbreuken. Voor details zie %{links}
-        join_project_desc_html: |-
-          Deelnemen aan het project geeft projectcuratoren de rechten
-           om de verborgen coördinaten van deze of elke andere waarneming in het project te zien en impliceert dat jij akkoord gaat met de project <a href="%{url}" target="_blank">voorwaarden </a>.
+        join_project_desc_html: Deelnemen aan het project geeft projectcuratoren de
+          rechten om de verborgen coördinaten van deze of elke andere waarneming in
+          het project te zien en impliceert dat jij akkoord gaat met de project<a
+          href="%{url}" target="_blank">voorwaarden </a>.
         quality_assessment_help_html: "<p>\nDe gegevenskwaliteit is een weergave van
           de nauwkeurigheid van de waarneming. Alle waarnemingen beginnen als <strong>\"onvolledig(casual)\"</strong>
-          en worden <strong>\"ID gewenst(needs ID)\"</strong> als\n</p>\n\n<ul>\n
-          \  <li>de waarneming <strong>een datum heeft</strong></li>\n   <li>de waarneming
-          <strong>geografische referenties heeft</strong> (heeft coördinaten)</li>\n  
-          <li>de waarneming <strong>foto's of geluiden heeft</strong></li>\n   <li>de
-          waarneming <strong>geen mens is</strong></li>\n</ul>\n<p>\n  Waarnemingen
-          worden <strong>\"Onderzoekskwaliteit(RG)\"</strong> als\n</p>\n<ul>\n  <li>de
-          %{site_name} <strong>gemeenschap het eens is over de determinatie op soortniveau
-          of lager</strong>, d.w.z. meer dan 2/3 van de determinaties is het eens
-          over een taxon</li>\n</ul>\n\n<p>\nWaarnemingen worden teruggezet naar <strong>\"onvolledig(casual)\"</strong>
-          als niet aan de bovenstaande voorwaarden wordt voldaan of als de community
-          hiermee instemt\n</p>\n<ul>\n  <li>de locatie <strong>lijkt niet nauwkeurig</strong>
+          en worden <strong>\"ID gewenst\"</strong> als\n</p>\n\n<ul>\n   <li>de waarneming
+          <strong>een datum heeft</strong></li>\n   <li>de waarneming <strong>geografische
+          referenties heeft</strong> (heeft coördinaten)</li>\n   <li>de waarneming
+          <strong>foto's of geluiden heeft</strong></li>\n   <li>de waarneming <strong>geen
+          mens is</strong></li>\n</ul>\n<p>\n  Waarnemingen worden <strong>\"Onderzoekskwaliteit(RG)\"</strong>
+          als\n</p>\n<ul>\n  <li>de %{site_name} <strong>gemeenschap het eens is over
+          de determinatie op soortniveau of lager</strong>, d.w.z. meer dan 2/3 van
+          de determinaties is het eens over een taxon</li>\n</ul>\n\n<p>\nWaarnemingen
+          worden teruggezet naar <strong>\"onvolledig(casual)\"</strong> als niet
+          aan de bovenstaande voorwaarden wordt voldaan of als de community hiermee
+          instemt\n</p>\n<ul>\n  <li>de locatie <strong>lijkt niet nauwkeurig</strong>
           (bijvoorbeeld apen in het midden van \n      de oceaan, nijlpaarden in kantoorgebouwen,
           etc.)</li>\n  <li>het <strong>organisme is niet wild/genaturaliseerd</strong>
           (bijvoorbeeld gevangen of \n      gekweekt door mensen of intelligente ruimtewezens)</li>\n
@@ -5950,10 +5943,9 @@ nl:
           geldige taxa, probeer dan een specifieke naam te gebruiken\ndie overeenkomt
           met één taxon."
       users_updates_suspended:
-        message: "Je bent al een tijdje inactief op %{site_name}, dus we hebben \nje
+        message: Je bent al een tijdje inactief op %{site_name}, dus we hebben je
           abonnementen opgeschort. Als je weer nieuwtjes over de website activiteit
-          wil ontvangen, graag\n<a href=\"%{login_url}\"> opnieuw inloggen op uw account
-          </a>."
+          wil ontvangen moet je <a href="%{login_url}">opnieuw inloggen op uw account</a>.
       photos_missing:
         subject: Sommige foto's moeten worden gerepareerd
         we_have_been_housekeeping: |-
@@ -5997,9 +5989,8 @@ nl:
         complex_boundary_note_html: |-
           Deze grens is een beetje te complex om op het web te bewerken. Je kunt echter
           <a href="%{url}">de KML downloaden</a>, bewerk deze dan in een GIS-applicatie van jouw keuze en upload de bewerkte KML.
-        admin_level_desc: |-
-          Moet alleen worden vastgesteld voor politieke lichamen. Aangaande met
-          VS-equivalenten, 0 = land, 1 = staat, 2 = graafschap (county), 3 = plaats
+        admin_level_desc: "Moet alleen worden ingesteld voor politieke lichamen. In
+          termen van VS-equivalenten, \n0=land, 1=staat, 2=graafschap(county), 3=stad"
       index:
         adding_new_places: nieuwe plaatsen toevoegen
         confirming_identifications: identificaties bevestigen door ID's aan waarnemingen
@@ -6244,25 +6235,12 @@ nl:
       show:
         are_you_sure_you_want_to_convert: Weet je zeker dat je dit project wilt omzetten
           naar een verzamelproject?
-        bioblitz_results_desc_html: "<P>\n  In tegenstelling tot reguliere projecten
-          geven bioblitzes evenementstatistieken weer van\n  <em>alle</em> waarnemingen
-          binnen een bepaalde tijd en plaats, niet alleen\n  waarnemingen die mensen
-          opzettelijk aan het project hebben toegevoegd.\n  Dit is om de horde van
-          het toevoegen van waarnemingen aan een project te verwijderen\n  zodat je
-          de statistieken realtime kunt tonen. Merk op dat die waarnemingen niet\n  beschikbaar
-          zijn voor export of weergave op verschillende projectweergaven zoals\n  als
-          ledenbijdragen op de website of projectwaarnemingen\n  zoekopdrachten in
-          de mobiele apps tenzij het projectteam en\n  deelnemers actief relevante
-          waarnemingen toevoegen net als bij een normaal project.\n</P>\n<P>die \n  Merk
-          op dat dit soort projecten statistieken toont voor waarnemingen die\n  niet
-          opzettelijk aan het project zijn toegevoegd, maar het staat curatoren niet
-          toe om daar private of verborgen coördinaten voor te zien\n  waarnemingen
-          of nemen aan dat waarnemers het project hebben goedgekeurd\n  voorwaarden.
-          Als u een projectconservator bent, hebt u toegang tot privécoördinaten nodig,
-          dus moeten  uw deelnemers toestemmen met de project\n  voorwaarden, of je
-          wilt dat er opmerkingen worden geteld in de richting van de beheerde projectchecklist,\n  zorg
-          ervoor dat uw deelnemers die aan het project deelnemen hun waarnemingen
-          toevoegen\n  zoals ze zouden doen in een normaal project.\n</P>"
+        bioblitz_results_desc_html: |-
+          <p>In tegenstelling tot reguliere projecten geven bioblitzes evenementstatistieken weer van <em>alle</em> waarnemingen binnen een bepaalde tijd en plaats, niet alleen waarnemingen die mensen opzettelijk aan het project hebben toegevoegd. Dit is om de horde van het toevoegen van waarnemingen aan een project te verwijderen zodat je de statistieken realtime kunt tonen. Merk op dat die waarnemingen niet beschikbaar zijn voor export of weergave op verschillende projectweergaven zoals als ledenbijdragen op de website of projectwaarnemingen
+            zoekopdrachten in de mobiele apps tenzij het projectteam en deelnemers actief relevante waarnemingen toevoegen net als bij een normaal project.
+          </p>
+          <p>Merk op dat dit soort projecten statistieken toont voor waarnemingen die niet opzettelijk aan het project zijn toegevoegd. Het staat curatoren niet toe om daar private of verborgen coördinaten van te zien of aan te nemen dat waarnemers de projectvoorwaarden hebben goedgekeurd. Als u een projectconservator bent hebt u toegang tot privécoördinaten nodig, dus moeten uw deelnemers toestemmen met de projectvoorwaarden, of je wilt dat er opmerkingen worden geteld in de richting van de beheerde projectchecklist, zorg ervoor dat uw deelnemers gaan deelnemen aan het project en hun waarnemingen toevoegen zoals ze zouden doen in een normaal project.
+          </p>
         click_here_to_convert_this_project: Klik hier om dit project te converteren
           naar een verzamelproject.
         no_journal_blurb_html: |-
@@ -6544,17 +6522,17 @@ nl:
         worden verplaatst naar \nhet resultaat; soorten, ondersoorten, variëteiten,
         etc. worden ingeruild voor\nequivalenten met de nieuwe genus- of soortnaam."
       form:
-        move_children_desc_html: "Als u dit selectievakje inschakelt, worden de kinderen
+        move_children_desc_html: "Als je dit selectievak aanvinkt, worden de kinderen
           van het invoertaxon verplaatst naar de output taxon voor swaps en fusies
-          wanneer deze wijziging is bevestigd. Als\ndeze verandering naar een genus
+          wanneer deze wijziging is bevestigd. Als deze verandering naar een genus
           of lager is, zal het Taxon Swaps voor alle afstammelingen creëren met een
-          impliciete naamswijziging. \nBijvoorbeeld als je de familie Canidae swapt
-          naar Dogidae, verandert dit de ouder van het geslacht <i>Canis</i> van Canidae
-          tot Dogidae. Als je het geslacht \n<i>Canis</i> swapt in het geslacht <i>Dogis</i>,
-          maakt en commit het \nTaxon Swaps om <i>Canis lupus</i> te wijzigen in <i>Dogis
-          lupus</i> en\n<i>Canis lupus</i> ssp. <i>lupus</i> voor <i>Dogis lupus</i>
-          ssp.\n<I>lupus</i>. \nDit kan een behoorlijke rotzooi veroorzaken, dus gebruik
-          het voorzichtig."
+          impliciete naamswijziging. Bijvoorbeeld als je de familie Canidae swapt
+          naar Dogidae, verandert de ouder van het geslacht <i>Canis</i> van Canidae
+          tot Dogidae. Als je het geslacht <i>Canis</i> swapt in het geslacht <i>Dogis</i>,
+          maakt en bevestigt het \nTaxon Swaps om <i>Canis lupus</i> te wijzigen in
+          <i>Dogis lupus</i> en <i>Canis lupus</i> ssp. <i>lupus</i> voor <i>Dogis
+          lupus</i> ssp. <i>lupus</i>. \nDit kan een behoorlijke rotzooi veroorzaken,
+          dus gebruik het voorzichtig."
     taxon_links:
       form:
         name_with_rank_desc: |-
@@ -6571,7 +6549,7 @@ nl:
           bij Suliformes,<BR> \n    'Schoenlappers, parelmoervlinders en zandoogjes'
           bij Nymphalidae of<BR>\n    'Kleine pages, vuurvlinders en blauwtjes' bij
           Lycaenidae</p>\n  </li>\n  <li><p>Voeg geen informatie toe die geen naam
-          is, bijvoorbeeld verklaarende informatie (tussen haakjes) over hoe de naam
+          is, bijvoorbeeld verklarende informatie (tussen haakjes) over hoe de naam
           gebruikt zou moet worden</p>\n  </li>\n  <li><p>Nieuwe lexicons moeten in
           het Engels zijn. Voeg geen vertalingen toe van taalnamen zoals \"Dutch,
           Nederlands\" omdat dat dit het moeilijk of onmogelijk voor ons zal maken
@@ -6611,8 +6589,7 @@ nl:
           coördinaten kunnen zien van waarnemingen die u toevoegt aan dit project.
       edit:
         blocking_desc_html: |-
-          <p>
-            Door iemand te blokkeren kunnen ze je berichten niet meer zien en commentaar leveren op jouw waarnemingen, het determineren van uw waarnemingen en andere interacties met u op %{site_name}. Het verwijdert ook hun waarnemingen uit uw zoekresultaten en verwijdert uw waarnemingen uit hun zoekopdracht resultaten. Het maakt u echter niet onzichtbaar voor hen. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met jou aangaan.
+          <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien en commentaar leveren op jouw waarnemingen, het determineren van uw waarnemingen en andere interacties met u op %{site_name}. Het verwijdert ook hun waarnemingen uit uw zoekresultaten en verwijdert uw waarnemingen uit hun zoekopdracht resultaten. Het maakt u echter niet onzichtbaar voor hen. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met jou aangaan.
           </p>
           <p>
             Blokkeren is voor situaties waar je gewoon niet kunt opschieten met iemand en zij zullen je niet alleen laten, ondanks je inspanningen om geschillen op een beschaafde manier regelen. Het is geen manier om je te verbergen voor mensen, om determinaties te voorkomen van mensen van wie je de mening niet vertrouwt, of kies niet voor de community-ID (er is nog een andere instelling daarvoor). Blokkeren werkt dus in beide richtingen: als je iemand blokkeert, kunnen ze geen interactie met je hebben, maar je kunt ook geen interactie hebben met hen. Als je het misbruikt om te voorkomen dat iemand je waarnemingen determineert, voorkomt je ook dat je haar waarnemingen kan determineren.
@@ -6641,11 +6618,7 @@ nl:
           met die site.
         licensing_desc_html: |-
           Het licentiëren van uw inhoud geeft andere mensen het wettelijke recht om het te gebruiken
-          zonder uw toestemming te vragen als ze zich houden aan de voorwaarden van de
-          licentie. %{site_name} gebruikt uw door Creative Commons gelicentieerde inhoud om te delen
-          met gegevenspartners zoals de <a href="http://www.gbif.org/">Global
-          Biodiversity Information Facility</a>(GBIF), een internationale,
-          intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
+          zonder uw toestemming te vragen als ze zich houden aan de voorwaarden van de licentie. %{site_name} gebruikt uw door Creative Commons gelicentieerde inhoud om te delen met gegevenspartners zoals de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
         muting_desc_html: |-
           <p>
              Als u iemand dempt, kunt u geen meldingen meer over dingen ontvangen die ze doen, inclusief commentaar op uw waarnemingen, berichten aan u, vermeldingen van u, enz. Demping helpt u iemand te negeren zonder dat ze er iets aan doen.
@@ -6691,14 +6664,13 @@ nl:
           een blokkering om een andere toe te voegen.
       recent:
         about_recent_users: Over
-        definitions_html: "<dl><dt>Waarschijnlijk Spam</dt><dd>Gebruiker die waarschijnlijk
-          een spammer is, wat betekent dat ze geen waarnemingen of determinaties,
-          maar wel een profielbeschrijving hebben. \n</dd><dt>Auto Spam</dt><dd>Spammer
-          die door het systeem automatisch als spammer is gemarkeerd. \n</dd><dt>Handmatige
-          spam</dt><dd> Spammer die handmatig door een site-curator als spammer is
-          gemarkeerd. \n</dd><dt>Valse positieven</dt><dd> Gebruikers die zijn gemarkeerd
-          als spammers, maar de markeringen zijn opgelost door sitecuratoren omdat
-          ze geent spammers waren.</dd></dl>"
+        definitions_html: "<dl><dt>Waarschijnlijk Spam</dt><dd>Gebruiker is waarschijnlijk
+          een spammer. Ze heeft geen waarnemingen of determinaties maar wel een profielbeschrijving.\n</dd><dt>Auto
+          Spam</dt><dd>Spammer die door het systeem automatisch als spammer is gemarkeerd.
+          \n</dd><dt>Handmatige spam</dt><dd>Spammer die handmatig door een site-curator
+          als spammer is gemarkeerd. \n</dd><dt>Valse positieven</dt><dd>Gebruikers
+          die zijn gemarkeerd als spammers, maar de markeringen zijn opgelost door
+          sitecuratoren omdat ze toch geen spammers waren.</dd></dl>"
         recent_users_desc_html: |-
           <p>
              We willen nieuwe gebruikers verwelkomen maar we willen ook spammers bestrijden. Hopelijk helpt deze tool met beide. Wij zijn automatisch veel gebruikers aan het markeren als spammers door gebruik te maken van <a
@@ -7140,7 +7112,7 @@ nl:
         description: Beschrijving
         end_time: Eindtijd
         event_url: Evenement registratie URL
-        terms: Termen
+        terms: Voorwaarden
         map_type: Kaartstijl
         zoom_level: Zoomniveau
         preferred_membership_model: Voorkeur lidmaatschapsmodel
