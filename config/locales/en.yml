@@ -5537,6 +5537,10 @@ en:
         we_included_links: |
           We've included links to the affected photos below.
     photos:
+      forbidden_notice_html: |
+        We don't have permission to access those photos right now. You might
+        need to disconnect and reconnect the account in your
+        <a href="/users/edit">settings</a> to grant us additional permissions.
       inviter:
         automatically_add_to_project: Automatically add to project
         automatically_id_the_new_obs_as: Automatically ID the new obs as

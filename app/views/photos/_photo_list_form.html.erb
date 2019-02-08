@@ -24,6 +24,10 @@
   <p class="error ui">
     Request to the photo provider timed out.  Please try again later.
   </p>
+<% elsif @forbidden %>
+  <p class="error ui">
+    <%=t "views.photos.forbidden_notice_html" %>
+  </p>
 <% elsif photos.blank? && !local_photos %>
   <div class="description" style="clear: both">
     <br />

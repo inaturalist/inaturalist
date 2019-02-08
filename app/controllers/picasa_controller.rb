@@ -69,6 +69,8 @@ class PicasaController < ApplicationController
         end
       rescue Timeout::Error => e
         @timeout = e
+      rescue RestClient::Forbidden
+        @forbidden = true
       end
     end
     
