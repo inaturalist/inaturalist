@@ -17,7 +17,7 @@
       ( ( upstream_taxon_framework.taxon_curators.count > 0 && upstream_taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id }.count > 0 ) || |
       ( upstream_taxon_framework.taxon_curators.count == 0 ) ) |
       .pull-right
-        = link_to "Add relationship", new_taxon_framework_relationship_path( { taxon_id: taxon.id, taxon_framework_id: upstream_taxon_framework.id } )
+        = link_to t( :add_relationship ), new_taxon_framework_relationship_path( { taxon_id: taxon.id, taxon_framework_id: upstream_taxon_framework.id } )
     %h4
       = t( :covered_by_a_taxon_framework_html, 
       link: link_to( t( :covered_by_a_taxon_framework_link, 

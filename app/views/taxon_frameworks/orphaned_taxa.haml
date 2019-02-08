@@ -40,11 +40,11 @@
         %p.description= t :no_orphaned_taxa
       - for taxon in @orphaned_taxa
         .panel
+          .pull-right
+            = link_to t( :new_taxon_change ), new_taxon_change_path( input_taxon_ids: [taxon.id] )
+          .pull-right.padding_right
+            = link_to t( :add_relationship ), new_taxon_framework_relationship_path( { taxon_id: taxon.id, taxon_framework_id: @taxon_framework.id } )
           .panel-body
-            .pull-right
-              = link_to "Add relationship", new_taxon_framework_relationship_path( { taxon_id: taxon.id, taxon_framework_id: @taxon_framework.id } )
-            .pull-right.padding_right
-              = link_to t( :new_taxon_change ), new_taxon_change_path( input_taxon_ids: [taxon.id] )
             = image_and_content taxon_image(taxon), :image_size => 75 do
               = link_to taxonomy_details_for_taxon_path( taxon ), :class => "taxon #{taxon.rank}" do
                 %span.sciname= taxon.name
