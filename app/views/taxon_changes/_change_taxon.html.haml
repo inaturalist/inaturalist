@@ -77,7 +77,7 @@
             - else
               %p.padding{ :class => ( taxon_framework_relationship.relationship == "match" ? 'bg-success' : 'bg-warning' ) }
                 = t( :relationship_html, 
-              link: link_to( ( taxon_framework_relationship.relationship == "match" ? t( :match ).capitalize : t( :deviation ).capitalize ),
+              link: link_to( ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ).capitalize : t( :deviation ).capitalize ),
               taxonomy_details_for_taxon_path( change_taxon ) ) )
             
     - if show_change_links && taxon_change && @type
