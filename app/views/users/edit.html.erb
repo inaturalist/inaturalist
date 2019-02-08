@@ -267,7 +267,7 @@
               omniauth_disconnect_path(provider),
               :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} disabled button", :method => "delete" %>
           </li>
-        <% else %>
+        <% elsif provider != "soundcloud" %>
           <li class="clear">
             <%= link_to t(:connect_to_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
               auth_url_for(provider), 

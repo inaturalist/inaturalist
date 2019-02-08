@@ -109,3 +109,6 @@
     <%#= link_to_function t(:add_another_photo), "$(this).before('#{escape_javascript(photo_file_field)}')" %>
   </div>
 <% end -%>
+<% if @next_page_token %>
+  <input type="hidden" class="photoSelectorNextPageToken" name="next_page_token" value="<%= @next_page_token %>" />
+<% end %>

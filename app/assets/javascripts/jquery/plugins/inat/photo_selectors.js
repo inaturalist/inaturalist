@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 // This is a simple, perhaps even stupidly simple, way of selecting Flickr
 // photos in a form.
 // Options:
@@ -51,7 +53,7 @@
     // Grab all the existing content
     var existing = $(wrapper).contents();
     
-    if (!options.noControls) { buildControls(wrapper, options) };
+    if ( !options.noControls) { buildControls(wrapper, options) };
     
     // Insert a container to hold the photos
     var container = $('<div class="photoSelectorPhotos"></div>').css(
@@ -78,7 +80,7 @@
           if (typeof(options.defaultQuery) == 'string') {
             q = options.defaultQuery;
           };
-          $.fn.photoSelector.queryPhotos(q, wrapper);
+          $( ".urlselect select", wrapper ).change( );
         }
       });
     };
@@ -351,28 +353,44 @@
       var next = $('<a href="#" class="nextlink button">'+I18n.t('next')+' &raquo;</a>')
     }
     prev.click(function(e) {
-      var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
-      pagenum -= 1;
-      if (pagenum < 1) pagenum = 1;
       var prevOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
-      prevOpts.urlParams = $.extend({}, prevOpts.urlParams, {page: pagenum});
+      var currentURL = $( ".urlselect select", wrapper ).val( );
+      if ( currentURL.match( /picasa/ ) ) {
+        return false;
+      }
+      var pagenum = parseInt( $( wrapper ).find( ".photoSelectorPage" ).val( ) );
+      pagenum -= 1;
+      if ( pagenum < 1 ) pagenum = 1;
+      prevOpts.urlParams = $.extend( {}, prevOpts.urlParams, { page: pagenum } );
+      $(wrapper).find('.photoSelectorPage').val(pagenum);
       $.fn.photoSelector.queryPhotos(
         $searchInput.val(), 
         wrapper, 
         prevOpts);
-      $(wrapper).find('.photoSelectorPage').val(pagenum);
       return false;
     })
     next.click(function(e) {
-      var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
-      pagenum += 1;
       var nextOpts = $.extend({}, $(wrapper).data('photoSelectorOptions'));
-      nextOpts.urlParams = $.extend({}, nextOpts.urlParams, {page: pagenum});
+      var currentURL = $( ".urlselect select", wrapper ).val( );
+      if ( currentURL.match( /picasa/ ) ) {
+        var nextPageToken = $( "[name='next_page_token']", wrapper ).val( );
+        if ( nextPageToken ) {
+          nextOpts.urlParams = $.extend({}, nextOpts.urlParams, { page_token: nextPageToken } );
+          $(wrapper).find('.photoSelectorPageToken').val( nextPageToken );
+          $(wrapper).find('.photoSelectorNextPageToken').val( null );
+        } else {
+          return false;
+        }
+      } else {
+        var pagenum = parseInt($(wrapper).find('.photoSelectorPage').val());
+        pagenum += 1;
+        nextOpts.urlParams = $.extend({}, nextOpts.urlParams, {page: pagenum});
+        $(wrapper).find('.photoSelectorPage').val(pagenum);
+      }
       $.fn.photoSelector.queryPhotos(
         $searchInput.val(), 
         wrapper, 
         nextOpts);
-      $(wrapper).find('.photoSelectorPage').val(pagenum);
       return false;
     })
 
@@ -412,11 +430,11 @@
       controls.addClass('row stacked')
       controls.append($('<div class="col-xs-6"></div>').append($searchWrapper))
       controls.append($('<div class="col-xs-6"></div>').append(prevnext, allNone))
-      controls.append(page)
+      controls.append(page);
     } else {
       var allNone = $('<span class="allNone nobr inlineblock buttoncontainer"></span>')
       allNone.append(allNoneLabel, selectAll, selectNone)
-      $(controls).append($searchWrapper, page, prev, next, allNone)
+      $(controls).append($searchWrapper, page, prev, next, allNone);
     }
     $(controls).append($('<div></div>').css({
       height: 0, 
@@ -460,6 +478,13 @@
     options.urlParams.context = (context || 'user');
     options.urlParams.object_id = (object_id || null);
     $(wrapper).data('photoSelectorOptions', options);
+    if ( url.match( /picasa/ ) ) {
+      $( ".photoSelectorSearch", wrapper ).hide( );
+      $( ".prevlink", wrapper ).hide( );
+    } else {
+      $( ".photoSelectorSearch", wrapper ).show( );
+      $( ".prevlink", wrapper ).show( );
+    }
     $.fn.photoSelector.queryPhotos($(wrapper).find('.photoSelectorSearchField').val(), wrapper);
   };
 
@@ -536,7 +561,12 @@
           $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).hide()
           $(wrapper).find('.local_photos').show()
         } else {
-          $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).show()
+          if ( options.baseURL.match( /picasa/ ) ) {
+            $('.nextlink, .allNone, .photoSelectorSearch', wrapper).show( );
+            $( ".photoSelectorSearch input" ).hide( );
+          } else {
+            $('.nextlink, .prevlink, .allNone, .photoSelectorSearch', wrapper).show()
+          }
           $(wrapper).find('.local_photos').hide()
         }
 

@@ -5312,9 +5312,26 @@ en:
         geoprivacy_must_be_in_english: |
           The geoprivacy column must be in English and must be blank or have a
           value of "obscured" or "private"
+        google_photos_notice_html: |
+          In February 2019, Google changed their API, making it impossible for
+          us to access GPS coordinates, license information, and almost any
+          information we could use to add an identification (like tags). They
+          also removed text search and numerical pagination. You can still
+          import photos, but they won't include any location information or
+          license information that you might be able to see on Google Photos.
+          You can read more about this at
+          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
+          Downloading the original files and adding them using the
+          <a href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
           There is a template file for this project that may help you with the structure of the CSV file. 
           <a href="%{url}">Download template</a>
+        soundcloud_notice_html: |
+          In 2018 Soundcloud changed their API and made it impossible for us to
+          make new connections to your Soundcloud account. If they reinstate
+          this functionality, we can resume linking accounts to Soundcloud. In
+          the meantime, you can upload sound files directly using the
+          <a href="/observations/upload">Uploader</a>.
       show:
         allow_curator_coordinate_access_desc_html: |
           Allow project curators to view the private coordinates for this observation.

@@ -57,7 +57,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   if CONFIG.google
     opts = {
-      :scope => "userinfo.email,userinfo.profile,plus.me,https://picasaweb.google.com/data/",
+      :scope => "userinfo.email,userinfo.profile,plus.me,https://picasaweb.google.com/data/,https://www.googleapis.com/auth/photoslibrary.readonly",
       :prompt => "consent",
       :access_type => "offline"
     }

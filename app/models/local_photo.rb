@@ -218,8 +218,12 @@ class LocalPhoto < Photo
 
   def source_title
     site = @site || user.try(:site) || Site.default
-    self.subtype.blank? ? site.name :
-      subtype.gsub(/Photo$/, '').underscore.humanize.titleize
+    return site.name if self.subtype.blank?
+    t = if subtype == "PicasaPhoto" || is_a?( PicasaPhoto )
+      "Google"
+    end
+    t ||= subtype.gsub(/Photo$/, '').underscore.humanize.titleize
+    t
   end
 
   def to_observation(options = {})
