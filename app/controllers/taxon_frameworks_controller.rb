@@ -61,6 +61,10 @@ class TaxonFrameworksController < ApplicationController
     redirect_to taxonomy_details_for_taxon_path( @taxon_framework.taxon )
   end
   
+  def orphaned_taxa
+    @orphaned_taxa = @taxon_framework.get_internal_taxa_covered_by_taxon_framework.where(taxon_framework_relationship_id: nil).page(params[:page])
+  end
+  
   private
   
   def prepare_rank_levels

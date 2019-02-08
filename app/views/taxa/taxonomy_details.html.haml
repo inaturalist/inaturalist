@@ -60,7 +60,7 @@
           - if @taxon.rank_level == Taxon::ROOT_LEVEL
             = "(" + t( :x_is_the_root_of_the_tree, rank: t("ranks.#{@taxon.rank}").capitalize, name: @taxon.name ) + ")"
     - if @taxon_framework
-      = render :partial => 'defines_taxon_framework', object: { taxon_framework: @taxon_framework, taxon: @taxon, overlapping_downstream_taxon_frameworks_count: @overlapping_downstream_taxon_frameworks_count, overlapping_downstream_taxon_frameworks: @overlapping_downstream_taxon_frameworks, deviations_count: @deviations_count, taxon_curators: @taxon_curators, flagged_taxa: @flagged_taxa, flagged_taxa_count: @flagged_taxa_count  }
+      = render :partial => 'defines_taxon_framework', object: { taxon_framework: @taxon_framework, taxon: @taxon, overlapping_downstream_taxon_frameworks_count: @overlapping_downstream_taxon_frameworks_count, overlapping_downstream_taxon_frameworks: @overlapping_downstream_taxon_frameworks, deviations_count: @deviations_count, taxon_curators: @taxon_curators, flagged_taxa: @flagged_taxa, flagged_taxa_count: @flagged_taxa_count, orphaned_taxa_count: @orphaned_taxa_count  }
     - else
       - if is_admin?
         .pull-right
