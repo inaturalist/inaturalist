@@ -92,7 +92,7 @@
         = link_to t( :clear_filters ), taxon_framework_relationships_url, class: "minor button"
     .col-xs-9
       - if @taxon_framework_relationships.empty?
-        %p.description no taxon framework relationships
+        %p.description= t :no_taxon_framework_relationships
       - for taxon_framework_relationship in @taxon_framework_relationships
         .panel.panel-default
           .panel-heading
