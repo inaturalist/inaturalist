@@ -421,7 +421,7 @@ en:
   allow_any: allow any
   allow_curator_access: Allow curator access
   allow_curator_coordinate_access: Allow curator coordinate access
-  allow_project_curators_to_view_your_private_coordinates: Allow project curators to view your private coordinates
+  allow_project_curators_to_view_your_private_coordinates: Allow project curators to view your hidden coordinates
   allowed_establish_means_values: Allowed establish means values
   allowed_html: Allowed HTML
   allowed_occurrence_status_values: Allowed occurrence status values
@@ -479,7 +479,7 @@ en:
   are_you_sure_remove_curator: "Are you sure you want to remove %{user} as a curator?"
   are_you_sure_remove_from_project: "Are you sure you want to remove %{user} from this project?"
   are_you_sure_remove_photo: "Are you sure you want to remove this photo?"
-  are_you_sure_remove_relationship: Are you sure you want to remove this relationship? This will unfollow this person and revoke access to your private coordinates if you had enabled such access.
+  are_you_sure_remove_relationship: Are you sure you want to remove this relationship? This will unfollow this person and revoke access to your hidden coordinates if you had enabled such access.
   are_you_sure_remove_taxon_from_list: "Are you sure you want to remove this taxon from the list?"
   are_you_sure_remove_taxon_from_place: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
@@ -1274,7 +1274,7 @@ en:
   explore_everyones_observations: Explore Everyone's Observations
   export: Export
   export_observations: Export Observations
-  export_with_private_coordinates: Export with Private Coordinates
+  export_with_private_coordinates: Export with Hidden Coordinates
   exporting: "Exporting..."
   external_links: External Links
   external_taxon_including_children: External taxon (including children)
@@ -1752,7 +1752,7 @@ en:
   journal_posts: Journal Posts
   jpg_png_or_gif: "JPG, PNG, or GIF"
   jump_to_letter: Jump to letter
-  just_a_reminder: Just a reminder, since you may have given project curators permissions to view the private coordinates of your observations in this project.
+  just_a_reminder: Just a reminder, since you may have given project curators permissions to view the hidden coordinates of your observations in this project.
   just_added!: Just added!
   keep_editing: Keep editing
   kelp_diatoms_and_allies: "kelp, diatoms, and allies"
@@ -3146,7 +3146,7 @@ en:
   privacy_policy: Privacy Policy
   private: private
   private_: Private
-  private_description: "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. Observations with private coordinates will still be used to verify place check lists."
+  private_description: "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. Observations with hidden coordinates will still be used to verify place check lists."
   probably_spam: Probably Spam
   proceed: Proceed
   processing: Processing
@@ -3738,7 +3738,7 @@ en:
   stop_editing: Stop Editing
   stop_following_user: "Stop following %{user}"
   stop_testing: Stop Testing
-  stop_trusting_this_person_with_your_private_coordinates: Stop trusting this person with your private coordinates
+  stop_trusting_this_person_with_your_private_coordinates: Stop trusting this person with your hidden coordinates
   stop_updating_position: Stop updating position
   studies_that_used_inaturalist_data_in_year: Studies That Used iNaturalist Data in %{year}
   stuff_just_added: "Stuff you've just added..."
@@ -4170,8 +4170,8 @@ en:
   trends: Trends
   trusted: Trusted
   trusted_project?: Trusted project?
-  trust_this_person_with_your_private_coordinates: Trust this person with your private coordinates
-  trust_with_private_coordinates: Trust with private coordinates
+  trust_this_person_with_your_private_coordinates: Trust this person with your hidden coordinates
+  trust_with_private_coordinates: Trust with hidden coordinates
   try_adding_species_form: Try adding some species using the form on this page.
   try_it_out: Try it out
   try_wikipedia: Try Wikipedia?
@@ -4321,9 +4321,9 @@ en:
   user_s_lists: "%{user}'s Lists"
   user_suggested_an_id: "%{user} suggested an ID"
   user_thinks_yours_is: "%{user} %{noun} your observation %{observation} is"
-  user_trusts_you_with_their_private_coordinates: "%{user} trusts you with their private coordinates"
+  user_trusts_you_with_their_private_coordinates: "%{user} trusts you with their hidden coordinates"
   user_trusts_you_with_their_private_coordinates_desc: |
-    The observer has chosen to trust you with the private coordinates of all
+    The observer has chosen to trust you with the hidden coordinates of all
     their observations.
   username: Username
   username_or_email: Username or email
@@ -4510,7 +4510,7 @@ en:
   who_can_see_the_coordinates: Who Can See the Coordinates
   who_can_see_the_coordinates_observer: The person who made the observation
   who_can_see_the_coordinates_projects: Curators of the following projects
-  who_can_see_the_coordinates_trusted: Individuals who the observer has trusted with their private coordinates
+  who_can_see_the_coordinates_trusted: Individuals who the observer has trusted with their hidden coordinates
   who_helped_user_the_most: "Who Helped %{user} the Most"
   who_user_helped_the_most: "Who %{user} Helped the Most"
   why_the_coordinates_are_obscured: Why the Coordinates Are Obscured
@@ -5328,7 +5328,7 @@ en:
           <a href="%{url}">Download template</a>
       show:
         allow_curator_coordinate_access_desc_html: |
-          Allow project curators to view the private coordinates for this observation.
+          Allow project curators to view the hidden coordinates for this observation.
         ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon"
         community_taxon_desc_html: |
           <p class="ui">
@@ -5579,15 +5579,15 @@ en:
       tracks_multiple_projects: tracks multiple projects
       projects_included: Projects Included
       collection_and_umbrellas_do_not_support: |
-        Collection and umbrella projects do not currently support access to private coordinates.
+        Collection and umbrella projects do not currently support access to hidden coordinates.
       curator_coordinate_access_desc_html: |
         Remember, <strong>project curators can add any of your observations to
         their project</strong> unless you've opted out in your <a
         href="/users/edit">account settings</a>. Only check this box if you
-        trust the project curators to view your private coordinates of any
+        trust the project curators to view your hidden coordinates of any
         observations of yours that could be added to this project. If you
         choose not to grant them this permission, you can still grant access
-        to private coordinates on a observation-by-observation basis.
+        to hidden coordinates on a observation-by-observation basis.
       confirm_leave:
         what_would_you_like: |
           What would you like to do with your observations in this project?
@@ -5595,7 +5595,7 @@ en:
           Leave your observations in this project
         keep_observations_desc: |
           Your observations will stay in the project and curators will still
-          be able to view their private coordinates.
+          be able to view their hidden coordinates.
         project_requires_curator_coordinate_access_desc: |
           This project does not allow observations with coordinates the
           project curators cannot see. If you don't want to share the
@@ -5609,9 +5609,9 @@ en:
           <a href="/users/edit">account settings</a>.
         revoke_observations_label: |
           Leave your observations in this project but prevent curators from viewing
-          their private coordinates
+          their hidden coordinates
         revoke_observations_desc: |
-          If the only reason you're leaving is to stop project curators from viewing your private coordinates.
+          If the only reason you're leaving is to stop project curators from viewing your hidden coordinates.
       edit:
         aggregation_pending: Aggregation pending
         new_place_desc_html: |
@@ -5817,7 +5817,7 @@ en:
       curator_coordinate_access_label: |
         Do you want to make your private/obscured observation coordinates visible to the project curators?
       curator_coordinate_access_note: |
-        You can also choose to share the private coordinates of observations
+        You can also choose to share the hidden coordinates of observations
         in this project on a case-by-case basis. These are just the defaults
         for new observations added to the project.
       project_terms_desc_html: |
@@ -6336,7 +6336,7 @@ en:
           <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
         project_settings_desc: |
           Remember, this does not give projects permission to access your
-          private coordinates or send you updates. You must join projects in
+          hidden coordinates or send you updates. You must join projects in
           order to grant these permissions, or grant them on a case-by-case
           basis.
         taxon_change_desc: |
@@ -6866,7 +6866,7 @@ en:
     scopes:
       write: |
         Create, update, and delete your observations, identifications, and other
-        content on your behalf, and access your private coordinates and any
+        content on your behalf, and access your hidden coordinates and any
         other information you can access on the site.
       login: |
         Access informtion relevant to sign in, like email address, username,

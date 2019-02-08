@@ -5,6 +5,7 @@
 # Author: Bramadiarya
 # Author: Hidayatsrf
 # Author: Indah Setyawati
+# Author: J Nia30
 # Author: Kenrick95
 # Author: Zakiy
 ---
@@ -116,6 +117,8 @@ id:
   actions: Tindakan
   activate_user: Aktifasi pengguna
   active: Aktif
+  active_users: Pengguna yang Aktif
+  activity: Aktifitas
   activity_settings: Pengaturan aktivitas
   adapted_by_name_from_a_work_by_original: Adapted by %{name} from a work by %{original}
   add: Tambahkan
@@ -193,6 +196,7 @@ id:
   add_several_observations_at_once: Tambahkan beberapa pengamatan sekaligus
   add_shape: Tambahkan bentuk
   add_some_now: Tambahkan beberapa sekarang
+  add_tag: Tambah Penanda
   add_tags: Tambah penanda
   add_tags_to_selected_taxa: Tambahkan tag ke taksa yang dipilih
   add_taxa: Tambahkan taksa
@@ -236,6 +240,7 @@ id:
   admin_any_projects: pengurus setiap proyek
   admin_tools: Peralatan Pengurus
   agree: Setuju
+  agree_: Setuju
   agree?: Setuju?
   agree_to_the_project_terms: Setuju dengan persyaratan proyek
   agree_with_current_taxon: Setuju dengan takson saat ini
@@ -512,6 +517,7 @@ id:
   back_to_your_observations: Kembali ke pengamatan anda
   back_to_your_profile: Kembali ke profil anda
   back_to_your_projects: Kembali ke proyek anda
+  basic: Dasar
   batch: Jamak
   batch_edit: Sejumlah perubahan
   batch_edit_taxa_for_x_html: Perubahan taksa sejumlah %{x}
@@ -651,6 +657,7 @@ id:
   change_your_password: Merubah password anda
   changing_the_geoprivacy: Mengubah geoprivasi untuk bagaimana orang lain melihat
     lokasi pengamatan Anda.
+  check_back_soon: Periksa kembali nanti!
   check_here_to_autoload_description: Cek di sini untuk memuat otomatis deskripsi
     dari Wikipedia. Anda mungkin ingin hapus centang ketika nama ilmiah takson adalah
     juga sebuah kata non-ilmiah atau kesalahan ejaan yang umum, seperti "Parus".
@@ -719,10 +726,12 @@ id:
   classification: Pengelompokan
   clear: kosongkan
   clear_color_filters: Bersihkan filter warna
+  clear_filters: Hapus penyaring
   clear_search: Bersihkan pencarian
   click_on_the_map_to: Klik di peta untuk menempatkan pengamatan Anda
   click_the_map: <strong>Click the map</strong> untuk memasukkan lokasi
   click_the_map_to_jump_new_place: Klik peta untuk berpindah ke tempat baru
+  close: Tutup
   code: Kode
   collapse_days: Tutup daftar hari
   collapse_updates: Tutup daftar update
@@ -739,6 +748,7 @@ id:
   comma_separated_please: Tolong dipisahkan dengan koma
   comment_preview: Tampilan komentar
   comment: Komentar
+  comment_: Komentar
   comment_feed: Umpan komentar
   comment_deleted: Hapus komentar
   commented: Telah dikomentari
@@ -811,6 +821,10 @@ id:
   contributions_from: Kontribusi dari
   contributor_cannot_be_found: Kontributor tidak dapat ditemukan
   contributors_to_project: Kontributor di %{project}
+  controlled_term_labels:
+    sex: Jenis Kelamin
+    male: Laki-laki
+    female: Perempuan
   controls: Kontrol
   coordinate_systems: Sistem koordinat
   coordinates: Koordinat
@@ -1027,6 +1041,7 @@ id:
   draft_: Rancangan
   draft_saved: Rancangan tersimpan!
   drafts: Rancangan
+  duplicate_verb: Duplikat
   edit: Ubah
   edit_a_batch_of_observations: Menrubah sejumlah observasi
   edit_account_settings_and_profile: Rubah pengaturan akun &amp; profil
@@ -1140,6 +1155,7 @@ id:
   exact_date: Tanggal pasti
   exact_location: Lokasi yang tepat
   exact_rank: peringkat tepat
+  except: kecuali
   existing_flags: Tanda yang ada
   exit_full_screen: Keluar dari layar penuh
   expand_days: Tambahkan hari
@@ -1328,6 +1344,7 @@ id:
   go_back: Kembali
   going_to_your_observations: Pergi ke pengamatan Anda...
   good_choice_for_sharing: Pilihan yang baik untuk berbagi dengan para ilmuwan
+  google: Google
   got_it!: Mengerti!
   got_your_data_somewhere_else?: Mendapat data Anda di tempat lain? Kami dapat membantu.
   graft: Cantum
@@ -1384,6 +1401,7 @@ id:
   help_confirm_observations!: Membantu mengkonfirmasi pengamatan!
   help_faq: Bantuan / FAQ
   help_out!: Membantu!
+  help_support_inaturalist: Bantu dukung iNaturalist
   helped_the_observer_make: membantu pengamat membuat ID terakhir mereka (yaitu mereka
     dibuat sebelum ID final dan mereka mencocokan dengan itu)
   here_are_3_examples: Berikut adalah 3 contoh data yang terbentuk
@@ -1557,8 +1575,10 @@ id:
   labels: Label
   label_to_group_a_batch_of_taxon_changes: Label untuk sekelompok grup pada perubahan
     takson
+  location_unknown: Lokasi Tidak Diketahui
   language_slash_type: Bahasa / Tipe
   large: besar
+  last_active_with_date: 'Terakhir Aktif: %{date}'
   last_confirmed_observation: Pengamatan yang telah dikonfirmasi
   last_inat_observation: '%{site_name} Observasi terakhir'
   last_observation: Pengamatan terakhir
@@ -1882,6 +1902,7 @@ id:
   needs_id: butuh ID
   Needs_ID!: Butuh ID!
   needs_to_be_identified: Butuh untuk diidentifikasi
+  new: Baru
   new_announcement: Pengumuman baru
   new_assessment: Penilaian baru
   new_check_list: Checklist baru
@@ -1918,10 +1939,13 @@ id:
   new_trip: Kunjungan baru
   new_updates_in_the_last_24_hours_from: update baru dalam 24 jam terakhir dari %{site_name}
   new_user_rules: Aturan Pengguna Baru
+  new_users: Pengguna Baru
+  new_users_this_year: Pengguna Baru di Tahun Ini
   new_users_week: Pengguna Baru / Minggu
   news: Berita
   next: Selanjutnya
   next_page: Halaman selanjutnya
+  next_photo: Foto Selanjutnya
   "no": Tidak
   no_activity_in_the_past_week: Tidak ada aktivitas dalam seminggu terakhir. Waktunya
     untuk
@@ -2160,6 +2184,7 @@ id:
   of: dari
   of_it_and_its_descendants: itu dan keturunannya
   of_least_concern: Dari sedikitnya perhatian
+  of_species: spesies
   offensive_inappropriate: ofensif / tidak pantas
   official_blog: Blog Resmi
   offline_access_enabled: Akses offline diaktifkan
@@ -2210,6 +2235,7 @@ id:
   only_the_project_admin_can_delete_this_project: Hanya admin proyek yang dapat menghapus
     proyek ini.
   open: buka
+  open_: Buka
   open_description: Semua orang dapat melihat koordinat kecuali takson terancam.
   opt_in_for_this_observation: Ikut serta untuk pengamatan ini
   opt_out_of_community_ids_for_obs: Memilih keluar dari identifikasi masyarakat untuk
@@ -2266,6 +2292,9 @@ id:
     identification:
       with_observation: tambahkan <kuat>ID</kuat> ke %{observation_link} oleh %{user_link}
       without_observation: tambahkan <kuat>ID</kuat>
+  per_day: Per Hari
+  per_month: Per Bulan
+  per_week: Per Minggu
   person: orang
   personal_message: Pesan personal
   personal_message_description: Tidak ada yang suka mendapatkan email dari mesin!
@@ -2275,6 +2304,7 @@ id:
   photo: Foto
   photo?: Foto?
   photo_attribution: Permalink %{attribution}
+  photo_by: Difoto oleh
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_deleted: Foto dihapus
   photo_destroyed_because_it_was_deleted_from: Foto dihapus dari situs eksternal atau
@@ -2559,6 +2589,7 @@ id:
   publish: Terbitkan
   purple: ungu
   quality_grade: Tingkat kualitas
+  quality_grade_: Tingkat Kualitas
   quality_grade_colon: 'Tingkat kualitas:'
   queued: Antrian
   query: Query
