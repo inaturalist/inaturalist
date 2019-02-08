@@ -147,7 +147,7 @@ fi:
   about_places: Tietoja paikoista
   about_taxon_changes: Tietoja taksonimuutoksista
   about_the_cc_licenses: Tietoja Creative Commons -lisensseistä
-  about_the_taxobox_raquo: Taksonominen taulu &raquo;
+  about_the_taxobox_raquo: Tietoja taksonomisesta taulusta &raquo;
   about_these_licenses: Tietoja näistä lisensseistä
   about_this_bioblitz: Tietoja tästä bioblitzistä
   about_this_map: Tietoja tästä kartasta
@@ -2280,8 +2280,8 @@ fi:
   observations_by_app: Havainnot sovelluksittain
   observations_by_rank: Havainnot luokittain
   observations_by_user_on_date: Käyttäjän %{user} havainnot %{date}
-  observations_by_you: Havaintosi
-  observations_by_you_on_date: Havaintosi %{date}
+  observations_by_you: Omat havainnot
+  observations_by_you_on_date: Omat havainnot %{date}
   observation_calendar_for: Havainnointikalenteri käyttäjälle %{user} vuonna %{year}
   observation_curation: Havaintokuratointi
   observation_date: Päiväys
@@ -2316,7 +2316,7 @@ fi:
     ihmisistä, paikoista ja taksoneista
   observations_from_this_place: Havainnot tästä paikasta
   observations_from_this_project: Havainnot tästä projektista
-  observations_from_you: Havaintosi
+  observations_from_you: Omat havainnot
   observations_in_this_project_must: Tässä projektissa olevien havaintojen on täytettävä
     seuraavat kriteerit
   observations_last500: Havainnot (viimeisimmät 500)
@@ -2417,8 +2417,11 @@ fi:
   only_an_admin_can_remove_project_users: Vain ylläpitäjä voi poistaa projektin käyttäjiä
   only_country_state_and_county: Vain maat, osavaltiot ja lääniä vastaavat paikat
     näytetään nyt. Lähennä nähdäksesi pienemmät paikat.
+  only_curators_can_add_edit_scientific_names: Vain kuraattorit voivat lisätä/muokata
+    tieteellisiä nimiä.
   only_curators_can_access_that_page: Vain kuraattoreilla on pääsy kyseiselle sivulle.
   only_letters_numbers: Vain kirjaimia ja numeroita, ei välejä, täytyy alkaa kirjaimella
+  only_project_curators_can_do_that: Vain projektin kuraattorit voivat tehdä sen.
   only_receive_updates_about_this_taxon: Vastaanota päivityksiä vain tästä taksonista
   only_show_active_taxa: Näytä vain aktiiviset taksonit
   only_show_taxa_fom_this_list: Näytä vain taksonit tästä luettelosta
@@ -3262,6 +3265,7 @@ fi:
   show_less: Näytä vähemmän
   show_more: Näytä enemmän
   show_observation_photos: näytä havaintojen kuvat
+  show_observations_from: Näytä havainnot käyttäjältä
   show_off_your_recent_observations: Näytä viimeaikaiset havaintosi omassa blogissasi
     tai verkkosivustollasi!
   show_only: Näytä vain
@@ -3272,6 +3276,7 @@ fi:
   show_taxa_from_place: Näytä taksonit paikasta %{place}
   show_total_listed_taxa: Näytä kaikki luetteloidut taksonit
   show_uncountable_species: Näytä ei-laskettavat lajit
+  showing_observations_by: näytetään havainnot käyttäjältä
   showing_one_to: Näytetään 1 -
   showing_taxa_from_everywhere: Näytetään taksonit kaikkialta
   showing_taxa_from_place: Näytetään taksonit paikasta %{place}
@@ -3322,7 +3327,9 @@ fi:
   sorry_x_is_not_responding: '%{x} ei vastaa. Yritä myöhemmin uudelleen.'
   sorry_you_can_only_add_1000_at_a_time: Valitettavasti voit lisätä vain 1000 kerrallaan.
   sorry_you_cant_delete_your_own_life_list: Valitettavasti et voi poistaa omaa elämäluetteloasi.
+  sort: Lajittele
   sort_by: Lajitteluperuste
+  sorting_by: 'Lajittele:'
   sounds:
     add_media: Lisää mediaa
     add_sounds: Lisää ääniä
@@ -3337,8 +3344,12 @@ fi:
     selected_sounds: Valitut äänet
     sound: Ääni
     sounds: Äänet
+    sounds_size_sound: '%{sounds_size} ääni'
+    sounds_size_sounds: '%{sounds_size} ääntä'
     view_all_soundcount_sounds: Näytä kaikki %{sound_count} ääntä
-    your_soundcloud_account: sinun SoundCloud-tili
+    you_need_to_link_your_soundcloud_account: Sinun täytyy linkittää SoundCloud-tilisi
+      lisätäksesi ääniä.
+    your_soundcloud_account: oma SoundCloud-tili
   source: Lähde
   source_: 'Lähde:'
   source_wikipedia: 'Lähde: Wikipedia'
@@ -3350,6 +3361,7 @@ fi:
     new_zeland_organisms_register: New Zealand Organisms Register
     nzbrn_birds: NZBRN Linnut
     nzbrn_fungi: NZBRN Sienet
+    nzbrn_herpetofauna: NZBRN Herpetofauna
     nzbrn_invertebrates: NZBRN Selkärangattomat
     nzbrn_mammals: NZBRN Nisäkkäät
     nzbrn_plants: NZBRN kasvit
@@ -3425,7 +3437,7 @@ fi:
   subscribe_to_a_taxon: Tilaa taksoni
   subscribe_to_a_place: Tilaa paikka
   subscribe_to_observations_in_a_taxon: Tilaa kaikki lajien tai eliöryhmien havainnot
-    (esim. 'skorpioonit')
+    (esim. 'skorpionit')
   subscribe_to_observations_in_a_place: Tilaa kaikki tähän paikkaan asetetut havainnot.
     Voit myös lisätä valinnaisen taksonisuodattimen (esim. 'skorpionit Texasista'
   subscribe_to_places_to: Tilaa paikkoja saadaksesi päivityksiä siellä tehdyistä uusista
@@ -3529,6 +3541,7 @@ fi:
   terrain: maasto
   text: Teksti
   text_: teksti
+  thanks!: Kiitos!
   thanks_for_signing_up: Kiitos rekisteröitymisestäsi!
   thanks_for_using: Kiitos käytöstä
   thanks_from_all_of_us_here_at: Kiitos meiltä kaikilta täällä sivustolla
@@ -3589,7 +3602,7 @@ fi:
   this_is_a_life_list_of_taxon_in_place: Tämä on elämäluettelo taksonista %{taxon}
     paikassa %{place}
   this_is_taking_forever: Tämä vie ikuisuuden.  Yritä myöhemmin uudelleen.
-  this_is_your_observation: Tämä on sinun havainto
+  this_is_your_observation: Tämä on havaintosi
   this_list_is_empty!: Tämä luettelo on tyhjä!
   this_observation: Tämä havainto
   this_observation_is_featured_on_x_sites:
@@ -3648,6 +3661,7 @@ fi:
   "true": Kyllä
   trending: Nousussa
   trends: Trendit
+  trusted: Luotettu
   trusted_project?: Luotettava projekti?
   try_it_out: Kokeile sitä
   try_wikipedia: Kokeile Wikipediaa?
@@ -3822,6 +3836,7 @@ fi:
   view_observations: Näytä havainnot
   view_observation_flags: Näytä havaintoliput
   view_observations_by_everyone: Näytä kaikkien havainnot
+  view_observations_by_these_users: Näytä näiden käyttäjien havainnot
   view_observations_of_this_taxon_by: Näytä tämän taksonin havainnot käyttäjältä
   view_observations_raquo: Näytä havainnot &raquo;
   view_on: Näytä sivustolla
@@ -3847,10 +3862,12 @@ fi:
   view_taxon_page_for_this_x: Näytä taksonisivu kohteessa %{x}
   view_taxonomic_changes: Näytä taksonomiset muutokset
   view_terms: Näytä ehdot
+  view_the: Näytä %{action}&#59; %{link}
   view_the_observation: Näytä havainnot
   view_unidentified_observations: Näytä tunnistamattomat havainnot
   view_user_observations: Näytä käyttäjän %{user} havainnot
   view_x: Näytä %{x}
+  view_x_from_x: View %{day_observations} havaintoa päivästä %{observed_on}
   view_xs_journal: Näytä käyttäjän %{x} päiväkirja
   view_year_stats_for_site: Näytä %{site}in vuoden %{year} tilastot
   view_your_dashboard: Näytä kojelautasi
@@ -3905,13 +3922,19 @@ fi:
   when_did_you_see_them?: <em>Milloin</em> näit ne?
   where: Missä
   where_did_you_see_it: Missä näit sen?
+  where_do_x_live: Missä %{taxa} elää?
+  where_does_x_live: Missä %{taxa} elää?
   where_were_they?: Missä he olivat?
   where_were_you?: Missä olit?
   which_projects_can_add_your_observations?: Mitkä projektit voidaan lisätä omiin
     havaintoihin?
   white: valkoinen
+  why_you_can_see_the_coordinates: Miksi näet koordinaatit
+  who_can_see_the_coordinates: Kuka voi nähdä koordinaatit
+  who_can_see_the_coordinates_observer: Henkilö, joka teki havainnon
   who_helped_user_the_most: Kuka auttoi käyttäjää %{user} eniten
   who_user_helped_the_most: Ketä %{user} auttoi eniten
+  why_the_coordinates_are_obscured: Miksi koordinaatit ovat piilotettu
   with_annotation: Selityksellä
   without_annotation: Ilman selitystä
   widget: Pienoisohjelma
@@ -4034,6 +4057,8 @@ fi:
     kommentissa.
   you_unlinked_your_provider_account: Purit linkityksen %{provider}-tiliisi
   youll_need_to_link: Sinun täytyy linkittää
+  youve_joined_the_x_project: Olet liittynyt projektiin %{project_invitation} ja havaintosi
+    on lisätty
   your: Sinun
   your_: Sinun
   your_account_has_been_activated: Tilisi on aktivoitu!
@@ -4053,7 +4078,7 @@ fi:
   your_inat_account_has_been_activated: '%{inat}-tilisi on aktivoitu.'
   your_life_list: elämäluettelosi
   your_membership: Jäsenyytesi
-  your_month_observations: 'Havaintosi: %{month}'
+  your_month_observations: 'Omat havainnot: %{month}'
   your_name_was_saved: Nimesi tallettiin.
   your_new_password_is: Uusi salasanasi on
   your_observations: Omat havainnot
@@ -4439,6 +4464,10 @@ fi:
           Luotu <a href="https://www.inaturalist.org">iNaturalistin</a>
           tai <a href="%{url}">iNaturalist Network -verkon</a> verkkosivustojen kautta
       year:
+        include_usa: Sisällytä Yhdysvallat
+        obs_in_year: Havainnot vuonna %{year}
+        percent_growth_in_year: '% kasvua vuonna %{year}'
+        percent_of_total_growth: '% kokonaiskasvusta'
         publications_desc_html: "Vaikutustiedot ja visualisoinnit \n<a href=\"https://www.altmetric.com\">Altmetric</a>in
           luvalla. Tiedot\ntietojen käytöstä <a href=\"https://www.gbif.org/\">Global
           Biodiversity Information Faciltity</a>ssä olevien ystäviemme luvalla.\n<br/>\n<a
@@ -4485,6 +4514,8 @@ fi:
         scientific_name_first_desc: Näytä tieteelliset nimet ennen yleisnimiä.
         youve_used_all_of_your_blocks: Olet käyttänyt kaikki lohkosi. Poista lohko
           lisätäksesi toisen.
+      recent:
+        about_recent_users: Tietoja
     welcome:
       index:
         connect_with_nature: Vietä aikaa luonnossa
@@ -4656,6 +4687,18 @@ fi:
       less_than: täytyy olla vähemmän kuin %{count}
       not_a_number: ei ole numero
       not_an_integer: täytyy olla kokonaisluku
+      taken: on jo varattu
+      too_long:
+        one: on liian pitkä (maksimi on 1 merkki)
+        other: on liian pitkä (maksimi on %{count} merkkiä)
+      too_short:
+        one: on liian lyhyt (maksimi on 1 merkki)
+        other: on liian lyhyt (maksimi on %{count} merkkiä)
+      wrong_length:
+        one: on väärän pituinen (pitäisi olla 1 merkki)
+        other: on väärän pituinen (pitäisi olla %{count} merkkiä)
+    template:
+      body: 'Seuraavissa kentissä oli ongelmia:'
   helpers:
     defaults:
       title: TÄMÄ ON OTSIKKO
@@ -4738,6 +4781,8 @@ fi:
         too_short:
           one: on liian lyhyt (minimi on 1 merkki)
           other: on liian lyhyt (minimi on %{count} merkkiä)
+      template:
+        body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
     errors:
       models:
@@ -4768,7 +4813,12 @@ fi:
             user_id:
               must_be_curator: täytyy olla tämän projektin kuraattori
             observation_id:
+              must_be_observed_after: tulee olla havaittu %{time} jälkeen
               must_be_observed_before: pitää olla havaittu ennen %{time}
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
     models:
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
@@ -4835,6 +4885,7 @@ fi:
         name: Nimi
         rank: Sija
         locked: Lukittu
+        auto_photos: Automaattiset kuvat
         auto_description: Automaattinen kuvaus
         wikipedia_title: Wikipedia-otsikko
         wikipedia_summary: Wikipedia-yhteenveto

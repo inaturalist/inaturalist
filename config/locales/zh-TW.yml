@@ -356,6 +356,7 @@ zh-TW:
     subgenus: 所有添加到資料庫的「亞屬」
     section: 所有添加到資料庫的「節」
     subsection: 所有添加到資料庫的「亞節」
+    complex: 所有添加在資料庫的複合群
     species: 所有添加到資料庫的物種
     hybrid: 所有添加到資料庫的雜種
     subspecies: 所有添加到資料庫的「亞種」
@@ -1116,6 +1117,8 @@ zh-TW:
   download_kml: 下載 KML
   downstream_coverage: 下游涵蓋
   downstream_coverage_rank: 下游涵蓋級別
+  downstream_deviations: 下游偏差
+  downstream_flagged_covered_taxa: 下游已標記的涵蓋物種分類
   drag_and_drop_photos: 拖拉照片到此視窗或
   draft: 草稿
   draft_: 草稿
@@ -1984,6 +1987,7 @@ zh-TW:
   manager: 負責人
   managers: 負責人
   managers_can_do: 負責人可進行策展人所能做出的任何事項，像是編輯專案和編寫專案日誌發佈文章。
+  managing_projects: 管理專案
   manually_create_new_place: 手動創建一個新地點
   map: 地圖
   map_legend: 地圖圖例
@@ -2070,6 +2074,7 @@ zh-TW:
   more_fields: 更多欄位
   more_filters: 更多篩選
   more_from_x: 更多來自 %{x} 的貢獻內容
+  more_help: 更多說明
   more_import_options: 更多匯入選項
   more_info: 更多資訊
   more_info_title: 更多資訊
@@ -3169,6 +3174,7 @@ zh-TW:
     subgenus: 亞屬
     section: 節
     subsection: 亞組
+    complex: 複合群
     species: 種
     hybrid: 雜種
     subspecies: 亞種
@@ -3241,6 +3247,7 @@ zh-TW:
     not_external: 非外部
     not_internal: 非內部
     unknown: 不明
+  relationship_html: 關聯：%{link}
   reload_and_refresh: 重新載入及重整清單
   reload_from_observations: 從觀察來重新載入
   reload_timed_out: 重新載入時間逾時，請再重試。
@@ -3809,6 +3816,7 @@ zh-TW:
   taxonomy_details_for: 分類法詳情用於
   taxonomy_details_info: 分類法詳情頁面使用了物種分類框架，來協助描述出依據物種分類所要表達的意思。<a href="/pages/taxon_frameworks">了解更多</a>。
   taxonomy_settings: 分類法設定
+  teachers_guide: 導師指南
   tell_everyone_a_little_about_you: 向大家介紹一些關於您的事
   tell_the_world_a_little_about_yourself: 向我們介紹您自己
   tell_us_why: 告訴我們為什麼...
@@ -4249,6 +4257,7 @@ zh-TW:
   view_your_year_stats: 檢視您的 %{year} 統計內容
   view_yours: 檢視您自己的
   view_all_of_your_observations_from_x: 檢視您所有來自於%{x}的觀察
+  video_tutorials: 影片教學
   visually_similar: 視覺上相似
   vulnerable: 易受害
   w00t_no_ungrafted_taxa: 唔！未移接的物種分類！
@@ -4325,7 +4334,6 @@ zh-TW:
   who_can_add_observations_to_this_project?: 誰可以添加觀察至此專案？
   who_can_see_the_coordinates: 誰能看到座標
   who_can_see_the_coordinates_observer: 做出觀察的人
-  who_can_see_the_coordinates_staff: iNaturalist 人員
   who_can_see_the_coordinates_projects: 以下專案的策展人
   who_can_see_the_coordinates_trusted: 觀察者以他的私有座標所信任的個人
   who_helped_user_the_most: 誰協助過 %{user} 最多

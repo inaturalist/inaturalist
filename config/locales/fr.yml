@@ -403,6 +403,7 @@ fr:
     subgenus: Tous les sous-genres ajoutés à la base de données
     section: Toutes les sections ajoutées à la base de données
     subsection: Toutes les sous-sections ajoutées à la base de données
+    complex: Tous les complexes ajoutés à la base de données
     species: Toutes les espèces ajoutées à la base de données
     hybrid: Tous les hybrides ajoutés à la base de données
     subspecies: Toutes les sous-espèces ajoutées à la base de données
@@ -1348,6 +1349,8 @@ fr:
   download_kml: Téléchargez le format KML
   downstream_coverage: Couverture en aval
   downstream_coverage_rank: Niveau de couverture en aval
+  downstream_deviations: Écarts en aval
+  downstream_flagged_covered_taxa: Taxons couverts marqués en aval
   drag_and_drop_photos: Glissez et déplacez les photos dans cette fenêtre, ou
   draft: brouillon
   draft_: Brouillon
@@ -2382,6 +2385,7 @@ fr:
   managers_can_do: Les gestionnaires peuvent faire tout ce que font les responsables
     de l’organisation, ainsi que modifier les paramètres du projet et écrire des notes
     de journal pour le projet.
+  managing_projects: Gestion des projets
   manually_create_new_place: Créer manuellement un nouveau lieu
   map: Carte
   map_legend: légende de la carte
@@ -2473,6 +2477,7 @@ fr:
   more_fields: Plus de champs
   more_filters: Plus de filtres
   more_from_x: Plus sur %{x}
+  more_help: Aide supplémentaire
   more_import_options: Plus options d’importation
   more_info: Plus d’informations
   more_info_title: Plus d’informations
@@ -3732,6 +3737,7 @@ fr:
     subgenus: Sous-genre
     section: Section
     subsection: Sous-section
+    complex: Complexe
     species: Espèce
     hybrid: Hybride
     subspecies: Sous-espèces
@@ -3805,6 +3811,7 @@ fr:
     not_external: pas externe
     not_internal: non interne
     unknown: inconnu
+  relationship_html: 'Relation : %{link}'
   reload_and_refresh: Recharger et rafraîchir la liste
   reload_from_observations: Recharger à partir des observations
   reload_timed_out: Délai de rechargement écoulé. Veuillez réessayer plus tard.
@@ -4469,6 +4476,7 @@ fr:
     taxon pour aider à décrire ce que nous voulons dire par taxon. <a href="/pages/taxon_frameworks">En
     savoir plus</a>.
   taxonomy_settings: Configuration de taxinomie
+  teachers_guide: Guide de l’enseignant
   tell_everyone_a_little_about_you: Dites-en un peu sur vous à tout le monde
   tell_the_world_a_little_about_yourself: Parlez-nous de vous
   tell_us_why: Dites-nous pourquoi...
@@ -5053,6 +5061,7 @@ fr:
   view_your_year_stats: Afficher vos statistiques de %{year}
   view_yours: Afficher la vôtre
   view_all_of_your_observations_from_x: Afficher toutes vos observations depuis %{x}
+  video_tutorials: Tutoriels vidéo
   visually_similar: Visuellement semblable
   vulnerable: Vulnérable
   w00t_no_ungrafted_taxa: Oups! Pas de taxons non greffés!
@@ -5153,7 +5162,6 @@ fr:
     projet ?
   who_can_see_the_coordinates: Qui peut voir les coordonnées
   who_can_see_the_coordinates_observer: La personne qui fait l'observation
-  who_can_see_the_coordinates_staff: l'équipe iNaturalist
   who_can_see_the_coordinates_projects: Superviseurs des projets suivants
   who_can_see_the_coordinates_trusted: Particuliers à qui l'observateur a fait confiance,
     avec leur coordonnées privées

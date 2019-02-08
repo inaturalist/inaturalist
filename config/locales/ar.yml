@@ -365,6 +365,7 @@ ar:
     subgenus: تُضَاف جميع الجنيسات إلى قاعدة البيانات
     section: تُضَاف جميع الأقسام إلى قاعدة البيانات
     subsection: تُضَاف جميع الأقسام الفرعية إلى قاعدة البيانات
+    complex: جميع المجمعات المضافة إلى قاعدة البيانات
     species: تُضَاف جميع الأنواع إلى قاعدة البيانات
     hybrid: تُضَاف جميع الهجائن إلى قاعدة البيانات
     subspecies: تُضَاف جميع السلالات إلى قاعدة البيانات
@@ -1225,6 +1226,8 @@ ar:
   download_kml: تنزيل بصيغة KML
   downstream_coverage: تغطية المصب
   downstream_coverage_rank: مستوى تغطية المصب
+  downstream_deviations: الانحرافات للأسفل
+  downstream_flagged_covered_taxa: الأصناف المتدفقة المعلمة المغطاه
   drag_and_drop_photos: سحب وإسقاط الصور على هذه النافذة أو
   draft: مسودة
   draft_: مسودة
@@ -2196,6 +2199,7 @@ ar:
   managers: المديرون
   managers_can_do: يمكن للمديرين أن يفعلوا كل ما يمكن للقيمين القيام به وكذلك تحرير
     إعدادات المشروع وكتابة مشاركات مجلة المشروع.
+  managing_projects: إدارة المشاريع
   manually_create_new_place: إنشاء مكان جديد يدويا
   map: خريطة
   map_legend: مفتاح الخريطة
@@ -2287,6 +2291,7 @@ ar:
   more_fields: المزيد من الحقول
   more_filters: المزيد من المرشحات
   more_from_x: المزيد من %{x}
+  more_help: مزيد من المساعدة
   more_import_options: المزيد من خيارات الاستيراد
   more_info: المزيد من المعلومات
   more_info_title: المزيد من المعلومات
@@ -3489,6 +3494,7 @@ ar:
     subgenus: جنيس
     section: قسم
     subsection: قسيم
+    complex: مركب
     species: نوع
     hybrid: هجين
     subspecies: نويع
@@ -3563,6 +3569,7 @@ ar:
     not_external: ليس خارجيا
     not_internal: ليس داخليا
     unknown: غير معروف
+  relationship_html: 'العلاقة: %{link}'
   reload_and_refresh: إعادة تحميل وتحديث القائمة
   reload_from_observations: إعادة تحميل من الملاحظات
   reload_timed_out: انتهت مهلة التحميل; الرجاء معاودة المحاولة في وقت لاحق.
@@ -3670,14 +3677,14 @@ ar:
   sat: قم
   satellite: القمر الصناعي
   save: حفظ
-  save_all: احفظ الكل
+  save_all: حفظ الكل
   save_and_add_another: حفظ وإضافة آخر
   save_and_continue: حفظ &amp; استمرار...
   save_and_add_taxa: حفظ والبدء في إضافة الأنواع
   save_changes: حفظ التغييرات
   save_colors: حفظ الألوان
-  save_comment: احفظ التعليق
-  save_draft: احفظ المسودة
+  save_comment: حفظ التعليق
+  save_draft: حفظ المسودة
   save_fields: حفظ الحقول
   save_flag: حفظ العلم
   save_guide: حفظ الدليل
@@ -3686,7 +3693,7 @@ ar:
   save_observation: حفظ الملاحظة
   save_photos: حفظ الصور
   save_place: حفظ المكان
-  save_trip: احفظ الرحلة
+  save_trip: حفظ الرحلة
   saved: تم الحفظ
   saving: جارٍ الحفظ...
   saving_num_of_count_observations:
@@ -4191,6 +4198,7 @@ ar:
   taxonomy_details_info: تستخدم صفحة التفاصيل التصنيفة إطارات عمل تصنيفية للمساعدة
     في وصف ما نعنيه بأصنوفة. <a href="/pages/taxon_frameworks">قراءة المزيد</a>.
   taxonomy_settings: إعدادات التصنيف
+  teachers_guide: دليل المعلم
   tell_everyone_a_little_about_you: أخبر الجميع قليلا عن نفسك
   tell_the_world_a_little_about_yourself: أخبرنا عن نفسك
   tell_us_why: أخبرنا لماذا...
@@ -4731,6 +4739,7 @@ ar:
   view_your_year_stats: عرض إحصائياتك لسنة %{year}
   view_yours: عرض لك
   view_all_of_your_observations_from_x: عرض كل ملاحظاتك من %{x}
+  video_tutorials: دروس الفيديو
   visually_similar: مماثلة بصريا
   vulnerable: غير محصن
   w00t_no_ungrafted_taxa: حسنا! أصناف غير مطعمة!
@@ -4815,7 +4824,6 @@ ar:
   who_can_add_observations_to_this_project?: من يمكنه إضافة ملاحظات إلى هذا المشروع؟
   who_can_see_the_coordinates: من يستطيع أن يرى الإحداثيات
   who_can_see_the_coordinates_observer: الشخص الذي صنع الملاحظة
-  who_can_see_the_coordinates_staff: طاقم إيناتوراليست
   who_can_see_the_coordinates_projects: القيمون على المشاريع التالية
   who_can_see_the_coordinates_trusted: الأفراد الذين يثق بهم المراقب بإحداثياته الخاصة
   who_helped_user_the_most: من ساعد %{user} أكثر
