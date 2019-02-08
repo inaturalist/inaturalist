@@ -238,6 +238,7 @@ class LocalPhoto < Photo
         o.longitude = o.longitude * -1
       end
     end
+    # Note: GPSHPositioningError isn't yet supported by exifr: https://github.com/remvee/exifr/issues/57
     if (o.latitude && o.latitude.abs > 90) || (o.longitude && o.longitude.abs > 180)
       o.latitude = nil
       o.longitude = nil
