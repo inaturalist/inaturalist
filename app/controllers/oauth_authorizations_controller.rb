@@ -3,7 +3,7 @@ class OauthAuthorizationsController < Doorkeeper::AuthorizationsController
   include Shared::FiltersModule
   layout "bootstrap"
   prepend_before_filter :return_here, :only => [:new]
-  prepend_before_filter :set_site, :set_request_locale
+  prepend_before_filter :set_request_locale, :set_site
 
   private
   def return_here

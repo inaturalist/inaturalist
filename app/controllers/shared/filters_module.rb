@@ -8,7 +8,7 @@ module Shared::FiltersModule
     locale = params[:locale]
     locale = session[:locale] if locale.blank?
     locale = current_user.try(:locale) if locale.blank?
-    locale = @site.locale if locale.blank?
+    locale = @site.locale if @site && locale.blank?
     locale = locale_from_header if locale.blank?
     locale = I18n.default_locale if locale.blank?
     I18n.locale = locale
