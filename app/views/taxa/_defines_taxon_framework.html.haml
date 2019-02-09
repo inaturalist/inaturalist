@@ -7,7 +7,7 @@
   taxon_curators ||= @taxon_curators ||= defines_taxon_framework[:taxon_curators]
   flagged_taxa ||= @flagged_taxa ||= defines_taxon_framework[:flagged_taxa]
   flagged_taxa_count ||= @flagged_taxa_count ||= defines_taxon_framework[:flagged_taxa_count]
-  orphaned_taxa_count ||= @orphaned_taxa_count ||= defines_taxon_framework[:orphaned_taxa_count]
+  relationship_unknown_count ||= @relationship_unknown_count ||= defines_taxon_framework[:relationship_unknown_count]
 .panel.panel-default
   - if taxon_framework.rank_level
     .panel-heading
@@ -60,10 +60,10 @@
             = link_to |
             deviations_count, |
             taxon_framework_relationships_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_framework_id: taxon_framework.id } ) ) |
-        - if orphaned_taxa_count > 0
+        - if relationship_unknown_count > 0
           %p
-            = "#{ t(:orphaned_taxa) }:"
-            = link_to orphaned_taxa_count, orphaned_taxa_path( taxon_framework )
+            = "#{ t( :relationship_unknown_count ) }:"
+            = link_to relationship_unknown_count, relationship_unknown_path( taxon_framework )
       - if taxon_curators.count > 0
         %p= "#{ t(:taxon_curators) }:"
         .row

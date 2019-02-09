@@ -55,4 +55,4 @@
                       %td= link_to flagged_taxon.name, taxon_path( flagged_taxon )
       - else
         %p.bg-info.padding
-          =t :orphaned_taxon
+          = t :relationship_x, relationship: t( :unknown ).capitalize

@@ -592,7 +592,7 @@ Rails.application.routes.draw do
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   
   resources :taxon_framework_relationships
-  get 'taxon_frameworks/:id/orphaned_taxa' => 'taxon_frameworks#orphaned_taxa', :as => :orphaned_taxa
+  get 'taxon_frameworks/:id/relationship_unknown' => 'taxon_frameworks#relationship_unknown', :as => :relationship_unknown
   
   resources :taxon_frameworks, except: [:show, :index]
   

@@ -73,7 +73,7 @@
             %br
             - if taxon_framework_relationship.nil?
               %p.bg-info.padding
-                = link_to t( :orphaned_taxon ), taxonomy_details_for_taxon_path( change_taxon )
+                = t( :relationship_html, link: link_to( t( :unknown ).capitalize, taxonomy_details_for_taxon_path( change_taxon ) ) )
             - else
               %p.padding{ :class => ( taxon_framework_relationship.relationship == "match" ? 'bg-success' : 'bg-warning' ) }
                 = t( :relationship_html, 

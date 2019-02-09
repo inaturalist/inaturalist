@@ -22,23 +22,20 @@
     .col-xs-12
       %ul.list-unstyled
         %li
-          = link_to t( :back_to_x, :noun => @taxon_framework.taxon.name ), taxonomy_details_for_taxon_path( @taxon_framework.taxon ), :class => "back crumb"
+          = link_to t( :back_to_taxon_framework_for_x, taxon_name: @taxon_framework.taxon.name ), taxonomy_details_for_taxon_path( @taxon_framework.taxon ), :class => "back crumb"
       %h3
-        = t :orphaned_taxa_covered_by_taxon_framework, taxon_name: @taxon_framework.taxon.name
-        - if @taxon_framework.source
-          = t( :sourced_to ).downcase
-          = link_to @taxon_framework.source.title, @taxon_framework.source.url
+        = t :taxa_with_unknown_relationships
     .col-xs-3
       = form_for :filters, builder: DefaultFormBuilder, html: { method: :get } do |f|
         = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:taxon_including_descendants)
         = f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil
         = f.select :rank, Taxon::RANKS, include_blank: t( :any ), selected: @rank, label: t( :rank )
         = f.submit t( :filter ), class: "default button", "data-loading-click": t( :filtering )
-        = link_to t( :clear_filters ), orphaned_taxa_path( @taxon_framework ), class: "minor button"
+        = link_to t( :clear_filters ), relationship_unknown_path( @taxon_framework ), class: "minor button"
     .col-xs-9
-      - if @orphaned_taxa.empty?
-        %p.description= t :no_orphaned_taxa
-      - for taxon in @orphaned_taxa
+      - if @relationship_unknown.empty?
+        %p.description= t :no_taxa_with_unknown_relationships
+      - for taxon in @relationship_unknown
         .panel
           .pull-right
             = link_to t( :new_taxon_change ), new_taxon_change_path( input_taxon_ids: [taxon.id] )
@@ -66,4 +63,4 @@
                 - else
                   - if logged_in?
                     | #{link_to t(:flag_for_curation), new_taxon_flag_path(taxon), :id => "flag_this"}
-      = will_paginate @orphaned_taxa
+      = will_paginate @relationship_unknown

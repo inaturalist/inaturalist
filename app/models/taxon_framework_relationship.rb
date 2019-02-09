@@ -26,8 +26,7 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
     "many_to_one",
     "one_to_many",
     "not_external",
-    "not_internal",
-    "unknown"
+    "not_internal"
   ]
   
   INTERNAL_TAXON_JOINS = [
@@ -122,7 +121,7 @@ class TaxonFrameworkRelationship < ActiveRecord::Base
     elsif external_taxa_count == 1 && taxa_count == 0
       self.relationship = "not_internal"
     else
-      self.relationship = "unknown"
+      self.relationship = "error"
     end
     true
   end
