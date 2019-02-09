@@ -308,7 +308,11 @@ class Project < ActiveRecord::Base
   end
 
   def project_observations_count
-    project_observations.count
+    if is_new_project?
+      Observation.elastic_search( collection_search_parameters.merge( per_page: 0 ) ).total_entries
+    else
+      project_observations.count
+    end
   end
 
   def posts_count
@@ -727,7 +731,11 @@ class Project < ActiveRecord::Base
   
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
-    observed_taxa_count = project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
+    observed_taxa_count = if project.is_new_project?
+      INatAPIService.observations_species_counts( project.collection_search_parameters.merge( per_page: 0 ) ).total_results
+    else
+      project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
+    end
     project.update_attributes(observed_taxa_count: observed_taxa_count)
   end
   
