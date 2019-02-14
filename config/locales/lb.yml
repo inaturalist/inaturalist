@@ -301,6 +301,7 @@ lb:
   at: bäi
   atom: Atom
   attribution: Attributioun
+  authorize: Autoriséieren
   automatic_short: Automatesch
   automatically_add_to_project: Automatesch bei de Projet derbäisetzen
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse
@@ -525,6 +526,7 @@ lb:
   deleted_vote: Geläscht Stëmm
   deleting: läschen...
   deleting_verb: Läschen
+  deny: Refuséieren
   description: Beschreiwung
   description_from: Beschreiwung vum
   description_slash_tags: Beschreiwung / Tags
@@ -1998,16 +2000,6 @@ lb:
         not_an_integer: muss eng ganz Zuel sinn
         odd: muss ongerued sinn
   activerecord:
-    errors:
-      models:
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: ass ze grouss fir z'importéieren
-        user:
-          attributes:
-            email:
-              must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
     models:
       Atlas: Atlas
     attributes:
@@ -2039,6 +2031,23 @@ lb:
         locale: Lokal
         time_zone: Zäitzon
         place_id: Plaz
+    errors:
+      messages:
+        blank: däerf net eidel sinn
+        empty: däerf net eidel sinn
+        greater_than: muss méi grouss si wéi %{count}
+        invalid: ass net valabel
+        not_a_number: ass keng Zuel
+        odd: muss ongerued sinn
+      models:
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: ass ze grouss fir z'importéieren
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
   i18n:
     inflections:
       :@vow_or_con:

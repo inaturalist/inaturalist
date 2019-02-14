@@ -491,7 +491,7 @@ fr:
   allow_curator_access: Autoriser l’accès au superviseur
   allow_curator_coordinate_access: Autoriser l’accès aux coordonnées par le superviseur
   allow_project_curators_to_view_your_private_coordinates: Autoriser les superviseurs
-    du projet à voir vos coordonnées privées
+    du projet à voir vos coordonnées masquées
   allowed_establish_means_values: Valeurs des moyens d’établissement autorisées
   allowed_html: HTML autorisé
   allowed_occurrence_status_values: Valeurs de présence autorisées
@@ -564,9 +564,9 @@ fr:
   are_you_sure_remove_from_project: Êtes-vous certain de vouloir retirer %{user} du
     projet?
   are_you_sure_remove_photo: Êtes-vous sûr de vouloir supprimer cette photo ?
-  are_you_sure_remove_relationship: Etes-vous sûr de vouloir supprimer cette relation
-    ? Ceci arrêtera le suivi de cette personne et supprimera l'accès à vos coordonnées
-    privées si vous en avez autorisé l'accès.
+  are_you_sure_remove_relationship: Êtes-vous sûr de vouloir supprimer cette relation ?
+    Ceci arrêtera le suivi de cette personne et supprimera l’accès à vos coordonnées
+    masquées si vous en avez autorisé l’accès.
   are_you_sure_remove_taxon_from_list: Êtes-vous certain de vouloir enlever ce taxon
     de la liste?
   are_you_sure_remove_taxon_from_place: Êtes-vous certain de vouloir enlever ce taxon
@@ -648,8 +648,7 @@ fr:
   attached_taxon: Taxon attaché
   attribute: Attribut
   attribution: Attribution
-  authority_list:
-    iucn_red_list: Liste rouge de l’UICN
+  authorize: Autoriser
   authorize_permissions_from_provider: Autoriser les permissions de %{provider}
   automatic_descriptions_have_been_disabled: Les descriptions automatiques ont été
     désactivées pour ce taxon.
@@ -1282,6 +1281,7 @@ fr:
   deleted_vote: Vote supprimé
   deleting: Suppression en cours…
   deleting_verb: Suppression
+  deny: Refuser
   desc: Desc
   descendant_taxa: taxons descendants
   descending: Descendant
@@ -1350,6 +1350,7 @@ fr:
   downstream_coverage: Couverture en aval
   downstream_coverage_rank: Niveau de couverture en aval
   downstream_deviations: Écarts en aval
+  downstream_deviations_for_taxon: Déviations en aval pour %{taxon}
   downstream_flagged_covered_taxa: Taxons couverts marqués en aval
   drag_and_drop_photos: Glissez et déplacez les photos dans cette fenêtre, ou
   draft: brouillon
@@ -1507,9 +1508,11 @@ fr:
   explore_everyones_observations: Explorer les observations de tout le monde
   export: Exporter
   export_observations: Exporter les observations
-  export_with_private_coordinates: Exporter avec les coordonnées privées
+  export_with_private_coordinates: Exporter avec les coordonnées masquées
   exporting: Exportation en cours…
   external_links: Liens externes
+  external_taxon_including_children: Taxon externe (incluant les enfants)
+  external_taxon_rank: Rang du taxon externe
   extinct: disparue
   extinct_in_the_wild: Disparue à l’état sauvage
   extra_properties: Propriétés supplémentaires
@@ -1976,6 +1979,8 @@ fr:
   interactions: Interactions
   internal_server_error: Erreur interne du serveur
   internal_taxon: Taxon interne
+  internal_taxon_including_descendants: Taxon interne (incluant les descendants)
+  internal_taxon_rank: Rang du taxon interne
   introduced: Introduite
   introduced_in_place: Introduit dans %{place}
   invasive: Invasive
@@ -2029,6 +2034,7 @@ fr:
     <a href="mailto:%{help_email}" class="contact">nous contacter</a>.
     <a href="%{manage_flags_path}">Gérer les drapeaux</a>
   its_important_that_you: Il est important que vous cliquiez
+  iucn_red_list: Liste rouge de l’IUCN
   iucn_red_list_status: Situation selon la liste rouge de l’UICN
   january: Janvier
   join: Joignez-vous à
@@ -2052,8 +2058,9 @@ fr:
   journal_posts: Publications du journal
   jpg_png_or_gif: JPG, PNG ou GIF
   jump_to_letter: Sauter à la lettre
-  just_a_reminder: Juste un rappel, comme vous pouvez avoir donné des droits aux superviseurs
-    de projet de voir les coordonnées privées de vos observations dans ce projet.
+  just_a_reminder: Juste un rappel, parce que vous pouvez avoir donné les droits aux
+    superviseurs de projet pour voir les coordonnées masquées de vos observations
+    dans ce projet.
   just_added!: Ajouts récents
   keep_editing: Continuer à modifier
   kelp_diatoms_and_allies: varech, diatomées et espèces apparantées
@@ -3606,7 +3613,7 @@ fr:
   private_description: Coordonnées complètement masquées des cartes publiques. Les
     vraies coordonnées ne sont visibles que par vous et les responsables de l’organisation
     des projets auxquels vous avez ajouté l’observation. Les observations avec des
-    coordonnées privées seront toujours utilisées pour vérifier les listes de contrôle
+    coordonnées masquées seront toujours utilisées pour vérifier les listes de contrôle
     des lieux.
   probably_spam: Sans doute du pourriel
   proceed: Procéder
@@ -4259,8 +4266,8 @@ fr:
   stop_editing: Arrêter la modification
   stop_following_user: Arrêter de suivre %{user}
   stop_testing: Arrêter le test
-  stop_trusting_this_person_with_your_private_coordinates: Arretez de confier à cette
-    personne vos coordonnées privées
+  stop_trusting_this_person_with_your_private_coordinates: Arrêtez de confier à cette
+    personne vos coordonnées masquées
   stop_updating_position: Arrêter la mise à jour de l’emplacement
   studies_that_used_inaturalist_data_in_year: Etudes ayant utilisé les données de
     iNaturalist en %{year}
@@ -4426,8 +4433,9 @@ fr:
   taxon_curators: Superviseurs des taxons
   taxon_extras: Taxons additionnels
   taxon_framework_notes: Notes du cadre de taxon
-  taxon_framework_relationship_for: Relation du cadre de taxon pour
   taxon_framework_relationship: Relation du cadre de taxon
+  taxon_framework_relationship_for: Relation du cadre de taxon pour
+  taxon_framework_relationship_number: Relation du cadre du taxon %{number}
   taxon_framework_relationships: Relations du cadre de taxon
   taxon_framework_taxon: Taxon du cadre de taxon
   taxon_links: Liens de taxon
@@ -4770,8 +4778,8 @@ fr:
   trusted: Fiable
   trusted_project?: Projet digne de confiance?
   trust_this_person_with_your_private_coordinates: Faire confiance à cette personne
-    avec vos coordonnées personnelles
-  trust_with_private_coordinates: De confiance, avec coordonnées privées
+    avec vos coordonnées masquées
+  trust_with_private_coordinates: De confiance, avec coordonnées masquées
   try_adding_species_form: Essayez d’ajouter des espèces en utilisant le formulaire
     sur cette page.
   try_it_out: Essayez le
@@ -4936,9 +4944,9 @@ fr:
   user_suggested_an_id: '%{user} a suggéré un ID'
   user_thinks_yours_is: '%{user} %{noun} que votre observation %{observation} est'
   user_trusts_you_with_their_private_coordinates: '%{user} vous a fait confiance avec
-    ses coordonnées privées'
-  user_trusts_you_with_their_private_coordinates_desc: L'observateur a choisi de vous
-    faire confiance pour les coordonnées privées relatives aux observations associées.
+    ses coordonnées masquées'
+  user_trusts_you_with_their_private_coordinates_desc: L’observateur a choisi de vous
+    faire confiance pour les coordonnées masquées relatives aux observations associées.
   username: Nom d’utilisateur
   username_or_email: Nom d’utilisateur ou adresse électronique
   username_or_user_id: Nom ou ID d’utilisateur
@@ -5036,10 +5044,12 @@ fr:
   view_stats: Afficher les statistiques
   view_taxon_change: Afficher la modification du taxon
   view_taxon_changes: Afficher les modifications de taxon
+  view_taxon_framework_relationship: Afficher la relation du cadre du taxon
   view_taxon_page: Afficher la page de taxon
   view_taxon_page_for: Afficher la page de taxon pour ceci
   view_taxon_page_for_this_x: Afficher la page de taxon pour ce %{x}
   view_taxonomic_changes: Afficher les modifications de taxon
+  view_taxononomy_details_for_taxon: Afficher les détails de la taxonomie pour %{taxon}
   view_terms: Afficher les conditions
   view_the: Afficher le %{action}&#59; %{link}
   view_the_observation: Afficher l’observation
@@ -5163,8 +5173,8 @@ fr:
   who_can_see_the_coordinates: Qui peut voir les coordonnées
   who_can_see_the_coordinates_observer: La personne qui fait l'observation
   who_can_see_the_coordinates_projects: Superviseurs des projets suivants
-  who_can_see_the_coordinates_trusted: Particuliers à qui l'observateur a fait confiance,
-    avec leur coordonnées privées
+  who_can_see_the_coordinates_trusted: Particuliers à qui l’observateur a fait confiance,
+    avec leur coordonnées masquées
   who_helped_user_the_most: Qui a le plus aidé %{user}
   who_user_helped_the_most: Qui %{user} a le plus aidé
   why_the_coordinates_are_obscured: Pourquoi les coordonnées sont grisées
@@ -5912,6 +5922,13 @@ fr:
         project_list_desc: |-
           Taxons ajoutés manuellement par les responsables de l’organisation du projet et les taxons représentés par
           les observations de niveau recherche sont listés sur les listes du projet.
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: Autoriser %{application} à utiliser
+            votre compte ?
+          this_application_will_be_able_to_colon: 'Cette application pourra :'
+          more_about_application: Plus sur %{application}
     observations:
       community_id:
         agreement: Accord
@@ -6056,7 +6073,7 @@ fr:
           le modèle</a>"
       show:
         allow_curator_coordinate_access_desc_html: Permettre aux superviseurs de projet
-          de voir les coordonnées privées de cette observation.
+          de voir les coordonnées masquées de cette observation.
         ancestor_disagreements_desc: Nombre de taxons identifiés qui font partie des
           ancêtres d’un taxon, mais qui ont été créés après la première identification
           au moyen de ce taxon
@@ -6311,20 +6328,20 @@ fr:
       tracks_multiple_projects: suit de multiples projets
       projects_included: Projets inclus
       collection_and_umbrellas_do_not_support: Les collections et les projets chapeau
-        ne supportent pas actuellement l'accès aux coordonnées privées.
+        ne supportent pas actuellement l’accès aux coordonnées masquées.
       curator_coordinate_access_desc_html: |-
         Souvenez-vous, <strong>les superviseurs du projet peuvent ajouter n’importe laquelle de vos observations à
         leur projet</strong> sauf si vous avez choisi l’inverse dans vos <a
         href="/users/edit">paramètres de compte</a>. Cochez cette case uniquement si vous
-        faites confiance aux superviseurs du projet pour voir vos coordonnées privées sur n’importe quelle
+        faites confiance aux superviseurs du projet pour voir vos coordonnées masquées sur n’importe quelle
         observation que vous pouvez avoir ajouté à ce projet. Si vous
         choisissez de ne pas leur accorder ce droit, vous pourrez toujours accorder l’accès
-        aux coordonnées privées observation par observation.
+        aux coordonnées masquées observation par observation.
       confirm_leave:
         what_would_you_like: Que voulez-vous faire avec vos observations dans ce projet ?
         keep_observations_label: Laisser vos observations dans ce projet
         keep_observations_desc: Vos observations resteront dans le projet et les superviseurs
-          pourront voir leurs coordonnées privées.
+          pourront voir leurs coordonnées masquées.
         project_requires_curator_coordinate_access_desc: |-
           Ce projet n’autorise pas d’observations avec des coordonnées
           non visibles par les superviseurs. Si vous ne voulez pas partager les
@@ -6337,9 +6354,9 @@ fr:
           <a href="/users/edit">paramètres de compte</a>.
         revoke_observations_label: |-
           Laisser vos observations sur ce projet mais empêcher les superviseurs de voir
-          leurs coordonnées privées
-        revoke_observations_desc: Si le seul motif que vous laissez est d’empêcher
-          les superviseurs du projet de voir vos coordonnées privées.
+          leurs coordonnées masquées
+        revoke_observations_desc: Si le seul motif de votre départ est d’empêcher
+          les superviseurs du projet de voir vos coordonnées masquées.
       edit:
         aggregation_pending: En attente d'aggrégation
         new_place_desc_html: "Essayez de voir en utilisant \n<a href=\"%{places_url}\"
@@ -6553,9 +6570,9 @@ fr:
         none: Non.
       curator_coordinate_access_label: Voulez-vous rendre visible aux responsables
         de projets les coordonnées privées et semi-privées de vos observations ?
-      curator_coordinate_access_note: |-
-        Vous pouvez configurer individuellement les avis de chaque observations.
-        Cette option sera appliquée automatiquement sur toutes les autres.
+      curator_coordinate_access_note: Vous pouvez aussi choisir de partager les coordonnées
+        masquées des observations dans ce projet au cas par cas. Ce sont juste les
+        valeurs par défaut pour les nouvelles observations ajoutées au projet.
       project_terms_desc_html: |-
         Permettre aux superviseurs de ce projet d’utiliser vos observations d’après
         les <a href="%{url}">conditions du projet</a>.
@@ -7068,7 +7085,7 @@ fr:
           Davantage d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
         project_settings_desc: |-
           Souvenez-vous, cela ne donne pas aux projets le droit d’accéder à vos
-          coordonnées privées ou de vous envoyer des mises à jour. Vous devez rejoindre les projets afin
+          coordonnées masquées ou de vous envoyer des mises à jour. Vous devez rejoindre les projets afin
           d’accorder ces droits, ou les autoriser au cas par cas.
         taxon_change_desc: |-
           Quand des taxons sont fusionnés ou renommés sur %{site_name}, vos
@@ -7413,93 +7430,6 @@ fr:
           one: 1 erreur a empêché ce %{model} d’être enregistré
           other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: nécessite au moins 3 taxons dans votre guide
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: le guide ne peut avoir que 500 taxons
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: Clef API en cours ou en attente d'importation
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: pour l’ADN, ne peut contenir que les caractères A, T,
-                C ou G
-              date_format: "doit être en format AAAA-MM-JJ pour un champ date (« %{observation_field_name} »
-                \ndans votre observation de « %{observation_species_guess} »)"
-              time_format: "doit être au format hh:mm pour un champ d’heure (« %{observation_field_name} »
-                \ndans votre observation de « %{observation_species_guess} »)"
-            observation_id:
-              user_does_not_accept_fields_from_others: l'utilisateur n'accepte pas
-                les champs des autres
-              user_only_accepts_fields_from_site_curators: l’utilisateur accepte uniquement
-                les champs des superviseurs du site
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: est trop gros pour être importé
-              contains_too_many_observations: contient trop d'observations à importer
-        post:
-          attributes:
-            user:
-              must_be_on_site_long_enough: |-
-                doit être inscrit depuis plus de 24 heures pour pouvoir
-                publier. Nous avons beaucoup de polluposteurs et c’est un moyen
-                assez lamentable de régler le problème. Vous pouvez toujours
-                enregistrer un brouillon, et si vous utilisez toujours le site
-                dans un jour, vous pourrez publier.
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: Le projet n'accepte pas les observations
-            user_id:
-              must_be_curator: doit être un responsable de ce projet
-            observation_id:
-              must_be_observed_after: doit être observé après %{time}
-              must_be_observed_before: doit être observé avant %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
-                par un superviseur de ce taxon
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: ne doit pas contenir de virgules
-                ni de barres obliques
-            name:
-              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: ne correspond
-                pas au nom scientifique d'une espèce pour ce lexicon
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: doit commencer par une lettre, ne pas contenir
-                d'espaces, ne doit utiliser que des lettres, des tirets ou des caractères
-                souligné
-            email:
-              must_look_like_an_email_address: doit ressembler à une adresse courriel
     models:
       AssessmentSection: Section d’évaluation
       Atlas: Atlas
@@ -7596,6 +7526,186 @@ fr:
         search_place_id: Rechercher un lieu
         place_id: Endroit
         preferred_observation_fields_by: Autoriser les champs d’observation depuis
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: doit être accepté
+        blank: ne peut être vide
+        confirmation: ne correspond pas au mot de passe
+        empty: ne peut être vide
+        equal_to: doit être égal à %{count}
+        even: doit être pair
+        exclusion: est réservé
+        greater_than: doit être supérieur à %{count}
+        greater_than_or_equal_to: doit être supérieur ou égal à %{count}
+        inclusion: n’est pas compris dans la liste
+        invalid: n’est pas valide
+        less_than: doit être inférieur à %{count}
+        less_than_or_equal_to: doit être inférieur ou égal à %{count}
+        not_a_number: n’est pas un nombre
+        not_an_integer: doit être un entier
+        odd: doit être impair
+        record_invalid: 'Échec de la validation : %{errors}'
+        taken: a déjà été pris
+        too_long:
+          one: est trop long (maximum 1 caractère)
+          other: est trop long (maximum %{count} caractères)
+        too_short:
+          one: est trop court (minimum 1 caractère)
+          other: est trop court (minimum %{count} caractères)
+        wrong_length:
+          one: n’a pas la bonne longueur (devrait faire 1 caractère)
+          other: n’a pas la bonne taille (devrait faire %{count} caractères)
+      template:
+        body: 'Il y a des problèmes avec les champs suivants :'
+        header:
+          one: 1 erreur a empêché ce %{model} d’être enregistré
+          other: '%{count} erreurs ont empêché ce %{model} d’être enregistré'
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: ne peut contenir un fragment
+              has_query_parameter: ne peut contenir de paramètre de requête.
+              invalid_uri: doit être un URI valide.
+              relative_uri: doit être un URI absolu.
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: nécessite au moins 3 taxons dans votre guide
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: le guide ne peut avoir que 500 taxons
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: Clef API en cours ou en attente d'importation
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: pour l’ADN, ne peut contenir que les caractères A, T,
+                C ou G
+              date_format: "doit être en format AAAA-MM-JJ pour un champ date (« %{observation_field_name} »
+                \ndans votre observation de « %{observation_species_guess} »)"
+              time_format: "doit être au format hh:mm pour un champ d’heure (« %{observation_field_name} »
+                \ndans votre observation de « %{observation_species_guess} »)"
+            observation_id:
+              user_does_not_accept_fields_from_others: l'utilisateur n'accepte pas
+                les champs des autres
+              user_only_accepts_fields_from_site_curators: l’utilisateur accepte uniquement
+                les champs des superviseurs du site
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: est trop gros pour être importé
+              contains_too_many_observations: contient trop d'observations à importer
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: |-
+                doit être inscrit depuis plus de 24 heures pour pouvoir
+                publier. Nous avons beaucoup de polluposteurs et c’est un moyen
+                assez lamentable de régler le problème. Vous pouvez toujours
+                enregistrer un brouillon, et si vous utilisez toujours le site
+                dans un jour, vous pourrez publier.
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Le projet n'accepte pas les observations
+            user_id:
+              must_be_curator: doit être un responsable de ce projet
+            observation_id:
+              must_be_observed_after: doit être observé après %{time}
+              must_be_observed_before: doit être observé avant %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
+                par un superviseur de ce taxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: ne doit pas contenir de virgules
+                ni de barres obliques
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: ne correspond
+                pas au nom scientifique d'une espèce pour ce lexicon
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: doit commencer par une lettre, ne pas contenir
+                d'espaces, ne doit utiliser que des lettres, des tirets ou des caractères
+                souligné
+            email:
+              must_look_like_an_email_address: doit ressembler à une adresse courriel
+  doorkeeper:
+    scopes:
+      write: Créer, mettre à jour et supprimer vos observations, identifications et
+        autre contenu en votre nom, et accéder à vos coordonnées masquées et toute
+        autre information à laquelle vous pouvez accéder sur le site.
+      login: Accéder aux informations pertinentes pour se connecter, comme l’adresse
+        de messagerie, le nom d’utilisateur, le nom et l’icône utilisateur
+    errors:
+      messages:
+        invalid_request: La requête n'a pas de paramètre obligatoire, cela peut être
+          une valeur de paramètre non prise en charge, ou un paramètre mal mis en
+          forme.
+        invalid_redirect_uri: L’URI de redirection inclus n’est pas valide.
+        unauthorized_client: Le client n’est pas autorisé à effectuer cette requête
+          en utilisant cette méthode.
+        access_denied: Le propriétaire de la ressource ou le serveur d’autorisation
+          a interdit la requête.
+        invalid_scope: La portée de la requête n’est pas valide, inconnue ou mal formée.
+        server_error: Le serveur d’autorisation a rencontré une condition inattendue
+          qui l’a empêché de traiter la requête.
+        temporarily_unavailable: Le serveur d’autorisation est actuellement incapable
+          d’accepter la requête du fait d’une surcharge temporaire ou de la maintenance
+          du serveur.
+        credential_flow_not_configured: Le flux d’identification du mot de passe du
+          propriétaire de la ressource a échoué du fait que Doorkeeper.configure.resource_owner_from_credentials
+          n’est pas configuré.
+        resource_owner_authenticator_not_configured: La recherche du propriétaire
+          de la ressource a échoué du fait que Doorkeeper.configure.resource_owner_authenticator
+          n’est pas configuré.
+        unsupported_response_type: Le serveur d’autorisation ne prend pas en charge
+          ce type de réponse.
+        invalid_client: L’authentification du client a échoué du fait d’un client
+          inconnu, ou parce qu'il n’y a pas d’authentification du client incluse,
+          ou à cause d'une  méthode d’authentification non supportée.
+        invalid_grant: Le droit d’autorisation fourni n’est pas valide, a expiré,
+          est révoqué, ne correspond pas à l’URI de redirection utilisée dans la requête
+          d’autorisation, ou a été remis à un autre client.
+        unsupported_grant_type: Le type de droit d’autorisation n’est pas pris en
+          charge par le serveur d’autorisation.
+        invalid_resource_owner: Les certificats du propriétaire de la ressource fournis
+          ne sont pas valides, ou le propriétaire de la ressource est introuvable
+    flash:
+      applications:
+        create:
+          notice: Application créée.
+        destroy:
+          notice: Application supprimée.
+        update:
+          notice: Application mise à jour.
+      authorized_applications:
+        destroy:
+          notice: Application révoquée.
   i18n:
     inflections:
       :@vow_or_con:

@@ -599,8 +599,6 @@ pt-PT:
   at_time: às %{time}
   atom: Átomo
   attribute: Atributo
-  authority_list:
-    iucn_red_list: Lista Vermelha da UICN
   authorize_permissions_from_provider: Autorizar permissões de %{provider}
   automatic_descriptions_have_been_disabled: As descrições automáticas foram desativadas
     para este táxon.
@@ -4274,56 +4272,6 @@ pt-PT:
       template:
         body: 'Ocorreram problemas com os seguintes campos:'
   activerecord:
-    errors:
-      models:
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: a guia só pode conter até 500 táxons
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: é demasiado grande para ser importado
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: O projeto não permite observações
-            user_id:
-              must_be_curator: tem de ser curador deste projeto
-            observation_id:
-              must_be_observed_after: deve ser observado depois da(s) %{time}
-              must_be_observed_before: deve ser observado antes da(s) %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: não deve conter vírgulas ou barras
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: tem obrigatoriamente de começar por uma letra,
-                sem conter espaços e usar só letras, números, traços e sublinhados
-            email:
-              must_look_like_an_email_address: deve parecer-se com um endereço email
     models:
       Atlas: Atlas
     attributes:
@@ -4393,6 +4341,56 @@ pt-PT:
         time_zone: Fuso horário
         search_place_id: Procurar lugar
         place_id: Lugar
+    errors:
+      models:
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: a guia só pode conter até 500 táxons
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: é demasiado grande para ser importado
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: O projeto não permite observações
+            user_id:
+              must_be_curator: tem de ser curador deste projeto
+            observation_id:
+              must_be_observed_after: deve ser observado depois da(s) %{time}
+              must_be_observed_before: deve ser observado antes da(s) %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: não deve conter vírgulas ou barras
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: tem obrigatoriamente de começar por uma letra,
+                sem conter espaços e usar só letras, números, traços e sublinhados
+            email:
+              must_look_like_an_email_address: deve parecer-se com um endereço email
   i18n:
     inflections:
       :@vow_or_con:

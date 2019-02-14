@@ -373,8 +373,6 @@ bg:
   assessment: оценка
   assessments: оценки
   attribute: Атрибут
-  authority_list:
-    iucn_red_list: Червен списък на IUCN
   automatically_share_your_observations_on: Автоматично споделяй наблюденията си във
   automatically_update_my_content_for_taxon_changes: Автоматично обновявай съдържанието
     ми при промяна на таксон
@@ -3155,18 +3153,6 @@ bg:
       template:
         body: 'Възникнаха проблеми със следните полета:'
   activerecord:
-    errors:
-      models:
-        place:
-          attributes:
-            place_geometry:
-              contains_too_many_observations: съдържа прекалено много наблюдения за
-                импортиране
-        project_observation:
-          attributes:
-            observation_id:
-              must_be_observed_after: да е наблюдавано след %{time}
-              must_be_observed_before: да е наблюдавано преди %{time}
     models:
       Atlas: Атлас
     attributes:
@@ -3227,6 +3213,18 @@ bg:
         search_place_id: Място за търсене
         place_id: Място
         preferred_observation_fields_by: Позволявай полета за наблюдения от
+    errors:
+      models:
+        place:
+          attributes:
+            place_geometry:
+              contains_too_many_observations: съдържа прекалено много наблюдения за
+                импортиране
+        project_observation:
+          attributes:
+            observation_id:
+              must_be_observed_after: да е наблюдавано след %{time}
+              must_be_observed_before: да е наблюдавано преди %{time}
   wild: Див
   will_paginate:
     previous_label: '&#8592; Пред.'

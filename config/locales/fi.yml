@@ -584,8 +584,6 @@ fi:
   atom: Atom
   attribute: Määrite
   attribution: Nimeäminen
-  authority_list:
-    iucn_red_list: IUCN Uhanalaisuusluokitus
   authorize_permissions_from_provider: Valtuuta %{provider} käyttöoikeudet
   automatic_descriptions_have_been_disabled: Automaattiset kuvaukset on poistettu
     käytöstä tälle taksonille.
@@ -3498,8 +3496,8 @@ fi:
   taxon_colors: Taksonivärit
   taxon_curators: Taksonikuraattorit
   taxon_framework_notes: Taksonikehysmerkinnät
-  taxon_framework_relationship_for: Taksonikehyssuhde taksonille
   taxon_framework_relationship: Taksonikehyssuhde
+  taxon_framework_relationship_for: Taksonikehyssuhde taksonille
   taxon_framework_relationships: Taksonikehyssuhteet
   taxon_framework_taxon: Taksonikehystaksoni
   taxon_links: Taksonilinkit
@@ -4784,41 +4782,6 @@ fi:
       template:
         body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: vaatii vähintään 3 taksonia oppaassasi
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: oppaassa voi olla vain 500 taksonia
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: DNA voi sisältää vain merkit A, T, C tai G
-            observation_id:
-              user_only_accepts_fields_from_site_curators: käyttäjä hyväksyy kentät
-                vain sivuston kuraattoreilta
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: on liian iso tuotavaksi
-              contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: Projekti ei hyväksy havaintoja
-            user_id:
-              must_be_curator: täytyy olla tämän projektin kuraattori
-            observation_id:
-              must_be_observed_after: tulee olla havaittu %{time} jälkeen
-              must_be_observed_before: pitää olla havaittu ennen %{time}
-        user:
-          attributes:
-            email:
-              must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
     models:
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
@@ -4904,6 +4867,41 @@ fi:
         search_place_id: Hae paikka
         place_id: Paikka
         preferred_observation_fields_by: Salli havaintokentät
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: vaatii vähintään 3 taksonia oppaassasi
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: oppaassa voi olla vain 500 taksonia
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: DNA voi sisältää vain merkit A, T, C tai G
+            observation_id:
+              user_only_accepts_fields_from_site_curators: käyttäjä hyväksyy kentät
+                vain sivuston kuraattoreilta
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: on liian iso tuotavaksi
+              contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Projekti ei hyväksy havaintoja
+            user_id:
+              must_be_curator: täytyy olla tämän projektin kuraattori
+            observation_id:
+              must_be_observed_after: tulee olla havaittu %{time} jälkeen
+              must_be_observed_before: pitää olla havaittu ennen %{time}
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
   i18n:
     inflections:
       :@vow_or_con:

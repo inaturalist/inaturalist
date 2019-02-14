@@ -593,8 +593,6 @@ sv:
   atom: Atom
   attribute: Attribut
   attribution: Erkännande
-  authority_list:
-    iucn_red_list: IUCN röda lista
   authorize_permissions_from_provider: Godkänn tillstånd från %{provider}
   automatic_descriptions_have_been_disabled: Automatiska beskrivningar har deaktiverats
     för denna takson.
@@ -2407,21 +2405,6 @@ sv:
       messages:
         confirmation: stämde inte överens med lösenordet
   activerecord:
-    errors:
-      models:
-        observation_field_value:
-          attributes:
-            observation_id:
-              user_does_not_accept_fields_from_others: användare accepterar inte fält
-                från andra
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: är för stor för att importera
-        user:
-          attributes:
-            email:
-              must_look_like_an_email_address: måste se ut som en e-postadress
     models:
       TaxonLink: Taxonlänk
     attributes:
@@ -2443,6 +2426,21 @@ sv:
         time_zone: Tidszon
         search_place_id: Sökplats
         place_id: Plats
+    errors:
+      models:
+        observation_field_value:
+          attributes:
+            observation_id:
+              user_does_not_accept_fields_from_others: användare accepterar inte fält
+                från andra
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: är för stor för att importera
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: måste se ut som en e-postadress
   zoom_in: Zooma in
   zoom_out: Zooma ut
   zoom_photo: Zooma foto

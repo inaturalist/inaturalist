@@ -585,8 +585,6 @@ es-MX:
   at_time: a las %{time}
   atom: Atom
   attribute: Atributo
-  authority_list:
-    iucn_red_list: Lista roja UICN
   authorize_permissions_from_provider: Autoriza permisos de %{provider}
   automatic_descriptions_have_been_disabled: Las descripciones automáticas para esta
     especie o grupo han sido desconectadas.
@@ -5190,6 +5188,46 @@ es-MX:
         name: Nombre
         locale: Localidad
         time_zone: Zona horaria
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: Debe ser aceptado
+        blank: No puede quedarse vacío
+        confirmation: No coincide con la confirmación
+        empty: No puede quedarse vacío
+        equal_to: Debe ser igual a  %{count}
+        even: Debe ser número impar
+        exclusion: Está reservado
+        greater_than: Debe ser mayor que %{count}
+        greater_than_or_equal_to: Debe ser mayor o igual a %{count}
+        inclusion: No está incluido en la lista
+        invalid: Es inválido
+        less_than: Debe ser menor que %{count}
+        less_than_or_equal_to: Debe ser menor o igual a %{count}
+        not_a_number: No es un número
+        not_an_integer: Debe ser un número entero
+        odd: Debe ser número impar
+        record_invalid: 'Falló la validación: %{errors}'
+        taken: Ya ha sido utilizado
+        too_long:
+          one: Es demasiado largo (máximo es un carácter)
+          other: Es demasiado largo (máximo es %{count} caracteres)
+        too_short:
+          one: Demasiado corto (mínimo es un carácter)
+          other: Es demasiado corto (Mínimo es %{count} caracteres)
+        wrong_length:
+          one: La longitud está equivocada (debe ser un carácter)
+          other: La longitud está equivocada (deben ser %{count} caracteres)
+      template:
+        body: 'Hubo problemas con los siguientes campos:'
+        header:
+          one: Un error no permitió que este %{model} se guardara
+          other: '% {count} errores no permitieron que este %{model} se guardara'
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: No puede contener un fragmento
   wild: salvaje
   will_paginate:
     previous_label: '&#8592; Previo'
