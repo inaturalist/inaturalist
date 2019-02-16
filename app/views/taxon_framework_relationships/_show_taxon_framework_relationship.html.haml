@@ -49,6 +49,6 @@
             taxon_framework_relationship.taxa[i].name + " (#{ t(:parent).downcase }: " + |
             t( "ranks.#{ taxon_framework_relationship.taxa[i].parent.rank }" ).capitalize + " " + |
             taxon_framework_relationship.taxa[i].parent.name + ")", |
-            taxonomy_details_for_taxon_path( taxon_framework_relationship.taxa[i] ) |
+            taxon_path( taxon_framework_relationship.taxa[i] ) |
         - else
           %td
