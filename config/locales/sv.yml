@@ -445,7 +445,7 @@ sv:
   allow_curator_access: Tillåt tillgång för kurator
   allow_curator_coordinate_access: Tillåt tillgång till koordinater för kurator
   allow_project_curators_to_view_your_private_coordinates: Tillåt projektkuratorer
-    att se dina privata koordinater
+    att se dina dolda koordinater
   allowed_establish_means_values: Tillåtna värden för ursprung
   allowed_html: Tillåten HTML
   allowed_occurrence_status_values: Tillåtna värden for förekomststatus
@@ -914,6 +914,7 @@ sv:
   deleted_user: raderade användare
   deleting: Raderar...
   deleting_verb: Raderar
+  deny: Neka
   description: Beskrivning
   description_from: Beskrivning från
   description_slash_tags: Beskrivning / Taggar
@@ -1957,6 +1958,8 @@ sv:
   translated_languages: Översatta språk
   trending: Trender
   trends: Trender
+  trust_this_person_with_your_private_coordinates: Lita på denna person med dina dolda
+    koordinater
   try_it_out: Prova
   tue: Tis
   type_taxon_name: Skriv taxon namn
@@ -1994,6 +1997,8 @@ sv:
   user_commented_on: '%{user} kommenterade på din %{title} %{time}'
   user_helped_x_people_with_y_ids_html: '%{user} hjälpte <strong>%{x} personer</strong>
     med <strong>%{y} ID:n</strong>'
+  user_trusts_you_with_their_private_coordinates: '%{user} litar på dig med sina dolda
+    koordinater'
   username: Användarnamn
   username_or_email: Användarnamn eller e-post
   username_or_user_id: Användarnamn eller användar-ID
@@ -2151,6 +2156,10 @@ sv:
           %{site_name}, men det kan vara lite \nlångsamt, så vi kan bara tillåta en
           uppladdning åt gången. Flickr eller Google\när förmodligen snabbare om du
           redan använder dessa tjänster."
+    oauth:
+      authorizations:
+        new:
+          more_about_application: Mer om %{application}
     observations:
       export:
         well_email_you: Ok, vi kommer att maila dig när det är klart.
@@ -2427,7 +2436,33 @@ sv:
         search_place_id: Sökplats
         place_id: Plats
     errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: måste accepteras
+        blank: kan inte vara tom
+        confirmation: stämde inte överens med lösenordet
+        empty: kan inte vara tom
+        equal_to: måste vara samma som %{count}
+        even: måste vara jämnt
+        exclusion: är reserverad
+        greater_than: måste vara större än %{count}
+        inclusion: ingår inte i listan
+        invalid: är ogiltig
+        less_than: måste vara mindre än %{count}
+        less_than_or_equal_to: måste vara mindre än eller lika med %{count}
+        not_a_number: är inte en siffra
+        not_an_integer: måste vara ett heltal
+        odd: måste vara udda
+        taken: har redan tagits
+        wrong_length:
+          one: har fel längd (bör vara 1 tecken)
+          other: har fel längd (bör vara %{count} tecken)
       models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: kan inte innehålla ett fragment.
+              invalid_uri: måste vara en giltig URI.
         observation_field_value:
           attributes:
             observation_id:

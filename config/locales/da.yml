@@ -525,8 +525,8 @@ da:
     fra dette projekt?
   are_you_sure_remove_photo: Er du sikker på, at du ønsker at fjerne dette foto?
   are_you_sure_remove_relationship: Er du sikker på, at du vil fjerne denne forbindelse?
-    Du vil ikke længere følge denne person samt annullere adgangen til dine private
-    koordinater.
+    Du vil ikke længere følge denne person og dette vil  annullere adgangen til dine
+    private koordinater.
   are_you_sure_remove_taxon_from_list: Er du sikker på at du vil fjerne denne takson
     fra listen?
   are_you_sure_remove_taxon_from_place: Er du sikker på, at du vil fjerne denne takson
@@ -3468,8 +3468,8 @@ da:
   privacy_policy: Fortrolighedspolitik
   private: privat
   private_: Privat
-  private_description: Koordinaterne er helt skjult fra offentlige kort, og de korrekte
-    koordinater er kun synlige for dig og kuratorerne for de projekter, du tilføjer
+  private_description: Koordinaterne er helt skjult fra offentlige kort og de korrekte
+    koordinater, er kun synlige for dig og kuratorerne for de projekter, du tilføjer
     observationen til. Observationer med skjulte koordinater vil stadig blive brugt
     til at verificere tjeklister for steder.
   probably_spam: Sikkert spam
@@ -5668,7 +5668,7 @@ da:
             din konto?
           this_application_will_be_able_to_colon: 'Denne applikation vil være i stand
             til:'
-          more_about_application: Mer om %{application}
+          more_about_application: Mere om %{application}
     observations:
       community_id:
         agreement: Enighed
@@ -6034,7 +6034,7 @@ da:
           projekt?
         keep_observations_label: Lad dine observationer forblive i dette projekt
         keep_observations_desc: |-
-          Dine observationer forbliver i projektet, og kuratorer vil stadig
+          Dine observationer forbliver i projektet og kuratorer vil stadig
           kunne se de skjulte koordinater.
         project_requires_curator_coordinate_access_desc: |-
           Dette projekt tillader ikke observationer med koordinater
@@ -6047,10 +6047,10 @@ da:
           observationer til deres projekt, medmindre du ændrer i dine
           <a href="/users/edit"> kontoindstillinger </a>.
         revoke_observations_label: |-
-          Lad observationer forblive i dette projekt, men forhindrer kuratorer i at se
+          Lader observationer forblive i dette projekt, men forhindrer kuratorer i at se
           observationernes skjulte koordinater
         revoke_observations_desc: Hvis den eneste grund til, at du smutter, er at
-          stoppe projekuratorer fra at se dine skjulte koordinater.
+          stoppe projekt kuratorer fra at se dine skjulte koordinater.
       edit:
         aggregation_pending: Sammenlægning afventer
         new_place_desc_html: |-
@@ -7138,7 +7138,7 @@ da:
         application:
           attributes:
             redirect_uri:
-              fragment_present: må ikke indeholde et fragment
+              fragment_present: må ikke indeholde et fragment.
               has_query_parameter: må ikke indeholde en forespørgselsparameter.
               invalid_uri: skal være et gyldigt URI.
               relative_uri: skal være et fuldstændigt URI.
@@ -7231,12 +7231,12 @@ da:
         indhold på dine vegne, og få adgang til dine skjulte koordinater og alle andre
         oplysninger, du kan tilgå på hjemmesiden.
       login: |-
-        Tilgå information, der er relevant for at logge ind, som e-mail-adresse, brugernavn,
+        Tilgå information, der er relevant for at logge ind såsom e-mail-adresse, brugernavn,
         navn og brugerikon
     errors:
       messages:
         invalid_request: Forespørgslen mangler et påkrævet parameter, indeholder en
-          ikke-understøttet parameterværdi eller er anden måde ukorrekt.
+          ikke-understøttet parameterværdi eller er på anden måde ukorrekt.
         invalid_redirect_uri: Den inkluderede uri omdirigering er ikke gyldig.
         unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning
           ved hjælp af denne metode.
@@ -7250,11 +7250,11 @@ da:
         invalid_client: Klientgodkendelsen mislykkedes på grund af ukendt klient,
           ingen klientgodkendelse inkluderet eller ikke-understøttet godkendelsesmetode.
         invalid_grant: Det udstedte godkendelse er ugyldig, udløbet, tilbagekaldt,
-          svarer ikke til den URI omdirigering, der blev anvendt i godkendelsesanmodningen,
+          svarer ikke til den URI omdirigering, der blev anvendt i godkendelsesanmodningen
           eller blev udstedt til en anden klient.
         unsupported_grant_type: Godkendelsestypen understøttes ikke af godkendelsesserveren.
         invalid_resource_owner: De angivne ressourceejers legitimationsoplysninger
-          er ikke gyldige, eller ressourceejeren kan ikke findes
+          er ikke gyldige eller ressourceejeren kan ikke findes
     flash:
       applications:
         create:

@@ -1803,6 +1803,10 @@ lb:
         what_is_an_observation?: Wat ass eng Observatioun?
         can_i_include_my_observations_on_my_blog?: Kann ech meng %{site_name} Observatiounen
           op mäi Blog oder meng Websäit bäisetzen?
+    oauth:
+      authorizations:
+        new:
+          more_about_application: Méi iwwer %{application}
     observations:
       community_id:
         agreement: Accord
@@ -2035,6 +2039,7 @@ lb:
       messages:
         blank: däerf net eidel sinn
         empty: däerf net eidel sinn
+        exclusion: ass reservéiert
         greater_than: muss méi grouss si wéi %{count}
         invalid: ass net valabel
         not_a_number: ass keng Zuel

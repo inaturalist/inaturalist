@@ -616,6 +616,7 @@ pt-BR:
   attached_taxon: Taxon anexado
   attribute: Atributo
   attribution: Atribuição
+  authorize: Autorizar
   authorize_permissions_from_provider: Autorizar permissões de %{provider}
   automatic_descriptions_have_been_disabled: Descrições automáticas foram desativadas
     para este táxon.
@@ -1227,6 +1228,7 @@ pt-BR:
   deleted_vote: Voto removido
   deleting: Excluindo...
   deleting_verb: Excluindo
+  deny: Negar
   desc: Desc
   descendant_taxa: taxóns descendentes
   descending: Descendente
@@ -1291,6 +1293,7 @@ pt-BR:
   downstream_coverage: Cobertura a jusante
   downstream_coverage_rank: Classificação de cobertura a jusante
   downstream_deviations: Desvios a jusante
+  downstream_deviations_for_taxon: Desvios a jusante para %{taxon}
   downstream_flagged_covered_taxa: Taxa coberta sinalizada a jusante
   drag_and_drop_photos: arraste e solte fotos nesta janela ou
   draft: rascunho
@@ -1448,6 +1451,8 @@ pt-BR:
   export_with_private_coordinates: Exportar com coordenadas ocultadas
   exporting: Exportando...
   external_links: Links externos
+  external_taxon_including_children: Táxon externo (incluindo crianças)
+  external_taxon_rank: Classificação do táxon externo
   extinct: extinto
   extinct_in_the_wild: Extinto na natureza
   extra_properties: Propriedades extras
@@ -1901,6 +1906,7 @@ pt-BR:
   internal_server_error: Erro interno do servidor
   internal_taxon: Táxon interno
   internal_taxon_including_descendants: Táxon interno (incluindo descendentes)
+  internal_taxon_rank: Classificação do táxon interno
   introduced: Introduzida
   introduced_in_place: Introduzido em %{place}
   invasive: Invasoras
@@ -1949,6 +1955,7 @@ pt-BR:
     <a href="mailto:%{help_email}" class="contact">contact us</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
   its_important_that_you: É importante que você marque
+  iucn_red_list: Lista Vermelha IUCN
   iucn_red_list_status: Status da Lista Vermelha da IUCN
   january: Janeiro
   join: Faça parte
@@ -4276,6 +4283,7 @@ pt-BR:
   taxon_framework_notes: Notas do quadro do táxon
   taxon_framework_relationship: Relação de marco do táxon
   taxon_framework_relationship_for: Relação de estrutura de táxon para
+  taxon_framework_relationship_number: Relação de estrutura de táxon %{number}
   taxon_framework_relationships: Relações de marco do táxon
   taxon_framework_taxon: Táxon de estrutura de táxon
   taxon_links: Links Taxon
@@ -4873,6 +4881,7 @@ pt-BR:
   view_taxon_page_for: Veja a página do Táxon para este
   view_taxon_page_for_this_x: Veja a página de táxon para este %{x}
   view_taxonomic_changes: Veja mudanças taxonômicas
+  view_taxononomy_details_for_taxon: Visualizar detalhes da taxonomia para %{taxon}
   view_terms: Exibir termos
   view_the: Ver a %{action}&#59; %{link}
   view_the_observation: Exibir a observação
@@ -5698,6 +5707,13 @@ pt-BR:
         project_list_desc: Táxons adicionados manualmente por administradores de projetos
           e, táxons, representados por observações à Nível de Pesquisa adicionados
           ao projeto são exibidos na lista do projeto.
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: Autorizar %{application} a usar
+            sua conta?
+          this_application_will_be_able_to_colon: 'Esta aplicação será capaz de:'
+          more_about_application: Mais sobre %{application}
     observations:
       community_id:
         agreement: Acordo
@@ -7164,21 +7180,46 @@ pt-BR:
     errors:
       format: '%{attribute} %{message}'
       messages:
+        accepted: deve ser aceito
+        blank: não pode deixar em branco
+        confirmation: não correspondeu a senha
         empty: não pode estar vazio
         equal_to: deve ser igual a %{count}
+        even: deve ser par
+        exclusion: está reservado
+        greater_than: deve ser maior que %{count}
+        greater_than_or_equal_to: deve ser maior ou igual a %{count}
+        inclusion: não está inclusa na lista
         invalid: é inválido
         less_than: deve ser menor que %{count}
+        less_than_or_equal_to: deve ser menor ou igual a %{count}
         not_a_number: não é um número
         not_an_integer: deve ser um número inteiro
         odd: deve ser ímpar
+        record_invalid: 'Erro de validação: %{errors}'
+        taken: já está sendo utilizado
+        too_long:
+          one: é muito longo (máximo de 1 caractere)
+          other: é muito longo (máximo de %{count} caracteres)
         too_short:
           one: é muito curto (mínimo de 1 caractere)
           other: é muito curto (mínimo é %{count} caracteres)
+        wrong_length:
+          one: é a medida incorreta (seve ter somente 1 caracter)
+          other: é a medida incorreta (deveria ter %{count} caracteres)
+      template:
+        body: 'Houve problemas com os seguintes campos:'
+        header:
+          one: Um erro impediu este %{model} de ser salvo
+          other: '%{count} erros impediram este %{model} de ser salvo'
       models:
         application:
           attributes:
             redirect_uri:
+              fragment_present: não pode conter um fragmento.
+              has_query_parameter: não pode conter um parâmetro de consulta.
               invalid_uri: deve ser um URI válido.
+              relative_uri: deve ser um URI absoluto.
         guide:
           attributes:
             published_at:
@@ -7262,16 +7303,54 @@ pt-BR:
             email:
               must_look_like_an_email_address: deve parecer um endereço de e-mail
   doorkeeper:
+    scopes:
+      write: |-
+        Crie, atualize e exclua suas observações, identificações e outros
+        conteúdo em seu nome e acessar suas coordenadas ocultas e qualquer
+        outras informações que você pode acessar no site.
+      login: Acessar informações relevantes para entrar, como endereço de e-mail,
+        nome de usuário, nome e ícone do usuário
     errors:
       messages:
+        invalid_request: A solicitação não possui um parâmetro obrigatório, inclui
+          um valor de parâmetro não suportado ou está malformada.
+        invalid_redirect_uri: O redirecionamento incluído não é válido.
+        unauthorized_client: O cliente não está autorizado a executar essa solicitação
+          usando esse método.
+        access_denied: O proprietário do recurso ou o servidor de autorização negou
+          a solicitação.
+        invalid_scope: O escopo solicitado é inválido, desconhecido ou malformado.
+        server_error: O servidor de autorização encontrou uma condição inesperada
+          que impediu o cumprimento da solicitação.
+        temporarily_unavailable: Atualmente, o servidor de autorização não pode manipular
+          a solicitação devido a uma sobrecarga ou manutenção temporária do servidor.
+        credential_flow_not_configured: O fluxo de credenciais de senha do proprietário
+          do recurso falhou devido Doorkeeper.configure.resource_owner_from_credentials
+          sendo desconfigurado.
+        resource_owner_authenticator_not_configured: O proprietário do recurso encontrou
+          falha devido Doorkeeper.configure.resource_owner_authenticator sendo desconfigurado.
         unsupported_response_type: O servidor de autorização não suporta esse tipo
           de resposta.
         invalid_client: A autenticação do cliente falhou devido a um cliente desconhecido,
           nenhuma autenticação de cliente incluída ou método de autenticação não suportado.
+        invalid_grant: A concessão de autorização fornecida é inválida, expirada,
+          revogada, não corresponde ao URI de redirecionamento usado na solicitação
+          de autorização ou foi emitida para outro cliente.
+        unsupported_grant_type: O tipo de concessão de autorização não é suportado
+          pelo servidor de autorização.
+        invalid_resource_owner: As credenciais do proprietário do recurso fornecidas
+          não são válidas ou o proprietário do recurso não pode ser encontrado
     flash:
       applications:
+        create:
+          notice: Aplicativo criado.
+        destroy:
+          notice: Aplicativo excluído.
         update:
           notice: Aplicação atualizada.
+      authorized_applications:
+        destroy:
+          notice: Aplicativo revogado.
   i18n:
     inflections:
       :@vow_or_con:

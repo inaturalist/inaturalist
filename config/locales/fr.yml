@@ -3611,10 +3611,9 @@ fr:
   private: privé
   private_: Privé
   private_description: Coordonnées complètement masquées des cartes publiques. Les
-    vraies coordonnées ne sont visibles que par vous et les responsables de l’organisation
-    des projets auxquels vous avez ajouté l’observation. Les observations avec des
-    coordonnées masquées seront toujours utilisées pour vérifier les listes de contrôle
-    des lieux.
+    vraies coordonnées ne sont visibles que par vous et les superviseurs de projets
+    auxquels vous avez ajouté l’observation. Les observations avec des coordonnées
+    masquées seront toujours utilisées pour vérifier les listes de contrôle des lieux.
   probably_spam: Sans doute du pourriel
   proceed: Procéder
   processing: Traitement
@@ -6334,14 +6333,14 @@ fr:
         leur projet</strong> sauf si vous avez choisi l’inverse dans vos <a
         href="/users/edit">paramètres de compte</a>. Cochez cette case uniquement si vous
         faites confiance aux superviseurs du projet pour voir vos coordonnées masquées sur n’importe quelle
-        observation que vous pouvez avoir ajouté à ce projet. Si vous
+        observation que vous pouvez avoir ajoutée à ce projet. Si vous
         choisissez de ne pas leur accorder ce droit, vous pourrez toujours accorder l’accès
         aux coordonnées masquées observation par observation.
       confirm_leave:
         what_would_you_like: Que voulez-vous faire avec vos observations dans ce projet ?
         keep_observations_label: Laisser vos observations dans ce projet
         keep_observations_desc: Vos observations resteront dans le projet et les superviseurs
-          pourront voir leurs coordonnées masquées.
+          pourront encore voir leurs coordonnées masquées.
         project_requires_curator_coordinate_access_desc: |-
           Ce projet n’autorise pas d’observations avec des coordonnées
           non visibles par les superviseurs. Si vous ne voulez pas partager les
