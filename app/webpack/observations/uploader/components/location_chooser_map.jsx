@@ -412,7 +412,8 @@ class LocationChooserMap extends React.Component {
         options={{
           streetViewControl: false,
           fullscreenControl: true,
-          gestureHandling: "greedy"
+          gestureHandling: "greedy",
+          controlSize: 26
         }}
       >
         {/*
@@ -433,9 +434,10 @@ class LocationChooserMap extends React.Component {
               boxShadow: "0 0px 5px rgba(0, 0, 0, 0.3)",
               boxSizing: "border-box",
               MozBoxSizing: "border-box",
-              fontSize: "13px",
-              height: "28.5px",
-              marginTop: "10px",
+              fontSize: "14px",
+              lineHeight: "14px",
+              height: "26px",
+              marginTop: "6px",
               outline: "none",
               padding: "0 12px",
               textOverflow: "ellipses",
