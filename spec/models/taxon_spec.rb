@@ -1495,6 +1495,38 @@ describe "complete_species_count" do
   end
 end
 
+describe "current_synonymous_taxa" do
+  let(:curator) { make_curator }
+  it "should be the outputs of a split if the split's input was swapped" do
+    swap = make_taxon_swap( committer: curator )
+    swap.commit
+    Delayed::Worker.new.work_off
+    split = make_taxon_split( input_taxon: swap.output_taxon, committer: curator )
+    split.commit
+    Delayed::Worker.new.work_off
+    expect( swap.input_taxon.current_synonymous_taxa.map(&:id).sort ).to eq split.output_taxa.map(&:id).sort
+  end
+  it "should follow splits past subsequent changes" do
+    split1 = make_taxon_split( committer: curator )
+    split1.commit
+    Delayed::Worker.new.work_off
+    swap = make_taxon_swap( committer: curator, input_taxon: split1.output_taxa[0] )
+    swap.commit
+    Delayed::Worker.new.work_off
+    split2 = make_taxon_split( committer: curator, input_taxon: split1.output_taxa[1] )
+    split2.commit
+    Delayed::Worker.new.work_off
+    split3 = make_taxon_split( committer: curator, input_taxon: split2.output_taxa[0] )
+    split3.commit
+    Delayed::Worker.new.work_off
+    expect( split1.input_taxon.current_synonymous_taxa.map(&:id).sort ).to eq [
+      swap.output_taxon.id,
+      split2.output_taxa[1].id,
+      split3.output_taxa.map(&:id)
+    ].flatten.sort
+  end
+end
+
 describe "current_synonymous_taxon" do
   let(:curator) { make_curator }
   it "should be the output of a first-order swap" do
