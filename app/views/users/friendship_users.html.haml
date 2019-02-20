@@ -1,5 +1,5 @@
 - content_for(:title) do
-  = @title = params.has_key?('following') ? t(:people_user_follows, user: @user.login) : t(:people_following_user, user: @user.login )
+  = @title = action_name == "following" ? t(:people_user_follows, user: @user.login) : t(:people_following_user, user: @user.login )
 .container
   .row
     .col-xs-12
