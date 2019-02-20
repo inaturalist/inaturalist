@@ -1124,11 +1124,13 @@ module ApplicationHelper
       if notifier_user
         notifier_class_name = t(resource.class.name.underscore)
         subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)).html_safe
-        object = "#{notifier_class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} <strong>#{notifier_class_name}</strong>".html_safe
-        t(:subject_committed_thing_affecting_stuff_html, 
-          :subject => subject, 
-          :thing => object, 
-          :stuff => commas_and(resource.input_taxa.map(&:name)))
+        object = "<strong>#{notifier_class_name}</strong>".html_safe
+        t( :subject_committed_thing_affecting_stuff_html,
+          subject: subject,
+          vow_or_con: notifier_class_name[0].downcase,
+          thing: object,
+          stuff: commas_and( resource.input_taxa.map(&:name) )
+        )
       else
         t(:subject_affecting_stuff_html, 
           :subject => t(resource.class.name.underscore), 
