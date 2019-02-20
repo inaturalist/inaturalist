@@ -10,9 +10,9 @@
       <%= @friend_name ? t(:select_one_of_friends_albums, friend: @friend_name) : t(:select_one_of_your_albums) %>
     <table>
     <% @albums.each do |album| %>
-      <tr class='album' data-aid='<%= album['aid'] %>'>
-        <td><%= image_tag(album['cover_photo_src'], :alt=>"Album cover photo") %></td>
-        <td><%= album['name'] %></td>
+      <tr class='album' data-aid='<%= album['id'] %>'>
+        <td><%= image_tag(album['coverPhotoBaseUrl'], :alt => "Album cover photo") %></td>
+        <td><%= album['title'] %></td>
       </tr>
     <% end %>
     </table>

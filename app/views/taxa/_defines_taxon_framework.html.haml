@@ -7,13 +7,14 @@
   taxon_curators ||= @taxon_curators ||= defines_taxon_framework[:taxon_curators]
   flagged_taxa ||= @flagged_taxa ||= defines_taxon_framework[:flagged_taxa]
   flagged_taxa_count ||= @flagged_taxa_count ||= defines_taxon_framework[:flagged_taxa_count]
+  relationship_unknown_count ||= @relationship_unknown_count ||= defines_taxon_framework[:relationship_unknown_count]
 .panel.panel-default
   - if taxon_framework.rank_level
     .panel-heading
       %h4
         = t :defines_a_taxon_framework_for, taxon_name: taxon.name
         - if taxon_framework.source
-          = t :sourced_to
+          = t( :sourced_to ).downcase
           = link_to taxon_framework.source.title, taxon_framework.source.url
   .panel-body
     - if is_admin?
@@ -59,6 +60,10 @@
             = link_to |
             deviations_count, |
             taxon_framework_relationships_path( TaxonFrameworkRelationship::RELATIONSHIPS.select{ |r| r!="match" }.map{ |r| [r, "1"] }.to_h.merge( { taxon_framework_id: taxon_framework.id } ) ) |
+        - if relationship_unknown_count > 0
+          %p
+            = "#{ t( :relationship_unknown_count ) }:"
+            = link_to relationship_unknown_count, relationship_unknown_path( taxon_framework )
       - if taxon_curators.count > 0
         %p= "#{ t(:taxon_curators) }:"
         .row

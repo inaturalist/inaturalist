@@ -8,10 +8,11 @@
 *= require projects
 */
 @import "colors";
+@import "shared/google_maps";
 body {
   margin: 0;
   padding: 0;
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   color: #333;
 }
 html, body {height: 100%;}
@@ -34,165 +35,8 @@ html, body {height: 100%;}
   }
 }
 
-.gm-style .gm-style-iw, .gm-style .gm-style-iw a, .gm-style .gm-style-iw span, .gm-style .gm-style-iw label, 
-.gm-style .gm-style-iw div, .gm-style div, .gm-style span, .gm-style label, .gm-style a {
-  font-family: "Trebuchet MS", Arial, sans-serif;
-}
-.gm-style label[disabled] {
-  color: gray;
-}
-.gm-style label[disabled] {
-  color: gray;
-}
-.gmapv3control.overlaycontrol.open {
-  max-height: 300px;
-  overflow: auto;
-}
-.gmapv3control ul.inat-overlay {
-  margin-top: 5px;
-  font-family: "Trebuchet MS", Arial, sans-serif;
-}
-.gmapv3control ul.inat-overlay li {
-  border-top: 1px solid #D8D8D8;
-  padding-top: 2px;
-  padding-bottom: 3px;
-  position: relative;
-}
-.gmapv3control ul.inat-overlay li input[type=checkbox] {
-  padding: 0;
-  margin: 0;
-}
-.gmapv3control ul.inat-overlay li label,
-.gmapv3control ul.inat-overlay li div {
-  padding-left: 5px;
-}
-
-.gmapv3control ul.inat-overlay li.taxon {
-  padding-bottom: 5px;
-}
-
-.gmapv3control ul.inat-overlay li.for_taxon {
-  border-top: 1px solid #D8D8D8;
-  margin-left: 18px;
-  border: 0;
-  padding-top: 0;
-}
-
-.gmapv3control ul.inat-overlay .small.meta {
-  padding-left: 18px;
-}
-
-.gmapv3legend {
-  font-size: 12px;
-  line-height: 20px;
-  max-width: 401px;
-  border: 1px solid rgba(0, 0, 0, 0.14902);
-  background: #FFFFFF;
-  padding: 1px 6px;
-  border-radius: 2px;
-  box-shadow: rgba(0, 0, 0, 0.298039) 0px 1px 4px -1px;
-  margin: 5px;
-}
-
-.gmapv3legend .gmap-label {
-  font-family: Roboto, Arial, sans-serif !important;
-  cursor: pointer;
-}
-
-.gmapv3legend .title {
-  font-size: 15px;
-  line-height: 32px;
-  font-weight: bold;
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  padding: 0px 8px;
-}
-
-.gmapv3legend .ul-container {
-  display: inline-block;
-  width: 401px;
-}
-
-.gmapv3legend .ul-container ul.inat-overlay {
-  width: 200px;
-  margin: 0px;
-  padding: 0px;
-}
-
-.gmapv3legend .ul-container ul.inat-overlay.left {
-  float: left;
-}
-
-.gmapv3legend .ul-container ul.inat-overlay.right {
-  float: right;
-  border-left: 1px solid #d8d8d8;
-}
-
-.gmapv3legend ul.inat-overlay li {
-  padding: 5px;
-  list-style: none;
-}
-
-.gmapv3legend ul.inat-overlay li.header {
-  text-transform: uppercase;
-  font-weight: bold;
-  text-size: 14px;
-  line-height: 22px;
-  border-top: 1px solid #d8d8d8;
-  padding: 6px 0px 0px 7px;
-}
-
-.gmapv3legend ul.inat-overlay li.header::after {
-    content: ":";
-}
-
-.gmapv3legend ul.inat-overlay li.last {
-  margin-bottom: 3px;
-}
-
-.gmapv3legend ul.inat-overlay li.tall {
-  line-height: 26px;
-}
-
-.gmapv3legend ul.inat-overlay li div {
-  padding: 0px;
-}
-
-.gmapv3legend ul.inat-overlay .icon {
-  float: left;
-  display: inline-block;
-}
-
-.gmapv3legend ul.inat-overlay .icon img {
-  height: 16px;
-  padding: 0px 4px;
-}
-
-.gmapv3legend ul.inat-overlay .icon img.large {
-  width: 24px;
-  height: 24px;
-  padding: 0px;
-}
-
-.gmapv3legend ul.inat-overlay .icon.color-box {
-  margin: 0px 4px 0px 3px;
-  width: 16px;
-  height: 16px;
-}
-
-.gmapv3legend ul.inat-overlay .icon.color-box.unknown {
-  width: 12px;
-  height: 12px;
-  border: 2px dotted black;
-}
-
-.gmapv3legend ul.inat-overlay .label {
-  display: inline-block;
-  max-width: 160px;
-  margin-left: 4px;
-}
-
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   margin-bottom: 0.5em;
 }
 
@@ -239,16 +83,16 @@ a:hover {
 }
 
 /* UI Elements -- Labels, button text, that kind of thing */
-.ui, .ui p { font-family: "Trebuchet MS", Arial, sans-serif; }
+.ui, .ui p { font-family: Whitney, "Trebuchet MS", Arial, sans-serif; }
 p.ui, .ui p { font-size: 100%; }
 p.ui { margin-bottom: 10px; }
-.ui-tooltip p, .qtip p, .qtip-content p { font-size: 100%; font-family: "Trebuchet MS", Arial, sans-serif; }
+.ui-tooltip p, .qtip p, .qtip-content p { font-size: 100%; font-family: Whitney, "Trebuchet MS", Arial, sans-serif; }
 .ui-tooltip {
   padding: 0px;
 }
 
 .tinyui {
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   font-size: 8pt;
 }
 
@@ -315,7 +159,7 @@ input[type="file"]:focus {
   border-color: #ccc;
 }
 
-input,select,textarea{font-family:"Trebuchet MS",Arial,sans-serif;}
+input,select,textarea{font-family:Whitney,"Trebuchet MS",Arial,sans-serif;}
 form .field{margin-bottom:10px;}
 
 .twocolform .field {position:relative; padding-left: 110px;}
@@ -557,7 +401,7 @@ span.button {
 .errorExplanation p, 
 .errorExplanation h2, 
 .errorExplanation li {
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
 }
 
 .errorExplanation h2 {
@@ -1463,7 +1307,7 @@ body, .infowindow .observation {
 
 
 .ui-chooser-input, .ui-chooser-choice { 
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   padding: 4px 5px 3px; 
   margin: 0; 
   border-color: #ccc; 
@@ -1931,7 +1775,7 @@ user-icon .icon-person:before {
   font-size: 15px;
 }
 .ui-dialog.confirm-modal p {
-  font-family: "Trebuchet MS", Arial, sans-serif;
+  font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
   font-size: 13px;
 }
 .ui-dialog.confirm-modal p .taxon {

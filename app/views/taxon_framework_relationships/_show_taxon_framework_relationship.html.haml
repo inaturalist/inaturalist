@@ -1,8 +1,13 @@
 :ruby
   taxon_framework_relationship ||= show_taxon_framework_relationship[:taxon_framework_relationship]
   taxon ||= show_taxon_framework_relationship[:taxon]
-%p
-  = t :relationship_x, relationship: ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ) : t( :deviation ) )
+- content_for( :extracss ) do
+  :css
+    .padding {
+        padding: 5px;
+    }
+%p.padding{ :class => ( taxon_framework_relationship.relationship == "match" ? 'bg-success' : 'bg-warning' ) }
+  = t :relationship_x, relationship: ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ).capitalize : t( :deviation ).capitalize )
 %table.table.table-bordered
   %thead
     %tr
@@ -44,6 +49,6 @@
             taxon_framework_relationship.taxa[i].name + " (#{ t(:parent).downcase }: " + |
             t( "ranks.#{ taxon_framework_relationship.taxa[i].parent.rank }" ).capitalize + " " + |
             taxon_framework_relationship.taxa[i].parent.name + ")", |
-            taxonomy_details_for_taxon_path( taxon_framework_relationship.taxa[i] ) |
+            taxon_path( taxon_framework_relationship.taxa[i] ) |
         - else
           %td

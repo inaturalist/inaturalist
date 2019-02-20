@@ -19,6 +19,11 @@
   else
     taxon_framework = change_taxon.upstream_taxon_framework
   end
+- content_for( :extracss ) do
+  :css
+    .padding {
+        padding: 5px;
+    }
 .change_taxon.clear{"data-taxon-id" => "#{change_taxon.id}", :id => "change_taxon_#{change_taxon.id}"}
   = image_and_content taxon_image(change_taxon), :image_size => 75 do
     = link_to change_taxon, :class => "taxon #{change_taxon.rank}" do
@@ -65,9 +70,15 @@
           - if taxon_framework.source
             = t( :sourced_to )
             = link_to taxon_framework.source.title, taxon_framework.source.url
-            %br= t( :relationship_html, 
-            link: link_to( ( taxon_framework_relationship.nil? ? t( :none ) : t( "relationships.#{ taxon_framework_relationship.relationship }" ).capitalize ),
-            taxonomy_details_for_taxon_path( change_taxon ) ) )
+            %br
+            - if taxon_framework_relationship.nil?
+              %p.bg-info.padding
+                = t( :relationship_html, link: link_to( t( :unknown ).capitalize, taxonomy_details_for_taxon_path( change_taxon ) ) )
+            - else
+              %p.padding{ :class => ( taxon_framework_relationship.relationship == "match" ? 'bg-success' : 'bg-warning' ) }
+                = t( :relationship_html, 
+              link: link_to( ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ).capitalize : t( :deviation ).capitalize ),
+              taxonomy_details_for_taxon_path( change_taxon ) ) )
             
     - if show_change_links && taxon_change && @type
       .text-muted

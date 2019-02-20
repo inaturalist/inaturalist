@@ -243,6 +243,7 @@ en:
   add_life_stage_larva_annotation: 'Add "Life Stage: Larva" annotation'
   add_life_stage_juvenile_annotation: 'Add "Life Stage: Juvenile" annotation'
   add_life_stage_egg_annotation: 'Add "Life Stage: Egg" annotation'
+  add_relationship: 'Add relationship'
   add_section: Add Section
   add_several_observations_at_once: Add several observations at once.
   add_sex_female_annotation: 'Add "Sex: Female" annotation'
@@ -535,6 +536,9 @@ en:
   attribute: Attribute
   attribution: Attribution
   authority_list:
+    iucn_red_list: IUCN Red List
+    natureserve: NatureServe
+    cites: CITES
   authorize: Authorize
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
@@ -566,6 +570,7 @@ en:
   back_to_suggestions: Back to Suggestions
   back_to_taxon: "Back to %{defaulttaxon}"
   back_to_taxon_changes: "Back to taxon changes"
+  back_to_taxon_framework_for_x: "Back to taxon framework for %{taxon_name}"
   back_to_this: "Back to %{place}"
   back_to_viewing: "Back to viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
@@ -2341,7 +2346,9 @@ en:
   no_taxa: No taxa
   no_taxa_listed: No taxa listed
   no_taxa_selected: No taxa selected!
+  no_taxa_with_unknown_relationships: No taxa with unknown relationships
   no_taxa_yet: No taxa yet!
+  no_taxon_framework_relationships: no taxon framework relationships
   no_taxonomic_changes_match_those_criteria: No taxonomic changes match those criteria
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
   no_x_this_y: "No %{x} this %{y}"
@@ -3330,6 +3337,7 @@ en:
   related_species: Related Species
   relative_observations: Relative Observations
   relationship: "Relationship"
+  relationship_unknown_count: Relationship unknown count
   relationship_x: "Relationship: %{relationship}"
   relationships:
       match: match
@@ -3340,7 +3348,7 @@ en:
       one_to_many: one-to-many
       not_external: not external
       not_internal: not internal
-      unknown: unknown
+      error: error
   relationship_html: "Relationship: %{link}"
   reload_and_refresh: Reload and refresh list
   reload_from_observations: Reload from observations
@@ -3799,6 +3807,7 @@ en:
   take_me_flickr!: Yes, take me to Flickr!
   take_me_back: Take me back
   taxa: Taxa
+  taxa_with_unknown_relationships: Taxa with unknown relationships
   taxa_info: Taxa Info
   taxa_all_species_html: "All Species"
   taxa_info: Taxa Info
@@ -3884,6 +3893,7 @@ en:
   taxon_colors: Taxon Colors
   taxon_curators: Taxon Curators
   taxon_extras: Taxon Extras
+  taxon_framework: Taxon Framework
   taxon_framework_notes: Taxon Framework notes
   taxon_framework_relationship: Taxon Framework Relationship
   taxon_framework_relationship_for: Taxon framework relationship for
@@ -4314,6 +4324,8 @@ en:
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   user_muted: User muted
   user_observations: User observations
+  user_observed_on_on_date_in_place: |
+    %{user} observed one on %{date} in %{place}
   user_s_id: "%{user}'s %{id}"
   user_s_lists: "%{user}'s Lists"
   user_suggested_an_id: "%{user} suggested an ID"
@@ -5320,9 +5332,26 @@ en:
         geoprivacy_must_be_in_english: |
           The geoprivacy column must be in English and must be blank or have a
           value of "obscured" or "private"
+        google_photos_notice_html: |
+          In February 2019, Google changed their API, making it impossible for
+          us to access GPS coordinates, license information, and almost any
+          information we could use to add an identification (like tags). They
+          also removed text search and numerical pagination. You can still
+          import photos, but they won't include any location information or
+          license information that you might be able to see on Google Photos.
+          You can read more about this at
+          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
+          Downloading the original files and adding them using the
+          <a href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
           There is a template file for this project that may help you with the structure of the CSV file. 
           <a href="%{url}">Download template</a>
+        soundcloud_notice_html: |
+          In 2018 Soundcloud changed their API and made it impossible for us to
+          make new connections to your Soundcloud account. If they reinstate
+          this functionality, we can resume linking accounts to Soundcloud. In
+          the meantime, you can upload sound files directly using the
+          <a href="/observations/upload">Uploader</a>.
       show:
         allow_curator_coordinate_access_desc_html: |
           Allow project curators to view the hidden coordinates for this observation.
@@ -5528,6 +5557,10 @@ en:
         we_included_links: |
           We've included links to the affected photos below.
     photos:
+      forbidden_notice_html: |
+        We don't have permission to access those photos right now. You might
+        need to disconnect and reconnect the account in your
+        <a href="/users/edit">settings</a> to grant us additional permissions.
       inviter:
         automatically_add_to_project: Automatically add to project
         automatically_id_the_new_obs_as: Automatically ID the new obs as

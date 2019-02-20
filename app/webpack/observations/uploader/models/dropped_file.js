@@ -46,7 +46,7 @@ const DroppedFile = class DroppedFile {
   readExif( ) {
     const reader = new FileReader();
     const metadata = { };
-    return new Promise( ( resolve ) => {
+    return new Promise( resolve => {
       reader.onloadend = e => {
         const exif = { };
         // read EXIF into an object
@@ -64,8 +64,7 @@ const DroppedFile = class DroppedFile {
         } );
         // check that object for metadata we care about
         if ( exif.ImageDescription ) {
-          const desc = _.trim(
-            exif.ImageDescription.replace( /\u0000/g, "" ) );
+          const desc = _.trim( exif.ImageDescription.replace( /\u0000/g, "" ) );
           if ( BRANDED_DESCRIPTIONS.indexOf( desc ) < 0 ) {
             metadata.description = desc;
           }
@@ -83,16 +82,16 @@ const DroppedFile = class DroppedFile {
           }
         }
         if ( exif.GPSHPositioningError && exif.GPSHPositioningError.length === 2 ) {
-          metadata.accuracy = exif.GPSHPositioningError[0];
+          metadata.accuracy = exif.GPSHPositioningError[0] / exif.GPSHPositioningError[1];
         }
         if ( exif.DateTimeOriginal || exif.DateTimeDigitized ) {
           // reformat YYYY:MM:DD into YYYY/MM/DD for moment
-          const dt = ( exif.DateTimeOriginal || exif.DateTimeDigitized ).
-            replace( /(\d{4}):(\d{2}):(\d{2})/, "$1/$2/$3" );
+          const dt = ( exif.DateTimeOriginal || exif.DateTimeDigitized )
+            .replace( /(\d{4}):(\d{2}):(\d{2})/, "$1/$2/$3" );
           /* global TIMEZONE */
           // assume the date is in the timezone of their user account
-          metadata.date = moment.tz( dt, "YYYY/MM/DD HH:mm:ss", TIMEZONE ).
-            format( "YYYY/MM/DD h:mm A z" );
+          metadata.date = moment.tz( dt, "YYYY/MM/DD HH:mm:ss", TIMEZONE )
+            .format( "YYYY/MM/DD h:mm A z" );
           metadata.selected_date = metadata.date;
         }
         if ( Math.abs( metadata.latitude ) > 90 || Math.abs( metadata.longitude ) > 180 ) {

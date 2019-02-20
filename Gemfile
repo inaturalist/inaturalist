@@ -109,7 +109,7 @@ gem "rgeo-shapefile"
 gem "activerecord-postgis-adapter", git: "https://github.com/kueda/activerecord-postgis-adapter.git", branch: "activerecord42"
 
 group :production do
-  gem "newrelic_rpm", "~> 5.7.0"
+  gem "newrelic_rpm", "~> 6.0.0"
 end
 
 group :test, :development, :prod_dev do
@@ -131,7 +131,7 @@ group :test do
   gem "faker"
   gem "simplecov", require: false
   gem "rspec", "~> 3.8.0"
-  gem "rspec-rails", "~> 3.8.0"
+  gem "rspec-rails", "~> 3.8.2"
   gem "rspec-html-matchers"
   gem "webmock"
 end

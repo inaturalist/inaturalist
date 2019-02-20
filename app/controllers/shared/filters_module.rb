@@ -8,14 +8,43 @@ module Shared::FiltersModule
     locale = params[:locale]
     locale = session[:locale] if locale.blank?
     locale = current_user.try(:locale) if locale.blank?
-    locale = @site.locale if locale.blank?
+    locale = @site.locale if @site && locale.blank?
     locale = locale_from_header if locale.blank?
     locale = I18n.default_locale if locale.blank?
     I18n.locale = locale
+    if I18n.locale.to_s == "he"
+      I18n.locale = I18n.locale.to_s.sub( "he", "iw" ).to_sym
+    end
     unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
       I18n.locale = I18n.default_locale
     end
     true
+  end
+
+  def locale_from_header
+    return if request.env["HTTP_ACCEPT_LANGUAGE"].blank?
+    http_locale = request.env["HTTP_ACCEPT_LANGUAGE"].
+      split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.first
+    return if http_locale.blank?
+    lang, region = http_locale.split( "-" ).map(&:downcase)
+    return lang if region.blank?
+    # These re-mappings will cause problem if these regions ever get
+    # translated, so be warned. Showing zh-TW for people in Hong Kong is
+    # *probably* fine, but Brazilian Portuguese for people in Portugal might
+    # be a bigger problem.
+    if lang == "es" && region == "xl"
+      region = "mx"
+    elsif lang == "zh" && region == "hk"
+      region = "tw"
+    elsif lang == "pt" && region == "pt"
+      region = "br"
+    end
+    locale = "#{lang.downcase}-#{region.upcase}"
+    if I18N_SUPPORTED_LOCALES.include?( locale )
+      locale
+    elsif I18N_SUPPORTED_LOCALES.include?( lang )
+      lang
+    end
   end
 
   def set_site

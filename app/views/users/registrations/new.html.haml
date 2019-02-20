@@ -1,3 +1,4 @@
+- u = resource || current_user
 - content_for(:extrajs) do
   %script{ src: "https://www.google.com/recaptcha/api.js?hl=#{I18n.locale}" }
   = javascript_include_tag "moment/min/moment-with-locales.min"
@@ -6,25 +7,25 @@
   %h1=t :join_the_largest_group_of_naturalists_in_the_world
   .form-group.text-field.email
     = f.text_field :email, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( :email ), type: "email", class: "form-control"
-    - unless resource.errors[:email].blank?
+    - unless u.errors[:email].blank?
       .error= formatted_error_sentence_for( resource, :email )
   .form-group.text-field.username
     = f.text_field :login, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( :username ), class: "form-control"
-    - unless resource.errors[:login].blank?
+    - unless u.errors[:login].blank?
       .error= formatted_error_sentence_for( resource, :login )
   .form-group.text-field.password
     = f.password_field :password, class: "text form-control", required: true, placeholder: t(:password)
-    - unless resource.errors[:password].blank?
+    - unless u.errors[:password].blank?
       .error= formatted_error_sentence_for( resource, :password )
   .form-group.text-field.password-confirmation
     = f.password_field :password_confirmation, class: "text form-control", required: true, placeholder: t(:password_confirmation)
-    - unless resource.errors[:password_confirmation].blank?
+    - unless u.errors[:password_confirmation].blank?
       .error= formatted_error_sentence_for( resource, :password_confirmation )
   - if @site.using_recaptcha?
     .form-group.recaptcha
       .g-recaptcha{ data: { sitekey: @site.google_recaptcha_key, callback: "recaptchaCallback" }, style: "text-align: center" }
-      - if resource.errors && !resource.errors[:recaptcha].blank?
-        .error= resource.errors[:recaptcha].to_sentence
+      - if u.errors && !u.errors[:recaptcha].blank?
+        .error= u.errors[:recaptcha].to_sentence
   #licensing.form-group.checkbox
     %label
       %input#license-all{ type: "checkbox", checked: true }

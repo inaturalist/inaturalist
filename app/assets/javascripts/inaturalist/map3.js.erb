@@ -410,7 +410,8 @@ iNaturalist.Map.createMap = function(options) {
     streetViewControl: false,
     backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
     clickableIcons: false,
-    gestureHandling: "greedy"
+    gestureHandling: "greedy",
+    controlSize: 26
   }, options);
   
   var map;
@@ -693,7 +694,7 @@ iNaturalist.Legend = function( controlDiv, map, options ) {
 iNaturalist.OverlayControl = function(map, options) {
   options = options || {}
   var controlDiv = options.div || document.createElement('DIV')
-  controlDiv.style.margin = '14px 10px 0';
+  controlDiv.style.margin = "6px 5px 0";
   var controlUI = $('<div><span class="ui-icon inat-icon ui-icon-layers">'+I18n.t('taxon_map.overlays')+'</span></div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').addClass("inat-overlay").hide()
   controlUI.append(ul)
