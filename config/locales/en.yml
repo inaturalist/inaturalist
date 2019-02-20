@@ -5336,13 +5336,18 @@ en:
           In February 2019, Google changed their API, making it impossible for
           us to access GPS coordinates, license information, and almost any
           information we could use to add an identification (like tags). They
-          also removed text search and numerical pagination. You can still
-          import photos, but they won't include any location information or
-          license information that you might be able to see on Google Photos.
-          You can read more about this at
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Downloading the original files and adding them using the
-          <a href="/observations/upload">Uploader</a> is the best workaround.
+          also removed text search and numerical pagination. On top of that,
+          they required all connected accounts to have an additional permission,
+          and before a third party can request that permission from users, the
+          third party has to be verified. We are awaiting verification, but
+          until that happens, you will not be able to import photos from Google.
+          If we get approved, you will be able to import photos, but they won't
+          include any location information or license information that you might
+          be able to see on Google Photos. You can read more about this at <a
+          href="https://developers.google.com/picasa-
+          web">https://developers.google.com/picasa-web</a>. Downloading the
+          original files and adding them using the <a
+          href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
           There is a template file for this project that may help you with the structure of the CSV file. 
           <a href="%{url}">Download template</a>
