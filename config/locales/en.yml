@@ -692,6 +692,7 @@ en:
     merged_into: merged into
     replaced_by: replaced by
     replace_with: replace with
+    replaced_with: replaced with
     dropped: dropped
     staged: staged
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} was split into %{output_taxa}"
@@ -3750,7 +3751,7 @@ en:
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
   subject_affecting_stuff_html: "%{subject} affecting %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} committed %{thing} affecting %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} committed @vow_or_con{vow:an|a} %{thing} affecting %{stuff}"
   submission_model: Submission Model
   submission_model_description: Who can add observations to your project?
   submit: Submit

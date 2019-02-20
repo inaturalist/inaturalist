@@ -6,7 +6,7 @@
         %th
           =t :taxon
         %th
-          =t taxon_change.verb_phrase.gsub(" ","_").downcase.to_sym, default: "replaced with"
+          =t "change_types.#{taxon_change.verb_phrase.gsub(" ","_").downcase}"
     %tbody
       %tr
         %td
