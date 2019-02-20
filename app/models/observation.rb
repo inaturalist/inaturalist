@@ -772,10 +772,10 @@ class Observation < ActiveRecord::Base
     options[:methods] += [:created_at_utc, :updated_at_utc,
       :time_observed_at_utc, :faves_count, :owners_identification_from_vision]
     viewer = options[:viewer]
-    viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
+    viewer = viewer.is_a?( User ) ? viewer : User.find_by_id( viewer.to_i )
     options[:except] ||= []
     options[:except] += [:user_agent]
-    if viewer_id != user_id && !options[:force_coordinate_visibility]
+    if !options[:force_coordinate_visibility] && !coordinates_viewable_by?( viewer )
       options[:except] += [:private_latitude, :private_longitude,
         :private_positional_accuracy, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured

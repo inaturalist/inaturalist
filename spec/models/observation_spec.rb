@@ -1880,7 +1880,6 @@ describe Observation do
   
     it "should not be included in json" do
       observation = Observation.make!( defaults )
-      expect( observation.to_json ).not_to match( /private_latitude/ )
       expect( observation.to_json ).not_to match( /#{observation.private_latitude}/ )
       expect( observation.to_json ).not_to match( /#{observation.private_place_guess}/ )
     end
@@ -1888,8 +1887,7 @@ describe Observation do
     it "should not be included in a json array" do
       observation = Observation.make!( defaults )
       Observation.make!
-      observations = Observation.paginate( page: 1, per_page: 2).order( id: :desc )
-      expect( observations.to_json ).not_to match( /private_latitude/ )
+      observations = Observation.paginate( page: 1, per_page: 2 ).order( id: :desc )
       expect( observations.to_json ).not_to match( /#{observation.private_latitude}/ )
       expect( observation.to_json ).not_to match( /#{observation.private_place_guess}/ )
     end
