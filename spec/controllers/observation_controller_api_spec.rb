@@ -1052,7 +1052,7 @@ shared_examples_for "an ObservationsController" do
       Delayed::Worker.new.work_off
       o1 = Observation.make!(:taxon => lt1.taxon, :latitude => p.latitude, :longitude => p.longitude)
       o2 = Observation.make!(:taxon => lt2.taxon, :latitude => p.latitude, :longitude => p.longitude)
-      get :index, :format => :json, :establishment_means => lt1.establishment_means, :place_id => p.id
+      get :index, format: :json, introduced: true, place_id: p.id
       json = JSON.parse(response.body)
       expect(json.detect{|obs| obs['id'] == o1.id}).not_to be_blank
       expect(json.detect{|obs| obs['id'] == o2.id}).to be_blank
