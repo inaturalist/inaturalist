@@ -288,6 +288,7 @@ module ObservationSearch
         rescue ActiveRecord::RecordNotFound
           nil
         end
+        p[:place_id] = p[:place].id if p[:place]
       end
       p[:search_on] = nil unless Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
       # iconic_taxa

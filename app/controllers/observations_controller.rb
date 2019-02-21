@@ -1527,6 +1527,7 @@ class ObservationsController < ApplicationController
     can_view_leaves = logged_in? && current_user.is_curator?
     params[:rank] = nil unless can_view_leaves
     params[:skip_order] = true
+    html_taxon_render_limit = 5000
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     if stats_adequately_scoped?(search_params)
@@ -1536,19 +1537,24 @@ class ObservationsController < ApplicationController
         end
         elastic_params = prepare_counts_elastic_query(search_params)
         # using 0 for the aggregation count to get all results
+        limit = request.format.html? ? ( html_taxon_render_limit + 10 ) : 120000
         distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
-          aggregate: { species: { "taxon.id": 120000 } })).response.aggregations
-        @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
-        # if `leaves` were requested, remove any taxon in another's ancestry
-        if params[:rank] == "leaves"
-          ancestors = { }
-          @taxa.each do |t|
-            t.ancestor_ids.each do |aid|
-              ancestors[aid] ||= 0
-              ancestors[aid] += 1
+          aggregate: { species: { "taxon.id": limit } })).response.aggregations
+        if request.format.html? && distinct_taxa.species.buckets.length > html_taxon_render_limit
+          @error = I18n.t( :too_many_taxa_to_render )
+        else
+          @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
+          # if `leaves` were requested, remove any taxon in another's ancestry
+          if params[:rank] == "leaves"
+            ancestors = { }
+            @taxa.each do |t|
+              t.ancestor_ids.each do |aid|
+                ancestors[aid] ||= 0
+                ancestors[aid] += 1
+              end
             end
+            @taxa = @taxa.select{ |t| !ancestors[t.id] }
           end
-          @taxa = @taxa.select{ |t| !ancestors[t.id] }
         end
       else
         oscope = Observation.query(search_params)
@@ -1606,14 +1612,21 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         @headless = true
-        ancestor_ids = @taxa.map{|t| t.ancestor_ids[1..-1]}.flatten.uniq
-        ancestors = Taxon.where(id: ancestor_ids)
-        taxa_to_arrange = (ancestors + @taxa).sort_by{|t| "#{t.ancestry}/#{t.id}"}
-        @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
-        @taxon_names_by_taxon_id = TaxonName.
-          where(taxon_id: taxa_to_arrange.map(&:id).uniq).
-          includes(:place_taxon_names).
-          group_by(&:taxon_id)
+        if !@error && @taxa.length > html_taxon_render_limit
+          @error = I18n.t( :too_many_taxa_to_render )
+        elsif !@error
+          ancestor_ids = @taxa.map{|t| t.ancestor_ids[1..-1]}.flatten.uniq
+          ancestors = Taxon.where(id: ancestor_ids)
+          taxa_to_arrange = (ancestors + @taxa).sort_by{|t| "#{t.ancestry}/#{t.id}"}
+          @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
+          @taxon_names_by_taxon_id = TaxonName.
+            where(taxon_id: taxa_to_arrange.map(&:id).uniq).
+            includes(:place_taxon_names).
+            group_by(&:taxon_id)
+        end
+        if @error
+          flash.now[:notice] = @error
+        end
         render :layout => "bootstrap"
       end
       format.csv do

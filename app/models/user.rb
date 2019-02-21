@@ -965,7 +965,6 @@ class User < ActiveRecord::Base
 
   def destroy_project_rules
     ProjectObservationRule.where(
-      operator: "observed_by_user?",
       operand_type: "User",
       operand_id: id
     ).destroy_all

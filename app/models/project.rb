@@ -1011,7 +1011,6 @@ class Project < ActiveRecord::Base
 
   def destroy_project_rules
     ProjectObservationRule.where(
-      operator: "in_project?",
       operand_type: "Project",
       operand_id: id
     ).destroy_all
