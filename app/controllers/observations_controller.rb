@@ -253,7 +253,7 @@ class ObservationsController < ApplicationController
         @listed_taxon.as_json(
           methods: [ :establishment_means_label, :establishment_means_description ],
           include: { place: { only: [:id, :display_name] } } ) : nil,
-      wikipedia_summary: taxon ? taxon.wikipedia_summary : nil
+      wikipedia_summary: taxon ? taxon.wikipedia_summary( locale: I18n.locale ) : nil
     }
   end
 
