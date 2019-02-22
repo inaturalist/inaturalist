@@ -255,7 +255,7 @@ class RegularForm extends React.Component {
                     name={es}
                     value="true"
                     defaultChecked={project[`rule_${es}`]}
-                    onChange={( ) => setRulePreference( es, true )}
+                    onChange={e => setRulePreference( es, e.target.checked )}
                   />
                   { I18n.t( `establishment.${es}` ) }
                 </label>
