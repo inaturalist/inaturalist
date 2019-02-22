@@ -243,23 +243,89 @@ class RegularForm extends React.Component {
             </Col>
             <Col xs={4}>
               <label>{ I18n.t( "establishment_means" ) }</label>
-              { _.map( ["native", "endemic", "introduced"], es => (
+              <label
+                key="project-establishment-any"
+                className="inline checkboxradio"
+                htmlFor="project-establishment-any"
+              >
+                <input
+                  type="radio"
+                  id="project-establishment-any"
+                  name="native-introduced"
+                  value="any"
+                  defaultChecked={!project.rule_native && !project.rule_introduced}
+                  onChange={e => {
+                    if ( e.target.checked ) {
+                      setRulePreference( "native", null );
+                      setRulePreference( "introduced", null );
+                      setRulePreference( "endemic", null );
+                    } else {
+                      setRulePreference( "native", null );
+                      setRulePreference( "introduced", null );
+                      setRulePreference( "endemic", null );
+                    }
+                  }}
+                />
+                { I18n.t( "any_" ) }
+              </label>
+              <label
+                key="project-establishment-native"
+                className="inline checkboxradio"
+                htmlFor="project-establishment-native"
+              >
+                <input
+                  type="radio"
+                  id="project-establishment-native"
+                  name="native-introduced"
+                  value="native"
+                  defaultChecked={project.rule_native}
+                  onChange={e => {
+                    if ( e.target.checked ) {
+                      setRulePreference( "native", true );
+                      setRulePreference( "introduced", null );
+                    }
+                  }}
+                />
+                { I18n.t( "establishment.native" ) }
+              </label>
+              <label
+                key="project-establishment-introduced"
+                className="inline checkboxradio"
+                htmlFor="project-establishment-introduced"
+              >
+                <input
+                  type="radio"
+                  id="project-establishment-introduced"
+                  name="native-introduced"
+                  value="introduced"
+                  defaultChecked={project.rule_introduced}
+                  onChange={e => {
+                    if ( e.target.checked ) {
+                      setRulePreference( "introduced", true );
+                      setRulePreference( "native", null );
+                      setRulePreference( "endemic", null );
+                    }
+                  }}
+                />
+                { I18n.t( "establishment.introduced" ) }
+              </label>
+              { project.rule_native && (
                 <label
-                  key={`project-establishment-${es}`}
+                  key="project-establishment-endemic"
                   className="inline checkboxradio"
-                  htmlFor={`project-establishment-${es}`}
+                  htmlFor="project-establishment-endemic"
                 >
                   <input
                     type="checkbox"
-                    id={`project-establishment-${es}`}
-                    name={es}
+                    id="project-establishment-endemic"
+                    name="endemic"
                     value="true"
-                    defaultChecked={project[`rule_${es}`]}
-                    onChange={e => setRulePreference( es, e.target.checked )}
+                    defaultChecked={project.rule_endemic}
+                    onChange={e => setRulePreference( "endemic", e.target.checked )}
                   />
-                  { I18n.t( `establishment.${es}` ) }
+                  { I18n.t( "establishment.endemic" ) }
                 </label>
-              ) ) }
+              ) }
             </Col>
           </Row>
           <Row className="date-row">
