@@ -285,9 +285,10 @@ namespace :inaturalist do
       "you_are_setting_this_project_to_aggregate"
     ]
     %w(
+      all_rank_added_to_the_database
       all_taxa
       controlled_term_labels
-      all_rank_added_to_the_database
+      establishment
     ).each do |key|
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end

@@ -151,114 +151,134 @@ class RegularForm extends React.Component {
           </Row>
           <Row>
             <Col xs={4}>
-              <label>Data Quality</label>
-              <input
-                type="checkbox"
-                id="project-quality-research"
-                name="quality_grade"
-                value="research"
-                defaultChecked={ project.rule_quality_grade.research }
-                onChange={ ( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) ) }
-              />
-              <label className="inline" htmlFor="project-quality-research">
+              <label>{ I18n.t( "data_quality" ) }</label>
+              <label className="inline checkboxradio" htmlFor="project-quality-research">
+                <input
+                  type="checkbox"
+                  id="project-quality-research"
+                  name="quality_grade"
+                  value="research"
+                  defaultChecked={project.rule_quality_grade.research}
+                  onChange={( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) )}
+                />
                 { I18n.t( "research_" ) }
               </label>
-              <input
-                type="checkbox"
-                id="project-quality-needs-id"
-                name="quality_grade"
-                value="needs_id"
-                defaultChecked={ project.rule_quality_grade.needs_id }
-                onChange={ ( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) ) }
-              />
-              <label className="inline" htmlFor="project-quality-needs-id">
+              <label className="inline checkboxradio" htmlFor="project-quality-needs-id">
+                <input
+                  type="checkbox"
+                  id="project-quality-needs-id"
+                  name="quality_grade"
+                  value="needs_id"
+                  defaultChecked={project.rule_quality_grade.needs_id}
+                  onChange={( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) )}
+                />
                 { I18n.t( "needs_id_" ) }
               </label>
-              <input
-                type="checkbox"
-                id="project-quality-casual"
-                name="quality_grade"
-                value="casual"
-                defaultChecked={ project.rule_quality_grade.casual }
-                onChange={ ( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) ) }
-              />
-              <label className="inline" htmlFor="project-quality-casual">
+              <label className="inline checkboxradio" htmlFor="project-quality-casual">
+                <input
+                  type="checkbox"
+                  id="project-quality-casual"
+                  name="quality_grade"
+                  value="casual"
+                  defaultChecked={project.rule_quality_grade.casual}
+                  onChange={( ) => setRulePreference( "quality_grade", this.qualityGradeValues( ) )}
+                />
                 { I18n.t( "casual_" ) }
               </label>
             </Col>
-            <Col xs={8}>
+            <Col xs={4}>
               <label>{ I18n.t( "media_type" ) }</label>
-              <input
-                type="radio"
-                name="project-media"
-                id="project-media-any"
-                defaultChecked={ !project.rule_photos && !project.rule_sounds }
-                onChange={ ( ) => {
-                  setRulePreference( "photos", null );
-                  setRulePreference( "sounds", null );
-                } }
-              />
-              <label className="inline" htmlFor="project-media-any">
+              <label className="inline checkboxradio" htmlFor="project-media-any">
+                <input
+                  type="radio"
+                  name="project-media"
+                  id="project-media-any"
+                  defaultChecked={!project.rule_photos && !project.rule_sounds}
+                  onChange={( ) => {
+                    setRulePreference( "photos", null );
+                    setRulePreference( "sounds", null );
+                  }}
+                />
                 { I18n.t( "any_" ) }
               </label>
-              <input
-                type="radio"
-                name="project-media"
-                id="project-media-sounds"
-                defaultChecked={ project.rule_sounds && !project.rule_photos }
-                onChange={ ( ) => {
-                  setRulePreference( "sounds", "true" );
-                  setRulePreference( "photos", null );
-                } }
-              />
-              <label className="inline" htmlFor="project-media-sounds">
+              <label className="inline checkboxradio" htmlFor="project-media-sounds">
+                <input
+                  type="radio"
+                  name="project-media"
+                  id="project-media-sounds"
+                  defaultChecked={project.rule_sounds && !project.rule_photos}
+                  onChange={( ) => {
+                    setRulePreference( "sounds", "true" );
+                    setRulePreference( "photos", null );
+                  }}
+                />
                 { I18n.t( "has_sound" ) }
               </label>
-              <input
-                type="radio"
-                name="project-media"
-                id="project-media-photos"
-                defaultChecked={ project.rule_photos && !project.rule_sounds }
-                onChange={ ( ) => {
-                  setRulePreference( "photos", "true" );
-                  setRulePreference( "sounds", null );
-                } }
-              />
-              <label className="inline" htmlFor="project-media-photos">
+              <label className="inline checkboxradio" htmlFor="project-media-photos">
+                <input
+                  type="radio"
+                  name="project-media"
+                  id="project-media-photos"
+                  defaultChecked={project.rule_photos && !project.rule_sounds}
+                  onChange={( ) => {
+                    setRulePreference( "photos", "true" );
+                    setRulePreference( "sounds", null );
+                  }}
+                />
                 { I18n.t( "has_photo" ) }
               </label>
-              <input
-                type="radio"
-                name="project-media"
-                id="project-media-both"
-                defaultChecked={ project.rule_photos && project.rule_sounds }
-                onChange={ ( ) => {
-                  setRulePreference( "photos", "true" );
-                  setRulePreference( "sounds", "true" );
-                } }
-              />
-              <label className="inline" htmlFor="project-media-both">
+              <label className="inline checkboxradio" htmlFor="project-media-both">
+                <input
+                  type="radio"
+                  name="project-media"
+                  id="project-media-both"
+                  defaultChecked={project.rule_photos && project.rule_sounds}
+                  onChange={( ) => {
+                    setRulePreference( "photos", "true" );
+                    setRulePreference( "sounds", "true" );
+                  }}
+                />
                 { I18n.t( "has_photo_and_sound" ) }
               </label>
+            </Col>
+            <Col xs={4}>
+              <label>{ I18n.t( "establishment_means" ) }</label>
+              { _.map( ["native", "endemic", "introduced"], es => (
+                <label
+                  key={`project-establishment-${es}`}
+                  className="inline checkboxradio"
+                  htmlFor={`project-establishment-${es}`}
+                >
+                  <input
+                    type="checkbox"
+                    id={`project-establishment-${es}`}
+                    name={es}
+                    value="true"
+                    defaultChecked={project[`rule_${es}`]}
+                    onChange={( ) => setRulePreference( es, true )}
+                  />
+                  { I18n.t( `establishment.${es}` ) }
+                </label>
+              ) ) }
             </Col>
           </Row>
           <Row className="date-row">
             <Col xs={12}>
               <label>{ I18n.t( "date_observed_" ) }</label>
-              <input
-                type="radio"
-                id="project-date-type-any"
-                checked={ project.date_type === "any" }
-                onChange={ ( ) => updateProject( { date_type: "any" } ) }
-              />
-              <label className="inline" htmlFor="project-date-type-any">
+              <label className="inline checkboxradio" htmlFor="project-date-type-any">
+                <input
+                  type="radio"
+                  id="project-date-type-any"
+                  checked={project.date_type === "any"}
+                  onChange={( ) => updateProject( { date_type: "any" } )}
+                />
                 { I18n.t( "any_" ) }
               </label>
               <input
                 type="radio"
                 id="project-date-type-exact"
-                checked={ project.date_type === "exact" }
-                onChange={ ( ) => updateProject( { date_type: "exact" } ) }
+                checked={project.date_type === "exact"}
+                onChange={( ) => updateProject( { date_type: "exact" } )}
               />
               <label className="inline" htmlFor="project-date-type-exact">
                 { I18n.t( "exact" ) }
