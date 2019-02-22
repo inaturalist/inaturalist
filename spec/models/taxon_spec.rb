@@ -1165,12 +1165,12 @@ describe Taxon, "geoprivacy" do
     expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to eq Observation::PRIVATE
   end
 
-  it "should be blank if conservation statuses exist but all are open" do
+  it "should be open if conservation statuses exist but all are open" do
     t = Taxon.make!(rank: Taxon::SPECIES)
     p = make_place_with_geom
     cs_place = ConservationStatus.make!(taxon: t, place: p, geoprivacy: Observation::OPEN)
     cs_global = ConservationStatus.make!(taxon: t, geoprivacy: Observation::OPEN)
-    expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to be_blank
+    expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to eq Observation::OPEN
   end
 end
 
@@ -1192,8 +1192,8 @@ describe Taxon, "max_geoprivacy" do
     expect( t1.ancestor_ids ).to include parent.id
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
   end
-  it "should be nil if one none of the taxa have global status" do
-    expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq nil
+  it "should be open if one none of the taxa have global status" do
+    expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::OPEN
   end
 end
 

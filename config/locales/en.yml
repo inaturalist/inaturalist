@@ -5297,6 +5297,7 @@ en:
         private_latitude: "Private latitude, set if observation private or obscured"
         private_longitude: "Private longitude, set if observation private or obscured" 
         geoprivacy: "Whether or not the observer has chosen to obscure or hide the coordinates"
+        taxon_geoprivacy: "Most conservative geoprivacy applied due to the conservation statuses of taxa in current identification."
         coordinates_obscured: "Whether or not the coordinates have been obscured, either because of geoprivacy or because of a threatened taxon"
         out_of_range: Whether or not this observation lies outside the taxon's known range
         user_id: Unique identifier for the observer

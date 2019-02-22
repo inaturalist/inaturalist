@@ -1452,14 +1452,14 @@ class Taxon < ActiveRecord::Base
     if global_status && global_status.geoprivacy == Observation::PRIVATE
       return global_status.geoprivacy
     end
-    geoprivacies = [ global_status.try(:geoprivacy) ]
+    geoprivacies = []
+    geoprivacies << global_status.geoprivacy if global_status
     geoprivacies += ConservationStatus.
       where( "taxon_id IN (?)", target_taxon_ids ).
       for_lat_lon( options[:latitude], options[:longitude] ).pluck( :geoprivacy )
-    geoprivacies = geoprivacies.uniq.reject{ |gp| gp.blank? || gp == Observation::OPEN }
-    return geoprivacies.first if geoprivacies.size == 1
     return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
-    return Observation::OBSCURED unless geoprivacies.blank?
+    return Observation::OBSCURED if geoprivacies.include?( Observation::OBSCURED )
+    geoprivacies.size == 0 ? nil : Observation::OPEN
   end
 
   def geoprivacy( options = {} )
