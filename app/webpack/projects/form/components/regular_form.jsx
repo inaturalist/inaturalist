@@ -258,11 +258,9 @@ class RegularForm extends React.Component {
                     if ( e.target.checked ) {
                       setRulePreference( "native", null );
                       setRulePreference( "introduced", null );
-                      setRulePreference( "endemic", null );
                     } else {
                       setRulePreference( "native", null );
                       setRulePreference( "introduced", null );
-                      setRulePreference( "endemic", null );
                     }
                   }}
                 />
@@ -303,29 +301,11 @@ class RegularForm extends React.Component {
                     if ( e.target.checked ) {
                       setRulePreference( "introduced", true );
                       setRulePreference( "native", null );
-                      setRulePreference( "endemic", null );
                     }
                   }}
                 />
                 { I18n.t( "establishment.introduced" ) }
               </label>
-              { project.rule_native && (
-                <label
-                  key="project-establishment-endemic"
-                  className="inline checkboxradio"
-                  htmlFor="project-establishment-endemic"
-                >
-                  <input
-                    type="checkbox"
-                    id="project-establishment-endemic"
-                    name="endemic"
-                    value="true"
-                    defaultChecked={project.rule_endemic}
-                    onChange={e => setRulePreference( "endemic", e.target.checked )}
-                  />
-                  { I18n.t( "establishment.endemic" ) }
-                </label>
-              ) }
             </Col>
           </Row>
           <Row className="date-row">

@@ -336,7 +336,6 @@ export function submitProject( ) {
       prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month )
         ? "" : project.rule_month,
       prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
-      prefers_rule_endemic: _.isEmpty( project.rule_endemic ) ? "" : project.rule_endemic,
       prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced
     } };
     if ( !payload.project.icon && project.iconDeleted ) {
@@ -413,7 +412,6 @@ export function confirmSubmitProject( ) {
     if ( !_.isEmpty( project.rule_term_id ) ) { empty = false; }
     if ( !_.isEmpty( project.rule_term_value_id ) ) { empty = false; }
     if ( !_.isEmpty( project.rule_native ) ) { empty = false; }
-    if ( !_.isEmpty( project.rule_endemic ) ) { empty = false; }
     if ( !_.isEmpty( project.rule_introduced ) ) { empty = false; }
     if ( dateType === "exact" && !_.isEmpty( project.rule_observed_on ) ) { empty = false; }
     if ( dateType === "range" && !_.isEmpty( project.rule_d1 ) ) { empty = false; }

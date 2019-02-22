@@ -87,10 +87,9 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
     dateRules = dateToString( project.rule_observed_on );
   }
   let establishmentRules = I18n.t( "any" );
-  if ( project.rule_native || project.rule_endemic || project.rule_introduced ) {
+  if ( project.rule_native || project.rule_introduced ) {
     establishmentRules = _.compact( [
       project.rule_native && I18n.t( "establishment.native" ),
-      project.rule_endemic && I18n.t( "establishment.endemic" ),
       project.rule_introduced && I18n.t( "establishment.introduced" )
     ] ).join( ", " );
   }

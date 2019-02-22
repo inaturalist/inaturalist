@@ -75,12 +75,11 @@ class Project < ActiveRecord::Base
   preference :rule_term_id, :integer
   preference :rule_term_value_id, :integer
   preference :rule_native, :boolean
-  preference :rule_endemic, :boolean
   preference :rule_introduced, :boolean
   RULE_PREFERENCES = [
     "rule_quality_grade", "rule_photos", "rule_sounds",
     "rule_observed_on", "rule_d1", "rule_d2", "rule_month",
-    "rule_term_id", "rule_term_value_id", "rule_native", "rule_endemic",
+    "rule_term_id", "rule_term_value_id", "rule_native",
     "rule_introduced"
   ]
   
