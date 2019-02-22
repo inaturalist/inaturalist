@@ -48,11 +48,11 @@ module ApplicationHelper
       Date.today
     end
     if date == today
-      time ? time.strftime("%I:%M %p").downcase.sub(/^0/, '')  : 'Today'
+      time ? I18n.l( time, format: :compact ) : t(:today)
     elsif date.year == Date.today.year 
-      date.strftime("%b %e") 
+      I18n.l( date.to_date, format: :compact )
     else 
-      date.strftime("%b %e, %Y") 
+      I18n.l( date, format: :month_day_year )
     end 
   end
   

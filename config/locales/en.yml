@@ -1431,6 +1431,10 @@ en:
   for_more_information: for more information.
   formatting: Formatting
   forgot_your_password: Forgot your password?
+  forum_categories:
+    bug_reports: Bug Reports
+    feature_requests: Feature Requests
+    news_and_updates: News & Updates
   frequency: Frequency
   fri: Fri
   from: From
@@ -6526,6 +6530,7 @@ en:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      compact: "%b %e"
       short_with_year: '%b %d, %Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
@@ -6700,6 +6705,7 @@ en:
       default: '%b. %d, %Y %H:%M:%S %z'
       long: '%B %d, %Y %I:%M %p'
       short: '%d %b %H:%M'
+      compact: "%I:%M %p"
       observed_at: '%I:%M %p %Z'
       rfc: "%d %B %Y"
       day_month_year: "%B %d, %Y"
