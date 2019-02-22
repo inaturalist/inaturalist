@@ -1192,8 +1192,8 @@ describe Taxon, "max_geoprivacy" do
     expect( t1.ancestor_ids ).to include parent.id
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
   end
-  it "should be open if one none of the taxa have global status" do
-    expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::OPEN
+  it "should be nil if none of the taxa have global status" do
+    expect( Taxon.max_geoprivacy( taxon_ids ) ).to be_nil
   end
 end
 
