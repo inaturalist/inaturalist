@@ -109,15 +109,14 @@ class QualityMetrics extends React.Component {
         keyPrefix="metric-needs_id-disagree"
         contents={<span>({needsIDInfo.votersAgainst.length})</span>}
       /> );
-    // Note that using defaultChecked (i.e. uncontrolled checkbox) here is
-    // mostly ok since this is the only place on this page where this data will
-    // be controlled.
     const checkboxYes = loggedIn ? (
       <input
         type="checkbox"
         id="improveYes"
         disabled={needsIDInfo.loading}
-        defaultChecked={needsIDInfo.userVotedFor}
+        // Sometimes userVotedFor becomes null, which tells React that the
+        // checkbox is uncontrolled, which displeases it, so we default to false
+        checked={needsIDInfo.userVotedFor || false}
         onChange={( ) => {
           if ( needsIDInfo.userVotedFor ) {
             unvoteMetric( "needs_id" );
@@ -131,7 +130,7 @@ class QualityMetrics extends React.Component {
         type="checkbox"
         id="improveNo"
         disabled={needsIDInfo.loading}
-        defaultChecked={needsIDInfo.userVotedAgainst}
+        checked={needsIDInfo.userVotedAgainst || false}
         onChange={( ) => {
           if ( needsIDInfo.userVotedAgainst ) {
             unvoteMetric( "needs_id" );
