@@ -135,5 +135,5 @@ EOT
 puts
 puts "This script does not resurrect observations or associated data. Please use the following command:"
 puts
-puts "bundle exec rails r tools/resurrect_observations.rb -u #{user_id} --skip Photo --skip Sound"
+puts "bundle exec rails r tools/resurrect_observations.rb -u #{user_id} --skip Photo --skip Sound -r"
 puts
