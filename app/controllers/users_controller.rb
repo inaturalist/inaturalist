@@ -456,7 +456,7 @@ class UsersController < ApplicationController
           @discourse_topics = ["news-and-updates", "feature-requests", "bug-reports"].inject( {} ) do |memo, category|
             memo[category] = JSON.parse(
               RestClient.get( "#{@discourse_url}/latest.json?order=created&category=#{category}" ).body
-            )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"]}[0..2]
+            )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..2]
             memo
           end
           Rails.cache.write( cache_key, @discourse_topics, expires_in: 15.minutes )
