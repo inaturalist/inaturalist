@@ -608,6 +608,8 @@ ca:
   attached_taxon: Tàxon unit
   attribute: Atribut
   attribution: Reconeixement
+  authority_list:
+    iucn_red_list: Llista vermella d'UICN
   authorize: Autoritzeu
   authorize_permissions_from_provider: Autoritza permisos de %{provider}
   automatic_descriptions_have_been_disabled: S'han inhabilitat les descripcions automàtiques
@@ -3703,7 +3705,6 @@ ca:
     one_to_many: un a molts
     not_external: no extern
     not_internal: no intern
-    unknown: desconegut
   relationship_html: Relació:%{link}
   reload_and_refresh: Torna a carregar i actualitzar la llista
   reload_from_observations: Torna a carregar des de les observacions

@@ -271,6 +271,7 @@ ar:
   add_life_stage_larva_annotation: 'إضافة شرح "مرحلة الحياة: اليرقة"'
   add_life_stage_juvenile_annotation: 'إضافة شرح "مرحلة الحياة: القاصر"'
   add_life_stage_egg_annotation: 'إضافة شرح "مرحلة الحياة: البيض"'
+  add_relationship: إضافة علاقة
   add_section: أضف قسما
   add_several_observations_at_once: إضافة عدة ملاحظات في وقت واحد.
   add_sex_female_annotation: 'إضافة شرح "الجنس: أنثى"'
@@ -587,6 +588,10 @@ ar:
   attached_taxon: الأصنوفة المتعلقة
   attribute: سمة
   attribution: النسبة
+  authority_list:
+    iucn_red_list: القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية
+    natureserve: خدمة الطبيعة
+    cites: سايتس
   authorize: السماح
   authorize_permissions_from_provider: مصادقة الأذونات من %{provider}
   automatic_descriptions_have_been_disabled: تم تعطيل الأوصاف التلقائية لهذه الأصنوفة.
@@ -620,6 +625,7 @@ ar:
   back_to_suggestions: الرجوع إلى الاقتراحات
   back_to_taxon: عودة إلى %{defaulttaxon}
   back_to_taxon_changes: الرجوع إلى التغييرات في الأصناف
+  back_to_taxon_framework_for_x: العودة إلى إطار النوع ل %{taxon_name}
   back_to_this: رجوع إلى %{place}
   back_to_viewing: الرجوع إلى عرض <i>%{taxon}</i>
   back_to_x: عودة إلى %{noun}
@@ -895,7 +901,7 @@ ar:
   comments_on_my_observations: تعليقات على ملاحظاتي
   comments_youve_made_with_others: التعليقات التي أضفتها (أ/أخرى) <br/><span class="description">في
     الأسبوع الماضي</span>
-  commercial_solicitation: التماس تجاري، روابط إلى مكان، إلخ.
+  commercial_solicitation: التماس تجاري، وصلات إلى لا مكان، إلخ.
   commit: نفذ
   committed: نُفِّذ
   committed_on: تم التنفيذ في %{date}
@@ -1124,7 +1130,7 @@ ar:
   date_picker:
     closeText: إغلاق
     currentText: اليوم
-    prevText: سابق
+    prevText: السابق
     nextText: التالي
     range: النطاق
   date_range: النطاق الزمني
@@ -1380,7 +1386,7 @@ ar:
   export_observations: تصدير الملاحظات
   export_with_private_coordinates: تصدير بإحداثيات مخفية
   exporting: جارٍ التصدير...
-  external_links: روابط خارجية
+  external_links: وصلات خارجية
   external_taxon_including_children: الأصنوفة الخارجية (بما في ذلك الأطفال)
   external_taxon_rank: تصنيف الأصنوفة الخارجية
   extinct: منقرض
@@ -1934,7 +1940,7 @@ ar:
   learn: تعلم
   learn_about_the_species_live_in: تعرف على الأنواع التي تعيش في
   learn_more: معرفة المزيد
-  learn_more_raquo: اعرف المزيد &raquo;
+  learn_more_raquo: معرفة المزيد &raquo;
   learn_what_these_licenses_mean: تعرف على ما تعنيه هذه التراخيص
   least_concern: أقل قلق
   leave: مغادرة
@@ -2535,7 +2541,9 @@ ar:
   no_taxa: لا توجد أصناف
   no_taxa_listed: لم يتم إدراج أية أصناف
   no_taxa_selected: لم يتم اختيار أية أصناف
+  no_taxa_with_unknown_relationships: لا أنواع بعلاقات غير معروفة
   no_taxa_yet: لا توجد أصناف حتى الآن!
+  no_taxon_framework_relationships: لا علاقات إطار للأنواع
   no_taxonomic_changes_match_those_criteria: لا تتطابق أي تغييرات تصنيفية مع تلك المعايير
   no_wikipedia_page_for_taxon: لا توجد صفحة في ويكيبيديا لهذا الصنف.
   no_x_this_y: لا %{x} هذا %{y}
@@ -3564,6 +3572,7 @@ ar:
   related_species: الأنواع ذات الصلة
   relative_observations: ملاحظات مرتبطة
   relationship: العلاقة
+  relationship_unknown_count: عدد العلاقات غير المعروفة
   relationship_x: 'العلاقة: %{relationship}'
   relationships:
     match: مطابقة
@@ -3574,7 +3583,7 @@ ar:
     one_to_many: واحد لكثير
     not_external: ليس خارجيا
     not_internal: ليس داخليا
-    unknown: غير معروف
+    error: خطأ
   relationship_html: 'العلاقة: %{link}'
   reload_and_refresh: إعادة تحميل وتحديث القائمة
   reload_from_observations: إعادة تحميل من الملاحظات
@@ -4066,6 +4075,7 @@ ar:
   take_me_flickr!: نعم، خذني إلى فليكر!
   take_me_back: أعدني
   taxa: أصناف
+  taxa_with_unknown_relationships: الأنواع بعلاقات غير معروفة
   taxa_info: معلومات الأصناف
   taxa_all_species_html: جميع الأنواع
   taxa_needing_curation: أصناف تحتاج معالجة
@@ -4154,13 +4164,14 @@ ar:
   taxon_colors: ألوان الأصنوفة
   taxon_curators: أمناء الأصنوفة
   taxon_extras: إضافات الأصنوفة
+  taxon_framework: إطار الأنواع
   taxon_framework_notes: ملاحظات إطار العمل التصنيفي
   taxon_framework_relationship: علاقة إطار العمل التصنيفي
   taxon_framework_relationship_for: علاقة إطار العمل التصنيفي لـ
   taxon_framework_relationship_number: علاقة إطار عمل الأصنوفة %{number}
   taxon_framework_relationships: علاقات إطار العمل التصنيفي
   taxon_framework_taxon: أصنوفة إطار العمل التصنيفي
-  taxon_links: روابط الأصنوفة
+  taxon_links: وصلات الأصنوفة
   taxon_merge: دمج الأصنوفة
   taxon_name: اسم الأصنوفة
   taxon_name_must_match_an_existing_taxon_in_our_database: يجب أن يتطابق اسم الأصنوفة
@@ -4620,6 +4631,7 @@ ar:
   user_is_now_role_for_project_html: <strong>%{user}</strong> الآن %{role} ل%{project}
   user_muted: تم كتم صوت المستخدم
   user_observations: ملاحظات المستخدم
+  user_observed_on_on_date_in_place: '%{user} لاحظ واحدة بتاريخ %{date} في %{place}'
   user_s_id: '%{user} %{id}'
   user_s_lists: قوائم %{user}
   user_suggested_an_id: اقترح %{user} معرفا
@@ -5116,7 +5128,7 @@ ar:
   verifiable: يمكن التحقق منه
   verifiable_observations: ملاحظات قابلة للتحقق منها
   views:
-    views: العروض
+    views: المشاهدات
     announcements:
       locales_desc: "موجه الأوامر أو انقر فوق SHIFT لتحديد عدة، عدم تحديد أي منهم
         سيعرض \nالإعلان لجميع المستخدمين بغض النظر عن اللغة، اختيار لغة \nبدون منطقة
@@ -5579,9 +5591,22 @@ ar:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: يجب أن يكون عمود geoprivacy باللغة الإنجليزية
           ويجب أن يكون فارغا أو أن تكون به القيمة "obscured" أو "private"
+        google_photos_notice_html: "في فبراير 2019، غيرت جوجل واجهة برمجة تطبيقاتها،
+          مما جعل من المستحيل بالنسبة \nلنا الوصول إلى إحداثيات نظام تحديد المواقع
+          العالمي، ومعلومات الترخيص، وتقريبا أية \nمعلومات يمكننا استخدامها لإضافة
+          تعريف (مثل الوسوم)، بقد\nأزالوا أيضا البحث عن النص وترقيم الصفحات العددي،
+          لا يزال بإمكانك \nاستيراد الصور، ولكنها لن تتضمن أية معلومات عن الموقع أو
+          \nمعلومات الترخيص التي قد تتمكن من رؤيتها على صور جوجل. \nيمكنك قراءة المزيد
+          حول هذا الأمر على \n<a href=\"https://developers.google.com/picasa-web\">https://developers.google.com/picasa-web</a>.\nتنزيل
+          الملفات الأصلية وإضافتها باستخدام \n<a href=\"/observations/upload\">الرافع</a>
+          هو الحل الأفضل."
         project_csv_template_notice_html: |-
           هناك ملف قالب لهذا المشروع الذي قد يساعدك في بنية ملف CSV،
           <a href="%{url}">تنزيل القالب</a>
+        soundcloud_notice_html: "في عام 2018، قامت ساوند كلاود بتغيير واجهة برمجة
+          التطبيقات وجعلت من المستحيل بالنسبة لنا \nإنشاء اتصالات جديدة بحساب ساوند
+          كلاود الخاص بك، إذا أعادوا \nهذه الوظيفة، يمكننا استئناف ربط الحسابات بساوند
+          كلاود، في \nغضون ذلك، يمكنك رفع الملفات الصوتية مباشرةً باستخدام \n<a href=\"/observations/upload\">الرافع</a>."
       show:
         allow_curator_coordinate_access_desc_html: السماح لأمناء المشروع بعرض الإحداثيات
           المخفية لهذه الملاحظة.
@@ -5720,8 +5745,11 @@ ar:
           المكسورة من إيناتوراليست، جميع ملاحظاتك \nستبقى، ستتم إعادة تقييمها بعد
           حذف الصور، ومن الممكن \nأن تصبح بعض ملاحظات درجة البحث غير رسمية إذا لم
           تعد بها أية صور."
-        we_included_links: لقد قمنا بتضمين روابط للصور المتأثرة أدناه.
+        we_included_links: لقد قمنا بتضمين وصلات للصور المتأثرة أدناه.
     photos:
+      forbidden_notice_html: "ليس لدينا إذن للوصول إلى هذه الصور في الوقت الحالي؛
+        قد \nتحتاج إلى فصل الحساب وإعادة ربطه في\n<a href=\"/users/edit\">إعداداتك</a>
+        لمنحنا أذونات إضافية."
       inviter:
         automatically_add_to_project: الإضافة إلى المشروع تلقائيا
         automatically_id_the_new_obs_as: حدد الملاحظات الجديدة تلقائيا كـ

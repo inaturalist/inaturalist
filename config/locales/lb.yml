@@ -301,6 +301,8 @@ lb:
   at: bäi
   atom: Atom
   attribution: Attributioun
+  authority_list:
+    cites: CITES
   authorize: Autoriséieren
   automatic_short: Automatesch
   automatically_add_to_project: Automatesch bei de Projet derbäisetzen
@@ -1460,7 +1462,7 @@ lb:
   relationships:
     not_external: net extern
     not_internal: net intern
-    unknown: onbekannt
+    error: Feeler
   relationship_html: 'Relatioun: %{link}'
   remove: Ewechhuelen
   remove_photo: Foto ewechhuelen
@@ -2039,8 +2041,10 @@ lb:
       messages:
         blank: däerf net eidel sinn
         empty: däerf net eidel sinn
+        even: muss gerued sinn
         exclusion: ass reservéiert
         greater_than: muss méi grouss si wéi %{count}
+        inclusion: ass net an der Lëscht dran
         invalid: ass net valabel
         not_a_number: ass keng Zuel
         odd: muss ongerued sinn

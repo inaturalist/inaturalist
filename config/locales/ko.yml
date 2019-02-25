@@ -143,6 +143,7 @@ ko:
   add_photos: 사진 추가하기
   add_photos_to_this_observation: 이 관찰에 사진 추가하기
   add_place: 장소 추가하기
+  add_relationship: 관계 추가
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
   add_shape: 모양 추가하기
   add_some_now: 지금 추가하기
@@ -373,6 +374,8 @@ ko:
   at_time: '%{time} 시간에'
   atom: 원지
   attribute: 특성
+  authority_list:
+    iucn_red_list: IUCN 적색 목록
   authorize_permissions_from_provider: '%{provider}의 허용을 수락함'
   automatic_descriptions_have_been_disabled: 이 분류군은 자동 설명이 해제되었습니다.
   automatic_short: 자동
@@ -2265,7 +2268,7 @@ ko:
     many_to_many: 다대다
     many_to_one: 다대일
     one_to_many: 일대다
-    unknown: 알 수 없음
+    error: 오류
   relationship_html: '관계: %{link}'
   reload_from_observations: 관찰에서 다시 불러오기
   remove: 제거

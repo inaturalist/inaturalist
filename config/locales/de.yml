@@ -619,6 +619,8 @@ de:
   atom: Atom
   attribute: Attribut
   attribution: Namensnennung
+  authority_list:
+    iucn_red_list: IUCN Rote Liste
   authorize: Behörde
   authorize_permissions_from_provider: Berechtigungen von %{provider} zulassen
   automatic_descriptions_have_been_disabled: Automatische Beschreibungen wurden für
@@ -2959,6 +2961,7 @@ de:
     brazil: Brasilien
     bulgaria: Bulgarien
     canada: Kanada
+    central_african_republic: Zentralafrikanische Republik
     central_america: Zentralamerika
     china: China
     colombia: Kolumbien
@@ -2966,12 +2969,15 @@ de:
     cuba: Kuba
     cyprus: Zypern
     czech_republic: Tschechische Republik
+    democratic_republic_of_the_congo: Demokratische Republik Kongo
     denmark: Dänemark
+    dominica: Dominica
     dominican_republic: Dominikanische Republik
     east_timor: Osttimor
     egypt: Ägypten
     equatorial_guinea: Equatorial Guinea
     estonia: Estland
+    ethiopia: Äthiopien
     europe: Europa
     falkland_islands: Falklandinseln
     finland: Finnland
@@ -3006,12 +3012,14 @@ de:
     montenegro: Montenegro
     myanmar: Myanmar
     netherlands: Niederlande
+    new_caledonia: Neukaledonien
     new_guinea: Neuguinea
     new_zealand: Neuseeland
     north_africa: Nordafrika
     north_america: Nordamerika
     north_korea: Nordkorea
     pakistan: Pakistan
+    palestina: Palästina
     palestine: Palestina
     panama: Panama
     peru: Peru
@@ -3029,6 +3037,7 @@ de:
     south_sudan: Südsudan
     spain: Spanien
     sri_lanka: Sri Lanka
+    sudan: Sudan
     sweden: Schweden
     switzerland: Schweiz
     syria: Syrien
@@ -3036,11 +3045,14 @@ de:
     trinidad_and_tobago: Trinidad und Tobago
     turkey: Türkei
     ukraine: Ukraine
+    united_arab_emirates: Vereinigte Arabische Emirate
     united_kingdom: Vereinigtes Königreich
     united_states: Vereinigte Staaten
     vatican_city: Vatikanstadt
+    venezuela: Venezuela
     virgin_islands: Jungferninseln
     west_africa: Westafrika
+    western_sahara: Westsahara
     yemen: Jemen
   places_of_interest: Interessante Orte
   places_merged_successfully: Orte erfolgreich zusammengeführt!
@@ -3100,6 +3112,7 @@ de:
     sind, tatsächliche Koordinaten, die nur für dich und die Kuratoren von Projekten,
     zu denen du die Beobachtung hinzufügst, sichtbar sind. Beobachtungen mit versteckten
     Koordinaten werden weiterhin zur Verifizierung von Checklisten verwendet.
+  probably_spam: Vermutlich Spam
   proceed: Fortfahren
   processing: Verarbeite
   processing3p: Verarbeite…
@@ -3237,6 +3250,7 @@ de:
   recent_comments_on_your_stuff: Neueste Kommentare zu deinem Inhalt
   recent_evidence?: Rezente Evidenz?
   recent_evidence_of_organism: Rezenter Beweis für Organismus
+  recent_new_users: Neueste Benutzer
   recent_observations: Letzte Beobachtungen
   recent_observations_: Aktuelle Beobachtungen
   recent_post: Aktueller Beitrag
@@ -3271,7 +3285,6 @@ de:
     alternate_position: Position ändern
     not_external: nicht extern
     not_internal: nicht intern
-    unknown: unbekannt
   reload_and_refresh: Neuladen und Liste aktualisieren
   reload_from_observations: Neuladen aus Beobachtungen
   reload_timed_out: Zeitüberschreitung beim Neuladen.  Bitte versuche es später noch
@@ -3398,6 +3411,7 @@ de:
     one: Speichere Beobachtung...
     other: Speichere %{num} von %{count} Beobachtungen...
   saving_verb: Speichere
+  scale_colon: 'Maßstab:'
   schemes: Schemata
   schemes_including: Schemata einschließlich
   scientific_names: Wissenschaftlicher Name
@@ -3480,6 +3494,7 @@ de:
   set_license: Lizenz festlegen
   settings: Einstellungen
   share: Teilen
+  share_colon: 'Teilen:'
   share_your_observation_with_researchers_by: Teile deine Beobachtungen mit den Forschern
     durch
   show: Anzeigen

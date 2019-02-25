@@ -264,6 +264,7 @@ zh-TW:
   add_life_stage_larva_annotation: 新增「生命階段：幼蟲」註解
   add_life_stage_juvenile_annotation: 新增「生命階段：亞成體」的註解
   add_life_stage_egg_annotation: 新增「生命階段：卵」註解
+  add_relationship: 添加關聯
   add_section: 新增章節
   add_several_observations_at_once: 一次增加多筆觀察紀錄。
   add_sex_female_annotation: 新增「性别：雌」的註解
@@ -552,6 +553,10 @@ zh-TW:
   attached_taxon: 依附物種分類
   attribute: 屬性
   attribution: 姓名標示
+  authority_list:
+    iucn_red_list: 國際自然保護聯盟瀕危物種(IUCN)紅色名錄
+    natureserve: NatureServe
+    cites: 引用
   authorize: 授權
   authorize_permissions_from_provider: 來自於%{provider}的授權許可
   automatic_descriptions_have_been_disabled: 用於此物種分類的自動描述已被停用。
@@ -583,6 +588,7 @@ zh-TW:
   back_to_suggestions: 返回至建議
   back_to_taxon: 返回至%{defaulttaxon}
   back_to_taxon_changes: 返回至分類更改
+  back_to_taxon_framework_for_x: 返回%{taxon_name}的物種分類框架
   back_to_this: 返回至%{place}
   back_to_viewing: 返回至檢視<i>%{taxon}</i>
   back_to_x: 返回至%{noun}
@@ -2304,7 +2310,9 @@ zh-TW:
   no_taxa: 沒有物種分類
   no_taxa_listed: 沒有列出物種分類群
   no_taxa_selected: 沒有選擇物種分類！
+  no_taxa_with_unknown_relationships: 沒有帶有未知關聯的分類
   no_taxa_yet: 尚未有物種分類群！
+  no_taxon_framework_relationships: 沒有物種分類框架關聯
   no_taxonomic_changes_match_those_criteria: 沒有物種分類更改符合這些準則
   no_wikipedia_page_for_taxon: 沒有用於此物種分類的維基百科頁面。
   no_x_this_y: 不是在 %{y} 的%{x}
@@ -3243,6 +3251,7 @@ zh-TW:
   related_species: 相關物種
   relative_observations: 相關觀察
   relationship: 關聯
+  relationship_unknown_count: 關聯未知次數
   relationship_x: 關聯：%{relationship}
   relationships:
     match: 相配
@@ -3253,7 +3262,7 @@ zh-TW:
     one_to_many: 一對多
     not_external: 非外部
     not_internal: 非內部
-    unknown: 不明
+    error: 錯誤
   relationship_html: 關聯：%{link}
   reload_and_refresh: 重新載入及重整清單
   reload_from_observations: 從觀察來重新載入
@@ -3701,6 +3710,7 @@ zh-TW:
   take_me_flickr!: 是的，帶我前往 Flickr！
   take_me_back: 帶我返回
   taxa: 物種分類
+  taxa_with_unknown_relationships: 帶有未知關聯的分類
   taxa_info: 物種分類群訊息
   taxa_all_species_html: 所有物種
   taxa_needing_curation: 物種分類群需要策展
@@ -3777,6 +3787,7 @@ zh-TW:
   taxon_colors: 物種分類色彩
   taxon_curators: 物種分類策展人
   taxon_extras: 物種分類附加
+  taxon_framework: 物種分類框架
   taxon_framework_notes: 物種分類框架備註
   taxon_framework_relationship: 物種分類群框架關聯
   taxon_framework_relationship_for: 物種分類框架關聯用於
@@ -4151,6 +4162,7 @@ zh-TW:
   user_is_now_role_for_project_html: <strong>%{user}</strong>現在是 %{project} 的%{role}了
   user_muted: 使用者已禁言
   user_observations: 用戶觀察
+  user_observed_on_on_date_in_place: '%{user} 於 %{date} 在%{place}觀察了一個'
   user_s_id: '%{user}的%{id}'
   user_s_lists: '%{user} 的清單'
   user_suggested_an_id: '%{user} 建議了一個鑑定'
@@ -4891,9 +4903,14 @@ zh-TW:
         date_column_format: YYYY-MM-DD HH:MM
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: 位置隱私欄位必須為英文，且值必須是空白或是「obscured」或「private」
+        google_photos_notice_html: "在 2019 年 2 月，Google 更改了他們的 API，讓我們可以取用全球定位系統座標、許可資訊，以及幾乎任何我們可以拿來添加至鑑定的資訊（像是標籤）。他們幾乎移除掉文字搜尋以數字分頁。您仍可以匯入照片，但是他們不會把任何您可以在
+          Google 照片上查看到的位置資訊、或是許可資訊給包含進去。\n您可以在 \n<a href=\"https://developers.google.com/picasa-web\">https://developers.google.com/picasa-web</a>
+          查看更多內容。\n下載原始檔案並使用<a href=\"/observations/upload\">上傳器</a>來添加它們是最有效的方式。"
         project_csv_template_notice_html: |-
           這是一個用於此專案的模版檔案，它可能有助於您關於在 CSV 檔案結構方面。
           <a href="%{url}">下載模版</a>
+        soundcloud_notice_html: 在 2018 年，Soundcloud 更改了他們的 API 並讓我們可以對您的 Soundcloud
+          帳號建立新連接。如果他們恢復了此功能，我們可以重新開始連結帳號至 Soundcloud。同時，您可以使用<a href="/observations/upload">上傳器</a>來直接上傳聲音檔案。
       show:
         allow_curator_coordinate_access_desc_html: 允許專案策展人來檢視此觀察的隱藏座標。
         ancestor_disagreements_desc: '# 已鑑定物種分類群來自於某一物種分類的祖先，不過是在使用此物種分類的首次鑑定之後創建'
@@ -5004,6 +5021,7 @@ zh-TW:
         please_address: 請在<b>接下來的 30 天裡</b>處理這些問題。超過 30 天候，我們將會從 iNaturalist 上刪除損毀的照片，但您所有的觀察仍會保留下來。照片在刪除後觀察會被重新評估，一些原本是研究等級的觀察有可能會因為缺少照片而降為粗略等級。
         we_included_links: 我們已包含下列受影響照片的連結。
     photos:
+      forbidden_notice_html: 我們現在沒有權限來取用這些照片。您可能需要在您的<a href="/users/edit">設定</a>中斷連接並重新連接帳號來授予我們額外權限。
       inviter:
         automatically_add_to_project: 自動添加至專案
         automatically_id_the_new_obs_as: 自動鑑定新觀察為

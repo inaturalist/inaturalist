@@ -332,6 +332,7 @@ ru:
   add_life_stage_larva_annotation: 'Добавить значение "Стадия жизни: Личинка"'
   add_life_stage_juvenile_annotation: 'Добавить значение "Стадия жизни: Молодой"'
   add_life_stage_egg_annotation: 'Добавить значение "Стадия жизни: Яйцо"'
+  add_relationship: Добавить связь
   add_section: Добавить секцию
   add_several_observations_at_once: Добавить несколько наблюдений сразу.
   add_sex_female_annotation: 'Добавить значение "Пол: Женский"'
@@ -667,7 +668,10 @@ ru:
   attached_taxon: Прикрепленный таксон
   attribute: Атрибут
   attribution: Авторство
-  authority_list: Список основополагающих источников
+  authority_list:
+    iucn_red_list: Красный список МСОП
+    natureserve: NatureServe
+    cites: CITES
   authorize: Авторизоваться
   authorize_permissions_from_provider: Авторизовать разрешения от %{provider}
   automatic_descriptions_have_been_disabled: Для данного таксона были отключены автоматические
@@ -703,6 +707,7 @@ ru:
   back_to_suggestions: Назад, к предложениям
   back_to_taxon: Вернуться к %{defaulttaxon}
   back_to_taxon_changes: Вернуться к изменениям таксона
+  back_to_taxon_framework_for_x: Вернуться к основе таксона для %{taxon_name}
   back_to_this: Назад к %{place}
   back_to_viewing: Вернуться к просмотру <i>%{taxon}</i>
   back_to_x: Вернуться к %{noun}
@@ -990,7 +995,7 @@ ru:
   comments_by_me: Мои комментарии
   comments_on: Комментарии для
   comments_on_my_observations: Комментарии к моим наблюдениям
-  comments_youve_made_with_others: Комментарии, которые вы создали (с другими)<br/><span
+  comments_youve_made_with_others: Комментарии, которые вы добавили (с другими)<br/><span
     class="description">на прошлой неделе</span>
   commercial_solicitation: Коммерческое ходатайство, ссылки и т.д.
   commit: Совершить
@@ -2513,7 +2518,7 @@ ru:
     Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
     fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
-  ne_lat: СВ Широта
+  ne_lat: СВ шир.
   ne_lon: СВ долг.
   near: около
   near_threatened: Близок к исчезновению
@@ -2688,7 +2693,9 @@ ru:
   no_taxa: Нет таксонов
   no_taxa_listed: Нет перечисленных таксонов
   no_taxa_selected: Не выбраны таксоны!
+  no_taxa_with_unknown_relationships: Нет таксонов с неизвестными связями
   no_taxa_yet: Пока нет никаких таксонов!
+  no_taxon_framework_relationships: нет связей у основы таксона
   no_taxonomic_changes_match_those_criteria: Никакие таксономические изменения не
     соответствуют этим критериям
   no_wikipedia_page_for_taxon: Страница Википедии для этого таксона отсутствует.
@@ -3754,6 +3761,7 @@ ru:
   related_species: Связанные виды
   relative_observations: Относительные наблюдения
   relationship: Связи
+  relationship_unknown_count: Подсчёт неизвестных связей
   relationship_x: 'Связь: %{relationship}'
   relationships:
     match: соответствие
@@ -3764,7 +3772,7 @@ ru:
     one_to_many: один-ко-многим
     not_external: не внешние
     not_internal: не внутренние
-    unknown: неизвестно
+    error: ошибка
   relationship_html: 'Связь: %{link}'
   reload_and_refresh: Перезагрузиться и обновить список
   reload_from_observations: Перезагрузка из наблюдений
@@ -3828,7 +3836,7 @@ ru:
   required_: Обязательное
   required_field: Обязательное поле
   required_columns_in_order: Требуемые столбцы по порядку
-  research: исследовать
+  research: Исследовательский
   research_: Исследовательский
   research_grade: Исследовательский уровень
   research_grade_expandable_html: И<span class='full'>сследовательский </span>С<span
@@ -4285,6 +4293,7 @@ ru:
   take_me_flickr!: Да, свяжите меня с Flickr!
   take_me_back: Примите меня обратно
   taxa: Таксоны
+  taxa_with_unknown_relationships: Таксоны с неизвестными связями
   taxa_info: Информация о таксонах
   taxa_all_species_html: Все виды
   taxa_needing_curation: Таксоны, требующие внимания куратора
@@ -4373,6 +4382,7 @@ ru:
   taxon_colors: Цвета таксона
   taxon_curators: Кураторы таксона
   taxon_extras: Дополнения к таксону
+  taxon_framework: Основа таксона
   taxon_framework_notes: Заметки к основам таксона
   taxon_framework_relationship: Связь основы таксона
   taxon_framework_relationship_for: Связь основы таксона для
@@ -4869,6 +4879,7 @@ ru:
     %{project}
   user_muted: Пользователь отключен
   user_observations: Наблюдениях пользователя
+  user_observed_on_on_date_in_place: '%{user} наблюдал такое %{date} в %{place}'
   user_s_id: '%{id} %{user}'
   user_s_lists: Списки %{user}
   user_suggested_an_id: '%{user} предложил идентификацию'
@@ -5916,9 +5927,17 @@ ru:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: Столбец geoprivacy должен быть на английском
           языке и должен быть пустым или иметь значение "скрытый" или "частный"
+        google_photos_notice_html: |-
+          В феврале 2019 года Google изменил свой API, что сделало невозможным для нас доступ к координатам GPS, лицензионной информации и почти любой информации, которую мы могли бы использовать для добавления идентификации (например, тегов). Они также удалили текстовый поиск и нумерацию страниц. Вы по-прежнему можете импортировать фотографии, но они не будут содержать сведений о местоположении или лицензии, которые могут отображаться в Google фотографиях. Прочесть об этом подробно вы можете здесь <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
+          Наилучшая возможность сейчас - использовать <a href="/observations/upload">Загрузчик</a>
         project_csv_template_notice_html: |-
           Для этого проекта есть файл шаблона, который может помочь вам со структурой файла CSV.
           <a href="%{url}">Загрузить шаблон</a>
+        soundcloud_notice_html: В 2018 году Soundcloud изменил свой API и сделал невозможным
+          для нас создание новых подключений к учетной записи Soundcloud. Если они
+          восстановят эту функциональность, мы сможем возобновить привязку учетных
+          записей к Soundcloud. В настоящее время вы можете загружать звуковые файлы
+          непосредственно с помощью <a href="/observations/upload">Загрузчика</a>.
       show:
         allow_curator_coordinate_access_desc_html: Позволить кураторам проекта видеть
           скрытые координаты этого наблюдения
@@ -6057,6 +6076,10 @@ ru:
           перейдут на уровень обыкновенных, если они больше не будут содержать фото.
         we_included_links: Мы включили ссылки на пострадавшие фото ниже.
     photos:
+      forbidden_notice_html: В данный момент у нас нет разрешения на доступ к этим
+        фотографиям. Возможно, вам понадобится отключить и снова подключить учетную
+        запись в ваших <a href="/users/edit">настройках</a>, чтобы предоставить нам
+        дополнительные разрешения.
       inviter:
         automatically_add_to_project: Автоматически добавлять к проекту
         automatically_id_the_new_obs_as: Автоматически идентифицировать нов набл как
@@ -6405,9 +6428,9 @@ ru:
           ничего не смог найти!
     stats:
       index:
-        active_desc: Создавали идентификации, наблюдения, комментарии или сообщения
+        active_desc: Добавляли идентификации, наблюдения, комментарии или сообщения
           в журнале в предыдущие 30 дней
-        active_users_desc: Создавали идентификации, наблюдения, комментарии или сообщения
+        active_users_desc: Добавляли идентификации, наблюдения, комментарии или сообщения
           в журнале в предыдущие 30 дней
         android_desc_html: Создано с помощью <a href="%{url}">приложения iNaturalist
           для Android</a>

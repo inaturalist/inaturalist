@@ -31,6 +31,7 @@
 # Author: MarcoAurelio
 # Author: MetteHHH
 # Author: Mirzali
+# Author: Mynor Archila
 # Author: Ncontinanza
 # Author: Ohlila
 # Author: Optilete
@@ -308,6 +309,7 @@ es:
   add_life_stage_larva_annotation: 'Agregar anotación "Etapa de vida: larva"'
   add_life_stage_juvenile_annotation: 'Agregar anotación "Etapa de vida: juvenil"'
   add_life_stage_egg_annotation: 'Agregar anotación "Etapa de vida: huevo"'
+  add_relationship: Agregar relación
   add_section: Agregar sección
   add_several_observations_at_once: Agregar varias observaciones al mismo tiempo
   add_sex_female_annotation: 'Agregar anotación "Género: femenino"'
@@ -642,6 +644,10 @@ es:
   attached_taxon: Taxón adjunto
   attribute: Atributo
   attribution: Atribución
+  authority_list:
+    iucn_red_list: Lista roja UICN
+    natureserve: NatureServe
+    cites: CITES
   authorize: Autoriza
   authorize_permissions_from_provider: Autoriza permisos de %{provider}
   automatic_descriptions_have_been_disabled: Se han deshabilitado las descripciones
@@ -3730,7 +3736,6 @@ es:
     one_to_many: uno-a-muchos
     not_external: no externo
     not_internal: no interno
-    unknown: desconocido
   relationship_html: 'Relación: %{link}'
   reload_and_refresh: Volver a cargar y refrescar lista
   reload_from_observations: Volver a cargar sus observaciones
@@ -4250,6 +4255,7 @@ es:
   take_me_flickr!: ¡Sí, lléveme a Flickr!
   take_me_back: Llévame de vuelta
   taxa: Taxones
+  taxa_with_unknown_relationships: Taxones con relaciones desconocidas
   taxa_info: Información sobre taxones
   taxa_all_species_html: Todas las especies
   taxa_needing_curation: Taxones que necesitan curación
@@ -4836,6 +4842,7 @@ es:
     %{project}
   user_muted: Usuario silenciado
   user_observations: Observaciones del usuario
+  user_observed_on_on_date_in_place: '%{user} observó uno el %{date}, en %{place}'
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listas de %{user}
   user_suggested_an_id: '%{user} sugirió una identificación'
@@ -4946,6 +4953,7 @@ es:
   view_taxon_page_for: Ver página del taxón para este lugar
   view_taxon_page_for_this_x: Ver página del taxón para este %{x}
   view_taxonomic_changes: Ver cambios taxonómicos
+  view_taxononomy_details_for_taxon: Ver detalles taxonómicos para %{taxon}
   view_terms: Ver los términos
   view_the: Ver la %{action}
   view_the_observation: Ver la observación
@@ -5775,7 +5783,10 @@ es:
     oauth:
       authorizations:
         new:
+          authorize_application_to_use_your_account?: ¿Autoriza a la %{application}
+            para usar su cuenta?
           this_application_will_be_able_to_colon: 'Esta aplicación podrá:'
+          more_about_application: Más sobre %{application}
     observations:
       community_id:
         agreement: Acuerdo
@@ -5910,6 +5921,12 @@ es:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: La columna de geoprivacidad debe ir en inglés
           y debe estar vacía o tener el valor de "oculto" o "privado"
+        google_photos_notice_html: |-
+          En febrero del 2019 Google cambió su API, haciéndonos imposible para acceder a las coordenadas GPS, la información de licencia, y casi cualquier información  que podríamos utilizar para añadir una identificación (como etiquetas). Google también quitó la búsqueda de texto y la paginación numérica.  Usted todavía puede importar fotos, pero no incluirán ninguna información de ubicación o información de licencia que le permita verlas en Google Photos.
+           Puede leer más sobre esto en:
+          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
+          Descargando los archivos originales y añadiéndoles la información usando
+          <a href="/observations/upload">Uploader</a> es la mejor alternativa.
         project_csv_template_notice_html: Hay un archivo plantilla para este proyecto
           que puede ayudarte con la estructura del archivo CSV. <a href="%{url}">Descarga
           la plantilla</a>
@@ -6055,6 +6072,9 @@ es:
           de investigación se convertirán en informales si ya no tienen fotos.
         we_included_links: Hemos incluido enlaces a las fotos afectadas abajo.
     photos:
+      forbidden_notice_html: No tenemos permiso para acceder a esas fotos justo ahora.
+        Puede que necesite desconectar y reconectar la cuenta en sus <a href="/users/edit">settings</a>
+        para concedernos permisos adicionales.
       inviter:
         automatically_add_to_project: Añadir automáticamente al proyecto
         automatically_id_the_new_obs_as: Identificar automáticamente la nueva observación
@@ -7294,6 +7314,9 @@ es:
               must_look_like_an_email_address: debe asemejarse a una dirección de
                 correo electrónico
   doorkeeper:
+    scopes:
+      login: Información relevante para acceder (como dirección de correo electrónico,
+        nombre de usuario e icono de usuario)
     errors:
       messages:
         unauthorized_client: El cliente no es autorizado para efectuar esta petición

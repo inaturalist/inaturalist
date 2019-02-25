@@ -541,6 +541,8 @@ zh-CN:
   atom: 原子
   attribute: 属性
   attribution: 署名
+  authority_list:
+    iucn_red_list: IUCN红色名录
   authorize_permissions_from_provider: 来自%{provider}的授权权限
   automatic_descriptions_have_been_disabled: 此分类单元的自动化描述已禁用。
   automatically_add_to_project: 自动加入至项目
@@ -2975,7 +2977,6 @@ zh-CN:
     one_to_many: 一对多
     not_external: 非外部
     not_internal: 非外部
-    unknown: 未知
   reload_and_refresh: 重新加载和刷新列表
   reload_from_observations: 从观察里重新加载
   reload_timed_out: 加载超时。请过一会再试。

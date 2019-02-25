@@ -304,6 +304,7 @@ fr:
   add_life_stage_larva_annotation: 'Ajoute l''annotation "Stade d''évolution : Larve"'
   add_life_stage_juvenile_annotation: 'Ajouter l’annotation « Stade de vie : Juvénile »'
   add_life_stage_egg_annotation: 'Ajoute l''annotation "Stade d''évolution : Oeuf"'
+  add_relationship: Ajouter une relation
   add_section: Ajouter une section
   add_several_observations_at_once: Ajouter plusieurs observations à la fois
   add_sex_female_annotation: 'Ajouter l''annotation "Sex: Female"'
@@ -648,6 +649,10 @@ fr:
   attached_taxon: Taxon attaché
   attribute: Attribut
   attribution: Attribution
+  authority_list:
+    iucn_red_list: Liste rouge de l’UICN
+    natureserve: NatureServe
+    cites: CITATIONS
   authorize: Autoriser
   authorize_permissions_from_provider: Autoriser les permissions de %{provider}
   automatic_descriptions_have_been_disabled: Les descriptions automatiques ont été
@@ -683,6 +688,7 @@ fr:
   back_to_suggestions: Retour aux propositions
   back_to_taxon: Retourner à %{defaulttaxon}
   back_to_taxon_changes: Retour aux modifications taxinomiques
+  back_to_taxon_framework_for_x: Retour au cadre de taxon pour %{taxon_name}
   back_to_this: Retourner à %{place}
   back_to_viewing: Retourner à la visualisation de <i>%{taxon}</i>
   back_to_x: Retourner à %{noun}
@@ -2730,7 +2736,9 @@ fr:
   no_taxa: Aucun taxon
   no_taxa_listed: Aucun taxon répertorié
   no_taxa_selected: Aucun taxon sélectionné!
+  no_taxa_with_unknown_relationships: Aucun taxon avec des relations inconnues
   no_taxa_yet: Aucun taxon jusqu’à présent!
+  no_taxon_framework_relationships: aucune relation de cadre de taxon
   no_taxonomic_changes_match_those_criteria: Aucune modification taxinomique ne correspond
     à ces critères
   no_wikipedia_page_for_taxon: Aucune page Wikipédia pour ce taxon.
@@ -3806,6 +3814,7 @@ fr:
   related_species: Espèces apparentées
   relative_observations: Observations relatives
   relationship: Relation
+  relationship_unknown_count: Nombre de relations inconnues
   relationship_x: 'Relation : %{relationship}'
   relationships:
     match: correspond
@@ -3816,7 +3825,7 @@ fr:
     one_to_many: de un vers plusieurs
     not_external: pas externe
     not_internal: non interne
-    unknown: inconnu
+    error: erreur
   relationship_html: 'Relation : %{link}'
   reload_and_refresh: Recharger et rafraîchir la liste
   reload_from_observations: Recharger à partir des observations
@@ -4343,6 +4352,7 @@ fr:
   take_me_flickr!: Oui, amenez-moi sur Flickr!
   take_me_back: Revenir en arrière
   taxa: Taxons
+  taxa_with_unknown_relationships: Taxons avec des relations inconnues
   taxa_info: Informations des taxons
   taxa_all_species_html: Toutes espèces
   taxa_needing_curation: Taxons nécessitant une organisation
@@ -4431,6 +4441,7 @@ fr:
   taxon_colors: Couleurs des taxons
   taxon_curators: Superviseurs des taxons
   taxon_extras: Taxons additionnels
+  taxon_framework: Cadre de taxon
   taxon_framework_notes: Notes du cadre de taxon
   taxon_framework_relationship: Relation du cadre de taxon
   taxon_framework_relationship_for: Relation du cadre de taxon pour
@@ -4938,6 +4949,7 @@ fr:
     pour %{project}
   user_muted: Utilisateur réduit au silence
   user_observations: Observations utilisateur
+  user_observed_on_on_date_in_place: '%{user} en a observé un le %{date} à %{place}'
   user_s_id: '%{id} de %{user}'
   user_s_lists: Listes de %{user}
   user_suggested_an_id: '%{user} a suggéré un ID'
@@ -6067,9 +6079,26 @@ fr:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: La colonne coordonnées privées doit être en
           anglais et laissée vide ou avoir une valeur « obscured » ou « private »
+        google_photos_notice_html: |-
+          En février 2019, Google a modifié son API, nous empêchant
+          d’accéder aux coordonnées GPS, à l’information de licence et à quasiment
+          toute information que nous pourrions utiliser pour ajouter une identification (comme les balises). Il
+          a aussi supprimé la recherche textuelle et la pagination numérique. Vous pouvez toujours
+          importer des photos, mais elles n’incluront aucune information de localisation ou
+          de licence que vous pourriez voir sur Google Photos.
+          Vous pouvez lire davantage là-dessus à
+          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
+          Télécharger des fichiers d’origine et les ajouter en utilisant
+          <a href="/observations/upload">Uploader</a> est le meilleur contournement.
         project_csv_template_notice_html: "Il y a un fichier modèle pour ce projet
           qui peut vous aider avec la structure du fichier CSV. \n<a href=\"%{url}\">Téléchargez
           le modèle</a>"
+        soundcloud_notice_html: |-
+          En 2018, Soundcloud a modifié son API et nous a empêché de
+          faire de nouveaux liens avec votre compte Soundcloud. S’il réactive
+          cette fonctionnalité, nous pourrons reprendre le lien des comptes vers Soundcloud. En
+          attendant, vous pouvez téléverser les fichiers de son directement en utilisant
+          <a href="/observations/upload">Uploader</a>.
       show:
         allow_curator_coordinate_access_desc_html: Permettre aux superviseurs de projet
           de voir les coordonnées masquées de cette observation.
@@ -6273,6 +6302,10 @@ fr:
         we_included_links: Nous avons inclus les liens vers les photos concernées
           ci-dessous.
     photos:
+      forbidden_notice_html: |-
+        Nous n’avons pas le droit d’accéder à ces photos actuellement. Vous aurez peut-être
+        besoin de déconnecter et reconnecter le compte dans vos
+        <a href="/users/edit">paramètres</a> pour nous accorder plus de droits.
       inviter:
         automatically_add_to_project: Ajouter automatiquement au projet
         automatically_id_the_new_obs_as: Identifier automatiquement les nouvelles

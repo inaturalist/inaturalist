@@ -9,6 +9,7 @@
 # Author: Josve05a
 # Author: Petni995
 # Author: Pyscowicz
+# Author: Sturban
 # Author: Umeaboy
 # Author: WikiPhoenix
 ---
@@ -269,6 +270,7 @@ sv:
   add_life_stage_larva_annotation: 'Lägg till notering "Livsstadium: larv"'
   add_life_stage_juvenile_annotation: 'Lägg till notering "Livsstadium: ungdom"'
   add_life_stage_egg_annotation: 'Lägg till notering "Livsstadium: ägg"'
+  add_relationship: Lägg till en relation
   add_section: Lägg till avsnitt
   add_several_observations_at_once: Lägg till flera observationer på en gång.
   add_sex_female_annotation: 'Bifoga notering "Kön: Hona"'
@@ -593,6 +595,9 @@ sv:
   atom: Atom
   attribute: Attribut
   attribution: Erkännande
+  authority_list:
+    iucn_red_list: IUCN röda lista
+    cites: CITES
   authorize_permissions_from_provider: Godkänn tillstånd från %{provider}
   automatic_descriptions_have_been_disabled: Automatiska beskrivningar har deaktiverats
     för denna takson.
@@ -1780,13 +1785,13 @@ sv:
   refresh: Uppdatera
   regenerate_stats: Generera statistik igen
   reject?: Förkasta?
+  relationship_unknown_count: Antal okända relationer
   relationships:
     one_to_one: en-till-en
     alternate_position: alternativ position
     many_to_many: mången-till-mången
     many_to_one: mången-till-en
     one_to_many: en-till-mången
-    unknown: okänd
   remember_me: Kom ihåg mig
   remove: Ta bort
   remove_observations:

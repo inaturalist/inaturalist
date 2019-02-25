@@ -598,7 +598,8 @@ et:
   attached_taxon: Lisatud takson
   attribute: Omadus
   attribution: Omistus
-  authority_list: Luba
+  authority_list:
+    iucn_red_list: IUCNi punane nimestik
   authorize: Luba
   authorize_permissions_from_provider: Autoriseeri lehe %{provider} õigused
   automatic_descriptions_have_been_disabled: Selle taksoni puhul on automaatsed kirjeldused
@@ -3611,7 +3612,6 @@ et:
     one_to_many: üks-mitmele
     not_external: mitte ülem
     not_internal: mitte alam
-    unknown: teadmada
   relationship_html: 'Suhe: %{link}'
   reload_and_refresh: Lae nimekiri uuesti ja värskenda
   reload_from_observations: Lae vaatlustest uuesti

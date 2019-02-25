@@ -272,6 +272,7 @@ da:
   add_life_stage_larva_annotation: 'Tilføj anmærkningen "Livsstadie: Larve"'
   add_life_stage_juvenile_annotation: 'Tilføj noten "Livsstadie: Juvenil"'
   add_life_stage_egg_annotation: 'Tilføj anmærkningen "Livsstadie: Æg"'
+  add_relationship: Tilføj forbindelse
   add_section: Tilføj sektion
   add_several_observations_at_once: Tilføj flere observationer på en gang.
   add_sex_female_annotation: 'Tilføj anmærkningen "Køn: Hunkøn"'
@@ -605,6 +606,9 @@ da:
   attached_taxon: Tilknyttet takson
   attribute: Egenskab
   attribution: Kildeangivelse
+  authority_list:
+    iucn_red_list: IUCN rødliste
+    cites: CITES
   authorize: Tillade
   authorize_permissions_from_provider: Godkend tilladelser fra %{provider}
   automatic_descriptions_have_been_disabled: Automatiske beskrivelser er blevet deaktiveret
@@ -2610,6 +2614,7 @@ da:
   no_taxa: Ingen taksa
   no_taxa_listed: Ingen taksa opført
   no_taxa_selected: Ingen taksa valgt!
+  no_taxa_with_unknown_relationships: Ingen taksa med ukendte forbindelser
   no_taxa_yet: Ingen taksa endnu!
   no_taxonomic_changes_match_those_criteria: Ingen taksonomiske ændringer matcher
     disse kriterier
@@ -3660,6 +3665,7 @@ da:
   related_species: Beslægtede arter
   relative_observations: Relative observationer
   relationship: Forbindelse
+  relationship_unknown_count: Antal ukendte forbindelser
   relationship_x: 'Forbindelse: %{relationship}'
   relationships:
     match: match
@@ -3670,7 +3676,7 @@ da:
     one_to_many: en-til-mange
     not_external: ikke ekstern
     not_internal: ikke intern
-    unknown: ukendt
+    error: fejl
   relationship_html: 'Forbindelse: %{link}'
   reload_and_refresh: Genindlæs og opdatér liste
   reload_from_observations: Genindlæs fra observationer
@@ -4177,6 +4183,7 @@ da:
   take_me_flickr!: Ja, før mig til Flickr!
   take_me_back: Tag mig tilbage
   taxa: Taksa
+  taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksa info
   taxa_all_species_html: Alle arter
   taxa_needing_curation: Taksa har brug for kuration
@@ -4750,6 +4757,7 @@ da:
   user_is_now_role_for_project_html: <strong>%{user}</strong> er nu %{role} for %{project}
   user_muted: Slukket for bruger
   user_observations: Bruger observationer
+  user_observed_on_on_date_in_place: '%{user} observereder en den %{date} i %{place}'
   user_s_id: '%{user}''s %{id}'
   user_s_lists: '%{user}''s lister'
   user_suggested_an_id: '%{user} foreslog et ID'
@@ -5796,9 +5804,25 @@ da:
         decimal_degrees_format: gg.gggg
         geoprivacy_must_be_in_english: Geoprivat kolonnen skal være på Engelsk og
           enten være tom eller have værdien “sløret” eller “privat”
+        google_photos_notice_html: |-
+          I februar 2019 ændrede Google deres API, hvilket gjorde det umuligt for
+          os for at få adgang til GPS koordinater, licensoplysninger og næsten alle
+          informationer vi kunne bruge til at tilføje en identifikation (som tags). De
+          fjernede også tekstsøgning og numerisk pagination. Du kan stadig
+          importere fotos, men de vil ikke indeholde nogen lokaliseringsoplysninger eller
+          licensoplysninger, som du muligvis kan se på Google Fotos.
+          Du kan læse mere om dette på
+          <a href="https://developers.google.com/picasa-web"> https://developers.google.com/picasa-web </a>.
+          Download de oprindelige filer og tilføj dem ved hjælp af
+          <a href="/observations/upload"> Uploader </a> er den bedste løsning.
         project_csv_template_notice_html: |-
           Der er en skabelonfil til dette projekt, som kan hjælpe dig med strukturen i CSV filen.
           <a href="%{url}"> Download skabelon </a>
+        soundcloud_notice_html: |-
+          I 2018 ændrede Soundcloud deres API og gjorde det umuligt for os at oprette nye forbindelser til din Soundcloud-konto. Hvis de genindsætter
+          denne funktionalitet, kan vi genoptage at forbinde konti til Soundcloud. I
+          I mellemtiden kan du uploade lydfiler direkte ved hjælp af
+          <a href="/observations/upload"> Uploader </a>.
       show:
         allow_curator_coordinate_access_desc_html: Tillad projekt kuratorer at se
           de skjulte koordinater for denne observation.

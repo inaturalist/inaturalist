@@ -584,6 +584,8 @@ fi:
   atom: Atom
   attribute: Määrite
   attribution: Nimeäminen
+  authority_list:
+    iucn_red_list: IUCN Uhanalaisuusluokitus
   authorize_permissions_from_provider: Valtuuta %{provider} käyttöoikeudet
   automatic_descriptions_have_been_disabled: Automaattiset kuvaukset on poistettu
     käytöstä tälle taksonille.
@@ -3085,7 +3087,6 @@ fi:
     one_to_many: yksi-moneen
     not_external: ei ulkoinen
     not_internal: ei sisäinen
-    unknown: tuntematon
   reload_and_refresh: Lataa uudelleen ja päivitä luettelo
   reload_from_observations: Päivitä havainnoista
   remarks_optional: Huomautukset <span class="small description">(valinnainen)</span>
