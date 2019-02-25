@@ -1452,14 +1452,14 @@ class Taxon < ActiveRecord::Base
     if global_status && global_status.geoprivacy == Observation::PRIVATE
       return global_status.geoprivacy
     end
-    geoprivacies = [ global_status.try(:geoprivacy) ]
+    geoprivacies = []
+    geoprivacies << global_status.geoprivacy if global_status
     geoprivacies += ConservationStatus.
       where( "taxon_id IN (?)", target_taxon_ids ).
       for_lat_lon( options[:latitude], options[:longitude] ).pluck( :geoprivacy )
-    geoprivacies = geoprivacies.uniq.reject{ |gp| gp.blank? || gp == Observation::OPEN }
-    return geoprivacies.first if geoprivacies.size == 1
     return Observation::PRIVATE if geoprivacies.include?( Observation::PRIVATE )
-    return Observation::OBSCURED unless geoprivacies.blank?
+    return Observation::OBSCURED if geoprivacies.include?( Observation::OBSCURED )
+    geoprivacies.size == 0 ? nil : Observation::OPEN
   end
 
   def geoprivacy( options = {} )
@@ -1706,7 +1706,10 @@ class Taxon < ActiveRecord::Base
       joins( :taxon_change_taxa ).
       where( "taxon_change_taxa.taxon_id = ?", self ).
       where( "taxon_changes.taxon_id NOT IN (?)", without_taxon_ids ).order(:id).last.try(:output_taxon)
-    return synonymous_taxon if synonymous_taxon.blank? || synonymous_taxon.is_active?
+    return synonymous_taxon if synonymous_taxon.blank?
+    if synonymous_taxon.is_active? || options[:inactive]
+      return synonymous_taxon
+    end
     candidates = synonymous_taxon.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
     return nil if candidates.size > 1
     candidates.first
@@ -1728,7 +1731,12 @@ class Taxon < ActiveRecord::Base
     if taxon_from_swaps_and_merge
       synonymous_taxa << taxon_from_swaps_and_merge
     end
-    synonymous_taxa
+    if inactive_synonym_from_swaps_and_merge = current_synonymous_taxon( without_taxon_ids: without_taxon_ids, inactive: true )
+      if inactive_synonym_synonyms = inactive_synonym_from_swaps_and_merge.current_synonymous_taxa( without_taxon_ids: without_taxon_ids )
+        synonymous_taxa += inactive_synonym_synonyms
+      end
+    end
+    synonymous_taxa.uniq
   end
 
   def flagged_with( flag, options = {} )

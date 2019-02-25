@@ -12,7 +12,7 @@
               %i= link_to taxon.name, taxon_url(taxon)
     %td{:style => "vertical-align:top;padding-right:5px;"}
       %strong
-        =t taxon_change.verb_phrase.gsub(/\s+/, '_'), :default => taxon_change.verb_phrase
+        =t "change_types.#{taxon_change.verb_phrase.gsub(/\s+/, '_')}"
     %td{:style => "vertical-align:top;"}
       %table{:cellspacing => 0, :cellpadding => 0, :border => 0}
         - for taxon in taxon_change.output_taxa

@@ -739,3 +739,17 @@ a.icon_container,
   color: #888;
 }
 
+#forum {
+  .list-group-item {
+    display: flex;
+    > a {
+      flex: 2;
+    }
+    .time,
+    .comments {
+      white-space: nowrap;
+      margin-left: 10px;
+      text-align: right;
+    }
+  }
+}

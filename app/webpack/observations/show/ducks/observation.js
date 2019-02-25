@@ -128,24 +128,32 @@ export function resetStates( ) {
 
 export function fetchTaxonSummary( ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const { observation } = getState( );
     if ( !observation || !observation.taxon ) { return null; }
-    const params = { id: observation.id, ttl: -1 };
+    const params = { id: observation.id, ttl: -1, locale: I18n.locale };
     return inatjs.observations.taxonSummary( params ).then( response => {
-      dispatch( setAttributes( { taxon:
-        Object.assign( { }, observation.taxon, { taxon_summary: response } ) } ) );
+      dispatch( setAttributes( {
+        taxon: Object.assign( { }, observation.taxon, { taxon_summary: response } )
+      } ) );
     } ).catch( e => console.log( e ) );
   };
 }
 
 export function fetchCommunityTaxonSummary( ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const { observation } = getState( );
     if ( !observation || !observation.communityTaxon ) { return null; }
-    const params = { id: observation.id, ttl: -1, community: true };
+    const params = {
+      id: observation.id,
+      ttl: -1,
+      community: true,
+      locale: I18n.locale
+    };
     return inatjs.observations.taxonSummary( params ).then( response => {
-      dispatch( setAttributes( { communityTaxon:
-        Object.assign( { }, observation.communityTaxon, { taxon_summary: response } ) } ) );
+      dispatch( setAttributes( {
+        communityTaxon: Object.assign( { }, observation.communityTaxon,
+          { taxon_summary: response } )
+      } ) );
     } ).catch( e => console.log( e ) );
   };
 }

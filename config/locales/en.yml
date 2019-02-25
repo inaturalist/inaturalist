@@ -692,6 +692,7 @@ en:
     merged_into: merged into
     replaced_by: replaced by
     replace_with: replace with
+    replaced_with: replaced with
     dropped: dropped
     staged: staged
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} was split into %{output_taxa}"
@@ -1430,6 +1431,10 @@ en:
   for_more_information: for more information.
   formatting: Formatting
   forgot_your_password: Forgot your password?
+  forum_categories:
+    bug_reports: Bug Reports
+    feature_requests: Feature Requests
+    news_and_updates: News & Updates
   frequency: Frequency
   fri: Fri
   from: From
@@ -3750,7 +3755,7 @@ en:
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
   subject_affecting_stuff_html: "%{subject} affecting %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} committed %{thing} affecting %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} committed @vow_or_con{vow:an|a} %{thing} affecting %{stuff}"
   submission_model: Submission Model
   submission_model_description: Who can add observations to your project?
   submit: Submit
@@ -4155,6 +4160,8 @@ en:
   to_the_bat_cave: To the Bat Cave!
   today: Today
   too_many_observations_csv: "You have a beehive of observations!<br /> We can only take your first %{max_rows} observations in every CSV"
+  too_many_taxa_to_render: |
+    This query returns too many taxa to render at one time. Try adding more filters
   tools: Tools
   top_5_identifiers: Top 5 identifiers
   top_contributors: Top contributors
@@ -5296,6 +5303,7 @@ en:
         private_latitude: "Private latitude, set if observation private or obscured"
         private_longitude: "Private longitude, set if observation private or obscured" 
         geoprivacy: "Whether or not the observer has chosen to obscure or hide the coordinates"
+        taxon_geoprivacy: "Most conservative geoprivacy applied due to the conservation statuses of taxa in current identification."
         coordinates_obscured: "Whether or not the coordinates have been obscured, either because of geoprivacy or because of a threatened taxon"
         out_of_range: Whether or not this observation lies outside the taxon's known range
         user_id: Unique identifier for the observer
@@ -5336,13 +5344,18 @@ en:
           In February 2019, Google changed their API, making it impossible for
           us to access GPS coordinates, license information, and almost any
           information we could use to add an identification (like tags). They
-          also removed text search and numerical pagination. You can still
-          import photos, but they won't include any location information or
-          license information that you might be able to see on Google Photos.
-          You can read more about this at
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Downloading the original files and adding them using the
-          <a href="/observations/upload">Uploader</a> is the best workaround.
+          also removed text search and numerical pagination. On top of that,
+          they required all connected accounts to have an additional permission,
+          and before a third party can request that permission from users, the
+          third party has to be verified. We are awaiting verification, but
+          until that happens, you will not be able to import photos from Google.
+          If we get approved, you will be able to import photos, but they won't
+          include any location information or license information that you might
+          be able to see on Google Photos. You can read more about this at <a
+          href="https://developers.google.com/picasa-
+          web">https://developers.google.com/picasa-web</a>. Downloading the
+          original files and adding them using the <a
+          href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
           There is a template file for this project that may help you with the structure of the CSV file. 
           <a href="%{url}">Download template</a>
@@ -6517,6 +6530,7 @@ en:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      compact: "%b %e"
       short_with_year: '%b %d, %Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
@@ -6691,6 +6705,7 @@ en:
       default: '%b. %d, %Y %H:%M:%S %z'
       long: '%B %d, %Y %I:%M %p'
       short: '%d %b %H:%M'
+      compact: "%I:%M %p"
       observed_at: '%I:%M %p %Z'
       rfc: "%d %B %Y"
       day_month_year: "%B %d, %Y"
@@ -6899,8 +6914,8 @@ en:
         content on your behalf, and access your hidden coordinates and any
         other information you can access on the site.
       login: |
-        Access informtion relevant to sign in, like email address, username,
-        name, and user icon
+        Access information relevant to sign in, like email address, username,
+        name, and user icon.
     errors:
       messages:
         # Common error messages

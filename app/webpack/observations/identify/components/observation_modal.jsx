@@ -307,6 +307,14 @@ class ObservationModal extends React.Component {
     }
 
     const country = _.find( observation.places || [], p => p.admin_level === 0 );
+    let dateTimeObserved = I18n.t( "unknown" );
+    if ( observation.observed_on ) {
+      if ( observation.time_observed_at ) {
+        dateTimeObserved = moment( observation.time_observed_at ).format( "LLL" );
+      } else {
+        dateTimeObserved = moment( observation.observed_on ).format( "LL" );
+      }
+    }
     return (
       <Modal
         show={visible}
@@ -499,12 +507,7 @@ class ObservationModal extends React.Component {
                           <li>
                             <i className="fa fa-calendar bullet-icon" />
                             { " " }
-                            {
-                              observation.observed_on ?
-                                moment( observation.time_observed_at || observation.observed_on ).format( "LLL" )
-                                :
-                                I18n.t( "unknown" )
-                            }
+                            { dateTimeObserved }
                           </li>
                           <li>
                             <i className="fa fa-map-marker bullet-icon"></i> { observation.place_guess || I18n.t( "unknown" ) }

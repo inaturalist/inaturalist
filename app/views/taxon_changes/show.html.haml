@@ -35,7 +35,7 @@
             - for tc in @existing
               %li
                 = "(#{tc.input_taxa.map{|it|  "#{it.name} #{it.id}" }.join(', ')})"
-                %strong= tc.verb_phrase
+                %strong=t "change_types.#{tc.verb_phrase}"
                 = "(#{tc.output_taxa.map{|it| "#{it.name} #{it.id}"}.join(', ')})"
                 = "(#{tc.committed_on.blank? ? "Draft" : "Committed on #{tc.committed_on}"})"
                 = link_to t(:view), tc, :class => "readmore"

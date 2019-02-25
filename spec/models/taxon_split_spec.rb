@@ -297,6 +297,13 @@ describe TaxonSplit, "commit_records" do
             # puts "output_iconic_taxon: #{output_iconic_taxon}"
             expect( o.iconic_taxon ).to eq output_iconic_taxon
           end
+          it "should re-evalute community taxa" do
+            i1 = Identification.make!( taxon: @split.input_taxon, observation: o )
+            expect( o.community_taxon ).to eq @split.input_taxon
+            @split.commit_records
+            o.reload
+            expect( o.community_taxon ).to eq @split.output_taxa[0]
+          end
         end
         it "should not change the taxon if the obs is of a competely different taxon" do
           t = Taxon.make!
@@ -395,6 +402,25 @@ describe TaxonSplit, "commit_records" do
             @split.commit_records
             new_ident = identification.observation.identifications.of( @split.output_ancestor ).by( identification.user_id ).first
             expect( new_ident ).not_to be_nil
+          end
+        end
+        describe "observations" do
+          it "should set the community taxon to the new common output ancestor" do
+            o = without_delay do
+              obs = Observation.make!(
+                taxon: @split.input_taxon,
+                latitude: presence_place1.latitude,
+                longitude: presence_place1.longitude
+              )
+              PlaceDenormalizer.denormalize
+              obs.reload
+              obs
+            end
+            i = Identification.make!( observation: o, taxon: @split.input_taxon )
+            expect( o.community_taxon ).to eq @split.input_taxon
+            @split.commit_records
+            o.reload
+            expect( o.community_taxon ).to eq @split.output_ancestor
           end
         end
       end

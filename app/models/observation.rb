@@ -151,6 +151,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "taxon_geoprivacy",
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
@@ -203,6 +204,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "taxon_geoprivacy",
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
@@ -289,7 +291,6 @@ class Observation < ActiveRecord::Base
     class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
-  NON_ELASTIC_ATTRIBUTES = %w(establishment_means em)
 
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 

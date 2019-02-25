@@ -48,13 +48,7 @@ module ObservationSearch
     end
 
     def page_of_results(search_params={}, options={}, &block)
-      scope = Observation.get_search_scope_or_elastic_results(search_params)
-      if scope.is_a?(ActiveRecord::Relation)
-        return scope.paginate(page: search_params[:page], per_page: search_params[:per_page]).
-          order(nil)
-      else
-        return scope
-      end
+      Observation.elastic_query(search_params)
     end
 
     def get_search_params(raw_params, options={})
@@ -94,24 +88,6 @@ module ObservationSearch
       # don't allow sub 0 per_page
       search_params[:per_page] = 30 if search_params[:per_page].to_i <= 0
       search_params
-    end
-
-    def get_search_scope_or_elastic_results(search_params)
-      unless Observation.able_to_use_elasticsearch?(search_params)
-        # if we have one of these non-elastic attributes,
-        # then default to searching PostgreSQL via ActiveRecord
-        return Observation.query(search_params)
-      end
-      Observation.elastic_query(search_params)
-    end
-
-    def able_to_use_elasticsearch?(search_params)
-      # there are some attributes which have not yet been added to the
-      # elasticsearch index, or we have decided not to put in the index
-      # because it would be more work to maintain than it would save
-      # when searching. Remove empty values before checking
-      ! ((Observation::NON_ELASTIC_ATTRIBUTES.map(&:to_sym) &
-        search_params.reject{ |k,v| (v != false && v.blank?) || v == "any" }.keys).any?)
     end
 
     # currently only used when a search included new-style projects
@@ -288,6 +264,7 @@ module ObservationSearch
         rescue ActiveRecord::RecordNotFound
           nil
         end
+        p[:place_id] = p[:place].id if p[:place] && p[:place].is_a?( Place )
       end
       p[:search_on] = nil unless Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
       # iconic_taxa

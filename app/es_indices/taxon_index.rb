@@ -86,6 +86,11 @@ class Taxon < ActiveRecord::Base
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
       is_active: is_active
     }
+    # min_species_* below means don't consider any ranks more specific than species.
+    # If the taxon is a subspecies, its min_species_ancestry stops at species
+    # and its min_species_taxon_id is the ID of its parent, the species.
+    # These are used in Elasticsearch aggregations, for example leaf counts
+
     # indexing originating from Identifications
     if options[:for_identification]
       if Taxon::LIFE
@@ -103,6 +108,8 @@ class Taxon < ActiveRecord::Base
       json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
         json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     end
+    json[:min_species_taxon_id] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
+      parent_id : id
     # indexing originating Observations, not via another model
     unless options[:no_details]
       if options[:for_observation]

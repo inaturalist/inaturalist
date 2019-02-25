@@ -368,4 +368,14 @@ describe TaxonMerge, "commit_records" do
       @merge.commit
     }.not_to raise_error # TaxonChange::ActiveChildrenError
   end
+
+  it "should re-evalute community taxa" do
+    o = Observation.make!
+    i1 = Identification.make!( taxon: @input_taxon1, observation: o )
+    i2 = Identification.make!( taxon: @input_taxon1, observation: o )
+    expect( o.community_taxon ).to eq @input_taxon1
+    @merge.commit_records
+    o.reload
+    expect( o.community_taxon ).to eq @output_taxon
+  end
 end
