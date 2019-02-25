@@ -271,6 +271,7 @@ ar:
   add_life_stage_larva_annotation: 'إضافة شرح "مرحلة الحياة: اليرقة"'
   add_life_stage_juvenile_annotation: 'إضافة شرح "مرحلة الحياة: القاصر"'
   add_life_stage_egg_annotation: 'إضافة شرح "مرحلة الحياة: البيض"'
+  add_relationship: إضافة علاقة
   add_section: أضف قسما
   add_several_observations_at_once: إضافة عدة ملاحظات في وقت واحد.
   add_sex_female_annotation: 'إضافة شرح "الجنس: أنثى"'
@@ -451,7 +452,7 @@ ar:
   allow_curator_access: السماح للأمين بالوصول
   allow_curator_coordinate_access: السماح للأمناء بالوصول للإحداثيات
   allow_project_curators_to_view_your_private_coordinates: السماح لأمناء المشروع بعرض
-    إحداثياتك الخاصة
+    إحداثياتك المخفية
   allowed_establish_means_values: يُسمَح بإنشاء قيم الموارد
   allowed_html: HTML المسموح به
   allowed_occurrence_status_values: قيم حالة الحدوث المسموح بها
@@ -520,7 +521,7 @@ ar:
   are_you_sure_remove_from_project: هل تريد بالتأكيد إزالة %{user} من هذا المشروع؟
   are_you_sure_remove_photo: هل تريد بالتأكيد إزالة هذه الصورة؟
   are_you_sure_remove_relationship: هل أنت متأكد من أنك تريد إزالة هذه العلاقة؟ سيؤدي
-    هذا إلى إلغاء متابعة هذا الشخص وإلغاء الوصول إلى الإحداثيات الخاصة إذا كنت قد
+    هذا إلى إلغاء متابعة هذا الشخص وإلغاء الوصول إلى الإحداثيات المخفية إذا كنت قد
     مكنت هذا الوصول.
   are_you_sure_remove_taxon_from_list: هل تريد بالتأكيد إزالة هذه الأصنوفة من القائمة؟
   are_you_sure_remove_taxon_from_place: هل تريد بالتأكيد إزالة هذه الأصنوفة من قائمة
@@ -570,7 +571,7 @@ ar:
   asc: تصاعدي
   ascending: تصاعدي
   aside_from_extraordinary_circumstances: بصرف النظر عن الظروف الاستثنائية، نحن لن
-    نطلب منك أبدا كلمة المرور الخاصة بك.
+    نطلب منك أبدا كلمة السر الخاصة بك.
   assessment: تقدير
   assessment_has_benn_completed: لقد اكتمل التقييم
   assessment_sections: أقسام التقييم
@@ -589,6 +590,9 @@ ar:
   attribution: النسبة
   authority_list:
     iucn_red_list: القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية
+    natureserve: خدمة الطبيعة
+    cites: سايتس
+  authorize: السماح
   authorize_permissions_from_provider: مصادقة الأذونات من %{provider}
   automatic_descriptions_have_been_disabled: تم تعطيل الأوصاف التلقائية لهذه الأصنوفة.
   automatic_short: تلقائي
@@ -621,6 +625,7 @@ ar:
   back_to_suggestions: الرجوع إلى الاقتراحات
   back_to_taxon: عودة إلى %{defaulttaxon}
   back_to_taxon_changes: الرجوع إلى التغييرات في الأصناف
+  back_to_taxon_framework_for_x: العودة إلى إطار النوع ل %{taxon_name}
   back_to_this: رجوع إلى %{place}
   back_to_viewing: الرجوع إلى عرض <i>%{taxon}</i>
   back_to_x: عودة إلى %{noun}
@@ -780,7 +785,7 @@ ar:
     input_taxa_will_be_merged_into_output_taxon_html: سيتم دمج %{input_taxa} في %{output_taxon}
   change_visibility_of: تغيير رؤية الإحداثيات المكانية؟
   change_your_matching: تغيير مطابقتك
-  change_your_password: غير كلمة المرور الخاصة بك
+  change_your_password: غير كلمة السر الخاصة بك
   changing_the_geoprivacy: تغيير الخصوصية الجغرافية يغير كيف يرى الآخرون موقع ملاحظتك.
   check_above_for_errors: تحقق أعلاه من الأخطاء
   check_back_soon: تأكد بعد قليل!
@@ -896,7 +901,7 @@ ar:
   comments_on_my_observations: تعليقات على ملاحظاتي
   comments_youve_made_with_others: التعليقات التي أضفتها (أ/أخرى) <br/><span class="description">في
     الأسبوع الماضي</span>
-  commercial_solicitation: التماس تجاري، روابط إلى مكان، إلخ.
+  commercial_solicitation: التماس تجاري، وصلات إلى لا مكان، إلخ.
   commit: نفذ
   committed: نُفِّذ
   committed_on: تم التنفيذ في %{date}
@@ -932,7 +937,7 @@ ar:
     لا تتردد في إعادة كتابة CSS.
   confirm: تأكيد
   confirm_membership: تأكيد العضوية
-  confirm_new_password: تأكيد كلمة المرور الجديدة
+  confirm_new_password: تأكيد كلمة السر الجديدة
   confirm_now: أكد الآن
   confirm_your_info: أكد معلوماتك
   confirmed: تم التأكيد
@@ -1125,7 +1130,7 @@ ar:
   date_picker:
     closeText: إغلاق
     currentText: اليوم
-    prevText: سابق
+    prevText: السابق
     nextText: التالي
     range: النطاق
   date_range: النطاق الزمني
@@ -1164,6 +1169,7 @@ ar:
   deleted_vote: تم حذف التصويت
   deleting: جارٍ الحذف...
   deleting_verb: حذف
+  deny: رفض
   desc: الوصف
   descendant_taxa: سليل الأصناف
   descending: تنازلي
@@ -1227,6 +1233,7 @@ ar:
   downstream_coverage: تغطية المصب
   downstream_coverage_rank: مستوى تغطية المصب
   downstream_deviations: الانحرافات للأسفل
+  downstream_deviations_for_taxon: الانحرافات في اتجاه مجرى النهر لـ%{taxon}
   downstream_flagged_covered_taxa: الأصناف المتدفقة المعلمة المغطاه
   drag_and_drop_photos: سحب وإسقاط الصور على هذه النافذة أو
   draft: مسودة
@@ -1377,9 +1384,11 @@ ar:
   explore_everyones_observations: استكشاف ملاحظات الجميع
   export: تصدير
   export_observations: تصدير الملاحظات
-  export_with_private_coordinates: تصدير بإحداثيات خاصة
+  export_with_private_coordinates: تصدير بإحداثيات مخفية
   exporting: جارٍ التصدير...
-  external_links: روابط خارجية
+  external_links: وصلات خارجية
+  external_taxon_including_children: الأصنوفة الخارجية (بما في ذلك الأطفال)
+  external_taxon_rank: تصنيف الأصنوفة الخارجية
   extinct: منقرض
   extinct_in_the_wild: منقرض في البرية
   extra_properties: خصائص إضافية
@@ -1590,7 +1599,7 @@ ar:
   going_to_your_observations: جارٍ الانتقال إلى ملاحظاتك...
   good_choice_for_sharing: خيار جيد للمشاركة مع العلماء
   google: جوجل
-  got_it!: حسنًا!
+  got_it!: حسنا!
   got_your_data_somewhere_else?: هل حصلت على بياناتك في مكان آخر؟ نستطيع المساعدة.
   graft: تطعيم
   grafting: جارٍ التطعيم...
@@ -1818,6 +1827,8 @@ ar:
   interactions: التفاعلات
   internal_server_error: خطأ في الخادم الداخلي
   internal_taxon: أصنوفة داخلية
+  internal_taxon_including_descendants: الأصنوفة الداخلية (بما في ذلك الأحفاد)
+  internal_taxon_rank: تصنيف الأصنوفة الداخلية
   introduced: أُدخِلت
   introduced_in_place: قُدِّم في %{place}
   invasive: مجتاح
@@ -1866,6 +1877,7 @@ ar:
     فالرجاء\n<a href=\"mailto:%{help_email}\" class=\"contact\">الاتصال بنا</a>.\n<a
     href=\"%{manage_flags_path}\">إدارة الأعلام</a>"
   its_important_that_you: من المهم أن تنقر
+  iucn_red_list: القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية
   iucn_red_list_status: حالة القائمة الحمراء للأنواع المهددة بالانقراض
   january: يناير
   join: انضم
@@ -1890,7 +1902,7 @@ ar:
   jpg_png_or_gif: JPG أو PNG أو GIF
   jump_to_letter: القفز إلى الرسالة
   just_a_reminder: مجرد تذكير، منذ كنت قد أعطيت أمناء المشروع الأذونات لعرض إحداثيات
-    ملاحظاتك الخاصة في هذا المشروع.
+    ملاحظاتك المخفية في هذا المشروع.
   just_added!: فقط أُضِيف!
   keep_editing: تابع التحرير
   kelp_diatoms_and_allies: طحلب الكلب، ودياتومز، والحلفاء
@@ -1928,15 +1940,15 @@ ar:
   learn: تعلم
   learn_about_the_species_live_in: تعرف على الأنواع التي تعيش في
   learn_more: معرفة المزيد
-  learn_more_raquo: اعرف المزيد &raquo;
+  learn_more_raquo: معرفة المزيد &raquo;
   learn_what_these_licenses_mean: تعرف على ما تعنيه هذه التراخيص
   least_concern: أقل قلق
   leave: مغادرة
   leave_a_comment: اترك تعليقًا
   leave_this_project: اترك هذا المشروع
   leaves: أوراق أشجار
-  legacy_authentication_notice_html: يبدو أنك تستخدم كلمة مرور من إصدار أقدم من هذا
-    الموقع، يُرجَى تذكر <a href="%{url}">تغيير كلمة المرور</a> للإصدار الجديد.
+  legacy_authentication_notice_html: يبدو أنك تستخدم كلمة سر من إصدار أقدم من هذا
+    الموقع، يُرجَى تذكر <a href="%{url}">تغيير كلمة السر</a> للإصدار الجديد.
   let_us_walk_you_through: دعونا نمشي معك خلال الملامح الرئيسية لهذا الموقع.
   lexicon: معجم
   lexicons:
@@ -2043,7 +2055,7 @@ ar:
     للأفضل، كما لو قمت بإنشاء حساب فليكر جديد تريد ربط %{site_name} به.
   linked_flickr_hotwo: يمكنك تنشيط حسابك في فليكر باستخدام %{site_name} لإضافة صور
     بالنقر على هذا الرابط.
-  linked_flickr_password_html: <strong>لن نطلب منك أبدا كلمة مرور فليكر الخاصة بك</strong>
+  linked_flickr_password_html: <strong>لن نطلب منك أبدا كلمة سر فليكر الخاصة بك</strong>
     (ولكن فليكر قد يفعل، تحقق من المسار الذي يرسله لك الزر وتأكد من أنه Flickr.com).
   linked_flickr_photo_copy_html: <strong>لن نخزن نسخا من صورك أو نغير بيانات فليكر
     (ما لم تطلب منا ذلك).</strong> نحن نهتم كثيرا بالطيور والبق والبزاق التي تريد
@@ -2433,8 +2445,8 @@ ar:
   next_tab: علامة التبويب التالية
   "no": لا
   no_activity_in_the_past_week: لا يوجد نشاط في الأسبوع الماضي، وقت لـ
-  no_administrator_knows_your_password: لا يعرف إداري %{sitename} كلمة المرور الجديدة
-    أو في أي وقت كان لديه حق الدخول إلى كلمة المرور.
+  no_administrator_knows_your_password: لا يعرف إداري %{sitename} كلمة السر الجديدة
+    أو في أي وقت كان لديه حق الدخول إلى كلمة السر.
   no_assessments_have_been_added_to_this_project_yet: لم تتم إضافة أي تقديرات لهذا
     المشروع بعد.
   no_but_it_is_a_member_of_taxon: لا، ولكنه عضو في %{taxon}
@@ -2529,7 +2541,9 @@ ar:
   no_taxa: لا توجد أصناف
   no_taxa_listed: لم يتم إدراج أية أصناف
   no_taxa_selected: لم يتم اختيار أية أصناف
+  no_taxa_with_unknown_relationships: لا أنواع بعلاقات غير معروفة
   no_taxa_yet: لا توجد أصناف حتى الآن!
+  no_taxon_framework_relationships: لا علاقات إطار للأنواع
   no_taxonomic_changes_match_those_criteria: لا تتطابق أي تغييرات تصنيفية مع تلك المعايير
   no_wikipedia_page_for_taxon: لا توجد صفحة في ويكيبيديا لهذا الصنف.
   no_x_this_y: لا %{x} هذا %{y}
@@ -2851,8 +2865,8 @@ ar:
   owner: المالك
   parent: الأصل
   parent_name: اسم الوالدين
-  password: كلمة المرور
-  password_confirmation: تأكيد كلمة المرور
+  password: كلمة السر
+  password_confirmation: تأكيد كلمة السر
   paste: لصق
   paste_in_a_bunch_of_names: ألصق في مجموعة من الأسماء، 1 في كل سطر، واضرب الزر!
   paste_in_a_comma_separated_list: الصق في قائمة بلدان مفصولة بفواصل
@@ -3323,7 +3337,7 @@ ar:
   please_confirm_your_inat_username: الرجاء تأكيد اسم مستخدم %{site_name} الخاص بك
   please_confirm_your_account_html: يُرجَى أخذ ثانية ثانية <a href="%{url}">لتأكيد
     حسابك</a>.
-  please_enter_a_new_pass: الرجاء إدخال كلمة مرور جديدة وتأكيدها.
+  please_enter_a_new_pass: الرجاء إدخال كلمة سر جديدة وتأكيدها.
   please_fix_your_csv_and_try_again: الرجاء إصلاح CSV الخاص بك وإعادة المحاولة.
   please_hold_on_while_the_file: يُرجَى الاستمرار في حين يتم إنشاء الملف، قد يستغرق
     الأمر بضع دقائق إذا كان لديك الكثير من الملاحظات.
@@ -3370,7 +3384,7 @@ ar:
   private_: خاص
   private_description: الإحداثيات مخفية تماما من الخرائط العامة والإحداثيات الحقيقية
     مرئية فقط لك ولأمناء المشاريع التي يمكنك إضافة ملاحظة فيها، وستظل الملاحظات ذات
-    الإحداثيات الخاصة تُستخدَم للتحقق من قوائم فحص الأماكن.
+    الإحداثيات المخفية تُستخدَم للتحقق من قوائم فحص الأماكن.
   probably_spam: بريد مزعج محتمل
   proceed: تابع
   processing: معالجة
@@ -3558,6 +3572,7 @@ ar:
   related_species: الأنواع ذات الصلة
   relative_observations: ملاحظات مرتبطة
   relationship: العلاقة
+  relationship_unknown_count: عدد العلاقات غير المعروفة
   relationship_x: 'العلاقة: %{relationship}'
   relationships:
     match: مطابقة
@@ -3568,7 +3583,7 @@ ar:
     one_to_many: واحد لكثير
     not_external: ليس خارجيا
     not_internal: ليس داخليا
-    unknown: غير معروف
+    error: خطأ
   relationship_html: 'العلاقة: %{link}'
   reload_and_refresh: إعادة تحميل وتحديث القائمة
   reload_from_observations: إعادة تحميل من الملاحظات
@@ -3623,7 +3638,7 @@ ar:
   reptiles: الزواحف
   request_failed: الطلب فشل
   request_id_help: طلب مساعدة معرف
-  request_password: طلب كلمة المرور
+  request_password: طلب كلمة السر
   request_timed_out: انتهى وقت الطلب!
   required: مطلوب
   required_: مطلوب
@@ -3992,7 +4007,7 @@ ar:
   stop_following_user: توقف عن متابعة %{user}
   stop_testing: وقف الاختبار
   stop_trusting_this_person_with_your_private_coordinates: توقف عن ثقة هذا الشخص بإحداثياتك
-    الخاصة
+    المخفية
   stop_updating_position: توقف عن تحديث الموضع
   studies_that_used_inaturalist_data_in_year: الدراسات التي استخدمت بيانات إيناتوراليست
     في %{year}
@@ -4026,7 +4041,7 @@ ar:
     return false;">الاشتراك</a> %{x} fمن هذا %{y}.
   subscriptions: الاشتراكات
   subscriptions_arent_available_for: الاشتراكات غير متوفرة للأماكن بلا حدود.
-  successfully_changed_your_password: تم تغيير كلمة المرور بنجاح.
+  successfully_changed_your_password: تم تغيير كلمة السر بنجاح.
   suggest_an_id: اقتراح معرف
   suggest_an_identification: اقتراح تعريف
   suggest_or_require_that: اقترح أو اطلب من المساهمين ملء هذه الحقول للملاحظات التي
@@ -4060,6 +4075,7 @@ ar:
   take_me_flickr!: نعم، خذني إلى فليكر!
   take_me_back: أعدني
   taxa: أصناف
+  taxa_with_unknown_relationships: الأنواع بعلاقات غير معروفة
   taxa_info: معلومات الأصناف
   taxa_all_species_html: جميع الأنواع
   taxa_needing_curation: أصناف تحتاج معالجة
@@ -4148,12 +4164,14 @@ ar:
   taxon_colors: ألوان الأصنوفة
   taxon_curators: أمناء الأصنوفة
   taxon_extras: إضافات الأصنوفة
+  taxon_framework: إطار الأنواع
   taxon_framework_notes: ملاحظات إطار العمل التصنيفي
-  taxon_framework_relationship_for: علاقة إطار العمل التصنيفي لـ
   taxon_framework_relationship: علاقة إطار العمل التصنيفي
+  taxon_framework_relationship_for: علاقة إطار العمل التصنيفي لـ
+  taxon_framework_relationship_number: علاقة إطار عمل الأصنوفة %{number}
   taxon_framework_relationships: علاقات إطار العمل التصنيفي
   taxon_framework_taxon: أصنوفة إطار العمل التصنيفي
-  taxon_links: روابط الأصنوفة
+  taxon_links: وصلات الأصنوفة
   taxon_merge: دمج الأصنوفة
   taxon_name: اسم الأصنوفة
   taxon_name_must_match_an_existing_taxon_in_our_database: يجب أن يتطابق اسم الأصنوفة
@@ -4459,8 +4477,8 @@ ar:
   trends: الاتجاهات
   trusted: موثوق
   trusted_project?: مشروع موثوق به؟
-  trust_this_person_with_your_private_coordinates: ثق بهذا الشخص مع إحداثياتك الخاصة
-  trust_with_private_coordinates: الثقة مع الإحداثيات الخاصة
+  trust_this_person_with_your_private_coordinates: ثق بهذا الشخص مع إحداثياتك المخفية
+  trust_with_private_coordinates: الثقة مع الإحداثيات المخفية
   try_adding_species_form: حاول إضافة بعض الأنواع باستخدام النموذج الموجود في هذه
     الصفحة.
   try_it_out: جرب هذا
@@ -4613,13 +4631,14 @@ ar:
   user_is_now_role_for_project_html: <strong>%{user}</strong> الآن %{role} ل%{project}
   user_muted: تم كتم صوت المستخدم
   user_observations: ملاحظات المستخدم
+  user_observed_on_on_date_in_place: '%{user} لاحظ واحدة بتاريخ %{date} في %{place}'
   user_s_id: '%{user} %{id}'
   user_s_lists: قوائم %{user}
   user_suggested_an_id: اقترح %{user} معرفا
   user_thinks_yours_is: '%{user} %{noun} ملاحظتك %{observation}'
-  user_trusts_you_with_their_private_coordinates: يثق بك %{user} بإحداثياته الخاصة
+  user_trusts_you_with_their_private_coordinates: يثق بك %{user} بإحداثياته المخفية
   user_trusts_you_with_their_private_coordinates_desc: |-
-    اختار المراقب أن يثق بك بالإحداثيات الخاصة لجميع
+    اختار المراقب أن يثق بك بالإحداثيات المخفية لجميع
     ملاحظاته.
   username: اسم المستخدم
   username_or_email: اسم المستخدم أو البريد الإلكتروني
@@ -4715,10 +4734,12 @@ ar:
   view_stats: عرض الإحصائيات
   view_taxon_change: عرض تغيير الأصنوفة
   view_taxon_changes: عرض تغييرات الأصنوفة
+  view_taxon_framework_relationship: عرض علاقة إطار عمل الأصنوفة
   view_taxon_page: عرض صفحة الأصنوفة
   view_taxon_page_for: عرض صفحة الأصنوفة لهذا
   view_taxon_page_for_this_x: عرض صفحة الأصنوفة لهذا %{x}
   view_taxonomic_changes: عرض التغييرات التصنيفية
+  view_taxononomy_details_for_taxon: عرض تفاصيل تصنيف %{taxon}
   view_terms: عرض الشروط
   view_the: عرض %{action}&#59; %{link}%{action}
   view_the_observation: عرض الملاحظة
@@ -4825,7 +4846,7 @@ ar:
   who_can_see_the_coordinates: من يستطيع أن يرى الإحداثيات
   who_can_see_the_coordinates_observer: الشخص الذي صنع الملاحظة
   who_can_see_the_coordinates_projects: القيمون على المشاريع التالية
-  who_can_see_the_coordinates_trusted: الأفراد الذين يثق بهم المراقب بإحداثياته الخاصة
+  who_can_see_the_coordinates_trusted: الأفراد الذين يثق بهم المراقب بإحداثياته المخفية
   who_helped_user_the_most: من ساعد %{user} أكثر
   who_user_helped_the_most: من ساعده %{user} أكثر
   why_the_coordinates_are_obscured: لماذا يتم حجب الإحداثيات
@@ -4994,7 +5015,7 @@ ar:
   you_must_select_a_place_to_merge_with: يجب تحديد مكان للدمج معه.
   you_must_select_at_least_one_taxon: يجب تحديد أصنوفة واحدة على الأقل
   you_must_select_dates_to_compare: يجب تحديد تواريخ للمقارنة
-  you_must_specify_and_confirm_a_new_password: يجب تحديد وتأكيد كلمة مرور جديدة.
+  you_must_specify_and_confirm_a_new_password: يجب تحديد وتأكيد كلمة سر جديدة.
   you_need_to_have_linked_flickr_account: يجب أن يكون لديك حساب فليكر مرتبط لوضع علامة
     على صورك.
   you_need_to_select_at_least_one_photo: تحتاج إلى تحديد صورة واحدة على الأقل!
@@ -5107,7 +5128,7 @@ ar:
   verifiable: يمكن التحقق منه
   verifiable_observations: ملاحظات قابلة للتحقق منها
   views:
-    views: العروض
+    views: المشاهدات
     announcements:
       locales_desc: "موجه الأوامر أو انقر فوق SHIFT لتحديد عدة، عدم تحديد أي منهم
         سيعرض \nالإعلان لجميع المستخدمين بغض النظر عن اللغة، اختيار لغة \nبدون منطقة
@@ -5450,6 +5471,13 @@ ar:
         project_list_desc: |-
           يتم سرد الأصناف التي يضفيفها يدويا أمناء المشروع والأصناف الممثلة
           بملاحظات الدرجة العلمية المضافة إلى المشروع في قوائم المشاريع.
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: تخويل %{application} لاستخدام
+            حسابك؟
+          this_application_will_be_able_to_colon: 'سيكون هذا التطبيق قادرا على:'
+          more_about_application: المزيد عن %{application}
     observations:
       community_id:
         agreement: اتفاق
@@ -5563,12 +5591,25 @@ ar:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: يجب أن يكون عمود geoprivacy باللغة الإنجليزية
           ويجب أن يكون فارغا أو أن تكون به القيمة "obscured" أو "private"
+        google_photos_notice_html: "في فبراير 2019، غيرت جوجل واجهة برمجة تطبيقاتها،
+          مما جعل من المستحيل بالنسبة \nلنا الوصول إلى إحداثيات نظام تحديد المواقع
+          العالمي، ومعلومات الترخيص، وتقريبا أية \nمعلومات يمكننا استخدامها لإضافة
+          تعريف (مثل الوسوم)، بقد\nأزالوا أيضا البحث عن النص وترقيم الصفحات العددي،
+          لا يزال بإمكانك \nاستيراد الصور، ولكنها لن تتضمن أية معلومات عن الموقع أو
+          \nمعلومات الترخيص التي قد تتمكن من رؤيتها على صور جوجل. \nيمكنك قراءة المزيد
+          حول هذا الأمر على \n<a href=\"https://developers.google.com/picasa-web\">https://developers.google.com/picasa-web</a>.\nتنزيل
+          الملفات الأصلية وإضافتها باستخدام \n<a href=\"/observations/upload\">الرافع</a>
+          هو الحل الأفضل."
         project_csv_template_notice_html: |-
           هناك ملف قالب لهذا المشروع الذي قد يساعدك في بنية ملف CSV،
           <a href="%{url}">تنزيل القالب</a>
+        soundcloud_notice_html: "في عام 2018، قامت ساوند كلاود بتغيير واجهة برمجة
+          التطبيقات وجعلت من المستحيل بالنسبة لنا \nإنشاء اتصالات جديدة بحساب ساوند
+          كلاود الخاص بك، إذا أعادوا \nهذه الوظيفة، يمكننا استئناف ربط الحسابات بساوند
+          كلاود، في \nغضون ذلك، يمكنك رفع الملفات الصوتية مباشرةً باستخدام \n<a href=\"/observations/upload\">الرافع</a>."
       show:
         allow_curator_coordinate_access_desc_html: السماح لأمناء المشروع بعرض الإحداثيات
-          الخاصة لهذه الملاحظة.
+          المخفية لهذه الملاحظة.
         ancestor_disagreements_desc: '# من الأصناف المحددة التي هي من بين أسلاف الأصنوفة،
           ولكن تم إنشاؤها بعد التحديد الأول باستخدام هذه الأصنوفة'
         community_taxon_desc_html: "<p class=\"ui\">\n  تمثل أصنوفة المجتمع (أو معرف
@@ -5704,8 +5745,11 @@ ar:
           المكسورة من إيناتوراليست، جميع ملاحظاتك \nستبقى، ستتم إعادة تقييمها بعد
           حذف الصور، ومن الممكن \nأن تصبح بعض ملاحظات درجة البحث غير رسمية إذا لم
           تعد بها أية صور."
-        we_included_links: لقد قمنا بتضمين روابط للصور المتأثرة أدناه.
+        we_included_links: لقد قمنا بتضمين وصلات للصور المتأثرة أدناه.
     photos:
+      forbidden_notice_html: "ليس لدينا إذن للوصول إلى هذه الصور في الوقت الحالي؛
+        قد \nتحتاج إلى فصل الحساب وإعادة ربطه في\n<a href=\"/users/edit\">إعداداتك</a>
+        لمنحنا أذونات إضافية."
       inviter:
         automatically_add_to_project: الإضافة إلى المشروع تلقائيا
         automatically_id_the_new_obs_as: حدد الملاحظات الجديدة تلقائيا كـ
@@ -5751,18 +5795,19 @@ ar:
       tracks_multiple_projects: يتتبع مشاريع متعددة
       projects_included: المشاريع المضمنة
       collection_and_umbrellas_do_not_support: لا تدعم مشاريع التجميع والمظلة حاليا
-        الوصول إلى الإحداثيات الخاصة.
+        الوصول إلى الإحداثيات المخفية.
       curator_coordinate_access_desc_html: "تذكر أن <strong>أمناء المشروع يمكنهم إضافة
         أي من ملاحظاتك إلى \nمشروعهم</strong> ما لم \nتشترك في <a href=\"/users/edit\">إعدادات
         الحساب</a>، \nحدد هذا المربع فقط إذا كنت تثق في أمناء المشروع لعرض إحداثياتك
-        من أي \nملاحظات لك يمكن أن تُضاَف إلى هذا المشروع، إذا \nاخترت عدم منحهم هذا
-        الإذن، لا يزال بإمكانك منح حق الوصول \nإلى الإحداثيات الخاصة على أساس الملاحظة."
+        المخفية من أي \nملاحظات لك يمكن أن تُضاَف إلى هذا المشروع، إذا \nاخترت عدم
+        منحهم هذا الإذن، لا يزال بإمكانك منح حق الوصول \nإلى الإحداثيات المخفية على
+        أساس الملاحظة."
       confirm_leave:
         what_would_you_like: ماذا تريد أن تفعل بملاحظاتك في هذا المشروع؟
         keep_observations_label: ترك ملاحظاتك في هذا المشروع
         keep_observations_desc: |-
           ستبقى ملاحظاتك في المشروع وسيظل الأمناء قادرين
-          على عرض إحداثياتهم الخاصة.
+          على عرض إحداثياتهم المخفية.
         project_requires_curator_coordinate_access_desc: "هذا المشروع لا يسمح بالملاحظات
           مع إحداثيات \nلا يمكن أن يراها أمناء المشروع، إذا كنت لا ترغب في مشاركة
           \nإحداثيات ملاحظاتك مع أمناء هذا المشروع، \nيجب أن تزلها من المشروع."
@@ -5772,9 +5817,9 @@ ar:
           حسابك</a>."
         revoke_observations_label: |-
           ترك ملاحظاتك في هذا المشروع ولكن تمنع الأمناء من عرض
-          إحداثياتهم الخاصة
+          إحداثياتهم المخفية
         revoke_observations_desc: إذا كان السبب الوحيد الذي تتركه هو إيقاف أمناء المشروع
-          عن عرض إحداثياتك.
+          عن عرض إحداثياتك المخفية.
       edit:
         aggregation_pending: التجميع معلق
         new_place_desc_html: "جرب البحث من خلال \n<a href=\"%{places_url}\" target=\"_blank\">أماكننا
@@ -5942,7 +5987,7 @@ ar:
         none: لا.
       curator_coordinate_access_label: هل تريد أن تجعل إحداثيات ملاحظتك الخاصة/المخفية
         مرئية لأمناء المشروع؟
-      curator_coordinate_access_note: "يمكنك أيضا اختيار مشاركة الإحداثيات الخاصة
+      curator_coordinate_access_note: "يمكنك أيضا اختيار مشاركة الإحداثيات المخفية
         للملاحظات \nفي هذا المشروع على أساس كل حالة على حدة، هذه مجرد افتراضات \nللملاحظات
         الجديدة التي أُضيفت إلى المشروع."
       project_terms_desc_html: |-
@@ -6354,7 +6399,7 @@ ar:
           لا يمكنك استبعاد الملاحظات \nمن مشاريع مجموعة أو مظلة، وهي عمليات بحث محفوظة
           بشكل أساسي، \nيمكنك قراءة المزيد\n<a href=\"/blog/15450-announcing-changes-to-projects-on-inaturalist\">هنا</a>."
         project_settings_desc: "تذكر، هذا لا يعطي مشاريع الإذن بالوصول \nلإحداثياتك
-          الخاصة أو إرسال تحديثات لك،; يجب عليك الانضمام إلى المشاريع من \nأجل منح
+          المخفية أو إرسال تحديثات لك،; يجب عليك الانضمام إلى المشاريع من \nأجل منح
           هذه الأذونات، أو منحها على أساس كل حالة على \nحدة."
         taxon_change_desc: "عندما يتم دمج الأصناف أو إعادة تسميتها في %{site_name}،
           \nسيتم تحديث ملاحظاتك، وتصنيفاتك، وهوياتك، وما إلى ذلك تلقائيا إلى \nالأصناف
@@ -6557,7 +6602,7 @@ ar:
     messages:
       accepted: يجب أن تكون مقبولة
       blank: لا يمكن تركها فارغة
-      confirmation: كلمة المرور لم تطابق
+      confirmation: كلمة السر غير مطابقة
       empty: لا يمكن تركها فارغة
       equal_to: يجب أن تساوي %{count}
       even: يجب أن يكون عددا زوجيا
@@ -6653,7 +6698,7 @@ ar:
       messages:
         accepted: يجب أن تكون مقبولة
         blank: لا يمكن تركها فارغة
-        confirmation: كلمة المرور لم تطابق
+        confirmation: كلمة السر غير مطابقة
         empty: لا يمكن تركها فارغة
         equal_to: يجب أن تساوي %{count}
         even: يجب أن يكون عددا زوجيا
@@ -6684,91 +6729,6 @@ ar:
           one: 1 خطأ واحد يحظر حفظ هذا %{model}
           other: '%{count} خطأ يحظرون حفظ هذا %{model}'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: يتطلب على الأقل 3 أصناف في دليلك
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: الدليل يمكن أن يحتوي على 500 صنفا فقط
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: استيراد مفتاح واجهة برمجة التطبيقات أو قائمة الانتظار
-                للاستيراد
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: لدنا يمكن أن يحتوي فقط على الحروف A أو T أو C أو أو G
-              date_format: "يجب أن يكون بالشكل سسسس-شش-يي لحقل التاريخ (\"%{observation_field_name}\"
-                \nفي ملاحظتك عن \"%{observation_species_guess}\")"
-              time_format: "يجب أن يكون بالشكل سس:دد لحقل التاريخ (\"%{observation_field_name}\"
-                \nفي ملاحظتك عن \"%{observation_species_guess}\")"
-            observation_id:
-              user_does_not_accept_fields_from_others: المستخدم لا يقبل الحقول من
-                الآخرين
-              user_only_accepts_fields_from_site_curators: المستخدم يقبل فقط الحقول
-                من أمناء الموقع
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: كبيرة جدا بحيث لا يمكن استيرادها
-              contains_too_many_observations: يحتوي على ملاحظات كثيرة جدا للاستيراد
-        post:
-          attributes:
-            user:
-              must_be_on_site_long_enough: "يجب أن يكون قد سجل قبل أكثر من 24 ساعة
-                لنشر، نحصل \nعلى الكثير من مرسلي الرسائل غير المرغوب فيها، وهذا نوع
-                من طريقة عرجاء في التعامل \nمعها، لا يزال بإمكانك حفظ مسودة، وإذا
-                كنت لا تزال \nتستخدم الموقع في يوم واحد، فستتمكن من النشر."
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: المشروع لا يسمح بالملاحظات
-            user_id:
-              must_be_curator: يجب أن تكون أمينا لهذا المشروع
-            observation_id:
-              must_be_observed_after: تجب ملاحظته بعد %{time}
-              must_be_observed_before: تجب ملاحظته قبل %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
-                قبل أمين هذه الأصنوفة
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
-                قبل أمين هذه الأصنوفة
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
-                قبل أمين هذه الأصنوفة
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
-                قبل أمين هذه الأصنوفة
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
-                قبل أمين هذه الأصنوفة
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
-                قبل أمين هذه الأصنوفة
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: يجب ألا تحتوي على فواصل أو خطوط
-                مائلة
-            name:
-              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: لا يمكن
-                أن تتطابق مع الاسم العلمي للنوع لهذا المعجم
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: |-
-                يجب أن يبدأ بحرف، ولا يحتوي على مسافات، ويستخدم فقط
-                الأحرف والأرقام والشرطات والشرطات السفلية
-            email:
-              must_look_like_an_email_address: يجب أن يبدو مثل عنوان بريد إلكتروني
     models:
       AssessmentSection: قسم التقييم
       Atlas: أطلس
@@ -6865,6 +6825,174 @@ ar:
         search_place_id: ابحث عن مكان
         place_id: مكان
         preferred_observation_fields_by: السماح بحقول الملاحظة من
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: يجب قبوله
+        blank: لا يمكن أن تكون فارغة
+        confirmation: كلمة السر غير مطابقة
+        empty: لا يمكن أن تكون فارغة
+        equal_to: يجب أن تساوي %{count}
+        even: يجب أن يكون حتى
+        exclusion: محجوز
+        greater_than: يجب أن يكون أكبر من %{count}
+        greater_than_or_equal_to: يجب أن يكون أكبر من أو يساوي %{count}
+        inclusion: غير مدرج في القائمة
+        invalid: غير صالح
+        less_than: يجب أن يكون أقل من %{count}
+        less_than_or_equal_to: يجب أن يكون أقل من أو يساوي %{count}
+        not_a_number: ليس رقما
+        not_an_integer: يجب أن يكون عددا صحيحا
+        odd: يجب أن يكون عددا فرديا
+        record_invalid: 'أخفق التحقق: %{errors}'
+        taken: قد تم أخذه بالفعل
+        too_long:
+          one: طويل جدا (الحد الأقصى حرف واحد)
+          other: طويل جدا (الحد الأقصى %{count} حرف)
+        too_short:
+          one: طويل جدا (الحد الأقصى حرف واحد)
+          other: طويل جدا (الحد الأقصى %{count} حرف)
+        wrong_length:
+          one: طول خاطئ (ينبغي أن يكون حرفا واحدا)
+          other: طول خاطئ (ينبغي أن يكون %{count} حرفا)
+      template:
+        body: 'هناك مشاكل بالحقول التالية:'
+        header:
+          one: حدث خطأ واحد منع حفظ %{model}
+          other: حدثت %{count} أخطاء منعت حفظ this %{model}
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: لا يمكن أن يحتوي على جزء.
+              has_query_parameter: لا يمكن أن يحتوي على وسيط استعلام.
+              invalid_uri: يجب أن يكون URI صالحا.
+              relative_uri: يجب أن يكون URI مطلقا.
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: يتطلب على الأقل 3 أصناف في دليلك
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: الدليل يمكن أن يحتوي على 500 صنفا فقط
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: استيراد مفتاح واجهة برمجة التطبيقات أو قائمة الانتظار
+                للاستيراد
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: لدنا يمكن أن يحتوي فقط على الحروف A أو T أو C أو أو G
+              date_format: "يجب أن يكون بالشكل سسسس-شش-يي لحقل التاريخ (\"%{observation_field_name}\"
+                \nفي ملاحظتك عن \"%{observation_species_guess}\")"
+              time_format: "يجب أن يكون بالشكل سس:دد لحقل التاريخ (\"%{observation_field_name}\"
+                \nفي ملاحظتك عن \"%{observation_species_guess}\")"
+            observation_id:
+              user_does_not_accept_fields_from_others: المستخدم لا يقبل الحقول من
+                الآخرين
+              user_only_accepts_fields_from_site_curators: المستخدم يقبل فقط الحقول
+                من أمناء الموقع
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: كبيرة جدا بحيث لا يمكن استيرادها
+              contains_too_many_observations: يحتوي على ملاحظات كثيرة جدا للاستيراد
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: "يجب أن يكون قد سجل قبل أكثر من 24 ساعة
+                لنشر، نحصل \nعلى الكثير من مرسلي الرسائل غير المرغوب فيها، وهذا نوع
+                من طريقة عرجاء في التعامل \nمعها، لا يزال بإمكانك حفظ مسودة، وإذا
+                كنت لا تزال \nتستخدم الموقع في يوم واحد، فستتمكن من النشر."
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: المشروع لا يسمح بالملاحظات
+            user_id:
+              must_be_curator: يجب أن تكون أمينا لهذا المشروع
+            observation_id:
+              must_be_observed_after: تجب ملاحظته بعد %{time}
+              must_be_observed_before: تجب ملاحظته قبل %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
+                قبل أمين هذه الأصنوفة
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
+                قبل أمين هذه الأصنوفة
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
+                قبل أمين هذه الأصنوفة
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
+                قبل أمين هذه الأصنوفة
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
+                قبل أمين هذه الأصنوفة
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: لا يمكن تغييره إلا من
+                قبل أمين هذه الأصنوفة
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: يجب ألا تحتوي على فواصل أو خطوط
+                مائلة
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: لا يمكن
+                أن تتطابق مع الاسم العلمي للنوع لهذا المعجم
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: |-
+                يجب أن يبدأ بحرف، ولا يحتوي على مسافات، ويستخدم فقط
+                الأحرف والأرقام والشرطات والشرطات السفلية
+            email:
+              must_look_like_an_email_address: يجب أن يبدو مثل عنوان بريد إلكتروني
+  doorkeeper:
+    scopes:
+      write: "إنشاء وتحديث وحذف الملاحظات ، والتعريفات، والمحتويات \nالأخرى نيابة
+        عنك، والوصول إلى الإحداثيات المخفية وأية \nمعلومات أخرى يمكنك الوصول إليها
+        على الموقع."
+      login: "الوصول إلى معلومات ذات صلة بتسجيل الدخول، مثل عنوان البريد الإلكتروني،
+        واسم \nالمستخدم، وأيقونة المستخدم"
+    errors:
+      messages:
+        invalid_request: يفتقد الطلب إلى وسيط مطلوب، أو يتضمن قيمة وسيط غير مدعومة،
+          أو غير صحيح بشكل آخر.
+        invalid_redirect_uri: إعادة توجيه uri المضمن غير صالحة.
+        unauthorized_client: العميل غير مخول بتنفيذ هذا الطلب باستخدام هذه الطريقة.
+        access_denied: رفض مالك المورد أو خادم التفويض الطلب.
+        invalid_scope: النطاق المطلوب غير صالح، أو غير معروف، أو غير صحيح.
+        server_error: واجه خادم التفويض شرطا غير متوقع منعه من تنفيذ الطلب.
+        temporarily_unavailable: يتعذر على خادم التفويض حاليا معالجة الطلب بسبب التحميل
+          الزائد المؤقت أو صيانة الخادم.
+        credential_flow_not_configured: فشل تدفق بيانات اعتماد كلمة سر مالك المورد
+          بسبب عدم تهيئة Doorkeeper.configure.resource_owner_from_credentials.
+        resource_owner_authenticator_not_configured: فشل العثور على مالك المورد بسبب
+          عدم تهيئة Doorkeeper.configure.resource_owner_authenticator.
+        unsupported_response_type: لا يدعم خادم التفويض نوع الاستجابة هذا.
+        invalid_client: فشلت مصادقة العميل نظرا لوجود عميل غير معروف، أو عدم وجود
+          مصادقة عميل مدرجة، أو طريقة مصادقة غير مدعومة.
+        invalid_grant: إن منحة الترخيص المقدمة غير صالحة، أو منتهية الصلاحية، أو تم
+          إبطالها، أو لا تتطابق مع إعادة توجيه URI المستخدم في طلب التفويض، أو تم
+          إصدارها إلى عميل آخر.
+        unsupported_grant_type: نوع منحة الترخيص غير معتمد من قبل خادم التفويض.
+        invalid_resource_owner: بيانات اعتماد مالك المورد المقدم غير صالحة، أو لا
+          يمكن العثور على مالك المورد
+    flash:
+      applications:
+        create:
+          notice: تم إنشاء الطلب.
+        destroy:
+          notice: تم حذف الطلب.
+        update:
+          notice: تم تحديث الطلب.
+      authorized_applications:
+        destroy:
+          notice: تم إبطال الطلب.
   i18n:
     inflections:
       :@vow_or_con:

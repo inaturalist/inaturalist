@@ -1449,7 +1449,7 @@ mk:
   sending: Испраќам...
   september: септември
   set_license: Задај лиценца
-  settings: поставки
+  settings: Поставки
   share_your_observation_with_researchers_by: Сподели го набљудувањето со истражувачите
     на
   short_code_for_this_place: Краток код за местово, на пр. US за Соединетите Држави
@@ -2065,20 +2065,6 @@ mk:
           one: Една грешка му попречи на зачувувањето на овој %{model}
           other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: бара најмалку 3 таксони во вашиот водич
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: водичот може да има само 500 таксони
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: за ДНК се признаваат само знаците A, T, C и G
     attributes:
       assessment:
         description: Опис
@@ -2139,6 +2125,20 @@ mk:
         name_provider: Добавувач на името
         source_url: Изворен URL
         source_identifier: Назнака на изворот
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: бара најмалку 3 таксони во вашиот водич
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: водичот може да има само 500 таксони
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: за ДНК се признаваат само знаците A, T, C и G
   zoom_to_taxon_name: Приближи на %{taxonname}
   zoom_to_x: приближи на %{x}
 ...

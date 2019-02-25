@@ -2977,7 +2977,6 @@ zh-CN:
     one_to_many: 一对多
     not_external: 非外部
     not_internal: 非外部
-    unknown: 未知
   reload_and_refresh: 重新加载和刷新列表
   reload_from_observations: 从观察里重新加载
   reload_timed_out: 加载超时。请过一会再试。
@@ -5276,73 +5275,6 @@ zh-CN:
           one: 1个错误禁止了此 %{model} 的保存
           other: '%{count} 个错误禁止了此 %{model} 的保存'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: 在您的指南中至少需要3个分类群
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: 指南只能包含500个分类群
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: API关键字导入或用于导入的队列
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: 对于DNA，只能包含字符A、T、C或G
-              date_format: 用于日期字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）的日期格式必须为YYYY-MM-DD
-              time_format: 必须以hh:mm形式填写时间字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）
-            observation_id:
-              user_does_not_accept_fields_from_others: 用户不接受来自他人的字段
-              user_only_accepts_fields_from_site_curators: 用户只接受来自网站馆长的字段
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: 太大了，不能导入
-              contains_too_many_observations: 导入数据中包含了太多观察
-        post:
-          attributes:
-            user:
-              must_be_on_site_long_enough: 必须已经注册超过24小时才能发布。我们有大量的破坏者，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: 项目不允许观察
-            user_id:
-              must_be_curator: 必须是此项目的馆长
-            observation_id:
-              must_be_observed_after: 必须在 %{time} 之后被观察
-              must_be_observed_before: 必须在 %{time} 之前被观察
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: 不应包含逗号或斜杠
-            name:
-              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: 不能匹配指定此词汇的物种名
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: 必须以字母开头，没有空格，只能使用字母、数字、破折号和下划线
-            email:
-              must_look_like_an_email_address: 必须看起来像电子邮件地址
     models:
       AssessmentSection: 评定章节
       Atlas: 地图集
@@ -5439,6 +5371,73 @@ zh-CN:
         search_place_id: 搜索地点
         place_id: 地方
         preferred_observation_fields_by: 允许观察字段来自
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: 在您的指南中至少需要3个分类群
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: 指南只能包含500个分类群
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: API关键字导入或用于导入的队列
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: 对于DNA，只能包含字符A、T、C或G
+              date_format: 用于日期字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）的日期格式必须为YYYY-MM-DD
+              time_format: 必须以hh:mm形式填写时间字段（在您“%{observation_species_guess}”的观察中的“%{observation_field_name}”）
+            observation_id:
+              user_does_not_accept_fields_from_others: 用户不接受来自他人的字段
+              user_only_accepts_fields_from_site_curators: 用户只接受来自网站馆长的字段
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: 太大了，不能导入
+              contains_too_many_observations: 导入数据中包含了太多观察
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: 必须已经注册超过24小时才能发布。我们有大量的破坏者，并且这是对付他们的蹩脚的方法。您仍然可以保存为草稿，并且如果您这一天仍然使用网站的话，您将可以发布。
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: 项目不允许观察
+            user_id:
+              must_be_curator: 必须是此项目的馆长
+            observation_id:
+              must_be_observed_after: 必须在 %{time} 之后被观察
+              must_be_observed_before: 必须在 %{time} 之前被观察
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: 只能由该分类单元的馆长更改
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: 不应包含逗号或斜杠
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: 不能匹配指定此词汇的物种名
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: 必须以字母开头，没有空格，只能使用字母、数字、破折号和下划线
+            email:
+              must_look_like_an_email_address: 必须看起来像电子邮件地址
   i18n:
     inflections:
       :@vow_or_con:

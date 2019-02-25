@@ -143,6 +143,7 @@ ko:
   add_photos: 사진 추가하기
   add_photos_to_this_observation: 이 관찰에 사진 추가하기
   add_place: 장소 추가하기
+  add_relationship: 관계 추가
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
   add_shape: 모양 추가하기
   add_some_now: 지금 추가하기
@@ -266,8 +267,8 @@ ko:
   all_your_projects: 모든 내 프로젝트
   allow_any: 아무거나 허락
   allow_curator_coordinate_access: 진행 큐레이터에게 접근권한 부여
-  allow_project_curators_to_view_your_private_coordinates: 프로젝트 큐레이터에게 내 사적 좌표를 열람할
-    수 있는 권한 부여
+  allow_project_curators_to_view_your_private_coordinates: 나의 숨긴 좌표를 프로젝트 큐레이터가 볼
+    수 있게 함
   allowed_establish_means_values: 허용한 설정 평균값
   allowed_html: 허용한 HTML
   allowed_occurrence_status_values: 허용한 발생 상태값
@@ -821,6 +822,7 @@ ko:
   deleted_vote: 삭제된 표
   deleting: 삭제 중...
   deleting_verb: 삭제 중
+  deny: 거부
   desc: 내림차순
   descendant_taxa: 하위 분류군
   descending: 내림차순
@@ -1327,6 +1329,7 @@ ko:
     <a href="mailto:%{help_email}" class="contact">저희에게 연락하십시오</a>.
     <a href="%{manage_flags_path}">표시 관리</a>
   its_important_that_you: 클릭하는 것이 중요합니다.
+  iucn_red_list: IUCN 적색 목록
   iucn_red_list_status: IUCN Red List 상태
   january: 1월
   join: 가입하기
@@ -2265,7 +2268,7 @@ ko:
     many_to_many: 다대다
     many_to_one: 다대일
     one_to_many: 일대다
-    unknown: 알 수 없음
+    error: 오류
   relationship_html: '관계: %{link}'
   reload_from_observations: 관찰에서 다시 불러오기
   remove: 제거
@@ -2656,6 +2659,11 @@ ko:
           숨김된 좌표는 선이 없는 원으로 표시됩니다.
         you_can_also_obscure_the_coordinates_html: 분류와 상관없이 좌표 숨김을 할 수 있습니다. 위의 <a
           href="#geoprivacy">geoprivacy</a>를 보세요.
+    oauth:
+      authorizations:
+        new:
+          this_application_will_be_able_to_colon: '이 애플리케이션은 다음을 할 수 있습니다:'
+          more_about_application: '%{application} 추가 정보'
     observations:
       community_id:
         agreement: 동의
@@ -2883,24 +2891,6 @@ ko:
       messages:
         confirmation: 비밀번호와 일치하지 않습니다
   activerecord:
-    errors:
-      models:
-        observation_field_value:
-          attributes:
-            value:
-              date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
-                \n당신이 관찰한 \"%{observation_field_name}\")"
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: 문자로 시작해야 하고 공백을 포함할 수 없으며 문자, 숫자, 대시, 밑줄 문자만
-                사용해야 합니다
-            email:
-              must_look_like_an_email_address: 이메일 주소 같아 보여야 합니다
     models:
       TaxonLink: 분류 링크
     attributes:
@@ -2928,6 +2918,59 @@ ko:
         time_zone: 시간대
         search_place_id: 장소 검색
         place_id: 장소
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: 동의해야 합니다
+        confirmation: 비밀번호와 일치하지 않습니다
+        empty: 비워둘 수 없습니다
+        even: 짝수여야 합니다
+        greater_than_or_equal_to: '%{count}보다 크거나 같아야 합니다'
+        inclusion: 목록에 포함되어 있지 않습니다
+        invalid: 잘못되었습니다
+        less_than: '%{count}보다 작아야 합니다'
+        less_than_or_equal_to: '%{count}보다 작거나 같아야 합니다'
+        not_a_number: 숫자가 아닙니다
+        not_an_integer: 정수여야 합니다
+        odd: 홀수여야 합니다
+      template:
+        body: '다음 필드에 문제가 있었습니다:'
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              has_query_parameter: 쿼리 변수를 포함할 수 없습니다.
+              invalid_uri: 유효한 URI이어야 합니다.
+              relative_uri: 절대 URI이어야 합니다.
+        observation_field_value:
+          attributes:
+            value:
+              date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
+                \n당신이 관찰한 \"%{observation_field_name}\")"
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: 문자로 시작해야 하고 공백을 포함할 수 없으며 문자, 숫자, 대시, 밑줄 문자만
+                사용해야 합니다
+            email:
+              must_look_like_an_email_address: 이메일 주소 같아 보여야 합니다
+  doorkeeper:
+    errors:
+      messages:
+        invalid_request: 요청에 필요한 변수가 없거나 미지원 변수값이 있거나 잘못 구성되어 있습니다.
+        invalid_redirect_uri: 포함된 리다이렉트 uri는 유효하지 않습니다.
+        access_denied: 리소스 소유자 또는 인가 서버가 요청을 거부했습니다.
+        unsupported_response_type: 인가 서버가 이 응답 유형을 지원하지 않습니다.
+    flash:
+      applications:
+        create:
+          notice: 애플리케이션이 만들어졌습니다.
+        update:
+          notice: 애플리케이션이 업데이트되었습니다.
   i18n:
     inflections:
       :@vow_or_con:

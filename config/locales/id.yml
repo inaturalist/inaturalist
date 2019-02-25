@@ -4125,34 +4125,6 @@ id:
       template:
         body: 'Ada beberapa masalah dengan bidang-bidang berikut:'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: Membutuhkan setidaknya 3 taksa dalam panduan
-                anda
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: panduan hanya dapat memiliki 500 taksa
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: untuk DNA hanya dapat mengandung karakter A, T, C, or
-                G
-        post:
-          attributes:
-            user:
-              must_be_on_site_long_enough: harus terdaftar lebih dari 24 jam yang
-                lalu untuk mempublikasikan. Kita mendapatkan banyak scammers, dan
-                ini adalah semacam cara lumpuh berurusan dengan mereka. Anda masih
-                dapat menyimpan berkas, dan jika Anda masih menggunakan situs ini
-                dalam satu hari, Anda akan dapat mempublikasikan.
-        project_observation:
-          attributes:
-            user_id:
-              must_be_curator: harus menjadi kurator pada proyek ini
     attributes:
       assessment:
         description: Deskripsi
@@ -4230,6 +4202,34 @@ id:
         name_provider: Nama penyedia
         source_url: Sumber URL
         source_identifier: Sumber identifier
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: Membutuhkan setidaknya 3 taksa dalam panduan
+                anda
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: panduan hanya dapat memiliki 500 taksa
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: untuk DNA hanya dapat mengandung karakter A, T, C, or
+                G
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: harus terdaftar lebih dari 24 jam yang
+                lalu untuk mempublikasikan. Kita mendapatkan banyak scammers, dan
+                ini adalah semacam cara lumpuh berurusan dengan mereka. Anda masih
+                dapat menyimpan berkas, dan jika Anda masih menggunakan situs ini
+                dalam satu hari, Anda akan dapat mempublikasikan.
+        project_observation:
+          attributes:
+            user_id:
+              must_be_curator: harus menjadi kurator pada proyek ini
   i18n:
     inflections:
       :@vow_or_con:

@@ -19,11 +19,13 @@
 # Author: Macofe
 # Author: Marcelhospers
 # Author: Metalhead64
+# Author: Mirzali
 # Author: Octycs
 # Author: Oliverr
 # Author: Phil.pav
 # Author: Polvonrbaun
 # Author: Predatorix
+# Author: ScratchFan3.0
 # Author: ThePiscin
 # Author: Thetruebrot
 # Author: Thtranslate
@@ -463,7 +465,7 @@ de:
   allow_curator_access: Kuratorenzugriff erlauben
   allow_curator_coordinate_access: Kurator den Koordinatenzugriff erlauben
   allow_project_curators_to_view_your_private_coordinates: Projektkuratoren die Ansicht
-    deiner privaten Koordinaten erlauben
+    deiner verborgenen Koordinaten erlauben
   allowed_establish_means_values: Erlaubte Werte für die Verbreitung
   allowed_html: Erlaubtes HTML
   allowed_occurrence_status_values: Erlaubte Vorkommensstatus-Werte
@@ -619,6 +621,7 @@ de:
   attribution: Namensnennung
   authority_list:
     iucn_red_list: IUCN Rote Liste
+  authorize: Behörde
   authorize_permissions_from_provider: Berechtigungen von %{provider} zulassen
   automatic_descriptions_have_been_disabled: Automatische Beschreibungen wurden für
     dieses Taxon deaktiviert.
@@ -1211,6 +1214,7 @@ de:
   deleted_vote: Stimme löschen
   deleting: Löschen …
   deleting_verb: Löschen
+  deny: Verweigern
   desc: Beschreibung
   descendant_taxa: absteigende Taxa
   descending: absteigend
@@ -1278,7 +1282,7 @@ de:
   drafts: Entwürfe
   drag_and_drop_some_photos_or_sounds: Drag & Drop einige Bilder oder Audio-Dateien
   drawings: Zeichnungen
-  duplicate_verb: Duplikat
+  duplicate_verb: Duplizieren
   each_place_displays_all_species_inat_knows: Jede Ortsseite zeigt alle Arten, die
     %{site_name} von diesem Ort kennt, einschließlich Informationen über deren Häufigkeit
     und Erhaltungszustand und wer als erster eine Art von diesem Ort auf %{site_name}
@@ -1410,7 +1414,7 @@ de:
   explore: Entdecken
   export: Exportieren
   export_observations: Beobachtung exportieren
-  export_with_private_coordinates: Mit privaten Koordinaten exportieren
+  export_with_private_coordinates: Mit versteckten Koordinaten exportieren
   exporting: Exportieren.....
   external_links: Externe Links
   extinct: ausgestorben
@@ -1772,6 +1776,7 @@ de:
   interactions: Interaktionen
   internal_server_error: Interner Serverfehler
   internal_taxon: Internes Taxon
+  internal_taxon_including_descendants: Internes Taxon (einschließlich Nachkommen)
   introduced: eingeführt
   introduced_in_place: Eingeführt in %{place}
   invasive: invasiv
@@ -1819,6 +1824,7 @@ de:
     öffentlich sichtbar. Du kannst es sehen, weil du der Ersteller oder ein Website-Kurator bist. Wenn du denkst, dass es sich um einen Fehler handelt, bitte<a href="mailto:%{help_email}" class="contact">kontaktiere uns</a>.
     <a href="%{manage_flags_path}">Meldungen verwalten</a>
   its_important_that_you: Es ist wichtig, dass du klickst
+  iucn_red_list: Rote Liste der IUCN
   iucn_red_list_status: IUCN Rote Liste-Status
   january: Januar
   join: Beitreten
@@ -1839,14 +1845,15 @@ de:
   journal_posts: Journal-Einträge
   jpg_png_or_gif: JPG, PNG, oder GIF
   jump_to_letter: Zu Buchstaben springen
-  just_a_reminder: Zur Erinnerung, da du eventuell den Kuratoren des Projekts die
-    Erlaubnis gegeben hast, die privaten Koordinaten deiner Beobachtungen in diesem
-    Projekt einzusehen.
+  just_a_reminder: Nur eine Erinnerung, da du den Projektkuratoren möglicherweise
+    die Berechtigung erteilt hast, die verborgenen Koordinaten deiner Beobachtungen
+    in diesem Projekt anzuzeigen.
   just_added!: Soeben hinzugefügt!
   keep_editing: Weiter bearbeiten
   keyboard_shortcuts: Tastaturkürzel
   kml: KML
   kml_file_size_error: KML muss kleiner als 1MB sein
+  label_colon: '%{label}:'
   labels: Etikett
   location_private: Standort privat
   location_unknown: Standort unbekannt
@@ -2345,6 +2352,7 @@ de:
   new_project: Neues Projekt
   new_project_asset: Neues project_asset
   new_source: Neue Quelle
+  new_species_added_in_interval: Neue Spezies in %{interval} hinzugefügt
   new_taxon_change: Neue Taxon-Änderung
   new_taxon_link: Neuer Taxon Link
   new_taxon_name: Neuer Taxon-Name
@@ -2358,6 +2366,8 @@ de:
   new_users_this_year: Neue Benutzer in diesem Jahr
   new_users_week: Neue Benutzer / Woche
   newly_added: Kürzlich hinzugefügt
+  newly_added_species: Kürzlich hinzugefügte Spezies
+  newly_observed_species: Kürzlich beobachtete Spezies
   news: Neuigkeiten
   next: Weiter
   next_observation: Nächte Beobachtung
@@ -2599,6 +2609,7 @@ de:
     sind, werden die Beobachtungen wieder auf "Hobbyqualität" zurückgesetzt.
   observations_with_this_field: Beobachtungen mit diesem Feld
   observations_with_this_field_and_value: Beobachtungen mit diesem Feld und Wert
+  observations_without_media: Beobachtungen ohne Medien
   observationcounts_refreshed: Beobachtungszahl aktualisiert
   observed: Beobachtet
   observed_by: Beobachtet von
@@ -2937,17 +2948,20 @@ de:
     afghanistan: Afghanistan
     africa: Afrika
     albania: Albanien
+    algeria: Algerien
     antigua_and_barbuda: Antigua und Barbuda
     argentina: Argentinien
     armenia: Armenien
     australia: Australien
     austria: Österreich
     belgium: Belgien
+    bermuda: Bermuda
     bolivia: Bolivien
     bosnia_and_herzegovina: Bosnia und Herzegovina
     brazil: Brasilien
     bulgaria: Bulgarien
     canada: Kanada
+    central_african_republic: Zentralafrikanische Republik
     central_america: Zentralamerika
     china: China
     colombia: Kolumbien
@@ -2955,12 +2969,15 @@ de:
     cuba: Kuba
     cyprus: Zypern
     czech_republic: Tschechische Republik
+    democratic_republic_of_the_congo: Demokratische Republik Kongo
     denmark: Dänemark
+    dominica: Dominica
     dominican_republic: Dominikanische Republik
     east_timor: Osttimor
     egypt: Ägypten
     equatorial_guinea: Equatorial Guinea
     estonia: Estland
+    ethiopia: Äthiopien
     europe: Europa
     falkland_islands: Falklandinseln
     finland: Finnland
@@ -2985,15 +3002,24 @@ de:
     korea: Korea
     kosovo: Kosovo
     luxembourg: Luxemburg
+    macedonia: Mazedonien
     madagascar: Madagaskar
     maldives: Malediven
+    malta: Malta
     martinique: Martinique
+    mauritius: Mauritius
     mexico: Mexiko
+    montenegro: Montenegro
+    myanmar: Myanmar
     netherlands: Niederlande
+    new_caledonia: Neukaledonien
     new_guinea: Neuguinea
     new_zealand: Neuseeland
     north_africa: Nordafrika
     north_america: Nordamerika
+    north_korea: Nordkorea
+    pakistan: Pakistan
+    palestina: Palästina
     palestine: Palestina
     panama: Panama
     peru: Peru
@@ -3003,21 +3029,31 @@ de:
     russia: Russland
     sao_tome_and_principe: São Tomé und Príncipe
     saudi_arabia: Saudi-Arabien
+    serbia: Serbien
     singapore: Singapur
     south_africa: Südafrika
     south_america: Südamerika
     south_korea: Südkorea
+    south_sudan: Südsudan
     spain: Spanien
+    sri_lanka: Sri Lanka
+    sudan: Sudan
     sweden: Schweden
     switzerland: Schweiz
     syria: Syrien
     thailand: Thailand
     trinidad_and_tobago: Trinidad und Tobago
     turkey: Türkei
+    ukraine: Ukraine
+    united_arab_emirates: Vereinigte Arabische Emirate
     united_kingdom: Vereinigtes Königreich
     united_states: Vereinigte Staaten
+    vatican_city: Vatikanstadt
+    venezuela: Venezuela
     virgin_islands: Jungferninseln
     west_africa: Westafrika
+    western_sahara: Westsahara
+    yemen: Jemen
   places_of_interest: Interessante Orte
   places_merged_successfully: Orte erfolgreich zusammengeführt!
   plants: Pflanzen
@@ -3074,8 +3110,9 @@ de:
   private_: Privat
   private_description: Koordinaten, die komplett von öffentlichen Karten verborgen
     sind, tatsächliche Koordinaten, die nur für dich und die Kuratoren von Projekten,
-    zu denen du die Beobachtung hinzufügst, sichtbar sind. Beobachtungen mit privaten
+    zu denen du die Beobachtung hinzufügst, sichtbar sind. Beobachtungen mit versteckten
     Koordinaten werden weiterhin zur Verifizierung von Checklisten verwendet.
+  probably_spam: Vermutlich Spam
   proceed: Fortfahren
   processing: Verarbeite
   processing3p: Verarbeite…
@@ -3201,6 +3238,7 @@ de:
   real_time_stats: Echtzeitstatistiken
   real_time_discussions: Aktuelle Diskussionen
   reason: Grund
+  reason_label: 'Grund:'
   reason_you_are_flagging_this_item: Der Grund für deine Meldung.
   recaptcha_verification_failed: reCAPTCHA-Verifizierung fehlgeschlagen
   receive_email_notifications_when_people_leave_you: Email-Benachrichtigungen erhalten
@@ -3212,6 +3250,7 @@ de:
   recent_comments_on_your_stuff: Neueste Kommentare zu deinem Inhalt
   recent_evidence?: Rezente Evidenz?
   recent_evidence_of_organism: Rezenter Beweis für Organismus
+  recent_new_users: Neueste Benutzer
   recent_observations: Letzte Beobachtungen
   recent_observations_: Aktuelle Beobachtungen
   recent_post: Aktueller Beitrag
@@ -3243,8 +3282,9 @@ de:
   relative_observations: Verwandte Beobachtungen
   relationship: Beziehung
   relationships:
+    alternate_position: Position ändern
     not_external: nicht extern
-    unknown: unbekannt
+    not_internal: nicht intern
   reload_and_refresh: Neuladen und Liste aktualisieren
   reload_from_observations: Neuladen aus Beobachtungen
   reload_timed_out: Zeitüberschreitung beim Neuladen.  Bitte versuche es später noch
@@ -3371,6 +3411,7 @@ de:
     one: Speichere Beobachtung...
     other: Speichere %{num} von %{count} Beobachtungen...
   saving_verb: Speichere
+  scale_colon: 'Maßstab:'
   schemes: Schemata
   schemes_including: Schemata einschließlich
   scientific_names: Wissenschaftlicher Name
@@ -3453,6 +3494,7 @@ de:
   set_license: Lizenz festlegen
   settings: Einstellungen
   share: Teilen
+  share_colon: 'Teilen:'
   share_your_observation_with_researchers_by: Teile deine Beobachtungen mit den Forschern
     durch
   show: Anzeigen
@@ -4141,6 +4183,7 @@ de:
   view_your_year_stats: Deine Statistik für %{year} anzeigen
   view_yours: Deine anzeigen
   view_all_of_your_observations_from_x: Zeige alle deine Beobachtungen aus %{x}
+  video_tutorials: Videoanleitungen
   visually_similar: optisch ähnlich
   vulnerable: gefährdet
   w_photos_only: w/ Fotos
@@ -4601,7 +4644,7 @@ de:
           sein oder auf "verschleiert" oder "privat" gesetzt sein.
       show:
         allow_curator_coordinate_access_desc_html: Den Projekt-Kuratoren erlauben,
-          die privaten Koordinaten für diese Beobachtung einzusehen.
+          die versteckten Koordinaten für diese Beobachtung einzusehen.
         community_taxon_desc_html: "<p class=\"ui\">\n  Das Community-Taxon (oder
           die Community-Identifikation) spiegelt wider, welches Taxon die %{site_name}-Community
           denkt, einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie
@@ -4726,10 +4769,10 @@ de:
     projects:
       confirm_leave:
         keep_observations_desc: Deine Beobachtungen bleiben im Projekt und die Kuratoren
-          können weiterhin die privaten Koordinaten einsehen.
+          können weiterhin die versteckten Koordinaten einsehen.
         remove_observations_label: Alle deine Beobachtungen aus diesem Projekt entfernen
-        revoke_observations_label: Die Beobachtungen in diesem Projekt belassen, aber
-          die Kuratoren daran hindern die privaten Koordinaten einzusehen.
+        revoke_observations_label: Deine Beobachtungen in diesem Projekt belassen,
+          aber die Kuratoren daran hindern, die versteckten Koordinaten einzusehen.
       edit:
         change_admin_desc: Wähle einen der Projektkuratoren aus, der der neue Administrator
           werden soll.
@@ -5132,53 +5175,6 @@ de:
       template:
         body: 'Es gab Probleme mit den folgenden Feldern:'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: benötigt mindestens 3 Taxa in deinem Guide
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: Führer kann nur 500 Taxa haben
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: ist zu groß zum importieren
-              contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
-        project_observation:
-          attributes:
-            user_id:
-              must_be_curator: Muss Kurator dieses Projekts sein
-            observation_id:
-              must_be_observed_after: muss beobachtet worden sein nach %{time}
-              must_be_observed_before: muss beobachtet worden sein bevor %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
-                dieses Taxons verändert werden
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
-                dieses Taxons verändert werden
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
-                dieses Taxons verändert werden
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
-                dieses Taxons verändert werden
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
-                dieses Taxons verändert werden
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
-                dieses Taxons verändert werden
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: soll keine Komma oder Schrägstrich
-                enthalten
     attributes:
       assessment:
         description: Beschreibung
@@ -5240,6 +5236,74 @@ de:
         source_url: Quellen-URL
       user:
         locale: Gebietsschema
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        blank: darf nicht leer sein
+        empty: darf nicht leer sein
+        exclusion: ist reserviert
+        greater_than_or_equal_to: muss größer als oder gleich %{count} sein
+        inclusion: ist nicht in der Liste enthalten
+        invalid: ist ungültig
+        less_than: muss kleiner als %{count} sein
+        less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
+        not_a_number: ist keine Zahl
+        not_an_integer: muss eine ganze Zahl sein
+        taken: ist bereits vergeben
+      template:
+        body: 'Es gab Probleme mit den folgenden Feldern:'
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: benötigt mindestens 3 Taxa in deinem Guide
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: Führer kann nur 500 Taxa haben
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: ist zu groß zum importieren
+              contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
+        project_observation:
+          attributes:
+            user_id:
+              must_be_curator: Muss Kurator dieses Projekts sein
+            observation_id:
+              must_be_observed_after: muss beobachtet worden sein nach %{time}
+              must_be_observed_before: muss beobachtet worden sein bevor %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
+                dieses Taxons verändert werden
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
+                dieses Taxons verändert werden
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
+                dieses Taxons verändert werden
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
+                dieses Taxons verändert werden
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
+                dieses Taxons verändert werden
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: kann nur von einem Kurator
+                dieses Taxons verändert werden
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: soll keine Komma oder Schrägstrich
+                enthalten
+  doorkeeper:
+    errors:
+      messages:
+        invalid_client: Die Klientauthentifizierung ist fehlgeschlagen, weil ein unbekannter
+          Klient, keine Klientauthentifizierung oder eine nicht unterstützte Authentifizierungsmethode
+          enthalten ist.
   i18n:
     inflections:
       :@vow_or_con:

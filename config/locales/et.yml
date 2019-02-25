@@ -447,8 +447,8 @@ et:
   allow_any: luba kõiki
   allow_curator_access: Luba ligipääs kuraatoritele
   allow_curator_coordinate_access: Luba kuraatoritel määrata ligipääsu
-  allow_project_curators_to_view_your_private_coordinates: Luba kuraatoritel vaadata
-    vaid sulle nähtavaid koordinaate
+  allow_project_curators_to_view_your_private_coordinates: Luba projekti kuraatoritel
+    vaadata sinu peidetud koordinaate
   allowed_establish_means_values: Lubatud asustamismeetodid
   allowed_html: HTML lubatud
   allowed_occurrence_status_values: Lubatud leidumuse väärtused
@@ -519,7 +519,7 @@ et:
     projektist eemaldada?
   are_you_sure_remove_photo: Oled sa kindel, et soovid seda fotot eemaldada?
   are_you_sure_remove_relationship: Oled sa kindel, et soovid seda suhet kustutada?
-    Selle tulemusena ei jälgi sa enam seda isikut ning ei luba tal näha sinu privaatseid
+    Selle tulemusena ei jälgi sa enam seda isikut ning ei luba tal näha sinu peidetud
     koordinaate, kui sa varem talle seda lubasid.
   are_you_sure_remove_taxon_from_list: Oled sa kindel, et soovid selle taksoni nimekirjast
     eemaldada?
@@ -600,6 +600,7 @@ et:
   attribution: Omistus
   authority_list:
     iucn_red_list: IUCNi punane nimestik
+  authorize: Luba
   authorize_permissions_from_provider: Autoriseeri lehe %{provider} õigused
   automatic_descriptions_have_been_disabled: Selle taksoni puhul on automaatsed kirjeldused
     välja lülitatud.
@@ -1187,6 +1188,7 @@ et:
   deleted_vote: Kustuta hääl
   deleting: Kustutan...
   deleting_verb: Kustutan
+  deny: Keela
   desc: Kahanev
   descendant_taxa: alamtaksonid
   descending: Kahanev
@@ -1401,7 +1403,7 @@ et:
   explore_everyones_observations: Avasta kõigi vaatlused
   export: Ekspordi
   export_observations: Ekspordi vaatlused
-  export_with_private_coordinates: Ekspordi privaatsete koordinaatidega
+  export_with_private_coordinates: Ekspordi peidetud koordinaatidega
   exporting: Eksportin...
   external_links: Välised lingid
   extinct: väljasurnud
@@ -1919,7 +1921,7 @@ et:
   jpg_png_or_gif: JPG, PNG või GIF
   jump_to_letter: Hüppa täheni
   just_a_reminder: Tuletame meelde, et oled võib-olla andnud projekti kuraatoritele
-    loa näha enda selles projektis osalevate vaatluste privaatseid koordinaate.
+    loa näha enda selles projektis osalevate vaatluste peidetud koordinaate.
   just_added!: Just lisatud!
   keep_editing: Jätka muutmist
   kelp_diatoms_and_allies: vetikad, diaatomid ja nende sugulased
@@ -3413,7 +3415,7 @@ et:
   private_: Isiklik
   private_description: Koordinaate ei näidata avalikel kaartidel üldse. Tõelised koordinaadid
     on nähtavad ainult sulle ja nende projektide koordinaatoritele, kuhu sa vaatluse
-    lisad. Privaatsete koordinaatidega vaatluseid saab siiski kasutada kohtade kontrollnimekirjade
+    lisad. Peidetud koordinaatidega vaatluseid saab siiski kasutada kohtade kontrollnimekirjade
     loomisel.
   probably_spam: Tõenäoliselt rämspost
   proceed: Jätka
@@ -3610,7 +3612,6 @@ et:
     one_to_many: üks-mitmele
     not_external: mitte ülem
     not_internal: mitte alam
-    unknown: teadmada
   relationship_html: 'Suhe: %{link}'
   reload_and_refresh: Lae nimekiri uuesti ja värskenda
   reload_from_observations: Lae vaatlustest uuesti
@@ -4041,7 +4042,7 @@ et:
   stop_following_user: Lõpeta kasutaja %{user} jälgimine
   stop_testing: Lõpeta testimine
   stop_trusting_this_person_with_your_private_coordinates: Lõpeta sellele isikule
-    oma isiklike koordinaatide näitamine
+    oma peidetud koordinaatide näitamine
   stop_updating_position: Lõpeta asukoha täiendamine
   studies_that_used_inaturalist_data_in_year: Uurimused, mis kasutasid aastal %{year}
     iNaturalisti andmeid
@@ -4201,8 +4202,8 @@ et:
   taxon_curators: Taksoni kuraatorid
   taxon_extras: Taksonilisad
   taxon_framework_notes: Taksoniraamistiku märkused
-  taxon_framework_relationship_for: 'Taksoniraamistiku suhted:'
   taxon_framework_relationship: Taksoniraamistiku suhe
+  taxon_framework_relationship_for: 'Taksoniraamistiku suhted:'
   taxon_framework_relationships: Taksoniraamistiku suhted
   taxon_framework_taxon: Taksoniraamistiku takson
   taxon_links: Taksonite lingid
@@ -4512,9 +4513,9 @@ et:
   trends: Trendid
   trusted: Usaldatud
   trusted_project?: Usaldusväärne projekt?
-  trust_this_person_with_your_private_coordinates: Usalda sellele isikule oma privaatsed
+  trust_this_person_with_your_private_coordinates: Usalda sellele isikule oma peidetud
     koordinaadid
-  trust_with_private_coordinates: Usalda privaatsete koordinaatidega
+  trust_with_private_coordinates: Usalda peidetud koordinaatidega
   try_adding_species_form: Proovi lisada sellel lehel oleva vormiga liike.
   try_it_out: Proovi
   try_wikipedia: Proovime Wikipediat?
@@ -4677,9 +4678,9 @@ et:
   user_suggested_an_id: '%{user} pakkus määratlust'
   user_thinks_yours_is: Kasutaja %{user} %{noun}, et su vaatlus %{observation} on
   user_trusts_you_with_their_private_coordinates: Kasutaja %{user} usaldab sind oma
-    privaatsete koordinaatidega
+    peidetud koordinaatidega
   user_trusts_you_with_their_private_coordinates_desc: Kasutaja on otsustanud usaldata
-    sulle kõigi oma vaatluste privaatsed koordinaadid
+    sulle kõigi oma vaatluste peidetud koordinaadid
   username: Kasutajatunnus
   username_or_email: Kasutajatunnus või e-posti aadress
   username_or_user_id: Kasutajatunnus või kasutaja ID
@@ -4891,8 +4892,8 @@ et:
   who_can_see_the_coordinates: Kes näevad koordinaate
   who_can_see_the_coordinates_observer: Vaatluse teinud isik
   who_can_see_the_coordinates_projects: Järgmiste projektide kuraatorid
-  who_can_see_the_coordinates_trusted: Isikud, kellele vaatleja on oma privaatseid
-    koordinaate usaldanud
+  who_can_see_the_coordinates_trusted: Isikud, kellele vaatleja on oma peidetud koordinaate
+    usaldanud
   who_helped_user_the_most: Kes aitas kõige enam kasutajat %{user}
   who_user_helped_the_most: Keda kasutaja %{user} kõige enam abistas
   why_the_coordinates_are_obscured: Miks on koordinaadid varjatud
@@ -5666,7 +5667,7 @@ et:
           võid vaadata selle projekti näidis malli. <a href="%{url}">Laadi see alla</a>
       show:
         allow_curator_coordinate_access_desc_html: Luba projektide kuraatoritel näha
-          selle vaatluse privaatseid koordinaate.
+          selle vaatluse peidetud koordinaate.
         ancestor_disagreements_desc: Määratletud taksonite hulk, milles sisalduvad
           antud taksoni alamtaksonid, mis määrati peale seda, kui antud taksonit esimest
           korda määratluses kasutati
@@ -5691,7 +5692,7 @@ et:
         flagged_photos_desc_html: 'Mõnedele neist fotodest on lisatud märge ebasobiva
           sisu või autoriõiguste rikkumise kohta. Loe täpsemalt: %{links}'
         join_project_desc_html: Projektiga liitudes saavad projekti kuraatorid näha
-          nii selle kui kõigi teiste projektis sisalduvate vaatluste varjatud koordinaate
+          nii selle kui kõigi teiste projektis sisalduvate vaatluste peidetud koordinaate
           ning liitudes nõustud sa ka projekti <a href="%{url}" target="_blank">reeglitega</a>.
         quality_assessment_help_html: |-
           <p>
@@ -5844,16 +5845,16 @@ et:
       tracks_multiple_projects: jälgib mitut projekti
       projects_included: Sisalduvad projektid
       collection_and_umbrellas_do_not_support: Kogumis- ja ülemprojektid ei võimalda
-        praegu ligipääsu privaatsetele koordinaatidele.
+        praegu ligipääsu peidetud koordinaatidele.
       curator_coordinate_access_desc_html: |-
         Pea meeles, <strong>projekti kuraatorid saavad kõiki su vaatluseid oma projektidesse lisada</strong>, kui sa pole sellest <a
-        href="/users/edit">oma kontosätetes</a> keeldunud. Pane siia kasti linnuke vaid siis, kui soovid usaldada projekti kuraatoritele ligipääsu nende vaatluste privaatsetele koordinaatidele, mis selle projektiga sobivad. Kui sa ei soovi neile seda ligipääsu võimaldada, saad neile siiski iga vaatluse puhul sellised õigused eraldi pakkuda.
+        href="/users/edit">oma kontosätetes</a> keeldunud. Pane siia kasti linnuke vaid siis, kui soovid usaldada projekti kuraatoritele ligipääsu nende vaatluste peidetud koordinaatidele, mis selle projektiga sobivad. Kui sa ei soovi neile seda ligipääsu võimaldada, saad neile siiski iga vaatluse puhul sellised õigused eraldi pakkuda.
       confirm_leave:
         what_would_you_like: Mida sa tahaksid teha sellesse projekti kuuluvate enda
           vaatlustega?
         keep_observations_label: Jäta oma vaatlused projekti
         keep_observations_desc: Sinu vaatlused jäävad projekti ning kuraatorid näevad
-          endiselt nende privaatseid koordinaate.
+          endiselt nende peidetud koordinaate.
         project_requires_curator_coordinate_access_desc: See projekt ei luba lisada
           vaatluseid, mille koordinaate projekti kuraatorid näha ei saa. Kui sa ei
           soovi oma vaatluste koordinaate antud projekti kuraatoritega jagada, pead
@@ -5863,9 +5864,9 @@ et:
           ka edaspidi lisada sinu vaatluseid oma projektidesse, kui sa ei muuda oma
           <a href="/users/edit">kontosätteid</a>.
         revoke_observations_label: Jäta oma vaatlused projekti, kuid ära luba kuraatoritel
-          nende privaatseid koordinaatide nägemist
+          nende peidetud koordinaatide nägemist
         revoke_observations_desc: Kui ainus põhjus su lahkumiseks on see, et sa ei
-          soovi, et kuraatorid su varjatud koordinaate näeks.
+          soovi, et kuraatorid su peidetud koordinaate näeks.
       edit:
         aggregation_pending: Koondamine on ootel
         new_place_desc_html: Vaata esmalt <a href="%{places_url}" target="_blank">olemasolevaid
@@ -6048,7 +6049,7 @@ et:
         none: Ei.
       curator_coordinate_access_label: Kas sa soovid oma priivatseid/varjatud koordinaate
         muuta projekti kuraatoritele nähtavaks?
-      curator_coordinate_access_note: Võid ka vaatluste privaatseid koordinaate selles
+      curator_coordinate_access_note: Võid ka vaatluste peidetud koordinaate selles
         projektis üksikjuhtumite põhiselt jagada. Tegemist on vaid projekti lisatavatele
         uutele vaatlustele kehtivate vaikimisi sätetega.
       project_terms_desc_html: Luba projekti kuraatoritel kasutada sinu vaatlusi vastavalt
@@ -6422,8 +6423,8 @@ et:
           puhul. Kogumis- või ülemprojektide puhul, mis on sisuliselt meeldejäetud
           otsingud, sa vaatlusi välistada ei saa. Loe edasi <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">siit</a>.
         project_settings_desc: Pea meeles, et see ei anna projektidele luba näha sinu
-          privaatseid koordinaate või saata sulla uudiseid. Nende lubade andmiseks
-          pead projektidega liituma või andma neile igale ühele eraldi load.
+          peidetud koordinaate või saata sulla uudiseid. Nende lubade andmiseks pead
+          projektidega liituma või andma neile igale ühele eraldi load.
         taxon_change_desc: Kui taksoneid lehel %{site_name} kokku liidetakse või ümbernimetatakse,
           uuendatakse automaatselt ka sinu vaatluseid, taksonite nimekirju, määratlusi,
           jms, kui taksonimuutus on üheti tõlgendatav. Kui sa sellest keeldud või
@@ -6752,90 +6753,6 @@ et:
           one: '1 viga ei lubanud salvestada: %{model}'
           other: '%{count} viga ei lubanud salvestada: %{model}'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: sinu juhendis peab olema vähemalt 3 taksonit
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: juhendis saab olla kuni 500 taksonit
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: API võti importimisel või importimisjärjekorras
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: sest DNA saab sisaldada ainult tähti A, T, C või G
-              date_format: kuupäeva väli peab olema vormingus AAAA-KK-PP (väli "%{observation_field_name}"
-                vaatlusel "%{observation_species_guess}")
-              time_format: kellaaja väli peab olema vormingus tt:mm (väli "%{observation_field_name}"
-                vaatlusel "%{observation_species_guess}")
-            observation_id:
-              user_does_not_accept_fields_from_others: kasutaja ei luba teiste lisatud
-                väljasid
-              user_only_accepts_fields_from_site_curators: kasutaja lubab väljasid
-                ainult lehe kuraatoritelt
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: on impordiks liiga suur
-              contains_too_many_observations: sisaldab impordiks liiga palju vaatluseid
-        post:
-          attributes:
-            user:
-              must_be_on_site_long_enough: peab postitamiseks olema kasutajaks registreerunud
-                vähemalt 24 tundi tagasi. Palju rämpspostitajad proovivad ennast kasutajaks
-                registreerida ja see on üks moodus nendega toimetulekuks. Saad mustandi
-                salvestada ja kui sa lehte päeva pärast ikka veel kasutad, saad ka
-                postitada.
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: Projekt ei luba vaatluseid
-            user_id:
-              must_be_curator: peab olema selle projekti kuraator
-            observation_id:
-              must_be_observed_after: peab olema vaadeldud peale aega %{time}
-              must_be_observed_before: peab olema vaadeldud enne aega %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
-                taksoni kuraator
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
-                taksoni kuraator
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
-                taksoni kuraator
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
-                taksoni kuraator
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
-                taksoni kuraator
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
-                taksoni kuraator
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: ei tohiks sisaldada komasid või
-                kaldkriipse
-            name:
-              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: ei saa
-                olla sama kui selle sõnastiku liigi teaduslik nimi
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: peab algama tähega, ei tohi sisalda tühikuid
-                ning võib kasutada ainult tähti, numbreid, kriipse ja alljooni
-            email:
-              must_look_like_an_email_address: peab nägema välja nagu e-posti aadress
     models:
       AssessmentSection: Hinnangu osa
       Atlas: Atlas
@@ -6932,6 +6849,90 @@ et:
         search_place_id: Otsi kohta
         place_id: Koht
         preferred_observation_fields_by: Luba vaatlusvälju
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: sinu juhendis peab olema vähemalt 3 taksonit
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: juhendis saab olla kuni 500 taksonit
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: API võti importimisel või importimisjärjekorras
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: sest DNA saab sisaldada ainult tähti A, T, C või G
+              date_format: kuupäeva väli peab olema vormingus AAAA-KK-PP (väli "%{observation_field_name}"
+                vaatlusel "%{observation_species_guess}")
+              time_format: kellaaja väli peab olema vormingus tt:mm (väli "%{observation_field_name}"
+                vaatlusel "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: kasutaja ei luba teiste lisatud
+                väljasid
+              user_only_accepts_fields_from_site_curators: kasutaja lubab väljasid
+                ainult lehe kuraatoritelt
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: on impordiks liiga suur
+              contains_too_many_observations: sisaldab impordiks liiga palju vaatluseid
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: peab postitamiseks olema kasutajaks registreerunud
+                vähemalt 24 tundi tagasi. Palju rämpspostitajad proovivad ennast kasutajaks
+                registreerida ja see on üks moodus nendega toimetulekuks. Saad mustandi
+                salvestada ja kui sa lehte päeva pärast ikka veel kasutad, saad ka
+                postitada.
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Projekt ei luba vaatluseid
+            user_id:
+              must_be_curator: peab olema selle projekti kuraator
+            observation_id:
+              must_be_observed_after: peab olema vaadeldud peale aega %{time}
+              must_be_observed_before: peab olema vaadeldud enne aega %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
+                taksoni kuraator
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
+                taksoni kuraator
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
+                taksoni kuraator
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
+                taksoni kuraator
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
+                taksoni kuraator
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: saab muuta ainult selle
+                taksoni kuraator
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: ei tohiks sisaldada komasid või
+                kaldkriipse
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: ei saa
+                olla sama kui selle sõnastiku liigi teaduslik nimi
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: peab algama tähega, ei tohi sisalda tühikuid
+                ning võib kasutada ainult tähti, numbreid, kriipse ja alljooni
+            email:
+              must_look_like_an_email_address: peab nägema välja nagu e-posti aadress
   wild: Metsik
   will_paginate:
     previous_label: '&#8592; eelmine'

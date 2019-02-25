@@ -272,6 +272,7 @@ da:
   add_life_stage_larva_annotation: 'Tilføj anmærkningen "Livsstadie: Larve"'
   add_life_stage_juvenile_annotation: 'Tilføj noten "Livsstadie: Juvenil"'
   add_life_stage_egg_annotation: 'Tilføj anmærkningen "Livsstadie: Æg"'
+  add_relationship: Tilføj forbindelse
   add_section: Tilføj sektion
   add_several_observations_at_once: Tilføj flere observationer på en gang.
   add_sex_female_annotation: 'Tilføj anmærkningen "Køn: Hunkøn"'
@@ -453,7 +454,7 @@ da:
   allow_curator_access: Tillad kuratoradgang
   allow_curator_coordinate_access: Tillad kuratorer adgang til koordinater
   allow_project_curators_to_view_your_private_coordinates: Tillad projektkuratorer
-    at se private koordinater
+    at se dine private koordinater
   allowed_establish_means_values: Tilladte værdier for oprindelse
   allowed_html: Tilladt HTML
   allowed_occurrence_status_values: Tilladte værdier for forekomststatus
@@ -524,9 +525,9 @@ da:
   are_you_sure_remove_from_project: Er du sikker på, at du ønsker at fjerne %{user}
     fra dette projekt?
   are_you_sure_remove_photo: Er du sikker på, at du ønsker at fjerne dette foto?
-  are_you_sure_remove_relationship: Er du sikker på, at du vil fjerne dette forbindelse?
-    Personen vil ikke blive fulgt længere og adgang til dine private koordinater vil
-    blive annulleret, hvis du havde aktiveret sådan adgang.
+  are_you_sure_remove_relationship: Er du sikker på, at du vil fjerne denne forbindelse?
+    Du vil ikke længere følge denne person og dette vil  annullere adgangen til dine
+    private koordinater.
   are_you_sure_remove_taxon_from_list: Er du sikker på at du vil fjerne denne takson
     fra listen?
   are_you_sure_remove_taxon_from_place: Er du sikker på, at du vil fjerne denne takson
@@ -607,6 +608,8 @@ da:
   attribution: Kildeangivelse
   authority_list:
     iucn_red_list: IUCN rødliste
+    cites: CITES
+  authorize: Tillade
   authorize_permissions_from_provider: Godkend tilladelser fra %{provider}
   automatic_descriptions_have_been_disabled: Automatiske beskrivelser er blevet deaktiveret
     for denne takson.
@@ -1202,6 +1205,7 @@ da:
   deleted_vote: Slettet stemme
   deleting: Sletter...
   deleting_verb: Sletter
+  deny: Nægte
   desc: Fald
   descendant_taxa: efterkommer taksa
   descending: Faldende
@@ -1265,6 +1269,7 @@ da:
   downstream_coverage: Downstream dækning
   downstream_coverage_rank: Downstream dækning rang
   downstream_deviations: Nedstrøms afvigelser
+  downstream_deviations_for_taxon: Nedstrøms afvigelser for %{taxon}
   downstream_flagged_covered_taxa: Nedstrøms markeret dækket taksa
   drag_and_drop_photos: træk og slip billeder til dette vindue eller
   draft: kladde
@@ -1420,9 +1425,11 @@ da:
   explore_everyones_observations: Udforsk alles observationer
   export: Eksportér
   export_observations: Eksportér observationer
-  export_with_private_coordinates: Eksportér med private koordinater
+  export_with_private_coordinates: Eksportér med skjulte koordinater
   exporting: Eksporterer...
   external_links: Eksterne links
+  external_taxon_including_children: Ekstern takson (inklusiv efterfølgere)
+  external_taxon_rank: Ekstern takson rang
   extinct: uddød
   extinct_in_the_wild: Uddøde i naturen
   extra_properties: Ekstra egenskaber
@@ -1874,6 +1881,8 @@ da:
   interactions: Interaktioner
   internal_server_error: Intern serverfejl
   internal_taxon: Intern takson
+  internal_taxon_including_descendants: Intern takson (inklusiv forfædre)
+  internal_taxon_rank: Intern takson rang
   introduced: indført
   introduced_in_place: indført i %{place}
   invasive: invasiv
@@ -1923,6 +1932,7 @@ da:
     class=\"contact\">kontakt os venligst</a>.\n<a href=\"%{manage_flags_path}\">Manage
     flags</a>"
   its_important_that_you: Det er vigtigt, at du klikker
+  iucn_red_list: IUCN Rødliste
   iucn_red_list_status: IUCN Rødliste status
   january: Januar
   join: Tilslut
@@ -1946,8 +1956,8 @@ da:
   journal_posts: Journal indlæg
   jpg_png_or_gif: JPG, PNG, eller GIF
   jump_to_letter: Spring til bogstav
-  just_a_reminder: Blot en påmindelse, da du måske har givet tilladelse til at projektkuratorer
-    kan se de private koordinater for dine observationer i dette projekt.
+  just_a_reminder: Blot en påmindelse, da du måske har givet projekt kuratorer tilladelse
+    til at se de skjulte koordinater for dine observationer i dette projekt.
   just_added!: Lige tilføjet!
   keep_editing: Fortsæt redigering
   kelp_diatoms_and_allies: tang, kiselalger og lignende
@@ -2604,6 +2614,7 @@ da:
   no_taxa: Ingen taksa
   no_taxa_listed: Ingen taksa opført
   no_taxa_selected: Ingen taksa valgt!
+  no_taxa_with_unknown_relationships: Ingen taksa med ukendte forbindelser
   no_taxa_yet: Ingen taksa endnu!
   no_taxonomic_changes_match_those_criteria: Ingen taksonomiske ændringer matcher
     disse kriterier
@@ -3462,9 +3473,9 @@ da:
   privacy_policy: Fortrolighedspolitik
   private: privat
   private_: Privat
-  private_description: Koordinaterne er helt skjult fra offentlige kort, og de korrekte
-    koordinater er kun synlige for dig og kuratorerne for de projekter, du tilføjer
-    observationen til. Observationer med private koordinater vil stadig blive brugt
+  private_description: Koordinaterne er helt skjult fra offentlige kort og de korrekte
+    koordinater, er kun synlige for dig og kuratorerne for de projekter, du tilføjer
+    observationen til. Observationer med skjulte koordinater vil stadig blive brugt
     til at verificere tjeklister for steder.
   probably_spam: Sikkert spam
   proceed: Fortsæt
@@ -3654,6 +3665,7 @@ da:
   related_species: Beslægtede arter
   relative_observations: Relative observationer
   relationship: Forbindelse
+  relationship_unknown_count: Antal ukendte forbindelser
   relationship_x: 'Forbindelse: %{relationship}'
   relationships:
     match: match
@@ -3664,7 +3676,7 @@ da:
     one_to_many: en-til-mange
     not_external: ikke ekstern
     not_internal: ikke intern
-    unknown: ukendt
+    error: fejl
   relationship_html: 'Forbindelse: %{link}'
   reload_and_refresh: Genindlæs og opdatér liste
   reload_from_observations: Genindlæs fra observationer
@@ -4100,7 +4112,7 @@ da:
   stop_following_user: Stop med at følge %{user}
   stop_testing: Stop test
   stop_trusting_this_person_with_your_private_coordinates: Stol ikke længere på denne
-    person angående dine private koordinater
+    person angående dine skjulte koordinater
   stop_updating_position: Stop med at opdatere position
   studies_that_used_inaturalist_data_in_year: Studier der brugte iNaturalist data
     i %{year}
@@ -4171,6 +4183,7 @@ da:
   take_me_flickr!: Ja, før mig til Flickr!
   take_me_back: Tag mig tilbage
   taxa: Taksa
+  taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksa info
   taxa_all_species_html: Alle arter
   taxa_needing_curation: Taksa har brug for kuration
@@ -4260,8 +4273,9 @@ da:
   taxon_curators: Takson kuratorer
   taxon_extras: Takson ekstra
   taxon_framework_notes: Taksonramme noter
-  taxon_framework_relationship_for: Taksonramme relation for
   taxon_framework_relationship: Taksonramme relation
+  taxon_framework_relationship_for: Taksonramme relation for
+  taxon_framework_relationship_number: Takson ramme forbindelse %{number}
   taxon_framework_relationships: Taksonramme relationer
   taxon_framework_taxon: Taksonramme takson
   taxon_links: Takson links
@@ -4588,9 +4602,9 @@ da:
   trends: Tendenser
   trusted: Betroet
   trusted_project?: Tillidsprojekt?
-  trust_this_person_with_your_private_coordinates: Betro denne person med dine private
+  trust_this_person_with_your_private_coordinates: Betro denne person med dine skjulte
     koordinater
-  trust_with_private_coordinates: Betro med private koordinater
+  trust_with_private_coordinates: Betro med skjulte koordinater
   try_adding_species_form: Prøv at tilføje nogle arter ved hjælp af skemaet på denne
     side.
   try_it_out: Prøv det
@@ -4743,14 +4757,15 @@ da:
   user_is_now_role_for_project_html: <strong>%{user}</strong> er nu %{role} for %{project}
   user_muted: Slukket for bruger
   user_observations: Bruger observationer
+  user_observed_on_on_date_in_place: '%{user} observereder en den %{date} i %{place}'
   user_s_id: '%{user}''s %{id}'
   user_s_lists: '%{user}''s lister'
   user_suggested_an_id: '%{user} foreslog et ID'
   user_thinks_yours_is: '%{user} %{noun} din observation %{observation} er'
   user_trusts_you_with_their_private_coordinates: '%{user} har betroet dig med deres
-    private koordinater'
+    skjulte koordinater'
   user_trusts_you_with_their_private_coordinates_desc: Observatøren har valgt at betro
-    dig med alle private koordinater for alle sine observationer.
+    dig med alle skjulte koordinater for alle sine observationer.
   username: Brugernavn
   username_or_email: Brugernavn eller e-mail
   username_or_user_id: Brugernavn eller bruger ID
@@ -4846,10 +4861,12 @@ da:
   view_stats: Vis statistikker
   view_taxon_change: Vis takson ændring
   view_taxon_changes: Vis takson ændringer
+  view_taxon_framework_relationship: Vis takson ramme forbindelse
   view_taxon_page: Vis takson side
   view_taxon_page_for: Vis takson side for denne
   view_taxon_page_for_this_x: Vis takson side for dette %{x}
   view_taxonomic_changes: Vis taksonomiske ændringer
+  view_taxononomy_details_for_taxon: Vis taksonomi detaljer for %{taxon}
   view_terms: Vis betingelser
   view_the: Vis %{action}&#59; %{link}
   view_the_observation: Vis observationen
@@ -4967,7 +4984,7 @@ da:
   who_can_see_the_coordinates_observer: Personen der foretog observationen
   who_can_see_the_coordinates_projects: Kuratorer for følgende projekter
   who_can_see_the_coordinates_trusted: Personer som observatøren har betroet sine
-    private koordinater til
+    skjulte koordinater til
   who_helped_user_the_most: Hvem hjalp %{user} mest
   who_user_helped_the_most: Hvem %{user} hjalp mest
   why_the_coordinates_are_obscured: Hvorfor er koordinaterne sløret
@@ -5652,6 +5669,14 @@ da:
       show:
         project_list_desc: Taksa der er tilføjet manuelt af projektkuratorer og taksa,
           som er observationer af forskningskvalitet, vises på projektlisten.
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: Tillad %{application} at bruge
+            din konto?
+          this_application_will_be_able_to_colon: 'Denne applikation vil være i stand
+            til:'
+          more_about_application: Mere om %{application}
     observations:
       community_id:
         agreement: Enighed
@@ -5779,12 +5804,28 @@ da:
         decimal_degrees_format: gg.gggg
         geoprivacy_must_be_in_english: Geoprivat kolonnen skal være på Engelsk og
           enten være tom eller have værdien “sløret” eller “privat”
+        google_photos_notice_html: |-
+          I februar 2019 ændrede Google deres API, hvilket gjorde det umuligt for
+          os for at få adgang til GPS koordinater, licensoplysninger og næsten alle
+          informationer vi kunne bruge til at tilføje en identifikation (som tags). De
+          fjernede også tekstsøgning og numerisk pagination. Du kan stadig
+          importere fotos, men de vil ikke indeholde nogen lokaliseringsoplysninger eller
+          licensoplysninger, som du muligvis kan se på Google Fotos.
+          Du kan læse mere om dette på
+          <a href="https://developers.google.com/picasa-web"> https://developers.google.com/picasa-web </a>.
+          Download de oprindelige filer og tilføj dem ved hjælp af
+          <a href="/observations/upload"> Uploader </a> er den bedste løsning.
         project_csv_template_notice_html: |-
           Der er en skabelonfil til dette projekt, som kan hjælpe dig med strukturen i CSV filen.
           <a href="%{url}"> Download skabelon </a>
+        soundcloud_notice_html: |-
+          I 2018 ændrede Soundcloud deres API og gjorde det umuligt for os at oprette nye forbindelser til din Soundcloud-konto. Hvis de genindsætter
+          denne funktionalitet, kan vi genoptage at forbinde konti til Soundcloud. I
+          I mellemtiden kan du uploade lydfiler direkte ved hjælp af
+          <a href="/observations/upload"> Uploader </a>.
       show:
         allow_curator_coordinate_access_desc_html: Tillad projekt kuratorer at se
-          de private koordinater for denne observation.
+          de skjulte koordinater for denne observation.
         ancestor_disagreements_desc: Antal af identificerede taksa, der er blandt
           en taksons stamfædre, men blev oprettet efter den første identifikation
           ved hjælp af denne takson
@@ -6006,19 +6047,19 @@ da:
       tracks_multiple_projects: Følger flere projekter
       projects_included: Projekter inkluderet
       collection_and_umbrellas_do_not_support: Samlings- og paraplyprojekter understøtter
-        ikke adgang til private koordinater.
+        ikke adgang til skjulte koordinater.
       curator_coordinate_access_desc_html: |-
-        Husk, at <strong> projekt kuratorer kan tilføje nogle af dine observationer til deres projekt </strong>, medmindre du har fravalgt det i din <a
-        href = "/ users / edit"> kontoindstillinger </a>. Markér kun dette felt, hvis du har tillid til at projektets kuratorer må se dine private koordinater for alle dine observationer, der tilføjes til dette projekt. hvis du
+        Husk, at <strong> projekt kuratorer kan tilføje hvilken som helst af dine observationer til deres projekt </strong>, medmindre du har fravalgt det i dine <a
+        href = "/ users / edit"> kontoindstillinger </a>. Markér kun dette felt, hvis du har tillid til at projektets kuratorer må se dine skjulte koordinater for alle dine observationer, der tilføjes til dette projekt. Hvis du
         vælger ikke at give dem denne tilladelse, kan du stadig give adgang
-        til private koordinater på observationsbasis fra gang til gang.
+        til skjulte koordinater på observations basis fra gang til gang.
       confirm_leave:
         what_would_you_like: Hvad vil du gerne gøre med dine observationer i dette
           projekt?
         keep_observations_label: Lad dine observationer forblive i dette projekt
         keep_observations_desc: |-
-          Dine observationer forbliver i projektet, og kuratorer vil stadig
-          kunne se de private koordinater.
+          Dine observationer forbliver i projektet og kuratorer vil stadig
+          kunne se de skjulte koordinater.
         project_requires_curator_coordinate_access_desc: |-
           Dette projekt tillader ikke observationer med koordinater
           som projektkuratorer ikke kan se. Hvis du ikke vil dele
@@ -6030,10 +6071,10 @@ da:
           observationer til deres projekt, medmindre du ændrer i dine
           <a href="/users/edit"> kontoindstillinger </a>.
         revoke_observations_label: |-
-          Lad observationer forblive i dette projekt, men forhindrer kuratorer i at se
-          observationernes private koordinater
+          Lader observationer forblive i dette projekt, men forhindrer kuratorer i at se
+          observationernes skjulte koordinater
         revoke_observations_desc: Hvis den eneste grund til, at du smutter, er at
-          stoppe projekuraatorer fra at se dine private koordinater.
+          stoppe projekt kuratorer fra at se dine skjulte koordinater.
       edit:
         aggregation_pending: Sammenlægning afventer
         new_place_desc_html: |-
@@ -6230,7 +6271,7 @@ da:
       curator_coordinate_access_label: Vil du gøre dine private / slørede observationskoordinater
         synlige for projektets kuratorer?
       curator_coordinate_access_note: |-
-        Du kan også vælge at dele observationernes private koordinater
+        Du kan også vælge at dele observationernes skjulte koordinater
         i dette projekt fra gang til gang. Dette er blot standardindstillingerne
         for nye observationer tilføjet til projektet.
       project_terms_desc_html: Tillad kuratorerne i dette projekt at bruge dine observationer
@@ -6531,7 +6572,7 @@ da:
           takson vil dog blive vist først. Det første billede vil blive et standardbillede, og det vil blive brugt på tværs af websiden.
     taxon_changes:
       move_children_desc: |-
-        Underordnede af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
+        Underordner af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
         ækvivalenter med den nye slægt eller artsnavn.
       form:
         move_children_desc_html: "Ved at tjekke denne boks flyttes underordnede i
@@ -6656,7 +6697,7 @@ da:
           Du kan læse mere <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
         project_settings_desc: |-
           Husk, dette giver ikke projekter tilladelse til at få adgang til dine
-          private koordinater eller sende dig underretninger. Du skal være medlem af disse  projekter for at give disse tilladelser eller for at tillade dem fra gang til gang.
+          skjulte koordinater eller sende dig underretninger. Du skal være medlem af disse  projekter for at give disse tilladelser eller for at tillade dem fra gang til gang.
         taxon_change_desc: |-
           Når taksa sammenlægges eller omdøbes på %{site_name}, vil dine observationer, opførte taksa, identifikationer mv. automatisk blive opdateret til den nye
           taksa, hvis ændringen er entydig. Hvis du har fravalgt det, eller ændringen er
@@ -6986,91 +7027,6 @@ da:
           one: En fejl forhindrede %{model} i at blive gemt
           other: '%{count} fejl forhindrede %{model} i at blive gemt'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: kræver mindst 3 taksa i din guide
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: Guide kan kun have 500 taksa
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: API nøgle import eller kø for import
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: for DNA kan kun indeholde tegnene A, T, C eller G
-              date_format: |-
-                skal være i formatet ÅÅÅÅ-MM-DD for et datafelt ("%{observation_field_name}"
-                i din observation af "%{observation_species_guess}")
-              time_format: |-
-                skal være i formatet tt:mm for et tidsfelt ("%{observation_field_name}"
-                i din observation af "%{observation_species_guess}")
-            observation_id:
-              user_does_not_accept_fields_from_others: bruger accepterer ikke felter
-                fra andre
-              user_only_accepts_fields_from_site_curators: bruger accepterer kun felter
-                fra side kuratorer
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: er for stor til import
-              contains_too_many_observations: indeholder for mange observationer til
-                import
-        post:
-          attributes:
-            user:
-              must_be_on_site_long_enough: |-
-                skal være registreret i mere end 24 timer for at kunne publicere. Vi får
-                en masse spammere, og dette er vores måde at håndtere dem på. Du kan stadig gemme som kladde og publicere det på et senere tidspunkt.
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: Projektet tillader ikke observationer
-            user_id:
-              must_be_curator: skal være kurator for dette projekt
-            observation_id:
-              must_be_observed_after: skal være observeret efter %{time}
-              must_be_observed_before: skal være observeret før %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
-                kurator for denne takson
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
-                kurator for denne takson
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
-                kurator for denne takson
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
-                kurator for denne takson
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
-                kurator for denne takson
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
-                kurator for denne takson
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: bør ikke indeholde kommaer eller
-                skråstreger
-            name:
-              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: kan
-                ikke matche det videnskabelige navn på en art i dette leksikon
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: skal begynde med et bogstav, ikke indeholde
-                mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger
-            email:
-              must_look_like_an_email_address: skal se ud som en e-mail adresse
     models:
       AssessmentSection: Vurdeingssektion
       Atlas: Atlas
@@ -7167,6 +7123,173 @@ da:
         search_place_id: Søgested
         place_id: Sted
         preferred_observation_fields_by: Tillad observationsfelter fra
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: skal accepteres
+        blank: må ikke være tom
+        confirmation: matchede ikke adgangskoden
+        empty: må ikke være tom
+        equal_to: skal være lig med %{count}
+        even: skal være lige
+        exclusion: er reserveret
+        greater_than: skal være større end %{count}
+        greater_than_or_equal_to: skal være større end eller lig med %{count}
+        inclusion: er ikke inkluderet på listen
+        invalid: er ugyldig
+        less_than: skal være mindre end %{count}
+        less_than_or_equal_to: skal være mindre end eller lig med %{count}
+        not_a_number: er ikke et tal
+        not_an_integer: skal være et helt tal
+        odd: skal være et ulige tal
+        record_invalid: 'Validering fejlede: %{errors}'
+        taken: er allerede blevet taget
+        too_long:
+          one: er for lang (maksimum er 1 tegn)
+          other: er for lang (maksimum er %{count} tegn)
+        too_short:
+          one: er for kort (minimum er 1 tegn)
+          other: er for kort (minimum er %{count} tegn)
+        wrong_length:
+          one: er forkert længde (skal være 1 tegn)
+          other: er forkert længde (skal være %{count} tegn)
+      template:
+        body: 'Der var problemer med følgende felter:'
+        header:
+          one: En fejl forhindrede denne %{model} i at blive gemt
+          other: '%{count} fejl forhindrede denne %{model} i at blive gemt'
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: må ikke indeholde et fragment.
+              has_query_parameter: må ikke indeholde en forespørgselsparameter.
+              invalid_uri: skal være et gyldigt URI.
+              relative_uri: skal være et fuldstændigt URI.
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: kræver mindst 3 taksa i din guide
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: Guide kan kun have 500 taksa
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: API nøgle import eller kø for import
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: for DNA kan kun indeholde tegnene A, T, C eller G
+              date_format: |-
+                skal være i formatet ÅÅÅÅ-MM-DD for et datafelt ("%{observation_field_name}"
+                i din observation af "%{observation_species_guess}")
+              time_format: |-
+                skal være i formatet tt:mm for et tidsfelt ("%{observation_field_name}"
+                i din observation af "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: bruger accepterer ikke felter
+                fra andre
+              user_only_accepts_fields_from_site_curators: bruger accepterer kun felter
+                fra side kuratorer
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: er for stor til import
+              contains_too_many_observations: indeholder for mange observationer til
+                import
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: |-
+                skal være registreret i mere end 24 timer for at kunne publicere. Vi får
+                en masse spammere, og dette er vores måde at håndtere dem på. Du kan stadig gemme som kladde og publicere det på et senere tidspunkt.
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Projektet tillader ikke observationer
+            user_id:
+              must_be_curator: skal være kurator for dette projekt
+            observation_id:
+              must_be_observed_after: skal være observeret efter %{time}
+              must_be_observed_before: skal være observeret før %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
+                kurator for denne takson
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
+                kurator for denne takson
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
+                kurator for denne takson
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
+                kurator for denne takson
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
+                kurator for denne takson
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
+                kurator for denne takson
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: bør ikke indeholde kommaer eller
+                skråstreger
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: kan
+                ikke matche det videnskabelige navn på en art i dette leksikon
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: skal begynde med et bogstav, ikke indeholde
+                mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger
+            email:
+              must_look_like_an_email_address: skal se ud som en e-mail adresse
+  doorkeeper:
+    scopes:
+      write: Opret, opdater og slet dine observationer, identifikationer og andet
+        indhold på dine vegne, og få adgang til dine skjulte koordinater og alle andre
+        oplysninger, du kan tilgå på hjemmesiden.
+      login: |-
+        Tilgå information, der er relevant for at logge ind såsom e-mail-adresse, brugernavn,
+        navn og brugerikon
+    errors:
+      messages:
+        invalid_request: Forespørgslen mangler et påkrævet parameter, indeholder en
+          ikke-understøttet parameterværdi eller er på anden måde ukorrekt.
+        invalid_redirect_uri: Den inkluderede uri omdirigering er ikke gyldig.
+        unauthorized_client: Klienten er ikke godkendt til at udføre denne anmodning
+          ved hjælp af denne metode.
+        access_denied: Resource-ejeren eller godkendelsesserveren nægtede anmodningen.
+        invalid_scope: Det ønskede omfang er ugyldigt, ukendt eller fejlagtigt.
+        server_error: Godkendelsesserveren oplevede en uventet tilstand, som forhindrede
+          den i at opfylde anmodningen.
+        temporarily_unavailable: Godkendelsesserveren kan ikke håndtere anmodningen
+          på grund af midlertidig overbelastning eller vedligeholdelse af serveren.
+        unsupported_response_type: Godkendelsesserveren understøtter ikke denne svartype.
+        invalid_client: Klientgodkendelsen mislykkedes på grund af ukendt klient,
+          ingen klientgodkendelse inkluderet eller ikke-understøttet godkendelsesmetode.
+        invalid_grant: Det udstedte godkendelse er ugyldig, udløbet, tilbagekaldt,
+          svarer ikke til den URI omdirigering, der blev anvendt i godkendelsesanmodningen
+          eller blev udstedt til en anden klient.
+        unsupported_grant_type: Godkendelsestypen understøttes ikke af godkendelsesserveren.
+        invalid_resource_owner: De angivne ressourceejers legitimationsoplysninger
+          er ikke gyldige eller ressourceejeren kan ikke findes
+    flash:
+      applications:
+        create:
+          notice: Ansøgning oprettet.
+        destroy:
+          notice: Ansøgning slettet.
+        update:
+          notice: Ansøgning opdateret.
+      authorized_applications:
+        destroy:
+          notice: Ansøgning tilbagekaldt.
   i18n:
     inflections:
       :@vow_or_con:

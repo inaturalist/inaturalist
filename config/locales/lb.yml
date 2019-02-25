@@ -301,6 +301,9 @@ lb:
   at: bäi
   atom: Atom
   attribution: Attributioun
+  authority_list:
+    cites: CITES
+  authorize: Autoriséieren
   automatic_short: Automatesch
   automatically_add_to_project: Automatesch bei de Projet derbäisetzen
   automatically_add_observations_to_this_project: Automatesch Observatioune bei dëse
@@ -525,6 +528,7 @@ lb:
   deleted_vote: Geläscht Stëmm
   deleting: läschen...
   deleting_verb: Läschen
+  deny: Refuséieren
   description: Beschreiwung
   description_from: Beschreiwung vum
   description_slash_tags: Beschreiwung / Tags
@@ -1458,7 +1462,7 @@ lb:
   relationships:
     not_external: net extern
     not_internal: net intern
-    unknown: onbekannt
+    error: Feeler
   relationship_html: 'Relatioun: %{link}'
   remove: Ewechhuelen
   remove_photo: Foto ewechhuelen
@@ -1801,6 +1805,10 @@ lb:
         what_is_an_observation?: Wat ass eng Observatioun?
         can_i_include_my_observations_on_my_blog?: Kann ech meng %{site_name} Observatiounen
           op mäi Blog oder meng Websäit bäisetzen?
+    oauth:
+      authorizations:
+        new:
+          more_about_application: Méi iwwer %{application}
     observations:
       community_id:
         agreement: Accord
@@ -1998,16 +2006,6 @@ lb:
         not_an_integer: muss eng ganz Zuel sinn
         odd: muss ongerued sinn
   activerecord:
-    errors:
-      models:
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: ass ze grouss fir z'importéieren
-        user:
-          attributes:
-            email:
-              must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
     models:
       Atlas: Atlas
     attributes:
@@ -2039,6 +2037,26 @@ lb:
         locale: Lokal
         time_zone: Zäitzon
         place_id: Plaz
+    errors:
+      messages:
+        blank: däerf net eidel sinn
+        empty: däerf net eidel sinn
+        even: muss gerued sinn
+        exclusion: ass reservéiert
+        greater_than: muss méi grouss si wéi %{count}
+        inclusion: ass net an der Lëscht dran
+        invalid: ass net valabel
+        not_a_number: ass keng Zuel
+        odd: muss ongerued sinn
+      models:
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: ass ze grouss fir z'importéieren
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: muss wéi eng E-Mail-Adress ausgesinn
   i18n:
     inflections:
       :@vow_or_con:

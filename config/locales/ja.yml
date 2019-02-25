@@ -3614,29 +3614,6 @@ ja:
       template:
         body: 以下のフィールドに問題があります：
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: ガイドには少なくとも３件の分類群が必要
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: ガイドは最大５００件の分類群までとなっています
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: 'DNAは次の値のみ有効です: A, T, C, G'
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: 大きすぎるため、インポートできません
-        project_observation:
-          attributes:
-            observation_id:
-              must_be_observed_after: '%{time}より後に観察されていなければなりません'
-              must_be_observed_before: '%{time}より前に観察されていなければなりません'
     attributes:
       assessment:
         description: 説明
@@ -3704,6 +3681,29 @@ ja:
       taxon_name:
         name_provider: 名称提供先
         source_url: ソースURL
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: ガイドには少なくとも３件の分類群が必要
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: ガイドは最大５００件の分類群までとなっています
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: 'DNAは次の値のみ有効です: A, T, C, G'
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: 大きすぎるため、インポートできません
+        project_observation:
+          attributes:
+            observation_id:
+              must_be_observed_after: '%{time}より後に観察されていなければなりません'
+              must_be_observed_before: '%{time}より前に観察されていなければなりません'
   i18n:
     inflections:
       :@vow_or_con:

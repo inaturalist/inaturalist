@@ -809,7 +809,7 @@ bg:
   faq: Често задавани въпроси
   Family: Семейство
   faved_this_observation: харесва(т) това наблюдение
-  favorite_taxa: любими таксони
+  favorite_taxa: Любими таксони
   favorites: Любими
   featured: препоръчани
   featured_projects_from_everywhere: Препоръчани проекти отвсякъде
@@ -3155,18 +3155,6 @@ bg:
       template:
         body: 'Възникнаха проблеми със следните полета:'
   activerecord:
-    errors:
-      models:
-        place:
-          attributes:
-            place_geometry:
-              contains_too_many_observations: съдържа прекалено много наблюдения за
-                импортиране
-        project_observation:
-          attributes:
-            observation_id:
-              must_be_observed_after: да е наблюдавано след %{time}
-              must_be_observed_before: да е наблюдавано преди %{time}
     models:
       Atlas: Атлас
     attributes:
@@ -3227,6 +3215,18 @@ bg:
         search_place_id: Място за търсене
         place_id: Място
         preferred_observation_fields_by: Позволявай полета за наблюдения от
+    errors:
+      models:
+        place:
+          attributes:
+            place_geometry:
+              contains_too_many_observations: съдържа прекалено много наблюдения за
+                импортиране
+        project_observation:
+          attributes:
+            observation_id:
+              must_be_observed_after: да е наблюдавано след %{time}
+              must_be_observed_before: да е наблюдавано преди %{time}
   wild: Див
   will_paginate:
     previous_label: '&#8592; Пред.'

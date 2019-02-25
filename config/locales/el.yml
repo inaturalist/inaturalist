@@ -1762,7 +1762,6 @@ el:
     many_to_many: πολλά-σε-πολλά
     many_to_one: καθοδικά
     not_external: μη εξωτερικό
-    unknown: άγνωστο
   remember_me: Να με θυμάσαι
   remove: Αφαίρεση
   remove_boundary: Αφαίρεση συνόρου
@@ -2220,23 +2219,6 @@ el:
       messages:
         confirmation: δεν αντιστοιχεί στον κωδικό
   activerecord:
-    errors:
-      models:
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: Το εγχείρημα δεν επιτρέπει παρατηρήσεις
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
-                από έναν φροντιστή αυτού του taxon
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί από
-                ένα φροντιστή αυτού του taxon
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
-                από έναν φροντιστή αυτού του taxon
     models:
       Atlas: Άτλαντας
       CompleteSet: Ολοκληρωμένο σετ
@@ -2254,4 +2236,24 @@ el:
         search_place_id: Αναζήτηση μέρους
         place_id: Μέρος
         preferred_observation_fields_by: Να επιτρέπονται τα πεδία παρατήρησης από
+    errors:
+      format: '%{κατηγορία} %{μήνυμα}'
+      messages:
+        empty: δεν μπορεί να είναι κενό
+      models:
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Το εγχείρημα δεν επιτρέπει παρατηρήσεις
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
+                από έναν φροντιστή αυτού του taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί από
+                ένα φροντιστή αυτού του taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
+                από έναν φροντιστή αυτού του taxon
 ...

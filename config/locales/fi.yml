@@ -448,7 +448,7 @@ fi:
   allow_curator_access: Salli kuraattorin pääsy
   allow_curator_coordinate_access: Salli kuraattorin koordinoida pääsyä
   allow_project_curators_to_view_your_private_coordinates: Salli projektin kuraattorien
-    katsoa yksityisiä koordinaattejasi
+    katsoa piilotettuja koordinaattejasi
   allowed_html: Sallitut HTML-koodit
   allowed_values: Sallitut arvot
   almost_there_: Melkein siellä...
@@ -1303,7 +1303,7 @@ fi:
   explore_everyones_observations: Tutki kaikkien havaintoja
   export: Vie
   export_observations: Vie havaintoja
-  export_with_private_coordinates: Vie yksityisiä koordinaatteja
+  export_with_private_coordinates: Vie piilotettuja koordinaatteja
   exporting: Viedään...
   external_links: Ulkoiset linkit
   extinct: kuollut sukupuuttoon
@@ -1710,7 +1710,7 @@ fi:
   jpg_png_or_gif: JPG, PNG tai GIF
   jump_to_letter: Hypppää kirjeeseen
   just_a_reminder: Tämä on vain muistutus, koska olet voinut antaa projektin kuraattoreille
-    oikeudet tarkistella havaintojesi yksityisiä koordinaatteja tässä projektissa.
+    oikeudet tarkistella havaintojesi piilotettuja koordinaatteja tässä projektissa.
   just_added!: Juuri lisätty!
   keep_editing: Jatka muokkaamista
   kelp_diatoms_and_allies: ruskolevät, piilevät ja näiden sukulaiset
@@ -2772,7 +2772,7 @@ fi:
     lithuania: Liettua
     luxembourg: Luxemburg
     macao: Macao
-    macedonia: Makedonia
+    macedonia: Pohjois-Makedonia
     madagascar: Madagaskar
     malawi: Malawi
     malaysia: Malesia
@@ -3087,7 +3087,6 @@ fi:
     one_to_many: yksi-moneen
     not_external: ei ulkoinen
     not_internal: ei sisäinen
-    unknown: tuntematon
   reload_and_refresh: Lataa uudelleen ja päivitä luettelo
   reload_from_observations: Päivitä havainnoista
   remarks_optional: Huomautukset <span class="small description">(valinnainen)</span>
@@ -3498,8 +3497,8 @@ fi:
   taxon_colors: Taksonivärit
   taxon_curators: Taksonikuraattorit
   taxon_framework_notes: Taksonikehysmerkinnät
-  taxon_framework_relationship_for: Taksonikehyssuhde taksonille
   taxon_framework_relationship: Taksonikehyssuhde
+  taxon_framework_relationship_for: Taksonikehyssuhde taksonille
   taxon_framework_relationships: Taksonikehyssuhteet
   taxon_framework_taxon: Taksonikehystaksoni
   taxon_links: Taksonilinkit
@@ -4254,7 +4253,7 @@ fi:
         decimal_degrees_format: dd.dddd
       show:
         allow_curator_coordinate_access_desc_html: Salli projektin kuraattorien nähdä
-          yksityiset koordinaatit tälle havainnolle.
+          piilotetut koordinaatit tälle havainnolle.
         quality_assessment_help_html: "<p>\n  Tietojen laadunarviointi on yhteenveto
           havaintojen tarkkuudesta. Kaikki\n  havainnot aloittavat <strong>\"tilapäinen\"</strong>
           asteesta, ja siirtyvät\n  <strong>\"tarvitsee tunnisteen\"</strong> asteeseen
@@ -4784,41 +4783,6 @@ fi:
       template:
         body: 'Seuraavissa kentissä oli ongelmia:'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: vaatii vähintään 3 taksonia oppaassasi
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: oppaassa voi olla vain 500 taksonia
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: DNA voi sisältää vain merkit A, T, C tai G
-            observation_id:
-              user_only_accepts_fields_from_site_curators: käyttäjä hyväksyy kentät
-                vain sivuston kuraattoreilta
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: on liian iso tuotavaksi
-              contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: Projekti ei hyväksy havaintoja
-            user_id:
-              must_be_curator: täytyy olla tämän projektin kuraattori
-            observation_id:
-              must_be_observed_after: tulee olla havaittu %{time} jälkeen
-              must_be_observed_before: pitää olla havaittu ennen %{time}
-        user:
-          attributes:
-            email:
-              must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
     models:
       AssessmentSection: Arvioinnin osa
       Atlas: Kartasto
@@ -4904,6 +4868,41 @@ fi:
         search_place_id: Hae paikka
         place_id: Paikka
         preferred_observation_fields_by: Salli havaintokentät
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: vaatii vähintään 3 taksonia oppaassasi
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: oppaassa voi olla vain 500 taksonia
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: DNA voi sisältää vain merkit A, T, C tai G
+            observation_id:
+              user_only_accepts_fields_from_site_curators: käyttäjä hyväksyy kentät
+                vain sivuston kuraattoreilta
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: on liian iso tuotavaksi
+              contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Projekti ei hyväksy havaintoja
+            user_id:
+              must_be_curator: täytyy olla tämän projektin kuraattori
+            observation_id:
+              must_be_observed_after: tulee olla havaittu %{time} jälkeen
+              must_be_observed_before: pitää olla havaittu ennen %{time}
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: täytyy näyttää sähköpostiosoitteelta
   i18n:
     inflections:
       :@vow_or_con:
