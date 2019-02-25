@@ -129,7 +129,7 @@ class MapDetails extends React.Component {
             ) }
           </div>
         </div>
-        { currentUser && currentUser.roles.indexOf( "admin" ) >= 0 && observation.obscured && ( observation.geoprivacy || observation.taxon_geoprivacy ) && (
+        { observation.obscured && ( observation.geoprivacy || observation.taxon_geoprivacy ) && (
           <div className="obscured">
             <h4>{ I18n.t( "why_the_coordinates_are_obscured" ) }</h4>
             <ul className="plain">
