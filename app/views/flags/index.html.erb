@@ -4,7 +4,7 @@
 <%- end -%>
 <div id="pageheader" class="column span-24">
   <span class="breadcrumbs">
-    <%= link_to t(:back_to_this , :place=> "#{@object.try_methods(:to_plain_s, :to_s)}"),
+    <%= link_to t(:back_to_x , noun: "#{@object.try_methods(:to_plain_s, :to_s)}"),
                 @object,
                 :class => 'back crumb' %>
   </span>

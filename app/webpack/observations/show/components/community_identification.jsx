@@ -302,8 +302,8 @@ class CommunityIdentification extends React.Component {
     );
     const photo = (
       <TaxonSummaryPopover
-        taxon={ taxon }
-        contents={ taxonImageTag }
+        taxon={taxon}
+        contents={taxonImageTag}
       />
     );
     return {

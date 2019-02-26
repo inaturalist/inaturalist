@@ -139,7 +139,12 @@ class Photo < ActiveRecord::Base
   end
 
   def source_title
-    ( subtype || type ).gsub( /Photo$/, "" ).underscore.humanize.titleize
+    Rails.logger.debug "[DEBUG] subtype: #{subtype}"
+    t = if subtype == "PicasaPhoto" || is_a?( PicasaPhoto )
+      "Google"
+    end
+    t ||= ( subtype || type ).gsub( /Photo$/, "" ).underscore.humanize.titleize
+    t
   end
 
   def source_url
@@ -258,7 +263,9 @@ class Photo < ActiveRecord::Base
         [ "user_id", "license", "mobile", "metadata" ].include?(k)
     end
     photo_url = remote_photo.try_methods(:original_url, :large_url, :medium_url, :small_url)
-    remote_photo_attrs["native_original_image_url"] = photo_url
+    if photo_url.size <= 512
+      remote_photo_attrs["native_original_image_url"] = photo_url
+    end
     remote_photo_attrs["subtype"] = remote_photo.class.name
     # stub this LocalPhoto's file with the remote photo URL
     remote_photo_attrs["file"] = URI(photo_url)
@@ -271,7 +278,9 @@ class Photo < ActiveRecord::Base
     return unless fetch_url = remote_photo.best_available_url
     remote_photo.type = "LocalPhoto"
     remote_photo.subtype = remote_photo.class.name
-    remote_photo.native_original_image_url = fetch_url
+    if fetch_url.size <= 512
+      remote_photo.native_original_image_url = fetch_url
+    end
     remote_photo = remote_photo.becomes(LocalPhoto)
     remote_photo.file = URI(fetch_url)
     remote_photo.save

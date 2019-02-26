@@ -143,6 +143,7 @@ ko:
   add_photos: 사진 추가하기
   add_photos_to_this_observation: 이 관찰에 사진 추가하기
   add_place: 장소 추가하기
+  add_relationship: 관계 추가
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
   add_shape: 모양 추가하기
   add_some_now: 지금 추가하기
@@ -154,7 +155,6 @@ ko:
   add_taxon_batch_to: 분류군 여러 개를 %{list}에 추가하기
   add_taxon_range: 분류군 범위를 추가하기
   add_taxonomic_tags_to: 선택된 플리커 사진에 분류군 태그 추가하기
-  add_to: 추가하기
   add_to_a_scheme: 계획에 추가하기
   add_to_a_project: 프로젝트에 추가
   add_to_calendar: 일정에 추가하기
@@ -267,8 +267,8 @@ ko:
   all_your_projects: 모든 내 프로젝트
   allow_any: 아무거나 허락
   allow_curator_coordinate_access: 진행 큐레이터에게 접근권한 부여
-  allow_project_curators_to_view_your_private_coordinates: 프로젝트 큐레이터에게 내 사적 좌표를 열람할
-    수 있는 권한 부여
+  allow_project_curators_to_view_your_private_coordinates: 나의 숨긴 좌표를 프로젝트 큐레이터가 볼
+    수 있게 함
   allowed_establish_means_values: 허용한 설정 평균값
   allowed_html: 허용한 HTML
   allowed_occurrence_status_values: 허용한 발생 상태값
@@ -385,7 +385,6 @@ ko:
   automatically_id_new: 자동으로 새로운 관찰을 ID함
   automatically_update_my_content_for_taxon_changes: 분류군 변화 자동 업데이트
   back: 뒤로 가기
-  back_to: 돌아가기
   back_to_albums: 앨범으로 돌아가기
   back_to_all_species: 모든 종으로 돌아가기
   back_to_browsing_people: 사람들 검색으로 돌아가기
@@ -823,6 +822,7 @@ ko:
   deleted_vote: 삭제된 표
   deleting: 삭제 중...
   deleting_verb: 삭제 중
+  deny: 거부
   desc: 내림차순
   descendant_taxa: 하위 분류군
   descending: 내림차순
@@ -920,7 +920,6 @@ ko:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'> 설정</a>을 편집하여 받는 업데이트의
     종류를 변경하거나 구독 취소를 합니다.
   edited: 편집됨
-  edited_by: '편집자 :'
   edited_by_name_html: '편집자 : %{name}'
   editing: 편집
   editing_announcement: 공지 편집
@@ -1043,7 +1042,6 @@ ko:
   filling_out_checklist_for_place: 잘 아는 장소들의 체크리스트를 기입하십시오
   filling_out_your_profile: 프로파일을 기입하십시오
   filter: 필터
-  filter_by: 로 필터
   filter_by_curator_identification: 큐래이터 동정으로 필터
   filter_by_place: 장소로 필터
   filter_by_taxon: 분류군별 필터
@@ -1092,7 +1090,6 @@ ko:
   flags: 플래그들
   flags_explanation: '%{site_name} 사용자들은 오류를 발견했을 때 플래그를 합니다. 여기 큐래이터들이 아직 해결하지 않은
     사안들이 있습니다.'
-  flags_for: 위한 플래그
   flags_on_users_content: '%{user}의 콘텐츠에 달린 플래그들'
   flickr_account_information: Flickr 계정 정보
   flickr_description: FLickr는 온라인 사진 호스팅 서비스입니다. 아마 이미 알고 있으셨을지도 몰라요!
@@ -1108,8 +1105,6 @@ ko:
   flickr_youre_all_set: '%{site_name}을 탐색할 준비가 다 되었습니다.'
   fluid: 유체
   follow: 팔로우
-  follow_us: 에서 팔로우해 주세요.
-  follow_us_on: 에서 팔로우해 주세요.
   follow_user: '%{user} 팔로우'
   followed_projects: 팔로우한 프로젝트
   follower: 팔로우하는 사용자들
@@ -1122,10 +1117,8 @@ ko:
   fri: 금
   from: 보낸이
   from_a_place: 어떤 장소로부터
-  from_anywhere_change: 아무 장소로부터
   from_eol_collection: EOL 모음집으로부터
   from_flickr_facebook_etc: Flickr, Facebook 등으로부터
-  from_in_this_place: 이 장소 안으로부터
   from_list: 목록으로부터
   from_this: 이것으로부터
   from_photos: 사진들로부터
@@ -1336,6 +1329,7 @@ ko:
     <a href="mailto:%{help_email}" class="contact">저희에게 연락하십시오</a>.
     <a href="%{manage_flags_path}">표시 관리</a>
   its_important_that_you: 클릭하는 것이 중요합니다.
+  iucn_red_list: IUCN 적색 목록
   iucn_red_list_status: IUCN Red List 상태
   january: 1월
   join: 가입하기
@@ -1357,6 +1351,7 @@ ko:
   keyboard_shortcuts: 단축 키
   kml: KML
   kml_file_size_error: KML은 1MB보다 크기가 작아야 합니다.
+  label_colon: '%{label}:'
   labels: 라벨
   location_private: 위치 비공개
   location_unknown: 위치 알 수 없음
@@ -1539,6 +1534,7 @@ ko:
   manage_names: 이름 관리
   manage_your_projects: 내 프로젝트 관리
   manage_your_project_invitations: 프로젝트 초대 관리
+  manage_your_relationships: 내 관계 관리
   managed: 관리됨
   manager: 매니저
   managers: 관리자들
@@ -1603,6 +1599,7 @@ ko:
   more_fields: 더 많은 친구
   more_filters: 더 많은 필터
   more_from_x: '%{x}의 더 많은 정보'
+  more_help: 기타 도움말
   more_import_options: 가져오기 옵션 더 보기
   more_info: 자세한 정보
   more_info_title: 자세한 정보
@@ -2271,7 +2268,8 @@ ko:
     many_to_many: 다대다
     many_to_one: 다대일
     one_to_many: 일대다
-    unknown: 알 수 없음
+    error: 오류
+  relationship_html: '관계: %{link}'
   reload_from_observations: 관찰에서 다시 불러오기
   remove: 제거
   remove_all_tags: 모든 태그를 제거
@@ -2285,6 +2283,7 @@ ko:
   remove_place: 장소 제거
   remove_project_user: 프로젝트 사용자 제거
   remove_range: 범위 제거
+  remove_relationship: 관계 제거
   remove_selected: 선택한 것을 제거
   remove_tags: 태그 제거
   remove_your_existing_id?: 당신의 ID를 삭제하시겠습니까?
@@ -2530,6 +2529,7 @@ ko:
   view_unidentified_observations: 동정하지 않은 관찰 보기
   view_x: '%{x} 보기'
   view_your_observations: 내 관찰 보기
+  video_tutorials: 동영상 강좌
   vulnerable: 취약
   we_also_support: "<a href=\"http://flickr.com\">플리커</a>, \n<a href=\"http://photos.google.com\">구글
     포토</a>, \n<a href=\"http://facebook.com\">페이스북</a>\n의 영상 호스팅도 지원합니다."
@@ -2562,6 +2562,7 @@ ko:
   where_did_you_see_it: 어디서 봤나요?
   which_projects_can_add_your_observations?: 내 관찰을 추가할 수 있는 전통적인 프로젝트는 무엇입니까?
   white: 흰색
+  why_you_can_see_the_coordinates: 좌표를 볼 수 있는 이유
   who_can_add_observations_to_this_project?: 이 프로젝트에 관찰을 추가할 수 있는 사람은 누구입니까?
   widget: 위젯
   widget_code: 위젯 코드
@@ -2609,6 +2610,7 @@ ko:
   your_google_account_info: 구글 계정 정보
   your_pinned_locations: 내가 저장한 위치
   your_recent_projects: 내 최근 프로젝트
+  your_relationships: 내 관계
   your_subscriptions: 당신의 구독 목록
   your_sure_delete_list?: 이 목록을 삭제하겠습니까?
   youre_following: '팔로우 중:'
@@ -2657,6 +2659,11 @@ ko:
           숨김된 좌표는 선이 없는 원으로 표시됩니다.
         you_can_also_obscure_the_coordinates_html: 분류와 상관없이 좌표 숨김을 할 수 있습니다. 위의 <a
           href="#geoprivacy">geoprivacy</a>를 보세요.
+    oauth:
+      authorizations:
+        new:
+          this_application_will_be_able_to_colon: '이 애플리케이션은 다음을 할 수 있습니다:'
+          more_about_application: '%{application} 추가 정보'
     observations:
       community_id:
         agreement: 동의
@@ -2674,6 +2681,9 @@ ko:
         flagged_photos_desc_html: |-
           이러한 사진 중 일부가 부적절한 내용 또는 저작권 침해로
           플래그되어 있습니다. 자세한 내용은 %{links}을(를) 보십시오
+    emailer:
+      photos_missing:
+        subject: 일부 사진에 수정이 필요합니다
     places:
       kml_field_desc: |-
         장소 경계의 KML입니다. Google Maps, Google Earth,
@@ -2881,24 +2891,6 @@ ko:
       messages:
         confirmation: 비밀번호와 일치하지 않습니다
   activerecord:
-    errors:
-      models:
-        observation_field_value:
-          attributes:
-            value:
-              date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
-                \n당신이 관찰한 \"%{observation_field_name}\")"
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: 문자로 시작해야 하고 공백을 포함할 수 없으며 문자, 숫자, 대시, 밑줄 문자만
-                사용해야 합니다
-            email:
-              must_look_like_an_email_address: 이메일 주소 같아 보여야 합니다
     models:
       TaxonLink: 분류 링크
     attributes:
@@ -2926,6 +2918,59 @@ ko:
         time_zone: 시간대
         search_place_id: 장소 검색
         place_id: 장소
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: 동의해야 합니다
+        confirmation: 비밀번호와 일치하지 않습니다
+        empty: 비워둘 수 없습니다
+        even: 짝수여야 합니다
+        greater_than_or_equal_to: '%{count}보다 크거나 같아야 합니다'
+        inclusion: 목록에 포함되어 있지 않습니다
+        invalid: 잘못되었습니다
+        less_than: '%{count}보다 작아야 합니다'
+        less_than_or_equal_to: '%{count}보다 작거나 같아야 합니다'
+        not_a_number: 숫자가 아닙니다
+        not_an_integer: 정수여야 합니다
+        odd: 홀수여야 합니다
+      template:
+        body: '다음 필드에 문제가 있었습니다:'
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              has_query_parameter: 쿼리 변수를 포함할 수 없습니다.
+              invalid_uri: 유효한 URI이어야 합니다.
+              relative_uri: 절대 URI이어야 합니다.
+        observation_field_value:
+          attributes:
+            value:
+              date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
+                \n당신이 관찰한 \"%{observation_field_name}\")"
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: 문자로 시작해야 하고 공백을 포함할 수 없으며 문자, 숫자, 대시, 밑줄 문자만
+                사용해야 합니다
+            email:
+              must_look_like_an_email_address: 이메일 주소 같아 보여야 합니다
+  doorkeeper:
+    errors:
+      messages:
+        invalid_request: 요청에 필요한 변수가 없거나 미지원 변수값이 있거나 잘못 구성되어 있습니다.
+        invalid_redirect_uri: 포함된 리다이렉트 uri는 유효하지 않습니다.
+        access_denied: 리소스 소유자 또는 인가 서버가 요청을 거부했습니다.
+        unsupported_response_type: 인가 서버가 이 응답 유형을 지원하지 않습니다.
+    flash:
+      applications:
+        create:
+          notice: 애플리케이션이 만들어졌습니다.
+        update:
+          notice: 애플리케이션이 업데이트되었습니다.
   i18n:
     inflections:
       :@vow_or_con:

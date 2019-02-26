@@ -187,7 +187,6 @@ bg:
   add_tags: Добавяне на етикети
   add_tags_to_selected_taxa: Добавяне на етикети към избраните таксони
   add_taxa: Добавяне на таксони
-  add_to: Добавяне към
   add_to_a_project: Добавяне към проект
   add_to_calendar: Добавяне в календара
   add_to_favorites: Добавяне към любими
@@ -380,7 +379,6 @@ bg:
   automatically_update_my_content_for_taxon_changes: Автоматично обновявай съдържанието
     ми при промяна на таксон
   back: Назад
-  back_to: Обратно към
   back_to_albums: Обратно към албумите
   back_to_all_species: Обратно към всички видове
   back_to_calendar: Обратно към календара на %{user}
@@ -747,7 +745,6 @@ bg:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Променете настройките си</a>
     за да определите какви обновления искате да получавате или за да се отпишете напълно.
   edited: Редактирано
-  edited_by: Редактирано от
   edited_by_name_html: Редактирано от %{name}
   editing: Редактиране
   editing_observation_id: Редактиране на наблюдение %{obs_id}
@@ -812,7 +809,7 @@ bg:
   faq: Често задавани въпроси
   Family: Семейство
   faved_this_observation: харесва(т) това наблюдение
-  favorite_taxa: любими таксони
+  favorite_taxa: Любими таксони
   favorites: Любими
   featured: препоръчани
   featured_projects_from_everywhere: Препоръчани проекти отвсякъде
@@ -828,7 +825,6 @@ bg:
   file_should_be_in_the_following_format: 'Файлът трябва да е в следния формат: име
     на таксон, описание'
   filter: Филтриране
-  filter_by: Филтрирай според
   filter_by_place: Филтрирай по място
   filter_by_taxon: Филтрирай по таксон
   filter_list_by_this_taxon: Филтрирай списъка по този таксон
@@ -867,7 +863,6 @@ bg:
   flags: Маркери
   flags_explanation: Потребителите на %{site_name} могат да маркират неща когато сметнат
     нещо за нередно. Ето някои от нередностите които все още не са ревизирани от кураторите.
-  flags_for: Маркери за
   flags_on_users_content: Маркери на съдържанието на %{user}
   flickr_account_information: Информация за Вашия акаунт на Flickr
   flickr_description: Flickr е сайт за съхранение на снимки. Може би вече знаете за
@@ -875,7 +870,6 @@ bg:
   flickr_tags: Flickr етикети
   flowering_phenology: Фенология на цъфтене
   follow: Следвай
-  follow_us_on: Следвай ни на
   follow_user: Следвай %{user}
   follower: последовател
   followers: Последователи
@@ -982,8 +976,6 @@ bg:
   import_sounds: Импортирай звуци
   import_tags_from_csv: Импортирай етикети от CSV
   importing: Импортиране...
-  in: във
-  in_: във
   in_n: във %{n}
   inbox: входящи
   inactive_taxon: неактивен таксон
@@ -3163,18 +3155,6 @@ bg:
       template:
         body: 'Възникнаха проблеми със следните полета:'
   activerecord:
-    errors:
-      models:
-        place:
-          attributes:
-            place_geometry:
-              contains_too_many_observations: съдържа прекалено много наблюдения за
-                импортиране
-        project_observation:
-          attributes:
-            observation_id:
-              must_be_observed_after: да е наблюдавано след %{time}
-              must_be_observed_before: да е наблюдавано преди %{time}
     models:
       Atlas: Атлас
     attributes:
@@ -3235,6 +3215,18 @@ bg:
         search_place_id: Място за търсене
         place_id: Място
         preferred_observation_fields_by: Позволявай полета за наблюдения от
+    errors:
+      models:
+        place:
+          attributes:
+            place_geometry:
+              contains_too_many_observations: съдържа прекалено много наблюдения за
+                импортиране
+        project_observation:
+          attributes:
+            observation_id:
+              must_be_observed_after: да е наблюдавано след %{time}
+              must_be_observed_before: да е наблюдавано преди %{time}
   wild: Див
   will_paginate:
     previous_label: '&#8592; Пред.'

@@ -243,6 +243,7 @@ en:
   add_life_stage_larva_annotation: 'Add "Life Stage: Larva" annotation'
   add_life_stage_juvenile_annotation: 'Add "Life Stage: Juvenile" annotation'
   add_life_stage_egg_annotation: 'Add "Life Stage: Egg" annotation'
+  add_relationship: 'Add relationship'
   add_section: Add Section
   add_several_observations_at_once: Add several observations at once.
   add_sex_female_annotation: 'Add "Sex: Female" annotation'
@@ -421,7 +422,7 @@ en:
   allow_any: allow any
   allow_curator_access: Allow curator access
   allow_curator_coordinate_access: Allow curator coordinate access
-  allow_project_curators_to_view_your_private_coordinates: Allow project curators to view your private coordinates
+  allow_project_curators_to_view_your_private_coordinates: Allow project curators to view your hidden coordinates
   allowed_establish_means_values: Allowed establish means values
   allowed_html: Allowed HTML
   allowed_occurrence_status_values: Allowed occurrence status values
@@ -479,7 +480,7 @@ en:
   are_you_sure_remove_curator: "Are you sure you want to remove %{user} as a curator?"
   are_you_sure_remove_from_project: "Are you sure you want to remove %{user} from this project?"
   are_you_sure_remove_photo: "Are you sure you want to remove this photo?"
-  are_you_sure_remove_relationship: Are you sure you want to remove this relationship? This will unfollow this person and revoke access to your private coordinates if you had enabled such access.
+  are_you_sure_remove_relationship: Are you sure you want to remove this relationship? This will unfollow this person and revoke access to your hidden coordinates if you had enabled such access.
   are_you_sure_remove_taxon_from_list: "Are you sure you want to remove this taxon from the list?"
   are_you_sure_remove_taxon_from_place: "Are you sure you want to remove this taxon from %{place}'s checklist?"
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: |
@@ -536,6 +537,9 @@ en:
   attribution: Attribution
   authority_list:
     iucn_red_list: IUCN Red List
+    natureserve: NatureServe
+    cites: CITES
+  authorize: Authorize
   authorize_permissions_from_provider: "Authorize permissions from %{provider}"
   automatic_descriptions_have_been_disabled: Automatic descriptions have been disabled for this taxon.
   automatic_short: Auto
@@ -566,7 +570,7 @@ en:
   back_to_suggestions: Back to Suggestions
   back_to_taxon: "Back to %{defaulttaxon}"
   back_to_taxon_changes: "Back to taxon changes"
-  back_to_this: "Back to %{place}"
+  back_to_taxon_framework_for_x: "Back to taxon framework for %{taxon_name}"
   back_to_viewing: "Back to viewing <i>%{taxon}</i>"
   back_to_x: "Back to %{noun}"
   back_to_x_assessment: "Back to %{project} assessments"
@@ -687,6 +691,7 @@ en:
     merged_into: merged into
     replaced_by: replaced by
     replace_with: replace with
+    replaced_with: replaced with
     dropped: dropped
     staged: staged
     input_taxon_was_split_into_output_taxa_html: "%{input_taxon} was split into %{output_taxa}"
@@ -1065,6 +1070,7 @@ en:
   deleted_vote: Deleted vote
   deleting: Deleting...
   deleting_verb: Deleting
+  deny: Deny
   desc: Desc
   descendant_taxa:  descendant taxa
   descending: Descending
@@ -1129,6 +1135,7 @@ en:
   downstream_coverage: Downstream coverage
   downstream_coverage_rank: Downstream coverage rank
   downstream_deviations: Downstream deviations
+  downstream_deviations_for_taxon: "Downstream deviations for %{taxon}"
   downstream_flagged_covered_taxa: Downstream flagged covered taxa
   drag_and_drop_photos: drag and drop photos onto this window or
   draft: draft
@@ -1272,9 +1279,11 @@ en:
   explore_everyones_observations: Explore Everyone's Observations
   export: Export
   export_observations: Export Observations
-  export_with_private_coordinates: Export with Private Coordinates
+  export_with_private_coordinates: Export with Hidden Coordinates
   exporting: "Exporting..."
   external_links: External Links
+  external_taxon_including_children: External taxon (including children)
+  external_taxon_rank: External taxon rank
   extinct: EXTINCT
   extinct: extinct
   extinct_in_the_wild: Extinct in the Wild
@@ -1371,7 +1380,7 @@ en:
   flag_marked_as_resolved_html: '<span class="meta">Flag marked as</span> <strong>resolved.</strong>'
   flag_reason: "&ldquo;I'm flagging this %{record} because"
   flag_saved: Flag Saved
-  flag_saved_thanks: Flag saved. Thanks!
+  flag_saved_thanks_html: Flag saved. Thanks! <a href="%{url}" class="readmore">View flag</a>
   flag_this_observation: Flag This Observation
   flag_this_photo: Flag This Photo
   flagged: flagged
@@ -1421,6 +1430,10 @@ en:
   for_more_information: for more information.
   formatting: Formatting
   forgot_your_password: Forgot your password?
+  forum_categories:
+    bug_reports: Bug Reports
+    feature_requests: Feature Requests
+    news_and_updates: News & Updates
   frequency: Frequency
   fri: Fri
   from: From
@@ -1679,6 +1692,8 @@ en:
   interactions: Interactions
   internal_server_error: Internal Server Error
   internal_taxon: Internal taxon
+  internal_taxon_including_descendants: Internal taxon (including descendants)
+  internal_taxon_rank: Internal taxon rank
   introduced: Introduced
   introduced_in_place: "Introduced in %{place}"
   invasive: Invasive
@@ -1724,6 +1739,7 @@ en:
     <a href="mailto:%{help_email}" class="contact">contact us</a>.
     <a href="%{manage_flags_path}">Manage flags</a>
   its_important_that_you:  It's important that you click
+  iucn_red_list: IUCN Red List
   iucn_red_list_status: IUCN Red List status
   january: January
   join: Join
@@ -1745,7 +1761,7 @@ en:
   journal_posts: Journal Posts
   jpg_png_or_gif: "JPG, PNG, or GIF"
   jump_to_letter: Jump to letter
-  just_a_reminder: Just a reminder, since you may have given project curators permissions to view the private coordinates of your observations in this project.
+  just_a_reminder: Just a reminder, since you may have given project curators permissions to view the hidden coordinates of your observations in this project.
   just_added!: Just added!
   keep_editing: Keep editing
   kelp_diatoms_and_allies: "kelp, diatoms, and allies"
@@ -2334,7 +2350,9 @@ en:
   no_taxa: No taxa
   no_taxa_listed: No taxa listed
   no_taxa_selected: No taxa selected!
+  no_taxa_with_unknown_relationships: No taxa with unknown relationships
   no_taxa_yet: No taxa yet!
+  no_taxon_framework_relationships: no taxon framework relationships
   no_taxonomic_changes_match_those_criteria: No taxonomic changes match those criteria
   no_wikipedia_page_for_taxon: No Wikipedia page for this taxon.
   no_x_this_y: "No %{x} this %{y}"
@@ -3137,7 +3155,7 @@ en:
   privacy_policy: Privacy Policy
   private: private
   private_: Private
-  private_description: "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. Observations with private coordinates will still be used to verify place check lists."
+  private_description: "Coordinates completely hidden from public maps, true coordinates only visible to you and the curators of projects to which you add the observation. Observations with hidden coordinates will still be used to verify place check lists."
   probably_spam: Probably Spam
   proceed: Proceed
   processing: Processing
@@ -3323,6 +3341,7 @@ en:
   related_species: Related Species
   relative_observations: Relative Observations
   relationship: "Relationship"
+  relationship_unknown_count: Relationship unknown count
   relationship_x: "Relationship: %{relationship}"
   relationships:
       match: match
@@ -3333,7 +3352,8 @@ en:
       one_to_many: one-to-many
       not_external: not external
       not_internal: not internal
-      unknown: unknown
+      error: error
+  relationship_html: "Relationship: %{link}"
   reload_and_refresh: Reload and refresh list
   reload_from_observations: Reload from observations
   reload_timed_out: 'Reload timed out.  Please try again later.'
@@ -3742,13 +3762,13 @@ en:
   stop_editing: Stop Editing
   stop_following_user: "Stop following %{user}"
   stop_testing: Stop Testing
-  stop_trusting_this_person_with_your_private_coordinates: Stop trusting this person with your private coordinates
+  stop_trusting_this_person_with_your_private_coordinates: Stop trusting this person with your hidden coordinates
   stop_updating_position: Stop updating position
   studies_that_used_inaturalist_data_in_year: Studies That Used iNaturalist Data in %{year}
   stuff_just_added: "Stuff you've just added..."
   subject_resolved_noun_html: "%{subject} resolved %{noun}"
   subject_affecting_stuff_html: "%{subject} affecting %{stuff}"
-  subject_committed_thing_affecting_stuff_html: "%{subject} committed %{thing} affecting %{stuff}"
+  subject_committed_thing_affecting_stuff_html: "%{subject} committed @vow_or_con{vow:an|a} %{thing} affecting %{stuff}"
   submission_model: Submission Model
   submission_model_description: Who can add observations to your project?
   submit: Submit
@@ -3805,6 +3825,7 @@ en:
   take_me_flickr!: Yes, take me to Flickr!
   take_me_back: Take me back
   taxa: Taxa
+  taxa_with_unknown_relationships: Taxa with unknown relationships
   taxa_info: Taxa Info
   taxa_all_species_html: "All Species"
   taxa_info: Taxa Info
@@ -3890,9 +3911,11 @@ en:
   taxon_colors: Taxon Colors
   taxon_curators: Taxon Curators
   taxon_extras: Taxon Extras
+  taxon_framework: Taxon Framework
   taxon_framework_notes: Taxon Framework notes
-  taxon_framework_relationship_for: Taxon framework relationship for
   taxon_framework_relationship: Taxon Framework Relationship
+  taxon_framework_relationship_for: Taxon framework relationship for
+  taxon_framework_relationship_number: "Taxon Framework Relationship %{number}"
   taxon_framework_relationships: Taxon Framework Relationships
   taxon_framework_taxon: Taxon framework taxon
   taxon_links: Taxon Links
@@ -4150,6 +4173,8 @@ en:
   to_the_bat_cave: To the Bat Cave!
   today: Today
   too_many_observations_csv: "You have a beehive of observations!<br /> We can only take your first %{max_rows} observations in every CSV"
+  too_many_taxa_to_render: |
+    This query returns too many taxa to render at one time. Try adding more filters
   tools: Tools
   top_5_identifiers: Top 5 identifiers
   top_contributors: Top contributors
@@ -4172,8 +4197,8 @@ en:
   trends: Trends
   trusted: Trusted
   trusted_project?: Trusted project?
-  trust_this_person_with_your_private_coordinates: Trust this person with your private coordinates
-  trust_with_private_coordinates: Trust with private coordinates
+  trust_this_person_with_your_private_coordinates: Trust this person with your hidden coordinates
+  trust_with_private_coordinates: Trust with hidden coordinates
   try_adding_species_form: Try adding some species using the form on this page.
   try_it_out: Try it out
   try_wikipedia: Try Wikipedia?
@@ -4319,13 +4344,15 @@ en:
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   user_muted: User muted
   user_observations: User observations
+  user_observed_on_on_date_in_place: |
+    %{user} observed one on %{date} in %{place}
   user_s_id: "%{user}'s %{id}"
   user_s_lists: "%{user}'s Lists"
   user_suggested_an_id: "%{user} suggested an ID"
   user_thinks_yours_is: "%{user} %{noun} your observation %{observation} is"
-  user_trusts_you_with_their_private_coordinates: "%{user} trusts you with their private coordinates"
+  user_trusts_you_with_their_private_coordinates: "%{user} trusts you with their hidden coordinates"
   user_trusts_you_with_their_private_coordinates_desc: |
-    The observer has chosen to trust you with the private coordinates of all
+    The observer has chosen to trust you with the hidden coordinates of all
     their observations.
   username: Username
   username_or_email: Username or email
@@ -4411,10 +4438,12 @@ en:
   view_stats: View stats
   view_taxon_change: View taxon change
   view_taxon_changes: View taxon changes
+  view_taxon_framework_relationship: View taxon framework relationship
   view_taxon_page: View taxon page
   view_taxon_page_for: View taxon page for this
   view_taxon_page_for_this_x: "View taxon page for this %{x}"
   view_taxonomic_changes: View taxonomic changes
+  view_taxononomy_details_for_taxon: "View taxononomy details for %{taxon}"
   view_terms: View terms
   view_the: "View the %{action}&#59; %{link}"
   view_the_observation: View the observation
@@ -4510,7 +4539,7 @@ en:
   who_can_see_the_coordinates: Who Can See the Coordinates
   who_can_see_the_coordinates_observer: The person who made the observation
   who_can_see_the_coordinates_projects: Curators of the following projects
-  who_can_see_the_coordinates_trusted: Individuals who the observer has trusted with their private coordinates
+  who_can_see_the_coordinates_trusted: Individuals who the observer has trusted with their hidden coordinates
   who_helped_user_the_most: "Who Helped %{user} the Most"
   who_user_helped_the_most: "Who %{user} Helped the Most"
   why_the_coordinates_are_obscured: Why the Coordinates Are Obscured
@@ -5195,6 +5224,12 @@ en:
         project_list_desc: |
           Taxa manually added by project curators and taxa represented by
           research-grade observations added to the project are listed on project lists.
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: Authorize %{application} to use your account?
+          this_application_will_be_able_to_colon: "This application will be able to:"
+          more_about_application: More about %{application}
     observations:
       community_id:
         agreement: Agreement
@@ -5281,6 +5316,7 @@ en:
         private_latitude: "Private latitude, set if observation private or obscured"
         private_longitude: "Private longitude, set if observation private or obscured" 
         geoprivacy: "Whether or not the observer has chosen to obscure or hide the coordinates"
+        taxon_geoprivacy: "Most conservative geoprivacy applied due to the conservation statuses of taxa in current identification."
         coordinates_obscured: "Whether or not the coordinates have been obscured, either because of geoprivacy or because of a threatened taxon"
         out_of_range: Whether or not this observation lies outside the taxon's known range
         user_id: Unique identifier for the observer
@@ -5317,12 +5353,34 @@ en:
         geoprivacy_must_be_in_english: |
           The geoprivacy column must be in English and must be blank or have a
           value of "obscured" or "private"
+        google_photos_notice_html: |
+          In February 2019, Google changed their API, making it impossible for
+          us to access GPS coordinates, license information, and almost any
+          information we could use to add an identification (like tags). They
+          also removed text search and numerical pagination. On top of that,
+          they required all connected accounts to have an additional permission,
+          and before a third party can request that permission from users, the
+          third party has to be verified. We are awaiting verification, but
+          until that happens, you will not be able to import photos from Google.
+          If we get approved, you will be able to import photos, but they won't
+          include any location information or license information that you might
+          be able to see on Google Photos. You can read more about this at <a
+          href="https://developers.google.com/picasa-
+          web">https://developers.google.com/picasa-web</a>. Downloading the
+          original files and adding them using the <a
+          href="/observations/upload">Uploader</a> is the best workaround.
         project_csv_template_notice_html: |
           There is a template file for this project that may help you with the structure of the CSV file. 
           <a href="%{url}">Download template</a>
+        soundcloud_notice_html: |
+          In 2018 Soundcloud changed their API and made it impossible for us to
+          make new connections to your Soundcloud account. If they reinstate
+          this functionality, we can resume linking accounts to Soundcloud. In
+          the meantime, you can upload sound files directly using the
+          <a href="/observations/upload">Uploader</a>.
       show:
         allow_curator_coordinate_access_desc_html: |
-          Allow project curators to view the private coordinates for this observation.
+          Allow project curators to view the hidden coordinates for this observation.
         ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon"
         community_taxon_desc_html: |
           <p class="ui">
@@ -5525,6 +5583,10 @@ en:
         we_included_links: |
           We've included links to the affected photos below.
     photos:
+      forbidden_notice_html: |
+        We don't have permission to access those photos right now. You might
+        need to disconnect and reconnect the account in your
+        <a href="/users/edit">settings</a> to grant us additional permissions.
       inviter:
         automatically_add_to_project: Automatically add to project
         automatically_id_the_new_obs_as: Automatically ID the new obs as
@@ -5573,15 +5635,15 @@ en:
       tracks_multiple_projects: tracks multiple projects
       projects_included: Projects Included
       collection_and_umbrellas_do_not_support: |
-        Collection and umbrella projects do not currently support access to private coordinates.
+        Collection and umbrella projects do not currently support access to hidden coordinates.
       curator_coordinate_access_desc_html: |
         Remember, <strong>project curators can add any of your observations to
         their project</strong> unless you've opted out in your <a
         href="/users/edit">account settings</a>. Only check this box if you
-        trust the project curators to view your private coordinates of any
+        trust the project curators to view your hidden coordinates of any
         observations of yours that could be added to this project. If you
         choose not to grant them this permission, you can still grant access
-        to private coordinates on a observation-by-observation basis.
+        to hidden coordinates on a observation-by-observation basis.
       confirm_leave:
         what_would_you_like: |
           What would you like to do with your observations in this project?
@@ -5589,7 +5651,7 @@ en:
           Leave your observations in this project
         keep_observations_desc: |
           Your observations will stay in the project and curators will still
-          be able to view their private coordinates.
+          be able to view their hidden coordinates.
         project_requires_curator_coordinate_access_desc: |
           This project does not allow observations with coordinates the
           project curators cannot see. If you don't want to share the
@@ -5603,9 +5665,9 @@ en:
           <a href="/users/edit">account settings</a>.
         revoke_observations_label: |
           Leave your observations in this project but prevent curators from viewing
-          their private coordinates
+          their hidden coordinates
         revoke_observations_desc: |
-          If the only reason you're leaving is to stop project curators from viewing your private coordinates.
+          If the only reason you're leaving is to stop project curators from viewing your hidden coordinates.
       edit:
         aggregation_pending: Aggregation pending
         new_place_desc_html: |
@@ -5811,7 +5873,7 @@ en:
       curator_coordinate_access_label: |
         Do you want to make your private/obscured observation coordinates visible to the project curators?
       curator_coordinate_access_note: |
-        You can also choose to share the private coordinates of observations
+        You can also choose to share the hidden coordinates of observations
         in this project on a case-by-case basis. These are just the defaults
         for new observations added to the project.
       project_terms_desc_html: |
@@ -6330,7 +6392,7 @@ en:
           <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
         project_settings_desc: |
           Remember, this does not give projects permission to access your
-          private coordinates or send you updates. You must join projects in
+          hidden coordinates or send you updates. You must join projects in
           order to grant these permissions, or grant them on a case-by-case
           basis.
         taxon_change_desc: |
@@ -6488,6 +6550,7 @@ en:
       default: '%Y-%m-%d'
       long: '%B %d, %Y'
       short: '%b %d'
+      compact: "%b %e"
       short_with_year: '%b %d, %Y'
       month_year: '%B %Y'
       month_day_year: '%B %d, %Y'
@@ -6662,6 +6725,7 @@ en:
       default: '%b. %d, %Y %H:%M:%S %z'
       long: '%B %d, %Y %I:%M %p'
       short: '%d %b %H:%M'
+      compact: "%I:%M %p"
       observed_at: '%I:%M %p %Z'
       rfc: "%d %B %Y"
       day_month_year: "%B %d, %Y"
@@ -6672,8 +6736,6 @@ en:
     errors:
       <<: *errors
   activerecord:
-    errors:
-      <<: *errors
     models:
       AssessmentSection: Assessment Section
       Atlas: Atlas
@@ -6771,7 +6833,15 @@ en:
         place_id: Place
         preferred_observation_fields_by: Allow observation fields from
     errors:
+      <<: *errors
       models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: "cannot contain a fragment."
+              has_query_parameter: "cannot contain a query parameter."
+              invalid_uri: "must be a valid URI."
+              relative_uri: "must be an absolute URI."
         guide:
           attributes:
             published_at:
@@ -6857,6 +6927,51 @@ en:
                 letters, numbers, dashes, and underscores
             email:
               must_look_like_an_email_address: must look like an email address
+  doorkeeper:
+    scopes:
+      write: |
+        Create, update, and delete your observations, identifications, and other
+        content on your behalf, and access your hidden coordinates and any
+        other information you can access on the site.
+      login: |
+        Access information relevant to sign in, like email address, username,
+        name, and user icon.
+    errors:
+      messages:
+        # Common error messages
+        invalid_request: 'The request is missing a required parameter, includes an unsupported parameter value, or is otherwise malformed.'
+        invalid_redirect_uri: 'The redirect uri included is not valid.'
+        unauthorized_client: 'The client is not authorized to perform this request using this method.'
+        access_denied: 'The resource owner or authorization server denied the request.'
+        invalid_scope: 'The requested scope is invalid, unknown, or malformed.'
+        server_error: 'The authorization server encountered an unexpected condition which prevented it from fulfilling the request.'
+        temporarily_unavailable: 'The authorization server is currently unable to handle the request due to a temporary overloading or maintenance of the server.'
+
+        # Configuration error messages
+        credential_flow_not_configured: 'Resource Owner Password Credentials flow failed due to Doorkeeper.configure.resource_owner_from_credentials being unconfigured.'
+        resource_owner_authenticator_not_configured: 'Resource Owner find failed due to Doorkeeper.configure.resource_owner_authenticator being unconfiged.'
+
+        # Access grant errors
+        unsupported_response_type: 'The authorization server does not support this response type.'
+
+        # Access token errors
+        invalid_client: 'Client authentication failed due to unknown client, no client authentication included, or unsupported authentication method.'
+        invalid_grant: 'The provided authorization grant is invalid, expired, revoked, does not match the redirection URI used in the authorization request, or was issued to another client.'
+        unsupported_grant_type: 'The authorization grant type is not supported by the authorization server.'
+
+        # Password Access token errors
+        invalid_resource_owner: 'The provided resource owner credentials are not valid, or resource owner cannot be found'
+    flash:
+      applications:
+        create:
+          notice: 'Application created.'
+        destroy:
+          notice: 'Application deleted.'
+        update:
+          notice: 'Application updated.'
+      authorized_applications:
+        destroy:
+          notice: 'Application revoked.'
   i18n:
     inflections:
       :@vow_or_con:

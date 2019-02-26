@@ -53,7 +53,7 @@
                   %i.fa.fa-trash
                   = t(:delete)
   .row
-    .col-xs-7
+    .col-xs-8
       = render "comments/comments", parent: @flag
       - unless is_me?( @flag.user )
         .upstacked

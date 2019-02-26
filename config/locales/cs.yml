@@ -118,8 +118,6 @@ cs:
     other: <span class="count">%{count}</span> přidány změny taxonu
   _100_day_trends: 100 denní trend
   _percent_ID_d: identifikováno
-  a: jeden
-  a_: jeden
   a_community_for_naturalist: Komunita naturalistů
   a_default_taxon_name_will_automatically_created: Z vědeckého názvu tohoto taxonu
     bude automaticky vytvořen standardní taxonomický název. Jakmile tento nový taxon
@@ -281,7 +279,6 @@ cs:
   add_taxon_range: Přidat rozsah taxonů
   add_taxonomic_tags_to: Přidat taxonomické tagy do vybraných fotografií z Flickeru
     &raquo;
-  add_to: Přidat do
   add_to_a_scheme: Přidat do schématu
   add_to_a_project: Přidat do projektu
   add_to_calendar: Přidat do kalendáře
@@ -594,7 +591,6 @@ cs:
   automatically_update_my_content_for_taxon_changes: Automaticky aktualizovat můj
     obsah při změnách taxonů
   back: Zpět
-  back_to: Zpět k
   back_to_albums: Zpět do alba
   back_to_all_species: Zpět na Všechny Druhy
   back_to_browsing_people: Zpět k procházení lidí
@@ -1266,7 +1262,6 @@ cs:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Editovat vaše nastavení</a>
     změnou druhu aktualizací, které dostáváte, nebo se úplně odhlásit.
   edited: Editováno
-  edited_by: Upraveno
   edited_by_name_html: Upraveno uživatelem %{name}
   editing: Upravuje se
   editing_announcement: Editování oznámení
@@ -1351,7 +1346,7 @@ cs:
   examples_of_ranking_organizations: Příklady klasifikujících organizací
   expand_days: rozšířit dny
   expand_updates: rozšířit aktualizace
-  explore!: Zkoumejte!
+  explore!: Objevujte!
   explore: Prozkoumat
   explore_everyones_observations: Prohlédněte si pozorování všech
   export: Exportovat
@@ -1415,7 +1410,6 @@ cs:
   filling_out_checklist_for_place: vyplnění seznamů pro místa, která dobře znáte
   filling_out_your_profile: vyplnění vašeho profilu
   filter: Filtrovat
-  filter_by: Filtrovat podle
   filter_by_curator_identification: Filtrovat podle identifikace kurátora
   filter_by_place: Filtrovat podle polohy
   filter_by_taxon: Filtrovat podle taxonu
@@ -1471,7 +1465,6 @@ cs:
   flags: Vlajky
   flags_explanation: Uživatelé %{site_name} označují věci v případě, že narazí na
     nějakou nesrovnalost. Toto jsou některé z problémů, které zatím kurátoři nevyřešili.
-  flags_for: Vlajky pro
   flags_on_users_content: Vlajky v obsahu uživatele %{user}
   flickr_account_information: Informace z vašeho účtu na Flickru
   flickr_description: Flickr je služba online úložiště fotografií, možná ho znáte!
@@ -1491,8 +1484,6 @@ cs:
   fluid_layout: Proměnlivé rozložení
   fluid: proměnlivý
   follow: Sledovat
-  follow_us: Sledujte nás na
-  follow_us_on: Sledujte nás na
   follow_user: Sledovat %{user}
   followed_projects: Sledované projekty
   follower: sledující
@@ -1509,10 +1500,8 @@ cs:
   fri: Pá
   from: Od
   from_a_place: Z místa
-  from_anywhere_change: Odkudkoliv (<span class="button">změnit</span>)
   from_eol_collection: Ze souboru EOL
   from_flickr_facebook_etc: Z Flickru, Facebooku, apod.
-  from_in_this_place: z tohoto místa
   from_list: Ze seznamu
   from_this: z tohoto
   from_photos: Z fotek
@@ -1736,8 +1725,6 @@ cs:
   import_tags_from_csv: Importovat tagy z CSV
   importing: Importuje se...
   improving: Zlepšování
-  in: v
-  in_: v
   in_n: v %{n}
   inaturalist_network_affiliation: Přidružení k síti iNaturalist
   inbox: doručená pošta
@@ -1804,8 +1791,6 @@ cs:
   invited_x: Pozván/a %{x}
   inviting: Příprava pozvání...
   iphone: iPhone
-  is_a: je
-  is_an: je
   is_an_evaluation: 'je hodnocení přesnosti pozorování. Pozorování výzkumného stupně
     mohou vědci používat při výzkumu. Hlasujte níže:'
   is_not_following_anyone: nikoho nesleduje.
@@ -3915,9 +3900,9 @@ cs:
   this_is_a_more_convenient_way_to_find_a_taxon_id: Toto je snazší způsob, jak najít
     ID taxonu. Právě ID taxonu se ukládá. Toto hledání funguje pouze pro aktivní taxony.
   this_is_taking_forever: Trvá to moc dlouho. Zkuste to prosím znovu později.
+  this_is_the_primary_listing: Toto je primární zápis
   this_job_failed_to_run: Tento úkol se nezdařil. Kontaktujte prosím %{email}
   this_list_is_empty!: Tento seznam je prázdný!
-  this_is_the_primary_listing: Toto je primární zápis
   this_list_only_accepts_taxa_that_are: Tento seznam přijímá pouze údaje, které jsou
   this_observation: Toto pozorování
   this_observation_has_been_incorporated_into_the_following_external_websites: Toto
@@ -3992,7 +3977,6 @@ cs:
   to_add_comments: přidat komentáře
   to_add_identifications: přidat identifikace
   to_add_ids: přidat ID
-  to_an: k
   to_configure_your_widget: ke konfiguraci vašeho widgetu.
   to_include_your_google_with_inat: k přidání vašeho účtu Google na %{site_name}
   to_recipient: k provedení
@@ -5961,76 +5945,6 @@ cs:
           other: Při ukládání objektu %{model} došlo k %{count} chybám a nebylo možné
             jej uložit
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: jsou potřebné alespoň 3 taxony ve vašem průvodci
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: průvodce může mít jen 500 taxonů
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: Import nebo čekání na import API klíče
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: pro DNA může obsahovat pouze znaky A, T, C nebo G
-              date_format: "musí být ve formátu RRRR-MM-DD pro pole datum (\"%{observation_field_name}\"
-                \nve vašem pozorování \"%{observation_species_guess}\")"
-              time_format: "musí být ve formátu hh:mm pro pole času (\"%{observation_field_name}\"
-                \nve vašem pozorování \"%{observation_species_guess}\")"
-            observation_id:
-              user_does_not_accept_fields_from_others: uživatel nepřijímá pole od
-                ostatních
-              user_only_accepts_fields_from_site_curators: uživatel přijímá pole pouze
-                od kurátorů stránky
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: je příliš velký k nahrání
-              contains_too_many_observations: obsahuje příliš mnoho pozorování k importu
-        post:
-          attributes:
-            user:
-              must_be_on_site_long_enough: pro zveřejnění je nutná registrace před
-                více než 24 hodinami. Objevuje se nám tady hodně spamů a tohle je
-                způsob, jak se proti nim bránit. Můžete si uložit koncept, a když
-                budete na stránce i příští den, budete ho moci zveřejnit.
-        project_observation:
-          attributes:
-            user_id:
-              must_be_curator: musí být kurátor tohoto projektu
-            observation_id:
-              must_be_observed_after: musí být pozorován po %{time}
-              must_be_observed_before: musí být pozorován před %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
-                kurátorem tohoto taxonu
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
-                kurátorem tohoto taxonu
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
-                kurátorem tohoto taxonu
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
-                kurátorem tohoto taxonu
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
-                kurátorem tohoto taxonu
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
-                kurátorem tohoto taxonu
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: neměl by obsahovat čárky ani lomítka
     attributes:
       assessment:
         description: Popis
@@ -6118,6 +6032,76 @@ cs:
         search_place_id: Prohledat místo
         place_id: Místo
         preferred_observation_fields_by: Povolit pole pozorování z
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: jsou potřebné alespoň 3 taxony ve vašem průvodci
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: průvodce může mít jen 500 taxonů
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: Import nebo čekání na import API klíče
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: pro DNA může obsahovat pouze znaky A, T, C nebo G
+              date_format: "musí být ve formátu RRRR-MM-DD pro pole datum (\"%{observation_field_name}\"
+                \nve vašem pozorování \"%{observation_species_guess}\")"
+              time_format: "musí být ve formátu hh:mm pro pole času (\"%{observation_field_name}\"
+                \nve vašem pozorování \"%{observation_species_guess}\")"
+            observation_id:
+              user_does_not_accept_fields_from_others: uživatel nepřijímá pole od
+                ostatních
+              user_only_accepts_fields_from_site_curators: uživatel přijímá pole pouze
+                od kurátorů stránky
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: je příliš velký k nahrání
+              contains_too_many_observations: obsahuje příliš mnoho pozorování k importu
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: pro zveřejnění je nutná registrace před
+                více než 24 hodinami. Objevuje se nám tady hodně spamů a tohle je
+                způsob, jak se proti nim bránit. Můžete si uložit koncept, a když
+                budete na stránce i příští den, budete ho moci zveřejnit.
+        project_observation:
+          attributes:
+            user_id:
+              must_be_curator: musí být kurátor tohoto projektu
+            observation_id:
+              must_be_observed_after: musí být pozorován po %{time}
+              must_be_observed_before: musí být pozorován před %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
+                kurátorem tohoto taxonu
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
+                kurátorem tohoto taxonu
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
+                kurátorem tohoto taxonu
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
+                kurátorem tohoto taxonu
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
+                kurátorem tohoto taxonu
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
+                kurátorem tohoto taxonu
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: neměl by obsahovat čárky ani lomítka
   wild: divoký
   will_paginate:
     previous_label: '&#8592; Předch'

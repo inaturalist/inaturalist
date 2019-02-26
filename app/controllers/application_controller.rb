@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   include Ambidextrous
+  include Shared::FiltersModule
 
   # many people try random URLs like wordpress login pages with format .php
   # for any format we do not recognize, make sure we render a proper 404
@@ -60,14 +61,6 @@ class ApplicationController < ActionController::Base
     session[:return_to] = request.fullpath
   end
 
-  def set_site
-    if params[:inat_site_id]
-      @site ||= Site.find( params[:inat_site_id] )
-    end
-    @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
-    @site ||= Site.default
-  end
-
   def draft_site_requires_login
     return unless @site && @site.draft?
     return if [ login_path, user_session_path, session_path ].include?( request.path )
@@ -97,49 +90,6 @@ class ApplicationController < ActionController::Base
       trackers << [ @site.name.gsub(/\s+/, '').underscore, @site.google_analytics_tracker_id ]
     end
     request.env[ "inat_ga_trackers" ] = trackers unless trackers.blank?
-  end
-
-  def set_request_locale
-    # use params[:locale] for single-request locale settings,
-    # otherwise use the session, user's preferred, or site default,
-    # or application default locale
-    locale = params[:locale]
-    locale = session[:locale] if locale.blank?
-    locale = current_user.try(:locale) if locale.blank?
-    locale = @site.locale if locale.blank?
-    locale = locale_from_header if locale.blank?
-    locale = I18n.default_locale if locale.blank?
-    I18n.locale = locale
-    unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
-      I18n.locale = I18n.default_locale
-    end
-    true
-  end
-
-  def locale_from_header
-    return if request.env["HTTP_ACCEPT_LANGUAGE"].blank?
-    http_locale = request.env["HTTP_ACCEPT_LANGUAGE"].
-      split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.first
-    return if http_locale.blank?
-    lang, region = http_locale.split( "-" ).map(&:downcase)
-    return lang if region.blank?
-    # These re-mappings will cause problem if these regions ever get
-    # translated, so be warned. Showing zh-TW for people in Hong Kong is
-    # *probably* fine, but Brazilian Portuguese for people in Portugal might
-    # be a bigger problem.
-    if lang == "es" && region == "xl"
-      region = "mx"
-    elsif lang == "zh" && region == "hk"
-      region = "tw"
-    elsif lang == "pt" && region == "pt"
-      region = "br"
-    end
-    locale = "#{lang.downcase}-#{region.upcase}"
-    if I18N_SUPPORTED_LOCALES.include?( locale )
-      locale
-    elsif I18N_SUPPORTED_LOCALES.include?( lang )
-      lang
-    end
   end
 
   def check_preferred_place
@@ -746,6 +696,16 @@ class ApplicationController < ActionController::Base
     payload.merge!(Logstasher.payload_from_session( session ))
     if logged_in?
       payload.merge!(Logstasher.payload_from_user( current_user ))
+    end
+  end
+
+  def user_viewed_updates_for( record, options = {} )
+    return unless logged_in?
+    updates = UpdateAction.where( resource: record )
+    if options[:delay]
+      UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
+    else
+      UpdateAction.user_viewed_updates( updates, current_user.id )
     end
   end
 

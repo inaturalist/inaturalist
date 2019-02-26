@@ -61,6 +61,18 @@ class TaxonFrameworksController < ApplicationController
     redirect_to taxonomy_details_for_taxon_path( @taxon_framework.taxon )
   end
   
+  def relationship_unknown
+    filter_params = params[:filters] || params
+    @taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
+    @rank = filter_params[:rank] unless filter_params[:rank].blank?
+    
+    scope = @taxon_framework.get_internal_taxa_covered_by_taxon_framework.where(taxon_framework_relationship_id: nil)
+    scope = scope.where( "taxa.id = ? OR taxa.ancestry LIKE (?) OR taxa.ancestry LIKE (?)", @taxon.id, "%/#{ @taxon.id }", "%/#{ @taxon.id }/%") if @taxon
+    scope = scope.where( "taxa.rank = ?", @rank ) if @rank
+    
+    @relationship_unknown = scope.order("taxa.name ASC").page(params[:page])
+  end
+  
   private
   
   def prepare_rank_levels

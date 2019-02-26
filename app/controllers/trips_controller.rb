@@ -77,6 +77,7 @@ class TripsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
+        user_viewed_updates_for( @trip ) if logged_in?
         @next = @trip.parent.journal_posts.published.where("published_at > ?", @trip.published_at || @trip.updated_at).order("published_at ASC").first
         @prev = @trip.parent.journal_posts.published.where("published_at < ?", @trip.published_at || @trip.updated_at).order("published_at DESC").first
         @shareable_image_url = @trip.body[/img.+?src="(.+?)"/, 1] if @trip.body

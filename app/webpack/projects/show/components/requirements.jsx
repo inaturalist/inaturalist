@@ -86,6 +86,13 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
   } else if ( project.rule_observed_on ) {
     dateRules = dateToString( project.rule_observed_on );
   }
+  let establishmentRules = I18n.t( "any" );
+  if ( project.rule_native || project.rule_introduced ) {
+    establishmentRules = _.compact( [
+      project.rule_native && I18n.t( "establishment.native" ),
+      project.rule_introduced && I18n.t( "establishment.introduced" )
+    ] ).join( ", " );
+  }
   let annotationRequirement;
   if ( project.rule_term_id_instance ) {
     annotationRequirement = (
@@ -170,7 +177,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
                 { exceptLocationRules && (
                   <span className="except">
                     <span className="bold">
-                      except
+                      { I18n.t( "except" ) }
                     </span>
                     { exceptLocationRules }
                   </span>
@@ -187,7 +194,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
                 { exceptUserRules && (
                   <span className="except">
                     <span className="bold">
-                      except
+                      { I18n.t( "except" ) }
                     </span>
                     { exceptUserRules }
                   </span>
@@ -214,6 +221,13 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
                 { I18n.t( "date_" ) }
               </td>
               <td className="value">{ dateRules }</td>
+            </tr>
+            <tr>
+              <td className="param">
+                <i className="fa fa-globe" />
+                { I18n.t( "establishment.establishment" ) }
+              </td>
+              <td className="value">{ establishmentRules }</td>
             </tr>
             { annotationRequirement }
           </tbody>

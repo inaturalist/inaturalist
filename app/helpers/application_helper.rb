@@ -48,11 +48,11 @@ module ApplicationHelper
       Date.today
     end
     if date == today
-      time ? time.strftime("%I:%M %p").downcase.sub(/^0/, '')  : 'Today'
+      time ? I18n.l( time, format: :compact ) : t(:today)
     elsif date.year == Date.today.year 
-      date.strftime("%b %e") 
+      I18n.l( date.to_date, format: :compact )
     else 
-      date.strftime("%b %e, %Y") 
+      I18n.l( date, format: :month_day_year )
     end 
   end
   
@@ -356,7 +356,7 @@ module ApplicationHelper
   end
 
   def title_by_user( text )
-    h( text ).gsub( "&amp;", "&" ).html_safe
+    h( text ).gsub( "&amp;", "&" ).gsub( "&#39;", "'" ).html_safe
   end
   
   def markdown(text)
@@ -1124,11 +1124,13 @@ module ApplicationHelper
       if notifier_user
         notifier_class_name = t(resource.class.name.underscore)
         subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)).html_safe
-        object = "#{notifier_class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} <strong>#{notifier_class_name}</strong>".html_safe
-        t(:subject_committed_thing_affecting_stuff_html, 
-          :subject => subject, 
-          :thing => object, 
-          :stuff => commas_and(resource.input_taxa.map(&:name)))
+        object = "<strong>#{notifier_class_name}</strong>".html_safe
+        t( :subject_committed_thing_affecting_stuff_html,
+          subject: subject,
+          vow_or_con: notifier_class_name[0].downcase,
+          thing: object,
+          stuff: commas_and( resource.input_taxa.map(&:name) )
+        )
       else
         t(:subject_affecting_stuff_html, 
           :subject => t(resource.class.name.underscore), 

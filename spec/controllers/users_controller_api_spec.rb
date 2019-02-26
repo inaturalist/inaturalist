@@ -271,3 +271,31 @@ describe UsersController, "without authentication" do
   end
 
 end
+
+describe UsersController, "oauth authentication with login scope" do
+  let(:user) { User.make! }
+  let(:token) { Doorkeeper::AccessToken.create!(
+    application: OauthApplication.make!,
+    scopes: "login",
+    resource_owner_id: user.id
+  ) }
+  before do
+    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
+    allow( controller ).to receive(:doorkeeper_token) { token }
+  end
+  describe "edit" do
+    it "should return email" do
+      get :edit, format: :json
+      json = JSON.parse( response.body )
+      expect( json["email"] ).to eq user.email
+    end
+  end
+  describe "update" do
+    it "should not work" do
+      old_name = user.name
+      put :update, format: :json, id: user.id, user: { name: "#{user.name} this is a new name" }
+      user.reload
+      expect( user.name ).to eq old_name
+    end
+  end
+end

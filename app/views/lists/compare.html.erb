@@ -88,7 +88,7 @@
 <% end -%>
 <div id="pageheader" class="column span-24 last">
   <span class="breadcrumbs">
-    <%= link_to t(:back_to_this, :place=> "#{@list.title}"), @list, :class => 'back crumb' %>
+    <%= link_to t(:back_to_this, place: @list.title), @list, :class => 'back crumb' %>
   </span>
   <h2>
     <%=t :comparing %> <%= link_to(@list.title, @list) %> <%=t :with %> 

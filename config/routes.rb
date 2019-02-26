@@ -592,6 +592,8 @@ Rails.application.routes.draw do
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   
   resources :taxon_framework_relationships
+  get 'taxon_frameworks/:id/relationship_unknown' => 'taxon_frameworks#relationship_unknown', :as => :relationship_unknown
+  
   resources :taxon_frameworks, except: [:show, :index]
   
   resources :taxon_splits, :controller => :taxon_changes
@@ -605,7 +607,7 @@ Rails.application.routes.draw do
   end
   resources :computer_vision_demo_uploads do
     member do
-      get :score
+      post :score
     end
   end
 

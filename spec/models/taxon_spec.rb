@@ -4,7 +4,7 @@ describe Taxon do
   before(:each) { enable_elastic_indexing( Observation, Taxon ) }
   after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
-  before(:each) do
+  before(:all) do
     load_test_taxa
     @taxon = @Calypte_anna
   end
@@ -18,7 +18,6 @@ describe Taxon do
       :rank => 'species'
     )
     expect(ungrafted.grafted?).to be(false)
-    
     expect(@Animalia.grafted?).to be(true)
   end
   
@@ -42,23 +41,20 @@ describe Taxon, "creation" do
   before(:each) { enable_elastic_indexing( Observation, Taxon ) }
   after(:each) { disable_elastic_indexing( Observation, Taxon ) }
   
-  before(:each) do
-    load_test_taxa
-    @taxon = Taxon.make!(:name => 'Pseudacris imaginarius', :rank => 'species')
-  end
-  
   it "should set an iconic taxon if this taxon was grafted" do
-    @taxon.parent = @Pseudacris
-    @taxon.save!
-    expect(@taxon.grafted?).to be(true)
-    @taxon.reload
-    expect(@taxon.iconic_taxon).to eql(@Amphibia)
+    load_test_taxa
+    taxon = Taxon.make!( name: "Pseudacris imaginarius", rank: Taxon::SPECIES )
+    taxon.parent = @Pseudacris
+    taxon.save!
+    expect( taxon ).to be_grafted
+    taxon.reload
+    expect( taxon.iconic_taxon ).to eq @Amphibia
   end
   
   it "should create a taxon name with the same name after save" do
-    @taxon.reload
-    expect(@taxon.taxon_names).not_to be_empty
-    expect(@taxon.taxon_names.map(&:name)).to include(@taxon.name)
+    t = Taxon.make!
+    expect( t.taxon_names ).not_to be_empty
+    expect( t.taxon_names.map(&:name) ).to include( t.name )
   end
 
   it "should create a taxon name with the same name after save even if invalid on source_identifier" do
@@ -83,42 +79,39 @@ describe Taxon, "creation" do
   end
   
   it "should set the rank_level based on the rank" do
-    expect(@taxon.rank_level).to eq Taxon::RANK_LEVELS[@taxon.rank]
+    t = Taxon.make!
+    expect( t.rank_level ).to eq Taxon::RANK_LEVELS[t.rank]
   end
   
   it "should remove leading rank from the name" do
-    @taxon.name = "Gen Pseudacris"
-    @taxon.save
-    expect(@taxon.name).to eq 'Pseudacris'
+    t = Taxon.make!( name: "Gen Pseudacris" )
+    expect( t.name ).to eq "Pseudacris"
   end
   
   it "should remove internal 'var' from name" do
-    @taxon.name = "Quercus agrifolia var. agrifolia"
-    @taxon.save
-    expect(@taxon.name).to eq 'Quercus agrifolia agrifolia'
+    t = Taxon.make!( name: "Quercus agrifolia var. agrifolia" )
+    expect( t.name ).to eq "Quercus agrifolia agrifolia"
   end
   
   it "should remove internal 'ssp' from name" do
-    @taxon.name = "Quercus agrifolia ssp. agrifolia"
-    @taxon.save
-    expect(@taxon.name).to eq 'Quercus agrifolia agrifolia'
+    t = Taxon.make!( name: "Quercus agrifolia ssp. agrifolia" )
+    expect( t.name ).to eq "Quercus agrifolia agrifolia"
   end
   
   it "should remove internal 'subsp' from name" do
-    @taxon.name = "Quercus agrifolia subsp. agrifolia"
-    @taxon.save
-    expect(@taxon.name).to eq 'Quercus agrifolia agrifolia'
+    t = Taxon.make!( name: "Quercus agrifolia subsp. agrifolia" )
+    expect( t.name ).to eq "Quercus agrifolia agrifolia"
   end
 
   it "should allow fo as a specific epithet" do
     name = "Mahafalytenus fo"
-    @taxon.name = name
-    @taxon.save
-    expect( @taxon.name ).to eq name
+    t = Taxon.make!( name: name )
+    expect( t.name ).to eq name
   end
 
   it "should create TaxonAncestors" do
-    t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
+    parent = Taxon.make!( rank: Taxon::GENUS )
+    t = Taxon.make!( rank: Taxon::SPECIES, parent: parent )
     t.reload
     expect( t.taxon_ancestors ).not_to be_blank
   end
@@ -190,9 +183,6 @@ end
 describe Taxon, "updating" do
   before(:each) { enable_elastic_indexing( Observation, Taxon ) }
   after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-  before(:each) do
-    load_test_taxa
-  end
   
   it "should update the ancestry col of all associated listed_taxa"
   
@@ -286,15 +276,13 @@ end
 describe Taxon, "destruction" do
   before(:each) { enable_elastic_indexing( Observation, Taxon ) }
   after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-  before(:each) do
-    load_test_taxa
-  end
   
   it "should work" do
-    @Calypte_anna.destroy
+    Taxon.make!.destroy
   end
   
   it "should queue a job to destroy descendants if orphaned" do
+    load_test_taxa
     Delayed::Job.delete_all
     stamp = Time.now
     @Apodiformes.destroy
@@ -520,21 +508,26 @@ end
 
 describe Taxon, "tags_to_taxa" do
   
-  before(:each) do
-    load_test_taxa
-  end
-  
   it "should find Animalia and Mollusca" do
-    taxa = Taxon.tags_to_taxa(['Animalia', 'Aves'])
-    expect(taxa).to include(@Animalia)
-    expect(taxa).to include(@Aves)
+    animalia = Taxon.make!( rank: Taxon::PHYLUM, name: "Animalia" )
+    aves = Taxon.make!( rank: Taxon::CLASS, name: "Aves", parent: animalia )
+    taxa = Taxon.tags_to_taxa( ["Animalia", "Aves"] )
+    expect( taxa ).to include( animalia )
+    expect( taxa ).to include( aves )
   end
   
   it "should work on taxonomic machine tags" do
-    taxa = Taxon.tags_to_taxa(['taxonomy:kingdom=Animalia', 'taxonomy:class=Aves', 'taxonomy:binomial=Calypte anna'])
-    expect(taxa).to include(@Animalia)
-    expect(taxa).to include(@Aves)
-    expect(taxa).to include(@Calypte_anna)
+    animalia = Taxon.make!( rank: Taxon::PHYLUM, name: "Animalia" )
+    aves = Taxon.make!( rank: Taxon::CLASS, name: "Aves", parent: animalia )
+    calypte_anna = Taxon.make!( rank: Taxon::SPECIES, name: "Calypte anna" )
+    taxa = Taxon.tags_to_taxa( [
+      "taxonomy:kingdom=Animalia",
+      "taxonomy:class=Aves",
+      "taxonomy:binomial=Calypte anna"
+    ] )
+    expect( taxa ).to include( animalia )
+    expect( taxa ).to include( aves )
+    expect( taxa ).to include( calypte_anna )
   end
 
   it "should not find inactive taxa" do
@@ -546,13 +539,15 @@ describe Taxon, "tags_to_taxa" do
   end
 
   it "should work for sp" do
-    taxa = Taxon.tags_to_taxa(['Calypte sp'])
-    expect(taxa).to include(@Calypte)
+    taxon = Taxon.make!( rank: Taxon::GENUS, name: "Mycena" )
+    taxa = Taxon.tags_to_taxa( ["#{taxon.name} sp"] )
+    expect( taxa ).to include( taxon )
   end
 
   it "should work for sp." do
-    taxa = Taxon.tags_to_taxa(['Calypte sp.'])
-    expect(taxa).to include(@Calypte)
+    taxon = Taxon.make!( rank: Taxon::GENUS, name: "Mycena" )
+    taxa = Taxon.tags_to_taxa( ["#{taxon.name} sp."] )
+    expect( taxa ).to include( taxon )
   end
 
   it "should not strip out sp from Spizella" do
@@ -610,7 +605,6 @@ describe Taxon, "merging" do
     )
     puts "keeper wasn't valid: " + @keeper.errors.full_messages.join(', ') unless @keeper.valid?
     @reject = @Calypte_anna
-    # @keeper.move_to_child_of(@reject.parent)
     @keeper.update_attributes(:parent => @reject.parent)
     @has_many_assocs = Taxon.reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k}
     @has_many_assocs.each {|assoc| @reject.send(assoc, :force_reload => true)}
@@ -1171,12 +1165,12 @@ describe Taxon, "geoprivacy" do
     expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to eq Observation::PRIVATE
   end
 
-  it "should be blank if conservation statuses exist but all are open" do
+  it "should be open if conservation statuses exist but all are open" do
     t = Taxon.make!(rank: Taxon::SPECIES)
     p = make_place_with_geom
     cs_place = ConservationStatus.make!(taxon: t, place: p, geoprivacy: Observation::OPEN)
     cs_global = ConservationStatus.make!(taxon: t, geoprivacy: Observation::OPEN)
-    expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to be_blank
+    expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to eq Observation::OPEN
   end
 end
 
@@ -1198,8 +1192,8 @@ describe Taxon, "max_geoprivacy" do
     expect( t1.ancestor_ids ).to include parent.id
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
   end
-  it "should be nil if one none of the taxa have global status" do
-    expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq nil
+  it "should be nil if none of the taxa have global status" do
+    expect( Taxon.max_geoprivacy( taxon_ids ) ).to be_nil
   end
 end
 
@@ -1501,6 +1495,38 @@ describe "complete_species_count" do
   end
 end
 
+describe "current_synonymous_taxa" do
+  let(:curator) { make_curator }
+  it "should be the outputs of a split if the split's input was swapped" do
+    swap = make_taxon_swap( committer: curator )
+    swap.commit
+    Delayed::Worker.new.work_off
+    split = make_taxon_split( input_taxon: swap.output_taxon, committer: curator )
+    split.commit
+    Delayed::Worker.new.work_off
+    expect( swap.input_taxon.current_synonymous_taxa.map(&:id).sort ).to eq split.output_taxa.map(&:id).sort
+  end
+  it "should follow splits past subsequent changes" do
+    split1 = make_taxon_split( committer: curator )
+    split1.commit
+    Delayed::Worker.new.work_off
+    swap = make_taxon_swap( committer: curator, input_taxon: split1.output_taxa[0] )
+    swap.commit
+    Delayed::Worker.new.work_off
+    split2 = make_taxon_split( committer: curator, input_taxon: split1.output_taxa[1] )
+    split2.commit
+    Delayed::Worker.new.work_off
+    split3 = make_taxon_split( committer: curator, input_taxon: split2.output_taxa[0] )
+    split3.commit
+    Delayed::Worker.new.work_off
+    expect( split1.input_taxon.current_synonymous_taxa.map(&:id).sort ).to eq [
+      swap.output_taxon.id,
+      split2.output_taxa[1].id,
+      split3.output_taxa.map(&:id)
+    ].flatten.sort
+  end
+end
+
 describe "current_synonymous_taxon" do
   let(:curator) { make_curator }
   it "should be the output of a first-order swap" do
@@ -1600,19 +1626,26 @@ end
 describe "taxon_framework_relationship" do
   describe "when taxon has a taxon framework relationship" do
     it "should update taxon framework relationship relationship when taxon name changes" do
+      genus = Taxon.make!( name: "Taricha", rank: Taxon::GENUS )
+      species = Taxon.make!( name: "Taricha torosa", rank: Taxon::SPECIES, parent: genus )
+      tf = TaxonFramework.make!( taxon: genus )
       tfr = TaxonFrameworkRelationship.make!
-      p = Taxon.make!(name: "Taricha", rank: "genus")
-      t = Taxon.make!(name: "Taricha torosa", rank: "species", taxon_framework_relationship_id: tfr.id)
-      t.parent = p
-      t.save
-      t.reload
-      et = ExternalTaxon.new(name: "Taricha torosa", rank: "species", parent_name: "Taricha", parent_rank: "genus", taxon_framework_relationship_id: tfr.id)
+      species.save
+      species.update_attributes( taxon_framework_relationship_id: tfr.id )
+      species.reload
+      et = ExternalTaxon.new(
+        name: species.name,
+        rank: "species",
+        parent_name: species.parent.name,
+        parent_rank: species.parent.rank,
+        taxon_framework_relationship_id: tfr.id
+      )
       et.save
       tfr.reload
       expect(tfr.relationship).to eq "match"
-      t.update_attributes( name: "Taricha granulosa" )
+      species.update_attributes( name: "Taricha granulosa" )
       tfr.reload
-      expect(tfr.relationship).to eq "one_to_one"
+      expect( tfr.relationship ).to eq "one_to_one"
     end
   end
 end

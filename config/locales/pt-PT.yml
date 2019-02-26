@@ -128,8 +128,6 @@ pt-PT:
     com <strong>%{y} IDs</strong>
   _100_day_trends: Tendências de 100 dias
   _percent_ID_d: '% Identificados'
-  a: um(a)
-  a_: um(a)
   a_community_for_naturalist: Uma comunidade para naturalistas
   a_default_taxon_name_will_automatically_created: |-
     Um nome predefinido será automaticamente criado a partir do nome científico deste táxon.
@@ -294,7 +292,6 @@ pt-PT:
   add_taxon_range: Adicionar área de distribuição do táxon
   add_taxonomic_tags_to: Adicionar etiquetas taxonómicas a fotografias selecionadas
     do Flickr &raquo;
-  add_to: Adicionar a
   add_to_a_scheme: Adicionar a um esquema
   add_to_a_project: Adicionar a um projeto
   add_to_calendar: Adicionar ao calendário
@@ -616,7 +613,6 @@ pt-PT:
   automatically_update_my_content_for_taxon_changes: Atualizar automaticamente o meu
     conteúdo quando existir alterações taxonómicas
   back: Voltar
-  back_to: Voltar a
   back_to_albums: Voltar aos álbuns
   back_to_all_species: Voltar a Todas as Espécies
   back_to_browsing_people: Voltar à busca de pessoas
@@ -1302,7 +1298,6 @@ pt-PT:
     para alterar os tipos de atualização que recebe ou cancelar completamente a sua
     subscrição.
   edited: Editado
-  edited_by: Editado por
   edited_by_name_html: Editado por %{name}
   editing: A editar
   editing_announcement: A editar anúncio
@@ -1455,7 +1450,6 @@ pt-PT:
     que você conhece bem
   filling_out_your_profile: a preencher o seu perfil
   filter: Filtro
-  filter_by: Filtrar por
   filter_by_curator_identification: Filtrar pela identificação do curador
   filter_by_place: Filtrar por local
   filter_by_taxon: Filtrar por táxon
@@ -1514,7 +1508,6 @@ pt-PT:
   flags_explanation: '%{site_name} utilizadores sinalizam coisas quando encontram
     algo que não está bem. Aqui estão algumas questões que ainda não foram resolvidas
     pelos curadores.'
-  flags_for: Sinalizações para
   flags_on_users_content: Sinalizadores no conteúdo de %{user}
   flickr_account_information: Informações da sua conta do Flickr
   flickr_description: Flickr é um serviço em linha de alojamento de fotografias, que
@@ -1535,8 +1528,6 @@ pt-PT:
   fluid_layout: Composição fluída
   fluid: fluído
   follow: Seguir
-  follow_us: Siga-nos no
-  follow_us_on: Siga-nos no
   follow_user: Seguir %{user}
   followed_projects: Projetos seguidos
   follower: seguidor
@@ -1553,10 +1544,8 @@ pt-PT:
   fri: Sex
   from: De
   from_a_place: de um local
-  from_anywhere_change: de qualquer lugar (<span class="button">alterar</span>)
   from_eol_collection: Da coleção da EOL
   from_flickr_facebook_etc: Do Flickr, Facebook, etc.
-  from_in_this_place: deste local
   from_list: Da lista
   from_this: deste
   from_photos: Das fotografias
@@ -1787,8 +1776,6 @@ pt-PT:
   import_tags_from_csv: Importar etiquetas de CSV
   importing: A importar...
   improving: A melhorar
-  in: em
-  in_: em
   in_n: em %{n}
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   inbox: caixa de entrada
@@ -1856,8 +1843,6 @@ pt-PT:
   invited_x: Convidado %{x}
   inviting: Convidando...
   iphone: iPhone
-  is_a: é um
-  is_an: é uma
   is_an_evaluation: |-
     é uma avaliação da veracidade da observação.
     As observações classificadas com Grau de Pesquisa podem ser usadas na investigação por cientistas. Dê o seu voto em baixo:
@@ -4289,56 +4274,6 @@ pt-PT:
       template:
         body: 'Ocorreram problemas com os seguintes campos:'
   activerecord:
-    errors:
-      models:
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: a guia só pode conter até 500 táxons
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: é demasiado grande para ser importado
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: O projeto não permite observações
-            user_id:
-              must_be_curator: tem de ser curador deste projeto
-            observation_id:
-              must_be_observed_after: deve ser observado depois da(s) %{time}
-              must_be_observed_before: deve ser observado antes da(s) %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: não deve conter vírgulas ou barras
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: tem obrigatoriamente de começar por uma letra,
-                sem conter espaços e usar só letras, números, traços e sublinhados
-            email:
-              must_look_like_an_email_address: deve parecer-se com um endereço email
     models:
       Atlas: Atlas
     attributes:
@@ -4408,6 +4343,56 @@ pt-PT:
         time_zone: Fuso horário
         search_place_id: Procurar lugar
         place_id: Lugar
+    errors:
+      models:
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: a guia só pode conter até 500 táxons
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: é demasiado grande para ser importado
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: O projeto não permite observações
+            user_id:
+              must_be_curator: tem de ser curador deste projeto
+            observation_id:
+              must_be_observed_after: deve ser observado depois da(s) %{time}
+              must_be_observed_before: deve ser observado antes da(s) %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: não deve conter vírgulas ou barras
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: tem obrigatoriamente de começar por uma letra,
+                sem conter espaços e usar só letras, números, traços e sublinhados
+            email:
+              must_look_like_an_email_address: deve parecer-se com um endereço email
   i18n:
     inflections:
       :@vow_or_con:

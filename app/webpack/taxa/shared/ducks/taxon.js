@@ -315,7 +315,7 @@ export function fetchInteractions( taxon ) {
       type: "json.v2",
       accordingTo: "iNaturalist"
     };
-    const url = `http://api.globalbioticinteractions.org/interaction?${querystring.stringify( params )}`;
+    const url = `https://api.globalbioticinteractions.org/interaction?${querystring.stringify( params )}`;
     fetch( url ).then(
       response => {
         response.json( ).then( json => dispatch( setInteractions( json ) ) );

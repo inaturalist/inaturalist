@@ -115,7 +115,7 @@ const windowStateForTaxon = taxon => {
   return {
     state,
     title,
-    url: urlForTaxon( taxon )
+    url: `${urlForTaxon( taxon )}${window.location.search}`
   };
 };
 

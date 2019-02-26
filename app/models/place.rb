@@ -462,7 +462,6 @@ class Place < ActiveRecord::Base
 
   def destroy_project_rules
     ProjectObservationRule.where(
-      operator: "observed_in_place?",
       operand_type: "Place",
       operand_id: id
     ).destroy_all

@@ -52,7 +52,10 @@ class FlagsController < ApplicationController
       end
       @flags = @flags.where( flaggable_type: @flaggable_type ) unless @flaggable_type.blank?
       if @flag_types.include?( "other" )
-        @flags = @flags.where( "flag NOT IN (?)", ( Flag::FLAGS - @flag_types ) )
+        except_flag_types = Flag::FLAGS - @flag_types
+        unless except_flag_types.blank?
+          @flags = @flags.where( "flag NOT IN (?)", ( Flag::FLAGS - @flag_types ) )
+        end
       else
         @flags = @flags.where( "flag IN (?)", @flag_types )
       end
@@ -89,6 +92,7 @@ class FlagsController < ApplicationController
   def show
     @object = @flag.flagged_object
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
+    user_viewed_updates_for( @flag ) if logged_in?
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end
@@ -125,7 +129,7 @@ class FlagsController < ApplicationController
       @flag.flag = params[:flag_explanation]
     end
     if @flag.save
-      flash[:notice] = t(:flag_saved_thanks)
+      flash[:notice] = t(:flag_saved_thanks_html, url: url_for( @flag ) )
     else
       flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
     end

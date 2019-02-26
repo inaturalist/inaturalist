@@ -94,6 +94,7 @@ class PostsController < ApplicationController
         @next = @post.parent.journal_posts.published.where("published_at > ?", @post.published_at || @post.updated_at).order("published_at ASC").first
         @prev = @post.parent.journal_posts.published.where("published_at < ?", @post.published_at || @post.updated_at).order("published_at DESC").first
         @trip = @post
+        user_viewed_updates_for( @trip ) if logged_in?
         @observations = @post.observations.order_by('observed_on')
         @shareable_image_url = @post.body[/img.+?src=["'](.+?)["']/, 1] if @post.body
         @shareable_image_url ||= if @post.parent_type == "Project"

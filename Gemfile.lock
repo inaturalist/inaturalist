@@ -425,7 +425,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (5.1.0)
     netrc (0.11.0)
-    newrelic_rpm (5.7.0.350)
+    newrelic_rpm (6.0.0.351)
     nokogiri (1.10.1)
       mini_portile2 (~> 2.4.0)
     non-stupid-digest-assets (1.0.9)
@@ -549,7 +549,7 @@ GEM
     rspec-mocks (3.8.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.8.0)
-    rspec-rails (3.8.1)
+    rspec-rails (3.8.2)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       railties (>= 3.0)
@@ -713,7 +713,7 @@ DEPENDENCIES
   json
   koala
   machinist!
-  newrelic_rpm (~> 5.7.0)
+  newrelic_rpm (~> 6.0.0)
   nokogiri (~> 1.10.0)
   non-stupid-digest-assets
   objectify-xml!
@@ -744,7 +744,7 @@ DEPENDENCIES
   riparian!
   rspec (~> 3.8.0)
   rspec-html-matchers
-  rspec-rails (~> 3.8.0)
+  rspec-rails (~> 3.8.2)
   rubyzip
   sass (= 3.7.2)
   sass-rails (= 5.0.7)

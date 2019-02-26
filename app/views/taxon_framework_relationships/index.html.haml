@@ -58,6 +58,17 @@
         .pull-right
           = link_to "new taxon framework relationship", new_taxon_framework_relationship_path, class: "btn btn-default"
       %h2= @title
+      .panel.panel-info
+        .panel-heading
+          %h3.panel-title
+            = "About Taxon Frameworks"
+        .panel-body
+          %p
+            = "Taxon Frameworks help us describe 'what we mean' by a taxon."
+            = "Taxon Framework Relationships"
+            = "are mappings between taxa on #{@site.name} (internal taxa) and taxa"
+            = "on sources (external taxa) associated with a Taxon Framework."
+            = link_to "Read more", "/pages/taxon_frameworks"
   .row
     .col-xs-3
       = form_for :filters, builder: DefaultFormBuilder, html: { method: :get } do |f|
@@ -70,21 +81,28 @@
               label: t("relationships.#{relationship}"),                           |
               checked: @relationships.include?( relationship )                     |
         = f.select :taxon_framework_id, @taxon_frameworks.map{ |er| [er.taxon.name, er.id] }, include_blank: t( :any ), selected: @taxon_framework.try( :id ), label: t(:taxon_framework_taxon)
-        = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:internal_taxon)
-        = f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil
+        = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:internal_taxon_including_descendants)
+        = f.hidden_field :taxon_id, value: @internal_taxon ? @internal_taxon.id : nil
+        = f.text_field :external_taxon_name, value: @external_taxon_name ? @external_taxon_name : nil, place_holder: t(:type_taxon_name), label: t(:external_taxon_including_children)
+        = f.select :internal_rank, Taxon::RANKS, include_blank: t( :any ), selected: @internal_rank, label: t( :internal_taxon_rank )
+        = f.select :external_rank, Taxon::RANKS, include_blank: t( :any ), selected: @external_rank, label: t( :external_taxon_rank )
         = f.text_field :user_id, value: @user ? @user.id : nil, placeholder: t( :start_typing_someones_name ), label: t( :added_by )
         = f.select :is_active, [t( :true ), t( :false )], include_blank: t( :either ), selected: @is_active, label: t( :active )
-        = f.select :rank, Taxon::RANKS, include_blank: t( :any ), selected: @rank, label: t( :rank )
         = f.submit t( :filter ), class: "default button", "data-loading-click": t( :filtering )
         = link_to t( :clear_filters ), taxon_framework_relationships_url, class: "minor button"
     .col-xs-9
       - if @taxon_framework_relationships.empty?
-        %p.description no taxon framework relationships
+        %p.description= t :no_taxon_framework_relationships
       - for taxon_framework_relationship in @taxon_framework_relationships
         .panel.panel-default
           .panel-heading
+            - if !current_user.blank? && current_user.is_curator? && |
+              ( ( taxon_framework_relationship.taxon_framework.taxon_curators.count > 0 && taxon_framework_relationship.taxon_framework.taxon_curators.select{ |tc| tc.user_id == current_user.id }.count > 0 ) || |
+              ( taxon_framework_relationship.taxon_framework.taxon_curators.count == 0 ) ) |
+              .pull-right
+                = link_to "Edit relationship", edit_taxon_framework_relationship_path( taxon_framework_relationship )
             %h4
-              = render partial: "show_taxon_framework_relationship_headings", object: { taxon_framework_relationship: taxon_framework_relationship }
+              = link_to t( :taxon_framework_relationship_number, number: taxon_framework_relationship.id ), taxon_framework_relationship_path( taxon_framework_relationship )
           .panel-body
             = t( :covered_by_a_taxon_framework_html, 
             link: link_to( t( :covered_by_a_taxon_framework_link, 
@@ -95,4 +113,6 @@
               = t( :sourced_to )
               = link_to taxon_framework_relationship.taxon_framework.source.title, taxon_framework_relationship.taxon_framework.source.url
             = render partial: "show_taxon_framework_relationship", object: { taxon_framework_relationship: taxon_framework_relationship }
+            - if taxon_framework_relationship.description
+              %p= formatted_user_text stripped_first_paragraph_of_text( taxon_framework_relationship.description,"\n" ), tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES
       = will_paginate @taxon_framework_relationships

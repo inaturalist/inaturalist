@@ -207,11 +207,6 @@ describe "Observation Index" do
   end
 
   describe "params_to_elastic_query" do
-    it "returns nil when ES can't handle the params" do
-      expect( Observation.params_to_elastic_query(
-        Observation::NON_ELASTIC_ATTRIBUTES.first => "anything") ).to be nil
-    end
-
     it "filters by project rules" do
       project = Project.make!
       rule = ProjectObservationRule.make!(operator: "identified?", ruler: project)

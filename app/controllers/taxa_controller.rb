@@ -87,15 +87,14 @@ class TaxaController < ApplicationController
         Taxon.preload_associations(@featured_taxa, [
           :iconic_taxon, :photos, :taxon_descriptions,
           { taxon_names: :place_taxon_names } ])
-        featured_taxa_obs = @featured_taxa.map do |taxon|
+        @featured_taxa_obs = @featured_taxa.map do |taxon|
           taxon_obs_params = { taxon_id: taxon.id, order_by: "id", per_page: 1 }
           if @site
             taxon_obs_params[:site_id] = @site.id
           end
           Observation.page_of_results(taxon_obs_params).first
         end.compact
-        Observation.preload_associations(featured_taxa_obs, :user)
-        @featured_taxa_obs_by_taxon_id = featured_taxa_obs.index_by(&:taxon_id)
+        Observation.preload_associations(@featured_taxa_obs, [:user, :taxon])
         
         flash[:notice] = @status unless @status.blank?
         if params[:q]
@@ -235,7 +234,9 @@ class TaxaController < ApplicationController
           joins( "JOIN taxa ON taxa.taxon_framework_relationship_id = taxon_framework_relationships.id" ).
           where( "taxa.id = ? AND taxon_framework_id = ?", @taxon, @upstream_taxon_framework ).first
         unless @taxon_framework
-          @downstream_deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @upstream_taxon_framework.id ).taxon(@taxon).uniq.count
+          if @taxon_framework_relationship
+            @downstream_deviations_counts = @taxon_framework_relationship.internal_taxa.map{|it| {internal_taxon: it, count: TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @upstream_taxon_framework.id ).internal_taxon(it).uniq.count - 1 } }
+          end
           @downstream_flagged_taxa = @upstream_taxon_framework.get_flagged_taxa({taxon: @taxon})
           @downstream_flagged_taxa_count = @upstream_taxon_framework.get_flagged_taxa_count({taxon: @taxon})
         end
@@ -251,6 +252,7 @@ class TaxaController < ApplicationController
         @flagged_taxa_count = @taxon_framework.get_flagged_taxa_count
         if @taxon_framework.source_id
           @deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).count
+          @relationship_unknown_count = @taxon_framework.get_internal_taxa_covered_by_taxon_framework.where(taxon_framework_relationship_id: nil).count
         end
       end
     end
@@ -1396,7 +1398,7 @@ class TaxaController < ApplicationController
         else
           canonical
         end
-        return redirect_to :action => redirect_target
+        return redirect_to( { action: redirect_target }.merge( request.GET ) )
       end
     end
     

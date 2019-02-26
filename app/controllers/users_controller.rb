@@ -1,7 +1,10 @@
 #encoding: utf-8
 class UsersController < ApplicationController
-  before_action :doorkeeper_authorize!,
-    only: [ :create, :update, :edit, :dashboard, :new_updates, :api_token ],
+  before_action -> { doorkeeper_authorize! :login, :write },
+    only: [ :edit ],
+    if: lambda { authenticate_with_oauth? }
+  before_action -> { doorkeeper_authorize! :write },
+    only: [ :create, :update, :dashboard, :new_updates, :api_token ],
     if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
@@ -445,6 +448,24 @@ class UsersController < ApplicationController
     @has_updates = (current_user.recent_notifications.count > 0)
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
+    if current_user.is_admin? && @site && @site.id == Site.default.id
+      @discourse_url = "https://forum.inaturalist.org"
+      cache_key = "dashboard-discourse-topics"
+      begin
+        unless @discourse_topics = Rails.cache.read( cache_key )
+          @discourse_topics = ["news-and-updates", "feature-requests", "bug-reports"].inject( {} ) do |memo, category|
+            memo[category] = JSON.parse(
+              RestClient.get( "#{@discourse_url}/latest.json?order=created&category=#{category}" ).body
+            )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..2]
+            memo
+          end
+          Rails.cache.write( cache_key, @discourse_topics, expires_in: 15.minutes )
+        end
+      rescue SocketError, RestClient::Exception
+        # No connection or other connection issue
+        nil
+      end
+    end
     respond_to do |format|
       format.html do
         scope = Announcement.

@@ -111,6 +111,31 @@ class TaxonFramework < ActiveRecord::Base
     return unassigned_taxa
   end
   
+  def get_internal_taxa_covered_by_taxon_framework
+    ancestry_string = taxon.rank == "stateofmatter" ?
+      "#{ taxon_id }" : "#{ taxon.ancestry }/#{ taxon.id }"
+    other_taxon_frameworks = TaxonFramework.joins(:taxon).
+      where( "( taxa.ancestry LIKE ( '#{ ancestry_string }/%' ) OR taxa.ancestry LIKE ( '#{ ancestry_string }' ) )" ).
+      where( "taxa.rank_level > #{ rank_level } AND taxon_frameworks.rank_level IS NOT NULL" )
+
+    other_taxon_frameworks_taxa = ( other_taxon_frameworks.count > 0 ) ?
+      Taxon.where(id: other_taxon_frameworks.map(&:taxon_id)) : []
+
+    internal_taxa = Taxon.
+      where( "taxa.ancestry = ? OR taxa.ancestry LIKE ?", ancestry_string, "#{ancestry_string}/%" ).
+      where( is_active: true ).
+      joins( "JOIN taxa parent ON parent.id = (string_to_array(taxa.ancestry, '/')::int[])[array_upper(string_to_array(taxa.ancestry, '/')::int[],1)]" ).
+      where( "taxa.rank_level >= ? ", rank_level).
+      where("( select count(*) from conservation_statuses ct where ct.taxon_id=taxa.id AND ct.iucn=70 AND ct.place_id IS NULL ) = 0")
+
+    other_taxon_frameworks_taxa.each do |t|
+      internal_taxa = internal_taxa.where("taxa.ancestry != ? AND taxa.ancestry NOT LIKE ?", "#{t.ancestry}/#{t.id}", "#{t.ancestry}/#{t.id}/%")
+    end
+
+    return internal_taxa
+  end
+  
+  
   def get_flagged_taxa_count(options = {})
     taxon_clause = ""
     if t = options[:taxon]
@@ -138,4 +163,24 @@ class TaxonFramework < ActiveRecord::Base
   def taxon_framework_taxon_name
     taxon.name
   end
+  
+  # attempting this through the UI will destroy relevant taxon_framework_relationships
+  # here's a way to rather move them accordingly
+  def self.bud_off_child_taxon_framework( taxon_id )
+    return false unless taxon = Taxon.find(taxon_id)
+    return false unless parent_taxon_framework = taxon.get_upstream_taxon_framework
+    ancestry = [taxon.ancestor_ids, taxon_id].join( "/" )
+    tf = TaxonFramework.new(
+      taxon_id: taxon_id,
+      rank_level: parent_taxon_framework.rank_level,
+      source_id: parent_taxon_framework.source_id,
+      user_id: parent_taxon_framework.user_id
+    )
+    tf.skip_check_frameworks = true
+    return false unless tf.save
+    tfrs = TaxonFrameworkRelationship.joins( :taxa ).where( "taxon_framework_id = ? AND ( taxa.ancestry = '#{ancestry}' OR taxa.ancestry LIKE '#{ancestry}/%' )", parent_taxon_framework.id )
+    tfrs.update_all( taxon_framework_id: tf.id )
+    true
+  end
+  
 end

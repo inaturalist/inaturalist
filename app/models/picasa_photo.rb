@@ -3,19 +3,6 @@ class PicasaPhoto < Photo
   validates_presence_of :native_photo_id
   validate :licensed_if_no_user
   
-  # I don't think we can reliably perform this validation, b/c older picasa
-  # photos seem to have a native_username that looks like a username, and not
-  # a numerical ID. Leaving this in here in case someone has a better idea of
-  # how to validate that the photo belongs to the user.
-  # validate :user_owns_photo
-  # def user_owns_photo
-  #   if self.user
-  #     unless self.user.picasa_identity && native_username == self.user.picasa_identity.provider_uid
-  #       errors.add(:user, "must own the photo on Picasa.")
-  #     end
-  #   end
-  # end
-  
   # TODO Sync photo object with its native source.
   def sync
     nil
@@ -28,39 +15,16 @@ class PicasaPhoto < Photo
     observation = Observation.new
     observation.user = self.user if self.user
     observation.observation_photos.build(:photo => self, :observation => observation)
-    observation.description = api_response.description
-    if timestamp = api_response.exif_time || api_response.timestamp
+    observation.description = api_response["description"]
+    if timestamp = api_response["creationTime"]
       # Google seems to present these as UTC these days (I think)
       observation.observed_on_string = ActiveSupport::TimeZone.new('UTC').at(timestamp / 1000).to_s(:long)
     end
     observation.munge_observed_on_with_chronic
     observation.time_zone = observation.user.time_zone if observation.user
     
-    # Get the geo fields
-    if api_response.point
-      observation.latitude = api_response.point.lat
-      observation.longitude = api_response.point.lng
-    end
-    observation.place_guess = api_response.location
-    if observation.place_guess.blank? && api_response.point
-      latrads = observation.latitude.to_f * (Math::PI / 180)
-      lonrads = observation.longitude.to_f * (Math::PI / 180)
-      begin
-        places = Place.elastic_paginate(
-          per_page: 5,
-          sort: {
-            _geo_distance: {
-              location: [ observation.longitude.to_f, observation.latitude.to_f ],
-              unit: "km",
-              order: "asc" } } )
-        places = places.select {|p| p.contains_lat_lng?(observation.latitude, observation.longitude)}
-        places = places.sort_by{|p| p.bbox_area || 0}
-        if place = places.first
-          observation.place_guess = place.display_name
-        end
-      rescue Riddle::ConnectionError, Riddle::ResponseError
-      end
-    end
+    # As of Feb 2019, the Picasa API went away and was replaced with the Google
+    # Photos API, which doesn't return any geodata
     
     # Try to get a taxon
     observation.taxon = to_taxon
@@ -72,10 +36,9 @@ class PicasaPhoto < Photo
   end
   
   def to_taxa(options = {})
-    self.api_response ||= PicasaPhoto.get_api_response(self.native_photo_id, :user => self.user)
-    return nil if api_response.keywords.blank?
-    return nil unless api_response.keywords.is_a?(String)
-    Taxon.tags_to_taxa(api_response.keywords.split(',').map(&:strip), options)
+    # As of Feb 2019, the Picasa API went away and was replaced with the Google
+    # Photos API, which doesn't return any text aside from this description
+    Taxon.tags_to_taxa([api_response["description"].to_s.strip], options)
   end
 
   def repair(options = {})
@@ -84,13 +47,13 @@ class PicasaPhoto < Photo
         :failed => "Failed to load Picasa photo"
       }]
     end
-    self.square_url      = r.url('72c')
-    self.thumb_url       = r.url('110')
-    self.small_url       = r.url('220')
-    self.medium_url      = r.url('512')
-    self.large_url       = r.url('1024')
-    self.original_url    = r.url
-    self.native_page_url = r.link('alternate').href
+    self.square_url = "#{r["baseUrl"]}=w75-h75-c"
+    self.thumb_url = "#{r["baseUrl"]}=w100-h100"
+    self.small_url = "#{r["baseUrl"]}=w240-h240"
+    self.medium_url = "#{r["baseUrl"]}=w500-h500"
+    self.large_url = "#{r["baseUrl"]}=w1024-h1024"
+    self.original_url = "#{r["baseUrl"]}=d"
+    self.native_page_url = r["productUrl"]
     save unless options[:no_save]
     [self, {}]
   end
@@ -143,16 +106,9 @@ class PicasaPhoto < Photo
     end
     
     if picasa_identity
-      picasa = Picasa.new(picasa_identity.token)
-      PicasaPhoto.picasa_request_with_refresh(picasa_identity) do
-        picasa.get_url(
-          native_photo_id,
-          kind: "photo,user",
-          # request all relevant thumbnail sizes
-          thumbsize: RubyPicasa::Photo::VALID.join(','),
-          # make sure we get the original photo file url
-          imgmax: "d"
-        )
+      PicasaPhoto.picasa_request_with_refresh( picasa_identity ) do
+        goog = GooglePhotosApi.new( picasa_identity.token )
+        goog.media_item( native_photo_id )
       end
     else
       nil
@@ -161,100 +117,24 @@ class PicasaPhoto < Photo
   
   # Create a new Photo object from an API response.
   def self.new_from_api_response(api_response, options = {})
-    options[:thumb_sizes] ||= ['square','thumb','small','medium','large']
-    thumb_sizes = options.delete(:thumb_sizes)
-    t0 = Time.now
-    if api_response.author
-      native_username = api_response.author.user
-      native_realname = api_response.author.nickname
-    else
-      native_username = api_response.user
-      native_realname = api_response.nickname
-    end
-    license = case api_response.license.try(:url)
-    when /by\//       then Photo.license_number_for_code(Observation::CC_BY)
-    when /by-nc\//    then Photo.license_number_for_code(Observation::CC_BY_NC)
-    when /by-sa\//    then Photo.license_number_for_code(Observation::CC_BY_SA)
-    when /by-nd\//    then Photo.license_number_for_code(Observation::CC_BY_ND)
-    when /by-nc-sa\// then Photo.license_number_for_code(Observation::CC_BY_NC_SA)
-    when /by-nc-nd\// then Photo.license_number_for_code(Observation::CC_BY_NC_ND)
-    end
-    options.update(
-      :user            => options[:user],
-      :native_photo_id => api_response.link('self').href,
-      :square_url      => (api_response.url('72c') if thumb_sizes.include?('square')),
-      :thumb_url       => (api_response.url('110') if thumb_sizes.include?('thumb')),
-      :small_url       => (api_response.url('220') if thumb_sizes.include?('small')),
-      :medium_url      => (api_response.url('512') if thumb_sizes.include?('medium')),
-      :large_url       => (api_response.url('1024') if thumb_sizes.include?('large')),
-      :original_url    => api_response.url,
-      :native_page_url => api_response.link('alternate').href,
-      :native_username => native_username,
-      :native_realname => native_realname,
-      :license         => license
-    )
-    picasa_photo = PicasaPhoto.new(options)
-    if !picasa_photo.native_username && matches = picasa_photo.native_photo_id.match(/user\/(.+?)\//)
-      picasa_photo.native_username = matches[1]
-    end
+    options = options.dup
+    options[:native_photo_id] = api_response["id"]
+    options[:square_url] = "#{api_response["baseUrl"]}=w75-h75-c"
+    options[:thumb_url] = "#{api_response["baseUrl"]}=w100-h100"
+    options[:small_url] = "#{api_response["baseUrl"]}=w240-h240"
+    options[:medium_url] = "#{api_response["baseUrl"]}=w500-h500"
+    options[:large_url] = "#{api_response["baseUrl"]}=w1024-h1024"
+    options[:original_url] = "#{api_response["baseUrl"]}=d"
+    options[:native_page_url] = api_response["productUrl"]
+    picasa_photo = PicasaPhoto.new( options )
     picasa_photo.api_response = api_response
     picasa_photo
-  end
-
-  def self.get_photos_from_album(user, picasa_album_id, options={})
-    options[:picasa_user_id] ||= nil
-    options[:max_results] ||= 10
-    options[:start_index] ||= 1
-    return [] unless user.picasa_identity
-    picasa = user.picasa_client
-    # to access a friend's album, you need the full url rather than just album id. grrr.
-    picasa_album_url = if options[:picasa_user_id]  
-      "https://picasaweb.google.com/data/feed/api/user/#{options[:picasa_user_id]}/albumid/#{picasa_album_id}"
-    end
-    album_data = PicasaPhoto.picasa_request_with_refresh(user.picasa_identity) do
-      picasa.album((picasa_album_url || picasa_album_id.to_s), 
-        :max_results => options[:max_results], 
-        :start_index => options[:start_index],
-        :thumbsize => RubyPicasa::Photo::VALID.join(','))  # this also fetches photo data
-    end
-    photos = if album_data
-      album_data.photos.map do |pp|
-        PicasaPhoto.new_from_api_response(pp, :thumb_sizes=>['thumb']) 
-      end
-    else
-      []
-    end
-  end
-
-  # add a comment to the given picasa photo
-  # note: picasa_photo_url looks like this:
-  # https://picasaweb.google.com/data/entry/api/user/userID/albumid/albumID/photoid/photoID #?kind=comment
-  # this is what picasa gives us as the native photo id
-  def self.add_comment(user, picasa_photo_url, comment_text)
-    return nil if user.picasa_identity.nil?
-    # the ruby_picasa gem doesn't do post requests, so we're using the gdata gem instead
-    picasa = GData::Client::Photos.new
-    picasa.authsub_token = user.picasa_identity.token
-    # the url for posting a comment is the same as the url that identifies the pic, *except* that it's /feed/ instead of /entry/. wtf.
-    picasa_photo_url.sub!('entry','feed') 
-    # gdata barfs unless you escape ampersands in urls
-    comment_text.gsub!('&', '&amp;') 
-    post_data = <<-EOF
-    <entry xmlns='http://www.w3.org/2005/Atom'>
-      <content>#{comment_text}</content>
-      <category scheme="http://schemas.google.com/g/2005#kind" term="http://schemas.google.com/photos/2007#comment"/>
-    </entry>
-    EOF
-    PicasaPhoto.picasa_request_with_refresh(user.picasa_identity) do
-      picasa.post(picasa_photo_url, post_data)
-    end
   end
 
   def self.picasa_request_with_refresh(picasa_identity)
     begin
       yield
-    rescue RubyPicasa::PicasaError => e
-      raise e unless e.message =~ /authentication/i
+    rescue RestClient::Unauthorized => e
       picasa_identity.refresh_access_token!
       yield
     end

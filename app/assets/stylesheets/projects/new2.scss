@@ -232,8 +232,8 @@ body>div>.popover[role="tooltip"].popover-error {
   input[type="radio"], input[type="checkbox"] {
     margin-right: 5px;
   }
-  label.inline + input[type="radio"], label.inline + input[type="checkbox"] {
-    margin-left: 20px;
+  label.checkboxradio {
+    margin-right: 20px;
   }
   .icon-previews {
     margin-top: 15px;

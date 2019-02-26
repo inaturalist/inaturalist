@@ -1,6 +1,7 @@
 # Messages for Italian (italiano)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Albe Albe 460
 # Author: Alexmar983
 # Author: Beta16
 # Author: Clapwing
@@ -140,8 +141,6 @@ it:
     %{user} con <strong>%{y} le ID</strong>
   _100_day_trends: Andamento di 100 giorni
   _percent_ID_d: '% identificati'
-  a: una
-  a_: una
   a_community_for_naturalist: Una Community per Naturalisti
   a_default_taxon_name_will_automatically_created: "Un taxon di default sarà creato
     automaticamente a partire dal nome scientifico di questa unità tassonomica. \nNon
@@ -295,6 +294,7 @@ it:
   add_life_stage_larva_annotation: 'Aggiungi nota "Stadio vitale: Larva"'
   add_life_stage_juvenile_annotation: 'Aggiungi nota "Stadio vitale: Giovane"'
   add_life_stage_egg_annotation: 'Aggiungi nota "Stadio vitale: Uovo"'
+  add_relationship: Aggiungi una relazione
   add_section: Aggiungi sezione
   add_several_observations_at_once: Aggiungere più osservazioni in una sola volta.
   add_sex_female_annotation: 'Aggiungi nota "Sesso: Femmina"'
@@ -312,7 +312,6 @@ it:
     &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Aggiungi etichette tassonomiche alle foto
     Fickr associate alle osservazioni selezionate.
-  add_to: Aggiungi a
   add_to_a_scheme: Aggiungi a uno schema
   add_to_a_project: Aggiungi a un progetto
   add_to_calendar: Aggiungi al calendario
@@ -393,6 +392,7 @@ it:
     subgenus: Tutti i subgeneri aggiunti al database
     section: Tutte le sezioni aggiunte al database
     subsection: Tutte le subsezioni aggiunte al database
+    complex: Tutti i complessi aggiunti al database
     species: Tutte le specie aggiunte al database
     hybrid: Tutti gli ibridi aggiunti al database
     subspecies: Tutte le sottospecie aggiunte al database
@@ -478,7 +478,7 @@ it:
   allow_curator_access: Permetti l'accesso ai curatori
   allow_curator_coordinate_access: Consenti l'accesso alle coordinate ai curatori
   allow_project_curators_to_view_your_private_coordinates: Consenti ai curatori del
-    progetto di vedere le tue coordinate private
+    progetto di vedere le tue coordinate nascoste
   allowed_establish_means_values: Valori di origine del popolamento consentiti
   allowed_html: HTML permessi
   allowed_occurrence_status_values: Valori di presenza consentiti
@@ -550,6 +550,9 @@ it:
   are_you_sure_remove_from_project: Sei sicuro di voler rimuovere %{user} da questo
     progetto?
   are_you_sure_remove_photo: Sei sicuro di voler rimuovere questa foto?
+  are_you_sure_remove_relationship: Sei sicuro di voler rimuovere questa relazione?
+    In questo modo non seguirai questa persona e revocherai il suo accesso alle tue
+    coordinate nascoste se glielo avevi permesso.
   are_you_sure_remove_taxon_from_list: Sei sicuro di voler rimuovere questo taxon
     dall'elenco?
   are_you_sure_remove_taxon_from_place: Sei sicuro di voler rimuovere questo taxon
@@ -627,6 +630,9 @@ it:
   attribution: Attribuzione
   authority_list:
     iucn_red_list: Lista Rossa IUCN
+    natureserve: NatureServe
+    cites: CITES
+  authorize: Autorizza
   authorize_permissions_from_provider: Autorizza i permessi da %{provider}
   automatic_descriptions_have_been_disabled: Le descrizioni automatiche sono state
     disabilitate per questo taxon
@@ -640,7 +646,6 @@ it:
   automatically_update_my_content_for_taxon_changes: Aggiorna automaticamente i miei
     contenuti con le modifiche del taxon
   back: Indietro
-  back_to: Torna a
   back_to_albums: Torna all'album
   back_to_all_species: Torna a Tutte le Specie
   back_to_browsing_people: Torna a navigare tra le persone
@@ -662,6 +667,7 @@ it:
   back_to_suggestions: Torna ai suggerimenti
   back_to_taxon: Torna a %{defaulttaxon}
   back_to_taxon_changes: Torna ai cambiamenti di "taxon"
+  back_to_taxon_framework_for_x: Torna al quadro del taxon per %{taxon_name}
   back_to_this: Torna a %{place}
   back_to_viewing: Torna alla visualizzazione di <i>%{taxon}</i>
   back_to_x: Torna a %{noun}
@@ -1230,6 +1236,7 @@ it:
   deleted_vote: Voto eliminato
   deleting: Eliminazione in corso...
   deleting_verb: Eliminazione in corso
+  deny: Nega
   desc: Decr
   descendant_taxa: taxa discendenti
   descending: Decrescente
@@ -1293,6 +1300,9 @@ it:
   download_kml: Scarica il file KML
   downstream_coverage: Copertura a valle
   downstream_coverage_rank: Rango di copertura a valle
+  downstream_deviations: Deviazioni a valle
+  downstream_deviations_for_taxon: Deviazioni a valle per %{taxon}
+  downstream_flagged_covered_taxa: Taxa coperti segnalati a valle
   drag_and_drop_photos: trascina e rilascia le foto in tale finestra o
   draft: bozza
   draft_: Bozza
@@ -1351,8 +1361,9 @@ it:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Modifica le tue impostazioni</a>
     per variare il tipo di aggiornamenti che ricevi o disiscriverti completamente.
   edited: Modificato
-  edited_by: Modificato da
   edited_by_name_html: Modificato da %{name}
+  edited_by_name_some_rights_reserved_html: Modificato da %{name}, alcuni diritti
+    riservati (%{license})
   editing: Modifica in corso
   editing_announcement: Modifica annuncio in corso
   editing_custom_project_fields_for: Modifica in corso dei campi del progetto personalizzato
@@ -1446,9 +1457,11 @@ it:
   explore_everyones_observations: Esplora le osservazioni di tutti
   export: Esporta
   export_observations: Esporta le osservazioni
-  export_with_private_coordinates: Esporta con coordinate private
+  export_with_private_coordinates: Esporta con coordinate nascoste
   exporting: Esportazione in corso...
   external_links: Collegamenti esterni
+  external_taxon_including_children: Taxon esterno (inclusi discendenti)
+  external_taxon_rank: Rango del taxon esterno
   extinct: Estinta
   extinct_in_the_wild: Estinta in Natura
   extra_properties: Proprietà aggiuntive
@@ -1509,7 +1522,6 @@ it:
     che conosci bene
   filling_out_your_profile: compilando il tuo profilo
   filter: Filtra
-  filter_by: Filtra per
   filter_by_curator_identification: Filtra in base all'identificazione dei curatori
   filter_by_place: Filtra per luogo
   filter_by_taxon: Filtra per taxon
@@ -1575,7 +1587,7 @@ it:
   flags_with_count: Contrassegni (%{count})
   flags_explanation: Gli utenti di %{site_name} contrassegnano gli elementi che richiedono
     attenzione dai curatori del sito e/o dagli amministratori del sito.
-  flags_for: Contrassegni per
+  flags_for_x_html: Segnalazioni per %{x}
   flags_on_users_content: Contrassegni sui contenuti di %{user}
   flickr_account_information: Informazioni del tuo account Flickr
   flickr_description: Flickr è un servizio di hosting per le foto, magari già lo conoscete!
@@ -1595,13 +1607,13 @@ it:
   fluid_layout: Layout fluido
   fluid: fluido
   follow: Segui
-  follow_us: Seguici su
-  follow_us_on: Seguici su
+  follow_receive_updates_about_new_observations: Segui (ricevi aggiornamenti sulle
+    nuove osservazioni)
   follow_user: Segui %{user}
   followed_projects: Progetti seguiti
   follower: seguace
   followers: Seguaci
-  following: segui
+  following: Seguito
   following_x_people:
     one: Seguendo 1 Persona
     other: Seguendo %{count} Persone
@@ -1616,10 +1628,8 @@ it:
   fri: Ven
   from: Da
   from_a_place: da un luogo
-  from_anywhere_change: da qualsiasi luogo (<span class="button">change</span>)
   from_eol_collection: Da una collezione EOL
   from_flickr_facebook_etc: Da Flickr, Facebook, etc.
-  from_in_this_place: da questo luogo
   from_list: Da una lista
   from_this: da questo
   from_photos: Da foto
@@ -1651,6 +1661,10 @@ it:
   Genus: Genere
   genus_slash_species: '[GENERE] / [SPECIE]'
   geoprivacy: Geoprivacy
+  geoprivacy_is_obscured: La geoprivacy è oscurata
+  geoprivacy_is_obscured_desc: L'osservatore ha scelto di nascondere le coordinate.
+  geoprivacy_is_private: La geoprivacy è privata
+  geoprivacy_is_private_desc: L'osservatore ha scelto di nascondere le coordinate.
   georeferenced: Georeferenziata?
   georeferenced?: georeferenziata
   get_current_position: Ottieni la posizione attuale
@@ -1661,7 +1675,7 @@ it:
   give_it_some_detail: Aggiungi un po' di dettagli
   global_conservation_status: 'Stato di conservazione globale:'
   global_names: Nomi globali
-  globally: a livello globale
+  globally: A livello globale
   go: Vai
   go_back: Indietro
   going_to_your_observations: Stai andando alle tue osservazioni...
@@ -1862,8 +1876,6 @@ it:
   import_tags_from_csv: Importare i tag da file CSV
   importing: Importazione in corso...
   improving: Miglioramento
-  in: in
-  in_: in
   in_n: in %{n}
   in_place_x: in %{place}
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
@@ -1906,6 +1918,8 @@ it:
   interactions: Interazioni
   internal_server_error: Errore interno del server
   internal_taxon: Taxon interno
+  internal_taxon_including_descendants: Taxon interno (inclusi discendenti)
+  internal_taxon_rank: Rango del taxon interno
   introduced: Introdotta
   introduced_in_place: Introdotto in %{place}
   invasive: Invasiva
@@ -1931,8 +1945,6 @@ it:
   invited_x: '%{x} invitato(i)'
   inviting: Invito in corso...
   iphone: iPhone
-  is_a: è un
-  is_an: è un
   is_an_evaluation: |-
     è una valutazione dell'accuratezza dell'osservazione.
     Le osservazioni di Livello Ricerca possono essere utilizzate dagli scienziati per le ricerche. Vota qui sotto:
@@ -1955,6 +1967,7 @@ it:
     Questo è stato contrassegnato come spam e non è più visibile pubblicamente. Tu puoi vederlo perché l'hai creato o perché sei un curatore del sito. se pensi che sia un errore, per favore <a href="mailto:%{help_email}" class="contact">contattaci</a>.
     <a href="%{manage_flags_path}">Gestisci contrassegni</a>
   its_important_that_you: È importante che tu clicchi
+  iucn_red_list: Lista Rossa IUCN
   iucn_red_list_status: Stato delle Lista Rossa IUCN
   january: Gennaio
   join: Unisciti
@@ -1979,13 +1992,14 @@ it:
   jpg_png_or_gif: JPG, PNG o GIF
   jump_to_letter: Vai alla lettera
   just_a_reminder: Solo un promemoria, dal momento che potresti aver garantito ai
-    curatori del progetto l'accesso alle coordinate private.
+    curatori del progetto l'accesso alle coordinate nascoste.
   just_added!: Appena aggiunta!
   keep_editing: Continua a modificare
   kelp_diatoms_and_allies: alghe, diatomee, e affini
   keyboard_shortcuts: Scorciatoie a tastiera
   kml: KML
   kml_file_size_error: Il KML deve essere meno di 1 MB
+  label_colon: '%{label}:'
   labels: Etichette
   label_to_group_a_batch_of_taxon_changes: Etichetta per raggruppare una serie di
     modifiche dei taxa
@@ -2295,12 +2309,14 @@ it:
   manage_names: Gestisci i nomi
   manage_your_projects: Gestisci i Tuoi Progetti
   manage_your_project_invitations: Gestisci i tuoi inviti al progetto
+  manage_your_relationships: Organizza le tue relazioni
   manage_subscriptions: Gestisci iscrizioni
   managed: gestito
   manager: Gestore
   managers: Gestori
   managers_can_do: I gestori possono fare tutto quello che fanno i curatori come editare
     le impostazioni del progetto e scrivere il post del diario.
+  managing_projects: Gestione progetti
   manually_create_new_place: Crea manualmente un nuovo luogo
   map: Mappa
   map_legend: legenda della mappa
@@ -2394,6 +2410,7 @@ it:
   more_fields: Più campi
   more_filters: Più filtri
   more_from_x: Più info su %{x}
+  more_help: Più aiuto
   more_import_options: Più opzioni di importazione
   more_info: Ulteriori Informazioni
   more_info_title: Ulteriori Informazioni
@@ -2636,7 +2653,9 @@ it:
   no_taxa: Nessun taxa
   no_taxa_listed: Nessun taxa elencato
   no_taxa_selected: Nessun taxa selezionato!
+  no_taxa_with_unknown_relationships: Nessun taxa con relazioni sconosciute
   no_taxa_yet: Ancora nessun taxa!
+  no_taxon_framework_relationships: nessuna relazione del quadro del taxon
   no_taxonomic_changes_match_those_criteria: Nessuna modifica tassonomica corrisponde
     a questi criteri
   no_wikipedia_page_for_taxon: Nessuna pagina Wikipedia per questo taxon.
@@ -3507,8 +3526,8 @@ it:
   private_: Privato
   private_description: Le coordinate sono completamente nascoste al pubblico, le coordinate
     reali sono visibili solo a te e ai curatori dei progetti a cui ha aggiunto l'osservazione.
-    Le osservazioni con coordinate private saranno comunque usate per verificare le
-    checklist di un luogo.
+    Le osservazioni con coordinate nascoste saranno comunque usate per verificare
+    le checklist di un luogo.
   probably_spam: Probabilmente spam
   proceed: Procedi
   processing: Elaborazione in corso
@@ -3638,6 +3657,7 @@ it:
     subgenus: Sottogenere
     section: Sezione
     subsection: Sottosezione
+    complex: Complesso
     species: Specie
     hybrid: Ibrido
     subspecies: Sottospecie
@@ -3701,6 +3721,7 @@ it:
   related_species: Specie affini
   relative_observations: Osservazioni relative
   relationship: Relazione
+  relationship_unknown_count: Conteggio delle relazioni sconosciute
   relationship_x: 'Relazione: %{relationship}'
   relationships:
     match: corrispondenza
@@ -3711,7 +3732,8 @@ it:
     one_to_many: uno-a-molti
     not_external: non esterno
     not_internal: non interno
-    unknown: sconosciuto
+    error: errore
+  relationship_html: 'Relazioni: %{link}'
   reload_and_refresh: Ricarica ed aggiorna la lista
   reload_from_observations: Ricarica dalle osservazioni
   reload_timed_out: Tempo del caricamento scaduto. Riprova più tardi.
@@ -3745,6 +3767,7 @@ it:
   remove_place: Rimuovi luogo
   remove_project_user: Rimuovi l'utente del progetto
   remove_range: Rimuovi l'areale
+  remove_relationship: Rimuovi relazione
   remove_section: Rimuovi sezione
   remove_selected: Rimuovi i selezionati
   remove_tags: Rimuovi i tag
@@ -3924,7 +3947,7 @@ it:
     si applica ai taxa di un luogo specifico. Lascia vuoto se si applica ai taxa di
     tutto il mondo.
   set_license: Imposta la licenza
-  settings: impostazioni
+  settings: Impostazioni
   share: Condividi
   share_colon: 'Condividi:'
   share_your_observation_with_researchers_by: Condividi la tua osservazione con i
@@ -4151,6 +4174,8 @@ it:
   stop_editing: Termina la modifica
   stop_following_user: Smetti di seguire %{user}
   stop_testing: Termina il test
+  stop_trusting_this_person_with_your_private_coordinates: Smetti di rivelare a questa
+    persona le tue coordinate nascoste
   stop_updating_position: Arresta l'aggiornamento del posizionamento
   studies_that_used_inaturalist_data_in_year: Studi che hanno utilizzato i dati di
     iNaturalist nel %{year}
@@ -4224,6 +4249,7 @@ it:
   take_me_flickr!: Si, vai a Flickr!
   take_me_back: Indietro
   taxa: Taxa
+  taxa_with_unknown_relationships: Taxa con relazioni sconosciute
   taxa_info: Info Taxa
   taxa_all_species_html: Tutte le specie
   taxa_needing_curation: Taxa che necessitano di revisione
@@ -4277,6 +4303,16 @@ it:
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} è un regno animale con 1 osservazione'
     other: '%{taxon} è un regno animale con %{count} osservazioni'
+  taxon_is_threatened_coordinates_hidden: Il taxon è minacciato, le coordinate sono
+    nascoste in maniera predefinita
+  taxon_is_threatened_coordinates_hidden_desc: Uno dei taxa suggeriti nelle identificazioni,
+    o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato,
+    sicché l'ubicazione di questa osservazione è stata nascosta.
+  taxon_is_threatened_coordinates_obscured: Il taxon è minacciato, le coordinate sono
+    nascoste in maniera predefinita
+  taxon_is_threatened_coordinates_obscured_desc: Uno dei taxa suggeriti nelle identificazioni,
+    o uno dei taxa che contiene uno di questi taxa, è considerato raro e/o minacciato,
+    sicché l'ubicazione di questa osservazione è stata nascosta.
   taxonomy: Tassonomia
   taxon_: taxon
   taxon_assessments_are: |-
@@ -4300,9 +4336,11 @@ it:
   taxon_colors: Colori del taxon
   taxon_curators: Curatori del taxon
   taxon_extras: Extra del taxon
+  taxon_framework: Quadro del Taxon
   taxon_framework_notes: Note del quadro del taxon
-  taxon_framework_relationship_for: Relazione del quadro del taxon per
   taxon_framework_relationship: Relazione del quadro del taxon
+  taxon_framework_relationship_for: Relazione del quadro del taxon per
+  taxon_framework_relationship_number: Relazioni del quadro del taxon %{number}
   taxon_framework_relationships: Relazioni del quadro del taxon
   taxon_framework_taxon: Taxon del quadro del taxon
   taxon_links: Link del Taxon
@@ -4352,6 +4390,7 @@ it:
     per aiutare a descrivere cosa intendiamo per un taxon. <a href="/pages/taxon_frameworks">Leggi
     di più</a>.
   taxonomy_settings: Impostazioni tassonomiche
+  teachers_guide: Guida per l'insegnante
   tell_everyone_a_little_about_you: Dì a tutti qualcosa di te
   tell_the_world_a_little_about_yourself: Parlaci di te
   tell_us_why: Dicci perché...
@@ -4520,9 +4559,11 @@ it:
     ricerca funziona solo per i taxa attivi.
   this_is_taking_forever: Quest'operazione ci mette una vita. Per favore prova più
     tardi.
+  this_is_the_primary_listing: Questa è la lista principale
+  this_is_your_observation: Questa è la tua osservazione
+  this_is_your_observation_desc: Puoi sempre vedere le coordinate delle tue osservazioni.
   this_job_failed_to_run: L'operazione è fallita. Per favore contatta %{email}
   this_list_is_empty!: Questa lista è vuota!
-  this_is_the_primary_listing: Questa è la lista principale
   this_list_only_accepts_taxa_that_are: Questa lista accetta solo taxa che sono
   this_observation: Questa osservazione
   this_observation_has_been_incorporated_into_the_following_external_websites: Questa
@@ -4599,7 +4640,6 @@ it:
   to_add_comments: per aggiungere commenti
   to_add_identifications: per aggiungere le identificazioni
   to_add_ids: per aggiungere ID
-  to_an: ad una
   to_configure_your_widget: per configurare il tuo widget.
   to_include_your_google_with_inat: per includere il tuo account Google con %{site_name}
   to_recipient: a
@@ -4630,7 +4670,11 @@ it:
   "true": Vero
   trending: Tendenze
   trends: Tendenze
+  trusted: Affidabile
   trusted_project?: Progetto fidato?
+  trust_this_person_with_your_private_coordinates: Rivela a questa persona le tue
+    coordinate nascoste
+  trust_with_private_coordinates: Rivela le coordinate nascoste
   try_adding_species_form: Prova ad aggiungere alcune specie utilizzando il modulo
     in questa pagina.
   try_it_out: Provala
@@ -4788,10 +4832,15 @@ it:
     %{project}
   user_muted: Utente silenziato
   user_observations: Osservazioni dell'utente
+  user_observed_on_on_date_in_place: '%{user} ne ha osservata una il %{date} in %{place}'
   user_s_id: '%{id} di %{user}'
   user_s_lists: Elenchi di %{user}
   user_suggested_an_id: '%{user} ha suggerito un ID'
   user_thinks_yours_is: '%{user} %{noun} che la tua osservazione %{observation} sia'
+  user_trusts_you_with_their_private_coordinates: '%{user} ti ha rivelato le sue coordinate
+    nascoste'
+  user_trusts_you_with_their_private_coordinates_desc: L'osservatore ha deciso di
+    rivelarti le coordinate nascoste di tutte le sue osservazioni.
   username: Nome utente
   username_or_email: Nome utente o email
   username_or_user_id: Nome Utente o ID Utente
@@ -4888,10 +4937,12 @@ it:
   view_stats: Statistiche
   view_taxon_change: Visualizza le modifiche tassonomiche
   view_taxon_changes: Visualizza le modifiche tassonomiche
+  view_taxon_framework_relationship: Visualizza relazioni del quadro del taxon
   view_taxon_page: Visualizza la pagina del taxon
   view_taxon_page_for: Visualizza la pagina per questo
   view_taxon_page_for_this_x: Visualizza la pagina per questo %{x}
   view_taxonomic_changes: Vedi i cambiamenti tassonomici
+  view_taxononomy_details_for_taxon: Visualizza i dettagli tassonomici per %{taxon}
   view_terms: Visualizza i termini
   view_the: Visualizza la %{action}&#59; %{link}
   view_the_observation: Visualizza l'osservazione
@@ -4912,6 +4963,7 @@ it:
   view_your_year_stats: Visualizza le tue statistiche %{year}
   view_yours: Visualizza le tue
   view_all_of_your_observations_from_x: Visualizza tutte le tue osservazioni da %{x}
+  video_tutorials: Tutorial video
   visually_similar: Visivamente simili
   vulnerable: Vulnerabile
   w00t_no_ungrafted_taxa: Ops! Non si accettano taxa senza relazioni tassonomiche!
@@ -5003,10 +5055,17 @@ it:
   which_projects_can_add_your_observations?: Quali progetti tradizionali possono aggiungere
     le tue osservazioni?
   white: bianco
+  why_you_can_see_the_coordinates: Perché puoi vedere le coordinate
   who_can_add_observations_to_this_project?: Chi può aggiungere osservazioni al questo
     progetto?
+  who_can_see_the_coordinates: Chi può vedere le coordinate
+  who_can_see_the_coordinates_observer: La persona che ha fatto l'osservazione
+  who_can_see_the_coordinates_projects: I curatori dei seguenti progetti
+  who_can_see_the_coordinates_trusted: Le persone a cui l'osservatore ha rivelato
+    le sue coordinate nascoste
   who_helped_user_the_most: Chi ha aiutato maggiormente %{user}
   who_user_helped_the_most: Chi %{user} ha aiutato di più
+  why_the_coordinates_are_obscured: Perché le coordinate sono oscurate
   with_annotation: Con annotazione
   without_annotation: Senza annotazione
   widget: Widget
@@ -5141,6 +5200,11 @@ it:
     altre persone!
   you_cant_rotate_photos_hostde_outside: Non puoi ruotare le foto ospitate al di fuori
     di %{site_name}.
+  you_curate_a_project_that_contains_this_observation: Tu curi un progetto che contiene
+    questa osservazione
+  you_curate_a_project_that_contains_this_observation_desc: Tu puoi vedere le coordinate
+    oscurate quando curi un progetto che contiene un osservazione e l'osservatore
+    ha scelto di condividere le coordinate con i curatori di quel progetto.
   you_didnt_select_any_observations: Non hai selezionato nessuna osservazione.
   you_didnt_select_any_photos_to_tag: Non hai selezionato nessuna foto da etichettare!
   you_dont: Non hai
@@ -5263,6 +5327,7 @@ it:
   your_pinned_locations: Le tue località memorizzate
   your_profile_was_successfully_updated: Il tuo profilo è stato aggiornato con successo
   your_recent_projects: I tuoi progetti recenti
+  your_relationships: Le tue relazioni
   your_should_recognize: Dovresti riconosce alcune di queste foto
   your_site_account_has_been_created: Il tuo account %{site} è stato creato.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -5679,6 +5744,13 @@ it:
         project_list_desc: I taxa aggiunti manualmente dai curatori del progetto,
           e quelli le cui osservazioni hanno raggiunto un livello 'ricerca', sono
           elencati nelle liste del progetto.
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: Autorizzi %{application} ad
+            usare il tuo account?
+          this_application_will_be_able_to_colon: 'Questa applicazione potrà:'
+          more_about_application: Di più su %{application}
     observations:
       community_id:
         agreement: Accordo
@@ -5804,12 +5876,22 @@ it:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: La colonna geoprivacy deve essere in inglese
           e può essere vuota o avere i valori "obscured" o "private"
+        google_photos_notice_html: |-
+          Nel febbraio 2019 Google ha modificato le sue API, rendendoci impossibile accedere alle coordinate GPS, alle informazioni di licenza, e a quasi tutte le informazioni che potremmo utilizzare per aggiungere un'identificazione (come le etichette). Ha anche rimosso la ricerca testuale e la paginazione numerica. Puoi ancora importare le foto, ma queste non includeranno nessuna informazione di localizzazione o di licenza che puoi visualizzare in Google Foto.
+          Può leggere più su questo argomento su:
+          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
+          La migliore alternativa è scaricare i file originali e aggiungerli usando l'<a href="/observations/upload">Uploader</a>
         project_csv_template_notice_html: "C'è un modello di file per questo progetto
           che potrebbe aiutarti nella preparazione del file CSV. \n<a href=\"%{url}\">Scarica
           modello</a>"
+        soundcloud_notice_html: Nel 2018 Soundcloud ha modificato le sue API rendendoci
+          impossibile creare nuovi collegamenti al tuo account Soundcloud. Se reimpostano
+          questa funzionalità, possiamo riattivare i collegamenti account a Soundcloud.
+          Nel frattempo, puoi caricare i file sonori direttamente utilizzando l'<a
+          href="/observations/upload">Uploader</a>.
       show:
         allow_curator_coordinate_access_desc_html: Permetti ai curatori del progetto
-          di visualizzare le coordinate private di questa osservazione.
+          di visualizzare le coordinate nascoste di questa osservazione.
         ancestor_disagreements_desc: '# di taxa identificati che appartengono agli
           antenati del taxon, ma che sono stati creati dopo la prima identificazione
           che usa questo taxon'
@@ -5984,6 +6066,9 @@ it:
         we_included_links: Abbiamo incluso i collegamenti alle foto interessate qui
           sotto.
     photos:
+      forbidden_notice_html: Non abbiamo i permessi di accedere a quelle foto al momento.
+        Potresti aver necessità di disconnettere e riconnettere l'account nelle tue
+        <a href="/users/edit">impostazioni</a> per fornirci permessi aggiuntivi.
       inviter:
         automatically_add_to_project: Aggiungi automaticamente al progetto
         automatically_id_the_new_obs_as: Identifica automaticamente le nuove osservazioni
@@ -6034,20 +6119,20 @@ it:
       tracks_multiple_projects: traccia più progetti
       projects_included: Progetti inclusi
       collection_and_umbrellas_do_not_support: I Progetti Collezione ed Ombrello attualmente
-        non supportano l'accesso alle coordinate private.
+        non supportano l'accesso alle coordinate nascoste.
       curator_coordinate_access_desc_html: Ricorda, <strong>i curatori del progetto
         possono aggiungere qualsiasi tua osservazione al loro progetto</strong> a
         meno che tu non abbia deselezionato tale opzione nelle <a href="/users/edit">impostazioni
         dell'account</a>. Spunta la casella solo se ti fidi dei curatori e se vuoi
-        consentire loro di vedere le coordinate private di tutte le tue osservazioni
+        consentire loro di vedere le coordinate nascoste di tutte le tue osservazioni
         che possono essere aggiunte al progetto. Se non glielo vuoi consentire, puoi
-        lo stesso permettergli l'accesso alle coordinate di una osservazione ma devi
-        farlo osservazione-per-osservazione.
+        lo stesso permettergli l'accesso alle coordinate nascoste di una osservazione
+        ma devi farlo osservazione-per-osservazione.
       confirm_leave:
         what_would_you_like: Cosa vorresti fare delle tue osservazioni in questo progetto?
         keep_observations_label: Lasca le osservazioni in questo progetto
         keep_observations_desc: Le tue osservazioni rimarranno nel progetto e i curatori
-          saranno ancora in grado di vedere le relative coordinate private.
+          saranno ancora in grado di vedere le relative coordinate nascoste.
         project_requires_curator_coordinate_access_desc: Questo progetto non permette
           di aggiungere osservazioni con coordinate non visibili dai curatori. Se
           non vuoi condividere le coordinate di questa osservazione con i curatori,
@@ -6057,10 +6142,10 @@ it:
           ancora in grado di aggiungere le tue osservazioni al loro progetto a meno
           che tu non cambi le tue <a href="/users/edit">impostazioni dell'account</a>.
         revoke_observations_label: Lascia le tue osservazioni in questo progetto,
-          ma impedisce che i curatori possano vedere le relative coordinate private.
+          ma impedisce che i curatori possano vedere le relative coordinate nascoste.
         revoke_observations_desc: Se l'unica ragione per cui tu stai abbandonando
           il progetto è la volontà di impedire ai curatori di vedere le coordinate
-          private.
+          nascoste.
       edit:
         aggregation_pending: In attesa di Aggregazione
         new_place_desc_html: |-
@@ -6251,7 +6336,7 @@ it:
       curator_coordinate_access_label: Vuoi rendere visibili le coordinate private/oscurate
         delle tue osservazioni ai curatori del progetto?
       curator_coordinate_access_note: Puoi anche scegliere di condividere le coordinate
-        private delle osservazioni in questo progetto valutando caso per caso. Questi
+        nascoste delle osservazioni in questo progetto valutando caso per caso. Questi
         sono solo i valori predefiniti per le nuove osservazioni aggiunte al progetto.
       project_terms_desc_html: Permetti ai curatori del progetto di usare le osservazioni
         in accordo con i <a href="%{url}">termini del progetto</a>.
@@ -6630,7 +6715,7 @@ it:
           Non puoi escludere delle osservazioni dai progetti collezione ed ombrello,
           che sono essenzialmente dei filtri salvati. Puoi approdondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
         project_settings_desc: Ricorda, questa opzione non concede il permesso ai
-          progetti di accedere alle tue coordinate private o di mandarti gli aggiornamenti.
+          progetti di accedere alle tue coordinate nascoste o di mandarti gli aggiornamenti.
           Devi unirti ai progetti per garantirgli tali autorizzazioni, oppure concedere
           i permessi osservazione per osservazione.
         taxon_change_desc: Quando dei taxa sono uniti o rinominati su %{site_name},
@@ -6964,90 +7049,6 @@ it:
           one: 1 errore impedisce a questo %{model} di essere salvato
           other: '%{count} errori impediscono a questo %{model} di essere salvato'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: richiede la presenza di almeno 3 taxa nella
-                tua guida
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: la guida può avere al massimo 500 taxa
-        mushroom_observer_import_flow_task:
-          attributes:
-            base:
-              api_key_in_use: importando chiave API o accodato per l'importazione
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: per sequenze di DNA può contenere solo i caratteri A,
-                T, C, G
-              date_format: deve essere nel formato YYYY-MM-GG per un campo data ("%{observation_field_name}"
-                nella tua osservazione di "%{observation_species_guess}")
-              time_format: deve essere nel formato hh:mm per un campo orario ("%{observation_field_name}"
-                nella tua osservazione "%{observation_species_guess}")
-            observation_id:
-              user_does_not_accept_fields_from_others: l'utente non accetta campi
-                da altri
-              user_only_accepts_fields_from_site_curators: l'utente accetta i campi
-                solo dai curatori del sito
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: è troppo grande per essere importato
-              contains_too_many_observations: contiene troppe osservazioni da importare
-        post:
-          attributes:
-            user:
-              must_be_on_site_long_enough: devi essere registrato da più di 24 ore
-                per pubblicare. Abbiamo un sacco di spammer, e questo è un modo per
-                contrastarli. Tu puoi comunque salvare una bozza, e se tra un giorno
-                userai ancora il sito, potrai pubblicare.
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: Progetto che non permette osservazioni
-            user_id:
-              must_be_curator: deve essere un curatore di questo progetto
-            observation_id:
-              must_be_observed_after: deve essere verificato dopo al %{time}
-              must_be_observed_before: deve essere rispettato prima del %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
-                solo da un curatore di questo taxon
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
-                solo da un curatore di questo taxon
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
-                solo da un curatore di questo taxon
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
-                solo da un curatore di questo taxon
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
-                solo da un curatore di questo taxon
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
-                solo da un curatore di questo taxon
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: non deve contenere virgole o barre
-            name:
-              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: non
-                corrisponde al nome scientifico di una specie in questa lingua
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: deve iniziare con una lettera, non contenere
-                spazi e deve avere solo lettere, numeri, trattini e trattini in basso
-            email:
-              must_look_like_an_email_address: deve sembrare un indirizzo email
     models:
       AssessmentSection: Sezione valutazioni
       Atlas: Atlante
@@ -7144,6 +7145,181 @@ it:
         search_place_id: Luogo di ricerca
         place_id: Luogo
         preferred_observation_fields_by: Permetti campi dell'osservazione da
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: deve essere accettato
+        blank: non può essere vuoto
+        confirmation: non corrisponde alla password
+        empty: non può essere vuoto
+        equal_to: deve essere uguale a %{count}
+        even: deve essere anche
+        exclusion: è riservato
+        greater_than: deve essere superiore a %{count}
+        greater_than_or_equal_to: deve essere superiore o uguale a %{count}
+        inclusion: non è incluso nella lista
+        invalid: non è valido
+        less_than: deve essere meno di %{count}
+        less_than_or_equal_to: deve essere minore o uguale a %{count}
+        not_a_number: non è un numero
+        not_an_integer: deve essere un numero intero
+        odd: deve essere dispari
+        record_invalid: 'Validazione fallita: %{errors}'
+        taken: è già stato preso
+        too_long:
+          one: è troppo lungo (massimo 1 carattere)
+          other: è troppo lungo (massimo %{count} caratteri)
+        too_short:
+          one: è troppo corto (minimo 1 carattere)
+          other: è troppo corto (minimo %{count} caratteri)
+        wrong_length:
+          one: ha una lunghezza sbagliata (dovrebbe essere 1 carattere)
+          other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
+      template:
+        body: 'Ci sono stati problemi con i seguenti campi:'
+        header: '{{PLURAL|one=1 errore impedisce di salvare questo %{model}|%{count}
+          errori impediscono di salvare questo %{model}}'
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: non può contenere un frammento.
+              has_query_parameter: non può contenere un parametro di ricerca.
+              invalid_uri: deve essere un URI valido.
+              relative_uri: deve essere un URI assoluto.
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: richiede la presenza di almeno 3 taxa nella
+                tua guida
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: la guida può avere al massimo 500 taxa
+        mushroom_observer_import_flow_task:
+          attributes:
+            base:
+              api_key_in_use: importando chiave API o accodato per l'importazione
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: per sequenze di DNA può contenere solo i caratteri A,
+                T, C, G
+              date_format: deve essere nel formato YYYY-MM-GG per un campo data ("%{observation_field_name}"
+                nella tua osservazione di "%{observation_species_guess}")
+              time_format: deve essere nel formato hh:mm per un campo orario ("%{observation_field_name}"
+                nella tua osservazione "%{observation_species_guess}")
+            observation_id:
+              user_does_not_accept_fields_from_others: l'utente non accetta campi
+                da altri
+              user_only_accepts_fields_from_site_curators: l'utente accetta i campi
+                solo dai curatori del sito
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: è troppo grande per essere importato
+              contains_too_many_observations: contiene troppe osservazioni da importare
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: devi essere registrato da più di 24 ore
+                per pubblicare. Abbiamo un sacco di spammer, e questo è un modo per
+                contrastarli. Tu puoi comunque salvare una bozza, e se tra un giorno
+                userai ancora il sito, potrai pubblicare.
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Progetto che non permette osservazioni
+            user_id:
+              must_be_curator: deve essere un curatore di questo progetto
+            observation_id:
+              must_be_observed_after: deve essere verificato dopo al %{time}
+              must_be_observed_before: deve essere rispettato prima del %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
+                solo da un curatore di questo taxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: non deve contenere virgole o barre
+            name:
+              cannot_match_the_scientific_name_of_a_species_for_this_lexicon: non
+                corrisponde al nome scientifico di una specie in questa lingua
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: deve iniziare con una lettera, non contenere
+                spazi e deve avere solo lettere, numeri, trattini e trattini in basso
+            email:
+              must_look_like_an_email_address: deve sembrare un indirizzo email
+  doorkeeper:
+    scopes:
+      write: Creare, aggiornare, e cancellare le tue osservazioni, identificazioni,
+        e altri contenuti che ti appartengono, ed accedere alle tue coordinate nascoste
+        e ad ogni altra informazione a cui tu puoi accedere la sito.
+      login: Accedere a informazioni rilevanti per l'accesso, come l'email, il nome
+        utente,e l'icona utente
+    errors:
+      messages:
+        invalid_request: La richiesta manca di un parametro necessario, include un
+          parametro non supportato, o è in qualche altra maniera mal strutturata.
+        invalid_redirect_uri: L'uri di reindirizzamento incluso non è valido.
+        unauthorized_client: Il cliente non è autorizzato ad effettuare questa richiesta
+          usando questo metodo.
+        access_denied: Il proprietario della risorsa o il server di autorizzazione
+          hanno rifiutato la richiesta.
+        invalid_scope: L'ambito richiesto è invalido, sconosciuto, o malformato.
+        server_error: Il server di autorizzazione ha incontrato una condizione inaspettata
+          che ha impedito di completare la richiesta.
+        temporarily_unavailable: Il server di autorizzazione non è al momento in grado
+          di farsi carico della richiesta a causa di un temporaneo sovraccarico o
+          manutenzione del server.
+        credential_flow_not_configured: Il flusso delle credenziali delle password
+          del proprietario della risorsa è falluto perchè Doorkeeper.configure.resource_owner_from_credentials
+          non è configurato.
+        resource_owner_authenticator_not_configured: La ricerca del proprietario della
+          risorsa è fallita perché Doorkeeper.configure.resource_owner_authenticator
+          non è configurato.
+        unsupported_response_type: Il server di autorizzazione non supporta questo
+          tipo di risposta.
+        invalid_client: L'autenticazione del cliente è fallita a causa di cliente
+          sconosciuto, nessuna autenticazione del cliente inclusa, o per un metodo
+          di autenticazione non previsto.
+        invalid_grant: Il rilascio di autorizzazione fornito è invalido, scaduto,
+          revocato, non corrisponde l'URI di reindirizzamento usato nella richiesta
+          di autorizzazione, o è stato rilasciato da un altro cliente.
+        unsupported_grant_type: Il tipo di rilascio di autorizzazione non è supportato
+          dal server di autenticazione.
+        invalid_resource_owner: Le credenziali fornite del proprietario delle risorsa
+          non sono valide, o il proprietario della risorsa non può essere trovato
+    flash:
+      applications:
+        create:
+          notice: Applicazione creata.
+        destroy:
+          notice: Applicazione cancellata.
+        update:
+          notice: Applicazione aggiornata.
+      authorized_applications:
+        destroy:
+          notice: Applicazione revocata.
   i18n:
     inflections:
       :@vow_or_con:

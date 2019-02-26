@@ -74,10 +74,13 @@ class Project < ActiveRecord::Base
   preference :rule_month, :string
   preference :rule_term_id, :integer
   preference :rule_term_value_id, :integer
+  preference :rule_native, :boolean
+  preference :rule_introduced, :boolean
   RULE_PREFERENCES = [
     "rule_quality_grade", "rule_photos", "rule_sounds",
     "rule_observed_on", "rule_d1", "rule_d2", "rule_month",
-    "rule_term_id", "rule_term_value_id"
+    "rule_term_id", "rule_term_value_id", "rule_native",
+    "rule_introduced"
   ]
   
   SUBMISSION_BY_ANYONE = 'any'
@@ -308,7 +311,11 @@ class Project < ActiveRecord::Base
   end
 
   def project_observations_count
-    project_observations.count
+    if is_new_project?
+      Observation.elastic_search( collection_search_parameters.merge( per_page: 0 ) ).total_entries
+    else
+      project_observations.count
+    end
   end
 
   def posts_count
@@ -727,7 +734,11 @@ class Project < ActiveRecord::Base
   
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
-    observed_taxa_count = project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
+    observed_taxa_count = if project.is_new_project?
+      INatAPIService.observations_species_counts( project.collection_search_parameters.merge( per_page: 0 ) ).total_results
+    else
+      project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
+    end
     project.update_attributes(observed_taxa_count: observed_taxa_count)
   end
   
@@ -1003,7 +1014,6 @@ class Project < ActiveRecord::Base
 
   def destroy_project_rules
     ProjectObservationRule.where(
-      operator: "in_project?",
       operand_type: "Project",
       operand_id: id
     ).destroy_all

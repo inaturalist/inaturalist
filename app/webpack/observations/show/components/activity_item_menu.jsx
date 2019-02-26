@@ -187,7 +187,6 @@ const ActivityItemMenu = ( {
     && !viewerIsActor
     && observation
     && observation.user.id === loggedInUser.id
-    && loggedInUser.roles.indexOf( "admin" ) >= 0
   ) {
     menuItems.push( ( <MenuItem divider key={`trust-divider-${item.id}`} /> ) );
     loggedInUser.trusted_user_ids = loggedInUser.trusted_user_ids || [];

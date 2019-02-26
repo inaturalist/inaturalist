@@ -11,24 +11,29 @@ const TaxonSummaryPopover = ( { taxon, contents } ) => {
   const popover = (
     <Popover
       className="TaxonSummaryPopoverOverlay"
-      id={ `popover-taxon-${taxon.id}` }
+      id={`popover-taxon-${taxon.id}`}
     >
       <div>
         <div className="photo">
-          <a href={ `/taxa/${taxon.id}` }>
+          <a href={`/taxa/${taxon.id}`}>
             { taxonImageTag }
           </a>
         </div>
         <div className="summary">
-          <span dangerouslySetInnerHTML={ { __html: (
-            taxon.taxon_summary && taxon.taxon_summary.wikipedia_summary ?
-            taxon.taxon_summary.wikipedia_summary : I18n.t( "no_summary_from_wikipedia" ) ) } }
+          <span
+            dangerouslySetInnerHTML={{
+              __html: taxon.taxon_summary && taxon.taxon_summary.wikipedia_summary
+                ? taxon.taxon_summary.wikipedia_summary
+                : I18n.t( "no_summary_from_wikipedia" )
+            }}
           />
-        <a href={ `/taxa/${taxon.id}` } className="more">
-          <button className="btn btn-default">
-            <i className="fa fa-info-circle" /> { I18n.t( "more_info" ) }
-          </button>
-        </a>
+          <a href={`/taxa/${taxon.id}`} className="more">
+            <button type="button" className="btn btn-default">
+              <i className="fa fa-info-circle" />
+              { " " }
+              { I18n.t( "more_info" ) }
+            </button>
+          </a>
         </div>
       </div>
     </Popover>
@@ -40,7 +45,7 @@ const TaxonSummaryPopover = ( { taxon, contents } ) => {
       placement="top"
       animation={false}
       overlay={popover}
-      containerPadding={ 20 }
+      containerPadding={20}
     >
       <span className="TaxonSummaryPopover">
         { contents }

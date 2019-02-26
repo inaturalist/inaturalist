@@ -55,7 +55,7 @@
         skipLocal: true,
         urlParams: {
           authenticity_token: AUTH_TOKEN,
-          limit: 30
+          limit: 90
         }
       });
       if (SOUNDCLOUD_IDENTITY) {
@@ -88,7 +88,7 @@
     
     <div id="photo_import">
       <% if !@photo_identities.blank? %>
-        <%= form_tag({:action => 'import_photos'}) do %>
+        <%= form_tag({:action => 'import_photos'}, class: "clear") do %>
         
           <div class="readable description">
             <%=t :select_photos_from_your_photo_stream, :site_name => @site.name %>
@@ -104,6 +104,11 @@
           <%=t :before_importing_photos %>
         </div>
       <% end %>
+      <% if @photo_identities.detect{|pi| pi.is_a?( ProviderAuthorization ) && pi.provider_name =~ /google/ } %>
+        <div class="notice">
+          <%=t "views.observations.import.google_photos_notice_html" %>
+        </div>
+      <% end %>
     </div>
 
     <div id="sound_import">
@@ -116,10 +121,13 @@
           <%= submit_tag(t(:'sounds.import_sounds'), :class => 'default button', "data-loading-click" => t(:importing)) %>
         <% end %>
       <% else %>
-        <div class="notice">
+        <!-- <div class="notice">
           <%=t :youll_need_to_link %>
           <%= link_to(t(:'sounds.your_soundcloud_account'), '/auth/soundcloud') %> 
           <%=t :'sounds.before_importing_sounds' %>
+        </div> -->
+        <div class="notice">
+          <%=t "views.observations.import.soundcloud_notice_html" %>
         </div>
       <% end %>
     </div>

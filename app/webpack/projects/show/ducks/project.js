@@ -23,7 +23,11 @@ export default function reducer( state = { }, action ) {
 export function setProject( p ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const project = new Project( p );
+    const additionalSearchParams = {
+      preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
+      locale: I18n.locale
+    };
+    const project = new Project( p, additionalSearchParams );
     if ( state.config.currentUser && _.includes( project.user_ids, state.config.currentUser.id ) ) {
       project.currentUserIsMember = true;
     }

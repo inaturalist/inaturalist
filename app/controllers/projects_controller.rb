@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
           @place = @site.place unless params[:everywhere].yesish?
         end
 
-        base_params = { site_id: @site.id }
+        base_params = { site_id: @site.id, ttl: 600 }
         if current_user && ( current_user.is_admin? || current_user.site_admins.any? )
           base_params[:ttl] = -1
         end
@@ -56,7 +56,7 @@ class ProjectsController < ApplicationController
         ) )
 
         carousel_ids = ( carousel_r ? carousel_r.results : [] ).map{ |p| p["id"] }
-        @carousel = carousel_ids.map{ |id| Project.find(id) }.compact
+        @carousel = Project.where(id: carousel_ids).to_a
 
         featured_r = INatAPIService.projects( base_params.merge(
           featured: true,
@@ -65,7 +65,7 @@ class ProjectsController < ApplicationController
           per_page: 11
         ) )
         featured_ids = ( featured_r ? featured_r.results : [] ).map{ |p| p["id"] }
-        @featured = featured_ids.map{ |id| Project.find(id) }.compact
+        @featured = Project.where(id: featured_ids).to_a
         while @carousel.length < 3 && @featured.length > 0 do
           @carousel.push( @featured.shift )
         end
@@ -78,7 +78,7 @@ class ProjectsController < ApplicationController
           place_id: @place.try(:id)
         ) )
         recent_ids = ( recent_r ? recent_r.results : [] ).map{ |p| p["id"] }
-        @recent = recent_ids.map{ |id| Project.find(id) }.compact
+        @recent = Project.where(id: recent_ids).to_a
         while @carousel.length < 3 && @recent.length > 0 do
           @carousel.push( @recent.shift )
         end
@@ -92,7 +92,9 @@ class ProjectsController < ApplicationController
           has_posts: true
         ) )
         created_ids = ( created_r ? created_r.results : [] ).map{ |p| p["id"] }
-        @created = created_ids.map{ |id| Project.find(id) }.compact
+        @created = Project.where(id: created_ids).to_a
+
+        Project.preload_associations( @carousel + @featured + @recent + @created, :stored_preferences )
 
         if logged_in?
           @started = current_user.projects.not_flagged_as_spam.
@@ -135,6 +137,9 @@ class ProjectsController < ApplicationController
         end
         scope = scope.in_group(params[:group]) if params[:group]
         scope = scope.from_source_url(params[:source]) if params[:source]
+        scope = scope.includes( :project_observation_rules, :project_list, :place,
+          { project_observation_fields: :observation_field }
+        )
         @projects = scope.paginate(:page => params[:page], :per_page => 100).to_a.uniq
         opts = Project.default_json_options.merge(:include => [
           :project_list, 

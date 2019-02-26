@@ -128,6 +128,27 @@
           - announcements.each do |announcement|
             - unless user_seen_announcement?( announcement )
               = announcement.body.html_safe
+      - if @discourse_url && !@discourse_topics.blank?
+        #forum.admin
+          %h3.page-header
+            = link_to t(:forum), @discourse_url
+            %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => "The forum is a place to iNat itself, including help & support, feature requests, bug reports, announcements, and more.", "data-placement" => "top", "data-toggle" => "popover" }
+          .panel.panel-default
+            - @discourse_topics.each do |category, topics|
+              .panel-heading
+                %h3.panel-title
+                  = link_to t( "forum_categories.#{category.underscore}" ), "#{@discourse_url}/c/#{category}"
+              .list-group
+                - for topic in topics
+                  .list-group-item
+                    - datetime = DateTime.parse( topic["created_at"] )
+                    = link_to topic["title"], "#{@discourse_url}/t/#{topic["slug"]}"
+                    .right
+                      .text-muted.time{ title: datetime.iso8601 }
+                        = compact_date( datetime )
+                      .text-muted.comments
+                        %i.fa.fa-comments
+                        = topic["reply_count"]
       #subscriptions
         %h3.page-header
           = t :subscriptions
@@ -170,24 +191,6 @@
               .modal-body
                 %p#subscribeTaxonBody= t :subscribe_to_observations_in_a_taxon
                 %p#subscribePlaceBody= t :subscribe_to_observations_in_a_place
-      %h3.page-header
-        = t :more
-      - unless current_user.prefers_hide_getting_started_onboarding
-        #getting_started_panel.panel.panel-default
-          .panel-heading
-            %a.close{ "data-panel-type" => "getting_started" } &#215;
-            %h3.panel-title
-              = t :getting_started_guide
-          .panel-body
-            %p= t :let_us_walk_you_through
-            = link_to t(:get_started), @site.getting_started_url, class: "btn btn-default btn-md"
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title= t :blog_widget
-        .panel-body
-          %p= t :show_off_your_recent_observations
-          %p
-            = link_to t(:learn_more), { controller: "observations", action: "widget" }, class: "btn btn-default btn-md"
       - if current_user.is_curator?
         %h3.page-header
           = t :curation
@@ -237,4 +240,23 @@
           .panel-footer
             = link_to t(:curate_taxa), curate_taxa_path, class: "btn btn-primary btn-sm"
             = link_to t(:create_a_new_taxon), new_taxon_path, class: "btn btn-primary btn-sm"
-        = link_to t(:recent_users), recent_users_path, class: "btn btn-primary btn-block btn-sm"
+        .panel.panel-default
+          = link_to t(:recent_users), recent_users_path, class: "btn btn-primary btn-block btn-sm"
+      %h3.page-header
+        = t :more
+      - unless current_user.prefers_hide_getting_started_onboarding
+        #getting_started_panel.panel.panel-default
+          .panel-heading
+            %a.close{ "data-panel-type" => "getting_started" } &#215;
+            %h3.panel-title
+              = t :getting_started_guide
+          .panel-body
+            %p= t :let_us_walk_you_through
+            = link_to t(:get_started), @site.getting_started_url, class: "btn btn-default btn-md"
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title= t :blog_widget
+        .panel-body
+          %p= t :show_off_your_recent_observations
+          %p
+            = link_to t(:learn_more), { controller: "observations", action: "widget" }, class: "btn btn-default btn-md"

@@ -3,6 +3,7 @@ require "spec_helper"
 describe "lists/show" do
   it "includes the user name in the life list title if not there already" do
     u = User.make!
+    I18n.locale = "en"
     u.life_list.update_attribute(:title, " Life List")
     assign(:list, u.life_list)
     assign(:view, "plain")

@@ -15,7 +15,7 @@ import {
 } from "../../shared/ducks/taxon";
 
 function mapStateToProps( state ) {
-  const speciesTabs = ["map", "articles", "taxonomy", "status", "similar"];
+  const speciesTabs = ["map", "articles", "interactions", "taxonomy", "status", "similar"];
   const aboveSpeciesTabs = ["map", "articles", "highlights", "taxonomy"];
   let chosenTab;
   if (
