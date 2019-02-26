@@ -14,9 +14,26 @@
   &.no-parens .secondary-name:before { content: ''; display: inline-block; }
   &.no-parens .secondary-name:after { content: ''; display: inline-block; }
   .secondary-name:before,
-  &.parens .secondary-name:before { content: '('; display: inline-block; }
+  &.parens .secondary-name:before {
+    content: '(';
+    display: inline-block;
+  }
   .secondary-name:after,
-  &.parens .secondary-name:after { content: ')'; display: inline-block; }
+  &.parens .secondary-name:after {
+    content: ')';
+    display: inline-block;
+  }
+  &.genus,
+  &.species,
+  &.subspecies,
+  &.infraspecies,
+  &.variety,
+  &.hybrid {
+    .sciname.secondary-name:before,
+    .sciname.secondary-name:after {
+      font-style: normal;
+    }
+  }
 }
 
 .taxon .altname { color: #aaa; }
