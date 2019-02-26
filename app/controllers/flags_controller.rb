@@ -52,7 +52,10 @@ class FlagsController < ApplicationController
       end
       @flags = @flags.where( flaggable_type: @flaggable_type ) unless @flaggable_type.blank?
       if @flag_types.include?( "other" )
-        @flags = @flags.where( "flag NOT IN (?)", ( Flag::FLAGS - @flag_types ) )
+        except_flag_types = Flag::FLAGS - @flag_types
+        unless except_flag_types.blank?
+          @flags = @flags.where( "flag NOT IN (?)", ( Flag::FLAGS - @flag_types ) )
+        end
       else
         @flags = @flags.where( "flag IN (?)", @flag_types )
       end
