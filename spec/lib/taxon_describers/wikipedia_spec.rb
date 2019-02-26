@@ -15,8 +15,8 @@ describe "TaxonDescribers" do
       endpoint = ApiEndpoint.first
       expect(endpoint.title).to eq "Wikipedia (EN)"
       expect(endpoint.description).to eq nil
-      expect(endpoint.documentation_url).to eq "http://en.wikipedia.org/w/api.php"
-      expect(endpoint.base_url).to eq "http://en.wikipedia.org/w/api.php?"
+      expect(endpoint.documentation_url).to eq "https://en.wikipedia.org/w/api.php"
+      expect(endpoint.base_url).to eq "https://en.wikipedia.org/w/api.php?"
       expect(endpoint.cache_hours).to eq 720
     end
 
@@ -33,7 +33,7 @@ describe "TaxonDescribers" do
       expect(ApiEndpointCache.count).to eq 1
       cache = ApiEndpointCache.first
       expect(cache.request_url).to eq(
-        "http://en.wikipedia.org/w/api.php?page=Animalia&redirects=true&action=parse&format=xml")
+        "https://en.wikipedia.org/w/api.php?page=Animalia&redirects=true&action=parse&format=xml")
       expect(cache.cached?).to be true
     end
 
@@ -41,7 +41,7 @@ describe "TaxonDescribers" do
       I18n.locale = "fr"
       @wikipedia.describe(@animalia)
       expect(ApiEndpointCache.first.request_url).to eq(
-        "http://fr.wikipedia.org/w/api.php?page=Animalia&redirects=true&action=parse&format=xml")
+        "https://fr.wikipedia.org/w/api.php?page=Animalia&redirects=true&action=parse&format=xml")
       I18n.locale = "en"
     end
 
@@ -55,7 +55,7 @@ describe "TaxonDescribers" do
     it "generates a page_url for a taxon" do
       t = Taxon.make!(name: "Some great name")
       expect(@wikipedia.page_url(t)).to eq(
-        "http://en.wikipedia.org/wiki/Some_great_name")
+        "https://en.wikipedia.org/wiki/Some_great_name")
     end
 
   end
