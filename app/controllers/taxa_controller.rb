@@ -1398,7 +1398,7 @@ class TaxaController < ApplicationController
         else
           canonical
         end
-        return redirect_to :action => redirect_target
+        return redirect_to( { action: redirect_target }.merge( request.GET ) )
       end
     end
     

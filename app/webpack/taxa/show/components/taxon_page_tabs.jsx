@@ -15,41 +15,53 @@ import RecentObservationsContainer from "../containers/recent_observations_conta
 class TaxonPageTabs extends React.Component {
   componentDidMount( ) {
     const domNode = ReactDOM.findDOMNode( this );
+    const { choseTab } = this.props;
     $( "a[data-toggle=tab]", domNode ).on( "shown.bs.tab", e => {
-      this.props.choseTab( e.target.hash.match( /\#(.+)\-tab/ )[1] );
+      choseTab( e.target.hash.match( /#(.+)-tab/ )[1] );
     } );
   }
+
   componentDidUpdate( prevProps ) {
+    const { taxon, loadDataForTab, chosenTab } = this.props;
     const prevTaxonId = prevProps.taxon ? prevProps.taxon.id : null;
-    const currTaxonId = this.props.taxon ? this.props.taxon.id : null;
+    const currTaxonId = taxon ? taxon.id : null;
     if ( prevTaxonId !== currTaxonId ) {
-      this.props.loadDataForTab( this.props.chosenTab );
+      loadDataForTab( chosenTab );
     }
     // very lame hack to make sure the map resizes correctly if it rendered when
     // not visible
-    if ( this.props.chosenTab === "map" && prevProps.chosenTab !== "map" ) {
+    if ( chosenTab === "map" && prevProps.chosenTab !== "map" ) {
       const taxonMap = $( ".TaxonMap", ReactDOM.findDOMNode( this ) );
       google.maps.event.trigger( taxonMap.data( "taxonMap" ), "resize" );
       taxonMap.taxonMap( taxonMap.data( "taxonMapOptions" ) );
     }
   }
+
   render( ) {
-    const { taxon, chosenTab, currentUser, showPhotoChooserModal } = this.props;
+    const {
+      taxon,
+      chosenTab,
+      currentUser,
+      showPhotoChooserModal
+    } = this.props;
+    const test = $.deparam.querystring( ).test;
     const speciesOrLower = taxon && taxon.rank_level <= 10;
     let curationTab;
     if ( currentUser && currentUser.id ) {
-      const isCurator =
-        currentUser.roles.indexOf( "curator" ) >= 0 ||
-        currentUser.roles.indexOf( "admin" ) >= 0;
+      const isCurator = currentUser.roles.indexOf( "curator" ) >= 0 || currentUser.roles.indexOf( "admin" ) >= 0;
       let atlasItem;
       if ( isCurator && taxon.rank_level <= 10 ) {
         atlasItem = taxon.atlas_id ? (
-          <MenuItem eventKey="edit-atlas" >
-            <i className="fa fa-globe"></i> { I18n.t( "edit_atlas" ) }
+          <MenuItem eventKey="edit-atlas">
+            <i className="fa fa-globe" />
+            { " " }
+            { I18n.t( "edit_atlas" ) }
           </MenuItem>
         ) : (
-          <MenuItem eventKey="new-atlas" >
-            <i className="fa fa-globe"></i> { I18n.t( "create_an_atlas" ) }
+          <MenuItem eventKey="new-atlas">
+            <i className="fa fa-globe" />
+            { " " }
+            { I18n.t( "create_an_atlas" ) }
           </MenuItem>
         );
       }
@@ -58,7 +70,7 @@ class TaxonPageTabs extends React.Component {
           <Dropdown
             id="curation-dropdown"
             pullRight
-            onSelect={ eventKey => {
+            onSelect={eventKey => {
               switch ( eventKey ) {
                 case "add-flag":
                   window.location = `/taxa/${taxon.id}/flags/new`;
@@ -81,31 +93,42 @@ class TaxonPageTabs extends React.Component {
             }}
           >
             <Dropdown.Toggle>
-              <i className="fa fa-cog"></i> { I18n.t( "curation" ) }
+              <i className="fa fa-cog" />
+              { " " }
+              { I18n.t( "curation" ) }
             </Dropdown.Toggle>
             <Dropdown.Menu>
               <MenuItem
                 eventKey="add-flag"
               >
-                <i className="fa fa-flag"></i> { I18n.t( "flag_for_curation" ) }
+                <i className="fa fa-flag" />
+                { " " }
+                { I18n.t( "flag_for_curation" ) }
               </MenuItem>
               <MenuItem
                 className={isCurator && taxon.flag_counts && taxon.flag_counts.unresolved && taxon.flag_counts.unresolved > 0 ? "" : "hidden"}
                 eventKey="view-flags"
               >
-                <i className="fa fa-flag-checkered">
-                </i> { I18n.t( "view_flags" ) } <strong>({ taxon.flag_counts ? taxon.flag_counts.unresolved : 0 })</strong>
+                <i className="fa fa-flag-checkered" />
+                { " " }
+                { I18n.t( "view_flags" ) }
+                { " " }
+                <strong>({ taxon.flag_counts ? taxon.flag_counts.unresolved : 0 })</strong>
               </MenuItem>
               <MenuItem
                 eventKey="edit-photos"
               >
-                <i className="fa fa-picture-o"></i> { I18n.t( "edit_photos" ) }
+                <i className="fa fa-picture-o" />
+                { " " }
+                { I18n.t( "edit_photos" ) }
               </MenuItem>
               <MenuItem
                 className={isCurator ? "" : "hidden"}
                 eventKey="edit-taxon"
               >
-                <i className="fa fa-pencil"></i> { I18n.t( "edit_taxon" ) }
+                <i className="fa fa-pencil" />
+                { " " }
+                { I18n.t( "edit_taxon" ) }
               </MenuItem>
               { atlasItem }
             </Dropdown.Menu>
@@ -119,15 +142,15 @@ class TaxonPageTabs extends React.Component {
           <Row>
             <Col xs={12}>
               <ul id="main-tabs" className="nav nav-tabs" role="tablist">
-                <li role="presentation" className={ chosenTab === "map" ? "active" : "" }>
+                <li role="presentation" className={chosenTab === "map" ? "active" : ""}>
                   <a href="#map-tab" role="tab" data-toggle="tab">{ I18n.t( "map" ) }</a>
                 </li>
-                <li role="presentation" className={ chosenTab === "articles" ? "active" : "" }>
+                <li role="presentation" className={chosenTab === "articles" ? "active" : ""}>
                   <a href="#articles-tab" role="tab" data-toggle="tab">{ I18n.t( "about" ) }</a>
                 </li>
                 <li
                   role="presentation"
-                  className={ `${speciesOrLower ? "hidden" : ""} ${chosenTab === "highlights" ? "active" : ""}`}
+                  className={`${speciesOrLower ? "hidden" : ""} ${chosenTab === "highlights" ? "active" : ""}`}
                 >
                   <a
                     href="#highlights-tab"
@@ -137,8 +160,9 @@ class TaxonPageTabs extends React.Component {
                     { I18n.t( "trends" ) }
                   </a>
                 </li>
-                { true ? null : (
-                  <li role="presentation"
+                { test === "interactions" && (
+                  <li
+                    role="presentation"
                     className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "interactions" ? "active" : ""}`}
                   >
                     <a
@@ -150,7 +174,7 @@ class TaxonPageTabs extends React.Component {
                     </a>
                   </li>
                 ) }
-                <li role="presentation" className={ chosenTab === "taxonomy" ? "active" : "" }>
+                <li role="presentation" className={chosenTab === "taxonomy" ? "active" : ""}>
                   <a href="#taxonomy-tab" role="tab" data-toggle="tab">{ I18n.t( "taxonomy" ) }</a>
                 </li>
                 <li
@@ -203,7 +227,8 @@ class TaxonPageTabs extends React.Component {
           <div
             role="tabpanel"
             className={`tab-pane ${chosenTab === "taxonomy" ? "active" : ""}`}
-            id="taxonomy-tab">
+            id="taxonomy-tab"
+          >
             <TaxonomyTabContainer />
           </div>
           <div
@@ -212,9 +237,9 @@ class TaxonPageTabs extends React.Component {
             id="status-tab"
           >
             <StatusTab
-              statuses={this.props.taxon.conservationStatuses}
-              listedTaxaCount={ this.props.taxon.listed_taxa_count }
-              listedTaxa={_.filter( this.props.taxon.listed_taxa, lt => lt.establishment_means )}
+              statuses={taxon.conservationStatuses}
+              listedTaxaCount={taxon.listed_taxa_count}
+              listedTaxa={_.filter( taxon.listed_taxa, lt => lt.establishment_means )}
             />
           </div>
           <div
