@@ -699,6 +699,16 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user_viewed_updates_for( record, options = {} )
+    return unless logged_in?
+    updates = UpdateAction.where( resource: record )
+    if options[:delay]
+      UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
+    else
+      UpdateAction.user_viewed_updates( updates, current_user.id )
+    end
+  end
+
 end
 
 # Override the Google Analytics insertion code so it won't track admins

@@ -356,7 +356,7 @@ module ApplicationHelper
   end
 
   def title_by_user( text )
-    h( text ).gsub( "&amp;", "&" ).html_safe
+    h( text ).gsub( "&amp;", "&" ).gsub( "&#39;", "'" ).html_safe
   end
   
   def markdown(text)

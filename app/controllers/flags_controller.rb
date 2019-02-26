@@ -89,6 +89,7 @@ class FlagsController < ApplicationController
   def show
     @object = @flag.flagged_object
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
+    user_viewed_updates_for( @flag ) if logged_in?
     respond_to do |format|
       format.html { render layout: "bootstrap" }
     end
