@@ -126,7 +126,7 @@ class FlagsController < ApplicationController
       @flag.flag = params[:flag_explanation]
     end
     if @flag.save
-      flash[:notice] = t(:flag_saved_thanks)
+      flash[:notice] = t(:flag_saved_thanks_html, url: url_for( @flag ) )
     else
       flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
     end
