@@ -1425,7 +1425,7 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates
-    return unless private_latitude.blank? && private_longitude.blank?
+    return if obscuration_changed
     if latitude.blank? || longitude.blank?
       self.obscuration_changed = geoprivacy_changed?
       return
@@ -1738,10 +1738,9 @@ class Observation < ActiveRecord::Base
 
   def self.reassess_coordinates_of( observations )
     observations.each do |o|
-      # o.obscure_coordinates_for_threatened_taxa
+      o.set_taxon_geoprivacy
       o.reassess_coordinate_obscuration
       o.obscure_place_guess
-      o.set_taxon_geoprivacy
       next unless o.coordinates_changed? || o.place_guess_changed? || o.taxon_geoprivacy_changed?
       Observation.where( id: o.id ).update_all(
         latitude: o.latitude,

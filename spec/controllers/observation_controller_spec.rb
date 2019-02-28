@@ -97,16 +97,16 @@ describe ObservationsController do
     end
     
     it "should use latitude param even if private_latitude set" do
-      observation = Observation.make!(:taxon => make_threatened_taxon, :latitude => 38, :longitude => -122)
-      expect(observation.private_longitude).to_not be_blank
+      observation = Observation.make!( taxon: make_threatened_taxon, latitude: 38, longitude: -122 )
+      expect( observation.private_longitude ).to_not be_blank
       old_latitude = observation.latitude
       old_private_latitude = observation.private_latitude
       sign_in observation.user
-      post :update, :id => observation.id, :observation => {:latitude => 1}
+      post :update, id: observation.id, observation: { latitude: 1 }
       observation.reload
-      expect(observation.private_longitude).to_not be_blank
-      expect(observation.latitude.to_f).to_not eq old_latitude.to_f
-      expect(observation.private_latitude.to_f).to_not eq old_private_latitude.to_f
+      expect( observation.private_longitude ).to_not be_blank
+      expect( observation.latitude.to_f ).to_not eq old_latitude.to_f
+      expect( observation.private_latitude.to_f ).to_not eq old_private_latitude.to_f
     end
 
     describe "with captive_flag" do

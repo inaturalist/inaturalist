@@ -2834,9 +2834,6 @@ describe Observation do
       t = Taxon.make!
       o = Observation.make!(:taxon => t, :latitude => 1, :longitude => 1)
       cs = ConservationStatus.make!(:taxon => t)
-      Delayed::Worker.new.work_off
-      o.reload
-      expect( o.taxon_geoprivacy ).not_to be_blank
       expect( o ).not_to be_coordinates_obscured
       Observation.reassess_coordinates_for_observations_of(t)
       o.reload
