@@ -2871,9 +2871,6 @@ describe Observation do
       place_guess = "somewhere awesome"
       o = Observation.make!( taxon: t, latitude: p.latitude, longitude: p.longitude, place_guess: place_guess )
       cs = ConservationStatus.make!( taxon: t )
-      Delayed::Worker.new.work_off
-      o.reload
-      expect( o.place_guess ).to eq place_guess
       Observation.reassess_coordinates_for_observations_of( t )
       o.reload
       expect( o.place_guess ).not_to be =~ /#{place_guess}/
