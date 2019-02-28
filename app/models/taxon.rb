@@ -307,6 +307,7 @@ class Taxon < ActiveRecord::Base
     "lizard",
     "oman",
     "pinecone",
+    "sea",
     "tanzania",
     "virginia",
     "winged insect"
