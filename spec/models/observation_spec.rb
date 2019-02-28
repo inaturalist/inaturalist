@@ -2834,7 +2834,10 @@ describe Observation do
       t = Taxon.make!
       o = Observation.make!(:taxon => t, :latitude => 1, :longitude => 1)
       cs = ConservationStatus.make!(:taxon => t)
-      expect(o).not_to be_coordinates_obscured
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.taxon_geoprivacy ).not_to be_blank
+      expect( o ).not_to be_coordinates_obscured
       Observation.reassess_coordinates_for_observations_of(t)
       o.reload
       expect(o).to be_coordinates_obscured
@@ -2847,6 +2850,8 @@ describe Observation do
       Identification.make!( observation: o, taxon: @Pseudacris_regilla )
       expect( o ).not_to be_coordinates_obscured
       cs = ConservationStatus.make!( taxon: @Pseudacris_regilla )
+      Delayed::Worker.new.work_off
+      o.reload
       Observation.reassess_coordinates_for_observations_of( @Pseudacris_regilla )
       o.reload
       expect( o ).to be_coordinates_obscured
@@ -2869,6 +2874,8 @@ describe Observation do
       place_guess = "somewhere awesome"
       o = Observation.make!( taxon: t, latitude: p.latitude, longitude: p.longitude, place_guess: place_guess )
       cs = ConservationStatus.make!( taxon: t )
+      Delayed::Worker.new.work_off
+      o.reload
       expect( o.place_guess ).to eq place_guess
       Observation.reassess_coordinates_for_observations_of( t )
       o.reload

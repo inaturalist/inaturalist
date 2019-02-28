@@ -1418,13 +1418,6 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def taxon_geoprivacy
-    target_taxon_ids = [[taxon.try(:id)] + identifications.current.pluck(:taxon_id)].flatten.compact.uniq
-    lat = private_latitude.blank? ? latitude : private_latitude
-    lon = private_longitude.blank? ? longitude : private_longitude
-    Taxon.max_geoprivacy( target_taxon_ids, latitude: lat, longitude: lon )
-  end
-
   def hide_coordinates
     return if coordinates_private?
     obscure_coordinates
@@ -1432,6 +1425,7 @@ class Observation < ActiveRecord::Base
   end
   
   def obscure_coordinates
+    return unless private_latitude.blank? && private_longitude.blank?
     if latitude.blank? || longitude.blank?
       self.obscuration_changed = geoprivacy_changed?
       return
@@ -1731,6 +1725,14 @@ class Observation < ActiveRecord::Base
       else
         reassess_coordinates_of( batch )
       end
+    end
+  end
+
+  def self.reassess_coordinates_for_observations_by( user )
+    batch_size = 500
+    scope = Observation.by( user )
+    scope.find_in_batches( batch_size: batch_size ) do |batch|
+      reassess_coordinates_of( batch )
     end
   end
 
