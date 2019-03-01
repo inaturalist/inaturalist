@@ -101,7 +101,11 @@ class MessagesController < ApplicationController
   def count
     count = current_user.messages.inbox.unread.count
     session[:messages_count] = count
-    render :json => {:count => count}
+    respond_to do |format|
+      format.json do
+        render json: { count: count }
+      end
+    end
   end
 
   def new_messages

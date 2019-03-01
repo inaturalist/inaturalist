@@ -124,7 +124,8 @@ class UsersController < ApplicationController
     @helpers_count = Identification.
       select( "DISTINCT identifications.user_id" ).
       joins(:observation).
-      where( "current AND observations.user_id != ?", current_user ).
+      where( "current AND observations.user_id != identifications.user_id" ).
+      where( "observations.user_id = ?", current_user ).
       count
     @comments_count = current_user.comments.count
     @identifications_count = current_user.identifications.for_others.count
