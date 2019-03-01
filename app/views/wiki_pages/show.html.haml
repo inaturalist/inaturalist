@@ -16,7 +16,7 @@
 = wiki_content @page.content
 
 .meta.ui
-  - if is_curator?
+  - if edit_allowed?
     .right
       = wiki_page_actions
   = wiki_page_info
