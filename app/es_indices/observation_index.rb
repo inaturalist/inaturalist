@@ -96,6 +96,9 @@ class Observation < ActiveRecord::Base
       indexes :created_time_zone, type: "keyword", index: false
       indexes :geoprivacy, type: "keyword"
       indexes :taxon_geoprivacy, type: "keyword"
+      indexes :context_geoprivacy, type: "keyword"
+      indexes :context_user_geoprivacy, type: "keyword"
+      indexes :context_taxon_geoprivacy, type: "keyword"
       indexes :observed_time_zone, type: "keyword", index: false
       indexes :quality_grade, type: "keyword"
       indexes :time_zone_offset, type: "keyword", index: false
@@ -161,6 +164,8 @@ class Observation < ActiveRecord::Base
         geoprivacy: geoprivacy,
         taxon_geoprivacy: taxon_geoprivacy,
         context_geoprivacy: context_geoprivacy,
+        context_user_geoprivacy: context_user_geoprivacy,
+        context_taxon_geoprivacy: context_taxon_geoprivacy,
         map_scale: map_scale,
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,

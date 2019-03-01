@@ -1401,15 +1401,36 @@ class Observation < ActiveRecord::Base
   # Currently the "context" is observations made by the same user on the same
   # day.
   def context_geoprivacy
+    geoprivacies = [context_taxon_geoprivacy]
+    geoprivacies << context_user_geoprivacy if user.prefers_coordinate_interpolation_protection?
+    if geoprivacies.include?( PRIVATE )
+      return PRIVATE
+    end
+    if geoprivacies.include?( OBSCURED )
+      return OBSCURED
+    end
+  end
+
+  def context_user_geoprivacy
     return if observed_on.blank?
     return unless user && user.prefers_coordinate_interpolation_protection_test?
     scope = user.observations.on( observed_on )
     scope = scope.where( "id != ?", id ) if persisted?
-    geoprivacies = if user.prefers_coordinate_interpolation_protection?
-      scope.pluck(:geoprivacy, :taxon_geoprivacy).flatten.uniq
-    else
-      scope.pluck(:taxon_geoprivacy).flatten.uniq
+    geoprivacies = scope.pluck(:geoprivacy).flatten.uniq
+    if geoprivacies.include?( PRIVATE )
+      return PRIVATE
     end
+    if geoprivacies.include?( OBSCURED )
+      return OBSCURED
+    end
+  end
+
+  def context_taxon_geoprivacy
+    return if observed_on.blank?
+    return unless user && user.prefers_coordinate_interpolation_protection_test?
+    scope = user.observations.on( observed_on )
+    scope = scope.where( "id != ?", id ) if persisted?
+    geoprivacies = scope.pluck(:taxon_geoprivacy).flatten.uniq
     if geoprivacies.include?( PRIVATE )
       return PRIVATE
     end
