@@ -121,14 +121,11 @@ class UsersController < ApplicationController
 
   def delete
     @observations_count = current_user.observations_count
-    @helpers_count = Identification.
-      select( "DISTINCT identifications.user_id" ).
-      joins(:observation).
-      where( "current AND observations.user_id != identifications.user_id" ).
-      where( "observations.user_id = ?", current_user ).
-      count
+    @helpers_count = INatAPIService.get( "/observations/identifiers",
+      user_id: current_user.id ).total_results
     @comments_count = current_user.comments.count
-    @identifications_count = current_user.identifications.for_others.count
+    @identifications_count = INatAPIService.get( "/identifications",
+      user_id: current_user.id, own_observation: false, current: true ).total_results
     respond_to do |format|
       format.html do
         render layout: "bootstrap"
