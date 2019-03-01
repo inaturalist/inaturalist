@@ -118,8 +118,28 @@ class UsersController < ApplicationController
     end
     redirect_back_or_default @user
   end
+
+  def delete
+    @observations_count = current_user.observations_count
+    @helpers_count = Identification.
+      select( "DISTINCT identifications.user_id" ).
+      joins(:observation).
+      where( "current AND observations.user_id != ?", current_user ).
+      count
+    @comments_count = current_user.comments.count
+    @identifications_count = current_user.identifications.for_others.count
+    respond_to do |format|
+      format.html do
+        render layout: "bootstrap"
+      end
+    end
+  end
   
   def destroy
+    if params[:confirmation] && params[:confirmation] != params[:confirmation_code]
+      flash[:error] = t( "views.users.delete.you_must_enter_confirmation_code_in_the_form", confirmation_code: params[:confirmation_code] )
+      return redirect_to :back
+    end
     @user.delay(priority: USER_PRIORITY,
       unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
     sign_out(@user)

@@ -6290,6 +6290,49 @@ en:
         curators_can_see: |
           Just a reminder, project curators can see the private and obscured
           coordinates of observations you add to this project.
+      delete:
+        by_deleting_your_account_you_will_remove: |
+          By deleting your account you will remove
+        x_observations_html:
+          one: |
+            <strong class="count">1 observation</strong>,
+            including the work of the
+            <strong class="count">%{helpers_count} people</strong> who have
+            helped you out with identifications
+          other: |
+            <strong class="count">%{count} observations</strong>,
+            including the work of the
+            <strong class="count">%{helpers_count} people</strong> who have
+            helped you out with identifications
+        x_identifications_html:
+          one: |
+            <strong class="count">your 1 identification</strong>
+            on other people's observations, which will potentially affect the
+            data quality of those observations
+          other: |
+            <strong class="count">%{count} of your own identifications</strong>
+            on other people's observations, which will potentially affect the
+            data quality of those observations
+        x_comments_html:
+          one: <strong class="count">1 comment</strong> you've added
+          other: <strong class="count">%{count} comment</strong> you've added
+        furtherore_cannot_undo_html: |
+          Furthermore, <strong>this action cannot be undone.</strong> If you
+          change your mind later, you aren't getting any of that content back.
+        settings_and_mute_html: |
+          If this site generates too many notifications, consider
+          <a href="/users/edit">editing your settings</a> to opt out of certain
+          notifications or stop receiving email from us. If you're having
+          trouble with a specific person on the site, consider
+          <a href="/users/edit">muting them</a> instead of deleting your
+          account.
+        still_want_to_delete_html: |
+          If you're still sure you want to delete your account, enter
+          <code>%{confirmation_code}</code> in the form below and click the
+          button to delete your account and all your data.
+        type_confirmation_code: Type %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: |
+          You must enter "%{confirmation_code}" in the form to delete your account
       edit:
         blocking_desc_html: |
           <p>

@@ -1,0 +1,25 @@
+- confirmation_code = current_user.login
+- content_for :title do
+  =t :delete_your_account
+.container
+  .row
+    .col-xs-6.col-md-offset-3
+      %h1=t :are_you_sure?
+      %p=t "views.users.delete.by_deleting_your_account_you_will_remove"
+      - if @observations_count > 0 || @identifications_count > 0 || @comments_count > 0
+        %ul
+          - if @observations_count > 0
+            %li=t "views.users.delete.x_observations_html", count: @observations_count, helpers_count: @helpers_count
+          - if @identifications_count > 0
+            %li=t "views.users.delete.x_identifications_html", count: @identifications_count
+          - if @comments_count > 0
+            %li=t "views.users.delete.x_comments_html", count: @comments_count
+        %p=t "views.users.delete.furtherore_cannot_undo_html"
+      %p=t "views.users.delete.settings_and_mute_html"
+      %p=t "views.users.delete.still_want_to_delete_html", confirmation_code: confirmation_code
+      = form_for current_user, method: :delete do |f|
+        .form-group
+          = text_field_tag :confirmation, nil, placeholder: t( "views.users.delete.type_confirmation_code", confirmation_code: confirmation_code, default: "Type #{confirmation_code}" ), class: "form-control"
+          = hidden_field_tag :confirmation_code, confirmation_code
+        = f.submit t(:delete_your_account), class: "btn btn-danger"
+        = link_to t(:cancel), :back, class: "btn btn-default"
