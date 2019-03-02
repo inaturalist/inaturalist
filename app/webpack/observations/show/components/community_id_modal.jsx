@@ -7,7 +7,6 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 /* global SITE */
 
 class CommunityIDModal extends Component {
-
   constructor( props, context ) {
     super( props, context );
     this.close = this.close.bind( this );
@@ -20,6 +19,8 @@ class CommunityIDModal extends Component {
   }
 
   renderTaxonomy( currentTaxon, depth = 0 ) {
+    const { observation, config } = this.props;
+    const { hoverTaxon } = this.state;
     let rows = [];
     const isLife = !currentTaxon;
     let sortedBranch;
@@ -34,50 +35,66 @@ class CommunityIDModal extends Component {
       const idCount = this.idTaxonCounts[taxon.id] || 0;
       const usages = isLife ? this.currentIDs.length : (
         this.idTaxonAncestorCounts[taxon.id] || 0 );
-      const disag = ( taxon.id === LIFE_TAXON.id ) ? 0 :
-        _.filter( this.props.observation.identifications, i => (
-          i.current && i.taxon.id !== taxon.id &&
-          !_.includes( i.taxon.ancestor_ids, taxon.id ) &&
-          !_.includes( taxon.ancestor_ids, i.taxon.id )
+      const disag = ( taxon.id === LIFE_TAXON.id )
+        ? 0
+        : _.filter( observation.identifications, i => (
+          i.current && i.taxon.id !== taxon.id
+          && !_.includes( i.taxon.ancestor_ids, taxon.id )
+          && !_.includes( taxon.ancestor_ids, i.taxon.id )
         ) ).length;
       const ancDisag = this.ancestorDisagreements[taxon.id] || 0;
       const taxonName = isLife ? LIFE_TAXON.default_name.name : (
-        <SplitTaxon taxon={ taxon } url={ `/taxa/${taxon.id}` } forceRank user={ this.props.config.currentUser } /> );
+        <SplitTaxon taxon={taxon} url={`/taxa/${taxon.id}`} forceRank user={config.currentUser} /> );
       const denom = usages + disag + ancDisag;
       const score = _.round( usages / denom, 3 );
       let className;
-      if ( this.props.observation.taxon.id === taxon.id ) {
+      if ( observation.taxon.id === taxon.id ) {
         className = "current-id";
-      } else if ( this.state.hoverTaxon ) {
-        if ( this.state.hoverTaxon.id === taxon.id ) {
+      } else if ( hoverTaxon ) {
+        if ( hoverTaxon.id === taxon.id ) {
           // hover row
-        } else if ( _.includes( this.state.hoverTaxon.ancestor_ids, taxon.id ) ) {
+        } else if ( _.includes( hoverTaxon.ancestor_ids, taxon.id ) ) {
           className = "included";
-        } else if ( _.includes( taxon.ancestor_ids, this.state.hoverTaxon.id ) ) {
+        } else if ( _.includes( taxon.ancestor_ids, hoverTaxon.id ) ) {
           className = "included";
         } else {
           className = "excluded";
         }
       }
-      if ( !_.includes( this.props.observation.taxon.ancestor_ids, taxon.id ) ) {
+      if ( !_.includes( observation.taxon.ancestor_ids, taxon.id ) ) {
         className += " other-branch";
       }
       rows.push( (
-        <tr key={ `id-breakdown-${taxon.id}` }
-          className={ className }
-          onMouseEnter={ ( ) => { this.setState( { hoverTaxon: taxon } ); } }
-          onMouseLeave={ ( ) => { this.setState( { hoverTaxon: null } ); } }
+        <tr
+          key={`id-breakdown-${taxon.id}`}
+          className={className}
+          onMouseEnter={( ) => { this.setState( { hoverTaxon: taxon } ); }}
+          onMouseLeave={( ) => { this.setState( { hoverTaxon: null } ); }}
         >
           <td
             className="taxon-cell"
-            style={ { paddingLeft: `${( depth * 10 ) + 18}px` } }
-          >{ taxonName}</td>
+            style={{ paddingLeft: `${( depth * 10 ) + 18}px` }}
+          >
+            { taxonName }
+          </td>
           <td>{ idCount }</td>
           <td>{ usages }</td>
           <td>{ disag }</td>
           <td>{ ancDisag }</td>
           <td className="score">
-            { usages }/({ usages }+{ disag }+{ ancDisag }={ denom }) = { score }
+            { usages }
+            { " / " }
+            { "(" }
+            { usages }
+            +
+            { disag }
+            +
+            { ancDisag }
+            =
+            { denom }
+            { ")" }
+            { " = " }
+            { score }
           </td>
         </tr>
       ) );
@@ -90,7 +107,7 @@ class CommunityIDModal extends Component {
   }
 
   render( ) {
-    const observation = this.props.observation;
+    const { observation, show } = this.props;
     if ( !observation ) { return ( <div /> ); }
     let algorithmSummary;
     const taxa = {};
@@ -171,7 +188,7 @@ class CommunityIDModal extends Component {
               { I18n.t( "views.observations.community_id.below_cutoff" ) }
             </span>
           </div>
-          <h4>Terms</h4>
+          <h4>{ I18n.t( "terms" ) }</h4>
           <dl>
             <dt>{ I18n.t( "views.observations.community_id.identification_count" ) }</dt>
             <dd>{ I18n.t( "views.observations.show.identification_count_desc" ) }</dd>
@@ -189,22 +206,25 @@ class CommunityIDModal extends Component {
     }
     return (
       <Modal
-        show={ this.props.show }
-        className={ `CommunityIDModal ${observation.taxon ? "" : "no-taxon"}` }
-        onHide={ this.close }
+        show={show}
+        className={`CommunityIDModal ${observation.taxon ? "" : "no-taxon"}`}
+        onHide={this.close}
       >
         <Modal.Body>
           <h4>{ I18n.t( "about_community_taxa" ) }</h4>
           <div
-            dangerouslySetInnerHTML={ { __html:
-              I18n.t( "views.observations.show.community_taxon_desc_html", {
-                site_name: SITE.name } ) } }
+            dangerouslySetInnerHTML={{
+              __html:
+                I18n.t( "views.observations.show.community_taxon_desc_html", {
+                  site_name: SITE.name
+                } )
+            }}
           />
           { algorithmSummary }
         </Modal.Body>
         <Modal.Footer>
-         <div className="buttons">
-            <Button bsStyle="primary" onClick={ this.close }>
+          <div className="buttons">
+            <Button bsStyle="primary" onClick={this.close}>
               { I18n.t( "ok" ) }
             </Button>
           </div>
