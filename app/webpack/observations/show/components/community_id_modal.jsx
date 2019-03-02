@@ -93,7 +93,14 @@ class CommunityIDModal extends Component {
     const observation = this.props.observation;
     if ( !observation ) { return ( <div /> ); }
     let algorithmSummary;
-    if ( observation.taxon ) {
+    const taxa = {};
+    _.each( observation.identifications, i => {
+      taxa[i.taxon.id] = taxa[i.taxon.id] || i.taxon;
+      _.each( i.taxon.ancestors, a => {
+        taxa[a.id] = taxa[a.id] || a;
+      } );
+    } );
+    if ( observation.communityTaxon ) {
       this.roots = { };
       this.children = { };
       this.currentIDs = [];
@@ -108,12 +115,18 @@ class CommunityIDModal extends Component {
         this.idTaxonCounts[i.taxon.id] += 1;
         const allAncestors = _.clone( i.taxon.ancestorTaxa || [] );
         allAncestors.push( i.taxon );
-        _.each( ancestorsUsed, ( ancestorIDs, taxonID ) => {
-          if ( i.taxon.id !== Number( taxonID ) && _.includes( ancestorIDs, i.taxon.id ) ) {
-            this.ancestorDisagreements[taxonID] = this.ancestorDisagreements[taxonID] || 0;
-            this.ancestorDisagreements[taxonID] += 1;
-          }
-        } );
+        if ( i.disagreement && i.previous_observation_taxon ) {
+          const taxonIDsDisagreedWith = _.difference(
+            i.previous_observation_taxon.ancestor_ids,
+            ( i.taxon.ancestor_ids || [] ).concat( [i.taxon.id] )
+          );
+          _.each( taxa, t => {
+            if ( _.intersection( t.ancestor_ids, taxonIDsDisagreedWith ).length > 0 ) {
+              this.ancestorDisagreements[t.id] = this.ancestorDisagreements[t.id] || 0;
+              this.ancestorDisagreements[t.id] += 1;
+            }
+          } );
+        }
         let lastTaxon;
         _.each( allAncestors, t => {
           this.idTaxonAncestorCounts[t.id] = this.idTaxonAncestorCounts[t.id] || 0;
