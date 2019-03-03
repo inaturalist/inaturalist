@@ -510,8 +510,18 @@ class ObservationModal extends React.Component {
                             { dateTimeObserved }
                           </li>
                           <li>
-                            <i className="fa fa-map-marker bullet-icon"></i> { observation.place_guess || I18n.t( "unknown" ) }
+                            <i className="fa fa-map-marker bullet-icon" />
+                            { " " }
+                            { observation.place_guess || I18n.t( "unknown" ) }
                           </li>
+                          { observation.positional_accuracy && (
+                            <li>
+                              <i className="fa fa-circle-o bullet-icon" />
+                              { `${I18n.t( "label_colon", { label: I18n.t( "acc" ) } )}` }
+                              { " " }
+                              { I18n.toNumber( observation.positional_accuracy, { precision: 0 } ) }
+                            </li>
+                          ) }
                           { country ? (
                             <li>
                               <i className="fa fa-globe bullet-icon"></i> {
