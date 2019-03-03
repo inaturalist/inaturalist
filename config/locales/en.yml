@@ -6214,6 +6214,11 @@ en:
           and its descendants. The photos chosen for this
           taxon will show first, though. The first photo will be
           the default image used across the site.
+        site_curators_disabled_wikipedia_html: |
+          Site curators have temporarily disabled showing <a href="%{url}">this
+          content from Wikipedia</a>. You can help by editing the page on
+          Wikipedia to make it appropriate for this taxon, or by flagging this
+          taxon to bring it to the attention of site curators.
     taxon_changes:
       move_children_desc: |
         Children of the input taxon that are genera or coarser will be moved to

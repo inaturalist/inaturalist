@@ -271,6 +271,15 @@ describe Taxon, "updating" do
     expect(taxon.errors).to be_blank
   end
   
+  describe "auto_description" do
+    it "should remove the wikipedia_summary when it changes to false" do
+      t = Taxon.make!( wikipedia_summary: "foo" )
+      expect( t.wikipedia_summary ).not_to be_blank
+      t.update_attributes( auto_description: false )
+      t.reload
+      expect( t.wikipedia_summary ).to be_blank
+    end
+  end
 end
 
 describe Taxon, "destruction" do
@@ -594,37 +603,33 @@ end
 
 describe Taxon, "merging" do
 
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-  
+  before(:all) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:all) { disable_elastic_indexing( Observation, Taxon ) }
+  before(:all) { load_test_taxa }
   before(:each) do
-    load_test_taxa
+    # load_test_taxa
     @keeper = Taxon.make!(
-      :name => 'Calypte imaginarius',
-      :rank => 'species'
+      name: "Calypte keeper",
+      rank: Taxon::SPECIES,
+      parent: @Calypte
     )
-    puts "keeper wasn't valid: " + @keeper.errors.full_messages.join(', ') unless @keeper.valid?
-    @reject = @Calypte_anna
-    @keeper.update_attributes(:parent => @reject.parent)
+    @reject = Taxon.make!(
+      :name => "Calypte reject",
+      rank: Taxon::SPECIES,
+      parent: @Calypte
+    )
     @has_many_assocs = Taxon.reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k}
     @has_many_assocs.each {|assoc| @reject.send(assoc, :force_reload => true)}
   end
     
   it "should move the reject's children to the keeper" do
-    keeper = Taxon.create(
-      :name => 'Pseudacrisplus',
-      :rank => 'genus'
-    )
-    puts "keeper wasn't valid: " + @keeper.errors.full_messages.join(', ') unless @keeper.valid?
-    reject = @Pseudacris
-    keeper.move_to_child_of(reject.parent)
-    
-    rejected_children = reject.children
+    child = Taxon.make!( name: "Calypte reject rejectus", parent: @reject, rank: Taxon::SUBSPECIES )
+    rejected_children = @reject.children
     expect(rejected_children).not_to be_empty
-    keeper.merge(reject)
-    rejected_children.each do |child|
-      child.reload
-      expect(child.parent_id).to be(keeper.parent_id)
+    @keeper.merge( @reject )
+    rejected_children.each do |c|
+      c.reload
+      expect( c.parent_id ).to eq @keeper.parent_id
     end
   end
   
@@ -727,8 +732,6 @@ describe Taxon, "merging" do
       expect(taxon_photo.taxon_id).to be(@keeper.id)
     end
   end
-  
-  it "should move the reject's colors to the keeper"
   
   it "should mark scinames not matching the keeper as invalid" do
     old_sciname = @reject.scientific_name
@@ -842,15 +845,21 @@ end
 
 describe Taxon, "moving" do
 
-  before(:each) { enable_elastic_indexing( Observation, Taxon, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon, Identification ) }
+  before(:all) { enable_elastic_indexing( Observation, Taxon, Identification ) }
+  after(:all) { disable_elastic_indexing( Observation, Taxon, Identification ) }
   
-  before(:each) do
+  before(:all) do
     load_test_taxa
   end
+
+  let(:obs) do
+    t = Taxon.make!( name: "Calypte test", rank: Taxon::SPECIES, parent: @Calypte )
+    obs = Observation.make!( taxon: t )
+  end
+
+  let(:hummer_genus) { Taxon.make!( rank: Taxon::GENUS, parent: @Trochilidae ) }
   
   it "should update the iconic taxon of observations" do
-    obs = Observation.make!(:taxon => @Calypte_anna)
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     taxon.move_to_child_of(@Amphibia)
@@ -861,7 +870,6 @@ describe Taxon, "moving" do
   end
   
   it "should queue a job to set iconic taxon on observations of descendants" do
-    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     Delayed::Job.delete_all
@@ -872,7 +880,6 @@ describe Taxon, "moving" do
   end
 
   it "should set iconic taxon on observations of descendants" do
-    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     without_delay do
@@ -885,13 +892,13 @@ describe Taxon, "moving" do
   it "should set iconic taxon on observations of descendants if grafting for the first time" do
     parent = Taxon.make!(rank: Taxon::GENUS)
     taxon = Taxon.make!(parent: parent, rank: Taxon::SPECIES)
-    obs = without_delay { Observation.make!(:taxon => taxon) }
-    expect(obs.iconic_taxon).to be_blank
+    o = without_delay { Observation.make!(:taxon => taxon) }
+    expect(o.iconic_taxon).to be_blank
     without_delay do
       parent.move_to_child_of(@Amphibia)
     end
-    obs.reload
-    expect(obs.iconic_taxon).to eq(@Amphibia)
+    o.reload
+    expect(o.iconic_taxon).to eq(@Amphibia)
   end
   
   it "should not raise an exception if the new parent doesn't exist" do
@@ -903,10 +910,10 @@ describe Taxon, "moving" do
   end
   
   # this is something we override from the ancestry gem
-  it "should queue a job to update descendant ancetries" do
+  it "should queue a job to update descendant ancestries" do
     Delayed::Job.delete_all
     stamp = Time.now
-    @Calypte.update_attributes(:parent => @Hylidae)
+    hummer_genus.update_attributes( parent: @Hylidae )
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}).not_to be_blank
   end
@@ -914,7 +921,7 @@ describe Taxon, "moving" do
   it "should not queue a job to update descendant ancetries if skip_after_move set" do
     Delayed::Job.delete_all
     stamp = Time.now
-    @Calypte.update_attributes(:parent => @Hylidae, :skip_after_move => true)
+    hummer_genus.update_attributes(:parent => @Hylidae, :skip_after_move => true)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}).not_to be_blank
   end
@@ -922,9 +929,9 @@ describe Taxon, "moving" do
   it "should queue a job to update observation stats if there are observations" do
     Delayed::Job.delete_all
     stamp = Time.now
-    o = Observation.make!( taxon: @Calypte )
-    expect( Observation.of( @Calypte ).count ).to eq 1
-    @Calypte.update_attributes( parent: @Hylidae )
+    o = Observation.make!( taxon: hummer_genus )
+    expect( Observation.of( hummer_genus ).count ).to eq 1
+    hummer_genus.update_attributes( parent: @Hylidae )
     jobs = Delayed::Job.where( "created_at >= ?", stamp )
     expect( jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m} ).not_to be_blank
   end
