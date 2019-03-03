@@ -283,11 +283,6 @@ class ObservationsController < ApplicationController
         
         user_viewed_updates(delay: true) if logged_in?
         @observer_provider_authorizations = @observation.user.provider_authorizations
-        # @shareable_image_url = if !@observation.photos.blank? && photo = @observation.photos.detect{ |p| p.medium_url =~ /^http/ }
-        #   FakeView.image_url( photo.best_url(:original) )
-        # else
-        #   FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
-        # end
         @shareable_image_url = FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
         if op = @observation.observation_photos.sort_by{|op| op.position.to_i || op.id }.first
           @shareable_image_url = FakeView.image_url( op.photo.best_url(:original) )
@@ -306,7 +301,7 @@ class ObservationsController < ApplicationController
 
         @skip_application_js = true
         @flash_js = true
-        return render layout: "bootstrap", action: "show2"
+        return render layout: "bootstrap"
       end
        
       format.xml { render :xml => @observation }
