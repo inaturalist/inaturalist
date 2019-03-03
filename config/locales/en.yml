@@ -1237,17 +1237,19 @@ en:
   eol_collection_url: "EOL collection URL"
   error_updating_photo: "Error updating photo: %{photo_errors}"
   establishment:
-      establishment: Establishment
-      native: Native
-      endemic: Endemic
-      introduced: Introduced
-      naturalised: Naturalised
-      invasive: Invasive
-      managed: Managed
+    endemic: Endemic
+    establishment: Establishment
+    introduced: Introduced
+    invasive: Invasive
+    managed: Managed
+    native: Native
+    naturalised: Naturalised
   establishment_means: Establishment Means
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: "native and occurs nowhere else"
-    arrived_in_the_region_via_anthropogenic_means: "arrived in the region via anthropogenic means"
+    arrived_in_the_region_via_anthropogenic_means: Arrived in the region via anthropogenic means
+    native_and_occurs_nowhere_else: Native and occurs nowhere else
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: |
+      Evolved in this region or arrived by non-anthropogenic means
   establishment_means_describes_how: |
     Establishment means describes how the taxon came to be established in an area.  
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
@@ -2516,6 +2518,13 @@ en:
   observing: observing
   occurence_status_describes_how: Occurence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
+  occurrence_status_descriptions:
+    absent: Does not occur in the area
+    common: Occurs frequently
+    doubtful: Presumed to occur, but doubt exists over the evidence
+    irregular: Presence unpredictable, including vagrants; may be common in some years and absent others
+    present: Occurs in the area
+    uncommon: Occurs regularly, but in small numbers; requires careful searching of proper habitat
   occurrence_status_establishment_means: occurrence status, establishment means
   occurrence_status_levels:
     present: present

@@ -50,8 +50,8 @@
     </p>
     <dl>
       <% for identifier, description in ListedTaxon::ESTABLISHMENT_MEANS_DESCRIPTIONS %>
-        <dt><%= identifier %></dt>
-        <dd><%= description %></dd>
+        <dt><%=t "establishment.#{ identifier }", default: identifier %></dt>
+        <dd><%=t "establishment_means_descriptions.#{description.parameterize.underscore}", default: description %></dd>
       <% end %>
     </dl>
   </div>
