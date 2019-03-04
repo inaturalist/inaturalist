@@ -176,7 +176,7 @@ class TaxaController < ApplicationController
           nil : INatAPIService.get_json( "/places/#{place_id.to_i}" )
         @chosen_tab = session[:preferred_taxon_page_tab]
         @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
-        render layout: "bootstrap"
+        render layout: "bootstrap", action: "show"
       end
       
       format.xml do
