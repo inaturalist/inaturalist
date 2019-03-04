@@ -520,6 +520,11 @@ describe Observation do
       expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
     end
 
+    it "should set positional_accuracy to nil if it's zero" do
+      o = Observation.make!( latitude: 1, longitude: 1, positional_accuracy: 0 )
+      expect( o.positional_accuracy ).to be_nil
+    end
+
     it "should replace an inactive taxon with its active equivalent" do
       taxon_change = make_taxon_swap
       taxon_change.committer = taxon_change.user

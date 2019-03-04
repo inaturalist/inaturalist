@@ -312,6 +312,10 @@ class Observation < ActiveRecord::Base
     :allow_blank => true, 
     :less_than_or_equal_to => 180, 
     :greater_than_or_equal_to => -180
+  validates_numericality_of :positional_accuracy,
+    allow_nil: true,
+    greater_than: 0,
+    if: Proc.new { |o| !o.positional_accuracy.nil? }
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
@@ -344,7 +348,8 @@ class Observation < ActiveRecord::Base
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
                     :set_time_in_time_zone,
-                    :set_coordinates
+                    :set_coordinates,
+                    :nilify_positional_accuracy_if_zero
 
   before_create :replace_inactive_taxon
   before_save :strip_species_guess,
@@ -2670,6 +2675,11 @@ class Observation < ActiveRecord::Base
       # Set the transfor
       self.longitude, self.latitude = transform
     end
+    true
+  end
+
+  def nilify_positional_accuracy_if_zero
+    self.positional_accuracy = nil if positional_accuracy == 0
     true
   end
 
