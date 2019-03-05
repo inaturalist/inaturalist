@@ -46,6 +46,7 @@ class TaxonPageTabs extends React.Component {
     } = this.props;
     const test = $.deparam.querystring( ).test;
     const speciesOrLower = taxon && taxon.rank_level <= 10;
+    const genusOrSpecies = taxon && ( taxon.rank_level === 20 || taxon.rank_level === 10 );
     let curationTab;
     if ( currentUser && currentUser.id ) {
       const isCurator = currentUser.roles.indexOf( "curator" ) >= 0 || currentUser.roles.indexOf( "admin" ) >= 0;
@@ -185,7 +186,7 @@ class TaxonPageTabs extends React.Component {
                 </li>
                 <li
                   role="presentation"
-                  className={`${speciesOrLower ? "" : "hidden"} ${chosenTab === "similar" ? "active" : ""}`}
+                  className={`${genusOrSpecies ? "" : "hidden"} ${chosenTab === "similar" ? "active" : ""}`}
                 >
                   <a href="#similar-tab" role="tab" data-toggle="tab">{ I18n.t( "similar_species" ) }</a>
                 </li>
@@ -244,7 +245,7 @@ class TaxonPageTabs extends React.Component {
           </div>
           <div
             role="tabpanel"
-            className={`tab-pane ${speciesOrLower ? "" : "hidden"} ${chosenTab === "similar" ? "active" : ""}`}
+            className={`tab-pane ${genusOrSpecies ? "" : "hidden"} ${chosenTab === "similar" ? "active" : ""}`}
             id="similar-tab"
           >
             <SimilarTabContainer />

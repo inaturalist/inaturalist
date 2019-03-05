@@ -3,12 +3,17 @@ import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonThumbnail from "./taxon_thumbnail";
 
-const SimilarTab = ( { results, place, showNewTaxon, config } ) => {
+const SimilarTab = ( {
+  results,
+  place,
+  showNewTaxon,
+  config
+} ) => {
   let content;
   if ( results && results.length > 0 ) {
     content = (
       <div className="thumbnails">
-        { results.map( result =>
+        { results.map( result => (
           <TaxonThumbnail
             taxon={result.taxon}
             key={`similar-taxon-${result.taxon.id}`}
@@ -16,16 +21,16 @@ const SimilarTab = ( { results, place, showNewTaxon, config } ) => {
             badgeTip={I18n.t( "x_misidentifications_of_this_species", { count: result.count } )}
             height={190}
             truncate={20}
-            onClick={ e => {
+            onClick={e => {
               if ( !showNewTaxon ) return true;
               if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               showNewTaxon( result.taxon );
               return false;
-            } }
-            config={ config }
+            }}
+            config={config}
           />
-        ) }
+        ) ) }
       </div>
     );
   } else if ( results ) {
@@ -38,18 +43,18 @@ const SimilarTab = ( { results, place, showNewTaxon, config } ) => {
       <Row>
         <Col xs={12}>
           <h2>
-            {
-              place ?
+            { place
+              ? (
                 <span
-                  dangerouslySetInnerHTML={ { __html:
-                    I18n.t(
+                  dangerouslySetInnerHTML={{
+                    __html: I18n.t(
                       "other_species_commonly_misidentified_as_this_species_in_place_html",
                       { place: place.display_name, url: `/places/${place.id}` }
                     )
-                  } }
-                ></span>
-                :
-                I18n.t( "other_species_commonly_misidentified_as_this_species" )
+                  }}
+                />
+              )
+              : I18n.t( "other_species_commonly_misidentified_as_this_species" )
             }
           </h2>
           { content }
