@@ -1163,7 +1163,9 @@ function serialID() {
 }
 
 function setPreference(pref, value) {
+  console.log( "[DEBUG] setPreference pref:", pref, ", value: ", value );
   var url = $('#usersubnav .profile_link:first').attr('href')
+  console.log( "[DEBUG] setPreference, url: ", url );
   if (!url || !pref || !value) { return }
   var data = {
     authenticity_token: $('meta[name=csrf-token]').attr('content'),

@@ -481,16 +481,17 @@ class UsersController < ApplicationController
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
     if current_user.is_admin? && @site && @site.id == Site.default.id
       @discourse_url = "https://forum.inaturalist.org"
-      cache_key = "dashboard-discourse-topics"
+      cache_key = "dashboard-discourse-data"
       begin
-        unless @discourse_topics = Rails.cache.read( cache_key )
-          @discourse_topics = ["news-and-updates", "feature-requests", "bug-reports"].inject( {} ) do |memo, category|
-            memo[category] = JSON.parse(
-              RestClient.get( "#{@discourse_url}/latest.json?order=created&category=#{category}" ).body
-            )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..2]
-            memo
-          end
-          Rails.cache.write( cache_key, @discourse_topics, expires_in: 15.minutes )
+        unless @discourse_data = Rails.cache.read( cache_key )
+          @discourse_data = {}
+          @discourse_data[:topics] = JSON.parse(
+            RestClient.get( "#{@discourse_url}/latest.json?order=created" ).body
+          )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
+          @discourse_data[:categories] = JSON.parse(
+            RestClient.get( "#{@discourse_url}/categories.json" ).body
+          )["category_list"]["categories"].index_by{|c| c["id"]}
+          Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
         end
       rescue SocketError, RestClient::Exception
         # No connection or other connection issue
@@ -1074,6 +1075,7 @@ protected
       :preferred_project_addition_by,
       :preferred_sound_license,
       :prefers_comment_email_notification,
+      :prefers_forum_topics_on_dashboard,
       :prefers_identification_email_notification,
       :prefers_message_email_notification,
       :prefers_medialess_obs_maps,

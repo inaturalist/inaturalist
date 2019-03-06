@@ -128,27 +128,34 @@
           - announcements.each do |announcement|
             - unless user_seen_announcement?( announcement )
               = announcement.body.html_safe
-      - if @discourse_url && !@discourse_topics.blank?
-        #forum.admin
-          %h3.page-header
-            = link_to t(:forum), @discourse_url
-            %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => "The forum is a place to iNat itself, including help & support, feature requests, bug reports, announcements, and more.", "data-placement" => "top", "data-toggle" => "popover" }
+      - if @discourse_url && !@discourse_data.blank?
+        #forum
           .panel.panel-default
-            - @discourse_topics.each do |category, topics|
-              .panel-heading
-                %h3.panel-title
-                  = link_to t( "forum_categories.#{category.underscore}" ), "#{@discourse_url}/c/#{category}"
-              .list-group
-                - for topic in topics
-                  .list-group-item
-                    - datetime = DateTime.parse( topic["created_at"] )
+            .panel-heading
+              %h3.panel-title
+                = link_to t(:forum), @discourse_url
+                %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => "The forum is a place to discuss iNat itself, including help & support, feature requests, bug reports, announcements, and more.", "data-placement" => "top", "data-toggle" => "popover" }
+                .pull-right
+                  %a{ href: "#forum-topics", data: { toggle: "collapse" } }
+                    %i.fa{ class: current_user.prefers_forum_topics_on_dashboard? ? "fa-caret-down" : "fa-caret-left"}
+            #forum-topics.list-group.collapse{ class: current_user.prefers_forum_topics_on_dashboard? ? "in" : "" }
+              - for topic in @discourse_data[:topics]
+                .list-group-item
+                  - datetime = DateTime.parse( topic["created_at"] )
+                  .title
                     = link_to topic["title"], "#{@discourse_url}/t/#{topic["slug"]}"
-                    .right
-                      .text-muted.time{ title: datetime.iso8601 }
-                        = compact_date( datetime )
-                      .text-muted.comments
-                        %i.fa.fa-comments
-                        = topic["reply_count"]
+                    .categories
+                      - if dc = @discourse_data[:categories][topic["category_id"]]
+                        %a.inlineblock.label.label-default{ href: "#{@discourse_url}/c/#{dc["slug"]}", style: "color: ##{dc["text_color"]}; background-color: ##{dc["color"]}" }
+                          = dc["name"]
+                      - topic["tags"].each do |tag|
+                        %a.inlineblock.label.label-default{ href: "#{@discourse_url}/tags/#{tag}" }= tag
+                  .right
+                    .text-muted.time{ title: datetime.iso8601 }
+                      = compact_date( datetime )
+                    .text-muted.comments
+                      %i.fa.fa-comments
+                      = topic["reply_count"]
       #subscriptions
         %h3.page-header
           = t :subscriptions

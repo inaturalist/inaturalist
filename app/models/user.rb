@@ -83,6 +83,7 @@ class User < ActiveRecord::Base
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
   preference :medialess_obs_maps, :boolean, default: false
+  preference :forum_topics_on_dashboard, :boolean, default: true
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
