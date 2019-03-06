@@ -15,6 +15,7 @@ module DarwinCore
       %w(occurrenceRemarks http://rs.tdwg.org/dwc/terms/occurrenceRemarks),
       %w(occurrenceDetails http://rs.tdwg.org/dwc/terms/occurrenceDetails),
       %w(recordedBy http://rs.tdwg.org/dwc/terms/recordedBy),
+      %w(recordedByOrcid http://rs.gbif.org/terms/1.0/recordedByOrcid),
       %w(establishmentMeans http://rs.tdwg.org/dwc/terms/establishmentMeans),
       %w(eventDate http://rs.tdwg.org/dwc/terms/eventDate),
       %w(eventTime http://rs.tdwg.org/dwc/terms/eventTime),
@@ -130,11 +131,13 @@ module DarwinCore
       end
 
       def recordedBy
-        n = user.name.blank? ? user.login : user.name
-        if orcid_id = user.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
-          n = "#{n} | https://orcid.org/#{orcid_id}"
-        end
-        n
+        user.name.blank? ? user.login : user.name
+      end
+
+      def recordedByOrcid
+        orcid_id = user.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
+        return unless orcid_id
+        "https://orcid.org/#{orcid_id}"
       end
 
       def establishmentMeans
