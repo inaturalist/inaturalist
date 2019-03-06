@@ -124,8 +124,21 @@ class UsersController < ApplicationController
     @helpers_count = INatAPIService.get( "/observations/identifiers",
       user_id: current_user.id ).total_results
     @comments_count = current_user.comments.count
-    @identifications_count = INatAPIService.get( "/identifications",
-      user_id: current_user.id, own_observation: false, current: true ).total_results
+    ident_response = Identification.elastic_search(
+      size: 0,
+      filters: [
+        { term: { "user.id": current_user.id } },
+        { term: { own_observation: false } },
+        { term: { current: true } }
+      ],
+      aggregate: {
+        distinct_obs_users: {
+          cardinality: { field: "observation.user.id" }
+        }
+      }
+    )
+    @identifications_count = ident_response.total_entries
+    @helpees_count = ident_response.response.aggregations.distinct_obs_users.value || 0
     respond_to do |format|
       format.html do
         render layout: "bootstrap"

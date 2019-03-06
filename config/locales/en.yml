@@ -6321,12 +6321,13 @@ en:
         x_identifications_html:
           one: |
             <strong class="count">your 1 identification</strong>
-            on other people's observations, which will potentially affect the
-            data quality of those observations
+            on another person's observation, which will potentially affect the
+            data quality of that observation
           other: |
             <strong class="count">%{count} of your own identifications</strong>
-            on other people's observations, which will potentially affect the
-            data quality of those observations
+            on the observations of <strong class="count">%{helpees_count} other
+            people</strong>, which will potentially affect the data quality of
+            those observations
         x_comments_html:
           one: <strong class="count">1 comment</strong> you've added
           other: <strong class="count">%{count} comments</strong> you've added
