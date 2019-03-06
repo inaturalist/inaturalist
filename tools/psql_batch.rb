@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-opts = Trollop::options do
+opts = Optimist::options do
     banner <<-EOS
 Executes a SQL query over a range of ids.  Useful for memory hogging queries.
 
@@ -27,7 +27,7 @@ end
 
 sql = ARGV.last
 
-Trollop::die "sql must be specified" if sql.to_s == ''
+Optimist::die "sql must be specified" if sql.to_s == ''
 
 ((opts[:max] - opts[:offset]) / opts[:batch_size]).times do |i|
   start = opts[:offset] + i * opts[:batch_size]

@@ -10,7 +10,39 @@
           $( "#reject_user_id" ).val( ui.item.user_id );
         }
       } );
-    } )
+      $( "#site-admins .dropdown-menu" ).on( "click", function( e ) {
+        e.stopPropagation( );
+      } );
+    } );
+
+  - if @display_user
+    :javascript
+      $( document ).ready( function( ) {
+        $( "#site-admins input[type='checkbox']" ).on( "change", function( e ) {
+          $.ajax({
+            type: $( this ).is( ":checked" ) ? "POST" : "DELETE",
+            url: "/site_admins",
+            data: {
+              site_admin: {
+                user_id: #{ @display_user.id },
+                site_id: $( this ).val( )
+              }
+            },
+            success: function( data ) {
+              console.log( "success" );
+            },
+            error: function( data ) {
+              console.log( "error" );
+            },
+            dataType: "JSON"
+          });
+        } );
+      } );
+= content_for :extracss do
+  :css
+    .dropdown-menu.site-admins li {
+      padding: 3px 10px;
+    }
 .container
   .row
     .col-xs-12
@@ -40,6 +72,54 @@
                       = observation.user_agent.gsub(/(MSIE|Safari|Chrome|Opera|Firefox|iNaturalist)/, "<u>\\1</u>").html_safe
               - else
                 No observations to check
+          %tr
+            %th Blocks
+            %td
+              - if @display_user.user_blocks.count == 0
+                None
+              - else
+                %ul.plain
+                  - @display_user.user_blocks.limit( 100 ).each do |ub|
+                    %li= link_to_user ub.blocked_user
+                %p.text-muted
+                  = @display_user.user_blocks.count
+                  total
+          %tr
+            %th Blocked by
+            %td
+              - if @display_user.user_blocks_as_blocked_user.count == 0
+                None
+              - else
+                %ul.plain
+                  - @display_user.user_blocks_as_blocked_user.limit( 100 ).each do |ub|
+                    %li= link_to_user ub.user
+                %p.text-muted
+                  = @display_user.user_blocks_as_blocked_user.count
+                  total
+          %tr
+            %th Mutes
+            %td
+              - if @display_user.user_mutes.count == 0
+                None
+              - else
+                %ul.plain
+                  - @display_user.user_mutes.limit( 100 ).each do |um|
+                    %li= link_to_user um.muted_user
+                %p.text-muted
+                  = @display_user.user_mutes.count
+                  total
+          %tr
+            %th Muted by
+            %td
+              - if @display_user.user_mutes_as_muted_user.count == 0
+                None
+              - else
+                %ul.plain
+                  - @display_user.user_mutes_as_muted_user.limit( 100 ).each do |um|
+                    %li= link_to_user um.user
+                %p.text-muted
+                  = @display_user.user_mutes_as_muted_user.count
+                  total
           - if @display_user.curator_sponsor
             %tr
               %th User who made this user a curator
@@ -62,6 +142,24 @@
             method: :post, data: { confirm: t(:are_you_sure_you_want_to_remove_spammer) },  |
             class: "btn btn-block btn-success"
         = link_to "Make taxon curator", new_taxon_curator_path( user_id: @display_user.id ), class: "btn btn-block btn-success"
+        .dropdown.btn-block#site-admins
+          .btn.btn-block.btn-success.dropdown-toggle{ "data-toggle" => "dropdown" }
+            = t :make_site_admin
+            %span.caret
+          %ul.dropdown-menu.site-admins{ style: "width:100%" }
+            - Site.order(:id).map do |s|
+              %li
+                %label
+                  %input{                                                                |
+                    type: "checkbox",                                                    |
+                    id: "site-#{s.id}",                                                  |
+                    value: s.id,                                                         |
+                    checked: @display_user.site_admins.detect{ |sa| sa.site_id == s.id } |
+                  }                                                                      |
+                  = s.name
+                  = " [#{ s.short_url }]"
+                  - if s.draft
+                    = " (#{ I18n.t(:draft) })"
         = link_to "Log in as #{@display_user.login}", { controller: "admin", action: "login_as", id: @display_user.id }, class: "btn btn-block btn-info"
         = link_to "Manage / delete content", admin_user_content_path(@display_user.id), class: "btn btn-block btn-info"
         = link_to "Delete user description", admin_update_user_path(@display_user.id, "user[description]" => ""), :method => :put,

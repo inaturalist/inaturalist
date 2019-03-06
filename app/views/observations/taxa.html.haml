@@ -8,7 +8,7 @@
     .taxonrow:hover .observations_link {display:inline;}
     ul.plain {margin-left: 25px;}
 
-- unless @stats_adequately_scoped
+- if @error || !@stats_adequately_scoped
   .container-fluid
     .row
       .col-md-12= render 'stats_inadequately_scoped'

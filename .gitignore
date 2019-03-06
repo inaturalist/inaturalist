@@ -1,4 +1,5 @@
 .bundle
+.byebug_history
 .capistrano
 db/*.sqlite3
 log/*
@@ -47,7 +48,6 @@ GeoLiteCity.dat
 vendor/plugins/ratatosk/spec/debug.log
 lib/ratatosk/spec/fixtures/catalogue_of_life/
 lib/ratatosk/spec/fixtures/eol_service/
-spec/fixtures/eol_service/
 lib/ratatosk/spec/debug.log
 *~
 notes.txt

@@ -23,12 +23,13 @@ module ObservationsHelper
     fields = ObservationsController::ORDER_BY_FIELDS - %w(species_guess)
     pairs = fields.map do |f|
       next if f == "project" && @project.blank?
-      value = %w(created_at observations.id id).include?(f) ? 'observations.id' : f
+      value = %w(created_at observations.id id).include?(f) ? "observations.id" : f
       default = ObservationsController::DISPLAY_ORDER_BY_FIELDS[f].to_s
       key = default.parameterize.underscore
-      [t(key, :default => default).downcase, value]
+      key_capitalized = "#{key}_"
+      [t( key_capitalized, default: t( key, default: default ) ), value]
     end.compact
-    order_by = 'observations.id' if order_by.blank?
+    order_by = "observations.id" if order_by.blank?
     options_for_select(pairs, order_by)
   end
   
@@ -57,7 +58,7 @@ module ObservationsHelper
     osm_coords_link = link_to("OSM", osm_coords_url, :target => "_blank")
     
     if coordinate_truncation = options[:truncate_coordinates]
-      coordinate_truncation = 6 unless coordinate_truncation.is_a?(Fixnum)
+      coordinate_truncation = 6 unless coordinate_truncation.is_a?(Integer)
       display_lat = display_lat.to_s[0..coordinate_truncation] + "..." unless display_lat.blank?
       display_lon = display_lon.to_s[0..coordinate_truncation] + "..." unless display_lon.blank?
     end

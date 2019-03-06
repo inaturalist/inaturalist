@@ -118,7 +118,7 @@ class TaxonChange < ActiveRecord::Base
     uneditable_input_taxon = input_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
     uneditable_output_taxon = nil
     unless uneditable_input_taxon
-      uneditable_output_taxon = output_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
+      uneditable_output_taxon = output_taxa.detect{ |t| !t.is_active && !t.activated_protected_attributes_editable_by?( u ) }
     end
     uneditable_input_taxon.blank? && uneditable_output_taxon.blank?
   end
@@ -167,7 +167,7 @@ class TaxonChange < ActiveRecord::Base
       t.update_attributes!(
         is_active: true,
         skip_only_inactive_children_if_inactive: move_children?,
-        skip_complete: true
+        skip_taxon_framework_checks: true
       )
     end
     update_attribute(:committed_on, Time.now)
@@ -383,9 +383,9 @@ class TaxonChange < ActiveRecord::Base
     end
     move_child = Proc.new do |child|
       child.skip_locks = true
-      child.skip_complete = true
+      child.skip_taxon_framework_checks = true
       output_taxon.skip_locks = true
-      output_taxon.skip_complete = true
+      output_taxon.skip_taxon_framework_checks = true
       child.move_to_child_of( output_taxon )
     end
     if (

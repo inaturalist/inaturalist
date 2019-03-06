@@ -3,6 +3,7 @@ class MessagesController < ApplicationController
   before_filter :load_message, :only => [:show, :destroy]
   before_filter :require_owner, :only => [:show, :destroy]
   before_filter :load_box, :only => [:show, :new, :index]
+  check_spam only: [:create, :update], instance: :message
 
   def index
     @messages = case @box
@@ -23,8 +24,12 @@ class MessagesController < ApplicationController
   end
 
   def show
-    @messages = current_user.messages.where(:thread_id => @message.thread_id).order("id asc")
-    Message.where(id: @messages, read_at: nil).update_all(read_at: Time.now)
+    @messages = Message.where( user_id: @message.user_id, thread_id: @message.thread_id ).order( "id asc" )
+    if current_user.is_admin? && current_user.id != @message.user_id
+      flash.now[:notice] =  "You can see this because you're on staff. Please be careful"
+    else
+      Message.where( id: @messages, read_at: nil ).update_all( read_at: Time.now )
+    end
     @thread_message = @messages.first
     @reply_to = @thread_message.from_user == current_user ? @thread_message.to_user : @thread_message.from_user
     @flaggable_message = if m = @messages.detect{|m| m.from_user && m.from_user != current_user}
@@ -39,7 +44,7 @@ class MessagesController < ApplicationController
       joins("JOIN messages ON messages.to_user_id = users.id").
       where("messages.from_user_id = ?", current_user).
       limit(100)
-    @contacts = current_user.friends.limit(100) if @contacts.blank?
+    @contacts = current_user.followees.limit(100) if @contacts.blank?
     unless @contacts.blank?
       @contacts.each_with_index do |u,i|
         @contacts[i].html = view_context.render_in_format(:html, :partial => "users/chooser", :object => u).gsub(/\n/, '')
@@ -96,7 +101,11 @@ class MessagesController < ApplicationController
   def count
     count = current_user.messages.inbox.unread.count
     session[:messages_count] = count
-    render :json => {:count => count}
+    respond_to do |format|
+      format.json do
+        render json: { count: count }
+      end
+    end
   end
 
   def new_messages

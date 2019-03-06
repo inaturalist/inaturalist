@@ -1,6 +1,7 @@
 module ActsAsElasticModel
 
   extend ActiveSupport::Concern
+  @@inserts = 0
 
   included do
     include Elasticsearch::Model
@@ -41,6 +42,7 @@ module ActsAsElasticModel
       end
 
       def elastic_paginate(options={})
+        options = options.dup
         options[:page] ||= 1
         options[:per_page] ||= 20
         options[:source] ||= options[:keep_es_source] ? "*" : [ "id" ]
@@ -73,6 +75,11 @@ module ActsAsElasticModel
           end
           scope = scope.where(id: filter_ids)
         end
+        if indexed_before = options.delete(:indexed_before)
+          if column_names.include?( "last_indexed_at" )
+            scope = scope.where("last_indexed_at IS NULL OR last_indexed_at < ?", indexed_before)
+          end
+        end
         # indexing can be delayed
         if options.delete(:delay)
           # make sure to fetch the results of the scope and store
@@ -86,7 +93,10 @@ module ActsAsElasticModel
           return self.delay(
             unique_hash: { "#{self.name}::delayed_index": id_hash },
             queue: queue
-          ).elastic_index!( options.merge( ids: result_ids ) )
+          ).elastic_index!( options.merge(
+            ids: result_ids,
+            indexed_before: 5.minutes.from_now.strftime("%FT%T")
+          ) )
         end
         # now we can preload all associations needed for efficient indexing
         if self.respond_to?(:load_for_index)
@@ -226,6 +236,7 @@ module ActsAsElasticModel
           if batch && batch.length > 0 && batch.first.respond_to?(:last_indexed_at)
             where(id: batch).update_all(last_indexed_at: Time.now)
           end
+          GC.start
         rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
           Logstasher.write_exception(e)
           Rails.logger.error "[Error] elastic_index! failed: #{ e }"
@@ -248,6 +259,7 @@ module ActsAsElasticModel
     end
 
     def elastic_index!
+      original_associations_loaded = self.association_cache.keys
       begin
         __elasticsearch__.index_document
         # in the test ENV, we will need to wait for changes to be applied
@@ -255,6 +267,19 @@ module ActsAsElasticModel
         if respond_to?(:last_indexed_at) && !destroyed?
           update_column(:last_indexed_at, Time.now)
         end
+        # indexing can preload a lot of associations which can hang around and cause
+        # memory usage to spike. To avoid that, reset (i.e. unload the association)
+        # any associations that were loaded purely for indexing
+        associations_added_for_indexing = self.association_cache.keys - original_associations_loaded
+        associations_added_for_indexing.each do |k|
+          if self.send( k ).is_a?( ActiveRecord::Associations::CollectionProxy )
+            self.send( k ).reset
+          end
+        end
+        @@inserts += 1
+        # garbage collect after a small batch of individual instance indexing
+        # don't do this for every elastic_index! as GC is somewhat expensive
+        GC.start if @@inserts % 10 == 0
       rescue Elasticsearch::Transport::Transport::Errors::BadRequest => e
         Logstasher.write_exception(e)
         Rails.logger.error "[Error] elastic_index! failed: #{ e }"

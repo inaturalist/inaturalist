@@ -27,15 +27,19 @@ const StatusHeader = ( { status } ) => {
   }
   return (
     <div className={`alert ${alertClass} StatusHeader`}>
-      <i className="glyphicon glyphicon-flag">
-      </i> <strong>{
-        status.place ?
-          I18n.t( "status_in_place", { status: text, place: status.place.display_name } )
-          :
-          I18n.t( "status_globally", { status: text } )
-      }</strong> (
-        { I18n.t( "source" ) }: <a href={status.url}>{ status.authority }</a>
-      )
+      <i className="glyphicon glyphicon-flag" />
+      { " " }
+      <strong>
+        {
+          status.place
+            ? I18n.t( "status_in_place", { status: I18n.t( text, { defaultValue: text } ), place: status.place.display_name } )
+            : I18n.t( "status_globally", { status: I18n.t( text, { defaultValue: text } ) } )
+        }
+      </strong>
+      { " " }
+      { I18n.t( "label_colon", { label: I18n.t( "source" ) } ) }
+      { " " }
+      <a href={status.url}>{ status.authority }</a>
     </div>
   );
 };

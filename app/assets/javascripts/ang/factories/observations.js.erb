@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
   var show = function( id, params ) {
     var url = "<%= CONFIG.node_api_url %>/observations/" + id;
@@ -104,7 +106,7 @@ iNatAPI.factory(  "ObservationsFactory", [ "shared", function( shared ) {
       })
       // add the ones that are actually in the scope
       _.each( params.observationFields, function( v, k ) {
-        params[k] = v;
+        params[k] = v || "";
       });
       // make sure we don't keep around this stuff from the scope
       keysToDelete.push( "observationFields" );

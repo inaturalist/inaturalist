@@ -211,15 +211,12 @@
       </div>
 
       <div class="taxon_observations">
-        <% if observation = @featured_taxa_obs_by_taxon_id[taxon.id] -%>
-          <%= link_to(
-            image_tag(observation.user.icon.url(:thumb), :class => 'usericon left'),
-            person_by_login_path(observation.user.login)) %>
-          <%= link_to observation.user.login, person_path(observation.user) %>
-          <%= t(:observed_one) %>
-          <%= observation.observed_on? ? t(:on_day).." #{l(observation.observed_on, :format => :long)}" : t(:in_the_past) -%>
-          <%= observation.place_guess.blank? ? t(:somewhere_on_earth) : " #{t(:in)} #{observation.place_guess}" %>.
-
+        <% if observation = @featured_taxa_obs.detect{|o| o.taxon.self_and_ancestor_ids.include?(taxon.id) } -%>
+          <%=t :user_observed_on_on_date_in_place,
+            user: observation.user.login,
+            date: observation.observed_on ? l(observation.observed_on) : t(:in_the_past),
+            place: observation.place_guess.blank? ? t(:somewhere_on_earth) : observation.place_guess
+          %>
           <div>
             <%= link_to t(:view), observation, :class => "readmore" %>
           </div>
@@ -280,4 +277,5 @@
     </p>
     <% end %>
   </div>
+  <%= link_to "#{ t( :taxonomy_details ) } &raquo".html_safe, taxonomy_details_for_taxon_path(Taxon::LIFE) %>
 </div>

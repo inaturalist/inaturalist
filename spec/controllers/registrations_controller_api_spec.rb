@@ -1,6 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe Users::RegistrationsController, "create" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
+  
   before do
     @request.env["devise.mapping"] = Devise.mappings[:user]
     stub_request(:get, /#{INatAPIService::ENDPOINT}/).
@@ -120,6 +123,7 @@ describe Users::RegistrationsController, "create" do
     u = User.find_by_login(u.login)
     expect( u.time_zone ).to eq "America/Los_Angeles"
   end
+
   it "should accept preferred_photo_license" do
     u = User.make
     post :create, user: {
@@ -131,5 +135,22 @@ describe Users::RegistrationsController, "create" do
     }
     u = User.find_by_login(u.login)
     expect( u.preferred_photo_license ).to eq Observation::CC_BY
+  end
+
+  it "should handle formatting mixups in license" do
+    u = User.make
+    post :create, format: :json, user: {
+      login: u.login,
+      password: u.password,
+      password_confirmation: u.password,
+      email: u.email,
+      preferred_observation_license: "CC-BY_NC",
+      preferred_photo_license: "CC_BY_NC",
+      preferred_sound_license: "CC^by$NC"
+    }
+    new_u = User.where( login: u.login ).first
+    expect( new_u.preferred_photo_license ).to eq Observation::CC_BY_NC
+    expect( new_u.preferred_sound_license ).to eq Observation::CC_BY_NC
+    expect( new_u.preferred_observation_license ).to eq Observation::CC_BY_NC
   end
 end

@@ -11,10 +11,10 @@ const urlForTaxonPhotos = ( t, params ) => {
   }
   return url;
 };
-const urlForUser = ( u ) => `/people/${u.login}`;
-const urlForPlace = ( p ) => `/places/${p.slug || p.id}`;
+const urlForUser = u => `/people/${u.login}`;
+const urlForPlace = p => `/places/${p.slug || p.id}`;
 
-const defaultObservationParams = ( state ) => ( {
+const defaultObservationParams = state => ( {
   verifiable: true,
   taxon_id: state.taxon.taxon ? state.taxon.taxon.id : null,
   place_id: state.config.chosenPlace ? state.config.chosenPlace.id : null,
@@ -27,7 +27,9 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
   let userName = options.name || "";
   if ( userName.length === 0 ) userName = photo.native_realname || userName;
   if ( userName.length === 0 ) userName = photo.native_username || userName;
-  const user = photo.user || options.user || ( options.observation ? options.observation.user : null );
+  const user = photo.user || options.user || (
+    options.observation ? options.observation.user : null
+  );
   if ( user && userName.length === 0 ) {
     userName = user.name || user.login || userName;
   }
@@ -64,12 +66,14 @@ const localizedPhotoAttribution = ( photo, options = { } ) => {
   }
   return (
     <span>
-      { s }, { url ? <a href={url} title={photo.license_code}>{ rights }</a> : rights }
+      { s },
+      { " " }
+      { url ? <a href={url} title={photo.license_code}>{ rights }</a> : rights }
     </span>
   );
 };
 
-const commasAnd = ( items ) => {
+const commasAnd = items => {
   if ( items.length <= 2 ) {
     return items.join( ` ${I18n.t( "and" )} ` );
   }
@@ -103,19 +107,21 @@ const windowStateForTaxon = taxon => {
   if ( taxon.preferred_common_name ) {
     title = `${iNatModels.Taxon.titleCaseName( taxon.preferred_common_name )} (${scinameWithRank})`;
   }
-  const state = { taxon: {
-    id: taxon.id,
-    name: taxon.name,
-    preferred_common_name: taxon.preferred_common_name,
-    iconic_taxon_name: taxon.iconic_taxon_name,
-    rank_level: taxon.rank_level,
-    rank: taxon.rank,
-    is_active: taxon.is_active
-  } };
+  const state = {
+    taxon: {
+      id: taxon.id,
+      name: taxon.name,
+      preferred_common_name: taxon.preferred_common_name,
+      iconic_taxon_name: taxon.iconic_taxon_name,
+      rank_level: taxon.rank_level,
+      rank: taxon.rank,
+      is_active: taxon.is_active
+    }
+  };
   return {
     state,
     title,
-    url: urlForTaxon( taxon )
+    url: `${urlForTaxon( taxon )}${window.location.search}`
   };
 };
 

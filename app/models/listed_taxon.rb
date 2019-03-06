@@ -111,6 +111,8 @@ class ListedTaxon < ActiveRecord::Base
   }
   scope :with_species, -> { joins(:taxon).where(taxa: { rank_level: 10 }) }
   
+  scope :excluding_infraspecies, -> { joins(:taxon).where("taxa.rank_level >= 10 ") }
+  
   #with taxonomic status (by itself)
   scope :with_taxonomic_status, ->(taxonomic_status) {
     # this would be a better way to do this, but it causes Rails 4 to freak when it gets nested in a subselect
@@ -159,11 +161,12 @@ class ListedTaxon < ActiveRecord::Base
     join = <<-SQL
       LEFT JOIN (
         #{ancestor_ids_sql}
+      AND branch_taxa.rank_level >= 10
       ) AS ancestor_ids ON listed_taxa.taxon_id::text = ancestor_ids.ancestor_id
     SQL
     # filter by listed_taxa where the listed_taxa.taxon_id is not present
     # among the ancestors, i.e. it is a leaf
-    joins(join).where("ancestor_ids.ancestor_id IS NULL")
+    excluding_infraspecies.joins(join).where("ancestor_ids.ancestor_id IS NULL")
   }
   
   ALPHABETICAL_ORDER = "alphabetical"
@@ -368,7 +371,7 @@ class ListedTaxon < ActiveRecord::Base
     return true unless l.is_a?(LifeList)
     return true unless l.user
     return true unless l.user.life_list_id == self.list_id 
-    User.where(id: l.user_id).update_all(life_list_taxa_count: l.listed_taxa.count)
+    User.where(id: l.user_id).update_all( life_list_taxa_count: l.listed_taxa.with_leaves( l.listed_taxa.to_sql ).confirmed.count )
     true
   end
   

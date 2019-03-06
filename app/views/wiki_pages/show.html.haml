@@ -1,5 +1,5 @@
 - content_for :title do
-  = @title = @page.title
+  = @title = raw @page.title
 - content_for :extracss do
   = stylesheet_link_tag 'wiki'
 - content_for :extrajs do
@@ -16,7 +16,7 @@
 = wiki_content @page.content
 
 .meta.ui
-  - if is_curator?
+  - if edit_allowed?
     .right
       = wiki_page_actions
   = wiki_page_info

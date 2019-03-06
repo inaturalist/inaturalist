@@ -4,7 +4,7 @@ describe Taxon do
   before(:each) { enable_elastic_indexing( Observation, Taxon ) }
   after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
-  before(:each) do
+  before(:all) do
     load_test_taxa
     @taxon = @Calypte_anna
   end
@@ -18,7 +18,6 @@ describe Taxon do
       :rank => 'species'
     )
     expect(ungrafted.grafted?).to be(false)
-    
     expect(@Animalia.grafted?).to be(true)
   end
   
@@ -42,23 +41,20 @@ describe Taxon, "creation" do
   before(:each) { enable_elastic_indexing( Observation, Taxon ) }
   after(:each) { disable_elastic_indexing( Observation, Taxon ) }
   
-  before(:each) do
-    load_test_taxa
-    @taxon = Taxon.make!(:name => 'Pseudacris imaginarius', :rank => 'species')
-  end
-  
   it "should set an iconic taxon if this taxon was grafted" do
-    @taxon.parent = @Pseudacris
-    @taxon.save!
-    expect(@taxon.grafted?).to be(true)
-    @taxon.reload
-    expect(@taxon.iconic_taxon).to eql(@Amphibia)
+    load_test_taxa
+    taxon = Taxon.make!( name: "Pseudacris imaginarius", rank: Taxon::SPECIES )
+    taxon.parent = @Pseudacris
+    taxon.save!
+    expect( taxon ).to be_grafted
+    taxon.reload
+    expect( taxon.iconic_taxon ).to eq @Amphibia
   end
   
   it "should create a taxon name with the same name after save" do
-    @taxon.reload
-    expect(@taxon.taxon_names).not_to be_empty
-    expect(@taxon.taxon_names.map(&:name)).to include(@taxon.name)
+    t = Taxon.make!
+    expect( t.taxon_names ).not_to be_empty
+    expect( t.taxon_names.map(&:name) ).to include( t.name )
   end
 
   it "should create a taxon name with the same name after save even if invalid on source_identifier" do
@@ -83,35 +79,39 @@ describe Taxon, "creation" do
   end
   
   it "should set the rank_level based on the rank" do
-    expect(@taxon.rank_level).to eq Taxon::RANK_LEVELS[@taxon.rank]
+    t = Taxon.make!
+    expect( t.rank_level ).to eq Taxon::RANK_LEVELS[t.rank]
   end
   
   it "should remove leading rank from the name" do
-    @taxon.name = "Gen Pseudacris"
-    @taxon.save
-    expect(@taxon.name).to eq 'Pseudacris'
+    t = Taxon.make!( name: "Gen Pseudacris" )
+    expect( t.name ).to eq "Pseudacris"
   end
   
   it "should remove internal 'var' from name" do
-    @taxon.name = "Quercus agrifolia var. agrifolia"
-    @taxon.save
-    expect(@taxon.name).to eq 'Quercus agrifolia agrifolia'
+    t = Taxon.make!( name: "Quercus agrifolia var. agrifolia" )
+    expect( t.name ).to eq "Quercus agrifolia agrifolia"
   end
   
   it "should remove internal 'ssp' from name" do
-    @taxon.name = "Quercus agrifolia ssp. agrifolia"
-    @taxon.save
-    expect(@taxon.name).to eq 'Quercus agrifolia agrifolia'
+    t = Taxon.make!( name: "Quercus agrifolia ssp. agrifolia" )
+    expect( t.name ).to eq "Quercus agrifolia agrifolia"
   end
   
   it "should remove internal 'subsp' from name" do
-    @taxon.name = "Quercus agrifolia subsp. agrifolia"
-    @taxon.save
-    expect(@taxon.name).to eq 'Quercus agrifolia agrifolia'
+    t = Taxon.make!( name: "Quercus agrifolia subsp. agrifolia" )
+    expect( t.name ).to eq "Quercus agrifolia agrifolia"
+  end
+
+  it "should allow fo as a specific epithet" do
+    name = "Mahafalytenus fo"
+    t = Taxon.make!( name: name )
+    expect( t.name ).to eq name
   end
 
   it "should create TaxonAncestors" do
-    t = Taxon.make!( rank: Taxon::SPECIES, parent: @Calypte )
+    parent = Taxon.make!( rank: Taxon::GENUS )
+    t = Taxon.make!( rank: Taxon::SPECIES, parent: parent )
     t.reload
     expect( t.taxon_ancestors ).not_to be_blank
   end
@@ -183,9 +183,6 @@ end
 describe Taxon, "updating" do
   before(:each) { enable_elastic_indexing( Observation, Taxon ) }
   after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-  before(:each) do
-    load_test_taxa
-  end
   
   it "should update the ancestry col of all associated listed_taxa"
   
@@ -274,20 +271,27 @@ describe Taxon, "updating" do
     expect(taxon.errors).to be_blank
   end
   
+  describe "auto_description" do
+    it "should remove the wikipedia_summary when it changes to false" do
+      t = Taxon.make!( wikipedia_summary: "foo" )
+      expect( t.wikipedia_summary ).not_to be_blank
+      t.update_attributes( auto_description: false )
+      t.reload
+      expect( t.wikipedia_summary ).to be_blank
+    end
+  end
 end
 
 describe Taxon, "destruction" do
   before(:each) { enable_elastic_indexing( Observation, Taxon ) }
   after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-  before(:each) do
-    load_test_taxa
-  end
   
   it "should work" do
-    @Calypte_anna.destroy
+    Taxon.make!.destroy
   end
   
   it "should queue a job to destroy descendants if orphaned" do
+    load_test_taxa
     Delayed::Job.delete_all
     stamp = Time.now
     @Apodiformes.destroy
@@ -513,21 +517,26 @@ end
 
 describe Taxon, "tags_to_taxa" do
   
-  before(:each) do
-    load_test_taxa
-  end
-  
   it "should find Animalia and Mollusca" do
-    taxa = Taxon.tags_to_taxa(['Animalia', 'Aves'])
-    expect(taxa).to include(@Animalia)
-    expect(taxa).to include(@Aves)
+    animalia = Taxon.make!( rank: Taxon::PHYLUM, name: "Animalia" )
+    aves = Taxon.make!( rank: Taxon::CLASS, name: "Aves", parent: animalia )
+    taxa = Taxon.tags_to_taxa( ["Animalia", "Aves"] )
+    expect( taxa ).to include( animalia )
+    expect( taxa ).to include( aves )
   end
   
   it "should work on taxonomic machine tags" do
-    taxa = Taxon.tags_to_taxa(['taxonomy:kingdom=Animalia', 'taxonomy:class=Aves', 'taxonomy:binomial=Calypte anna'])
-    expect(taxa).to include(@Animalia)
-    expect(taxa).to include(@Aves)
-    expect(taxa).to include(@Calypte_anna)
+    animalia = Taxon.make!( rank: Taxon::PHYLUM, name: "Animalia" )
+    aves = Taxon.make!( rank: Taxon::CLASS, name: "Aves", parent: animalia )
+    calypte_anna = Taxon.make!( rank: Taxon::SPECIES, name: "Calypte anna" )
+    taxa = Taxon.tags_to_taxa( [
+      "taxonomy:kingdom=Animalia",
+      "taxonomy:class=Aves",
+      "taxonomy:binomial=Calypte anna"
+    ] )
+    expect( taxa ).to include( animalia )
+    expect( taxa ).to include( aves )
+    expect( taxa ).to include( calypte_anna )
   end
 
   it "should not find inactive taxa" do
@@ -539,13 +548,15 @@ describe Taxon, "tags_to_taxa" do
   end
 
   it "should work for sp" do
-    taxa = Taxon.tags_to_taxa(['Calypte sp'])
-    expect(taxa).to include(@Calypte)
+    taxon = Taxon.make!( rank: Taxon::GENUS, name: "Mycena" )
+    taxa = Taxon.tags_to_taxa( ["#{taxon.name} sp"] )
+    expect( taxa ).to include( taxon )
   end
 
   it "should work for sp." do
-    taxa = Taxon.tags_to_taxa(['Calypte sp.'])
-    expect(taxa).to include(@Calypte)
+    taxon = Taxon.make!( rank: Taxon::GENUS, name: "Mycena" )
+    taxa = Taxon.tags_to_taxa( ["#{taxon.name} sp."] )
+    expect( taxa ).to include( taxon )
   end
 
   it "should not strip out sp from Spizella" do
@@ -592,38 +603,33 @@ end
 
 describe Taxon, "merging" do
 
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
-  
+  before(:all) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:all) { disable_elastic_indexing( Observation, Taxon ) }
+  before(:all) { load_test_taxa }
   before(:each) do
-    load_test_taxa
+    # load_test_taxa
     @keeper = Taxon.make!(
-      :name => 'Calypte imaginarius',
-      :rank => 'species'
+      name: "Calypte keeper",
+      rank: Taxon::SPECIES,
+      parent: @Calypte
     )
-    puts "keeper wasn't valid: " + @keeper.errors.full_messages.join(', ') unless @keeper.valid?
-    @reject = @Calypte_anna
-    # @keeper.move_to_child_of(@reject.parent)
-    @keeper.update_attributes(:parent => @reject.parent)
+    @reject = Taxon.make!(
+      :name => "Calypte reject",
+      rank: Taxon::SPECIES,
+      parent: @Calypte
+    )
     @has_many_assocs = Taxon.reflections.select{|k,v| v.macro == :has_many}.map{|k,v| k}
     @has_many_assocs.each {|assoc| @reject.send(assoc, :force_reload => true)}
   end
     
   it "should move the reject's children to the keeper" do
-    keeper = Taxon.create(
-      :name => 'Pseudacrisplus',
-      :rank => 'genus'
-    )
-    puts "keeper wasn't valid: " + @keeper.errors.full_messages.join(', ') unless @keeper.valid?
-    reject = @Pseudacris
-    keeper.move_to_child_of(reject.parent)
-    
-    rejected_children = reject.children
+    child = Taxon.make!( name: "Calypte reject rejectus", parent: @reject, rank: Taxon::SUBSPECIES )
+    rejected_children = @reject.children
     expect(rejected_children).not_to be_empty
-    keeper.merge(reject)
-    rejected_children.each do |child|
-      child.reload
-      expect(child.parent_id).to be(keeper.parent_id)
+    @keeper.merge( @reject )
+    rejected_children.each do |c|
+      c.reload
+      expect( c.parent_id ).to eq @keeper.parent_id
     end
   end
   
@@ -726,8 +732,6 @@ describe Taxon, "merging" do
       expect(taxon_photo.taxon_id).to be(@keeper.id)
     end
   end
-  
-  it "should move the reject's colors to the keeper"
   
   it "should mark scinames not matching the keeper as invalid" do
     old_sciname = @reject.scientific_name
@@ -841,15 +845,21 @@ end
 
 describe Taxon, "moving" do
 
-  before(:each) { enable_elastic_indexing( Observation, Taxon, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon, Identification ) }
+  before(:all) { enable_elastic_indexing( Observation, Taxon, Identification ) }
+  after(:all) { disable_elastic_indexing( Observation, Taxon, Identification ) }
   
-  before(:each) do
+  before(:all) do
     load_test_taxa
   end
+
+  let(:obs) do
+    t = Taxon.make!( name: "Calypte test", rank: Taxon::SPECIES, parent: @Calypte )
+    obs = Observation.make!( taxon: t )
+  end
+
+  let(:hummer_genus) { Taxon.make!( rank: Taxon::GENUS, parent: @Trochilidae ) }
   
   it "should update the iconic taxon of observations" do
-    obs = Observation.make!(:taxon => @Calypte_anna)
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     taxon.move_to_child_of(@Amphibia)
@@ -860,7 +870,6 @@ describe Taxon, "moving" do
   end
   
   it "should queue a job to set iconic taxon on observations of descendants" do
-    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     Delayed::Job.delete_all
@@ -871,7 +880,6 @@ describe Taxon, "moving" do
   end
 
   it "should set iconic taxon on observations of descendants" do
-    obs = without_delay { Observation.make!(:taxon => @Calypte_anna) }
     old_iconic_id = obs.iconic_taxon_id
     taxon = obs.taxon
     without_delay do
@@ -884,13 +892,13 @@ describe Taxon, "moving" do
   it "should set iconic taxon on observations of descendants if grafting for the first time" do
     parent = Taxon.make!(rank: Taxon::GENUS)
     taxon = Taxon.make!(parent: parent, rank: Taxon::SPECIES)
-    obs = without_delay { Observation.make!(:taxon => taxon) }
-    expect(obs.iconic_taxon).to be_blank
+    o = without_delay { Observation.make!(:taxon => taxon) }
+    expect(o.iconic_taxon).to be_blank
     without_delay do
       parent.move_to_child_of(@Amphibia)
     end
-    obs.reload
-    expect(obs.iconic_taxon).to eq(@Amphibia)
+    o.reload
+    expect(o.iconic_taxon).to eq(@Amphibia)
   end
   
   it "should not raise an exception if the new parent doesn't exist" do
@@ -902,10 +910,10 @@ describe Taxon, "moving" do
   end
   
   # this is something we override from the ancestry gem
-  it "should queue a job to update descendant ancetries" do
+  it "should queue a job to update descendant ancestries" do
     Delayed::Job.delete_all
     stamp = Time.now
-    @Calypte.update_attributes(:parent => @Hylidae)
+    hummer_genus.update_attributes( parent: @Hylidae )
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}).not_to be_blank
   end
@@ -913,7 +921,7 @@ describe Taxon, "moving" do
   it "should not queue a job to update descendant ancetries if skip_after_move set" do
     Delayed::Job.delete_all
     stamp = Time.now
-    @Calypte.update_attributes(:parent => @Hylidae, :skip_after_move => true)
+    hummer_genus.update_attributes(:parent => @Hylidae, :skip_after_move => true)
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /update_descendants_with_new_ancestry/m}).not_to be_blank
   end
@@ -921,9 +929,9 @@ describe Taxon, "moving" do
   it "should queue a job to update observation stats if there are observations" do
     Delayed::Job.delete_all
     stamp = Time.now
-    o = Observation.make!( taxon: @Calypte )
-    expect( Observation.of( @Calypte ).count ).to eq 1
-    @Calypte.update_attributes( parent: @Hylidae )
+    o = Observation.make!( taxon: hummer_genus )
+    expect( Observation.of( hummer_genus ).count ).to eq 1
+    hummer_genus.update_attributes( parent: @Hylidae )
     jobs = Delayed::Job.where( "created_at >= ?", stamp )
     expect( jobs.select{|j| j.handler =~ /update_stats_for_observations_of/m} ).not_to be_blank
   end
@@ -1062,21 +1070,21 @@ describe Taxon, "grafting" do
       i.reload
       expect( i.taxon ).not_to be_grafted
       expect( i.category ).to eq Identification::MAVERICK
-      es_o_idents = Observation.elastic_search( where: { id: o.id } ).results.results[0].identifications.sort_by(&:id)
-      expect( es_o_idents[0].category ).to eq Identification::IMPROVING
-      expect( es_o_idents[1].category ).to eq Identification::SUPPORTING
-      expect( es_o_idents[2].category ).to eq Identification::SUPPORTING
-      expect( es_o_idents[3].category ).to eq Identification::MAVERICK
+      categories = Observation.elastic_search( where: { id: o.id } ).results.
+        results[0].identification_categories.uniq.sort
+      expect( categories[0] ).to eq Identification::IMPROVING
+      expect( categories[1] ).to eq Identification::MAVERICK
+      expect( categories[2] ).to eq Identification::SUPPORTING
       without_delay { i.taxon.update_attributes( rank: Taxon::SPECIES ) }
       without_delay { i.taxon.update_attributes( parent: @Pseudacris ) }
       i.reload
       expect( i.taxon.ancestor_ids ).to include( @Pseudacris.id)
       expect( i.category ).to eq Identification::LEADING
-      es_o_idents = Observation.elastic_search( where: { id: o.id } ).results.results[0].identifications.sort_by(&:id)
-      expect( es_o_idents[0].category ).to eq Identification::IMPROVING
-      expect( es_o_idents[1].category ).to eq Identification::SUPPORTING
-      expect( es_o_idents[2].category ).to eq Identification::SUPPORTING
-      expect( es_o_idents[3].category ).to eq Identification::LEADING
+      categories = Observation.elastic_search( where: { id: o.id } ).results.
+        results[0].identification_categories.uniq.sort
+      expect( categories[0] ).to eq Identification::IMPROVING
+      expect( categories[1] ).to eq Identification::LEADING
+      expect( categories[2] ).to eq Identification::SUPPORTING
     end
   end
 end
@@ -1164,12 +1172,12 @@ describe Taxon, "geoprivacy" do
     expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to eq Observation::PRIVATE
   end
 
-  it "should be blank if conservation statuses exist but all are open" do
+  it "should be open if conservation statuses exist but all are open" do
     t = Taxon.make!(rank: Taxon::SPECIES)
     p = make_place_with_geom
     cs_place = ConservationStatus.make!(taxon: t, place: p, geoprivacy: Observation::OPEN)
     cs_global = ConservationStatus.make!(taxon: t, geoprivacy: Observation::OPEN)
-    expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to be_blank
+    expect( t.geoprivacy(latitude: p.latitude, longitude: p.longitude) ).to eq Observation::OPEN
   end
 end
 
@@ -1177,6 +1185,7 @@ describe Taxon, "max_geoprivacy" do
   let(:t1) { Taxon.make!(rank: Taxon::SPECIES) }
   let(:t2) { Taxon.make!(rank: Taxon::SPECIES) }
   let(:taxon_ids) { [t1.id, t2.id] }
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
   it "should be private if one of the taxa has a private global status" do
     cs_global = ConservationStatus.make!( taxon: t1, geoprivacy: Observation::PRIVATE )
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
@@ -1190,8 +1199,8 @@ describe Taxon, "max_geoprivacy" do
     expect( t1.ancestor_ids ).to include parent.id
     expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq Observation::PRIVATE
   end
-  it "should be nil if one none of the taxa have global status" do
-    expect( Taxon.max_geoprivacy( taxon_ids ) ).to eq nil
+  it "should be nil if none of the taxa have global status" do
+    expect( Taxon.max_geoprivacy( taxon_ids ) ).to be_nil
   end
 end
 
@@ -1247,15 +1256,23 @@ describe Taxon, "editable_by?" do
   it "should not be editable by curators if order or above" do
     expect( Taxon.make!( rank: Taxon::CLASS ) ).not_to be_editable_by( curator )
   end
-  describe "complete taxa" do
-    let(:taxon) { Taxon.make!( rank: Taxon::GENUS, complete: true ) }
+  describe "when taxon framework" do
+    let(:second_curator) { make_curator }
     it "should be editable by taxon curators of that taxon" do
-      tc = TaxonCurator.make!( taxon: taxon )
-      expect( taxon ).to be_editable_by( tc.user )
+      family = Taxon.make!( rank: Taxon::FAMILY )
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      tf = TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+      tc = TaxonCurator.make!( taxon_framework: tf, user: second_curator )
+      expect( species ).to be_editable_by( second_curator )
     end
     it "should be editable by other site curators" do
-      tc = TaxonCurator.make!( taxon: taxon )
-      expect( taxon ).to be_editable_by( curator )
+      family = Taxon.make!( rank: Taxon::FAMILY )
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+      tf = TaxonFramework.make!( taxon: family, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+      tc = TaxonCurator.make!( taxon_framework: tf, user: second_curator )
+      expect( species ).to be_editable_by( curator )
     end
   end
 end
@@ -1301,228 +1318,219 @@ describe "rank helpers" do
   end
 end
 
-describe "complete" do
-  it "should reindex all descendants when changed" do
-    family = Taxon.make!( rank: Taxon::FAMILY )
-    genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
-    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
-    Delayed::Worker.new.work_off
-    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
-    expect( es_genus.complete_species_count ).to be_nil
-    without_delay { family.update_attributes!( complete: true, current_user: make_admin ) }
-    genus.reload
-    expect( genus.complete_species_count ).to eq 1
-    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
-    expect( es_genus.complete_species_count ).to eq 1
+describe "taxon" do
+  let(:root) { Taxon.make!( rank: Taxon::FAMILY ) }
+  let(:internode) { Taxon.make!( rank: Taxon::GENUS, parent: root ) }
+  let!(:tip) { Taxon.make!( rank: Taxon::SPECIES, parent: internode ) }
+  let!(:taxon_framework) { TaxonFramework.make!( taxon: root, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] ) }
+  let!(:taxon_curator) { TaxonCurator.make!( taxon_framework: taxon_framework ) }
+  it "should recognize that its covered by a taxon framework" do
+    expect( tip.upstream_taxon_framework ).not_to be_blank
   end
-  it "should destroy TaxonCurators when set to false" do
-    t = Taxon.make!( complete: true, current_user: make_admin )
-    tc = TaxonCurator.make!( taxon: t )
-    t.update_attributes( complete: false, current_user: make_admin )
-    expect( TaxonCurator.find_by_id( tc.id ) ).to be_nil
-  end
+  it "should recognize that its not covered by a taxon framework" do
+    ssp = Taxon.make!( rank: Taxon::SUBSPECIES, parent: tip )
+    expect( ssp.upstream_taxon_framework ).to be_blank
+  end  
   describe "when current_user" do
-    let(:superfamily) { Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true ) }
-    let(:taxon_curator) { TaxonCurator.make!( taxon: superfamily ) }
-    let(:family) { Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user ) }
-    let(:genus) { Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user ) }
-    let(:species) { Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user ) }
-    # Assume that it can only be blank if this is not happening in a
-    # controller... not the safest assumption, but assigning a user for every
-    # script that alters taxa is going to be tedious
-    describe "is blank" do
-      it "should prevent grafting to this taxon" do
-        t = Taxon.make( rank: Taxon::GENUS, parent: superfamily )
+    describe "is curator" do
+      let(:curator) { make_curator }
+      it "should prevent grafting to root" do
+        t = Taxon.make( rank: Taxon::GENUS, parent: root, current_user: curator )
         expect( t ).not_to be_valid
       end
-      it "should prevent grafting to a descendant" do
-        t = Taxon.make( rank: Taxon::SPECIES, parent: genus )
+      it "should allow grafting to root when inactive" do
+        t = Taxon.make( rank: Taxon::GENUS, parent: root, current_user: curator, is_active: false )
+        expect( t ).to be_valid
+        t.save
+        t.reload
+        t.update_attributes( rank: Taxon::SUBGENUS, current_user: curator )
+        expect( t ).to be_valid
+        t.reload
+        t.update_attributes( is_active: true, current_user: curator )
         expect( t ).not_to be_valid
       end
-      it "should allow grafting to taxa beyond the complete_rank" do
-        superfamily.update_attributes( complete_rank: Taxon::GENUS, current_user: make_admin )
-        expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species ) ).to be_valid
-      end
-    end
-    describe "is not a TaxonCurator" do
-      let(:current_user) { User.make! }
-      it "should prevent grafting to this taxon" do
-        t = Taxon.make( rank: Taxon::GENUS, parent: superfamily, current_user: current_user )
+      it "should prevent grafting to internode" do
+        t = Taxon.make( rank: Taxon::SPECIES, parent: internode, current_user: curator )
         expect( t ).not_to be_valid
       end
-      it "should prevent grafting to a descendant" do
-        t = Taxon.make( rank: Taxon::SPECIES, parent: genus, current_user: current_user )
-        expect( t ).not_to be_valid
-      end
-      it "should prevent editing rank" do
-        superfamily.update_attributes( rank: "superduperfamily", current_user: current_user )
-        expect( superfamily ).not_to be_valid
-      end
-      it "should prevent editing is_active" do
-        superfamily.update_attributes( is_active: false, current_user: current_user )
-        expect( superfamily ).not_to be_valid
-      end
-      it "should prevent editing complete" do
-        superfamily.update_attributes( complete: false, current_user: current_user )
-        expect( superfamily ).not_to be_valid
-      end
-      it "should prevent editing complete_rank" do
-        superfamily.update_attributes( complete_rank: Taxon::SUBFAMILY, current_user: current_user )
-        expect( superfamily ).not_to be_valid
-      end
-      describe "and complete taxon has a complete_rank" do
-        before do
-          superfamily.update_attributes( complete_rank: Taxon::GENUS )
-        end
-        it "should allow grafting to taxa beyond the complete_rank" do
-          expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species, current_user: current_user ) ).to be_valid
-        end
-        it "should not allow grafting taxa beyond the complete_rank to the complete taxon" do
-          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: current_user, parent: superfamily )
-          expect( poorly_grafted_species ).not_to be_valid
-        end
-        it "should not allow grafting taxa beyond the complete_rank to the taxa before the complete_rank" do
-          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: current_user, parent: family )
-          expect( poorly_grafted_species ).not_to be_valid
-        end
-      end
-    end
-    describe "is a TaxonCurator" do
-      it "should allow grafting to this taxon" do
-        t = Taxon.make( rank: Taxon::GENUS, parent: superfamily, current_user: taxon_curator.user )
+      it "should allow grafting to tip" do
+        t = Taxon.make( rank: Taxon::SUBSPECIES, parent: tip, current_user: curator )
         expect( t ).to be_valid
       end
-      it "should allow grafting to a descendant" do
-        t = Taxon.make( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
-        expect( t ).to be_valid
+      it "should prevent editing is_active on root" do
+        root.update_attributes( is_active: false, current_user: curator )
+        expect( root ).not_to be_valid
       end
-      it "should allow editing rank" do
-        superfamily.update_attributes( rank: "order", current_user: taxon_curator.user )
-        expect( superfamily ).to be_valid
+      it "should allow moving root" do
+        other_root = Taxon.make!( rank: Taxon::SUPERFAMILY )
+        root.update_attributes( parent: other_root, current_user: curator )
+        expect( root ).to be_valid
       end
-      it "should allow editing is_active" do
-        superfamily.update_attributes( is_active: false, current_user: taxon_curator.user )
-        expect( superfamily ).to be_valid
+      it "should prevent moving internode" do
+        expect( internode.upstream_taxon_framework ).not_to be_blank
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        expect( internode.parent ).to eq root
+        internode.update_attributes( parent: other_root, current_user: curator )
+        expect( internode ).not_to be_valid
+        expect( internode.parent ).to eq other_root
       end
-      it "should allow editing complete" do
-        superfamily.update_attributes( complete: false, current_user: taxon_curator.user )
-        expect( superfamily ).to be_valid
-      end
-      it "should allow editing complete_rank" do
-        superfamily.update_attributes( complete_rank: "subfamily", current_user: taxon_curator.user )
-        expect( superfamily ).to be_valid
-      end
-      describe "and complete taxon has a complete_rank" do
-        before do
-          superfamily.update_attributes( complete_rank: Taxon::GENUS )
-        end
-        it "should allow grafting to taxa beyond the complete_rank" do
-          expect( Taxon.make( rank: Taxon::SUBSPECIES, parent: species, current_user: taxon_curator.user ) ).to be_valid
-        end
-        it "should allow grafting taxa beyond the complete_rank to the complete taxon" do
-          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: taxon_curator.user, parent: superfamily )
-          expect( poorly_grafted_species ).to be_valid
-        end
-        it "should allow grafting taxa beyond the complete_rank to the taxa before the complete_rank" do
-          poorly_grafted_species = Taxon.make( rank: Taxon::SPECIES, current_user: taxon_curator.user, parent: family )
-          expect( poorly_grafted_species ).to be_valid
-        end
+      it "should prevent moving tip" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        tip.update_attributes( parent: other_root, current_user: curator )
+        expect( tip ).not_to be_valid
       end
     end
-  end
-end
-
-describe "complete_rank" do
-  it "should reindex all descendants when changed" do
-    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
-    family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily )
-    genus = Taxon.make!( rank: Taxon::GENUS, parent: family )
-    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
-    without_delay { superfamily.update_attributes!( complete: true ) }
-    Delayed::Worker.new.work_off
-    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
-    es_family = Taxon.elastic_search( where: { id: family.id } ).results.results.first
-    expect( es_genus.complete_species_count ).to eq 1
-    without_delay { superfamily.update_attributes!( complete_rank: Taxon::GENUS ) }
-    genus.reload
-    family.reload
-    expect( genus.complete_species_count ).to be_nil
-    es_genus = Taxon.elastic_search( where: { id: genus.id } ).results.results.first
-    es_family = Taxon.elastic_search( where: { id: family.id } ).results.results.first
-    expect( es_genus.complete_species_count ).to be_nil
-  end
-  it "should not be above the rank of the taxon" do
-    t = Taxon.make( rank: Taxon::FAMILY, complete_rank: Taxon::SUPERFAMILY )
-    expect( t ).not_to be_valid
-  end
-  it "should remove TaxonCurators of taxa that are no longer one of the complete descendants" do
-    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY, complete: true )
-    taxon_curator = TaxonCurator.make!( taxon: superfamily )
-    family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user )
-    genus = Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user )
-    tc = TaxonCurator.make!( taxon: genus )
-    superfamily.update_attributes( complete_rank: Taxon::FAMILY )
-    expect( TaxonCurator.find_by_id( tc.id ) ).to be_nil
+    describe "is taxon curator" do
+      it "should alow grafting to root" do
+        t = Taxon.make( rank: Taxon::GENUS, parent: root, current_user: taxon_curator.user )
+        expect( t ).to be_valid
+      end
+      it "should allow grafting to internode" do
+        t = Taxon.make( rank: Taxon::SPECIES, parent: internode, current_user: taxon_curator.user )
+        expect( t ).to be_valid
+      end
+      it "should allow grafting to tip" do
+        t = Taxon.make( rank: Taxon::SUBSPECIES, parent: tip, current_user: taxon_curator.user )
+        expect( t ).to be_valid
+      end
+      it "should prevent taxon_curator from grafting to node covered by a overlapping downstream taxon framework" do
+        deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
+        deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        overlapping_downstream_taxon_framework = TaxonFramework.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_taxon_framework_taxon_curator = TaxonCurator.make!( taxon_framework: overlapping_downstream_taxon_framework )
+        t = Taxon.make( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        expect( t ).not_to be_valid
+      end
+      it "should allow taxon_curator to grafting to node with an overlapping upstream taxon framework" do
+        deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
+        deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        overlapping_downstream_taxon_framework = TaxonFramework.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_taxon_framework_taxon_curator = TaxonCurator.make!( taxon_framework: overlapping_downstream_taxon_framework )
+        t = Taxon.make( rank: Taxon::SPECIES, parent: deeper_internode, current_user: overlapping_downstream_taxon_framework_taxon_curator.user )
+        expect( t ).to be_valid
+      end
+      it "should allow moving internode" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        internode.update_attributes( parent: other_root, current_user: taxon_curator.user )
+        expect( internode ).to be_valid
+      end
+      it "should allow moving tip" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        tip.update_attributes( parent: other_root, current_user: taxon_curator.user )
+        expect( tip ).to be_valid
+      end
+      it "should prevent taxon_curator from moving tip covered by a overlapping downstream taxon framework" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
+        deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        overlapping_downstream_taxon_framework = TaxonFramework.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_taxon_framework_taxon_curator = TaxonCurator.make!( taxon_framework: overlapping_downstream_taxon_framework )
+        deepertip.update_attributes( parent: other_root, current_user: taxon_curator.user )
+        expect( deepertip ).not_to be_valid
+      end
+      it "should allow taxon_curator to move tip with overlapping upstream taxon framework" do
+        other_root = Taxon.make!( rank: Taxon::FAMILY )
+        deeper_internode = Taxon.make!( rank: Taxon::SUBGENUS, parent: internode, current_user: taxon_curator.user )
+        deepertip = Taxon.make!( rank: Taxon::SPECIES, parent: deeper_internode, current_user: taxon_curator.user )
+        overlapping_downstream_taxon_framework = TaxonFramework.make!( taxon: internode, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES] )
+        overlapping_downstream_taxon_framework_taxon_curator = TaxonCurator.make!( taxon_framework: overlapping_downstream_taxon_framework )
+        deepertip.update_attributes( parent: other_root, current_user: overlapping_downstream_taxon_framework_taxon_curator.user )
+        expect( deepertip ).to be_valid
+      end
+    end
   end
 end
 
 describe "complete_species_count" do
-  describe "when taxon is not complete" do
-    it "should be nil if no complete ancestor" do
-      t = Taxon.make!
-      expect( t.complete_species_count ).to be_nil
-    end
-    it "should be set if complete ancestor exists" do
-      ancestor = Taxon.make!( complete: true, rank: Taxon::FAMILY )
-      taxon_curator = TaxonCurator.make!( taxon: ancestor )
-      t = Taxon.make!( parent: ancestor, rank: Taxon::GENUS, current_user: taxon_curator.user )
-      expect( t.complete_species_count ).not_to be_nil
-      expect( t.complete_species_count ).to eq 0
-    end
-    it "should be nil if complete ancestor exists but it is complete at a higher rank" do
-      superfamily = Taxon.make!( complete: true, rank: Taxon::SUPERFAMILY, complete_rank: Taxon::GENUS )
-      taxon_curator = TaxonCurator.make!( taxon: superfamily )
-      family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user )
-      genus = Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user )
-      species = Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
-      expect( genus.complete_species_count ).to be_nil
-    end
+  it "should be nil if no complete taxon framework" do
+    t = Taxon.make!
+    expect( t.complete_species_count ).to be_nil
   end
-  describe "when taxon is complete" do
-    let(:complete_taxon) { Taxon.make!( complete: true, rank: Taxon::FAMILY ) }
-    let(:taxon_curator) { TaxonCurator.make!( taxon: complete_taxon ) }
+  it "should be set if complete taxon framework exists" do
+    ancestor = Taxon.make!( rank: Taxon::FAMILY )
+    taxon_framework = TaxonFramework.make!( taxon: ancestor, rank_level: Taxon::RANK_LEVELS[Taxon::SPECIES], complete: true)
+    taxon_curator = TaxonCurator.make!( taxon_framework: taxon_framework )
+    t = Taxon.make!( parent: ancestor, rank: Taxon::GENUS, current_user: taxon_curator.user )
+    expect( t.complete_species_count ).not_to be_nil
+    expect( t.complete_species_count ).to eq 0
+  end
+  it "should be nil if complete ancestor exists but it is complete at a higher rank" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+    taxon_framework = TaxonFramework.make!( taxon: superfamily, rank_level: Taxon::RANK_LEVELS[Taxon::GENUS], complete: true)
+    taxon_curator = TaxonCurator.make!( taxon_framework: taxon_framework )
+    family = Taxon.make!( rank: Taxon::FAMILY, parent: superfamily, current_user: taxon_curator.user )
+    genus = Taxon.make!( rank: Taxon::GENUS, parent: family, current_user: taxon_curator.user )
+    species = Taxon.make!( rank: Taxon::SPECIES, parent: genus, current_user: taxon_curator.user )
+    expect( genus.complete_species_count ).to be_nil
+  end
+  describe "when complete taxon framework" do
+    let(:taxon) { Taxon.make!( rank: Taxon::FAMILY ) }
+    let(:taxon_framework) { TaxonFramework.make!( complete: true, taxon: taxon) }
+    let(:taxon_curator) { TaxonCurator.make!( taxon_framework: taxon_framework ) }
     it "should count species" do
-      species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, current_user: taxon_curator.user )
-      expect( complete_taxon.complete_species_count ).to eq 1
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
+      expect( taxon.complete_species_count ).to eq 1
     end
     it "should not count genera" do
-      genus = Taxon.make!( rank: Taxon::GENUS, parent: complete_taxon, current_user: taxon_curator.user )
-      expect( complete_taxon.complete_species_count ).to eq 0
+      genus = Taxon.make!( rank: Taxon::GENUS, parent: taxon, current_user: taxon_curator.user )
+      expect( taxon.complete_species_count ).to eq 0
     end
     it "should not count hybrids" do
-      hybrid = Taxon.make!( rank: Taxon::HYBRID, parent: complete_taxon, current_user: taxon_curator.user )
-      expect( complete_taxon.complete_species_count ).to eq 0
+      hybrid = Taxon.make!( rank: Taxon::HYBRID, parent: taxon, current_user: taxon_curator.user )
+      expect( taxon.complete_species_count ).to eq 0
     end
     it "should not count extinct species" do
-      extinct_species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, current_user: taxon_curator.user )
+      extinct_species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
       ConservationStatus.make!( taxon: extinct_species, iucn: Taxon::IUCN_EXTINCT, status: "extinct" )
       extinct_species.reload
       expect( extinct_species.conservation_statuses.first.iucn ).to eq Taxon::IUCN_EXTINCT
       expect( extinct_species.conservation_statuses.first.place ).to be_blank
-      expect( complete_taxon.complete_species_count ).to eq 0
+      expect( taxon.complete_species_count ).to eq 0
     end
     it "should count species with place-specific non-extinct conservation statuses" do
-      cs_species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, current_user: taxon_curator.user )
+      cs_species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, current_user: taxon_curator.user )
       ConservationStatus.make!( taxon: cs_species, iucn: Taxon::IUCN_VULNERABLE, status: "VU" )
       cs_species.reload
       expect( cs_species.conservation_statuses.first.iucn ).to eq Taxon::IUCN_VULNERABLE
       expect( cs_species.conservation_statuses.first.place ).to be_blank
-      expect( complete_taxon.complete_species_count ).to eq 1
+      expect( taxon.complete_species_count ).to eq 1
     end
     it "should not count inactive taxa" do
-      species = Taxon.make!( rank: Taxon::SPECIES, parent: complete_taxon, is_active: false, current_user: taxon_curator.user )
-      expect( complete_taxon.complete_species_count ).to eq 0
+      species = Taxon.make!( rank: Taxon::SPECIES, parent: taxon, is_active: false, current_user: taxon_curator.user )
+      expect( taxon.complete_species_count ).to eq 0
     end
+  end
+end
+
+describe "current_synonymous_taxa" do
+  let(:curator) { make_curator }
+  it "should be the outputs of a split if the split's input was swapped" do
+    swap = make_taxon_swap( committer: curator )
+    swap.commit
+    Delayed::Worker.new.work_off
+    split = make_taxon_split( input_taxon: swap.output_taxon, committer: curator )
+    split.commit
+    Delayed::Worker.new.work_off
+    expect( swap.input_taxon.current_synonymous_taxa.map(&:id).sort ).to eq split.output_taxa.map(&:id).sort
+  end
+  it "should follow splits past subsequent changes" do
+    split1 = make_taxon_split( committer: curator )
+    split1.commit
+    Delayed::Worker.new.work_off
+    swap = make_taxon_swap( committer: curator, input_taxon: split1.output_taxa[0] )
+    swap.commit
+    Delayed::Worker.new.work_off
+    split2 = make_taxon_split( committer: curator, input_taxon: split1.output_taxa[1] )
+    split2.commit
+    Delayed::Worker.new.work_off
+    split3 = make_taxon_split( committer: curator, input_taxon: split2.output_taxa[0] )
+    split3.commit
+    Delayed::Worker.new.work_off
+    expect( split1.input_taxon.current_synonymous_taxa.map(&:id).sort ).to eq [
+      swap.output_taxon.id,
+      split2.output_taxa[1].id,
+      split3.output_taxa.map(&:id)
+    ].flatten.sort
   end
 end
 
@@ -1619,5 +1627,32 @@ describe Taxon, "set_photo_from_observations" do
     expect{
       t.set_photo_from_observations
     }.to_not raise_error
+  end
+end
+
+describe "taxon_framework_relationship" do
+  describe "when taxon has a taxon framework relationship" do
+    it "should update taxon framework relationship relationship when taxon name changes" do
+      genus = Taxon.make!( name: "Taricha", rank: Taxon::GENUS )
+      species = Taxon.make!( name: "Taricha torosa", rank: Taxon::SPECIES, parent: genus )
+      tf = TaxonFramework.make!( taxon: genus )
+      tfr = TaxonFrameworkRelationship.make!
+      species.save
+      species.update_attributes( taxon_framework_relationship_id: tfr.id )
+      species.reload
+      et = ExternalTaxon.new(
+        name: species.name,
+        rank: "species",
+        parent_name: species.parent.name,
+        parent_rank: species.parent.rank,
+        taxon_framework_relationship_id: tfr.id
+      )
+      et.save
+      tfr.reload
+      expect(tfr.relationship).to eq "match"
+      species.update_attributes( name: "Taricha granulosa" )
+      tfr.reload
+      expect( tfr.relationship ).to eq "one_to_one"
+    end
   end
 end

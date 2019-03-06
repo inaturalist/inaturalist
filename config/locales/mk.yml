@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Bjankuloski06
+# Author: Vlad5250
 ---
 mk:
   x_followers:
@@ -89,7 +90,6 @@ mk:
   actions: Дејства
   activate_user: Активирај корисник
   add: Додај
-  add_a: Додај
   add_a_batch_of_observations: Додај збир набљудувања
   add_a_batch_of_observations_by_csv: Додај збир набљудувања по CSV
   add_a_batch_of_taxa: Додај збир таксони
@@ -148,7 +148,6 @@ mk:
   add_tags_to_selected_taxa: Додај ознаки на избрани таксони
   add_taxa: Додај таксони
   add_taxon_batch_to: Додај збир таксони во %{list}
-  add_to: Додај во
   add_to_a_scheme: Додај во шема
   add_to_checklist: додај во контролен список
   add_to_id_please: Додај во „Препознајте“
@@ -316,7 +315,6 @@ mk:
     iucn_red_list: Црвен список на МСЗП
   authorize_permissions_from_provider: Овласти дозволи од %{provider}
   back: Назад
-  back_to: Назад на
   back_to_shared_taxon: Назад на %{sharedtaxon}
   back_to_taxon: Назад на %{defaulttaxon}
   back_to_this: Назад на %{place}
@@ -391,12 +389,6 @@ mk:
   clear: тргни
   clear_color_filters: Тргни ги филтрите за бои
   clear_search: Исчисти го пребарувањето
-  clear_shapes: Тргни ги контурите
-  click_add_an_observation_to_the_lower_right: Добре дојдовте на %{site_name_short}!
-    Стиснете на „Додај набљудување“ подолу десно. Ќе ви биде побарано да се најавите/пријавите
-    ако веќе не сте го направиле тоа
-  click_on_map_to_draw_shape_around_place: Стиснете на картата за да исцртате облик
-    околу местото.
   click_on_the_map_to: Стиснете на картата за да го поставите вашето набљудување
   click_the_map: <strong>Стиснете на картата</strong> за да додадете местоположба.
   click_the_map_to_jump_new_place: Стиснете на картата за да прејдете на ново место
@@ -586,7 +578,6 @@ mk:
   edit_your_default_settings: Измени ги стандардните поставки
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Изменете си ги поставките</a>
     за да одредите какви новости да добивате или сосема да се отпишете од билтенот.
-  edited_by: Изменето од
   edited_by_name_html: Изменето од %{name}
   editing_taxon_range: Уредување на Распространетост на таксонот
   eg: на пр.
@@ -658,10 +649,7 @@ mk:
   flag_this_photo: Обележи ја сликава
   flagged: обележано
   flagger: Обележал
-  flags_for: Обележувачи за
   flickr_account_information: Информации за вашата сметка на Flickr
-  follow_us: Следете нè на
-  follow_us_on: Следете нè на
   follow_user: Следи го/ја %{user}
   follower: следбеник
   following: следач
@@ -785,8 +773,6 @@ mk:
     заедница поканувајќи ги пријателите да ни се придружат!
   inviteonly: само со покана
   iphone: iPhone
-  is_a: е
-  is_an: е
   is_the_organism_wild: Дали е див/одомаќинет?
   iucn_red_list_status: 'Статус на Црвениот список на МСЗП:'
   january: јануари
@@ -1000,7 +986,7 @@ mk:
   new_custom_field_for: Ново прилагодено поле за
   new_flag_for: Нов обележувач за
   new_guide: Нов водич
-  new_journal_posts: Нова дневничка објава
+  new_journal_post: Нова дневничка објава
   new_list: Нов список
   new_members: Нови членови
   new_message: Нова порака
@@ -1144,6 +1130,7 @@ mk:
   one_of_your_lists: еден од вашите списоци...
   open: отворено
   or: или
+  or_all_caps: ИЛИ
   orange: портокалова
   order: Редослед
   order_by: Подреди по
@@ -1276,8 +1263,8 @@ mk:
     germany: Германија
     greece: Грција
     hungary: Унгарија
-    italy: Италија
     iraq: Ирак
+    italy: Италија
     japan: Јапонија
     martinique: Мартиник
     mexico: Мексико
@@ -1291,8 +1278,8 @@ mk:
     poland: Полска
     republic_of_congo: Република Конго
     russia: Русија
-    saudi_arabia: Саудиска Арабија
     sao_tome_and_principe: Сао Томе и Принсипе
+    saudi_arabia: Саудиска Арабија
     south_america: Јужна Америка
     spain: Шпанија
     sweden: Шведска
@@ -1462,7 +1449,7 @@ mk:
   sending: Испраќам...
   september: септември
   set_license: Задај лиценца
-  settings: поставки
+  settings: Поставки
   share_your_observation_with_researchers_by: Сподели го набљудувањето со истражувачите
     на
   short_code_for_this_place: Краток код за местово, на пр. US за Соединетите Држави
@@ -1822,7 +1809,7 @@ mk:
       index:
         funding_html: |-
           Средствата за развој на водичите ги обезбеди
-          <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
       pdf_layouts:
         grid: решетка
         book: книга
@@ -1950,7 +1937,7 @@ mk:
     messages:
       accepted: мора да се прифати
       blank: не може да стои празно
-      confirmation: не се совпаѓа со потврдата
+      confirmation: не се совпаѓа со лозинката
       empty: не може да стои празно
       equal_to: мора да е рамно на %{count}
       even: мора да биде парен број
@@ -2047,7 +2034,7 @@ mk:
       messages:
         accepted: мора да се прифати
         blank: не може да стои празно
-        confirmation: не се совпаѓа со потврдата
+        confirmation: не се совпаѓа со лозинката
         empty: не може да стои празно
         equal_to: мора да е рамно на %{count}
         even: мора да биде парен број
@@ -2078,20 +2065,6 @@ mk:
           one: Една грешка му попречи на зачувувањето на овој %{model}
           other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: бара најмалку 3 таксони во вашиот водич
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: водичот може да има само 500 таксони
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: за ДНК се признаваат само знаците A, T, C и G
     attributes:
       assessment:
         description: Опис
@@ -2152,6 +2125,20 @@ mk:
         name_provider: Добавувач на името
         source_url: Изворен URL
         source_identifier: Назнака на изворот
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: бара најмалку 3 таксони во вашиот водич
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: водичот може да има само 500 таксони
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: за ДНК се признаваат само знаците A, T, C и G
   zoom_to_taxon_name: Приближи на %{taxonname}
   zoom_to_x: приближи на %{x}
 ...

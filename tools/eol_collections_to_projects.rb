@@ -1,8 +1,8 @@
-require 'rubygems'
-require 'trollop'
-require 'erb'
+require "rubygems"
+require "optimist"
+require "erb"
 
-opts = Trollop::options do
+opts = Optimist::options do
     banner <<-EOS
 This script is meant to keep the EOL projects on iNaturalist in sync with the
 EOL collections in an EOL collection (yes, EOL has collections of collections)

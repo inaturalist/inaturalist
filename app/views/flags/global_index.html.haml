@@ -3,28 +3,143 @@
 - content_for(:extrajs) do
   :javascript
     $( document ).ready( function( ) {
-      $('#user_id').chooser({
-        queryParam: 'q',
-        collectionUrl: '/people/search.json',
-        resourceUrl: '/people/{{id}}.json',
-        chosen: "#{ @user ? @user.login : nil }"
-      });
+      $( "form #user_name" ).userAutocomplete( { idEl: $( "#user_id" ) } );
+      $( "form #flagger_name" ).userAutocomplete( { idEl: $( "#flagger_user_id" ) } );
+      $( "form #resolver_name" ).userAutocomplete( { idEl: $( "#resolver_user_id" ) } );
+      $( "form #taxon_name" ).taxonAutocomplete( { idEl: $( "#taxon_id" ) } );
     });
-#flags
-  .right.inline.smallbuttons.buttonrow
-    = form_tag( flags_path, method: "get" ) do
-      = hidden_fields_for_params( without: [:user_id] )
-      = label_tag :user_id, t(:search), default: params[:user_id]
-      = text_field_tag :user_id, nil, placeholder: t(:start_typing_someones_name), data: { autosubmit: true }
-    = form_tag( flags_path, method: "get" ) do
-      = hidden_fields_for_params( without: [:flag] )
-      = select_tag :flag, options_for_select([["all", nil],
-        ["copyright infringement", :copyright_infringement],
-        ["inappropriate", :inappropriate], ["spam", :spam]], params[:flag]), data: { autosubmit: true }
-  #pageheader.column
-    %h2= @title
-  .description
-    %p= t(:flags_explanation, site_name: @site.name)
-  = render :partial => "flag_list", locals: { flags: @flags }
-  - if @flags.respond_to?(:total_pages)
-    = will_paginate @flags, renderer: INatLinkRenderer
+- content_for :extracss do
+  :css
+    #controls label { display: block; }
+    #controls .flagger-type { padding-left: 20px;}
+    #controls input[type=search]::-webkit-search-cancel-button {
+      -webkit-appearance: searchfield-cancel-button;
+    }
+    td.actions { min-width: 150px; }
+    .reason, .resolution { max-width: 300px; overflow: hidden; }
+.container
+  .row
+    .col-xs-12
+      %h2= @title
+      %p.text-muted= t(:flags_explanation, site_name: @site.name)
+  .row
+    .col-xs-12
+      #controls.well
+        = form_tag( flags_path, method: "get" ) do
+          .row
+            .col-xs-3
+              .form-group
+                %label=t :flagger
+                .flagger-type
+                  %label.radio
+                    %input{ type: "radio", name: "flagger_type", value: "any", checked: @flagger_type == "any" }
+                    =t :any_
+                  %label.radio
+                    %input{ type: "radio", name: "flagger_type", value: "auto", checked: @flagger_type == "auto" }
+                    =t :automatic_short
+                  %label.radio
+                    %input{ type: "radio", name: "flagger_type", value: "user", checked: @flagger_type == "user" }
+                    =t :user
+                    .form-group
+                      %input#flagger_name.form-control{ type: "search", name: "flagger_name", value: @flagger ? @flagger.login : nil, placeholder: t(:start_typing_someones_name) }
+                      %input#flagger_user_id.form-control{ type: "hidden", name: "flagger_user_id", value: @flagger ? @flagger.id : nil }
+            .col-xs-3
+              %label#user-form-group.form-group
+                =t :content_author
+                %input#user_name.form-control{ type: "search", name: "user_name", value: @user ? @user.login : nil, placeholder: t(:start_typing_someones_name) }
+                %input#user_id.form-control{ type: "hidden", name: "user_id", value: @user ? @user.id : nil }
+              .form-group
+                %label=t :content_type
+                :ruby
+                  flaggable_type_options = options_for_select( ( ["all"] + FlagsController::FLAG_MODELS.sort ).map {|t|
+                    [I18n.t( t, default: t ), t]
+                  }, @flaggable_type )
+                = select_tag :flaggable_type, flaggable_type_options, class: "select form-control"
+              - if @flaggable_type == "Taxon"
+                %label.form-group
+                  =t :taxon
+                  %input{ type: "text", name: "taxon_name", id: "taxon_name", placeholder: t(:start_typing_taxon_name, default: "" ), class: "form-control" }
+                  %input{ type: "hidden", name: "taxon_id", id: "taxon_id", value: @taxon.try(:id) }
+            .col-xs-3
+              %label=t :reason
+              .form-group
+                - [Flag::SPAM, Flag::COPYRIGHT_INFRINGEMENT, Flag::INAPPROPRIATE, "other"].each do |f|
+                  %label.chekcbox
+                    %input{ type: "checkbox", name: "flags[]", value: f, checked: @flag_types.include?( f ) }
+                    =t f
+              .form-group
+                %input.form-control{ type: "search", name: "reason_query", value: @reason_query, placeholder: t(:search_reasons, default: "Search Reasons") }
+            .col-xs-3
+              .form-group
+                %label=t :resolved
+                :ruby
+                  resolved_options = options_for_select( %w(any yes no).map {|t|
+                    [I18n.t( t, default: t ), t]
+                  }, @resolved )
+                = select_tag :resolved, resolved_options, class: "select form-control"
+              %label.form-group
+                =t :resolver
+                %input#resolver_name.form-control{ type: "search", name: "resolver_name", value: @resolver ? @resolver.login : nil, placeholder: t(:start_typing_someones_name) }
+                %input#resolver_user_id.form-control{ type: "hidden", name: "resolver_user_id", value: @resolver ? @resolver.id : nil }
+          .row
+            .col-xs-12
+              = submit_tag t(:filter), class: "btn btn-primary"
+              = link_to t(:reset), url_for, class: "btn btn-link"
+              = hidden_fields_for_params( without: [:flaggable_type, :flag, :flags, :user_id, :user_name, :flagger_type, :flagger_name, :flagger_id, :resolved, :resolver_name, :resolver_user_id, :taxon_name, :taxon_id, :reason_query, :page] )
+  .row
+    .col-xs-12
+      %table.table
+        %thead
+          %tr
+            %th=t :flagger
+            %th=t :content_author
+            %th=t :content_type
+            %th=t :content
+            %th.reason=t :reason
+            %th=t :comments
+            %th=t :actions
+            %th.resolution=t :resolution
+        %tbody
+          - for flag in @flags
+            - flaggable = flag.flaggable
+            - flaggable_class = flaggable.class
+            - flaggable = flaggable.becomes( Photo ) if flaggable.is_a?( Photo )
+            %tr
+              %td
+                - if flag.user
+                  = link_to_user(flag.user) {|| char_wrap( flag.user.login, 20 )}
+                  .small.text-muted
+                    = link_to t(:view_all), url_for_params( flagger_type: "user", flagger_user_id: flag.user.id, without: [:flagger_type, :flagger_user_id] )
+                - else
+                  = @site.site_name_short
+              %td
+                - if flag.flaggable_user
+                  = link_to_user( flag.flaggable_user ) {|| char_wrap( flag.flaggable_user.login, 20 )}
+                  .small.text-muted
+                    = link_to t(:view_all), url_for_params( user_id: flag.flaggable_user.login, without: [:user_id] )
+              %td= flaggable_class.name.humanize
+              %td
+                = link_to(flaggable.to_plain_s, flaggable) if flaggable.respond_to?(:to_plain_s)
+                - if !flaggable.is_a?( Message ) && flaggable.respond_to?( :body ) || flaggable.respond_to?( :description )
+                  = truncate_with_more( formatted_user_text( flaggable.try_methods(:body, :description) ), length: 200 )
+                - if flaggable.respond_to?(:user) && flaggable.user
+                  .small
+                    = link_to_user flaggable.user, class: "text-muted" do
+                      = t(:added_by_user_on_date_html, user: flaggable.user.login, date: l( flaggable.created_at) )
+              %td.reason=formatted_user_text flag.flag
+              %td
+                - if flag.comments.count > 0
+                  = link_to flag.comments.count, flag, class: "badge"
+              %td.actions.nobr
+                = link_to flag, class: "btn btn-info btn-sm" do
+                  %i.fa.fa-info
+                  = t(:details)
+              %td.resolution
+                - if flag.resolved?
+                  = formatted_user_text flag.comment
+                  - resolved_at = flag.resolved_at || flag.updated_at
+                  .text-muted=t :resolved_by_user_on_date_html, user: link_to_user( flag.resolver ), date: resolved_at ? l( resolved_at ) : t(:unknown)
+  .row
+    .col-xs-12
+      - if @flags.respond_to?(:total_pages)
+        = will_paginate @flags, url_helper: :flags_path, renderer: INatLinkRenderer

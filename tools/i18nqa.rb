@@ -1,8 +1,8 @@
 #encoding: utf-8
 require "rubygems"
-require "trollop"
+require "optimist"
 
-OPTS = Trollop::options do
+OPTS = Optimist::options do
     banner <<-EOS
 
 Check translations for missing variables and the like.
@@ -24,7 +24,7 @@ if OPTS.level
   if @levels.include?( OPTS.level )
     @levels = [OPTS.level]
   else
-    Trollop::die :level, "must be `error` or `warning`"
+    Optimist::die :level, "must be `error` or `warning`"
   end
 end
 
@@ -113,6 +113,12 @@ data.each do |key, translation|
       problems[one_key] = problems[one_key] || []
       problems[one_key] << "**ERROR:** Missing part of a plural key"
     end
+  end
+
+  # https://stackoverflow.com/a/3314572
+  if @levels.include?( "error" ) && translation =~ /<\/?\s+[^\s]+>/
+    problems[key] = problems[key] || []
+    problems[key] << "**ERROR:** HTML tag with leading space"
   end
 end
 

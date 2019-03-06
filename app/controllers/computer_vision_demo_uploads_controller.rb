@@ -1,4 +1,5 @@
 class ComputerVisionDemoUploadsController < ApplicationController
+  before_filter :authenticate_user!
 
   before_filter :lookup_upload, only: [ :score ]
 

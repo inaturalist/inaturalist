@@ -8,6 +8,7 @@ class Taxon < ActiveRecord::Base
   attr_accessor :indexed_place_ids
 
   scope :load_for_index, -> { includes(:colors, :taxon_descriptions, :atlas,
+    :taxon_framework,
     :taxon_change_taxa, :taxon_schemes, :taxon_changes, :en_wikipedia_description,
     { conservation_statuses: :place },
     { taxon_names: :place_taxon_names },
@@ -85,6 +86,11 @@ class Taxon < ActiveRecord::Base
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
       is_active: is_active
     }
+    # min_species_* below means don't consider any ranks more specific than species.
+    # If the taxon is a subspecies, its min_species_ancestry stops at species
+    # and its min_species_taxon_id is the ID of its parent, the species.
+    # These are used in Elasticsearch aggregations, for example leaf counts
+
     # indexing originating from Identifications
     if options[:for_identification]
       if Taxon::LIFE
@@ -102,11 +108,18 @@ class Taxon < ActiveRecord::Base
       json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
         json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     end
+    json[:min_species_taxon_id] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
+      parent_id : id
     # indexing originating Observations, not via another model
     unless options[:no_details]
-      json[:names] = taxon_names.
-        sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
-        map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
+      if options[:for_observation]
+        mapped = taxon_names.to_a.group_by{ |tn| "names_#{tn.locale_for_lexicon}" }
+        mapped.each{ |k,v| json[k] = v.map(&:name) }
+      else
+        json[:names] = taxon_names.
+          sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
+          map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }
+      end
       json[:statuses] = conservation_statuses.map(&:as_indexed_json)
       json[:extinct] = conservation_statuses.select{|cs| cs.place_id.blank? && cs.iucn == Taxon::IUCN_EXTINCT }.size > 0
     end
@@ -122,6 +135,7 @@ class Taxon < ActiveRecord::Base
         taxon_changes_count: taxon_changes_count,
         taxon_schemes_count: taxon_schemes_count,
         observations_count: observations_count,
+        universal_search_rank: observations_count,
         flag_counts: {
           resolved: flag_counts[true] || 0,
           unresolved: flag_counts[false] || 0
@@ -137,9 +151,8 @@ class Taxon < ActiveRecord::Base
         complete_species_count: complete_species_count,
         wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil
       })
-      if complete_taxon
-        json[:complete_rank] = complete_taxon.complete_rank
-        json[:complete_rank] = Taxon::SPECIES if json[:complete_rank].blank?
+      if taxon_framework = get_complete_taxon_framework_for_internode_or_root
+        json[:complete_rank] = Taxon::RANK_FOR_RANK_LEVEL[taxon_framework.rank_level]
       end
     end
     json

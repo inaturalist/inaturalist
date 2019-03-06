@@ -10,7 +10,8 @@ class Project < ActiveRecord::Base
     :project_users,
     :observation_fields,
     :project_observation_rules,
-    :stored_preferences
+    :stored_preferences,
+    :site_featured_projects
   ) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -58,12 +59,23 @@ class Project < ActiveRecord::Base
       indexes :flags do
         indexes :flag, type: "keyword"
       end
+      indexes :site_features, type: :nested do
+        indexes :site_id
+        indexes :noteworthy, type: "boolean"
+        indexes :updated_at, type: "date"
+      end
     end
   end
 
   def as_indexed_json(options={})
     preload_for_elastic_index
-    obs_result = INatAPIService.observations( per_page: 0, project_id: id )
+    project_user_ids = project_users.map(&:user_id).uniq.sort
+    total_obs_by_members = Observation.elastic_search(
+      filters: [
+        { term: { project_ids: id } },
+        { terms: { "user.id": project_user_ids } }
+      ]
+    ).total_entries rescue 0
     {
       id: id,
       title: title,
@@ -81,7 +93,7 @@ class Project < ActiveRecord::Base
       admins: project_users.select{ |pu| !pu.role.blank? }.uniq.map(&:as_indexed_json),
       rule_place_ids: rule_place_ids,
       associated_place_ids: associated_place_ids,
-      user_ids: project_users.map(&:user_id).uniq.sort,
+      user_ids: project_user_ids,
       location: ElasticModel.point_latlon(latitude, longitude),
       geojson: ElasticModel.point_geojson(latitude, longitude),
       icon: icon ? FakeView.asset_url( icon.url(:span2), host: Site.default.url ) : nil,
@@ -123,12 +135,14 @@ class Project < ActiveRecord::Base
       rule_preferences: preferences.
         select{ |k,v| Project::RULE_PREFERENCES.include?(k) && !v.blank? }.
         map{ |k,v| { field: k.sub("rule_",""), value: v } },
-      featured_at: featured_at,
       created_at: created_at,
       updated_at: updated_at,
-      observations_count: obs_result ? obs_result.total_results : nil,
+      last_post_at: posts.published.last.try(:published_at),
+      observations_count: total_obs_by_members,
+      universal_search_rank: total_obs_by_members,
       spam: known_spam? || owned_by_spammer?,
-      flags: flags.map(&:as_indexed_json)
+      flags: flags.map(&:as_indexed_json),
+      site_features: site_featured_projects.map(&:as_indexed_json)
     }
   end
 

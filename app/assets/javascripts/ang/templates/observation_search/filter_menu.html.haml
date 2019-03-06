@@ -147,11 +147,15 @@
             {{ k }}={{ v }}
             %button{ "ng-click" => "removeObservationField( k )" }
               &times;
+          %input{ type: "hidden", name: "acc" }
+          %input{ type: "hidden", name: "acc_above" }
+          %input{ type: "hidden", name: "acc_below" }
           %input{ type: "hidden", name: "apply_project_rules_for" }
           %input{ type: "hidden", name: "captive" }
           %input{ type: "hidden", name: "day" }
           %input{ type: "hidden", name: "geo" }
           %input{ type: "hidden", name: "geoprivacy" }
+          %input{ type: "hidden", name: "taxon_geoprivacy" }
           %input{ type: "hidden", name: "has[]" }
           %input{ type: "hidden", name: "identified" }
           %input{ type: "hidden", name: "lat" }

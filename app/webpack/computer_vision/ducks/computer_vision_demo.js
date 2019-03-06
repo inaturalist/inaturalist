@@ -33,8 +33,8 @@ export default function reducer( state = DEFAULT_STATE, action ) {
       } );
       return modified;
     case UPDATE_OBS_CARD:
-      return Object.assign( { }, state, { obsCard:
-        Object.assign( { }, state.obsCard, action.obsCard ) } );
+      return Object.assign( { }, state,
+        { obsCard: Object.assign( { }, state.obsCard, action.obsCard ) } );
     default:
   }
   return state;
@@ -116,21 +116,23 @@ export function score( obsCard ) {
       params.lat = obsCard.latitude;
       params.lng = obsCard.longitude;
     }
-    let fetchURL = `/computer_vision_demo_uploads/${obsCard.uploadedFile.photo.uuid}/score`;
-    if ( !_.isEmpty( params ) ) {
-      fetchURL += `?${$.param( params )}`;
-    }
-    fetch( fetchURL, { credentials: "same-origin" } ).
-      then( thenCheckStatus ).
-      then( thenText ).
-      then( thenJson ).
-      then( r => {
+    const fetchURL = `/computer_vision_demo_uploads/${obsCard.uploadedFile.photo.uuid}/score`;
+    const body = new FormData( );
+    body.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
+    _.forEach( params, ( v, k ) => {
+      body.append( k, v );
+    } );
+    fetch( fetchURL, { method: "POST", body } )
+      .then( thenCheckStatus )
+      .then( thenText )
+      .then( thenJson )
+      .then( r => {
         dispatch( updateObsCard( { visionResults: r, visionStatus: null } ) );
-      } ).catch( e => {
+      } )
+      .catch( e => {
         dispatch( updateObsCard( { visionStatus: "failed" } ) );
-        console.log( ["error", e] );
-      }
-    );
+        console.log( ["error", e] ); // eslint-disable-line no-console
+      } );
   };
 }
 
@@ -148,7 +150,7 @@ export function dataURLToBlob( dataURL ) {
   const raw = window.atob( parts[1] );
   const rawLength = raw.length;
   const uInt8Array = new Uint8Array( rawLength );
-  for ( let i = 0; i < rawLength; ++i ) {
+  for ( let i = 1; i <= rawLength; i += 1 ) {
     uInt8Array[i] = raw.charCodeAt( i );
   }
   return new Blob( [uInt8Array], { type: contentType } );
@@ -157,32 +159,32 @@ export function dataURLToBlob( dataURL ) {
 export function uploadImage( obsCard ) {
   return function ( dispatch ) {
     resizeUpload( obsCard.uploadedFile.file, { }, resizedBlob => {
-      const headers = { };
-      const csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
-      const csrfToken = $( "meta[name=csrf-token]" ).attr( "content" );
-      headers[csrfParam] = csrfToken;
       const body = new FormData( );
+      body.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
       body.append( "file", resizedBlob );
       const fetchOpts = {
-        method: "post",
+        method: "POST",
         credentials: "same-origin",
-        headers,
         body
       };
-      fetch( "/computer_vision_demo_uploads", fetchOpts ).
-        then( thenCheckStatus ).
-        then( thenText ).
-        then( thenJson ).
-        then( r => {
+      fetch( "/computer_vision_demo_uploads", fetchOpts )
+        .then( thenCheckStatus )
+        .then( thenText )
+        .then( thenJson )
+        .then( r => {
           const serverMetadata = obsCard.uploadedFile.additionalPhotoMetadata( r );
-          dispatch( updateObsCard( { uploadedFile: Object.assign( { }, obsCard.uploadedFile, {
-            uploadState: "uploaded", photo: r, serverMetadata } ) } ) );
-        } ).catch( e => {
-          dispatch( updateObsCard( { uploadedFile:
-            Object.assign( { }, obsCard.uploadedFile, { uploadState: "failed" } ) } ) );
-          console.log( ["error", e] );
-        }
-      );
+          dispatch( updateObsCard( {
+            uploadedFile: Object.assign( { }, obsCard.uploadedFile,
+              { uploadState: "uploaded", photo: r, serverMetadata } )
+          } ) );
+        } )
+        .catch( e => {
+          dispatch( updateObsCard( {
+            uploadedFile: Object.assign( { }, obsCard.uploadedFile,
+              { uploadState: "failed" } )
+          } ) );
+          console.log( ["error", e] );// eslint-disable-line no-console
+        } );
     } );
   };
 }
@@ -207,4 +209,3 @@ export function onFileDrop( droppedFiles ) {
     }, 1 );
   };
 }
-

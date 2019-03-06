@@ -23,6 +23,15 @@ class LifeList < List
   #
   def add_taxon(taxon, options = {})
     taxon_id = taxon.is_a?(Taxon) ? taxon.id : taxon
+    
+    # Make sure the parent is added for infraspecies
+    taxon = taxon.is_a?(Taxon) ? taxon : Taxon.find(taxon_id)
+    if !taxon.rank_level.nil? && taxon.rank_level < Taxon::SPECIES_LEVEL && taxon.parent && taxon.parent.rank_level >= Taxon::SPECIES_LEVEL
+      unless listed_taxon = listed_taxa.find_by_taxon_id(taxon.parent.id)
+        lt = ListedTaxon.create(options.merge(list: self, taxon_id: taxon.parent.id))
+      end
+    end
+    
     if listed_taxon = listed_taxa.find_by_taxon_id(taxon_id)
       return listed_taxon
     end
@@ -48,7 +57,7 @@ class LifeList < List
         taxa_ids = taxa.map do |taxon|
           if taxon.is_a?(Taxon)
             taxon.id
-          elsif taxon.is_a?(Fixnum)
+          elsif taxon.is_a?(Integer)
             taxon
           else
             nil
@@ -182,6 +191,29 @@ class LifeList < List
     return unless list
     repair_observed(list)
     add_taxa_from_observations(list)
+    refresh_cache_columns(list)
+    remove_orphans(list)
+  end
+  
+  def self.remove_orphans(list)
+    ListedTaxon.
+      joins('LEFT OUTER JOIN observations fo ON fo.id = listed_taxa.first_observation_id').
+      joins('LEFT OUTER JOIN observations lo ON lo.id = listed_taxa.last_observation_id').
+      where('list_id = ? AND listed_taxa.manually_added = false AND listed_taxa.last_observation_id IS NOT NULL AND listed_taxa.first_observation_id IS NOT NULL AND lo.id IS NULL AND fo.id IS NULL', list.id).find_in_batches do |batch|
+      batch.each do |lt|
+        lt.destroy
+      end
+    end
+  end
+  
+  def self.refresh_cache_columns(list)
+    ListedTaxon.
+      where('list_id = ? AND listed_taxa.manually_added = false AND ((listed_taxa.last_observation_id IS NULL AND listed_taxa.first_observation_id IS NOT NULL) OR (listed_taxa.last_observation_id IS NOT NULL AND listed_taxa.first_observation_id IS NULL))', list.id).find_in_batches do |batch|
+      batch.each do |lt|
+        lt.force_update_cache_columns = true
+        lt.save
+      end
+    end
   end
   
   def self.repair_observed(list)

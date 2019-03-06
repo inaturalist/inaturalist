@@ -52,6 +52,7 @@ class ObservationsController < ApplicationController
   before_filter :load_observation, :only => load_only
   blocks_spam :only => load_only - [ :taxon_summary, :observation_links ],
     :instance => :observation
+  check_spam only: [:create, :update], instance: :observation
   before_filter :require_owner, :only => [:edit, :edit_photos,
     :update_photos, :destroy]
   before_filter :curator_required, :only => [:curation, :accumulation, :phylogram]
@@ -252,7 +253,7 @@ class ObservationsController < ApplicationController
         @listed_taxon.as_json(
           methods: [ :establishment_means_label, :establishment_means_description ],
           include: { place: { only: [:id, :display_name] } } ) : nil,
-      wikipedia_summary: taxon ? taxon.wikipedia_summary : nil
+      wikipedia_summary: taxon ? taxon.wikipedia_summary( locale: I18n.locale ) : nil
     }
   end
 
@@ -282,11 +283,6 @@ class ObservationsController < ApplicationController
         
         user_viewed_updates(delay: true) if logged_in?
         @observer_provider_authorizations = @observation.user.provider_authorizations
-        # @shareable_image_url = if !@observation.photos.blank? && photo = @observation.photos.detect{ |p| p.medium_url =~ /^http/ }
-        #   FakeView.image_url( photo.best_url(:original) )
-        # else
-        #   FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
-        # end
         @shareable_image_url = FakeView.iconic_taxon_image_url( @observation.taxon, size: 200 )
         if op = @observation.observation_photos.sort_by{|op| op.position.to_i || op.id }.first
           @shareable_image_url = FakeView.image_url( op.photo.best_url(:original) )
@@ -305,7 +301,7 @@ class ObservationsController < ApplicationController
 
         @skip_application_js = true
         @flash_js = true
-        return render layout: "bootstrap", action: "show2"
+        return render layout: "bootstrap"
       end
        
       format.xml { render :xml => @observation }
@@ -315,6 +311,7 @@ class ObservationsController < ApplicationController
         taxon_options[:methods] += [:iconic_taxon_name, :image_url, :common_name, :default_name]
         render :json => @observation.to_json(
           :viewer => current_user,
+          force_coordinate_visibility: @observation.coordinates_viewable_by?( current_user ),
           :methods => [:user_login, :iconic_taxon_name, :captive_flag],
           :include => {
             :user => User.default_json_options,
@@ -669,6 +666,7 @@ class ObservationsController < ApplicationController
       end
       format.json do
         if errors
+          Rails.logger.debug "[DEBUG] errors: #{@observations[0].errors.full_messages.to_sentence}"
           json = if @observations.size == 1 && is_iphone_app_2?
             {:error => @observations.map{|o| o.errors.full_messages}.flatten.uniq.compact.to_sentence}
           else
@@ -800,6 +798,8 @@ class ObservationsController < ApplicationController
       end
       
       observation.editing_user_id = current_user.id
+
+      observation.force_quality_metrics = true unless hashed_params[observation.id.to_s][:captive_flag].blank?
       
       unless observation.update_attributes(observation_params(hashed_params[observation.id.to_s]))
         errors = true
@@ -1182,7 +1182,7 @@ class ObservationsController < ApplicationController
     Observation.preload_for_component(@observations, logged_in: !!current_user)
     respond_to do |format|
       format.html do
-        determine_if_map_should_be_shown(search_params)
+        prepare_map(search_params)
         @observer_provider_authorizations = @selected_user.provider_authorizations
         if logged_in? && @selected_user.id == current_user.id
           @project_users = current_user.project_users.joins(:project).order("projects.title")
@@ -1334,7 +1334,7 @@ class ObservationsController < ApplicationController
     
     respond_to do |format|
       format.html do
-        determine_if_map_should_be_shown(search_params)
+        prepare_map(search_params)
         if (partial = params[:partial]) && PARTIALS.include?(partial)
           return render_observations_partial(partial)
         end
@@ -1522,17 +1522,21 @@ class ObservationsController < ApplicationController
     can_view_leaves = logged_in? && current_user.is_curator?
     params[:rank] = nil unless can_view_leaves
     params[:skip_order] = true
+    html_taxon_render_limit = 5000
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     if stats_adequately_scoped?(search_params)
-      if Observation.able_to_use_elasticsearch?(search_params)
-        if params[:rank] == "leaves"
-          search_params.delete(:rank)
-        end
-        elastic_params = prepare_counts_elastic_query(search_params)
-        # using 0 for the aggregation count to get all results
-        distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
-          aggregate: { species: { "taxon.id": 120000 } })).response.aggregations
+      if params[:rank] == "leaves"
+        search_params.delete(:rank)
+      end
+      elastic_params = prepare_counts_elastic_query(search_params)
+      # using 0 for the aggregation count to get all results
+      limit = request.format.html? ? ( html_taxon_render_limit + 10 ) : 120000
+      distinct_taxa = Observation.elastic_search(elastic_params.merge(size: 0,
+        aggregate: { species: { "taxon.id": limit } })).response.aggregations
+      if request.format.html? && distinct_taxa.species.buckets.length > html_taxon_render_limit
+        @error = I18n.t( :too_many_taxa_to_render )
+      else
         @taxa = Taxon.where(id: distinct_taxa.species.buckets.map{ |b| b["key"] })
         # if `leaves` were requested, remove any taxon in another's ancestry
         if params[:rank] == "leaves"
@@ -1544,31 +1548,6 @@ class ObservationsController < ApplicationController
             end
           end
           @taxa = @taxa.select{ |t| !ancestors[t.id] }
-        end
-      else
-        oscope = Observation.query(search_params)
-        if params[:rank] == "leaves" && can_view_leaves
-          ancestor_ids_sql = <<-SQL
-            SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
-            FROM taxa
-              JOIN (
-                #{oscope.to_sql}
-              ) AS observations ON observations.taxon_id = taxa.id
-          SQL
-          sql = <<-SQL
-            SELECT DISTINCT ON (taxa.id) taxa.*
-            FROM taxa
-              LEFT OUTER JOIN (
-                #{ancestor_ids_sql}
-              ) AS ancestor_ids ON taxa.id::text = ancestor_ids.ancestor_id
-              JOIN (
-                #{oscope.to_sql}
-              ) AS observations ON observations.taxon_id = taxa.id
-            WHERE ancestor_ids.ancestor_id IS NULL
-          SQL
-          @taxa = Taxon.find_by_sql(sql)
-        else
-          @taxa = Taxon.find_by_sql("SELECT DISTINCT ON (taxa.id) taxa.* from taxa INNER JOIN (#{oscope.to_sql}) as o ON o.taxon_id = taxa.id")
         end
       end
       # hack to test what this would look like
@@ -1601,14 +1580,21 @@ class ObservationsController < ApplicationController
     respond_to do |format|
       format.html do
         @headless = true
-        ancestor_ids = @taxa.map{|t| t.ancestor_ids[1..-1]}.flatten.uniq
-        ancestors = Taxon.where(id: ancestor_ids)
-        taxa_to_arrange = (ancestors + @taxa).sort_by{|t| "#{t.ancestry}/#{t.id}"}
-        @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
-        @taxon_names_by_taxon_id = TaxonName.
-          where(taxon_id: taxa_to_arrange.map(&:id).uniq).
-          includes(:place_taxon_names).
-          group_by(&:taxon_id)
+        if !@error && @taxa.length > html_taxon_render_limit
+          @error = I18n.t( :too_many_taxa_to_render )
+        elsif !@error
+          ancestor_ids = @taxa.map{|t| t.ancestor_ids[1..-1]}.flatten.uniq
+          ancestors = Taxon.where(id: ancestor_ids)
+          taxa_to_arrange = (ancestors + @taxa).sort_by{|t| "#{t.ancestry}/#{t.id}"}
+          @arranged_taxa = Taxon.arrange_nodes(taxa_to_arrange)
+          @taxon_names_by_taxon_id = TaxonName.
+            where(taxon_id: taxa_to_arrange.map(&:id).uniq).
+            includes(:place_taxon_names).
+            group_by(&:taxon_id)
+        end
+        if @error
+          flash.now[:notice] = @error
+        end
         render :layout => "bootstrap"
       end
       format.csv do
@@ -1637,11 +1623,7 @@ class ObservationsController < ApplicationController
     search_params = Observation.get_search_params(params,
       current_user: current_user)
     if stats_adequately_scoped?(search_params) && request.format.json?
-      if Observation.able_to_use_elasticsearch?(search_params)
-        elastic_taxon_stats(search_params)
-      else
-        non_elastic_taxon_stats(search_params)
-      end
+      elastic_taxon_stats(search_params)
     else
       @species_counts = [ ]
       @rank_counts = { }
@@ -1680,11 +1662,7 @@ class ObservationsController < ApplicationController
     stats_adequately_scoped?(search_params)
     # all the HTML view needs to know is stats_adequately_scoped?
     if request.format.json?
-      if Observation.able_to_use_elasticsearch?(search_params)
-        elastic_user_stats(search_params, limit)
-      else
-        non_elastic_user_stats(search_params, limit)
-      end
+      elastic_user_stats(search_params, limit)
       @user_ids = @user_counts.map{ |c| c["user_id"] } |
         @user_taxon_counts.map{ |c| c["user_id"] }
       @users = User.where(id: @user_ids).
@@ -2085,7 +2063,7 @@ class ObservationsController < ApplicationController
       # Create a new one if one doesn't already exist
       unless photo
         photo = if photo_class == LocalPhoto
-          if photo_id.is_a?(Fixnum) || photo_id.is_a?(String)
+          if photo_id.is_a?(Integer) || photo_id.is_a?(String)
             LocalPhoto.find_by_id(photo_id)
           else
             LocalPhoto.new(:file => photo_id, :user => current_user) unless photo_id.blank?
@@ -2358,7 +2336,7 @@ class ObservationsController < ApplicationController
       flash.now[:notice] = t(:preview_of_synced_observation, :url => url_for)
     end
     
-    if @existing_photo_observation = @local_photo.observations.where("observations.id != ?", @observation).first
+    if @existing_photo_observation = @local_photo.observations.where( "observations.id != ?", @observation.id ).first
       msg = t(:heads_up_this_photo_is_already_associated_with, :url => url_for(@existing_photo_observation))
       flash.now[:notice] = flash.now[:notice].blank? ? msg : "#{flash.now[:notice]}<br/>#{msg}"
     end
@@ -2497,7 +2475,7 @@ class ObservationsController < ApplicationController
   end
   
   def require_owner
-    unless logged_in? && current_user.id == @observation.user_id
+    unless ( logged_in? && current_user.id == @observation.user_id ) || current_user.is_admin?
       msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|
         format.html do
@@ -2730,72 +2708,6 @@ class ObservationsController < ApplicationController
     end
   end
 
-  def non_elastic_taxon_stats(search_params)
-    scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?(search_params)
-    species_counts_scope = scope.joins(:taxon)
-    unless search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
-      species_counts_scope = species_counts_scope.where("taxa.rank_level <= ?", Taxon::SPECIES_LEVEL)
-    end
-    species_counts_sql = if search_params[:rank] == "leaves" && logged_in? && current_user.is_curator?
-      ancestor_ids_sql = <<-SQL
-        SELECT DISTINCT regexp_split_to_table(ancestry, '/') AS ancestor_id
-        FROM taxa
-          JOIN (
-            #{species_counts_scope.to_sql}
-          ) AS observations ON observations.taxon_id = taxa.id
-      SQL
-      <<-SQL
-        SELECT
-          o.taxon_id,
-          count(*) AS count_all
-        FROM
-          (
-            #{species_counts_scope.to_sql}
-          ) AS o
-            LEFT OUTER JOIN (
-              #{ancestor_ids_sql}
-            ) AS ancestor_ids ON o.taxon_id::text = ancestor_ids.ancestor_id
-        WHERE
-          ancestor_ids.ancestor_id IS NULL
-        GROUP BY
-          o.taxon_id
-        ORDER BY count_all desc
-        LIMIT 5
-      SQL
-    else
-      <<-SQL
-        SELECT
-          o.taxon_id,
-          count(*) AS count_all
-        FROM
-          (#{species_counts_scope.to_sql}) AS o
-        GROUP BY
-          o.taxon_id
-        ORDER BY count_all desc
-        LIMIT 5
-      SQL
-    end
-    @species_counts = ActiveRecord::Base.connection.execute(species_counts_sql)
-    taxon_ids = @species_counts.map{|r| r['taxon_id']}
-    rank_counts_sql = <<-SQL
-      SELECT
-        o.rank_name,
-        count(*) AS count_all
-      FROM
-        (#{scope.joins(:taxon).select("DISTINCT ON (taxa.id) taxa.rank AS rank_name").to_sql}) AS o
-      GROUP BY o.rank_name
-    SQL
-    @raw_rank_counts = ActiveRecord::Base.connection.execute(rank_counts_sql)
-    @rank_counts = {}
-    @total = 0
-    @raw_rank_counts.each do |row|
-      @total += row['count_all'].to_i
-      @rank_counts[row['rank_name']] = row['count_all'].to_i
-    end
-    # TODO: we should set a proper value for @rank_counts[:leaves]
-  end
-
   def elastic_taxon_stats(search_params)
     if search_params[:rank] == "leaves"
       search_params.delete(:rank)
@@ -2832,24 +2744,6 @@ class ObservationsController < ApplicationController
     end
     # limit the species_counts to 5
     @species_counts = @species_counts[0...5]
-  end
-
-  def non_elastic_user_stats(search_params, limit)
-    scope = Observation.query(search_params)
-    scope = scope.where("1 = 2") unless stats_adequately_scoped?(search_params)
-    @user_counts = user_obs_counts(scope, limit).to_a
-    @user_taxon_counts = user_taxon_counts(scope, limit).to_a
-    obs_user_ids = @user_counts.map{|r| r['user_id']}.sort
-    tax_user_ids = @user_taxon_counts.map{|r| r['user_id']}.sort
-
-    # the list of top users is probably different for obs and taxa, so grab the leftovers from each
-    leftover_obs_user_ids = tax_user_ids - obs_user_ids
-    leftover_tax_user_ids = obs_user_ids - tax_user_ids
-    @user_counts += user_obs_counts(scope.where("observations.user_id IN (?)", leftover_obs_user_ids)).to_a
-    @user_taxon_counts += user_taxon_counts(scope.where("observations.user_id IN (?)", leftover_tax_user_ids)).to_a
-    @user_counts = @user_counts[0...limit]
-    @user_taxon_counts = @user_taxon_counts[0...limit]
-    @total = scope.select("DISTINCT observations.user_id").count
   end
 
   def elastic_user_stats(search_params, limit)
@@ -2918,10 +2812,9 @@ class ObservationsController < ApplicationController
     end
   end
 
-  def determine_if_map_should_be_shown( search_params )
-    if @display_map_tiles = Observation.able_to_use_elasticsearch?( search_params )
-      prepare_map_params(search_params)
-    end
+  def prepare_map( search_params )
+    @display_map_tiles = true
+    prepare_map_params(search_params)
   end
 
   def valid_map_params(search_params = {})

@@ -103,8 +103,6 @@ ja:
     one: <span class='count'>1</span>件の種もしくはそれ以下の研究用観察記録</span>
     other: <span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録</span>
   _percent_ID_d: '%件判定済み'
-  a: 一つの
-  a_: 一つの
   a_community_for_naturalist: ナチュラリストのためのコミュニティー
   a_default_taxon_name_will_automatically_created: |-
     当分類群の学名がデフォルト名となります。
@@ -152,7 +150,6 @@ ja:
   activity_settings: アクティビティ設定
   adapted_by_name_from_a_work_by_original: '%{original}による記載を根拠に%{name}が適用'
   add: 追加
-  add_a: 追加する：
   add_a_batch_of_observations: 観察記録を一括追加
   add_a_batch_of_observations_by_csv: 観察記録をCSV形式で一括追加
   add_a_batch_of_taxa: 分類群の一括追加
@@ -235,7 +232,6 @@ ja:
   add_taxon_batch_to: 分類群を一括で%{list}に追加
   add_taxon_range: 分類群の分布・生息区域を追加
   add_taxonomic_tags_to: 選択されたFlickr写真に分類群タグを付ける &raquo;
-  add_to: 次のフィールドに追加：
   add_to_a_scheme: スキームに追加
   add_to_a_project: プロジェクトに追加
   add_to_calendar: カレンダーに追加
@@ -458,7 +454,6 @@ ja:
   automatically_id_new: 新規観察記録を自動的に次のIDを付与：
   automatically_update_my_content_for_taxon_changes: 分類群の変更を自分のデータに自動的に反映
   back: 戻る
-  back_to: 次へ戻る：
   back_to_albums: アルバムに戻る
   back_to_all_species: すべての種に戻る
   back_to_browsing_people: ユーザー閲覧へ戻る
@@ -619,9 +614,6 @@ ja:
   clear: クリア
   clear_color_filters: 色フィルターを解除
   clear_search: 検索フィルターを解除
-  clear_shapes: 形状をクリア
-  click_add_an_observation_to_the_lower_right: '%{site_name_short}へようこそ！右下の「観察記録を追加」をクリックしてください。まだ済んでいなければ、サインインまたは会員登録画面が表示されます'
-  click_on_map_to_draw_shape_around_place: 場所を囲むようにマップをクリックし、境界線を作ってください
   click_on_the_map_to: マップで観察された場所をクリックし、観察記録を置きましょう。
   click_the_map: 場所を追加するには、<strong>マップをクリック</strong>
   click_the_map_to_jump_new_place: マップをクリックし、新しい場所を訪れましょう
@@ -924,7 +916,6 @@ ja:
   edit_your_settings_for_this_project: プロジェクトの個人設定を編集
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>設定を変更</a>すれば、新着情報の受信の変更及び情報送信停止などができます。
   edited: 編集済み
-  edited_by: 編集者：
   edited_by_name_html: '%{name}によって編集されました'
   editing: 編集中
   editing_announcement: お知らせを編集中
@@ -1037,7 +1028,6 @@ ja:
   filling_out_checklist_for_place: あなたがよく知っている場所のチェックリストを完成させること
   filling_out_your_profile: あなたのプロフィールを完成させましょう
   filter: 絞り込む
-  filter_by: 絞り込み条件
   filter_by_curator_identification: キュレーターの同定で絞り込む
   filter_by_place: 場所でフィルター
   filter_by_place_taxon_and_color: 場所、分類群、そして色でフィルター
@@ -1079,7 +1069,6 @@ ja:
   flagged_thing_explanation: 次の理由により、この%{thing}にフラグが付けられました：
   flagger: フラグ付けたユーザー：
   flags: フラグ
-  flags_for: フラグ目的：
   flags_on_users_content: '%{user}のコンテンツに付けられたフラグ'
   flickr_account_information: あなたのFlickrアカウント情報
   flickr_has_no_creative_commons: Flickrにはこの場所からのクリエイティブ・コモンズライセンス写真がありません
@@ -1090,8 +1079,6 @@ ja:
   flickr_tagger: Flickrタグ付け機能
   flickr_tags: Flickrタグ
   flickr_youre_all_set: 只今より、%{site_name}お楽しみいただけます。
-  follow_us: 次のサービスでフォローしてください
-  follow_us_on: 次のサービスでフォローしてください
   follow_user: '%{user}をフォロー'
   follower: フォロワー
   following: フォロー中
@@ -1103,7 +1090,6 @@ ja:
   from_a_place: 場所から
   from_eol_collection: EOLコレクションより
   from_flickr_facebook_etc: Flickr、Facebookなどから
-  from_in_this_place: この場所のなかから
   from_list: リストから
   from_this: こちらから
   from_photos: 写真から
@@ -1302,8 +1288,6 @@ ja:
   invited_x: '%{x}を招待しました'
   inviting: 招待中...
   iphone: iPhone
-  is_a: は
-  is_an: は
   is_not_following_anyone: 誰もフォローしていません
   is_now: は今
   is_the_organism_wild: 野生または帰化していますか？
@@ -1664,7 +1648,7 @@ ja:
   new_custom_field_for: 新規専用フィールド：
   new_flag_for: 新規フラグ：
   new_guide: 新規ガイド
-  new_journal_posts: 新規ジャーナル投稿
+  new_journal_post: 新規ジャーナル投稿
   new_list: 新規リスト
   new_members: 新規メンバー
   new_message: 新規メッセージ
@@ -1900,9 +1884,9 @@ ja:
       <ul>
         <li><strong>あなたのコンテンツ:</strong> あなたの観察記録について%{site_name}コミュニティーから寄せられたコメント、同定、お気に入りを表示します。誰かがプロジェクトにあなたの観察記録を載せたり、新規フィールドに注釈をを追加した場合には更新の通知が届きます。</li>
         <li><strong>人々:</strong>フォローしている人々の新しい観察記録、ジャーナル投稿。</li>
-        <li><strong>生物、プロジェクト、場所: </ strong>購読している特定の生物や場所に載った新しい観察記録。プロジェクトに参加すると、そちらでジャーナル投稿が公開されたときに通知を受け取るように設定できます。</ li>
-        <li><strong>参加した議論:</ strong>他の利用者のコンテンツにコメントや同定を投稿すると、自動的にそのコンテンツの購読者に登録されます。購読を解除には「購読の管理」ツールを使います。</ li>
-      </ ul>
+        <li><strong>生物、プロジェクト、場所: </strong>購読している特定の生物や場所に載った新しい観察記録。プロジェクトに参加すると、そちらでジャーナル投稿が公開されたときに通知を受け取るように設定できます。</li>
+        <li><strong>参加した議論:</strong>他の利用者のコンテンツにコメントや同定を投稿すると、自動的にそのコンテンツの購読者に登録されます。購読を解除には「購読の管理」ツールを使います。</li>
+      </ul>
   one_by_one: １個ずつ
   one_of_your_lists: 自分のリストに
   only_a_project_manager_can_add: プロジェクトキュレーター権限を付与できるのはプロジェクト管理者のみです
@@ -2137,9 +2121,9 @@ ja:
     greece: ギリシア
     hong_kong: 香港
     hungary: ハンガリー
-    italy: イタリア
     india: インド
     iraq: イラク
+    italy: イタリア
     japan: 日本
     korea: 韓国
     martinique: マルティニーク
@@ -2156,8 +2140,8 @@ ja:
     portugal: ポルトガル
     republic_of_congo: コンゴ共和国
     russia: ロシア
-    saudi_arabia: サウジアラビア
     sao_tome_and_principe: サントメプリンシペ
+    saudi_arabia: サウジアラビア
     singapore: シンガポール
     south_africa: 南アフリカ
     south_america: 南米
@@ -2510,7 +2494,7 @@ ja:
   showing_taxa_from_everywhere: すべての場所からの分類群を表示中
   showing_taxa_from_place: '%{place}からの分類群を表示中'
   sign_in: ログイン
-  sign_in_with_provider: '%{provider}でログイン'
+  sign_in_with_provider: '%{provider}経由でログイン'
   sign_out: ログアウト
   sign_up!: 新規ユーザー登録！
   sign_up: ユーザー登録
@@ -2789,9 +2773,9 @@ ja:
   this_is_a_life_list_from_place_html: '%{place}のライフリスト'
   this_is_a_life_list_of_taxon_in_place: '%{place}における%{taxon}のライフリスト'
   this_is_taking_forever: 予想以上に時間がかかっています。後ほどまたお試しください。
+  this_is_the_primary_listing: 主要記載です
   this_job_failed_to_run: 実行できませんでした。%{email}にご連絡ください。
   this_list_is_empty!: このリストに項目がありません！
-  this_is_the_primary_listing: 主要記載です
   this_list_only_accepts_taxa_that_are: このリストは次の条件を満たす分類群のみを追加することができます：
   this_observation_has_been_incorporated_into_the_following_external_websites: この観察記録データが次の外部サイトに提供されています：
   this_observation_lies_outside_the: この観察記録が%{site_name}のデータベース上にあるこの種の生息域の外にあるようです。もしかしたら、${site_name}の生息域データに不備があるか、IDが異なるか、迷鳥のような突発的な移動なのか、また生息域拡大なのかもしれません
@@ -3289,7 +3273,7 @@ ja:
           \ リストの更新に使われたりします。また自分の観察記録が研究用と承認\n  されるには、コミュニティが<em>アナタの同定</em>に同意する必要があり\n
           \ ます。もしコミュニティの分類群という考え方に反対であれば、完全に\n  通知を削除するよう<a href=\"/users/edit\" target=\"_blank\">個人設定\n
           \ を編集してください</a>。\n</p>\n<p class=\"ui\">\n  <strong>アルゴリズム：</strong>同定された群とそれを含む分類（例：\n
-          \ <i> Homo </ i>類には<i> Homo sapiens </ i>が含まれる）、両方を採\n  点し、同定数の累計の合計に対するその分類群の同定の累計数の比率、\n
+          \ <i> Homo </i>類には<i> Homo sapiens </i>が含まれる）、両方を採\n  点し、同定数の累計の合計に対するその分類群の同定の累計数の比率、\n
           \ その分類群の最初の同定以降に追加された、より保守的な同定件数、\n  ならびに完全に異なる同定の件数（すなわち分類群で3分の2以上をスコ\n
           \ アし最低2件の同定が存在）を記録します。3分の2以上をスコアし最低\n  2件の同定が存在する分類群は、最も低い順位の分類群を選択します。</p>"
         cumulative_count_desc: 単一の分類群とその下位分類に対する同定の総数
@@ -3374,7 +3358,7 @@ ja:
             あなたの観察記録を削除します。しかし、それでもあなたの存在は表示されます。
             あなたの観察記録の検索とあなたのプロフィールの閲覧は可能で、ブロック
             されるのはあなたとのやりとりに限定されます。
-          </ p>
+          </p>
           <p>
             ブロックはあなたが誰かと友好的な関係が築けない状況で、どれほど努力しても
             相手の干渉が止まらず、文明的なやり方で紛争を解決できない場合の対策です。
@@ -3384,28 +3368,28 @@ ja:
             自分の観察記録が誰かに同定されないようにブロックを誤用した場合、
           自分も
             相手の観察記録を同定できなくなります。
-          </ p>
+          </p>
           <p>
             ブロックの上限は3人です。これはブロック処理が必要な人々と処理の悪用防止
             を両立する合理的な規制だと考えます。もっと多くのブロック処理が必要だと
             感じたら<a href="mailto:%{help_email}">お問い合わせ</a>ください。
-          </ p>
+          </p>
           <p>
             誰かに％{site_name}で嫌がらせやつけ回しをされた場合は
           <a href="mailto:%{help_email}">お知らせください</a>。もし利用規約の違反あるいは私たちの
             サイトに不適切と判断するその他の行為に当たるかどうか、調査に当たります。
-          </ p>
+          </p>
         muting_desc_html: |-
           <p>
             誰かをミュートすると、あなたは相手が寄せたあなたの観察記録へのコメントや
             メッセージ、言及その他に関する通知を受け取ることができなくなります。
             ミュートは相手の行動を防止することなく、相手を無視することができます。
-          </ p>
+          </p>
           <p>
             ミュート対象の人数に上限はありませんが、特定の同定により、あなたの同定を
             コミュニティ判定で上書きするなど、潜在的に重要な通知を見逃すことになる
             点にご注意ください。
-          </ p>
+          </p>
         project_addition_preferences:
           joined: 自分の参加しているプロジェクト
         taxon_change_desc: 分類群が%{site_name}で統合や改名されると、変化が明確であれば、あなたの観察記録、一覧にした分類群や同定などは自動的に新しいものに更新されます。通知の解除または変更があいまい（例：分割）な場合は、更新通知が届き、手動でコンテンツを更新するツールへのリンクから、自分で更新ができます。
@@ -3630,29 +3614,6 @@ ja:
       template:
         body: 以下のフィールドに問題があります：
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: ガイドには少なくとも３件の分類群が必要
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: ガイドは最大５００件の分類群までとなっています
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: 'DNAは次の値のみ有効です: A, T, C, G'
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: 大きすぎるため、インポートできません
-        project_observation:
-          attributes:
-            observation_id:
-              must_be_observed_after: '%{time}より後に観察されていなければなりません'
-              must_be_observed_before: '%{time}より前に観察されていなければなりません'
     attributes:
       assessment:
         description: 説明
@@ -3720,6 +3681,29 @@ ja:
       taxon_name:
         name_provider: 名称提供先
         source_url: ソースURL
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: ガイドには少なくとも３件の分類群が必要
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: ガイドは最大５００件の分類群までとなっています
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: 'DNAは次の値のみ有効です: A, T, C, G'
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: 大きすぎるため、インポートできません
+        project_observation:
+          attributes:
+            observation_id:
+              must_be_observed_after: '%{time}より後に観察されていなければなりません'
+              must_be_observed_before: '%{time}より前に観察されていなければなりません'
   i18n:
     inflections:
       :@vow_or_con:

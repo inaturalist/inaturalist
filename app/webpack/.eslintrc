@@ -7,14 +7,18 @@
     "browser": true,
     // in CommonJS
     "node": true,
-    "jquery": true
+    "jquery": true,
+    "es6": true
   },
   "globals": {
     I18n: true,
     CURRENT_USER: true,
     PREFERRED_PLACE: true,
     PREFERRED_SEARCH_PLACE: true,
-    google: true
+    google: true,
+    iNaturalist: true,
+    SITE: true,
+    iNatModels: true
   },
   // To give you an idea how to override rule options:
   // "rules": {
@@ -24,9 +28,18 @@
   //   "no-underscore-dangle": [0]
   // }
   "rules": {
-    "quotes": [2, "double"],
+    "arrow-parens": [2, "as-needed"],
     "comma-dangle": [2, "never"],
+    "consistent-return": [2, { "treatUndefinedAsUnspecified": true }],
+    "func-names": 0,
+    "no-underscore-dangle": 0,
+    "no-void": 0,
+    "prefer-destructuring": [2, { "object": true, "array": false }],
+    "quotes": [2, "double"],
     "space-in-parens": [2, "always"],
-    "func-names": 0
+    "no-param-reassign": 0,
+    "prefer-const": [2, { "destructuring": "all" }],
+    "react/forbid-prop-types": 0,
+    "react/require-default-props": 0,
   }
 }

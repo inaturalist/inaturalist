@@ -1,0 +1,56 @@
+- content_for(:title) do
+  = t(:curating)
+  = @user ? @user.login : t(:users)
+- content_for :extrajs do
+  :javascript
+    $( document ).ready( function( ) {
+      $( "#reject_user_name" ).userAutocomplete( {
+        idEl: $( "#reject_user_id" ),
+        afterSelect: function( ui ) {
+          $( "#reject_user_id" ).val( ui.item.user_id );
+        }
+      } );
+      $( "#site-admins .dropdown-menu" ).on( "click", function( e ) {
+        e.stopPropagation( );
+      } );
+    } );
+= content_for :extracss do
+  :css
+    .dropdown-menu.site-admins li {
+      padding: 3px 10px;
+    }
+.container
+  .row
+    .col-xs-12
+      %form.form-inline{ method: "get" }
+        %input.form-control#id{ name: "q", type: "search", value: @q, placeholder: "Login, name, email, or IP" }
+        %input.btn.btn-default{ type: "submit", value: "Search" }
+  - if @users.blank?
+    .nocontent=t :no_results
+  - else
+    .row
+      .col-xs-12
+        %table.table
+          %thead
+            %tr
+              %th id
+              %th login
+              %th name
+              %th email
+              %th created_at
+              %th last IP
+              %th obs
+              %th IDs
+              %th comments
+          %tbody
+            - for user in @users
+              %tr
+                %td= user.id
+                %td= link_to user.login, user_detail_admin_path( id: user.id )
+                %td= user.name
+                %td= user.email
+                %td= user.created_at
+                %td= user.last_ip
+                %td= link_to user.observations_count, observations_by_login_path(user.login)
+                %td= link_to user.identifications_count, identifications_by_login_path(user.login)
+                %td= link_to @comment_counts_by_user_id[user.id].to_i, comments_by_login_path(user.login)

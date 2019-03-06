@@ -1,9 +1,13 @@
 import { connect } from "react-redux";
+import { updateCurrentUser } from "../../../shared/ducks/config";
 import TaxonPageMap from "../components/taxon_page_map";
 
 function mapStateToProps( state ) {
   const bounds = state.config.mapBounds;
-  const props = { taxon: state.taxon.taxon };
+  const props = {
+    taxon: state.taxon.taxon,
+    config: state.config
+  };
   let chosenPlaceBounds;
   if ( state.config.chosenPlace && state.config.chosenPlace.bounding_box_geojson ) {
     chosenPlaceBounds = state.config.chosenPlace.bounding_box_geojson.coordinates[0];
@@ -26,9 +30,9 @@ function mapStateToProps( state ) {
       };
     }
   } else if (
-    bounds &&
-    bounds.swlng &&
-    bounds.swlng === bounds.nelng
+    bounds
+    && bounds.swlng
+    && bounds.swlng === bounds.nelng
   ) {
     props.latitude = bounds.swlat;
     props.longitude = bounds.swlng;
@@ -47,8 +51,10 @@ function mapStateToProps( state ) {
   return props;
 }
 
-function mapDispatchToProps( ) {
-  return { };
+function mapDispatchToProps( dispatch ) {
+  return {
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
+  };
 }
 
 const TaxonPageMapContainer = connect(

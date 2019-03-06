@@ -7,7 +7,6 @@ require File.expand_path("../../config/environment", __FILE__)
 
 require 'rspec/rails'
 require 'capybara/rails'
-require 'mocha/setup'
 require 'webmock/rspec'
 WebMock.allow_net_connect!
 require File.expand_path(File.dirname(__FILE__) + "/blueprints")
@@ -74,8 +73,9 @@ RSpec.configure do |config|
     end
   end
 
-  config.include Devise::TestHelpers, :type => :controller
-  config.include Devise::TestHelpers, :type => :view
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :view
+  config.include RSpecHtmlMatchers
   config.fixture_path = "#{::Rails.root}/spec/fixtures/"
   config.infer_spec_type_from_file_location!
   # disable certain specs. Useful for travis
@@ -106,7 +106,7 @@ class EolService
   alias :real_request :request
   def request(method, *args)
     uri = get_uri(method, *args)
-    fname = "#{uri.path}_#{uri.query}".gsub(/[\/\.]+/, '_')
+    fname = "#{uri.path}_#{uri.query}".gsub(/[\/\.]+/, '_').gsub( "&", "-" )
     fixture_path = File.expand_path(File.dirname(__FILE__) + "/fixtures/eol_service/#{fname}")
     if File.exists?(fixture_path)
       # puts "[DEBUG] Loading cached EOL response for #{uri}: #{fixture_path}"

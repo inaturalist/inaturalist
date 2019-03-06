@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var application =  angular.module( "ObservationSearch", [
   "infinite-scroll",
   "templates",
@@ -63,7 +65,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   $scope.possibleSubviews = { observations: [ "map", "grid", "table" ] };
   $scope.possibleFields = [ "iconic_taxa", "month", "swlat", "swlng",
     "nelat", "nelng", "place_id", "taxon_id", "page", "view", "subview",
-    "locale", "preferred_place_id", "ident_user_id" ];
+    "locale", "preferred_place_id", "ident_user_id", "spam" ];
   $scope.defaultView = "observations";
   $scope.defaultSubview = "map";
   $rootScope.mapType = "map";
@@ -73,7 +75,8 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     verifiable: true,
     order_by: "observations.id",
     order: "desc",
-    page: 1
+    page: 1,
+    spam: false
   };
   $scope.mapBounds = new google.maps.LatLngBounds(
     new google.maps.LatLng( -80, -179 ),
@@ -771,7 +774,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.setupDatepicker = function( ) {
     $('.date-picker').datepicker({
-      yearRange: "c-100:c+0",
+      yearRange: "c-100:" + ( new Date( ) ).getFullYear( ),
       maxDate: '+0d',
       constrainInput: false,
       firstDay: 0,
@@ -950,10 +953,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
       idEl: $( "#filters input[name='user_id']" ),
       afterSelect: function( result ) {
         $scope.params.user_id = result.item.login;
+        $scope.params.spam = null;
         if(!$scope.$$phase) { $scope.$digest( ); }
       },
       afterUnselect: function( ) {
         $scope.params.user_id = null;
+        $scope.params.spam = false;
         if(!$scope.$$phase) { $scope.$digest( ); }
       }
     });
@@ -961,10 +966,12 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
   };
   $scope.updateUserAutocomplete = function( ) {
     if( $scope.params.user_id ) {
+      $scope.params.spam = null;
       $( "input[name='user_name']" ).
         trigger( "assignSelection",
           { id: $scope.params.user_id, title: $scope.params.user_id } );
     } else {
+      $scope.params.spam = false;
       $( "#filters input[name='user_name']" ).trigger( "search" );
     }
   };
@@ -1075,6 +1082,7 @@ function( ObservationsFactory, PlacesFactory, TaxaFactory, shared, $scope, $root
     delete urlParams.view;
     delete urlParams.subview;
     delete urlParams.viewer_id;
+    delete urlParams.observationFields;
     return $.param( urlParams );
   };
   $scope.showInfowindow = function( o ) {

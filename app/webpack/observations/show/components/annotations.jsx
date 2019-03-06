@@ -1,13 +1,14 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover, Panel } from "react-bootstrap";
+import {
+  Dropdown, MenuItem, Glyphicon, OverlayTrigger, Popover, Panel
+} from "react-bootstrap";
 import UsersPopover from "./users_popover";
 import UserImage from "../../../shared/components/user_image";
 import { termsForTaxon } from "../ducks/controlled_terms";
 
 class Annotations extends React.Component {
-
   constructor( props ) {
     super( props );
     const currentUser = props.config && props.config.currentUser;
@@ -17,8 +18,14 @@ class Annotations extends React.Component {
   }
 
   annotationRow( a, term ) {
-    let votersFor = [];
-    let votersAgainst = [];
+    const votersFor = [];
+    const votersAgainst = [];
+    const {
+      config,
+      deleteAnnotation,
+      voteAnnotation,
+      unvoteAnnotation
+    } = this.props;
     let userVotedFor;
     let userVotedAgainst;
     let voteForLoading;
@@ -31,7 +38,7 @@ class Annotations extends React.Component {
         votersAgainst.push( v.user );
         if ( v.api_status ) { voteAgainstLoading = true; }
       }
-      if ( this.loggedIn && v.user.id === this.props.config.currentUser.id ) {
+      if ( this.loggedIn && v.user.id === config.currentUser.id ) {
         userVotedFor = ( v.vote_flag === true );
         userVotedAgainst = ( v.vote_flag === false );
       }
@@ -40,8 +47,8 @@ class Annotations extends React.Component {
     const disagreeClass = userVotedAgainst ? "fa-thumbs-down" : "fa-thumbs-o-down";
     const mostAgree = votersFor.length > votersAgainst.length;
     const mostDisagree = votersAgainst.length > votersFor.length;
-    const viewerIsAnnotator = this.loggedIn && a.user &&
-      this.props.config.currentUser.id === a.user.id;
+    const viewerIsAnnotator = this.loggedIn && a.user
+      && config.currentUser.id === a.user.id;
     let action;
     if ( a.api_status && a.api_status !== "voting" ) {
       action = ( <div className="loading_spinner" /> );
@@ -49,37 +56,37 @@ class Annotations extends React.Component {
       action = (
         <Glyphicon
           glyph="remove-circle"
-          onClick={ () => {
+          onClick={() => {
             if ( a.api_status ) { return; }
-            this.props.deleteAnnotation( a.uuid );
-          } }
+            deleteAnnotation( a.uuid );
+          }}
         />
       );
     }
     let voteAction;
     let unvoteAction;
     if ( !a.api_status ) {
-      voteAction = () => ( userVotedFor ?
-        this.props.unvoteAnnotation( a.uuid ) :
-        this.props.voteAnnotation( a.uuid ) );
-      unvoteAction = () => ( userVotedAgainst ?
-        this.props.unvoteAnnotation( a.uuid ) :
-        this.props.voteAnnotation( a.uuid, "bad" ) );
+      voteAction = () => ( userVotedFor ? unvoteAnnotation( a.uuid ) : voteAnnotation( a.uuid ) );
+      unvoteAction = () => ( userVotedAgainst ? unvoteAnnotation( a.uuid ) : voteAnnotation( a.uuid, "bad" ) );
     }
-    let votesForCount = voteForLoading ? (
-      <div className="loading_spinner" /> ) : (
+    const votesForCount = voteForLoading ? (
+      <div className="loading_spinner" />
+    ) : (
       <UsersPopover
-        users={ votersFor }
-        keyPrefix={ `votes-for-${a.controlled_value.id}` }
-        contents={ ( <span>{votersFor.length === 0 ? null : votersFor.length}</span> ) }
-      /> );
-    let votesAgainstCount = voteAgainstLoading ? (
-      <div className="loading_spinner" /> ) : (
+        users={votersFor}
+        keyPrefix={`votes-for-${a.controlled_value.id}`}
+        contents={( <span>{votersFor.length === 0 ? null : votersFor.length}</span> )}
+      />
+    );
+    const votesAgainstCount = voteAgainstLoading ? (
+      <div className="loading_spinner" />
+    ) : (
       <UsersPopover
-        users={ votersAgainst }
-        keyPrefix={ `votes-against-${a.controlled_value.id}` }
-        contents={ ( <span>{votersAgainst.length === 0 ? null : votersAgainst.length}</span> ) }
-      /> );
+        users={votersAgainst}
+        keyPrefix={`votes-against-${a.controlled_value.id}`}
+        contents={( <span>{votersAgainst.length === 0 ? null : votersAgainst.length}</span> )}
+      />
+    );
     const attr = a.controlled_attribute;
     const value = a.controlled_value;
     const termLabel = I18n.t( `controlled_term_labels.${_.snakeCase( term.label )}`, {
@@ -93,20 +100,21 @@ class Annotations extends React.Component {
     } );
     const termPopover = (
       <Popover
-        id={ `annotation-popover-${a.uuid}` }
+        id={`annotation-popover-${a.uuid}`}
         className="AnnotationPopover"
       >
         <div className="contents">
           <div className="view">{ I18n.t( "view" ) }:</div>
           <div className="search">
-            <a href={ `/observations?term_id=${attr.id}&term_value_id=${value.id}` }>
+            <a href={`/observations?term_id=${attr.id}&term_value_id=${value.id}`}>
               <i className="fa fa-arrow-circle-o-right" />
-              { I18n.t( "observations_annotated_with_annotation", { annotation:
-                `${attrLabel}: ${valueLabel}` } ) }
+              { I18n.t( "observations_annotated_with_annotation", {
+                annotation: `${attrLabel}: ${valueLabel}`
+              } ) }
             </a>
           </div>
           <div className="search">
-            <a href={ `/observations?term_id=${attr.id}` }>
+            <a href={`/observations?term_id=${attr.id}`}>
               <i className="fa fa-arrow-circle-o-right" />
               { I18n.t( "observations_annotated_with_annotation", { annotation: attrLabel } ) }
             </a>
@@ -116,8 +124,8 @@ class Annotations extends React.Component {
     );
     return (
       <tr
-        key={ `term-row-${value.id}` }
-        className={ a.api_status ? "disabled" : "" }
+        key={`term-row-${value.id}`}
+        className={a.api_status ? "disabled" : ""}
       >
         <td className="attribute">
           <OverlayTrigger
@@ -131,7 +139,7 @@ class Annotations extends React.Component {
           </OverlayTrigger>
         </td>
         <td className="value">
-          <UserImage user={ a.user } />
+          <UserImage user={a.user} />
           { valueLabel }
           { action }
         </td>
@@ -141,7 +149,7 @@ class Annotations extends React.Component {
               <i className="fa fa-check" />
             ) : null }
           </span>
-          { this.loggedIn && <i className={ `fa ${agreeClass}` } onClick={ voteAction } /> }
+          { this.loggedIn && <i className={`fa ${agreeClass}`} onClick={voteAction} /> }
           <span className="count">{ votesForCount }</span>
           { !this.loggedIn && <span className="fa" /> }
         </td>
@@ -151,7 +159,7 @@ class Annotations extends React.Component {
               <i className="fa fa-times" />
             ) : null }
           </span>
-          { this.loggedIn && <i className={ `fa ${disagreeClass}` } onClick={ unvoteAction } /> }
+          { this.loggedIn && <i className={`fa ${disagreeClass}`} onClick={unvoteAction} /> }
           <span className="count">{ votesAgainstCount }</span>
           { !this.loggedIn && <span className="fa" /> }
         </td>
@@ -160,17 +168,29 @@ class Annotations extends React.Component {
   }
 
   render( ) {
-    const observation = this.props.observation;
-    const config = this.props.config;
-    const controlledTerms = this.props.controlledTerms;
+    const {
+      observation,
+      config,
+      controlledTerms,
+      showEmptyState,
+      addAnnotation,
+      collapsible,
+      updateSession
+    } = this.props;
+    const {
+      open: isOpen
+    } = this.state;
     const availableControlledTerms = termsForTaxon(
       controlledTerms,
       observation ? observation.taxon : null
     );
-    if ( !observation || !observation.user || _.isEmpty( availableControlledTerms ) ) {
+    if (
+      !observation
+      || !observation.user
+      || _.isEmpty( availableControlledTerms )
+    ) {
       if (
-          this.props.showEmptyState &&
-          ( !availableControlledTerms || availableControlledTerms.length === 0 )
+        showEmptyState && ( !availableControlledTerms || availableControlledTerms.length === 0 )
       ) {
         return (
           <div className="noresults">
@@ -185,10 +205,10 @@ class Annotations extends React.Component {
     if ( !this.loggedIn && _.isEmpty( observation.annotations ) ) {
       return ( <span /> );
     }
-    const annotations = observation.annotations.filter( a =>
-      a.controlled_attribute && a.controlled_value );
+    const annotations = observation.annotations.filter(
+      a => a.controlled_attribute && a.controlled_value );
     const groupedAnnotations = _.groupBy( annotations, a => a.controlled_attribute.id );
-    let rows = [];
+    const rows = [];
     _.each( availableControlledTerms, ct => {
       if ( groupedAnnotations[ct.id] ) {
         const sorted = _.sortBy( groupedAnnotations[ct.id], a => (
@@ -203,13 +223,14 @@ class Annotations extends React.Component {
       let availableValues = ct.values;
       if ( groupedAnnotations[ct.id] && ct.multivalued ) {
         const usedValues = { };
-        _.each( groupedAnnotations[ct.id], gt => { usedValues[gt.controlled_value.id] = gt.controlled_value; } );
+        _.each(
+          groupedAnnotations[ct.id],
+          gt => { usedValues[gt.controlled_value.id] = gt.controlled_value; }
+        );
         availableValues = _.filter( availableValues, v => ( !usedValues[v.id] ) );
         // If values have already been used, we should not allow the addition of blocking values
         if ( !_.isEmpty( usedValues ) ) {
-          const usedBlockingValue = _.find( usedValues, v => {
-            return v.blocking;
-          } );
+          const usedBlockingValue = _.find( usedValues, v => v.blocking );
           // If there's already a blocking value, no other values should be allowed.
           if ( usedBlockingValue ) {
             availableValues = [];
@@ -226,13 +247,13 @@ class Annotations extends React.Component {
       } );
       const termPopover = (
         <Popover
-          id={ `annotation-popover-${ct.id}` }
+          id={`annotation-popover-${ct.id}`}
           className="AnnotationPopover"
         >
           <div className="contents">
             <div className="view">{ I18n.t( "view" ) }:</div>
             <div className="search">
-              <a href={ `/observations?term_id=${ct.id}` }>
+              <a href={`/observations?term_id=${ct.id}`}>
                 <i className="fa fa-arrow-circle-o-right" />
                 { I18n.t( "observations_annotated_with_annotation", { annotation: ctLabel } ) }
               </a>
@@ -240,12 +261,14 @@ class Annotations extends React.Component {
           </div>
         </Popover>
       );
-      if ( availableValues.length > 0 &&
-           !( groupedAnnotations[ct.id] && !ct.multivalued ) &&
-           ( this.loggedIn || !_.isEmpty( groupedAnnotations[ct.id] ) ) ) {
+      if (
+        this.loggedIn
+        && availableValues.length > 0
+        && !( groupedAnnotations[ct.id] && !ct.multivalued )
+      ) {
         rows.push( (
           <tr
-            key={ `term-row-${ct.id}` }
+            key={`term-row-${ct.id}`}
           >
             <td className="attribute">
               <OverlayTrigger
@@ -261,8 +284,8 @@ class Annotations extends React.Component {
             <td>
               <Dropdown
                 id="grouping-control"
-                onSelect={ index => {
-                  this.props.addAnnotation( ct, availableValues[index] );
+                onSelect={index => {
+                  addAnnotation( ct, availableValues[index] );
                 }}
               >
                 <Dropdown.Toggle>
@@ -274,8 +297,8 @@ class Annotations extends React.Component {
                   {
                     availableValues.map( ( v, index ) => (
                       <MenuItem
-                        key={ `term-${v.id}` }
-                        eventKey={ index }
+                        key={`term-${v.id}`}
+                        eventKey={index}
                       >
                         {
                           I18n.t( `controlled_term_labels.${_.snakeCase( v.label )}`, {
@@ -288,8 +311,8 @@ class Annotations extends React.Component {
                 </Dropdown.Menu>
               </Dropdown>
             </td>
-            <td></td>
-            <td></td>
+            <td />
+            <td />
           </tr>
         ) );
       }
@@ -311,7 +334,7 @@ class Annotations extends React.Component {
       </table>
     );
 
-    if ( !this.props.collapsible ) {
+    if ( !collapsible ) {
       return (
         <div className="Annotations">
           { table }
@@ -319,24 +342,24 @@ class Annotations extends React.Component {
       );
     }
 
-    const count = observation.annotations.length > 0 ?
-      `(${observation.annotations.length})` : "";
+    const count = observation.annotations.length > 0 ? `(${observation.annotations.length})` : "";
     return (
       <div className="Annotations collapsible-section">
         <h4
           className="collapsible"
-          onClick={ ( ) => {
+          onClick={( ) => {
             if ( this.loggedIn ) {
-              this.props.updateSession( {
-                prefers_hide_obs_show_annotations: this.state.open } );
+              updateSession( { prefers_hide_obs_show_annotations: isOpen } );
             }
-            this.setState( { open: !this.state.open } );
-          } }
+            this.setState( { open: !isOpen } );
+          }}
         >
-          <i className={ `fa fa-chevron-circle-${this.state.open ? "down" : "right"}` } />
-          { I18n.t( "annotations" ) } { count }
+          <i className={`fa fa-chevron-circle-${isOpen ? "down" : "right"}`} />
+          { I18n.t( "annotations" ) }
+          { " " }
+          { count }
         </h4>
-        <Panel expanded={ this.state.open } onToggle={ () => {} }>
+        <Panel expanded={isOpen} onToggle={() => {}}>
           <Panel.Collapse>{ table }</Panel.Collapse>
         </Panel>
       </div>

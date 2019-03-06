@@ -1,0 +1,35 @@
+- user_site = @user.site || Site.default
+- account_url = edit_person_url(@user, host: user_site.url)
+
+= render "header"
+%p
+  = succeed "," do
+    = t(:hi_user, user: @user.name.blank? ? @user.login : @user.name)
+%p
+  = t("views.emailer.photos_missing.we_have_been_housekeeping",
+    providers: @grouped_photos.keys.map{ |k| photo_type_label( k ) }.to_sentence(two_words_connector: " " + t(:or) + " ", last_word_connector: ", " + t(:or) + " " ) )
+%p
+  = raw t("views.emailer.photos_missing.we_would_like_to_remove",
+    account_url: account_url, site_name: user_site.name)
+%p
+  = t("views.emailer.photos_missing.you_can_attempt_repair", repair_link_text: t( :repair_broken_urls ) )
+%p
+  = raw t("views.emailer.photos_missing.please_address")
+%p
+  = t("views.emailer.photos_missing.we_included_links")
+%p
+  = t("thanks!")
+%p
+  = user_site.name
+  = surround "(", ")" do
+    = link_to Site.default.email_help, "mailto:#{Site.default.email_help}"
+%br
+- @grouped_photos.each do |type, type_photos|
+  %p
+    = photo_type_label(type)
+    %br
+    - type_photos.each do |photo|
+      - item_url = photo_url(photo.id, host: user_site.url)
+      = link_to item_url, item_url
+      %br
+= render "footer"

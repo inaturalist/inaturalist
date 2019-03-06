@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Fitoschido
 # Author: KATRINE1992
+# Author: KATRINE1993
 # Author: Kostas20142
 # Author: Nikosgranturismogt
 # Author: Tgkarounos
@@ -34,8 +35,6 @@ el:
     one: 1 είδος
     other: '%{count} είδη'
   _100_day_trends: Τάσεις 100 ημερών
-  a: a
-  a_: a
   a_community_for_naturalist: Μια κοινότητα για φυσιοδίφες
   a_few_points_to_make_things_clear: 'Λίγα σημεία για να κάνετε τα πράγματα λίγο καθαρότερα:'
   a_flag_for_x: μια αναφορά για το  %{x}
@@ -76,7 +75,6 @@ el:
   activity: Δραστηριότητα
   activity_settings: Ρυθμίσεις δραστηριότητας
   add: Προσθήκη
-  add_a: Προσθήκη ενός
   add_a_comment: Προσθήκη σχόλιου.
   add_a_field: Προσθήκη πεδίου
   add_a_flag: Πρόσθεστε μια αναφορά
@@ -135,7 +133,6 @@ el:
   add_some_now: Προσθήκη μερικών τώρα
   add_tag: Πρόσθεση ετικέτας
   add_tags: Προσθήκη ετικετών
-  add_to: Πρόσθεση σε
   add_to_a_scheme: Πρόσθεση σε ένα σχήμα
   add_to_a_project: Πρόσθεση σε ένα εγχείρημα
   add_to_calendar: Πρόσθεση σε ημερολόγιο
@@ -184,6 +181,7 @@ el:
   all_photos: Όλες οι φωτογραφίες
   all_places: Όλα τα μέρη
   all_projects: Όλα τα εγχειρήματα
+  all_children_added_to_the_database: Όλα τα παιδιά προστέθηκαν στην βάση δεδομένων
   all_rights_reserved: όλα τα δικαιώματα διατηρούνται
   all_species: Όλα τα είδη
   all_taxa:
@@ -272,13 +270,13 @@ el:
   at_time: στις %{time}
   atom: Άτομο
   attribute: Ιδιότητες
+  attribution: Απόδοση
   authority_list:
     iucn_red_list: Κόκκινη Λίστα της ΔΕΠΦ
   automatically_add_to_project: Προσθήκη στο εγχείρημα αυτόματα
   automatically_share_your_observations_on: Αυτόματη κοινοποίηση των παρατηρήσεων
     σας στις
   back: Πίσω
-  back_to: Πίσω στο
   back_to_albums: Πίσω στα άλμπουμ
   back_to_all_species: Πίσω σε όλα τα είδη
   back_to_browsing_people: Πίσω στο περιήγηση σε άτομα
@@ -428,8 +426,8 @@ el:
   choose_your_username: Επιλογή του ονόματος χρήστη σας
   clear: Εκκαθάριση
   clear_color_filters: Εκκαθάριση φίλτρων χρωμάτων
+  clear_filters: Εκκαθάριση φίλτρων
   clear_search: Εκκαθάριση αναζήτησης
-  clear_shapes: Εκκαθάριση χρωμάτων
   close: Κλείσιμο
   code: Κωδικός
   colors: Χρώματα
@@ -500,6 +498,7 @@ el:
     gnu_free_documentation_license: Ελεύθερη Άδεια GNU
   copyright_holder: Ιδιοκτήτης των πνευματικών δικαιωμάτων
   copyright_info: Πληροφορίες πνευματικών δικαιωμάτων
+  covered_by_a_taxon_framework_html: Καλύφθηκε από %{link}
   countries: Χώρες
   create: Δημιουργία
   create_a_guide: Δημιουργία οδηγού
@@ -621,6 +620,7 @@ el:
   download_csv: Λήψη του CSV
   download_csv_template: Λήψη προτύπου CSV
   download_kml: Λήψη του KML
+  downstream_coverage: Κάλυψη με φορά προς τα κάτω
   draft: Πρόχειρο
   draft_: Πρόχειρο
   draft_saved: Το πρόχειρο αποθηκεύτηκε!
@@ -651,7 +651,6 @@ el:
   edit_your_profile: Επεξεργασία του προφίλ σας
   edit_your_settings_for_this_project: Επεξεργασία των ρυθμίσεων σας για αυτό το εγχείρημα
   edited: Επεξεργασμένο
-  edited_by: Επεξεργάστηκε από
   edited_by_name_html: Επεξεργάστηκε από %{name}
   editors: Συντάκτες
   eg: π.χ.
@@ -710,6 +709,8 @@ el:
   Family: Οικογένεια
   favorites: Αγαπημένα
   fblocale: en_US
+  feature_this_project_: Παρουσιάστε Αυτό το Πρότζεκτ
+  featuring: Χαρακτηριστικό
   feeds: Ροές
   failed: Απέτυχε
   field_guides: Οδηγοί πεδίων
@@ -719,7 +720,7 @@ el:
   file: Αρχείο
   fill_out_your_profile: ολοκλήρωση του προφίλ σας
   filter: Φιλτράρισμα
-  filter_by: Φιλτράρισμα με βάση
+  filter_by_curator_identification: Φίλτρο από το Χειριστή Ταυτοποίησης
   filter_by_place: Φιλτράρισμα ανά μέρος
   filtering: Διήθηση
   filters: Φίλτρα
@@ -758,8 +759,6 @@ el:
   flickr_photos: Φωτογραφίες Flickr
   flickr_tags: Ετικέτες Flickr
   follow: Ακολουθήστε
-  follow_us: Ακολουθήστε μας στο
-  follow_us_on: Ακολουθήστε μας στο
   follow_user: Ακολουθήστε τον %{user}
   followed_projects: Ακολουθούμενα εγχειρήματα
   follower: ακόλουθος
@@ -773,7 +772,6 @@ el:
   fri: Πα
   from: Από
   from_a_place: από ένα μέρος
-  from_anywhere_change: από παντού (<span class="button">αλλαγή</span>)
   from_eol_collection: Απο την συλλογή της EOL
   from_flickr_facebook_etc: Από το Flickr, Facebook, κτλ.
   from_list: από τη λίστα
@@ -823,6 +821,7 @@ el:
   help: Βοήθεια
   help_confirm_observations!: Βοήθεια για την επιβεβαίωση παρατηρήσεων!
   help_faq: Βοήθεια / Συχνές ερωτήσεις
+  help_support_inaturalist: Βοήθησε στην υποστήριξη του iNaturalist!
   hi: Γεια,
   hi_user: Γεια %{user}
   hide: Απόκρυψη
@@ -869,8 +868,6 @@ el:
   import_tags_from_csv: Εισαγωγή ετικετών από το CSV
   importing: Εισάγεται...
   improving: Βελτίωση
-  in: σε
-  in_: σε
   in_n: σε %{n}
   inbox: εισερχόμενα
   including: συμπεριλαμβανομένων
@@ -897,8 +894,6 @@ el:
   invite_your_friends: Πρόσκληση των φίλων σας
   invited: Προσκεκλημμένος
   iphone: iPhone
-  is_a: είναι ένας
-  is_an: είναι ένας
   is_not_following_anyone: δεν ακολουθεί κάποιον.
   is_now: τώρα είναι
   is_this_place_a_duplicate: Αυτό το μέρος είναι διπλότυπο;
@@ -1026,6 +1021,7 @@ el:
   link_your_flickr_account_with_inat_so: Συνδέστε τον λογαριασμό σας στο Flickr με
     το %{site_name} για να μπορέσετε να προσθέσετε φωτογραφίες των παρατηρήσεων σας.
   link_your_google_account: Συνδέστε τον λογαριασμό σας στο Google
+  linkedin: LinkedIn
   list: Κατάλογος
   list_deleted: Η λίστα διαγράφηκε.
   list_saved: Η λίστα αποθηκεύτηκε.
@@ -1239,7 +1235,7 @@ el:
   new_custom_field_for: Νέο εξατομικευμένο πεδίο για
   new_flag_for: Νέα αναφορά για
   new_guide: Νέος οδηγός
-  new_journal_posts: Νέα ανάρτηση ημερολογίου
+  new_journal_post: Νέα ανάρτηση ημερολογίου
   new_lexicon: Νέο Λεξικό
   new_list: Νέος κατάλογος
   new_members: Νέα μέλη
@@ -1322,6 +1318,7 @@ el:
     να αντιστοιχούν σε αυτά τα κριτήρια
   no_x_this_y: Κανένα %{x} σε αυτό το %{y}
   non_human?: Μη άνθρωπος;
+  non_internal_taxon: Δεν υπάρχει εσωτερικό taxon
   none: Κανένα
   none_found: Δεν βρέθηκε
   normal: κανονικό
@@ -1426,6 +1423,7 @@ el:
   optional: προαιρετικό
   or: ή
   or_invite_your_friends: ή προσκαλέστε τους φίλους σας
+  or_log_in_with_colon: 'Η συνδεθείτε με:'
   or_upload: Ή μεταφορτώστε
   or_you_can: Ή μπορείτε...
   or_you_can_: ή μπορείτε
@@ -1442,6 +1440,7 @@ el:
     one: άλλο ζώο
     other: άλλα ζώα
   other_lexicons: Άλλα λεξικά
+  other_names: Άλλα ονόματα
   our_blog: Το ιστολόγιό μας
   out_of_range: Εκτός εύρους
   overview: Επισκόπηση
@@ -1586,6 +1585,7 @@ el:
     belgium: Βέλγιο
     bosnia_and_herzegovina: Βοσνία και Ερζεγοβίνη
     brazil: Βραζιλία
+    canada: Καναδάς
     central_america: Κεντρική Αμερική
     china: Κίνα
     colombia: Κολομβία
@@ -1598,9 +1598,9 @@ el:
     greece: Ελλάδα
     hong_kong: Χονγκ Κονγκ
     hungary: Ουγγαρία
-    italy: Ιταλία
     india: Ινδία
     iraq: Ιράκ
+    italy: Ιταλία
     japan: Ιαπωνία
     korea: Κορέα
     martinique: Μαρτινίκα
@@ -1617,8 +1617,8 @@ el:
     portugal: Πορτογαλία
     republic_of_congo: Δημοκρατία του Κονγκό
     russia: Ρωσία
-    saudi_arabia: Σαουδική Αραβία
     sao_tome_and_principe: Άγιος Θωμάς και Πρίγκιπας
+    saudi_arabia: Σαουδική Αραβία
     singapore: Σιγκαπούρη
     south_africa: Νότια Αφρική
     south_america: Νότια Αμερική
@@ -1673,6 +1673,7 @@ el:
   processing3p: Γίνεται επεξεργασία...
   profile: Προφίλ
   project: Εγχείρημα
+  project_curator_tools: Εργαλεία Project Curator
   project_group_label: Ομάδα
   project_home: Αρχική του εγχειρήματος
   project_name: Όνομα εγχειρήματος
@@ -1755,6 +1756,12 @@ el:
   reject_the_community_id: Απόρριψη του αναγνωριστικού κοινότητας
   related_species: Σχετικά είδη
   relative_observations: Σχετικές παρατηρήσεις
+  relationship: Σχέση
+  relationships:
+    alternate_position: εναλλακτική θέση
+    many_to_many: πολλά-σε-πολλά
+    many_to_one: καθοδικά
+    not_external: μη εξωτερικό
   remember_me: Να με θυμάσαι
   remove: Αφαίρεση
   remove_boundary: Αφαίρεση συνόρου
@@ -1854,6 +1861,7 @@ el:
   set_license: Ορίστε άδεια
   settings: ρυθμίσεις
   share: Κοινοποίηση
+  share_colon: Κοινοποίηση
   share_your_observation_with_researchers_by: Κοινοποιήστε τις παρατηρήσεις σας με
     ερευνητές από
   short_code_for_this_place: Σύντομος κώδικας για αυτό το μέρος, π.χ. US για τις Ηνωμένες
@@ -1925,6 +1933,7 @@ el:
   source_identifier: Αναγνωριστικό πηγής
   source_unknown: Αγνωστη πηγή
   source_url: Πηγή URL
+  sourced_to: Πηγή
   sources: Πηγές
   sources_youve_added: Πηγές που έχετε προσθέσει
   sourcing: Πηγές
@@ -1974,6 +1983,7 @@ el:
   successfully_changed_your_password: Ο κωδικός σας άλλαξε επιτυχώς.
   suggestions: Προτάσεις
   summary: Περίληψη
+  support_inaturalist: Υποστήριξη του iNaturalist
   sun: Κυ
   synonyms: Συνώνυμα
   table: Πίνακας
@@ -1985,7 +1995,12 @@ el:
   taxon_autocomplete_placeholder: Πουλιά, μονάρχης, κτλ.
   taxon_colors: Χρώματα ταξινόμησης
   taxon_extras: Πρόσθετα ταξινόμησης
+  taxon_framework_taxon: Taxon πλαίσιο εργασίας taxon
   taxon_ranks: Κατάταξη ταξινόμησης
+  taxonomy_details: Στοιχεία Ταξονομίας
+  taxonomy_details_info: Τα Στοιχεία Ταξινόμησης που χρησιμοποιεί το Taxon Frameworks
+    βοηθά στον ορισμό αυτού που λέμε ταξινόμηση. <a href="/pages/taxon_frameworks">Read
+    more</a>.
   taxonomy_settings: Parametros de Taxonomia
   terms: Όροι
   terms_of_service: Όροι Χρήσης
@@ -2011,7 +2026,6 @@ el:
   title_and_description: Τίτλος και περιγραφή
   to: προς
   to_: προς
-  to_an: προς ένα
   to_recipient: προς
   today: Σήμερα
   tools: Εργαλεία
@@ -2026,6 +2040,9 @@ el:
   translated_languages: Μεταφρασμένες γλώσσες
   "true": Αληθές
   trends: Τάσεις
+  unknown_taxon_framework_relationship: Σχέση αγνώστου πλαισίου εργασίας taxon
+  update_observation: Ενημέρωση παρατήρησης
+  update_observations: Ενημέρωση παρατηρήσεων
   upload_photo: Ανέβασμα φωτογραφίας
   view_sample: Προβολή δείγματος
   vulnerable: Ευαίσθητος
@@ -2036,12 +2053,16 @@ el:
   worldwide: Παγκόσμιες
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} de %{y} la gente (mas que 2/3)
     son d''acuerdo que esto s valido'
+  x_is_the_root_of_the_tree: '%{rank} %{name} δεν είναι η ρίζα του δένδρου'
   your_membership: Η συμμετοχή σας
   your_projects: Τα εγχειρήματά σας
   your_google_account: ο Google λογαριασμό σας
   your_recent_projects: Τα πρόσφατα εγχειρήματά σας
   your_tags: Οι ετικέτες σας
   views:
+    donate:
+      post_donate_social_media_text: Υποστήριξα το iNaturalist! Πρέπει να το ελέγξεις
+        και εσύ επίσης.
     observations:
       import:
         decimal_degrees_format: dd.dddd
@@ -2153,7 +2174,7 @@ el:
     messages:
       accepted: Αποδεκτό
       blank: Δε μπορεί να είναι κενό
-      confirmation: δεν αντιστοιχεί στην επιβεβαίωση
+      confirmation: δεν αντιστοιχεί στον κωδικό
       empty: δεν πρέπει να είναι άδειο
       equal_to: πρέπει να είναι ίσο με %{count}
       even: πρέπει να είναι άρτιος
@@ -2193,24 +2214,11 @@ el:
           quadrillion: Τετράκις εκατομμύριο
           thousand: Χιλιάδα
           trillion: Τρισεκατομμύριο
-  activerecord:
+  activemodel:
     errors:
-      models:
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: Το εγχείρημα δεν επιτρέπει παρατηρήσεις
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
-                από έναν φροντιστή αυτού του taxon
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί από
-                ένα φροντιστή αυτού του taxon
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
-                από έναν φροντιστή αυτού του taxon
+      messages:
+        confirmation: δεν αντιστοιχεί στον κωδικό
+  activerecord:
     models:
       Atlas: Άτλαντας
       CompleteSet: Ολοκληρωμένο σετ
@@ -2228,4 +2236,24 @@ el:
         search_place_id: Αναζήτηση μέρους
         place_id: Μέρος
         preferred_observation_fields_by: Να επιτρέπονται τα πεδία παρατήρησης από
+    errors:
+      format: '%{κατηγορία} %{μήνυμα}'
+      messages:
+        empty: δεν μπορεί να είναι κενό
+      models:
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Το εγχείρημα δεν επιτρέπει παρατηρήσεις
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
+                από έναν φροντιστή αυτού του taxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί από
+                ένα φροντιστή αυτού του taxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
+                από έναν φροντιστή αυτού του taxon
 ...

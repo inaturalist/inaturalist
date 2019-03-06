@@ -1,0 +1,24 @@
+- content_for( :extracss ) do
+  :css
+    .admin-box {
+        border-width: 2px;
+        border-style: dotted;
+        position: relative;
+        padding: 5px;
+    }
+.container
+  .col-md-12
+    %ul.list-unstyled
+      %li
+        = link_to t(:back_to_x, :noun => t(:taxon_framework_relationship)), taxon_framework_relationships_path, :class => "back crumb"
+    -if @taxon_framework_relationship.relationship == "error"
+      .alert
+        = t(:theres_something_wrong_with_taxon_framework_relationship)
+    - if taxon = @taxon_framework_relationship.taxa.first
+      .pull-right
+        = link_to t(:view_taxononomy_details_for_taxon, taxon: taxon.name), taxonomy_details_for_taxon_path( taxon )
+    %h3
+      = t :taxon_framework_relationship_number, number: @taxon_framework_relationship.id
+    = render :partial => '/taxon_framework_relationships/show_taxon_framework_relationship_container', object: { upstream_taxon_framework: @taxon_framework, taxon_framework_relationship: @taxon_framework_relationship, taxon: @taxon }
+    = render partial: "/taxon_framework_relationships/show_downstream_deviations", object: { downstream_deviations_counts: @downstream_deviations_counts, taxon_framework: @taxon_framework}
+

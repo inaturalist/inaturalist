@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import _ from "lodash";
+import { updateCurrentUser } from "../../../shared/ducks/config";
 import Sugggestions from "../components/suggestions";
 import {
   setDetailTaxon,
@@ -36,7 +37,8 @@ function mapDispatchToProps( dispatch ) {
     setQuery: query => {
       dispatch( updateQuery( query ) );
       dispatch( fetchSuggestions( ) );
-    }
+    },
+    updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
   };
 }
 

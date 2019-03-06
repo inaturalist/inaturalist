@@ -23,6 +23,7 @@ class YearStatistic < ActiveRecord::Base
     content_type: [/jpe?g/i, /png/i, /gif/i, /octet-stream/], 
     message: "must be JPG, PNG, or GIF"
 
+  # Generates stats for all of iNat for a single year
   def self.generate_for_year( year, options = {} )
     year_statistic = YearStatistic.where( year: year ).where( "user_id IS NULL" )
     if options[:site]
@@ -31,6 +32,10 @@ class YearStatistic < ActiveRecord::Base
       year_statistic = year_statistic.where( "site_id IS NULL" )
     end
     year_statistic = year_statistic.first_or_create
+    accumulation = observed_species_accumulation(
+      site: options[:site],
+      verifiable: true
+    )
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, options ),
@@ -48,22 +53,39 @@ class YearStatistic < ActiveRecord::Base
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, options ),
-        iconic_taxa_counts: iconic_taxa_counts( year, options )
+        iconic_taxa_counts: iconic_taxa_counts( year, options ),
+        accumulation: accumulation
+      },
+      growth: {
+        observations: observations_histogram_by_created_month( options ),
+        users: users_histogram_by_created_month( options )
       }
     }
+    if options[:site].blank?
+      json[:publications] = publications( year, options )
+      json[:growth][:countries] = observation_counts_by_country( year, options )
+    end
     year_statistic.update_attributes( data: json )
     year_statistic.delay( priority: USER_PRIORITY ).generate_shareable_image
     year_statistic
   end
 
+  # Generates stats for a specific network site for a single year
   def self.generate_for_site_year( site, year )
     generate_for_year( year, { site: site } )
   end
 
+  # Generates stats for a specific user for a single year
   def self.generate_for_user_year( user, year )
     user = user.is_a?( User ) ? user : User.find_by_id( user )
     return unless user
     year_statistic = YearStatistic.where( year: year ).where( user_id: user ).first_or_create
+    accumulation = observed_species_accumulation(
+      user: user,
+      verifiable: true
+    )
+    users_who_helped_arr, total_users_who_helped, total_ids_received = users_who_helped( year, user )
+    users_helped_arr, total_users_helped, total_ids_given = users_helped( year, user )
     json = {
       observations: {
         quality_grade_counts: obervation_counts_by_quality_grade( year, user: user ),
@@ -78,14 +100,19 @@ class YearStatistic < ActiveRecord::Base
         month_histogram: identifications_histogram( year, user: user, interval: "month" ),
         week_histogram: identifications_histogram( year, user: user, interval: "week" ),
         day_histogram: identifications_histogram( year, user: user, interval: "day" ),
-        users_helped: users_helped( year, user ),
-        users_who_helped: users_who_helped( year, user ),
+        users_helped: users_helped_arr,
+        total_users_helped: total_users_helped,
+        total_ids_given: total_ids_given,
+        users_who_helped: users_who_helped_arr,
+        total_users_who_helped: total_users_who_helped,
+        total_ids_received: total_ids_received,
         iconic_taxon_counts: identification_counts_by_iconic_taxon( year, user )
       },
       taxa: {
         leaf_taxa_count: leaf_taxa_count( year, user: user ),
         iconic_taxa_counts: iconic_taxa_counts( year, user: user ),
-        tree_taxa: tree_taxa( year, user: user )
+        tree_taxa: tree_taxa( year, user: user ),
+        accumulation: accumulation
       }
     }
     year_statistic.update_attributes( data: json )
@@ -105,13 +132,25 @@ class YearStatistic < ActiveRecord::Base
     end
   end
 
+  def self.regenerate_defaults_for_year( year )
+    generate_for_year( year )
+    Site.find_each do |site|
+      next if Site.default && Site.default.id == site.id
+      generate_for_site_year( site, year )
+    end
+  end
+
   def self.tree_taxa( year, options = {} )
     params = { year: year }
     if user = options[:user]
       params[:user_id] = user.id
     end
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     if user
       if place = user.place || user.site.try(:place)
@@ -142,7 +181,11 @@ class YearStatistic < ActiveRecord::Base
       params[:user_id] = user.id
     end
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     JSON.parse( INatAPIService.get_json("/observations/histogram", params, { timeout: 30 } ) )["results"][params[:interval]]
   end
@@ -174,7 +217,11 @@ class YearStatistic < ActiveRecord::Base
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
     if site = options[:site]
-      es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
+      if site.place
+        es_params[:filters] << { terms: { "observation.place_ids": [site.place.id] } }
+      else
+        es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
+      end
     end
     histogram = {}
     Identification.elastic_search( es_params ).response.aggregations.histogram.buckets.each {|b|
@@ -203,7 +250,11 @@ class YearStatistic < ActiveRecord::Base
       es_params[:filters] << { terms: { "user.id": [options[:user].id] } }
     end
     if site = options[:site]
-      es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
+      if site.place
+        es_params[:filters] << { terms: { "observation.place_ids": [site.place.id] } }
+      else
+        es_params[:filters] << { terms: { "observation.site_id": [site.id] } }
+      end
     end
     Identification.elastic_search( es_params ).response.aggregations.categories.buckets.inject({}) do |memo, bucket|
       memo[bucket["key"]] = bucket.doc_count
@@ -231,7 +282,11 @@ class YearStatistic < ActiveRecord::Base
     params = { year: year }
     params[:user_id] = options[:user].id if options[:user]
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     elastic_params = Observation.params_to_elastic_query( params )
     Observation.elastic_search( elastic_params.merge(
@@ -249,7 +304,11 @@ class YearStatistic < ActiveRecord::Base
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     # Observation.elastic_taxon_leaf_counts( Observation.params_to_elastic_query( params ) ).size
     JSON.parse( INatAPIService.get_json( "/observations/species_counts", params, { timeout: 30 } ) )["total_results"].to_i
@@ -259,7 +318,11 @@ class YearStatistic < ActiveRecord::Base
     params = { year: year, verifiable: true }
     params[:user_id] = options[:user].id if options[:user]
     if site = options[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     elastic_params = Observation.params_to_elastic_query( params )
     Observation.elastic_search( elastic_params.merge(
@@ -280,7 +343,11 @@ class YearStatistic < ActiveRecord::Base
       params[:user_id] = user.id
     end
     if site = params.delete(:site)
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
     es_params = Observation.params_to_elastic_query( params )
     # es_params_with_sort = es_params.merge(
@@ -297,7 +364,7 @@ class YearStatistic < ActiveRecord::Base
     # )
     es_params_with_sort = es_params.merge(
       sort: [
-        { "cached_votes_total": "desc" },
+        { "faves_count": "desc" },
         { "comments_count": "desc" }
       ]
     )
@@ -326,10 +393,10 @@ class YearStatistic < ActiveRecord::Base
       
     JSON.
         parse( INatAPIService.get_json( "/observations", api_params, { timeout: 30 } ) )["results"].
-        sort_by{|o| [0 - o["cached_votes_total"].to_i, 0 - o["comments_count"].to_i] }.
+        sort_by{|o| [0 - o["faves_count"].to_i, 0 - o["comments_count"].to_i] }.
         each_with_index.map do |o,i|
       if i < 10
-        o.select{|k,v| %w(id taxon community_taxon user photos comments_count cached_votes_total).include?( k ) }
+        o.select{|k,v| %w(id taxon community_taxon user photos comments_count faves_count observed_on).include?( k ) }
       elsif !o["photos"].blank?
         {
           "id": o["id"],
@@ -341,42 +408,43 @@ class YearStatistic < ActiveRecord::Base
 
   def self.users_helped( year, user )
     return unless user
-    es_params = identifications_es_base_params( year )
+    es_params = YearStatistic.identifications_es_base_params( year )
     es_params[:filters] << { terms: { "user.id" => [user.id] } }
     es_params[:aggregate] = {
-      users_helped: { terms: { field: "observation.user.id" } }
+      users_helped: { terms: { field: "observation.user.id", size: 40000 } },
     }
-    Identification.
-        elastic_search( es_params ).
-        response.
-        aggregations.
-        users_helped.
-        buckets[0..2].
-        inject( [] ) do |memo, bucket|
-      helped_user = User.find_by_id( bucket["key"] )
-      next unless helped_user
-      memo << {
-        count: bucket.doc_count,
-        user: helped_user.as_indexed_json
-      }
+    buckets = Identification.
+      elastic_search( es_params ).
+      response.
+      aggregations.
+      users_helped.
+      buckets
+    users = buckets[0..2].inject( [] ) do |memo, bucket|
+      if helped_user = User.find_by_id( bucket["key"] )
+        memo << {
+          count: bucket.doc_count,
+          user: helped_user.as_indexed_json
+        }
+      end
       memo
     end.compact
+    [users, buckets.size, buckets.map(&:doc_count).sum]
   end
 
   def self.users_who_helped( year, user )
     return unless user
-    es_params = identifications_es_base_params( year )
+    es_params = YearStatistic.identifications_es_base_params( year )
     es_params[:filters] << { terms: { "observation.user.id" => [user.id] } }
     es_params[:aggregate] = {
-      users_helped: { terms: { field: "user.id" } }
+      users_helped: { terms: { field: "user.id", size: 40000 } }
     }
-    Identification.
-        elastic_search( es_params ).
-        response.
-        aggregations.
-        users_helped.
-        buckets[0..2].
-        inject( [] ) do |memo, bucket|
+    buckets = Identification.
+      elastic_search( es_params ).
+      response.
+      aggregations.
+      users_helped.
+      buckets
+    users = buckets[0..2].inject( [] ) do |memo, bucket|
       helped_user = User.find_by_id( bucket["key"] )
       next unless helped_user
       memo << {
@@ -385,6 +453,7 @@ class YearStatistic < ActiveRecord::Base
       }
       memo
     end.compact
+    [users, buckets.size, buckets.map(&:doc_count).sum]
   end
 
   def generate_shareable_image
@@ -518,18 +587,24 @@ class YearStatistic < ActiveRecord::Base
   # [
   #   {
   #     date: "2017-01-01",
-  #     accumulated_taxa_count: 10,
-  #     novel_taxon_ids: [1,2,3,4]
+  #     accumulated_species_count: 10,
+  #     novel_species_ids: [1,2,3,4]
   #   }
   # ]
-  def self.observed_taxa_accumulation( params = { } )
+  def self.observed_species_accumulation( params = { } )
     # params = { year: year }
     interval = params.delete(:interval) || "month"
-    date_field = params.delete(:date_field) || "observed_on"
+    date_field = params.delete(:date_field) || "created_at"
     params[:user_id] = params[:user].id if params[:user]
+    params[:quality_grade] =  params[:quality_grade] || "research,needs_id"
     if site = params[:site]
-      params[:site_id] = site.id
+      if site.place
+        params[:place_id] = site.place.id
+      else
+        params[:site_id] = site.id
+      end
     end
+    params[:hrank] = Taxon::SPECIES
     elastic_params = Observation.params_to_elastic_query( params )
     histogram_buckets = Observation.elastic_search( elastic_params.merge(
       size: 0,
@@ -549,28 +624,143 @@ class YearStatistic < ActiveRecord::Base
       }
     ) ).response.aggregations.histogram.buckets
 
-    accumulation_with_all_taxon_ids = histogram_buckets.each_with_index.inject([]) do |memo, pair|
+    accumulation_with_all_species_ids = histogram_buckets.each_with_index.inject([]) do |memo, pair|
       bucket, i = pair
-      interval_taxon_ids = bucket.taxon_ids.buckets.map{|b| b["key"].split( "," ).map(&:to_i)}.flatten.uniq
-      accumulated_taxon_ids = if i > 0 && memo[i-1]
-        memo[i-1][:accumulated_taxon_ids]
+      interval_species_ids = bucket.taxon_ids.buckets.map{|b| b["key"].split( "," ).map(&:to_i)}.flatten.uniq
+      interval_species_ids = Taxon.where( id: interval_species_ids, rank: Taxon::SPECIES ).pluck(:id)
+      accumulated_species_ids = if i > 0 && memo[i-1]
+        memo[i-1][:accumulated_species_ids]
       else
         []
       end
-      novel_taxon_ids = interval_taxon_ids - accumulated_taxon_ids
+      novel_species_ids = interval_species_ids - accumulated_species_ids
       memo << {
         date: bucket["key_as_string"],
-        accumulated_taxon_ids: accumulated_taxon_ids + novel_taxon_ids,
-        novel_taxon_ids: novel_taxon_ids
+        accumulated_species_ids: accumulated_species_ids + novel_species_ids,
+        novel_species_ids: novel_species_ids
       }
       memo
     end
-    accumulation_with_all_taxon_ids.map do |interval|
+    accumulation_with_all_species_ids.map do |interval|
       {
         date: interval[:date],
-        accumulated_taxa_count: interval[:accumulated_taxon_ids].size,
-        novel_taxon_ids: interval[:novel_taxon_ids]
+        accumulated_species_count: interval[:accumulated_species_ids].size,
+        novel_species_ids: interval[:novel_species_ids]
       }
+    end
+  end
+
+  def self.publications( year, options )
+    gbif_endpont = "https://www.gbif.org/api/resource/search"
+    gbif_params = {
+      contentType: "literature",
+      # iNat RG Observations dataset identifier on GBIF We don't publish site-
+      # specific datasets, so there's no reason not to hard-code it here.
+      gbifDatasetKey: "50c9509d-22c7-4a22-a47d-8c48425ef4a7",
+      literatureType: "journal",
+      year: year,
+      limit: 50
+    }
+    data = JSON.parse( RestClient.get( "#{gbif_endpont}?#{gbif_params.to_query}" ) )
+    new_results = []
+    data["results"].each do |result|
+      if doi = result["identifiers"] && result["identifiers"]["doi"]
+        begin
+          am_response = RestClient.get( "https://api.altmetric.com/v1/doi/#{doi}" )
+          result["altmetric_score"] = JSON.parse( am_response )["score"]
+        rescue RestClient::NotFound => e
+          Rails.logger.debug "[DEBUG] Request failed: #{e}"
+        end
+        sleep( 1 )
+      end
+      result["_gbifDOIs"] = result["_gbifDOIs"][0..9]
+      new_results << result.slice(
+        "title",
+        "authors",
+        "year",
+        "source",
+        "websites",
+        "publisher",
+        "id",
+        "identifiers",
+        "_gbifDOIs",
+        "altmetric_score"
+      )
+    end
+    data["results"] = new_results.sort_by{|r| r["altmetric_score"].to_f * -1 }[0..9]
+    data[:url] = "https://www.gbif.org/resource/search?#{gbif_params.to_query}"
+    data
+  end
+
+  def self.observations_histogram_by_created_month( options = {} )
+    filters = [
+      { terms: { "quality_grade": ["research", "needs_id"] } }
+    ]
+    if site = options[:site]
+      if site.place
+        filters << { terms: { place_ids: [site.place.id] } }
+      else
+        filters << { terms: { site_id: [site.id] } }
+      end
+    end
+    es_params = {
+      size: 0,
+      filters: filters,
+      aggregate: {
+        histogram: {
+          date_histogram: {
+            field: "created_at_details.date",
+            interval: "month",
+            format: "yyyy-MM-dd"
+          }
+        }
+      }
+    }
+    histogram = {}
+    Observation.elastic_search( es_params ).response.aggregations.histogram.buckets.each {|b|
+      histogram[b.key_as_string] = b.doc_count
+    }
+    histogram
+  end
+
+  def self.users_histogram_by_created_month( options  = {} )
+    scope = User.group( "EXTRACT('year' FROM created_at) || '-' || EXTRACT('month' FROM created_at)" ).
+      where( "suspended_at IS NULL AND created_at > '2008-03-01' AND observations_count > 0" )
+    if site = options[:site]
+      scope = scope.where( "site_id = ?", site )
+    end
+    Hash[scope.count.map do |k,v|
+      ["#{k.split( "-" ).map{|s| s.rjust( 2, "0" )}.join( "-" )}-01", v]
+    end.sort]
+  end
+
+  def self.observation_counts_by_country( year, params = {} )
+    data = Place.where( admin_level: 0 ).all.inject( [] ) do |memo, p|
+      r = INatAPIService.observations( per_page: 0, verifiable: true,
+        created_d1: "#{year}-01-01",
+        created_d2: "#{year}-12-31",
+        place_id: p.id
+      )
+      year_count = r ? r.total_results : 0
+      r = INatAPIService.observations( per_page: 0, verifiable: true,
+        created_d1: "#{year - 1}-01-01",
+        created_d2: "#{year - 1}-12-31",
+        place_id: p.id
+      )
+      last_year_count = r ? r.total_results : 0
+      if year_count.to_i <= 0
+        memo
+      else
+        memo << {
+          place_id: p.id,
+          place_code: p.code,
+          place_bounding_box: p.bounding_box,
+          name: p.name,
+          observations: year_count,
+          observations_last_year: last_year_count
+        }
+        memo
+      end
     end
   end
 

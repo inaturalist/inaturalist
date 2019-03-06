@@ -34,16 +34,17 @@ shared_examples_for "ObservationsController basics" do
       delete :destroy, :format => :json, :id => o.id
       expect(Observation.find_by_id(o.id)).to be_blank
     end
-  end
-
-  describe "show" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
-    it "should not provide private coordinates for another user's observation" do
-      o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
-      get :show, :format => :json, :id => o.id
-      expect(response.body).not_to be =~ /#{o.private_latitude}/
-      expect(response.body).not_to be =~ /#{o.private_longitude}/
+    it "should not be possible for non-observers" do
+      o = Observation.make!( user: User.make! )
+      delete :destroy, format: :json, id: o.id
+      expect( Observation.find_by_id( o.id ) ).not_to be_blank
+    end
+    it "should be possible for staff on other people's observations" do
+      o = Observation.make!( user: User.make! )
+      user.roles << Role.make!( name: User::JEDI_MASTER_ROLE )
+      user.reload
+      delete :destroy, format: :json, id: o.id
+      expect( Observation.find_by_id( o.id ) ).to be_blank
     end
   end
 
@@ -60,8 +61,8 @@ end
 shared_examples_for "an ObservationsController" do
 
   describe "create" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    before(:each) { enable_elastic_indexing( Observation, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
     it "should create with an existing photo ID" do
       p = LocalPhoto.make!( user: user )
@@ -286,6 +287,24 @@ shared_examples_for "an ObservationsController" do
       get :show, :format => :json, :id => o.id
       expect(response.body).to be =~ /#{o.private_latitude}/
       expect(response.body).to be =~ /#{o.private_longitude}/
+    end
+
+    it "should include private coordinates when project curator coordinate access has been granted" do
+      o = Observation.make!( latitude: 1.23456, longitude: 7.890123, geoprivacy: Observation::PRIVATE )
+      po = ProjectObservation.make!( observation: o, prefers_curator_coordinate_access: true )
+      pu = ProjectUser.make!( user: user, project: po.project, role: ProjectUser::CURATOR )
+      o.reload
+      expect( o ).to be_coordinates_viewable_by( user )
+      get :show, format: :json, id: o.id
+      expect( response.body ).to be =~ /#{o.private_latitude}/
+      expect( response.body ).to be =~ /#{o.private_longitude}/
+    end
+
+    it "should not provide private coordinates for another user's observation" do
+      o = Observation.make!(:latitude => 1.23456, :longitude => 7.890123, :geoprivacy => Observation::PRIVATE)
+      get :show, :format => :json, :id => o.id
+      expect(response.body).not_to be =~ /#{o.private_latitude}/
+      expect(response.body).not_to be =~ /#{o.private_longitude}/
     end
 
     it "should not include photo metadata" do
@@ -583,15 +602,24 @@ shared_examples_for "an ObservationsController" do
     it "should mark as captive in response to captive_flag" do
       o = Observation.make!(user: user)
       expect( o ).not_to be_captive_cultivated
-      put :update, format: :json, id: o.id, observation: {captive_flag: "1", force_quality_metrics: true}
+      put :update, format: :json, id: o.id, observation: { captive_flag: "1" }
       o.reload
       expect( o ).to be_captive_cultivated
     end
     
-    it "should mark as wild in response to captive_flag" do
+    it "should not mark as wild in response to captive_flag=0 if there is no existing quality metric" do
       o = Observation.make!(user: user)
       expect( o ).not_to be_captive_cultivated
-      put :update, format: :json, id: o.id, observation: {captive_flag: "0", force_quality_metrics: true}
+      put :update, format: :json, id: o.id, observation: { captive_flag: "0" }
+      o.reload
+      qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
+      expect( qm ).to be_blank
+    end
+
+    it "should mark as wild in response to captive_flag=0 if there is an existing quality metric" do
+      o = Observation.make!( user: user, captive_flag: true )
+      expect( o ).to be_captive_cultivated
+      put :update, format: :json, id: o.id, observation: { captive_flag: "0" }
       o.reload
       qm = o.quality_metrics.where(metric: QualityMetric::WILD).first
       expect( qm ).to be_agree
@@ -1024,7 +1052,7 @@ shared_examples_for "an ObservationsController" do
       Delayed::Worker.new.work_off
       o1 = Observation.make!(:taxon => lt1.taxon, :latitude => p.latitude, :longitude => p.longitude)
       o2 = Observation.make!(:taxon => lt2.taxon, :latitude => p.latitude, :longitude => p.longitude)
-      get :index, :format => :json, :establishment_means => lt1.establishment_means, :place_id => p.id
+      get :index, format: :json, introduced: true, place_id: p.id
       json = JSON.parse(response.body)
       expect(json.detect{|obs| obs['id'] == o1.id}).not_to be_blank
       expect(json.detect{|obs| obs['id'] == o2.id}).to be_blank
@@ -1559,7 +1587,7 @@ shared_examples_for "an ObservationsController" do
         # the angular app doesn't need to load any observations
         expect( Observation ).not_to receive(:get_search_params)
         get :index, format: :html
-        expect(response.body).to include "ng-controller='MapController'"
+        expect(response.body).to match /ng-controller=.MapController/
         expect( response.body ).to_not have_tag("div.user a", text: @o.user.login)
       end
 
@@ -1682,6 +1710,26 @@ shared_examples_for "an ObservationsController" do
       expect(json.detect{|o| o['id'] == newo.id}).not_to be_blank
       expect(json.detect{|o| o['id'] == oldo.id}).to be_blank
     end
+
+    it "should include private coordinates when project curator coordinate access has been granted" do
+      o = Observation.make!( latitude: 1.23456, longitude: 7.890123, geoprivacy: Observation::PRIVATE )
+      po = ProjectObservation.make!( observation: o, prefers_curator_coordinate_access: true )
+      pu = ProjectUser.make!( user: user, project: po.project, role: ProjectUser::CURATOR )
+      o.reload
+      expect( o ).to be_coordinates_viewable_by( user )
+      get :project, format: :json, id: po.project_id
+      expect( response.body ).to be =~ /#{o.private_latitude}/
+      expect( response.body ).to be =~ /#{o.private_longitude}/
+    end
+
+    it "should not include private coordinates when project curator coordinate access has not been granted" do
+      o = Observation.make!( latitude: 1.23456, longitude: 7.890123, geoprivacy: Observation::PRIVATE )
+      p = Project.make!( user: user )
+      get :project, format: :json, id: p.id
+      expect(response.body).not_to be =~ /#{o.private_latitude}/
+      expect(response.body).not_to be =~ /#{o.private_longitude}/
+    end
+
   end
 
   describe "update_fields" do

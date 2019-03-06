@@ -8,7 +8,11 @@
     <title><%= content_for(:title) ? "#{content_for(:title)} · " : "" %> <%= @site.try(:name) %> </title>
     <meta http-equiv="Content-Language" content="<%= I18n.locale %>">
     <%= favicon_link_tag %>
-    <meta name="viewport" content="width=980">
+    <% if responsive? %>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <% else %>
+      <meta name="viewport" content="width=980">
+    <% end %>
     <%= render :partial => 'shared/common_stylesheets'%>
     <!-- Bootstrap -->
     <%= stylesheet_link_tag 'bootstrap_bundle' %>
@@ -38,13 +42,25 @@
       <% unless @headless -%>
         <%= render :partial => 'shared/header' %>
       <% end -%>
-      
+
       <% if (flash[:notice] || flash[:alert]) && !@flash_js %>
-        <p id="flash" class="notice"><%= (flash[:notice] || flash[:alert]).html_safe %></p> 
+        <div class="bootstrap">
+          <div class="container upstacked">
+            <div class="alert alert-warning upstacked">
+              <%= (flash[:notice] || flash[:alert]).html_safe %>
+            </div>
+          </div>
+        </div>
       <% end %>
-      
+
       <% if flash[:error] && !@flash_js %>
-        <p id="flash" class="error"><%= raw flash[:error] %></p>
+        <div class="bootstrap">
+          <div class="container upstacked">
+            <div class="alert alert-error upstacked">
+              <%= raw flash[:error] %>
+            </div>
+          </div>
+        </div>
       <% end %>
 
       <% if current_user && session[:potential_place] && flash.empty? %>
@@ -116,7 +132,8 @@
           login: '<%= current_user.login %>',
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
-          prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>
+          prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
+          prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;

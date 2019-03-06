@@ -2,6 +2,7 @@
 # Likewise, all the methods added will be available for all controllers.
 class ApplicationController < ActionController::Base
   include Ambidextrous
+  include Shared::FiltersModule
 
   # many people try random URLs like wordpress login pages with format .php
   # for any format we do not recognize, make sure we render a proper 404
@@ -60,14 +61,6 @@ class ApplicationController < ActionController::Base
     session[:return_to] = request.fullpath
   end
 
-  def set_site
-    if params[:inat_site_id]
-      @site ||= Site.find( params[:inat_site_id] )
-    end
-    @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
-    @site ||= Site.default
-  end
-
   def draft_site_requires_login
     return unless @site && @site.draft?
     return if [ login_path, user_session_path, session_path ].include?( request.path )
@@ -97,49 +90,6 @@ class ApplicationController < ActionController::Base
       trackers << [ @site.name.gsub(/\s+/, '').underscore, @site.google_analytics_tracker_id ]
     end
     request.env[ "inat_ga_trackers" ] = trackers unless trackers.blank?
-  end
-
-  def set_request_locale
-    # use params[:locale] for single-request locale settings,
-    # otherwise use the session, user's preferred, or site default,
-    # or application default locale
-    locale = params[:locale]
-    locale = session[:locale] if locale.blank?
-    locale = current_user.try(:locale) if locale.blank?
-    locale = @site.locale if locale.blank?
-    locale = locale_from_header if locale.blank?
-    locale = I18n.default_locale if locale.blank?
-    I18n.locale = locale
-    unless I18N_SUPPORTED_LOCALES.include?( I18n.locale.to_s )
-      I18n.locale = I18n.default_locale
-    end
-    true
-  end
-
-  def locale_from_header
-    return if request.env["HTTP_ACCEPT_LANGUAGE"].blank?
-    http_locale = request.env["HTTP_ACCEPT_LANGUAGE"].
-      split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.first
-    return if http_locale.blank?
-    lang, region = http_locale.split( "-" ).map(&:downcase)
-    return lang if region.blank?
-    # These re-mappings will cause problem if these regions ever get
-    # translated, so be warned. Showing zh-TW for people in Hong Kong is
-    # *probably* fine, but Brazilian Portuguese for people in Portugal might
-    # be a bigger problem.
-    if lang == "es" && region == "xl"
-      region = "mx"
-    elsif lang == "zh" && region == "hk"
-      region = "tw"
-    elsif lang == "pt" && region == "pt"
-      region = "br"
-    end
-    locale = "#{lang.downcase}-#{region.upcase}"
-    if I18N_SUPPORTED_LOCALES.include?( locale )
-      locale
-    elsif I18N_SUPPORTED_LOCALES.include?( lang )
-      lang
-    end
   end
 
   def check_preferred_place
@@ -213,6 +163,38 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def load_registration_form_data
+    @footless = true
+    @no_footer_gap = true
+    @responsive = true
+    es_query = {
+      has: ["photos"],
+      per_page: 100,
+      order_by: "votes",
+      order: "desc",
+      place_id: @site.try(:place_id).blank? ? nil : @site.place_id,
+      projects: ["log-in-photos"]
+    }
+    @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
+    if @observations.blank?
+      es_query.delete(:projects)
+      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
+    end
+    if @observations.blank?
+      es_query.delete(:place_id)
+      @observations = Observation.includes( :photos ).elastic_query( es_query ).to_a
+    end
+    if es_query[:projects].blank?
+      ratio = params[:ratio].to_f
+      ratio = 1 if ratio <= 0
+      @observations = @observations.select do |o|
+        photo = o.observation_photos.sort_by{ |op| op.position || op.id }.first.photo
+        r = photo.original_dimensions[:width].to_f / photo.original_dimensions[:height].to_f
+        r < ratio
+      end
+    end
+  end
 
   def get_flickraw
     current_user ? FlickrPhoto.flickraw_for_user(current_user) : flickr
@@ -515,22 +497,57 @@ class ApplicationController < ActionController::Base
   private
 
   def admin_required
-    unless logged_in? && current_user.has_role?(:admin)
-      msg = t(:only_administrators_may_access_that_page)
-      respond_to do |format|
-        format.html do
-          flash[:error] = msg
-          redirect_to observations_path
-        end
-        format.js do
-          render :status => :unprocessable_entity, :text => msg
-        end
-        format.json do
-          render :status => :unprocessable_entity, :json => {:error => msg}
-        end
-      end
-      return false
+    unless logged_in? && current_user.is_admin?
+      only_admins_failure_state
     end
+  end
+
+  def admin_or_this_site_admin_required
+    unless logged_in? && ( current_user.is_admin? || ( @site && current_user.is_site_admin_of?( @site ) ) )
+      only_admins_failure_state
+    end
+  end
+
+  def admin_or_any_site_admin_required
+    unless logged_in? && ( current_user.is_admin? || current_user.site_admins.any? )
+      only_admins_failure_state
+    end
+  end
+
+  def only_admins_failure_state
+    msg = t(:only_administrators_may_access_that_page)
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_back_or_default( root_url )
+      end
+      format.js do
+        render :status => :unprocessable_entity, :text => msg
+      end
+      format.json do
+        render :status => :unprocessable_entity, :json => {:error => msg}
+      end
+    end
+    return false
+  end
+
+  def site_admin_required
+    return true if logged_in? && current_user.has_role?(:admin)
+    return true if logged_in? && @site && @site.site_admins.detect{|sa| sa.user_id == current_user.id}
+    msg = t(:only_administrators_may_access_that_page)
+    respond_to do |format|
+      format.html do
+        flash[:error] = msg
+        redirect_to observations_path
+      end
+      format.js do
+        render status: :unprocessable_entity, text: msg
+      end
+      format.json do
+        render status: :unprocessable_entity, json: { error: msg }
+      end
+    end
+    return false
   end
 
   def remove_header_and_footer_for_apps
@@ -679,6 +696,16 @@ class ApplicationController < ActionController::Base
     payload.merge!(Logstasher.payload_from_session( session ))
     if logged_in?
       payload.merge!(Logstasher.payload_from_user( current_user ))
+    end
+  end
+
+  def user_viewed_updates_for( record, options = {} )
+    return unless logged_in?
+    updates = UpdateAction.where( resource: record )
+    if options[:delay]
+      UpdateAction.delay( priority: USER_PRIORITY ).user_viewed_updates( updates, current_user.id )
+    else
+      UpdateAction.user_viewed_updates( updates, current_user.id )
     end
   end
 

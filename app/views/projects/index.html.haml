@@ -98,13 +98,14 @@
               - group.compact.each do |project|
                 .col-xs-3
                   = render "thumbnail", project: project
-        .row
-          .col-xs-12
-            %h2
-              =t :recently_created
-              = link_to t(:browse_all_projects), browse_projects_path, class: "btn btn-primary btn-inat pull-right"
-        - @created.in_groups_of( 4 ) do |group|
+        - unless @created.blank?
           .row
-            - group.compact.each do |project|
-              .col-xs-3
-                = render "thumbnail", project: project
+            .col-xs-12
+              %h2
+                =t :recently_created
+                = link_to t(:browse_all_projects), browse_projects_path, class: "btn btn-primary btn-inat pull-right"
+          - @created.in_groups_of( 4 ) do |group|
+            .row
+              - group.compact.each do |project|
+                .col-xs-3
+                  = render "thumbnail", project: project

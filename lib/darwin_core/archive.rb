@@ -96,7 +96,9 @@ module DarwinCore
     end
 
     def make_metadata
-      m = DarwinCore::Metadata.new(@opts.merge(uri: FakeView.observations_url(observations_params)))
+      m = DarwinCore::Metadata.new( @opts.merge(
+        observations_params: observations_params
+      ) )
       tmp_path = File.join(@work_path, "metadata.eml.xml")
       open(tmp_path, 'w') do |f|
         f << m.render(:file => @opts[:metadata])
@@ -170,7 +172,13 @@ module DarwinCore
       params[:projects] = [@project.id] if @project
       params[:quality_grade] = @opts[:quality]
       params[:site_id] = @opts[:site_id]
-      params[:created_d2] = ( @generate_started_at || Time.now ).iso8601
+      params[:created_d1] = @opts[:created_d1]
+      params[:created_d2] = @opts[:created_d2] || ( @generate_started_at || Time.now ).iso8601
+      if @opts[:photos].to_s == "true"
+        params[:with_photos] = true
+      elsif @opts[:photos].to_s == "false"
+        params[:with_photos] = false
+      end
       params
     end
 
@@ -203,7 +211,6 @@ module DarwinCore
       if @opts[:community_taxon]
         preloads  << { community_taxon: :ancestor_taxa }
       end
-      
       try_and_try_again( Elasticsearch::Transport::Transport::Errors::ServiceUnavailable, logger: logger ) do
         CSV.open(tmp_path, 'w') do |csv|
           csv << headers

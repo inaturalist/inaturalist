@@ -23,7 +23,11 @@ export default function reducer( state = { }, action ) {
 export function setProject( p ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const project = new Project( p );
+    const additionalSearchParams = {
+      preferred_place_id: state.config.preferredPlace ? state.config.preferredPlace.id : null,
+      locale: I18n.locale
+    };
+    const project = new Project( p, additionalSearchParams );
     if ( state.config.currentUser && _.includes( project.user_ids, state.config.currentUser.id ) ) {
       project.currentUserIsMember = true;
     }
@@ -202,7 +206,6 @@ export function fetchSpeciesObservers( ) {
   };
 }
 
-
 export function fetchIdentifiers( ) {
   return ( dispatch, getState ) => {
     const project = getState( ).project;
@@ -377,6 +380,51 @@ export function leave( ) {
   };
 }
 
+export function feature( options = { } ) {
+  return ( dispatch, getState ) => {
+    const { project, config } = getState( );
+    const loggedIn = config.currentUser;
+    const viewerIsAdmin = loggedIn && config.currentUser.roles &&
+      config.currentUser.roles.indexOf( "admin" ) >= 0;
+    const viewerIsSiteAdmin = loggedIn && config.currentUser.site_admin;
+    // user must be an admin or site admin
+    if ( !project || !loggedIn || !( viewerIsAdmin || viewerIsSiteAdmin ) || !config.site ) {
+      return;
+    }
+    const params = Object.assign( { }, options, { id: project.id, inat_site_id: config.site.id } );
+    inatjs.projects.feature( params ).then( ( ) => {
+      const siteFeatures = _.filter( project.site_features, sf => sf.site_id !== config.site.id );
+      siteFeatures.push( {
+        site_id: config.site.id,
+        noteworthy: options.noteworthy || false
+      } );
+      dispatch( setAttributes( {
+        site_features: siteFeatures
+      } ) );
+    } );
+  };
+}
+
+export function unfeature( ) {
+  return ( dispatch, getState ) => {
+    const { project, config } = getState( );
+    const loggedIn = config.currentUser;
+    const viewerIsAdmin = loggedIn && config.currentUser.roles &&
+      config.currentUser.roles.indexOf( "admin" ) >= 0;
+    const viewerIsSiteAdmin = loggedIn && config.currentUser.site_admin;
+    // user must be an admin or site admin
+    if ( !project || !loggedIn || !( viewerIsAdmin || viewerIsSiteAdmin ) || !config.site ) {
+      return;
+    }
+    const params = { id: project.id, inat_site_id: config.site.id };
+    inatjs.projects.unfeature( params ).then( ( ) => {
+      dispatch( setAttributes( {
+        site_features: _.filter( project.site_features, sf => sf.site_id !== config.site.id )
+      } ) );
+    } );
+  };
+}
+
 export function convertProject( ) {
   return ( dispatch, getState ) => {
     const { project } = getState( );
@@ -385,7 +433,7 @@ export function convertProject( ) {
       message: (
         <span>
           <span>{ I18n.t( "views.projects.show.are_you_sure_you_want_to_convert" ) }</span>
-          <br /><br/>
+          <br /><br />
           <span dangerouslySetInnerHTML={ { __html:
             I18n.t( "views.projects.show.make_sure_you_have_read_about_the_differences",
               { url: "/blog/15450-announcing-changes-to-projects-on-inaturalist" }

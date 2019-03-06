@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-opts = Trollop::options do
+opts = Optimist::options do
     banner <<-EOS
 Create ObservationLinks for observations that have been integrated into 
 Calflora.
@@ -21,6 +21,7 @@ old_count = 0
 delete_count = 0
 # startindex = 0
 # maxresults = 100
+obs_ids_to_index = []
 
 url = "http://www.calflora.org/app/download?order=seq_num&wint=noc&format=Bar&cols=ID&org=iNaturalist"
 open(url).read.split("\n").each do |line|
@@ -44,11 +45,24 @@ open(url).read.split("\n").each do |line|
     ol = ObservationLink.new(:observation => observation, :href => href, :href_name => "Calflora", :rel => "alternate")
     ol.save unless opts[:debug]
     new_count += 1
+    obs_ids_to_index << observation.id
     puts "\tCreated #{ol}"
   end
 end
 
-delete_count = ObservationLink.where(href_name: "Calflora").where("updated_at < ?", start_time).count
-ObservationLink.where("href_name = 'Calflora' AND updated_at < ?", start_time).delete_all unless opts[:debug]
+links_to_delete_scope = ObservationLink.where("href_name = 'Calflora' AND updated_at < ?", start_time)
+delete_count = links_to_delete_scope.count
+obs_ids_to_index += links_to_delete_scope.pluck(:observation_id)
+links_to_delete_scope.delete_all unless opts[:debug]
 
+puts
+puts "Re-indexing #{obs_ids_to_index.size} observations..."
+obs_ids_to_index = obs_ids_to_index.compact.uniq
+obs_ids_to_index.in_groups_of( 500 ) do |group|
+  print '.'
+  Observation.elastic_index!( ids: group.compact )
+end
+puts
+
+puts
 puts "#{new_count} created, #{old_count} updated, #{delete_count} deleted in #{Time.now - start_time} s"

@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-opts = Trollop::options do
+opts = Optimist::options do
     banner <<-EOS
 Resurrect observations
 
@@ -17,6 +17,7 @@ EOS
   opt :created_on, "Created date to resurrect observations from, format: YYYY-MM-DD", :short => "-c", :type => :string
   opt :dbname, "Database to connect export from", short: "-n", type: :string, default: ActiveRecord::Base.connection.current_database
   opt :skip, "Models to skip", short: "-s", type: :string, multi: true
+  opt :from_user_resurrection, "Restoring observations of resurrected user", :type => :boolean, :short => "-r"
 end
 
 OPTS = opts
@@ -133,6 +134,13 @@ has_many_reflections.each do |k, reflection|
   if %w( comments taggings tag_taggings votes_for flags annotations ).include?( k.to_s ) && reflection.options[:as]
     join_condition += " AND #{reflection.table_name}.#{reflection.options[:as]}_type = 'Observation'"
   end
+  if OPTS.from_user_resurrection && @user
+    if ["comments", "quality_metrics"].include?( reflection.table_name )
+      join_condition += " AND #{reflection.table_name}.user_id != #{@user.id}"
+    elsif reflection.table_name == "votes"
+      join_condition += " AND #{reflection.table_name}.voter_id != #{@user.id}"
+    end
+ end
   sql = <<-SQL
     SELECT DISTINCT
       #{column_names.map{|cn| "#{reflection.table_name}.#{cn}"}.join( ", " )}
@@ -221,3 +229,11 @@ tar xzvf resurrect_#{session_id}.tgz
 source /usr/local/rvm/scripts/rvm 
 #{es_cmd}
 EOT
+
+if OPTS.from_user_resurrection && @user
+  puts
+  puts "Indexing commands for a resurrected users data"
+  puts "  Observation.elastic_index!( scope: Observation.where( user_id: #{@user.id} ) )"
+  puts "  Observation.elastic_index!( scope: Observation.joins( :identifications ).where( \"identifications.user_id=#{@user.id}\" ) )"
+  puts "  User.find( #{@user.id} ).elastic_index!"
+end

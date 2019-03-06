@@ -1,7 +1,10 @@
 import _ from "lodash";
 import React from "react";
+import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import { Dropdown } from "react-bootstrap";
+import SplitTaxon from "../../../shared/components/split_taxon";
+import { urlForTaxon } from "../../../taxa/shared/util";
 import TaxonMap from "../../identify/components/taxon_map";
 import MapDetails from "./map_details";
 
@@ -13,19 +16,27 @@ class Map extends React.Component {
 
   render( ) {
     let taxonMap;
-    const observation = this.props.observation;
-    const observationPlaces = this.props.observationPlaces;
+    const {
+      observation,
+      observationPlaces,
+      config,
+      updateCurrentUser
+    } = this.props;
+    const currentUserPrefersMedialessObs = config.currentUser
+      && config.currentUser.prefers_medialess_obs_maps;
     if ( !observation || !observation.latitude ) {
-      return ( <div className="Map">
-        <div className="TaxonMap empty">
-          <div className="no_location">
-            <i className="fa fa-map-marker" />
-            { observation.obscured && observation.geoprivacy === "private" ?
-              I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
+      return (
+        <div className="Map">
+          <div className="TaxonMap empty">
+            <div className="no_location">
+              <i className="fa fa-map-marker" />
+              { observation.obscured && !observation.geojson
+                ? I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
+            </div>
           </div>
+          <div className="map_details" />
         </div>
-        <div className="map_details" />
-      </div> );
+      );
     }
     if ( observation.latitude ) {
       // Select a small set of attributes that won't change wildy as the
@@ -38,24 +49,49 @@ class Map extends React.Component {
         "positional_accuracy",
         "public_positional_accuracy",
         "geoprivacy",
-        "taxon",
         "user",
         "map_scale"
       ] );
+      if ( observation.taxon ) {
+        obsForMap.taxon = Object.assign( { }, observation.taxon, {
+          forced_name: ReactDOMServer.renderToString(
+            <SplitTaxon
+              taxon={ observation.taxon }
+              user={ config.currentUser }
+              noParens
+              iconLink
+              url={ urlForTaxon( observation.taxon ) }
+            />
+          )
+        } );
+      }
       obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
       const mapKey = `map-for-${observation.id}-${observation.taxon ? observation.taxon.id : null}`;
       taxonMap = (
         <TaxonMap
-          key={ mapKey }
-          reloadKey={ mapKey }
+          key={mapKey}
+          reloadKey={mapKey}
           taxonLayers={[{
             taxon: obsForMap.taxon,
-            observations: { observation_id: obsForMap.id },
+            observationLayers: [
+              {
+                label: I18n.t( "verifiable_observations" ),
+                verifiable: true,
+                observation_id: obsForMap.id
+              },
+              {
+                label: I18n.t( "observations_without_media" ),
+                verifiable: false,
+                disabled: !currentUserPrefersMedialessObs,
+                observation_id: obsForMap.id,
+                onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+              }
+            ],
             places: { disabled: true },
             gbif: { disabled: true }
-          }] }
+          }]}
           observations={[obsForMap]}
-          zoomLevel={ observation.map_scale || 8 }
+          zoomLevel={observation.map_scale || 8}
           showAccuracy
           enableShowAllLayer={false}
           overlayMenu
@@ -68,10 +104,15 @@ class Map extends React.Component {
     let placeGuess = observation.private_place_guess || observation.place_guess;
     if ( placeGuess ) {
       let showMore;
-      const obscured = observation.obscured && !observation.private_geojson &&
-        ( <span className="obscured">({ I18n.t( "obscured" )})</span> );
+      const obscured = observation.obscured && !observation.private_geojson
+        && (
+          <span className="obscured">
+            ({ I18n.t( "obscured" ) })
+          </span>
+        );
       const showLength = observation.obscured ? 22 : 32;
-      if ( placeGuess.length > showLength && !this.state.showLongLabel ) {
+      const { showLongLabel } = this.state;
+      if ( placeGuess.length > showLength && !showLongLabel ) {
         placeGuess = `${placeGuess.substring( 0, showLength ).trim( )}...`;
         showMore = (
           <div className="show-more">
@@ -104,9 +145,9 @@ class Map extends React.Component {
         { taxonMap }
         <div className="map_details">
           <i
-            className={ `geoprivacy-icon ${geoprivacyIconClass}` }
-            title={ geoprivacyTitle }
-            alt={ geoprivacyTitle }
+            className={`geoprivacy-icon ${geoprivacyIconClass}`}
+            title={geoprivacyTitle}
+            alt={geoprivacyTitle}
           />
           <div className="place-guess">
             { placeGuessElement }
@@ -121,8 +162,9 @@ class Map extends React.Component {
               <Dropdown.Menu className="dropdown-menu-right">
                 <li>
                   <MapDetails
-                    observation={ observation }
-                    observationPlaces={ observationPlaces }
+                    observation={observation}
+                    observationPlaces={observationPlaces}
+                    config={config}
                   />
                 </li>
               </Dropdown.Menu>
@@ -136,7 +178,9 @@ class Map extends React.Component {
 
 Map.propTypes = {
   observation: PropTypes.object,
-  observationPlaces: PropTypes.array
+  observationPlaces: PropTypes.array,
+  config: PropTypes.object,
+  updateCurrentUser: PropTypes.func
 };
 
 export default Map;

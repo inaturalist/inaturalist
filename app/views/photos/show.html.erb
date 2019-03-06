@@ -35,7 +35,7 @@
         <%= image_tag @photo.send("#{@size}_url"), :class => "#{@size} photo" %>
       <% else %>
         <div class="nocontent meta">
-          No photo of that size.
+          <%=t :no_photos_of_that_size %>
         </div>
       <% end -%>
     </td>
@@ -45,7 +45,7 @@
         <tr>
           <th><%=t :attribution %></th>
           <td width="100%">
-            <%= rights @photo %>
+            <%= rights @photo, rel: "license" %>
             <% if @photo.editable_by?(current_user) -%>
               <span class="button">
                 <%= link_to_function t(:edit_license), "$('#editlicense').dialog({modal:true, width:'auto', title: I18n.t('edit_license')})" %>
@@ -72,13 +72,19 @@
             </td>
           </tr>
         <% end -%>
+        <% unless @photo.source_title.blank? %>
+          <tr>
+            <th><%=t :source %></th>
+            <td>
+              <% if @photo.source_url.blank? %>
+                <%=t @photo.source_title.parameterize.downcase, default: @photo.source_title %>
+              <% else %>
+                <%= link_to t( @photo.source_title.parameterize.downcase, default: @photo.source_title ), @photo.source_url %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
         <% unless @photo.native_page_url.blank? -%>
-          <% unless @photo.source_title.blank? %>
-            <tr>
-              <th><%=t :source %></th>
-              <td><%= @photo.source_title %></td>
-            </tr>
-          <% end %>
           <tr>
             <th><%=t :original %></th>
             <td><%= link_to @photo.native_page_url, @photo.native_page_url %></td>
@@ -113,14 +119,14 @@
               <% %w(small medium large original).each do |size| %>
                 <%- next if @photo.send("#{size}_url").blank? -%>
                 <li>
-                  <%= link_to t(size), url_for(:size => size) %>
+                  <%= link_to t( "photos_size.#{size}", default: t( size ) ), url_for( size: size ) %>
                 </li>
               <% end -%>
             </ul>
             
             <% if @photo.respond_to?(:repair) && (is_me?(@photo.user) || is_curator?) -%>
               <span class="button">
-                <%= link_to "Repair broken URLs", photo_repair_path(@photo), :method => :put, 
+                <%= link_to t( :repair_broken_urls ), photo_repair_path(@photo), :method => :put,
                   :data => {
                     :confirm => "This might delete the photo if it was deleted from the external site or the owner has revoked permission.  Proceed?"
                   } %>

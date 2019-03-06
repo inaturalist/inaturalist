@@ -1,1 +1,2 @@
 require "ruby_picasa"
+

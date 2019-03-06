@@ -1,7 +1,7 @@
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-@opts = Trollop::options do
+@opts = Optimist::options do
     banner <<-EOS
 Import shapefile polygons as new Places. The shapefile can be a path to a
 local .shp file or a URL to a remote ZIP file containing a shapefile. If the
@@ -29,7 +29,7 @@ def system_call(cmd)
 end
 
 @path =  ARGV[0] #{}"ftp://ftp.state.ct.us/pub/dep/gis/shapefile_format_zip/DEP_Property_shp.zip"
-Trollop::die "You a path to a shapefile" if @path.blank?
+Optimist::die "You a path to a shapefile" if @path.blank?
 @shapefile_name = @opts.shapefile_name || "#{File.basename(@path, ".*")}.shp"
 @ancestor_place = Place.find(@opts.ancestor)
 @place_type = Place::PLACE_TYPE_CODES[@opts.place_type]

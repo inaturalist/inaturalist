@@ -54,8 +54,6 @@ eu:
       zituzten</span>
     other: <span class=count>%{count}</span> behaketak ikerketa maila espezieak identifikatu
       zituzten</span>
-  a: bat
-  a_: bat
   a_community_for_naturalist: Naturalistentzako komunitatea
   a_default_taxon_name_will_automatically_created: |-
     Taxonaren izen zientifikoaren ezaugarrian oinarrituta taxonaren izena
@@ -108,7 +106,6 @@ eu:
   adapted_by_name_from_a_work_by_original: '%{name}(e)k onartua %{original}(r)en lan
     batean oinarritua'
   add: Gehitu
-  add_a: 'Gehitu:'
   add_a_batch_of_observations: Ohar taldea gehitu
   add_a_batch_of_observations_by_csv: Ohar taldea gehitu CSV bidez
   add_a_batch_of_taxa: Taxon taldea gehitu
@@ -205,7 +202,6 @@ eu:
   add_taxon_batch_to: 'Taxon-zerrenda gehitu hona: %{list}'
   add_taxon_range: Taxon maila gehitu
   add_taxonomic_tags_to: Etiketa taxonomikoak gehitu hautatutako Flickr-eko » argazkiei;
-  add_to: 'Hona gehitu:'
   add_to_a_scheme: Eskema batetara gehitu
   add_to_a_project: Proiektu batera gehitu
   add_to_calendar: Egutegira gehitu
@@ -444,7 +440,6 @@ eu:
   automatically_update_my_content_for_taxon_changes: Nire edukia automatikoki eguneratu
     aldaketa dagoenean
   back: Itzuli
-  back_to: 'Hona itzuli:'
   back_to_albums: Albumera itzuli
   back_to_all_species: Espezie guztietara itzuli
   back_to_browsing_people: Pertsonen bilaketara itzuli
@@ -658,12 +653,6 @@ eu:
   clear: Garbitu
   clear_color_filters: Kolore-iragazkiak ezabatu
   clear_search: Bilaketa ezabatu
-  clear_shapes: Formak kendu
-  click_add_an_observation_to_the_lower_right: Ongi etorri %{site_name_short}-(e)ra!
-    Behaketa gehitu esteka hautatu. Erregistratzera bidaltzen dizute / Sartu oraindik
-    egin ez baduzu
-  click_on_map_to_draw_shape_around_place: Klikatu mapan lekuaren inguruan irudia
-    marrazteko
   click_on_the_map_to: Klikatu mapan zure oharra kokatzeko
   click_the_map: <strong>Mapan klikatu</strong> kokapena gehitzeko.
   click_the_map_to_jump_new_place: Mapan klikatu beste leku batetara mugitzeko
@@ -1099,7 +1088,6 @@ eu:
     bete
   filling_out_your_profile: zure profila osatu
   filter: Iragazkia
-  filter_by: 'Honen arabera iragazi:'
   filter_by_place: Lekuaren arabera iragazi
   filter_by_taxon: Taxioiei begira iragazi
   filter_by_place_taxon_and_color: Kontrolak erabilita iragazi leku, kolore, espezie
@@ -1151,7 +1139,6 @@ eu:
     %{site_name} webguneko erabiltzaileek gauzak markatzen dituzte,
     zerbait ez dagoela ondo topatzen dutenean. Hemen administrariek oraindik konpondu
     gabeko zenbait arazo daude.
-  flags_for: 'Honetarako markak:'
   flickr_account_information: Zure Flickr-eko kontuko informazioa
   flickr_description: Flickr argazkiak linean ostatatzeko zerbitzua da; agian ezagutuko
     duzu.
@@ -1169,8 +1156,6 @@ eu:
   flickr_youre_all_set: Prest dago %{site_name} arakatzen hasteko
   fluid: arina
   follow: Jarraitu
-  follow_us: 'Jarrai iezaguzu hemen:'
-  follow_us_on: 'Jarrai iezaguzu hemen:'
   follow_user: 'Honi jarraitu: %{user}'
   followed_projects: Jarraitutako Proiektuak
   follower: jarraitzailea
@@ -1186,8 +1171,6 @@ eu:
   fri: Ost
   from: 'hemendik:'
   from_a_place: leku batekoa
-  from_anywhere_change: edozein lekutakoa (<span class="button">aldatu</span>)
-  from_in_this_place: leku honetakoa
   from_list: Zerrendakoa
   from_this: honetatik
   from_photos: Argazkiena
@@ -1379,7 +1362,6 @@ eu:
   import_sounds: Soinuak Inportatu
   importing: Inportatzen...
   improving: Hobetzen
-  in_: 'hemendik:'
   inbox: postontzia
   in_order_to_login_and_using_site_visit_url: Erregistratu eta gunea erabiltzen hasteko,
     klikatu esteka honetan zure kontua aktibatzeko
@@ -1433,8 +1415,6 @@ eu:
   invited_to_the_following_projects: 'Proiektu hauetara gonbidatuta zaude:'
   inviting: gonbidatzen...
   iphone: iPhone
-  is_a: 'zera da:'
-  is_an: 'zera da:'
   is_an_evaluation: |-
     zehaztasun meaketaren ebaluaketa da.
     Ikerketa Graduaren oharrak zientzialariek erabili ditzakete ikertzeko. Eman zure botoa hemen:
@@ -1779,7 +1759,7 @@ eu:
     gehitu eta, ondoren, aldatu eta hor izango duzu zehatz gisa markatzeko aukera.
   new_custom_field_for: 'Pertsonalizatutako eremu berria honetarako:'
   new_flag_for: 'Marka berria honetarako:'
-  new_journal_posts: Artikulu berria egunkarian
+  new_journal_post: Artikulu berria egunkarian
   new_list: Zerrenda berria
   new_members: Kide berriak
   new_message: Mezu berria
@@ -2233,8 +2213,8 @@ eu:
     germany: Alemania
     greece: Grezia
     hungary: Hungaria
-    italy: Italia
     iraq: Irak
+    italy: Italia
     japan: Japonia
     martinique: Martinika
     mexico: Mexiko
@@ -2248,8 +2228,8 @@ eu:
     poland: Polonia
     republic_of_congo: Kongo
     russia: Errusia
-    saudi_arabia: Saudi Arabia
     sao_tome_and_principe: Sao Tome eta Principe
+    saudi_arabia: Saudi Arabia
     south_america: Hego Amerika
     spain: Espainia
     sweden: Suedia
@@ -3004,7 +2984,6 @@ eu:
   to_add_comments: aipamenak gehitzeko.
   to_add_identifications: identifikazioak gehitzeko.
   to_add_ids: identifikazioak gehitzeko
-  to_an: bati
   to_configure_your_widget: zure widget-a konfiguratzeko.
   to_suggest_an_identification: Identifikazio bat gomendatu
   to_tag_your_flickr_from_here: zure Flickr-eko argazkiak ebaki eta itsatsi gabe hemendik

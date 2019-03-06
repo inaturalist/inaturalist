@@ -198,10 +198,14 @@ export function fetchTerms( ) {
     }
     return inatjs.observations.popularFieldValues( params ).then( r => {
       const relevantResults = _.filter( r.results, f => (
+        !f.controlled_attribute.taxon_ids
+        ||
         _.intersection(
           s.taxon.taxon.ancestor_ids,
           f.controlled_attribute.taxon_ids
         ).length > 0
+        ||
+        f.controlled_attribute.taxon_ids.length === 0
       ) );
       dispatch( {
         type: SET_FIELD_VALUES,
@@ -311,7 +315,7 @@ export function fetchInteractions( taxon ) {
       type: "json.v2",
       accordingTo: "iNaturalist"
     };
-    const url = `http://api.globalbioticinteractions.org/interaction?${querystring.stringify( params )}`;
+    const url = `https://api.globalbioticinteractions.org/interaction?${querystring.stringify( params )}`;
     fetch( url ).then(
       response => {
         response.json( ).then( json => dispatch( setInteractions( json ) ) );
@@ -439,7 +443,7 @@ export function fetchTaxonChange( taxon ) {
     fetch( `/taxon_changes.json?taxon_id=${t.id}`, opts )
       .then( response => response.json( ) )
       .then( json => {
-        if ( !json[0] ) {
+        if ( !json[0] || _.isEmpty( json[0].input_taxa ) ) {
           return;
         }
         let taxonChange = json[0];

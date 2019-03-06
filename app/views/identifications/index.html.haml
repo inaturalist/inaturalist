@@ -7,7 +7,7 @@
       var counts = [
         ["Category", "Count"]
       ];
-      counts = counts.concat( #{@counts.to_a.sort_by(&:first).to_json} );
+      counts = counts.concat( #{@counts.to_a.sort_by(&:first).to_json.html_safe} );
       var data = google.visualization.arrayToDataTable( counts );
       var options = {
         legend: {

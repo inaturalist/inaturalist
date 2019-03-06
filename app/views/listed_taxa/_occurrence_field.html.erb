@@ -36,8 +36,8 @@
     </p>
     <dl>
       <% for identifier, description in ListedTaxon::OCCURRENCE_STATUS_DESCRIPTIONS %>
-        <dt><%= identifier %></dt>
-        <dd><%= description %></dd>
+        <dt><%=t "occurrence_status_levels.#{identifier}", default: identifier %></dt>
+        <dd><%=t "occurrence_status_descriptions.#{identifier}", default: description %></dd>
       <% end %>
     </dl>
   </div>

@@ -2,30 +2,35 @@ class ProjectsController < ApplicationController
   WIDGET_CACHE_EXPIRATION = 15.minutes
 
   protect_from_forgery unless: -> { request.format.widget? }
-  before_filter :allow_external_iframes, only: [:show]
+  before_filter :allow_external_iframes, only: [ :show ]
 
   caches_action :observed_taxa_count, :contributors,
-    :expires_in => WIDGET_CACHE_EXPIRATION,
-    :cache_path => Proc.new {|c| c.params}, 
-    :if => Proc.new {|c| c.request.format == :widget}
+    expires_in: WIDGET_CACHE_EXPIRATION,
+    cache_path: Proc.new {|c| c.params},
+    if: Proc.new {|c| c.request.format == :widget}
 
   before_action :doorkeeper_authorize!, 
-    only: [ :by_login, :join, :leave, :members ],
+    only: [ :by_login, :join, :leave, :members, :feature, :unfeature ],
     if: lambda { authenticate_with_oauth? }
+  before_filter :admin_or_this_site_admin_required, only: [ :feature, :unfeature ]
   
-  before_filter :return_here, :only => [:index, :show, :contributors, :members, :show_contributor, :terms, :invite]
+  before_filter :return_here,
+    only: [ :index, :show, :contributors, :members, :show_contributor, :terms, :invite ]
   before_filter :authenticate_user!, 
-    :unless => lambda { authenticated_with_oauth? },
-    :except => [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
+    unless: lambda { authenticated_with_oauth? },
+    except: [ :index, :show, :search, :map, :contributors, :observed_taxa_count,
       :browse, :calendar, :stats_slideshow ]
   load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
-  before_filter :load_project, :except => load_except
-  blocks_spam :except => load_except, :instance => :project
-  before_filter :ensure_current_project_url, :only => :show
-  before_filter :load_project_user, :except => [:index, :search, :new_traditional, :by_login, :new]
-  before_filter :load_user_by_login, :only => [:by_login]
-  before_filter :ensure_can_edit, :only => [:edit, :update]
-  before_filter :filter_params, :only => [:update, :create]
+  before_filter :load_project, except: load_except
+  blocks_spam except: load_except, instance: :project
+  check_spam only: [:create, :update], instance: :project
+  before_filter :ensure_current_project_url, only: :show
+  before_filter :load_project_user,
+    except: [ :index, :search, :new_traditional, :by_login, :new, :feature, :unfeature ]
+  before_filter :load_user_by_login, only: [ :by_login ]
+  before_filter :ensure_can_edit, only: [ :edit, :update ]
+  before_filter :filter_params, only: [ :update, :create ]
+  before_filter :site_required, only: [ :feature, :unfeature ]
   
   ORDERS = %w(title created)
   ORDER_CLAUSES = {
@@ -40,31 +45,57 @@ class ProjectsController < ApplicationController
           @place = @site.place unless params[:everywhere].yesish?
         end
 
-        filters = []
-        if @place
-          filters << { terms: { associated_place_ids: [@place.id] } }
+        base_params = { site_id: @site.id, ttl: 600 }
+        if current_user && ( current_user.is_admin? || current_user.site_admins.any? )
+          base_params[:ttl] = -1
         end
-        project_ids = Project.elastic_search(
-          filters: filters,
-          sort: [
-            { featured_at: :desc },
-            { updated_at: :desc }
-          ],
-          source: %w(id),
-          size: 100
-        ).response.hits.hits.map{|h| h._source.id }
+        carousel_r = INatAPIService.projects( base_params.merge(
+          noteworthy: true,
+          order_by: "featured",
+          per_page: 3
+        ) )
 
-        @projects = Project.where( id: project_ids ).includes(:stored_preferences).not_flagged_as_spam.limit( 30 )
-        @created = @projects.order( "projects.id desc" ).limit( 8 )
-        @featured = @projects.featured
-        @carousel = @featured.where( "project_type IN ('collection', 'umbrella')" ).limit( 3 )
-        @carousel = @featured.limit( 3 ) if @carousel.count == 0
-        @carousel = @projects.limit( 3 ) if @carousel.count == 0
-        @carousel = @carousel.to_a.sort_by(&:featured_at).reverse
+        carousel_ids = ( carousel_r ? carousel_r.results : [] ).map{ |p| p["id"] }
+        @carousel = Project.where(id: carousel_ids).to_a
 
-        @featured = @featured.limit( 30 ).to_a.reject{ |p| @carousel.include?( p )}.sort_by(&:featured_at).reverse[0..8]
-        @recent = @projects.joins(:posts).order( "posts.id DESC" ).limit( 20 )
-        @recent = @recent.to_a.uniq[0..7]
+        featured_r = INatAPIService.projects( base_params.merge(
+          featured: true,
+          not_id: @carousel.map(&:id),
+          order_by: "featured",
+          per_page: 11
+        ) )
+        featured_ids = ( featured_r ? featured_r.results : [] ).map{ |p| p["id"] }
+        @featured = Project.where(id: featured_ids).to_a
+        while @carousel.length < 3 && @featured.length > 0 do
+          @carousel.push( @featured.shift )
+        end
+        @featured = @featured[0...8]
+
+        recent_r = INatAPIService.projects( base_params.merge(
+          not_id: @carousel.map(&:id) + @featured.map(&:id),
+          per_page: 11,
+          order_by: "recent_posts",
+          place_id: @place.try(:id)
+        ) )
+        recent_ids = ( recent_r ? recent_r.results : [] ).map{ |p| p["id"] }
+        @recent = Project.where(id: recent_ids).to_a
+        while @carousel.length < 3 && @recent.length > 0 do
+          @carousel.push( @recent.shift )
+        end
+        @recent = @recent[0...8]
+
+        created_r = INatAPIService.projects( base_params.merge(
+          not_id: @carousel.map(&:id) + @featured.map(&:id) + @recent.map(&:id),
+          per_page: 8,
+          order_by: "created",
+          place_id: @place.try(:id),
+          has_posts: true
+        ) )
+        created_ids = ( created_r ? created_r.results : [] ).map{ |p| p["id"] }
+        @created = Project.where(id: created_ids).to_a
+
+        Project.preload_associations( @carousel + @featured + @recent + @created, :stored_preferences )
+
         if logged_in?
           @started = current_user.projects.not_flagged_as_spam.
             order("projects.id desc").limit(5).includes(:stored_preferences)
@@ -83,15 +114,33 @@ class ProjectsController < ApplicationController
       end
       format.json do
         scope = Project.all
-        if params[:featured] && params[:latitude]
-          scope = scope.featured_near_point( params[:latitude], params[:longitude] )
+        # ensuring lat/lng are floats to prevent SQL injection in an order clause below
+        if params[:latitude]
+          params[:latitude] = Float(params[:latitude]) rescue nil
+        end
+        if params[:longitude]
+          params[:longitude] = Float(params[:longitude]) rescue nil
+        end
+        if params[:featured] && params[:latitude] && params[:longitude]
+          scope = scope.joins(:site_featured_projects)
+          scope = scope.
+            where(["projects.latitude IS NULL OR ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(?, ?)) < 5",
+              params[:latitude], params[:longitude]]).
+            order("CASE WHEN projects.latitude IS NULL THEN 6 ELSE ST_Distance(ST_Point(projects.longitude, projects.latitude), ST_Point(#{params[:latitude]}, #{params[:latitude]})) END")
         else
-          scope = scope.featured if params[:featured]
-          scope = scope.near_point(params[:latitude], params[:longitude]) if params[:latitude] && params[:longitude]
+          if params[:featured]
+            scope = scope.joins(:site_featured_projects)
+          end
+          if params[:latitude] && params[:longitude]
+            scope = scope.near_point(params[:latitude], params[:longitude])
+          end
         end
         scope = scope.in_group(params[:group]) if params[:group]
         scope = scope.from_source_url(params[:source]) if params[:source]
-        @projects = scope.paginate(:page => params[:page], :per_page => 100)
+        scope = scope.includes( :project_observation_rules, :project_list, :place,
+          { project_observation_fields: :observation_field }
+        )
+        @projects = scope.paginate(:page => params[:page], :per_page => 100).to_a.uniq
         opts = Project.default_json_options.merge(:include => [
           :project_list, 
           {:project_observation_fields => ProjectObservationField.default_json_options}
@@ -191,7 +240,7 @@ class ProjectsController < ApplicationController
         # if previewing, or the project is a new-style, fetch the API
         # response and render the React projects show page
         if @project.is_new_project? || preview
-          projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+          projects_response = INatAPIService.project( @project.id, { rule_details: true, ttl: -1 } )
           if projects_response.blank?
             flash[:error] = I18n.t( :doh_something_went_wrong )
             return redirect_to projects_path
@@ -228,6 +277,7 @@ class ProjectsController < ApplicationController
         if logged_in? && @project_user.blank?
           @project_user_invitation = @project.project_user_invitations.where(:invited_user_id => current_user).first
         end
+        @site_feature = @project.site_featured_projects.where(site_id: @site.id).first
 
         if params[:iframe]
           @headless = @footless = true
@@ -272,7 +322,7 @@ class ProjectsController < ApplicationController
 
   def edit
     if @project.is_new_project?
-      projects_response = INatAPIService.get( "/projects/#{@project.id}?rule_details=true=&ttl=-1" )
+      projects_response = INatAPIService.project( @project.id, { rule_details: true, ttl: -1 } )
       if projects_response.blank?
         flash[:error] = I18n.t( :doh_something_went_wrong )
         return redirect_to projects_path
@@ -885,7 +935,8 @@ class ProjectsController < ApplicationController
     @errors = {}
     @project_observations = []
     @observations.each do |observation|
-      project_observation = ProjectObservation.create(project: @project, observation: observation, user: current_user)
+      project_observation = ProjectObservation.create( project: @project, observation: observation,
+        user: current_user, skip_touch_observation: true )
       if project_observation.valid?
         @project_observations << project_observation
       else
@@ -895,8 +946,8 @@ class ProjectsController < ApplicationController
       if @project_invitation = ProjectInvitation.where(project_id: @project.id, observation_id: observation.id).first
         @project_invitation.destroy
       end
-      
     end
+    Observation.elastic_index!( ids: @observations.map( &:id ) )
     
     @unique_errors = @errors.values.flatten.uniq.to_sentence
     
@@ -938,24 +989,18 @@ class ProjectsController < ApplicationController
       @place = @site_place unless params[:everywhere].yesish?
     end
     if @q = params[:q]
-      filters = [
-        {
-          multi_match: {
-            query: @q,
-            operator: "and",
-            fields: [ :title, :description ],
-            type: "phrase"
-          }
-        }
-      ]
-      filters << { terms: { associated_place_ids: [@place.id] } } if @place
-      @projects = Project.elastic_paginate(
-        filters: filters,
-        inverse_filters: [
-          { term: { spam: true } }
-        ],
-        page: params[:page]
+      response = INatAPIService.get(
+        "/search",
+        q: @q,
+        page: params[:page],
+        sources: "projects",
+        place_id: @place.try(:id),
+        ttl: logged_in? ? "-1" : nil
       )
+      projects = Project.where( id: response.results.map{|r| r["record"]["id"]} ).index_by(&:id)
+      @projects = WillPaginate::Collection.create( response["page"] || 1, response["per_page"] || 0, response["total_results"] || 0 ) do |pager|
+        pager.replace( response.results.map{|r| projects[r["record"]["id"]]} )
+      end
     end
     respond_to do |format|
       format.html
@@ -1017,6 +1062,27 @@ class ProjectsController < ApplicationController
     end
     @project.update_attributes( user: new_admin )
     redirect_back_or_default @project
+  end
+
+  def feature
+    feature = SiteFeaturedProject.where(site: @site, project: @project).
+      first_or_create(user: @current_user)
+    feature.update_attributes( user: @current_user )
+    if feature.noteworthy && ( params[:noteworthy].nil? || params[:noteworthy].noish? )
+      feature.update_attributes( noteworthy: false )
+    elsif !feature.noteworthy && params[:noteworthy].yesish?
+      feature.update_attributes( noteworthy: true )
+    end
+    Project.refresh_es_index
+    render status: :ok, json: { }
+  end
+
+  def unfeature
+    SiteFeaturedProject.where(
+      site: @site, project: @project
+    ).destroy_all
+    Project.refresh_es_index
+    render status: :ok, json: { }
   end
 
   private
@@ -1086,15 +1152,17 @@ class ProjectsController < ApplicationController
   end
   
   def filter_params
-    params[:project].delete(:featured_at) unless current_user.is_admin?
-    if current_user.is_admin?
-      params[:project][:featured_at] = params[:project][:featured_at] == "1" ? Time.now : nil
-    else
-      params[:project].delete(:featured_at)
-    end
     if params[:project][:project_type] != Project::BIOBLITZ_TYPE && !current_user.is_curator?
       params[:project].delete(:prefers_aggregation)
     end
     true
   end
+
+  def site_required
+    unless @site
+      render status: :unprocessable_entity, json: { errors: "Site required" }
+      return
+    end
+  end
+
 end

@@ -29,10 +29,11 @@ const SplitTaxon = props => {
     }
     title += ` ${taxon.name}`;
     if ( taxon.preferred_common_name ) {
+      const comName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
       if ( user && user.prefers_scientific_name_first ) {
-        title = `${title} (${_.trim( taxon.preferred_common_name )})`;
+        title = `${title} (${_.trim( comName )})`;
       } else {
-        title = `${taxon.preferred_common_name} (${_.trim( title )})`;
+        title = `${comName} (${_.trim( title )})`;
       }
     }
   }
@@ -76,25 +77,26 @@ const SplitTaxon = props => {
       const commonName = iNatModels.Taxon.titleCaseName( taxon.preferred_common_name );
       return (
         <LinkElement
-          key={ key }
+          key={key}
           className={`comname ${comNameClass}`}
-          href={ url }
-          target={ target }
-          onClick={ onClick }
+          href={url}
+          target={target}
+          onClick={onClick}
         >{
           truncateText( commonName )
         }</LinkElement>
       );
-    } else if ( !taxon ) {
+    }
+    if ( !taxon ) {
       comNameClass = `noname display-name ${comNameClass}`;
       if ( placeholder ) {
         return (
-          <span key={ key }>
+          <span key={key}>
             <LinkElement
-              className={ comNameClass }
-              href={ url }
-              onClick={ onClick }
-              target={ target }
+              className={comNameClass}
+              href={url}
+              onClick={onClick}
+              target={target}
             >{
               I18n.t( "unknown" )
             }</LinkElement> <span className="altname">
@@ -105,11 +107,11 @@ const SplitTaxon = props => {
       }
       return (
         <LinkElement
-          key={ key }
-          className={ comNameClass }
-          href={ url }
-          onClick={ onClick }
-          target={ target }
+          key={key}
+          className={comNameClass}
+          href={url}
+          onClick={onClick}
+          target={target}
         >
           { I18n.t( "unknown" ) }
         </LinkElement>

@@ -1,0 +1,75 @@
+.PhotoBrowser {
+  .photos {
+    margin: -2.5px;
+    line-height: 0;
+  }
+  .TaxonPhoto {
+    display: inline-block;
+    margin: 2.5px;
+  }
+  .TaxonPhoto .actions {
+    margin-top: -60px;
+  }
+  .loading {
+    color: #999;
+    font-size: 150%;
+    margin: 20px;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.PhotoBrowser.fluid {
+  .photos {
+    display: flex;
+    flex-wrap: wrap; 
+  }
+  .TaxonPhoto {
+    flex-grow: 1;
+  }
+}
+
+#controls {
+  display: flex;
+  margin-bottom: 20px;
+
+  .btn-group.open .dropdown-toggle {
+    box-shadow: none;
+  }
+
+  #layout-control {
+    min-width: 80px;
+  }
+
+  #filters {
+    line-height: 30px;
+  }
+
+  .control-group {
+    margin-right: 20px;
+  }
+  .btn.btn-link {
+    color: black;
+    margin: 0;
+    padding: 0;
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+  }
+}
+
+#hero {
+  min-height: 500px;
+}
+
+.photo-group {
+  margin-bottom: 20px;
+  h3 { margin-top: 40px; }
+  h3 .SplitTaxon {
+    text-transform: none;
+  }
+  h3 .taxon .display-name {
+    color: black;
+  }
+}
+.photo-group.first h3 { margin-top: 0px; }

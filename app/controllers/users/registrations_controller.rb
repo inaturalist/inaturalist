@@ -1,5 +1,9 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+  layout "registrations"
+
+  before_filter :load_registration_form_data, only: [:new, :create]
+
   def whitelist_params
     if params[:user]
       params.require(:user).permit(
@@ -22,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
                                             remoteip: requestor_ip,
                                             secret: @site.google_recaptcha_secret )
         errors = [ I18n.t( :recaptcha_verification_failed ) ]
-        flash[:error] = errors.first
+        resource.errors.add(:recaptcha, I18n.t( :recaptcha_verification_failed ) )
       end
     end
 
@@ -68,4 +72,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
       format.json { render json: { errors: errors } }
     end
   end
+
 end

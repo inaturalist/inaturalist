@@ -11,6 +11,7 @@ class FakeView < ActionView::Base
   include TaxaHelper
   include GuidesHelper
   include ObservationsHelper
+  include UsersHelper
 
   @@default_url_options = {
     host: Site.default ? Site.default.url.sub( "http://", '' ) : "http://localhost",

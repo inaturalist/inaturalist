@@ -1,6 +1,12 @@
 require 'machinist/active_record'
 require 'faker'
 
+Announcement.blueprint do
+  start { 1.day.ago }
+  send(:end) { 1.day.from_now }
+  body { Faker::Lorem.sentence }
+  placement { "users/dashboard#sidebar" }
+end
 Annotation.blueprint do
   controlled_attribute { ControlledTerm.make! }
   controlled_value { ControlledTerm.make! }
@@ -354,6 +360,17 @@ Site.blueprint do
   url { "http://#{Faker::Internet.domain_name}" }
 end
 
+SiteAdmin.blueprint do
+  user { User.make! }
+  site { Site.make! }
+end
+
+SiteFeaturedProject.blueprint do
+  project { Project.make! }
+  site { Site.make! }
+  user { User.make! }
+end
+
 SiteStatistic.blueprint do
   data { {
     observations: { },
@@ -393,8 +410,18 @@ TaxonChange.blueprint do
 end
 
 TaxonCurator.blueprint do
-  taxon { Taxon.make! }
+  taxon_framework { TaxonFramework.make! }
   user { make_curator }
+end
+
+TaxonFramework.blueprint do
+  taxon { Taxon.make! }
+  rank_level { 5 }
+  source { Source.make! }
+end
+
+TaxonFrameworkRelationship.blueprint do
+  taxon_framework { TaxonFramework.make! }
 end
 
 TaxonDrop.blueprint do

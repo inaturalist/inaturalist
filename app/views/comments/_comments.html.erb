@@ -4,14 +4,21 @@
   hide_form = true if current_user && current_user.blocked_by?( parent.try(:user) )
   remote ||= nil 
   header_tag ||= "h3"
+  comments = if is_admin? || is_curator?
+    parent.comments
+  else
+    parent.comments.select do |c|
+      !c.flagged? || c.user_id == current_user.try(:id)
+    end
+  end
 -%>
 <%= content_tag header_tag do %>
   <%=t :comments %>
 <% end -%>
-<% if parent.comments.empty? %>
+<% if comments.empty? %>
   <div class="text-muted noresults"><%=t :no_comments_yet %></div>
 <% end %>
-<% for comment in parent.comments.sort {|a,b| a.created_at <=> b.created_at } %>
+<% for comment in comments.sort {|a,b| a.created_at <=> b.created_at } %>
   <div class="<%= cycle('odd', 'even') %>">
     <%= render :partial => 'shared/activity_item', :object => comment %>
   </div>

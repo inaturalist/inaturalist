@@ -1,5 +1,5 @@
 import _ from "lodash";
-import "babel-polyfill";
+import "@babel/polyfill";
 import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
@@ -14,6 +14,7 @@ import flaggingModalReducer from "../../observations/show/ducks/flagging_modal";
 /* global PROJECT_DATA */
 /* global CURRENT_TAB */
 /* global CURRENT_SUBTAB */
+/* global SITE */
 
 const rootReducer = combineReducers( {
   config: configReducer,
@@ -37,6 +38,12 @@ const store = createStore(
 if ( !_.isEmpty( CURRENT_USER ) ) {
   store.dispatch( setConfig( {
     currentUser: CURRENT_USER
+  } ) );
+}
+
+if ( !_.isEmpty( SITE ) ) {
+  store.dispatch( setConfig( {
+    site: SITE
   } ) );
 }
 

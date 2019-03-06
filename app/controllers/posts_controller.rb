@@ -4,6 +4,7 @@ class PostsController < ApplicationController
   load_only = [ :show, :edit, :update, :destroy ]
   before_filter :load_post, :only => load_only
   blocks_spam :only => load_only, :instance => :post
+  check_spam only: [:create, :update], instance: :post
   before_filter :load_parent, :except => [:browse, :for_project_user, :for_user]
   before_filter :load_new_post, :only => [:new, :create]
   before_filter :owner_required, :only => [:create, :edit, :update, :destroy]
@@ -23,6 +24,13 @@ class PostsController < ApplicationController
     @posts = scope.not_flagged_as_spam.published.page(params[:page]).
       per_page( per_page ).order( "published_at DESC" )
     
+    if !params[:newer_than].blank? && ( newer_than_post = Post.find_by_id( params[:newer_than] ) )
+      @posts = @posts.where( "posts.published_at > ?", newer_than_post.published_at )
+    end
+    if !params[:older_than].blank? && ( older_than_post = Post.find_by_id( params[:older_than] ) )
+      @posts = @posts.where( "posts.published_at < ?", older_than_post.published_at )
+    end
+
     # Grab the monthly counts of all posts to show archives
     get_archives
     
@@ -86,6 +94,7 @@ class PostsController < ApplicationController
         @next = @post.parent.journal_posts.published.where("published_at > ?", @post.published_at || @post.updated_at).order("published_at ASC").first
         @prev = @post.parent.journal_posts.published.where("published_at < ?", @post.published_at || @post.updated_at).order("published_at DESC").first
         @trip = @post
+        user_viewed_updates_for( @trip ) if logged_in?
         @observations = @post.observations.order_by('observed_on')
         @shareable_image_url = @post.body[/img.+?src=["'](.+?)["']/, 1] if @post.body
         @shareable_image_url ||= if @post.parent_type == "Project"

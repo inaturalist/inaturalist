@@ -1,21 +1,25 @@
 #encoding: utf-8
 class UsersController < ApplicationController
-  before_action :doorkeeper_authorize!,
-    only: [ :create, :update, :edit, :dashboard, :new_updates, :api_token ],
+  before_action -> { doorkeeper_authorize! :login, :write },
+    only: [ :edit ],
+    if: lambda { authenticate_with_oauth? }
+  before_action -> { doorkeeper_authorize! :write },
+    only: [ :create, :update, :dashboard, :new_updates, :api_token ],
     if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
     :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
-    :show, :update, :relationships, :add_role, :remove_role, :set_spammer,
-    :merge ]
+    :show, :update, :followers, :following, :relationships, :add_role,
+    :remove_role, :set_spammer, :merge, :trust, :untrust ]
   before_filter :find_user, :only => load_only
   # we want to load the user for set_spammer but not attempt any spam blocking,
   # because set_spammer may change the user's spammer properties
   blocks_spam :only => load_only - [ :set_spammer ], :instance => :user
+  check_spam only: [:create, :update], instance: :user
   before_filter :ensure_user_is_current_user_or_admin, :only => [:update, :destroy]
   before_filter :admin_required, :only => [:curation, :merge]
-  before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer]
+  before_filter :curator_required, :only => [:suspend, :unsuspend, :set_spammer, :recent]
   before_filter :return_here, :only => [:index, :show, :relationships, :dashboard, :curation]
   before_filter :before_edit, only: [:edit, :edit_after_auth]
 
@@ -114,8 +118,26 @@ class UsersController < ApplicationController
     end
     redirect_back_or_default @user
   end
+
+  def delete
+    @observations_count = current_user.observations_count
+    @helpers_count = INatAPIService.get( "/observations/identifiers",
+      user_id: current_user.id ).total_results
+    @comments_count = current_user.comments.count
+    @identifications_count = INatAPIService.get( "/identifications",
+      user_id: current_user.id, own_observation: false, current: true ).total_results
+    respond_to do |format|
+      format.html do
+        render layout: "bootstrap"
+      end
+    end
+  end
   
   def destroy
+    if params[:confirmation] && params[:confirmation] != params[:confirmation_code]
+      flash[:error] = t( "views.users.delete.you_must_enter_confirmation_code_in_the_form", confirmation_code: params[:confirmation_code] )
+      return redirect_to :back
+    end
     @user.delay(priority: USER_PRIORITY,
       unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
     sign_out(@user)
@@ -128,12 +150,14 @@ class UsersController < ApplicationController
     if [ "true", "false" ].include?(params[:spammer])
       @user.update_attributes(spammer: params[:spammer])
       if params[:spammer] === "false"
+        flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: FakeView.link_to_user( @user ) )
         @user.flags_on_spam_content.each do |flag|
           flag.update_attributes(resolved: true)
         end
         @user.flags.where(flag: Flag::SPAM).update_all(resolved: true)
         @user.unsuspend!
       else
+        flash[:notice] = t(:user_flagged_as_a_spammer_html, user: FakeView.link_to_user( @user ) )
         @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
       end
     end
@@ -279,7 +303,7 @@ class UsersController < ApplicationController
   def show
     @selected_user = @user
     @login = @selected_user.login
-    @followees = @selected_user.friends.where( "users.suspended_at IS NULL" ).paginate(:page => 1, :per_page => 15).order("id desc")
+    @followees = @selected_user.followees.page( 1 ).per_page( 15 ).order( "users.id desc" )
     @favorites_list = @selected_user.lists.find_by_title("Favorites")
     @favorites_list ||= @selected_user.lists.find_by_title(t(:favorites))
     if @favorites_list
@@ -307,18 +331,31 @@ class UsersController < ApplicationController
       end
       opts = User.default_json_options
       opts[:only] ||= []
-      opts[:only] << :description
+      opts[:only] << :description if @selected_user.known_non_spammer?
       format.json { render :json => @selected_user.to_json( opts ) }
+    end
+  end
+
+  def followers
+    @users = @user.followers
+    @users = @users.page( params[:page] ).order( :login )
+    counts_for_users
+    respond_to do |format|
+      format.html { render :friendship_users, layout: "bootstrap" }
+    end
+  end
+
+  def following
+    @users = @user.followees
+    @users = @users.page( params[:page] ).order( :login )
+    counts_for_users
+    respond_to do |format|
+      format.html { render :friendship_users, layout: "bootstrap" }
     end
   end
   
   def relationships
-    @users = if params[:following]
-      @user.friends.where( "users.suspended_at IS NULL" ).paginate(page: params[:page] || 1).order(:login)
-    else
-      @user.followers.where( "users.suspended_at IS NULL" ).paginate(page: params[:page] || 1).order(:login)
-    end
-    counts_for_users
+    @friendships = current_user.friendships.page( params[:page] )
   end
   
   def get_nearby_taxa_obs_counts search_params
@@ -429,20 +466,48 @@ class UsersController < ApplicationController
     @has_updates = (current_user.recent_notifications.count > 0)
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
+    if current_user.is_admin? && @site && @site.id == Site.default.id
+      @discourse_url = "https://forum.inaturalist.org"
+      cache_key = "dashboard-discourse-topics"
+      begin
+        unless @discourse_topics = Rails.cache.read( cache_key )
+          @discourse_topics = ["news-and-updates", "feature-requests", "bug-reports"].inject( {} ) do |memo, category|
+            memo[category] = JSON.parse(
+              RestClient.get( "#{@discourse_url}/latest.json?order=created&category=#{category}" ).body
+            )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..2]
+            memo
+          end
+          Rails.cache.write( cache_key, @discourse_topics, expires_in: 15.minutes )
+        end
+      rescue SocketError, RestClient::Exception
+        # No connection or other connection issue
+        nil
+      end
+    end
     respond_to do |format|
       format.html do
         scope = Announcement.
+          joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id").
+          joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
           where( 'placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc ).
-          limit( 5 )
+          limit( 50 )
         base_scope = scope
-        scope = scope.where( site_id: nil )
-        @announcements = scope.in_locale( I18n.locale )
+        scope = scope.where( "sites.id = ?", @site )
+        @announcements = scope.in_specific_locale( I18n.locale )
+        @announcements = scope.in_specific_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
+        @announcements = scope.in_locale( I18n.locale ) if @announcements.blank?
         @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
         if @announcements.blank?
-          @announcements = base_scope.where( "site_id = ? AND locales IN (?)",  @site, [] )
-          @announcements << base_scope.in_locale( I18n.locale ).where( site_id: @site )
+          @announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
+          @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if @announcements.blank?
           @announcements = @announcements.flatten
         end
+        @announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ) if @announcements.blank?
+        @announcements = @announcements.sort_by {|a| [
+          a.site_ids.include?( @site.try(:id) ) ? 0 : 1,
+          a.locales.include?( I18n.locale ) ? 0 : 1,
+          a.id * -1
+        ] }
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           limit(5)
@@ -522,6 +587,12 @@ class UsersController < ApplicationController
   # allows user to pick a new username if he doesn't like the one we autogenerated.
   def edit_after_auth
     redirect_to "/" and return unless (flash[:allow_edit_after_auth] || params[:test])
+    load_registration_form_data
+    respond_to do |format|
+      format.html do
+        render layout: "registrations"
+      end
+    end
   end
   
   def update
@@ -550,7 +621,7 @@ class UsersController < ApplicationController
          @display_user.previous_changes.empty?
         @display_user.update_columns(updated_at: Time.now)
       end
-      sign_in @display_user, :bypass => true
+      bypass_sign_in( @display_user )
       respond_to do |format|
         format.html do
           if locale_was != @display_user.locale
@@ -586,8 +657,9 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.html do
           before_edit
-          if request.env['HTTP_REFERER'] =~ /edit_after_auth/
-            render :action => 'edit_after_auth', :login => @original_user.login
+          if request.env['HTTP_REFERER'] =~ /edit_after_auth/ || params[:from_edit_after_auth]
+            load_registration_form_data
+            render "users/registrations/new", layout: "bootstrap"
           else
             render :action => 'edit', :login => @original_user.login
           end
@@ -620,6 +692,75 @@ class UsersController < ApplicationController
         flash[:error] = t(:couldnt_find_a_user_matching_x_param, :id => params[:id])
       else
         @observations = Observation.page_of_results( user_id: @display_user.id )
+      end
+    end
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
+  end
+
+  def recent
+    @users = User.order( "id desc" ).page( 1 ).per_page( 10 )
+    @spammer = params[:spammer]
+    if @spammer.nil? || @spammer == "unknown"
+      @users = @users.where( "spammer IS NULL" )
+    elsif @spammer.yesish?
+      @users = @users.where( "spammer" )
+      if params[:flagged_by] == "auto"
+        @users = @users.joins(:flags).where( "NOT resolved AND flag = 'spam'" ).where( "flags.user_id = 0" )
+      elsif params[:flagged_by] == "manual"
+        @users = @users.joins(:flags).where( "NOT flags.resolved AND flag = 'spam'" ).where( "flags.user_id > 0" )
+      end
+    elsif @spammer.noish?
+      @users = @users.where( "NOT spammer" )
+    end
+    if params[:obs].yesish?
+      @users = @users.where( "observations_count > 0" )
+    elsif params[:obs].noish?
+      @users = @users.where( "observations_count = 0" )
+    end
+    if params[:ids].yesish?
+      @users = @users.where( "identifications_count > 0" )
+    elsif params[:ids].noish?
+      @users = @users.where( "identifications_count = 0" )
+    end
+    if params[:description].yesish?
+      @users = @users.where( "description IS NOT NULL AND description != ''" )
+    elsif params[:description].noish?
+      @users = @users.where( "description IS NULL OR description = ''" )
+    end
+    if params[:from].to_i > 0
+      @users = @users.where( "users.id < ?", params[:from].to_i )
+    end
+    if params[:chart]
+      start_date = 3.months.ago.to_date
+      total_new_user_counts = User.where( "created_at > ?", start_date ).group( "created_at::date" ).count
+      new_automated_spam_flag_counts = Flag.
+        where( "u.created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id = 0", start_date ).
+        joins( "JOIN users u ON u.id = flags.flaggable_id" ).
+        group( "u.created_at::date" ).count
+      new_manual_spam_flag_counts = Flag.
+        where( "u.created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND NOT resolved AND user_id > 0", start_date ).
+        joins( "JOIN users u ON u.id = flags.flaggable_id" ).
+        group( "u.created_at::date" ).count
+      probable_spam_user_counts = User.
+        where( "spammer IS NULL" ).
+        where( "observations_count = 0 AND identifications_count = 0" ).
+        where( "description IS NOT NULL AND description != ''" ).
+        where( "created_at > ?", start_date ).group( "created_at::date" ).count
+      false_positive_counts = Flag.
+        where( "u.created_at > ? AND flaggable_type = 'User' AND flag = 'spam' AND resolved", start_date ).
+        joins( "JOIN users u ON u.id = flags.flaggable_id" ).
+        group( "u.created_at::date" ).count
+      @stats = ( start_date...Date.tomorrow ).map do |d|
+        {
+          date: d.to_s,
+          new_users: total_new_user_counts[d],
+          auto_spam: new_automated_spam_flag_counts[d],
+          manual_spam: new_manual_spam_flag_counts[d],
+          probable_spam: probable_spam_user_counts[d],
+          false_positives: false_positive_counts[d]
+        }
       end
     end
     respond_to do |format|
@@ -687,16 +828,40 @@ class UsersController < ApplicationController
     redirect_back_or_default( root_path )
   end
 
+  def trust
+    if friendship = current_user.friendships.where( friend_id: params[:id] ).first
+      friendship.update_attributes( trust: true )
+    else
+      friendship = current_user.friendships.create!( friend: @user, trust: true, following: false )
+    end
+    respond_to do |format|
+      format.json { render json: { friendship: friendship } }
+    end
+  end
+
+  def untrust
+    if friendship = current_user.friendships.where( friend_id: params[:id] ).first
+      friendship.update_attributes( trust: false )
+    end
+    respond_to do |format|
+      format.json { render json: { friendship: friendship } }
+    end
+  end
+
 protected
 
   def add_friend
     error_msg, notice_msg = [nil, nil]
     friend_user = User.find_by_id(params[:friend_id])
-    if friend_user.blank? || friendship = current_user.friendships.find_by_friend_id(friend_user.id)
+    if friend_user.blank? || friendship = current_user.friendships.where( friend_id: friend_user.id, following: true ).first
       error_msg = t(:either_that_user_doesnt_exist_or)
     else
       notice_msg = t(:you_are_now_following_x, :friend_user => friend_user.login)
-      friendship = current_user.friendships.create(:friend => friend_user)
+      if friendship = current_user.friendships.where( friend_id: friend_user.id ).first
+        friendship.update_attributes( following: true )
+      else
+        friendship = current_user.friendships.create( friend: friend_user, following: true )
+      end
     end
     respond_to do |format|
       format.html do
@@ -712,7 +877,11 @@ protected
     error_msg, notice_msg = [nil, nil]
     if friendship = current_user.friendships.find_by_friend_id(params[:remove_friend_id])
       notice_msg = t(:you_are_no_longer_following_x, :friend => friendship.friend.login)
-      friendship.destroy
+      if friendship.trust?
+        friendship.update_attributes( following: false )
+      else
+        friendship.destroy
+      end
     else
       error_msg = t(:you_arent_following_that_person)
     end
@@ -785,6 +954,7 @@ protected
     else
       elastic_params = { observed_on_year: year }
     end
+    elastic_params[:verifiable] = true
     elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
     elastic_query = Observation.params_to_elastic_query(elastic_params)
     counts = Observation.elastic_user_observation_counts(elastic_query, 5)
@@ -802,6 +972,7 @@ protected
     else
       elastic_params = { observed_on_year: year }
     end
+    elastic_params[:verifiable] = true
     elastic_params[:site_id] = @site.id if @site && @site.prefers_site_only_users?
     elastic_query = Observation.params_to_elastic_query(elastic_params)
     counts = Observation.elastic_user_taxon_counts(elastic_query, limit: 5, batch: false)
@@ -815,7 +986,15 @@ protected
     year = options[:year] || Time.now.year
     month = options[:month] || Time.now.month
     site_filter = @site && @site.prefers_site_only_users?
-    filters = [ { term: { own_observation: false } } ]
+    filters = [
+      { term: { own_observation: false } }
+      # Uncomment if / when we want to only show ident stats from verifiable obs
+      # {
+      #   terms: {
+      #     "observation.quality_grade": [Observation::RESEARCH_GRADE, Observation::NEEDS_ID]
+      #   }
+      # }
+    ]
     if per == 'month'
       date = Date.parse("#{ year }-#{ month }-1")
       filters << { range: { created_at: {
@@ -884,6 +1063,7 @@ protected
       :prefers_comment_email_notification,
       :prefers_identification_email_notification,
       :prefers_message_email_notification,
+      :prefers_medialess_obs_maps,
       :prefers_project_invitation_email_notification,
       :prefers_mention_email_notification,
       :prefers_project_journal_post_email_notification,

@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-xs-6.prepend-6
+      %h2 Editing Taxon Framework Relationship
+      = render 'form'
+      = link_to t( :cancel ), @taxon_framework_relationship, class: "btn btn-default"
+      = link_to t( :delete ), @taxon_framework_relationship, :method => :delete, data: { :confirm => t( :are_you_sure? ) }, class: "btn btn-danger"
+  - if @taxon_framework_relationship.user
+    %br/
+    .row.meta
+      .col-md-12
+        = t(:created_by, gender: 'taxon')
+        = link_to @taxon_framework_relationship.user.login, @taxon_framework_relationship.user
+        = t :on_day
+        = l(@taxon_framework_relationship.created_at.to_date, :format => :long)
+        %br/
+        - if @taxon_framework_relationship.updater
+          = t(:updated_by)
+          = link_to @taxon_framework_relationship.updater.login, @taxon_framework_relationship.updater
+          = t :on_day
+          = l(@taxon_framework_relationship.updated_at.to_date, :format => :long)

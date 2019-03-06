@@ -2,36 +2,36 @@ require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe EolPhoto, "new_from_api_response" do
   it "should set native_photo_id" do
-    api_response = EolPhoto.get_api_response('7bb5cb353799e2a96a6d55ac7f4cd789')
+    api_response = EolPhoto.get_api_response( 5246083 )
     p = EolPhoto.new_from_api_response(api_response)
     expect(p.native_photo_id).not_to be_blank
   end
 
   it "should work for a fragment from a page response" do
-    page = EolService.page(485229, :licenses => 'any', :images => 10, :text => 0, :videos => 0, :details => 1)
-    api_response = page.at('//xmlns:dataObject[.//xmlns:mediaURL]')
+    page = EolService.page( 485229, licenses: "all", images_per_page: 10, text_per_page: 0, videos_per_page: 0, details: true )
+    api_response = page.at('//dataObject[.//mediaURL]')
     p = EolPhoto.new_from_api_response(api_response)
     expect(p.native_photo_id).not_to be_blank
   end
 
-  it "should not set native_realname to inaturlaist" do
-    page = EolService.page(455040, :licenses => 'any', :images => 10, :text => 0, :videos => 0, :details => 1)
-    api_response = page.at('//xmlns:dataObject[.//xmlns:mediaURL]')
+  it "should not set native_realname to inaturalist" do
+    page = EolService.page( 455040, licenses: "all", images_per_page: 10, text_per_page: 0, videos_per_page: 0, details: true )
+    api_response = page.at('//dataObject[.//mediaURL]')
     p = EolPhoto.new_from_api_response(api_response)
     expect(p.native_realname).not_to eq "inaturalist"
   end
 
   it "should work for an image in the public domain" do
-    p = EolPhoto.new_from_api_response(EolService.data_objects('16893553'))
+    p = EolPhoto.new_from_api_response( EolService.data_objects( 5246083 ) )
     expect( p ).to be_valid
   end
 end
 
-describe "repair" do
+describe EolPhoto, "repair", disabled: ENV["TRAVIS_CI"] do
   before(:each) { enable_elastic_indexing( Observation ) }
   after(:each) { disable_elastic_indexing( Observation ) }
   it "should not fail" do
-    api_response = EolPhoto.get_api_response('7bb5cb353799e2a96a6d55ac7f4cd789')
+    api_response = EolPhoto.get_api_response( 5246083 )
     p = EolPhoto.new_from_api_response(api_response)
     expect {
       p.repair
@@ -39,10 +39,10 @@ describe "repair" do
   end
 end
 
-describe EolPhoto, "sync" do
+describe EolPhoto, "sync", disabled: ENV["TRAVIS_CI"] do
   before(:each) { enable_elastic_indexing( Observation ) }
   after(:each) { disable_elastic_indexing( Observation ) }
-  let(:api_response) { EolPhoto.get_api_response('7bb5cb353799e2a96a6d55ac7f4cd789') }
+  let(:api_response) { EolPhoto.get_api_response( 5246083 ) }
   let(:p) { EolPhoto.new_from_api_response(api_response) }
   it "should reset native_realname" do
     orig = p.native_realname

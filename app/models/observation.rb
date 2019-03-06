@@ -52,7 +52,8 @@ class Observation < ActiveRecord::Base
   # lists after saving.  Useful if you're saving many observations at once and
   # you want to update lists in a batch
   attr_accessor :skip_refresh_lists, :skip_refresh_check_lists, :skip_identifications,
-    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete
+    :bulk_import, :skip_indexing, :editing_user_id, :skip_quality_metrics, :bulk_delete,
+    :taxon_introduced, :taxon_endemic, :taxon_native
   
   # Set if you need to set the taxon from a name separate from the species 
   # guess
@@ -150,6 +151,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "taxon_geoprivacy",
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
@@ -202,6 +204,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "taxon_geoprivacy",
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
@@ -288,7 +291,6 @@ class Observation < ActiveRecord::Base
     class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
-  NON_ELASTIC_ATTRIBUTES = %w(establishment_means em)
 
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 
@@ -310,6 +312,10 @@ class Observation < ActiveRecord::Base
     :allow_blank => true, 
     :less_than_or_equal_to => 180, 
     :greater_than_or_equal_to => -180
+  validates_numericality_of :positional_accuracy,
+    allow_nil: true,
+    greater_than: 0,
+    if: Proc.new { |o| !o.positional_accuracy.nil? }
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
@@ -342,7 +348,8 @@ class Observation < ActiveRecord::Base
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
                     :set_time_in_time_zone,
-                    :set_coordinates
+                    :set_coordinates,
+                    :nilify_positional_accuracy_if_zero
 
   before_create :replace_inactive_taxon
   before_save :strip_species_guess,
@@ -355,6 +362,7 @@ class Observation < ActiveRecord::Base
               :set_license,
               :trim_user_agent,
               :update_identifications,
+              :set_taxon_geoprivacy,
               :set_community_taxon_before_save,
               :set_taxon_from_probable_taxon,
               :obscure_coordinates_for_geoprivacy,
@@ -703,6 +711,7 @@ class Observation < ActiveRecord::Base
       { user: :stored_preferences },
       { taxon: { taxon_names: :place_taxon_names } },
       :iconic_taxon,
+      { identifications: :stored_preferences },
       { photos: [ :flags, :user ] },
       :stored_preferences, :flags, :quality_metrics ]
     # why do we need taxon_descriptions when logged in?
@@ -769,10 +778,10 @@ class Observation < ActiveRecord::Base
     options[:methods] += [:created_at_utc, :updated_at_utc,
       :time_observed_at_utc, :faves_count, :owners_identification_from_vision]
     viewer = options[:viewer]
-    viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
+    viewer = viewer.is_a?( User ) ? viewer : User.find_by_id( viewer.to_i )
     options[:except] ||= []
     options[:except] += [:user_agent]
-    if viewer_id != user_id && !options[:force_coordinate_visibility]
+    if !options[:force_coordinate_visibility] && !coordinates_viewable_by?( viewer )
       options[:except] += [:private_latitude, :private_longitude,
         :private_positional_accuracy, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured
@@ -848,25 +857,39 @@ class Observation < ActiveRecord::Base
     if parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev]
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     elsif (offset = date_string[tz_offset_pattern, 1]) && 
         (n = offset.to_f / 100) && 
         (key = n == 0 ? 0 : n.floor + (n%n.floor)/0.6) && 
         (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_offset_pattern, '')
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     elsif (offset = date_string[tz_js_offset_pattern, 2]) && 
         (n = offset.to_f / 100) && 
         (key = n == 0 ? 0 : n.floor + (n%n.floor)/0.6) && 
         (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_js_offset_pattern, '')
       date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && 
-        (t = Time.parse(offset)) && 
-        (parsed_time_zone = ActiveSupport::TimeZone[t.hour+t.min/60.0])
+    elsif ( offset = date_string[tz_colon_offset_pattern, 2] ) &&
+        ( t = Time.parse(offset ) ) &&
+        ( negpos = offset.to_i > 0 ? 1 : -1 ) &&
+        ( parsed_time_zone = ActiveSupport::TimeZone[negpos * t.hour+t.min/60.0] )
       date_string = date_string.sub(/#{tz_colon_offset_pattern}|#{tz_failed_abbrev_pattern}/, '')
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
+    end
+    
+    if parsed_time_zone && observed_on_string_changed?
+      self.time_zone = parsed_time_zone.name
+      begin
+        if (
+          ( user_time_zone = ActiveSupport::TimeZone[user.time_zone] ) &&
+          user_time_zone != parsed_time_zone &&
+          user_time_zone.utc_offset == parsed_time_zone.utc_offset
+        )
+          self.time_zone = user.time_zone
+        end
+      rescue ArgumentError => e
+        raise e unless e.message =~ /offset/ || e.message =~ /invalid argument to TimeZone/
+        # This means the user didn't have a time zone or had a time zone that
+        # shouldn't exist, so just ignore it
+      end
     end
     
     date_string.sub!('T', ' ') if date_string =~ /\d{4}-\d{2}-\d{2}T/
@@ -1289,11 +1312,20 @@ class Observation < ActiveRecord::Base
         CASUAL
       elsif (
         owners_identification &&
-        owners_identification.taxon.rank_level &&
-        owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
-        community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+        owners_identification.taxon.rank_level && (
+          (
+            owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
+            community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+          ) || (
+            owners_identification.taxon.rank_level == Taxon::GENUS_LEVEL &&
+            community_taxon == owners_identification.taxon &&
+            voted_out_of_needs_id?
+          )
+        )
       )
         RESEARCH_GRADE
+      elsif voted_out_of_needs_id?
+        CASUAL
       else
         NEEDS_ID
       end
@@ -1337,6 +1369,7 @@ class Observation < ActiveRecord::Base
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
     return true if user_id == viewer.id
+    return true if user.friendships.where( friend_id: viewer.id, trust: true ).exists?
     project_ids = if projects.loaded?
       projects.map(&:id)
     else
@@ -1698,7 +1731,8 @@ class Observation < ActiveRecord::Base
     observations.each do |o|
       o.obscure_coordinates_for_threatened_taxa
       o.obscure_place_guess
-      next unless o.coordinates_changed? || o.place_guess_changed?
+      o.set_taxon_geoprivacy
+      next unless o.coordinates_changed? || o.place_guess_changed? || o.taxon_geoprivacy_changed?
       Observation.where( id: o.id ).update_all(
         latitude: o.latitude,
         longitude: o.longitude,
@@ -1707,7 +1741,8 @@ class Observation < ActiveRecord::Base
         geom: o.geom,
         private_geom: o.private_geom,
         place_guess: o.place_guess,
-        private_place_guess: o.private_place_guess
+        private_place_guess: o.private_place_guess,
+        taxon_geoprivacy: o.taxon_geoprivacy
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id) )
@@ -1775,6 +1810,19 @@ class Observation < ActiveRecord::Base
     return true if species_guess.blank?
     self.taxon_id = single_taxon_id_for_name(species_guess)
     true
+  end
+
+  def set_taxon_geoprivacy
+    taxon_ids = if identifications.loaded? 
+      identifications.select{|i| i.current? }.map(&:taxon_id)
+    else
+      identifications.current.pluck(:taxon_id)
+    end
+    self.taxon_geoprivacy = Taxon.max_geoprivacy(
+      taxon_ids,
+      latitude: private_latitude.blank? ? latitude : private_latitude,
+      longitude: private_longitude.blank? ? longitude : private_longitude
+    )
   end
   
   def single_taxon_for_name(name)
@@ -1867,7 +1915,8 @@ class Observation < ActiveRecord::Base
   def set_license
     return true if license_changed? && license.blank?
     self.license ||= user.preferred_observation_license
-    self.license = nil unless LICENSE_CODES.include?(license)
+    self.license = Shared::LicenseModule.normalize_license_code( license )
+    self.license = nil unless LICENSE_CODES.include?( license )
     true
   end
 
@@ -1977,13 +2026,18 @@ class Observation < ActiveRecord::Base
   end
 
   def update_quality_metrics
+    Rails.logger.debug "[DEBUG] update_quality_metrics"
     return true if skip_quality_metrics
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
-    elsif captive_flag.noish? && force_quality_metrics
-      QualityMetric.vote( user, self, QualityMetric::WILD, true )
+    # elsif captive_flag.noish? && force_quality_metrics
+    #   Rails.logger.debug "captive_flag: #{captive_flag}"
+    #   Rails.logger.debug "captive_flag.noish?: #{captive_flag.noish?}"
+    #   QualityMetric.vote( user, self, QualityMetric::WILD, true )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
-      qm.update_attributes( agree: true)
+      Rails.logger.debug "existing: #{qm}, captive_flag: #{captive_flag}"
+      Rails.logger.debug "existing: #{qm}, captive_flag.noish?: #{captive_flag.noish?}"
+      qm.update_attributes( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
     end
@@ -2104,16 +2158,6 @@ class Observation < ActiveRecord::Base
   def self.update_stats_for_observations_of( taxon )
     taxon = Taxon.find_by_id(taxon) unless taxon.is_a?(Taxon)
     return unless taxon
-    conditions = ["taxon_ancestors.ancestor_taxon_id = ?", taxon.id]
-    obs_exist = Observation.
-      joins( "INNER JOIN taxon_ancestors ON taxon_ancestors.taxon_id = observations.taxon_id" ).
-      where( "observations.created_at > ?", taxon.created_at ).
-      where( conditions ).exists?
-    idents_exist = Identification.
-      joins( "INNER JOIN taxon_ancestors ON taxon_ancestors.taxon_id = identifications.taxon_id" ).
-      where( "identifications.created_at > ?", taxon.created_at ).
-      where( conditions ).exists?
-    return unless obs_exist || idents_exist
     result = Identification.elastic_search(
       filters: [ { bool: { should: [
         { term: { "taxon.ancestor_ids": taxon.id } },
@@ -2198,10 +2242,16 @@ class Observation < ActiveRecord::Base
     if coordinates_obscured?
       half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
       positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
-      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      if half_cell > positional_accuracy_degrees
+        uncertainty_cell_center_latlon = Observation.uncertainty_cell_center_latlon( latitude, longitude )
+        return [
+          uncertainty_cell_center_latlon[0] - half_cell,
+          uncertainty_cell_center_latlon[1] - half_cell
+        ]
+      end
       return [
-        private_latitude - max_half_cell,
-        private_longitude - max_half_cell
+        latitude - positional_accuracy_degrees,
+        longitude - positional_accuracy_degrees
       ]
     end
     private_sw_latlon
@@ -2225,10 +2275,16 @@ class Observation < ActiveRecord::Base
     if coordinates_obscured?
       half_cell = COORDINATE_UNCERTAINTY_CELL_SIZE / 2
       positional_accuracy_degrees = positional_accuracy.to_i / (2*Math::PI*PLANETARY_RADIUS) * 360.0
-      max_half_cell = [half_cell, positional_accuracy_degrees].max
+      if half_cell > positional_accuracy_degrees
+        uncertainty_cell_center_latlon = Observation.uncertainty_cell_center_latlon( latitude, longitude )
+        return [
+          uncertainty_cell_center_latlon[0] + half_cell,
+          uncertainty_cell_center_latlon[1] + half_cell
+        ]
+      end
       return [
-        private_latitude + max_half_cell,
-        private_longitude + max_half_cell
+        latitude + positional_accuracy_degrees,
+        longitude + positional_accuracy_degrees
       ]
     end
     private_ne_latlon
@@ -2622,6 +2678,11 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def nilify_positional_accuracy_if_zero
+    self.positional_accuracy = nil if positional_accuracy == 0
+    true
+  end
+
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
   def self.white_list_sanitizer
@@ -2742,7 +2803,7 @@ class Observation < ActiveRecord::Base
 
   def calculate_mappable
     return false if latitude.blank? && longitude.blank?
-    return false if public_positional_accuracy && public_positional_accuracy > uncertainty_cell_diagonal_meters
+    return false if public_positional_accuracy && public_positional_accuracy.to_i > uncertainty_cell_diagonal_meters.to_i
     return false if inaccurate_location?
     return false unless passes_quality_metric?( QualityMetric::EVIDENCE )
     return false unless appropriate?
@@ -2915,12 +2976,8 @@ class Observation < ActiveRecord::Base
     description.mentioned_users & description_was.to_s.mentioned_users
   end
 
-  # Show count of all faves on this observation. cached_votes_total stores the
-  # count of all votes without a vote_scope, which for an Observation means
-  # the faves, but since that might vary from model to model based on how we
-  # use acts_as_votable, faves_count seems clearer.
   def faves_count
-    cached_votes_total
+    votes_for.select{|v| v.vote_scope.blank?}.size
   end
 
   def probably_captive?

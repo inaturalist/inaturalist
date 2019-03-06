@@ -318,22 +318,25 @@ export function submitProject( ) {
       preferred_banner_color: project.banner_color,
       prefers_hide_title: project.hide_title,
       prefers_banner_contain: project.header_image_contain,
-      prefers_rule_quality_grade: project.rule_quality_grade ?
-        _.keys( project.rule_quality_grade ).join( "," ) : "",
+      prefers_rule_quality_grade: project.rule_quality_grade
+        ? _.keys( project.rule_quality_grade ).join( "," ) : "",
       prefers_rule_photos: _.isEmpty( project.rule_photos ) ? "" : project.rule_photos,
       prefers_rule_sounds: _.isEmpty( project.rule_sounds ) ? "" : project.rule_sounds,
       prefers_rule_term_id: _.isEmpty( project.rule_term_id ) ? "" : project.rule_term_id,
-      prefers_rule_term_value_id: _.isEmpty( project.rule_term_value_id ) ?
-        "" : project.rule_term_value_id,
+      prefers_rule_term_value_id:
+        ( _.isEmpty( project.rule_term_value_id ) || _.isEmpty( project.rule_term_id ) )
+          ? "" : project.rule_term_value_id,
       prefers_rule_observed_on:
-        ( project.date_type !== "exact" || _.isEmpty( project.rule_observed_on ) ) ?
-          "" : project.rule_observed_on.trim( ),
-      prefers_rule_d1: project.date_type !== "range" || _.isEmpty( project.rule_d1 ) ?
-        "" : project.rule_d1.trim( ),
-      prefers_rule_d2: project.date_type !== "range" || _.isEmpty( project.rule_d2 ) ?
-        "" : project.rule_d2.trim( ),
-      prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month ) ?
-        "" : project.rule_month
+        ( project.date_type !== "exact" || _.isEmpty( project.rule_observed_on ) )
+          ? "" : project.rule_observed_on.trim( ),
+      prefers_rule_d1: project.date_type !== "range" || _.isEmpty( project.rule_d1 )
+        ? "" : project.rule_d1.trim( ),
+      prefers_rule_d2: project.date_type !== "range" || _.isEmpty( project.rule_d2 )
+        ? "" : project.rule_d2.trim( ),
+      prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month )
+        ? "" : project.rule_month,
+      prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
+      prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced
     } };
     if ( !payload.project.icon && project.iconDeleted ) {
       payload.icon_delete = true;
@@ -379,11 +382,6 @@ export function submitProject( ) {
       payload.project.admin_attributes.push( projectUserPayload );
     } );
 
-    // add featured_at flag
-    if ( viewerIsAdmin ) {
-      payload.project.featured_at = project.featured_at ? "1" : null;
-    }
-
     dispatch( updateProject( { saving: true } ) );
     if ( project.id ) {
       payload.id = project.slug;
@@ -413,6 +411,8 @@ export function confirmSubmitProject( ) {
     if ( !_.isEmpty( project.rule_sounds ) ) { empty = false; }
     if ( !_.isEmpty( project.rule_term_id ) ) { empty = false; }
     if ( !_.isEmpty( project.rule_term_value_id ) ) { empty = false; }
+    if ( !_.isEmpty( project.rule_native ) ) { empty = false; }
+    if ( !_.isEmpty( project.rule_introduced ) ) { empty = false; }
     if ( dateType === "exact" && !_.isEmpty( project.rule_observed_on ) ) { empty = false; }
     if ( dateType === "range" && !_.isEmpty( project.rule_d1 ) ) { empty = false; }
     if ( dateType === "range" && !_.isEmpty( project.rule_d2 ) ) { empty = false; }

@@ -1,0 +1,6 @@
+.container
+  .row
+    .col-xs-8.prepend-8
+      %h2 New Taxon Framework Relationship
+      = render 'form'
+      = link_to t( :cancel ), taxon_framework_relationships_path, class: "btn btn-default"

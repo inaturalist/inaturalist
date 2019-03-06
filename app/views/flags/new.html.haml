@@ -1,6 +1,6 @@
 #pageheader.column.span-24
   %span.breadcrumbs
-    = link_to t(:back_to_this, place: @object.try_methods( :to_plain_s, :to_s ) ), @object, class: "back crumb"
+    = link_to t(:back_to_x, noun: @object.try_methods( :to_plain_s, :to_s ) ), @object, class: "back crumb"
   %h2
     = t :new_flag_for
     = link_to @object.to_plain_s, @object

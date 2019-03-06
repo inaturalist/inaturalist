@@ -63,10 +63,11 @@ export function windowStateForObservation( observation, state, opts = { } ) {
     if ( !observation.taxon.preferred_common_name ) {
       title = `${observation.taxon.name} ${title}`;
     } else {
+      const commonName = iNatModels.Taxon.titleCaseName( observation.taxon.preferred_common_name );
       if ( currentUser && currentUser.prefers_scientific_name_first ) {
-        title = `${observation.taxon.name} (${observation.taxon.preferred_common_name}) ${title}`;
+        title = `${observation.taxon.name} (${commonName}) ${title}`;
       } else {
-        title = `${observation.taxon.preferred_common_name} (${observation.taxon.name}) ${title}`;
+        title = `${commonName} (${observation.taxon.name}) ${title}`;
       }
     }
     observationState.observation.taxon = {
@@ -127,24 +128,32 @@ export function resetStates( ) {
 
 export function fetchTaxonSummary( ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const { observation } = getState( );
     if ( !observation || !observation.taxon ) { return null; }
-    const params = { id: observation.id, ttl: -1 };
+    const params = { id: observation.id, ttl: -1, locale: I18n.locale };
     return inatjs.observations.taxonSummary( params ).then( response => {
-      dispatch( setAttributes( { taxon:
-        Object.assign( { }, observation.taxon, { taxon_summary: response } ) } ) );
+      dispatch( setAttributes( {
+        taxon: Object.assign( { }, observation.taxon, { taxon_summary: response } )
+      } ) );
     } ).catch( e => console.log( e ) );
   };
 }
 
 export function fetchCommunityTaxonSummary( ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const { observation } = getState( );
     if ( !observation || !observation.communityTaxon ) { return null; }
-    const params = { id: observation.id, ttl: -1, community: true };
+    const params = {
+      id: observation.id,
+      ttl: -1,
+      community: true,
+      locale: I18n.locale
+    };
     return inatjs.observations.taxonSummary( params ).then( response => {
-      dispatch( setAttributes( { communityTaxon:
-        Object.assign( { }, observation.communityTaxon, { taxon_summary: response } ) } ) );
+      dispatch( setAttributes( {
+        communityTaxon: Object.assign( { }, observation.communityTaxon,
+          { taxon_summary: response } )
+      } ) );
     } ).catch( e => console.log( e ) );
   };
 }

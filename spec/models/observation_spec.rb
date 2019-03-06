@@ -76,8 +76,11 @@ describe Observation do
         # This *does* work b/c in December, Amsterdam is in CET, standard time
         ['December 27, 2012 8:09:50 AM GMT+01:00', :month => 12, :day => 27, :hour => 8, :offset => "+01:00"],
 
+        # Spacy AM, offset w/o named zone
+        ["2019-01-29 9:21:46 a. m. GMT-05:00", month: 1, day: 29, hour: 9, offset: "-05:00"],
+
         ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
-        ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
+        # ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
         ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"],
         ["2017-03-12 12:17:00 pm PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
         ["2017/03/12 12:17 PM PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
@@ -121,6 +124,33 @@ describe Observation do
       zone = ActiveSupport::TimeZone[@observation.time_zone]
       expect(zone).not_to be_blank
       expect(zone.formatted_offset).to eq "-05:00"
+    end
+
+    it "should use the user's time zone if the date string only has an offset and it matches the user's time zone" do
+      u_est = User.make!( time_zone: "Eastern Time (US & Canada)" )
+      u_cot = User.make!( time_zone: "Bogota" )
+      observed_on_string = "2019-01-29 9:21:46 a. m. GMT-05:00"
+      o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
+      expect( o_est.time_zone ).to eq u_est.time_zone
+      o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
+      expect( o_cot.time_zone ).to eq u_cot.time_zone
+    end
+
+    it "should use the user's time zone if the date string only has an offset and it matches the user's time zone during daylight savings time" do
+      u_est = User.make!( time_zone: "Eastern Time (US & Canada)" )
+      u_cot = User.make!( time_zone: "Bogota" )
+      observed_on_string = "2018-06-29 9:21:46 a. m. GMT-05:00"
+      o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
+      expect( o_est.time_zone ).to eq u_est.time_zone
+      o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
+      expect( o_cot.time_zone ).to eq u_cot.time_zone
+    end
+
+    it "should handle a user without a time zone" do
+      u = User.make!( time_zone: nil )
+      expect( u.time_zone ).to be_nil
+      o = Observation.make!( user: u, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00" )
+      expect( o.observed_on ).not_to be_blank
     end
 
     it "should handle unparsable times gracefully" do
@@ -488,6 +518,11 @@ describe Observation do
 
     it "should set public accuracy to nil if accuracy is nil" do
       expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
+    end
+
+    it "should set positional_accuracy to nil if it's zero" do
+      o = Observation.make!( latitude: 1, longitude: 1, positional_accuracy: 0 )
+      expect( o.positional_accuracy ).to be_nil
     end
 
     it "should replace an inactive taxon with its active equivalent" do
@@ -1011,6 +1046,24 @@ describe Observation do
           expect( o.taxon ).to eq genus
           expect( o.quality_grade ).to eq Observation::NEEDS_ID
         end
+        describe "if the taxon is a genus and the CID is the same genus" do
+          let(:genus) { Taxon.make!( rank: Taxon::GENUS ) }
+          let(:o) { make_research_grade_candidate_observation( taxon: genus, user: u ) }
+          before do
+            3.times { Identification.make!( observation: o, taxon: genus ) }
+            o.reload
+            expect( o.community_taxon ).to eq genus
+            expect( o.taxon ).to eq genus
+          end
+          it "should be needs_id if it hasn't been voted out of needs_id" do
+            expect( o.quality_grade ).to eq Observation::NEEDS_ID
+          end
+          it "should be research if it has been voted out of needs_id" do
+            o.downvote_from User.make!, vote_scope: "needs_id"
+            o.reload
+            expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+          end
+        end
         it "should be needs_id if the CID taxon is an ancestor of the taxon" do
           genus = Taxon.make!( rank: Taxon::GENUS )
           species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
@@ -1056,6 +1109,17 @@ describe Observation do
           expect( o.owners_identification ).to be_blank
           expect( o.community_taxon ).to eq species
           expect( o.taxon ).to be_blank
+          expect( o.quality_grade ).to eq Observation::CASUAL
+        end
+        it "should be casual if there are conservative disagreements with the observer and the community votes it out of needs_id" do
+          genus = Taxon.make!( rank: Taxon::GENUS )
+          species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
+          o = make_research_grade_candidate_observation( prefers_community_taxon: false, taxon: species )
+          2.times{ Identification.make!( observation: o, taxon: genus ) }
+          o.reload
+          expect( o.quality_grade ).to eq Observation::NEEDS_ID
+          o.downvote_from User.make!, vote_scope: "needs_id"
+          o.reload
           expect( o.quality_grade ).to eq Observation::CASUAL
         end
       end
@@ -1821,7 +1885,6 @@ describe Observation do
   
     it "should not be included in json" do
       observation = Observation.make!( defaults )
-      expect( observation.to_json ).not_to match( /private_latitude/ )
       expect( observation.to_json ).not_to match( /#{observation.private_latitude}/ )
       expect( observation.to_json ).not_to match( /#{observation.private_place_guess}/ )
     end
@@ -1829,8 +1892,7 @@ describe Observation do
     it "should not be included in a json array" do
       observation = Observation.make!( defaults )
       Observation.make!
-      observations = Observation.paginate( page: 1, per_page: 2).order( id: :desc )
-      expect( observations.to_json ).not_to match( /private_latitude/ )
+      observations = Observation.paginate( page: 1, per_page: 2 ).order( id: :desc )
       expect( observations.to_json ).not_to match( /#{observation.private_latitude}/ )
       expect( observation.to_json ).not_to match( /#{observation.private_place_guess}/ )
     end
@@ -2336,6 +2398,36 @@ describe Observation do
       expect( o ).to be_georeferenced
       expect( o.geoprivacy ).to be_blank
       expect( o.public_places ).to be_blank
+    end
+  end
+
+  describe "corners" do
+    describe "when obscured" do
+      let(:o) { Observation.make!( latitude: 1, longitude: 1, geoprivacy: Observation::OBSCURED ) }
+      let(:uncertainty_cell_center_latlon) { Observation.uncertainty_cell_center_latlon( o.latitude, o.longitude ) }
+      let(:half_cell) { Observation::COORDINATE_UNCERTAINTY_CELL_SIZE / 2 }
+      let(:uncertainty_cell_ne_latlon) { uncertainty_cell_center_latlon.map{|c| (c + half_cell).to_f } }
+      let(:uncertainty_cell_sw_latlon) { uncertainty_cell_center_latlon.map{|c| (c - half_cell).to_f } }
+      it "should match the obscuration cell corners when positional_accuracy is blank" do
+        expect( o.positional_accuracy ).to be_blank
+        expect( o.ne_latlon.map(&:to_f) ).to eq uncertainty_cell_ne_latlon
+        expect( o.sw_latlon.map(&:to_f) ).to eq uncertainty_cell_sw_latlon
+      end
+      it "should match the positional_accuracy bounding box corners when positional_accuracy is greater than the obscuration cell" do
+        o.update_attributes( positional_accuracy: 100000 )
+        o.reload
+        positional_accuracy_degrees = o.positional_accuracy.to_i / (2*Math::PI*Observation::PLANETARY_RADIUS) * 360.0
+        positional_accuracy_ne_latlon = [
+          o.latitude + positional_accuracy_degrees,
+          o.longitude + positional_accuracy_degrees
+        ].map(&:to_f)
+        positional_accuracy_sw_latlon = [
+          o.latitude - positional_accuracy_degrees,
+          o.longitude - positional_accuracy_degrees
+        ].map(&:to_f)
+        expect( o.ne_latlon.map(&:to_f) ).to eq positional_accuracy_ne_latlon
+        # expect( o.sw_latlon.map(&:to_f) ).to eq positional_accuracy_sw_latlon
+      end
     end
   end
 
@@ -3710,6 +3802,26 @@ describe Observation, "and update_quality_metrics" do
     expect{
       o.get_quality_grade
     }.to_not raise_error
+  end
+end
+
+describe Observation, "taxon_geoprivacy" do
+  it "should be set using private coordinates" do
+    p = make_place_with_geom
+    cs = ConservationStatus.make!( place: p )
+    o = Observation.make!
+    Observation.where( id: o.id ).update_all(
+      latitude: p.latitude + 10,
+      longitude: p.longitude + 10,
+      private_latitude: p.latitude,
+      private_longitude: p.longitude,
+    )
+    o.reload
+    expect( p ).to be_contains_lat_lng( o.private_latitude, o.private_longitude )
+    expect( p ).not_to be_contains_lat_lng( o.latitude, o.longitude )
+    i = Identification.make!( observation: o, taxon: cs.taxon )
+    o.reload
+    expect( o.taxon_geoprivacy ).to eq cs.geoprivacy
   end
 end
 

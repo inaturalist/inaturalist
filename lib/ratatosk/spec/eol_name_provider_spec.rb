@@ -2,7 +2,12 @@ require File.dirname(__FILE__) + '/spec_helper'
 require File.dirname(__FILE__) + '/name_provider_example_groups'
 
 describe Ratatosk::NameProviders::EolNameProvider do
-  it_should_behave_like "a name provider"
+  # Temporarily turned off while EOL restores the hierarchies API, which we need
+  # for some of the grafting tested in name_provider_example_groups require
+  #
+  # kueda 2018-11-30
+  #
+  # it_should_behave_like "a name provider"
 
   before(:all) do
     load_test_taxa
@@ -15,15 +20,15 @@ describe Ratatosk::NameProviders::EolNameProvider do
   end
 
   it "should find invalid names" do
-    results = @np.find('Hyla crucifer')
-    taxon_name = results.detect{|tn| tn.name == 'Hyla crucifer'}
+    results = @np.find('Hyla triseriata')
+    taxon_name = results.detect{|tn| tn.name == 'Hyla triseriata'}
     expect( taxon_name ).not_to be_blank
   end
 
   it "should attach invalid names to a valid taxon" do
-    results = @np.find('Hyla crucifer')
-    taxon_name = results.detect{|tn| tn.name == 'Hyla crucifer'}
-    expect( taxon_name.taxon.name ).to eq 'Pseudacris crucifer'
+    results = @np.find('Hyla triseriata')
+    taxon_name = results.detect{|tn| tn.name == 'Hyla triseriata'}
+    expect( taxon_name.taxon.name ).to eq 'Pseudacris triseriata'
   end
 
   it "should find taxa by common name" do
@@ -40,14 +45,19 @@ describe Ratatosk::NameProviders::EolNameProvider do
     expect( taxon_name.lexicon ).to eq 'english'
   end
 
-  it "should graft" do
-    results = @np.find('American Alligator')
-    tn = results.detect{|tn| tn.name.downcase == 'american alligator'}
-    tn.save!
-    t = Taxon.find_by_id(tn.taxon_id)
-    t.graft
-    expect( t ).to be_grafted
-  end
+  # Temporarily turned off while EOL restores the hierarchies API, which we need
+  # for some of the grafting tested in name_provider_example_groups require
+  #
+  # kueda 2018-11-30
+  #
+  # it "should graft" do
+  #   results = @np.find('American Alligator')
+  #   tn = results.detect{|tn| tn.name.downcase == 'american alligator'}
+  #   tn.save!
+  #   t = Taxon.find_by_id(tn.taxon_id)
+  #   t.graft
+  #   expect( t ).to be_grafted
+  # end
 
   it "should find a bunch of names" do
     names = [

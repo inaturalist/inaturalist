@@ -3,9 +3,11 @@
 # Export driver: phpyaml
 # Author: Andreas Plank
 # Author: Aru
+# Author: BadDog
 # Author: BramEsposito
 # Author: Cellina
 # Author: Chestnut123tw
+# Author: Chimu
 # Author: Cruzan
 # Author: Danieleseglie
 # Author: Exonie
@@ -17,7 +19,10 @@
 # Author: Kruczoczarna
 # Author: Liuxinyu970226
 # Author: Macofe
+# Author: Marcelhospers
+# Author: Mynor Archila
 # Author: Nike
+# Author: Optilete
 # Author: Phil.pav
 # Author: Pihlaviita
 # Author: Purodha
@@ -78,10 +83,6 @@ qqq:
     Number of research-grade observations identified to rank species or lower,
     with the count in a span of class 'count'
   x_taxa_matching_current_filters: Number of taxa matching current filters
-  a: can not be translated to Finnish as we don't have prepositions in our language
-  a_: |-
-    can not be translated to Finnish as we don't have prepositions in our language
-    Can not be translated precisely to German, since the knowledge of the following word is needed to choose the correct declination.
   a_flag_for_x: where x is the title of the resource being flagged
   a_member_of_taxon_html: where taxon is the name of a taxon such as Animalia
   about: '{{Identical|About}}'
@@ -104,7 +105,6 @@ qqq:
   adapted_by_name_from_a_work_by_original: where name is the adaptor's name and original
     is the original author's name
   add: '{{Identical|Add}}'
-  add_a: 單位詞省略可避免出現不適當單位詞，也較為簡潔。
   add_a_place_raquo: 不定冠詞 a 於中文裡省略不譯符合語言習慣。e.g. 一起吃個飯、然後看場電影。唱首歌、喝杯茶、...etc.
   add_a_single_observation: 單一項=一項，「單一項」感覺有些累贅
   add_a_taxon: 不定冠詞 a 於中文裡省略不譯符合語言習慣。e.g. 一起吃個飯、然後看場電影。唱首歌、喝杯茶、...etc.
@@ -145,6 +145,8 @@ qqq:
     HTML entity
   alphabetical: '{{Identical|Alphabetical}}'
   amphibians: '{{Identical|Amphibians}}'
+  an: 'Note: can not be translated to Finnish as we don''t have prepositions in our
+    language'
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
@@ -184,6 +186,10 @@ qqq:
     {{Identical|At}}
   atom: '{{Identical|Atom}}'
   attribute: '{{Identical|Attribute}}'
+  authority_list:
+    cites: Convención sobre el Comercio Internacional de Especies Amenazadas de Fauna
+      y Flora Silvestres, en inglés "Convention on International Trade in Endangered
+      Species of Wild Fauna and Flora" —CITES—.
   authorize_permissions_from_provider: where provider is an external provider like
     Facebook
   automatically_id_new: '"ID sth." means identify something. That''s a common abbreviation
@@ -224,6 +230,9 @@ qqq:
   cancel: '{{Identical|Cancel}}'
   captive: '{{Identical|Captive}}'
   card: '{{Identical|Card}}'
+  case_plural: https://www.inaturalist.org/identifications/<your name> It is used
+    to make meervoud from a singe person, but unfortunately this does not work in
+    all languagues
   casual: |-
     The data quality assessment is a summary of an observation's accuracy. All observations start as "casual" grade, and become "needs ID" when
 
@@ -261,8 +270,6 @@ qqq:
   citation: '{{Identical|Citation}}'
   classification: '{{Identical|Classification}}'
   clear: '{{Identical|Clear}}'
-  click_add_an_observation_to_the_lower_right: where site_name_short is the name of
-    a site
   close: |-
     Close a window
     {{Identical|Close}}
@@ -376,11 +383,13 @@ qqq:
   details: '{{Identical|Detail}}'
   developers: '{{Identical|Developer}}'
   device: '{{Identical|Device}}'
+  disable: '{{Identical|Disable}}'
   disagree_: '{{Identical|Disagree}}'
   disconnect_provider: where provider is the name of an external provider like Facebook
   dna_: '{{Identical|DNA}}'
   done: '{{Identical|Done}}'
   download: '{{Identical|Download}}'
+  downstream_coverage: https://www.inaturalist.org/taxa/211194-Tracheophyta/taxonomy_details
   each_place_displays_all_species_inat_knows: where site_name is the name of the site
   edit: '{{Identical|Edit}}'
   edit_photos_for_observation_id: where obs_id is the identifier for an observation
@@ -482,6 +491,11 @@ qqq:
   hate_me_flickr: where site_name is the name of the site
   hello: '{{Identical|Test}}'
   help: '{{Identical|Help}}'
+  help_support_inaturalist: |-
+    Imperative request to donate to iNaturalist. "iNaturalist" should not be
+    translated, as this explicitly refers to iNaturalist and not any of the
+    network partner sites, so please do not translate this to "NaturaLista" or
+    anything.
   hi_user: '{{Identical|Hi}}'
   hide: '{{Identical|Hide}}'
   high: '{{Identical|High}}'
@@ -502,6 +516,10 @@ qqq:
   import: '{{Identical|Import}}'
   importing: '{{Identical|Importing}}'
   improving: '{{Identical|Improving}}'
+  in_place_x: |-
+    Used in a vertical treatment like "Photo by\nAbdul\nin place X", so if that
+    doesn't make sense syntactically, omitting the "in" would be fine, making
+    the treatment more like "Photo\nAbdul\nPlace X"
   inbox: '{{Identical|Inbox}}'
   inactive: '{{Identical|Inactive}}'
   inactive_taxon: Keep in short, under 20 characters
@@ -541,6 +559,8 @@ qqq:
   last_inat_observation: where site_name is the name of the site
   lat: Abbreviation of Latitude.
   latitude: '{{Identical|Latitude}}'
+  latitude_slash_y_coord_slash_northing: This part of the header row. I expect this
+    should not be translated
   layout: '{{Identical|Layout}}'
   leaderboard: '{{Identical|Leaderboard}}'
   leaderboard_for_x: Where x is a resource like a project name or user name
@@ -767,7 +787,7 @@ qqq:
   observations_by_user_on_date: where user is the name of a user and date is a date
   observations_by_you_on_date: where date is a date
   observation_calendar_for: where user is the name of a user and year is a year such
-    as 2014
+    as 2018
   observation_date: '{{Identical|Date}}'
   observation_date?: '{{Identical|Date}}'
   observation_removed_from_the_project: where project is the name of a project
@@ -830,6 +850,10 @@ qqq:
     {{Identical|Photo}}
   photo?: '{{Identical|Photo}}'
   photo_attribution: where attribution is the author's name
+  photo_by: |-
+    Used as a header above a user's name, as in "Photo by\nAbdul", so if
+    that doesn't make sense syntactically, something that works as a header
+    would be appropriate, like just "Photo"
   photo_by_id_attribution: where id is an identifier and attribution is the author's
     name
   photo_destroyed_because_it_was_deleted_from: where site_name is the site name
@@ -956,6 +980,9 @@ qqq:
   rank: '{{Identical|Rank}}'
   rank_position: Rank, as in position in a list
   ranks:
+    stateofmatter: |-
+      Taxon Framework Relationships
+      https://www.inaturalist.org/taxon_framework_relationships?alternate_position=1&many_to_many=1&many_to_one=1&not_external=1&not_internal=1&one_to_many=1&one_to_one=1&taxon_framework_id=9&unknown=1
     kingdom: '{{Identical|Kingdom}}'
     class: '{{Identical|Class}}'
     subclass: '{{Identical|Subclass}}'
@@ -977,6 +1004,9 @@ qqq:
   red: '{{Identical|Red}}'
   refresh: '{{Identical|Refresh}}'
   register_for_this_event_at_x_html: where x is an external resource like EventBrite
+  relationship: https://www.inaturalist.org/taxa/211194-Tracheophyta/taxonomy_details
+  relationships:
+    error: '{{Identical|Error}}'
   remove: '{{Identical|Remove}}'
   removed: '{{Identical|Removed}}'
   removed!: '{{Identical|Removed}}'
@@ -1016,13 +1046,15 @@ qqq:
   show_taxa_from_place: where place is the name of a place
   showing_taxa_from_place: where place is the name of a place
   sign_in: '{{Identical|Sign in}}'
-  sign_in_with_provider: where provider is an external provider like Facebook
+  sign_in_with_provider: '%{provider} — an external provider, like Facebook.'
   simple: '{{Identical|Simple}}'
   sign_in_exclamation: '{{Identical|Sign in}}'
   sizes: '{{Identical|Size}}'
   small: '{{Identical|Small}}'
   site_name_place: where site_name is the name of a site
   site_observations_export_from_date: where site_name is the name of a site
+  site_site_admin: where site_name is the name of a site
+  site_staff: where site_name is the name of a site
   site_taxon_page: where site_name is the name of a site
   some_of_those_photos_couldnt_be_saved: where error describes the error
   something_: '{{Identical|Something}}'
@@ -1056,19 +1088,27 @@ qqq:
   species_header: '{{Identical|Species}}'
   standard: '{{Identical|Standard}}'
   start: '{{Identical|Start}}'
+  start_one: https://www.inaturalist.org/places/offshore-waters-netherlands ''Er is
+    geen overeenkomstige Wikipedia-pagina Offshore waters - Netherlands Zou jij willen
+    start eén ?''
   states: '{{Identical|State}}'
   status: '{{Identical|Status}}'
   subject_resolved_noun_html: where subject is a user name and stuff is the thing
     resolved
   subject_affecting_stuff_html: where subject is a resource like a taxon change and
     stuff is a resource like a taxon
-  subject_committed_thing_affecting_stuff_html: |-
-    where subject is the user name and thing is a resource like a taxon change
-    and stuff is a resource like a taxon
+  subject_committed_thing_affecting_stuff_html: "where subject is the user name and
+    thing is a resource like a taxon change\nand stuff is a resource like a taxon,
+    e.g.: \t\n%{subject}  committed een taxon swap affecting Pratia"
   submit: '{{Identical|Submit}}'
   submitted: '{{Identical|Submitted}}'
   suggestions: '{{Identical|Suggestion}}'
   summary: '{{Identical|Summary}}'
+  support_inaturalist: |-
+    Label for a button link to donate money to iNaturalist. These donations go
+    to iNaturalist and not any of the partner sites so this name should not be
+    translated to something like NaturaLista. This text should also be kept
+    short, about the length of the English translation or shorter.
   sun: Abbreviation for Sunday, a day of the week.
   table: '{{Identical|Table}}'
   table_of_contents: '{{Identical|Table of contents}}'
@@ -1116,6 +1156,7 @@ qqq:
   taxon_: '{{Identical|Taxon}}'
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
     here].
+  taxonomy_details_for: https://www.inaturalist.org/taxa/797944/taxonomy_details
   text: '{{Identical|Text}}'
   text_: '{{Identical|Text}}'
   thanks_from_all_of_us_here_at: |-
@@ -1144,7 +1185,10 @@ qqq:
   they_already_have_iNat_accounts: where site_name is the name of a site
   third_person_possessive_singular: where object_phrase is the name of a user and
     nown is a resource like an observation
-  this: '{{Identical|This}}'
+  this: |-
+    {{Identical|This}}
+
+    https://www.inaturalist.org/places/offshore-waters-netherlands : Abonneer op waarnemingen dit plaats.
   this_is_a_life_list_of_taxon_in_place: where taxon the name of a taxon and place
     is the name of a place
   this_job_failed_to_run: where email is an email address
@@ -1295,6 +1339,8 @@ qqq:
   widget: '{{Identical|Widget}}'
   withdraw: '{{Identical|Withdraw}}'
   within_inaturalist: where site_name is the name of a site
+  would_you_like_to: https://www.inaturalist.org/places/houten-nieuw-wulven tab [Wikipedia
+    Beschrijving]
   x_admin: where login is the name of a user
   x_deleted: where x is the name of something that was deleted
   x_does_not_exist: where x is the name of something that doesn't exist
@@ -1351,6 +1397,18 @@ qqq:
   yours: '{{Identical|Your}}'
   youre_viewing_site_name_observations_html: where site_name is the name of the site
   views:
+    donate:
+      donate_desc_html: |-
+        This is a pitch to donate to iNaturalist.org via the California
+        Academy of Sciences. It is *not* a pitch to donate to any of the
+        iNaturalist Network partner sites, so proper nouns like "iNaturalist"
+        should not be translated to the names of partner sites like
+        "NaturaLista." Also, please do not change or translate any of the html
+        markup code, including the class names.
+      post_donate_social_media_text: |-
+        Text included in social media post when sharing the donate page. Proper
+        nouns like "iNaturalist" should not be translated to the names of
+        partner sites like "NaturaLista."
     guides:
       edit:
         guide_place_desc: where site_name is the site name
@@ -1405,7 +1463,7 @@ qqq:
           upload translated versions of these strings in their CSV the CSV
           import won't work.
       show:
-        community_taxon_desc_html: whre site_name is the site name
+        community_taxon_desc_html: where site_name is the site name
         flagged_photos_desc_html: where links is a URL
     photos:
       inviter:
@@ -1442,6 +1500,9 @@ qqq:
             En Wikipedia, «Teneral» redirige a «Ecdysis», y en la versión en castellano «Muda».
             {{Identical|Teneral}}
           Life Stage=adult: '{{Identical|Adult}}'
+    taxon_names:
+      form:
+        new_name_guidelines_html: https://www.inaturalist.org/taxa/133387/taxon_names/new
     users:
       dashboard:
         taxon_change_desc: where site_name is the site name

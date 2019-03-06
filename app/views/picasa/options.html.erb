@@ -5,11 +5,11 @@
 
 <div class="column span-13">
   <% if @provider_authorization -%>
-    <% if @picasa_photos -%>
+    <% if @picasa_photos && @picasa_photos.size > 0 -%>
       <div class="clear photos stacked">
         <% for photo in @picasa_photos %>
-          <%- next unless photo.url('72c') %>
-          <%= image_tag photo.url('72c') %>
+          <%- next unless photo.square_url %>
+          <%= image_tag photo.square_url %>
         <% end %>
       </div>
     <% else %>

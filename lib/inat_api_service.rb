@@ -4,6 +4,10 @@ module INatAPIService
   ENDPOINT = CONFIG.node_api_url
   TIMEOUT = 8
 
+  def self.geoip_lookup(params={}, options = {})
+    return INatAPIService.get("/geoip_lookup", params, options)
+  end
+
   def self.identifications(params={}, options = {})
     return INatAPIService.get("/identifications", params, options)
   end
@@ -28,8 +32,12 @@ module INatAPIService
     return INatAPIService.get("/observations/popular_field_values", params, options)
   end
 
-  def self.geoip_lookup(params={}, options = {})
-    return INatAPIService.get("/geoip_lookup", params, options)
+  def self.projects(params={}, options = {})
+    return INatAPIService.get("/projects", params, options)
+  end
+
+  def self.project(id, params={}, options = {})
+    return INatAPIService.get("/projects/#{id}", params, options)
   end
 
   def self.taxa(params={}, options={})
@@ -42,16 +50,17 @@ module INatAPIService
     options[:retry_delay] ||= 0.1
     url = INatAPIService::ENDPOINT + path;
     headers = {}
-    if api_token = params.delete(:api_token)
-      headers["Authorization"] = api_token
-    end
-    unless params.blank? || !params.is_a?(Hash)
-      url += "?" + params.map{|k,v| "#{k}=#{[v].flatten.join(',')}"}.join("&")
+    auth_user = params.delete(:authenticate)
+    if auth_user && auth_user.is_a?( User )
+      headers["Authorization"] = auth_user.api_token
     end
     begin
       uri = URI.parse(url)
     rescue URI::InvalidURIError
       uri = URI.parse(URI.escape(url))
+    end
+    if !params.blank? && params.is_a?(Hash)
+      uri.query = URI.encode_www_form( Hash[URI.decode_www_form( uri.query || "" )].merge( params ) )
     end
     begin
       timed_out = Timeout::timeout( options[:timeout] ) do
@@ -66,7 +75,7 @@ module INatAPIService
     rescue => e
       Rails.logger.debug "[DEBUG] INatAPIService.get_json(#{path}, #{params}, #{options[:retries]}) failed: #{e}"
     end
-    if options[:retries].is_a?(Fixnum) && options[:retries] > 0
+    if options[:retries].is_a?(Integer) && options[:retries] > 0
       retry_options = options.dup
       retry_options[:retries] -= 1
       if options[:retry_delay]

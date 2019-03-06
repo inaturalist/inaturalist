@@ -74,7 +74,6 @@ ko:
   activity_settings: 활동 설정
   adapted_by_name_from_a_work_by_original: '%{original}의 연구에서 %{name}이(가) 적용'
   add: 추가
-  add_a: 추가
   add_a_batch_of_observations: 관찰을 여러 개 추가하기
   add_a_batch_of_observations_by_csv: CSV를 이용해 관찰을 여러 개 추가하기
   add_a_batch_of_taxa: 분류군을 여러 개 추가하기
@@ -88,6 +87,8 @@ ko:
   add_a_place_raquo: 장소 추가하기 &raquo;
   add_a_single_observation: 관찰 하나를 추가합니다.
   add_a_taxon: 분류군 추가하기
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: 이름을 바꾸고 싶다면 <a target="_blank"
+    href="%{url}">taxon swap</a>을 추가하십시오
   add_all_your_matching_obs_of_this_taxon: 이 분류군과 일치하는 내 관찰을 모두 이 프로젝트에 추가하기
   add_all_your_matching_obs_to_this_project: 일치하는 내 관찰을 모두 이 프로젝트에 추가하기
   add_an_assessment: 평가 추가하기
@@ -142,6 +143,7 @@ ko:
   add_photos: 사진 추가하기
   add_photos_to_this_observation: 이 관찰에 사진 추가하기
   add_place: 장소 추가하기
+  add_relationship: 관계 추가
   add_several_observations_at_once: 한 번에 관찰 여러 개 추가하기
   add_shape: 모양 추가하기
   add_some_now: 지금 추가하기
@@ -153,7 +155,6 @@ ko:
   add_taxon_batch_to: 분류군 여러 개를 %{list}에 추가하기
   add_taxon_range: 분류군 범위를 추가하기
   add_taxonomic_tags_to: 선택된 플리커 사진에 분류군 태그 추가하기
-  add_to: 추가하기
   add_to_a_scheme: 계획에 추가하기
   add_to_a_project: 프로젝트에 추가
   add_to_calendar: 일정에 추가하기
@@ -266,14 +267,16 @@ ko:
   all_your_projects: 모든 내 프로젝트
   allow_any: 아무거나 허락
   allow_curator_coordinate_access: 진행 큐레이터에게 접근권한 부여
-  allow_project_curators_to_view_your_private_coordinates: 프로젝트 큐레이터에게 내 사적 좌표를 열람할
-    수 있는 권한 부여
+  allow_project_curators_to_view_your_private_coordinates: 나의 숨긴 좌표를 프로젝트 큐레이터가 볼
+    수 있게 함
   allowed_establish_means_values: 허용한 설정 평균값
   allowed_html: 허용한 HTML
   allowed_occurrence_status_values: 허용한 발생 상태값
   allowed_values: 허용한 값
+  almost_there_: 거의 다 왔습니다...
   alphabetical: 알파벳순
   alphabetical_order: 알파벳순 정렬
+  already_have_an_account_log_in_html: 계정이 이미 있으십니까? <strong>로그인하세요.</strong>
   amphibians: 양서류
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb에 이 종에 대한 정보가 없습니다.
   amphibiaweb_taxonomy: AmphibiaWeb 분류학
@@ -375,13 +378,13 @@ ko:
     iucn_red_list: IUCN 적색 목록
   authorize_permissions_from_provider: '%{provider}의 허용을 수락함'
   automatic_descriptions_have_been_disabled: 이 분류군은 자동 설명이 해제되었습니다.
+  automatic_short: 자동
   automatically_add_to_project: 자동으로 프로젝트에 추가
   automatically_add_observations_to_this_project: 이 프로젝트에 자동으로 관찰 추가
   automatically_share_your_observations_on: 자동으로 관찰 공유
   automatically_id_new: 자동으로 새로운 관찰을 ID함
   automatically_update_my_content_for_taxon_changes: 분류군 변화 자동 업데이트
   back: 뒤로 가기
-  back_to: 돌아가기
   back_to_albums: 앨범으로 돌아가기
   back_to_all_species: 모든 종으로 돌아가기
   back_to_browsing_people: 사람들 검색으로 돌아가기
@@ -581,11 +584,8 @@ ko:
   classification: 분류
   clear: 지우기
   clear_color_filters: 컬러 필터 지우기
+  clear_filters: 필터 지움
   clear_search: 검색 지우기
-  clear_shapes: 도형 지우기
-  click_add_an_observation_to_the_lower_right: '%{site_name_short}에 오신 것을 환영합니다! 오른쪽
-    아래의 ''관찰 추가''를 클릭하세요. 이미 하지 않았다면 로그인/회원가입을 확인할 것입니다.'
-  click_on_map_to_draw_shape_around_place: 지도를 클릭하여 장소 주위에 도형을 그리세요.
   click_on_the_map_to: 지도를 클릭하여 당신의 관찰을 놓으세요
   click_the_map: <strong>지도를 클릭하여</strong> 장소를 추가하세요.
   click_the_map_to_jump_new_place: 지도를 클릭하여 새로운 장소로 이동하세요
@@ -748,6 +748,7 @@ ko:
   data_deficient: 데이터 부족
   data_quality: 데이터 품질
   data_quality_assessment: 데이터 품질 평가
+  data_used: '사용된 데이터:'
   datatype: 데이터 유형
   date_: 날짜
   date?: 날짜?
@@ -800,6 +801,7 @@ ko:
   default_photo_license: 사진 라이선스 기본값
   default_sound_license: 음원 라이선스 기본값
   defaults_to_your_name_or_username: 기본 이름/아이디
+  definitions: 정의
   delete: 삭제
   delete_all: 모두 삭제
   delete_conversation: 대화 내역 삭제
@@ -820,6 +822,7 @@ ko:
   deleted_vote: 삭제된 표
   deleting: 삭제 중...
   deleting_verb: 삭제 중
+  deny: 거부
   desc: 내림차순
   descendant_taxa: 하위 분류군
   descending: 내림차순
@@ -841,6 +844,7 @@ ko:
   did_not_send_invitations_because: '초대장을 보내지 않은 이유:'
   did_you_mean: '이것을 찾으셨나요:'
   did_you_photos_flickr?: 플리커에 사진을 올렸나요?
+  disable: 비활성화
   disagree: 동의하지 않음
   disagree_: 동의하지 않음
   disconnect_provider: '%{provider} 연결 끊기'
@@ -861,6 +865,7 @@ ko:
   doh_something_went_wrong_error: '무언가 잘못되었습니다: %{error}'
   done: 완료
   dont_filter: 필터 제거
+  dont_have_an_account_sign_up_html: 계정이 없으십니까? <strong>가입하세요.</strong>
   dont_send_me_email: 메일 수신 거부
   dont_use_double_quotes: 따옴표를 사용하지 마세요.
   drop_it: 버리기
@@ -915,7 +920,6 @@ ko:
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'> 설정</a>을 편집하여 받는 업데이트의
     종류를 변경하거나 구독 취소를 합니다.
   edited: 편집됨
-  edited_by: '편집자 :'
   edited_by_name_html: '편집자 : %{name}'
   editing: 편집
   editing_announcement: 공지 편집
@@ -985,6 +989,8 @@ ko:
   exact_date: 정확한 날짜
   exact_location: 정확한_장소
   exact_rank: 정확한 랭크
+  exclude_x: '%{x} 제외'
+  exclusion_filters: 제외 필터
   existing_flags: 기존 플래그
   exit_full_screen: 전체 화면에서 나가기
   expand_days: 요일 확장
@@ -1036,7 +1042,6 @@ ko:
   filling_out_checklist_for_place: 잘 아는 장소들의 체크리스트를 기입하십시오
   filling_out_your_profile: 프로파일을 기입하십시오
   filter: 필터
-  filter_by: 로 필터
   filter_by_curator_identification: 큐래이터 동정으로 필터
   filter_by_place: 장소로 필터
   filter_by_taxon: 분류군별 필터
@@ -1085,7 +1090,6 @@ ko:
   flags: 플래그들
   flags_explanation: '%{site_name} 사용자들은 오류를 발견했을 때 플래그를 합니다. 여기 큐래이터들이 아직 해결하지 않은
     사안들이 있습니다.'
-  flags_for: 위한 플래그
   flags_on_users_content: '%{user}의 콘텐츠에 달린 플래그들'
   flickr_account_information: Flickr 계정 정보
   flickr_description: FLickr는 온라인 사진 호스팅 서비스입니다. 아마 이미 알고 있으셨을지도 몰라요!
@@ -1101,8 +1105,6 @@ ko:
   flickr_youre_all_set: '%{site_name}을 탐색할 준비가 다 되었습니다.'
   fluid: 유체
   follow: 팔로우
-  follow_us: 에서 팔로우해 주세요.
-  follow_us_on: 에서 팔로우해 주세요.
   follow_user: '%{user} 팔로우'
   followed_projects: 팔로우한 프로젝트
   follower: 팔로우하는 사용자들
@@ -1115,10 +1117,8 @@ ko:
   fri: 금
   from: 보낸이
   from_a_place: 어떤 장소로부터
-  from_anywhere_change: 아무 장소로부터
   from_eol_collection: EOL 모음집으로부터
   from_flickr_facebook_etc: Flickr, Facebook 등으로부터
-  from_in_this_place: 이 장소 안으로부터
   from_list: 목록으로부터
   from_this: 이것으로부터
   from_photos: 사진들로부터
@@ -1196,6 +1196,7 @@ ko:
   help_confirm_observations!: 관찰을 인증하는 것을 도와주세요!
   help_faq: 도움말 / FAQ
   help_out!: 도와주세요!
+  help_support_inaturalist: iNaturalist 지원 돕기
   here_are_3_examples: 잘 만들어진 데이터의 3가지 예시이다
   here_are_some_things_you_can_do_meantime: '그 동안 하실 수 있는 몇 가지 일들은 다음와 같습니다:'
   hi: 안녕하세요,
@@ -1328,6 +1329,7 @@ ko:
     <a href="mailto:%{help_email}" class="contact">저희에게 연락하십시오</a>.
     <a href="%{manage_flags_path}">표시 관리</a>
   its_important_that_you: 클릭하는 것이 중요합니다.
+  iucn_red_list: IUCN 적색 목록
   iucn_red_list_status: IUCN Red List 상태
   january: 1월
   join: 가입하기
@@ -1349,6 +1351,7 @@ ko:
   keyboard_shortcuts: 단축 키
   kml: KML
   kml_file_size_error: KML은 1MB보다 크기가 작아야 합니다.
+  label_colon: '%{label}:'
   labels: 라벨
   location_private: 위치 비공개
   location_unknown: 위치 알 수 없음
@@ -1448,6 +1451,7 @@ ko:
     Flickr은 물어볼 수 있기에 URL이 Flickr로 가는지 주소를 꼭 확인해 주십시오).
   linked_flickr_photo_copy_html: <strong>우리는 당신이 원하지 않는 한 절대로 당신의 Flickr 정보를 변형하거나
     사진들을 저장하지 않을 것입니다.<strong/> 우리는 당신의 개인정보를 조작하기에는 새와 벌레와 민달팽이를 너무나도 사랑합니다!
+  linkedin: 링크드인
   list: 목록
   list_deleted: 목록 삭제됨.
   list_saved: 목록 저장됨.
@@ -1488,6 +1492,7 @@ ko:
     fi: 핀란드어
     fr: 프랑스어
     gl: 갈리시아어
+    iw: 히브리어
     ja: 일본어
     ko: 한국어
     mk: 마케도니아어
@@ -1495,6 +1500,7 @@ ko:
     pt-PT: 포르투갈어 (포르투갈)
     ru: 러시아어
     sq: 알바니아어
+    sv: 스웨덴어
     zh-CN: 중국어(간체)
   location: 위치
   location_: 위치
@@ -1505,6 +1511,7 @@ ko:
   location_is_obscured: 위치가 가려져 있다
   location_is_private: 위치가 비공개이다
   log_in: 로그인
+  log_scale_label: 로그
   logged_in_as: '로그인한 사용자:'
   login_slash_username: 로그인 / 사용자 이름
   logo:
@@ -1527,6 +1534,7 @@ ko:
   manage_names: 이름 관리
   manage_your_projects: 내 프로젝트 관리
   manage_your_project_invitations: 프로젝트 초대 관리
+  manage_your_relationships: 내 관계 관리
   managed: 관리됨
   manager: 매니저
   managers: 관리자들
@@ -1591,6 +1599,7 @@ ko:
   more_fields: 더 많은 친구
   more_filters: 더 많은 필터
   more_from_x: '%{x}의 더 많은 정보'
+  more_help: 기타 도움말
   more_import_options: 가져오기 옵션 더 보기
   more_info: 자세한 정보
   more_info_title: 자세한 정보
@@ -1632,7 +1641,7 @@ ko:
   new_custom_field_for: 새로운 자체지정 필드
   new_flag_for: 새로운 플래그
   new_guide: 새로운 가이드
-  new_journal_posts: 새로운 일지
+  new_journal_post: 새로운 일지
   new_list: 새 목록
   new_members: 새 회원
   new_message: 새 메시지
@@ -1660,6 +1669,9 @@ ko:
   new_user_rules: 새로운 사용자 규칙
   new_users: 새 사용자
   new_users_week: 이 주의 새로운 사용자
+  newly_added: 새로 추가됨
+  newly_added_species: 새로 추가된 종
+  newly_observed_species_this_year: 올해 새로 추가된 종
   news: 새 소식
   next: 다음
   next_observation: 다음 관찰
@@ -1722,6 +1734,7 @@ ko:
   no_ones_observed: 관찰한 사람이 없습니다.
   no_photo: 사진 없음
   no_photos: 사진 없음
+  no_photos_of_that_size: 해당 크기의 사진이 없습니다.
   no_places_available: 사용 가능한 장소 없음
   no_places_selected: 선택된 사진 없음
   no_post_yet: 아직 게시글이 없습니다!
@@ -1906,8 +1919,8 @@ ko:
       street: 길
       Time_Zone: '시간대:'
       time_zone: 시간대
-      Town: 마을
-      town: 마을
+      Town: 읍·면·동
+      town: 읍·면·동
       Unknown: 알 수 없음
       unknown: 알 수 없음
   place_name: 지역 이름
@@ -1917,52 +1930,261 @@ ko:
   places_name:
     afghanistan: 아프가니스탄
     africa: 아프리카
+    akrotiri_and_dhekelia: 아크로티리 데켈리아
+    aland: 올란드
+    albania: 알바니아
+    algeria: 알제리
+    american_samoa: 미국령 사모아
+    andorra: 안도라
+    angola: 앙골라
+    anguilla: 앙귈라
+    antarctica: 남극
+    argentina: 아르헨티나
+    armenia: 아르메니아
+    aruba: 아루바
     australia: 오스트레일리아
     austria: 오스트리아
+    azerbaijan: 아제르바이잔
+    bahamas: 바하마
+    bahrain: 바레인
+    bangladesh: 방글라데시
+    barbados: 바바도스
+    belarus: 벨라루스
     belgium: 벨기에
+    belize: 벨리즈
+    benin: 베냉
+    bermuda: 버뮤다
+    bhutan: 부탄
+    bolivia: 볼리비아
+    bonaire_saint_eustatius_and_saba: 보네르섬, 세인트 유스타티우스, 사바섬
+    botswana: 보츠와나
+    bouvet_island: 부베섬
     brazil: 브라질
+    british_indian_ocean_territory: 영국령 인도양 지역
+    british_virgin_islands: 영국령 버진 제도
+    brunei: 브루나이
+    bulgaria: 불가리아
+    burkina_faso: 부르키나 파소
+    burundi: 브룬디
+    cambodia: 캄보디아
+    cameroon: 카메룬
+    canada: 캐나다
+    cape_verde: 카보베르데
+    cayman_islands: 케이맨 제도
+    central_african_republic: 중앙아프리카 공화국
     central_america: 중앙 아메리카
+    chad: 차드
+    chile: 칠레
     china: 중국
+    christmas_island: 크리스마스섬
+    clipperton_island: 클리퍼턴섬
+    cocos_islands: 코코스 제도
     colombia: 콜롬비아
+    commonwealth_of_the_northern_mariana_islands: 북마리아나 제도 연방
+    comoros: 코모로
+    cook_islands: 쿡 제도
+    costa_rica: 코스타리카
+    cote_d_ivoire: 코트디부아르
+    croatia: 크로아티아
+    cuba: 쿠바
+    curacao: 쿠라사우섬
+    cyprus: 키프로스
+    czech_republic: 체코 공화국
+    democratic_republic_of_the_congo: 콩고민주공화국
     denmark: 덴마크
+    djibouti: 지부티
+    dominica: 도미니카
+    dominican_republic: 도미니카 공화국
+    east_timor: 동티모르
+    ecuador: 에콰도르
     egypt: 이집트
+    el_salvador: 엘살바도르
     equatorial_guinea: 적도 기니
+    eritrea: 에리트레아
+    estonia: 에스토니아
+    ethiopia: 에티오피아
     europe: 유럽
+    falkland_islands: 포클랜드 제도
+    faroe_islands: 페로스 제도
+    fiji: 피지
+    finland: 핀란드
     france: 프랑스
+    french_guiana: 프랑스령 기아나
+    french_polynesia: 프랑스령 폴리네시아
+    french_southern_territories: 프랑스령 남부
+    gabon: 가봉
+    gambia: 감비아
+    georgia: 조지아
     germany: 독일
+    ghana: 가나
+    gibraltar: 지브롤터
     greece: 그리스
+    greenland: 그린란드
+    grenada: 그레나다
+    guadeloupe: 과들루프
+    guam: 괌
+    guatemala: 과테말라
+    guernsey: 건지
+    guinea: 기니
+    guinea_bissau: 기니비사우
+    guyana: 가이아나
+    haiti: 아이티
+    heard_island_and_mcdonald_islands: 허드 맥도널드 제도
+    honduras: 온두라스
     hong_kong: 홍콩
     hungary: 헝가리
-    italy: 이탈리아
+    iceland: 아이슬란드
     india: 인도
+    indonesia: 인도네시아
+    iran: 이란
     iraq: 이라크
+    ireland: 아일랜드
+    isle_of_man: 맨섬
+    israel: 이스라엘
+    italy: 이탈리아
+    jamaica: 자메이카
     japan: 일본
+    jersey: 저지섬
+    jordan: 요르단
+    kazakhstan: 카자흐스탄
+    kenya: 케냐
+    kiribati: 키리바시
     korea: 한국
+    kosovo: 코소보
+    kuwait: 쿠웨이트
+    kyrgyzstan: 키르기스스탄
+    laos: 라오스
+    latvia: 라트비아
+    lebanon: 레바논
+    lesotho: 레소토
+    liberia: 라이베리아
+    libya: 리비아
+    liechtenstein: 리히텐슈타인
+    lithuania: 리투아니아
+    luxembourg: 룩셈부르크
+    macao: 마카오
+    macedonia: 마케도니아
+    madagascar: 마다가스카르
+    malawi: 말라위
+    malaysia: 말레이시아
+    maldives: 몰디브
+    mali: 말리
+    malta: 몰타
+    marshall_islands: 마셜 제도
+    mauritania: 모리타니아
+    mauritius: 모리셔스
+    mayotte: 마요트
     mexico: 멕시코
+    micronesia: 미크로네시아
+    moldova: 몰도바
+    monaco: 모나코
+    mongolia: 몽골
+    montenegro: 몬테네그로
+    montserrat: 몬트세랫
+    morocco: 모로코
+    mozambique: 모잠비크
+    myanmar: 미얀마
+    namibia: 나미비아
+    nauru: 나우루
+    nepal: 네팔
     netherlands: 네덜란드
+    new_caledonia: 뉴칼레도니아
     new_guinea: 뉴 기니
     new_zealand: 뉴질랜드
+    nicaragua: 니카라과
+    niger: 니제르
+    nigeria: 나이지리아
+    niue: 니우에
+    norfolk_island: 노퍽섬
     north_africa: 북아프리카
     north_america: 북아메리카
+    north_korea: 조선민주주의인민공화국
+    northern_cyprus: 북키프로스
+    norway: 노르웨이
+    oman: 오만
+    pakistan: 파키스탄
+    palau: 팔라우
+    palestina: 팔레스티나
     panama: 파나마
+    papua_new_guinea: 파푸아뉴기니
+    paraguay: 파라과이
     peru: 페루
+    philippines: 필리핀
+    pitcairn_islands: 피트케언 제도
     poland: 폴란드
     portugal: 포르투갈
+    puerto_rico: 푸에르토리코
+    qatar: 카타르
     republic_of_congo: 콩고 민주 공화국
+    reunion: 레위니옹
+    romania: 루마니아
     russia: 러시아
+    rwanda: 르완다
+    saint_barthelemy: 생바르텔레미
+    saint_helena: 세인트헬레나
+    saint_kitts_and_nevis: 세인트키츠 네비스
+    saint_lucia: 세인트루시아
+    saint_martin: 세인트마틴섬
+    saint_pierre_and_miquelon: 생피에르 미클롱
+    saint_vincent_and_the_grenadines: 세인트빈센트 그레나딘
+    samoa: 사모아
+    san_marino: 산마리노
     saudi_arabia: 사우디아라비아
+    senegal: 세네갈
+    serbia: 세르비아
+    seychelles: 세이셸
+    sierra_leone: 시에라리온
     singapore: 싱가포르
+    sint_maarten: 신트마르턴
+    slovakia: 슬로바키아
+    slovenia: 슬로베니아
+    solomon_islands: 솔로몬 제도
+    somalia: 소말리아
     south_africa: 남아프리카
     south_america: 남아메리카
+    south_georgia_and_the_south_sandwich_islands: 사우스조지아 사우스샌드위치 제도
+    south_korea: 대한민국
+    south_sudan: 남수단
     spain: 스페인
+    sri_lanka: 스리랑카
+    sudan: 수단
+    suriname: 수리남
+    svalbard_and_jan_mayen: 스발바르 얀마옌 제도
+    swaziland: 스와질란드
     sweden: 스웨덴
     switzerland: 스위스
     syria: 시리아
+    taiwan: 타이완
+    tajikistan: 타지키스탄
+    tanzania: 탄자니아
     thailand: 태국
+    togo: 토고
+    tokelau: 토켈라우
+    tonga: 통가
+    tunisia: 튀니지
     turkey: 터키
+    turkmenistan: 투르크메니스탄
+    turks_and_caicos_islands: 터크스카이코스 제도
+    tuvalu: 투발루
+    uganda: 우간다
+    ukraine: 우크라이나
+    united_arab_emirates: 아랍에미리트 연합국
     united_kingdom: 영국
     united_states: 미국
+    united_states_minor_outlying_islands: 미국령 군소 제도
+    united_states_virgin_islands: 미국령 버진 제도
+    uruguay: 우루과이
+    uzbekistan: 우즈베키스탄
+    vanuatu: 바누아투
+    vatican_city: 바티칸시티
+    venezuela: 베네수엘라
+    vietnam: 베트남
+    wallis_and_futuna: 월리스푸투나
     west_africa: 서아프리카
+    western_sahara: 서사하라
+    yemen: 예멘
+    zambia: 잠비아
+    zimbabwe: 짐바브웨
   places_merged_successfully: 장소가 성공적으로 합쳐졌습니다!
   plants: 식물
   please_be_careful_particulary_when: 특히 분류군을 삭제할 때 조심해 주세요. 연관된 관찰이나 동정, 다른 분류군 등이
@@ -1981,6 +2203,7 @@ ko:
   private_: 비공개
   private_description: 공개된 지도에서 좌표가 표시되지 않습니다. 실제 좌표는 본인과 관찰이 속해있는 프로젝트의 큐레이터만 볼 수
     있습니다. 사적인 좌표의 관찰이라도 장소 체크리스트를 확인하는 데에는 사용됩니다.
+  probably_spam: 스팸으로 추정
   processing3p: 처리 중...
   profile: 프로필
   project: 프로젝트
@@ -2026,16 +2249,27 @@ ko:
   read_more: 더 읽어보기
   real_time_discussions: 실시간 토론
   reason: 이유
-  recaptcha_verification_failed: reCaptcha 확인 실패
+  reason_label: '이유:'
+  recaptcha_verification_failed: reCAPTCHA 확인 실패
   receive_updates_from_this_project: 이 프로젝트에서 업데이트 전송
   recent_additions: 최근 추가 항목
   recent_evidence?: 최근의 증거가 있습니까?
+  recent_new_users: 최근 신규 사용자
   recent_observations: 최근 관찰
   recent_atom_observations_by: '%{login}의 최근 관찰 (Atom)'
   recent_updates: 최근 업데이트
   recently_created: 최근 생성함
   recently_finished: 최근에 완료됨
   recently_resolved: 최근 해결됨
+  relationship: 관계
+  relationship_x: '관계: %{relationship}'
+  relationships:
+    one_to_one: 일대일
+    many_to_many: 다대다
+    many_to_one: 다대일
+    one_to_many: 일대다
+    error: 오류
+  relationship_html: '관계: %{link}'
   reload_from_observations: 관찰에서 다시 불러오기
   remove: 제거
   remove_all_tags: 모든 태그를 제거
@@ -2049,6 +2283,7 @@ ko:
   remove_place: 장소 제거
   remove_project_user: 프로젝트 사용자 제거
   remove_range: 범위 제거
+  remove_relationship: 관계 제거
   remove_selected: 선택한 것을 제거
   remove_tags: 태그 제거
   remove_your_existing_id?: 당신의 ID를 삭제하시겠습니까?
@@ -2057,6 +2292,7 @@ ko:
   removed_project_user: 제거된 프로젝트 사용자
   removing: 제거 중...
   reorder_by_taxonomy: 분류학별로 순서 바꾸기
+  repair_broken_urls: 깨진 URL 해결
   reply: 답변
   request_failed: 요청이 실패했습니다
   required: 필수
@@ -2073,6 +2309,7 @@ ko:
   sat: 토
   save: 저장
   save_all: 모두 저장
+  save_and_continue: 저장하고 계속하기...
   save_changes: 바뀜 저장
   save_colors: 색깔 저장
   save_comment: 댓글 저장
@@ -2082,6 +2319,7 @@ ko:
   saved: 저장됨
   saving: 저장 중...
   saving_verb: 저장 중
+  scale_colon: '축척:'
   search: 검색
   search_by_name_or_email: 이름이나 이메일로 찾기
   search_for_a_location: 위치 찾기
@@ -2115,6 +2353,7 @@ ko:
   set_license: 라이선스 설정
   settings: 설정
   share: 공유
+  share_colon: '공유:'
   show: 보이기
   show_keyboard_shortcuts: 단축 키 표시
   show_kml: KML 보이기
@@ -2133,6 +2372,9 @@ ko:
   similar_species: 비슷한 종
   sizes: 크기
   small: 작게
+  site_admin_tools: 사이트 관리자 도구
+  site_site_admin: '%{site_name} 사이트 관리자'
+  site_staff: '%{site_name} 직원'
   sorry_google_isnt_responding_at_the_moment: 죄송합니다. 구글이 지금 응답하지 않습니다.
   sort_by: 정렬 기준
   sounds:
@@ -2171,6 +2413,7 @@ ko:
   submitted: 제출됨
   subscriptions: 구독
   suggestions: 제안
+  support_inaturalist: iNaturalist 지원
   siutable_observations: 적합한 관찰
   sync: 동기화하시겠습니까?
   sync_with_eol: EOL과 동기화하기
@@ -2186,6 +2429,7 @@ ko:
   tell_the_world_a_little_about_yourself: ​우리에게 당신에 대해 말해주세요.
   tell_us_why: 이유를 말해주세요...
   text: 텍스트
+  thanks!: 감사합니다!
   the_following_observations_could: '%{link}에 관찰을 추가하지 못했습니다.'
   then_keybord_sequence: 다음에
   there_were_problems_adding_that_observation_to_this_project: '이 프로젝트의 관찰을 추가하는 문제가
@@ -2285,6 +2529,7 @@ ko:
   view_unidentified_observations: 동정하지 않은 관찰 보기
   view_x: '%{x} 보기'
   view_your_observations: 내 관찰 보기
+  video_tutorials: 동영상 강좌
   vulnerable: 취약
   we_also_support: "<a href=\"http://flickr.com\">플리커</a>, \n<a href=\"http://photos.google.com\">구글
     포토</a>, \n<a href=\"http://facebook.com\">페이스북</a>\n의 영상 호스팅도 지원합니다."
@@ -2301,6 +2546,7 @@ ko:
   welcome_comma!: 환영합니다,
   welcome: 환영합니다
   welcome_back: 다시 온 것을 환영합니다
+  welcome_back!: 다시 오신 것을 환영합니다!
   welcome_comma: 환영합니다,
   welcome_login: '%{login}님, 환영합니다.'
   welcome_to_inat: '%{site_name}에 오신 것을 환영합니다!'
@@ -2316,6 +2562,7 @@ ko:
   where_did_you_see_it: 어디서 봤나요?
   which_projects_can_add_your_observations?: 내 관찰을 추가할 수 있는 전통적인 프로젝트는 무엇입니까?
   white: 흰색
+  why_you_can_see_the_coordinates: 좌표를 볼 수 있는 이유
   who_can_add_observations_to_this_project?: 이 프로젝트에 관찰을 추가할 수 있는 사람은 누구입니까?
   widget: 위젯
   widget_code: 위젯 코드
@@ -2363,6 +2610,7 @@ ko:
   your_google_account_info: 구글 계정 정보
   your_pinned_locations: 내가 저장한 위치
   your_recent_projects: 내 최근 프로젝트
+  your_relationships: 내 관계
   your_subscriptions: 당신의 구독 목록
   your_sure_delete_list?: 이 목록을 삭제하겠습니까?
   youre_following: '팔로우 중:'
@@ -2373,6 +2621,8 @@ ko:
       mailer:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: 교실에서 %{site_name}을(를) 사용할 예정이십니까?
+    donate:
+      donate_short_desc: 지원을 표하려면 지금 기부하세요!
     guides:
       edit:
         add_rank_tags_help_html: |-
@@ -2409,6 +2659,11 @@ ko:
           숨김된 좌표는 선이 없는 원으로 표시됩니다.
         you_can_also_obscure_the_coordinates_html: 분류와 상관없이 좌표 숨김을 할 수 있습니다. 위의 <a
           href="#geoprivacy">geoprivacy</a>를 보세요.
+    oauth:
+      authorizations:
+        new:
+          this_application_will_be_able_to_colon: '이 애플리케이션은 다음을 할 수 있습니다:'
+          more_about_application: '%{application} 추가 정보'
     observations:
       community_id:
         agreement: 동의
@@ -2426,6 +2681,9 @@ ko:
         flagged_photos_desc_html: |-
           이러한 사진 중 일부가 부적절한 내용 또는 저작권 침해로
           플래그되어 있습니다. 자세한 내용은 %{links}을(를) 보십시오
+    emailer:
+      photos_missing:
+        subject: 일부 사진에 수정이 필요합니다
     places:
       kml_field_desc: |-
         장소 경계의 KML입니다. Google Maps, Google Earth,
@@ -2475,6 +2733,8 @@ ko:
         new_users_desc: 오늘 가입함
         TTCID: TTCID
         TTID: TTID
+      year:
+        include_usa: 미국 포함
     taxa:
       show:
         frequency:
@@ -2491,6 +2751,8 @@ ko:
         project_addition_preferences:
           none: 없음, 프로젝트에 관찰만 추가할 수 있습니다
         scientific_name_first_desc: 보통 명사 앞에 학명을 표시합니다.
+      recent:
+        about_recent_users: 정보
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.
@@ -2591,7 +2853,7 @@ ko:
     messages:
       accepted: 동의해야 합니다
       blank: 비워둘 수 없습니다
-      confirmation: 확인과 일치하지 않습니다
+      confirmation: 비밀번호와 일치하지 않습니다
       empty: 비워둘 수 없습니다
       equal_to: '%{count}와(과) 같아야 합니다'
       even: 짝수여야 합니다
@@ -2624,25 +2886,11 @@ ko:
     formats:
       rfc: '%Y년 %B %d일'
       day_month_year: '%Y년 %B %d일'
-  activerecord:
+  activemodel:
     errors:
-      models:
-        observation_field_value:
-          attributes:
-            value:
-              date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
-                \n당신이 관찰한 \"%{observation_field_name}\")"
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: 문자로 시작해야 하고 공백을 포함할 수 없으며 문자, 숫자, 대시, 밑줄 문자만
-                사용해야 합니다
-            email:
-              must_look_like_an_email_address: 이메일 주소 같아 보여야 합니다
+      messages:
+        confirmation: 비밀번호와 일치하지 않습니다
+  activerecord:
     models:
       TaxonLink: 분류 링크
     attributes:
@@ -2670,6 +2918,59 @@ ko:
         time_zone: 시간대
         search_place_id: 장소 검색
         place_id: 장소
+    errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: 동의해야 합니다
+        confirmation: 비밀번호와 일치하지 않습니다
+        empty: 비워둘 수 없습니다
+        even: 짝수여야 합니다
+        greater_than_or_equal_to: '%{count}보다 크거나 같아야 합니다'
+        inclusion: 목록에 포함되어 있지 않습니다
+        invalid: 잘못되었습니다
+        less_than: '%{count}보다 작아야 합니다'
+        less_than_or_equal_to: '%{count}보다 작거나 같아야 합니다'
+        not_a_number: 숫자가 아닙니다
+        not_an_integer: 정수여야 합니다
+        odd: 홀수여야 합니다
+      template:
+        body: '다음 필드에 문제가 있었습니다:'
+      models:
+        application:
+          attributes:
+            redirect_uri:
+              has_query_parameter: 쿼리 변수를 포함할 수 없습니다.
+              invalid_uri: 유효한 URI이어야 합니다.
+              relative_uri: 절대 URI이어야 합니다.
+        observation_field_value:
+          attributes:
+            value:
+              date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
+                \n당신이 관찰한 \"%{observation_field_name}\")"
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: 문자로 시작해야 하고 공백을 포함할 수 없으며 문자, 숫자, 대시, 밑줄 문자만
+                사용해야 합니다
+            email:
+              must_look_like_an_email_address: 이메일 주소 같아 보여야 합니다
+  doorkeeper:
+    errors:
+      messages:
+        invalid_request: 요청에 필요한 변수가 없거나 미지원 변수값이 있거나 잘못 구성되어 있습니다.
+        invalid_redirect_uri: 포함된 리다이렉트 uri는 유효하지 않습니다.
+        access_denied: 리소스 소유자 또는 인가 서버가 요청을 거부했습니다.
+        unsupported_response_type: 인가 서버가 이 응답 유형을 지원하지 않습니다.
+    flash:
+      applications:
+        create:
+          notice: 애플리케이션이 만들어졌습니다.
+        update:
+          notice: 애플리케이션이 업데이트되었습니다.
   i18n:
     inflections:
       :@vow_or_con:

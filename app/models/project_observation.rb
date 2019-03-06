@@ -106,6 +106,8 @@ class ProjectObservation < ActiveRecord::Base
   after_save :update_project_list_if_curator_ident_changed
   after_commit :reindex_observation, on: :update # after create and destroy should be handled by TouchesObservationModule
 
+  attr_accessor :skip_touch_observation
+
   include Shared::TouchesObservationModule
 
   def update_project_list_if_curator_ident_changed
@@ -330,6 +332,10 @@ class ProjectObservation < ActiveRecord::Base
     return true if observation.taxon.blank?
     taxon.id == observation.taxon_id || taxon.ancestor_of?(observation.taxon)
   end
+
+  def not_in_taxon?(taxon = nil)
+    !in_taxon?( taxon )
+  end
   
   def on_list?
     list = project.project_list
@@ -413,6 +419,7 @@ class ProjectObservation < ActiveRecord::Base
   end
 
   def touch_observation
+    return if skip_touch_observation
     if observation
       observation.project_observations.reload
       observation.touch

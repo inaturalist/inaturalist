@@ -410,7 +410,8 @@ iNaturalist.Map.createMap = function(options) {
     streetViewControl: false,
     backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
     clickableIcons: false,
-    gestureHandling: "greedy"
+    gestureHandling: "greedy",
+    controlSize: 26
   }, options);
   
   var map;
@@ -693,7 +694,7 @@ iNaturalist.Legend = function( controlDiv, map, options ) {
 iNaturalist.OverlayControl = function(map, options) {
   options = options || {}
   var controlDiv = options.div || document.createElement('DIV')
-  controlDiv.style.margin = '14px 10px 0';
+  controlDiv.style.margin = "6px 5px 0";
   var controlUI = $('<div><span class="ui-icon inat-icon ui-icon-layers">'+I18n.t('taxon_map.overlays')+'</span></div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').addClass("inat-overlay").hide()
   controlUI.append(ul)
@@ -744,7 +745,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if (options.taxon) {
     // Stopgap solution to dealing with multiple taxon maps on a single page.
     // Will break if multiple maps have the same taxon
-    id += '-' + options.taxon.id;
+    id += '-' + options.taxon.id + "-" + options.label;
   }
   li.attr('data-title', title)
   var label = $("<label/>").attr("for", id).html(title)
@@ -763,7 +764,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if( options.taxon ) {
     addWindshaftOverlayTaxonDiv( ul, li, options );
   }
-  checkbox.change( function( ) {
+  checkbox.change( function( e ) {
     var checked = $( this ).prop( "checked" );
     _.each( layers, function( layerData ) {
       map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : emptyLayer);
@@ -773,6 +774,9 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     // as one checkox is checked, the taxon's checkbox will also be checked
     if ( taxonID = $(this).parent().data( "taxon-id" ) ) {
       updateTaxonCheckboxState( ul, taxonID );
+    }
+    if ( typeof( options.onChange ) === "function" ) {
+      options.onChange( e );
     }
   })
   if( description ) {
@@ -827,16 +831,21 @@ var addWindshaftOverlayTaxonDiv = function( ul, li, options ) {
     taxon_checkbox = $("<input type='checkbox'/>")
       .attr("id", taxon_id)
       .attr("name", options.taxon.name);
-    var primaryName = options.taxon.common_name ?
-      options.taxon.common_name.name : options.taxon.to_styled_s;
-    if ( !primaryName ) {
-      primaryName = options.taxon.preferred_common_name;
+    var primaryName;
+    if ( options.taxon.forced_name ) {
+      taxon_label = $("<label/>").attr("for", taxon_id).html( options.taxon.forced_name );
+    } else {
+      primaryName = options.taxon.common_name ?
+        options.taxon.common_name.name : options.taxon.to_styled_s;
+      if ( !primaryName ) {
+        primaryName = options.taxon.preferred_common_name;
+      }
+      if ( !primaryName ) {
+        primaryName = options.taxon.name;
+      }
+      // prepare the label for the input, the taxon's scientific Name
+      taxon_label = $("<label/>").attr("for", taxon_id).html(primaryName);
     }
-    if ( !primaryName ) {
-      primaryName = options.taxon.name;
-    }
-    // prepare the label for the input, the taxon's scientific Name
-    taxon_label = $("<label/>").attr("for", taxon_id).html(primaryName);
     // append the checkbox and label
     taxon_li = $("<li/>").attr("class", "taxon").attr("data-taxon-id", taxon_id)
       .append( taxon_checkbox, taxon_label );
@@ -1076,24 +1085,88 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // using a less generic name for the elasticmaps param to not show
   // an observation on a tile, because we have a Google marker for it
-  if( options.observation_id && typeof options.observation_id == "number" ) {
-    options.featured_observation_id = options.observation_id;
-  }
+  // if( options.observation_id && typeof options.observation_id == "number" ) {
+  //   options.featured_observation_id = options.observation_id;
+  // }
   // these are the parameters that will be sent to the node API
-  var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
-    'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2',
-    'nelat', 'nelng', 'swlat', 'swlng', 'day', 'month', 'year',
-    'rank', 'hrank', 'lrank', 'quality_grade', 'identifications', 'captive',
-    'iconic_taxa', 'q', 'search_on', 'out_of_range', 'has', 'iconic_taxa',
-    'project_ids', 'geoprivacy', 'on', 'created_on', 'viewer_id', 'reviewed',
-    'featured_observation_id', 'threatened', 'introduced', 'endemic',
-    'native', 'verifiable', 'popular', 'has', 'photos', 'sounds',
-    'photo_license', 'created_d1', 'created_d2', 'not_in_project',
-    'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]',
-    'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id',
-    'taxon_ids', 'not_in_place', 'unobserved_by_user_id', 'radius', 'geo',
-    'oauth_application_id', 'collection_preview', 'term_id', 'term_value_id',
-    'without_term_value_id', 'without_taxon_id', 'not_user_id' ];
+  var paramKeys = [
+    "acc",
+    "acc_above",
+    "acc_below",
+    "apply_project_rules_for",
+    "border_opacity",
+    "cache",
+    "captive",
+    "collection_preview",
+    "color",
+    "created_d1",
+    "created_d2",
+    "created_on",
+    "d1",
+    "d2",
+    "day",
+    "endemic",
+    "featured_observation_id",
+    "geo",
+    "geoprivacy",
+    "has",
+    "has",
+    "hrank",
+    "iconic_taxa",
+    "iconic_taxa",
+    "identifications",
+    "identified",
+    "introduced",
+    "lat",
+    "list_id",
+    "lng",
+    "lrank",
+    "month",
+    "native",
+    "nelat",
+    "nelng",
+    "not_in_place",
+    "not_in_project",
+    "not_matching_project_rules_for",
+    "not_user_id",
+    "oauth_application_id",
+    "on",
+    "opacity",
+    "out_of_range",
+    "photo_license",
+    "photos",
+    "place_id",
+    "popular",
+    "project_id",
+    "project_ids",
+    "projects[]",
+    "q",
+    "quality_grade",
+    "radius",
+    "rank",
+    "reviewed",
+    "scaled",
+    "search_on",
+    "sounds",
+    "swlat",
+    "swlng",
+    "taxon_geoprivacy",
+    "taxon_id",
+    "taxon_ids",
+    "taxon_ids[]",
+    "term_id",
+    "term_value_id",
+    "threatened",
+    "ttl",
+    "unobserved_by_user_id",
+    "user_id",
+    "verifiable",
+    "viewer_id",
+    "viewer_id",
+    "without_taxon_id",
+    "without_term_value_id",
+    "year"
+  ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(

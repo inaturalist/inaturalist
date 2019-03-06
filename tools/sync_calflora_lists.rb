@@ -1,8 +1,8 @@
 #encoding: utf-8
-require 'rubygems'
-require 'trollop'
+require "rubygems"
+require "optimist"
 
-opts = Trollop::options do
+opts = Optimist::options do
     banner <<-EOS
 Create and/or sync CA county/family lists from Calflora.
 

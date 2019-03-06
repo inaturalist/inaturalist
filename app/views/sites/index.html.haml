@@ -13,10 +13,16 @@
     - @records.each do |site|
       %tr
         %td= link_to image_tag(site.logo.url), site
-        %td= link_to site.name, site
+        %td
+          = link_to site.name, site
+          - if site.draft?
+            = "(#{t(:draft)})"
         %td= link_to site.url, site.url
-        %td= link_to t(:edit), edit_site_path(site)
+        %td
+          - if is_admin? || current_user.is_site_admin_of?(site)
+            = link_to t(:edit), edit_site_path(site)
 
   %br
 
-  = link_to t(:new_site), new_site_path
+  - if is_admin?
+    = link_to t(:new_site), new_site_path

@@ -1,16 +1,16 @@
 import React from "react";
-import ReactDOMServer from "react-dom/server";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import UserImage from "../../../shared/components/user_image";
-import SplitTaxon from "../../../shared/components/split_taxon";
 import GenerateStatsButton from "./generate_stats_button";
 import Summary from "./summary";
 import Observations from "./observations";
 import Identifications from "./identifications";
-import TaxaSunburst from "./taxa_sunburst";
+import Taxa from "./taxa";
+import Publications from "./publications";
+import Growth from "./growth";
 
 const App = ( {
   year,
@@ -21,7 +21,7 @@ const App = ( {
   rootTaxonID
 } ) => {
   let body = "todo";
-  let inatUser = user ? new inatjs.User( user ) : null;
+  const inatUser = user ? new inatjs.User( user ) : null;
   if ( !year ) {
     body = (
       <p className="alert alert-warning">
@@ -31,7 +31,7 @@ const App = ( {
   } else if ( !data || !currentUser ) {
     if ( user && currentUser && user.id === currentUser.id ) {
       body = (
-        <GenerateStatsButton user={ user } year={ year } />
+        <GenerateStatsButton user={user} year={year} />
       );
     } else {
       body = (
@@ -44,38 +44,44 @@ const App = ( {
     body = (
       <div>
         <center>
-          <a href="#sharing" className="btn btn-default btn-share">
-            { I18n.t( "share" ) } <i className="fa fa-share-square-o"></i>
+          <a href="#sharing" className="btn btn-default btn-share btn-bordered">
+            { I18n.t( "share" ) }
+            { " " }
+            <i className="fa fa-share-square-o" />
           </a>
         </center>
-        <Summary data={ data } user={ user } year={ year } />
-        <Observations data={ data.observations } user={ user } year={ year } site={site} />
-        <Identifications data={ data.identifications } user={ user } />
-        { user && data.taxa && data.taxa.tree_taxa && rootTaxonID && (
-          <TaxaSunburst
-            data={ data.taxa.tree_taxa }
-            rootTaxonID={ rootTaxonID }
-            labelForDatum={ d => {
-              return ReactDOMServer.renderToString(
-                <div>
-                  <SplitTaxon taxon={ d.data } noInactive forceRank user={ currentUser } />
-                  <div className="text-muted small">
-                    { I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } ) }
-                  </div>
-                </div>
-              );
-            } }
+        <Summary data={data} user={user} year={year} site={site} currentUser={currentUser} />
+        <Observations data={data.observations} user={user} year={year} site={site} />
+        <Identifications
+          data={data.identifications}
+          user={user}
+          currentUser={currentUser}
+          year={year}
+        />
+        <Taxa
+          data={data.taxa}
+          rootTaxonID={rootTaxonID}
+          year={year}
+          user={user}
+          currentUser={currentUser}
+        />
+        { data && data.growth && (
+          <Growth
+            data={Object.assign( {}, data.growth, { taxa: data.taxa.accumulation } )}
+            year={year}
           />
         ) }
         { user && currentUser && user.id === currentUser.id ? (
-          <GenerateStatsButton user={ user } year={ year } text={ I18n.t( "regenerate_stats" ) } />
+          <GenerateStatsButton user={user} year={year} text={I18n.t( "regenerate_stats" )} />
         ) : null }
-        <a name="sharing"></a>
-        <h2 id="sharing"><span>{ I18n.t( "share" ) }</span></h2>
+        { data.publications && (
+          <Publications data={data.publications} year={year} />
+        ) }
+        <h2 id="sharing"><a name="sharing" href="#sharing"><span>{ I18n.t( "share" ) }</span></a></h2>
         <center>
           <div
             className="fb-share-button"
-            data-href={ window.location.toString( ).replace( /#.+/, "" )}
+            data-href={window.location.toString( ).replace( /#.+/, "" )}
             data-layout="button"
             data-size="large"
             data-mobile-iframe="true"
@@ -83,14 +89,15 @@ const App = ( {
             <a
               className="fb-xfbml-parse-ignore"
               target="_blank"
-              href={ `https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse` }
+              rel="noopener noreferrer"
+              href={`https://www.facebook.com/sharer/sharer.php?u=${window.location.toString( ).replace( /#.+/, "" )}&amp;src=sdkpreparse`}
             >
               { I18n.t( "facebook" ) }
             </a>
           </div>
           <a
             className="twitter-share-button"
-            href={ `https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}` }
+            href={`https://twitter.com/intent/tweet?text=Check+these+${year}+${site.site_name_short || site.name}+stats!&url=${window.location.toString( ).replace( /#.+/, "" )}`}
             data-size="large"
           >
             { I18n.t( "twitter" ) }
@@ -100,23 +107,41 @@ const App = ( {
     );
   }
   let montageObservations = [];
-  if ( data && data.observations && data.observations.popular && data.observations.popular.length > 0 ) {
-    montageObservations = _.filter( data.observations.popular, o => ( o.photos && o.photos.length > 0 ) );
+  if (
+    data
+    && data.observations
+    && data.observations.popular
+    && data.observations.popular.length > 0
+  ) {
+    montageObservations = _.filter(
+      data.observations.popular, o => ( o.photos && o.photos.length > 0 )
+    );
     while ( montageObservations.length < 150 ) {
       montageObservations = montageObservations.concat( montageObservations );
     }
   }
+  // https://gist.github.com/59naga/ed6714519284d36792ba
+  const isTouchDevice = navigator.userAgent.match(
+    /(Android|webOS|iPhone|iPad|iPod|BlackBerry|Windows Phone)/i
+  ) !== null;
   return (
     <div id="YearStats">
       <div className="banner">
         <div className="montage">
           <div className="photos">
             { _.map( montageObservations, ( o, i ) => (
-              <a href={ `/observations/${o.id}` } key={ `montage-obs-${i}` }>
+              <a href={`/observations/${o.id}`} key={`montage-obs-${i}`}>
                 <img
-                  src={ o.photos[0].url.replace( "square", "thumb" ) }
-                  width={ ( 50 / o.photos[0].original_dimensions.height ) * o.photos[0].original_dimensions.width }
-                  height={ ( 50 / o.photos[0].original_dimensions.height ) * o.photos[0].original_dimensions.height }
+                  alt={o.species_guess}
+                  src={o.photos[0].url.replace( "square", "thumb" )}
+                  width={
+                    ( 50 / o.photos[0].original_dimensions.height )
+                    * o.photos[0].original_dimensions.width
+                  }
+                  height={
+                    ( 50 / o.photos[0].original_dimensions.height )
+                    * o.photos[0].original_dimensions.height
+                  }
                 />
               </a>
             ) ) }
@@ -124,7 +149,7 @@ const App = ( {
         </div>
         { inatUser ? (
           <div>
-            <UserImage user={ inatUser } />
+            <UserImage user={inatUser} />
             <div className="ribbon-container">
               <div className="ribbon">
                 <div className="ribbon-content">
@@ -136,12 +161,12 @@ const App = ( {
         ) : (
           <div className="protector">
             <div className="site-icon">
-              <img src={ site.icon_url } />
+              <a href={site.url}><img src={site.icon_url} alt={site.name} /></a>
             </div>
             <div className="ribbon-container">
               <div className="ribbon">
                 <div className="ribbon-content">
-                  { site.name }
+                  <a href={site.url}>{ site.name }</a>
                 </div>
               </div>
             </div>
@@ -149,9 +174,9 @@ const App = ( {
         ) }
 
       </div>
-      <Grid>
+      <Grid fluid={isTouchDevice}>
         <Row>
-          <Col xs={ 12 }>
+          <Col xs={12}>
             <h1>
               {
                 I18n.t( "year_in_review", {
@@ -162,23 +187,40 @@ const App = ( {
           </Col>
         </Row>
         <Row>
-          <Col xs={ 12 }>
+          <Col xs={12}>
             { body }
             <div id="view-stats-buttons">
               { !currentUser || !user || ( user.id !== currentUser.id ) ? (
                 <div>
-                  <a href={ `/stats/${year}/you`} className="btn btn-default">
-                    <i className="fa fa-pie-chart"></i> { I18n.t( "view_your_year_stats", { year } ) }
+                  <a href={`/stats/${year}/you`} className="btn btn-primary btn-bordered">
+                    <i className="fa fa-pie-chart" />
+                    { " " }
+                    { I18n.t( "view_your_year_stats", { year } ) }
                   </a>
                 </div>
               ) : null }
               { user ? (
                 <div>
-                  <a href={ `/stats/${year}`} className="btn btn-default">
-                    <i className="fa fa-bar-chart-o"></i> { I18n.t( "view_year_stats_for_site", { year, site: site.name } ) }
+                  <a href={`/stats/${year}`} className="btn btn-primary btn-bordered">
+                    <i className="fa fa-bar-chart-o" />
+                    { " " }
+                    { I18n.t( "view_year_stats_for_site", { year, site: site.name } ) }
                   </a>
                 </div>
               ) : null }
+              { (
+                !site || site.id === 1 || (
+                  user && ( user.site_id === null || user.site_id === 1 )
+                )
+              ) && (
+                <div>
+                  <a href="/donate?utm_content=year-in-review-2018" className="btn btn-default btn-bordered btn-donate">
+                    <i className="fa fa-heart" />
+                    { " " }
+                    { I18n.t( "support_inaturalist" ) }
+                  </a>
+                </div>
+              ) }
             </div>
           </Col>
         </Row>

@@ -16,27 +16,29 @@ class TaxonCuratorsController < ApplicationController
   # end
 
   def new
+    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
     @taxon_curator = TaxonCurator.new
-    respond_with(@taxon_curator)
+    respond_with( @taxon_curator )
   end
 
   def edit
+    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
   end
 
   def create
-    @taxon_curator = TaxonCurator.new(taxon_curator_params)
+    @taxon_curator = TaxonCurator.new( taxon_curator_params )
     @taxon_curator.save
     # respond_with(@taxon_curator)
     respond_to do |format|
-      format.html { redirect_to @taxon_curator.taxon }
+      format.html { redirect_to taxonomy_details_for_taxon_path( @taxon_curator.taxon_framework.taxon) }
       format.json { render json: @taxon_curator }
     end
   end
 
   def update
-    @taxon_curator.update(taxon_curator_params)
+    @taxon_curator.update( taxon_curator_params )
     respond_to do |format|
-      format.html { redirect_to @taxon_curator.taxon }
+      format.html { redirect_to taxonomy_details_for_taxon_path( @taxon_curator.taxon_framework.taxon ) }
       format.json { render json: @taxon_curator }
     end
   end
@@ -44,17 +46,17 @@ class TaxonCuratorsController < ApplicationController
   def destroy
     @taxon_curator.destroy
     respond_to do |format|
-      format.html { redirect_to @taxon_curator.taxon }
+      format.html { redirect_to taxonomy_details_for_taxon_path( @taxon_curator.taxon_framework.taxon ) }
       format.json { render json: @taxon_curator }
     end
   end
 
   private
     def set_taxon_curator
-      @taxon_curator = TaxonCurator.find(params[:id])
+      @taxon_curator = TaxonCurator.find( params[:id] )
     end
 
     def taxon_curator_params
-      params.require(:taxon_curator).permit(:taxon_id, :user_id)
+      params.require( :taxon_curator ).permit( :taxon_framework_id, :user_id )
     end
 end

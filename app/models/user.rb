@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   include ActsAsElasticModel
 
   acts_as_voter
-  acts_as_spammable :fields => [ :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :description ],
+                    comment_type: "signup"
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -82,6 +82,7 @@ class User < ActiveRecord::Base
   preference :common_names, :boolean, default: true 
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
+  preference :medialess_obs_maps, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
@@ -105,13 +106,22 @@ class User < ActiveRecord::Base
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
-  
-  # Some interesting ways to map self-referential relationships in rails
-  has_many :friendships, :dependent => :destroy
-  has_many :friends, :through => :friendships
-  has_many :followerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
-  has_many :followers, :through => :followerships,  :source => 'user'
-  
+  has_many :friendships, dependent: :destroy
+
+  def followees
+    User.where( "friendships.user_id = ?", id ).
+      joins( "JOIN friendships ON friendships.friend_id = users.id" ).
+      where( "friendships.following" ).
+      where( "users.suspended_at IS NULL" )
+  end
+
+  def followers
+    User.where( "friendships.friend_id = ?", id ).
+      joins( "JOIN friendships ON friendships.user_id = users.id" ).
+      where( "friendships.following" ).
+      where( "users.suspended_at IS NULL" )
+  end
+
   has_many :lists, :dependent => :destroy
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
@@ -151,6 +161,7 @@ class User < ActiveRecord::Base
   has_many :user_mutes_as_muted_user, class_name: "UserMute", foreign_key: "muted_user_id", inverse_of: :muted_user, dependent: :destroy
   has_many :taxon_curators, inverse_of: :user, dependent: :destroy
   has_many :taxon_changes, inverse_of: :user
+  has_many :taxon_framework_relationships
   has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
   
@@ -196,6 +207,7 @@ class User < ActiveRecord::Base
   has_many :flow_tasks
   has_many :project_observations, dependent: :nullify 
   belongs_to :site, :inverse_of => :users
+  has_many :site_admins, inverse_of: :user
   belongs_to :place, :inverse_of => :users
   belongs_to :search_place, inverse_of: :search_users, class_name: "Place"
 
@@ -221,6 +233,7 @@ class User < ActiveRecord::Base
   after_destroy :create_deleted_user
   after_destroy :remove_oauth_access_tokens
   after_destroy :destroy_project_rules
+  after_destroy :reindex_faved_observations_after_destroy_later
 
   validates_presence_of :icon_url, :if => :icon_url_provided?, :message => 'is invalid or inaccessible'
   validates_attachment_content_type :icon, :content_type => [/jpe?g/i, /png/i, /gif/i],
@@ -337,6 +350,10 @@ class User < ActiveRecord::Base
   end
   
   def whitelist_licenses
+    self.preferred_observation_license = Shared::LicenseModule.normalize_license_code( preferred_observation_license )
+    self.preferred_photo_license = Shared::LicenseModule.normalize_license_code( preferred_photo_license )
+    self.preferred_sound_license = Shared::LicenseModule.normalize_license_code( preferred_sound_license )
+    
     unless preferred_observation_license.blank? || Observation::LICENSE_CODES.include?( preferred_observation_license )
       self.preferred_observation_license = nil
     end
@@ -415,7 +432,12 @@ class User < ActiveRecord::Base
     has_role?(:admin)
   end
   alias :admin? :is_admin?
-  
+
+  def is_site_admin_of?( site )
+    return false unless site && site.is_a?( Site )
+    !!site_admins.detect{ |sa| sa.site_id == site.id }
+  end
+
   def to_s
     "<User #{self.id}: #{self.login}>"
   end
@@ -454,7 +476,11 @@ class User < ActiveRecord::Base
   def twitter_identity
     @twitter_identity ||= has_provider_auth('twitter')
   end
-  
+
+  def api_token
+    JsonWebToken.encode( user_id: id )
+  end
+
   def update_observation_licenses
     return true unless [true, "1", "true"].include?(@make_observation_licenses_same)
     Observation.where(user_id: id).update_all(license: preferred_observation_license)
@@ -939,10 +965,39 @@ class User < ActiveRecord::Base
 
   def destroy_project_rules
     ProjectObservationRule.where(
-      operator: "observed_by_user?",
       operand_type: "User",
       operand_id: id
     ).destroy_all
+  end
+
+  def self.reindex_faved_observations_after_destroy( user_id )
+    while true
+      obs = Observation.elastic_search(
+        _source: [:id],
+        limit: 200,
+        where: {
+          nested: {
+            path: "votes",
+            query: {
+              bool: {
+                filter: {
+                  term: {
+                    "votes.user_id": user_id
+                  }
+                }
+              }
+            }
+          }
+        }
+      ).results.results
+      break if obs.blank?
+      Observation.elastic_index!( ids: obs.map(&:id) )
+    end
+  end
+
+  def reindex_faved_observations_after_destroy_later
+    User.delay.reindex_faved_observations_after_destroy( id )
+    true
   end
 
   def generate_csv(path, columns, options = {})
@@ -1094,6 +1149,14 @@ class User < ActiveRecord::Base
       size: 0
     )
     count = (result && result.response) ? result.response.hits.total : 0
+    new_fields_result = Observation.elastic_search(
+      filters: [
+        { term: { non_owner_identifier_user_ids: user_id } }
+      ],
+      size: 0
+    )
+    count += (new_fields_result && new_fields_result.response) ?
+      new_fields_result.response.hits.total : 0
     User.where(id: user_id).update_all(identifications_count: count)
   end
 
@@ -1144,6 +1207,45 @@ class User < ActiveRecord::Base
   def personal_lists
     lists.not_flagged_as_spam.
       where("(type IN ('LifeList', 'List') OR type IS NULL)")
+  end
+
+  # Iterates over recently created accounts of unknown spammer status, zero
+  # obs or ids, and a description with a link. Attempts to run them past
+  # akismet three times, which seems to catch most spammers
+  def self.check_recent_probable_spammers( limit = 100 )
+    spammers = []
+    num_checks = {}
+    User.order( "id desc" ).limit( limit ).
+        where( "spammer is null " ).
+        where( "created_at < ? ", 12.hours.ago ). # half day grace period
+        where( "description is not null and description != '' and description ilike '%http%'" ).
+        where( "observations_count = 0 and identifications_count = 0" ).
+        pluck(:id).
+        in_groups_of( 10 ) do |ids|
+      puts
+      puts "BATCH #{ids[0]}"
+      puts
+      3.times do |i|
+        batch = User.where( "id IN (?)", ids )
+        puts "Try #{i}"
+        batch.each do |u|
+          next if spammers.include?( u.login )
+          num_checks[u.login] ||= 0
+          puts "#{u}, checked #{num_checks[u.login]} times already"
+          num_checks[u.login] += 1
+          u.description_will_change!
+          u.check_for_spam
+          puts "\tu.akismet_response: #{u.akismet_response}"
+          u.reload
+          if u.spammer == true
+            puts "\tSPAM"
+            spammers << u.login
+          end
+          sleep 1
+        end
+        sleep 10
+      end
+    end
   end
 
 end

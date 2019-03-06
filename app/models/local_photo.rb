@@ -122,6 +122,9 @@ class LocalPhoto < Photo
               metadata[:dc][dcattr.to_sym] = xmp.dc.send(dcattr) unless xmp.dc.send(dcattr).blank?
             rescue ArgumentError
               # XMP does this for some DC attributes, not sure why
+            rescue RuntimeError => e
+              raise e unless e.message =~ /Don't know how to handle/
+              # XMP seems to do this when it doesn't know how to handle a tag
             end
           end
         end
@@ -132,7 +135,7 @@ class LocalPhoto < Photo
       raise e unless e.message =~ /path.*StringIO/
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     rescue TypeError => e
-      raise e unless e.message =~ /no implicit conversion of Fixnum into String/
+      raise e unless e.message =~ /no implicit conversion of Integer into String/
       Rails.logger.error "[ERROR #{Time.now}] Failed to parse EXIF for #{self}: #{e}"
     end
     metadata = metadata.force_utf8
@@ -215,8 +218,12 @@ class LocalPhoto < Photo
 
   def source_title
     site = @site || user.try(:site) || Site.default
-    self.subtype.blank? ? site.name :
-      subtype.gsub(/Photo$/, '').underscore.humanize.titleize
+    return site.name if self.subtype.blank?
+    t = if subtype == "PicasaPhoto" || is_a?( PicasaPhoto )
+      "Google"
+    end
+    t ||= subtype.gsub(/Photo$/, '').underscore.humanize.titleize
+    t
   end
 
   def to_observation(options = {})
@@ -235,6 +242,7 @@ class LocalPhoto < Photo
         o.longitude = o.longitude * -1
       end
     end
+    # Note: GPSHPositioningError isn't yet supported by exifr: https://github.com/remvee/exifr/issues/57
     if (o.latitude && o.latitude.abs > 90) || (o.longitude && o.longitude.abs > 180)
       o.latitude = nil
       o.longitude = nil
@@ -274,7 +282,10 @@ class LocalPhoto < Photo
           candidate_description = metadata[:image_description]
         end
       end
-      o.description = candidate_description unless BRANDED_DESCRIPTIONS.include?( candidate_description )
+      if candidate_description
+        candidate_description = candidate_description.strip
+        o.description = candidate_description unless BRANDED_DESCRIPTIONS.include?( candidate_description )
+      end
 
       o.build_observation_fields_from_tags(to_tags)
       o.tag_list = to_tags

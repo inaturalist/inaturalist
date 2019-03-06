@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get "/terms", to: redirect( "/pages/terms" )
   get "/privacy", to: redirect( "/pages/privacy" )
   get "/users/new.mobile", to: redirect( "/signup" )
+  get "/donate", to: "donate#index"
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]
@@ -111,7 +112,8 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => {
     sessions: 'users/sessions',
     registrations: 'users/registrations',
-    confirmations: 'users/confirmations'
+    confirmations: 'users/confirmations',
+    passwords: "users/passwords"
   }
   devise_scope :user do
     get "login", :to => "users/sessions#new"
@@ -153,10 +155,16 @@ Rails.application.routes.draw do
   
   resources :users, :except => [:new, :create] do
     resources :flags
+    collection do
+      get :recent
+      get :delete
+    end
     member do
       put :join_test
       put :leave_test
       put :merge
+      put :trust
+      put :untrust
     end
   end
   # resource :session
@@ -167,6 +175,7 @@ Rails.application.routes.draw do
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
     end
   end
+  resources :relationships, controller: :friendships, only: [:index, :update, :destroy]
   get '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   get '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   post 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }
@@ -299,6 +308,8 @@ Rails.application.routes.draw do
       put "change_admin/:user_id" => "projects#change_admin", as: :change_admin
       get :convert_to_collection
       get :convert_to_traditional
+      put :feature
+      put :unfeature
     end
     collection do
       get :calendar
@@ -315,8 +326,8 @@ Rails.application.routes.draw do
   resources :project_users, only: [:update]
 
   get 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
-  get 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
-  get 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => simplified_login_regex }, :following => 'following'
+  get "people/:login/followers" => 'users#followers', as: :followers_by_login, constraints: { login: simplified_login_regex }
+  get "people/:login/following" => 'users#following', as: :following_by_login, constraints: { login: simplified_login_regex }
   resources :lists, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'batch_edit'
@@ -372,6 +383,7 @@ Rails.application.routes.draw do
       get 'links'
       get "map_layers"
       get "browse_photos"
+      get "taxonomy_details", as: "taxonomy_details_for"
       get "show_google"
       get "taxobox"
     end
@@ -485,6 +497,10 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :queries
+      get :stop_query
+      get :users
+      get "users/:id" => "admin#user_detail", as: :user_detail
+      get :deleted_users
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do
@@ -496,6 +512,12 @@ Rails.application.routes.draw do
         get :failed
         get :pending
       end
+    end
+  end
+
+  resources :site_admins, only: [:create, :destroy] do
+    collection do
+      delete :destroy
     end
   end
 
@@ -570,6 +592,11 @@ Rails.application.routes.draw do
   get 'taxon_schemes/:id/mapped_inactive_taxa' => 'taxon_schemes#mapped_inactive_taxa', :as => :mapped_inactive_taxa
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   
+  resources :taxon_framework_relationships
+  get 'taxon_frameworks/:id/relationship_unknown' => 'taxon_frameworks#relationship_unknown', :as => :relationship_unknown
+  
+  resources :taxon_frameworks, except: [:show, :index]
+  
   resources :taxon_splits, :controller => :taxon_changes
   resources :taxon_merges, :controller => :taxon_changes
   resources :taxon_swaps, :controller => :taxon_changes
@@ -581,7 +608,7 @@ Rails.application.routes.draw do
   end
   resources :computer_vision_demo_uploads do
     member do
-      get :score
+      post :score
     end
   end
 

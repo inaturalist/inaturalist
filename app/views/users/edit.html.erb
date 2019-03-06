@@ -273,7 +273,7 @@
               <% end %>
             <% end %>
           </li>
-        <% else %>
+        <% elsif provider != "soundcloud" %>
           <li class="clear">
             <%= link_to t(:connect_to_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
               auth_url_for(provider), 
@@ -295,6 +295,13 @@
   </ul>
   
   <%= separator %>
+
+  <% if is_admin? %>
+    <h3><%=t :your_relationships %></h3>
+    <p class="ui">
+      <%= link_to t(:manage_your_relationships), relationships_path, class: "readmore" %>
+    </p>
+  <% end %>
 
   <div class="clear quiet box">
     <%= link_to_toggle t(:blocked_users), "#blocked-users", class: "ui" %>
@@ -361,6 +368,8 @@
       <% end %>
     </div>
   </div>
+
+  <%= separator %>
   
   <div class="clear box">
     <%= link_to_toggle @user.encrypted_password ? t(:change_your_password) : "Set a password", "#passwordform", :class => "ui" %>
@@ -382,4 +391,5 @@
   <%= button_to t(:delete_your_account), @user, :method => :delete, 
     :data => {:confirm => t(:are_you_sure_want_delete_account)}, 
     :class => "minor delete button" %>
+  <%#= link_to t(:delete_your_account), delete_users_path, class: "minor delete button" %>
 </div><!-- end side col -->

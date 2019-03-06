@@ -63,9 +63,9 @@
     <%- end -%>
     
     <span class="breadcrumbs">    
-      <%= link_to "#{t(:back_to)} " + t("places_name.#{@list.place.name.gsub(' ','_').downcase}", :default => @list.place.name),
-                  place_path(@list.place),
-                  :class => 'back crumb' %>
+      <%= link_to t( :back_to_x, noun: t( "places_name.#{@list.place.name.gsub(' ','_').downcase}", default: @list.place.name ) ),
+        place_path(@list.place),
+        class: "back crumb" %>
     </span>
   </div>
     

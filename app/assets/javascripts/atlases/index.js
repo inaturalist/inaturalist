@@ -15,8 +15,7 @@ $(function() {
       },
       error: function(data){
         console.log("error");
-      },
-      dataType: 'JSON'
+      }
     });
   });
 });
