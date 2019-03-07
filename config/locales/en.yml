@@ -1435,7 +1435,14 @@ en:
   forum_categories:
     bug_reports: Bug Reports
     feature_requests: Feature Requests
+    forum_feedback: Forum Feedback
+    forum_moderation: Forum Moderation
+    nature_talk: Nature Talk
     news_and_updates: News & Updates
+    tutorials: Tutorials
+  forum_desc: |
+    The forum is a place to discuss iNat itself, including help & support,
+    feature requests, bug reports, announcements, and more.
   frequency: Frequency
   fri: Fri
   from: From
@@ -4072,8 +4079,9 @@ en:
   these_are_taxa_that: |
     These are taxa that %{site} couldn't automatically add to our taxonomic
     tree for some reason. You can add them to the tree by editing the taxon
-    and choosing a parent record. For example, the parent of Homo sapiens would be the genus Homo. You might also want to check
-    for synonymous taxa and merge them.
+    and choosing a parent record. For example, the parent of Homo sapiens would
+    be the genus Homo. You might also want to check for synonymous taxa and
+    merge them.
   these_arent_necessarily_relevant_to: "These aren't necessarily relevant to this project. Please check the"
   these_folks_kindly_volunteer_to: These folks kindly volunteer to maintain our taxonomy and deal with other issues.
   these_observations_have_not_been_uploaded_yet: |

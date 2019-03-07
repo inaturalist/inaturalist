@@ -741,6 +741,9 @@ a.icon_container,
 
 #forum {
   margin-top: 35px;
+  .pull-right i.fa {
+    color: black;
+  }
   .list-group-item {
     display: flex;
     width: 100%;

@@ -134,20 +134,20 @@
             .panel-heading
               %h3.panel-title
                 = link_to t(:forum), @discourse_url
-                %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => "The forum is a place to discuss iNat itself, including help & support, feature requests, bug reports, announcements, and more.", "data-placement" => "top", "data-toggle" => "popover" }
+                %span.glyphicon.glyphicon-info-sign.info-link{ "data-content" => t(:forum_desc), "data-placement" => "top", "data-toggle" => "popover" }
                 .pull-right
                   %a{ href: "#forum-topics", data: { toggle: "collapse" } }
                     %i.fa{ class: current_user.prefers_forum_topics_on_dashboard? ? "fa-caret-down" : "fa-caret-left"}
             #forum-topics.list-group.collapse{ class: current_user.prefers_forum_topics_on_dashboard? ? "in" : "" }
               - for topic in @discourse_data[:topics]
                 .list-group-item
-                  - datetime = DateTime.parse( topic["created_at"] )
+                  - datetime = DateTime.parse( topic["created_at"] ).in_time_zone( Time.zone )
                   .title
                     = link_to topic["title"], "#{@discourse_url}/t/#{topic["slug"]}"
                     .categories
                       - if dc = @discourse_data[:categories][topic["category_id"]]
                         %a.inlineblock.label.label-default{ href: "#{@discourse_url}/c/#{dc["slug"]}", style: "color: ##{dc["text_color"]}; background-color: ##{dc["color"]}" }
-                          = dc["name"]
+                          =t "forum_categories.#{dc["name"].underscore}", default: dc["name"]
                       - topic["tags"].each do |tag|
                         %a.inlineblock.label.label-default{ href: "#{@discourse_url}/tags/#{tag}" }= tag
                   .right
@@ -237,7 +237,7 @@
             %h3.panel-title
               %span.glyphicon.glyphicon-leaf{ "aria-hidden" => "true", style: "" }
               = t :ungrafted_taxa
-              %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_taxa_that, site: @site.site_name_short ).html_safe, "data-placement" => "top", "data-toggle" => "popover" }
+              %span.glyphicon.glyphicon-info-sign{ "data-content" => t( :these_are_taxa_that, site: @site.site_name_short ), "data-placement" => "top", "data-toggle" => "popover" }
           %ul.list-group
             - for taxon in @ungrafted_taxa
               %li.list-group-item
