@@ -618,7 +618,6 @@ es-MX:
   back_to_suggestions: Vuelve a las sugerencias
   back_to_taxon: De regreso a %{defaulttaxon}
   back_to_taxon_changes: Vuelve a los cambios del taxón
-  back_to_this: De regreso a %{place}
   back_to_viewing: De regreso a ver <i>%{taxon}</i>
   back_to_x: Regresa a %{noun}
   back_to_x_assessment: Regresa a evaluaciones de %{project}
@@ -1314,20 +1313,20 @@ es-MX:
   eol_collection_url: URL de colección EOL
   error_updating_photo: 'Error al subir la foto: %{photo_errors}'
   establishment:
-    establishment: Distribución
-    native: nativa
     endemic: endémica
+    establishment: Distribución
     introduced: introducida
-    naturalised: naturalizada
     invasive: invasiva
     managed: cuativerio/cultivada
+    native: nativa
+    naturalised: naturalizada
   establishment_means: Distribución
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: nativa restringida al pais
     arrived_in_the_region_via_anthropogenic_means: evolucionó en otra región y ahora
       se encuentra en el país
-    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: |
-      Evolucionó en esta región o llegó por medios no antropogénicos.
+    native_and_occurs_nowhere_else: nativa restringida al pais
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Evolucionó en esta
+      región o llegó por medios no antropogénicos.
   establishment_means_describes_how: La distribución describe como la especie o grupo
     se estableció en un área. Ve el DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más
     información sobre terminología</a>.
@@ -1441,7 +1440,6 @@ es-MX:
     <strong>resuelta.</strong>
   flag_reason: '&ldquo; Estoy incluyendo una advertencia en este  %{record} porque'
   flag_saved: Advertencia guardada.
-  flag_saved_thanks: Advertencia guardada. ¡Gracias!
   flag_this_observation: Incluye una advertencia en esta observación
   flag_this_photo: Alerta para esta foto
   flagged: Con advertencia

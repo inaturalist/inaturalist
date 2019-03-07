@@ -689,7 +689,6 @@ fr:
   back_to_taxon: Retourner à %{defaulttaxon}
   back_to_taxon_changes: Retour aux modifications taxinomiques
   back_to_taxon_framework_for_x: Retour au cadre de taxon pour %{taxon_name}
-  back_to_this: Retourner à %{place}
   back_to_viewing: Retourner à la visualisation de <i>%{taxon}</i>
   back_to_x: Retourner à %{noun}
   back_to_x_assessment: Retourner aux évaluations de %{project}
@@ -856,6 +855,7 @@ fr:
     merged_into: fusionné en
     replaced_by: remplacé par
     replace_with: remplacer par
+    replaced_with: remplacé apr
     dropped: retiré
     staged: organisé
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} a été divisé en %{output_taxa}'
@@ -1469,18 +1469,18 @@ fr:
   eol_collection_url: URL de la collection de l’EdlV
   error_updating_photo: 'Erreur de mise à jour de la photo : %{photo_errors}'
   establishment:
-    establishment: Établissement
-    native: Indigène
     endemic: Endémique
+    establishment: Établissement
     introduced: Introduite
-    naturalised: Acclimatée
     invasive: Envahissante
     managed: Gérée
+    native: Indigène
+    naturalised: Acclimatée
   establishment_means: Moyens d’établissement
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: indigène et n’existe nulle part ailleurs
     arrived_in_the_region_via_anthropogenic_means: arrivée dans la région par des
       moyens anthropiques
+    native_and_occurs_nowhere_else: indigène et n’existe nulle part ailleurs
   establishment_means_describes_how: "Le moyen d’établissement décrit la façon dont
     le taxon en est venu à être établi dans la région.  \nConsultez DarwinCore pour
     <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">obtenir
@@ -1628,7 +1628,8 @@ fr:
     <strong>est résolu.</strong>
   flag_reason: '&ldquo;Je signale ce %{record} parce que'
   flag_saved: Marque enregistrée
-  flag_saved_thanks: Drapeau enregistré. Merci !
+  flag_saved_thanks_html: Drapeau enregistré. Merci ! <a href="%{url}" class="readmore">Afficher
+    le drapeau</a>
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
   flagged: a signalé
@@ -1684,6 +1685,10 @@ fr:
   for_more_information: pour obtenir plus d’information.
   formatting: Mise en forme
   forgot_your_password: Avez-vous oublié votre mot de passe?
+  forum_categories:
+    bug_reports: Signalements de bogue
+    feature_requests: Demandes de fonctionnalité
+    news_and_updates: Nouvelles & Mises à jour
   frequency: Fréquence
   fri: Ven
   from: À partir de
@@ -4282,8 +4287,8 @@ fr:
   stuff_just_added: Trucs que vous venez d’ajouter…
   subject_resolved_noun_html: '%{subject} a réglé %{noun}'
   subject_affecting_stuff_html: '%{subject} touchant %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} a validé %{thing} concernant
-    %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} a validé @vow_or_con{vow:un}
+    %{thing} concernant %{stuff}'
   submission_model: Modèle de soumission
   submission_model_description: Qui peut ajouter des observations à votre projet ?
   submit: Soumettre
@@ -4765,6 +4770,8 @@ fr:
   today: Aujourd’hui
   too_many_observations_csv: Vous avez trop d’observations !<br /> Nous ne pouvons
     prendre que vos %{max_rows} premières observations dans chaque CSV
+  too_many_taxa_to_render: Cette requête renvoie trop de taxons pour tous les afficher
+    à la fois. Essayez d’ajouter plus de filtres.
   tools: Outils
   top_5_identifiers: Les 5 meilleurs identificateurs
   top_contributors: Collaborateurs les plus importants
@@ -6035,6 +6042,9 @@ fr:
           masquée
         geoprivacy: Si l’observateur a choisi ou non de dissimuler ou masquer les
           coordonnées
+        taxon_geoprivacy: La confidentialité géographique la plus conservatrice est
+          appliquée du fait des états de conservation des taxons dans l’identification
+          actuelle.
         coordinates_obscured: Si les coordonnées ont ou non été dissimulées, soit
           à cause de confidentialité géographique, soit à cause d’un taxon menacé
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire
@@ -7031,6 +7041,9 @@ fr:
           Un simple rappel : les responsables de l’organisation du projet peuvent voir
           les coordonnées privées ou masquées des observations que vous ajoutez à
           ce projet.
+      delete:
+        by_deleting_your_account_you_will_remove: En supprimant votre compte vous
+          supprimerez
       edit:
         blocking_desc_html: |-
           <p>
@@ -7692,7 +7705,7 @@ fr:
         autre contenu en votre nom, et accéder à vos coordonnées masquées et toute
         autre information à laquelle vous pouvez accéder sur le site.
       login: Accéder aux informations pertinentes pour se connecter, comme l’adresse
-        de messagerie, le nom d’utilisateur, le nom et l’icône utilisateur
+        de messagerie, le nom d’utilisateur, le nom et l’icône utilisateur.
     errors:
       messages:
         invalid_request: La requête n'a pas de paramètre obligatoire, cela peut être

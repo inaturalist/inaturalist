@@ -634,7 +634,6 @@ et:
   back_to_suggestions: Tagasi pakkumiste juurde
   back_to_taxon: Tagasi takson %{defaulttaxon} juurde
   back_to_taxon_changes: Tagasi taksonimuudatuste juurde
-  back_to_this: Tagasi kohta %{place}
   back_to_viewing: Tagasi taksoni <i>%{taxon}</i> juurde
   back_to_x: Tagasi %{noun}
   back_to_x_assessment: Tagasi projekti %{project} hinnangute juurde
@@ -1361,17 +1360,17 @@ et:
   eol_collection_url: EOL-i kollektsiooni URL
   error_updating_photo: 'Foto uuendamine ebaõnnestus: %{photo_errors}'
   establishment:
-    establishment: Asutus
-    native: Kohalik
     endemic: Endeemiline
+    establishment: Asutus
     introduced: Sissetoodud
-    naturalised: Kohandunud
     invasive: Invasiivne
     managed: Hallatud
+    native: Kohalik
+    naturalised: Kohandunud
   establishment_means: Asustamismeetod
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: kohalik ja ei eksisteeri mujal
     arrived_in_the_region_via_anthropogenic_means: saabus regiooni inimjõul
+    native_and_occurs_nowhere_else: kohalik ja ei eksisteeri mujal
   establishment_means_describes_how: Asustamismeetod kirjeldab seda, kuidas takson
     mingisse piirkonda elama asus. Vaata <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">lisainformatsiooni</a>
     lehelt DarwinCore.
@@ -1510,7 +1509,6 @@ et:
   flag_marked_as_resolved_html: <span class="meta">Märkus</span> <strong>on lahendatud.</strong>
   flag_reason: '&ldquo;Lisan märkuse objektile %{record}, sest'
   flag_saved: Märkus salvestatud
-  flag_saved_thanks: Märkus salvestatud. Aitäh!
   flag_this_observation: Lisa vaatlusele märkus
   flag_this_photo: Lisa fotole märkus
   flagged: märkusega

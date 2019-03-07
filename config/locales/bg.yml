@@ -766,13 +766,13 @@ bg:
   endemic: ендемичен
   endemic_to_x: Ендемичен за %{x}
   establishment:
-    establishment: Заселване
-    native: местен
     endemic: ендемичен
+    establishment: Заселване
     introduced: интродуциран
-    naturalised: натурализиран
     invasive: инвазивен
     managed: контролиран
+    native: местен
+    naturalised: натурализиран
   establishment_means: Начин на заселване
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: местен и не се среща другаде
@@ -855,7 +855,6 @@ bg:
     <strong>резрешен.</strong>
   flag_reason: '&ldquo;Маркирам %{record} защото'
   flag_saved: Маркерът е запазен.
-  flag_saved_thanks: Маркерът е запазен. Благодарим Ви!
   flag_this_observation: Маркирай това наблюдение
   flag_this_photo: Маркирай тази снимка
   flagged: маркира

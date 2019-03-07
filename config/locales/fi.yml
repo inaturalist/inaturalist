@@ -267,6 +267,7 @@ fi:
   add_life_stage_larva_annotation: 'Lisää "Life Stage: Larva" selitys'
   add_life_stage_juvenile_annotation: 'Lisää "Life Stage: Juvenile" selitys'
   add_life_stage_egg_annotation: 'Lisää "Life Stage: Egg" selitys'
+  add_relationship: Lisää suhde
   add_section: Lisää osa
   add_several_observations_at_once: Lisää useita havaintoja kerralla.
   add_sex_female_annotation: 'Lisää "Sukupuoli: Nainen" selitys'
@@ -619,7 +620,6 @@ fi:
   back_to_suggestions: Takaisin ehdotuksiin
   back_to_taxon: Takaisin %{defaulttaxon}
   back_to_taxon_changes: Takaisin taksonin muutoksiin
-  back_to_this: Takaisin paikkaan %{place}
   back_to_viewing: Takaisin katsomaan taksonia <i>%{taxon}</i>
   back_to_x: Takaisin %{noun}
   back_to_x_assessment: Takaisin projektin %{project} arviointiin
@@ -1273,15 +1273,15 @@ fi:
   eol_collection_url: EOL-kokoelman URL-osoite
   error_updating_photo: Virhe %{photo_errors} päivitettäessä kuvaa
   establishment:
-    native: Kotoperäinen
     endemic: Endeeminen
     introduced: Esitelty
+    native: Kotoperäinen
     naturalised: Luonnonmukaistunut
   establishment_means: Perustamisen keinot
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: kotoperäinen eikä esiinny missään muualla
     arrived_in_the_region_via_anthropogenic_means: saapunut alueelle ihmisen toiminnan
       seurauksena
+    native_and_occurs_nowhere_else: kotoperäinen eikä esiinny missään muualla
   event_in_progress: Tapahtuma käynnissä
   event_stats: Tapahtuman tilastot
   events_only: Vain tapahtumat
@@ -1396,7 +1396,6 @@ fi:
   flag_marked_as_resolved_html: <span class="meta">Lippu merkitty</span> <strong>ratkaistuksi.</strong>
   flag_reason: '&ldquo;Liputan tämän: %{record}, koska'
   flag_saved: Lippu tallennettu
-  flag_saved_thanks: Lippu tallennettu. Kiitos!
   flag_this_observation: Liputa tämä havainto.
   flag_this_photo: Liputa tämä kuva
   flagged: liputettu
