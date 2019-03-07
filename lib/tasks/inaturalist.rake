@@ -217,6 +217,7 @@ namespace :inaturalist do
       "date_added",
       "date_format.month",
       "date_picker",
+      "date_updated",
       "desc",
       "edit_license",
       "endemic",

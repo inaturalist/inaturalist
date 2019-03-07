@@ -138,6 +138,7 @@ class FiltersButton extends React.Component {
     const orderByFields = [
       { value: "observations.id", default: "date added", label: "date_added" },
       { value: "observed_on", default: "date observed", label: "date_observed_" },
+      { value: "updated_at", default: "date updated", label: "date_updated" },
       { value: "votes", default: "faves", label: "faves" },
       { value: "random", default: "random", label: "random" }
     ];

@@ -12335,6 +12335,7 @@ I18n.translations["en"] = {
   },
   "date_specified": "Date specified",
   "date_time": "Date/Time",
+  "date_updated": "Date Updated",
   "datetime": {
     "countdown_x_days": {
       "one": "day",
