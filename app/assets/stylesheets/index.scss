@@ -1188,7 +1188,15 @@ form.inline .inlabel {
 .box.conservation_status.extinct,
 .crossout.extinct { background-color: black; color: white; }
 
-.providerlink, .button.providerlink { padding-left: 28px; background: image-url('favicon.png') no-repeat 5px 50%; text-align: left;}
+.providerlink,
+.button.providerlink {
+  background: image-url('favicon.png') no-repeat 5px 50%;
+  text-align: left;
+  width: 100%;
+}
+button.button.providerlink {
+  background-position: 5px 5px;
+}
 ul a.providerlink, ul a.button.providerlink { width: 190px; }
 ul input.providerlink, ul input.button.providerlink { width: 230px; }
 .providerlink.facebook { background-image: image-url('external/facebook_favicon.png'); }
@@ -1197,6 +1205,7 @@ ul input.providerlink, ul input.button.providerlink { width: 230px; }
 .providerlink.yahoo { background-image: image-url('external/yahoo_favicon.png'); }
 .providerlink.flickr { background-image: image-url('external/flickr_favicon.png'); }
 .providerlink.soundcloud { background-image: image-url('external/soundcloud_favicon.png');}
+.providerlink.orcid { background-image: image-url( 'https://orcid.org/sites/default/files/images/orcid_16x16.png' ); }
 
 .quality_assessment .loading.status { padding-left: 16px;}
 .quality_assessment .status { margin: 0;}

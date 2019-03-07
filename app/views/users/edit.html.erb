@@ -5,6 +5,8 @@
   #preferencescol .field label{display:inline;}
   #providercol ul{margin:0;padding:0;}
   #providercol li{list-style-type:none;}
+  .providerlink,
+  .button.providerlink { padding-left: 28px !important; }
   #user_block_blocked_user_id, #user_mute_muted_user_id { width: 200px; }
   .site_id_field img { max-width: 200px; }
 </style>
@@ -261,11 +263,17 @@
     <h3><%= t(:connected_accounts) %></h3>
     <ul>
       <% ProviderAuthorization::PROVIDERS.each do |provider| %>
-        <% if @user.has_provider_auth(provider) %>
+        <% if pa = @user.has_provider_auth(provider) %>
           <li class="clear">
-            <%= button_to t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
-              omniauth_disconnect_path(provider),
-              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} disabled button", :method => "delete" %>
+            <%= button_to omniauth_disconnect_path(provider),
+              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} disabled button", :method => "delete" do %>
+              <%= t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]) %>
+              <% unless pa.provider_uid.blank? %>
+                <div class="small">
+                  UID: <%= pa.provider_uid %>
+                </div>
+              <% end %>
+            <% end %>
           </li>
         <% elsif provider != "soundcloud" %>
           <li class="clear">
