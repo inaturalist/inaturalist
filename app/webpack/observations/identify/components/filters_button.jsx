@@ -92,7 +92,14 @@ class FiltersButton extends React.Component {
         cssClass += " filter-changed";
       }
       let disabled = false;
-      if ( checkbox.noBlank && vals.length === 1 && vals[0] === checkedVal ) {
+      if (
+        checkbox.disabled
+        || (
+          checkbox.noBlank
+          && vals.length === 1
+          && vals[0] === checkedVal
+        )
+      ) {
         disabled = true;
       }
       return (
@@ -466,7 +473,7 @@ class FiltersButton extends React.Component {
               checked={
                 params.reviewed === undefined || params.reviewed === null || params.reviewed === "any"
               }
-              onClick={( ) => updateSearchParams( { reviewed: "any" } )}
+              onChange={( ) => updateSearchParams( { reviewed: "any" } )}
             />
             { I18n.t( "any_" ) }
           </label>
@@ -476,7 +483,7 @@ class FiltersButton extends React.Component {
               name="reviewed"
               value="true"
               checked={params.reviewed === true}
-              onClick={( ) => updateSearchParams( { reviewed: true } )}
+              onChange={( ) => updateSearchParams( { reviewed: true } )}
             />
             { I18n.t( "yes" ) }
           </label>
@@ -486,7 +493,7 @@ class FiltersButton extends React.Component {
               name="reviewed"
               value="false"
               checked={params.reviewed === false}
-              onClick={( ) => updateSearchParams( { reviewed: false } )}
+              onChange={( ) => updateSearchParams( { reviewed: false } )}
             />
             { I18n.t( "no" ) }
           </label>
