@@ -337,11 +337,11 @@ nl:
   additional_range: Bijkomende omvang
   additional_range_data_from_an_unknown_source: Bijkomende range data van een onbekende
     bron
-  admin: Beheerder
+  admin: Admin
   admin_s: Beheerder(s)
   admin_any_projects: Beheer willekeurig project
   admin_only: Alleen beheerders
-  admin_tools: Werktuigen voor de beheerder
+  admin_tools: Werktuigen voor de Admin
   agree: akkoord
   agree_: Akkoord
   agree?: Akkoord?
@@ -470,7 +470,7 @@ nl:
   allow_curator_access: Geef de curator toegang
   allow_curator_coordinate_access: Geef de curator toegang tot de coördinaten
   allow_project_curators_to_view_your_private_coordinates: Geef projectcurators toestemming
-    om jouw verborgen coördinaten te bekijken
+    om uw privé-coördinaten te bekijken
   allowed_establish_means_values: Toegestane waarden voor vestigingswijze
   allowed_html: Toegestane HTML
   allowed_occurrence_status_values: Toegestane waarden voor statuscodes voorkomen
@@ -659,7 +659,6 @@ nl:
   back_to_taxon: Terug naar %{defaulttaxon}
   back_to_taxon_changes: Terug naar aanpassingen van het taxon
   back_to_taxon_framework_for_x: Terug naar het taxonframework voor %{taxon_name}
-  back_to_this: Terug naar %{place}
   back_to_viewing: Terug naar <i>%{taxon}</i> bekijken
   back_to_x: Terug naar %{noun}
   back_to_x_assessment: Terug naar %{project} beoordelingen
@@ -786,7 +785,7 @@ nl:
   cc_by_sa_name: Naamsvermelding-GelijkDelen
   cc_used_under_a: Creative Commons gebruikt onder een
   change: Wijzigen
-  change_admin: Wijzig beheerder
+  change_admin: Wijzig Admin
   change_cover: Cover wijzigen
   change_descriptions:
     split: Oud taxon opgedeeld in meerdere nieuwe taxa
@@ -1399,18 +1398,18 @@ nl:
   eol_collection_url: EOL verzameling URL
   error_updating_photo: 'Fout bij bijwerken foto: %{photo_errors}'
   establishment:
-    establishment: Vestiging (Statuscodes voorkomen)
-    native: inheems
     endemic: endemisch
+    establishment: Vestiging (Statuscodes voorkomen)
     introduced: geïntroduceerd
-    naturalised: inburgerend
     invasive: invasief
     managed: beheerd
+    native: inheems
+    naturalised: inburgerend
   establishment_means: Vestigingswijze
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: inheems en komt nergens anders voor
     arrived_in_the_region_via_anthropogenic_means: in de regio gekomen op antropogene
       wijze
+    native_and_occurs_nowhere_else: inheems en komt nergens anders voor
   establishment_means_describes_how: Vestigingswijze beschrijft hoe het taxon zich
     heeft kunnen vestigen in een gebied. Zie DarwinCore voor <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">meer
     informatie over terminologie</a>.
@@ -1553,7 +1552,6 @@ nl:
   flag_marked_as_resolved_html: <span class="meta">Gemarkeerd als</span> <strong>opgelost.</strong>
   flag_reason: '&ldquo;Ik markeer dit %{record} omdat'
   flag_saved: Markering bewaard
-  flag_saved_thanks: Markering opgeslagen. Bedankt!
   flag_this_observation: Markeer deze waarneming
   flag_this_photo: Markeer deze foto
   flagged: gemarkeerd
@@ -1569,7 +1567,7 @@ nl:
   flags: Markeringen
   flags_with_count: Markeringen %{count}
   flags_explanation: '%{site_name} gebruikers markeren onderwerpen die aandacht nodig
-    hebben van de site curators of site admins.'
+    hebben van de sitecurators of siteadmins.'
   flags_for_x_html: Markeringen voor %{x}
   flags_on_users_content: Markeer %{user} inhoud
   flickr_account_information: Uw Flickr-account informatie
@@ -2271,7 +2269,7 @@ nl:
   low: Laag
   lowest_rank: Laagste rang
   made_a: maakte een
-  make_admin: Maak beheerder
+  make_admin: Maak admin
   make_an_observation: Doe een waarneming
   mail_disclaimer: '%{site_name} laat niet toe dat gebruikers jouw aanvullende uitnodigingen
     versturen via onze uitnodig-functie. Rapporteer misbruik to %{site}'
@@ -2891,11 +2889,10 @@ nl:
   one_of_your_lists: één van uw lijsten ...
   only_a_project_manager_can_add: Alleen een projectmanager kan de projectcuratorstatus
     toevoegen
-  only_administrators_may_access_that_page: Alleen beheerders hebben toegang tot deze
-    pagina
+  only_administrators_may_access_that_page: Alleen administrators hebben toegang tot
+    deze pagina
   only_accepts_taxa: aanvaardt enkel taxa
-  only_an_admin_can_remove_project_users: Alleen een beheerder kan projectgebruikers
-    verwijderen
+  only_an_admin_can_remove_project_users: Alleen een admin kan projectgebruikers verwijderen
   only_country_state_and_county: Alleen voor nu weergegeven landen, staten en provincies.
     Zoom in om kleinere plaatsen te zien.
   only_curators_can_add_edit_scientific_names: Alleen curatoren kunnen wetenschappelijke
@@ -2927,7 +2924,7 @@ nl:
   only_the_project_admin_can_delete_this_project: Alleen de projectbeheerder kan dit
     project verwijderen.
   only_you: Alleen u
-  open: openen
+  open: open
   open_: Open
   open_description: De coördinaten zijn voor iedereen zichtbaar, tenzij het gaat om
     een bedreigd taxon.
@@ -3704,7 +3701,7 @@ nl:
   relationship_unknown_count: Onbekende relatietelling
   relationship_x: 'Relatie: %{relationship}'
   relationships:
-    match: Passen
+    match: komt overeen met
     one_to_one: één op één
     alternate_position: alternatieve positie
     many_to_many: veel op veel
@@ -4129,10 +4126,10 @@ nl:
   start_new_project: Start een nieuw project
   start_one: om er één te starten
   start_one_now: Start Eén Nu!
-  start_typing_field_name: Begin met het typen van de veldnaam ...
-  start_typing_place_name: Begin met het typen van de plaatsnaam...
-  start_typing_taxon_name: Begin met het typen van de taxonnaam...
-  start_typing_someones_name: Begin met het typen van iemands naam ...
+  start_typing_field_name: Type een veldnaam ...
+  start_typing_place_name: Type een plaatsnaam...
+  start_typing_taxon_name: Type een taxonnaam...
+  start_typing_someones_name: Type iemands naam...
   states: statussen
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet
@@ -5551,7 +5548,7 @@ nl:
           <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master-GitHub">fork ons op GitHub</a>!
         how_do_i_contact_inaturalist?: Hoe contacteer ik %{site_name}?
         you_can_contact_us_at_html: Je kunt contact met ons opnemen via <a href="mailto:%{help_email}">%{help_email}</a>
-        what_are_admins_and_curators?: Wat zijn beheerders en curatoren?
+        what_are_admins_and_curators?: Wat zijn admins en curatoren?
         inat_admins_are_the_people_who: '%{site_name}beheerders zijn mensen die de
           site beheren. Zij hebben directe toegang tot de onderliggende code en de
           database, en zij kunnen alles op de site wijzigen.'
@@ -5676,9 +5673,9 @@ nl:
           organismen, zoals een levenslijst van vogels, of een levenslijst van Zijdeplanten.
         a_project_list_belongs: "Een projectlijst hoort bij een project en somt alle
           taxa op\ndie zijn waargenomen door leden van dat project. Projectlijsten
-          kunnen ook \nhandmatig ingevuld zijn door de beheerder van dat project en
-          kan worden gebruikt\nom de projectbijdragen te beperken tot taxa die op
-          de lijst staan."
+          kunnen ook \nhandmatig ingevuld zijn door de admin van dat project en kan
+          worden gebruikt\nom de projectbijdragen te beperken tot taxa die op de lijst
+          staan."
         a_check_list_is_html: |-
           Een checklist is een lijst met taxa die op een plaats voorkomen. Elke
           plaats heeft een default check list en wanneer een waarneming wordt
@@ -6202,7 +6199,7 @@ nl:
         leaderboards_among_individuals: Ranglijsten voor <strong>personen</ strong>
         leaderboards_among_projects_and_bioblitzes: Ranglijsten voor <strong>projecten
           en bioblitzes</strong>
-        multiple_project_administrators: Meerdere projectbeheerders
+        multiple_project_administrators: Meerdere projectadministrators
         name_placeholder: Birds of Chicago, Verbazingwekkende libellen, etc.
         no_need_to_rely_on_manual_addition: Je hoeft niet te vertrouwen op het handmatig
           toevoegen van waarnemingen of op de aggregator om  waarnemingen te indexeren
@@ -6981,7 +6978,7 @@ nl:
       messages:
         accepted: moet aanvaard worden
         blank: mag niet leeg blijven
-        confirmation: didn't match password
+        confirmation: kwam niet overeen met het wachtwoord
         empty: mag niet leeg blijven
         equal_to: moet gelijk zijn aan %{count}
         even: moet even zijn

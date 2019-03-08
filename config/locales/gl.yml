@@ -396,7 +396,6 @@ gl:
   back_to_projects: Volver a proxectos
   back_to_shared_taxon: Volver a %{sharedtaxon}
   back_to_taxon: Volver a %{defaulttaxon}
-  back_to_this: Volver a %{place}
   back_to_viewing: Volver a Ver <i>%{taxon}</i>
   back_to_x: Volver a %{noun}
   back_to_x_journal: Regresar ao diario de %{user}
@@ -868,17 +867,17 @@ gl:
   endemic_to_x: Endémica de %{x}
   error_updating_photo: 'Erro ao subir a foto: %{photo_errors}'
   establishment:
-    establishment: Clasificación
-    native: Nativa
     endemic: Endémica
+    establishment: Clasificación
     introduced: Introducida
-    naturalised: Naturalizada
     invasive: Invasiva
     managed: cativerio/cultivada
+    native: Nativa
+    naturalised: Naturalizada
   establishment_means: Medio de establecemento.
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: nativo, non acontece en ningún outro lugar
     arrived_in_the_region_via_anthropogenic_means: chegou á rexión por medios antropoxénicos
+    native_and_occurs_nowhere_else: nativo, non acontece en ningún outro lugar
   establishment_means_describes_how: 'O medio de establecemento describe como se implantou
     o taxón nunha área. Ver DarwinCore para <a href=\"http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">máis
     información en terminoloxía</a>.'
@@ -959,7 +958,6 @@ gl:
   flag_marked_as_resolved_html: <span class=meta>Marcar marcado como</span> <strong>resolto.</strong>
   flag_reason: '“ Estou a marcar este %{record} por esta razón:'
   flag_saved: Advertencia gardada.
-  flag_saved_thanks: Advertencia gardada. ¡Grazas!
   flag_this_observation: Marcar esta observación
   flagged: Marcado
   flagged_for_curation: Marcado para administración.

@@ -643,7 +643,6 @@ da:
   back_to_suggestions: Tilbage til Forslag
   back_to_taxon: Tilbage til %{defaulttaxon}
   back_to_taxon_changes: Tilbage til taksonændringer
-  back_to_this: Tilbage til %{place}
   back_to_viewing: Tilbage for at se <i>%{taxon}</i>
   back_to_x: Tilbage til %{noun}
   back_to_x_assessment: Tilbage til %{project} vurderinger
@@ -1382,17 +1381,17 @@ da:
   eol_collection_url: EOL samling´s URL
   error_updating_photo: Fejl ved opdatering af billede:%{photo_errors}
   establishment:
-    establishment: Oprindelse
-    native: Hjemmehørende
     endemic: endemisk
+    establishment: Oprindelse
     introduced: indført
-    naturalised: naturaliserede
     invasive: invasiv
     managed: lykkedes
+    native: Hjemmehørende
+    naturalised: naturaliserede
   establishment_means: Oprindelse
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: hjemmehørende og forekommer intet andet sted
     arrived_in_the_region_via_anthropogenic_means: ankom til regionen pga. mennesket
+    native_and_occurs_nowhere_else: hjemmehørende og forekommer intet andet sted
   establishment_means_describes_how: |-
     Oprindelse beskriver hvordan taksonet blev etableret i et område.
     Se DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> flere oplysninger om terminologi </a>.
@@ -1533,7 +1532,6 @@ da:
   flag_marked_as_resolved_html: <span class="meta">Markér som</span> <strong>resolved.</strong>
   flag_reason: '&ldquo;Jeg markerer denne %{record} fordi'
   flag_saved: Markering gemt
-  flag_saved_thanks: Markering gemt. Tak!
   flag_this_observation: Markér dette objekt
   flag_this_photo: Markér dette foto
   flagged: markeret
@@ -1588,6 +1586,8 @@ da:
   for_more_information: for mere information.
   formatting: Formatering
   forgot_your_password: Glemt din adgangskode?
+  forum_categories:
+    news_and_updates: Nyheder og opdateringer
   frequency: Hyppighed
   fri: Fre
   from: Fra

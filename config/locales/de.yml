@@ -25,6 +25,7 @@
 # Author: Phil.pav
 # Author: Polvonrbaun
 # Author: Predatorix
+# Author: RobertGrewzal
 # Author: ScratchFan3.0
 # Author: ThePiscin
 # Author: Thetruebrot
@@ -625,6 +626,7 @@ de:
   authorize_permissions_from_provider: Berechtigungen von %{provider} zulassen
   automatic_descriptions_have_been_disabled: Automatische Beschreibungen wurden für
     dieses Taxon deaktiviert.
+  automatic_short: Auto
   automatically_add_to_project: Automatisch zum Projekt hinzufügen
   automatically_add_observations_to_this_project: Automatisch Beobachtungen zu diesem
     Projekt hinzufügen
@@ -653,7 +655,6 @@ de:
   back_to_suggestions: Zurück zu den Vorschlägen
   back_to_taxon: Zurück zu %{defaulttaxon}
   back_to_taxon_changes: Zurück zu Taxonänderungen
-  back_to_this: Zurück zu %{place}
   back_to_viewing: Zurück zu <i>%{taxon}</i>-Ansicht
   back_to_x: Zurück zu %{noun}
   back_to_x_assessment: Zurück zur %{project}-Bewertung
@@ -806,6 +807,7 @@ de:
     merged_into: eingegliedert in
     replaced_by: ersetzt durch
     replace_with: ersetzen durch
+    replaced_with: ersetzt durch
     dropped: gelöscht
     staged: angegeben
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} wurde in %{output_taxa}
@@ -1376,18 +1378,18 @@ de:
   eol_collection_url: EOL-Sammlungs-URL
   error_updating_photo: 'Fehler beim updaten der Fotos: %{photo_errors}'
   establishment:
-    establishment: Verbreitung
-    native: einheimisch
     endemic: endemisch
+    establishment: Verbreitung
     introduced: eingeführt
-    naturalised: naturalisiert
     invasive: invasiv
     managed: verwaltet
+    native: einheimisch
+    naturalised: naturalisiert
   establishment_means: Verbreitung
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: einheimisch und sonst nirgends zu finden
-    arrived_in_the_region_via_anthropogenic_means: ist durch anthropogenen Einfluss
+    arrived_in_the_region_via_anthropogenic_means: Ist durch anthropogenen Einfluss
       in die Region gelangt
+    native_and_occurs_nowhere_else: Einheimisch und sonst nirgends zu finden
   establishment_means_describes_how: "\"Verbreitung\" bezeichnet wie das Taxon sich
     in einem Gebiet verbreitet hat.  \nSiehe DarwinCore für <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">über
     mehr Informationen zur Terminologie</a>."
@@ -1417,6 +1419,7 @@ de:
   export_with_private_coordinates: Mit versteckten Koordinaten exportieren
   exporting: Exportieren.....
   external_links: Externe Links
+  external_taxon_rank: Externer Taxonrang
   extinct: ausgestorben
   extinct_in_the_wild: in der Natur ausgestorben
   extra_properties: Extra Eigenschaften
@@ -1502,7 +1505,6 @@ de:
     class="meta">gekennzeichnet</span>.
   flag_reason: '&ldquo;Ich melde d. %{record},'
   flag_saved: Meldung abgegeben.
-  flag_saved_thanks: Markierung gespeichert. Danke!
   flag_this_observation: Diese Beobachtung melden
   flag_this_photo: Dieses Foto markieren
   flagged: gemeldet
@@ -2960,9 +2962,11 @@ de:
     bosnia_and_herzegovina: Bosnia und Herzegovina
     brazil: Brasilien
     bulgaria: Bulgarien
+    burundi: Burundi
     canada: Kanada
     central_african_republic: Zentralafrikanische Republik
     central_america: Zentralamerika
+    chile: Chile
     china: China
     colombia: Kolumbien
     croatia: Kroatien
@@ -3707,8 +3711,8 @@ de:
   stuff_just_added: Dinge, die du gerade hinzugefügt hast....
   subject_resolved_noun_html: '%{subject} hat %{noun} geklärt'
   subject_affecting_stuff_html: '%{subject} mit Einfluss auf %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} hat eine Änderung eingereicht:%{thing}
-    betreffend %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} reichte @vow_or_con{vow:an|a}
+    %{thing} betreffend %{stuff} ein'
   submission_model: Art der Einreichung
   submission_model_description: Wer kann dem Projekt Beobachtungen hinzufügen?
   submit: Absenden
@@ -4993,6 +4997,11 @@ de:
         contribute_to_science: Zur Wissenschaft beitragen
         hold_an_event: Ein Event abhalten, bei welchen Leute versuche so viele Arten
           wie möglich zu finden.
+        works_on_all_your_devices: Verfügbar für alle deine Geräte
+        install_our_mobile_apps: Installiere unsere Apps für mobile Endgeräte, damit
+          du auch ohne Mobilfunkempfang oder WLAN jederzeit beobachten kannst.
+        who_uses_site_name: Wer benutzt %{site_name}?
+        what_are_you_waiting_for: Worauf wartest du?
         join_today: Heute beitreten
     wiki_pages:
       form:

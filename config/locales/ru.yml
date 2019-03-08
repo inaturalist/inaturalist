@@ -708,7 +708,6 @@ ru:
   back_to_taxon: Вернуться к %{defaulttaxon}
   back_to_taxon_changes: Вернуться к изменениям таксона
   back_to_taxon_framework_for_x: Вернуться к основе таксона для %{taxon_name}
-  back_to_this: Назад к %{place}
   back_to_viewing: Вернуться к просмотру <i>%{taxon}</i>
   back_to_x: Вернуться к %{noun}
   back_to_x_assessment: Вернуться к оценкам %{project}
@@ -1453,18 +1452,18 @@ ru:
   eol_collection_url: Ссылка на коллекцию EOL
   error_updating_photo: 'Ошибка обновления фото: %{photo_errors}'
   establishment:
-    establishment: Возникновение
-    native: Естественный
     endemic: Эндемичный
+    establishment: Возникновение
     introduced: Интродуцент
-    naturalised: Натурализованный
     invasive: Инвазивный
     managed: Управляемый
+    native: Естественный
+    naturalised: Натурализованный
   establishment_means: Способ возникновения
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: естественный и больше нигде не встречается
     arrived_in_the_region_via_anthropogenic_means: занесен в регион антропогенным
       способом
+    native_and_occurs_nowhere_else: естественный и больше нигде не встречается
   establishment_means_describes_how: Способ возникновения описывает, каким образом
     таксон появился в данной местности. Смотрите спецификацию DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">
     для получения большей информации о терминологии</a>.
@@ -1607,7 +1606,6 @@ ru:
   flag_marked_as_resolved_html: <span class="meta">Flag marked as</span> <strong>resolved.</strong>
   flag_reason: '&ldquo;Я пометил этот %{record} потому что'
   flag_saved: Флаг сохранён
-  flag_saved_thanks: Флаг сохранён. Спасибо!
   flag_this_observation: Пометить это наблюдение
   flag_this_photo: Пометить это фото
   flagged: помечено
@@ -1649,7 +1647,7 @@ ru:
   follow_user: Подписаться на %{user}
   followed_projects: Проекты, на которые вы подписаны
   follower: подписчик
-  followers: Последователи
+  followers: Подписчики
   following: Подписка
   following_x_people:
     one: Подписан на 1 человека

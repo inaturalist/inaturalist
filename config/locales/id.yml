@@ -505,7 +505,6 @@ id:
   back_to_shared_taxon: Kembali ke %{sharedtaxon}
   back_to_taxon: Kembali ke %{defaulttaxon}
   back_to_taxon_changes: Kembali ke perubahan taksa
-  back_to_this: Kembali ke  %{place}
   back_to_viewing: Kembali ke tampilan <i>%{taxon}</i>
   back_to_x: Kembali ke %{noun}
   back_to_x_assessment: Kembali ke %{project} penilaian
@@ -1126,18 +1125,18 @@ id:
   eol_collection_url: EOL collection URL
   error_updating_photo: 'Terjadi kesalahan pada pembaharuan foto: %{photo_errors}'
   establishment:
-    establishment: Pembentukan
-    native: asli
     endemic: endemik
+    establishment: Pembentukan
     introduced: introduksi
-    naturalised: Naturalisasi
     invasive: Invasif
     managed: kelola
+    native: asli
+    naturalised: Naturalisasi
   establishment_means: pendirian sarana
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: asli dan ada di tempat lain
     arrived_in_the_region_via_anthropogenic_means: tiba di wilayah tersebut melalui
       sarana antropogenik
+    native_and_occurs_nowhere_else: asli dan ada di tempat lain
   establishment_means_describes_how: "Establishment means describes how the taxon
     came to be established in an area.  \nSee DarwinCore for <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">more
     information on terminology</a>."
@@ -1263,7 +1262,6 @@ id:
   flag_marked_as_resolved_html: <span class="meta">tandai sebagai</span> <strong>diselesaikan.</strong>
   flag_reason: '&ldquo;saya menandai ini %{record} karena'
   flag_saved: Penandaan telah tersimpan
-  flag_saved_thanks: Penandaan disimpan. Terima kasih!
   flag_this_observation: Tandai pengamatan ini
   flag_this_photo: Tandai foto ini
   flagged: Tertanda

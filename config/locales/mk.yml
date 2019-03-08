@@ -317,7 +317,6 @@ mk:
   back: Назад
   back_to_shared_taxon: Назад на %{sharedtaxon}
   back_to_taxon: Назад на %{defaulttaxon}
-  back_to_this: Назад на %{place}
   back_to_viewing: Назад на погледот на <i>%{taxon}</i>
   back_to_x: Назад на %{noun}
   back_to_x_assessment: Назад на оцените на %{project}
@@ -584,12 +583,12 @@ mk:
   either: Или
   eol: EOL
   establishment:
-    native: домороден
     endemic: ендемски
     introduced: доведен
-    naturalised: одомаќинет
     invasive: инвазивен
     managed: контролиран
+    native: домороден
+    naturalised: одомаќинет
   every_species_seen_by: Секој вид забележан од
   everyone: сите
   everywhere: насекаде
@@ -644,7 +643,6 @@ mk:
     <strong>решен.</strong>
   flag_reason: '&ldquo;Го обележувам ова %{record} бидејќи'
   flag_saved: Обележувачот е зачуван
-  flag_saved_thanks: Обележувачот е зачуван. Ви благодариме!
   flag_this_observation: Обележи го набљудувањево
   flag_this_photo: Обележи ја сликава
   flagged: обележано

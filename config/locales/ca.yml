@@ -644,7 +644,6 @@ ca:
   back_to_suggestions: Torna a Suggeriments
   back_to_taxon: Torna a %{defaulttaxon}
   back_to_taxon_changes: Torna als canvis del tàxon
-  back_to_this: Torna a %{place}
   back_to_viewing: Torna a mostrar <i>%{taxon}</i>
   back_to_x: Torna a %{noun}
   back_to_x_assessment: Torna a les valoracions de %{project}
@@ -1395,18 +1394,18 @@ ca:
   eol_collection_url: URL de la col·lecció EOL
   error_updating_photo: 'Error pujant la foto: %{photo_errors}'
   establishment:
-    establishment: Establiment
-    native: Nativa
     endemic: Endèmica
+    establishment: Establiment
     introduced: Introduïda
-    naturalised: Naturalitzada
     invasive: Invasora
     managed: Gestionada
+    native: Nativa
+    naturalised: Naturalitzada
   establishment_means: Forma d'establir-se.
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: nadiu, no succeeix a cap altre lloc
     arrived_in_the_region_via_anthropogenic_means: va arribar a la regió per mitjans
       antropogènics
+    native_and_occurs_nowhere_else: nadiu, no succeeix a cap altre lloc
   establishment_means_describes_how: La forma d'establiment indica com es va implantar
     el tàxon dins una àrea. Mostra DarwinCore per <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">
     obtenir més informació de terminologia</a>.
@@ -1548,7 +1547,6 @@ ca:
   flag_marked_as_resolved_html: <span class=meta>Marca com a</span> <strong>resolt.</strong>
   flag_reason: '"Marco aquest %{record} perquè'
   flag_saved: Advertència desada.
-  flag_saved_thanks: Advertència desada. Gràcies!
   flag_this_observation: Marca aquesta observació
   flag_this_photo: Marca aquesta foto
   flagged: marcat

@@ -5,6 +5,7 @@
 # Author: AndroidOSUser
 # Author: Angelocl
 # Author: Athena in Wonderland
+# Author: Cashirota
 # Author: Cgalindo
 # Author: Cristofer Alves
 # Author: Eduardo Addad de Oliveira
@@ -656,7 +657,6 @@ pt-BR:
   back_to_taxon: Voltar para %{defaulttaxon}
   back_to_taxon_changes: Voltar a mudanças de taxón
   back_to_taxon_framework_for_x: Voltar para a estrutura do taxon para %{taxon_name}
-  back_to_this: Voltar para %{place}
   back_to_viewing: Voltar para visualização <i>%{taxon}</i>
   back_to_x: Voltar para %{noun}
   back_to_x_assessment: Volte para as avaliações de %{project}
@@ -819,6 +819,7 @@ pt-BR:
     merged_into: convergir em
     replaced_by: substituido por
     replace_with: substituir por
+    replaced_with: substituído por
     dropped: descartado
     staged: etapa concluída
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} dividiu-se em %{output_taxa}'
@@ -1411,17 +1412,17 @@ pt-BR:
   eol_collection_url: URL da coleção EOL
   error_updating_photo: 'Erro atualizando foto: %{photo_errors}'
   establishment:
-    establishment: Estabelecimento
-    native: Nativa
     endemic: Endêmica
+    establishment: Estabelecimento
     introduced: Introduzida
-    naturalised: Naturalizada
     invasive: Invasora
     managed: Cultivada/Cativeiro
+    native: Nativa
+    naturalised: Naturalizada
   establishment_means: Meios de estabelecimento
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: nativa e não ocorre em nenhum outro local
     arrived_in_the_region_via_anthropogenic_means: chegou à região por meios antropogênicos
+    native_and_occurs_nowhere_else: nativa e não ocorre em nenhum outro local
   establishment_means_describes_how: "Meios de Estabelecimento descrevem como o táxon
     foi implantado nesta área.  \nVeja o DarwinCore para <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">mais
     informações sobre a terminologia</a>."
@@ -1564,7 +1565,6 @@ pt-BR:
   flag_marked_as_resolved_html: <span class="meta">Marcado com Alerta</span> <strong>resolvido.</strong>
   flag_reason: '&ldquo;Estou marcando com um alerta esta %{record} porque'
   flag_saved: Alerta salvo
-  flag_saved_thanks: Alerta salvo. Obrigada!
   flag_this_observation: Marque com alerta esta observação
   flag_this_photo: Faça um alerta sobre esta foto
   flagged: Marcados
@@ -1620,6 +1620,10 @@ pt-BR:
   for_more_information: Para maiores informações
   formatting: Formatação
   forgot_your_password: Esqueceu sua senha?
+  forum_categories:
+    bug_reports: Relatório de erros
+    feature_requests: Solicitações de recursos
+    news_and_updates: Notícias e Atualizações
   frequency: Frequência
   fri: Sex
   from: De
@@ -4176,8 +4180,8 @@ pt-BR:
   stuff_just_added: Oque você acabou de adicionar...
   subject_resolved_noun_html: '%{subject} solucionado %{noun}'
   subject_affecting_stuff_html: '%{subject} afeta a %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} dedicado %{thing} afetando
-    %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} dedicado @vow_or_con{vow:an|a}
+    %{thing} afetado %{stuff}'
   submission_model: Modelo de carregamento
   submission_model_description: Quem pode adicionar observações ao seu projeto?
   submit: Enviar
@@ -4603,6 +4607,8 @@ pt-BR:
   today: Hoje
   too_many_observations_csv: Você tem um enxame de observações! <br />Nós só podemos
     mostras as primeiras %{max_rows} observações em cada CSV
+  too_many_taxa_to_render: Esta consulta retorna muitos taxa para renderizar de uma
+    só vez. Tente adicionar mais filtros
   tools: Ferramentas
   top_5_identifiers: Top 5 naturalistas
   top_contributors: Principais colaboradores
@@ -5811,6 +5817,8 @@ pt-BR:
           ou oculta
         geoprivacy: De qualquer forma, o observador optou por ocultar ou, esconder,
           as coordenadas
+        taxon_geoprivacy: A geofracia mais conservadora aplicada devido aos status
+          de conservação dos táxons na identificação atual.
         coordinates_obscured: De qualquer forma, as coordenadas foram ocultadas, seja
           pela configuração de geoprivacidade ou pelo grau de ameaça do táxon
         out_of_range: Esteja a observação localizada ou não dentro da área de distribuição
@@ -6035,6 +6043,12 @@ pt-BR:
         we_have_been_housekeeping: Temos feito um pouco de limpeza e encontrado algumas
           fotos conectadas às suas observações que não são mais acessíveis a partir
           de sua fonte original. As fotos estão hospedadas em %{providers}.
+        we_would_like_to_remove: Gostaríamos de eliminar todas referências a fotos
+          quebradas num futuro próximo, mas não queremos nos livrar de nada que possa
+          ser salvo. É possível que algumas dessas fotos ainda existam nos seus servidores
+          externos e possam ser reparadas. Algumas fotos podem ter sido carregadas
+          conectando sua %{account_url}%{site_name} conta </a> a outra conta de hospedagem
+          de fotos, e essa conexão expirou e precisa ser atualizada.
         you_can_attempt_repair: Você pode tentar reparar as fotos visitando a página
           da foto e marcando o link "%{repair_link_text}". Se você souber que a foto
           não existe mais, poderá excluí-la.
@@ -6653,9 +6667,26 @@ pt-BR:
       form:
         new_name_guidelines_html: |-
           <ul class="ui">
-            <li>Tente incluir nomes que já foram utilizados anteriormente. Por favor não invente novos nomes.</li>
-            <li>Não submeta observações com nomes duplicados, por exemplo, nomear diversas fotos como "falcão"</li>
-            <li>Para táxons superiores, utilize nomes que incluam todos os descendentes</li>
+            <li><p>Tente incluir nomes que já foram utilizados anteriormente. Por favor não invente novos nomes.</p></li>
+            <li><p>Não submeta observações com nomes duplicados, por exemplo, não nomeie diversas fotos de falcões como "falcão"</p></li>
+            <li><p>Para táxons superiores, tente utilizar nomes que incluam todos os descendentes</p></li>
+          <li>
+              <p>
+                Não adicione informações que não seja o nome, e.g., informação entre parêntesis sobre como você acha que o nome deve ser usado
+              </p>
+            </li>
+            <li>
+              <p>
+                Novos léxicos devem ser em inglês. Por favor não adicione nomes traduzidos de línguas como "French, francês" porque isso somente nos vai dificultar ou impossibilitar de mostrar nomes localizados para pessoas que usam o site em diferentes línguas.
+              </p>
+            </li>
+            <li>
+              <p>
+                Nomes comuns associados com línguas traduzidas aparecerão como o nome comum padrão para aquela língua (exceto considerando o efeito de preferências de lugar, ordem de nomes, etc.).
+                <a class="readmore" href="/pages/translate">Aprenda mais sobre tradução</a>
+              </p>
+            </li>
+          </ul>
           </ul>
         places_help_html: Adicione um nome ao local para dar prioridade aos sites
           e usuários deste lugar. Se por acaso tiver vários nomes por lugar você pode
@@ -6687,6 +6718,28 @@ pt-BR:
         curators_can_see: Somente um lembrete, os coordenadores do projeto podem ver
           as coordenadas privadas e protegidas das observações que você adicionou
           neste projeto.
+      delete:
+        by_deleting_your_account_you_will_remove: Ao excluir sua conta, você removerá
+        x_observations_html:
+          one: |
+            <strong class="count">1 observação</strong>,
+            incluindo o trabalho das
+            <strong class="count">%{helpers_count} pessoas</strong> quem têm
+            ajudado você com identificações
+          other: |
+            <strong class="count">%{count} observações</strong>,
+            incluindo o trabalho das
+            <strong class="count">%{helpers_count} pessoas</strong> quem têm
+            ajudado você com identificações
+        furthermore_cannot_undo_html: Além disso, <strong>essa ação não pode ser desfeita.</Strong>
+          Se você mudar de ideia mais tarde, você não está recebendo nada desse conteúdo
+          de volta.
+        still_want_to_delete_html: |-
+          Se ainda tiver certeza de que deseja excluir sua conta, digite
+          <code> %{confirmation_code}</code> no formulário abaixo e clique no botão para excluir sua conta e todos os seus dados.
+        type_confirmation_code: Digite %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: Você deve inserir "%{confirmation_code}"
+          no formulário para excluir sua conta
       edit:
         blocking_desc_html: |-
           <p>

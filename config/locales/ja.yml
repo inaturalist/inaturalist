@@ -5,6 +5,7 @@
 # Author: Omotecho
 # Author: Otokoume
 # Author: S2KTS
+# Author: Shirayuki
 # Author: Sudachi
 # Author: Sujiniku
 # Author: Zero 1 k
@@ -472,7 +473,6 @@ ja:
   back_to_shared_taxon: '%{sharedtaxon}に戻る'
   back_to_taxon: '%{defaulttaxon}に戻る'
   back_to_taxon_changes: 分類群変更履歴へ戻る
-  back_to_this: '%{place}に戻る'
   back_to_viewing: <i>%{taxon}</i>に戻る
   back_to_x: '%{noun}に戻る'
   back_to_x_assessment: '%{project}の評定に戻る'
@@ -957,17 +957,17 @@ ja:
   eol_collection_url: EOLコレクションURL
   error_updating_photo: 写真更新にエラーが発生しました：%{photo_errors}
   establishment:
-    establishment: 定着
-    native: 在来
     endemic: 固有種
+    establishment: 定着
     introduced: 移入種
-    naturalised: 帰化種
     invasive: 外来種
     managed: 管理種
+    native: 在来
+    naturalised: 帰化種
   establishment_means: 定着方法
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: 他では棲息しない在来種
     arrived_in_the_region_via_anthropogenic_means: 外来
+    native_and_occurs_nowhere_else: 他では棲息しない在来種
   establishment_means_describes_how: 特定の場所において、分類群がどのようにして定着したのかを示す。用語についての<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">詳しい説明</a>はDarwinCoreをご参照ください。
   event_in_progress: 進行中のイベント
   event_registration_url: イベント登録URL
@@ -1061,7 +1061,6 @@ ja:
   flag_for_curation: 要キュレーター管理としてフラグ付け
   flag_it!: フラグを付ける！
   flag_saved: フラグが保存されました
-  flag_saved_thanks: フラグが保存されました。ありがとうございました。
   flag_this_observation: この観察記録をフラグ付け
   flag_this_photo: この写真をフラグ付け
   flagged: フラグ付き
@@ -1380,7 +1379,7 @@ ja:
     romanian: ルーマニア語
     russian: ロシア語
     spanish: スペイン語
-    swedish: スェーデン語
+    swedish: スウェーデン語
     tagalog: タガログ語
     tahitian: タヒチ語
     tokelauan: トケラウ語
