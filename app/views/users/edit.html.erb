@@ -6,7 +6,7 @@
   #providercol ul{margin:0;padding:0;}
   #providercol li{list-style-type:none;}
   .providerlink,
-  .button.providerlink { padding-left: 28px !important; }
+  .button.providerlink { padding-left: 28px !important; overflow: hidden;}
   #user_block_blocked_user_id, #user_mute_muted_user_id { width: 200px; }
   .site_id_field img { max-width: 200px; }
 </style>
@@ -262,7 +262,7 @@
   <div id="providercol" class="stacked">
     <h3><%= t(:connected_accounts) %></h3>
     <ul>
-      <% ProviderAuthorization::PROVIDERS.each do |provider| %>
+      <% ProviderAuthorization::PROVIDERS.select{|provider| OmniAuth.providers.include?( provider.to_sym )}.each do |provider| %>
         <% if pa = @user.has_provider_auth(provider) %>
           <li class="clear">
             <%= button_to omniauth_disconnect_path(provider),
@@ -270,7 +270,7 @@
               <%= t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]) %>
               <% unless pa.provider_uid.blank? %>
                 <div class="small">
-                  UID: <%= pa.provider_uid %>
+                  ID: <%= char_wrap( pa.provider_uid, 30 ) %>
                 </div>
               <% end %>
             <% end %>
