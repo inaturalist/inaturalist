@@ -1,3 +1,19 @@
+# Monkeypatch to add OmniAuth.providers array that lists all the strategies that
+# are actually in use, not just the ones that are available
+module OmniAuth
+  @@providers = []
+  mattr_accessor :providers
+
+  class Builder < ::Rack::Builder
+    def provider_patch(klass, *args, &block)
+      OmniAuth.providers << klass
+      old_provider(klass, *args, &block)
+    end
+    alias old_provider provider
+    alias provider provider_patch
+  end
+end
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   require 'openid/store/filesystem'
 
@@ -64,6 +80,10 @@ Rails.application.config.middleware.use OmniAuth::Builder do
       :access_type => "offline"
     }
     provider :google_oauth2, CONFIG.google.client_id, CONFIG.google.secret, opts
+  end
+
+  if CONFIG.orcid
+    provider :orcid, CONFIG.orcid.client_id, CONFIG.orcid.client_secret
   end
 
 end
