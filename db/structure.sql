@@ -8410,6 +8410,13 @@ CREATE UNIQUE INDEX index_tags_on_name ON public.tags USING btree (name);
 
 
 --
+-- Name: index_tags_on_lower_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tags_on_lower_name ON public.tags USING btree (lower((name)::text));
+
+
+--
 -- Name: index_taxa_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
