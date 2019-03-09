@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
       id: id,
       login: login,
       spam: known_spam?,
-      suspended: suspended?
+      suspended: suspended?,
+      created_at: created_at.in_time_zone( "UTC" )
     }
     unless options[:no_details]
       obs_count = [observations_count.to_i, 0].max

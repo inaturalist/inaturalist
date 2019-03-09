@@ -22,6 +22,7 @@ class Observation < ActiveRecord::Base
       indexes :id, type: "integer"
       indexes :uuid, type: "keyword"
       indexes :identifier_user_ids, type: "integer"
+      indexes :ident_taxon_ids, type: "integer"
       indexes :non_owner_identifier_user_ids, type: "integer"
       indexes :identification_categories, type: "keyword"
       indexes :photo_licenses, type: "keyword"
@@ -190,6 +191,7 @@ class Observation < ActiveRecord::Base
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
         sounds: sounds.map(&:as_indexed_json),
         identifier_user_ids: current_ids.map(&:user_id),
+        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids}.flatten.uniq,
         non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
         identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
