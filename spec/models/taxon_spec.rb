@@ -970,6 +970,20 @@ describe Taxon, "moving" do
     t.move_to_child_of( @Pseudacris )
     expect( TaxonAncestor.where( taxon_id: t.id, ancestor_taxon_id: @Calypte.id ).count ).to eq 0
   end
+
+  it "should reindex descendants" do
+    g = Taxon.make!( rank: Taxon::GENUS, parent: @Trochilidae )
+    s = Taxon.make!( rank: Taxon::SPECIES, parent: g )
+    Delayed::Worker.new.work_off
+    s.reload
+    es_response = Taxon.elastic_search( where: { id: s.id } ).results.results.first
+    expect( es_response.ancestor_ids ).to include @Trochilidae.id
+    g.move_to_child_of( @Hylidae )
+    Delayed::Worker.new.work_off
+    s.reload
+    es_response = Taxon.elastic_search( where: { id: s.id } ).results.results.first
+    expect( es_response.ancestor_ids ).to include @Hylidae.id
+  end
   
 end
 

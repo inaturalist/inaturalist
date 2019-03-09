@@ -458,6 +458,13 @@ class Taxon < ActiveRecord::Base
       update_stats_for_observations_of(id)
     elastic_index!
     Taxon.refresh_es_index
+    # This will create a long-running job for higher level, but we need to reset
+    # the ancestry field on descendants when the taxon moves
+    Taxon.delay(
+      priority: INTEGRITY_PRIORITY,
+      queue: "slow",
+      unique_hash: { "Taxon::reindex_descendants_of": id }
+    ).reindex_descendants_of( id )
     Identification.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Identification::update_disagreement_identifications_for_taxon": id }).
       update_disagreement_identifications_for_taxon(id)
@@ -498,6 +505,12 @@ class Taxon < ActiveRecord::Base
   
   def self.reindex_taxa_covered_by( taxon_framework )
     Taxon.elastic_index!( scope: Taxon.get_internal_taxa_covered_by(taxon_framework) )
+  end
+
+  def self.reindex_descendants_of( taxon )
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    return unless taxon
+    Taxon.elastic_index!( scope: taxon.descendants )
   end
   
   def update_taxon_framework_relationship
