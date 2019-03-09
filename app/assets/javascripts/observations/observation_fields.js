@@ -1,8 +1,10 @@
+/* eslint-disable */
+
 $.fn.observationFieldsForm = function(options) {
   $(this).each(function() {
     var that = this
     $('.observation_field_chooser', this).chooser({
-      collectionUrl: '/observation_fields.json',
+      collectionUrl: '/observation_fields.json?order_by=values_count',
       resourceUrl: '/observation_fields/{{id}}.json',
       afterSelect: function(item) {
         $('.observation_field_chooser', that).parents('.ui-chooser:first').next('.button').click()
