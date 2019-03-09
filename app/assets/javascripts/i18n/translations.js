@@ -12806,6 +12806,8 @@ I18n.translations["en"] = {
   "other": "Other",
   "other_species_commonly_misidentified_as_this_species": "Other species commonly misidentified as this species",
   "other_species_commonly_misidentified_as_this_species_in_place_html": "Other species commonly misidentified as this species in <a href=\"%{url}\">%{place}</a>\n",
+  "other_taxa_commonly_misidentified_as_this_rank": "Other taxa commonly misidentified as this %{rank}",
+  "other_taxa_commonly_misidentified_as_this_rank_in_place_html": "Other taxa commonly misidentified as this %{rank} in <a href=\"%{url}\">%{place}</a>\n",
   "output_taxon": "Output taxon",
   "overview": "Overview",
   "per_day": "Per Day",
@@ -13347,6 +13349,7 @@ I18n.translations["en"] = {
   "sign_out": "Sign Out",
   "sign_up": "Sign Up",
   "similar_species": "Similar Species",
+  "similar_taxa": "Similar Taxa",
   "site_admin_tools": "Site admin tools",
   "skip_to_next_page": "Skip to next page",
   "some_observations_failed_to_be_added": "Some observations failed to be added to projects",
@@ -13747,6 +13750,10 @@ I18n.translations["en"] = {
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span> matching taxon",
     "other": "<span class=\"count\">%{count}</span> matching taxa"
+  },
+  "x_misidentifications_of_species_in_this_rank": {
+    "one": "1 misidentification of species in this %{rank}",
+    "other": "%{count} misidentifications of species in this %{rank}"
   },
   "x_misidentifications_of_this_species": {
     "one": "1 misidentification of this species",

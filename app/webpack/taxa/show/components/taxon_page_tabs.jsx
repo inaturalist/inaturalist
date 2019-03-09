@@ -188,7 +188,9 @@ class TaxonPageTabs extends React.Component {
                   role="presentation"
                   className={`${genusOrSpecies ? "" : "hidden"} ${chosenTab === "similar" ? "active" : ""}`}
                 >
-                  <a href="#similar-tab" role="tab" data-toggle="tab">{ I18n.t( "similar_species" ) }</a>
+                  <a href="#similar-tab" role="tab" data-toggle="tab">
+                    { speciesOrLower ? I18n.t( "similar_species" ) : I18n.t( "similar_taxa" ) }
+                  </a>
                 </li>
                 { curationTab }
               </ul>

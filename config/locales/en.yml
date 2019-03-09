@@ -33,8 +33,11 @@ en:
     one: '<span class="count">1</span> matching taxon'
     other: '<span class="count">%{count}</span> matching taxa'
   x_misidentifications_of_this_species:
-      one: "1 misidentification of this species"
-      other: "%{count} misidentifications of this species"
+    one: "1 misidentification of this species"
+    other: "%{count} misidentifications of this species"
+  x_misidentifications_of_species_in_this_rank:
+    one: "1 misidentification of species in this %{rank}"
+    other: "%{count} misidentifications of species in this %{rank}"
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
@@ -2652,6 +2655,9 @@ en:
   other_species_commonly_misidentified_as_this_species: Other species commonly misidentified as this species
   other_species_commonly_misidentified_as_this_species_in_place_html: |
     Other species commonly misidentified as this species in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Other taxa commonly misidentified as this %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
+    Other taxa commonly misidentified as this %{rank} in <a href="%{url}">%{place}</a>
   our_blog: Our Blog
   out_of_range: Out of range
   output_taxon: Output taxon
@@ -3604,6 +3610,7 @@ en:
   sign_up: Sign Up
   sign_up_exclamation: Sign up!
   similar_species: Similar Species
+  similar_taxa: Similar Taxa
   simple: Simple
   sign_in_exclamation: Sign in!
   single_observation: Single observation

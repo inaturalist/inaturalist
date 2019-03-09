@@ -7,30 +7,41 @@ const SimilarTab = ( {
   results,
   place,
   showNewTaxon,
-  config
+  config,
+  taxon
 } ) => {
   let content;
+  const rank = I18n.t( `ranks.${taxon.rank}`, { defaultValue: taxon.rank } ).toLowerCase( );
   if ( results && results.length > 0 ) {
     content = (
       <div className="thumbnails">
-        { results.map( result => (
-          <TaxonThumbnail
-            taxon={result.taxon}
-            key={`similar-taxon-${result.taxon.id}`}
-            badgeText={result.count}
-            badgeTip={I18n.t( "x_misidentifications_of_this_species", { count: result.count } )}
-            height={190}
-            truncate={20}
-            onClick={e => {
-              if ( !showNewTaxon ) return true;
-              if ( e.metaKey || e.ctrlKey ) return true;
-              e.preventDefault( );
-              showNewTaxon( result.taxon );
-              return false;
-            }}
-            config={config}
-          />
-        ) ) }
+        { results.map( result => {
+          let tip = I18n.t( "x_misidentifications_of_this_species", { count: result.count } );
+          if ( taxon.rank_level > 10 ) {
+            tip = I18n.t( "x_misidentifications_of_species_in_this_rank", {
+              count: result.count,
+              rank: I18n.t( `ranks.${result.taxon.rank}`, { defaultValue: result.taxon.rank } ).toLowerCase( )
+            } );
+          }
+          return (
+            <TaxonThumbnail
+              taxon={result.taxon}
+              key={`similar-taxon-${result.taxon.id}`}
+              badgeText={result.count}
+              badgeTip={tip}
+              height={190}
+              truncate={20}
+              onClick={e => {
+                if ( !showNewTaxon ) return true;
+                if ( e.metaKey || e.ctrlKey ) return true;
+                e.preventDefault( );
+                showNewTaxon( result.taxon );
+                return false;
+              }}
+              config={config}
+            />
+          );
+        } ) }
       </div>
     );
   } else if ( results ) {
@@ -38,25 +49,43 @@ const SimilarTab = ( {
   } else {
     content = <div className="loading status">{ I18n.t( "loading" ) }</div>;
   }
+  let title = I18n.t( "other_species_commonly_misidentified_as_this_species" );
+  if ( taxon.rank_level > 10 ) {
+    if ( place ) {
+      title = (
+        <span
+          dangerouslySetInnerHTML={{
+            __html: I18n.t(
+              "other_taxa_commonly_misidentified_as_this_rank_in_place_html",
+              {
+                rank,
+                place: place.display_name,
+                url: `/places/${place.id}`
+              }
+            )
+          }}
+        />
+      );
+    } else {
+      title = I18n.t( "other_taxa_commonly_misidentified_as_this_rank", { rank } );
+    }
+  } else if ( place ) {
+    title = (
+      <span
+        dangerouslySetInnerHTML={{
+          __html: I18n.t(
+            "other_species_commonly_misidentified_as_this_species_in_place_html",
+            { place: place.display_name, url: `/places/${place.id}` }
+          )
+        }}
+      />
+    );
+  }
   return (
     <Grid className="SimilarTab">
       <Row>
         <Col xs={12}>
-          <h2>
-            { place
-              ? (
-                <span
-                  dangerouslySetInnerHTML={{
-                    __html: I18n.t(
-                      "other_species_commonly_misidentified_as_this_species_in_place_html",
-                      { place: place.display_name, url: `/places/${place.id}` }
-                    )
-                  }}
-                />
-              )
-              : I18n.t( "other_species_commonly_misidentified_as_this_species" )
-            }
-          </h2>
+          <h2>{ title }</h2>
           { content }
         </Col>
       </Row>
@@ -68,7 +97,8 @@ SimilarTab.propTypes = {
   results: PropTypes.array,
   place: PropTypes.object,
   showNewTaxon: PropTypes.func,
-  config: PropTypes.object
+  config: PropTypes.object,
+  taxon: PropTypes.object
 };
 
 export default SimilarTab;
