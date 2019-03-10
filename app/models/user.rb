@@ -164,6 +164,7 @@ class User < ActiveRecord::Base
   has_many :taxon_framework_relationships
   has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
+  has_many :user_privileges, inverse_of: :user, dependent: :delete_all
   
   file_options = {
     processors: [:deanimator],
@@ -1207,6 +1208,10 @@ class User < ActiveRecord::Base
   def personal_lists
     lists.not_flagged_as_spam.
       where("(type IN ('LifeList', 'List') OR type IS NULL)")
+  end
+
+  def privileged_with?( privilege )
+    user_privileges.where( privilege: privilege ).where( "revoked_at IS NULL" ).exists?
   end
 
   # Iterates over recently created accounts of unknown spammer status, zero

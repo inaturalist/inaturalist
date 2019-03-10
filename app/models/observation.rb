@@ -11,6 +11,10 @@ class Observation < ActiveRecord::Base
   }
   notifies_subscribers_of :user, :notification => "created_observations",
     :queue_if => lambda { |observation| !observation.bulk_import }
+
+  earns_privilege UserPrivilege::SPEECH
+  earns_privilege UserPrivilege::ORGANIZER
+  earns_privilege UserPrivilege::COORDINATE_ACCESS
   
   # Why aren't we using after_save? Because we need this to run before the
   # after_create created by notifiesi_subscribers_of :public_places runs
@@ -502,6 +506,7 @@ class Observation < ActiveRecord::Base
     quality_grade = '' if quality_grades.size == 0
     where("quality_grade IN (?)", quality_grades)
   }
+  scope :verifiable, -> { where( "quality_grade IN (?)", [RESEARCH_GRADE, NEEDS_ID] ) }
   
   # Find observations by a taxon object.  Querying on taxa columns forces 
   # massive joins, it's a bit sluggish

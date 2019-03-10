@@ -5,6 +5,12 @@ class Comment < ActiveRecord::Base
   acts_as_votable
   SUBSCRIBABLE = false
 
+  # Uncomment to require speech privilege to make comments on anything other
+  # than your own content
+  # requires_privilege :speech, if: Proc.new {|c|
+  #   c.parent.respond_to?(:user) && c.parent.user.id != user.id
+  # }
+
   belongs_to :parent, polymorphic: true
   belongs_to :user
 
