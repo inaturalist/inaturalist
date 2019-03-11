@@ -273,6 +273,7 @@ ca:
   add_life_stage_larva_annotation: 'Afegiu nota "Estat del Cicle biològic: Larva"'
   add_life_stage_juvenile_annotation: 'Afegir l''anotació «Etapa de la vida: juvenil»'
   add_life_stage_egg_annotation: 'Afegiu nota "Estat del Cicle biològic: Ou"'
+  add_relationship: Afegir una relació
   add_section: Afegiu Secció
   add_several_observations_at_once: Afegiu diverses observacions a la vegada.
   add_sex_female_annotation: 'Afegiu nota "Sexe: Femella"'
@@ -610,6 +611,8 @@ ca:
   attribution: Reconeixement
   authority_list:
     iucn_red_list: Llista vermella d'UICN
+    natureserve: NatureServe
+    cites: CITES
   authorize: Autoritzeu
   authorize_permissions_from_provider: Autoritza permisos de %{provider}
   automatic_descriptions_have_been_disabled: S'han inhabilitat les descripcions automàtiques
@@ -644,6 +647,7 @@ ca:
   back_to_suggestions: Torna a Suggeriments
   back_to_taxon: Torna a %{defaulttaxon}
   back_to_taxon_changes: Torna als canvis del tàxon
+  back_to_taxon_framework_for_x: Tornar a l'estructura taxonòmica de %{taxon_name}
   back_to_viewing: Torna a mostrar <i>%{taxon}</i>
   back_to_x: Torna a %{noun}
   back_to_x_assessment: Torna a les valoracions de %{project}
@@ -804,6 +808,7 @@ ca:
     merged_into: es va combinar a
     replaced_by: reemplaçat per
     replace_with: reemplaçat amb
+    replaced_with: reemplaçat per
     dropped: eliminat
     staged: canvi d'etapa
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} es va dividir en
@@ -1184,6 +1189,7 @@ ca:
   date_range: Interval de dates
   date_specified: Data especificada
   date_time: Data/Hora
+  date_updated: Data actualitzada
   dates: dates
   datetime_: Data/Hora
   day: Dia
@@ -1403,9 +1409,9 @@ ca:
     naturalised: Naturalitzada
   establishment_means: Forma d'establir-se.
   establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: va arribar a la regió per mitjans
+    arrived_in_the_region_via_anthropogenic_means: Va arribar a la regió per mitjans
       antropogènics
-    native_and_occurs_nowhere_else: nadiu, no succeeix a cap altre lloc
+    native_and_occurs_nowhere_else: Nadiu, no succeeix a cap altre lloc
   establishment_means_describes_how: La forma d'establiment indica com es va implantar
     el tàxon dins una àrea. Mostra DarwinCore per <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">
     obtenir més informació de terminologia</a>.
@@ -1601,6 +1607,16 @@ ca:
   for_more_information: per a més informació.
   formatting: Formatatge
   forgot_your_password: Heu oblidat la contrasenya?
+  forum_categories:
+    bug_reports: Informe d'errades
+    feature_requests: Petició de Característiques
+    forum_feedback: Fòrum de comentaris
+    forum_moderation: Moderació del Fòrumc
+    nature_talk: Parlem de Natura
+    news_and_updates: Notícies i Actualitzacions
+    tutorials: Tutorials
+  forum_desc: Aquest fórum és el lloc per parlar sobre iNat, incloent la demanda d'ajuda,
+    suport o de característiques, informar d'errades, anuncis i més.
   frequency: Freqüència
   fri: Dv.
   from: de
@@ -2631,7 +2647,9 @@ ca:
   no_taxa: No hi ha tàxons
   no_taxa_listed: No s'ha registrat cap tàxon
   no_taxa_selected: No heu seleccionat cap tàxon!
+  no_taxa_with_unknown_relationships: Cap tàxon amb relacions desconegudes
   no_taxa_yet: Encara no hi ha cap tàxon!
+  no_taxon_framework_relationships: sense relacions a l'estructura taxonòmica
   no_taxonomic_changes_match_those_criteria: No hi ha canvis taxonòmics amb aquest
     criteri de cerca
   no_wikipedia_page_for_taxon: No hi ha cap pàgina a Viquipèdia per a aquest tàxon.
@@ -2804,6 +2822,12 @@ ca:
     o raresa d'un tàxon en una àrea determinada. Aneu a DarwinCore per <a href="http://code.google.com/p/darwincore/wiki/occurrence#occurrenceStatus">
     més informació sobre terminologia </a>.
   occurrence_status: Estat d'ocurrència
+  occurrence_status_descriptions:
+    absent: No es troba a l'àrea
+    common: Es troba freqüentment
+    doubtful: Sembla que existeix, però hi ha dubtes sobre les evidències
+    irregular: Presència impredictible, incloent migrants; pot ser habitual alguns
+      anys i absent altres
   occurrence_status_establishment_means: estat d'ocurrència, forma d'establiment
   occurrence_status_levels:
     present: present
@@ -3703,6 +3727,7 @@ ca:
     one_to_many: un a molts
     not_external: no extern
     not_internal: no intern
+    error: error
   relationship_html: Relació:%{link}
   reload_and_refresh: Torna a carregar i actualitzar la llista
   reload_from_observations: Torna a carregar des de les observacions
@@ -6544,6 +6569,10 @@ ca:
         curators_can_see: 'Només un recordatori: els administradors del projecte poden
           veure les coordenades privades i enfosquides de les observacions que s''agreguen
           a aquest projecte.'
+      delete:
+        type_confirmation_code: Escrigui %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: Escrigueu "%{confirmation_code}"
+          en el formulari per eliminar el vostre compte
       edit:
         blocking_desc_html: |-
           <p>
