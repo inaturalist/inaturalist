@@ -12,10 +12,13 @@
   else
     URI.join( site.url.to_s, site.help_url.to_s )
   end
-  feedback_url = if site.feedback_url.to_s =~ /http/
-    site.feedback_url
+  feedback_url = site.discourse_url
+  feedback_url = site.feedback_url if feedback_url.blank?
+  feedback_url = feedback_url.to_s
+  feedback_url = if feedback_url =~ /http/
+    feedback_url
   else
-    URI.join( site.url.to_s, site.feedback_url.to_s )
+    URI.join( site.url.to_s, feedback_url )
   end
   community_guidelines_url = if site.community_guidelines_url =~ /http/
     site.community_guidelines_url
