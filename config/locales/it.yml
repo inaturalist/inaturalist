@@ -1202,6 +1202,7 @@ it:
   date_range: Intervallo di date
   date_specified: Data specificata
   date_time: Data/Ora
+  date_updated: Data aggiornamento
   dates: date
   datetime_: Data/Ora
   day: Giorno
@@ -1422,9 +1423,11 @@ it:
     naturalised: Naturalizzata
   establishment_means: Origine di occupazione
   establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: arrivata nella regione per via
+    arrived_in_the_region_via_anthropogenic_means: Arrivata nella regione per via
       antropica
-    native_and_occurs_nowhere_else: nativa e non presente da nessun'altra parte
+    native_and_occurs_nowhere_else: Nativa e non presente da nessun'altra parte
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Andato incontro
+      ad evoluzione in questa regione o arrivato per cause non antropiche
   establishment_means_describes_how: "L'origine del popolamento indica come un taxon
     si è stabilito in un'area.  \nVedi DarwinCore per <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">più
     informazioni sulla terminologia</a>."
@@ -1628,7 +1631,13 @@ it:
   forum_categories:
     bug_reports: Rapporti errori
     feature_requests: Richiesta di nuove funzioni
+    forum_feedback: Forum feedback
+    forum_moderation: Moderazione del forum
+    nature_talk: Discussioni sulla Natura
     news_and_updates: Notizie & aggiornamenti
+    tutorials: Tutorial
+  forum_desc: Il Forum è il luogo dove discutere su iNat, incluso l'aiuto e il supporto,
+    richiedere implementazioni, segnalare i bug, fare annunci e altro ancora.
   frequency: Frequenza
   fri: Ven
   from: Da
@@ -2836,6 +2845,15 @@ it:
     raro o comune in una determinata area.  Vai a DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">per
     più informazioni sulla terminologia</a>.
   occurrence_status: Stato della distribuzione
+  occurrence_status_descriptions:
+    absent: Non presente nell'area
+    common: Presente frequentemente
+    doubtful: Probabilmente presente, ma esistono dubbi in merito
+    irregular: Presenza non prevedibile, inclusi i migranti; forse comune alcuni anni
+      e assente in altri
+    present: Presente nell'area
+    uncommon: Presenza regolare, ma a basse consistenze; richiede cercare attentamente
+      l'habitat adatto
   occurrence_status_establishment_means: stato della distribuzione, origine del popolamento
   occurrence_status_levels:
     present: presente
@@ -6612,6 +6630,10 @@ it:
           e dei suoi discendenti. La foto scelta per questo
           taxon sarà mostrata per prima. La prima foto sarà
           l'immagine predefinita per tutto il sito.
+        site_curators_disabled_wikipedia_html: I curatori del sito hanno temporaneamente
+          disabilitato <a href="%{url}">questo contenuto da Wikipedia</a>. Puoi aiutarci
+          modificando la pagina su Wikipedia per renderla appropriata a questo taxon,
+          o segnalando questo taxon per portarlo all'attenzione dei curatori.
     taxon_changes:
       move_children_desc: I discendenti del taxon di ingresso che sono generi o di
         livello superiore saranno spostati all'uscita; le specie, sottospecie, varietà,
@@ -6682,12 +6704,12 @@ it:
           other: |
             <strong class="count">%{count} osservazioni</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni
         x_identifications_html:
-          one: <strong class="count">1 tua identificazione</strong> di osservazioni
-            di altri, che potenzialmente influisce sulla qualità dei dati di quelle
-            osservazioni
+          one: <strong class="count">1 tua identificazione</strong> di osservazione
+            di un'altra persona, che potenzialmente influisce sulla qualità dei dati
+            di quell'osservazione
           other: <strong class="count">%{count} delle tue identificazioni</strong>
-            di osservazioni di altri, che potenzialmente influisce sulla qualità dei
-            dati di quelle osservazioni
+            di osservazioni di <strong class="count">altre %{helpees_count} persone</strong>,
+            che potenzialmente influisce sulla qualità dei dati di quelle osservazioni
         x_comments_html:
           one: <strong class="count">1 commento</strong> che tu hai aggiunto
           other: <strong class="count">%{count} commenti</strong> che tu hai aggiunto

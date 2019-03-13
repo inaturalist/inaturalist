@@ -1201,6 +1201,7 @@ pt-BR:
   date_range: Intervalo de datas
   date_specified: Data especificada
   date_time: Data/Hora
+  date_updated: Data atualizada
   dates: Datas
   datetime_: Data/Horário
   day: Dia
@@ -1421,8 +1422,11 @@ pt-BR:
     naturalised: Naturalizada
   establishment_means: Meios de estabelecimento
   establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: chegou à região por meios antropogênicos
-    native_and_occurs_nowhere_else: nativa e não ocorre em nenhum outro local
+    arrived_in_the_region_via_anthropogenic_means: Chegou na região através de meios
+      antropogênicos
+    native_and_occurs_nowhere_else: Nativo e não ocorre em nenhum outro lugar
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Evoluiu nesta região
+      ou chegou por meios não-antropogênicos
   establishment_means_describes_how: "Meios de Estabelecimento descrevem como o táxon
     foi implantado nesta área.  \nVeja o DarwinCore para <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">mais
     informações sobre a terminologia</a>."
@@ -1565,6 +1569,8 @@ pt-BR:
   flag_marked_as_resolved_html: <span class="meta">Marcado com Alerta</span> <strong>resolvido.</strong>
   flag_reason: '&ldquo;Estou marcando com um alerta esta %{record} porque'
   flag_saved: Alerta salvo
+  flag_saved_thanks_html: Marcação salva. Obrigado! <a href="%{url}" class="readmore">Ver
+    marcação</a>
   flag_this_observation: Marque com alerta esta observação
   flag_this_photo: Faça um alerta sobre esta foto
   flagged: Marcados
@@ -1623,7 +1629,13 @@ pt-BR:
   forum_categories:
     bug_reports: Relatório de erros
     feature_requests: Solicitações de recursos
+    forum_feedback: Comentários do fórum
+    forum_moderation: Moderação do fórum
+    nature_talk: Conversa da natureza
     news_and_updates: Notícias e Atualizações
+    tutorials: Tutoriais
+  forum_desc: O fórum é um lugar para discutir o próprio iNat, incluindo ajuda e suporte,
+    solicitações de recursos, relatórios de bugs, anúncios e muito mais.
   frequency: Frequência
   fri: Sex
   from: De
@@ -2829,6 +2841,15 @@ pt-BR:
     raro é um táxon em uma área pré-definida. Veja DarwinCore para <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">maiores
     informações sobre esta terminologia</a>.
   occurrence_status: Status de ocorrência
+  occurrence_status_descriptions:
+    absent: Não ocorre na área
+    common: Ocorre com frequência
+    doubtful: Presume-se que ocorra, mas existe dúvida sobre a evidência
+    irregular: Presença imprevisível, incluindo vagabundos; pode ser comum em alguns
+      anos e outros ausentes
+    present: Ocorre na área
+    uncommon: Ocorre regularmente, mas em pequeno número; requer uma pesquisa cuidadosa
+      do habitat adequado
   occurrence_status_establishment_means: status de ocorrência, médias de estabelecimento
   occurrence_status_levels:
     present: presente
@@ -4487,9 +4508,9 @@ pt-BR:
     aos administradores do site or %{email}
   these_are_taxa_that: Estes são táxons que %{site} não foram automaticamente adicionados
     a nossa árvore taxonômica. Você pode adicioná-los à árvore editando o táxon e
-    selecionando uma superclasse. Por exemplo, a superclasse de Homo sapiens seria
-    o gênero Homo. Você pode também se interessar em conferir táxons sinônimos e mesclar
-    sua inserção.
+    selecionando uma superclasse. Você pode adicioná-los à árvore editando o taxon
+    e escolhendo um registro pai. Por exemplo, o pai do Homo sapiens seria o gênero
+    Homo. Você também pode querer verificar se há taxa de sinônimos e mesclá-los.
   these_arent_necessarily_relevant_to: Não são necessariamente relevantes para este
     projeto. Por favor verifique o
   these_folks_kindly_volunteer_to: Estas pessoas são gentis voluntários que mantém
@@ -6654,6 +6675,10 @@ pt-BR:
           deste táxon e de seus descendentes. As fotos escolhidas para este táxon
           serão exibidas primeiro. A primeira foto registrada será exibida como padrão
           em todo o site.
+        site_curators_disabled_wikipedia_html: Os curadores do site desativaram temporariamente
+          a exibição <a href="%{url}">de conteúdo da Wikipedia</a>. Você pode ajudar
+          editando a página em Wikipedia para torná-lo apropriado para este táxon,
+          ou sinalizando táxon para chamar a atenção dos curadores do site.
     taxon_changes:
       move_children_desc: |-
         Filhos do táxon de entrada que são mais ou menos generosos serão movidos para
@@ -7395,7 +7420,7 @@ pt-BR:
         conteúdo em seu nome e acessar suas coordenadas ocultas e qualquer
         outras informações que você pode acessar no site.
       login: Acessar informações relevantes para entrar, como endereço de e-mail,
-        nome de usuário, nome e ícone do usuário
+        nome de usuário, nome e ícone do usuário.
     errors:
       messages:
         invalid_request: A solicitação não possui um parâmetro obrigatório, inclui

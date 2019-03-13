@@ -152,7 +152,7 @@ describe TaxaController do
     after(:each) { disable_elastic_indexing([ Taxon ]) }
     render_views
     it "should find a taxon by name" do
-      t = Taxon.make!
+      t = Taxon.make!( name: "Predictable species", rank: Taxon::SPECIES )
       get :search, q: t.name
       expect(response.body).to be =~ /<span class="sciname">.*?#{t.name}.*?<\/span>/m
     end
