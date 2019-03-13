@@ -479,8 +479,7 @@ class UsersController < ApplicationController
     @has_updates = (current_user.recent_notifications.count > 0)
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
-    if current_user.is_admin? && @site && @site.id == Site.default.id
-      @discourse_url = "https://forum.inaturalist.org"
+    if @site && @discourse_url = @site.discourse_url
       cache_key = "dashboard-discourse-data"
       begin
         unless @discourse_data = Rails.cache.read( cache_key )

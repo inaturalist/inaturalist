@@ -48,7 +48,7 @@ class CommunityIDModal extends Component {
       const denom = usages + disag + ancDisag;
       const score = _.round( usages / denom, 3 );
       let className;
-      if ( observation.taxon.id === taxon.id ) {
+      if ( observation.taxon && observation.taxon.id === taxon.id ) {
         className = "current-id";
       } else if ( hoverTaxon ) {
         if ( hoverTaxon.id === taxon.id ) {
@@ -61,7 +61,7 @@ class CommunityIDModal extends Component {
           className = "excluded";
         }
       }
-      if ( !_.includes( observation.taxon.ancestor_ids, taxon.id ) ) {
+      if ( observation.taxon && !_.includes( observation.taxon.ancestor_ids, taxon.id ) ) {
         className += " other-branch";
       }
       rows.push( (
@@ -207,7 +207,7 @@ class CommunityIDModal extends Component {
     return (
       <Modal
         show={show}
-        className={`CommunityIDModal ${observation.taxon ? "" : "no-taxon"}`}
+        className={`CommunityIDModal ${observation.communityTaxon ? "" : "no-taxon"}`}
         onHide={this.close}
       >
         <Modal.Body>
