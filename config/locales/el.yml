@@ -2235,7 +2235,7 @@ el:
         place_id: Μέρος
         preferred_observation_fields_by: Να επιτρέπονται τα πεδία παρατήρησης από
     errors:
-      format: '%{κατηγορία} %{μήνυμα}'
+      format: '%{attribute} %{message}'
       messages:
         empty: δεν μπορεί να είναι κενό
       models:

@@ -6151,24 +6151,24 @@ nl:
           toewijzen als de admin moeten ze zich eerst aansluiten bij dit project en
           moet je ze curator maken.
         observation_aggregation_desc_html: |-
-          <p class = "description">
+          <p class="description">
           Waarnemingsaggregatie voegt automatisch passende waarnemingen toe aan jouw project zoals gespecificeerd in je projectregels. Er is geen manier om veel waarnemingen uit een project te verwijderen en dit is bovendien potentieel gevaarlijk.
           Zorg er dus voor dat je zeker weet dat je de plaats- en de taxonregels gekozen hebt die je wilt of je krijgt veel ongeschikte waarnemingen in je project die je weer handmatig moet verwijderen.
-          </ P>
-          <p class = "description">
+          </p>
+          <p class="description">
              De aggregator werkt alleen als aan de volgende voorwaarden is voldaan:
-          </ P>
+          </p>
           <ol>
-             <li class = "readable description">Je project heeft op zijn minst één 'must-be-observed-in-place' regel voor een gebied met maximaal de grootte van Texas of Oekraïne (=grootste Europese land)</li>
-             <li class = "readable description">
+             <li class="readable description">Je project heeft op zijn minst één 'must-be-observed-in-place' regel voor een gebied met maximaal de grootte van Texas of Oekraïne (=grootste Europese land)</li>
+             <li class="readable description">
                Of je project heeft ten minste één 'moet-in-taxon'-regel.
              </li>
           </ol>
         project_assets_desc_html: |-
-          <p class = "description"> Projectactiva zijn gewoon bestanden die aan je project zijn gekoppeld, met enkele speciale regels:</p>
-          <ol class = "description">
-             <li> Bestanden die eindigen op .logo.jpg, .logo.png, enz. worden gebruikt als het logo van het project op de projectpagina in plaats van het projectpictogram </li>
-             <li> KML- en KMZ-bestanden worden toegevoegd aan de kaart op de projectpagina</li>
+          <p class="description"> Projectactiva zijn gewoon bestanden die aan je project zijn gekoppeld, met enkele speciale regels:</p>
+          <ol class="description">
+             <li>Bestanden die eindigen op .logo.jpg, .logo.png, enz. worden gebruikt als het logo van het project op de projectpagina in plaats van het projectpictogram </li>
+             <li>KML- en KMZ-bestanden worden toegevoegd aan de kaart op de projectpagina</li>
           </ol>
         project_list_desc_html: |-
           <p class = "description">
@@ -6237,7 +6237,7 @@ nl:
         do_you_need_features_from_traditional: |-
           Heeft u functies nodig van traditionele projecten, zoals toegang tot echte coördinaten,
           aangepaste waarnemingsvelden of het toevoegen van individuele waarnemingen die niet automatisch kunnen worden gefilterd?
-        leaderboards_among_individuals: Ranglijsten voor <strong>personen</ strong>
+        leaderboards_among_individuals: Ranglijsten voor <strong>personen</strong>
         leaderboards_among_projects_and_bioblitzes: Ranglijsten voor <strong>projecten
           en bioblitzes</strong>
         multiple_project_administrators: Meerdere projectadministrators
@@ -6641,8 +6641,10 @@ nl:
           class=\"readmore\" href=\"/pages/translate\">Meer informatie over het vertalen
           voor iNaturalist</a></p>\n  </li>\n</ul>"
         places_help_html: |-
-          Voeg een naam toe aan een plaats om deze prioriteit te geven aan sites en gebruikers van
-          die plaats. Als er meerdere namen per plaats zijn, kunt u <a href="%{url}">hier</a> prioriteiten stellen aan ze. Geef <strong>geen</ strong> namen op voor ELKE plaats waar de naam wordt gebruikt, alleen voor plaatsen die conflicteren met andere plaatsen.
+          Voeg een naam toe aan een plaats om deze prioriteit te geven aan
+          sites en gebruikers van die plaats. Als er meerdere namen per plaats
+          zijn, kunt u <a href="%{url}">hier</a> prioriteiten stellen aan ze.
+          Geef <strong>geen</strong> namen op voor ELKE plaats waar de naam wordt gebruikt, alleen voor plaatsen die conflicteren met andere plaatsen.
       taxon:
         about_html: Taxa kunnen veel lokale namen hebben. We ondersteunen een standaard
           standaardnaam globaal, die hier kan worden gewijzigd door een naam naar

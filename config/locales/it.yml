@@ -7240,8 +7240,9 @@ it:
           other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
-        header: '{{PLURAL|one=1 errore impedisce di salvare questo %{model}|%{count}
-          errori impediscono di salvare questo %{model}}'
+        header:
+          one: 1 errore impedisce di salvare questo %{model}
+          other: "%{count} errori impediscono di salvare questo %{model}}"
       models:
         application:
           attributes:
