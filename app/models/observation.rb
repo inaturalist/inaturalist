@@ -847,14 +847,28 @@ class Observation < ActiveRecord::Base
       date_string = date_string.sub(tz_failed_abbrev_pattern, '').strip
     end
 
+    tz_abbrev = date_string[tz_abbrev_pattern, 1]
+
     # Rails timezone support doesn't seem to recognize this abbreviation, and
     # frankly I have no idea where ActiveSupport::TimeZone::CODES comes from.
     # In case that ever stops working or a less hackish solution is required,
     # check out https://gist.github.com/kueda/3e6f77f64f792b4f119f
-    tz_abbrev = date_string[tz_abbrev_pattern, 1]
     tz_abbrev = 'CET' if tz_abbrev == 'CEST'
+
+    # Abbreviations with synonyms at https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations
+    problem_tz_abbrevs = %w(
+      AST
+      BRT
+      BST
+      CDT
+      CST
+      ECT
+      GST
+      IST
+      PST
+    )
     
-    if parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev]
+    if !problem_tz_abbrevs.include?( tz_abbrev ) && ( parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev] )
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
     elsif (offset = date_string[tz_offset_pattern, 1]) && 
