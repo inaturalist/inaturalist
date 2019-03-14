@@ -5357,8 +5357,9 @@ da:
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |-
-          Løs venligst <code> spam </code> og <code> krænkelse af ophavsret </ code> markér kun hvis indholdet ikke er spam eller ikke en
-          krænkelse af ophavsret.
+          Løs venligst <code>spam</code> og <code>krænkelse af ophavsret</code>
+          markér kun hvis indholdet ikke er spam eller ikke en krænkelse af
+          ophavsret.
     guides:
       index:
         funding_html: |-
@@ -5546,8 +5547,7 @@ da:
           og hjælpe andre medlemmer af fællesskabet med at identificere deres uidentificerede observationer. Hvis du ved, hvordan man koder og vil hjælpe med at arbejde på nogle funktioner,
           <a href="http://github.com/inaturalist/inaturalist" title="inaturalist på master-GitHub"> gaffel os på GitHub </a>!
         how_do_i_contact_inaturalist?: Hvordan kontakter jeg %{site_name}
-        you_can_contact_us_at_html: Du kan kontakte os på <a href="mailto:%{help_email}">%
-          {help_email} </a>
+        you_can_contact_us_at_html: Du kan kontakte os på <a href="mailto:%{help_email}">%{help_email} </a>
         what_are_admins_and_curators?: Hvad er en administrator og en kurator?
         inat_admins_are_the_people_who: |-
           %{site_name} administratorer er de personer, der administrerer webstedet. De har direkte adgang til den underliggende kode og database, og de kan ændre alt
@@ -6023,7 +6023,7 @@ da:
           Du kan forsøge at reparere billederne ved at besøge fotosiden og klikke på
           "%{repair_link_text}" linket. Hvis du ved, at billedet ikke længere eksisterer, kan du vælge at slette det.
         please_address: |-
-          Løs venligst disse problemer <b> inden for de næste 30 dage </ b>. Efter 30
+          Løs venligst disse problemer <b>inden for de næste 30 dage</b>. Efter 30
           dage vil vi begynde at slette ødelagte fotos fra iNaturalist. Alle dine observationer
           vil forblive. De vil blive revurderet, efter at billederne er slettet, og det er muligt
           nogle observationer af forskningskvalitet vil blive almindelige, hvis de ikke længere har nogen billeder.
@@ -6042,7 +6042,7 @@ da:
           Du kan gøre det super nemt for andre personer på Facebook og Flickr, at tilføje deres foto´s som %{site_name} observationer. Bare send dem en kommentar samt nedenstående invitations URL. Du kan også forudvælge en takson og et projekt til
           den nye observation.
       show:
-        view_original_html: Du kan se originalen på <a href="%{url}">% {url} </a>.
+        view_original_html: Du kan se originalen på <a href="%{url}">%{url}</a>.
           Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette
           foto krænker ophavsret.
     places:
@@ -6673,7 +6673,7 @@ da:
         new_project_admin_html: |-
           Spekulerer du på, hvorfor du nu er administrator for dette projekt? Den tidligere ejer har enten tildelt dig rollen som den nye administrator, eller de har slettet deres konto
           og %{site_name} tildelte dig automatisk, fordi du er projektleder eller side kurator. Hvis du ikke vil være projektadministrator, bedes du venligst
-          kontakte <a href="mailto:%{help_email}">% {help_email} </a>
+          kontakte <a href="mailto:%{help_email}">%{help_email} </a>
         curators_can_see: |-
           Bare en påmindelse om at, projektkuratorer kan se private og slørede
           koordinater for observationer, du tilføjer til dette projekt.
@@ -6694,15 +6694,17 @@ da:
             af en anden persons observation, som potentielt kan påvirke
             datakvaliteten af denne observation
           other: |
-            <strong class="count">% {count} af dine egne identifikationer </strong>
-            af observationerne af <strong class = "count">% {helpees_count} andre
-            folk </ strong>, som potentielt kan påvirke datakvaliteten af
+            <strong class="count">%{count} af dine egne identifikationer</strong>
+            af observationerne af <strong class = "count">%{helpees_count} andre
+            folk </strong>, som potentielt kan påvirke datakvaliteten af
             disse observationer
         x_comments_html:
-          one: <strong class="count">1 kommentar</strong>du har tilføjet
-          other: <strong class="count">%{count} kommentarer </ strong> du har tilføjet
+          one: |
+            <strong class="count">1 kommentar</strong> du har tilføjet
+          other: |
+            <strong class="count">%{count} kommentarer</strong> du har tilføjet
         furthermore_cannot_undo_html: Desuden kan <strong> denne handling ikke fortrydes.
-          </ Strong> Hvis du senere skifter mening, kan du ikke få noget af det indhold
+          </strong> Hvis du senere skifter mening, kan du ikke få noget af det indhold
           tilbage.
         settings_and_mute_html: |-
           Hvis denne side genererer for mange meddelelser, skal du overveje
@@ -6800,13 +6802,16 @@ da:
           Manuel spam </dt><dd> Spammer, der blev manuelt markeret som en spammer
           af en side-kurator. </dd><dt> Fejl positive </dt><dd> Brugere, der blev
           markeret som spammere, men markeringerne blev løst af sidens kuratorer,
-          fordi de ikke var virkelig spammere. </dd></ dl>
-        recent_users_desc_html: "<p>\n  Vi ønsker at byde nye brugere velkommen, men
-          vi ønsker også at \n  bekæmpe spammere. Forhåbentlig hjælper dette værktøj
-          med \n  begge. Vi markerer automatisk mange \n  brugere som spammere ved
-          hjælp af <a href=\"https://akismet.com/\">Akismet</a>, men Akismet er ikke
-          perfekt,\n  så hvis du vil bruge et par minutter på at markere nye konti
-          som\n  spammere eller ikke spammere, vil det hjælpe.\n</p>"
+          fordi de ikke var virkelig spammere. </dd></dl>
+        recent_users_desc_html: |
+          <p>
+            Vi ønsker at byde nye brugere velkommen, men vi ønsker også at
+            bekæmpe spammere. Forhåbentlig hjælper dette værktøj med begge. Vi
+            markerer automatisk mange brugere som spammere ved hjælp af <a
+            href="https://akismet.com/">Akismet</a>, men Akismet er ikke
+            perfekt, så hvis du vil bruge et par minutter på at markere nye
+            konti som spammere eller ikke spammere, vil det hjælpe.
+          </p>
       show:
         take_a_chance_to_review_html: Grib chancen for at gennemse <a href="%{link}">vores
           retningslinjer</a>
