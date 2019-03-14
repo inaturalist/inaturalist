@@ -6,6 +6,7 @@
 # Author: Joedalton
 # Author: Jorn Ari
 # Author: Kranix
+# Author: Kueda
 # Author: Lars dalby
 # Author: Oskarlphansen
 # Author: Pyscowicz
@@ -6698,12 +6699,8 @@ da:
             folk </ strong>, som potentielt kan påvirke datakvaliteten af
             disse observationer
         x_comments_html:
-          one: |2-
-
-            <strong class="count">1 kommentar</strong>du har tilføjet
-          other: |2-
-
-            <strong class="count">%{count} kommentarer </ strong> du har tilføjet
+          one: <strong class="count">1 kommentar</strong>du har tilføjet
+          other: <strong class="count">%{count} kommentarer </ strong> du har tilføjet
         furthermore_cannot_undo_html: Desuden kan <strong> denne handling ikke fortrydes.
           </ Strong> Hvis du senere skifter mening, kan du ikke få noget af det indhold
           tilbage.
@@ -6716,7 +6713,7 @@ da:
           konto.
         still_want_to_delete_html: |-
           Hvis du stadig er sikker på, at du vil slette din konto, skal du indtaste
-          <code>%{confirmation_code} </ code> i formularen herunder og klikke på
+          <code>%{confirmation_code}</code> i formularen herunder og klikke på
           knappen for at slette din konto og alle dine data.
         type_confirmation_code: Indtast %{confirmation_code}
         you_must_enter_confirmation_code_in_the_form: Du skal indtaste "%{confirmation_code}"
@@ -6804,12 +6801,12 @@ da:
           af en side-kurator. </dd><dt> Fejl positive </dt><dd> Brugere, der blev
           markeret som spammere, men markeringerne blev løst af sidens kuratorer,
           fordi de ikke var virkelig spammere. </dd></ dl>
-        recent_users_desc_html: "<P>\n   Vi ønsker at byde nye brugere velkommen,
-          men vi ønsker også at bekæmpe\n   spammere. Forhåbentlig hjælper dette værktøj
-          med begge. Vi markerer automatisk mange \n   brugere som spammere ved hjælp
-          af <a\n   href = \"https://akismet.com/\">Akismet</a>, men Akismet er ikke
-          perfekt,\n   så hvis du vil bruge et par minutter på at markere nye konti
-          som\n   spammere eller ikke spammere, vil det hjælpe.\n</ P>"
+        recent_users_desc_html: "<p>\n  Vi ønsker at byde nye brugere velkommen, men
+          vi ønsker også at \n  bekæmpe spammere. Forhåbentlig hjælper dette værktøj
+          med \n  begge. Vi markerer automatisk mange \n  brugere som spammere ved
+          hjælp af <a href=\"https://akismet.com/\">Akismet</a>, men Akismet er ikke
+          perfekt,\n  så hvis du vil bruge et par minutter på at markere nye konti
+          som\n  spammere eller ikke spammere, vil det hjælpe.\n</p>"
       show:
         take_a_chance_to_review_html: Grib chancen for at gennemse <a href="%{link}">vores
           retningslinjer</a>

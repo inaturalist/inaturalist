@@ -157,7 +157,7 @@ ca:
   about_x: Quant a %{x}
   acc: Exactitud (m)
   account: Compte
-  account_settings: Paràmetres del compte
+  account_settings: Configuració del compte
   accept: accepta
   accept_community_identifications: Accepta identificacions de la comunitat
   accuracy: Exactitud
@@ -647,7 +647,7 @@ ca:
   back_to_suggestions: Torna a Suggeriments
   back_to_taxon: Torna a %{defaulttaxon}
   back_to_taxon_changes: Torna als canvis del tàxon
-  back_to_taxon_framework_for_x: Tornar a l'estructura taxonòmica de %{taxon_name}
+  back_to_taxon_framework_for_x: Tornar al marc taxonòmic de %{taxon_name}
   back_to_viewing: Torna a mostrar <i>%{taxon}</i>
   back_to_x: Torna a %{noun}
   back_to_x_assessment: Torna a les valoracions de %{project}
@@ -1074,7 +1074,7 @@ ca:
   copyright_infringement_desc: Incompleix la llei de drets d'autor o va ser creat
     per algú altre que no pas l'observador i manca el reconeixement
   covered_by_a_taxon_framework_html: Cobert per un %{link}
-  covered_by_a_taxon_framework_link: taxó marc de %{taxon_framework_rank}%{taxon_framework_name}
+  covered_by_a_taxon_framework_link: Marc taxonòmic de %{taxon_framework_rank}%{taxon_framework_name}
   couldnt_change_your_password: 'La contrasenya no s’ha pogut modificar: %{e}'
   couldnt_find_a_user_matching_x_param: 'No s’ha pogut trobar l''usuari amb els paràmetres
     següents: %{id}'
@@ -1199,7 +1199,7 @@ ca:
   default_photo_license: 'Llicència per a les vostres fotos:'
   default_sound_license: Llicències del so predeterminades
   defaults_to_your_name_or_username: Per defecte al vostre nom o nom d'usuari
-  defines_a_taxon_framework_for: Definiu un taxó marc per a %{taxon_name}
+  defines_a_taxon_framework_for: Definiu un marc taxonòmic per a %{taxon_name}
   definitions: Definicions
   delete: Elimina
   delete_all: Elimineu tot
@@ -1412,6 +1412,8 @@ ca:
     arrived_in_the_region_via_anthropogenic_means: Va arribar a la regió per mitjans
       antropogènics
     native_and_occurs_nowhere_else: Nadiu, no succeeix a cap altre lloc
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Desenvolupat en
+      aquesta regió o arribà per mitjans no antropogènics
   establishment_means_describes_how: La forma d'establiment indica com es va implantar
     el tàxon dins una àrea. Mostra DarwinCore per <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">
     obtenir més informació de terminologia</a>.
@@ -1553,6 +1555,8 @@ ca:
   flag_marked_as_resolved_html: <span class=meta>Marca com a</span> <strong>resolt.</strong>
   flag_reason: '"Marco aquest %{record} perquè'
   flag_saved: Advertència desada.
+  flag_saved_thanks_html: Marca desada. Gràcies! <a href="%{url}" class="readmore">Veure
+    la marca</a>
   flag_this_observation: Marca aquesta observació
   flag_this_photo: Marca aquesta foto
   flagged: marcat
@@ -2649,7 +2653,7 @@ ca:
   no_taxa_selected: No heu seleccionat cap tàxon!
   no_taxa_with_unknown_relationships: Cap tàxon amb relacions desconegudes
   no_taxa_yet: Encara no hi ha cap tàxon!
-  no_taxon_framework_relationships: sense relacions a l'estructura taxonòmica
+  no_taxon_framework_relationships: sense relacions amb cap marc taxonòmic
   no_taxonomic_changes_match_those_criteria: No hi ha canvis taxonòmics amb aquest
     criteri de cerca
   no_wikipedia_page_for_taxon: No hi ha cap pàgina a Viquipèdia per a aquest tàxon.
@@ -2662,7 +2666,7 @@ ca:
   normal: normal
   not_absent: no absent
   not_completed: No Finalitzat
-  not_covered_by_any_taxon_frameworks: No està cobert per cap marc de taxons
+  not_covered_by_any_taxon_frameworks: No està cobert per cap marc taxonòmic
   not_evaluated: no avaluat
   not_filtering: Sense filtrar
   not_findig_what_you_want: No trobeu el que cercàveu?
@@ -2828,6 +2832,9 @@ ca:
     doubtful: Sembla que existeix, però hi ha dubtes sobre les evidències
     irregular: Presència impredictible, incloent migrants; pot ser habitual alguns
       anys i absent altres
+    present: Present a la zona
+    uncommon: Present regularment, però amb reduïda representació; necessita una cerca
+      acurada en l'hàbitat adequat
   occurrence_status_establishment_means: estat d'ocurrència, forma d'establiment
   occurrence_status_levels:
     present: present
@@ -2996,7 +3003,7 @@ ca:
   out_of_range: Fora del rang
   output_taxon: Tàxon de sortida
   overview: Vista general
-  overlapping_downstream_taxon_frameworks: Solapant marcs de tàxons cap endarrere
+  overlapping_downstream_taxon_frameworks: Solapant marcs taxonòmics cap endarrere
   owner: Propietari
   parent: Pare
   parent_name: Nom de la classe o espècie pare
@@ -3717,6 +3724,7 @@ ca:
   related_species: Espècies relacionades
   relative_observations: Observacions relacionades
   relationship: Relacions
+  relationship_unknown_count: Nombre de relacions desconegudes
   relationship_x: 'Relació: %{relationship}'
   relationships:
     match: coincideix
@@ -3942,7 +3950,7 @@ ca:
     grup es troba en aquest lloc. Deixeu-ho en blanc si el tàxon es troba en qualsevol
     part del món.
   set_license: Estableix llicència
-  settings: Propietats
+  settings: Configuració
   share: Compartiu
   share_colon: 'Compartiu:'
   share_your_observation_with_researchers_by: Compartiu la vostra observació amb investigadors
@@ -4178,7 +4186,7 @@ ca:
   stuff_just_added: El que acabeu d'afegir ...
   subject_resolved_noun_html: '%{subject} resol %{noun}'
   subject_affecting_stuff_html: '%{subject} afecta %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} ha consignat %{thing}
+  subject_committed_thing_affecting_stuff_html: '%{subject} ha validat una %{thing}
     que afecta %{stuff}'
   submission_model: Model de submissió
   submission_model_description: Qui pot afegir observacions al vostre projecte?
@@ -4241,6 +4249,7 @@ ca:
   take_me_flickr!: Sí, vés a Flickr
   take_me_back: Tornar enrere
   taxa: Tàxons
+  taxa_with_unknown_relationships: Tàxon amb relacions desconegudes
   taxa_info: Informació taxonòmica
   taxa_all_species_html: Totes les espècies
   taxa_needing_curation: Tàxons que necessiten administració
@@ -4329,12 +4338,13 @@ ca:
   taxon_colors: Colors del taxon
   taxon_curators: Supervisors del Taxon
   taxon_extras: Extres del taxon
+  taxon_framework: Marc Taxonòmic
   taxon_framework_notes: Notes del Marc de Tàxon
-  taxon_framework_relationship: Relació del Marc del Tàxon
+  taxon_framework_relationship: Relació del Marc Taxonòmic
   taxon_framework_relationship_for: Relació del marc del tàxon
-  taxon_framework_relationship_number: Relació amb el marc del tàxon %{number}
+  taxon_framework_relationship_number: Relació amb el marc taxonòmic %{number}
   taxon_framework_relationships: Relació del Marc del Tàxon
-  taxon_framework_taxon: Tàxon marc de tàxon
+  taxon_framework_taxon: Marc taxonòmic de tàxon
   taxon_links: Enllaç al Tàxon
   taxon_merge: fusiona tàxons
   taxon_name: Nom del tàxon
@@ -4378,7 +4388,7 @@ ca:
   taxonomic_tree_browser: Explorador de l'arbre taxonòmic
   taxonomy_details: Detalls Taxonòmics
   taxonomy_details_for: Detalls taxonòmics de
-  taxonomy_details_info: La pàgina de Detalls Taxonòmics utilitza un Marc de Tàxon
+  taxonomy_details_info: La pàgina de Detalls Taxonòmics utilitza un Marc taxonòmic
     per descriure el que entenem per tàxon. <a href="/pages/taxon_frameworks">Llegiu
     més</a>.
   taxonomy_settings: Paràmetres taxonòmics
@@ -4524,8 +4534,7 @@ ca:
   these_are_taxa_that: |-
     Són tàxons que %{site} no ha pogut afegir automàticament
     a l'arbre taxonòmic. Podeu afegir-los a l'arbre seleccionant l’enllaç "editar" i escollint una classe pare a la qual pertanyi.
-    Per exemple, el grup pare d'Homo sapiens podria ser
-    Homo També podeu cercar per espècie o grups que siguin sinònims i combinar-los.
+    Per exemple, el grup pare d'Homo sapiens seria Homo. També podríeu verificar tàxons sinònims i combinar-los.
   these_arent_necessarily_relevant_to: Aquestes observacions no necessàriament són
     rellevants per al projecte. Si us plau, comproveu els
   these_folks_kindly_volunteer_to: Aquestes persones s'ofereixen voluntàries amablement
@@ -4647,6 +4656,8 @@ ca:
   today: Avui
   too_many_observations_csv: Teniu massa observacions! Només podem incloure les primeres
     %{max_rows} observacions de cada arxiu CSV
+  too_many_taxa_to_render: Aquesta consulta retorna massa resultats per mostrar a
+    la vegada. Proveu d'afegir més filtres
   tools: Eines
   top_5_identifiers: Els 5 identificadors principals
   top_contributors: Col·laboradors més actius
@@ -4706,7 +4717,7 @@ ca:
   unknown: Desconegut
   unknown_error: Error desconegut
   unknown_rank: (Classificació desconeguda)
-  unknown_taxon_framework_relationship: Relació del marc de tàxons desconeguda
+  unknown_taxon_framework_relationship: Relació del marc taxonòmic desconeguda
   unfollow: Deixeu de seguir
   unlink_your_google_account: Desvinculeu el vostre compte de Google
   unmute: No silenciar
@@ -4830,6 +4841,7 @@ ca:
   user_is_now_role_for_project_html: <strong>%{user}</strong> és ara %{role} de %{project}
   user_muted: Usuari silenciat
   user_observations: Observacions de l'usuari
+  user_observed_on_on_date_in_place: '%{user} observà un el %{date} a %{place}'
   user_s_id: '%{id} de %{user}'
   user_s_lists: Llistes de %{user}
   user_suggested_an_id: '%{user} ha suggerit una identificació'
@@ -4934,7 +4946,7 @@ ca:
   view_stats: Mostra estadístiques
   view_taxon_change: Mostra els canvis del tàxon
   view_taxon_changes: Mostra els canvis del tàxon
-  view_taxon_framework_relationship: Veure el marc de relacions del tàxon
+  view_taxon_framework_relationship: Veure les relacions del marc taxonòmic
   view_taxon_page: Mostra la pàgina del tàxon
   view_taxon_page_for: Mostra la pàgina del tàxon per a aquest lloc
   view_taxon_page_for_this_x: Mostra la pàgina del tàxon per a aquest %{x}
@@ -5804,6 +5816,8 @@ ca:
         private_latitude: Latitud privada, marcar si l'observació és privada o enfosquida
         private_longitude: Longitud privada, marcar si l'observació és privada o enfosquida
         geoprivacy: Si l'observador ha escollit, o no, enfosquir o amagar les coordenades
+        taxon_geoprivacy: La geoprivacitat més conservadora ha estat aplicada a causa
+          de l'estat de conservació del tàxon identificat en aquest moment.
         coordinates_obscured: Si les coordenades han estat enfosquides, o no, a causa
           d'una condició de geoprivacitat o per tractar-se d'un tàxon vulnerable
         out_of_range: Tant si aquesta observació es troba fora de l'àrea de distribució
@@ -6018,6 +6032,9 @@ ca:
           de grau de la recerca esdevinguin casuals si no tenen cap foto.
         we_included_links: Hem inclòs enllaços que afecten les fotos següents.
     photos:
+      forbidden_notice_html: No tenim autorització per accedir aquelles fotos ara
+        mateix. Podeu necessitar desconnectar i reconnectar el compte en la vostra
+        <a href="/users/edit">configuració</a> per concedir-nos permisos addicionals.
       inviter:
         automatically_add_to_project: Afegeix automàticament al projecte
         automatically_id_the_new_obs_as: Identifica automàticament una nova observació
@@ -6570,6 +6587,13 @@ ca:
           veure les coordenades privades i enfosquides de les observacions que s''agreguen
           a aquest projecte.'
       delete:
+        by_deleting_your_account_you_will_remove: Esborrant el vostre compte eliminareu
+        settings_and_mute_html: "Si aquest lloc genera massa notificacions, considereu
+          <a href=\"/users/edit\">canviar la vostra configuració</a> per reduir algunes
+          notificacions o aturar la recepció de correu electrònic nostre. Si esteu
+          tenint algun problema amb alguna persona específica en el lloc, considereu
+          \n<a href=\"/users/edit\">callar-la</a> en comptes d'eliminar el vostre
+          compte."
         type_confirmation_code: Escrigui %{confirmation_code}
         you_must_enter_confirmation_code_in_the_form: Escrigueu "%{confirmation_code}"
           en el formulari per eliminar el vostre compte
@@ -6606,8 +6630,8 @@ ca:
           arreu del món.
         name_place_help_html: Prioritza els noms comuns emprats a aquest lloc.
         place_preference_changed_notice_html: Preferències sobre el lloc canviades.
-          Si canvieu d'opinió sempre podreu <a href='/users/edit'>editar les vostres
-          preferències</a>.
+          Si canvieu d'opinió sempre podreu <a href='/users/edit'>editar la vostra
+          congfiguració</a>.
         project_addition_preferences:
           any: Qualsevol
           joined: Projectes als que us heu unit

@@ -5,6 +5,7 @@
 # Author: KATRINE1992
 # Author: KATRINE1993
 # Author: Kostas20142
+# Author: Kueda
 # Author: Nikosgranturismogt
 # Author: Tgkarounos
 # Author: Xaris333
@@ -2235,7 +2236,7 @@ el:
         place_id: Μέρος
         preferred_observation_fields_by: Να επιτρέπονται τα πεδία παρατήρησης από
     errors:
-      format: '%{κατηγορία} %{μήνυμα}'
+      format: '%{attribute} %{message}'
       messages:
         empty: δεν μπορεί να είναι κενό
       models:

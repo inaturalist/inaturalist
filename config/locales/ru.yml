@@ -6747,6 +6747,26 @@ ru:
           скрытые координаты наблюдений, которые вы добавляете в этот проект.
       delete:
         by_deleting_your_account_you_will_remove: Удаляя ваш аккаунт, вы удаляете
+        x_observations_html:
+          one: |
+            <strong class="count">1 наблюдение</strong>,
+            включая работу
+            <strong class="count">%{helpers_count} людей,</strong> которые помогали вам с идентификацией
+          other: |
+            <strong class="count">%{count} наблюдений</strong>,
+            включая работу
+            <strong class="count">%{helpers_count} людей,</strong> которые помогали вам с идентификацией
+        x_identifications_html:
+          one: |
+            <strong class="count">1 ваша идентификация</strong>
+            чужого наблюдения, которая потенциально могут влиять на качество данных этого наблюдения
+          other: |
+            <strong class="count">%{count} ваших собственных идентификаций</strong>
+            наблюдений<strong class="count">%{helpees_count} других людей</strong>, которые потенциально могут влиять на качество данных этих наблюдений
+        x_comments_html:
+          one: <strong class="count">1 комментарий,</strong> который вы добавили
+          other: <strong class="count">%{count} комментариев,</strong> которые вы
+            добавили
         furthermore_cannot_undo_html: Кроме того, <strong>это действие нельзя отменить.</strong>
           Если вы передумаете, вы не вернёте этот контент.
         settings_and_mute_html: |-
