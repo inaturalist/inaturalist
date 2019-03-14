@@ -165,9 +165,9 @@ class UsersController < ApplicationController
       if params[:spammer] === "false"
         flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: FakeView.link_to_user( @user ) )
         @user.flags_on_spam_content.each do |flag|
-          flag.update_attributes(resolved: true)
+          flag.update_attributes(resolved: true, resolver: current_user)
         end
-        @user.flags.where(flag: Flag::SPAM).update_all(resolved: true)
+        @user.flags.where(flag: Flag::SPAM).update_all(resolved: true, resolver_id: current_user.id )
         @user.unsuspend!
       else
         flash[:notice] = t(:user_flagged_as_a_spammer_html, user: FakeView.link_to_user( @user ) )
