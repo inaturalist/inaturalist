@@ -12,7 +12,8 @@ function mapStateToProps( state ) {
     params: state.searchParams.params,
     defaultParams: state.searchParams.default,
     allReviewed: state.config.allReviewed,
-    allControlledTerms: state.controlledTerms.allTerms
+    allControlledTerms: state.controlledTerms.allTerms,
+    config: state.config
   };
 }
 
@@ -24,10 +25,10 @@ function mapDispatchToProps( dispatch ) {
     unreviewAll: ( ) => {
       dispatch( unreviewAll( ) );
     },
-    updateSearchParams: ( params ) => {
+    updateSearchParams: params => {
       dispatch( updateSearchParams( Object.assign( {}, params, { page: 1 } ) ) );
     },
-    replaceSearchParams: ( params ) => {
+    replaceSearchParams: params => {
       dispatch( replaceSearchParams( Object.assign( {}, params, { page: 1 } ) ) );
     }
   };
