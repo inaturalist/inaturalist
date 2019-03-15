@@ -33,8 +33,11 @@ en:
     one: '<span class="count">1</span> matching taxon'
     other: '<span class="count">%{count}</span> matching taxa'
   x_misidentifications_of_this_species:
-      one: "1 misidentification of this species"
-      other: "%{count} misidentifications of this species"
+    one: "1 misidentification of this species"
+    other: "%{count} misidentifications of this species"
+  x_misidentifications_of_species_in_this_rank:
+    one: "1 misidentification of species in this %{rank}"
+    other: "%{count} misidentifications of species in this %{rank}"
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
@@ -1037,6 +1040,7 @@ en:
   date_range: Date Range
   date_specified: Date specified
   date_time: Date/Time
+  date_updated: Date Updated
   dates: dates
   datetime_: Date/Time
   day: Day
@@ -1237,17 +1241,19 @@ en:
   eol_collection_url: "EOL collection URL"
   error_updating_photo: "Error updating photo: %{photo_errors}"
   establishment:
-      establishment: Establishment
-      native: Native
-      endemic: Endemic
-      introduced: Introduced
-      naturalised: Naturalised
-      invasive: Invasive
-      managed: Managed
+    endemic: Endemic
+    establishment: Establishment
+    introduced: Introduced
+    invasive: Invasive
+    managed: Managed
+    native: Native
+    naturalised: Naturalised
   establishment_means: Establishment Means
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: "native and occurs nowhere else"
-    arrived_in_the_region_via_anthropogenic_means: "arrived in the region via anthropogenic means"
+    arrived_in_the_region_via_anthropogenic_means: Arrived in the region via anthropogenic means
+    native_and_occurs_nowhere_else: Native and occurs nowhere else
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: |
+      Evolved in this region or arrived by non-anthropogenic means
   establishment_means_describes_how: |
     Establishment means describes how the taxon came to be established in an area.  
     See DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more information on terminology</a>.
@@ -1430,10 +1436,18 @@ en:
   for_more_information: for more information.
   formatting: Formatting
   forgot_your_password: Forgot your password?
+  forum: Forum
   forum_categories:
     bug_reports: Bug Reports
     feature_requests: Feature Requests
+    forum_feedback: Forum Feedback
+    forum_moderation: Forum Moderation
+    nature_talk: Nature Talk
     news_and_updates: News & Updates
+    tutorials: Tutorials
+  forum_desc: |
+    The forum is a place to discuss iNat itself, including help & support,
+    feature requests, bug reports, announcements, and more.
   frequency: Frequency
   fri: Fri
   from: From
@@ -2516,6 +2530,13 @@ en:
   observing: observing
   occurence_status_describes_how: Occurence status describes how common or rare a taxon is in a given area.  See DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">more information on terminology</a>.
   occurrence_status: Occurrence status
+  occurrence_status_descriptions:
+    absent: Does not occur in the area
+    common: Occurs frequently
+    doubtful: Presumed to occur, but doubt exists over the evidence
+    irregular: Presence unpredictable, including vagrants; may be common in some years and absent others
+    present: Occurs in the area
+    uncommon: Occurs regularly, but in small numbers; requires careful searching of proper habitat
   occurrence_status_establishment_means: occurrence status, establishment means
   occurrence_status_levels:
     present: present
@@ -2643,6 +2664,9 @@ en:
   other_species_commonly_misidentified_as_this_species: Other species commonly misidentified as this species
   other_species_commonly_misidentified_as_this_species_in_place_html: |
     Other species commonly misidentified as this species in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Other taxa commonly misidentified as this %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
+    Other taxa commonly misidentified as this %{rank} in <a href="%{url}">%{place}</a>
   our_blog: Our Blog
   out_of_range: Out of range
   output_taxon: Output taxon
@@ -3609,6 +3633,7 @@ en:
   sign_up: Sign Up
   sign_up_exclamation: Sign up!
   similar_species: Similar Species
+  similar_taxa: Similar Taxa
   simple: Simple
   sign_in_exclamation: Sign in!
   single_observation: Single observation
@@ -4077,8 +4102,9 @@ en:
   these_are_taxa_that: |
     These are taxa that %{site} couldn't automatically add to our taxonomic
     tree for some reason. You can add them to the tree by editing the taxon
-    and choosing a parent record. For example, the parent of Homo sapiens would be the genus Homo. You might also want to check
-    for synonymous taxa and merge them.
+    and choosing a parent record. For example, the parent of Homo sapiens would
+    be the genus Homo. You might also want to check for synonymous taxa and
+    merge them.
   these_arent_necessarily_relevant_to: "These aren't necessarily relevant to this project. Please check the"
   these_folks_kindly_volunteer_to: These folks kindly volunteer to maintain our taxonomy and deal with other issues.
   these_observations_have_not_been_uploaded_yet: |
@@ -5942,9 +5968,9 @@ en:
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Contact the Feedback Group</a></strong>
+              <strong><a href="%{feedback_url}">Contact the Forum</a></strong>
               <p>
-                Many site curators keep track of emails to the Feedback Group.
+                Many site curators keep track of messages to the Forum.
               </p>
             </li>
             <li>
@@ -6219,6 +6245,11 @@ en:
           and its descendants. The photos chosen for this
           taxon will show first, though. The first photo will be
           the default image used across the site.
+        site_curators_disabled_wikipedia_html: |
+          Site curators have temporarily disabled showing <a href="%{url}">this
+          content from Wikipedia</a>. You can help by editing the page on
+          Wikipedia to make it appropriate for this taxon, or by flagging this
+          taxon to bring it to the attention of site curators.
     taxon_changes:
       move_children_desc: |
         Children of the input taxon that are genera or coarser will be moved to
@@ -6304,6 +6335,50 @@ en:
         curators_can_see: |
           Just a reminder, project curators can see the private and obscured
           coordinates of observations you add to this project.
+      delete:
+        by_deleting_your_account_you_will_remove: |
+          By deleting your account you will remove
+        x_observations_html:
+          one: |
+            <strong class="count">1 observation</strong>,
+            including the work of the
+            <strong class="count">%{helpers_count} people</strong> who have
+            helped you out with identifications
+          other: |
+            <strong class="count">%{count} observations</strong>,
+            including the work of the
+            <strong class="count">%{helpers_count} people</strong> who have
+            helped you out with identifications
+        x_identifications_html:
+          one: |
+            <strong class="count">your 1 identification</strong>
+            on another person's observation, which will potentially affect the
+            data quality of that observation
+          other: |
+            <strong class="count">%{count} of your own identifications</strong>
+            on the observations of <strong class="count">%{helpees_count} other
+            people</strong>, which will potentially affect the data quality of
+            those observations
+        x_comments_html:
+          one: <strong class="count">1 comment</strong> you've added
+          other: <strong class="count">%{count} comments</strong> you've added
+        furthermore_cannot_undo_html: |
+          Furthermore, <strong>this action cannot be undone.</strong> If you
+          change your mind later, you aren't getting any of that content back.
+        settings_and_mute_html: |
+          If this site generates too many notifications, consider
+          <a href="/users/edit">editing your settings</a> to opt out of certain
+          notifications or stop receiving email from us. If you're having
+          trouble with a specific person on the site, consider
+          <a href="/users/edit">muting them</a> instead of deleting your
+          account.
+        still_want_to_delete_html: |
+          If you're still sure you want to delete your account, enter
+          <code>%{confirmation_code}</code> in the form below and click the
+          button to delete your account and all your data.
+        type_confirmation_code: Type %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: |
+          You must enter "%{confirmation_code}" in the form to delete your account
       edit:
         blocking_desc_html: |
           <p>

@@ -740,10 +740,21 @@ a.icon_container,
 }
 
 #forum {
+  margin-top: 35px;
+  .pull-right i.fa {
+    color: black;
+  }
   .list-group-item {
     display: flex;
-    > a {
-      flex: 2;
+    width: 100%;
+    .title {
+      flex: 3;
+      .label-default {
+        opacity: 0.5;
+        position: relaitve;
+        bottom: 2px;
+        margin-right: 5px;
+      }
     }
     .time,
     .comments {

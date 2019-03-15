@@ -8410,6 +8410,13 @@ CREATE UNIQUE INDEX index_tags_on_name ON public.tags USING btree (name);
 
 
 --
+-- Name: index_tags_on_lower_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_tags_on_lower_name ON public.tags USING btree (lower((name)::text));
+
+
+--
 -- Name: index_taxa_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9672,4 +9679,6 @@ INSERT INTO schema_migrations (version) VALUES ('20181110004422');
 INSERT INTO schema_migrations (version) VALUES ('20181120235404');
 
 INSERT INTO schema_migrations (version) VALUES ('20190104024910');
+
+INSERT INTO schema_migrations (version) VALUES ('20190308020554');
 

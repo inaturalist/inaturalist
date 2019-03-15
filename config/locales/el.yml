@@ -5,6 +5,7 @@
 # Author: KATRINE1992
 # Author: KATRINE1993
 # Author: Kostas20142
+# Author: Kueda
 # Author: Nikosgranturismogt
 # Author: Tgkarounos
 # Author: Xaris333
@@ -296,7 +297,6 @@ el:
   back_to_shared_taxon: Επιστροφή στην %{sharedtaxon}
   back_to_suggestions: Επιστροφή στις Προτάσεις
   back_to_taxon: Επιστροφή στο %{defaulttaxon}
-  back_to_this: Επιστροφή στο %{place}
   back_to_viewing: Επιστροφή στην προβολή του <i>%{taxon}</i>
   back_to_x: Επιστροφή στο %{noun}
   back_to_x_assessment: Επιστροφή στις εκτιμήσεις του %{project}
@@ -748,7 +748,6 @@ el:
   flag_an_item: Αναφορά αντικειμένου
   flag_it!: Αναφέρετέ το!
   flag_saved: Η αναφορά αποθηκεύτηκε.
-  flag_saved_thanks: Η αναφορά αποθηκεύτηκε. Ευχαριστώ!
   flag_this_observation: Αναφορά αυτής της παρατήρησης
   flag_this_photo: Αναφορά αυτής της φωτογραφίας
   flickr_account_information: Πληροφορίες του λογαριασμού σας στο Flickr
@@ -2237,7 +2236,7 @@ el:
         place_id: Μέρος
         preferred_observation_fields_by: Να επιτρέπονται τα πεδία παρατήρησης από
     errors:
-      format: '%{κατηγορία} %{μήνυμα}'
+      format: '%{attribute} %{message}'
       messages:
         empty: δεν μπορεί να είναι κενό
       models:

@@ -199,6 +199,22 @@ const searchParamsReducer = ( state = {
     default:
       return state;
   }
+
+  if ( newState.params.captive && !state.params.captive ) {
+    // If state is changing to captive, change the quality grade
+    newState.params.quality_grade = "casual";
+  } else if (
+    // If state is changing from only casual to another quality grade state, remove captive
+    (
+      newState.params.quality_grade.indexOf( "needs_id" ) >= 0
+      && state.params.quality_grade.indexOf( "needs_id" ) < 0
+    ) || (
+      newState.params.quality_grade.indexOf( "research" ) >= 0
+      && state.params.quality_grade.indexOf( "research" ) < 0
+    )
+  ) {
+    newState.params.captive = false;
+  }
   newState.params = normalizeParams( newState.params );
 
   // if the states are equal there should be no reason to update the URL

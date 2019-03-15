@@ -118,8 +118,39 @@ class UsersController < ApplicationController
     end
     redirect_back_or_default @user
   end
+
+  def delete
+    @observations_count = current_user.observations_count
+    @helpers_count = INatAPIService.get( "/observations/identifiers",
+      user_id: current_user.id ).total_results
+    @comments_count = current_user.comments.count
+    ident_response = Identification.elastic_search(
+      size: 0,
+      filters: [
+        { term: { "user.id": current_user.id } },
+        { term: { own_observation: false } },
+        { term: { current: true } }
+      ],
+      aggregate: {
+        distinct_obs_users: {
+          cardinality: { field: "observation.user.id" }
+        }
+      }
+    )
+    @identifications_count = ident_response.total_entries
+    @helpees_count = ident_response.response.aggregations.distinct_obs_users.value || 0
+    respond_to do |format|
+      format.html do
+        render layout: "bootstrap"
+      end
+    end
+  end
   
   def destroy
+    if params[:confirmation] && params[:confirmation] != params[:confirmation_code]
+      flash[:error] = t( "views.users.delete.you_must_enter_confirmation_code_in_the_form", confirmation_code: params[:confirmation_code] )
+      return redirect_to :back
+    end
     @user.delay(priority: USER_PRIORITY,
       unique_hash: { "User::sane_destroy": @user.id }).sane_destroy
     sign_out(@user)
@@ -134,9 +165,9 @@ class UsersController < ApplicationController
       if params[:spammer] === "false"
         flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: FakeView.link_to_user( @user ) )
         @user.flags_on_spam_content.each do |flag|
-          flag.update_attributes(resolved: true)
+          flag.update_attributes(resolved: true, resolver: current_user)
         end
-        @user.flags.where(flag: Flag::SPAM).update_all(resolved: true)
+        @user.flags.where(flag: Flag::SPAM).update_all(resolved: true, resolver_id: current_user.id )
         @user.unsuspend!
       else
         flash[:notice] = t(:user_flagged_as_a_spammer_html, user: FakeView.link_to_user( @user ) )
@@ -448,18 +479,18 @@ class UsersController < ApplicationController
     @has_updates = (current_user.recent_notifications.count > 0)
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
-    if current_user.is_admin? && @site && @site.id == Site.default.id
-      @discourse_url = "https://forum.inaturalist.org"
-      cache_key = "dashboard-discourse-topics"
+    if @site && @discourse_url = @site.discourse_url
+      cache_key = "dashboard-discourse-data"
       begin
-        unless @discourse_topics = Rails.cache.read( cache_key )
-          @discourse_topics = ["news-and-updates", "feature-requests", "bug-reports"].inject( {} ) do |memo, category|
-            memo[category] = JSON.parse(
-              RestClient.get( "#{@discourse_url}/latest.json?order=created&category=#{category}" ).body
-            )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..2]
-            memo
-          end
-          Rails.cache.write( cache_key, @discourse_topics, expires_in: 15.minutes )
+        unless @discourse_data = Rails.cache.read( cache_key )
+          @discourse_data = {}
+          @discourse_data[:topics] = JSON.parse(
+            RestClient.get( "#{@discourse_url}/latest.json?order=created" ).body
+          )["topic_list"]["topics"].select{|t| !t["pinned"] && !t["closed"] && !t["has_accepted_answer"]}[0..5]
+          @discourse_data[:categories] = JSON.parse(
+            RestClient.get( "#{@discourse_url}/categories.json" ).body
+          )["category_list"]["categories"].index_by{|c| c["id"]}
+          Rails.cache.write( cache_key, @discourse_data, expires_in: 15.minutes )
         end
       rescue SocketError, RestClient::Exception
         # No connection or other connection issue
@@ -1043,6 +1074,7 @@ protected
       :preferred_project_addition_by,
       :preferred_sound_license,
       :prefers_comment_email_notification,
+      :prefers_forum_topics_on_dashboard,
       :prefers_identification_email_notification,
       :prefers_message_email_notification,
       :prefers_medialess_obs_maps,

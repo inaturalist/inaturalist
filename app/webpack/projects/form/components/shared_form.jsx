@@ -261,28 +261,29 @@ class SharedForm extends React.Component {
           </Row>
           { !project.id && (
             <Row className="project-type">
-              <Col xs={ 12 }>
+              <Col xs={12}>
                 <h2>{ I18n.t( "views.projects.project_type" ) }</h2>
-                <input
-                  type="radio"
-                  id="project-type-regular"
-                  value="regular"
-                  checked={ project.project_type !== "umbrella" }
-                  onChange={ ( ) => updateProject( { project_type: "regular" } ) }
-                />
-                <label className="inline" htmlFor="project-type-regular">
+                <label className="inline checkboxradio" htmlFor="project-type-regular">
+                  <input
+                    type="radio"
+                    id="project-type-regular"
+                    value="regular"
+                    checked={project.project_type !== "umbrella"}
+                    onChange={( ) => updateProject( { project_type: "regular" } )}
+                  />
                   { I18n.t( "views.projects.collection" ) }
                 </label>
-                <input
-                  type="radio"
-                  id="project-type-umbrella"
-                  value="regular"
-                  checked={ project.project_type === "umbrella" }
-                  onChange={ ( ) => updateProject( { project_type: "umbrella" } ) }
-                />
-                <label className="inline" htmlFor="project-type-umbrella">
-                  { I18n.t( "views.projects.umbrella" ) } ({
-                    I18n.t( "views.projects.tracks_multiple_projects" ) })
+                <label className="inline checkboxradio" htmlFor="project-type-umbrella">
+                  <input
+                    type="radio"
+                    id="project-type-umbrella"
+                    value="regular"
+                    checked={project.project_type === "umbrella"}
+                    onChange={( ) => updateProject( { project_type: "umbrella" } )}
+                  />
+                  { I18n.t( "views.projects.umbrella" ) }
+                  { " " }
+                  ({ I18n.t( "views.projects.tracks_multiple_projects" ) })
                 </label>
               </Col>
             </Row>

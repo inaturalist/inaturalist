@@ -708,7 +708,6 @@ ru:
   back_to_taxon: Вернуться к %{defaulttaxon}
   back_to_taxon_changes: Вернуться к изменениям таксона
   back_to_taxon_framework_for_x: Вернуться к основе таксона для %{taxon_name}
-  back_to_this: Назад к %{place}
   back_to_viewing: Вернуться к просмотру <i>%{taxon}</i>
   back_to_x: Вернуться к %{noun}
   back_to_x_assessment: Вернуться к оценкам %{project}
@@ -861,6 +860,7 @@ ru:
     merged_into: слились в
     replaced_by: заменены
     replace_with: 'Заменить на:'
+    replaced_with: заменены на
     dropped: отброшено
     staged: поставлен
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} был разделен на %{output_taxa}'
@@ -1242,6 +1242,7 @@ ru:
   date_range: Диапазон дат
   date_specified: Указана дата
   date_time: Дата/Время
+  date_updated: Обновленная дата
   dates: даты
   datetime_: Дата/Время
   day: День
@@ -1453,18 +1454,20 @@ ru:
   eol_collection_url: Ссылка на коллекцию EOL
   error_updating_photo: 'Ошибка обновления фото: %{photo_errors}'
   establishment:
-    establishment: Возникновение
-    native: Естественный
     endemic: Эндемичный
+    establishment: Возникновение
     introduced: Интродуцент
-    naturalised: Натурализованный
     invasive: Инвазивный
     managed: Управляемый
+    native: Естественный
+    naturalised: Натурализованный
   establishment_means: Способ возникновения
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: естественный и больше нигде не встречается
-    arrived_in_the_region_via_anthropogenic_means: занесен в регион антропогенным
+    arrived_in_the_region_via_anthropogenic_means: Занесен в регион антропогенным
       способом
+    native_and_occurs_nowhere_else: Естественный и больше нигде не встречается
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Развивались в этом
+      регионе или оказались здесь неантропогенным способом
   establishment_means_describes_how: Способ возникновения описывает, каким образом
     таксон появился в данной местности. Смотрите спецификацию DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">
     для получения большей информации о терминологии</a>.
@@ -1607,7 +1610,8 @@ ru:
   flag_marked_as_resolved_html: <span class="meta">Flag marked as</span> <strong>resolved.</strong>
   flag_reason: '&ldquo;Я пометил этот %{record} потому что'
   flag_saved: Флаг сохранён
-  flag_saved_thanks: Флаг сохранён. Спасибо!
+  flag_saved_thanks_html: Флаг сохранён. Спасибо! <a href="%{url}" class="readmore">Посмотреть
+    флаг</a>
   flag_this_observation: Пометить это наблюдение
   flag_this_photo: Пометить это фото
   flagged: помечено
@@ -1649,7 +1653,7 @@ ru:
   follow_user: Подписаться на %{user}
   followed_projects: Проекты, на которые вы подписаны
   follower: подписчик
-  followers: Последователи
+  followers: Подписчики
   following: Подписка
   following_x_people:
     one: Подписан на 1 человека
@@ -1662,6 +1666,16 @@ ru:
   for_more_information: показать больше информации.
   formatting: Форматироватие
   forgot_your_password: Забыли пароль?
+  forum_categories:
+    bug_reports: Отчёты об ошибках
+    feature_requests: Пожелания
+    forum_feedback: Отзывы на форуме
+    forum_moderation: Модерация форума
+    nature_talk: Обсуждение природы
+    news_and_updates: Новости и обновления
+    tutorials: Руководства
+  forum_desc: Форум - это место для обсуждения самого iNat, включая помощь и поддержку,
+    пожелания, отчеты об ошибках, объявления и многое другое.
   frequency: Частота
   fri: Пт
   from: Из
@@ -2873,6 +2887,15 @@ ru:
     href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"> для
     получения большей информации о терминологии</a>.
   occurrence_status: Статус присутствия
+  occurrence_status_descriptions:
+    absent: Не встречается в регионе
+    common: Часто встречается
+    doubtful: Предполагается, что имеет место, но есть сомнение в отношении доказательств
+    irregular: Присутствие непредсказуемо, в том числе изменчивое; может быть распространено
+      в одни годы и отсутствовать в другие
+    present: Встречается в регионе
+    uncommon: Встречается регулярно, но в небольших количествах; требует тщательного
+      поиска правильной среды обитания
   occurrence_status_establishment_means: Статус присутствия, способ возникновения
   occurrence_status_levels:
     present: присутствует
@@ -4228,8 +4251,8 @@ ru:
   stuff_just_added: Материал, который вы только что добавили ...
   subject_resolved_noun_html: '%{subject} разрешил %{noun}'
   subject_affecting_stuff_html: '%{subject}, влияющий на %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} произвёл %{thing}, влияющее
-    на %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} произвёл %{thing} @vow_or_con{vow:an|a},
+    что влияет на %{stuff}'
   submission_model: Модель представления
   submission_model_description: Кто может добавлять наблюдения к вашему проекту?
   submit: Отправить
@@ -4574,7 +4597,7 @@ ru:
     и т.д. На грубость, оскорбительные высказывания и т.п. следует реагировать вежливым
     комментарием. О повторных правонарушителях следует сообщить администратору сайта
     или на %{email}
-  these_are_taxa_that: Это таксоны, которые %{site} почему-то не смог автоматически
+  these_are_taxa_that: Это таксоны, которые %{site} по какой-то причине не смог автоматически
     добавить к нашему таксономическому дереву. Вы можете добавить их в дерево, отредактировав
     таксон и выбрав родительскую запись. Например, родителем Homo sapiens был бы род
     Homo. Вы также можете проверить таксоны-синонимы и объединить их.
@@ -4696,6 +4719,8 @@ ru:
   today: Сегодня
   too_many_observations_csv: У вас масса наблюдений!<br/> Мы можем принять только
     ваши первые %{max_rows} наблюдений в каждом CSV-файле.
+  too_many_taxa_to_render: Этот запрос возвращает слишком много таксонов для визуализации
+    за один раз. Попробуйте добавить больше фильтров
   tools: Инструменты
   top_5_identifiers: 5 лучших экспертов
   top_contributors: Лучшие участники
@@ -5884,6 +5909,8 @@ ru:
         private_longitude: Частная долгота устанавливается, если наблюдение частное
           или скрытое
         geoprivacy: Независимо от того, решил ли наблюдатель скрыть координаты
+        taxon_geoprivacy: Наиболее консервативная приватность местоположения применяется
+          в связи с природоохранными статусами таксонов при текущей идентификации.
         coordinates_obscured: Были или не были скрыты координаты, зависит либо от
           геоконфиденциальности, либо от того, что таксон находится под угрозой исчезновения.
         out_of_range: Независимо от того, находится ли это наблюдение за пределами
@@ -5928,7 +5955,8 @@ ru:
         geoprivacy_must_be_in_english: Столбец geoprivacy должен быть на английском
           языке и должен быть пустым или иметь значение "скрытый" или "частный"
         google_photos_notice_html: |-
-          В феврале 2019 года Google изменил свой API, что сделало невозможным для нас доступ к координатам GPS, лицензионной информации и почти любой информации, которую мы могли бы использовать для добавления идентификации (например, тегов). Они также удалили текстовый поиск и нумерацию страниц. Вы по-прежнему можете импортировать фотографии, но они не будут содержать сведений о местоположении или лицензии, которые могут отображаться в Google фотографиях. Прочесть об этом подробно вы можете здесь <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
+          В феврале 2019 года Google изменил свой API, что сделало невозможным для нас доступ к координатам GPS, лицензионной информации и почти любой информации, которую мы могли бы использовать для добавления идентификации (например, тегов). Они также удалили текстовый поиск и нумерацию страниц. Кроме того, они требовали, чтобы все подключенные учетные записи имели дополнительное разрешение, и прежде чем третья сторона может запросить это разрешение у пользователей, третья сторона должна быть проверена. Мы ждем проверки, но пока этого не произойдет, вы не сможете импортировать фотографии из Google.
+          Если мы получим одобрение, вы сможете импортировать фотографии, но они не будут  содержать сведений о местоположении или лицензии, которые могут отображаться в Google фотографиях. Прочесть об этом подробно вы можете здесь <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
           Наилучшая возможность сейчас - использовать <a href="/observations/upload">Загрузчик</a>
         project_csv_template_notice_html: |-
           Для этого проекта есть файл шаблона, который может помочь вам со структурой файла CSV.
@@ -6639,6 +6667,10 @@ ru:
           будут показаны фотографии этого таксона и его потомков. Однако фотографии,
           выбранные для этого таксона, будут показаны первыми. Первым снимком будет
           изображение по умолчанию, используемое на сайте.
+        site_curators_disabled_wikipedia_html: Кураторы сайта временно отключили показ
+          <a href="%{url}">этого контента из Википедии</a>. Вы можете помочь, отредактировав
+          страницу в Википедии, сделав её подходящей для этого таксона, или пометить
+          это таксон, чтобы довести это до сведения кураторов сайта.
     taxon_changes:
       move_children_desc: Потомки входного таксона, которые являются общими или более
         грубыми, будут перемещены на выход; виды, подвиды, разновидности и т. д. будут
@@ -6713,6 +6745,39 @@ ru:
           пожалуйста, свяжитесь с <a href="mailto:%{help_email}">%{help_email}</a>
         curators_can_see: Напоминаем, что кураторы проекта могут видеть частные и
           скрытые координаты наблюдений, которые вы добавляете в этот проект.
+      delete:
+        by_deleting_your_account_you_will_remove: Удаляя ваш аккаунт, вы удаляете
+        x_observations_html:
+          one: |
+            <strong class="count">1 наблюдение</strong>,
+            включая работу
+            <strong class="count">%{helpers_count} людей,</strong> которые помогали вам с идентификацией
+          other: |
+            <strong class="count">%{count} наблюдений</strong>,
+            включая работу
+            <strong class="count">%{helpers_count} людей,</strong> которые помогали вам с идентификацией
+        x_identifications_html:
+          one: |
+            <strong class="count">1 ваша идентификация</strong>
+            чужого наблюдения, которая потенциально могут влиять на качество данных этого наблюдения
+          other: |
+            <strong class="count">%{count} ваших собственных идентификаций</strong>
+            наблюдений<strong class="count">%{helpees_count} других людей</strong>, которые потенциально могут влиять на качество данных этих наблюдений
+        x_comments_html:
+          one: <strong class="count">1 комментарий,</strong> который вы добавили
+          other: <strong class="count">%{count} комментариев,</strong> которые вы
+            добавили
+        furthermore_cannot_undo_html: Кроме того, <strong>это действие нельзя отменить.</strong>
+          Если вы передумаете, вы не вернёте этот контент.
+        settings_and_mute_html: |-
+          Если этот сайт генерирует слишком много уведомлений, попробуйте
+          <a href="/users/edit">отредактировать настройки, чтобы отказаться от некоторых уведомлений или прекратить получать электронную почту от нас. Если у вас возникли проблемы с конкретным человеком на сайте, рассмотрите <a href="/users/edit">отключение его</a> вместо того, чтобы удалять вашу учётную запись.
+        still_want_to_delete_html: Если вы по-прежнему уверены, что хотите удалить
+          вашу учётную запись, введите <code>%{confirmation_code}</code> в форму ниже
+          и нажмите кнопку для удаления учётной записи и всех данных.
+        type_confirmation_code: Введите %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: Вы должны ввести %{confirmation_code}
+          в форму, чтобы удалить вашу учётную запись
       edit:
         blocking_desc_html: |-
           <p>

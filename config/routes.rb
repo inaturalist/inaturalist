@@ -157,6 +157,7 @@ Rails.application.routes.draw do
     resources :flags
     collection do
       get :recent
+      get :delete
     end
     member do
       put :join_test

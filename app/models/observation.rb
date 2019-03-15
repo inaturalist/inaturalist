@@ -316,6 +316,10 @@ class Observation < ActiveRecord::Base
     :allow_blank => true, 
     :less_than_or_equal_to => 180, 
     :greater_than_or_equal_to => -180
+  validates_numericality_of :positional_accuracy,
+    allow_nil: true,
+    greater_than: 0,
+    if: Proc.new { |o| !o.positional_accuracy.nil? }
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
@@ -348,7 +352,8 @@ class Observation < ActiveRecord::Base
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
                     :set_time_in_time_zone,
-                    :set_coordinates
+                    :set_coordinates,
+                    :nilify_positional_accuracy_if_zero
 
   before_create :replace_inactive_taxon
   before_save :strip_species_guess,
@@ -845,14 +850,28 @@ class Observation < ActiveRecord::Base
       date_string = date_string.sub(tz_failed_abbrev_pattern, '').strip
     end
 
+    tz_abbrev = date_string[tz_abbrev_pattern, 1]
+
     # Rails timezone support doesn't seem to recognize this abbreviation, and
     # frankly I have no idea where ActiveSupport::TimeZone::CODES comes from.
     # In case that ever stops working or a less hackish solution is required,
     # check out https://gist.github.com/kueda/3e6f77f64f792b4f119f
-    tz_abbrev = date_string[tz_abbrev_pattern, 1]
     tz_abbrev = 'CET' if tz_abbrev == 'CEST'
+
+    # Abbreviations with synonyms at https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations
+    problem_tz_abbrevs = %w(
+      AST
+      BRT
+      BST
+      CDT
+      CST
+      ECT
+      GST
+      IST
+      PST
+    )
     
-    if parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev]
+    if !problem_tz_abbrevs.include?( tz_abbrev ) && ( parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev] )
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
     elsif (offset = date_string[tz_offset_pattern, 1]) && 
@@ -2743,6 +2762,11 @@ class Observation < ActiveRecord::Base
       # Set the transfor
       self.longitude, self.latitude = transform
     end
+    true
+  end
+
+  def nilify_positional_accuracy_if_zero
+    self.positional_accuracy = nil if positional_accuracy == 0
     true
   end
 

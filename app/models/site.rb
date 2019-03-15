@@ -150,6 +150,7 @@ class Site < ActiveRecord::Base
   preference :press_url, :string
 
   preference :feedback_url, :string
+  preference :discourse_url, :string
   preference :terms_url, :string, default: "/pages/terms"
   preference :privacy_url, :string, default: "/pages/privacy"
   preference :developers_url, :string, default: "/pages/developers"

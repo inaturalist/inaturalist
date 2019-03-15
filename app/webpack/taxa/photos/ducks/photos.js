@@ -16,7 +16,8 @@ const DEFAULT_PARAMS = {
   order_by: "votes"
 };
 
-const setUrl = ( newParams, defaultParams = DEFAULT_PARAMS ) => {
+export function setUrl( newParams, options = {} ) {
+  const defaultParams = options.defaultParams || DEFAULT_PARAMS;
   // don't put defaults in the URL
   const newState = {};
   _.forEach( newParams, ( v, k ) => {
@@ -49,8 +50,8 @@ const setUrl = ( newParams, defaultParams = DEFAULT_PARAMS ) => {
     _.isEmpty( newUrlState ) ? "" : "?",
     _.isEmpty( newUrlState ) ? "" : $.param( newUrlState )
   ].join( "" );
-  history.pushState( newState, title, newUrl );
-};
+  history.replaceState( newState, title, newUrl );
+}
 
 const DEFAULT_STATE = {
   observationPhotos: [],

@@ -234,4 +234,8 @@
                 - if is_curator?
                   = link_to t(:create_new_taxon), new_taxon_path( name: @q ), class: "btn btn-default"
                 - else
-                  =t "views.search.index.no_taxa_options_html", feedback_url: @site.feedback_url.blank? ? CONFIG.feedback_url : @site.feedback_url, help_email: @site.email_help.blank? ? CONFIG.help_email : @site.email_help
+                  :ruby
+                    feedback_url = @site.discourse_url
+                    feedback_url = @site.feedback_url if feedback_url.blank?
+                    feedback_url = CONFIG.feedback_url if feedback_url.blank?
+                  =t "views.search.index.no_taxa_options_html", feedback_url: feedback_url, help_email: @site.email_help.blank? ? CONFIG.help_email : @site.email_help

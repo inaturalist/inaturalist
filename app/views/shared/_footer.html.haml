@@ -24,8 +24,12 @@
           %a{ href: site.about_url }=t :about
         %p
           %a{ href: site.help_url }=t :help
-        %p
-          %a{ href: site.feedback_url }=t :feedback
+        - if !site.discourse_url.blank?
+          %p
+            %a{ href: site.discourse_url }=t :forum
+        - elsif !site.feedback_url.blank?
+          %p
+            %a{ href: site.feedback_url }=t :feedback
         - unless site.press_url.blank?
           %p
             %a{ href: site.press_url }=t :press

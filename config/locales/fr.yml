@@ -689,7 +689,6 @@ fr:
   back_to_taxon: Retourner à %{defaulttaxon}
   back_to_taxon_changes: Retour aux modifications taxinomiques
   back_to_taxon_framework_for_x: Retour au cadre de taxon pour %{taxon_name}
-  back_to_this: Retourner à %{place}
   back_to_viewing: Retourner à la visualisation de <i>%{taxon}</i>
   back_to_x: Retourner à %{noun}
   back_to_x_assessment: Retourner aux évaluations de %{project}
@@ -856,6 +855,7 @@ fr:
     merged_into: fusionné en
     replaced_by: remplacé par
     replace_with: remplacer par
+    replaced_with: remplacé par
     dropped: retiré
     staged: organisé
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} a été divisé en %{output_taxa}'
@@ -1254,6 +1254,7 @@ fr:
   date_range: Date de classement
   date_specified: Date spécifiée
   date_time: Horodatage
+  date_updated: Date mise à jour
   dates: dates
   datetime_: Horodatage
   day: Jour
@@ -1469,18 +1470,20 @@ fr:
   eol_collection_url: URL de la collection de l’EdlV
   error_updating_photo: 'Erreur de mise à jour de la photo : %{photo_errors}'
   establishment:
-    establishment: Établissement
-    native: Indigène
     endemic: Endémique
+    establishment: Établissement
     introduced: Introduite
-    naturalised: Acclimatée
     invasive: Envahissante
     managed: Gérée
+    native: Indigène
+    naturalised: Acclimatée
   establishment_means: Moyens d’établissement
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: indigène et n’existe nulle part ailleurs
-    arrived_in_the_region_via_anthropogenic_means: arrivée dans la région par des
+    arrived_in_the_region_via_anthropogenic_means: Arrivée dans la région par des
       moyens anthropiques
+    native_and_occurs_nowhere_else: Indigène et n’existe nulle part ailleurs
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: A évolué dans cette
+      région ou est arrivée par des moyens non anthropiques
   establishment_means_describes_how: "Le moyen d’établissement décrit la façon dont
     le taxon en est venu à être établi dans la région.  \nConsultez DarwinCore pour
     <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">obtenir
@@ -1628,7 +1631,8 @@ fr:
     <strong>est résolu.</strong>
   flag_reason: '&ldquo;Je signale ce %{record} parce que'
   flag_saved: Marque enregistrée
-  flag_saved_thanks: Drapeau enregistré. Merci !
+  flag_saved_thanks_html: Drapeau enregistré. Merci ! <a href="%{url}" class="readmore">Afficher
+    le drapeau</a>
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
   flagged: a signalé
@@ -1684,6 +1688,17 @@ fr:
   for_more_information: pour obtenir plus d’information.
   formatting: Mise en forme
   forgot_your_password: Avez-vous oublié votre mot de passe?
+  forum_categories:
+    bug_reports: Signalements de bogue
+    feature_requests: Demandes de fonctionnalité
+    forum_feedback: Avis sur le forum
+    forum_moderation: Modération du forum
+    nature_talk: Discussion sur la nature
+    news_and_updates: Nouvelles & Mises à jour
+    tutorials: Tutoriels
+  forum_desc: Le forum est un endroit pour discuter de iNat lui-même, y compris pour
+    l’aide et le support, les demandes de fonctionnalité, les rapports de bogue, les
+    annonces, et autres.
   frequency: Fréquence
   fri: Ven
   from: À partir de
@@ -2919,6 +2934,15 @@ fr:
     d’un taxon dans un lieu donné. Consultez DarwinCore pour <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">pour
     obtenir plus d’information sur la terminologie</a>.
   occurrence_status: État de la présence
+  occurrence_status_descriptions:
+    absent: N’apparaît pas dans la zone
+    common: Apparaît fréquemment
+    doubtful: Présumé apparaître, mais il y a des doutes sur la preuve
+    irregular: Présence imprévisible, y compris en vagabondage ; peut être commun
+      certaines années et absent d’autres
+    present: Apparaît dans la zone
+    uncommon: Apparaît régulièrement, mais en petit nombre ; nécessite une recherche
+      soigneuse du bon habitat
   occurrence_status_establishment_means: état de la présence, moyens d’établissement
   occurrence_status_levels:
     present: présent
@@ -4282,8 +4306,8 @@ fr:
   stuff_just_added: Trucs que vous venez d’ajouter…
   subject_resolved_noun_html: '%{subject} a réglé %{noun}'
   subject_affecting_stuff_html: '%{subject} touchant %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} a validé %{thing} concernant
-    %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} a validé @vow_or_con{vow:un}
+    %{thing} concernant %{stuff}'
   submission_model: Modèle de soumission
   submission_model_description: Qui peut ajouter des observations à votre projet ?
   submit: Soumettre
@@ -4765,6 +4789,8 @@ fr:
   today: Aujourd’hui
   too_many_observations_csv: Vous avez trop d’observations !<br /> Nous ne pouvons
     prendre que vos %{max_rows} premières observations dans chaque CSV
+  too_many_taxa_to_render: Cette requête renvoie trop de taxons pour tous les afficher
+    à la fois. Essayez d’ajouter plus de filtres.
   tools: Outils
   top_5_identifiers: Les 5 meilleurs identificateurs
   top_contributors: Collaborateurs les plus importants
@@ -6035,6 +6061,9 @@ fr:
           masquée
         geoprivacy: Si l’observateur a choisi ou non de dissimuler ou masquer les
           coordonnées
+        taxon_geoprivacy: La confidentialité géographique la plus conservatrice est
+          appliquée du fait des états de conservation des taxons dans l’identification
+          actuelle.
         coordinates_obscured: Si les coordonnées ont ou non été dissimulées, soit
           à cause de confidentialité géographique, soit à cause d’un taxon menacé
         out_of_range: Si l’observation se trouve bel et bien à l’extérieur de l’aire
@@ -6083,8 +6112,11 @@ fr:
           En février 2019, Google a modifié son API, nous empêchant
           d’accéder aux coordonnées GPS, à l’information de licence et à quasiment
           toute information que nous pourrions utiliser pour ajouter une identification (comme les balises). Il
-          a aussi supprimé la recherche textuelle et la pagination numérique. Vous pouvez toujours
-          importer des photos, mais elles n’incluront aucune information de localisation ou
+          a aussi supprimé la recherche textuelle et la pagination numérique. De plus,
+          ils demandent que tous les comptes connectés aient un droit en plus,
+          et avant qu’un tiers puisse demander ce droit pour les utilisateurs, le
+          tiers doit être vérifié. Nous attendons a vérification, mais
+          jusque-là, vous pourrez importer des photos, mais elles n’incluront aucune information de localisation ou
           de licence que vous pourriez voir sur Google Photos.
           Vous pouvez lire davantage là-dessus à
           <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
@@ -6945,6 +6977,11 @@ fr:
           et de ses descendants. Les photos choisies pour ce
           taxon seront cependant affichées en premier. La première photo sera
           celle par défaut utilisée sur le site.
+        site_curators_disabled_wikipedia_html: |-
+          Les superviseurs du site ont temporairement désactivé l’affichage de <a href="%{url}">ce
+          contenu de Wikipédia</a>. Vous pouvez aider en modifiant la page sur
+          Wikipédia en la rendant appropriée à ce taxon, ou en marquant ce
+          taxon pour attirer l’attention des superviseurs du site.
     taxon_changes:
       move_children_desc: Les enfants du taxon saisi qui sont des genres ou plus gros
         seront déplacés dans la sortie ; les espèces, sous-espèces, variétés, etc.
@@ -7031,6 +7068,51 @@ fr:
           Un simple rappel : les responsables de l’organisation du projet peuvent voir
           les coordonnées privées ou masquées des observations que vous ajoutez à
           ce projet.
+      delete:
+        by_deleting_your_account_you_will_remove: En supprimant votre compte vous
+          supprimerez
+        x_observations_html:
+          one: |
+            <strong class="count">1 observation</strong>,
+            incluant le travail de
+            <strong class="count">%{helpers_count} personnes</strong> qui vous ont
+            aidé à l’identification
+          other: |
+            <strong class="count">%{count} observations</strong>,
+            incluant le travail de
+            <strong class="count">%{helpers_count} personnes</strong> qui vous ont
+            aidé à l’identification
+        x_identifications_html:
+          one: |
+            <strong class="count">votre identification</strong>
+            de l’observation d’une autre personne, qui peut affecter la
+            qualité des données de cette observation
+          other: |
+            <strong class="count">%{count} de vos identifications</strong>
+            des observations d’<strong class="count">%{helpees_count} autres
+            personnes</strong>, qui peuvent affecter la qualité des données
+            de ces observations
+        x_comments_html:
+          one: <strong class="count">1 commentaire</strong> que vous avez ajouté
+          other: <strong class="count">%{count} commentaires</strong> que vous avez
+            ajouté
+        furthermore_cannot_undo_html: |-
+          De plus, <strong>cette action ne peut pas être annulée.</strong> Si vous
+          changez d’avis plus tard, vous ne pourrez plus récupérer ce contenu.
+        settings_and_mute_html: |-
+          Si ce site génère trop de notifications, envisagez de
+          <a href="/users/edit">modifier vos paramètres</a> pour vous désabonner de certaines
+          notifications ou arrêter de recevoir des courriels de notre part. Si vous avez
+          des problèmes avec une personne en particulier sur le site, envisagez de
+          <a href="/users/edit">les rendre muets</a> au lieu de supprimer votre
+          compte.
+        still_want_to_delete_html: |-
+          Si vous êtes toujours sûr de vouloir supprimer votre compte, saisissez
+          <code>%{confirmation_code}</code> dans le formulaire ci-dessous et cliquez sur le
+          bouton pour supprimer votre compte et toutes vos données.
+        type_confirmation_code: Saisir %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: Vous devez saisir « %{confirmation_code} »
+          dans le formulaire pour supprimer votre compte
       edit:
         blocking_desc_html: |-
           <p>
@@ -7692,7 +7774,7 @@ fr:
         autre contenu en votre nom, et accéder à vos coordonnées masquées et toute
         autre information à laquelle vous pouvez accéder sur le site.
       login: Accéder aux informations pertinentes pour se connecter, comme l’adresse
-        de messagerie, le nom d’utilisateur, le nom et l’icône utilisateur
+        de messagerie, le nom d’utilisateur, le nom et l’icône utilisateur.
     errors:
       messages:
         invalid_request: La requête n'a pas de paramètre obligatoire, cela peut être

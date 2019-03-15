@@ -7,6 +7,7 @@
 # Author: Indah Setyawati
 # Author: J Nia30
 # Author: Kenrick95
+# Author: Pebaryan
 # Author: Zakiy
 ---
 id:
@@ -505,7 +506,6 @@ id:
   back_to_shared_taxon: Kembali ke %{sharedtaxon}
   back_to_taxon: Kembali ke %{defaulttaxon}
   back_to_taxon_changes: Kembali ke perubahan taksa
-  back_to_this: Kembali ke  %{place}
   back_to_viewing: Kembali ke tampilan <i>%{taxon}</i>
   back_to_x: Kembali ke %{noun}
   back_to_x_assessment: Kembali ke %{project} penilaian
@@ -958,6 +958,7 @@ id:
     prevText: sebelum
     nextText: Selanjutnya
   date_time: Tanggal/Waktu
+  date_updated: Tanggal pemutakhiran
   dates: tanggal
   datetime_: Tanggal/Waktu
   day: Hari
@@ -1126,18 +1127,20 @@ id:
   eol_collection_url: EOL collection URL
   error_updating_photo: 'Terjadi kesalahan pada pembaharuan foto: %{photo_errors}'
   establishment:
-    establishment: Pembentukan
-    native: asli
     endemic: endemik
+    establishment: Pembentukan
     introduced: introduksi
-    naturalised: Naturalisasi
     invasive: Invasif
     managed: kelola
+    native: asli
+    naturalised: Naturalisasi
   establishment_means: pendirian sarana
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: asli dan ada di tempat lain
-    arrived_in_the_region_via_anthropogenic_means: tiba di wilayah tersebut melalui
+    arrived_in_the_region_via_anthropogenic_means: Tiba di wilayah tersebut melalui
       sarana antropogenik
+    native_and_occurs_nowhere_else: Asli dan ada di tempat lain
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Berevolusi di area
+      ini atau tiba melalui cara non-antropogenik
   establishment_means_describes_how: "Establishment means describes how the taxon
     came to be established in an area.  \nSee DarwinCore for <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">more
     information on terminology</a>."
@@ -1263,7 +1266,6 @@ id:
   flag_marked_as_resolved_html: <span class="meta">tandai sebagai</span> <strong>diselesaikan.</strong>
   flag_reason: '&ldquo;saya menandai ini %{record} karena'
   flag_saved: Penandaan telah tersimpan
-  flag_saved_thanks: Penandaan disimpan. Terima kasih!
   flag_this_observation: Tandai pengamatan ini
   flag_this_photo: Tandai foto ini
   flagged: Tertanda
@@ -1301,6 +1303,10 @@ id:
     terbaru dari %{place_name}, memeriksa
   for_more_information: untuk informasi lebih lanjut.
   forgot_your_password: Lupa kata sandi Anda?
+  forum_categories:
+    tutorials: Tutorial
+  forum_desc: Forum adalah tempat berdiskusi iNat itu sendiri, termasuk bantuan dan
+    dukungan, permohonan fitur, laporan masalah, pengumuman, dan lain-lain.
   fri: Jum
   from: Dari
   from_a_place: Dari tempat
@@ -2173,6 +2179,8 @@ id:
   observer_short: Pengamat
   observing: mengamati
   occurrence_status: Status terjadinya
+  occurrence_status_descriptions:
+    absent: Tak terjadi di area tersebut
   occurrence_status_establishment_means: Status kejadian, pembentukan berarti
   occurrence_status_levels:
     present: Sekarang

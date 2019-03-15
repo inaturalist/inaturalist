@@ -4,6 +4,7 @@
 # Author: DCLXVI
 # Author: Exonie
 # Author: StanProg
+# Author: Ted Masters
 # Author: Vodnokon4e
 # Author: АдмиралАнимЕ
 ---
@@ -766,13 +767,13 @@ bg:
   endemic: ендемичен
   endemic_to_x: Ендемичен за %{x}
   establishment:
-    establishment: Заселване
-    native: местен
     endemic: ендемичен
+    establishment: Заселване
     introduced: интродуциран
-    naturalised: натурализиран
     invasive: инвазивен
     managed: контролиран
+    native: местен
+    naturalised: натурализиран
   establishment_means: Начин на заселване
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: местен и не се среща другаде
@@ -855,7 +856,6 @@ bg:
     <strong>резрешен.</strong>
   flag_reason: '&ldquo;Маркирам %{record} защото'
   flag_saved: Маркерът е запазен.
-  flag_saved_thanks: Маркерът е запазен. Благодарим Ви!
   flag_this_observation: Маркирай това наблюдение
   flag_this_photo: Маркирай тази снимка
   flagged: маркира
@@ -958,7 +958,7 @@ bg:
   identification_withdrawn: Разпознаването е оттеглено.
   identifications: Разпознавания
   identifications_by: Разпознавания от %{user}
-  identifiers: Разпознавачи
+  identifiers: Идентификатори
   ids_made_for_others: Разпознавания направени за други
   if_this_is_a_scientific_name: Ако това е научно име, общоприето ли е в момента?
   if_you_already_have_an_account: Ако вече имате акаунт на %{site_name}...
@@ -1468,7 +1468,7 @@ bg:
   of_observations: наблюдения
   of_species: вид
   of_observers: наблюдатели
-  of_identifiers: разпознавачи
+  of_identifiers: идентификатори
   of_places: места
   of_this_taxon: От този таксон
   offensive_inappropriate: обидно / неуместно
@@ -2268,10 +2268,10 @@ bg:
   to_recipient: до
   today: Днес
   tools: Инструменти
-  top_5_identifiers: Топ 5 разпознавачи
+  top_5_identifiers: Топ 5 идентификатора
   top_identifier: Най-добър разпознавач
-  top_identifiers: Топ разпознавачи
-  top_identifiers_of_taxon: Най-добри разпознавачи на %{taxon}
+  top_identifiers: Топ идентификатори
+  top_identifiers_of_taxon: Най-добри идентификатори на %{taxon}
   top_observer: Най-добър наблюдател
   total: Общо
   total_members: Общо членове

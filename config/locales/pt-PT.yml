@@ -633,7 +633,6 @@ pt-PT:
   back_to_suggestions: Voltar às Sugestões
   back_to_taxon: Voltar a %{defaulttaxon}
   back_to_taxon_changes: Voltar às alterações do táxon
-  back_to_this: Voltar a %{place}
   back_to_viewing: Voltar à visualização de <i>%{taxon}</i>
   back_to_x: Voltar a %{noun}
   back_to_x_assessment: Voltar para as avaliações de %{project}
@@ -1349,17 +1348,17 @@ pt-PT:
   eol_collection_url: URL da coleção EOL
   error_updating_photo: 'Erro ao atualizar a fotografia: %{photo_errors}'
   establishment:
-    establishment: Estabelecimento
-    native: autóctone
     endemic: endémico
+    establishment: Estabelecimento
     introduced: introduzido
-    naturalised: naturalizado
     invasive: invasora
     managed: sobre cuidado humano
+    native: autóctone
+    naturalised: naturalizado
   establishment_means: Meio de estabelecimento na área
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: nativa e não existe em mais nenhum lado
     arrived_in_the_region_via_anthropogenic_means: chegou à região por via antropogénica
+    native_and_occurs_nowhere_else: nativa e não existe em mais nenhum lado
   establishment_means_describes_how: Meios de estabelecimento descreve a forma como
     o táxon se estabeleceu numa área. Veja DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">mais
     informação acerca de terminologia</a>.
@@ -1495,7 +1494,6 @@ pt-PT:
     <strong>resolvido.</strong>
   flag_reason: '&ldquo;Estou a marcar este %{record} porque'
   flag_saved: Sinalizador guardado.
-  flag_saved_thanks: Sinalizador guardado. Obrigado!
   flag_this_observation: Sinalizar esta observação
   flag_this_photo: Marcar esta fotografia
   flagged: sinalizado(a)

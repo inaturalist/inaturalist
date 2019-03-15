@@ -247,15 +247,19 @@ shared_examples_for "a TaxaController" do
   end
 end
 
-describe TaxaController, "oauth authentication" do
-  let(:user) { User.make! }
-  let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
-  before do
-    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
-    allow(controller).to receive(:doorkeeper_token) { token }
-  end
-  it_behaves_like "a TaxaController"
-end
+#
+# There isn't much reason to test *any* auth here since wewe don't seem to be
+# test PUT, POST, or DELETE. Maybe uncomment to test some basics if/when we do
+#
+# describe TaxaController, "oauth authentication" do
+#   let(:user) { User.make! }
+#   let(:token) { double :acceptable? => true, :accessible? => true, :resource_owner_id => user.id }
+#   before do
+#     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
+#     allow(controller).to receive(:doorkeeper_token) { token }
+#   end
+#   it_behaves_like "a TaxaController"
+# end
 
 describe TaxaController, "devise authentication" do
   let(:user) { User.make! }

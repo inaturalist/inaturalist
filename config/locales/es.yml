@@ -19,7 +19,9 @@
 # Author: Fitoschido
 # Author: Fortega
 # Author: Isabelgg22
+# Author: Jorge Ubilla
 # Author: Josecurioso
+# Author: Juan Cuartas
 # Author: KATRINE1992
 # Author: La Mantis
 # Author: Laura Ospina
@@ -683,7 +685,6 @@ es:
   back_to_suggestions: Regresa a sugerencias
   back_to_taxon: Regresa a %{defaulttaxon}
   back_to_taxon_changes: Regresa a los cambios del taxón
-  back_to_this: Regresa a %{place}
   back_to_viewing: Regresa a ver <i>%{taxon}</i>
   back_to_x: Regresa a %{noun}
   back_to_x_assessment: Regresa a las evaluaciones de %{project}
@@ -1219,6 +1220,7 @@ es:
   date_range: Intervalo de fechas
   date_specified: Fecha especificada
   date_time: Fecha/hora
+  date_updated: Fecha de Actualización
   dates: fechas
   datetime_: Fecha/hora
   day: Día
@@ -1425,17 +1427,17 @@ es:
   eol_collection_url: URL de colección EOL
   error_updating_photo: 'Error al subir la foto: %{photo_errors}'
   establishment:
-    establishment: Clasificación
-    native: Nativa
     endemic: Endémica
+    establishment: Clasificación
     introduced: Introducida
-    naturalised: Naturalizada
     invasive: Invasora
     managed: Cautiverio/cultivada
+    native: Nativa
+    naturalised: Naturalizada
   establishment_means: Medio de establecimiento
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: nativo, no ocurre en ningún otro lugar
     arrived_in_the_region_via_anthropogenic_means: llegó a la región por medios antropogénicos
+    native_and_occurs_nowhere_else: nativo, no ocurre en ningún otro lugar
   establishment_means_describes_how: 'El medio de establecimiento describe cómo se
     estableció el taxón en un área. Ver DarwinCore para <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más
     información en terminología</a>.'
@@ -1576,7 +1578,6 @@ es:
   flag_marked_as_resolved_html: <span class="meta">Marca señalada como</span> <strong>resuelta.</strong>
   flag_reason: '&ldquo; Estoy marcando este %{record} porque'
   flag_saved: Advertencia guardada
-  flag_saved_thanks: Advertencia guardada ¡Gracias!
   flag_this_observation: Incluir advertencia en esta observación
   flag_this_photo: Marca esta foto con advertencia
   flagged: marcado
@@ -1631,6 +1632,8 @@ es:
   for_more_information: para más información.
   formatting: Creando formato
   forgot_your_password: ¿Olvidaste tu contraseña?
+  forum_categories:
+    tutorials: Tutoriales.
   frequency: Frecuencia
   fri: vie
   from: de
@@ -2860,7 +2863,7 @@ es:
   offensive_inappropriate: Ofensivo / inapropiado
   official_blog: Blog oficial
   offline_access_enabled: Acceso sin conexión activado
-  old_observation_form: Antiguó registro de observaciones
+  old_observation_form: Antiguo registro de observaciones
   ok: Aceptar
   on_: en
   on_date: en %{date}
@@ -7221,8 +7224,6 @@ es:
           other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
-        header:
-          other: un=1 error ha evitado que este %{model} se guarde
       models:
         application:
           attributes:
