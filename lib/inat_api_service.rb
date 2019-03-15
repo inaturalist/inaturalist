@@ -90,6 +90,8 @@ module INatAPIService
   def self.get( path, params = {}, options = {} )
     json = get_json( path, params, options )
     return unless json
-    OpenStruct.new_recursive( JSON.parse( json ) || {} )
+    parsed_json = JSON.parse( json ) || { }
+    return parsed_json if options[:json]
+    OpenStruct.new_recursive( parsed_json )
   end
 end
