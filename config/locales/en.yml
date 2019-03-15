@@ -33,8 +33,11 @@ en:
     one: '<span class="count">1</span> matching taxon'
     other: '<span class="count">%{count}</span> matching taxa'
   x_misidentifications_of_this_species:
-      one: "1 misidentification of this species"
-      other: "%{count} misidentifications of this species"
+    one: "1 misidentification of this species"
+    other: "%{count} misidentifications of this species"
+  x_misidentifications_of_species_in_this_rank:
+    one: "1 misidentification of species in this %{rank}"
+    other: "%{count} misidentifications of species in this %{rank}"
   x_observations:
     one: "1 observation"
     other: "%{count} observations"
@@ -1433,6 +1436,7 @@ en:
   for_more_information: for more information.
   formatting: Formatting
   forgot_your_password: Forgot your password?
+  forum: Forum
   forum_categories:
     bug_reports: Bug Reports
     feature_requests: Feature Requests
@@ -2660,6 +2664,9 @@ en:
   other_species_commonly_misidentified_as_this_species: Other species commonly misidentified as this species
   other_species_commonly_misidentified_as_this_species_in_place_html: |
     Other species commonly misidentified as this species in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Other taxa commonly misidentified as this %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: |
+    Other taxa commonly misidentified as this %{rank} in <a href="%{url}">%{place}</a>
   our_blog: Our Blog
   out_of_range: Out of range
   output_taxon: Output taxon
@@ -3612,6 +3619,7 @@ en:
   sign_up: Sign Up
   sign_up_exclamation: Sign up!
   similar_species: Similar Species
+  similar_taxa: Similar Taxa
   simple: Simple
   sign_in_exclamation: Sign in!
   single_observation: Single observation
@@ -5946,9 +5954,9 @@ en:
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Contact the Feedback Group</a></strong>
+              <strong><a href="%{feedback_url}">Contact the Forum</a></strong>
               <p>
-                Many site curators keep track of emails to the Feedback Group.
+                Many site curators keep track of messages to the Forum.
               </p>
             </li>
             <li>

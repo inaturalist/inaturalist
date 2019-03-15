@@ -6,6 +6,7 @@
 # Author: Joedalton
 # Author: Jorn Ari
 # Author: Kranix
+# Author: Kueda
 # Author: Lars dalby
 # Author: Oskarlphansen
 # Author: Pyscowicz
@@ -643,7 +644,6 @@ da:
   back_to_suggestions: Tilbage til Forslag
   back_to_taxon: Tilbage til %{defaulttaxon}
   back_to_taxon_changes: Tilbage til taksonændringer
-  back_to_this: Tilbage til %{place}
   back_to_viewing: Tilbage for at se <i>%{taxon}</i>
   back_to_x: Tilbage til %{noun}
   back_to_x_assessment: Tilbage til %{project} vurderinger
@@ -795,6 +795,7 @@ da:
     merged_into: sammenlagt i
     replaced_by: erstattet af
     replace_with: erstat med
+    replaced_with: erstattet med
     dropped: droppet
     staged: iscenesat
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} blev opdelt i %{output_taxa}'
@@ -1172,6 +1173,7 @@ da:
   date_range: Datointerval
   date_specified: Dato angivet
   date_time: Dato/Tid
+  date_updated: Opdateringsdato
   dates: datoer
   datetime_: Dato/Tidspunkt
   day: Dag
@@ -1382,17 +1384,19 @@ da:
   eol_collection_url: EOL samling´s URL
   error_updating_photo: Fejl ved opdatering af billede:%{photo_errors}
   establishment:
-    establishment: Oprindelse
-    native: Hjemmehørende
     endemic: endemisk
+    establishment: Oprindelse
     introduced: indført
-    naturalised: naturaliserede
     invasive: invasiv
     managed: lykkedes
+    native: Hjemmehørende
+    naturalised: naturaliserede
   establishment_means: Oprindelse
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: hjemmehørende og forekommer intet andet sted
     arrived_in_the_region_via_anthropogenic_means: ankom til regionen pga. mennesket
+    native_and_occurs_nowhere_else: hjemmehørende og forekommer intet andet sted
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Opstod i denne region
+      eller kom via ikke menneskelig indblanden
   establishment_means_describes_how: |-
     Oprindelse beskriver hvordan taksonet blev etableret i et område.
     Se DarwinCore for <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> flere oplysninger om terminologi </a>.
@@ -1533,7 +1537,8 @@ da:
   flag_marked_as_resolved_html: <span class="meta">Markér som</span> <strong>resolved.</strong>
   flag_reason: '&ldquo;Jeg markerer denne %{record} fordi'
   flag_saved: Markering gemt
-  flag_saved_thanks: Markering gemt. Tak!
+  flag_saved_thanks_html: Markering gemt. Tak! <a href="%{url}" class="readmore">Vis
+    markering</a>
   flag_this_observation: Markér dette objekt
   flag_this_photo: Markér dette foto
   flagged: markeret
@@ -1588,6 +1593,17 @@ da:
   for_more_information: for mere information.
   formatting: Formatering
   forgot_your_password: Glemt din adgangskode?
+  forum_categories:
+    bug_reports: Fejlrapporter
+    feature_requests: Funktionsforespørgsel
+    forum_feedback: Forum Feedback
+    forum_moderation: Forum moderation
+    nature_talk: Naturdebat
+    news_and_updates: Nyheder og opdateringer
+    tutorials: Selvstudier
+  forum_desc: |-
+    Forumet er et sted at diskutere selve iNat, herunder hjælp og support,
+    funktionsanmodninger, fejlrapporter, meddelelser og meget mere.
   frequency: Hyppighed
   fri: Fre
   from: Fra
@@ -2790,6 +2806,15 @@ da:
     sjælden en takson er i et givent område. Se DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">
     flere oplysninger om terminologi </a>.
   occurrence_status: Forekomst status
+  occurrence_status_descriptions:
+    absent: Forekommer ikke i området
+    common: Forekommer hyppigt
+    doubtful: Formodes at forekomme, men tvivl eksisterer vedrørende beviserne
+    irregular: Tilstedeværelse uforudsigelige, herunder vagabonder; kan være almindelig
+      forekommende nogle år og fraværende andre år
+    present: Forekommer i regionen
+    uncommon: Forekommer regelmæssigt, men i små antal; kræver omhyggelig søgning
+      af korrekt habitat
   occurrence_status_establishment_means: forekomststatus, oprindelse
   occurrence_status_levels:
     present: til stede
@@ -4119,8 +4144,8 @@ da:
   stuff_just_added: Ting du lige har tilføjet ...
   subject_resolved_noun_html: '%{subject} løst %{noun}'
   subject_affecting_stuff_html: '%{subject} påvirker %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} udførte %{thing} påvirker
-    %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} påførte @vow_or_con{vow:an|a}
+    %{thing} påvirker %{stuff}'
   submission_model: Registreringsmodel
   submission_model_description: Hvem kan tilføje observationer til dit projekt?
   submit: Indsend
@@ -4462,7 +4487,7 @@ da:
     hvis de er klart hadefulde, ulovlige osv. Grovhed, fornærmende sprog,
     osv., skal håndteres med en høflig kommentar. Gentagende lovovertrædere skal rapporteres til en side administrator eller til %{email}
   these_are_taxa_that: |-
-    Dette er taksa, som %{site} ikke automatisk kunne føjes til vores taksonomiske
+    Denne er taksa, som %{site} ikke automatisk kunne føje til vores taksonomiske
     træ af en eller anden grund. Du kan tilføje dem til træet ved at redigere taksonen og vælge en overordnet registrering. For eksempel ville overordnede til Homo sapiens være slægten Homo. Du kan også tjekke
     for synonymt taksa og sammenlægge dem.
   these_arent_necessarily_relevant_to: Disse er ikke nødvendigvis relevante for dette
@@ -4580,6 +4605,8 @@ da:
   today: I dag
   too_many_observations_csv: Du har en bikube af observationer! <br /> Vi kan kun
     tage dine første %{max_rows} observationer i hver CSV
+  too_many_taxa_to_render: Denne forespørgsel finder for mange taksa til at kunne
+    vise dem på én gang. Prøv at tilføje flere filtre
   tools: Værktøjer
   top_5_identifiers: Top 5 identifikatorer
   top_contributors: Top bidragsydere
@@ -4757,7 +4784,7 @@ da:
   user_is_now_role_for_project_html: <strong>%{user}</strong> er nu %{role} for %{project}
   user_muted: Slukket for bruger
   user_observations: Bruger observationer
-  user_observed_on_on_date_in_place: '%{user} observereder en den %{date} i %{place}'
+  user_observed_on_on_date_in_place: '%{user} observeredes en den %{date} i %{place}'
   user_s_id: '%{user}''s %{id}'
   user_s_lists: '%{user}''s lister'
   user_suggested_an_id: '%{user} foreslog et ID'
@@ -5330,8 +5357,9 @@ da:
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |-
-          Løs venligst <code> spam </code> og <code> krænkelse af ophavsret </ code> markér kun hvis indholdet ikke er spam eller ikke en
-          krænkelse af ophavsret.
+          Løs venligst <code>spam</code> og <code>krænkelse af ophavsret</code>
+          markér kun hvis indholdet ikke er spam eller ikke en krænkelse af
+          ophavsret.
     guides:
       index:
         funding_html: |-
@@ -5519,8 +5547,7 @@ da:
           og hjælpe andre medlemmer af fællesskabet med at identificere deres uidentificerede observationer. Hvis du ved, hvordan man koder og vil hjælpe med at arbejde på nogle funktioner,
           <a href="http://github.com/inaturalist/inaturalist" title="inaturalist på master-GitHub"> gaffel os på GitHub </a>!
         how_do_i_contact_inaturalist?: Hvordan kontakter jeg %{site_name}
-        you_can_contact_us_at_html: Du kan kontakte os på <a href="mailto:%{help_email}">%
-          {help_email} </a>
+        you_can_contact_us_at_html: Du kan kontakte os på <a href="mailto:%{help_email}">%{help_email} </a>
         what_are_admins_and_curators?: Hvad er en administrator og en kurator?
         inat_admins_are_the_people_who: |-
           %{site_name} administratorer er de personer, der administrerer webstedet. De har direkte adgang til den underliggende kode og database, og de kan ændre alt
@@ -5768,6 +5795,8 @@ da:
           sløret
         geoprivacy: Uanset om observatøren har valgt at sløre eller skjule koordinaterne
           eller ej
+        taxon_geoprivacy: Den mest konservative geofortrolighed på grund af bevaringsstatus
+          for taksa i den nuværende identifikation.
         coordinates_obscured: Hvorvidt koordinaterne er blevet sløret, enten på grund
           af geofortrolighed eller på grund af et truet takson
         out_of_range: Hvorvidt eller ej denne observation ligger uden for taksonets
@@ -5807,7 +5836,7 @@ da:
         google_photos_notice_html: |-
           I februar 2019 ændrede Google deres API, hvilket gjorde det umuligt for
           os for at få adgang til GPS koordinater, licensoplysninger og næsten alle
-          informationer vi kunne bruge til at tilføje en identifikation (som tags). De
+          informationer vi kunne bruge for at kunne tilføje en identifikation (som tags). De
           fjernede også tekstsøgning og numerisk pagination. Du kan stadig
           importere fotos, men de vil ikke indeholde nogen lokaliseringsoplysninger eller
           licensoplysninger, som du muligvis kan se på Google Fotos.
@@ -5994,12 +6023,16 @@ da:
           Du kan forsøge at reparere billederne ved at besøge fotosiden og klikke på
           "%{repair_link_text}" linket. Hvis du ved, at billedet ikke længere eksisterer, kan du vælge at slette det.
         please_address: |-
-          Løs venligst disse problemer <b> inden for de næste 30 dage </ b>. Efter 30
+          Løs venligst disse problemer <b>inden for de næste 30 dage</b>. Efter 30
           dage vil vi begynde at slette ødelagte fotos fra iNaturalist. Alle dine observationer
           vil forblive. De vil blive revurderet, efter at billederne er slettet, og det er muligt
           nogle observationer af forskningskvalitet vil blive almindelige, hvis de ikke længere har nogen billeder.
         we_included_links: Vi har medtaget links til de berørte billeder nedenfor.
     photos:
+      forbidden_notice_html: |-
+        Vi har ikke tilladelse til at få adgang til disse billeder lige nu. Du skal måske
+        afbryde forbindelsen og tilslutte den igen i din
+        <a href="/users/edit"> indstillinger </a> for at give os yderligere tilladelser.
       inviter:
         automatically_add_to_project: Tilføj automatisk til projekt
         automatically_id_the_new_obs_as: Automatisk ID den nye obs. som
@@ -6009,7 +6042,7 @@ da:
           Du kan gøre det super nemt for andre personer på Facebook og Flickr, at tilføje deres foto´s som %{site_name} observationer. Bare send dem en kommentar samt nedenstående invitations URL. Du kan også forudvælge en takson og et projekt til
           den nye observation.
       show:
-        view_original_html: Du kan se originalen på <a href="%{url}">% {url} </a>.
+        view_original_html: Du kan se originalen på <a href="%{url}">%{url}</a>.
           Vær venlig ikke at slette markeringen for ophavsretskrænkelse, hvis dette
           foto krænker ophavsret.
     places:
@@ -6570,6 +6603,11 @@ da:
           Bemærk at taksonsiden viser billeder af denne takson
           og dens efterkommere. De valgte foto´s til denne
           takson vil dog blive vist først. Det første billede vil blive et standardbillede, og det vil blive brugt på tværs af websiden.
+        site_curators_disabled_wikipedia_html: |-
+          Sidekuratorer har midlertidigt deaktiveret visning af <a href="%{url}"> dette
+          indhold fra Wikipedia </a>. Du kan hjælpe ved at redigere siden på
+          Wikipedia for at gøre det passende for denne takson, eller ved at markere denne
+          takson for at bringe det til kendskab til sidekuratorer.
     taxon_changes:
       move_children_desc: |-
         Underordner af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
@@ -6635,10 +6673,53 @@ da:
         new_project_admin_html: |-
           Spekulerer du på, hvorfor du nu er administrator for dette projekt? Den tidligere ejer har enten tildelt dig rollen som den nye administrator, eller de har slettet deres konto
           og %{site_name} tildelte dig automatisk, fordi du er projektleder eller side kurator. Hvis du ikke vil være projektadministrator, bedes du venligst
-          kontakte <a href="mailto:%{help_email}">% {help_email} </a>
+          kontakte <a href="mailto:%{help_email}">%{help_email} </a>
         curators_can_see: |-
           Bare en påmindelse om at, projektkuratorer kan se private og slørede
           koordinater for observationer, du tilføjer til dette projekt.
+      delete:
+        by_deleting_your_account_you_will_remove: Ved at slette din konto vil du fjerne
+        x_observations_html:
+          one: |
+            <strong class="count">1 observation</strong>,
+            herunder arbejdet som
+            <strong class="count">%{helpers_count} personer</strong> har hjulpet dig med identifikationer
+          other: |
+            <strong class="count">%{count} observationer</strong>,
+            herunder arbejdet som
+            <strong class="count">%{helpers_count} personer</strong> har hjulpet dig med identifikationer
+        x_identifications_html:
+          one: |
+            <strong class="count">din 1 identifikation</strong>
+            af en anden persons observation, som potentielt kan påvirke
+            datakvaliteten af denne observation
+          other: |
+            <strong class="count">%{count} af dine egne identifikationer</strong>
+            af observationerne af <strong class = "count">%{helpees_count} andre
+            folk </strong>, som potentielt kan påvirke datakvaliteten af
+            disse observationer
+        x_comments_html:
+          one: |
+            <strong class="count">1 kommentar</strong> du har tilføjet
+          other: |
+            <strong class="count">%{count} kommentarer</strong> du har tilføjet
+        furthermore_cannot_undo_html: Desuden kan <strong> denne handling ikke fortrydes.
+          </strong> Hvis du senere skifter mening, kan du ikke få noget af det indhold
+          tilbage.
+        settings_and_mute_html: |-
+          Hvis denne side genererer for mange meddelelser, skal du overveje
+          <a href="/users/edit"> redigering af dine indstillinger </a> for at fravælge bestemte
+          meddelelser eller helt stoppe med at modtage e-mail fra os. Hvis du har
+          problemer med en bestemt person på siden, kan du overveje
+          <a href="/users/edit"> at slukke for dem </a> i stedet for at slette din
+          konto.
+        still_want_to_delete_html: |-
+          Hvis du stadig er sikker på, at du vil slette din konto, skal du indtaste
+          <code>%{confirmation_code}</code> i formularen herunder og klikke på
+          knappen for at slette din konto og alle dine data.
+        type_confirmation_code: Indtast %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: Du skal indtaste "%{confirmation_code}"
+          i formularen, for at slette din konto
       edit:
         blocking_desc_html: |-
           <P>
@@ -6721,13 +6802,16 @@ da:
           Manuel spam </dt><dd> Spammer, der blev manuelt markeret som en spammer
           af en side-kurator. </dd><dt> Fejl positive </dt><dd> Brugere, der blev
           markeret som spammere, men markeringerne blev løst af sidens kuratorer,
-          fordi de ikke var virkelig spammere. </dd></ dl>
-        recent_users_desc_html: "<P>\n   Vi ønsker at byde nye brugere velkommen,
-          men vi ønsker også at bekæmpe\n   spammere. Forhåbentlig hjælper dette værktøj
-          med begge. Vi markerer automatisk mange \n   brugere som spammere ved hjælp
-          af <a\n   href = \"https://akismet.com/\">Akismet</a>, men Akismet er ikke
-          perfekt,\n   så hvis du vil bruge et par minutter på at markere nye konti
-          som\n   spammere eller ikke spammere, vil det hjælpe.\n</ P>"
+          fordi de ikke var virkelig spammere. </dd></dl>
+        recent_users_desc_html: |
+          <p>
+            Vi ønsker at byde nye brugere velkommen, men vi ønsker også at
+            bekæmpe spammere. Forhåbentlig hjælper dette værktøj med begge. Vi
+            markerer automatisk mange brugere som spammere ved hjælp af <a
+            href="https://akismet.com/">Akismet</a>, men Akismet er ikke
+            perfekt, så hvis du vil bruge et par minutter på at markere nye
+            konti som spammere eller ikke spammere, vil det hjælpe.
+          </p>
       show:
         take_a_chance_to_review_html: Grib chancen for at gennemse <a href="%{link}">vores
           retningslinjer</a>

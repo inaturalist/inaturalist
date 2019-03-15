@@ -405,7 +405,6 @@ ko:
   back_to_suggestions: 제안으로 돌아가기
   back_to_taxon: '%{defaulttaxon}(으)로 돌아가기'
   back_to_taxon_changes: 분류군 변화들로 돌아가기
-  back_to_this: '%{place}(으)로 돌아가기'
   back_to_viewing: <i>%{taxon}</i> 보기로 돌아가기
   back_to_x: '%{noun}(으)로 돌아가기'
   back_to_x_assessment: '%{project} 평가들로 돌아가기'
@@ -792,6 +791,7 @@ ko:
     range: 범위
   date_range: 날짜 범위
   date_time: 날짜/시간
+  date_updated: 업데이트한 날짜
   dates: 날짜
   datetime_: 날짜/시간
   day: 일
@@ -961,16 +961,16 @@ ko:
   eol_collection_url: EOL 모음 URL
   error_updating_photo: '사진 업데이트 오류: %{photo_errors}'
   establishment:
-    establishment: 시설
-    native: 토착종
     endemic: 고유종
+    establishment: 시설
     introduced: 도입종
-    naturalised: 토착화됨
     invasive: 외래종
     managed: 관리됨
+    native: 토착종
+    naturalised: 토착화됨
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: 토착종이고 다른 어떤 곳에서도 발견되지 않는다
     arrived_in_the_region_via_anthropogenic_means: 사람들에 의해 이 지역에 유입되었다
+    native_and_occurs_nowhere_else: 토착종이고 다른 어떤 곳에서도 발견되지 않는다
   establishment_means_describes_how: 확립은 이 분류군이 어떻게 이 지역에 서식하게 되었는지를 뜻한다. Darwincore를
     통해<ahref="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">more
     information on terminology</a> 확인할 수 있다.
@@ -1080,7 +1080,6 @@ ko:
   flag_it!: 플래그!
   flag_reason: '&ldquo; %{record}를 플래그하는 이유는'
   flag_saved: 플래그 저장됨
-  flag_saved_thanks: 플래그가 저장되었습니다. 감사합니다!
   flag_this_observation: 이 관찰에 플래그를 달기
   flag_this_photo: 이 사진 플래그
   flagged: 플래그됨
@@ -1113,6 +1112,10 @@ ko:
   for: 위해
   formatting: 서식 지정
   forgot_your_password: 비밀번호를 잊으셨나요?
+  forum_categories:
+    bug_reports: 버그 보고
+    feature_requests: 기능 요청
+    news_and_updates: 소식 및 업데이트
   frequency: 주기
   fri: 금
   from: 보낸이

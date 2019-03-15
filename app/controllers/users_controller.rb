@@ -165,9 +165,9 @@ class UsersController < ApplicationController
       if params[:spammer] === "false"
         flash[:notice] = t(:user_flagged_as_a_non_spammer_html, user: FakeView.link_to_user( @user ) )
         @user.flags_on_spam_content.each do |flag|
-          flag.update_attributes(resolved: true)
+          flag.update_attributes(resolved: true, resolver: current_user)
         end
-        @user.flags.where(flag: Flag::SPAM).update_all(resolved: true)
+        @user.flags.where(flag: Flag::SPAM).update_all(resolved: true, resolver_id: current_user.id )
         @user.unsuspend!
       else
         flash[:notice] = t(:user_flagged_as_a_spammer_html, user: FakeView.link_to_user( @user ) )
@@ -479,8 +479,7 @@ class UsersController < ApplicationController
     @has_updates = (current_user.recent_notifications.count > 0)
     # onboarding content not shown in the dashboard if a user has updates
     @local_onboarding_content = @has_updates ? nil : get_local_onboarding_content
-    if current_user.is_admin? && @site && @site.id == Site.default.id
-      @discourse_url = "https://forum.inaturalist.org"
+    if @site && @discourse_url = @site.discourse_url
       cache_key = "dashboard-discourse-data"
       begin
         unless @discourse_data = Rails.cache.read( cache_key )

@@ -617,7 +617,6 @@ sq:
   back_to_suggestions: Kthehu tek Sugjerimet
   back_to_taxon: Kthehu tek %{defaulttaxon}
   back_to_taxon_changes: Kthehu tek ndryshimet e taxon
-  back_to_this: Kthehu tek %{place}
   back_to_viewing: Kthehu tek shikimi <i>%{taxon}</i>
   back_to_x: Kthehu tek %{noun}
   back_to_x_assessment: Kthehu tek %{project} vlerësimet
@@ -1333,18 +1332,18 @@ sq:
   eol_collection_url: EOL koleksion URL
   error_updating_photo: 'Gabim gjatë përditësimit të fotos: %{photo_errors}'
   establishment:
-    establishment: Vendosje
-    native: autokton
     endemic: endemik
+    establishment: Vendosje
     introduced: e prezantuar
-    naturalised: e natyralizuar
     invasive: pushtuese
     managed: e menaxhuar
+    native: autokton
+    naturalised: e natyralizuar
   establishment_means: Krijimi i mjeteve
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: amtare dhe nuk ndodh askund tjetër
     arrived_in_the_region_via_anthropogenic_means: arriti në rajon nëpërmjet mjeteve
       antropogjene
+    native_and_occurs_nowhere_else: amtare dhe nuk ndodh askund tjetër
   establishment_means_describes_how: |-
     Mënyra e përcaktimit përshkruan se si është përcaktuar një taxon e dhënë në një zonë të dhënë.
     Shih DarwinCore për <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"> më shumë informacione rreth terminologjisë</a>
@@ -1480,7 +1479,6 @@ sq:
     zgjidhur.</strong>
   flag_reason: '&ldquo;E etiketoj këtë %{record} sepse'
   flag_saved: Shenjimi u ruajt.
-  flag_saved_thanks: Shenjimi u ruajt. Faleminderit!
   flag_this_observation: Shenjo këtë vëzhgim
   flag_this_photo: shenjo këtë foto
   flagged: e shenjuar
