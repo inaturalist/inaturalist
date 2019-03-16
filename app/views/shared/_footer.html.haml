@@ -1,5 +1,5 @@
 - site = @site || CONFIG
-- if logged_in?
+- if is_admin? && controller.controller_name == "users" && action_name == "edit"
   .bootstrap
     .container
       .row
