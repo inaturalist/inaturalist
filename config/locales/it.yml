@@ -1628,6 +1628,7 @@ it:
   for_more_information: per ulteriori informazioni.
   formatting: Formattazione
   forgot_your_password: Hai dimenticato la password?
+  forum: Forum
   forum_categories:
     bug_reports: Rapporti errori
     feature_requests: Richiesta di nuove funzioni
@@ -6409,9 +6410,9 @@ it:
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Contatta il Gruppo di Feedback</a></strong>
+              <strong><a href="%{feedback_url}">Contatta il Forum</a></strong>
               <p>
-                Molti curatori del sito controllano le mail del Gruppo di Feedback.
+                Molti curatori del sito controllano i messaggi al Forum.
               </p>
             </li>
             <li>
@@ -7241,8 +7242,8 @@ it:
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
         header:
-          one: 1 errore impedisce di salvare questo %{model}
-          other: "%{count} errori impediscono di salvare questo %{model}}"
+          one: 1 errore impedisce di salvare questo %{model}}
+          other: '%{count} errori impediscono di salvare questo %{model}}'
       models:
         application:
           attributes:
