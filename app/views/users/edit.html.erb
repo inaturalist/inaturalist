@@ -298,12 +298,10 @@
   
   <%= separator %>
 
-  <% if is_admin? %>
-    <h3><%=t :your_relationships %></h3>
-    <p class="ui">
-      <%= link_to t(:manage_your_relationships), relationships_path, class: "readmore" %>
-    </p>
-  <% end %>
+  <h3><%=t :your_relationships %></h3>
+  <p class="ui">
+    <%= link_to t(:manage_your_relationships), relationships_path, class: "readmore" %>
+  </p>
 
   <div class="clear quiet box">
     <%= link_to_toggle t(:blocked_users), "#blocked-users", class: "ui" %>
