@@ -1220,7 +1220,7 @@ es:
   date_range: Intervalo de fechas
   date_specified: Fecha especificada
   date_time: Fecha/hora
-  date_updated: Fecha de Actualización
+  date_updated: Fecha de actualización
   dates: fechas
   datetime_: Fecha/hora
   day: Día
@@ -7224,6 +7224,8 @@ es:
           other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
+        header:
+          other: un=1 error ha evitado que este %{model} se guarde
       models:
         application:
           attributes:
