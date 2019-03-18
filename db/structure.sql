@@ -8403,17 +8403,17 @@ CREATE INDEX index_taggings_on_taggable_id_and_taggable_type_and_context ON publ
 
 
 --
--- Name: index_tags_on_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_tags_on_name ON public.tags USING btree (name);
-
-
---
 -- Name: index_tags_on_lower_name; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_tags_on_lower_name ON public.tags USING btree (lower((name)::text));
+
+
+--
+-- Name: index_tags_on_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_tags_on_name ON public.tags USING btree (name);
 
 
 --

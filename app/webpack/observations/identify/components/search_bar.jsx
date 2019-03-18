@@ -9,26 +9,30 @@ import PlaceAutocomplete from "./place_autocomplete";
 
 class SearchBar extends React.Component {
   shouldComponentUpdate( nextProps ) {
+    const {
+      params,
+      defaultParams,
+      allReviewed,
+      allControlledTerms
+    } = this.props;
     if (
       _.isEqual(
-        objectToComparable( this.props.params ),
+        objectToComparable( params ),
         objectToComparable( nextProps.params )
       )
-      &&
-      _.isEqual(
-        objectToComparable( this.props.defaultParams ),
+      && _.isEqual(
+        objectToComparable( defaultParams ),
         objectToComparable( nextProps.defaultParams )
       )
-      &&
-      this.props.allReviewed === nextProps.allReviewed
-      &&
-      this.props.allControlledTerms === nextProps.allControlledTerms
+      && allReviewed === nextProps.allReviewed
+      && allControlledTerms === nextProps.allControlledTerms
     ) {
       // No change in underlying data series, don't update
       return false;
     }
     return true;
   }
+
   render( ) {
     const {
       params,
@@ -38,18 +42,21 @@ class SearchBar extends React.Component {
       reviewAll,
       unreviewAll,
       allReviewed,
-      allControlledTerms
+      allControlledTerms,
+      config
     } = this.props;
     return (
       <form className="SearchBar form-inline">
         <div className="pull-right">
           <Button
             bsStyle={allReviewed ? "primary" : "default"}
-            onClick={ ( ) => ( allReviewed ? unreviewAll( ) : reviewAll( ) ) }
+            onClick={( ) => ( allReviewed ? unreviewAll( ) : reviewAll( ) )}
           >
             <i
               className={`fa fa-eye${allReviewed ? "-slash" : ""}`}
-            ></i> {
+            />
+            { " " }
+            {
               allReviewed ? I18n.t( "mark_all_as_unreviewed" ) : I18n.t( "mark_all_as_reviewed" )
             }
           </Button>
@@ -60,10 +67,10 @@ class SearchBar extends React.Component {
             searchExternal={false}
             resetOnChange={false}
             initialTaxonID={params.taxon_id}
-            afterSelect={ function ( result ) {
+            afterSelect={result => {
               updateSearchParams( { taxon_id: result.item.id } );
-            } }
-            afterUnselect={ idWas => {
+            }}
+            afterUnselect={idWas => {
               // Our autocompletes seem to fire afterUnselect for mysterious
               // reasons sometimes, even when the selected ID was null, leading to
               // annoying flickering effects and unnecessary requests. In theory
@@ -72,7 +79,7 @@ class SearchBar extends React.Component {
               if ( idWas ) {
                 updateSearchParams( { taxon_id: null } );
               }
-            } }
+            }}
           />
         </span>
 
@@ -83,32 +90,35 @@ class SearchBar extends React.Component {
               parseInt( params.place_id, { precision: 0 } ) > 0 ? params.place_id : null
             }
             bootstrapClear
-            afterSelect={ function ( result ) {
+            afterSelect={result => {
               updateSearchParams( { place_id: result.item.id } );
-            } }
-            afterUnselect={ idWas => {
+            }}
+            afterUnselect={idWas => {
               if ( idWas ) {
                 updateSearchParams( { place_id: null } );
               }
-            } }
+            }}
           />
         </span>
 
         <Button bsStyle="primary">
           { I18n.t( "go" ) }
-        </Button> <FiltersButton
+        </Button>
+        { " " }
+        <FiltersButton
           params={params}
           updateSearchParams={updateSearchParams}
           replaceSearchParams={replaceSearchParams}
           defaultParams={defaultParams}
           terms={allControlledTerms}
+          config={config}
         />
         <div className="form-group">
           <div className="checkbox">
             <label>
               <input
                 type="checkbox"
-                checked={ params.reviewed }
+                checked={params.reviewed}
                 onChange={function ( e ) {
                   updateSearchParams( { reviewed: e.target.checked } );
                 }}
@@ -131,7 +141,8 @@ SearchBar.propTypes = {
   reviewAll: PropTypes.func,
   unreviewAll: PropTypes.func,
   allReviewed: PropTypes.bool,
-  allControlledTerms: PropTypes.array
+  allControlledTerms: PropTypes.array,
+  config: PropTypes.object
 };
 
 export default SearchBar;
