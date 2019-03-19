@@ -2692,7 +2692,7 @@ class Observation < ActiveRecord::Base
         delay(
           priority: USER_INTEGRITY_PRIORITY,
           unique_hash: {
-            "ProjectList::reassess_obscuration_by_user_and_date": [user_id, observed_on_was.to_s]
+            "Observation::reassess_obscuration_by_user_and_date": [user_id, observed_on_was.to_s]
           }
         ).
         reassess_obscuration_by_user_and_date( user_id, observed_on_was.to_s )

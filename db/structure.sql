@@ -4675,42 +4675,6 @@ ALTER SEQUENCE public.user_mutes_id_seq OWNED BY public.user_mutes.id;
 
 
 --
--- Name: user_privileges; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.user_privileges (
-    id integer NOT NULL,
-    user_id integer,
-    privilege character varying,
-    revoked_at timestamp without time zone,
-    revoke_user_id integer,
-    revoke_reason character varying,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: user_privileges_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.user_privileges_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: user_privileges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.user_privileges_id_seq OWNED BY public.user_privileges.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5752,13 +5716,6 @@ ALTER TABLE ONLY public.user_mutes ALTER COLUMN id SET DEFAULT nextval('public.u
 
 
 --
--- Name: user_privileges id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_privileges ALTER COLUMN id SET DEFAULT nextval('public.user_privileges_id_seq'::regclass);
-
-
---
 -- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6694,14 +6651,6 @@ ALTER TABLE ONLY public.user_blocks
 
 ALTER TABLE ONLY public.user_mutes
     ADD CONSTRAINT user_mutes_pkey PRIMARY KEY (id);
-
-
---
--- Name: user_privileges user_privileges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.user_privileges
-    ADD CONSTRAINT user_privileges_pkey PRIMARY KEY (id);
 
 
 --
@@ -8783,20 +8732,6 @@ CREATE INDEX index_user_mutes_on_user_id ON public.user_mutes USING btree (user_
 
 
 --
--- Name: index_user_privileges_on_revoke_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_privileges_on_revoke_user_id ON public.user_privileges USING btree (revoke_user_id);
-
-
---
--- Name: index_user_privileges_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_user_privileges_on_user_id ON public.user_privileges USING btree (user_id);
-
-
---
 -- Name: index_users_on_curator_sponsor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9744,8 +9679,6 @@ INSERT INTO schema_migrations (version) VALUES ('20181110004422');
 INSERT INTO schema_migrations (version) VALUES ('20181120235404');
 
 INSERT INTO schema_migrations (version) VALUES ('20190104024910');
-
-INSERT INTO schema_migrations (version) VALUES ('20190301012813');
 
 INSERT INTO schema_migrations (version) VALUES ('20190308020554');
 
