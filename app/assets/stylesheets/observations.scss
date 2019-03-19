@@ -99,6 +99,7 @@
 .observations.table .photolist,
 .observations.mini .photolist {
   position: relative; 
+  line-height: 20px;
 }
 .observations.table .photos.attribute {
   max-width: 120px;
@@ -256,11 +257,6 @@
 .observations.mini .details .label {display:none;}
 
 .observations.mini .curator_ident .label:after { content: ': ';}
-
-.observations.mini .species_guess {
-  line-height: 1.2;
-  margin-bottom: 5px;
-}
 
 .observations.mini .photos {
   float: right;
@@ -442,7 +438,7 @@
 .observations.infowindow .observation {
   border: 0 none;
   margin: 0;
-  padding-bottom: 10px;
+  padding: 0 5px 0;
   width: 400px;
   max-height: 300px;
 }
@@ -454,13 +450,16 @@
 .observations.infowindow .details,
 .observations.infowindow .tags {
   display: block;
-  margin-top: 5px;
 }
 
 .observations.infowindow .observation .details.attribute img {
   max-width: 300px;
   max-height: 200px;
   height: auto;
+}
+
+.observations.mini.compact.infowindow .observation .species_guess {
+  padding-left: 20px;
 }
 
 .observations.mini.compact.infowindow .observation .user,

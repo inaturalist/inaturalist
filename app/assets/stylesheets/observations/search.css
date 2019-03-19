@@ -958,21 +958,26 @@ inat-taxon { white-space: nowrap; }
   width: 360px;
   height: 96px;
   display: inline-block;
-  margin: 1px -25px 0px 0px;
 }
 .gm-style-iw {
   top: 0 !important;
   left: 0 !important;
-  width: 300px !important;
-  height: 80px !important;
+  width: 375px !important;
+  height: 96px !important;
   overflow: visible !important;
+  padding: 0 !important;
+  border-radius: 0px !important;
 }
 .gm-style-iw > div, .gm-style-iw > div > div {
   overflow: visible !important;
+  padding: 0 !important;
 }
 .infowindow.loading {
   text-align: center;
   line-height: 96px;
+}
+#obs-container.infowindow .media-body {
+  border: 0;
 }
 @-webkit-keyframes fa-spin {
   0% {
