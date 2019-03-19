@@ -722,14 +722,16 @@ class Observation < ActiveRecord::Base
       { created_at: sort_order }
     end
 
-    unless p[:geoprivacy].blank? || p[:geoprivacy] == "any"
-      case p[:geoprivacy]
-      when Observation::OPEN
-        inverse_filters << { exists: { field: :geoprivacy } }
-      when "obscured_private"
-        search_filters << { terms: { geoprivacy: Observation::GEOPRIVACIES } }
-      else
-        search_filters << { term: { geoprivacy: p[:geoprivacy] } }
+    [:geoprivacy, :taxon_geoprivacy].each do |geoprivacy_type|
+      unless p[geoprivacy_type].blank? || p[geoprivacy_type] == "any"
+        case p[geoprivacy_type]
+        when Observation::OPEN
+          inverse_filters << { exists: { field: geoprivacy_type } }
+        when "obscured_private"
+          search_filters << { terms: { geoprivacy_type => Observation::GEOPRIVACIES } }
+        else
+          search_filters << { term: { geoprivacy_type => p[geoprivacy_type] } }
+        end
       end
     end
 
