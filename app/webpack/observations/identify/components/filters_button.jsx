@@ -67,12 +67,15 @@ class FiltersButton extends React.Component {
       updateSearchParams,
       replaceSearchParams,
       defaultParams,
-      terms
+      terms,
+      config
     } = this.props;
     const {
       moreFiltersHidden,
       show
     } = this.state;
+    const viewerIsAdmin = config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const paramsForUrl = ( ) => window.location.search.replace( /^\?/, "" );
     const closeFilters = ( ) => {
       // yes it's a horrible hack
@@ -578,6 +581,12 @@ class FiltersButton extends React.Component {
     );
     const chosenTerm = terms.find( t => t.id === params.term_id );
     const rejectedTerm = terms.find( t => t.id === params.without_term_id );
+    let defaultAccountAge = "";
+    if ( params.user_after ) {
+      defaultAccountAge = "recent";
+    } else if ( params.user_before ) {
+      defaultAccountAge = "established";
+    }
     const moreCenterCol = (
       <Col xs="4" className="filters-center-col">
         <div className="form-group annotations-form-group">
@@ -668,6 +677,35 @@ class FiltersButton extends React.Component {
             </div>
           ) : null }
         </div>
+        { viewerIsAdmin && (
+          <div className="form-group recent-users-form-group admin">
+            <label htmlFor="account-creation" className="sectionlabel">Account Creation</label>
+            <select
+              id="account-creation"
+              defaultValue={defaultAccountAge}
+              className={`form-control ${params.user_before || params.user_after ? "filter-changed" : ""}`}
+              onChange={e => {
+                if ( _.isEmpty( e.target.value ) ) {
+                  updateSearchParams( { user_after: null, user_before: null } );
+                } else if ( e.target.value === "recent" ) {
+                  updateSearchParams( { user_after: "1w", user_before: null } );
+                } else if ( e.target.value === "established" ) {
+                  updateSearchParams( { user_before: "1w", user_after: null } );
+                }
+              }}
+            >
+              <option value="">
+                { I18n.t( "any_" ) }
+              </option>
+              <option value="recent">
+                In the last week
+              </option>
+              <option value="established">
+                More than a week ago
+              </option>
+            </select>
+          </div>
+        ) }
       </Col>
     );
     const moreRightCol = (
@@ -785,7 +823,8 @@ FiltersButton.propTypes = {
   defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
   replaceSearchParams: PropTypes.func,
-  terms: PropTypes.array
+  terms: PropTypes.array,
+  config: PropTypes.object
 };
 
 FiltersButton.defaultProps = {

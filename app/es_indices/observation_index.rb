@@ -22,6 +22,7 @@ class Observation < ActiveRecord::Base
       indexes :id, type: "integer"
       indexes :uuid, type: "keyword"
       indexes :identifier_user_ids, type: "integer"
+      indexes :ident_taxon_ids, type: "integer"
       indexes :non_owner_identifier_user_ids, type: "integer"
       indexes :identification_categories, type: "keyword"
       indexes :photo_licenses, type: "keyword"
@@ -196,6 +197,7 @@ class Observation < ActiveRecord::Base
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
         sounds: sounds.map(&:as_indexed_json),
         identifier_user_ids: current_ids.map(&:user_id),
+        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids}.flatten.uniq,
         non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
         identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
@@ -726,14 +728,16 @@ class Observation < ActiveRecord::Base
       { created_at: sort_order }
     end
 
-    unless p[:geoprivacy].blank? || p[:geoprivacy] == "any"
-      case p[:geoprivacy]
-      when Observation::OPEN
-        inverse_filters << { exists: { field: :geoprivacy } }
-      when "obscured_private"
-        search_filters << { terms: { geoprivacy: Observation::GEOPRIVACIES } }
-      else
-        search_filters << { term: { geoprivacy: p[:geoprivacy] } }
+    [:geoprivacy, :taxon_geoprivacy].each do |geoprivacy_type|
+      unless p[geoprivacy_type].blank? || p[geoprivacy_type] == "any"
+        case p[geoprivacy_type]
+        when Observation::OPEN
+          inverse_filters << { exists: { field: geoprivacy_type } }
+        when "obscured_private"
+          search_filters << { terms: { geoprivacy_type => Observation::GEOPRIVACIES } }
+        else
+          search_filters << { term: { geoprivacy_type => p[geoprivacy_type] } }
+        end
       end
     end
 

@@ -1,6 +1,10 @@
 import { connect } from "react-redux";
 import PaginationControl from "../components/pagination_control";
-import { updateSearchParams } from "../actions";
+import {
+  updateSearchParams,
+  reviewAll,
+  unreviewAll
+} from "../actions";
 
 function mapStateToProps( state ) {
   return {
@@ -8,7 +12,8 @@ function mapStateToProps( state ) {
     paginationVisible: state.searchParams.params.order_by !== "random",
     totalResults: state.observations.totalResults,
     current: state.searchParams.params.page,
-    perPage: state.searchParams.params.per_page
+    perPage: state.searchParams.params.per_page,
+    reviewing: state.observations.reviewing
   };
 }
 
@@ -18,7 +23,7 @@ function mapDispatchToProps( dispatch ) {
       window.scrollTo( 0, 0 ); // $.scrollTo didn't seem to work for some reason
       dispatch( updateSearchParams( { page: 1, force: ( new Date( ) ).getTime( ) } ) );
     },
-    loadPage: ( page ) => {
+    loadPage: page => {
       window.scrollTo( 0, 0 );
       dispatch( updateSearchParams( { page } ) );
     }
