@@ -6,13 +6,13 @@ import { objectToComparable } from "../../../shared/util";
 import FiltersButton from "./filters_button";
 import TaxonAutocomplete from "../../../shared/components/taxon_autocomplete";
 import PlaceAutocomplete from "./place_autocomplete";
+import MarkAllAsReviewedButtonContainer from "../containers/mark_all_as_reviewed_button_container";
 
 class SearchBar extends React.Component {
   shouldComponentUpdate( nextProps ) {
     const {
       params,
       defaultParams,
-      allReviewed,
       allControlledTerms
     } = this.props;
     if (
@@ -24,7 +24,6 @@ class SearchBar extends React.Component {
         objectToComparable( defaultParams ),
         objectToComparable( nextProps.defaultParams )
       )
-      && allReviewed === nextProps.allReviewed
       && allControlledTerms === nextProps.allControlledTerms
     ) {
       // No change in underlying data series, don't update
@@ -39,27 +38,13 @@ class SearchBar extends React.Component {
       defaultParams,
       updateSearchParams,
       replaceSearchParams,
-      reviewAll,
-      unreviewAll,
-      allReviewed,
       allControlledTerms,
       config
     } = this.props;
     return (
       <form className="SearchBar form-inline">
         <div className="pull-right">
-          <Button
-            bsStyle={allReviewed ? "primary" : "default"}
-            onClick={( ) => ( allReviewed ? unreviewAll( ) : reviewAll( ) )}
-          >
-            <i
-              className={`fa fa-eye${allReviewed ? "-slash" : ""}`}
-            />
-            { " " }
-            {
-              allReviewed ? I18n.t( "mark_all_as_unreviewed" ) : I18n.t( "mark_all_as_reviewed" )
-            }
-          </Button>
+          <MarkAllAsReviewedButtonContainer />
         </div>
         <span className="form-group">
           <TaxonAutocomplete
@@ -138,9 +123,6 @@ SearchBar.propTypes = {
   defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
   replaceSearchParams: PropTypes.func,
-  reviewAll: PropTypes.func,
-  unreviewAll: PropTypes.func,
-  allReviewed: PropTypes.bool,
   allControlledTerms: PropTypes.array,
   config: PropTypes.object
 };

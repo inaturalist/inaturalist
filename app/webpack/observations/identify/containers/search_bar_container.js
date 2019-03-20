@@ -13,7 +13,8 @@ function mapStateToProps( state ) {
     defaultParams: state.searchParams.default,
     allReviewed: state.config.allReviewed,
     allControlledTerms: state.controlledTerms.allTerms,
-    config: state.config
+    config: state.config,
+    reviewing: state.observations.reviewing
   };
 }
 
