@@ -133,8 +133,11 @@ module ActiveRecord
 
   class ActiveRecord::ConnectionAdapters::PostGISAdapter::MainAdapter
     def active_queries
-      User.connection.execute("SELECT * FROM pg_stat_activity
-        WHERE state = 'active' AND backend_type != 'parallel worker'
+      User.connection.execute("SELECT *
+        FROM pg_stat_activity
+        WHERE state = 'active'
+        AND backend_type != 'parallel worker'
+        AND backend_type != 'background worker'
         ORDER BY state_change ASC").to_a.delete_if{ |r| r["query"] =~ /SELECT \* FROM pg_stat_activity/ }
     end
   end
