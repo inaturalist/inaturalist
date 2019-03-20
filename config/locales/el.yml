@@ -4,6 +4,7 @@
 # Author: Fitoschido
 # Author: KATRINE1992
 # Author: KATRINE1993
+# Author: Kostas Zontanos
 # Author: Kostas20142
 # Author: Kueda
 # Author: Nikosgranturismogt
@@ -46,16 +47,17 @@ el:
     στο Flickr.
   about: Σχετικά
   about_bioblitz_results: Σχετικά με αποτελέσματα bioblitz
-  about_blocking: σχετικά με την φραγή
+  about_blocking: Σχετικά με την φραγή
   about_charts: Σχετικά με γραφήματα
-  about_community_taxa: Σχετικά με τις ταξινομίες της κοινότητας
+  about_community_taxa: Σχετικά με τα taxa της κοινότητας
   about_conservation_status: Σχετικά με τη κατάσταση διατήρησης
+  about_external_links: Σχετικά με τους Εξωτερικούς Συνδέσμους
   about_licenses: Σχετικά με άδειες
   about_licensing: Σχετικά με αδειοδότηση
   about_life!: Σχετικά με τη ζωή!
   about_muting: Σχετικά με τη σίγαση
   about_names: Σχετικά με τα ονόματα
-  about_places: Σχετικά με τα μέρη
+  about_places: Σχετικά με τις τοποθεσίες
   about_taxon_changes: Σχετικά με τις αλλαγές ταξινομίας
   about_the_cc_licenses: Σχετικά με τις άδειες Creative Commons
   about_the_taxobox_raquo: Σχετικά με το κουτί ταξινόμησης  &raquo;
@@ -64,7 +66,9 @@ el:
   about_this_project: Σχετικά με αυτό το εγχείρημα
   about_x: Σχετικά με το %{x}
   account: Λογαριασμός
+  account_settings: Ρυθμίσεις Λογαριασμού
   accept: Αποδοχή
+  accept_community_identifications: Αποδοχή αναγνωρίσεων από την κοινότητα
   accuracy: Ακρίβεια
   accuracy_m: Ακρίβεια (μ)
   accuracy_meters: Ακρίβεια (σε μέτρα)
@@ -76,26 +80,39 @@ el:
   activity: Δραστηριότητα
   activity_settings: Ρυθμίσεις δραστηριότητας
   add: Προσθήκη
+  add_a_batch_of_observations: Μαζική προσθήκη παρατηρήσεων
+  add_a_batch_of_observations_by_csv: Μαζική προσθήκη παρατηρήσεων από αρχείο CSV
+  add_a_batch_of_taxa: Μαζική προσθήκη taxa
   add_a_comment: Προσθήκη σχόλιου.
   add_a_field: Προσθήκη πεδίου
   add_a_flag: Πρόσθεστε μια αναφορά
   add_a_link_raquo: Προσθήκη συνδέσμου &raquo;
   add_a_name: Προσθήκη ονόματος
   add_a_new_change_group: Προσθήκη μιας νέας ομάδας αλλαγής
-  add_a_place_raquo: Προσθήκη ενός μέρους &raquo;
+  add_a_new_observation_to_id_please!: Παρακαλώ προσθέστε μια νέα παρατήρηση για αναγνώριση!
+  add_a_place_raquo: Προσθήκη ενός τόπου &raquo;
   add_a_single_observation: Προσθήκη απλής παρατήρησης.
+  add_a_taxon: Προσθήκη ενός taxon
   add_an_assessment: Προσθήκη αξιολόγησης
   add_an_identification: Προσθήκη ταυτοποίησης
   add_an_observation: Προσθήκη παρατήρησης
   add_an_observation?: Προσθήκη μιας παρατήρησης;
   add_an_observation_of: Προσθήκη παρατήρησης του  %{taxon}
+  add_annotations_for_x: Προσθήκη Ενδείξεων για "%{x}"
+  add_annotations_for_controlled_attribute:
+    sex: Προσθήκη Ενδείξεων για "Φύλο"
+    plant_phenology: Προσθήκη Ενδείξεων για "Φαινολογία Φυτού"
+    life_stage: Προσθήκη Ενδείξεων για "Στάδιο Βιολογικού Κύκλου"
   add_another: Προσθήκη κι άλλου
   add_another_flag: Προσθήκη κι άλλης αναφοράς
   add_another_photo: Προσθήκη κι άλλης φωτογραφίας
   add_another_section: Προσθήκη κι άλλου τμήματος
   add_another_subscription: Προσθήκη κι άλλης συνδρομής
+  add_batch: Μαζική Προσθήκη
   add_colors: Προσθήκη χρωμάτων
+  add_comma_separated_tags: Προσθέστε ετικέτες χωρισμένες με κόμμα
   add_comment: Προσθήκη σχόλιου
+  add_common_names_for: Προσθήκη Κοινών Ονομασιών για Υπάρχοντα Taxa
   add_conservation_status: Προσθήκη κατάστασης διατήρησης
   add_countries: Προσθήκη χωρών
   add_edit_flags: Προσθήκη/επεξεργασία σημαιών
@@ -107,33 +124,52 @@ el:
   add_link: Προσθήκη συνδέσμου
   add_id: Προσθήκη αναγνωριστικού
   add_it_to_place_raquo: Προσθέστε το σε ένα σημείο &raquo;
-  add_more_photos: Προσθήκη περισσότερων φωτογραφιώ
+  add_more_photos: Προσθήκη περισσότερων φωτογραφιών
   add_new_lexicon: Προσθήκη νέου λεξικού
   add_new_observations: Προσθήκη νέων παρατηρήσεων
   add_new_photos_by_their_ids: Προσθήκη νέων φωτογραφιών από τα αναγνωριστικά Flickr
     τους (πρέπει να είναι με την αδειοδότηση Creative Commons!)
-  add_new_place: Προσθήκη ενός νέου μέρους
+  add_new_place: Προσθήκη ενός νέου τόπου
   add_new_rule: Προσθήκη ενός νέου κανόνα
   add_new_source: Προσθήκη νέας πηγής...
-  add_new_taxon_name: Προσθήκη νέου ονόματος ταξονομίας
+  add_new_taxon_name: Προσθήκη ονομασίας νέου taxon
+  add_notes_about_this_taxon: Προσθήκη σημειώσεων για αυτό το taxon σε αυτήν την τοποθεσία,
+    πχ πού και πότε εμφανίζεται.
   add_obs_from_a_link: 'Προσθήκη παρατηρήσεων από την λίστα: %{link}'
   add_obs_from_a_list: Προσθήκη παρατηρήσεων από μια λίστα
-  add_observation: Προσθήκη παρατήρησης
+  add_observation: Προσθήκη Παρατήρησης
   add_observations!: Προσθήκη παρατηρήσεων!
   add_observations: Προσθήκη παρατηρήσεων
-  add_observations_from_list: Προσθήκη παρατηρήσεων από μια λίστα
+  add_observations_from_list: Προσθήκη Παρατηρήσεων από μια Λίστα
   add_observations_project: Προσθήκη παρατηρήσεων σε αυτό το εγχείρημα
-  add_one: Προσθήκη ενός!
+  add_one: Προσθέστε Ένα!
   add_one_now: Προσθήκη ενός τώρα
   add_photos: Προσθήκη φωτογραφιών
-  add_photos_to_this_observation: Προσθήκη φωτογραφιών σε αυτή τη παρατήρηση
-  add_place: Προσθήκη μέρους
+  add_photos_to_this_observation: Προσθήκη Φωτογραφιών σε αυτήν την Παρατήρηση
+  add_place: Προσθήκη Τόπου
+  add_plant_phenology_flowering_annotation: 'Προσθήκη ένδειξης "Φαινολογία Φυτού:
+    Ανθισμένο"'
+  add_life_stage_adult_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου: Ενήλικο"'
+  add_life_stage_subimago_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου:
+    υπενήλικο"'
+  add_life_stage_pupa_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου: Χρυσαλλίδα"'
+  add_life_stage_nymph_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου: Νύμφη"'
+  add_life_stage_larva_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου: Προνύμφη"'
+  add_life_stage_juvenile_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου:
+    Νεαρό"'
+  add_life_stage_egg_annotation: 'Προσθήκη ένδειξης "Στάδιο βιολογικού κύκλου: Αυγό"'
+  add_relationship: Προσθήκη σχέσης
   add_section: Προσθήκη τμήματος
   add_several_observations_at_once: Προσθήκη πολλαπλών παρατηρήσεων με τη μία.
+  add_sex_female_annotation: 'Προσθήκη ένδειξης "Φύλο: Θηλυκό"'
+  add_sex_male_annotation: 'Προσθήκη ένδειξης "Φύλο: Αρσενικό"'
   add_shape: Προσθήκη σχήματος
   add_some_now: Προσθήκη μερικών τώρα
-  add_tag: Πρόσθεση ετικέτας
-  add_tags: Προσθήκη ετικετών
+  add_tag: Πρόσθεση Eτικέτας
+  add_tags: Προσθήκη Eτικετών
+  add_tags_to_selected_taxa: Προσθήκη Ετικετών σε Επιλεγμένα Taxa
+  add_taxa: Προσθήκη Taxa
+  add_taxa_to_places: Προσθήκη Taxa σε Τόπους
   add_to_a_scheme: Πρόσθεση σε ένα σχήμα
   add_to_a_project: Πρόσθεση σε ένα εγχείρημα
   add_to_calendar: Πρόσθεση σε ημερολόγιο
@@ -145,7 +181,7 @@ el:
   add_to_your_life_list: Προσθήκη στην λίστα ζωής σας!
   add_to_your_list: Προσθήκη στον κατάλογό σας
   add_your_own_observations_at: Προσθέστε τις δικές παρατηρήσεις στο %{site_name}
-  add_your_photo: Προσθέστε την φωτογραφία σας
+  add_your_photo: Προσθέστε τη Φωτογραφία σας
   add_your_photo_to: Προσθήκη της φωτογραφίας σας στο %{project}
   added: Προστέθηκε
   added!: Προστέθηκε!
@@ -183,6 +219,28 @@ el:
   all_places: Όλα τα μέρη
   all_projects: Όλα τα εγχειρήματα
   all_children_added_to_the_database: Όλα τα παιδιά προστέθηκαν στην βάση δεδομένων
+  all_rank_added_to_the_database:
+    phylum: Όλες οι συνομοταξίες προστέθηκαν στη βάση δεδομένων
+    subphylum: Όλες οι υποσυνομοταξίες προστέθηκαν στη βάση δεδομένων
+    superclass: Όλες οι υπερομοταξίες προστέθηκαν στη βάση δεδομένων
+    class: Όλες οι ομοταξίες προστέθηκαν στη βάση δεδομένων
+    subclass: Όλες οι υφομοταξίες προστέθηκαν στη βάση δεδομένων
+    infraclass: Όλες οι ανθυφομοταξίες προστέθηκαν στη βάση δεδομένων
+    superorder: Όλες οι υπερτάξεις προστέθηκαν στη βάση δεδομένων
+    order: Όλες οι τάξεις προστέθηκαν στη βάση δεδομένων
+    suborder: Όλες οι υποτάξεις προστέθηκαν στη βάση δεδομένων
+    infraorder: Όλες οι ανθυποτάξεις προστέθηκαν στη βάση δεδομένων
+    superfamily: Όλες οι υπεροικογένειες προστέθηκαν στη βάση δεδομένων
+    family: Όλες οι οικογένειες προστέθηκαν στη βάση δεδομένων
+    subfamily: Όλες οι υποοικογένειες προστέθηκαν στη βάση δεδομένων
+    supertribe: Όλες οι υπερφυλές προστέθηκαν στη βάση δεδομένων
+    tribe: Όλες οι φυλές προστέθηκαν στη βάση δεδομένων
+    subtribe: Όλες οι υποφυλές προστέθηκαν στη βάση δεδομένων
+    subgenus: Όλα τα υπογένη προστέθηκαν στη βάση δεδομένων
+    species: Όλα τα είδη προστέθηκαν στη βάση δεδομένων
+    subspecies: Όλα τα υποείδη προστέθηκαν στη βάση δεδομένων
+    variety: Όλες οι ποικιλίες προστέθηκαν στη βάση δεδομένων
+    form: Όλες οι μορφές προστέθηκαν στη βάση δεδομένων
   all_rights_reserved: όλα τα δικαιώματα διατηρούνται
   all_species: Όλα τα είδη
   all_taxa:
@@ -207,6 +265,9 @@ el:
     protozoans: Πρωτόζωα
     reptiles: Ερπετά
     life: Ζωή
+  all_taxa_: Όλα τα taxa
+  all_taxa_in_this_guide: Όλα τα taxa σε αυτόν τον οδηγό
+  all_taxonomic_groups: '&laquo;Όλες οι Ταξινομικές Ομάδες'
   all_updates: Όλες οι ενημερώσεις
   all_your_projects: Όλα τα εγχειρήματά σας
   allow_any: Επιτρέψτε οτιδήποτε
@@ -222,6 +283,7 @@ el:
   and_help_the_inaturalist_community_grow: και βοηθήστε την κοινότητα %{site_name}
     να αυξηθεί.
   and_make_some_new: και φτιάξτε μερικά καινούρια
+  and_other_taxa: '&amp; Άλλα Taxa'
   and_un_license_all_your_observations: και ξε-αδειοδοτήστε όλες τις παρατηρήσεις
     σας
   and_x_more_people!:
@@ -229,6 +291,8 @@ el:
     other: και %{count} ακόμα άτομα!
   android: Ανδροειδές
   animals: Ζώα
+  annotation: Ένδειξη
+  annotations: Ενδείξεις
   announcements: Ανακοινώσεις
   any: Οτιδήποτε
   any_: Οποιοδήποτε
@@ -302,15 +366,25 @@ el:
   back_to_x_assessment: Επιστροφή στις εκτιμήσεις του %{project}
   back_to_x_history: Επιστροφή στο ιστορικό %{x}
   back_to_x_blog: Επιστροφή στο ιστολόγιο του %{x}
+  back_to_your_dashboard: Επιστροφή στον πίνακα πλοήγησής σας
   back_to_x_observations: Επιστροφή στις παρατηρήσεις του %{user}
   back_to_your_lists: Επιστροφή στους καταλόγους σας
   back_to_your_journal: Επιστροφή στο ημερολόγιό σας
   back_to_your_observations: Επιστροφή στις παρατηρήσεις σας
   back_to_your_profile: Επιστροφή στο προφίλ σας
   back_to_your_projects: Επιστροφή στα εγχειρήματα σας
+  based_on_the_evidence_can_id_be_improved: Βάσει των στοιχείων, μπορεί η αναγνώριση
+    από την κοινότητα να επιβεβαιωθεί ή  να βελτιωθεί περαιτέρω;
   basic: Βασικό
+  batch_edit: Μαζική επεξεργασία
+  batch_edit_taxa_for_x_html: Μαζική επεξεργασία των taxa για %{x}
+  batch_operations: Μαζικές Ενέργειες
+  be_the_first_to_fave_this_observation: Ας είστε ο πρώτος που θα επιδοκιμάσει αυτήν
+    την παρατήρηση!
+  beacuse_we_recently_changed_auth_system: Επειδή αλλάξαμε πρόσφατα το σύστημα επαλήθευσης
+    ταυτότητας χρηστών, είναι απαραίτητο να επαναπροσδιορίσετε τον κωδικό σας.
   because: επειδή
-  because_of: επειδή του
+  because_of: εξαιτίας του
   before_importing_photos: πριν την εισαγωγή φωτογραφιών
   before_you_can_contribute_your_observations: πριν μπορέσετε να συνεισφέρετε τις
     παρατηρήσεις σας.
@@ -333,7 +407,7 @@ el:
   brown: καφέ
   browse: Πλοήγηση
   browse_all_projects: Περιήγηση όλων των εγχειρημάτων
-  browse_all_species: Περιήγηση σε όλα τα είδη
+  browse_all_species: Περιήγηση σε Όλα τα Είδη
   browse_observations: Περιήγηση στις παρατηρήσεις
   browse_people: Περιήγηση σε άτομα
   browse_projects: Περιήγηση εγχειρημάτων
@@ -342,6 +416,7 @@ el:
   browse_your_observations: Περιήγηση στις παρατηρήσεις σας
   built_with_site_guides_html: Κατασκευάστηκε με τους <a href='%{url}'>%{site_name}
     Οδηγούς</a>
+  bulk_import_of_filename_is_complete: Η μαζική εισαγωγή του %{filename} ολοκληρώθηκε
   by: από
   by_adding_ids_to_observations: από την προσθήκη αναγνωριστικών στις παρατηρήσεις
   by_everyone: από όλους
@@ -354,24 +429,32 @@ el:
   cancel: Ακύρωση
   cant_flag_an_object_that_doesnt_exist: Δεν μπορεί να αναφερθεί ένα αντικείμενο που
     δεν υπάρχει
+  cant_merge_a_taxon_with_itself: Δεν μπορεί να συγχωνευθεί ένα taxon με τον εαυτό
+    του.
   captive: Σε αιχμαλωσία
+  captive_cultivated: Σε αιχμαλωσία / Καλλιεργούμενο
   card: Κάρτα
   case_plural: δ
-  casual: ανέμελος
-  casual_: Ανέμελος
+  casual: περιστασιακή
+  casual_: Περιστασιακή
   catalogue_of_life: Κατάλογος της ζωής
   categories: Κατηγορίες
   cc_0_name: Χωρίς πνευματικά δικαιώματα (CC0)
   cc_attribution_license: Άδεια απόδοσης Creative Commons
-  cc_by_name: Απόδοση
-  cc_by_nc_name: Απόδοση-Μη εμπορική
-  cc_by_sa_name: Attribution-ShareAlike
+  cc_by_name: Αναφορά δημιουργού
+  cc_by_nc_name: Αναφορά δημιουργού-Μη εμπορική χρήση
+  cc_by_nc_nd_name: Αναφορά δημιουργού-Μη Εμπορική χρήση-Όχι παράγωγα έργα
+  cc_by_nc_sa_name: Αναφορά δημιουργού-Μη εμπορική χρήση-Παρόμοια διανομή
+  cc_by_nd_name: Αναφορά δημιουργού-Όχι παράγωγα έργα
+  cc_by_sa_name: Αναφορά δημιουργού-Παρόμοια διανομή
   cc_used_under_a: Creative Commons, χρησιμοποιούμενη κάτω από μια
   change: Αλλαγή
   change_admin: Αλλαγή διαχειριστή
   change_cover: Αλλαγή εξώφυλλου
   change_descriptions:
-    swap: Αλλαγή ονόματος 1-σε-1
+    split: Το παλιό taxon διαχωρίστηκε σε πολλαπλά νέα taxa
+    merge: Αρκετά παλιά taxa συγχωνεύθηκαν σε ένα νέο taxon
+    swap: 1-προς-1 αλλαγή ονομασίας
   change_geoprivacy: Αλλαγή γεωαπορρήτου
   change_group: Αλλαγή ομάδας
   change_icon: Αλλαγή εικόνας
@@ -386,23 +469,27 @@ el:
     split_into: διάσπαση σε
     merge_into: συγχώνευση σε
     merged_into: συγχωνεύτηκε με
-    replaced_by: αντικατάσταση από
-    replace_with: αντικατάσταση με
+    replaced_by: αντικαταστάθηκε από
+    replace_with: αντικατάστησε με
+    replaced_with: αντικαταστάθηκε με
     input_taxon_was_split_into_output_taxa_html: το %{input_taxon} διασπάστηκε στο
       %{output_taxa}
     input_taxon_will_be_split_into_output_taxa_html: το %{input_taxon} θα διασπαστεί
       στο %{output_taxa}
     input_taxon_will_be_activated_soon_html: το %{input_taxon} θα ενεργοποιηθεί σύντομα
-    input_taxon_was_replaced_by_output_taxon_html: το %{input_taxon} θα αντικατασταθεί
+    input_taxon_was_replaced_by_output_taxon_html: το %{input_taxon} αντικαταστάθηκε
       από το %{output_taxon}
     input_taxon_will_be_replaced_by_output_taxon_html: το %{input_taxon} θα αντικατασταθεί
       από το %{output_taxon}
-    input_taxa_were_merged_into_output_taxon_html: το %{input_taxa} συγχωνεύτηκε στο
-      %{output_taxon}
-    input_taxa_will_be_merged_into_output_taxon_html: το %{input_taxa} θα συγχωνευθεί
+    input_taxa_were_merged_into_output_taxon_html: τα %{input_taxa} συγχωνεύτηκαν
+      στο %{output_taxon}
+    input_taxa_will_be_merged_into_output_taxon_html: τα %{input_taxa} θα συγχωνευθούν
       στο %{output_taxon}
   change_your_matching: Αλλαγή της αντιστοιχίας σας
   change_your_password: Αλλαγή του κωδικού πρόσβασης σας
+  changing_the_geoprivacy: Η αλλαγή του γεωαπορρήτου επηρεάζει το πως βλέπουν οι άλλοι
+    την τοποθεσία της παρατήρησής σας.
+  check_above_for_errors: Ελέγξτε παραπάνω για λάθη
   check_back_soon: Ελέγξτε πάλι σύντομα!
   check_it_out: Κοιτάξτε το
   check_list: Λίστα ελέγχου
@@ -414,20 +501,29 @@ el:
   choose_a_field: Επιλέξτε ένα πεδίο
   choose_a_list_above: Επιλέξτε μια λίστα παραπάνω.
   choose_a_place: Επιλογή μέρους
+  choose_a_taxon: Επιλογή ενός taxon (προαιρετικό)
   choose_columns: Επιλογή στηλών
   choose_file: Επιλογή αρχείου
   choose_files: Επιλογή αρχείων
   choose_files_from_your_computer: Επιλογή αρχείων από τον υπολογιστή σας
   choose_from_your_lists: Επιλογή από τις λίστες σας
   choose_photos: Επιλογή φωτογραφιών
-  choose_place: Επιλογή μέρους
+  choose_photos_for_this_taxon: Επιλογή φωτογραφιών για αυτό το taxon
+  choose_place: Επιλογή ενός τόπου
   choose_rule: Επιλογή κανόνα
+  choose_subjects: Επιλογή θεμάτων
   choose_tags: Επιλογή ετικετών
+  choose_taxon: Επιλογή taxon
   choose_your_username: Επιλογή του ονόματος χρήστη σας
+  classification: Ταξινόμηση
   clear: Εκκαθάριση
   clear_color_filters: Εκκαθάριση φίλτρων χρωμάτων
   clear_filters: Εκκαθάριση φίλτρων
   clear_search: Εκκαθάριση αναζήτησης
+  click_on_the_map_to: Κάντε κλικ στον χάρτη για να τοποθετήσετε την παρατήρησή σας
+  click_the_map: <strong>Κλικ στον χάρτη</strong> για προσθήκη τοποθεσίας.
+  click_the_map_to_jump_new_place: Κλικ στον χάρτη για να μεταπηδήσετε σε μια νέα
+    τοποθεσία
   close: Κλείσιμο
   code: Κωδικός
   colors: Χρώματα
@@ -441,6 +537,7 @@ el:
   comment_deleted: το σχόλιο διεγράφη
   commented: σχολιασμένο
   comments: Σχόλια
+  comments_and_identifications: Σχόλια & Αναγνωρίσεις
   comments_by_everyone: Σχόλια από τον καθένα
   comments_by_me: Σχόλια από εμένα
   comments_on: Σχόλια σε
@@ -458,8 +555,10 @@ el:
   confirm_now: Επιβεβαίωση τώρα
   confirm_your_info: Επιβεβαίωση των πληροφοριών σας
   confirmed: Επιβεβαιωμένο
+  connect_to_provider: Σύνδεση με %{provider}
   connected_accounts: Συνδεδεμένοι λογαριασμοί
   connecting_flickr: Σύνδεση με το Flickr...
+  connecting_to_facebook: Σύνδεση στο Facebook...
   conservation_status: Κατάσταση διατήρησης
   contest: Διαγωνισμός
   continue: Συνέχεια
@@ -469,11 +568,19 @@ el:
   contributors_to_project: Συνεισφέροντες στο %{project}
   controlled_term_labels:
     sex: Φύλο
-    male: Άνδρας
-    female: Γυναίκα
-    life_stage: Στάδιο ζωής
-    adult: Ενήλικας
+    male: Αρσενικό
+    female: Θηλυκό
+    plant_phenology: Φαινολογία Φυτού
+    flowering: Ανθοφορία
+    fruiting: Καρποφορία
+    life_stage: Στάδιο βιολογικού κύκλου
+    adult: Ενήλικο
+    subimago: Υπενήλικο
+    pupa: Χρυσαλλίδα
+    nymph: Νύμφη
+    larva: Προνύμφη
     egg: Αυγό
+    juvenile: Νεαρό
   controls: Έλεγχοι
   convert: Μετατροπή
   coordinate_systems: Συστήματα συντεταγμένων
@@ -496,24 +603,36 @@ el:
     copyright: Πνευματικά δικαιώματα
     no_copyright: Χωρίς πνευματικά δικαιώματα (CC0)
     gnu_free_documentation_license: Ελεύθερη Άδεια GNU
-  copyright_holder: Ιδιοκτήτης των πνευματικών δικαιωμάτων
+  copyright_holder: Κάτοχος πνευματικών δικαιωμάτων
   copyright_info: Πληροφορίες πνευματικών δικαιωμάτων
+  copyright_info_and_more: Πληροφορίες πνευματικών δικαιωμάτων και περισσότερα
+  copyright_infringement_desc: Παραβιάζει τον νόμο περί πνευματικών δικαιωμάτων ή
+    δημιουργός είναι κάποιος άλλος και όχι ο παρατηρητής και στερείται αναφοράς στον
+    δημιουργό
   covered_by_a_taxon_framework_html: Καλύφθηκε από %{link}
   countries: Χώρες
+  country_stats: Στατιστικά χωρών για παρατηρήσεις που δημιουργήθηκαν
   create: Δημιουργία
   create_a_guide: Δημιουργία οδηγού
   create_a_list: Δημιουργία λίστας
   create_a_new_field: Δημιουργία νέου πεδίου
-  create_a_new_place: Δημιουργία νέου σημείου
+  create_a_new_place: Δημιουργία νέας τοποθεσίας
+  create_a_new_taxon: Δημιουργία νέου taxon
+  create_a_query: Δημιουργία ερωτήματος
   create_an_account: Δημιουργία λογαριασμού
   create_an_atlas: Δημιουργία άτλαντος
+  create_new_taxon: Δημιουργία Νέου Taxon
   create_observations: Δημιουργία παρατηρήσεων
   created: Δημιουργήθηκε
   created_by: Δημιουργήθηκε από
+  created_by_user_on_date: Δημιουργήθηκε από %{user} την %{date}
   created_on: Δημιουργήθηκε την
-  critically_endangered: κρίσιμα απειλούμενο
+  creating_your_account: Δημιουργείται ο λογαριασμός σας...
+  critically_endangered: Κρισίμως Κινδυνεύον
   csv: CSV
   csv_file: Αρχείο CSV
+  current_password: Τρέχων κωδικός πρόσβασης
+  dashboard: Αρχικό πάνελ
   data_quality: Ποιότητα δεδομένων
   datatype: Τύπος δεδομένων
   date_: Ημερομηνία
@@ -558,8 +677,10 @@ el:
     nextText: Επόμενο
     range: Εύρος
   date_range: Εύρος ημερομηνίας
+  date_specified: Ημερομηνία έχει προσδιοριστεί
   date_time: Ημερομηνία/Ώρα
-  dates: Ημερομηνίες
+  date_updated: Η Ημερομηνία ενημερώθηκε
+  dates: ημερομηνίες
   datetime_: Ημερομηνία/Ώρα
   day: Ημέρα
   default: προεπιλογή
@@ -573,7 +694,7 @@ el:
   delete: Διαγραφή
   delete_all: Διαγραφή Όλων
   delete_conversation: Διαγραφή συνομιλίας
-  delete_icon?: διαγραφή εικόνας;
+  delete_icon?: Διαγραφή εικόνας;
   delete_photo: Διαγραφή φωτογραφίας
   delete_project: Διαγραφή του εγχειρήματος
   delete_selected: Διαγραφή επιλεγμένων
@@ -584,10 +705,11 @@ el:
   deleted_user: Διαγεγραμμένος χρήστης
   deleted_vote: Διαγεγραμμένη ψήφος
   deleting: Διαγραφή σε εξέλιξη...
+  deleting_verb: Διαγράφεται
   desc: φθιν
   descending: Φθίνουσα
   describe_purpose: Περιγράψτε το σκοπό του εγχειρήματος.
-  describe_your_interest_in_nature: Περιγράψτε το ενδιαφέρον σας στη φύση!
+  describe_your_interest_in_nature: Περιγράψτε το ενδιαφέρον σας για τη φύση!
   description: Περιγραφή
   description_from: Περιγραφή από
   description_sections: Τμήματα περιγραφής
@@ -604,6 +726,7 @@ el:
   device: Συσκευή
   discoveries: Ανακαλύψεις
   did_you_mean: Μήπως εννοείτε
+  disable: Απενεργοποίηση
   disagree: Διαφωνώ
   disagree_: Διαφωνώ
   disconnect_provider: Αποσύνδεση %{provider}
@@ -611,9 +734,12 @@ el:
   do_not_show_this_message_again: Να μην εμφανιστεί ξανά αυτό το μήνυμα
   do_you_know_where_this_species_lives: Μήπως ξέρετε που ζει αυτό το είδος;
   do_you_want_to_proceed: Θέλετε να συνεχίσετε;
-  doesnt_have_default_photo: δεν έχει ακόμα μια προεπιλεγμένη εικόνα.
+  does_the_location_seem_accurate: Η τοποθεσία φαίνεται ακριβής;
+  does_the_date_seem_accurate: Η ημερομηνία φαίνεται ακριβής;
+  doesnt_have_default_photo: δεν έχει ακόμα μια προεπιλεγμένη φωτογραφία.
   done: Έγινε
   dont_filter: Μη φιλτράρεις
+  dont_have_an_account_sign_up_html: Δεν έχετε λογαριασμό; <strong>Εγγραφή.</strong>
   dont_send_me_email: Μη μου στείλεις κανένα email!
   double_click_to_finish: (διπλό κλικ για ολοκλήρωση)
   download: Λήψη
@@ -628,6 +754,7 @@ el:
   drawings: Ζωγραφιές
   duplicate_verb: Διπλότυπο
   edit: Επεξεργασία
+  edit_a_batch_of_observations: Μαζική Επεξεργασία Παρατηρήσεων
   edit_comment: Επεξεργασία του σχολίου σας
   edit_field: Επεξεργασία πεδίου
   edit_license: Επεξεργασία άδειας
@@ -635,19 +762,26 @@ el:
   edit_multiple_descriptions: Επεξεργασία πολλαπλών περιγραφών
   edit_multiple_locations: Επεξεργασία πολλαπλών τοποθεσιών
   edit_multiple_species: Επεξεργασία πολλαπλών ειδών
+  edit_notes: Επεξεργασία Σημειώσεων
+  edit_observation: Επεξεργασία Παρατήρησης
   edit_observations: Επεξεργασία παρατηρήσεων
   edit_photos: Επεξεργασία φωτογραφιών
   edit_photos_for_observation_id: Επεξεργασία φωτογραφιών για την παρατήρηση %{obs_id}
-  edit_place: Επεξεργασία μέρους
+  edit_place: Επεξεργασία Τοποθεσίας
   edit_project: Επεξεργασία εγχειρήματος
   edit_range_raquo: Επεξεργασία εύρους &raquo;
   edit_remove: Επεξεργασία/Αφαίρεση
   edit_selected: Επεξεργασία επιλεγμένων
   edit_source: Επεξεργασία κώδικα
+  edit_taxa: Επεξεργασία Taxa
+  edit_taxon: Επεξεργασία Taxon
+  edit_taxon_change: Επεξεργασία αλλαγής Taxon
+  edit_the_observation: Επεξεργασία της παρατήρησης
   edit_this_link: Επεξεργασία αυτού του συνδέσμου
   edit_your_account: Επεξεργασίου του λογαριασμού σας
   edit_your_account_and_profile_html: Επεξεργασία του λογαριασμού και προφίλ σας
-  edit_your_default_settings: Επεξεργασία των προεπιλεγμένων επιλογών σας
+  edit_your_default_settings: Επεξεργασία των προεπιλεγμένων ρυθμίσεών σας
+  edit_your_identification: Επεξεργασία της Αναγνώρισής σας
   edit_your_profile: Επεξεργασία του προφίλ σας
   edit_your_settings_for_this_project: Επεξεργασία των ρυθμίσεων σας για αυτό το εγχείρημα
   edited: Επεξεργασμένο
@@ -662,14 +796,17 @@ el:
   enlarge: Μεγέθυνση
   end: Τέλος
   end_date_time: Ημερομηνία λήξης / ώρα
-  endangered: απειλούμενο
+  endangered: Κινδυνεύον
   endemic: ενδημικό
   endemic_to_x: Ενδημικό στο %{x}
   eol: EOL
   error_updating_photo: 'Σφάλμα στην ενημέρωση της φωτογραφίας: %{photo_errors}'
   establishment:
-    endemic: ενδημικό
-    introduced: εισηγμένο
+    endemic: Ενδημικό
+    introduced: Εισηγμένο
+    invasive: Χωροκατακτητικό
+    native: Αυτόχθον
+    naturalised: Εγκλιματισμένο
   event_stats: Στατιστικά γεγονότος
   event_url: Διεύθυνση URL του γεγονότος
   events_only: Γεγονότα μόνο
@@ -677,19 +814,23 @@ el:
   everyone_: ο καθένας
   everywhere: παντού
   exact: Ακριβές
+  exact_coordinates_obscured_for: Για τα απειλούμενα είδη οι ακριβείς συντεταγμένες
+    αποκρύπτονται από τη δημόσια θέα.
   exact_date: Ακριβής ημερομηνία
   exact_location: Ακριβής τοποθεσία
-  exact_rank: Ακριβής θέση
+  exact_rank: Ακριβής κατάταξη
+  exclude_x: Εξαίρεση %{x}
+  exclusion_filters: Φίλτρα Εξαίρεσης
   existing_flags: Υπάρχουσες αναφορές
   exit_full_screen: Έξοδος από πλήρη οθόνη
-  expand_days: επέκταση ημερών
-  expand_updates: επέκταση ενημερώσεων
+  expand_days: Επέκταση ημερών
+  expand_updates: Επέκταση ενημερώσεων
   explore!: Εξερευνήστε!
   explore: Εξερεύνηση
-  explore_everyones_observations: Εξερευνήστε τις εξερευνήσεις του καθένα
+  explore_everyones_observations: Εξερευνήστε τις παρατηρήσεις του καθένα
   export: Εξαγωγή
-  export_observations: Εξαγωγή παρατηρήσεων
-  export_with_private_coordinates: Εξαγωγή ιδιωτικών συντεταγμένων
+  export_observations: Εξαγωγή Παρατηρήσεων
+  export_with_private_coordinates: Εξαγωγή με απόκρυψη γεωγραφικών συντεταγμένων
   exporting: Εξαγωγή...
   external_links: Εξωτερικοί σύνδεσμοι
   extinct: εξαφανισμένο
@@ -700,13 +841,18 @@ el:
   evidence_of_organism?: Αποδείξεις του οργανισμού;
   facebook: Facebook
   facebook_account_information: Πληροφορίες του λογαριασμού σας στο Facebook
+  facebook_confirmation: Το Facebook επιθυμεί να επιβεβαιώσει πως θέλετε ο λογαριασμός
+    να συνδεθεί με το %{site_name}.
   facebook_options: Επιλογές Facebook
   facts_and_stats: Γεγονότα και στατιστικά
   failed_to_find_your_location: Η εύρεση της τοποθεσίας σας απέτυχε.
   failed_to_repair_photo: 'Η επισκευή της φωτογραφίας απέτυχε: %{errors}'
+  failed_to_save_record: Η αποθήκευση της εγγραφής απέτυχε. Παρακαλώ προσπαθήστε πάλι
+    αργότερα.
   "false": Ψευδές
   faq: Συχνές ερωτήσεις
   Family: Οικογένεια
+  favorite_taxa: Αγαπημένα Taxa
   favorites: Αγαπημένα
   fblocale: en_US
   feature_this_project_: Παρουσιάστε Αυτό το Πρότζεκτ
@@ -714,15 +860,21 @@ el:
   feeds: Ροές
   failed: Απέτυχε
   field_guides: Οδηγοί πεδίων
+  field_note: <strong>Σημείωση:</strong> Εάν επιθυμείτε να δημιουργήσετε ένα πεδίο,
+    ελέγξτε για να δείτε αν κάποιος άλλος το έχει ήδη δημιουργήσει για να αποφεύγονται
+    τα διπλά πεδία.
   fields: πεδία
   fields_: Πεδία
+  fields_can_only_be_edited_by_the_people_who: Τα πεδία μπορούν να αναθεωρηθούν μόνον
+    από τους δημιουργούς τους και από τους επιμελητές του ιστοτόπου
   fields_merged: Τα πεδία συγχωνεύτηκαν
   file: Αρχείο
   fill_out_your_profile: ολοκλήρωση του προφίλ σας
   filter: Φιλτράρισμα
   filter_by_curator_identification: Φίλτρο από το Χειριστή Ταυτοποίησης
-  filter_by_place: Φιλτράρισμα ανά μέρος
-  filtering: Διήθηση
+  filter_by_place: Φιλτράρισμα ανά τοποθεσία
+  filter_by_taxon: Φιλτράρισμα με Taxon
+  filtering: Φιλτράρισμα
   filters: Φίλτρα
   find: Εύρεση
   find_a_guide: Εύρεση οδηγού
@@ -781,9 +933,15 @@ el:
   from_your_site_observations: Από %{site_name} παρατηρήσεις
   from_licensed_site_observations: Από αδειοδοτημένες %{site_name} παρατηρήσεις
   full_screen: Πλήρης οθόνη
-  geo: Γεωγραικό
+  geo: Γεωγραφικό
   general: Γενικά
+  generate_your_stats: Παραγωγή των στατιστικών σας
+  generating: Παραγωγή...
+  Genus: Γένος
+  genus_slash_species: '[ΓΕΝΟΣ] / [ΕΙΔΟΣ]'
   geoprivacy: Γεωαπόρρητο
+  geoprivacy_is_obscured_desc: Ο παρατηρητής έχει επιλέξει να αποκρύψει τις γεωγραφικές
+    συντεταγμένες.
   get_current_position: Λάβετε την τρέχουσα θέση
   get_started_raquo: Ξεκινήστε &raquo;
   get_started: Ξεκινήστε
@@ -798,7 +956,7 @@ el:
   got_your_data_somewhere_else?: Πήρατε τα δεδομένα σας κάπου αλλού; Μπορούμε να βοηθήσουμε.
   gray: Γκρι
   green: πράσινο
-  grey: Γκρι
+  grey: γκρι
   group: Ομάδα
   grouping: Ομαδοποίηση
   guides: Οδηγοί
@@ -808,14 +966,16 @@ el:
   guide_was_successfully_created: Ο οδηγός δημιουργήθηκε επιτυχώς.
   guide_was_successfully_published: Ο οδηγός δημοσιεύθηκε επιτυχώς.
   guide_was_successfully_updated: Ο οδηγός ενημερώθηκε επιτυχώς.
+  guidelines: Οδηγίες
   has_already_been_flagged_by: έχει ήδη αναφερθεί από τον
   has_been: έχει
-  has_photo: έχει φωτογραφία
-  has_photos: έχει φωτογραφίες
+  has_id_supported_by_two_or_more: Έχει αναγνωριστεί από δύο ή περισσότερους
+  has_photo: Έχει Φωτογραφία
+  has_photos: Έχει Φωτογραφίες
   has_photo_and_sound: Έχει φωτογραφία και ήχο
-  has_photos_or_sounds: έχει φωτογραφίες ή ήχους
-  has_sound: Έχει ήχο
-  has_sounds: έχει ήχους
+  has_photos_or_sounds: Έχει Φωτογραφίες ή Ήχους
+  has_sound: Έχει Ήχο
+  has_sounds: Έχει Ήχους
   hasnt_contributed_any_observations: δεν έχει συνεισφέρει παρατηρήσεις στο εγχείρημα.
   help: Βοήθεια
   help_confirm_observations!: Βοήθεια για την επιβεβαίωση παρατηρήσεων!
@@ -834,21 +994,42 @@ el:
   however_there_were_some_issues: 'Ωστόσο, υπάρχουν μερικά ζητήματα: %{issues}'
   hybrid: υβριδικό
   i_agree_to_the_project_terms: Συμφωνώ με τους όρους του εγχειρήματος
+  i_dont_know_but_i_am_sure_this_is_taxon: Δεν γνωρίζω όμως είμαι βέβαιος πως είναι
+    %{taxon}
   icon: Εικονίδιο
   icon_size: Μέγεθος εικονιδίου
   icon_slash_photo: Εικονίδιο / Φωτογραφία
+  iconic_taxon: Εικονικό taxon
   id: Αναγνωριστικό
   id_: Αναγνωριστικό
   id_please!: Αναγνωριστικό παρακαλώ!
   id_please: Αναγνωριστικό παρακαλώ
   id_please_expandable_html: Αναγνωριστικό<span class='full'> Παρακαλώ</span>!
   id_withdrawn: Το αναγνωριστικό αποσύρθηκε
-  ids_by_taxon: IDs
+  ids_by_taxon: IDs ανά Taxon
+  identify: Αναγνωρίστε
+  identify_observations: Αναγνωρίστε Παρατηρήσεις
+  identify_observations_by_these_users: Αναγνωρίστε Παρατηρήσεις Αυτών των Χρηστών
+  identify_title: Αναγνωρίστε
+  identification: Αναγνώριση
+  identification_by_user: Αναγνώριση από %{user}
+  identification_deleted: Η αναγνώριση διαγράφηκε.
+  identification_saved: Η Αναγνώριση αποθηκεύτηκε!
+  identification_updated: Η Αναγνώριση ενημερώθηκε!
+  identification_withdrawn: Η αναγνώριση αποσύρθηκε.
+  identifications: Αναγνωρίσεις
+  identifications_by: Αναγνωρίσεις από %{user}
+  identified?: αναγνωρίστηκε
   if_for_some_reason_a_user_doesnt_agree: Si por una razon no es d'acuerdo con los
     impuestos de la comunidad, puede reecharlo, y esto sinifica que su ID ha sido
     utilizado para conectarse a otras observaciones, actualizando las listas durables,
     etc. Sinifica tambien que tu observacion puede solamente ser un grado de busqueda
     quando la comunidad sera d'acuerdo con Ustedes.
+  if_this_is_a_scientific_name: Εάν πρόκειται για επιστημονική ονομασία, είναι σήμερα
+    αποδεκτή;
+  if_you_already_have_an_account: Εάν ήδη έχετε %{article} %{site_name} λογαριασμό...
+  if_you_dont_want_us_to_share_your_data: Αν δεν θέλετε να διαμοιραζόμαστε τα δεδομένα
+    σας
   ignore: Αγνόηση
   ignore_and_continue: Αγνόηση και συνέχεια
   import: Εισαγωγή
@@ -870,18 +1051,24 @@ el:
   in_n: σε %{n}
   inbox: εισερχόμενα
   including: συμπεριλαμβανομένων
-  in_progress: Σε εξέλιξη
+  in_order_to_login_and_using_site_visit_url: 'Για να συνδεθείτε και να αρχίσετε να
+    χρησιμοποιείτε τον ιστότοπο πρέπει να επισκεφθείτε αυτό το url για να ενεργοποιήσετε
+    τον λογαριασμό σας:'
+  in_progress: σε εξέλιξη
   in_the_past: στο παρελθόν
   in_the_past_week: τη τελευταία εβδομάδα
   inactive: Ανενεργό
+  inactive_taxon: Ανενεργό Taxon
   inappropriate: Ακατάλληλο;
   inappropriate_content: Ακατάλληλο περιεχόμενο;
+  inat_user_profile: '%{site_name}: Προφίλ του/της %{user}'
   info: Πληροφορίες
   insects: Έντομα
   insect_life_stage: Στάδιο ζωής εντόμου
   interactions: Διαδράσεις
-  introduced: εισηγμένο
+  introduced: Εισαχθέν
   introduced_in_place: Εισήχθη στο %{place}
+  invasive: Χωροκατακτητικό
   invitation: Πρόσκληση
   invitations: Προσκλήσεις
   invite: πρόσκληση
@@ -895,6 +1082,9 @@ el:
   iphone: iPhone
   is_not_following_anyone: δεν ακολουθεί κάποιον.
   is_now: τώρα είναι
+  is_the_evidence_provided_enough_to_confirm_this_is_taxon: Τα παρεχόμενα στοιχεία
+    είναι επαρκή για να επιβεβαιωθεί πως αυτό είναι %{taxon};
+  is_the_organism_wild: Είναι ο οργανισμός άγριος/εγκλιματισμένος;
   is_this_place_a_duplicate: Αυτό το μέρος είναι διπλότυπο;
   it: αυτό
   it_can_now_be_used_for_research: Τώρα μπορεί να χρησιμοποιηθεί για έρευνα και να
@@ -902,6 +1092,7 @@ el:
   it_has: αυτό έχει
   it_instead: αυτό αντί γι'αυτό.
   its_important_that_you: Είναι σημαντικό που κάνετε κλικ
+  iucn_red_list: Κόκκινος Κατάλογος της IUCN
   january: Ιανουάριος
   join: μπείτε
   join_and: μπείτε και
@@ -948,6 +1139,8 @@ el:
   leave_a_comment: Αφήστε ένα σχόλιο
   leave_this_project: Εγκαταλείψτε αυτό το εγχείρημα
   leaves: φύλλα
+  let_us_walk_you_through: Επιτρέψτε μας να σας ξεναγήσουμε στα βασικά χαρακτηριστικά
+    αυτού του ιστότοπου.
   lexicon: Λεξικό
   lexicons:
     scientific_names: Επιστημονικά ονόματα
@@ -1020,6 +1213,8 @@ el:
   link_your_flickr_account_with_inat_so: Συνδέστε τον λογαριασμό σας στο Flickr με
     το %{site_name} για να μπορέσετε να προσθέσετε φωτογραφίες των παρατηρήσεων σας.
   link_your_google_account: Συνδέστε τον λογαριασμό σας στο Google
+  linked_facebook_howto: Για να συνδέσετε το Facebook με το %{site_name}, κάντε κλικ
+    στον σύνδεσμο δεξιά και συνδεθείτε στο Facebook.com.
   linkedin: LinkedIn
   list: Κατάλογος
   list_deleted: Η λίστα διαγράφηκε.
@@ -1169,21 +1364,25 @@ el:
   months: Μήνες
   months_ago: '%{text} πριν'
   more: Περισσότερα
-  more_fields: Περισσότερα πεδία
-  more_filters: Περισσότερα φίλτρα
+  more_fields: Περισσότερα Πεδία
+  more_filters: Περισσότερα Φίλτρα
   more_from_x: Περισσότερα από το %{x}
-  more_import_options: Περισσότερες επιλογές εισαγωγής
-  more_info: Περισσότερες πληροφορίες
+  more_help: Περισσότερη Βοήθεια
+  more_import_options: Περισσότερες Επιλογές Εισαγωγής
+  more_info: Περισσότερες Πληροφορίες
   more_info_title: Περισσότερες πληροφορίες
   more_journal_posts: Περισσότερες αναρτήσεις ημερολογίου
-  more_observations: Περισσότερες παρατηρήσεις
+  more_observations: Περισσότερες Παρατηρήσεις
   more_photos: Περισσότερες φωτογραφίες
   most: Περισσότερα
   most_agree: Οι περισσότεροι συμφωνούν
+  most_browser_print_pdf: 'Σημείωση: Τα περισσότερα προγράμματα περιήγησης έχουν μια
+    επιλογή για εκτύπωση σε PDF'
   most_disagree: Οι περισσότεροι διαφωνούν
   most_comments_and_faves: Περισσότερα σχόλια και προσθήκες στα αγαπημένα
-  most_observations: Περισσότερες παρατηρήσεις
-  most_species: Περισσότερα είδη
+  most_observations: Περισσότερες Παρατηρήσεις
+  most_species: Περισσότερα Είδη
+  most_observed_species: Περισσότερα Παρατηρηθέντα Είδη
   most_observed_introduced_species: Τα περισσότερο παρατηρημένα είδη που έχουν εισαχθεί
   most_observed_threatened_species: Τα απειλούμενα είδη που έχουν παρατηρηθεί πιο
     πολύ
@@ -1211,6 +1410,9 @@ el:
     nzor: Μητρώο Οργανισμών της Νέας Ζηλανδίας
   names: Όνομα
   names_for_taxon_html: Ονόματα για το %{taxon}
+  naturalised: εγκλιματισμένο
+  naturalized: εγκλιματισμένο
+  native: αυτόχθον
   native_to_place: Ενδημικό στο %{place}
   nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -1219,7 +1421,7 @@ el:
     fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
     culpa qui officia deserunt mollit anim id est laborum.
   near: κοντά
-  near_threatened: κοντινό απειλούμενο
+  near_threatened: Σχεδόν Απειλούμενο
   nearby: Κοντινά
   nearby_observations_: Κοντινές παρατηρήσεις
   nearby_observations: Κοντινές παρατηρήσεις
@@ -1242,6 +1444,7 @@ el:
   new_observation_field: Νέο πεδίο παρατήρησης
   new_observation_rules: Νέοι κανόνες παρατήρησης
   new_observations: Νέες παρατηρήσεις
+  new_observations_this_year: Νέες Παρατηρήσεις Αυτήν τη Χρονιά
   new_observations_ellispsis: Νέες παρατηρήσεις...
   new_observations_from_place_html: Νέες παρατηρήσεις από το %{place}
   new_observations_may_take_up_to: Νέες παρατηρήσεις μπορεί να πάρουν μέχρι %{widget_expiration}
@@ -1578,64 +1781,112 @@ el:
   places_name:
     afghanistan: Αφγανιστάν
     africa: Αφρική
+    albania: Αλβανία
     antigua_and_barbuda: Αντίγκουα και Μπαρμπούντα
+    argentina: Αργεντινή
+    armenia: Αρμενία
     australia: Αυστραλία
     austria: Αυστρία
+    azerbaijan: Αζερμπαϊτζάν
     belgium: Βέλγιο
+    bolivia: Βολιβία
     bosnia_and_herzegovina: Βοσνία και Ερζεγοβίνη
     brazil: Βραζιλία
+    bulgaria: Βουλγαρία
+    cameroon: Καμερούν
     canada: Καναδάς
     central_america: Κεντρική Αμερική
+    chile: Χιλή
     china: Κίνα
     colombia: Κολομβία
+    croatia: Κροατία
     denmark: Δανία
     egypt: Αίγυπτος
     equatorial_guinea: Ισημερινή Γουινέα
     europe: Ευρώπη
     france: Γαλλία
+    georgia: Γεωργία
     germany: Γερμανία
     greece: Ελλάδα
     hong_kong: Χονγκ Κονγκ
     hungary: Ουγγαρία
+    iceland: Ισλανδία
     india: Ινδία
+    indonesia: Ινδονησία
+    iran: Ιράν
     iraq: Ιράκ
+    ireland: Ιρλανδία
+    israel: Ισραήλ
     italy: Ιταλία
     japan: Ιαπωνία
+    jordan: Ιορδανία
+    kenya: Κένυα
     korea: Κορέα
+    liberia: Λιβερία
+    libya: Λιβύη
+    luxembourg: Λουξεμβούργο
+    macedonia: Μακεδονία
+    madagascar: Μαδαγασκάρη
+    malaysia: Μαλαισία
     martinique: Μαρτινίκα
     mexico: Μεξικό
+    nepal: Νεπάλ
     netherlands: Ολλανδία
     new_guinea: Νέα Γουινέα
     new_zealand: Νέα Ζηλανδία
     north_africa: Βόρεια Αφρική
     north_america: Βόρεια Αμερική
+    norway: Νορβηγία
+    pakistan: Πακιστάν
+    palestina: Παλαιστίνη
     palestine: Παλαιστίνη
     panama: Παναμάς
+    paraguay: Παραγουάη
     peru: Περού
+    philippines: Φιλιππίνες
     poland: Πολωνία
     portugal: Πορτογαλία
+    qatar: Κατάρ
     republic_of_congo: Δημοκρατία του Κονγκό
+    romania: Ρουμανία
     russia: Ρωσία
+    rwanda: Ρουάντα
+    san_marino: Άγιος Μαρίνος
     sao_tome_and_principe: Άγιος Θωμάς και Πρίγκιπας
     saudi_arabia: Σαουδική Αραβία
+    serbia: Σερβία
     singapore: Σιγκαπούρη
+    slovakia: Σλοβακία
+    slovenia: Σλοβενία
+    somalia: Σομαλία
     south_africa: Νότια Αφρική
     south_america: Νότια Αμερική
+    south_korea: Νότια Κορέα
+    south_sudan: Νότιο Σουδάν
     spain: Ισπανία
+    sri_lanka: Σρι Λάνκα
+    sudan: Σουδάν
     sweden: Σουηδία
     switzerland: Ελβετία
     syria: Συρία
+    tanzania: Τανζανία
     thailand: Ταϊλάνδη
     trinidad_and_tobago: Τρινιντάντ και Τομπάγκο
+    tunisia: Τυνησία
     turkey: Τουρκία
+    uganda: Ουγκάντα
     united_kingdom: Ηνωμένο Βασίλειο
     united_states: Ηνωμένες Πολιτείες
+    uruguay: Ουρουγουάη
+    venezuela: Βενεζουέλα
     virgin_islands: Παρθένες Νήσοι
     west_africa: Δυτική Αφρική
+    yemen: Υεμένη
+    zambia: Ζάμπια
   places_of_interest: Σημεία Ενδιαφέροντος
   places_merged_successfully: Τα μέρη συγχωνεύθηκαν επιτυχώς!
   plants: Φυτά
-  popular: δημοφιλές
+  popular: Δημοφιλές
   position: Θέση
   positional_accuracy: Ακρίβεια θέσης
   post: Καταχώριση
@@ -1662,6 +1913,7 @@ el:
   previous_page: Προηγούμενη σελίδα
   previous_photo: Προηγούμενη φωτογραφία
   previous_tab: Προηγούμενη καρτέλα
+  print_verb: Εκτύπωση
   print_in_browser: Εκτύπωση στον περιηγητή
   privacy: Πολιτική ιδιωτικού απορρήτου
   privacy_policy: Πολιτική ιδιωτικού απορρήτου
@@ -1696,26 +1948,33 @@ el:
   rank_position: Κατάταξη
   rank_restrictions: Περιορισμοί κατάταξης
   ranks:
-    kingdom: βασίλειο
-    subkingdom: υποβασίλειο
-    superclass: υπερκλάση
-    class: Κλάση
-    subclass: υποκλάση
-    superorder: υπερσειρά
-    order: σειρά
-    suborder: υποσειρά
-    family: οικογένεια
-    subfamily: υποοικογένεια
-    supertribe: υπερφυλή
-    tribe: φυλή
-    subtribe: υποφυλή
+    kingdom: Βασίλειο
+    subkingdom: Υποβασίλειο
+    phylum: Συνομοταξία
+    subphylum: Υποσυνομοταξία
+    superclass: Υπερομοταξία
+    class: Ομοταξία
+    subclass: Υφομοταξία
+    superorder: Υπερτάξη
+    order: Τάξη
+    suborder: Υποτάξη
+    infraorder: Ανθυποτάξη
+    parvorder: Μικρόταξη
+    superfamily: Υπεροικογένεια
+    family: Οικογένεια
+    subfamily: Υποοικογένεια
+    supertribe: Υπερφυλή
+    tribe: Φυλή
+    subtribe: Υποφυλή
+    genus: Γένος
+    subgenus: Υπογένος
     section: τμήμα
     subsection: υποτμήμα
-    species: είδη
+    species: Είδος
     hybrid: υβριδικό
-    subspecies: υποείδη
-    variety: ποικιλία
-    form: μορφή
+    subspecies: Υποείδος
+    variety: Ποικιλία
+    form: Μορφή
     leaves: φύλλα
   ranges: Εύρη
   rare: σπάνιο
@@ -1858,7 +2117,7 @@ el:
   sent: Απεστάλη
   september: Σεπτέμβριος
   set_license: Ορίστε άδεια
-  settings: ρυθμίσεις
+  settings: Ρυθμίσεις
   share: Κοινοποίηση
   share_colon: Κοινοποίηση
   share_your_observation_with_researchers_by: Κοινοποιήστε τις παρατηρήσεις σας με
@@ -1972,7 +2231,7 @@ el:
     σας;
   submit: Υποβολή
   submit_comment: Υποβολή σχολίου
-  submitted: Υποβεβλημμένα
+  submitted: Υποβλήθηκε
   subscribe_to_a_place: Συνδρομή σε ένα μέρος
   subscribe_to_this: Συνδρομή στο
   subscribe_to_this_observation: Συνδρομή σε αυτή τη παρατήρηση
@@ -2013,6 +2272,7 @@ el:
   the_: το
   the_community_id_requires_at_least_two_identifications: La Comunidad ID requiere
     al menos dos identificaciones.
+  this_species: αυτό το είδος
   this_year: Αυτό το έτος
   those_observations_no_longer_exist: Αυτές οι παρατηρήσεις δεν υπάρχουν πλέον.
   threatened: απειλούμενο
@@ -2043,8 +2303,17 @@ el:
   update_observation: Ενημέρωση παρατήρησης
   update_observations: Ενημέρωση παρατηρήσεων
   upload_photo: Ανέβασμα φωτογραφίας
+  user: Χρήστης
+  username: Όνομα χρήστη
+  username_or_email: Όνομα χρήστη ή email
+  username_or_user_id: Όνομα χρήστη η ID χρήστη
+  users: Χρήστες
   view_sample: Προβολή δείγματος
+  visually_similar: Οπτικά Παρόμοια
   vulnerable: Ευαίσθητος
+  was_it_captive_cultivated?: Ήταν σε αιχμαλωσία ή καλλιεργημένο;
+  we_couldnt_find_a_user: Δεν μπορέσαμε να βρούμε έναν χρήστη με αυτήν τη διεύθυνση
+    email.
   weather: Καιρός
   website: Ιστότοπος
   whats_this?: Τι είναι αυτό;

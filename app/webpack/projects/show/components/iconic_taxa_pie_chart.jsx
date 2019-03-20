@@ -10,20 +10,24 @@ const IconicTaxaPieChart = ( { project } ) => {
   }
   if ( _.isEmpty( project.iconic_taxa_species_counts.results ) ) { return ( <div /> ); }
   const data = _.fromPairs(
-    _.map( project.iconic_taxa_species_counts.results, r => [r.taxon.name, r.count] ) );
-  const total = project.species_loaded ?
-    I18n.toNumber( project.species.total_results, { precision: 0 } ) : "--";
+    _.map( project.iconic_taxa_species_counts.results, r => [r.taxon.name, r.count] )
+  );
+  const total = project.species_loaded
+    ? I18n.toNumber( project.species.total_results, { precision: 0 } )
+    : "--";
   return (
     <div className="IconicTaxaPieChart">
       <div className="count-label">
         { I18n.t( "x_species", { count: total } ) }
       </div>
       <PieChartForIconicTaxonCounts
-        data={ data }
-        margin={ { top: 0, bottom: 120, left: 0, right: 0 } }
-        donutWidth={ 20 }
-        urlPrefix={ `/observations?project_id=${project.id}&place_id=any&verifiable=any` }
-        labelForDatum={ d => {
+        data={data}
+        margin={{
+          top: 0, bottom: 120, left: 0, right: 0
+        }}
+        donutWidth={20}
+        urlPrefix={`/observations?project_id=${project.id}&verifiable=any`}
+        labelForDatum={d => {
           const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
           const percent = _.round( degrees / 360 * 100, 2 );
           const value = I18n.t( "x_species", {

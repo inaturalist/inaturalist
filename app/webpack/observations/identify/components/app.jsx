@@ -20,7 +20,7 @@ const App = ( { blind } ) => (
         </Col>
       </Row>
       <Row>
-        <Col xs={ 12 }>
+        <Col xs={12}>
           <SearchBarContainer />
         </Col>
       </Row>

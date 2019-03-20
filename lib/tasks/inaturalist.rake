@@ -139,11 +139,13 @@ namespace :inaturalist do
   desc "Delete orphaned photos"
   task :delete_orphaned_photos => :environment do
     first_id = Photo.minimum(:id)
-    last_id = Photo.maximum(:id)
+    last_id = Photo.maximum(:id) - 10000
     index = 0
-    batch_size = 10000
+    batch_size = 5000
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
+    orphans_count = 0
+    last_orphan_id = 0
     while index <= last_id
       photos = Photo.joins("left join observation_photos op on (photos.id=op.photo_id)").
         joins("left join taxon_photos tp on (photos.id=tp.photo_id)").
@@ -152,10 +154,17 @@ namespace :inaturalist do
         where("photos.id BETWEEN ? AND ?", index, index + batch_size)
       photos.each do |p|
         # set the orphan attribute on Photo, which will set the same on DeletedPhoto
-        p.orphan = true
-        p.destroy
+        begin
+          p.orphan = true
+          p.destroy
+          last_orphan_id = p.id
+          orphans_count += 1
+        rescue Exception => e
+          Rails.logger.error "[ERROR #{Time.now}] Rake task delete_orphaned_photos: #{e}"
+        end
       end
       index += batch_size
+      puts "#{index} :: total #{orphans_count} :: last #{last_orphan_id}"
     end
   end
 

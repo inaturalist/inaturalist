@@ -1688,6 +1688,7 @@ fr:
   for_more_information: pour obtenir plus d’information.
   formatting: Mise en forme
   forgot_your_password: Avez-vous oublié votre mot de passe?
+  forum: Forum
   forum_categories:
     bug_reports: Signalements de bogue
     feature_requests: Demandes de fonctionnalité
@@ -6698,9 +6699,9 @@ fr:
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Contacter le groupe de remarques</a></strong>
+              <strong><a href="%{feedback_url}">Contacter le Forum</a></strong>
               <p>
-                Beaucoup de superviseurs du site gardent trace des courriels du groupe de remarques.
+                Beaucoup de superviseurs du site gardent trace des messages vers le Forum.
               </p>
             </li>
             <li>
@@ -7095,7 +7096,7 @@ fr:
         x_comments_html:
           one: <strong class="count">1 commentaire</strong> que vous avez ajouté
           other: <strong class="count">%{count} commentaires</strong> que vous avez
-            ajouté
+            ajoutés
         furthermore_cannot_undo_html: |-
           De plus, <strong>cette action ne peut pas être annulée.</strong> Si vous
           changez d’avis plus tard, vous ne pourrez plus récupérer ce contenu.
