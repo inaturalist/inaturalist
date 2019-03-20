@@ -24,6 +24,10 @@ class InatContentTypeDetector
          type_from_mime_magic == "video/3gpp"
         return "audio/mp4"
       end
+      # fix for some .m4a audio files that file detects as video
+      if type == "video/mp4" && mime_types_for_filename.include?( "audio/mp4" )
+        return "audio/mp4"
+      end
       type
     end
   end
