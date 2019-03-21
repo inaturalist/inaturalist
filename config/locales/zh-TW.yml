@@ -55,6 +55,9 @@ zh-TW:
   x_misidentifications_of_this_species:
     one: 此物種有 1 個錯誤鑑定
     other: '%{count} 此物種有 %{count} 個錯誤鑑定'
+  x_misidentifications_of_species_in_this_rank:
+    one: 在此%{rank}有 1 個誤認分類
+    other: 在此%{rank}有 %{count} 個誤認分類
   x_observations:
     one: 1 項觀察記錄
     other: '%{count} 項觀察記錄'
@@ -2591,6 +2594,8 @@ zh-TW:
   other_names: 別名
   other_species_commonly_misidentified_as_this_species: 常被誤認為是此物種的其它物種
   other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>常被誤認為是此物種的其它物種
+  other_taxa_commonly_misidentified_as_this_rank: 常誤認為是%{rank}的分類
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: 其它在<a href="%{url}">%{place}</a>常誤認為是%{rank}的分類
   our_blog: 我們的部落格
   out_of_range: 超出範圍
   output_taxon: 輸出物種分類
@@ -3520,6 +3525,7 @@ zh-TW:
   sign_up: 註冊
   sign_up_exclamation: 註冊！
   similar_species: 相似物種
+  similar_taxa: 相似分類
   simple: 簡易
   sign_in_exclamation: 登入！
   single_observation: 單一觀察

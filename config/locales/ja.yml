@@ -800,6 +800,7 @@ ja:
     prevText: 前へ
     nextText: 次へ
   date_time: 日付と時刻
+  date_updated: 更新日
   dates: 年月日
   datetime_: 日付と時刻
   day: 日
@@ -966,8 +967,8 @@ ja:
     naturalised: 帰化種
   establishment_means: 定着方法
   establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: 外来
-    native_and_occurs_nowhere_else: 他では棲息しない在来種
+    arrived_in_the_region_via_anthropogenic_means: 人為的な外来種である
+    native_and_occurs_nowhere_else: 他には棲息しない在来種
   establishment_means_describes_how: 特定の場所において、分類群がどのようにして定着したのかを示す。用語についての<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">詳しい説明</a>はDarwinCoreをご参照ください。
   event_in_progress: 進行中のイベント
   event_registration_url: イベント登録URL
@@ -2620,7 +2621,8 @@ ja:
   stuff_just_added: あなたの新着追加項目
   subject_resolved_noun_html: '%{subject}が%{noun}を解決しました'
   subject_affecting_stuff_html: '%{stuff}を影響している%{subject}'
-  subject_committed_thing_affecting_stuff_html: '%{subject}が%{stuff}に関わる%{thing}を確定させた'
+  subject_committed_thing_affecting_stuff_html: '%{subject}が%{stuff}に関わる@vow_or_con{vow:an|a}
+    %{thing}を確定させた'
   submission_model_description: プロジェクトに観察記録を追加できる対象は？
   submit: 送信
   submit_comment: コメントを投稿

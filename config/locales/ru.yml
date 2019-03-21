@@ -86,6 +86,10 @@ ru:
     one: 1 ошибочная идентификация этого вида
     few: '%{count} ошибочные идентификации этого вида'
     other: '%{count} ошибочных идентификаций этого вида'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 ошибочная идентификация ранга %{rank}
+    few: '%{count} ошибочные идентификации ранга %{rank}'
+    other: '%{count} ошибочных идентификаций ранга %{rank}'
   x_observations:
     one: 1 наблюдение
     few: '%{count} наблюдения'
@@ -3061,6 +3065,10 @@ ru:
     ошибочно идентифицируются как этот вид
   other_species_commonly_misidentified_as_this_species_in_place_html: Другие виды,
     которые обычно ошибочно идентифицируются как этот вид в <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Другие таксоны обычно ошибочно идентифицируются
+    как этот %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Другие таксоны часто
+    ошибочно идентифицируются как этот %{rank} в <a href="%{url}">%{place}</a>
   our_blog: Наш блог
   out_of_range: Вне диапазона
   output_taxon: Выходной таксон
@@ -4060,6 +4068,7 @@ ru:
   sign_up: Регистрация
   sign_up_exclamation: Зарегистрируйтесь!
   similar_species: Аналогичные виды
+  similar_taxa: Похожие таксоны
   simple: Простой
   sign_in_exclamation: Войдите!
   single_observation: Одиночное наблюдение

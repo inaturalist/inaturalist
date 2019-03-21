@@ -1,6 +1,7 @@
 # Messages for Italian (italiano)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Abijeet Patro
 # Author: Albe Albe 460
 # Author: Alexmar983
 # Author: Beta16
@@ -7242,8 +7243,8 @@ it:
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
         header:
-          one: 1 errore impedisce di salvare questo %{model}}
-          other: '%{count} errori impediscono di salvare questo %{model}}'
+          one: 1 errore impedisce di salvare questo %{model}
+          other: '%{count} errori impediscono di salvare questo %{model}'
       models:
         application:
           attributes:

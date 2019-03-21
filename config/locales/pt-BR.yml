@@ -60,6 +60,9 @@ pt-BR:
   x_misidentifications_of_this_species:
     one: 1 identificação incorreta desta espécie
     other: '%{count} identificações incorretas desta espécie'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 erro de identificação de espécies neste %{rank}
+    other: '%{count} identificações erradas de espécies neste %{rank}'
   x_observations:
     one: 1 observação
     other: '%{count} observações'
@@ -3013,6 +3016,10 @@ pt-BR:
     ser confundidas com esta
   other_species_commonly_misidentified_as_this_species_in_place_html: Outras espécies
     que costumam ser confundidas com esta em <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Outro taxa comumente identificado
+    erroneamente como este %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Outro taxa comumente
+    identificado erroneamente como este %{rank} no <a href="%{url}">%{place}</a>
   our_blog: Nosso Blog
   out_of_range: Fora de alcance
   output_taxon: Taxón de saída
@@ -4013,6 +4020,7 @@ pt-BR:
   sign_up: Criar conta
   sign_up_exclamation: Crie uma conta!
   similar_species: Espécies similares
+  similar_taxa: Taxa similar
   simple: Simples
   sign_in_exclamation: Entrar
   single_observation: Uma única observação

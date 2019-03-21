@@ -75,6 +75,9 @@ fr:
   x_misidentifications_of_this_species:
     one: 1 mauvaise identification de cette espèce
     other: '%{count} mauvaises identifications de cette espèce'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 mauvaise identification d’espèce dans ce %{rank}
+    other: '%{count} mauvaises identifications d’espèce dans ce %{rank}'
   x_observations:
     one: 1 observation
     other: '%{count} observations'
@@ -3112,6 +3115,10 @@ fr:
     avec cette espèce
   other_species_commonly_misidentified_as_this_species_in_place_html: Autres espèces
     souvent confondues avec cette espèce dans <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Autres taxons souvent mal identifiés
+    à ce %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Autres taxons souvent
+    mal identifiés à ce %{rank} à <a href="%{url}">%{place}</a>
   our_blog: notre blogue
   out_of_range: Hors de portée
   output_taxon: Taxon en sortie
@@ -4114,6 +4121,7 @@ fr:
   sign_up: Inscrivez-vous
   sign_up_exclamation: Inscrivez-vous!
   similar_species: Espèces proches
+  similar_taxa: Taxons similaires
   simple: Simple
   sign_in_exclamation: Inscrivez-vous!
   single_observation: Observation unique
@@ -6109,20 +6117,20 @@ fr:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: La colonne coordonnées privées doit être en
           anglais et laissée vide ou avoir une valeur « obscured » ou « private »
-        google_photos_notice_html: |-
-          En février 2019, Google a modifié son API, nous empêchant
-          d’accéder aux coordonnées GPS, à l’information de licence et à quasiment
-          toute information que nous pourrions utiliser pour ajouter une identification (comme les balises). Il
-          a aussi supprimé la recherche textuelle et la pagination numérique. De plus,
-          ils demandent que tous les comptes connectés aient un droit en plus,
-          et avant qu’un tiers puisse demander ce droit pour les utilisateurs, le
-          tiers doit être vérifié. Nous attendons a vérification, mais
-          jusque-là, vous pourrez importer des photos, mais elles n’incluront aucune information de localisation ou
-          de licence que vous pourriez voir sur Google Photos.
-          Vous pouvez lire davantage là-dessus à
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Télécharger des fichiers d’origine et les ajouter en utilisant
-          <a href="/observations/upload">Uploader</a> est le meilleur contournement.
+        google_photos_notice_html: "En février 2019, Google a modifié son API, nous
+          empêchant\nd’accéder aux coordonnées GPS, à l’information de licence et
+          à quasiment\ntoute information que nous pourrions utiliser pour ajouter
+          une identification (comme les balises). Il\na aussi supprimé la recherche
+          textuelle et la pagination numérique. De plus,\nils demandent que tous les
+          comptes connectés aient un droit en plus,\net avant qu’un tiers puisse demander
+          ce droit pour les utilisateurs, le\ntiers doit être vérifié. Nous attendons
+          la vérification, mais\navant que cela n'arrive, vous ne pourrez pas importer
+          de photos de Google.\nSi nous sommes acceptés, vous pourrez importer des
+          photos, mais elles \nn’incluront aucune information de localisation ni de
+          licence que vous pourriez \nvoir sur Google Photos. Vous pouvez lire davantage
+          là-dessus à\n<a href=\"https://developers.google.com/picasa-web\">https://developers.google.com/picasa-web</a>.\nTélécharger
+          des fichiers d’origine et les ajouter en utilisant\n<a href=\"/observations/upload\">Uploader</a>
+          est le meilleur contournement."
         project_csv_template_notice_html: "Il y a un fichier modèle pour ce projet
           qui peut vous aider avec la structure du fichier CSV. \n<a href=\"%{url}\">Téléchargez
           le modèle</a>"

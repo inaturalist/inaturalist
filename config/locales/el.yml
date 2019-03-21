@@ -186,9 +186,9 @@ el:
   added: Προστέθηκε
   added!: Προστέθηκε!
   added_an: Προστέθηκε ένα
-  added_as_a_part_of: Προσθέθηκε ως μέρος ενός
+  added_as_a_part_of: Προστέθηκε ως μέρος ενός
   added_by: Προστέθηκε από
-  added_by_user_on_date_html: Προστέθηκε από τον %{user} στις %{date}
+  added_by_user_on_date_html: Προστέθηκε από %{user} στις %{date}
   added_on: Προστέθηκε σε
   added_to: Προστέθηκε προς
   added_to_favorites: Προστέθηκε στα αγαπημένα
@@ -197,10 +197,13 @@ el:
   adding_observations: Προσθήκη παρατηρήσεων
   adding_to_your_life_list: Προσθήκη στην λίστα ζωής σας...
   additional_range: Πρόσθετο εύρος
+  additional_range_data_from_an_unknown_source: Πρόσθετα στοιχεία εύρους κατανομής
+    από μια άγνωστη πηγή
   admin: Διαχείριση
   admin_s: Διαχειριστής (-ές)
   admin_any_projects: διαχείριση οποιουδήποτε εγχειρήματος
-  admin_tools: διαχειριστικά εργαλεία
+  admin_only: Μόνο για διαχειριστές
+  admin_tools: Διαχειριστικά εργαλεία
   agree: συμφωνώ
   agree_: Συμφωνώ
   agree?: Συμφωνείτε;
@@ -236,6 +239,7 @@ el:
     supertribe: Όλες οι υπερφυλές προστέθηκαν στη βάση δεδομένων
     tribe: Όλες οι φυλές προστέθηκαν στη βάση δεδομένων
     subtribe: Όλες οι υποφυλές προστέθηκαν στη βάση δεδομένων
+    genus: Όλα τα γένη προστέθηκαν στη βάση δεδομένων
     subgenus: Όλα τα υπογένη προστέθηκαν στη βάση δεδομένων
     species: Όλα τα είδη προστέθηκαν στη βάση δεδομένων
     subspecies: Όλα τα υποείδη προστέθηκαν στη βάση δεδομένων
@@ -263,8 +267,42 @@ el:
     other_animals: Άλλα ζώα
     plants: Φυτά
     protozoans: Πρωτόζωα
+    ray_finned_fishes: Ακτινοπτερύγιοι (ψάρια)
     reptiles: Ερπετά
     life: Ζωή
+    x_plantae:
+      one: 1 φυτό
+      other: '%{count} φυτά'
+    x_animalia:
+      one: 1 ζώο
+      other: '%{count} ζώα'
+    x_mollusca:
+      one: 1 μαλάκιο
+      other: '%{count} μαλάκια'
+    x_amphibia:
+      one: 1 αμφίβιο
+      other: '%{count} αμφίβια'
+    x_mammalia:
+      one: 1 θηλαστικό
+      other: '%{count} θηλαστικά'
+    x_actinopterygii:
+      one: 1 ακτινοπτερύγιο ψάρι
+      other: '%{count} ακτινοπτερύγια ψάρια'
+    x_reptilia:
+      one: 1 ερπετό
+      other: '%{count} ερπετά'
+    x_aves:
+      one: 1 πτηνό
+      other: '%{count} πτηνά'
+    x_insecta:
+      one: 1 έντομο
+      other: '%{count} έντομα'
+    x_arachnida:
+      one: 1 αραχνώδες
+      other: '%{count} αραχνώδη'
+    x_protozoa:
+      one: 1 πρωτόζωο
+      other: '%{count} πρωτόζωα'
   all_taxa_: Όλα τα taxa
   all_taxa_in_this_guide: Όλα τα taxa σε αυτόν τον οδηγό
   all_taxonomic_groups: '&laquo;Όλες οι Ταξινομικές Ομάδες'
@@ -293,9 +331,12 @@ el:
   animals: Ζώα
   annotation: Ένδειξη
   annotations: Ενδείξεις
+  announcement_was_successfully_created: Επιτυχής δημιουργία ανακοίνωσης.
+  announcement_was_successfully_updated: Επιτυχής ενημέρωση ανακοίνωσης.
   announcements: Ανακοινώσεις
   any: Οτιδήποτε
   any_: Οποιοδήποτε
+  apply_to_selected: Εφαρμογή στα επιλεγμένα
   apply_fields: Εφαρμογή πεδίων
   apply_darr: Εφαρμογή &darr;
   appropriate?: Κατάλληλο;
@@ -1459,7 +1500,13 @@ el:
     από το %{site_name}
   new_user_rules: Νέοι κανόνες χρηστών
   new_users: Νέοι χρήστες
+  new_users_this_year: Νέοι χρήστες αυτή τη χρονιά
+  new_users_w_7_obs: Νέοι χρήστες με 7 παρ.
   new_users_week: Νέοι χρήστες ανά εβδομάδα
+  newly_added: Νεοπροστεθέν
+  newly_added_species: Νεοπροστεθέν είδος
+  newly_observed_species: Νεοπαρατηρηθέν είδος
+  newly_observed_species_this_year: Νεοπροστεθέντα είδη αυτή τη χρονιά
   news: Νέα
   next: Επόμενο
   next_observation: Επόμενη παρατήρηση
@@ -1469,6 +1516,9 @@ el:
   "no": Όχι
   no_activity_in_the_past_week: Χωρίς δραστηριότητα τη τελευταία εβδομάδα. Χρόνος
     για
+  no_administrator_knows_your_password: Κανείς διαχειριστής του %{sitename} δεν γνωρίζει
+    τον νέο κωδικό σας και δεν είχε ή έχει πρόσβαση σε καμιά περίπτωση στον κωδικό
+    σας.
   no_but_it_is_a_member_of_taxon: Όχι, αλλά είναι μέρος του %{taxon}
   no_colors_selected: Δεν έχουν επιλεχθεί χρώματα.
   no_comments_yet: Δεν υπάρχουν ακόμα σχόλια
@@ -1585,7 +1635,14 @@ el:
   observations_last500: Παρατηρήσεις (τελευταίες 500)
   observations_map: Παρατηρήσεις / Χάρτης
   observation_must_dotdotdot: Οι παρατηρήσεις πρέπει...
+  observations_per_month: Παρατηρήσεις / Μήνα
+  observations_removed_from_the_project: Οι παρατηρήσεις αφαιρέθηκαν από το εγχείρημα
+    %{project}
+  observations_saved: Η/Οι Παρατήρηση/-εις αποθηκεύτηκε/-αν!
+  observations_total: Σύνολο παρατηρήσεων
+  observations_was_successfully_updated: Η/Οι Παρατήρηση/-εις ενημερώθηκε/-αν επιτυχώς.
   observations_week: Παρατηρήσεις ανά εβδομάδα
+  observations_without_media: Παρατηρήσει χωρίς ΟΑ μέσα
   observed: Παρατηρήθηκε
   observed_by: Παρατηρήθηκε από
   observed_in_place?: Παρατηρήθηκε στο μέρος
@@ -1655,17 +1712,23 @@ el:
   pdf: PDF
   people: Οι άνθρωποι
   people_agree: Άνθρωποι που συμφωνούν
+  people_following_user: Πρόσωπα που ακολουθούν την/τον %{user}
+  people_user_follows: Πρόσωπα που ο/η %{user} ακολουθεί
   per_day: Ανά ημέρα
   per_month: Ανά μήνα
   per_week: Ανά εβδομάδα
   person: Πρόσωπο
-  personal_message: προσωπικό μήνυμα
+  personal_message: Προσωπικό μήνυμα
+  personal_message_description: Σε κανέναν δεν αρέσει να λαμβάνει μηνύματα ηλεκτρονικού
+    ταχυδρομείου από μια μηχανή! Γιατί δεν κάνετε γνωστό στους φίλους σας τους λόγους
+    για τους οποίους τους προσκαλείτε;
   per_page: Ανά σελίδα
   permalink: Μόνιμος σύνδεσμος
   photo: Φωτογραφία
   photo?: Φωτογραφία;
   photo_attribution: Φωτογραφία %{attribution}
   photo_browser: Περιηγητής φωτογραφιών
+  photo_by: Φωτογραφίες της/του
   photo_by_id_attribution: Φωτογραφία %{id}, %{attribution}
   photo_deleted: Η φωτογραφία διεγράφη
   photo_integration: Ενσωμάτωση φωτογραφιών
@@ -1782,32 +1845,76 @@ el:
     afghanistan: Αφγανιστάν
     africa: Αφρική
     albania: Αλβανία
+    algeria: Αλγερία
+    american_samoa: Αμερικανική Σαμόα
+    andorra: Ανδόρρα
+    angola: Αγκόλα
+    antarctica: Ανταρκτική
     antigua_and_barbuda: Αντίγκουα και Μπαρμπούντα
     argentina: Αργεντινή
     armenia: Αρμενία
     australia: Αυστραλία
     austria: Αυστρία
     azerbaijan: Αζερμπαϊτζάν
+    belarus: Λευκορωσία
     belgium: Βέλγιο
     bolivia: Βολιβία
     bosnia_and_herzegovina: Βοσνία και Ερζεγοβίνη
     brazil: Βραζιλία
     bulgaria: Βουλγαρία
+    cambodia: Καμπότζη
     cameroon: Καμερούν
     canada: Καναδάς
+    cape_verde: Πράσινο Ακρωτήριο
     central_america: Κεντρική Αμερική
+    chad: Τσαντ
     chile: Χιλή
     china: Κίνα
     colombia: Κολομβία
+    costa_rica: Κόστα Ρίκα
+    cote_d_ivoire: Ακτή Ελεφαντοστού
     croatia: Κροατία
+    cuba: Κούβα
+    cyprus: Κύπρος
+    czech_republic: Τσεχία
     denmark: Δανία
+    djibouti: Τζιμπουτί
+    dominican_republic: Δομινικανική Δημοκρατία
+    east_timor: Ανατολικό Τιμόρ
+    ecuador: Ισημερινός (χώρα)
     egypt: Αίγυπτος
+    el_salvador: Ελ Σαλβαδόρ
     equatorial_guinea: Ισημερινή Γουινέα
+    eritrea: Ερυθραία
+    estonia: Εσθονία
+    ethiopia: Αιθιοπία
     europe: Ευρώπη
+    falkland_islands: Νήσοι Φώκλαντ
+    faroe_islands: Νήσοι Φερόες
+    fiji: Φίτζι
+    finland: Φινλανδία
     france: Γαλλία
+    french_guiana: Γαλλική Γουιάνα
+    french_polynesia: Γαλλική Πολυνησία
+    french_southern_territories: Γαλλικά Νότια Εδάφη
+    gabon: Γκαμπόν
+    gambia: Γκάμπια
     georgia: Γεωργία
     germany: Γερμανία
+    ghana: Γκάνα
+    gibraltar: Γιβραλτάρ
     greece: Ελλάδα
+    greenland: Γροιλανδία
+    grenada: Γρενάδα
+    guadeloupe: Γουαδελούπη
+    guam: Γκουάμ
+    guatemala: Γουατεμάλα
+    guernsey: Γκέρνσεϊ
+    guinea: Γουινέα
+    guinea_bissau: Γουινέα-Μπισσάου
+    haiti: Αϊτή
+    heard_island_and_mcdonald_islands: Νήσοι Χερντ και Μακντόλαντ
+    honduras: Ονδούρα
     hong_kong: Χονγκ Κονγκ
     hungary: Ουγγαρία
     iceland: Ισλανδία
@@ -1816,27 +1923,69 @@ el:
     iran: Ιράν
     iraq: Ιράκ
     ireland: Ιρλανδία
+    isle_of_man: Νήσος του Μαν
     israel: Ισραήλ
     italy: Ιταλία
+    jamaica: Τζαμάικα
     japan: Ιαπωνία
+    jersey: Τζέρσεϊ
     jordan: Ιορδανία
+    kazakhstan: Καζακστάν
     kenya: Κένυα
+    kiribati: Κιριμπάτι
     korea: Κορέα
+    kosovo: Κόσοβο
+    kuwait: Κουβέιτ
+    kyrgyzstan: Κιργιζία
+    laos: Λάος
+    latvia: Λετονία
+    lebanon: Λίβανος
+    lesotho: Λεσότο
     liberia: Λιβερία
     libya: Λιβύη
+    liechtenstein: Λίχτενσταϊν
+    lithuania: Λιθουανία
     luxembourg: Λουξεμβούργο
+    macao: Μακάου
     macedonia: Μακεδονία
     madagascar: Μαδαγασκάρη
+    malawi: Μαλάουι
     malaysia: Μαλαισία
+    maldives: Μαλδίβες
+    mali: Μαλί
+    malta: Μάλτα
+    marshall_islands: Νήσοι Μάρσαλ
     martinique: Μαρτινίκα
+    mauritania: Μαυριτανία
+    mauritius: Μαυρίκιος (κράτος)
+    mayotte: Μαγιότ
     mexico: Μεξικό
+    micronesia: Μικρονησία
+    moldova: Μολδαβία
+    monaco: Μονακό
+    mongolia: Μογγολία
+    montenegro: Μαυροβούνιο
+    montserrat: Μοντσερράτ
+    morocco: Μαρόκο
+    mozambique: Μοζαμβίκη
+    myanmar: Μιανμάρ
+    namibia: Ναμίμπια
+    nauru: Ναουρού
     nepal: Νεπάλ
     netherlands: Ολλανδία
+    new_caledonia: Νέα Καληδονία
     new_guinea: Νέα Γουινέα
     new_zealand: Νέα Ζηλανδία
+    nicaragua: Νικαράγουα
+    niger: Νίγηρας
+    nigeria: Νιγηρία
+    niue: Νιούε
+    norfolk_island: Νησί Νόρφολκ
     north_africa: Βόρεια Αφρική
     north_america: Βόρεια Αμερική
+    north_korea: Βόρεια Κορέα
     norway: Νορβηγία
+    oman: Ομάν
     pakistan: Πακιστάν
     palestina: Παλαιστίνη
     palestine: Παλαιστίνη
@@ -1955,6 +2104,7 @@ el:
     superclass: Υπερομοταξία
     class: Ομοταξία
     subclass: Υφομοταξία
+    infraclass: Ανθυποτάξη
     superorder: Υπερτάξη
     order: Τάξη
     suborder: Υποτάξη
@@ -1975,10 +2125,11 @@ el:
     subspecies: Υποείδος
     variety: Ποικιλία
     form: Μορφή
-    leaves: φύλλα
+    leaves: Φύλλα
   ranges: Εύρη
   rare: σπάνιο
   read_more: Διαβάστε περισσότερα
+  read_the_full_wikipedia: Διαβάστε ολόκληρη την περιγραφή από την Wikipedia
   real_time_stats: Στατιστικά σε πραγματικό χρόνο
   reason: Αιτιολογία
   reason_you_are_flagging_this_item: Ο λόγος που αναφέρετε αυτό το αντικείμενο.
@@ -2016,13 +2167,18 @@ el:
   relative_observations: Σχετικές παρατηρήσεις
   relationship: Σχέση
   relationships:
+    one_to_one: ένα-προς-ένα
     alternate_position: εναλλακτική θέση
     many_to_many: πολλά-σε-πολλά
     many_to_one: καθοδικά
+    one_to_many: ένα-προς-πολλά
     not_external: μη εξωτερικό
+    error: σφάλμα
   remember_me: Να με θυμάσαι
   remove: Αφαίρεση
+  remove_all_tags: Αφαίρεση όλων των ετικετών
   remove_boundary: Αφαίρεση συνόρου
+  remove_comma_separated_tags: Αφαίρεση των διαχωρισμένων με κόμμα ετικετών
   remove_from: Αφαίρεση από
   remove_photo: Αφαίρεση φωτογραφίας
   remove_place: Αφαίρεση μέρους
@@ -2128,6 +2284,8 @@ el:
   show_common_names: Mostrar nombres conocidos
   show_less: Εμφάνιση λιγότερων
   show_more: Εμφάνιση περισσότερων
+  show_observation_photos: εμφάνιση φωτογραφικών παρατήρησης
+  show_observations_from: Εμφάνιση παρατηρήσεων της/του
   show_only: Εμφάνιση μόνο
   show_relative_proportions_of_all_observations: Εμφάνιση σχετικών αναλογιών όλων
     των παρατηρήσεων
@@ -2195,7 +2353,7 @@ el:
   sources: Πηγές
   sources_youve_added: Πηγές που έχετε προσθέσει
   sourcing: Πηγές
-  spam: σπαμ
+  spam: Σπαμ
   spanish: Ισπανικά
   species: Είδη
   species_by_category: είδη ανά κατηγορία
@@ -2203,6 +2361,7 @@ el:
   species_guide: Οδηγός Ειδών
   species_header: Είδη
   species_name: Όνομα είδους
+  species_name_cap: Ονομασία είδους
   standard: Συνήθης
   start: Έναρξη
   start_a_new_list: Ξεκινήστε νέα λίστα
@@ -2214,6 +2373,10 @@ el:
   start_new_project: Ξεκινήστε ένα νέο εγχείρημα
   start_one: εκκίνηση ενός
   start_one_now: εκκίνηση ενός τώρα!
+  start_typing_field_name: Ξεκινήστε την πληκτρολόγηση μιας ονομασίας πεδίου...
+  start_typing_place_name: Ξεκινήστε την πληκτρολόγηση της ονομασίας ενός τόπου...
+  start_typing_taxon_name: Ξεκινήστε την πληκτρολόγηση της ονομασίας ενός taxon...
+  start_typing_someones_name: Ξεκινήστε την πληκτρολόγηση του ονόματος κάποιου...
   states: Πολιτείες
   stats: Στατιστικά
   stats_for_this_year_have_not_been_generated: Τα στατιστικά για αυτό το έτος δεν
@@ -2223,9 +2386,12 @@ el:
   status_globally: '%{status} Καθολικά'
   status_in_place: '%{status} στο %{place}'
   stay_and_try_again: Μείνετε και προσπαθήστε ξανά
+  still_needs_id?: Η κοινότητα μπορεί να επιβεβαιώσει/βελτιώσει την αναγνώριση;
   stop_editing: Σταματήστε τη επεξεργασία
   stop_following_user: Σταματήστε να ακολουθήστε τον %{user}
   stop_updating_position: Σταματήστε να ενημερώνετε την θέση
+  studies_that_used_inaturalist_data_in_year: Μελέτες που χρησιμοποίησαν δεδομένα
+    από iNaturalist κατά τη διάρκεια του %{year}
   stuff_just_added: Υλικό που έχετε προσθέσει...
   submission_model_description: Ποιος μπορεί να προσθέσει παρατηρήσεις στο εγχείρημα
     σας;
@@ -2239,6 +2405,8 @@ el:
   subscriptions_arent_available_for: Οι συνδρομές δεν είναι διαθέσιμες για μέρη χωρίς
     σύνορα.
   successfully_changed_your_password: Ο κωδικός σας άλλαξε επιτυχώς.
+  suggest_an_id: Υπόδειξη μιας αναγνώρισης
+  suggest_an_identification: Υπόδειξη μιας αναγνώρισης
   suggestions: Προτάσεις
   summary: Περίληψη
   support_inaturalist: Υποστήριξη του iNaturalist
@@ -2268,10 +2436,28 @@ el:
   text_: κείμενο
   thanks_for_signing_up: Ευχαριστούμε που εγγραφήκατε!
   thanks_for_using: Ευχαριστούμε που το χρησιμοποιείτε
+  that_observation_no_longer_exists: Αυτή η παρατήρηση δεν υπάρχει πλέον.
   the: το
   the_: το
   the_community_id_requires_at_least_two_identifications: La Comunidad ID requiere
     al menos dos identificaciones.
+  the_observation_has_date: η παρατήρηση <strong>έχει μια ημερομηνία</strong>
+  the_observation_has_photo: η παρατήρηση <strong>έχει μια φωτογραφία</strong>
+  the_observation_was_already_added_to_that_project: Η παρατήρηση είχε ήδη προστεθεί
+    σε αυτό το εγχείρημα.
+  the_species_listed_below_were_not_found_in_the_site_database: Τα παρακάτω είδη δεν
+    βρέθηκαν στη βάση δεδομένων του %{site_name}.
+  there_were_errors: Παρουσιάστηκαν σφάλματα.
+  there_were_problems_adding_taxa: 'Παρουσιάστηκαν προβλήματα κατά την προσθήκη αυτών
+    των taxa: %{errors}'
+  there_were_problems_adding_your_observation_to_this_project: 'Παρουσιάστηκαν προβλήματα
+    κατά την προσθήκη της παρατήρησής σας σε αυτό το εγχείρημα:'
+  there_were_problems_adding_that_observation_to_this_project: 'Παρουσιάστηκαν προβλήματα
+    κατά την προσθήκη αυτής της παρατήρησης σε αυτό το εγχείρημα:'
+  there_were_some_problems_saving_this_observation: Παρουσιάστηκαν κάποια προβλήματα
+    κατά την αποθήκευση αυτής της παρατήρησης
+  there_were_some_problems_with_fields: 'Παρουσιάστηκαν κάποια προβλήματα με τα ακόλουθα
+    πεδία:'
   this_species: αυτό το είδος
   this_year: Αυτό το έτος
   those_observations_no_longer_exist: Αυτές οι παρατηρήσεις δεν υπάρχουν πλέον.
@@ -2296,19 +2482,60 @@ el:
   totals: Σύνολα
   total_members: Συνολικά μέλη
   total_observations: Συνολικές παρατηρήσεις
+  total_species_observed: Σύνολο παρατηρηθέντων ειδών
+  total_unique_observers: Σύνολο μοναδικών παρατηρητών
   translated_languages: Μεταφρασμένες γλώσσες
   "true": Αληθές
   trends: Τάσεις
+  two_thirds: 2/3
+  unknown_error: Άγνωστο σφάλμα
   unknown_taxon_framework_relationship: Σχέση αγνώστου πλαισίου εργασίας taxon
+  unlink_your_google_account: Αποσυνδέστε τον Google λογαριασμό σας
+  updating: Γίνεται ενημέρωση...
   update_observation: Ενημέρωση παρατήρησης
   update_observations: Ενημέρωση παρατηρήσεων
   upload_photo: Ανέβασμα φωτογραφίας
+  uploader:
+    tooltips:
+      add: Προσθήκη παρατήρησης/-εων
+      photo_failed: Αποτυχία φόρτωσης της φωτογραφίας
+      remove: Αφαίρεση επιλεγμένων παρατηρήσεων
+      remove_observation: Αφαίρεση παρατήρησης
+      remove_photo: Αφαίρεση φωτογραφίας
+      select_all: Επιλογή όλων των παρατηρήσεων
+  usage_stats: Στατιστικά χρήσης
   user: Χρήστης
+  user_added_an_observation_html: Η/Ο %{user} πρόσθεσε μια παρατήρηση
+  user_added_x_observations_html: Η/Ο %{user} πρόσθεσε %{x} παρατηρήσεις
+  user_is_a_naturalist: Η/Ο %{user} είναι μια/ένας φυσιοδίφης!
+  user_observations: Παρατηρήσεις χρήστη
+  user_suggested_an_id: Η/Ο %{user} υπέδειξε μια αναγνώριση
   username: Όνομα χρήστη
   username_or_email: Όνομα χρήστη ή email
   username_or_user_id: Όνομα χρήστη η ID χρήστη
   users: Χρήστες
+  value: Τιμή
+  view: Προβολή
+  view_all: Προβολή όλων
+  view_all_members: Προβολή όλων των μελών
+  view_all_n: Προβολή όλων %{n}
+  view_all_observations: Προβολή όλων των παρατηρήσεων
+  view_all_photocount_photos: Προβολή όλων των %{photo_count} φωτογραφιών
+  view_details: Προβολή λεπτομερειών
+  view_more: Δείτε περισσότερα
+  view_more_observations: Προβολή περισσοτέρων παρατηρήσεων
+  view_more_recent_observations: Προβολή πιο πρόσφατων παρατηρήσεων
+  view_observation: Προβολή παρατήρησης
+  view_observations: Προβολή παρατηρήσεων
   view_sample: Προβολή δείγματος
+  view_stats: Προβολή στατιστικών
+  view_the_observation: Προβολή της παρατήρησης
+  view_user_observations: Προβολή παρατηρήσεων της/του %{user}
+  view_year_stats_for_site: Προβολή στατιστικών του %{site} για το %{year}
+  view_your_calendar: Προβολή του ημερολογίου σας
+  view_your_observations: Προβολή των παρατηρήσεών σας
+  view_your_year_stats: Προβολή των στατιστικών σας για το %{year}
+  view_yours: Δείτε τις δικές σας
   visually_similar: Οπτικά Παρόμοια
   vulnerable: Ευαίσθητος
   was_it_captive_cultivated?: Ήταν σε αιχμαλωσία ή καλλιεργημένο;
@@ -2317,11 +2544,16 @@ el:
   weather: Καιρός
   website: Ιστότοπος
   whats_this?: Τι είναι αυτό;
+  when: Πότε
+  when_did_you_see_it?: Πότε το είδατε;
+  where: Πού
+  where_did_you_see_it: Πού το είδατε;
   who_helped_user_the_most: Ποιος Βοήθησε το %{user} Περισσότερο
   worldwide: Παγκόσμιες
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} de %{y} la gente (mas que 2/3)
     son d''acuerdo que esto s valido'
   x_is_the_root_of_the_tree: '%{rank} %{name} δεν είναι η ρίζα του δένδρου'
+  you_need_to_select_some_observations_first: Πρέπει πρώτα να επιλέξετε κάποιες παρατηρήσεις.
   your_membership: Η συμμετοχή σας
   your_projects: Τα εγχειρήματά σας
   your_google_account: ο Google λογαριασμό σας
@@ -2331,6 +2563,15 @@ el:
     donate:
       post_donate_social_media_text: Υποστήριξα το iNaturalist! Πρέπει να το ελέγξεις
         και εσύ επίσης.
+    guides:
+      sorts:
+        alphaname: Αλφαβητικά με την επιστημονική ονομασία
+    help:
+      index:
+        what_is_geoprivacy?: Τι είναι γεωαπόρρητο;
+        geoprivacy_is_a_setting_you_can: 'Γεωαπόρρητο είναι μια ρύθμιση που μπορείτε
+          να κάνετε στις παρατηρήσεις σας ώστε να ελέγχετε τον τρόπο που εμφανίζονται
+          οι γεωγραφικές συντεταγμένες (πλάτος και μήκος). Έχετε τις παρακάτω επιλογές:'
     observations:
       import:
         decimal_degrees_format: dd.dddd
@@ -2359,6 +2600,8 @@ el:
           iNaturalist</a>
         new_users_desc: Εγγράφηκε αυτή τη ημέρα
         recent_desc: Εγγράφηκε στις τελευταίες 7 ημέρες
+      year:
+        percent_growth_in_year: '% Αύξηση το %{year}'
     users:
       edit:
         common_names_desc: Mostrar nombres conocidos (comunes). Va desactivar solamente

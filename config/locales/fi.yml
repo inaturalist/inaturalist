@@ -587,6 +587,7 @@ fi:
   attribution: Nimeäminen
   authority_list:
     iucn_red_list: IUCN Uhanalaisuusluokitus
+  authorize: Valtuuta
   authorize_permissions_from_provider: Valtuuta %{provider} käyttöoikeudet
   automatic_descriptions_have_been_disabled: Automaattiset kuvaukset on poistettu
     käytöstä tälle taksonille.
@@ -1119,6 +1120,7 @@ fi:
   deleted_vote: Poistettu äänestys
   deleting: Poistaa...
   deleting_verb: Poistaminen
+  deny: Kiellä
   desc: Laskeva
   descending: Laskeva
   describe_purpose: Kuvaile tämän projektin tarkoitus.
@@ -1438,6 +1440,13 @@ fi:
   for_a_taxon: taksonille
   formatting: Muotoilu
   forgot_your_password: Unohditko salasanasi?
+  forum: Foorumi
+  forum_categories:
+    bug_reports: Bugiraportit
+    forum_feedback: Foorumin palaute
+    nature_talk: Keskustelua luonnosta
+    news_and_updates: Uutiset & päivitykset
+    tutorials: Oppaat
   frequency: Lukumäärä
   fri: Pe
   from: paikasta
@@ -2597,8 +2606,8 @@ fi:
       point_of_interest: mielenkiintoinen kohde
       Postal_Code: Postinumero
       postal_code: postinumero
-      Province: Provinssi
-      province: provinssi
+      Province: Maakunta
+      province: maakunta
       Region: Alue
       region: alue
       Republic: Tasavalta
@@ -3736,7 +3745,7 @@ fi:
   uploading_num_of_count_photos:
     one: Tallennetaan kuvaa...
     other: Tallennetaan %{num}/%{count} kuvaa...
-  US_states: US osavaltiot
+  US_states: USA:n osavaltiot
   usage_stats: Käyttötilastot
   user: Käyttäjä
   user_added_a_x: '%{user} lisäsi %{x}n'
@@ -4405,9 +4414,9 @@ fi:
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Ota yhteyttä palauteryhmään</a></strong>
+              <strong><a href="%{feedback_url}">Ota yhteyttä foorumiin</a></strong>
               <p>
-                Monet sivuston kuraattorit seuraavat sähköpostiviestejä palauteryhmään.
+                Monet sivuston kuraattorit seuraavat sähköpostiviestejä foorumiin.
               </p>
             </li>
             <li>

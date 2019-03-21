@@ -55,6 +55,9 @@ ar:
   x_misidentifications_of_this_species:
     one: 1 عدم تعرف على هذا النوع
     other: '%{count} عدم تعرف على هذا النوع'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 عملية تعرف خاطئة للأنواع في هذه %{rank}
+    other: '%{count} عملية تعرف خاطئة للأنواع في هذه %{rank}'
   x_observations:
     one: 1 ملاحظة
     other: '%{count} ملاحظات'
@@ -2881,6 +2884,10 @@ ar:
     التعرف عليها بشكل خاطئ مثل هذا النوع
   other_species_commonly_misidentified_as_this_species_in_place_html: تم تعريف الأنواع
     الأخرى بشكل خاطئ على أنها في <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: الأصناف الأخرى التي يتم التعرف عليها
+    عادة خطأ كهذه %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: الأصناف الأخرى التي
+    يتم التعرف عليها عادة خطأ كهذه %{rank} in <a href="%{url}">%{place}</a>
   our_blog: مدونتنا
   out_of_range: خارج النطاق
   output_taxon: إخراج الأصنوفة
@@ -3859,6 +3866,7 @@ ar:
   sign_up: أنشئ حسابًا
   sign_up_exclamation: أنشئ حسابًا!
   similar_species: أنواع مماثلة
+  similar_taxa: الأصناف المشابهة
   simple: بسيطة
   sign_in_exclamation: تسجيل الدخول!
   single_observation: ملاحظة واحدة
