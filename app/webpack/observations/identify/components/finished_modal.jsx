@@ -5,6 +5,7 @@ import {
   Modal,
   Button
 } from "react-bootstrap";
+import MarkAllAsReviewedButtonContainer from "../containers/mark_all_as_reviewed_button_container";
 
 const FinishedModal = ( {
   reviewed,
@@ -15,7 +16,8 @@ const FinishedModal = ( {
   viewMore,
   loadPage,
   currentPage,
-  done
+  done,
+  reviewing
 } ) => {
   let viewMoreButton;
   if ( reviewed > 0 ) {
@@ -23,6 +25,7 @@ const FinishedModal = ( {
       <Button
         bsStyle="primary"
         onClick={( ) => viewMore( )}
+        disabled={reviewing}
       >
         { I18n.t( "view_more_unreviewed" ) }
       </Button>
@@ -32,6 +35,7 @@ const FinishedModal = ( {
     <Button
       bsStyle={reviewed > 0 ? "default" : "primary"}
       onClick={( ) => loadPage( currentPage + 1 )}
+      disabled={reviewing}
     >
       { I18n.t( "skip_to_next_page" ) }
     </Button>
@@ -43,6 +47,7 @@ const FinishedModal = ( {
   );
   let modalFooter = (
     <Modal.Footer>
+      <MarkAllAsReviewedButtonContainer />
       { nextPageButton }
       { viewMoreButton }
     </Modal.Footer>
@@ -94,7 +99,8 @@ FinishedModal.propTypes = {
   viewMore: PropTypes.func,
   loadPage: PropTypes.func,
   currentPage: PropTypes.number,
-  done: PropTypes.bool
+  done: PropTypes.bool,
+  reviewing: PropTypes.bool
 };
 
 export default FinishedModal;
