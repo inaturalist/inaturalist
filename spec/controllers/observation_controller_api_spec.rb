@@ -780,6 +780,22 @@ shared_examples_for "an ObservationsController" do
         expect( new_owners_ident.vision ).to be true
       end
     end
+
+    it "should not change the private coordinates if user geoprivacy is opened but taxon geoprivacy is obscured" do
+      t = make_threatened_taxon
+      o = Observation.make!( user: user, geoprivacy: Observation::OBSCURED, taxon: t, latitude: 1, longitude: 1 )
+      o.reload
+      expect( o ).to be_coordinates_obscured
+      obscured_lat = o.private_latitude
+      puts
+      puts "udpating"
+      puts
+      put :update, format: :json, id: o.id, observation: { geoprivacy: "", latitude: o.private_latitude, longitude: o.private_longitude }
+      o.reload
+      expect( o.geoprivacy ).not_to eq Observation::OBSCURED
+      expect( o ).to be_coordinates_obscured
+      expect( o.latitude ).not_to eq o.private_latitude
+    end
   end
 
   describe "by_login" do
