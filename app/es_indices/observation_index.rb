@@ -7,13 +7,13 @@ class Observation < ActiveRecord::Base
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
   scope :load_for_index, -> { includes(
-    { user: :flags }, :confirmed_reviews, :flags,
+    { user: [ :flags, :stored_preferences ] }, :confirmed_reviews, :flags,
     :observation_links, :quality_metrics,
     :votes_for, :stored_preferences, :tags,
     { annotations: :votes_for },
     :photos,
     { sounds: :user },
-    { identifications: :stored_preferences }, :project_observations,
+    { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
     { taxon: [ :taxon_names, :conservation_statuses ] },
     { observation_field_values: :observation_field },
     { comments: [ { user: :flags }, :flags ] } ) }
@@ -97,6 +97,9 @@ class Observation < ActiveRecord::Base
       indexes :created_time_zone, type: "keyword", index: false
       indexes :geoprivacy, type: "keyword"
       indexes :taxon_geoprivacy, type: "keyword"
+      indexes :context_geoprivacy, type: "keyword"
+      indexes :context_user_geoprivacy, type: "keyword"
+      indexes :context_taxon_geoprivacy, type: "keyword"
       indexes :observed_time_zone, type: "keyword", index: false
       indexes :quality_grade, type: "keyword"
       indexes :time_zone_offset, type: "keyword", index: false
@@ -161,6 +164,9 @@ class Observation < ActiveRecord::Base
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
         taxon_geoprivacy: taxon_geoprivacy,
+        context_geoprivacy: context_geoprivacy,
+        context_user_geoprivacy: context_user_geoprivacy,
+        context_taxon_geoprivacy: context_taxon_geoprivacy,
         map_scale: map_scale,
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,

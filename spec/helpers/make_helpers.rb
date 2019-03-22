@@ -169,10 +169,11 @@ module MakeHelpers
     g
   end
 
-  def make_threatened_taxon(options = {})
+  def make_threatened_taxon( options = {} )
     options[:rank] ||= Taxon::SPECIES
-    t = Taxon.make!(options)
-    without_delay { ConservationStatus.make!(taxon: t, iucn: Taxon::IUCN_ENDANGERED) }
+    cs_options = options.delete(:conservation_status) || {}
+    t = Taxon.make!( options )
+    without_delay { ConservationStatus.make!( cs_options.merge( taxon: t, iucn: Taxon::IUCN_ENDANGERED ) ) }
     t.reload
     t
   end

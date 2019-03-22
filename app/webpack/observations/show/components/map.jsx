@@ -24,6 +24,19 @@ class Map extends React.Component {
     } = this.props;
     const currentUserPrefersMedialessObs = config.currentUser
       && config.currentUser.prefers_medialess_obs_maps;
+    let geoprivacyIconClass = "fa fa-map-marker";
+    let geoprivacyTitle = I18n.t( "location_is_public" );
+    if ( observation.obscured ) {
+      if ( !observation.geojson ) {
+        geoprivacyIconClass = "icon-icn-location-private";
+        geoprivacyTitle = I18n.t( "location_is_private" );
+      } else {
+        geoprivacyIconClass = "icon-icn-location-obscured";
+        geoprivacyTitle = I18n.t( "location_is_obscured" );
+      }
+    } else if ( !observation.latitude && !observation.private_geojson ) {
+      geoprivacyIconClass = "icon-no-location";
+    }
     if ( !observation || !observation.latitude ) {
       return (
         <div className="Map">
@@ -34,7 +47,32 @@ class Map extends React.Component {
                 ? I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
             </div>
           </div>
-          <div className="map_details" />
+          <div className="map_details">
+            <i
+              className={`geoprivacy-icon ${geoprivacyIconClass}`}
+              title={geoprivacyTitle}
+              alt={geoprivacyTitle}
+            />
+            <div className="place-guess" />
+            <div className="details_menu">
+              <Dropdown
+                id="grouping-control"
+              >
+                <Dropdown.Toggle>
+                  { I18n.t( "details" ) }
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="dropdown-menu-right">
+                  <li>
+                    <MapDetails
+                      observation={observation}
+                      observationPlaces={observationPlaces}
+                      config={config}
+                    />
+                  </li>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </div>
         </div>
       );
     }
@@ -128,17 +166,6 @@ class Map extends React.Component {
           { obscured }
         </div>
       );
-    }
-    let geoprivacyIconClass = "fa fa-map-marker";
-    let geoprivacyTitle = I18n.t( "location_is_public" );
-    if ( observation.obscured && !observation.latitude && !observation.private_geojson ) {
-      geoprivacyIconClass = "icon-no-location";
-    } else if ( observation.geoprivacy === "private" ) {
-      geoprivacyIconClass = "icon-icn-location-private";
-      geoprivacyTitle = I18n.t( "location_is_private" );
-    } else if ( observation.obscured ) {
-      geoprivacyIconClass = "icon-icn-location-obscured";
-      geoprivacyTitle = I18n.t( "location_is_obscured" );
     }
     return (
       <div className="Map">

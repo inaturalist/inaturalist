@@ -39,6 +39,8 @@ class MapDetails extends React.Component {
     const { showAllPlaces } = this.state;
     const { currentUser } = config;
     if ( !observation ) { return ( <div /> ); }
+    const testingContextGeoprivacy = currentUser
+      && currentUser.prefers_coordinate_interpolation_protection_test;
     let accuracy = observation.private_geojson
       ? observation.positional_accuracy : observation.public_positional_accuracy;
     let accuracyUnits = "m";
@@ -49,10 +51,12 @@ class MapDetails extends React.Component {
     let geoprivacy = I18n.t( "open_" );
     if ( observation.geoprivacy === "private" ) {
       geoprivacy = I18n.t( "private_" );
-    } else if ( observation.obscured ) {
+    } else if ( observation.geoprivacy === "obscured" ) {
       geoprivacy = I18n.t( "obscured" );
     } else if ( observation.geoprivacy ) {
       geoprivacy = I18n.t( observation.geoprivacy );
+    } else if ( !testingContextGeoprivacy && observation.context_geoprivacy === "obscured" ) {
+      geoprivacy = I18n.t( "obscured" );
     }
     let currentUserHasProjectCuratorCoordinateAccess;
     if ( currentUser && currentUser.id ) {
@@ -72,6 +76,16 @@ class MapDetails extends React.Component {
     const adminPlaces = observationPlaces.filter( op => ( op.admin_level !== null ) );
     const communityPlaces = observationPlaces.filter( op => ( op.admin_level === null ) );
     const defaultNumberOfCommunityPlaces = 10;
+    const obscurationExplanationGeoprivacy = (
+      <li>
+        <strong>
+          <i className="icon-icn-location-obscured" />
+          { I18n.t( "label_colon", { label: I18n.t( "geoprivacy_is_obscured" ) } ) }
+        </strong>
+        { " " }
+        { I18n.t( "geoprivacy_is_obscured_desc" ) }
+      </li>
+    );
     return (
       <div className="MapDetails">
         <div className="top_info">
@@ -129,20 +143,11 @@ class MapDetails extends React.Component {
             ) }
           </div>
         </div>
-        { observation.obscured && ( observation.geoprivacy || observation.taxon_geoprivacy ) && (
+        { observation.obscured && ( observation.geoprivacy || observation.taxon_geoprivacy || observation.context_geoprivacy ) && (
           <div className="obscured">
             <h4>{ I18n.t( "why_the_coordinates_are_obscured" ) }</h4>
             <ul className="plain">
-              { observation.geoprivacy === "obscured" && (
-                <li>
-                  <strong>
-                    <i className="icon-icn-location-obscured" />
-                    { I18n.t( "label_colon", { label: I18n.t( "geoprivacy_is_obscured" ) } ) }
-                  </strong>
-                  { " " }
-                  { I18n.t( "geoprivacy_is_obscured_desc" ) }
-                </li>
-              ) }
+              { observation.geoprivacy === "obscured" && obscurationExplanationGeoprivacy }
               { observation.geoprivacy === "private" && (
                 <li>
                   <strong>
@@ -171,6 +176,32 @@ class MapDetails extends React.Component {
                   </strong>
                   { " " }
                   { I18n.t( "taxon_is_threatened_coordinates_hidden_desc" ) }
+                </li>
+              ) }
+              {
+                observation.context_geoprivacy === "obscured" && (
+                  testingContextGeoprivacy ? (
+                    <li>
+                      <strong>
+                        <i className="fa fa-calendar" />
+                        { I18n.t( "label_colon", { label: I18n.t( "same_day_obscured" ) } ) }
+                      </strong>
+                      { " " }
+                      { I18n.t( "same_day_obscured_desc" ) }
+                    </li>
+                  ) : (
+                    obscurationExplanationGeoprivacy
+                  )
+                )
+              }
+              { testingContextGeoprivacy && observation.context_geoprivacy === "private" && (
+                <li>
+                  <strong>
+                    <i className="fa fa-calendar" />
+                    { I18n.t( "label_colon", { label: I18n.t( "same_day_private" ) } ) }
+                  </strong>
+                  { " " }
+                  { I18n.t( "same_day_private_desc" ) }
                 </li>
               ) }
             </ul>
@@ -283,7 +314,8 @@ MapDetails.propTypes = {
 };
 
 MapDetails.defaultProps = {
-  config: {}
+  config: {},
+  observationPlaces: []
 };
 
 export default MapDetails;
