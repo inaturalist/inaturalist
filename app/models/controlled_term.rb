@@ -15,10 +15,10 @@ class ControlledTerm < ActiveRecord::Base
   belongs_to :user
   has_many :controlled_term_taxa, inverse_of: :controlled_term, dependent: :destroy
   has_many :taxa,
-    -> { joins(:controlled_term_taxa).where ["controlled_term_taxa.exception = ?", false] },
+    -> { where ["controlled_term_taxa.exception = ?", false] },
     through: :controlled_term_taxa
   has_many :excepted_taxa,
-    -> { joins(:controlled_term_taxa).where ["controlled_term_taxa.exception = ?", true] },
+    -> { where ["controlled_term_taxa.exception = ?", true] },
     through: :controlled_term_taxa,
     source: :taxon
 
