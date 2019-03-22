@@ -7,13 +7,13 @@ class Observation < ActiveRecord::Base
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
   scope :load_for_index, -> { includes(
-    { user: :flags }, :confirmed_reviews, :flags,
+    { user: [ :flags, :stored_preferences ] }, :confirmed_reviews, :flags,
     :observation_links, :quality_metrics,
     :votes_for, :stored_preferences, :tags,
     { annotations: :votes_for },
     :photos,
     { sounds: :user },
-    { identifications: :stored_preferences }, :project_observations,
+    { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
     { taxon: [ :taxon_names, :conservation_statuses ] },
     { observation_field_values: :observation_field },
     { comments: [ { user: :flags }, :flags ] } ) }
