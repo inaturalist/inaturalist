@@ -453,140 +453,140 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "update" do
-    before do
-      @o = Observation.make!(:user => user)
-    end
+    let(:o) { Observation.make!( user: user )}
 
     it "should accept nested observation_field_values" do
       of = ObservationField.make!
-      put :update, :format => :json, :id => @o.id, :observation => {
-        :observation_field_values_attributes => {
+      put :update, format: :json, id: o.id, observation: {
+        observation_field_values_attributes: {
           "0" => {
-            :observation_field_id => of.id,
-            :value => "foo"
+            observation_field_id: of.id,
+            value: "foo"
           }
         }
       }
-      expect(response).to be_success
-      @o.reload
-      expect(@o.observation_field_values.last.observation_field).to eq(of)
-      expect(@o.observation_field_values.last.value).to eq("foo")
+      expect( response ).to be_success
+      o.reload
+      expect( o.observation_field_values.last.observation_field ).to eq of
+      expect( o.observation_field_values.last.value ).to eq "foo"
     end
 
     it "should updating existing observation_field_values" do
-      ofv = ObservationFieldValue.make!(:value => "foo", :observation => @o)
-      put :update, :format => :json, :id => ofv.observation_id, :observation => {
-        :observation_field_values_attributes => {
+      ofv = ObservationFieldValue.make!( value: "foo", observation: o )
+      put :update, format: :json, id: ofv.observation_id, observation: {
+        observation_field_values_attributes: {
           "0" => {
-            :id => ofv.id,
-            :observation_field_id => ofv.observation_field_id,
-            :value => "bar"
+            id: ofv.id,
+            observation_field_id: ofv.observation_field_id,
+            value: "bar"
           }
         }
       }
-      expect(response).to be_success
+      expect( response ).to be_success
       ofv.reload
-      expect(ofv.value).to eq "bar"
+      expect( ofv.value ).to eq "bar"
     end
 
     it "should updating existing observation_field_values by observation_field_id" do
-      o = Observation.make!(:user => user)
-      ofv = ObservationFieldValue.make!(:value => "foo", :observation => o)
-      put :update, :format => :json, :id => ofv.observation_id, :observation => {
-        :observation_field_values_attributes => {
+      ofv = ObservationFieldValue.make!( value: "foo", observation: o)
+      put :update, format: :json, id: ofv.observation_id, observation: {
+        observation_field_values_attributes: {
           "0" => {
-            :observation_field_id => ofv.observation_field_id,
-            :value => "bar"
+            observation_field_id: ofv.observation_field_id,
+            value: "bar"
           }
         }
       }
-      expect(response).to be_success
+      expect( response ).to be_success
       ofv.reload
-      expect(ofv.value).to eq "bar"
+      expect( ofv.value ).to eq "bar"
     end
 
     it "should updating existing observation_field_values by observation_field_id even if they're project fields" do
       pof = ProjectObservationField.make!
-      po = make_project_observation(:project => pof.project, :user => user)
-      ofv = ObservationFieldValue.make!(:value => "foo", :observation => po.observation, :observation_field => pof.observation_field)
-      put :update, :format => :json, :id => ofv.observation_id, :observation => {
-        :observation_field_values_attributes => {
+      po = make_project_observation( project: pof.project, user: user)
+      ofv = ObservationFieldValue.make!(
+        value: "foo", 
+        observation: po.observation,
+        observation_field: pof.observation_field
+      )
+      put :update, format: :json, id: ofv.observation_id, observation: {
+        observation_field_values_attributes: {
           "0" => {
-            :observation_field_id => ofv.observation_field_id,
-            :value => "bar"
+            observation_field_id: ofv.observation_field_id,
+            value: "bar"
           }
         }
       }
-      expect(response).to be_success
+      expect( response ).to be_success
       ofv.reload
-      expect(ofv.value).to eq "bar"
+      expect( ofv.value ).to eq "bar"
     end
 
     it "should allow removal of nested observation_field_values" do
-      ofv = ObservationFieldValue.make!(:value => "foo", :observation => @o)
-      expect(@o.observation_field_values).not_to be_blank
-      put :update, :format => :json, :id => ofv.observation_id, :observation => {
-        :observation_field_values_attributes => {
+      ofv = ObservationFieldValue.make!( value: "foo", observation: o )
+      expect( o.observation_field_values ).not_to be_blank
+      put :update, format: :json, id: ofv.observation_id, observation: {
+        observation_field_values_attributes: {
           "0" => {
-            :_destroy => true,
-            :id => ofv.id,
-            :observation_field_id => ofv.observation_field_id,
-            :value => ofv.value
+            _destroy: true,
+            id: ofv.id,
+            observation_field_id: ofv.observation_field_id,
+            value: ofv.value
           }
         }
       }
-      expect(response).to be_success
-      @o.reload
-      expect(@o.observation_field_values).to be_blank
+      expect( response ).to be_success
+      o.reload
+      expect( o.observation_field_values ).to be_blank
     end
 
     it "should respond with 410 for deleted observations" do
-      o = Observation.make!(:user => user)
       oid = o.id
       o.destroy
-      put :update, :format => :json, :id => oid, :observation => {:description => "this is different"}
-      expect(response.status).to eq 410
+      put :update, format: :json, id: oid, observation: { description: "this is different" }
+      expect( response.status ).to eq 410
     end
 
     it "should assume request lat/lon are the true coordinates" do
-      o = make_observation_of_threatened(:user => user)
+      o = make_observation_of_threatened( user: user )
       lat, lon, plat, plon = [
         o.latitude,
         o.longitude,
         o.private_latitude,
         o.private_longitude
       ]
-      expect(lat).not_to eq plat
-      put :update, :format => :json, :id => o.id, :observations => [{:latitude => plat, :longitude => plon}]
+      expect( lat ).not_to eq plat
+      put :update, format: :json, id: o.id, observations: [{ latitude: plat, longitude: plon }]
       o.reload
-      expect(o.private_latitude).to eq plat
+      expect( o.private_latitude ).to eq plat
     end
 
     it "should not change the true coordinates when switching to a threatened taxon and back" do
       normal = Taxon.make!
       threatened = make_threatened_taxon
-      o = Observation.make!(:user => user, :taxon => normal, :latitude => 1, :longitude => 1)
-      expect(o.latitude.to_f).to eq 1.0
-      put :update, :format => :json, :id => o.id, :observation => {:taxon_id => threatened.id}
+      o = Observation.make!( user: user, taxon: normal, latitude: 1, longitude: 1 )
+      expect( o.latitude.to_f ).to eq 1.0
+      put :update, format: :json, id: o.id, observation: { taxon_id: threatened.id }
       o.reload
-      expect(o.private_latitude).not_to be_blank
-      expect(o.private_latitude).not_to eq o.latitude
-      expect(o.private_latitude.to_f).to eq 1.0
-      put :update, :format => :json, :id => o.id, :observation => {:taxon_id => normal.id}
+      expect( o.private_latitude ).not_to be_blank
+      expect( o.private_latitude ).not_to eq o.latitude
+      expect( o.private_latitude.to_f ).to eq 1.0
+      put :update, format: :json, id: o.id, observation: { taxon_id: normal.id }
       o.reload
-      expect(o.private_latitude).to be_blank
-      expect(o.latitude.to_f).to eq 1.0
+      expect( o.private_latitude ).to be_blank
+      expect( o.latitude.to_f ).to eq 1.0
     end
 
     it "should deal with updating the taxon_id" do
       t1 = Taxon.make!
       t2 = Taxon.make!
       t3 = Taxon.make!
-      o = Observation.make!(taxon: t1, user: user)
-      o.update_attributes(taxon: t2)
+      o = Observation.make!( taxon: t1, user: user )
+      o.update_attributes( taxon: t2 )
       o.reload
       expect( o.identifications.count ).to eq 2
-      put :update, format: :json, id: o.id, observation: {taxon_id: t3.id}
+      put :update, format: :json, id: o.id, observation: { taxon_id: t3.id }
       o.reload
       expect( o.identifications.count ).to eq 3
     end
@@ -1768,7 +1768,7 @@ shared_examples_for "an ObservationsController" do
     after(:each) { disable_elastic_indexing( Observation ) }
     shared_examples_for "it allows changes" do
       it "should allow ofv creation" do
-        put :update_fields, :format => :json, :id => o.id, :observation => {
+        put :update_fields, format: :json, id: o.id, observation: {
           :observation_field_values_attributes => {
             "0" => {
               :observation_field_id => of.id,
@@ -1782,7 +1782,7 @@ shared_examples_for "an ObservationsController" do
       end
       it "should allow ofv updating" do
         ofv = ObservationFieldValue.make!(:observation => o, :observation_field => of, :value => "foo")
-        put :update_fields, :format => :json, :id => o.id, :observation => {
+        put :update_fields, format: :json, id: o.id, observation: {
           :observation_field_values_attributes => {
             "0" => {
               :observation_field_id => of.id,
@@ -1832,7 +1832,7 @@ shared_examples_for "an ObservationsController" do
       let(:of) { ObservationField.make! }
       it_behaves_like "it allows changes"
       it "should set the user_id" do
-        put :update_fields, :format => :json, :id => o.id, :observation => {
+        put :update_fields, format: :json, id: o.id, observation: {
           :observation_field_values_attributes => {
             "0" => {
               :observation_field_id => of.id,
@@ -1859,7 +1859,7 @@ shared_examples_for "an ObservationsController" do
         u.update_attributes(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS)
         expect(u.preferred_observation_fields_by).to eq User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS
         o.reload
-        put :update_fields, :format => :json, :id => o.id, :observation => {
+        put :update_fields, format: :json, id: o.id, observation: {
           :observation_field_values_attributes => {
             "0" => {
               :observation_field_id => of.id,
@@ -1874,7 +1874,7 @@ shared_examples_for "an ObservationsController" do
       it "should not allow creation if observer prefers editng by observer" do
         o.user.update_attributes(:preferred_observation_fields_by => User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER)
         expect(o.user.preferred_observation_fields_by).to eq User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER
-        put :update_fields, :format => :json, :id => o.id, :observation => {
+        put :update_fields, format: :json, id: o.id, observation: {
           :observation_field_values_attributes => {
             "0" => {
               :observation_field_id => of.id,
