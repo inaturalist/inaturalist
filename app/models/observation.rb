@@ -1470,6 +1470,7 @@ class Observation < ActiveRecord::Base
       self.obscuration_changed = geoprivacy_changed?
       return
     end
+    # old_coordinates = [private_latitude, private_longitude].compact
     if latitude_changed? || longitude_changed?
       self.private_latitude = latitude
       self.private_longitude = longitude
@@ -1477,11 +1478,14 @@ class Observation < ActiveRecord::Base
       self.private_latitude ||= latitude
       self.private_longitude ||= longitude
     end
+    # In this situation, the true coordinates didn't really change, so just reset them
     if (
-      private_latitude_changed? || private_longitude_changed?
-    ) || (
-      latitude == private_latitude || longitude == private_longitude
+      ( latitude == private_latitude || longitude == private_longitude ) &&
+      !( private_latitude_changed? || private_longitude_changed? )
     )
+      self.latitude, self.longitude = [latitude_was, longitude_was]
+      set_geom_from_latlon
+    elsif private_latitude_changed? || private_longitude_changed?
       self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
       set_geom_from_latlon
       self.obscuration_changed = true
