@@ -42,6 +42,9 @@ describe ConservationStatus, "creation" do
   it "should not allow blank string geoprivacy" do
     expect( ConservationStatus.make!(geoprivacy: '').geoprivacy ).to be_nil
   end
+  it "should have open geoprivacy for a not evaluated status" do
+    expect( ConservationStatus.make!( status: "NE", iucn: Taxon::IUCN_NOT_EVALUATED ).geoprivacy ).to eq Observation::OPEN
+  end
 end
 
 describe ConservationStatus, "saving" do
