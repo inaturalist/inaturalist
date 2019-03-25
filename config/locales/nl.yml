@@ -60,6 +60,9 @@ nl:
   x_misidentifications_of_this_species:
     one: 1 misidentificatie van deze soort
     other: '%{count} misidentificaties van deze soort'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 fout gedetermineerde soort in deze %{rank}
+    other: '%{count} fout gedetermineerde soorten in deze %{rank}'
   x_observations:
     one: 1 waarneming
     other: '%{count} waarnemingen'
@@ -2649,7 +2652,7 @@ nl:
     <a href="%{url}" class="nobr"> waarnemingen toevoegt</a>.
   no_subject_parens: (Geen onderwerp)
   no_suggestions_available: Geen suggesties beschikbaar
-  no_summary_from_wikipedia: Gen samenvatting van Wikipedia
+  no_summary_from_wikipedia: Geen overzicht in Wikipedia
   no_summary_has_been_set: Er is geen samenvatting beschikbaar.
   no_taxa: Geen taxa
   no_taxa_listed: Geen taxa in lijst opgenomen
@@ -3000,6 +3003,10 @@ nl:
     worden geïdentificeerd als deze soort
   other_species_commonly_misidentified_as_this_species_in_place_html: Andere soorten
     die vaak verkeerd worden geïdentificeerd als deze soort in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Andere taxa zijn vaak ten onrechte
+    gedetermineerd als %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Andere taxa zijn vaak
+    ten onrechte gedetermineerd als %{rank} in <a href="%{url}">%{place}</a>
   our_blog: Onze blog
   out_of_range: Buiten bereik
   output_taxon: Uitvoer taxon
@@ -3997,6 +4004,7 @@ nl:
   sign_up: Registreren
   sign_up_exclamation: Meld je aan!
   similar_species: Gelijkaardige soorten
+  similar_taxa: Soortgelijke Taxa
   simple: Eenvoudig
   sign_in_exclamation: Aanmelden
   single_observation: Enkele waarneming
