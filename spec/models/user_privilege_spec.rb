@@ -59,7 +59,7 @@ describe UserPrivilege do
         expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
       end
 
-      it "should lose speech if an observation is deleted" do
+      it "should not lose speech if an observation is deleted" do
         3.times do
           make_research_grade_candidate_observation( user: user )
         end
@@ -68,7 +68,7 @@ describe UserPrivilege do
         user.observations.last.destroy
         Delayed::Worker.new.work_off
         user.reload
-        expect( user ).not_to be_privileged_with( UserPrivilege::SPEECH )
+        expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
       end
     end
     describe "for identification" do
@@ -84,22 +84,23 @@ describe UserPrivilege do
   end
 
   describe "requires_privilege" do
-    describe "for message" do
-      it "should allow creation with speech" do
-        up = UserPrivilege.make!( privilege: UserPrivilege::SPEECH, user: user )
-        m = Message.make( user: user, from_user: user )
-        expect( m ).to be_valid
-      end
-      it "should disallow creation without speech" do
-        m = Message.make( user: user, from_user: user )
-        expect( m ).not_to be_valid
-      end
-      it "should allow creation without speech for replies" do
-        existing_user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
-        m1 = Message.make!( user: user, from_user: existing_user, to_user: user )
-        m2 = Message.make( user: user, from_user: user, to_user: m1.from_user, thread_id: m1.id )
-        expect( m2 ).to be_valid
-      end
-    end
+    # This might belong in the message spec
+    # describe "for message" do
+    #   it "should allow creation with speech" do
+    #     up = UserPrivilege.make!( privilege: UserPrivilege::SPEECH, user: user )
+    #     m = Message.make( user: user, from_user: user )
+    #     expect( m ).to be_valid
+    #   end
+    #   it "should disallow creation without speech" do
+    #     m = Message.make( user: user, from_user: user )
+    #     expect( m ).not_to be_valid
+    #   end
+    #   it "should allow creation without speech for replies" do
+    #     existing_user = UserPrivilege.make!( privilege: UserPrivilege::SPEECH ).user
+    #     m1 = Message.make!( user: user, from_user: existing_user, to_user: user )
+    #     m2 = Message.make( user: user, from_user: user, to_user: m1.from_user, thread_id: m1.id )
+    #     expect( m2 ).to be_valid
+    #   end
+    # end
   end
 end

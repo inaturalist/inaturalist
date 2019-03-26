@@ -35,7 +35,6 @@ module Privileges
 
       options[:on].each do |phase|
         send( "after_#{phase}", lambda {
-          # puts "earns_privilege, after_#{phase}"
           UserPrivilege.delay.check( user.id, privilege )
         } )
       end
