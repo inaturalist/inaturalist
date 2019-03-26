@@ -88,7 +88,8 @@ class Taxon < ActiveRecord::Base
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
               :capitalize_name,
-              :strip_name
+              :strip_name,
+              :remove_wikipedia_summary_unless_auto_description
   after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
@@ -457,6 +458,13 @@ class Taxon < ActiveRecord::Base
       update_stats_for_observations_of(id)
     elastic_index!
     Taxon.refresh_es_index
+    # This will create a long-running job for higher level, but we need to reset
+    # the ancestry field on descendants when the taxon moves
+    Taxon.delay(
+      priority: INTEGRITY_PRIORITY,
+      queue: "slow",
+      unique_hash: { "Taxon::reindex_descendants_of": id }
+    ).reindex_descendants_of( id )
     Identification.delay( priority: INTEGRITY_PRIORITY, queue: "slow",
       unique_hash: { "Identification::update_disagreement_identifications_for_taxon": id }).
       update_disagreement_identifications_for_taxon(id)
@@ -497,6 +505,12 @@ class Taxon < ActiveRecord::Base
   
   def self.reindex_taxa_covered_by( taxon_framework )
     Taxon.elastic_index!( scope: Taxon.get_internal_taxa_covered_by(taxon_framework) )
+  end
+
+  def self.reindex_descendants_of( taxon )
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a?( Taxon )
+    return unless taxon
+    Taxon.elastic_index!( scope: taxon.descendants )
   end
   
   def update_taxon_framework_relationship
@@ -1143,7 +1157,8 @@ class Taxon < ActiveRecord::Base
     end
   end
   
-  def wikipedia_summary(options = {})
+  def wikipedia_summary( options = {} )
+    return unless auto_description?
     locale = options[:locale] || I18n.locale
     td = taxon_descriptions.detect{|td| td.locale.to_s == locale.to_s}
     td ||= taxon_descriptions.detect{|td| td.locale.to_s =~ /^#{locale.to_s.split('-').first}/}
@@ -1169,7 +1184,12 @@ class Taxon < ActiveRecord::Base
     nil
   end
   
-  def set_wikipedia_summary(options = {})
+  def set_wikipedia_summary( options = {} )
+    unless auto_description?
+      update_attributes( wikipedia_summary: false )
+      self.taxon_descriptions.destroy_all
+      return
+    end
     locale = options[:locale] || I18n.locale
     w = options[:wikipedia] || WikipediaService.new(:locale => locale)
     wname = wikipedia_title.blank? ? name : wikipedia_title
@@ -1203,6 +1223,11 @@ class Taxon < ActiveRecord::Base
     # the update_all above skips callbacks, and the wikipedia URL may have changes
     elastic_index!
     details[:summary]
+  end
+
+  def remove_wikipedia_summary_unless_auto_description
+    self.wikipedia_summary = nil unless auto_description?
+    true
   end
 
   def auto_summary
@@ -1445,6 +1470,7 @@ class Taxon < ActiveRecord::Base
   end
 
   def self.max_geoprivacy( taxon_ids, options = {} )
+    return if taxon_ids.blank?
     target_taxon_ids = [
       taxon_ids,
       Taxon.where( "id IN (?)", taxon_ids).pluck(:ancestry).map{|a| a.to_s.split( "/" ).map(&:to_i)}

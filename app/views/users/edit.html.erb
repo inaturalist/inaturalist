@@ -5,6 +5,8 @@
   #preferencescol .field label{display:inline;}
   #providercol ul{margin:0;padding:0;}
   #providercol li{list-style-type:none;}
+  .providerlink,
+  .button.providerlink { padding-left: 28px !important; overflow: hidden;}
   #user_block_blocked_user_id, #user_mute_muted_user_id { width: 200px; }
   .site_id_field img { max-width: 200px; }
 </style>
@@ -153,6 +155,14 @@
           [t(:curators), User::PREFERRED_OBSERVATION_FIELDS_BY_CURATORS],
           [t(:only_you), User::PREFERRED_OBSERVATION_FIELDS_BY_OBSERVER]
         ], :description => t(:observation_fields_by_preferences_description) %>
+
+      <% if current_user.prefers_coordinate_interpolation_protection_test? %>
+        <h3><%=t :privacy %></h3>
+        <%= f.check_box "prefers_coordinate_interpolation_protection", 
+          label: t( "views.users.edit.same_day_geoprivacy_protection" ),
+          label_after: true,
+          description: t( "views.users.edit.prefers_coordinate_interpolation_protection_desc" ) %>
+      <% end %>
     </div>
     
     <div class="column span-18">
@@ -260,12 +270,18 @@
   <div id="providercol" class="stacked">
     <h3><%= t(:connected_accounts) %></h3>
     <ul>
-      <% ProviderAuthorization::PROVIDERS.each do |provider| %>
-        <% if @user.has_provider_auth(provider) %>
+      <% ProviderAuthorization::PROVIDERS.select{|provider| OmniAuth.providers.include?( provider.to_sym )}.each do |provider| %>
+        <% if pa = @user.has_provider_auth(provider) %>
           <li class="clear">
-            <%= button_to t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]), 
-              omniauth_disconnect_path(provider),
-              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} disabled button", :method => "delete" %>
+            <%= button_to omniauth_disconnect_path(provider),
+              :class => "providerlink #{ProviderAuthorization::PROVIDER_NAMES[provider].downcase} disabled button", :method => "delete" do %>
+              <%= t(:disconnect_provider, :provider => ProviderAuthorization::PROVIDER_NAMES[provider]) %>
+              <% unless pa.provider_uid.blank? %>
+                <div class="small">
+                  ID: <%= char_wrap( pa.provider_uid, 30 ) %>
+                </div>
+              <% end %>
+            <% end %>
           </li>
         <% elsif provider != "soundcloud" %>
           <li class="clear">
@@ -290,12 +306,10 @@
   
   <%= separator %>
 
-  <% if is_admin? %>
-    <h3><%=t :your_relationships %></h3>
-    <p class="ui">
-      <%= link_to t(:manage_your_relationships), relationships_path, class: "readmore" %>
-    </p>
-  <% end %>
+  <h3><%=t :your_relationships %></h3>
+  <p class="ui">
+    <%= link_to t(:manage_your_relationships), relationships_path, class: "readmore" %>
+  </p>
 
   <div class="clear quiet box">
     <%= link_to_toggle t(:blocked_users), "#blocked-users", class: "ui" %>
@@ -382,7 +396,5 @@
       </div>
     <% end %>
   </div>
-  <%= button_to t(:delete_your_account), @user, :method => :delete, 
-    :data => {:confirm => t(:are_you_sure_want_delete_account)}, 
-    :class => "minor delete button" %>
+  <%= link_to t(:delete_your_account), delete_users_path, class: "minor delete button" %>
 </div><!-- end side col -->

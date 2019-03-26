@@ -10,6 +10,7 @@
 # Author: LukasJandera
 # Author: Marek Pavlica
 # Author: Meliganai
+# Author: Michaelbrabec
 # Author: Mormegil
 # Author: Patriccck
 # Author: Petra cze
@@ -611,7 +612,6 @@ cs:
   back_to_suggestions: Zpět do návrhů
   back_to_taxon: Zpět do %{defaulttaxon}
   back_to_taxon_changes: Zpět do změn taxonů
-  back_to_this: Zpět do %{place}
   back_to_viewing: Zpět na prohlížení <i>%{taxon}</i>
   back_to_x: Zpět do %{noun}
   back_to_x_assessment: Zpět do hodnocení %{project}
@@ -1311,18 +1311,18 @@ cs:
   eol_collection_url: URL souboru EOL
   error_updating_photo: 'Chyba při aktualizaci obrázku: %{photo_errors}'
   establishment:
-    establishment: Vznik
-    native: místní
     endemic: endemický
+    establishment: Vznik
     introduced: zavedený
-    naturalised: naturalizovaný
     invasive: invazivní
     managed: řízený
+    native: místní
+    naturalised: naturalizovaný
   establishment_means: Způsob vzniku
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: místní a nikde jinde se neobjevuje
     arrived_in_the_region_via_anthropogenic_means: do regionu přišel prostřednictvím
       antropogenního působení
+    native_and_occurs_nowhere_else: místní a nikde jinde se neobjevuje
   establishment_means_describes_how: Způsob vzniku popisuje, jak začal daný taxon
     v oblasti existovat. Více informací o terminologii najdete v DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"></a>.
   event_in_progress: Událost probíhá
@@ -1454,7 +1454,6 @@ cs:
   flag_marked_as_resolved_html: <span class="meta">Vlajka označena jako</span> <strong>vyřešená.</strong>
   flag_reason: '&ldquo;Toto %{record} označuji, protože'
   flag_saved: Označení uloženo.
-  flag_saved_thanks: Označení uloženo. Děkujemeǃ
   flag_this_observation: Označit toto pozorování
   flag_this_photo: Označit tento obrázek
   flagged: označený
@@ -1496,6 +1495,7 @@ cs:
   for_more_information: pro další informace.
   formatting: Formátování
   forgot_your_password: Zapomněli jste heslo?
+  forum: Fórum
   frequency: Frekvence
   fri: Pá
   from: Od

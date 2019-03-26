@@ -66,7 +66,6 @@ ConservationStatus.blueprint do
   taxon { Taxon.make! }
   status { "E" }
   iucn { Taxon::IUCN_ENDANGERED }
-  geoprivacy { Observation::OBSCURED }
 end
 
 ControlledTerm.blueprint do

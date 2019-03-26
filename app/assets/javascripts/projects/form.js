@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var placeLayer;
 
 function rulify() {
@@ -102,7 +104,7 @@ function updateProjectObservationFieldPositions() {
 
 $(document).ready(function() {
   $('.observation_field_chooser').chooser({
-    collectionUrl: '/observation_fields.json',
+    collectionUrl: '/observation_fields.json?order_by=values_count',
     resourceUrl: '/observation_fields/{{id}}.json',
     afterSelect: function(item) {
       $('.observation_field_chooser').parents('.ui-chooser:first').next('.button').click()

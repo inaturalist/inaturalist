@@ -12,11 +12,14 @@
       - if page_url = @describer.page_url(@taxon)
         = link_to "#{t(:view_on)} #{@describer.describer_name} &rarr;".html_safe, page_url, :class => "externallink ui"
     - else
-      %a{:href => "http://en.wikipedia.org/wiki/#{@taxon.name}"} Wikipedia
+      %a{ href: @describer_url } Wikipedia
   - if @description.blank?
     %p.nocontent.meta
       - if @describer == TaxonDescribers::Wikipedia || @describer.blank?
-        =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
+        - if @taxon.auto_description?
+          =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
+        - else
+          =t "views.taxa.show.site_curators_disabled_wikipedia_html", url: @describer_url
       - elsif @describer
         =t :no_matching_article_from_x, :x => @describer.describer_name
   - else

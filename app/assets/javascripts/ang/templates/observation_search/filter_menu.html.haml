@@ -147,6 +147,9 @@
             {{ k }}={{ v }}
             %button{ "ng-click" => "removeObservationField( k )" }
               &times;
+          %input{ type: "hidden", name: "acc" }
+          %input{ type: "hidden", name: "acc_above" }
+          %input{ type: "hidden", name: "acc_below" }
           %input{ type: "hidden", name: "apply_project_rules_for" }
           %input{ type: "hidden", name: "captive" }
           %input{ type: "hidden", name: "day" }
@@ -154,6 +157,7 @@
           %input{ type: "hidden", name: "geoprivacy" }
           %input{ type: "hidden", name: "taxon_geoprivacy" }
           %input{ type: "hidden", name: "has[]" }
+          %input{ type: "hidden", name: "ident_taxon_id" }
           %input{ type: "hidden", name: "identified" }
           %input{ type: "hidden", name: "lat" }
           %input{ type: "hidden", name: "list_id" }
@@ -172,6 +176,8 @@
           %input{ type: "hidden", name: "term_id" }
           %input{ type: "hidden", name: "term_value_id" }
           %input{ type: "hidden", name: "unobserved_by_user_id" }
+          %input{ type: "hidden", name: "user_before" }
+          %input{ type: "hidden", name: "user_after" }
           %input{ type: "hidden", name: "viewer_id" }
           %input{ type: "hidden", name: "without_taxon_id" }
           %input{ type: "hidden", name: "year" }

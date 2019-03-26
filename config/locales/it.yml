@@ -668,7 +668,6 @@ it:
   back_to_taxon: Torna a %{defaulttaxon}
   back_to_taxon_changes: Torna ai cambiamenti di "taxon"
   back_to_taxon_framework_for_x: Torna al quadro del taxon per %{taxon_name}
-  back_to_this: Torna a %{place}
   back_to_viewing: Torna alla visualizzazione di <i>%{taxon}</i>
   back_to_x: Torna a %{noun}
   back_to_x_assessment: Torna alla valutazione di %{project}
@@ -824,6 +823,7 @@ it:
     merged_into: unito in
     replaced_by: sostituito da
     replace_with: sostituisci con
+    replaced_with: sostituito con
     dropped: eliminato
     staged: organizzato
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} è stato suddiviso
@@ -1202,6 +1202,7 @@ it:
   date_range: Intervallo di date
   date_specified: Data specificata
   date_time: Data/Ora
+  date_updated: Data aggiornamento
   dates: date
   datetime_: Data/Ora
   day: Giorno
@@ -1413,18 +1414,20 @@ it:
   eol_collection_url: URL della raccolta EOL
   error_updating_photo: 'Errore nell''aggiornamento della foto: %{photo_errors}'
   establishment:
-    establishment: Origine
-    native: Nativa
     endemic: Endemica
+    establishment: Origine
     introduced: Introdotta
-    naturalised: Naturalizzata
     invasive: Invasiva
     managed: Gestita
+    native: Nativa
+    naturalised: Naturalizzata
   establishment_means: Origine di occupazione
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: nativa e non presente da nessun'altra parte
-    arrived_in_the_region_via_anthropogenic_means: arrivata nella regione per via
+    arrived_in_the_region_via_anthropogenic_means: Arrivata nella regione per via
       antropica
+    native_and_occurs_nowhere_else: Nativa e non presente da nessun'altra parte
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Andato incontro
+      ad evoluzione in questa regione o arrivato per cause non antropiche
   establishment_means_describes_how: "L'origine del popolamento indica come un taxon
     si è stabilito in un'area.  \nVedi DarwinCore per <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">più
     informazioni sulla terminologia</a>."
@@ -1569,7 +1572,8 @@ it:
     <strong>risolta.</strong>
   flag_reason: '&ldquo;Sto contrassegnando questo %{record} perché'
   flag_saved: Contrassegno salvato
-  flag_saved_thanks: Contrassegno salvato. Grazie!
+  flag_saved_thanks_html: Contrassegno salvato. Grazie! <a href="%{url}" class="readmore">Visualizza
+    contrassegno</a>
   flag_this_observation: Contrassegna questa osservazione
   flag_this_photo: Contrassegna questa foto
   flagged: ha segnalato
@@ -1624,6 +1628,17 @@ it:
   for_more_information: per ulteriori informazioni.
   formatting: Formattazione
   forgot_your_password: Hai dimenticato la password?
+  forum: Forum
+  forum_categories:
+    bug_reports: Rapporti errori
+    feature_requests: Richiesta di nuove funzioni
+    forum_feedback: Forum feedback
+    forum_moderation: Moderazione del forum
+    nature_talk: Discussioni sulla Natura
+    news_and_updates: Notizie & aggiornamenti
+    tutorials: Tutorial
+  forum_desc: Il Forum è il luogo dove discutere su iNat, incluso l'aiuto e il supporto,
+    richiedere implementazioni, segnalare i bug, fare annunci e altro ancora.
   frequency: Frequenza
   fri: Ven
   from: Da
@@ -2831,6 +2846,15 @@ it:
     raro o comune in una determinata area.  Vai a DarwinCore for <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">per
     più informazioni sulla terminologia</a>.
   occurrence_status: Stato della distribuzione
+  occurrence_status_descriptions:
+    absent: Non presente nell'area
+    common: Presente frequentemente
+    doubtful: Probabilmente presente, ma esistono dubbi in merito
+    irregular: Presenza non prevedibile, inclusi i migranti; forse comune alcuni anni
+      e assente in altri
+    present: Presente nell'area
+    uncommon: Presenza regolare, ma a basse consistenze; richiede cercare attentamente
+      l'habitat adatto
   occurrence_status_establishment_means: stato della distribuzione, origine del popolamento
   occurrence_status_levels:
     present: presente
@@ -4650,6 +4674,8 @@ it:
   today: Oggi
   too_many_observations_csv: Hai troppe osservazioni!<br /> Possiamo caricare solo
     le prime %{max_rows} osservazioni di ogni CSV
+  too_many_taxa_to_render: Questa richiesta ha restituito troppi taxa per vederli
+    in una volta sola. Prova ad aggiungere qualche filtro
   tools: Strumenti
   top_5_identifiers: I migliori 5 identificatori
   top_contributors: I migliori collaboratori
@@ -5834,6 +5860,8 @@ it:
         private_longitude: Longitudine privata, se l'osservazione è oscurata o privata
         geoprivacy: Se l'osservatore ha scelto di oscurare o nascondere le coordinate
           oppure no
+        taxon_geoprivacy: Applicata la Geoprivacy più sicura a causa dello stato di
+          conservazione dei taxa nell'identificazione corrente.
         coordinates_obscured: Se le coordinate sono state oscurate oppure no, sia
           che il taxon sia minacciato sia che dipenda dalla geoprivacy
         out_of_range: Se l'osservazione cade o no all'esterno dell'areale conosciuto
@@ -5877,7 +5905,7 @@ it:
         geoprivacy_must_be_in_english: La colonna geoprivacy deve essere in inglese
           e può essere vuota o avere i valori "obscured" o "private"
         google_photos_notice_html: |-
-          Nel febbraio 2019 Google ha modificato le sue API, rendendoci impossibile accedere alle coordinate GPS, alle informazioni di licenza, e a quasi tutte le informazioni che potremmo utilizzare per aggiungere un'identificazione (come le etichette). Ha anche rimosso la ricerca testuale e la paginazione numerica. Puoi ancora importare le foto, ma queste non includeranno nessuna informazione di localizzazione o di licenza che puoi visualizzare in Google Foto.
+          Nel febbraio 2019 Google ha modificato le sue API, rendendoci impossibile accedere alle coordinate GPS, alle informazioni di licenza, e a quasi tutte le informazioni che potremmo utilizzare per aggiungere un'identificazione (come le etichette). Ha anche rimosso la ricerca testuale e la paginazione numerica. Inoltre, hanno richiesto che tutti gli account connessi abbiano un'ulteriore autorizzazione, e prima che una terza parte possa richiedere tale autorizzazione agli utenti, la terza parte deve essere verificata. Siamo in attesa di verifica, ma fino a quando ciò non si verificherà, non potrai importare foto da Google. Se approvato, potrai ancora importare le foto, ma queste non includeranno nessuna informazione di localizzazione o di licenza che puoi visualizzare in Google Foto.
           Può leggere più su questo argomento su:
           <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
           La migliore alternativa è scaricare i file originali e aggiungerli usando l'<a href="/observations/upload">Uploader</a>
@@ -6382,9 +6410,9 @@ it:
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Contatta il Gruppo di Feedback</a></strong>
+              <strong><a href="%{feedback_url}">Contatta il Forum</a></strong>
               <p>
-                Molti curatori del sito controllano le mail del Gruppo di Feedback.
+                Molti curatori del sito controllano i messaggi al Forum.
               </p>
             </li>
             <li>
@@ -6603,6 +6631,10 @@ it:
           e dei suoi discendenti. La foto scelta per questo
           taxon sarà mostrata per prima. La prima foto sarà
           l'immagine predefinita per tutto il sito.
+        site_curators_disabled_wikipedia_html: I curatori del sito hanno temporaneamente
+          disabilitato <a href="%{url}">questo contenuto da Wikipedia</a>. Puoi aiutarci
+          modificando la pagina su Wikipedia per renderla appropriata a questo taxon,
+          o segnalando questo taxon per portarlo all'attenzione dei curatori.
     taxon_changes:
       move_children_desc: I discendenti del taxon di ingresso che sono generi o di
         livello superiore saranno spostati all'uscita; le specie, sottospecie, varietà,
@@ -6664,6 +6696,38 @@ it:
         curators_can_see: Solo un promemoria... i curatori del progetto possono vedere
           le coordinate private ed oscurate delle osservazioni che tu aggiungi al
           progetto.
+      delete:
+        by_deleting_your_account_you_will_remove: Cancellando la tua utenza tu rimuoverai
+        x_observations_html:
+          one: <strong class="count">1 osservazione</strong>, incluso il lavoro delle
+            <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato
+            con le identificazioni
+          other: |
+            <strong class="count">%{count} osservazioni</strong>, incluso il lavoro delle <strong class="count">%{helpers_count} persone</strong> che ti hanno aiutato con le identificazioni
+        x_identifications_html:
+          one: <strong class="count">1 tua identificazione</strong> di osservazione
+            di un'altra persona, che potenzialmente influisce sulla qualità dei dati
+            di quell'osservazione
+          other: <strong class="count">%{count} delle tue identificazioni</strong>
+            di osservazioni di <strong class="count">altre %{helpees_count} persone</strong>,
+            che potenzialmente influisce sulla qualità dei dati di quelle osservazioni
+        x_comments_html:
+          one: <strong class="count">1 commento</strong> che tu hai aggiunto
+          other: <strong class="count">%{count} commenti</strong> che tu hai aggiunto
+        furthermore_cannot_undo_html: Inoltre, <strong>questa azione non può essere
+          annullata.</strong> Se dopo cambi idea, non potrai avere indietro nessuno
+          di questi contenuti.
+        settings_and_mute_html: Se questo sito genera troppe notifiche, considera
+          se <a href="/users/edit">modificare le tue impostazioni</a> per deselezionare
+          le notifiche o smettere di ricevere mail da noi. Se hai problemi con una
+          persona specifica nel sito, considera l'opzione di <a href="/users/edit">silenziarla</a>
+          invece di cancellare la tua utenza.
+        still_want_to_delete_html: Se sei ancora sicuro di voler cancellare la tua
+          utenza, digita <code>%{confirmation_code}</code> nel formulario qui sotto
+          e clicca sul pulsante per cancellare la tua utenza e tutti i tuoi dati.
+        type_confirmation_code: Digita %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: Devi digitare %{confirmation_code}
+          nel formulario per cancellare la tua utenza
       edit:
         blocking_desc_html: |-
           <p>
@@ -7177,8 +7241,9 @@ it:
           other: ha una lunghezza sbagliata (dovrebbe essere %{count} caratteri)
       template:
         body: 'Ci sono stati problemi con i seguenti campi:'
-        header: '{{PLURAL|one=1 errore impedisce di salvare questo %{model}|%{count}
-          errori impediscono di salvare questo %{model}}'
+        header:
+          one: 1 errore impedisce di salvare questo %{model}}
+          other: '%{count} errori impediscono di salvare questo %{model}}'
       models:
         application:
           attributes:

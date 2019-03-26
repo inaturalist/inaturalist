@@ -1,426 +1,1097 @@
-.taxonomic_tree .taxon_name {
-  display: block;
+@import "../colors";
+@import "show/wikipedia";
+@import "../shared/user_text";
+@import "../shared/split_taxon";
+@import "../shared/taxon_photo";
+@import "../shared/record_chooser_popover";
+@import "../shared/observations_grid_item";
+@import "../shared/user_with_icon";
+@import "../shared/taxonomic_branch";
+@import "../shared/full_screen_modal";
+
+#app {
+  min-height: 600px;
+}
+#initial-loading .loading {
+  display: inline-block;
+  margin: 20px auto;
 }
 
-#all_names ul {
-  list-style: none;
-  margin: 0;
+#TaxonDetail .container-fluid,
+#TaxonDetail .container {
+  min-width: 980px;
 }
 
-#all_names li {
-  margin-bottom: 5px;
+#TaxonHeader .inner {
+  display: flex;
+  justify-content: space-between;
 }
 
-#all_names ul ul {
-  margin-left: 10px;
+#TaxonHeader h1 {
+  margin-top: 10px;
+  font-size: 32px;
+  font-weight: 300;
+
+  .btn-flags {
+    margin-left: 10px;
+    background-color: #EFD6D6;
+    i { color: red; }
+  }
 }
 
-#photoscol {
-  width: 500px;
-}
-
-#obscol {
-  width: 280px;
-}
-
-#seenit {
-  text-align: center;
-  margin: 1em 0;
-}
-
-#seenit a.button {
-  display: inline;
-  float: none;
-  margin-left: 0.25em;
-}
-
-#seenit .status {
-  padding: 0.25em;
-}
-
-h3 .description {
-  font-size: 80%;
-}
-
-.column {
-  margin-bottom: 10px;
-}
-
-.column-separator {
-  clear: both;
-}
-
-.loading {
-  background: image-url('spinner-small.gif') 0 50% no-repeat;
-  padding-left: 20px;
-}
-
-.loading.on_eeeeee {
-  background: image-url('spinner-small-on_eeeeee.gif') 0 50% no-repeat;
-}
-
-/* Flaggings */
-#flag_this,
-#flaggings_heads_up {
-  padding-left: 18px;
-  margin-left: 0.2em;
-}
-
-#flag_this {
-  background: image-url('silk/flag_grey.png') 0 50% no-repeat;
-}
-
-#flaggings_heads_up,
-#flag_this:hover {
-  background: image-url('silk/flag_yellow.png') 0 50% no-repeat;;
-}
-
-/* Wikipedia Styles */
-
-.wikipedia_description {
-  overflow: hidden;
-  width: 100%;
-}
-
-.wikipedia_description ul, ol { margin:0 1.5em 1.5em 3.0em; }
-
-.infobox, 
-.infobox_v2,
-table.infobox, 
-.infobox_v2,
-table.infobox_v2,
-.thumb, 
-.tright {
-  float: right;
-  clear: right;
-  margin-left: 20px;
-  margin-bottom: 1em;
-  background-color: #eee;
-  padding: 1em;
-}
-
-.gallerybox .thumb {
-  float: none;
-  margin: 0;
-  margin-bottom: 0.6em;
-  padding: 0;
-}
-
-.sisterproject {
-  width: 200px;
-}
-
-.sisterproject .floatleft {
-  width: auto;
-  float: left;
-}
-
-.taxon_description h1,
-.taxon_description h2,
-.taxon_description h3,
-.taxon_description h4 {
-  border-bottom: 1px solid #eee;
-}
-
-.taxon_description h3 {
-  line-height: 1.5;
-}
-
-.wikipedia_description .dablink,
-.wikipedia_description .rellink {
-  margin: 1em;
-  font-style: italic;
-}
-
-.wikipedia_description .editsection {
-  display: none;
-}
-
-.wikipedia_description .thumbimage {
-  margin-bottom: 0.6em;
-}
-
-.wikipedia_description .thumbcaption {
-  font-style: italic;
-}
-
-.wikipedia_description .thumbcaption,
-.wikipedia_description .noprint {
-  color: #888;
-}
-
-.wikipedia_description .magnify {
-  width: auto;
-  float: right;
-  margin-left: 1em;
-}
-
-.wikipedia_description table,
-.wikipedia_description tr,
-.wikipedia_description td,
-.wikipedia_description th {
-  border: 0 none;
-}
-
-.wikipedia_description th {
-  padding: 0.4em;
-}
-.mw-editsection {margin-left: 0.5em; font-size:smaller;}
-
-#places_list .editlink { display: none; }
-#places_list li:hover .editlink { display: inline; }
-#places_list .absent { text-decoration: line-through; }
-
-.externallink { 
-  display: none;
-  margin: 0 0 0 10px;
-  line-height: 0;
-}
-h3 .externallink { font-size: 70%; }
-.taxon_description h3:hover .externallink { display: inline; }
-#noobservations .readable.description {
-  margin-bottom: 0.5em;
-}
-
-#noobservations .button {
-  width: auto;
-  float: none;
-  margin: 0 auto;
-}
-
-.edit_taxon_photos .taxon_photos {
-  margin-bottom: 1em;
-}
-
-#photos .photos_wrapper a {
-  display: block;
-  float: left;
-  margin: 0 10px 10px 0;
-}
-#photos img {max-width: 500px;}
-
-#photos .photos_wrapper a.last {
-  margin-right: 0;
-}
-
-#extras {
-  margin-top: 1em;
-}
-
-#add_to_list {
-  list-style: none;
-  margin: 0;
-}
-
-#add_to_list.lots {
-  max-height: 175px;
-  overflow: auto;
-}
-
-#add_to_list li {
-  border-bottom: 1px solid #ccc;
-  margin-bottom: 5px;
-  padding-bottom: 5px;
-}
-
-#add_to_list li.last {
-  padding: 0;
-  border: 0 none;
-}
-
-#add_to_list .controls {
-  float: right;
-}
-
-#add_to_list .action {
-  font-weight: bold;
-}
-
-#add_to_list .added a,
-#add_to_list li.description a {
-  color: #888;
-}
-
-#add_to_list .added a:hover,
-#add_to_list li.description a:hover {
+#TaxonHeader .taxon .display-name {
   color: black;
 }
 
-#actions {
-  background-color: #eee;
-  margin-bottom: 10px;
+#TaxonHeader .has-com-name .secondary-name {
+  font-size: 20px;
 }
 
-#actions #toplinks {
-  padding: 10px;
-  color: #888;
-}
-
-#add_to_list {
-  padding: 0 10px 10px 10px;
-}
-
-#taxon_links.tabs li {
-  padding: 4px 15px 3px 10px;
-  border: 1px solid transparent;
-  position: relative;
-}
-#taxon_links .toggle_menu ul { list-style: none; margin: 0;}
-
-.taxon_link .controls {
-  display: none;
-}
-
-.taxon_link .controls img {
-  width: 12px;
-}
-
-#taxon_links.tabs li.taxon_link:hover .controls {
-  display: block;
-  position: absolute;
-  top: 6px;
-  right: 0;
-}
-
-.toggle_menu .togglelink {
-  border: 1px solid transparent;
-  padding: 4px 10px 3px 16px;
-}
-
-.toggle_menu .menu {
-  right: 0;
-  left: auto;
-}
-
-#all_names {
-  margin-bottom: 1em;
-}
-
-.aka h3 {
-  margin-bottom: 0.5em;
-}
-
-#colors {
-  margin-bottom: 10px;
-}
-
-#colors .color {
-  float: left; margin: 0 5px 5px 0; width: 16px; height: 16px;
-  border: 1px solid #ccc;
-}
-
-#edit_colors {
-  clear:both;
-}
-
-#edit_colors .color_field {
-  float: left;
-  margin-right: 10px;
-  width: 60px;
-  padding: 2px;
-}
-
-#edit_colors .color_field input.checkbox {
-  margin: 0;
-}
-
-#edit_colors .black  { color: lightgrey;  background-color: black;}
-#edit_colors .white  { color: grey;       background-color: white;}
-#edit_colors .red    { color: lightpink;  background-color: red;}
-#edit_colors .green  { color: lightgreen; background-color: green;}
-#edit_colors .blue   { color: lightblue;  background-color: blue;}
-#edit_colors .purple { color: violet;     background-color: purple;}
-#edit_colors .yellow { color: goldenrod;  background-color: yellow;}
-#edit_colors .grey   { color: lightgrey;  background-color: grey;}
-#edit_colors .orange { color: chocolate;  background-color: orange;}
-#edit_colors .brown  { color: peru;       background-color: saddlebrown;}
-#edit_colors .pink   { color: deeppink;   background-color: pink;}
-
-.add_to_place_link {
-  padding: 5px;
-  
-  border-bottom: 1px solid #eee;
-  border-right: 1px solid #eee;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  float: left;
-  width: 269px;
-  margin: 0 10px 10px 0;
-}
-
-#place_selector_search .add_to_place_link {
-  width: auto;
-  float: none;
-}
-
-.add_to_place_link:hover {
-  background-color: #fafafa;
-}
-
-#place_selector.ui-tabs .ui-tabs-nav {
-  margin-bottom: 10px;
-}
-
-#place_selector.ui-tabs .ui-tabs-panel {
-  padding: 0;
-}
-
-#search_taxa form {
-  float: right;
+#hero {
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 20px 0;
   margin-top: 5px;
 }
 
-#search_taxa .button {
-  margin-right: 0;
-  margin-left: 5px;
+#charts {
+  background-color: transparent;
+  border-radius: 4px 4px 0 0;
 }
 
-#place_selector_paste form {
-  width: 250px;
-  float: left;
+#charts a {
+  color: #333;
+}
+
+#charts .nav-tabs {
+  margin-bottom: 0;
+  margin-top: -1px;
+}
+#charts .tab-pane {
+  position: relative;
+}
+#charts .no-content {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  margin-top: -20px;
+  margin-left: 20px;
+}
+#charts .tab-content {
+  background-color: white;
+  padding: 20px;
+  border-left: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+}
+
+#charts a[role="tab"]:hover {
+  background-color: white;
+  opacity: 1;
+}
+#charts a,
+#charts a:focus,
+#charts a:active {   
+  border-color: none;
+  box-shadow: none;
+  outline: 0 none;
+}
+#charts .help-btn i {
+  font-size: 20px;
+  line-height: 25px;
+  color: #999;
+}
+#ChartsHelpModal .modal-title {
+  line-height: 1;
+  padding: 0;
+}
+.SeasonalityChart .c3-line {
+  stroke-width: 2px;
+}
+.FrequencyChart {
+  height: 300px;
+}
+.FrequencyChart .c3-axis line,
+.FrequencyChart .c3-axis path {
+  stroke: #aaa;
+}
+.FrequencyChart .c3-axis text {
+  fill: #aaa;
+}
+.FrequencyChart .c3-axis-x .tick line,
+.FrequencyChart .c3-axis-y .tick line {
+   display: none;
+}
+.FrequencyChart .c3-region {
+  fill: #999;
+  opacity: 1;
+}
+.FrequencyChart .c3-circle {
+  cursor: pointer;
+}
+.FrequencyChart .c3-circle._expanded_ {
+  stroke-width: 7px;
+  stroke: transparentize( #ddd, 0.6 );
+  stroke-location: outside;
+}
+
+.FrequencyChart .c3-target-research .c3-circle._expanded_ {
+  stroke: transparentize( $inat-green, 0.6 );
+}
+
+.FrequencyChart line.c3-xgrid-focus {
+  display: none;
+}
+
+.frequency-chart-tooltip {
+  padding: 10px;
+  border: 1px solid #eee;
+  border-radius: 2px;
+  box-shadow: 1px 1px 10px #aaa;
+  background-color: white;
+}
+.frequency-chart-tooltip .swatch {
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: baseline;
+  margin-right: 5px;
+  position: relative;
+  top: 3px;
+}
+.frequency-chart-tooltip .title {
+  margin-bottom: 5px;
+}
+.frequency-chart-tooltip .title,
+.frequency-chart-tooltip .value {
+  font-weight: 600;
+}
+.frequency-chart-tooltip .series {
+  line-height: 0;
+  margin-bottom: 10px;
+}
+
+.TaxonMap {
+  height: 600px;
+  margin: 20px 0 10px;
+  border: 1px solid #ddd;
+}
+
+.permalink {
+  position: relative;
+  top: -6px;
+}
+
+.TaxonCrumbs {
+  color: #aaa;
+  padding: 0;
+  margin: 0 7px 0 0;
+  line-height: 25px;
+  display: inline;
+  position: relative;
+  top: -4px;
+}
+.TaxonCrumbs.contracted .inner {
+  display: none;
+}
+.TaxonCrumbs.expanded .inner {
+  display: inline-block;
+}
+.TaxonCrumbs.contracted .expand-control {
+  display: inline-block;
+}
+.TaxonCrumbs.expanded .expand-control {
+  width: 0;
+}
+.TaxonCrumbs.contracted .contract-control {
+  display: none;
+}
+.TaxonCrumbs.expanded .contract-control {
+  display: inline-block;
+}
+.TaxonCrumbs .inner ul {
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+.TaxonCrumbs .taxon a {
+  color: #337ab7;
+}
+.TaxonCrumbs li {
+  padding: 0;
+  margin: 0;
+  display: inline-block;
+}
+.TaxonCrumbs li div {
+  display: inline-block;
+}
+.TaxonCrumbs li:after {
+  content: '\203A';
+  margin: 0px 5px;
+}
+.TaxonCrumbs li:last-child:after {
+  display: none;
+}
+
+.TaxonCrumbs .has-com-name .secondary-name {
+  display: none;
+}
+
+.TaxonCrumbs .contract-control {
+  margin-left: 10px;
+}
+
+.taxon-crumbs-children .taxon a {
+  color: #333;
+}
+.taxon-crumbs-children .taxon.has-com-name .secondary-name {
+  color: #aaa;
+}
+.taxon-crumbs-children .SplitTaxon:before {
+  content: '\021B3';
+  margin-right: 5px;
+  color: #aaa;
+}
+
+.preheader .ui-autocomplete-input {
+  width: 200px;
+}
+
+.preheader .ac-select-thumb {
+  line-height: 28px;
+}
+.preheader .ac-select-thumb img {
+  height: 30px;
+}
+.preheader .ac-select-thumb i {
+  font-size: 22px;
+}
+.preheader .form-group {
+  margin: 0;
+}
+.preheader .ac-chooser .searchclear.glyphicon {
+  top: 8px;
+}
+
+$leaderItemImageDim: 56px;
+.LeaderItem {
+  margin: 20px 0 20px;
+  .img-wrapper {
+    border: 1px solid transparent;
+    width: $leaderItemImageDim;
+    height: $leaderItemImageDim;
+    line-height: $leaderItemImageDim;
+    text-align: center;
+    overflow: hidden;
+    i {
+      font-size: $leaderItemImageDim * 0.7;
+      margin: auto;
+      line-height: $leaderItemImageDim * 0.9;
+      color: #666;
+    }
+  }
+  .img-wrapper.no-photo {
+    border-color: #bbb;
+  }
+  .CoverImage {
+    width: $leaderItemImageDim;
+    height: $leaderItemImageDim;
+  }
+  &.TopIdentifier .CoverImage,
+  &.TopObserver .CoverImage,
+  &.TopIdentifier .img-wrapper,
+  &.TopObserver .img-wrapper {
+    border-radius: 100px;
+  }
+  .item-label {
+    color: #4a4a4a;
+    font-size: 13px;
+    text-transform: uppercase;
+    line-height: 1;
+    margin-bottom: 10px;
+  }
+  h4 {
+    text-transform: none;
+    margin: 0px 0px 3px 0px;
+    font-size: 18px;
+  }
+  .name {
+    font-weight: bold;
+    white-space: nowrap;
+    a {
+      color: black;
+    }
+  }
+  .extra {
+    font-size: 13px;
+    a {
+      white-space: nowrap;
+      margin-right: 10px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    a:last-child {
+      margin-right: 0;
+    }
+    i {
+      color: #999;
+      margin-right: 2px;
+      color: $inat-green;
+    }
+  }
+  .value {
+    color: #4a4a4a;
+  }
+  .media-body {
+    vertical-align: middle;
+  }
+  .img-wrapper .fa-binoculars {
+    font-size: $leaderItemImageDim * 0.5;
+  }
+}
+
+$photoPreviewThumbDim: 92px;
+$photoPreviewThumbGutter: 1px;
+$photoPreviewThumbGutterTop: 3px;
+.PhotoPreview {
+  position: relative;
+  overflow: hidden;
+  height: 580px;
+}
+.PhotoPreview .photo-bg {
+  position: absolute;
+  left: -50px;
+  top: -50px;
+  background-size: cover;
+  width: 120%;
+  height: 120%;
+  background-color: black;
+  filter: blur(20px) brightness(0.5);
+  -webkit-filter: blur(20px) brightness(0.5);
+  -moz-filter: blur(20px) brightness(0.5);
+  -o-filter: blur(20px) brightness(0.5);
+  -ms-filter: "blur(20px)";
+}
+.PhotoPreview ul.others {
+  width: 100%;
+  background-color: rgba(0,0,0,0.25);
+}
+.PhotoPreview.gallery ul.others{
+  position: absolute;
+  bottom: 0;
+  margin: 0;
+  display: -webkit-box;      /* OLD - iOS 6-, Safari 3.1-6 */
+  display: -moz-box;         /* OLD - Firefox 19- (buggy but mostly works) */
+  display: -ms-flexbox;      /* TWEENER - IE 10 */
+  display: -webkit-flex;     /* NEW - Chrome */
+  display: flex;             /* New - everyone else */
+  flex-wrap: nowrap;
+}
+.PhotoPreview ul.others li {
+  overflow: hidden;
+  display: inline-block;
+}
+.PhotoPreview.gallery ul.others li {
+  flex: 1;
+  flex-grow: 1;
+  vertical-align: middle;
+  width: $photoPreviewThumbDim;
+  height: $photoPreviewThumbDim;
+  line-height: $photoPreviewThumbDim;
+  margin: $photoPreviewThumbGutterTop $photoPreviewThumbGutter / 2;
+}
+.PhotoPreview.grid .others {
+  line-height: 0;
+}
+.PhotoPreview.grid li {
+  width: 33.3333333333%;
+}
+.PhotoPreview .others a {
+  color: white;
+}
+.PhotoPreview .viewmore {
+  text-align: center;
+  font-weight: bold;
+}
+.PhotoPreview .viewmore a {
+  display: block;
+}
+.PhotoPreview.grid .viewmore a {
+  background-color: #333;
+  font-weight: 100;
+  font-size: 20px;
+  display: block;
+  position: relative;
+}
+.PhotoPreview.grid .viewmore a .inner {
+  width: 100%;
+  line-height: 1.6;
+  display: block;
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+}
+.PhotoPreview.grid .viewmore a .inner .fa {
+  margin-top: 5px;
+  display: block;
+}
+.PhotoPreview.gallery .viewmore .fa {
+  margin-left: 5px;
+}
+.PhotoPreview.no-content {
+  display: flex;
+  flex-direction: row;
+  min-height: 533px;
+  align-items: center;
+  border: 1px solid #ddd;
+}
+.PhotoPreview.no-content > div {
+  width: 100%;
+}
+.PhotoPreview.no-content h3 {
+  color: #888;
+  text-transform: none;
+  margin-bottom: 20px;
+}
+
+.CoverImage {
+  opacity: 0;
+  transition: opacity 0.5s linear;
+}
+.CoverImage.loaded {
+  opacity: 1;
+}
+
+.tab-section > [class*="col-"] {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+.tab-section:first-child > [class*="col-"] {
+  border-top: 0 transparent;
+  padding-top: 0;
+}
+
+.tab-section h3 {
+  margin-top: 0;
+}
+
+.tab-links a {
+  display: block;
+  color: #333;
+}
+.tab-links .internal a:before {
+  content: '\203A';
+  float: right;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 17px;
+  color: #999;
+  margin-left: 5px;
+}
+.tab-links i {
+  color: #aaa;
+}
+.tab-links .accessory-icon {
+  color: $inat-green;
   margin-right: 10px;
 }
 
-#place_selector_paste textarea {
-  width: 236px;
-  height: 100px;
+.StatusTab {
+  .media-body {
+    width: auto;
+  }
+  .place-link {
+    color: black;
+  }
+  th {
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .UserText {
+    br {
+      display: none;
+    }
+  }
 }
 
-#place_selector_paste .places {
-  float: left;
-  width: 250px;
+h2, h3, h4, h5 {
+  padding-bottom: 3px;
 }
 
-.ui-tabs .ui-tabs-panel { padding: 10px 0; }
-#taxon_links { 
-  position: relative;
-  z-index: 1;
-  line-height: 1;
+.StatusHeader a {
+  text-decoration: underline;
+  color: inherit;
+}
+$leastConcernColor: #73AC13;
+$vulnerableColor: #817134;
+$endangeredColor: #D12F19;
+$extinctColor: #000000;
+.StatusHeader.iucn-least-concern {
+  background-color: transparentize( $leastConcernColor, 0.90 );
+  border-color: transparentize( $leastConcernColor, 0.80 );
+  color: $leastConcernColor;
+}
+.StatusHeader.iucn-near-threatened,
+.StatusHeader.iucn-vulnerable {
+  background-color: transparentize( $vulnerableColor, 0.90 );
+  border-color: transparentize( $vulnerableColor, 0.80 );
+  color: $vulnerableColor;
+}
+.StatusHeader.iucn-endangered,
+.StatusHeader.iucn-critically-endangered {
+  background-color: transparentize( $endangeredColor, 0.90 );
+  border-color: transparentize( $endangeredColor, 0.80 );
+  color: $endangeredColor;
+}
+.StatusHeader.iucn-extinct,
+.StatusHeader.iucn-extinct-in-the-wild {
+  background-color: transparentize( $extinctColor, 0.90 );
+  border-color: transparentize( $extinctColor, 0.80 );
+  color: $extinctColor;
+}
+.glyphicon-flag.endangered {
+  color: $endangeredColor;
+}
+.glyphicon-flag.vulnerable {
+  color: $vulnerableColor;
+}
+.glyphicon-flag.least-concern {
+  color: $leastConcernColor;
+}
+.glyphicon-flag.extinct {
+  color: $extinctColor;
+}
+$endemicColor: darken( $inat-green, 10% );
+.EstablishmentHeader.establishment-endemic {
+  background-color: transparentize( $endemicColor, 0.90 );
+  border-color: transparentize( $endemicColor, 0.80 );
+  color: $endemicColor;
+}
+$introducedColor: #E4007C;
+.EstablishmentHeader.establishment-introduced {
+  background-color: transparentize( $introducedColor, 0.90 );
+  border-color: transparentize( $introducedColor, 0.80 );
+  color: $introducedColor;
 }
 
-.photoSelector {
+.TaxonPageTabs .tab-content {
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+}
+
+.TaxonPageTabs .nav.nav-tabs {
   border: 0 transparent;
-  padding: 0px;
-  margin-right: 0px;
+  margin-bottom: 0px;
 }
-.photoSelectorPhotos { overflow: none; }
-#conservation_statuses .conservation_status {text-align:left;}
-#conservation_statuses .ui {margin-left: 20px;}
-#conservation_statuses ul dl {margin-bottom: 0px;margin-left: 1.5em;}
-#listed_taxon_blurb { text-align: center; padding: 5px 10px; margin-bottom: 0; }
-.box .blob {margin:0;}
-.box .blob .ui-icon {margin:-2px 0 0 0;}
 
-
-.iconic_taxon_sprite { vertical-align: middle; }    
-.observations.medium.grid .observation, .observations.medium.grid .photos, .observations.medium.grid .icon {
-  width: 127px;
-  height: 127px;
+.TaxonPageTabs .nav-tabs > li > a {
+  color: #555;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 20px 30px 16px;
 }
-#observations {max-height: 251px; overflow-y: auto;overflow-x: hidden;}
-h2 .named_ancestor {font-size: 80%;}
+.TaxonPageTabs .nav-tabs > li > a {
+  border: 0 transparent;
+  border-bottom: 2px solid transparent;
+}
+.TaxonPageTabs .nav-tabs > li.active > a,
+.TaxonPageTabs .nav-tabs > li > a:hover,
+.TaxonPageTabs .nav-tabs > li > a:focus,
+.TaxonPageTabs .nav-tabs > li.active > a:hover,
+.TaxonPageTabs .nav-tabs > li.active > a:focus {
+  border: 0 transparent;
+  border-bottom: 3px solid $inat-green;
+  background-color: inherit;
+  color: black;
+  opacity: 1;
+}
 
-#pageheader .ac-chooser {
+.InteractionsTab {
+  padding-top: 20px;
+}
+.ArticlesTab .taxon_description {
+  font-size: 16px;
+}
+.ArticlesTab .taxon_description_header {
+  display: none;
+}
+.ArticlesTab h2 .icon-link-external {
+  font-size: 20px;
+}
+
+.HighlightsTab .trending,
+.HighlightsTab .rare {
+  line-height: 0;
+}
+.HighlightsTab .taxon-link {
+  display: inline-block;
+  width: 100px;
+  margin: 0 10px 10px 0;
+  vertical-align: top;
+  text-align: center;
+}
+.HighlightsTab .trending .photo i,
+.HighlightsTab .rare .photo i {
+  font-size: 100px;
+}
+.HighlightsTab .readmore {
+  font-size: 18px;
+  font-weight: 100;
+  margin-left: 10px;
+}
+
+$nav-btn-dim: 40px;
+.nav-buttons .nav-btn {
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  padding: 0 !important;
+  border: 0 transparent !important;
+  margin: 0 0 10px 10px;
+}
+.nav-buttons .nav-btn:hover,
+.nav-buttons .nav-btn:focus,
+.nav-buttons .nav-btn:active {
+  background: none;
+}
+.nav-buttons .nav-btn:before {
   display: block;
-  float: left;
+  content: '\276E';
+  width: $nav-btn-dim;
+  height: $nav-btn-dim;
+  border-radius: 100px;
+  background-color: $inat-green;
+  color: white;
+  line-height: $nav-btn-dim * 1.05;
+  font-weight: bold;
+  font-size: $nav-btn-dim / 2;
 }
+❯
+.nav-buttons .nav-btn:hover:before {
+  background-color: $inat-green-light;
+}
+.nav-buttons .next-btn:before {
+  content: '\276F';
+}
+.Carousel .viewall, {
+  width: 100%;
+  height: 262px;
+  background-color: #333;
+  color: white;
+  display: block;
+  line-height: 262px;
+  text-align: center;
+  border-radius: 5px;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+.Carousel .viewall:hover,
+.Carousel .viewall:focus {
+  color: white;
+}
+
+#main-tabs {
+  display: flex;
+}
+#main-tabs.nav-tabs > li {
+  float: none;
+  flex-grow: 1;
+  text-align: center;
+}
+
+[role="dialog"] .PhotoModal .close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: white;
+  text-shadow: 0 1px 0 black;
+  opacity: 0.8;
+  z-index: 1;
+}
+[role="dialog"] .PhotoModal .close:hover {
+  color: white;
+  opacity: 0.5;
+}
+.PhotoModal .btn.nav-button {
+  position: absolute;
+  top: 50%;
+  margin-top: -25px;
+  border-radius: 100px;
+  font-size: 30px;
+  font-weight: bold;
+  width: 50px;
+  height: 50px;
+  line-height: 30px;
+  text-align: center;
+  left: -100px;
+}
+.PhotoModal .nav-button.next {
+  left: auto;
+  right: -100px;
+}
+.PhotoModal .modal-dialog {
+  height: 100%;
+}
+.PhotoModal .modal-content {
+  height: 90%;
+  padding: 0px;
+}
+.PhotoModal .SplitTaxon {
+  font-size: 130%;
+  display: inline-block;
+  margin-right: 10px;
+}
+.PhotoModal .SplitTaxon a {
+  color: black;
+}
+.PhotoModal .display-name {
+  font-size: 150%;
+}
+.PhotoModal .photo-modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+}
+.PhotoModal .photo-modal-content:before {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 40px;
+  background-color: black;
+}
+.PhotoModal .photo-modal-content .photo-container {
+  flex-grow: 2;
+  padding: 20px;
+}
+.PhotoModal .photo-modal-content .photo-container:hover {
+  opacity: 1;
+}
+.PhotoModal .photo-modal-content .photo-attribution {
+  padding: 10px;
+  background-color: black;
+  color: #ccc;
+  text-align: center;
+  font-size: smaller;
+}
+.PhotoModal .photo-modal-content .photo-attribution a {
+  color: white;
+}
+.PhotoModal .photo-modal-content .photo-attribution > * {
+  border-left: 1px solid #666;
+  padding-left: 10px;
+  margin-left: 10px;
+}
+.PhotoModal .photo-modal-content .photo-attribution > *:first-child {
+  border: 0 transparent;
+  padding: 0;
+  margin: 0;
+}
+.PhotoModal .photo-modal-content .taxon-content {
+  width: 100%;
+  line-height: 1.2;
+  padding: 20px;
+}
+.PhotoModal .taxon-link i {
+  font-size: 200%;
+  color: $inat-green;
+}
+.curation-tab .dropdown {
+  float: right;
+}
+.curation-tab .dropdown i {
+  width: 20px;
+  text-align: center;
+  color: $inat-green;
+}
+#curation-dropdown {
+  margin-top: 14px;
+}
+
+.TaxonThumbnail.thumbnail {
+  width: 100%;
+  border: 1px solid #ddd;
+  display: inline-block;
+  padding: 0;
+  position: relative;
+}
+.TaxonThumbnail .photo {
+  height: 130px;
+  font-size: 100px;
+  text-align: center;
+  line-height: 120px;
+}
+
+.TaxonThumbnail .taxon .display-name {
+  color: black;
+  display: block;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.TaxonThumbnail .taxon .secondary-name {
+  white-space: normal;
+}
+
+.TaxonThumbnail .badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.TaxonThumbnail .badge.with-tip {
+  cursor: pointer;
+}
+
+.TaxonThumbnail {
+  .SplitTaxon {
+    display: block;
+    min-height: 42px;
+    margin-bottom: 10px;
+  }
+  .discovery-caption {
+    display: block;
+    text-align: right;
+    i {
+      margin-right: 5px;
+    }
+  }
+}
+
+.TaxonomyTab {
+  .sciname.species,
+  .sciname.subspecies,
+  .sciname.variety,
+  .sciname.hybrid {
+    font-style: italic;
+  }
+  .outdated .sciname,
+  .outdated .comname {
+    text-decoration: line-through;
+  }
+}
+
+.SimilarTab, .ArticlesTab, .InteractionsTab, .TaxonomyTab, .StatusTab {
+  margin-bottom: 20px;
+}
+.SimilarTab .thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px;
+}
+.SimilarTab .TaxonThumbnail {
+  margin: 5px;
+  width: 18.9%;
+}
+
+.DraggablePhoto {
+  display: inline-block;
+  position: relative;
+  border: 2px solid transparent;
+  width: 130px;
+  min-height: 50px;
+}
+.DraggablePhoto .control-link {
+  position: absolute;
+  color: white;
+  display: block;
+  line-height: 0;
+  text-shadow: 0px 0px 10px black;
+}
+.DraggablePhoto .control-link:hover,
+.DraggablePhoto .control-link:active {
+  color: white;
+  opacity: 0.8;
+}
+.DraggablePhoto .remove-link {
+  top: 5px;
+  right: 5px;
+}
+.DraggablePhoto .info-link {
+  bottom: 5px;
+  right: 5px;
+}
+.DraggablePhoto .default-control {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: white;
+  font-size: 10px;
+  line-height: 14px;
+}
+.DraggablePhoto img {
+  width: 100%;
+}
+.DraggablePhoto.hovering {
+  border: 2px dashed #ddd;
+}
+.DraggablePhoto.hovering img {
+  opacity: 0.5;
+}
+.PhotoChooserDropArea {
+  min-height: 50px;
+  border: 2px solid #ddd;
+  padding: 10px;
+}
+.PhotoChooserDropArea.hovering {
+  border: 2px dashed #ddd;
+}
+
+.PhotoChooserModal,
+body > [role="dialog"] .PhotoChooserModal {
+  .inner {
+    flex-direction: column;
+  }
+  .modal-title {
+    line-height: 1;
+    padding: 0;
+  }
+  .search-control {
+    margin-bottom: 5px;
+  }
+  .photos {
+    margin: -2.5px;
+  }
+  .modal-body {
+    flex: 2;
+    display: flex;
+
+    .choosercol {
+      display: flex;
+      flex-direction: column;
+      .photos {
+        flex: 2;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .photocols {
+    display: flex;
+    align-items: stretch;
+  }
+  .photocols > div {
+    overflow-x: hidden;
+    overflow-y: auto;
+    margin-left: 20px;
+    width: 50%;
+  }
+  .photocols > div:first-child {
+    margin-left: 0;
+  }
+}
+
+.comma-separated-list > *:before {
+  content: ', ';
+}
+.comma-separated-list > :first-child:before {
+  content: '';
+}
+.AkaNames .name { color: black; }
+.RecentObservations { margin-bottom: 20px; }
+.RecentObservations .Carousel { position: relative; }
+.RecentObservations .TaxonPhoto {
+  display: inline-block;
+}
+.RecentObservations .carousel-inner .slide {
+  display: flex;
+  padding: 0 50px;
+}
+.RecentObservations.no-slides .carousel-inner .slide {
+  padding: 0;
+}
+.RecentObservations h2,
+.RecentObservations .nav-btn {
+  position: absolute;
+}
+.RecentObservations h2 {
+  top: -49px;
+  left: 0;
+  padding: 10px;
+  margin: 0;
+  background-color: white;
+  border-radius: 0 2px 0 0;
+  font-size: 18px;
+}
+.RecentObservations .nav-btn {
+  top: 0px;
+  z-index: 1;
+  background-color: white;
+  height: 120px;
+  margin: 0;
+  padding-right: 10px;
+}
+.RecentObservations .nav-btn:before {
+  border-radius: 0;
+  height: 120px;
+  line-height: 120px;
+}
+.RecentObservations .nav-btn[disabled]:before {
+  background-color: #ccc;
+}
+.RecentObservations .prev-btn {
+  left: 0;
+}
+.RecentObservations .next-btn {
+  right: 0;
+}
+.RecentObservations .TaxonPhoto {
+  margin-right: 10px;
+}
+.RecentObservations .TaxonPhoto:last-child {
+  margin-right: 0;
+}
+.RecentObservations .viewall {
+  width: 120px;
+  height: 120px;
+  line-height: 120px;
+}
+@media (min-width: 1200px) {
+  .RecentObservations .TaxonPhoto,
+  .RecentObservations .viewall {
+    width: 200px !important;
+  }
+}
+.iconified-list-group .list-group-item {
+  display: flex;
+}
+.iconified-list-group .list-group-item a:first-child {
+  background-repeat: no-repeat;
+  padding: 1px 0 1px 25px;
+  display: block;
+  flex: 1;
+  background-position-y: 2px;
+}
+#place-chooser-container {
+  margin-top: 20px;
+}
+.ObservationsGridItem {
+  .photo {
+    height: 200px;
+  }
+  .controls {
+    text-align: right;
+  }
+}
+
+.UserWithIcon {
+  width: 50%;
+  float: left;
+  margin-top: 10px;
+
+  .icon {
+    margin-right: 10px;
+    .UserImage {
+      width: 48px;
+      height: 48px;
+      line-height: 39px;
+    }
+  }
+  .title {
+    font-weight: bold;
+    line-height: 48px;
+  }
+  .subtitle {
+    display: none
+  }
+}
+

@@ -202,7 +202,7 @@ module DarwinCore
       
       preloads = [
         { taxon: :ancestor_taxa },
-        { user: :stored_preferences }, 
+        { user: [:stored_preferences, :provider_authorizations] }, 
         :quality_metrics, 
         :identifications,
         { observations_places: :place }

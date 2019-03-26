@@ -176,7 +176,7 @@ class TaxaController < ApplicationController
           nil : INatAPIService.get_json( "/places/#{place_id.to_i}" )
         @chosen_tab = session[:preferred_taxon_page_tab]
         @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
-        render layout: "bootstrap", action: "show2"
+        render layout: "bootstrap", action: "show"
       end
       
       format.xml do
@@ -1027,29 +1027,33 @@ class TaxaController < ApplicationController
     else
       [TaxonDescribers::Wikipedia, TaxonDescribers::Eol]
     end
-    if @describer = TaxonDescribers.get_describer(params[:from])
-      @description = @describer.describe(@taxon)
-    else
-      @describers.each do |d|
-        @describer = d
-        @description = begin
-          d.describe(@taxon)
-        rescue OpenURI::HTTPError, Timeout::Error => e
-          nil
+    if @taxon.auto_description?
+      if @describer = TaxonDescribers.get_describer(params[:from])
+        @description = @describer.describe( @taxon )
+      else
+        @describers.each do |d|
+          @describer = d
+          @description = begin
+            d.describe(@taxon)
+          rescue OpenURI::HTTPError, Timeout::Error => e
+            nil
+          end
+          break unless @description.blank?
         end
-        break unless @description.blank?
       end
+      if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
+        @taxon.wikipedia_summary(:refresh_if_blank => true)
+      end
+    else
+      @describer = @describers.first
     end
-    if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
-      @taxon.wikipedia_summary(:refresh_if_blank => true)
-    end
-    @describer_url = @describer.page_url(@taxon)
     if @describer
+      @describer_url = @describer.page_url(@taxon)
       response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end
     respond_to do |format|
-      format.html { render :partial => "description" }
+      format.html { render partial: "description" }
     end
   end
 

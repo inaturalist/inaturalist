@@ -626,7 +626,6 @@ ar:
   back_to_taxon: عودة إلى %{defaulttaxon}
   back_to_taxon_changes: الرجوع إلى التغييرات في الأصناف
   back_to_taxon_framework_for_x: العودة إلى إطار النوع ل %{taxon_name}
-  back_to_this: رجوع إلى %{place}
   back_to_viewing: الرجوع إلى عرض <i>%{taxon}</i>
   back_to_x: عودة إلى %{noun}
   back_to_x_assessment: الرجوع إلى تقييمات %{project}
@@ -770,6 +769,7 @@ ar:
     merged_into: معلومات الاندماج
     replaced_by: حل محله
     replace_with: استبدال ب
+    replaced_with: اُستبدِل ب
     dropped: تم الإسقاط
     staged: نظمه
     input_taxon_was_split_into_output_taxa_html: تم تقسيم %{input_taxon} إلى %{output_taxa}
@@ -1136,6 +1136,7 @@ ar:
   date_range: النطاق الزمني
   date_specified: التاريخ المحدد
   date_time: تاريخ/وقت
+  date_updated: تاريخ التحديث
   dates: تواريخ
   datetime_: تاريخ/وقت
   day: يوم
@@ -1341,17 +1342,19 @@ ar:
   eol_collection_url: مسار مجموعة موسوعة الحياة
   error_updating_photo: 'حدث خطأ أثناء تحديث الصورة: %{photo_errors}'
   establishment:
-    establishment: مؤسسة
-    native: محلي
     endemic: متوطنة
+    establishment: مؤسسة
     introduced: أُدخِلت
-    naturalised: متجنس
     invasive: مجتاح
     managed: يديره
+    native: محلي
+    naturalised: متجنس
   establishment_means: وسائل الإنشاء
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: أصلي ويحدث في أي مكان آخر
     arrived_in_the_region_via_anthropogenic_means: وصل إلى المنطقة عبر وسائل بشرية
+    native_and_occurs_nowhere_else: أصلي ويحدث في أي مكان آخر
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: تطورت في هذه المنطقة
+      أو وصلت بوسائل غير بشرية
   establishment_means_describes_how: |-
     تصف وسائل الإنشاء كيفية إنشاء هذه الأصنوفة في منطقة ما،
      راجع داروينكور <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">لمزيد من المعلومات حول المصطلحات</a>.
@@ -1490,7 +1493,8 @@ ar:
   flag_marked_as_resolved_html: <span class="meta">تم تعليم العلامة كـ</span> <strong>محلولة.</strong>
   flag_reason: '&ldquo; أنا أعلم هذا %{record} لأنه'
   flag_saved: تم حفظ العلم.
-  flag_saved_thanks: تم حفظ العلم; شكرا
+  flag_saved_thanks_html: تم حفظ العلم. شكرا! <a href="%{url}" class="readmore">عرض
+    العلم</a>
   flag_this_observation: التعليم على هذه الملاحظة
   flag_this_photo: التعليم على هذه الصورة
   flagged: مُعلَّم
@@ -1542,6 +1546,18 @@ ar:
   for_more_information: للمزيد من المعلومات.
   formatting: الصيغة
   forgot_your_password: نسيت كلمة مرورك؟
+  forum: منتدى
+  forum_categories:
+    bug_reports: تقارير الأخطاء
+    feature_requests: طلبات ميزات
+    forum_feedback: ملاحظات المنتدى
+    forum_moderation: مراقبة المنتدى
+    nature_talk: نقاش طبيعي
+    news_and_updates: الأخبار والتحديثات
+    tutorials: دروس
+  forum_desc: |-
+    feature requests, bug reports, announcements, and more.
+    المنتدى هو مكان لمناقشة إنات نفسه، بما في ذلك المساعدة والدعم، وطلبات الميزات، وتقارير الأخطاء، والإعلانات، والمزيد.
   frequency: تردد
   fri: جم
   from: من
@@ -2711,6 +2727,14 @@ ar:
     في منطقة معينة، راجع جوهر داروين <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">لمزيد
     من المعلومات حول المصطلحات</a>.
   occurrence_status: حالة الحدوث
+  occurrence_status_descriptions:
+    absent: لا يحدث في المنطقة
+    common: يحدث كثيرا
+    doubtful: يُفترَض أن يحدث، ولكن هناك شك حول الأدلة
+    irregular: حضور لا يمكن التنبؤ به، بما في ذلك المتشردين، قد تكون شائعة في بعض
+      السنوات وتغيب في الأخرى
+    present: يحدث في المنطقة
+    uncommon: يحدث بانتظام ، ولكن بأعداد صغيرة. يتطلب البحث الدقيق عن الموطن المناسب
   occurrence_status_establishment_means: حالة حدوث، وسائل إنشاء
   occurrence_status_levels:
     present: الحالي
@@ -4014,8 +4038,8 @@ ar:
   stuff_just_added: العناصر التي أضفتها للتو...
   subject_resolved_noun_html: '%{subject} حل %{noun}'
   subject_affecting_stuff_html: '%{subject} يؤثر على %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} قام بـ%{thing} يؤثر على
-    %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} قام بـ@vow_or_con{vow:an|a}
+    %{thing} % يؤثر على %{stuff}'
   submission_model: نموذج التقديم
   submission_model_description: من يمكنه إضافة ملاحظات إلى مشروعك؟
   submit: إرسال
@@ -4347,7 +4371,7 @@ ar:
   these_are_taxa_that: "هذه هي الأصناف التي لم يتمكن  %{site} من إضافتها تلقائيا إلى
     \nشجرة التصنيف لدينا لسبب ما، يمكنك إضافتها إلى الشجرة عن طريق تحرير الأصنوفة\nواختيار
     سجل الأصل، على سبيل المثال، والدة الإنسان العاقل ستكون من جنس هومو، قد تحتاج أيضا
-    إلى التحقق من \nوجود أصناف مرادفة ودمجها."
+    إلى التحقق من \nوجود أصناف مرادفة\nودمجها."
   these_arent_necessarily_relevant_to: هذه ليست بالضرورة ذات صلة بهذا المشروع; الرجاء
     التاكد من الـ
   these_folks_kindly_volunteer_to: هؤلاء الناس متطوعون كرماء في الحفاظ على تصنيفنا
@@ -4455,6 +4479,8 @@ ar:
   today: اليوم
   too_many_observations_csv: لديك خلية نحل من الملاحظات!<br /> لا يمكننا أن نأخذ سوى
     أول %{max_rows} ملاحظة في كل CSV
+  too_many_taxa_to_render: يعرض هذا الاستعلام عددا كبيرا من الأصناف ليتم عرضه في وقت
+    واحد؛ حاول إضافة المزيد من المرشحات
   tools: الأدوات
   top_5_identifiers: أعلى 5 معرفات
   top_contributors: أبرز المساهمين
@@ -5554,6 +5580,8 @@ ar:
         private_latitude: خط العرض خاص، عين إذا كانت الملاحظة خاصة أو محجوبة
         private_longitude: خط الطول خاص، عين إذا كانت الملاحظة خاصة أو محجوبة
         geoprivacy: سواء اختار الملاحظ عدم إخفاء الإحداثيات أو إخفاؤها
+        taxon_geoprivacy: تُطبَّق معظم الجيوبرتريا المحافظة بسبب حالات حفظ الأصناف
+          في التعريف الحالي.
         coordinates_obscured: سواء كانت الإحداثيات محجوبة بسبب الخصوصية الجغرافية
           أو بسبب الأصنوفة المهددة
         out_of_range: ما إذا كانت هذه الملاحظة تقع خارج نطاق مجموعة الأصناف المعروفة
@@ -5591,14 +5619,17 @@ ar:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: يجب أن يكون عمود geoprivacy باللغة الإنجليزية
           ويجب أن يكون فارغا أو أن تكون به القيمة "obscured" أو "private"
-        google_photos_notice_html: "في فبراير 2019، غيرت جوجل واجهة برمجة تطبيقاتها،
-          مما جعل من المستحيل بالنسبة \nلنا الوصول إلى إحداثيات نظام تحديد المواقع
-          العالمي، ومعلومات الترخيص، وتقريبا أية \nمعلومات يمكننا استخدامها لإضافة
-          تعريف (مثل الوسوم)، بقد\nأزالوا أيضا البحث عن النص وترقيم الصفحات العددي،
-          لا يزال بإمكانك \nاستيراد الصور، ولكنها لن تتضمن أية معلومات عن الموقع أو
-          \nمعلومات الترخيص التي قد تتمكن من رؤيتها على صور جوجل. \nيمكنك قراءة المزيد
-          حول هذا الأمر على \n<a href=\"https://developers.google.com/picasa-web\">https://developers.google.com/picasa-web</a>.\nتنزيل
-          الملفات الأصلية وإضافتها باستخدام \n<a href=\"/observations/upload\">الرافع</a>
+        google_photos_notice_html: "في فبراير 2019، غيرت جوجل واجهة برمجة التطبيقات،
+          مما جعل من المستحيل بالنسبة\nلنا الوصول إلى إحداثيات نظام تحديد المواقع
+          العالمي ومعلومات الترخيص، وتقريبا أية\nمعلومات يمكننا استخدامها لإضافة تعريف
+          (مثل الوسوم)،\nأزالوا أيضا البحث عن النص وترقيم الصفحات العددي، علاوة على
+          ذلك، \nطلبوا من جميع الحسابات المرتبطة الحصول على إذن إضافي،\nوقبل أن يطلب
+          طرف ثالث ذلك الإذن من المستخدمين، \nيجب التحقق من الجهة الخارجية، نحن في
+          انتظار التحقق، ولكن \nحتى يحدث ذلك، لن تتمكن من استيراد الصور من جوجل، \nإذا
+          تم الحصول على الموافقة، فستتمكن من استيراد الصور، ولكنها لن \nتتضمن أية
+          معلومات متعلقة بالموقع أو معلومات ترخيص قد تكون \nقادرا على مشاهدتها على
+          صور جوجل، يمكنك قراءة المزيد حول هذا الأمر على <a\nhref=\"https://developers.google.com/picasa-\nweb\">https://developers.google.com/picasa-web</a>،
+          تنزيل\nالملفات الأصلية وإضافتها باستخدام <a\nhref=\"/observations/upload\">الرافع</a>
           هو الحل الأفضل."
         project_csv_template_notice_html: |-
           هناك ملف قالب لهذا المشروع الذي قد يساعدك في بنية ملف CSV،
@@ -6041,7 +6072,7 @@ ar:
             <li>
               <strong><a href="%{feedback_url}">الاتصال بمجموعة التغذية الراجعة</a></strong>
               <p>
-                يتعقب العديد من أمناء مواقع الويب رسائل البريد الإلكتروني في قسم مجموعة التغذية الراجعة.
+                يتعقب العديد من أمناء مواقع الويب الرسائل إلى المنتدى.
               </p>
             </li>
             <li>
@@ -6279,6 +6310,10 @@ ar:
         photo_chooser_modal_explanation: "لاحظ أن صفحة الأصنوفة سوف تظهر صور هذه الأصنوفة
           \nوذريتها، الصور التي تم اختيارها لهذه \nالأصنوفة سوف تظهر أولا، على الرغم
           من ذلك، ستكون الصورة الأولى هي \nالصورة الافتراضية المستخدمة عبر الموقع."
+        site_curators_disabled_wikipedia_html: "أمناء الموقع قدعطلوا <a href=\"%{url}\">عرض\nهذا
+          المحتوى من ويكيبيديا </a> بشكل مؤقت، يمكنك المساعدة عن طريق تحرير الصفحة
+          على \nويكيبيديا لجعلها مناسبة لهذه الأصنوفة، أو عن طريق وسم هذه\nالأصنوفة
+          لتنبيه علماء الموقع."
     taxon_changes:
       move_children_desc: |-
         سيتم نقل الأطفال من المدخلات المدخلة التي هي أجناس أو خشن إلى
@@ -6343,6 +6378,36 @@ ar:
         curators_can_see: |-
           مجرد تذكير، يمكن لأمناء المشروع رؤية إحداثيات الملاحظات
           الخاصة والمخفية التي تضيفها إلى هذا المشروع.
+      delete:
+        by_deleting_your_account_you_will_remove: بحذف حسابك ستقوم بإزالته
+        x_observations_html:
+          one: "<strong class=\"count\">ملاحظة واحدة</strong>،\nبما في ذلك عمل \n<strong
+            class=\"count\">%{helpers_count} أشخاص</strong> الذين \nساعدوك في التعرف
+            على الهوية \n"
+          other: "<strong class=\"count\">%{count} ملاحظات</strong>،\nبما في ذلك عمل
+            \n<strong class=\"count\">%{helpers_count} أشخاص </strong> الذين \nساعدوك
+            في التعرف على الهوية \n"
+        x_identifications_html:
+          one: "<strong class=\"count\">رقم تعريفك الوحيد</strong>\nفي ملاحظات أشخاص
+            آخرين، والذي من المحتمل أن يؤثر في \nجودة بيانات تلك الملاحظة\n"
+          other: "<strong class=\"count\">%{count} من تعريفاتك الخاصة</strong>\nفي
+            ملاحظات <strong class=\"count\">%{helpees_count} أشخاص آخرين، والتي من
+            المحتمل أن تؤثر على \nجودة بيانات تلك الملاحظات\n"
+        x_comments_html:
+          one: لقد أضفت <strong class="count">تعليقا واحدا</strong>
+          other: لقد أضفت <strong class="count">%{count}تعليقات</strong>
+        furthermore_cannot_undo_html: "علاوة على ذلك، <strong>لا يمكن التراجع عن هذا
+          الإجراء؛</strong>إذا \nغيرت رأيك لاحقا، فلن تحصل على ذلك المحتوى مرة أخرى."
+        settings_and_mute_html: "أنشأ هذا الموقع عددا كبيرا جدا من الإشعارات، فجرب\n<a
+          href=\"/users/edit\">تعديل إعداداتك</a> لإلغاء الاشتراك في\nإشعارات معينة
+          أو إيقاف استلام البريد الإلكتروني منا، إذا كنت تواجه \nمشكلة مع شخص معين
+          على الموقع، ففكر في\n<a href=\"/users/edit\">تجاهلها</a> بدلا من حذف \nحسابك."
+        still_want_to_delete_html: "إذا كنت لا تزال متأكدا من أنك تريد حذف حسابك،
+          فأدخل \n<code>%{confirmation_code}</code> في النموذج أدناه وانقر على\nالزر
+          لحذف حسابك وجميع بياناتك."
+        type_confirmation_code: اكتب %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: يجب عليك إدخال "%{confirmation_code}"
+          في النموذج لحذف حسابك
       edit:
         blocking_desc_html: "<p> \n  يؤدي حظر شخص ما إلى منعهم من مراسلتك، والتعليق
           على ملاحظاتك، \n  وتحديد ملاحظاتك، والتفاعل \n  معك في %{site_name}، كما
@@ -6957,7 +7022,7 @@ ar:
         عنك، والوصول إلى الإحداثيات المخفية وأية \nمعلومات أخرى يمكنك الوصول إليها
         على الموقع."
       login: "الوصول إلى معلومات ذات صلة بتسجيل الدخول، مثل عنوان البريد الإلكتروني،
-        واسم \nالمستخدم، وأيقونة المستخدم"
+        واسم \nالمستخدم، وأيقونة المستخدم."
     errors:
       messages:
         invalid_request: يفتقد الطلب إلى وسيط مطلوب، أو يتضمن قيمة وسيط غير مدعومة،

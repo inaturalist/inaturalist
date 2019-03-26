@@ -571,7 +571,6 @@ zh-CN:
   back_to_suggestions: 返回建议
   back_to_taxon: 回到 %{defaulttaxon}
   back_to_taxon_changes: 回到分类单元更改
-  back_to_this: 回到 %{place}
   back_to_viewing: 回到查看 <i>%{taxon}</i>
   back_to_x: 回到 %{noun}
   back_to_x_assessment: 回到 %{project} 评价
@@ -1186,17 +1185,17 @@ zh-CN:
   eol_collection_url: EOL收藏URL
   error_updating_photo: 上传图片时出错：%{photo_errors}
   establishment:
-    establishment: 确立
-    native: 本地
     endemic: 特产
+    establishment: 确立
     introduced: 引进
-    naturalised: 归化
     invasive: 攻击性
     managed: 管理
+    native: 本地
+    naturalised: 归化
   establishment_means: 建立手段
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: 本地物种，在其他地方没有出现记录
     arrived_in_the_region_via_anthropogenic_means: 通过人类活动途径到达此地区
+    native_and_occurs_nowhere_else: 本地物种，在其他地方没有出现记录
   establishment_means_describes_how: |-
     确立意思是描述如何在一个地区建立分类单元。
     参见DarwinCore以获取<a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">有关术语的更多信息</a>。
@@ -1321,7 +1320,6 @@ zh-CN:
   flag_marked_as_resolved_html: <span class="meta">将其标记为</span><strong>已解决。</strong>
   flag_reason: '&ldquo;我正在标记这个%{record}，因为'
   flag_saved: 标记已保存。
-  flag_saved_thanks: 标记已保存。感谢！
   flag_this_observation: 标记此观察
   flag_this_photo: 标记这张照片
   flagged: 已标记

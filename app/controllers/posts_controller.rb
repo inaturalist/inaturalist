@@ -9,6 +9,16 @@ class PostsController < ApplicationController
   before_filter :load_new_post, :only => [:new, :create]
   before_filter :owner_required, :only => [:create, :edit, :update, :destroy]
 
+  # Might want to try this if /journal becomes a problem.
+  # caches_action :browse,
+  #   expires_in: 15.minutes,
+  #   cache_path: Proc.new {|c|
+  #     c.send( journals_url, locale: I18n.locale, from: c.params[:from] )
+  #   },
+  #   if: Proc.new {|c|
+  #     (c.params.keys - %w(action controller format)).blank?
+  #   }
+
   layout "bootstrap"
   
   def index
@@ -219,6 +229,7 @@ class PostsController < ApplicationController
   
   def browse
     @posts = Post.not_flagged_as_spam.published.page(params[:page] || 1).order('published_at DESC')
+    @posts = @posts.where( "posts.id < ?", params[:from] ) unless params[:from].blank?
     respond_to do |format|
       format.html
     end

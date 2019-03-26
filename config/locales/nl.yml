@@ -337,11 +337,11 @@ nl:
   additional_range: Bijkomende omvang
   additional_range_data_from_an_unknown_source: Bijkomende range data van een onbekende
     bron
-  admin: Beheerder
+  admin: Admin
   admin_s: Beheerder(s)
   admin_any_projects: Beheer willekeurig project
   admin_only: Alleen beheerders
-  admin_tools: Werktuigen voor de beheerder
+  admin_tools: Werktuigen voor de Admin
   agree: akkoord
   agree_: Akkoord
   agree?: Akkoord?
@@ -470,7 +470,7 @@ nl:
   allow_curator_access: Geef de curator toegang
   allow_curator_coordinate_access: Geef de curator toegang tot de coördinaten
   allow_project_curators_to_view_your_private_coordinates: Geef projectcurators toestemming
-    om jouw verborgen coördinaten te bekijken
+    om uw privé-coördinaten te bekijken
   allowed_establish_means_values: Toegestane waarden voor vestigingswijze
   allowed_html: Toegestane HTML
   allowed_occurrence_status_values: Toegestane waarden voor statuscodes voorkomen
@@ -659,7 +659,6 @@ nl:
   back_to_taxon: Terug naar %{defaulttaxon}
   back_to_taxon_changes: Terug naar aanpassingen van het taxon
   back_to_taxon_framework_for_x: Terug naar het taxonframework voor %{taxon_name}
-  back_to_this: Terug naar %{place}
   back_to_viewing: Terug naar <i>%{taxon}</i> bekijken
   back_to_x: Terug naar %{noun}
   back_to_x_assessment: Terug naar %{project} beoordelingen
@@ -786,7 +785,7 @@ nl:
   cc_by_sa_name: Naamsvermelding-GelijkDelen
   cc_used_under_a: Creative Commons gebruikt onder een
   change: Wijzigen
-  change_admin: Wijzig beheerder
+  change_admin: Wijzig Admin
   change_cover: Cover wijzigen
   change_descriptions:
     split: Oud taxon opgedeeld in meerdere nieuwe taxa
@@ -813,6 +812,7 @@ nl:
     merged_into: samengevoegd met
     replaced_by: vervangen door
     replace_with: vervang door
+    replaced_with: vervang door
     dropped: verwijderd
     staged: Gefaseerd
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} is gesplitst in %{output_taxa}'
@@ -1190,6 +1190,7 @@ nl:
   date_range: Tijdspanne
   date_specified: Gespecificeerde datum
   date_time: Datum/tijd
+  date_updated: Laatst Bijgewerkt
   dates: data
   datetime_: Datum/tijd
   day: Dag
@@ -1399,18 +1400,20 @@ nl:
   eol_collection_url: EOL verzameling URL
   error_updating_photo: 'Fout bij bijwerken foto: %{photo_errors}'
   establishment:
-    establishment: Vestiging (Statuscodes voorkomen)
-    native: inheems
     endemic: endemisch
+    establishment: Vestiging (Statuscodes voorkomen)
     introduced: geïntroduceerd
-    naturalised: inburgerend
     invasive: invasief
     managed: beheerd
+    native: inheems
+    naturalised: inburgerend
   establishment_means: Vestigingswijze
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: inheems en komt nergens anders voor
-    arrived_in_the_region_via_anthropogenic_means: in de regio gekomen op antropogene
+    arrived_in_the_region_via_anthropogenic_means: In de regio gekomen op antropogene
       wijze
+    native_and_occurs_nowhere_else: Inheems en komt nergens anders voor
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Evolueerde in deze
+      regio of kwam op niet-antropogene wijze aan
   establishment_means_describes_how: Vestigingswijze beschrijft hoe het taxon zich
     heeft kunnen vestigen in een gebied. Zie DarwinCore voor <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">meer
     informatie over terminologie</a>.
@@ -1553,7 +1556,8 @@ nl:
   flag_marked_as_resolved_html: <span class="meta">Gemarkeerd als</span> <strong>opgelost.</strong>
   flag_reason: '&ldquo;Ik markeer dit %{record} omdat'
   flag_saved: Markering bewaard
-  flag_saved_thanks: Markering opgeslagen. Bedankt!
+  flag_saved_thanks_html: Markering bewaard. Dankjewel! <a href="%{url}" class="readmore">Bekijk
+    markering</a>
   flag_this_observation: Markeer deze waarneming
   flag_this_photo: Markeer deze foto
   flagged: gemarkeerd
@@ -1569,7 +1573,7 @@ nl:
   flags: Markeringen
   flags_with_count: Markeringen %{count}
   flags_explanation: '%{site_name} gebruikers markeren onderwerpen die aandacht nodig
-    hebben van de site curators of site admins.'
+    hebben van de sitecurators of siteadmins.'
   flags_for_x_html: Markeringen voor %{x}
   flags_on_users_content: Markeer %{user} inhoud
   flickr_account_information: Uw Flickr-account informatie
@@ -1608,6 +1612,18 @@ nl:
   for_more_information: voor meer informatie.
   formatting: Opmaak
   forgot_your_password: Uw wachtwoord vergeten?
+  forum: Forum
+  forum_categories:
+    bug_reports: Foutmeldingen
+    feature_requests: Functieverzoeken
+    forum_feedback: Forum Feedback
+    forum_moderation: Forum Moderatie
+    nature_talk: Natuur Café
+    news_and_updates: Nieuws & Wijzigingen
+    tutorials: Handleidingen
+  forum_desc: |-
+    Het forum is een plek om iNaturalist zelf te bespreken, inclusief hulp & ondersteuning,
+    functieverzoeken, bugrapporten, aankondigingen en meer.
   frequency: Frequentie
   fri: vr
   from: Van
@@ -2271,7 +2287,7 @@ nl:
   low: Laag
   lowest_rank: Laagste rang
   made_a: maakte een
-  make_admin: Maak beheerder
+  make_admin: Maak admin
   make_an_observation: Doe een waarneming
   mail_disclaimer: '%{site_name} laat niet toe dat gebruikers jouw aanvullende uitnodigingen
     versturen via onze uitnodig-functie. Rapporteer misbruik to %{site}'
@@ -2815,6 +2831,15 @@ nl:
     zeldzaam een taxon is in een bepaald gebied. Zie DarwinCore voor <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">meer
     informatie over terminologie</a>.
   occurrence_status: Statuscodes voorkomen
+  occurrence_status_descriptions:
+    absent: Komt niet voor in het gebied
+    common: Komt vaak voor
+    doubtful: Komt waarschijnlijk wel wel voor, maar er bestaat twijfel over het bewijsmateriaal
+    irregular: Aanwezigheid onvoorspelbaar, inclusief zwervers; kan in sommige jaren
+      algemeen zijn en in andere afwezig
+    present: Komt voor in het gebied
+    uncommon: Komt regelmatig voor, maar in kleine aantallen; goed zoeken in het juiste
+      habitat
   occurrence_status_establishment_means: Statuscodes voorkomen, vestigingswijze
   occurrence_status_levels:
     present: aanwezig
@@ -2891,11 +2916,10 @@ nl:
   one_of_your_lists: één van uw lijsten ...
   only_a_project_manager_can_add: Alleen een projectmanager kan de projectcuratorstatus
     toevoegen
-  only_administrators_may_access_that_page: Alleen beheerders hebben toegang tot deze
-    pagina
+  only_administrators_may_access_that_page: Alleen administrators hebben toegang tot
+    deze pagina
   only_accepts_taxa: aanvaardt enkel taxa
-  only_an_admin_can_remove_project_users: Alleen een beheerder kan projectgebruikers
-    verwijderen
+  only_an_admin_can_remove_project_users: Alleen een admin kan projectgebruikers verwijderen
   only_country_state_and_county: Alleen voor nu weergegeven landen, staten en provincies.
     Zoom in om kleinere plaatsen te zien.
   only_curators_can_add_edit_scientific_names: Alleen curatoren kunnen wetenschappelijke
@@ -2927,7 +2951,7 @@ nl:
   only_the_project_admin_can_delete_this_project: Alleen de projectbeheerder kan dit
     project verwijderen.
   only_you: Alleen u
-  open: openen
+  open: open
   open_: Open
   open_description: De coördinaten zijn voor iedereen zichtbaar, tenzij het gaat om
     een bedreigd taxon.
@@ -3704,7 +3728,7 @@ nl:
   relationship_unknown_count: Onbekende relatietelling
   relationship_x: 'Relatie: %{relationship}'
   relationships:
-    match: Passen
+    match: komt overeen met
     one_to_one: één op één
     alternate_position: alternatieve positie
     many_to_many: veel op veel
@@ -4129,10 +4153,10 @@ nl:
   start_new_project: Start een nieuw project
   start_one: om er één te starten
   start_one_now: Start Eén Nu!
-  start_typing_field_name: Begin met het typen van de veldnaam ...
-  start_typing_place_name: Begin met het typen van de plaatsnaam...
-  start_typing_taxon_name: Begin met het typen van de taxonnaam...
-  start_typing_someones_name: Begin met het typen van iemands naam ...
+  start_typing_field_name: Type een veldnaam ...
+  start_typing_place_name: Type een plaatsnaam...
+  start_typing_taxon_name: Type een taxonnaam...
+  start_typing_someones_name: Type iemands naam...
   states: statussen
   stats: Statistieken
   stats_for_this_year_have_not_been_generated: Statistieken voor dit jaar zijn niet
@@ -4157,8 +4181,8 @@ nl:
   stuff_just_added: Stuff die je zojuist hebt toegevoegd ...
   subject_resolved_noun_html: '%{subject} lost %{noun} op'
   subject_affecting_stuff_html: '%{subject} van invloed op %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} voerde een %{thing} uit
-    met gevolgen voor %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} voerde een @vow_or_con{vow:an|a}
+    %{thing} uit met gevolgen voor %{stuff}'
   submission_model: Submission Model
   submission_model_description: Wie kan waarnemingen toevoegen aan uw project?
   submit: Verzenden
@@ -4500,10 +4524,11 @@ nl:
     dat ze inloggen). Andere gemarkeerde items mogen alleen worden verwijderd
     als ze duidelijk haatdragend, illegaal, etc. zijn. Roekeloos, beledigend taalgebruik,
     etc. moet worden behandeld met een beleefde opmerking. Herhaaldelijke overtreders zouden moeten zijn gerapporteerd aan een websitebeheerder of %{email}
-  these_are_taxa_that: |-
-    Dit zijn taxa die %{site} niet automatisch aan onze taxonomische boom kan toevoegen om de één of andere reden. Je kunt ze aan de boom toevoegen door het taxon te bewerken
-    en het kiezen van een bovenliggend record. De ouder van Homo sapiens zou bijvoorbeeld het geslacht Homo zijn. Misschien wilt u ook synoniemen taxa controleren
-    en ze samenvoegen.
+  these_are_taxa_that: Dit zijn taxa die %{site} niet automatisch aan onze taxonomische
+    boom kan toevoegen om de één of andere reden. Je kunt ze aan de boom toevoegen
+    door het taxon te bewerken en het kiezen van een bovenliggend record. Bijvoorbeeld
+    het bovenliggend  record van van Homo sapiens is het geslacht Homo. Misschien
+    wilt u ook synoniementaxa controleren en ze samenvoegen.
   these_arent_necessarily_relevant_to: Deze zijn niet noodzakelijk relevant voor dit
     project. Controleer de
   these_folks_kindly_volunteer_to: Deze mensen bieden ons vrijwillig aan om onze taxonomie
@@ -4623,6 +4648,8 @@ nl:
   today: Vandaag
   too_many_observations_csv: Je hebt een bijenkorf van waarnemingen!<br/> We kunnen
     alleen je eerste %{max_rows} waarnemingen in elke CSV maken
+  too_many_taxa_to_render: Deze query retourneert te veel taxa om tegelijkertijd te
+    renderen. Probeer meer filters toe te voegen.
   tools: Tools
   top_5_identifiers: Top 5 identificeerders
   top_contributors: Top bijdragers
@@ -5551,7 +5578,7 @@ nl:
           <a href="http://github.com/inaturalist/inaturalist" title="inaturalist at master-GitHub">fork ons op GitHub</a>!
         how_do_i_contact_inaturalist?: Hoe contacteer ik %{site_name}?
         you_can_contact_us_at_html: Je kunt contact met ons opnemen via <a href="mailto:%{help_email}">%{help_email}</a>
-        what_are_admins_and_curators?: Wat zijn beheerders en curatoren?
+        what_are_admins_and_curators?: Wat zijn admins en curatoren?
         inat_admins_are_the_people_who: '%{site_name}beheerders zijn mensen die de
           site beheren. Zij hebben directe toegang tot de onderliggende code en de
           database, en zij kunnen alles op de site wijzigen.'
@@ -5676,9 +5703,9 @@ nl:
           organismen, zoals een levenslijst van vogels, of een levenslijst van Zijdeplanten.
         a_project_list_belongs: "Een projectlijst hoort bij een project en somt alle
           taxa op\ndie zijn waargenomen door leden van dat project. Projectlijsten
-          kunnen ook \nhandmatig ingevuld zijn door de beheerder van dat project en
-          kan worden gebruikt\nom de projectbijdragen te beperken tot taxa die op
-          de lijst staan."
+          kunnen ook \nhandmatig ingevuld zijn door de admin van dat project en kan
+          worden gebruikt\nom de projectbijdragen te beperken tot taxa die op de lijst
+          staan."
         a_check_list_is_html: |-
           Een checklist is een lijst met taxa die op een plaats voorkomen. Elke
           plaats heeft een default check list en wanneer een waarneming wordt
@@ -5815,6 +5842,8 @@ nl:
           is
         geoprivacy: Of de waarnemer ervoor heeft gekozen de coördinaten te vervagen
           of te verbergen
+        taxon_geoprivacy: Meest conservatieve geoprivacy toegepast als gevolg van
+          de staat van instandhouding van taxa bij de huidige determinatie.
         coordinates_obscured: Of de coördinaten al dan niet zijn vervaagd, hetzij
           vanwege geoprivacy of vanwege een bedreigd taxon
         out_of_range: Of deze waarneming wel of niet buiten het bekende verspreidingsgebied
@@ -5857,9 +5886,19 @@ nl:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: De geoprivacy-kolom moet in het Engels zijn
           en moet leeg zijn of de waarde "obscured" of "private" hebben
-        google_photos_notice_html: |-
-          In februari 2019 veranderde Google hun API, waardoor het onmogelijk werd voor ons om toegang te krijgen tot GPS-coördinaten, licentie-informatie en bijna alle informatie die we kunnen gebruiken om een determinatie toe te voegen (zoals tags). Ze verwijderde ook tekst zoeken en numerieke paginering. Je kan nog steeds foto's importeren, maar deze bevatten geen locatie-informatie of licentie-informatie die u mogelijk kunt zien op Google Foto's. Hierover kunt u meer lezen op <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          De originele bestanden downloaden en toevoegen met behulp van de <a href="/observations/upload">Uploader</a> is de beste oplossing.
+        google_photos_notice_html: "In februari 2019 veranderde Google hun API, waardoor
+          het onmogelijk werd voor ons om toegang te krijgen tot GPS-coördinaten,
+          licentie-informatie en bijna alle informatie die we kunnen gebruiken om
+          een determinatie toe te voegen (zoals tags). Ze verwijderde ook tekst zoeken
+          en numerieke paginering. \nBovendien vereisten ze dat alle verbonden accounts
+          een extra toestemming hadden en voordat een derde partij toestemming van
+          gebruikers kon vragen, de derde partij moet worden geverifieerd. We wachten
+          op verificatie, maar\ntot dat gebeurt, kunt u geen foto's van Google importeren.\nAls
+          we goedgekeurd worden, kun je nog steeds foto's importeren, maar deze bevatten
+          geen locatie-informatie of licentie-informatie die u mogelijk kunt zien
+          op Google Foto's. Hierover kunt u meer lezen op <a href=\"https://developers.google.com/picasa-web\">https://developers.google.com/picasa-web</a>.\nDe
+          originele bestanden downloaden en toevoegen met behulp van de <a href=\"/observations/upload\">Uploader</a>
+          is de beste oplossing."
         project_csv_template_notice_html: Er is een sjabloonbestand voor dit project
           dat u kan helpen met de structuur van het CSV-bestand. <a href="%{url}">Downloadsjabloon</a>
         soundcloud_notice_html: |-
@@ -6113,24 +6152,24 @@ nl:
           toewijzen als de admin moeten ze zich eerst aansluiten bij dit project en
           moet je ze curator maken.
         observation_aggregation_desc_html: |-
-          <p class = "description">
+          <p class="description">
           Waarnemingsaggregatie voegt automatisch passende waarnemingen toe aan jouw project zoals gespecificeerd in je projectregels. Er is geen manier om veel waarnemingen uit een project te verwijderen en dit is bovendien potentieel gevaarlijk.
           Zorg er dus voor dat je zeker weet dat je de plaats- en de taxonregels gekozen hebt die je wilt of je krijgt veel ongeschikte waarnemingen in je project die je weer handmatig moet verwijderen.
-          </ P>
-          <p class = "description">
+          </p>
+          <p class="description">
              De aggregator werkt alleen als aan de volgende voorwaarden is voldaan:
-          </ P>
+          </p>
           <ol>
-             <li class = "readable description">Je project heeft op zijn minst één 'must-be-observed-in-place' regel voor een gebied met maximaal de grootte van Texas of Oekraïne (=grootste Europese land)</li>
-             <li class = "readable description">
+             <li class="readable description">Je project heeft op zijn minst één 'must-be-observed-in-place' regel voor een gebied met maximaal de grootte van Texas of Oekraïne (=grootste Europese land)</li>
+             <li class="readable description">
                Of je project heeft ten minste één 'moet-in-taxon'-regel.
              </li>
           </ol>
         project_assets_desc_html: |-
-          <p class = "description"> Projectactiva zijn gewoon bestanden die aan je project zijn gekoppeld, met enkele speciale regels:</p>
-          <ol class = "description">
-             <li> Bestanden die eindigen op .logo.jpg, .logo.png, enz. worden gebruikt als het logo van het project op de projectpagina in plaats van het projectpictogram </li>
-             <li> KML- en KMZ-bestanden worden toegevoegd aan de kaart op de projectpagina</li>
+          <p class="description"> Projectactiva zijn gewoon bestanden die aan je project zijn gekoppeld, met enkele speciale regels:</p>
+          <ol class="description">
+             <li>Bestanden die eindigen op .logo.jpg, .logo.png, enz. worden gebruikt als het logo van het project op de projectpagina in plaats van het projectpictogram </li>
+             <li>KML- en KMZ-bestanden worden toegevoegd aan de kaart op de projectpagina</li>
           </ol>
         project_list_desc_html: |-
           <p class = "description">
@@ -6199,10 +6238,10 @@ nl:
         do_you_need_features_from_traditional: |-
           Heeft u functies nodig van traditionele projecten, zoals toegang tot echte coördinaten,
           aangepaste waarnemingsvelden of het toevoegen van individuele waarnemingen die niet automatisch kunnen worden gefilterd?
-        leaderboards_among_individuals: Ranglijsten voor <strong>personen</ strong>
+        leaderboards_among_individuals: Ranglijsten voor <strong>personen</strong>
         leaderboards_among_projects_and_bioblitzes: Ranglijsten voor <strong>projecten
           en bioblitzes</strong>
-        multiple_project_administrators: Meerdere projectbeheerders
+        multiple_project_administrators: Meerdere projectadministrators
         name_placeholder: Birds of Chicago, Verbazingwekkende libellen, etc.
         no_need_to_rely_on_manual_addition: Je hoeft niet te vertrouwen op het handmatig
           toevoegen van waarnemingen of op de aggregator om  waarnemingen te indexeren
@@ -6306,16 +6345,16 @@ nl:
           <p>Er zijn een paar mogelijkheden:</p>
           <ul class="list-unstyled">
             <li>
-              <strong>Een vlag toevoegen aan een hoger Taxon</strong>
+              <strong>Een markering toevoegen aan een hoger Taxon</strong>
                <P>
                  Bijv. het geslacht dat een soort bevat. Hopelijk zal een vriendelijk
                  curator het taxon toevoegen als het kan worden toegevoegd.
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Neem contact op met de feedbackgroep</a></strong>
+              <strong><a href="%{feedback_url}">Plaats een bericht op het forum</a></strong>
               <p>
-                Veel sitecuratoren houden e-mails bij van de feedbackgroep.
+                Veel sitecuratoren houden berichten bij op het forum.
               </p>
             </li>
             <li>
@@ -6557,6 +6596,9 @@ nl:
           en zijn nakomelingen. De foto's die hiervoor zijn gekozen
           van dit taxon zal het worden getoond. De eerste foto zal de
           de standaardafbeelding zijn die op de site wordt gebruikt.
+        site_curators_disabled_wikipedia_html: |-
+          Sitecuratoren hebben tijdelijk de weergave van <a href="%{url}">deze inhoud van Wikipedia</a> uitgeschakeld. U kunt helpen door de pagina in Wikipedia aan te passen om het geschikt te maken voor dit taxon of door dit te markeren
+          taxon om het onder de aandacht te brengen van sitecuratoren.
     taxon_changes:
       move_children_desc: "Kinderen van het input-taxon die genera of grover zijn,
         worden verplaatst naar \nhet resultaat; soorten, ondersoorten, variëteiten,
@@ -6600,8 +6642,10 @@ nl:
           class=\"readmore\" href=\"/pages/translate\">Meer informatie over het vertalen
           voor iNaturalist</a></p>\n  </li>\n</ul>"
         places_help_html: |-
-          Voeg een naam toe aan een plaats om deze prioriteit te geven aan sites en gebruikers van
-          die plaats. Als er meerdere namen per plaats zijn, kunt u <a href="%{url}">hier</a> prioriteiten stellen aan ze. Geef <strong>geen</ strong> namen op voor ELKE plaats waar de naam wordt gebruikt, alleen voor plaatsen die conflicteren met andere plaatsen.
+          Voeg een naam toe aan een plaats om deze prioriteit te geven aan
+          sites en gebruikers van die plaats. Als er meerdere namen per plaats
+          zijn, kunt u <a href="%{url}">hier</a> prioriteiten stellen aan ze.
+          Geef <strong>geen</strong> namen op voor ELKE plaats waar de naam wordt gebruikt, alleen voor plaatsen die conflicteren met andere plaatsen.
       taxon:
         about_html: Taxa kunnen veel lokale namen hebben. We ondersteunen een standaard
           standaardnaam globaal, die hier kan worden gewijzigd door een naam naar
@@ -6627,6 +6671,45 @@ nl:
         curators_can_see: |-
           Vergeet niet dat projectcuratoren de privé en vervaagde
           coördinaten kunnen zien van waarnemingen die u toevoegt aan dit project.
+      delete:
+        by_deleting_your_account_you_will_remove: Door je account te verwijderen,
+          verwijder je
+        x_observations_html:
+          one: |
+            <strong class="count">1 waarneming</strong>,
+            inclusief het werk van de
+            <strong class="count">%{helpers_count} personen</strong> die je hebben geholpen met determinaties
+          other: |
+            <strong class="count">%{count} waarnemingen</strong>,
+            inclusief het werk van de
+            <strong class="count">%{helpers_count} personen</strong> die je hebben geholpen met determinaties
+        x_identifications_html:
+          one: "<strong class=\"count\">jouw eerste determinatie</strong> van de waarneming
+            van een andere persoon, die mogelijk van invloed kan zijn op de datakwaliteit
+            van die waarneming \n"
+          other: "<strong class=\"count\">%{count} van jouw eigen determinaties</strong>
+            op de waarnemingen van \n<strong class=\"count\">%{helpees_count} andere
+            mensen</strong>, wat mogelijk van invloed kan zijn op de datakwaliteit
+            van die waarnemingen"
+        x_comments_html:
+          one: <strong class="count">1 opmerking</strong> die je hebt gemaakt
+          other: <strong class="count">%{count} opmerkingen</strong> die je hebt gemaakt
+        furthermore_cannot_undo_html: Bovendien kan <strong>deze actie niet ongedaan
+          worden gemaakt.</strong> Als je later verandert van gedachten krijg je die
+          inhoud niet terug.
+        settings_and_mute_html: Als deze site te veel meldingen genereert, overweeg
+          dan <a href="/users/edit">jouw instellingen aan te bewerken</a> om je af
+          te melden voor bepaalde meldingen of te stoppen met het ontvangen van e-mail
+          van ons. Als je problemen hebt met een specifieke persoon op de site, overweeg
+          dan <a href="/users/edit"> hen te blokkeren</a> in plaats van het verwijderen
+          van jouw account.
+        still_want_to_delete_html: Als u er nog steeds zeker van bent dat u uw account
+          wilt verwijderen, voert u dit in <code>%{confirmation_code}</code> in het
+          onderstaande formulier en klik op de knop om uw account en al uw gegevens
+          te verwijderen.
+        type_confirmation_code: Type %{confirmation_code}
+        you_must_enter_confirmation_code_in_the_form: U moet de "%{confirmation_code}"
+          in het formulier invoeren om uw account te verwijderen
       edit:
         blocking_desc_html: |-
           <p>Door iemand te blokkeren kunnen ze je berichten niet meer zien en commentaar leveren op jouw waarnemingen, het determineren van uw waarnemingen en andere interacties met u op %{site_name}. Het verwijdert ook hun waarnemingen uit uw zoekresultaten en verwijdert uw waarnemingen uit hun zoekopdracht resultaten. Het maakt u echter niet onzichtbaar voor hen. Ze kunnen nog steeds je waarnemingen vinden en je profiel bekijken, ze kunnen echter geen interactie met jou aangaan.
@@ -6656,11 +6739,11 @@ nl:
           zonder uw toestemming te vragen als ze zich houden aan de voorwaarden van de licentie. %{site_name} gebruikt uw door Creative Commons gelicentieerde inhoud om te delen met gegevenspartners zoals de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
         muting_desc_html: |-
           <p>
-             Als u iemand dempt, kunt u geen meldingen meer over dingen ontvangen die ze doen, inclusief commentaar op uw waarnemingen, berichten aan u, vermeldingen van u, enz. Demping helpt u iemand te negeren zonder dat ze er iets aan doen.
+             Als u iemand dempt, kunt u geen meldingen meer over dingen ontvangen die ze doen, inclusief commentaar op uw waarnemingen, berichten aan u, vermeldingen van u, enz. Muting helpt u iemand te negeren zonder dat ze er iets aan doen.
           </p>
           <p>
-             Je kunt zoveel mensen dempen als je wilt, maar onthoud dat je mogelijk belangrijke meldingen mist, zoals
-             determinaties die de gemeenschapsidentificatie op uw waarnemingen wijzigd.
+             Je kunt zoveel mensen muten als je wilt, maar onthoud dat je mogelijk belangrijke meldingen mist, zoals
+             determinaties die de gemeenschapsdeterminatie (CID) op uw waarnemingen wijzigd.
           </p>
         name_place_help_html: Geef prioriteit aan locale namen die op deze plaats
           worden gebruikt.
@@ -6981,7 +7064,7 @@ nl:
       messages:
         accepted: moet aanvaard worden
         blank: mag niet leeg blijven
-        confirmation: didn't match password
+        confirmation: kwam niet overeen met het wachtwoord
         empty: mag niet leeg blijven
         equal_to: moet gelijk zijn aan %{count}
         even: moet even zijn

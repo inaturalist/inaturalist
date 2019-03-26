@@ -109,7 +109,7 @@ eu:
   add_a_batch_of_observations: Ohar taldea gehitu
   add_a_batch_of_observations_by_csv: Ohar taldea gehitu CSV bidez
   add_a_batch_of_taxa: Taxon taldea gehitu
-  add_a_comment: Oharra gehitu
+  add_a_comment: Iruzkina gehitu
   add_a_field: Eremua gehitu
   add_a_flag: Bandera bat gehitu
   add_a_link_raquo: '&raquo; lotura gehitu'
@@ -138,8 +138,8 @@ eu:
   add_colors: Koloreak gehitu
   add_comma_separated_tags: Komarekin bereiztutako etiketak gehitu
   add_comment: Iruzkina gehitu
-  add_common_names_for: Izen arruntak gehitu lehendik dauden taxonei
-  add_conservation_status: iraute egoera gehitu
+  add_common_names_for: Izen arruntak gehitu aurretik dauden taxonei
+  add_conservation_status: Iraute egoera gehitu
   add_countries: Herrialdeak gehitu
   add_custom_project_fields: Pertsonalizatutako proiektu-eremuak gehitu
   add_edit_more_fields: Eremu gehiago gehitu/editatu
@@ -458,7 +458,6 @@ eu:
   back_to_shared_taxon: 'Hona itzuli: %{sharedtaxon}'
   back_to_suggestions: Bueltatu iradokizunetara
   back_to_taxon: 'Hona itzuli: %{defaulttaxon}'
-  back_to_this: 'Hona itzuli: %{place}'
   back_to_viewing: <i>%{taxon}</i> berriro ikusi
   back_to_x: 'Hona itzuli: %{noun}'
   back_to_x_journal: 'Honen egutegira itzuli: %{user}'
@@ -1009,18 +1008,18 @@ eu:
   eol: EOL
   error_updating_photo: 'Errorea argazkia igotzean: %{photo_errors}'
   establishment:
-    establishment: Sailkapena
-    native: Bertakoa
     endemic: Endemikoa
+    establishment: Sailkapena
     introduced: Sartua
-    naturalised: Naturalizatua
     invasive: Inbaditzailea
     managed: Gatibutasuna/Landua
+    native: Bertakoa
+    naturalised: Naturalizatua
   establishment_means: Kokatzeko moduak
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: Mexikon soilik gertatzen da
     arrived_in_the_region_via_anthropogenic_means: baliabide antropogenoen bidez iritsi
       zen eskualdera
+    native_and_occurs_nowhere_else: Mexikon soilik gertatzen da
   establishment_means_describes_how: 'Kokatzeko moduak taxona eremu batean nola txertatu
     zen deskribatzen du. Ikusi DarwinCore honetarako: <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">informazio
     gehiago terminologian</a>.'
@@ -1127,7 +1126,6 @@ eu:
   flag_marked_as_resolved_html: <span class=meta>Markatu</span> <strong>ebatzita gisa.</strong>
   flag_reason: “ %{record}hau markatzen ari naiz, zeren eta
   flag_saved: Ohartarazpena gordeta.
-  flag_saved_thanks: Ohartarazpena gordeta. Mila esker!
   flag_this_observation: Ohar hau markatu
   flag_this_photo: Argazki hau markatu
   flagged: markatuta
