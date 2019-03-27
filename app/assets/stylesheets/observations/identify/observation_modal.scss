@@ -70,6 +70,7 @@ body > [role="dialog"] .ObservationModal {
   }
 
   $galleryHeightElements: "
+    .photos-wrapper,
     .image-gallery,
     .image-gallery-content,
     .image-gallery-swipe,
@@ -95,6 +96,18 @@ body > [role="dialog"] .ObservationModal {
     overflow: hidden;
   }
 
+  .photos-wrapper {
+    position: relative;
+    .original-photo-link {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 200%;
+      padding: 5px;
+      color: white;
+      text-shadow: 1px 1px 5px #666;
+    }
+  }
   
   .easyzoom > a img {
     object-position: 50% 50%;
