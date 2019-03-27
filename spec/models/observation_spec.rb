@@ -126,24 +126,33 @@ describe Observation do
       expect(zone.formatted_offset).to eq "-05:00"
     end
 
-    it "should use the user's time zone if the date string only has an offset and it matches the user's time zone" do
-      u_est = User.make!( time_zone: "Eastern Time (US & Canada)" )
-      u_cot = User.make!( time_zone: "Bogota" )
-      observed_on_string = "2019-01-29 9:21:46 a. m. GMT-05:00"
-      o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
-      expect( o_est.time_zone ).to eq u_est.time_zone
-      o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
-      expect( o_cot.time_zone ).to eq u_cot.time_zone
-    end
+    describe "when the user has a time zone" do
+      let(:u_est) { User.make!( time_zone: "Eastern Time (US & Canada)" ) }
+      let(:u_cot) { User.make!( time_zone: "Bogota" ) }
+      let(:u_cst) { User.make!( time_zone: "Central Time (US & Canada)" ) }
 
-    it "should use the user's time zone if the date string only has an offset and it matches the user's time zone during daylight savings time" do
-      u_est = User.make!( time_zone: "Eastern Time (US & Canada)" )
-      u_cot = User.make!( time_zone: "Bogota" )
-      observed_on_string = "2018-06-29 9:21:46 a. m. GMT-05:00"
-      o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
-      expect( o_est.time_zone ).to eq u_est.time_zone
-      o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
-      expect( o_cot.time_zone ).to eq u_cot.time_zone
+      it "should use the user's time zone if the date string only has an offset and it matches the user's time zone" do
+        observed_on_string = "2019-01-29 9:21:46 a. m. GMT-05:00"
+        o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
+        expect( o_est.time_zone ).to eq u_est.time_zone
+        o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
+        expect( o_cot.time_zone ).to eq u_cot.time_zone
+      end
+
+      it "should use the user's time zone if the date string only has an offset and it matches the user's time zone during daylight savings time" do
+        observed_on_string = "2018-06-29 9:21:46 a. m. GMT-05:00"
+        o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
+        expect( o_est.time_zone ).to eq u_est.time_zone
+        o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
+        expect( o_cot.time_zone ).to eq u_cot.time_zone
+      end
+
+      it "should parse out a time even if a problem time zone code is in the observed_on_string" do
+        observed_on_string = "2019-03-24 2:10 PM CDT"
+        o_cdt = Observation.make!( user: u_cst, observed_on_string: observed_on_string )
+        expect( o_cdt.time_zone ).to eq u_cst.time_zone
+        expect( o_cdt.time_observed_at ).not_to be_blank
+      end
     end
 
     it "should handle a user without a time zone" do
@@ -552,12 +561,6 @@ describe Observation do
   end
 
   describe "updating" do
-    before(:each) do
-      @observation = Observation.make!(
-        :taxon => Taxon.make!, 
-        :observed_on_string => 'yesterday at 1pm', 
-        :time_zone => 'UTC')
-    end
 
     it "should create an obs review if taxon set but was blank and updated by the observer" do
       o = Observation.make!
@@ -601,25 +604,33 @@ describe Observation do
       o.reload
       expect(Identification.find_by_id(old_owners_ident.id)).to be_blank
     end
-  
-    it "should properly set date and time" do
-      @observation.save
-      @observation.observed_on_string = 'March 16 2007 at 2pm'
-      @observation.save
-      expect(@observation.observed_on).to eq Date.parse('2007-03-16')
-      expect(@observation.time_observed_at_in_zone.hour).to eq(14)
-    end
-  
-    it "should not save a time if one wasn't specified" do
-      @observation.update_attributes(:observed_on_string => "April 2 2008")
-      @observation.save
-      expect(@observation.time_observed_at).to be_blank
-    end
-  
-    it "should clear date if observed_on_string blank" do
-      expect(@observation.observed_on).not_to be_blank
-      @observation.update_attributes(:observed_on_string => "")
-      expect(@observation.observed_on).to be_blank
+
+    describe "observed_on_string" do
+      let(:observation) {
+        Observation.make!(
+          taxon: Taxon.make!, 
+          observed_on_string: "yesterday at 1pm", 
+          time_zone: "UTC"
+        )
+      }
+      it "should properly set date and time" do
+        observation.observed_on_string = 'March 16 2007 at 2pm'
+        observation.save
+        expect(observation.observed_on).to eq Date.parse('2007-03-16')
+        expect(observation.time_observed_at_in_zone.hour).to eq(14)
+      end
+      
+      it "should not save a time if one wasn't specified" do
+        observation.update_attributes(:observed_on_string => "April 2 2008")
+        observation.save
+        expect(observation.time_observed_at).to be_blank
+      end
+      
+      it "should clear date if observed_on_string blank" do
+        expect(observation.observed_on).not_to be_blank
+        observation.update_attributes(:observed_on_string => "")
+        expect(observation.observed_on).to be_blank
+      end
     end
   
     it "should set an iconic taxon if the taxon was set" do
