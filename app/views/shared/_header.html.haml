@@ -34,6 +34,8 @@
           %li= link_to t(:people), people_path
           %li= link_to t(:projects), projects_path
           %li= link_to t(:journal_posts), journals_path
+          - if @site && @site.discourse_url
+            %li= link_to t(:forum), @site.discourse_url
           - if logged_in?
             - user_projects = current_user.project_users.joins(:project).includes(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
             - unless user_projects.blank?
