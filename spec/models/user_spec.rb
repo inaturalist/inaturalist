@@ -644,8 +644,8 @@ describe User do
 
   describe "suspension" do
     it "deletes unread sent messages" do
-      fu = User.make!
-      tu = User.make!
+      fu = UserPrivilege.make!.user # User.make!
+      tu = UserPrivilege.make!.user # User.make!
       m = make_message(:user => fu, :from_user => fu, :to_user => tu)
       m.send_message
       expect(m.to_user_copy).not_to be_blank
@@ -655,8 +655,8 @@ describe User do
     end
 
     it "should not delete the suspended user's messages" do
-      fu = User.make!
-      tu = User.make!
+      fu = UserPrivilege.make!.user # User.make!
+      tu = UserPrivilege.make!.user # User.make!
       m = make_message(:user => fu, :from_user => fu, :to_user => tu)
       m.send_message
       expect(m.to_user_copy).not_to be_blank

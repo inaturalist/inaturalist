@@ -526,6 +526,11 @@ UserBlock.blueprint do
   blocked_user { User.make! }
 end
 
+UserPrivilege.blueprint do
+  user { User.make! }
+  privilege { UserPrivilege::SPEECH }
+end
+
 WikiPage.blueprint do
   t = Faker::Lorem.sentence
   title { t }
