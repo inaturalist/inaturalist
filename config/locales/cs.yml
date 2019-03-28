@@ -1320,9 +1320,9 @@ cs:
     naturalised: naturalizovaný
   establishment_means: Způsob vzniku
   establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: do regionu přišel prostřednictvím
+    arrived_in_the_region_via_anthropogenic_means: Do regionu přišel prostřednictvím
       antropogenního působení
-    native_and_occurs_nowhere_else: místní a nikde jinde se neobjevuje
+    native_and_occurs_nowhere_else: Místní a nikde jinde se neobjevuje
   establishment_means_describes_how: Způsob vzniku popisuje, jak začal daný taxon
     v oblasti existovat. Více informací o terminologii najdete v DarwinCore <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24"></a>.
   event_in_progress: Událost probíhá
@@ -3626,7 +3626,7 @@ cs:
   stuff_just_added: Zrovna jste přidali...
   subject_resolved_noun_html: '%{subject} vyřešeno %{noun}'
   subject_affecting_stuff_html: '%{subject} ovlivňující %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} spojený %{thing} ovlivňující
+  subject_committed_thing_affecting_stuff_html: '%{subject} spojený s %{thing} ovlivňující
     %{stuff}'
   submission_model_description: Kdo může přidávat pozorování k vašemu projektu?
   submit: Odeslat
@@ -3875,10 +3875,11 @@ cs:
     pouze tehdy, jsou-li očividně nenávistné, nelegální atd. Nezdvořilost, útočný
     jazyk atd. by se měly řešit zdvořilým komentářem. Ti, kdo se těchto porušení pravidel
     doupouštějí opakovaně, by měli být nahlášeni správci stránky nebo %{email}
-  these_are_taxa_that: Toto jsou taxony, které stránka %{site} z nějakého důvodu nemohla
-    automaticky přidat do vašeho taxonomického stromu. Do stromu je můžete přidat
-    editací taxonu a výběrem nadřazeného záznamu. Například, nadřazený záznam Homo
-    sapiens by byl rod Homo. Také se podívejte, jestli existují synonyma taxonů, která
+  these_are_taxa_that: |-
+    Toto jsou taxony, které stránka %{site} z nějakého důvodu nemohla automaticky přidat do vašeho taxonomického
+    stromu. Do stromu je můžete přidat editací taxonu
+    a výběrem nadřazeného záznamu. Například, nadřazený záznam Homo sapiens by
+    byl rod Homo. Také se podívejte, jestli existují synonyma taxonů, která
     můžete sloučit.
   these_arent_necessarily_relevant_to: Tyto nejsou pro tento projekt nutně relevantní.
     Podívejte se prosím na
