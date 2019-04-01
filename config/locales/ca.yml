@@ -49,6 +49,9 @@ ca:
   x_misidentifications_of_this_species:
     one: 1 identificació errònia d'aquesta espècie
     other: '%{count} identificacions errònies d''aquesta espècie'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 espècie mal identificació en aquest %{rank}
+    other: '%{count} espècies mal identificades en aquest %{rank}'
   x_observations:
     one: 1 observació
     other: '%{count} observacions'
@@ -3000,6 +3003,10 @@ ca:
     identificades incorrectament com aquesta espècie
   other_species_commonly_misidentified_as_this_species_in_place_html: Altres espècies
     que habitualment identificat incorrectament com aquesta espècie a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Altre tàxon generalment mal identificat
+    a aquest %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Altres taxons habitualment
+    mal identificar com aquest %{rank} a <a href="%{url}">%{place}</a>
   our_blog: El nostre blog
   out_of_range: Fora del rang
   output_taxon: Tàxon de sortida
@@ -3997,6 +4004,7 @@ ca:
   sign_up: Registreu-vos
   sign_up_exclamation: Registreu-vos!
   similar_species: Espècie similar
+  similar_taxa: Tàxon semblant
   simple: Senzill
   sign_in_exclamation: Inicieu sessió!
   single_observation: Observació simple
@@ -5862,9 +5870,19 @@ ca:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: La columna geoprivacitat ha d'estar en anglès
           i ha d'estar en blanca o tenir el valor de "enfoquit" o "privat"
+        google_photos_notice_html: |-
+          El febrer del 2019, Google va canviar el seu API, fent impossible per nosaltres accedir a les coordenades del GPS, informació de llicència, i gairebé total la informació que  podiem utilitzar per afegir a una identificació (com etiquetes). També ha eliminat la cerca de text i la paginació numèrica. A més, han requerit que tots els comptes demanin permisos addicionals, i que els tercers siguin verificats. Estem esperant la verificació i mentre arriba, no podreu importar fotos de Google.
+          Si som aprovats, podreu importar fotos, però no inclourà informació d'ubicació o informació de llicència que sí que podeu veure a Photos de Google. Podeu llegir més sobre això a <a href="https://developers.google.com/picasa-
+          web">https://desenvolupadors.google.com/picasa-Web</a>. Descarregar els arxius originals i afegint-los utilitzant la <a href="/observations/upload">Nostra Aplicació </a> és, per ara la millor opció.
         project_csv_template_notice_html: "Hi ha un fitxer de plantilla per a aquest
           projecte que pot ajudar-vos amb l'estructura del fitxer CSV. \n<a href=\"%{url}\">Descarregar
           la plantilla</a>"
+        soundcloud_notice_html: El 2018 Soundcloud va canviar el seu API i ens va
+          fer impossible per nosaltres fer connexions noves al vostre compte Soundcloud.
+          Si restableixen aquesta funcionalitat, podem tornar a enllaçar comptes a
+          Soundcloud. Mentrestant, podeu <a href="/observations/upload">pujar</a>
+          els arxius de so directament utilitzant la <a href="/observations/upload">Nostra
+          aplicació</a>.
       show:
         allow_curator_coordinate_access_desc_html: Permet als supervisors del projecte
           veure les coordenades ocultes d'aquesta observació.

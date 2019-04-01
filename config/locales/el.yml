@@ -271,7 +271,7 @@ el:
   add_to_a_scheme: Πρόσθεση σε ένα σχήμα
   add_to_a_project: Προσθήκη σε ένα Πρότζεκτ
   add_to_calendar: Πρόσθεση σε ημερολόγιο
-  add_to_checklist: Πρόσθεση στη λίστα ελέγχου
+  add_to_checklist: Προσθήκη στη λίστα ελέγχου
   add_to_favorites: Προσθήκη στα αγαπημένα
   add_to_id_please: Προσθήκη στο ID Παρακαλώ
   add_to_list: Προσθήκη στη Λίστα
@@ -1057,12 +1057,13 @@ el:
   edit_body: Επεξεργασία κυρίως σώματος
   edit_colors: Επεξεργασία χρωμάτων
   edit_comment: Επεξεργασία του σχολίου σας
-  edit_field: Επεξεργασία πεδίου
-  edit_license: Επεξεργασία άδειας
-  edit_multiple_dates: Επεξεργασία πολλαπλών ημερομηνιών
-  edit_multiple_descriptions: Επεξεργασία πολλαπλών περιγραφών
-  edit_multiple_locations: Επεξεργασία πολλαπλών τοποθεσιών
-  edit_multiple_species: Επεξεργασία πολλαπλών ειδών
+  edit_custom_project_fields: Επεξεργασία Πεδίων προσαρμοσμένων στο Πρότζεκτ
+  edit_field: Επεξεργασία Πεδίου
+  edit_license: Επεξεργασία Άδειας
+  edit_multiple_dates: Επεξεργασία Πολλαπλών Ημερομηνιών
+  edit_multiple_descriptions: Επεξεργασία Πολλαπλών Περιγραφών
+  edit_multiple_locations: Επεξεργασία Πολλαπλών Τοποθεσιών
+  edit_multiple_species: Επεξεργασία Πολλαπλών Ειδών
   edit_notes: Επεξεργασία Σημειώσεων
   edit_observation: Επεξεργασία Παρατήρησης
   edit_observations: Επεξεργασία παρατηρήσεων
@@ -1391,7 +1392,7 @@ el:
   identifications: Αναγνωρίσεις
   identifications_by: Αναγνωρίσεις από %{user}
   identified?: αναγνωρίστηκε
-  identifiers: Αναγνωριστές
+  identifiers: Ταυτοποιητές
   ids_made_for_others: ID σε παρατηρήσεις άλλων
   if_for_some_reason_a_user_doesnt_agree: Αν για κάποιο λόγο δεν συμφωνείτε με το
     taxon της κοινότητας, μπορείτε να το απορρίψετε, πράγμα που σημαίνει πως η δική
@@ -2124,7 +2125,7 @@ el:
   of_observations: Παρατηρήσεις
   of_species: είδη
   of_observers: Παρατηρητές
-  of_identifiers: Κωδικοί αναφοράς
+  of_identifiers: ταυτοποιητές
   of_places: τόποι
   of_this_taxon: Αυτού του taxon
   offensive_inappropriate: Προσβλητικό / Ακατάλληλο
@@ -2157,8 +2158,13 @@ el:
     επιστημονικές ονομασίες.
   only_curators_can_access_that_page: Μόνον επιμελητές μπορούν να έχουν πρόσβαση σε
     αυτή τη σελίδα.
+  only_files_with_10000_rows_at_a_time: Μόνον αρχεία με 10000 σειρές την κάθε φορά,
+    παρακαλούμε
   only_letters_numbers: Μόνο γράμματα και αριθμοί, όχι κενά διαστήματα, πρέπει να
     αρχίζει με γράμμα
+  only_project_curators_can_do_that: Μόνον οι επιμελητές του πρότζεκτ μπορούν να το
+    κάνουν αυτό.
+  only_receive_updates_about_this_taxon: Μόνο λήψη ενημερώσεων για αυτό το taxon
   only_species: μόνο είδη
   only_species_and_subspecies: μόνο είδη και υποείδη/ποικιλίες
   only_you: Μόνο εσείς
@@ -2382,6 +2388,7 @@ el:
     brazil: Βραζιλία
     british_indian_ocean_territory: Βρετανικό Έδαφος Ινδικού Ωκεανού
     british_virgin_islands: Βρετανικές Παρθένοι Νήσοι
+    brunei: Μπρουνέι
     bulgaria: Βουλγαρία
     burkina_faso: Μπουρκίνα Φάσο
     burundi: Μπουρούντι
@@ -2395,15 +2402,25 @@ el:
     chad: Τσαντ
     chile: Χιλή
     china: Κίνα
+    christmas_island: Νήσος των Χριστουγέννων
+    clipperton_island: Νήσος Κλίπερτον
+    cocos_islands: Νησιά Κόκος
     colombia: Κολομβία
+    commonwealth_of_the_northern_mariana_islands: Κοινοπολιτεία των Βορείων Μαριανών
+      Νήσων
+    comoros: Κομόρες
+    cook_islands: Νήσοι Κουκ
     costa_rica: Κόστα Ρίκα
     cote_d_ivoire: Ακτή Ελεφαντοστού
     croatia: Κροατία
     cuba: Κούβα
+    curacao: Κουρασάο
     cyprus: Κύπρος
     czech_republic: Τσεχία
+    democratic_republic_of_the_congo: Δημοκρατία του Κονγκό
     denmark: Δανία
     djibouti: Τζιμπουτί
+    dominica: Δομινίκα
     dominican_republic: Δομινικανική Δημοκρατία
     east_timor: Ανατολικό Τιμόρ
     ecuador: Ισημερινός (χώρα)
@@ -2437,6 +2454,7 @@ el:
     guernsey: Γκέρνσεϊ
     guinea: Γουινέα
     guinea_bissau: Γουινέα-Μπισσάου
+    guyana: Γουιάνα
     haiti: Αϊτή
     heard_island_and_mcdonald_islands: Νήσοι Χερντ και Μακντόλαντ
     honduras: Ονδούρα
@@ -2509,9 +2527,11 @@ el:
     north_africa: Βόρεια Αφρική
     north_america: Βόρεια Αμερική
     north_korea: Βόρεια Κορέα
+    northern_cyprus: Βόρεια Κύπρος
     norway: Νορβηγία
     oman: Ομάν
     pakistan: Πακιστάν
+    palau: Παλάου
     palestina: Παλαιστίνη
     palestine: Παλαιστίνη
     panama: Παναμάς
@@ -2519,51 +2539,79 @@ el:
     paraguay: Παραγουάη
     peru: Περού
     philippines: Φιλιππίνες
+    pitcairn_islands: Νήσοι Πίτκαιρν
     poland: Πολωνία
     portugal: Πορτογαλία
+    puerto_rico: Πουέρτο Ρίκο
     qatar: Κατάρ
     republic_of_congo: Δημοκρατία του Κονγκό
+    reunion: Ρεϋνιόν
     romania: Ρουμανία
     russia: Ρωσία
     rwanda: Ρουάντα
+    saint_barthelemy: Άγιος Βαρθολομαίος
+    saint_helena: Νήσος της Αγίας Ελένης
+    saint_kitts_and_nevis: Άγιος Χριστόφορος και Νέβις
+    saint_lucia: Αγία Λουκία
+    saint_martin: Άγιος Μαρτίνος
+    saint_pierre_and_miquelon: Σαιν Πιέρ και Μικελόν
+    saint_vincent_and_the_grenadines: Άγιος Βικέντιος και Γρεναδίνες
     samoa: Σαμόα
     san_marino: Άγιος Μαρίνος
     sao_tome_and_principe: Άγιος Θωμάς και Πρίγκιπας
     saudi_arabia: Σαουδική Αραβία
     senegal: Σενεγάλη
     serbia: Σερβία
+    seychelles: Σεϋχέλλες
+    sierra_leone: Σιέρα Λεόνε
     singapore: Σιγκαπούρη
+    sint_maarten: Άγιος Μαρτίνος
     slovakia: Σλοβακία
     slovenia: Σλοβενία
+    solomon_islands: Νήσοι Σολομώντα
     somalia: Σομαλία
     south_africa: Νότια Αφρική
     south_america: Νότια Αμερική
+    south_georgia_and_the_south_sandwich_islands: Νήσοι Νότια Γεωργία και Νότιες Σάντουιτς
     south_korea: Νότια Κορέα
     south_sudan: Νότιο Σουδάν
     spain: Ισπανία
     sri_lanka: Σρι Λάνκα
     sudan: Σουδάν
+    suriname: Σουρινάμ
+    svalbard_and_jan_mayen: Σβάλμπαρντ και Γιαν Μαγιέν
+    swaziland: Σουαζιλάνδη
     sweden: Σουηδία
     switzerland: Ελβετία
     syria: Συρία
+    taiwan: Ταϊβάν
     tajikistan: Τατζικιστάν
     tanzania: Τανζανία
     thailand: Ταϊλάνδη
+    togo: Τόγκο
+    tokelau: Τοκελάου
+    tonga: Τόνγκα
     trinidad_and_tobago: Τρινιντάντ και Τομπάγκο
     tunisia: Τυνησία
     turkey: Τουρκία
     turkmenistan: Τουρκμενιστάν
+    turks_and_caicos_islands: Νήσοι Τερκς και Κέικος
+    tuvalu: Τουβαλού
     uganda: Ουγκάντα
     ukraine: Ουκρανία
     united_arab_emirates: Ηνωμένα Αραβικά Εμιράτα
     united_kingdom: Ηνωμένο Βασίλειο
     united_states: Ηνωμένες Πολιτείες
+    united_states_minor_outlying_islands: Απομακρυσμένες Νησίδες των Ηνωμένων Πολιτειών
+    united_states_virgin_islands: Παρθένοι Νήσοι Ηνωμένων Πολιτειών
     uruguay: Ουρουγουάη
     uzbekistan: Ουζμπεκιστάν
+    vanuatu: Βανουάτου
     vatican_city: Πόλη του Βατικανού
     venezuela: Βενεζουέλα
     vietnam: Βιετνάμ
     virgin_islands: Παρθένες Νήσοι
+    wallis_and_futuna: Ουαλίς και Φουτουνά
     west_africa: Δυτική Αφρική
     western_sahara: Δυτική Σαχάρα
     yemen: Υεμένη
@@ -2620,6 +2668,7 @@ el:
   project: Πρότζεκτ
   project_added_your_observations: Το πρότζεκτ πρόσθεσε τις παρατηρήσεις σας
   project_curator_tools: Εργαλεία Επιμελητή Πρότζεκτ
+  project_curators: Επιμελητές Πρότζεκτ
   project_group_label: Ομάδα
   project_home: Αρχική του εγχειρήματος
   project_curators_added_some_of_your_observations_html: Επιμελητές του <a href="%{url}">%{project}</a>
@@ -2628,6 +2677,9 @@ el:
   project_name: Ονομασία Πρότζεκτ
   project_observations: Παρατηρήσεις στο Πρότζεκτ
   project_requirements: Απαιτήσεις εγχειρήματος
+  project_settings: Ρυθμίσεις πρότζεκτ
+  project_was_successfully_created: Το πρότζεκτ δημιουργήθηκε επιτυχώς.
+  project_was_successfully_updated: Το πρότζεκτ ενημερώθηκε επιτυχώς.
   projects: Πρότζεκτ
   projects_from_everywhere: Εγχειρήματα από παντού
   projects_from_place: Πρότζεκτ από %{place}
@@ -2686,14 +2738,16 @@ el:
   real_time_stats: Στατιστικά σε πραγματικό χρόνο
   real_time_discussions: Συζητήσεις σε πραγματικό χρόνο
   reason: Αιτιολογία
+  reason_label: 'Αιτία:'
   reason_you_are_flagging_this_item: Ο λόγος που αναφέρετε αυτό το αντικείμενο.
-  recaptcha_verification_failed: η επιβεβαίωση του reCaptcha απέτυχε
+  recaptcha_verification_failed: η επαλήθευση του reCaptcha απέτυχε
   received: ελήφθησαν
   recent: Πρόσφατα
   recent_additions: Πρόσφατες προσθήκες
   recent_comments_on_your_stuff: Πρόσφατα σχόλια στο υλικό σας
   recent_evidence?: Πρόσφατα στοιχεία;
   recent_evidence_of_organism: Πρόσφατα στοιχεία ενός οργανισμού
+  recent_new_users: Πρόσφατοι Νέοι Χρήστες
   recent_observations: Πρόσφατες παρατηρήσεις
   recent_observations_: Πρόσφατες παρατηρήσεις
   recent_post: Πρόσφατη ανάρτηση
@@ -2826,6 +2880,7 @@ el:
   search_all_fields: αναζήτηση όλων των πεδίων
   search_by_name_or_email: Αναζήτηση με όνομα ή email
   search_by_taxon_name_or_observation_id: Αναζήτηση με ονομασία taxon ή ID παρατήρησης
+  search_for_new_taxa: αναζήτηση για νέα taxa
   search_for_place_to_import_from_yahoo: Αναζήτηση τόπου για εισαγωγή από Yahoo.
   search_for_species: Αναζήτηση για είδη
   search_list: Αναζήτηση καταλόγου
@@ -2833,9 +2888,11 @@ el:
   search_places: Αναζήτηση Τόπων
   search_projects: Αναζήτηση Πρότζεκτ
   search_results_for: Αναζήτηση αποτελεσμάτων για
+  search_results_for_query: Αποτελέσματα αναζήτησης για "%{query}"
   search_remote: Αναζήτηση απομακρυσμένων
   search_species: Αναζήτηση ειδών
   search_species_: Αναζήτηση ειδών...
+  search_taxa: Αναζήτηση taxa...
   search_the_map: Αναζητήστε τον χάρτη
   search_ubio: Αναζητήστε στο '<a href="http://www.ubio.org">uBio</a>'
   search_ubio_raquo: Αναζητήστε το uBio &raquo;
@@ -2952,7 +3009,7 @@ el:
     catalogue_of_life: Κατάλογος της ζωής
     inaturalist: iNaturalist
     new_zeland_organisms_register: Μητρώο Οργανισμών της Νέας Ζηλανδίας
-  source_identifier: Αναγνωριστικό πηγής
+  source_identifier: Ταυτοποιητής πηγής
   source_unknown: Αγνωστη πηγή
   source_url: Πηγή URL
   sourced_to: Πηγή
@@ -3136,7 +3193,10 @@ el:
   to_recipient: προς
   today: Σήμερα
   tools: Εργαλεία
+  top_5_identifiers: 5 κορυφαίοι ταυτοποιητές
   top_contributors: Κορυφαίοι συνεισφέροντες
+  top_identifier: Κορυφαίος Ταυτοποιητής
+  top_identifiers_of_taxon: Κορυφαίοι Ταυτοποιητές για %{taxon}
   top_observer: Κορυφαίος παρατηρητής
   top_observers: Παρατηρητές Τορ επιπέδου
   top_species: Κορυφαία είδη
@@ -3403,7 +3463,10 @@ el:
           ως συνημμένο.
         well_email_you: Ok, θα σας στείλουμε email όταν είναι έτοιμο.
       field_descriptions:
+        id: Μοναδικός ταυτοποιητής για την παρατήρηση
+        taxon_id: Μοναδικός ταυτοποιητής για το παρατηρηθέν taxon
         time_zone: Ζώνη ώρας της παρατήρησης
+        user_id: Μοναδικός ταυτοποιητής για τον παρατηρητή
         user_login: Όνομα χρήστη του παρατηρητή
         url: URL για την παρατήρηση
       import:
@@ -3542,17 +3605,27 @@ el:
         search_place_help_html: Προεπιλεγμένος τόπος για αναζητήσεις παρατηρήσεων.
         scientific_name_first_desc: Εμφάνιση επιστημονικών ονομασιών πριν από τις
           κοινές ονομασίες.
+      recent:
+        about_recent_users: Σχετικά
     welcome:
       index:
+        connect_with_nature: Συνδεθείτε με τη Φύση
         explore_and_share: Εξερεύνησε και μοιράσου τις παρατηρήσεις σου από τον φυσικό
           κόσμο.
         species_observed: Παρατηρηθέντα Είδη
         how_it_works: Πώς Λειτουργεί
         record_your_observations: Καταχωρίστε τις παρατηρήσεις σας
         discuss_your_findings: Συζητήστε τα ευρήματά σας
+        contribute_to_science: Συνεισφέρετε στην Επιστήμη
+        connect_with_experts: Συνδεθείτε με ειδικούς που μπορούν να ταυτοποιήσουν
+          τους οργανισμούς που παρατηρείτε.
         find_a_project: Βρείτε ένα πρότζεκτ του οποίου η αποστολή σας ενδιαφέρει,
           ή ξεκινήστε ένα δικό σας.
         who_uses_site_name: Ποιός χρησιμοποιεί το %{site_name};
+    wiki_pages:
+      form:
+        save_and_edit_to_add_attachments: Αποθήκευση και επεξεργασία για προσθήκη
+          συνημμένων
   date:
     abbr_day_names:
     - Κυ
@@ -3618,6 +3691,9 @@ el:
       about_x_years:
         one: περίπου 1 χρόνος
         other: περίπου %{count} χρόνια
+      almost_x_years:
+        one: σχεδόν 1 χρόνος
+        other: σχεδόν %{count} χρόνια
       half_a_minute: μισό λεπτό
       less_than_x_minutes:
         one: λιγότερο από ένα λεπτό
@@ -3677,9 +3753,11 @@ el:
       odd: πρέπει να είναι περιττός
       record_invalid: 'Επικύρωση απέτυχε: %{errors}'
       taken: έχει ήδη καταληφθεί
+    template:
+      body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
   helpers:
     defaults:
-      title: Αυτός είναι ένας τίτλος
+      title: ΑΥΤΟΣ ΕΙΝΑΙ ΕΝΑΣ ΤΙΤΛΟΣ
     select:
       prompt: Παρακαλώ επιλέξτε
     submit:
@@ -3707,6 +3785,7 @@ el:
   activemodel:
     errors:
       messages:
+        accepted: πρέπει να είναι αποδεκτό
         blank: δεν μπορεί να είναι κενό
         confirmation: δεν αντιστοιχεί στον κωδικό
         empty: δεν πρέπει να είναι άδειο
@@ -3717,20 +3796,34 @@ el:
         greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
         inclusion: δεν περιλαμβάνεται στη λίστα
         invalid: είναι άκυρο
+        less_than: πρέπει να είναι μικρότερο από %{count}
+        less_than_or_equal_to: πρέπει να είναι μικρότερο ή ίσο με %{count}
         not_a_number: δεν είναι αριθμός
         not_an_integer: πρέπει να είναι ακέραιος αριθμός
         odd: πρέπει να είναι περιττός
+        record_invalid: 'Επικύρωση απέτυχε: %{errors}'
+      template:
+        body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
   activerecord:
     models:
       Atlas: Άτλαντας
       CompleteSet: Ολοκληρωμένο σετ
       TaxonLink: Σύνδεσμος ταξινόμησης
     attributes:
+      assessment:
+        description: Περιγραφή
+      assessment_section:
+        title: Τίτλος
+        body: Κύριο Μέρος
       conservation_status:
+        description: Περιγραφή
         place_id: Τόπος
         geoprivacy: Γεωαπόρρητο
       guide:
+        source_url: URL πηγής
         published_at: Δημοσίευση
+      observation:
+        geo_y: Τίποτα
       observation_field_value:
         value: τιμή
       post:
@@ -3739,13 +3832,28 @@ el:
       project:
         title: Τίτλος
         project_icon: Εικονίδιο πρότζεκτ.
+        project_type: Τύπος Πρότζεκτ
         description: Περιγραφή
+        end_time: Ώρα τέλους
         terms: Όροι
         map_type: Τύπος Χάρτη
+        zoom_level: Επίπεδο ζουμ
+        source_url: URL πηγής
+        start_time: Ώρα έναρξης
       place:
+        latitude: Γεωγραφικό πλάτος
+        longitude: Γεωγραφικό μήκος
         place_type: Είδος τόπου
       source:
         title: Τίτλος
+      taxon:
+        locked: Κλειδωμένο
+        source_identifier: Ταυτοποιητής πηγής
+        source_url: URL πηγής
+      taxon_name:
+        name_provider: Πάροχος ονομασίας
+        source_url: URL πηγής
+        source_identifier: Ταυτοποιητής πηγής
       user:
         email: Διεύθυνση ηλ. ταχυδρομείου
         login: Όνομα χρήστη
@@ -3758,16 +3866,46 @@ el:
     errors:
       format: '%{attribute} %{message}'
       messages:
+        accepted: πρέπει να είναι αποδεκτό
+        blank: δεν μπορεί να είναι κενό
+        confirmation: δεν αντιστοιχεί στον κωδικό πρόσβασης
         empty: δεν μπορεί να είναι κενό
+        equal_to: πρέπει να είναι ίσο με %{count}
+        even: πρέπει να είναι άρτιος αριθμός
+        exclusion: είναι δεσμευμένο
+        greater_than: πρέπει να είναι μεγαλύτερο από %{count}
+        greater_than_or_equal_to: πρέπει να είναι μεγαλύτερο ή ίσο με %{count}
+        inclusion: δεν περιλαμβάνεται στη λίστα
+        invalid: είναι άκυρο
+        less_than: πρέπει να είναι λιγότερο από %{count}
+        less_than_or_equal_to: πρέπει να είναι μικρότερο ή ίσο με %{count}
+        not_a_number: δεν είναι αριθμός
+        not_an_integer: πρέπει να είναι ακέραιος αριθμός
+        odd: πρέπει να είναι περιττός
+        record_invalid: 'Επικύρωση απέτυχε: %{errors}'
       template:
         body: 'Υπήρξαν προβλήματα με τα ακόλουθα πεδία:'
       models:
+        observation_field_value:
+          attributes:
+            observation_id:
+              user_does_not_accept_fields_from_others: η/ο χρήστης δεν δέχεται πεδία
+                από άλλους
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: πολύ μεγάλο για εισαγωγή
+              contains_too_many_observations: περιλαμβάνει πάρα πολλές παρατηρήσεις
+                για εισαγωγή
         project_observation:
           attributes:
             base:
               project_does_not_allow_observations: Το πρότζεκτ δεν επιτρέπει παρατηρήσεις
             user_id:
               must_be_curator: πρέπει να είστε επιμελητής αυτού του πρότζεκτ
+            observation_id:
+              must_be_observed_after: πρέπει να έχει παρατηρηθεί μετά από %{time}
+              must_be_observed_before: πρέπει να έχει παρατηρηθεί πρίν από %{time}
         taxon:
           attributes:
             rank:
@@ -3782,8 +3920,20 @@ el:
             is_active:
               can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
                 από έναν επιμελητή αυτού του taxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: μπορεί να αλλαχθεί μόνο
+                από έναν επιμελητή αυτού του taxon
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: μπορεί μόνον να αλλάξει
                 από έναν επιμελητή αυτού του taxon
+  doorkeeper:
+    flash:
+      applications:
+        create:
+          notice: Εφαρμογή δημιουργήθηκε.
+        destroy:
+          notice: Εφαρμογή διαγράφηκε.
+        update:
+          notice: Εφαρμογή ενημερώθηκε.
   wild: Άγριο
 ...

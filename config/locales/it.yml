@@ -372,7 +372,7 @@ it:
   all_photos: Tutte le foto
   all_places: Tutti i Luoghi
   all_projects: Tutti i progetti
-  all_children_added_to_the_database: Tutti i discendneti aggiunti al database
+  all_children_added_to_the_database: Tutti i discendenti aggiunti al database
   all_rank_added_to_the_database:
     phylum: Tutti i phyla aggiunti al database
     subphylum: Tutti i subphyla aggiunti al database
@@ -3568,7 +3568,7 @@ it:
   profile_visibility_pending_account_verification: La visibilità del profilo attende
     la verifica dell'account
   profile_visibility_desc: Nello sforzo di tenere fuori lo spam da %{site_name}, i
-    profili degli utenti diventano visibili plubblicamente solo dopo che un utente
+    profili degli utenti diventano visibili pubblicamente solo dopo che un utente
     ha contribuito con alcune osservazioni a Livello Ricerca.
   project: Progetto
   project_added_your_observations: Il Progetto ha aggiunto le tue osservazioni
@@ -4632,9 +4632,9 @@ it:
   this_tool_is_experimental: Questo strumento è sperimentale, quindi per favore
   this_user_has_been_suspended: Questo utente è stato sospeso
   this_user_has_been_suspended_message: Se questo è il tuo account e se pensi che
-    ciò sia accaduto per errore, per farove, <a href="mailto:%{email}">contattaci</a>.
+    ciò sia accaduto per errore, per favore, <a href="mailto:%{email}">contattaci</a>.
   this_will_add_listed_taxa: Questa operazione aggiungerà una lista di taxa a partire
-    dalle osservazioni. L'operazione durerà un po'di tempo, usala con moderazione
+    dalle osservazioni. L'operazione durerà un po' di tempo, usala con moderazione
     e con checklist abbastanza corte
   this_will_refresh_listed_taxa: Questa operazione aggiornerà l'elenco dei taxa della
     lista. L'operazione durerà un po', quindi usala con moderazione e con brevi checklist
@@ -5442,7 +5442,7 @@ it:
         <p class="text-muted">
           iNaturalist è un'iniziativa congiunta della California Academy of Sciences e della National Geographic Society. Tutte le donazioni saranno ricevute dalla California Academy of Sciences, una organizzazione no-profit esente tasse 501(c)(3) con base negli United States of America.
         </p>
-      post_donate_social_media_text: Io sostengo iNaturalist perchè...
+      post_donate_social_media_text: Io sostengo iNaturalist perché...
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: Per favore risolvi i contrassegni
@@ -5508,8 +5508,8 @@ it:
           </table>
           <p>
             La prima riga inizia con "Name" seguita dai tag
-            predicati/categoria. Poi ogni riga seguente inizia con il nome del of taxon, seguito dalle etichette corrispondente al predicato delle categorie della colonna. In questo esempio, <i>Homo sapiens</i> ottiene le etichette <code>bipedal</code> and <code>Number of hands=2</code>, e <i>Vulpes vulpes</i> ottiene <code>quadripedal</code>, <code>color=red</code>, <code>color=black</code>, e
-            <code>Number of hands=0</code>. Gli spazi vuoti satanno ignorati, e tu potrai aggiungere più linee per taxon. Puoi aggiungere anche valori miltipli per cella, separati per il carattere 'barra verticale', '|'.
+            predicati/categoria. Poi ogni riga seguente inizia con il nome del taxon, seguito dalle etichette corrispondenti al predicato delle categorie della colonna. In questo esempio, <i>Homo sapiens</i> ottiene le etichette <code>bipedal</code> and <code>Number of hands=2</code>, e <i>Vulpes vulpes</i> ottiene <code>quadripedal</code>, <code>color=red</code>, <code>color=black</code>, e
+            <code>Number of hands=0</code>. Gli spazi vuoti saranno ignorati, e tu potrai aggiungere più linee per taxon. Puoi aggiungere anche valori multipli per cella, separati dal carattere 'barra verticale', '|'.
           </p>
         licensing_explanation: 'Forinire una licenza ai tuoi contenuti permette alle
           altre persone di copiare e modificare i tuoi contenuti senza chiederti il
@@ -6292,7 +6292,7 @@ it:
         an_umbrella_project_can_be_used_to: Un progetto Ombrello può essere usato
           per confrontare le statistiche tra due o più progetti tradizionali o progetti
           Collezione. Gli altri progetti devono già esistere prima di poterli aggiungere
-          ad un progetto Ombrello. Puoi includerne a centinaia. I progetti Ombrelllo
+          ad un progetto Ombrello. Puoi includerne a centinaia. I progetti Ombrello
           non possono contenere altri progetti Ombrello.
         can_be_included_in_multiple: Può essere incluso in più progetti Ombrello
         click_through_to_individual_projects: Navigazione tra i singoli progetti
@@ -6498,7 +6498,7 @@ it:
           o <a href="%{url}">iNaturalist Network<a/>
       year:
         include_usa: Includi Stati Uniti
-        growth_by_country_desc_html: Dove è la crescita? Qusta mappa e il grafico
+        growth_by_country_desc_html: Dove è la crescita? Questa mappa e il grafico
           cercano di declinare la crescita per Nazione, cosa un po' complicata perché
           la crescita per Nazione può essere molto sbilanciata. Qui abbiamo deciso
           di omettere gli Stati Uniti e usare la scala logaritmica in maniera predefinita
@@ -6786,7 +6786,7 @@ it:
           none: Nessuno, solo tu puoi aggiungere le tue osservazioni ai progetti
         this_only_applies_to_traditional_projects: Questo si applica ai progetti tradizionali.
           Non puoi escludere delle osservazioni dai progetti collezione ed ombrello,
-          che sono essenzialmente dei filtri salvati. Puoi approdondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
+          che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
         project_settings_desc: Ricorda, questa opzione non concede il permesso ai
           progetti di accedere alle tue coordinate nascoste o di mandarti gli aggiornamenti.
           Devi unirti ai progetti per garantirgli tali autorizzazioni, oppure concedere
@@ -7366,7 +7366,7 @@ it:
           di farsi carico della richiesta a causa di un temporaneo sovraccarico o
           manutenzione del server.
         credential_flow_not_configured: Il flusso delle credenziali delle password
-          del proprietario della risorsa è falluto perchè Doorkeeper.configure.resource_owner_from_credentials
+          del proprietario della risorsa è fallito perché Doorkeeper.configure.resource_owner_from_credentials
           non è configurato.
         resource_owner_authenticator_not_configured: La ricerca del proprietario della
           risorsa è fallita perché Doorkeeper.configure.resource_owner_authenticator
