@@ -83,6 +83,8 @@ class User < ActiveRecord::Base
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
   preference :medialess_obs_maps, :boolean, default: false
+  preference :coordinate_interpolation_protection, default: false
+  preference :coordinate_interpolation_protection_test, default: false
   preference :forum_topics_on_dashboard, :boolean, default: true
   
   NOTIFICATION_PREFERENCES = %w(
@@ -165,6 +167,7 @@ class User < ActiveRecord::Base
   has_many :taxon_framework_relationships
   has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
+  has_many :user_privileges, inverse_of: :user, dependent: :delete_all
   
   file_options = {
     processors: [:deanimator],
@@ -227,6 +230,7 @@ class User < ActiveRecord::Base
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_community_taxa_if_pref_changed
+  after_update :reassess_coordinate_obscuration_if_pref_changed
   after_update :update_photo_properties
   after_update :update_life_list
   after_create :create_default_life_list
@@ -1042,8 +1046,15 @@ class User < ActiveRecord::Base
   end
 
   def set_community_taxa_if_pref_changed
-    if prefers_community_taxa_changed? && ! id.blank?
+    if prefers_community_taxa_changed? && !id.blank?
       Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
+    end
+    true
+  end
+
+  def reassess_coordinate_obscuration_if_pref_changed
+    if prefers_coordinate_interpolation_protection_changed? && !id.blank?
+      Observation.delay( priority: USER_INTEGRITY_PRIORITY ).reassess_coordinates_for_observations_by( id )
     end
     true
   end
@@ -1208,6 +1219,10 @@ class User < ActiveRecord::Base
   def personal_lists
     lists.not_flagged_as_spam.
       where("(type IN ('LifeList', 'List') OR type IS NULL)")
+  end
+
+  def privileged_with?( privilege )
+    user_privileges.where( privilege: privilege ).where( "revoked_at IS NULL" ).exists?
   end
 
   # Iterates over recently created accounts of unknown spammer status, zero

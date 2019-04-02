@@ -12,16 +12,29 @@
   .row
     .col-md-6
       = f.text_field :title
-      .row
-        .col-md-6= f.text_field :start_time, :value => (@trip.start_time || Chronic.parse("today at 9am")).strftime("%Y-%m-%d %H:%m %z"), :label => false, :placeholder => t(:start_time, :default => "Start time")
-        .col-md-6= f.text_field :stop_time, :value => (@trip.stop_time || Chronic.parse("today at 5pm")).strftime("%Y-%m-%d %H:%m %z"), :label => false, :placeholder => t(:end_time, :default => "End time")
       = f.text_area :body, :class => "form-control", :label => t(:description), :placeholder => t(:describe_your_trip, :default => "Describe your trip!")
-      = f.radio_button :preferred_formatting, Post::FORMATTING_SIMPLE
-      = f.radio_button :preferred_formatting, Post::FORMATTING_NONE
+      = f.form_field :preferred_formatting, label: t(:formatting), :class => "inline" do
+        %label.radio-inline{ title: t( "views.posts.formatting_simple_help" ) }
+          = radio_button_tag "trip[preferred_formatting]", Post::FORMATTING_SIMPLE, @trip.preferred_formatting == Post::FORMATTING_SIMPLE
+          = t( Post::FORMATTING_SIMPLE )
+        %label.radio-inline{ title: t( "views.posts.formatting_none_help" ) }
+          = radio_button_tag "trip[preferred_formatting]", Post::FORMATTING_NONE, @trip.preferred_formatting == Post::FORMATTING_NONE
+          = t( Post::FORMATTING_NONE )
+      .stacked.small.meta
+        %strong
+          = t :allowed_html
+          \:
+        = Post::ALLOWED_TAGS.to_a.sort.join(', ')
+      %h3=t :when_did_you_go?
+      .row
+        .col-md-6= f.text_field :start_time, :value => (@trip.start_time || Chronic.parse("today at 9am")).strftime("%Y-%m-%d %H:%m %z"), :label => t(:start_time), :placeholder => t(:start_time, :default => "Start time")
+        .col-md-6= f.text_field :stop_time, :value => (@trip.stop_time || Chronic.parse("today at 5pm")).strftime("%Y-%m-%d %H:%m %z"), :label => t(:end_time), :placeholder => t(:end_time, :default => "End time")
     #location.col-md-6
+      %h3=t :where_did_you_go?
       .stacked
-        = f.text_field :place_id, :class => "form-control", :label => t(:location), :placeholder => t(:start_typing_place_name)
+        = f.text_field :place_id, :class => "form-control", :label => t(:choose_a_place), :placeholder => t(:start_typing_place_name)
       .stacked
+        %label=t :or_drop_a_map_pin
         = text_field_tag :location, '', :class => "form-control", :placeholder => "Search the map"
       .map.stacked
         map goes here

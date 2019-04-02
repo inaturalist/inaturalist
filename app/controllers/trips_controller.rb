@@ -87,7 +87,7 @@ class TripsController < ApplicationController
           FakeView.image_url(@trip.user.icon.url(:original))
         end
         @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
-        @trip_taxa = Taxon.sort_by_ancestry(@trip.trip_taxa.includes(:taxon)) do |a,b|
+        @trip_taxa = @trip.trip_taxa.includes(:taxon).order("taxa.ancestry asc") do |a,b|
           a.taxon.name <=> b.taxon.name
         end
         trip_purpose_taxon_ids = @trip.trip_purposes.map(&:resource_id).flatten.uniq
@@ -308,7 +308,7 @@ class TripsController < ApplicationController
   def load_form_data
     selected_names = %w(Aves Amphibia Reptilia Mammalia)
     @target_taxa = Taxon::ICONIC_TAXA.select{|t| selected_names.include?(t.name)}
-    extra = Taxon.where("name in (?)", %w(Papilionoidea Hesperiidae Araneae Basidiomycota Magnoliophyta Pteridophyta))
+    extra = Taxon.where("name in (?) AND is_active = true AND ancestry IS NOT NULL", %w(Papilionoidea Hesperiidae Araneae Basidiomycota Magnoliophyta Pteridophyta))
     @target_taxa += extra
     @target_taxa = Taxon.sort_by_ancestry(@target_taxa)
     @target_taxa.each_with_index do |t,i|

@@ -9,8 +9,8 @@ $(document).ready(function() {
     bFilter: false
   })
   $('#new_species').chooser({
-    collectionUrl: 'http://'+window.location.host + '/taxa/search.json?partial=taxon',
-    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=taxon',
+    collectionUrl: '/taxa/search.json?partial=taxon',
+    resourceUrl: '/taxa/{{id}}.json?partial=taxon',
     queryParam: 'q',
     afterSelect: function(item) {
       addTaxon(item)
@@ -42,8 +42,8 @@ $(document).ready(function() {
   })
   $('#trip_start_time, #trip_stop_time').iNatDatepicker({time:true})
   $('#trip_place_id').chooser({
-    collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-    resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+    collectionUrl: '/places/autocomplete.json',
+    resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
     afterSelect: function(item) {
       $(this.element).parents('form').find('input[name*="latitude"]').val(item.latitude)
       $(this.element).parents('form').find('input[name*="longitude"]').val(item.longitude)
@@ -60,10 +60,11 @@ $(document).ready(function() {
       if (item.swlat) {$.fn.latLonSelector.zoomToAccuracy()}
     }
   })
+  $("input.ui-widget").width(400)
 
   $('#new_goal_taxon').chooser({
-    collectionUrl: 'http://'+window.location.host + '/taxa/search.json?partial=taxon',
-    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=taxon',
+    collectionUrl: '/taxa/search.json?partial=taxon',
+    resourceUrl: '/taxa/{{id}}.json?partial=taxon',
     queryParam: 'q',
     afterSelect: function(item) {
       $('#trip_purposes').data('last-taxon', item)

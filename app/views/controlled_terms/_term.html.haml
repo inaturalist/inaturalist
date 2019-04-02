@@ -5,10 +5,10 @@
     [
     - if term.taxa.count > 0
       within
-      =raw term.taxa.map{ |t| link_to( t.name, t) }.join( ", " )
+      = raw term.taxa.map{ |t| link_to( t.name, t) }.join( ", " )
     - if term.excepted_taxa.count > 0
       except
-      =raw term.excepted_taxa.map{ |t| link_to( t.name, t) }.join( ", " )
+      = raw term.excepted_taxa.map{ |t| link_to( t.name, t) }.join( ", " )
     ]
   - if term_label && term_label.icon.exists?
     = image_tag term_label.icon.url, style: "max-width: 30px; max-height: 30px;"

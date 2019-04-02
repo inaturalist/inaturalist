@@ -3175,7 +3175,7 @@ en:
   previous_tab: Previous Tab
   print_verb: Print
   print_in_browser: Print in browser
-  privacy: Privacy Policy
+  privacy: Privacy
   privacy_policy: Privacy Policy
   private: private
   private_: Private
@@ -3477,6 +3477,20 @@ en:
     must_be_in: must be in taxon
     must_be_coordinates_shareable_by_project_curators: observer must allow project curators to view coordinates.
   running_total: Running Total
+  same_day_obscured: Another observation by this person on this day is obscured
+  same_day_obscured_desc: |
+    When coordinates are obscured because of a threatened taxon, all other
+    observations by that person on that day are also obscured to prevent people
+    from guessing the coordinates based on observations made around the same
+    time. Individuals can also apply this protection to coordinates they have
+    chosen to obscure.
+  same_day_private: Another observation by this person on this day is private
+  same_day_private_desc: |
+    When coordinates are hidden because of a threatened taxon, all other
+    observations by that person on that day are also hidden to prevent people
+    from guessing the coordinates based on observations made around the same
+    time. Individuals can also apply this protection to coordinates they have
+    chosen to hide.
   said: said
   sat: Sat
   satellite: satellite
@@ -4407,6 +4421,7 @@ en:
   view_flags: View Flags
   view_flags_for_x_html: "View Flags for %{x}"
   view_full_observation: View Full Observation
+  view_full_size_photo: View full-size photo
   view_invitation: View Invitation
   view_journal: View Journal
   view_leaderboard: View Leaderboard
@@ -6477,6 +6492,13 @@ en:
         scientific_name_first_desc: |
           Show scientific names before common names.
         youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
+        same_day_geoprivacy_protection: Same-day geoprivacy protection
+        prefers_coordinate_interpolation_protection_desc: |
+          When you set the geoprivacy of an observation to "obscured" or
+          "private" this will apply the same geoprivacy to all your other
+          observations from the same day to make it harder for other people to
+          guess the true coordinates based on observations made around the same
+          time.
       recent:
         about_recent_users: About
         definitions_html:
