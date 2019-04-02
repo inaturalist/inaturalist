@@ -35,7 +35,10 @@
             %input.form-control{ placeholder: t(:species), type: "search", name: "taxon_name", value: params[:taxon_name] }
             %input{ type: "hidden", name: "taxon_id" }
             %span#place-name-input
-              %input#place_name.form-control{ name: "place_name", placeholder: t(:location), type: "text", "ng-model": "placeSearch" }
+              :ruby
+                # Note that if you give this a name like place_name, Chrome will apply its address autocomplete and potentiall obscure results.
+                # https://github.com/inaturalist/inaturalist/issues/2198
+              %input#place_name.form-control{ name: "primary_q2", placeholder: t(:location), type: "text", "ng-model": "placeSearch" }
               %button.btn.btn-default{ type: "button", "ng-click": "focusOnSearchedPlace( )" }= t(:go)
   #stats-container
     .container.container-fixed

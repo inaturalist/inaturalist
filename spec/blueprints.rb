@@ -66,7 +66,6 @@ ConservationStatus.blueprint do
   taxon { Taxon.make! }
   status { "E" }
   iucn { Taxon::IUCN_ENDANGERED }
-  geoprivacy { Observation::OBSCURED }
 end
 
 ControlledTerm.blueprint do
@@ -525,6 +524,11 @@ end
 UserBlock.blueprint do
   user { User.make! }
   blocked_user { User.make! }
+end
+
+UserPrivilege.blueprint do
+  user { User.make! }
+  privilege { UserPrivilege::SPEECH }
 end
 
 WikiPage.blueprint do

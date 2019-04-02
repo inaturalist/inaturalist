@@ -4,12 +4,15 @@ import PropTypes from "prop-types";
 import { Button, Glyphicon, Modal } from "react-bootstrap";
 
 class FlaggingModal extends Component {
-
   constructor( props, context ) {
     super( props, context );
     this.close = this.close.bind( this );
     this.setRadioOption = this.setRadioOption.bind( this );
     this.submit = this.submit.bind( this );
+    this.textarea = React.createRef();
+    this.state = {
+      textareaChars: 0
+    };
   }
 
   setRadioOption( name ) {
@@ -21,8 +24,9 @@ class FlaggingModal extends Component {
   }
 
   submit( ) {
-    const item = this.props.state.item;
-    const body = this.refs.reason && $( this.refs.reason ).val( );
+    const { state: propsState, createFlag } = this.props;
+    const { item, radioOption } = propsState;
+    const body = this.textarea && this.textarea.current && $( this.textarea.current ).val( );
     let className = "Comment";
     if ( item.constructor.name === "Project" ) {
       className = "Project";
@@ -31,7 +35,7 @@ class FlaggingModal extends Component {
     } else if ( item.taxon ) {
       className = "Identification";
     }
-    this.props.createFlag( className, item.id, this.props.state.radioOption, body );
+    createFlag( className, item.id, radioOption, body );
     this.close( );
   }
 
@@ -46,12 +50,20 @@ class FlaggingModal extends Component {
       return ( <div /> );
     }
     const loggedInUser = config.currentUser;
+    const { textareaChars } = this.state;
     const otherTextarea = state.radioOption === "other" && (
-      <textarea
-        placeholder={I18n.t( "specify_the_reason_youre_flagging" )}
-        className="form-control"
-        ref="reason"
-      />
+      <div>
+        <textarea
+          placeholder={I18n.t( "specify_the_reason_youre_flagging" )}
+          className="form-control"
+          ref={this.textarea}
+          maxLength={255}
+          onChange={e => this.setState( { textareaChars: e.target.value.length } )}
+        />
+        <div className="text-muted text-small">
+          { `${textareaChars} / 255` }
+        </div>
+      </div>
     );
     const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
     const existingFlags = unresolvedFlags.length > 0 && (
@@ -118,8 +130,8 @@ class FlaggingModal extends Component {
               </label>
               <div
                 className="help-block"
-                dangerouslySetInnerHTML={{ __html:
-                  I18n.t( "misleading_or_illegal_content_html" )
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "misleading_or_illegal_content_html" )
                 }}
               />
             </div>

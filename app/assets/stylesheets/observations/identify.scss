@@ -76,6 +76,14 @@ input.filter-changed + .searchclear.glyphicon {
 
 .PaginationControl {
   margin-bottom: 20px;
+  .view-more-reviewed {
+    .btn {
+      margin-left: 10px;
+    }
+    .btn:first-child {
+      margin-left: 0px;
+    }
+  }
 }
 
 .rc-pagination { padding: 0; }

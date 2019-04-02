@@ -18,7 +18,8 @@ function mapStateToProps( state ) {
     pageTotal: state.observations.results.length,
     visible: state.finishedModal.visible,
     currentPage,
-    done: ( state.observations.totalPages === currentPage )
+    done: ( state.observations.totalPages === currentPage ),
+    reviewing: state.observations.reviewing
   };
 }
 

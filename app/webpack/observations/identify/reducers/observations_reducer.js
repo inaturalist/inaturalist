@@ -2,10 +2,14 @@ import _ from "lodash";
 import {
   RECEIVE_OBSERVATIONS,
   UPDATE_OBSERVATION_IN_COLLECTION,
-  UPDATE_ALL_LOCAL
+  UPDATE_ALL_LOCAL,
+  SET_REVIEWING
 } from "../actions";
 
-const observationsReducer = ( state = { results: [] }, action ) => {
+const observationsReducer = ( state = {
+  results: [],
+  reviewing: false
+}, action ) => {
   if ( action.type === RECEIVE_OBSERVATIONS ) {
     return Object.assign( {}, state, {
       totalResults: action.totalResults,
@@ -13,9 +17,10 @@ const observationsReducer = ( state = { results: [] }, action ) => {
       totalPages: action.totalPages,
       results: action.results
     } );
-  } else if ( action.type === UPDATE_OBSERVATION_IN_COLLECTION ) {
+  }
+  if ( action.type === UPDATE_OBSERVATION_IN_COLLECTION ) {
     const newState = Object.assign( {}, state, {
-      results: _.cloneDeep( state.results ).map( ( obs ) => {
+      results: _.cloneDeep( state.results ).map( obs => {
         if ( obs.id !== action.observation.id ) {
           return obs;
         }
@@ -27,15 +32,22 @@ const observationsReducer = ( state = { results: [] }, action ) => {
       } )
     } );
     return newState;
-  } else if ( action.type === UPDATE_ALL_LOCAL ) {
+  }
+  if ( action.type === UPDATE_ALL_LOCAL ) {
     const newState = Object.assign( {}, state, {
-      results: _.cloneDeep( state.results ).map( ( obs ) => {
+      results: _.cloneDeep( state.results ).map( obs => {
         const newObs = _.cloneDeep( obs );
         _.forOwn( action.changes, ( v, k ) => {
           newObs[k] = v;
         } );
         return newObs;
       } )
+    } );
+    return newState;
+  }
+  if ( action.type === SET_REVIEWING ) {
+    const newState = Object.assign( {}, state, {
+      reviewing: action.reviewing
     } );
     return newState;
   }

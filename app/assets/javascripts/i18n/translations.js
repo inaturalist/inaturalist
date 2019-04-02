@@ -492,6 +492,7 @@ I18n.translations["ar"] = {
   },
   "date_specified": "التاريخ المحدد",
   "date_time": "تاريخ/وقت",
+  "date_updated": "تاريخ التحديث",
   "datetime": {
     "countdown_x_days": {
       "one": "يوم",
@@ -2597,7 +2598,7 @@ I18n.translations["bg"] = {
     }
   },
   "identifications": "Разпознавания",
-  "identifiers": "Разпознавачи",
+  "identifiers": "Идентификатори",
   "identify": "Разпознаване",
   "identify_observations": "Разпознай наблюдения",
   "identify_title": "Разпознай",
@@ -2771,7 +2772,7 @@ I18n.translations["bg"] = {
   "observed": "Наблюдавано",
   "observed_on": "Наблюдаван на",
   "observers": "Наблюдатели",
-  "of_identifiers": "разпознавачи",
+  "of_identifiers": "идентификатори",
   "of_observations": "наблюдения",
   "of_observers": "наблюдатели",
   "of_places": "места",
@@ -3114,8 +3115,8 @@ I18n.translations["bg"] = {
   "threatened": "застрашен",
   "today": "Днес",
   "top_identifier": "Най-добър разпознавач",
-  "top_identifiers": "Топ разпознавачи",
-  "top_identifiers_of_taxon": "Най-добри разпознавачи на %{taxon}",
+  "top_identifiers": "Топ идентификатори",
+  "top_identifiers_of_taxon": "Най-добри идентификатори на %{taxon}",
   "top_observer": "Най-добър наблюдател",
   "total": "Общо",
   "total_observations": "Общо наблюдения",
@@ -4482,6 +4483,7 @@ I18n.translations["ca"] = {
   },
   "date_specified": "Data especificada",
   "date_time": "Data/Hora",
+  "date_updated": "Data d’actualització",
   "datetime": {
     "countdown_x_days": {
       "one": "dia",
@@ -7862,6 +7864,7 @@ I18n.translations["da"] = {
   },
   "date_specified": "Dato angivet",
   "date_time": "Dato/Tid",
+  "date_updated": "Opdateringsdato",
   "datetime": {
     "countdown_x_days": {
       "one": "dag",
@@ -9757,6 +9760,7 @@ I18n.translations["de"] = {
   },
   "date_specified": "Datum angegeben",
   "date_time": "Datum/Zeit",
+  "date_updated": "Aktualisierungsdatum",
   "datetime": {
   },
   "default": "Standard",
@@ -10323,9 +10327,11 @@ I18n.translations["de"] = {
     "bosnia_and_herzegovina": "Bosnia und Herzegovina",
     "brazil": "Brasilien",
     "bulgaria": "Bulgarien",
+    "burundi": "Burundi",
     "canada": "Kanada",
     "central_african_republic": "Zentralafrikanische Republik",
     "central_america": "Zentralamerika",
+    "chile": "Chile",
     "china": "China",
     "colombia": "Kolumbien",
     "croatia": "Kroatien",
@@ -10982,7 +10988,7 @@ I18n.translations["el"] = {
   "a_member_of": "Ένα μέλος του",
   "about": "Σχετικά",
   "about_charts": "Σχετικά με γραφήματα",
-  "about_community_taxa": "Σχετικά με τις ταξινομίες της κοινότητας",
+  "about_community_taxa": "Σχετικά με τα taxa της κοινότητας",
   "about_conservation_status": "Σχετικά με τη κατάσταση διατήρησης",
   "about_names": "Σχετικά με τα ονόματα",
   "account": "Λογαριασμός",
@@ -10996,13 +11002,17 @@ I18n.translations["el"] = {
   "add_a_field": "Προσθήκη πεδίου",
   "add_a_name": "Προσθήκη ονόματος",
   "add_an_identification": "Προσθήκη ταυτοποίησης",
+  "add_annotations_for_x": "Προσθήκη Ενδείξεων για \"%{x}\"",
   "add_edit_flags": "Προσθήκη/επεξεργασία σημαιών",
   "add_id": "Προσθήκη αναγνωριστικού",
   "add_link": "Προσθήκη συνδέσμου",
   "add_one_now": "Προσθήκη ενός τώρα",
-  "add_photos_to_this_observation": "Προσθήκη φωτογραφιών σε αυτή τη παρατήρηση",
-  "add_tag": "Πρόσθεση ετικέτας",
-  "add_tags": "Προσθήκη ετικετών",
+  "add_photos_to_this_observation": "Προσθήκη Φωτογραφιών σε αυτήν την Παρατήρηση",
+  "add_plant_phenology_flowering_annotation": "Προσθήκη ένδειξης \"Φαινολογία Φυτού: Ανθισμένο\"",
+  "add_sex_female_annotation": "Προσθήκη ένδειξης \"Φύλο: Θηλυκό\"",
+  "add_sex_male_annotation": "Προσθήκη ένδειξης \"Φύλο: Αρσενικό\"",
+  "add_tag": "Πρόσθεση Eτικέτας",
+  "add_tags": "Προσθήκη Eτικετών",
   "add_to_a_project": "Πρόσθεση σε ένα εγχείρημα",
   "add_to_favorites": "Προσθήκη στα αγαπημένα",
   "add_to_project": "Πρόσθεση σε εγχείρημα",
@@ -11017,6 +11027,27 @@ I18n.translations["el"] = {
   "all": "Όλα",
   "all_flags_must_be_resolved": "Όλες οι αναφορές πρέπει να επιλυθούν",
   "all_rank_added_to_the_database": {
+    "class": "Όλες οι ομοταξίες προστέθηκαν στη βάση δεδομένων",
+    "family": "Όλες οι οικογένειες προστέθηκαν στη βάση δεδομένων",
+    "form": "Όλες οι μορφές προστέθηκαν στη βάση δεδομένων",
+    "infraclass": "Όλες οι ανθυφομοταξίες προστέθηκαν στη βάση δεδομένων",
+    "infraorder": "Όλες οι ανθυποτάξεις προστέθηκαν στη βάση δεδομένων",
+    "order": "Όλες οι τάξεις προστέθηκαν στη βάση δεδομένων",
+    "phylum": "Όλες οι συνομοταξίες προστέθηκαν στη βάση δεδομένων",
+    "species": "Όλα τα είδη προστέθηκαν στη βάση δεδομένων",
+    "subclass": "Όλες οι υφομοταξίες προστέθηκαν στη βάση δεδομένων",
+    "subfamily": "Όλες οι υποοικογένειες προστέθηκαν στη βάση δεδομένων",
+    "subgenus": "Όλα τα υπογένη προστέθηκαν στη βάση δεδομένων",
+    "suborder": "Όλες οι υποτάξεις προστέθηκαν στη βάση δεδομένων",
+    "subphylum": "Όλες οι υποσυνομοταξίες προστέθηκαν στη βάση δεδομένων",
+    "subspecies": "Όλα τα υποείδη προστέθηκαν στη βάση δεδομένων",
+    "subtribe": "Όλες οι υποφυλές προστέθηκαν στη βάση δεδομένων",
+    "superclass": "Όλες οι υπερομοταξίες προστέθηκαν στη βάση δεδομένων",
+    "superfamily": "Όλες οι υπεροικογένειες προστέθηκαν στη βάση δεδομένων",
+    "superorder": "Όλες οι υπερτάξεις προστέθηκαν στη βάση δεδομένων",
+    "supertribe": "Όλες οι υπερφυλές προστέθηκαν στη βάση δεδομένων",
+    "tribe": "Όλες οι φυλές προστέθηκαν στη βάση δεδομένων",
+    "variety": "Όλες οι ποικιλίες προστέθηκαν στη βάση δεδομένων"
   },
   "all_rights_reserved": "όλα τα δικαιώματα διατηρούνται",
   "all_taxa": {
@@ -11043,10 +11074,13 @@ I18n.translations["el"] = {
     "reptiles": "Ερπετά",
     "life": "Ζωή"
   },
+  "all_taxa_": "Όλα τα taxa",
   "amphibians": "Αμφίβια",
   "and": "και",
   "android": "Ανδροειδές",
   "animals": "Ζώα",
+  "annotation": "Ένδειξη",
+  "annotations": "Ενδείξεις",
   "any": "Οτιδήποτε",
   "any_": "Οποιοδήποτε",
   "arachnids": "Αραχνίδια",
@@ -11060,6 +11094,8 @@ I18n.translations["el"] = {
   "attribute": "Ιδιότητες",
   "back_to_suggestions": "Επιστροφή στις Προτάσεις",
   "back_to_x": "Επιστροφή στο %{noun}",
+  "based_on_the_evidence_can_id_be_improved": "Βάσει των στοιχείων, μπορεί η αναγνώριση από την κοινότητα να επιβεβαιωθεί ή  να βελτιωθεί περαιτέρω;",
+  "be_the_first_to_fave_this_observation": "Ας είστε ο πρώτος που θα επιδοκιμάσει αυτήν την παρατήρηση!",
   "birds": "πτηνά",
   "black": "Μαύρο",
   "blue": "μπλε",
@@ -11070,26 +11106,32 @@ I18n.translations["el"] = {
   "calendar": "Ημερολόγιο",
   "cancel": "Ακύρωση",
   "captive": "Σε αιχμαλωσία",
-  "casual": "ανέμελος",
-  "casual_": "Ανέμελος",
+  "captive_cultivated": "Σε αιχμαλωσία / Καλλιεργούμενο",
+  "casual": "περιστασιακή",
+  "casual_": "Περιστασιακή",
   "categories": "Κατηγορίες",
   "cc_0_name": "Χωρίς πνευματικά δικαιώματα (CC0)",
-  "cc_by_name": "Απόδοση",
-  "cc_by_nc_name": "Απόδοση-Μη εμπορική",
-  "cc_by_sa_name": "Attribution-ShareAlike",
+  "cc_by_name": "Αναφορά δημιουργού",
+  "cc_by_nc_name": "Αναφορά δημιουργού-Μη εμπορική χρήση",
+  "cc_by_nc_nd_name": "Αναφορά δημιουργού-Μη Εμπορική χρήση-Όχι παράγωγα έργα",
+  "cc_by_nc_sa_name": "Αναφορά δημιουργού-Μη εμπορική χρήση-Παρόμοια διανομή",
+  "cc_by_nd_name": "Αναφορά δημιουργού-Όχι παράγωγα έργα",
+  "cc_by_sa_name": "Αναφορά δημιουργού-Παρόμοια διανομή",
   "change_types": {
-    "input_taxa_were_merged_into_output_taxon_html": "το %{input_taxa} συγχωνεύτηκε στο %{output_taxon}",
-    "input_taxa_will_be_merged_into_output_taxon_html": "το %{input_taxa} θα συγχωνευθεί στο %{output_taxon}",
-    "input_taxon_was_replaced_by_output_taxon_html": "το %{input_taxon} θα αντικατασταθεί από το %{output_taxon}",
+    "input_taxa_were_merged_into_output_taxon_html": "τα %{input_taxa} συγχωνεύτηκαν στο %{output_taxon}",
+    "input_taxa_will_be_merged_into_output_taxon_html": "τα %{input_taxa} θα συγχωνευθούν στο %{output_taxon}",
+    "input_taxon_was_replaced_by_output_taxon_html": "το %{input_taxon} αντικαταστάθηκε από το %{output_taxon}",
     "input_taxon_was_split_into_output_taxa_html": "το %{input_taxon} διασπάστηκε στο %{output_taxa}",
     "input_taxon_will_be_replaced_by_output_taxon_html": "το %{input_taxon} θα αντικατασταθεί από το %{output_taxon}",
     "input_taxon_will_be_split_into_output_taxa_html": "το %{input_taxon} θα διασπαστεί στο %{output_taxa}"
   },
+  "check_above_for_errors": "Ελέγξτε παραπάνω για λάθη",
   "check_back_soon": "Ελέγξτε πάλι σύντομα!",
   "checklist": "Λίστα ελέγχου",
   "choose_a_field": "Επιλέξτε ένα πεδίο",
   "choose_file": "Επιλογή αρχείου",
   "choose_files": "Επιλογή αρχείων",
+  "choose_photos_for_this_taxon": "Επιλογή φωτογραφιών για αυτό το taxon",
   "clear": "Εκκαθάριση",
   "close": "Κλείσιμο",
   "colors": "Χρώματα",
@@ -11102,12 +11144,20 @@ I18n.translations["el"] = {
   "conservation_status": "Κατάσταση διατήρησης",
   "continue": "Συνέχεια",
   "controlled_term_labels": {
-    "adult": "Ενήλικας",
+    "adult": "Ενήλικο",
     "egg": "Αυγό",
-    "female": "Γυναίκα",
-    "life_stage": "Στάδιο ζωής",
-    "male": "Άνδρας",
-    "sex": "Φύλο"
+    "female": "Θηλυκό",
+    "flowering": "Ανθοφορία",
+    "fruiting": "Καρποφορία",
+    "juvenile": "Νεαρό",
+    "larva": "Προνύμφη",
+    "life_stage": "Στάδιο βιολογικού κύκλου",
+    "male": "Αρσενικό",
+    "nymph": "Νύμφη",
+    "plant_phenology": "Φαινολογία Φυτού",
+    "pupa": "Χρυσαλλίδα",
+    "sex": "Φύλο",
+    "subimago": "Υπενήλικο"
   },
   "convert": "Μετατροπή",
   "copyright": {
@@ -11124,11 +11174,13 @@ I18n.translations["el"] = {
     "gnu_free_documentation_license": "Ελεύθερη Άδεια GNU"
   },
   "copyright_info": "Πληροφορίες πνευματικών δικαιωμάτων",
+  "copyright_info_and_more": "Πληροφορίες πνευματικών δικαιωμάτων και περισσότερα",
   "create_an_atlas": "Δημιουργία άτλαντος",
   "created_by": "Δημιουργήθηκε από",
   "created_on": "Δημιουργήθηκε την",
-  "critically_endangered": "κρίσιμα απειλούμενο",
+  "critically_endangered": "Κρισίμως Κινδυνεύον",
   "csv": "CSV",
+  "dashboard": "Αρχικό πάνελ",
   "data_quality": "Ποιότητα δεδομένων",
   "date": {
     "abbr_day_names": [
@@ -11216,7 +11268,9 @@ I18n.translations["el"] = {
     "nextText": "Επόμενο",
     "range": "Εύρος"
   },
+  "date_specified": "Ημερομηνία έχει προσδιοριστεί",
   "date_time": "Ημερομηνία/Ώρα",
+  "date_updated": "Η Ημερομηνία ενημερώθηκε",
   "datetime": {
     "countdown_x_days": {
       "one": "ημέρα)",
@@ -11233,6 +11287,7 @@ I18n.translations["el"] = {
   },
   "default": "προεπιλογή",
   "delete": "Διαγραφή",
+  "deleting_verb": "Διαγράφεται",
   "desc": "φθιν",
   "descending": "Φθίνουσα",
   "description": "Περιγραφή",
@@ -11253,34 +11308,42 @@ I18n.translations["el"] = {
   "edit_multiple_species": "Επεξεργασία πολλαπλών ειδών",
   "edit_photos": "Επεξεργασία φωτογραφιών",
   "edit_project": "Επεξεργασία εγχειρήματος",
-  "edit_your_default_settings": "Επεξεργασία των προεπιλεγμένων επιλογών σας",
+  "edit_taxon": "Επεξεργασία Taxon",
+  "edit_your_default_settings": "Επεξεργασία των προεπιλεγμένων ρυθμίσεών σας",
   "edit_your_settings_for_this_project": "Επεξεργασία των ρυθμίσεων σας για αυτό το εγχείρημα",
   "end": "Τέλος",
   "end_date_time": "Ημερομηνία λήξης / ώρα",
-  "endangered": "απειλούμενο",
+  "endangered": "Κινδυνεύον",
   "endemic": "ενδημικό",
   "endemic_to_x": "Ενδημικό στο %{x}",
   "establishment": {
-    "endemic": "ενδημικό",
-    "introduced": "εισηγμένο"
+    "endemic": "Ενδημικό",
+    "introduced": "Εισηγμένο",
+    "invasive": "Χωροκατακτητικό",
+    "native": "Αυτόχθον",
+    "naturalised": "Εγκλιματισμένο"
   },
   "everyone_": "ο καθένας",
   "evidence_of_organism": "Αποδείξεις του οργανισμού",
   "exact": "Ακριβές",
   "exact_date": "Ακριβής ημερομηνία",
   "exact_location": "Ακριβής τοποθεσία",
+  "exclude_x": "Εξαίρεση %{x}",
+  "exclusion_filters": "Φίλτρα Εξαίρεσης",
   "exit_full_screen": "Έξοδος από πλήρη οθόνη",
-  "export_observations": "Εξαγωγή παρατηρήσεων",
+  "export_observations": "Εξαγωγή Παρατηρήσεων",
   "exporting": "Εξαγωγή...",
   "extinct": "εξαφανισμένο",
   "extinct_in_the_wild": "εξαφανισμένο στη φύση",
   "facebook": "Facebook",
   "failed_to_find_your_location": "Η εύρεση της τοποθεσίας σας απέτυχε.",
+  "failed_to_save_record": "Η αποθήκευση της εγγραφής απέτυχε. Παρακαλώ προσπαθήστε πάλι αργότερα.",
   "favorites": "Αγαπημένα",
   "feature_this_project_": "Παρουσιάστε Αυτό το Πρότζεκτ",
   "featuring": "Χαρακτηριστικό",
   "fields_": "Πεδία",
-  "filter_by_place": "Φιλτράρισμα ανά μέρος",
+  "filter_by_place": "Φιλτράρισμα ανά τοποθεσία",
+  "filter_by_taxon": "Φιλτράρισμα με Taxon",
   "filters": "Φίλτρα",
   "find": "Εύρεση",
   "find_observations": "Εύρεση παρατηρήσεων",
@@ -11299,44 +11362,54 @@ I18n.translations["el"] = {
   "from_flickr_facebook_etc": "Από το Flickr, Facebook, κτλ.",
   "from_soundcloud": "Από το Soundcloud",
   "full_screen": "Πλήρης οθόνη",
+  "generate_your_stats": "Παραγωγή των στατιστικών σας",
   "geoprivacy": "Γεωαπόρρητο",
+  "geoprivacy_is_obscured_desc": "Ο παρατηρητής έχει επιλέξει να αποκρύψει τις γεωγραφικές συντεταγμένες.",
   "get_started": "Ξεκινήστε",
   "globally": "Καθολικά",
   "go": "Μετάβαση",
   "go_back": "Επιστροφή",
   "google": "Google",
   "green": "πράσινο",
-  "grey": "Γκρι",
+  "grey": "γκρι",
   "grouping": "Ομαδοποίηση",
-  "has_photo": "έχει φωτογραφία",
+  "has_id_supported_by_two_or_more": "Έχει αναγνωριστεί από δύο ή περισσότερους",
+  "has_photo": "Έχει Φωτογραφία",
   "has_photo_and_sound": "Έχει φωτογραφία και ήχο",
-  "has_photos": "έχει φωτογραφίες",
-  "has_photos_or_sounds": "έχει φωτογραφίες ή ήχους",
-  "has_sound": "Έχει ήχο",
-  "has_sounds": "έχει ήχους",
+  "has_photos": "Έχει Φωτογραφίες",
+  "has_photos_or_sounds": "Έχει Φωτογραφίες ή Ήχους",
+  "has_sound": "Έχει Ήχο",
+  "has_sounds": "Έχει Ήχους",
   "hide_uncountable_species": "Απόκρυψη μη μετρήσιμων ειδών",
   "high": "υψηλό",
   "history": "Ιστορικό",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Δεν γνωρίζω όμως είμαι βέβαιος πως είναι %{taxon}",
   "id_categories": {
     "tooltips": {
     }
   },
   "id_withdrawn": "Το αναγνωριστικό αποσύρθηκε",
-  "ids_by_taxon": "IDs",
+  "identifications": "Αναγνωρίσεις",
+  "identify": "Αναγνωρίστε",
+  "identify_observations": "Αναγνωρίστε Παρατηρήσεις",
+  "identify_title": "Αναγνωρίστε",
+  "ids_by_taxon": "IDs ανά Taxon",
   "if_for_some_reason_a_user_doesnt_agree": "Si por una razon no es d'acuerdo con los impuestos de la comunidad, puede reecharlo, y esto sinifica que su ID ha sido utilizado para conectarse a otras observaciones, actualizando las listas durables, etc. Sinifica tambien que tu observacion puede solamente ser un grado de busqueda quando la comunidad sera d'acuerdo con Ustedes.",
   "ignore_and_continue": "Αγνόηση και συνέχεια",
   "import": "Εισαγωγή",
   "improving": "Βελτίωση",
-  "in_progress": "Σε εξέλιξη",
+  "in_progress": "σε εξέλιξη",
+  "inactive_taxon": "Ανενεργό Taxon",
   "inappropriate_content": "Ακατάλληλο περιεχόμενο;",
   "including": "συμπεριλαμβανομένων",
   "info": "Πληροφορίες",
   "insect_life_stage": "Στάδιο ζωής εντόμου",
   "insects": "Έντομα",
   "interactions": "Διαδράσεις",
-  "introduced": "εισηγμένο",
+  "introduced": "Εισαχθέν",
   "introduced_in_place": "Εισήχθη στο %{place}",
   "iphone": "iPhone",
+  "is_the_evidence_provided_enough_to_confirm_this_is_taxon": "Τα παρεχόμενα στοιχεία είναι επαρκή για να επιβεβαιωθεί πως αυτό είναι %{taxon};",
   "it_can_now_be_used_for_research": "Τώρα μπορεί να χρησιμοποιηθεί για έρευνα και να προβληθεί σε άλλες ιστοσελίδες",
   "join": "μπείτε",
   "join_project": "Γίνετε μέλος στο εγχείρημα",
@@ -11465,31 +11538,34 @@ I18n.translations["el"] = {
   },
   "months": "Μήνες",
   "more": "Περισσότερα",
-  "more_filters": "Περισσότερα φίλτρα",
+  "more_filters": "Περισσότερα Φίλτρα",
   "more_from_x": "Περισσότερα από το %{x}",
-  "more_import_options": "Περισσότερες επιλογές εισαγωγής",
-  "more_info": "Περισσότερες πληροφορίες",
+  "more_import_options": "Περισσότερες Επιλογές Εισαγωγής",
+  "more_info": "Περισσότερες Πληροφορίες",
   "more_info_title": "Περισσότερες πληροφορίες",
   "more_photos": "Περισσότερες φωτογραφίες",
   "most_comments_and_faves": "Περισσότερα σχόλια και προσθήκες στα αγαπημένα",
-  "most_observations": "Περισσότερες παρατηρήσεις",
+  "most_observations": "Περισσότερες Παρατηρήσεις",
   "most_observed_introduced_species": "Τα περισσότερο παρατηρημένα είδη που έχουν εισαχθεί",
+  "most_observed_species": "Περισσότερα Παρατηρηθέντα Είδη",
   "most_observed_threatened_species": "Τα απειλούμενα είδη που έχουν παρατηρηθεί πιο πολύ",
-  "most_species": "Περισσότερα είδη",
+  "most_species": "Περισσότερα Είδη",
   "multiple": "πολλαπλές",
   "multiple_select_option": "-- πολλαπλές --",
   "must_be_observed_after": "πρέπει να παρατηρηθεί μετά τις %{operand}",
   "must_be_observed_before": "πρέπει να παρατηρηθεί πριν τις %{operand}",
   "name": "Όνομα",
   "names": "Όνομα",
+  "native": "αυτόχθον",
   "native_to_place": "Ενδημικό στο %{place}",
-  "near_threatened": "κοντινό απειλούμενο",
+  "near_threatened": "Σχεδόν Απειλούμενο",
   "nearby_observations_": "Κοντινές παρατηρήσεις",
   "needs_id": "χρειάζεται αναγνωριστικό",
   "needs_id_": "Χρειάζεται αναγνωριστικό",
   "new": "Νέος",
   "new_observation_field": "Νέο πεδίο παρατήρησης",
   "new_observations": "Νέες παρατηρήσεις",
+  "new_observations_this_year": "Νέες Παρατηρήσεις Αυτήν τη Χρονιά",
   "new_users": "Νέοι χρήστες",
   "news": "Νέα",
   "next": "Επόμενο",
@@ -11648,64 +11724,112 @@ I18n.translations["el"] = {
   "places_name": {
     "afghanistan": "Αφγανιστάν",
     "africa": "Αφρική",
+    "albania": "Αλβανία",
     "antigua_and_barbuda": "Αντίγκουα και Μπαρμπούντα",
+    "argentina": "Αργεντινή",
+    "armenia": "Αρμενία",
     "australia": "Αυστραλία",
     "austria": "Αυστρία",
+    "azerbaijan": "Αζερμπαϊτζάν",
     "belgium": "Βέλγιο",
+    "bolivia": "Βολιβία",
     "bosnia_and_herzegovina": "Βοσνία και Ερζεγοβίνη",
     "brazil": "Βραζιλία",
+    "bulgaria": "Βουλγαρία",
+    "cameroon": "Καμερούν",
     "canada": "Καναδάς",
     "central_america": "Κεντρική Αμερική",
+    "chile": "Χιλή",
     "china": "Κίνα",
     "colombia": "Κολομβία",
+    "croatia": "Κροατία",
     "denmark": "Δανία",
     "egypt": "Αίγυπτος",
     "equatorial_guinea": "Ισημερινή Γουινέα",
     "europe": "Ευρώπη",
     "france": "Γαλλία",
+    "georgia": "Γεωργία",
     "germany": "Γερμανία",
     "greece": "Ελλάδα",
     "hong_kong": "Χονγκ Κονγκ",
     "hungary": "Ουγγαρία",
+    "iceland": "Ισλανδία",
     "india": "Ινδία",
+    "indonesia": "Ινδονησία",
+    "iran": "Ιράν",
     "iraq": "Ιράκ",
+    "ireland": "Ιρλανδία",
+    "israel": "Ισραήλ",
     "italy": "Ιταλία",
     "japan": "Ιαπωνία",
+    "jordan": "Ιορδανία",
+    "kenya": "Κένυα",
     "korea": "Κορέα",
+    "liberia": "Λιβερία",
+    "libya": "Λιβύη",
+    "luxembourg": "Λουξεμβούργο",
+    "macedonia": "Μακεδονία",
+    "madagascar": "Μαδαγασκάρη",
+    "malaysia": "Μαλαισία",
     "martinique": "Μαρτινίκα",
     "mexico": "Μεξικό",
+    "nepal": "Νεπάλ",
     "netherlands": "Ολλανδία",
     "new_guinea": "Νέα Γουινέα",
     "new_zealand": "Νέα Ζηλανδία",
     "north_africa": "Βόρεια Αφρική",
     "north_america": "Βόρεια Αμερική",
+    "norway": "Νορβηγία",
+    "pakistan": "Πακιστάν",
+    "palestina": "Παλαιστίνη",
     "palestine": "Παλαιστίνη",
     "panama": "Παναμάς",
+    "paraguay": "Παραγουάη",
     "peru": "Περού",
+    "philippines": "Φιλιππίνες",
     "poland": "Πολωνία",
     "portugal": "Πορτογαλία",
+    "qatar": "Κατάρ",
     "republic_of_congo": "Δημοκρατία του Κονγκό",
+    "romania": "Ρουμανία",
     "russia": "Ρωσία",
+    "rwanda": "Ρουάντα",
+    "san_marino": "Άγιος Μαρίνος",
     "sao_tome_and_principe": "Άγιος Θωμάς και Πρίγκιπας",
     "saudi_arabia": "Σαουδική Αραβία",
+    "serbia": "Σερβία",
     "singapore": "Σιγκαπούρη",
+    "slovakia": "Σλοβακία",
+    "slovenia": "Σλοβενία",
+    "somalia": "Σομαλία",
     "south_africa": "Νότια Αφρική",
     "south_america": "Νότια Αμερική",
+    "south_korea": "Νότια Κορέα",
+    "south_sudan": "Νότιο Σουδάν",
     "spain": "Ισπανία",
+    "sri_lanka": "Σρι Λάνκα",
+    "sudan": "Σουδάν",
     "sweden": "Σουηδία",
     "switzerland": "Ελβετία",
     "syria": "Συρία",
+    "tanzania": "Τανζανία",
     "thailand": "Ταϊλάνδη",
     "trinidad_and_tobago": "Τρινιντάντ και Τομπάγκο",
+    "tunisia": "Τυνησία",
     "turkey": "Τουρκία",
+    "uganda": "Ουγκάντα",
     "united_kingdom": "Ηνωμένο Βασίλειο",
     "united_states": "Ηνωμένες Πολιτείες",
+    "uruguay": "Ουρουγουάη",
+    "venezuela": "Βενεζουέλα",
     "virgin_islands": "Παρθένες Νήσοι",
-    "west_africa": "Δυτική Αφρική"
+    "west_africa": "Δυτική Αφρική",
+    "yemen": "Υεμένη",
+    "zambia": "Ζάμπια"
   },
   "places_of_interest": "Σημεία Ενδιαφέροντος",
   "plants": "Φυτά",
-  "popular": "δημοφιλές",
+  "popular": "Δημοφιλές",
   "potential_disagreement": "Πιθανή διαφωνία",
   "prev": "Προηγ",
   "preview": "Προεπισκόπηση",
@@ -11728,26 +11852,33 @@ I18n.translations["el"] = {
   "rank": "Κατάταξη",
   "rank_position": "Κατάταξη",
   "ranks": {
-    "kingdom": "βασίλειο",
-    "subkingdom": "υποβασίλειο",
-    "superclass": "υπερκλάση",
-    "class": "Κλάση",
-    "subclass": "υποκλάση",
-    "superorder": "υπερσειρά",
-    "order": "σειρά",
-    "suborder": "υποσειρά",
-    "family": "οικογένεια",
-    "subfamily": "υποοικογένεια",
-    "supertribe": "υπερφυλή",
-    "tribe": "φυλή",
-    "subtribe": "υποφυλή",
+    "kingdom": "Βασίλειο",
+    "subkingdom": "Υποβασίλειο",
+    "phylum": "Συνομοταξία",
+    "subphylum": "Υποσυνομοταξία",
+    "superclass": "Υπερομοταξία",
+    "class": "Ομοταξία",
+    "subclass": "Υφομοταξία",
+    "superorder": "Υπερτάξη",
+    "order": "Τάξη",
+    "suborder": "Υποτάξη",
+    "infraorder": "Ανθυποτάξη",
+    "parvorder": "Μικρόταξη",
+    "superfamily": "Υπεροικογένεια",
+    "family": "Οικογένεια",
+    "subfamily": "Υποοικογένεια",
+    "supertribe": "Υπερφυλή",
+    "tribe": "Φυλή",
+    "subtribe": "Υποφυλή",
+    "genus": "Γένος",
+    "subgenus": "Υπογένος",
     "section": "τμήμα",
     "subsection": "υποτμήμα",
-    "species": "είδη",
+    "species": "Είδος",
     "hybrid": "υβριδικό",
-    "subspecies": "υποείδη",
-    "variety": "ποικιλία",
-    "form": "μορφή",
+    "subspecies": "Υποείδος",
+    "variety": "Ποικιλία",
+    "form": "Μορφή",
     "leaves": "φύλλα"
   },
   "read_more": "Διαβάστε περισσότερα",
@@ -11818,7 +11949,7 @@ I18n.translations["el"] = {
   "status_globally": "%{status} Καθολικά",
   "status_in_place": "%{status} στο %{place}",
   "stay_and_try_again": "Μείνετε και προσπαθήστε ξανά",
-  "submitted": "Υποβεβλημμένα",
+  "submitted": "Υποβλήθηκε",
   "suggestions": "Προτάσεις",
   "support_inaturalist": "Υποστήριξη του iNaturalist",
   "table": "Πίνακας",
@@ -11846,6 +11977,9 @@ I18n.translations["el"] = {
     "tooltips": {
     }
   },
+  "user": "Χρήστης",
+  "username_or_user_id": "Όνομα χρήστη η ID χρήστη",
+  "users": "Χρήστες",
   "view_sample": "Προβολή δείγματος",
   "views": {
     "observations": {
@@ -11905,6 +12039,7 @@ I18n.translations["el"] = {
       }
     }
   },
+  "visually_similar": "Οπτικά Παρόμοια",
   "vulnerable": "Ευαίσθητος",
   "website": "Ιστότοπος",
   "whats_this?": "Τι είναι αυτό;",
@@ -13306,6 +13441,10 @@ I18n.translations["en"] = {
   "reviewed": "Reviewed",
   "rg_observations": "RG Observations",
   "running_total": "Running Total",
+  "same_day_obscured": "Another observation by this person on this day is obscured",
+  "same_day_obscured_desc": "When coordinates are obscured because of a threatened taxon, all other\nobservations by that person on that day are also obscured to prevent people\nfrom guessing the coordinates based on observations made around the same\ntime. Individuals can also apply this protection to coordinates they have\nchosen to obscure.\n",
+  "same_day_private": "Another observation by this person on this day is private",
+  "same_day_private_desc": "When coordinates are hidden because of a threatened taxon, all other\nobservations by that person on that day are also hidden to prevent people\nfrom guessing the coordinates based on observations made around the same\ntime. Individuals can also apply this protection to coordinates they have\nchosen to hide.\n",
   "satellite": "satellite",
   "save": "Save",
   "save_photos": "Save photos",
@@ -13518,6 +13657,7 @@ I18n.translations["en"] = {
   "view_all_members": "View All Members",
   "view_field_options": "View Field Options",
   "view_flags": "View Flags",
+  "view_full_size_photo": "View full-size photo",
   "view_license": "View License",
   "view_more": "View More",
   "view_more_unreviewed": "View more unreviewed",
@@ -14474,6 +14614,7 @@ I18n.translations["es"] = {
   },
   "date_specified": "Fecha especificada",
   "date_time": "Fecha/hora",
+  "date_updated": "Fecha de actualización",
   "datetime": {
     "countdown_x_days": {
       "one": "día",
@@ -14932,7 +15073,7 @@ I18n.translations["es"] = {
   "of_this_taxon": "De este taxón",
   "offensive_inappropriate": "Ofensivo / inapropiado",
   "ok": "Aceptar",
-  "old_observation_form": "Antiguó registro de observaciones",
+  "old_observation_form": "Antiguo registro de observaciones",
   "open": "Transparente",
   "open_": "Abierto",
   "open_street_map": "OpenStreetMap",
@@ -19678,7 +19819,7 @@ I18n.translations["eu"] = {
   "active": "Aktiboa",
   "activity": "Jarduera",
   "add": "Gehitu",
-  "add_a_comment": "Oharra gehitu",
+  "add_a_comment": "Iruzkina gehitu",
   "add_a_field": "Eremua gehitu",
   "add_a_name": "Izena gehitu",
   "add_an_identification": "Identifikazioa gehitu",
@@ -22763,6 +22904,7 @@ I18n.translations["fr"] = {
   },
   "date_specified": "Date spécifiée",
   "date_time": "Horodatage",
+  "date_updated": "Date mise à jour",
   "datetime": {
     "countdown_x_days": {
       "one": "jour",
@@ -25301,6 +25443,98 @@ I18n.translations["he"] = {
     }
   }
 };
+I18n.translations["hi"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["hr"] = {
   "<%= name": {
     "parameterize": {
@@ -25789,6 +26023,7 @@ I18n.translations["id"] = {
     "nextText": "Selanjutnya"
   },
   "date_time": "Tanggal/Waktu",
+  "date_updated": "Tanggal pemutakhiran",
   "datetime": {
   },
   "default": "baku",
@@ -27064,6 +27299,7 @@ I18n.translations["it"] = {
   },
   "date_specified": "Data specificata",
   "date_time": "Data/Ora",
+  "date_updated": "Data aggiornamento",
   "datetime": {
     "countdown_x_days": {
       "one": "giorno",
@@ -29116,7 +29352,7 @@ I18n.translations["ja"] = {
     "romanian": "ルーマニア語",
     "russian": "ロシア語",
     "spanish": "スペイン語",
-    "swedish": "スェーデン語",
+    "swedish": "スウェーデン語",
     "tagalog": "タガログ語",
     "tahitian": "タヒチ語",
     "tokelauan": "トケラウ語",
@@ -30156,6 +30392,7 @@ I18n.translations["ko"] = {
     "range": "범위"
   },
   "date_time": "날짜/시간",
+  "date_updated": "업데이트한 날짜",
   "datetime": {
     "countdown_x_days": {
       "one": "일",
@@ -33415,7 +33652,7 @@ I18n.translations["nl"] = {
   },
   "all_taxa_": "Alle taxa",
   "allow_curator_access": "Geef de curator toegang",
-  "allow_project_curators_to_view_your_private_coordinates": "Geef projectcurators toestemming om jouw verborgen coördinaten te bekijken",
+  "allow_project_curators_to_view_your_private_coordinates": "Geef projectcurators toestemming om uw privé-coördinaten te bekijken",
   "amphibians": "amfibieën",
   "and": "en",
   "android": "Android",
@@ -33648,6 +33885,7 @@ I18n.translations["nl"] = {
   },
   "date_specified": "Gespecificeerde datum",
   "date_time": "Datum/tijd",
+  "date_updated": "Laatst Bijgewerkt",
   "datetime": {
     "countdown_x_days": {
       "one": "dag",
@@ -34107,7 +34345,7 @@ I18n.translations["nl"] = {
   "offensive_inappropriate": "Aanstootgevend/ongepast",
   "ok": "OK",
   "old_observation_form": "Oud waarnemingsformulier (verouderd)",
-  "open": "openen",
+  "open": "open",
   "open_": "Open",
   "open_street_map": "OpenStreetMap",
   "or": "of",
@@ -34685,7 +34923,7 @@ I18n.translations["nl"] = {
   "standard": "Standaard",
   "start": "Start",
   "start_date_time": "Start datum / tijd",
-  "start_typing_taxon_name": "Begin met het typen van de taxonnaam...",
+  "start_typing_taxon_name": "Type een taxonnaam...",
   "stats": "Statistieken",
   "stats_for_this_year_have_not_been_generated": "Statistieken voor dit jaar zijn niet gegenereerd.",
   "status": "Status",
@@ -34889,9 +35127,9 @@ I18n.translations["nl"] = {
         "delete_project": "Project verwijderen",
         "display_project_name": "Toon project naam",
         "do_you_need_features_from_traditional": "Heeft u functies nodig van traditionele projecten, zoals toegang tot echte coördinaten,\naangepaste waarnemingsvelden of het toevoegen van individuele waarnemingen die niet automatisch kunnen worden gefilterd?",
-        "leaderboards_among_individuals": "Ranglijsten voor <strong>personen</ strong>",
+        "leaderboards_among_individuals": "Ranglijsten voor <strong>personen</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Ranglijsten voor <strong>projecten en bioblitzes</strong>",
-        "multiple_project_administrators": "Meerdere projectbeheerders",
+        "multiple_project_administrators": "Meerdere projectadministrators",
         "name_placeholder": "Birds of Chicago, Verbazingwekkende libellen, etc.",
         "no_need_to_rely_on_manual_addition": "Je hoeft niet te vertrouwen op het handmatig toevoegen van waarnemingen of op de aggregator om  waarnemingen te indexeren",
         "note_these_users_will_be_able_to_edit": "Opmerking: deze gebruikers kunnen ALLE projectdetails, inclusief admins, bewerken.",
@@ -36836,6 +37074,7 @@ I18n.translations["pt-BR"] = {
   },
   "date_specified": "Data especificada",
   "date_time": "Data/Hora",
+  "date_updated": "Data atualizada",
   "datetime": {
     "countdown_x_days": {
       "one": "dia",
@@ -40207,6 +40446,7 @@ I18n.translations["ru"] = {
   },
   "date_specified": "Указана дата",
   "date_time": "Дата/Время",
+  "date_updated": "Обновленная дата",
   "datetime": {
     "countdown_x_days": "{{PLURAL: $1|день|дня|дней}}",
     "countdown_x_hours": {
@@ -44417,7 +44657,7 @@ I18n.translations["sv"] = {
     "other": "Laddar upp %{num} av %{count} foton..."
   },
   "user": "Användare",
-  "user_commented": "%{user} kommentar",
+  "user_commented": "%{user} kommenterade",
   "user_helped_x_people_with_y_ids_html": "%{user} hjälpte <strong>%{x} personer</strong> med <strong>%{y} ID:n</strong>",
   "user_trusts_you_with_their_private_coordinates": "%{user} litar på dig med sina dolda koordinater",
   "username_or_user_id": "Användarnamn eller användar-ID",
@@ -47402,6 +47642,7 @@ I18n.translations["zh-TW"] = {
   },
   "date_specified": "日期指定",
   "date_time": "日期/時間",
+  "date_updated": "日期更新",
   "datetime": {
     "countdown_x_days": {
       "one": "天",
@@ -48789,8 +49030,8 @@ I18n.translations["zh-TW"] = {
   "without_annotation": "不帶註解",
   "worldwide": "全世界",
   "x_comments": {
-    "one": "1 個評論",
-    "other": "%{count} 個評論"
+    "one": "1 則評論",
+    "other": "%{count} 則評論"
   },
   "x_faves": {
     "one": "1 個最愛",

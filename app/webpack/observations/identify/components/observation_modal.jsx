@@ -156,19 +156,31 @@ class ObservationModal extends React.Component {
     let photos = null;
     if ( images && images.length > 0 ) {
       photos = (
-        <ZoomableImageGallery
-          key={`map-for-${observation.id}`}
-          items={images}
-          slideIndex={imagesCurrentIndex}
-          showThumbnails={images && images.length > 1}
-          lazyLoad={false}
-          server
-          showNav={false}
-          disableArrowKeys
-          showFullscreenButton={false}
-          showPlayButton={false}
-          onSlide={setImagesCurrentIndex}
-        />
+        <div className="photos-wrapper">
+          <ZoomableImageGallery
+            key={`map-for-${observation.id}`}
+            items={images}
+            slideIndex={imagesCurrentIndex}
+            showThumbnails={images && images.length > 1}
+            lazyLoad={false}
+            server
+            showNav={false}
+            disableArrowKeys
+            showFullscreenButton={false}
+            showPlayButton={false}
+            onSlide={setImagesCurrentIndex}
+            onThumbnailClick={( event, index ) => setImagesCurrentIndex( index )}
+          />
+          <a
+            href={images[imagesCurrentIndex].zoom || images[imagesCurrentIndex].original}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="original-photo-link"
+            title={I18n.t( "view_full_size_photo" )}
+          >
+            <i className="icon-link-external" />
+          </a>
+        </div>
       );
     }
     let sounds = null;
