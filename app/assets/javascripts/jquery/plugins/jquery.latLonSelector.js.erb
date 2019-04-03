@@ -568,7 +568,7 @@
         mapAcc = iNaturalist.Map.distanceInMeters(center.lat(), center.lng(), northEast.lat(), northEast.lng()) / 5,
         defaultAcc = Math.max(mapAcc, 20),
         defaultAcc = Math.min(mapAcc, 100000),
-        accuracyField = findFormField($.fn.latLonSelector._currentInput, 'positional_accuracy'),
+        accuracyField = findFormField($.fn.latLonSelector._currentInput, 'positional_accuracy').get(0) || findFormField($.fn.latLonSelector._currentInput, 'radius').get(0),
         acc = $(accuracyField).val() || defaultAcc
     $.fn.latLonSelector.setAccuracy(acc)
     $.fn.latLonSelector.updateFormAccuracy($.fn.latLonSelector._circle.getRadius(), {

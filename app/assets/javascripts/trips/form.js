@@ -50,18 +50,21 @@ $(document).ready(function() {
       
       // set accuracy from bounding box
       if (item.swlat) {
-        $(this.element).parents('form').find('input[name*="positional_accuracy"]').val(
+        $(this.element).parents('form').find('input[name*="radius"]').val(
           iNaturalist.Map.distanceInMeters(item.latitude, item.longitude, item.swlat, item.swlng)
         )
       }
       
       // set the map. it might be worth just using an iNat place selector and hiding the input
       $(this.element).parents('form').find('input[name*="longitude"]').change()
-      if (item.swlat) {$.fn.latLonSelector.zoomToAccuracy()}
+      if (item.swlat) {
+        $.fn.latLonSelector.zoomToAccuracy()
+        $('#trip_place_id').chooser('clear')
+      }
     }
   })
   $("input.ui-widget").width(400)
-
+  
   $('#new_goal_taxon').chooser({
     collectionUrl: '/taxa/search.json?partial=taxon',
     resourceUrl: '/taxa/{{id}}.json?partial=taxon',
@@ -157,4 +160,5 @@ $(document).ready(function() {
       $('#trip_taxa :input').remove()
     })
   })
+  
 })

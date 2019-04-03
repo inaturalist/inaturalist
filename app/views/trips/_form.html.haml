@@ -32,12 +32,11 @@
     #location.col-md-6
       %h3=t :where_did_you_go?
       .stacked
-        = f.text_field :place_id, :class => "form-control", :label => t(:choose_a_place), :placeholder => t(:start_typing_place_name)
+        = f.text_field :place_id, :class => "form-control", :label => t(:set_the_coordinates_by_choosing_a_place), :placeholder => t(:start_typing_place_name)
       .stacked
-        %label=t :or_drop_a_map_pin
+        %label=t :or_by_searching_the_map
         = text_field_tag :location, '', :class => "form-control", :placeholder => "Search the map"
       .map.stacked
-        map goes here
       .coordinates.row
         .col-md-4= f.text_field :latitude, :label => t(:lat), :class => "form-control"
         .col-md-4= f.text_field :longitude, :label => t(:lon), :class => "form-control"
