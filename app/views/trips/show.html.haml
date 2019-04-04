@@ -13,6 +13,8 @@
   %meta{:name => "twitter:card", :content => "summary"}
   %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
+  - if @trip.published_at.nil?
+    .alert.alert-warning.upstacked= t(:preview)
   %ul.breadcrumb.clearfix
     %li
       - if @trip.parent.is_a?(Project)
@@ -88,10 +90,12 @@
             - for element in @check_list_set
               %li
                 = render "shared/taxon", :taxon => element[:taxon], :link_url => element[:taxon]
-                - if element[:observation]
-                  = link_to observation_path(:id => element[:observation]["id"])  do
-                    %svg{ :height => "10", :width => "10" }
-                      %circle{:cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7"}
+                - if element[:observations].count > 0
+                  - element[:observations].each do |o|
+                    = link_to observation_path(:id => o["id"])  do
+                      %svg{ :height => "10", :width => "10" }
+                        %title= o["taxon"]["name"]
+                        %circle{:cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7"}
       %section{:id => "comments"}
         - if @trip.published_at
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }

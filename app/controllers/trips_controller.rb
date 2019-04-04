@@ -4,7 +4,6 @@ class TripsController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :load_form_data, :only => [:new, :edit]
-  before_filter :set_feature_test, :only => [:index, :show, :edit]
   before_filter :load_user_by_login, :only => [:by_login]
 
   layout "bootstrap"
@@ -101,12 +100,12 @@ class TripsController < ApplicationController
         
         @check_list_set = []
         @check_list_taxa.each do |clt|
-          if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? clt.id}.first
-            unless o["obscured"]
-              @check_list_set << {taxon: clt, observation: o}
+          if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? clt.id}
+            unless o.select{|i| i["obscured"]}.count > 0
+              @check_list_set << {taxon: clt, observations: o}
             end
           else
-            @check_list_set << {taxon: clt, observation: nil}
+            @check_list_set << {taxon: clt, observations: []}
           end
         end
         
@@ -259,6 +258,33 @@ class TripsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to trips_url }
       format.json { head :no_content }
+    end
+  end
+  
+  def tabulate
+    filter_params = params[:filters] || params
+    @taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
+    @year = filter_params[:year] unless filter_params[:year].blank?
+    @month = filter_params[:month] unless filter_params[:month].blank?
+    place_id = filter_params[:place_id] || params[:place_id]
+    @place = Place.find_by_id(place_id) unless place_id.blank?
+    
+    per_page = params[:per_page]
+    per_page ||= 30
+    per_page = per_page.to_i
+    
+    scope = Trip.all
+    scope = scope.taxon(@taxon) if @taxon
+    scope = scope.year(@year) if @year
+    scope = scope.month(@month) if @month
+    scope = scope.place(@place) if @place
+    @trips = scope.published.page(params[:page]).per_page(per_page).order("posts.id DESC")
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: @trips.as_json
+      end
     end
   end
 

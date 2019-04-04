@@ -7,7 +7,19 @@ class Trip < Post
   accepts_nested_attributes_for :trip_taxa, :allow_destroy => true
 
   before_validation :set_parent
-
+  
+  TRIP_PURPOSE_JOINS = [
+    "JOIN trip_purposes tp ON tp.trip_id = posts.id"
+  ]
+  
+  scope :year, lambda { |year| where( "EXTRACT(YEAR FROM start_time) = ?", year ) }
+  scope :month, lambda { |month| where( "EXTRACT(MONTH FROM start_time) = ?", month ) }  
+  scope :place, lambda{ |place| where("latitude > ? AND latitude <= ? AND longitude > ? AND longitude <= ?", place.swlat, place.nelat, place.swlng, place.nelng) }
+  scope :taxon, lambda{ |taxon|
+    joins( TRIP_PURPOSE_JOINS ).
+    where( "tp.resource_id IN (?)", [taxon.ancestor_ids, taxon.id].flatten )
+  }  
+  
   def set_parent
     self.parent ||= self.user
   end

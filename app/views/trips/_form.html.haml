@@ -26,8 +26,8 @@
           \:
         = Post::ALLOWED_TAGS.to_a.sort.join(', ')
       .row
-        .col-md-6= f.text_field :distance, :label => t(:distance_traveled_in_meters)
-        .col-md-6= f.text_field :number, :label => t(:number_of_observers)
+        .col-md-6= f.text_field :distance, :label => t(:distance_traveled_label)
+        .col-md-6= f.text_field :number, :label => t(:number_of_observers_label)
       %h3=t :when_did_you_go?
       .row
         .col-md-6= f.text_field :start_time, :value => (@trip.start_time || Chronic.parse("today at 9am")).strftime("%Y-%m-%d %H:%m %z"), :label => t(:start_time), :placeholder => t(:start_time, :default => "Start time")
@@ -43,7 +43,7 @@
       .coordinates.row
         .col-md-4= f.text_field :latitude, :label => t(:lat), :class => "form-control"
         .col-md-4= f.text_field :longitude, :label => t(:lon), :class => "form-control"
-        .col-md-4= f.text_field :radius, :label => t(:radius_in_meters), :class => "form-control"
+        .col-md-4= f.text_field :radius, :label => t(:radius), :class => "form-control"
   #trip_purposes_row.row
     .col-md-12
       %h3=t :what_were_you_looking_for?
