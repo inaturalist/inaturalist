@@ -87,8 +87,8 @@ class TripsController < ApplicationController
           FakeView.image_url(@trip.user.icon.url(:original))
         end
         @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
-        trip_purpose_taxon_ids = @trip.trip_purposes.map(&:resource_id).flatten.uniq
-        @check_list_taxa = Taxon.find(trip_purpose_taxon_ids).select{|t| (t.ancestor_ids & trip_purpose_taxon_ids).count == 0 }
+        trip_purpose_taxon_ids = @trip.trip_purposes.where(complete: true).map(&:resource_id).flatten.uniq
+        @target_list_taxa = Taxon.find(trip_purpose_taxon_ids).select{|t| (t.ancestor_ids & trip_purpose_taxon_ids).count == 0 }
         obs = INatAPIService.observations( {
           latitude: @trip.latitude,
           longitude: @trip.longitude,
@@ -98,14 +98,14 @@ class TripsController < ApplicationController
           user_id: @trip.user_id
         } ).results
         
-        @check_list_set = []
-        @check_list_taxa.each do |clt|
-          if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? clt.id}
+        @target_list_set = []
+        @target_list_taxa.each do |tlt|
+          if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? tlt.id}
             unless o.select{|i| i["obscured"]}.count > 0
-              @check_list_set << {taxon: clt, observations: o}
+              @target_list_set << {taxon: tlt, observations: o}
             end
           else
-            @check_list_set << {taxon: clt, observations: []}
+            @target_list_set << {taxon: tlt, observations: []}
           end
         end
         

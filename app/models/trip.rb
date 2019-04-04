@@ -17,7 +17,7 @@ class Trip < Post
   scope :place, lambda{ |place| where("latitude > ? AND latitude <= ? AND longitude > ? AND longitude <= ?", place.swlat, place.nelat, place.swlng, place.nelng) }
   scope :taxon, lambda{ |taxon|
     joins( TRIP_PURPOSE_JOINS ).
-    where( "tp.resource_id IN (?)", [taxon.ancestor_ids, taxon.id].flatten )
+    where( "tp.complete = true AND tp.resource_id IN (?)", [taxon.ancestor_ids, taxon.id].flatten )
   }  
   
   def set_parent

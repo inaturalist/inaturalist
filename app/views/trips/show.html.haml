@@ -6,6 +6,9 @@
   :javascript
     $('.observationcontrols').observationControls()
     $("#comment_body").textcompleteUsers( );
+    $( document ).ready( function() {
+      $( '[data-toggle="popover"]' ).popover({html:true});
+    } );
 - content_for :extrahead do
   %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
   %meta{:property => "twitter:image", :content => html_attributize(@shareable_image_url)}
@@ -47,10 +50,10 @@
         %li= link_to t(:summary), "#summary"
         - unless @trip.body.blank?
           %li= link_to t(:description), "#description"
-        - unless @trip.observations.blank? || @trip.is_a?(Trip)
-          %li= link_to t(:observations), "#observations"
         - if @trip.is_a?(Trip)
-          %li= link_to t(:check_list), "#check_list"
+          %li= link_to t(:target_list), "#target_list"
+        - unless @trip.observations.blank?
+          %li= link_to t(:observations), "#observations"
         %li= link_to t(:comments), "#comments"
     .col-xs-9
       %section{:id => "summary"}
@@ -81,13 +84,15 @@
               = link_to_user @trip.user
             =l @trip.published_at, :format => :long if @trip.published?
       - if @trip.is_a?(Trip)
-        %section{:id => "check_list"}
-          %h2=t :check_list
-          - if @check_list_set.blank?
+        %section{:id => "target_list"}
+          %h2
+            =t :target_list
+            %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => t(:trip_target_list_info), "data-placement" => "top", "data-toggle" => "popover" }
+          - if @target_list_set.blank?
             .text-muted.nocontent=t :no_taxa_listed
           - else
             %ul.taxon_links.plain
-            - for element in @check_list_set
+            - for element in @target_list_set
               %li
                 = render "shared/taxon", :taxon => element[:taxon], :link_url => element[:taxon]
                 - if element[:observations].count > 0
@@ -96,6 +101,27 @@
                       %svg{ :height => "10", :width => "10" }
                         %title= o["taxon"]["name"]
                         %circle{:cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7"}
+      - unless @trip.observations.blank?
+        %section{:id => "observations"}
+          .observationcontrols.pull-right
+          %h2=t :observations
+          .observations.medium.grid
+            - compact do
+              = render :partial => "observations/cached_component", :collection => @trip.observations
+          - if @trip.is_a?(Trip)
+            .text-muted
+              :ruby
+                obs_params = {
+                  :d1 => @trip.start_time.iso8601,
+                  :d2 => @trip.stop_time.iso8601,
+                  :user_id => @trip.user_id
+                }
+                obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
+              = link_to observations_url(obs_params), :class => "readmore" do
+                View observations made between 
+                =l @trip.start_time, :format => :short
+                =t :and
+                =l @trip.stop_time, :format => :short
       %section{:id => "comments"}
         - if @trip.published_at
           = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }

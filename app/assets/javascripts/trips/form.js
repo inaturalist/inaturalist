@@ -79,6 +79,7 @@ $(document).ready(function() {
         row = $('#trip_purposes .nested-fields:last')
     $(':input[name*=resource_type]', row).val('Taxon')
     $(':input[name*=resource_id]', row).val(taxon.id)
+    $(':input[name*=complete]', row).val(true)
     $('#new_goal_taxon').chooser('clear')
     $('#trip_purposes').data('last-taxon', null)
     row.attr('data-taxon-id', taxon.id)
