@@ -1,3 +1,15 @@
 .container
-  - for trip in @trips
-    %p= link_to trip.title, trip
+  .row
+    = link_to t(:new_trip), new_trip_path, :class => "default button right"
+  .row
+    .col-md-8
+      - for trip in @trips
+        %p
+          =link_to trip.title, trip
+          \|
+          = t( :distance_traveled, distance: trip.distance.to_i )  if trip.distance
+          \|
+          = t( :duration, duration: ( ( trip.stop_time - trip.start_time ) / 1.minutes ).to_i ) if ( trip.start_time && trip.stop_time )
+          \|
+          = t( :number_of_observers, number: trip.number ) if trip.number
+      = will_paginate @trips

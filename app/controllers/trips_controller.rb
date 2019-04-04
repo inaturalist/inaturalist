@@ -33,6 +33,7 @@ class TripsController < ApplicationController
   def index
     per_page = params[:per_page] unless PER_PAGES.include?(params[:per_page].to_i)
     per_page ||= 30
+    per_page = per_page.to_i
     @trips = Trip.published.page(params[:page]).per_page(per_page).order("posts.id DESC")
 
     respond_to do |format|
@@ -87,23 +88,29 @@ class TripsController < ApplicationController
           FakeView.image_url(@trip.user.icon.url(:original))
         end
         @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
-        @trip_taxa = @trip.trip_taxa.includes(:taxon).order("taxa.ancestry asc") do |a,b|
-          a.taxon.name <=> b.taxon.name
-        end
         trip_purpose_taxon_ids = @trip.trip_purposes.map(&:resource_id).flatten.uniq
-        @trip_taxa_observed = []
-        @trip_taxa_unobserved = []
-        @trip_taxa_untargeted = []
-        @trip_taxa.each do |tt|
-          if tt.observed?
-            @trip_taxa_observed << tt
-            unless (trip_purpose_taxon_ids & tt.taxon.ancestor_ids).size > 0
-              @trip_taxa_untargeted << tt
+        @check_list_taxa = Taxon.find(trip_purpose_taxon_ids).select{|t| (t.ancestor_ids & trip_purpose_taxon_ids).count == 0 }
+        obs = INatAPIService.observations( {
+          latitude: @trip.latitude,
+          longitude: @trip.longitude,
+          radius: @trip.radius,
+          d1: @trip.start_time.xmlschema,
+          d2: @trip.stop_time.xmlschema,
+          user_id: @trip.user_id
+        } ).results
+        
+        @check_list_set = []
+        @check_list_taxa.each do |clt|
+          if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? clt.id}.first
+            unless o["obscured"]
+              @check_list_set << {taxon: clt, observation: o}
             end
           else
-            @trip_taxa_unobserved << tt
+            @check_list_set << {taxon: clt, observation: nil}
           end
         end
+        
+        
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first
