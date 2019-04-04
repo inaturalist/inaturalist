@@ -71,21 +71,24 @@
             %thead
               %tr
                 %th{scope: "col"} Trip
-                %th{scope: "col"} Taxon
+                %th{scope: "col"} Title
+                %th{scope: "col"} User
                 %th{scope: "col"} Latitude
                 %th{scope: "col"} Longitude
                 %th{scope: "col"} Date
-                %th{scope: "col"} Duration (minutes)
-                %th{scope: "col"} Distance (meters)
-                %th{scope: "col"} # Observers
-                %th{scope: "col"} Presence/Absence
+                %th{scope: "col"} Duration(min)
+                %th{scope: "col"} Distance(m)
+                %th{scope: "col"} #Observers
+                %th{scope: "col"}=@taxon.name
             %tbody
               - for trip in @trips
                 %tr
                   %th{scope: "row"}
                     =link_to trip.id, trip_path(trip)
                   %td
-                    =@taxon.name
+                    =trip.title.truncate(15)
+                  %td
+                    =link_to trip.user.login.truncate(15), user_path(trip.user_id) if trip.user_id
                   %td
                     =trip.latitude.round(3) if trip.latitude
                   %td
@@ -95,11 +98,11 @@
                   %td
                     =(( trip.stop_time - trip.start_time ) / 1.minutes ).to_i
                   %td
-                    =trip.distance.to_i
+                    =trip.distance.to_i if trip.distance
                   %td
                     =trip.number
                   %td
-                    N/A
+                    null
           = will_paginate @trips
       - else
         %p.description= t :please_enter_a_species

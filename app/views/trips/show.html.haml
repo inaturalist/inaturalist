@@ -50,7 +50,7 @@
         %li= link_to t(:summary), "#summary"
         - unless @trip.body.blank?
           %li= link_to t(:description), "#description"
-        - if @trip.is_a?(Trip)
+        - if @trip.is_a?(Trip) && !@target_list_set.blank?
           %li= link_to t(:target_list), "#target_list"
         - unless @trip.observations.blank?
           %li= link_to t(:observations), "#observations"
@@ -84,13 +84,11 @@
               = link_to_user @trip.user
             =l @trip.published_at, :format => :long if @trip.published?
       - if @trip.is_a?(Trip)
-        %section{:id => "target_list"}
-          %h2
-            =t :target_list
-            %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => t(:trip_target_list_info), "data-placement" => "top", "data-toggle" => "popover" }
-          - if @target_list_set.blank?
-            .text-muted.nocontent=t :no_taxa_listed
-          - else
+        - unless @target_list_set.blank?
+          %section{:id => "target_list"}
+            %h2
+              =t :target_list
+              %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => t(:trip_target_list_info), "data-placement" => "top", "data-toggle" => "popover" }
             %ul.taxon_links.plain
             - for element in @target_list_set
               %li
@@ -118,9 +116,11 @@
                 }
                 obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
               = link_to observations_url(obs_params), :class => "readmore" do
-                View observations made between 
+                View all observations made by 
+                =@trip.user.login
+                between
                 =l @trip.start_time, :format => :short
-                =t :and
+                and
                 =l @trip.stop_time, :format => :short
       %section{:id => "comments"}
         - if @trip.published_at

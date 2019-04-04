@@ -4,6 +4,7 @@ class TripsController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :load_form_data, :only => [:new, :edit]
+  before_filter :set_feature_test, :only => [:index, :show, :tabulate]
   before_filter :load_user_by_login, :only => [:by_login]
 
   layout "bootstrap"
@@ -93,11 +94,11 @@ class TripsController < ApplicationController
           latitude: @trip.latitude,
           longitude: @trip.longitude,
           radius: @trip.radius,
-          d1: @trip.start_time.xmlschema,
-          d2: @trip.stop_time.xmlschema,
-          user_id: @trip.user_id
+          d1: @trip.start_time.iso8601,
+          d2: @trip.stop_time.iso8601,
+          user_id: @trip.user_id,
+          per_page: 200
         } ).results
-        
         @target_list_set = []
         @target_list_taxa.each do |tlt|
           if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? tlt.id}

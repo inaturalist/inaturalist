@@ -54,7 +54,7 @@
                 %td
                   =(( trip.stop_time - trip.start_time ) / 1.minutes ).to_i
                 %td
-                  =trip.distance.to_i
+                  =trip.distance.to_i if trip.distance
                 %td
                   =trip.number
         = will_paginate @trips
