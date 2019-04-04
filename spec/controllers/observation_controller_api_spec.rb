@@ -799,22 +799,24 @@ shared_examples_for "an ObservationsController" do
 
     describe "changing geoprivacy from private to obscured" do
       let( :obs ) {  Observation.make!( user: user, latitude: 1, longitude: 1, geoprivacy: Observation::PRIVATE ) }
+      def update_to_obscured( obs )
+        put :update, format: :json, id: obs.id, observation: { geoprivacy: Observation::OBSCURED, latitude: obs.private_latitude, longitude: obs.private_longitude }
+        obs.reload
+      end
       it "should set latitude" do
         expect( obs.latitude ).to be_blank
-        put :update, format: :json, id: obs.id, observation: { geoprivacy: Observation::OBSCURED }
-        obs.reload
+        update_to_obscured( obs )
         expect( obs.geoprivacy ).to eq Observation::OBSCURED
         expect( obs.latitude ).not_to be_blank
       end
       it "should not change the private coordinates" do
         private_latitude = obs.private_latitude
-        put :update, format: :json, id: obs.id, observation: { geoprivacy: Observation::OBSCURED }
-        obs.reload
+        update_to_obscured( obs )
         expect( obs.private_latitude ).to eq private_latitude
       end
       it "should not reveal the private coordinates" do
         put :update, format: :json, id: obs.id, observation: { geoprivacy: Observation::OBSCURED }
-        obs.reload
+        update_to_obscured( obs )
         expect( obs.latitude ).not_to eq obs.private_latitude
       end
     end
