@@ -1,6 +1,11 @@
 module TaxonDescribers
   
   class Wikipedia < Base
+    def initialize( options = {} )
+      @locale = options[:locale]
+      super()
+    end
+
     def describe(taxon)
       title = taxon.wikipedia_title
       title = taxon.name if title.blank?
@@ -30,7 +35,7 @@ module TaxonDescribers
     end
 
     def wikipedia
-      WikipediaService.new(:debug => Rails.env.development?)
+      WikipediaService.new( debug: Rails.env.development?, locale: @locale )
     end
 
     def page_url(taxon)
