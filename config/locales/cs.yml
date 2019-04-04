@@ -55,6 +55,9 @@ cs:
   x_misidentifications_of_this_species:
     one: 1 nesprávná identifikace tohoto druhu
     other: '%{count} nesprávné identifikace tohoto druhu'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 misidentification of species in this %{rank}
+    other: '%{count} misidentifications of species in this %{rank}'
   x_observations:
     one: 1 pozorování
     other: '%{count} pozorování'
@@ -79,12 +82,18 @@ cs:
   x_faves:
     one: 1 oblíbenec
     other: '%{count} oblíbenci'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> flag resolved
+    other: <span class='count'>%{count}</span> flags resolved
   x_people_like_this:
     one: 1 člověku se to líbí
     other: '%{count} lidem se to líbí'
   x_people_agree_html:
     one: <span class="count">1</span> člověk souhlasí
     other: <span class="count">%{count}</span> lidé souhlasí
+  x_new_species:
+    one: 1 New Species
+    other: '%{count} New Species'
   x_species:
     one: 1 druh
     other: '%{count} druhy'
@@ -117,6 +126,8 @@ cs:
   x_taxon_changes_added_html:
     one: <span class="count">1</span> přidána změna taxonu\
     other: <span class="count">%{count}</span> přidány změny taxonu
+  x_people_helped_user_with_y_ids_html: <strong>%{x} people</strong> helped %{user}
+    with <strong>%{y} IDs</strong>
   _100_day_trends: 100 denní trend
   _percent_ID_d: identifikováno
   a_community_for_naturalist: Komunita naturalistů
@@ -1515,6 +1526,8 @@ cs:
   flag_marked_as_resolved_html: <span class="meta">Vlajka označena jako</span> <strong>vyřešená.</strong>
   flag_reason: '&ldquo;Toto %{record} označuji, protože'
   flag_saved: Označení uloženo.
+  flag_saved_thanks_html: Stítky uloženy. Díky!<a href="%{url}" class="readmore">View
+    flag</a>
   flag_this_observation: Označit toto pozorování
   flag_this_photo: Označit tento obrázek
   flagged: označený
@@ -1531,7 +1544,7 @@ cs:
   flags_with_count: Štítky (%{count})
   flags_explanation: Uživatelé %{site_name} označí věci v případě, že narazí na nějakou
     nesrovnalost. Toto jsou některé z problémů, které zatím kurátoři nevyřešili.
-  flags_for_x_html: Štítky pro
+  flags_for_x_html: Štítky pro %{x}
   flags_on_users_content: Vlajky v obsahu uživatele %{user}
   flickr_account_information: Informace z vašeho účtu na Flickru
   flickr_description: Flickr je služba online úložiště fotografií, možná ho znáte!
@@ -2295,8 +2308,8 @@ cs:
   member_of_the_inaturalist_network_html: Člen sítě <a href="%{url}"> iNaturalist
     </a>
   ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
-  : Člen %{partial_inat_network_tag_html} síť iNaturalist </a> společná iniciativa
-    %{time_tag_html} a% {nat_geo_tag_html}.
+  : Člen %{%{nat_geo_tag_html}partial_inat_network_tag_html} síť iNaturalist </a>
+    společná iniciativa %{time_tag_html} a %{nat_geo_tag_html}.
   members: Členové
   membership_model: Členský model
   mentioned_you_in_noun_html: uživatel %{user} se o vás zmínil v %{noun}
@@ -2370,6 +2383,7 @@ cs:
   most_observed_species: Nejvíce pozorovaných druhů
   most_observed_introduced_species: Nejvíce pozorovaných nepůvodních druhů
   most_observed_threatened_species: Nejvíce pozorovaných ohrožených druhů
+  move_input_children_to_output?: Přesunout děti na výstup?
   multiple: vícero
   multiple_select_option: -- vícero --
   multiple_taxa_for_taxon_change: Několik taxonů (vstup pro záměnu/sloučení, výstup
@@ -2652,6 +2666,8 @@ cs:
   observation_aggregation: Seskupení pozorování
   observation_photo_uploader: Fotka z pozorování vložena uživatelem
   observations_by_category: Pozorování podle kategorie
+  observations_by_app: Pozorování podle aplikace
+  observations_by_rank: Pozoování podle pořadí
   observations_by_user_on_date: Pozorování uživatele %{user} provedená dne %{date}
   observations_by_you: Vaše pozorování
   observations_by_you_on_date: Vaše pozorování ze dne %{date}
@@ -2672,6 +2688,7 @@ cs:
   observation_flagged: Pozorování označeno
   observation_flagged_as_flag: Pozorování označeno jako %{flag}
   observation_removed_from_the_project: Pozorování odebráno z projektu "%{project}"
+  observation_requirements: Požadavky pozorování
   observation_rights_html: Pozorování %{rights}
   observation_rules: Pravidla pozorování
   observation_rules_description: Můžete si zvolit pravidla, která určí, jaká pozorování
@@ -2709,6 +2726,8 @@ cs:
   observations_have_had_their_coordinates: souřadnice pozorování byly přesunuty do
     náhodného bodu v okruhu %{km} km buď proto, že je taxon ohrožený nebo proto, že
     si pozorovatel přál souřadnice skrýt.
+  observations_in_this_project_must: Pozorování v tomto projektu musí splňovat následující
+    kritéria
   observations_it_may_take_a_few: pozorování. Může to pár minut trvat.
   observations_last500: Pozorování (posledních 500)
   observations_last_aggregated: Naposledy seskupená pozorování
@@ -2745,6 +2764,7 @@ cs:
     nebudou splněny výše uvedené podmínky, nebo
   observations_with_this_field: Pozorování s tímto polem
   observations_with_this_field_and_value: Pozorování s tímto polem a hodnotou
+  observations_without_media: Pozorování bez médií
   observationcounts_refreshed: Počet pozorování znovu načten
   observed: Pozorováno
   observed_by: Pozorováno uživatelem
@@ -2759,6 +2779,14 @@ cs:
     v dané oblasti vyskytuje.  Více informací k terminologii najdete v DarwinCore
     <a href="http://code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus"></a>.
   occurrence_status: Status výskytu
+  occurrence_status_descriptions:
+    absent: V této oblasti se nevyskytuje
+    common: Vyskytuje se často
+    doubtful: Předpokládá se, že se vyskytuje, ale existují pochybnosti o důkazech
+    irregular: Nepředvídatelná přítomnost, včetně putování; mohou být běžné některé
+      roky a nepřítomné v jiných letech
+    present: Vyskytuje se v této oblasti
+    uncommon: Vyskytuje se pravidelně, ale v malém počtu; pečlivě hledají vhodné stanoviště
   occurrence_status_establishment_means: status výskytu, způsob vzniku
   occurrence_status_levels:
     present: přítomný
@@ -2776,7 +2804,7 @@ cs:
   of_identifiers: identifikátory
   of_places: místa
   of_this_taxon: Z tohoto taxonu
-  offensive_inappropriate: urážlivý / nevhodný
+  offensive_inappropriate: útočný / nevhodný
   official_blog: Oficiální blog
   offline_access_enabled: Offline přístup povolen
   old_observation_form: Původní formulář pozorování (zastaralý)
@@ -2868,16 +2896,19 @@ cs:
   open: otevřený
   open_: Otevřený
   open_description: Souřadnice uvidí všichni, pokud není taxon ohrožený.
+  open_street_map: OpenStreetMap
   opt_in_for_this_observation: Vybrat pro toto pozorování
   opt_out_of_community_ids_for_obs: Zakázat komunitní identifikaci pro toto pozorování
   optional: nepovinné
   optional_columns_note_for_any: 'Nepovinné sloupce (poznámka: aby mohly být tyto
     sloupce použity pro pozorování, musí být všechny přítomné)'
   or: nebo
+  or_all_caps: NEBO
   or_choose_high_level_taxa: '... nebo vybrat z taxonů vyšší úrovně'
   or_if_you_dont_want_email: Nebo pokud nechcete žádné e-maily...
   or_invite_your_friends: nebo pozvěte své přátele
   or_invited: nebo pozvaní.
+  or_log_in_with_colon: 'Nebo se přihlaste pomocí:'
   or_post_message_to_google_group: 'nebo poslat zprávu naší skupině Google Group:'
   or_upload: Nebo nahrát
   or_you_can: Nebo můžete...
@@ -2892,23 +2923,31 @@ cs:
   originally_imported_from_url_html: Původně importováno z <a href='%{url}'>%{url}</a>
   original_page_url_for_this_photo: Původní URL stránky pro tuto fotku.
   original_rights_holder: Původní držitel práv
+  original_url: Původní adresa URL
   original_url_for_this_map: Původní URL pro tuto mapu
-  organism_appears_captive_cultivated: Vypadá to, že organismus žije v zajetí / pěstuje
-    se
+  organism_appears_captive_cultivated: Organismus žije v zajetí / pěstuje se
   other: Ostatní
   other_animals: ostatní zvířata
   other_animals_plural:
     one: jiné zvíře
     other: jiná zvířata
+  other_lexicons: Další slovníček
   other_listings_of_this_taxon_for_this_place: Jiné záznamy o tomto taxonu z tohoto
     místa
+  other_names: Další jména
   other_species_commonly_misidentified_as_this_species: Další druhy často chybně identifikované
     jako tento druh
   other_species_commonly_misidentified_as_this_species_in_place_html: Další druhy
     často chybně identifikované jako tento druh v <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Ostatní taxony běžně chybně označeny
+    jako tento %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Ostatní taxony běžně
+    chybně označeny jako %{rank}v<a href="%{url}">%{place}</a>
   our_blog: Náš blog
   out_of_range: Mimo dosah
   output_taxon: Výstupní taxon
+  overview: Přehled
+  overlapping_downstream_taxon_frameworks: Překrývající se rámce taxonů
   owner: Vlastník
   parent: Nadřazený
   parent_name: Nadřazený název
@@ -2945,7 +2984,9 @@ cs:
   photo?: Fotka?
   photo_attribution: Fotka %{attribution}
   photo_browser: Prohlížeč fotek
+  photo_by: Foto uživatele
   photo_by_id_attribution: Fotka %{id}, %{attribution}
+  photo_credits: Foto kredity
   photo_deleted: Fotka smazána
   photo_destroyed_because_it_was_deleted_from: Fotka byla zničena, protože byla smazána
     z externí stránky nebo %{site_name} už nemá povolení k jejímu zobrazování
@@ -2972,10 +3013,14 @@ cs:
     %{site_name} nemá přístup k této fotce.
   picasa_identity: Identita Picasa
   pick_a_username: Vybrat uživatelské jméno
+  pin_verb: Připnout
   pink: růžový
+  pinned_locations_desc: Připojte tuto kombinaci souřadnic, přesnosti, geografické
+    důvěrnosti a poznámky k místům pro pozdější použití.
   place: Místo
   placeholder: Zástupný text
   place_added_to_inat_by: Místo přidáno na %{site_name} uživatelem
+  place_autocomplete_placeholder: Zion National Park, Miami, atd.
   place_deleted: Místo bylo smazáno.
   place_geo:
     geo_planet_place_types:
@@ -3096,12 +3141,46 @@ cs:
   places_name:
     afghanistan: Afghánistán
     africa: Afrika
+    akrotiri_and_dhekelia: Akrotiri a Dhekelie
+    aland: Åland
+    albania: Albánie
+    algeria: Algérie
+    american_samoa: Americká Samoa
+    andorra: Andora
+    angola: Angola
+    anguilla: Anguilla
+    antarctica: Antarktida
     antigua_and_barbuda: Antigua a Barbuda
+    argentina: Argentina
+    armenia: Arménie
+    aruba: Aruba
     australia: Austrálie
     austria: Rakousko
+    azerbaijan: Azerbajdžán
+    bahamas: Bahamy
+    bahrain: Bahrajn
+    bangladesh: Bangladéš
+    barbados: Barbados
+    belarus: Bělorusko
     belgium: Belgie
+    belize: Belize
+    benin: Benin
+    bermuda: Bermmudy
+    bhutan: Bhútán
+    bolivia: Bolívie
+    bonaire_saint_eustatius_and_saba: Karibské Nizozemsko
     bosnia_and_herzegovina: Bosna a Hercegovina
+    botswana: Botswana
+    bouvet_island: Bouvetův ostrov
     brazil: Brazílie
+    british_indian_ocean_territory: Britské indickooceánské území
+    british_virgin_islands: Britské Panenské ostrovy
+    brunei: Brunej
+    bulgaria: Bulharsko
+    burkina_faso: Burkina Faso
+    burundi: Burundi
+    cambodia: Kambodža
+    cameroon: Kamerun
     canada: Kanada
     cape_verde: Kapverdy
     cayman_islands: Kajmanské ostrovy
@@ -3356,6 +3435,8 @@ cs:
   positional_accuracy: Přesnost pozice
   possessive_user: uživatele %{user}
   post: Příspěvek
+  post_from_journal_by_parent_html: Příspěvek od <a href="%{url}"> novin od %{parent}
+    </a>
   post_from_your_journal_html: Příspěvek od <a href="%{url}">your journal</a>
   post_published: Příspěvek byl zveřejněn!
   post_some_new_stuff: přidat něco nového
@@ -3835,14 +3916,17 @@ cs:
   showing_one_to: Zobrazení 1 -
   showing_taxa_from_everywhere: Zobrazení taxonů ze všech míst
   showing_taxa_from_place: Zobrazení taxonů z %{place}
+  showing_x_of_y_listings: Zobrazeno %{x} z %{y} záznamů
   shown_publicly_as: Veřejně zobrazeno jako
   sign_in: Přihlásit se
   sign_in_with_provider: Přihlásit se přes %{provider}
+  sign_up_with_provider: Přihlásit se přes %{provider}
   sign_out: Odhlásit se
   sign_up!: Zaregistrujte se!
   sign_up: Zaregistrovat se
   sign_up_exclamation: Zaregistrujte se!
   similar_species: Podobné druhy
+  similar_taxa: Podobné taxony
   simple: Jednoduché
   sign_in_exclamation: Přihlaste se!
   single_observation: Jediné pozorování
@@ -3851,8 +3935,12 @@ cs:
   sizes: Velikosti
   skip_to_next_page: Přeskočit na další stránku
   small: malý
+  site_admin_tools: Nástroje pro správu webových stránek
   site_name_place: '%{site_name} místo'
   site_observations_export_from_date: '%{site_name} export pozorování ze dne %{date}'
+  site_site_admin: '%{site_name} Správce webu'
+  site_staff: '%{site_name} Zaměstnanci'
+  site_stats: Statistika stránky
   site_taxon_page: stránka taxonu %{site_name}
   site_year_in_review: '%{site_name} Hodnocení roku %{year}'
   so_meta!: meta!
@@ -3862,6 +3950,9 @@ cs:
   some_observations_failed_to_save: Některá pozorování se nepodařilo uložit
   some_of_those_photos_couldnt_be_saved: 'Některé z fotek se nepodařilo uložit: %{error}'
   some_other_reason: Jiný důvod můžete vysvětlit níže.
+  duplicate_observation_flag_warning: V případě duplicitních pozorování požádejte
+    pozorovatele, aby namísto označení problém vyřešil, protože správci stránek nemohou
+    odstranit pozorování.
   some_people: Někteří lidé
   some_people_that: Někteří lidé, kteří
   some_rights_reserved: některá práva vyhrazena
@@ -3959,11 +4050,13 @@ cs:
   source_unknown: Zdroj neznámý
   source_url: URL zdroje
   source_of_coordinates: Zdroj souřadnic a měření přesnosti, automatické nastavení.
+  sourced_to: Získané od
   sources: Zdroje
   sources_youve_added: Zdroje, které jste přidali
   sources_and_credits: Zdroje a autorství
   sourcing: Zajištění zdrojů
-  spam: spam
+  spam: Spam
+  spammer: Spammer
   spanish: španělština
   species: Druhy
   species_by_category: druhy podle kategorie
@@ -3986,6 +4079,7 @@ cs:
   start_a_new_project: Začít nový projekt
   start_a_project: Začít projekt
   start_adding_observations: Začít přidávat pozorování
+  start_date_time: Datum / čas zahájení
   start_new_account: Založit nový účet
   start_new_project: Začít nový projekt
   start_one: začít
@@ -4008,12 +4102,18 @@ cs:
     Podívejte se znovu později
   stop_editing: Přestat editovat
   stop_following_user: Přestat sledovat uživatele %{user}
+  stop_testing: Zastavit testování
+  stop_trusting_this_person_with_your_private_coordinates: Přestat věřit této osobě
+    se skrytými souřadnicemi
   stop_updating_position: Přestat aktualizovat polohu
+  studies_that_used_inaturalist_data_in_year: Studie používající iNaturalist data
+    v %{year}
   stuff_just_added: Zrovna jste přidali...
   subject_resolved_noun_html: '%{subject} vyřešeno %{noun}'
   subject_affecting_stuff_html: '%{subject} ovlivňující %{stuff}'
   subject_committed_thing_affecting_stuff_html: '%{subject} spojený s %{thing} ovlivňující
     %{stuff}'
+  submission_model: Model pro předložení
   submission_model_description: Kdo může přidávat pozorování k vašemu projektu?
   submit: Odeslat
   submit_comment: Odeslat komentář
@@ -4048,6 +4148,7 @@ cs:
   suggestions: Návrhy
   summary: Přehled
   supporting: Podpora
+  support_inaturalist: Podpora iNaturalist
   suspicious_photos: Podezřelé fotky
   siutable_observations: vhodná pozorování
   sun: ne
@@ -4060,6 +4161,7 @@ cs:
   synonyms: Synonyma
   table: Tabulka
   table_of_contents: Obsah
+  tag: Štítek
   tagging: Označování...
   tags: Tagy
   tags_are_a_way: Tagy jsou způsob, jak organizovat vaše pozorování. Například můžete
@@ -4074,11 +4176,71 @@ cs:
   take_me_flickr!: Ano, chci jít na Flickr!
   take_me_back: Chci jít zpět
   taxa: Taxony
+  taxa_with_unknown_relationships: Taxony s neznámými vztahy
+  taxa_info: Informace o taxonu
   taxa_all_species_html: Všechny druhy
   taxa_needing_curation: Taxony vyžadující správu
   taxa_observed: pozorované taxony
   taxa_to_include: Taxony, které se mají zahrnout
   taxon: Taxon
+  taxon_autocomplete_placeholder: Ptáci, monarchové, atd.
+  taxon_is_a_rank: '%{taxon} je %{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} je %{rank} v %{iconic_taxon} s jedním pozorováním'
+    other: '%{taxon} je %{rank} in %{iconic_taxon} with %{count} pozorování'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} je %{rank} obojživeníků s jedním pozorování'
+    other: '%{taxon} je %{rank} obojživelníků s %{count} pozorování'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} je %{rank} ptáků s jedním pozorováním %{taxon} je %{rank} ptáků
+      s %{count} pozorováními'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} je %{rank} savců s jedním pozorováním'
+    other: '%{taxon} je %{rank} savců s %{count} pozorováními'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} je %{rank} plazů s 1 pozorováním'
+    other: '%{taxon} je %{rank} plazů s %{count} pozorováními'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} je %{rank} rostlin s 1 pozorováním'
+    other: '%{taxon} je %{rank} rostlin s %{count} pozorováními'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} je %{rank} paprskoploutvých ryb s jedním pozorováním'
+    other: '%{taxon} is a %{rank} paprskoploutvých ryb s %{count} pozorováními'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} je %{rank} zvířat s 1 pozorováním'
+    other: '%{taxon} je %{rank} zvířat s %{count} pozorováními'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} je %{rank} hmyzu s 1 pozorováním'
+    other: '%{taxon} je %{rank} hmyzu s %{count} pozorováními'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} je %{rank} pavoukovců s 1 pozorováním'
+    other: '%{taxon} je %{rank} pavoukovců s %{count} pozorováními'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon} je %{rank} hub s 1 pozorováním'
+    other: '%{taxon} je %{rank} hub s %{count} pozorováními'
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: '%{taxon} je %{rank} prvoků s 1 pozorováním'
+    other: '%{taxon} je %{rank} prvoků s %{count} pozorováními'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} je %{rank} měkkýšů s 1 pozorováním'
+    other: '%{taxon} je %{rank} měkkýšů s %{count} pozorováními'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} je %{rank} Chromista (hnědé řasy a jejich příbuzní) s 1 pozorováním'
+    other: '%{taxon} je %{rank} Chromista (hnědé řasy a jejich příbuzní) s %{count}
+      pozorováními'
+  taxon_is_kingdom_of_life_with_x_observations:
+    one: '%{taxon} je království života s 1 pozorováním'
+    other: '%{taxon} je království života s %{count} pozorováními'
+  taxon_is_threatened_coordinates_hidden: Taxon je ohrožen, souřadnice jsou ve výchozím
+    nastavení skryté
+  taxon_is_threatened_coordinates_hidden_desc: Jeden z taxonů navrhovaných v identifikaci,
+    nebo jeden z taxonů, které obsahují některý z těchto taxonů, je vzácný nebo ohrožený,
+    takže umístění tohoto pozorování bylo skryto.
+  taxon_is_threatened_coordinates_obscured: Taxon je ohrožen, proto jsou výchozí souřadnice
+    zakryty
+  taxon_is_threatened_coordinates_obscured_desc: Jeden z taxonů navrhovaných v identifikaci,
+    nebo jeden z taxonu, který obsahuje jeden z nich, je vzácný nebo ohrožený, takže
+    umístění tohoto pozorování bylo ukryto.
   taxonomy: Taxonomie
   taxon_: taxon
   taxon_assessments_are: Hodnocení taxonů jsou dokumenty hodnotící aktuální status
@@ -4086,6 +4248,8 @@ cs:
     organizace při organizování informací a vyžadování zpětné vazby o statusu několika
     ohrožených taxonů v regionu.
   taxon_change: změna taxonu
+  taxon_change_must_be_committed_to_update_records: Pro aktualizaci záznamů musí být
+    provedena změna taxonu
   taxon_deleted: Taxon smazán.
   taxon_doesnt_have_a_range: Taxon nemá rozsah.
   taxon_drop: odložit taxon
@@ -4098,7 +4262,17 @@ cs:
     data_url: URL údajů
     overlays: Překrytí
   taxon_changes: Změny taxonů
+  taxon_colors: Barvy taxonu
   taxon_curators: Kurátoři taxonů
+  taxon_extras: Doplňky taxonu
+  taxon_framework: Rámec taxonu
+  taxon_framework_notes: Poznámky k rámci taxonu
+  taxon_framework_relationship: Rámcový vztah taxonu
+  taxon_framework_relationship_for: Rámcový vztah taxonu pro
+  taxon_framework_relationship_number: Rámcový vztah taxonu %{number}
+  taxon_framework_relationships: Vztahy mezi taxony
+  taxon_framework_taxon: Taxon rámce taxonu
+  taxon_links: Odkazy taxonu
   taxon_merge: sloučení taxonů
   taxon_name: Název taxonu
   taxon_name_must_match_an_existing_taxon_in_our_database: Název taxonu musí odpovídat
@@ -4111,6 +4285,7 @@ cs:
     pár minut, než se objeví na mapách.
   taxon_range_updated_notice: Rozsah taxonu byl úspěšně aktualizován. Počkejte prosím
     pár minut, než se objeví na mapách.
+  taxon_ranks: Pořadí taxonu
   taxon_removed_from_list: Taxon byl odstraněn ze seznamu.
   taxon_scheme: Plán taxonu
   taxon_schemes: Plány taxonů
@@ -4137,7 +4312,13 @@ cs:
   taxonomic_status: Taxonomický status
   taxonomic_tags_for_flickr: Taxonomické tagy na Flickru
   taxonomic_tree_browser: Prohlížeč taxonomického stromu
+  taxonomy_details: Podrobnosti o taxonomii
+  taxonomy_details_for: Podrobnosti o taxonomii pro
+  taxonomy_details_info: Stránka Taxonomy Details (Podrobnosti o taxonomii) používá
+    rámce taxonu, které pomáhají popsat, co máme na mysli pod pojmem taxon. <a href="/pages/taxon_frameworks">
+    Další informace </a>.
   taxonomy_settings: Taxonomické nastavení
+  teachers_guide: Příručka pro učitele
   tell_everyone_a_little_about_you: Řekněte ostatním něco málo o sobě
   tell_the_world_a_little_about_yourself: Povězte nám něco o sobě
   tell_us_why: Řekněte nám, proč...
@@ -4148,7 +4329,9 @@ cs:
   terms_of_service: Podmínky služby
   terms_service: Podmínky služby
   terrain: terén
+  text: Text
   text_: text
+  thanks!: Děkujeme!
   thanks_for_signing_up: Děkujeme za vaši registraci!
   thanks_for_using: Děkujeme, že využíváte
   thanks_from_all_of_us_here_at: Poděkování od nás všech z
@@ -4254,6 +4437,8 @@ cs:
     to tak, dejte nám o tom prosím vědět.
   there_were_some_problems_with_fields: 'Nastaly problémy u následujících polí:'
   theres_also: také je tu
+  theres_something_wrong_with_taxon_framework_relationship: Je je špatně - nemůžeme
+    určit vztah mezi jakýmkoliv vnitřním a vnějším taxonem
   these_are_items_people_on: Toto jsou položky, které lidé na stránce označili ke
     správě. Spamové komentáře by měly být smazány a uživatelé, kteří spamy vkládají,
     by měli být vyloučeni (jděte na jejich profil a klikněte na „Vyloučit uživatele“
@@ -4276,6 +4461,7 @@ cs:
   they_have_been_invited: '...už byli pozváni'
   third_person_possessive_singular: '%{object_phrase} %{noun}'
   this: tento
+  this_bioblitz_beings_in: Tento bioblitz začíná v
   this_id_was_added_due_to_a: Toto ID bylo přidáno kvůli
   this_is_a: Toto je
   this_is_a_cached_summary_based_on: Toto je skrytý přehled tohoto taxonu podle
@@ -4288,6 +4474,8 @@ cs:
     ID taxonu. Právě ID taxonu se ukládá. Toto hledání funguje pouze pro aktivní taxony.
   this_is_taking_forever: Trvá to moc dlouho. Zkuste to prosím znovu později.
   this_is_the_primary_listing: Toto je primární zápis
+  this_is_your_observation: Tato je vaše pozorování
+  this_is_your_observation_desc: Vždy můžete vidět souřadnice svých vlastních pozorování
   this_job_failed_to_run: Tento úkol se nezdařil. Kontaktujte prosím %{email}
   this_list_is_empty!: Tento seznam je prázdný!
   this_list_only_accepts_taxa_that_are: Tento seznam přijímá pouze údaje, které jsou
@@ -4352,6 +4540,7 @@ cs:
   those_observations_no_longer_exist: Tato pozorování už neexistují.
   threatened: ohrožený
   thu: čt
+  thumb_url: Adresa URL
   time_: čas
   time_ago: před %{time}
   tired_of_testing_this_new_version: Už vás nebaví testování této nové verze?
@@ -4374,6 +4563,8 @@ cs:
   today: Dnes
   too_many_observations_csv: Máte spoustu pozorování!<br /> Můžeme přijmout jen vašich
     prvních %{max_rows} pozorování v každém CSV
+  too_many_taxa_to_render: Tento dotaz volí příliš mnoho taxonů, které se mají zobrazit
+    všechny najednou. Zkuste přidat další filtry.
   tools: Nástroje
   top_5_identifiers: 5 nejlepších identifikátorů
   top_contributors: Nejlepší přispěvatelé
@@ -4384,16 +4575,21 @@ cs:
   top_observers: Nejlepší pozorovatelé
   top_species: Nejlepší druh
   total: Součet
-  totals: součty
+  totals: Součty
   total_members: Celkový počet členů
   total_observations: Celkový počet pozorování
   total_species_observed: Celkový počet pozorovaných druhů
   total_unique_observers: Celkový počet jednotlivých pozorovatelů
   total_users: celkový počet uživatelů,
+  translated_languages: Přeložené jazyky
   "true": Pravda
   trending: Populární
   trends: Trendy
+  trusted: Důvěryhodné
   trusted_project?: Důvěryhodný projekt?
+  trust_this_person_with_your_private_coordinates: Důvěřovat této osobě se skrytými
+    souřadnicemi
+  trust_with_private_coordinates: Důvěřovat skrytým souřadnicím
   try_adding_species_form: Zkuste přidat některé druhy pomocí formuláře na této stránce.
   try_it_out: Vyzkoušejte to
   try_wikipedia: Chcete zkusit Wikipedii?
@@ -4427,6 +4623,7 @@ cs:
   unknown: Neznámý
   unknown_error: Neznámá chyba
   unknown_rank: (Neznámé zařazení)
+  unknown_taxon_framework_relationship: Neznámý vztah taxonu
   unfollow: Přestat sledovat
   unlink_your_google_account: Zrušit propojení vašeho účtu na Googlu
   unmute: Zapnout zvuk
@@ -4450,6 +4647,8 @@ cs:
     licencí
   update_existing_sounds_with_new_license: Aktualizovat stávající zvuky na nové volby
     licencí
+  update_observation: Aktualizovat pozorování
+  update_observations: Aktualizovat více pozorování
   update_past: Aktualizovat minulý %{type}
   update_photos: Aktualizovat fotky
   update_search: Aktualizovat vyhledávání
@@ -4472,6 +4671,7 @@ cs:
     data v tabulce nebo databázi, pak je toto asi nejlepší volba.
   upload_photo: Nahrát fotografii
   upload_photos: Nahrát fotky
+  upload_range: Nahrát rozsah
   uploaded_by: Nahráno uživatelem
   uploader:
     tooltips:
@@ -4514,11 +4714,15 @@ cs:
   user_added_an_x_to_noun_by_html: Uživatel %{user} přidal %{x} k %{noun} podle %{by}
   user_added_an_x_to_noun_html: Uživatel %{user} přidal %{x} k %{noun}
   user_added_x_observations_html: Uživatel %{user} přidal %{x} pozorování
+  user_already_authenticated: Uživatel je již ověřen
+  user_autocomplete_placeholder: kueda, simon123, atd.
   user_blocked: Uživatel zablokován
   user_commented: Uživatel %{user} přidal komentář
   user_commented_on: Uživatel %{user} okomentoval váš %{title} %{time}
   user_disagrees_this_is_taxon: Uživatel %{user} nesouhlasí s tím, že toto je %{taxon}
   user_faved_a_noun_by_owner: Uživatel %{user} označený jako oblíbený %{noun} %{owner}
+  user_flagged_as_a_spammer_html: '%{user} označen jako spammer'
+  user_flagged_as_a_non_spammer_html: '%{user} označen jako nespammer'
   user_follows: Uživatel %{user} sleduje
   user_has_opted_out_of_community_id: Uživatel se rozhodl nepoužít komunitní ID
   user_has_opted_out_of_community_ids: Uživatel %{user} se rozhodl zachovat si kontrolu
@@ -4526,6 +4730,8 @@ cs:
   user_has_opted_out_of_community_ids_for_this_obs: Uživatel %{user} se rozhodl zachovat
     si kontrolu nad taxony spojenými s tímto pozorováním
   user_hasnt: Uživatel %{user} neprovedl
+  user_helped_x_people_with_y_ids_html: '%{user} pomoci <strong>%{x} lidé</strong>
+    s <strong>%{y} IDs</strong>'
   user_invite_observation_to_project: Uživatel %{user} by rád připojil vaše pozorování
     „%{observation}“ k projektu %{project}.
   user_invited_you_to_join_html: Uživatel %{user} vás pozval, abyste se připojili
@@ -4539,10 +4745,15 @@ cs:
     %{project}
   user_muted: Vypnutý zvuk pro uživatele
   user_observations: Pozorování uživatele
+  user_observed_on_on_date_in_place: '%{user} pozoroval %{date} v %{place}'
   user_s_id: uživatele %{user} %{id}
   user_s_lists: Seznamy uživatele %{user}
   user_suggested_an_id: Uživatel %{user} navrhl ID
   user_thinks_yours_is: '%{user} %{noun} vaše pozorování %{observation} je'
+  user_trusts_you_with_their_private_coordinates: '%{user} vám věří s jejich skrytými
+    souřadnicemi'
+  user_trusts_you_with_their_private_coordinates_desc: Pozorovatel se rozhodl vám
+    věřit se skrytými souřadnicemi všech jejich pozorování.
   username: Uživatelské jméno
   username_or_email: Uživatelské jméno nebo e-mail
   username_or_user_id: Uživatelské jméno nebo uživatelské ID
@@ -4557,6 +4768,7 @@ cs:
   users_latest_observations_on_site: poslední pozorování uživatele %{user} na %{site}
   users_observations: pozorování uživatele %{user}
   users_profile: Profil uživatele %{user}
+  users_projects: '%{user} projekty'
   users_year_on_site: Rok uživatele %{user} na %{site} %{year}
   using_a_license: použití licence
   using_cc_license_makes_easier_use_your_data: Použití licence <strong>Creative Commons
@@ -4583,8 +4795,9 @@ cs:
   view_contributions: Zobrazit příspěvky
   view_details: Zobrazit podrobnosti
   view_field_options: Zobrazit možnosti pole
-  view_flags: Zobrazit vlajky
-  view_flags_for_x_html: Zobrazit vlajky pro %{x}
+  view_flag: Zobrazit štítky
+  view_flags: Zobrazit štítky
+  view_flags_for_x_html: Zobrazit štítky pro %{x}
   view_full_observation: Zobrazit celé pozorování
   view_invitation: Zobrazit pozvánku
   view_journal: Zobrazit deník
@@ -4611,6 +4824,7 @@ cs:
   view_observations: Zobrazit pozorování
   view_observation_flags: Zobrazit vlajky pozorování
   view_observations_by_everyone: Zobrazit pozorování všech
+  view_observations_by_these_users: Zobrazit pozorování od těchto uživatelů
   view_observations_of_this_taxon_by: Zobrazit pozorování tohoto taxonu
   view_observations_raquo: Zobrazit pozorování &raquo;
   view_on: Zobrazit na
@@ -4629,14 +4843,17 @@ cs:
   view_projects_from_place: Zobrazit projekty z %{place}
   view_real_time_stats_in_a_new_window: Zobrazit statistiku v reálném čase v novém
     okně
+  view_sample: Zobrazit ukázku
   view_site_name_observations_html: Zobrazit pozorování <strong>%{site_name}</strong>
   view_stats: Zobrazit statistiku
   view_taxon_change: Zobrazit změnu taxonu
   view_taxon_changes: Zobrazit změny taxonů
+  view_taxon_framework_relationship: Zobrazit vztahy mezi taxony
   view_taxon_page: Zobrazit stránku taxonu
   view_taxon_page_for: Zobrazit stránku taxonu pro tento
   view_taxon_page_for_this_x: Zobrazit stránku taxonu pro tento %{x}
   view_taxonomic_changes: Zobrazit taxonomické změny
+  view_taxononomy_details_for_taxon: Zobrazit podrobnosti taxonomie pro %{taxon}
   view_terms: Zobrazit podmínky
   view_the: Zobrazit %{action}&#59; %{link}
   view_the_observation: Zobrazit pozorování
@@ -4657,6 +4874,7 @@ cs:
   view_your_year_stats: Zobrazit vaši statistiku za rok %{year}
   view_yours: Zobrazit váš
   view_all_of_your_observations_from_x: Zobrazit všechna vaše pozorování z %{x}
+  video_tutorials: Video návody
   visually_similar: Vizuálně podobný
   vulnerable: zranitelný
   w00t_no_ungrafted_taxa: w00t! Žádné nepřiřazené taxony!
@@ -4702,12 +4920,14 @@ cs:
     příspěvek s názvem %{filename}, ale nepodařilo se to. Opravte prosím následující
     problém(y) a zkuste to znovu.
   weather: Počasí
+  website: Webová stránka
   wed: st
   week_of_date: Týden %{date}
   welcome!: Vítejte!
   welcome_comma!: Vítejte,
   welcome: vítejte
   welcome_back: Vítejte zpátky
+  welcome_back!: Vítejte zpátky
   welcome_comma: Vítejte,
   welcome_login: Vítejte, %{login}
   welcome_message: kde můžete <strong>zaznamenávat</strong> to, co vidíte v přírodě,
@@ -4740,8 +4960,17 @@ cs:
   where_were_you?: Kde jste byli?
   which_projects_can_add_your_observations?: K jakým projektům můžete přidat svá pozorování?
   white: bílý
+  why_you_can_see_the_coordinates: Proč můžete vidět souřadnice
+  who_can_add_observations_to_this_project?: Kdo může přidávat pozorování k vašemu
+    projektu?
+  who_can_see_the_coordinates: Kdo může vidět souřadnice
+  who_can_see_the_coordinates_observer: Osoba, která dělala pozorování
+  who_can_see_the_coordinates_projects: Kurátoři následujících projektů
+  who_can_see_the_coordinates_trusted: Jednotlivci, kterým pozorovatel důvěřoval,
+    se svými skrytými souřadnicemi
   who_helped_user_the_most: Kdo uživateli %{user} nejvíce pomohl
   who_user_helped_the_most: Komu uživatel %{user} nejvíce pomohl
+  why_the_coordinates_are_obscured: Proč jsou souřadnice zakryté
   with_annotation: S anotací
   without_annotation: Bez anotace
   widget: Widget
@@ -4755,6 +4984,7 @@ cs:
   withdrawing: Odstoupení...
   with_errors: S chybami
   within_inaturalist: Na %{site_name}
+  worldwide: Celosvětové
   wondering_what_to_do_next: Toto jsou některé z dalších kroků, které můžete podniknout
     při pozorování a identifikování světa přírody
   would_you_like_to: Chtěli byste
@@ -4766,6 +4996,8 @@ cs:
   x_deleted: '%{x} smazáno'
   x_does_not_exist: '"%{x}" neexistuje'
   x_doesnt: '%{login} není'
+  x_flagged: '%{x} označeno'
+  x_flagged_as_flag: '%{x} označeno jako %{flag}'
   x_hasnt: '%{login} nebyl'
   x_journal: Deník uživatele %{user}
   x_journal_archives_for_y: Deník uživatele %{user} • Archivy pro
@@ -4778,6 +5010,7 @@ cs:
   x_of_y: '%{x} z %{y}'
   x_of_y_people_over_two_thirds_agree_it_is: '%{x} z %{y} lidí (více než 2/3) souhlasí,
     že ano'
+  x_is_the_root_of_the_tree: '%{rank} %{name} je kořen stromu'
   x_project_journal: '%{project} %{name}'
   x_project_stats: Statistika %{project}
   x_sent_you_a_new_message_on_y_html: '%{x} vám poslal/a zprávu na %{y}:'
@@ -4867,6 +5100,11 @@ cs:
   you_cant_remove_other_peoples_observations: Nemůžete odstranit pozorování jiných
     lidí.
   you_cant_rotate_photos_hostde_outside: Nemůžete otáčet fotky uložené mimo %{site_name}.
+  you_curate_a_project_that_contains_this_observation: Organizujete projekt, který
+    obsahuje toto pozorování
+  you_curate_a_project_that_contains_this_observation_desc: |-
+    Při organizování projektu můžete vidět skryté souřadnice
+    pozorování a pozorovatel se rozhodl sdílet souřadnice s kurátory projektu.
   you_didnt_select_any_observations: Nevybrali jste žádná pozorování.
   you_didnt_select_any_photos_to_tag: Nevybrali jste žádné fotky k označení!
   you_dont: Nemáte
@@ -4964,6 +5202,7 @@ cs:
   your_identification: Vaše identifikace
   your_inat_account_has_been_activated: Váš účet %{inat} byl aktivován.
   your_life_list: váš seznam života!
+  your_membership: Vaše členství
   your_month_observations: vaše %{month} pozorování
   your_name_was_saved: Vaše jméno bylo uloženo.
   your_new_password_is: Vaše nové heslo je
@@ -4978,9 +5217,13 @@ cs:
   your_observations_couldnt_be_added_to_that_project: 'Vaše pozorování nemohla být
     k tomuto projektu přidána: %{errors}'
   your_photos_have_been_tagged: Vaše fotky byly označeny!
+  your_projects: Vaše projekty
   your_google_account: Váš účet Google
   your_google_account_info: Informace z vašeho účtu na Googlu
+  your_pinned_locations: Vaše připojená místa
   your_profile_was_successfully_updated: Váš profil byl úspěšně aktualizován!
+  your_recent_projects: Vaše nedávné projekty
+  your_relationships: Vaše vztahy
   your_should_recognize: Některé z těchto fotek byste měli poznat
   your_site_account_has_been_created: Váš účet %{site} byl vytvořen.
   your_site_needs_your_to_authorize_more_permissions_from_provider: '%{site_name}
@@ -4989,6 +5232,7 @@ cs:
   your_sure_delete_list?: Jste si jistí, že chcete smazat tento seznam?
   your_sure_delete_taxon_from_list?: Jste si jistí, že chcete odstranit %{taxon} z
     tohoto seznamu?
+  your_tags: Vaše štítky
   your_world!: Váš svět!
   yours: Váš
   youre_following: sledujete
@@ -5012,6 +5256,7 @@ cs:
     dělají. Pokud chcete sledovat něčí aktualizace, klikněte na odkaz „Sledovat [jméno]“
     v nadpisu, když se díváte na pozorování nebo profil této osoby.
   verifiable: ověřitelné
+  verifiable_observations: ověřitelné pozorování
   views:
     views: Zobrazení
     announcements:
@@ -5038,6 +5283,25 @@ cs:
           please_read_the_teachers_guide_html: Pokud ano, přečtěte si prosím našeho
             <a href="%{url}">Průvodce pro učitele</a>, kde najdete tipy, jak používat
             %{site_name} se studenty.
+    donate:
+      donate_short_desc: Darujte nyní, abyste ukázali, že nás podporujete!
+      donate_desc_html: "<p class = \"lead\">\n  <strong> iNaturalist je jednou z
+        největších komunit na světě\n  zkoumající biologickou rozmanitost. Děkujeme
+        za to, že jste součástí! </ Strong>\n</ P>\n<p class = \"lead\">\n  Pokud
+        věříte v sílu této globální komunity, \n  sdílejte znalosti a vytvářejte nenahraditelná
+        data o biodiverzitě,\n  prosím, zvažte jednorázový nebo opakovaný dar.\n</
+        P>\n<p class = \"lead\">\n  Vaše dary pomáhají podporovat iNaturalist, komunita
+        roste, od\n  zdokonalení počítačů a zavádění nových funkcí\n  pro naše servery
+        a zaměstnance.\n</ P>\n<p class = \"text-muted\">\n  iNaturalist je společná
+        iniciativa Kalifornské akademie věd\n  a National Geographic Society. Všechny
+        dary obdrží\n  Kalifornská akademie věd, 501 (c) (3) nezdanitelný zisk\n  organizace
+        se sídlem ve Spojených státech amerických.\n</ P>"
+      post_donate_social_media_text: Podporuji iNaturalist protože...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: |-
+          Vyřešte prosím <code>spam</code> and <code>copyright
+          infringement</code> pouze v případě, že obsah není spam nebo se nejedná o porušení autorských práv.
     guides:
       index:
         funding_html: Financování vývoje průvodců pochází od <a href="http://eol.org"><img
@@ -5354,6 +5618,13 @@ cs:
       show:
         project_list_desc: Taxony přidané manuálně kurátory projektu a taxony z pozorování
           výzkumného stupně přidaných do projektu se objeví na seznamech projektu.
+    oauth:
+      authorizations:
+        new:
+          authorize_application_to_use_your_account?: Chcete autorizovat %{application}
+            k použití vašeho účtu?
+          this_application_will_be_able_to_colon: 'Tato aplikace bude moci:'
+          more_about_application: Více o %{application}
     observations:
       community_id:
         agreement: Shoda
@@ -5436,6 +5707,8 @@ cs:
         private_longitude: Soukromá zeměpisná délka, nastavená, pokud je pozorování
           soukromé nebo skryté
         geoprivacy: Zda si pozorovatel zvolil možnost skrýt souřadnice
+        taxon_geoprivacy: Nejkonzervativnější geografická důvěrnost se uplatňuje z
+          důvodu stavu zachování taxonů v současné identifikaci.
         coordinates_obscured: Zda byly souřadnice skryty, buď kvůli geosoukromí nebo
           kvůli ohroženému taxonu
         out_of_range: Zda toto pozorování proběhlo mimo známý rozsah výskytu taxonu
@@ -5448,7 +5721,11 @@ cs:
         license: Licence, kterou si pozorovatel zvolil pro toto pozorování
         url: URL pozorování
         image_url: URL základního obrázku
+        sound_url: URL výchozího zvuku. Všimněte si, že to bude fungovat pouze pro
+          přímé stahování, nikoli pro zvuky služeb třetích stran
         tag_list: Seznam tagů oddělených čárkami
+        place_admin1_name: Název správního místa v rámci země
+        place_admin2_name: Název správního místa se řadí pod úroveň země
         positioning_method: Jak byly určeny souřadnice
         positioning_device: Zařízení použité k určení souřadnic
       identify:
@@ -5466,6 +5743,10 @@ cs:
           souřadnice pocházejí z jednotky GPS, zkontrolujte v nastavení, jaký systém
           souřadnic používá. Vezměte na vědomí, že zvláštní souřadnice neukládáme,
           pouze jejich převod na zeměpisnou šířku/délku.'
+        date_column_format: RRRR-MM-DD HH:MM
+        decimal_degrees_format: dd.dddd
+        geoprivacy_must_be_in_english: Sloupec geologická důvěrnost musí být v angličtině
+          a musí být prázdný nebo mít hodnotu "skryté" nebo "soukromé"
         project_csv_template_notice_html: "Tento vzorový soubor pro tento projekt
           vám může pomoci se strukturou souboru CSV. \n<a href=\"%{url}\">Stáhnout
           šablonu</a>"
@@ -5603,7 +5884,16 @@ cs:
         message: |-
           Na %{site_name} jste nějakou dobu nebyli aktivní, tak jsme zastavili vaše odběry. Pro obnovení zasílání aktualizací o aktivitě na stránkách se prosím znovu
           <a href="%{login_url}">přihlaste ke svému účtu</a>.
+      photos_missing:
+        subject: Některé fotky vyžadují opravu
+        we_have_been_housekeeping: |-
+          Dělali jsme úklidové práce a našli jsme fotografie, které byly spojeny s vašimi pozorováními a již nejsou přístupné z původního zdroje. Fotografie hostuje
+          %{providers}.
+        we_included_links: Uvádíme odkazy na níže uvedené fotografie.
     photos:
+      forbidden_notice_html: Momentálně nemáme přístup k těmto fotografiím. Pravděpodobně
+        bude nutné odpojit a znovu připojit účet v <a href="/users/edit"> nastavení
+        </a>, abyste nám udělili více práv.
       inviter:
         automatically_add_to_project: Automaticky přidat k projektu
         automatically_id_the_new_obs_as: Automaticky přiřadit ID novým pozorováním
@@ -5644,7 +5934,13 @@ cs:
         tagy.
       formatting_simple_help: Automaticky propojit URL a vložit konce řádků.
     projects:
+      project_type: Typ projektu
       collection: Sbírka
+      umbrella: Deštník
+      tracks_multiple_projects: sleduje více projektů
+      projects_included: Zahrnuté projekty
+      collection_and_umbrellas_do_not_support: Sběr a zastřešující projekty v současné
+        době nepodporují přístup ke skrytým souřadnicím
       curator_coordinate_access_desc_html: |-
         Nezapomeňte, že <strong>kurátoři projektu mohou přidat jakékoliv vaše pozorování ke svému projektu</strong>, pokud jste tuto možnost nevyloučili v <a
         href="/users/edit">nastavení účtu</a>. Toto pole zaškrtněte pouze v případě, že kurátorům projektů důvěřujete při zobrazování soukromých souřadnic vašich pozorování, která by mohla být k tomuto projektu přidána. Pokud se rozhodnete jim toto povolení neudělit, pořád můžete povolit přístup k soukromým souřadnicím pro jednotlivá pozorování.
@@ -5689,6 +5985,8 @@ cs:
           na stránku vašeho projektu přihlašovací widget do doby, než váš bioblitz
           začne.
         icon_desc: Bude oříznuto na čtverec
+        it_looks_like_this_project_can_be_converted: Zdá se, že tento projekt může
+          být převeden na nový <a href="%{url}"> Projekt kolekce </a>.
         last_aggregated_at_desc: Čas, kdy osoba provádějící seskupení naposledy dokončila
           přidávání pozorování k tomuto projektu
         no_curators: Projekt nemá žádné kurátory. Pokud chcete správcem jmenovat novou
@@ -5739,6 +6037,9 @@ cs:
           CSS). Přístup k vlastním znakům projektu znamená, že vedoucí projektu mohou
           potenciálně přidat škodlivý Javascript, takže důvěřujte pouze projektům,
           které mají vedoucí, kteří jsou zodpovědní a technicky kompetentní.
+        you_can_preview: |-
+          Můžete si prohlédnout, jak bude váš projekt vypadat jako projekt kolekce
+          <a href="%{url}">kliknutím zde</a>.
       invite:
         description_html: |-
           <h3>O pozvánkách</h3>
@@ -5757,6 +6058,52 @@ cs:
         invite_only_description: Členství v tomto projektu je pouze na pozvání. Pokud
           byste se chtěli připojit, kontaktujte prosím jednomu z níže uvedených kurátorů
           a požádejte o pozvání.
+      new:
+        a_project_allows_you_to_gather: Projekt kolekce vám umožňuje shromažďovat
+          a vizualizovat pozorování pomocí nástrojů pro vyhledávání v jádru iNaturalist.
+          To eliminuje potřebu ručně přidávat komentáře, protože vše, co odpovídá
+          parametrům nastaveným projektem, bude automaticky zahrnuto.
+        can_be_included_in_multiple: Může být zařazen do několika zastřešujících projektů
+        click_through_to_individual_projects: Proklikejte jednotlivé projekty
+        collection_projects: Sbírka projektů
+        collection_project_features: Funkce projektů
+        contain_entire_image_without_cropping: Obsahuje celý obraz bez oříznutí
+        custom_banner_icon_and_project_description: Vlastní banner, ikona a popis
+          projektu
+        data_visualizations: Vizualizace dat
+        delete_project: Smazat projekt
+        display_project_name: Zobrazit název projektu
+        leaderboards_among_individuals: Výsledkové tabulky mezi <strong>individuals</strong>
+        leaderboards_among_projects_and_bioblitzes: Výsledková tabulky mezi <strong>projects
+          and bioblitzes</strong>
+        multiple_project_administrators: Více administrátorů projektu
+        name_placeholder: Ptáci v Chicagu, úžasné vážky, atd
+        no_need_to_rely_on_manual_addition: Není třeba se spoléhat na ruční přidávání
+          pozorování nebo na agregátor k pozorování indexu
+        note_these_users_will_be_able_to_edit: 'Poznámka: Tito uživatelé budou moci
+          upravovat VŠECHNY detaily projektu včetně administrátorů.'
+        note_you_can_delete_the_time: '(Poznámka: časové pásmo můžete smazat a určit
+          časy, pokud chcete zahrnout celé dny).'
+        or_drag_and_drop: (nebo přetáhněte)
+        project_background_color: Barva pozadí projektu
+        project_background_color_help: Ujistěte se, že je barva dostatečně tmavá,
+          aby byl bílý  text čitelný.
+        project_banner: Banner projektu (PNG, JPG nebo GIF)
+        project_banner_help: Volitelný obrázek banneru. Ideální rozměry jsou 760px
+          do 320px.
+        project_details: Podrobnosti projektu
+        project_icon: Ikona projektu (PNG, JPG nebo GIF)
+        project_icon_help: Volitelná ikona. Mělo by být minimálně 72x x 72px a bude
+          oříznuta na čtverec
+        project_name: Název projektu
+        project_summary: Shrnutí projektu
+        project_summary_help: Uveďte stručné vysvětlení svého projektu. Prvních 200  znaků
+          bude vidět napravo od banneru domovské obrazovky projektu, takže dejte to
+          nejlepší!
+        project_summary_placeholder: Objevte a sledujte ptáky v Golden Gate parku...
+        start_and_end_times_for_bioblitzes: Časy začátku a konce pro bioblitzes
+        umbrella_project_features: 'Vlastnosti zastřešujících projektů:'
+        unique_url_for_outreach: Jedinečná adresa URL pro předávání
       project_location_privacy_notice_html: |-
         <p>
           Vezměte prosím na vědomí, že kurátoři projektu uvidí veškeré soukromé nebo skryté lokality vašich pozorování v tomto projektu, pokud toto povolení neodvoláte, a budou moci přidávat vaše pozorování do tohoto projektu, pokud <a href="/users/edit">si nezměníte nastavení</a>. Také můžete povolit nebo zrušit přístup k pozorováním projektu jednotlivě.
@@ -6237,6 +6584,8 @@ cs:
         other: Při ukládání objektu %{model} došlo k %{count} chybám a nebylo možné
           jej uložit
   helpers:
+    defaults:
+      title: TOTO JE TITULKA
     select:
       prompt: Vyberte prosím
     submit:
@@ -6300,7 +6649,7 @@ cs:
       messages:
         accepted: musí být přijato
         blank: nesmí být prázdné
-        confirmation: nesouhlasí kontrola
+        confirmation: nesouhlasí heslo
         empty: nesmí být prázdné
         equal_to: musí se rovnat %{count}
         even: musí být sudé číslo
@@ -6332,6 +6681,11 @@ cs:
           other: Při ukládání objektu %{model} došlo k %{count} chybám a nebylo možné
             jej uložit
   activerecord:
+    models:
+      AssessmentSection: Části hodnocení
+      Atlas: Atlas
+      CompleteSet: Dokončit sady
+      TaxonLink: Odkazy taxonu
     attributes:
       assessment:
         description: Popis
@@ -6360,6 +6714,9 @@ cs:
         geo_y: Nic
       observation_field_value:
         value: Hodnota
+      post:
+        title: Název
+        body: Obsah
       project:
         title: Název
         project_icon: Ikona projektu
@@ -6413,6 +6770,7 @@ cs:
         source_identifier: Identifikátor zdroje
       user:
         email: E-mail
+        login: Uživatelské jméno
         name: Název
         locale: Jazyk
         time_zone: Časové pásmo
@@ -6420,7 +6778,48 @@ cs:
         place_id: Místo
         preferred_observation_fields_by: Povolit pole pozorování z
     errors:
+      format: '%{attribute} %{message}'
+      messages:
+        accepted: musí být přijato
+        blank: nesmí být prázdné
+        confirmation: nesouhlasí heslo
+        empty: nesmí být prázdné
+        equal_to: musí se rovnat %{count}
+        even: musí být sudé číslo
+        exclusion: je rezervováno
+        greater_than: musí být větší než %{count}
+        greater_than_or_equal_to: musí být větší nebo rovno %{count}
+        inclusion: není zahrnuto v seznamu
+        invalid: je neplatné
+        less_than: musí být méně než %{count}
+        less_than_or_equal_to: musí být menší než nebo rovno %{count}
+        not_a_number: není číslo
+        not_an_integer: musí být celé číslo
+        odd: musí být liché číslo
+        record_invalid: 'Schválení se nezdařilo: %{errors}'
+        taken: už je obsazené
+        too_long:
+          one: je příliš dlouhá (maximálně 1 znak)
+          other: je příliš dlouhá (maximálně %{count} znaků)
+        too_short:
+          one: je příliš krátká (minimálně 1 znak)
+          other: je příliš krátká (minimálně %{count} znaků)
+        wrong_length:
+          one: nemá správnou délku (má být 1 znak)
+          other: nemá správnou délku (má být %{count} znaky/ů)
+      template:
+        body: 'Následující pole obsahují chybně vyplněné údaje:'
+        header:
+          one: Při ukládání objektu %{model} došlo k chybám a nebylo jej možné uložit
+          other: Při ukládání objektu %{model} došlo k %{count} chybám a nebylo možné
+            jej uložit
       models:
+        application:
+          attributes:
+            redirect_uri:
+              fragment_present: nesmí obsahovat zlomek.
+              has_query_parameter: nemůže obsahovat parametr dotazu.
+              invalid_uri: musí být platný identifikátor URI.
         guide:
           attributes:
             published_at:
@@ -6489,6 +6888,18 @@ cs:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: neměl by obsahovat čárky ani lomítka
+  doorkeeper:
+    flash:
+      applications:
+        create:
+          notice: Aplikace vytvořena.
+        destroy:
+          notice: Aplikace vymazána.
+        update:
+          notice: Aplikace byla aktualizována.
+      authorized_applications:
+        destroy:
+          notice: Aplikace zrušena.
   wild: divoký
   will_paginate:
     previous_label: '&#8592; Předch'
