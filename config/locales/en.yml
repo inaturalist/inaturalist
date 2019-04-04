@@ -5857,10 +5857,12 @@ en:
         note_you_can_delete_the_time: |
           (Note: you can delete the time zone and precise times if you want to include whole days.)
         or_drag_and_drop: (or drag and drop)
-        please_specify_the_requirements: |
-          Please specify the requirements for the observations to be added to this project.
-          You can specify multiple species, places, users, or quality grades to be automatically
-          included, or leave a field blank if you have no specific requirement for it.
+        please_specify_the_requirements_html: |
+          Please specify the requirements for the observations to be added to
+          this project. You can specify multiple species, places, users, or
+          quality grades to be automatically included, or leave a field blank if
+          you have no specific requirement for it. Explanations for each field
+          can found <a href="%{url}">here</a>.          
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
         project_banner: Project Banner (PNG, JPG, or GIF)

@@ -8,11 +8,6 @@ body {
   min-width: 980px;
 }
 
-.bootstrap {
-  a {
-    color: inherit;
-  }
-}
 #header {
   margin-bottom: 0px;
 }
@@ -95,9 +90,6 @@ button[disabled] {
   min-height: 100%;
   font-size: 16px;
   line-height: 24px;
-  a {
-    color: $other-link-color;
-  }
   h4 {
     margin-top: 25px;
   }
