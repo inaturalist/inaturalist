@@ -6,6 +6,7 @@
  * 2015-08-05 pleary - Specify jsonpCallbackName so varnish can cache responses
  * 2015-08-19 pleary - Remove click timeout to avoid delay in popups
  * 2018-07-02 pleary - Some fixes for Google maps renderer in JS v3.32
+ * 2019-04-04 pleary - Configurable tile size; optional interactive
  */
 
 !function (name, context, definition) {
@@ -3504,7 +3505,7 @@ wax.g.connector = function(options) {
     this.tileDimension = options.tileSize || 256;
 
     // non-configurable options
-    this.interactive = true;
+    this.interactive = options.interactive !== false;
     this.tileSize = new google.maps.Size(this.tileDimension, this.tileDimension);
 
     // DOM element cache

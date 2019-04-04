@@ -941,17 +941,17 @@ var appendValidParamsToURL = function( url, options ) {
 };
 
 google.maps.Map.prototype.addPlaceLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'color' ] });
+  _.defaults( options, { validParams: [ "color", "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "places", options.place.id, options );
 };
 
 google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'color' ] });
+  _.defaults( options, { validParams: [ "color", "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
 };
 
 google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'confirmed_color', 'unconfirmed_color' ] });
+  _.defaults( options, { validParams: [ "confirmed_color", "unconfirmed_color", "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
@@ -985,6 +985,7 @@ google.maps.Map.prototype.addPostgisLayerByEndpoint = function( endpoint, endpoi
   this.setTilt(0);
   var tileservers = postgisTileservers( );
   var options = options || { };
+  options.tile_size = 512;
   var tileURLs = _.map( tileservers , function( base ) {
     return appendValidParamsToURL(
       base + "/" + endpoint + "/" + endpointID + "/{z}/{x}/{y}.png", options );
@@ -997,6 +998,7 @@ google.maps.Map.prototype.addPostgisLayerByEndpoint = function( endpoint, endpoi
 // to add a checkbox toggle for this new layer
 google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   options = options || { }
+  tilejson.interactive = false;
   var layer = new wax.g.connector( tilejson );
   layer.title = options.title;
   var layerID = this.overlayMapTypes.push( layer );
@@ -1239,7 +1241,6 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
     // wax needs template or it won't fire on events
     "template": "{{species_guess}}"
   }, options);
-  waxOptions.tileSize = ( options.tileSize === 512 ) ? 512 : 256;
   var layer = new wax.g.connector( waxOptions );
   var layerID =  this.overlayMapTypes.push( layer );
   if( options.disabled ) {
