@@ -13650,7 +13650,6 @@ I18n.translations["en"] = {
   "uploader": {
     "errors": {
       "file_too_big": "File must be less than %{megabytes} MB",
-      "unexpected": "There was an unexpected problem with this file",
       "unsupported_file_type": "File type not supported. We accept JPG, PNG, GIF, WAV, AAC, MP3, and MP4 (audio only)"
     },
     "resize_tip": "If your photo files are too big, try cropping them down to a maximum\nof 2048 by 2048 pixels. This will happen to all photos on the\nserver anyway, and will make for a faster upload.\n",
@@ -13661,7 +13660,8 @@ I18n.translations["en"] = {
       "remove": "Remove selected observations",
       "remove_observation": "Remove observation",
       "remove_photo": "Remove photo",
-      "select_all": "Select all observations"
+      "select_all": "Select all observations",
+      "upload_failed": "Upload failed"
     }
   },
   "uploading_num_of_count_photos": {

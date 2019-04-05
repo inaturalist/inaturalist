@@ -568,23 +568,27 @@ const actions = class actions {
     return function ( dispatch ) {
       const errors = {};
       let showResizeTip = false;
-      _.forEach( rejectedFiles, file => {
+      let showModal = false;
+      const namedRejectedFiles = _.filter( rejectedFiles, f => f.name && f.name.length > 0 );
+      _.forEach( namedRejectedFiles, file => {
         errors[file.name] = errors[file.name] || [];
         if ( file.size > MAX_FILE_SIZE ) {
           errors[file.name].push(
             I18n.t( "uploader.errors.file_too_big", { megabytes: MAX_FILE_SIZE / 1024 / 1024 } )
           );
           showResizeTip = true;
+          showModal = true;
         }
         if ( file.type && !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp/i ) ) {
           errors[file.name].push(
             I18n.t( "uploader.errors.unsupported_file_type" )
           );
-        }
-        if ( errors[file.name].length === 0 ) {
-          errors[file.name].push( I18n.t( "uploader.errors.unexpected" ) );
+          showModal = true;
         }
       } );
+      if ( !showModal ) {
+        return;
+      }
       const message = (
         <div>
           { I18n.t( "there_were_some_problems_with_these_files" ) }
