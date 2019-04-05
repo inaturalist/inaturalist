@@ -50,8 +50,8 @@
         %li= link_to t(:summary), "#summary"
         - unless @trip.body.blank?
           %li= link_to t(:description), "#description"
-        - if @trip.is_a?(Trip) && !@target_list_set.blank?
-          %li= link_to t(:target_list), "#target_list"
+        - if @trip.is_a?( Trip ) && !@target_list_set.blank?
+          %li= link_to t( :target_list ), "#target_list"
         - unless @trip.observations.blank?
           %li= link_to t(:observations), "#observations"
         %li= link_to t(:comments), "#comments"
@@ -95,10 +95,10 @@
                 = render "shared/taxon", :taxon => element[:taxon], :link_url => element[:taxon]
                 - if element[:observations].count > 0
                   - element[:observations].each do |o|
-                    = link_to observation_path(:id => o["id"])  do
+                    = link_to observation_path( :id => o["id"] )  do
                       %svg{ :height => "10", :width => "10" }
                         %title= o["taxon"]["name"]
-                        %circle{:cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7"}
+                        %circle{ :cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7" }
       - unless @trip.observations.blank?
         %section{:id => "observations"}
           .observationcontrols.pull-right

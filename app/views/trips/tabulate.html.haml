@@ -47,7 +47,7 @@
     .col-xs-12
       %ul.list-unstyled
         %li
-          = link_to t(:back_to_x, :noun => "trips"), trips_path, :class => "back crumb"
+          = link_to t( :back_to_x, :noun => "trips" ), trips_path, :class => "back crumb"
       %h2= @title
       .panel.panel-info
         .panel-heading
@@ -55,7 +55,7 @@
   .row
     .col-xs-3
       = form_for :filters, builder: DefaultFormBuilder, html: { method: :get } do |f|
-        = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:taxon)
+        = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t( :taxon )
         = f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil
         = f.text_field :place_id, value: @place ? @place.id : nil, placeholder: t( :start_typing_place_name ), label: t( :place )
         = f.select :month, [1,2,3,4,5,6,7,8,9,10,11,12], include_blank: t( :any ), selected: @month, label: t( :month )
@@ -67,34 +67,34 @@
         - if @trips.empty?
           %p.description= t :no_trips
         - else
-          %table{class: "table table-striped"}
+          %table{ class: "table table-striped" }
             %thead
               %tr
-                %th{scope: "col"} Trip
-                %th{scope: "col"} Title
-                %th{scope: "col"} User
-                %th{scope: "col"} Latitude
-                %th{scope: "col"} Longitude
-                %th{scope: "col"} Date
-                %th{scope: "col"} Duration(min)
-                %th{scope: "col"} Distance(m)
-                %th{scope: "col"} #Observers
-                %th{scope: "col"}=@taxon.name
+                %th{ scope: "col" } Trip
+                %th{ scope: "col" } Title
+                %th{ scope: "col" } User
+                %th{ scope: "col" } Latitude
+                %th{ scope: "col" } Longitude
+                %th{ scope: "col" } Date
+                %th{ scope: "col" } Duration(min)
+                %th{ scope: "col" } Distance(m)
+                %th{ scope: "col" } #Observers
+                %th{ scope: "col" }=@taxon.name
             %tbody
               - for trip in @trips
                 %tr
-                  %th{scope: "row"}
-                    =link_to trip.id, trip_path(trip)
+                  %th{ scope: "row" }
+                    =link_to trip.id, trip_path( trip )
                   %td
-                    =trip.title.truncate(15)
+                    =trip.title.truncate( 15 )
                   %td
-                    =link_to trip.user.login.truncate(15), user_path(trip.user_id) if trip.user_id
+                    =link_to trip.user.login.truncate( 15 ), user_path( trip.user_id ) if trip.user_id
                   %td
-                    =trip.latitude.round(3) if trip.latitude
+                    =trip.latitude.round( 3 ) if trip.latitude
                   %td
-                    =trip.longitude.round(3) if trip.longitude
+                    =trip.longitude.round( 3 ) if trip.longitude
                   %td
-                    =trip.start_time.strftime("%m/%d/%Y")
+                    =trip.start_time.strftime( "%m/%d/%Y" )
                   %td
                     =(( trip.stop_time - trip.start_time ) / 1.minutes ).to_i
                   %td

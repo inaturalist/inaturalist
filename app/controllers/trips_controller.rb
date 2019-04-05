@@ -88,8 +88,8 @@ class TripsController < ApplicationController
           FakeView.image_url(@trip.user.icon.url(:original))
         end
         @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
-        trip_purpose_taxon_ids = @trip.trip_purposes.where(complete: true).map(&:resource_id).flatten.uniq
-        @target_list_taxa = Taxon.find(trip_purpose_taxon_ids).select{|t| (t.ancestor_ids & trip_purpose_taxon_ids).count == 0 }
+        trip_purpose_taxon_ids = @trip.trip_purposes.where( complete: true ).map( &:resource_id ).flatten.uniq
+        @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
         obs = INatAPIService.observations( {
           latitude: @trip.latitude,
           longitude: @trip.longitude,
@@ -103,10 +103,10 @@ class TripsController < ApplicationController
         @target_list_taxa.each do |tlt|
           if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? tlt.id}
             unless o.select{|i| i["obscured"]}.count > 0
-              @target_list_set << {taxon: tlt, observations: o}
+              @target_list_set << { taxon: tlt, observations: o }
             end
           else
-            @target_list_set << {taxon: tlt, observations: []}
+            @target_list_set << { taxon: tlt, observations: [] }
           end
         end
         
@@ -275,11 +275,11 @@ class TripsController < ApplicationController
     per_page = per_page.to_i
     
     scope = Trip.all
-    scope = scope.taxon(@taxon) if @taxon
-    scope = scope.year(@year) if @year
-    scope = scope.month(@month) if @month
-    scope = scope.place(@place) if @place
-    @trips = scope.published.page(params[:page]).per_page(per_page).order("posts.id DESC")
+    scope = scope.taxon( @taxon ) if @taxon
+    scope = scope.year( @year ) if @year
+    scope = scope.month( @month ) if @month
+    scope = scope.place( @place ) if @place
+    @trips = scope.published.page( params[:page] ).per_page( per_page ).order( "posts.id DESC" )
 
     respond_to do |format|
       format.html
