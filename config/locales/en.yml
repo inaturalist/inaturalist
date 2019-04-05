@@ -6446,14 +6446,27 @@ en:
           If you change your mind you can always
           <a href='/users/edit'>edit your settings</a>.
         inaturalist_network_affiliation_desc_html: |
-          The <a href="%{url}" target="_blank">iNaturalist Network</a> is a
-          collection of localized websites connected to the global iNaturalist
-          community. You can change your primary site affiliation, which means
-          that your content will have some priority on that site, but also
-          means that the owners of that site have the right to download and
-          view all your data just like the iNaturalist site admins can. If
-          that site leaves the network, all your account and data will go with
-          that site.
+          <p>
+            The <a href="%{url}" target="_blank">iNaturalist Network</a> is a
+            collection of localized websites that are fully connected to the
+            global iNaturalist community. Network sites are supported by local
+            institutions that have signed an agreement with iNaturalist to
+            promote local use and benefit local biodiversity. They have access
+            to true coordinates from their countries that are automatically
+            obscured from public view in order to protect threatened species.
+          </p>
+          <p>
+            Your username and password works on all sites that are part of
+            the iNaturalist Network. If you choose to affiliate with a Network
+            site, the local institutions that operate each site will also have
+            access to your email address (only to communicate with you about
+            site activities) and access to the true coordinates for observations
+            that are publicly obscured or private.
+          </p>
+          <p>
+            Note: Please do not experimentally change your affiliation if you
+            have more than 1000 observations.
+          </p>
         licensing_desc_html: |
           Licensing your content gives other people the legal right to use it
           without asking your permission if they stick to the terms of the
