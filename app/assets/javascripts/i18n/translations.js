@@ -45,6 +45,8 @@ I18n.translations["af"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -1633,6 +1635,8 @@ I18n.translations["ar"] = {
     "other": "تحديث %{count} أصنوفة مختارة"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "أضف ملاحظة(ات)",
       "combine": "الجمع بين الملاحظات المحددة",
@@ -2036,6 +2040,8 @@ I18n.translations["az"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -2128,6 +2134,8 @@ I18n.translations["be"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -3129,6 +3137,8 @@ I18n.translations["bg"] = {
   "update_observations": "Обнови наблюденията",
   "update_search": "Обнови търсенето",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Добави наблюдения",
       "combine": "Обедини избраните наблюдения",
@@ -3351,6 +3361,8 @@ I18n.translations["bn"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -3898,6 +3910,8 @@ I18n.translations["br"] = {
   },
   "this_year": "Bloaz-mañ",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -4036,6 +4050,8 @@ I18n.translations["bs"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -5624,6 +5640,8 @@ I18n.translations["ca"] = {
     "other": "Actualitzar els %{count} tàxons seleccionats"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Afegiu observació(ns)",
       "combine": "Combineu les observacions seleccionades",
@@ -7202,6 +7220,8 @@ I18n.translations["cs"] = {
     "other": "Aktualizovat %{count} vybraných taxonů"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Přidat pozorování",
       "combine": "Spojit zvolená pozorování",
@@ -9005,6 +9025,8 @@ I18n.translations["da"] = {
     "other": "Opdatér %{count} valgte taksa"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Tilføj observation(er)",
       "combine": "Kombinér valgte observationer",
@@ -10664,6 +10686,8 @@ I18n.translations["de"] = {
   "update_observations": "Beobachtungen aktualisieren",
   "update_search": "Suche aktualisieren",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Beobachtung(en) hinzufügen",
       "combine": "Ausgewählte Beobachtungen kombinieren",
@@ -10934,6 +10958,8 @@ I18n.translations["de-CH"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -11974,6 +12000,8 @@ I18n.translations["el"] = {
   "trends": "Τάσεις",
   "update_observations": "Ενημέρωση παρατηρήσεων",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -13570,6 +13598,7 @@ I18n.translations["en"] = {
   "the_world": "The World",
   "then_keybord_sequence": "then",
   "there_were_problems_adding_taxa": "There were problems adding those taxa: %{errors}",
+  "there_were_some_problems_with_these_files": "There were some problems with these files:",
   "these_observations_have_not_been_uploaded_yet": "These observations have not been uploaded yet.\n",
   "this_bioblitz_beings_in": "This bioblitz begins in",
   "this_id_was_added_due_to_a": "This ID was added due to a",
@@ -13619,6 +13648,12 @@ I18n.translations["en"] = {
     "other": "Update %{count} selected taxa"
   },
   "uploader": {
+    "errors": {
+      "file_too_big": "File must be less than %{megabytes} MB",
+      "unexpected": "There was an unexpected problem with this file",
+      "unsupported_file_type": "File type not supported. We accept JPG, PNG, GIF, WAV, AAC, MP3, and MP4 (audio only)"
+    },
+    "resize_tip": "If your photo files are too big, try cropping them down to a maximum\nof 2048 by 2048 pixels. This will happen to all photos on the\nserver anyway, and will make for a faster upload.\n",
     "tooltips": {
       "add": "Add observation(s)",
       "combine": "Combine selected observations",
@@ -14027,6 +14062,8 @@ I18n.translations["en-GB"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -14167,6 +14204,8 @@ I18n.translations["en-US"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -15755,6 +15794,8 @@ I18n.translations["es"] = {
     "other": "Actualización de %{count} taxones seleccionados"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Añadir observaciones",
       "combine": "Combinar observaciones seleccionadas",
@@ -16727,6 +16768,8 @@ I18n.translations["es-ES"] = {
   "unknown": "Desconocido",
   "update_past": "Actualizar %{type} pasado",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -17739,6 +17782,8 @@ I18n.translations["es-MX"] = {
     "other": "Actualiza  %{count} taxa seleccionados"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Añadir observación(es)",
       "combine": "Combinar observaciones seleccionadas",
@@ -19444,6 +19489,8 @@ I18n.translations["et"] = {
     "other": "Värskenda %{count} valitud taksonit"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Lisa vaatlus(ed)",
       "combine": "Ühenda valitud vaatlused",
@@ -20625,6 +20672,8 @@ I18n.translations["eu"] = {
   "unknown": "Ezezaguna",
   "update_past": "Iraganeko %{type} eguneratu",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -20773,6 +20822,8 @@ I18n.translations["fa"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -22236,6 +22287,8 @@ I18n.translations["fi"] = {
     "other": "Päivitä %{count} valittua taksonia"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Lisää havainto(ja)",
       "photo_failed": "Kuvan tallentaminen epäonnistui",
@@ -24045,6 +24098,8 @@ I18n.translations["fr"] = {
     "other": "Mettre à jour les %{count} taxons sélectionnés"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Ajouter les observations",
       "combine": "Combiner les observations sélectionnées",
@@ -24448,6 +24503,8 @@ I18n.translations["fr-CA"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25171,6 +25228,8 @@ I18n.translations["gl"] = {
   "unknown": "Descoñecido",
   "update_past": "Actualizar %{type} pasado",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25305,6 +25364,8 @@ I18n.translations["ha"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25397,6 +25458,8 @@ I18n.translations["he"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25489,6 +25552,8 @@ I18n.translations["hi"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25581,6 +25646,8 @@ I18n.translations["hr"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25673,6 +25740,8 @@ I18n.translations["hu"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -26597,6 +26666,8 @@ I18n.translations["id"] = {
   "unknown": "Tidak diketahui",
   "update_search": "memperbaharui pencarian",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -26760,6 +26831,8 @@ I18n.translations["ig"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -26852,6 +26925,8 @@ I18n.translations["is"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -28440,6 +28515,8 @@ I18n.translations["it"] = {
     "other": "Aggiorna i %{count} taxa selezionati"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Aggiungi osservazione(i)",
       "combine": "Combina le osservazioni selezionate",
@@ -28847,6 +28924,8 @@ I18n.translations["iw"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -29822,6 +29901,8 @@ I18n.translations["ja"] = {
   "update_past": "過去の%{type}を更新",
   "update_search": "検索結果を更新",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "観察記録を追加",
       "combine": "選択された観察記録を統合",
@@ -30059,6 +30140,8 @@ I18n.translations["ka"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -31124,6 +31207,8 @@ I18n.translations["ko"] = {
   "unknown_error": "알 수 없는 오류",
   "update_observations": "관찰 업데이트",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "photo_failed": "사진 업로드를 실패했습니다",
       "remove": "선택된 관찰 제거",
@@ -32075,6 +32160,8 @@ I18n.translations["lb"] = {
   "update_observations": "Observatiounen aktualiséieren",
   "update_search": "Sichen aktualiséieren",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Observatioun(en) derbäisetzen",
       "photo_failed": "Foto konnt net eropgeluede ginn",
@@ -32275,6 +32362,8 @@ I18n.translations["lexicons"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -32367,6 +32456,8 @@ I18n.translations["lo-LA"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -32459,6 +32550,8 @@ I18n.translations["lt"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -32551,6 +32644,8 @@ I18n.translations["lv"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -33207,6 +33302,8 @@ I18n.translations["mk"] = {
   "total_observations": "Вкупно набљудувања",
   "unknown": "непознато",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -33346,6 +33443,8 @@ I18n.translations["ms"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -33438,6 +33537,8 @@ I18n.translations["nb"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -35026,6 +35127,8 @@ I18n.translations["nl"] = {
     "other": "Werk %{count} geselecteerde taxa bij"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Waarneming(en) toevoegen",
       "combine": "Geselecteerde waarnemingen combineren",
@@ -35429,6 +35532,8 @@ I18n.translations["nn-NO"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -35521,6 +35626,8 @@ I18n.translations["no"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -36209,6 +36316,8 @@ I18n.translations["oc"] = {
   "total": "total",
   "unreview_all": "Marcar tot coma pas relegit",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "select_all": "Seleccionar totas las observacions"
     }
@@ -36351,6 +36460,8 @@ I18n.translations["pap-AW"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -36443,6 +36554,8 @@ I18n.translations["pap-CW"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -36535,6 +36648,8 @@ I18n.translations["pl"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -36627,6 +36742,8 @@ I18n.translations["pt"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -38215,6 +38332,8 @@ I18n.translations["pt-BR"] = {
     "other": "Update %{count} táxons selecionados"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Adicione observação(ões)",
       "combine": "Combinar observações selecionadas",
@@ -39800,6 +39919,8 @@ I18n.translations["pt-PT"] = {
   "unknown_error": "Erro desconhecido",
   "update_search": "Atualizar pesquisa",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Adicionar observação(ões)",
       "photo_failed": "Falha ao carregar a foto",
@@ -39992,6 +40113,8 @@ I18n.translations["ro"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -41590,6 +41713,8 @@ I18n.translations["ru"] = {
     "other": "Обновить %{count} выбранных таксонов"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Добавить наблюдение(я)",
       "combine": "Объединить выбранные наблюдения",
@@ -42011,6 +42136,8 @@ I18n.translations["si"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -42103,6 +42230,8 @@ I18n.translations["sk"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -42195,6 +42324,8 @@ I18n.translations["sl"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -43366,6 +43497,8 @@ I18n.translations["sq"] = {
   "total_species_observed": "Numri total i specjeve të vëzhguara",
   "type_species_name": "Shkruaj emrin e specjeve",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -43538,6 +43671,8 @@ I18n.translations["sr"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -43630,6 +43765,8 @@ I18n.translations["sr-RS"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -44643,6 +44780,8 @@ I18n.translations["sv"] = {
   "update_observations": "Uppdatera observationer",
   "update_search": "Uppdatera sök",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Lägg till observation(er)",
       "combine": "Kombinera markerade observationer",
@@ -44894,6 +45033,8 @@ I18n.translations["th"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -44986,6 +45127,8 @@ I18n.translations["tl"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45078,6 +45221,8 @@ I18n.translations["tr"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45170,6 +45315,8 @@ I18n.translations["uk"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45262,6 +45409,8 @@ I18n.translations["ur"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45354,6 +45503,8 @@ I18n.translations["vi"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45446,6 +45597,8 @@ I18n.translations["yo"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -46819,6 +46972,8 @@ I18n.translations["zh-CN"] = {
     "other": "更新 %{count} 个选定的分类单元"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "添加观察",
       "combine": "组合选择的观察",
@@ -47195,6 +47350,8 @@ I18n.translations["zh-HK"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -48783,6 +48940,8 @@ I18n.translations["zh-TW"] = {
     "other": "更新 %{count} 個已選物種分類"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "添加觀察",
       "combine": "結合已選擇的觀察",
@@ -49186,6 +49345,8 @@ I18n.translations["zh-YUE"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },

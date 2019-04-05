@@ -4,7 +4,7 @@ import React from "react";
 import inaturalistjs from "inaturalistjs";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
-import util from "../models/util";
+import util, { MAX_FILE_SIZE } from "../models/util";
 import { resizeUpload } from "../../../shared/util";
 
 const actions = class actions {
@@ -564,6 +564,53 @@ const actions = class actions {
     };
   }
 
+  static onRejectedFiles( rejectedFiles ) {
+    return function ( dispatch ) {
+      const errors = {};
+      let showResizeTip = false;
+      _.forEach( rejectedFiles, file => {
+        errors[file.name] = errors[file.name] || [];
+        if ( file.size > MAX_FILE_SIZE ) {
+          errors[file.name].push(
+            I18n.t( "uploader.errors.file_too_big", { megabytes: MAX_FILE_SIZE / 1024 / 1024 } )
+          );
+          showResizeTip = true;
+        }
+        if ( file.type && !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp/i ) ) {
+          errors[file.name].push(
+            I18n.t( "uploader.errors.unsupported_file_type" )
+          );
+        }
+        if ( errors[file.name].length === 0 ) {
+          errors[file.name].push( I18n.t( "uploader.errors.unexpected" ) );
+        }
+      } );
+      const message = (
+        <div>
+          { I18n.t( "there_were_some_problems_with_these_files" ) }
+          { _.map( errors, ( fileErrors, fileName ) => (
+            <div key={`file-errors-${fileName}`}>
+              <code>{ fileName }</code>
+              <ul>
+                { _.map( fileErrors, ( error, i ) => <li key={`file-errors-${fileName}-${i}`}>{ error }</li> )}
+              </ul>
+            </div>
+          ) )}
+          <p className="small text-muted">
+            { showResizeTip && I18n.t( "uploader.resize_tip" ) }
+          </p>
+        </div>
+      );
+      dispatch( actions.setState( {
+        confirmModal: {
+          show: true,
+          message,
+          confirmText: I18n.t( "ok" ),
+          hideCancel: true
+        }
+      } ) );
+    };
+  }
 };
 
 export default actions;

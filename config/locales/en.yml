@@ -4098,6 +4098,7 @@ en:
     rows. Of course the problem could always be on our side. If that is the
     case, please let us know.
   there_were_some_problems_with_fields: "There were some problems with the following fields:"
+  there_were_some_problems_with_these_files: "There were some problems with these files:"
   theres_also: there's also
   theres_something_wrong_with_taxon_framework_relationship: There's something wrong here - we can't determine the relationship between any internal and external taxa
   these_are_items_people_on: |
@@ -4316,6 +4317,14 @@ en:
   upload_range: Upload Range
   uploaded_by: Uploaded by
   uploader:
+    errors:
+      file_too_big: File must be less than %{megabytes} MB
+      unexpected: There was an unexpected problem with this file
+      unsupported_file_type: File type not supported. We accept JPG, PNG, GIF, WAV, AAC, MP3, and MP4 (audio only)
+    resize_tip: |
+      If your photo files are too big, try cropping them down to a maximum
+      of 2048 by 2048 pixels. This will happen to all photos on the
+      server anyway, and will make for a faster upload.
     tooltips:
       add: Add observation(s)
       combine: Combine selected observations
