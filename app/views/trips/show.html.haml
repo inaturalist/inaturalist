@@ -69,11 +69,17 @@
             \-
             = l(@trip.stop_time, :format => :long) if @trip.start_time
           .small.text-muted.stacked
-            = t( :distance_traveled, distance: @trip.distance.to_i )  if @trip.distance
+            = t( :latitude_value, latitude: @trip.latitude.round( 3 ) )  if @trip.latitude
             \|
-            = t( :duration, duration: ( ( @trip.stop_time - @trip.start_time ) / 1.minutes ).to_i ) if ( @trip.start_time && @trip.stop_time )
+            = t( :longitude_value, longitude: @trip.longitude.round( 3 ) )  if @trip.longitude
             \|
-            = t( :number_of_observers, number: @trip.number ) if @trip.number
+            = t( :radius_value, radius: @trip.radius )  if @trip.radius
+            \|
+            = t( :distance_traveled_value, distance: @trip.distance.to_i )  if @trip.distance
+            \|
+            = t( :duration_value, duration: ( ( @trip.stop_time - @trip.start_time ) / 1.minutes ).to_i ) if ( @trip.start_time && @trip.stop_time )
+            \|
+            = t( :number_of_observers_value, number: @trip.number ) if @trip.number
       - unless @trip.body.blank?
         %section.stacked.post{:id => "description"}
           = formatted_user_text(@trip.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (@trip.preferred_formatting == Post::FORMATTING_NONE))

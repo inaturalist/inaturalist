@@ -26,8 +26,8 @@
           \:
         = Post::ALLOWED_TAGS.to_a.sort.join(', ')
       .row
-        .col-md-6= f.text_field :distance, :label => t( :distance_traveled_label )
-        .col-md-6= f.text_field :number, :label => t( :number_of_observers_label )
+        .col-md-6= f.text_field :distance, :label => t( :distance_traveled )
+        .col-md-6= f.text_field :number, :label => t( :number_of_observers )
       %h3=t :when_did_you_go?
       .row
         .col-md-6= f.text_field :start_time, :value => (@trip.start_time || Chronic.parse("today at 9am")).strftime("%Y-%m-%d %H:%m %z"), :label => t(:start_time), :placeholder => t(:start_time, :default => "Start time")
