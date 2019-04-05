@@ -459,6 +459,9 @@ Rails.application.routes.draw do
       post :add_taxa_from_observations
       delete :remove_taxa
     end
+    collection do
+      get :tabulate
+    end
   end
   get 'trips/:login' => 'trips#by_login', :as => :trips_by_login, :constraints => { :login => simplified_login_regex }
   

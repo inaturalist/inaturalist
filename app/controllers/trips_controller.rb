@@ -4,7 +4,7 @@ class TripsController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :load_form_data, :only => [:new, :edit]
-  before_filter :set_feature_test, :only => [:index, :show, :edit]
+  before_filter :set_feature_test, :only => [:index, :show, :tabulate]
   before_filter :load_user_by_login, :only => [:by_login]
 
   layout "bootstrap"
@@ -33,6 +33,7 @@ class TripsController < ApplicationController
   def index
     per_page = params[:per_page] unless PER_PAGES.include?(params[:per_page].to_i)
     per_page ||= 30
+    per_page = per_page.to_i
     @trips = Trip.published.page(params[:page]).per_page(per_page).order("posts.id DESC")
 
     respond_to do |format|
@@ -87,23 +88,29 @@ class TripsController < ApplicationController
           FakeView.image_url(@trip.user.icon.url(:original))
         end
         @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
-        @trip_taxa = @trip.trip_taxa.includes(:taxon).order("taxa.ancestry asc") do |a,b|
-          a.taxon.name <=> b.taxon.name
-        end
-        trip_purpose_taxon_ids = @trip.trip_purposes.map(&:resource_id).flatten.uniq
-        @trip_taxa_observed = []
-        @trip_taxa_unobserved = []
-        @trip_taxa_untargeted = []
-        @trip_taxa.each do |tt|
-          if tt.observed?
-            @trip_taxa_observed << tt
-            unless (trip_purpose_taxon_ids & tt.taxon.ancestor_ids).size > 0
-              @trip_taxa_untargeted << tt
+        trip_purpose_taxon_ids = @trip.trip_purposes.where( complete: true ).map( &:resource_id ).flatten.uniq
+        @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
+        obs = INatAPIService.observations( {
+          latitude: @trip.latitude,
+          longitude: @trip.longitude,
+          radius: @trip.radius,
+          d1: @trip.start_time.iso8601,
+          d2: @trip.stop_time.iso8601,
+          user_id: @trip.user_id,
+          per_page: 200
+        } ).results
+        @target_list_set = []
+        @target_list_taxa.each do |tlt|
+          if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? tlt.id}
+            unless o.select{|i| i["obscured"]}.count > 0
+              @target_list_set << { taxon: tlt, observations: o }
             end
           else
-            @trip_taxa_unobserved << tt
+            @target_list_set << { taxon: tlt, observations: [] }
           end
         end
+        
+        
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first
@@ -252,6 +259,33 @@ class TripsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to trips_url }
       format.json { head :no_content }
+    end
+  end
+  
+  def tabulate
+    filter_params = params[:filters] || params
+    @taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
+    @year = filter_params[:year] unless filter_params[:year].blank?
+    @month = filter_params[:month] unless filter_params[:month].blank?
+    place_id = filter_params[:place_id] || params[:place_id]
+    @place = Place.find_by_id(place_id) unless place_id.blank?
+    
+    per_page = params[:per_page]
+    per_page ||= 30
+    per_page = per_page.to_i
+    
+    scope = Trip.all
+    scope = scope.taxon( @taxon ) if @taxon
+    scope = scope.year( @year ) if @year
+    scope = scope.month( @month ) if @month
+    scope = scope.place( @place ) if @place
+    @trips = scope.published.page( params[:page] ).per_page( per_page ).order( "posts.id DESC" )
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: @trips.as_json
+      end
     end
   end
 
