@@ -3014,7 +3014,9 @@ CREATE TABLE public.posts (
     place_id integer,
     latitude numeric(15,10),
     longitude numeric(15,10),
-    radius integer
+    radius integer,
+    distance double precision,
+    number integer
 );
 
 
@@ -9748,4 +9750,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190104024910');
 INSERT INTO schema_migrations (version) VALUES ('20190301012813');
 
 INSERT INTO schema_migrations (version) VALUES ('20190308020554');
+
+INSERT INTO schema_migrations (version) VALUES ('20190404042229');
 

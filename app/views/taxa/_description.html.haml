@@ -1,9 +1,14 @@
-- if @describer.blank? && !@taxon.wikipedia_summary.blank? && !@taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/)
-  - @description ||= "<p>#{@taxon.wikipedia_summary}</p>".html_safe
-- css_class = "clear taxon_description"
-- if @describer
-  - css_class += " #{@describer.name.split('::').last.underscore}_description"
-  - css_class += " wikipedia_description" if @describer.ancestors.include?(TaxonDescribers::Wikipedia)
+:ruby
+  if @describer.blank? && !@taxon.wikipedia_summary.blank? && !@taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/)
+    @description ||= "<p>#{@taxon.wikipedia_summary}</p>".html_safe
+  end
+  css_class = "clear taxon_description"
+  if @describer
+    css_class += " #{@describer.name.split('::').last.underscore}_description"
+    if @describer.is_a?( TaxonDescribers::Wikipedia ) || @describer.ancestors.include?( TaxonDescribers::Wikipedia )
+      css_class += " wikipedia_description"
+    end
+  end
 #taxon_description{:class => css_class}
   %h3.taxon_description_header
     =t :description_from

@@ -13,6 +13,8 @@ export const ACCEPTED_FILE_TYPES = [
   "audio/x-m4a"
 ].join( ", " );
 
+export const MAX_FILE_SIZE = 20971520; // 20 MB in bytes
+
 const util = class util {
 
   static isOnline( callback ) {

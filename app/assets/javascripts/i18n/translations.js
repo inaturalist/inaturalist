@@ -45,6 +45,8 @@ I18n.translations["af"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -1633,6 +1635,8 @@ I18n.translations["ar"] = {
     "other": "تحديث %{count} أصنوفة مختارة"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "أضف ملاحظة(ات)",
       "combine": "الجمع بين الملاحظات المحددة",
@@ -1742,7 +1746,7 @@ I18n.translations["ar"] = {
         "note_these_users_will_be_able_to_edit": "ملاحظة: سيتمكن هؤلاء المستخدمين من تحرير كل تفاصيل المشروع بما في ذلك الإداريين.",
         "note_you_can_delete_the_time": "(ملاحظة: يمكنك حذف المنطقة الزمنية والأوقات الدقيقة إذا كنت تريد تضمين أيام كاملة.)",
         "or_drag_and_drop": "(أو سحب وإسقاط)",
-        "please_specify_the_requirements": "يُرجَى تحديد متطلبات إضافة الملاحظات إلى هذا المشروع،\nيمكنك تحديد أنواع، أو أماكن، أو مستخدمين، أو درجات جودة متعددة ليتم تضمينها \nتلقائيا، أو ترك حقل فارغا إذا لم يكن لديك أي متطلبات محددة له.",
+        "please_specify_the_requirements_html": "يُرجَى تحديد متطلبات إضافة الملاحظات إلى هذا المشروع،\nيمكنك تحديد أنواع، أو أماكن، أو مستخدمين، أو درجات جودة متعددة ليتم تضمينها \nتلقائيا، أو ترك حقل فارغا إذا لم يكن لديك أي متطلبات محددة له.",
         "project_background_color": "لون خلفية ملخص المشروع",
         "project_background_color_help": "تأكد من اختيار لون داكن بدرجة كافية حتى يصبح النص المتراكب الأبيض مقروءا.",
         "project_banner": "بانر المشروع (PNG أو JPG أو GIF)",
@@ -2036,6 +2040,8 @@ I18n.translations["az"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -2128,6 +2134,8 @@ I18n.translations["be"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -3129,6 +3137,8 @@ I18n.translations["bg"] = {
   "update_observations": "Обнови наблюденията",
   "update_search": "Обнови търсенето",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Добави наблюдения",
       "combine": "Обедини избраните наблюдения",
@@ -3351,6 +3361,8 @@ I18n.translations["bn"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -3898,6 +3910,8 @@ I18n.translations["br"] = {
   },
   "this_year": "Bloaz-mañ",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -4036,6 +4050,8 @@ I18n.translations["bs"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -5624,6 +5640,8 @@ I18n.translations["ca"] = {
     "other": "Actualitzar els %{count} tàxons seleccionats"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Afegiu observació(ns)",
       "combine": "Combineu les observacions seleccionades",
@@ -5733,7 +5751,7 @@ I18n.translations["ca"] = {
         "note_these_users_will_be_able_to_edit": "Nota: aquests usuaris poden editar TOTS els detalls del project incloent l'administració.",
         "note_you_can_delete_the_time": "(Nota: podeu eliminar la zona horària i precisar el moment si voleu indicar dies sencers.)",
         "or_drag_and_drop": "(o arrossegar i enganxar)",
-        "please_specify_the_requirements": "Si us plau especifiqueu els requisits per afegir observacions a aquest projecte.\nPodeu especificar diverses espècies, llocs, usuaris, o graus de qualitat perquè siguin automàticament afegides, o deixar-ho en blanc si no hi ha cap requisit específic.",
+        "please_specify_the_requirements_html": "Si us plau especifiqueu els requisits per afegir observacions a aquest projecte.\nPodeu especificar diverses espècies, llocs, usuaris, o graus de qualitat perquè siguin automàticament afegides, o deixar-ho en blanc si no hi ha cap requisit específic.",
         "project_background_color": "Color de fons del resum del Projecte",
         "project_background_color_help": "Assegureu-vos d'escollir un color prou fosc perquè el text blanc sobreposar sigui llegible.",
         "project_banner": "Banner del projecte (PNG, JPG, o GIF)",
@@ -7202,6 +7220,8 @@ I18n.translations["cs"] = {
     "other": "Aktualizovat %{count} vybraných taxonů"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Přidat pozorování",
       "combine": "Spojit zvolená pozorování",
@@ -9005,6 +9025,8 @@ I18n.translations["da"] = {
     "other": "Opdatér %{count} valgte taksa"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Tilføj observation(er)",
       "combine": "Kombinér valgte observationer",
@@ -9114,7 +9136,7 @@ I18n.translations["da"] = {
         "note_these_users_will_be_able_to_edit": "OBS: Disse brugere er i stand til at redigere ALLE projektdetaljer inklusiv administratorer.",
         "note_you_can_delete_the_time": "(OBS: Du kan slette tidszone og nøjagtige tidspunkt, hvis du i stedet vil bruge hele dage.)",
         "or_drag_and_drop": "(eller træk og slip)",
-        "please_specify_the_requirements": "Specificér venligst observertionskravene for observationer, der tilføjes til dette projekt. Du kan vælge flere arter, steder og brugere der inkluderes automatisk.",
+        "please_specify_the_requirements_html": "Specificér venligst observertionskravene for observationer, der tilføjes til dette projekt. Du kan vælge flere arter, steder og brugere der inkluderes automatisk.",
         "project_background_color": "Projektoversigt baggrundsfarve",
         "project_background_color_help": "Sørg for at vælge en farve, der er mørk nok, så den hvide overlejrede tekst er læselig.",
         "project_banner": "Projektbanner (PNG, JPG eller GIF)",
@@ -10664,6 +10686,8 @@ I18n.translations["de"] = {
   "update_observations": "Beobachtungen aktualisieren",
   "update_search": "Suche aktualisieren",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Beobachtung(en) hinzufügen",
       "combine": "Ausgewählte Beobachtungen kombinieren",
@@ -10725,7 +10749,7 @@ I18n.translations["de"] = {
     "projects": {
       "new": {
         "do_you_need_features_from_traditional": "Brauchst du Funktionen aus traditionellen Projekten, wie den Zugriff auf die tatsächlichen Koordinaten, benutzerdefinierte Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht automatisch gefiltert werden können?",
-        "please_specify_the_requirements": "Bitte geben Sie die Anforderungen für die Beobachtungen an, die zu diesem Projekt hinzugefügt werden sollen. Sie können mehrere Arten, Orte, Benutzer oder Qualitätsstufen angeben, die automatisch einbezogen werden sollen, oder ein Feld leer lassen, wenn Sie keine besonderen Anforderungen haben.",
+        "please_specify_the_requirements_html": "Bitte geben Sie die Anforderungen für die Beobachtungen an, die zu diesem Projekt hinzugefügt werden sollen. Sie können mehrere Arten, Orte, Benutzer oder Qualitätsstufen angeben, die automatisch einbezogen werden sollen, oder ein Feld leer lassen, wenn Sie keine besonderen Anforderungen haben.",
         "project_summary_help": "Gib eine kurze Erläuterung deines Projekts an. Ungefähr die ersten 200 Zeichen werden rechts neben dem Banner der Projekt-Startseite zu sehen sein, also schreibe das Wichtigste zu Beginn hin!",
         "we_have_redesigned_projects": "Wir haben die Projekte so umgestaltet, dass sie automatisch alle Beobachtungen einbeziehen, die zu den von dir definierten Orten, Taxa, Benutzern, Qualität und Daten passen. Wähle zwischen zwei Typen:\nKollektionsprojekte und Dachprojekte, die folgende Funktionen gemeinsam haben:"
       },
@@ -10934,6 +10958,8 @@ I18n.translations["de-CH"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -11974,6 +12000,8 @@ I18n.translations["el"] = {
   "trends": "Τάσεις",
   "update_observations": "Ενημέρωση παρατηρήσεων",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -13570,6 +13598,7 @@ I18n.translations["en"] = {
   "the_world": "The World",
   "then_keybord_sequence": "then",
   "there_were_problems_adding_taxa": "There were problems adding those taxa: %{errors}",
+  "there_were_some_problems_with_these_files": "There were some problems with these files:",
   "these_observations_have_not_been_uploaded_yet": "These observations have not been uploaded yet.\n",
   "this_bioblitz_beings_in": "This bioblitz begins in",
   "this_id_was_added_due_to_a": "This ID was added due to a",
@@ -13619,6 +13648,11 @@ I18n.translations["en"] = {
     "other": "Update %{count} selected taxa"
   },
   "uploader": {
+    "errors": {
+      "file_too_big": "File must be less than %{megabytes} MB",
+      "unsupported_file_type": "File type not supported. We accept JPG, PNG, GIF, WAV, AAC, MP3, and MP4 (audio only)"
+    },
+    "resize_tip": "If your photo files are too big, try cropping them down to a maximum\nof 2048 by 2048 pixels. This will happen to all photos on the\nserver anyway, and will make for a faster upload.\n",
     "tooltips": {
       "add": "Add observation(s)",
       "combine": "Combine selected observations",
@@ -13626,7 +13660,8 @@ I18n.translations["en"] = {
       "remove": "Remove selected observations",
       "remove_observation": "Remove observation",
       "remove_photo": "Remove photo",
-      "select_all": "Select all observations"
+      "select_all": "Select all observations",
+      "upload_failed": "Upload failed"
     }
   },
   "uploading_num_of_count_photos": {
@@ -13729,7 +13764,7 @@ I18n.translations["en"] = {
         "note_these_users_will_be_able_to_edit": "Note: these users will be able to edit ALL project details including admins.\n",
         "note_you_can_delete_the_time": "(Note: you can delete the time zone and precise times if you want to include whole days.)\n",
         "or_drag_and_drop": "(or drag and drop)",
-        "please_specify_the_requirements": "Please specify the requirements for the observations to be added to this project.\nYou can specify multiple species, places, users, or quality grades to be automatically\nincluded, or leave a field blank if you have no specific requirement for it.\n",
+        "please_specify_the_requirements_html": "Please specify the requirements for the observations to be added to\nthis project. You can specify multiple species, places, users, or\nquality grades to be automatically included, or leave a field blank if\nyou have no specific requirement for it. Explanations for each field\ncan found <a href=\"%{url}\">here</a>.          \n",
         "project_background_color": "Project Summary Background Color",
         "project_background_color_help": "Make sure to choose a color dark enough so the white overlaid text is legible.",
         "project_banner": "Project Banner (PNG, JPG, or GIF)",
@@ -13960,8 +13995,8 @@ I18n.translations["en"] = {
   "you_appear_offline_try_again": "You appear to be offline. Please try again when you are connected to the Internet.\n",
   "you_are_not_editing_any_guides_add_one_html": "You are not editing any guides. <a href=\"/guides/new\">Add one</a>\n",
   "you_are_setting_this_project_to_aggregate": "You are setting this project to aggregate all observations matching the\nfollowing rules: %{rules} Do you want to proceed?\n",
-  "you_are_submitting_obs_with_no_date_or_no_location": "You are submitting observations without dates or locations.\n",
-  "you_are_submitting_obs_without_photos_and_names": "You are submitting observations without photos and taxon names.\nThese observations will be very difficult to accurately identify.\n",
+  "you_are_submitting_obs_with_no_date_or_no_location": "You are submitting observations without dates or locations. Observations\nwithout this information are often impossible to identify and will not be\nvisible by default in observation searches.\n",
+  "you_are_submitting_obs_without_photos_and_names": "You are submitting observations without photos and taxon names. Observations\nwithout this information are often impossible to identify and will not be\nvisible by default in observation searches.\n",
   "you_curate_a_project_that_contains_this_observation": "You curate a project that contains this observation",
   "you_curate_a_project_that_contains_this_observation_desc": "You can see obscured coordinates when you curate a project that contains an\nobservation and the observer has chosen to share coordinates with curators\nof that project.\n",
   "you_faved_this": "You faved this!",
@@ -14027,6 +14062,8 @@ I18n.translations["en-GB"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -14167,6 +14204,8 @@ I18n.translations["en-US"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -15755,6 +15794,8 @@ I18n.translations["es"] = {
     "other": "Actualización de %{count} taxones seleccionados"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Añadir observaciones",
       "combine": "Combinar observaciones seleccionadas",
@@ -15864,7 +15905,7 @@ I18n.translations["es"] = {
         "note_these_users_will_be_able_to_edit": "Nota: estos usuarios podrán editar TODOS los detalles del proyecto incluyendo a los administradores.",
         "note_you_can_delete_the_time": "(Nota:  puedes eliminar el huso horario y tiempo preciso si  quieres incluir días enteros.)",
         "or_drag_and_drop": "(O arrastrar y soltar)",
-        "please_specify_the_requirements": "Especifica por favor los requisitos para las observaciones que serán añadidas a este proyecto. Puedes seleccionar múltiples especies, sitios, y usuarios para ser automáticamente incluidos.",
+        "please_specify_the_requirements_html": "Especifica por favor los requisitos para las observaciones que serán añadidas a este proyecto. Puedes seleccionar múltiples especies, sitios, y usuarios para ser automáticamente incluidos.",
         "project_background_color": "Color de fondo del resumen del proyecto",
         "project_background_color_help": "Asegúrate de seleccionar un color suficientemente oscuro para que el texto blanco sobrepuesto sea legible.",
         "project_banner": "Imagen del proyecto (PNG, JPG, o GIF)",
@@ -16727,6 +16768,8 @@ I18n.translations["es-ES"] = {
   "unknown": "Desconocido",
   "update_past": "Actualizar %{type} pasado",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -17739,6 +17782,8 @@ I18n.translations["es-MX"] = {
     "other": "Actualiza  %{count} taxa seleccionados"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Añadir observación(es)",
       "combine": "Combinar observaciones seleccionadas",
@@ -19444,6 +19489,8 @@ I18n.translations["et"] = {
     "other": "Värskenda %{count} valitud taksonit"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Lisa vaatlus(ed)",
       "combine": "Ühenda valitud vaatlused",
@@ -19553,7 +19600,7 @@ I18n.translations["et"] = {
         "note_these_users_will_be_able_to_edit": "NB: need kasutajad saavad muuta KÕIKI projekti omadusi, kaasarvatud administraatoreid.",
         "note_you_can_delete_the_time": "(NB: Kui soovid kasutada terveid päevi, võid ajavööndi ja täpse aja kustutada.)",
         "or_drag_and_drop": "(või lohista see siia)",
-        "please_specify_the_requirements": "Palun määra nõuded vaatlustele, mida sellele projektile lisada saab. Võid automaatseks lisamiseks valida korraga mitu liiki, kohta ja kasutajat või jätta antud väli tühjaks, kui sul spetsiifilised kriteeriumid puuduvad.",
+        "please_specify_the_requirements_html": "Palun määra nõuded vaatlustele, mida sellele projektile lisada saab. Võid automaatseks lisamiseks valida korraga mitu liiki, kohta ja kasutajat või jätta antud väli tühjaks, kui sul spetsiifilised kriteeriumid puuduvad.",
         "project_background_color": "Projekti kokkuvõtte tausta värv",
         "project_background_color_help": "Vali kindlasti piisavalt tume värv, et valge pealistekst oleks loetav.",
         "project_banner": "Projekti bänner (PNG, JPG või GIF)",
@@ -20625,6 +20672,8 @@ I18n.translations["eu"] = {
   "unknown": "Ezezaguna",
   "update_past": "Iraganeko %{type} eguneratu",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -20773,6 +20822,8 @@ I18n.translations["fa"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -22236,6 +22287,8 @@ I18n.translations["fi"] = {
     "other": "Päivitä %{count} valittua taksonia"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Lisää havainto(ja)",
       "photo_failed": "Kuvan tallentaminen epäonnistui",
@@ -24045,6 +24098,8 @@ I18n.translations["fr"] = {
     "other": "Mettre à jour les %{count} taxons sélectionnés"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Ajouter les observations",
       "combine": "Combiner les observations sélectionnées",
@@ -24154,7 +24209,7 @@ I18n.translations["fr"] = {
         "note_these_users_will_be_able_to_edit": "Note : ces utilisateurs pourront modifier TOUS les détails du projet, y compris les administrateurs.",
         "note_you_can_delete_the_time": "(Note: vous pouvez supprimer le fuseau horaire et l'heure locale si vous voulez inclure les journées complètes.)",
         "or_drag_and_drop": "(ou glissez et déposez)",
-        "please_specify_the_requirements": "Veuillez spécifier les exigences pour les observations à ajouter à ce projet.\nVous pouvez spécifier plusieurs espèces, lieux, utilisateurs, ou des niveaux de qualité à inclure automatiquement, ou bien laisser le champ vide si vous n'avez pas d’exigences particulières.",
+        "please_specify_the_requirements_html": "Veuillez spécifier les exigences pour les observations à ajouter à ce projet.\nVous pouvez spécifier plusieurs espèces, lieux, utilisateurs, ou des niveaux de qualité à inclure automatiquement, ou bien laisser le champ vide si vous n'avez pas d’exigences particulières.",
         "project_background_color": "Couleur d'arrière plan du résumé du projet",
         "project_background_color_help": "Assurez-vous de choisir une couleur assez sombre pour que le texte blanc recouvrant soit lisible.",
         "project_banner": "Entête de projet (PNG, JPG, ou GIF)",
@@ -24448,6 +24503,8 @@ I18n.translations["fr-CA"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25171,6 +25228,8 @@ I18n.translations["gl"] = {
   "unknown": "Descoñecido",
   "update_past": "Actualizar %{type} pasado",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25305,6 +25364,8 @@ I18n.translations["ha"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25397,6 +25458,8 @@ I18n.translations["he"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25489,6 +25552,8 @@ I18n.translations["hi"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25581,6 +25646,8 @@ I18n.translations["hr"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -25673,6 +25740,8 @@ I18n.translations["hu"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -26597,6 +26666,8 @@ I18n.translations["id"] = {
   "unknown": "Tidak diketahui",
   "update_search": "memperbaharui pencarian",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -26760,6 +26831,8 @@ I18n.translations["ig"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -26852,6 +26925,8 @@ I18n.translations["is"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -28440,6 +28515,8 @@ I18n.translations["it"] = {
     "other": "Aggiorna i %{count} taxa selezionati"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Aggiungi osservazione(i)",
       "combine": "Combina le osservazioni selezionate",
@@ -28549,7 +28626,7 @@ I18n.translations["it"] = {
         "note_these_users_will_be_able_to_edit": "Nota: questi utenti saranno in grado di editare tutti le caratteristiche dei progetti compresi gli amministratori.",
         "note_you_can_delete_the_time": "(Nota: puoi cancellare il fuso orario e precisare le ore se vuoi includere giornate intere.)",
         "or_drag_and_drop": "(o trascina e rilascia)",
-        "please_specify_the_requirements": "Per favore specifica i requisiti delle osservazioni da aggiungere al progetto. Puoi specificare più specie, luoghi, utenti e gradi di qualità da inserire automaticamente, o lasciare un campo vuoto se non hai alcun requisito specifico per esso.",
+        "please_specify_the_requirements_html": "Per favore specifica i requisiti delle osservazioni da aggiungere al progetto. Puoi specificare più specie, luoghi, utenti e gradi di qualità da inserire automaticamente, o lasciare un campo vuoto se non hai alcun requisito specifico per esso.",
         "project_background_color": "Colore di sfondo dell'indice del progetto",
         "project_background_color_help": "Assicurati di scegliere un colore abbastanza scuro in modo che il testo bianco sia visibile.",
         "project_banner": "Banner del Progetto (PNG, JPG o GIF)",
@@ -28847,6 +28924,8 @@ I18n.translations["iw"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -29822,6 +29901,8 @@ I18n.translations["ja"] = {
   "update_past": "過去の%{type}を更新",
   "update_search": "検索結果を更新",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "観察記録を追加",
       "combine": "選択された観察記録を統合",
@@ -30059,6 +30140,8 @@ I18n.translations["ka"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -31124,6 +31207,8 @@ I18n.translations["ko"] = {
   "unknown_error": "알 수 없는 오류",
   "update_observations": "관찰 업데이트",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "photo_failed": "사진 업로드를 실패했습니다",
       "remove": "선택된 관찰 제거",
@@ -32075,6 +32160,8 @@ I18n.translations["lb"] = {
   "update_observations": "Observatiounen aktualiséieren",
   "update_search": "Sichen aktualiséieren",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Observatioun(en) derbäisetzen",
       "photo_failed": "Foto konnt net eropgeluede ginn",
@@ -32275,6 +32362,8 @@ I18n.translations["lexicons"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -32367,6 +32456,8 @@ I18n.translations["lo-LA"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -32459,6 +32550,8 @@ I18n.translations["lt"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -32551,6 +32644,8 @@ I18n.translations["lv"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -33207,6 +33302,8 @@ I18n.translations["mk"] = {
   "total_observations": "Вкупно набљудувања",
   "unknown": "непознато",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -33346,6 +33443,8 @@ I18n.translations["ms"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -33438,6 +33537,8 @@ I18n.translations["nb"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -35026,6 +35127,8 @@ I18n.translations["nl"] = {
     "other": "Werk %{count} geselecteerde taxa bij"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Waarneming(en) toevoegen",
       "combine": "Geselecteerde waarnemingen combineren",
@@ -35135,7 +35238,7 @@ I18n.translations["nl"] = {
         "note_these_users_will_be_able_to_edit": "Opmerking: deze gebruikers kunnen ALLE projectdetails, inclusief admins, bewerken.",
         "note_you_can_delete_the_time": "(Opmerking: u kunt de tijdzone en precieze tijden verwijderen als je hele dagen wilt noteren.)",
         "or_drag_and_drop": "(of sleep en plaats)",
-        "please_specify_the_requirements": "Specificeer de vereisten voor de waarnemingen die aan dit project moeten worden toegevoegd.\nU kunt meerdere soorten, plaatsen, gebruikers of kwaliteitsklassen opgeven\ndie automatisch worden opgenomen, of laat een veld leeg als u er geen specifieke vereiste voor hebt.",
+        "please_specify_the_requirements_html": "Specificeer de vereisten voor de waarnemingen die aan dit project moeten worden toegevoegd.\nU kunt meerdere soorten, plaatsen, gebruikers of kwaliteitsklassen opgeven\ndie automatisch worden opgenomen, of laat een veld leeg als u er geen specifieke vereiste voor hebt.",
         "project_background_color": "Projectoverzicht Achtergrondkleur",
         "project_background_color_help": "Zorg ervoor dat u een kleur kiest die donker genoeg is zodat de witte overlay leesbaar is.",
         "project_banner": "Project banner (PNG, JPG, of GIF)",
@@ -35429,6 +35532,8 @@ I18n.translations["nn-NO"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -35521,6 +35626,8 @@ I18n.translations["no"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -36209,6 +36316,8 @@ I18n.translations["oc"] = {
   "total": "total",
   "unreview_all": "Marcar tot coma pas relegit",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "select_all": "Seleccionar totas las observacions"
     }
@@ -36351,6 +36460,8 @@ I18n.translations["pap-AW"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -36443,6 +36554,8 @@ I18n.translations["pap-CW"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -36535,6 +36648,8 @@ I18n.translations["pl"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -36627,6 +36742,8 @@ I18n.translations["pt"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -38215,6 +38332,8 @@ I18n.translations["pt-BR"] = {
     "other": "Update %{count} táxons selecionados"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Adicione observação(ões)",
       "combine": "Combinar observações selecionadas",
@@ -38324,7 +38443,7 @@ I18n.translations["pt-BR"] = {
         "note_these_users_will_be_able_to_edit": "Nota: esses usuários poderão editar TODOS os detalhes do projeto, incluindo os administradores.",
         "note_you_can_delete_the_time": "(Nota: você pode excluir o fuso horário e a hora exata se quiser incluir dias inteiros.)",
         "or_drag_and_drop": "(ou arraste e solte)",
-        "please_specify_the_requirements": "Por favor, especifique os requisitos para as observações a serem adicionadas a este projeto.\nVocê pode especificar várias espécies, locais, usuários ou notas de qualidade para serem automaticamente\nincluído, ou deixe um campo em branco se você não tiver nenhum requisito específico para isso.",
+        "please_specify_the_requirements_html": "Por favor, especifique os requisitos para as observações a serem adicionadas a este projeto.\nVocê pode especificar várias espécies, locais, usuários ou notas de qualidade para serem automaticamente\nincluído, ou deixe um campo em branco se você não tiver nenhum requisito específico para isso.",
         "project_background_color": "Cor de fundo do resumo do projeto",
         "project_background_color_help": "Certifique-se de selecionar uma cor que seja escura o suficiente para que o texto branco sobreposto seja legível.",
         "project_banner": "Banner de projeto (PNG, JPG ou GIF)",
@@ -39800,6 +39919,8 @@ I18n.translations["pt-PT"] = {
   "unknown_error": "Erro desconhecido",
   "update_search": "Atualizar pesquisa",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Adicionar observação(ões)",
       "photo_failed": "Falha ao carregar a foto",
@@ -39992,6 +40113,8 @@ I18n.translations["ro"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -41590,6 +41713,8 @@ I18n.translations["ru"] = {
     "other": "Обновить %{count} выбранных таксонов"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Добавить наблюдение(я)",
       "combine": "Объединить выбранные наблюдения",
@@ -41699,7 +41824,7 @@ I18n.translations["ru"] = {
         "note_these_users_will_be_able_to_edit": "Примечание: эти пользователи смогут редактировать ВСЕ детали проекта, включая администраторов.",
         "note_you_can_delete_the_time": "(Примечание: вы можете удалить часовой пояс и точное время, если вы хотите включить целые дни.)",
         "or_drag_and_drop": "(или перетащить и отпустить)",
-        "please_specify_the_requirements": "Просьба указать требования к наблюдениям, которые должны быть включены в этот проект. Можно выбрать несколько видов, мест, пользователей и уровней качества для автоматического включения или оставить поле пустым, если у вас нет к нему особых требований.",
+        "please_specify_the_requirements_html": "Просьба указать требования к наблюдениям, которые должны быть включены в этот проект. Можно выбрать несколько видов, мест, пользователей и уровней качества для автоматического включения или оставить поле пустым, если у вас нет к нему особых требований.",
         "project_background_color": "Цвет фона описания проекта",
         "project_background_color_help": "Не забудьте выбрать цвет достаточно темным, чтобы белый наложенный текст был разборчивым.",
         "project_banner": "Баннер проекта (PNG, JPG, или GIF)",
@@ -42011,6 +42136,8 @@ I18n.translations["si"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -42103,6 +42230,8 @@ I18n.translations["sk"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -42195,6 +42324,8 @@ I18n.translations["sl"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -43366,6 +43497,8 @@ I18n.translations["sq"] = {
   "total_species_observed": "Numri total i specjeve të vëzhguara",
   "type_species_name": "Shkruaj emrin e specjeve",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -43538,6 +43671,8 @@ I18n.translations["sr"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -43630,6 +43765,8 @@ I18n.translations["sr-RS"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -44643,6 +44780,8 @@ I18n.translations["sv"] = {
   "update_observations": "Uppdatera observationer",
   "update_search": "Uppdatera sök",
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "Lägg till observation(er)",
       "combine": "Kombinera markerade observationer",
@@ -44894,6 +45033,8 @@ I18n.translations["th"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -44986,6 +45127,8 @@ I18n.translations["tl"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45078,6 +45221,8 @@ I18n.translations["tr"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45170,6 +45315,8 @@ I18n.translations["uk"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45262,6 +45409,8 @@ I18n.translations["ur"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45354,6 +45503,8 @@ I18n.translations["vi"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -45446,6 +45597,8 @@ I18n.translations["yo"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -46819,6 +46972,8 @@ I18n.translations["zh-CN"] = {
     "other": "更新 %{count} 个选定的分类单元"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "添加观察",
       "combine": "组合选择的观察",
@@ -46924,7 +47079,7 @@ I18n.translations["zh-CN"] = {
         "note_these_users_will_be_able_to_edit": "注意：这些用户将能够编辑所有项目详细信息，包括管理员。",
         "note_you_can_delete_the_time": "（注意：如果您希望包含一整天，您可以删除时区和精确时间。）",
         "or_drag_and_drop": "（或者拖放）",
-        "please_specify_the_requirements": "请说明要添加到该项目的观察要求。您可以选择自动包含的多个物种，地点和用户。",
+        "please_specify_the_requirements_html": "请说明要添加到该项目的观察要求。您可以选择自动包含的多个物种，地点和用户。",
         "project_background_color": "项目摘要背景颜色",
         "project_background_color_help": "确保选择足够深的颜色，以使叠加于其上的白色文本清晰可辨。",
         "project_banner": "项目横幅（PNG、JPG或GIF）",
@@ -47195,6 +47350,8 @@ I18n.translations["zh-HK"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },
@@ -48783,6 +48940,8 @@ I18n.translations["zh-TW"] = {
     "other": "更新 %{count} 個已選物種分類"
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
       "add": "添加觀察",
       "combine": "結合已選擇的觀察",
@@ -48892,7 +49051,7 @@ I18n.translations["zh-TW"] = {
         "note_these_users_will_be_able_to_edit": "註：這些包含到管理員的使用者可以編輯所有專案細節。",
         "note_you_can_delete_the_time": "（註：若您想包含一整天，您可以刪除時區以及準確時間。）",
         "or_drag_and_drop": "（或是拖拉）",
-        "please_specify_the_requirements": "請指名添加至此專案的觀察所需內容。\n您可以指定多項物種、地點、自動包含的品質等級，若您對此沒有特別需求欄位可以留空。",
+        "please_specify_the_requirements_html": "請指名添加至此專案的觀察所需內容。\n您可以指定多項物種、地點、自動包含的品質等級，若您對此沒有特別需求欄位可以留空。",
         "project_background_color": "專案摘要背景顏色",
         "project_background_color_help": "請確認挑選顏色的暗度足夠讓所覆蓋白色文字能辨識出。",
         "project_banner": "專案橫幅（PNG、JPG、或 GIF 檔案）",
@@ -49186,6 +49345,8 @@ I18n.translations["zh-YUE"] = {
   "taxon_map": {
   },
   "uploader": {
+    "errors": {
+    },
     "tooltips": {
     }
   },

@@ -15,7 +15,7 @@ import RemoveModal from "./remove_modal";
 import StatusModal from "./status_modal";
 import TopMenu from "./top_menu";
 import HeaderUserMenu from "./header_user_menu";
-import { ACCEPTED_FILE_TYPES } from "../models/util";
+import { ACCEPTED_FILE_TYPES, MAX_FILE_SIZE } from "../models/util";
 
 const fileTarget = {
   drop( props, monitor, component ) {
@@ -29,7 +29,6 @@ const fileTarget = {
 };
 
 class DragDropZone extends Component {
-
   static fileDrop( connect, monitor ) {
     return {
       connectDropTarget: connect.dropTarget( ),
@@ -239,6 +238,7 @@ class DragDropZone extends Component {
           activeClassName="hover"
           disableClick
           accept={ ACCEPTED_FILE_TYPES }
+          maxSize={MAX_FILE_SIZE}
         >
           <nav className="navbar navbar-default">
             <div className="container-fluid">

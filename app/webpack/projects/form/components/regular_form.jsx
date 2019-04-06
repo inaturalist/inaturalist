@@ -43,9 +43,15 @@ class RegularForm extends React.Component {
           <Row className="text">
             <Col xs={12}>
               <h2>{ I18n.t( "observation_requirements" ) }</h2>
-              <div className="help-text">
-                { I18n.t( "views.projects.new.please_specify_the_requirements" ) }
-              </div>
+              <div
+                className="help-text"
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t(
+                    "views.projects.new.please_specify_the_requirements_html",
+                    { url: "/pages/managing-projects#collectionsettings" }
+                  )
+                }}
+              />
             </Col>
           </Row>
           <Row>

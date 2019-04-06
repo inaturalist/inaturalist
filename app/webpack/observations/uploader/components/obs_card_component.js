@@ -178,6 +178,13 @@ class ObsCardComponent extends Component {
     }
     const invalidDate = util.dateInvalid( obsCard.date );
 
+    let locationIcon = <Glyphicon glyph="map-marker" />;
+    if ( obsCard.geoprivacy === "obscured" ) {
+      locationIcon = <i className="icon-icn-location-obscured" />;
+    } else if ( obsCard.geoprivacy === "private" ) {
+      locationIcon = <i className="icon-icn-location-private" />;
+    }
+
     return cardDropTarget( fileDropTarget( cardDragSource(
       <li onClick={ () => selectCard( obsCard ) }>
         <Dropzone
@@ -283,7 +290,7 @@ class ObsCardComponent extends Component {
               onClick={ this.openLocationChooser }
             >
               <div className="input-group-addon input-sm">
-                <Glyphicon glyph="map-marker" />
+                { locationIcon }
               </div>
               <input
                 type="text"

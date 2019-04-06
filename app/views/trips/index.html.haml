@@ -1,3 +1,60 @@
+- content_for( :title ) do
+  - @title = t( :trips )
+  = strip_tags( @title )
 .container
-  - for trip in @trips
-    %p= link_to trip.title, trip
+  .row
+    .col-xs-12
+      %h2= @title
+      .panel.panel-info
+        .panel-heading
+          %h3.panel-title
+            = "About Trips"
+        .panel-body
+          %p
+            = "Trips describe survey effort by recording where and when an area was surveyed and what was targeted."
+            = "The existence of observations in the context of trips can be used to tabulate presence absence data."
+            = "Presence absence data can be useful for understanding samplibg bias in species distribution modeling."
+            = link_to "Read more", "/pages/trips"
+  .row
+    .col-xs-12
+      = link_to t( :new_trip ), new_trip_path, :class => "default button right"
+      = link_to t( :tabulate_presence_absence_data_from_trips ), tabulate_trips_path, :class => "white button left"
+  .row
+    .col-md-12
+      - if @trips.empty?
+        %p.description= t :no_trips
+      - else
+        %table{ class: "table table-striped" }
+          %thead
+            %tr
+              %th{ scope: "col" } Trip
+              %th{ scope: "col" } Title
+              %th{ scope: "col" } User
+              %th{ scope: "col" } Latitude
+              %th{ scope: "col" } Longitude
+              %th{ scope: "col" } Date
+              %th{ scope: "col" } Duration (minutes)
+              %th{ scope: "col" } Distance (meters)
+              %th{ scope: "col" } # Observers
+          %tbody
+            - for trip in @trips
+              %tr
+                %th{ scope: "row" }
+                  =link_to trip.id, trip_path( trip )
+                %td
+                  =trip.title.truncate( 50 )
+                %td
+                  =link_to trip.user.login, user_path( trip.user_id ) if trip.user_id
+                %td
+                  =trip.latitude.round( 3 ) if trip.latitude
+                %td
+                  =trip.longitude.round( 3 ) if trip.longitude
+                %td
+                  =trip.start_time.strftime( "%m/%d/%Y" )
+                %td
+                  =( ( trip.stop_time - trip.start_time ) / 1.minutes ).to_i
+                %td
+                  =trip.distance.to_i if trip.distance
+                %td
+                  =trip.number
+        = will_paginate @trips

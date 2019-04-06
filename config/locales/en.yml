@@ -1107,6 +1107,8 @@ en:
   display_link_to_checklist: Display link to project list from project page
   display_listings_added_by_curators: Display listings added by curators
   display_listings_from_place: Display listings from place
+  distance_traveled_value: "Distance traveled: %{distance}m"
+  distance_traveled: "Distance traveled (m)"
   dna_: DNA
   documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
   do_not_show_this_message_again: Do not show this message again
@@ -1149,6 +1151,7 @@ en:
   drag_and_drop_some_photos_or_sounds: Drag & drop some photos or sounds
   drawings: Drawings
   duplicate_verb: Duplicate
+  duration_value: "Duration: %{duration} minutes"
   each_place_displays_all_species_inat_knows: "Each place page displays all the species %{site_name} knows about from that place, including information about their abundance, conservation status, and who was first to observe that species from that place on %{site_name}. You can filter the species by taxonomic group, color, conservation status, or plain old search."
   edit: Edit
   edit_a_batch_of_observations: Edit a Batch of Observations
@@ -1799,6 +1802,7 @@ en:
   latitude: Latitude
   latitude_in_decimals: 'Latitude in decimal degrees, e.g. 38.123'
   latitude_slash_y_coord_slash_northing: Latitude / y coord / northing
+  latitude_value: "Latitude: %{latitude}"
   layers: Layers
   layout: Layout
   leaderboard: Leaderboard
@@ -2017,6 +2021,7 @@ en:
   longitude: Longitude
   longitude_in_decimal: 'Longitude in decimal degrees, e.g. -122.123'
   longitude_slash_x_coord_slash_easting: Longitude / x coord / easting
+  longitude_value: "Longitude: %{longitude}"
   look_up_name: "Look up name"
   looks_like_neither_have!: Looks like neither have any taxa!
   looks_like_no_species_in_guide: Looks like you don't have an species in your guide yet.
@@ -2404,6 +2409,8 @@ en:
     opt out of this you will only receive notifications about identifications
     of taxa that don't match the taxon in your own identification exactly.
   number_of_observations: Number of observations
+  number_of_observers_value: "Number of observers: %{number}"
+  number_of_observers: "Number of observers"
   number_selected: "# selected"
   numeric_: numeric
   noun_by_you: "%{noun} by you"
@@ -3267,6 +3274,8 @@ en:
   quality_grade_colon: "Quality grade:"
   queued: Queued
   query: Query
+  radius: Radius (m)
+  radius_value: "Radius (m): %{radius}"
   random: Random
   range: Range
   range_from: 'Range from '
@@ -4089,6 +4098,7 @@ en:
     rows. Of course the problem could always be on our side. If that is the
     case, please let us know.
   there_were_some_problems_with_fields: "There were some problems with the following fields:"
+  there_were_some_problems_with_these_files: "There were some problems with these files:"
   theres_also: there's also
   theres_something_wrong_with_taxon_framework_relationship: There's something wrong here - we can't determine the relationship between any internal and external taxa
   these_are_items_people_on: |
@@ -4221,6 +4231,7 @@ en:
   'true': 'True'
   trending: Trending
   trends: Trends
+  trip_target_list_info: 'This is a non-overlaping set of the coarsest taxa in your target list. Any taxa represented by obscured observations excluded. <a href="/pages/trips">Read more</a>.'
   trusted: Trusted
   trusted_project?: Trusted project?
   trust_this_person_with_your_private_coordinates: Trust this person with your hidden coordinates
@@ -4306,6 +4317,13 @@ en:
   upload_range: Upload Range
   uploaded_by: Uploaded by
   uploader:
+    errors:
+      file_too_big: File must be less than %{megabytes} MB
+      unsupported_file_type: File type not supported. We accept JPG, PNG, GIF, WAV, AAC, MP3, and MP4 (audio only)
+    resize_tip: |
+      If your photo files are too big, try cropping them down to a maximum
+      of 2048 by 2048 pixels. This will happen to all photos on the
+      server anyway, and will make for a faster upload.
     tooltips:
       add: Add observation(s)
       combine: Combine selected observations
@@ -4314,6 +4332,7 @@ en:
       remove_observation: Remove observation
       remove_photo: Remove photo
       select_all: Select all observations
+      upload_failed: Upload failed
   uploading_num_of_count_photos:
     one: Uploading photo...
     other: Uploading %{num} of %{count} photos...
@@ -4549,6 +4568,7 @@ en:
   what_do_you_want_to_list: What do you want to list?
   what_to_keep: What to keep
   what_want_to_list?: What do you want to list? 
+  what_were_you_looking_for?: "What were you looking for? (target list)"
   whats_this?: What's this?
   when: When
   when_did_you_see_it?: When did you see it?
@@ -4656,10 +4676,13 @@ en:
     You are setting this project to aggregate all observations matching the
     following rules: %{rules} Do you want to proceed?
   you_are_submitting_obs_without_photos_and_names: |
-    You are submitting observations without photos and taxon names.
-    These observations will be very difficult to accurately identify.
+    You are submitting observations without photos and taxon names. Observations
+    without this information are often impossible to identify and will not be
+    visible by default in observation searches.
   you_are_submitting_obs_with_no_date_or_no_location: |
-    You are submitting observations without dates or locations.
+    You are submitting observations without dates or locations. Observations
+    without this information are often impossible to identify and will not be
+    visible by default in observation searches.
   you_are_subscribed_to: "You're subscribed to "
   you_arent_a_member_of_that_project: You aren't a member of that project.
   you_arent_following_that_person: "You aren't following that person."
@@ -5846,10 +5869,12 @@ en:
         note_you_can_delete_the_time: |
           (Note: you can delete the time zone and precise times if you want to include whole days.)
         or_drag_and_drop: (or drag and drop)
-        please_specify_the_requirements: |
-          Please specify the requirements for the observations to be added to this project.
-          You can specify multiple species, places, users, or quality grades to be automatically
-          included, or leave a field blank if you have no specific requirement for it.
+        please_specify_the_requirements_html: |
+          Please specify the requirements for the observations to be added to
+          this project. You can specify multiple species, places, users, or
+          quality grades to be automatically included, or leave a field blank if
+          you have no specific requirement for it. Explanations for each field
+          can found <a href="%{url}">here</a>.          
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
         project_banner: Project Banner (PNG, JPG, or GIF)
@@ -6424,14 +6449,27 @@ en:
           If you change your mind you can always
           <a href='/users/edit'>edit your settings</a>.
         inaturalist_network_affiliation_desc_html: |
-          The <a href="%{url}" target="_blank">iNaturalist Network</a> is a
-          collection of localized websites connected to the global iNaturalist
-          community. You can change your primary site affiliation, which means
-          that your content will have some priority on that site, but also
-          means that the owners of that site have the right to download and
-          view all your data just like the iNaturalist site admins can. If
-          that site leaves the network, all your account and data will go with
-          that site.
+          <p>
+            The <a href="%{url}" target="_blank">iNaturalist Network</a> is a
+            collection of localized websites that are fully connected to the
+            global iNaturalist community. Network sites are supported by local
+            institutions that have signed an agreement with iNaturalist to
+            promote local use and benefit local biodiversity. They have access
+            to true coordinates from their countries that are automatically
+            obscured from public view in order to protect threatened species.
+          </p>
+          <p>
+            Your username and password works on all sites that are part of
+            the iNaturalist Network. If you choose to affiliate with a Network
+            site, the local institutions that operate each site will also have
+            access to your email address (only to communicate with you about
+            site activities) and access to the true coordinates for observations
+            that are publicly obscured or private.
+          </p>
+          <p>
+            Note: Please do not experimentally change your affiliation if you
+            have more than 1000 observations.
+          </p>
         licensing_desc_html: |
           Licensing your content gives other people the legal right to use it
           without asking your permission if they stick to the terms of the

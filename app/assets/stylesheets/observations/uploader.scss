@@ -134,7 +134,8 @@ input.failed, textarea.failed {
   .col-offset-290 {
     margin-left: 275px;
     position: inherit;
-    width: 70%;
+    // Not sure what this was doing other than causing some weird wrapping issues
+    // width: 70%;
   }
   .left-col-padding {
     padding-left: 5px;
@@ -374,6 +375,11 @@ ul.obs > li .card {
   }
   .caption {
     padding: 0 9px;
+
+    .icon-icn-location-obscured {
+      position: relative;
+      top: 1px;
+    }
   }
   .img-container img {
     box-shadow: 0 2px 4px 2px rgba(0, 0, 0, 0.1);
@@ -463,7 +469,8 @@ ul.obs > li .card {
       font-size: 100px;
       opacity: 0.07;
     }
-    .gallery-item > .glyphicon, .gallery-item > .failed > .glyphicon {
+    .gallery-item > .glyphicon,
+    .gallery-item > .failed > .glyphicon {
       line-height: 144px;
       font-size: 40px;
       opacity: 0.07;
@@ -471,10 +478,15 @@ ul.obs > li .card {
     .gallery-item > .failed {
       width: 180px;
       line-height: 180px;
+      height: 160px;
+      line-height: 20px;
+      display: flex;
+      flex-direction: column;
       & > .glyphicon {
         color: red;
         opacity: 0.2;
         line-height: 1;
+        margin-bottom: 10px;
       }
     }
     img {

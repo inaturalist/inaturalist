@@ -1,5 +1,6 @@
 module TaxonDescribers
   class Base
+
     class_attribute :describer
     def describe(taxon)
       taxon.wikipedia_summary || "No description"
@@ -15,9 +16,10 @@ module TaxonDescribers
       nil
     end
 
-    def self.describer_name
-      self.name.split('::').last
+    def name
+      self.class.name.split( "::" ).last
     end
+    alias :describer_name :name
 
     def self.method_missing(method, *args)
       self.describer = new unless describer.is_a?(self)

@@ -1965,8 +1965,7 @@ class ObservationsController < ApplicationController
                     params[:color] != "heatmap" ) ? "colored_heatmap" : "heatmap"
     @map_type = ( params[:type] == "map" ) ? "MAP" : "SATELLITE"
     @default_color = params[:heatmap_colors] if @map_style == "heatmap"
-    @about_url = @site.map_about_url ? @site.map_about_url :
-      view_context.wiki_page_url('help', anchor: 'mapsymbols')
+    @about_url = @site.map_about_url.blank? ? view_context.wiki_page_url('help', anchor: 'mapsymbols') : @site.map_about_url
   end
 
   def observation_links
