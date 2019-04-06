@@ -8,7 +8,7 @@
   %p= t :flag_description
 = form_for( [@object,  @flag], html: { class: "clear readable buttonrow" } ) do |f|
   = f.label :reason, raw( t(:flag_reason, :record => @model.name.downcase) ), class: "inter"
-  = f.text_field :flag, class: "inter text", maxlength: 255
+  = f.text_field :flag, class: "inter text", maxlength: 255, style: "max-width: 300px;"
   %label &rdquo;
   = f.hidden_field :user_id, value: current_user.id
   = f.hidden_field :flaggable_id, value: @object.id

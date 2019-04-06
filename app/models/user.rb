@@ -846,6 +846,9 @@ class User < ActiveRecord::Base
   #  expose in the UI.
   #
   def self.forget( user_id, options = {} )
+    if user_id.blank?
+      raise "User ID cannot be blank"
+    end
     if user = User.find_by_id( user_id )
       puts "Destroying user (this could take a while)"
       user.sane_destroy
