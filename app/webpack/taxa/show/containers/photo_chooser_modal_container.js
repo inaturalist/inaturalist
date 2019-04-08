@@ -19,6 +19,7 @@ function mapStateToProps( state ) {
   return {
     chosen,
     initialQuery: state.taxon.taxon.name,
+    initialTaxon: taxon,
     visible: state.taxon.photoChooserVisible
   };
 }
