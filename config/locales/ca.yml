@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Abella
+# Author: Abijeet Patro
 # Author: Cgalindo
 # Author: Eduardo Martinez
 # Author: Fitoschido
@@ -6607,12 +6608,19 @@ ca:
           a aquest projecte.'
       delete:
         by_deleting_your_account_you_will_remove: Esborrant el vostre compte eliminareu
+        x_comments_html: '{heu afegit {PLURAL|one=<strong class="count">1 comentari</strong>|heu
+          afegit <strong class="count">%{count} comentaris</strong>}}'
+        furthermore_cannot_undo_html: A més, <strong> aquesta acció no es pot desfer</strong>.
+          Si canvieu d'idea més endavant, no podreu recuperar aquest contingut.
         settings_and_mute_html: "Si aquest lloc genera massa notificacions, considereu
           <a href=\"/users/edit\">canviar la vostra configuració</a> per reduir algunes
           notificacions o aturar la recepció de correu electrònic nostre. Si esteu
           tenint algun problema amb alguna persona específica en el lloc, considereu
           \n<a href=\"/users/edit\">callar-la</a> en comptes d'eliminar el vostre
           compte."
+        still_want_to_delete_html: Si encara esteu segur de voler esborrar el vostre
+          compte, entreu <code>%{confirmation_code}</code> en el formulari següent
+          i premeu el bitó per esborrar el vostre compte i totes les vostres dades.
         type_confirmation_code: Escrigui %{confirmation_code}
         you_must_enter_confirmation_code_in_the_form: Escrigueu "%{confirmation_code}"
           en el formulari per eliminar el vostre compte

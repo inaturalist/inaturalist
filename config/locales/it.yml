@@ -1316,6 +1316,7 @@ it:
   drag_and_drop_some_photos_or_sounds: Trascina e rilascia alcune foto o suoni
   drawings: Bozze
   duplicate_verb: Duplica
+  duration_value: 'Durata: %{duration} minuti'
   each_place_displays_all_species_inat_knows: Ogni pagina di in luogo mostra tutte
     le specie conosciute da %{site_name} per quel luogo, incluse le informazioni di
     abbondanza, dello stato di conservazione, e chi ha per privo osservato quella
@@ -2036,6 +2037,7 @@ it:
   latitude: Latitudine
   latitude_in_decimals: Latitudine in gradi decimali, ad esempio, 38.123
   latitude_slash_y_coord_slash_northing: Latitudine / coord y / nord
+  latitude_value: 'Latitudine: %{latitude}'
   layers: Livelli
   layout: Layout
   leaderboard: Classifica
@@ -2295,6 +2297,7 @@ it:
   longitude: Longitudine
   longitude_in_decimal: Longitudine in gradi decimali, ad esempio, -122.123
   longitude_slash_x_coord_slash_easting: Longitudine / coord x / est
+  longitude_value: 'Longitudine: %{longitude}'
   look_up_name: Cerca il nome
   looks_like_neither_have!: Pare che nessuno abbia alcun taxa!
   looks_like_no_species_in_guide: Sembra che tu non abbia ancora alcuna specie nella
@@ -3552,7 +3555,7 @@ it:
   previous_tab: Scheda precedente
   print_verb: Stampa
   print_in_browser: Stampa nel browser
-  privacy: Informativa sulla privacy
+  privacy: Privacy
   privacy_policy: Informativa sulla privacy
   private: privata
   private_: Privato
@@ -3653,6 +3656,7 @@ it:
   quality_grade_colon: 'Qualità:'
   queued: In coda
   query: Interrogazione
+  radius_value: 'Raggio (m): %{radius}'
   random: Casuale
   range: Intervallo
   range_from: Areale da
@@ -5190,11 +5194,14 @@ it:
   you_are_setting_this_project_to_aggregate: 'Stai impostando il progetto in modo
     che aggreghi tutte le osservazioni che soddisfino alle seguenti regole: %{rules}.
     Sei sicuro di voler procedere?'
-  you_are_submitting_obs_without_photos_and_names: |-
-    Stai inviando osservazioni senza né foto né riferimenti tassonomici.
-    Sarà molto difficile identificare con precisione queste osservazioni.
-  you_are_submitting_obs_with_no_date_or_no_location: Stai caricando un'osservazione
-    senza data né luogo.
+  you_are_submitting_obs_without_photos_and_names: Stai inviando osservazioni senza
+    né foto né riferimenti tassonomici. Le osservazioni senza queste informazioni
+    sono spesso impossibili da identificare e non saranno visibili per impostazione
+    predefinita nelle ricerche di osservazioni.
+  you_are_submitting_obs_with_no_date_or_no_location: Stai caricando osservazioni
+    senza data né luogo. Le osservazioni senza queste informazioni sono spesso impossibili
+    da identificare e non saranno visibili per impostazione predefinita nelle ricerche
+    di osservazioni.
   you_are_subscribed_to: Ti sei iscritto a
   you_arent_a_member_of_that_project: Non sei un membro di questo progetto.
   you_arent_following_that_person: Non stai seguendo questa persona.
@@ -6320,10 +6327,11 @@ it:
         note_you_can_delete_the_time: '(Nota: puoi cancellare il fuso orario e precisare
           le ore se vuoi includere giornate intere.)'
         or_drag_and_drop: (o trascina e rilascia)
-        please_specify_the_requirements_html: Per favore specifica i requisiti delle osservazioni
-          da aggiungere al progetto. Puoi specificare più specie, luoghi, utenti e
-          gradi di qualità da inserire automaticamente, o lasciare un campo vuoto
-          se non hai alcun requisito specifico per esso.
+        please_specify_the_requirements_html: Per favore specifica i requisiti delle
+          osservazioni da aggiungere al progetto. Puoi specificare più specie, luoghi,
+          utenti e gradi di qualità da inserire automaticamente, o lasciare un campo
+          vuoto se non hai alcun requisito specifico per esso. Spiegazioni per ogni
+          campo possono essere trovate <a href="%{url}">qui</a>.
         project_background_color: Colore di sfondo dell'indice del progetto
         project_background_color_help: Assicurati di scegliere un colore abbastanza
           scuro in modo che il testo bianco sia visibile.

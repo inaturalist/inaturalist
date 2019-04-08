@@ -1327,6 +1327,8 @@ fr:
   display_listings_added_by_curators: Afficher les listes ajoutées par les responsables
     de l’organisation
   display_listings_from_place: Afficher les listes du lieu
+  distance_traveled_value: 'Distance parcourue : %{distance} m'
+  distance_traveled: Distance parcourue (m)
   dna_: ADN
   documentation_for_developers_html: Documentation pour <a href="/pages/developers">les
     développeurs</a>
@@ -1370,6 +1372,7 @@ fr:
   drag_and_drop_some_photos_or_sounds: Glisser et déposer quelques photos ou sons
   drawings: Croquis
   duplicate_verb: Doublon
+  duration_value: 'Durée : %{duration} minutes'
   each_place_displays_all_species_inat_knows: Chaque page de lieu affiche toutes les
     espèces dont %{site_name} a connaissance pour ce lieu, y compris les informations
     sur leur abondance, leur statut de conservation et le nom de la première personne
@@ -2110,6 +2113,7 @@ fr:
   latitude: Latitude
   latitude_in_decimals: Latitude en degrés décimaux, par ex. 38,123
   latitude_slash_y_coord_slash_northing: Latitude/coord. y/ordonnée
+  latitude_value: 'Latitude : %{latitude}'
   layers: Couches
   layout: Mise en page
   leaderboard: Classement
@@ -2375,6 +2379,7 @@ fr:
   longitude: Longitude
   longitude_in_decimal: Longitude en degrés décimaux, par ex. -122,123
   longitude_slash_x_coord_slash_easting: Longitude/coord. x/abscisse
+  longitude_value: 'Longitude : %{longitude}'
   look_up_name: Chercher le nom
   looks_like_neither_have!: Il semble qu’aucun n’ait de taxon !
   looks_like_no_species_in_guide: Il semble que vous n’ayez pas encore d’espèce dans
@@ -2797,6 +2802,8 @@ fr:
     que les avertissements sur les identifications ne correspondant pas exactement
     à votre propre identification.
   number_of_observations: Nombre d’observations
+  number_of_observers_value: 'Nombre d''observateurs : %{number}'
+  number_of_observers: Nombre d'observateurs
   number_selected: n° sélectionné
   numeric_: numérique
   noun_by_you: '%{noun} de vous'
@@ -3646,7 +3653,7 @@ fr:
   previous_tab: Onglet précédent
   print_verb: Imprimer
   print_in_browser: Imprimer dans l’explorateur
-  privacy: Politique de confidentialité
+  privacy: Confidentialité
   privacy_policy: Politique de confidentialité
   private: privé
   private_: Privé
@@ -3747,6 +3754,8 @@ fr:
   quality_grade_colon: 'Degré de qualité :'
   queued: Mis en file
   query: Requête
+  radius: Rayon (m)
+  radius_value: 'Rayon (m) : %{radius}'
   random: Aléatoire
   range: Période
   range_from: Aire de répartition de
@@ -3965,6 +3974,8 @@ fr:
     must_be_coordinates_shareable_by_project_curators: l’observateur doit autoriser
       les superviseurs du projet à voir les coordonnées.
   running_total: Total actuel
+  same_day_obscured: Une autre observation de cette personne faite ce jour est obscurcie
+  same_day_private: Une autre observation de cette personne faite ce jour est privée
   said: a dit
   sat: Sam
   satellite: satellite
@@ -4660,6 +4671,8 @@ fr:
     Si c’est le cas, faites-le-nous savoir.
   there_were_some_problems_with_fields: 'Il y a eu des problèmes avec les champs suivants
     :'
+  there_were_some_problems_with_these_files: 'Il y a eu quelques problèmes avec ces
+    fichiers :'
   theres_also: il y a aussi
   theres_something_wrong_with_taxon_framework_relationship: Il y a quelque chose en
     erreur ici — nous ne pouvons pas déterminer la relation entre des taxons interne
@@ -4912,6 +4925,13 @@ fr:
   upload_range: Télécharger la classification
   uploaded_by: Téléversé par
   uploader:
+    errors:
+      file_too_big: Le fichier ne doit pas dépasser %{megabytes} Mo
+      unsupported_file_type: 'Type de fichier non pris en charge. Sont acceptés :
+        JPG, PNG, GIF, WAV, AAC, MP3, et MP4 (seulement audio)'
+    resize_tip: Les fichiers de photos sont trop grands, essayez de les réduire à
+      un maximum de 2048 by 2048 pixels. Cela concerne toutes les photos du serveur,
+      et fera un téléversement plus rapide.
     tooltips:
       add: Ajouter les observations
       combine: Combiner les observations sélectionnées
@@ -4920,6 +4940,7 @@ fr:
       remove_observation: Supprimer l’observation
       remove_photo: Supprimer la photo
       select_all: Sélectionner toutes les observations
+      upload_failed: Échec du téléversement
   uploading_num_of_count_photos:
     one: Téléversement d’une photo…
     other: Téléversement de %{num} sur %{count} photos…
@@ -5039,6 +5060,7 @@ fr:
   view_flags: Afficher les drapeaux
   view_flags_for_x_html: Afficher les drapeaux pour %{x}
   view_full_observation: Afficher l’observation complète
+  view_full_size_photo: Afficher la photo en pleine taille
   view_invitation: Afficher l’invitation
   view_journal: Afficher le journal
   view_leaderboard: Afficher le classement
@@ -5200,6 +5222,7 @@ fr:
   what_do_you_want_to_list: Que voulez-vous lister ?
   what_to_keep: Ce qu’il faut conserver
   what_want_to_list?: Que voulez-vous répertorier?
+  what_were_you_looking_for?: Que cherchiez-vous ? (liste de cibles)
   whats_this?: Qu’est-ce que c’est ?
   when: Quand
   when_did_you_see_it?: Quand l’avez-vous vu?
@@ -5315,10 +5338,12 @@ fr:
     Vous paramétrez ce projet pour agréger toutes les observations correspondant aux
     règles suivantes : %{rules} Voulez-vous continuer ?
   you_are_submitting_obs_without_photos_and_names: Vous soumettez des observations
-    sans photos ni noms de taxon. Ces observations seront très difficiles à identifier
-    avec précision.
+    sans photos ni noms de taxon. Les observations sans cette information sont souvent
+    impossibles à identifier et ne seront pas visibles par défaut lors des recherches
+    d'observations.
   you_are_submitting_obs_with_no_date_or_no_location: Vous soumettez des observations
-    sans date ou lieu.
+    sans date ou lieu. Les observations sans cette information sont souvent impossibles
+    à identifier et ne seront pas visibles par défaut lors des recherches d'observations.
   you_are_subscribed_to: Vous êtes abonné à
   you_arent_a_member_of_that_project: Vous n’êtes pas membre de ce projet.
   you_arent_following_that_person: Vous ne suivez pas cette personne.
@@ -6586,6 +6611,7 @@ fr:
         please_specify_the_requirements_html: |-
           Veuillez spécifier les exigences pour les observations à ajouter à ce projet.
           Vous pouvez spécifier plusieurs espèces, lieux, utilisateurs, ou des niveaux de qualité à inclure automatiquement, ou bien laisser le champ vide si vous n'avez pas d’exigences particulières.
+          L'explication de chaque champ est donnée <a href="%{url}">ici</a>.
         project_background_color: Couleur d'arrière plan du résumé du projet
         project_background_color_help: Assurez-vous de choisir une couleur assez sombre
           pour que le texte blanc recouvrant soit lisible.
@@ -7093,12 +7119,12 @@ fr:
             aidé à l’identification
         x_identifications_html:
           one: |
-            <strong class="count">votre identification</strong>
-            de l’observation d’une autre personne, qui peut affecter la
+            <strong class="count">votre première identification</strong>
+            de l’observation d’une autre personne, qui peut potetiellement affecter la
             qualité des données de cette observation
           other: |
-            <strong class="count">%{count} de vos identifications</strong>
-            des observations d’<strong class="count">%{helpees_count} autres
+            <strong class="count">%{count} de vos propres identifications</strong>
+            par rapport aux observations des <strong class="count">%{helpees_count} autres
             personnes</strong>, qui peuvent affecter la qualité des données
             de ces observations
         x_comments_html:

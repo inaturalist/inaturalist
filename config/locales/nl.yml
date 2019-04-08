@@ -1,6 +1,7 @@
 # Messages for Dutch (Nederlands)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Abijeet Patro
 # Author: Andrawaag
 # Author: BramEsposito
 # Author: Elroy
@@ -2022,6 +2023,7 @@ nl:
   latitude: Breedtegraad
   latitude_in_decimals: Breedtegraad in decimale graden, bijvoorbeeld 38.123
   latitude_slash_y_coord_slash_northing: Latitude / y coord / northing
+  latitude_value: 'Latitude: %{latitude}'
   layers: Lagen
   layout: Layout
   leaderboard: Toplijst
@@ -2282,6 +2284,7 @@ nl:
   longitude: Lengtegraad
   longitude_in_decimal: Lengteligging in decimale graden, bv. -122.123
   longitude_slash_x_coord_slash_easting: Longitude / x coord / easting
+  longitude_value: 'Longitude: %{longitude}'
   look_up_name: Naam opzoeken
   looks_like_neither_have!: Het lijkt er op dat geen van beide een taxon bevat!
   looks_like_no_species_in_guide: Er is nog geen soort in uw gids aanwezig.
@@ -3534,7 +3537,7 @@ nl:
   previous_tab: Vorige tabblad
   print_verb: Afdrukken
   print_in_browser: Afdrukken in browser
-  privacy: Privacybeleid
+  privacy: Privacy
   privacy_policy: Privacybeleid
   private: privé
   private_: Privé
@@ -3634,6 +3637,8 @@ nl:
   quality_grade_colon: 'Kwaliteitsklasse:'
   queued: In wachtrij
   query: Zoekopdracht
+  radius: Straal (m)
+  radius_value: 'Straal (m): %{radius}'
   random: Willekeurig
   range: Bereik
   range_from: Reeks van
@@ -4523,6 +4528,7 @@ nl:
     de foute \nrijen aan. Natuurlijk kan het probleem altijd aan onze kant liggen.
     Als dat het \ngeval is, laat het ons dan weten."
   there_were_some_problems_with_fields: 'Er was een probleem met de volgende velden:'
+  there_were_some_problems_with_these_files: 'De volgende bestanden hebben een probleem:'
   theres_also: er is eveneens
   theres_something_wrong_with_taxon_framework_relationship: Er is hier iets mis. We
     kunnen de relatie tussen interne en externe taxa niet bepalen
@@ -4898,6 +4904,7 @@ nl:
   view_flags: Markeringen weergeven
   view_flags_for_x_html: Markeringen weergeven van %{x}
   view_full_observation: Volledige waarneming weergeven
+  view_full_size_photo: Toonfull-size foto
   view_invitation: Uitnodiging weergeven
   view_journal: Dagboek weergeven
   view_leaderboard: Toplijst weergeven

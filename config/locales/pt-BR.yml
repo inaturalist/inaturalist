@@ -1273,6 +1273,8 @@ pt-BR:
   display_link_to_checklist: Mostra link para a lista do projeto a partir da página
   display_listings_added_by_curators: Mostre listas adicionadas pelos coordenadores
   display_listings_from_place: Mostre listas por lugar
+  distance_traveled_value: 'Distância viajada: %{distance}m'
+  distance_traveled: Distância viajada (m)
   dna_: DNA
   documentation_for_developers_html: Documentação para <a href="/pages/developers">desenvolvedores</a>
   do_not_show_this_message_again: Não mostrar esta mensagem novamente
@@ -1314,6 +1316,7 @@ pt-BR:
   drag_and_drop_some_photos_or_sounds: Arrastar e largar algumas fotografias ou sons
   drawings: Desenhos
   duplicate_verb: Duplicar
+  duration_value: 'Duração: %{duration} minutos'
   each_place_displays_all_species_inat_knows: Cada pagina do local mostra todas as
     espécies que %{site_name} conhece daquele lugar, incluindo informação sobre sua
     abundância, estado de conservação, e quem foi o primeiro a observar aquela espécie
@@ -2030,6 +2033,7 @@ pt-BR:
   latitude: Latitude
   latitude_in_decimals: 'Latitude em graus decimais, ex: 38.123'
   latitude_slash_y_coord_slash_northing: Latitude / Coordenada / Norte Geográfico
+  latitude_value: 'Latitude: %{latitude}'
   layers: Camadas
   layout: Disposição
   leaderboard: Colaboradores mais ativos
@@ -2290,6 +2294,7 @@ pt-BR:
   longitude: Longitude
   longitude_in_decimal: 'Longitude em graus decimais, ex: -122.123'
   longitude_slash_x_coord_slash_easting: Longitude / x coord / sentido leste
+  longitude_value: 'Longitude: %{longitude}'
   look_up_name: Procurar o nome
   looks_like_neither_have!: Parece que também não tem táxons!
   looks_like_no_species_in_guide: Aparentemente você não tem nenhuma espécie nas suas
@@ -2710,6 +2715,8 @@ pt-BR:
     que correspondem as minhas. Se você desativar esta opção, apenas receberá notificações
     sobre identificações de táxons que não correspondam a sua própria identificação.
   number_of_observations: Número de observações
+  number_of_observers_value: 'Número de observadores: %{number}'
+  number_of_observers: Número de observadores
   number_selected: '# selecionado'
   numeric_: numérico
   noun_by_you: '%{noun} por você'
@@ -3545,7 +3552,7 @@ pt-BR:
   previous_tab: Aba Anterior
   print_verb: Imprimir
   print_in_browser: Imprimir no navegador
-  privacy: Política de Privacidade
+  privacy: Privacidade
   privacy_policy: Política de Privacidade
   private: particular
   private_: Privado
@@ -3644,6 +3651,8 @@ pt-BR:
   quality_grade_colon: 'Grau de qualidade:'
   queued: Em espera
   query: Consulta
+  radius: Raio (m)
+  radius_value: 'Raio (m): %{radius}'
   random: Aleatório
   range: Área de Distribuição
   range_from: Distribuição de
@@ -3865,6 +3874,18 @@ pt-BR:
     must_be_coordinates_shareable_by_project_curators: observador deve autorizar que
       administradores de projetos acessem as coordenadas.
   running_total: Total acumulado
+  same_day_obscured: Outra observação por esta pessoa neste dia é obscurecida
+  same_day_obscured_desc: Quando as coordenadas são obscurecidas por causa de um táxon
+    ameaçado, todas as outras observações por essa pessoa naquele dia também são obscurecidas
+    para impedir que as pessoas de adivinhar as coordenadas com base em observações
+    feitas em torno do mesmo tempo. Os indivíduos também podem aplicar essa proteção
+    às coordenadas que possuem escolhido para obscurecer.
+  same_day_private: Outra observação por essa pessoa neste dia é privada
+  same_day_private_desc: Quando as coordenadas estão ocultas devido a um táxon ameaçado,
+    todas as outras observações por essa pessoa naquele dia também estão escondidos
+    para evitar que as pessoas de adivinhar as coordenadas com base em observações
+    feitas em torno do mesmo tempo. Os indivíduos também podem aplicar essa proteção
+    às coordenadas que possuem escolhido para esconder.
   said: disse
   sat: Sab
   satellite: satélite
@@ -4504,6 +4525,7 @@ pt-BR:
     favor revise as colunas com falhas. Claro que o problema também pode ser nosso.
     Se este for o caso, por favor avise-nos.
   there_were_some_problems_with_fields: 'Ocorreram alguns erros com os seguintes campos:'
+  there_were_some_problems_with_these_files: 'Houve alguns problemas com esses arquivos:'
   theres_also: há também
   theres_something_wrong_with_taxon_framework_relationship: Há algo errado aqui -
     não podemos determinar a relação entre quaisquer taxa interna e externa
@@ -4659,6 +4681,9 @@ pt-BR:
   "true": Verdadeiro
   trending: Tendências
   trends: Tendências
+  trip_target_list_info: Este é um conjunto não-sobreposto dos taxa mais grosseiros
+    na sua lista de alvos. Qualquer taxa representada por observações obscuras excluídas.
+    <a href="/pages/trips">Consulte mais informação</a>.
   trusted: Confiável
   trusted_project?: É um projeto confiável?
   trust_this_person_with_your_private_coordinates: Confiar nessa pessoa com suas coordenadas
@@ -4750,6 +4775,13 @@ pt-BR:
   upload_range: Alcance de carregamento
   uploaded_by: Enviado por
   uploader:
+    errors:
+      file_too_big: O arquivo deve ser menor que %{megabytes} MB
+      unsupported_file_type: Tipo de arquivo não suportado. Aceitamos JPG, PNG, GIF,
+        WAV, AAC,MP3 e MP4 (somente áudio)
+    resize_tip: Se os seus arquivos de fotos forem muito grandes, tente recortá-los
+      até um máximo de 2048 por 2048 pixels. Isso acontecerá com todas as fotos no
+      servidor de qualquer maneira, e vai fazer um carregamento mais rápido.
     tooltips:
       add: Adicione observação(ões)
       combine: Combinar observações selecionadas
@@ -4758,6 +4790,7 @@ pt-BR:
       remove_observation: Remover observação
       remove_photo: Remover foto
       select_all: Selecionar todas as observações
+      upload_failed: Carregamento falhou
   uploading_num_of_count_photos:
     one: Carregando foto...
     other: Carregando %{num} de %{count} fotos...
@@ -4876,6 +4909,7 @@ pt-BR:
   view_flags: Ver alertas
   view_flags_for_x_html: Ver alertas para %{x}
   view_full_observation: Ver observação completa
+  view_full_size_photo: Ver foto em tamanho real
   view_invitation: Ver convite
   view_journal: Ver Boletim Informativo
   view_leaderboard: Ver ranking
@@ -5028,6 +5062,7 @@ pt-BR:
   what_do_you_want_to_list: O que você deseja listar?
   what_to_keep: O que guardar
   what_want_to_list?: O que você deseja listar?
+  what_were_you_looking_for?: O que você estava procurando? (lista de alvos)
   whats_this?: O que é isso?
   when: Quando
   when_did_you_see_it?: Quando você viu?
@@ -5142,10 +5177,12 @@ pt-BR:
   you_are_setting_this_project_to_aggregate: 'Você está configurando este projeto
     para agregar todas as observações na plataforma que combinem com a seguinte regra:
     %{rules} Gostaria de continuar?'
-  you_are_submitting_obs_without_photos_and_names: Você esta submetendo observações
-    sem fotos ou nomes de táxons. Observações assim são muito difíceis de se identificar.
-  you_are_submitting_obs_with_no_date_or_no_location: Você esta submetendo observações
-    sem datas ou localizações.
+  you_are_submitting_obs_without_photos_and_names: Você está enviando observações
+    sem fotos e nomes de táxons. Observações sem essas informações, muitas vezes é
+    impossível identificar e não será visível por padrão em pesquisas de observação.
+  you_are_submitting_obs_with_no_date_or_no_location: Você está enviando observações
+    sem datas ou locais. Observações sem essas informações, muitas vezes é impossível
+    identificar e não será visível por padrão em pesquisas de observação.
   you_are_subscribed_to: Você está inscrito em
   you_arent_a_member_of_that_project: Você não é um membro deste projeto.
   you_arent_following_that_person: Você não está seguindo nenhuma pessoa.
@@ -6306,10 +6343,12 @@ pt-BR:
         note_you_can_delete_the_time: '(Nota: você pode excluir o fuso horário e a
           hora exata se quiser incluir dias inteiros.)'
         or_drag_and_drop: (ou arraste e solte)
-        please_specify_the_requirements_html: |-
-          Por favor, especifique os requisitos para as observações a serem adicionadas a este projeto.
-          Você pode especificar várias espécies, locais, usuários ou notas de qualidade para serem automaticamente
-          incluído, ou deixe um campo em branco se você não tiver nenhum requisito específico para isso.
+        please_specify_the_requirements_html: Por favor especifique os requisitos
+          para as observações a serem adicionadas este projeto. Você pode especificar
+          várias espécies, locais, usuários ou notas de qualidade a serem automaticamente
+          incluídas, ou deixar um campo em branco se você não tem nenhum requisito
+          específico para isso. Explicações para cada campo pode ser encontrado <a
+          href="%{url}">aqui</a>.
         project_background_color: Cor de fundo do resumo do projeto
         project_background_color_help: Certifique-se de selecionar uma cor que seja
           escura o suficiente para que o texto branco sobreposto seja legível.
@@ -6873,6 +6912,12 @@ pt-BR:
         scientific_name_first_desc: Mostre nomes científicos antes dos nomes comuns.
         youve_used_all_of_your_blocks: Você usou todos os seus blocos. Remova um bloco
           para adicionar outro.
+        same_day_geoprivacy_protection: Proteção de geoprivacidade no mesmo dia
+        prefers_coordinate_interpolation_protection_desc: Quando você define a geocodificação
+          de uma observação como "obscurecida" ou "privado", isto aplicará a mesma
+          georreferenciação a todas as outras observações do mesmo dia para tornar
+          mais difícil para outras pessoas adivinhar as coordenadas verdadeiras com
+          base em observações feitas em torno do mesmo tempo.
       recent:
         about_recent_users: Sobre
         definitions_html: <dl> <dt>Provável Spam</dt> <dd> Usuário que provavelmente

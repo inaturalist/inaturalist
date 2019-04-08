@@ -1100,6 +1100,8 @@ zh-TW:
   display_link_to_checklist: 顯示連至來自於專案頁面之專案清單的連結
   display_listings_added_by_curators: 顯示由策展人添加的列表
   display_listings_from_place: 顯示來自於地點的清單
+  distance_traveled_value: 行程距離：%{distance} m
+  distance_traveled: 行程距離（m）
   dna_: DNA
   documentation_for_developers_html: <a href="/pages/developers">開發者</a>文件
   do_not_show_this_message_again: 不要再顯示此訊息
@@ -1138,6 +1140,7 @@ zh-TW:
   drag_and_drop_some_photos_or_sounds: 拖拉一些照片和聲音
   drawings: 圖形
   duplicate_verb: 重複
+  duration_value: 持續時間：%{duration} 分
   each_place_displays_all_species_inat_knows: 任一地點頁面都會顯示出 %{site_name} 所知悉來自於該地點的全部物種，包含關於它們的數量程度、保育狀態，以及在
     %{site_name} 裡最先於該地點上觀察該物種的人物。您可透過分類群組、色彩、保育狀態，或是一般搜尋來篩選物種。
   edit: 編輯
@@ -1759,6 +1762,7 @@ zh-TW:
   latitude: 緯度
   latitude_in_decimals: 帶小數點的緯度，例如：38.123
   latitude_slash_y_coord_slash_northing: 緯度/y 軸/北距
+  latitude_value: 緯度：%{latitude}
   layers: 圖層
   layout: 佈局
   leaderboard: 排行榜
@@ -1980,6 +1984,7 @@ zh-TW:
   longitude: 經度
   longitude_in_decimal: 十進位的緯度，例如：-122.123
   longitude_slash_x_coord_slash_easting: 經度/x 軸/東向
+  longitude_value: 經度：%{longitude}
   look_up_name: 查詢名稱
   looks_like_neither_have!: 看起來沒有任何物種分類！
   looks_like_no_species_in_guide: 看起來在您的指南裡尚未有物種。
@@ -2362,6 +2367,8 @@ zh-TW:
   notify_me_about_redundant_identifications: 通知我有關確認鑑定
   notify_me_about_redundant_identifications_desc: 接收符合所屬您鑑定的通知。若您選擇停用此功能，您僅會收到有關不在您鑑定裡的物種分類群之鑑定通知。
   number_of_observations: 觀察數目
+  number_of_observers_value: 觀察者數目：%{number}
+  number_of_observers: 觀察者數目
   number_selected: '# 已選擇'
   numeric_: 數字
   noun_by_you: 由您做出的 %{noun}
@@ -3097,7 +3104,7 @@ zh-TW:
   previous_tab: 上一個頁籤
   print_verb: 列印
   print_in_browser: 在瀏覽器中列印
-  privacy: 隱私政策
+  privacy: 隱私
   privacy_policy: 隱私政策
   private: 私有
   private_: 私人的
@@ -3177,6 +3184,8 @@ zh-TW:
   quality_grade_colon: 品質等級：
   queued: 已排程
   query: 查詢
+  radius: 半徑（m）
+  radius_value: 半徑（m）： %{radius}
   random: 隨機
   range: 範圍
   range_from: 範圍來自
@@ -3387,6 +3396,8 @@ zh-TW:
     must_be_in: 需在物種分類中
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
   running_total: 運行總計
+  same_day_obscured: 此人在這天的其它觀察是隱蔽的
+  same_day_private: 此人在這天的其它觀察是隱私的
   said: 說
   sat: 週六
   satellite: 衛星
@@ -3940,6 +3951,7 @@ zh-TW:
   there_were_some_problems_saving_those_colors: 儲存這些色彩時出現問題：%{error}
   there_were_some_problems_with: 在您的 CSV 檔案裡有一些問題。請重新修改失效的行列。當然問題也會可能是出在我們這裡，若真是如此的話，請讓我們知道。
   there_were_some_problems_with_fields: 以下欄位出現了一些問題：
+  there_were_some_problems_with_these_files: 這些檔案出現了一些問題：
   theres_also: 這裡也有
   theres_something_wrong_with_taxon_framework_relationship: 發生錯誤 - 我們無法判斷任何內部與外部物種分類群之間的關聯
   these_are_items_people_on: 這些是人們在網站上標記為策展的項目。垃圾評論會被刪除，而添加該內容的用戶會被停用（前往他們的個人檔案頁面，並在右下點擊「停用用戶」來防止他們登入）。評論應以禮儀方式進行，若其它被標記項目有著仇恨、非法、粗魯、冒犯等等言行，該項目會被刪除。如有多次重犯情況應回報給網站管理員或電郵至
@@ -4049,6 +4061,7 @@ zh-TW:
   "true": 是
   trending: 趨勢
   trends: 趨勢
+  trip_target_list_info: 這是在您目標清單裡簡略分類群的非重疊集合，不包含隱蔽觀察的分類群。<a href="/pages/trips">了解更多</a>。
   trusted: 已信任
   trusted_project?: 託付的專案？
   trust_this_person_with_your_private_coordinates: 以您的隱藏座標信任此人
@@ -4132,6 +4145,10 @@ zh-TW:
   upload_range: 上傳範圍
   uploaded_by: 上傳由
   uploader:
+    errors:
+      file_too_big: 檔案必須小於 %{megabytes} MB
+      unsupported_file_type: 檔案類型不支援，我們接受 JPG、PNG、GIF、WAV、AAC、MP3、和 MP4（僅音效）
+    resize_tip: 若您的照片檔案太大，嘗試剪裁最大至 2048 x 2048 像素，便可讓這些照片在伺服器上能更快地上傳。
     tooltips:
       add: 添加觀察
       combine: 結合已選擇的觀察
@@ -4140,6 +4157,7 @@ zh-TW:
       remove_observation: 移除觀察
       remove_photo: 移除照片
       select_all: 選擇所有觀察
+      upload_failed: 上傳失敗
   uploading_num_of_count_photos:
     one: 照片上傳中...
     other: 正上傳一共 %{count} 張裡的 %{num} 張照片...
@@ -4237,6 +4255,7 @@ zh-TW:
   view_flags: 檢視標記
   view_flags_for_x_html: 檢視用於%{x}的標記
   view_full_observation: 檢視完整觀察
+  view_full_size_photo: 瀏覽全尺寸的照片
   view_invitation: 檢視邀請
   view_journal: 檢視日誌
   view_leaderboard: 檢視排行榜
@@ -4366,6 +4385,7 @@ zh-TW:
   what_do_you_want_to_list: 您想要列出什麼？
   what_to_keep: 維持什麼
   what_want_to_list?: 您想要列出什麼？
+  what_were_you_looking_for?: 您在找什麼呢？（目標清單）
   whats_this?: 這是什麼？
   when: 何時
   when_did_you_see_it?: 您何時看到它？
@@ -4458,8 +4478,8 @@ zh-TW:
   you_are_already_a_member_of_this_project: 您已經是該專案的成員了！
   you_are_no_longer_following_x: 您不再關注 %{friend}。
   you_are_setting_this_project_to_aggregate: 您正設定此專案要聚集所有符合以下規則：%{rules} 的觀察，您確定要繼續嗎？
-  you_are_submitting_obs_without_photos_and_names: 您提交的觀察沒有照片和物種分類名稱。這些觀察將會難以準確鑑定。
-  you_are_submitting_obs_with_no_date_or_no_location: 您正提交未帶有日期或位置的觀察。
+  you_are_submitting_obs_without_photos_and_names: 您正提交未帶有照片和物種分類名稱的觀察。不帶這些資訊的觀察通常難以鑑定，而且在觀察搜尋裡會被預設成不可見。
+  you_are_submitting_obs_with_no_date_or_no_location: 您正提交未帶有日期或位置的觀察。不帶這些資訊的觀察通常難以鑑定，而且在觀察搜尋裡會被預設成不可見。
   you_are_subscribed_to: 您訂閱了
   you_arent_a_member_of_that_project: 您不是該專案的成員。
   you_arent_following_that_person: 您沒有關注那名人。
@@ -5203,9 +5223,8 @@ zh-TW:
         note_these_users_will_be_able_to_edit: 註：這些包含到管理員的使用者可以編輯所有專案細節。
         note_you_can_delete_the_time: （註：若您想包含一整天，您可以刪除時區以及準確時間。）
         or_drag_and_drop: （或是拖拉）
-        please_specify_the_requirements_html: |-
-          請指名添加至此專案的觀察所需內容。
-          您可以指定多項物種、地點、自動包含的品質等級，若您對此沒有特別需求欄位可以留空。
+        please_specify_the_requirements_html: 請指名添加至此專案的觀察所需內容。您可以指定多項物種、地點、自動包含的品質等級。若您對此沒有特別需求，欄位可以留空。對於各欄位的解釋可<a
+          href="%{url}">在此</a>找尋。
         project_background_color: 專案摘要背景顏色
         project_background_color_help: 請確認挑選顏色的暗度足夠讓所覆蓋白色文字能辨識出。
         project_banner: 專案橫幅（PNG、JPG、或 GIF 檔案）
@@ -5542,6 +5561,7 @@ zh-TW:
         search_place_help_html: 用於觀察搜尋的預設地點。
         scientific_name_first_desc: 學名顯示優於通用名稱。
         youve_used_all_of_your_blocks: 您已經用完所有的封鎖數量額度，請移除舊有項目來新增其它封鎖。
+        same_day_geoprivacy_protection: 同日位置隱私保護
       recent:
         about_recent_users: 關於
         definitions_html: <dl> <dt>可能是垃圾訊息</dt> <dd> 使用者可能是濫發垃圾訊息者代表著他們雖有個人檔案描述，但沒有觀察或鑑定。
