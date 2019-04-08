@@ -312,7 +312,7 @@ class Project < ActiveRecord::Base
 
   def project_observations_count
     if is_new_project?
-      Observation.elastic_search( collection_search_parameters.merge( per_page: 0 ) ).total_entries
+      INatAPIService.observations( collection_search_parameters.merge( per_page: 0 ) ).total_results
     else
       project_observations.count
     end
