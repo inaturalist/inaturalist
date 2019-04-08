@@ -941,17 +941,17 @@ var appendValidParamsToURL = function( url, options ) {
 };
 
 google.maps.Map.prototype.addPlaceLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'color' ] });
+  _.defaults( options, { validParams: [ "color", "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "places", options.place.id, options );
 };
 
 google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'color' ] });
+  _.defaults( options, { validParams: [ "color", "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
 };
 
 google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'confirmed_color', 'unconfirmed_color' ] });
+  _.defaults( options, { validParams: [ "confirmed_color", "unconfirmed_color", "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
@@ -985,11 +985,12 @@ google.maps.Map.prototype.addPostgisLayerByEndpoint = function( endpoint, endpoi
   this.setTilt(0);
   var tileservers = postgisTileservers( );
   var options = options || { };
+  options.tile_size = 512;
   var tileURLs = _.map( tileservers , function( base ) {
     return appendValidParamsToURL(
       base + "/" + endpoint + "/" + endpointID + "/{z}/{x}/{y}.png", options );
   });
-  return this.addLayerAndControl( { tiles: tileURLs }, options );
+  return this.addLayerAndControl( { tiles: tileURLs, tileSize: 512 }, options );
 };
 
 // Convenience method that likely isn't called outside this file.
@@ -997,18 +998,16 @@ google.maps.Map.prototype.addPostgisLayerByEndpoint = function( endpoint, endpoi
 // to add a checkbox toggle for this new layer
 google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   options = options || { }
+  tilejson.interactive = false;
   var layer = new wax.g.connector( tilejson );
   layer.title = options.title;
   var layerID = this.overlayMapTypes.push( layer );
-  if( options.interactivity ) {
-    layer.interactivity = this.addTileInteractivity( tilejson, layerID );
-  }
   if( options.disabled ) {
     // even though the layer is meant to be disabled (unselected) by default
     // we need to secure the layerID so that we can add the layer in the proper
     // places when the user selects it. That is why the layer is added
     // above and immediately set to null here.
-    this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
+    this.overlayMapTypes.setAt( layerID - 1, emptyLayer );
   }
   if( this._overlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(
@@ -1112,6 +1111,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "has",
     "has",
     "hrank",
+    "id_above",
     "iconic_taxa",
     "iconic_taxa",
     "ident_taxon_id",
@@ -1149,6 +1149,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "reviewed",
     "scaled",
     "search_on",
+    "skip_top_hits",
     "sounds",
     "swlat",
     "swlng",
@@ -1159,6 +1160,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     "term_id",
     "term_value_id",
     "threatened",
+    "tile_size",
     "ttl",
     "unobserved_by_user_id",
     "user_after",
@@ -1184,7 +1186,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     interactivity: options.interactivity === false ? false : 'id',
     interactionsURL: intereactionsServer( ) + gridTileSuffix,
     disabled: options.disabled,
-    infoWindowCallback: options.infoWindowCallback
+    infoWindowCallback: options.infoWindowCallback,
+    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256
   });
   pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + pointTileSuffix;
@@ -1194,7 +1197,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     gridminzoom: gridmaxzoom + 1,
     interactionsURL: intereactionsServer( ) + pointTileSuffix,
     disabled: options.disabled,
-    infoWindowCallback: options.infoWindowCallback
+    infoWindowCallback: options.infoWindowCallback,
+    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256
   });
   gridLayer.layer.title = title;
   pointLayer.layer.title = title;
@@ -1233,19 +1237,19 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
     })
   }
   // finish preparing the tile options hash
-  var tilejson = $.extend(true, { }, {
+  var waxOptions = $.extend(true, { }, {
     tiles: tileURLs,
     // wax needs template or it won't fire on events
     "template": "{{species_guess}}"
   }, options);
-  var layer = new wax.g.connector( tilejson );
+  var layer = new wax.g.connector( waxOptions );
   var layerID =  this.overlayMapTypes.push( layer );
   if( options.disabled ) {
     this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
   }
   // add a utfgrid data layer and custom JS events to catch interactivity
   if( options.interactivity ) {
-    layer.interactivity = this.addTileInteractivity( tilejson, layerID, options );
+    layer.interactivity = this.addTileInteractivity( waxOptions, layerID, options );
   }
   // return the layer and index of this layer in the current stack
   return { layer: layer, layerID: layerID };
@@ -1260,7 +1264,7 @@ google.maps.Map.prototype.utfgridURL = function( tileURL ) {
 google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, options ) {
   var map = this;
   var interactionOn = false;
-  var waxInteraction = wax.g.interaction( );
+  var waxInteraction = wax.g.interaction( { tileSize: tilejson.tileSize || 256 });
   var oldFeature = waxInteraction.screen_feature;
   map.createInfoWindow( );
 
