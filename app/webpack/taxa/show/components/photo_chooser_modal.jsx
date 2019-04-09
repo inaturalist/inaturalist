@@ -84,7 +84,8 @@ class PhotoChooserModal extends React.Component {
     const queryParams = Object.assign( {
       page: options.page || 1,
       per_page: 24,
-      photos: true
+      photos: true,
+      order_by: "votes"
     }, params );
     if ( queryTaxon ) {
       queryParams.taxon_id = queryTaxon.id;
