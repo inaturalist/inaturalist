@@ -12,6 +12,7 @@ import { fetch } from "../../../shared/util";
 import ExternalPhoto from "./external_photo";
 import ChosenPhoto from "./chosen_photo";
 import PhotoChooserDropArea from "./photo_chooser_drop_area";
+import inatjs from "inaturalistjs";
 
 class PhotoChooserModal extends React.Component {
   constructor( props ) {
@@ -47,6 +48,9 @@ class PhotoChooserModal extends React.Component {
         )
       } );
     }
+    if ( newProps.initialTaxon ) {
+      this.setState( { queryTaxon: newProps.initialTaxon } );
+    }
     if ( newProps.initialQuery ) {
       this.setState( { query: newProps.initialQuery } );
     }
@@ -58,28 +62,59 @@ class PhotoChooserModal extends React.Component {
   }
 
   fetchPhotos( props, options = {} ) {
-    const { provider, query } = this.state;
+    const { provider } = this.state;
     this.setState( { loading: true } );
     const chosenProvider = options.provider || provider || "inat";
+    this.setState( { page: options.page || 1, photos: [] } );
+    switch ( chosenProvider ) {
+      case "inat":
+        this.fetchObservationPhotos( { quality_grade: "any" }, options );
+        break;
+      case "inat-rg": {
+        this.fetchObservationPhotos( { quality_grade: "research" }, options );
+        break;
+      }
+      default:
+        this.fetchProviderPhotos( chosenProvider, options );
+    }
+  }
+
+  fetchObservationPhotos( params, options ) {
+    const { query, queryTaxon } = this.state;
+    const queryParams = Object.assign( {
+      page: options.page || 1,
+      per_page: 24,
+      photos: true,
+      order_by: "votes"
+    }, params );
+    if ( queryTaxon ) {
+      queryParams.taxon_id = queryTaxon.id;
+    } else {
+      queryParams.q = query;
+    }
+    inatjs.observations.search( queryParams ).then( response => {
+      const obsPhotos = _.compact( _.flatten( _.map( response.results, "photos" ) ) );
+      const photos = _.map( obsPhotos, p => Object.assign( {}, p, {
+        small_url: p.url.replace( "square", "small" ),
+        chooserID: this.keyForPhoto( p )
+      } ) );
+      this.setState( {
+        loading: false,
+        photos: _.uniqBy( photos, photo => photo.chooserID )
+      } );
+    } ).catch( ( ) => {
+      this.setState( { loading: false } );
+    } );
+  }
+
+  fetchProviderPhotos( provider, options ) {
+    const { query } = this.state;
     const params = Object.assign( { }, options, {
       q: query,
       limit: 24,
       page: options.page || 1
     } );
-    this.setState( { page: params.page, photos: [] } );
-    let url;
-    switch ( chosenProvider ) {
-      case "inat":
-        url = `/taxa/observation_photos.json?${querystring.stringify( params )}`;
-        break;
-      case "inat-rg": {
-        const rgParams = Object.assign( {}, params, { quality_grade: "research" } );
-        url = `/taxa/observation_photos.json?${querystring.stringify( rgParams )}`;
-        break;
-      }
-      default:
-        url = `/${chosenProvider}/photo_fields.json?${querystring.stringify( params )}`;
-    }
+    const url = `/${provider}/photo_fields.json?${querystring.stringify( params )}`;
     fetch( url, params )
       .then(
         response => response.json( ),
@@ -212,6 +247,7 @@ class PhotoChooserModal extends React.Component {
           { I18n.t( "prev" ) }
         </Button>
         <Button
+          disabled={photos.length < 24}
           onClick={( ) => this.fetchNextPhotos( )}
           title={I18n.t( "next" )}
         >
@@ -246,7 +282,7 @@ class PhotoChooserModal extends React.Component {
                       className="form-control"
                       placeholder={searchPlaceholder}
                       value={query}
-                      onChange={e => this.setState( { query: e.target.value } )}
+                      onChange={e => this.setState( { query: e.target.value, queryTaxon: null } )}
                     />
                     <span className="input-group-btn">
                       <button
@@ -275,7 +311,7 @@ class PhotoChooserModal extends React.Component {
                       <option value="wikimedia_commons">Wikimedia Commons</option>
                     </select>
                   </div>
-                  { prevNextButtons }
+                  { photos.length > 0 && prevNextButtons }
                 </form>
                 <div className="photos">
                   { photos.map( photo => (
@@ -352,6 +388,7 @@ class PhotoChooserModal extends React.Component {
 
 PhotoChooserModal.propTypes = {
   initialQuery: PropTypes.string,
+  initialTaxon: PropTypes.object,
   photos: PropTypes.array,
   chosen: PropTypes.array,
   visible: PropTypes.bool,

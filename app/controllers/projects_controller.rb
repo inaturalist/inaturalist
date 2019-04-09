@@ -137,8 +137,8 @@ class ProjectsController < ApplicationController
         end
         scope = scope.in_group(params[:group]) if params[:group]
         scope = scope.from_source_url(params[:source]) if params[:source]
-        scope = scope.includes( :project_observation_rules, :project_list, :place,
-          { project_observation_fields: :observation_field }
+        scope = scope.includes( { project_observation_rules: :operand }, :project_list, :place,
+          { project_observation_fields: :observation_field }, :stored_preferences
         )
         @projects = scope.paginate(:page => params[:page], :per_page => 100).to_a.uniq
         opts = Project.default_json_options.merge(:include => [

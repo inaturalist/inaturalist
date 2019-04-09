@@ -4,7 +4,7 @@ import { findDOMNode } from "react-dom";
 import { DragSource as dragSource, DropTarget as dropTarget } from "react-dnd";
 import _ from "lodash";
 import { PHOTO_CHOOSER_DRAGGABLE_TYPE } from "./photo_chooser_constants";
-import PhotoChoserPhoto from "./photo_chooser_photo";
+import PhotoChooserPhoto from "./photo_chooser_photo";
 
 const sourceSpec = {
   beginDrag: props => ( {
@@ -81,7 +81,7 @@ class ChosenPhoto extends React.Component {
     }
     return connectDragSource( connectDropTarget(
       <div className={className}>
-        <PhotoChoserPhoto
+        <PhotoChooserPhoto
           removePhoto={removePhoto}
           infoURL={infoURL}
           src={src}
