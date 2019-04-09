@@ -245,7 +245,6 @@ describe Identification, "creation" do
       expect( user.identifications_count ).to eq 0
       Delayed::Worker.new.work_off
       user.reload
-      expect( Delayed::Job.count ).to eq 0
       expect( user.identifications_count ).to eq 1
     end
     
