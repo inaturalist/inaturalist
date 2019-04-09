@@ -695,6 +695,11 @@ class Observation < ActiveRecord::Base
       search_filters << { terms: { identifier_user_ids: vals } }
     end
 
+    if p[:ident_taxon_id]
+      vals = p[:ident_taxon_id].to_s.split( "," )
+      search_filters << { terms: { ident_taxon_ids: vals } }
+    end
+
     # conservation status
     unless p[:cs].blank?
       values = [ p[:cs] ].flatten.map(&:downcase)
@@ -751,6 +756,12 @@ class Observation < ActiveRecord::Base
     end
     if p[:max_id]
       search_filters << { range: { id: { lte: p[:max_id] } } }
+    end
+    if p[:id_above]
+      search_filters << { range: { id: { gt: p[:id_above] } } }
+    end
+    if p[:id_below]
+      search_filters << { range: { id: { lt: p[:id_below] } } }
     end
 
     { filters: search_filters,

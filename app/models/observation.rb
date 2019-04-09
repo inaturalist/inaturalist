@@ -1773,16 +1773,25 @@ class Observation < ActiveRecord::Base
 
   def self.reassess_coordinates_for_observations_of( taxon, options = {} )
     batch_size = 500
-    scope = Observation.with_identifications_of( taxon )
-    scope.find_in_batches(batch_size: batch_size) do |batch|
-      if options[:place]
-        # using Elasticsearch for place filtering so we don't
-        # get bogged down by huge geometries in Postgresql
-        es_params = { id: batch, place_id: options[:place], per_page: batch_size }
-        reassess_coordinates_of( Observation.page_of_results( es_params ) )
-      else
-        reassess_coordinates_of( batch )
+    batch_start_id = 0
+    results_remaining = true
+    search_params = {
+      ident_taxon_id: taxon.id,
+      per_page: batch_size,
+      order_by: "id",
+      order: "asc"
+    }
+    if options[:place]
+      search_params[:place_id] = options[:place]
+    end
+    while results_remaining
+      observations = Observation.page_of_results( search_params.merge( id_above: batch_start_id ) )
+      if observations.blank? || observations.total_entries == 0
+        results_remaining = false
+        break
       end
+      reassess_coordinates_of( observations )
+      batch_start_id = observations.last.id
     end
   end
 
@@ -1795,6 +1804,11 @@ class Observation < ActiveRecord::Base
   end
 
   def self.reassess_coordinates_of( observations )
+    Observation.preload_associations( observations, [
+      :taxon,
+      { user: :stored_preferences },
+      { identifications: { taxon: :conservation_statuses } }
+    ] )
     observations.each do |o|
       o.set_taxon_geoprivacy
       o.reassess_coordinate_obscuration
