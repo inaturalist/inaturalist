@@ -1451,7 +1451,7 @@ describe Observation do
       t = Taxon.make!
       expect(t.observations_count).to eq(0)
       o.update_attributes(:taxon => t)
-      Delayed::Worker.new.work_off
+      Delayed::Job.find_each{|j| j.invoke_job}
       t.reload
       expect(t.observations_count).to eq(1)
     end
@@ -1462,7 +1462,7 @@ describe Observation do
       t = without_delay { Taxon.make!(parent: p, rank: Taxon::SPECIES) }
       expect(p.observations_count).to eq 0
       o.update_attributes(:taxon => t)
-      Delayed::Worker.new.work_off
+      Delayed::Job.find_each{|j| j.invoke_job}
       p.reload
       expect(p.observations_count).to eq 1
       Observation.elastic_index!(ids: [ o.id ], delay: true)
@@ -1550,13 +1550,13 @@ describe Observation do
 
     it "should decrement the taxon's counter cache" do
       t = Taxon.make!
-      o = without_delay{Observation.make!(:taxon => t)}
+      o = without_delay{ Observation.make!( taxon: t) }
       t.reload
-      expect(t.observations_count).to eq(1)
+      expect( t.observations_count ).to eq 1
       o.destroy
-      Delayed::Worker.new.work_off
+      Delayed::Job.find_each{|j| j.invoke_job}
       t.reload
-      expect(t.observations_count).to eq(0)
+      expect( t.observations_count ).to eq 0
     end
   
     it "should decrement the taxon's ancestors' counter caches" do
@@ -1566,7 +1566,7 @@ describe Observation do
       p.reload
       expect(p.observations_count).to eq(1)
       o.destroy
-      Delayed::Worker.new.work_off
+      Delayed::Job.find_each{|j| j.invoke_job}
       p.reload
       expect(p.observations_count).to eq(0)
     end

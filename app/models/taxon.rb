@@ -2065,10 +2065,15 @@ class Taxon < ActiveRecord::Base
     end
     return if scope.count == 0
     scope = scope.select("id, ancestry")
-    scope.find_each do |t|
-      Taxon.where(id: t.id).update_all(observations_count:
-        Observation.elastic_search(
-          filters: [ { term: { "taxon.ancestor_ids" => t.id } } ], size: 0).total_entries)
+    scope.select(:id).find_in_batches do |batch|
+      taxon_ids = []
+      batch.each do |t|
+        Taxon.where(id: t.id).update_all(observations_count:
+          Observation.elastic_search(
+            filters: [ { term: { "taxon.ancestor_ids" => t.id } } ], size: 0).total_entries)
+        taxon_ids << t.id
+      end
+      Taxon.elastic_index!( ids: taxon_ids )
     end
   end
 

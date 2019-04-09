@@ -35,7 +35,11 @@ module Privileges
 
       options[:on].each do |phase|
         send( "after_#{phase}", lambda {
-          UserPrivilege.delay.check( user.id, privilege )
+          UserPrivilege.delay(
+            unique_hash: "UserPrivilege.check(#{user.id},#{privilege})",
+            run_at: 1.hours.from_now # this will probably have to change if / we start using privileges
+          ).check( user.id, privilege )
+          true
         } )
       end
     end

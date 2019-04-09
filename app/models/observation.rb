@@ -2055,7 +2055,10 @@ class Observation < ActiveRecord::Base
     return true unless destroyed? || taxon_id_changed?
     taxon_ids = [taxon_id_was, taxon_id].compact.uniq
     unless taxon_ids.blank?
-      Taxon.delay(:priority => INTEGRITY_PRIORITY).update_observation_counts(:taxon_ids => taxon_ids)
+      Taxon.delay(
+        priority: INTEGRITY_PRIORITY,
+        run_at: 1.hour.from_now
+      ).update_observation_counts( taxon_ids: taxon_ids )
     end
     true
   end
