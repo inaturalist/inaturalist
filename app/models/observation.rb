@@ -1772,6 +1772,7 @@ class Observation < ActiveRecord::Base
   end
 
   def self.reassess_coordinates_for_observations_of( taxon, options = {} )
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a? Taxon
     batch_size = 500
     batch_start_id = 0
     results_remaining = true
