@@ -2070,10 +2070,15 @@ class Observation < ActiveRecord::Base
     return true unless destroyed? || taxon_id_changed?
     taxon_ids = [taxon_id_was, taxon_id].compact.uniq
     unless taxon_ids.blank?
-      Taxon.delay(
-        priority: INTEGRITY_PRIORITY,
-        run_at: 1.hour.from_now
-      ).update_observation_counts( taxon_ids: taxon_ids )
+      taxon_ids_including_ancestors = Taxon.where("id IN (?)", taxon_ids).
+        map(&:self_and_ancestor_ids).flatten.uniq
+      taxon_ids_including_ancestors.each do |tid|
+        Taxon.delay(
+          priority: INTEGRITY_PRIORITY,
+          run_at: 1.hour.from_now,
+          unique_hash: { "Taxon::update_observation_counts": tid }
+        ).update_observation_counts( taxon_ids: [tid] )
+      end
     end
     true
   end
