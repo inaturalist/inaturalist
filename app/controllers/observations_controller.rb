@@ -1753,6 +1753,7 @@ class ObservationsController < ApplicationController
       :positioning_device,
       :positioning_method,
       :prefers_community_taxon,
+      :prefers_auto_obscuration,
       :quality_grade,
       :species_guess,
       :tag_list,
