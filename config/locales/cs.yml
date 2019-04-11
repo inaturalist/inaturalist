@@ -4208,9 +4208,6 @@ cs:
   taxon_is_a_rank_of_amphibia_with_x_observations:
     one: '%{taxon} je %{rank} obojživeníků s jedním pozorování'
     other: '%{taxon} je %{rank} obojživelníků s %{count} pozorování'
-  taxon_is_a_rank_of_aves_with_x_observations:
-    one: '%{taxon} je %{rank} ptáků s jedním pozorováním %{taxon} je %{rank} ptáků
-      s %{count} pozorováními'
   taxon_is_a_rank_of_mammalia_with_x_observations:
     one: '%{taxon} je %{rank} savců s jedním pozorováním'
     other: '%{taxon} je %{rank} savců s %{count} pozorováními'
@@ -4711,8 +4708,6 @@ cs:
       remove_photo: Odstranit fotografii
       select_all: Vybrat všechna pozorování
       upload_failed: Nahrávání se nezdařilo
-  uploading_num_of_count_photos: Nahrávání {{PLURAL:%{count}|fotografie|%{num} ze
-    %{count} fotografií|%{num} z %{count} fotografií}}...
   url_identifier_of_a_project_derived_from: URL / identifikátor projektu odvozený
     z externího zdroje
   url_of_this_taxon_on_the_source_website: URL tohoto taxonu na webové stránce zdroje
@@ -5316,17 +5311,6 @@ cs:
             %{site_name} se studenty.
     donate:
       donate_short_desc: Darujte nyní, abyste ukázali, že nás podporujete!
-      donate_desc_html: "<p class = \"lead\">\n  <strong> iNaturalist je jednou z
-        největších komunit na světě\n  zkoumající biologickou rozmanitost. Děkujeme
-        za to, že jste součástí! </ Strong>\n</ P>\n<p class = \"lead\">\n  Pokud
-        věříte v sílu této globální komunity, \n  sdílejte znalosti a vytvářejte nenahraditelná
-        data o biodiverzitě,\n  prosím, zvažte jednorázový nebo opakovaný dar.\n</
-        P>\n<p class = \"lead\">\n  Vaše dary pomáhají podporovat iNaturalist, komunita
-        roste, od\n  zdokonalení počítačů a zavádění nových funkcí\n  pro naše servery
-        a zaměstnance.\n</ P>\n<p class = \"text-muted\">\n  iNaturalist je společná
-        iniciativa Kalifornské akademie věd\n  a National Geographic Society. Všechny
-        dary obdrží\n  Kalifornská akademie věd, 501 (c) (3) nezdanitelný zisk\n  organizace
-        se sídlem ve Spojených státech amerických.\n</ P>"
       post_donate_social_media_text: Podporuji iNaturalist protože...
     flags:
       show:
@@ -5948,7 +5932,7 @@ cs:
         you_can_attempt_repair: |-
           Fotografii můžete vytvořit na této stránce kliknitím n
           odkaz "%{repair_link_text}". Pokud víte, že fotografie již neexistuje, můžete si vybrat "smazat".
-        please_address: Opravte tyto <b> problémy do 30 dnů </ b>. Po třiceti dnech
+        please_address: Opravte tyto <b> problémy do 30 dnů </b>. Po třiceti dnech
           začneme odstraňovat špatné fotky iNaturalist. Všechna vaše pozorování budou
           zachována. Budou přezkoumány, jakmile budou fotografie vymazány, a některá
           pozorování na úrovni vyhledávání se mohou stát přesnými, pokud nemají více
@@ -6344,21 +6328,6 @@ cs:
           <a href="%{url}"> iNaturalist síť </a>
       year:
         include_usa: Zahrnuje US
-        growth_by_country_desc_html: Kde je růst? Tato mapa a graf se snaží sdílet
-          tyto informace podle zemí, což je komplikované, protože růst země může být
-          velmi nevyvážený. Zde jsme se rozhodli vynechat Spojené státy a použít výchozí
-          logaritmické měřítko k zvýraznění rozdílů s ostatními zeměmi. Pokud se země
-          objeví v černém, znamená to, že k tomuto procentu významně nepřispěla, nebo
-          že letos neprokázala růst, nebo v tomto roce neměla více pozorování než
-          v loňském roce (více informací najdete nad zemí). <strong> „% celkového
-          růstu“ </ silný> znamená podíl globálního růstu pocházejícího z určité země,
-          například pokud je v roce 2018 20 pozorování a 10 v roce 2017, představuje
-          to 10 pozorování růstu a pokud se jich 5 týká Beninu, pak Benin přispěl
-          k 50% celkového růstu. <strong> "% růst" </ silný> představuje procento
-          letošních pozorování v této zemi ve srovnání s loňskými pozorováními v této
-          zemi, takže pokud by bylo 10 pozorování o Laosu za rok minulost a 20 letošního
-          roku představuje 100% růst, a pokud by bylo loni a 1 letos 0, představuje
-          to nekonečné procento růstu.
         growth_by_country_title: Růst podle země
         growth_in_year_obs: Růst v%{year}(obs)
         growth_title: Růst
@@ -6370,7 +6339,7 @@ cs:
           nově pozorované druhy. Tento graf ukazuje druhy, jejichž pozorování je ověřitelné
           podle měsíce, kdy byly odeslány na %{site_name} (a ​​ne měsíc jejich pozorování).
           Nezahrnuje taxony vyšší nebo nižší úrovně, takže pozorování identifikované
-          jako savec se nepočítá a pozorování poddruhu <i>Canis lupus</ i> <i>arctos</i>
+          jako savec se nepočítá a pozorování poddruhu <i>Canis lupus</i> <i>arctos</i>
           se bude počítat pouze jako <i>Canis lupus</i>.
         obs_in_year: Pozorování v %{year}
         percent_growth_in_year: '% Růst v %{year}'
@@ -6678,13 +6647,13 @@ cs:
           "soukromé" toto bude platit stejně k vašemu druhému pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování ve stejný čas.
       recent:
         about_recent_users: O projektu
-        definitions_html: <dl> <dt> Bezpochyby spam </ dt> <dd> Uživatel, který je
+        definitions_html: <dl> <dt> Bezpochyby spam </dt> <dd> Uživatel, který je
           pravděpodobně spammer, což znamená, že nemá žádné pozorování ani identifikace,
-          ale má popis profilu.</dd><dt>Automatický spam </ dt> <dd> Spammer, který
+          ale má popis profilu.</dd><dt>Automatický spam </dt> <dd> Spammer, který
           byl jako takový automaticky označen systémem.</dd><dt>Manuální spam </dt><dd>Spammer,
           který byl jako takový označen vedoucím webu.</dd><dt>Falešné pozitiva</dt><dd>Uživatelé,
           kteří byli označeni jako spammmeři, aby byli řešeni kurátory stránek, protože
-          nebyli skutečnými spammery </ dd> </ dl>
+          nebyli skutečnými spammery </dd> </dl>
         recent_users_desc_html: <p> Chceme přivítat nové uživatele, ale také bojovat
           proti spammerům. Naštěstí tento nástroj pomůže oběma. Pomocí <ahref="https://akismet.com/">Akismet</a>automaticky
           označujeme mnoho uživatelů za spammery, ale Akismet není dokonalý, takže
@@ -6835,7 +6804,6 @@ cs:
       x_seconds:
         one: 1 sekunda
         other: '%{count} sekund(y)'
-    countdown_x_days: '{{PLURAL|one=den|dny}'
     countdown_x_hours:
       one: hodina
       other: hodiny
