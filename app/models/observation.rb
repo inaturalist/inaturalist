@@ -1772,17 +1772,27 @@ class Observation < ActiveRecord::Base
   end
 
   def self.reassess_coordinates_for_observations_of( taxon, options = {} )
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a? Taxon
     batch_size = 500
-    scope = Observation.with_identifications_of( taxon )
-    scope.find_in_batches(batch_size: batch_size) do |batch|
-      if options[:place]
-        # using Elasticsearch for place filtering so we don't
-        # get bogged down by huge geometries in Postgresql
-        es_params = { id: batch, place_id: options[:place], per_page: batch_size }
-        reassess_coordinates_of( Observation.page_of_results( es_params ) )
-      else
-        reassess_coordinates_of( batch )
+    batch_start_id = 0
+    results_remaining = true
+    search_params = {
+      ident_taxon_id: taxon.id,
+      per_page: batch_size,
+      order_by: "id",
+      order: "asc"
+    }
+    if options[:place]
+      search_params[:place_id] = options[:place]
+    end
+    while results_remaining
+      observations = Observation.page_of_results( search_params.merge( id_above: batch_start_id ) )
+      if observations.blank? || observations.total_entries == 0
+        results_remaining = false
+        break
       end
+      reassess_coordinates_of( observations )
+      batch_start_id = observations.last.id
     end
   end
 
@@ -1795,6 +1805,11 @@ class Observation < ActiveRecord::Base
   end
 
   def self.reassess_coordinates_of( observations )
+    Observation.preload_associations( observations, [
+      :taxon,
+      { user: :stored_preferences },
+      { identifications: { taxon: :conservation_statuses } }
+    ] )
     observations.each do |o|
       o.set_taxon_geoprivacy
       o.reassess_coordinate_obscuration
@@ -2055,10 +2070,15 @@ class Observation < ActiveRecord::Base
     return true unless destroyed? || taxon_id_changed?
     taxon_ids = [taxon_id_was, taxon_id].compact.uniq
     unless taxon_ids.blank?
-      Taxon.delay(
-        priority: INTEGRITY_PRIORITY,
-        run_at: 1.hour.from_now
-      ).update_observation_counts( taxon_ids: taxon_ids )
+      taxon_ids_including_ancestors = Taxon.where("id IN (?)", taxon_ids).
+        map(&:self_and_ancestor_ids).flatten.uniq
+      taxon_ids_including_ancestors.each do |tid|
+        Taxon.delay(
+          priority: INTEGRITY_PRIORITY,
+          run_at: 1.hour.from_now,
+          unique_hash: { "Taxon::update_observation_counts": tid }
+        ).update_observation_counts( taxon_ids: [tid] )
+      end
     end
     true
   end

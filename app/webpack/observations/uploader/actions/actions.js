@@ -617,6 +617,9 @@ const actions = class actions {
           );
           showModal = true;
         }
+        if ( window.location.search.match( /debug=true/ ) ) {
+          console.log( "[DEBUG] rejected file: ", file );
+        }
       } );
       if ( !showModal ) {
         return;

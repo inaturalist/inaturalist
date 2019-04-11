@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe ObservationsController do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   describe "create" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
     let(:user) { User.make! }
     before do
       sign_in user
@@ -207,8 +207,6 @@ describe ObservationsController do
   end
 
   describe "project" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
     render_views
 
     describe "viewed by project curator" do
@@ -427,8 +425,6 @@ describe ObservationsController do
   end
 
   describe "index" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
     render_views
     it "should just ignore project slugs for projects that don't exist" do
       expect {

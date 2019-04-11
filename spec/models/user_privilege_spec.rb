@@ -54,7 +54,7 @@ describe UserPrivilege do
         3.times do
           make_research_grade_candidate_observation( user: user )
         end
-        Delayed::Worker.new.work_off
+        Delayed::Job.find_each{|j| j.invoke_job}
         user.reload
         expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
       end
@@ -63,10 +63,12 @@ describe UserPrivilege do
         3.times do
           make_research_grade_candidate_observation( user: user )
         end
-        Delayed::Worker.new.work_off
+        Delayed::Job.find_each{|j| j.invoke_job}
+        user.reload
         expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
         user.observations.last.destroy
-        Delayed::Worker.new.work_off
+        # This is lame but there are some jobs that will fail after the obs is deleted
+        Delayed::Job.find_each{|j| j.invoke_job rescue nil }
         user.reload
         expect( user ).to be_privileged_with( UserPrivilege::SPEECH )
       end
@@ -77,7 +79,7 @@ describe UserPrivilege do
         3.times do
           Identification.make!( user: user )
         end
-        Delayed::Worker.new.work_off
+        Delayed::Job.find_each{|j| j.invoke_job}
         expect( user ).to be_privileged_with( :speech )
       end
     end

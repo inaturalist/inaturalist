@@ -9,11 +9,26 @@ Usage:
 
   rails runner tools/natureserve_statuses.rb [OPTIONS]
 
+Examples:
+  
+  # Import statuses for all species in Accipiter
+  rails r tools/natureserve_statuses.rb -t Accipiter
+
+  # Import statuses for all species in Accipiter and make new taxon records
+  # when necessary
+  rails r tools/natureserve_statuses.rb -ct Accipiter
+
+  # Import statuses for Accipiter gentilis and its descendants. The ancestor
+  # param doesn't take strings with spaces, but it will take any string that
+  # will have spaces after calling `humanize`
+  rails r tools/natureserve_statuses.rb -ct Accipiter_gentilis
+
 where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :ancestor, "Ancestor taxon", :type => :string, :short => "-t"
   opt :create_taxa, "Create taxa that don't exist.", :type => :boolean, :short => "-c"
+  opt :place, "Only create statuses for this place. Can be a place ID or slug.", type: :string, short: "-p"
   opt :min_id, "Minimum taxon id", :type => :integer
   opt :max_id, "Maximum taxon id", :type => :integer
   opt :api_key, "NatureServe API key", :type => :string, :short => "-k"
@@ -34,6 +49,8 @@ else
     :url => "http://services.natureserve.org"
   )
 end
+
+PLACE = Place.find( OPTS.place ) rescue nil
 
 IUCN_NOT_EVALUATED = 0
 IUCN_DATA_DEFICIENT = 5
@@ -173,7 +190,7 @@ def work_on_uid(uid, options = {})
     puts "\tCouldn't find taxon for #{uid} (#{name})"
     return
   end
-  if gs = doc.at('globalStatus')
+  if ( gs = doc.at( "globalStatus" ) ) && PLACE.blank?
     natureServeStatus2iNatStatus(gs, taxon, name, url)
   end
 
@@ -185,11 +202,14 @@ def work_on_uid(uid, options = {})
       puts "    Couldn't find matching place. Skipping..."
       next
     end
-    natureServeStatus2iNatStatus(ns, taxon, name, url, place)
+    unless PLACE && place != PLACE
+      natureServeStatus2iNatStatus(ns, taxon, name, url, place)
+    end
     ns.search("subnationalStatus").each do |sns|
       puts "    #{sns[:subnationName]} (#{sns[:subnationCode]})"
       subplace = place.children.where(:code => sns[:subnationCode]).first
       subplace ||= place.children.where(:name => sns[:subnationName]).first
+      next if PLACE && subplace != PLACE
       unless subplace
         puts "      Couldn't find matching place. Skipping..."
         next
@@ -202,13 +222,18 @@ end
 # CSV.foreach('stanford_nsx_uids_201207.csv') do |row|
 #   work_on_uid(row[0])
 # end
+puts "OPTS.ancestor: #{OPTS.ancestor}"
 scope = if OPTS.ancestor
-  unless ancestor = Taxon.find_by_name(OPTS.ancestor)
-    puts "No ancestor taxon matching #{OPTS.ancestor}"
+  ancestor_name = OPTS.ancestor.humanize
+  unless ancestor = Taxon.find_by_name( ancestor_name )
+    puts "No ancestor taxon matching #{ancestor_name}"
     exit(0)
   end
+  puts "ancestor: #{ancestor}"
   if ancestor.genus?
     Taxon.where(:id => ancestor.id)
+  elsif ancestor.species?
+    Taxon.where( "id = ? OR ancestry LIKE ?", ancestor, "#{ancestor.ancestry}/#{ancestor.id}/%")
   else
     ancestor.descendants.where(:rank => Taxon::GENUS)
   end
@@ -219,10 +244,10 @@ end
 scope = scope.where("taxa.id >= ?", OPTS.min_id) if OPTS.min_id
 scope = scope.where("taxa.id <= ?", OPTS.max_id) if OPTS.max_id
 
-scope.find_each do |genus|
-  print genus.name.upcase
-  genus_url = "https://services.natureserve.org/idd/rest/ns/v1/globalSpecies/list/nameSearch?name=#{genus.name}*&NSAccessKeyId=#{KEY}"
-  unless doc = get_xml(genus_url)
+scope.find_each do |taxon|
+  print taxon.name.upcase
+  taxon_url = "https://services.natureserve.org/idd/rest/ns/v1/globalSpecies/list/nameSearch?name=#{taxon.name}*&NSAccessKeyId=#{KEY}"
+  unless doc = get_xml( taxon_url )
     puts "  Skipping..."
     next
   end

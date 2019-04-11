@@ -8,6 +8,7 @@ export const ACCEPTED_FILE_TYPES = [
   "audio/wav",
   "audio/wave",
   "audio/mp3",
+  "audio/mpeg",
   "audio/x-mp3",
   "audio/mp4",
   "audio/x-m4a"

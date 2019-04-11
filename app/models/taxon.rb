@@ -2057,7 +2057,8 @@ class Taxon < ActiveRecord::Base
       end
     elsif options[:taxon_ids]
       taxa = Taxon.where("id IN (?)", options[:taxon_ids])
-      Taxon.where("id IN (?)", taxa.map(&:self_and_ancestor_ids).flatten.uniq)
+      options[:count_ancestors] ?
+        Taxon.where("id IN (?)", taxa.map(&:self_and_ancestor_ids).flatten.uniq) : taxa
     elsif options[:scope]
       options[:scope]
     else

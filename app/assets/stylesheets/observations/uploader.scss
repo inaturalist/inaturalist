@@ -369,6 +369,12 @@ ul.obs > li .card {
   textarea {
     resize: none;
   }
+  // Without this, inputs inherit a width that exceeds that of the card and
+  // leads to a "ghosting" effect when dragging a card that has another card to
+  // its right
+  input {
+    max-width: 100%;
+  }
   .photoDrag,
   .soundDrag {
     cursor: -webkit-grab; cursor: -moz-grab;

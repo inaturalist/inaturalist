@@ -677,35 +677,33 @@ class FiltersButton extends React.Component {
             </div>
           ) : null }
         </div>
-        { viewerIsAdmin && (
-          <div className="form-group recent-users-form-group admin">
-            <label htmlFor="account-creation" className="sectionlabel">Account Creation</label>
-            <select
-              id="account-creation"
-              defaultValue={defaultAccountAge}
-              className={`form-control ${params.user_before || params.user_after ? "filter-changed" : ""}`}
-              onChange={e => {
-                if ( _.isEmpty( e.target.value ) ) {
-                  updateSearchParams( { user_after: null, user_before: null } );
-                } else if ( e.target.value === "recent" ) {
-                  updateSearchParams( { user_after: "1w", user_before: null } );
-                } else if ( e.target.value === "established" ) {
-                  updateSearchParams( { user_before: "1w", user_after: null } );
-                }
-              }}
-            >
-              <option value="">
-                { I18n.t( "any_" ) }
-              </option>
-              <option value="recent">
-                In the last week
-              </option>
-              <option value="established">
-                More than a week ago
-              </option>
-            </select>
-          </div>
-        ) }
+        <div className="form-group recent-users-form-group">
+          <label htmlFor="account-creation" className="sectionlabel">{ I18n.t( "account_creation" ) }</label>
+          <select
+            id="account-creation"
+            defaultValue={defaultAccountAge}
+            className={`form-control ${params.user_before || params.user_after ? "filter-changed" : ""}`}
+            onChange={e => {
+              if ( _.isEmpty( e.target.value ) ) {
+                updateSearchParams( { user_after: null, user_before: null } );
+              } else if ( e.target.value === "recent" ) {
+                updateSearchParams( { user_after: "1w", user_before: null } );
+              } else if ( e.target.value === "established" ) {
+                updateSearchParams( { user_before: "1w", user_after: null } );
+              }
+            }}
+          >
+            <option value="">
+              { I18n.t( "any_" ) }
+            </option>
+            <option value="recent">
+              { I18n.t( "in_the_past_week" ) }
+            </option>
+            <option value="established">
+              { I18n.t( "more_than_a_week_ago" )}
+            </option>
+          </select>
+        </div>
       </Col>
     );
     const moreRightCol = (

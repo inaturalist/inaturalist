@@ -45,7 +45,12 @@ class TaxonChange < ActiveRecord::Base
   
   scope :taxon, lambda{|taxon|
     joins(TAXON_JOINS).
-    where("t1.id = ? OR t2.id = ? OR t1.ancestry LIKE ? OR t1.ancestry LIKE ?", taxon, taxon, "#{taxon.ancestry}/%", "#{taxon.ancestry}/%" )
+    where(
+      "t1.id = ? OR t2.id = ? OR t1.ancestry = ? OR t1.ancestry = ? OR t1.ancestry LIKE ? OR t1.ancestry LIKE ?",
+      taxon, taxon,
+      "#{taxon.ancestry}/#{taxon.id}", "#{taxon.ancestry}/#{taxon.id}",
+      "#{taxon.ancestry}/#{taxon.id}/%", "#{taxon.ancestry}/#{taxon.id}/%"
+    )
   }
   
   scope :input_taxon, lambda{|taxon|

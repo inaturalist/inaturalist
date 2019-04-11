@@ -23,7 +23,7 @@ class Flag < ActiveRecord::Base
       !record.resolver.subscriptions.where(:resource_type => "Flag", :resource_id => record.id).exists?
   }
 
-  blockable_by lambda {|flag| flag.flaggable.try(:user_id) }
+  blockable_by lambda {|flag| flag.flaggable.try(:user_id) }, on: :create
   
   # NOTE: Flags belong to a user
   belongs_to :user
