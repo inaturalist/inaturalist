@@ -1394,6 +1394,49 @@ ALTER SEQUENCE public.flow_tasks_id_seq OWNED BY public.flow_tasks.id;
 
 
 --
+-- Name: frequency_cell_month_taxa; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.frequency_cell_month_taxa (
+    frequency_cell_id integer,
+    month integer,
+    taxon_id integer,
+    count integer
+);
+
+
+--
+-- Name: frequency_cells; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.frequency_cells (
+    id integer NOT NULL,
+    swlat integer,
+    swlng integer
+);
+
+
+--
+-- Name: frequency_cells_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.frequency_cells_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: frequency_cells_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.frequency_cells_id_seq OWNED BY public.frequency_cells.id;
+
+
+--
 -- Name: friendly_id_slugs; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -5187,6 +5230,13 @@ ALTER TABLE ONLY public.flow_tasks ALTER COLUMN id SET DEFAULT nextval('public.f
 
 
 --
+-- Name: frequency_cells id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.frequency_cells ALTER COLUMN id SET DEFAULT nextval('public.frequency_cells_id_seq'::regclass);
+
+
+--
 -- Name: friendly_id_slugs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6048,6 +6098,14 @@ ALTER TABLE ONLY public.flow_task_resources
 
 ALTER TABLE ONLY public.flow_tasks
     ADD CONSTRAINT flow_tasks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: frequency_cells frequency_cells_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.frequency_cells
+    ADD CONSTRAINT frequency_cells_pkey PRIMARY KEY (id);
 
 
 --
@@ -7158,6 +7216,27 @@ CREATE INDEX index_flow_tasks_on_unique_hash ON public.flow_tasks USING btree (u
 --
 
 CREATE INDEX index_flow_tasks_on_user_id ON public.flow_tasks USING btree (user_id);
+
+
+--
+-- Name: index_frequency_cell_month_taxa_on_frequency_cell_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_frequency_cell_month_taxa_on_frequency_cell_id ON public.frequency_cell_month_taxa USING btree (frequency_cell_id);
+
+
+--
+-- Name: index_frequency_cell_month_taxa_on_taxon_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_frequency_cell_month_taxa_on_taxon_id ON public.frequency_cell_month_taxa USING btree (taxon_id);
+
+
+--
+-- Name: index_frequency_cells_on_swlat_and_swlng; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_frequency_cells_on_swlat_and_swlng ON public.frequency_cells USING btree (swlat, swlng);
 
 
 --
@@ -9746,6 +9825,8 @@ INSERT INTO schema_migrations (version) VALUES ('20181110004422');
 INSERT INTO schema_migrations (version) VALUES ('20181120235404');
 
 INSERT INTO schema_migrations (version) VALUES ('20190104024910');
+
+INSERT INTO schema_migrations (version) VALUES ('20190215195613');
 
 INSERT INTO schema_migrations (version) VALUES ('20190301012813');
 
