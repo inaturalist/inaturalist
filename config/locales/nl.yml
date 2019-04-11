@@ -1,6 +1,7 @@
 # Messages for Dutch (Nederlands)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Abijeet Patro
 # Author: Andrawaag
 # Author: BramEsposito
 # Author: Elroy
@@ -60,6 +61,9 @@ nl:
   x_misidentifications_of_this_species:
     one: 1 misidentificatie van deze soort
     other: '%{count} misidentificaties van deze soort'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 fout gedetermineerde soort in deze %{rank}
+    other: '%{count} fout gedetermineerde soorten in deze %{rank}'
   x_observations:
     one: 1 waarneming
     other: '%{count} waarnemingen'
@@ -2019,6 +2023,7 @@ nl:
   latitude: Breedtegraad
   latitude_in_decimals: Breedtegraad in decimale graden, bijvoorbeeld 38.123
   latitude_slash_y_coord_slash_northing: Latitude / y coord / northing
+  latitude_value: 'Latitude: %{latitude}'
   layers: Lagen
   layout: Layout
   leaderboard: Toplijst
@@ -2279,6 +2284,7 @@ nl:
   longitude: Lengtegraad
   longitude_in_decimal: Lengteligging in decimale graden, bv. -122.123
   longitude_slash_x_coord_slash_easting: Longitude / x coord / easting
+  longitude_value: 'Longitude: %{longitude}'
   look_up_name: Naam opzoeken
   looks_like_neither_have!: Het lijkt er op dat geen van beide een taxon bevat!
   looks_like_no_species_in_guide: Er is nog geen soort in uw gids aanwezig.
@@ -2649,7 +2655,7 @@ nl:
     <a href="%{url}" class="nobr"> waarnemingen toevoegt</a>.
   no_subject_parens: (Geen onderwerp)
   no_suggestions_available: Geen suggesties beschikbaar
-  no_summary_from_wikipedia: Gen samenvatting van Wikipedia
+  no_summary_from_wikipedia: Geen overzicht in Wikipedia
   no_summary_has_been_set: Er is geen samenvatting beschikbaar.
   no_taxa: Geen taxa
   no_taxa_listed: Geen taxa in lijst opgenomen
@@ -3000,6 +3006,10 @@ nl:
     worden geïdentificeerd als deze soort
   other_species_commonly_misidentified_as_this_species_in_place_html: Andere soorten
     die vaak verkeerd worden geïdentificeerd als deze soort in <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Andere taxa zijn vaak ten onrechte
+    gedetermineerd als %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Andere taxa zijn vaak
+    ten onrechte gedetermineerd als %{rank} in <a href="%{url}">%{place}</a>
   our_blog: Onze blog
   out_of_range: Buiten bereik
   output_taxon: Uitvoer taxon
@@ -3527,7 +3537,7 @@ nl:
   previous_tab: Vorige tabblad
   print_verb: Afdrukken
   print_in_browser: Afdrukken in browser
-  privacy: Privacybeleid
+  privacy: Privacy
   privacy_policy: Privacybeleid
   private: privé
   private_: Privé
@@ -3627,6 +3637,8 @@ nl:
   quality_grade_colon: 'Kwaliteitsklasse:'
   queued: In wachtrij
   query: Zoekopdracht
+  radius: Straal (m)
+  radius_value: 'Straal (m): %{radius}'
   random: Willekeurig
   range: Bereik
   range_from: Reeks van
@@ -3997,6 +4009,7 @@ nl:
   sign_up: Registreren
   sign_up_exclamation: Meld je aan!
   similar_species: Gelijkaardige soorten
+  similar_taxa: Soortgelijke Taxa
   simple: Eenvoudig
   sign_in_exclamation: Aanmelden
   single_observation: Enkele waarneming
@@ -4515,6 +4528,7 @@ nl:
     de foute \nrijen aan. Natuurlijk kan het probleem altijd aan onze kant liggen.
     Als dat het \ngeval is, laat het ons dan weten."
   there_were_some_problems_with_fields: 'Er was een probleem met de volgende velden:'
+  there_were_some_problems_with_these_files: 'De volgende bestanden hebben een probleem:'
   theres_also: er is eveneens
   theres_something_wrong_with_taxon_framework_relationship: Er is hier iets mis. We
     kunnen de relatie tussen interne en externe taxa niet bepalen
@@ -4768,6 +4782,7 @@ nl:
       remove_observation: Waarneming verwijderen
       remove_photo: Foto verwijderen
       select_all: Selecteer alle waarnemingen
+      upload_failed: Uploaden is mislukt
   uploading_num_of_count_photos:
     one: Foto uploaden...
     other: Uploading %{num} van %{count} fotos...
@@ -4890,6 +4905,7 @@ nl:
   view_flags: Markeringen weergeven
   view_flags_for_x_html: Markeringen weergeven van %{x}
   view_full_observation: Volledige waarneming weergeven
+  view_full_size_photo: Toonfull-size foto
   view_invitation: Uitnodiging weergeven
   view_journal: Dagboek weergeven
   view_leaderboard: Toplijst weergeven
@@ -5418,7 +5434,7 @@ nl:
           <a href="http://eol.org"><img src="https://eol.org/assets/large_logo-61d6036612463aa36f3a2561bf2e258d133eb693a737a7169af0efb2b31d5454.png"></a>
         welcome_message_html: |-
           Gidsen leren je over de biodiversiteit van de gehele wereld.
-          Of je nu de Vondelpark verkent of alleen je plaatselijke park (wat de Serengeti zou kunnen zijn), Gidsen kunnen je helpen een idee te geven van de verbluffende diversiteit van het leven van onze planeet.
+          Of je nu het Vondelpark verkent of het plaatselijke park (wat de Serengeti zou kunnen zijn), Gidsen kunnen je helpen een idee te geven van de verbluffende diversiteit van het leven van onze planeet.
       edit:
         add_eol_content: Voeg EOL-inhoud toe aan geselecteerde taxa als een batch.
           Dit kan even duren, dus wees geduldig.
@@ -6269,7 +6285,7 @@ nl:
         project_summary_help: Geef een beknopte uitleg van je project. Ongeveer de
           eerste 200 karakters zullen zichtbaar zijn aan de rechterkant van de banner
           van het startscherm van het project, dus begin met de beste dingen!
-        project_summary_placeholder: Ontdek en volg de vogels van het Vondelpark ...
+        project_summary_placeholder: Ontdek en volg de vogels van het Zuiderpark ...
         start_and_end_times_for_bioblitzes: Start- en eindtijd voor bioblitzes
         umbrella_project_features: 'Kenmerken van het parapluproject:'
         unique_url_for_outreach: Unieke URL voor outreach
@@ -6811,9 +6827,9 @@ nl:
         observations_to_date: Waarnemingen tot nu toe
         species_observed: Waargenomen soorten
         people_signed_up: Mensen aangemeld
-        how_it_works: Hoe het werkt
+        how_it_works: Hoe werkt het
         record_your_observations: Leg uw waarnemingen vast
-        share_with_fellow_naturalists: Deel met andere natuuronderzoekers
+        share_with_fellow_naturalists: Deel ze met andere natuuronderzoekers
         discuss_your_findings: Bespreek uw bevindingen
         contribute_to_science: Draag bij tot de wetenschap
         science_desc_html: |-

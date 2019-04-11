@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: 2axterix2
+# Author: Abijeet Patro
 # Author: Adjen
 # Author: Alcorman
 # Author: Anitenn
@@ -45,6 +46,7 @@
 # Author: Tifdogo12
 # Author: Turluma
 # Author: Tusca
+# Author: Vechocho
 # Author: Yllelder
 ---
 es:
@@ -838,6 +840,7 @@ es:
     merged_into: combinado en
     replaced_by: reemplazado por
     replace_with: reemplaza con
+    replaced_with: 'Reemplazar con:'
     dropped: eliminado
     staged: Escenificado
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} se dividió en %{output_taxa}'
@@ -1436,8 +1439,10 @@ es:
     naturalised: Naturalizada
   establishment_means: Medio de establecimiento
   establishment_means_descriptions:
-    arrived_in_the_region_via_anthropogenic_means: llegó a la región por medios antropogénicos
-    native_and_occurs_nowhere_else: nativo, no ocurre en ningún otro lugar
+    arrived_in_the_region_via_anthropogenic_means: Llegó a la región por medios antropogénicos
+    native_and_occurs_nowhere_else: Nativo, no está presente en ningún otro lugar
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Se desarrolló en
+      esta región o llegó por medios no antropogénicos
   establishment_means_describes_how: 'El medio de establecimiento describe cómo se
     estableció el taxón en un área. Ver DarwinCore para <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">más
     información en terminología</a>.'
@@ -1632,8 +1637,12 @@ es:
   for_more_information: para más información.
   formatting: Creando formato
   forgot_your_password: ¿Olvidaste tu contraseña?
+  forum: Foro
   forum_categories:
-    tutorials: Tutoriales.
+    bug_reports: Informes de errores
+    feature_requests: Solicitudes de características
+    news_and_updates: Noticias y actualizaciones
+    tutorials: Tutoriales
   frequency: Frecuencia
   fri: vie
   from: de
@@ -2843,6 +2852,10 @@ es:
     //code.google.com/p/darwincore/wiki/Occurrence#occurrenceStatus">más información
     sobre terminología </a>.'
   occurrence_status: Estado de ocurrencia
+  occurrence_status_descriptions:
+    absent: No ocurre en el área
+    common: Ocurre frecuentemente
+    present: Ocurre en el área
   occurrence_status_establishment_means: estado de ocurrencia, medio de establecimiento
   occurrence_status_levels:
     present: presente
@@ -6298,8 +6311,8 @@ es:
         note_you_can_delete_the_time: '(Nota:  puedes eliminar el huso horario y tiempo
           preciso si  quieres incluir días enteros.)'
         or_drag_and_drop: (O arrastrar y soltar)
-        please_specify_the_requirements_html: Especifica por favor los requisitos para
-          las observaciones que serán añadidas a este proyecto. Puedes seleccionar
+        please_specify_the_requirements_html: Especifica por favor los requisitos
+          para las observaciones que serán añadidas a este proyecto. Puedes seleccionar
           múltiples especies, sitios, y usuarios para ser automáticamente incluidos.
         project_background_color: Color de fondo del resumen del proyecto
         project_background_color_help: Asegúrate de seleccionar un color suficientemente

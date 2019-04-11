@@ -587,6 +587,9 @@ fi:
   attribution: Nimeäminen
   authority_list:
     iucn_red_list: IUCN Uhanalaisuusluokitus
+    natureserve: NatureServe
+    cites: CITES
+  authorize: Valtuuta
   authorize_permissions_from_provider: Valtuuta %{provider} käyttöoikeudet
   automatic_descriptions_have_been_disabled: Automaattiset kuvaukset on poistettu
     käytöstä tälle taksonille.
@@ -1086,6 +1089,7 @@ fi:
   date_range: Ajanjakso
   date_specified: Päivämäärä määritetty
   date_time: Päiväys/Aika
+  date_updated: Tiedot päivitetty
   dates: päivämäärät
   datetime_: Päiväys/Aika
   day: Päivä
@@ -1097,6 +1101,7 @@ fi:
   default_sound_license: Oletuslisenssi äänille
   defaults_to_your_name_or_username: Oletuksena nimesi tai käyttäjätunnuksesi
   defines_a_taxon_framework_for: Määrittää taksonikehyksen taksonille %{taxon_name}
+  definitions: Määritelmät
   delete: Poista
   delete_all: Poista kaikki
   delete_conversation: Poista keskustelu
@@ -1119,6 +1124,7 @@ fi:
   deleted_vote: Poistettu äänestys
   deleting: Poistaa...
   deleting_verb: Poistaminen
+  deny: Kiellä
   desc: Laskeva
   descending: Laskeva
   describe_purpose: Kuvaile tämän projektin tarkoitus.
@@ -1438,6 +1444,13 @@ fi:
   for_a_taxon: taksonille
   formatting: Muotoilu
   forgot_your_password: Unohditko salasanasi?
+  forum: Foorumi
+  forum_categories:
+    bug_reports: Bugiraportit
+    forum_feedback: Foorumin palaute
+    nature_talk: Keskustelua luonnosta
+    news_and_updates: Uutiset & päivitykset
+    tutorials: Oppaat
   frequency: Lukumäärä
   fri: Pe
   from: paikasta
@@ -1920,6 +1933,7 @@ fi:
   location_is_private: Sijainti on yksityinen
   location_specified: Sijainti määritetty
   log_in: Kirjaudu sisään
+  log_scale_label: Loki
   logged_in_as: Olet sisäänkirjautuneena käyttäjätunnuksella
   login_slash_username: Kirjautumis / käyttäjänimi
   logo:
@@ -1949,6 +1963,7 @@ fi:
   make_a_new_place: Tee uusi paikka
   make_a_taxon_swap_instead?: Tee sen sijaan Taksoninvaihto?
   make_curator: Tee kuraattori
+  make_it_a_life_list?: Tee siitä elämäluettelo?
   make_manager: Tee manageri
   make_new_place: Tee uusi paikka
   make_taxonomic_flickr_tags_for_taxon_raquo: Tee taksonomisia Flickr-merkintöjä tähän
@@ -2156,7 +2171,7 @@ fi:
   next_tab: Seuraava välilehti
   "no": Ei
   no_activity_in_the_past_week: Ei toimintaa viime viikolla. On aika
-  no_administrator_knows_your_password: '%{sitename}-ylläpitäjät eivät tiedä uutta
+  no_administrator_knows_your_password: '%{sitename}in ylläpitäjät eivät tiedä uutta
     salasanaasi eikä heillä ole missään vaiheessa pääsyä salasanaasi.'
   no_assessments_have_been_added_to_this_project_yet: Tähän projektiin ei ole vielä
     lisätty arviointeja.
@@ -2597,8 +2612,8 @@ fi:
       point_of_interest: mielenkiintoinen kohde
       Postal_Code: Postinumero
       postal_code: postinumero
-      Province: Provinssi
-      province: provinssi
+      Province: Maakunta
+      province: maakunta
       Region: Alue
       region: alue
       Republic: Tasavalta
@@ -2937,7 +2952,7 @@ fi:
   previous_photo: Edellinen kuva
   print_verb: Tulosta
   print_in_browser: Tulosta selaimessa
-  privacy: Yksityisyyskäytäntö
+  privacy: Yksityisyys
   privacy_policy: Yksityisyyskäytäntö
   private: yksityinen
   private_: Yksityinen
@@ -3002,6 +3017,7 @@ fi:
   quality_grade_: Laatuaste
   quality_grade_colon: 'Laatuaste:'
   query: Kysely
+  radius_value: 'Säde (m): %{radius}'
   random: Satunnainen
   range: Väli
   rank: Sija
@@ -3046,6 +3062,7 @@ fi:
   real_time_stats: Reaaliaikaiset tilastot
   real_time_discussions: Reaaliaikaiset keskustelut
   reason: Syy
+  reason_label: 'Syy:'
   reason_you_are_flagging_this_item: Syy, jonka vuoksi liputat tätä kohdetta.
   recaptcha_verification_failed: reCAPTCHA-varmistus epäonnistui
   receive_email_notifications_when_people_leave_you: Vastaanota sähköposti-ilmoituksia
@@ -3086,6 +3103,7 @@ fi:
     one_to_many: yksi-moneen
     not_external: ei ulkoinen
     not_internal: ei sisäinen
+    error: virhe
   reload_and_refresh: Lataa uudelleen ja päivitä luettelo
   reload_from_observations: Päivitä havainnoista
   remarks_optional: Huomautukset <span class="small description">(valinnainen)</span>
@@ -3726,6 +3744,9 @@ fi:
   upload_photos: Lataa kuvia
   uploaded_by: Tallentanut
   uploader:
+    errors:
+      unsupported_file_type: Tiedostotyyppiä ei tueta. Tuemme JPG, PNG, GIF, WAV,
+        AAC, MP3, ja MP4 (vain ääni)
     tooltips:
       add: Lisää havainto(ja)
       photo_failed: Kuvan tallentaminen epäonnistui
@@ -3736,7 +3757,7 @@ fi:
   uploading_num_of_count_photos:
     one: Tallennetaan kuvaa...
     other: Tallennetaan %{num}/%{count} kuvaa...
-  US_states: US osavaltiot
+  US_states: USA:n osavaltiot
   usage_stats: Käyttötilastot
   user: Käyttäjä
   user_added_a_x: '%{user} lisäsi %{x}n'
@@ -3998,9 +4019,9 @@ fi:
     yksi</a>
   you_are_already_a_member_of_this_project: Olet jo tämän projektin jäsen!
   you_are_no_longer_following_x: Et enää seuraa ystävää %{friend}.
-  you_are_submitting_obs_without_photos_and_names: |-
-    Olet lähettämässä havaintoja ilman kuvia ja taksoninimiä.
-    Nämä havainnot tulevat olemaan erittäin vaikeita tunnistaa tarkasti.
+  you_are_submitting_obs_without_photos_and_names: "Olet lähettämässä havaintoja ilman
+    kuvia ja taksoninimiä. Havainnot \nilman näitä tietoja ovat usein mahdottomia
+    tunnistaa eivätkä ne tule olemaan \nnäkyvillä oletusarvoisesti havaintohauissa."
   you_arent_a_member_of_that_project: Et ole tuon projektin jäsen.
   you_arent_following_that_person: Et seuraa tätä henkilöä.
   you_can_accept_invitations: Voit hyväksyä kutsun täällä
@@ -4405,9 +4426,9 @@ fi:
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Ota yhteyttä palauteryhmään</a></strong>
+              <strong><a href="%{feedback_url}">Ota yhteyttä foorumiin</a></strong>
               <p>
-                Monet sivuston kuraattorit seuraavat sähköpostiviestejä palauteryhmään.
+                Monet sivuston kuraattorit seuraavat sähköpostiviestejä foorumiin.
               </p>
             </li>
             <li>

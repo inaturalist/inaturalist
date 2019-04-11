@@ -601,7 +601,7 @@ de:
   you_sure_delete_list: Bist du sicher, dass du diese Liste entfernen willst?
   you_sure_delete_taxon_from_list?: Bist du sicher, dass du %{taxon} von der Liste
     entfernen möchtest?
-  asc: auf
+  asc: aufsteigend
   ascending: aufsteigend
   aside_from_extraordinary_circumstances: Jenseits von außerordentlichen Umständen
     werden wir niemals nach deinem Passwort fragen.
@@ -622,6 +622,7 @@ de:
   attribution: Namensnennung
   authority_list:
     iucn_red_list: IUCN Rote Liste
+    natureserve: NatureServe
   authorize: Behörde
   authorize_permissions_from_provider: Berechtigungen von %{provider} zulassen
   automatic_descriptions_have_been_disabled: Automatische Beschreibungen wurden für
@@ -1218,7 +1219,7 @@ de:
   deleting: Löschen …
   deleting_verb: Löschen
   deny: Verweigern
-  desc: Beschreibung
+  desc: absteigend
   descendant_taxa: absteigende Taxa
   descending: absteigend
   describe_purpose: Beschreibe den Zweck des Projektes.
@@ -1542,6 +1543,7 @@ de:
   forum_categories:
     bug_reports: Bug Reports
     feature_requests: Feature Requests
+    forum_moderation: Forum-Moderation
     nature_talk: Natur-Talk
     news_and_updates: News & Updates
     tutorials: Anleitungen
@@ -1571,6 +1573,7 @@ de:
     one: Pilz
     other: Pilze
   gbif_occurrences: GBIF Vorkommnisse
+  geo: Geo
   general: Allgemein
   generally_these_come_from_iucn_red_list: Im Allgemeinen kommen diese von der Roten
     Liste der IUCN und wenn sie von woanders kommen, werden sie den Kategorien der
@@ -3002,6 +3005,7 @@ de:
     french_polynesia: Französisch-Polynesien
     georgia: Georgien
     germany: Deutschland
+    ghana: Ghana
     gibraltar: Gibraltar
     greece: Griechenland
     greenland: Grönland
@@ -3011,6 +3015,7 @@ de:
     iceland: Island
     india: Indien
     indonesia: Indonesien
+    iran: Iran
     iraq: Irak
     ireland: Irland
     israel: Israel
@@ -3018,6 +3023,7 @@ de:
     japan: Japan
     korea: Korea
     kosovo: Kosovo
+    liechtenstein: Liechtenstein
     luxembourg: Luxemburg
     macedonia: Mazedonien
     madagascar: Madagaskar
@@ -3028,6 +3034,7 @@ de:
     mexico: Mexiko
     montenegro: Montenegro
     myanmar: Myanmar
+    namibia: Namibia
     netherlands: Niederlande
     new_caledonia: Neukaledonien
     new_guinea: Neuguinea
@@ -3042,6 +3049,7 @@ de:
     peru: Peru
     poland: Polen
     portugal: Portugal
+    puerto_rico: Puerto Rico
     republic_of_congo: Republik Kongo
     russia: Russland
     sao_tome_and_principe: São Tomé und Príncipe
@@ -3058,9 +3066,11 @@ de:
     sweden: Schweden
     switzerland: Schweiz
     syria: Syrien
+    taiwan: Taiwan
     thailand: Thailand
     trinidad_and_tobago: Trinidad und Tobago
     turkey: Türkei
+    uganda: Uganda
     ukraine: Ukraine
     united_arab_emirates: Vereinigte Arabische Emirate
     united_kingdom: Vereinigtes Königreich
@@ -3121,7 +3131,7 @@ de:
   previous_tab: Vorheriger Tab
   print_verb: Drucken
   print_in_browser: Im Browser drucken
-  privacy: Datenschutzrichtlinie
+  privacy: Datenschutz
   privacy_policy: Datenschutzerklärung
   private: privat
   private_: Privat
@@ -3690,7 +3700,7 @@ de:
   specify_the_reason_youre_flagging: Gib den Grund an, warum du diesen Eintrag meldest
   src: Src
   standard: Standard
-  start: Beginnen
+  start: Start
   start_a_new_list: Neue Liste beginnen
   start_a_new_project: Neues Projekt beginnen
   start_a_project: Projekt beginnen
@@ -4338,8 +4348,10 @@ de:
   you_are_setting_this_project_to_aggregate: |-
     Du stellst dieses Projekt so ein, dass alle Beobachtungen, die den folgenden Regeln entsprechen, zusammengeführt werden: %{rules}
     Wollen Sie fortfahren?
-  you_are_submitting_obs_with_no_date_or_no_location: Du fügst Beobachtungen ohne
-    Datum oder Koordinaten hinzu.
+  you_are_submitting_obs_with_no_date_or_no_location: |-
+    Du fügst Beobachtungen ohne Datum oder Koordinaten hinzu. Beobachtungen
+    ohne diese Informationen sind oft unmöglich zu identifizieren und sind
+    standardmäßig nicht in Beobachtungs-Suchanfragen sichtbar.
   you_are_subscribed_to: Du abonnierst
   you_arent_a_member_of_that_project: Du bist kein Mitglied dieses Projektes!
   you_arent_following_that_person: Du folgst dieser Person nicht.
@@ -4836,11 +4848,12 @@ de:
           Projekten, wie den Zugriff auf die tatsächlichen Koordinaten, benutzerdefinierte
           Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht
           automatisch gefiltert werden können?
-        please_specify_the_requirements_html: Bitte geben Sie die Anforderungen für die
-          Beobachtungen an, die zu diesem Projekt hinzugefügt werden sollen. Sie können
-          mehrere Arten, Orte, Benutzer oder Qualitätsstufen angeben, die automatisch
+        please_specify_the_requirements_html: Bitte geben Sie die Anforderungen für
+          die Beobachtungen an, die zu diesem Projekt hinzugefügt werden sollen. Sie
+          können mehrere Arten, Orte, Benutzer oder Qualitätsstufen angeben, die automatisch
           einbezogen werden sollen, oder ein Feld leer lassen, wenn Sie keine besonderen
-          Anforderungen haben.
+          Anforderungen haben. Erklärungen für jedes Feld können <a href="%{url}">hier</a>
+          gefunden werden.
         project_summary_help: Gib eine kurze Erläuterung deines Projekts an. Ungefähr
           die ersten 200 Zeichen werden rechts neben dem Banner der Projekt-Startseite
           zu sehen sein, also schreibe das Wichtigste zu Beginn hin!

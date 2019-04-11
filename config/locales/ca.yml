@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Abella
+# Author: Abijeet Patro
 # Author: Cgalindo
 # Author: Eduardo Martinez
 # Author: Fitoschido
@@ -49,6 +50,9 @@ ca:
   x_misidentifications_of_this_species:
     one: 1 identificació errònia d'aquesta espècie
     other: '%{count} identificacions errònies d''aquesta espècie'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 espècie mal identificació en aquest %{rank}
+    other: '%{count} espècies mal identificades en aquest %{rank}'
   x_observations:
     one: 1 observació
     other: '%{count} observacions'
@@ -273,7 +277,7 @@ ca:
   add_life_stage_larva_annotation: 'Afegiu nota "Estat del Cicle biològic: Larva"'
   add_life_stage_juvenile_annotation: 'Afegir l''anotació «Etapa de la vida: juvenil»'
   add_life_stage_egg_annotation: 'Afegiu nota "Estat del Cicle biològic: Ou"'
-  add_relationship: Afegir una relació
+  add_relationship: Afegeix una relació
   add_section: Afegiu Secció
   add_several_observations_at_once: Afegiu diverses observacions a la vegada.
   add_sex_female_annotation: 'Afegiu nota "Sexe: Femella"'
@@ -1615,10 +1619,10 @@ ca:
   forum_categories:
     bug_reports: Informe d'errades
     feature_requests: Petició de Característiques
-    forum_feedback: Fòrum de comentaris
-    forum_moderation: Moderació del Fòrumc
+    forum_feedback: Comentaris quant al fòrum
+    forum_moderation: Moderació del fòrum
     nature_talk: Parlem de Natura
-    news_and_updates: Notícies i Actualitzacions
+    news_and_updates: Notícies i actualitzacions
     tutorials: Tutorials
   forum_desc: Aquest fórum és el lloc per parlar sobre iNat, incloent la demanda d'ajuda,
     suport o de característiques, informar d'errades, anuncis i més.
@@ -3000,6 +3004,10 @@ ca:
     identificades incorrectament com aquesta espècie
   other_species_commonly_misidentified_as_this_species_in_place_html: Altres espècies
     que habitualment identificat incorrectament com aquesta espècie a <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Altre tàxon generalment mal identificat
+    a aquest %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Altres taxons habitualment
+    mal identificar com aquest %{rank} a <a href="%{url}">%{place}</a>
   our_blog: El nostre blog
   out_of_range: Fora del rang
   output_taxon: Tàxon de sortida
@@ -3997,6 +4005,7 @@ ca:
   sign_up: Registreu-vos
   sign_up_exclamation: Registreu-vos!
   similar_species: Espècie similar
+  similar_taxa: Tàxon semblant
   simple: Senzill
   sign_in_exclamation: Inicieu sessió!
   single_observation: Observació simple
@@ -4339,9 +4348,9 @@ ca:
   taxon_colors: Colors del taxon
   taxon_curators: Supervisors del Taxon
   taxon_extras: Extres del taxon
-  taxon_framework: Marc Taxonòmic
+  taxon_framework: Marc taxonòmic
   taxon_framework_notes: Notes del Marc de Tàxon
-  taxon_framework_relationship: Relació del Marc Taxonòmic
+  taxon_framework_relationship: Relació del marc taxonòmic
   taxon_framework_relationship_for: Relació del marc del tàxon
   taxon_framework_relationship_number: Relació amb el marc taxonòmic %{number}
   taxon_framework_relationships: Relació del Marc del Tàxon
@@ -5050,6 +5059,7 @@ ca:
   what_do_you_want_to_list: Què voleu llistar?
   what_to_keep: Què cal mantenir
   what_want_to_list?: Què voleu afegir a la llista?
+  what_were_you_looking_for?: Quina cosa cercàveu? (llista d’objectius)
   whats_this?: Què és això?
   when: Quan
   when_did_you_see_it?: Quan l’heu vist?
@@ -5862,9 +5872,19 @@ ca:
         decimal_degrees_format: dd.dddd
         geoprivacy_must_be_in_english: La columna geoprivacitat ha d'estar en anglès
           i ha d'estar en blanca o tenir el valor de "enfoquit" o "privat"
+        google_photos_notice_html: |-
+          El febrer del 2019, Google va canviar el seu API, fent impossible per nosaltres accedir a les coordenades del GPS, informació de llicència, i gairebé total la informació que  podiem utilitzar per afegir a una identificació (com etiquetes). També ha eliminat la cerca de text i la paginació numèrica. A més, han requerit que tots els comptes demanin permisos addicionals, i que els tercers siguin verificats. Estem esperant la verificació i mentre arriba, no podreu importar fotos de Google.
+          Si som aprovats, podreu importar fotos, però no inclourà informació d'ubicació o informació de llicència que sí que podeu veure a Photos de Google. Podeu llegir més sobre això a <a href="https://developers.google.com/picasa-
+          web">https://desenvolupadors.google.com/picasa-Web</a>. Descarregar els arxius originals i afegint-los utilitzant la <a href="/observations/upload">Nostra Aplicació </a> és, per ara la millor opció.
         project_csv_template_notice_html: "Hi ha un fitxer de plantilla per a aquest
           projecte que pot ajudar-vos amb l'estructura del fitxer CSV. \n<a href=\"%{url}\">Descarregar
           la plantilla</a>"
+        soundcloud_notice_html: El 2018 Soundcloud va canviar el seu API i ens va
+          fer impossible per nosaltres fer connexions noves al vostre compte Soundcloud.
+          Si restableixen aquesta funcionalitat, podem tornar a enllaçar comptes a
+          Soundcloud. Mentrestant, podeu <a href="/observations/upload">pujar</a>
+          els arxius de so directament utilitzant la <a href="/observations/upload">Nostra
+          aplicació</a>.
       show:
         allow_curator_coordinate_access_desc_html: Permet als supervisors del projecte
           veure les coordenades ocultes d'aquesta observació.
@@ -6589,12 +6609,19 @@ ca:
           a aquest projecte.'
       delete:
         by_deleting_your_account_you_will_remove: Esborrant el vostre compte eliminareu
+        x_comments_html: '{heu afegit {PLURAL|one=<strong class="count">1 comentari</strong>|heu
+          afegit <strong class="count">%{count} comentaris</strong>}}'
+        furthermore_cannot_undo_html: A més, <strong> aquesta acció no es pot desfer</strong>.
+          Si canvieu d'idea més endavant, no podreu recuperar aquest contingut.
         settings_and_mute_html: "Si aquest lloc genera massa notificacions, considereu
           <a href=\"/users/edit\">canviar la vostra configuració</a> per reduir algunes
           notificacions o aturar la recepció de correu electrònic nostre. Si esteu
           tenint algun problema amb alguna persona específica en el lloc, considereu
           \n<a href=\"/users/edit\">callar-la</a> en comptes d'eliminar el vostre
           compte."
+        still_want_to_delete_html: Si encara esteu segur de voler esborrar el vostre
+          compte, entreu <code>%{confirmation_code}</code> en el formulari següent
+          i premeu el bitó per esborrar el vostre compte i totes les vostres dades.
         type_confirmation_code: Escrigui %{confirmation_code}
         you_must_enter_confirmation_code_in_the_form: Escrigueu "%{confirmation_code}"
           en el formulari per eliminar el vostre compte

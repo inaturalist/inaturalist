@@ -725,6 +725,7 @@ sv:
     merged_into: sammanfogades till
     replaced_by: ersattes av
     replace_with: ersätt med
+    replaced_with: ersätt med
     dropped: släpptes
   change_your_password: Ändra ditt lösenord
   check_back_soon: Kom tillbaka snart!
@@ -948,6 +949,7 @@ sv:
   drag_and_drop_some_photos_or_sounds: Dra och släpp några foton eller ljud
   drawings: Skisser
   duplicate_verb: Duplicera
+  duration_value: 'Varaktigthet: %{duration} minuter'
   edit: Redigera
   edit_account_settings_and_profile: Redigera kontoinställningar och -profil
   edit_atlas: Redigera Atlas
@@ -1070,6 +1072,7 @@ sv:
   for_a_taxon: för en taxon
   formatting: Formatering
   forgot_your_password: Glömt ditt lösenord?
+  forum: Forum
   frequency: Frekvens
   fri: Fre
   from: Från
@@ -1167,6 +1170,7 @@ sv:
   language_slash_type: Språk / Typ
   last_active_with_date: 'Senast aktiv: %{date}'
   last_year: Senaste året
+  latitude_value: 'Latitud: %{latitude}'
   leaderboard_most:
     species: Mest arter i %{time}
     observations: Mest observationer i %{time}
@@ -1277,6 +1281,7 @@ sv:
   logo:
     none: ingen
   longitude: Longitud
+  longitude_value: 'Longitud: %{longitude}'
   make_admin: Gör admin
   manage: Hantera
   manage_your_projects: Hantera dina projekt
@@ -1381,6 +1386,8 @@ sv:
   not_on_this_list: Inte på denna lista.
   not_spam: Inte spam
   notes: Kommentarer
+  number_of_observers_value: 'Antal observerare: %{number}'
+  number_of_observers: Antal observerare
   number_selected: Antal valda
   noun_by_you: '%{noun} av dej'
   observation: Observation
@@ -1741,7 +1748,7 @@ sv:
   previous_photo: Föregående foto
   previous_tab: Föregående flik
   print_verb: Skriv ut
-  privacy: Integritetspolicy
+  privacy: Integritet
   privacy_policy: Integritetspolicy
   private: privat
   private_: Privat
@@ -1761,6 +1768,8 @@ sv:
   projects: Projekt
   projects_from_everywhere: Projekt från allihopa
   publish: Publicera
+  radius: Radie (m)
+  radius_value: 'Radie (m): %{radius}'
   ranks:
     kingdom: Rike
     subkingdom: Underrike
@@ -1979,6 +1988,10 @@ sv:
   upload_photos: Ladda upp foton
   uploaded_by: Uppladdad av
   uploader:
+    errors:
+      file_too_big: Filen måste vara mindre än %{megabytes} MB
+      unsupported_file_type: Filtypen stöds inte. Vi accepterar JPG, PNG, GIF, WAV,
+        AAC, MP3 och MP4 (endast ljud)
     tooltips:
       add: Lägg till observation(er)
       combine: Kombinera markerade observationer
@@ -1986,6 +1999,7 @@ sv:
       remove_observation: Ta bort observation
       remove_photo: Ta bort foto
       select_all: Välj alla observationer
+      upload_failed: Uppladdning misslyckades
   uploading_num_of_count_photos:
     one: Laddar upp foto...
     other: Laddar upp %{num} av %{count} foton...
@@ -2021,6 +2035,7 @@ sv:
   view_all_photocount_photos: Visa alla %{photo_count} foton
   view_all_your_projects: Visa alla dina projekt
   view_flag: Visa flagga
+  view_full_size_photo: Visa foto i full storlek
   view_journal: Visa journal
   view_license: Visa licens
   view_more: Visa mer
@@ -2067,6 +2082,7 @@ sv:
   welcome_to_guides: Välkommen till %{site_name} guider!
   welcome_to_x_project: Välkommen till %{project}
   what: Vad
+  what_were_you_looking_for?: Vad letade du efter? (mållista)
   whats_this?: Vad är detta?
   where: Var
   white: vit
