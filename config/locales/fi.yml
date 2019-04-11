@@ -2171,7 +2171,7 @@ fi:
   next_tab: Seuraava välilehti
   "no": Ei
   no_activity_in_the_past_week: Ei toimintaa viime viikolla. On aika
-  no_administrator_knows_your_password: '%{sitename}-ylläpitäjät eivät tiedä uutta
+  no_administrator_knows_your_password: '%{sitename}in ylläpitäjät eivät tiedä uutta
     salasanaasi eikä heillä ole missään vaiheessa pääsyä salasanaasi.'
   no_assessments_have_been_added_to_this_project_yet: Tähän projektiin ei ole vielä
     lisätty arviointeja.
@@ -2952,7 +2952,7 @@ fi:
   previous_photo: Edellinen kuva
   print_verb: Tulosta
   print_in_browser: Tulosta selaimessa
-  privacy: Yksityisyyskäytäntö
+  privacy: Yksityisyys
   privacy_policy: Yksityisyyskäytäntö
   private: yksityinen
   private_: Yksityinen
@@ -3017,6 +3017,7 @@ fi:
   quality_grade_: Laatuaste
   quality_grade_colon: 'Laatuaste:'
   query: Kysely
+  radius_value: 'Säde (m): %{radius}'
   random: Satunnainen
   range: Väli
   rank: Sija
@@ -3743,6 +3744,9 @@ fi:
   upload_photos: Lataa kuvia
   uploaded_by: Tallentanut
   uploader:
+    errors:
+      unsupported_file_type: Tiedostotyyppiä ei tueta. Tuemme JPG, PNG, GIF, WAV,
+        AAC, MP3, ja MP4 (vain ääni)
     tooltips:
       add: Lisää havainto(ja)
       photo_failed: Kuvan tallentaminen epäonnistui
@@ -4015,9 +4019,9 @@ fi:
     yksi</a>
   you_are_already_a_member_of_this_project: Olet jo tämän projektin jäsen!
   you_are_no_longer_following_x: Et enää seuraa ystävää %{friend}.
-  you_are_submitting_obs_without_photos_and_names: |-
-    Olet lähettämässä havaintoja ilman kuvia ja taksoninimiä.
-    Nämä havainnot tulevat olemaan erittäin vaikeita tunnistaa tarkasti.
+  you_are_submitting_obs_without_photos_and_names: "Olet lähettämässä havaintoja ilman
+    kuvia ja taksoninimiä. Havainnot \nilman näitä tietoja ovat usein mahdottomia
+    tunnistaa eivätkä ne tule olemaan \nnäkyvillä oletusarvoisesti havaintohauissa."
   you_arent_a_member_of_that_project: Et ole tuon projektin jäsen.
   you_arent_following_that_person: Et seuraa tätä henkilöä.
   you_can_accept_invitations: Voit hyväksyä kutsun täällä

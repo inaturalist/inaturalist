@@ -1276,6 +1276,8 @@ it:
     del progetto
   display_listings_added_by_curators: Mostra le liste aggiunte dai curatori
   display_listings_from_place: Mostra le liste del luogo
+  distance_traveled_value: 'Distanza percorsa: %{distance}m'
+  distance_traveled: Distanza percorsa (m)
   dna_: DNA
   documentation_for_developers_html: Documentazione per gli <a href="/pages/developers">sviluppatori</a>
   do_not_show_this_message_again: Non mostrare più questo messaggio
@@ -2717,6 +2719,8 @@ it:
     che sono in accordo con le tue. Se lo deselezioni riceverai solo le notifiche
     delle identificazioni che non corrispondono esattamente al taxon della tua identificazione.
   number_of_observations: Numero di osservazioni
+  number_of_observers_value: 'Numero di osservatori: %{number}'
+  number_of_observers: Numero di osservatori
   number_selected: '# selezionati'
   numeric_: numerico
   noun_by_you: tuoi/tue %{noun}
@@ -3656,6 +3660,7 @@ it:
   quality_grade_colon: 'Qualità:'
   queued: In coda
   query: Interrogazione
+  radius: Raggio (m)
   radius_value: 'Raggio (m): %{radius}'
   random: Casuale
   range: Intervallo
@@ -3878,6 +3883,20 @@ it:
     must_be_coordinates_shareable_by_project_curators: l'osservatore deve permettere
       ai curatori del progetto di visualizzare le coordinate.
   running_total: Totale attuale
+  same_day_obscured: Un'altra osservazione di questa persona nello stesso giorno è
+    oscurata
+  same_day_obscured_desc: Quando le coordinate sono oscurate perché il taxon è minacciato,
+    anche tutte le altre osservazioni di quella persona lo stesso giorno vengono oscurate
+    per evitate che le persone intuiscano le coordinate basandosi sulle osservazioni
+    effettuate nello stesso periodo. Gli utenti possono applicare questo tipo di protezione
+    anche alle coordinate che hanno deciso di oscurare.
+  same_day_private: Un'altra osservazione di questa persona nello stesso giorno è
+    privata
+  same_day_private_desc: Quando le coordinate sono nascoste perché il taxon è minacciato,
+    anche tutte le altre osservazioni di quella persona lo stesso giorno vengono nascoste
+    per evitare che le persone intuiscano le coordinate basandosi sulle osservazioni
+    effettuate nello stesso periodo. Gli utenti possono applicare questo tipo di protezione
+    anche alle coordinate che hanno deciso di nascondere.
   said: detto
   sat: Sat
   satellite: satellite
@@ -4553,6 +4572,7 @@ it:
     Per piacere ricontrolla le righe con errori. Naturalmente il problema può essere
     anche causa nostra. Se è così, faccelo sapere.
   there_were_some_problems_with_fields: 'Ci sono stati problemi con i seguenti campi:'
+  there_were_some_problems_with_these_files: 'Ci sono stati problemi con questi file:'
   theres_also: c'è anche
   theres_something_wrong_with_taxon_framework_relationship: C'è qualcosa di sbagliato
     qui - non possiamo determinare la relazione tra nessuno dei taxa interni ed esterni
@@ -4798,6 +4818,10 @@ it:
   upload_range: Carica areale
   uploaded_by: Caricato da
   uploader:
+    errors:
+      file_too_big: Il file deve essere meno di %{megabytes} MB
+      unsupported_file_type: Tipo file non supportato. Accettiamo JPG, PNG, GIF, WAV,
+        AAC, MP3, e MP4 (solo audio)
     tooltips:
       add: Aggiungi osservazione(i)
       combine: Combina le osservazioni selezionate
@@ -4806,6 +4830,7 @@ it:
       remove_observation: Rimuovi osservazione
       remove_photo: Rimuovi foto
       select_all: Seleziona tutte le osservazioni
+      upload_failed: Caricamento non riuscito
   uploading_num_of_count_photos:
     one: Caricamento foto...
     other: Caricamento foto %{num} di %{count}...
@@ -4927,6 +4952,7 @@ it:
   view_flags: Visualizza le etichette
   view_flags_for_x_html: Visualizza le etichette per %{x}
   view_full_observation: Visualizza l'osservazione completa
+  view_full_size_photo: Visualizza immagine a dimensione piena
   view_invitation: Visualizza l'invito
   view_journal: Visualizza il diario
   view_leaderboard: Visualizza la classifica
@@ -5081,6 +5107,7 @@ it:
   what_do_you_want_to_list: Cosa vuoi elencare?
   what_to_keep: Cosa tenere
   what_want_to_list?: Cosa vuoi elencare?
+  what_were_you_looking_for?: Che cosa stavi cercando? (elenco destinazioni)
   whats_this?: Cos'è questo?
   when: Quando
   when_did_you_see_it?: Quando l'hai visto?
@@ -6817,6 +6844,7 @@ it:
         scientific_name_first_desc: Mostra il nome scientifico prima di quello comune.
         youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi
           un blocco per poterne aggiungere un altro.
+        same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
       recent:
         about_recent_users: A proposito di
         definitions_html: <dl> <dt>Probabilmente Spam</dt> <dd> Utenti che sono probabilmente

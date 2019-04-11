@@ -3975,7 +3975,19 @@ fr:
       les superviseurs du projet à voir les coordonnées.
   running_total: Total actuel
   same_day_obscured: Une autre observation de cette personne faite ce jour est obscurcie
+  same_day_obscured_desc: |-
+    Quand les coordonnées sont masquées à cause d’un taxon menacé, toutes les autres
+    observations faites par cette personne le même jour sont aussi masquées, pour éviter que les gens
+    devinent les coordonnées d’après les observations faites aux alentours pendant la même
+    période. Les individus peuvent aussi appliquer cette protection aux coordonnées qu’ils ont
+    choisi de masquer.
   same_day_private: Une autre observation de cette personne faite ce jour est privée
+  same_day_private_desc: |-
+    Quand les coordonnées sont masquées à cause d’un taxon menacé, toutes les autres
+    observations faites par cette personne le même jour sont aussi masquées, pour éviter que les gens
+    devinent les coordonnées d’après les observations faites aux alentours pendant la même
+    période. Les individus peuvent aussi appliquer cette protection aux coordonnées qu’ils ont
+    choisi de masquer.
   said: a dit
   sat: Sam
   satellite: satellite
@@ -4833,6 +4845,9 @@ fr:
   "true": Oui
   trending: Tendance
   trends: Tendances
+  trip_target_list_info: Il y a un ensemble disjoint de taxons les plus grossiers
+    dans votre liste cible. Tout taxon représenté par des coordonnées masquées est
+    exclu. <a href="/pages/trips">En savoir plus</a>.
   trusted: Fiable
   trusted_project?: Projet digne de confiance?
   trust_this_person_with_your_private_coordinates: Faire confiance à cette personne
@@ -7190,15 +7205,21 @@ fr:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
           Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
-        inaturalist_network_affiliation_desc_html: |-
-          Le <a href="%{url}" target="_blank">Réseau iNaturalist</a> est une collection de
-          sites Web localisés liés à la communauté mondiale de iNaturalist.
-          Vous pouvez modifier votre affiliation de site principal, ce qui
-          signifie que votre contenu aura une certaine priorité sur ce site,
-          mais cela signifie également que les propriétaires de ce site ont le
-          droit de télécharger et visualiser toutes vos données, tout comme
-          les administrateurs du site peuvent iNaturalist. Si ce site quitte
-          le réseau, toute votre compte et les données vont avec ce site.
+        inaturalist_network_affiliation_desc_html: "<p> Le <a href=\"%{url}\" target=\"_blank\">Réseau
+          iNaturalist</a> est une collection de sites web localisés liés à la communauté
+          mondiale de iNaturalist. Les sites du réseau sont pris en charge par les
+          institutions locales qui ont signé un accord avec iNaturalist pour promouvoir
+          l'utilisation locale et bénéficier de la biodiversité locale. Elles ont
+          accès aux coordonnées réelles à partir de leur pays qui sont automatiquement
+          cachées de la vue du public dans le but de protéger les espèces menacées.
+          </p> \n<p> Votre nom d'utilisateur et votre mot de passe sont valides sur
+          tous les sites qui font partie du réseau iNaturalist. Si vous choisissez
+          de vous rattacher à un site du réseau, les institutions locales qui opèrent
+          sur chaque site auront aussi accès à votre adresse courriel (seulement pour
+          communiquer avec vous pour ce qui concerne les activités du site) et aux
+          coordonnées réelles des observations qui sont masquées au public ou qui
+          sont privées.</p>\n<p>\n Note: ne modifiez pas à titre d'essai votre affiliation
+          si vous avez plus de 1000 observations.\n</p>"
         licensing_desc_html: |-
           En mettant votre contenu sous licence, vous donnerez aux autres le
           droit de l÷’utiliser légalement sans demander votre permission s’ils
@@ -7259,6 +7280,14 @@ fr:
           communs.
         youve_used_all_of_your_blocks: Vous avez utilisé tous vos blocages. Supprimez
           un blocage pour en ajouter un autre.
+        same_day_geoprivacy_protection: Protection de confidentialité géographique
+          du même jour
+        prefers_coordinate_interpolation_protection_desc: |-
+          Quand vous fixez la confidentialité géographique d’une observation à « obscured » ou
+          « private », cela appliquera la même confidentialité géographique à toutes vos autres
+          observations du même jour, pour rendre plus difficile aux autres personnes de
+          deviner les vraies coordonnées d’après les observations faites alentour au même
+          moment.
       recent:
         about_recent_users: À propos
         definitions_html: <dl> <dt>Sans doute du pourriel</dt> <dd> Utilisateur qui
