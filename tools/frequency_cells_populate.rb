@@ -1,5 +1,3 @@
-require "Optimist"
-
 OPTS = Optimist::options do
     banner <<-EOS
 
@@ -12,20 +10,9 @@ leaf taxa included in a vision export
 
 Usage:
 
-  rails runner tools/frequency_cells_populate.rb -t /path/to/vision-export-taxonomy.csv
+  rails runner tools/frequency_cells_populate.rb
 
-where [options] are:
 EOS
-  opt :leaf_model_taxonomy_csv_path,
-    "Path to model taxonomy file used to prune higher taxa.", short: "-t", type: :string
-end
-
-if OPTS.leaf_model_taxonomy_csv_path.blank?
-  Optimist::die "Taxonomy CSV path required"
-end
-
-unless File.file?( OPTS.leaf_model_taxonomy_csv_path )
-  Optimist::die "Taxonomy CSV path invalid"
 end
 
 PSQL = ActiveRecord::Base.connection
@@ -84,18 +71,3 @@ Benchmark.measure do
     lat += CELL_SIZE
   end
 end
-
-relevant_higher_taxa = []
-CSV.foreach( OPTS.leaf_model_taxonomy_csv_path, headers: true ) do |row|
-  # ignore non-leaves
-  next if row["leaf_class_id"].blank?
-  # skip species and below
-  next if row["rank_level"].to_i <= 10
-  relevant_higher_taxa.push( row["taxon_id"].to_i )
-end
-
-# delete counts for non-species that aren't leaves in the vision export
-PSQL.execute( "DELETE FROM frequency_cell_month_taxa WHERE taxon_id IN (
-  SELECT distinct t.id FROM frequency_cell_month_taxa fr JOIN taxa t ON (fr.taxon_id=t.id)
-  WHERE t.rank_level > 10 AND t.id NOT IN (#{relevant_higher_taxa.join(',')})
-)")
