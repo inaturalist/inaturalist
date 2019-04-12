@@ -259,6 +259,7 @@ class Observation < ActiveRecord::Base
   ALLOWED_DESCRIPTION_TAGS = %w(a abbr acronym b blockquote br cite em i img pre s small strike strong sub sup)
 
   preference :community_taxon, :boolean, :default => nil
+  preference :auto_obscuration, :boolean, default: true
   
   belongs_to :user
   belongs_to :taxon
@@ -1416,7 +1417,9 @@ class Observation < ActiveRecord::Base
 
   def reassess_coordinate_obscuration
     geoprivacies = [geoprivacy, taxon_geoprivacy, context_geoprivacy]
-    if geoprivacies.include?( PRIVATE )
+    if prefers_auto_obscuration == false && ![OBSCURED, PRIVATE].include?( geoprivacy )
+      unobscure_coordinates
+    elsif geoprivacies.include?( PRIVATE )
       hide_coordinates
     elsif geoprivacies.include?( OBSCURED )
       obscure_coordinates
@@ -1468,12 +1471,14 @@ class Observation < ActiveRecord::Base
   end
 
   def hide_coordinates
+    return unless prefers_auto_obscuration? || [OBSCURED, PRIVATE].include?( geoprivacy )
     return if coordinates_private?
     obscure_coordinates
     self.latitude, self.longitude = [nil, nil]
   end
   
   def obscure_coordinates
+    return unless prefers_auto_obscuration? || [OBSCURED, PRIVATE].include?( geoprivacy )
     return if obscuration_changed
     geoprivacy_changed_from_private_to_obscured = geoprivacy_was == PRIVATE && geoprivacy == OBSCURED
     if !geoprivacy_changed_from_private_to_obscured && ( latitude.blank? || longitude.blank? )

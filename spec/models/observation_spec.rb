@@ -6,8 +6,8 @@ describe Observation do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
 
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  before(:all) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:all) { disable_elastic_indexing( Observation, Taxon ) }
 
   describe "creation" do
 
@@ -4020,6 +4020,43 @@ describe Observation, "taxon_geoprivacy" do
     i = Identification.make!( observation: o, taxon: cs.taxon )
     o.reload
     expect( o.taxon_geoprivacy ).to eq cs.geoprivacy
+  end
+end
+
+describe Observation, "prefers_auto_obscuration" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  describe "when false" do
+    let(:o) do
+      Observation.make!(
+        latitude: 1,
+        longitude: 1,
+        observed_on_string: 2.days.ago.to_date.to_s,
+        prefers_auto_obscuration: false
+      )
+    end
+    it "should override taxon obscuration" do
+      o.update_attributes( taxon: make_threatened_taxon )
+      o.reload
+      expect( o ).not_to be_coordinates_obscured
+    end
+    it "should override context obscuration" do
+      o.user.update_attributes( prefers_coordinate_interpolation_protection_test: true )
+      o2 = Observation.make!(
+        latitude: 1,
+        longitude: 1,
+        observed_on_string: o.observed_on_string,
+        taxon: make_threatened_taxon,
+        user: o.user
+      )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o ).not_to be_coordinates_obscured
+    end
+    it "should not override user obscuration" do
+      o.update_attributes( geoprivacy: Observation::OBSCURED )
+      expect( o ).to be_coordinates_obscured
+    end
   end
 end
 

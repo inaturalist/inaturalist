@@ -20,7 +20,9 @@ class Map extends React.Component {
       observation,
       observationPlaces,
       config,
-      updateCurrentUser
+      updateCurrentUser,
+      disableAutoObscuration,
+      restoreAutoObscuration
     } = this.props;
     const currentUserPrefersMedialessObs = config.currentUser
       && config.currentUser.prefers_medialess_obs_maps;
@@ -192,6 +194,8 @@ class Map extends React.Component {
                     observation={observation}
                     observationPlaces={observationPlaces}
                     config={config}
+                    disableAutoObscuration={disableAutoObscuration}
+                    restoreAutoObscuration={restoreAutoObscuration}
                   />
                 </li>
               </Dropdown.Menu>
@@ -207,7 +211,9 @@ Map.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
   config: PropTypes.object,
-  updateCurrentUser: PropTypes.func
+  updateCurrentUser: PropTypes.func,
+  disableAutoObscuration: PropTypes.func,
+  restoreAutoObscuration: PropTypes.func
 };
 
 export default Map;
