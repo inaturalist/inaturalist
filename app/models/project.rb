@@ -40,8 +40,26 @@ class Project < ActiveRecord::Base
     project_users: { notification: "curator_change" }
   }
 
+  # We used to just call ProjectsController.action_methods.to_a here, but that
+  # leads to some unpleasantness when referring to the Project model from within
+  # other models in specs
+  PROJECTS_CONTROLLER_ACTION_METHODS = [
+    "stats", "index", "new", "observed_taxa_count",
+    "show_contributor", "feature", "join", "edit", "remove", "show",
+    "add_batch", "remove_project_user", "remove_batch", "list", "search",
+    "calendar", "invite", "terms", "confirm_leave", "stats_slideshow",
+    "contributors", "convert_to_collection", "convert_to_traditional", "leave",
+    "new_traditional", "add", "by_login", "unfeature", "create", "destroy",
+    "change_admin", "update", "bulk_template", "members", "block_spammers",
+    "block_if_spammer", "if_spammer_set_flash_message", "block_if_spam",
+    "render_spam_notice", "set_spam_flash_error", "browse",
+    "set_akismet_params_on_record", "change_role", "logged_in?", "set_locale",
+    "ping"
+  ]
+
   extend FriendlyId
-  friendly_id :title, use: [ :slugged, :history, :finders ], reserved_words: ProjectsController.action_methods.to_a
+  friendly_id :title, use: [ :slugged, :history, :finders ],
+    reserved_words: PROJECTS_CONTROLLER_ACTION_METHODS
 
   def normalize_friendly_id( string )
     super_candidate = super( string )
@@ -177,7 +195,7 @@ class Project < ActiveRecord::Base
   ASSESSMENT_TYPE = 'assessment'
   BIOBLITZ_TYPE = 'bioblitz'
   PROJECT_TYPES = [ASSESSMENT_TYPE, BIOBLITZ_TYPE]
-  RESERVED_TITLES = ProjectsController.action_methods
+  RESERVED_TITLES = PROJECTS_CONTROLLER_ACTION_METHODS
   MAP_TYPES = %w(roadmap terrain satellite hybrid)
   validates_exclusion_of :title, in: RESERVED_TITLES + %w(user)
   validates_uniqueness_of :title
