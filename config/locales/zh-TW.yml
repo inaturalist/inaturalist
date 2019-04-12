@@ -55,6 +55,9 @@ zh-TW:
   x_misidentifications_of_this_species:
     one: 此物種有 1 個錯誤鑑定
     other: '%{count} 此物種有 %{count} 個錯誤鑑定'
+  x_misidentifications_of_species_in_this_rank:
+    one: 在此%{rank}有 1 個鑑定錯誤
+    other: 在此%{rank}有 %{count}  個鑑定錯誤
   x_observations:
     one: 1 項觀察記錄
     other: '%{count} 項觀察記錄'
@@ -119,8 +122,8 @@ zh-TW:
     one: 1 個分類群符合此篩選條件
     other: '%{count} 個分類群符合此篩選條件'
   x_taxon_changes_added_html:
-    one: <span class='count'>1</span> 個物種變更已新增
-    other: <span class='count'>%{count}</span> 個物種變更已新增
+    one: <span class='count'>1</span> 個分類群變更
+    other: 已新增<span class='count'>%{count}</span> 個分類群變更
   x_people_helped_user_with_y_ids_html: <strong>%{x}</strong> 個人以 <strong>%{y}</strong>
     個鑑定幫助了%{user}
   _100_day_trends: 100 天裡的趨勢
@@ -193,7 +196,7 @@ zh-TW:
   add_a_taxon: 新增分類群
   add_a_taxon_swap_if_you_want_to_change_the_name_html: 若您想更改名稱，請添加<a target="_blank"
     href="%{url}">物種分類對換</a>
-  add_all_your_matching_obs_of_this_taxon: 把這分類群中您所有符合的觀察記錄添加到此專案
+  add_all_your_matching_obs_of_this_taxon: 把您所有符合的觀察記錄新增到此專案
   add_all_your_matching_obs_to_this_project: 把您所有符合的觀察記錄新增到此專案
   add_an_assessment: 新增評估
   add_an_identification: 新增物種鑑定
@@ -658,8 +661,8 @@ zh-TW:
   cancel: 取消
   cant_flag_an_object_that_doesnt_exist: 未能為不存在的物件加上旗號標記
   cant_merge_a_taxon_with_itself: 物種分類不能合併至本身項目。
-  captive: 捕獲
-  captive_cultivated: 捕獲/培育
+  captive: 圈養
+  captive_cultivated: 圈養/栽培
   card: 卡片
   case_plural: s
   casual: 粗略
@@ -973,7 +976,7 @@ zh-TW:
   curator: 策展人
   curators_changed_for_x_html: '%{x} 的策展人已更改'
   curators: 策展人
-  curators_can_remove_observations_from: 策展人可移除來自於專案的觀察，以及在專案物種檢視裡顯示於觀察的鑑定。策展人也可查看私有座標的實際內容，和專案的隱蔽貢獻。
+  curators_can_remove_observations_from: 策展人可移除專案中的觀察紀錄，以及在特定專案檢視中的鑑定。策展人也可查看專案中私有和遮蔽觀察紀錄的實際座標。
   curator_identification: 策展人鑑定
   current_flags: 目前標記
   current_password: 目前密碼
@@ -1097,6 +1100,8 @@ zh-TW:
   display_link_to_checklist: 顯示連至來自於專案頁面之專案清單的連結
   display_listings_added_by_curators: 顯示由策展人添加的列表
   display_listings_from_place: 顯示來自於地點的清單
+  distance_traveled_value: 行程距離：%{distance} m
+  distance_traveled: 行程距離（m）
   dna_: DNA
   documentation_for_developers_html: <a href="/pages/developers">開發者</a>文件
   do_not_show_this_message_again: 不要再顯示此訊息
@@ -1135,6 +1140,7 @@ zh-TW:
   drag_and_drop_some_photos_or_sounds: 拖拉一些照片和聲音
   drawings: 圖形
   duplicate_verb: 重複
+  duration_value: 持續時間：%{duration} 分
   each_place_displays_all_species_inat_knows: 任一地點頁面都會顯示出 %{site_name} 所知悉來自於該地點的全部物種，包含關於它們的數量程度、保育狀態，以及在
     %{site_name} 裡最先於該地點上觀察該物種的人物。您可透過分類群組、色彩、保育狀態，或是一般搜尋來篩選物種。
   edit: 編輯
@@ -1252,7 +1258,7 @@ zh-TW:
   everyone_journal_posts: 任何人的日誌發佈文章
   everywhere: 任何地方
   exact: 準確
-  exact_coordinates_obscured_for: 隱蔽公開檢視裡受威脅物種的準確座標。
+  exact_coordinates_obscured_for: 對於公開檢視中被遮蔽的受威脅物種準確座標。
   exact_date: 精確日期
   exact_location: 精確位置
   exact_rank: 精確級別
@@ -1461,7 +1467,7 @@ zh-TW:
   Genus: 屬
   genus_slash_species: '[屬] / [物種]'
   geoprivacy: 位置隱私
-  geoprivacy_is_obscured: 位置隱私為隱蔽
+  geoprivacy_is_obscured: 地理資訊隱私權為遮蔽
   geoprivacy_is_obscured_desc: 觀察者選擇隱蔽座標。
   geoprivacy_is_private: 位置隱私為私有
   geoprivacy_is_private_desc: 觀察者選擇隱藏座標。
@@ -1635,7 +1641,7 @@ zh-TW:
   improving: 改進中
   in_n: 在%{n}
   in_place_x: 於%{place}
-  inaturalist_network_affiliation: iNaturalist 網路聯繫
+  inaturalist_network_affiliation: iNaturalist 網路聯合
   inbox: 收件匣
   including: 包含
   in_order_to_login_and_using_site_visit_url: 為了登入並開始使用網站，您必須訪問此 URL 來啟用您的帳號：
@@ -1756,6 +1762,7 @@ zh-TW:
   latitude: 緯度
   latitude_in_decimals: 帶小數點的緯度，例如：38.123
   latitude_slash_y_coord_slash_northing: 緯度/y 軸/北距
+  latitude_value: 緯度：%{latitude}
   layers: 圖層
   layout: 佈局
   leaderboard: 排行榜
@@ -1959,7 +1966,7 @@ zh-TW:
   location_is_accurate: 位置精準
   location_is_exact: 位置精準
   location_is_public: 位置為公開的
-  location_is_obscured: 位置為隱蔽
+  location_is_obscured: 位置為遮蔽
   location_is_private: 位置為私有的
   location_specified: 位置指定
   locked_taxa_will_not_allow_new: 被鎖定的物種分類群不允許添加派生物種分類群在裡頭。因此如果您鎖定了兩棲動物，當其他人嘗試從外部名稱提供者匯入美洲牛蛙時，新的物種分類群創建後不會被歸類為兩棲動物。在以上情況發生時，新添加物種分類群應被標記來讓策展人關注。這應僅用在我們認為內容已包含所有相關派生的物種分類群上。雖然策展人可以透過直接編輯物種分類群以及輸入父級鑑定來覆蓋掉，但請考慮以合併新物種分類群至現有內容為主。
@@ -1977,6 +1984,7 @@ zh-TW:
   longitude: 經度
   longitude_in_decimal: 十進位的緯度，例如：-122.123
   longitude_slash_x_coord_slash_easting: 經度/x 軸/東向
+  longitude_value: 經度：%{longitude}
   look_up_name: 查詢名稱
   looks_like_neither_have!: 看起來沒有任何物種分類！
   looks_like_no_species_in_guide: 看起來在您的指南裡尚未有物種。
@@ -2359,15 +2367,17 @@ zh-TW:
   notify_me_about_redundant_identifications: 通知我有關確認鑑定
   notify_me_about_redundant_identifications_desc: 接收符合所屬您鑑定的通知。若您選擇停用此功能，您僅會收到有關不在您鑑定裡的物種分類群之鑑定通知。
   number_of_observations: 觀察數目
+  number_of_observers_value: 觀察者數目：%{number}
+  number_of_observers: 觀察者數目
   number_selected: '# 已選擇'
   numeric_: 數字
   noun_by_you: 由您做出的 %{noun}
   obs: 觀察
   obs_cid_d: 觀察（社群鑑定）
   obs_id_d: 觀察（鑑定）
-  obscured_: 隱蔽
+  obscured_: 遮蔽
   obscured: 不清
-  obscured_or_private: 隱蔽或私有
+  obscured_or_private: 遮蔽或私有
   obscured_description: 公共座標隨機顯示於距實際座標的 10 公里範圍內。實際座標僅止您，或是您所添加觀察的專案之策展人可見。
   observation: 觀察
   observation_: 觀察
@@ -2428,7 +2438,7 @@ zh-TW:
   observation_must_dotdotdot: 觀察必須...
   observations_near_a_place_are: 當觀察「貼近」帶有矩形邊界的地點時，這可能導致非矩形地點出現一些不準確結果。這是出自於我們資料庫的限制，也是我們在努力解決的地方。
   observations_needing_curation: 觀察需要策展
-  observations_obscured: 觀察（隱蔽）
+  observations_obscured: 觀察（遮蔽）
   observations_observed_this_month: 在本月沒有添加<em>已觀察</em>內容。到外頭走走看看吧！
   observations_of_relatives: 相關觀察
   observations_of_taxon: '%{taxon_name}的觀察'
@@ -2591,6 +2601,8 @@ zh-TW:
   other_names: 別名
   other_species_commonly_misidentified_as_this_species: 常被誤認為是此物種的其它物種
   other_species_commonly_misidentified_as_this_species_in_place_html: 在<a href="%{url}">%{place}</a>常被誤認為是此物種的其它物種
+  other_taxa_commonly_misidentified_as_this_rank: 常誤認為是%{rank}的分類
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: 其它在<a href="%{url}">%{place}</a>常誤認為是%{rank}的分類
   our_blog: 我們的部落格
   out_of_range: 超出範圍
   output_taxon: 輸出物種分類
@@ -3092,7 +3104,7 @@ zh-TW:
   previous_tab: 上一個頁籤
   print_verb: 列印
   print_in_browser: 在瀏覽器中列印
-  privacy: 隱私政策
+  privacy: 隱私
   privacy_policy: 隱私政策
   private: 私有
   private_: 私人的
@@ -3163,7 +3175,7 @@ zh-TW:
   proposed_taxa_that_support_the_community_id: 所提出物種分類群贊同社群鑑定
   protozoans: 原生動物
   provider_authorizations: 提供方授權
-  public_coordinates_obscured_by: 公共座標距 %{distance} 公里被隱蔽
+  public_coordinates_obscured_by: 以 %{distance} 公里距離來遮蔽公開的座標
   public_domain: 公有領域
   publish: 發佈
   purple: 紫色
@@ -3172,6 +3184,8 @@ zh-TW:
   quality_grade_colon: 品質等級：
   queued: 已排程
   query: 查詢
+  radius: 半徑（m）
+  radius_value: 半徑（m）： %{radius}
   random: 隨機
   range: 範圍
   range_from: 範圍來自
@@ -3382,6 +3396,10 @@ zh-TW:
     must_be_in: 需在物種分類中
     must_be_coordinates_shareable_by_project_curators: 觀察者必須允許策展人檢視座標。
   running_total: 運行總計
+  same_day_obscured: 此人在這天的其它觀察是被遮蔽的
+  same_day_obscured_desc: 當座標是因為受威脅物種緣故而遮蔽時，此人當天其它的所有觀察紀錄也會被遮蔽起來，以防止其他人藉由相同的觀察時間來猜測座標位置。每個人也可以使用此保護機制在他們想要遮蔽的座標。
+  same_day_private: 此人在這天的其它觀察是隱私的
+  same_day_private_desc: 當座標是因為受威脅物種緣故而隱藏時，所有由該人的當天其它觀察也會一同隱藏，以防止其他人基於圍繞在同一時間所做出的觀察來猜測座標位置。個人也可以套用此保護到所挑選出想隱藏的座標。
   said: 說
   sat: 週六
   satellite: 衛星
@@ -3520,6 +3538,7 @@ zh-TW:
   sign_up: 註冊
   sign_up_exclamation: 註冊！
   similar_species: 相似物種
+  similar_taxa: 相似分類
   simple: 簡易
   sign_in_exclamation: 登入！
   single_observation: 單一觀察
@@ -3784,7 +3803,7 @@ zh-TW:
     one: 帶有 1 個觀察屬於生物界的%{taxon}
     other: 帶有 %{count} 個觀察屬於生物界的%{taxon}
   taxon_is_threatened_coordinates_hidden: 物種分類為受威脅狀態，按預設隱藏座標
-  taxon_is_threatened_coordinates_hidden_desc: 在鑑定裡所提議、或是包含有這些任何物種分類的分類其一，已知是稀有以及/或受威脅，因此觀察的位置被隱蔽。
+  taxon_is_threatened_coordinates_hidden_desc: 鑑定中的其中一個分類群，或其中一個分類群包含這些分類群任何之一，為稀有或是受到威脅的，所以這筆觀察紀錄的地點被遮蔽了。
   taxon_is_threatened_coordinates_obscured: 物種分類為受威脅狀態，按預設隱蔽座標
   taxon_is_threatened_coordinates_obscured_desc: 在鑑定裡所提議、或是包含有這些任何物種分類的分類其一，已知是稀有以及/或受威脅，因此觀察的位置被隱蔽。
   taxonomy: 分類法
@@ -3934,6 +3953,7 @@ zh-TW:
   there_were_some_problems_saving_those_colors: 儲存這些色彩時出現問題：%{error}
   there_were_some_problems_with: 在您的 CSV 檔案裡有一些問題。請重新修改失效的行列。當然問題也會可能是出在我們這裡，若真是如此的話，請讓我們知道。
   there_were_some_problems_with_fields: 以下欄位出現了一些問題：
+  there_were_some_problems_with_these_files: 這些檔案出現了一些問題：
   theres_also: 這裡也有
   theres_something_wrong_with_taxon_framework_relationship: 發生錯誤 - 我們無法判斷任何內部與外部物種分類群之間的關聯
   these_are_items_people_on: 這些是人們在網站上標記為策展的項目。垃圾評論會被刪除，而添加該內容的用戶會被停用（前往他們的個人檔案頁面，並在右下點擊「停用用戶」來防止他們登入）。評論應以禮儀方式進行，若其它被標記項目有著仇恨、非法、粗魯、冒犯等等言行，該項目會被刪除。如有多次重犯情況應回報給網站管理員或電郵至
@@ -4043,6 +4063,7 @@ zh-TW:
   "true": 是
   trending: 趨勢
   trends: 趨勢
+  trip_target_list_info: 這是在您目標清單裡簡略分類群的非重疊集合，不包含隱蔽觀察的分類群。<a href="/pages/trips">了解更多</a>。
   trusted: 已信任
   trusted_project?: 託付的專案？
   trust_this_person_with_your_private_coordinates: 以您的隱藏座標信任此人
@@ -4126,6 +4147,10 @@ zh-TW:
   upload_range: 上傳範圍
   uploaded_by: 上傳由
   uploader:
+    errors:
+      file_too_big: 檔案必須小於 %{megabytes} MB
+      unsupported_file_type: 檔案類型不支援，我們接受 JPG、PNG、GIF、WAV、AAC、MP3、和 MP4（僅音效）
+    resize_tip: 若您的照片檔案太大，嘗試剪裁最大至 2048 x 2048 像素，便可讓這些照片在伺服器上能更快地上傳。
     tooltips:
       add: 添加觀察
       combine: 結合已選擇的觀察
@@ -4134,6 +4159,7 @@ zh-TW:
       remove_observation: 移除觀察
       remove_photo: 移除照片
       select_all: 選擇所有觀察
+      upload_failed: 上傳失敗
   uploading_num_of_count_photos:
     one: 照片上傳中...
     other: 正上傳一共 %{count} 張裡的 %{num} 張照片...
@@ -4231,6 +4257,7 @@ zh-TW:
   view_flags: 檢視標記
   view_flags_for_x_html: 檢視用於%{x}的標記
   view_full_observation: 檢視完整觀察
+  view_full_size_photo: 瀏覽全尺寸的照片
   view_invitation: 檢視邀請
   view_journal: 檢視日誌
   view_leaderboard: 檢視排行榜
@@ -4360,6 +4387,7 @@ zh-TW:
   what_do_you_want_to_list: 您想要列出什麼？
   what_to_keep: 維持什麼
   what_want_to_list?: 您想要列出什麼？
+  what_were_you_looking_for?: 您在找什麼呢？（目標清單）
   whats_this?: 這是什麼？
   when: 何時
   when_did_you_see_it?: 您何時看到它？
@@ -4452,8 +4480,8 @@ zh-TW:
   you_are_already_a_member_of_this_project: 您已經是該專案的成員了！
   you_are_no_longer_following_x: 您不再關注 %{friend}。
   you_are_setting_this_project_to_aggregate: 您正設定此專案要聚集所有符合以下規則：%{rules} 的觀察，您確定要繼續嗎？
-  you_are_submitting_obs_without_photos_and_names: 您提交的觀察沒有照片和物種分類名稱。這些觀察將會難以準確鑑定。
-  you_are_submitting_obs_with_no_date_or_no_location: 您正提交未帶有日期或位置的觀察。
+  you_are_submitting_obs_without_photos_and_names: 您正提交未帶有照片和物種分類名稱的觀察。不帶這些資訊的觀察通常難以鑑定，而且在觀察搜尋裡會被預設成不可見。
+  you_are_submitting_obs_with_no_date_or_no_location: 您正提交未帶有日期或位置的觀察。不帶這些資訊的觀察通常難以鑑定，而且在觀察搜尋裡會被預設成不可見。
   you_are_subscribed_to: 您訂閱了
   you_arent_a_member_of_that_project: 您不是該專案的成員。
   you_arent_following_that_person: 您沒有關注那名人。
@@ -5197,9 +5225,8 @@ zh-TW:
         note_these_users_will_be_able_to_edit: 註：這些包含到管理員的使用者可以編輯所有專案細節。
         note_you_can_delete_the_time: （註：若您想包含一整天，您可以刪除時區以及準確時間。）
         or_drag_and_drop: （或是拖拉）
-        please_specify_the_requirements_html: |-
-          請指名添加至此專案的觀察所需內容。
-          您可以指定多項物種、地點、自動包含的品質等級，若您對此沒有特別需求欄位可以留空。
+        please_specify_the_requirements_html: 請指名添加至此專案的觀察所需內容。您可以指定多項物種、地點、自動包含的品質等級。若您對此沒有特別需求，欄位可以留空。對於各欄位的解釋可<a
+          href="%{url}">在此</a>找尋。
         project_background_color: 專案摘要背景顏色
         project_background_color_help: 請確認挑選顏色的暗度足夠讓所覆蓋白色文字能辨識出。
         project_banner: 專案橫幅（PNG、JPG、或 GIF 檔案）
@@ -5507,9 +5534,16 @@ zh-TW:
           註：您可以透過更改您的在地化與地點設定，來控制要查看何種通用名稱。
         if_you_change_your_mind_you_can_always_edit_your_settings_html: 若您改變想法，您可以隨時<a
           href='/users/edit'>編輯您的設定</a>。
-        inaturalist_network_affiliation_desc_html: <a href="%{url}" target="_blank">iNaturalist
-          網路</a>將本地網站連結至全球 iNaturalist 社群的聚集。您可以更改您的主要網站隸屬，這代表您的內容在網站上會俱有一些優先權，但也代表著網站擁有者能擁有下載及檢視您所有資料的權利，就像
-          iNaturalist 網站管理員所能做的事情。如果該網站退出了 iNaturalist 網路，所有您的帳號與資料也會一同跟著網站消失。
+        inaturalist_network_affiliation_desc_html: |-
+          <p>
+            <a href="%{url}" target="_blank">iNaturalist 網路</a>是將有完整連結至全球 iNaturalist 社群之本地網站的聚集。這些網路站台是由有與 iNaturalist 簽屬協議，來促進在本地上使用以及助於本地生物多樣性的本地機構所支援。他們具有可取得來自於他們國家、為了保護受威脅物種避免被公開檢視而隱蔽的實際座標。
+          </p>
+          <p>
+            您的使用者名稱和密碼在所有隸屬 iNaturalist 網路下站台皆可運作。如果您挑選了網路站台分部，運作各站台的本地機構可取用您的電子郵件地址（僅會通知您有關站台上的活動），以及存取公開隱蔽或私有觀察的實際座標位置。
+          </p>
+          <p>
+            註：若您已經做出超過 1000 筆的觀察，請不要出於實驗性質更改您的分部
+          </p>
         licensing_desc_html: 授權您的內容可讓其他遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。%{site_name} 使用您的創用
           CC 授權內容，來與像是<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF），一個專門編輯發佈全球生物多樣化訊息之國際政府間組織如此般的資料合作者共享內容。
         muting_desc_html: |-
@@ -5536,6 +5570,8 @@ zh-TW:
         search_place_help_html: 用於觀察搜尋的預設地點。
         scientific_name_first_desc: 學名顯示優於通用名稱。
         youve_used_all_of_your_blocks: 您已經用完所有的封鎖數量額度，請移除舊有項目來新增其它封鎖。
+        same_day_geoprivacy_protection: 同日位置隱私保護
+        prefers_coordinate_interpolation_protection_desc: 當您設定觀察的位置隱私成「隱蔽」或「私有」時，將會對您在同一天的所有其它觀察套用相同的位置隱私，這會讓其他人較難從同一時間所做出的觀察來猜測出真實座標。
       recent:
         about_recent_users: 關於
         definitions_html: <dl> <dt>可能是垃圾訊息</dt> <dd> 使用者可能是濫發垃圾訊息者代表著他們雖有個人檔案描述，但沒有觀察或鑑定。

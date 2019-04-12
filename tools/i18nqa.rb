@@ -70,7 +70,11 @@ data.each do |key, translation|
   if translation.is_a?( String ) && @levels.include?( "error" )
     translation.scan( /\{\{.+?\=.+?\}\}/ ).each do |match|
       problems[key] = problems[key] || []
-      problems[key] << "**ERROR:** Must not include double curly brackets: `#{match}`"
+      problems[key] << "**ERROR:** Invalid code formatting: `#{match}`"
+    end
+    translation.scan( /\{\{PLURAL.+?\}\}/ ).each do |match|
+      problems[key] = problems[key] || []
+      problems[key] << "**ERROR:** Invalid pluralization formatting: `#{match}`"
     end
   end
   if key =~ /^#{locale}\.i18n\.inflections\.gender\.$/
@@ -129,11 +133,6 @@ data.each do |key, translation|
     problems[key] = problems[key] || []
     problems[key] << "**ERROR:** HTML tag with leading space"
   end
-
-  # if @levels.include?( "error" ) && translation =~ /%\s+?\{/
-  #   problems[key] = problems[key] || []
-  #   problems[key] << "**ERROR:** Variable with leading space"
-  # end
 end
 
 problems.each do |key, a|

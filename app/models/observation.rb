@@ -2419,20 +2419,25 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  PLACES_WITHOUT_OBSCURATION_PROTECTION = [
-    19126, # City Nature Challenge 2018
-    29625  # City Nature Challenge 2019
-  ].map {|umbrella_project_id|
-    if umbrella = Project.find_by_id( umbrella_project_id )
-      umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|
-        por.operand.project_observation_rules.
-          select{|sub_por| sub_por.operator == "observed_in_place?" }.
-          map {|sub_por| sub_por.operand_id }
-      }
-    else
-      nil
+  def self.places_without_obscuration_protection
+    return [] if Rails.env.test?
+    Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
+      [
+        19126, # City Nature Challenge 2018
+        29625  # City Nature Challenge 2019
+      ].map {|umbrella_project_id|
+        if umbrella = Project.find_by_id( umbrella_project_id )
+          umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|
+            por.operand.project_observation_rules.
+              select{|sub_por| sub_por.operator == "observed_in_place?" }.
+              map {|sub_por| sub_por.operand_id }
+          }
+        else
+          nil
+        end
+      }.compact.flatten.uniq
     end
-  }.compact.flatten.uniq
+  end
   
   def places
     return [] unless georeferenced?
@@ -2440,7 +2445,7 @@ class Observation < ActiveRecord::Base
     candidates.select do |p|
       p.bbox_privately_contains_observation?( self ) ||
       [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level ) ||
-      PLACES_WITHOUT_OBSCURATION_PROTECTION.include?( p.id )
+      Observation.places_without_obscuration_protection.include?( p.id )
     end
   end
   
@@ -2451,7 +2456,7 @@ class Observation < ActiveRecord::Base
     candidates.select do |p|
       p.bbox_publicly_contains_observation?( self ) ||
       [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level ) ||
-      PLACES_WITHOUT_OBSCURATION_PROTECTION.include?( p.id )
+      Observation.places_without_obscuration_protection.include?( p.id )
     end
   end
 
