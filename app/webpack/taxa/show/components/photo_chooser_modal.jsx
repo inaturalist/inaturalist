@@ -89,8 +89,14 @@ class PhotoChooserModal extends React.Component {
     }, params );
     if ( queryTaxon ) {
       queryParams.taxon_id = queryTaxon.id;
+    } else if ( query
+      && Number( query ).toString( ) === query
+      && Number.isInteger( Number( query ) ) ) {
+      // query is an Integer, so assume its an observation ID
+      queryParams.id = query;
     } else {
       queryParams.q = query;
+      queryParams.search_on = "taxon_page_obs_photos";
     }
     inatjs.observations.search( queryParams ).then( response => {
       const obsPhotos = _.compact( _.flatten( _.map( response.results, "photos" ) ) );

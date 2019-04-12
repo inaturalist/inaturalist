@@ -94,6 +94,26 @@ class MapDetails extends React.Component {
         { I18n.t( "geoprivacy_is_obscured_desc" ) }
       </li>
     );
+    let sameDayLinks;
+    if ( currentUser && currentUser.id === observation.user.id ) {
+      let obscuredObsURL = `/observations?user_id=${observation.user.login}&on=${observation.observed_on}&taxon_geoprivacy=obscured,private`;
+      if ( currentUser.prefers_coordinate_interpolation_protection ) {
+        obscuredObsURL += "&geoprivacy=obscured,private";
+      }
+      sameDayLinks = (
+        <ul>
+          <li>
+            <a
+              href={obscuredObsURL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              { I18n.t( "view_observations_causing_this_observation_to_be_obscured" ) }
+            </a>
+          </li>
+        </ul>
+      );
+    }
     return (
       <div className="MapDetails">
         <div className="top_info">
@@ -190,12 +210,15 @@ class MapDetails extends React.Component {
                 observation.context_geoprivacy === "obscured" && (
                   testingContextGeoprivacy ? (
                     <li>
-                      <strong>
-                        <i className="fa fa-calendar" />
-                        { I18n.t( "label_colon", { label: I18n.t( "same_day_obscured" ) } ) }
-                      </strong>
-                      { " " }
-                      { I18n.t( "same_day_obscured_desc" ) }
+                      <p>
+                        <strong>
+                          <i className="fa fa-calendar" />
+                          { I18n.t( "label_colon", { label: I18n.t( "same_day_obscured" ) } ) }
+                        </strong>
+                        { " " }
+                        { I18n.t( "same_day_obscured_desc" ) }
+                      </p>
+                      { sameDayLinks }
                     </li>
                   ) : (
                     obscurationExplanationGeoprivacy
@@ -210,6 +233,7 @@ class MapDetails extends React.Component {
                   </strong>
                   { " " }
                   { I18n.t( "same_day_private_desc" ) }
+                  { sameDayLinks }
                 </li>
               ) }
             </ul>

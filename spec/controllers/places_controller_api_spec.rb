@@ -1,6 +1,8 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PlacesController, "index" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
 
   it "should return places" do
     p = Place.make!

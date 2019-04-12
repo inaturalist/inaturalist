@@ -2,6 +2,8 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ConservationStatus, "creation" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   let(:species) { Taxon.make!( rank: Taxon::SPECIES ) }
 
   it "should obscure observations of taxon" do
@@ -44,6 +46,8 @@ describe ConservationStatus, "creation" do
 end
 
 describe ConservationStatus, "saving" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should should set taxon conservation_status" do
     t = Taxon.make!
     expect(t.conservation_status).to be_blank
@@ -80,7 +84,8 @@ describe ConservationStatus, "saving" do
 end
 
 describe ConservationStatus, "deletion" do
-
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should reassess observations of taxon" do
     species = Taxon.make!( rank: Taxon::SPECIES )
     cs = without_delay { ConservationStatus.make!( taxon: species ) }
@@ -96,6 +101,8 @@ describe ConservationStatus, "deletion" do
 end
 
 describe ConservationStatus, "updating geoprivacy" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   let(:species) { Taxon.make!( rank: Taxon::SPECIES ) }
   let(:cs) { ConservationStatus.make!( taxon: species ) }
 
@@ -153,6 +160,8 @@ describe ConservationStatus, "updating geoprivacy" do
 end
 
 describe ConservationStatus, "updating place" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   let(:old_place) { make_place_with_geom }
   let(:new_place) { make_place_with_geom( wkt: "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))" ) }
   let(:taxon) { Taxon.make!(:species) }

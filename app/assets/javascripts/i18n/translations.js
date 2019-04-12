@@ -13708,6 +13708,7 @@ I18n.translations["en"] = {
   "view_more_unreviewed": "View more unreviewed",
   "view_observation": "View Observation",
   "view_observations": "View Observations",
+  "view_observations_causing_this_observation_to_be_obscured": "View observations causing this observation to be obscured\n",
   "view_observations_of_this_taxon_by": "View observations of this taxon by",
   "view_on": "View on",
   "view_sample": "View sample",
