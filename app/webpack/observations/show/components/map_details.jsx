@@ -281,8 +281,8 @@ class MapDetails extends React.Component {
           </div>
         ) }
         { viewerIsAdmin && currentUser && currentUser.id === observation.user.id && (
-          ["obscured", "private"].indexOf( observation.taxon_geoprivacy ) >= 0
-          || ["obscured", "private"].indexOf( observation.context_geoprivacy ) >= 0
+          ( observation.taxon_geoprivacy === "open" || _.isEmpty( observation.taxon_geoprivacy ) )
+          && ["obscured", "private"].indexOf( observation.context_geoprivacy ) >= 0
         ) && (
           <div className="auto-obscuration-preference admin">
             { observation.preferences.auto_obscuration === false ? (
@@ -302,6 +302,9 @@ class MapDetails extends React.Component {
                 Disable Auto-obscuration
               </button>
             ) }
+            <p>
+              For now this will only let you disable auto-obscuration for same-day obscuration.
+            </p>
           </div>
         ) }
         <div className="links">
