@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Athena in Wonderland
 # Author: CaiusSPQR
+# Author: Cristina Luís
 # Author: Duartefrade
 # Author: Eduardo Addad de Oliveira
 # Author: Fitoschido
@@ -278,11 +279,12 @@ pt-PT:
   add_life_stage_larva_annotation: 'Adicionar anotação "Fase da Vida: Larva"'
   add_life_stage_juvenile_annotation: 'Adicionar anotação "Fase da Vida: Juvenil"'
   add_life_stage_egg_annotation: 'Adicionar anotação "Fase da Vida: Ovo"'
+  add_relationship: Adicionar relação
   add_section: Adicionar secção
   add_several_observations_at_once: Adicionar diversas observações de uma só vez.
   add_sex_female_annotation: 'Adicionar anotação "Género: Fêmea"'
   add_sex_male_annotation: 'Adicionar anotação "Género: Macho"'
-  add_shape: Adicionar um limite
+  add_shape: Adicionar forma
   add_some_now: Adicionar algumas agora
   add_tag: Adicionar etiqueta
   add_tags: Adicionar etiquetas
@@ -640,6 +642,7 @@ pt-PT:
   back_to_x_history: Voltar ao historial de %{x}
   back_to_x_journal: Voltar ao boletim de %{user}
   back_to_x_blog: Voltar ao blog de %{x}
+  back_to_your_dashboard: Voltar ao seu painel de controlo
   back_to_x_observations: Voltar às observações de %{user}
   back_to_your_lists: Voltar às suas listas
   back_to_your_journal: Voltar para seu boletim
@@ -1578,6 +1581,8 @@ pt-PT:
   Genus: Género
   genus_slash_species: '[GÉNERO] / [ESPÉCIES]'
   geoprivacy: Geoprivacidade
+  geoprivacy_is_private: A geoprivacidade é privada
+  geoprivacy_is_private_desc: O Observador escolheu ocultar as coordenadas.
   georeferenced: Georreferenciado?
   georeferenced?: georreferenciado
   get_current_position: Obter a posição atual
@@ -1588,7 +1593,7 @@ pt-PT:
   give_it_some_detail: Introduza alguns detalhes!
   global_conservation_status: 'Estado de conservação global:'
   global_names: Nomes globais
-  globally: globalmente
+  globally: Globalmente
   go: Ir
   go_back: Voltar
   going_to_your_observations: Indo para as suas observações...
@@ -1629,11 +1634,11 @@ pt-PT:
     mais
   has_one_or_more_faves: Tem um ou mais favoritos
   has_photo: Tem foto
-  has_photos: possui fotografias
+  has_photos: Tem fotos
   has_photo_and_sound: Tem foto e som
   has_photos_or_sounds: Possui fotografias ou sons
   has_sound: Tem som
-  has_sounds: possui sons
+  has_sounds: Tem sons
   hasnt_contributed_any_observations: não contribuiu com nenhuma observação a este
     projeto.
   hate_me_facebook: Desligar as suas contas do Facebook e %{site_name}
@@ -1657,6 +1662,7 @@ pt-PT:
   help_confirm_observations!: Ajude a confirmar observações!
   help_faq: Ajuda / Perguntas frequentes
   help_out!: Ajude!
+  help_support_inaturalist: Apoie o iNaturalist
   helped_the_observer_make: ajudaram o observador a fazer a sua identificação final
     (ou seja, foram feitas antes da identificação final e coincidiram)
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
@@ -1671,8 +1677,9 @@ pt-PT:
   hi_user: Olá %{user}
   hide: Ocultar
   hide_details: Ocultar detalhes
-  hide_uncountable_species: Ocultar inúmeras espécies
-  high: elevada
+  hide_running_total: Ocultar total acumulado
+  hide_uncountable_species: Ocultar espécies incontáveis
+  high: Alto
   highest_rank: Classificação mais alta
   highlights: Destaques
   highlights_and_stats_from_year_on_site: Destaques e estatísticas de %{year} em %{site}
@@ -3999,6 +4006,9 @@ pt-PT:
   view_observations_of_this_taxon_by: Ver observações deste táxon por
   view_projects_from_place: Ver projectos de %{place}
   view_the_range: Ver a área de distribuição
+  view_your_dashboard: Ver o seu painel de controlo
+  view_your_dashboard_for_more_updates_html: <a href='%{url}'>Ver o seu painel de
+    controlo</a> para mais atualizações
   view_your_observations: Ver as suas observações
   view_all_of_your_observations_from_x: Ver todas as suas observações de %{x}
   we_also_support: |-
@@ -4031,6 +4041,10 @@ pt-PT:
   your_observations: Suas observações
   your_profile_was_successfully_updated: Seu perfil foi atualizado com sucesso!
   your_recent_projects: Os seus projetos recentes
+  your_dashboard_helps_you: O seu painel de controlo permite-lhe seguir a atividade
+    de outros utilizadores no site. Para seguir as atualizações de alguém, clique
+    no link 'Seguir [nome]' situado no topo da página quando visualizar as suas observações
+    ou o seu perfil.
   views:
     devise:
       mailer:
@@ -4062,6 +4076,17 @@ pt-PT:
         keep_observations_label: Deixe suas observações neste projeto
         revoke_observations_label: Deixe suas observações neste projeto, mas impeça
           que os curadores vejam as coordenadas privadas
+      invite:
+        description_html: "<h3>Sobre convites</h3>\n<p class=\"ui\">\n  Convidar pessoas
+          para o seu projeto é um pouco diferente de convidar observações individuais.
+          Ao convidar pessoas\n</p>\n<ol>\n  <li>Será enviado um e-mail para convidar
+          a juntar-se ao seu projeto</li>\n  <li>Mostrará um convite no painel de
+          controlo</li>\n  <li>Permitirá que essas pessoas se juntem ao seu projeto
+          se este foi definido para funcionar somente por convite</li>\n</ol>\n<p
+          class=\"ui\">\n  Somente os coordenadores do projeto podem convidar pessoas
+          para entrar em projetos. \n  Deverá poder pesquisar por pessoas através
+          do nome de utilizador do iNaturalist ou \n  através do endereço de e-mail
+          <em>completo</em>, assumindo que temos esse e-mail no nosso arquivo.\n</p>"
       new:
         welcome_to_projects: Bem-vindo ao projeto!
     stats:

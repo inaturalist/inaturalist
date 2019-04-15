@@ -19,6 +19,7 @@
 # Author: ErrE
 # Author: Fitoschido
 # Author: Fortega
+# Author: Germangfeler
 # Author: Isabelgg22
 # Author: Jorge Ubilla
 # Author: Josecurioso
@@ -86,6 +87,9 @@ es:
   x_misidentifications_of_this_species:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 identificación errónea de especies en esta %{rank}}
+    other: '%{count} identificaciones erróneas de especies en este %{<span class="notranslate">rango</span>}'
   x_observations:
     one: 1 observación
     other: '%{count} observaciones'
@@ -687,6 +691,7 @@ es:
   back_to_suggestions: Regresa a sugerencias
   back_to_taxon: Regresa a %{defaulttaxon}
   back_to_taxon_changes: Regresa a los cambios del taxón
+  back_to_taxon_framework_for_x: Volver a marco de referencia del taxón para %{taxon_name}
   back_to_viewing: Regresa a ver <i>%{taxon}</i>
   back_to_x: Regresa a %{noun}
   back_to_x_assessment: Regresa a las evaluaciones de %{project}
@@ -1292,6 +1297,8 @@ es:
     del proyecto
   display_listings_added_by_curators: Mostrar listados añadidos por los curadores
   display_listings_from_place: Mostrar listados de lugar
+  distance_traveled_value: 'Distancia recorrida: %{distance}m'
+  distance_traveled: Distancia recorrida (m)
   dna_: ADN
   documentation_for_developers_html: Documentación para <a href="/pages/developers">desarrolladores</a>
   do_not_show_this_message_again: No volver a mostrar este mensaje
@@ -1322,6 +1329,8 @@ es:
   download_kml: Descarga KML
   downstream_coverage: Cobertura aguas abajo
   downstream_coverage_rank: Rango de cobertura aguas abajo
+  downstream_deviations: Desviaciones rio abajo
+  downstream_deviations_for_taxon: Desviaciones rio abajo para %{taxon}
   drag_and_drop_photos: arrastra y suelta la foto en esta ventana o
   draft: borrador
   draft_: Borrador
@@ -1330,6 +1339,7 @@ es:
   drag_and_drop_some_photos_or_sounds: Arrastra y suelta algunas fotos o sonidos
   drawings: Dibujos
   duplicate_verb: Duplicado
+  duration_value: 'Duración: %{duration} minutos'
   each_place_displays_all_species_inat_knows: Cada página de lugar muestra todas las
     especies que %{site_name} conoce de ese lugar, incluyendo información de su abundancia,
     estado de conservación y quién observó esa especie por primera vez en ese lugar
@@ -1478,6 +1488,7 @@ es:
   export_with_private_coordinates: Exporta con coordenadas privadas
   exporting: Exportando...
   external_links: Enlaces externos
+  external_taxon_including_children: Taxon (externo incluyendo descendientes)
   external_taxon_rank: Rango de taxón externo
   extinct: extinto
   extinct_in_the_wild: Extinta en estado silvestre
@@ -1583,6 +1594,8 @@ es:
   flag_marked_as_resolved_html: <span class="meta">Marca señalada como</span> <strong>resuelta.</strong>
   flag_reason: '&ldquo; Estoy marcando este %{record} porque'
   flag_saved: Advertencia guardada
+  flag_saved_thanks_html: Marca guardada. ¡Gracias! <a href="%{url}" class="readmore">Ver
+    marca</a>
   flag_this_observation: Incluir advertencia en esta observación
   flag_this_photo: Marca esta foto con advertencia
   flagged: marcado
@@ -1641,8 +1654,13 @@ es:
   forum_categories:
     bug_reports: Informes de errores
     feature_requests: Solicitudes de características
+    forum_moderation: Moderación del foro
+    nature_talk: Charlas sobre naturaleza
     news_and_updates: Noticias y actualizaciones
     tutorials: Tutoriales
+  forum_desc: El foro es un sitio para hablar sobre iNat, incluyendo soporte técnico
+    y ayuda, peticiones de nuevas características, informes de errores, anuncios y
+    más.
   frequency: Frecuencia
   fri: vie
   from: de
@@ -2036,6 +2054,7 @@ es:
   latitude: Latitud
   latitude_in_decimals: Latitud en grados con decimales, ej. 38.123
   latitude_slash_y_coord_slash_northing: Latitud / y coord / norte
+  latitude_value: 'Latitud: %{latitude}'
   layers: Capas
   layout: Disposición
   leaderboard: Marcador
@@ -2293,6 +2312,7 @@ es:
   longitude: Longitud
   longitude_in_decimal: Longitud en grados con decimales, ej. -122.123
   longitude_slash_x_coord_slash_easting: Longitud/coordenada X/abscisa
+  longitude_value: 'Longitud: %{longitude}'
   look_up_name: Buscar el nombre
   looks_like_neither_have!: ¡Parece que ninguno tiene taxones!
   looks_like_no_species_in_guide: Parece que no has añadido ninguna especie aún.
@@ -2671,7 +2691,10 @@ es:
   no_taxa: No hay taxones
   no_taxa_listed: No hay taxones enlistados
   no_taxa_selected: ¡No has seleccionado ninguna especie o grupo!
+  no_taxa_with_unknown_relationships: Ningún taxón con relaciones desconocidas.
   no_taxa_yet: ¡No hay taxones todavía!
+  no_taxon_framework_relationships: No existen relaciones entre marcos de referencia
+    de taxones
   no_taxonomic_changes_match_those_criteria: No hay cambios taxonómicos con ese criterio
     de búsqueda
   no_wikipedia_page_for_taxon: No hay página en Wikipedia para este taxón.
@@ -2714,6 +2737,8 @@ es:
     sobre aquellas identificaciones de taxones que no se correspondan exactamente
     con la tuya.
   number_of_observations: Número de observaciones
+  number_of_observers_value: 'Número de observadores: %{number}'
+  number_of_observers: Número de observadores
   number_selected: '# seleccionado'
   numeric_: numérico
   noun_by_you: '%{noun} por ti.'
@@ -2855,6 +2880,7 @@ es:
   occurrence_status_descriptions:
     absent: No ocurre en el área
     common: Ocurre frecuentemente
+    doubtful: Se presume que sucedió pero hay dudas sobre la evidencia.
     present: Ocurre en el área
   occurrence_status_establishment_means: estado de ocurrencia, medio de establecimiento
   occurrence_status_levels:
@@ -3017,6 +3043,8 @@ es:
   other_species_commonly_misidentified_as_this_species: Especies confundidas con esta
   other_species_commonly_misidentified_as_this_species_in_place_html: Especies confundidas
     con esta en <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Otros taxones generalmente
+    identificados de forma errónea como éste %{rank} en <a href="%{url}">%{place}</a>
   our_blog: Nuestro blog
   out_of_range: Fuera del área
   output_taxon: Taxón de salida
@@ -3541,7 +3569,7 @@ es:
   previous_tab: Pestaña anterior
   print_verb: Imprimir
   print_in_browser: Imprimir desde el navegador
-  privacy: Normativa de privacidad
+  privacy: Privacidad
   privacy_policy: Normativa de privacidad
   private: Privada
   private_: Privado
@@ -3641,6 +3669,8 @@ es:
   quality_grade_colon: 'Grado de calidad:'
   queued: En espera
   query: Consulta
+  radius: Radio (m)
+  radius_value: 'Radio (m): %{radius}'
   random: Al azar
   range: Área
   range_from: Distribución de
@@ -3752,6 +3782,7 @@ es:
     one_to_many: uno-a-muchos
     not_external: no externo
     not_internal: no interno
+    error: error
   relationship_html: 'Relación: %{link}'
   reload_and_refresh: Volver a cargar y refrescar lista
   reload_from_observations: Volver a cargar sus observaciones
@@ -3859,6 +3890,18 @@ es:
     must_be_coordinates_shareable_by_project_curators: el observador debe permitir
       a los curadores del proyecto ver las coordenadas.
   running_total: Total acumulado
+  same_day_obscured: Otra observación de esta persona en este día ha sido ocultada.
+  same_day_obscured_desc: Cuando las coordenadas están ocultadas debido a que el taxón
+    está en riesgo, todas las demás observaciones de ese observador en aquel día son
+    también ocultadas para impedir que otros adivinen las coordenadas en base a las
+    otras observaciones. Los observadores también pueden aplicar esta protección a
+    coordenadas que han decidido ocultar.
+  same_day_private: Otra observación realizada por esta persona en este día es privada.
+  same_day_private_desc: Cuando las coordenadas están ocultadas debido a que el taxón
+    está en riesgo, todas las demás observaciones de ese observador en aquel día son
+    también ocultadas para impedir que otros adivinen las coordenadas en base a las
+    otras observaciones. Los observadores también pueden aplicar esta protección a
+    coordenadas que han decidido ocultar.
   said: decia
   sat: Sap
   satellite: satélite
@@ -4013,6 +4056,7 @@ es:
   sign_up: Crear una cuenta
   sign_up_exclamation: ¡Regístrese!
   similar_species: Especies similares
+  similar_taxa: Taxones similares
   simple: Simple
   sign_in_exclamation: Iniciar sesión
   single_observation: Observación sencilla
@@ -4203,7 +4247,7 @@ es:
   stuff_just_added: Lo que acabas de agregar...
   subject_resolved_noun_html: '%{subject} resuelve %{noun}'
   subject_affecting_stuff_html: '%{subject} affecta %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} cometió %{thing} affecta
+  subject_committed_thing_affecting_stuff_html: '%{subject} envió %{thing} que afecta
     %{stuff}'
   submission_model: Modelo de envíos
   submission_model_description: ¿Quién puede agregar observaciones a tu proyecto?
@@ -4361,9 +4405,12 @@ es:
   taxon_colors: Colores de taxón
   taxon_curators: Curadores de grupos
   taxon_extras: Extras taxón
+  taxon_framework: Marco de referencia de taxones
   taxon_framework_notes: Notas marco del taxón
   taxon_framework_relationship: Relación Marco Taxón
   taxon_framework_relationship_for: Relación marco taxón para
+  taxon_framework_relationship_number: Relaciones entre marcos de referencia de taxones
+    %{number}
   taxon_framework_relationships: Relaciónes Marco Taxón
   taxon_framework_taxon: Taxon de marco de taxon
   taxon_links: Enlaces de taxón
@@ -4542,6 +4589,7 @@ es:
     nuestro. Si ese es el caso, por favor háznoslo saber
   there_were_some_problems_with_fields: Hubo algunos problemas con los siguientes
     campos
+  there_were_some_problems_with_these_files: 'Hubo algunos problemas con estos archivos:'
   theres_also: también hay
   theres_something_wrong_with_taxon_framework_relationship: Hay algo mal aquí - no
     podemos determinar la relación entre cualquier taxón interno y externo
@@ -4552,7 +4600,7 @@ es:
     marcados pueden borrarse solo si son claramente odiosos, ilegales, etc. Las groserías,
     el lenguaje ofensivo, etc., deberían responderse con un comentario respetuoso.
     Los reincidentes deberán denunciarse ante un administrador del sitio o a %{email}
-  these_are_taxa_that: Estos son taxones que %{site} no se pueden añadir automáticamente
+  these_are_taxa_that: Estos son los taxones que %{site} no pudo añadir automáticamente
     a nuestro árbol taxonómico. Puedes añadirlos al árbol si editas el taxón y seleccionas
     una superclase. Por ejemplo, la superclase de Homo sapiens es el género Homo.
     Además, puede que quieras comprobar si hay taxones sinónimos y combinarlos.
@@ -4657,7 +4705,7 @@ es:
   tired_of_testing_this_new_version: ¿Cansado de probar esta nueva versión?
   title: título
   title_and_description: Título y Descripción
-  titled_favorites_and_the_most_recent_additions: titulados "Favoritos" y las adiciones
+  titled_favorites_and_the_most_recent_additions: titulada "Favoritos" y las adiciones
     más recientes aparecerán en este espacio.
   to: a
   to_: de
@@ -4674,6 +4722,8 @@ es:
   today: Hoy
   too_many_observations_csv: ¡Tienes demasiadas observaciones! Solo podemos incluir
     las primeras %{max_rows} observaciones de cada archivo CSV
+  too_many_taxa_to_render: Esta consulta devuelve demasiados taxones por lo que no
+    pueden ser mostrados todos al mismo tiempo. Intente añadiendo más filtros.
   tools: Herramientas
   top_5_identifiers: Los 5 identificadores más altos
   top_contributors: Mayores contribuyentes
@@ -4694,6 +4744,9 @@ es:
   "true": Verdadero
   trending: Tendencias
   trends: Tendencias
+  trip_target_list_info: Este es un conjunto no redundante de los taxones más generales
+    de en tu lista objetivo. Los taxones representados por observaciones ocultadas
+    fueron excluidos.<a href="/pages/trips">Leer más</a>.
   trusted: De confianza
   trusted_project?: ¿Es un projecto verificicado?
   trust_this_person_with_your_private_coordinates: Confía a esta persona con tus coordenadas
@@ -4785,6 +4838,10 @@ es:
   upload_range: Cargar distribución
   uploaded_by: Subido por
   uploader:
+    errors:
+      file_too_big: El archivo tiene que ser de menos de %{megabytes} MB
+      unsupported_file_type: Tipo de archivo no reconocidos. Se aceptan JPG, PNG,
+        GIF, WAV, AAC, MP3 y MP4 (solo audio).
     tooltips:
       add: Añadir observaciones
       combine: Combinar observaciones seleccionadas
@@ -4965,6 +5022,8 @@ es:
   view_stats: Ver contribuciones
   view_taxon_change: Ver cambio de taxón
   view_taxon_changes: Vier los cambios del taxon
+  view_taxon_framework_relationship: Ver relaciones entre marcos de referencia de
+    taxones
   view_taxon_page: Ver página del taxón
   view_taxon_page_for: Ver página del taxón para este lugar
   view_taxon_page_for_this_x: Ver página del taxón para este %{x}
@@ -5180,11 +5239,14 @@ es:
   you_are_setting_this_project_to_aggregate: 'Estás estableciendo que en este proyecto
     se puedan agregar todas las  observaciones que cumplan con las reglas siguientes:
     %{rules} Quieres continuar?'
-  you_are_submitting_obs_without_photos_and_names: |-
-    Estás añadiendo observaciones sin foto ni un nombre de especie.
-    OJO, estas observaciones serán dificiles de identificar.
+  you_are_submitting_obs_without_photos_and_names: Estás añadiendo observaciones sin
+    foto ni un nombre de especie. La observaciones que no cuentan con esta información
+    a menudo son imposibles de identificar y no serán visibles por defecto en las
+    búsquedas de observaciones.
   you_are_submitting_obs_with_no_date_or_no_location: Estás añadiendo observaciones
-    sin fecha ni ubicación.
+    sin fecha ni ubicación.  La observaciones que no cuentan con esta información
+    a menudo son imposibles de identificar y no serán visibles por defecto en las
+    búsquedas de observaciones.
   you_are_subscribed_to: Estas suscrito a
   you_arent_a_member_of_that_project: No eres un miembro del proyecto.
   you_arent_following_that_person: No estas siguiendo a esa persona.
@@ -5318,7 +5380,7 @@ es:
     La seva ID com a tàxon superior <span class='taxon'>%{coarser_taxon_name}</span> significa que esteu en desacord amb la ID de tàxon de detall <span class='taxon'>%{finer_taxon_name}</span>. Esteu d'acord??<br><br>
     <a href='/pages/getting+started' target='_blank'>Ampreneu més sobre com actuen les identificacions &raquo;</a>
   your_comment_was_saved: Su comentario ha sido guardado.
-  your_content: Su Contenido
+  your_content: Su contenido
   your_contributions_to_project: Tus contribuciones a %{project_title}
   your_default: tu valor predeterminado
   your_default_time_zone: Tu huso horario predeterminado
@@ -6142,11 +6204,10 @@ es:
       tracks_multiple_projects: sigue proyectos múltiples
       projects_included: Proyectos incluidos
       collection_and_umbrellas_do_not_support: Actualmente, los proyectos de colección
-        y de paraguas no tienen acceso a coordenadas privadas.
+        y contenedores no tienen acceso a coordenadas privadas.
       curator_coordinate_access_desc_html: |-
         Recuerda: <strong>los curadores de proyectos pueden agregar cualquiera de tus observaciones a su proyecto</strong> a menos que hayas cambiado la <a
-        href="/users/edit">configuración de tu cuenta</a>. Sólo marca esta casilla si
-        confías a los curadores del proyecto para que vean las coordenadas privadas de cualquiera de tus observaciones que podrían ser añadidas a este proyecto. Si decides no conceder este permiso, aun puedes conceder acceso a las coordenadas privadas de observaciones caso por caso.
+        href="/users/edit">configuración de tu cuenta</a>. Sólo marca esta casilla si confías en que los curadores del proyecto vean las coordenadas privadas de cualquiera de tus observaciones que podrían ser añadidas a este proyecto. Si decides no conceder este permiso, aun puedes conceder acceso a las coordenadas privadas de observaciones caso por caso.
       confirm_leave:
         what_would_you_like: ¿Qué te gustaría hacer con tus observaciones en este
           proyecto?
@@ -6162,9 +6223,10 @@ es:
           Ten en cuenta que los curadores de proyectos aun podrán añadir tus observaciones a sus proyectos salvo que cambies tus
           <a href="/users/edit">preferencias de cuenta</a>.
         revoke_observations_label: Deja tus observaciones en este proyecto, pero evita
-          que los curadores vean sus coordenadas privadas
-        revoke_observations_desc: Si la única razón por la que te sales es no permitir
-          a los curadores del proyecto ver tu tus coordenadas privadas.
+          que los curadores vean sus coordenadas privadas.
+        revoke_observations_desc: Si la única razón por la abandonas el projecto es
+          para impedir que los curadores del proyecto continuen viendo tus coordenadas
+          privadas.
       edit:
         aggregation_pending: Agregación pendiente
         new_place_desc_html: Intenta buscar entre <a href="%{places_url}" target="_blank">
@@ -6312,8 +6374,10 @@ es:
           preciso si  quieres incluir días enteros.)'
         or_drag_and_drop: (O arrastrar y soltar)
         please_specify_the_requirements_html: Especifica por favor los requisitos
-          para las observaciones que serán añadidas a este proyecto. Puedes seleccionar
-          múltiples especies, sitios, y usuarios para ser automáticamente incluidos.
+          que deben cumplir las observaciones que serán añadidas a este proyecto.
+          Puedes seleccionar múltiples especies, sitios, y usuarios para ser automáticamente
+          incluidos, o dejar el campo en blanco si no existen requerimientos específicos.
+          La definición de cada sitio puede ser encontrada <a href="%{url}">aquí</a>.
         project_background_color: Color de fondo del resumen del proyecto
         project_background_color_help: Asegúrate de seleccionar un color suficientemente
           oscuro para que el texto blanco sobrepuesto sea legible.
@@ -6362,9 +6426,9 @@ es:
         none: No.
       curator_coordinate_access_label: ¿Quieres hacer que las coordenadas ocultas/privadas
         de la observación sean visibles para los administradores del proyecto?
-      curator_coordinate_access_note: También puede elegir el compartir las coordenadas
-        privadas de observaciones en este proyecto, con base caso a caso. Serán, tan
-        solo, valores base para nuevas observaciones añadidas al proyecto.
+      curator_coordinate_access_note: También puede elegir compartir las coordenadas
+        privadas de las observaciones en este proyecto, analizando caso a caso. Estos
+        serán simplemente los valores base para nuevas observaciones añadidas al proyecto.
       project_terms_desc_html: Permite a los curadores de este proyecto usar tus observaciones
         de acuerdo a las <a href="%{url}">condiciones del proyecto</a>.
       show:
@@ -6413,21 +6477,21 @@ es:
             <li>
               <strong>Agregar una marca a un taxón de nivel superior</strong>
               <p>
-                Por ejemplo, el género que contiene una especie. Esperemos que un conservador amistoso agregue el taxón si puede ser agregado.
+                Por ejemplo, el género que contiene a la especie. Con un poco de suerte, un conservador amistoso agregará el taxón si es posible.
               </p>
             </li>
             <li>
-              <strong><a href="%{feedback_url}">Contacta con el grupo de comentarios</a></strong>
+              <strong><a href="%{feedback_url}">Contacta con el Foro</a></strong>
               <p>
-                Muchos curadores siguen los correos del grupo de comentarios.
+                Muchos curadores siguen los correos del Foro.
               </p>
             </li>
             <li>
               <strong>
-                <a href="mailto:%{help_email}">Soporte de contacto</a>
+                <a href="mailto:%{help_email}">Contacto de Soporte</a>
               </strong>
               <p>
-                Por favor, ten paciencia, no tenemos personal de soporte dedicado.
+                Por favor, ten paciencia, no tenemos personal de soporte dedicado en forma exclusiva.
               </p>
             </li>
           </ul>
@@ -6723,6 +6787,8 @@ es:
         curators_can_see: "Sólo un recordatorio, los curadores del proyecto pueden
           ver la privada y oculta \ncoordenadas de las observaciones que se agregan
           a este proyecto."
+      delete:
+        by_deleting_your_account_you_will_remove: Al borrar su cuenta se eliminarán
       edit:
         blocking_desc_html: |-
           <p>
@@ -6745,14 +6811,13 @@ es:
           Si cambias de opinión siempre puedes
           <a href='/users/edit'>editar tus preferencias</a>.
         inaturalist_network_affiliation_desc_html: |-
-          La <a href="%{url}" target="_blank">Red iNaturalist</a> es una
-          colección de sitios web localizados conectados a la comunidad
-          iNaturalist global. Puede cambiar tu afiliación del sitio
-          principal, lo que significa que tu contenido tendrá cierta prioridad
-          en ese sitio, pero también significa que los propietarios de ese
-          sitio tienen el derecho de descargar y ver todos tus datos al igual
-          que los administradores del sitio iNaturalist puede. Si ese sitio
-          deja la red, todos los datos de tu cuenta y se van con ese sitio.
+          <p>La <a href="%{url}" target="_blank">Red iNaturalist</a> es una colección de sitios web locales conectados a la comunidad iNaturalist global. Los sitios de la red son soportados por instituciones locales que han firmado acuerdos con iNaturalist para promover el uso local y beneficiar la biodiversidad autóctona. Tienen acceso a las verdaderas coordenadas de especies protegidas de sus países, las cuales son ocultadas para el público general.</p>
+
+          <p>Tu usuario y contraseña funciona en todos los sitios que forman la red iNaturalist. Si decides afiliarte a un sitio local, las instituciones locales que manejan esa red tendrán acceso a tu dirección de email (solo para comunicarte las actividades del sitio) y a las verdaderas coordenadas de las observaciones que están ocultas al p+ublico general.</p>
+
+          <p>
+            Nota: Por favor no cambies tu afiliación de forma experimental si tienes más de 1000 observaciones.
+          </p>
         licensing_desc_html: "Obtención de la licencia de contenido da a otras personas
           el derecho\nlegal de utilizar sin pedir su permiso si se adhieren a los
           términos\nde la licencia. %{site_name} utiliza su contenido con licencia\nCreative
@@ -6780,7 +6845,8 @@ es:
           cuales son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
         project_settings_desc: Recuerda, esto no le da permiso a los proyectos para
           acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte
-          a los proyectos para otorgar estos permisos, u otorgarlos en cada paso particular.
+          a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso
+          particular.
         taxon_change_desc: Cuando los taxones se fusionan o cambian de nombre  en
           %{site_name}, sus observaciones, taxones enlistados, identificaciones, etc.,
           se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco.
@@ -7237,12 +7303,16 @@ es:
           other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
+        header:
+          other: un=1 error ha evitado que este %{model} se guarde
       models:
         application:
           attributes:
             redirect_uri:
               fragment_present: No puede contener un fragmento.
               has_query_parameter: No puede contener un parámetro de consulta.
+              invalid_uri: Debe ser un URI válido.
+              relative_uri: debe ser un URI absoluto.
         guide:
           attributes:
             published_at:
@@ -7329,10 +7399,15 @@ es:
                 correo electrónico
   doorkeeper:
     scopes:
-      login: Información relevante para acceder (como dirección de correo electrónico,
-        nombre de usuario e icono de usuario)
+      write: Crear, actualizar y eliminar sus observaciones, identificaciones, y otro
+        contenido en vuestro nombre, y acceder sus coordenadas privadas y cualquier
+        otra información  disponible en el sitio.
+      login: Información relevante para acceder, como dirección de correo electrónico,
+        nombre de usuario e icono de usuario.
     errors:
       messages:
+        invalid_request: En la petición falta un parámetro obligatorio en, incluye
+          un valor de parámetro no soportado, o está mal formulada.
         unauthorized_client: El cliente no es autorizado para efectuar esta petición
           utilizando este método.
         invalid_scope: El alcance pedido es nulo, desconocido, o está formulado de

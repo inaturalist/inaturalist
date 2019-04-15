@@ -4321,7 +4321,7 @@ ru:
   suggestions: Предложения
   summary: Обзор
   supporting: Поддерживающее мнение
-  support_inaturalist: Поддержать iNaturalist
+  support_inaturalist: Поддержи iNaturalist
   suspicious_photos: Подозрительные фото
   siutable_observations: подходящие наблюдения
   sun: Вск
@@ -7082,6 +7082,7 @@ ru:
         one: 1 секунда
         few: '%{count} секунды'
         other: '%{count} секунд'
+    countdown_x_days: '{{PLURAL: $1|день|дня|дней}}'
     countdown_x_hours:
       one: час
       few: часа
