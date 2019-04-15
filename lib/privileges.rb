@@ -48,4 +48,28 @@ module Privileges
   module InstanceMethods
     # TODO
   end
+
+  module Controller
+    def self.included( base )
+      base.extend ClassMethods
+    end
+    module ClassMethods
+      def requires_privilege( privilege, options = {} )
+        before_filter( options ) do
+          if current_user && !current_user.privileged_with?( privilege ) && !current_user.is_admin? && !current_user.is_curator?
+            msg = t( "errors.messages.requires_privilege_#{privilege}" )
+            respond_to do |format|
+              format.html do
+                flash[:notice] = msg
+                redirect_to :back
+              end
+              format.json do
+                return render json: { error: msg }, status: :forbidden
+              end
+            end
+          end
+        end
+      end
+    end
+  end
 end
