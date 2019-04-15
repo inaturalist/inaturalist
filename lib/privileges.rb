@@ -10,7 +10,7 @@ module Privileges
         callback_types.each do |callback_type|
           validate on: callback_type, if: options[:if] do |record|
             unless record.user.privileged_with?( privilege )
-              errors.add( :user_id, "requires_privilege_#{privilege}" )
+              errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
             end
           end
         end
@@ -23,7 +23,7 @@ module Privileges
               end
             end
             unless record.user.privileged_with?( privilege )
-              errors.add( :user_id, "requires_privilege_#{privilege}" )
+              errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
             end
           end
         end
@@ -61,7 +61,7 @@ module Privileges
             respond_to do |format|
               format.html do
                 flash[:notice] = msg
-                redirect_to :back
+                redirect_back_or_default( root_url )
               end
               format.json do
                 return render json: { error: msg }, status: :forbidden

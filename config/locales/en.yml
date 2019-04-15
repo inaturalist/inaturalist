@@ -5278,6 +5278,12 @@ en:
         project_list_desc: |
           Taxa manually added by project curators and taxa represented by
           research-grade observations added to the project are listed on project lists.
+    messages:
+      index:
+        speech_privilege_notice: |
+          You'll be able to send new messages after you've added three
+          verifiable observations or three identifications for others. For now
+          you can read and reply to message other people send you.
     oauth:
       authorizations:
         new:
@@ -6756,6 +6762,9 @@ en:
       not_an_integer: must be an integer
       odd: must be odd
       record_invalid: 'Validation failed: %{errors}'
+      requires_privilege_speech: |
+        must have three verifiable observations or three identifications
+        for others to do that
       requires_privilege_organizer: must have 50 verifiable observations to do that
       taken: has already been taken
       too_long:
