@@ -8,7 +8,7 @@ import {
 } from "../ducks/observations";
 import { setScaledPreference } from "../actions/taxon";
 
-const TERMS_TO_CHART = ["Life Stage", "Plant Phenology"];
+const TERMS_TO_CHART = ["Life Stage", "Plant Phenology", "Sex"];
 
 function mapStateToProps( state ) {
   // process columns for seasonality
