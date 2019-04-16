@@ -92,13 +92,19 @@ if OPTS.created_on
   end
 end
 
-es_cmd = if @where[0].to_s =~ /id IN \(/
-  @observations.in_groups_of( 500 ).map { |obs|
+es_cmds = []
+if @where[0].to_s =~ /id IN \(/
+  es_cmds << @observations.in_groups_of( 500 ).map { |obs|
     new_where = ["observations.id IN (#{obs.compact.map(&:id).join( "," )})"] + @where[1..-1]
     "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{new_where.join( " AND " )}' ) )\""
   }.join( " && \\\n" )
+  es_cmds << @observations.in_groups_of( 500 ).map { |obs|
+    new_where = ["observations.id IN (#{obs.compact.map(&:id).join( "," )})"] + @where[1..-1]
+    "RAILS_ENV=production bundle exec rails r \"Identification.elastic_index!( scope: Identification.joins(:observation).where( '#{new_where.join( " AND " )}' ) )\""
+  }.join( " && \\\n" )
 else
-  "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{@where.join( " AND " )}' ) )\""
+  es_cmds << "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{@where.join( " AND " )}' ) )\""
+  es_cmds << "RAILS_ENV=production bundle exec rails r \"Identification.elastic_index!( scope: Identification.joins(:observation).where( '#{@where.join( " AND " )}' ) )\""
 end
 
 system "rm -rf resurrect_#{session_id}*"
@@ -227,7 +233,9 @@ ssh -t inaturalist@taricha "cd deployment/production/current ; bash"
 tar xzvf resurrect_#{session_id}.tgz
 #{resurrection_cmds.uniq.join("\n")}
 source /usr/local/rvm/scripts/rvm 
-#{es_cmd}
+#{es_cmds.join("\n")}
+bundle exec rails r "User.update_identifications_counter_cache(#{@user.id})"
+bundle exec rails r "User.update_observations_counter_cache(#{@user.id})"
 EOT
 
 if OPTS.from_user_resurrection && @user
