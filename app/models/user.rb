@@ -882,10 +882,20 @@ class User < ActiveRecord::Base
       dp.destroy
     end
 
+    # delete user profile pic form s3
+    user_images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "attachments/users/icons/#{user_id}/" ).contents
+    if user_images.any?
+      puts "Deleting profile pic from S3"
+      s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: user_images.map{|s| { key: s.key } } } )
+    end
+
     # This might cause problems with multiple simultaneous invalidations. FWIW,
     # CloudFront is supposed to expire things in 24 hours by default
     if options[:cloudfront_distribution_id]
       paths = deleted_photos.compact.map{|dp| "/photos/#{ dp.photo_id }/*" }
+      if user_images.any?
+        paths << "attachments/users/icons/#{user_id}/*"
+      end
       cf_client.create_invalidation(
         distribution_id: options[:cloudfront_distribution_id],
         invalidation_batch: {
