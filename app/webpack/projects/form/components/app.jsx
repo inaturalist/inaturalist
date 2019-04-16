@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import ProjectFormContainer from "../containers/project_form_container";
 
-const App = ( { form, createNewProject } ) => {
+const App = ( { config, form, createNewProject } ) => {
   if ( form.project ) {
     return ( <ProjectFormContainer /> );
   }
@@ -38,7 +38,7 @@ const App = ( { form, createNewProject } ) => {
             </ul>
           </Col>
           <Col xs={6}>
-            <img src={ HERO_IMAGE_PATH } className="preview-img" />
+            <img src={HERO_IMAGE_PATH} className="preview-img" alt="" />
           </Col>
         </Row>
         <Row>
@@ -58,8 +58,11 @@ const App = ( { form, createNewProject } ) => {
               </li>
               <li>
                 <i className="fa fa-trophy" />
-                <div dangerouslySetInnerHTML={ { __html:
-                  I18n.t( "views.projects.new.leaderboards_among_individuals" ) } }
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      I18n.t( "views.projects.new.leaderboards_among_individuals" )
+                  }}
                 />
               </li>
               <li>
@@ -83,8 +86,11 @@ const App = ( { form, createNewProject } ) => {
               </li>
               <li>
                 <i className="fa fa-trophy" />
-                <div dangerouslySetInnerHTML={ { __html:
-                  I18n.t( "views.projects.new.leaderboards_among_projects_and_bioblitzes" ) } }
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      I18n.t( "views.projects.new.leaderboards_among_projects_and_bioblitzes" )
+                  }}
                 />
               </li>
               <li>
@@ -99,14 +105,14 @@ const App = ( { form, createNewProject } ) => {
             <div className="btn-div">
               <button
                 className="btn-green"
-                onClick={ ( ) => createNewProject( "collection" ) }
+                onClick={( ) => createNewProject( "collection" )}
               >
                 { I18n.t( "get_started" ) }
               </button>
               <a href="/projects/global-amphibian-bioblitz">
                 <div className="view-sample">
                   <i className="fa fa-external-link" />
-                { I18n.t( "view_sample" ) }
+                  { I18n.t( "view_sample" ) }
                 </div>
               </a>
             </div>
@@ -115,7 +121,7 @@ const App = ( { form, createNewProject } ) => {
             <div className="btn-div">
               <button
                 className="btn-green"
-                onClick={ ( ) => createNewProject( "umbrella" ) }
+                onClick={( ) => createNewProject( "umbrella" )}
               >
                 { I18n.t( "get_started" ) }
               </button>
@@ -128,16 +134,21 @@ const App = ( { form, createNewProject } ) => {
             </div>
           </Col>
         </Row>
-        <Row>
-          <Col xs={8}>
-            <p className="contact">
-              { I18n.t( "views.projects.new.do_you_need_features_from_traditional" ) }
-              <span dangerouslySetInnerHTML={ { __html:
-                I18n.t( "views.projects.new.use_this_link_to_create_html", { url: "/projects/new_traditional" } ) } }
-              />
-            </p>
-          </Col>
-        </Row>
+        { config.currentUser.privileges.indexOf( "organizer" ) >= 0 && (
+          <Row>
+            <Col xs={8}>
+              <p className="contact">
+                { I18n.t( "views.projects.new.do_you_need_features_from_traditional" ) }
+                <span
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      I18n.t( "views.projects.new.use_this_link_to_create_html", { url: "/projects/new_traditional" } )
+                  }}
+                />
+              </p>
+            </Col>
+          </Row>
+        ) }
       </Grid>
     </div>
   );
@@ -145,7 +156,8 @@ const App = ( { form, createNewProject } ) => {
 
 App.propTypes = {
   form: PropTypes.object,
-  createNewProject: PropTypes.func
+  createNewProject: PropTypes.func,
+  config: PropTypes.object
 };
 
 export default App;

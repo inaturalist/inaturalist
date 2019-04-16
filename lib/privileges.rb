@@ -6,15 +6,7 @@ module Privileges
   module ClassMethods
     def requires_privilege( privilege, options = {} )
       callback_types = options[:on] || [:create]
-      if callback_types.is_a?( Array )
-        callback_types.each do |callback_type|
-          validate on: callback_type, if: options[:if] do |record|
-            unless record.user.privileged_with?( privilege )
-              errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
-            end
-          end
-        end
-      else
+      if callback_types.is_a?( Hash )
         callback_types.each do |callback_type, attrs|
           validate on: callback_type, if: options[:if] do |record|
             if ![attrs].flatten.blank?
@@ -22,6 +14,15 @@ module Privileges
                 return unless send( "#{attr}_changed?" )
               end
             end
+            unless record.user.privileged_with?( privilege )
+              errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
+            end
+          end
+        end
+      else
+        callback_types = [callback_types].flatten
+        callback_types.each do |callback_type|
+          validate on: callback_type, if: options[:if] do |record|
             unless record.user.privileged_with?( privilege )
               errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
             end
