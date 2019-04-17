@@ -234,9 +234,13 @@ tar xzvf resurrect_#{session_id}.tgz
 #{resurrection_cmds.uniq.join("\n")}
 source /usr/local/rvm/scripts/rvm 
 #{es_cmds.join("\n")}
+EOT
+if @user
+  puts <<-EOT
 bundle exec rails r "User.update_identifications_counter_cache(#{@user.id})"
 bundle exec rails r "User.update_observations_counter_cache(#{@user.id})"
-EOT
+  EOT
+end
 
 if OPTS.from_user_resurrection && @user
   puts
