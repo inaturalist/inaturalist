@@ -15,6 +15,8 @@ class TaxonName < ActiveRecord::Base
                           :case_sensitive => false
   validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
   validate :species_name_cannot_match_taxon_name
+  NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
+  validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]

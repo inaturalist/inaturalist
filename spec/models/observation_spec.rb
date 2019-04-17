@@ -3202,9 +3202,9 @@ describe Observation do
     end
 
     it "should not consider identifications of inactive taxa" do
-      g1 = Taxon.make!( rank: Taxon::GENUS, name: "g1" )
-      s1 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s1" )
-      s2 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s2", is_active: false )
+      g1 = Taxon.make!( rank: Taxon::GENUS, name: "Genusone" )
+      s1 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "Genus speciesone" )
+      s2 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "Genus speciestwo", is_active: false )
       o = Observation.make!
       Identification.make!( observation: o, taxon: s1 )
       Identification.make!( observation: o, taxon: s1 )
@@ -4074,15 +4074,15 @@ def setup_test_case_taxonomy
 
   # Superfamily intentionally left unavailable. Since it has a blank ancestry,
   # it will not really behave as expected in most tests
-  sf = Taxon.make!( rank: "superfamily", name: "sf" )
-  @f = Taxon.make!( rank: "family", parent: sf, name: "f" )
-  @g1 = Taxon.make!( rank: "genus", parent: @f, name: "g1" )
-  @g2 = Taxon.make!( rank: "genus", parent: @f, name: "g2" )
-  @s1 = Taxon.make!( rank: "species", parent: @g1, name: "s1" )
-  @s2 = Taxon.make!( rank: "species", parent: @g1, name: "s2" )
-  @s3 = Taxon.make!( rank: "species", parent: @g1, name: "s3" )
-  @s4 = Taxon.make!( rank: "species", parent: @g1, name: "s4" )
-  @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss1" )
-  @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss2" )
+  sf = Taxon.make!( rank: "superfamily", name: "Superfamily" )
+  @f = Taxon.make!( rank: "family", parent: sf, name: "Family" )
+  @g1 = Taxon.make!( rank: "genus", parent: @f, name: "Genusone" )
+  @g2 = Taxon.make!( rank: "genus", parent: @f, name: "Genustwo" )
+  @s1 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesone" )
+  @s2 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciestwo" )
+  @s3 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesthree" )
+  @s4 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesfour" )
+  @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "Genusone speciesone subspeciesone" )
+  @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "Genusone speciesone subspeciestwo" )
   @o = Observation.make!
 end

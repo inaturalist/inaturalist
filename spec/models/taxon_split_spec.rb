@@ -505,8 +505,8 @@ end
 def prepare_split
   superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
   @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "Input Taxon" )
-  @output_taxon1 = Taxon.make!( rank: Taxon::FAMILY, name: "Output Taxon 1" )
-  @output_taxon2 = Taxon.make!( rank: Taxon::FAMILY, name: "Output Taxon 2" )
+  @output_taxon1 = Taxon.make!( rank: Taxon::FAMILY, name: "Output Taxon One" )
+  @output_taxon2 = Taxon.make!( rank: Taxon::FAMILY, name: "Output Taxon Two" )
   @split = TaxonSplit.make
   @split.add_input_taxon(@input_taxon)
   @split.add_output_taxon(@output_taxon1)

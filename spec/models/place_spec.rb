@@ -116,16 +116,17 @@ describe Place, "updating" do
   end
 end
 
-describe Place, "import by WOEID", disabled: ENV["TRAVIS_CI"] do
-  before(:each) do
-    @woeid = '28337864';
-    @place = Place.import_by_woeid(@woeid)
-  end
+# Not really even sure if the Geoplanet API still exists
+# describe Place, "import by WOEID", disabled: ENV["TRAVIS_CI"] do
+#   before(:each) do
+#     @woeid = '28337864';
+#     @place = Place.import_by_woeid(@woeid)
+#   end
   
-  it "should create ancestors" do
-    expect(@place.ancestors.count).to be >= 2
-  end
-end
+#   it "should create ancestors" do
+#     expect(@place.ancestors.count).to be >= 2
+#   end
+# end
 
 # These pass individually but fail as a group, probably due to some 
 # transaction weirdness.

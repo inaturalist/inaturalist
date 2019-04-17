@@ -6,15 +6,15 @@ describe Guide, "reorder_by_taxon" do
     Taxon.destroy_all
   end
   it "should work" do
-    f1 = Taxon.make!(:rank => Taxon::FAMILY, :name => "family1")
-    f2 = Taxon.make!(:rank => Taxon::FAMILY, :name => "family2")
-    g1 = Taxon.make!(:rank => Taxon::GENUS, :parent => f1, :name => "genus1")
-    g2 = Taxon.make!(:rank => Taxon::GENUS, :parent => f1, :name => "genus2")
-    g3 = Taxon.make!(:rank => Taxon::GENUS, :parent => f2, :name => "genus3")
-    s1 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g1, :name => "species1")
-    s2 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g2, :name => "species2")
-    s3 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g2, :name => "species3")
-    s4 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g3, :name => "species4")
+    f1 = Taxon.make!(:rank => Taxon::FAMILY, :name => "Familyone")
+    f2 = Taxon.make!(:rank => Taxon::FAMILY, :name => "Familytwo")
+    g1 = Taxon.make!(:rank => Taxon::GENUS, :parent => f1, :name => "Genusone")
+    g2 = Taxon.make!(:rank => Taxon::GENUS, :parent => f1, :name => "Genustwo")
+    g3 = Taxon.make!(:rank => Taxon::GENUS, :parent => f2, :name => "Genusthree")
+    s1 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g1, :name => "Species one")
+    s2 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g2, :name => "Species two")
+    s3 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g2, :name => "Species three")
+    s4 = Taxon.make!(:rank => Taxon::SPECIES, :parent => g3, :name => "Species four")
     g = Guide.make!
     gt4 = GuideTaxon.make!(:guide => g, :taxon => s4, :position => 1)
     gt3 = GuideTaxon.make!(:guide => g, :taxon => s3, :position => 2)

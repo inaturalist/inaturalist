@@ -7030,6 +7030,10 @@ en:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 can only be changed by a curator of this taxon
+            name:
+              bad_format: |
+                can only contain standard Latin characters, hyphens, spaces, and
+                ×; note that putative taxa and cultivars are not allowed
         taxon_name:
           attributes:
             lexicon:
@@ -7037,6 +7041,9 @@ en:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 cannot match the scientific name of a species for this lexicon
+              bad_format: |
+                can only contain standard Latin characters, hyphens, spaces, and
+                ×; note that putative taxa and cultivars are not allowed
         user:
           attributes:
             login:
