@@ -8,9 +8,8 @@ Disallow: /observations.csv?
 Disallow: /taxa/search
 Disallow: /taxa/search?
 Disallow: /*?
-
-User-agent: Googlebot
 Disallow: /taxa/*/description$
+Disallow: /taxa/*/map_layers$
 Disallow: *.csv*
 Disallow: *page=*
 Disallow: /*?
