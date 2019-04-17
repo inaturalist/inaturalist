@@ -49,7 +49,7 @@ module Shared::FiltersModule
 
   def set_site
     if params[:inat_site_id]
-      @site ||= Site.find( params[:inat_site_id] )
+      @site ||= Site.find_by_id( params[:inat_site_id] )
     end
     @site ||= Site.where( "url LIKE '%#{request.host}%'" ).first
     @site ||= Site.default
