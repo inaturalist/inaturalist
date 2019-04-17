@@ -2630,9 +2630,9 @@ describe Observation do
 
   describe "update_stats" do
     it "should not consider outdated identifications as agreements" do
-      o = Observation.make!( taxon: Taxon.make!( rank: "species", name: "sp1" ) )
+      o = Observation.make!( taxon: Taxon.make!( rank: "species", name: "Species one" ) )
       old_ident = Identification.make!( observation: o, taxon: o.taxon )
-      new_ident = Identification.make!( observation: o, user: old_ident.user, taxon: Taxon.make!( rank: "species", name: "sp2" ) )
+      new_ident = Identification.make!( observation: o, user: old_ident.user, taxon: Taxon.make!( rank: "species", name: "Species two" ) )
       o.reload
       o.update_stats
       o.reload
