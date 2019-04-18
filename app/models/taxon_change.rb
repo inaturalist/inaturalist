@@ -183,10 +183,15 @@ class TaxonChange < ActiveRecord::Base
   # the change
   def commit_records( options = {} )
     unless valid?
-      Rails.logger.error "[ERROR #{Time.now}] Failed to commit records for #{self}: #{errors.full_messages.to_sentence}"
-      return
+      msg = "Failed to commit records for #{self}: #{errors.full_messages.to_sentence}"
+      # Rails.logger.error "[ERROR #{Time.now}] #{msg}"
+      # return
+      raise msg
     end
-    return if input_taxa.blank?
+    if input_taxa.blank?
+      # return
+      raise "Failed to commit records for #{self}: no input taxa"
+    end
     Rails.logger.info "[INFO #{Time.now}] #{self}: starting commit_records"
     notified_user_ids = []
     associations_to_update = %w(identifications observations listed_taxa taxon_links observation_field_values)
