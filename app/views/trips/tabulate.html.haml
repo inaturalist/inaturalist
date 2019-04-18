@@ -49,9 +49,6 @@
         %li
           = link_to t( :back_to_x, :noun => "trips" ), trips_path, :class => "back crumb"
       %h2= @title
-      .panel.panel-info
-        .panel-heading
-          = "Notice - trips aren't yet properly calculating presence absence data"
   .row
     .col-xs-3
       = form_for :filters, builder: DefaultFormBuilder, html: { method: :get } do |f|
@@ -102,7 +99,7 @@
                   %td
                     =trip.number
                   %td
-                    null
+                    =@occupancy[trip.id]
           = will_paginate @trips
       - else
         %p.description= t :please_enter_a_species

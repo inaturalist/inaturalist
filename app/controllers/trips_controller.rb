@@ -278,13 +278,35 @@ class TripsController < ApplicationController
     scope = scope.taxon( @taxon ) if @taxon
     scope = scope.year( @year ) if @year
     scope = scope.month( @month ) if @month
-    scope = scope.place( @place ) if @place
+    scope = scope.in_place( @place.id ) if @place
     @trips = scope.published.page( params[:page] ).per_page( per_page ).order( "posts.id DESC" )
-
+    if @taxon
+      @occupancy = Trip.presence_absence( @trips, @taxon.id, place_id||=nil, @year||=nil, @month||=nil )
+    end
+  
     respond_to do |format|
       format.html
       format.json do
-        render json: @trips.as_json
+        if @taxon
+          json_results =  { results: @trips.map{ |trip| 
+                {
+                  trip: trip.id, 
+                  title: trip.title, 
+                  user: trip.user.login, 
+                  latitude: trip.latitude, 
+                  longitude: trip.longitude, 
+                  date: trip.start_time, 
+                  duration: (( trip.stop_time - trip.start_time ) / 1.minutes ).to_i, 
+                  distance: trip.distance, 
+                  observers: trip.number, 
+                  taxon: @taxon.name, 
+                  occupancy: @occupancy[trip.id]
+                }
+          }}
+        else
+          json_results = { results: [] }
+        end
+        render :json => json_results
       end
     end
   end

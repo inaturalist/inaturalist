@@ -14,7 +14,10 @@ class Trip < Post
   
   scope :year, lambda { |year| where( "EXTRACT(YEAR FROM start_time) = ?", year ) }
   scope :month, lambda { |month| where( "EXTRACT(MONTH FROM start_time) = ?", month ) }  
-  scope :place, lambda{ |place| where("latitude > ? AND latitude <= ? AND longitude > ? AND longitude <= ?", place.swlat, place.nelat, place.swlng, place.nelng) }
+  scope :in_place, lambda { |place_id|
+      joins("JOIN place_geometries ON place_geometries.place_id = #{place_id}").
+      where("ST_Intersects(place_geometries.geom, ST_MakePoint(posts.longitude, posts.latitude))")
+    }
   scope :taxon, lambda{ |taxon|
     joins( TRIP_PURPOSE_JOINS ).
     where( "tp.complete = true AND tp.resource_id IN (?)", [taxon.ancestor_ids, taxon.id].flatten )
@@ -46,5 +49,56 @@ class Trip < Post
       candidates << tt
     end
     candidates
+  end
+  
+  def obs_search_elastic_params
+    return if start_time.blank? || stop_time.blank? || latitude.blank? ||
+      longitude.blank? || radius.blank? || radius <= 0 || trip_purposes.empty?
+    [
+      {
+        geo_distance: {
+          distance: radius, # meters
+          location: {
+            lat: latitude.to_f,
+            lon: longitude.to_f
+          }
+        }
+      },
+      { term: { "user.id": user_id } },
+      { terms: { "taxon.ancestor_ids": trip_purposes.map( &:resource_id ) } },
+      { range: { "time_observed_at": {
+        gte: start_time.strftime("%FT%T%:z"),
+        lte: stop_time.strftime("%FT%T%:z")
+      } } }
+    ]
+  end
+  
+  def self.presence_absence( trips, taxon_id, place_id, year, month )
+    return if taxon_id.blank? || trips.blank? || trips.empty?
+    potential_trips = trips.select{ |t| t.obs_search_elastic_params }
+    return if potential_trips.empty?
+    query = {
+      filters: [
+        { term: { "taxon.ancestor_ids": taxon_id } },
+      ],
+      size: 0,
+      aggregate: {
+        trips: {
+          filters: {
+            filters: Hash[ potential_trips.map{ |trip|
+              [ "trip_#{trip.id}", { bool: { must: trip.obs_search_elastic_params } } ]
+            } ]
+          }
+        }
+      }
+    }
+    query[:filters] << { term: { place_ids: place_id } } unless place_id.blank?
+    query[:filters] << { term: { "observed_on_details.year": year } } unless year.blank?
+    query[:filters] << { term: { "observed_on_details.month": month } } unless month.blank?
+
+    results = Observation.elastic_search( query )
+    return Hash[results.response.aggregations.trips.buckets.map{ |k,v|
+      [k.sub( "trip_", "" ).to_i, v.doc_count]
+    }]
   end
 end
