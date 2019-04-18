@@ -394,7 +394,7 @@ Subscription.blueprint do
 end
 
 Taxon.blueprint do
-  name { Faker::Name.name }
+  name { Faker::Name.name.gsub( /[^(A-z|\s|\-|×)]/, "" ) }
   rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
   is_active { true }
 end
@@ -446,7 +446,7 @@ TaxonMerge.blueprint do
 end
 
 TaxonName.blueprint do
-  name { Faker::Name.name }
+  name { Faker::Name.name.gsub( /[^(A-z|\s|\-|×)]/, "" ) }
   taxon { Taxon.make! }
 end
 
