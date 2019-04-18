@@ -3159,6 +3159,18 @@ class Observation < ActiveRecord::Base
     UpdateAction.user_viewed_updates(obs_updates, user_id)
   end
 
+  def first_of_taxon?
+    return false if taxon_id.blank?
+    Observation.elastic_search(
+      size: 0,
+      filters: [
+        { terms: { "taxon.ancestor_ids" => [taxon_id] } },
+        { terms: { quality_grade: [NEEDS_ID, RESEARCH_GRADE] } },
+        { range: { id: { lt: id } } }
+      ]
+    ).total_entries == 0
+  end
+
   def self.dedupe_for_user(user, options = {})
     unless user.is_a?(User)
       u = User.find_by_id(user) 
