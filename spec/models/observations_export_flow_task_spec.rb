@@ -148,6 +148,36 @@ describe ObservationsExportFlowTask do
       expect(csv.size).to eq 2
       expect(csv[1]).not_to include o.private_latitude.to_s
     end
+
+    it "should include obscured coordinates you can see with a place filter even if the obscured coordinates are outside of the place" do
+      place = make_place_with_geom
+      o = Observation.make!( latitude: 0.99, longitude: 0.99, geoprivacy: Observation::OBSCURED )
+      o.latitude = 1.1
+      o.longitude = 1.1
+      o.set_geom_from_latlon
+      Observation.where( id: o.id ).update_all(
+        latitude: o.latitude,
+        longitude: o.longitude,
+        private_latitude: o.private_latitude,
+        private_longitude: o.private_longitude,
+        geom: o.geom,
+        private_geom: o.private_geom
+      )
+      o.reload
+      PlaceDenormalizer.denormalize
+      expect( o.public_places ).not_to include place
+      expect( o.places ).to include place
+      ft = ObservationsExportFlowTask.make(
+        user: o.user
+      )
+      expect( o ).to be_coordinates_viewable_by( ft.user )
+      ft.inputs.build( extra: { query: "place_id=#{place.id}&user_id=#{o.user.id}" } )
+      ft.save!
+      ft.run
+      csv = CSV.open(File.join(ft.work_path, "#{ft.basename}.csv")).to_a
+      expect(csv.size).to eq 2
+      expect(csv[1]).to include o.private_latitude.to_s
+    end
   end
 
   describe "columns" do
