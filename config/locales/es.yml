@@ -34,6 +34,7 @@
 # Author: Macofe
 # Author: MarcoAurelio
 # Author: MetteHHH
+# Author: Mich croc
 # Author: Mirzali
 # Author: Mynor Archila
 # Author: Ncontinanza
@@ -43,6 +44,7 @@
 # Author: PoLuX124
 # Author: Pyscowicz
 # Author: RicardoSGZ
+# Author: Spencersloth
 # Author: Tiberius1701
 # Author: Tifdogo12
 # Author: Turluma
@@ -201,6 +203,7 @@ es:
   about_x: Acerca de %{x}
   acc: Prec.(m)
   account: Cuenta
+  account_creation: Creación de cuentas
   account_settings: Configuración de la cuenta
   accept: Acepta
   accept_community_identifications: Acepta identificaciones de la comunidad
@@ -1654,6 +1657,7 @@ es:
   forum_categories:
     bug_reports: Informes de errores
     feature_requests: Solicitudes de características
+    forum_feedback: Comentarios acera del foro
     forum_moderation: Moderación del foro
     nature_talk: Charlas sobre naturaleza
     news_and_updates: Noticias y actualizaciones
@@ -1920,7 +1924,7 @@ es:
   in_progress: en curso
   in_taxon?: con especie o grupo
   in_the_past: en el pasado
-  in_the_past_week: durante la semana pasada
+  in_the_past_week: Durante la semana pasada
   inactive: Inactiva
   inactive_taxon: Especie o grupo inactivo
   inactive_taxon_concepts_are: Taxones inactivos son aquéllos que taxonómicamente
@@ -2453,6 +2457,7 @@ es:
   more_journal_posts: Más notas de diario
   more_observations: Más observaciones
   more_photos: Más fotos
+  more_than_a_week_ago: Hace más de una semana
   most: Más
   most_agree: La mayoría la apoya
   most_browser_print_pdf: 'Nota: la mayoría de navegadores tienen una opción para
@@ -2881,7 +2886,11 @@ es:
     absent: No ocurre en el área
     common: Ocurre frecuentemente
     doubtful: Se presume que sucedió pero hay dudas sobre la evidencia.
+    irregular: La presencia imprevisible, incluyendo los vagabundos; puede ser común
+      en algunos años y ausente en otros
     present: Ocurre en el área
+    uncommon: Ocurre regularmente, pero en números pequeños; hay que buscar el hábitat
+      apropiado con cuidado
   occurrence_status_establishment_means: estado de ocurrencia, medio de establecimiento
   occurrence_status_levels:
     present: presente
@@ -3043,6 +3052,8 @@ es:
   other_species_commonly_misidentified_as_this_species: Especies confundidas con esta
   other_species_commonly_misidentified_as_this_species_in_place_html: Especies confundidas
     con esta en <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Otros taxones identificados erróneamente
+    como ésto
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: Otros taxones generalmente
     identificados de forma errónea como éste %{rank} en <a href="%{url}">%{place}</a>
   our_blog: Nuestro blog
@@ -4850,6 +4861,7 @@ es:
       remove_observation: Eliminar observación
       remove_photo: Quitar foto
       select_all: Seleccionar todas las observaciones
+      upload_failed: Envío fallido
   uploading_num_of_count_photos:
     one: Subiendo foto...
     other: Subiendo %{num} de %{count} fotos...
@@ -4972,6 +4984,7 @@ es:
   view_flags: Ve advertencias
   view_flags_for_x_html: Ve advertencias para %{x}
   view_full_observation: Ve observación completa
+  view_full_size_photo: Mira imagen a tamaño completo
   view_invitation: Ve invitación
   view_journal: Ve Diario
   view_leaderboard: Ve tablero de líderes
@@ -4998,6 +5011,8 @@ es:
   view_observation_flags: Ver marcas de observación
   view_observations_by_everyone: Ver las observaciones de todos
   view_observations_by_these_users: Ver observaciones de estos usuarios
+  view_observations_causing_this_observation_to_be_obscured: Ver observaciones que
+    causan que esta observación esté oscurecida
   view_observations_of_this_taxon_by: Ver observaciones de este taxón por
   view_observations_raquo: Ver observaciones &raquo;
   view_on: Ver en
@@ -5127,6 +5142,7 @@ es:
   what_do_you_want_to_list: ¿Qué quieres listar?
   what_to_keep: Qué mantener
   what_want_to_list?: ¿Qué desea colocar en la lista?
+  what_were_you_looking_for?: Qué estabas buscando? (Lista de objetivo)
   whats_this?: ¿Qué es esto?
   when: Cuando
   when_did_you_see_it?: ¿Cuándo lo viste?
@@ -5957,6 +5973,8 @@ es:
         private_longitude: Longitud privada, selecciona si la observación es privada
           o está oscurecida
         geoprivacy: Si el observador ha escogido, o no, oscurecer o esconder las coordenadas
+        taxon_geoprivacy: Se aplicó una geoprivacidad limitada debido al estado de
+          conservación del taxa en la identificación actual.
         coordinates_obscured: Si las coordenadas se han ocultado, o no, por una condición
           de geoprivacidad o por tratarse de un taxón vulnerable
         out_of_range: Si la observación entra o no dentro del área geográfica conocida
@@ -6789,6 +6807,11 @@ es:
           a este proyecto."
       delete:
         by_deleting_your_account_you_will_remove: Al borrar su cuenta se eliminarán
+        still_want_to_delete_html: |-
+          Si todavía estás seguro que quieres eliminar tu cuenta, introduce
+          <code>%{confirmation_code}</code> en la aplicación de abajo y presiona el Botón para eliminar tu cuenta y todos tus datos.
+        you_must_enter_confirmation_code_in_the_form: Introduce "%{confirmation_code}"  en
+          la aplicación para eliminar tu cuenta
       edit:
         blocking_desc_html: |-
           <p>
@@ -6865,6 +6888,11 @@ es:
         scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
         youve_used_all_of_your_blocks: Has utilizado todos tus bloques. Quita un bloque
           para añadir otro.
+        prefers_coordinate_interpolation_protection_desc: "Cuando configuras la geoprivacidad
+          de una observación como \"oculto\" o \"Privado\" se aplicará la misma geoprivacidad
+          a todas las \nobservaciones del mismo día para evitar sacar conclusiones
+          de coordenadas mediante observaciones que se hicieron alrededor del mismo
+          tiempo."
       recent:
         about_recent_users: Acerca de
         definitions_html: <dl><dt>Probablemente Spam</dt><dd> Usuario que probablemente

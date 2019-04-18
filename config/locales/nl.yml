@@ -174,6 +174,7 @@ nl:
   about_x: Over %{x}
   acc: Prec. (m)
   account: Account
+  account_creation: Account aangemaakt
   account_settings: Accountinstellingen
   accept: accepteren
   accept_community_identifications: Gemeenschapsidentificaties accepteren
@@ -1889,7 +1890,7 @@ nl:
   in_progress: bezig
   in_taxon?: in taxon
   in_the_past: in het verleden
-  in_the_past_week: vorige week
+  in_the_past_week: Vorige week
   inactive: Inactief
   inactive_taxon: Inactief taxon
   inactive_taxon_concepts_are: Inactieve taxonconcepten zijn taxonomisch achterhaald
@@ -2428,6 +2429,7 @@ nl:
   more_journal_posts: Meer dagboekberichten
   more_observations: Meer waarnemingen
   more_photos: Meer foto's
+  more_than_a_week_ago: Meer dan een week geleden
   most: Meeste
   most_agree: meerdere zijn het eens
   most_browser_print_pdf: 'Nota: de meeste browsers beschikken over een optie om PDF
@@ -2551,7 +2553,7 @@ nl:
   new_user_rules: Nieuwe gebruikersregels
   new_users: Nieuwe gebruikers
   new_users_this_year: Nieuwe gebruikers dit jaar
-  new_users_w_7_obs: Nieuwe gebruikers w/7 Obs
+  new_users_w_7_obs: Nieuwe gebruikers w/7 Wrn
   new_users_week: Nieuwe gebruikers / week
   newly_added: Nieuw toegevoegd
   newly_added_species: Nieuw toegevoegde soorten
@@ -2714,7 +2716,7 @@ nl:
   obs: Waarnemingen
   obs_cid_d: Wrn CID'd
   obs_id_d: Wrn ID'd
-  obscured_: versluierd
+  obscured_: vervaagd
   obscured: Verborgen
   obscured_or_private: verborgen of privé
   obscured_description: Openbare coördinaten worden weergegeven als een willekeurig
@@ -4957,6 +4959,8 @@ nl:
   view_observation_flags: Markeringen van de waarneming weergeven
   view_observations_by_everyone: Alle waarnemingen weergeven
   view_observations_by_these_users: Bekijk waarnemingen van deze gebruikers
+  view_observations_causing_this_observation_to_be_obscured: Bekijk waarnemingen waardoor
+    deze waarneming wordt vervaagd
   view_observations_of_this_taxon_by: Geef de waarnemingen weer van dit taxon door
   view_observations_raquo: Waarnemingen weergeven &raquo;
   view_on: Bekijk op
@@ -6439,7 +6443,7 @@ nl:
           app</a>
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTID
-        identifiers_desc: Een ID toegevoegd aan iemands wrn op deze dag
+        identifiers_desc: Een ID toegevoegd aan iemands waarneming op deze dag
         iphone_desc_html: Aangemaakt via de <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTID
@@ -6447,10 +6451,10 @@ nl:
         obs_1_day: Wrn (1 dag)
         obs_1_day_desc: Waarnemingen op een enkele dag gemaakt
         obs_cid_d_desc: Gemaakt in de afgelopen 7 dagen met een gemeenschapsID
-        obs_cid_d_to_genus: Wrn CID'd to genus
+        obs_cid_d_to_genus: Wrn CID'd tot op genus
         obs_cid_d_to_genus_desc: Gemaakt in de afgelopen 7 dagen met een gemeenschapsID
           op of beneden genus-level
-        obs_desc: Gemaakt in prev 7 dagen
+        obs_desc: Gemaakt in de afgelopen 7 dagen
         obs_id_d_desc: Gemaakt in de afgelopen 7 dagen met een ID (kan van de waarnemer
           zijn)
         other_desc_html: Gemaakt via andere applicaties <a href="%{url}">gebouwd door
@@ -6480,22 +6484,21 @@ nl:
       year:
         include_usa: Inclusief VS
         growth_by_country_desc_html: "Waar vindt de groei plaats? \nDeze kaart en
-          grafiel proberen dit op te splitsen naar land, wat ingewikkeld blijkt te
-          zijn omdat groei door een land zeer onregelmatig kan zijn. We hebben hier
-          ervoor gekozen om de VS weg te laten en een logschaal te gebruiken om verschillen
-          te accentueren\ntussen andere landen. Als een land zwart gekleurd is, betekent
-          dat het niet\nniet significant heeft bijgedragen met een percentage of het
+          grafiek splitsen de groei op naar land. De groei van een land kan zeer onregelmatig
+          kan zijn. De VS is weggelaten en er is een logschaal gebruikt om verschillen
+          te accentueren tussen andere landen. Als een land zwart gekleurd is betekent
+          dat het niet niet significant heeft bijgedragen met een percentage of het
           had geen groei\ndit jaar, of had dit jaar niet meer waarnemingen dan vorig
-          jaar\n(beweeg over een land om een ​​meer details te zien).\n \n<strong>\"%
+          jaar.\nBeweeg over een land om een ​​meer details te zien.\n \n<strong>\"%
           van totale groei\"</strong> betekent hoeveel van de wereldwijde groei afkomstig
-          was van een bepaald land, bijv. als er 20 waarnemingen waren in 2018 en
-          10\nin 2017 zouden dat een groei van 10 waarnemingen zijn en als 5 daarvan\nafkomstig
-          waren uit Benin dan droeg Benin 50% van het totaal bij aan de\ngroei. \n<strong>'%
-          groei'</strong> is het aantal waarnemingen\ndit jaar in dat land als een
-          percentage van de waarnemingen van vorig jaar in\ndat land, dus als er vorig
-          jaar in Laos 10 waarnemingen waren, maar\n20 dit jaar dan zou dat 100% groei
-          zijn, en als het vorig jaar het aantal 0 was\nen dit jaar 1 dan is groei%
-          oneindig."
+          was van een bepaald land.Als er 20 waarnemingen waren in 2018 en 10 in 2017
+          zouden dat een groei van 10 waarnemingen zijn en als 5 daarvan afkomstig
+          waren uit Benin dan droeg Benin 50% van het totaal bij aan de groei. \n\n<strong>'%
+          groei'</strong> is het aantal waarnemingen dit jaar in dat land als een
+          percentage van de waarnemingen van vorig jaar in dat land. Als er vorig
+          jaar in Laos 10 waarnemingen waren, maar 20 dit jaar dan zou dat 100% groei
+          zijn, en als het vorig jaar het aantal 0 was en dit jaar 1 dan is groei
+          % oneindig."
         growth_by_country_title: Groei per land
         growth_in_year_obs: Groei in %{year} (wrn)
         growth_title: Groei
