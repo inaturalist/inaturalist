@@ -20,5 +20,9 @@ class TaxonStage < TaxonChange
   def output_taxa
     [taxon].compact
   end
+
+  def commit_records( options = {} )
+    nil
+  end
   
 end
