@@ -48,6 +48,10 @@ class TaxonPageTabs extends React.Component {
     const speciesOrLower = taxon && taxon.rank_level <= 10;
     const genusOrSpecies = taxon && ( taxon.rank_level === 20 || taxon.rank_level === 10 );
     let curationTab;
+    console.log( "[DEBUG] taxon.flag_counts: ", taxon.flag_counts );
+    const flagsCount = taxon.flag_counts
+      ? parseInt( taxon.flag_counts.resolved, 0 ) + parseInt( taxon.flag_counts.unresolved, 0 )
+      : 0;
     if ( currentUser && currentUser.id ) {
       const isCurator = currentUser.roles.indexOf( "curator" ) >= 0 || currentUser.roles.indexOf( "admin" ) >= 0;
       let atlasItem;
@@ -107,14 +111,14 @@ class TaxonPageTabs extends React.Component {
                 { I18n.t( "flag_for_curation" ) }
               </MenuItem>
               <MenuItem
-                className={isCurator && taxon.flag_counts && taxon.flag_counts.unresolved && taxon.flag_counts.unresolved > 0 ? "" : "hidden"}
+                className={flagsCount > 0 ? "" : "hidden"}
                 eventKey="view-flags"
               >
                 <i className="fa fa-flag-checkered" />
                 { " " }
                 { I18n.t( "view_flags" ) }
                 { " " }
-                <strong>({ taxon.flag_counts ? taxon.flag_counts.unresolved : 0 })</strong>
+                <span className="text-muted">{ `(${flagsCount})` }</span>
               </MenuItem>
               <MenuItem
                 eventKey="edit-photos"
