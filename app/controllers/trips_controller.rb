@@ -4,7 +4,6 @@ class TripsController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :load_form_data, :only => [:new, :edit]
-  before_filter :set_feature_test, :only => [:index, :show, :tabulate]
   before_filter :load_user_by_login, :only => [:by_login]
 
   layout "bootstrap"
@@ -155,6 +154,7 @@ class TripsController < ApplicationController
   end
 
   def new
+    @first_trip if Trip.where(user_id: current_user.id).count == 0
     @trip = Trip.new(:user => current_user)
     respond_to do |format|
       format.html
@@ -288,7 +288,8 @@ class TripsController < ApplicationController
     per_page ||= 30
     per_page = per_page.to_i
     
-    scope = Trip.all
+    scope = Trip.all.where("start_time IS NOT NULL AND stop_time IS NOT NULL").
+      where("latitude IS NOT NULL AND longitude IS NOT NULL AND radius IS NOT NULL AND radius > 0")
     scope = scope.taxon( @taxon ) if @taxon
     scope = scope.year( @year ) if @year
     scope = scope.month( @month ) if @month

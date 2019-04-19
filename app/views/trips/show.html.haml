@@ -108,20 +108,20 @@
                 - st = @target_list_set[0..@target_list_set.count/2]
               - else
                 - st = @target_list_set[(@target_list_set.count/2+1)..@target_list_set.count]
-              .col-xs-5
+              .col-xs-6
                 %ul.taxon_links.plain
                 - for element in st
                   %li
                     = render "shared/taxon", :taxon => element[:taxon], :link_url => element[:taxon]
                     - if element[:observations].count > 0
-                      - element[:observations][0..9].each do |o|
+                      - element[:observations][0..7].each do |o|
                         = link_to observation_path( :id => o["id"] )  do
                           %svg{ :height => "10", :width => "10" }
                             %title= o["taxon"]["name"]
                             %circle{ :cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7" }
-                      - if element[:observations].count > 10
+                      - if element[:observations].count > 8
                         ="..."
-      .col-xs-9
+      .col-xs-12
         - unless @trip.observations.blank?
           %section{:id => "observations"}
             .observationcontrols.pull-right

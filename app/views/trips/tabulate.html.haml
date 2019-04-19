@@ -39,6 +39,7 @@
       %ul.list-unstyled
         %li
           = link_to t( :back_to_x, :noun => "trips" ), trips_path, :class => "back crumb"
+      = link_to t( :json_format ), current_url(:format=>:json), :class => "default button right"
       %h2= @title
   .row
     .col-xs-3
