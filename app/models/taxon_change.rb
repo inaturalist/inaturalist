@@ -143,7 +143,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def output_taxa
-    taxa
+    taxa.sort_by(&:id)
   end
 
   def verb_phrase

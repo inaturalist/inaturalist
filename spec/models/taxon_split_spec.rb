@@ -197,14 +197,14 @@ describe TaxonSplit, "commit_records" do
     }
     let( :presence_place2 ) {
       make_place_with_geom(
-        wkt: "MULTIPOLYGON(((1 1,1 2,2 2,2 1,1 1)))",
+        wkt: "MULTIPOLYGON(((2 2,2 3,3 3,3 2,2 2)))",
         place_type: Place::COUNTRY,
         admin_level: Place::COUNTRY_LEVEL
       )
     }
     let( :absence_place ) {
       make_place_with_geom(
-        wkt: "MULTIPOLYGON(((0 0,0 -1,-1 -1,-1 0,0 0)))",
+        wkt: "MULTIPOLYGON(((-1 -1,-1 -2,-2 -2,-2 -1,-1 -1)))",
         place_type: Place::COUNTRY,
         admin_level: Place::COUNTRY_LEVEL
       )
@@ -213,9 +213,9 @@ describe TaxonSplit, "commit_records" do
     describe "that have non-overlapping presence places" do
       before do
         atlas1 = make_atlas_with_presence( taxon: @split.output_taxa[0], place: presence_place1 )
+        atlas2 = make_atlas_with_presence( taxon: @split.output_taxa[1], place: presence_place2 )
         expect( atlas1.presence_places ).to include presence_place1
         expect( atlas1.presence_places ).not_to include presence_place2
-        atlas2 = make_atlas_with_presence( taxon: @split.output_taxa[1], place: presence_place2 )
         expect( atlas2.presence_places ).to include presence_place2
         expect( atlas2.presence_places ).not_to include presence_place1
         @split.reload
@@ -359,13 +359,11 @@ describe TaxonSplit, "commit_records" do
     end
     describe "that have an overlapping presence place" do
       before do
-        atlas1 = @split.output_taxa[0]
         atlas1 = make_atlas_with_presence( taxon: @split.output_taxa[0], place: presence_place1 )
-        expect( atlas1.presence_places ).to include presence_place1
         presence_place2.check_list.add_taxon( @split.output_taxa[0] )
-        expect( atlas1.presence_places ).to include presence_place2
-        atlas2 = @split.output_taxa[1]
         atlas2 = make_atlas_with_presence( taxon: @split.output_taxa[1], place: presence_place1 )
+        expect( atlas1.presence_places ).to include presence_place1
+        expect( atlas1.presence_places ).to include presence_place2
         expect( atlas2.presence_places ).to include presence_place1
         @split.reload
       end
