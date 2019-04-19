@@ -463,6 +463,31 @@ class ObservationModal extends React.Component {
                       /> { I18n.t( "captive_cultivated" ) }
                     </label>
                   </OverlayTrigger>
+                  <OverlayTrigger
+                    placement="top"
+                    delayShow={1000}
+                    overlay={
+                      <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
+                        { I18n.t( "mark_as_reviewed" ) }
+                      </Tooltip>
+                    }
+                    container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+                  >
+                    <label
+                      className={
+                        `btn btn-link btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+                      }
+                    >
+                      <input
+                        type="checkbox"
+                        checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
+                        onChange={function ( ) {
+                          toggleReviewed( );
+                        }}
+                      />
+                      { I18n.t( "reviewed" ) }
+                    </label>
+                  </OverlayTrigger>
                 </div>
               </div>
             ) }
@@ -605,31 +630,6 @@ class ObservationModal extends React.Component {
                     </div>
                   </div>
                   <div className="tools">
-                    <OverlayTrigger
-                      placement="top"
-                      delayShow={1000}
-                      overlay={
-                        <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
-                          { I18n.t( "mark_as_reviewed" ) }
-                        </Tooltip>
-                      }
-                      container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-                    >
-                      <label
-                        className={
-                          `btn btn-link btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
-                        }
-                      >
-                        <input
-                          type="checkbox"
-                          checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
-                          onChange={function ( ) {
-                            toggleReviewed( );
-                          }}
-                        />
-                        { I18n.t( "reviewed" ) }
-                      </label>
-                    </OverlayTrigger>
                     <OverlayTrigger
                       placement="top"
                       delayShow={1000}
