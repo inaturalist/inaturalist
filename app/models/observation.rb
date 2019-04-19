@@ -3169,6 +3169,9 @@ class Observation < ActiveRecord::Base
         { range: { id: { lt: id } } }
       ]
     ).total_entries == 0
+  rescue Elasticsearch::Transport::Transport::Errors::NotFound
+    # If the index is missing there are bigger problems
+    false
   end
 
   def self.dedupe_for_user(user, options = {})
