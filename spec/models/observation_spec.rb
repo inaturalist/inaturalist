@@ -2630,9 +2630,9 @@ describe Observation do
 
   describe "update_stats" do
     it "should not consider outdated identifications as agreements" do
-      o = Observation.make!( taxon: Taxon.make!( rank: "species", name: "sp1" ) )
+      o = Observation.make!( taxon: Taxon.make!( rank: "species", name: "Species one" ) )
       old_ident = Identification.make!( observation: o, taxon: o.taxon )
-      new_ident = Identification.make!( observation: o, user: old_ident.user, taxon: Taxon.make!( rank: "species", name: "sp2" ) )
+      new_ident = Identification.make!( observation: o, user: old_ident.user, taxon: Taxon.make!( rank: "species", name: "Species two" ) )
       o.reload
       o.update_stats
       o.reload
@@ -3202,9 +3202,9 @@ describe Observation do
     end
 
     it "should not consider identifications of inactive taxa" do
-      g1 = Taxon.make!( rank: Taxon::GENUS, name: "g1" )
-      s1 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s1" )
-      s2 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s2", is_active: false )
+      g1 = Taxon.make!( rank: Taxon::GENUS, name: "Genusone" )
+      s1 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "Genus speciesone" )
+      s2 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "Genus speciestwo", is_active: false )
       o = Observation.make!
       Identification.make!( observation: o, taxon: s1 )
       Identification.make!( observation: o, taxon: s1 )
@@ -4023,6 +4023,43 @@ describe Observation, "taxon_geoprivacy" do
   end
 end
 
+describe Observation, "prefers_auto_obscuration" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  describe "when false" do
+    let(:o) do
+      Observation.make!(
+        latitude: 1,
+        longitude: 1,
+        observed_on_string: 2.days.ago.to_date.to_s,
+        prefers_auto_obscuration: false
+      )
+    end
+    it "should override taxon obscuration" do
+      o.update_attributes( taxon: make_threatened_taxon )
+      o.reload
+      expect( o ).not_to be_coordinates_obscured
+    end
+    it "should override context obscuration" do
+      o.user.update_attributes( prefers_coordinate_interpolation_protection_test: true )
+      o2 = Observation.make!(
+        latitude: 1,
+        longitude: 1,
+        observed_on_string: o.observed_on_string,
+        taxon: make_threatened_taxon,
+        user: o.user
+      )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o ).not_to be_coordinates_obscured
+    end
+    it "should not override user obscuration" do
+      o.update_attributes( geoprivacy: Observation::OBSCURED )
+      expect( o ).to be_coordinates_obscured
+    end
+  end
+end
+
 def setup_test_case_taxonomy
   # Tree:
   #          sf
@@ -4037,15 +4074,15 @@ def setup_test_case_taxonomy
 
   # Superfamily intentionally left unavailable. Since it has a blank ancestry,
   # it will not really behave as expected in most tests
-  sf = Taxon.make!( rank: "superfamily", name: "sf" )
-  @f = Taxon.make!( rank: "family", parent: sf, name: "f" )
-  @g1 = Taxon.make!( rank: "genus", parent: @f, name: "g1" )
-  @g2 = Taxon.make!( rank: "genus", parent: @f, name: "g2" )
-  @s1 = Taxon.make!( rank: "species", parent: @g1, name: "s1" )
-  @s2 = Taxon.make!( rank: "species", parent: @g1, name: "s2" )
-  @s3 = Taxon.make!( rank: "species", parent: @g1, name: "s3" )
-  @s4 = Taxon.make!( rank: "species", parent: @g1, name: "s4" )
-  @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss1" )
-  @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss2" )
+  sf = Taxon.make!( rank: "superfamily", name: "Superfamily" )
+  @f = Taxon.make!( rank: "family", parent: sf, name: "Family" )
+  @g1 = Taxon.make!( rank: "genus", parent: @f, name: "Genusone" )
+  @g2 = Taxon.make!( rank: "genus", parent: @f, name: "Genustwo" )
+  @s1 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesone" )
+  @s2 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciestwo" )
+  @s3 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesthree" )
+  @s4 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesfour" )
+  @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "Genusone speciesone subspeciesone" )
+  @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "Genusone speciesone subspeciestwo" )
   @o = Observation.make!
 end

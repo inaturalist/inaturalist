@@ -457,7 +457,7 @@ export function unfave( ) {
 export function toggleFave( ) {
   return ( dispatch, getState ) => {
     const { config, currentObservation } = getState( );
-    const observation = currentObservation.observation;
+    const { observation } = currentObservation;
     const userHasFavedThis = observation && observation.faves && _.find( observation.faves, o => (
       o.user.id === config.currentUser.id
     ) );
@@ -476,14 +476,15 @@ export function voteMetric( metric, params = { } ) {
   return ( dispatch, getState ) => {
     const state = getState( );
     const newMetrics = _.filter( state.qualityMetrics, qm => (
-      !( qm.user.id === state.config.currentUser.id && qm.metric === metric ) ) ).concat( [{
-        observation_id: state.currentObservation.observation.id,
-        metric,
-        agree: ( params.agree !== "false" ),
-        created_at: moment( ).format( ),
-        user: state.config.currentUser,
-        api_status: "saving"
-      }] );
+      !( qm.user && qm.user.id === state.config.currentUser.id && qm.metric === metric )
+    ) ).concat( [{
+      observation_id: state.currentObservation.observation.id,
+      metric,
+      agree: ( params.agree !== "false" ),
+      created_at: moment( ).format( ),
+      user: state.config.currentUser,
+      api_status: "saving"
+    }] );
     dispatch( setQualityMetrics( newMetrics ) );
     const payload = Object.assign( { },
       { id: state.currentObservation.observation.id, metric }, params );

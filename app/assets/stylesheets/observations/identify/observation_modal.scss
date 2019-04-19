@@ -534,6 +534,9 @@ body > [role="dialog"] .ObservationModal {
         text-align: center;
         display: block;
         line-height: 16px;
+        &.fa-globe {
+          top: 1px;
+        }
       }
       .user-obs-count {
         .fa-binoculars {

@@ -35,7 +35,15 @@ class MapDetails extends React.Component {
   }
 
   render( ) {
-    const { observation, observationPlaces, config } = this.props;
+    const {
+      observation,
+      observationPlaces,
+      config,
+      disableAutoObscuration,
+      restoreAutoObscuration
+    } = this.props;
+    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles &&
+      config.currentUser.roles.indexOf( "admin" ) >= 0;
     const { showAllPlaces } = this.state;
     const { currentUser } = config;
     if ( !observation ) { return ( <div /> ); }
@@ -296,6 +304,33 @@ class MapDetails extends React.Component {
             ) }
           </div>
         ) }
+        { viewerIsAdmin && currentUser && currentUser.id === observation.user.id && (
+          ( observation.taxon_geoprivacy === "open" || _.isEmpty( observation.taxon_geoprivacy ) )
+          && ["obscured", "private"].indexOf( observation.context_geoprivacy ) >= 0
+        ) && (
+          <div className="auto-obscuration-preference admin">
+            { observation.preferences.auto_obscuration === false ? (
+              <button
+                type="button"
+                className="btn btn-default btn-xs"
+                onClick={( ) => restoreAutoObscuration( )}
+              >
+                Restore Auto-obscuration
+              </button>
+            ) : (
+              <button
+                type="button"
+                className="btn btn-default btn-xs"
+                onClick={( ) => disableAutoObscuration( )}
+              >
+                Disable Auto-obscuration
+              </button>
+            ) }
+            <p>
+              For now this will only let you disable auto-obscuration for same-day obscuration.
+            </p>
+          </div>
+        ) }
         <div className="links">
           <span className="attr">{ I18n.t( "view_on" ) }</span>
           <span>
@@ -334,7 +369,9 @@ class MapDetails extends React.Component {
 MapDetails.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
-  config: PropTypes.object
+  config: PropTypes.object,
+  disableAutoObscuration: PropTypes.func,
+  restoreAutoObscuration: PropTypes.func
 };
 
 MapDetails.defaultProps = {

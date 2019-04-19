@@ -1120,8 +1120,8 @@ describe Identification, "set_previous_observation_taxon" do
 
   it "should not happen when you restore a withdrawn ident" do
     genus = Taxon.make!( rank: Taxon::GENUS, name: "Genus" )
-    species1 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus species1" )
-    species2 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus species2" )
+    species1 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus speciesone" )
+    species2 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus speciestwo" )
     o = Observation.make!( taxon: species1 )
     i = Identification.make!( observation: o, taxon: genus, disagreement: true )
     expect( i.previous_observation_taxon ).to eq species1

@@ -3860,6 +3860,8 @@ en:
   take_me_facebook: Yes, take me to Facebook!
   take_me_flickr!: Yes, take me to Flickr!
   take_me_back: Take me back
+  target_list_alert: Are you sure that you attempted to observe all species covered by your target list? Remember that anything covered by your target list that you didn't observe will be interpreted as an absence so its very important that your target list accurately reflects the set of species you attempted to detect
+  target_list_warning: Remember that anything covered by your target list that you didn't observe within the radius and duration of this trip will be interpreted as an absence. Its very important that your target list accurately reflects the set of species you attempted to detect. If you didn't attempt to detect a species on your target list or every species covered by a group on your target list, please remove it.
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa with unknown relationships
   taxa_info: Taxa Info
@@ -7030,6 +7032,10 @@ en:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 can only be changed by a curator of this taxon
+            name:
+              bad_format: |
+                can only contain standard Latin characters, hyphens, spaces, and
+                ×; note that putative taxa and cultivars are not allowed
         taxon_name:
           attributes:
             lexicon:
@@ -7037,6 +7043,9 @@ en:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 cannot match the scientific name of a species for this lexicon
+              bad_format: |
+                can only contain standard Latin characters, hyphens, spaces, and
+                ×; note that putative taxa and cultivars are not allowed
         user:
           attributes:
             login:

@@ -534,13 +534,13 @@ class ObservationModal extends React.Component {
                               { I18n.toNumber( observation.positional_accuracy, { precision: 0 } ) }
                             </li>
                           ) }
-                          { country ? (
-                            <li>
-                              <i className="fa fa-globe bullet-icon"></i> {
-                                I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "unknown" )
-                              }
-                            </li>
-                          ) : null }
+                          <li>
+                            <i className="fa fa-globe bullet-icon" />
+                            { " " }
+                            { country ? (
+                              I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "somewhere_on_earth" )
+                            ) : I18n.t( "somewhere_on_earth" ) }
+                          </li>
                           { blind ? null : (
                             <li className="view-follow">
                               <a className="permalink" href={`/observations/${observation.id}`} target="_blank">

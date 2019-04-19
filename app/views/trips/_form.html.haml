@@ -7,31 +7,23 @@
                            "jquery/plugins/jquery.latLonSelector.js",
                            "jquery/plugins/jquery-ui-timepicker-addon.min",
                            "trips/form"
+  :javascript
+    $( document ).ready( function() {
+      $( '[data-toggle="popover"]' ).popover({html:true});
+    } );
 = form_for @trip, :builder => BootstrapFormBuilder, :html => {:class => 'trip_form'} do |f|
   = error_messages_for @trip
   .row
     .col-md-6
       = f.text_field :title
       = f.text_area :body, :class => "form-control", :label => t(:description), :placeholder => t(:describe_your_trip, :default => "Describe your trip!")
-      = f.form_field :preferred_formatting, label: t(:formatting), :class => "inline" do
-        %label.radio-inline{ title: t( "views.posts.formatting_simple_help" ) }
-          = radio_button_tag "trip[preferred_formatting]", Post::FORMATTING_SIMPLE, @trip.preferred_formatting == Post::FORMATTING_SIMPLE
-          = t( Post::FORMATTING_SIMPLE )
-        %label.radio-inline{ title: t( "views.posts.formatting_none_help" ) }
-          = radio_button_tag "trip[preferred_formatting]", Post::FORMATTING_NONE, @trip.preferred_formatting == Post::FORMATTING_NONE
-          = t( Post::FORMATTING_NONE )
-      .stacked.small.meta
-        %strong
-          = t :allowed_html
-          \:
-        = Post::ALLOWED_TAGS.to_a.sort.join(', ')
       .row
         .col-md-6= f.text_field :distance, :label => t( :distance_traveled )
         .col-md-6= f.text_field :number, :label => t( :number_of_observers )
       %h3=t :when_did_you_go?
       .row
-        .col-md-6= f.text_field :start_time, :value => (@trip.start_time || Chronic.parse("today at 9am")).strftime("%Y-%m-%d %H:%m %z"), :label => t(:start_time), :placeholder => t(:start_time, :default => "Start time")
-        .col-md-6= f.text_field :stop_time, :value => (@trip.stop_time || Chronic.parse("today at 5pm")).strftime("%Y-%m-%d %H:%m %z"), :label => t(:end_time), :placeholder => t(:end_time, :default => "End time")
+        .col-md-6= f.text_field :start_time, :value => (@trip.start_time || Chronic.parse("today at 9am")).strftime("%Y-%m-%d %H:%M %z"), :label => t(:start_time), :placeholder => t(:start_time, :default => "Start time")
+        .col-md-6= f.text_field :stop_time, :value => (@trip.stop_time || Chronic.parse("today at 5pm")).strftime("%Y-%m-%d %H:%M %z"), :label => t(:end_time), :placeholder => t(:end_time, :default => "End time")
     #location.col-md-6
       %h3=t :where_did_you_go?
       .stacked
@@ -47,9 +39,10 @@
   #trip_purposes_row.row
     .col-md-12
       %h3=t :what_were_you_looking_for?
+      .bg-warning= t(:target_list_warning)
       .row
         .col-md-6
-          %h4 Choose from existing high level groups
+          %h4 Choose from existing high level groups, for example
           %ul#goal_taxa.plain.taxon_links
             - @target_taxa.each do |iconic_taxon|
               %li.checkbox
@@ -57,7 +50,7 @@
                   = check_box_tag iconic_taxon.name.underscore, iconic_taxon.name.underscore, @trip.trip_purposes.any?{|tp| puts "tp.resource_id: #{tp.resource_id.class}, iconic_taxon.id: #{iconic_taxon.id.class}"; tp.resource_id == iconic_taxon.id}, :data => {:taxon => iconic_taxon.as_json(:methods => [:html])}
                   = render "shared/taxon", :taxon => iconic_taxon
         .col-md-6
-          %h4 or choose something else / more specific
+          %h4 or choose something else / more specific (from high level groups down to species)
           #trip_purposes.stacked.clearfix.taxon_links
             = f.fields_for :trip_purposes do |tp|
               = render "trip_purpose_fields", :f => tp
@@ -73,7 +66,7 @@
         = f.submit t(:save_trip), :class => "btn btn-primary"
         = f.submit t(:unpublish), :class => "btn btn-default", :name => "unpublish"
       - else
-        = f.submit t(:publish), :class => "btn btn-primary", :name => "publish"
-        = f.submit t(:save), :class => "btn btn-default"
-      = link_to t(:cancel), :back, :class => "btn btn-default"
-      = link_to t(:delete), @trip, :method => :delete, :data => {:confirm => t(:are_you_sure?)}, :class => "btn btn-danger pull-right"
+        = f.submit t(:publish), data: ( @first_trip  ? { confirm: t(:target_list_alert) } : nil ), class: "btn btn-primary", name: "publish"
+        = f.submit t(:save), data: ( @first_trip  ?  { confirm: t(:target_list_alert) } : nil ), class: "btn btn-default"
+      = link_to t(:cancel), :back, class: "btn btn-default"
+      = link_to t(:delete), @trip, :method => :delete, data: { confirm: t( :are_you_sure? ) }, class: "btn btn-danger pull-right"

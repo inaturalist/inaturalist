@@ -21,20 +21,22 @@ class Charts extends React.Component {
   }
 
   shouldComponentUpdate( nextProps, nextState ) {
+    const {
+      scaled,
+      seasonalityColumns,
+      historyColumns
+    } = this.props;
     if (
-      this.props.scaled === nextProps.scaled
-      &&
-      _.isEqual(
-        objectToComparable( this.props.seasonalityColumns ),
+      scaled === nextProps.scaled
+      && _.isEqual(
+        objectToComparable( seasonalityColumns ),
         objectToComparable( nextProps.seasonalityColumns )
       )
-      &&
-      _.isEqual(
-        objectToComparable( this.props.historyColumns ),
+      && _.isEqual(
+        objectToComparable( historyColumns ),
         objectToComparable( nextProps.historyColumns )
       )
-      &&
-      _.isEqual(
+      && _.isEqual(
         objectToComparable( this.state ),
         objectToComparable( nextState )
       )
@@ -61,7 +63,8 @@ class Charts extends React.Component {
   }
 
   formatNumber( number ) {
-    const precision = this.props.scaled ? 4 : 0;
+    const { scaled } = this.props;
+    const precision = scaled ? 4 : 0;
     if ( number > 0 && number < 0.0001 ) {
       return number.toExponential( 2 );
     }
@@ -93,9 +96,10 @@ class Charts extends React.Component {
   }
 
   defaultC3Config( ) {
+    const { colors } = this.props;
     return {
       data: {
-        colors: this.props.colors,
+        colors,
         types: {
           verifiable: "spline",
           research: "area-spline"
@@ -134,8 +138,13 @@ class Charts extends React.Component {
   }
 
   tooltipContent( data, defaultTitleFormat, defaultValueFormat, color, tipTitle ) {
-    const order = _.map( this.props.seasonalityColumns, c => ( c[0] ) );
-    const items = _.compact( order.map( seriesName => _.find( data, series => series.name === seriesName ) ) );
+    const {
+      seasonalityColumns
+    } = this.props;
+    const order = _.map( seasonalityColumns, c => ( c[0] ) );
+    const items = _.compact( order.map(
+      seriesName => _.find( data, series => series.name === seriesName )
+    ) );
     const unAnnotatedItem = _.find( data, d => d.id === "unannotated" );
     if ( unAnnotatedItem ) {
       items.push( unAnnotatedItem );
@@ -144,11 +153,7 @@ class Charts extends React.Component {
       <div class="series">
         <span class="swatch" style="background-color: ${color( item )}"></span>
         <span class="column-label">
-          ${
-            I18n.t( `views.taxa.show.frequency.${item.name}`, {
-              defaultValue: item.name.split( "=" )[1]
-            } )
-          }:
+          ${I18n.t( `views.taxa.show.frequency.${item.name}`, { defaultValue: item.name.split( "=" )[1] } )}:
         </span>
         <span class="value">
           ${this.formatNumber( item.value )}
@@ -173,6 +178,7 @@ class Charts extends React.Component {
     if ( that.props.scaled ) {
       tipTitle = I18n.t( "relative_observations" );
     }
+    const { seasonalityKeys } = this.props;
     return _.defaultsDeep( { }, this.defaultC3Config( ), {
       data: {
         columns,
@@ -188,8 +194,7 @@ class Charts extends React.Component {
       axis: {
         x: {
           type: "category",
-          categories: this.props.seasonalityKeys.map( i =>
-            I18n.t( "date.abbr_month_names" )[i].toString( ).toUpperCase( ) ),
+          categories: seasonalityKeys.map( i => I18n.t( "date.abbr_month_names" )[i].toString( ).toUpperCase( ) ),
           tick: {
             multiline: false
           }
@@ -205,9 +210,9 @@ class Charts extends React.Component {
   }
 
   renderSeasonalityChart( ) {
+    const { seasonalityColumns } = this.props;
     const config = this.seasonalityConfigForColumns(
-      _.filter( this.props.seasonalityColumns, column =>
-        column[0] === "verifiable" || column[0] === "research" )
+      _.filter( seasonalityColumns, column => column[0] === "verifiable" || column[0] === "research" )
     );
     const mountNode = $( "#SeasonalityChart", ReactDOM.findDOMNode( this ) ).get( 0 );
     this.seasonalityChart = c3.generate( Object.assign( { bindto: mountNode }, config ) );
@@ -253,7 +258,12 @@ class Charts extends React.Component {
   }
 
   renderHistoryChart( ) {
-    const dates = this.props.historyKeys;
+    const {
+      historyKeys: dates,
+      historyColumns: columns,
+      openObservationsSearch
+    } = this.props;
+    // const dates = this.props.historyKeys;
     const years = _.uniq( dates.map( d => new Date( d ).getFullYear( ) ) ).sort( );
     const chunks = _.chunk( years, 2 );
     const that = this;
@@ -270,9 +280,9 @@ class Charts extends React.Component {
     const config = _.defaultsDeep( { }, this.defaultC3Config( ), {
       data: {
         x: "x",
-        columns: this.props.historyColumns,
+        columns,
         onclick: d => {
-          this.props.openObservationsSearch( {
+          openObservationsSearch( {
             quality_grade: ( d.name === "research" ? "research" : null ),
             year: d.x.getFullYear( ),
             month: d.x.getMonth( ) + 1
@@ -318,6 +328,7 @@ class Charts extends React.Component {
       setScaledPreference,
       taxon
     } = this.props;
+    const { helpModalVisible } = this.state;
     const noHistoryData = _.isEmpty( historyKeys );
     const noSeasonalityData = _.isEmpty( seasonalityKeys );
     const fieldValueTabs = [];
@@ -325,10 +336,10 @@ class Charts extends React.Component {
     if ( chartedFieldValues ) {
       _.each( chartedFieldValues, ( values, termID ) => {
         fieldValueTabs.push( (
-          <li role="presentation" key={ `charts-field-values-${termID}` }>
+          <li role="presentation" key={`charts-field-values-${termID}`}>
             <a
-              href={ `#charts-field-values-${termID}` }
-              aria-controls={ `charts-field-values-${termID}` }
+              href={`#charts-field-values-${termID}`}
+              aria-controls={`charts-field-values-${termID}`}
               role="tab"
               data-toggle="tab"
             >
@@ -338,8 +349,11 @@ class Charts extends React.Component {
           </li>
         ) );
         fieldValuePanels.push( (
-          <div role="tabpanel" className="tab-pane" id={ `charts-field-values-${termID}` }
-            key={ `charts-field-values-${termID}` }
+          <div
+            role="tabpanel"
+            className="tab-pane"
+            id={`charts-field-values-${termID}`}
+            key={`charts-field-values-${termID}`}
           >
             <div
               className={
@@ -348,8 +362,10 @@ class Charts extends React.Component {
             >
               { I18n.t( "no_observations_yet" ) }
             </div>
-            <div id={ `FieldValueChart${termID}` } className="SeasonalityChart FrequencyChart">
-            </div>
+            <div
+              id={`FieldValueChart${termID}`}
+              className="SeasonalityChart FrequencyChart"
+            />
           </div>
         ) );
       } );
@@ -387,42 +403,43 @@ class Charts extends React.Component {
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                <i className="fa fa-gear"></i>
+                <i className="fa fa-gear" />
               </button>
               <ul className="dropdown-menu dropdown-menu-right">
                 <li>
                   { scaled ? (
                     <a
                       href="#"
-                      onClick={ e => {
+                      onClick={e => {
                         e.preventDefault( );
                         setScaledPreference( false );
                         return false;
-                      } }
+                      }}
                     >
                       { I18n.t( "show_total_counts" ) }
                     </a>
                   ) : (
                     <a
                       href="#"
-                      onClick={ e => {
+                      onClick={e => {
                         e.preventDefault( );
                         setScaledPreference( true );
                         return false;
-                      } }
+                      }}
                     >
                       { I18n.t( "show_relative_proportions_of_all_observations" ) }
                     </a>
                   ) }
                 </li>
                 { chartedFieldValues && config && config.currentUser && config.currentUser.id ? (
-                  _.map( this.props.chartedFieldValues, ( values, termID ) => (
-                    <li key={ `identify-link-for-${termID}` }>
+                  _.map( chartedFieldValues, ( values, termID ) => (
+                    <li key={`identify-link-for-${termID}`}>
                       <a
                         href={
                           `/observations/identify?taxon_id=${taxon.id}&without_term_id=${termID}&reviewed=any&quality_grade=needs_id,research`
                         }
                         target="_blank"
+                        rel="noopener noreferrer"
                       >
                         {
                           I18n.t( `add_annotations_for_controlled_attribute.${_.snakeCase( values[0].controlled_attribute.label )}`, {
@@ -438,10 +455,11 @@ class Charts extends React.Component {
               </ul>
             </div>
             <button
+              type="button"
               className="btn btn-link help-btn"
-              onClick={ ( ) => this.showHelpModal( ) }
+              onClick={( ) => this.showHelpModal( )}
             >
-              <i className="fa fa-question-circle"></i>
+              <i className="fa fa-question-circle" />
             </button>
           </li>
         </ul>
@@ -454,8 +472,7 @@ class Charts extends React.Component {
             >
               { I18n.t( "no_observations_yet" ) }
             </div>
-            <div id="SeasonalityChart" className="SeasonalityChart FrequencyChart">
-            </div>
+            <div id="SeasonalityChart" className="SeasonalityChart FrequencyChart" />
           </div>
           <div role="tabpanel" className="tab-pane" id="charts-history">
             <div
@@ -465,14 +482,14 @@ class Charts extends React.Component {
             >
               { I18n.t( "no_observations_yet" ) }
             </div>
-            <div id="HistoryChart" className="HistoryChart FrequencyChart"></div>
+            <div id="HistoryChart" className="HistoryChart FrequencyChart" />
           </div>
           { fieldValuePanels }
         </div>
         <Modal
           id="ChartsHelpModal"
-          show={ this.state.helpModalVisible }
-          onHide={ ( ) => this.hideHelpModal( ) }
+          show={helpModalVisible}
+          onHide={( ) => this.hideHelpModal( )}
         >
           <Modal.Header closeButton>
             <Modal.Title>{ I18n.t( "about_charts" ) }</Modal.Title>
@@ -503,10 +520,7 @@ class Charts extends React.Component {
 
 Charts.propTypes = {
   chartedFieldValues: PropTypes.object,
-  fetchMonthOfYearFrequency: PropTypes.func,
-  fetchMonthFrequency: PropTypes.func,
   openObservationsSearch: PropTypes.func,
-  test: PropTypes.string,
   seasonalityColumns: PropTypes.array,
   seasonalityKeys: PropTypes.array,
   historyColumns: PropTypes.array,

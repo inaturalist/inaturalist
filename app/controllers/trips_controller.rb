@@ -4,7 +4,6 @@ class TripsController < ApplicationController
   before_filter :load_record, :only => [:show, :edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :require_owner, :only => [:edit, :update, :destroy, :add_taxa_from_observations, :remove_taxa]
   before_filter :load_form_data, :only => [:new, :edit]
-  before_filter :set_feature_test, :only => [:index, :show, :tabulate]
   before_filter :load_user_by_login, :only => [:by_login]
 
   layout "bootstrap"
@@ -31,11 +30,24 @@ class TripsController < ApplicationController
   param :page, :number, :desc => "Page of results"
   param :per_page, PER_PAGES, :desc => "Results per page"
   def index
-    per_page = params[:per_page] unless PER_PAGES.include?(params[:per_page].to_i)
+    filter_params = params[:filters] || params
+    @taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
+    @year = filter_params[:year] unless filter_params[:year].blank?
+    @month = filter_params[:month] unless filter_params[:month].blank?
+    place_id = filter_params[:place_id] || params[:place_id]
+    @place = Place.find_by_id(place_id) unless place_id.blank?
+    
+    per_page = params[:per_page]
     per_page ||= 30
     per_page = per_page.to_i
-    @trips = Trip.published.page(params[:page]).per_page(per_page).order("posts.id DESC")
-
+    
+    scope = Trip.all
+    scope = scope.taxon( @taxon ) if @taxon
+    scope = scope.year( @year ) if @year
+    scope = scope.month( @month ) if @month
+    scope = scope.in_place( @place.id ) if @place
+    @trips = scope.published.page( params[:page] ).per_page( per_page ).order( "posts.id DESC" )
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json do
@@ -89,8 +101,9 @@ class TripsController < ApplicationController
         end
         @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
         trip_purpose_taxon_ids = @trip.trip_purposes.where( complete: true ).map( &:resource_id ).flatten.uniq
-        @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
+        @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).sort_by{|t| t.ancestry}.reverse.select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
         obs = INatAPIService.observations( {
+          taxon_is_active: true,
           latitude: @trip.latitude,
           longitude: @trip.longitude,
           radius: @trip.radius,
@@ -141,6 +154,7 @@ class TripsController < ApplicationController
   end
 
   def new
+    @first_trip if Trip.where(user_id: current_user.id).count == 0
     @trip = Trip.new(:user => current_user)
     respond_to do |format|
       format.html
@@ -274,17 +288,40 @@ class TripsController < ApplicationController
     per_page ||= 30
     per_page = per_page.to_i
     
-    scope = Trip.all
+    scope = Trip.all.where("start_time IS NOT NULL AND stop_time IS NOT NULL").
+      where("latitude IS NOT NULL AND longitude IS NOT NULL AND radius IS NOT NULL AND radius > 0")
     scope = scope.taxon( @taxon ) if @taxon
     scope = scope.year( @year ) if @year
     scope = scope.month( @month ) if @month
-    scope = scope.place( @place ) if @place
+    scope = scope.in_place( @place.id ) if @place
     @trips = scope.published.page( params[:page] ).per_page( per_page ).order( "posts.id DESC" )
-
+    if @taxon
+      @occupancy = Trip.presence_absence( @trips, @taxon.id, place_id||=nil, @year||=nil, @month||=nil )
+    end
+  
     respond_to do |format|
       format.html
       format.json do
-        render json: @trips.as_json
+        if @taxon
+          json_results =  { results: @trips.map{ |trip| 
+                {
+                  trip: trip.id, 
+                  title: trip.title, 
+                  user: trip.user.login, 
+                  latitude: trip.latitude, 
+                  longitude: trip.longitude, 
+                  date: trip.start_time, 
+                  duration: (( trip.stop_time - trip.start_time ) / 1.minutes ).to_i, 
+                  distance: trip.distance, 
+                  observers: trip.number, 
+                  taxon: @taxon.name, 
+                  occupancy: @occupancy[trip.id]
+                }
+          }}
+        else
+          json_results = { results: [] }
+        end
+        render :json => json_results
       end
     end
   end
@@ -342,7 +379,7 @@ class TripsController < ApplicationController
   def load_form_data
     selected_names = %w(Aves Amphibia Reptilia Mammalia)
     @target_taxa = Taxon::ICONIC_TAXA.select{|t| selected_names.include?(t.name)}
-    extra = Taxon.where("name in (?) AND is_active = true AND ancestry IS NOT NULL", %w(Papilionoidea Hesperiidae Araneae Basidiomycota Magnoliophyta Pteridophyta))
+    extra = Taxon.where("name in (?) AND is_active = true AND ancestry IS NOT NULL", %w(Papilionoidea Odonata Angiospermae Polypodiopsida Pinopsida))
     @target_taxa += extra
     @target_taxa = Taxon.sort_by_ancestry(@target_taxa)
     @target_taxa.each_with_index do |t,i|
