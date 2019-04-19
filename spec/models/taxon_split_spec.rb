@@ -212,11 +212,9 @@ describe TaxonSplit, "commit_records" do
 
     describe "that have non-overlapping presence places" do
       before do
-        atlas1 = @split.output_taxa[0]
         atlas1 = make_atlas_with_presence( taxon: @split.output_taxa[0], place: presence_place1 )
         expect( atlas1.presence_places ).to include presence_place1
         expect( atlas1.presence_places ).not_to include presence_place2
-        atlas2 = @split.output_taxa[1]
         atlas2 = make_atlas_with_presence( taxon: @split.output_taxa[1], place: presence_place2 )
         expect( atlas2.presence_places ).to include presence_place2
         expect( atlas2.presence_places ).not_to include presence_place1
@@ -306,7 +304,7 @@ describe TaxonSplit, "commit_records" do
           end
         end
         it "should not change the taxon if the obs is of a competely different taxon" do
-          t = Taxon.make!
+          t = Taxon.make!( rank: Taxon::SPECIES )
           o = Observation.make!(
             latitude: presence_place1.latitude,
             longitude: presence_place1.longitude,

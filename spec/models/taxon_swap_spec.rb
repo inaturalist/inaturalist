@@ -712,7 +712,7 @@ describe TaxonSwap, "commit_records" do
     tc.reload
     expect( tc.input_taxon ).to eq tc.output_taxon
     expect( o.identifications.count ).to eq 1
-    tc.commit_records
+    tc.commit_records rescue nil
     expect( o.identifications.count ).to eq 1
   end
 

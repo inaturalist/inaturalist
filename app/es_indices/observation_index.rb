@@ -381,7 +381,6 @@ class Observation < ActiveRecord::Base
       { http_param: :month, es_field: "observed_on_details.month" },
       { http_param: :year, es_field: "observed_on_details.year" },
       { http_param: :week, es_field: "observed_on_details.week" },
-      { http_param: :place_id, es_field: "place_ids" },
       { http_param: :site_id, es_field: "site_id" },
       { http_param: :id, es_field: "id" }
     ].each do |filter|
@@ -389,6 +388,20 @@ class Observation < ActiveRecord::Base
         search_filters << { terms: { filter[:es_field] =>
           [ p[ filter[:http_param] ] ].flatten.map{ |v|
             ElasticModel.id_or_object(v) } } }
+      end
+    end
+
+    # Place searches require special handling if the user is asking for their
+    # own observations
+    unless p[:place_id].blank? || p[:place_id] == "any"
+      if p[:viewer] && p[:user_id] && p[:viewer].id == p[:user_id].to_i
+        search_filters << { terms: { "private_place_ids" => [ p[:place_id] ].flatten.map{ |v|
+          ElasticModel.id_or_object(v)
+        } } }
+      else
+        search_filters << { terms: { "place_ids" => [ p[:place_id] ].flatten.map{ |v|
+          ElasticModel.id_or_object(v)
+        } } }
       end
     end
 
