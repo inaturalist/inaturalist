@@ -12,16 +12,7 @@
 - content_for( :extracss ) do
   = stylesheet_link_tag "autocomplete"
   :css
-    .ui-chooser-choice { max-width: 190px; }
     form .text { width: 200px; }
-    .taxon_framework_relationship { border-bottom: 1px solid #eee; margin-top: 10px; padding-bottom: 10px; }
-    .name { font-size: 110%; font-style: italic; }
-    .admin-box {
-        border-width: 2px;
-        border-style: dotted;
-        position: relative;
-        padding: 5px;
-    }
 - content_for( :extrajs ) do
   :javascript
     window.taxon = #{ json_escape @taxon.to_json( methods: [:html] ).html_safe }

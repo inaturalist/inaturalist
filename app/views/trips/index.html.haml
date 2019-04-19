@@ -1,6 +1,38 @@
+:ruby
+  if @taxon
+    @taxon.html = render( partial: "taxa/chooser.html.erb", object: @taxon )
+  end
+  @default_taxa = Taxon::ICONIC_TAXA.map do |taxon|
+    taxon.html = render( partial: "taxa/chooser.html.erb", object: taxon )
+    taxon
+  end
 - content_for( :title ) do
   - @title = t( :trips )
   = strip_tags( @title )
+- content_for( :extracss ) do
+  = stylesheet_link_tag "autocomplete"
+  :css
+    form .text { width: 200px; }
+- content_for( :extrajs ) do
+  :javascript
+    window.taxon = #{ json_escape @taxon.to_json( methods: [:html] ).html_safe }
+    window.place = #{ json_escape @place.to_json( methods: [:html] ).html_safe }
+    window.defaultTaxa = #{ json_escape @default_taxa.to_json( methods: [:html] ).html_safe }
+    $( document ).ready( function() {      
+      $( "#filters_place_id" ).chooser( {
+        queryParam: "q",
+        collectionUrl: "/places/search.json",
+        resourceUrl: "/places/{{id}}.json",
+        chosen: place
+      } )
+      $( "#filters_taxon_name" ).taxonAutocomplete( {
+        idEl: $( "#filters_taxon_id" ),
+        initialSelection: #{ raw @taxon.to_json },
+        thumbnail: false,
+        bootstrapClear: true
+      } );
+      
+    } )
 .container
   .row
     .col-xs-12
@@ -20,7 +52,16 @@
       = link_to t( :new_trip ), new_trip_path, :class => "default button right"
       = link_to t( :tabulate_presence_absence_data_from_trips ), tabulate_trips_path, :class => "white button left"
   .row
-    .col-md-12
+    .col-xs-3
+      = form_for :filters, builder: DefaultFormBuilder, html: { method: :get } do |f|
+        = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t( :taxon )
+        = f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil
+        = f.text_field :place_id, value: @place ? @place.id : nil, placeholder: t( :start_typing_place_name ), label: t( :place )
+        = f.select :month, [1,2,3,4,5,6,7,8,9,10,11,12], include_blank: t( :any ), selected: @month, label: t( :month )
+        = f.select :year, [2019], include_blank: t( :any ), selected: @year, label: t( :year )
+        = f.submit t( :filter ), class: "default button", "data-loading-click": t( :filtering )
+        = link_to t( :clear_filters ), trips_url, class: "minor button"
+    .col-xs-9
       - if @trips.empty?
         %p.description= t :no_trips
       - else
