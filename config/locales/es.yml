@@ -89,9 +89,6 @@ es:
   x_misidentifications_of_this_species:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
-  x_misidentifications_of_species_in_this_rank:
-    one: 1 identificación errónea de especies en esta %{rank}}
-    other: '%{count} identificaciones erróneas de especies en este %{<span class="notranslate">rango</span>}'
   x_observations:
     one: 1 observación
     other: '%{count} observaciones'
@@ -7331,8 +7328,6 @@ es:
           other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
-        header:
-          other: un=1 error ha evitado que este %{model} se guarde
       models:
         application:
           attributes:
