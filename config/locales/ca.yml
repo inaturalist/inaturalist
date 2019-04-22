@@ -161,6 +161,7 @@ ca:
   about_x: Quant a %{x}
   acc: Exactitud (m)
   account: Compte
+  account_creation: Creació de compta
   account_settings: Configuració del compte
   accept: accepta
   accept_community_identifications: Accepta identificacions de la comunitat
@@ -1517,7 +1518,7 @@ ca:
     coneixeu bé
   filling_out_your_profile: completeu el perfil
   filter: Filtre
-  filter_by_curator_identification: Filtre per identificació del supervisor
+  filter_by_curator_identification: Filtre per Identificació del Supervisor
   filter_by_place: Filtrar per lloc
   filter_by_taxon: Filtre per tàxon
   filter_by_place_taxon_and_color: Filtra per lloc, color, espècie o grup utilitzant
@@ -1738,9 +1739,9 @@ ca:
     amb <a target=''_blank'' href=''%{url}''>una altra observació</a>'
   heads_up_this_taxon_locked_users_cant_add_descendants: <strong>Avís.</strong> Aquest
     tàxon està bloquejat, cosa que significa que la majoria dels usuaris no poden
-    afegir-hi descendents quan importen dades. Els supervisors sí que poden, en editar
-    els tàxons i triar un tàxon pare. Però, en lloc d’això, us recomanem que combineu
-    els tàxons.
+    afegir-hi descendents quan importen dades. Els supervisors encara poden  editar
+    els tàxons i triar un tàxon pare, en lloc d’això, us recomanem que combineu els
+    tàxons.
   heads_up_you_have_multiple: Vigileu. Heu generat diverses etiquetes taxonòmiques
     per a rangs idèntics. Més endavant, estan codificades per colors segons el rang.
   hello: <prova>
@@ -1887,7 +1888,7 @@ ca:
   in_progress: en curs
   in_taxon?: al tàxon
   in_the_past: en el passat
-  in_the_past_week: durant la setmana passada
+  in_the_past_week: La setmana passada
   inactive: Inactiva
   inactive_taxon: Tàxon inactiu
   inactive_taxon_concepts_are: Les categories taxonòmiques inactives són tàxons antiquats
@@ -1968,7 +1969,7 @@ ca:
   it_instead: en comptes d'això.
   item_flagged_notice_html: |-
     Això ha estat marcat com spam i ja no és visible pel públic. El podeu veure perquè en sou el creador, o sou un
-    administrador del lloc. Si penseu que això és una errada, si us plau
+    supervisor del lloc. Si penseu que això és una errada, si us plau
     <a href="mailto:%{help_email}" class="contact">contacteu amb nosaltres</a>.
     <a href="%{manage_flags_path}">Gestioneu etiquetes</a>
   its_important_that_you: És important que feu clic
@@ -1996,9 +1997,9 @@ ca:
   journal_posts: Article de Revista
   jpg_png_or_gif: JPG, PNG o GIF
   jump_to_letter: Salta a la lletra
-  just_a_reminder: Només com a recordatori, doncs heu donat als administrador del
-    projecte permisos per veure les coordenades ocultes de les vostres observacions
-    d'aquest projecte.
+  just_a_reminder: Només com a recordatori, doncs heu donat als supervisors del projecte
+    permisos per veure les coordenades ocultes de les vostres observacions d'aquest
+    projecte.
   just_added!: S'hi acaba d'afegir!
   keep_editing: Continueu editant
   kelp_diatoms_and_allies: algues brunes, diatomees i parents
@@ -2426,6 +2427,7 @@ ca:
   more_journal_posts: Més articles de revistes
   more_observations: Més observacions
   more_photos: Més Fotos
+  more_than_a_week_ago: Fa més d'una setmana
   most: Més
   most_agree: La majoria està d’acord
   most_browser_print_pdf: 'Nota: la majoria de navegadors tenen una opció per imprimir
@@ -2794,7 +2796,7 @@ ca:
     un rectangle al voltant dels seus límits, el que pot provocar un resultat imprecís
     per a llocs que no tenen forma rectangular. Això es degut a una limitació de la
     nostra base de dades que estem treballant en resoldre.
-  observations_needing_curation: Observacions que requereixen la revisió d'un administrador
+  observations_needing_curation: Observacions que requereixen supervisió
   observations_obscured: Observacions (enfosquides)
   observations_observed_this_month: Les observacions <em>realitzades</em> aquest mes
     no s'afegeixen al mes en curs. Sortiu i feu més observacions!
@@ -2934,7 +2936,7 @@ ca:
     països o estats. Apropa la imatge per veure llocs més petits.
   only_curators_can_add_edit_scientific_names: Només els supervisors poden afegir/editar
     noms científics.
-  only_curators_can_access_that_page: Només els administradors poden accedir a aquesta
+  only_curators_can_access_that_page: Només els supervisors poden accedir a aquesta
     pàgina.
   only_files_with_10000_rows_at_a_time: Només arxius de 10000 files cadascun, si us
     plau.
@@ -3585,7 +3587,7 @@ ca:
   project_list_defaults:
     title: Llista de comprovació de %{owner_name}
     description: La llista d'espècies de %{owner_name}
-  project_curators_added_some_of_your_observations_html: supervisors de <a href="%{url}">%{project}</a>
+  project_curators_added_some_of_your_observations_html: els supervisors de <a href="%{url}">%{project}</a>
     han afegit algunes de les vostres observacions
   project_id: ID del projecte
   project_members: Membres de %{project}
@@ -4279,6 +4281,17 @@ ca:
   take_me_facebook: Sí, vés a Facebook
   take_me_flickr!: Sí, vés a Flickr
   take_me_back: Tornar enrere
+  target_list_alert: Esteu segur que heu intentat observar totes les espècies incloses
+    a la vostra llista d'objectius? Recordeu que qualsevol cosa que estigui en aquesta
+    llista i que no hagueu observat s’interpretarà com una absència, de manera que
+    és molt important que la vostra llista de objectius reflecteixi amb exactitud
+    el conjunt d’espècies que heu intentat detectar.
+  target_list_warning: Recordeu que qualsevol ésser viu que estigui la llista d’objectius
+    que no hagueu observat en el radi i la durada del viatge s’interpretarà com una
+    absència. És molt important que la vostra llista d'objectius reflecteixi amb exactitud
+    el conjunt d’espècies que heu intentat detectar. Si no heu intentat detectar una
+    espècie a la vostra llista de destinataris o a totes les espècies inclosa en un
+    grup de la vostra llista d'objectius, elimineu-la.
   taxa: Tàxons
   taxa_with_unknown_relationships: Tàxon amb relacions desconegudes
   taxa_info: Informació taxonòmica
@@ -4965,6 +4978,8 @@ ca:
   view_observation_flags: Veure marques de l'observació
   view_observations_by_everyone: Veure observacions de tothom
   view_observations_by_these_users: Veure Observacions d'aquests Usuaris
+  view_observations_causing_this_observation_to_be_obscured: Veure les observacions
+    que provoquen l'enfosquiment d'aquesta observació
   view_observations_of_this_taxon_by: Veure observacions d'aquest tàxon de
   view_observations_raquo: Mostra observacions »
   view_on: Mostra a
@@ -5699,8 +5714,8 @@ ca:
         note_that_curators_of: Tingueu en compte que els supervisors de projectes
           individuals sempre veuen les coordenades, independentment dels ajustos de
           geoprivacitat, per la qual cosa si us preocupa qui té les vostres coordenades,
-          heu d'assegurar-vos de confiar en els administradors dels projectes en els
-          que participeu.
+          heu d'assegurar-vos de confiar en els supervisors dels projectes en els
+          quals participeu.
         what_is_does_it_mean_for: Què significa que una observació estigui enfosquida?
         when_coordinates_are_obscured_it_means_that: |-
           Quan les coordenades estan enfosquides el que es mostra públicament és un punt a l'atzar dins dels %{km}km a la rodona de les coordenades reals (per exemple, a la pàgina d'inici, la pàgina d'observacions i pàgines
@@ -6156,11 +6171,11 @@ ca:
           supervisors d'aquest projecte hauríeu de treure-les d'aquest projecte.
         remove_observations_label: Eliminar totes les vostres observacions d'aquest
           projecte
-        remove_observations_desc_html: Tingueu en compte que els gestors del projecte
+        remove_observations_desc_html: Tingueu en compte que els supervisors del projecte
           encara podran afegir les vostres observacions al seu projecte a menys que
           canvieu la <a href="/users/edit">configuració del vostre compte</a>.
         revoke_observations_label: Deixar les vostres observacions en aquest projecte,
-          però evitar comissaris de veure les coordenades ocultes
+          però evitar que els supervisors puguin veure les coordenades ocultes
         revoke_observations_desc: Si l'única raó única per la qual esteu deixant el
           projecte és per evitar que els seus gestors puguin veure les vostres coordenades
           ocultes.
@@ -6246,10 +6261,10 @@ ca:
           curators: supervisors del projecte
         trusted_project_means: Quan un projecte està verificat, els administradors
           i gestors del projecte poden crear, actualitzar i esborrar atributs del
-          projecte. Accedir als atributs personalitzats del projecte significa que
-          els gestors del projecte poden, potencialment, afegir JavaScripts maliciosos,
-          per tant confieu únicament en projectes que tenen gestors responsables i
-          tècnicament competents
+          projecte (banner HTML, CSS). Accedir als atributs personalitzats del projecte
+          significa que els gestors del projecte poden, potencialment, afegir JavaScripts
+          maliciosos, per tant confieu únicament en projectes que tenen gestors responsables
+          i tècnicament competents
         you_can_preview: Podeu previsualitzar com es veuria el vostre projecte com
           a Projecte de Col·lecció <a href="%{url}">prement aquí</a>.
       invite:
@@ -6353,7 +6368,7 @@ ca:
         any: Sí, no importa qui afegeixi l'observació al projecte.
         none: No.
       curator_coordinate_access_label: Voleu fer les coordenades privades/enfosquides
-        de la vostra observació visibles als responsables del projecte?
+        de la vostra observació visibles als supervisors del projecte?
       curator_coordinate_access_note: També podeu optar per compartir les coordenades
         ocultes de les observacions d'aquest projecte cas per cas. Aquests són els
         valors per defecte només per a noves observacions afegides al projecte.
@@ -6364,32 +6379,11 @@ ca:
           en un Projecte de Col·lecció?
         bioblitz_results_desc_html: |-
           <p>
-            A diferència dels projectes regulars, bioblitzes mostra
-            estadístiques de <em>totes</em> les observacions d'un lloc i
-            període de temps, i no només observacions que les persones han
-            afegit intencionadament al projecte. Això permet evitar la
-            dificultat d'afegir observacions a un projecte únicament per obtenir
-            les estadístiques en temps real. Recordeu que les observacions no
-            estaran disponibles per a l'exportació o la visualització en algunes
-            vistes de projecte com contribucions dels membres en el lloc web o
-            en cerques d'observacions del projecte a les aplicacions mòbils a
-            menys que l'equip del projecte i els participants incorporin
-            activament les observacions pertinents com ho farien en un projecte
-            normal.
+            A diferència dels projectes regulars, els bioblitzes mostren estadístiques de <em>totes</em> les observacions d'un lloc i període de temps, i no només observacions que les persones han afegit intencionadament al projecte. Això permet evitar la dificultat d'afegir observacions a un projecte únicament per obtenir les estadístiques en temps real. Recordeu que les observacions no estaran disponibles per a l'exportació o la visualització en algunes vistes de projecte com contribucions dels membres en el lloc web o en cerques d'observacions del projecte a les aplicacions mòbils a menys que l'equip del projecte i els participants incorporin activament les observacions pertinents com ho farien en un projecte normal.
           </p>
-          <p>
-            Recordeu que, si bé aquest tipus de projecte mostra les
-            estadístiques per a les observacions que no s'han afegit
-            deliberadament al projecte, no permet que els gestor puguin veure
-            les coordenades privades o ocultes d'aquestes o assumir que els
-            observadors estan d'acord amb les condicions del projecte. Si sou
-            gestor del projecte i necessiteu accés a les coordenades privades,
-            cal que els participants estiguin d'acord amb les normes del
-            projecte o, si vols que els recomptes de les observacions
-            s'incorporin a la llista de comprovació del projecte gestionat,
-            assegureu-vos que els seus participants s'uneixen al projecte i
-            afegeixen les seves observacions com ho farien en un projecte
-            normal.
+          <p>Recordeu que, si bé aquest tipus de projecte mostra les
+          estadístiques per a les observacions que no s'han afegit
+          deliberadament al projecte, no permet que els supervisors puguin veure les coordenades privades o ocultes d'aquestes o assumir que els observadors estan d'acord amb les condicions del projecte. Si sou supervisor del projecte i necessiteu accés a les coordenades privades, cal que els participants estiguin d'acord amb les normes del projecte o, si vols que els recomptes de les observacions s'incorporin a la llista de comprovació del projecte supervisat, asegureu-vos que els seus participants s'uneixen al projecte i afegeixen les seves observacions com ho farien en un projecte normal.
           </p>
         click_here_to_convert_this_project: Prem aquí per convertir aquest projecte
           en un Projecte de Col·lecció.
@@ -6419,13 +6413,13 @@ ca:
             <li>
               <strong>Afegiu una marca o o un taxó de Nivell Superior</strong>
               <p>
-                P.e. el gènere que conté una espècie. Possiblement un administrador podrà afegir el taxó si és possible.
+                P.e. el gènere que conté una espècie. Possiblement un supervisor podrà afegir el taxó si és possible.
               </p>
             </li>
             <li>
               <strong><a href="%{feedback_url}">Contacteu el Fòrum</a></strong>
               <p>
-                Molts administradors del lloc revisen els missatges al Fòrum.
+                Molts supervisors del lloc revisen els missatges al Fòrum.
               </p>
             </li>
             <li>
@@ -6450,8 +6444,8 @@ ca:
       spam:
         message_for_owner_and_curators_html: Aquest registre ha estat marcat com brossa
           i ja no és visible públicament. Podeu veure-ho perquè l'heu creat vosaltres,
-          o sou gestor del lloc. Si penseu que hi ha hagut un error, si us plau <a
-          href="mailto:%{email}">contacteu amb nosaltres</a>.
+          o sou supervisor del lloc. Si penseu que hi ha hagut un error, si us plau
+          <a href="mailto:%{email}">contacteu amb nosaltres</a>.
         this_has_been_flagged_as_spam: Això ha estat marcat com brossa
       not_found:
         sorry_that_doesnt_exist: Ho sentim, no existeix!
@@ -6492,10 +6486,35 @@ ca:
           el tàxon de la comunitat.
         TTID: TTID
         TTID_desc: Temps fins a rebre una identificació per part d'algú més
+        TTID_note: Aquestes estadístiques es fan de les observacions creades la setmana
+          passada, la qual cosa significa que no inclou les identificacions afegides
+          a observacions de més d’una setmana i, per tant, farà que els resultats
+          siguin inferiors als que s'obtindrien si les calculessin de nou en aquest
+          moment, però encara proporcionen una mesura adequada gràcies a la rapidesa
+          amb qual la comunitat fa identificacions en el el temps d’1 setmana. Tingueu
+          en compte que aquestes estadístiques només només inclouen observacions amb
+          fotos.
         website_desc_html: Creat via <a href="https://www.inaturalist.org">iNaturalist</a>
           o els websites de la <a href="%{url}">Xarxa iNaturalist</a>
       year:
         include_usa: Incloure EUA
+        growth_by_country_desc_html: On es produeix el creixement? Aquest mapa i el
+          gràfic intenten descompondre's per països, la qual cosa resulta complicat
+          perquè el creixement per país pot ser molt desequilibrat. Aquí hem optat
+          per ometre els Estats Units i utilitzar una escala de registre per defecte
+          per accentuar les diferències entre altres països. Si un país té un color
+          negre, això significa que no ha contribuït significativament al percentatge,
+          que no va tenir creixement aquest any, o no va tenir més observacions aquest
+          any que l'any passat (passeu per sobre d'un país per veure més detalls).
+          <strong> "% del creixement total" </strong> indica quant del creixement
+          mundial prové d'un país concret, p. ex. si hi havia 20 observacions el 2018
+          i 10 el 2017, hauria crescut en 10 observacions i, si cinc d’aquestes observacions
+          provenien de Benín, Benin va aportar el 50% del creixement total. <strong>
+          "% de creixement" </strong> indica el nombre d’observacions d’aquest país
+          aquest any com a percentatge d’observacions l’any anterior en el país, així
+          que si hi haguessin hagut 10 observacions a Laos l'any passat, i 20 d’aquest
+          any, això suposaria un Creixement del 100%, i si hi haguessin hagut 0 l'any
+          passat i 1 aquest any, el creixement hauria estat infinit.
         growth_by_country_title: Creixement per país
         growth_in_year_obs: Creixement l'any %{year} (obs.)
         growth_title: Creixement
@@ -6515,10 +6534,19 @@ ca:
           <a href="%{url}">Veure tots els %{numStudies} estudis</a>
     taxa:
       edit:
+        high_status_conservation_status_notice_html: La incorporació d’un estat de
+          conservació per a un taxó de nivell superior afecta les observacions de
+          totes les espècies d’aquest taxó. Si us plau, no afegiu els estats dels
+          taxons que continguin espècies que no tinguin l'estat, ja que això farà
+          que les coordenades de les observacions d'aquestes espècies s'ocultin de
+          forma incorrecta.
         complete_desc_html: Un tàxon "complet" inclou <em>tots</em> els tàxons descendents
-          conegut al rang especificat que compleix amb les polítiques de gestió d'iNaturalist,
-          hagin estat o no observats. Únicament els administradors poden declarar
-          un tàxon complert en l'actualitat.
+          conegut al rang especificat que compleix amb les polítiques de supervisió
+          d'iNaturalist, hagin estat o no observats. Únicament els administradors
+          poden declarar un tàxon complert en l'actualitat.
+        complete_rank_desc_html: El rang al qual aquest taxó és complet, p.ex. si
+          aquesta família conté tots els seus gèneres, però no totes les seves espècies,
+          es configuraria com a "gènere". El valor per defecte és l'espècie.
       show:
         about_names_desc: |-
           <p>
@@ -6537,6 +6565,9 @@ ca:
         about_establishment_desc: |-
           "Forma d'Establiment" fa referència a com ha arribat una espècie arribat a on viu actualment. Introduïda significa que va arribar per la intervenció humana, mentre que autòctona vol dir que ha arribat sense participació humana.
           Les espècies endèmiques només existeixen en un lloc específic i en cap altre indret.
+        about_taxon_curators_desc: Aquestes persones gestionen la part de l'arbre
+          taxonòmic que inclou aquest tàxon. Si voleu fer canvis, marqueu aquest tàxon
+          o poseu-vos en contacte amb aquestes persones.
         charts_help_seasonality: Aquest gràfic mostra el nombre d'observacions d'aquest
           tàxon agrupades per mes. Tingueu en compte que aquests són el número d'observacions,
           per tant estan influïts tant per quan l'organisme pot ser observat com quan
@@ -6588,6 +6619,11 @@ ca:
           mostrarà fotografies d'aquesta espècie i els taxons inferiors. Les fotografies
           escollides per aquest tàxon es mostraran les primeres. La primera foto serà
           la imatge que s'utilitzi per defecte de tot el lloc.
+        site_curators_disabled_wikipedia_html: Els supervisors han desactivat temporalment
+          que es pugui mostrar el <a href="%{url}"> contingut d'aquest a Wikipedia</a>.
+          Podeu ajudar-nos editant la pàgina de la Wiquipèdia perquè sigui apropiada
+          per a aquest taxó, o marcant aquest taxó per cridar l'atenció dels supervisors
+          del lloc.
     taxon_links:
       form:
         name_with_rank_desc: El nom del tàxon està en el rang.Per a rangs infraespecífics,
@@ -6638,11 +6674,25 @@ ca:
           o ha esborrat el seu compte i %{site_name} us ha assignat com a administrador
           del projecte o supervisor del lloc. Si no voleu ser l'administrador del
           projecte, poseu-vos en contacte amb <a href="mailto:%{help_email}">%{help_email}</a>
-        curators_can_see: 'Només un recordatori: els administradors del projecte poden
+        curators_can_see: 'Només un recordatori: els supervisors del projecte poden
           veure les coordenades privades i enfosquides de les observacions que s''agreguen
           a aquest projecte.'
       delete:
         by_deleting_your_account_you_will_remove: Esborrant el vostre compte eliminareu
+        x_observations_html:
+          one: '<strong class="count"> 1 observació </strong>, inclou el treball de
+            <strong class = "count">%{helpers_count} persones </strong> que us han
+            ajudat amb les identificacions '
+          other: <strong class="count">%{count} observacions </strong>, inclouen el
+            treball de <strong class="count">%{helpers_count} persones </strong> que
+            us han ajudat amb les identificacions
+        x_identifications_html:
+          one: '<strong class="count"> la vostra identificació </strong> o la d’una
+            altra persona, pot afectar potencialment la qualitat de les dades d’aquesta
+            observació '
+          other: ' <strong class="count">%{count} de les vostres identificacions </strong>
+            sobre les observacions de <strong class="count">%{helpees_count} persones
+            </strong>, poden afectar la qualitat de les dades d’aquestes observacions'
         x_comments_html: '{heu afegit {PLURAL|one=<strong class="count">1 comentari</strong>|heu
           afegit <strong class="count">%{count} comentaris</strong>}}'
         furthermore_cannot_undo_html: A més, <strong> aquesta acció no es pot desfer</strong>.
@@ -6675,14 +6725,20 @@ ca:
           Penseu que podeu controlar quins noms comuns veieu per canviant la vostra localització i ubicació.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: Si canvieu
           d'opinió sempre podreu <a href='/users/edit'>editar les vostres preferències</a>.
-        inaturalist_network_affiliation_desc_html: La <a href="%{url}" target="_blank">Xarxa
-          iNaturalist</a> és un conjunt de llocs web locals connectat a la comunitat
-          global iNaturalist. Podeu canviar el lloc principal al que esteu afiliat,
-          el que significa que el contingut pot tenir algunes prioritats per aquest
-          lloc, però també que els propietaris d'aquest lloc web tenen dret a descàrregar
-          i visualitzar de totes les vostres dades com ho tenen els administradors
-          d'iNaturalist. Si aquest lloc surt de la xarxa el vostre compte, amb totes
-          les vostres dades, s'anirien amb aquest lloc.
+        inaturalist_network_affiliation_desc_html: '<p> La <a href="%{url}" target="_blank">
+          xarxa iNaturalist </a> és una col·lecció de llocs web localitzats totalment
+          connectats a la comunitat global iNaturalist. Aquests llocs web compten
+          amb el suport d’institucions locals que han signat un acord amb iNaturalist
+          per promoure l’ús local i beneficiar la biodiversitat local. Tenen accés
+          a les coordenades reals dels seus països que queden automàticament ocultes
+          al públic per protegir les espècies amenaçades. </p> <p> El vostre nom d''usuari
+          i contrasenya són els mateixo a tots els llocs que formen part de la xarxa
+          iNaturalist. Si escolliu afiliar-vos a un lloc de la xarxa, les institucions
+          locals que operen en cada lloc també tindran accés a la vostra adreça de
+          correu electrònic (només per comunicar-vos les activitats del lloc) i accedir
+          a les coordenades reals d''observacions tant siguin públiques o privades.
+          </p> <p> Nota: no modifiqueu experimentalment l’afiliació si teniu més de
+          1000 observacions. </p>'
         licensing_desc_html: Llicenciar els continguts, confereix a altres persones
           el dret a utilitzar-los sense demanar permís si s'adhereixen a les condicions
           de la llicència. %{site_name} utilitza els vostres continguts amb llicencia
@@ -6690,6 +6746,9 @@ ca:
           Biodiversity Information Facility</a> (GBIF), una organització inter-governamental
           internacional que confecciona i distribueix informació sobre la biodiversitat
           arreu del món.
+        muting_desc_html: |-
+          <p> Silenciar a algú evita rebre notificacions sobre les coses que fa, inclosos els comentaris sobre les vostres observacions, missatges, que us esmenti, etc. Silenciar us ajuda a ignorar algú sense impedir segueixi la seva activitat.</p>
+          <p> Podeu silenciar tantes persones com vulgueu, però tingueu en compte que perdreu notificacions potencialment importants, com ara identificacions que canvien la identificació per part de la comunitat de les vostres observacions.</p>
         name_place_help_html: Prioritza els noms comuns emprats a aquest lloc.
         place_preference_changed_notice_html: Preferències sobre el lloc canviades.
           Si canvieu d'opinió sempre podreu <a href='/users/edit'>editar la vostra
@@ -7252,6 +7311,10 @@ ca:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: únicament pot ser canviat
                 per un supervisor del taxon
+            name:
+              bad_format: només pot contenir caràcters llatins estàndard, guionets,
+                espais i x; Tingueu en compte que els tàxons o cultivars putatius
+                no són permesos
         taxon_name:
           attributes:
             lexicon:
@@ -7260,6 +7323,9 @@ ca:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: no es
                 pot trobar cap coincidència d'aquest nom científic amb aquest lèxic
+              bad_format: només pot contenir caràcters llatins estàndard, guionets,
+                espais i x; Tingueu en compte que els tàxons o cultivars putatius
+                no són permesos
         user:
           attributes:
             login:

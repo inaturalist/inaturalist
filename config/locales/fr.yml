@@ -4409,6 +4409,17 @@ fr:
   take_me_facebook: Oui, amenez-moi sur Facebook!
   take_me_flickr!: Oui, amenez-moi sur Flickr!
   take_me_back: Revenir en arrière
+  target_list_alert: Êtes-vous sûr d'avoir tenté d'observer toutes les espèces couvertes
+    par votre liste de cibles ? N'oubliez pas que tout ce qui est couvert par votre
+    liste de cibles et que vous n'avez pas observé sera interprété comme une absence;
+    il est donc très important que votre liste de cibles reflète avec précision l'ensemble
+    des espèces que vous avez tenté de détecter.
+  target_list_warning: N'oubliez pas que tout ce qui est couvert par votre liste de
+    cibles et que vous n'avez pas observé dans le rayon et la durée de ce voyage sera
+    interprété comme une absence. Il est très important que votre liste de cibles
+    reflète avec précision l'ensemble des espèces que vous avez tenté de détecter.
+    Si vous n'avez pas tenté de détecter une espèce de votre liste de cibles ou toutes
+    les espèces couvertes par un groupe de votre liste de cibles, supprimez-la.
   taxa: Taxons
   taxa_with_unknown_relationships: Taxons avec des relations inconnues
   taxa_info: Informations des taxons
@@ -7820,6 +7831,10 @@ fr:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
                 par un superviseur de ce taxon
+            name:
+              bad_format: "ne peut contenir que des caractères standards latins, des
+                tirets, des espaces, et \n×; notez que les taxons et cultivars putatifs
+                ne sont pas autorisés"
         taxon_name:
           attributes:
             lexicon:
@@ -7828,6 +7843,9 @@ fr:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: ne correspond
                 pas au nom scientifique d'une espèce pour ce lexicon
+              bad_format: "ne peut contenir que des caractères standards latins, des
+                tirets, des espaces, et \n×; notez que les taxons et cultivars putatifs
+                ne sont pas autorisés"
         user:
           attributes:
             login:
