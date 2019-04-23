@@ -7,6 +7,7 @@
 # Author: Ilimanaq29
 # Author: Juandev
 # Author: Katcha
+# Author: LubosV
 # Author: LukasJandera
 # Author: Marek Pavlica
 # Author: Meliganai
@@ -87,49 +88,48 @@ cs:
     other: <span class='count'>%{count}</span> flags resolved
   x_people_like_this:
     one: 1 člověku se to líbí
-    other: '%{count} lidem se to líbí'
+    other: '%{count}lidem se to líbí'
   x_people_agree_html:
     one: <span class="count">1</span> člověk souhlasí
-    other: <span class="count">%{count}</span> lidé souhlasí
+    other: <span class="count">%{count}</span>lidé souhlasí
   x_new_species:
     one: 1 New Species
-    other: '%{count} New Species'
+    other: '%{count}New Species'
   x_species:
     one: 1 druh
-    other: '%{count} druhy'
+    other: '%{count}druhy'
   x_species_html:
-    one: <span class='count'>1</span> druh
-    other: <span class='count'>%{count}</span> druhy
+    one: <span class='count'>1</span>druh
+    other: <span class='count'>%{count}</span>druhy
   x_species_link_html:
     one: <a href='%{url}'>1 druh</a>
-    other: <a href='%{url}'>%{count} druhy</a>
+    other: <a href='%{url}'>%{count}druhy</a>
   x_suggestions_filtered_by_colon:
     one: '1 Filtr návrhu:'
-    other: '%{count} Filtr návrhů:'
+    other: '%{count}Filtr návrhů:'
   x_taxa_observed_html:
-    one: <span class='count'>1</span> pozorovaný taxon
-    other: <span class='count'>%{count}</span> pozorované taxony
+    one: <span class='count'>1</span>pozorovaný taxon
+    other: <span class='count'>%{count}</span>pozorované taxony
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> výzkumné pozorování</span>
+    one: <span class='count'>1</span>výzkumné pozorování</span>
     other: <span class='count'>%{count}</span> výzkumná pozorování</span>
   x_research_grade_observations_to_species_html:
-    one: <span class='count'>1</span> výzkumné pozorování identifikující druh nebo
+    one: <span class='count'>1</span>výzkumné pozorování identifikující druh nebo
       nižší</span>
-    other: <span class='count'>%{count}</span> výzkumná pozorování identifikující
-      druh nebo nižší</span>
+    other: <span class='count'>%{count}</span>výzkumná pozorování identifikující druh
+      nebo nižší</span>
   x_taxa_curated_html:
-    one: <span class='count'>1</span> sledovaný taxon
-    other: <span class='count'>%{count}</span> sledované taxony
+    one: <span class='count'>1</span>sledovaný taxon
+    other: <span class='count'>%{count}</span>sledované taxony
   x_taxa_matching_current_filters:
     one: 1 taxon odpovídá aktuálním filtrům
-    other: '%{count} taxony odpovídají aktuálním filtrům'
+    other: '%{count}taxony odpovídají aktuálním filtrům'
   x_taxon_changes_added_html:
-    one: <span class="count">1</span> přidána změna taxonu\
-    other: <span class="count">%{count}</span> přidány změny taxonu
-  x_people_helped_user_with_y_ids_html: <strong>%{x} people</strong> helped %{user}
-    with <strong>%{y} IDs</strong>
+    one: <span class="count">1</span>přidána změna taxonu\
+    other: <span class="count">%{count}</span>přidány změny taxonu
+  x_people_helped_user_with_y_ids_html: <strong>%{x}people</strong> helped %{user}with<strong>%{y}IDs</strong>
   _100_day_trends: 100 denní trend
-  _percent_ID_d: identifikováno
+  _percent_ID_d: '% identifikováno'
   a_community_for_naturalist: Komunita naturalistů
   a_default_taxon_name_will_automatically_created: Z vědeckého názvu tohoto taxonu
     bude automaticky vytvořen standardní taxonomický název. Jakmile tento nový taxon
@@ -167,6 +167,7 @@ cs:
   about_x: O %{x}
   acc: Přesnost (m)
   account: Účet
+  account_creation: Vytvoření účtů
   account_settings: Nastavení účtu
   accept: přijmout
   accept_community_identifications: Přijmout komunitní identifikátory
@@ -2376,6 +2377,7 @@ cs:
   more_journal_posts: Další příspěvky v deníku
   more_observations: Další pozorování
   more_photos: Další fotky
+  more_than_a_week_ago: Více než před týdnem
   most: Nejvíce
   most_agree: většina souhlasí
   most_browser_print_pdf: 'Poznámka: Většina prohlížečů má možnost tisknout do PDF'
@@ -4850,6 +4852,8 @@ cs:
   view_observation_flags: Zobrazit vlajky pozorování
   view_observations_by_everyone: Zobrazit pozorování všech
   view_observations_by_these_users: Zobrazit pozorování od těchto uživatelů
+  view_observations_causing_this_observation_to_be_obscured: Zobrazte pozorování,
+    která způsobí, že toto pozorování bude zakryto
   view_observations_of_this_taxon_by: Zobrazit pozorování tohoto taxonu
   view_observations_raquo: Zobrazit pozorování &raquo;
   view_on: Zobrazit na
@@ -6307,7 +6311,7 @@ cs:
         obs_id_d_desc: Vytvořeno během posledních 7 dnů s ID (mohou být pozorovateli)
         other_desc_html: Vytvořeno pomocí jiných aplikací <a href="%{url}"> vytvořených
           vývojáři </a>
-        recent_desc: Registraván v 7 dnech
+        recent_desc: Registrován v 7 dnech
         recent_w_0_obs: Nedávné s nulovým pozorováním
         recent_w_0_obs_desc: Přihlášen v minulých 7 dnech a přidáno 0 pozorování
         recent_w_7_obs: Nedávné se 7 nebo více pozorováními
@@ -6804,6 +6808,7 @@ cs:
       x_seconds:
         one: 1 sekunda
         other: '%{count} sekund(y)'
+    countdown_x_days: '{{PLURAL|one=den|dny}'
     countdown_x_hours:
       one: hodina
       other: hodiny

@@ -174,6 +174,7 @@ nl:
   about_x: Over %{x}
   acc: Prec. (m)
   account: Account
+  account_creation: Account aangemaakt
   account_settings: Accountinstellingen
   accept: accepteren
   accept_community_identifications: Gemeenschapsidentificaties accepteren
@@ -1262,6 +1263,8 @@ nl:
   display_link_to_checklist: Toon link naar de projectlijst van de project pagina
   display_listings_added_by_curators: Toon lijsten toegevoegd door curators
   display_listings_from_place: Toon lijsten van deze plaats
+  distance_traveled_value: 'Afgelegde afstand: %{distance}m'
+  distance_traveled: Afstand afgelegd (m)
   dna_: DNA
   documentation_for_developers_html: Documentatie voor <a href="/pages/developers">ontwikkelaars</a>
   do_not_show_this_message_again: Deze boodschap niet meer tonen
@@ -1303,6 +1306,7 @@ nl:
   drag_and_drop_some_photos_or_sounds: Sleep enkele foto's of opnames
   drawings: Tekeningen
   duplicate_verb: Dupliceren
+  duration_value: 'Tijdsduur: %{duration} minuten'
   each_place_displays_all_species_inat_knows: Bij elke plaats staan alle soorten %{site_name}
     die bekend zijn van die plek, inclusief informatie over hun abundantie, beschermingsstatus
     en wie als eerste die soort vanaf die plaats op %{site_name} heeft waargenomen.
@@ -1886,7 +1890,7 @@ nl:
   in_progress: bezig
   in_taxon?: in taxon
   in_the_past: in het verleden
-  in_the_past_week: vorige week
+  in_the_past_week: Vorige week
   inactive: Inactief
   inactive_taxon: Inactief taxon
   inactive_taxon_concepts_are: Inactieve taxonconcepten zijn taxonomisch achterhaald
@@ -2425,6 +2429,7 @@ nl:
   more_journal_posts: Meer dagboekberichten
   more_observations: Meer waarnemingen
   more_photos: Meer foto's
+  more_than_a_week_ago: Meer dan een week geleden
   most: Meeste
   most_agree: meerdere zijn het eens
   most_browser_print_pdf: 'Nota: de meeste browsers beschikken over een optie om PDF
@@ -2548,7 +2553,7 @@ nl:
   new_user_rules: Nieuwe gebruikersregels
   new_users: Nieuwe gebruikers
   new_users_this_year: Nieuwe gebruikers dit jaar
-  new_users_w_7_obs: Nieuwe gebruikers w/7 Obs
+  new_users_w_7_obs: Nieuwe gebruikers w/7 Wrn
   new_users_week: Nieuwe gebruikers / week
   newly_added: Nieuw toegevoegd
   newly_added_species: Nieuw toegevoegde soorten
@@ -2703,13 +2708,15 @@ nl:
     meldingen over determinaties van taxa die anders zijn dan het taxon in uw eigen
     determinatie.
   number_of_observations: Aantal waarnemingen
+  number_of_observers_value: 'Aantal waarnemers: %{number}'
+  number_of_observers: Aantal waarnemers
   number_selected: '# geselecteerd'
   numeric_: numeriek
   noun_by_you: '%{noun} van jou'
   obs: Waarnemingen
   obs_cid_d: Wrn CID'd
   obs_id_d: Wrn ID'd
-  obscured_: versluierd
+  obscured_: vervaagd
   obscured: Verborgen
   obscured_or_private: verborgen of privé
   obscured_description: Openbare coördinaten worden weergegeven als een willekeurig
@@ -3855,6 +3862,16 @@ nl:
     must_be_coordinates_shareable_by_project_curators: waarnemer moet projectcuratoren
       toestaan om coordinaten te bekijken.
   running_total: Lopend Totaal
+  same_day_obscured: Een andere waarneming door deze persoon op deze dag is verborgen
+  same_day_obscured_desc: Wanneer coördinaten worden verduisterd vanwege een bedreigd
+    taxon zijn alle andere waarnemingen van die persoon op die dag ook verduisterd
+    om te voorkomen dat de coördinaten worden afgeleid van waarnemingen die in dezelfde
+    periode zijn gemaakt. Waarnemers kunnen ook zelf kiezen om de coördinaten te verduisteren.
+  same_day_private: Een andere waarneming door deze persoon op deze dag is privé
+  same_day_private_desc: Wanneer coördinaten worden verborgen vanwege een bedreigd
+    taxon zijn alle andere waarnemingen van die persoon op die dag ook verborgen om
+    te voorkomen dat de coördinaten worden afgeleid van waarnemingen die in dezelfde
+    periode zijn gemaakt. Waarnemers kunnen ook zelf kiezen om de coördinaten te verbergen.
   said: gezegd
   sat: za
   satellite: satelliet
@@ -4684,6 +4701,9 @@ nl:
   "true": Waar
   trending: Trending
   trends: Trends
+  trip_target_list_info: Dit is een niet-overlappende reeks van de grofste taxa in
+    jouw doellijst. Alle taxa weergegeven door verduisterde waarnemingen zijn uitgesloten.
+    <a href="/pages/trips">Lees meer</a>.
   trusted: Vertrouwd
   trusted_project?: Vertrouwd project?
   trust_this_person_with_your_private_coordinates: Vertrouw deze persoon je verborgen
@@ -4774,6 +4794,13 @@ nl:
   upload_range: Upload Reeks
   uploaded_by: Geüpload door
   uploader:
+    errors:
+      file_too_big: Bestand moet kleiner zijn dan %{megabytes} MB
+      unsupported_file_type: Bestandstype wordt niet ondersteund. We accepteren JPG,
+        PNG, GIF, WAV, AAC, MP3 en MP4 (alleen audio)
+    resize_tip: Als uw fotobestanden te groot zijn kunt u ze verkleinen tot een maximum
+      van 2048 bij 2048 pixels. Dit gebeurt sowieso met alle foto's op de server en
+      zorgt voor een snellere upload.
     tooltips:
       add: Waarneming(en) toevoegen
       combine: Geselecteerde waarnemingen combineren
@@ -4932,6 +4959,8 @@ nl:
   view_observation_flags: Markeringen van de waarneming weergeven
   view_observations_by_everyone: Alle waarnemingen weergeven
   view_observations_by_these_users: Bekijk waarnemingen van deze gebruikers
+  view_observations_causing_this_observation_to_be_obscured: Bekijk waarnemingen waardoor
+    deze waarneming wordt vervaagd
   view_observations_of_this_taxon_by: Geef de waarnemingen weer van dit taxon door
   view_observations_raquo: Waarnemingen weergeven &raquo;
   view_on: Bekijk op
@@ -5059,6 +5088,7 @@ nl:
   what_do_you_want_to_list: Wat wil je oplijsten?
   what_to_keep: Wat bewaren?
   what_want_to_list?: Wat wil je oplijsten?
+  what_were_you_looking_for?: Wat zoek je? (doellijst)
   whats_this?: Wat is dit?
   when: Wanneer
   when_did_you_see_it?: Wanneer heb je het gezien??
@@ -5169,11 +5199,12 @@ nl:
   you_are_no_longer_following_x: Je volgt niet langer %{friend}
   you_are_setting_this_project_to_aggregate: 'U stelt dit project in om alle waarnemingen
     te verzamelen die overeenkomen met de volgende regels: %{rules} Wilt u doorgaan?'
-  you_are_submitting_obs_without_photos_and_names: |-
-    U dient waarnemingen in zonder foto's en soortnamen.
-    Deze waarnemingen zullen zeer moeilijk nauwkeurig te determineren zijn.
+  you_are_submitting_obs_without_photos_and_names: Je voegt waarnemingen toe zonder
+    foto's en taxonnamen. Waarnemingen zonder deze informatie zijn niet te determineren
+    en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
   you_are_submitting_obs_with_no_date_or_no_location: U gaat waarnemingen toevoegen
-    zonder data of locatie
+    zonder data of locatie. Waarnemingen zonder deze informatie zijn vaak niet te
+    determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.
   you_are_subscribed_to: U bent geabonneerd op
   you_arent_a_member_of_that_project: Je bent geen lid van dat project.
   you_arent_following_that_person: Je volgt deze persoon niet.
@@ -6266,10 +6297,11 @@ nl:
         note_you_can_delete_the_time: '(Opmerking: u kunt de tijdzone en precieze
           tijden verwijderen als je hele dagen wilt noteren.)'
         or_drag_and_drop: (of sleep en plaats)
-        please_specify_the_requirements_html: |-
-          Specificeer de vereisten voor de waarnemingen die aan dit project moeten worden toegevoegd.
-          U kunt meerdere soorten, plaatsen, gebruikers of kwaliteitsklassen opgeven
-          die automatisch worden opgenomen, of laat een veld leeg als u er geen specifieke vereiste voor hebt.
+        please_specify_the_requirements_html: Specificeer de eisen voor de waarnemingen
+          die aan dit project moeten worden toegevoegd. Je kunt meerdere soorten,
+          plaatsen, gebruikers of kwaliteitsklassen opgeven die automatisch worden
+          opgenomen of laat een veld leeg als u er geen specifieke eis voor hebt.
+          Verklaringen voor elk veld staan <a href="%{url}">hier</a>.
         project_background_color: Projectoverzicht Achtergrondkleur
         project_background_color_help: Zorg ervoor dat u een kleur kiest die donker
           genoeg is zodat de witte overlay leesbaar is.
@@ -6411,7 +6443,7 @@ nl:
           app</a>
         avg_ttcid: Avg TTCID
         avg_ttid: Avg TTID
-        identifiers_desc: Een ID toegevoegd aan iemands wrn op deze dag
+        identifiers_desc: Een ID toegevoegd aan iemands waarneming op deze dag
         iphone_desc_html: Aangemaakt via de <a href="%{url}">iNaturalist iPhone app</a>
         med_ttcid: Med TTCID
         med_ttid: Med TTID
@@ -6419,10 +6451,10 @@ nl:
         obs_1_day: Wrn (1 dag)
         obs_1_day_desc: Waarnemingen op een enkele dag gemaakt
         obs_cid_d_desc: Gemaakt in de afgelopen 7 dagen met een gemeenschapsID
-        obs_cid_d_to_genus: Wrn CID'd to genus
+        obs_cid_d_to_genus: Wrn CID'd tot op genus
         obs_cid_d_to_genus_desc: Gemaakt in de afgelopen 7 dagen met een gemeenschapsID
           op of beneden genus-level
-        obs_desc: Gemaakt in prev 7 dagen
+        obs_desc: Gemaakt in de afgelopen 7 dagen
         obs_id_d_desc: Gemaakt in de afgelopen 7 dagen met een ID (kan van de waarnemer
           zijn)
         other_desc_html: Gemaakt via andere applicaties <a href="%{url}">gebouwd door
@@ -6452,22 +6484,21 @@ nl:
       year:
         include_usa: Inclusief VS
         growth_by_country_desc_html: "Waar vindt de groei plaats? \nDeze kaart en
-          grafiel proberen dit op te splitsen naar land, wat ingewikkeld blijkt te
-          zijn omdat groei door een land zeer onregelmatig kan zijn. We hebben hier
-          ervoor gekozen om de VS weg te laten en een logschaal te gebruiken om verschillen
-          te accentueren\ntussen andere landen. Als een land zwart gekleurd is, betekent
-          dat het niet\nniet significant heeft bijgedragen met een percentage of het
+          grafiek splitsen de groei op naar land. De groei van een land kan zeer onregelmatig
+          kan zijn. De VS is weggelaten en er is een logschaal gebruikt om verschillen
+          te accentueren tussen andere landen. Als een land zwart gekleurd is betekent
+          dat het niet niet significant heeft bijgedragen met een percentage of het
           had geen groei\ndit jaar, of had dit jaar niet meer waarnemingen dan vorig
-          jaar\n(beweeg over een land om een ​​meer details te zien).\n \n<strong>\"%
+          jaar.\nBeweeg over een land om een ​​meer details te zien.\n \n<strong>\"%
           van totale groei\"</strong> betekent hoeveel van de wereldwijde groei afkomstig
-          was van een bepaald land, bijv. als er 20 waarnemingen waren in 2018 en
-          10\nin 2017 zouden dat een groei van 10 waarnemingen zijn en als 5 daarvan\nafkomstig
-          waren uit Benin dan droeg Benin 50% van het totaal bij aan de\ngroei. \n<strong>'%
-          groei'</strong> is het aantal waarnemingen\ndit jaar in dat land als een
-          percentage van de waarnemingen van vorig jaar in\ndat land, dus als er vorig
-          jaar in Laos 10 waarnemingen waren, maar\n20 dit jaar dan zou dat 100% groei
-          zijn, en als het vorig jaar het aantal 0 was\nen dit jaar 1 dan is groei%
-          oneindig."
+          was van een bepaald land.Als er 20 waarnemingen waren in 2018 en 10 in 2017
+          zouden dat een groei van 10 waarnemingen zijn en als 5 daarvan afkomstig
+          waren uit Benin dan droeg Benin 50% van het totaal bij aan de groei. \n\n<strong>'%
+          groei'</strong> is het aantal waarnemingen dit jaar in dat land als een
+          percentage van de waarnemingen van vorig jaar in dat land. Als er vorig
+          jaar in Laos 10 waarnemingen waren, maar 20 dit jaar dan zou dat 100% groei
+          zijn, en als het vorig jaar het aantal 0 was en dit jaar 1 dan is groei
+          % oneindig."
         growth_by_country_title: Groei per land
         growth_in_year_obs: Groei in %{year} (wrn)
         growth_title: Groei
@@ -6747,9 +6778,15 @@ nl:
           gedachten verandert, kun je dat altijd via \n<a href='/users/edit'>je instellingen
           wijzigen</a>."
         inaturalist_network_affiliation_desc_html: |-
-          Het <a href="%{url}" target="_blank">iNaturalist Network</a> is een verzameling van gelokaliseerde websites verbonden met de wereldwijde iNaturalist gemeenschap. Je kunt je primaire site affiliation wijzigen, wat betekent
-          dat je inhoud enige prioriteit heeft op die site, maar ook betekent dat de eigenaren van die site het recht hebben al je gegevens te downloaden en te bekijken, net zoals de beheerders van de iNaturalist-site dat kunnen. Als
-          die site het netwerk verlaat, zal je account en gegevens meegaan met die site.
+          <p>
+            Het <a href="%{url}" target="_blank">iNaturalist Network</a> is een verzameling van gelokaliseerde websites verbonden met de wereldwijde iNaturalist gemeenschap. Netwerksites worden ondersteund door lokale instellingen die een overeenkomst met iNaturalist hebben gesloten om lokaal gebruik te bevorderen en de lokale biodiversiteit ten goede te komen. Ze hebben toegang tot de echte coördinaten uit hun eigen land die automatisch worden verborgen om bedreigde soorten te beschermen.
+          </p>
+          <p>
+          Je gebruikersnaam en wachtwoord werken op alle sites die deel uitmaken van het iNaturalist Network. Als je ervoor kiest om lid te worden van een lokale netwerksite zal de lokale instelling die de site exploiteert ook toegang hebben tot je e-mailadres (voor communicatie over je site-activiteiten) en toegang tot de echte coördinaten voor waarnemingen die openbaar verduisterd of privé zijn.
+          </p>
+          <p>
+          Let op: Ga alsjeblieft niet experimenteel lid worden van een lokale netwerksite als je meer dan 1000 waarnemingen hebt.
+          </p>
         licensing_desc_html: |-
           Het licentiëren van uw inhoud geeft andere mensen het wettelijke recht om het te gebruiken
           zonder uw toestemming te vragen als ze zich houden aan de voorwaarden van de licentie. %{site_name} gebruikt uw door Creative Commons gelicentieerde inhoud om te delen met gegevenspartners zoals de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
@@ -6796,6 +6833,12 @@ nl:
         scientific_name_first_desc: Toon wetenschappelijke namen voor lokale namen.
         youve_used_all_of_your_blocks: Je hebt al je blokkeringen opgebruikt. Verwijder
           een blokkering om een andere toe te voegen.
+        same_day_geoprivacy_protection: DezelfdeDag geoprivacy protectie
+        prefers_coordinate_interpolation_protection_desc: Wanneer je de geoprivacy
+          van een waarneming instelt op "verduisterd" of "privé" dan zal dezelfde
+          geoprivacy op al je andere waarnemingen van dezelfde dag worden toegepast
+          om het moeilijker te maken voor andere mensen om de ware coördinaten af
+          te leiden van waarnemingen die rondom hetzelfde tijdstip zijn gemaakt.
       recent:
         about_recent_users: Over
         definitions_html: "<dl><dt>Waarschijnlijk Spam</dt><dd>Gebruiker is waarschijnlijk

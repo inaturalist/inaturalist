@@ -85,6 +85,8 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
       `${dateToString( project.rule_d2, spansYears )}`;
   } else if ( project.rule_observed_on ) {
     dateRules = dateToString( project.rule_observed_on );
+  } else if ( project.rule_d1 ) {
+    dateRules = `${I18n.t( "activerecord.attributes.project.start_time" )} ${dateToString( project.rule_d1 )}`;
   }
   let establishmentRules = I18n.t( "any" );
   if ( project.rule_native || project.rule_introduced ) {

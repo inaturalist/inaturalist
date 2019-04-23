@@ -1260,6 +1260,8 @@ ca:
     pàgina del projecte
   display_listings_added_by_curators: Mostrar llistats afegits pels supervisors
   display_listings_from_place: Mostrar llistes del lloc
+  distance_traveled_value: 'Distància recorreguda: %{distance}m'
+  distance_traveled: Distància recorreguda (m)
   dna_: ADN
   documentation_for_developers_html: Documentació per a <a href="/pages/developers">desenvolupadors</a>
   do_not_show_this_message_again: No tornar a mostrar aquest missatge
@@ -1301,6 +1303,7 @@ ca:
   drag_and_drop_some_photos_or_sounds: Arrossegueu i deseu algunes fotos o sons
   drawings: Dibuixos
   duplicate_verb: Duplicat
+  duration_value: Durada:%{duration} minuts
   each_place_displays_all_species_inat_knows: Cada pàgina de lloc mostra totes les
     espècies que %{site_name} coneix d'aquest lloc, i inclou informació de l’abundància,
     l’estat de conservació i especifica qui la va observar per primera vegada en aquest
@@ -2020,6 +2023,7 @@ ca:
   latitude: Latitud
   latitude_in_decimals: Latitud en graus amb decimals, p. ex. 38.123
   latitude_slash_y_coord_slash_northing: Latitud / coord. Y / nord
+  latitude_value: Latitud:%{latitude}
   layers: Capes
   layout: Disposició
   leaderboard: Els més actius
@@ -2281,6 +2285,7 @@ ca:
   longitude: Longitud
   longitude_in_decimal: Longitud en graus amb decimals, p. ex. -122.123
   longitude_slash_x_coord_slash_easting: Longitud / coord. X / Est
+  longitude_value: 'Longitud: %{longitude}'
   look_up_name: Cerca el nom
   looks_like_neither_have!: Sembla que cap no té tàxons!
   looks_like_no_species_in_guide: Sembla que encara no teniu cap espècie a la vostra
@@ -2697,6 +2702,8 @@ ca:
     que coincideixin amb la vostra. Si ho desactiveu només rebreu notificacions sobre
     identificacions de tàxons que no es corresponguin exactament amb la vostra.
   number_of_observations: Nombre d'observacions
+  number_of_observers_value: 'Nombre d''observadors: %{number}'
+  number_of_observers: Nombre d'observadors
   number_selected: '# seleccionat'
   numeric_: numèric
   noun_by_you: '%{noun} pròpies'
@@ -3533,7 +3540,7 @@ ca:
   previous_tab: Pestanya anterior
   print_verb: Imprimeix
   print_in_browser: Imprimir des del navegador
-  privacy: Política de privacitat
+  privacy: Privacitat
   privacy_policy: Política de privadesa
   private: privada
   private_: Privat
@@ -3632,6 +3639,8 @@ ca:
   quality_grade_colon: 'Grau de qualitat:'
   queued: En cua
   query: Consulta
+  radius: Radi (m)
+  radius_value: 'Radi (m): %{radius}'
   random: A l’atzar
   range: Interval
   range_from: Distribució de
@@ -3853,6 +3862,18 @@ ca:
     must_be_coordinates_shareable_by_project_curators: l'observador ha de permetre
       als supervisors del projecte veure les coordenades.
   running_total: Acumulat total
+  same_day_obscured: Una altra observació d'aquesta persona aquest dia està enfosquida
+  same_day_obscured_desc: Quan les coordenades són enfosquides a causa d'un tàxon
+    en perill, la resta d'observacions d'aquella persona en aquell dia també és enfosquida
+    per impedir que altres persones puguin endevinar les coordenades a partir de les
+    observacions fetes al voltant d'aquella al mateix moment. Els individus també
+    poden aplicar aquesta protecció a coordenades que han escollit enfoquir.
+  same_day_private: Un altra observació d'aquesta persona aquest dia és privada
+  same_day_private_desc: Quan les coordenades s'oculten a causa d'un tàxon en perill,
+    la resta d'observacions d'aquella persona en aquell dia també s'oculten per impedir
+    que altres persones puguin endevinar les coordenades a partir de les observacions
+    fetes al voltant d'aquella al mateix moment. Els individus també poden aplicar
+    aquesta protecció a coordenades que han escollit ocultar.
   said: deia
   sat: Ds
   satellite: satèl·lit
@@ -4531,6 +4552,8 @@ ca:
     a revisar les files errònies. És possible que el problema hagi estat nostre. Si
     és així, si us plau, feu-nos-ho saber.
   there_were_some_problems_with_fields: Hi ha hagut problemes amb els següents camps
+  there_were_some_problems_with_these_files: 'Hi ha hagut alguns problemes amb aquests
+    arxius:'
   theres_also: també hi ha
   theres_something_wrong_with_taxon_framework_relationship: Hi ha alguna errada -
     no podem determinar la relacio entre tàxons interns i externs
@@ -4779,6 +4802,13 @@ ca:
   upload_range: Carregar distribució
   uploaded_by: Pujat per
   uploader:
+    errors:
+      file_too_big: L'arxiu ha de ser menys de %{megabytes}MB
+      unsupported_file_type: Tipus d'arxiu no suportat. Acceptem JPG, PNG, GIF, WAV,
+        AAC, MP3, i MP4 (únicament àudio)
+    resize_tip: Si els vostres arxius de foto són massa grans, proveu retallar-los
+      a un màxim de 2048 per 2048 píxels. En el servidor es retallaran igualment a
+      aquesta mida, per tant, si ho feu aconseguireu que es pugin més ràpid.
     tooltips:
       add: Afegiu observació(ns)
       combine: Combineu les observacions seleccionades
@@ -4787,6 +4817,7 @@ ca:
       remove_observation: Traieu l'observació
       remove_photo: Elimineu la foto
       select_all: Seleccioneu totes les observacions
+      upload_failed: Pujada errònia
   uploading_num_of_count_photos:
     one: Pujant la foto...
     other: Pujant foto %{num} de %{count}...
@@ -4907,6 +4938,7 @@ ca:
   view_flags: Veure les etiquetes
   view_flags_for_x_html: Veure les etiquetes per %{x}
   view_full_observation: Veure l’observació completa
+  view_full_size_photo: Veure la foto a mida completa
   view_invitation: Veure invitació
   view_journal: Veure el diari
   view_leaderboard: Veure els més actius
@@ -5174,9 +5206,10 @@ ca:
     continuar?'
   you_are_submitting_obs_without_photos_and_names: |-
     Esteu enviant observacions sense fotos ni un nom de tàxon.
-    Aquestes observacions són molt difícil d'identificar amb precisió.
+    Les observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.
   you_are_submitting_obs_with_no_date_or_no_location: Esteu enviant observacions sense
-    data o localització.
+    data o localització. Les observacions sense aquestes dades poden ser impossibles
+    d'identificar i no seran visibles per defectes a les cerques d'observacions.
   you_are_subscribed_to: Esteu subscrit a
   you_arent_a_member_of_that_project: No sou un membre d'aquest projecte.
   you_arent_following_that_person: No seguiu aquesta persona.
@@ -6273,6 +6306,7 @@ ca:
         please_specify_the_requirements_html: |-
           Si us plau especifiqueu els requisits per afegir observacions a aquest projecte.
           Podeu especificar diverses espècies, llocs, usuaris, o graus de qualitat perquè siguin automàticament afegides, o deixar-ho en blanc si no hi ha cap requisit específic.
+          Les explicacions de cada camp podeu veure-les <a href="%{url}">aquí</a>.
         project_background_color: Color de fons del resum del Projecte
         project_background_color_help: Assegureu-vos d'escollir un color prou fosc
           perquè el text blanc sobreposar sigui llegible.
@@ -6688,6 +6722,10 @@ ca:
         scientific_name_first_desc: Mostra els noms científics abans dels vernàculs.
         youve_used_all_of_your_blocks: Heu utilitzat tots els vostres bloquejos. Elimineu
           un bloqueix per afegir un altre.
+        same_day_geoprivacy_protection: Protecció de geoprivacitat per "mateix dia"
+        prefers_coordinate_interpolation_protection_desc: |-
+          Quan poseu la geoprivacitat d'una observació "enfoquida" o
+          "Privada" s'aplicarà la mateixa geoprivacitat a la resta d'Observacions del mateix dia per fer més difícil que altres persones  puguin intuir les coordenades real a partir d'altres observacions fetes al voltant d'aquesta en el mateix temps.
       recent:
         about_recent_users: Quant a
         definitions_html: <dl> <dt>Spam Probable</dt> <dd> L'usuari probablement sigui
