@@ -140,6 +140,16 @@ en:
   about_this_bioblitz: About this bioblitz
   about_this_map: About This Map
   about_this_project: About this Project
+  about_trips_html: "<h4>Trips enable the collection of presence-absence data by adding context to your observations</h4><p><strong>Why</strong> Presence-absence data include information about sampling effort which is useful for scientific analyses like distribution modeling (raw iNaturalist observations are 'presence-only' data).</p>
+        <p><strong>How</strong> A trip adds context to your observations by recording:</p>
+        <ul>
+          <li><strong>What</strong> you searched for (target list)</li>
+          <li><strong>Where</strong> you searched (search interval)</li>
+          <li><strong>When</strong> you searched (search area)</li>
+        </ul>
+        <p>Species on your target list that you were able to observe within the search area and interval are interpreted as presences.
+        While species on your target list that you were unable to observe are interpreted as absences.
+        Click 'Tabulate Presence Absence Data From Trips' to generate a table of presence-absence records for a species from trips and associated observations. <a href='%{url}'>Learn more</a></p>"
   about_x: "About %{x}"
   acc: 'Acc (m)'
   account: Account
