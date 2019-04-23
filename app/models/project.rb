@@ -448,7 +448,8 @@ class Project < ActiveRecord::Base
       params.merge!(project_id: project_ids) unless project_ids.blank?
       return params
     end
-    if start_time && end_time
+    # this method can be called on traditional projects, which can use start_time and end_time
+    if start_time && end_time && !is_new_project?
       params[:d1] = preferred_start_date_or_time
       params[:d2] = preferred_end_date_or_time
     end
@@ -753,7 +754,9 @@ class Project < ActiveRecord::Base
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
     observed_taxa_count = if project.is_new_project?
-      INatAPIService.observations_species_counts( project.collection_search_parameters.merge( per_page: 0 ) ).total_results
+      response = INatAPIService.observations_species_counts( project.collection_search_parameters.merge( per_page: 0 ) )
+      return unless response
+      response.total_results
     else
       project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
     end

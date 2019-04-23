@@ -42,11 +42,11 @@ class MapDetails extends React.Component {
       disableAutoObscuration,
       restoreAutoObscuration
     } = this.props;
+    if ( !observation || !observation.user ) { return ( <div /> ); }
     const viewerIsAdmin = config && config.currentUser && config.currentUser.roles &&
       config.currentUser.roles.indexOf( "admin" ) >= 0;
     const { showAllPlaces } = this.state;
     const { currentUser } = config;
-    if ( !observation ) { return ( <div /> ); }
     const testingContextGeoprivacy = currentUser
       && currentUser.prefers_coordinate_interpolation_protection_test;
     let accuracy = observation.private_geojson
