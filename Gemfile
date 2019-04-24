@@ -109,7 +109,7 @@ gem "rgeo-shapefile"
 gem "activerecord-postgis-adapter", git: "https://github.com/kueda/activerecord-postgis-adapter.git", branch: "activerecord42"
 
 group :production do
-  gem "newrelic_rpm", "~> 6.0.0"
+  gem "newrelic_rpm", "~> 6.2.0"
 end
 
 group :test, :development, :prod_dev do
