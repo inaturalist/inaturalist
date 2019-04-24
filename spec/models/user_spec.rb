@@ -711,56 +711,108 @@ describe User do
   end
 
   describe "merge" do
-    before(:each) do
-      @keeper = User.make!
-      @reject = User.make!
-      enable_elastic_indexing( Observation )
-    end
-    after(:each) { disable_elastic_indexing( Observation ) }
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+    before(:all) { enable_elastic_indexing( Observation, Identification) }
+    after(:all) { disable_elastic_indexing( Observation, Identification) }
+    
+    let(:keeper) { User.make! }
+    let(:reject) { User.make! }
 
     it "should move observations" do
-      o = Observation.make!(:user => @reject)
+      o = Observation.make!(:user => reject)
       without_delay do
-        @keeper.merge(@reject)
+        keeper.merge(reject)
       end
       o.reload
-      expect(o.user_id).to eq @keeper.id
+      expect(o.user_id).to eq keeper.id
     end
 
     it "should update the observations_count" do
-      Observation.make!( user: @keeper )
-      Observation.make!( user: @reject )
+      Observation.make!( user: keeper )
+      Observation.make!( user: reject )
       Delayed::Worker.new.work_off
-      @keeper.reload
-      expect( @keeper.observations_count ).to eq 1
-      @keeper.merge( @reject )
-      @keeper.reload
-      expect( @keeper.observations.count ).to eq 2
-      expect( @keeper.observations_count ).to eq 2
+      keeper.reload
+      expect( keeper.observations_count ).to eq 1
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      keeper.reload
+      expect( keeper.observations.count ).to eq 2
+      expect( keeper.observations_count ).to eq 2
+    end
+
+    it "should update the identifications_count" do
+      Identification.make!( user: reject )
+      Delayed::Worker.new.work_off
+      reject.reload
+      expect( reject.identifications_count ).to eq 1
+      expect( keeper.identifications_count ).to eq 0
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      keeper.reload
+      expect( keeper.identifications_count ).to eq 1
+    end
+    it "should reindex observations by the user" do
+      o = Observation.make!( user: reject )
+      Delayed::Worker.new.work_off
+      expect(
+        Observation.elastic_search( filters: [ { term: { id: o.id } } ] ).response.hits.hits[0]._source.user.id
+      ).to eq reject.id
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      keeper.reload
+      expect(
+        Observation.elastic_search( filters: [ { term: { id: o.id } } ] ).response.hits.hits[0]._source.user.id
+      ).to eq keeper.id
+    end
+    it "should reindex observations identified by the user" do
+      o = Identification.make!( user: reject ).observation
+      Delayed::Worker.new.work_off
+      expect(
+        Observation.elastic_search( filters: [ { term: { id: o.id } } ] ).response.hits.hits[0]._source.identifier_user_ids
+      ).to include reject.id
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      keeper.reload
+      expect(
+        Observation.elastic_search( filters: [ { term: { id: o.id } } ] ).response.hits.hits[0]._source.identifier_user_ids
+      ).to include keeper.id
+    end
+    it "should reindex the user" do
+      o = Observation.make!( user: reject )
+      Delayed::Worker.new.work_off
+      expect(
+        User.elastic_search( filters: [ { term: { id: keeper.id } } ] ).response.hits.hits[0]._source.observations_count
+      ).to eq 0
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      expect(
+        User.elastic_search( filters: [ { term: { id: keeper.id } } ] ).response.hits.hits[0]._source.observations_count
+      ).to eq Observation.by( keeper ).count
     end
 
     it "should merge life lists" do
       t = Taxon.make!
-      @reject.life_list.add_taxon(t)
-      @keeper.merge(@reject)
-      @keeper.reload
-      expect(@keeper.life_list.taxon_ids).to include(t.id)
+      reject.life_list.add_taxon(t)
+      keeper.merge(reject)
+      keeper.reload
+      expect(keeper.life_list.taxon_ids).to include(t.id)
     end
 
     it "should remove self frienships" do
-      f = Friendship.make!(:user => @reject, :friend => @keeper)
-      @keeper.merge(@reject)
+      f = Friendship.make!(:user => reject, :friend => keeper)
+      keeper.merge(reject)
       expect(Friendship.find_by_id(f.id)).to be_blank
-      expect(@keeper.friendships.map(&:friend_id)).not_to include(@keeper.id)
+      expect(keeper.friendships.map(&:friend_id)).not_to include(keeper.id)
     end
 
-    it "should queue a job to refresh the keeper's life list" do
+    it "should queue a job to do the slow stuff" do
       Delayed::Job.delete_all
       stamp = Time.now
-      @keeper.merge(@reject)
+      keeper.merge(reject)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       # puts jobs.map(&:handler).inspect
-      expect(jobs.select{|j| j.handler =~ /LifeList.*\:reload_from_observations/m}).not_to be_blank
+      expect(jobs.select{|j| j.handler =~ /User.*\:merge_cleanup/m}).not_to be_blank
     end
   end
 
@@ -812,6 +864,7 @@ describe User do
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should not remove community taxa when set to false" do
+      enable_elastic_indexing( Identification )
       o = Observation.make!
       i1 = Identification.make!(:observation => o)
       i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
@@ -821,6 +874,7 @@ describe User do
       Delayed::Worker.new.work_off
       o.reload
       expect(o.taxon).to be_blank
+      disable_elastic_indexing( Identification )
     end
 
     it "should set observation taxa to owner's ident when set to false" do

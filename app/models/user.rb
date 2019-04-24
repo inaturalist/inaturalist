@@ -539,9 +539,24 @@ class User < ActiveRecord::Base
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
     reject.destroy
-    User.where( id: id ).update_all( observations_count: observations.count )
-    LifeList.delay(priority: USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
-    Observation.delay(priority: USER_INTEGRITY_PRIORITY).index_observations_for_user( id )
+    User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )
+  end
+
+  def self.merge_cleanup( user_id )
+    return unless user = User.find_by_id( user_id )
+    start = Time.now
+    Observation.elastic_index!( scope: Observation.by( user_id ) )
+    Observation.elastic_index!(
+      scope: Observation.joins( :identifications ).
+        where( "identifications.user_id = ?", user_id ).
+        where( "observations.last_indexed_at < ?", start )
+    )
+    Identification.elastic_index!( scope: Identification.where( user_id: user_id ) )
+    User.update_identifications_counter_cache( user.id )
+    User.update_observations_counter_cache( user.id )
+    user.reload
+    user.elastic_index!
+    LifeList.reload_from_observations( user.life_list_id )
   end
 
   def set_locale
