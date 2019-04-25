@@ -101,7 +101,11 @@ class TripsController < ApplicationController
         end
         @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
         trip_purpose_taxon_ids = @trip.trip_purposes.where( complete: true ).map( &:resource_id ).flatten.uniq
-        @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).sort_by{|t| t.ancestry}.reverse.select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
+        if trip_purpose_taxon_ids.include? Taxon::LIFE.id
+          @target_list_taxa = [Taxon::LIFE]
+        else
+          @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).sort_by{|t| t.ancestry}.reverse.select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
+        end
         obs = INatAPIService.observations( {
           taxon_is_active: true,
           latitude: @trip.latitude,
@@ -122,8 +126,6 @@ class TripsController < ApplicationController
             @target_list_set << { taxon: tlt, observations: [] }
           end
         end
-        
-        
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first
