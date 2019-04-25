@@ -306,13 +306,12 @@ class TaxaController < ApplicationController
   end
 
   def edit
-    # TODO: these .firsts will need to be updated
-    @observations_exist = Observation.where(taxon_id: @taxon).exists? ||
-      Observation.joins(:taxon).where(@taxon.descendant_conditions).exists?
-    @listed_taxa_exist = ListedTaxon.where(taxon_id: @taxon).exists? ||
-      ListedTaxon.joins(:taxon).where(@taxon.descendant_conditions).exists?
-    @identifications_exist = Identification.where(taxon_id: @taxon).exists? ||
-      Identification.joins(:taxon).where(@taxon.descendant_conditions).exists?
+    @observations_exist = @taxon.observations_count > 0
+    @listed_taxa_exist = @taxon.listed_taxa_count > 0
+    @identifications_exist = Identification.elastic_search(
+      filters: [{ term: { "taxon.id" => @taxon.id } } ],
+      size: 0
+    ).total_entries > 0
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )

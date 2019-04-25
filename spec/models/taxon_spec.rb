@@ -1071,6 +1071,21 @@ describe Taxon, "grafting" do
     expect(t.parent).to eq(@Pseudacris)
   end
 
+  it "should update the ancestry of children" do
+    f = Taxon.make!( rank: Taxon::FAMILY, name: "Familyone" )
+    g = Taxon.make!( rank: Taxon::GENUS, name: "Genusone" )
+    s = Taxon.make!( rank: Taxon::SPECIES, name: "Genusone speciesone", parent: g )
+    expect( g ).not_to be_grafted
+    expect( s.ancestor_ids ).to include g.id
+    expect( s.ancestor_ids ).not_to include f.id
+    g.update_attributes( parent: f )
+    Delayed::Worker.new.work_off
+    g.reload
+    s.reload
+    expect( s.ancestor_ids ).to include g.id
+    expect( s.ancestor_ids ).to include f.id
+  end
+
   describe "indexing" do
     before(:each) { enable_elastic_indexing( Identification ) }
     after(:each) { disable_elastic_indexing( Identification ) }
