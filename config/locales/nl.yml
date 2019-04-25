@@ -719,14 +719,14 @@ nl:
   brief_description_of_what_you_saw: Korte beschrijving van je waarneming
   brown: bruin
   browse: Bladeren
-  browse_all_projects: Doorblader alle projecten
-  browse_all_species: Doorblader alle soorten
-  browse_observations: Doorblader waarnemingen
-  browse_people: Personen doorbladeren
-  browse_projects: Doorblader projecten
+  browse_all_projects: Surf door alle projecten
+  browse_all_species: Surf door alle soorten
+  browse_observations: Surf door waarnemingen
+  browse_people: Surf door Personen
+  browse_projects: Surf door projecten
   browse_species_that_occur_near_this_observation: Soorten bekijken in de buurt van
     deze waarneming
-  browse_your_observations: Doorblader je waarnemingen
+  browse_your_observations: Surf door waarnemingen
   built_with_site_guides_html: Gebouwd met <a href='%{url}'>%{site_name} Gidsen</a>
   bulk_import_of_filename_is_complete: Bulk import van %{filename} is klaar
   but_we_didnt_add_this_observation_to_the_x_project: De waarneming werd niet aan
@@ -2883,11 +2883,10 @@ nl:
   on_submit_date: op %{submitdate}
   on_your_life_list: in uw levenslijst
   onboarding:
-    observe_panel_title: Laten we aan de slag gaan door enkele waarnemingen te posten
-    observe_panel_body_p1_local: Inspiratie nodig? Ziehier enkele organismen dichtbij
-      waargenomen ...
-    observe_panel_body_p1_global: Inspiratie nodig? Ziehier enkele organismen dichtbij
-      waargenomen ...
+    observe_panel_title: Laten we beginnen door een paar waarnemingen te posten
+    observe_panel_body_p1_local: Inspiratie nodig? Deze organismen zijn dichtbij waargenomen...
+    observe_panel_body_p1_global: Inspiratie nodig? Deze organismen zijn dichtbij
+      waargenomen...
     observe_panel_body_p2: Ga naar buiten en observeer een organisme. Kies iets wilds
       en maak een heldere, beeldvullende foto. Als je al een foto van iets wilds hebt,
       <a href="%{new_observation_path}"> voeg je deze nu toe</a>. Je kunt ook de mobiele
@@ -4277,6 +4276,10 @@ nl:
   take_me_facebook: Ja, breng me naar Facebook!
   take_me_flickr!: Ja, breng me naar Flickr!
   take_me_back: Breng me terug
+  target_list_alert: Heb je ECHT geprobeerd om alle soorten te vinden die in je doellijst
+    staan? Alles op je doellijst dat je niet hebt gevonden hebt wordt geïnterpreteerd
+    als afwezig. Het is dus belangrijk dat je doellijst precies de soorten omvat die
+    je gezocht hebt.
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa met onbekende verwantschappen.
   taxa_info: Taxa Info
@@ -7363,6 +7366,10 @@ nl:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: kan enkel gewijzigd
                 worden door een curator van dit taxon
+            name:
+              bad_format: |-
+                kan alleen standaard Latijnse tekens, koppeltekens, spaties en
+                × bevatten; vermeende taxa en cultivars zijn niet toegestaan
         taxon_name:
           attributes:
             lexicon:
@@ -7372,6 +7379,9 @@ nl:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: kan
                 geen passende wetenschappelijke naam van een soort vinden voor dit
                 lexicon
+              bad_format: |-
+                kan alleen standaard Latijnse tekens, koppeltekens, spaties en
+                × bevatten; vermeende taxa en cultivars zijn niet toegestaan
         user:
           attributes:
             login:

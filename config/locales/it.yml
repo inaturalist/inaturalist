@@ -184,6 +184,7 @@ it:
   about_x: A proposito di %{x}
   acc: Acc (m)
   account: Account
+  account_creation: Creazione Account
   account_settings: Impostazioni del profilo
   accept: accetta
   accept_community_identifications: Accetta le identificazioni della community
@@ -4306,6 +4307,17 @@ it:
   take_me_facebook: Si, vai a Facebook!
   take_me_flickr!: Si, vai a Flickr!
   take_me_back: Indietro
+  target_list_alert: Sei sicuro di aver tentato di osservare tutte le specie nella
+    tua lista di obbiettivi? Ricorda che tutto ciò che è incluso nella tua lista di
+    obbiettivi ma che tu non hai osservato sarà interpretato come un assenza, perciò
+    è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo
+    di specie che hai cercato di trovare
+  target_list_warning: Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi
+    ma che tu non hai osservato nel raggio e per la durata di questo viaggio sarà
+    interpretato come un assenza. Perciò è molto importante che la tua lista di obbiettivi
+    rifletta accuratamente il gruppo di specie che hai cercato di trovare. Se non
+    hai cercato una specie della tua lista di obbiettivi o ogni specie inclusa in
+    un gruppo della tua lista di obbiettivi, per favore rimuovila.
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa con relazioni sconosciute
   taxa_info: Info Taxa
@@ -4981,6 +4993,8 @@ it:
   view_observation_flags: Visualizza i contrassegni delle osservazioni
   view_observations_by_everyone: Visualizza le osservazioni di tutti
   view_observations_by_these_users: Visualizza osservazioni di questi utenti
+  view_observations_causing_this_observation_to_be_obscured: Visualizza le osservazioni
+    che determinano l'oscuramento dell'osservazione
   view_observations_of_this_taxon_by: Visualizza osservazioni di questo taxon per
   view_observations_raquo: Visualizza le osservazioni &raquo;
   view_on: Visualizza su

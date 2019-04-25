@@ -3422,7 +3422,7 @@ zh-TW:
   save_observation: 儲存觀察
   save_photos: 儲存照片
   save_place: 儲存地點
-  save_trip: 儲存旅行
+  save_trip: 儲存旅程
   saved: 已儲存
   saving: 儲存中...
   saving_num_of_count_observations:
@@ -3749,6 +3749,8 @@ zh-TW:
   take_me_facebook: 是的，帶我前往臉書！
   take_me_flickr!: 是的，帶我前往 Flickr！
   take_me_back: 帶我返回
+  target_list_alert: 您確定您是否嘗試觀察由您的目標清單裡，所涵蓋的所有物種？請記住任何由您的目標清單所涵蓋；但您未觀察到的事物，會被解讀為缺失。因此，讓您的目標清單能清準反映出是您所嘗試發現的物種集，是非常重要的
+  target_list_warning: 請記住任何由您的目標清單所涵蓋；但在您的旅程期間和半徑範圍裡未觀察到的事物，會被解讀為缺失。因此，讓您的目標清單能清準反映出是您所嘗試發覺的物種集，是非常重要的。如果您沒有打算嘗試發現在您目標清單上、或是在您目標清單裡群組所涵蓋的物種，請將它移除。
   taxa: 物種分類
   taxa_with_unknown_relationships: 帶有未知關聯的分類
   taxa_info: 物種分類群訊息
@@ -4814,8 +4816,8 @@ zh-TW:
         we_also_support_uploading_photos: 我們也支援直接上傳照片至 %{site_name}，但處理時間會較久，因此我們只允許每次上傳一張照片。若您已使用過
           Flickr 或 Google 這些服務的話，使用它們會可能是較快的方法。
         what_are_tags?: 什麼是標籤？
-        tags_are_keywords_you_can_add_to_an_html: 標籤是可讓您添加至觀察裡，來使觀察更容易被查找的關鍵字。例如：如果您在土克凱可群島一旁的海洋裡潛水時，有條梭魚尾隨著您。您可將此觀察標記為
-          &quot;scary, barracuda, scuba diving, vacation, turks and caicos&quot;。
+        tags_are_keywords_you_can_add_to_an_html: 標籤是可讓您添加至觀察裡，來使觀察更容易被查找的關鍵字。例如：如果您在土克凱可群島一旁的海洋裡進行水肺潛水時，有條梭魚尾隨著您。您可將此觀察標記為
+          &quot;驚人，梭魚，水肺潛水，假期，土克凱可群島&quot;。
         can_i_include_my_observations_on_my_blog?: 我的 %{site_name} 觀察內容可以加在自己個人的網站或部落格裡頭嗎？
         sure_check_out_our_widget_html: 沒錯，請瞧瞧我們的<a href="%{url}" title="Observations
           Widget">觀察小工具</a>。
@@ -6064,12 +6066,15 @@ zh-TW:
               can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: 僅可被此物種分類的策展人更改
+            name:
+              bad_format: 僅能包含標準拉丁字元、連字號、空白、以及 × 交叉符號，另外請注意不允許假定的分類群和栽培品種
         taxon_name:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: 不應包含逗號或斜線
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: 無法符合此詞彙的物種學名
+              bad_format: 僅能包含標準拉丁字元、連字號、空白、以及 × 交叉符號，另外請注意不允許假定的分類群和栽培品種
         user:
           attributes:
             login:
