@@ -237,8 +237,8 @@ class TaxonChange < ActiveRecord::Base
 
   def find_batched_records_of( reflection )
     input_taxon_ids = input_taxa.to_a.compact.map(&:id)
-    if reflection.klass == Observation
-      Observation.search_in_batches( taxon_ids: input_taxon_ids ) do |batch|
+    if reflection.klass.to_s == "Observation"
+      Observation.search_in_batches( ident_taxon_ids: input_taxon_ids ) do |batch|
         yield batch
       end
     # Omitting using ES for idents now until the ident index gets fully 

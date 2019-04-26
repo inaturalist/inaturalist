@@ -2794,6 +2794,10 @@ class Observation < ActiveRecord::Base
             taxon_change: taxon_change
           )
         end
+      elsif ( observation.identifications.map(&:taxon_id) & input_taxon_ids ).size > 0
+        observation.set_community_taxon( force: true )
+        observation.set_taxon_from_probable_taxon
+        observation.save!
       end
       yield(observation) if block_given?
     end
