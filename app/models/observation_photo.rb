@@ -2,6 +2,8 @@ class ObservationPhoto < ActiveRecord::Base
   belongs_to :observation, :inverse_of => :observation_photos, :counter_cache => false
   belongs_to :photo
 
+  validates :photo, presence: true
+  validates :observation, presence: true
   validates_associated :photo
   validates_uniqueness_of :photo_id, scope: :observation_id
   validate :observer_owns_photo
@@ -43,6 +45,7 @@ class ObservationPhoto < ActiveRecord::Base
   end
 
   def observer_owns_photo
+    return unless observation && photo
     unless observation.user_id == photo.user_id
       errors.add(:photo, "must be owned by the observer" )
     end
