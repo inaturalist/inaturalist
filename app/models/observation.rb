@@ -2676,6 +2676,7 @@ class Observation < ActiveRecord::Base
   def reassess_same_day_observations
     return true if skip_reassess_same_day_observations
     return true unless obscuration_changed || observed_on_changed?
+    return true unless user && user.prefers_coordinate_interpolation_protection_test?
     unless observed_on.blank?
       Observation.
         delay(
