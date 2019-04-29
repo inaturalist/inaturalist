@@ -51,6 +51,9 @@ da:
   x_misidentifications_of_this_species:
     one: 1 fejlidentifikation af denne art
     other: '%{count} fejlidentifikationer af denne art'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 fejlidentifikation af arter i denne %{rank}
+    other: '%{count} fejlidentifikationer af arter i denne %{rank}'
   x_observations:
     one: 1 observation
     other: '%{count} observationer'
@@ -160,6 +163,7 @@ da:
   about_x: Om %{x}
   acc: Nøj. (m)
   account: Konto
+  account_creation: Kontooprettelse
   account_settings: Kontoindstillinger
   accept: accept
   accept_community_identifications: Accepter fællesskabets identifikationer
@@ -1241,6 +1245,8 @@ da:
   display_link_to_checklist: Vis link til projektliste fra projektside
   display_listings_added_by_curators: Vis lister tilføjet af kuratorer
   display_listings_from_place: Vis lister fra sted
+  distance_traveled_value: Afstand tilbagelagt:%{distance}m
+  distance_traveled: Afstand tilbagelagt (m)
   dna_: DNA
   documentation_for_developers_html: Dokumentation for <a href="/pages/developers">udviklere</a>
   do_not_show_this_message_again: Vis ikke denne besked igen
@@ -1282,6 +1288,7 @@ da:
   drag_and_drop_some_photos_or_sounds: Træk og slip nogle billeder eller lyde
   drawings: Skitser
   duplicate_verb: Kopiér
+  duration_value: Varighed:%{duration} minutter
   each_place_displays_all_species_inat_knows: Hver side med steder, viser alle de
     arter %{site_name} kender fra dette sted, med oplysninger om deres forekomst,
     bevaringsstatus, og hvem der var den første der observerede den pågældende art
@@ -2257,6 +2264,7 @@ da:
   longitude: Længdegrad
   longitude_in_decimal: Længdegrad i decimale grader f. eks. 122.123
   longitude_slash_x_coord_slash_easting: Længdegrad / x koordinat /østlig
+  longitude_value: Længdegrad:%{longitude}
   look_up_name: Slå navnet op
   looks_like_neither_have!: Ser ud som om ingen har nogen taksa!
   looks_like_no_species_in_guide: Det ser ud som om du ikke har nogen arter i din
@@ -2674,6 +2682,8 @@ da:
     fravælger dette, modtager du kun underretninger om identifikationer
     af taksa, der ikke matcher taksonen på din egen identifikation.
   number_of_observations: Antal observationer
+  number_of_observers_value: Antal observatører:%{number}
+  number_of_observers: Antal observatører
   number_selected: '# valgte'
   numeric_: numerisk
   noun_by_you: '%{noun} af dig'
@@ -2974,6 +2984,10 @@ da:
     som denne art
   other_species_commonly_misidentified_as_this_species_in_place_html: Andre arter,
     der ofte er fejlidentificeret som denne art i <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Anden taksa, der ofte fejlidentificeres
+    som denne %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Anden taksa, der ofte
+    fejlidentificeres som denne %{rank} i <a href="%{url}">%{place}</a>
   our_blog: Vores blog
   out_of_range: Udenfor område
   output_taxon: Output takson
@@ -3595,6 +3609,8 @@ da:
   quality_grade_colon: 'Kvalitetsklasse:'
   queued: I kø
   query: Søgning
+  radius: Radius (m)
+  radius_value: Radius (m):%{radius}
   random: Tilfældig
   range: Område
   range_from: Område fra
@@ -3812,6 +3828,12 @@ da:
     must_be_coordinates_shareable_by_project_curators: observatør skal tillade projektkuratorer
       at se koordinater.
   running_total: Igangværende total
+  same_day_obscured: Endnu en observation af denne person på denne dag er sløret
+  same_day_obscured_desc: |-
+    Når koordinater er sløret på grund af en truet takson, er alle andre
+    observationer på den pågældende dag også sløret, for at forhindre folk
+    fra at gætte koordinaterne baseret på observationer lavet omkring det samme
+    tidspunkt. Man kan også anvende denne beskyttelse på andre koordinater for at skjule dem.
   said: sagde
   sat: Lør
   satellite: satellit

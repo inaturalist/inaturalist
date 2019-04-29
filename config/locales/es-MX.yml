@@ -1,6 +1,7 @@
 # Messages for Mexican Spanish (español de México)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Abijeet Patro
 # Author: Carrieseltzer
 # Author: Cgalindo
 # Author: Fitoschido
@@ -48,7 +49,7 @@ es-MX:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
   x_misidentifications_of_species_in_this_rank:
-    one: 1 identificación errónea de especies en esta %{rank}}}
+    one: 1 identificación errónea de especies en esta %{rank}}
     other: '%{count} identificaciones erróneas de especies en este %{<span class="notranslate">rango</span>}'
   x_observations:
     one: Una observación

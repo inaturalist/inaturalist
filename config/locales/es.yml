@@ -21,6 +21,7 @@
 # Author: Fortega
 # Author: Germangfeler
 # Author: Isabelgg22
+# Author: Jbar82
 # Author: Jorge Ubilla
 # Author: Josecurioso
 # Author: Juan Cuartas
@@ -90,7 +91,7 @@ es:
     one: 1 error de identificación de esta especie
     other: '%{count} errores de identificación de esta especie'
   x_misidentifications_of_species_in_this_rank:
-    one: 1 identificación errónea de especies en esta %{rank}}}
+    one: 1 identificación errónea de especies en esta %{rank}}
     other: '%{count} identificaciones erróneas de especies en este %{<span class="notranslate">rango</span>}'
   x_observations:
     one: 1 observación
@@ -3053,7 +3054,7 @@ es:
   other_species_commonly_misidentified_as_this_species_in_place_html: Especies confundidas
     con esta en <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Otros taxones identificados erróneamente
-    como ésto
+    como éste %{rank}
   other_taxa_commonly_misidentified_as_this_rank_in_place_html: Otros taxones generalmente
     identificados de forma errónea como éste %{rank} en <a href="%{url}">%{place}</a>
   our_blog: Nuestro blog
@@ -3783,6 +3784,7 @@ es:
   related_species: Especies relacionadas
   relative_observations: Observaciones relativas
   relationship: Relación
+  relationship_unknown_count: Cuenta de relación desconocida
   relationship_x: 'Relación: %{relationship}'
   relationships:
     match: coinciden
@@ -4325,6 +4327,16 @@ es:
   take_me_facebook: ¡Sí, lléveme a Facebook!
   take_me_flickr!: ¡Sí, lléveme a Flickr!
   take_me_back: Llévame de vuelta
+  target_list_alert: ¿Estás seguro que intentaste observar todas las especies en la
+    lista de objetivos? Recuerda que cualquier especie en tu lista de objetivos no
+    observada será interpretada como ausente, así que es muy importante que tu lista
+    de objetivos refleje con exactitud el conjunto de especies que intentaste detectar
+  target_list_warning: Recuerda que todo lo cubierto por tu lista de objetivos que
+    no observaste dentro del radio o duración de este viaje será interpretado como
+    una ausencia. Es muy importante que tu lista de objetivos refleje precisamente
+    el conjunto de especies que intentaste detectar. Si no intentaste detectar una
+    especie en tu lista de objetivos o todas las especies cubiertas por un grupo en
+    tu lista de objetivos, por favor quítala.
   taxa: Taxones
   taxa_with_unknown_relationships: Taxones con relaciones desconocidas
   taxa_info: Información sobre taxones
@@ -4853,6 +4865,9 @@ es:
       file_too_big: El archivo tiene que ser de menos de %{megabytes} MB
       unsupported_file_type: Tipo de archivo no reconocidos. Se aceptan JPG, PNG,
         GIF, WAV, AAC, MP3 y MP4 (solo audio).
+    resize_tip: Si tus fotos son demasiado grandes, intenta recortarlas a un máximo
+      de 2048 por 2048 píxeles. Esto le sucederá a todas las fotos en el servidor
+      de todos modos, y hará que la carga de imágenes sea más rápida.
     tooltips:
       add: Añadir observaciones
       combine: Combinar observaciones seleccionadas
