@@ -2882,10 +2882,7 @@ class Observation < ActiveRecord::Base
   end
 
   def inaccurate_location?
-    if metric = quality_metric_score(QualityMetric::LOCATION)
-      return metric <= 0.5
-    end
-    false
+    !passes_quality_metric?( QualityMetric::LOCATION )
   end
 
   def update_mappable
