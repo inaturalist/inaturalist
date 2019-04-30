@@ -6259,12 +6259,6 @@ en:
           concepts, and they only include species, not infraspecific taxa like
           subspecies or varieties.
         discoveries_desc: "Most recent newly-identified species in this taxon"
-        trending_desc: Most-observed taxa in the last month
-        trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
-        rare_desc: Least-observed threatened taxa
-        rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
-        wanted_desc: Species in this taxon that have not been observed yet.
-        no_trending_desc: Nothing below this taxon observed in the last month
         frequency:
           research: Research Grade
           verifiable: Verifiable
@@ -6280,6 +6274,10 @@ en:
           "Life Stage=pupa": Pupa
           "Life Stage=adult": Adult
           unannotated: No Annotation
+        max_photos_desc: |
+          A taxon can only have %{max} photos. You'll need to remove existing
+          photos to add more.
+        no_trending_desc: Nothing below this taxon observed in the last month
         photo_chooser_modal_desc: |
           Drag photos here from the left, or drag photos here to re-arrange.
         photo_chooser_modal_explanation: |
@@ -6287,11 +6285,16 @@ en:
           and its descendants. The photos chosen for this
           taxon will show first, though. The first photo will be
           the default image used across the site.
+        rare_desc: Least-observed threatened taxa
+        rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
           Site curators have temporarily disabled showing <a href="%{url}">this
           content from Wikipedia</a>. You can help by editing the page on
           Wikipedia to make it appropriate for this taxon, or by flagging this
           taxon to bring it to the attention of site curators.
+        trending_desc: Most-observed taxa in the last month
+        trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
+        wanted_desc: Species in this taxon that have not been observed yet.
     taxon_changes:
       move_children_desc: |
         Children of the input taxon that are genera or coarser will be moved to
@@ -7056,6 +7059,11 @@ en:
               bad_format: |
                 can only contain standard Latin characters, hyphens, spaces, and
                 ×; note that putative taxa and cultivars are not allowed
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: |
+                cannot have more than %{max} photos
         user:
           attributes:
             login:

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { findDOMNode } from "react-dom";
 import { DragSource as dragSource, DropTarget as dropTarget } from "react-dnd";
 import _ from "lodash";
+import { MAX_TAXON_PHOTOS } from "../../shared/util";
 import { PHOTO_CHOOSER_DRAGGABLE_TYPE } from "./photo_chooser_constants";
 import PhotoChooserPhoto from "./photo_chooser_photo";
 
@@ -46,6 +47,11 @@ const targetSpec = {
   },
   drop( props, monitor ) {
     const dragPhoto = monitor.getItem( );
+    const { totalChosenPhotos } = props;
+    if ( totalChosenPhotos >= MAX_TAXON_PHOTOS ) {
+      props.removePhoto( dragPhoto.chooserID );
+      return;
+    }
     if ( dragPhoto.origin === "external" ) {
       props.dropNewPhoto( dragPhoto.chooserID );
     }
@@ -57,7 +63,7 @@ const sourceCollect = ( connect, monitor ) => ( {
   isDragging: monitor.isDragging( )
 } );
 
-const targetCollect = ( connect ) => ( {
+const targetCollect = connect => ( {
   connectDropTarget: connect.dropTarget( )
 } );
 
@@ -106,7 +112,8 @@ ChosenPhoto.propTypes = {
   movePhoto: PropTypes.func,
   removePhoto: PropTypes.func,
   infoURL: PropTypes.string,
-  isDefault: PropTypes.bool
+  isDefault: PropTypes.bool,
+  totalChosenPhotos: PropTypes.number
 };
 
 // export default ChosenPhoto;

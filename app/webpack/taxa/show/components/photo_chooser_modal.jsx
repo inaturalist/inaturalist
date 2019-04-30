@@ -8,11 +8,13 @@ import {
   ButtonGroup
 } from "react-bootstrap";
 import _ from "lodash";
+import inatjs from "inaturalistjs";
 import { fetch } from "../../../shared/util";
+import { MAX_TAXON_PHOTOS } from "../../shared/util";
 import ExternalPhoto from "./external_photo";
 import ChosenPhoto from "./chosen_photo";
 import PhotoChooserDropArea from "./photo_chooser_drop_area";
-import inatjs from "inaturalistjs";
+
 
 class PhotoChooserModal extends React.Component {
   constructor( props ) {
@@ -127,7 +129,7 @@ class PhotoChooserModal extends React.Component {
         error => {
           // TODO handle error better
           this.setState( { loading: false } );
-          console.log( "[DEBUG] error: ", error );
+          // console.log( "[DEBUG] error: ", error );
         }
       )
       .then( json => {
@@ -152,7 +154,7 @@ class PhotoChooserModal extends React.Component {
   }
 
   movePhoto( dragIndex, hoverIndex ) {
-    const { chosen } = this.state;
+    const { chosen, photos } = this.state;
     const dragPhoto = chosen[dragIndex];
     if ( !dragPhoto ) {
       return;
@@ -261,6 +263,7 @@ class PhotoChooserModal extends React.Component {
         </Button>
       </ButtonGroup>
     );
+    const totalChosenPhotos = _.filter( chosen, p => !p.candidate ).length;
     return (
       <Modal
         show={visible}
@@ -352,6 +355,11 @@ class PhotoChooserModal extends React.Component {
                 <p>
                   { I18n.t( "views.taxa.show.photo_chooser_modal_desc" ) }
                 </p>
+                { totalChosenPhotos >= MAX_TAXON_PHOTOS && (
+                  <p className="alert alert-warning">
+                    { I18n.t( "views.taxa.show.max_photos_desc", { max: MAX_TAXON_PHOTOS } ) }
+                  </p>
+                ) }
                 <div className="stacked photos">
                   { _.map( chosen, ( photo, i ) => (
                     <ChosenPhoto
@@ -366,6 +374,7 @@ class PhotoChooserModal extends React.Component {
                       candidate={photo.candidate}
                       infoURL={this.infoURL( photo )}
                       isDefault={i === 0}
+                      totalChosenPhotos={totalChosenPhotos}
                     />
                   ) ) }
                 </div>
