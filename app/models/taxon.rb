@@ -310,6 +310,7 @@ class Taxon < ActiveRecord::Base
     "oman",
     "pinecone",
     "sea",
+    "sinaloa",
     "tanzania",
     "virginia",
     "winged insect"
