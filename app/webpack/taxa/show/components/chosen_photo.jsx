@@ -48,11 +48,11 @@ const targetSpec = {
   drop( props, monitor ) {
     const dragPhoto = monitor.getItem( );
     const { totalChosenPhotos } = props;
-    if ( totalChosenPhotos >= MAX_TAXON_PHOTOS ) {
-      props.removePhoto( dragPhoto.chooserID );
-      return;
-    }
     if ( dragPhoto.origin === "external" ) {
+      if ( totalChosenPhotos >= MAX_TAXON_PHOTOS ) {
+        props.removePhoto( dragPhoto.chooserID );
+        return;
+      }
       props.dropNewPhoto( dragPhoto.chooserID );
     }
   }
