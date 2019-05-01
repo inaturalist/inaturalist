@@ -143,12 +143,7 @@
                   }
                   obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
                 = link_to observations_url(obs_params), :class => "readmore" do
-                  View all observations made by 
-                  =@trip.user.login
-                  between
-                  =l @trip.start_time, :format => :short
-                  and
-                  =l @trip.stop_time, :format => :short
+                  =t( :search_observations)
         %section{:id => "comments"}
           - if @trip.published_at
             = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
