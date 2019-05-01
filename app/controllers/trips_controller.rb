@@ -36,6 +36,7 @@ class TripsController < ApplicationController
     @month = filter_params[:month] unless filter_params[:month].blank?
     place_id = filter_params[:place_id] || params[:place_id]
     @place = Place.find_by_id(place_id) unless place_id.blank?
+    @user = User.find_by_id( filter_params[:user_id].to_i ) unless filter_params[:user_id].blank?
     
     per_page = params[:per_page]
     per_page ||= 30
@@ -46,6 +47,7 @@ class TripsController < ApplicationController
     scope = scope.year( @year ) if @year
     scope = scope.month( @month ) if @month
     scope = scope.in_place( @place.id ) if @place
+    scope = scope.user( @user ) if @user
     @trips = scope.published.page( params[:page] ).per_page( per_page ).order( "posts.id DESC" )
     
     respond_to do |format|
@@ -119,7 +121,7 @@ class TripsController < ApplicationController
         @trip_obsevations = Observation.where( id: obs.map{ |a| a["id"] } )
         @target_list_set = []
         @target_list_taxa.each do |tlt|
-          if o = obs.select{ |o| o["taxon"]["ancestor_ids"].include? tlt.id }.limit( 8 )
+          if o = obs.select{ |o| o["taxon"]["ancestor_ids"].include? tlt.id }[0..7]
             @target_list_set << { taxon: tlt, observations: o }
           else
             @target_list_set << { taxon: tlt, observations: [] }
@@ -284,6 +286,7 @@ class TripsController < ApplicationController
     @month = filter_params[:month] unless filter_params[:month].blank?
     place_id = filter_params[:place_id] || params[:place_id]
     @place = Place.find_by_id(place_id) unless place_id.blank?
+    @user = User.find_by_id( filter_params[:user_id].to_i ) unless filter_params[:user_id].blank?
     
     per_page = params[:per_page]
     per_page ||= 30
@@ -295,6 +298,7 @@ class TripsController < ApplicationController
     scope = scope.year( @year ) if @year
     scope = scope.month( @month ) if @month
     scope = scope.in_place( @place.id ) if @place
+    scope = scope.user( @user.id ) if @user
     @trips = scope.published.page( params[:page] ).per_page( per_page ).order( "posts.id DESC" )
     if @taxon
       @occupancy = Trip.presence_absence( @trips, @taxon.id, place_id||=nil, @year||=nil, @month||=nil )

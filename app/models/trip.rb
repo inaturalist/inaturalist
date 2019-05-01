@@ -22,6 +22,7 @@ class Trip < Post
     joins( TRIP_PURPOSE_JOINS ).
     where( "tp.complete = true AND tp.resource_id IN (?)", [taxon.ancestor_ids, taxon.id].flatten )
   }  
+  scope :user, lambda{ |user_id| where( "user_id = ?", user_id ) }
   
   def set_parent
     self.parent ||= self.user
