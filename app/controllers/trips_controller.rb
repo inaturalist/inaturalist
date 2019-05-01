@@ -110,7 +110,7 @@ class TripsController < ApplicationController
           taxon_is_active: true,
           latitude: @trip.latitude,
           longitude: @trip.longitude,
-          radius: @trip.radius,
+          radius: ( @trip.radius == 0 ? 0 : @trip.radius / 1000.to_f ),
           d1: @trip.start_time.iso8601,
           d2: @trip.stop_time.iso8601,
           user_id: @trip.user_id,

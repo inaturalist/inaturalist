@@ -133,9 +133,13 @@
               .text-muted
                 :ruby
                   obs_params = {
-                    :d1 => @trip.start_time.iso8601,
-                    :d2 => @trip.stop_time.iso8601,
-                    :user_id => @trip.user_id
+                    taxon_is_active: true,
+                    latitude: @trip.latitude,
+                    longitude: @trip.longitude,
+                    radius: ( @trip.radius == 0 ? 0 : @trip.radius / 1000.to_f ),
+                    d1: @trip.start_time.iso8601,
+                    d2: @trip.stop_time.iso8601,
+                    user_id: @trip.user_id
                   }
                   obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
                 = link_to observations_url(obs_params), :class => "readmore" do
