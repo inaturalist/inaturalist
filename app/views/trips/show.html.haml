@@ -134,8 +134,8 @@
                 :ruby
                   obs_params = {
                     taxon_is_active: true,
-                    latitude: @trip.latitude,
-                    longitude: @trip.longitude,
+                    lat: @trip.latitude,
+                    lng: @trip.longitude,
                     radius: ( @trip.radius == 0 ? 0 : @trip.radius / 1000.to_f ),
                     d1: @trip.start_time.iso8601,
                     d2: @trip.stop_time.iso8601,
