@@ -251,7 +251,7 @@
         .modal-header
           %button.close{:type => "button", "data-dismiss" => "modal"} x
           %h4=t :enable_offline_access_for_mobile
-        = form_for @guide, disabled: true do |f|
+        = form_for @guide do |f|
           .modal-body
             .container-fluid
               = f.hidden_field :downloadable, :value => true
@@ -259,11 +259,7 @@
                 .col-xs-3.text-center
                   %i.fa.fa-mobile.fa-6{:style => "font-size:200px;width:100px;line-height:1;"}
                 .col-xs-9
-                  .notice.box
-                    We've temporarily disabled new downloadable guides while we work through performance issues related to the 2019 City Nature Challenge.
-                  %div{style: "text-decoration: line-through;"}
-                    =t 'views.guides.mobile_downloads_help_html'
-
+                  %p=t 'views.guides.mobile_downloads_help_html'
           .modal-footer
             %button.btn.btn-default{"data-dismiss" => "modal"}=t :cancel
-            = f.submit t(:enable_offline_access), disabled: true, :class => "btn btn-primary", :data => {'loading-click' => true}
+            = f.submit t(:enable_offline_access), :class => "btn btn-primary", :data => {'loading-click' => true}
