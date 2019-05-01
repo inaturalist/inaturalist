@@ -112,7 +112,7 @@ class TripsController < ApplicationController
           taxon_is_active: true,
           lat: @trip.latitude,
           lng: @trip.longitude,
-          radius: ( @trip.radius == 0 ? 0 : @trip.radius / 1000.to_f ),
+          radius: ( ( @trip.radius.blank? || @trip.radius == 0 ) ? 0 : (@trip.radius / 1000.to_f) ),
           d1: @trip.start_time.iso8601,
           d2: @trip.stop_time.iso8601,
           user_id: @trip.user_id,
@@ -121,7 +121,7 @@ class TripsController < ApplicationController
         @trip_obsevations = Observation.where( id: obs.map{ |a| a["id"] } )
         @target_list_set = []
         @target_list_taxa.each do |tlt|
-          if o = obs.select{ |o| o["taxon"]["ancestor_ids"].include? tlt.id }[0..7]
+          if o = obs.select{ |o| o["taxon"]["ancestor_ids"].include? tlt.id }[0..8]
             @target_list_set << { taxon: tlt, observations: o }
           else
             @target_list_set << { taxon: tlt, observations: [] }

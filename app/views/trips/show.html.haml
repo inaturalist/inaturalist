@@ -27,6 +27,8 @@
           = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
       - elsif @trip.parent.is_a?(Site)
         = link_to t(:x_blog, x: @trip.parent.name), site_posts_path
+      - elsif @trip.is_a?(Trip)
+        = link_to t(:trips), trips_path
       - else
         = link_to possessive_noun(@trip.user, t(:journal).downcase), journal_by_login_path(@trip.user.login)
     %li.active
