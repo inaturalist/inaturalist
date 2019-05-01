@@ -128,7 +128,7 @@
             %h2=t :observations
             .observations.medium.grid
               - compact do
-                = render :partial => "observations/cached_component", :collection => @trip.observations
+                = render :partial => "observations/cached_component", :collection => @trip_obsevations
             - if @trip.is_a?(Trip)
               .text-muted
                 :ruby

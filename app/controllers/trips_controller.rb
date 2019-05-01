@@ -116,12 +116,11 @@ class TripsController < ApplicationController
           user_id: @trip.user_id,
           per_page: 200
         } ).results
+        @trip_obsevations = Observation.where( id: obs.map{ |a| a["id"] } )
         @target_list_set = []
         @target_list_taxa.each do |tlt|
-          if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? tlt.id}
-            unless o.select{|i| i["obscured"]}.count > 0
-              @target_list_set << { taxon: tlt, observations: o }
-            end
+          if o = obs.select{ |o| o["taxon"]["ancestor_ids"].include? tlt.id }.limit( 8 )
+            @target_list_set << { taxon: tlt, observations: o }
           else
             @target_list_set << { taxon: tlt, observations: [] }
           end

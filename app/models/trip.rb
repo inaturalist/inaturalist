@@ -28,19 +28,9 @@ class Trip < Post
   end
 
   def observations
-    return Observation.where("1 = 2") if start_time.blank? || stop_time.blank? || radius.blank? || radius == 0 || latitude.blank? || longitude.blank?
-    obs = INatAPIService.observations( {
-      taxon_is_active: true,
-      lat: latitude,
-      lng: longitude,
-      radius: radius / 1000.to_f,
-      d1: start_time.iso8601,
-      d2: stop_time.iso8601,
-      user_id: user_id,
-      per_page: 200
-    } ).results
-    return Observation.where("1 = 2") if obs.count == 0
-    scope = Observation.find(obs.map{|a| a["id"]})
+    return Observation.where("1 = 2") if start_time.blank? || stop_time.blank?
+    scope = Observation.by(user).between_dates(start_time, stop_time)
+    scope = scope.in_place(place_id) unless place_id.blank?
     scope
   end
 
