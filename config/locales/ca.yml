@@ -4724,6 +4724,9 @@ ca:
   "true": Cert
   trending: Tendències
   trends: Tendència
+  trip_target_list_info: Aquest és un conjunt no redundant dels tàxons més generals
+    de la vostra llista d'objectius. Els tàxons representats per observacions ocultades
+    han estat exclosos. <a href="/pages/trips"> Llegiu més </a>.
   trusted: De confiança
   trusted_project?: És un projecte verificat?
   trust_this_person_with_your_private_coordinates: Compartiu amb aquestes persones
@@ -6532,6 +6535,16 @@ ca:
           Dades d'impacte i visualitzacions cortesia de <a href="https://www.altmetric.com">Altmetric</a>. La information sibre ús de les dades cortesia dels nostres amics de <a href="https://www.gbif.org/">Global Biodiversity Information Facility </a>.
           <br/>
           <a href="%{url}">Veure tots els %{numStudies} estudis</a>
+        sunburst_desc_html: Els tàxons observats es disposen en un diagrama radial
+          (Sunburst) jeràrquic. La base de la jerarquia és al centre, començant per
+          "Vida" i acaba amb les espècies als extrems exteriors. La mida de cada arc
+          és proporcional al nombre d’observacions d’aquest tàxon i els colors corresponen
+          als colors habituals amb els quals representem els tàxons (verd per a plantes,
+          taronja per a insectes, blau per a la majoria d’altres animals, etc.), així
+          que si veieu molt de verd, això significa que heu observat moltes plantes.
+          <strong> Feu clic a un arc per col·locar aquest tàxon al centre </strong>
+          i els seus fills al seu voltant o <strong> feu clic al centre per tornar
+          a la jerarquia </strong>.
     taxa:
       edit:
         high_status_conservation_status_notice_html: La incorporació d’un estat de
@@ -6591,6 +6604,26 @@ ca:
           Les anotacions són un sistema nou d'afegir metadades a les observacions utilitzant un vocabulari definit de termes. Per ara només estem fent servir "Etapa Vital" i "Fenologia vegetal" (per determinar si la planta està florint o fructificant). Encara no tenim una manera d'afegir anotacions directament, pel que ara estem convertint les dades dels camps d'observació al d'anotacions.
           Si no podeu esperar que acabem el sistema d'anotacions, pots contribuir a les anotacions de "Etapa Vital" afegint al camp d'observació alguns dels valors següents: edat, ècdisi, Pupa,
           Nimfa, larva, ou, o juvenil. En particular, els camps "Etapa Vital" i  "Etapa Vital dels Insectes" són correctes. Per a la "Fenologia vegetal," busquem qualsevol camp amb la paraula "Fenologia" en el seu nom i "Flor" o "Fruit" en el valor, de manera que el camp "Floració Fenologia" és una bon nom per utilitzar.
+        charts_help_relative_observations: Mostrar les freqüències com a proporció
+          relativa de totes les observacions ajuda a relativitzar l'efecte del creixement
+          global del lloc. Per exemple, si el lloc està creixent perquè aconseguim
+          més observacions cada any que passa, tenim més observacions de tots els
+          tàxons individuals. Això no informa sobre si hi ha més individus d'aquest
+          tàxon o si hi ha més persones que l'observen. Mostrar la proporció relativa
+          indica que si hi ha un total de 100 observacions totals, i 20 són d'aquest
+          tàxon, la proporció és 0,2 (20/100). Si s'observen 2,000 observacions a
+          l'any i 400 observacions són d'aquest tàxon, la proporció és també de 0,2
+          (400/2.000). Això causa algunes aberracions quan hi ha molt pocs observadors
+          en una àrea, o per taxons que no són molt observats, però el mateix succeeiria
+          amb els recomptes totals.
+        complete_taxon_desc: Els taxons "Complerts" tenen tots els seus taxons fills
+          i existent d'un rang específic a la base de dades del lloc. Quan un taxó
+          està complet fins al nivell d'espècies, per exemple, podem dir quantes de
+          les seves espècies han estat observades i quantes encara manquen per fer-ho.
+          Els recomptes d'espècies en taxons "complets" fins a nivell específic no
+          inclouen aquelles espècies "No comptables" com són les extintes o inactives,
+          i només inclouen espècies, no als taxons infraespecífics com subespècies
+          o varietats.
         discoveries_desc: Espècie identificada més recentment d'aquest taxon
         trending_desc: Tàxons més observats el darrer mes
         trending_in_place_desc_html: Tàxom més observat el darrer mes a <a href="%{url}">%{place}</a>
@@ -6624,6 +6657,21 @@ ca:
           Podeu ajudar-nos editant la pàgina de la Wiquipèdia perquè sigui apropiada
           per a aquest taxó, o marcant aquest taxó per cridar l'atenció dels supervisors
           del lloc.
+    taxon_changes:
+      move_children_desc: Els tàxons d’entrada que són gèneres o superiors es dirigiran
+        als tàxons de destí; les espècies, les subespècies, les varietats, etc. es
+        canviaran amb els noms equivalents amb el nom del nou gènere o espècie.
+      form:
+        move_children_desc_html: Marcant aquesta opció mourà els fills del tàxon indicat
+          al nou tàxon per Intercanviar i Mesclar quan el canvi s'hagi produït. Si
+          el canvi afecta un gènere o categoria inferior, crearà un Intercanvi de
+          Tàxons de tots els fills que tinguin el nom implicat. Per exemple, i canvieu
+          la família Canidae a la Dogidae, aixó suposa el canvi de la tàxon superior
+          del gènere <i>Canis</i> de Canidae a Dogidae. Si canvieu el gènere el gènere
+          <i>Canis</i> al gènere <i>Dogis</i> crearà i produirà un Tàxon d'inercanvi
+          per canviar <i>Canis lupus</i> a <i>Dogis lupus</i>i <i>Canis lupus</i>
+          ssp.<i>lupus</i> a <i>Dogis lupus</i> ssp.<i>lupus</i>. El que suposarà
+          introduir un gran desordre taxonòmic, així que aneu amb cura.
     taxon_links:
       form:
         name_with_rank_desc: El nom del tàxon està en el rang.Per a rangs infraespecífics,

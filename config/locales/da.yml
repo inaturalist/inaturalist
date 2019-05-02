@@ -2007,6 +2007,7 @@ da:
   latitude: Breddegrad
   latitude_in_decimals: Breddegrad i decimale grader f.eks. 38.123
   latitude_slash_y_coord_slash_northing: Breddegrad / y koordinat / nordlig
+  latitude_value: 'Breddegrad: %{latitude}'
   layers: Lag
   layout: Visning
   leaderboard: Topliste
@@ -3834,6 +3835,12 @@ da:
     observationer på den pågældende dag også sløret, for at forhindre folk
     fra at gætte koordinaterne baseret på observationer lavet omkring det samme
     tidspunkt. Man kan også anvende denne beskyttelse på andre koordinater for at skjule dem.
+  same_day_private: En anden observation af denne person på denne dag er privat
+  same_day_private_desc: |-
+    Når koordinater er skjult på grund af en truet takson, er alle andre
+    observationer af denne person på den dag er også skjult, for at forhindre folk
+    fra at gætte koordinaterne baseret på observationer lavet omkring det samme
+    tidspunkt. Andre kan også anvende denne beskyttelse på koordinater de ønsker at skjule.
   said: sagde
   sat: Lør
   satellite: satellit
@@ -4233,6 +4240,9 @@ da:
   take_me_facebook: Ja, før mig til Facebook!
   take_me_flickr!: Ja, før mig til Flickr!
   take_me_back: Tag mig tilbage
+  target_list_alert: Er du sikker på, at du forsøgte at observere alle arter på din
+    målliste? Husk at alt, der er på din målliste, ikke fortolkes som værende så vigtigt,
+    at din målliste nøjagtigt afspejler det sæt arter du forsøgte at registrere
   taxa: Taksa
   taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksa info
@@ -4502,6 +4512,7 @@ da:
     Der var nogle problemer med din CSV fil. Ret venligst rækkerne med fejl. Selvfølgelig kunne problemet også være fra vores side. Hvis det er
     tilfældet, så fortæl os det.
   there_were_some_problems_with_fields: 'Der var nogle problemer med følgende felter:'
+  there_were_some_problems_with_these_files: 'Der var nogle problemer med disse filer:'
   theres_also: der er også
   theres_something_wrong_with_taxon_framework_relationship: Der er noget galt her
     - vi kan ikke bestemme forbindelsen mellem intern og ekstern taksa
@@ -4742,6 +4753,14 @@ da:
   upload_range: Upload område
   uploaded_by: Uploaded af
   uploader:
+    errors:
+      file_too_big: Filen skal være mindre end %{megabytes} MB
+      unsupported_file_type: Filtypen understøttes ikke. Vi accepterer JPG, PNG, GIF,
+        WAV, AAC og MP4 (kun audio)
+    resize_tip: |-
+      Hvis dine fotofiler er for store, kan du prøve at beskære dem til en maksimum størrelse på
+      2048 ved 2048 pixels. Dette sker med alle fotos på
+      server alligevel, og muliggør hurtigere upload.
     tooltips:
       add: Tilføj observation(er)
       combine: Kombinér valgte observationer
@@ -4750,6 +4769,7 @@ da:
       remove_observation: Fjern observation
       remove_photo: Fjern foto
       select_all: Vælg alle observationer
+      upload_failed: Upload mislykkedes
   uploading_num_of_count_photos:
     one: Uploader foto...
     other: Uploader %{num} af %{count} foto´s...
@@ -4866,6 +4886,7 @@ da:
   view_flags: Vis markeringer
   view_flags_for_x_html: Vis markeringer for %{x}
   view_full_observation: Vis fuld observation
+  view_full_size_photo: Se foto i fuld størrelse
   view_invitation: Vis invitation
   view_journal: Vis journal
   view_leaderboard: Vis topliste
@@ -4892,6 +4913,8 @@ da:
   view_observation_flags: Vis observations markeringer
   view_observations_by_everyone: Vis observation af alle
   view_observations_by_these_users: Vis observationer af disse brugere
+  view_observations_causing_this_observation_to_be_obscured: Se observationer, der
+    får denne observation til at være sløret
   view_observations_of_this_taxon_by: Vis observationer af denne takson af
   view_observations_raquo: Vis observationer &raquo;
   view_on: Vis på
@@ -5128,10 +5151,11 @@ da:
     Du indstiller dette projekt til at samle alle observationer, der matcher
     følgende regler: %{rules} Vil du fortsætte?
   you_are_submitting_obs_without_photos_and_names: |-
-    Du indsender indlæg uden fotos og takson navne.
-    Disse observationer vil være meget vanskelige at identificere korrekt.
-  you_are_submitting_obs_with_no_date_or_no_location: Du indsender observationer uden
-    datoer eller steder.
+    Du indsender observationer uden fotos og taksonnavne.
+    Observationer uden disse informationer, er ofte umulige at identificere , og vil ikke blive vist i observationssøgninger.
+  you_are_submitting_obs_with_no_date_or_no_location: |-
+    Du indsender observationer uden dato eller sted.
+    Observationer uden disse informationer, er ofte umulige at identificere , og vil ikke blive vist i observationssøgninger.
   you_are_subscribed_to: Du abonnerer på
   you_arent_a_member_of_that_project: Du er ikke medlem af dette projekt.
   you_arent_following_that_person: Du følger ikke denne person.
@@ -6281,9 +6305,12 @@ da:
         note_you_can_delete_the_time: '(OBS: Du kan slette tidszone og nøjagtige tidspunkt,
           hvis du i stedet vil bruge hele dage.)'
         or_drag_and_drop: (eller træk og slip)
-        please_specify_the_requirements_html: Specificér venligst observertionskravene
-          for observationer, der tilføjes til dette projekt. Du kan vælge flere arter,
-          steder og brugere der inkluderes automatisk.
+        please_specify_the_requirements_html: |-
+          Angiv venligst kravene til de observationer, der kan tilføjes til
+          dette projekt. Du kan angive flere arter, steder, brugere eller
+          Kvaliteter indgår automatisk, eller efterlad et felt tomt hvis
+          du har ikke noget specifikt krav til det. Forklaringer for hvert felt
+          kan findes <a href="%{url}">here</a>.
         project_background_color: Projektoversigt baggrundsfarve
         project_background_color_help: Sørg for at vælge en farve, der er mørk nok,
           så den hvide overlejrede tekst er læselig.
@@ -6768,14 +6795,19 @@ da:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
           Hvis du skifter mening, kan du altid
           <a href='/users/edit'> redigere dine indstillinger </a>.
-        inaturalist_network_affiliation_desc_html: |-
-          <a href="%{url}" target="_blank"> iNaturalist Network </a> er en
-          samling af lokaliserede websites forbundet med det globale INaturalist
-          fællesskab. Du kan ændre din primære side tilknytning, hvilket betyder
-          at dit indhold vil have en vis prioritet på dette websted, men betyder også, at ejerne af dette websted har ret til at downloade og
-          se alle dine data, ligesom iNaturalist webadministratorer kan. Hvis
-          det websted forlader netværket, vil hele din konto og data flytte med
-          den side.
+        inaturalist_network_affiliation_desc_html: "<a href=\"%{url}\" target=\"_blank\">
+          iNaturalist Network </a> er en\nsamling af lokale hjemmesider, som er forbundet
+          med det globale INaturalist\nfællesskab. \nNetværkssider understøttes af
+          lokale institutioner, der har underskrevet en aftale med iNaturalist om
+          at\nfremme lokal brug og gavn af biodiversitet. De har adgang\ntil rigtige
+          koordinater fra deres lande, der automatisk er sløret for offentligheden,
+          for at beskytte truede arter.\n</p>\n<p>\nDit brugernavn og adgangskode
+          fungerer på alle websteder, der er en del af iNaturalist Network. \nHvis
+          du vælger at deltage i et netværk websted, vil de lokale institutioner,
+          der opererer hvert websted også have adgang til din e-mail-adresse (kun
+          for at kommunikere med dig om\niNat aktiviteter) og adgang til de rigtige
+          koordinater for observationer, der er offentligt sløret eller privat.\n</p>\n<p>\nOBS:
+          Skift ikke for sjov, din tilknytning, hvis du har mere end 1000 observationer.\n</p>"
         licensing_desc_html: |-
           Licensering af dit indhold giver andre personer juridisk ret til at bruge det
           uden at spørge om din tilladelse, hvis de overholder betingelserne i
@@ -6819,6 +6851,11 @@ da:
         scientific_name_first_desc: Vis videnskabelige navne før lokale navne.
         youve_used_all_of_your_blocks: Du har brugt alle dine blokeringer. Fjern en
           blokering for at tilføje en anden.
+        same_day_geoprivacy_protection: Samme dag geofortrolighedsbeskyttelse
+        prefers_coordinate_interpolation_protection_desc: |-
+          Når du indstiller geofortroligheden for en observation til "sløret" eller
+          "privat", gælder den for alle observationer, for denne dag, for at gøre det sværere for andre mennesker at gætte de rigtige koordinater baseret på observationer lavet omkring det samme
+          tidspunkt.
       recent:
         about_recent_users: Om
         definitions_html: <dl> <dt> Sandsynligvis Spam </dt><dd> Bruger der sandsynligvis
@@ -7344,6 +7381,10 @@ da:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
                 kurator for denne takson
+            name:
+              bad_format: |-
+                kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
+                ×; Bemærk, at formodede taksa og sorter ikke er tilladt
         taxon_name:
           attributes:
             lexicon:
@@ -7352,6 +7393,9 @@ da:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: kan
                 ikke matche det videnskabelige navn på en art i dette leksikon
+              bad_format: |-
+                kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
+                ×; Bemærk, at formodede taxa og sorter ikke er tilladt
         user:
           attributes:
             login:
