@@ -10,10 +10,10 @@
     %tbody
       %tr
         %td
-          - for taxon in taxon_change.input_taxa
-            = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true         
+          - for taxon in taxon_change.input_taxa.compact
+            = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true
         %td
-          - for taxon in taxon_change.output_taxa
+          - for taxon in taxon_change.output_taxa.compact
             %div
               = render "shared/taxon", taxon: taxon, link_url: taxon, include_id: true
   %p
