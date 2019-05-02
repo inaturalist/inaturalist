@@ -934,16 +934,6 @@ shared_examples_for "an ObservationsController" do
       }.not_to raise_error
     end
 
-    it "should allow sorting with different cases" do
-      o = Observation.make!
-      get :index, format: :json, sort: "ASC"
-      expect( JSON.parse(response.body).length ).to eq 1
-      get :index, format: :json, sort: "asc"
-      expect( JSON.parse(response.body).length ).to eq 1
-      get :index, format: :json, sort: "DeSC"
-      expect( JSON.parse(response.body).length ).to eq 1
-    end
-
     it "should filter by hour range" do
       o = Observation.make!(:observed_on_string => "2012-01-01 13:13")
       expect(o.time_observed_at).not_to be_blank

@@ -236,7 +236,84 @@ module ObservationSearch
     # normalizes them for use in our search methods like query (database) or
     # elastic_query (ES)
     def query_params(params)
+      accepted_params = [
+        :apply_project_rules_for,
+        :BBOX,
+        :captive,
+        :created_d1,
+        :created_d2,
+        :created_on,
+        :cs,
+        :csa,
+        :d1,
+        :d2,
+        :day,
+        :extra,
+        :filter_spam,
+        :h1,
+        :h2,
+        :has,
+        :has_photos,
+        :hrank,
+        :iconic_taxa,
+        :id_above,
+        :ident_taxon_id,
+        :ident_user_id,
+        :identified,
+        :introduced,
+        :license,
+        :limit,
+        :list_id,
+        :login,
+        :lrank,
+        :m1,
+        :m2,
+        :mappable,
+        :min_id,
+        :month,
+        :nelat,
+        :nelng,
+        :not_in_project,
+        :observed_on,
+        :observed_on_day,
+        :observed_on_month,
+        :observed_on_year,
+        :on,
+        :order,
+        :order_by,
+        :page,
+        :pcid,
+        :per_page,
+        :photo_license,
+        :place,
+        :place_id,
+        :projects,
+        :q,
+        :quality_grade,
+        :rank,
+        :reviewed,
+        :search_on,
+        :site_id,
+        :skip_order,
+        :swlat,
+        :swlng,
+        :taxon_id,
+        :taxon_ids,
+        :taxon_name,
+        :updated_since,
+        :user,
+        :user_id,
+        :viewer,
+        :week,
+        :year
+      ]
       p = params.clone.symbolize_keys
+      unknown_params = params.keys.select{|k|
+        k.to_s !~ /field\:/ && !%w(controller action id format).include?( k.to_s )
+      } - accepted_params
+      if unknown_params.size > 0
+        raise "Unknown query params: #{unknown_params.join( ", " )}"
+      end
       unless p[:apply_project_rules_for].blank?
         if proj = Project.find_by_id(p[:apply_project_rules_for])
           p.merge!(proj.observations_url_params(extended: true))
