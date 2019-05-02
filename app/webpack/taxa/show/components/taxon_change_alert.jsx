@@ -5,11 +5,19 @@ import moment from "moment";
 import { urlForTaxon, commasAnd } from "../../shared/util";
 
 const TaxonChangeAlert = ( { taxon, taxonChange } ) => {
-  if ( !taxonChange || ( taxon.is_active && taxonChange.input_taxa[0] && taxonChange.input_taxa[0].id !== taxon.id ) ) {
+  if (
+    !taxonChange
+    || ( taxon.is_active && taxonChange.input_taxa[0] && taxonChange.input_taxa[0].id !== taxon.id )
+  ) {
     return ( <div /> );
   }
   const committedOn = taxonChange.committed_on ? moment( taxonChange.committed_on ) : null;
-  const linkToTaxon = t => `<a href=${urlForTaxon( t )} class="sciname ${t.rank.toLowerCase( )}">${t.name} [${t.id}]</a>`;
+  const linkToTaxon = t => {
+    if ( !t ) {
+      return I18n.t( "unknown" );
+    }
+    return `<a href=${urlForTaxon( t )} class="sciname ${t.rank.toLowerCase( )}">${t.name} [${t.id}]</a>`;
+  };
   const renderTaxonSwap = ( ) => {
     if ( committedOn ) {
       return I18n.t( "change_types.input_taxon_was_replaced_by_output_taxon_html", {

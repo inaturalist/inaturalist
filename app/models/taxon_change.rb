@@ -43,7 +43,7 @@ class TaxonChange < ActiveRecord::Base
     where("t1.source_id = ? OR t2.source_id = ?", source, source)
   }
   
-  scope :taxon, lambda{|taxon|
+  scope :ancestor_taxon, lambda{|taxon|
     joins(TAXON_JOINS).
     where(
       "t1.id = ? OR t2.id = ? OR t1.ancestry = ? OR t1.ancestry = ? OR t1.ancestry LIKE ? OR t1.ancestry LIKE ?",
@@ -51,6 +51,10 @@ class TaxonChange < ActiveRecord::Base
       "#{taxon.ancestry}/#{taxon.id}", "#{taxon.ancestry}/#{taxon.id}",
       "#{taxon.ancestry}/#{taxon.id}/%", "#{taxon.ancestry}/#{taxon.id}/%"
     )
+  }
+  scope :taxon, lambda{|taxon|
+    joins(TAXON_JOINS).
+    where("t1.id = ? OR t2.id = ?", taxon, taxon)
   }
   
   scope :input_taxon, lambda{|taxon|
@@ -110,7 +114,7 @@ class TaxonChange < ActiveRecord::Base
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
     # unless they are also inputs
     elsif type == "TaxonMerge"
-      return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.pluck(:id).include? e.id) }}.any?
+      return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.map(&:id).include? e.id) }}.any?
     elsif type == "TaxonStage"
       return false
     end
@@ -143,7 +147,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def output_taxa
-    taxa.sort_by(&:id)
+    taxon_change_taxa.select{|tct| !tct._destroy}.map(&:taxon).sort_by(&:id)
   end
 
   def verb_phrase
