@@ -311,8 +311,8 @@ class List < ActiveRecord::Base
       lt.skip_index_taxon = true
       refresh_listed_taxon(lt)
     end
-    # index taxa in bulk
-    Taxon.elastic_index!(ids: listed_taxa.map(&:taxon_id).uniq)
+    # index taxa separately in delayed jobs
+    listed_taxa.each{ |lt| lt.index_taxon }
     Rails.logger.info "[INFO #{Time.now}] Finished List.refresh_with_observation for #{observation}"
   end
   
