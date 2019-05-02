@@ -307,6 +307,7 @@ class Taxon < ActiveRecord::Base
     "larva",
     "lichen",
     "lizard",
+    "mexico",
     "oman",
     "pinecone",
     "sea",
