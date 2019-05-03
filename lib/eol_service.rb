@@ -16,7 +16,8 @@ class EolService
         title: "EOL Service",
         documentation_url: "https://eol.org/api",
         base_url: "https://eol.org/api/",
-        cache_hours: 720)
+        cache_hours: 720
+      )
     end
     @api_endpoint
   end
