@@ -28,10 +28,8 @@ function mapDispatchToProps( dispatch ) {
   return {
     setAttributes: attrs => dispatch( setAttributes( attrs ) ),
     onFileDrop: ( droppedFiles, field ) => dispatch( onFileDrop( droppedFiles, field ) ),
-    addProjectRule: ( operator, operandType, operand ) =>
-      dispatch( addProjectRule( operator, operandType, operand ) ),
-    removeProjectRule: ( operator, operandType, operand ) =>
-      dispatch( removeProjectRule( operator, operandType, operand ) ),
+    addProjectRule: ( operator, operandType, operand ) => dispatch( addProjectRule( operator, operandType, operand ) ),
+    removeProjectRule: ( operator, operandType, operand ) => dispatch( removeProjectRule( operator, operandType, operand ) ),
     addManager: user => dispatch( addManager( user ) ),
     removeProjectUser: user => dispatch( removeProjectUser( user ) ),
     setDescription: description => dispatch( setDescription( description ) ),
