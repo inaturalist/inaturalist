@@ -869,6 +869,9 @@ class User < ActiveRecord::Base
       user.sane_destroy
     end
 
+    puts "Updating flags created by user..."
+    Flag.where( user_id: user_id ).update_all( user_id: -1 )
+
     deleted_observations = DeletedObservation.where( user_id: user_id )
     puts "Deleting #{deleted_observations.count} DeletedObservations"
     deleted_observations.delete_all

@@ -1181,6 +1181,22 @@ describe User do
         expect( o.latitude ).to eq 1
       end
     end
+
+    describe "forget" do
+      before(:each) { enable_elastic_indexing( Observation ) }
+      after(:each) { disable_elastic_indexing( Observation ) }
+      it "changes user_id in flags to -1" do
+        f = Flag.make!
+        other_f = Flag.make!
+        flag_user_id = f.user.id
+        expect( flag_user_id ).not_to be_blank
+        User.forget( f.user_id )
+        f.reload
+        expect( f.user_id ).to eq -1
+        other_f.reload
+        expect( other_f.user_id ).to be > 0
+      end
+    end
   end
 
   protected

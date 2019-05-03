@@ -31,8 +31,10 @@
             %td
               - if @flag.user
                 = link_to @flag.user.login, @flag.user
-              - else
+              - elsif @flag.user_id == 0
                 = @site.site_name_short
+              - else
+                =t :deleted_user
             %td=formatted_user_text @flag.flag
             %td
               - unless @flag.resolver.nil?
