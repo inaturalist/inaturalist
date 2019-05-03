@@ -97,7 +97,7 @@ gem "yui-compressor"
 gem "xmp", git: "https://github.com/inaturalist/xmp.git"
 gem "rubyzip"
 # these need to be loaded after will_paginate
-gem "elasticsearch-model", git: "https://github.com/elasticsearch/elasticsearch-rails.git", ref: "64f31b41c073f05eac7d089aeea07c4366b7adca"
+gem "elasticsearch-model"
 gem "elasticsearch-rails", git: "https://github.com/elasticsearch/elasticsearch-rails.git", ref: "64f31b41c073f05eac7d089aeea07c4366b7adca"
 gem "elasticsearch", "5.0.4"
 gem "elasticsearch-api", "5.0.4"

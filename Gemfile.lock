@@ -30,10 +30,6 @@ GIT
   revision: 64f31b41c073f05eac7d089aeea07c4366b7adca
   ref: 64f31b41c073f05eac7d089aeea07c4366b7adca
   specs:
-    elasticsearch-model (6.0.0.alpha1)
-      activesupport (> 3)
-      elasticsearch (> 1)
-      hashie
     elasticsearch-rails (6.0.0.alpha1)
 
 GIT
@@ -317,6 +313,10 @@ GEM
       elasticsearch-transport (= 5.0.4)
     elasticsearch-api (5.0.4)
       multi_json
+    elasticsearch-model (6.0.0)
+      activesupport (> 3)
+      elasticsearch (> 1)
+      hashie
     elasticsearch-transport (5.0.4)
       faraday
       multi_json
@@ -700,7 +700,7 @@ DEPENDENCIES
   dynamic_form
   elasticsearch (= 5.0.4)
   elasticsearch-api (= 5.0.4)
-  elasticsearch-model!
+  elasticsearch-model
   elasticsearch-rails!
   exifr
   faker
