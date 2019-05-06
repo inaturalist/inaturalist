@@ -4297,6 +4297,17 @@ pt-BR:
   take_me_facebook: Sim, acesse o Facebook!
   take_me_flickr!: Sim, acesse o Flickr!
   take_me_back: Me leve de volta
+  target_list_alert: Você tem certeza de que tentou observar todas as espécies cobertas
+    pela sua lista de alvos? Lembre-se de que qualquer coisa abrangida pela sua lista
+    de segmentação que você não tenha observado será interpretada como uma ausência,
+    por isso é muito importante que sua lista de segmentações reflita com precisão
+    o conjunto de espécies que você tentou detectar
+  target_list_warning: Lembre-se de que qualquer coisa coberta pela sua lista de alvos
+    que você não tenha observado dentro do raio e duração desta viagem será interpretada
+    como uma ausência. É muito importante que sua lista de segmentações reflita com
+    precisão o conjunto de espécies que você tentou detectar. Se você não tentou detectar
+    uma espécie na sua lista de alvos ou todas as espécies cobertas por um grupo na
+    sua lista de alvos, remova-a.
   taxa: Táxons
   taxa_with_unknown_relationships: Taxa com relações desconhecidas
   taxa_info: Informações sobre taxa
@@ -7457,6 +7468,10 @@ pt-BR:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
                 pelo curador deste táxon
+            name:
+              bad_format: |-
+                só pode conter caracteres latinos, hífens, espaços e
+                ×; note que táxons putativos e cultivares não são permitidos
         taxon_name:
           attributes:
             lexicon:
@@ -7464,6 +7479,9 @@ pt-BR:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: não
                 pode coincidir com o nome científico de uma espécie para este léxico
+              bad_format: |-
+                só pode conter caracteres latinos, hífens, espaços e
+                ×; note que táxons putativos e cultivares não são permitidos
         user:
           attributes:
             login:

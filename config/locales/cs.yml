@@ -4194,6 +4194,16 @@ cs:
   take_me_facebook: Ano, chci jít na Facebook!
   take_me_flickr!: Ano, chci jít na Flickr!
   take_me_back: Chci jít zpět
+  target_list_alert: Jste si jisti, že jste se pokusili pozorovat všechny druhy, na
+    které se vztahuje váš cílový seznam? Nezapomeňte, že cokoliv, na co se vztahuje
+    váš cílový seznam, co jste nepozorovali, bude interpretováno jako nepřítomnost,
+    takže je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které
+    jste se pokusili najít.
+  target_list_warning: Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam,
+    co jste nepozorovali v okruhu a délce trvání této cesty, bude interpretováno jako
+    nepřítomnost. Je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů,
+    které jste se pokusili najít. Pokud jste se ve svém cílovém seznamu nepokoušeli
+    zjistit druh nebo veškeré druhy, na které se vztahuje váš cíl, odeberte jej.
   taxa: Taxony
   taxa_with_unknown_relationships: Taxony s neznámými vztahy
   taxa_info: Informace o taxonu
@@ -7196,6 +7206,9 @@ cs:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
                 kurátorem tohoto taxonu
+            name:
+              bad_format: může obsahovat pouze standartní písmena Latinky, pomlčky,
+                mezery a ×; všimněte si že zamýšlené taxony a odrůdy nejsou povoleny
         taxon_name:
           attributes:
             lexicon:
@@ -7203,6 +7216,8 @@ cs:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: nemůže
                 odpovídat vědeckému názvu druhu pro tento slovníček
+              bad_format: může obsahovat pouze standartní písmena Latinky, pomlčky,
+                mezery a ×; všimněte si že zamýšlené taxony a odrůdy nejsou povoleny
         user:
           attributes:
             login:

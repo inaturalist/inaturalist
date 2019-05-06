@@ -438,7 +438,7 @@ es:
     animals: Animales
     arachnids: Arácnidos
     birds: Aves
-    chromista: Algas pardas y parientes
+    chromista: Chromista
     fungi: Hongos
     fungi_including_lichens: Hongos incluídos líquenes
     insects: Insectos
@@ -484,8 +484,8 @@ es:
       one: 1 hongo
       other: '%{count} hongos'
     x_chromista:
-      one: 1 alga parda y parientes
-      other: '%{count} algas pardas y parientes'
+      one: 1 cromista
+      other: '%{count} cromistas'
     x_protozoa:
       one: 1 protozoario
       other: '%{count} protozoarios'
@@ -660,8 +660,8 @@ es:
     iucn_red_list: Lista roja UICN
     natureserve: NatureServe
     cites: CITES
-  authorize: Autoriza
-  authorize_permissions_from_provider: Autoriza permisos de %{provider}
+  authorize: Autorizar
+  authorize_permissions_from_provider: Autorizar permisos de %{provider}
   automatic_descriptions_have_been_disabled: Se han inhabilitado las descripciones
     automáticas para este taxón.
   automatic_short: Autom.
@@ -688,22 +688,22 @@ es:
   back_to_observation_fields: Volver a los campos de observación
   back_to_people: Volver a Personas
   back_to_places: Volver a Lugares
-  back_to_possessive_user_profile: Regresa al perfil de %{possuser}
-  back_to_post: '&laquo; Regresa a la nota'
-  back_to_projects: Regresa a Proyectos
-  back_to_shared_taxon: Regresa a %{sharedtaxon}
+  back_to_possessive_user_profile: Regresar al perfil de %{possuser}
+  back_to_post: '&laquo; Regresar a la publicación'
+  back_to_projects: Regresar a Proyectos
+  back_to_shared_taxon: Regresar a %{sharedtaxon}
   back_to_suggestions: Regresa a sugerencias
   back_to_taxon: Regresa a %{defaulttaxon}
   back_to_taxon_changes: Regresa a los cambios del taxón
   back_to_taxon_framework_for_x: Volver a marco de referencia del taxón para %{taxon_name}
-  back_to_viewing: Regresa a ver <i>%{taxon}</i>
-  back_to_x: Regresa a %{noun}
-  back_to_x_assessment: Regresa a las evaluaciones de %{project}
-  back_to_x_history: Regresa a la historia de %{x}
-  back_to_x_journal: Regresa al diario de %{user}
-  back_to_x_blog: Regresa al blog de %{x}
-  back_to_your_dashboard: Regresa a tu tablero
-  back_to_x_observations: Regresa a las observaciones de %{user}
+  back_to_viewing: Regresar a ver <i>%{taxon}</i>
+  back_to_x: Regresar a %{noun}
+  back_to_x_assessment: Regresar a las evaluaciones de %{project}
+  back_to_x_history: Regresar a la historia de %{x}
+  back_to_x_journal: Regresar al diario de %{user}
+  back_to_x_blog: Regresar al blog de %{x}
+  back_to_your_dashboard: Regresar a tu tablero
+  back_to_x_observations: Regresar a las observaciones de %{user}
   back_to_your_lists: Regresa a tus listas
   back_to_your_journal: Regresa a tu diario
   back_to_your_observations: Regresa a tus observaciones
@@ -713,9 +713,9 @@ es:
     comunidad puede aún ser confirmado o mejorado?
   basic: Básico
   batch: Grupo
-  batch_edit: Modifica el grupo
-  batch_edit_taxa_for_x_html: Edita en grupo los datos de los taxones para %{x}
-  batch_operations: Operaciones por grupo
+  batch_edit: Editar por lotes
+  batch_edit_taxa_for_x_html: Editar por lotes los datos de los taxones para %{x}
+  batch_operations: Operaciones por lotes
   be_the_first_to_fave_this_observation: ¡Se el primero en agregar esta observación
     a favoritos!
   beacuse_we_recently_changed_auth_system: Debido a que cambiamos nuestro sistema
@@ -751,14 +751,14 @@ es:
   brief_description_of_what_you_saw: Descripción breve de lo que viste
   brown: marrón
   browse: Examinar
-  browse_all_projects: Examina todos los proyectos
-  browse_all_species: Examina todas las especies
-  browse_observations: Examina observaciones
-  browse_people: Examina personas
-  browse_projects: Examina proyectos
-  browse_species_that_occur_near_this_observation: Examina especies que existan cerca
+  browse_all_projects: Examinar todos los proyectos
+  browse_all_species: Examinar todas las especies
+  browse_observations: Examinar observaciones
+  browse_people: Examinar personas
+  browse_projects: Examinar proyectos
+  browse_species_that_occur_near_this_observation: Examinar especies que existan cerca
     de esta observación.
-  browse_your_observations: Examina tus observaciones
+  browse_your_observations: Examinar tus observaciones
   built_with_site_guides_html: Construido con las guías de <a href='%{url}'>%{site_name}
   bulk_import_of_filename_is_complete: La importación masiva de %{filename} está completa
   but_we_didnt_add_this_observation_to_the_x_project: Esta observación no se añadió
@@ -774,11 +774,11 @@ es:
     a la vez
   can_you_help_your_friends_id_these: ¿Puedes ayudar a tus amigos a identificar estas
     observaciones?
-  cancel: Cancela
+  cancel: Cancelar
   cant_flag_an_object_that_doesnt_exist: No puedes marcar un objeto que no existe
   cant_merge_a_taxon_with_itself: No puedes combinar ese taxón consigo mismo.
   captive: En cautiverio
-  captive_cultivated: Cautiverio / cultivada
+  captive_cultivated: Cautivo / cultivado
   card: Tarjeta
   case_plural: s
   casual: casual
@@ -798,49 +798,49 @@ es:
   cc_by_name: Atribución
   cc_by_nc_description: Esta licencia permite a otros mezclar, modificar, y construir
     sobre tu trabajo sin fines comerciales, y a pesar de que sus nuevas obras deben
-    también darte reconocimineto y no tener fines comerciales, no tienen la licencia
+    también darte reconocimiento y no tener fines comerciales, no tienen la licencia
     de obras derivadas en las mismas condiciones.
-  cc_by_nc_name: Atribución-Sin fin comercial
+  cc_by_nc_name: Atribución-NoComercial
   cc_by_nc_nd_description: Esta licencia es la más restrictiva de las seis licencias
     principales, sólo permite a otros descargar tus obras y compartirlas con los demás,
-    siempre y cuando se te dé crédito, pero no se pueden cambiarlas en ninguna forma
+    siempre y cuando se te dé crédito, pero no pueden cambiarlas en ninguna forma
     o utilizarlas con fines comerciales.
-  cc_by_nc_nd_name: Atribución-Sin fin comercial-No derivados
+  cc_by_nc_nd_name: Atribución-NoComercial-SinDerivadas
   cc_by_nc_sa_description: Esta licencia permite a otros mezclar, ajustar y construir
     con base en tu trabajo sin fines comerciales, siempre y cuando se te dé crédito
     y licencien sus nuevas creaciones en idénticos términos.
-  cc_by_nc_sa_name: Atribución-Sin fin comercial-Compartir similar
+  cc_by_nc_sa_name: Atribución-NoComercial-CompartirIgual
   cc_by_nd_description: Esta licencia permite la redistribución, con o sin fin comercial,
     siempre y cuando se transfiera sin cambios y en su totalidad, con crédito a ti.
-  cc_by_nd_name: Atribución-No derivados
+  cc_by_nd_name: Atribución-NoDerivadas
   cc_by_sa_description: Esta licencia permite a otros mezclar, ajustar y construir
     con base en tu trabajo, incluso para fines comerciales, siempre y cuando se te
     dé crédito y licencien sus nuevas creaciones en términos idénticos. Todos los
     nuevos trabajos basados ​​en el tuyo portarán la misma licencia, por lo que todos
     los derivados también permitirán el uso comercial.
-  cc_by_sa_name: Atribución-Compartir similar
+  cc_by_sa_name: Atribución-CompartirIgual
   cc_used_under_a: Creative Commons, usada bajo una
-  change: Cambia
-  change_admin: Cambia administrador
-  change_cover: Cambia la cubierta
+  change: Cambiar
+  change_admin: Cambiar administrador
+  change_cover: Cambiar la cubierta
   change_descriptions:
     split: El taxón antiguo se dividió en varios nuevos taxones
     merge: Varios taxones antiguos fueron agrupados en un taxón nuevo
     swap: Cambio de nombres 1-a-1
     drop: El concepto de taxón es completamente inválido, solo se mantiene por razones
       históricas o por compatibilidad con otros sitios
-    stage: Prepara un concepto inactivo como parte de un cambio de taxonómia de un
+    stage: Prepara un concepto inactivo como parte de un cambio de taxonomía de un
       grupo de especies.
-  change_geoprivacy: Cambia geoprivacidad
-  change_group: Cambia grupo
-  change_icon: Cambia ícono
-  change_password: Cambia tu contraseña
+  change_geoprivacy: Cambiar geoprivacidad
+  change_group: Cambiar grupo
+  change_icon: Cambiar ícono
+  change_password: Cambiar tu contraseña
   change_types:
     activated_soon: activado pronto
     change_types: Tipos de cambios
-    split: Divide
-    merge: Combina
-    swap: Intercambia
+    split: Dividir
+    merge: Combinar
+    swap: Intercambiar
     stage: Etapa
     drop: Elimina
     split_from: dividido de
@@ -848,8 +848,8 @@ es:
     merge_into: combinado en
     merged_into: combinado en
     replaced_by: reemplazado por
-    replace_with: reemplaza con
-    replaced_with: 'Reemplazar con:'
+    replace_with: reemplazar con
+    replaced_with: Reemplazado con
     dropped: eliminado
     staged: Escenificado
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} se dividió en %{output_taxa}'
@@ -864,15 +864,15 @@ es:
       por %{output_taxon}'
     input_taxa_were_merged_into_output_taxon_html: '%{input_taxa} fueron combinados
       en %{output_taxon}'
-    input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa} será combinado
+    input_taxa_will_be_merged_into_output_taxon_html: '%{input_taxa} serán combinados
       en %{output_taxon}'
   change_visibility_of: ¿Deseas cambiar la visibilidad de las coordenadas espaciales?
-  change_your_matching: Cambia tu coincidencia
-  change_your_password: Cambia tu contraseña
+  change_your_matching: Cambiar tu coincidencia
+  change_your_password: Cambiar tu contraseña
   changing_the_geoprivacy: Cambiar la geoprivacidad modifica como otras personas ven
     la localización de tu observación.
   check_above_for_errors: Revisa errores en lo anterior
-  check_back_soon: ¡Regresa pronto para verificar!
+  check_back_soon: ¡Vuelve a consultar pronto!
   check_here_to_autoload_description: Marca aquí para autocargar la descripción desde
     Wikipedia. Puedes querer desmarcarlo cuando el nombre científico de un taxón también
     es una palabra no científica o una falta de ortografía común, como "Parus".
@@ -880,15 +880,15 @@ es:
     querer desmarcarlo cuando el nombre científico de un taxón también es una palabra
     no científica o una falta de ortografía común, como "Parus".
   check_it_out: Échale un vistazo
-  check_list: lista de verificación de
+  check_list: Lista de comprobación
   check_list_description: Selecciona un taxón de más alto nivel que desees mostrar
     en esta lista, como "Aves" para aves, o "Anfibios" para anfibios. Cuando termines,
     esta lista no permitirá taxones que no estén incluidos. Por ejemplo, si creas
     una lista de aves, no podrás agregarle ranas.
   check_list_for_individual_taxa_that: Listas de comprobación para una especie o grupo
-    especifico que habitan aquí, ej. "Aves de %{place}".
+    específico que habita aquí, ej. "Aves de %{place}".
   check_list_individual_taxa: Listas de comprobación para taxones que viven aquí,
-    por ejemplo, que "las aves de %{place}".
+    por ejemplo, "las aves de %{place}".
   check_lists_must_belong_to_a_place: Las listas de verificación deben pertenecer
     a un lugar. Para crear una nueva lista de verificación, visita la lista de verificación
     de un lugar y selecciona el enlace "Crea una nueva lista de verificación".
@@ -900,7 +900,7 @@ es:
   check_lists_for: Otras listas de verificación para %{place}
   check_out_my_observations_at: Si deseas, puedes ver mis observaciones en
   check_out_our_blog: Échale un vistazo a nuestro blog
-  check_out_what_the_observation: Échale un vistazo a como aparecen las observaciones
+  check_out_what_the_observation: Échale un vistazo a como aparece la observación
     que estás tratando de identificar.
   check_out_your_life_list: Revisa tu lista de vida
   check_this_box_if: |-
@@ -928,57 +928,55 @@ es:
     de otros lugares o selecciona de observaciones en %{site_name}. Trata de seleccionar
     imágenes que <em>muestren características de diagnóstico</em> y <em>se vean bien
     como íconos</em>.  La <em>primera aparece por defecto</em>.
-  choose_columns: Selecciona columnas
-  choose_file: Selecciona un archivo
-  choose_files: Selecciona archivos
-  choose_files_from_your_computer: selecciona archivos de tu computador
-  choose_from_your_lists: Selecciona de tus listas
+  choose_columns: Seleccionar columnas
+  choose_file: Seleccionar un archivo
+  choose_files: Seleccionar archivos
+  choose_files_from_your_computer: seleccionar archivos de tu computador
+  choose_from_your_lists: Seleccionar de tus listas
   choose_good_default_photos: selecciona buenas fotos por defecto del grupo de fotos
     de Creative Commons en Flickr
-  choose_photos: Selecciona fotos
-  choose_photos_for_this_taxon: Selecciona fotos para este taxón
-  choose_photos_to_tag_from_photostream: Selecciona fotos para etiquetar de tu Photostream
+  choose_photos: Seleccionar fotos
+  choose_photos_for_this_taxon: Seleccionar fotos para este taxón
+  choose_photos_to_tag_from_photostream: Seleccionar fotos para etiquetar de tu photostream
   choose_place: Selecciona un lugar
   choose_rule: Selecciona una regla
   choose_subjects: Selecciona temas
   choose_tags: Selecciona etiquetas
-  choose_taxon: Selecciona un taxón
+  choose_taxon: Seleccionar un taxón
   choose_what_kind_of_change_youre_creating: Selecciona que clase de cambio quieres
     crear.
-  choose_your_username: Selecciona tu nombre de usuario
+  choose_your_username: Elige tu nombre de usuario
   cid_d_to_genus: CID'd a género
   citation: Referencia
   classification: Clasificación
-  clear: elimina
-  clear_color_filters: Elimina los filtros de color
-  clear_filters: Elimina los filtros
-  clear_search: Elimina búsqueda
+  clear: eliminar
+  clear_color_filters: Eliminar los filtros de color
+  clear_filters: Eliminar los filtros
+  clear_search: Eliminar búsqueda
   click_on_the_map_to: Marca en el mapa para colocar tu observación
-  click_the_map: <strong>Selecciona el mapa</strong> para agregar una localización.
+  click_the_map: <strong>Marca en el mapa</strong> para agregar una ubicación.
   click_the_map_to_jump_new_place: Marca en el mapa para moverte a un lugar nuevo
-  close: Cierra
+  close: Cerrar
   code: Código
-  collapse_days: colapsa días
-  collapse_updates: colapsa actualizaciones
+  collapse_days: colapsar días
+  collapse_updates: colapsar actualizaciones
   color_categories_for_this_species: Colorea las categorías para esta especie, como
-    si fueras a ponerla en una guía arreglada por colores. Por favor, no listes todos
+    si fueras a ponerla en una guía organizada por colores. Por favor, no listes todos
     los colores del organismo, solo los más prominentes. Para los colores de las plantas
     solo usa el color de su flor. No pongas colores que no ayuden a la categorización,
-    como mamíferos cafés y helechos verdes.
+    como mamíferos marrones y helechos verdes.
   colors: Colores
   columns: Columnas
-  combine: Combina
+  combine: Combinar
   comma_separated_list_of_tracking_codes: |-
-    Separa los códigos de rastreo con comas. Añade esto si quieres poner un código de rastreo cuando las personas hagan
-    observaciones en tu proyecto, ej. %{root_url}observations/new?project_id=%{project_id}&tracking_code=tucodigo123.
-    Se puede usar para rastrear la participación en diferentes fuentes. Puedes tener acceso a estos códigos de rastreo
-    cuando descargas las observaciones de tu proyecto con formato CSV.
-  comma_separated_please: Favor separar con comas
+    Códigos de rastreo separados por comas. Añádelos si quieres agregar un código de rastreo al enviar usuarios al nuevo formulario de observación, ej. %{root_url}observations/new?project_id=%{project_id}&tracking_code=tucodigo123.
+    Esto se puede usar para rastrear la participación desde diferentes orígenes. Puedes acceder a estos códigos de rastreo al descargar las observaciones de tu proyecto con formato CSV.
+  comma_separated_please: Separados por comas, por favor
   comment_preview: Vista previa del comentario
   comment: comentario
   comment_: Comentario
   comment_feed: Comentarios
-  comment_deleted: El comentario ha sido eliminado
+  comment_deleted: Comentario eliminado
   commented: comentado
   comments: Comentarios
   comments_and_identifications: Comentarios e identificaciones
@@ -986,11 +984,11 @@ es:
   comments_by_me: Mis comentarios
   comments_on: Comentarios sobre
   comments_on_my_observations: Comentarios sobre mis observaciones
-  comments_youve_made_with_others: Comentarios que has hecho (w/ Others)<br/><span
-    class="description">durante la semana pasada</span>
+  comments_youve_made_with_others: Comentarios que has hecho (con otros)<br/><span
+    class="description">en la semana pasada</span>
   commercial_solicitation: Publicidad comercial, enlaces no llevan a ningún lugar,
     etc.
-  commit: Guarda
+  commit: Guardar
   committed: Guardado
   committed_on: Guardado el %{date}
   committing: Guardando...
@@ -999,19 +997,19 @@ es:
   community_guidelines: Directrices de la comunidad
   community_id: 'Identificación de la <strong>comunidad</strong>:'
   community_id_heading: ID de la comunidad
-  community_id_at_species_or_lower?: ¿La ID de la comunidad es como especie o inferior?
-  community_id_at_genus_level_or_lower: ID de la comunidad a nivel de género o más
-    bajo
+  community_id_at_species_or_lower?: ¿La ID de la comunidad es a nivel de especie
+    o inferior?
+  community_id_at_genus_level_or_lower: ID de la comunidad a nivel de género o inferior
   community_id_at_species_level_or_lower: ID de la comunidad a nivel de especie o
-    más bajo
+    inferior
   community_moderation_settings: Configuración de la moderación de la comunidad
   community_supported_id: ¿Identificador reconocido por la comunidad?
-  compare: Compara
-  compare_with: Compara con
+  compare: Comparar
+  compare_with: Comparar con
   comparing: comparando
   comparing_list_to_list: Comparando %{list1} con %{list2}
   comparing_versions_x_and_y: Comparando las versiones %{x} y %{y}
-  comparing_observations_from: Comparación de las observaciones de %{user} en %{dates}
+  comparing_observations_from: Comparando las observaciones de %{user} en %{dates}
   complete: Completo
   complete_sets: Listas completas
   compiled_by_name: Compilado por %{name}
@@ -1021,19 +1019,19 @@ es:
   comprehensive?: ¿Completa?
   comprehensive_list: Lista completa
   concept_status: Concepto de la situación
-  configure: Configura
+  configure: Configurar
   configure_a_widget_to_show: Configura el widget para mostrar las observaciones de
     %{site_name} en tu sitio web o blog. También puedes incluir el estilo CSS en la
-    <code>&lt;head&gt;</code> de tu código HTML. Sienteté libre de nodificar el CSS.
-  confirm: Confirma
+    <code>&lt;head&gt;</code> de tu código HTML. Siéntete libre de modificar el CSS.
+  confirm: Confirmar
   confirm_membership: Confirmar membresía
-  confirm_new_password: Confirma nueva contraseña
-  confirm_now: Confirma ahora
+  confirm_new_password: Confirmar nueva contraseña
+  confirm_now: Confirmar ahora
   confirm_your_info: Confirma tu información
   confirmed: confirmadas
   confirmed_observations_are: Las observaciones confirmadas son
   confirming_identifications: confirmando identificaciones
-  connect_to_provider: Conéctate a %{provider}
+  connect_to_provider: Conectar a %{provider}
   connected_accounts: Cuentas vinculadas
   connecting_flickr: Conectándose a Flickr...
   connecting_to_facebook: Conectándose a Facebook...
@@ -4388,8 +4386,9 @@ es:
     one: '%{taxon} es un %{rank} de moluscos con una observación'
     other: '%{taxon} es un %{rank} de moluscos con %{count} observaciones'
   taxon_is_a_rank_of_chromista_with_x_observations:
-    one: '%{taxon} es un %{rank} de algas pardas y aliados con una observación'
-    other: '%{taxon} es un %{rank} de algas pardas y aliados con %{count} observaciones'
+    one: '%{taxon} es un %{rank} en Chromista (algas pardas y aliados) con una observación'
+    other: '%{taxon} es un %{rank} en Chromista (algas pardas y aliados) con %{count}
+      observaciones'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} es un reino con una observación'
     other: '%{taxon} es un reino con %{count} observaciones'
