@@ -1,7 +1,9 @@
 - content_for(:title) do
   - @title = "Flag for #{link_to(@object.to_plain_s, @object) rescue @object.to_plain_s}".html_safe
   = strip_tags @title
-
+- content_for :extrajs do
+  :javascript
+    $("#comment_body").textcompleteUsers( );
 .container
   .row
     .col-xs-12
