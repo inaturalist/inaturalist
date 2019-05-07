@@ -302,6 +302,7 @@ class Taxon < ActiveRecord::Base
     "caterpillars",
     "chiton",
     "cicada",
+    "creeper",
     "gall",
     "hong kong",
     "larva",
