@@ -11,7 +11,7 @@ class TaxonMerge < TaxonChange
   end
 
   def input_taxa
-    taxa
+    taxon_change_taxa.select{|tct| !tct._destroy}.map(&:taxon)
   end
 
   def output_taxa

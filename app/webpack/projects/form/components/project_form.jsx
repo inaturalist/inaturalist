@@ -1,7 +1,13 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col, Overlay, Popover } from "react-bootstrap";
+import {
+  Grid,
+  Row,
+  Col,
+  Overlay,
+  Popover
+} from "react-bootstrap";
 import UserAutocomplete from "../../../observations/identify/components/user_autocomplete";
 import RegularForm from "./regular_form";
 import UmbrellaForm from "./umbrella_form";
@@ -9,32 +15,35 @@ import SharedForm from "./shared_form";
 import ConfirmModalContainer from "../../shared/containers/confirm_modal_container";
 
 class ProjectForm extends React.Component {
+  constructor( props ) {
+    super( props );
+    this.ua = React.createRef( );
+    this.doneButton = React.createRef( );
+  }
+
   render( ) {
     const {
-      config,
       project,
       addManager,
       removeProjectUser,
       confirmSubmitProject,
-      updateProject } = this.props;
+      removeProject
+    } = this.props;
     if ( !project ) { return ( <span /> ); }
-    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles &&
-      config.currentUser.roles.indexOf( "admin" ) >= 0;
     return (
       <div className="Form">
-        <SharedForm { ...this.props } />
-        { project.project_type === "umbrella" ?
-            ( <UmbrellaForm { ...this.props } /> ) :
-            ( <RegularForm { ...this.props } /> )
-        }
+        <SharedForm {...this.props} />
+        { project.project_type === "umbrella"
+          ? <UmbrellaForm {...this.props} />
+          : <RegularForm {...this.props} /> }
         <Grid>
           <Row>
             <Col xs={12}>
               <div className="preview">
                 <button
+                  type="button"
                   className="btn-white"
-                  onClick={ ( ) =>
-                    window.open( `/observations?${project.previewSearchParamsString}`, "_blank" ) }
+                  onClick={( ) => window.open( `/observations?${project.previewSearchParamsString}`, "_blank" )}
                 >
                   <i className="fa fa-external-link" />
                   { I18n.t( "preview_observations" ) }
@@ -49,26 +58,29 @@ class ProjectForm extends React.Component {
                 { I18n.t( "views.projects.new.note_these_users_will_be_able_to_edit" ) }
               </div>
               <UserAutocomplete
-                ref="ua"
-                afterSelect={ e => {
+                ref={this.ua}
+                afterSelect={e => {
                   e.item.id = e.item.user_id;
                   addManager( e.item );
-                  this.refs.ua.inputElement( ).val( "" );
-                } }
+                  this.ua.current.inputElement( ).val( "" );
+                }}
                 bootstrapClear
-                placeholder={ I18n.t( "user_autocomplete_placeholder" ) }
+                placeholder={I18n.t( "user_autocomplete_placeholder" )}
               />
               { !_.isEmpty( project.undestroyedAdmins ) && (
                 <div className="icon-previews">
                   { _.map( project.undestroyedAdmins, admin => (
-                    <div className="badge-div" key={ `user_rule_${admin.user.id}` }>
+                    <div className="badge-div" key={`user_rule_${admin.user.id}`}>
                       <span className="badge">
                         { admin.user.login }
                         { ( admin.user.id === project.user_id ) ? " (owner)" : (
-                          <i
-                            className="fa fa-times-circle-o"
-                            onClick={ ( ) => removeProjectUser( admin ) }
-                          />
+                          <button
+                            type="button"
+                            className="btn btn-nostyle"
+                            onClick={( ) => removeProjectUser( admin )}
+                          >
+                            <i className="fa fa-times-circle-o" />
+                          </button>
                         ) }
                       </span>
                     </div>
@@ -79,21 +91,25 @@ class ProjectForm extends React.Component {
           </Row>
           <Row>
             <Col xs={12}>
-              * { I18n.t( "required_" ) }
+              { "* " }
+              { I18n.t( "required_" ) }
               <div className="buttons">
                 <button
+                  type="button"
                   className="btn btn-default done"
-                  ref="doneButton"
-                  onClick={ ( ) => confirmSubmitProject( ) }
+                  ref={this.doneButton}
+                  onClick={( ) => confirmSubmitProject( )}
                   disabled={
                     project.saving || !_.isEmpty( _.compact( _.values( project.errors ) ) )
                   }
-                >{ project.saving ? I18n.t( "saving" ) : I18n.t( "done" ) }</button>
+                >
+                  { project.saving ? I18n.t( "saving" ) : I18n.t( "done" ) }
+                </button>
                 { project.errors.description && (
                   <Overlay
                     show
                     placement="top"
-                    target={ ( ) => this.refs.doneButton }
+                    target={( ) => this.doneButton.current}
                   >
                     <Popover
                       id="popover-done"
@@ -104,13 +120,18 @@ class ProjectForm extends React.Component {
                   </Overlay>
                 ) }
                 <button
+                  type="button"
                   className="btn btn-default"
-                  onClick={ ( ) => {
-                    project.id ?
-                      window.location = `/projects/${project.slug}` :
-                      this.props.removeProject( );
-                  } }
-                >{ I18n.t( "cancel" ) }</button>
+                  onClick={( ) => {
+                    if ( project.id ) {
+                      window.location = `/projects/${project.slug}`;
+                    } else {
+                      removeProject( );
+                    }
+                  }}
+                >
+                  { I18n.t( "cancel" ) }
+                </button>
               </div>
             </Col>
           </Row>

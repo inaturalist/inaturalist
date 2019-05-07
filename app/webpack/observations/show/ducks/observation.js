@@ -158,6 +158,25 @@ export function fetchCommunityTaxonSummary( ) {
   };
 }
 
+export function fetchNewProjects( ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    const params = {
+      include_new_projects: "true",
+      locale: I18n.locale,
+      ttl: -1
+    };
+    return inatjs.observations.fetch( observation.id, params ).then( response => {
+      const responseObservation = response.results[0];
+      if ( responseObservation && _.has( responseObservation, "non_traditional_projects" ) ) {
+        dispatch( setAttributes( {
+          non_traditional_projects: responseObservation.non_traditional_projects
+        } ) );
+      }
+    } ).catch( e => console.log( e ) );
+  };
+}
+
 export function renderObservation( observation, options = { } ) {
   return ( dispatch, getState ) => {
     if ( !observation || !observation.id ) {
@@ -209,6 +228,9 @@ export function renderObservation( observation, options = { } ) {
       }
       if ( fetchAll || options.fetchControlledTerms || taxonUpdated ) {
         dispatch( fetchControlledTerms( ) );
+      }
+      if ( ( fetchAll || taxonUpdated ) && !_.has( observation, "non_traditional_projects" ) ) {
+        dispatch( fetchNewProjects( ) );
       }
     }, taxonUpdated ? 1 : 500 );
     if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {

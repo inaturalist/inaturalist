@@ -55,7 +55,7 @@ class Map extends React.Component {
               title={geoprivacyTitle}
               alt={geoprivacyTitle}
             />
-            <div className="place-guess" />
+            <div className="place-guess">{ observation && observation.place_guess }</div>
             <div className="details_menu">
               <Dropdown
                 id="grouping-control"

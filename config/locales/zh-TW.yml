@@ -164,6 +164,7 @@ zh-TW:
   about_x: 關於 %{x}
   acc: 精確度 (公尺)
   account: 帳號
+  account_creation: 帳號建立
   account_settings: 帳號設定
   accept: 接受
   accept_community_identifications: 接受社群的物種鑑定
@@ -1468,7 +1469,7 @@ zh-TW:
   genus_slash_species: '[屬] / [物種]'
   geoprivacy: 位置隱私
   geoprivacy_is_obscured: 地理資訊隱私權為遮蔽
-  geoprivacy_is_obscured_desc: 觀察者選擇隱蔽座標。
+  geoprivacy_is_obscured_desc: 觀察者選擇遮蔽座標。
   geoprivacy_is_private: 位置隱私為私有
   geoprivacy_is_private_desc: 觀察者選擇隱藏座標。
   georeferenced: 地理參考？
@@ -2114,6 +2115,7 @@ zh-TW:
   more_journal_posts: 更多日誌發佈文章
   more_observations: 更多觀察
   more_photos: 更多照片
+  more_than_a_week_ago: 超過一週前
   most: 多數
   most_agree: 最多同意
   most_browser_print_pdf: 註：多數瀏覽器已有可列印成 PDF 的選項
@@ -4281,6 +4283,7 @@ zh-TW:
   view_observation_flags: 檢視觀察標記
   view_observations_by_everyone: 檢視每個人的觀察
   view_observations_by_these_users: 檢視由這些使用者所做的觀察
+  view_observations_causing_this_observation_to_be_obscured: 檢視導致此觀察給遮蔽的觀察
   view_observations_of_this_taxon_by: 檢視此分類群的觀察，由
   view_observations_raquo: 檢視觀察&raquo;
   view_on: 檢視在
@@ -4823,12 +4826,12 @@ zh-TW:
         geoprivacy_is_a_setting_you_can: 位置隱私是個可用於您觀察上的設定，它能控制空間座標（經度與緯度）如何顯示。這裡有相關選項：
         note_that_curators_of: 註：無論您如何設定位置隱私，各專案策展人仍可查看其座標。因此若您在乎是誰存取了您的座標內容，您應得確定您自己可信任所參與專案的策展人。
         what_is_does_it_mean_for: 觀察變為隱蔽代表著什麼含意？
-        when_coordinates_are_obscured_it_means_that: 當座標為隱蔽時，代表著採用相距於實際座標 %{km} 公里的隨機標點來公開顯示（註：在首頁上、觀察頁面，或專案頁面上），實際座標僅在您檢視您個人的觀察顯示出（註：在各專案頁面與包含您個人觀察清單上）。請注意專案策展人可以查看您所添加觀察的實際座標。隱蔽座標在地圖以及地理空間訊息來源上，應以不帶接線的圓圈標記符號形式。
+        when_coordinates_are_obscured_it_means_that: 當座標為隱蔽時，代表著採用相距於實際座標 %{km} 公里的隨機標點來公開顯示（註：在首頁上、觀察頁面，或專案頁面上），實際座標僅在您檢視您個人的觀察顯示出（註：在各專案頁面與包含您個人觀察清單上）。請注意專案策展人可以查看您所添加觀察的實際座標。遮蔽座標在地圖以及地理空間訊息來源上，應以不帶接線的圓圈標記符號形式。
         coordinates_are_obscured_for_all_taxa: |-
           根據 IUCN 紅色名錄，所有屬於「接近受威脅」或者更糟情況的物種分類群，
           部份根據其他法定機構宣布受威脅，與及部份被 %{site_name} 網站策展人
           認定值得保護的物種分類群，其存在位置座標將會被遮閉。
-        you_can_also_obscure_the_coordinates_html: 您也可以隱蔽您所擁有觀察的座標，無論是屬於何種物種分類。請參見上方的<a
+        you_can_also_obscure_the_coordinates_html: 您也可以遮蔽您所擁有觀察的座標，無論是屬於何種物種分類。請參見上方的<a
           href="#geoprivacy">位置隱私</a>。
         what_is_the_quality_assessment: 什麼是品質評估以及如何讓觀察品質成為有「研究」的等級？
         what_is_a_life_list?: 甚麼是生物清單呢?
@@ -4921,11 +4924,11 @@ zh-TW:
         latitude: 公開可見緯度
         longitude: 公開可見經度
         positional_accuracy: 座標精準度（沒錯沒錯，準確性「accuracy」不等於精準度「precision」，但在名稱上能選擇的實在不多）
-        private_latitude: 若觀察為私有或隱蔽，設定私有緯度
+        private_latitude: 若觀察為私有或遮蔽，設定私有緯度
         private_longitude: 若觀察為私有或隱蔽，設定私有經度
-        geoprivacy: 無論觀察者是否挑選隱蔽或隱藏座標
+        geoprivacy: 無論觀察者是否挑選遮蔽或隱藏座標
         taxon_geoprivacy: 出於在目前鑑定的物種分類保育狀態，多數保育位置隱私都適用。
-        coordinates_obscured: 無論座標是否被隱蔽，皆因位置隱私或受威脅的物種分類的緣故
+        coordinates_obscured: 無論座標是否被遮蔽，皆因位置隱私或受威脅的物種分類的緣故
         out_of_range: 無論如何此觀察已在物種分類範圍之外
         user_id: 觀察者的唯一識別
         user_login: 觀察者的用戶名
@@ -5250,7 +5253,7 @@ zh-TW:
       project_location_privacy_notice_html: |-
         <p>
           請注意，在您未撤回相關權限情況下，專案策展人可查看在專案裡
-          任何您觀察的私有、隱蔽位置。另外在您未<a href="/users/edit">更改您的設定</a>情況下，
+          任何您觀察的私有、遮蔽位置。另外在您未<a href="/users/edit">更改您的設定</a>情況下，
           專案策展人可在專案裡添加您任何的觀察。另外您也可逐一授予或
           撤回對於專案觀察的存取權限。
         </p>
@@ -5261,7 +5264,7 @@ zh-TW:
         observer: 是的，但僅在我自行添加觀察至專案。
         any: 是的，不論誰添加觀察至專案裡。
         none: 不
-      curator_coordinate_access_label: 您想讓您的私有/隱蔽觀察座標可讓專案策展人看見？
+      curator_coordinate_access_label: 您想讓您的私有/遮蔽觀察座標可讓專案策展人看見？
       curator_coordinate_access_note: 您也可採用依逐個專案來分享觀察裡的隱藏座標。這些是當添加新觀察至專案時的預設內容。
       project_terms_desc_html: 允許此專案策展人依據<a href="%{url}">專案項目</a>來使用您的觀察。
       show:
@@ -5276,7 +5279,7 @@ zh-TW:
           </p>
           <p>
             請注意，當此類型專案的統計狀況裡顯示出有觀察並未有意要被添加至專案時，這些觀察會
-            不允許策展人來查看它們私有或隱蔽座標，也代表著觀察者未同意專案的條款。若您是專案
+            不允許策展人來查看它們私有或遮蔽座標，也代表著觀察者未同意專案的條款。若您是專案
             策展人且您需要存取私有座標，您需要您的參與者同意專案條款，或是您想要觀察計入策展
             專案清單時，請確定您的參與者有加入專案且願意添加他們的觀察。
           </p>
@@ -5396,7 +5399,7 @@ zh-TW:
           <strong>點擊弧線來放置到有子項目圍繞的物種分類中心點</strong>，或是<strong>點擊中心點來移動層次結構</strong>。
     taxa:
       edit:
-        high_status_conservation_status_notice_html: 為更高層級物種分類添加保育狀態，來對此物種分類上的所有物種觀察生效。請不要在有物種未包含狀態的物種分類群上添加狀態，因為這會對那些物種的觀察不正確地隱蔽座標。
+        high_status_conservation_status_notice_html: 為更高層級物種分類添加保育狀態，來對此物種分類上的所有物種觀察生效。請不要在有物種未包含狀態的物種分類群上添加狀態，因為這會對那些物種的觀察不正確地遮蔽座標。
         complete_desc_html: 一個「完整」物種分類包含<em>所有</em>在符合 iNaturalist 物種分類策展方針指定排名裡的已知派生物種分類群，無論它們是否已被觀察。僅有網站管理員可以宣告目前完整的物種分類群。
         complete_rank_desc_html: 在此完成的物種分類級別，例如：假如科有包含到所有的屬，但不在所有物種裡，預設物種這將會設定「屬」。
       show:
@@ -5497,7 +5500,7 @@ zh-TW:
         cannot_update_your_content: '%{site_name} 無法在此更改自動更新您的內容。'
         new_project_admin_html: 想知道為何您可管理此專案的原因嗎？這代表前任擁有者分配您成為新管理者，或是因為他們刪除了自己帳號，並且因您身份是專案負責人，或是網站策展人而讓
           %{site_name} 將權限分配給您。若您不想成為專案管理者，請聯絡 <a href="mailto:%{help_email}">%{help_email}</a>
-        curators_can_see: 作個提醒一下，專案策展人可查看您添加在專案裡觀察的私有和隱蔽座標。
+        curators_can_see: 作個提醒一下，專案策展人可查看您添加在專案裡觀察的私有和遮蔽座標。
       delete:
         by_deleting_your_account_you_will_remove: 透過刪除您的帳號，您將被移除
         x_observations_html:
@@ -5536,10 +5539,10 @@ zh-TW:
           href='/users/edit'>編輯您的設定</a>。
         inaturalist_network_affiliation_desc_html: |-
           <p>
-            <a href="%{url}" target="_blank">iNaturalist 網路</a>是將有完整連結至全球 iNaturalist 社群之本地網站的聚集。這些網路站台是由有與 iNaturalist 簽屬協議，來促進在本地上使用以及助於本地生物多樣性的本地機構所支援。他們具有可取得來自於他們國家、為了保護受威脅物種避免被公開檢視而隱蔽的實際座標。
+            <a href="%{url}" target="_blank">iNaturalist 網路</a>是將有完整連結至全球 iNaturalist 社群之本地網站的聚集。這些網路站台是由有與 iNaturalist 簽屬協議，來促進在本地上使用以及助於本地生物多樣性的本地機構所支援。他們具有可取得來自於他們國家、為了保護受威脅物種避免被公開檢視而遮蔽的實際座標。
           </p>
           <p>
-            您的使用者名稱和密碼在所有隸屬 iNaturalist 網路下站台皆可運作。如果您挑選了網路站台分部，運作各站台的本地機構可取用您的電子郵件地址（僅會通知您有關站台上的活動），以及存取公開隱蔽或私有觀察的實際座標位置。
+            您的使用者名稱和密碼在所有隸屬 iNaturalist 網路下站台皆可運作。如果您挑選了網路站台分部，運作各站台的本地機構可取用您的電子郵件地址（僅會通知您有關站台上的活動），以及存取公開遮蔽或私有觀察的實際座標位置。
           </p>
           <p>
             註：若您已經做出超過 1000 筆的觀察，請不要出於實驗性質更改您的分部
@@ -5571,7 +5574,7 @@ zh-TW:
         scientific_name_first_desc: 學名顯示優於通用名稱。
         youve_used_all_of_your_blocks: 您已經用完所有的封鎖數量額度，請移除舊有項目來新增其它封鎖。
         same_day_geoprivacy_protection: 同日位置隱私保護
-        prefers_coordinate_interpolation_protection_desc: 當您設定觀察的位置隱私成「隱蔽」或「私有」時，將會對您在同一天的所有其它觀察套用相同的位置隱私，這會讓其他人較難從同一時間所做出的觀察來猜測出真實座標。
+        prefers_coordinate_interpolation_protection_desc: 當您設定觀察的位置隱私成「obscured」或「private」時，將會對您在同一天的所有其它觀察套用相同的位置隱私，這會讓其他人較難從同一時間所做出的觀察來猜測出真實座標。
       recent:
         about_recent_users: 關於
         definitions_html: <dl> <dt>可能是垃圾訊息</dt> <dd> 使用者可能是濫發垃圾訊息者代表著他們雖有個人檔案描述，但沒有觀察或鑑定。

@@ -684,8 +684,8 @@ describe Taxon, "merging" do
     rule = ListRule.make!(:operand => @Amphibia, :operator => "in_taxon?")
     reject = rule.operand
     keeper = Taxon.make
-    keeper.name = "Amphibia2"
-    keeper.unique_name = "Amphibia2"
+    keeper.name = "Amphibiatwo"
+    keeper.unique_name = "Amphibiatwo"
     keeper.save
     keeper.update_attributes(:parent => reject.parent)
     
@@ -937,10 +937,10 @@ describe Taxon, "moving" do
   end
 
   it "should update community taxa" do
-    fam = Taxon.make!( name: "_fam 1", rank: "family")
-    subfam = Taxon.make!( name: "_subfam 1", rank: "subfamily", parent: fam )
-    gen = Taxon.make!( name: "_gen 1", rank: "genus", parent: fam )
-    sp = Taxon.make!( name: "_sp 1", rank: "species", parent: gen )
+    fam = Taxon.make!( name: "Familyone", rank: "family")
+    subfam = Taxon.make!( name: "Subfamilyone", rank: "subfamily", parent: fam )
+    gen = Taxon.make!( name: "Genusone", rank: "genus", parent: fam )
+    sp = Taxon.make!( name: "Species one", rank: "species", parent: gen )
     o = Observation.make!
     i1 = Identification.make!(:observation => o, :taxon => subfam)
     i2 = Identification.make!(:observation => o, :taxon => sp)
@@ -1069,6 +1069,21 @@ describe Taxon, "grafting" do
     t = Taxon.make!(:name => "Pseudacris foo")
     t.graft
     expect(t.parent).to eq(@Pseudacris)
+  end
+
+  it "should update the ancestry of children" do
+    f = Taxon.make!( rank: Taxon::FAMILY, name: "Familyone" )
+    g = Taxon.make!( rank: Taxon::GENUS, name: "Genusone" )
+    s = Taxon.make!( rank: Taxon::SPECIES, name: "Genusone speciesone", parent: g )
+    expect( g ).not_to be_grafted
+    expect( s.ancestor_ids ).to include g.id
+    expect( s.ancestor_ids ).not_to include f.id
+    g.update_attributes( parent: f )
+    Delayed::Worker.new.work_off
+    g.reload
+    s.reload
+    expect( s.ancestor_ids ).to include g.id
+    expect( s.ancestor_ids ).to include f.id
   end
 
   describe "indexing" do

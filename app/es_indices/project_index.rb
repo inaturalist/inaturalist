@@ -139,7 +139,7 @@ class Project < ActiveRecord::Base
       updated_at: updated_at,
       last_post_at: posts.published.last.try(:published_at),
       observations_count: total_obs_by_members,
-      universal_search_rank: total_obs_by_members,
+      universal_search_rank: total_obs_by_members + ( site_featured_projects.size > 0 ? 1000 : 0 ),
       spam: known_spam? || owned_by_spammer?,
       flags: flags.map(&:as_indexed_json),
       site_features: site_featured_projects.map(&:as_indexed_json)

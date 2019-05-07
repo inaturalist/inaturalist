@@ -459,7 +459,14 @@ $(document).ready(function() {
     $( document ).bind( "keyup", function( e ) {
       var forwardSlashKeyCode = 191;
       if ( e.which !== forwardSlashKeyCode ) { return true; }
-      if ( e.target.type === "textarea" || e.target.type === "text" ) {
+      if (
+        e.target.type === "textarea"
+        || e.target.type === "text"
+        || e.target.type === "search"
+        || e.target.type === "datetime"
+        || e.target.type === "email"
+        || e.target.type === "password"
+      ) {
         return true;
       }
       showHeaderSearch( );

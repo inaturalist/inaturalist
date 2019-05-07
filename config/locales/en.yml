@@ -140,6 +140,16 @@ en:
   about_this_bioblitz: About this bioblitz
   about_this_map: About This Map
   about_this_project: About this Project
+  about_trips_html: "<h4>Trips enable the collection of presence-absence data by adding context to your observations</h4><p><strong>Why</strong> Presence-absence data include information about sampling effort which is useful for scientific analyses like distribution modeling (raw iNaturalist observations are 'presence-only' data).</p>
+        <p><strong>How</strong> A trip adds context to your observations by recording:</p>
+        <ul>
+          <li><strong>What</strong> you searched for (target list)</li>
+          <li><strong>Where</strong> you searched (search area)</li>
+          <li><strong>When</strong> you searched (search interval)</li>
+        </ul>
+        <p>Species on your target list that you were able to observe within the search area and interval are interpreted as presences.
+        While species on your target list that you were unable to observe are interpreted as absences.
+        Click 'Tabulate Presence Absence Data From Trips' to generate a table of presence-absence records for a species from trips and associated observations. <a href='%{url}'>Learn more</a></p>"
   about_x: "About %{x}"
   acc: 'Acc (m)'
   account: Account
@@ -440,6 +450,7 @@ en:
   amphibiaweb_taxonomy: AmphibiaWeb Taxonomy
   an: an
   an_: an
+  ancestor_taxon: Ancestor Taxon
   and: and
   and_choose_a_matching_taxon: and choose a matching taxon from the list.  If you don't end up with something like
   and_help_the_inaturalist_community_grow: "and help the %{site_name} community grow."
@@ -3549,6 +3560,7 @@ en:
   search_for_species: Search for Species
   search_list: Search List
   search_obs: "Search obs..."
+  search_observations: "Search observations"
   search_places: Search Places
   search_projects: Search Projects
   search_results_for: Search Results for
@@ -3860,6 +3872,8 @@ en:
   take_me_facebook: Yes, take me to Facebook!
   take_me_flickr!: Yes, take me to Flickr!
   take_me_back: Take me back
+  target_list_alert: Are you sure that you attempted to observe all species covered by your target list? Remember that anything covered by your target list that you didn't observe will be interpreted as an absence so its very important that your target list accurately reflects the set of species you attempted to detect
+  target_list_warning: Remember that anything covered by your target list that you didn't observe within the radius and duration of this trip will be interpreted as an absence. Its very important that your target list accurately reflects the set of species you attempted to detect. If you didn't attempt to detect a species on your target list or every species covered by a group on your target list, please remove it.
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa with unknown relationships
   taxa_info: Taxa Info
@@ -4233,7 +4247,7 @@ en:
   'true': 'True'
   trending: Trending
   trends: Trends
-  trip_target_list_info: 'This is a non-overlaping set of the coarsest taxa in your target list. Any taxa represented by obscured observations excluded. <a href="/pages/trips">Read more</a>.'
+  trip_target_list_info: 'Any species covered by this target list that were not observed within the radius and duration of this trip will be interpreted as absences. <a href="/pages/trips">Read more</a>.'
   trusted: Trusted
   trusted_project?: Trusted project?
   trust_this_person_with_your_private_coordinates: Trust this person with your hidden coordinates
@@ -6248,12 +6262,6 @@ en:
           concepts, and they only include species, not infraspecific taxa like
           subspecies or varieties.
         discoveries_desc: "Most recent newly-identified species in this taxon"
-        trending_desc: Most-observed taxa in the last month
-        trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
-        rare_desc: Least-observed threatened taxa
-        rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
-        wanted_desc: Species in this taxon that have not been observed yet.
-        no_trending_desc: Nothing below this taxon observed in the last month
         frequency:
           research: Research Grade
           verifiable: Verifiable
@@ -6269,6 +6277,10 @@ en:
           "Life Stage=pupa": Pupa
           "Life Stage=adult": Adult
           unannotated: No Annotation
+        max_photos_desc: |
+          A taxon can only have %{max} photos. You'll need to remove existing
+          photos to add more.
+        no_trending_desc: Nothing below this taxon observed in the last month
         photo_chooser_modal_desc: |
           Drag photos here from the left, or drag photos here to re-arrange.
         photo_chooser_modal_explanation: |
@@ -6276,11 +6288,16 @@ en:
           and its descendants. The photos chosen for this
           taxon will show first, though. The first photo will be
           the default image used across the site.
+        rare_desc: Least-observed threatened taxa
+        rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
           Site curators have temporarily disabled showing <a href="%{url}">this
           content from Wikipedia</a>. You can help by editing the page on
           Wikipedia to make it appropriate for this taxon, or by flagging this
           taxon to bring it to the attention of site curators.
+        trending_desc: Most-observed taxa in the last month
+        trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
+        wanted_desc: Species in this taxon that have not been observed yet.
     taxon_changes:
       move_children_desc: |
         Children of the input taxon that are genera or coarser will be moved to
@@ -7035,6 +7052,10 @@ en:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: |
                 can only be changed by a curator of this taxon
+            name:
+              bad_format: |
+                can only contain standard Latin characters, hyphens, spaces, and
+                ×; note that putative taxa and cultivars are not allowed
         taxon_name:
           attributes:
             lexicon:
@@ -7042,6 +7063,14 @@ en:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: |
                 cannot match the scientific name of a species for this lexicon
+              bad_format: |
+                can only contain standard Latin characters, hyphens, spaces, and
+                ×; note that putative taxa and cultivars are not allowed
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: |
+                cannot have more than %{max} photos
         user:
           attributes:
             login:

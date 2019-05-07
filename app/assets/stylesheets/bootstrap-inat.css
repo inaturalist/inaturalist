@@ -331,6 +331,13 @@ input[type="color"]:focus,
   color: inherit;
 }
 
+.btn.btn-nostyle {
+  padding: 0;
+  background-color: transparent;
+  border: 0 transparent;
+  line-height: 1;
+}
+
 .modal-container {
   position: relative;
 }

@@ -35,14 +35,19 @@ class ProjectUser < ActiveRecord::Base
     scope role.pluralize, -> { where(:role => role) }
   end
 
-  notifies_subscribers_of :project, :on => :save, :notification => CURATOR_CHANGE_NOTIFICATION, 
-    :include_notifier => true,
+  notifies_subscribers_of :project, on: :save, notification: CURATOR_CHANGE_NOTIFICATION,
+    include_notifier: true,
     # don't bother queuing this if there's no relevant role change
-    :queue_if => Proc.new {|pu|
-      pu.role_changed? && (ROLES.include?(pu.role) || pu.user_id == pu.project.user_id)
+    queue_if: Proc.new{ |pu|
+      !pu.project.is_new_project? &&
+        pu.role_changed? &&
+        ( ROLES.include?(pu.role) || pu.user_id == pu.project.user_id )
     },
     # check to make sure role status hasn't changed since queuing
-    :if => Proc.new {|pu| ROLES.include?(pu.role) || pu.user_id == pu.project.user_id}
+    if: Proc.new{ |pu|
+      !pu.project.is_new_project? &&
+        ( ROLES.include?(pu.role) || pu.user_id == pu.project.user_id )
+    }
 
   scope :curator_privilege, -> { where("role IN ('curator', 'manager')") }
 

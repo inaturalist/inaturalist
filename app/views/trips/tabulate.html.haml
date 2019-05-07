@@ -6,28 +6,35 @@
     taxon.html = render( partial: "taxa/chooser.html.erb", object: taxon )
     taxon
   end
+  if @user
+    @user.html = render( partial: "users/chooser", object: @user )
+  end
+  @default_users = User.curators.limit( 10 ).map do |user|
+    user.html = render( partial: "users/chooser", object: user )
+    user
+  end
 - content_for( :title ) do
   - @title = t(:tabulate_presence_absence_data_from_trips)
   = strip_tags( @title )
 - content_for( :extracss ) do
   = stylesheet_link_tag "autocomplete"
   :css
-    .ui-chooser-choice { max-width: 190px; }
     form .text { width: 200px; }
-    .taxon_framework_relationship { border-bottom: 1px solid #eee; margin-top: 10px; padding-bottom: 10px; }
-    .name { font-size: 110%; font-style: italic; }
-    .admin-box {
-        border-width: 2px;
-        border-style: dotted;
-        position: relative;
-        padding: 5px;
-    }
 - content_for( :extrajs ) do
   :javascript
     window.taxon = #{ json_escape @taxon.to_json( methods: [:html] ).html_safe }
     window.place = #{ json_escape @place.to_json( methods: [:html] ).html_safe }
+    window.user = #{ json_escape @user.to_json( methods: [:html] ).html_safe }
     window.defaultTaxa = #{ json_escape @default_taxa.to_json( methods: [:html] ).html_safe }
+    window.defaultUsers = #{ json_escape @default_users.to_json( methods: [:html] ).html_safe }
     $( document ).ready( function() {      
+      $( "#filters_user_id" ).chooser( {
+        queryParam: "q",
+        collectionUrl: "/people/search.json",
+        resourceUrl: "/people/{{id}}.json",
+        chosen: user,
+        defaultSources: defaultUsers
+      } )
       $( "#filters_place_id" ).chooser( {
         queryParam: "q",
         collectionUrl: "/places/search.json",
@@ -48,10 +55,8 @@
       %ul.list-unstyled
         %li
           = link_to t( :back_to_x, :noun => "trips" ), trips_path, :class => "back crumb"
+      = link_to t( :json_format ), current_url(:format=>:json), :class => "default button right"
       %h2= @title
-      .panel.panel-info
-        .panel-heading
-          = "Notice - trips aren't yet properly calculating presence absence data"
   .row
     .col-xs-3
       = form_for :filters, builder: DefaultFormBuilder, html: { method: :get } do |f|
@@ -60,6 +65,7 @@
         = f.text_field :place_id, value: @place ? @place.id : nil, placeholder: t( :start_typing_place_name ), label: t( :place )
         = f.select :month, [1,2,3,4,5,6,7,8,9,10,11,12], include_blank: t( :any ), selected: @month, label: t( :month )
         = f.select :year, [2019], include_blank: t( :any ), selected: @year, label: t( :year )
+        = f.text_field :user_id, value: @user ? @user.id : nil, placeholder: t( :start_typing_someones_name ), label: t( :added_by )
         = f.submit t( :filter ), class: "default button", "data-loading-click": t( :filtering )
         = link_to t( :clear_filters ), tabulate_trips_url, class: "minor button"
     .col-xs-9
@@ -102,7 +108,7 @@
                   %td
                     =trip.number
                   %td
-                    null
+                    =@occupancy[trip.id]
           = will_paginate @trips
       - else
         %p.description= t :please_enter_a_species

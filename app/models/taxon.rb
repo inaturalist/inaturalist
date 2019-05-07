@@ -109,6 +109,7 @@ class Taxon < ActiveRecord::Base
   #                         :scope => [:source_id],
   #                         :message => "already exists",
   #                         :allow_blank => true
+  validates :name, format: { with: TaxonName::NAME_FORMAT, message: :bad_format }, on: :create
   validate :taxon_cant_be_its_own_ancestor
   validate :can_only_be_featured_if_photos
   validate :validate_locked
@@ -301,14 +302,17 @@ class Taxon < ActiveRecord::Base
     "caterpillars",
     "chiton",
     "cicada",
+    "creeper",
     "gall",
     "hong kong",
     "larva",
     "lichen",
     "lizard",
+    "mexico",
     "oman",
     "pinecone",
     "sea",
+    "sinaloa",
     "tanzania",
     "virginia",
     "winged insect"

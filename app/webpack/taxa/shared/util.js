@@ -162,6 +162,8 @@ const RANK_LEVELS = {
   infrahybrid: 5
 };
 
+const MAX_TAXON_PHOTOS = 12;
+
 export {
   urlForTaxon,
   urlForTaxonPhotos,
@@ -171,5 +173,6 @@ export {
   localizedPhotoAttribution,
   commasAnd,
   windowStateForTaxon,
-  RANK_LEVELS
+  RANK_LEVELS,
+  MAX_TAXON_PHOTOS
 };

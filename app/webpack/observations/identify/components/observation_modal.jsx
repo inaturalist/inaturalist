@@ -463,6 +463,31 @@ class ObservationModal extends React.Component {
                       /> { I18n.t( "captive_cultivated" ) }
                     </label>
                   </OverlayTrigger>
+                  <OverlayTrigger
+                    placement="top"
+                    delayShow={1000}
+                    overlay={
+                      <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
+                        { I18n.t( "mark_as_reviewed" ) }
+                      </Tooltip>
+                    }
+                    container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+                  >
+                    <label
+                      className={
+                        `btn btn-link btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+                      }
+                    >
+                      <input
+                        type="checkbox"
+                        checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
+                        onChange={function ( ) {
+                          toggleReviewed( );
+                        }}
+                      />
+                      { I18n.t( "reviewed" ) }
+                    </label>
+                  </OverlayTrigger>
                 </div>
               </div>
             ) }
@@ -534,13 +559,13 @@ class ObservationModal extends React.Component {
                               { I18n.toNumber( observation.positional_accuracy, { precision: 0 } ) }
                             </li>
                           ) }
-                          { country ? (
-                            <li>
-                              <i className="fa fa-globe bullet-icon"></i> {
-                                I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "unknown" )
-                              }
-                            </li>
-                          ) : null }
+                          <li>
+                            <i className="fa fa-globe bullet-icon" />
+                            { " " }
+                            { country ? (
+                              I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "somewhere_on_earth" )
+                            ) : I18n.t( "somewhere_on_earth" ) }
+                          </li>
                           { blind ? null : (
                             <li className="view-follow">
                               <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
@@ -605,31 +630,6 @@ class ObservationModal extends React.Component {
                     </div>
                   </div>
                   <div className="tools">
-                    <OverlayTrigger
-                      placement="top"
-                      delayShow={1000}
-                      overlay={
-                        <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
-                          { I18n.t( "mark_as_reviewed" ) }
-                        </Tooltip>
-                      }
-                      container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-                    >
-                      <label
-                        className={
-                          `btn btn-link btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
-                        }
-                      >
-                        <input
-                          type="checkbox"
-                          checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
-                          onChange={function ( ) {
-                            toggleReviewed( );
-                          }}
-                        />
-                        { I18n.t( "reviewed" ) }
-                      </label>
-                    </OverlayTrigger>
                     <OverlayTrigger
                       placement="top"
                       delayShow={1000}

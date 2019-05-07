@@ -440,6 +440,30 @@ describe TaxonSwap, "commit" do
     end
   end
 
+  describe "when sole identifier of input taxon has opted out of taxon changes" do
+    before(:each) { enable_elastic_indexing( Observation, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+
+    it "should re-evalute probable taxa" do
+      o = Observation.make!
+      i1 = Identification.make!(
+        taxon: @ancestor_taxon,
+        observation: o,
+        user: o.user
+      )
+      i2 = Identification.make!(
+        taxon: @input_taxon,
+        observation: o,
+        user: User.make!( prefers_automatic_taxonomic_changes: false )
+      )
+      expect( o.taxon ).to eq @input_taxon
+      @swap.commit
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.identifications.current.map(&:taxon_id) ).to include i2.taxon_id
+      expect( o.taxon ).to eq @ancestor_taxon
+    end
+  end
 end
 
 describe TaxonSwap, "commit_records" do
@@ -712,7 +736,7 @@ describe TaxonSwap, "commit_records" do
     tc.reload
     expect( tc.input_taxon ).to eq tc.output_taxon
     expect( o.identifications.count ).to eq 1
-    tc.commit_records
+    tc.commit_records rescue nil
     expect( o.identifications.count ).to eq 1
   end
 
@@ -800,7 +824,7 @@ describe "move_input_children_to_output" do
 end
 
 def prepare_swap
-  @ancestor_taxon = Taxon.make!( rank: Taxon::SUPERFAMILY )
+  @ancestor_taxon = Taxon.make!( rank: Taxon::SUPERFAMILY, name: "Superfamily" )
   @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "InputFamily", parent: @ancestor_taxon )
   @output_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "OutputFamily", parent: @ancestor_taxon )
   @swap = TaxonSwap.make

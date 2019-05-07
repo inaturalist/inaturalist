@@ -20,6 +20,10 @@
       = t :for
       %i= link_to @taxon.name, taxon_path(@taxon), "data-taxon-id" => @taxon.id
       (#{@taxon.is_active ? t(:active) : t(:inactive)})"
+    - if @ancestor_taxon
+      = t :on
+      %i= link_to @ancestor_taxon.name, taxon_path(@ancestor_taxon), "data-taxon-id" => @ancestor_taxon.id
+      (#{@ancestor_taxon.is_active ? t(:active) : t(:inactive)})"
   = strip_tags(@title)
 - content_for(:extracss) do
   = stylesheet_link_tag 'taxon_changes'
@@ -32,6 +36,7 @@
 - content_for(:extrajs) do
   :javascript
     window.taxon = #{json_escape @taxon.to_json(:methods => [:html]).html_safe}
+    window.ancestorTaxon = #{json_escape @ancestor_taxon.to_json(:methods => [:html]).html_safe}
     window.user = #{json_escape @user.to_json(:methods => [:html]).html_safe}
     window.defaultTaxa = #{json_escape @default_taxa.to_json(:methods => [:html]).html_safe}
     window.defaultUsers = #{json_escape @default_users.to_json(:methods => [:html]).html_safe}
@@ -55,9 +60,18 @@
         thumbnail: false,
         bootstrapClear: true
       } );
-      
       if (taxon) {
         $('[data-taxon-id='+taxon.id+']').css('background-color', 'lightyellow')
+      }
+
+      $('#filters_ancestor_taxon_name').taxonAutocomplete( {
+        idEl: $('#filters_ancestor_taxon_id' ),
+        initialSelection: #{raw @ancestor_taxon.to_json},
+        thumbnail: false,
+        bootstrapClear: true
+      } );
+      if (ancestorTaxon) {
+        $('[data-taxon-id='+ancestorTaxon.id+']').css('background-color', 'lightyellow')
       }
     })
 .container
@@ -82,6 +96,8 @@
         = f.select :iconic_taxon_id, Taxon::ICONIC_TAXA.map{|t| [t.name, t.id]}, :include_blank => t(:any), :selected => @iconic_taxon.try(:read_attribute, :id), :label => t(:iconic_taxon)
         = f.text_field :taxon_name, placeholder: t(:type_taxon_name), label: t(:taxon)
         = f.hidden_field :taxon_id, value: @taxon ? @taxon.id : nil
+        = f.text_field :ancestor_taxon_name, placeholder: t(:type_taxon_name), label: t(:ancestor_taxon)
+        = f.hidden_field :ancestor_taxon_id, value: @ancestor_taxon ? @ancestor_taxon.id : nil
         = f.text_field :source_id, :value => @source ? @source.id : nil, :placeholder => t(:type_source_name), :label => t(:source)
         - if logged_in?
           = f.text_field :user_id, :value => @user ? @user.id : nil, :placeholder => t(:start_typing_someones_name), :label => t(:added_by)

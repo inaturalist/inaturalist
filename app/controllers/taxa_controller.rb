@@ -10,11 +10,6 @@ class TaxaController < ApplicationController
       ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
       c.params[:test].blank?
     }
-  caches_action :describe, :expires_in => 1.day,
-    :cache_path => Proc.new { |c| c.params.merge( locale: I18n.locale ) },
-    :if => Proc.new {|c|
-      c.session.blank? || c.session['warden.user.user.key'].blank?
-    }
 
   before_filter :allow_external_iframes, only: [:map]
   
@@ -306,13 +301,12 @@ class TaxaController < ApplicationController
   end
 
   def edit
-    # TODO: these .firsts will need to be updated
-    @observations_exist = Observation.where(taxon_id: @taxon).exists? ||
-      Observation.joins(:taxon).where(@taxon.descendant_conditions).exists?
-    @listed_taxa_exist = ListedTaxon.where(taxon_id: @taxon).exists? ||
-      ListedTaxon.joins(:taxon).where(@taxon.descendant_conditions).exists?
-    @identifications_exist = Identification.where(taxon_id: @taxon).exists? ||
-      Identification.joins(:taxon).where(@taxon.descendant_conditions).exists?
+    @observations_exist = @taxon.observations_count > 0
+    @listed_taxa_exist = @taxon.listed_taxa_count > 0
+    @identifications_exist = Identification.elastic_search(
+      filters: [{ term: { "taxon.id" => @taxon.id } } ],
+      size: 0
+    ).total_entries > 0
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
@@ -1027,33 +1021,48 @@ class TaxaController < ApplicationController
     else
       [TaxonDescribers::Wikipedia, TaxonDescribers::Eol]
     end
-    # Fall back to English wikipedia as a last resort unless the default
-    # Wikipedia describer is already in English
-    if I18n.locale.to_s !~ /^en/
-      @describers << TaxonDescribers::Wikipedia.new( locale: :en )
-    end
-    if @taxon.auto_description?
-      if @describer = TaxonDescribers.get_describer(params[:from])
-        @description = @describer.describe( @taxon )
-      else
-        @describers.each do |d|
-          @describer = d
-          @description = begin
-            d.describe(@taxon)
-          rescue OpenURI::HTTPError, Timeout::Error => e
-            nil
+    # Perform caching here as opposed to caches_action so we can set request headers appropriately
+    key = "views/taxa/#{@taxon.id}/description?#{request.query_parameters.merge( locale: I18n.locale ).to_a.join{|k,v| "#{k}=#{v}"}}"
+    @description = Rails.cache.read( key )
+    # We only need to fetch new data for logged in users and when the cache is empty
+    if logged_in? || @description.blank?
+      # Fall back to English wikipedia as a last resort unless the default
+      # Wikipedia describer is already in English
+      if I18n.locale.to_s !~ /^en/
+        @describers << TaxonDescribers::Wikipedia.new( locale: :en )
+      end
+      if @taxon.auto_description?
+        if @describer = TaxonDescribers.get_describer(params[:from])
+          @description = @describer.describe( @taxon )
+        else
+          @describers.each do |d|
+            @describer = d
+            @description = begin
+              d.describe(@taxon)
+            rescue OpenURI::HTTPError, Timeout::Error => e
+              nil
+            end
+            break unless @description.blank?
           end
-          break unless @description.blank?
         end
+        if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
+          @taxon.wikipedia_summary( refresh_if_blank: true )
+        end
+      else
+        @describer = @describers.first
       end
-      if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
-        @taxon.wikipedia_summary(:refresh_if_blank => true)
+      if @describer
+        @describer_url = @describer.page_url( @taxon )
+        response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
+        response.headers["X-Describer-URL"] = @describer_url
       end
-    else
-      @describer = @describers.first
-    end
-    if @describer
-      @describer_url = @describer.page_url(@taxon)
+      if !@description.blank? && !logged_in?
+        Rails.cache.write( key, @description, expires_in: 1.day )
+        Rails.cache.write( "#{key}-describer", @describer.name.split( "::" ).last, expires_in: 1.day )
+      end
+    # If we have cached content and a cached describer name, set the response headers
+    elsif !@description.blank? && ( @describer = TaxonDescribers.get_describer( Rails.cache.read( "#{key}-describer" ) ) )
+      @describer_url = @describer.page_url( @taxon )
       response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end

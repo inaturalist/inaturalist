@@ -175,6 +175,7 @@ de:
   about_x: Über %{x}
   acc: Genauigkeit (m)
   account: Benutzerkonto
+  account_creation: Benutzerkontenerstellung
   account_settings: Kontoeinstellungen
   accept: akzeptieren
   accept_community_identifications: Bestimmung der Community annehmen
@@ -479,7 +480,7 @@ de:
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWeb hat keine Informationen
     über diese Spezies.
   amphibiaweb_taxonomy: AmphibiaWeb-Taxonomie
-  an: ein
+  an: ein/e/r
   an_: ein
   and: und
   and_choose_a_matching_taxon: und wähle ein passendes Taxon aus der Liste aus. Wenn
@@ -1762,7 +1763,7 @@ de:
   in_progress: in Bearbeitung
   in_taxon?: in Taxon
   in_the_past: in der Vergangenheit
-  in_the_past_week: in der vergangenen Woche
+  in_the_past_week: In der vergangenen Woche
   inactive: inaktiv
   inactive_taxon: inaktives Taxon
   inactive_taxon_concepts_are: Inaktive Taxon-Konzepte sind entweder taxonomisch veraltet
@@ -1795,6 +1796,7 @@ de:
   internal_server_error: Interner Serverfehler
   internal_taxon: Internes Taxon
   internal_taxon_including_descendants: Internes Taxon (einschließlich Nachkommen)
+  internal_taxon_rank: Interner Taxonrang
   introduced: eingeführt
   introduced_in_place: Eingeführt in %{place}
   invasive: invasiv
@@ -2141,6 +2143,7 @@ de:
   long: Lon
   longitude: Längengrad
   longitude_in_decimal: Längengrad in dezimal Grad, z.B. 38.123
+  longitude_value: 'Längengrad: %{longitude}'
   look_up_name: Namen nachschlagen
   looks_like_neither_have!: Sieht aus, als hätten beide keine Taxa!
   looks_like_no_species_in_guide: Sieht aus, als hättest du noch keine Art in deinem
