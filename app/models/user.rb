@@ -876,65 +876,66 @@ class User < ActiveRecord::Base
     puts "Deleting #{deleted_observations.count} DeletedObservations"
     deleted_observations.delete_all
 
-    s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml") )
-    s3_client = ::Aws::S3::Client.new(
-      access_key_id: s3_config["access_key_id"],
-      secret_access_key: s3_config["secret_access_key"],
-      region: CONFIG.s3_region
-    )
-
-    cf_client = ::Aws::CloudFront::Client.new(
-      access_key_id: s3_config["access_key_id"],
-      secret_access_key: s3_config["secret_access_key"],
-      region: CONFIG.s3_region
-    )
-
-    deleted_photos = DeletedPhoto.where( user_id: user_id )
-    puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
-    deleted_photos.find_each do |dp|
-      images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
-      puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
-      if images.any?
-        s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-      end
-      dp.destroy
-    end
-
-    # delete user profile pic form s3
-    user_images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "attachments/users/icons/#{user_id}/" ).contents
-    if user_images.any?
-      puts "Deleting profile pic from S3"
-      s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: user_images.map{|s| { key: s.key } } } )
-    end
-
-    # This might cause problems with multiple simultaneous invalidations. FWIW,
-    # CloudFront is supposed to expire things in 24 hours by default
-    if options[:cloudfront_distribution_id]
-      paths = deleted_photos.compact.map{|dp| "/photos/#{ dp.photo_id }/*" }
-      if user_images.any?
-        paths << "attachments/users/icons/#{user_id}/*"
-      end
-      cf_client.create_invalidation(
-        distribution_id: options[:cloudfront_distribution_id],
-        invalidation_batch: {
-          paths: {
-            quantity: paths.size,
-            items: paths
-          },
-          caller_reference: "#{paths[0]}/#{Time.now.to_i}"
-        }
+    unless options[:skip_aws]
+      s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml") )
+      s3_client = ::Aws::S3::Client.new(
+        access_key_id: s3_config["access_key_id"],
+        secret_access_key: s3_config["secret_access_key"],
+        region: CONFIG.s3_region
       )
-    end
+      cf_client = ::Aws::CloudFront::Client.new(
+        access_key_id: s3_config["access_key_id"],
+        secret_access_key: s3_config["secret_access_key"],
+        region: CONFIG.s3_region
+      )
 
-    deleted_sounds = DeletedSound.where( user_id: user_id )
-    puts "Deleting #{deleted_sounds.count} DeletedSounds and associated records from s3"
-    deleted_sounds.find_each do |ds|
-      sounds = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{ ds.sound_id }." ).contents
-      puts "\tSound #{ds.sound_id}, removing #{sounds.size} sounds from S3"
-      if sounds.any?
-        s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
+      deleted_photos = DeletedPhoto.where( user_id: user_id )
+      puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
+      deleted_photos.find_each do |dp|
+        images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
+        puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
+        if images.any?
+          s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+        end
+        dp.destroy
       end
-      ds.destroy
+
+      # delete user profile pic form s3
+      user_images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "attachments/users/icons/#{user_id}/" ).contents
+      if user_images.any?
+        puts "Deleting profile pic from S3"
+        s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: user_images.map{|s| { key: s.key } } } )
+      end
+
+      # This might cause problems with multiple simultaneous invalidations. FWIW,
+      # CloudFront is supposed to expire things in 24 hours by default
+      if options[:cloudfront_distribution_id]
+        paths = deleted_photos.compact.map{|dp| "/photos/#{ dp.photo_id }/*" }
+        if user_images.any?
+          paths << "attachments/users/icons/#{user_id}/*"
+        end
+        cf_client.create_invalidation(
+          distribution_id: options[:cloudfront_distribution_id],
+          invalidation_batch: {
+            paths: {
+              quantity: paths.size,
+              items: paths
+            },
+            caller_reference: "#{paths[0]}/#{Time.now.to_i}"
+          }
+        )
+      end
+
+      deleted_sounds = DeletedSound.where( user_id: user_id )
+      puts "Deleting #{deleted_sounds.count} DeletedSounds and associated records from s3"
+      deleted_sounds.find_each do |ds|
+        sounds = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{ ds.sound_id }." ).contents
+        puts "\tSound #{ds.sound_id}, removing #{sounds.size} sounds from S3"
+        if sounds.any?
+          s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
+        end
+        ds.destroy
+      end
     end
 
     # Delete from PandionES where user_id:user_id

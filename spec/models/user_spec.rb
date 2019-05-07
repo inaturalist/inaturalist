@@ -1190,7 +1190,7 @@ describe User do
         other_f = Flag.make!
         flag_user_id = f.user.id
         expect( flag_user_id ).not_to be_blank
-        User.forget( f.user_id )
+        User.forget( f.user_id, skip_aws: true )
         f.reload
         expect( f.user_id ).to eq -1
         other_f.reload
