@@ -462,7 +462,7 @@ describe User do
     before(:all) { enable_elastic_indexing( Observation ) }
     after(:all) { disable_elastic_indexing( Observation ) }
     
-    let(:user) { User.make! }
+    let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
 
     it "should destroy the user" do
       user.sane_destroy
@@ -1066,7 +1066,7 @@ describe User do
     before(:each) { enable_elastic_indexing( Observation, Identification, Project ) }
     after(:each) { disable_elastic_indexing( Observation, Identification, Project ) }
 
-    let(:user) { User.make! }
+    let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
     let(:flagger) { User.make! }
 
     it "should reindex observations as spam" do
