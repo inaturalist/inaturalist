@@ -9,7 +9,7 @@
 .column.prepend-4.span-16.append-4
   %h2=t :messages
 
-  - if current_user.privileged_with?( UserPrivilege::SPEECH )
+  - if true || current_user.privileged_with?( UserPrivilege::SPEECH )
     .tools.right
       = link_to t(:new_message), new_message_path
   - else
