@@ -57,6 +57,11 @@ class Project < ActiveRecord::Base
     "ping"
   ]
 
+  requires_privilege :organizer, on: :create,
+    if: Proc.new {|project|
+      !project.is_new_project? && !project.user.is_curator? && !project.user.is_admin?
+    }
+
   extend FriendlyId
   friendly_id :title, use: [ :slugged, :history, :finders ],
     reserved_words: PROJECTS_CONTROLLER_ACTION_METHODS

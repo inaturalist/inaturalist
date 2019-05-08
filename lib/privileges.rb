@@ -6,15 +6,7 @@ module Privileges
   module ClassMethods
     def requires_privilege( privilege, options = {} )
       callback_types = options[:on] || [:create]
-      if callback_types.is_a?( Array )
-        callback_types.each do |callback_type|
-          validate on: callback_type, if: options[:if] do |record|
-            unless record.user.privileged_with?( privilege )
-              errors.add( :user_id, "requires_privilege_#{privilege}" )
-            end
-          end
-        end
-      else
+      if callback_types.is_a?( Hash )
         callback_types.each do |callback_type, attrs|
           validate on: callback_type, if: options[:if] do |record|
             if ![attrs].flatten.blank?
@@ -23,7 +15,16 @@ module Privileges
               end
             end
             unless record.user.privileged_with?( privilege )
-              errors.add( :user_id, "requires_privilege_#{privilege}" )
+              errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
+            end
+          end
+        end
+      else
+        callback_types = [callback_types].flatten
+        callback_types.each do |callback_type|
+          validate on: callback_type, if: options[:if] do |record|
+            unless record.user.privileged_with?( privilege )
+              errors.add( :user_id, "requires_privilege_#{privilege}".to_sym )
             end
           end
         end
@@ -47,5 +48,29 @@ module Privileges
 
   module InstanceMethods
     # TODO
+  end
+
+  module Controller
+    def self.included( base )
+      base.extend ClassMethods
+    end
+    module ClassMethods
+      def requires_privilege( privilege, options = {} )
+        before_filter( options ) do
+          if current_user && !current_user.privileged_with?( privilege ) && !current_user.is_admin? && !current_user.is_curator?
+            msg = t( "errors.messages.requires_privilege_#{privilege}" )
+            respond_to do |format|
+              format.html do
+                flash[:notice] = msg
+                redirect_back_or_default( root_url )
+              end
+              format.json do
+                return render json: { error: msg }, status: :forbidden
+              end
+            end
+          end
+        end
+      end
+    end
   end
 end

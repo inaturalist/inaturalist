@@ -94,7 +94,7 @@ describe Emailer, "new_message" do
   end
 
   it "should not deliver flagged messages" do
-    from_user = User.make!
+    from_user = make_user_with_privilege( UserPrivilege::SPEECH )
     to_user = User.make!
     m = make_message(:from_user => from_user, :to_user => to_user, :user => from_user)
     m.send_message

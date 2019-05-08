@@ -129,6 +129,8 @@ class ApplicationController < ActionController::Base
       redirect_to default, :status => :see_other
     end
     session[:return_to] = nil
+  rescue ActionController::RedirectBackError
+    redirect_to default, :status => :see_other
   end
   
   #

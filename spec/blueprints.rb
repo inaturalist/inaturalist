@@ -286,9 +286,13 @@ Post.blueprint(:draft) do
 end
 
 Project.blueprint do
-  user { User.make! }
+  user { UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user }
   title { Faker::Lorem.sentence }
   description { Faker::Lorem.paragraph.truncate(255) }
+end
+
+Project.blueprint(:collection) do
+  project_type { "collection" }
 end
 
 ProjectInvitation.blueprint do
