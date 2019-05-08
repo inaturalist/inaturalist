@@ -22,25 +22,25 @@ const ObservationsGridItem = ( {
       { before }
       <a
         href={`/observations/${o.id}`}
-        style={ {
+        style={{
           backgroundImage: o.photo( ) ? `url( '${o.photo( "medium" )}' )` : ""
-        } }
-        target={ linkTarget }
+        }}
+        target={linkTarget}
         className={`photo ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
         onClick={function ( e ) {
-          if ( typeof( onObservationClick ) !== "function" ) {
+          if ( typeof ( onObservationClick ) !== "function" ) {
             return true;
           }
           e.preventDefault();
           onObservationClick( o );
           return false;
-        } }
+        }}
       >
-        <i className={ `icon icon-iconic-${"unknown"}`} />
+        <i className={`icon icon-iconic-${"unknown"}`} />
         <i className="sound-icon fa fa-volume-up" />
         { showMagnifier ? (
           <div className="magnifier">
-            <i className="fa fa-search"></i>
+            <i className="fa fa-search" />
           </div>
         ) : null }
         { o.photos && o.photos.length > 1 && (
@@ -54,7 +54,7 @@ const ObservationsGridItem = ( {
         ) }
       </a>
       <div className="caption">
-        <UserImage user={ o.user } linkTarget={ linkTarget } />
+        <UserImage user={o.user} linkTarget={linkTarget} />
         {
           <SplitTaxon
             {...splitTaxonOptions}
