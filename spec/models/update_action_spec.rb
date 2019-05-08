@@ -57,7 +57,7 @@ describe UpdateAction do
       end
       it "message_email_notification" do
         test_preference( "message_email_notification" ) do |u|
-          sender = User.make!
+          sender = make_user_with_privilege( UserPrivilege::SPEECH )
           Message.make!( user: sender, from_user: sender, to_user: u )
         end
       end

@@ -2676,6 +2676,7 @@ class Observation < ActiveRecord::Base
   def reassess_same_day_observations
     return true if skip_reassess_same_day_observations
     return true unless obscuration_changed || observed_on_changed?
+    return true unless user && user.prefers_coordinate_interpolation_protection_test?
     unless observed_on.blank?
       Observation.
         delay(
@@ -2794,6 +2795,10 @@ class Observation < ActiveRecord::Base
             taxon_change: taxon_change
           )
         end
+      elsif ( observation.identifications.map(&:taxon_id) & input_taxon_ids ).size > 0
+        observation.set_community_taxon( force: true )
+        observation.set_taxon_from_probable_taxon
+        observation.save!
       end
       yield(observation) if block_given?
     end
@@ -2877,10 +2882,7 @@ class Observation < ActiveRecord::Base
   end
 
   def inaccurate_location?
-    if metric = quality_metric_score(QualityMetric::LOCATION)
-      return metric <= 0.5
-    end
-    false
+    !passes_quality_metric?( QualityMetric::LOCATION )
   end
 
   def update_mappable

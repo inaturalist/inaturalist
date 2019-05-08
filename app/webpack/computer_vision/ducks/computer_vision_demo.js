@@ -107,7 +107,7 @@ export function score( obsCard ) {
       } );
     }
     if ( obsCard.selected_date ) {
-      params.date = moment( obsCard.selected_date, "YYYY/MM/DD" ).format( );
+      params.observed_on = moment( obsCard.selected_date, "YYYY/MM/DD" ).format( );
     }
     if ( obsCard.selected_taxon ) {
       params.taxon_id = obsCard.selected_taxon.id;

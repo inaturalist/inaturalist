@@ -66,7 +66,6 @@ export function fetchNearby( ) {
       lng: observation.longitude,
       radius: 50,
       order_by: "observed_on",
-      include_new_projects: "true",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
       ttl: -1
@@ -93,7 +92,6 @@ export function fetchMoreFromClade( ) {
     const baseParams = {
       taxon_id: searchTaxon,
       order_by: "votes",
-      include_new_projects: "true",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
       ttl: -1
@@ -119,7 +117,6 @@ export function fetchMoreFromThisUser( ) {
       id_below: observation.id,
       per_page: 6,
       details: "all",
-      include_new_projects: "true",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
       locale: I18n.locale,
       ttl: -1
@@ -132,7 +129,6 @@ export function fetchMoreFromThisUser( ) {
         id_above: observation.id,
         per_page: 6,
         details: "all",
-        include_new_projects: "true",
         preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
         locale: I18n.locale,
         ttl: -1

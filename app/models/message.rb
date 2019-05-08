@@ -5,7 +5,7 @@ class Message < ActiveRecord::Base
   blockable_by lambda { |message| message.to_user_id },
     blockable_user_id: lambda { |message| message.from_user_id }
   
-  # Uncomment to require speech privilege to send new messages
+  # # Uncomment to require speech privilege to send new messages
   # requires_privilege :speech, if: Proc.new {|m|
   #   from_user_id == user_id && ( m.thread_id.blank? || m.thread_id == m.id )
   # }

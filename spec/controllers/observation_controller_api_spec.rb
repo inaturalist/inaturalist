@@ -1769,6 +1769,8 @@ shared_examples_for "an ObservationsController" do
     before(:each) { enable_elastic_indexing([ Observation ]) }
     after(:each) { disable_elastic_indexing([ Observation ]) }
 
+    let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
+
     it "should allow filtering by updated_since" do
       pu = ProjectUser.make!
       oldo = Observation.make!(:user => pu.user)

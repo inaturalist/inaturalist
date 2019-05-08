@@ -140,6 +140,16 @@ en:
   about_this_bioblitz: About this bioblitz
   about_this_map: About This Map
   about_this_project: About this Project
+  about_trips_html: "<h4>Trips enable the collection of presence-absence data by adding context to your observations</h4><p><strong>Why</strong> Presence-absence data include information about sampling effort which is useful for scientific analyses like distribution modeling (raw iNaturalist observations are 'presence-only' data).</p>
+        <p><strong>How</strong> A trip adds context to your observations by recording:</p>
+        <ul>
+          <li><strong>What</strong> you searched for (target list)</li>
+          <li><strong>Where</strong> you searched (search area)</li>
+          <li><strong>When</strong> you searched (search interval)</li>
+        </ul>
+        <p>Species on your target list that you were able to observe within the search area and interval are interpreted as presences.
+        While species on your target list that you were unable to observe are interpreted as absences.
+        Click 'Tabulate Presence Absence Data From Trips' to generate a table of presence-absence records for a species from trips and associated observations. <a href='%{url}'>Learn more</a></p>"
   about_x: "About %{x}"
   acc: 'Acc (m)'
   account: Account
@@ -440,6 +450,7 @@ en:
   amphibiaweb_taxonomy: AmphibiaWeb Taxonomy
   an: an
   an_: an
+  ancestor_taxon: Ancestor Taxon
   and: and
   and_choose_a_matching_taxon: and choose a matching taxon from the list.  If you don't end up with something like
   and_help_the_inaturalist_community_grow: "and help the %{site_name} community grow."
@@ -3549,6 +3560,7 @@ en:
   search_for_species: Search for Species
   search_list: Search List
   search_obs: "Search obs..."
+  search_observations: "Search observations"
   search_places: Search Places
   search_projects: Search Projects
   search_results_for: Search Results for
@@ -4235,7 +4247,7 @@ en:
   'true': 'True'
   trending: Trending
   trends: Trends
-  trip_target_list_info: 'This is a non-overlaping set of the coarsest taxa in your target list. Any taxa represented by obscured observations excluded. <a href="/pages/trips">Read more</a>.'
+  trip_target_list_info: 'Any species covered by this target list that were not observed within the radius and duration of this trip will be interpreted as absences. <a href="/pages/trips">Read more</a>.'
   trusted: Trusted
   trusted_project?: Trusted project?
   trust_this_person_with_your_private_coordinates: Trust this person with your hidden coordinates
@@ -5280,6 +5292,12 @@ en:
         project_list_desc: |
           Taxa manually added by project curators and taxa represented by
           research-grade observations added to the project are listed on project lists.
+    messages:
+      index:
+        speech_privilege_notice: |
+          You'll be able to send new messages after you've added three
+          verifiable observations or three identifications for others. For now
+          you can read and reply to message other people send you.
     oauth:
       authorizations:
         new:
@@ -5672,11 +5690,6 @@ en:
         admin_level_desc: |
           Should only be set for political bodies. In terms of 
           USA-equivalents, 0 = country, 1 = state, 2 = county, 3 = town
-      index:
-        adding_new_places: adding new places
-        confirming_identifications: confirming identifications by adding IDs to observations
-        filling_out_checklists: filling out checklists for places you know well
-        you_can_help_out_by: You can help improve our place data by
       new:
         check_list_note: "Note: check lists will be automatically disabled for very large places."
         coordinates_desc: You must specify coordinates if you don't draw a boundary or upload KML.
@@ -6249,12 +6262,6 @@ en:
           concepts, and they only include species, not infraspecific taxa like
           subspecies or varieties.
         discoveries_desc: "Most recent newly-identified species in this taxon"
-        trending_desc: Most-observed taxa in the last month
-        trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
-        rare_desc: Least-observed threatened taxa
-        rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
-        wanted_desc: Species in this taxon that have not been observed yet.
-        no_trending_desc: Nothing below this taxon observed in the last month
         frequency:
           research: Research Grade
           verifiable: Verifiable
@@ -6270,6 +6277,10 @@ en:
           "Life Stage=pupa": Pupa
           "Life Stage=adult": Adult
           unannotated: No Annotation
+        max_photos_desc: |
+          A taxon can only have %{max} photos. You'll need to remove existing
+          photos to add more.
+        no_trending_desc: Nothing below this taxon observed in the last month
         photo_chooser_modal_desc: |
           Drag photos here from the left, or drag photos here to re-arrange.
         photo_chooser_modal_explanation: |
@@ -6277,11 +6288,16 @@ en:
           and its descendants. The photos chosen for this
           taxon will show first, though. The first photo will be
           the default image used across the site.
+        rare_desc: Least-observed threatened taxa
+        rare_in_place_desc_html: Least-observed threatened taxa in <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |
           Site curators have temporarily disabled showing <a href="%{url}">this
           content from Wikipedia</a>. You can help by editing the page on
           Wikipedia to make it appropriate for this taxon, or by flagging this
           taxon to bring it to the attention of site curators.
+        trending_desc: Most-observed taxa in the last month
+        trending_in_place_desc_html: Most-observed taxa in the last month in <a href="%{url}">%{place}</a>
+        wanted_desc: Species in this taxon that have not been observed yet.
     taxon_changes:
       move_children_desc: |
         Children of the input taxon that are genera or coarser will be moved to
@@ -6763,6 +6779,10 @@ en:
       not_an_integer: must be an integer
       odd: must be odd
       record_invalid: 'Validation failed: %{errors}'
+      requires_privilege_speech: |
+        must have three verifiable observations or three identifications
+        for others to do that
+      requires_privilege_organizer: must have 50 verifiable observations to do that
       taken: has already been taken
       too_long:
         one: is too long (maximum is 1 character)
@@ -7046,6 +7066,11 @@ en:
               bad_format: |
                 can only contain standard Latin characters, hyphens, spaces, and
                 ×; note that putative taxa and cultivars are not allowed
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: |
+                cannot have more than %{max} photos
         user:
           attributes:
             login:

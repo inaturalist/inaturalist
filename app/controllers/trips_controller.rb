@@ -36,6 +36,7 @@ class TripsController < ApplicationController
     @month = filter_params[:month] unless filter_params[:month].blank?
     place_id = filter_params[:place_id] || params[:place_id]
     @place = Place.find_by_id(place_id) unless place_id.blank?
+    @user = User.find_by_id( filter_params[:user_id].to_i ) unless filter_params[:user_id].blank?
     
     per_page = params[:per_page]
     per_page ||= 30
@@ -46,6 +47,7 @@ class TripsController < ApplicationController
     scope = scope.year( @year ) if @year
     scope = scope.month( @month ) if @month
     scope = scope.in_place( @place.id ) if @place
+    scope = scope.user( @user ) if @user
     @trips = scope.published.page( params[:page] ).per_page( per_page ).order( "posts.id DESC" )
     
     respond_to do |format|
@@ -101,29 +103,30 @@ class TripsController < ApplicationController
         end
         @shareable_description = FakeView.shareable_description( @trip.body ) if @trip.body
         trip_purpose_taxon_ids = @trip.trip_purposes.where( complete: true ).map( &:resource_id ).flatten.uniq
-        @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).sort_by{|t| t.ancestry}.reverse.select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
+        if trip_purpose_taxon_ids.include? Taxon::LIFE.id
+          @target_list_taxa = [Taxon::LIFE]
+        else
+          @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).sort_by{|t| t.ancestry}.reverse.select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
+        end
         obs = INatAPIService.observations( {
           taxon_is_active: true,
-          latitude: @trip.latitude,
-          longitude: @trip.longitude,
-          radius: @trip.radius,
+          lat: @trip.latitude,
+          lng: @trip.longitude,
+          radius: ( ( @trip.radius.blank? || @trip.radius == 0 ) ? 0 : (@trip.radius / 1000.to_f) ),
           d1: @trip.start_time.iso8601,
           d2: @trip.stop_time.iso8601,
           user_id: @trip.user_id,
           per_page: 200
         } ).results
+        @trip_obsevations = Observation.where( id: obs.map{ |a| a["id"] } )
         @target_list_set = []
         @target_list_taxa.each do |tlt|
-          if o = obs.select{|o| o["taxon"]["ancestor_ids"].include? tlt.id}
-            unless o.select{|i| i["obscured"]}.count > 0
-              @target_list_set << { taxon: tlt, observations: o }
-            end
+          if o = obs.select{ |o| o["taxon"]["ancestor_ids"].include? tlt.id }[0..8]
+            @target_list_set << { taxon: tlt, observations: o }
           else
             @target_list_set << { taxon: tlt, observations: [] }
           end
         end
-        
-        
       end
       format.json do
         @trip = Trip.includes(:trip_taxa => {:taxon => [:taxon_names, {:taxon_photos => :photo}]}, :trip_purposes => {}).where(:id => @trip.id).first
@@ -283,6 +286,7 @@ class TripsController < ApplicationController
     @month = filter_params[:month] unless filter_params[:month].blank?
     place_id = filter_params[:place_id] || params[:place_id]
     @place = Place.find_by_id(place_id) unless place_id.blank?
+    @user = User.find_by_id( filter_params[:user_id].to_i ) unless filter_params[:user_id].blank?
     
     per_page = params[:per_page]
     per_page ||= 30
@@ -294,6 +298,7 @@ class TripsController < ApplicationController
     scope = scope.year( @year ) if @year
     scope = scope.month( @month ) if @month
     scope = scope.in_place( @place.id ) if @place
+    scope = scope.user( @user.id ) if @user
     @trips = scope.published.page( params[:page] ).per_page( per_page ).order( "posts.id DESC" )
     if @taxon
       @occupancy = Trip.presence_absence( @trips, @taxon.id, place_id||=nil, @year||=nil, @month||=nil )

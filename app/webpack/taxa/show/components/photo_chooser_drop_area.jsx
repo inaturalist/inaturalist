@@ -3,9 +3,14 @@ import PropTypes from "prop-types";
 import { DropTarget as dropTarget } from "react-dnd";
 import _ from "lodash";
 import { PHOTO_CHOOSER_DRAGGABLE_TYPE } from "./photo_chooser_constants";
+import { MAX_TAXON_PHOTOS } from "../../shared/util";
 
 const targetSpec = {
   drop( props, monitor ) {
+    const { photos } = props;
+    if ( photos.length > MAX_TAXON_PHOTOS - 1 ) {
+      return;
+    }
     props.droppedPhoto( monitor.getItem( ).chooserID );
   }
 };

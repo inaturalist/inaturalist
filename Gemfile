@@ -57,13 +57,13 @@ gem "json"
 gem "jquery-rails", "~> 4.0"
 gem "koala"
 gem "dalli"
-gem "nokogiri", "~> 1.10.0"
+gem "nokogiri", "~> 1.10.3"
 gem "non-stupid-digest-assets"
 gem "objectify-xml", git: "https://github.com/inaturalist/objectify_xml.git"
 gem "omniauth"
 gem "omniauth-oauth2", "1.5.0"
 gem "omniauth-facebook", "~> 5.0.0"
-gem "omniauth-flickr", git: "https://github.com/IDolgirev/omniauth-flickr.git", branch: "bcd202b0825659cbd984e611f6151f67c4aae591"
+gem "omniauth-flickr", git: "https://github.com/IDolgirev/omniauth-flickr.git", ref: "bcd202b0825659cbd984e611f6151f67c4aae591"
 gem "omniauth-openid"
 gem "omniauth-orcid"
 gem "omniauth-google-oauth2", "~> 0.5.2"
@@ -97,8 +97,8 @@ gem "yui-compressor"
 gem "xmp", git: "https://github.com/inaturalist/xmp.git"
 gem "rubyzip"
 # these need to be loaded after will_paginate
-gem "elasticsearch-model", git: "https://github.com/elasticsearch/elasticsearch-rails.git", branch: "64f31b41c073f05eac7d089aeea07c4366b7adca"
-gem "elasticsearch-rails", git: "https://github.com/elasticsearch/elasticsearch-rails.git", branch: "64f31b41c073f05eac7d089aeea07c4366b7adca"
+gem "elasticsearch-model", git: "https://github.com/elasticsearch/elasticsearch-rails.git", ref: "64f31b41c073f05eac7d089aeea07c4366b7adca"
+gem "elasticsearch-rails", git: "https://github.com/elasticsearch/elasticsearch-rails.git", ref: "64f31b41c073f05eac7d089aeea07c4366b7adca"
 gem "elasticsearch", "5.0.4"
 gem "elasticsearch-api", "5.0.4"
 
@@ -109,7 +109,7 @@ gem "rgeo-shapefile"
 gem "activerecord-postgis-adapter", git: "https://github.com/kueda/activerecord-postgis-adapter.git", branch: "activerecord42"
 
 group :production do
-  gem "newrelic_rpm", "~> 6.0.0"
+  gem "newrelic_rpm", "~> 6.2.0"
 end
 
 group :test, :development, :prod_dev do
@@ -117,7 +117,7 @@ group :test, :development, :prod_dev do
 
   # this fork fixes the `warning: constant ::Fixnum is deprecated` warnings
   # See https://github.com/notahat/machinist/pull/133
-  gem "machinist", git: "https://github.com/narze/machinist", branch: "eaf5a447ff0d59a1fb2c49b91c6e1b2d95d8e4ee"
+  gem "machinist", git: "https://github.com/narze/machinist", ref: "eaf5a447ff0d59a1fb2c49b91c6e1b2d95d8e4ee"
 
   gem "better_errors"
   gem "byebug"

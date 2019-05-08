@@ -27,6 +27,8 @@
           = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
       - elsif @trip.parent.is_a?(Site)
         = link_to t(:x_blog, x: @trip.parent.name), site_posts_path
+      - elsif @trip.is_a?(Trip)
+        = link_to t(:trips), trips_path
       - else
         = link_to possessive_noun(@trip.user, t(:journal).downcase), journal_by_login_path(@trip.user.login)
     %li.active
@@ -128,23 +130,22 @@
             %h2=t :observations
             .observations.medium.grid
               - compact do
-                = render :partial => "observations/cached_component", :collection => @trip.observations
+                = render :partial => "observations/cached_component", :collection => @trip_obsevations
             - if @trip.is_a?(Trip)
               .text-muted
                 :ruby
                   obs_params = {
-                    :d1 => @trip.start_time.iso8601,
-                    :d2 => @trip.stop_time.iso8601,
-                    :user_id => @trip.user_id
+                    taxon_is_active: true,
+                    lat: @trip.latitude,
+                    lng: @trip.longitude,
+                    radius: ( @trip.radius == 0 ? 0 : @trip.radius / 1000.to_f ),
+                    d1: @trip.start_time.iso8601,
+                    d2: @trip.stop_time.iso8601,
+                    user_id: @trip.user_id
                   }
                   obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
                 = link_to observations_url(obs_params), :class => "readmore" do
-                  View all observations made by 
-                  =@trip.user.login
-                  between
-                  =l @trip.start_time, :format => :short
-                  and
-                  =l @trip.stop_time, :format => :short
+                  =t( :search_observations)
         %section{:id => "comments"}
           - if @trip.published_at
             = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }

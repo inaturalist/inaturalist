@@ -5,11 +5,13 @@ class TaxonSwap < TaxonChange
   validate :has_inputs_and_outputs
 
   def only_has_one_input
-    errors.add(:base, I18n.t(:taxon_swap_only_has_one_input))  if input_taxa.size > 1
+    errors.add(:base, I18n.t(:taxon_swap_only_has_one_input)) if input_taxa.size > 1
   end
 
   def has_inputs_and_outputs
-    errors.add(:base, I18n.t(:taxon_swap_has_inputs_and_outputs)) if input_taxa.size == 0 || output_taxa.size == 0
+    if input_taxa.size == 0 || output_taxa.size == 0
+      errors.add(:base, I18n.t(:taxon_swap_has_inputs_and_outputs))
+    end
   end
   
   def old_taxon
@@ -33,7 +35,7 @@ class TaxonSwap < TaxonChange
   end
 
   def input_taxa
-    taxa.loaded? ? taxa : taxon_change_taxa.map(&:taxon)
+    taxon_change_taxa.select{|tct| !tct._destroy}.map(&:taxon)
   end
 
   def output_taxa
@@ -41,7 +43,7 @@ class TaxonSwap < TaxonChange
   end
 
   def input_taxon
-    taxa.loaded? ? taxa.first : taxon_change_taxa.first.try(:taxon)
+    taxon_change_taxa.select{|tct| !tct._destroy}.first.try(:taxon)
   end
 
   def output_taxon

@@ -6,6 +6,13 @@
     taxon.html = render( partial: "taxa/chooser.html.erb", object: taxon )
     taxon
   end
+  if @user
+    @user.html = render( partial: "users/chooser", object: @user )
+  end
+  @default_users = User.curators.limit( 10 ).map do |user|
+    user.html = render( partial: "users/chooser", object: user )
+    user
+  end
 - content_for( :title ) do
   - @title = t(:tabulate_presence_absence_data_from_trips)
   = strip_tags( @title )
@@ -17,8 +24,17 @@
   :javascript
     window.taxon = #{ json_escape @taxon.to_json( methods: [:html] ).html_safe }
     window.place = #{ json_escape @place.to_json( methods: [:html] ).html_safe }
+    window.user = #{ json_escape @user.to_json( methods: [:html] ).html_safe }
     window.defaultTaxa = #{ json_escape @default_taxa.to_json( methods: [:html] ).html_safe }
+    window.defaultUsers = #{ json_escape @default_users.to_json( methods: [:html] ).html_safe }
     $( document ).ready( function() {      
+      $( "#filters_user_id" ).chooser( {
+        queryParam: "q",
+        collectionUrl: "/people/search.json",
+        resourceUrl: "/people/{{id}}.json",
+        chosen: user,
+        defaultSources: defaultUsers
+      } )
       $( "#filters_place_id" ).chooser( {
         queryParam: "q",
         collectionUrl: "/places/search.json",
@@ -49,6 +65,7 @@
         = f.text_field :place_id, value: @place ? @place.id : nil, placeholder: t( :start_typing_place_name ), label: t( :place )
         = f.select :month, [1,2,3,4,5,6,7,8,9,10,11,12], include_blank: t( :any ), selected: @month, label: t( :month )
         = f.select :year, [2019], include_blank: t( :any ), selected: @year, label: t( :year )
+        = f.text_field :user_id, value: @user ? @user.id : nil, placeholder: t( :start_typing_someones_name ), label: t( :added_by )
         = f.submit t( :filter ), class: "default button", "data-loading-click": t( :filtering )
         = link_to t( :clear_filters ), tabulate_trips_url, class: "minor button"
     .col-xs-9

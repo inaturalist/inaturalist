@@ -110,8 +110,10 @@
                   = link_to_user(flag.user) {|| char_wrap( flag.user.login, 20 )}
                   .small.text-muted
                     = link_to t(:view_all), url_for_params( flagger_type: "user", flagger_user_id: flag.user.id, without: [:flagger_type, :flagger_user_id] )
-                - else
+                - elsif flag.user_id == 0
                   = @site.site_name_short
+                - else
+                  =t :deleted_user
               %td
                 - if flag.flaggable_user
                   = link_to_user( flag.flaggable_user ) {|| char_wrap( flag.flaggable_user.login, 20 )}

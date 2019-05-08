@@ -1129,12 +1129,12 @@ module ApplicationHelper
           subject: subject,
           vow_or_con: notifier_class_name[0].downcase,
           thing: object,
-          stuff: commas_and( resource.input_taxa.map(&:name) )
+          stuff: commas_and( resource.input_taxa.compact.map(&:name) )
         )
       else
         t(:subject_affecting_stuff_html, 
           :subject => t(resource.class.name.underscore), 
-          :stuff => commas_and(resource.input_taxa.map(&:name)))
+          :stuff => commas_and(resource.input_taxa.compact.map(&:name)))
       end
     else
       "update"

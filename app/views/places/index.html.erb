@@ -154,5 +154,8 @@
         <%= link_to t(:add_new_place), new_place_path, :class => 'inline button readmore right', :rel => "nofollow" %>
       </div>
     </div>
+    <% if false && current_user && current_user.privileged_with?( UserPrivilege::ORGANIZER ) %>
+      <%= link_to t(:add_new_place), new_place_path, class: "add-button button readmore", rel: "nofollow" %>
+    <% end %>
   </div>
 </div>

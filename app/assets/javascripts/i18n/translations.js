@@ -4,6 +4,12 @@ I18n.translations["af"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -109,10 +115,18 @@ I18n.translations["ar"] = {
   "about_this_bioblitz": "حول هذا bioblitz",
   "acc": "الدقة (م)",
   "account": "الحساب",
+  "account_creation": "إنشاء الحساب",
   "accuracy": "الدقة",
   "accuracy_meters": "الدقة (أمتار)",
   "action": "فعل",
   "active": "نشط",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "وقت البدء"
+      }
+    }
+  },
   "activity": "النشاط",
   "add": "أضف",
   "add_a_comment": "إضافة تعليق",
@@ -141,6 +155,7 @@ I18n.translations["ar"] = {
   "add_to_project": "إضافة إلى مشروع",
   "added": "تمت إضافته",
   "added!": "تمت إضافته!",
+  "added_by": "أُضيفت بواسطة",
   "added_on": "تمت الإضافة في",
   "additional_range": "نطاق إضافي",
   "additional_range_data_from_an_unknown_source": "بيانات نطاق إضافية من مصدر غير معروف",
@@ -853,6 +868,7 @@ I18n.translations["ar"] = {
   "more_info": "المزيد من المعلومات",
   "more_info_title": "المزيد من المعلومات",
   "more_photos": "المزيد من الصور",
+  "more_than_a_week_ago": "منذ أكثر من أسبوع",
   "most_comments_and_faves": "الأكثر تعليقا وتفضيلا",
   "most_observations": "الأكثر في الملاحظات",
   "most_observed_introduced_species": "الأكثر في الأنواع الملاحظة المدخلة",
@@ -1699,6 +1715,7 @@ I18n.translations["ar"] = {
   "view_more_unreviewed": "عرض المزيد مما لم تتم مراجعته",
   "view_observation": "عرض الملاحظة",
   "view_observations": "عرض الملاحظات",
+  "view_observations_causing_this_observation_to_be_obscured": "عرض الملاحظات التي تجعل هذه الملاحظة غامضة",
   "view_observations_of_this_taxon_by": "عرض ملاحظات هذ الأصنوفة من قبل",
   "view_on": "عرض في",
   "view_sample": "عرض عينة",
@@ -2022,6 +2039,12 @@ I18n.translations["az"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -2114,6 +2137,12 @@ I18n.translations["az"] = {
 I18n.translations["be"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -2220,6 +2249,13 @@ I18n.translations["bg"] = {
   "accuracy_meters": "Точност (метри)",
   "action": "Действие",
   "active": "Активен",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Час на започване"
+      }
+    }
+  },
   "activity": "Активност",
   "add": "Добавяне",
   "add_a_comment": "Добавяне на коментар",
@@ -2234,6 +2270,7 @@ I18n.translations["bg"] = {
   "add_to_project": "Добави към проект",
   "added": "Добавено",
   "added!": "Добавено!",
+  "added_by": "Добавено от",
   "added_on": "Добавено на",
   "agree": "съгласен съм",
   "agree_": "Съгласен",
@@ -3344,6 +3381,12 @@ I18n.translations["bn"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -3445,6 +3488,12 @@ I18n.translations["br"] = {
   "accuracy": "Pizhder",
   "accuracy_meters": "Pizhder (metroù)",
   "active": "oberiant",
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "add": "Ouzhpennañ",
   "add_a_comment": "Ouzhpennañ un evezhiadenn",
   "add_a_field": "Ouzhpennañ ur vaezienn",
@@ -3460,6 +3509,7 @@ I18n.translations["br"] = {
   "add_to_project": "Ouzhpennañ d'ar raktres",
   "added": "Ouzhpennet",
   "added!": "Ouzhpennet!",
+  "added_by": "Ouzhpennet gant",
   "added_on": "Ouzhpennet d'an",
   "additional_range": "Lijorenn ouzhpenn",
   "additional_range_data_from_an_unknown_source": "Pajennad roadennoù ouzhpenn adalek un tarzh dianav",
@@ -4034,6 +4084,12 @@ I18n.translations["bs"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -4143,6 +4199,13 @@ I18n.translations["ca"] = {
   "accuracy_meters": "Exactitud (metres)",
   "action": "Acció",
   "active": "Actiu",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Hora d'inici"
+      }
+    }
+  },
   "activity": "Activitat",
   "add": "Afegiu",
   "add_a_comment": "Afegiu un comentari",
@@ -4171,6 +4234,7 @@ I18n.translations["ca"] = {
   "add_to_project": "Afegiu al projecte",
   "added": "Afegit",
   "added!": "Afegit!",
+  "added_by": "Afegit per",
   "added_on": "Afegit el",
   "additional_range": "Distribució addicional",
   "additional_range_data_from_an_unknown_source": "Dades addicionals de distribució des de font desconeguda",
@@ -5499,6 +5563,10 @@ I18n.translations["ca"] = {
   "reviewed": "Revisat",
   "rg_observations": "Observacions de Grau de Recerca",
   "running_total": "Acumulat total",
+  "same_day_obscured": "Una altra observació d'aquesta persona aquest dia està enfosquida",
+  "same_day_obscured_desc": "Quan les coordenades són enfosquides a causa d'un tàxon en perill, la resta d'observacions d'aquella persona en aquell dia també és enfosquida per impedir que altres persones puguin endevinar les coordenades a partir de les observacions fetes al voltant d'aquella al mateix moment. Els individus també poden aplicar aquesta protecció a coordenades que han escollit enfoquir.",
+  "same_day_private": "Un altra observació d'aquesta persona aquest dia és privada",
+  "same_day_private_desc": "Quan les coordenades s'oculten a causa d'un tàxon en perill, la resta d'observacions d'aquella persona en aquell dia també s'oculten per impedir que altres persones puguin endevinar les coordenades a partir de les observacions fetes al voltant d'aquella al mateix moment. Els individus també poden aplicar aquesta protecció a coordenades que han escollit ocultar.",
   "satellite": "satèl·lit",
   "save": "Desa",
   "save_photos": "Desa fotos",
@@ -5625,6 +5693,7 @@ I18n.translations["ca"] = {
   "the_world": "El Món",
   "then_keybord_sequence": "llavors",
   "there_were_problems_adding_taxa": "Hi ha hagut problemes afegint aquells tàxons: %{errors}",
+  "there_were_some_problems_with_these_files": "Hi ha hagut alguns problemes amb aquests arxius:",
   "these_observations_have_not_been_uploaded_yet": "Aquestes observacions encara no s'han pujat",
   "this_bioblitz_beings_in": "Aquest bioblitz comença en",
   "this_id_was_added_due_to_a": "Aquest Identificació es va afegir a causa de",
@@ -5675,7 +5744,10 @@ I18n.translations["ca"] = {
   },
   "uploader": {
     "errors": {
+      "file_too_big": "L'arxiu ha de ser menys de %{megabytes}MB",
+      "unsupported_file_type": "Tipus d'arxiu no suportat. Acceptem JPG, PNG, GIF, WAV, AAC, MP3, i MP4 (únicament àudio)"
     },
+    "resize_tip": "Si els vostres arxius de foto són massa grans, proveu retallar-los a un màxim de 2048 per 2048 píxels. En el servidor es retallaran igualment a aquesta mida, per tant, si ho feu aconseguireu que es pugin més ràpid.",
     "tooltips": {
       "add": "Afegiu observació(ns)",
       "combine": "Combineu les observacions seleccionades",
@@ -5683,7 +5755,8 @@ I18n.translations["ca"] = {
       "remove": "Elimineu les observacions seleccionades",
       "remove_observation": "Traieu l'observació",
       "remove_photo": "Elimineu la foto",
-      "select_all": "Seleccioneu totes les observacions"
+      "select_all": "Seleccioneu totes les observacions",
+      "upload_failed": "Pujada errònia"
     }
   },
   "uploading_num_of_count_photos": {
@@ -5714,6 +5787,7 @@ I18n.translations["ca"] = {
   "view_all_members": "Veure tots els membres",
   "view_field_options": "Veure el camp Opcions",
   "view_flags": "Veure les etiquetes",
+  "view_full_size_photo": "Veure la foto a mida completa",
   "view_license": "Veure la llicència",
   "view_more": "Veure més",
   "view_more_unreviewed": "Veure més no revisats",
@@ -5785,7 +5859,7 @@ I18n.translations["ca"] = {
         "note_these_users_will_be_able_to_edit": "Nota: aquests usuaris poden editar TOTS els detalls del project incloent l'administració.",
         "note_you_can_delete_the_time": "(Nota: podeu eliminar la zona horària i precisar el moment si voleu indicar dies sencers.)",
         "or_drag_and_drop": "(o arrossegar i enganxar)",
-        "please_specify_the_requirements_html": "Si us plau especifiqueu els requisits per afegir observacions a aquest projecte.\nPodeu especificar diverses espècies, llocs, usuaris, o graus de qualitat perquè siguin automàticament afegides, o deixar-ho en blanc si no hi ha cap requisit específic.",
+        "please_specify_the_requirements_html": "Si us plau especifiqueu els requisits per afegir observacions a aquest projecte.\nPodeu especificar diverses espècies, llocs, usuaris, o graus de qualitat perquè siguin automàticament afegides, o deixar-ho en blanc si no hi ha cap requisit específic.\nLes explicacions de cada camp podeu veure-les <a href=\"%{url}\">aquí</a>.",
         "project_background_color": "Color de fons del resum del Projecte",
         "project_background_color_help": "Assegureu-vos d'escollir un color prou fosc perquè el text blanc sobreposar sigui llegible.",
         "project_banner": "Banner del projecte (PNG, JPG, o GIF)",
@@ -6012,8 +6086,8 @@ I18n.translations["ca"] = {
   "you_appear_offline_try_again": "Sembla que esteu desconnectat. Si us plau, torneu a intentar-ho quan esteu connectat a internet.",
   "you_are_not_editing_any_guides_add_one_html": "No esteu editant cap guia. <a href=\"/guides/new\">Afegiu una</a>",
   "you_are_setting_this_project_to_aggregate": "Esteu fent que aquest projecte incorpori totes les observacions que coincideixen amb les regles següents: %{rules}, voleu continuar?",
-  "you_are_submitting_obs_with_no_date_or_no_location": "Esteu enviant observacions sense data o localització.",
-  "you_are_submitting_obs_without_photos_and_names": "Esteu enviant observacions sense fotos ni un nom de tàxon.\nAquestes observacions són molt difícil d'identificar amb precisió.",
+  "you_are_submitting_obs_with_no_date_or_no_location": "Esteu enviant observacions sense data o localització. Les observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.",
+  "you_are_submitting_obs_without_photos_and_names": "Esteu enviant observacions sense fotos ni un nom de tàxon.\nLes observacions sense aquestes dades poden ser impossibles d'identificar i no seran visibles per defectes a les cerques d'observacions.",
   "you_curate_a_project_that_contains_this_observation": "Superviseu un projecte que conté aquesta observació",
   "you_curate_a_project_that_contains_this_observation_desc": "Podeu veure coordenades enfosquides si sou supervisor d'un projecte que conté una observació i el seu observador ha escollit compartir les coordenades amb els supervisors d'aquest projecte.",
   "you_faved_this": "Heu fet favorit això!",
@@ -6049,10 +6123,18 @@ I18n.translations["cs"] = {
   "about_this_bioblitz": "O tomto bioblitzu.",
   "acc": "Přesnost (m)",
   "account": "Účet",
+  "account_creation": "Vytvoření účtů",
   "accuracy": "Přesnost",
   "accuracy_meters": "Přesnost (v metrech)",
   "action": "Akce",
   "active": "Aktivní",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Čas začátku"
+      }
+    }
+  },
   "activity": "Aktivita",
   "add": "Vložit",
   "add_a_comment": "Vložit komentář",
@@ -6081,6 +6163,7 @@ I18n.translations["cs"] = {
   "add_to_project": "Přidat do projektu",
   "added": "Přidáno",
   "added!": "Přidáno!",
+  "added_by": "Přidáno uživatelem",
   "added_on": "Přidáno na",
   "additional_range": "Přídavný rozsah",
   "additional_range_data_from_an_unknown_source": "Přídavný rozsah dat z neznámého zdroje",
@@ -6440,6 +6523,7 @@ I18n.translations["cs"] = {
   "date_time": "Datum/Čas",
   "date_updated": "Datum aktualizováno",
   "datetime": {
+    "countdown_x_days": "{{PLURAL|one=den|dny}",
     "countdown_x_hours": {
       "one": "hodina",
       "other": "hodiny"
@@ -6789,6 +6873,7 @@ I18n.translations["cs"] = {
   "more_info": "Více informací",
   "more_info_title": "Více informací",
   "more_photos": "Další fotky",
+  "more_than_a_week_ago": "Více než před týdnem",
   "most_comments_and_faves": "Nejvíce komentářů a oblíbených",
   "most_observations": "Nejvíce pozorování",
   "most_observed_introduced_species": "Nejvíce pozorovaných nepůvodních druhů",
@@ -7631,6 +7716,7 @@ I18n.translations["cs"] = {
   "view_more_unreviewed": "Zobrazit více nezkontrolovaných",
   "view_observation": "Zobrazit pozorování",
   "view_observations": "Zobrazit pozorování",
+  "view_observations_causing_this_observation_to_be_obscured": "Zobrazte pozorování, která způsobí, že toto pozorování bude zakryto",
   "view_observations_of_this_taxon_by": "Zobrazit pozorování tohoto taxonu",
   "view_on": "Zobrazit na",
   "view_sample": "Zobrazit ukázku",
@@ -7869,7 +7955,7 @@ I18n.translations["cs"] = {
   },
   "x_new_species": {
     "one": "1 New Species",
-    "other": "%{count} New Species"
+    "other": "%{count}New Species"
   },
   "x_observations": {
     "one": "1 pozorování",
@@ -7901,22 +7987,22 @@ I18n.translations["cs"] = {
     "one": "1 ostatní",
     "other": "%{count} ostatní"
   },
-  "x_people_helped_user_with_y_ids_html": "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>",
+  "x_people_helped_user_with_y_ids_html": "<strong>%{x}people</strong> helped %{user}with<strong>%{y}IDs</strong>",
   "x_species": {
     "one": "1 druh",
-    "other": "%{count} druhy"
+    "other": "%{count}druhy"
   },
   "x_species_html": {
-    "one": "<span class='count'>1</span> druh",
-    "other": "<span class='count'>%{count}</span> druhy"
+    "one": "<span class='count'>1</span>druh",
+    "other": "<span class='count'>%{count}</span>druhy"
   },
   "x_species_link_html": {
     "one": "<a href='%{url}'>1 druh</a>",
-    "other": "<a href='%{url}'>%{count} druhy</a>"
+    "other": "<a href='%{url}'>%{count}druhy</a>"
   },
   "x_suggestions_filtered_by_colon": {
     "one": "1 Filtr návrhu:",
-    "other": "%{count} Filtr návrhů:"
+    "other": "%{count}Filtr návrhů:"
   },
   "year_in_review": "Rok kontroly %{year}",
   "yellow": "žlutý",
@@ -7968,6 +8054,13 @@ I18n.translations["da"] = {
   "accuracy_meters": "Nøjagtighed (meter)",
   "action": "Handling",
   "active": "aktiv",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Start tidspunkt"
+      }
+    }
+  },
   "activity": "Aktivitet",
   "add": "Tilføj",
   "add_a_comment": "Tilføj en kommentar",
@@ -7996,6 +8089,7 @@ I18n.translations["da"] = {
   "add_to_project": "Tilføj til projekt",
   "added": "Tilføjet",
   "added!": "Tilføjet!",
+  "added_by": "Tilføjet af",
   "added_on": "Tilføjet den",
   "additional_range": "Yderligere område",
   "additional_range_data_from_an_unknown_source": "Yderligere område data fra en ukendt kilde",
@@ -8539,7 +8633,7 @@ I18n.translations["da"] = {
   "import": "Importér",
   "improving": "Forbedring",
   "in_progress": "i gang",
-  "in_the_past_week": "i den sidste uge",
+  "in_the_past_week": "I den sidste uge",
   "inactive_taxon": "inaktiv takson",
   "inappropriate_content": "Upassende indhold?",
   "including": "inklusiv",
@@ -8708,6 +8802,7 @@ I18n.translations["da"] = {
   "more_info": "Mere info",
   "more_info_title": "Mere info",
   "more_photos": "Flere foto´s",
+  "more_than_a_week_ago": "For mere end en uge siden",
   "most_comments_and_faves": "Flest kommentarer og favoritter",
   "most_observations": "Fleste observationer",
   "most_observed_introduced_species": "Flest observerede indførte arter",
@@ -9872,10 +9967,18 @@ I18n.translations["de"] = {
   "about_this_bioblitz": "Über diesen Bioblitz",
   "acc": "Genauigkeit (m)",
   "account": "Benutzerkonto",
+  "account_creation": "Benutzerkontenerstellung",
   "accuracy": "Genauigkeit",
   "accuracy_meters": "Genauigkeit (Meter)",
   "action": "Aktion",
   "active": "Aktiv",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Startzeit"
+      }
+    }
+  },
   "activity": "Aktivität",
   "add": "Hinzufügen",
   "add_a_comment": "Kommentar hinzufügen",
@@ -9904,6 +10007,7 @@ I18n.translations["de"] = {
   "add_to_project": "Zu Projekt hinzufügen",
   "added": "Hinzugefügt",
   "added!": "Hinzugefügt!",
+  "added_by": "Hinzugefügt von",
   "added_on": "Hinzugefügt am",
   "additional_range": "Zusätzlicher Bereich",
   "additional_range_data_from_an_unknown_source": "Zusätzliche Bereichsdaten von einer unbekannten Quelle",
@@ -10409,7 +10513,7 @@ I18n.translations["de"] = {
   "import": "Importieren",
   "improving": "Wird besser",
   "in_progress": "in Bearbeitung",
-  "in_the_past_week": "in der vergangenen Woche",
+  "in_the_past_week": "In der vergangenen Woche",
   "inactive_taxon": "inaktives Taxon",
   "inappropriate_content": "Unangemessener Inhalt?",
   "including": "beinhaltet",
@@ -11402,6 +11506,12 @@ I18n.translations["de-CH"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -11508,6 +11618,13 @@ I18n.translations["el"] = {
   "accuracy_meters": "Ακρίβεια (σε μέτρα)",
   "action": "Δράση",
   "active": "Ενεργό",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Ώρα έναρξης"
+      }
+    }
+  },
   "activity": "Δραστηριότητα",
   "add": "Προσθήκη",
   "add_a_comment": "Προσθήκη σχόλιου.",
@@ -11536,6 +11653,7 @@ I18n.translations["el"] = {
   "add_to_project": "Προσθήκη σε Πρότζεκτ",
   "added": "Προστέθηκε",
   "added!": "Προστέθηκε!",
+  "added_by": "Προστέθηκε από",
   "added_on": "Προστέθηκε σε",
   "additional_range": "Πρόσθετο εύρος",
   "additional_range_data_from_an_unknown_source": "Πρόσθετα στοιχεία εύρους κατανομής από μια άγνωστη πηγή",
@@ -12020,7 +12138,7 @@ I18n.translations["el"] = {
   "import": "Εισαγωγή",
   "improving": "Βελτίωση",
   "in_progress": "σε εξέλιξη",
-  "in_the_past_week": "τη τελευταία εβδομάδα",
+  "in_the_past_week": "Την τελευταία εβδομάδα",
   "inactive_taxon": "Ανενεργό Taxon",
   "inappropriate_content": "Ακατάλληλο περιεχόμενο;",
   "including": "συμπεριλαμβανομένων",
@@ -13051,6 +13169,13 @@ I18n.translations["en"] = {
   "accuracy_meters": "Accuracy (meters)",
   "action": "Action",
   "active": "Active",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Start time"
+      }
+    }
+  },
   "activity": "Activity",
   "add": "Add",
   "add_a_comment": "Add a Comment",
@@ -13079,6 +13204,7 @@ I18n.translations["en"] = {
   "add_to_project": "Add to Project",
   "added": "Added",
   "added!": "Added!",
+  "added_by": "Added by",
   "added_on": "Added on",
   "additional_range": "Additional range",
   "additional_range_data_from_an_unknown_source": "Additional range data from an unknown source",
@@ -14804,6 +14930,7 @@ I18n.translations["en"] = {
           "Life Stage=adult": "Adult",
           "unannotated": "No Annotation"
         },
+        "max_photos_desc": "A taxon can only have %{max} photos. You'll need to remove existing\nphotos to add more.\n",
         "photo_chooser_modal_desc": "Drag photos here from the left, or drag photos here to re-arrange.\n",
         "photo_chooser_modal_explanation": "Note that the taxon page will show photos of this taxon\nand its descendants. The photos chosen for this\ntaxon will show first, though. The first photo will be\nthe default image used across the site.\n",
         "trending_desc": "Most-observed taxa in the last month",
@@ -14965,6 +15092,12 @@ I18n.translations["en-GB"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -15057,6 +15190,12 @@ I18n.translations["en-GB"] = {
 I18n.translations["en-US"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -15212,10 +15351,18 @@ I18n.translations["es"] = {
   "about_this_bioblitz": "Acerca de esta maratón naturalista",
   "acc": "Prec.(m)",
   "account": "Cuenta",
+  "account_creation": "Creación de cuentas",
   "accuracy": "Precisión",
   "accuracy_meters": "Precisión (metros)",
   "action": "Acción",
   "active": "Activo",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Hora de inicio"
+      }
+    }
+  },
   "activity": "Actividad",
   "add": "Agrega",
   "add_a_comment": "Agrega un comentario",
@@ -15244,6 +15391,7 @@ I18n.translations["es"] = {
   "add_to_project": "Añade al proyecto",
   "added": "Añadido",
   "added!": "¡Añadido!",
+  "added_by": "Añadido por",
   "added_on": "Añadido el",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
@@ -15787,7 +15935,7 @@ I18n.translations["es"] = {
   "import": "Importa",
   "improving": "Mejorando",
   "in_progress": "en curso",
-  "in_the_past_week": "durante la semana pasada",
+  "in_the_past_week": "Durante la semana pasada",
   "inactive_taxon": "Especie o grupo inactivo",
   "inappropriate_content": "¿Contenido inapropiado?",
   "including": "incluyendo",
@@ -15956,6 +16104,7 @@ I18n.translations["es"] = {
   "more_info": "Más información",
   "more_info_title": "Más información",
   "more_photos": "Más fotos",
+  "more_than_a_week_ago": "Hace más de una semana",
   "most_comments_and_faves": "Con más comentarios y favoritos",
   "most_observations": "Con más observaciones",
   "most_observed_introduced_species": "Especies introducidas más observadas",
@@ -16073,6 +16222,8 @@ I18n.translations["es"] = {
   "other": "Otro",
   "other_species_commonly_misidentified_as_this_species": "Especies confundidas con esta",
   "other_species_commonly_misidentified_as_this_species_in_place_html": "Especies confundidas con esta en <a href=\"%{url}\">%{place}</a>",
+  "other_taxa_commonly_misidentified_as_this_rank": "Otros taxones identificados erróneamente como ésto",
+  "other_taxa_commonly_misidentified_as_this_rank_in_place_html": "Otros taxones generalmente identificados de forma errónea como éste %{rank} en <a href=\"%{url}\">%{place}</a>",
   "output_taxon": "Taxón de salida",
   "overview": "Visión de conjunto",
   "per_day": "Por día",
@@ -16570,6 +16721,10 @@ I18n.translations["es"] = {
   "reviewed": "Revisada",
   "rg_observations": "GI Observaciones",
   "running_total": "Total acumulado",
+  "same_day_obscured": "Otra observación de esta persona en este día ha sido ocultada.",
+  "same_day_obscured_desc": "Cuando las coordenadas están ocultadas debido a que el taxón está en riesgo, todas las demás observaciones de ese observador en aquel día son también ocultadas para impedir que otros adivinen las coordenadas en base a las otras observaciones. Los observadores también pueden aplicar esta protección a coordenadas que han decidido ocultar.",
+  "same_day_private": "Otra observación realizada por esta persona en este día es privada.",
+  "same_day_private_desc": "Cuando las coordenadas están ocultadas debido a que el taxón está en riesgo, todas las demás observaciones de ese observador en aquel día son también ocultadas para impedir que otros adivinen las coordenadas en base a las otras observaciones. Los observadores también pueden aplicar esta protección a coordenadas que han decidido ocultar.",
   "satellite": "satélite",
   "save": "Guardar",
   "save_photos": "Guardar fotos",
@@ -16614,6 +16769,7 @@ I18n.translations["es"] = {
   "sign_out": "Salir",
   "sign_up": "Crear una cuenta",
   "similar_species": "Especies similares",
+  "similar_taxa": "Taxones similares",
   "site_admin_tools": "Herramientas para administrar el sitio",
   "skip_to_next_page": "Ir a la sig. página",
   "some_observations_failed_to_be_added": "Algunas observaciones no pudieron añadirse a los proyectos",
@@ -16695,6 +16851,7 @@ I18n.translations["es"] = {
   "the_world": "El mundo",
   "then_keybord_sequence": "después",
   "there_were_problems_adding_taxa": "Ocurrieron problemas al añadir esos taxones: %{errors}",
+  "there_were_some_problems_with_these_files": "Hubo algunos problemas con estos archivos:",
   "these_observations_have_not_been_uploaded_yet": "Estas observaciones no se han subido aún.",
   "this_bioblitz_beings_in": "Este maratón naturalista empieza en",
   "this_id_was_added_due_to_a": "Esta Identificación se añadió debido a",
@@ -16745,6 +16902,8 @@ I18n.translations["es"] = {
   },
   "uploader": {
     "errors": {
+      "file_too_big": "El archivo tiene que ser de menos de %{megabytes} MB",
+      "unsupported_file_type": "Tipo de archivo no reconocidos. Se aceptan JPG, PNG, GIF, WAV, AAC, MP3 y MP4 (solo audio)."
     },
     "tooltips": {
       "add": "Añadir observaciones",
@@ -16753,7 +16912,8 @@ I18n.translations["es"] = {
       "remove": "Eliminar las observaciones seleccionadas",
       "remove_observation": "Eliminar observación",
       "remove_photo": "Quitar foto",
-      "select_all": "Seleccionar todas las observaciones"
+      "select_all": "Seleccionar todas las observaciones",
+      "upload_failed": "Envío fallido"
     }
   },
   "uploading_num_of_count_photos": {
@@ -16784,11 +16944,13 @@ I18n.translations["es"] = {
   "view_all_members": "Ve todos los miembros",
   "view_field_options": "Ver las opciones del campo",
   "view_flags": "Ve advertencias",
+  "view_full_size_photo": "Mira imagen a tamaño completo",
   "view_license": "Ve licencia",
   "view_more": "Ve más",
   "view_more_unreviewed": "Ver más sin revisar",
   "view_observation": "Ve observación",
   "view_observations": "Ve observaciones",
+  "view_observations_causing_this_observation_to_be_obscured": "Ver observaciones que causan que esta observación esté oscurecida",
   "view_observations_of_this_taxon_by": "Ver observaciones de este taxón por",
   "view_on": "Ver en",
   "view_sample": "Ver muestra",
@@ -16855,7 +17017,7 @@ I18n.translations["es"] = {
         "note_these_users_will_be_able_to_edit": "Nota: estos usuarios podrán editar TODOS los detalles del proyecto incluyendo a los administradores.",
         "note_you_can_delete_the_time": "(Nota:  puedes eliminar el huso horario y tiempo preciso si  quieres incluir días enteros.)",
         "or_drag_and_drop": "(O arrastrar y soltar)",
-        "please_specify_the_requirements_html": "Especifica por favor los requisitos para las observaciones que serán añadidas a este proyecto. Puedes seleccionar múltiples especies, sitios, y usuarios para ser automáticamente incluidos.",
+        "please_specify_the_requirements_html": "Especifica por favor los requisitos que deben cumplir las observaciones que serán añadidas a este proyecto. Puedes seleccionar múltiples especies, sitios, y usuarios para ser automáticamente incluidos, o dejar el campo en blanco si no existen requerimientos específicos. La definición de cada sitio puede ser encontrada <a href=\"%{url}\">aquí</a>.",
         "project_background_color": "Color de fondo del resumen del proyecto",
         "project_background_color_help": "Asegúrate de seleccionar un color suficientemente oscuro para que el texto blanco sobrepuesto sea legible.",
         "project_banner": "Imagen del proyecto (PNG, JPG, o GIF)",
@@ -17082,8 +17244,8 @@ I18n.translations["es"] = {
   "you_appear_offline_try_again": "Parece que no está conectado. Por favor vuelva a intentarlo cuando esté conectado a Internet.",
   "you_are_not_editing_any_guides_add_one_html": "No estas editando ninguna de las guías. <a href=\"/guides/new\">Agrega una</a>",
   "you_are_setting_this_project_to_aggregate": "Estás estableciendo que en este proyecto se puedan agregar todas las  observaciones que cumplan con las reglas siguientes: %{rules} Quieres continuar?",
-  "you_are_submitting_obs_with_no_date_or_no_location": "Estás añadiendo observaciones sin fecha ni ubicación.",
-  "you_are_submitting_obs_without_photos_and_names": "Estás añadiendo observaciones sin foto ni un nombre de especie.\nOJO, estas observaciones serán dificiles de identificar.",
+  "you_are_submitting_obs_with_no_date_or_no_location": "Estás añadiendo observaciones sin fecha ni ubicación.  La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.",
+  "you_are_submitting_obs_without_photos_and_names": "Estás añadiendo observaciones sin foto ni un nombre de especie. La observaciones que no cuentan con esta información a menudo son imposibles de identificar y no serán visibles por defecto en las búsquedas de observaciones.",
   "you_curate_a_project_that_contains_this_observation": "Tu curaste un proyecto que incluye esta observación",
   "you_curate_a_project_that_contains_this_observation_desc": "Puedes ver coordenadas ocultas cuándo has curado un proyecto que contiene una\nobservación y el observador ha escogido compartir coordenadas con curadores de\nese proyecto.",
   "you_faved_this": "¡Has marcado esto como favorito!",
@@ -17114,6 +17276,12 @@ I18n.translations["es-ES"] = {
   "accuracy": "Exactitud",
   "accuracy_meters": "Exactitud (metros)",
   "active": "activa",
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "add": "Añadir",
   "add_a_comment": "Añadir un comentario",
   "add_a_field": "Añadir un campo",
@@ -17124,6 +17292,7 @@ I18n.translations["es-ES"] = {
   "add_to_project": "Añadir al proyecto",
   "added": "Añadido el",
   "added!": "¡Añadido!",
+  "added_by": "Añadido por",
   "added_on": "Añadido el",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
@@ -17830,6 +17999,13 @@ I18n.translations["es-MX"] = {
   "accuracy_meters": "Precisión (metros)",
   "action": "Acción",
   "active": "Activo",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Tiempo de inicio"
+      }
+    }
+  },
   "activity": "Actividad",
   "add": "Añade",
   "add_a_comment": "Añade un comentario",
@@ -17857,6 +18033,7 @@ I18n.translations["es-MX"] = {
   "add_to_project": "Añade al proyecto",
   "added": "añadido",
   "added!": "¡Añadido!",
+  "added_by": "Añadido por",
   "added_on": "añadido en",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fuente desconocida",
@@ -18930,6 +19107,13 @@ I18n.translations["et"] = {
   "accuracy_meters": "Täpsus (meetrit)",
   "action": "Toiming",
   "active": "Aktiivne",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Algusaeg"
+      }
+    }
+  },
   "activity": "Täiendused",
   "add": "Lisa",
   "add_a_comment": "Lisa kommentaar",
@@ -18958,6 +19142,7 @@ I18n.translations["et"] = {
   "add_to_project": "Lisa projekti alla",
   "added": "Lisatud",
   "added!": "Lisatud!",
+  "added_by": "Lisanud",
   "added_on": "Lisatud",
   "additional_range": "Lisapiirkond",
   "additional_range_data_from_an_unknown_source": "Tundmatust allikast pärinevad vahemiku andmed",
@@ -19499,7 +19684,7 @@ I18n.translations["et"] = {
   "import": "Impordi",
   "improving": "Täiendaja",
   "in_progress": "pooleli",
-  "in_the_past_week": "eelmisel nädalal",
+  "in_the_past_week": "Eelmisel nädalal",
   "inactive_taxon": "Mitteaktiivne takson",
   "inappropriate_content": "Ebasobiv sisu?",
   "including": "sisaldab",
@@ -20828,6 +21013,12 @@ I18n.translations["eu"] = {
   "accuracy_meters": "Zehaztasuna (metroak)",
   "action": "Ekintza",
   "active": "Aktiboa",
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "activity": "Jarduera",
   "add": "Gehitu",
   "add_a_comment": "Iruzkina gehitu",
@@ -20853,6 +21044,7 @@ I18n.translations["eu"] = {
   "add_to_project": "Proiektura gehitu",
   "added": "Egun honetan gehitua:",
   "added!": "Gehituta!",
+  "added_by": "Honek gehitua:",
   "added_on": "Egun honetan gehitua:",
   "additional_range": "Banaketa osagarria",
   "additional_range_data_from_an_unknown_source": "D\"Iturri ezezaguneko banaketa osagarriaren datuak\"",
@@ -21751,6 +21943,12 @@ I18n.translations["fa"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -21856,10 +22054,18 @@ I18n.translations["fi"] = {
   "about_this_bioblitz": "Tietoja tästä bioblitzistä",
   "acc": "Tarkkuus (m)",
   "account": "Käyttäjätunnus",
+  "account_creation": "Tunnuksen luominen",
   "accuracy": "Tarkkuus",
   "accuracy_meters": "Tarkkuus (metreinä)",
   "action": "Toiminto",
   "active": "Aktiivinen",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Aloitusaika"
+      }
+    }
+  },
   "activity": "Toiminta",
   "add": "Lisää",
   "add_a_comment": "Lisää kommentti",
@@ -21888,6 +22094,7 @@ I18n.translations["fi"] = {
   "add_to_project": "Lisää projektiin",
   "added": "Lisätty",
   "added!": "Lisätty!",
+  "added_by": "Lisännyt",
   "added_on": "Lisätty",
   "additional_range": "Lisäalue",
   "additional_range_data_from_an_unknown_source": "Lisäalueen tietoja tuntemattomattomasta lähteestä",
@@ -22402,7 +22609,7 @@ I18n.translations["fi"] = {
   "import": "Tuo",
   "improving": "Parannus",
   "in_progress": "käynnissä",
-  "in_the_past_week": "menneellä viikolla",
+  "in_the_past_week": "Menneellä viikolla",
   "inactive_taxon": "Epäaktiivinen taksoni",
   "inappropriate_content": "Sopimatonta sisältöä?",
   "including": "mukaan lukien",
@@ -23551,10 +23758,18 @@ I18n.translations["fr"] = {
   "about_this_bioblitz": "À propos de ce bioblitz",
   "acc": "Comp. (m)",
   "account": "Compte",
+  "account_creation": "Création de compte",
   "accuracy": "Précision",
   "accuracy_meters": "Précision (mètres)",
   "action": "Action",
   "active": "Actif",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Heure de début"
+      }
+    }
+  },
   "activity": "Activité",
   "add": "Ajouter",
   "add_a_comment": "Ajouter un commentaire",
@@ -23583,6 +23798,7 @@ I18n.translations["fr"] = {
   "add_to_project": "Ajouter au projet",
   "added": "Ajouté",
   "added!": "Ajouté !",
+  "added_by": "Ajouté par",
   "added_on": "Ajouté le",
   "additional_range": "Aire de répartition supplémentaire",
   "additional_range_data_from_an_unknown_source": "Données supplémentaires sur l’aire de répartition d’une source inconnue",
@@ -24126,7 +24342,7 @@ I18n.translations["fr"] = {
   "import": "Importer",
   "improving": "Amélioration",
   "in_progress": "en cours",
-  "in_the_past_week": "la semaine passée",
+  "in_the_past_week": "Durant la semaine passée",
   "inactive_taxon": "Taxon inactif",
   "inappropriate_content": "Contenu inapproprié ?",
   "including": "y compris",
@@ -24295,6 +24511,7 @@ I18n.translations["fr"] = {
   "more_info": "Plus d’informations",
   "more_info_title": "Plus d’informations",
   "more_photos": "Plus de photos",
+  "more_than_a_week_ago": "Il y a plus d’une semaine",
   "most_comments_and_faves": "La plupart des commentaires et favoris",
   "most_observations": "Plus d’observations",
   "most_observed_introduced_species": "Espèces introduites les plus observées",
@@ -25141,6 +25358,7 @@ I18n.translations["fr"] = {
   "view_more_unreviewed": "Afficher plus de non relu",
   "view_observation": "Afficher l’observation",
   "view_observations": "Afficher les observations",
+  "view_observations_causing_this_observation_to_be_obscured": "Afficher les observations provoquant le masquage de celle-ci",
   "view_observations_of_this_taxon_by": "Afficher les observations de ce taxon par",
   "view_on": "Afficher sur",
   "view_sample": "Voir un exemple",
@@ -25464,6 +25682,12 @@ I18n.translations["fr-CA"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -25564,6 +25788,12 @@ I18n.translations["gl"] = {
   "accuracy": "Exactitude",
   "accuracy_meters": "Exactitude (metros)",
   "active": "Activa",
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "add": "Engadir",
   "add_a_comment": "Engadir un comentario",
   "add_a_field": "Engadir un campo",
@@ -25574,6 +25804,7 @@ I18n.translations["gl"] = {
   "add_to_project": "Engadir ao proxecto",
   "added": "Engadido o",
   "added!": "¡Engadido!",
+  "added_by": "Engadido por",
   "added_on": "Engadido o",
   "additional_range": "Distribución adicional",
   "additional_range_data_from_an_unknown_source": "Datos de distribución adicional de fonte descoñecida",
@@ -26327,6 +26558,12 @@ I18n.translations["ha"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -26419,6 +26656,12 @@ I18n.translations["ha"] = {
 I18n.translations["he"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -26515,6 +26758,12 @@ I18n.translations["hi"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -26609,6 +26858,12 @@ I18n.translations["hr"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -26701,6 +26956,12 @@ I18n.translations["hr"] = {
 I18n.translations["hu"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -26808,6 +27069,13 @@ I18n.translations["id"] = {
   "accuracy_meters": "akurasi (meter)",
   "action": "Tindakan",
   "active": "Aktif",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Waktu mulai"
+      }
+    }
+  },
   "activity": "Aktifitas",
   "add": "Tambahkan",
   "add_a_comment": "Tambahkan Komentar",
@@ -26825,6 +27093,7 @@ I18n.translations["id"] = {
   "add_to_project": "Tambahkan ke proyek",
   "added": "Ditambahkan",
   "added!": "Ditambahkan!",
+  "added_by": "Ditambahkan oleh",
   "added_on": "Ditambahkan",
   "additional_range": "Tambahan rentang",
   "additional_range_data_from_an_unknown_source": "Berbagai data tambahan dari sumber yang tidak diketahui",
@@ -27796,6 +28065,12 @@ I18n.translations["ig"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -27888,6 +28163,12 @@ I18n.translations["ig"] = {
 I18n.translations["is"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -27999,6 +28280,13 @@ I18n.translations["it"] = {
   "accuracy_meters": "Precisione di misura (in metri)",
   "action": "Azione",
   "active": "Attivo",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Orario di inizio"
+      }
+    }
+  },
   "activity": "Attività",
   "add": "Aggiungi",
   "add_a_comment": "Aggiungi un commento",
@@ -28027,6 +28315,7 @@ I18n.translations["it"] = {
   "add_to_project": "Aggiungi al progetto",
   "added": "Aggiunte",
   "added!": "Aggiunto!",
+  "added_by": "Aggiunta da",
   "added_on": "Aggiunto il",
   "additional_range": "Areale aggiuntivo",
   "additional_range_data_from_an_unknown_source": "Ulteriori dati di distribuzione da fonte sconosciuta",
@@ -28570,7 +28859,7 @@ I18n.translations["it"] = {
   "import": "Importa",
   "improving": "Miglioramento",
   "in_progress": "in corso",
-  "in_the_past_week": "la scorsa settimana",
+  "in_the_past_week": "Nella scorsa settimana",
   "inactive_taxon": "Taxon inattivo",
   "inappropriate_content": "Contenuto inappropriato?",
   "including": "incluso",
@@ -28739,6 +29028,7 @@ I18n.translations["it"] = {
   "more_info": "Ulteriori Informazioni",
   "more_info_title": "Ulteriori Informazioni",
   "more_photos": "Più Foto",
+  "more_than_a_week_ago": "Più di una settimana fa",
   "most_comments_and_faves": "La maggior parte di Commenti e Preferiti",
   "most_observations": "Con più osservazioni",
   "most_observed_introduced_species": "Le specie introdotte più osservate",
@@ -29907,6 +30197,12 @@ I18n.translations["iw"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -30020,6 +30316,13 @@ I18n.translations["ja"] = {
   "accuracy_meters": "精度（m）",
   "action": "操作",
   "active": "活動中",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "開始日時"
+      }
+    }
+  },
   "activity": "活動",
   "add": "追加",
   "add_a_comment": "コメントの追加",
@@ -30038,6 +30341,7 @@ I18n.translations["ja"] = {
   "add_to_project": "プロジェクトに追加",
   "added": "追加されました",
   "added!": "追加されました！",
+  "added_by": "追加者:",
   "added_on": "追加日付",
   "additional_range": "追加の分布範囲",
   "additional_range_data_from_an_unknown_source": "追加の分布範囲の提供先は不明",
@@ -31019,6 +31323,12 @@ I18n.translations["ka"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -31124,6 +31434,12 @@ I18n.translations["ko"] = {
   "accuracy": "정확성",
   "accuracy_meters": "정확도 (미터)",
   "active": "활성",
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "activity": "활동",
   "add": "추가",
   "add_a_comment": "댓글 추가",
@@ -31141,6 +31457,7 @@ I18n.translations["ko"] = {
   "add_to_project": "프로젝트에 추가하기",
   "added": "추가됨",
   "added!": "추가되었습니다!",
+  "added_by": "추가함",
   "added_on": "추가됨",
   "additional_range": "추가적인 범위",
   "additional_range_data_from_an_unknown_source": "알 수 없는 자료에서 추가적인 범위 데이터",
@@ -32272,6 +32589,12 @@ I18n.translations["lb"] = {
   "accuracy_meters": "Genauegkeet (Meter)",
   "action": "Aktioun",
   "active": "Aktiv",
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "activity": "Aktivitéit",
   "add": "Derbäisetzen",
   "add_a_comment": "Eng Bemierkung derbäisetzen",
@@ -32287,6 +32610,7 @@ I18n.translations["lb"] = {
   "add_to_project": "Bei de Projet derbäisetzen",
   "added": "Derbäigesat",
   "added!": "Derbäigesat!",
+  "added_by": "Derbäigesat vum",
   "added_on": "Derbäigesat de(n)",
   "additional_range": "Zousätzleche Beräich",
   "admin_s": "Administrateur(en)",
@@ -32599,7 +32923,7 @@ I18n.translations["lb"] = {
   "import": "Importéieren",
   "improving": "Verbesseren",
   "in_progress": "am Gaang",
-  "in_the_past_week": "an der leschter Woch",
+  "in_the_past_week": "An der leschter Woch",
   "including": "inklusiv",
   "info": "Informatioun",
   "insects": "Insekten",
@@ -32710,6 +33034,7 @@ I18n.translations["lb"] = {
   "more_info": "Méi Informatiounen",
   "more_info_title": "Méi Informatiounen",
   "more_photos": "Méi Fotoen",
+  "more_than_a_week_ago": "Viru méi wéi enger Woch",
   "most_observations": "Meescht Observatiounen",
   "most_observed_threatened_species": "Bedroten Aarten déi am dacksten observéiert goufen",
   "multiple": "méi",
@@ -33245,6 +33570,12 @@ I18n.translations["lexicons"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -33337,6 +33668,12 @@ I18n.translations["lexicons"] = {
 I18n.translations["lo-LA"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -33433,6 +33770,12 @@ I18n.translations["lt"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -33525,6 +33868,12 @@ I18n.translations["lt"] = {
 I18n.translations["lv"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -33626,6 +33975,13 @@ I18n.translations["mk"] = {
   "acc": "Уточнетост (м)",
   "accuracy": "Уточнетост",
   "accuracy_meters": "Уточнетост (метри)",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Почетно време"
+      }
+    }
+  },
   "add": "Додај",
   "add_a_comment": "Додај коментар",
   "add_a_field": "Додај поле",
@@ -33637,6 +33993,7 @@ I18n.translations["mk"] = {
   "add_to_project": "Додај во проект",
   "added": "Додадено",
   "added!": "Додадено!",
+  "added_by": "Додадено од",
   "added_on": "Додадено на",
   "additional_range": "Дополнителна распространетост",
   "agree": "се согласувам",
@@ -34328,6 +34685,12 @@ I18n.translations["ms"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -34420,6 +34783,12 @@ I18n.translations["ms"] = {
 I18n.translations["nb"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -34527,10 +34896,18 @@ I18n.translations["nl"] = {
   "about_this_bioblitz": "Over deze bioblitz",
   "acc": "Prec. (m)",
   "account": "Account",
+  "account_creation": "Account aangemaakt",
   "accuracy": "Nauwkeurigheid",
   "accuracy_meters": "Nauwkeurigheid (meters)",
   "action": "Handeling",
   "active": "Actief",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Begintijd"
+      }
+    }
+  },
   "activity": "Activiteit",
   "add": "Toevoegen",
   "add_a_comment": "Reactie toevoegen",
@@ -34559,6 +34936,7 @@ I18n.translations["nl"] = {
   "add_to_project": "Aan een project toevoegen",
   "added": "Toegevoegd",
   "added!": "Toegevoegdǃ",
+  "added_by": "Toegevoegd door",
   "added_on": "Toegevoegd op",
   "additional_range": "Bijkomende omvang",
   "additional_range_data_from_an_unknown_source": "Bijkomende range data van een onbekende bron",
@@ -35102,7 +35480,7 @@ I18n.translations["nl"] = {
   "import": "Importeren",
   "improving": "Bevestigd",
   "in_progress": "bezig",
-  "in_the_past_week": "vorige week",
+  "in_the_past_week": "Vorige week",
   "inactive_taxon": "Inactief taxon",
   "inappropriate_content": "Ongepaste inhoud?",
   "including": "inclusief",
@@ -35271,6 +35649,7 @@ I18n.translations["nl"] = {
   "more_info": "Meer info",
   "more_info_title": "Meer Info",
   "more_photos": "Meer foto's",
+  "more_than_a_week_ago": "Meer dan een week geleden",
   "most_comments_and_faves": "Meeste reacties en favorieten",
   "most_observations": "Meeste waarnemingen",
   "most_observed_introduced_species": "Meest waargenomen voorgestelde soorten",
@@ -35887,6 +36266,10 @@ I18n.translations["nl"] = {
   "reviewed": "Beoordeeld",
   "rg_observations": "RG Waarnemingen",
   "running_total": "Lopend Totaal",
+  "same_day_obscured": "Een andere waarneming door deze persoon op deze dag is verborgen",
+  "same_day_obscured_desc": "Wanneer coördinaten worden verduisterd vanwege een bedreigd taxon zijn alle andere waarnemingen van die persoon op die dag ook verduisterd om te voorkomen dat de coördinaten worden afgeleid van waarnemingen die in dezelfde periode zijn gemaakt. Waarnemers kunnen ook zelf kiezen om de coördinaten te verduisteren.",
+  "same_day_private": "Een andere waarneming door deze persoon op deze dag is privé",
+  "same_day_private_desc": "Wanneer coördinaten worden verborgen vanwege een bedreigd taxon zijn alle andere waarnemingen van die persoon op die dag ook verborgen om te voorkomen dat de coördinaten worden afgeleid van waarnemingen die in dezelfde periode zijn gemaakt. Waarnemers kunnen ook zelf kiezen om de coördinaten te verbergen.",
   "satellite": "satelliet",
   "save": "Opslaan",
   "save_photos": "Foto's opslaan",
@@ -36064,7 +36447,10 @@ I18n.translations["nl"] = {
   },
   "uploader": {
     "errors": {
+      "file_too_big": "Bestand moet kleiner zijn dan %{megabytes} MB",
+      "unsupported_file_type": "Bestandstype wordt niet ondersteund. We accepteren JPG, PNG, GIF, WAV, AAC, MP3 en MP4 (alleen audio)"
     },
+    "resize_tip": "Als uw fotobestanden te groot zijn kunt u ze verkleinen tot een maximum van 2048 bij 2048 pixels. Dit gebeurt sowieso met alle foto's op de server en zorgt voor een snellere upload.",
     "tooltips": {
       "add": "Waarneming(en) toevoegen",
       "combine": "Geselecteerde waarnemingen combineren",
@@ -36110,6 +36496,7 @@ I18n.translations["nl"] = {
   "view_more_unreviewed": "Bekijk meer niet-beoordeeld",
   "view_observation": "Waarneming weergeven",
   "view_observations": "Waarnemingen weergeven",
+  "view_observations_causing_this_observation_to_be_obscured": "Bekijk waarnemingen waardoor deze waarneming wordt vervaagd",
   "view_observations_of_this_taxon_by": "Geef de waarnemingen weer van dit taxon door",
   "view_on": "Bekijk op",
   "view_sample": "Voorbeeld weergeven",
@@ -36176,7 +36563,7 @@ I18n.translations["nl"] = {
         "note_these_users_will_be_able_to_edit": "Opmerking: deze gebruikers kunnen ALLE projectdetails, inclusief admins, bewerken.",
         "note_you_can_delete_the_time": "(Opmerking: u kunt de tijdzone en precieze tijden verwijderen als je hele dagen wilt noteren.)",
         "or_drag_and_drop": "(of sleep en plaats)",
-        "please_specify_the_requirements_html": "Specificeer de vereisten voor de waarnemingen die aan dit project moeten worden toegevoegd.\nU kunt meerdere soorten, plaatsen, gebruikers of kwaliteitsklassen opgeven\ndie automatisch worden opgenomen, of laat een veld leeg als u er geen specifieke vereiste voor hebt.",
+        "please_specify_the_requirements_html": "Specificeer de eisen voor de waarnemingen die aan dit project moeten worden toegevoegd. Je kunt meerdere soorten, plaatsen, gebruikers of kwaliteitsklassen opgeven die automatisch worden opgenomen of laat een veld leeg als u er geen specifieke eis voor hebt. Verklaringen voor elk veld staan <a href=\"%{url}\">hier</a>.",
         "project_background_color": "Projectoverzicht Achtergrondkleur",
         "project_background_color_help": "Zorg ervoor dat u een kleur kiest die donker genoeg is zodat de witte overlay leesbaar is.",
         "project_banner": "Project banner (PNG, JPG, of GIF)",
@@ -36227,12 +36614,12 @@ I18n.translations["nl"] = {
         "med_ttcid": "Med TTCID",
         "med_ttid": "Med TTID",
         "obs_1_day": "Wrn (1 dag)",
-        "obs_cid_d_to_genus": "Wrn CID'd to genus",
+        "obs_cid_d_to_genus": "Wrn CID'd tot op genus",
         "recent_w_0_obs": "Recent w/ 0 wrn",
         "recent_w_7_obs": "Recent w/ >= 7 wrn"
       },
       "year": {
-        "growth_by_country_desc_html": "Waar vindt de groei plaats? \nDeze kaart en grafiel proberen dit op te splitsen naar land, wat ingewikkeld blijkt te zijn omdat groei door een land zeer onregelmatig kan zijn. We hebben hier ervoor gekozen om de VS weg te laten en een logschaal te gebruiken om verschillen te accentueren\ntussen andere landen. Als een land zwart gekleurd is, betekent dat het niet\nniet significant heeft bijgedragen met een percentage of het had geen groei\ndit jaar, of had dit jaar niet meer waarnemingen dan vorig jaar\n(beweeg over een land om een ​​meer details te zien).\n \n<strong>\"% van totale groei\"</strong> betekent hoeveel van de wereldwijde groei afkomstig was van een bepaald land, bijv. als er 20 waarnemingen waren in 2018 en 10\nin 2017 zouden dat een groei van 10 waarnemingen zijn en als 5 daarvan\nafkomstig waren uit Benin dan droeg Benin 50% van het totaal bij aan de\ngroei. \n<strong>'% groei'</strong> is het aantal waarnemingen\ndit jaar in dat land als een percentage van de waarnemingen van vorig jaar in\ndat land, dus als er vorig jaar in Laos 10 waarnemingen waren, maar\n20 dit jaar dan zou dat 100% groei zijn, en als het vorig jaar het aantal 0 was\nen dit jaar 1 dan is groei% oneindig.",
+        "growth_by_country_desc_html": "Waar vindt de groei plaats? \nDeze kaart en grafiek splitsen de groei op naar land. De groei van een land kan zeer onregelmatig kan zijn. De VS is weggelaten en er is een logschaal gebruikt om verschillen te accentueren tussen andere landen. Als een land zwart gekleurd is betekent dat het niet niet significant heeft bijgedragen met een percentage of het had geen groei\ndit jaar, of had dit jaar niet meer waarnemingen dan vorig jaar.\nBeweeg over een land om een ​​meer details te zien.\n \n<strong>\"% van totale groei\"</strong> betekent hoeveel van de wereldwijde groei afkomstig was van een bepaald land.Als er 20 waarnemingen waren in 2018 en 10 in 2017 zouden dat een groei van 10 waarnemingen zijn en als 5 daarvan afkomstig waren uit Benin dan droeg Benin 50% van het totaal bij aan de groei. \n\n<strong>'% groei'</strong> is het aantal waarnemingen dit jaar in dat land als een percentage van de waarnemingen van vorig jaar in dat land. Als er vorig jaar in Laos 10 waarnemingen waren, maar 20 dit jaar dan zou dat 100% groei zijn, en als het vorig jaar het aantal 0 was en dit jaar 1 dan is groei % oneindig.",
         "growth_by_country_title": "Groei per land",
         "growth_in_year_obs": "Groei in %{year} (wrn)",
         "growth_title": "Groei",
@@ -36407,8 +36794,8 @@ I18n.translations["nl"] = {
   "you_appear_offline_try_again": "Het lijkt erop dat je offline bent. Probeer opnieuw wanneer je verbonden bent met het Internet.",
   "you_are_not_editing_any_guides_add_one_html": "Je bewerkt geen gidsen. <a href=\"/guides/new\">Voeg er één toe</a>",
   "you_are_setting_this_project_to_aggregate": "U stelt dit project in om alle waarnemingen te verzamelen die overeenkomen met de volgende regels: %{rules} Wilt u doorgaan?",
-  "you_are_submitting_obs_with_no_date_or_no_location": "U gaat waarnemingen toevoegen zonder data of locatie",
-  "you_are_submitting_obs_without_photos_and_names": "U dient waarnemingen in zonder foto's en soortnamen.\nDeze waarnemingen zullen zeer moeilijk nauwkeurig te determineren zijn.",
+  "you_are_submitting_obs_with_no_date_or_no_location": "U gaat waarnemingen toevoegen zonder data of locatie. Waarnemingen zonder deze informatie zijn vaak niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.",
+  "you_are_submitting_obs_without_photos_and_names": "Je voegt waarnemingen toe zonder foto's en taxonnamen. Waarnemingen zonder deze informatie zijn niet te determineren en zijn standaard niet zichtbaar in het resultaat van zoekopdrachten.",
   "you_curate_a_project_that_contains_this_observation": "Je stelt een project samen dat deze waarneming bevat",
   "you_curate_a_project_that_contains_this_observation_desc": "Je kunt verborgen coördinaten zien wanneer je een project beheert dat een waarneming bevat en de waarnemer daarvan er voor heeft gekozen om de coördinaten met curatoren van dat project te delen.",
   "you_faved_this": "Je hebt dit aan je favorieten toegevoegd!",
@@ -36431,6 +36818,12 @@ I18n.translations["nl"] = {
 I18n.translations["nn-NO"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -36525,6 +36918,12 @@ I18n.translations["nn-NO"] = {
 I18n.translations["no"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -36632,6 +37031,12 @@ I18n.translations["oc"] = {
   "accuracy_meters": "Precision (mètres)",
   "action": "Accion",
   "active": "actiu",
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "activity": "Activitat",
   "add": "Apondre",
   "add_a_comment": "Apondre un comentari",
@@ -36650,6 +37055,7 @@ I18n.translations["oc"] = {
   "add_to_project": "Apondre al projècte",
   "added": "Apondut",
   "added!": "Apondut !",
+  "added_by": "Apondut per",
   "added_on": "Apondut lo",
   "additional_range": "Plaja suplementària",
   "agree": "acceptar",
@@ -37362,6 +37768,12 @@ I18n.translations["pap-AW"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -37454,6 +37866,12 @@ I18n.translations["pap-AW"] = {
 I18n.translations["pap-CW"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -37550,6 +37968,12 @@ I18n.translations["pl"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -37642,6 +38066,12 @@ I18n.translations["pl"] = {
 I18n.translations["pt"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -37749,10 +38179,18 @@ I18n.translations["pt-BR"] = {
   "about_this_bioblitz": "Sobre este bioblitz",
   "acc": "Precisão exata - Acurácia (m)",
   "account": "Conta",
+  "account_creation": "Criação de conta",
   "accuracy": "Precisão (Acurácia)",
   "accuracy_meters": "Precisão (Acurácia em metros)",
   "action": "Ação",
   "active": "Ativo",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Hora de início"
+      }
+    }
+  },
   "activity": "Atividade",
   "add": "Adicionar",
   "add_a_comment": "Adicione um comentário",
@@ -37781,6 +38219,7 @@ I18n.translations["pt-BR"] = {
   "add_to_project": "Adicione ao projeto",
   "added": "Adicionado",
   "added!": "Adicionado!",
+  "added_by": "Adicionado por",
   "added_on": "Adicionado em",
   "additional_range": "Distribuição adicional",
   "additional_range_data_from_an_unknown_source": "Distribuição adicional para fontes desconhecidas",
@@ -38324,7 +38763,7 @@ I18n.translations["pt-BR"] = {
   "import": "Importar",
   "improving": "Melhorando",
   "in_progress": "em progresso",
-  "in_the_past_week": "durante a semana passada",
+  "in_the_past_week": "Na semana passada",
   "inactive_taxon": "Espécie ou grupo inativo",
   "inappropriate_content": "Conteúdo inapropriado?",
   "including": "incluindo",
@@ -38493,6 +38932,7 @@ I18n.translations["pt-BR"] = {
   "more_info": "Mais informações",
   "more_info_title": "Maiores informações",
   "more_photos": "Mais Fotos",
+  "more_than_a_week_ago": "Mais de uma semana atrás",
   "most_comments_and_faves": "A maioria dos comentários e dos favoritos",
   "most_observations": "A maioria das observações",
   "most_observed_introduced_species": "Espécies Introduzidas Mais Observadas",
@@ -39339,6 +39779,7 @@ I18n.translations["pt-BR"] = {
   "view_more_unreviewed": "Ver mais não revisados",
   "view_observation": "Ver observação",
   "view_observations": "Ver observações",
+  "view_observations_causing_this_observation_to_be_obscured": "Visualizar observações que fazem com que essa observação seja obscurecida",
   "view_observations_of_this_taxon_by": "Ver observações deste táxon por",
   "view_on": "Ver em",
   "view_sample": "Visualizar amostra",
@@ -39677,6 +40118,12 @@ I18n.translations["pt-PT"] = {
   "accuracy_meters": "Precisão (metros)",
   "action": "Ação",
   "active": "Ativo",
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "activity": "Atividade",
   "add": "Adicionar",
   "add_a_comment": "Adicionar um Comentário",
@@ -39705,6 +40152,7 @@ I18n.translations["pt-PT"] = {
   "add_to_project": "Adicionar ao projeto",
   "added": "Adicionado",
   "added!": "Adicionado!",
+  "added_by": "Adicionado por",
   "added_on": "Adicionado a",
   "additional_range": "Área de distribuição adicional",
   "additional_range_data_from_an_unknown_source": "Dados de distribuição adicional de fonte desconhecida",
@@ -40173,8 +40621,10 @@ I18n.translations["pt-PT"] = {
   "gbif_occurrences": "Registos do GBIF",
   "generate_your_stats": "Gerar as Suas Estatísticas",
   "geoprivacy": "Geoprivacidade",
+  "geoprivacy_is_private": "A geoprivacidade é privada",
+  "geoprivacy_is_private_desc": "O Observador escolheu ocultar as coordenadas.",
   "get_started": "Começar",
-  "globally": "globalmente",
+  "globally": "Globalmente",
   "go": "Ir",
   "go_back": "Voltar",
   "going_to_your_observations": "Indo para as suas observações...",
@@ -40190,14 +40640,15 @@ I18n.translations["pt-PT"] = {
   "has_one_or_more_faves": "Tem um ou mais favoritos",
   "has_photo": "Tem foto",
   "has_photo_and_sound": "Tem foto e som",
-  "has_photos": "possui fotografias",
+  "has_photos": "Tem fotos",
   "has_photos_or_sounds": "Possui fotografias ou sons",
   "has_sound": "Tem som",
-  "has_sounds": "possui sons",
+  "has_sounds": "Tem sons",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Aqui pode ver a nossa selecção de espécies",
-  "hide_uncountable_species": "Ocultar inúmeras espécies",
-  "high": "elevada",
+  "hide_running_total": "Ocultar total acumulado",
+  "hide_uncountable_species": "Ocultar espécies incontáveis",
+  "high": "Alto",
   "history": "Histórico",
   "i_dont_know_but_i_am_sure_this_is_taxon": "Eu não sei mas tenho a certeza que é %{taxon}",
   "id_categories": {
@@ -40849,6 +41300,10 @@ I18n.translations["pt-PT"] = {
   "stats_for_this_year_have_not_been_generated": "As estatísticas para este ano não foram geradas.",
   "status": "Estado",
   "stop_testing": "Parar Teste",
+  "submit_observations": {
+    "one": "Submeter 1 observação",
+    "other": "Submeter %{count} observations"
+  },
   "submitted": "Enviado",
   "suggestions": "Sugestões",
   "table": "Tabela",
@@ -41044,6 +41499,12 @@ I18n.translations["ro"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -41149,10 +41610,18 @@ I18n.translations["ru"] = {
   "about_this_bioblitz": "Об этом биоблице",
   "acc": "Точность (м)",
   "account": "Учётная запись",
+  "account_creation": "Создание учётной записи",
   "accuracy": "Точность",
   "accuracy_meters": "Точность (м)",
   "action": "Действие",
   "active": "Активные",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Время начала"
+      }
+    }
+  },
   "activity": "Активность",
   "add": "Добавить",
   "add_a_comment": "Добавить комментарий",
@@ -41181,6 +41650,7 @@ I18n.translations["ru"] = {
   "add_to_project": "Добавить в проект",
   "added": "Добавлено",
   "added!": "Добавлено!",
+  "added_by": "Добавлено",
   "added_on": "Добавил",
   "additional_range": "Дополнительный ареал",
   "additional_range_data_from_an_unknown_source": "Данные дополнительного диапазона из неизвестного источника",
@@ -41899,6 +42369,7 @@ I18n.translations["ru"] = {
   "more_info": "Подробнее",
   "more_info_title": "Больше Информации",
   "more_photos": "Больше фото",
+  "more_than_a_week_ago": "Более недели назад",
   "most_comments_and_faves": "Больше всего Комментариев и Фаворитов",
   "most_observations": "Больше всего наблюдений",
   "most_observed_introduced_species": "Наиболее наблюдаемые интродуцированные виды",
@@ -42610,7 +43081,7 @@ I18n.translations["ru"] = {
   "submitted": "Загружено",
   "suggest_an_identification": "Предложить идентификацию",
   "suggestions": "Предложения",
-  "support_inaturalist": "Поддержать iNaturalist",
+  "support_inaturalist": "Поддержи iNaturalist",
   "supporting": "Поддерживающее мнение",
   "table": "Таблица",
   "tagging": "Присвоение тегов...",
@@ -42748,6 +43219,7 @@ I18n.translations["ru"] = {
   "view_more_unreviewed": "Посмотреть ещё непроверенные",
   "view_observation": "Посмотреть наблюдение",
   "view_observations": "Посмотреть наблюдения",
+  "view_observations_causing_this_observation_to_be_obscured": "Посмотреть наблюдения, из-за которых данное наблюдение имеет скрытое местоположение",
   "view_observations_of_this_taxon_by": "Посмотреть наблюдения этого таксона:",
   "view_on": "Посмотреть в",
   "view_sample": "Посмотреть образец",
@@ -43090,6 +43562,12 @@ I18n.translations["si"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -43184,6 +43662,12 @@ I18n.translations["sk"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -43276,6 +43760,12 @@ I18n.translations["sk"] = {
 I18n.translations["sl"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -43387,6 +43877,13 @@ I18n.translations["sq"] = {
   "accuracy_meters": "Saktësia (metra)",
   "action": "Veprim",
   "active": "Aktiv",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "Koha e nisjes"
+      }
+    }
+  },
   "activity": "Aktiviteti",
   "add": "Shto",
   "add_a_comment": "Shto një koment",
@@ -43415,6 +43912,7 @@ I18n.translations["sq"] = {
   "add_to_project": "Shto në projekt",
   "added": "Shtuar",
   "added!": "Shtuar!",
+  "added_by": "Shtuar nga",
   "added_on": "Shtuar më",
   "additional_range": "Shtrirje shtesë",
   "additional_range_data_from_an_unknown_source": "Të dhëna seri shtesë nga një burim i panjohur",
@@ -44631,6 +45129,12 @@ I18n.translations["sr"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -44723,6 +45227,12 @@ I18n.translations["sr"] = {
 I18n.translations["sr-RS"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -44834,6 +45344,12 @@ I18n.translations["sv"] = {
   "accuracy_meters": "Noggrannhet (meter)",
   "action": "Åtgärd",
   "active": "Aktiv",
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "activity": "Aktivitet",
   "add": "Lägg till",
   "add_a_comment": "Lägg till en kommentar",
@@ -44862,6 +45378,7 @@ I18n.translations["sv"] = {
   "add_to_project": "Lägg till i projekt",
   "added": "Lades till",
   "added!": "Lades till!",
+  "added_by": "Lades till av",
   "added_on": "Lades till den",
   "additional_range": "Utökat urval",
   "additional_range_data_from_an_unknown_source": "Utökat urval från en okänd källa",
@@ -46001,6 +46518,12 @@ I18n.translations["th"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -46093,6 +46616,12 @@ I18n.translations["th"] = {
 I18n.translations["tl"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -46189,6 +46718,12 @@ I18n.translations["tr"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -46281,6 +46816,12 @@ I18n.translations["tr"] = {
 I18n.translations["uk"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -46377,6 +46918,12 @@ I18n.translations["ur"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -46471,6 +47018,12 @@ I18n.translations["vi"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -46563,6 +47116,12 @@ I18n.translations["vi"] = {
 I18n.translations["yo"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {
@@ -46674,6 +47233,13 @@ I18n.translations["zh-CN"] = {
   "accuracy_meters": "精确度（米）",
   "action": "操作",
   "active": "激活",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "起始时间"
+      }
+    }
+  },
   "activity": "活跃",
   "add": "添加",
   "add_a_comment": "添加一条评论",
@@ -46702,6 +47268,7 @@ I18n.translations["zh-CN"] = {
   "add_to_project": "添加至项目",
   "added": "已添加",
   "added!": "已添加！",
+  "added_by": "添加自",
   "added_on": "添加在",
   "additional_range": "额外范围",
   "additional_range_data_from_an_unknown_source": "来自未知来源的额外范围数据",
@@ -48324,6 +48891,12 @@ I18n.translations["zh-HK"] = {
     "parameterize": {
     }
   },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
   "all_rank_added_to_the_database": {
   },
   "all_taxa": {
@@ -48429,10 +49002,18 @@ I18n.translations["zh-TW"] = {
   "about_this_bioblitz": "有關此 bioblitz",
   "acc": "精確度 (公尺)",
   "account": "帳號",
+  "account_creation": "帳號建立",
   "accuracy": "精度",
   "accuracy_meters": "精確度 (公尺)",
   "action": "操作",
   "active": "有效",
+  "activerecord": {
+    "attributes": {
+      "project": {
+        "start_time": "起始時間"
+      }
+    }
+  },
   "activity": "動態",
   "add": "新增",
   "add_a_comment": "新增評論",
@@ -48461,6 +49042,7 @@ I18n.translations["zh-TW"] = {
   "add_to_project": "新增至專案",
   "added": "已新增",
   "added!": "已新增!",
+  "added_by": "新增自",
   "added_on": "已添加在",
   "additional_range": "額外範圍",
   "additional_range_data_from_an_unknown_source": "來自不知名來源的額外範圍資料",
@@ -48952,7 +49534,7 @@ I18n.translations["zh-TW"] = {
   "generate_your_stats": "產生您的統計內容",
   "geoprivacy": "位置隱私",
   "geoprivacy_is_obscured": "地理資訊隱私權為遮蔽",
-  "geoprivacy_is_obscured_desc": "觀察者選擇隱蔽座標。",
+  "geoprivacy_is_obscured_desc": "觀察者選擇遮蔽座標。",
   "geoprivacy_is_private": "位置隱私為私有",
   "geoprivacy_is_private_desc": "觀察者選擇隱藏座標。",
   "get_started": "入門",
@@ -49173,6 +49755,7 @@ I18n.translations["zh-TW"] = {
   "more_info": "更多資訊",
   "more_info_title": "更多資訊",
   "more_photos": "更多照片",
+  "more_than_a_week_ago": "超過一週前",
   "most_comments_and_faves": "最多評論與最愛",
   "most_observations": "最多觀察",
   "most_observed_introduced_species": "被觀察最多次的引進物種",
@@ -50019,6 +50602,7 @@ I18n.translations["zh-TW"] = {
   "view_more_unreviewed": "檢視更多未檢閱項目",
   "view_observation": "檢視觀察",
   "view_observations": "檢視觀察",
+  "view_observations_causing_this_observation_to_be_obscured": "檢視導致此觀察給遮蔽的觀察",
   "view_observations_of_this_taxon_by": "檢視此分類群的觀察，由",
   "view_on": "檢視在",
   "view_sample": "檢視範例",
@@ -50340,6 +50924,12 @@ I18n.translations["zh-TW"] = {
 I18n.translations["zh-YUE"] = {
   "<%= name": {
     "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
     }
   },
   "all_rank_added_to_the_database": {

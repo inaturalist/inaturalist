@@ -31,6 +31,8 @@ class ProjectsController < ApplicationController
   before_filter :ensure_can_edit, only: [ :edit, :update ]
   before_filter :filter_params, only: [ :update, :create ]
   before_filter :site_required, only: [ :feature, :unfeature ]
+
+  # requires_privilege :organizer, only: [:new_traditional]
   
   ORDERS = %w(title created)
   ORDER_CLAUSES = {

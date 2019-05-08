@@ -32,7 +32,7 @@ export function setProject( p ) {
 
 export function createNewProject( type ) {
   return ( dispatch, getState ) => {
-    const config = getState( ).config;
+    const { config } = getState( );
     dispatch( setProject( {
       project_type: type,
       user_id: config.currentUser.id,
@@ -57,9 +57,9 @@ export function updateProject( attrs ) {
 
 export function setProjectError( field, error ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).form.project;
-    dispatch( updateProject( { errors:
-      Object.assign( { }, project.errors, { [field]: error } )
+    const { project } = getState( ).form;
+    dispatch( updateProject( {
+      errors: Object.assign( { }, project.errors, { [field]: error } )
     } ) );
   };
 }
@@ -68,7 +68,7 @@ let titleValidationTimestamp = new Date( ).getTime( );
 export function validateProjectTitle( ) {
   return ( dispatch, getState ) => {
     titleValidationTimestamp = new Date( ).getTime( );
-    const project = getState( ).form.project;
+    const { project } = getState( ).form;
     if ( !project ) { return null; }
     if ( _.isEmpty( project.title ) ) {
       dispatch( setProjectError( "title", "Project name is required" ) );
@@ -115,7 +115,7 @@ export function setDescription( description ) {
 
 export function addProjectRule( operator, operandType, operand ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).form.project;
+    const { project } = getState( ).form;
     if ( !project || !operand ) { return; }
     const operandID = operandType ? operand.id : operand;
 
@@ -124,9 +124,9 @@ export function addProjectRule( operator, operandType, operand ) {
     let ruleExists = false;
     _.each( project.project_observation_rules, rule => {
       const isMatch = (
-        operator === rule.operator &&
-        operandType === rule.operand_type &&
-        operandID === rule.operand_id
+        operator === rule.operator
+        && operandType === rule.operand_type
+        && operandID === rule.operand_id
       );
       if ( isMatch && rule._destroy ) {
         newRules.push( Object.assign( { }, rule, { _destroy: false } ) );
@@ -154,14 +154,18 @@ export function addProjectRule( operator, operandType, operand ) {
 
 export function removeProjectRule( ruleToRemove ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).form.project;
+    const { project } = getState( ).form;
     if ( !project || !ruleToRemove ) { return; }
     const newRules = [];
     _.each( project.project_observation_rules, rule => {
-      if ( ( ruleToRemove.id && rule.id && ruleToRemove.id === rule.id ) ||
-           ( ruleToRemove.operator === rule.operator &&
-             ruleToRemove.operand_type === rule.operand_type &&
-             ruleToRemove.operand_id === rule.operand_id ) ) {
+      if (
+        ( ruleToRemove.id && rule.id && ruleToRemove.id === rule.id )
+        || (
+          ruleToRemove.operator === rule.operator
+          && ruleToRemove.operand_type === rule.operand_type
+          && ruleToRemove.operand_id === rule.operand_id
+        )
+      ) {
         // if the rule already exists in the database, mark it as to be destroyed
         // otherwise, just leave the rule off new rule list
         if ( rule.id ) {
@@ -177,7 +181,7 @@ export function removeProjectRule( ruleToRemove ) {
 
 export function addManager( user ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).form.project;
+    const { project } = getState( ).form;
     if ( !project || !user ) { return; }
     const newAdmins = [];
     let managerExists = false;
@@ -200,7 +204,7 @@ export function addManager( user ) {
 
 export function removeProjectUser( projectUser ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).form.project;
+    const { project } = getState( ).form;
     if ( !project || !projectUser ) { return; }
     const newAdmins = [];
     _.each( project.admins, admin => {
@@ -216,7 +220,7 @@ export function removeProjectUser( projectUser ) {
 
 export function setRulePreference( field, value ) {
   return ( dispatch, getState ) => {
-    const project = getState( ).form.project;
+    const { project } = getState( ).form;
     if ( !project || !field ) { return; }
     project.rule_preferences = _.reject( project.rule_preferences, pref => pref.field === field );
     project.rule_preferences.push( { field, value } );
@@ -265,7 +269,7 @@ export function onFileDrop( droppedFiles, field ) {
 export function deleteProject( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const project = state.form.project;
+    const { project } = state.form;
     if ( !loggedIn( state ) || !project ) { return; }
     dispatch( setConfirmModalState( {
       show: true,
@@ -292,10 +296,8 @@ export function deleteProject( ) {
 export function submitProject( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const project = state.form.project;
+    const { project } = state.form;
     if ( !loggedIn( state ) || !project ) { return; }
-    const viewerIsAdmin = state.config.currentUser.roles &&
-      state.config.currentUser.roles.indexOf( "admin" ) >= 0;
     // check title and description which may not have been validated yet
     // if the user didn't enter text in those fields yet
     let errors;
@@ -308,36 +310,38 @@ export function submitProject( ) {
       errors = true;
     }
     if ( errors ) { return; }
-    const payload = { project: {
-      project_type: ( project.project_type === "umbrella" ) ? "umbrella" : "collection",
-      user_id: project.user_id || state.config.currentUser.id,
-      title: project.title,
-      description: project.description,
-      icon: project.droppedIcon ? project.droppedIcon : null,
-      cover: project.droppedBanner ? project.droppedBanner : null,
-      preferred_banner_color: project.banner_color,
-      prefers_hide_title: project.hide_title,
-      prefers_banner_contain: project.header_image_contain,
-      prefers_rule_quality_grade: project.rule_quality_grade
-        ? _.keys( project.rule_quality_grade ).join( "," ) : "",
-      prefers_rule_photos: _.isEmpty( project.rule_photos ) ? "" : project.rule_photos,
-      prefers_rule_sounds: _.isEmpty( project.rule_sounds ) ? "" : project.rule_sounds,
-      prefers_rule_term_id: _.isEmpty( project.rule_term_id ) ? "" : project.rule_term_id,
-      prefers_rule_term_value_id:
-        ( _.isEmpty( project.rule_term_value_id ) || _.isEmpty( project.rule_term_id ) )
-          ? "" : project.rule_term_value_id,
-      prefers_rule_observed_on:
-        ( project.date_type !== "exact" || _.isEmpty( project.rule_observed_on ) )
-          ? "" : project.rule_observed_on.trim( ),
-      prefers_rule_d1: project.date_type !== "range" || _.isEmpty( project.rule_d1 )
-        ? "" : project.rule_d1.trim( ),
-      prefers_rule_d2: project.date_type !== "range" || _.isEmpty( project.rule_d2 )
-        ? "" : project.rule_d2.trim( ),
-      prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month )
-        ? "" : project.rule_month,
-      prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
-      prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced
-    } };
+    const payload = {
+      project: {
+        project_type: ( project.project_type === "umbrella" ) ? "umbrella" : "collection",
+        user_id: project.user_id || state.config.currentUser.id,
+        title: project.title,
+        description: project.description,
+        icon: project.droppedIcon ? project.droppedIcon : null,
+        cover: project.droppedBanner ? project.droppedBanner : null,
+        preferred_banner_color: project.banner_color,
+        prefers_hide_title: project.hide_title,
+        prefers_banner_contain: project.header_image_contain,
+        prefers_rule_quality_grade: project.rule_quality_grade
+          ? _.keys( project.rule_quality_grade ).join( "," ) : "",
+        prefers_rule_photos: _.isEmpty( project.rule_photos ) ? "" : project.rule_photos,
+        prefers_rule_sounds: _.isEmpty( project.rule_sounds ) ? "" : project.rule_sounds,
+        prefers_rule_term_id: _.isEmpty( project.rule_term_id ) ? "" : project.rule_term_id,
+        prefers_rule_term_value_id:
+          ( _.isEmpty( project.rule_term_value_id ) || _.isEmpty( project.rule_term_id ) )
+            ? "" : project.rule_term_value_id,
+        prefers_rule_observed_on:
+          ( project.date_type !== "exact" || _.isEmpty( project.rule_observed_on ) )
+            ? "" : project.rule_observed_on.trim( ),
+        prefers_rule_d1: project.date_type !== "range" || _.isEmpty( project.rule_d1 )
+          ? "" : project.rule_d1.trim( ),
+        prefers_rule_d2: project.date_type !== "range" || _.isEmpty( project.rule_d2 )
+          ? "" : project.rule_d2.trim( ),
+        prefers_rule_month: project.date_type !== "months" || _.isEmpty( project.rule_month )
+          ? "" : project.rule_month,
+        prefers_rule_native: _.isEmpty( project.rule_native ) ? "" : project.rule_native,
+        prefers_rule_introduced: _.isEmpty( project.rule_introduced ) ? "" : project.rule_introduced
+      }
+    };
     if ( !payload.project.icon && project.iconDeleted ) {
       payload.icon_delete = true;
     }
@@ -349,11 +353,17 @@ export function submitProject( ) {
     payload.project.project_observation_rules_attributes =
       payload.project.project_observation_rules_attributes || [];
     _.each( project.project_observation_rules, rule => {
-      if ( ( project.project_type === "umbrella" && rule.operand_type === "Project" ) ||
-           ( project.project_type !== "umbrella" &&
-             ( rule.operand_type === "Taxon" ||
-               rule.operand_type === "User" ||
-               rule.operand_type === "Place" ) ) ) {
+      if (
+        ( project.project_type === "umbrella" && rule.operand_type === "Project" )
+        || (
+          project.project_type !== "umbrella"
+          && (
+            rule.operand_type === "Taxon"
+            || rule.operand_type === "User"
+            || rule.operand_type === "Place"
+          )
+        )
+      ) {
         const rulePayload = {
           operator: rule.operator,
           operand_type: rule.operand_type,
@@ -368,8 +378,7 @@ export function submitProject( ) {
     } );
 
     // add project_users
-    payload.project.admin_attributes =
-      payload.project.admin_attributes || [];
+    payload.project.admin_attributes = payload.project.admin_attributes || [];
     _.each( project.admins, admin => {
       const projectUserPayload = {
         user_id: admin.user.id,
@@ -385,13 +394,13 @@ export function submitProject( ) {
     dispatch( updateProject( { saving: true } ) );
     if ( project.id ) {
       payload.id = project.slug;
-      inatjs.projects.update( payload ).then( ( p ) => {
+      inatjs.projects.update( payload ).then( p => {
         window.location = `/projects/${p.slug}`;
       } ).catch( e => {
         dispatch( showError( e ) );
       } );
     } else {
-      inatjs.projects.create( payload ).then( ( p ) => {
+      inatjs.projects.create( payload ).then( p => {
         window.location = `/projects/${p.slug}`;
       } ).catch( e => {
         dispatch( showError( e ) );
@@ -403,7 +412,7 @@ export function submitProject( ) {
 export function confirmSubmitProject( ) {
   return ( dispatch, getState ) => {
     const state = getState( );
-    const project = state.form.project;
+    const { project } = state.form;
     let empty = true;
     const dateType = project.date_type;
     if ( !_.isEmpty( project.rule_quality_grade ) ) { empty = false; }
