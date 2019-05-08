@@ -844,15 +844,25 @@ inat-taxon { white-space: nowrap; }
   color: #eee;
   opacity: 0.8;
 }
-#result-table .img .photo-count {
+#result-table .img .photo-count,
+#result-grid .photo .photo-count {
   position: absolute;
-  right: 0;
+  left: 0;
   bottom: 0;
   color: #eee;
-  background-color: #646464;
+  background-color: rgba(0,0,0,0.5);
   padding: 1px 5px;
   font-weight: 100;
   display: block;
+}
+#result-grid .photo .photo-count {
+  font-size: 12px;
+  height: 24px;
+  line-height: 24px;
+  padding: 0 6px
+}
+#result-grid .photo .photo-count i {
+  margin-right: 3px;
 }
 #result-table td.user {
   white-space: nowrap;

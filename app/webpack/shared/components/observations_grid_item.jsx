@@ -13,18 +13,6 @@ const ObservationsGridItem = ( {
   splitTaxonOptions,
   user
 } ) => {
-  let taxonJSX = I18n.t( "unknown" );
-  if ( o.taxon && o.taxon !== null ) {
-    taxonJSX = (
-      <SplitTaxon
-        { ...splitTaxonOptions }
-        taxon={o.taxon}
-        user={ user }
-        url={`/observations/${o.id}`}
-        target={ linkTarget }
-      />
-    );
-  }
   let wrapperClass = "thumbnail borderless ObservationsGridItem";
   if ( o.reviewedByCurrentUser ) {
     wrapperClass += " reviewed";
@@ -55,10 +43,27 @@ const ObservationsGridItem = ( {
             <i className="fa fa-search"></i>
           </div>
         ) : null }
+        { o.photos && o.photos.length > 1 && (
+          <span
+            className="photo-count"
+            title={I18n.t( "x_photos", { count: o.photos.length } )}
+          >
+            <i className="fa fa-picture-o" />
+            { o.photos.length }
+          </span>
+        ) }
       </a>
       <div className="caption">
         <UserImage user={ o.user } linkTarget={ linkTarget } />
-        { taxonJSX }
+        {
+          <SplitTaxon
+            {...splitTaxonOptions}
+            taxon={o.taxon}
+            user={user}
+            url={`/observations/${o.id}`}
+            target={linkTarget}
+          />
+        }
         <div className="controls">
           { controls }
         </div>
