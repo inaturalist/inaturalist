@@ -486,7 +486,15 @@ class Project < ActiveRecord::Base
       unless rule_value.nil? || rule_value == ""
         # map the rule values to their proper data types
         if [ "rule_d1", "rule_d2", "rule_observed_on" ].include?( rule )
-          rule_value = rule_value.match( / / ) ? Time.parse( rule_value ) : Date.parse( rule_value )
+          if rule_value.strip.match( / / )
+            rule_value = Time.parse( rule_value )
+          else
+            rule_value = Date.parse( rule_value )
+            if rule == "d2"
+              # when  d2 is a date w/o a time, we want to capture that in its own field
+              params[ "d2_date" ] = rule_value
+            end
+          end
         elsif rule_value.is_a?( String )
           is_int = rule_value.match( /^\d+ *(, *\d+)*$/ )
           rule_value = rule_value.split( "," ).map( &:strip )

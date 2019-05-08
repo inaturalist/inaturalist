@@ -38,6 +38,7 @@ class Project < ActiveRecord::Base
       indexes :search_parameter_fields do
         indexes :d1, type: "date", format: "dateOptionalTime"
         indexes :d2, type: "date", format: "dateOptionalTime"
+        indexes :d2_date, type: "date", format: "yyyy-MM-dd"
         indexes :observed_on, type: "date", format: "dateOptionalTime"
         indexes :photos, type: "boolean"
         indexes :sounds, type: "boolean"
