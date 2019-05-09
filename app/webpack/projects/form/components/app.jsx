@@ -134,7 +134,7 @@ const App = ( { config, form, createNewProject } ) => {
             </div>
           </Col>
         </Row>
-        { true || ( config.currentUser.privileges.indexOf( "organizer" ) >= 0 && (
+        { ( true || config.currentUser.privileges.indexOf( "organizer" ) >= 0 ) && (
           <Row>
             <Col xs={8}>
               <p className="contact">
@@ -148,7 +148,7 @@ const App = ( { config, form, createNewProject } ) => {
               </p>
             </Col>
           </Row>
-        ) ) }
+        ) }
       </Grid>
     </div>
   );

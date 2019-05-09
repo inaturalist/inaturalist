@@ -15041,6 +15041,10 @@ I18n.translations["en"] = {
     "other": "%{count} others"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} people</strong> helped %{user} with <strong>%{y} IDs</strong>",
+  "x_photos": {
+    "one": "1 photo",
+    "other": "%{count} photos"
+  },
   "x_species": {
     "one": "1 Species",
     "other": "%{count} Species"

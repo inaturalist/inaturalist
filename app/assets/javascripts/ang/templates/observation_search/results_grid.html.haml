@@ -5,6 +5,9 @@
         %a{ href: "/observations/{{ o.id }}", "ng-style": "shared.backgroundIf( o.photo( ) )", target: "_self", :class => "photo {{ o.hasMedia( ) ? '' : 'iconic' }} {{ o.hasSound( ) ? 'sound' : '' }}  {{ o.photo( ) ? 'has-photo' : '' }}" }
           %i{ :class => "icon icon-iconic-{{ o.taxon.iconicTaxonName( ) | lowercase }}" }
           %i{ :class => "sound-icon fa fa-volume-up" }
+          %span.photo-count.ng-cloak{ "ng-show" => "o.photos.length > 1", title: "{{ shared.t( 'x_photos', { count: o.photos.length } )}}" }
+            %i.fa.fa-picture-o
+            {{ o.photos.length }}
         .caption
           %a.userimage{ href: "/people/{{ o.user.login }}", "ng-style": "shared.backgroundIf( o.user.icon_url )", title: "{{ o.user.login }}", target: "_self" }
             %i.icon-person{"ng-hide" => "o.user.icon_url"}
