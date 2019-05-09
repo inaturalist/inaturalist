@@ -5093,11 +5093,6 @@ zh-TW:
         complex_boundary_note_html: 此邊界有些太複雜而無法在網頁上編輯。然而您可以<a href="%{url}">下載 KML</a>
           來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
         admin_level_desc: 應僅用於設定政治機構，以美國環境而言：0 = 國家、1 = 州、2 = 郡、3 = 鎮
-      index:
-        adding_new_places: 添加新地點
-        confirming_identifications: 依添加對應觀察的鑑定來提交鑑定
-        filling_out_checklists: 在清單上填寫您所了解的地方
-        you_can_help_out_by: 您可協助改善我們的地點資料依
       new:
         check_list_note: 註：在廣大地點情況下清單將會被自動停用。
         coordinates_desc: 若您不想畫出邊界或上傳 KML 的話，您必須指定出座標。
@@ -5431,12 +5426,6 @@ zh-TW:
           20 個觀察為某個物種分類，那麼比例是 0.2（20 / 100）。若大家在隔年做出 2000 個觀察並且當中有 400 個觀察為某物種分類，那麼比例便是 0.2（400 / 2000）。而縱使是總計計數，也會導致在僅有少數觀察者的地區，或是很少有被觀察到的物種分類群產生偏差情況。
         complete_taxon_desc: 「完整」物種分類群擁有全部派生、目前在網站資料庫裡的現存具體物種分類群級別。例如：能代表著有多少個物種已被觀察，以及有多少個需要被觀察，就是當對於物種的物種分類完成時。對於物種是完整的「完整」物種分類群，其物種計數不包含「無法計數」物種，如已滅絕或是無作用的物種概念，而它們僅能包含物種，不能像是亞種、或變種的種下分類群。
         discoveries_desc: 此物種分類中最新被鑑定的物種
-        trending_desc: 在最近一個月的最多觀察物種分類群
-        trending_in_place_desc_html: 上個月在<a href="%{url}">%{place}</a>最多觀察到物種分類
-        rare_desc: 最少被觀察到生存受威脅的物種分類
-        rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>最少被觀察到生存受威脅的物種分類群
-        wanted_desc: 物種分類中尚未被觀察到的物種。
-        no_trending_desc: 在上個月裡此物種分類之下沒有被觀察到的事物
         frequency:
           research: 研究等級
           verifiable: 可證實
@@ -5452,9 +5441,15 @@ zh-TW:
           Life Stage=pupa: 蛹
           Life Stage=adult: 成體
           unannotated: 沒有註釋
+        no_trending_desc: 在上個月裡此物種分類之下沒有被觀察到的事物
         photo_chooser_modal_desc: 從左方拖拉照片於此，或拖拉照片於此來重新排列。
         photo_chooser_modal_explanation: 註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。
+        rare_desc: 最少被觀察到生存受威脅的物種分類
+        rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>最少被觀察到生存受威脅的物種分類群
         site_curators_disabled_wikipedia_html: 網站策展人臨時停用顯示<a href="%{url}">來自維基百科的此內容</a>。您可以透過編輯在維基百科的頁面來協助該適用於此物種分類，或是透過標記此分類來提醒網站策展人留意。
+        trending_desc: 在最近一個月的最多觀察物種分類群
+        trending_in_place_desc_html: 上個月在<a href="%{url}">%{place}</a>最多觀察到物種分類
+        wanted_desc: 物種分類中尚未被觀察到的物種。
     taxon_changes:
       move_children_desc: 子項若為屬或較粗略內容，因而移動到種、亞種、變種、等其它輸出的所輸入物種分類，將會對換至同等之新的屬、或種名稱。
       form:

@@ -3567,12 +3567,6 @@ el:
         percent_growth_in_year: '% Αύξηση το %{year}'
     taxa:
       show:
-        trending_desc: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα
-        trending_in_place_desc_html: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα
-          σε <a href="%{url}">%{place}</a>
-        rare_desc: Λιγότερο παρατηρημένα απειλούμενα taxa
-        rare_in_place_desc_html: Λιγότερο παρατηρημένα απειλούμενα taxa σε <a href="%{url}">%{place}</a>
-        wanted_desc: Είδη σε αυτό το taxon που δεν έχουν παρατηρηθεί ακόμα.
         frequency:
           research: Ερευνητικό Επίπεδο
           Flowering Phenology=bare: Χωρίς άνθη
@@ -3587,6 +3581,12 @@ el:
           Life Stage=pupa: Χρυσαλλίδα
           Life Stage=adult: Ενήλικο
           unannotated: Χωρίς ενδείξεις
+        rare_desc: Λιγότερο παρατηρημένα απειλούμενα taxa
+        rare_in_place_desc_html: Λιγότερο παρατηρημένα απειλούμενα taxa σε <a href="%{url}">%{place}</a>
+        trending_desc: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα
+        trending_in_place_desc_html: Τα πλέον παρατηρημένα taxa τον τελευταίο μήνα
+          σε <a href="%{url}">%{place}</a>
+        wanted_desc: Είδη σε αυτό το taxon που δεν έχουν παρατηρηθεί ακόμα.
     users:
       dashboard:
         your_content_will_be_updated: Το περιεχόμενό σας που σχετίζεται με αυτά τα

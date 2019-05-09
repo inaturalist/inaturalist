@@ -5996,11 +5996,6 @@ cs:
           <a href="%{url}">stáhnout KML</a>, upravit ho v aplikaci GIS dle vašeho výběru a nahrát přímo vaše upravené KML.
         admin_level_desc: Mělo by se nastavovat pouze pro politické celky. V ekvivalentech
           USA 0 = země, 1 = stát, 2 = okres, 3 = město
-      index:
-        adding_new_places: přidání nových míst
-        confirming_identifications: potvrzení identifikací přidáním ID k pozorováním
-        filling_out_checklists: vyplnění seznamů pro místa, která dobře znáte
-        you_can_help_out_by: Můžete nám pomoct zlepšit naše údaje o místě
       new:
         check_list_note: 'Poznámka: Pro velmi velké oblasti budou seznamy automaticky
           zakázány.'
@@ -6491,13 +6486,6 @@ cs:
           druhů, a zahrnují pouze druhy, ne infraspecifické taxony, jako jsou poddruhy
           nebo odrůdy.
         discoveries_desc: Poslední nově identifikované druhy v tomto taxonu
-        trending_desc: Nejvíce pozorované taxony v uplynulém měsíci
-        trending_in_place_desc_html: Nejvíce pozorované taxony v uplynulém měsíci
-          v <a href="%{url}">%{place}</a>
-        rare_desc: Nejméně pozorované ohrožené taxony
-        rare_in_place_desc_html: Nejméně pozorované ohrožené taxony v <a href="%{url}">%{place}</a>
-        wanted_desc: Druhy v tomto taxonu, které ještě nebyly pozorovány.
-        no_trending_desc: Nic pod tímto taxonem pozorováno v uplynulém měsíci
         frequency:
           research: Výzkumný stupeň
           verifiable: Ověřitelné
@@ -6513,16 +6501,23 @@ cs:
           Life Stage=pupa: Kukla
           Life Stage=adult: Dospělý
           unannotated: Žádná anotace
+        no_trending_desc: Nic pod tímto taxonem pozorováno v uplynulém měsíci
         photo_chooser_modal_desc: Přetáhněte sem fotky zleva nebo přetáhněte fotky
           sem a uspořádejte je.
         photo_chooser_modal_explanation: Vezměte prosím na vědomí, že stránka taxonu
           zobrazí fotky tohoto taxonu a jeho následných taxonů. Fotky vybrané pro
           tento taxon se však zobrazí jako první. První fotka bude základním obrázkem
           používaným na celých stránkách.
+        rare_desc: Nejméně pozorované ohrožené taxony
+        rare_in_place_desc_html: Nejméně pozorované ohrožené taxony v <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: Vedoucí webu dočasně zakázali zobrazení
           <a href="%{url}"> tohoto obsahu Wikipedia </a>. Pomoci můžete úpravou stránky
           na Wikipedii tak, aby byla vhodná pro tento taxon, nebo označením tohoto
           taxonu, abyste získali pozornost dozorců stránek.
+        trending_desc: Nejvíce pozorované taxony v uplynulém měsíci
+        trending_in_place_desc_html: Nejvíce pozorované taxony v uplynulém měsíci
+          v <a href="%{url}">%{place}</a>
+        wanted_desc: Druhy v tomto taxonu, které ještě nebyly pozorovány.
     taxon_changes:
       move_children_desc: Děti daného taxonu, které jsou rodové nebo ještě hruběji
         určené, budou přesunuty; druhy, poddruhy, odrůdy atd. se změní v jejich ekvivalentu

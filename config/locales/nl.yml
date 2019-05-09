@@ -137,9 +137,9 @@ nl:
   _100_day_trends: 100-daagse trends
   _percent_ID_d: '% gedetermineerd'
   a_community_for_naturalist: Een gemeenschap voor naturalisten
-  a_default_taxon_name_will_automatically_created: Een standaard soortnaam wordt automatisch
-    aangemaakt van de wetenschappelijke naam van dit taxon. Als u de nieuwe soortnaam
-    hebt opgeslagen, kunt u hier andere namen toevoegen (algemene namen, verouderde
+  a_default_taxon_name_will_automatically_created: Een standaard taxonnaam wordt automatisch
+    aangemaakt van de wetenschappelijke naam van dit taxon. Als u het nieuwe taxon
+    hebt opgeslagen kunt u hier andere namen aan toevoegen (lokale namen, verouderde
     wetenschappelijke namen, enzovoort).
   a_few_points_to_make_things_clear: 'Enkele opmerkingen om de zaken wat duidelijker
     te maken:'
@@ -236,7 +236,7 @@ nl:
   add_colors: Kleuren toevoegen
   add_comma_separated_tags: Door komma's gescheiden labels toevoegen
   add_comment: Reactie toevoegen
-  add_common_names_for: gewone namen toevoegen voor bestaande taxa
+  add_common_names_for: Lokale namen toevoegen voor bestaande taxa
   add_conservation_status: Natuurbeschermingsstatus toevoegen
   add_countries: Landen toevoegen
   add_custom_project_fields: Aangepaste projectvelden toevoegen
@@ -2216,7 +2216,7 @@ nl:
   loading_tags: Tags aan het laden...
   loading_taxa_from_your: Taxa van uw waarnemingen laden ...
   loading_wikipedia_description: Wikipedia beschrijving laden ...
-  locale_description: Met Locale stel je de voorkeuren voor taal- en datumweergave
+  locale_description: Met Taalinstelling stel je de voorkeuren voor taal- en datumweergave
     in.
   locales_: Taalinstelling
   locales:
@@ -5139,8 +5139,8 @@ nl:
   wondering_what_to_do_next: Hier zijn een paar volgende stappen om je op weg te helpen
     naar het waarnemen en determineren van de natuurlijke wereld
   would_you_like_to: Zou jij
-  would_you_prefer_to_view_common_names_used_in_place_html: Wil je liever algemene
-    namen weergeven die worden gebruikt in <strong>%{place}</strong>?
+  would_you_prefer_to_view_common_names_used_in_place_html: Wil je liever lokale namen
+    zien die worden gebruikt in <strong>%{place}</strong>?
   would_like_some_help_identifying_this: had graag wat hulp om dit te identificeren
   x_admin: '%{login} beheerders'
   x_blog: Blog van %{x}
@@ -5423,11 +5423,13 @@ nl:
   views:
     views: Weergaven
     announcements:
-      locales_desc: |-
-        CMD- of SHIFT-klik om meerdere records te selecteren. Als u niets selecteert wordt de standaard aankondiging voor alle gebruikers getoond, ongeacht uw lokatie. Een taal kiezen
-        zonder een regio zal *niet* gericht zijn op locale met regio's, bijvoorbeeld als
-        je hebt gekozen en het zal niet verschijnen voor mensen die en-US hebben gekozen. Als jij beide wil targeten, kies beide. Als u een aankondiging wilt weergeven
-        voor alle leden van een site, laat dit gewoon leeg.
+      locales_desc: CMD- of SHIFT-klik om meerdere records te selecteren. Als u niets
+        selecteert wordt de standaard aankondiging voor alle gebruikers getoond, ongeacht
+        uw Taalinstelling. Een taal kiezen zonder een regio zal *niet* gericht zijn
+        op Taalinstelling met regio's, bijvoorbeeld als je hebt gekozen en het zal
+        niet verschijnen voor mensen die en-US hebben gekozen. Als jij beide wil targeten,
+        kies beide. Als u een aankondiging wilt weergeven voor alle leden van een
+        site, laat dit gewoon leeg.
     custom_projects:
       edit:
         custom_project_fields_warning: |-
@@ -6125,14 +6127,6 @@ nl:
           <a href="%{url}">de KML downloaden</a>, bewerk deze dan in een GIS-applicatie van jouw keuze en upload de bewerkte KML.
         admin_level_desc: "Moet alleen worden ingesteld voor politieke lichamen. In
           termen van VS-equivalenten, \n0=land, 1=staat, 2=graafschap(county), 3=stad"
-      index:
-        adding_new_places: nieuwe plaatsen toevoegen
-        confirming_identifications: identificaties bevestigen door ID's aan waarnemingen
-          toe te voegen
-        filling_out_checklists: Maak soortenlijsten aan voor plaatsen die je goed
-          kent.
-        you_can_help_out_by: Je kunt helpen onze informatie over plaatsen te verbeteren
-          door
       new:
         check_list_note: 'Opmerking: checklists worden automatisch uitgeschakeld voor
           zeer grote plaatsen.'
@@ -6622,13 +6616,6 @@ nl:
           specifieke rang aanwezig in de database van de website. Wanneer een taxon al zijn soorten bevat, we kunnen bijvoorbeeld zeggen hoe veel  soorten al zijn waargenomen en welke nog niet. Bij de tellingen van
           soorten voor "volledige" taxa waar van al zijn soorten zijn opgenomen zijn niet inbegrepen "ontelbare" soorten zoals uitgestorven soorten of inactieve soortconcepten.Ze bevatten alleen soorten, niet infraspecifieke taxa zoals ondersoorten of variëteiten.
         discoveries_desc: Meest recente nieuw-geïdentificeerde soorten in dit taxon
-        trending_desc: Meest waargenomen taxa gedurende de laatste maand
-        trending_in_place_desc_html: Meest waargenomen taxa gedurende de laatste maand
-          uit <a href="%{url}">%{place}</a>
-        rare_desc: Minst waargenomen bedreigde taxa
-        rare_in_place_desc_html: Minst waargenomen bedreigde taxa in <a href="%{url}">%{place}</a>
-        wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
-        no_trending_desc: Niets minder dan dit taxon waargenomen in de laatste maand
         frequency:
           research: Onderzoekskwaliteit
           verifiable: Verifieerbaar
@@ -6644,6 +6631,7 @@ nl:
           Life Stage=pupa: Pop
           Life Stage=adult: Volwassen
           unannotated: Geen aantekening
+        no_trending_desc: Niets minder dan dit taxon waargenomen in de laatste maand
         photo_chooser_modal_desc: Sleep foto's hier naartoe vanaf de linkerkant of
           sleep ze hier om opnieuw te schikken.
         photo_chooser_modal_explanation: |-
@@ -6651,9 +6639,15 @@ nl:
           en zijn nakomelingen. De foto's die hiervoor zijn gekozen
           van dit taxon zal het worden getoond. De eerste foto zal de
           de standaardafbeelding zijn die op de site wordt gebruikt.
+        rare_desc: Minst waargenomen bedreigde taxa
+        rare_in_place_desc_html: Minst waargenomen bedreigde taxa in <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |-
           Sitecuratoren hebben tijdelijk de weergave van <a href="%{url}">deze inhoud van Wikipedia</a> uitgeschakeld. U kunt helpen door de pagina in Wikipedia aan te passen om het geschikt te maken voor dit taxon of door dit te markeren
           taxon om het onder de aandacht te brengen van sitecuratoren.
+        trending_desc: Meest waargenomen taxa gedurende de laatste maand
+        trending_in_place_desc_html: Meest waargenomen taxa gedurende de laatste maand
+          uit <a href="%{url}">%{place}</a>
+        wanted_desc: Soorten in dit taxon die nog niet werden waargenomen.
     taxon_changes:
       move_children_desc: "Kinderen van het input-taxon die genera of grover zijn,
         worden verplaatst naar \nhet resultaat; soorten, ondersoorten, variëteiten,
@@ -6702,10 +6696,10 @@ nl:
           zijn, kunt u <a href="%{url}">hier</a> prioriteiten stellen aan ze.
           Geef <strong>geen</strong> namen op voor ELKE plaats waar de naam wordt gebruikt, alleen voor plaatsen die conflicteren met andere plaatsen.
       taxon:
-        about_html: Taxa kunnen veel lokale namen hebben. We ondersteunen een standaard
-          standaardnaam globaal, die hier kan worden gewijzigd door een naam naar
-          de bovenkant te slepen de lijst. U kunt ook standaardnamen op verschillende
-          plaatsen opgeven op door de naam bewerken en een plaats toevoegen, maar
+        about_html: Taxa kunnen veel lokale namen hebben. We ondersteunen één standaard
+          lokale naam globaal, die hier kan worden gewijzigd door een naam naar de
+          bovenkant te slepen van de lijst. U kunt ook standaardnamen op verschillende
+          plaatsen opgeven door de naam te bewerken en een plaats toe te voegen, maar
           doe dit alleen wanneer verschillende plaatsen conflicterende namen hebben.
     users:
       dashboard:
@@ -6779,9 +6773,9 @@ nl:
             Als iemand je lastig valt of stalkt op %{site_name}, <a href="mailto:%{help_email}"> laat het ons weten </a>. Als
             dit is een schending van onze Servicevoorwaarden is of het vertegenwoordigt ander gedrag dat we ongepast achten voor onze site, zullen we doen onderzoeken.
           </p>
-        common_names_desc: Toon namen in de lokale taal. Uitschakelen als u alleen
-          wetenschappelijke namen wilt bekijken. Merk op dat u kunt bepalen welke
-          algemene namen u ziet door uw locale en plaatsinstellingen te wijzigen.
+        common_names_desc: Toon lokale namen. Uitschakelen als u alleen wetenschappelijke
+          namen wilt zien. Merk op dat u kunt bepalen welke lokale namen u ziet door
+          uw Taalinstelling en plaatsinstellingen te wijzigen.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: "Als je van
           gedachten verandert, kun je dat altijd via \n<a href='/users/edit'>je instellingen
           wijzigen</a>."
@@ -6806,7 +6800,7 @@ nl:
              Je kunt zoveel mensen muten als je wilt, maar onthoud dat je mogelijk belangrijke meldingen mist, zoals
              determinaties die de gemeenschapsdeterminatie (CID) op uw waarnemingen wijzigd.
           </p>
-        name_place_help_html: Geef prioriteit aan locale namen die op deze plaats
+        name_place_help_html: Geef prioriteit aan lokale namen die op deze plaats
           worden gebruikt.
         place_preference_changed_notice_html: "Plaatsvoorkeur gewijzigd. Als je van
           gedachten verandert, kun je dat altijd via \n<a href='/users/edit'>je instellingen
@@ -7253,7 +7247,7 @@ nl:
         email: E-mail
         login: Gebruikersnaam
         name: Naam
-        locale: Lokaal
+        locale: Taalinstelling
         time_zone: Tijdzone
         search_place_id: Plaats zoeken
         place_id: Plaats

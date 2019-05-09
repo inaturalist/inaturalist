@@ -4310,12 +4310,6 @@ fi:
         automatically_add_to_project: Lisää automaattisesti projektiin
         invite_other_photographers_to_inat: Kutsu muita valokuvaajia %{site_name}iin
     places:
-      index:
-        adding_new_places: lisäämällä uusia paikkoja
-        confirming_identifications: vahvistamalla tunnistuksia lisäämällä tunnisteita
-          havaintoihin
-        filling_out_checklists: täyttämällä hyvien tuntemiesi paikkojen lajiluetteloita
-        you_can_help_out_by: Voit auttaa parantamaan paikkatietojamme
       new:
         check_list_note: 'Huomautus: erittäin suurten paikkojen lajilistat on automaattisesti
           estetty.'
@@ -4494,9 +4488,6 @@ fi:
           href=\"%{url}\">Näytä kaikki %{numStudies} tutkimusta</a>"
     taxa:
       show:
-        trending_desc: Eniten havaitut taksonit viime kuussa
-        trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa
-          <a href="%{url}">%{place}</a>
         frequency:
           research: Tutkimusaste
           verifiable: Todennettavissa
@@ -4510,6 +4501,9 @@ fi:
           Life Stage=adult: Aikuinen
         photo_chooser_modal_desc: Raahaa kuvat tänne vasemmalta, tai raahaa kuvat
           tänne uudelleenjärjestääksesi.
+        trending_desc: Eniten havaitut taksonit viime kuussa
+        trending_in_place_desc_html: Eniten havaitut taksonit viime kuussa paikassa
+          <a href="%{url}">%{place}</a>
     users:
       edit:
         common_names_desc: |-

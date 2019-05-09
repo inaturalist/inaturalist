@@ -6174,13 +6174,6 @@ es-MX:
         admin_level_desc: Sólo se debe establecer para los organismos políticos. En
           términos de equivalentes de Estados Unidos, 0 = país, 1 = estado, 2 = condado,
           3 = ciudad
-      index:
-        adding_new_places: Añadiendo nuevos lugares
-        confirming_identifications: Confirmando identificaciones al añadir una identificación
-          a las observaciones
-        filling_out_checklists: Llenando listas de especies para los lugares que conoces
-          bien.
-        you_can_help_out_by: Puedes ayudar a mejorar nuestros datos de lugares mediante
       new:
         check_list_note: 'Nota: Las listas de verificación se desactivan automáticamente
           para sitios muy grandes.'
@@ -6676,12 +6669,6 @@ es-MX:
           inactivas, y sólo incluyen especies, no a los taxa infraespecíficos como
           subespecies o variedades.
         discoveries_desc: La especie más recientemente identificada en este taxón
-        trending_desc: Taxa más observados en el último mes
-        trending_in_place_desc_html: Taxa más observados en el último mes en <a href="%{url}">%{place}</a>
-        rare_desc: Taxa amenazados menos observados
-        rare_in_place_desc_html: Taxa amenazados menos observados en <a href="%{url}">%{place}</a>
-        wanted_desc: Especies en este taxón que aún no se han observado.
-        no_trending_desc: Ninguna observación bajo este taxón en el último mes
         frequency:
           research: Grado de investigación
           verifiable: Verificable
@@ -6697,16 +6684,22 @@ es-MX:
           Life Stage=pupa: Pupa
           Life Stage=adult: Adulto
           unannotated: Sin anotación
+        no_trending_desc: Ninguna observación bajo este taxón en el último mes
         photo_chooser_modal_desc: Arrastre las fotos aquí desde la izquierda, o arrastre
           las fotos aquí para volver a organizar.
         photo_chooser_modal_explanation: Tenga en cuenta que en la página del taxón
           se muestran las fotos de este taxón y los de taxa inferiores. Las fotos
           elegidas para este taxón muestran en primer lugar. La primera foto es la
           imagen por defecto utilizada en todo el sitio.
+        rare_desc: Taxa amenazados menos observados
+        rare_in_place_desc_html: Taxa amenazados menos observados en <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: Los curadores del sitio han deshabilitado
           temporalmente <a href="%{url}">este contenido de Wikipedia</a>. Puedes ayudar
           editando la página en Wikipedia para hacerla apropiada para este taxón o
           marcando este taxón para llamar la atención de los curadores del sitio.
+        trending_desc: Taxa más observados en el último mes
+        trending_in_place_desc_html: Taxa más observados en el último mes en <a href="%{url}">%{place}</a>
+        wanted_desc: Especies en este taxón que aún no se han observado.
     taxon_changes:
       move_children_desc: Descendientes del taxón de entrada son géneros o más arriba,
         serán movidos a la salida; las especies, subespecies, variedades, etc. serán

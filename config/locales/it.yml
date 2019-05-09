@@ -6182,12 +6182,6 @@ it:
           con applicazioni GIS a tua scelta, e caricare direttamente il tuo KML modificato.
         admin_level_desc: Deve essere impostato solo per confini politici. Con riferimento
           agli USA, 0 = nazione, 1 = regione, 2 = provincia, 3 = comune
-      index:
-        adding_new_places: aggiungendo nuovi luoghi
-        confirming_identifications: confermando le identificazioni aggiungendo ID
-          alle osservazioni
-        filling_out_checklists: compilando le checklist per i luoghi che conosci bene
-        you_can_help_out_by: Puoi aiutarci a migliorare il nostro database dei luoghi
       new:
         check_list_note: 'Ricorda: le checklist saranno automaticamente disabilitate
           per luoghi molto estesi.'
@@ -6661,14 +6655,6 @@ it:
           estinte o i concetti di specie inattivi, e includono solo le specie, non
           i taxa intraspecifici come le sottospecie o le varietà.
         discoveries_desc: Le specie identificate più recentemente in questo taxon
-        trending_desc: Taxa più osservati nell'ultimo mese
-        trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
-        rare_desc: Taxa minacciati osservati meno frequentemente
-        rare_in_place_desc_html: Taxa minacciati osservati meno frequentemente in
-          <a href="%{url}">%{place}</a>
-        wanted_desc: Le specie di questo taxon che non sono ancora state osservate.
-        no_trending_desc: Nulla al di sotto di questo taxon è stato osservato nell'ultimo
-          mese
         frequency:
           research: Livello ricerca
           verifiable: Verificabile
@@ -6684,6 +6670,8 @@ it:
           Life Stage=pupa: Pupa
           Life Stage=adult: Adulto
           unannotated: Nessuna annotazione
+        no_trending_desc: Nulla al di sotto di questo taxon è stato osservato nell'ultimo
+          mese
         photo_chooser_modal_desc: Trascina qui le foto da sinistra, oppure trascinale
           qui per riordinarle.
         photo_chooser_modal_explanation: |-
@@ -6691,10 +6679,16 @@ it:
           e dei suoi discendenti. La foto scelta per questo
           taxon sarà mostrata per prima. La prima foto sarà
           l'immagine predefinita per tutto il sito.
+        rare_desc: Taxa minacciati osservati meno frequentemente
+        rare_in_place_desc_html: Taxa minacciati osservati meno frequentemente in
+          <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: I curatori del sito hanno temporaneamente
           disabilitato <a href="%{url}">questo contenuto da Wikipedia</a>. Puoi aiutarci
           modificando la pagina su Wikipedia per renderla appropriata a questo taxon,
           o segnalando questo taxon per portarlo all'attenzione dei curatori.
+        trending_desc: Taxa più osservati nell'ultimo mese
+        trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
+        wanted_desc: Le specie di questo taxon che non sono ancora state osservate.
     taxon_changes:
       move_children_desc: I discendenti del taxon di ingresso che sono generi o di
         livello superiore saranno spostati all'uscita; le specie, sottospecie, varietà,

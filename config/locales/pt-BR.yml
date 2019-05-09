@@ -6175,13 +6175,6 @@ pt-BR:
         admin_level_desc: Deve somente ser aplicado quando definindo limites geográficos
           políticos. Em termos equivalentes ao padrão dos EUA utilize 0 = país, 1
           = estado, 2 = região, 3 = cidade
-      index:
-        adding_new_places: adicionando novos lugares
-        confirming_identifications: confirme as identificações adicionando identidades
-          nas observações
-        filling_out_checklists: preenchendo listas de verificação para lugares que
-          você conhece bem
-        you_can_help_out_by: Você pode ajudar a melhorar nossos dados do local
       new:
         check_list_note: 'Nota: as listas de verificação serão automaticamente desabilitadas
           para áreas muito grandes.'
@@ -6711,12 +6704,6 @@ pt-BR:
           espécies em táxons "completos" completos até que as espécies não incluam espécies
           "não contáveis" como espécies extintas ou espécies inativas, e incluem apenas espécies, e não taxa infraespecífica como subespécie ou variedades.
         discoveries_desc: As espécies identificadas mais recentemente neste táxon
-        trending_desc: Táxons mais observados no último mês
-        trending_in_place_desc_html: Táxons mais observados no último mês <a href="%{url}">%{place}</a>
-        rare_desc: Táxons ameaçados menos observados
-        rare_in_place_desc_html: Táxons ameaçados menos observados <a href="%{url}">%{place}</a>
-        wanted_desc: Espécies deste táxon que ainda não foram observadas.
-        no_trending_desc: Nada abaixo deste táxon foi observado no último mês
         frequency:
           research: Nível de Pesquisa
           verifiable: Verificável
@@ -6732,16 +6719,22 @@ pt-BR:
           Life Stage=pupa: Pupa
           Life Stage=adult: Adulto
           unannotated: Nenhuma anotação
+        no_trending_desc: Nada abaixo deste táxon foi observado no último mês
         photo_chooser_modal_desc: Arraste as fotos aqui da esquerda, ou arraste as
           fotos aqui para rearranjar.
         photo_chooser_modal_explanation: Perceba que a página de táxons exibirá fotos
           deste táxon e de seus descendentes. As fotos escolhidas para este táxon
           serão exibidas primeiro. A primeira foto registrada será exibida como padrão
           em todo o site.
+        rare_desc: Táxons ameaçados menos observados
+        rare_in_place_desc_html: Táxons ameaçados menos observados <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: Os curadores do site desativaram temporariamente
           a exibição <a href="%{url}">de conteúdo da Wikipedia</a>. Você pode ajudar
           editando a página em Wikipedia para torná-lo apropriado para este táxon,
           ou sinalizando táxon para chamar a atenção dos curadores do site.
+        trending_desc: Táxons mais observados no último mês
+        trending_in_place_desc_html: Táxons mais observados no último mês <a href="%{url}">%{place}</a>
+        wanted_desc: Espécies deste táxon que ainda não foram observadas.
     taxon_changes:
       move_children_desc: |-
         Filhos do táxon de entrada que são mais ou menos generosos serão movidos para

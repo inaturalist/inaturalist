@@ -237,7 +237,7 @@ da:
   add_from_your_observations: Tilføj fra dine observationer
   add_link: Tilføj link
   add_listed_taxa_from_observations: Tilføj opførte taksa fra observationer
-  add_higher_level_taxon: Tilføj en takson på et højere niveau (f.eks. "fugle")
+  add_higher_level_taxon: Tilføj et taxon på et højere niveau (f.eks. "fugle")
   add_id: Tilføj ID
   add_it_to_place_raquo: Tilføj den til et sted &raquo;
   add_more_photos: Tilføj flere fotos
@@ -614,6 +614,7 @@ da:
   attribution: Kildeangivelse
   authority_list:
     iucn_red_list: IUCN rødliste
+    natureserve: NatureServe
     cites: CITES
   authorize: Tillade
   authorize_permissions_from_provider: Godkend tilladelser fra %{provider}
@@ -649,6 +650,7 @@ da:
   back_to_suggestions: Tilbage til Forslag
   back_to_taxon: Tilbage til %{defaulttaxon}
   back_to_taxon_changes: Tilbage til taksonændringer
+  back_to_taxon_framework_for_x: Tilbage til taxonramme for %{taxon_name}
   back_to_viewing: Tilbage for at se <i>%{taxon}</i>
   back_to_x: Tilbage til %{noun}
   back_to_x_assessment: Tilbage til %{project} vurderinger
@@ -2644,6 +2646,7 @@ da:
   no_taxa_selected: Ingen taksa valgt!
   no_taxa_with_unknown_relationships: Ingen taksa med ukendte forbindelser
   no_taxa_yet: Ingen taksa endnu!
+  no_taxon_framework_relationships: Ingen taxonramme sammenhæng
   no_taxonomic_changes_match_those_criteria: Ingen taksonomiske ændringer matcher
     disse kriterier
   no_wikipedia_page_for_taxon: Ingen Wikipedia side for denne takson.
@@ -4243,6 +4246,11 @@ da:
   target_list_alert: Er du sikker på, at du forsøgte at observere alle arter på din
     målliste? Husk at alt, der er på din målliste, ikke fortolkes som værende så vigtigt,
     at din målliste nøjagtigt afspejler det sæt arter du forsøgte at registrere
+  target_list_warning: Husk at alt, som er dækket af din mål-liste, som du ikke observerede
+    inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende.
+    Det er meget vigtigt at din mål-liste afspejler præcist de arter, som du prøvede
+    at observere. Hvis du ikke forsøgte at observere en art på din mål-liste eller
+    alle arter er dækket af en gruppe på din mål-liste, skal du venligst fjerne den.
   taxa: Taksa
   taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksa info
@@ -4333,6 +4341,7 @@ da:
   taxon_colors: Taksonfarver
   taxon_curators: Takson kuratorer
   taxon_extras: Takson ekstra
+  taxon_framework: Taxonramme
   taxon_framework_notes: Taksonramme noter
   taxon_framework_relationship: Taksonramme relation
   taxon_framework_relationship_for: Taksonramme relation for
@@ -4664,6 +4673,8 @@ da:
   "true": Sandt
   trending: Tendenser
   trends: Tendenser
+  trip_target_list_info: Dette er et ikke overlappende sæt af det groveste taxa på
+    din mål-liste. Alle taxa repræsenteret af slørede observationer er ekskluderet.
   trusted: Betroet
   trusted_project?: Tillidsprojekt?
   trust_this_person_with_your_private_coordinates: Betro denne person med dine skjulte
@@ -6110,12 +6121,6 @@ da:
         admin_level_desc: |-
           Bør kun indstilles til politiske organer. Med hensyn til
           USA-ækvivalenter, 0 = land, 1 = stat, 2 = amt, 3 = by
-      index:
-        adding_new_places: tilføje nye steder
-        confirming_identifications: bekræfte identifikationer ved at tilføje ID'er
-          til observationer
-        filling_out_checklists: udfylde tjeklister for steder du kender rigtig godt
-        you_can_help_out_by: Du kan hjælpe med at forbedre vores steddata ved at
       new:
         check_list_note: 'Bemærk: tjeklisterne deaktiveres automatisk for meget store
           steder.'
@@ -6629,14 +6634,6 @@ da:
           er blevet observeret og hvor mange, der stadig mangler at blive observeret. Antal af arter i "komplette" taksa inkluderer ikke de arter, der ikke kan medregnes, som f.eks. uddøde eller inaktive arter og de omfatter kun arter, ikke infra-specifik taksa som
           underarter eller varianter.
         discoveries_desc: Seneste nyligt identificerede arter i denne takson
-        trending_desc: Mest observerede taksa i den sidste måned
-        trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a
-          href="%{url}">%{place}</a>
-        rare_desc: Mindst observerede truede taksa
-        rare_in_place_desc_html: Mindst observerede truede taksa i <a href="%{url}">%{place}</a>
-        wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
-        no_trending_desc: Intet underliggende denne taxon er observeret i den sidste
-          måned
         frequency:
           research: Forskningskvalitet
           verifiable: Verificerbar
@@ -6652,17 +6649,25 @@ da:
           Life Stage=pupa: Puppe
           Life Stage=adult: Voksen
           unannotated: Ingen anmærkning
+        no_trending_desc: Intet underliggende denne taxon er observeret i den sidste
+          måned
         photo_chooser_modal_desc: Træk foto´s hertil fra venstre side eller træk i
           foto´s for at reorganisere.
         photo_chooser_modal_explanation: |-
           Bemærk at taksonsiden viser billeder af denne takson
           og dens efterkommere. De valgte foto´s til denne
           takson vil dog blive vist først. Det første billede vil blive et standardbillede, og det vil blive brugt på tværs af websiden.
+        rare_desc: Mindst observerede truede taksa
+        rare_in_place_desc_html: Mindst observerede truede taksa i <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |-
           Sidekuratorer har midlertidigt deaktiveret visning af <a href="%{url}"> dette
           indhold fra Wikipedia </a>. Du kan hjælpe ved at redigere siden på
           Wikipedia for at gøre det passende for denne takson, eller ved at markere denne
           takson for at bringe det til kendskab til sidekuratorer.
+        trending_desc: Mest observerede taksa i den sidste måned
+        trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a
+          href="%{url}">%{place}</a>
+        wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
     taxon_changes:
       move_children_desc: |-
         Underordner af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
@@ -7424,6 +7429,10 @@ da:
           den i at opfylde anmodningen.
         temporarily_unavailable: Godkendelsesserveren kan ikke håndtere anmodningen
           på grund af midlertidig overbelastning eller vedligeholdelse af serveren.
+        credential_flow_not_configured: Resource Ejer Kode brugeroplysningsflow fejlede
+          fordi Doorkeeper.configure.resource_owner_from_credentials ikke er konfigureret.
+        resource_owner_authenticator_not_configured: Resource Ejer søgning fejlede
+          fordi Doorkeeper.configure.resource_owner_authenticator  ikke er konfigureret.
         unsupported_response_type: Godkendelsesserveren understøtter ikke denne svartype.
         invalid_client: Klientgodkendelsen mislykkedes på grund af ukendt klient,
           ingen klientgodkendelse inkluderet eller ikke-understøttet godkendelsesmetode.

@@ -2644,6 +2644,8 @@ de:
   observer_short: Beobachter
   observing: beobachten
   occurrence_status: Vorkommens-Status
+  occurrence_status_descriptions:
+    present: Erscheint im Bereich
   occurrence_status_establishment_means: Vorkommensstatus, Verbreitung
   occurrence_status_levels:
     present: vorhanden
@@ -2977,6 +2979,7 @@ de:
     armenia: Armenien
     australia: Australien
     austria: Österreich
+    bahamas: Bahamas
     belgium: Belgien
     bermuda: Bermuda
     bolivia: Bolivien
@@ -4788,13 +4791,6 @@ de:
           zu bearbeiten. Du kannst jedoch <a href="%{url}">die KML herunterladen</a>,
           in der GIS-Anwendung deiner Wahl bearbeiten und die bearbeitete KML direkt
           hochladen.
-      index:
-        adding_new_places: neue Orte hinzufügst
-        confirming_identifications: Identifikationen durch Hinzufügen von IDs zu Beobachtungen
-          bestätigst
-        filling_out_checklists: Checklisten für dir gut bekannte Orte ausfüllst
-        you_can_help_out_by: Du kannst helfen unsere Ortsdaten zu verbessern, indem
-          du
       new:
         coordinates_desc: Du musst Koordinaten angeben, wenn du keine Grenze zeichnest
           oder keine KML hochlädst.

@@ -6133,12 +6133,6 @@ ca:
           editar-ho en una aplicació SIG i pujar el KML editat directament.
         admin_level_desc: Únicament poden establir-se territoris polítics en termes
           equivalents als d'USA, 0=país, 1=estat, 2=província, 3=ciutat
-      index:
-        adding_new_places: afegint nous llocs
-        confirming_identifications: confirmant identificacions afegint ID a les observacions
-        filling_out_checklists: actualitzeu llistes de verificació per als llocs que
-          coneixeu bé
-        you_can_help_out_by: 'Podeu ajudar a millorar les nostres dades de llocs mitjançant:'
       new:
         check_list_note: 'Nota: Les llistes de verificació es desactiven automàticament
           per a llocs molt grans.'
@@ -6626,12 +6620,6 @@ ca:
           i només inclouen espècies, no als taxons infraespecífics com subespècies
           o varietats.
         discoveries_desc: Espècie identificada més recentment d'aquest taxon
-        trending_desc: Tàxons més observats el darrer mes
-        trending_in_place_desc_html: Tàxom més observat el darrer mes a <a href="%{url}">%{place}</a>
-        rare_desc: Tàxon amenaçat menys observat
-        rare_in_place_desc_html: Tàxon amenaçat menys observa a <a href="%{url}">%{place}</a>
-        wanted_desc: Espècies d'aquest taxon que encara no han estat observades
-        no_trending_desc: No s'ha observat aquest tàxon el darrer mes
         frequency:
           research: Grau de recerca
           verifiable: Verificable
@@ -6647,17 +6635,23 @@ ca:
           Life Stage=pupa: Pupa
           Life Stage=adult: Adult
           unannotated: Sense anotacions
+        no_trending_desc: No s'ha observat aquest tàxon el darrer mes
         photo_chooser_modal_desc: Arrossegueu les fotografies aquí des de l'esquerra,
           o arrossegueu les fotografies aquí per tornar a organitzar.
         photo_chooser_modal_explanation: Tingueu en compte que la pàgina del tàxon
           mostrarà fotografies d'aquesta espècie i els taxons inferiors. Les fotografies
           escollides per aquest tàxon es mostraran les primeres. La primera foto serà
           la imatge que s'utilitzi per defecte de tot el lloc.
+        rare_desc: Tàxon amenaçat menys observat
+        rare_in_place_desc_html: Tàxon amenaçat menys observa a <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: Els supervisors han desactivat temporalment
           que es pugui mostrar el <a href="%{url}"> contingut d'aquest a Wikipedia</a>.
           Podeu ajudar-nos editant la pàgina de la Wiquipèdia perquè sigui apropiada
           per a aquest taxó, o marcant aquest taxó per cridar l'atenció dels supervisors
           del lloc.
+        trending_desc: Tàxons més observats el darrer mes
+        trending_in_place_desc_html: Tàxom més observat el darrer mes a <a href="%{url}">%{place}</a>
+        wanted_desc: Espècies d'aquest taxon que encara no han estat observades
     taxon_changes:
       move_children_desc: Els tàxons d’entrada que són gèneres o superiors es dirigiran
         als tàxons de destí; les espècies, les subespècies, les varietats, etc. es
