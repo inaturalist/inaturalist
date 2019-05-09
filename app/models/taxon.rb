@@ -89,7 +89,8 @@ class Taxon < ActiveRecord::Base
   before_save :set_iconic_taxon, # if after, it would require an extra save
               :capitalize_name,
               :strip_name,
-              :remove_wikipedia_summary_unless_auto_description
+              :remove_wikipedia_summary_unless_auto_description,
+              :ensure_parent_ancestry_in_ancestry
   after_create :denormalize_ancestry
   after_save :create_matching_taxon_name,
              :set_wikipedia_summary_later,
@@ -1231,6 +1232,13 @@ class Taxon < ActiveRecord::Base
 
   def remove_wikipedia_summary_unless_auto_description
     self.wikipedia_summary = nil unless auto_description?
+    true
+  end
+
+  def ensure_parent_ancestry_in_ancestry
+    if parent && parent.ancestry && ancestry && ancestry.index( parent.ancestry ) != 0
+      self.ancestry = [parent.ancestry.split( "/ " ), parent.id].flatten.compact.join( "/" )
+    end
     true
   end
 
