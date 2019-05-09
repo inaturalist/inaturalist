@@ -1,4 +1,6 @@
 @import "../users/_user_image";
+@import "../colors";
+
 .ObservationsGridItem {
   position: relative;
 
@@ -231,6 +233,17 @@ $flowedDim: 150px;
     line-height: 20px;
     i {
       margin-right: 5px;
+    }
+  }
+
+  .identifications-count,
+  .comments-count {
+    color: $text-grey;
+    line-height: 22px;
+    font-size: 12px;
+    i {
+      position: relative;
+      top: -1px;
     }
   }
 }

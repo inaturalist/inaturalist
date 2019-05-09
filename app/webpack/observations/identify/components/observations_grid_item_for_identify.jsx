@@ -44,7 +44,25 @@ const ObservationsGridItemForIdentify = ( {
   if ( currentUser && currentUser.id === observation.user.id ) {
     showAgree = false;
   }
-  const controls = showAgree ? agreeButton : null;
+  const controls = (
+    <div>
+      { showAgree && agreeButton }
+      { ( observation.identifications_count && observation.identifications_count > 0 ) ? (
+        <span className="pull-right identifications-count">
+          <i className="icon-identification" />
+          { " " }
+          { observation.identifications_count }
+        </span>
+      ) : null }
+      { ( observation.comments_count && observation.comments_count > 0 ) ? (
+        <span className="pull-right comments-count">
+          <i className="icon-chatbubble" />
+          { " " }
+          { observation.comments_count }
+        </span>
+      ) : null }
+    </div>
+  );
   const before = (
     <div className={`reviewed-notice ${observation.reviewedByCurrentUser ? "reviewed" : ""}`}>
       <label>
