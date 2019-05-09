@@ -1,6 +1,5 @@
 import React from "react";
 import PropTypes from "prop-types";
-import _ from "lodash";
 import {
   Button,
   OverlayTrigger,
@@ -20,28 +19,28 @@ const ObservationsGridItemForIdentify = ( {
       placement="bottom"
       trigger={["hover", "focus"]}
       rootClose
-      overlay={
+      overlay={(
         <Tooltip id={`agree-tooltip-${observation.id}`}>
           { I18n.t( "agree_with_current_taxon" ) }
         </Tooltip>
-      }
-      container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+      )}
+      container={$( "#wrapper.bootstrap" ).get( 0 )}
     >
       <Button
         id={`agree-btn-${observation.id}`}
         bsSize="xs"
         bsStyle={observation.currentUserAgrees ? "success" : "default"}
-        disabled={ observation.agreeLoading || !observation.taxon || observation.currentUserAgrees}
-        onClick={ function ( ) {
-          onAgree( observation );
-        } }
+        disabled={observation.agreeLoading || !observation.taxon || observation.currentUserAgrees}
+        onClick={( ) => onAgree( observation )}
       >
-        <i className={ observation.agreeLoading ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check" }>
-        </i> { I18n.t( "agree_" ) }
+        <i className={observation.agreeLoading ? "fa fa-refresh fa-spin fa-fw" : "fa fa-check"} />
+        { " " }
+        { I18n.t( "agree_" ) }
       </Button>
     </OverlayTrigger>
   );
-  let showAgree = observation.taxon && observation.taxon.rank_level <= 10 && observation.taxon.is_active;
+  let showAgree = observation.taxon && observation.taxon.rank_level <= 10
+    && observation.taxon.is_active;
   if ( currentUser && currentUser.id === observation.user.id ) {
     showAgree = false;
   }
@@ -51,24 +50,26 @@ const ObservationsGridItemForIdentify = ( {
       <label>
         <input
           type="checkbox"
-          defaultChecked={ observation.reviewedByCurrentUser }
-          onChange={ ( ) => {
+          defaultChecked={observation.reviewedByCurrentUser}
+          onChange={( ) => {
             toggleReviewed( observation );
-          } }
-        /> { I18n.t( observation.reviewedByCurrentUser ? "reviewed" : "mark_as_reviewed" ) }
+          }}
+        />
+        { " " }
+        { I18n.t( observation.reviewedByCurrentUser ? "reviewed" : "mark_as_reviewed" ) }
       </label>
     </div>
   );
   return (
     <ObservationsGridItem
-      observation={ observation }
-      onObservationClick={ onObservationClick }
-      onAgree={ onAgree }
-      toggleReviewed={ toggleReviewed }
-      before={ before }
-      controls={ controls }
+      observation={observation}
+      onObservationClick={onObservationClick}
+      onAgree={onAgree}
+      toggleReviewed={toggleReviewed}
+      before={before}
+      controls={controls}
       linkTarget="_blank"
-      user={ currentUser }
+      user={currentUser}
       splitTaxonOptions={{ noParens: true }}
     />
   );
