@@ -108,17 +108,21 @@ class TripsController < ApplicationController
         else
           @target_list_taxa = Taxon.find( trip_purpose_taxon_ids ).sort_by{|t| t.ancestry}.reverse.select{ |t| ( t.ancestor_ids & trip_purpose_taxon_ids ).count == 0 }
         end
-        obs = INatAPIService.observations( {
-          taxon_is_active: true,
-          lat: @trip.latitude,
-          lng: @trip.longitude,
-          radius: ( ( @trip.radius.blank? || @trip.radius == 0 ) ? 0 : (@trip.radius / 1000.to_f) ),
-          d1: @trip.start_time.iso8601,
-          d2: @trip.stop_time.iso8601,
-          user_id: @trip.user_id,
-          per_page: 200
-        } ).results
-        @trip_obsevations = Observation.where( id: obs.map{ |a| a["id"] } )
+        if @trip.radius.blank? || @trip.radius == 0
+          @trip_obsevations = Observation.where("1 = 2")
+        else
+          obs = INatAPIService.observations( {
+            taxon_is_active: true,
+            lat: @trip.latitude,
+            lng: @trip.longitude,
+            radius: (@trip.radius / 1000.to_f ),
+            d1: @trip.start_time.iso8601,
+            d2: @trip.stop_time.iso8601,
+            user_id: @trip.user_id,
+            per_page: 200
+          } ).results
+          @trip_obsevations = Observation.where( id: obs.map{ |a| a["id"] } )
+        end
         @target_list_set = []
         @target_list_taxa.each do |tlt|
           if o = obs.select{ |o| o["taxon"]["ancestor_ids"].include? tlt.id }[0..8]

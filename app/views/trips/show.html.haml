@@ -124,14 +124,14 @@
                       - if element[:observations].count > 8
                         ="..."
       .col-xs-12
-        - unless @trip.observations.blank?
+        - unless @trip_observations.blank? && @trip.observations.blank?
           %section{:id => "observations"}
             .observationcontrols.pull-right
             %h2=t :observations
-            .observations.medium.grid
-              - compact do
-                = render :partial => "observations/cached_component", :collection => @trip_obsevations
             - if @trip.is_a?(Trip)
+              .observations.medium.grid
+                - compact do
+                  = render :partial => "observations/cached_component", :collection => @trip_obsevations
               .text-muted
                 :ruby
                   obs_params = {
@@ -146,6 +146,10 @@
                   obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
                 = link_to observations_url(obs_params), :class => "readmore" do
                   =t( :search_observations)
+            - else
+              .observations.medium.grid
+                - compact do
+                  = render :partial => "observations/cached_component", :collection => @trip.observations
         %section{:id => "comments"}
           - if @trip.published_at
             = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
