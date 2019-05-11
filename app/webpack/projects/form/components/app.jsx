@@ -134,9 +134,15 @@ const App = ( { config, form, createNewProject } ) => {
             </div>
           </Col>
         </Row>
-        { ( true || config.currentUser.privileges.indexOf( "organizer" ) >= 0 ) && (
-          <Row>
-            <Col xs={8}>
+        <Row className="final-row">
+          <Col xs={8}>
+            <p
+              dangerouslySetInnerHTML={{
+                __html:
+                  I18n.t( "views.projects.new.you_can_learn_more_html" )
+              }}
+            />
+            { ( true || config.currentUser.privileges.indexOf( "organizer" ) >= 0 ) && (
               <p className="contact">
                 { I18n.t( "views.projects.new.do_you_need_features_from_traditional" ) }
                 <span
@@ -146,9 +152,9 @@ const App = ( { config, form, createNewProject } ) => {
                   }}
                 />
               </p>
-            </Col>
-          </Row>
-        ) }
+            ) }
+          </Col>
+        </Row>
       </Grid>
     </div>
   );
