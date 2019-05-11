@@ -246,9 +246,22 @@ $flowedDim: 150px;
       top: -1px;
     }
   }
+
+  .all-photos-preview {
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    overflow: hidden;
+  }
 }
 .ObservationsGridItem:hover {
   .photo-count {
     background-color: rgba(0,0,0,0.5);
+  }
+  .all-photos-preview {
+    display: flex;
   }
 }

@@ -52,6 +52,17 @@ const ObservationsGridItem = ( {
             { o.photos.length }
           </span>
         ) }
+        { o.photos && o.photos.length > 1 && (
+          <div className="all-photos-preview">
+            { o.photos.slice( 0, 4 ).map( p => (
+              <img
+                key={`all-photos-preview-${o.id}-${p.id}`}
+                src={p.photoUrl( "square" )}
+                alt={I18n.t( "photo_attribution", { attribution: p.attribution } )}
+              />
+            ) ) }
+          </div>
+        ) }
       </a>
       <div className="caption">
         <UserImage user={o.user} linkTarget={linkTarget} />
