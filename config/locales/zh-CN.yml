@@ -4605,11 +4605,6 @@ zh-CN:
       edit:
         complex_boundary_note_html: 此边界有点太复杂，而不能通过web编辑。然而，您可以<a href="%{url}">下载KML</a>，在您选择GIS应用程序中编辑它，然后直接上传您编辑的KML。
         admin_level_desc: 只应设为行政单位。以美国为例，0=国家，1=州，2=县，3=镇
-      index:
-        adding_new_places: 正在添加新地点
-        confirming_identifications: 通过在观察中添加ID来确认身份
-        filling_out_checklists: 为您熟悉的地点填写检查清单
-        you_can_help_out_by: 您可以帮助改善我们的地方数据，通过
       new:
         check_list_note: 注意：对非常大的地方的检查列表将被自动禁用。
         coordinates_desc: 如果您不画出边界或上传KML的话，您必须指定坐标。
@@ -4890,12 +4885,6 @@ zh-CN:
         charts_help_relative_observations: 将频率显示为所有观察的相对比例有助于平滑场地整体增长的影响。例如，如果网站正在增长，因为我们每过一年就会得到更多的观察结果，我们会对任何单独的分类单元进行更多的观察，这并没有告诉您是否有更多的分类单元要观察，只是有更多的人观察它。显示相对比例意味着如果总共有100个观察值但是对该分类单元进行了20次观察，则该比例为0.2（20/100）。如果人们观察到明年的2000次观察和400次该分类单位的观察，则该比例仍为0.2（400/2000）。当一个区域中的观察者很少，或者很少观察到的分类群时，这会导致一些异常情况，但总数也是如此。
         complete_taxon_desc: “完整的”分类群具有它们所有的后代，现存的特定等级的分类群存在于该站点的数据库中。例如，当物种的分类单位完成时，我们可以说已经观察了多少物种，还有多少物种需要观察。物种的“完整”分类物种对物种的计数不包括“不可数”的物种，如灭绝物种或非活性物种概念，它们只包括物种，而不是亚种或品种的种内分类群。
         discoveries_desc: 此分类单元中最新被鉴定的物种
-        trending_desc: 上个月观察到最多的分类群
-        trending_in_place_desc_html: 上个月在<a href="%{url}">%{place}</a>中观察到最多的分类群
-        rare_desc: 最少观察到受威胁的分类群
-        rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>中观察到最少的受威胁的分类群
-        wanted_desc: 此分类中尚未观察到的物种。
-        no_trending_desc: 在上个月没有观察到此分类单位以下的任何内容
         frequency:
           research: 研究指导
           verifiable: 可证实
@@ -4911,8 +4900,14 @@ zh-CN:
           Life Stage=pupa: 蛹
           Life Stage=adult: 成人
           unannotated: 没有注释
+        no_trending_desc: 在上个月没有观察到此分类单位以下的任何内容
         photo_chooser_modal_desc: 从左侧拖动照片至此，或拖动此处照片进行重新排列。
         photo_chooser_modal_explanation: 请注意，分类单元页面将显示此分类单元及其后代的照片。然而，为这个分类选择的照片将首先显示。第一张照片将是整个网站使用的默认图片。
+        rare_desc: 最少观察到受威胁的分类群
+        rare_in_place_desc_html: 在<a href="%{url}">%{place}</a>中观察到最少的受威胁的分类群
+        trending_desc: 上个月观察到最多的分类群
+        trending_in_place_desc_html: 上个月在<a href="%{url}">%{place}</a>中观察到最多的分类群
+        wanted_desc: 此分类中尚未观察到的物种。
     taxon_links:
       form:
         name_with_rank_desc: 分类单元名称与等级。对于同一物种的等级，等级会在二项式后插入。

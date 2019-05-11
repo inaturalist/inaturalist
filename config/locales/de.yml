@@ -2281,6 +2281,7 @@ de:
   more_journal_posts: Mehr Journal-Einträge
   more_observations: Mehr Beobachtungen
   more_photos: Weitere Fotos
+  more_than_a_week_ago: Vor über einer Woche
   most: Meisten
   most_agree: meisten stimmen zu
   most_browser_print_pdf: 'Anmerkung: Die meisten Browser haben eine Option zum Drucken
@@ -2522,6 +2523,7 @@ de:
   notify_me_of_mentions: Mich über Erwähnungen benachrichtigen (z.B. @username)
   notify_me_about_redundant_identifications: Mich über bestätigte Bestimmungen bnachrichtigen
   number_of_observations: Anzahl der Beobachtungen
+  number_of_observers: Anzahl der Beobachter
   number_selected: '# ausgewählt'
   numeric_: numerisch
   noun_by_you: '%{noun} von Ihnen'
@@ -2642,6 +2644,8 @@ de:
   observer_short: Beobachter
   observing: beobachten
   occurrence_status: Vorkommens-Status
+  occurrence_status_descriptions:
+    present: Erscheint im Bereich
   occurrence_status_establishment_means: Vorkommensstatus, Verbreitung
   occurrence_status_levels:
     present: vorhanden
@@ -2975,6 +2979,7 @@ de:
     armenia: Armenien
     australia: Australien
     austria: Österreich
+    bahamas: Bahamas
     belgium: Belgien
     bermuda: Bermuda
     bolivia: Bolivien
@@ -2982,6 +2987,7 @@ de:
     brazil: Brasilien
     bulgaria: Bulgarien
     burundi: Burundi
+    cambodia: Kambodscha
     canada: Kanada
     central_african_republic: Zentralafrikanische Republik
     central_america: Zentralamerika
@@ -3012,6 +3018,7 @@ de:
     gibraltar: Gibraltar
     greece: Griechenland
     greenland: Grönland
+    guatemala: Guatemala
     honduras: Honduras
     hong_kong: Hong Kong
     hungary: Ungarn
@@ -4784,13 +4791,6 @@ de:
           zu bearbeiten. Du kannst jedoch <a href="%{url}">die KML herunterladen</a>,
           in der GIS-Anwendung deiner Wahl bearbeiten und die bearbeitete KML direkt
           hochladen.
-      index:
-        adding_new_places: neue Orte hinzufügst
-        confirming_identifications: Identifikationen durch Hinzufügen von IDs zu Beobachtungen
-          bestätigst
-        filling_out_checklists: Checklisten für dir gut bekannte Orte ausfüllst
-        you_can_help_out_by: Du kannst helfen unsere Ortsdaten zu verbessern, indem
-          du
       new:
         coordinates_desc: Du musst Koordinaten angeben, wenn du keine Grenze zeichnest
           oder keine KML hochlädst.

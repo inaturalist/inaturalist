@@ -31,6 +31,7 @@
 # Author: Rippitippi
 # Author: Saracrovetto
 # Author: Sarah Bernabei
+# Author: Senpremì
 # Author: Statix64
 ---
 it:
@@ -183,6 +184,7 @@ it:
   about_x: A proposito di %{x}
   acc: Acc (m)
   account: Account
+  account_creation: Creazione utenza
   account_settings: Impostazioni del profilo
   accept: accetta
   accept_community_identifications: Accetta le identificazioni della community
@@ -1908,7 +1910,7 @@ it:
   in_progress: in corso
   in_taxon?: nel taxon
   in_the_past: in passato
-  in_the_past_week: Nella scorsa settimana
+  in_the_past_week: La scorsa settimana
   inactive: Inattivo
   inactive_taxon: Taxon inattivo
   inactive_taxon_concepts_are: I taxa inattivi sono quelli obsoleti da un punto di
@@ -4305,6 +4307,17 @@ it:
   take_me_facebook: Si, vai a Facebook!
   take_me_flickr!: Si, vai a Flickr!
   take_me_back: Indietro
+  target_list_alert: Sei sicuro di aver tentato di osservare tutte le specie nella
+    tua lista di obbiettivi? Ricorda che tutto ciò che è incluso nella tua lista di
+    obbiettivi ma che tu non hai osservato sarà interpretato come un'assenza, perciò
+    è molto importante che la tua lista di obbiettivi rifletta accuratamente il gruppo
+    di specie che hai cercato di trovare
+  target_list_warning: Ricorda che tutto ciò che è incluso nella tua lista di obbiettivi
+    ma che tu non hai osservato nel raggio e per la durata di questo viaggio sarà
+    interpretato come un'assenza. Per questo è molto importante che la tua lista di
+    obbiettivi rifletta accuratamente il gruppo di specie che hai cercato di trovare.
+    Se non hai cercato una specie nella tua lista di obbiettivi o ogni specie inclusa
+    in un gruppo della tua lista di obbiettivi, per favore rimuovila.
   taxa: Taxa
   taxa_with_unknown_relationships: Taxa con relazioni sconosciute
   taxa_info: Info Taxa
@@ -4980,6 +4993,8 @@ it:
   view_observation_flags: Visualizza i contrassegni delle osservazioni
   view_observations_by_everyone: Visualizza le osservazioni di tutti
   view_observations_by_these_users: Visualizza osservazioni di questi utenti
+  view_observations_causing_this_observation_to_be_obscured: Visualizza le osservazioni
+    che determinano l'oscuramento di questa osservazione
   view_observations_of_this_taxon_by: Visualizza osservazioni di questo taxon per
   view_observations_raquo: Visualizza le osservazioni &raquo;
   view_on: Visualizza su
@@ -6167,12 +6182,6 @@ it:
           con applicazioni GIS a tua scelta, e caricare direttamente il tuo KML modificato.
         admin_level_desc: Deve essere impostato solo per confini politici. Con riferimento
           agli USA, 0 = nazione, 1 = regione, 2 = provincia, 3 = comune
-      index:
-        adding_new_places: aggiungendo nuovi luoghi
-        confirming_identifications: confermando le identificazioni aggiungendo ID
-          alle osservazioni
-        filling_out_checklists: compilando le checklist per i luoghi che conosci bene
-        you_can_help_out_by: Puoi aiutarci a migliorare il nostro database dei luoghi
       new:
         check_list_note: 'Ricorda: le checklist saranno automaticamente disabilitate
           per luoghi molto estesi.'
@@ -6646,14 +6655,6 @@ it:
           estinte o i concetti di specie inattivi, e includono solo le specie, non
           i taxa intraspecifici come le sottospecie o le varietà.
         discoveries_desc: Le specie identificate più recentemente in questo taxon
-        trending_desc: Taxa più osservati nell'ultimo mese
-        trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
-        rare_desc: Taxa minacciati osservati meno frequentemente
-        rare_in_place_desc_html: Taxa minacciati osservati meno frequentemente in
-          <a href="%{url}">%{place}</a>
-        wanted_desc: Le specie di questo taxon che non sono ancora state osservate.
-        no_trending_desc: Nulla al di sotto di questo taxon è stato osservato nell'ultimo
-          mese
         frequency:
           research: Livello ricerca
           verifiable: Verificabile
@@ -6669,6 +6670,8 @@ it:
           Life Stage=pupa: Pupa
           Life Stage=adult: Adulto
           unannotated: Nessuna annotazione
+        no_trending_desc: Nulla al di sotto di questo taxon è stato osservato nell'ultimo
+          mese
         photo_chooser_modal_desc: Trascina qui le foto da sinistra, oppure trascinale
           qui per riordinarle.
         photo_chooser_modal_explanation: |-
@@ -6676,10 +6679,16 @@ it:
           e dei suoi discendenti. La foto scelta per questo
           taxon sarà mostrata per prima. La prima foto sarà
           l'immagine predefinita per tutto il sito.
+        rare_desc: Taxa minacciati osservati meno frequentemente
+        rare_in_place_desc_html: Taxa minacciati osservati meno frequentemente in
+          <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: I curatori del sito hanno temporaneamente
           disabilitato <a href="%{url}">questo contenuto da Wikipedia</a>. Puoi aiutarci
           modificando la pagina su Wikipedia per renderla appropriata a questo taxon,
           o segnalando questo taxon per portarlo all'attenzione dei curatori.
+        trending_desc: Taxa più osservati nell'ultimo mese
+        trending_in_place_desc_html: Taxa più osservati nell'ultimo mese in <a href="%{url}">%{place}</a>
+        wanted_desc: Le specie di questo taxon che non sono ancora state osservate.
     taxon_changes:
       move_children_desc: I discendenti del taxon di ingresso che sono generi o di
         livello superiore saranno spostati all'uscita; le specie, sottospecie, varietà,

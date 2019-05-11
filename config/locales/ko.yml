@@ -851,6 +851,7 @@ ko:
   display_link_to_checklist: 프로젝트 페이지에서 프로젝트 목록으로 링크 표시
   display_listings_added_by_curators: 큐레이터가 추가한 목록 표시
   display_listings_from_place: 장소로부터 목록 표시
+  distance_traveled: 여행한 거리 (m)
   dna_: DNA
   documentation_for_developers_html: <a href="/pages/developers">개발자</a>를 위한 문서
   do_not_show_this_message_again: 다시는 이 메시지 표시하지 않기
@@ -1367,6 +1368,7 @@ ko:
   last_year: 지난 해
   lat: 위도
   latitude: 위도
+  latitude_value: '위도: %{latitude}'
   layout: 배치 (레이아웃)
   leaderboard_most:
     observations: '%{time}에 가장 많은 관찰'
@@ -1526,6 +1528,7 @@ ko:
     none: 없음
   long: 경도
   longitude: 경도
+  longitude_value: '경도: %{longitude}'
   look_up_name: 이름 검색
   looks_like_neither_have!: 둘 중 어느 것도 분류군이 없는 것 같습니다!
   looks_like_no_species_in_guide: 아직 가이드에 종이 없는 것 같군요.
@@ -2472,6 +2475,8 @@ ko:
   upload_photo: 사진 올리기
   upload_photos: 사진 올리기
   uploader:
+    errors:
+      file_too_big: 파일은 %{megabytes} MB 미만이어야 합니다
     tooltips:
       photo_failed: 사진 업로드를 실패했습니다
       remove: 선택된 관찰 제거

@@ -5822,11 +5822,6 @@ et:
           laadida.
         admin_level_desc: 'Peaks olema määratud vaid poliitiliste kehandite puhul.
           USA vasted oleksid: 0=riik, 1=osariik, 2=maakond, 3=linn'
-      index:
-        adding_new_places: lisades uusi kohti
-        confirming_identifications: kinnitades vaatluseid lisades neile määratlusi
-        filling_out_checklists: täites sulle tuttavate kohtade kontrollnimekirju
-        you_can_help_out_by: Saad meie kohtade andmeid parandada
       new:
         check_list_note: 'NB: väga suurte kohtade puhul on kontrollnimekirjad automaatselt
           välja lülitatud.'
@@ -6289,13 +6284,6 @@ et:
           liike nagu väljasurnud liigid või mitteaktiivsed taksonid ning loetletakse
           ainult liike mitte infraliike nagu alamliigid ja teisendid.'
         discoveries_desc: Viimati selle taksoni alla määratletud liigid
-        trending_desc: Viimased kuu jooksul enimvaadeldud taksonid
-        trending_in_place_desc_html: Viimased kuu jooksul enimvaadeldud taksonid kohas
-          <a href="%{url}">%{place}</a>
-        rare_desc: Vähim vaadeldud ohustatud liigid
-        rare_in_place_desc_html: Vähim vaadeldud ohustatud liigid kohas <a href="%{url}">%{place}</a>
-        wanted_desc: Selle taksoni liigid, mida pole veel vaadeldud.
-        no_trending_desc: Selle taksoni alamtaksoneid viimase kuu jooksul ei vaadeldud
         frequency:
           research: Teaduskõlbulik
           verifiable: Tõendatav
@@ -6311,12 +6299,19 @@ et:
           Life Stage=pupa: Nukk
           Life Stage=adult: Täiskasvanu
           unannotated: Märkus puudub
+        no_trending_desc: Selle taksoni alamtaksoneid viimase kuu jooksul ei vaadeldud
         photo_chooser_modal_desc: Lohista vasakult siia fotosid või lohista siinolevaid
           fotosid uude järjekorda.
         photo_chooser_modal_explanation: Pea meeles, et taksoni leht näitab nii selle
           taksoni kui alamtaksonite pilte. Kuid konkreetselt selle taksoni jaoks valitud
           pilte näidatakse esimesena. Esimene foto saab olema vaikimisipilt, mida
           kasutatakse tervel leheküljel.
+        rare_desc: Vähim vaadeldud ohustatud liigid
+        rare_in_place_desc_html: Vähim vaadeldud ohustatud liigid kohas <a href="%{url}">%{place}</a>
+        trending_desc: Viimased kuu jooksul enimvaadeldud taksonid
+        trending_in_place_desc_html: Viimased kuu jooksul enimvaadeldud taksonid kohas
+          <a href="%{url}">%{place}</a>
+        wanted_desc: Selle taksoni liigid, mida pole veel vaadeldud.
     taxon_changes:
       move_children_desc: Sisendtaksoni alamtaksonid, mis on perekonnad või sellest
         kõrgemal tasemel, liigutatakse väljundi alla; liigid, alamliigid, teisendid,

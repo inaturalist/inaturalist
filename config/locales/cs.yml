@@ -4194,6 +4194,16 @@ cs:
   take_me_facebook: Ano, chci jít na Facebook!
   take_me_flickr!: Ano, chci jít na Flickr!
   take_me_back: Chci jít zpět
+  target_list_alert: Jste si jisti, že jste se pokusili pozorovat všechny druhy, na
+    které se vztahuje váš cílový seznam? Nezapomeňte, že cokoliv, na co se vztahuje
+    váš cílový seznam, co jste nepozorovali, bude interpretováno jako nepřítomnost,
+    takže je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů, které
+    jste se pokusili najít.
+  target_list_warning: Nezapomeňte, že cokoliv, na co se vztahuje váš cílový seznam,
+    co jste nepozorovali v okruhu a délce trvání této cesty, bude interpretováno jako
+    nepřítomnost. Je velmi důležité, aby váš cílový seznam přesně odrážel soubor druhů,
+    které jste se pokusili najít. Pokud jste se ve svém cílovém seznamu nepokoušeli
+    zjistit druh nebo veškeré druhy, na které se vztahuje váš cíl, odeberte jej.
   taxa: Taxony
   taxa_with_unknown_relationships: Taxony s neznámými vztahy
   taxa_info: Informace o taxonu
@@ -5970,11 +5980,6 @@ cs:
           <a href="%{url}">stáhnout KML</a>, upravit ho v aplikaci GIS dle vašeho výběru a nahrát přímo vaše upravené KML.
         admin_level_desc: Mělo by se nastavovat pouze pro politické celky. V ekvivalentech
           USA 0 = země, 1 = stát, 2 = okres, 3 = město
-      index:
-        adding_new_places: přidání nových míst
-        confirming_identifications: potvrzení identifikací přidáním ID k pozorováním
-        filling_out_checklists: vyplnění seznamů pro místa, která dobře znáte
-        you_can_help_out_by: Můžete nám pomoct zlepšit naše údaje o místě
       new:
         check_list_note: 'Poznámka: Pro velmi velké oblasti budou seznamy automaticky
           zakázány.'
@@ -6332,6 +6337,21 @@ cs:
           <a href="%{url}"> iNaturalist síť </a>
       year:
         include_usa: Zahrnuje US
+        growth_by_country_desc_html: Kde je růst? Tato mapa a graf se snaží sdílet
+          tyto informace podle zemí, což je komplikované, protože růst země může být
+          velmi nevyvážený. Zde jsme se rozhodli vynechat Spojené státy a použít výchozí
+          logaritmické měřítko k zvýraznění rozdílů s ostatními zeměmi. Pokud se země
+          objeví v černém, znamená to, že k tomuto procentu významně nepřispěla, nebo
+          že letos neprokázala růst, nebo v tomto roce neměla více pozorování než
+          v loňském roce (více informací najdete nad zemí). <strong> „% celkového
+          růstu“ </strong> znamená podíl globálního růstu pocházejícího z určité země,
+          například pokud je v roce 2018 20 pozorování a 10 v roce 2017, představuje
+          to 10 pozorování růstu a pokud se jich 5 týká Beninu, pak Benin přispěl
+          k 50% celkového růstu. <strong> "% růst" </strong> představuje procento
+          letošních pozorování v této zemi ve srovnání s loňskými pozorováními v této
+          zemi, takže pokud by bylo 10 pozorování o Laosu za rok minulost a 20 letošního
+          roku představuje 100% růst, a pokud by bylo loni a 1 letos 0, představuje
+          to nekonečné procento růstu.
         growth_by_country_title: Růst podle země
         growth_in_year_obs: Růst v%{year}(obs)
         growth_title: Růst
@@ -6450,13 +6470,6 @@ cs:
           druhů, a zahrnují pouze druhy, ne infraspecifické taxony, jako jsou poddruhy
           nebo odrůdy.
         discoveries_desc: Poslední nově identifikované druhy v tomto taxonu
-        trending_desc: Nejvíce pozorované taxony v uplynulém měsíci
-        trending_in_place_desc_html: Nejvíce pozorované taxony v uplynulém měsíci
-          v <a href="%{url}">%{place}</a>
-        rare_desc: Nejméně pozorované ohrožené taxony
-        rare_in_place_desc_html: Nejméně pozorované ohrožené taxony v <a href="%{url}">%{place}</a>
-        wanted_desc: Druhy v tomto taxonu, které ještě nebyly pozorovány.
-        no_trending_desc: Nic pod tímto taxonem pozorováno v uplynulém měsíci
         frequency:
           research: Výzkumný stupeň
           verifiable: Ověřitelné
@@ -6472,16 +6485,23 @@ cs:
           Life Stage=pupa: Kukla
           Life Stage=adult: Dospělý
           unannotated: Žádná anotace
+        no_trending_desc: Nic pod tímto taxonem pozorováno v uplynulém měsíci
         photo_chooser_modal_desc: Přetáhněte sem fotky zleva nebo přetáhněte fotky
           sem a uspořádejte je.
         photo_chooser_modal_explanation: Vezměte prosím na vědomí, že stránka taxonu
           zobrazí fotky tohoto taxonu a jeho následných taxonů. Fotky vybrané pro
           tento taxon se však zobrazí jako první. První fotka bude základním obrázkem
           používaným na celých stránkách.
+        rare_desc: Nejméně pozorované ohrožené taxony
+        rare_in_place_desc_html: Nejméně pozorované ohrožené taxony v <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: Vedoucí webu dočasně zakázali zobrazení
           <a href="%{url}"> tohoto obsahu Wikipedia </a>. Pomoci můžete úpravou stránky
           na Wikipedii tak, aby byla vhodná pro tento taxon, nebo označením tohoto
           taxonu, abyste získali pozornost dozorců stránek.
+        trending_desc: Nejvíce pozorované taxony v uplynulém měsíci
+        trending_in_place_desc_html: Nejvíce pozorované taxony v uplynulém měsíci
+          v <a href="%{url}">%{place}</a>
+        wanted_desc: Druhy v tomto taxonu, které ještě nebyly pozorovány.
     taxon_changes:
       move_children_desc: Děti daného taxonu, které jsou rodové nebo ještě hruběji
         určené, budou přesunuty; druhy, poddruhy, odrůdy atd. se změní v jejich ekvivalentu
@@ -7165,6 +7185,9 @@ cs:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: může být změněn pouze
                 kurátorem tohoto taxonu
+            name:
+              bad_format: může obsahovat pouze standartní písmena Latinky, pomlčky,
+                mezery a ×; všimněte si že zamýšlené taxony a odrůdy nejsou povoleny
         taxon_name:
           attributes:
             lexicon:
@@ -7172,6 +7195,8 @@ cs:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: nemůže
                 odpovídat vědeckému názvu druhu pro tento slovníček
+              bad_format: může obsahovat pouze standartní písmena Latinky, pomlčky,
+                mezery a ×; všimněte si že zamýšlené taxony a odrůdy nejsou povoleny
         user:
           attributes:
             login:

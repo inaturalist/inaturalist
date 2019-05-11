@@ -185,6 +185,21 @@ fr:
   about_this_bioblitz: À propos de ce bioblitz
   about_this_map: À propos de cette carte
   about_this_project: À propos de ce projet
+  about_trips_html: <h4>Les voyages activent la collecte de données de présence/absence
+    en ajoutant un contexte à vos observations</h4><p><strong>Pourquoi</strong> Les
+    données de présence/absence incluent des informations sur l’effort d’échantillonnage,
+    qui est utile pour les analyses scientifiques comme les modèles de répartition
+    (les observations brutes de iNaturalist sont des données de 'présence uniquement').</p>
+    <p><strong>Comment</strong> Un voyage ajoute un contexte à vos observations en
+    enregistrant :</p> <ul> <li><strong>Ce que</strong> vous avez cherché (liste cible)</li>
+    <li><strong>Où</strong> vous avez cherché (zone de recherche)</li> <li><strong>Quand</strong>
+    vous avez cherché (période de recherche)</li> </ul> <p>Les espèces de votre liste
+    cible que vous aurez pu observer dans la zone de recherche sont interprétées comme
+    des présences. Alors que les espèces de votre liste cible que vous n’aurez pas
+    pu observer seront interprétées comme des absences. Cliquer sur 'Données tabulées
+    de présence/absence pour les voyages' pour générer un tableau d’enregistrements
+    de présence/absence pour les espèces des voyages et les observations associées.
+    <a href='%{url}'>En savoir plus</a></p>
   about_x: À propos de %{x}
   acc: Comp. (m)
   account: Compte
@@ -511,6 +526,7 @@ fr:
   amphibiaweb_taxonomy: Taxinomie d’AmphibiaWeb
   an: un
   an_: un
+  ancestor_taxon: Taxon ancestre
   and: et
   and_choose_a_matching_taxon: et choisissez un taxon correspondant dans la liste.
     Si vous n’obtenez pas quelque chose comme
@@ -4042,6 +4058,7 @@ fr:
   search_for_species: Rechercher des espèces
   search_list: Liste de recherche
   search_obs: Rechercher  des observations…
+  search_observations: Rechercher des observations
   search_places: Rechercher des lieux
   search_projects: Rechercher des projets
   search_results_for: Rechercher des résultats pour
@@ -4409,6 +4426,17 @@ fr:
   take_me_facebook: Oui, amenez-moi sur Facebook!
   take_me_flickr!: Oui, amenez-moi sur Flickr!
   take_me_back: Revenir en arrière
+  target_list_alert: Êtes-vous sûr d'avoir tenté d'observer toutes les espèces couvertes
+    par votre liste de cibles ? N'oubliez pas que tout ce qui est couvert par votre
+    liste de cibles et que vous n'avez pas observé sera interprété comme une absence;
+    il est donc très important que votre liste de cibles reflète avec précision l'ensemble
+    des espèces que vous avez tenté de détecter.
+  target_list_warning: N'oubliez pas que tout ce qui est couvert par votre liste de
+    cibles et que vous n'avez pas observé dans le rayon et la durée de ce voyage sera
+    interprété comme une absence. Il est très important que votre liste de cibles
+    reflète avec précision l'ensemble des espèces que vous avez tenté de détecter.
+    Si vous n'avez pas tenté de détecter une espèce de votre liste de cibles ou toutes
+    les espèces couvertes par un groupe de votre liste de cibles, supprimez-la.
   taxa: Taxons
   taxa_with_unknown_relationships: Taxons avec des relations inconnues
   taxa_info: Informations des taxons
@@ -4847,9 +4875,9 @@ fr:
   "true": Oui
   trending: Tendance
   trends: Tendances
-  trip_target_list_info: Il y a un ensemble disjoint de taxons les plus grossiers
-    dans votre liste cible. Tout taxon représenté par des coordonnées masquées est
-    exclu. <a href="/pages/trips">En savoir plus</a>.
+  trip_target_list_info: Toute espèce couverte par cette liste cible qui n’a pas été
+    observée dans le rayon et la durée de ce voyage sera interprétée comme absente.
+    <a href="/pages/trips">En savoir plus</a>.
   trusted: Fiable
   trusted_project?: Projet digne de confiance?
   trust_this_person_with_your_private_coordinates: Faire confiance à cette personne
@@ -6012,6 +6040,12 @@ fr:
         project_list_desc: |-
           Taxons ajoutés manuellement par les responsables de l’organisation du projet et les taxons représentés par
           les observations de niveau recherche sont listés sur les listes du projet.
+    messages:
+      index:
+        speech_privilege_notice: |-
+          Vous pourrez envoyer de nouveaux messages après avoir ajouté trois
+          observations vérifiables ou trois identifications pour d’autres. Pour le moment,
+          vous pouvez lire et répondre aux messages que d’autres vous ont envoyé.
     oauth:
       authorizations:
         new:
@@ -6419,14 +6453,6 @@ fr:
         admin_level_desc: |-
           Doit être établi uniquement pour les entités politiques. En terme
           d’équivalents aux É.-U., 0 = pays, 1 = état, 2 = comté, 3 = ville
-      index:
-        adding_new_places: ajout de nouveaux lieux
-        confirming_identifications: confirmation des identifications en ajoutant les
-          ID aux observations
-        filling_out_checklists: remplir des listes de contrôle pour les lieux que
-          vous connaissez bien
-        you_can_help_out_by: Vous pouvez aider à améliorer nos données sur le lieu
-          en
       new:
         check_list_note: 'Remarque : les listes de contrôle seront désactivées automatiquement
           pour les lieux très vastes.'
@@ -7002,13 +7028,6 @@ fr:
           variétés.
         discoveries_desc: Espèces nouvellement identifiées les plus récentes dans
           ce taxon
-        trending_desc: Taxons les plus observés lors du dernier mois
-        trending_in_place_desc_html: Taxons les plus observés dans le dernier mois
-          à <a href="%{url}">%{place}</a>
-        rare_desc: Taxons menacés les moins observés
-        rare_in_place_desc_html: Taxons menacés les moins observés à <a href="%{url}">%{place}</a>
-        wanted_desc: Espèces dans ce taxon qui n’ont pas encore été observées.
-        no_trending_desc: Rien d’observé dans le dernier mois concernant ce taxon
         frequency:
           research: Niveau de recherche
           verifiable: Vérifiable
@@ -7024,6 +7043,10 @@ fr:
           Life Stage=pupa: Chrysalide
           Life Stage=adult: Adulte
           unannotated: Pas d'annotation
+        max_photos_desc: |-
+          Un taxon peut avoir seulement %{max} photos. Vous devrez enlever des photos
+          existantes pour en ajouter d’autres.
+        no_trending_desc: Rien d’observé dans le dernier mois concernant ce taxon
         photo_chooser_modal_desc: Faire glisser les photos d’ici vers la gauche, ou
           les faire glisser ici pour les réarranger.
         photo_chooser_modal_explanation: |-
@@ -7031,11 +7054,17 @@ fr:
           et de ses descendants. Les photos choisies pour ce
           taxon seront cependant affichées en premier. La première photo sera
           celle par défaut utilisée sur le site.
+        rare_desc: Taxons menacés les moins observés
+        rare_in_place_desc_html: Taxons menacés les moins observés à <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |-
           Les superviseurs du site ont temporairement désactivé l’affichage de <a href="%{url}">ce
           contenu de Wikipédia</a>. Vous pouvez aider en modifiant la page sur
           Wikipédia en la rendant appropriée à ce taxon, ou en marquant ce
           taxon pour attirer l’attention des superviseurs du site.
+        trending_desc: Taxons les plus observés lors du dernier mois
+        trending_in_place_desc_html: Taxons les plus observés dans le dernier mois
+          à <a href="%{url}">%{place}</a>
+        wanted_desc: Espèces dans ce taxon qui n’ont pas encore été observées.
     taxon_changes:
       move_children_desc: Les enfants du taxon saisi qui sont des genres ou plus gros
         seront déplacés dans la sortie ; les espèces, sous-espèces, variétés, etc.
@@ -7500,6 +7529,11 @@ fr:
       not_an_integer: doit être un nombre entier
       odd: doit être impair
       record_invalid: 'Échec de validation : %{errors}'
+      requires_privilege_speech: |-
+        doit avoir trois observations vérifiables ou trois identifications
+        pour d’autres, pour pouvoir faire cela
+      requires_privilege_organizer: doit avoir cinquante observations vérifiables
+        pour faire cela
       taken: a déjà été pris
       too_long:
         one: est trop long (le maximum est de 1 caractère)
@@ -7596,6 +7630,11 @@ fr:
         not_an_integer: doit être un entier
         odd: doit être impair
         record_invalid: 'Échec de validation : %{errors}'
+        requires_privilege_speech: |-
+          doit avoir trois observations vérifiables ou trois identifications
+          pour d’autres, pour pouvoir faire cela
+        requires_privilege_organizer: doit avoir cinquante observations vérifiables
+          pour faire cela
         taken: a déjà été pris
         too_long:
           one: est trop long (le maximum est de 1 caractère)
@@ -7728,6 +7767,11 @@ fr:
         not_an_integer: doit être un entier
         odd: doit être impair
         record_invalid: 'Échec de la validation : %{errors}'
+        requires_privilege_speech: |-
+          doit avoir trois observations vérifiables ou trois identifications
+          pour d’autres pour faire cela
+        requires_privilege_organizer: doit avoir cinquante observations vérifiables
+          pour faire cela
         taken: a déjà été pris
         too_long:
           one: est trop long (maximum 1 caractère)
@@ -7820,6 +7864,10 @@ fr:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: peut être modifié uniquement
                 par un superviseur de ce taxon
+            name:
+              bad_format: "ne peut contenir que des caractères standards latins, des
+                tirets, des espaces, et \n×; notez que les taxons et cultivars putatifs
+                ne sont pas autorisés"
         taxon_name:
           attributes:
             lexicon:
@@ -7828,6 +7876,13 @@ fr:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: ne correspond
                 pas au nom scientifique d'une espèce pour ce lexicon
+              bad_format: "ne peut contenir que des caractères standards latins, des
+                tirets, des espaces, et \n×; notez que les taxons et cultivars putatifs
+                ne sont pas autorisés"
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: ne peut pas avoir plus de %{max} photos
         user:
           attributes:
             login:

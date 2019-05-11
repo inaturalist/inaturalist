@@ -51,6 +51,9 @@ da:
   x_misidentifications_of_this_species:
     one: 1 fejlidentifikation af denne art
     other: '%{count} fejlidentifikationer af denne art'
+  x_misidentifications_of_species_in_this_rank:
+    one: 1 fejlidentifikation af arter i denne %{rank}
+    other: '%{count} fejlidentifikationer af arter i denne %{rank}'
   x_observations:
     one: 1 observation
     other: '%{count} observationer'
@@ -160,6 +163,7 @@ da:
   about_x: Om %{x}
   acc: Nøj. (m)
   account: Konto
+  account_creation: Kontooprettelse
   account_settings: Kontoindstillinger
   accept: accept
   accept_community_identifications: Accepter fællesskabets identifikationer
@@ -233,7 +237,7 @@ da:
   add_from_your_observations: Tilføj fra dine observationer
   add_link: Tilføj link
   add_listed_taxa_from_observations: Tilføj opførte taksa fra observationer
-  add_higher_level_taxon: Tilføj en takson på et højere niveau (f.eks. "fugle")
+  add_higher_level_taxon: Tilføj et taxon på et højere niveau (f.eks. "fugle")
   add_id: Tilføj ID
   add_it_to_place_raquo: Tilføj den til et sted &raquo;
   add_more_photos: Tilføj flere fotos
@@ -610,6 +614,7 @@ da:
   attribution: Kildeangivelse
   authority_list:
     iucn_red_list: IUCN rødliste
+    natureserve: NatureServe
     cites: CITES
   authorize: Tillade
   authorize_permissions_from_provider: Godkend tilladelser fra %{provider}
@@ -645,6 +650,7 @@ da:
   back_to_suggestions: Tilbage til Forslag
   back_to_taxon: Tilbage til %{defaulttaxon}
   back_to_taxon_changes: Tilbage til taksonændringer
+  back_to_taxon_framework_for_x: Tilbage til taxonramme for %{taxon_name}
   back_to_viewing: Tilbage for at se <i>%{taxon}</i>
   back_to_x: Tilbage til %{noun}
   back_to_x_assessment: Tilbage til %{project} vurderinger
@@ -1241,6 +1247,8 @@ da:
   display_link_to_checklist: Vis link til projektliste fra projektside
   display_listings_added_by_curators: Vis lister tilføjet af kuratorer
   display_listings_from_place: Vis lister fra sted
+  distance_traveled_value: Afstand tilbagelagt:%{distance}m
+  distance_traveled: Afstand tilbagelagt (m)
   dna_: DNA
   documentation_for_developers_html: Dokumentation for <a href="/pages/developers">udviklere</a>
   do_not_show_this_message_again: Vis ikke denne besked igen
@@ -1282,6 +1290,7 @@ da:
   drag_and_drop_some_photos_or_sounds: Træk og slip nogle billeder eller lyde
   drawings: Skitser
   duplicate_verb: Kopiér
+  duration_value: Varighed:%{duration} minutter
   each_place_displays_all_species_inat_knows: Hver side med steder, viser alle de
     arter %{site_name} kender fra dette sted, med oplysninger om deres forekomst,
     bevaringsstatus, og hvem der var den første der observerede den pågældende art
@@ -1604,8 +1613,8 @@ da:
     news_and_updates: Nyheder og opdateringer
     tutorials: Selvstudier
   forum_desc: |-
-    Forumet er et sted at diskutere selve iNat, herunder hjælp og support,
-    funktionsanmodninger, fejlrapporter, meddelelser og meget mere.
+    Forum er en platform hvor selve iNaturalist og dets funktioner kan diskuteres, herunder hjælp, support,
+    funktions anmodninger, fejlrapporter, meddelelser og meget mere.
   frequency: Hyppighed
   fri: Fre
   from: Fra
@@ -2000,6 +2009,7 @@ da:
   latitude: Breddegrad
   latitude_in_decimals: Breddegrad i decimale grader f.eks. 38.123
   latitude_slash_y_coord_slash_northing: Breddegrad / y koordinat / nordlig
+  latitude_value: 'Breddegrad: %{latitude}'
   layers: Lag
   layout: Visning
   leaderboard: Topliste
@@ -2257,6 +2267,7 @@ da:
   longitude: Længdegrad
   longitude_in_decimal: Længdegrad i decimale grader f. eks. 122.123
   longitude_slash_x_coord_slash_easting: Længdegrad / x koordinat /østlig
+  longitude_value: Længdegrad:%{longitude}
   look_up_name: Slå navnet op
   looks_like_neither_have!: Ser ud som om ingen har nogen taksa!
   looks_like_no_species_in_guide: Det ser ud som om du ikke har nogen arter i din
@@ -2635,6 +2646,7 @@ da:
   no_taxa_selected: Ingen taksa valgt!
   no_taxa_with_unknown_relationships: Ingen taksa med ukendte forbindelser
   no_taxa_yet: Ingen taksa endnu!
+  no_taxon_framework_relationships: Ingen taxonramme sammenhæng
   no_taxonomic_changes_match_those_criteria: Ingen taksonomiske ændringer matcher
     disse kriterier
   no_wikipedia_page_for_taxon: Ingen Wikipedia side for denne takson.
@@ -2674,6 +2686,8 @@ da:
     fravælger dette, modtager du kun underretninger om identifikationer
     af taksa, der ikke matcher taksonen på din egen identifikation.
   number_of_observations: Antal observationer
+  number_of_observers_value: Antal observatører:%{number}
+  number_of_observers: Antal observatører
   number_selected: '# valgte'
   numeric_: numerisk
   noun_by_you: '%{noun} af dig'
@@ -2974,6 +2988,10 @@ da:
     som denne art
   other_species_commonly_misidentified_as_this_species_in_place_html: Andre arter,
     der ofte er fejlidentificeret som denne art i <a href="%{url}">%{place}</a>
+  other_taxa_commonly_misidentified_as_this_rank: Anden taksa, der ofte fejlidentificeres
+    som denne %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Anden taksa, der ofte
+    fejlidentificeres som denne %{rank} i <a href="%{url}">%{place}</a>
   our_blog: Vores blog
   out_of_range: Udenfor område
   output_taxon: Output takson
@@ -3595,6 +3613,8 @@ da:
   quality_grade_colon: 'Kvalitetsklasse:'
   queued: I kø
   query: Søgning
+  radius: Radius (m)
+  radius_value: Radius (m):%{radius}
   random: Tilfældig
   range: Område
   range_from: Område fra
@@ -3812,6 +3832,18 @@ da:
     must_be_coordinates_shareable_by_project_curators: observatør skal tillade projektkuratorer
       at se koordinater.
   running_total: Igangværende total
+  same_day_obscured: Endnu en observation af denne person på denne dag er sløret
+  same_day_obscured_desc: |-
+    Når koordinater er sløret på grund af en truet takson, er alle andre
+    observationer på den pågældende dag også sløret, for at forhindre folk
+    fra at gætte koordinaterne baseret på observationer lavet omkring det samme
+    tidspunkt. Man kan også anvende denne beskyttelse på andre koordinater for at skjule dem.
+  same_day_private: En anden observation af denne person på denne dag er privat
+  same_day_private_desc: |-
+    Når koordinater er skjult på grund af en truet takson, er alle andre
+    observationer af denne person på den dag er også skjult, for at forhindre folk
+    fra at gætte koordinaterne baseret på observationer lavet omkring det samme
+    tidspunkt. Andre kan også anvende denne beskyttelse på koordinater de ønsker at skjule.
   said: sagde
   sat: Lør
   satellite: satellit
@@ -4211,6 +4243,14 @@ da:
   take_me_facebook: Ja, før mig til Facebook!
   take_me_flickr!: Ja, før mig til Flickr!
   take_me_back: Tag mig tilbage
+  target_list_alert: Er du sikker på, at du forsøgte at observere alle arter på din
+    målliste? Husk at alt, der er på din målliste, ikke fortolkes som værende så vigtigt,
+    at din målliste nøjagtigt afspejler det sæt arter du forsøgte at registrere
+  target_list_warning: Husk at alt, som er dækket af din mål-liste, som du ikke observerede
+    inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende.
+    Det er meget vigtigt at din mål-liste afspejler præcist de arter, som du prøvede
+    at observere. Hvis du ikke forsøgte at observere en art på din mål-liste eller
+    alle arter er dækket af en gruppe på din mål-liste, skal du venligst fjerne den.
   taxa: Taksa
   taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksa info
@@ -4301,6 +4341,7 @@ da:
   taxon_colors: Taksonfarver
   taxon_curators: Takson kuratorer
   taxon_extras: Takson ekstra
+  taxon_framework: Taxonramme
   taxon_framework_notes: Taksonramme noter
   taxon_framework_relationship: Taksonramme relation
   taxon_framework_relationship_for: Taksonramme relation for
@@ -4480,6 +4521,7 @@ da:
     Der var nogle problemer med din CSV fil. Ret venligst rækkerne med fejl. Selvfølgelig kunne problemet også være fra vores side. Hvis det er
     tilfældet, så fortæl os det.
   there_were_some_problems_with_fields: 'Der var nogle problemer med følgende felter:'
+  there_were_some_problems_with_these_files: 'Der var nogle problemer med disse filer:'
   theres_also: der er også
   theres_something_wrong_with_taxon_framework_relationship: Der er noget galt her
     - vi kan ikke bestemme forbindelsen mellem intern og ekstern taksa
@@ -4631,6 +4673,8 @@ da:
   "true": Sandt
   trending: Tendenser
   trends: Tendenser
+  trip_target_list_info: Dette er et ikke overlappende sæt af det groveste taxa på
+    din mål-liste. Alle taxa repræsenteret af slørede observationer er ekskluderet.
   trusted: Betroet
   trusted_project?: Tillidsprojekt?
   trust_this_person_with_your_private_coordinates: Betro denne person med dine skjulte
@@ -4720,6 +4764,14 @@ da:
   upload_range: Upload område
   uploaded_by: Uploaded af
   uploader:
+    errors:
+      file_too_big: Filen skal være mindre end %{megabytes} MB
+      unsupported_file_type: Filtypen understøttes ikke. Vi accepterer JPG, PNG, GIF,
+        WAV, AAC og MP4 (kun audio)
+    resize_tip: |-
+      Hvis dine fotofiler er for store, kan du prøve at beskære dem til en maksimum størrelse på
+      2048 ved 2048 pixels. Dette sker med alle fotos på
+      server alligevel, og muliggør hurtigere upload.
     tooltips:
       add: Tilføj observation(er)
       combine: Kombinér valgte observationer
@@ -4728,6 +4780,7 @@ da:
       remove_observation: Fjern observation
       remove_photo: Fjern foto
       select_all: Vælg alle observationer
+      upload_failed: Upload mislykkedes
   uploading_num_of_count_photos:
     one: Uploader foto...
     other: Uploader %{num} af %{count} foto´s...
@@ -4844,6 +4897,7 @@ da:
   view_flags: Vis markeringer
   view_flags_for_x_html: Vis markeringer for %{x}
   view_full_observation: Vis fuld observation
+  view_full_size_photo: Se foto i fuld størrelse
   view_invitation: Vis invitation
   view_journal: Vis journal
   view_leaderboard: Vis topliste
@@ -4870,6 +4924,8 @@ da:
   view_observation_flags: Vis observations markeringer
   view_observations_by_everyone: Vis observation af alle
   view_observations_by_these_users: Vis observationer af disse brugere
+  view_observations_causing_this_observation_to_be_obscured: Se observationer, der
+    får denne observation til at være sløret
   view_observations_of_this_taxon_by: Vis observationer af denne takson af
   view_observations_raquo: Vis observationer &raquo;
   view_on: Vis på
@@ -5106,10 +5162,11 @@ da:
     Du indstiller dette projekt til at samle alle observationer, der matcher
     følgende regler: %{rules} Vil du fortsætte?
   you_are_submitting_obs_without_photos_and_names: |-
-    Du indsender indlæg uden fotos og takson navne.
-    Disse observationer vil være meget vanskelige at identificere korrekt.
-  you_are_submitting_obs_with_no_date_or_no_location: Du indsender observationer uden
-    datoer eller steder.
+    Du indsender observationer uden fotos og taksonnavne.
+    Observationer uden disse informationer, er ofte umulige at identificere , og vil ikke blive vist i observationssøgninger.
+  you_are_submitting_obs_with_no_date_or_no_location: |-
+    Du indsender observationer uden dato eller sted.
+    Observationer uden disse informationer, er ofte umulige at identificere , og vil ikke blive vist i observationssøgninger.
   you_are_subscribed_to: Du abonnerer på
   you_arent_a_member_of_that_project: Du er ikke medlem af dette projekt.
   you_arent_following_that_person: Du følger ikke denne person.
@@ -6064,12 +6121,6 @@ da:
         admin_level_desc: |-
           Bør kun indstilles til politiske organer. Med hensyn til
           USA-ækvivalenter, 0 = land, 1 = stat, 2 = amt, 3 = by
-      index:
-        adding_new_places: tilføje nye steder
-        confirming_identifications: bekræfte identifikationer ved at tilføje ID'er
-          til observationer
-        filling_out_checklists: udfylde tjeklister for steder du kender rigtig godt
-        you_can_help_out_by: Du kan hjælpe med at forbedre vores steddata ved at
       new:
         check_list_note: 'Bemærk: tjeklisterne deaktiveres automatisk for meget store
           steder.'
@@ -6259,9 +6310,12 @@ da:
         note_you_can_delete_the_time: '(OBS: Du kan slette tidszone og nøjagtige tidspunkt,
           hvis du i stedet vil bruge hele dage.)'
         or_drag_and_drop: (eller træk og slip)
-        please_specify_the_requirements_html: Specificér venligst observertionskravene
-          for observationer, der tilføjes til dette projekt. Du kan vælge flere arter,
-          steder og brugere der inkluderes automatisk.
+        please_specify_the_requirements_html: |-
+          Angiv venligst kravene til de observationer, der kan tilføjes til
+          dette projekt. Du kan angive flere arter, steder, brugere eller
+          Kvaliteter indgår automatisk, eller efterlad et felt tomt hvis
+          du har ikke noget specifikt krav til det. Forklaringer for hvert felt
+          kan findes <a href="%{url}">here</a>.
         project_background_color: Projektoversigt baggrundsfarve
         project_background_color_help: Sørg for at vælge en farve, der er mørk nok,
           så den hvide overlejrede tekst er læselig.
@@ -6580,14 +6634,6 @@ da:
           er blevet observeret og hvor mange, der stadig mangler at blive observeret. Antal af arter i "komplette" taksa inkluderer ikke de arter, der ikke kan medregnes, som f.eks. uddøde eller inaktive arter og de omfatter kun arter, ikke infra-specifik taksa som
           underarter eller varianter.
         discoveries_desc: Seneste nyligt identificerede arter i denne takson
-        trending_desc: Mest observerede taksa i den sidste måned
-        trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a
-          href="%{url}">%{place}</a>
-        rare_desc: Mindst observerede truede taksa
-        rare_in_place_desc_html: Mindst observerede truede taksa i <a href="%{url}">%{place}</a>
-        wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
-        no_trending_desc: Intet underliggende denne taxon er observeret i den sidste
-          måned
         frequency:
           research: Forskningskvalitet
           verifiable: Verificerbar
@@ -6603,17 +6649,25 @@ da:
           Life Stage=pupa: Puppe
           Life Stage=adult: Voksen
           unannotated: Ingen anmærkning
+        no_trending_desc: Intet underliggende denne taxon er observeret i den sidste
+          måned
         photo_chooser_modal_desc: Træk foto´s hertil fra venstre side eller træk i
           foto´s for at reorganisere.
         photo_chooser_modal_explanation: |-
           Bemærk at taksonsiden viser billeder af denne takson
           og dens efterkommere. De valgte foto´s til denne
           takson vil dog blive vist først. Det første billede vil blive et standardbillede, og det vil blive brugt på tværs af websiden.
+        rare_desc: Mindst observerede truede taksa
+        rare_in_place_desc_html: Mindst observerede truede taksa i <a href="%{url}">%{place}</a>
         site_curators_disabled_wikipedia_html: |-
           Sidekuratorer har midlertidigt deaktiveret visning af <a href="%{url}"> dette
           indhold fra Wikipedia </a>. Du kan hjælpe ved at redigere siden på
           Wikipedia for at gøre det passende for denne takson, eller ved at markere denne
           takson for at bringe det til kendskab til sidekuratorer.
+        trending_desc: Mest observerede taksa i den sidste måned
+        trending_in_place_desc_html: Mest observerede taksa i den sidste måned i <a
+          href="%{url}">%{place}</a>
+        wanted_desc: Arter i denne takson, der endnu ikke er blevet observeret.
     taxon_changes:
       move_children_desc: |-
         Underordner af input takson, der er slægter eller grovere, vil blive flyttet til output; arter, underarter, varianter osv. vil blive skiftet ind i
@@ -6746,14 +6800,19 @@ da:
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
           Hvis du skifter mening, kan du altid
           <a href='/users/edit'> redigere dine indstillinger </a>.
-        inaturalist_network_affiliation_desc_html: |-
-          <a href="%{url}" target="_blank"> iNaturalist Network </a> er en
-          samling af lokaliserede websites forbundet med det globale INaturalist
-          fællesskab. Du kan ændre din primære side tilknytning, hvilket betyder
-          at dit indhold vil have en vis prioritet på dette websted, men betyder også, at ejerne af dette websted har ret til at downloade og
-          se alle dine data, ligesom iNaturalist webadministratorer kan. Hvis
-          det websted forlader netværket, vil hele din konto og data flytte med
-          den side.
+        inaturalist_network_affiliation_desc_html: "<a href=\"%{url}\" target=\"_blank\">
+          iNaturalist Network </a> er en\nsamling af lokale hjemmesider, som er forbundet
+          med det globale INaturalist\nfællesskab. \nNetværkssider understøttes af
+          lokale institutioner, der har underskrevet en aftale med iNaturalist om
+          at\nfremme lokal brug og gavn af biodiversitet. De har adgang\ntil rigtige
+          koordinater fra deres lande, der automatisk er sløret for offentligheden,
+          for at beskytte truede arter.\n</p>\n<p>\nDit brugernavn og adgangskode
+          fungerer på alle websteder, der er en del af iNaturalist Network. \nHvis
+          du vælger at deltage i et netværk websted, vil de lokale institutioner,
+          der opererer hvert websted også have adgang til din e-mail-adresse (kun
+          for at kommunikere med dig om\niNat aktiviteter) og adgang til de rigtige
+          koordinater for observationer, der er offentligt sløret eller privat.\n</p>\n<p>\nOBS:
+          Skift ikke for sjov, din tilknytning, hvis du har mere end 1000 observationer.\n</p>"
         licensing_desc_html: |-
           Licensering af dit indhold giver andre personer juridisk ret til at bruge det
           uden at spørge om din tilladelse, hvis de overholder betingelserne i
@@ -6797,6 +6856,11 @@ da:
         scientific_name_first_desc: Vis videnskabelige navne før lokale navne.
         youve_used_all_of_your_blocks: Du har brugt alle dine blokeringer. Fjern en
           blokering for at tilføje en anden.
+        same_day_geoprivacy_protection: Samme dag geofortrolighedsbeskyttelse
+        prefers_coordinate_interpolation_protection_desc: |-
+          Når du indstiller geofortroligheden for en observation til "sløret" eller
+          "privat", gælder den for alle observationer, for denne dag, for at gøre det sværere for andre mennesker at gætte de rigtige koordinater baseret på observationer lavet omkring det samme
+          tidspunkt.
       recent:
         about_recent_users: Om
         definitions_html: <dl> <dt> Sandsynligvis Spam </dt><dd> Bruger der sandsynligvis
@@ -7322,6 +7386,10 @@ da:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: kan kun ændres af en
                 kurator for denne takson
+            name:
+              bad_format: |-
+                kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
+                ×; Bemærk, at formodede taksa og sorter ikke er tilladt
         taxon_name:
           attributes:
             lexicon:
@@ -7330,6 +7398,9 @@ da:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: kan
                 ikke matche det videnskabelige navn på en art i dette leksikon
+              bad_format: |-
+                kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
+                ×; Bemærk, at formodede taxa og sorter ikke er tilladt
         user:
           attributes:
             login:
@@ -7358,6 +7429,10 @@ da:
           den i at opfylde anmodningen.
         temporarily_unavailable: Godkendelsesserveren kan ikke håndtere anmodningen
           på grund af midlertidig overbelastning eller vedligeholdelse af serveren.
+        credential_flow_not_configured: Resource Ejer Kode brugeroplysningsflow fejlede
+          fordi Doorkeeper.configure.resource_owner_from_credentials ikke er konfigureret.
+        resource_owner_authenticator_not_configured: Resource Ejer søgning fejlede
+          fordi Doorkeeper.configure.resource_owner_authenticator  ikke er konfigureret.
         unsupported_response_type: Godkendelsesserveren understøtter ikke denne svartype.
         invalid_client: Klientgodkendelsen mislykkedes på grund af ukendt klient,
           ingen klientgodkendelse inkluderet eller ikke-understøttet godkendelsesmetode.
