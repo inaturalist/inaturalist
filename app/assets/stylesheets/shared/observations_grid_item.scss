@@ -230,14 +230,14 @@ $flowedDim: 150px;
     color: #eee;
     background-color: rgba(0,0,0,0.5);
     padding: 3px;
-    font-weight: 100;
+    font-weight: 500;
     display: block;
     border: $photo-count-line-width solid #eee;
     border-radius: 4px;
     width: $photo-count-square-width;
     height: $photo-count-square-width;
     line-height: $photo-count-square-width / 2 + $photo-count-square-offset;
-    font-size: $photo-count-square-width / 2;
+    font-size: $photo-count-square-width * 0.65;
     &:after {
       content: "";
       width: $photo-count-square-width;
