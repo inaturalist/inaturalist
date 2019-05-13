@@ -1,5 +1,5 @@
 <%-
-  @site = @user.site || Site.default
+  @site = ( @user && @user.site ) || Site.default
   blog_url = @site.blog_url
   twitter_url = @site.twitter_url
   facebook_url = @site.facebook_url

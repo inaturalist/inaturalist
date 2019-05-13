@@ -8,7 +8,8 @@ class UsersController < ApplicationController
     if: lambda { authenticate_with_oauth? }
   before_filter :authenticate_user!,
     :unless => lambda { authenticated_with_oauth? },
-    :except => [ :index, :show, :new, :create, :activate, :relationships, :search, :update_session ]
+    :except => [ :index, :show, :new, :create, :activate, :relationships,
+      :search, :update_session, :parental_consent ]
   load_only = [ :suspend, :unsuspend, :destroy, :purge,
     :show, :update, :followers, :following, :relationships, :add_role,
     :remove_role, :set_spammer, :merge, :trust, :untrust ]
@@ -858,6 +859,31 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.json { render json: { friendship: friendship } }
+    end
+  end
+
+  def parental_consent
+    error_msg = nil
+    if !params[:email]
+      error_msg = :must_specify_email
+    elsif params[:email] !~ Devise.email_regexp
+      error_msg = :invalid_email
+    end
+    if error_msg
+      respond_to do |format|
+        format.json { render status: :unprocessable_entity, json: { error: t( "parental_consent.#{error_msg}" ) } }
+      end
+      return
+    end
+    unless current_user && current_user.id == Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
+      respond_to do |format|
+        format.json { render status: :forbidden, json: { error: "forbidden" } }
+      end
+      return
+    end
+    Emailer.parental_consent( params[:email] ).deliver_now
+    respond_to do |format|
+      format.json { render head: :no_content, :layout => false, :text => nil }
     end
   end
 
