@@ -2699,6 +2699,9 @@ en:
   owner: Owner
   parent: Parent
   parent_name: Parent name
+  parental_consent:
+    must_specify_email: You must specify an email address
+    invalid_email: Invalid email format
   password: Password
   password_confirmation: 'Password confirmation'
   paste: Paste
@@ -5634,8 +5637,6 @@ en:
           <a href="%{url}">observations export page</a> for a list of your exports.
       parental_consent:
         subject: Your child would like to use iNaturalist
-        must_specify_email: You must specify an email address
-        invalid_email: Invalid email format
         content_html: |
           <p>
             Your child is using the Seek by iNaturalist educational app and

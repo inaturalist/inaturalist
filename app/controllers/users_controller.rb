@@ -871,7 +871,7 @@ class UsersController < ApplicationController
     end
     if error_msg
       respond_to do |format|
-        format.json { render status: :unprocessable_entity, json: { error: t( "views.parental_consent.#{error_msg}" ) } }
+        format.json { render status: :unprocessable_entity, json: { error: t( "parental_consent.#{error_msg}" ) } }
       end
       return
     end
