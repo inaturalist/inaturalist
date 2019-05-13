@@ -17,6 +17,12 @@ sv:
   x_comments:
     one: 1 kommentar
     other: '%{count} kommentarer'
+  x_faves:
+    one: 1 favorit
+    other: '%{count} favoriter'
+  x_flags_resolved_html:
+    one: <span class='antal'>1</span> markering löst
+    other: <span class='antal'>%{count}</span> markeringar lösta
   x_followers:
     one: 1 följare
     other: '%{count} följare'
@@ -71,12 +77,6 @@ sv:
   x_people_found_this_helpful:
     one: En person tyckte detta var hjälpsamt
     other: '%{count} personer tyckte detta var hjälpsamt'
-  x_faves:
-    one: 1 favorit
-    other: '%{count} favoriter'
-  x_flags_resolved_html:
-    one: <span class='antal'>1</span> markering löst
-    other: <span class='antal'>%{count}</span> markeringar lösta
   x_people_like_this:
     one: 1 person gillar detta
     other: '%{count} personer gillar detta'

@@ -28,6 +28,12 @@ nl:
   x_comments:
     one: 1 opmerking
     other: '%{count} opmerkingen'
+  x_faves:
+    one: 1 favoriet
+    other: '%{count} favorieten'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> vlag opgelost
+    other: <span class='count'>%{count}</span> vlaggen opgelost
   x_followers:
     one: 1 volger
     other: '%{count} volgers'
@@ -85,18 +91,15 @@ nl:
   x_people_found_this_helpful:
     one: Iemand vond dit nuttig
     other: '%{count} mensen vonden dit nuttig'
-  x_faves:
-    one: 1 favoriet
-    other: '%{count} favorieten'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> vlag opgelost
-    other: <span class='count'>%{count}</span> vlaggen opgelost
   x_people_like_this:
     one: Iemand vindt dit leuk
     other: '%{count} mensen vinden dit leuk'
   x_people_agree_html:
     one: <span class="count">1</span> persoon is het eens
     other: <span class="count">%{count}</span> mensen zijn het eens
+  x_photos:
+    one: 1 foto
+    other: '%{count} foto''s'
   x_new_species:
     one: 1 Nieuwe Soort
     other: '%{count}Nieuwe Soorten'
@@ -171,6 +174,17 @@ nl:
   about_this_bioblitz: Over deze bioblitz
   about_this_map: Over deze kaart
   about_this_project: Over dit project
+  about_trips_html: "<h4>Routes maken het verzamelen van (nul)waarnemingen mogelijk</h4>\n\n<p><strong>Waarom</strong>\nAanwezigheid/afwezigheidsgegevens
+    bevatten informatie over steekproefinspanning die nuttig is voor wetenschappelijke
+    analyses zoals distributie modellering (ruwe iNaturalist-waarnemingen zijn 'alleen-aanwezigheid'-gegevens).</p>\n\n<p><strong>Hoe</strong>\nEen
+    route voegt context aan je waarnemingen toe door extra informatie:</p>\n<ul> \n<li><strong>Wat</strong>
+    je zocht (doellijst)</li> \n<li><strong>Waar</strong> je zocht (zoekgebied)</li>
+    \n<li><strong>Wanneer</strong> je zocht (zoekinterval)</li> \n</ul>\n\n<p>Soorten
+    op je doellijst die je waarnam in het zoekgebied en het interval worden geïnterpreteerd
+    als aanwezigheden. Hoewel soorten op je doellijst die je niet kon waarnemen, worden
+    geïnterpreteerd als nulwaarnemingen. Klik op 'Tabulate Presence Absence Data From
+    Trips' om een ​​tabel met (nul)waarnemingen voor een soort te genereren op basis
+    van routes en bijbehorende waarnemingen.\n<a href='%{url}'>Meer informatie</a></p>"
   about_x: Over %{x}
   acc: Prec. (m)
   account: Account
@@ -2230,6 +2244,7 @@ nl:
     el: Grieks
     en-US: Engels (Verenigde Staten)
     en: Engels
+    eo: Esperanto
     es-ES: Spaans (Spanje)
     es-MX: Spaans (Mexico)
     es: Spaans
@@ -2547,7 +2562,7 @@ nl:
   new_taxon_name_for: Nieuwe Taxon Naam voor
   new_taxon_range: Nieuwe Taxonreeks
   new_taxonomic_change: Nieuwe Taxon Wijzinging (Concept)
-  new_trip: Nieuwe excursie
+  new_trip: Nieuwe route
   new_updates_in_the_last_24_hours_from: De laatste nieuwtjes van de afgelopen 24
     uur van %{site_name}
   new_user_rules: Nieuwe gebruikersregels
@@ -3891,7 +3906,7 @@ nl:
   save_observation: Waarneming opslaan
   save_photos: Foto's opslaan
   save_place: Plaats opslaan
-  save_trip: Trip opslaan
+  save_trip: Route opslaan
   saved: Opgeslagen
   saving: Aan het opslaan...
   saving_num_of_count_observations:
@@ -3921,6 +3936,7 @@ nl:
   search_for_species: Zoek Soorten
   search_list: zoeklijst
   search_obs: Zoek waarnemingen
+  search_observations: Doorzoek waarnemingen
   search_places: Zoek Plaatsen
   search_projects: Zoek Projecten
   search_results_for: Zoekresultaten voor
@@ -4281,7 +4297,7 @@ nl:
     als afwezig. Het is dus belangrijk dat je doellijst precies de soorten omvat die
     je gezocht hebt.
   target_list_warning: Alles in je doellijst dat je niet hebt waargenomen binnen de
-    straal en de duur van deze reis zal worden geïnterpreteerd als een afwezigheid.
+    straal en de duur van deze route zal worden geïnterpreteerd als een afwezigheid.
     Het is erg belangrijk dat jouw doellijst nauwkeurig de reeks soorten weergeeft
     die je probeerde te vinden. Als je niet geprobeerd hebt een soort op je doellijst
     te vinden of elke soorten die in een groep op je doellijst valt, verwijder deze
@@ -4710,9 +4726,9 @@ nl:
   "true": Waar
   trending: Trending
   trends: Trends
-  trip_target_list_info: Dit is een niet-overlappende reeks van de grofste taxa in
-    jouw doellijst. Alle taxa weergegeven door verduisterde waarnemingen zijn uitgesloten.
-    <a href="/pages/trips">Lees meer</a>.
+  trip_target_list_info: Alle soorten die onder deze doellijst vallen en die niet
+    binnen de straal en de duur van deze route werden waargenomen, wordt geïnterpreteerd
+    als nulwaarneming.<a href="/pages/trips">Lees meer</a>.
   trusted: Vertrouwd
   trusted_project?: Vertrouwd project?
   trust_this_person_with_your_private_coordinates: Vertrouw deze persoon je verborgen
@@ -5806,6 +5822,12 @@ nl:
         project_list_desc: |-
           Taxa handmatig toegevoegd door projectcurators en taxa vertegenwoordigd door
           onderzoekskwaliteit waarnemingen die aan het project zijn toegevoegd worden op projectlijsten vermeld.
+    messages:
+      index:
+        speech_privilege_notice: Je kunt nieuwe berichten verzenden nadat je er drie
+          verifieerbare waarnemingen hebt toegevoegd of drie determinaties voor anderen
+          hebt gedaan. Nu kun je alleen berichten lezen en beantwoorden die andere
+          mensen je sturen.
     oauth:
       authorizations:
         new:
@@ -6631,6 +6653,8 @@ nl:
           Life Stage=pupa: Pop
           Life Stage=adult: Volwassen
           unannotated: Geen aantekening
+        max_photos_desc: Een taxon kan slechts %{max} foto's bevatten. Je moet bestaande
+          foto's verwijderen om anderen toe te kunnen voegen.
         no_trending_desc: Niets minder dan dit taxon waargenomen in de laatste maand
         photo_chooser_modal_desc: Sleep foto's hier naartoe vanaf de linkerkant of
           sleep ze hier om opnieuw te schikken.
@@ -7044,6 +7068,10 @@ nl:
       not_an_integer: moet een geheel getal zijn
       odd: moet oneven zijn
       record_invalid: 'Validatie is mislukt: %{errors}'
+      requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben of
+        drie determinaties doen voor anderen om dat te kunnen doen
+      requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben om
+        dat te kunnen doen
       taken: bestaat al
       too_long:
         one: is te lang (maximaal 1 teken)
@@ -7140,6 +7168,10 @@ nl:
         not_an_integer: moet een geheel getal zijn
         odd: moet oneven zijn
         record_invalid: 'Validatie is mislukt: %{errors}'
+        requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben
+          of drie determinaties doen voor anderen om dat te kunnen doen
+        requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben
+          om dat te kunnen doen
         taken: bestaat al
         too_long:
           one: is te lang (maximaal 1 teken)
@@ -7272,6 +7304,10 @@ nl:
         not_an_integer: moet een geheel getal zijn
         odd: moet oneven zijn
         record_invalid: 'Validatie is mislukt: %{errors}'
+        requires_privilege_speech: je moet drie verifieerbare waarnemingen hebben
+          of drie determinaties doen voor anderen om dat te kunnen doen
+        requires_privilege_organizer: je moet 50 verifieerbare waarnemingen hebben
+          om dat te kunnen doen
         taken: bestaat al
         too_long:
           one: is te lang (maximaal 1 teken)
@@ -7382,6 +7418,10 @@ nl:
               bad_format: |-
                 kan alleen standaard Latijnse tekens, koppeltekens, spaties en
                 × bevatten; vermeende taxa en cultivars zijn niet toegestaan
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: mag niet meer dan %{max} foto's bevatten
         user:
           attributes:
             login:

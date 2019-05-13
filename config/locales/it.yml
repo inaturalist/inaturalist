@@ -38,6 +38,12 @@ it:
   x_comments:
     one: 1 commento
     other: '%{count} commenti'
+  x_faves:
+    one: 1 preferito
+    other: '%{count} preferiti'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> contrassegno risolto
+    other: <span class='count'>%{count}</span> contrassegni risolti
   x_followers:
     one: 1 seguace
     other: '%{count} seguaci'
@@ -95,18 +101,15 @@ it:
   x_people_found_this_helpful:
     one: Una persona lo ha trovato utile
     other: '%{count} persone lo hanno trovato utile'
-  x_faves:
-    one: 1 preferito
-    other: '%{count} preferiti'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> contrassegno risolto
-    other: <span class='count'>%{count}</span> contrassegni risolti
   x_people_like_this:
     one: piace ad 1 persona
     other: piace a %{count} persone
   x_people_agree_html:
     one: <span class="count">1</span> persona è d'accordo
     other: <span class="count">%{count}</span> persone sono d'accordo
+  x_photos:
+    one: 1 foto
+    other: '%{count} foto'
   x_new_species:
     one: 1 nuova specie
     other: '%{count} nuove specie'
@@ -181,6 +184,20 @@ it:
   about_this_bioblitz: Riguardo questo bioblitz
   about_this_map: A proposito di questa mappa
   about_this_project: A proposito di questo Progetto
+  about_trips_html: <h4>i Viaggi permettono la raccolta di dati di presenza-asssenza
+    aggiungendo un contesto alle tue osservazioni</h4><p><strong>Perchè</strong> i
+    dati di Presenza-Assenza includono informazioni sullo sforzo di ricerca effettuato
+    che è utile per analisi scientifiche come i modelli di distribuzione (le osservazioni
+    iNaturalist grezze sono dati di 'sola-presenza').</p> <p><strong>Come</strong>
+    Un viaggio aggiunge contesto alle tue osservazioni registrando:</p> <ul> <li><strong>Cosa</strong>
+    hai cercato (lista obbiettivi)</li> <li><strong>Dove</strong> hai cercato (area
+    di ricerca)</li> <li><strong>Quando</strong> hai cercato (intervallo di ricerca)</li>
+    </ul> <p>Le specie sulla tua lista di obbiettivi che tu sei stato in grado di
+    osservare nell'area per l'intervallo di ricerca sono interpretate come presenze.
+    Mentre le specie sulla tua lista di obbiettivi che tu non sei stato in grado di
+    osservare sono interpretate come assenze. Clicca 'Tabula Dati Presenza Assenza
+    Dai Viaggi' per generare una tabella di record di presenza-assenza per una specie
+    dai viaggi e di osservazioni associate. <a href='%{url}'>Scopri di più</a></p>
   about_x: A proposito di %{x}
   acc: Acc (m)
   account: Account
@@ -499,6 +516,7 @@ it:
   amphibiaweb_taxonomy: Tassonomia di AmphibiaWeb
   an: una
   an_: una
+  ancestor_taxon: Taxon Antenato
   and: e
   and_choose_a_matching_taxon: e scegliere un taxon corrispondente dall'elenco. Se
     non si ottiene qualcosa come
@@ -2243,6 +2261,7 @@ it:
     el: Greco
     en-US: Inglese (Stati Uniti)
     en: Inglese
+    eo: Esperanto
     es-ES: Spagnolo (Spagna)
     es-MX: Spagnolo (Messico)
     es: Spagnolo
@@ -3950,6 +3969,7 @@ it:
   search_for_species: Cerca Specie
   search_list: Cerca Liste
   search_obs: Cerca osservazioni...
+  search_observations: Cerca osservazioni
   search_places: Cerca Luoghi
   search_projects: Cerca Progetti
   search_results_for: Cerca Risultati per
@@ -4743,6 +4763,9 @@ it:
   "true": Vero
   trending: Tendenze
   trends: Tendenze
+  trip_target_list_info: Tutte le specie incluse in questa lista di obbiettivi che
+    non sono state osservate nel raggio e nella durata del viaggio saranno interpretate
+    come assenti. <a href="/pages/trips">Leggi di più</a>.
   trusted: Affidabile
   trusted_project?: Progetto fidato?
   trust_this_person_with_your_private_coordinates: Rivela a questa persona le tue
@@ -4836,6 +4859,9 @@ it:
       file_too_big: Il file deve essere meno di %{megabytes} MB
       unsupported_file_type: Tipo file non supportato. Accettiamo JPG, PNG, GIF, WAV,
         AAC, MP3, e MP4 (solo audio)
+    resize_tip: Se i tuoi file di foto sono troppo grossi, prova a tagliarli ad un
+      massimo di 2048 x 2048 pixel. Questo accadrà comunque a tutte le foto sul server,
+      e sarà fatto per un caricamento più veloce.
     tooltips:
       add: Aggiungi osservazione(i)
       combine: Combina le osservazioni selezionate
@@ -5123,7 +5149,7 @@ it:
   what_do_you_want_to_list: Cosa vuoi elencare?
   what_to_keep: Cosa tenere
   what_want_to_list?: Cosa vuoi elencare?
-  what_were_you_looking_for?: Che cosa stavi cercando? (elenco destinazioni)
+  what_were_you_looking_for?: Che cosa stavi cercando? (elenco obbiettivi)
   whats_this?: Cos'è questo?
   when: Quando
   when_did_you_see_it?: Quando l'hai visto?
@@ -5829,6 +5855,11 @@ it:
         project_list_desc: I taxa aggiunti manualmente dai curatori del progetto,
           e quelli le cui osservazioni hanno raggiunto un livello 'ricerca', sono
           elencati nelle liste del progetto.
+    messages:
+      index:
+        speech_privilege_notice: Sarai in grado di mandare nuovi messaggi dopo che
+          avrai aggiunto tre osservazioni verificabili o tre identificazioni per altri.
+          Per ora puoi leggere e rispondere ai messaggi che ti mandano altre persone.
     oauth:
       authorizations:
         new:
@@ -6670,6 +6701,8 @@ it:
           Life Stage=pupa: Pupa
           Life Stage=adult: Adulto
           unannotated: Nessuna annotazione
+        max_photos_desc: Un taxon può avere solo %{max} foto. Devi rimuovere le foto
+          esistenti per aggiungerne altre.
         no_trending_desc: Nulla al di sotto di questo taxon è stato osservato nell'ultimo
           mese
         photo_chooser_modal_desc: Trascina qui le foto da sinistra, oppure trascinale
@@ -6801,13 +6834,16 @@ it:
           le impostazioni locali e quelle del luogo.
         if_you_change_your_mind_you_can_always_edit_your_settings_html: Se cambi idea
           puoi sempre <a href='/users/edit'>modificare le tue impostazioni</a>.
-        inaturalist_network_affiliation_desc_html: Il <a href="%{url}" target="_blank">Network
-          di iNaturalist</a> è un gruppo di siti web locali connessi alla community
-          di iNaturalist. Puoi modificare l'affiliazione principale; ciò significa
-          che puoi che i tuoi contenuti hanno alcune priorità sul sito scelto, ma
-          anche che i proprietari di quel sito hanno il diritto di scaricare e visualizzare
-          i dati come fanno gli amministratori di iNaturalist. Se il sito da te scelto
-          abbandona il network, tutti i tuoi dati lo seguiranno.
+        inaturalist_network_affiliation_desc_html: |-
+          <p>
+            Il <a href="%{url}" target="_blank">Network iNaturalist</a> è una collezione di siti web localizzati che sono completamente connessi alla comunità globale di iNaturalist. i Siti del Network sono supportati da istituzioni locali che hanno firmato un accordo con iNaturalist per promuovere l'utilizzo locale e portare beneficio alla biodiversità locale. Per gli stati di competenza, hanno accesso alle coordinare reali che sono automaticamente oscurate al pubblico per proteggere le specie minacciate.
+          </p>
+          <p>
+            Il tuo nome utente e password funziona per tutti i siti che sono partner del Network iNaturalist. Se scegli di affiliarti ad un sito del Network, le istituzioni locali che mantengono ogni siti hanno anche accesso alla tua mail (solo per comunicare con te relativamente all'attività del sito) e alle coordinate reali delle osservazioni che sono pubblicamente oscurate o private.
+          </p>
+          <p>
+            Nota: Per favore non provare a cambiare affiliazione se hai più di 1000 osservazioni.
+          </p>
         licensing_desc_html: Attribuendo una licenza ai tuoi contenuti darai alle
           altre persone il diritto legale di utilizzarlo senza chiederti il permesso
           se essi si attengono ai termini della licenza. %{site_name} utilizza i tuoi
@@ -6855,6 +6891,11 @@ it:
         youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi
           un blocco per poterne aggiungere un altro.
         same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
+        prefers_coordinate_interpolation_protection_desc: Quando imposti la geoprivacy
+          di un osservazione come "oscurata" o "privata" questa impostazione si applicherà
+          a tutte le altre tue osservazioni fatte nello stesso giorno al fine di rendere
+          più difficile alle altre persone ipotizzare le coordinate reali basandosi
+          sulle osservazioni fatte lì intorno nello stesso periodo.
       recent:
         about_recent_users: A proposito di
         definitions_html: <dl> <dt>Probabilmente Spam</dt> <dd> Utenti che sono probabilmente
@@ -7056,6 +7097,10 @@ it:
       not_an_integer: deve essere un numero intero
       odd: deve essere dispari
       record_invalid: 'Validazione fallita: %{errors}'
+      requires_privilege_speech: devi avere tre osservazioni verificabili o tre identificazioni
+        fatte per altri per fare questo
+      requires_privilege_organizer: devi avere 50 osservazioni verificabili per fare
+        questo
       taken: è già stato preso
       too_long:
         one: è troppo lungo (massimo 1 carattere)
@@ -7152,6 +7197,10 @@ it:
         not_an_integer: deve essere un numero intero
         odd: deve essere dispari
         record_invalid: 'Validazione fallita: %{errors}'
+        requires_privilege_speech: devi avere tre osservazioni verificabili o tre
+          identificazioni fatte per altri per fare questo
+        requires_privilege_organizer: devi avere 50 osservazioni verificabili per
+          fare questo
         taken: è già stato utilizzato
         too_long:
           one: è troppo lungo (massimo 1 carattere)
@@ -7284,6 +7333,10 @@ it:
         not_an_integer: deve essere un numero intero
         odd: deve essere dispari
         record_invalid: 'Validazione fallita: %{errors}'
+        requires_privilege_speech: devi avere tre osservazioni verificabili o tre
+          identificazioni fatte per altri per fare questo
+        requires_privilege_organizer: devi avere 50 osservazioni verificabili per
+          fare questo
         taken: è già stato preso
         too_long:
           one: è troppo lungo (massimo 1 carattere)
@@ -7375,6 +7428,9 @@ it:
             complete_rank:
               can_only_be_changed_by_a_curator_of_this_taxon: può essere modificato
                 solo da un curatore di questo taxon
+            name:
+              bad_format: può solo contenere caratteri Latino standard, trattini,
+                spazi, e ×; nota che taxa presunti e cultivar non sono permessi
         taxon_name:
           attributes:
             lexicon:
@@ -7382,6 +7438,12 @@ it:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: non
                 corrisponde al nome scientifico di una specie in questa lingua
+              bad_format: può solo contenere caratteri Latino standard, trattini,
+                spazi, e ×; nota che taxa presunti e cultivar non sono permessi
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: non può avere più di %{max} foto
         user:
           attributes:
             login:

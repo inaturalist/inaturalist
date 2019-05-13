@@ -16,6 +16,9 @@ el:
   x_comments:
     one: 1 σχόλιο
     other: '%{count} σχόλια'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> αναφορά επιλύθηκε
+    other: <span class='count'>%{count}</span> αναφορές επιλύθηκαν
   x_followers:
     one: 1 ακόλουθος
     other: '%{count} ακόλουθοι'
@@ -70,9 +73,6 @@ el:
   x_people_found_this_helpful:
     one: Ένα άτομο το βρήκε βοηθητικό
     other: '%{count} άτομα το βρήκαν βοηθητικό'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> αναφορά επιλύθηκε
-    other: <span class='count'>%{count}</span> αναφορές επιλύθηκαν
   x_people_like_this:
     one: αυτό αρέσει σε 1 άτομο
     other: αυτό αρέσει σε %{count} άτομα

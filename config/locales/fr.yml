@@ -42,6 +42,12 @@ fr:
   x_comments:
     one: 1 commentaire
     other: '%{count} commentaires'
+  x_faves:
+    one: 1 favori
+    other: '%{count} favoris'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> marque résolue
+    other: <span class='count'>%{count}</span> marques résolues
   x_followers:
     one: 1 abonné
     other: '%{count} abonnés'
@@ -99,18 +105,15 @@ fr:
   x_people_found_this_helpful:
     one: Une personne a trouvé cela utile
     other: '%{count} personnes ont trouvé cela utile'
-  x_faves:
-    one: 1 favori
-    other: '%{count} favoris'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> marque résolue
-    other: <span class='count'>%{count}</span> marques résolues
   x_people_like_this:
     one: 1 personne aime cela
     other: '%{count} personnes aiment cela'
   x_people_agree_html:
     one: <span class="count">1</span> personne est d’accord
     other: <span class="count">%{count}</span> personnes sont d’accord
+  x_photos:
+    one: 1 photo
+    other: '%{count} photos'
   x_new_species:
     one: 1 nouvelle espèce
     other: '%{count} nouvelles espèces'
@@ -2337,6 +2340,7 @@ fr:
     el: Grec
     en-US: Anglais (États-Unis)
     en: Anglais
+    eo: Espéranto
     es-ES: Espagnol (Espagne)
     es-MX: Espagnol (Mexique)
     es: Espagnol
@@ -7254,11 +7258,13 @@ fr:
           sont privées.</p>\n<p>\n Note: ne modifiez pas à titre d'essai votre affiliation
           si vous avez plus de 1000 observations.\n</p>"
         licensing_desc_html: |-
-          En mettant votre contenu sous licence, vous donnerez aux autres le
-          droit de l÷’utiliser légalement sans demander votre permission s’ils
-          respectent les conditions de la licence. %{site_name} utilise votre
-          contenu sous licence Creative Commons pour l’échanger avec des
-          partenaires d’échange de données comme le
+          En mettant votre contenu sous licence, vous donnerez à quiconque le
+          droit de l’utiliser légalement sans
+          demander votre permission s’ils restent dans les conditions de la licence. De
+          plus, %{site_name} inclut votre contenu sous licence Creative Commons dans des archives régulièrement mises à jour produites pour des organisations partenaires
+          sélectionnées intéressées par nos données. Par exemple, nous incluons les enregistrements de Aucun
+          Droit d’auteur (CC0), Attribution (CC BY), et Attribution non commerciale le
+          (CC BY-NC) dans l’archive que nous générons pour
           <a href="http://www.gbif.org/">Système mondial d’informations sur la
           biodiversité</a> (SMIB), une organisation internationale
           intergouvernementale qui compile et distribue des informations sur la
@@ -7769,7 +7775,7 @@ fr:
         record_invalid: 'Échec de la validation : %{errors}'
         requires_privilege_speech: |-
           doit avoir trois observations vérifiables ou trois identifications
-          pour d’autres pour faire cela
+          pour que les autres puissent faire cela
         requires_privilege_organizer: doit avoir cinquante observations vérifiables
           pour faire cela
         taken: a déjà été pris

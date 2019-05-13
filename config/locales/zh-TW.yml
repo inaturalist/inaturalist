@@ -22,6 +22,12 @@ zh-TW:
   x_comments:
     one: 1 則評論
     other: '%{count} 則評論'
+  x_faves:
+    one: 1 個最愛
+    other: '%{count} 個最愛'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> 個標記已解決
+    other: <span class='count'>%{count}</span> 個標記已解決
   x_followers:
     one: '1 位追蹤者 '
     other: '%{count} 位追蹤者'
@@ -79,12 +85,6 @@ zh-TW:
   x_people_found_this_helpful:
     one: 1 個人覺得這個是有幫助的
     other: '%{count} 個人發現這個是有幫助的'
-  x_faves:
-    one: 1 個最愛
-    other: '%{count} 個最愛'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> 個標記已解決
-    other: <span class='count'>%{count}</span> 個標記已解決
   x_people_like_this:
     one: 1個人喜歡這個
     other: '%{count}個人喜歡這個'

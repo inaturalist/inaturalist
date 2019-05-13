@@ -11,6 +11,12 @@ et:
   x_comments:
     one: 1 kommentaar
     other: '%{count} kommentaari'
+  x_faves:
+    one: 1 lemmik
+    other: '%{count} lemmikut'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> märkus lahendatud
+    other: <span class='count'>%{count}</span> märkust lahendatud
   x_followers:
     one: 1 järgija
     other: '%{count} järgijat'
@@ -65,12 +71,6 @@ et:
   x_people_found_this_helpful:
     one: Ühe isiku jaoks oli sellest abi
     other: '%{count} isiku jaoks oli sellest abi'
-  x_faves:
-    one: 1 lemmik
-    other: '%{count} lemmikut'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> märkus lahendatud
-    other: <span class='count'>%{count}</span> märkust lahendatud
   x_people_like_this:
     one: 1 isik armastab seda
     other: '%{count} isikut armastab seda'
