@@ -187,31 +187,39 @@ $.fn.universalAutocomplete = function( options ) {
     return wrapperDiv;
   };
 
+  var universalSearchTextModifiedAt;
   field.genericAutocomplete( _.extend( options, {
     source: function( request, response ) {
+      var thisSearchTime = new Date( ).getTime( );
+      universalSearchTextModifiedAt = thisSearchTime;
       var apiToken = $( "meta[name='inaturalist-api-token']" ).attr( "content" );
       var headers = {};
       if ( apiToken) {
         headers["Authorization"] = apiToken;
       }
-      $.ajax({
-        url: "<%= CONFIG.node_api_url %>/search",
-        dataType: "json",
-        cache: true,
-        headers: headers,
-        data: {
-          q: request.term,
-          locale: I18n.locale,
-          preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null,
-          per_page: 10,
-          utm_content: "header-search"
-        },
-        success: function( data ) {
-          response( data.results.concat( [{
-            type: "view_all"
-          }]) );
+      setTimeout( function( ) {
+        if ( thisSearchTime !== universalSearchTextModifiedAt ) {
+          return;
         }
-      });
+        $.ajax({
+          url: "<%= CONFIG.node_api_url %>/search",
+          dataType: "json",
+          cache: true,
+          headers: headers,
+          data: {
+            q: request.term,
+            locale: I18n.locale,
+            preferred_place_id: PREFERRED_PLACE ? PREFERRED_PLACE.id : null,
+            per_page: 10,
+            utm_content: "header-search"
+          },
+          success: function( data ) {
+            response( data.results.concat( [{
+              type: "view_all"
+            }]) );
+          }
+        });
+      }, 500 );
     },
     select: function( e, ui ) {
       // Hack to tell keyup listener on input not to do anything
