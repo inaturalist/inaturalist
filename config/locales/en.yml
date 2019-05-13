@@ -5612,13 +5612,6 @@ en:
           obseration field being merged and move all observations using it
           over to the keeper. <strong>This process cannot be undone</strong>, so be careful.
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: |
-          Your observations export is ready. There's a copy attached to this email, or you can
-          <a href="%{url}">download your export</a>.
-        your_observations_export_failed_html: |
-          Your observations export failed. Visit the
-          <a href="%{url}">observations export page</a> for a list of your exports.
       bulk_import_success:
         success_message: |
           Your bulk import of %{filename} was successful. Your observations
@@ -5632,11 +5625,66 @@ en:
           the search page to import new names. If the name is present but
           applies to multiple valid taxa, try to use a more or less specific
           name that only matches a single taxon. 
-      users_updates_suspended:
-        message: |
-          You have been inactive on %{site_name} for a while, so we have suspended
-          your subscriptions. To resume getting updates on site activity, please
-          <a href="%{login_url}">log in to your account</a> again.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |
+          Your observations export is ready. There's a copy attached to this email, or you can
+          <a href="%{url}">download your export</a>.
+        your_observations_export_failed_html: |
+          Your observations export failed. Visit the
+          <a href="%{url}">observations export page</a> for a list of your exports.
+      parental_consent:
+        subject: Your child would like to use iNaturalist
+        must_specify_email: You must specify an email address
+        invalid_email: Invalid email format
+        content_html: |
+          <p>
+            Your child is using the Seek by iNaturalist educational app and
+            would like to share data with the iNaturalist citizen-science
+            platform. Because this data includes Personal Identifying
+            Information, it cannot be used by person’s under the age of 13
+            without the consent of a parent.
+          </p>
+          <p>
+            Seek by iNaturalist may be used without creating an account, and no
+            data will be shared, but your child will not be able to contribute
+            observations to iNaturalist. [EXPLANATION OF INAT]
+          </p>
+          <p>
+            If you’d like to give consent for your child to use iNaturalist,
+            we’ll need you to do the following:
+          </p>
+          <ol>
+            <li>
+              <p>
+                Create an iNaturalist account that your child will use
+                indicating that the account will be used by a person under the
+                age of 13 by following this link:
+                <a href="%{registration_url}">%{registration_url}</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                Make a nominal donation of $1 with a credit card to iNaturalist
+                to verify that you are an adult. Please make sure to use include
+                the same email that you used to create the account alongside
+                your donation here: https://www.inaturalist.org/donate
+              </p>
+            </li>
+            <li>
+              <p>
+                Once we process the donation, we will send a notification to the
+                account email that the account has been activated and you can
+                use the iNaturalist username and password you created to log in
+                to your child’s Seek app.
+              </p>
+            </li>
+          </ol>
+          <p>
+            Learn more about what Personal Identifying Information iNaturalist shares: …
+          </p>
+          <p>
+            Learn more about iNaturalist’s Privacy Policy <a href="%{privacy_policy_url}">here</a>.
+          </p>
       photos_missing:
         subject: Some photos need repairing
         we_have_been_housekeeping: |
@@ -5660,6 +5708,11 @@ en:
           some research grade observations will become casual if they no longer have any photos.
         we_included_links: |
           We've included links to the affected photos below.
+      users_updates_suspended:
+        message: |
+          You have been inactive on %{site_name} for a while, so we have suspended
+          your subscriptions. To resume getting updates on site activity, please
+          <a href="%{login_url}">log in to your account</a> again.
     photos:
       forbidden_notice_html: |
         We don't have permission to access those photos right now. You might

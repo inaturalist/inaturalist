@@ -8,7 +8,12 @@ module Devise
       end
 
       def authenticate!
-        if claims && user = User.find_by_id(claims.fetch("user_id"))
+        user_id = begin
+          claims.fetch("user_id")
+        rescue KeyError
+          nil
+        end
+        if claims && user_id && user = User.find_by_id( user_id )
           success! user
         else
           fail!
