@@ -844,6 +844,9 @@ inat-taxon { white-space: nowrap; }
   color: #eee;
   opacity: 0.8;
 }
+$photo-count-square-width: 19px;
+$photo-count-square-offset: 3px;
+$photo-count-line-width: 1px;
 #result-table .img .photo-count,
 #result-grid .photo .photo-count {
   position: absolute;
@@ -854,35 +857,46 @@ inat-taxon { white-space: nowrap; }
   padding: 3px;
   font-weight: 100;
   display: block;
-  border: 1px solid #eee;
+  border: $photo-count-line-width solid #eee;
   border-radius: 4px;
-  min-width: 23px;
-  z-index: 1;
+  width: $photo-count-square-width;
+  height: $photo-count-square-width;
+  line-height: $photo-count-square-width / 2 + $photo-count-square-offset;
+  font-size: $photo-count-square-width / 2;
 }
 #result-grid .photo .photo-count:after {
   content: "";
-  width: 23px;
-  height: 23px;
+  width: $photo-count-square-width;
+  height: $photo-count-square-width;
   background-color: rgba(0,0,0,0.5);
-  border: 1px solid #eee;
+  border: $photo-count-line-width solid #eee;
   border-radius: 4px;
   position: absolute;
-  left: 3px;
-  bottom: 3px;
+  left: $photo-count-square-offset;
+  bottom: $photo-count-square-offset;
   z-index: 0;
-  /*clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 20px 23px, 20px 5px, 18px 3px, 0px 3px);
-  -webkit-clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 20px 23px, 20px 5px, 18px 3px, 0px 3px);*/
-  clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 19px 23px, 19px 6px, 17px 4px, 0px 4px);
-  -webkit-clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 19px 23px, 19px 6px, 17px 4px, 0px 4px);
+  clip-path: polygon(
+    0px 0px,
+    $photo-count-square-width 0px,
+    $photo-count-square-width $photo-count-square-width,
+    ($photo-count-square-width - $photo-count-square-offset - $photo-count-line-width) $photo-count-square-width,
+    ($photo-count-square-width - $photo-count-square-offset - $photo-count-line-width) (2 * $photo-count-square-offset),
+    ($photo-count-square-width - 2 * $photo-count-square-offset) ($photo-count-square-offset + $photo-count-line-width),
+    0px ($photo-count-square-offset + $photo-count-line-width)
+  );
+  -webkit-clip-path: polygon(
+    0px 0px,
+    $photo-count-square-width 0px,
+    $photo-count-square-width $photo-count-square-width,
+    ($photo-count-square-width - $photo-count-square-offset - $photo-count-line-width) $photo-count-square-width,
+    ($photo-count-square-width - $photo-count-square-offset - $photo-count-line-width) (2 * $photo-count-square-offset),
+    ($photo-count-square-width - 2 * $photo-count-square-offset) ($photo-count-square-offset + $photo-count-line-width),
+    0px ($photo-count-square-offset + $photo-count-line-width)
+  );
 }
 #result-table .img .photo-count {
-  line-height: 18px;
-}
-#result-grid .photo .photo-count {
-  font-size: 12px;
-  height: 23px;
-  line-height: 21px;
-  padding: 0 6px
+  left: 5px;
+  bottom: 5px;
 }
 #result-table td.user {
   white-space: nowrap;
