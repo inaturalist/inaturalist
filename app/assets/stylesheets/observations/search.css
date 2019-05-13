@@ -847,22 +847,42 @@ inat-taxon { white-space: nowrap; }
 #result-table .img .photo-count,
 #result-grid .photo .photo-count {
   position: absolute;
-  left: 0;
-  bottom: 0;
+  left: 8px;
+  bottom: 8px;
   color: #eee;
   background-color: rgba(0,0,0,0.5);
-  padding: 1px 5px;
+  padding: 3px;
   font-weight: 100;
   display: block;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  min-width: 23px;
+  z-index: 1;
+}
+#result-grid .photo .photo-count:after {
+  content: "";
+  width: 23px;
+  height: 23px;
+  background-color: rgba(0,0,0,0.5);
+  border: 1px solid #eee;
+  border-radius: 4px;
+  position: absolute;
+  left: 3px;
+  bottom: 3px;
+  z-index: 0;
+  /*clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 20px 23px, 20px 5px, 18px 3px, 0px 3px);
+  -webkit-clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 20px 23px, 20px 5px, 18px 3px, 0px 3px);*/
+  clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 19px 23px, 19px 6px, 17px 4px, 0px 4px);
+  -webkit-clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 19px 23px, 19px 6px, 17px 4px, 0px 4px);
+}
+#result-table .img .photo-count {
+  line-height: 18px;
 }
 #result-grid .photo .photo-count {
   font-size: 12px;
-  height: 24px;
-  line-height: 24px;
+  height: 23px;
+  line-height: 21px;
   padding: 0 6px
-}
-#result-grid .photo .photo-count i {
-  margin-right: 3px;
 }
 #result-table td.user {
   white-space: nowrap;

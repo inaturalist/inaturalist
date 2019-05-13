@@ -48,8 +48,7 @@ const ObservationsGridItem = ( {
             className="photo-count"
             title={I18n.t( "x_photos", { count: o.photos.length } )}
           >
-            <i className="fa fa-picture-o" />
-            { o.photos.length }
+            { o.photos.length > 9 ? "+" : o.photos.length }
           </span>
         ) }
         { o.photos && o.photos.length > 1 && (

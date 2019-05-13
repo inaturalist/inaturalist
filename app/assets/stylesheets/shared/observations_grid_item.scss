@@ -222,17 +222,32 @@ $flowedDim: 150px;
 
   .photo-count {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: 8px;
+    bottom: 8px;
     color: #eee;
-    background-color: rgba(0,0,0,0.3);
-    padding: 1px 5px;
+    background-color: rgba(0,0,0,0.5);
+    padding: 3px;
     font-weight: 100;
     display: block;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    width: 23px;
+    height: 23px;
+    line-height: 16px;
     font-size: 12px;
-    line-height: 20px;
-    i {
-      margin-right: 5px;
+    &:after {
+      content: "";
+      width: 23px;
+      height: 23px;
+      background-color: rgba(0,0,0,0.5);
+      border: 1px solid #eee;
+      border-radius: 4px;
+      position: absolute;
+      left: 3px;
+      bottom: 3px;
+      z-index: 0;
+      clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 19px 23px, 19px 6px, 17px 4px, 0px 4px);
+      -webkit-clip-path: polygon(0px 0px, 23px 0px, 23px 23px, 19px 23px, 19px 6px, 17px 4px, 0px 4px);
     }
   }
 
