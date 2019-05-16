@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   get "/set_locale", to: "application#set_locale", as: :set_locale
   get "/ping", to: "application#ping"
   get "/seek", to: redirect( "/pages/seek_app", status: 302 )
-  get "/terms", to: redirect( "/pages/terms" )
+  get "/terms", to: redirect( "/pages/terms" ), as: :terms_of_service
   get "/privacy", to: redirect( "/pages/privacy" ), as: :privacy_policy
   get "/users/new.mobile", to: redirect( "/signup" )
   get "/donate", to: "donate#index"

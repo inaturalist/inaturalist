@@ -1,5 +1,6 @@
 - f = builder
 - u = user
+- child ||= false
 .form-group.text-field.email
   = f.text_field :email, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( :email ), type: "email", class: "form-control"
   - unless u.errors[:email].blank?
@@ -16,6 +17,11 @@
   = f.password_field :password_confirmation, class: "text form-control", required: true, placeholder: t(:password_confirmation)
   - unless u.errors[:password_confirmation].blank?
     .error= formatted_error_sentence_for( u, :password_confirmation )
+- if child
+  .form-group.text-field.birthday
+    = f.text_field :birthday, class: "text form-control date-picker", required: true, placeholder: t(:birthday)
+    - unless u.errors[:birthday].blank?
+      .error= formatted_error_sentence_for( u, :birthday )
 - if @site.using_recaptcha?
   .form-group.recaptcha
     .g-recaptcha{ data: { sitekey: @site.google_recaptcha_key, callback: "recaptchaCallback" }, style: "text-align: center" }
@@ -29,8 +35,21 @@
       = f.check_box :preferred_photo_license, { checked: true }, Observation::CC_BY_NC
       = f.check_box :preferred_sound_license, { checked: true }, Observation::CC_BY_NC
     %span
-      =t :yes_license_my_observations_so_scientists_can_use
-      %a{ href: "#", data: { toggle: "popover", content: t(:check_this_box_if_html), placement: "top" }, title: t(:about_licenses) }
+      - if child
+        =t :yes_license_my_childs_observations
+      - else 
+        =t :yes_license_my_observations_so_scientists_can_use
+      %a{ href: "#", onclick: "return false;", data: { toggle: "popover", content: t(:check_this_box_if_html), placement: "top" }, title: t(:about_licenses) }
+        =t :learn_more
+#pi-consent.form-group.checkbox
+  %label
+    = f.check_box :pi_consent, required: true
+    %span
+      - if child
+        =t :pi_consent_child_label
+      - else 
+        =t :pi_consent_label
+      %a{ href: "#", onclick: "return false;", data: { toggle: "popover", content: t(:pi_consent_desc_html, privacy_url: privacy_policy_url, terms_url: terms_of_service_url ), placement: "top" }, title: t(:pi_consent_desc_title) }
         =t :learn_more
 .form-group.hidden
   = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { }, { class: "time_zone_select" }

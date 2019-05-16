@@ -619,6 +619,7 @@ en:
   bg_color: BG Color
   bioblitz: Bioblitz
   birds: birds
+  birthday: Birthday
   black: black
   block_user: Block User
   block_removed: Block removed
@@ -746,16 +747,15 @@ en:
   check_out_our_blog: Check out our Blog
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
   check_out_your_life_list: Check out your Life List
-  check_this_box_if: |
-    Check this box if you want to apply a
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-    to your photos. You can choose a different license or remove the license
-    later, but this is the best license for sharing with researchers.
   check_this_box_if_html: |
-    Check this box if you want to apply a
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-    to your photos. You can choose a different license or remove the license
-    later, but this is the best license for sharing with researchers.
+    Check this box if you want to apply a <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Attribution-NonCommercial license</a> to
+    uploaded content. This means anyone can copy and reuse your photos and/or
+    observations without asking for permission as long as they given you credit
+    and don't use the works commercially. You can choose a different license or
+    remove the license later, but this is the best license for sharing with
+    researchers.
   checklist: Checklist
   checklists: Checklists
   checklist_places: Checklist places
@@ -2759,6 +2759,21 @@ en:
   photos_size_photo: "%{photos_size} photo"
   photos_updated: Photos updated.
   google_account_not_linked: "%{user} doesn't have a linked Google account anymore, so %{site_name} doesn't have permission to access this photo."
+  pi_consent_desc_title: About Personal Information
+  pi_consent_desc_html: |
+    We store personal information like usernames and email addresses in order
+    to manage accounts on this site, and to comply with privacy laws, we
+    need you to check this box to indicate that you consent to this use of
+    personal information. To learn more about what information we collect and
+    how we use it, please see our
+    <a href='%{privacy_url}' target='_blank'>Privacy Policy</a>
+    and our <a href='%{terms_url}' target='_blank'>Terms of Service</a>.
+  pi_consent_label: |
+    I consent to allow iNaturalist to store and process limited kinds of
+    personal information about me in order to manage my account
+  pi_consent_child_label: |
+    I consent to allow iNaturalist to store and process limited kinds of
+    personal information about my child in order to manage my child's account
   picasa_identity: Picasa Identity
   pick_a_username: Pick a username
   pin_verb: Pin
@@ -4672,7 +4687,8 @@ en:
   'yes': "Yes"
   yes_find_them!: "Yes, find them!"
   yes_i_want_to_join: Yes, I want to join
-  yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds & observations so scientists can use my data!
+  yes_license_my_childs_observations: Yes, license my child's photos, sounds, and observations so scientists can use the data.
+  yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds, and observations so scientists can use my data.
   yes_reject_it: Yes, reject it
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday: Yesterday

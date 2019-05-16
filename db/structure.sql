@@ -4845,7 +4845,8 @@ CREATE TABLE public.users (
     search_place_id integer,
     curator_sponsor_id integer,
     suspended_by_user_id integer,
-    birthday date
+    birthday date,
+    pi_consent_at timestamp without time zone
 );
 
 
@@ -9910,4 +9911,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190404042229');
 INSERT INTO schema_migrations (version) VALUES ('20190514191221');
 
 INSERT INTO schema_migrations (version) VALUES ('20190514192302');
+
+INSERT INTO schema_migrations (version) VALUES ('20190516011313');
 

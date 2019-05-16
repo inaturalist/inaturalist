@@ -29,6 +29,6 @@
       .error= formatted_error_sentence_for( @user_parent, :name )
   = f.fields_for :user do |u|
     %h2=t :create_a_minor_account
-    = render "users/registrations/form", builder: u, user: @user_parent.user
+    = render "users/registrations/form", builder: u, user: @user_parent.user, child: true
   .form-group.centered
     = f.submit t( "views.user_parents.new.create_minor_account" ), class: "btn btn-inat btn-primary btn-lg", disabled: @site.using_recaptcha?

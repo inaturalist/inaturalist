@@ -30,7 +30,7 @@ class UserParentsController < ApplicationController
   def confirm
     # If the user is signed in, load the data from the UserParent record if they created it
     if current_user
-      if @user_parent = UserParent.where( id: params[:id], parent_user_id: current_user )
+      if @user_parent = UserParent.where( id: params[:id], parent_user_id: current_user ).first
         @user_parent_name = @user_parent.name
         @user_parent_email = @user_parent.email
       end
