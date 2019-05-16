@@ -27,6 +27,12 @@ pt-BR:
   x_comments:
     one: 1 comentário
     other: '%{count} comentários'
+  x_faves:
+    one: 1 favorito
+    other: '%{count} favoritos'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> sinalizador resolvido
+    other: <span class='count'>%{count}</span> sinalizadores resolvidos
   x_followers:
     one: 1 seguidor
     other: '%{count} seguidores'
@@ -84,18 +90,15 @@ pt-BR:
   x_people_found_this_helpful:
     one: Uma pessoa considerou isto útil
     other: '%{count} pessoas consideraram isto útil'
-  x_faves:
-    one: 1 favorito
-    other: '%{count} favoritos'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> sinalizador resolvido
-    other: <span class='count'>%{count}</span> sinalizadores resolvidos
   x_people_like_this:
     one: 1 pessoa gosta disso
     other: A %{count} pessoas gostam disso
   x_people_agree_html:
     one: <span class="count">1</span> pessoas concordam
     other: <span class="count">%{count}</span> pessoas concordam
+  x_photos:
+    one: 1 foto
+    other: '%{count} fotos'
   x_new_species:
     one: 1 Nova Espécie
     other: '%{count} Novas Espécies'
@@ -486,6 +489,7 @@ pt-BR:
   amphibiaweb_taxonomy: Taxônomia de AmphibiaWeb
   an: uma
   an_: um(a)
+  ancestor_taxon: Táxon ancestral
   and: e
   and_choose_a_matching_taxon: e selecione um táxon que combine da lista. Caso você
     não acabe com algo semelhante
@@ -2237,6 +2241,7 @@ pt-BR:
     el: Grego
     en-US: Inglés (Estados Unidos)
     en: Inglês
+    eo: Esperanto
     es-ES: Espanhol (Espanha)
     es-MX: Espanhol (México)
     es: Espanhol
@@ -3939,6 +3944,7 @@ pt-BR:
   search_for_species: Buscar espécies
   search_list: Lista de pesquisas
   search_obs: Procurar por observações
+  search_observations: Pesquisar observações
   search_places: Pesquisar lugares
   search_projects: Procurar por projetos
   search_results_for: Procurar por resultados para
@@ -5807,6 +5813,11 @@ pt-BR:
         project_list_desc: Táxons adicionados manualmente por administradores de projetos
           e, táxons, representados por observações à Nível de Pesquisa adicionados
           ao projeto são exibidos na lista do projeto.
+    messages:
+      index:
+        speech_privilege_notice: Você poderá enviar novas mensagens depois de adicionar
+          três observações verificáveis ou três identificações para os outros. Para
+          agora você pode ler e responder a mensagem que outras pessoas lhe enviam.
     oauth:
       authorizations:
         new:
@@ -6719,6 +6730,9 @@ pt-BR:
           Life Stage=pupa: Pupa
           Life Stage=adult: Adulto
           unannotated: Nenhuma anotação
+        max_photos_desc: |-
+          Um táxon só pode ter %{max} fotos. Você precisará remover os existentes
+          fotos para adicionar mais.
         no_trending_desc: Nada abaixo deste táxon foi observado no último mês
         photo_chooser_modal_desc: Arraste as fotos aqui da esquerda, ou arraste as
           fotos aqui para rearranjar.
@@ -7130,6 +7144,11 @@ pt-BR:
       not_an_integer: deve ser um número inteiro
       odd: deve ser ímpar
       record_invalid: 'Validação falhou: %{errors}'
+      requires_privilege_speech: |-
+        deve ter três observações verificáveis ou três identificações
+        para os outros fazerem isso
+      requires_privilege_organizer: deve ter 50 observações verificáveis para fazer
+        isso
       taken: já está sendo utilizado
       too_long:
         one: é muito longo (máximo de 1 caractere)
@@ -7238,6 +7257,11 @@ pt-BR:
         not_an_integer: deve ser um número inteiro
         odd: deve ser impar
         record_invalid: 'Falha na validação: %{errors}'
+        requires_privilege_speech: |-
+          deve ter três observações verificáveis ou três identificações
+          para os outros fazerem isso
+        requires_privilege_organizer: deve ter 50 observações verificáveis para fazer
+          isso
         taken: já está sendo utilizado
         too_long:
           one: é muito longo (máximo de 1 caractere)
@@ -7370,6 +7394,11 @@ pt-BR:
         not_an_integer: deve ser um número inteiro
         odd: deve ser ímpar
         record_invalid: 'Erro de validação: %{errors}'
+        requires_privilege_speech: |-
+          deve ter três observações verificáveis ou três identificações
+          para os outros fazerem isso
+        requires_privilege_organizer: deve ter 50 observações verificáveis para fazer
+          isso
         taken: já está sendo utilizado
         too_long:
           one: é muito longo (máximo de 1 caractere)
@@ -7475,6 +7504,10 @@ pt-BR:
               bad_format: |-
                 só pode conter caracteres latinos, hífens, espaços e
                 ×; note que táxons putativos e cultivares não são permitidos
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: não pode ter mais de %{max} fotos
         user:
           attributes:
             login:

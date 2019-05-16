@@ -57,6 +57,12 @@ es:
   x_comments:
     one: 1 comentario
     other: '%{count} comentarios'
+  x_faves:
+    one: 1 favorito
+    other: '%{count} favoritos'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> marca resuelta
+    other: <span class='count'>%{count}</span> marcas resueltas
   x_followers:
     one: 1 seguidor
     other: '%{count} seguidores'
@@ -70,8 +76,8 @@ es:
     one: 1 identificación
     other: '%{count} identificaciones'
   x_ids:
-    one: 1 ID.
-    other: '%{count} IDs.'
+    one: 1 id.
+    other: '%{count} ids.'
   x_lists:
     one: 1 lista
     other: '%{count} listas'
@@ -114,12 +120,6 @@ es:
   x_people_found_this_helpful:
     one: Una persona encontró esto útil
     other: '%{count} personas encontraron esto útil'
-  x_faves:
-    one: 1 favorito
-    other: '%{count} favoritos'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> marca resuelta
-    other: <span class='count'>%{count}</span> marcas resueltas
   x_people_like_this:
     one: A 1 persona le gusta esto
     other: A %{count} personas les gusta esto

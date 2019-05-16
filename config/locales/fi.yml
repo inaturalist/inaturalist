@@ -14,6 +14,12 @@ fi:
   x_comments:
     one: 1 kommentti
     other: '%{count} kommenttia'
+  x_faves:
+    one: 1 suositus
+    other: '%{count} suositusta'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> lippu ratkaistu
+    other: <span class='count'>%{count}</span> lippua ratkaistu
   x_followers:
     one: 1 seuraaja
     other: '%{count} seuraajaa'
@@ -66,12 +72,6 @@ fi:
   x_people_found_this_helpful:
     one: Yhden henkilön mielestä tästä oli apua
     other: '%{count} henkilön mielestä tästä oli apua'
-  x_faves:
-    one: 1 suositus
-    other: '%{count} suositusta'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> lippu ratkaistu
-    other: <span class='count'>%{count}</span> lippua ratkaistu
   x_people_like_this:
     one: 1 henkilö tykkää tästä
     other: '%{count} henkilöä tykkää tästä'

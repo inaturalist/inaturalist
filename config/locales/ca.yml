@@ -17,6 +17,12 @@ ca:
   x_comments:
     one: 1 comentari
     other: '%{count} comentaris'
+  x_faves:
+    one: 1 favorit
+    other: '%{count} favorits'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> marca resolta
+    other: <span class='count'>%{count}</span> marques resoltes
   x_followers:
     one: 1 seguidor
     other: '%{count} seguidors'
@@ -74,12 +80,6 @@ ca:
   x_people_found_this_helpful:
     one: Una persona ha trobat això d'ajuda
     other: '%{count} usuaris han trobat això d''ajuda'
-  x_faves:
-    one: 1 favorit
-    other: '%{count} favorits'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> marca resolta
-    other: <span class='count'>%{count}</span> marques resoltes
   x_people_like_this:
     one: 1 persona li agrada aquest(a)
     other: '%{count} persones els agrada aquest(a)'

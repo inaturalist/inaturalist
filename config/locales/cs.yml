@@ -23,6 +23,12 @@ cs:
   x_comments:
     one: 1 komentář
     other: '%{count} komentáře'
+  x_faves:
+    one: 1 oblíbenec
+    other: '%{count} oblíbenci'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> flag resolved
+    other: <span class='count'>%{count}</span> flags resolved
   x_followers:
     one: 1 sledující
     other: '%{count} sledující'
@@ -80,12 +86,6 @@ cs:
   x_people_found_this_helpful:
     one: One člověk toto považuje za užitečné
     other: '%{count} lidé toto považují za užitečné'
-  x_faves:
-    one: 1 oblíbenec
-    other: '%{count} oblíbenci'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> flag resolved
-    other: <span class='count'>%{count}</span> flags resolved
   x_people_like_this:
     one: 1 člověku se to líbí
     other: '%{count}lidem se to líbí'

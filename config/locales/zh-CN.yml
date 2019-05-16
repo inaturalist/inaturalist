@@ -25,6 +25,12 @@ zh-CN:
   x_comments:
     one: 1条评论
     other: '%{count} 条评论'
+  x_faves:
+    one: 1次喜爱
+    other: '%{count} 次喜爱'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span>个标记已解决
+    other: <span class='count'>%{count}</span>个标记已解决
   x_followers:
     one: 1位关注者
     other: '%{count} 位关注者'
@@ -79,12 +85,6 @@ zh-CN:
   x_people_found_this_helpful:
     one: 一个人看到了这个有帮助的
     other: '%{count}个人看到了这个有帮助的'
-  x_faves:
-    one: 1次喜爱
-    other: '%{count} 次喜爱'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span>个标记已解决
-    other: <span class='count'>%{count}</span>个标记已解决
   x_people_like_this:
     one: 1个人喜欢这个
     other: '%{count} 个人喜欢这个'

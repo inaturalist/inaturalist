@@ -12,6 +12,9 @@ bg:
   x_comments:
     one: Един коментар
     other: '%{count} коментара'
+  x_faves:
+    one: 1 харесване
+    other: '%{count} харесвания'
   x_followers:
     one: Един последовател
     other: '%{count} последователи'
@@ -24,6 +27,9 @@ bg:
   x_identifications_:
     one: 1 Разпознаване
     other: '%{count} Разпознавания'
+  x_ids:
+    one: 1 разпознаване
+    other: '%{count} разпознавания'
   x_lists:
     one: 1 списък
     other: '%{count} списъка'
@@ -51,9 +57,6 @@ bg:
   x_observations_reviewed_html:
     one: <span class='count'>1</span> рецензирано наблюдение
     other: <span class='count'>%{count}</span> рецензирани наблюдения
-  x_faves:
-    one: 1 харесване
-    other: '%{count} харесвания'
   x_people_like_this:
     one: 1 човек харесва това
     other: '%{count} човека харесват това'
@@ -104,11 +107,12 @@ bg:
   about_licenses: За лицензите
   about_licensing: За лицензирането
   about_life!: За живота!
+  about_muting: Относно заглушаването
   about_names: Относно имената
   about_places: Относно местата
   about_the_cc_licenses: За лицензите Creative Commons
   about_the_taxobox_raquo: За таксокутията &raquo;
-  about_these_licenses: За тези лицензи
+  about_these_licenses: Относно тези лицензи
   about_this_map: За тази карта
   about_this_project: За този проект
   about_x: За %{x}
@@ -392,6 +396,7 @@ bg:
   back_to_x_history: Обратно към историята на %{x}
   back_to_x_journal: Обратно към дневника на %{user}
   back_to_x_blog: Обратно към блога на %{x}
+  back_to_your_dashboard: Обратно към Вашето табло
   back_to_x_observations: Обратно към наблюденията на %{user}
   back_to_your_lists: Обратно към Вашите списъци
   back_to_your_journal: Обратно към Вашия дневник
@@ -532,9 +537,12 @@ bg:
   community: Общност
   community_curated: Курирано от общността
   community_guidelines: Правила на общността
-  community_id_at_species_or_lower?: ID от общността до вид или по-точно?
+  community_id: 'Разпознаване от <strong>общността</strong>:'
+  community_id_heading: Разпознаване от общността
+  community_id_at_species_or_lower?: Разпознаване от общността до вид или по-точно?
   community_id_at_species_level_or_lower: ID от общността на ниво вид или по-ниско
   community_moderation_settings: Настройки на редактиране от общността
+  community_supported_id: Разпознаване от общността?
   compare: Сравняване
   compare_with: Сравни с
   comparing_list_to_list: Сравняване на %{list1} със %{list2}
@@ -881,6 +889,7 @@ bg:
   for_a_taxon: за таксон
   formatting: Форматиране
   forgot_your_password: Забравена парола?
+  forum: Форум
   frequency: Честота
   fri: пт
   from: От
@@ -914,7 +923,7 @@ bg:
   grouping: Групиране
   guides: Ръководства
   guidelines: Указания
-  has_id_supported_by_two_or_more: Има ID подкрепяно от двама или повече
+  has_id_supported_by_two_or_more: Има разпознаване подкрепяно от двама или повече
   has_one_or_more_faves: Има едно или повече харесвания
   has_photo: Има снимка
   has_photos: има снимки
@@ -959,6 +968,7 @@ bg:
   identifications: Разпознавания
   identifications_by: Разпознавания от %{user}
   identifiers: Разпознавачи
+  ids: Разпознавания
   ids_made_for_others: Разпознавания направени за други
   if_this_is_a_scientific_name: Ако това е научно име, общоприето ли е в момента?
   if_you_already_have_an_account: Ако вече имате акаунт на %{site_name}...
@@ -1218,6 +1228,7 @@ bg:
   mammals: бозайници
   manage_all_your_subscriptions: Управление на всичките Ви абонаменти
   manage_your_project_invitations: Управление на Вашите покани за проекти
+  manage_your_relationships: Управление на взаимоотношения
   manage_subscriptions: Управление на абонаменти
   manually_create_new_place: Ръчно създай ново място
   map: Карта
@@ -1346,6 +1357,7 @@ bg:
   no_identifications: Няма разпознавания
   no_identifications_added:
     user: Потребителят %{user} не е добавял разпознавания към чужди наблюдения.
+  no_ids_have_been_suggested_yet: Все още не е предложено разпознаване
   no_favorites_added:
     current_user: Все още не сте добавили любими.
     user: '%{user} няма добавени любими.'
@@ -1914,7 +1926,7 @@ bg:
   refresh: Опресни
   refreshing: опресняване
   reject?: Отхвърли?
-  reject_the_community_id: отхвърли разпознаването на общността
+  reject_the_community_id: отхвърли разпознаването от общността
   related_species: Сродни видове
   reload_and_refresh: Презареди и опресни списъка
   reload_from_observations: Презареди от наблюденията
@@ -2305,6 +2317,8 @@ bg:
   unverifiable: Непроверим
   update_existing_observations_with_new_license: Обнови съществуващите наблюдения
     с новите избрани лицензи
+  update_existing_photos_with_new_license: Обнови съществуващите снимки с новите избрани
+    лицензи
   update_existing_sounds_with_new_license: Обнови съществуващите звуци с новите избрани
     лицензи
   update_observation: Обнови наблюдението
@@ -2531,6 +2545,7 @@ bg:
   your_projects: Вашите проекти
   your_profile_was_successfully_updated: Вашият профил беше успешно обновен!
   your_recent_projects: Вашите скорошни проекти
+  your_relationships: Вашите взаимоотношения
   your_site_account_has_been_created: Вашият акаунт на %{site} е създаден.
   your_subscriptions: Вашите абонаменти
   your_sure_delete_list?: Сигурни ли сте, че искате да изтриете този списък?
@@ -2857,6 +2872,19 @@ bg:
         common_names_desc: Показвай народните имена. Деактивирайте, ако искате да
           виждате само научните имена. Забележете, че можете да контролирате кои народни
           имена виждате, като промените настройките на своя локал и място.
+        licensing_desc_html: Лицензирайки своето съдържание, Вие давате законово право
+          на всеки да го използва без да се допитва до Вас, стига да се придържа към
+          условията на лиценза. Освен това, %{site_name} включва Вашето съдържание
+          лицензирано под Криейтив комънс в редовно обновявани архиви поддържани за
+          партньорски организации интересуващи се от данните. Например, включваме
+          записи лицензирани като Без авторски права (CC0), Признание (CC BY) и Признание-Некомерсиално
+          (CC BY-NC) в архива който поддържаме за <a href="http://www.gbif.org/">Global
+          Biodiversity Information Facility</a> (GBIF) - международна, междуправителствена
+          организация, която обединява и разпространява информация за биоразнообразието
+          от целия свят.
+        muting_desc_html: |-
+          <p> Ако заглушите някого, вече няма да получавате известия за нещата които прави, включително когато коментира Ваши наблюдения, изпраща Ви съобщения, споменава Ви и т.н. Заглушаването ще Ви помогне да игнорирате някого, без да му попречите да прави каквото и да било. </p>
+          <p> Можете да заглушите колкото хора искате, но имайте предвид, че така може да пропуснете потенциално важни известия, например за разпознавания които променят консенсусното разпознаване от общността на наблюденията Ви. </p>
         name_place_help_html: Дай приоритет на народните имена използвани на това
           място.
         project_addition_preferences:

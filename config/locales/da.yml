@@ -18,6 +18,12 @@ da:
   x_comments:
     one: 1 kommentar
     other: '%{count} kommentarer'
+  x_faves:
+    one: 1 favorit
+    other: '%{count} favoritter'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> markering løst
+    other: <span class='count'>%{count}</span> markeringer løst
   x_followers:
     one: 1 følger
     other: '%{count} følgere'
@@ -75,12 +81,6 @@ da:
   x_people_found_this_helpful:
     one: En person synes dette var hjælpsomy
     other: '%{count} personer synes dette var hjælpsomt'
-  x_faves:
-    one: 1 favorit
-    other: '%{count} favoritter'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> markering løst
-    other: <span class='count'>%{count}</span> markeringer løst
   x_people_like_this:
     one: 1 person kan lide dette
     other: '%{count} personer kan lide dette'

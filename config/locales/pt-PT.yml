@@ -25,6 +25,12 @@ pt-PT:
   x_comments:
     one: 1 comentário
     other: '%{count} comentários'
+  x_faves:
+    one: 1 favorito
+    other: '%{count} favoritos'
+  x_flags_resolved_html:
+    one: <span class='count'>1</span> sinalizador resolvido
+    other: <span class='count'>%{count}</span> sinalizadores resolvidos
   x_followers:
     one: 1 seguidor
     other: '%{count} seguidores'
@@ -79,12 +85,6 @@ pt-PT:
   x_people_found_this_helpful:
     one: Uma pessoa considerou isto útil
     other: '%{count} pessoas consideraram isto útil'
-  x_faves:
-    one: 1 favorito
-    other: '%{count} favoritos'
-  x_flags_resolved_html:
-    one: <span class='count'>1</span> sinalizador resolvido
-    other: <span class='count'>%{count}</span> sinalizadores resolvidos
   x_people_like_this:
     one: Uma pessoa gosta disto
     other: '%{count} pessoas gostam disto'
