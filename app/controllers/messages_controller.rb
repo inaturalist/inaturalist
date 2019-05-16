@@ -5,7 +5,7 @@ class MessagesController < ApplicationController
   before_filter :load_box, :only => [:show, :new, :index]
   check_spam only: [:create, :update], instance: :message
 
-  # requires_privilege :speech, only: [:new]
+  requires_privilege :speech, only: [:new]
 
   def index
     @messages = case @box

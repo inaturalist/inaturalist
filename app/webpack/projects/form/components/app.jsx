@@ -142,7 +142,7 @@ const App = ( { config, form, createNewProject } ) => {
                   I18n.t( "views.projects.new.you_can_learn_more_html" )
               }}
             />
-            { ( true || config.currentUser.privileges.indexOf( "organizer" ) >= 0 ) && (
+            { config.currentUser.privileges.indexOf( "organizer" ) >= 0 && (
               <p className="contact">
                 { I18n.t( "views.projects.new.do_you_need_features_from_traditional" ) }
                 <span
