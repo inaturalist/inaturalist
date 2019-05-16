@@ -495,8 +495,8 @@ class Project < ActiveRecord::Base
             rule_value = Time.parse( rule_value )
           else
             rule_value = Date.parse( rule_value )
-            if rule == "d2"
-              # when  d2 is a date w/o a time, we want to capture that in its own field
+            if rule == "rule_d2"
+              # when d2 is a date w/o a time, we want to capture that in its own field
               params[ "d2_date" ] = rule_value
             end
           end

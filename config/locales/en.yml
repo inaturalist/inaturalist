@@ -2699,6 +2699,9 @@ en:
   owner: Owner
   parent: Parent
   parent_name: Parent name
+  parental_consent:
+    must_specify_email: You must specify an email address
+    invalid_email: Invalid email format
   password: Password
   password_confirmation: 'Password confirmation'
   paste: Paste
@@ -5612,13 +5615,6 @@ en:
           obseration field being merged and move all observations using it
           over to the keeper. <strong>This process cannot be undone</strong>, so be careful.
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: |
-          Your observations export is ready. There's a copy attached to this email, or you can
-          <a href="%{url}">download your export</a>.
-        your_observations_export_failed_html: |
-          Your observations export failed. Visit the
-          <a href="%{url}">observations export page</a> for a list of your exports.
       bulk_import_success:
         success_message: |
           Your bulk import of %{filename} was successful. Your observations
@@ -5632,11 +5628,64 @@ en:
           the search page to import new names. If the name is present but
           applies to multiple valid taxa, try to use a more or less specific
           name that only matches a single taxon. 
-      users_updates_suspended:
-        message: |
-          You have been inactive on %{site_name} for a while, so we have suspended
-          your subscriptions. To resume getting updates on site activity, please
-          <a href="%{login_url}">log in to your account</a> again.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |
+          Your observations export is ready. There's a copy attached to this email, or you can
+          <a href="%{url}">download your export</a>.
+        your_observations_export_failed_html: |
+          Your observations export failed. Visit the
+          <a href="%{url}">observations export page</a> for a list of your exports.
+      parental_consent:
+        subject: Your child would like to use iNaturalist
+        content_html: |
+          <p>
+            Your child is using the Seek by iNaturalist educational app and
+            would like to share data with the iNaturalist citizen-science
+            platform. Because this data includes Personal Identifying
+            Information, it cannot be used by person’s under the age of 13
+            without the consent of a parent.
+          </p>
+          <p>
+            Seek by iNaturalist may be used without creating an account, and no
+            data will be shared, but your child will not be able to contribute
+            observations to iNaturalist. [EXPLANATION OF INAT]
+          </p>
+          <p>
+            If you’d like to give consent for your child to use iNaturalist,
+            we’ll need you to do the following:
+          </p>
+          <ol>
+            <li>
+              <p>
+                Create an iNaturalist account that your child will use
+                indicating that the account will be used by a person under the
+                age of 13 by following this link:
+                <a href="%{registration_url}">%{registration_url}</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                Make a nominal donation of $1 with a credit card to iNaturalist
+                to verify that you are an adult. Please make sure to use include
+                the same email that you used to create the account alongside
+                your donation here: https://www.inaturalist.org/donate
+              </p>
+            </li>
+            <li>
+              <p>
+                Once we process the donation, we will send a notification to the
+                account email that the account has been activated and you can
+                use the iNaturalist username and password you created to log in
+                to your child’s Seek app.
+              </p>
+            </li>
+          </ol>
+          <p>
+            Learn more about what Personal Identifying Information iNaturalist shares: …
+          </p>
+          <p>
+            Learn more about iNaturalist’s Privacy Policy <a href="%{privacy_policy_url}">here</a>.
+          </p>
       photos_missing:
         subject: Some photos need repairing
         we_have_been_housekeeping: |
@@ -5660,6 +5709,11 @@ en:
           some research grade observations will become casual if they no longer have any photos.
         we_included_links: |
           We've included links to the affected photos below.
+      users_updates_suspended:
+        message: |
+          You have been inactive on %{site_name} for a while, so we have suspended
+          your subscriptions. To resume getting updates on site activity, please
+          <a href="%{login_url}">log in to your account</a> again.
     photos:
       forbidden_notice_html: |
         We don't have permission to access those photos right now. You might
@@ -5859,9 +5913,9 @@ en:
             invitation.
       new:
         a_project_allows_you_to_gather: |
-          A collection project allows you to gather and visualize observations using the core iNaturalist
-          search tools. This eliminates the need to manually add observations because everything
-          that meets the parameters set by the project will be automatically included.
+          A collection project allows you to gather and visualize observations
+          using the core iNaturalist search tools. Everything that meets the
+          parameters set by the project will be automatically included.
         an_umbrella_project_can_be_used_to: |
           An umbrella project can be used to compare statistics across two or more Collection or
           Traditional Projects. The other projects need to exist before you can add them to an
@@ -5882,11 +5936,11 @@ en:
           filtered?
         leaderboards_among_individuals: Leaderboards among <strong>individuals</strong>
         leaderboards_among_projects_and_bioblitzes: |
-          Leaderboards among <strong>projects and bioblitzes</strong>
+          Leaderboards among <strong>projects</strong>
         multiple_project_administrators: Multiple project administrators
         name_placeholder: Birds of Chicago, Amazing Dragonflies, etc.
         no_need_to_rely_on_manual_addition: |
-          No need to rely on manual addition of observations or on the aggregator to index observations
+          No manual addition of observations
         note_these_users_will_be_able_to_edit: |
           Note: these users will be able to edit ALL project details including admins.
         note_you_can_delete_the_time: |
@@ -5912,7 +5966,7 @@ en:
           Give a concise explanation of your project. Approximately the first 200 characters will
           be visible to the right of the project home screen banner so put the best stuff first!
         project_summary_placeholder: Discover and track the birds of Golden Gate Park...
-        start_and_end_times_for_bioblitzes: Start and end times for bioblitzes
+        start_and_end_times_for_bioblitzes: Start and end date/times (for bioblitz-type events)
         umbrella_project_features: "Umbrella Project features:"
         unique_url_for_outreach: Unique URL for outreach
         users_can_follow_your_project: Users can follow your project for updates via journal posts
@@ -5920,10 +5974,15 @@ en:
           Use <a href="%{url}">this link</a> to create a traditional project instead.
         visual_comparison_of_data_among: Visual comparisons of data among projects under the umbrella
         we_have_redesigned_projects: |
-          We redesigned projects to automatically include all of the observations that fit the
-          places, taxa, users, quality, and dates that you define. Choose between two types:
+          Projects are designed to automatically include all of the observations that fit the
+          places, taxa, users, quality, and dates that you define. Choose between two main types:
           Collection Projects and Umbrella Projects, which share the following features:
         welcome_to_projects: Welcome to Projects!
+        you_can_learn_more_html: |
+          You can learn more about managing projects
+          <a href="https://www.inaturalist.org/pages/managing-projects">here</a>
+          or read the history of projects on
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">our blog</a>.
         you_have_not_defined_any_observation_requirements: |
           You have not defined any observation requirements. Make sure to select one or more taxa
           (e.g. birds, conifers), places (e.g. Brazil, Yellowstone), users, and/or dates to define

@@ -1,4 +1,6 @@
 @import "../users/_user_image";
+@import "../colors";
+
 .ObservationsGridItem {
   position: relative;
 
@@ -218,24 +220,82 @@ $flowedDim: 150px;
     white-space: normal;
   }
 
+  $photo-count-square-width: 19px;
+  $photo-count-square-offset: 3px;
+  $photo-count-line-width: 1px;
   .photo-count {
     position: absolute;
-    left: 0;
-    bottom: 0;
+    left: 8px;
+    bottom: 8px;
     color: #eee;
-    background-color: rgba(0,0,0,0.3);
-    padding: 1px 5px;
-    font-weight: 100;
+    background-color: rgba(0,0,0,0.5);
+    padding: 3px;
+    font-weight: 500;
     display: block;
-    font-size: 12px;
-    line-height: 20px;
-    i {
-      margin-right: 5px;
+    border: $photo-count-line-width solid #eee;
+    border-radius: 4px;
+    width: $photo-count-square-width;
+    height: $photo-count-square-width;
+    line-height: $photo-count-square-width / 2 + $photo-count-square-offset;
+    font-size: $photo-count-square-width * 0.65;
+    &:after {
+      content: "";
+      width: $photo-count-square-width;
+      height: $photo-count-square-width;
+      background-color: rgba(0,0,0,0.5);
+      border: $photo-count-line-width solid #eee;
+      border-radius: 4px;
+      position: absolute;
+      left: $photo-count-square-offset;
+      bottom: $photo-count-square-offset;
+      z-index: 0;
+      clip-path: polygon(
+        0px 0px,
+        $photo-count-square-width 0px,
+        $photo-count-square-width $photo-count-square-width,
+        ($photo-count-square-width - $photo-count-square-offset - $photo-count-line-width) $photo-count-square-width,
+        ($photo-count-square-width - $photo-count-square-offset - $photo-count-line-width) (2 * $photo-count-square-offset),
+        ($photo-count-square-width - 2 * $photo-count-square-offset) ($photo-count-square-offset + $photo-count-line-width),
+        0px ($photo-count-square-offset + $photo-count-line-width)
+      );
+      -webkit-clip-path: polygon(
+        0px 0px,
+        $photo-count-square-width 0px,
+        $photo-count-square-width $photo-count-square-width,
+        ($photo-count-square-width - $photo-count-square-offset - $photo-count-line-width) $photo-count-square-width,
+        ($photo-count-square-width - $photo-count-square-offset - $photo-count-line-width) (2 * $photo-count-square-offset),
+        ($photo-count-square-width - 2 * $photo-count-square-offset) ($photo-count-square-offset + $photo-count-line-width),
+        0px ($photo-count-square-offset + $photo-count-line-width)
+      );
     }
+  }
+
+  .identifications-count,
+  .comments-count {
+    color: $text-grey;
+    line-height: 22px;
+    font-size: 12px;
+    i {
+      position: relative;
+      top: -1px;
+    }
+  }
+
+  .all-photos-preview {
+    display: none;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.8);
+    overflow: hidden;
   }
 }
 .ObservationsGridItem:hover {
   .photo-count {
     background-color: rgba(0,0,0,0.5);
+  }
+  .all-photos-preview {
+    display: flex;
   }
 }

@@ -212,6 +212,14 @@ class Emailer < ActionMailer::Base
     ) )
   end
 
+  def parental_consent( email )
+    @site = Site.default
+    mail( set_site_specific_opts.merge(
+      to: email,
+      subject: t( "views.emailer.parental_consent.subject" )
+    ) )
+  end
+
   private
   def default_url_options
     opts = (Rails.application.config.action_mailer.default_url_options || {}).dup

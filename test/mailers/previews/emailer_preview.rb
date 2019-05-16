@@ -72,6 +72,11 @@ class EmailerPreview < ActionMailer::Preview
     Emailer.bulk_observation_error(@user, "some_file_name", errors)
   end
 
+  def parental_consent
+    set_locale
+    Emailer.parental_consent( "test@inaturalist.org" )
+  end
+
   private
   def set_user
     # @user = if login = @rack_env["QUERY_STRING"].to_s[/login=([^&]+)/, 1]

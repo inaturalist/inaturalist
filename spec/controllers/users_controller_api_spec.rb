@@ -270,6 +270,37 @@ describe UsersController, "without authentication" do
     end
   end
 
+  describe "parental_consent" do
+    it "should deliver an email with the application JWT" do
+      deliveries = ActionMailer::Base.deliveries.size
+      token = JsonWebToken.applicationToken
+      request.env["HTTP_AUTHORIZATION"] = token
+      post :parental_consent, format: :json, email: Faker::Internet.email
+      expect( ActionMailer::Base.deliveries.size ).to eq deliveries + 1
+    end
+    it "should not deliver an email without the application JWT" do
+      deliveries = ActionMailer::Base.deliveries.size
+      token = JsonWebToken.applicationToken + "bad"
+      request.env["HTTP_AUTHORIZATION"] = token
+      post :parental_consent, format: :json, email: Faker::Internet.email
+      expect( ActionMailer::Base.deliveries.size ).to eq deliveries
+    end
+    describe "should return a 422 with" do
+      it "no email" do
+        token = JsonWebToken.applicationToken
+        request.env["HTTP_AUTHORIZATION"] = token
+        post :parental_consent, format: :json
+        expect( response.status ).to eq 422
+      end
+      it "a bad email" do
+        token = JsonWebToken.applicationToken
+        request.env["HTTP_AUTHORIZATION"] = token
+        post :parental_consent, format: :json, email: "lkdshglsdhfg"
+        expect( response.status ).to eq 422
+      end
+    end
+  end
+
 end
 
 describe UsersController, "oauth authentication with login scope" do

@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get "/ping", to: "application#ping"
   get "/seek", to: redirect( "/pages/seek_app", status: 302 )
   get "/terms", to: redirect( "/pages/terms" )
-  get "/privacy", to: redirect( "/pages/privacy" )
+  get "/privacy", to: redirect( "/pages/privacy" ), as: :privacy_policy
   get "/users/new.mobile", to: redirect( "/signup" )
   get "/donate", to: "donate#index"
 
@@ -159,6 +159,7 @@ Rails.application.routes.draw do
     collection do
       get :recent
       get :delete
+      post :parental_consent
     end
     member do
       put :join_test

@@ -2,19 +2,16 @@ require "json_web_token"
 
 module Devise
   module Strategies
-    class JsonWebToken < Base
+    class ApplicationJsonWebToken < Base
+      ANONYMOUS_USER_ID = -1
       def valid?
         claims
       end
 
       def authenticate!
-        user_id = begin
-          claims.fetch("user_id")
-        rescue KeyError
-          nil
-        end
-        if claims && user_id && user = User.find_by_id( user_id )
-          success! user
+        if claims
+          anon_user = User.new( id: ANONYMOUS_USER_ID, login: "anonymous" )
+          success! anon_user
         else
           fail!
         end
@@ -25,7 +22,7 @@ module Devise
       def claims
         auth_header = request.headers["Authorization"] and
           token = auth_header.split(" ").last and
-          ::JsonWebToken.decode(token)
+          ::JsonWebToken.decodeApplication( token )
       rescue
         nil
       end

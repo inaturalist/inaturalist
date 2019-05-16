@@ -2036,9 +2036,11 @@ class ObservationsController < ApplicationController
     native_photo_ids = photo_list.map{|p| p.to_s}.uniq
     # the photos may exist in their native photo_class, or cached
     # as a LocalPhoto, so lookup both and combine results
-    existing = (LocalPhoto.where(subtype: photo_class, native_photo_id: native_photo_ids) +
-      photo_class.includes(:user).where(native_photo_id: native_photo_ids)).
-      index_by{|p| p.native_photo_id }
+    existing = LocalPhoto.where( subtype: photo_class, native_photo_id: native_photo_ids, user_id: current_user.id )
+    if photo_class && photo_class != LocalPhoto
+      existing += photo_class.includes(:user).where( native_photo_id: native_photo_ids, user_id: current_user.id )
+    end
+    existing = existing.index_by{|p| p.native_photo_id }
     photo_list.uniq.each do |photo_id|
       if (photo = existing[photo_id]) || options[:sync]
         api_response = begin

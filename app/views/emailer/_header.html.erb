@@ -1,5 +1,5 @@
 <%-
-  site = @user.site || @site || Site.default
+  site = ( @user && @user.site ) || @site || Site.default
   site_logo_email_banner = site.logo_email_banner.url
   site_url = site.url
   img_url = if site_logo_email_banner =~ /http/
