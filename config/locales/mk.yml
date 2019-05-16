@@ -148,7 +148,6 @@ mk:
   add_tags_to_selected_taxa: Додај ознаки на избрани таксони
   add_taxa: Додај таксони
   add_taxon_batch_to: Додај збир таксони во %{list}
-  add_to: Додај во
   add_to_a_scheme: Додај во шема
   add_to_checklist: додај во контролен список
   add_to_id_please: Додај во „Препознајте“
@@ -316,10 +315,8 @@ mk:
     iucn_red_list: Црвен список на МСЗП
   authorize_permissions_from_provider: Овласти дозволи од %{provider}
   back: Назад
-  back_to: Назад на
   back_to_shared_taxon: Назад на %{sharedtaxon}
   back_to_taxon: Назад на %{defaulttaxon}
-  back_to_this: Назад на %{place}
   back_to_viewing: Назад на погледот на <i>%{taxon}</i>
   back_to_x: Назад на %{noun}
   back_to_x_assessment: Назад на оцените на %{project}
@@ -580,19 +577,18 @@ mk:
   edit_your_default_settings: Измени ги стандардните поставки
   edit_your_settings_to_unsubscribe_html: <a href='%{url}'>Изменете си ги поставките</a>
     за да одредите какви новости да добивате или сосема да се отпишете од билтенот.
-  edited_by: Изменето од
   edited_by_name_html: Изменето од %{name}
   editing_taxon_range: Уредување на Распространетост на таксонот
   eg: на пр.
   either: Или
   eol: EOL
   establishment:
-    native: домороден
     endemic: ендемски
     introduced: доведен
-    naturalised: одомаќинет
     invasive: инвазивен
     managed: контролиран
+    native: домороден
+    naturalised: одомаќинет
   every_species_seen_by: Секој вид забележан од
   everyone: сите
   everywhere: насекаде
@@ -647,15 +643,11 @@ mk:
     <strong>решен.</strong>
   flag_reason: '&ldquo;Го обележувам ова %{record} бидејќи'
   flag_saved: Обележувачот е зачуван
-  flag_saved_thanks: Обележувачот е зачуван. Ви благодариме!
   flag_this_observation: Обележи го набљудувањево
   flag_this_photo: Обележи ја сликава
   flagged: обележано
   flagger: Обележал
-  flags_for: Обележувачи за
   flickr_account_information: Информации за вашата сметка на Flickr
-  follow_us: Следете нè на
-  follow_us_on: Следете нè на
   follow_user: Следи го/ја %{user}
   follower: следбеник
   following: следач
@@ -779,8 +771,6 @@ mk:
     заедница поканувајќи ги пријателите да ни се придружат!
   inviteonly: само со покана
   iphone: iPhone
-  is_a: е
-  is_an: е
   is_the_organism_wild: Дали е див/одомаќинет?
   iucn_red_list_status: 'Статус на Црвениот список на МСЗП:'
   january: јануари
@@ -1271,8 +1261,8 @@ mk:
     germany: Германија
     greece: Грција
     hungary: Унгарија
-    italy: Италија
     iraq: Ирак
+    italy: Италија
     japan: Јапонија
     martinique: Мартиник
     mexico: Мексико
@@ -1286,8 +1276,8 @@ mk:
     poland: Полска
     republic_of_congo: Република Конго
     russia: Русија
-    saudi_arabia: Саудиска Арабија
     sao_tome_and_principe: Сао Томе и Принсипе
+    saudi_arabia: Саудиска Арабија
     south_america: Јужна Америка
     spain: Шпанија
     sweden: Шведска
@@ -1457,7 +1447,7 @@ mk:
   sending: Испраќам...
   september: септември
   set_license: Задај лиценца
-  settings: поставки
+  settings: Поставки
   share_your_observation_with_researchers_by: Сподели го набљудувањето со истражувачите
     на
   short_code_for_this_place: Краток код за местово, на пр. US за Соединетите Држави
@@ -1817,7 +1807,7 @@ mk:
       index:
         funding_html: |-
           Средствата за развој на водичите ги обезбеди
-          <a href="http://eol.org"><img src="http://eol.org/assets/v2/logo_footer-f957369bba1a5f243e431ca0b80a2c32.png"></a>
+          <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
       pdf_layouts:
         grid: решетка
         book: книга
@@ -2073,20 +2063,6 @@ mk:
           one: Една грешка му попречи на зачувувањето на овој %{model}
           other: '%{count} грешки му попречија на зачувувањето на овој %{model}'
   activerecord:
-    errors:
-      models:
-        guide:
-          attributes:
-            published_at:
-              published_at_needs_3_taxa: бара најмалку 3 таксони во вашиот водич
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: водичот може да има само 500 таксони
-        observation_field_value:
-          attributes:
-            value:
-              dna_only_atcg: за ДНК се признаваат само знаците A, T, C и G
     attributes:
       assessment:
         description: Опис
@@ -2147,6 +2123,20 @@ mk:
         name_provider: Добавувач на името
         source_url: Изворен URL
         source_identifier: Назнака на изворот
+    errors:
+      models:
+        guide:
+          attributes:
+            published_at:
+              published_at_needs_3_taxa: бара најмалку 3 таксони во вашиот водич
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: водичот може да има само 500 таксони
+        observation_field_value:
+          attributes:
+            value:
+              dna_only_atcg: за ДНК се признаваат само знаците A, T, C и G
   zoom_to_taxon_name: Приближи на %{taxonname}
   zoom_to_x: приближи на %{x}
 ...

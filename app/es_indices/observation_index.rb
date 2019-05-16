@@ -7,13 +7,13 @@ class Observation < ActiveRecord::Base
   attr_accessor :indexed_place_ids, :indexed_private_place_ids, :indexed_private_places
 
   scope :load_for_index, -> { includes(
-    { user: :flags }, :confirmed_reviews, :flags,
+    { user: [ :flags, :stored_preferences ] }, :confirmed_reviews, :flags,
     :observation_links, :quality_metrics,
     :votes_for, :stored_preferences, :tags,
     { annotations: :votes_for },
     :photos,
     { sounds: :user },
-    { identifications: :stored_preferences }, :project_observations,
+    { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
     { taxon: [ :taxon_names, :conservation_statuses ] },
     { observation_field_values: :observation_field },
     { comments: [ { user: :flags }, :flags ] } ) }
@@ -22,6 +22,7 @@ class Observation < ActiveRecord::Base
       indexes :id, type: "integer"
       indexes :uuid, type: "keyword"
       indexes :identifier_user_ids, type: "integer"
+      indexes :ident_taxon_ids, type: "integer"
       indexes :non_owner_identifier_user_ids, type: "integer"
       indexes :identification_categories, type: "keyword"
       indexes :photo_licenses, type: "keyword"
@@ -95,6 +96,10 @@ class Observation < ActiveRecord::Base
       indexes :private_geojson, type: "geo_shape"
       indexes :created_time_zone, type: "keyword", index: false
       indexes :geoprivacy, type: "keyword"
+      indexes :taxon_geoprivacy, type: "keyword"
+      indexes :context_geoprivacy, type: "keyword"
+      indexes :context_user_geoprivacy, type: "keyword"
+      indexes :context_taxon_geoprivacy, type: "keyword"
       indexes :observed_time_zone, type: "keyword", index: false
       indexes :quality_grade, type: "keyword"
       indexes :time_zone_offset, type: "keyword", index: false
@@ -158,10 +163,14 @@ class Observation < ActiveRecord::Base
         out_of_range: out_of_range,
         license_code: license ? license.downcase : nil,
         geoprivacy: geoprivacy,
+        taxon_geoprivacy: taxon_geoprivacy,
+        context_geoprivacy: context_geoprivacy,
+        context_user_geoprivacy: context_user_geoprivacy,
+        context_taxon_geoprivacy: context_taxon_geoprivacy,
         map_scale: map_scale,
         oauth_application_id: application_id_to_index,
         community_taxon_id: community_taxon_id,
-        faves_count: cached_votes_total,
+        faves_count: faves_count,
         cached_votes_total: cached_votes_total,
         num_identification_agreements: num_identification_agreements,
         num_identification_disagreements: num_identification_disagreements,
@@ -188,6 +197,7 @@ class Observation < ActiveRecord::Base
         sound_licenses: sounds.map(&:index_license_code).compact.uniq,
         sounds: sounds.map(&:as_indexed_json),
         identifier_user_ids: current_ids.map(&:user_id),
+        ident_taxon_ids: current_ids.map{|i| i.taxon.self_and_ancestor_ids}.flatten.uniq,
         non_owner_identifier_user_ids: current_ids.map(&:user_id) - [user_id],
         identification_categories: current_ids.map(&:category).uniq,
         identifications_count: num_identifications_by_others,
@@ -253,14 +263,14 @@ class Observation < ActiveRecord::Base
         unless o.indexed_private_place_ids.blank?
           o.indexed_private_places = private_places_by_id.values_at(*o.indexed_private_place_ids).compact.select do |p|
             always_indexed_place_levels.include?( p.admin_level ) ||
-            Observation::CNC_2018_PLACE_IDS.include?( p.id ) ||
+            Observation.places_without_obscuration_protection.include?( p.id ) ||
             p.bbox_privately_contains_observation?( o )
           end
           o.indexed_private_place_ids = o.indexed_private_places.map(&:id)
           unless o.geoprivacy == Observation::PRIVATE
             o.indexed_place_ids = o.indexed_private_places.select {|p|
               always_indexed_place_levels.include?( p.admin_level ) ||
-              Observation::CNC_2018_PLACE_IDS.include?( p.id ) ||
+              Observation.places_without_obscuration_protection.include?( p.id ) ||
               p.bbox_publicly_contains_observation?( o )
             }.map(&:id)
           end
@@ -324,10 +334,13 @@ class Observation < ActiveRecord::Base
     end
   end
 
+  def self.elasticsearch_taxon_names_fields
+    @@taxon_names_fields ||= TaxonName::LOCALES.values.map{ |l| "taxon.names_#{l}" }.sort
+  end
+
   def self.params_to_elastic_query(params, options = {})
     current_user = options[:current_user] || params[:viewer]
     p = params[:_query_params_set] ? params : query_params(params)
-    return nil unless Observation.able_to_use_elasticsearch?(p)
     # one of the param initializing steps saw an impossible condition
     return nil if p[:empty_set]
     p = site_search_params(options[:site], p)
@@ -339,7 +352,7 @@ class Observation < ActiveRecord::Base
     if q
       fields = case search_on
       when "names"
-        [ "taxon.names.name", "taxon.names_*" ]
+        elasticsearch_taxon_names_fields
       when "tags"
         [ :tags ]
       when "description"
@@ -347,7 +360,7 @@ class Observation < ActiveRecord::Base
       when "place"
         [ :place_guess ]
       else
-        [ "taxon.names.name", "taxon.names_*", :tags, :description, :place_guess ]
+        elasticsearch_taxon_names_fields + [ :tags, :description, :place_guess ]
       end
       search_filters << { multi_match: { query: q, operator: "and", fields: fields } }
     end
@@ -361,7 +374,6 @@ class Observation < ActiveRecord::Base
 
     # params to search based on value
     [ { http_param: :rank, es_field: "taxon.rank" },
-      { http_param: :sound_license, es_field: "sounds.license_code" },
       { http_param: :observed_on_day, es_field: "observed_on_details.day" },
       { http_param: :observed_on_month, es_field: "observed_on_details.month" },
       { http_param: :observed_on_year, es_field: "observed_on_details.year" },
@@ -369,7 +381,6 @@ class Observation < ActiveRecord::Base
       { http_param: :month, es_field: "observed_on_details.month" },
       { http_param: :year, es_field: "observed_on_details.year" },
       { http_param: :week, es_field: "observed_on_details.week" },
-      { http_param: :place_id, es_field: "place_ids" },
       { http_param: :site_id, es_field: "site_id" },
       { http_param: :id, es_field: "id" }
     ].each do |filter|
@@ -377,6 +388,20 @@ class Observation < ActiveRecord::Base
         search_filters << { terms: { filter[:es_field] =>
           [ p[ filter[:http_param] ] ].flatten.map{ |v|
             ElasticModel.id_or_object(v) } } }
+      end
+    end
+
+    # Place searches require special handling if the user is asking for their
+    # own observations
+    unless p[:place_id].blank? || p[:place_id] == "any"
+      if p[:viewer] && p[:user_id] && p[:viewer].id == p[:user_id].to_i
+        search_filters << { terms: { "private_place_ids" => [ p[:place_id] ].flatten.map{ |v|
+          ElasticModel.id_or_object(v)
+        } } }
+      else
+        search_filters << { terms: { "place_ids" => [ p[:place_id] ].flatten.map{ |v|
+          ElasticModel.id_or_object(v)
+        } } }
       end
     end
 
@@ -398,18 +423,12 @@ class Observation < ActiveRecord::Base
     end
 
     # params that can check for presence of something
-    [ { http_param: :with_photos, es_field: ["photos.url", "photos_count"] },
-      { http_param: :with_sounds, es_field: ["sounds", "sounds_count"] },
+    [ { http_param: :with_photos, es_field: "photos_count" },
+      { http_param: :with_sounds, es_field: "sounds_count" },
       { http_param: :with_geo, es_field: "geojson" },
       { http_param: :identified, es_field: "taxon" },
     ].each do |filter|
-      if filter[:es_field].is_a?( Array )
-        f = { bool: { should: filter[:es_field].map{ |ff|
-          { exists: { field: ff } }
-        } } }
-      else
-        f = { exists: { field: filter[:es_field] } }
-      end
+      f = { exists: { field: filter[:es_field] } }
       if p[ filter[:http_param] ].yesish?
         search_filters << f
       elsif p[ filter[:http_param] ].noish?
@@ -441,21 +460,20 @@ class Observation < ActiveRecord::Base
         [ p[:license] ].flatten.map{ |l| l.downcase } } }
     end
     if p[:photo_license] == "any"
-      search_filters << { bool: { should: [
-        { exists: { field: "photo_licenses" } },
-        { exists: { field: "photos.license_code" } }
-      ]}}
+      search_filters << { exists: { field: "photo_licenses" } }
     elsif p[:photo_license] == "none"
-      inverse_filters << { bool: { should: [
-        { exists: { field: "photo_licenses" } },
-        { exists: { field: "photos.license_code" } }
-      ]}}
+      inverse_filters << { exists: { field: "photo_licenses" } }
     elsif p[:photo_license]
       licenses = [ p[:photo_license] ].flatten.map{ |l| l.downcase }
-      search_filters << { bool: { should:[
-        { terms: { "photo_licenses" => licenses } },
-        { terms: { "photos.license_code" => licenses } }
-      ]}}
+      search_filters << { terms: { "photo_licenses" => licenses } }
+    end
+    if p[:sound_license] == "any"
+      search_filters << { exists: { field: "sound_licenses" } }
+    elsif p[:sound_license] == "none"
+      inverse_filters << { exists: { field: "sound_licenses" } }
+    elsif p[:sound_license]
+      licenses = [ p[:sound_license] ].flatten.map{ |l| l.downcase }
+      search_filters << { terms: { "sound_licenses" => licenses } }
     end
     if d = Observation.split_date(p[:created_on], utc: true)
       [ :day, :month, :year ].each do |part|
@@ -687,28 +705,12 @@ class Observation < ActiveRecord::Base
 
     if p[:ident_user_id]
       vals = p[:ident_user_id].to_s.split( "," )
-      if vals[0].to_i > 0
-        nested_filter = { terms: { "identifications.user.id" => vals } }
-      else
-        nested_filter = { terms: { "identifications.user.login" => vals } }
-      end
-      search_filters << {
-        bool: {
-          should: [
-            { terms: { identifier_user_ids: vals } },
-            {
-              nested: {
-                path: "identifications",
-                query: {
-                  bool: {
-                    filter: nested_filter
-                  }
-                }
-              }
-            }
-          ]
-        }
-      }
+      search_filters << { terms: { identifier_user_ids: vals } }
+    end
+
+    if p[:ident_taxon_id]
+      vals = p[:ident_taxon_id].to_s.split( "," )
+      search_filters << { terms: { ident_taxon_ids: vals } }
     end
 
     # conservation status
@@ -744,14 +746,16 @@ class Observation < ActiveRecord::Base
       { created_at: sort_order }
     end
 
-    unless p[:geoprivacy].blank? || p[:geoprivacy] == "any"
-      case p[:geoprivacy]
-      when Observation::OPEN
-        inverse_filters << { exists: { field: :geoprivacy } }
-      when "obscured_private"
-        search_filters << { terms: { geoprivacy: Observation::GEOPRIVACIES } }
-      else
-        search_filters << { term: { geoprivacy: p[:geoprivacy] } }
+    [:geoprivacy, :taxon_geoprivacy].each do |geoprivacy_type|
+      unless p[geoprivacy_type].blank? || p[geoprivacy_type] == "any"
+        case p[geoprivacy_type]
+        when Observation::OPEN
+          inverse_filters << { exists: { field: geoprivacy_type } }
+        when "obscured_private"
+          search_filters << { terms: { geoprivacy_type => Observation::GEOPRIVACIES } }
+        else
+          search_filters << { term: { geoprivacy_type => p[geoprivacy_type] } }
+        end
       end
     end
 
@@ -765,6 +769,12 @@ class Observation < ActiveRecord::Base
     end
     if p[:max_id]
       search_filters << { range: { id: { lte: p[:max_id] } } }
+    end
+    if p[:id_above]
+      search_filters << { range: { id: { gt: p[:id_above] } } }
+    end
+    if p[:id_below]
+      search_filters << { range: { id: { lt: p[:id_below] } } }
     end
 
     { filters: search_filters,

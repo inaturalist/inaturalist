@@ -8,11 +8,6 @@ body {
   min-width: 980px;
 }
 
-.bootstrap {
-  a {
-    color: inherit;
-  }
-}
 #header {
   margin-bottom: 0px;
 }
@@ -95,9 +90,6 @@ button[disabled] {
   min-height: 100%;
   font-size: 16px;
   line-height: 24px;
-  a {
-    color: $other-link-color;
-  }
   h4 {
     margin-top: 25px;
   }
@@ -148,7 +140,7 @@ button[disabled] {
       }
     }
   }
-  .contact {
+  .final-row {
     margin-top: 50px;
   }
   .separator {
@@ -232,8 +224,8 @@ body>div>.popover[role="tooltip"].popover-error {
   input[type="radio"], input[type="checkbox"] {
     margin-right: 5px;
   }
-  label.inline + input[type="radio"], label.inline + input[type="checkbox"] {
-    margin-left: 20px;
+  label.checkboxradio {
+    margin-right: 20px;
   }
   .icon-previews {
     margin-top: 15px;

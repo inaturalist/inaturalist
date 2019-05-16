@@ -1,14 +1,13 @@
 import _ from "lodash";
-import * as types from "../constants/constants";
 import React from "react";
 import inaturalistjs from "inaturalistjs";
+import * as types from "../constants/constants";
 import DroppedFile from "../models/dropped_file";
 import ObsCard from "../models/obs_card";
-import util from "../models/util";
+import util, { MAX_FILE_SIZE } from "../models/util";
 import { resizeUpload } from "../../../shared/util";
 
 const actions = class actions {
-
   static setState( attrs ) {
     return { type: types.SET_STATE, attrs };
   }
@@ -166,10 +165,12 @@ const actions = class actions {
       const s = getState( );
       const count = _.keys( s.dragDropZone.selectedObsCards ).length;
       if ( count > 0 ) {
-        dispatch( actions.setState( { removeModal: {
-          show: true,
-          count
-        } } ) );
+        dispatch( actions.setState( {
+          removeModal: {
+            show: true,
+            count
+          }
+        } ) );
       }
     };
   }
@@ -179,11 +180,13 @@ const actions = class actions {
       if ( obsCard.blank( ) ) {
         dispatch( { type: types.REMOVE_OBS_CARD, obsCard } );
       } else {
-        dispatch( actions.setState( { removeModal: {
-          show: true,
-          count: 1,
-          obsCard
-        } } ) );
+        dispatch( actions.setState( {
+          removeModal: {
+            show: true,
+            count: 1,
+            obsCard
+          }
+        } ) );
       }
     };
   }
@@ -236,13 +239,15 @@ const actions = class actions {
       if ( file.uploadState === "failed" ) {
         dispatch( actions.removeFile( file ) );
       } else {
-        dispatch( actions.setState( { confirmModal: {
-          show: true,
-          confirmClass: "danger",
-          confirmText: I18n.t( "remove" ),
-          message: I18n.t( "are_you_sure_remove_photo" ),
-          onConfirm: () => dispatch( actions.removeFile( file ) )
-        } } ) );
+        dispatch( actions.setState( {
+          confirmModal: {
+            show: true,
+            confirmClass: "danger",
+            confirmText: I18n.t( "remove" ),
+            message: I18n.t( "are_you_sure_remove_photo" ),
+            onConfirm: () => dispatch( actions.removeFile( file ) )
+          }
+        } ) );
       }
     };
   }
@@ -285,12 +290,14 @@ const actions = class actions {
         if ( online ) {
           dispatch( actions.submitCheckNoPhotoNoID( ) );
         } else {
-          dispatch( actions.setState( { confirmModal: {
-            show: true,
-            hideCancel: true,
-            confirmText: I18n.t( "ok" ),
-            message: I18n.t( "you_appear_offline_try_again" )
-          } } ) );
+          dispatch( actions.setState( {
+            confirmModal: {
+              show: true,
+              hideCancel: true,
+              confirmText: I18n.t( "ok" ),
+              message: I18n.t( "you_appear_offline_try_again" )
+            }
+          } ) );
         }
       } );
     };
@@ -301,21 +308,27 @@ const actions = class actions {
       const s = getState( );
       let failed;
       _.each( s.dragDropZone.obsCards, c => {
-        if ( !failed && c.files.length === 0 && !c.taxon_id && !c.species_guess ) {
+        if (
+          !failed
+          && ( !c.files.length || c.files.length === 0 )
+          && !c.taxon_id
+          && !c.species_guess
+        ) {
           failed = true;
         }
       } );
       if ( failed ) {
-        dispatch( actions.setState( { confirmModal: {
-          show: true,
-          cancelText: I18n.t( "go_back" ),
-          confirmText: I18n.t( "continue" ),
-          message: I18n.t( "you_are_submitting_obs_without_photos_and_names" ),
-          onConfirm: () => {
-            setTimeout( () =>
-              dispatch( actions.submitCheckPhotoNoDateOrLocation( ) ), 50 );
+        dispatch( actions.setState( {
+          confirmModal: {
+            show: true,
+            cancelText: I18n.t( "go_back" ),
+            confirmText: I18n.t( "continue" ),
+            message: I18n.t( "you_are_submitting_obs_without_photos_and_names" ),
+            onConfirm: () => {
+              setTimeout( () => dispatch( actions.submitCheckPhotoNoDateOrLocation( ) ), 50 );
+            }
           }
-        } } ) );
+        } ) );
       } else {
         dispatch( actions.submitCheckPhotoNoDateOrLocation( ) );
       }
@@ -332,15 +345,17 @@ const actions = class actions {
         }
       } );
       if ( failed ) {
-        dispatch( actions.setState( { confirmModal: {
-          show: true,
-          cancelText: I18n.t( "go_back" ),
-          confirmText: I18n.t( "continue" ),
-          message: I18n.t( "you_are_submitting_obs_with_no_date_or_no_location" ),
-          onConfirm: () => {
-            dispatch( actions.submitObservations( ) );
+        dispatch( actions.setState( {
+          confirmModal: {
+            show: true,
+            cancelText: I18n.t( "go_back" ),
+            confirmText: I18n.t( "continue" ),
+            message: I18n.t( "you_are_submitting_obs_with_no_date_or_no_location" ),
+            onConfirm: () => {
+              dispatch( actions.submitObservations( ) );
+            }
           }
-        } } ) );
+        } ) );
       } else {
         dispatch( actions.submitObservations( ) );
       }
@@ -360,7 +375,12 @@ const actions = class actions {
       const s = getState( );
       if ( s.dragDropZone.saveStatus !== "saving" ) { return; }
       if ( util.countPending( s.dragDropZone.files ) > 0 ) { return; }
-      const stateCounts = { pending: 0, saving: 0, saved: 0, failed: 0 };
+      const stateCounts = {
+        pending: 0,
+        saving: 0,
+        saved: 0,
+        failed: 0
+      };
       let nextToSave;
       _.each( s.dragDropZone.obsCards, c => {
         stateCounts[c.saveState] = stateCounts[c.saveState] || 0;
@@ -394,37 +414,39 @@ const actions = class actions {
         // compare those IDs to the ones the user selected
         const failedProjectIDs = _.difference( selectedProjetIDs, addedToProjectIDs );
         _.each( failedProjectIDs, pid => {
-          missingProjects[pid] = missingProjects[pid] ||
-            { project: _.find( c.projects, p => p.id === pid ), count: 0 };
+          missingProjects[pid] = missingProjects[pid]
+            || { project: _.find( c.projects, p => p.id === pid ), count: 0 };
           missingProjects[pid].count += 1;
         } );
       } );
       // show a modal with the projects and counts of obs that were not added
       // otherwise go to the user's observation page
       if ( _.keys( missingProjects ).length > 0 ) {
-        dispatch( actions.setState( { confirmModal: {
-          show: true,
-          hideCancel: true,
-          confirmText: I18n.t( "continue" ),
-          message: (
-            <div>
-              { I18n.t( "some_observations_failed_to_be_added" ) }
-              <div className="confirm-list">
-                { _.map( missingProjects, mp => (
-                  <div className="confirm-list-item" key={ mp.project.id }>
-                    <span className="title">{ mp.project.title }</span>
-                    <span className="count">
-                      { I18n.t( "x_observations_failed", { count: mp.count } ) }
-                    </span>
-                  </div>
-                ) ) }
+        dispatch( actions.setState( {
+          confirmModal: {
+            show: true,
+            hideCancel: true,
+            confirmText: I18n.t( "continue" ),
+            message: (
+              <div>
+                { I18n.t( "some_observations_failed_to_be_added" ) }
+                <div className="confirm-list">
+                  { _.map( missingProjects, mp => (
+                    <div className="confirm-list-item" key={mp.project.id}>
+                      <span className="title">{ mp.project.title }</span>
+                      <span className="count">
+                        { I18n.t( "x_observations_failed", { count: mp.count } ) }
+                      </span>
+                    </div>
+                  ) ) }
+                </div>
               </div>
-            </div>
-          ),
-          onConfirm: () => {
-            dispatch( actions.checkFailedUploads( ) );
+            ),
+            onConfirm: () => {
+              dispatch( actions.checkFailedUploads( ) );
+            }
           }
-        } } ) );
+        } ) );
       } else {
         dispatch( actions.checkFailedUploads( ) );
       }
@@ -444,38 +466,40 @@ const actions = class actions {
             grouped[err] += 1;
           } );
         } );
-        dispatch( actions.setState( { confirmModal: {
-          show: true,
-          confirmText: I18n.t( "stay_and_try_again" ),
-          cancelText: I18n.t( "ignore_and_continue" ),
-          message: (
-            <div>
-              { I18n.t( "some_observations_failed_to_save" ) }
-              <div className="confirm-list">
-                { _.map( grouped, ( count, err ) => (
-                  <div className="confirm-list-item" key={ err }>
-                    <span className="title">{ err }</span>
-                    <span className="count">
-                      { I18n.t( "x_observations_failed", { count } ) }
-                    </span>
-                  </div>
-                ) ) }
+        dispatch( actions.setState( {
+          confirmModal: {
+            show: true,
+            confirmText: I18n.t( "stay_and_try_again" ),
+            cancelText: I18n.t( "ignore_and_continue" ),
+            message: (
+              <div>
+                { I18n.t( "some_observations_failed_to_save" ) }
+                <div className="confirm-list">
+                  { _.map( grouped, ( count, err ) => (
+                    <div className="confirm-list-item" key={err}>
+                      <span className="title">{ err }</span>
+                      <span className="count">
+                        { I18n.t( "x_observations_failed", { count } ) }
+                      </span>
+                    </div>
+                  ) ) }
+                </div>
               </div>
-            </div>
-          ),
-          onConfirm: ( ) => {
-            dispatch( actions.setState( { obsCards: remaining, saveStatus: null } ) );
-            _.each( remaining, c => {
-              dispatch( actions.updateObsCard( c, { saveState: "pending" } ) );
-            } );
-          },
-          onCancel: ( ) => {
-            _.each( remaining, c => {
-              dispatch( actions.updateObsCard( c, { saveState: "saved" } ) );
-            } );
-            actions.loadUsersObservationsPage( );
+            ),
+            onConfirm: ( ) => {
+              dispatch( actions.setState( { obsCards: remaining, saveStatus: null } ) );
+              _.each( remaining, c => {
+                dispatch( actions.updateObsCard( c, { saveState: "pending" } ) );
+              } );
+            },
+            onCancel: ( ) => {
+              _.each( remaining, c => {
+                dispatch( actions.updateObsCard( c, { saveState: "saved" } ) );
+              } );
+              actions.loadUsersObservationsPage( );
+            }
           }
-        } } ) );
+        } ) );
       } else {
         actions.loadUsersObservationsPage( );
       }
@@ -489,9 +513,14 @@ const actions = class actions {
   static uploadFiles( ) {
     return function ( dispatch, getState ) {
       const s = getState( );
-      const stateCounts = { pending: 0, uploading: 0, uploaded: 0, failed: 0 };
+      const stateCounts = {
+        pending: 0,
+        uploading: 0,
+        uploaded: 0,
+        failed: 0
+      };
       let nextToUpload;
-      _.each( s.dragDropZone.files, ( f ) => {
+      _.each( s.dragDropZone.files, f => {
         stateCounts[f.uploadState] = stateCounts[f.uploadState] || 0;
         stateCounts[f.uploadState] += 1;
         if ( f.uploadState === "pending" && !nextToUpload ) {
@@ -519,7 +548,10 @@ const actions = class actions {
       inaturalistjs.photos.create( { file: file.file }, { same_origin: true } ).then( r => {
         const serverMetadata = file.additionalPhotoMetadata( r );
         dispatch( actions.updateFile( file, {
-          uploadState: "uploaded", photo: r, serverMetadata } ) );
+          uploadState: "uploaded",
+          photo: r,
+          serverMetadata
+        } ) );
         setTimeout( ( ) => {
           dispatch( actions.uploadFiles( ) );
           // if the file has been uploaded and we had a preview,
@@ -564,6 +596,60 @@ const actions = class actions {
     };
   }
 
+  static onRejectedFiles( rejectedFiles ) {
+    return function ( dispatch ) {
+      const errors = {};
+      let showResizeTip = false;
+      let showModal = false;
+      const namedRejectedFiles = _.filter( rejectedFiles, f => f.name && f.name.length > 0 );
+      _.forEach( namedRejectedFiles, file => {
+        errors[file.name] = errors[file.name] || [];
+        if ( file.size > MAX_FILE_SIZE ) {
+          errors[file.name].push(
+            I18n.t( "uploader.errors.file_too_big", { megabytes: MAX_FILE_SIZE / 1024 / 1024 } )
+          );
+          showResizeTip = true;
+          showModal = true;
+        }
+        if ( file.type && !file.type.match( /gif|png|jpe?g|wav|mpe?g|mp3|aac|3gpp/i ) ) {
+          errors[file.name].push(
+            I18n.t( "uploader.errors.unsupported_file_type" )
+          );
+          showModal = true;
+        }
+        if ( window.location.search.match( /debug=true/ ) ) {
+          console.log( "[DEBUG] rejected file: ", file );
+        }
+      } );
+      if ( !showModal ) {
+        return;
+      }
+      const message = (
+        <div>
+          { I18n.t( "there_were_some_problems_with_these_files" ) }
+          { _.map( errors, ( fileErrors, fileName ) => (
+            <div key={`file-errors-${fileName}`}>
+              <code>{ fileName }</code>
+              <ul>
+                { _.map( fileErrors, ( error, i ) => <li key={`file-errors-${fileName}-${i}`}>{ error }</li> )}
+              </ul>
+            </div>
+          ) )}
+          <p className="small text-muted">
+            { showResizeTip && I18n.t( "uploader.resize_tip" ) }
+          </p>
+        </div>
+      );
+      dispatch( actions.setState( {
+        confirmModal: {
+          show: true,
+          message,
+          confirmText: I18n.t( "ok" ),
+          hideCancel: true
+        }
+      } ) );
+    };
+  }
 };
 
 export default actions;

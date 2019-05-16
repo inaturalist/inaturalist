@@ -48,11 +48,11 @@ module ApplicationHelper
       Date.today
     end
     if date == today
-      time ? time.strftime("%I:%M %p").downcase.sub(/^0/, '')  : 'Today'
+      time ? I18n.l( time, format: :compact ) : t(:today)
     elsif date.year == Date.today.year 
-      date.strftime("%b %e") 
+      I18n.l( date.to_date, format: :compact )
     else 
-      date.strftime("%b %e, %Y") 
+      I18n.l( date, format: :month_day_year )
     end 
   end
   
@@ -64,11 +64,7 @@ module ApplicationHelper
       :format => "json"
     }
     
-    already_friends = if user.friends.loaded?
-      user.friends.include?(potential_friend)
-    else
-      already_friends = user.friendships.find_by_friend_id(potential_friend.id)
-    end
+    already_friends = user.friendships.where( friend_id: potential_friend.id ).exists?
     
     unfriend_link = link_to "<span class='glyphicon glyphicon-log-out'></span>&nbsp;#{t(:stop_following_user, :user => potential_friend.login)}".html_safe, 
       url_options.merge(:remove_friend_id => potential_friend.id), 
@@ -217,12 +213,10 @@ module ApplicationHelper
     if without = options.delete(:without)
       without = [without] unless without.is_a?(Array)
       without.map!(&:to_s)
-      new_params.reject! {|k,v| without.include?(k) }
+      new_params = new_params.reject {|k,v| without.include?(k) }
     end
-    
-    new_params.merge!(options) unless options.empty?
-    
-    url_for(new_params)
+    new_params = new_params.merge( options ) unless options.empty?
+    url_for( new_params )
   end
   
   def hidden_fields_for_params(options = {})
@@ -336,7 +330,7 @@ module ApplicationHelper
 
   def simple_format_with_structure( text, options )
     new_text = ""
-    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>)/m )
+    chunks = text.split( /(<table.*?table>|<ul.*?ul>|<ol.*?ol>|<pre.*?pre>)/m )
     chunks.each do |chunk|
       if chunk =~ /<(table|ul|ol)>/
         html = Nokogiri::HTML::DocumentFragment.parse( chunk )
@@ -352,15 +346,17 @@ module ApplicationHelper
           end
         end
         new_text += html.to_s.html_safe
+      elsif chunk =~ /<pre>/
+        new_text += chunk.html_safe
       else
-        new_text += simple_format( chunk, options ).html_safe
+        new_text += simple_format( chunk, {}, options ).html_safe
       end
     end
     new_text.html_safe
   end
 
   def title_by_user( text )
-    h( text ).gsub( "&amp;", "&" ).html_safe
+    h( text ).gsub( "&amp;", "&" ).gsub( "&#39;", "'" ).html_safe
   end
   
   def markdown(text)
@@ -879,7 +875,7 @@ module ApplicationHelper
       record.attribution
     end
     s ||= "&copy; #{user_name}"
-    content_tag(:span, s.html_safe, :class => "rights verticalmiddle")
+    content_tag(:span, s.html_safe, class: "rights verticalmiddle")
   end
 
   def rights_for_observation( record, options = {} )
@@ -935,14 +931,14 @@ module ApplicationHelper
         c = if options[:skip_image]
           ""
         else
-          link_to(image_tag("#{code}_small.png"), url) + " "
+          link_to(image_tag("#{code}_small.png"), url, rel: options[:rel]) + " "
         end
         license_blurb = if record.license_code == Observation::CC0
           I18n.t("copyright.no_rights_reserved")
         else
           I18n.t(:some_rights_reserved)
         end
-        c.html_safe + link_to(license_blurb, url)
+        c.html_safe + link_to(license_blurb, url, rel: options[:rel])
       end
     end
     s
@@ -1128,15 +1124,17 @@ module ApplicationHelper
       if notifier_user
         notifier_class_name = t(resource.class.name.underscore)
         subject = options[:skip_links] ? notifier_user.login : link_to(notifier_user.login, person_url(notifier_user)).html_safe
-        object = "#{notifier_class_name =~ /^[aeiou]/i ? t(:an) : t(:a)} <strong>#{notifier_class_name}</strong>".html_safe
-        t(:subject_committed_thing_affecting_stuff_html, 
-          :subject => subject, 
-          :thing => object, 
-          :stuff => commas_and(resource.input_taxa.map(&:name)))
+        object = "<strong>#{notifier_class_name}</strong>".html_safe
+        t( :subject_committed_thing_affecting_stuff_html,
+          subject: subject,
+          vow_or_con: notifier_class_name[0].downcase,
+          thing: object,
+          stuff: commas_and( resource.input_taxa.compact.map(&:name) )
+        )
       else
         t(:subject_affecting_stuff_html, 
           :subject => t(resource.class.name.underscore), 
-          :stuff => commas_and(resource.input_taxa.map(&:name)))
+          :stuff => commas_and(resource.input_taxa.compact.map(&:name)))
       end
     else
       "update"
@@ -1281,7 +1279,7 @@ module ApplicationHelper
 
   def google_maps_js(options = {})
     libraries = options[:libraries] || []
-    params = "v=3.33&key=#{CONFIG.google.browser_api_key}"
+    params = "v=3.35&key=#{CONFIG.google.browser_api_key}"
     params += "&libraries=#{libraries.join(',')}" unless libraries.blank?
     "<script type='text/javascript' src='http#{'s' if request.ssl?}://maps.google.com/maps/api/js?#{params}'></script>".html_safe
   end
@@ -1440,6 +1438,31 @@ module ApplicationHelper
 
   def responsive?
     @responsive
+  end
+
+  def photo_type_label( type )
+    case type
+    when "FlickrPhoto"
+      "Flickr"
+    when "FacebookPhoto"
+      "Facebook"
+    when "PicasaPhoto"
+      "Google Picasa"
+    else
+      I18n.t( :unknown )
+    end
+  end
+
+  def url_for_referrer_or_default( default )
+    back_url = request.env["HTTP_REFERER"]
+    if back_url && ![request.path, request.url].include?( back_url )
+      return back_url
+    end
+    default
+  end
+  
+  def current_url(new_params)
+   url_for params.merge(new_params)
   end
 
 end

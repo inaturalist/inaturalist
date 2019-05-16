@@ -47,7 +47,7 @@ const SplitTaxon = props => {
     } else {
       iconClass += "unknown";
     }
-    return <LinkElement key={ `${keyBase}-icon` }href={ url } className={iconClass} />;
+    return <LinkElement key={`${keyBase}-icon`} href={url} className={iconClass} />;
   };
   const taxonClass = ( ) => {
     let cssClass = "taxon";
@@ -82,9 +82,9 @@ const SplitTaxon = props => {
           href={url}
           target={target}
           onClick={onClick}
-        >{
-          truncateText( commonName )
-        }</LinkElement>
+        >
+          { truncateText( commonName ) }
+        </LinkElement>
       );
     }
     if ( !taxon ) {
@@ -97,10 +97,16 @@ const SplitTaxon = props => {
               href={url}
               onClick={onClick}
               target={target}
-            >{
-              I18n.t( "unknown" )
-            }</LinkElement> <span className="altname">
-              ({ I18n.t( "placeholder" ) }: { placeholder })
+            >
+              { I18n.t( "unknown" ) }
+            </LinkElement>
+            { " " }
+            <span className="altname">
+              { "(" }
+              { I18n.t( "label_colon", { label: I18n.t( "placeholder" ) } ) }
+              { " " }
+              { placeholder }
+              { ")" }
             </span>
           </span>
         );

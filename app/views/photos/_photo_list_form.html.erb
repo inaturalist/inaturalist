@@ -24,6 +24,10 @@
   <p class="error ui">
     Request to the photo provider timed out.  Please try again later.
   </p>
+<% elsif @forbidden %>
+  <p class="error ui">
+    <%=t "views.photos.forbidden_notice_html" %>
+  </p>
 <% elsif photos.blank? && !local_photos %>
   <div class="description" style="clear: both">
     <br />
@@ -33,7 +37,7 @@
   <h4><%= t :select_one_or_more_photos %></h4>
   <% photos.each do |photo| %>
     <%- 
-      native_photo_id = photo.native_photo_id || photo.id
+      native_photo_id = photo.is_a?( LocalPhoto ) ? photo.id : ( photo.native_photo_id || photo.id )
       thumb_url = photo.try_methods(:thumb_url, :square_url, :url_t, :url_sq)
       next unless thumb_url
       if photo.is_a?(Photo)
@@ -109,3 +113,6 @@
     <%#= link_to_function t(:add_another_photo), "$(this).before('#{escape_javascript(photo_file_field)}')" %>
   </div>
 <% end -%>
+<% if @next_page_token %>
+  <input type="hidden" class="photoSelectorNextPageToken" name="next_page_token" value="<%= @next_page_token %>" />
+<% end %>

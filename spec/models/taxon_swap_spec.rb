@@ -36,14 +36,6 @@ describe TaxonSwap, "creation" do
       u.id, notifier_type: "TaxonChange", notifier_id: tc.id) ).to eq true
   end
 
-  it "should not bail if a taxon has no rank_level" do
-    swap = TaxonSwap.make
-    swap.add_input_taxon( Taxon.make!( rank: Taxon::SPECIES ) )
-    swap.add_output_taxon( Taxon.make!( rank: "something ridiculous" ) )
-    expect( swap.output_taxon.rank_level ).to be_blank
-    expect(swap).to be_valid
-  end
-
   it "should be possible for a site curator who is not a taxon curator of a complete ancestor of the input taxon" do
     genus = Taxon.make!( rank: Taxon::GENUS )
     tf = TaxonFramework.make!( taxon: genus, rank_level: 5 )
@@ -385,14 +377,25 @@ describe TaxonSwap, "commit" do
     }.to raise_error TaxonChange::PermissionError
   end
   
-  it "should raise an error if commiter is not a taxon curator of a taxon framework of the output taxon" do
+  it "should raise an error if commiter is not a taxon curator of a taxon framework of inactive output taxon" do
     superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
     tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
     tc = TaxonCurator.make!( taxon_framework: tf )
-    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user )
+    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user, is_active: false )
     expect {
       @swap.commit
     }.to raise_error TaxonChange::PermissionError
+  end
+  
+  it "should not raise an error if commiter is not a taxon curator of a taxon framework of active output taxon" do
+    superfamily = Taxon.make!( rank: Taxon::SUPERFAMILY )
+    tf = TaxonFramework.make!( taxon: superfamily, rank_level: 5 )
+    tc = TaxonCurator.make!( taxon_framework: tf )
+    @swap.output_taxon.update_attributes( parent: superfamily, current_user: tc.user, is_active: true )
+    @output_taxon.reload
+    expect {
+      @swap.commit
+    }.not_to raise_error TaxonChange::PermissionError
   end
   
   it "should raise an error if input taxon has active children" do
@@ -437,6 +440,30 @@ describe TaxonSwap, "commit" do
     end
   end
 
+  describe "when sole identifier of input taxon has opted out of taxon changes" do
+    before(:each) { enable_elastic_indexing( Observation, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Identification ) }
+
+    it "should re-evalute probable taxa" do
+      o = Observation.make!
+      i1 = Identification.make!(
+        taxon: @ancestor_taxon,
+        observation: o,
+        user: o.user
+      )
+      i2 = Identification.make!(
+        taxon: @input_taxon,
+        observation: o,
+        user: User.make!( prefers_automatic_taxonomic_changes: false )
+      )
+      expect( o.taxon ).to eq @input_taxon
+      @swap.commit
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o.identifications.current.map(&:taxon_id) ).to include i2.taxon_id
+      expect( o.taxon ).to eq @ancestor_taxon
+    end
+  end
 end
 
 describe TaxonSwap, "commit_records" do
@@ -709,7 +736,7 @@ describe TaxonSwap, "commit_records" do
     tc.reload
     expect( tc.input_taxon ).to eq tc.output_taxon
     expect( o.identifications.count ).to eq 1
-    tc.commit_records
+    tc.commit_records rescue nil
     expect( o.identifications.count ).to eq 1
   end
 
@@ -797,7 +824,7 @@ describe "move_input_children_to_output" do
 end
 
 def prepare_swap
-  @ancestor_taxon = Taxon.make!( rank: Taxon::SUPERFAMILY )
+  @ancestor_taxon = Taxon.make!( rank: Taxon::SUPERFAMILY, name: "Superfamily" )
   @input_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "InputFamily", parent: @ancestor_taxon )
   @output_taxon = Taxon.make!( rank: Taxon::FAMILY, name: "OutputFamily", parent: @ancestor_taxon )
   @swap = TaxonSwap.make

@@ -1,9 +1,33 @@
 class TaxonFrameworkRelationshipsController < ApplicationController
+  before_filter :find_taxon_framework_relationship, only: [:show, :edit]
   before_filter :authenticate_user!, except: [:index, :show]
-  before_filter :admin_required, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :curator_required, only: [:new, :create, :edit, :update, :destroy]
+  before_filter :taxon_curator_required, only: [:edit, :update, :destroy]
   before_action :set_taxon_framework_relationship, except: [:index, :new, :create]
   
   layout "bootstrap"
+  
+  def find_taxon_framework_relationship
+    begin
+      @taxon_framework_relationship = TaxonFrameworkRelationship.find( params[:id] )
+    rescue
+      render_404
+    end
+  end
+  
+  def taxon_curator_required
+    set_taxon_framework_relationship
+    taxon_framework = @taxon_framework_relationship.taxon_framework
+    unless logged_in? && current_user.is_curator? && ( !taxon_framework.taxon_curators.any? || ( taxon_framework.taxon_curators.any? && taxon_framework.taxon_curators.where( user: current_user ).exists? ) )
+    flash[:notice] = "only taxon curators for #{taxon_framework.taxon.name} can access that page"
+      if session[:return_to] == request.fullpath
+        redirect_to root_url
+      else
+        redirect_back_or_default(root_url)
+      end
+      return false
+    end
+  end
   
   def index
     filter_params = params[:filters] || params
@@ -11,19 +35,23 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     @relationships ||= TaxonFrameworkRelationship::RELATIONSHIPS.map{ |r| filter_params[r] == "1" ? r : nil }
     @relationships.delete_if{ |r| r.blank? }
     @taxon_framework = TaxonFramework.find_by_id( filter_params[:taxon_framework_id] ) unless filter_params[:taxon_framework_id].blank?    
-    @taxon_frameworks = TaxonFramework.all.limit( 100 )
-    @taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
+    @taxon_frameworks = TaxonFramework.includes( :taxon ).where( "taxon_frameworks.rank_level IS NOT NULL" ).order( "taxa.name" ).limit( 100 )
+    @internal_taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
+    @external_taxon_name = filter_params[:external_taxon_name] unless filter_params[:external_taxon_name].blank?
+    @internal_rank = filter_params[:internal_rank] unless filter_params[:internal_rank].blank?
+    @external_rank = filter_params[:external_rank] unless filter_params[:external_rank].blank?
     user_id = filter_params[:user_id] || params[:user_id]
     @user = User.find_by_id(user_id) || User.find_by_login(user_id) unless user_id.blank?
     @is_active = filter_params[:is_active]
-    @rank = filter_params[:rank] unless filter_params[:rank].blank?
     
     scope = TaxonFrameworkRelationship.all
     scope = scope.relationships(@relationships) unless @relationships.blank?
     scope = scope.taxon_framework(@taxon_framework) if @taxon_framework
-    scope = scope.taxon(@taxon) if @taxon
+    scope = scope.internal_taxon(@internal_taxon) if @internal_taxon
+    scope = scope.external_taxon(@external_taxon_name) if @external_taxon_name
+    scope = scope.internal_rank(@internal_rank) if @internal_rank
+    scope = scope.external_rank(@external_rank) if @external_rank
     scope = scope.by(@user) if @user
-    scope = scope.rank(@rank) if @rank
     if @is_active.yesish?
       scope = scope.active
     elsif @is_active.noish?
@@ -53,6 +81,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
   
   def show
     @taxon_framework = @taxon_framework_relationship.taxon_framework
+    @downstream_deviations_counts = @taxon_framework_relationship.internal_taxa.map{|it| {internal_taxon: it, count: TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).internal_taxon(it).uniq.count - 1 } }
   end
   
   def new
@@ -69,7 +98,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
         order( "taxa.rank_level ASC" ).first]
     else
       @taxon_framework_relationship.taxa.new
-      @taxon_frameworks = TaxonFramework.all.limit( 100 )
+      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
     end
   end
   
@@ -80,12 +109,19 @@ class TaxonFrameworkRelationshipsController < ApplicationController
     @taxon_framework_relationship = current_user.taxon_framework_relationships.new( local_params )
     @taxon_framework_relationship.updater = current_user
     
+    if @taxon_framework_relationship.taxon_framework.taxon_curators.any? && !@taxon_framework_relationship.taxon_framework.taxon_curators.where( user: current_user ).exists?
+      flash[:error] = "only taxon curators can add taxon framework relationships to that taxon framework"
+      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
+      render action: :new
+      return
+    end
+    
     if taxa_attributes
       taxa_attributes.values.each do |row|
         if taxon = Taxon.where( id: row["id"] ).first
          if !taxon.taxon_framework_relationship_id.nil? && row["unlink"] == "false"
             flash[:error] = "#{ taxon.name } is already represented in a Taxon Framework Relationship"
-            @taxon_frameworks = TaxonFramework.all.limit( 100 )
+            @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
             render action: :new
             return
           end
@@ -105,13 +141,9 @@ class TaxonFrameworkRelationshipsController < ApplicationController
           end
         end
       end
-      if taxon = @taxon_framework_relationship.taxa.first
-        redirect_to taxonomy_details_for_taxon_path( taxon )
-      else
-        redirect_to @taxon_framework_relationship
-      end
+      redirect_to @taxon_framework_relationship
     else
-      @taxon_frameworks = TaxonFramework.all.limit( 100 )
+      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
       render action: :new
     end
   end
@@ -123,7 +155,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
           where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
           order( "taxa.rank_level ASC" ).first]
     else
-      @taxon_frameworks = TaxonFramework.all.limit( 100 )
+      @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
     end
   end
 
@@ -145,7 +177,7 @@ class TaxonFrameworkRelationshipsController < ApplicationController
                   where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).
                   order( "taxa.rank_level ASC" ).first]
             else
-              @taxon_frameworks = TaxonFramework.all.limit( 100 )
+              @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
             end
             render action: :edit
             return
@@ -166,18 +198,14 @@ class TaxonFrameworkRelationshipsController < ApplicationController
           end
         end
       end
-      if taxon = @taxon_framework_relationship.taxa.first
-        redirect_to taxonomy_details_for_taxon_path( taxon )
-      else
-        redirect_to @taxon_framework_relationship
-      end
+      redirect_to @taxon_framework_relationship
     else
       if @taxon_framework_relationship.taxa.any?
         taxon = @taxon_framework_relationship.taxa.first
         @taxon_frameworks = [TaxonFramework.joins( "JOIN taxa ON taxa.id = taxon_frameworks.taxon_id" ).
             where( "taxon_frameworks.rank_level <= ? AND taxon_id IN (?)", taxon.rank_level, taxon.ancestor_ids ).order( "taxa.rank_level ASC" ).first]
       else
-        @taxon_frameworks = TaxonFramework.all.limit( 100 )
+        @taxon_frameworks = TaxonFramework.includes( :taxon ).all.order( "taxa.name" ).limit( 100 )
       end
       render action: :edit
     end

@@ -75,7 +75,7 @@ module INatAPIService
     rescue => e
       Rails.logger.debug "[DEBUG] INatAPIService.get_json(#{path}, #{params}, #{options[:retries]}) failed: #{e}"
     end
-    if options[:retries].is_a?(Fixnum) && options[:retries] > 0
+    if options[:retries].is_a?(Integer) && options[:retries] > 0
       retry_options = options.dup
       retry_options[:retries] -= 1
       if options[:retry_delay]
@@ -90,6 +90,8 @@ module INatAPIService
   def self.get( path, params = {}, options = {} )
     json = get_json( path, params, options )
     return unless json
-    OpenStruct.new_recursive( JSON.parse( json ) || {} )
+    parsed_json = JSON.parse( json ) || { }
+    return parsed_json if options[:json]
+    OpenStruct.new_recursive( parsed_json )
   end
 end

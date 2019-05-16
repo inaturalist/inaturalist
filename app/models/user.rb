@@ -3,8 +3,8 @@ class User < ActiveRecord::Base
   include ActsAsElasticModel
 
   acts_as_voter
-  acts_as_spammable :fields => [ :description ],
-                    :comment_type => "item-description"
+  acts_as_spammable fields: [ :description ],
+                    comment_type: "signup"
 
   # If the user has this role, has_role? will always return true
   JEDI_MASTER_ROLE = 'admin'
@@ -82,6 +82,10 @@ class User < ActiveRecord::Base
   preference :common_names, :boolean, default: true 
   preference :scientific_name_first, :boolean, default: false
   preference :no_place, :boolean, default: false
+  preference :medialess_obs_maps, :boolean, default: false
+  preference :coordinate_interpolation_protection, default: false
+  preference :coordinate_interpolation_protection_test, default: false
+  preference :forum_topics_on_dashboard, :boolean, default: true
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification
@@ -105,13 +109,22 @@ class User < ActiveRecord::Base
   has_many :deleted_observations
   has_many :deleted_photos
   has_many :deleted_sounds
-  
-  # Some interesting ways to map self-referential relationships in rails
-  has_many :friendships, :dependent => :destroy
-  has_many :friends, :through => :friendships
-  has_many :followerships, :class_name => 'Friendship', :foreign_key => 'friend_id', :dependent => :destroy
-  has_many :followers, :through => :followerships,  :source => 'user'
-  
+  has_many :friendships, dependent: :destroy
+
+  def followees
+    User.where( "friendships.user_id = ?", id ).
+      joins( "JOIN friendships ON friendships.friend_id = users.id" ).
+      where( "friendships.following" ).
+      where( "users.suspended_at IS NULL" )
+  end
+
+  def followers
+    User.where( "friendships.friend_id = ?", id ).
+      joins( "JOIN friendships ON friendships.user_id = users.id" ).
+      where( "friendships.following" ).
+      where( "users.suspended_at IS NULL" )
+  end
+
   has_many :lists, :dependent => :destroy
   has_many :life_lists
   has_many :identifications, :dependent => :destroy
@@ -154,6 +167,7 @@ class User < ActiveRecord::Base
   has_many :taxon_framework_relationships
   has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
+  has_many :user_privileges, inverse_of: :user, dependent: :delete_all
   
   file_options = {
     processors: [:deanimator],
@@ -216,6 +230,7 @@ class User < ActiveRecord::Base
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
   after_update :set_community_taxa_if_pref_changed
+  after_update :reassess_coordinate_obscuration_if_pref_changed
   after_update :update_photo_properties
   after_update :update_life_list
   after_create :create_default_life_list
@@ -340,6 +355,10 @@ class User < ActiveRecord::Base
   end
   
   def whitelist_licenses
+    self.preferred_observation_license = Shared::LicenseModule.normalize_license_code( preferred_observation_license )
+    self.preferred_photo_license = Shared::LicenseModule.normalize_license_code( preferred_photo_license )
+    self.preferred_sound_license = Shared::LicenseModule.normalize_license_code( preferred_sound_license )
+    
     unless preferred_observation_license.blank? || Observation::LICENSE_CODES.include?( preferred_observation_license )
       self.preferred_observation_license = nil
     end
@@ -520,9 +539,24 @@ class User < ActiveRecord::Base
     reject.friendships.where(friend_id: id).each{ |f| f.destroy }
     merge_has_many_associations(reject)
     reject.destroy
-    User.where( id: id ).update_all( observations_count: observations.count )
-    LifeList.delay(priority: USER_INTEGRITY_PRIORITY).reload_from_observations(life_list_id)
-    Observation.delay(priority: USER_INTEGRITY_PRIORITY).index_observations_for_user( id )
+    User.delay( priority: USER_INTEGRITY_PRIORITY ).merge_cleanup( id )
+  end
+
+  def self.merge_cleanup( user_id )
+    return unless user = User.find_by_id( user_id )
+    start = Time.now
+    Observation.elastic_index!( scope: Observation.by( user_id ) )
+    Observation.elastic_index!(
+      scope: Observation.joins( :identifications ).
+        where( "identifications.user_id = ?", user_id ).
+        where( "observations.last_indexed_at < ?", start )
+    )
+    Identification.elastic_index!( scope: Identification.where( user_id: user_id ) )
+    User.update_identifications_counter_cache( user.id )
+    User.update_observations_counter_cache( user.id )
+    user.reload
+    user.elastic_index!
+    LifeList.reload_from_observations( user.life_list_id )
   end
 
   def set_locale
@@ -827,64 +861,81 @@ class User < ActiveRecord::Base
   #  expose in the UI.
   #
   def self.forget( user_id, options = {} )
+    if user_id.blank?
+      raise "User ID cannot be blank"
+    end
     if user = User.find_by_id( user_id )
       puts "Destroying user (this could take a while)"
       user.sane_destroy
     end
 
+    puts "Updating flags created by user..."
+    Flag.where( user_id: user_id ).update_all( user_id: -1 )
+
     deleted_observations = DeletedObservation.where( user_id: user_id )
     puts "Deleting #{deleted_observations.count} DeletedObservations"
     deleted_observations.delete_all
 
-    s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml") )
-    s3_client = ::Aws::S3::Client.new(
-      access_key_id: s3_config["access_key_id"],
-      secret_access_key: s3_config["secret_access_key"],
-      region: CONFIG.s3_region
-    )
-
-    cf_client = ::Aws::CloudFront::Client.new(
-      access_key_id: s3_config["access_key_id"],
-      secret_access_key: s3_config["secret_access_key"],
-      region: CONFIG.s3_region
-    )
-
-    deleted_photos = DeletedPhoto.where( user_id: user_id )
-    puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
-    deleted_photos.find_each do |dp|
-      images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
-      puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
-      if images.any?
-        s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
-      end
-      dp.destroy
-    end
-
-    # This might cause problems with multiple simultaneous invalidations. FWIW,
-    # CloudFront is supposed to expire things in 24 hours by default
-    if options[:cloudfront_distribution_id]
-      paths = deleted_photos.compact.map{|dp| "/photos/#{ dp.photo_id }/*" }
-      cf_client.create_invalidation(
-        distribution_id: options[:cloudfront_distribution_id],
-        invalidation_batch: {
-          paths: {
-            quantity: paths.size,
-            items: paths
-          },
-          caller_reference: "#{paths[0]}/#{Time.now.to_i}"
-        }
+    unless options[:skip_aws]
+      s3_config = YAML.load_file( File.join( Rails.root, "config", "s3.yml") )
+      s3_client = ::Aws::S3::Client.new(
+        access_key_id: s3_config["access_key_id"],
+        secret_access_key: s3_config["secret_access_key"],
+        region: CONFIG.s3_region
       )
-    end
+      cf_client = ::Aws::CloudFront::Client.new(
+        access_key_id: s3_config["access_key_id"],
+        secret_access_key: s3_config["secret_access_key"],
+        region: CONFIG.s3_region
+      )
 
-    deleted_sounds = DeletedSound.where( user_id: user_id )
-    puts "Deleting #{deleted_sounds.count} DeletedSounds and associated records from s3"
-    deleted_sounds.find_each do |ds|
-      sounds = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{ ds.sound_id }." ).contents
-      puts "\tSound #{ds.sound_id}, removing #{sounds.size} sounds from S3"
-      if sounds.any?
-        s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
+      deleted_photos = DeletedPhoto.where( user_id: user_id )
+      puts "Deleting #{deleted_photos.count} DeletedPhotos and associated records from s3"
+      deleted_photos.find_each do |dp|
+        images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "photos/#{ dp.photo_id }/" ).contents
+        puts "\tPhoto #{dp.photo_id}, removing #{images.size} images from S3"
+        if images.any?
+          s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: images.map{|s| { key: s.key } } } )
+        end
+        dp.destroy
       end
-      ds.destroy
+
+      # delete user profile pic form s3
+      user_images = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "attachments/users/icons/#{user_id}/" ).contents
+      if user_images.any?
+        puts "Deleting profile pic from S3"
+        s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: user_images.map{|s| { key: s.key } } } )
+      end
+
+      # This might cause problems with multiple simultaneous invalidations. FWIW,
+      # CloudFront is supposed to expire things in 24 hours by default
+      if options[:cloudfront_distribution_id]
+        paths = deleted_photos.compact.map{|dp| "/photos/#{ dp.photo_id }/*" }
+        if user_images.any?
+          paths << "attachments/users/icons/#{user_id}/*"
+        end
+        cf_client.create_invalidation(
+          distribution_id: options[:cloudfront_distribution_id],
+          invalidation_batch: {
+            paths: {
+              quantity: paths.size,
+              items: paths
+            },
+            caller_reference: "#{paths[0]}/#{Time.now.to_i}"
+          }
+        )
+      end
+
+      deleted_sounds = DeletedSound.where( user_id: user_id )
+      puts "Deleting #{deleted_sounds.count} DeletedSounds and associated records from s3"
+      deleted_sounds.find_each do |ds|
+        sounds = s3_client.list_objects( bucket: CONFIG.s3_bucket, prefix: "sounds/#{ ds.sound_id }." ).contents
+        puts "\tSound #{ds.sound_id}, removing #{sounds.size} sounds from S3"
+        if sounds.any?
+          s3_client.delete_objects( bucket: CONFIG.s3_bucket, delete: { objects: sounds.map{|s| { key: s.key } } } )
+        end
+        ds.destroy
+      end
     end
 
     # Delete from PandionES where user_id:user_id
@@ -951,7 +1002,6 @@ class User < ActiveRecord::Base
 
   def destroy_project_rules
     ProjectObservationRule.where(
-      operator: "observed_by_user?",
       operand_type: "User",
       operand_id: id
     ).destroy_all
@@ -1028,8 +1078,15 @@ class User < ActiveRecord::Base
   end
 
   def set_community_taxa_if_pref_changed
-    if prefers_community_taxa_changed? && ! id.blank?
+    if prefers_community_taxa_changed? && !id.blank?
       Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
+    end
+    true
+  end
+
+  def reassess_coordinate_obscuration_if_pref_changed
+    if prefers_coordinate_interpolation_protection_changed? && !id.blank?
+      Observation.delay( priority: USER_INTEGRITY_PRIORITY ).reassess_coordinates_for_observations_by( id )
     end
     true
   end
@@ -1194,6 +1251,49 @@ class User < ActiveRecord::Base
   def personal_lists
     lists.not_flagged_as_spam.
       where("(type IN ('LifeList', 'List') OR type IS NULL)")
+  end
+
+  def privileged_with?( privilege )
+    user_privileges.where( privilege: privilege ).where( "revoked_at IS NULL" ).exists?
+  end
+
+  # Iterates over recently created accounts of unknown spammer status, zero
+  # obs or ids, and a description with a link. Attempts to run them past
+  # akismet three times, which seems to catch most spammers
+  def self.check_recent_probable_spammers( limit = 100 )
+    spammers = []
+    num_checks = {}
+    User.order( "id desc" ).limit( limit ).
+        where( "spammer is null " ).
+        where( "created_at < ? ", 12.hours.ago ). # half day grace period
+        where( "description is not null and description != '' and description ilike '%http%'" ).
+        where( "observations_count = 0 and identifications_count = 0" ).
+        pluck(:id).
+        in_groups_of( 10 ) do |ids|
+      puts
+      puts "BATCH #{ids[0]}"
+      puts
+      3.times do |i|
+        batch = User.where( "id IN (?)", ids )
+        puts "Try #{i}"
+        batch.each do |u|
+          next if spammers.include?( u.login )
+          num_checks[u.login] ||= 0
+          puts "#{u}, checked #{num_checks[u.login]} times already"
+          num_checks[u.login] += 1
+          u.description_will_change!
+          u.check_for_spam
+          puts "\tu.akismet_response: #{u.akismet_response}"
+          u.reload
+          if u.spammer == true
+            puts "\tSPAM"
+            spammers << u.login
+          end
+          sleep 1
+        end
+        sleep 10
+      end
+    end
   end
 
 end

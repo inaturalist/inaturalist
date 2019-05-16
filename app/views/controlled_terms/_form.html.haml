@@ -1,5 +1,6 @@
 - primary_term_label = (@term && @term.term_label || ControlledTermLabel.new)
 - term = @term || ControlledTerm.new
+- new_term ||= false
 .container
   .row
     = form_for term do |f|
@@ -40,9 +41,13 @@
           = f.fields_for :controlled_term_taxa do |ctt|
             = render "controlled_term_taxon_fields", f: ctt
           .upstacked
-            = link_to_add_association "Add a taxon", f, :controlled_term_taxa, class: "btn btn-success btn-sm"
+            - if new_term
+              Cannot assign taxa on term creation. Edit the term to assign taxa
+            - else
+              = link_to_add_association "Add a taxon", f, :controlled_term_taxa, class: "btn btn-success btn-sm"
       .row
         .col-md-12.text-center
+          %br
           = f.submit class: "btn btn-primary"
 
 

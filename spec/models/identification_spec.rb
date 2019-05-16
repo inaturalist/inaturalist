@@ -245,7 +245,6 @@ describe Identification, "creation" do
       expect( user.identifications_count ).to eq 0
       Delayed::Worker.new.work_off
       user.reload
-      expect( Delayed::Job.count ).to eq 0
       expect( user.identifications_count ).to eq 1
     end
     
@@ -404,11 +403,20 @@ describe Identification, "creation" do
     end
   end
 
+  it "should set the observation's taxon_geoprivacy if taxon was threatened" do
+    t = make_threatened_taxon
+    o = Observation.make!
+    expect( o.taxon_geoprivacy ).to be_blank
+    i = Identification.make!( taxon: t, observation: o )
+    o.reload
+    expect( o.taxon_geoprivacy ).to eq Observation::OBSCURED
+  end
+
 end
 
 describe Identification, "updating" do
-  before(:each) { enable_elastic_indexing( Identification ) }
-  after(:each) { disable_elastic_indexing( Identification ) }
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
   it "should not change current status of other identifications" do
     i1 = Identification.make!
@@ -422,6 +430,27 @@ describe Identification, "updating" do
     i2.reload
     expect(i1).not_to be_current
     expect(i2).to be_current
+  end
+
+  describe "observation taxon_geoprivacy" do
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+
+    it "should change if becomes current" do
+      threatened = make_threatened_taxon( rank: Taxon::SPECIES )
+      not_threatened = Taxon.make!( rank: Taxon::SPECIES )
+      o = Observation.make!( taxon: threatened )
+      i1 = o.identifications.first
+      o.reload
+      expect( o.taxon_geoprivacy ).to eq Observation::OBSCURED
+      i2 = Identification.make!( user: i1.user, observation: o, taxon: not_threatened )
+      o.reload
+      expect( o.taxon_geoprivacy ).to be_blank
+      i1.reload
+      i1.update_attributes( current: true )
+      o.reload
+      expect( o.taxon_geoprivacy ).to eq Observation::OBSCURED
+    end
   end
 end
 
@@ -691,8 +720,8 @@ describe Identification, "deletion" do
 end
 
 describe Identification, "captive" do
-  before(:each) { enable_elastic_indexing( Identification ) }
-  after(:each) { disable_elastic_indexing( Identification ) }
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
   it "should vote yes on the wild quality metric if 1" do
     i = Identification.make!(:captive_flag => "1")
@@ -765,8 +794,8 @@ end
 describe Identification, "category" do
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
-  before(:each) { enable_elastic_indexing( Identification ) }
-  after(:each) { disable_elastic_indexing( Identification ) }
+  before(:each) { enable_elastic_indexing( Observation, Identification ) }
+  after(:each) { disable_elastic_indexing( Observation, Identification ) }
   let( :o ) { Observation.make! }
   let(:parent) { Taxon.make!( rank: Taxon::GENUS ) }
   let(:child) { Taxon.make!( rank: Taxon::SPECIES, parent: parent ) }
@@ -993,6 +1022,8 @@ describe Identification, "category" do
 end
 
 describe Identification, "disagreement" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   before { load_test_taxa } # Not sure why but these don't seem to pass if I do before(:all)
   it "should be nil by default" do
     expect( Identification.make! ).not_to be_disagreement
@@ -1040,6 +1071,8 @@ end
 describe Identification, "set_previous_observation_taxon" do
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   it "should choose the observation taxon by default" do
     o = Observation.make!( taxon: Taxon.make!(:species) )
     t = Taxon.make!(:species)
@@ -1087,8 +1120,8 @@ describe Identification, "set_previous_observation_taxon" do
 
   it "should not happen when you restore a withdrawn ident" do
     genus = Taxon.make!( rank: Taxon::GENUS, name: "Genus" )
-    species1 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus species1" )
-    species2 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus species2" )
+    species1 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus speciesone" )
+    species2 = Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus speciestwo" )
     o = Observation.make!( taxon: species1 )
     i = Identification.make!( observation: o, taxon: genus, disagreement: true )
     expect( i.previous_observation_taxon ).to eq species1
@@ -1104,6 +1137,8 @@ describe Identification, "set_previous_observation_taxon" do
 end
 
 describe Identification, "update_disagreement_identifications_for_taxon" do
+  before(:each) { enable_elastic_indexing( Observation ) }
+  after(:each) { disable_elastic_indexing( Observation ) }
   let(:f) { Taxon.make!( rank: Taxon::FAMILY ) }
   let(:g1) { Taxon.make!( rank: Taxon::GENUS, parent: f ) }
   let(:g2) { Taxon.make!( rank: Taxon::GENUS, parent: f ) }

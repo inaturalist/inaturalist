@@ -100,11 +100,11 @@ describe Place, "updating" do
   end
 
   it "should update the projects index for projects associated with descendant places when ancestry changes" do
-    3.times { Project.make! }
+    3.times { Project.make!( :collection ) }
     old_parent = Place.make!
     new_parent = Place.make!
     place = Place.make!( parent: old_parent )
-    project = Project.make!( place: place )
+    project = Project.make!( :collection, place: place )
     expect(
       Project.elastic_paginate( where: { place_ids: [ old_parent.id ] } )
     ).to include project
@@ -116,16 +116,17 @@ describe Place, "updating" do
   end
 end
 
-describe Place, "import by WOEID", disabled: ENV["TRAVIS_CI"] do
-  before(:each) do
-    @woeid = '28337864';
-    @place = Place.import_by_woeid(@woeid)
-  end
+# Not really even sure if the Geoplanet API still exists
+# describe Place, "import by WOEID", disabled: ENV["TRAVIS_CI"] do
+#   before(:each) do
+#     @woeid = '28337864';
+#     @place = Place.import_by_woeid(@woeid)
+#   end
   
-  it "should create ancestors" do
-    expect(@place.ancestors.count).to be >= 2
-  end
-end
+#   it "should create ancestors" do
+#     expect(@place.ancestors.count).to be >= 2
+#   end
+# end
 
 # These pass individually but fail as a group, probably due to some 
 # transaction weirdness.
@@ -333,15 +334,14 @@ describe Place do
     expect(p).to be_editable_by(u)
   end
   it "should be editable by the creator" do
-    u = User.make!
+    u = UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user
     p = Place.make!(:user => u)
     expect(p).to be_editable_by(u)
   end
-
   it "should not be editable by non-curators who aren't the creator" do
-    u = User.make!
-    p = Place.make!(:user => User.make!)
-    expect(p).to_not be_editable_by(u)
+    u = UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user
+    p = Place.make!( user: UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user )
+    expect( p ).to_not be_editable_by u
   end
 end
 

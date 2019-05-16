@@ -17,6 +17,7 @@ EOS
   opt :created_on, "Created date to resurrect observations from, format: YYYY-MM-DD", :short => "-c", :type => :string
   opt :dbname, "Database to connect export from", short: "-n", type: :string, default: ActiveRecord::Base.connection.current_database
   opt :skip, "Models to skip", short: "-s", type: :string, multi: true
+  opt :from_user_resurrection, "Restoring observations of resurrected user", :type => :boolean, :short => "-r"
 end
 
 OPTS = opts
@@ -91,13 +92,19 @@ if OPTS.created_on
   end
 end
 
-es_cmd = if @where[0].to_s =~ /id IN \(/
-  @observations.in_groups_of( 500 ).map { |obs|
+es_cmds = []
+if @where[0].to_s =~ /id IN \(/
+  es_cmds << @observations.in_groups_of( 500 ).map { |obs|
     new_where = ["observations.id IN (#{obs.compact.map(&:id).join( "," )})"] + @where[1..-1]
     "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{new_where.join( " AND " )}' ) )\""
   }.join( " && \\\n" )
+  es_cmds << @observations.in_groups_of( 500 ).map { |obs|
+    new_where = ["observations.id IN (#{obs.compact.map(&:id).join( "," )})"] + @where[1..-1]
+    "RAILS_ENV=production bundle exec rails r \"Identification.elastic_index!( scope: Identification.joins(:observation).where( '#{new_where.join( " AND " )}' ) )\""
+  }.join( " && \\\n" )
 else
-  "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{@where.join( " AND " )}' ) )\""
+  es_cmds << "RAILS_ENV=production bundle exec rails r \"Observation.elastic_index!( scope: Observation.where( '#{@where.join( " AND " )}' ) )\""
+  es_cmds << "RAILS_ENV=production bundle exec rails r \"Identification.elastic_index!( scope: Identification.joins(:observation).where( '#{@where.join( " AND " )}' ) )\""
 end
 
 system "rm -rf resurrect_#{session_id}*"
@@ -133,6 +140,13 @@ has_many_reflections.each do |k, reflection|
   if %w( comments taggings tag_taggings votes_for flags annotations ).include?( k.to_s ) && reflection.options[:as]
     join_condition += " AND #{reflection.table_name}.#{reflection.options[:as]}_type = 'Observation'"
   end
+  if OPTS.from_user_resurrection && @user
+    if ["comments", "quality_metrics"].include?( reflection.table_name )
+      join_condition += " AND #{reflection.table_name}.user_id != #{@user.id}"
+    elsif reflection.table_name == "votes"
+      join_condition += " AND #{reflection.table_name}.voter_id != #{@user.id}"
+    end
+ end
   sql = <<-SQL
     SELECT DISTINCT
       #{column_names.map{|cn| "#{reflection.table_name}.#{cn}"}.join( ", " )}
@@ -219,5 +233,19 @@ ssh -t inaturalist@taricha "cd deployment/production/current ; bash"
 tar xzvf resurrect_#{session_id}.tgz
 #{resurrection_cmds.uniq.join("\n")}
 source /usr/local/rvm/scripts/rvm 
-#{es_cmd}
+#{es_cmds.join("\n")}
 EOT
+if @user
+  puts <<-EOT
+bundle exec rails r "User.update_identifications_counter_cache(#{@user.id})"
+bundle exec rails r "User.update_observations_counter_cache(#{@user.id})"
+  EOT
+end
+
+if OPTS.from_user_resurrection && @user
+  puts
+  puts "Indexing commands for a resurrected users data"
+  puts "  Observation.elastic_index!( scope: Observation.where( user_id: #{@user.id} ) )"
+  puts "  Observation.elastic_index!( scope: Observation.joins( :identifications ).where( \"identifications.user_id=#{@user.id}\" ) )"
+  puts "  User.find( #{@user.id} ).elastic_index!"
+end

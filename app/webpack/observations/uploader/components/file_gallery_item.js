@@ -52,30 +52,34 @@ class FileGalleryItem extends Component {
     let item;
     let zoom;
     let closeButton;
-    const uploadFailed = ( this.props.file.uploadState === "failed" );
-    const previewAvailable = ( this.props.file.preview && !this.props.file.photo );
-    const photoAvailable = ( this.props.file.photo && this.props.file.uploadState !== "failed" );
-    const soundAvailable = ( this.props.file.sound && this.props.file.uploadState !== "failed" );
-    const isSound = this.props.file.type.match( /audio/ );
+    const { file } = this.props;
+    const previewAvailable = ( file.preview && !file.photo );
+    const photoAvailable = ( file.photo && file.uploadState !== "failed" );
+    // const soundAvailable = ( file.sound && file.uploadState !== "failed" );
+    const uploadFailed = ( file.uploadState === "failed" );
+    const isSound = file.type.match( /audio/ );
     if ( !uploadFailed && isSound ) {
-      item = ( <Sound { ...this.props } /> );
+      item = ( <Sound {...this.props} /> );
     } else if ( !uploadFailed && ( previewAvailable || photoAvailable ) ) {
       // preview photo
-      item = ( <Photo { ...this.props } onClick={ this.openPhotoViewer } /> );
+      item = ( <Photo {...this.props} onClick={this.openPhotoViewer} /> );
       zoom = this.zoomButton( );
       closeButton = this.closeButton( );
     } else {
       item = (
-        <div className="failed" >
+        <div className="failed">
           <OverlayTrigger
             placement="top"
-            delayShow={ 1000 }
-            overlay={ (
-              <Tooltip id="merge-tip">{ I18n.t( "uploader.tooltips.photo_failed" ) }</Tooltip>
-            ) }
+            delayShow={1000}
+            overlay={(
+              <Tooltip id="merge-tip">{ I18n.t( "uploader.tooltips.upload_failed" ) }</Tooltip>
+            )}
           >
             <Glyphicon glyph="exclamation-sign" />
           </OverlayTrigger>
+          <div className="text-muted">
+            { file.name }
+          </div>
         </div>
       );
     }

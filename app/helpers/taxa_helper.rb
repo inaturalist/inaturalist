@@ -108,7 +108,7 @@ module TaxaHelper
   #  => "/assets/iconic_taxa/aves-ffaa00-20px.png"
   # 
   def iconic_taxon_image_url(taxon, params = {})
-    params[:size] = nil unless params[:size].is_a? Fixnum
+    params[:size] = nil unless params[:size].is_a? Integer
     params[:size] ||= 75
     iconic_taxon = Taxon::ICONIC_TAXA_BY_ID[taxon]
     iconic_taxon ||= if taxon

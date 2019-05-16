@@ -5,7 +5,8 @@ class ConservationStatus < ActiveRecord::Base
   belongs_to :place
   belongs_to :source
 
-  before_save :set_geoprivacy
+  before_create :set_geoprivacy
+  before_save :normalize_geoprivacy
   after_save :update_observation_geoprivacies, :if => lambda {|record|
     record.id_changed? || record.geoprivacy_changed? || record.place_id_changed?
   }
@@ -102,6 +103,13 @@ class ConservationStatus < ActiveRecord::Base
   end
 
   def set_geoprivacy
+    if !iucn.nil? && iucn <= Taxon::IUCN_LEAST_CONCERN
+      self.geoprivacy = Observation::OPEN
+    end
+    true
+  end
+
+  def normalize_geoprivacy
     self.geoprivacy = nil if geoprivacy.blank?
     true
   end

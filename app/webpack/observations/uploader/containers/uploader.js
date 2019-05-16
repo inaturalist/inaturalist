@@ -15,6 +15,9 @@ const mapStateToProps = ( state ) => {
 
 const mapDispatchToProps = ( dispatch ) => ( {
   onDrop: ( droppedFiles, rejectedFiles, e ) => {
+    if ( rejectedFiles.length > 0 ) {
+      dispatch( actions.onRejectedFiles( rejectedFiles ) );
+    }
     dispatch( actions.onFileDrop( droppedFiles, e ) );
   },
   onCardDrop: ( droppedFiles, e, obsCard ) => {

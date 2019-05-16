@@ -8,6 +8,7 @@ import PieChart from "./pie_chart";
 const PieChartForIconicTaxonCounts = ( {
   data,
   user,
+  site,
   year,
   margin,
   donutWidth,
@@ -117,13 +118,13 @@ const PieChartForIconicTaxonCounts = ( {
           iconicTaxonName: "Animalia"
         }
       ]}
-      legendColumns={ 2 }
-      legendColumnWidth={ 120 }
-      margin={ margin }
-      labelForDatum={ labelForDatum }
-      donutWidth={ donutWidth }
-      onClick={ d => {
-        let url = urlPrefix || `/observations?place_id=any&d1=${year}-01-01&d2=${year + 1}-01-01`;
+      legendColumns={2}
+      legendColumnWidth={120}
+      margin={margin}
+      labelForDatum={labelForDatum}
+      donutWidth={donutWidth}
+      onClick={d => {
+        let url = urlPrefix || `/observations?d1=${year}-01-01&d2=${year}-12-31`;
         if ( user ) {
           url += `&user_id=${user.login}`;
         }
@@ -147,8 +148,17 @@ const PieChartForIconicTaxonCounts = ( {
         } else if ( iconicTaxonID ) {
           url += `&taxon_id=${iconicTaxonID}`;
         }
+        if ( site && site.id !== 1 ) {
+          if ( site.place_id ) {
+            url += `&place_id=${site.place_id}`;
+          } else {
+            url += `&site_id=${site.id}`;
+          }
+        } else {
+          url += "&place_id=any";
+        }
         window.open( url, "_blank" );
-      } }
+      }}
     />
   );
 };
@@ -157,9 +167,9 @@ PieChartForIconicTaxonCounts.propTypes = {
   data: PropTypes.object,
   year: PropTypes.number,
   user: PropTypes.object,
+  site: PropTypes.object,
   margin: PropTypes.object,
   labelForDatum: PropTypes.func,
-  innerRadius: PropTypes.number,
   donutWidth: PropTypes.number,
   urlPrefix: PropTypes.string
 };

@@ -6,7 +6,8 @@ function mapStateToProps( state ) {
   return {
     results: state.taxon.similar,
     place: state.config.chosenPlace,
-    config: state.config
+    config: state.config,
+    taxon: state.taxon.taxon
   };
 }
 

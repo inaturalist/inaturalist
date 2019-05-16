@@ -153,6 +153,37 @@ describe ActsAsElasticModel do
         obs.reload
         expect( obs.last_indexed_at ).to be > 1.minute.ago
       end
+
+      it "can be delayed" do
+        obs = Observation.make!
+        obs.update_column(:last_indexed_at, 1.year.ago)
+        expect( obs.last_indexed_at ).to be < 1.minute.ago
+        Observation.elastic_index!( delay: true )
+        expect( obs.last_indexed_at ).to be < 1.minute.ago
+        Delayed::Worker.new.work_off
+        obs.reload
+        expect( obs.last_indexed_at ).to be > 1.minute.ago
+      end
+
+      it "doesn't re-index obs indexed more than 5 minutes after delayed index request" do
+        obs = Observation.make!
+        Observation.elastic_index!( delay: true )
+        less_than_five_minutes = 4.minutes.from_now
+        obs.update_column(:last_indexed_at, less_than_five_minutes)
+        Delayed::Worker.new.work_off
+        obs.reload
+        # obs indexed less than 5 minutes after delay request are re-indexed
+        expect( obs.last_indexed_at ).to_not eq less_than_five_minutes
+
+        Observation.elastic_index!( delay: true )
+        more_than_five_minutes = 10.minutes.from_now
+        obs.update_column(:last_indexed_at, more_than_five_minutes)
+        Delayed::Worker.new.work_off
+        obs.reload
+        # obs index more than 5 minutes after delay request aren't re-indexed
+        expect( ( obs.last_indexed_at - more_than_five_minutes ).abs ).to be < 1
+      end
+
     end
 
     describe "elastic_delete!" do

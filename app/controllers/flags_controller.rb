@@ -1,5 +1,5 @@
 class FlagsController < ApplicationController
-  before_filter :authenticate_user!, :except => [:index, :show]
+  before_filter :authenticate_user!, :except => [:show]
   before_filter :set_model, :except => [:update, :show, :destroy, :on]
   before_filter :model_required, :except => [:index, :update, :show, :destroy, :on]
   before_filter :load_flag, :only => [:show, :destroy, :update]
@@ -15,7 +15,7 @@ class FlagsController < ApplicationController
   PARTIALS = %w(dialog)
 
   def index
-    if @model && @object = @model.find_by_id(params[@param])
+    if request.path != "/flags" && @model && @object = @model.find_by_id(params[@param])
       # The default acts_as_flaggable index route
       @object = @object.becomes(Photo) if @object.is_a?(Photo)
       @flags = @object.flags.includes(:user, :resolver).
@@ -26,34 +26,76 @@ class FlagsController < ApplicationController
     else
       # a real index of all flags, which can be filtered by flag type
       @flag_type = params[:flag].to_s.tr("_", " ")
-      # if we have a user to filter by...
-      if @user = User.where(login: params[:user_id]).first || User.where(id: params[:user_id]).first
-        @flags = FlagsController::FLAG_MODELS.map(&:constantize).map{ |klass|
-          # classes have different ways of getting to user, so just do
-          # a join and enforce the user_id with a where clause
-          if klass.reflections[:user]
-            klass.joins(:user).where(users: { id: @user.id }).joins(:flags).
-              where({ flags: { resolved: false } }).map(&:flags)
-          end
-        }.compact.flatten.uniq
-        unless @flag_type.blank?
-          @flags.reject!{ |f| f.flag != @flag_type }
+      @flag_types = [params[:flags]].flatten.compact
+      @flag_types = ["other", Flag::INAPPROPRIATE] if @flag_types.blank?
+      @resolved = if params[:resolved].blank?
+        "no"
+      elsif params[:resolved] == "any"
+        "any"
+      elsif params[:resolved].yesish?
+        "yes"
+      elsif params[:resolved].noish?
+        "no"
+      end
+      @flaggable_type = params[:flaggable_type] if FLAG_MODELS.include?( params[:flaggable_type] )
+      @user = User.where( login: params[:user_id] ).first || User.where( id: params[:user_id] ).first
+      @user ||= User.where( login: params[:user_name] ).first
+      @resolver = User.where( login: params[:resolver_id] ).first || User.where( id: params[:resolver_id] ).first
+      @resolver ||= User.where( login: params[:resolver_name] ).first
+      @flagger_type = params[:flagger_type] if %w(any auto user).include?( params[:flagger_type] )
+      @flagger_type ||= "any"
+      @taxon = Taxon.find_by_id( params[:taxon_id] )
+      @flags = Flag.order( "created_at desc" )
+      @flags = @flags.where( flaggable_user_id: @user.id ) if @user
+      unless @flag_type.blank?
+        @flags = @flags.where(flag: @flag_type)
+      end
+      @flags = @flags.where( flaggable_type: @flaggable_type ) unless @flaggable_type.blank?
+      if @flag_types.include?( "other" )
+        except_flag_types = Flag::FLAGS - @flag_types
+        unless except_flag_types.blank?
+          @flags = @flags.where( "flag NOT IN (?)", ( Flag::FLAGS - @flag_types ) )
         end
       else
-        # otherwise start with all recent unresolved flags
-        @flags = Flag.where(resolved: false).order("created_at desc")
-        unless @flag_type.blank?
-          @flags = @flags.where(flag: @flag_type)
-        end
-        @flags = @flags.paginate(per_page: 50, page: params[:page])
+        @flags = @flags.where( "flag IN (?)", @flag_types )
       end
-      render :global_index
+      if @resolved == "yes"
+        @flags = @flags.where( "resolved" )
+      elsif @resolved == "no"
+        @flags = @flags.where( "NOT resolved" )
+      end
+      if @flagger_type == "auto"
+        @flags = @flags.where( "flags.user_id = 0 OR flags.user_id IS NULL" )
+      elsif @flagger_type == "user"
+        @flagger = User.find_by_id( params[:flagger_user_id] )
+        @flagger ||= User.find_by_login( params[:flagger_name] )
+        if @flagger
+          @flags = @flags.where( "flags.user_id = ?", @flagger )
+        end
+      end
+      if @taxon && @flaggable_type == "Taxon"
+        @flags = @flags.
+          joins( "LEFT OUTER JOIN taxon_ancestors ta ON ta.taxon_id = flags.flaggable_id" ).
+          where( "ta.ancestor_taxon_id = ?", @taxon )
+      end
+      if @resolver
+        @flags = @flags.where( resolver_id: @resolver )
+      end
+      if @reason_query = params[:reason_query]
+        @flags = @flags.where( "flag ILIKE ?", "%#{@reason_query}%" )
+      end
+      @flags = @flags.paginate(per_page: 50, page: params[:page])
+      render :global_index, layout: "bootstrap"
     end
   end
   
   def show
     @object = @flag.flagged_object
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
+    user_viewed_updates_for( @flag ) if logged_in?
+    respond_to do |format|
+      format.html { render layout: "bootstrap" }
+    end
   end
   
   def new
@@ -87,7 +129,7 @@ class FlagsController < ApplicationController
       @flag.flag = params[:flag_explanation]
     end
     if @flag.save
-      flash[:notice] = t(:flag_saved_thanks)
+      flash[:notice] = t(:flag_saved_thanks_html, url: url_for( @flag ) )
     else
       flash[:error] = t(:we_had_a_problem_flagging_that_item, :flag_error => @flag.errors.full_messages.to_sentence.downcase)
     end

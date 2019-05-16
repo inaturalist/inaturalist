@@ -40,8 +40,31 @@ class Project < ActiveRecord::Base
     project_users: { notification: "curator_change" }
   }
 
+  # We used to just call ProjectsController.action_methods.to_a here, but that
+  # leads to some unpleasantness when referring to the Project model from within
+  # other models in specs
+  PROJECTS_CONTROLLER_ACTION_METHODS = [
+    "stats", "index", "new", "observed_taxa_count",
+    "show_contributor", "feature", "join", "edit", "remove", "show",
+    "add_batch", "remove_project_user", "remove_batch", "list", "search",
+    "calendar", "invite", "terms", "confirm_leave", "stats_slideshow",
+    "contributors", "convert_to_collection", "convert_to_traditional", "leave",
+    "new_traditional", "add", "by_login", "unfeature", "create", "destroy",
+    "change_admin", "update", "bulk_template", "members", "block_spammers",
+    "block_if_spammer", "if_spammer_set_flash_message", "block_if_spam",
+    "render_spam_notice", "set_spam_flash_error", "browse",
+    "set_akismet_params_on_record", "change_role", "logged_in?", "set_locale",
+    "ping"
+  ]
+
+  # requires_privilege :organizer, on: :create,
+  #   if: Proc.new {|project|
+  #     !project.is_new_project? && !project.user.is_curator? && !project.user.is_admin?
+  #   }
+
   extend FriendlyId
-  friendly_id :title, use: [ :slugged, :history, :finders ], reserved_words: ProjectsController.action_methods.to_a
+  friendly_id :title, use: [ :slugged, :history, :finders ],
+    reserved_words: PROJECTS_CONTROLLER_ACTION_METHODS
 
   def normalize_friendly_id( string )
     super_candidate = super( string )
@@ -49,6 +72,9 @@ class Project < ActiveRecord::Base
     candidate = super_candidate if candidate.blank? || candidate == super_candidate
     if candidate.to_i > 0
       candidate = string.gsub( /[^\p{Word}0-9\-_]+/, "-" ).downcase
+    end
+    if candidate =~ /^\d+$/
+      candidate = ["project", id, candidate].compact.join( "-" )
     end
     candidate
   end
@@ -71,10 +97,13 @@ class Project < ActiveRecord::Base
   preference :rule_month, :string
   preference :rule_term_id, :integer
   preference :rule_term_value_id, :integer
+  preference :rule_native, :boolean
+  preference :rule_introduced, :boolean
   RULE_PREFERENCES = [
     "rule_quality_grade", "rule_photos", "rule_sounds",
     "rule_observed_on", "rule_d1", "rule_d2", "rule_month",
-    "rule_term_id", "rule_term_value_id"
+    "rule_term_id", "rule_term_value_id", "rule_native",
+    "rule_introduced"
   ]
   
   SUBMISSION_BY_ANYONE = 'any'
@@ -171,7 +200,7 @@ class Project < ActiveRecord::Base
   ASSESSMENT_TYPE = 'assessment'
   BIOBLITZ_TYPE = 'bioblitz'
   PROJECT_TYPES = [ASSESSMENT_TYPE, BIOBLITZ_TYPE]
-  RESERVED_TITLES = ProjectsController.action_methods
+  RESERVED_TITLES = PROJECTS_CONTROLLER_ACTION_METHODS
   MAP_TYPES = %w(roadmap terrain satellite hybrid)
   validates_exclusion_of :title, in: RESERVED_TITLES + %w(user)
   validates_uniqueness_of :title
@@ -305,7 +334,11 @@ class Project < ActiveRecord::Base
   end
 
   def project_observations_count
-    project_observations.count
+    if is_new_project?
+      INatAPIService.observations( collection_search_parameters.merge( per_page: 0 ) ).total_results
+    else
+      project_observations.count
+    end
   end
 
   def posts_count
@@ -420,7 +453,8 @@ class Project < ActiveRecord::Base
       params.merge!(project_id: project_ids) unless project_ids.blank?
       return params
     end
-    if start_time && end_time
+    # this method can be called on traditional projects, which can use start_time and end_time
+    if start_time && end_time && !is_new_project?
       params[:d1] = preferred_start_date_or_time
       params[:d2] = preferred_end_date_or_time
     end
@@ -457,7 +491,15 @@ class Project < ActiveRecord::Base
       unless rule_value.nil? || rule_value == ""
         # map the rule values to their proper data types
         if [ "rule_d1", "rule_d2", "rule_observed_on" ].include?( rule )
-          rule_value = rule_value.match( / / ) ? Time.parse( rule_value ) : Date.parse( rule_value )
+          if rule_value.strip.match( / / )
+            rule_value = Time.parse( rule_value )
+          else
+            rule_value = Date.parse( rule_value )
+            if rule == "rule_d2"
+              # when d2 is a date w/o a time, we want to capture that in its own field
+              params[ "d2_date" ] = rule_value
+            end
+          end
         elsif rule_value.is_a?( String )
           is_int = rule_value.match( /^\d+ *(, *\d+)*$/ )
           rule_value = rule_value.split( "," ).map( &:strip )
@@ -724,7 +766,13 @@ class Project < ActiveRecord::Base
   
   def self.update_observed_taxa_count(project_id)
     return unless project = Project.find_by_id(project_id)
-    observed_taxa_count = project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
+    observed_taxa_count = if project.is_new_project?
+      response = INatAPIService.observations_species_counts( project.collection_search_parameters.merge( per_page: 0 ) )
+      return unless response
+      response.total_results
+    else
+      project.project_list.listed_taxa.where("last_observation_id IS NOT NULL").count
+    end
     project.update_attributes(observed_taxa_count: observed_taxa_count)
   end
   
@@ -763,7 +811,7 @@ class Project < ActiveRecord::Base
   def self.slugs_to_ids(slugs)
     slugs = slugs.split(',') if slugs.is_a?(String)
     [slugs].flatten.compact.map do |p|
-      project_id = p if p.is_a? Fixnum
+      project_id = p if p.is_a? Integer
       project_id ||= p.id if p.is_a? Project
       project_id ||= Project.find(p).try(:id) rescue nil
       project_id
@@ -1000,7 +1048,6 @@ class Project < ActiveRecord::Base
 
   def destroy_project_rules
     ProjectObservationRule.where(
-      operator: "in_project?",
       operand_type: "Project",
       operand_id: id
     ).destroy_all

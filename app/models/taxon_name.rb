@@ -15,6 +15,8 @@ class TaxonName < ActiveRecord::Base
                           :case_sensitive => false
   validates_format_of :lexicon, with: /\A[^\/,]+\z/, message: :should_not_contain_commas_or_slashes, allow_blank: true
   validate :species_name_cannot_match_taxon_name
+  NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
+  validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
   before_validation do |tn|
     tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
@@ -239,7 +241,8 @@ class TaxonName < ActiveRecord::Base
     language_name = language_for_locale( locale )
     locale_names = common_names.select {|n| n.localizable_lexicon == language_name }
 
-    # We want Maori names to show up in New Zealand even for English speakers, but we don't want North American English names to show in Mexcio
+    # We want Maori names to show up in New Zealand even for English speakers,
+    # but we don't want North American English names to show in Mexcio
     locale_and_place_names = place_names.select {|n| n.localizable_lexicon == language_name }
     exact_locale_and_place_names = exact_place_names.select {|n| n.localizable_lexicon == language_name }
     
@@ -314,13 +317,18 @@ class TaxonName < ActiveRecord::Base
   def self.find_external(q, options = {})
     r = ratatosk(options)
     # fetch names and save them
-    r.find(q).map do |ext_name|
+    ext_names = r.find( q )
+    existing = Taxon.where( name: ext_names.map(&:name) ).limit( 500 ).index_by(&:name)
+    ext_names.map do |ext_name|
       unless ext_name.valid?
         if existing_taxon = r.find_existing_taxon(ext_name.taxon)
           ext_name.taxon = existing_taxon
         end
       end
-      if ext_name.save
+      if existing[ext_name.name]
+        # don't bother creating new synonymous taxa
+        nil
+      elsif ext_name.save
         ext_name
       else
         Rails.logger.debug "[DEBUG] Failed to save ext_name: #{ext_name.errors.full_messages.to_sentence}"

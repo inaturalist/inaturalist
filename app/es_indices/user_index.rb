@@ -21,7 +21,8 @@ class User < ActiveRecord::Base
       id: id,
       login: login,
       spam: known_spam?,
-      suspended: suspended?
+      suspended: suspended?,
+      created_at: created_at.in_time_zone( "UTC" )
     }
     unless options[:no_details]
       obs_count = [observations_count.to_i, 0].max
@@ -37,6 +38,7 @@ class User < ActiveRecord::Base
         identifications_count: ident_count,
         journal_posts_count: post_count,
         activity_count: obs_count + ident_count + post_count,
+        universal_search_rank: obs_count,
         roles: roles.map(&:name),
         site_id: site_id
       })

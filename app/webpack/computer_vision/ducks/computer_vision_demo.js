@@ -107,7 +107,7 @@ export function score( obsCard ) {
       } );
     }
     if ( obsCard.selected_date ) {
-      params.date = moment( obsCard.selected_date, "YYYY/MM/DD" ).format( );
+      params.observed_on = moment( obsCard.selected_date, "YYYY/MM/DD" ).format( );
     }
     if ( obsCard.selected_taxon ) {
       params.taxon_id = obsCard.selected_taxon.id;
@@ -116,11 +116,13 @@ export function score( obsCard ) {
       params.lat = obsCard.latitude;
       params.lng = obsCard.longitude;
     }
-    let fetchURL = `/computer_vision_demo_uploads/${obsCard.uploadedFile.photo.uuid}/score`;
-    if ( !_.isEmpty( params ) ) {
-      fetchURL += `?${$.param( params )}`;
-    }
-    fetch( fetchURL, { credentials: "same-origin" } )
+    const fetchURL = `/computer_vision_demo_uploads/${obsCard.uploadedFile.photo.uuid}/score`;
+    const body = new FormData( );
+    body.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
+    _.forEach( params, ( v, k ) => {
+      body.append( k, v );
+    } );
+    fetch( fetchURL, { method: "POST", body } )
       .then( thenCheckStatus )
       .then( thenText )
       .then( thenJson )
@@ -157,16 +159,12 @@ export function dataURLToBlob( dataURL ) {
 export function uploadImage( obsCard ) {
   return function ( dispatch ) {
     resizeUpload( obsCard.uploadedFile.file, { }, resizedBlob => {
-      const headers = { };
-      const csrfParam = $( "meta[name=csrf-param]" ).attr( "content" );
-      const csrfToken = $( "meta[name=csrf-token]" ).attr( "content" );
-      headers[csrfParam] = csrfToken;
       const body = new FormData( );
+      body.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
       body.append( "file", resizedBlob );
       const fetchOpts = {
-        method: "post",
+        method: "POST",
         credentials: "same-origin",
-        headers,
         body
       };
       fetch( "/computer_vision_demo_uploads", fetchOpts )

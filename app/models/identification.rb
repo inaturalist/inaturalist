@@ -101,10 +101,14 @@ class Identification < ActiveRecord::Base
     delay: false,
     notification: "mention",
     if: lambda {|u| u.prefers_receive_mentions? }
+
+  earns_privilege UserPrivilege::SPEECH
+  earns_privilege UserPrivilege::COORDINATE_ACCESS
   
   scope :for, lambda {|user|
     joins(:observation).where("observation.user_id = ?", user)
   }
+  scope :for_others, -> { joins(:observation).where( "observations.user_id != identifications.user_id" ) }
   scope :by, lambda {|user| where("identifications.user_id = ?", user)}
   scope :not_by, lambda {|user| where("identifications.user_id != ?", user)}
   scope :of, lambda { |taxon|
@@ -238,6 +242,7 @@ class Identification < ActiveRecord::Base
     end
     observation.identifications.reload
     observation.set_community_taxon(force: true)
+    observation.set_taxon_geoprivacy
     observation.update_attributes(attrs)
     true
   end

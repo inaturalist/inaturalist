@@ -45,8 +45,6 @@ gl:
       ás especies</span>
     other: <span class=count>%{count}</span> observacións grao da investigación identificaron
       ás especies</span>
-  a: Unha
-  a_: un(</a)
   a_community_for_naturalist: Unha comunidade para naturalistas
   a_default_taxon_name_will_automatically_created: Crearase automaticamente un nome
     por defecto do taxón a partir do atributo do nome científico deste taxón. Cando
@@ -154,7 +152,6 @@ gl:
   add_taxon_range: Engadir rango de taxón
   add_taxonomic_tags_to: Engadir etiquetas taxonómicas a fotos de Flickr seleccionadas
     &raquo;
-  add_to: Engade a
   add_to_a_scheme: Engadir a un esquema
   add_to_checklist: agregar á lista de verificación
   add_to_id_please: Solicitar ID
@@ -382,7 +379,6 @@ gl:
   automatically_update_my_content_for_taxon_changes: Actualiza o meu contido automaticamente
     cando exista un cambio
   back: Retornar
-  back_to: Volver a
   back_to_albums: Volver atrás
   back_to_all_species: Volver a todas as especies
   back_to_browsing_people: Volver a Procura de persoas
@@ -400,7 +396,6 @@ gl:
   back_to_projects: Volver a proxectos
   back_to_shared_taxon: Volver a %{sharedtaxon}
   back_to_taxon: Volver a %{defaulttaxon}
-  back_to_this: Volver a %{place}
   back_to_viewing: Volver a Ver <i>%{taxon}</i>
   back_to_x: Volver a %{noun}
   back_to_x_journal: Regresar ao diario de %{user}
@@ -872,17 +867,17 @@ gl:
   endemic_to_x: Endémica de %{x}
   error_updating_photo: 'Erro ao subir a foto: %{photo_errors}'
   establishment:
-    establishment: Clasificación
-    native: Nativa
     endemic: Endémica
+    establishment: Clasificación
     introduced: Introducida
-    naturalised: Naturalizada
     invasive: Invasiva
     managed: cativerio/cultivada
+    native: Nativa
+    naturalised: Naturalizada
   establishment_means: Medio de establecemento.
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: nativo, non acontece en ningún outro lugar
     arrived_in_the_region_via_anthropogenic_means: chegou á rexión por medios antropoxénicos
+    native_and_occurs_nowhere_else: nativo, non acontece en ningún outro lugar
   establishment_means_describes_how: 'O medio de establecemento describe como se implantou
     o taxón nunha área. Ver DarwinCore para <a href=\"http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">máis
     información en terminoloxía</a>.'
@@ -934,7 +929,6 @@ gl:
     coñeces ben
   filling_out_your_profile: completar o teu perfil
   filter: Filtro
-  filter_by: Filtrar por
   filter_by_place_taxon_and_color: Filtra por lugar, cor, especie ou grupo empregando
     os controis.
   filtering: Filtrando...
@@ -964,14 +958,12 @@ gl:
   flag_marked_as_resolved_html: <span class=meta>Marcar marcado como</span> <strong>resolto.</strong>
   flag_reason: '“ Estou a marcar este %{record} por esta razón:'
   flag_saved: Advertencia gardada.
-  flag_saved_thanks: Advertencia gardada. ¡Grazas!
   flag_this_observation: Marcar esta observación
   flagged: Marcado
   flagged_for_curation: Marcado para administración.
   flagger: Marcador
   flags_explanation: Os usuarios de %{site_name} marcan cousas cando atopan algo que
     non está ben. Aquí hai algúns problemas que os administradores aínda non resolveron.
-  flags_for: Marcas para
   flickr_account_information: Información da túa conta de Flickr
   flickr_description: Flickr é un servizo de almacenamento de fotos en liña; quizais
     xa o coñeces.
@@ -988,8 +980,6 @@ gl:
   flickr_tags: Etiquetas de Flickr
   flickr_youre_all_set: Xa estás listo para comezar a explorar %{site_name}
   fluid: Fluída
-  follow_us: Síguenos en
-  follow_us_on: Síguenos en
   follow_user: Seguir a %{user}
   follower: Seguidor
   followers: Seguidores
@@ -1003,8 +993,6 @@ gl:
   fri: Ven
   from: De
   from_a_place: dun lugar
-  from_anywhere_change: de calquera lugar (<span class="button">modificar</span>)
-  from_in_this_place: deste lugar
   from_list: Da lista
   from_this: desta
   from_photos: De fotos
@@ -1150,8 +1138,6 @@ gl:
     dun arquivo no teu ordenador.
   import_photos: Importar fotos
   importing: Importando...
-  in: En
-  in_: De
   inbox: caixa do correo
   in_order_to_login_and_using_site_visit_url: Para rexistrarte e comezar a empregar
     o sitio, preme neste enlace para activar a túa conta
@@ -1202,8 +1188,6 @@ gl:
   invited_to_the_following_projects: 'Estás convidado aos seguintes proxectos:'
   inviting: convidando...
   iphone: iPhone
-  is_a: es un convidado
-  is_an: es un convidado
   is_not_following_anyone: Non estás seguindo a ninguén
   is_the_organism_wild: É o organismo salvaxe?
   is_this_observation_offensive_html: É esta observación <a href="/help#inappropriate">inapropiada</a>,
@@ -1948,8 +1932,8 @@ gl:
     germany: Alemaña
     greece: Grecia
     hungary: Hungría
-    italy: Italia
     iraq: Iraq
+    italy: Italia
     japan: Xapón
     martinique: Martinica
     mexico: México
@@ -1963,8 +1947,8 @@ gl:
     poland: Polonia
     republic_of_congo: República do Congo
     russia: Rusia
-    saudi_arabia: Arabia Saudita
     sao_tome_and_principe: Santo Tomé e Príncipe
+    saudi_arabia: Arabia Saudita
     south_america: América do Sur
     spain: España
     sweden: Suecia
@@ -2692,7 +2676,6 @@ gl:
   to_add_comments: para engadir comentarios.
   to_add_identifications: para engadir identificacións.
   to_add_ids: para engadir identificacións
-  to_an: a unha
   to_configure_your_widget: para configurar o teu widget.
   to_tag_your_flickr_from_here: para etiquetar as túas fotos de Flickr dende aquí
     sen cortar e pegar
@@ -3355,13 +3338,6 @@ gl:
           vínculo de invitación especial. Tamén podes preseleccionar un taxón e
           un proxecto para a nova observación.
     places:
-      index:
-        adding_new_places: a adición de novos lugares
-        confirming_identifications: a confirmación de identificacións
-        filling_out_checklists: a actualización de listas de verificación para os
-          lugares que coñeces ben
-        you_can_help_out_by: Ti podes axudar a mellorar os nosos datos de lugares
-          mediante a túa colaboración
       new:
         check_list_note: 'Nota: As listas de verificación desactívanse automaticamente
           para sitios moi grandes.'

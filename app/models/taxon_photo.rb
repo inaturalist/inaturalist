@@ -12,6 +12,17 @@ class TaxonPhoto < ActiveRecord::Base
   
   validates_associated :photo
   validates_uniqueness_of :photo_id, :scope => [:taxon_id], :message => "has already been added to that taxon"
+  validate :reasonable_number_of_photos, on: :create
+
+  attr_accessor :skip_taxon_indexing
+
+  MAX_TAXON_PHOTOS = 12
+
+  def reasonable_number_of_photos
+    if taxon && taxon.taxon_photos.count >= MAX_TAXON_PHOTOS
+      errors.add( :taxon, :too_many_photos, max: MAX_TAXON_PHOTOS )
+    end
+  end
 
   def to_s
     "<TaxonPhoto #{id} taxon_id: #{taxon_id} photo_id: #{photo_id}>"
@@ -47,6 +58,7 @@ class TaxonPhoto < ActiveRecord::Base
   end
 
   def index_taxon
+    return if skip_taxon_indexing
     taxon.elastic_index!
     Taxon.delay( priority: INTEGRITY_PRIORITY ).index_taxa( taxon.ancestor_ids )
     true

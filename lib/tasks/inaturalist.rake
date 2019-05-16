@@ -139,11 +139,13 @@ namespace :inaturalist do
   desc "Delete orphaned photos"
   task :delete_orphaned_photos => :environment do
     first_id = Photo.minimum(:id)
-    last_id = Photo.maximum(:id)
+    last_id = Photo.maximum(:id) - 10000
     index = 0
-    batch_size = 10000
+    batch_size = 5000
     # using `where id BETWEEN` instead of .find_each or similar, which use
     # LIMIT and create fewer, but longer-running queries
+    orphans_count = 0
+    last_orphan_id = 0
     while index <= last_id
       photos = Photo.joins("left join observation_photos op on (photos.id=op.photo_id)").
         joins("left join taxon_photos tp on (photos.id=tp.photo_id)").
@@ -152,10 +154,17 @@ namespace :inaturalist do
         where("photos.id BETWEEN ? AND ?", index, index + batch_size)
       photos.each do |p|
         # set the orphan attribute on Photo, which will set the same on DeletedPhoto
-        p.orphan = true
-        p.destroy
+        begin
+          p.orphan = true
+          p.destroy
+          last_orphan_id = p.id
+          orphans_count += 1
+        rescue Exception => e
+          Rails.logger.error "[ERROR #{Time.now}] Rake task delete_orphaned_photos: #{e}"
+        end
       end
       index += batch_size
+      puts "#{index} :: total #{orphans_count} :: last #{last_orphan_id}"
     end
   end
 
@@ -197,44 +206,99 @@ namespace :inaturalist do
   task :generate_translations_js => :environment do
     output_path = "app/assets/javascripts/i18n/translations.js"
     # various keys from models, or from JS dynamic calls
-    all_keys = [ "black", "white", "red", "green", "blue", "purple",
-                 "yellow", "grey", "orange", "brown", "pink",
-                 "preview", "browse", "view_more", "added!", "find",
-                 "reload_timed_out", "something_went_wrong_adding",
-                 "exporting", "loading", "saving", "find", "none",
-                 "colors", "maptype_for_places", "edit_license",
-                 "kml_file_size_error", "input_taxon", "output_taxon",
-                 "date_added", "observation_date", "date_picker",
-                 "views.observations.export.taking_a_while",
-                 "place_geo.geo_planet_place_types",
-                 "ranks", "research", "asc", "desc", "maps",
-                 "date_format.month", "momentjs", "endemic", "native", 
-                 "introduced", "casual", "status_globally", "status_in_place",
-                 "number_selected", "you_are_setting_this_project_to_aggregate",
-                 "animals",
-                 "birds",
-                 "amphibians",
-                 "reptiles",
-                 "mammals",
-                 "insects",
-                 "arachnids",
-                 "mollusks",
-                 "ray_finned_fishes",
-                 "plants",
-                 "fungi",
-                 "protozoans",
-                 "unknown", "date.formats.month_day_year",
-                 "views.taxa.show.frequency", "flowering_phenology", "insect_life_stage",
-                 "lexicons", "places_name", "copyright", "taxon_merge", "taxon_swap",
-                 "taxon_split", "taxon_stage", "taxon_drop",
-                 "lexicons", "places_name",
-                 "data_quality", "checklist", "misidentifications",
-                 "frequency", "rg_observations", "supporting", "random"
-                ]
+    all_keys = [
+      "added!",
+      "amphibians",
+      "animals",
+      "arachnids",
+      "asc",
+      "birds",
+      "black",
+      "blue",
+      "brown",
+      "browse",
+      "casual",
+      "checklist",
+      "colors",
+      "copyright",
+      "data_quality",
+      "date.formats.month_day_year",
+      "date_added",
+      "date_format.month",
+      "date_picker",
+      "date_updated",
+      "desc",
+      "edit_license",
+      "endemic",
+      "exporting",
+      "find",
+      "find",
+      "flowering_phenology",
+      "frequency",
+      "fungi",
+      "green",
+      "grey",
+      "imperiled",
+      "input_taxon",
+      "insect_life_stage",
+      "insects",
+      "introduced",
+      "kml_file_size_error",
+      "lexicons",
+      "lexicons",
+      "loading",
+      "mammals",
+      "maps",
+      "maptype_for_places",
+      "misidentifications",
+      "mollusks",
+      "momentjs",
+      "native",
+      "none",
+      "number_selected",
+      "observation_date",
+      "orange",
+      "output_taxon",
+      "pink",
+      "place_geo.geo_planet_place_types",
+      "places_name",
+      "places_name",
+      "plants",
+      "preview",
+      "protozoans",
+      "purple",
+      "random",
+      "ranks",
+      "ray_finned_fishes",
+      "red",
+      "reload_timed_out",
+      "reptiles",
+      "research",
+      "rg_observations",
+      "saving",
+      "something_went_wrong_adding",
+      "status_globally",
+      "status_in_place",
+      "supporting",
+      "taxon_drop",
+      "taxon_merge",
+      "taxon_split",
+      "taxon_stage",
+      "taxon_swap",
+      "unknown",
+      "view_more",
+      "views.observations.export.taking_a_while",
+      "views.taxa.show.frequency",
+      "white",
+      "vulnerable",
+      "yellow",
+      "you_are_setting_this_project_to_aggregate"
+    ]
     %w(
+      all_rank_added_to_the_database
       all_taxa
       controlled_term_labels
-      all_rank_added_to_the_database
+      establishment
     ).each do |key|
       all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
     end

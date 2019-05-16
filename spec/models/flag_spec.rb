@@ -40,6 +40,16 @@ describe Flag, "update" do
     without_delay { f.update_attributes(resolver: u, comment: "foo", resolved: true) }
     expect(u.subscriptions.detect{|s| s.resource_type == "Flag" && s.resource_id == f.id}).to_not be_blank
   end
+
+  it "should resolve even if the flaggable owner has blocked the flagger" do
+    o = Observation.make!
+    f = Flag.make!( flaggable: o )
+    expect( f ).to be_valid
+    UserBlock.make!( user: o.user, blocked_user: f.user )
+    f.update_attributes( resolved: true, resolver: User.make! )
+    expect( f ).to be_valid
+    expect( f ).to be_resolved
+  end
 end
 
 describe Flag, "destruction" do

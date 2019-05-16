@@ -13,18 +13,6 @@ const ObservationsGridItem = ( {
   splitTaxonOptions,
   user
 } ) => {
-  let taxonJSX = I18n.t( "unknown" );
-  if ( o.taxon && o.taxon !== null ) {
-    taxonJSX = (
-      <SplitTaxon
-        { ...splitTaxonOptions }
-        taxon={o.taxon}
-        user={ user }
-        url={`/observations/${o.id}`}
-        target={ linkTarget }
-      />
-    );
-  }
   let wrapperClass = "thumbnail borderless ObservationsGridItem";
   if ( o.reviewedByCurrentUser ) {
     wrapperClass += " reviewed";
@@ -34,31 +22,58 @@ const ObservationsGridItem = ( {
       { before }
       <a
         href={`/observations/${o.id}`}
-        style={ {
+        style={{
           backgroundImage: o.photo( ) ? `url( '${o.photo( "medium" )}' )` : ""
-        } }
-        target={ linkTarget }
+        }}
+        target={linkTarget}
         className={`photo ${o.hasMedia( ) ? "" : "iconic"} ${o.hasSounds( ) ? "sound" : ""}`}
         onClick={function ( e ) {
-          if ( typeof( onObservationClick ) !== "function" ) {
+          if ( typeof ( onObservationClick ) !== "function" ) {
             return true;
           }
           e.preventDefault();
           onObservationClick( o );
           return false;
-        } }
+        }}
       >
-        <i className={ `icon icon-iconic-${"unknown"}`} />
+        <i className={`icon icon-iconic-${"unknown"}`} />
         <i className="sound-icon fa fa-volume-up" />
         { showMagnifier ? (
           <div className="magnifier">
-            <i className="fa fa-search"></i>
+            <i className="fa fa-search" />
           </div>
         ) : null }
+        { o.photos && o.photos.length > 1 && (
+          <span
+            className="photo-count"
+            title={I18n.t( "x_photos", { count: o.photos.length } )}
+          >
+            { o.photos.length > 9 ? "+" : o.photos.length }
+          </span>
+        ) }
+        { o.photos && o.photos.length > 1 && (
+          <div className="all-photos-preview">
+            { o.photos.slice( 0, 4 ).map( p => (
+              <img
+                key={`all-photos-preview-${o.id}-${p.id}`}
+                src={p.photoUrl( "square" )}
+                alt={I18n.t( "photo_attribution", { attribution: p.attribution } )}
+              />
+            ) ) }
+          </div>
+        ) }
       </a>
       <div className="caption">
-        <UserImage user={ o.user } linkTarget={ linkTarget } />
-        { taxonJSX }
+        <UserImage user={o.user} linkTarget={linkTarget} />
+        {
+          <SplitTaxon
+            {...splitTaxonOptions}
+            taxon={o.taxon}
+            user={user}
+            url={`/observations/${o.id}`}
+            target={linkTarget}
+          />
+        }
         <div className="controls">
           { controls }
         </div>

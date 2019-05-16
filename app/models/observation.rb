@@ -11,6 +11,10 @@ class Observation < ActiveRecord::Base
   }
   notifies_subscribers_of :user, :notification => "created_observations",
     :queue_if => lambda { |observation| !observation.bulk_import }
+
+  earns_privilege UserPrivilege::SPEECH
+  earns_privilege UserPrivilege::ORGANIZER
+  earns_privilege UserPrivilege::COORDINATE_ACCESS
   
   # Why aren't we using after_save? Because we need this to run before the
   # after_create created by notifiesi_subscribers_of :public_places runs
@@ -71,6 +75,10 @@ class Observation < ActiveRecord::Base
   attr_accessor :owners_identification_from_vision_requested
   attr_accessor :localize_locale
   attr_accessor :localize_place
+
+  # Track whether obscuration has changed over the life of this instance
+  attr_accessor :obscuration_changed
+  attr_accessor :skip_reassess_same_day_observations
   
   def captive_flag
     @captive_flag ||= !quality_metrics.detect{|qm| 
@@ -151,6 +159,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "taxon_geoprivacy",
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
@@ -203,6 +212,7 @@ class Observation < ActiveRecord::Base
     "private_longitude",
     "private_positional_accuracy",
     "geoprivacy",
+    "taxon_geoprivacy",
     "coordinates_obscured",
     "positioning_method",
     "positioning_device",
@@ -249,6 +259,7 @@ class Observation < ActiveRecord::Base
   ALLOWED_DESCRIPTION_TAGS = %w(a abbr acronym b blockquote br cite em i img pre s small strike strong sub sup)
 
   preference :community_taxon, :boolean, :default => nil
+  preference :auto_obscuration, :boolean, default: true
   
   belongs_to :user
   belongs_to :taxon
@@ -289,7 +300,6 @@ class Observation < ActiveRecord::Base
     class_name: "ObservationReview"
 
   FIELDS_TO_SEARCH_ON = %w(names tags description place)
-  NON_ELASTIC_ATTRIBUTES = %w(establishment_means em)
 
   accepts_nested_attributes_for :observation_field_values, 
     :allow_destroy => true, 
@@ -311,6 +321,10 @@ class Observation < ActiveRecord::Base
     :allow_blank => true, 
     :less_than_or_equal_to => 180, 
     :greater_than_or_equal_to => -180
+  validates_numericality_of :positional_accuracy,
+    allow_nil: true,
+    greater_than: 0,
+    if: Proc.new { |o| !o.positional_accuracy.nil? }
   validates_length_of :observed_on_string, :maximum => 256, :allow_blank => true
   validates_length_of :species_guess, :maximum => 256, :allow_blank => true
   validates_length_of :place_guess, :maximum => 256, :allow_blank => true
@@ -343,7 +357,8 @@ class Observation < ActiveRecord::Base
   before_validation :munge_observed_on_with_chronic,
                     :set_time_zone,
                     :set_time_in_time_zone,
-                    :set_coordinates
+                    :set_coordinates,
+                    :nilify_positional_accuracy_if_zero
 
   before_create :replace_inactive_taxon
   before_save :strip_species_guess,
@@ -351,15 +366,14 @@ class Observation < ActiveRecord::Base
               :set_taxon_from_taxon_name,
               :keep_old_taxon_id,
               :set_latlon_from_place_guess,
-              :reset_private_coordinates_if_coordinates_changed,
               :normalize_geoprivacy,
               :set_license,
               :trim_user_agent,
               :update_identifications,
+              :set_taxon_geoprivacy,
               :set_community_taxon_before_save,
               :set_taxon_from_probable_taxon,
-              :obscure_coordinates_for_geoprivacy,
-              :obscure_coordinates_for_threatened_taxa,
+              :reassess_coordinate_obscuration,
               :set_geom_from_latlon,
               :set_place_guess_from_latlon,
               :obscure_place_guess,
@@ -379,7 +393,8 @@ class Observation < ActiveRecord::Base
              :set_captive,
              :set_taxon_photo,
              :create_observation_review,
-             :reassess_annotations
+             :reassess_annotations,
+             :reassess_same_day_observations
   after_create :set_uri, :update_user_counter_caches_after_create
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
@@ -500,6 +515,7 @@ class Observation < ActiveRecord::Base
     quality_grade = '' if quality_grades.size == 0
     where("quality_grade IN (?)", quality_grades)
   }
+  scope :verifiable, -> { where( "quality_grade IN (?)", [RESEARCH_GRADE, NEEDS_ID] ) }
   
   # Find observations by a taxon object.  Querying on taxa columns forces 
   # massive joins, it's a bit sluggish
@@ -771,10 +787,10 @@ class Observation < ActiveRecord::Base
     options[:methods] += [:created_at_utc, :updated_at_utc,
       :time_observed_at_utc, :faves_count, :owners_identification_from_vision]
     viewer = options[:viewer]
-    viewer_id = viewer.is_a?(User) ? viewer.id : viewer.to_i
+    viewer = viewer.is_a?( User ) ? viewer : User.find_by_id( viewer.to_i )
     options[:except] ||= []
     options[:except] += [:user_agent]
-    if viewer_id != user_id && !options[:force_coordinate_visibility]
+    if !options[:force_coordinate_visibility] && !coordinates_viewable_by?( viewer )
       options[:except] += [:private_latitude, :private_longitude,
         :private_positional_accuracy, :geom, :private_geom, :private_place_guess]
       options[:methods] << :coordinates_obscured
@@ -840,35 +856,67 @@ class Observation < ActiveRecord::Base
       date_string = date_string.sub(tz_failed_abbrev_pattern, '').strip
     end
 
+    tz_abbrev = date_string[tz_abbrev_pattern, 1]
+
     # Rails timezone support doesn't seem to recognize this abbreviation, and
     # frankly I have no idea where ActiveSupport::TimeZone::CODES comes from.
     # In case that ever stops working or a less hackish solution is required,
     # check out https://gist.github.com/kueda/3e6f77f64f792b4f119f
-    tz_abbrev = date_string[tz_abbrev_pattern, 1]
     tz_abbrev = 'CET' if tz_abbrev == 'CEST'
+
+    # Abbreviations with synonyms at https://en.wikipedia.org/wiki/List_of_time_zone_abbreviations
+    problem_tz_abbrevs = %w(
+      AST
+      BRT
+      BST
+      CDT
+      CST
+      ECT
+      GST
+      IST
+      PST
+    )
     
     if parsed_time_zone = ActiveSupport::TimeZone::CODES[tz_abbrev]
       date_string = observed_on_string.sub(tz_abbrev_pattern, '')
       date_string = date_string.sub(tz_js_offset_pattern, '').strip
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
+      # If the parsed time zone is one of the ambiguous ones where we can't
+      # really know which one they're referring too, don't actually use the zone
+      # code we parsed out of the string
+      parsed_time_zone = nil if problem_tz_abbrevs.include?( tz_abbrev )
     elsif (offset = date_string[tz_offset_pattern, 1]) && 
         (n = offset.to_f / 100) && 
         (key = n == 0 ? 0 : n.floor + (n%n.floor)/0.6) && 
         (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_offset_pattern, '')
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
     elsif (offset = date_string[tz_js_offset_pattern, 2]) && 
         (n = offset.to_f / 100) && 
         (key = n == 0 ? 0 : n.floor + (n%n.floor)/0.6) && 
         (parsed_time_zone = ActiveSupport::TimeZone[key])
       date_string = date_string.sub(tz_js_offset_pattern, '')
       date_string = date_string.sub(/^(Sun|Mon|Tue|Wed|Thu|Fri|Sat)\s+/i, '')
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
-    elsif (offset = date_string[tz_colon_offset_pattern, 2]) && 
-        (t = Time.parse(offset)) && 
-        (parsed_time_zone = ActiveSupport::TimeZone[t.hour+t.min/60.0])
+    elsif ( offset = date_string[tz_colon_offset_pattern, 2] ) &&
+        ( t = Time.parse(offset ) ) &&
+        ( negpos = offset.to_i > 0 ? 1 : -1 ) &&
+        ( parsed_time_zone = ActiveSupport::TimeZone[negpos * t.hour+t.min/60.0] )
       date_string = date_string.sub(/#{tz_colon_offset_pattern}|#{tz_failed_abbrev_pattern}/, '')
-      self.time_zone = parsed_time_zone.name if observed_on_string_changed?
+    end
+    
+    if parsed_time_zone && observed_on_string_changed?
+      self.time_zone = parsed_time_zone.name
+      begin
+        if (
+          ( user_time_zone = ActiveSupport::TimeZone[user.time_zone] ) &&
+          user_time_zone != parsed_time_zone &&
+          user_time_zone.utc_offset == parsed_time_zone.utc_offset
+        )
+          self.time_zone = user.time_zone
+        end
+      rescue ArgumentError => e
+        raise e unless e.message =~ /offset/ || e.message =~ /invalid argument to TimeZone/
+        # This means the user didn't have a time zone or had a time zone that
+        # shouldn't exist, so just ignore it
+      end
     end
     
     date_string.sub!('T', ' ') if date_string =~ /\d{4}-\d{2}-\d{2}T/
@@ -1291,9 +1339,16 @@ class Observation < ActiveRecord::Base
         CASUAL
       elsif (
         owners_identification &&
-        owners_identification.taxon.rank_level &&
-        owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
-        community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+        owners_identification.taxon.rank_level && (
+          (
+            owners_identification.taxon.rank_level <= Taxon::SPECIES_LEVEL &&
+            community_taxon.self_and_ancestor_ids.include?( owners_identification.taxon.id )
+          ) || (
+            owners_identification.taxon.rank_level == Taxon::GENUS_LEVEL &&
+            community_taxon == owners_identification.taxon &&
+            voted_out_of_needs_id?
+          )
+        )
       )
         RESEARCH_GRADE
       elsif voted_out_of_needs_id?
@@ -1341,6 +1396,7 @@ class Observation < ActiveRecord::Base
     viewer = User.find_by_id(viewer) unless viewer.is_a?(User)
     return false unless viewer
     return true if user_id == viewer.id
+    return true if user.friendships.where( friend_id: viewer.id, trust: true ).exists?
     project_ids = if projects.loaded?
       projects.map(&:id)
     else
@@ -1353,57 +1409,82 @@ class Observation < ActiveRecord::Base
     end
     false
   end
-  
-  def reset_private_coordinates_if_coordinates_changed
-    if (latitude_changed? || longitude_changed?)
-      self.private_latitude = nil
-      self.private_longitude = nil
-    end
-    true
-  end
 
   def normalize_geoprivacy
     self.geoprivacy = nil unless GEOPRIVACIES.include?(geoprivacy)
     true
   end
-  
-  def obscure_coordinates_for_geoprivacy
-    self.geoprivacy = nil if geoprivacy.blank?
-    return true if geoprivacy.blank? && !geoprivacy_changed?
-    case geoprivacy
-    when PRIVATE
-      obscure_coordinates unless coordinates_obscured?
-      self.latitude, self.longitude = [nil, nil]
-    when OBSCURED
-      obscure_coordinates unless coordinates_obscured?
+
+  def reassess_coordinate_obscuration
+    geoprivacies = [geoprivacy, taxon_geoprivacy, context_geoprivacy]
+    if prefers_auto_obscuration == false && ![OBSCURED, PRIVATE].include?( geoprivacy )
+      unobscure_coordinates
+    elsif geoprivacies.include?( PRIVATE )
+      hide_coordinates
+    elsif geoprivacies.include?( OBSCURED )
+      obscure_coordinates
     else
       unobscure_coordinates
     end
-    true
   end
-  
-  def obscure_coordinates_for_threatened_taxa
-    lat = private_latitude.blank? ? latitude : private_latitude
-    lon = private_longitude.blank? ? longitude : private_longitude
-    t = taxon || community_taxon
-    target_taxon_ids = [[t.try(:id)] + identifications.current.pluck(:taxon_id)].flatten.compact.uniq
-    taxon_geoprivacy = Taxon.max_geoprivacy( target_taxon_ids, latitude: lat, longitude: lon )
-    case taxon_geoprivacy
-    when OBSCURED
-      obscure_coordinates unless coordinates_obscured?
-    when PRIVATE
-      unless coordinates_private?
-        obscure_coordinates
-        self.latitude, self.longitude = [nil, nil]
-      end
-    else
-      unobscure_coordinates
+
+  # I.e. what should the geoprivacy be given other observations in context.
+  # Currently the "context" is observations made by the same user on the same
+  # day.
+  def context_geoprivacy
+    geoprivacies = [context_taxon_geoprivacy]
+    geoprivacies << context_user_geoprivacy if user.prefers_coordinate_interpolation_protection?
+    if geoprivacies.include?( PRIVATE )
+      return PRIVATE
     end
-    true
+    if geoprivacies.include?( OBSCURED )
+      return OBSCURED
+    end
+  end
+
+  def context_user_geoprivacy
+    return if observed_on.blank?
+    return unless user && user.prefers_coordinate_interpolation_protection_test?
+    scope = user.observations.on( observed_on )
+    scope = scope.where( "id != ?", id ) if persisted?
+    geoprivacies = scope.pluck(:geoprivacy).flatten.uniq
+    if geoprivacies.include?( PRIVATE )
+      return PRIVATE
+    end
+    if geoprivacies.include?( OBSCURED )
+      return OBSCURED
+    end
+  end
+
+  def context_taxon_geoprivacy
+    return if observed_on.blank?
+    return unless user && user.prefers_coordinate_interpolation_protection_test?
+    scope = user.observations.on( observed_on )
+    scope = scope.where( "id != ?", id ) if persisted?
+    geoprivacies = scope.pluck(:taxon_geoprivacy).flatten.uniq
+    if geoprivacies.include?( PRIVATE )
+      return PRIVATE
+    end
+    if geoprivacies.include?( OBSCURED )
+      return OBSCURED
+    end
+  end
+
+  def hide_coordinates
+    return unless prefers_auto_obscuration? || [OBSCURED, PRIVATE].include?( geoprivacy )
+    return if coordinates_private?
+    obscure_coordinates
+    self.latitude, self.longitude = [nil, nil]
   end
   
   def obscure_coordinates
-    return if latitude.blank? || longitude.blank?
+    return unless prefers_auto_obscuration? || [OBSCURED, PRIVATE].include?( geoprivacy )
+    return if obscuration_changed
+    geoprivacy_changed_from_private_to_obscured = geoprivacy_was == PRIVATE && geoprivacy == OBSCURED
+    if !geoprivacy_changed_from_private_to_obscured && ( latitude.blank? || longitude.blank? )
+      self.obscuration_changed = geoprivacy_changed?
+      return
+    end
     if latitude_changed? || longitude_changed?
       self.private_latitude = latitude
       self.private_longitude = longitude
@@ -1411,8 +1492,19 @@ class Observation < ActiveRecord::Base
       self.private_latitude ||= latitude
       self.private_longitude ||= longitude
     end
-    self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
-    set_geom_from_latlon
+    # In this situation, the true coordinates didn't really change, so just reset them
+    if (
+      ( latitude == private_latitude || longitude == private_longitude ) &&
+      !( private_latitude_changed? || private_longitude_changed? ) &&
+      !geoprivacy_changed_from_private_to_obscured
+    )
+      self.latitude, self.longitude = [latitude_was, longitude_was]
+      set_geom_from_latlon
+    elsif private_latitude_changed? || private_longitude_changed? || geoprivacy_changed_from_private_to_obscured
+      self.latitude, self.longitude = Observation.random_neighbor_lat_lon( private_latitude, private_longitude )
+      set_geom_from_latlon
+      self.obscuration_changed = true
+    end
     true
   end
 
@@ -1464,6 +1556,7 @@ class Observation < ActiveRecord::Base
     self.private_latitude = nil
     self.private_longitude = nil
     set_geom_from_latlon
+    self.obscuration_changed = true
   end
   
   def iconic_taxon_name
@@ -1684,25 +1777,49 @@ class Observation < ActiveRecord::Base
   end
 
   def self.reassess_coordinates_for_observations_of( taxon, options = {} )
+    taxon = Taxon.find_by_id( taxon ) unless taxon.is_a? Taxon
     batch_size = 500
-    scope = Observation.with_identifications_of( taxon )
-    scope.find_in_batches(batch_size: batch_size) do |batch|
-      if options[:place]
-        # using Elasticsearch for place filtering so we don't
-        # get bogged down by huge geometries in Postgresql
-        es_params = { id: batch, place_id: options[:place], per_page: batch_size }
-        reassess_coordinates_of( Observation.page_of_results( es_params ) )
-      else
-        reassess_coordinates_of( batch )
+    batch_start_id = 0
+    results_remaining = true
+    search_params = {
+      ident_taxon_id: taxon.id,
+      per_page: batch_size,
+      order_by: "id",
+      order: "asc"
+    }
+    if options[:place]
+      search_params[:place_id] = options[:place]
+    end
+    while results_remaining
+      observations = Observation.page_of_results( search_params.merge( id_above: batch_start_id ) )
+      if observations.blank? || observations.total_entries == 0
+        results_remaining = false
+        break
       end
+      reassess_coordinates_of( observations )
+      batch_start_id = observations.last.id
+    end
+  end
+
+  def self.reassess_coordinates_for_observations_by( user )
+    batch_size = 500
+    scope = Observation.by( user )
+    scope.find_in_batches( batch_size: batch_size ) do |batch|
+      reassess_coordinates_of( batch )
     end
   end
 
   def self.reassess_coordinates_of( observations )
+    Observation.preload_associations( observations, [
+      :taxon,
+      { user: :stored_preferences },
+      { identifications: { taxon: :conservation_statuses } }
+    ] )
     observations.each do |o|
-      o.obscure_coordinates_for_threatened_taxa
+      o.set_taxon_geoprivacy
+      o.reassess_coordinate_obscuration
       o.obscure_place_guess
-      next unless o.coordinates_changed? || o.place_guess_changed?
+      next unless o.coordinates_changed? || o.place_guess_changed? || o.taxon_geoprivacy_changed?
       Observation.where( id: o.id ).update_all(
         latitude: o.latitude,
         longitude: o.longitude,
@@ -1711,7 +1828,8 @@ class Observation < ActiveRecord::Base
         geom: o.geom,
         private_geom: o.private_geom,
         place_guess: o.place_guess,
-        private_place_guess: o.private_place_guess
+        private_place_guess: o.private_place_guess,
+        taxon_geoprivacy: o.taxon_geoprivacy
       )
     end
     Observation.elastic_index!( ids: observations.map(&:id) )
@@ -1779,6 +1897,19 @@ class Observation < ActiveRecord::Base
     return true if species_guess.blank?
     self.taxon_id = single_taxon_id_for_name(species_guess)
     true
+  end
+
+  def set_taxon_geoprivacy
+    taxon_ids = if identifications.loaded? 
+      identifications.select{|i| i.current? }.map(&:taxon_id)
+    else
+      identifications.current.pluck(:taxon_id)
+    end
+    self.taxon_geoprivacy = Taxon.max_geoprivacy(
+      taxon_ids,
+      latitude: private_latitude.blank? ? latitude : private_latitude,
+      longitude: private_longitude.blank? ? longitude : private_longitude
+    )
   end
   
   def single_taxon_for_name(name)
@@ -1871,7 +2002,8 @@ class Observation < ActiveRecord::Base
   def set_license
     return true if license_changed? && license.blank?
     self.license ||= user.preferred_observation_license
-    self.license = nil unless LICENSE_CODES.include?(license)
+    self.license = Shared::LicenseModule.normalize_license_code( license )
+    self.license = nil unless LICENSE_CODES.include?( license )
     true
   end
 
@@ -1943,7 +2075,15 @@ class Observation < ActiveRecord::Base
     return true unless destroyed? || taxon_id_changed?
     taxon_ids = [taxon_id_was, taxon_id].compact.uniq
     unless taxon_ids.blank?
-      Taxon.delay(:priority => INTEGRITY_PRIORITY).update_observation_counts(:taxon_ids => taxon_ids)
+      taxon_ids_including_ancestors = Taxon.where("id IN (?)", taxon_ids).
+        map(&:self_and_ancestor_ids).flatten.uniq
+      taxon_ids_including_ancestors.each do |tid|
+        Taxon.delay(
+          priority: INTEGRITY_PRIORITY,
+          run_at: 1.hour.from_now,
+          unique_hash: { "Taxon::update_observation_counts": tid }
+        ).update_observation_counts( taxon_ids: [tid] )
+      end
     end
     true
   end
@@ -1981,12 +2121,17 @@ class Observation < ActiveRecord::Base
   end
 
   def update_quality_metrics
+    Rails.logger.debug "[DEBUG] update_quality_metrics"
     return true if skip_quality_metrics
     if captive_flag.yesish?
       QualityMetric.vote( user, self, QualityMetric::WILD, false )
-    elsif captive_flag.noish? && force_quality_metrics
-      QualityMetric.vote( user, self, QualityMetric::WILD, true )
+    # elsif captive_flag.noish? && force_quality_metrics
+    #   Rails.logger.debug "captive_flag: #{captive_flag}"
+    #   Rails.logger.debug "captive_flag.noish?: #{captive_flag.noish?}"
+    #   QualityMetric.vote( user, self, QualityMetric::WILD, true )
     elsif captive_flag.noish? && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
+      Rails.logger.debug "existing: #{qm}, captive_flag: #{captive_flag}"
+      Rails.logger.debug "existing: #{qm}, captive_flag.noish?: #{captive_flag.noish?}"
       qm.update_attributes( agree: true )
     elsif force_quality_metrics && ( qm = quality_metrics.detect{|m| m.user_id == user_id && m.metric == QualityMetric::WILD} )
       qm.destroy
@@ -2273,73 +2418,26 @@ class Observation < ActiveRecord::Base
       end
     end
   end
-  
-  CNC_2018_PLACE_IDS = [
-    124319, # City Nature Challenge 2018 Ahmedabad, India
-    121393, # City Nature Challenge 2018: Amarillo
-    60211,  # City Nature Challenge 2018: Austin
-    122861, # City Nature Challenge 2018: Baltimore
-    124697, # City Nature Challenge Maine 2018
-    28784,  # Reto Naturalista Urbano 2018: Bogotá, D.C.
-    118678, # City Nature Challenge 2018: Boston Area
-    1733,   # City Nature Challenge 2018: Boulder
-    123650, # City Nature Challenge 2018: Bristol & Bath
-    124987, # City Nature Challenge 2018: Buenos Aires y alrededores
-    2178,   # City Nature Challenge 2018: Cabarrus County, NC
-    21588,  # City Nature Challenge 2018: Campo Grande
-    124476, # City Nature Challenge 2018: Charlottesville
-    57482,  # City Nature Challenge 2018: Chicago Wilderness Region
-    122697, # City Nature Challenge 2018: Vancouver, British Columbia
-    122777, # City Nature Challenge 2018: Cleveland
-    125697, # City Nature Challenge 2018: Curitiba
-    57484,  # City Nature Challenge 2018: Dallas/Fort Worth
-    122714, # City Nature Challenge 2018: Denver Metro Area
-    124794, # City Nature Challenge 2018: Twin Ports
-    982,    # City Nature Challenge 2018: El Paso
-    24546,  # City Nature Challenge 2018: Florianópolis
-    125290, # City Nature Challenge 2018: Guimarães
-    37720,  # City Nature Challenge 2018: Hermosillo
-    7613,   # City Nature Challenge 2018: Hong Kong
-    110679, # City Nature Challenge 2018: Houston
-    123855, # City Nature Challenge 2018 Indianapolis
-    124354, # Klang Valley City Nature Challenge 2018
-    124339, # City Nature Challenge 2018: La Plata
-    117586, # City Nature Challenge 2018: Southwest Louisiana
-    66357,  # City Nature Challenge 2018: London
-    962,    # City Nature Challenge 2018: Los Angeles
-    94019,  # City Nature Challenge 2018: Lower Rio Grande Valley
-    125291, # City Nature Challenge 2018: Manaus
-    51507,  # City Nature Challenge 2018: Maui
-    2345,   # City Nature Challenge 2018: Miami
-    119106, # City Nature Challenge 2018: Minneapolis/St. Paul
-    113429, # City Nature Challenge 2018: Monterrey Zona Metropolitana
-    125114, # City Nature Challenge 2018: Mumbai
-    121396, # City Nature Challenge 2018: Nashville
-    674,    # City Nature Challenge 2018: New York City
-    123395, # City Nature Challenge 2018: Omaha Metro
-    124156, # City Nature Challenge 2018: Padova
-    124663, # City Nature Challenge 2018: Palmer Station, Antarctica
-    125789, # City Nature Challenge 2018: Pittsburgh
-    124440, # City Nature Challenge 2018: Plymouth (UK)
-    123944, # City Nature Challenge 2018: Prague
-    118770, # City Nature Challenge 2018: Triangle Area
-    124396, # City Nature Challenge 2018: Richmond
-    23734,  # City Nature Challenge 2018: Rio de Janeiro
-    124146, # City Nature Challenge 2018: Roma
-    20640,  # City Nature Challenge 2018: Salvador
-    121345, # City Nature Challenge 2018: San Antonio
-    829,    # City Nature Challenge 2018: San Diego County
-    54321,  # City Nature Challenge 2018: San Francisco Bay Area
-    25311,  # City Nature Challenge 2018: São Paulo
-    122789, # City Nature Challenge 2018: Seattle Metropolitan Area
-    124153, # City Nature Challenge 2018: Southern Oregon
-    124535, # City Nature Challenge 2018: St. Louis, MO
-    2739,   # City Nature Challenge 2018: The Wasatch
-    124352, # City Nature Challenge 2018: Tokyo
-    123333, # City Nature Challenge 2018: Tulsa
-    118683, # City Nature Challenge 2018: Washington, DC metro area
-    27609   # City Nature Challenge 2018: Waterloo Region
-  ]
+
+  def self.places_without_obscuration_protection
+    return [] if Rails.env.test?
+    Rails.cache.fetch( "places_without_obscuration_protection", expires_in: 1.day ) do
+      [
+        19126, # City Nature Challenge 2018
+        29625  # City Nature Challenge 2019
+      ].map {|umbrella_project_id|
+        if umbrella = Project.find_by_id( umbrella_project_id )
+          umbrella.project_observation_rules.select{|por| por.operator == "in_project?"}.map {|por|
+            por.operand.project_observation_rules.
+              select{|sub_por| sub_por.operator == "observed_in_place?" }.
+              map {|sub_por| sub_por.operand_id }
+          }
+        else
+          nil
+        end
+      }.compact.flatten.uniq
+    end
+  end
   
   def places
     return [] unless georeferenced?
@@ -2347,7 +2445,7 @@ class Observation < ActiveRecord::Base
     candidates.select do |p|
       p.bbox_privately_contains_observation?( self ) ||
       [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level ) ||
-      CNC_2018_PLACE_IDS.include?( p.id )
+      Observation.places_without_obscuration_protection.include?( p.id )
     end
   end
   
@@ -2358,7 +2456,7 @@ class Observation < ActiveRecord::Base
     candidates.select do |p|
       p.bbox_publicly_contains_observation?( self ) ||
       [Place::COUNTRY_LEVEL, Place::STATE_LEVEL, Place::COUNTY_LEVEL].include?( p.admin_level ) ||
-      CNC_2018_PLACE_IDS.include?( p.id )
+      Observation.places_without_obscuration_protection.include?( p.id )
     end
   end
 
@@ -2575,6 +2673,45 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def reassess_same_day_observations
+    return true if skip_reassess_same_day_observations
+    return true unless obscuration_changed || observed_on_changed?
+    return true unless user && user.prefers_coordinate_interpolation_protection_test?
+    unless observed_on.blank?
+      Observation.
+        delay(
+          priority: USER_INTEGRITY_PRIORITY,
+          unique_hash: {
+            "Observation::reassess_obscuration_by_user_and_date": [user_id, observed_on.to_s]
+          }
+        ).
+        reassess_obscuration_by_user_and_date( user_id, observed_on.to_s )
+    end
+    if !observed_on_was.blank? && observed_on_changed?
+      Observation.
+        delay(
+          priority: USER_INTEGRITY_PRIORITY,
+          unique_hash: {
+            "Observation::reassess_obscuration_by_user_and_date": [user_id, observed_on_was.to_s]
+          }
+        ).
+        reassess_obscuration_by_user_and_date( user_id, observed_on_was.to_s )
+    end
+    true
+  end
+
+  def self.reassess_obscuration_by_user_and_date( user, date )
+    user = user.is_a?( User ) ? user : User.find_by_id( user )
+    return unless user
+    date = date.is_a?( Date ) ? date : Date.parse( date )
+    return unless date
+    user.observations.on( date ).each do |o|
+      o.reassess_coordinate_obscuration
+      o.skip_reassess_same_day_observations = true
+      o.save! if o.changed?
+    end
+  end
+
   def create_deleted_observation
     DeletedObservation.create(
       :observation_id => id,
@@ -2628,6 +2765,11 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def nilify_positional_accuracy_if_zero
+    self.positional_accuracy = nil if positional_accuracy == 0
+    true
+  end
+
   # Required for use of the sanitize method in
   # ObservationsHelper#short_observation_description
   def self.white_list_sanitizer
@@ -2653,6 +2795,10 @@ class Observation < ActiveRecord::Base
             taxon_change: taxon_change
           )
         end
+      elsif ( observation.identifications.map(&:taxon_id) & input_taxon_ids ).size > 0
+        observation.set_community_taxon( force: true )
+        observation.set_taxon_from_probable_taxon
+        observation.save!
       end
       yield(observation) if block_given?
     end
@@ -2736,10 +2882,7 @@ class Observation < ActiveRecord::Base
   end
 
   def inaccurate_location?
-    if metric = quality_metric_score(QualityMetric::LOCATION)
-      return metric <= 0.5
-    end
-    false
+    !passes_quality_metric?( QualityMetric::LOCATION )
   end
 
   def update_mappable
@@ -2921,12 +3064,8 @@ class Observation < ActiveRecord::Base
     description.mentioned_users & description_was.to_s.mentioned_users
   end
 
-  # Show count of all faves on this observation. cached_votes_total stores the
-  # count of all votes without a vote_scope, which for an Observation means
-  # the faves, but since that might vary from model to model based on how we
-  # use acts_as_votable, faves_count seems clearer.
   def faves_count
-    cached_votes_total
+    votes_for.select{|v| v.vote_scope.blank?}.size
   end
 
   def probably_captive?

@@ -1,7 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
 import ReactDOM from "react-dom";
-import { Button, Popover, Overlay, Grid, Row, Col } from "react-bootstrap";
+import {
+  Button,
+  Popover,
+  Overlay,
+  Grid,
+  Row,
+  Col
+} from "react-bootstrap";
 import _ from "lodash";
 import PlaceAutocomplete from "./place_autocomplete";
 import ProjectAutocomplete from "./project_autocomplete";
@@ -12,7 +19,7 @@ import { isBlank } from "../../../shared/util";
 class FiltersButton extends React.Component {
   constructor( props ) {
     super( props );
-    const params = props.params;
+    const { params } = props;
     const diffs = _.difference( _.values( params ), _.values( props.defaultParams ) );
     this.state = {
       moreFiltersHidden: diffs.length === 0,
@@ -22,7 +29,8 @@ class FiltersButton extends React.Component {
   }
 
   toggle( ) {
-    if ( this.state.show ) {
+    const { show } = this.state;
+    if ( show ) {
       this.hide( );
       return;
     }
@@ -33,15 +41,16 @@ class FiltersButton extends React.Component {
     this.setState( { show: true } );
     const that = this;
     $( "body" ).on( this.clickOffEventNamespace, e => {
-      if ( !$( ".FiltersButtonWrapper" ).is( e.target ) &&
-          $( ".FiltersButtonWrapper" ).has( e.target ).length === 0 &&
-          $( ".in" ).has( e.target ).length === 0 &&
-          $( e.target ).parents( ".ui-autocomplete " ).length === 0 &&
-          $( e.target ).parents( ".ui-datepicker " ).length === 0 &&
-          $( e.target ).parents( ".ui-datepicker-header " ).length === 0 &&
-          $( e.target ).parents( ".ui-multiselect-menu " ).length === 0 &&
-          $( e.target ).parents( ".observation-field " ).length === 0
-        ) {
+      if (
+        !$( ".FiltersButtonWrapper" ).is( e.target )
+        && $( ".FiltersButtonWrapper" ).has( e.target ).length === 0
+        && $( ".in" ).has( e.target ).length === 0
+        && $( e.target ).parents( ".ui-autocomplete " ).length === 0
+        && $( e.target ).parents( ".ui-datepicker " ).length === 0
+        && $( e.target ).parents( ".ui-datepicker-header " ).length === 0
+        && $( e.target ).parents( ".ui-multiselect-menu " ).length === 0
+        && $( e.target ).parents( ".observation-field " ).length === 0
+      ) {
         that.hide( );
       }
     } );
@@ -58,8 +67,15 @@ class FiltersButton extends React.Component {
       updateSearchParams,
       replaceSearchParams,
       defaultParams,
-      terms
+      terms,
+      config
     } = this.props;
+    const {
+      moreFiltersHidden,
+      show
+    } = this.state;
+    const viewerIsAdmin = config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const paramsForUrl = ( ) => window.location.search.replace( /^\?/, "" );
     const closeFilters = ( ) => {
       // yes it's a horrible hack
@@ -70,7 +86,7 @@ class FiltersButton extends React.Component {
       const diffs = _.difference( _.values( params ), _.values( defaultParams ) );
       return diffs.length > 0 ? diffs.length.toString() : "";
     };
-    const filterCheckbox = ( checkbox ) => {
+    const filterCheckbox = checkbox => {
       const checkedVal = ( checkbox.checked || true ).toString( );
       const vals = params[checkbox.param] ? params[checkbox.param].toString( ).split( "," ) : [];
       const thisValChecked = vals.indexOf( checkedVal ) >= 0;
@@ -79,20 +95,27 @@ class FiltersButton extends React.Component {
         cssClass += " filter-changed";
       }
       let disabled = false;
-      if ( checkbox.noBlank && vals.length === 1 && vals[0] === checkedVal ) {
+      if (
+        checkbox.disabled
+        || (
+          checkbox.noBlank
+          && vals.length === 1
+          && vals[0] === checkedVal
+        )
+      ) {
         disabled = true;
       }
       return (
         <div
-          className={ cssClass }
+          className={cssClass}
           key={`filters-${checkbox.param}-${checkbox.label}`}
         >
           <label>
             <input
               type="checkbox"
-              checked={ thisValChecked }
-              disabled={ disabled }
-              onChange={ ( e ) => {
+              checked={thisValChecked}
+              disabled={disabled}
+              onChange={e => {
                 let newVal = checkbox.unchecked;
                 let newVals = _.map( vals );
                 if ( e.target.checked ) newVal = checkedVal;
@@ -104,7 +127,9 @@ class FiltersButton extends React.Component {
                   updateSearchParams( { [checkbox.param]: newVals.join( "," ) } );
                 }
               }}
-            /> { I18n.t( checkbox.label || checkbox.param ) }
+            />
+            { " " }
+            { I18n.t( checkbox.label || checkbox.param ) }
           </label>
         </div>
       );
@@ -138,6 +163,7 @@ class FiltersButton extends React.Component {
     const orderByFields = [
       { value: "observations.id", default: "date added", label: "date_added" },
       { value: "observed_on", default: "date observed", label: "date_observed_" },
+      { value: "updated_at", default: "date updated", label: "date_updated" },
       { value: "votes", default: "faves", label: "faves" },
       { value: "random", default: "random", label: "random" }
     ];
@@ -155,9 +181,9 @@ class FiltersButton extends React.Component {
       return (
         <Button
           className={cssClass}
-          title={ I18n.t( `all_taxa.${t.label}`, { defaultValue: I18n.t( t.label ) } ) }
+          title={I18n.t( `all_taxa.${t.label}`, { defaultValue: I18n.t( t.label ) } )}
           key={`btn-${t.name}`}
-          onClick={ ( ) => {
+          onClick={( ) => {
             let newIconicTaxa;
             if ( _.includes( params.iconic_taxa, t.name ) ) {
               newIconicTaxa = _.without( params.iconic_taxa, t.name );
@@ -168,7 +194,7 @@ class FiltersButton extends React.Component {
             updateSearchParams( {
               iconic_taxa: newIconicTaxa
             } );
-          } }
+          }}
         >
           <i className={`icon-iconic-${t.name.toLowerCase( )}`} />
         </Button>
@@ -188,9 +214,11 @@ class FiltersButton extends React.Component {
         <Row>
           <Col xs="12">
             <label className="sectionlabel">
-              {
-                I18n.t( "quality_grade_" )
-              } <small className="text-muted">({ I18n.t( "select_at_least_one" ) })</small>
+              { I18n.t( "quality_grade_" ) }
+              { " " }
+              <small className="text-muted">
+                { `(${I18n.t( "select_at_least_one" )})` }
+              </small>
             </label>
           </Col>
         </Row>
@@ -248,11 +276,11 @@ class FiltersButton extends React.Component {
               </label>
               <input
                 className="params-q form-control"
-                placeholder={ I18n.t( "blue_butterfly_etc" ) }
-                value={ params.q }
-                onChange={ ( e ) => {
+                placeholder={I18n.t( "blue_butterfly_etc" )}
+                value={params.q}
+                onChange={e => {
                   updateSearchParams( { q: e.target.value } );
-                } }
+                }}
               />
             </div>
           </Col>
@@ -298,7 +326,7 @@ class FiltersButton extends React.Component {
             <select
               className={`params-hrank form-control ${params.hrank ? "filter-changed" : ""}`}
               defaultValue={params.hrank}
-              onChange={ e => updateSearchParams( { hrank: e.target.value } ) }
+              onChange={e => updateSearchParams( { hrank: e.target.value } )}
             >
               <option value="">
                 { I18n.t( "high" ) }
@@ -314,7 +342,7 @@ class FiltersButton extends React.Component {
             <select
               className={`params-lrank form-control ${params.lrank ? "filter-changed" : ""}`}
               defaultValue={params.lrank}
-              onChange={ e => updateSearchParams( { lrank: e.target.value } ) }
+              onChange={e => updateSearchParams( { lrank: e.target.value } )}
             >
               <option value="">
                 { I18n.t( "low" ) }
@@ -338,11 +366,11 @@ class FiltersButton extends React.Component {
           <Col xs="6">
             <select
               className={
-                "params-order-by form-control" +
-                ` ${params.order_by !== defaultParams.order_by ? "filter-changed" : ""}`
+                "params-order-by form-control"
+                + ` ${params.order_by !== defaultParams.order_by ? "filter-changed" : ""}`
               }
-              onChange={ e => updateSearchParams( { order_by: e.target.value } ) }
-              value={ params.order_by }
+              onChange={e => updateSearchParams( { order_by: e.target.value } )}
+              value={params.order_by}
             >
               { orderByFields.map( field => (
                 <option value={field.value} key={`params-order-by-${field.value}`}>
@@ -355,10 +383,10 @@ class FiltersButton extends React.Component {
             <select
               defaultValue="desc"
               className={
-                "params-order form-control" +
-                ` ${params.order !== defaultParams.order ? "filter-changed" : ""}`
+                "params-order form-control"
+                + ` ${params.order !== defaultParams.order ? "filter-changed" : ""}`
               }
-              onChange={ e => updateSearchParams( { order: e.target.value } ) }
+              onChange={e => updateSearchParams( { order: e.target.value } )}
             >
               <option value="asc">
                 { I18n.t( "ascending" ) }
@@ -377,24 +405,25 @@ class FiltersButton extends React.Component {
           { I18n.t( "date_observed_" ) }
         </label>
         <DateFilters
-          params={ params }
-          updateSearchParams={ updateSearchParams }
+          params={params}
+          updateSearchParams={updateSearchParams}
         />
         <div
-          className={ canShowObservationFields( ) ? "filters-observation-fields" : "filters-observation-fields collapse" }
+          className={canShowObservationFields( ) ? "filters-observation-fields" : "filters-observation-fields collapse"}
         >
           <label className="sectionlabel">
             { I18n.t( "observation_fields" ) }
           </label>
           { _.forEach( params.observationFields, ( v, k ) => (
             <span className="observation-field" key={`observation-field-${k}`}>
-              { k }={ v }
+              { `${k}=${v}` }
               <button
-                onClick={ ( ) => {
+                type="button"
+                onClick={( ) => {
                   updateSearchParams( {
                     observationFields: _.omit( params.observationFields, [k] )
                   } );
-                } }
+                }}
               >
                 &times;
               </button>
@@ -423,12 +452,12 @@ class FiltersButton extends React.Component {
           </label>
           <select
             className={`form-control ${params.photo_license ? "filter-changed" : ""}`}
-            value={ params.photo_license }
-            onChange={ e => updateSearchParams( { photo_license: e.target.value } ) }
+            value={params.photo_license}
+            onChange={e => updateSearchParams( { photo_license: e.target.value } )}
           >
             <option value="">{ I18n.t( "all" ) }</option>
-            {licenses.map( ( code ) => (
-              <option key={`photo-licenses-${code}`} value={ code }>{ code.replace( "CC-", "CC " ) }</option>
+            {licenses.map( code => (
+              <option key={`photo-licenses-${code}`} value={code}>{ code.replace( "CC-", "CC " ) }</option>
             ) ) }
           </select>
         </div>
@@ -447,19 +476,17 @@ class FiltersButton extends React.Component {
               checked={
                 params.reviewed === undefined || params.reviewed === null || params.reviewed === "any"
               }
-              onClick={ ( ) => updateSearchParams( { reviewed: "any" } ) }
+              onChange={( ) => updateSearchParams( { reviewed: "any" } )}
             />
             { I18n.t( "any_" ) }
           </label>
-          <label
-            className={ `radio-inline ${params.reviewed === true ? "filter-changed" : ""}` }
-          >
+          <label className={`radio-inline ${params.reviewed === true ? "filter-changed" : ""}`}>
             <input
               type="radio"
               name="reviewed"
               value="true"
               checked={params.reviewed === true}
-              onClick={ ( ) => updateSearchParams( { reviewed: true } ) }
+              onChange={( ) => updateSearchParams( { reviewed: true } )}
             />
             { I18n.t( "yes" ) }
           </label>
@@ -469,7 +496,7 @@ class FiltersButton extends React.Component {
               name="reviewed"
               value="false"
               checked={params.reviewed === false}
-              onClick={ ( ) => updateSearchParams( { reviewed: false } ) }
+              onChange={( ) => updateSearchParams( { reviewed: false } )}
             />
             { I18n.t( "no" ) }
           </label>
@@ -490,20 +517,20 @@ class FiltersButton extends React.Component {
             { I18n.t( "person" ) }
           </label>
           <div className="input-group">
-            <span className="input-group-addon icon-person"></span>
+            <span className="input-group-addon icon-person" />
             <UserAutocomplete
               resetOnChange={false}
               initialUserID={params.user_id}
               bootstrapClear
               className={params.user_id ? "filter-changed" : ""}
-              afterSelect={ function ( result ) {
+              afterSelect={result => {
                 updateSearchParams( { user_id: result.item.id } );
-              } }
-              afterUnselect={ function ( ) {
+              }}
+              afterUnselect={( ) => {
                 updateSearchParams( { user_id: null } );
-              } }
+              }}
             />
-            <input value={ params.user_id } type="hidden" name="user_id" />
+            <input value={params.user_id} type="hidden" name="user_id" />
           </div>
         </div>
         <div className="form-group">
@@ -511,20 +538,20 @@ class FiltersButton extends React.Component {
             { I18n.t( "project" ) }
           </label>
           <div className="input-group">
-            <span className="input-group-addon fa fa-briefcase"></span>
+            <span className="input-group-addon fa fa-briefcase" />
             <ProjectAutocomplete
               resetOnChange={false}
               initialProjectID={params.project_id}
               bootstrapClear
               className={params.project_id ? "filter-changed" : ""}
-              afterSelect={ function ( result ) {
+              afterSelect={result => {
                 updateSearchParams( { project_id: result.item.id } );
-              } }
-              afterUnselect={ function ( ) {
+              }}
+              afterUnselect={( ) => {
                 updateSearchParams( { project_id: null } );
-              } }
+              }}
             />
-            <input value={ params.project_id } type="hidden" name="project_id" />
+            <input value={params.project_id} type="hidden" name="project_id" />
           </div>
         </div>
         <div className="form-group">
@@ -532,7 +559,7 @@ class FiltersButton extends React.Component {
             { I18n.t( "place" ) }
           </label>
           <div className="input-group">
-            <span className="input-group-addon fa fa-globe"></span>
+            <span className="input-group-addon fa fa-globe" />
             <PlaceAutocomplete
               resetOnChange={false}
               initialPlaceID={
@@ -540,12 +567,12 @@ class FiltersButton extends React.Component {
               }
               bootstrapClear
               className={params.place_id ? "filter-changed" : ""}
-              afterSelect={ function ( result ) {
+              afterSelect={result => {
                 updateSearchParams( { place_id: result.item.id } );
-              } }
-              afterUnselect={ function ( ) {
+              }}
+              afterUnselect={( ) => {
                 updateSearchParams( { place_id: null } );
-              } }
+              }}
             />
             <input type="hidden" name="place_id" />
           </div>
@@ -554,6 +581,12 @@ class FiltersButton extends React.Component {
     );
     const chosenTerm = terms.find( t => t.id === params.term_id );
     const rejectedTerm = terms.find( t => t.id === params.without_term_id );
+    let defaultAccountAge = "";
+    if ( params.user_after ) {
+      defaultAccountAge = "recent";
+    } else if ( params.user_before ) {
+      defaultAccountAge = "established";
+    }
     const moreCenterCol = (
       <Col xs="4" className="filters-center-col">
         <div className="form-group annotations-form-group">
@@ -562,19 +595,19 @@ class FiltersButton extends React.Component {
             id="params-term-id"
             className={`form-control ${params.term_id ? "filter-changed" : ""}`}
             defaultValue={params.term_id}
-            onChange={ e => {
+            onChange={e => {
               if ( _.isEmpty( e.target.value ) ) {
                 updateSearchParams( { term_id: "", term_value_id: "" } );
               } else {
                 updateSearchParams( { term_id: e.target.value } );
               }
-            } }
+            }}
           >
             <option value="">
               { I18n.t( "none" ) }
             </option>
             { terms.map( t => (
-              <option value={ t.id } key={`with-term-id-${t.id}`}>
+              <option value={t.id} key={`with-term-id-${t.id}`}>
                 { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
               </option>
             ) ) }
@@ -586,13 +619,13 @@ class FiltersButton extends React.Component {
                 id="params-term-value-id"
                 className={`form-control ${params.term_value_id ? "filter-changed" : ""}`}
                 defaultValue={params.term_value_id}
-                onChange={ e => updateSearchParams( { term_value_id: e.target.value } ) }
+                onChange={e => updateSearchParams( { term_value_id: e.target.value } )}
               >
                 <option value="">
                   { I18n.t( "any_" ) }
                 </option>
                 { chosenTerm.values.map( t => (
-                  <option value={ t.id } key={`annotation-term-value-id-${t.id}`}>
+                  <option value={t.id} key={`annotation-term-value-id-${t.id}`}>
                     { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
                   </option>
                 ) ) }
@@ -606,19 +639,19 @@ class FiltersButton extends React.Component {
             id="params-without-term-id"
             className={`form-control ${params.without_term_id ? "filter-changed" : ""}`}
             defaultValue={params.without_term_id}
-            onChange={ e => {
+            onChange={e => {
               if ( _.isEmpty( e.target.value ) ) {
                 updateSearchParams( { without_term_id: "", without_term_value_id: "" } );
               } else {
                 updateSearchParams( { without_term_id: e.target.value } );
               }
-            } }
+            }}
           >
             <option value="">
               { I18n.t( "none" ) }
             </option>
             { terms.map( t => (
-              <option value={ t.id } key={`without-term-id-${t.id}`}>
+              <option value={t.id} key={`without-term-id-${t.id}`}>
                 { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
               </option>
             ) ) }
@@ -630,19 +663,46 @@ class FiltersButton extends React.Component {
                 id="params-term-value-id"
                 className={`form-control ${params.without_term_value_id ? "filter-changed" : ""}`}
                 defaultValue={params.without_term_value_id}
-                onChange={ e => updateSearchParams( { without_term_value_id: e.target.value } ) }
+                onChange={e => updateSearchParams( { without_term_value_id: e.target.value } )}
               >
                 <option value="">
                   { I18n.t( "any_" ) }
                 </option>
                 { rejectedTerm.values.map( t => (
-                  <option value={ t.id } key={`without-term-value-id-${t.id}`}>
+                  <option value={t.id} key={`without-term-value-id-${t.id}`}>
                     { I18n.t( `controlled_term_labels.${_.snakeCase( t.label )}`, { default: t.label } ) }
                   </option>
                 ) ) }
               </select>
             </div>
           ) : null }
+        </div>
+        <div className="form-group recent-users-form-group">
+          <label htmlFor="account-creation" className="sectionlabel">{ I18n.t( "account_creation" ) }</label>
+          <select
+            id="account-creation"
+            defaultValue={defaultAccountAge}
+            className={`form-control ${params.user_before || params.user_after ? "filter-changed" : ""}`}
+            onChange={e => {
+              if ( _.isEmpty( e.target.value ) ) {
+                updateSearchParams( { user_after: null, user_before: null } );
+              } else if ( e.target.value === "recent" ) {
+                updateSearchParams( { user_after: "1w", user_before: null } );
+              } else if ( e.target.value === "established" ) {
+                updateSearchParams( { user_before: "1w", user_after: null } );
+              }
+            }}
+          >
+            <option value="">
+              { I18n.t( "any_" ) }
+            </option>
+            <option value="recent">
+              { I18n.t( "in_the_past_week" ) }
+            </option>
+            <option value="established">
+              { I18n.t( "more_than_a_week_ago" )}
+            </option>
+          </select>
         </div>
       </Col>
     );
@@ -652,14 +712,14 @@ class FiltersButton extends React.Component {
           { I18n.t( "date_added" ) }
         </label>
         <DateFilters
-          params={ params }
-          updateSearchParams={ updateSearchParams }
+          params={params}
+          updateSearchParams={updateSearchParams}
           prefix="created"
         />
       </Col>
     );
     const moreFilters = (
-      <div id="more-filters" className={this.state.moreFiltersHidden ? "hidden" : ""}>
+      <div id="more-filters" className={moreFiltersHidden ? "hidden" : ""}>
         <Row className="filters-row">
           { moreLeftCol }
           { moreCenterCol }
@@ -675,15 +735,15 @@ class FiltersButton extends React.Component {
             <Col xs="12">
               <Button
                 bsStyle="link"
-                className={ `filters-more-btn ${this.state.moreFiltersHidden ? "collapsed" : ""}` }
-                onClick={ ( ) => {
-                  this.setState( { moreFiltersHidden: !this.state.moreFiltersHidden } );
+                className={`filters-more-btn ${moreFiltersHidden ? "collapsed" : ""}`}
+                onClick={( ) => {
+                  this.setState( { moreFiltersHidden: !moreFiltersHidden } );
                 }}
               >
                 { I18n.t( "more_filters" ) }
                 &nbsp;
-                <i className="fa fa-caret-down"></i>
-                <i className="fa fa-caret-up"></i>
+                <i className="fa fa-caret-down" />
+                <i className="fa fa-caret-up" />
               </Button>
               { moreFilters }
             </Col>
@@ -691,25 +751,27 @@ class FiltersButton extends React.Component {
         </div>
         <Row className="filters-footer FiltersButtonFooter">
           <Col xs="12">
-            <Button bsStyle="primary" onClick={ () => closeFilters( ) }>
+            <Button bsStyle="primary" onClick={() => closeFilters( )}>
               { I18n.t( "update_search" ) }
             </Button>
-            <Button onClick={ ( ) => resetParams( ) }>
+            <Button onClick={( ) => resetParams( )}>
               { I18n.t( "reset_search_filters" ) }
             </Button>
-            <div className="feeds" className="feeds pull-right">
+            <div className="feeds pull-right">
               <a
-                className="btn btn-link" href={`/observations.atom?${paramsForUrl( )}`}
+                className="btn btn-link"
+                href={`/observations.atom?${paramsForUrl( )}`}
                 target="_self"
               >
-                <i className="fa fa-rss"></i>
+                <i className="fa fa-rss" />
                 <span>{ I18n.t( "atom" ) }</span>
               </a>
               <a
-                className="btn btn-link" href={`/observations/export?${paramsForUrl( )}`}
+                className="btn btn-link"
+                href={`/observations/export?${paramsForUrl( )}`}
                 target="_self"
               >
-                <i className="fa fa-download"></i>
+                <i className="fa fa-download" />
                 <span>{ I18n.t( "download" ) }</span>
               </a>
             </div>
@@ -724,20 +786,22 @@ class FiltersButton extends React.Component {
           bsStyle="default"
           className="FiltersButton"
           ref="target"
-          onClick={ ( ) => this.toggle( ) }
+          onClick={( ) => this.toggle( )}
         >
-          <i className="fa fa-sliders"></i> { I18n.t( "filters" ) }
+          <i className="fa fa-sliders" />
+          { " " }
+          { I18n.t( "filters" ) }
           &nbsp;
           <span className="badge">
             { numFiltersSet( ) }
           </span>
         </Button>
         <Overlay
-          show={this.state.show}
-          onHide={ ( ) => this.setState( { show: false } ) }
-          container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+          show={show}
+          onHide={( ) => this.setState( { show: false } )}
+          container={$( "#wrapper.bootstrap" ).get( 0 )}
           placement="bottom"
-          target={ ( ) => ReactDOM.findDOMNode( this.refs.target ) }
+          target={( ) => ReactDOM.findDOMNode( this.refs.target )}
         >
           <Popover
             id="FiltersButtonPopover"
@@ -757,7 +821,8 @@ FiltersButton.propTypes = {
   defaultParams: PropTypes.object,
   updateSearchParams: PropTypes.func,
   replaceSearchParams: PropTypes.func,
-  terms: PropTypes.array
+  terms: PropTypes.array,
+  config: PropTypes.object
 };
 
 FiltersButton.defaultProps = {

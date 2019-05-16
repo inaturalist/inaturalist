@@ -1,3 +1,19 @@
+# Monkeypatch to add OmniAuth.providers array that lists all the strategies that
+# are actually in use, not just the ones that are available
+module OmniAuth
+  @@providers = []
+  mattr_accessor :providers
+
+  class Builder < ::Rack::Builder
+    def provider_patch(klass, *args, &block)
+      OmniAuth.providers << klass
+      old_provider(klass, *args, &block)
+    end
+    alias old_provider provider
+    alias provider provider_patch
+  end
+end
+
 Rails.application.config.middleware.use OmniAuth::Builder do
   require 'openid/store/filesystem'
 
@@ -57,11 +73,17 @@ Rails.application.config.middleware.use OmniAuth::Builder do
 
   if CONFIG.google
     opts = {
+      # Apparently this just triggers scary permissions errors until we're a "verified" app on Google
+      # :scope => "userinfo.email,userinfo.profile,plus.me,https://picasaweb.google.com/data/,https://www.googleapis.com/auth/photoslibrary.readonly",
       :scope => "userinfo.email,userinfo.profile,plus.me,https://picasaweb.google.com/data/",
       :prompt => "consent",
       :access_type => "offline"
     }
     provider :google_oauth2, CONFIG.google.client_id, CONFIG.google.secret, opts
+  end
+
+  if CONFIG.orcid
+    provider :orcid, CONFIG.orcid.client_id, CONFIG.orcid.client_secret
   end
 
 end

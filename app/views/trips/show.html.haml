@@ -6,6 +6,9 @@
   :javascript
     $('.observationcontrols').observationControls()
     $("#comment_body").textcompleteUsers( );
+    $( document ).ready( function() {
+      $( '[data-toggle="popover"]' ).popover({html:true});
+    } );
 - content_for :extrahead do
   %meta{:property => "og:image", :content => html_attributize(@shareable_image_url)}
   %meta{:property => "twitter:image", :content => html_attributize(@shareable_image_url)}
@@ -13,6 +16,8 @@
   %meta{:name => "twitter:card", :content => "summary"}
   %meta{:name => "og:title", :content => html_attributize(@title)}
 .container
+  - if @trip.published_at.nil?
+    .alert.alert-warning.upstacked= t(:preview)
   %ul.breadcrumb.clearfix
     %li
       - if @trip.parent.is_a?(Project)
@@ -22,6 +27,8 @@
           = link_to t(:x_journal, :user => @trip.parent.title), project_journal_path(@trip.parent)
       - elsif @trip.parent.is_a?(Site)
         = link_to t(:x_blog, x: @trip.parent.name), site_posts_path
+      - elsif @trip.is_a?(Trip)
+        = link_to t(:trips), trips_path
       - else
         = link_to possessive_noun(@trip.user, t(:journal).downcase), journal_by_login_path(@trip.user.login)
     %li.active
@@ -45,10 +52,10 @@
         %li= link_to t(:summary), "#summary"
         - unless @trip.body.blank?
           %li= link_to t(:description), "#description"
+        - if @trip.is_a?( Trip ) && !@target_list_set.blank?
+          %li= link_to t( :target_list ), "#target_list"
         - unless @trip.observations.blank?
           %li= link_to t(:observations), "#observations"
-        - if @trip.is_a?(Trip)
-          %li= link_to t(:check_list), "#check_list"
         %li= link_to t(:comments), "#comments"
     .col-xs-9
       %section{:id => "summary"}
@@ -59,11 +66,30 @@
               = t(:edit)
         %h1= @title
         - if @trip.is_a?(Trip)
-          .subtitle.text-muted.lead
+          .subtitle.text-muted
             = l(@trip.start_time, :format => :long) if @trip.start_time
             \-
             = l(@trip.stop_time, :format => :long) if @trip.start_time
-
+          .small.text-muted.stacked
+            \|
+            - if @trip.latitude
+              = t( :latitude_value, latitude: @trip.latitude.round( 3 ) )  if @trip.latitude
+              \|
+            - if @trip.longitude
+              = t( :longitude_value, longitude: @trip.longitude.round( 3 ) )
+              \|
+            - if @trip.radius
+              = t( :radius_value, radius: @trip.radius )
+              \|
+            - if @trip.distance
+              = t( :distance_traveled_value, distance: @trip.distance.to_i )
+              \|
+            - if ( @trip.start_time && @trip.stop_time )
+              = t( :duration_value, duration: ( ( @trip.stop_time - @trip.start_time ) / 1.minutes ).to_i )
+              \|
+            - if @trip.number
+              = t( :number_of_observers_value, number: @trip.number )
+              \|
       - unless @trip.body.blank?
         %section.stacked.post{:id => "description"}
           = formatted_user_text(@trip.body, scrubber: PostScrubber.new(tags: Post::ALLOWED_TAGS, attributes: Post::ALLOWED_ATTRIBUTES), skip_simple_format: (@trip.preferred_formatting == Post::FORMATTING_NONE))
@@ -73,71 +99,64 @@
               = user_image @trip.user, :size => "mini", :class => "img-rounded"
               = link_to_user @trip.user
             =l @trip.published_at, :format => :long if @trip.published?
-      - unless @trip.observations.blank?
-        %section{:id => "observations"}
-          .observationcontrols.pull-right
-          %h2=t :observations
-          .observations.medium.grid
-            - compact do
-              = render :partial => "observations/cached_component", :collection => @trip.observations
-          - if @trip.is_a?(Trip)
-            .text-muted
-              :ruby
-                obs_params = {
-                  :d1 => @trip.start_time.iso8601,
-                  :d2 => @trip.stop_time.iso8601,
-                  :user_id => @trip.user_id
-                }
-                obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
-              = link_to observations_url(obs_params), :class => "readmore" do
-                View observations made between 
-                =l @trip.start_time, :format => :short
-                =t :and
-                =l @trip.stop_time, :format => :short
       - if @trip.is_a?(Trip)
-        %section{:id => "check_list"}
-          %h2=t :check_list
-          - if @trip_taxa.blank?
-            .text-muted.nocontent=t :no_taxa_listed
-          - else
-            .row
+        - unless @target_list_set.blank?
+          %section{:id => "target_list"}
+            %h2
+              =t :target_list
+              %span.glyphicon.glyphicon-info-sign.info-link{ "style" => "margin-left:5px;font-size:15px;color:gray", "data-content" => t(:trip_target_list_info), "data-placement" => "top", "data-toggle" => "popover" }
+            - 2.times do |i|
+              - if i==0
+                - st = @target_list_set[0..@target_list_set.count/2]
+              - else
+                - st = @target_list_set[(@target_list_set.count/2+1)..@target_list_set.count]
               .col-xs-6
-                %h4 Observed
-                - if @trip.trip_purposes.blank?
-                  %ul.taxon_links.plain
-                    - for trip_taxon in @trip_taxa_observed
-                      %li
-                        = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
-                - else
-                  - for trip_purpose in @trip.trip_purposes
-                    %h5
-                      = trip_purpose.resource.default_name.name
-                      - if trip_purpose.complete?
-                        .label.label-success{data: {tip: "Complete list of taxa observed. Taxa not on this list were not observed."}}=t :complete
-                    %ul.taxon_links.plain
-                      - for trip_taxon in @trip_taxa_observed
-                        - if trip_taxon.ancestor_ids.include?(trip_purpose.resource_id)
-                          %li
-                            = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
-                  - unless @trip_taxa_untargeted.blank?
-                    %h5 Everything else
-                    %ul.taxon_links.plain
-                      - for trip_taxon in @trip_taxa_untargeted
-                        %li
-                          = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
-              .col-xs-6
-                %h4 Sought but not found
                 %ul.taxon_links.plain
-                  - for trip_taxon in @trip_taxa_unobserved
-                    %li
-                      = render "shared/taxon", :taxon => trip_taxon.taxon, :link_url => trip_taxon.taxon
-      %section{:id => "comments"}
-        - if @trip.published_at
-          = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
-        - else
-          = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2, :hide_form => true }
-        - if logged_in? && current_user.id != @trip.user_id
+                - for element in st
+                  %li
+                    = render "shared/taxon", :taxon => element[:taxon], :link_url => element[:taxon]
+                    - if element[:observations].count > 0
+                      - element[:observations][0..7].each do |o|
+                        = link_to observation_path( :id => o["id"] )  do
+                          %svg{ :height => "10", :width => "10" }
+                            %title= o["taxon"]["name"]
+                            %circle{ :cx => "5", :cy => "5", :r => "5", :stroke => "black", :stroke-width => "3", :fill => "#337ab7" }
+                      - if element[:observations].count > 8
+                        ="..."
+      .col-xs-12
+        - unless @trip_observations.blank? && @trip.observations.blank?
+          %section{:id => "observations"}
+            .observationcontrols.pull-right
+            %h2=t :observations
+            - if @trip.is_a?(Trip)
+              .observations.medium.grid
+                - compact do
+                  = render :partial => "observations/cached_component", :collection => @trip_obsevations
+              .text-muted
+                :ruby
+                  obs_params = {
+                    taxon_is_active: true,
+                    lat: @trip.latitude,
+                    lng: @trip.longitude,
+                    radius: ( @trip.radius == 0 ? 0 : @trip.radius / 1000.to_f ),
+                    d1: @trip.start_time.iso8601,
+                    d2: @trip.stop_time.iso8601,
+                    user_id: @trip.user_id
+                  }
+                  obs_params[:place_id] = @trip.place_id unless @trip.place_id.blank?
+                = link_to observations_url(obs_params), :class => "readmore" do
+                  =t( :search_observations)
+            - else
+              .observations.medium.grid
+                - compact do
+                  = render :partial => "observations/cached_component", :collection => @trip.observations
+        %section{:id => "comments"}
+          - if @trip.published_at
+            = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2 }
+          - else
+            = render :partial => 'comments/comments', :locals => { :parent => @trip, :header_tag => :h2, :hide_form => true }
+          - if logged_in? && current_user.id != @trip.user_id
+            .upstacked
+              = render "subscriptions/subscription", resource: @trip.becomes( Post )
           .upstacked
-            = render "subscriptions/subscription", resource: @trip.becomes( Post )
-        .upstacked
-          = render :partial => "shared/flagging", :locals => { :instance => @post }
+            = render :partial => "shared/flagging", :locals => { :instance => @post }

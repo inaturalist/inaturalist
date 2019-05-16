@@ -8,6 +8,7 @@ import { paramsForSearch } from "../reducers/search_params_reducer";
 const RECEIVE_OBSERVATIONS = "receive_observations";
 const UPDATE_OBSERVATION_IN_COLLECTION = "update_observation_in_collection";
 const UPDATE_ALL_LOCAL = "update_all_local";
+const SET_REVIEWING = "identify/observations/set-reviewing";
 
 function receiveObservations( results ) {
   return Object.assign( { type: RECEIVE_OBSERVATIONS }, results );
@@ -34,7 +35,7 @@ function fetchObservations( ) {
       .then( response => {
         let obs = response.results;
         if ( currentUser.id ) {
-          obs = response.results.map( ( o ) => {
+          obs = response.results.map( o => {
             if ( o.reviewed_by.indexOf( currentUser.id ) > -1 ) {
               // eslint complains about this, but if you create a new object
               // with Object.assign you lose all the Observation model stuff
@@ -68,9 +69,14 @@ function updateAllLocal( changes ) {
   return { type: UPDATE_ALL_LOCAL, changes };
 }
 
+function setReviewing( reviewing ) {
+  return { type: SET_REVIEWING, reviewing };
+}
+
 function reviewAll( ) {
   return function ( dispatch, getState ) {
     dispatch( setConfig( { allReviewed: true } ) );
+    dispatch( setReviewing( true ) );
     dispatch( updateAllLocal( { reviewedByCurrentUser: true } ) );
     // B/c this was new to me, Promise.all takes an array of Promises and
     // creates another Promise that is fulfilled if all the promises in the
@@ -83,26 +89,40 @@ function reviewAll( ) {
     Promise.all(
       getState( ).observations.results.map( o => iNaturalistJS.observations.review( { id: o.id } ) )
     )
-      .catch( ( ) => dispatch( showAlert(
-        I18n.t( "failed_to_save_record" ),
-        { title: I18n.t( "request_failed" ) }
-      ) ) )
-      .then( ( ) => dispatch( fetchObservationsStats( ) ) );
+      .catch( ( ) => {
+        dispatch( setReviewing( false ) );
+        dispatch( showAlert(
+          I18n.t( "failed_to_save_record" ),
+          { title: I18n.t( "request_failed" ) }
+        ) );
+      } )
+      .then( ( ) => {
+        dispatch( setReviewing( false ) );
+        dispatch( fetchObservationsStats( ) );
+      } );
   };
 }
 
 function unreviewAll( ) {
   return function ( dispatch, getState ) {
     dispatch( setConfig( { allReviewed: false } ) );
+    dispatch( setReviewing( true ) );
     dispatch( updateAllLocal( { reviewedByCurrentUser: false } ) );
     Promise.all(
-      getState( ).observations.results.map( o => iNaturalistJS.observations.unreview( { id: o.id } ) )
+      getState( ).observations.results
+        .map( o => iNaturalistJS.observations.unreview( { id: o.id } ) )
     )
-      .catch( ( ) => dispatch( showAlert(
-        I18n.t( "failed_to_save_record" ),
-        { title: I18n.t( "request_failed" ) }
-      ) ) )
-      .then( ( ) => dispatch( fetchObservationsStats( ) ) );
+      .catch( ( ) => {
+        dispatch( setReviewing( false ) );
+        dispatch( showAlert(
+          I18n.t( "failed_to_save_record" ),
+          { title: I18n.t( "request_failed" ) }
+        ) );
+      } )
+      .then( ( ) => {
+        dispatch( setReviewing( false ) );
+        dispatch( fetchObservationsStats( ) );
+      } );
   };
 }
 
@@ -110,10 +130,12 @@ export {
   RECEIVE_OBSERVATIONS,
   UPDATE_OBSERVATION_IN_COLLECTION,
   UPDATE_ALL_LOCAL,
+  SET_REVIEWING,
   receiveObservations,
   fetchObservations,
   updateObservationInCollection,
   reviewAll,
   unreviewAll,
-  updateAllLocal
+  updateAllLocal,
+  setReviewing
 };

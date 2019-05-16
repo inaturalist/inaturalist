@@ -2,7 +2,10 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Athena in Wonderland
+# Author: CaiusSPQR
+# Author: Cristina Luís
 # Author: Duartefrade
+# Author: Eduardo Addad de Oliveira
 # Author: Fitoschido
 # Author: Hamilton Abreu
 # Author: Imperadeiro90
@@ -88,6 +91,9 @@ pt-PT:
   x_people_agree_html:
     one: <span class="count">Uma</span> pessoa concorda
     other: <span class="count">%{count}</span> pessoas concordam
+  x_new_species:
+    one: 1 Nova Espécie
+    other: '%{count} Novas Espécies'
   x_species:
     one: 1 Espécie
     other: '%{count} Espécies'
@@ -120,11 +126,11 @@ pt-PT:
   x_taxon_changes_added_html:
     one: 1 mudança de táxon adicionada
     other: '%{count} mudanças de táxon adicionadas'
+  x_people_helped_user_with_y_ids_html: <strong>%{x} pessoas</strong> ajudaram %{user}
+    com <strong>%{y} IDs</strong>
   _100_day_trends: Tendências de 100 dias
   _percent_ID_d: '% Identificados'
-  a: um(a)
-  a_: um(a)
-  a_community_for_naturalist: Uma Comunidade para Naturalistas
+  a_community_for_naturalist: Uma comunidade para naturalistas
   a_default_taxon_name_will_automatically_created: |-
     Um nome predefinido será automaticamente criado a partir do nome científico deste táxon.
     Quando tiver guardado este novo táxon, vai ter a possibilidade de acrescentar outros nomes aqui (nomes comuns, nomes científicos desatualizados, etc.).
@@ -191,7 +197,7 @@ pt-PT:
   add_a_new_observation_to_id_please!: Adicionar uma Nova Observação para Identificar,
     Por favor!
   add_a_place_raquo: Adicionar um Lugar &raquo;
-  add_a_single_observation: Adicionar uma única observação.
+  add_a_single_observation: Adicionar uma Única Observação.
   add_a_taxon: Adicione um Táxon
   add_all_your_matching_obs_of_this_taxon: Adicione todas as suas observações deste
     táxon para este projeto
@@ -216,16 +222,16 @@ pt-PT:
   add_batch: Adicionar um Conjunto
   add_colors: Adicionar Cores
   add_comma_separated_tags: Adicionar Etiquetas Separadas por Vírgulas
-  add_comment: Adicionar um comentário
-  add_common_names_for: adicionar nomes comuns aos táxons já existentes
-  add_conservation_status: adicionar estatuto de conservação
+  add_comment: Adicionar um Comentário
+  add_common_names_for: Adicionar Nomes Comuns aos Táxons já Existentes
+  add_conservation_status: Adicionar Estatuto de Conservação
   add_countries: Adicionar Países
-  add_custom_project_fields: Adicionar campos de projeto personalizados
+  add_custom_project_fields: Adicionar Campos de Projeto Personalizados
   add_edit_flags: Adicionar/Editar Sinalizadores
-  add_edit_more_fields: Adicionar/editar mais campos
+  add_edit_more_fields: Adicionar/Editar Mais Campos
   add_editor: Adicionar Editor
   add_description: Adicionar %{description_name}
-  add_field: Adicionar campo
+  add_field: Adicionar Campo
   add_from_your_observations: Adicionar a partir das suas observações
   add_link: Adicionar Link
   add_listed_taxa_from_observations: Adicionar táxons listados a partir das observações
@@ -233,7 +239,7 @@ pt-PT:
   add_id: Adicionar identificação
   add_it_to_place_raquo: Adicione-a a um lugar &raquo;
   add_more_photos: Adicionar mais fotografias
-  add_new_lexicon: Adicionar um novo léxico
+  add_new_lexicon: Adicionar novo léxico
   add_new_observations: Adicionar novas observações
   add_new_photos_by_their_ids: Adicionar novas fotografias a partir das suas identificações
     no Flickr (têm de ser Creative Commons!)
@@ -273,11 +279,12 @@ pt-PT:
   add_life_stage_larva_annotation: 'Adicionar anotação "Fase da Vida: Larva"'
   add_life_stage_juvenile_annotation: 'Adicionar anotação "Fase da Vida: Juvenil"'
   add_life_stage_egg_annotation: 'Adicionar anotação "Fase da Vida: Ovo"'
+  add_relationship: Adicionar relação
   add_section: Adicionar secção
   add_several_observations_at_once: Adicionar diversas observações de uma só vez.
   add_sex_female_annotation: 'Adicionar anotação "Género: Fêmea"'
   add_sex_male_annotation: 'Adicionar anotação "Género: Macho"'
-  add_shape: Adicionar um limite
+  add_shape: Adicionar forma
   add_some_now: Adicionar algumas agora
   add_tag: Adicionar etiqueta
   add_tags: Adicionar etiquetas
@@ -288,7 +295,6 @@ pt-PT:
   add_taxon_range: Adicionar área de distribuição do táxon
   add_taxonomic_tags_to: Adicionar etiquetas taxonómicas a fotografias selecionadas
     do Flickr &raquo;
-  add_to: Adicionar a
   add_to_a_scheme: Adicionar a um esquema
   add_to_a_project: Adicionar a um projeto
   add_to_calendar: Adicionar ao calendário
@@ -610,7 +616,6 @@ pt-PT:
   automatically_update_my_content_for_taxon_changes: Atualizar automaticamente o meu
     conteúdo quando existir alterações taxonómicas
   back: Voltar
-  back_to: Voltar a
   back_to_albums: Voltar aos álbuns
   back_to_all_species: Voltar a Todas as Espécies
   back_to_browsing_people: Voltar à busca de pessoas
@@ -631,13 +636,13 @@ pt-PT:
   back_to_suggestions: Voltar às Sugestões
   back_to_taxon: Voltar a %{defaulttaxon}
   back_to_taxon_changes: Voltar às alterações do táxon
-  back_to_this: Voltar a %{place}
   back_to_viewing: Voltar à visualização de <i>%{taxon}</i>
   back_to_x: Voltar a %{noun}
   back_to_x_assessment: Voltar para as avaliações de %{project}
   back_to_x_history: Voltar ao historial de %{x}
   back_to_x_journal: Voltar ao boletim de %{user}
   back_to_x_blog: Voltar ao blog de %{x}
+  back_to_your_dashboard: Voltar ao seu painel de controlo
   back_to_x_observations: Voltar às observações de %{user}
   back_to_your_lists: Voltar às suas listas
   back_to_your_journal: Voltar para seu boletim
@@ -1227,6 +1232,7 @@ pt-PT:
   doh_something_went_wrong_error: 'Ocorreu algo de errado: %{error}'
   done: Concluído
   dont_filter: Não filtrar
+  dont_have_an_account_sign_up_html: Ainda não tem conta? <strong>Registe-se.</strong>
   dont_send_me_email: Não me envie qualquer email!
   dont_use_double_quotes: Não utilize aspas em nenhum outro lugar
   drop_it: Largue
@@ -1296,7 +1302,6 @@ pt-PT:
     para alterar os tipos de atualização que recebe ou cancelar completamente a sua
     subscrição.
   edited: Editado
-  edited_by: Editado por
   edited_by_name_html: Editado por %{name}
   editing: A editar
   editing_announcement: A editar anúncio
@@ -1348,17 +1353,17 @@ pt-PT:
   eol_collection_url: URL da coleção EOL
   error_updating_photo: 'Erro ao atualizar a fotografia: %{photo_errors}'
   establishment:
-    establishment: Estabelecimento
-    native: autóctone
     endemic: endémico
+    establishment: Estabelecimento
     introduced: introduzido
-    naturalised: naturalizado
     invasive: invasora
     managed: sobre cuidado humano
+    native: autóctone
+    naturalised: naturalizado
   establishment_means: Meio de estabelecimento na área
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: nativa e não existe em mais nenhum lado
     arrived_in_the_region_via_anthropogenic_means: chegou à região por via antropogénica
+    native_and_occurs_nowhere_else: Nativa e não ocorre em mais nenhum lado
   establishment_means_describes_how: Meios de estabelecimento descreve a forma como
     o táxon se estabeleceu numa área. Veja DarwinCore para <a href="http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">mais
     informação acerca de terminologia</a>.
@@ -1449,7 +1454,6 @@ pt-PT:
     que você conhece bem
   filling_out_your_profile: a preencher o seu perfil
   filter: Filtro
-  filter_by: Filtrar por
   filter_by_curator_identification: Filtrar pela identificação do curador
   filter_by_place: Filtrar por local
   filter_by_taxon: Filtrar por táxon
@@ -1495,7 +1499,6 @@ pt-PT:
     <strong>resolvido.</strong>
   flag_reason: '&ldquo;Estou a marcar este %{record} porque'
   flag_saved: Sinalizador guardado.
-  flag_saved_thanks: Sinalizador guardado. Obrigado!
   flag_this_observation: Sinalizar esta observação
   flag_this_photo: Marcar esta fotografia
   flagged: sinalizado(a)
@@ -1508,7 +1511,6 @@ pt-PT:
   flags_explanation: '%{site_name} utilizadores sinalizam coisas quando encontram
     algo que não está bem. Aqui estão algumas questões que ainda não foram resolvidas
     pelos curadores.'
-  flags_for: Sinalizações para
   flags_on_users_content: Sinalizadores no conteúdo de %{user}
   flickr_account_information: Informações da sua conta do Flickr
   flickr_description: Flickr é um serviço em linha de alojamento de fotografias, que
@@ -1529,8 +1531,6 @@ pt-PT:
   fluid_layout: Composição fluída
   fluid: fluído
   follow: Seguir
-  follow_us: Siga-nos no
-  follow_us_on: Siga-nos no
   follow_user: Seguir %{user}
   followed_projects: Projetos seguidos
   follower: seguidor
@@ -1543,14 +1543,13 @@ pt-PT:
   for_more_information: para mais informações.
   formatting: Formatação
   forgot_your_password: Esqueceu-se da sua palavra-passe?
+  forum: Fórum
   frequency: Frequência
   fri: Sex
   from: De
   from_a_place: de um local
-  from_anywhere_change: de qualquer lugar (<span class="button">alterar</span>)
   from_eol_collection: Da coleção da EOL
   from_flickr_facebook_etc: Do Flickr, Facebook, etc.
-  from_in_this_place: deste local
   from_list: Da lista
   from_this: deste
   from_photos: Das fotografias
@@ -1583,6 +1582,8 @@ pt-PT:
   Genus: Género
   genus_slash_species: '[GÉNERO] / [ESPÉCIES]'
   geoprivacy: Geoprivacidade
+  geoprivacy_is_private: A geoprivacidade é privada
+  geoprivacy_is_private_desc: O Observador escolheu ocultar as coordenadas.
   georeferenced: Georreferenciado?
   georeferenced?: georreferenciado
   get_current_position: Obter a posição atual
@@ -1593,7 +1594,7 @@ pt-PT:
   give_it_some_detail: Introduza alguns detalhes!
   global_conservation_status: 'Estado de conservação global:'
   global_names: Nomes globais
-  globally: globalmente
+  globally: Globalmente
   go: Ir
   go_back: Voltar
   going_to_your_observations: Indo para as suas observações...
@@ -1634,11 +1635,11 @@ pt-PT:
     mais
   has_one_or_more_faves: Tem um ou mais favoritos
   has_photo: Tem foto
-  has_photos: possui fotografias
+  has_photos: Tem fotos
   has_photo_and_sound: Tem foto e som
   has_photos_or_sounds: Possui fotografias ou sons
   has_sound: Tem som
-  has_sounds: possui sons
+  has_sounds: Tem sons
   hasnt_contributed_any_observations: não contribuiu com nenhuma observação a este
     projeto.
   hate_me_facebook: Desligar as suas contas do Facebook e %{site_name}
@@ -1662,6 +1663,7 @@ pt-PT:
   help_confirm_observations!: Ajude a confirmar observações!
   help_faq: Ajuda / Perguntas frequentes
   help_out!: Ajude!
+  help_support_inaturalist: Apoie o iNaturalist
   helped_the_observer_make: ajudaram o observador a fazer a sua identificação final
     (ou seja, foram feitas antes da identificação final e coincidiram)
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
@@ -1676,8 +1678,9 @@ pt-PT:
   hi_user: Olá %{user}
   hide: Ocultar
   hide_details: Ocultar detalhes
-  hide_uncountable_species: Ocultar inúmeras espécies
-  high: elevada
+  hide_running_total: Ocultar total acumulado
+  hide_uncountable_species: Ocultar espécies incontáveis
+  high: Alto
   highest_rank: Classificação mais alta
   highlights: Destaques
   highlights_and_stats_from_year_on_site: Destaques e estatísticas de %{year} em %{site}
@@ -1781,8 +1784,6 @@ pt-PT:
   import_tags_from_csv: Importar etiquetas de CSV
   importing: A importar...
   improving: A melhorar
-  in: em
-  in_: em
   in_n: em %{n}
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   inbox: caixa de entrada
@@ -1850,8 +1851,6 @@ pt-PT:
   invited_x: Convidado %{x}
   inviting: Convidando...
   iphone: iPhone
-  is_a: é um
-  is_an: é uma
   is_an_evaluation: |-
     é uma avaliação da veracidade da observação.
     As observações classificadas com Grau de Pesquisa podem ser usadas na investigação por cientistas. Dê o seu voto em baixo:
@@ -1883,6 +1882,8 @@ pt-PT:
   join_project: Entre neste projeto
   join_some_projects_and_invite_some_observations_html: Participe de alguns <a href='%{join_url}'>projetos</a>
     e <a href='%{invite_url}'>introduza algumas observações</a>
+  join_the_largest_group_of_naturalists_in_the_world: Junte-se ao maior grupo de naturalistas
+    do mundo!
   join_this_project: Entre neste projeto
   joined!: Aderiu!
   joined_any_projects: não aderiu a nenhum projeto
@@ -2163,6 +2164,7 @@ pt-PT:
     e inserindo diretamente a identificação do ancestral, mas, em alternativa, recomenda-se
     juntar os novos táxons aos já existentes.
   log_in: Entrar
+  log_scale_label: Logarítmica
   logged_in_as: Iniciou sessão como
   login_slash_username: Iniciar sessão / nome de utilizador
   logo:
@@ -2404,6 +2406,7 @@ pt-PT:
   new_observation_field: Novo campo de observação
   new_observation_rules: Novas Regras de Observação
   new_observations: Novas observações
+  new_observations_this_year: Novas Observações Este Ano
   new_observations_ellispsis: Novas observações...
   new_observations_from_place_html: Novas observações em %{place}
   new_observations_may_take_up_to: As novas observações podem demorar até %{widget_expiration}
@@ -2426,8 +2429,10 @@ pt-PT:
     %{site_name}
   new_user_rules: Novas Regras para o Utilizador
   new_users: Novos utilizadores
+  new_users_this_year: Novos Utilizadores Este Ano
   new_users_w_7_obs: Utentes novos com 7 Obs
   new_users_week: Novos Utilizadores / Semana
+  newly_added: Adicionado recentemente
   news: Notícias
   next: Seguinte
   next_observation: Próxima Observação
@@ -2561,6 +2566,7 @@ pt-PT:
   not_on_this_list: Não está nesta lista.
   not_recorded: Não registado
   not_seeing_what_looking_for: Não vê o que procura?
+  not_spam: Não é spam
   not_yet: Ainda não
   note: Nota
   notes: Notas
@@ -2835,6 +2841,7 @@ pt-PT:
   or_if_you_dont_want_email: Ou se simplesmente não quer nenhum email...
   or_invite_your_friends: ou convide os seus amigos
   or_invited: ou convidados.
+  or_log_in_with_colon: 'Ou entre com:'
   or_post_message_to_google_group: 'ou envie uma mensagem para o nosso Grupo Google:'
   or_upload: Ou carregar
   or_you_can: Ou pode...
@@ -3048,36 +3055,55 @@ pt-PT:
   places_name:
     afghanistan: Afeganistão
     africa: África
+    albania: Albânia
+    angola: Angola
     antigua_and_barbuda: Antígua e Barbuda
+    argentina: Argentina
     australia: Austrália
     austria: Áustria
+    barbados: Barbados
     belgium: Bélgica
     bosnia_and_herzegovina: Bósnia e Herzegovina
     brazil: Brasil
     central_america: América Central
+    chile: Chile
     china: China
     colombia: Colômbia
+    costa_rica: Costa Rica
+    croatia: Croácia
+    cuba: Cuba
     denmark: Dinamarca
+    east_timor: Timor-Leste
+    ecuador: Equador
     egypt: Egito
     equatorial_guinea: Guiné Equatorial
     europe: Europa
     france: França
     germany: Alemanha
     greece: Grécia
+    honduras: Honduras
     hong_kong: Hong Kong
     hungary: Hungria
-    italy: Itália
     india: Índia
+    iran: Irão
     iraq: Iraque
+    israel: Israel
+    italy: Itália
     japan: Japão
     korea: Coreia
+    libya: Líbia
+    macao: Macau
+    macedonia: Macedónia
+    malta: Malta
     martinique: Martinica
     mexico: México
+    monaco: Mónaco
     netherlands: Países Baixos
     new_guinea: Nova Guiné
     new_zealand: Nova Zelândia
     north_africa: África do Norte
     north_america: América do Norte
+    norway: Noruega
     palestine: Palestina
     panama: Panamá
     peru: Peru
@@ -3085,9 +3111,11 @@ pt-PT:
     portugal: Portugal
     republic_of_congo: República do Congo
     russia: Rússia
-    saudi_arabia: Arábia Saudita
     sao_tome_and_principe: São Tomé e Príncipe
+    saudi_arabia: Arábia Saudita
+    senegal: Senegal
     singapore: Singapura
+    somalia: Somália
     south_africa: África do Sul
     south_america: América do Sul
     spain: Espanha
@@ -3097,8 +3125,11 @@ pt-PT:
     thailand: Tailândia
     trinidad_and_tobago: Trinidade e Tobago
     turkey: Turquia
+    ukraine: Ucrânia
     united_kingdom: Reino Unido
     united_states: Estados Unidos
+    venezuela: Venezuela
+    vietnam: Vietname
     virgin_islands: Ilhas Virgens
     west_africa: África Ocidental
   places_of_interest: Locais de interesse
@@ -3737,6 +3768,9 @@ pt-PT:
   submission_model_description: Quem pode adicionar observações ao seu projeto?
   submit: Enviar
   submit_comment: Enviar comentário
+  submit_observations:
+    one: Submeter 1 observação
+    other: Submeter %{count} observations
   submitted: Enviado
   subscribe_to_a_place: Subscrever um Lugar
   subscribe_to_this: Subscrever isto
@@ -3900,6 +3934,7 @@ pt-PT:
   unpublish: Não publicado
   unreview: Cancelar a revisão
   update: Atualizar
+  update_observations: Atualizar observações
   update_photos: Atualizar as fotos
   update_search: Atualizar pesquisa
   update_selected_taxa: Atualizar os táxons selecionados
@@ -3962,6 +3997,8 @@ pt-PT:
   users_observations: Observações de %{user}
   users_profile: Perfil de %{user}
   users_projects: Projetos de %{user}
+  verifiable_observations_by_observation_date: Observações verificáveis por data de
+    observação
   view_all_your_projects: Ver todos os seus projetos
   view_flag: Ver sinalizador
   view_flags: Ver sinalizadores
@@ -3977,6 +4014,9 @@ pt-PT:
   view_observations_of_this_taxon_by: Ver observações deste táxon por
   view_projects_from_place: Ver projectos de %{place}
   view_the_range: Ver a área de distribuição
+  view_your_dashboard: Ver o seu painel de controlo
+  view_your_dashboard_for_more_updates_html: <a href='%{url}'>Ver o seu painel de
+    controlo</a> para mais atualizações
   view_your_observations: Ver as suas observações
   view_all_of_your_observations_from_x: Ver todas as suas observações de %{x}
   we_also_support: |-
@@ -3988,6 +4028,8 @@ pt-PT:
   we_tried_to_process_your_upload_named_filename: |-
     Tentamos processar o carregamento %{filename}, mas não resultou.
     Por favor, corrija o(s) seguinte(s) problema(s) e tente novamente.
+  welcome_back: Bem-vindo de volta!
+  welcome_back!: Bem-vindo de volta!
   welcome_to_inat: Bem-vindo ao %{site_name}!
   welcome_to_x_project: Bem-vindo ao projeto %{project}
   which_projects_can_add_your_observations?: Quais projetos podem adicionar suas observações?
@@ -3995,6 +4037,10 @@ pt-PT:
     e identificar o mundo natural
   x_flagged: '%{x} sinalizado(a)'
   x_flagged_as_flag: '%{x} sinalizado(a) como %{flag}'
+  yes_i_want_to_join: Sim, quero participar
+  yes_license_my_observations_so_scientists_can_use: Sim, crie uma licença para as
+    minhas imagens, sons e observações para que os cientistas possam utilizar os meus
+    dados!
   yesterday: Ontem
   you_can_also_add_flickr: Também pode adicionar etiquetas do Flickr quando editar
     uma observação, ou quando fazer um conjunto de modificações nas suas observações.
@@ -4009,6 +4055,10 @@ pt-PT:
   your_observations: Suas observações
   your_profile_was_successfully_updated: Seu perfil foi atualizado com sucesso!
   your_recent_projects: Os seus projetos recentes
+  your_dashboard_helps_you: O seu painel de controlo permite-lhe seguir a atividade
+    de outros utilizadores no site. Para seguir as atualizações de alguém, clique
+    no link 'Seguir [nome]' situado no topo da página quando visualizar as suas observações
+    ou o seu perfil.
   views:
     devise:
       mailer:
@@ -4040,8 +4090,22 @@ pt-PT:
         keep_observations_label: Deixe suas observações neste projeto
         revoke_observations_label: Deixe suas observações neste projeto, mas impeça
           que os curadores vejam as coordenadas privadas
+      invite:
+        description_html: "<h3>Sobre convites</h3>\n<p class=\"ui\">\n  Convidar pessoas
+          para o seu projeto é um pouco diferente de convidar observações individuais.
+          Ao convidar pessoas\n</p>\n<ol>\n  <li>Será enviado um e-mail para convidar
+          a juntar-se ao seu projeto</li>\n  <li>Mostrará um convite no painel de
+          controlo</li>\n  <li>Permitirá que essas pessoas se juntem ao seu projeto
+          se este foi definido para funcionar somente por convite</li>\n</ol>\n<p
+          class=\"ui\">\n  Somente os coordenadores do projeto podem convidar pessoas
+          para entrar em projetos. \n  Deverá poder pesquisar por pessoas através
+          do nome de utilizador do iNaturalist ou \n  através do endereço de e-mail
+          <em>completo</em>, assumindo que temos esse e-mail no nosso arquivo.\n</p>"
       new:
         welcome_to_projects: Bem-vindo ao projeto!
+    stats:
+      year:
+        growth_title: Crescimento
     users:
       edit:
         project_addition_preferences:
@@ -4055,7 +4119,7 @@ pt-PT:
         connect_with_nature: Ligue-se à Natureza
         species_observed: Espécies observadas
         people_signed_up: Pessoas Registadas
-        how_it_works: Como Funciona
+        how_it_works: Como funciona
         record_your_observations: Registre suas observações
         crowdsource_identifications: Identificações pela comunidade
         join_today: Aderir hoje
@@ -4249,56 +4313,6 @@ pt-PT:
       template:
         body: 'Ocorreram problemas com os seguintes campos:'
   activerecord:
-    errors:
-      models:
-        guide_taxon:
-          attributes:
-            base:
-              guide_has_too_many_taxa: a guia só pode conter até 500 táxons
-        place:
-          attributes:
-            place_geometry:
-              is_too_large_to_import: é demasiado grande para ser importado
-        project_observation:
-          attributes:
-            base:
-              project_does_not_allow_observations: O projeto não permite observações
-            user_id:
-              must_be_curator: tem de ser curador deste projeto
-            observation_id:
-              must_be_observed_after: deve ser observado depois da(s) %{time}
-              must_be_observed_before: deve ser observado antes da(s) %{time}
-        taxon:
-          attributes:
-            rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            rank_level:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            ancestry:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            is_active:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            complete:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-            complete_rank:
-              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
-                pelo curador deste táxon
-        taxon_name:
-          attributes:
-            lexicon:
-              should_not_contain_commas_or_slashes: não deve conter vírgulas ou barras
-        user:
-          attributes:
-            login:
-              must_begin_with_a_letter: tem obrigatoriamente de começar por uma letra,
-                sem conter espaços e usar só letras, números, traços e sublinhados
-            email:
-              must_look_like_an_email_address: deve parecer-se com um endereço email
     models:
       Atlas: Atlas
     attributes:
@@ -4368,6 +4382,56 @@ pt-PT:
         time_zone: Fuso horário
         search_place_id: Procurar lugar
         place_id: Lugar
+    errors:
+      models:
+        guide_taxon:
+          attributes:
+            base:
+              guide_has_too_many_taxa: a guia só pode conter até 500 táxons
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_import: é demasiado grande para ser importado
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: O projeto não permite observações
+            user_id:
+              must_be_curator: tem de ser curador deste projeto
+            observation_id:
+              must_be_observed_after: deve ser observado depois da(s) %{time}
+              must_be_observed_before: deve ser observado antes da(s) %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: só pode ser alterado
+                pelo curador deste táxon
+        taxon_name:
+          attributes:
+            lexicon:
+              should_not_contain_commas_or_slashes: não deve conter vírgulas ou barras
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: tem obrigatoriamente de começar por uma letra,
+                sem conter espaços e usar só letras, números, traços e sublinhados
+            email:
+              must_look_like_an_email_address: deve parecer-se com um endereço email
   i18n:
     inflections:
       :@vow_or_con:

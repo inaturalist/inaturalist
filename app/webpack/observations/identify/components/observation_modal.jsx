@@ -45,6 +45,7 @@ class ObservationModal extends React.Component {
       }, 500 );
     }
   }
+
   render( ) {
     const {
       addComment,
@@ -78,13 +79,15 @@ class ObservationModal extends React.Component {
       toggleCaptive,
       toggleKeyboardShortcuts,
       toggleReviewed,
-      visible
+      visible,
+      updateCurrentUser
     } = this.props;
     if ( !observation ) {
-      return <div></div>;
+      return <div />;
     }
-
     let taxonMap;
+    const currentUserPrefersMedialessObs = currentUser
+      && currentUser.prefers_medialess_obs_maps;
     if ( observation.latitude ) {
       // Select a small set of attributes that won't change wildy as the
       // observation changes.
@@ -101,7 +104,15 @@ class ObservationModal extends React.Component {
       ] );
       obsForMap.coordinates_obscured = observation.obscured;
       const taxonLayer = {
-        observations: { observation_id: obsForMap.id },
+        observationLayers: [
+          { label: I18n.t( "verifiable_observations" ), verifiable: true },
+          {
+            label: I18n.t( "observations_without_media" ),
+            verifiable: false,
+            disabled: !currentUserPrefersMedialessObs,
+            onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+          }
+        ],
         places: { disabled: true }
       };
       if ( !blind ) {
@@ -111,12 +122,12 @@ class ObservationModal extends React.Component {
       taxonMap = (
         <TaxonMap
           key={`map-for-${obsForMap.id}`}
-          taxonLayers={ [taxonLayer] }
+          taxonLayers={[taxonLayer]}
           observations={[obsForMap]}
           clickable={!blind}
-          latitude={ obsForMap.latitude }
-          longitude={ obsForMap.longitude }
-          zoomLevel={ 5 }
+          latitude={obsForMap.latitude}
+          longitude={obsForMap.longitude}
+          zoomLevel={5}
           mapTypeControl
           mapTypeControlOptions={{
             style: google.maps.MapTypeControlStyle.DROPDOWN_MENU,
@@ -145,19 +156,31 @@ class ObservationModal extends React.Component {
     let photos = null;
     if ( images && images.length > 0 ) {
       photos = (
-        <ZoomableImageGallery
-          key={`map-for-${observation.id}`}
-          items={images}
-          slideIndex={imagesCurrentIndex}
-          showThumbnails={images && images.length > 1}
-          lazyLoad={false}
-          server
-          showNav={false}
-          disableArrowKeys
-          showFullscreenButton={ false }
-          showPlayButton={ false }
-          onSlide={ setImagesCurrentIndex }
-        />
+        <div className="photos-wrapper">
+          <ZoomableImageGallery
+            key={`map-for-${observation.id}`}
+            items={images}
+            slideIndex={imagesCurrentIndex}
+            showThumbnails={images && images.length > 1}
+            lazyLoad={false}
+            server
+            showNav={false}
+            disableArrowKeys
+            showFullscreenButton={false}
+            showPlayButton={false}
+            onSlide={setImagesCurrentIndex}
+            onThumbnailClick={( event, index ) => setImagesCurrentIndex( index )}
+          />
+          <a
+            href={images[imagesCurrentIndex].zoom || images[imagesCurrentIndex].original}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="original-photo-link"
+            title={I18n.t( "view_full_size_photo" )}
+          >
+            <i className="icon-link-external" />
+          </a>
+        </div>
       );
     }
     let sounds = null;
@@ -167,18 +190,19 @@ class ObservationModal extends React.Component {
         if ( s.subtype === "SoundcloudSound" || !s.file_url ) {
           return (
             <iframe
-              key={ soundKey }
+              key={soundKey}
+              title={soundKey}
               width="100%"
               height="100"
               scrolling="no"
               frameBorder="no"
               src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${s.native_sound_id}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false&show_artwork=false`}
-            ></iframe>
+            />
           );
         }
         return (
-          <audio key={ soundKey } controls preload="none">
-            <source src={ s.file_url } type={ s.file_content_type } />
+          <audio key={soundKey} controls preload="none">
+            <source src={s.file_url} type={s.file_content_type} />
             { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
           </audio>
         );
@@ -190,7 +214,7 @@ class ObservationModal extends React.Component {
       );
     }
 
-    const scrollSidebarToForm = ( form ) => {
+    const scrollSidebarToForm = form => {
       const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
       const target = $( form );
       $( ":input:visible:first", form ).focus( );
@@ -205,9 +229,9 @@ class ObservationModal extends React.Component {
         return observation.taxon && observation.taxon.is_active;
       }
       return (
-        observation.taxon &&
-        observation.taxon.is_active &&
-        observation.taxon.id !== currentUserIdentification.taxon.id
+        observation.taxon
+        && observation.taxon.is_active
+        && observation.taxon.id !== currentUserIdentification.taxon.id
       );
     };
 
@@ -245,7 +269,7 @@ class ObservationModal extends React.Component {
             blind && shortcut.skipBlind ? null : (
               <tr
                 className="keyboard-shortcuts"
-                key={ `keyboard-shortcuts-${shortcut.keys.join( "-" )}` }
+                key={`keyboard-shortcuts-${shortcut.keys.join( "-" )}`}
               >
                 <td>
                   <span dangerouslySetInnerHTML={ { __html: shortcut.keys.map( k => `<code>${k}</code>` ).join( " + " ) } } />
@@ -273,8 +297,8 @@ class ObservationModal extends React.Component {
         let availableValues = _.filter( ct.values, v => v.label );
         if ( observation.taxon ) {
           availableValues = _.filter( availableValues, v => (
-            !v.taxon_ids ||
-            _.intersection( observation.taxon.ancestor_ids, v.taxon_ids ).length > 0
+            !v.taxon_ids
+            || _.intersection( observation.taxon.ancestor_ids, v.taxon_ids ).length > 0
           ) );
         }
         let valueKeyPosition = 0;
@@ -295,26 +319,34 @@ class ObservationModal extends React.Component {
     }
 
     const country = _.find( observation.places || [], p => p.admin_level === 0 );
+    let dateTimeObserved = I18n.t( "unknown" );
+    if ( observation.observed_on ) {
+      if ( observation.time_observed_at ) {
+        dateTimeObserved = moment( observation.time_observed_at ).format( "LLL" );
+      } else {
+        dateTimeObserved = moment( observation.observed_on ).format( "LL" );
+      }
+    }
     return (
       <Modal
         show={visible}
         onHide={onClose}
         bsSize="large"
         backdrop
-        className={`ObservationModal ${blind ? "blind" : ""}`}
+        className={`ObservationModal FullScreenModal ${blind ? "blind" : ""}`}
       >
         <div className="nav-buttons">
           { hidePrevNext ? null : (
-            <Button alt={I18n.t( "previous" ) } className="nav-button" onClick={ function ( ) { showPrevObservation( ); } }>
+            <Button alt={I18n.t( "previous" )} className="nav-button" onClick={( ) => showPrevObservation( )}>
               &lsaquo;
             </Button>
           ) }
           { hidePrevNext ? null : (
-            <Button alt={I18n.t( "next" ) } className="next nav-button" onClick={ function ( ) { showNextObservation( ); } }>
+            <Button alt={I18n.t( "next" )} className="next nav-button" onClick={( ) => showNextObservation( )}>
               &rsaquo;
             </Button>
           ) }
-          <Button alt={I18n.t( "close" ) } className="close-button nav-button" onClick={ onClose }>
+          <Button alt={I18n.t( "close" )} className="close-button nav-button" onClick={onClose}>
             &times;
           </Button>
         </div>
@@ -330,7 +362,7 @@ class ObservationModal extends React.Component {
                   url={`/observations/${observation.id}`}
                   target="_blank"
                   placeholder={observation.species_guess}
-                  user={ currentUser }
+                  user={currentUser}
                   noParens
                 />
               ) }
@@ -345,21 +377,21 @@ class ObservationModal extends React.Component {
                   <Button
                     bsStyle="link"
                     className="btn-keyboard-shortcuts"
-                    onClick={ e => {
+                    onClick={e => {
                       toggleKeyboardShortcuts( keyboardShortcutsShown );
                       e.preventDefault( );
                       return false;
                     }}
                   >
-                    <i className="fa fa-keyboard-o"></i>
+                    <i className="fa fa-keyboard-o"/>
                   </Button>
                   <Overlay
                     placement="top"
                     show={keyboardShortcutsShown}
-                    container={ $( ".ObservationModal" ).get( 0 ) }
-                    target={ ( ) => $( ".keyboard-shortcuts-container > .btn" ).get( 0 ) }
+                    container={$( ".ObservationModal" ).get( 0 )}
+                    target={( ) => $( ".keyboard-shortcuts-container > .btn" ).get( 0 )}
                   >
-                    <Popover title={ I18n.t( "keyboard_shortcuts" ) } id="keyboard-shortcuts-popover">
+                    <Popover title={I18n.t( "keyboard_shortcuts" )} id="keyboard-shortcuts-popover">
                       <table>
                         { annoShortcuts.length === 0 ? defaultShortcutsBody : (
                           <tbody>
@@ -382,7 +414,7 @@ class ObservationModal extends React.Component {
                                         return (
                                           <tr
                                             className="keyboard-shortcuts"
-                                            key={ `keyboard-shortcuts-${labelKey}` }
+                                            key={`keyboard-shortcuts-${labelKey}`}
                                           >
                                             <td>
                                               <code>{ shortcut.keys[0] }</code> {
@@ -410,12 +442,12 @@ class ObservationModal extends React.Component {
                     placement="top"
                     trigger={["hover", "focus"]}
                     delayShow={1000}
-                    overlay={
+                    overlay={(
                       <Tooltip id="captive-btn-tooltip">
                         { I18n.t( "organism_appears_captive_cultivated" ) }
                       </Tooltip>
-                    }
-                    container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+                    )}
+                    container={$( "#wrapper.bootstrap" ).get( 0 )}
                   >
                     <label
                       className={
@@ -431,6 +463,31 @@ class ObservationModal extends React.Component {
                       /> { I18n.t( "captive_cultivated" ) }
                     </label>
                   </OverlayTrigger>
+                  <OverlayTrigger
+                    placement="top"
+                    delayShow={1000}
+                    overlay={
+                      <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
+                        { I18n.t( "mark_as_reviewed" ) }
+                      </Tooltip>
+                    }
+                    container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+                  >
+                    <label
+                      className={
+                        `btn btn-link btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
+                      }
+                    >
+                      <input
+                        type="checkbox"
+                        checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
+                        onChange={function ( ) {
+                          toggleReviewed( );
+                        }}
+                      />
+                      { I18n.t( "reviewed" ) }
+                    </label>
+                  </OverlayTrigger>
                 </div>
               </div>
             ) }
@@ -438,7 +495,7 @@ class ObservationModal extends React.Component {
           <div className="right-col">
             <ul className="inat-tabs">
               {activeTabs.map( tabName => (
-                <li key={ `obs-modal-tabs-${tabName}` } className={activeTab === tabName ? "active" : ""}>
+                <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
                   <a
                     href="#"
                     onClick={ e => {
@@ -462,33 +519,53 @@ class ObservationModal extends React.Component {
                         <ul className="details">
                           { blind ? null : (
                             <li className="user-obs-count">
-                              <a href={`/people/${observation.user.login}`} target="_blank" className="user-link">
-                                <i className="icon-person bullet-icon"></i> <span className="login">{ observation.user.login }</span>
+                              <a
+                                href={`/people/${observation.user.login}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="user-link"
+                              >
+                                <i className="icon-person bullet-icon" />
+                                { " " }
+                                <span className="login">{ observation.user.login }</span>
                               </a>
                               <span className="separator">&bull;</span>
-                              <a href={ `/observations?user_id=${observation.user.login}&verifiable=any&place_id=any` } target="_blank">
-                                <i className="fa fa-binoculars" /> { I18n.toNumber( observation.user.observations_count, { precision: 0 } ) }
+                              <a
+                                href={`/observations?user_id=${observation.user.login}&verifiable=any&place_id=any`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <i className="fa fa-binoculars" />
+                                { " " }
+                                { I18n.toNumber( observation.user.observations_count, { precision: 0 } ) }
                               </a>
                             </li>
                           ) }
                           <li>
-                            <i className="fa fa-calendar bullet-icon"></i> {
-                              observation.observed_on ?
-                                moment( observation.time_observed_at || observation.observed_on ).format( "LLL" )
-                                :
-                                I18n.t( "unknown" )
-                            }
+                            <i className="fa fa-calendar bullet-icon" />
+                            { " " }
+                            { dateTimeObserved }
                           </li>
                           <li>
-                            <i className="fa fa-map-marker bullet-icon"></i> { observation.place_guess || I18n.t( "unknown" ) }
+                            <i className="fa fa-map-marker bullet-icon" />
+                            { " " }
+                            { observation.place_guess || I18n.t( "unknown" ) }
                           </li>
-                          { country ? (
+                          { observation.positional_accuracy && (
                             <li>
-                              <i className="fa fa-globe bullet-icon"></i> {
-                                I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "unknown" )
-                              }
+                              <i className="fa fa-circle-o bullet-icon" />
+                              { `${I18n.t( "label_colon", { label: I18n.t( "acc" ) } )}` }
+                              { " " }
+                              { I18n.toNumber( observation.positional_accuracy, { precision: 0 } ) }
                             </li>
-                          ) : null }
+                          ) }
+                          <li>
+                            <i className="fa fa-globe bullet-icon" />
+                            { " " }
+                            { country ? (
+                              I18n.t( `places_name.${_.snakeCase( country.name )}`, { defaultValue: country.name } ) || I18n.t( "somewhere_on_earth" )
+                            ) : I18n.t( "somewhere_on_earth" ) }
+                          </li>
                           { blind ? null : (
                             <li className="view-follow">
                               <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
@@ -553,31 +630,6 @@ class ObservationModal extends React.Component {
                     </div>
                   </div>
                   <div className="tools">
-                    <OverlayTrigger
-                      placement="top"
-                      delayShow={1000}
-                      overlay={
-                        <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
-                          { I18n.t( "mark_as_reviewed" ) }
-                        </Tooltip>
-                      }
-                      container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-                    >
-                      <label
-                        className={
-                          `btn btn-link btn-checkbox ${( observation.reviewedByCurrentUser || reviewedByCurrentUser ) ? "checked" : ""}`
-                        }
-                      >
-                        <input
-                          type="checkbox"
-                          checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
-                          onChange={function ( ) {
-                            toggleReviewed( );
-                          }}
-                        />
-                        { I18n.t( "reviewed" ) }
-                      </label>
-                    </OverlayTrigger>
                     <OverlayTrigger
                       placement="top"
                       delayShow={1000}
@@ -674,6 +726,7 @@ ObservationModal.propTypes = {
   toggleCaptive: PropTypes.func,
   toggleKeyboardShortcuts: PropTypes.func,
   toggleReviewed: PropTypes.func,
+  updateCurrentUser: PropTypes.func,
   visible: PropTypes.bool
 };
 

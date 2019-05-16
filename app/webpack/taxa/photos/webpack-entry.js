@@ -3,7 +3,12 @@ import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import {
+  applyMiddleware,
+  combineReducers,
+  compose,
+  createStore
+} from "redux";
 import { Taxon } from "inaturalistjs";
 import photosReducer, { reloadPhotos, hydrateFromUrlParams } from "./ducks/photos";
 import configReducer, { setConfig } from "../../shared/ducks/config";
@@ -69,6 +74,7 @@ store.dispatch( fetchTerms( ) ).then( ( ) => {
   window.onpopstate = e => {
     // user returned from BACK
     store.dispatch( hydrateFromUrlParams( e.state ) );
+    store.dispatch( reloadPhotos( ) );
   };
   store.dispatch( reloadPhotos( ) );
 

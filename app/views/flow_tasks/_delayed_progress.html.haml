@@ -26,5 +26,5 @@
   .success.status.big.centered
     Done! Redirecting...
     :javascript
-      window.location = #{redirect_url.inspect}
+      window.location = #{redirect_url.inspect.html_safe}
 

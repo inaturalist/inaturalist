@@ -1,20 +1,25 @@
 import inatjs from "inaturalistjs";
 import _ from "lodash";
 import { defaultObservationParams } from "../../shared/util";
+import { objectToComparable } from "../../../shared/util";
 import { setConfig } from "../../../shared/ducks/config";
 
 const SET_OBSERVATION_PHOTOS = "taxa-photos/photos/SET_OBSERVATION_PHOTOS";
 const APPEND_OBSERVATION_PHOTOS = "taxa-photos/photos/APPEND_OBSERVATION_PHOTOS";
+const SET_OBSERVATION_PARAMS = "taxa-photos/photos/SET_OBSERVATION_PARAMS";
 const UPDATE_OBSERVATION_PARAMS = "taxa-photos/photos/UPDATE_OBSERVATION_PARAMS";
 const SET_PHOTOS_GROUP = "taxa-photos/photos/SET_PHOTOS_GROUP";
 const CLEAR_GROUPED_PHOTOS = "taxa-photos/photos/CLEAR_GROUPED_PHOTOS";
 
-const setUrl = ( newParams, defaultParams = {
+const DEFAULT_PARAMS = {
   layout: "fluid",
   order_by: "votes"
-} ) => {
+};
+
+export function setUrl( newParams, options = {} ) {
+  const defaultParams = options.defaultParams || DEFAULT_PARAMS;
   // don't put defaults in the URL
-  const urlState = {};
+  const newState = {};
   _.forEach( newParams, ( v, k ) => {
     if ( !v ) {
       return;
@@ -23,32 +28,40 @@ const setUrl = ( newParams, defaultParams = {
       return;
     }
     if ( _.isArray( v ) ) {
-      urlState[k] = v.join( "," );
+      newState[k] = v.join( "," );
     } else {
-      urlState[k] = v;
+      newState[k] = v;
     }
   } );
   if ( !newParams.place_id ) {
-    urlState.place_id = "any";
+    newState.place_id = "any";
   }
-  const title = `Photos: ${$.param( urlState )}`;
+  // don't set the url if there's been no change
+  const urlState = $.deparam( window.location.search.replace( /^\?/, "" ) );
+  urlState.place_id = urlState.place_id || "any";
+  if ( objectToComparable( urlState ) === objectToComparable( newState ) ) {
+    return;
+  }
+  const title = `${I18n.t( "photos" )}: ${$.param( newState )}`;
+  const newUrlState = _.pickBy( newState, ( v, k ) => !( k === "place_id" && v === "any" ) );
   const newUrl = [
     window.location.origin,
     window.location.pathname,
-    _.isEmpty( urlState ) ? "" : "?",
-    _.isEmpty( urlState ) ? "" : $.param( urlState )
+    _.isEmpty( newUrlState ) ? "" : "?",
+    _.isEmpty( newUrlState ) ? "" : $.param( newUrlState )
   ].join( "" );
-  history.pushState( urlState, title, newUrl );
-};
+  history.replaceState( newState, title, newUrl );
+}
 
-export default function reducer( state = {
+const DEFAULT_STATE = {
   observationPhotos: [],
   observationParams: {
     order_by: "votes"
   }
-}, action ) {
-  const newState = Object.assign( { }, state );
+};
 
+export default function reducer( state = DEFAULT_STATE, action ) {
+  const newState = Object.assign( { }, state );
   switch ( action.type ) {
     case SET_OBSERVATION_PHOTOS:
       newState.observationPhotos = action.observationPhotos;
@@ -57,7 +70,10 @@ export default function reducer( state = {
       newState.perPage = action.perPage;
       break;
     case APPEND_OBSERVATION_PHOTOS:
-      newState.observationPhotos = newState.observationPhotos.concat( action.observationPhotos );
+      newState.observationPhotos = _.uniqBy(
+        newState.observationPhotos.concat( action.observationPhotos ),
+        record => record.photo.id
+      );
       newState.totalResults = action.totalResults;
       newState.page = action.page;
       newState.perPage = action.perPage;
@@ -67,9 +83,21 @@ export default function reducer( state = {
         action.params );
       _.forEach( newState.observationParams, ( v, k ) => {
         if (
-          v === null ||
-          v === undefined ||
-          ( typeof( v ) === "string" && v.length === 0 )
+          v === null
+          || v === undefined
+          || ( typeof ( v ) === "string" && v.length === 0 )
+        ) {
+          delete newState.observationParams[k];
+        }
+      } );
+      break;
+    case SET_OBSERVATION_PARAMS:
+      newState.observationParams = Object.assign( { }, action.params );
+      _.forEach( newState.observationParams, ( v, k ) => {
+        if (
+          v === null
+          || v === undefined
+          || ( typeof ( v ) === "string" && v.length === 0 )
         ) {
           delete newState.observationParams[k];
         }
@@ -123,6 +151,13 @@ export function appendObservationPhotos(
   };
 }
 
+export function setObservationParams( params ) {
+  return {
+    type: SET_OBSERVATION_PARAMS,
+    params
+  };
+}
+
 export function updateObservationParams( params ) {
   return {
     type: UPDATE_OBSERVATION_PARAMS,
@@ -144,15 +179,17 @@ export function clearGroupedPhotos( ) {
 }
 
 function observationPhotosFromObservations( observations ) {
-  return _.flatten( observations.map( observation =>
-    observation.photos.map( photo => ( { photo, observation } ) )
-  ) );
+  return _.flatten(
+    observations.map(
+      observation => observation.photos.map( photo => ( { photo, observation } ) )
+    )
+  );
 }
 
 function onePhotoPerObservation( observationPhotos ) {
   const singleObservationPhotos = [];
   const obsPhotoHash = {};
-  for ( let i = 0; i < observationPhotos.length; i++ ) {
+  for ( let i = 0; i < observationPhotos.length; i += 1 ) {
     const observationPhoto = observationPhotos[i];
     if ( !obsPhotoHash[observationPhoto.observation.id] ) {
       obsPhotoHash[observationPhoto.observation.id] = true;
@@ -199,7 +236,7 @@ export function fetchMorePhotos( ) {
   return function ( dispatch, getState ) {
     const s = getState( );
     const page = s.photos.page + 1;
-    const perPage = s.photos.perPage;
+    const { perPage } = s.photos;
     dispatch( fetchObservationPhotos( { page, perPage } ) );
   };
 }
@@ -224,8 +261,8 @@ function fetchPhotosGroupedByParam( param, values ) {
         params[param] = groupName;
       } else {
         groupName = value.controlled_value.label;
-        params.term_id = value.controlled_attribute.id;
-        params.term_value_id = value.controlled_value.id;
+        params.term_id = parseInt( value.controlled_attribute.id, 0 );
+        params.term_value_id = parseInt( value.controlled_value.id, 0 );
       }
       dispatch( setPhotosGroup( groupName, [], groupObject ) );
       inatjs.observations.search( params ).then( response => {
@@ -267,11 +304,11 @@ export function setGrouping( param, values ) {
     dispatch( clearGroupedPhotos( ) );
     if ( param ) {
       if ( param === "taxon_id" ) {
-        const taxon = getState( ).taxon.taxon;
+        const { taxon } = getState( ).taxon;
         dispatch( setConfigAndUrl( { grouping: { param, values } } ) );
         dispatch( fetchPhotosGroupedByParam( "taxon_id", taxon.children ) );
       } else {
-        const fieldValues = getState( ).taxon.fieldValues;
+        const { fieldValues } = getState( ).taxon;
         if ( fieldValues && fieldValues[values] ) {
           // when grouping by a term, remove existing term filters
           dispatch( updateObservationParamsAndUrl( { term_id: null, term_value_id: null } ) );
@@ -300,18 +337,28 @@ export function reloadPhotos( ) {
   };
 }
 
+// Sets state from URL params. Should not itself alter the URL.
 export function hydrateFromUrlParams( params ) {
   return function ( dispatch ) {
+    if ( !params ) {
+      params = {};
+    }
     if ( params.grouping ) {
       const match = params.grouping.match( /terms:([0-9]+)$/ );
       if ( match ) {
-        dispatch( setGrouping( params.grouping, Number( match[1] ) ) );
+        dispatch(
+          setConfig( { grouping: { param: params.grouping, values: Number( match[1] ) } } )
+        );
       } else {
-        dispatch( setGrouping( params.grouping ) );
+        dispatch( setConfig( { grouping: { param: params.grouping } } ) );
       }
+    } else {
+      dispatch( setConfig( { grouping: { param: DEFAULT_PARAMS.grouping } } ) );
     }
     if ( params.layout ) {
       dispatch( setConfig( { layout: params.layout } ) );
+    } else {
+      dispatch( setConfig( { layout: DEFAULT_PARAMS.layout } ) );
     }
     if ( params.place_id ) {
       if ( params.place_id === "any" ) {
@@ -327,7 +374,7 @@ export function hydrateFromUrlParams( params ) {
         );
       }
     }
-    const newObservationParams = { };
+    const newObservationParams = Object.assign( { }, DEFAULT_STATE.observationParams );
     if ( params.order_by ) {
       newObservationParams.order_by = params.order_by;
     }
@@ -344,7 +391,7 @@ export function hydrateFromUrlParams( params ) {
       newObservationParams[key] = value;
     } );
     if ( !_.isEmpty( newObservationParams ) ) {
-      dispatch( updateObservationParams( newObservationParams ) );
+      dispatch( setObservationParams( newObservationParams ) );
     }
   };
 }

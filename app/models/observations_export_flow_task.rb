@@ -129,11 +129,12 @@ class ObservationsExportFlowTask < FlowTask
     FileUtils.mkdir_p(File.dirname(fpath), mode: 0755)
     columns = export_columns
     site = user.site || Site.default
+    search_params = params.merge( viewer: user )
     CSV.open(fpath, "w") do |csv|
       csv << columns
       batch_i = 0
       obs_i = 0
-      Observation.search_in_batches(params) do |batch|
+      Observation.search_in_batches( search_params ) do |batch|
         if @debug
           logger.info
           logger.info "BATCH #{batch_i}"

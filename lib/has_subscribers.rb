@@ -167,6 +167,7 @@ module HasSubscribers
         unless record.try(:unsubscribable?) || CONFIG.has_subscribers == :disabled
           record.auto_subscriber = record.send(subscriber)
         end
+        true
       end
       
       # this is potentially weird b/c there might be other reasons you're

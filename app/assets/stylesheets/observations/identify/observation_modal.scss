@@ -1,0 +1,688 @@
+@import "../../colors";
+@import "../../shared/user_text";
+@import "../../shared/annotations";
+@import "../../shared/observation_fields";
+@import "../../shared/quality_metrics";
+@import "../../shared/record_chooser_popover";
+@import "../../shared/activity_item";
+@import "../../shared/taxon_autocomplete";
+
+.ObservationModal,
+body > [role="dialog"] .ObservationModal {
+  .SplitTaxon {
+    display: inline-block;
+    font-size: 90%;
+  }
+  .SplitTaxon.taxon .display-name {
+    color: black;
+    font-size: 110%;
+  }
+  .modal-dialog {
+    .modal-content {
+      .left-col,
+      .right-col {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+      }
+      .left-col {
+        padding: 15px 20px 10px;
+        .obs-modal-header {
+          margin-bottom: 12px;
+        }
+      }
+      .right-col {
+        border-left: 2px solid #ddd;
+        background-color: $light-grey;
+      }
+    }
+    .btn-primary {
+      background-color: $inat-green;
+      border-color: $inat-green;
+    }
+    .btn-primary:hover,
+    .btn-primary:active,
+    .btn-primary:focus {
+      background-color: $inat-green;
+      border-color: $inat-green;
+    }
+  }
+  
+  
+  .obs-modal-header {
+    .SplitTaxon.taxon,
+    .quality_grade {
+      font-weight: bold;
+    }
+    .SplitTaxon.taxon {
+      .display-name {
+        font-size: 180%;
+        display: inline-block;
+        maring-bottom: 2px;
+        color: black;
+      }
+      &.has-com-name {
+        .display-name {
+          display: block;
+        }
+      }
+    }
+  }
+
+  $galleryHeightElements: "
+    .photos-wrapper,
+    .image-gallery,
+    .image-gallery-content,
+    .image-gallery-swipe,
+    .image-gallery-slide-wrapper,
+    .image-gallery-slides,
+    .image-gallery-slide,
+    .image-gallery-content .image-gallery-image,
+    .image-gallery-content .image-gallery-image > img,
+    .image-gallery-content .image-gallery-image .unzoomable > img,
+    .easyzoom,
+    .unzoomable,
+    .easyzoom > a,
+    .easyzoom > a img
+  ";
+  #{$galleryHeightElements} {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    overflow: hidden;
+  }
+
+  .photos-wrapper {
+    position: relative;
+    .original-photo-link {
+      position: absolute;
+      top: 0;
+      right: 0;
+      font-size: 200%;
+      padding: 5px;
+      color: white;
+      text-shadow: 1px 1px 5px #666;
+    }
+  }
+  
+  .easyzoom > a img {
+    object-position: 50% 50%;
+  }
+  .TaxonMap {
+    height: 140px;
+    border-radius: 2px;
+    border: 1px solid #DDD;
+  }
+  .TaxonMap.empty {
+    text-align: center;
+    line-height: 140px;
+    background-color: #eee;
+    color: #999;
+  }
+
+  .image-gallery-image {
+    flex: 2
+  }
+
+  .image-gallery-thumbnail,
+  .image-gallery-thumbnail.active {
+    border: none;
+  }
+  .image-gallery-thumbnail.active img {
+    border: 4px solid #337ab7;
+  }
+  .image-gallery-slide .image-gallery-description {
+    position: relative;
+    padding: 0;
+    bottom: 0;
+  }
+
+  .image-gallery {
+    position: relative;
+  }
+  .image-gallery-content {
+    position: relative
+    img {
+      display: block;
+      margin: 0 auto;
+      width: auto;
+    }
+  }
+  .image-gallery-thumbnails {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background-color: rgba(255,255,255,0.3);
+    padding: 5px;
+    z-index: 1;
+  }
+  .image-gallery-thumbnail {
+    width: 50px;
+    margin: 0 5px;
+    img {
+      max-width: 50px !important;
+      max-height: 50px !important;
+    }
+  }
+
+  .image-gallery-slide {
+    text-align: center;
+  }
+
+  .obs-media {
+    margin-bottom: 10px;
+    flex: 2;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    align-items: center;
+    .sounds {
+      width: 100%;
+      audio {
+        width: 100%;
+        display: block;
+        margin-top: 10px;
+      }
+    }
+  }
+  .sidebar {
+    overflow-y: auto;
+    display: flex;
+    flex: 2;
+
+    .test {
+      position: relaitve;
+      top: -20px;
+      background-color: deeppink;
+    }
+  }
+
+  .tools {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    .action-tools {
+      white-space: nowrap;
+    }
+    .form-group {
+      margin-bottom: 0;
+    }
+    .btn {
+      font-weight: bold;
+    }
+    .btn-link,
+    .btn-link:hover {
+      color: black;
+      text-decoration: none;
+    }
+    i {
+      color: $inat-green;
+    }
+    .link-btn:hover {
+      text-decoration: none;
+    }
+    .btn-checkbox {
+      text-align: left;
+      padding-left: 0;
+      input {
+        margin-right: 5px;
+      }
+    }
+    .btn-keyboard-shortcuts {
+      padding-left: 0;
+      padding-right: 0;
+      i {
+        color: #999;
+        font-size: 20px;
+        line-height: 0;
+      }
+    }
+  }
+
+  .left-col .tools {
+    height: 36px;
+    margin-top: 3px;
+  }
+  .right-col .tools {
+    padding: 10px 20px;
+    background-color: #eee;
+  }
+  .right-col .tools > * {
+    width: 100%;
+    margin: 2px;
+  }
+
+  .DiscussionListItem {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: white;
+    position: relative;
+  }
+  .DiscussionListItem .controls {
+    visibility: hidden;
+  }
+  .DiscussionListItem:hover .controls {
+    visibility: visible;
+  }
+  .DiscussionListItem .controls a {
+    cursor: pointer;
+    margin: 0 5px;
+    font-size: smaller;
+   }
+  .DiscussionListItem .identification {
+    display: flex;
+  }
+  .DiscussionListItem .identification .taxon-image {
+    display: block;
+    width: 40px;
+    height: 40px;
+    font-size: 40px;
+  }
+  .DiscussionListItem .identification .SplitTaxon {
+    flex: 2;
+    padding: 5px;
+    overflow: hidden;
+  }
+  .DiscussionListItem .identification .display-name {
+    display: block;
+  }
+  .DiscussionListItem .identification .actions {
+    padding-top: 3px;
+  }
+
+  .btn.nav-button {
+    position: absolute;
+    top: 50%;
+    margin-top: -25px;
+    font-size: 30px;
+    font-weight: bold;
+    width: 50px;
+    height: 50px;
+    line-height: 30px;
+    text-align: center;
+    left: -50px;
+    color: white;
+    background-color: transparent;
+    border: 0 transparent;
+  }
+  .btn.nav-button:hover,
+  .btn.nav-button:active,
+  .btn.nav-button:focus,
+  .btn.nav-button:active:focus {
+    background-color: transparent;
+    border: 0 transparent;
+    color: white;
+  }
+  .nav-button.next {
+    left: auto;
+    right: -50px;
+  }
+  .nav-button.close-button {
+    top: -10px;
+    left: auto;
+    right: -50px;
+  }
+
+  .easyzoom-flyout {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    overflow: hidden;
+  }
+  .easyzoom-flyout img {
+    vertical-align: bottom;
+  }
+  .image-gallery-content .easyzoom-flyout img {
+    height: auto;
+    width: auto;
+    opacity: 1;
+    cursor: zoom-out;
+  }
+
+  .easyzoom-zoomed img {
+    visibility: hidden;
+  }
+
+  .easyzoom,
+  .easyzoom > a {
+    display: inline-block;
+    width: 100%;
+    cursor: zoom-in;
+  }
+
+  .easyzoom.is-loading img {
+    cursor: progress;
+  }
+
+  .easyzoom > a > img {
+    vertical-align: bottom;
+  }
+
+  .easyzoom-notice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 150;
+    width: 10em;
+    margin: -1em 0 0 -5em;
+    line-height: 2em;
+    text-align: center;
+    color: white;
+    text-shadow: 0 0 5px black;
+  }
+
+  tr.keyboard-shortcuts td {
+    padding: 2px 10px 2px 0 !important;
+  }
+  .keyboard-shortcuts td:first-child {
+    text-align: right;
+    white-space: nowrap;
+    font-weight: bold;
+    vertical-align: top;
+  }
+  .place {
+    background-color: #DDDDDD;
+  }
+  .place-guess {
+    text-align: center;
+    padding: 5px;
+    font-size: smaller;
+  }
+
+  .modal-title {
+    width: 50%;
+  }
+  .inat-tabs {
+    width: 50%;
+  }
+
+  .inat-tab {
+    display: none;
+    padding: 20px;
+  }
+  .inat-tab.active {
+    display: block;
+    width: 100%;
+  }
+  .inat-tab.suggestions-tab,
+  .inat-tab.info-tab {
+    padding: 0;
+  }
+  .inat-tab.active.info-tab {
+    display: flex;
+    flex-direction: column;
+  }
+  .inat-tab.info-tab {
+    .info-tab-content {
+      flex: 2;
+      height: 100%;
+      overflow: auto;
+    }
+
+    .info-tab-inner {
+      padding: 20px;
+    }
+  }
+
+  .column-header {
+    font-size: 18px;
+    margin-bottom: 10px;
+
+    a {
+      color: black;
+    }
+    i {
+      color: $inat-green;
+    }
+  }
+
+  .obs-media .column-header {
+    visibility: hidden;
+  }
+
+  .easyzoom > a > img {
+    vertical-align: bottom;
+  }
+
+
+  .btn-checkbox label {
+    margin: 0;
+  }
+  .btn-default.btn-checkbox.checked {
+    background-color: $inat-green;
+    color: white;
+  }
+
+  .inat-tabs,
+  .inat-tabs {
+    display: flex;
+    list-style: none;
+    padding: 0 20px;
+    margin: 0;
+    width: 100%;
+    background-color: #eee;
+  }
+  .inat-tabs li,
+  .inat-tabs li {
+    text-align: center;
+    flex: 1;
+    display: flex;
+  }
+  .inat-tabs li a,
+  .inat-tabs li a {
+    border: 0 transparent;
+    border-bottom: 3px solid transparent;
+    color: #555;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    display: block;
+    flex: 1;
+    line-height: 45px;
+  }
+  .inat-tabs li a:focus,
+  .inat-tabs li a:focus {
+    text-decoration: none;
+  }
+  .inat-tabs li.active a,
+  .inat-tabs li.active a {
+    border-bottom: 3px solid #74ac00;
+  }
+
+  .modal-header {
+    min-height: 45px;
+    padding: 0;
+    display: flex;
+  }
+
+  .map-and-details {
+    display: flex;
+    margin-bottom: 20px;
+
+    .TaxonMap,
+    .details {
+      width: 50%;
+    }
+    .details {
+      list-style: none;
+      padding-left: 20px;
+
+      a {
+        color: black;
+      }
+
+      > li {
+        position: relative;
+        padding-left: 20px;
+        margin-bottom: 4px;
+      }
+      .separator {
+        color: #999;
+        margin: 0 5px;
+      }
+      i.bullet-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 15px;
+        text-align: center;
+        display: block;
+        line-height: 16px;
+        &.fa-globe {
+          top: 1px;
+        }
+      }
+      .user-obs-count {
+        .fa-binoculars {
+          font-size: 11px;
+          position: relative;
+          top: -1px;
+          margin-right: 1px;
+        }
+      }
+      .view-follow {
+        .permalink,
+        .FollowButton button {
+          color: black;
+          font-weight: bold;
+        }
+        a.permalink:focus,
+        .FollowButton button:focus,
+        a.permalink:hover,
+        .FollowButton button:hover {
+          text-decoration: none
+        }
+      }
+      .FollowButton {
+        display: inline-block;
+        .btn {
+          padding: 0;
+          border: 0;
+          position: relative;
+          top: -1px;
+        }
+        .open .dropdown-toggle.btn-default,
+        .dropdown-toggle.btn-default:focus {
+          background: none;
+        }
+        .unfollow {
+          color: #468cc7;
+          margin-left: 5px;
+        }
+      }
+    }
+    .btn-label {
+      cursor: default;
+    }
+  }
+  .QualityMetrics tr.improve,
+  .QualityMetrics thead,
+  .Annotations thead {
+    background: rgba(174,174,174, 0.09);
+  }
+  .Annotations {
+    margin-bottom: 20px;
+    .agree,
+    .disagree {
+      text-align: left;
+    }
+  }
+  .QualityMetrics table {
+    margin-top: 0px;
+  }
+  .user-link {
+    color: black;
+  }
+  .login {
+    font-weight: bold;
+  }
+  .keyboard-shortcuts-container {
+    position: relative;
+  }
+  .observation-description {
+    margin-bottom: 20px;
+    a.more,
+    a.collapse {
+      font-weight: bold;
+    }
+  }
+  .ObservationFields {
+    .observation-field {
+      margin-top: 20px;
+    }
+  }
+  #keyboard-shortcuts-popover {
+    max-width: 800px;
+    .default-shortcuts {
+      border-right: 1px solid #eee;
+      padding-right: 20px;
+    }
+    .anno-shortcuts {
+      padding-left: 20px;
+    }
+    td { vertical-align: top; }
+  }
+
+  .Faves {
+    display: inline-block;
+    i {
+      margin-right: 8px;
+      margin-top: 3px;
+    }
+    span.user + span.user:before {
+      content: ", ";
+    }
+    a {
+      color: black;
+    }
+  }
+  .modal-body {
+    overflow: initial;
+  }
+
+  .ActivityItem {
+    .panel-heading {
+      padding: 7px 15px;
+    }
+    .panel {
+      margin-left: 50px;
+    }
+    i.taxon-image.icon {
+      font-size: 38px;
+      line-height: 38px;
+      color: black;
+      text-align: center;
+      text-align: center;
+    }
+  }
+
+  .ui-autocomplete {
+    .ac-result {
+      font-family: Whitney, "Trebuchet MS", Arial, sans-serif;
+      .ac-label {
+        color: #555;
+        .title {
+          font-size: 14px;
+        }
+      }
+    }
+    .ac-thumb i.icon {
+      width: 40px;
+      height: 40px;
+      line-height: 40px;
+      margin: 3px;
+    }
+  }
+  .gmnoprint.gm-style-mtc {
+    width: 70px !important;
+    [role="button"] {
+      padding-left: 10px !important;
+    }
+  }
+}

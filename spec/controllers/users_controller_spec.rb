@@ -143,26 +143,36 @@ describe UsersController, "set_spammer" do
       expect(@user.spammer).to be true
     end
 
-    it "removes spam flags when setting to non-spammer" do
-      @user = User.make!
-      obs = Observation.make!(user: @user)
-      @user.update_attributes(spammer: true)
-      Flag.make!(flaggable: obs, flag: Flag::SPAM)
-      expect(@user.spammer).to be true
-      expect(@user.flags_on_spam_content.count).to eq 1
-      post :set_spammer, id: @user.id, spammer: "false"
-      @user.reload
-      expect(@user.spammer).to be false
-      expect(@user.flags_on_spam_content.count).to eq 0
-    end
+    describe "when setting to non-spammer" do
+      it "removes spam flags" do
+        @user = User.make!
+        obs = Observation.make!(user: @user)
+        @user.update_attributes(spammer: true)
+        Flag.make!(flaggable: obs, flag: Flag::SPAM)
+        expect(@user.spammer).to be true
+        expect(@user.flags_on_spam_content.count).to eq 1
+        post :set_spammer, id: @user.id, spammer: "false"
+        @user.reload
+        expect(@user.spammer).to be false
+        expect(@user.flags_on_spam_content.count).to eq 0
+      end
 
-    it "resolves spam flags when setting to non-spammer" do
-      o = Observation.make!
-      f = Flag.make!(flaggable: o, flag: Flag::SPAM)
-      expect( f ).not_to be_resolved
-      post :set_spammer, id: o.user_id, spammer: "false"
-      f.reload
-      expect( f ).to be_resolved
+      it "resolves spam flags" do
+        o = Observation.make!
+        f = Flag.make!(flaggable: o, flag: Flag::SPAM)
+        expect( f ).not_to be_resolved
+        post :set_spammer, id: o.user_id, spammer: "false"
+        f.reload
+        expect( f ).to be_resolved
+      end
+
+      it "marks the current user as the resolver" do
+        o = Observation.make!
+        f = Flag.make!(flaggable: o, flag: Flag::SPAM)
+        post :set_spammer, id: o.user_id, spammer: "false"
+        f.reload
+        expect( f.resolver ).to eq @curator
+      end
     end
 
     it "does not resolve spam flags when setting to spammer" do
@@ -172,15 +182,6 @@ describe UsersController, "set_spammer" do
       post :set_spammer, id: o.user_id, spammer: "true"
       f.reload
       expect( f ).not_to be_resolved
-    end
-
-    it "leaves resolver blank when resolving flags" do
-      o = Observation.make!
-      f = Flag.make!(flaggable: o, flag: Flag::SPAM)
-      expect( f ).not_to be_resolved
-      post :set_spammer, id: o.user_id, spammer: "false"
-      f.reload
-      expect( f.resolver ).to be_blank
     end
 
     it "sets the user_id of the flag to the current_user" do

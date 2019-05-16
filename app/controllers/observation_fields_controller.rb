@@ -2,12 +2,18 @@ class ObservationFieldsController < ApplicationController
   before_filter :authenticate_user!, :except => [:index, :show]
   before_filter :load_observation_field, :only => [:show, :edit, :update, :destroy, :merge, :merge_field]
   before_filter :owner_or_curator_required, :only => [:edit, :update, :destroy, :merge, :merge_field]
+
+  ORDER_BY_FIELDS = %w(name values_count users_count)
   
   # GET /observation_fields
   # GET /observation_fields.xml
   def index
     @q = params[:q] || params[:term]
     scope = ObservationField.all
+    if order_by = ( ORDER_BY_FIELDS & [params[:order_by]] ).first
+      order = ( %w(asc desc) & [params[:order]] ).first || "desc"
+      scope = scope.order( "#{order_by} #{order} NULLS LAST" )
+    end
     scope = scope.where("lower(name) LIKE ?", "%#{@q.downcase}%") unless @q.blank?
     @observation_fields = scope.paginate(:page => params[:page])
     

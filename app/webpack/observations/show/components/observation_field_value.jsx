@@ -54,37 +54,43 @@ class ObservationFieldValue extends React.Component {
     }
     let addedBy;
     if ( ofv.user && ofv.user.id !== observation.user.id ) {
-      addedBy = ( <div className="added-by">
-        <div className="view">Added By:</div>
-        <a href={ `/people/${ofv.user.login}` }>
-          { ofv.user.login }
-        </a>
-      </div> );
+      addedBy = (
+        <div className="added-by">
+          <div className="view">
+            { I18n.t( "label_colon", { label: I18n.t( "added_by" ) } ) }
+          </div>
+          <a href={`/people/${ofv.user.login}`}>
+            { ofv.user.login }
+          </a>
+        </div>
+      );
     }
     const popover = (
       <Popover
-        id={ `field-popover-${ofv.uuid}` }
+        id={`field-popover-${ofv.uuid}`}
         className="ObservationFieldPopover"
       >
         { info }
         { addedBy }
         { editOptions }
         <div className="contents">
-          <div className="view">View:</div>
+          <div className="view">
+            { I18n.t( "label_colon", { label: I18n.t( "view" ) } ) }
+          </div>
           <div className="search">
-            <a href={ `/observations?field:${ofv.name}=${ofv.value}` }>
+            <a href={`/observations?verifiable=any&place_id=any&field:${ofv.name}=${ofv.value}`}>
               <i className="fa fa-arrow-circle-o-right" />
               <span className="menu-item-label">{ I18n.t( "observations_with_this_field_and_value" ) }</span>
             </a>
           </div>
           <div className="search">
-            <a href={ `/observations?field:${ofv.name}` }>
+            <a href={`/observations?verifiable=any&place_id=any&field:${ofv.name}`}>
               <i className="fa fa-arrow-circle-o-right" />
               <span className="menu-item-label">{ I18n.t( "observations_with_this_field" ) }</span>
             </a>
           </div>
           <div className="search">
-            <a href={ `/observation_fields/${ofv.observation_field.id}` }>
+            <a href={`/observation_fields/${ofv.observation_field.id}`}>
               <i className="fa fa-arrow-circle-o-right" />
               <span className="menu-item-label">{ I18n.t( "observation_field_details" ) }</span>
             </a>
@@ -93,7 +99,7 @@ class ObservationFieldValue extends React.Component {
       </Popover>
     );
     return (
-      <div className="ObservationFieldValue" key={ `ofv-${ofv.uuid || ofv.observation_field.id}` }>
+      <div className="ObservationFieldValue" key={`ofv-${ofv.uuid || ofv.observation_field.id}`}>
         <OverlayTrigger
           trigger="click"
           rootClose
@@ -102,7 +108,7 @@ class ObservationFieldValue extends React.Component {
           overlay={popover}
         >
           <div className="field">
-            { ofv.name }:
+            { I18n.t( "label_colon", { label: ofv.name } ) }
           </div>
         </OverlayTrigger>
         <div className="value">{ value }</div>

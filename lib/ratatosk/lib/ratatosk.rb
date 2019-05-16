@@ -178,6 +178,8 @@ module Ratatosk
       return [] if lineage.first.parent == lineage.last
       return [] if lineage.size == 1 && lineage.first.grafted?
       return [] if lineage.size == 1 && lineage.first == graft_point
+      
+      raise RatatoskGraftError, "destination covered by curated taxon framework" unless graft_point.can_be_grafted_to
 
       # For each new taxon (starting with the highest), move it to the graft
       # point, moving the point as we walk along the branch
@@ -201,9 +203,9 @@ module Ratatosk
             unless f.save
               puts "Failed to save flag: #{f.errors.full_messages.to_sentence}"
             end
-          elsif new_taxon.errors[:ancestry].to_s =~ /complete/
+          elsif new_taxon.errors[:ancestry].to_s =~ /taxon framework/
               msg = "it failed to graft to #{graft_point.name}, which "
-              msg += "falls within a complete taxon. "
+              msg += "is covered by a curated taxon framework. "
               msg += "This should be reviewed by the appropriate taxon curator"
               f = new_taxon.flags.build(:flag => msg) 
               unless f.save

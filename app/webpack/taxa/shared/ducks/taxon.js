@@ -3,7 +3,7 @@ import moment from "moment";
 import querystring from "querystring";
 import _ from "lodash";
 import { fetch } from "../../../shared/util";
-import { defaultObservationParams } from "../../shared/util";
+import { defaultObservationParams } from "../util";
 
 const SET_TAXON = "taxa-show/taxon/SET_TAXON";
 const SET_DESCRIPTION = "taxa-show/taxon/SET_DESCRIPTION";
@@ -179,7 +179,7 @@ export function setTaxonChange( taxonChange ) {
 
 export function showPhotoChooserIfSignedIn( ) {
   return ( dispatch, getState ) => {
-    const currentUser = getState( ).config.currentUser;
+    const { currentUser } = getState( ).config;
     const signedIn = currentUser && currentUser.id;
     if ( signedIn ) {
       dispatch( showPhotoChooser( ) );
@@ -199,13 +199,11 @@ export function fetchTerms( ) {
     return inatjs.observations.popularFieldValues( params ).then( r => {
       const relevantResults = _.filter( r.results, f => (
         !f.controlled_attribute.taxon_ids
-        ||
-        _.intersection(
+        || _.intersection(
           s.taxon.taxon.ancestor_ids,
           f.controlled_attribute.taxon_ids
         ).length > 0
-        ||
-        f.controlled_attribute.taxon_ids.length === 0
+        || f.controlled_attribute.taxon_ids.length === 0
       ) );
       dispatch( {
         type: SET_FIELD_VALUES,
@@ -256,7 +254,7 @@ export function fetchTaxon( taxon, options = { } ) {
 
 export function fetchDescription( ) {
   return ( dispatch, getState ) => {
-    const taxon = getState( ).taxon.taxon;
+    const { taxon } = getState( ).taxon;
     fetch( `/taxa/${taxon.id}/description` ).then(
       response => {
         const source = response.headers.get( "X-Describer-Name" );
@@ -277,7 +275,7 @@ export function fetchDescription( ) {
 export function fetchLinks( ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const taxon = s.taxon.taxon;
+    const { taxon } = s.taxon;
     let url = `/taxa/${taxon.id}/links.json`;
     if ( s.config.preferredPlace ) {
       url += `?place_id=${s.config.preferredPlace.id}`;
@@ -315,7 +313,7 @@ export function fetchInteractions( taxon ) {
       type: "json.v2",
       accordingTo: "iNaturalist"
     };
-    const url = `http://api.globalbioticinteractions.org/interaction?${querystring.stringify( params )}`;
+    const url = `https://api.globalbioticinteractions.org/interaction?${querystring.stringify( params )}`;
     fetch( url ).then(
       response => {
         response.json( ).then( json => dispatch( setInteractions( json ) ) );
@@ -333,8 +331,7 @@ export function fetchTrending( ) {
       d1: moment( ).subtract( 1, "month" ).format( "YYYY-MM-DD" )
     } );
     inatjs.observations.speciesCounts( params ).then(
-      response =>
-        dispatch( setTrending( response.results.map( r => r.taxon ) ) ),
+      response => dispatch( setTrending( response.results.map( r => r.taxon ) ) ),
       error => {
         console.log( "[DEBUG] error: ", error );
       }
@@ -349,8 +346,7 @@ export function fetchRare( ) {
       csi: "CR,EN"
     } );
     inatjs.observations.speciesCounts( params ).then(
-      response =>
-        dispatch( setRare( response.results.map( r => r.taxon ) ) ),
+      response => dispatch( setRare( response.results.map( r => r.taxon ) ) ),
       error => {
         console.log( "[DEBUG] error: ", error );
       }
@@ -392,11 +388,10 @@ export function fetchWanted( ) {
 
 export function fetchSimilar( ) {
   return ( dispatch, getState ) => {
-    const taxon = getState( ).taxon.taxon;
+    const { taxon } = getState( ).taxon;
     inatjs.identifications.similar_species( defaultObservationParams( getState( ) ) ).then(
       response => {
-        const withoutAncestors = response.results.filter( r =>
-          taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
+        const withoutAncestors = response.results.filter( r => taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
         const commonlyMisidentified = withoutAncestors.filter( r => ( r.count > 1 ) );
         if ( commonlyMisidentified.length === 0 ) {
           dispatch( setSimilar( withoutAncestors ) );
@@ -412,7 +407,7 @@ export function fetchSimilar( ) {
 export function updatePhotos( photos ) {
   return ( dispatch, getState ) => {
     const s = getState( );
-    const taxon = s.taxon.taxon;
+    const { taxon } = s.taxon;
     const data = { };
     data.photos = photos.map( photo => ( {
       id: photo.id,

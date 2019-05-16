@@ -10,11 +10,6 @@ class TaxaController < ApplicationController
       ( c.session.blank? || c.session['warden.user.user.key'].blank? ) &&
       c.params[:test].blank?
     }
-  caches_action :describe, :expires_in => 1.day,
-    :cache_path => Proc.new { |c| c.params.merge( locale: I18n.locale ) },
-    :if => Proc.new {|c|
-      c.session.blank? || c.session['warden.user.user.key'].blank?
-    }
 
   before_filter :allow_external_iframes, only: [:map]
   
@@ -87,15 +82,14 @@ class TaxaController < ApplicationController
         Taxon.preload_associations(@featured_taxa, [
           :iconic_taxon, :photos, :taxon_descriptions,
           { taxon_names: :place_taxon_names } ])
-        featured_taxa_obs = @featured_taxa.map do |taxon|
+        @featured_taxa_obs = @featured_taxa.map do |taxon|
           taxon_obs_params = { taxon_id: taxon.id, order_by: "id", per_page: 1 }
           if @site
             taxon_obs_params[:site_id] = @site.id
           end
           Observation.page_of_results(taxon_obs_params).first
         end.compact
-        Observation.preload_associations(featured_taxa_obs, :user)
-        @featured_taxa_obs_by_taxon_id = featured_taxa_obs.index_by(&:taxon_id)
+        Observation.preload_associations(@featured_taxa_obs, [:user, :taxon])
         
         flash[:notice] = @status unless @status.blank?
         if params[:q]
@@ -177,7 +171,7 @@ class TaxaController < ApplicationController
           nil : INatAPIService.get_json( "/places/#{place_id.to_i}" )
         @chosen_tab = session[:preferred_taxon_page_tab]
         @ancestors_shown = session[:preferred_taxon_page_ancestors_shown]
-        render layout: "bootstrap", action: "show2"
+        render layout: "bootstrap", action: "show"
       end
       
       format.xml do
@@ -234,6 +228,13 @@ class TaxaController < ApplicationController
           includes( "taxa","external_taxa" ).
           joins( "JOIN taxa ON taxa.taxon_framework_relationship_id = taxon_framework_relationships.id" ).
           where( "taxa.id = ? AND taxon_framework_id = ?", @taxon, @upstream_taxon_framework ).first
+        unless @taxon_framework
+          if @taxon_framework_relationship
+            @downstream_deviations_counts = @taxon_framework_relationship.internal_taxa.map{|it| {internal_taxon: it, count: TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @upstream_taxon_framework.id ).internal_taxon(it).uniq.count - 1 } }
+          end
+          @downstream_flagged_taxa = @upstream_taxon_framework.get_flagged_taxa({taxon: @taxon})
+          @downstream_flagged_taxa_count = @upstream_taxon_framework.get_flagged_taxa_count({taxon: @taxon})
+        end
       end
     end
     
@@ -246,6 +247,7 @@ class TaxaController < ApplicationController
         @flagged_taxa_count = @taxon_framework.get_flagged_taxa_count
         if @taxon_framework.source_id
           @deviations_count = TaxonFrameworkRelationship.where( "taxon_framework_id = ? AND relationship != 'match'", @taxon_framework.id ).count
+          @relationship_unknown_count = @taxon_framework.get_internal_taxa_covered_by_taxon_framework.where(taxon_framework_relationship_id: nil).count
         end
       end
     end
@@ -299,17 +301,16 @@ class TaxaController < ApplicationController
   end
 
   def edit
-    # TODO: these .firsts will need to be updated
-    @observations_exist = Observation.where(taxon_id: @taxon).exists? ||
-      Observation.joins(:taxon).where(@taxon.descendant_conditions).exists?
-    @listed_taxa_exist = ListedTaxon.where(taxon_id: @taxon).exists? ||
-      ListedTaxon.joins(:taxon).where(@taxon.descendant_conditions).exists?
-    @identifications_exist = Identification.where(taxon_id: @taxon).exists? ||
-      Identification.joins(:taxon).where(@taxon.descendant_conditions).exists?
+    @observations_exist = @taxon.observations_count > 0
+    @listed_taxa_exist = @taxon.listed_taxa_count > 0
+    @identifications_exist = Identification.elastic_search(
+      filters: [{ term: { "taxon.id" => @taxon.id } } ],
+      size: 0
+    ).total_entries > 0
     @descendants_exist = @taxon.descendants.exists?
     @taxon_range = TaxonRange.without_geom.where(taxon_id: @taxon).first
     unless @protected_attributes_editable = @taxon.protected_attributes_editable_by?( current_user )
-      flash.now[:notice] ||= "This taxon is covered by a taxon framework, so some taxonomic attributes can only be editable by taxon curators associated with that taxon framework."
+      flash.now[:notice] ||= "This active taxon is covered by a taxon framework, so some taxonomic attributes can only be editable by taxon curators associated with that taxon framework."
     end
   end
 
@@ -760,16 +761,13 @@ class TaxaController < ApplicationController
       end
       obs
     else
-      filters = [ { bool: { should: [
-        { exists: { field: "photos_count" } },
-        { exists: { field: "photos" } }
-      ]}}]
+      filters = [ { exists: { field: "photos_count" } } ]
       unless params[:q].blank?
         filters << {
           multi_match: {
             query: params[:q],
             operator: "and",
-            fields: [ :description, "taxon.names.name", "taxon.names_*", "user.login", "field_values.value" ]
+            fields: [ :description, "taxon.names_*", "user.login", "field_values.value" ]
           }
         }
       end
@@ -968,6 +966,7 @@ class TaxaController < ApplicationController
       taxon_photo = @taxon.taxon_photos.detect{ |tp| tp.photo_id == photo.id }
       taxon_photo ||= TaxonPhoto.new( taxon: @taxon, photo: photo )
       taxon_photo.position = photos.index( photo )
+      taxon_photo.skip_taxon_indexing = true
       taxon_photo
     end
     if @taxon.save
@@ -975,6 +974,7 @@ class TaxaController < ApplicationController
       @taxon.elastic_index!
       Taxon.refresh_es_index
     else
+      Rails.logger.debug "[DEBUG] error: #{@taxon.errors.full_messages.to_sentence}"
       respond_to do |format|
         format.json do
           render status: :unprocessable_entity, json: {
@@ -1021,29 +1021,53 @@ class TaxaController < ApplicationController
     else
       [TaxonDescribers::Wikipedia, TaxonDescribers::Eol]
     end
-    if @describer = TaxonDescribers.get_describer(params[:from])
-      @description = @describer.describe(@taxon)
-    else
-      @describers.each do |d|
-        @describer = d
-        @description = begin
-          d.describe(@taxon)
-        rescue OpenURI::HTTPError, Timeout::Error => e
-          nil
-        end
-        break unless @description.blank?
+    # Perform caching here as opposed to caches_action so we can set request headers appropriately
+    key = "views/taxa/#{@taxon.id}/description?#{request.query_parameters.merge( locale: I18n.locale ).to_a.join{|k,v| "#{k}=#{v}"}}"
+    @description = Rails.cache.read( key )
+    # We only need to fetch new data for logged in users and when the cache is empty
+    if logged_in? || @description.blank?
+      # Fall back to English wikipedia as a last resort unless the default
+      # Wikipedia describer is already in English
+      if I18n.locale.to_s !~ /^en/
+        @describers << TaxonDescribers::Wikipedia.new( locale: :en )
       end
-    end
-    if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
-      @taxon.wikipedia_summary(:refresh_if_blank => true)
-    end
-    @describer_url = @describer.page_url(@taxon)
-    if @describer
+      if @taxon.auto_description?
+        if @describer = TaxonDescribers.get_describer(params[:from])
+          @description = @describer.describe( @taxon )
+        else
+          @describers.each do |d|
+            @describer = d
+            @description = begin
+              d.describe(@taxon)
+            rescue OpenURI::HTTPError, Timeout::Error => e
+              nil
+            end
+            break unless @description.blank?
+          end
+        end
+        if @describers.include?(TaxonDescribers::Wikipedia) && @taxon.wikipedia_summary.blank?
+          @taxon.wikipedia_summary( refresh_if_blank: true )
+        end
+      else
+        @describer = @describers.first
+      end
+      if @describer
+        @describer_url = @describer.page_url( @taxon )
+        response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
+        response.headers["X-Describer-URL"] = @describer_url
+      end
+      if !@description.blank? && !logged_in?
+        Rails.cache.write( key, @description, expires_in: 1.day )
+        Rails.cache.write( "#{key}-describer", @describer.name.split( "::" ).last, expires_in: 1.day )
+      end
+    # If we have cached content and a cached describer name, set the response headers
+    elsif !@description.blank? && ( @describer = TaxonDescribers.get_describer( Rails.cache.read( "#{key}-describer" ) ) )
+      @describer_url = @describer.page_url( @taxon )
       response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end
     respond_to do |format|
-      format.html { render :partial => "description" }
+      format.html { render partial: "description" }
     end
   end
 
@@ -1392,7 +1416,7 @@ class TaxaController < ApplicationController
         else
           canonical
         end
-        return redirect_to :action => redirect_target
+        return redirect_to( { action: redirect_target }.merge( request.GET ) )
       end
     end
     

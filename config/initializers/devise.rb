@@ -1,4 +1,6 @@
 require "devise_json_web_token"
+require "devise_application_json_web_token"
+
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
@@ -227,6 +229,8 @@ Devise.setup do |config|
   # end
 
   config.warden do |manager|
+    manager.strategies.add(:ajwt, Devise::Strategies::ApplicationJsonWebToken)
+    manager.default_strategies(scope: :user).unshift :ajwt
     manager.strategies.add(:jwt, Devise::Strategies::JsonWebToken)
     manager.default_strategies(scope: :user).unshift :jwt
   end

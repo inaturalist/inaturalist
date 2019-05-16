@@ -1,9 +1,9 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PlacesController do
+  let(:user) { UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user }
   describe "create" do
     it "should make a place with no default type" do
-      user = User.make!
       sign_in user
       expect {
         post :create, :place => {
@@ -15,7 +15,6 @@ describe PlacesController do
     end
 
     it "creates places with geojson" do
-      user = User.make!
       sign_in user
       post :create, place: {
         name: "Test geojson",
@@ -28,7 +27,6 @@ describe PlacesController do
     end
 
     it "does not allow non admins to create huge places" do
-      user = User.make!
       sign_in user
       place_count = Place.count
       post :create, place: {
@@ -56,7 +54,6 @@ describe PlacesController do
 
   describe "update" do
     it "updates places with geojson" do
-      user = User.make!
       p = Place.make!(user: user)
       sign_in user
       put :update, id: p.id, place: {
@@ -70,7 +67,6 @@ describe PlacesController do
     end
 
     it "does not allow non admins to create huge places" do
-      user = User.make!
       p = Place.make!(user: user)
       sign_in user
       place_count = Place.count
@@ -99,8 +95,7 @@ describe PlacesController do
   end
 
   describe "destroy" do
-    let(:user) { User.make! }
-    let(:place) { Place.make!(:user => user) }
+    let(:place) { Place.make!( user: user ) }
     before do
       sign_in user
     end

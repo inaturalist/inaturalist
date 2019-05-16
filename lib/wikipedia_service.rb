@@ -5,7 +5,7 @@ class WikipediaService < MetaService
     super(options)
     locale = options[:locale] || I18n.locale || 'en'
     subdomain = locale.to_s.split('-').first
-    self.base_url = "http://#{subdomain}.wikipedia.org"
+    self.base_url = "https://#{subdomain}.wikipedia.org"
     @method_param = 'action'
     @api_endpoint = ApiEndpoint.find_or_create_by(
       title: "Wikipedia (#{ subdomain.upcase })",

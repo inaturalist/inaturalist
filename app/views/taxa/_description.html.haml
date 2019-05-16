@@ -1,9 +1,14 @@
-- if @describer.blank? && !@taxon.wikipedia_summary.blank? && !@taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/)
-  - @description ||= "<p>#{@taxon.wikipedia_summary}</p>".html_safe
-- css_class = "clear taxon_description"
-- if @describer
-  - css_class += " #{@describer.name.split('::').last.underscore}_description"
-  - css_class += " wikipedia_description" if @describer.ancestors.include?(TaxonDescribers::Wikipedia)
+:ruby
+  if @describer.blank? && !@taxon.wikipedia_summary.blank? && !@taxon.wikipedia_summary.match(/^\d\d\d\d-\d\d-\d\d$/)
+    @description ||= "<p>#{@taxon.wikipedia_summary}</p>".html_safe
+  end
+  css_class = "clear taxon_description"
+  if @describer
+    css_class += " #{@describer.name.split('::').last.underscore}_description"
+    if @describer.is_a?( TaxonDescribers::Wikipedia ) || @describer.ancestors.include?( TaxonDescribers::Wikipedia )
+      css_class += " wikipedia_description"
+    end
+  end
 #taxon_description{:class => css_class}
   %h3.taxon_description_header
     =t :description_from
@@ -12,11 +17,14 @@
       - if page_url = @describer.page_url(@taxon)
         = link_to "#{t(:view_on)} #{@describer.describer_name} &rarr;".html_safe, page_url, :class => "externallink ui"
     - else
-      %a{:href => "http://en.wikipedia.org/wiki/#{@taxon.name}"} Wikipedia
+      %a{ href: @describer_url } Wikipedia
   - if @description.blank?
     %p.nocontent.meta
       - if @describer == TaxonDescribers::Wikipedia || @describer.blank?
-        =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
+        - if @taxon.auto_description?
+          =t :there_isnt_a_wikipedia_article_titled_x_html, :x => @taxon.name
+        - else
+          =t "views.taxa.show.site_curators_disabled_wikipedia_html", url: @describer_url
       - elsif @describer
         =t :no_matching_article_from_x, :x => @describer.describer_name
   - else

@@ -1,26 +1,22 @@
 - taxon_change = update_email_committed || taxon_change
 - user = current_user rescue @user
-%table
-  %tr
-    %td{:style => "vertical-align:top;"}
-      %table{:cellspacing => 0, :cellpadding => 0, :border => 0}
-        - for taxon in taxon_change.input_taxa
-          %tr
-            %td{:style => "vertical-align:top;padding-right:5px;"}
-              %center= link_to taxon_image(taxon), taxon_url(taxon)
-            %td{:style => "vertical-align:top;padding-right:5px;"}
-              %i= link_to taxon.name, taxon_url(taxon)
-    %td{:style => "vertical-align:top;padding-right:5px;"}
-      %strong
-        =t taxon_change.verb_phrase.gsub(/\s+/, '_'), :default => taxon_change.verb_phrase
-    %td{:style => "vertical-align:top;"}
-      %table{:cellspacing => 0, :cellpadding => 0, :border => 0}
-        - for taxon in taxon_change.output_taxa
-          %tr
-            %td{:style => "vertical-align:top;padding-right:5px;"}
-              %center= link_to taxon_image(taxon), taxon_url(taxon)
-            %td{:style => "vertical-align:top;"}
-              %i= link_to taxon.name, taxon_url(taxon)
+%table{:cellspacing => 0, :cellpadding => 0, :border => 0}
+  - for taxon in taxon_change.input_taxa
+    %tr
+      %td{:style => "vertical-align:top;padding-right:5px;"}
+        %center= link_to taxon_image(taxon), taxon_url(taxon)
+      %td{:style => "vertical-align:middle;padding-right:5px;"}
+        %i= link_to taxon.name, taxon_url(taxon)
+%p{ style: "margin: 20px 0" }
+  %strong
+    =t "change_types.#{taxon_change.verb_phrase.gsub(/\s+/, '_')}"
+%table{:cellspacing => 0, :cellpadding => 0, :border => 0}
+  - for taxon in taxon_change.output_taxa
+    %tr
+      %td{:style => "vertical-align:top;padding-right:5px;"}
+        %center= link_to taxon_image(taxon), taxon_url(taxon)
+      %td{:style => "vertical-align:middle;"}
+        %i= link_to taxon.name, taxon_url(taxon)
 
 = taxon_change.description
 

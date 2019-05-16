@@ -11,8 +11,9 @@ Rails.application.routes.draw do
   # legacy routes
   get "/set_locale", to: "application#set_locale", as: :set_locale
   get "/ping", to: "application#ping"
+  get "/seek", to: redirect( "/pages/seek_app", status: 302 )
   get "/terms", to: redirect( "/pages/terms" )
-  get "/privacy", to: redirect( "/pages/privacy" )
+  get "/privacy", to: redirect( "/pages/privacy" ), as: :privacy_policy
   get "/users/new.mobile", to: redirect( "/signup" )
   get "/donate", to: "donate#index"
 
@@ -155,10 +156,17 @@ Rails.application.routes.draw do
   
   resources :users, :except => [:new, :create] do
     resources :flags
+    collection do
+      get :recent
+      get :delete
+      post :parental_consent
+    end
     member do
       put :join_test
       put :leave_test
       put :merge
+      put :trust
+      put :untrust
     end
   end
   # resource :session
@@ -169,6 +177,7 @@ Rails.application.routes.draw do
       get 'leaderboard(/:year(/:month))' => :leaderboard, :as => 'leaderboard_for'
     end
   end
+  resources :relationships, controller: :friendships, only: [:index, :update, :destroy]
   get '/users/:id/suspend' => 'users#suspend', :as => :suspend_user, :constraints => { :id => /\d+/ }
   get '/users/:id/unsuspend' => 'users#unsuspend', :as => :unsuspend_user, :constraints => { :id => /\d+/ }
   post 'users/:id/add_role' => 'users#add_role', :as => :add_role, :constraints => { :id => /\d+/ }
@@ -319,8 +328,8 @@ Rails.application.routes.draw do
   resources :project_users, only: [:update]
 
   get 'people/:login' => 'users#show', :as => :person_by_login, :constraints => { :login => simplified_login_regex }
-  get 'people/:login/followers' => 'users#relationships', :as => :followers_by_login, :constraints => { :login => simplified_login_regex }, :followers => 'followers'
-  get 'people/:login/following' => 'users#relationships', :as => :following_by_login, :constraints => { :login => simplified_login_regex }, :following => 'following'
+  get "people/:login/followers" => 'users#followers', as: :followers_by_login, constraints: { login: simplified_login_regex }
+  get "people/:login/following" => 'users#following', as: :following_by_login, constraints: { login: simplified_login_regex }
   resources :lists, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'batch_edit'
@@ -451,6 +460,9 @@ Rails.application.routes.draw do
       post :add_taxa_from_observations
       delete :remove_taxa
     end
+    collection do
+      get :tabulate
+    end
   end
   get 'trips/:login' => 'trips#by_login', :as => :trips_by_login, :constraints => { :login => simplified_login_regex }
   
@@ -490,6 +502,10 @@ Rails.application.routes.draw do
     collection do
       get :index
       get :queries
+      get :stop_query
+      get :users
+      get "users/:id" => "admin#user_detail", as: :user_detail
+      get :deleted_users
     end
     resources :delayed_jobs, only: :index, controller: "admin/delayed_jobs" do
       member do
@@ -582,6 +598,8 @@ Rails.application.routes.draw do
   get 'taxon_schemes/:id/orphaned_inactive_taxa' => 'taxon_schemes#orphaned_inactive_taxa', :as => :orphaned_inactive_taxa
   
   resources :taxon_framework_relationships
+  get 'taxon_frameworks/:id/relationship_unknown' => 'taxon_frameworks#relationship_unknown', :as => :relationship_unknown
+  
   resources :taxon_frameworks, except: [:show, :index]
   
   resources :taxon_splits, :controller => :taxon_changes
@@ -595,7 +613,7 @@ Rails.application.routes.draw do
   end
   resources :computer_vision_demo_uploads do
     member do
-      get :score
+      post :score
     end
   end
 

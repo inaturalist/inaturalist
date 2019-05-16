@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "a ProjectObservationsController" do
-  let(:user) { User.make! }
+  let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
   let(:observation) { Observation.make!(:user => user) }
   let(:project) { Project.make! }
   let(:project_user) { ProjectUser.make!(:user => user, :project => project) }
@@ -148,6 +148,8 @@ shared_examples_for "a ProjectObservationsController" do
   end
 
   describe "update" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should not allow setting preferences if updater is not the observer" do
       po = ProjectObservation.make!( project: project )
       expect( po ).not_to be_prefers_curator_coordinate_access
@@ -158,6 +160,8 @@ shared_examples_for "a ProjectObservationsController" do
   end
 
   describe "destroy" do
+    before(:each) { enable_elastic_indexing( Observation ) }
+    after(:each) { disable_elastic_indexing( Observation ) }
     it "should work for the observer" do
       po = ProjectObservation.make!(observation: observation, project: project, user: observation.user)
       delete :destroy, :format => :json, :id => po.id

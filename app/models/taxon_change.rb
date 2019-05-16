@@ -43,6 +43,15 @@ class TaxonChange < ActiveRecord::Base
     where("t1.source_id = ? OR t2.source_id = ?", source, source)
   }
   
+  scope :ancestor_taxon, lambda{|taxon|
+    joins(TAXON_JOINS).
+    where(
+      "t1.id = ? OR t2.id = ? OR t1.ancestry = ? OR t1.ancestry = ? OR t1.ancestry LIKE ? OR t1.ancestry LIKE ?",
+      taxon, taxon,
+      "#{taxon.ancestry}/#{taxon.id}", "#{taxon.ancestry}/#{taxon.id}",
+      "#{taxon.ancestry}/#{taxon.id}/%", "#{taxon.ancestry}/#{taxon.id}/%"
+    )
+  }
   scope :taxon, lambda{|taxon|
     joins(TAXON_JOINS).
     where("t1.id = ? OR t2.id = ?", taxon, taxon)
@@ -105,7 +114,7 @@ class TaxonChange < ActiveRecord::Base
       return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active }}.any?
     # unless they are also inputs
     elsif type == "TaxonMerge"
-      return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.pluck(:id).include? e.id) }}.any?
+      return false if !input_taxa.map{|t| t.children.any?{ |e| e.is_active && (!input_taxa.map(&:id).include? e.id) }}.any?
     elsif type == "TaxonStage"
       return false
     end
@@ -118,7 +127,7 @@ class TaxonChange < ActiveRecord::Base
     uneditable_input_taxon = input_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
     uneditable_output_taxon = nil
     unless uneditable_input_taxon
-      uneditable_output_taxon = output_taxa.detect{ |t| !t.protected_attributes_editable_by?( u ) }
+      uneditable_output_taxon = output_taxa.detect{ |t| !t.is_active && !t.activated_protected_attributes_editable_by?( u ) }
     end
     uneditable_input_taxon.blank? && uneditable_output_taxon.blank?
   end
@@ -138,7 +147,7 @@ class TaxonChange < ActiveRecord::Base
   end
 
   def output_taxa
-    taxa
+    taxon_change_taxa.select{|tct| !tct._destroy}.map(&:taxon).sort_by(&:id)
   end
 
   def verb_phrase
@@ -178,10 +187,15 @@ class TaxonChange < ActiveRecord::Base
   # the change
   def commit_records( options = {} )
     unless valid?
-      Rails.logger.error "[ERROR #{Time.now}] Failed to commit records for #{self}: #{errors.full_messages.to_sentence}"
-      return
+      msg = "Failed to commit records for #{self}: #{errors.full_messages.to_sentence}"
+      # Rails.logger.error "[ERROR #{Time.now}] #{msg}"
+      # return
+      raise msg
     end
-    return if input_taxa.blank?
+    if input_taxa.blank?
+      # return
+      raise "Failed to commit records for #{self}: no input taxa"
+    end
     Rails.logger.info "[INFO #{Time.now}] #{self}: starting commit_records"
     notified_user_ids = []
     associations_to_update = %w(identifications observations listed_taxa taxon_links observation_field_values)
@@ -227,8 +241,8 @@ class TaxonChange < ActiveRecord::Base
 
   def find_batched_records_of( reflection )
     input_taxon_ids = input_taxa.to_a.compact.map(&:id)
-    if reflection.klass == Observation
-      Observation.search_in_batches( taxon_ids: input_taxon_ids ) do |batch|
+    if reflection.klass.to_s == "Observation"
+      Observation.search_in_batches( ident_taxon_id: input_taxon_ids.join( "," ) ) do |batch|
         yield batch
       end
     # Omitting using ES for idents now until the ident index gets fully 

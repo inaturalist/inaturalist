@@ -31,7 +31,7 @@ describe SiteStatistic do
       Observation.destroy_all
       @user = make_curator(created_at: Time.now)
       make_user_with_role(:admin, created_at: Time.now)
-      Project.make!(user: User.make!(created_at: Time.now))
+      Project.make!(user: make_user_with_privilege( UserPrivilege::ORGANIZER, created_at: Time.now))
       @site = Site.make!
       observation = Observation.make!(
         taxon: Taxon.make!(rank: "species"), user: @user, site: @site)

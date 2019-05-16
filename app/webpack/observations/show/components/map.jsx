@@ -16,18 +16,65 @@ class Map extends React.Component {
 
   render( ) {
     let taxonMap;
-    const { observation, observationPlaces, config } = this.props;
+    const {
+      observation,
+      observationPlaces,
+      config,
+      updateCurrentUser,
+      disableAutoObscuration,
+      restoreAutoObscuration
+    } = this.props;
+    const currentUserPrefersMedialessObs = config.currentUser
+      && config.currentUser.prefers_medialess_obs_maps;
+    let geoprivacyIconClass = "fa fa-map-marker";
+    let geoprivacyTitle = I18n.t( "location_is_public" );
+    if ( observation.obscured ) {
+      if ( !observation.geojson ) {
+        geoprivacyIconClass = "icon-icn-location-private";
+        geoprivacyTitle = I18n.t( "location_is_private" );
+      } else {
+        geoprivacyIconClass = "icon-icn-location-obscured";
+        geoprivacyTitle = I18n.t( "location_is_obscured" );
+      }
+    } else if ( !observation.latitude && !observation.private_geojson ) {
+      geoprivacyIconClass = "icon-no-location";
+    }
     if ( !observation || !observation.latitude ) {
       return (
         <div className="Map">
           <div className="TaxonMap empty">
             <div className="no_location">
               <i className="fa fa-map-marker" />
-              { observation.obscured && observation.geoprivacy === "private"
+              { observation.obscured && !observation.geojson
                 ? I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
             </div>
           </div>
-          <div className="map_details" />
+          <div className="map_details">
+            <i
+              className={`geoprivacy-icon ${geoprivacyIconClass}`}
+              title={geoprivacyTitle}
+              alt={geoprivacyTitle}
+            />
+            <div className="place-guess">{ observation && observation.place_guess }</div>
+            <div className="details_menu">
+              <Dropdown
+                id="grouping-control"
+              >
+                <Dropdown.Toggle>
+                  { I18n.t( "details" ) }
+                </Dropdown.Toggle>
+                <Dropdown.Menu className="dropdown-menu-right">
+                  <li>
+                    <MapDetails
+                      observation={observation}
+                      observationPlaces={observationPlaces}
+                      config={config}
+                    />
+                  </li>
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </div>
         </div>
       );
     }
@@ -62,19 +109,29 @@ class Map extends React.Component {
       const mapKey = `map-for-${observation.id}-${observation.taxon ? observation.taxon.id : null}`;
       taxonMap = (
         <TaxonMap
-          key={ mapKey }
-          reloadKey={ mapKey }
+          key={mapKey}
+          reloadKey={mapKey}
           taxonLayers={[{
             taxon: obsForMap.taxon,
-            observations: {
-              observation_id: obsForMap.id,
-              verifiable: true
-            },
+            observationLayers: [
+              {
+                label: I18n.t( "verifiable_observations" ),
+                verifiable: true,
+                observation_id: obsForMap.id
+              },
+              {
+                label: I18n.t( "observations_without_media" ),
+                verifiable: false,
+                disabled: !currentUserPrefersMedialessObs,
+                observation_id: obsForMap.id,
+                onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+              }
+            ],
             places: { disabled: true },
             gbif: { disabled: true }
-          }] }
+          }]}
           observations={[obsForMap]}
-          zoomLevel={ observation.map_scale || 8 }
+          zoomLevel={observation.map_scale || 8}
           showAccuracy
           enableShowAllLayer={false}
           overlayMenu
@@ -112,25 +169,14 @@ class Map extends React.Component {
         </div>
       );
     }
-    let geoprivacyIconClass = "fa fa-map-marker";
-    let geoprivacyTitle = I18n.t( "location_is_public" );
-    if ( observation.obscured && !observation.latitude && !observation.private_geojson ) {
-      geoprivacyIconClass = "icon-no-location";
-    } else if ( observation.geoprivacy === "private" ) {
-      geoprivacyIconClass = "icon-icn-location-private";
-      geoprivacyTitle = I18n.t( "location_is_private" );
-    } else if ( observation.obscured ) {
-      geoprivacyIconClass = "icon-icn-location-obscured";
-      geoprivacyTitle = I18n.t( "location_is_obscured" );
-    }
     return (
       <div className="Map">
         { taxonMap }
         <div className="map_details">
           <i
-            className={ `geoprivacy-icon ${geoprivacyIconClass}` }
-            title={ geoprivacyTitle }
-            alt={ geoprivacyTitle }
+            className={`geoprivacy-icon ${geoprivacyIconClass}`}
+            title={geoprivacyTitle}
+            alt={geoprivacyTitle}
           />
           <div className="place-guess">
             { placeGuessElement }
@@ -145,8 +191,11 @@ class Map extends React.Component {
               <Dropdown.Menu className="dropdown-menu-right">
                 <li>
                   <MapDetails
-                    observation={ observation }
-                    observationPlaces={ observationPlaces }
+                    observation={observation}
+                    observationPlaces={observationPlaces}
+                    config={config}
+                    disableAutoObscuration={disableAutoObscuration}
+                    restoreAutoObscuration={restoreAutoObscuration}
                   />
                 </li>
               </Dropdown.Menu>
@@ -161,7 +210,10 @@ class Map extends React.Component {
 Map.propTypes = {
   observation: PropTypes.object,
   observationPlaces: PropTypes.array,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateCurrentUser: PropTypes.func,
+  disableAutoObscuration: PropTypes.func,
+  restoreAutoObscuration: PropTypes.func
 };
 
 export default Map;

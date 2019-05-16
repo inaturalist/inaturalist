@@ -93,7 +93,7 @@ class ObservationFieldValuesController < ApplicationController
   def update
     respond_to do |format|
       update_params = observation_field_value_params
-      if !update_params[:id].is_a? Fixnum
+      if !update_params[:id].is_a? Integer
         update_params[:uuid] = update_params[:id]
         update_params.delete(:id)
       end

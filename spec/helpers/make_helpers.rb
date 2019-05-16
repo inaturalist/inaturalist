@@ -25,6 +25,10 @@ module MakeHelpers
     user.roles << Role.make!(:name => role_name.to_s)
     user
   end
+
+  def make_user_with_privilege( privilege, options = {} )
+    UserPrivilege.make!( privilege: privilege, user: User.make!( options ) ).user
+  end
   
   def make_life_list_for_taxon(taxon, options = {})
     list = LifeList.make!(options)
@@ -169,10 +173,11 @@ module MakeHelpers
     g
   end
 
-  def make_threatened_taxon(options = {})
+  def make_threatened_taxon( options = {} )
     options[:rank] ||= Taxon::SPECIES
-    t = Taxon.make!(options)
-    without_delay { ConservationStatus.make!(taxon: t, iucn: Taxon::IUCN_ENDANGERED) }
+    cs_options = options.delete(:conservation_status) || {}
+    t = Taxon.make!( options )
+    without_delay { ConservationStatus.make!( cs_options.merge( taxon: t, iucn: Taxon::IUCN_ENDANGERED ) ) }
     t.reload
     t
   end

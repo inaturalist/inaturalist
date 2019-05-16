@@ -55,6 +55,10 @@ class Place < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name, :use => [ :slugged, :finders ], :reserved_words => PlacesController.action_methods.to_a
+
+  # requires_privilege :organizer,
+  #   if: Proc.new {|place| place.user && !place.user.is_curator? && !place.user.is_admin?},
+  #   on: :create
   
   def normalize_friendly_id( string )
     super_candidate = super(string)
@@ -462,7 +466,6 @@ class Place < ActiveRecord::Base
 
   def destroy_project_rules
     ProjectObservationRule.where(
-      operator: "observed_in_place?",
       operand_type: "Place",
       operand_id: id
     ).destroy_all
@@ -593,115 +596,117 @@ class Place < ActiveRecord::Base
     num_created = num_updated = 0
     src = options[:source]
     options.delete(:source) unless src.is_a?(Source)
-    GeoRuby::Shp4r::ShpFile.open(shapefile_path).each do |shp|
-      puts "[INFO] Working on shp..."
-      new_place = case src
-      when 'census'
-        PlaceSources.new_place_from_census_shape(shp, options)
-      when 'esriworld'
-        PlaceSources.new_place_from_esri_world_shape(shp, options)
-      when 'cpad'
-        PlaceSources.new_place_from_cpad_units_fee(shp, options)
-      else
-        Place.new_from_shape(shp, options)
-      end
-      
-      unless new_place
-        puts "[INFO] \t\tShape couldn't be converted to a place.  Skipping..."
-        next
-      end
-      
-      new_place.source_filename = options[:source_filename] || File.basename(shapefile_path)
-      new_place.source ||= src if src.is_a?(Source)
-        
-      puts "[INFO] \t\tMade new place: #{new_place}"
-      unless new_place.woeid || options[:skip_woeid]
-        puts "[INFO] \t\tCouldn't find a unique woeid. Skipping..."
-        next
-      end
-      
-      # Try to find an existing place
-      existing = nil
-      existing = Place.find_by_woeid(new_place.woeid) unless new_place.woeid.blank?
-      if !new_place.source_filename.blank? && !new_place.source_identifier.blank?
-        existing ||= Place.where(source_filename: new_place.source_filename,
-          source_identifier: new_place.source_identifier).first
-      end
-      if !new_place.source_filename.blank? && !new_place.source_name.blank?
-        existing ||= Place.where(source_filename: new_place.source_filename,
-          source_name: new_place.source_name).first
-      end
-      if !new_place.source_filename.blank? && !new_place.name.blank?
-        existing ||= begin
-          Place.where(source_filename: new_place.source_filename).where("lower(name) = ?", new_place.name.downcase).first
-        rescue
-          new_place.name = new_place.name.force_encoding('ISO-8859-1').encode('UTF-8')
-          Place.where(source_filename: new_place.source_filename).where("lower(name) = ?", new_place.name.downcase).first
-        end
-      end
-      if options[:ancestor_place]
-        existing ||= options[:ancestor_place].descendants.
-          where("lower(name) = ? AND place_type = ?", new_place.name.downcase, new_place.place_type).first
-      end
-      
-      if existing
-        puts "[INFO] \t\tFound existing place: #{existing}"
-        place = existing
-        [:swlat, :swlng, :nelat, :nelng, :source_filename, :source_name, 
-            :source_identifier].each do |attr_name|
-          place.send("#{attr_name}=", new_place.send(attr_name)) if new_place.send(attr_name)
-        end
-        num_updated += 1
-      else
-        place = new_place.woeid ? Place.import_by_woeid(new_place.woeid) : new_place
-        [:latitude, :longitude, :swlat, :swlng, :nelat, :nelng, :source_filename, :source_name, 
-            :source_identifier, :place_type].each do |attr_name|
-          place.send("#{attr_name}=", new_place.send(attr_name)) if new_place.send(attr_name)
-        end
-        num_created += 1
-      end
-
-      if options[:ancestor_place]
-        place.parent ||= options[:ancestor_place]
-      end
-
-      place.place_type = options[:place_type] unless options[:place_type].blank?
-      place.place_type_name = options[:place_type_name] unless options[:place_type_name].blank?
-      
-      place = if block_given?
-        yield place, shp
-      else
-        place
-      end
-      begin
-        if place && place.valid?
-          place.save! unless options[:test]
-          puts "[INFO] \t\tSaved place: #{place}, parent: #{place.parent.try(:name)}"
+    RGeo::Shapefile::Reader.open( shapefile_path ) do |file|
+      file.each do |shp|
+        puts "[INFO] Working on shp..."
+        new_place = case src
+        when 'census'
+          PlaceSources.new_place_from_census_shape(shp, options)
+        when 'esriworld'
+          PlaceSources.new_place_from_esri_world_shape(shp, options)
+        when 'cpad'
+          PlaceSources.new_place_from_cpad_units_fee(shp, options)
         else
-          num_created -= 1
-          puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
+          Place.new_from_shape(shp, options)
+        end
+        
+        unless new_place
+          puts "[INFO] \t\tShape couldn't be converted to a place.  Skipping..."
           next
         end
-      rescue => e
-        puts "[ERROR] \tError: #{e}"
-        next
+        
+        new_place.source_filename = options[:source_filename] || File.basename(shapefile_path)
+        new_place.source ||= src if src.is_a?(Source)
+          
+        puts "[INFO] \t\tMade new place: #{new_place}"
+        unless new_place.woeid || options[:skip_woeid]
+          puts "[INFO] \t\tCouldn't find a unique woeid. Skipping..."
+          next
+        end
+        
+        # Try to find an existing place
+        existing = nil
+        existing = Place.find_by_woeid(new_place.woeid) unless new_place.woeid.blank?
+        if !new_place.source_filename.blank? && !new_place.source_identifier.blank?
+          existing ||= Place.where(source_filename: new_place.source_filename,
+            source_identifier: new_place.source_identifier).first
+        end
+        if !new_place.source_filename.blank? && !new_place.source_name.blank?
+          existing ||= Place.where(source_filename: new_place.source_filename,
+            source_name: new_place.source_name).first
+        end
+        if !new_place.source_filename.blank? && !new_place.name.blank?
+          existing ||= begin
+            Place.where(source_filename: new_place.source_filename).where("lower(name) = ?", new_place.name.downcase).first
+          rescue
+            new_place.name = new_place.name.force_encoding('ISO-8859-1').encode('UTF-8')
+            Place.where(source_filename: new_place.source_filename).where("lower(name) = ?", new_place.name.downcase).first
+          end
+        end
+        if options[:ancestor_place]
+          existing ||= options[:ancestor_place].descendants.
+            where("lower(name) = ? AND place_type = ?", new_place.name.downcase, new_place.place_type).first
+        end
+        
+        if existing
+          puts "[INFO] \t\tFound existing place: #{existing}"
+          place = existing
+          [:swlat, :swlng, :nelat, :nelng, :source_filename, :source_name, 
+              :source_identifier].each do |attr_name|
+            place.send("#{attr_name}=", new_place.send(attr_name)) if new_place.send(attr_name)
+          end
+          num_updated += 1
+        else
+          place = new_place.woeid ? Place.import_by_woeid(new_place.woeid) : new_place
+          [:latitude, :longitude, :swlat, :swlng, :nelat, :nelng, :source_filename, :source_name, 
+              :source_identifier, :place_type].each do |attr_name|
+            place.send("#{attr_name}=", new_place.send(attr_name)) if new_place.send(attr_name)
+          end
+          num_created += 1
+        end
+
+        if options[:ancestor_place]
+          place.parent ||= options[:ancestor_place]
+        end
+
+        place.place_type = options[:place_type] unless options[:place_type].blank?
+        place.place_type_name = options[:place_type_name] unless options[:place_type_name].blank?
+        
+        place = if block_given?
+          yield place, shp
+        else
+          place
+        end
+        begin
+          if place && place.valid?
+            place.save! unless options[:test]
+            puts "[INFO] \t\tSaved place: #{place}, parent: #{place.parent.try(:name)}"
+          else
+            num_created -= 1
+            puts "[ERROR] \tPlace invalid: #{place.errors.full_messages.join(', ')}" if place
+            next
+          end
+        rescue => e
+          puts "[ERROR] \tError: #{e}"
+          next
+        end
+        
+        next if options[:test]
+        
+        if existing && PlaceGeometry.exists?(
+            ["place_id = ? AND updated_at >= ?", existing, start_time.utc])
+          puts "[INFO] \t\tAppending to existing geom..."
+          place.append_geom(shp.geometry, :source => options[:source])
+        else
+          puts "[INFO] \t\tAdding geom..."
+          place.save_geom(shp.geometry, 
+            :source => options[:source],
+            :source_filename => place.source_filename,
+            :source_name => place.source_name, 
+            :source_identifier => place.source_identifier)
+        end
+        place.place_geometry_without_geom.process_geometry
       end
-      
-      next if options[:test]
-      
-      if existing && PlaceGeometry.exists?(
-          ["place_id = ? AND updated_at >= ?", existing, start_time.utc])
-        puts "[INFO] \t\tAppending to existing geom..."
-        place.append_geom(shp.geometry, :source => options[:source])
-      else
-        puts "[INFO] \t\tAdding geom..."
-        place.save_geom(shp.geometry, 
-          :source => options[:source],
-          :source_filename => place.source_filename,
-          :source_name => place.source_name, 
-          :source_identifier => place.source_identifier)
-      end
-      place.place_geometry_without_geom.process_geometry
     end
     
     puts "\n[INFO] Finished importing places.  #{num_created} created, " + 
@@ -717,17 +722,19 @@ class Place < ActiveRecord::Base
     skip_woeid = options[:skip_woeid]
     geoplanet_query = options[:geoplanet_query]
     geoplanet_options = options[:geoplanet_options] || {}
-    name = options[:name] || 
-      shape.data[name_column] || 
-      shape.data[name_column.upcase] || 
-      shape.data[name_column.capitalize] || 
-      shape.data[name_column.downcase]
-    source_identifier = shape.data[source_identifier_column] if source_identifier_column
+    data = shape.respond_to?(:data) ? shape.data : shape.attributes
+    name = options[:name] ||
+      data[name_column] ||
+      data[name_column.upcase] ||
+      data[name_column.capitalize] ||
+      data[name_column.downcase]
+    source_identifier = data[source_identifier_column] if source_identifier_column
+    center = shape.geometry.envelope.respond_to?(:center) ? shape.geometry.envelope : shape.geometry.envelope.centroid
     place = Place.new(options.select{|k,v| Place.instance_methods.include?("#{k}=".to_sym)}.merge(
       :name => name,
       :source_identifier => source_identifier,
-      :latitude => shape.geometry.envelope.center.y,
-      :longitude => shape.geometry.envelope.center.x,
+      :latitude => center.y,
+      :longitude => center.x,
       :swlat => shape.geometry.envelope.lower_corner.y,
       :swlng => shape.geometry.envelope.lower_corner.x,
       :nelat => shape.geometry.envelope.upper_corner.y,
@@ -981,14 +988,14 @@ class Place < ActiveRecord::Base
     if places.is_a?(Place)
       # single places become arrays
       [ places ]
-    elsif places.is_a?(Fixnum)
+    elsif places.is_a?(Integer)
       # single IDs become an array of instances
       Place.where(id: places)
     elsif places.is_a?(Array) && places.size > 0
       if places.first.is_a?(Place)
         # muliple places need no modification
         places
-      elsif places.first.is_a?(Fixnum)
+      elsif places.first.is_a?(Integer)
         # multiple IDs become an array of instances
         Place.where(id: places)
       end

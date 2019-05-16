@@ -24,7 +24,7 @@ const InteractionsTab = ( { interactions } ) => {
   if ( !interactions ) {
     status = (
       <h2 className="text-center">
-        <i className="fa fa-refresh fa-spin"></i>
+        <i className="fa fa-refresh fa-spin" />
       </h2>
     );
   } else if ( interactions && interactions.length === 0 ) {
@@ -43,7 +43,8 @@ const InteractionsTab = ( { interactions } ) => {
             { _.map( interactionsByType, ( typedInteractions, type ) => (
               <li key={`interactions-${type}`}>
                 <strong>
-                  { type }:
+                  { I18n.t( "label_colon", { label: I18n.t( type, { defaultValue: type } ) } ) }
+                  { " " }
                   { I18n.t( "x_species", { count: typedInteractions.length } ) }
                 </strong>
                 <ul>
@@ -64,14 +65,13 @@ const InteractionsTab = ( { interactions } ) => {
                       <li key={interaction.target_taxon_external_id}>
                         <a
                           href={
-                            `/taxa/${interaction.target.name}?test=taxon-page#interactions-tab`
+                            `/taxa/${interaction.target.name}?test=interactions#interactions-tab`
                           }
                           className={`taxon ${iconicTaxonName} ${rank}`}
                         >
-                          <i className={`icon-iconic-${iconicTaxonName.toLowerCase( )}`}>
-                          </i> <span
-                            className="display-name sciname"
-                          >{ interaction.target.name }</span>
+                          <i className={`icon-iconic-${iconicTaxonName.toLowerCase( )}`} />
+                          { " " }
+                          <span className="display-name sciname">{ interaction.target.name }</span>
                         </a>
                       </li>
                     );
@@ -87,7 +87,8 @@ const InteractionsTab = ( { interactions } ) => {
             Most organisms interact with other organisms in some way or
             another, and how they do so usually defines how they fit into an
             ecosystem. These intereactions come to us
-            from <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>,
+            from
+            <a href="http://www.globalbioticinteractions.org/">Global Biotic Interactions (GLoBI)</a>,
             a database and webservice that combines
             interaction data from numerous sources, including iNaturalist.
             You can actually contribute to this database by adding the
@@ -118,7 +119,7 @@ const InteractionsTab = ( { interactions } ) => {
                       backgroundPosition: "0 2px"
                     }}
                   >
-                    <i className="glyphicon glyphicon-new-window pull-right"></i>
+                    <i className="glyphicon glyphicon-new-window pull-right" />
                     { link.text }
                   </a>
                 </li>

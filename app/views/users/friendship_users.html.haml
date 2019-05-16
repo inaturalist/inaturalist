@@ -1,0 +1,12 @@
+- content_for(:title) do
+  = @title = action_name == "following" ? t(:people_user_follows, user: @user.login) : t(:people_following_user, user: @user.login )
+.container
+  .row
+    .col-xs-12
+      #pageheader
+        .breadcrumbs
+          = link_to is_me?(@user) ? t(:back_to_your_profile) : t(:back_to_possessive_user_profile, possuser: @user.login), person_path(@user), class: "back crumb"
+        %h2= @title
+  .row
+    .col-xs-12
+      = render partial: "table"

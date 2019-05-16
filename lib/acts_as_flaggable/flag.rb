@@ -2,7 +2,13 @@ class Flag < ActiveRecord::Base
   SPAM = "spam"
   INAPPROPRIATE = "inappropriate"
   COPYRIGHT_INFRINGEMENT = "copyright infringement"
-  belongs_to :flaggable, :polymorphic => true
+  FLAGS = [
+    SPAM,
+    INAPPROPRIATE,
+    COPYRIGHT_INFRINGEMENT
+  ]
+  belongs_to :flaggable, polymorphic: true
+  belongs_to :flaggable_user, class_name: "User", foreign_key: "flaggable_user_id"
 
   has_subscribers :to => {
     :comments => {:notification => "activity", :include_owner => true},
@@ -17,12 +23,15 @@ class Flag < ActiveRecord::Base
       !record.resolver.subscriptions.where(:resource_type => "Flag", :resource_id => record.id).exists?
   }
 
-  blockable_by lambda {|flag| flag.flaggable.try(:user_id) }
+  blockable_by lambda {|flag| flag.flaggable.try(:user_id) }, on: :create
   
   # NOTE: Flags belong to a user
   belongs_to :user
   belongs_to :resolver, :class_name => 'User', :foreign_key => 'resolver_id'
   has_many :comments, :as => :parent, :dependent => :destroy
+
+  before_save :set_resolved_at
+  before_create :set_flaggable_user_id
 
   after_create :notify_flaggable_on_create
   after_update :notify_flaggable_on_update
@@ -106,5 +115,36 @@ class Flag < ActiveRecord::Base
   
   def flagged_object
     eval("#{flaggable_type}.find(#{flaggable_id})")
+  end
+
+  def set_resolved_at
+    if resolved_changed? && resolved
+      self.resolved_at = Time.now
+    elsif resolved_changed?
+      self.resolved_at = nil
+    end
+    true
+  end
+
+  def get_flaggable_user
+    case flaggable_type
+    when "User" then flaggable
+    when "Message" then flaggable.from_user
+    else
+      k, reflection = flaggable.class.reflections.detect{|r| r[1].class_name == "User" && r[1].macro == :belongs_to }
+      if reflection
+        flaggable.send( k )
+      else
+        nil
+      end
+    end
+  end
+
+  def set_flaggable_user_id
+    return true unless flaggable
+    if u = get_flaggable_user
+      self.flaggable_user_id = u.id
+    end
+    true
   end
 end

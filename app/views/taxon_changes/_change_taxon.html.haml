@@ -14,6 +14,16 @@
   end
   show_change_links ||= false
   show_atlas_alert ||= false
+  if taxon_framework_relationship = change_taxon.taxon_framework_relationship
+    taxon_framework = taxon_framework_relationship.taxon_framework
+  else
+    taxon_framework = change_taxon.upstream_taxon_framework
+  end
+- content_for( :extracss ) do
+  :css
+    .padding {
+        padding: 5px;
+    }
 .change_taxon.clear{"data-taxon-id" => "#{change_taxon.id}", :id => "change_taxon_#{change_taxon.id}"}
   = image_and_content taxon_image(change_taxon), :image_size => 75 do
     = link_to change_taxon, :class => "taxon #{change_taxon.rank}" do
@@ -50,30 +60,26 @@
         - else
           %span.text-danger Not Atlased!
     .meta
-      .small.description
-        - schemes = change_taxon.taxon_schemes.to_a.compact
-        - unless schemes.blank?
-          %label
-            = t :schemes
-            \:
-          = schemes.map{|s| link_to(s.title, s)}.join(', ').html_safe
-        - unless swaps.blank?
-          %label= t :synonyms
-          %ul
-            - for swap in swaps
-              - next unless aka_taxon = swap.opposite_taxon_from(change_taxon)
-              - if aka_taxon.taxon_schemes.blank?
-                %li
-                  = link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon
-                  %br/
-                  = link_to t(:view_change), taxon_change_path(swap)
-              - else
-                - for aka_scheme in aka_taxon.taxon_schemes
-                  %li
-                    = link_to "#{aka_taxon.name} #{aka_taxon.id}", aka_taxon
-                    .meta
-                      = aka_scheme.title
-                    = link_to t(:view_change), taxon_change_path(swap)
+      .small
+        - if taxon_framework
+          = t( :covered_by_a_taxon_framework_html, 
+          link: link_to( t( :covered_by_a_taxon_framework_link, 
+          taxon_framework_rank: t( "ranks.#{ taxon_framework.taxon.rank }" ).capitalize,
+          taxon_framework_name: taxon_framework.taxon.name ),
+          taxonomy_details_for_taxon_path( taxon_framework.taxon ) ) )
+          - if taxon_framework.source
+            = t( :sourced_to )
+            = link_to taxon_framework.source.title, taxon_framework.source.url
+            %br
+            - if taxon_framework_relationship.nil?
+              %p.bg-info.padding
+                = t( :relationship_html, link: link_to( t( :unknown ).capitalize, taxonomy_details_for_taxon_path( change_taxon ) ) )
+            - else
+              %p.padding{ :class => ( taxon_framework_relationship.relationship == "match" ? 'bg-success' : 'bg-warning' ) }
+                = t( :relationship_html, 
+              link: link_to( ( taxon_framework_relationship.relationship == "match" ? t( "relationships.match" ).capitalize : t( :deviation ).capitalize ),
+              taxonomy_details_for_taxon_path( change_taxon ) ) )
+            
     - if show_change_links && taxon_change && @type
       .text-muted
         - input_names = taxon_change.input_taxa.map{|t| "#{t.name} #{t.id}"}

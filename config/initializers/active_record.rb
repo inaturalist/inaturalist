@@ -65,7 +65,7 @@ module ActiveRecord
     def self.split_date(date, options={})
       return unless date
       # we expect date to be a date, time or string object
-      date_copy = date.is_a?(Fixnum) ? date.to_s : date.dup
+      date_copy = date.is_a?(Integer) ? date.to_s : date.dup
       if date_copy.is_a?(String) && date_copy == "today"
         date_copy = Time.now
       end
@@ -133,8 +133,12 @@ module ActiveRecord
 
   class ActiveRecord::ConnectionAdapters::PostGISAdapter::MainAdapter
     def active_queries
-      User.connection.execute("SELECT * FROM pg_stat_activity WHERE state = 'active' ORDER BY state_change ASC").
-        to_a.delete_if{ |r| r["query"] =~ /SELECT \* FROM pg_stat_activity/ }
+      User.connection.execute("SELECT *
+        FROM pg_stat_activity
+        WHERE state = 'active'
+        AND backend_type != 'parallel worker'
+        AND backend_type != 'background worker'
+        ORDER BY state_change ASC").to_a.delete_if{ |r| r["query"] =~ /SELECT \* FROM pg_stat_activity/ }
     end
   end
 

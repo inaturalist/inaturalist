@@ -9,7 +9,7 @@
   #headersearch.search.navtabs.form-group{ class: session[:header_search_open] ? "open" : nil }
     .searchwrapper
       %input{ type: "text", placeholder: t(:search, default: "Search"), class: "form-control" }
-    %button.btn.btn-link.show-btn
+    %button.btn.btn-default.btn-inat.btn-focus.show-btn
       %i.fa.fa-search
     %button.btn.btn-link.hide-btn
       %i.fa.fa-times-circle
@@ -33,6 +33,9 @@
         %ul.dropdown-menu{ aria: { labelledby: "header-community-dropdown-toggle" } }
           %li= link_to t(:people), people_path
           %li= link_to t(:projects), projects_path
+          %li= link_to t(:journal_posts), journals_path
+          - if @site && !@site.discourse_url.blank? && @site.discourse_url
+            %li= link_to t(:forum), @site.discourse_url
           - if logged_in?
             - user_projects = current_user.project_users.joins(:project).includes(:project).limit(7).order("(projects.user_id = #{current_user.id}) DESC, projects.updated_at ASC").map{|pu| pu.project}.sort_by{|p| p.title.downcase}
             - unless user_projects.blank?
@@ -64,9 +67,13 @@
             %li= link_to t(:site_stats), stats_path
           %li.divider{role: "separator"}
           %li= link_to t(:help), help_path
+          - if @site && @site.id == Site.default.id && I18n.locale =~ /^en/
+            %li= link_to t(:video_tutorials), wiki_page_url( "video+tutorials" )
+            %li= link_to t(:managing_projects), wiki_page_url( "managing-projects" )
+            %li= link_to t(:teachers_guide), wiki_page_url( "teacher's+guide" )
   - if logged_in?
     .navtabs.add-obs
-      = link_to upload_observations_path, class: "btn btn-default btn-inat" do
+      = link_to upload_observations_path, class: "btn btn-default btn-inat btn-focus" do
         %i.fa.fa-arrow-circle-up
         %span.header-md.header-lg=t :upload
   %ul#usernav.navtabs

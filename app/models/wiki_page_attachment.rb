@@ -23,6 +23,7 @@ class WikiPageAttachment < ActiveRecord::Base
       'application/pdf',
       'image/svg+xml'
     ], :message => ' must be a JPEG, PNG , GIF, PDF, or SVG'
+    before_post_process :skip_for_non_images
   end
 
   IMAGE_CONTENT_TYPES = [
@@ -36,5 +37,9 @@ class WikiPageAttachment < ActiveRecord::Base
 
   def image?
     IMAGE_CONTENT_TYPES.include?( wiki_page_attachment.content_type )
+  end
+
+  def skip_for_non_images
+    image?
   end
 end

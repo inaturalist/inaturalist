@@ -1,6 +1,11 @@
 module TaxonDescribers
   
   class Wikipedia < Base
+    def initialize( options = {} )
+      @locale = options[:locale]
+      super()
+    end
+
     def describe(taxon)
       title = taxon.wikipedia_title
       title = taxon.name if title.blank?
@@ -20,8 +25,8 @@ module TaxonDescribers
       coder = HTMLEntities.new
       html.gsub!(/(data-)?videopayload=".+?"/m, '')
       decoded = coder.decode(html)
-      decoded.gsub!(/href="\/([A-z])/, 'href="https://en.wikipedia.org/\\1')
-      decoded.gsub!(/src="\/([A-z])/, 'src="https://en.wikipedia.org/\\1')
+      decoded.gsub!(/href="\/([A-z])/, "href=\"#{wikipedia.base_url}/\\1")
+      decoded.gsub!(/src="\/([A-z])/, "src=\"#{wikipedia.base_url}/\\1")
       if options[:strip_references]
         decoded.gsub!(/<sup .*?class=.*?reference.*?>.+?<\/sup>/, '')
         decoded.gsub!(/<strong .*?class=.*?error.*?>.+?<\/strong>/, '')
@@ -30,7 +35,7 @@ module TaxonDescribers
     end
 
     def wikipedia
-      WikipediaService.new(:debug => Rails.env.development?)
+      WikipediaService.new( debug: Rails.env.development?, locale: @locale )
     end
 
     def page_url(taxon)

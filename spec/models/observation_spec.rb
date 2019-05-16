@@ -76,8 +76,11 @@ describe Observation do
         # This *does* work b/c in December, Amsterdam is in CET, standard time
         ['December 27, 2012 8:09:50 AM GMT+01:00', :month => 12, :day => 27, :hour => 8, :offset => "+01:00"],
 
+        # Spacy AM, offset w/o named zone
+        ["2019-01-29 9:21:46 a. m. GMT-05:00", month: 1, day: 29, hour: 9, offset: "-05:00"],
+
         ['Thu Dec 26 2013 11:18:22 GMT+0530 (GMT+05:30)', :month => 12, :day => 26, :hour => 11, :offset => "+05:30"],
-        ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
+        # ['2010-08-23 13:42:55 +0000', :month => 8, :day => 23, :hour => 13, :offset => "+00:00"],
         ['2014-06-18 5:18:17 pm CEST', :month => 6, :day => 18, :hour => 17, :offset => "+02:00"],
         ["2017-03-12 12:17:00 pm PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
         ["2017/03/12 12:17 PM PDT", month: 3, day: 12, hour: 12, offset: "-07:00"],
@@ -121,6 +124,42 @@ describe Observation do
       zone = ActiveSupport::TimeZone[@observation.time_zone]
       expect(zone).not_to be_blank
       expect(zone.formatted_offset).to eq "-05:00"
+    end
+
+    describe "when the user has a time zone" do
+      let(:u_est) { User.make!( time_zone: "Eastern Time (US & Canada)" ) }
+      let(:u_cot) { User.make!( time_zone: "Bogota" ) }
+      let(:u_cst) { User.make!( time_zone: "Central Time (US & Canada)" ) }
+
+      it "should use the user's time zone if the date string only has an offset and it matches the user's time zone" do
+        observed_on_string = "2019-01-29 9:21:46 a. m. GMT-05:00"
+        o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
+        expect( o_est.time_zone ).to eq u_est.time_zone
+        o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
+        expect( o_cot.time_zone ).to eq u_cot.time_zone
+      end
+
+      it "should use the user's time zone if the date string only has an offset and it matches the user's time zone during daylight savings time" do
+        observed_on_string = "2018-06-29 9:21:46 a. m. GMT-05:00"
+        o_est = Observation.make!( user: u_est, observed_on_string: observed_on_string )
+        expect( o_est.time_zone ).to eq u_est.time_zone
+        o_cot = Observation.make!( user: u_cot, observed_on_string: observed_on_string )
+        expect( o_cot.time_zone ).to eq u_cot.time_zone
+      end
+
+      it "should parse out a time even if a problem time zone code is in the observed_on_string" do
+        observed_on_string = "2019-03-24 2:10 PM CDT"
+        o_cdt = Observation.make!( user: u_cst, observed_on_string: observed_on_string )
+        expect( o_cdt.time_zone ).to eq u_cst.time_zone
+        expect( o_cdt.time_observed_at ).not_to be_blank
+      end
+    end
+
+    it "should handle a user without a time zone" do
+      u = User.make!( time_zone: nil )
+      expect( u.time_zone ).to be_nil
+      o = Observation.make!( user: u, observed_on_string: "2018-06-29 9:21:46 a. m. GMT-05:00" )
+      expect( o.observed_on ).not_to be_blank
     end
 
     it "should handle unparsable times gracefully" do
@@ -490,6 +529,11 @@ describe Observation do
       expect(Observation.make!(positional_accuracy: nil).public_positional_accuracy).to be_nil
     end
 
+    it "should set positional_accuracy to nil if it's zero" do
+      o = Observation.make!( latitude: 1, longitude: 1, positional_accuracy: 0 )
+      expect( o.positional_accuracy ).to be_nil
+    end
+
     it "should replace an inactive taxon with its active equivalent" do
       taxon_change = make_taxon_swap
       taxon_change.committer = taxon_change.user
@@ -517,12 +561,6 @@ describe Observation do
   end
 
   describe "updating" do
-    before(:each) do
-      @observation = Observation.make!(
-        :taxon => Taxon.make!, 
-        :observed_on_string => 'yesterday at 1pm', 
-        :time_zone => 'UTC')
-    end
 
     it "should create an obs review if taxon set but was blank and updated by the observer" do
       o = Observation.make!
@@ -566,25 +604,33 @@ describe Observation do
       o.reload
       expect(Identification.find_by_id(old_owners_ident.id)).to be_blank
     end
-  
-    it "should properly set date and time" do
-      @observation.save
-      @observation.observed_on_string = 'March 16 2007 at 2pm'
-      @observation.save
-      expect(@observation.observed_on).to eq Date.parse('2007-03-16')
-      expect(@observation.time_observed_at_in_zone.hour).to eq(14)
-    end
-  
-    it "should not save a time if one wasn't specified" do
-      @observation.update_attributes(:observed_on_string => "April 2 2008")
-      @observation.save
-      expect(@observation.time_observed_at).to be_blank
-    end
-  
-    it "should clear date if observed_on_string blank" do
-      expect(@observation.observed_on).not_to be_blank
-      @observation.update_attributes(:observed_on_string => "")
-      expect(@observation.observed_on).to be_blank
+
+    describe "observed_on_string" do
+      let(:observation) {
+        Observation.make!(
+          taxon: Taxon.make!, 
+          observed_on_string: "yesterday at 1pm", 
+          time_zone: "UTC"
+        )
+      }
+      it "should properly set date and time" do
+        observation.observed_on_string = 'March 16 2007 at 2pm'
+        observation.save
+        expect(observation.observed_on).to eq Date.parse('2007-03-16')
+        expect(observation.time_observed_at_in_zone.hour).to eq(14)
+      end
+      
+      it "should not save a time if one wasn't specified" do
+        observation.update_attributes(:observed_on_string => "April 2 2008")
+        observation.save
+        expect(observation.time_observed_at).to be_blank
+      end
+      
+      it "should clear date if observed_on_string blank" do
+        expect(observation.observed_on).not_to be_blank
+        observation.update_attributes(:observed_on_string => "")
+        expect(observation.observed_on).to be_blank
+      end
     end
   
     it "should set an iconic taxon if the taxon was set" do
@@ -1011,6 +1057,24 @@ describe Observation do
           expect( o.taxon ).to eq genus
           expect( o.quality_grade ).to eq Observation::NEEDS_ID
         end
+        describe "if the taxon is a genus and the CID is the same genus" do
+          let(:genus) { Taxon.make!( rank: Taxon::GENUS ) }
+          let(:o) { make_research_grade_candidate_observation( taxon: genus, user: u ) }
+          before do
+            3.times { Identification.make!( observation: o, taxon: genus ) }
+            o.reload
+            expect( o.community_taxon ).to eq genus
+            expect( o.taxon ).to eq genus
+          end
+          it "should be needs_id if it hasn't been voted out of needs_id" do
+            expect( o.quality_grade ).to eq Observation::NEEDS_ID
+          end
+          it "should be research if it has been voted out of needs_id" do
+            o.downvote_from User.make!, vote_scope: "needs_id"
+            o.reload
+            expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+          end
+        end
         it "should be needs_id if the CID taxon is an ancestor of the taxon" do
           genus = Taxon.make!( rank: Taxon::GENUS )
           species = Taxon.make!( rank: Taxon::SPECIES, parent: genus )
@@ -1199,12 +1263,195 @@ describe Observation do
       end
     end
 
+    describe "obscuring by day" do
+      let(:observer) { User.make!( prefers_coordinate_interpolation_protection_test: true ) }
+      it "should obscure an observation made on the same day by the same user" do
+        o1 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: observer )
+        o2 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: observer )
+        o1.update_attributes!( taxon: make_threatened_taxon )
+        expect( o1 ).to be_coordinates_obscured
+        Delayed::Worker.new.work_off
+        o2.reload
+        expect( o2 ).to be_coordinates_obscured
+      end
+      it "should not obscure an observation made on the next day by the same user" do
+        o1 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: observer )
+        o2 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-02", user: observer )
+        o1.update_attributes!( taxon: make_threatened_taxon )
+        expect( o1 ).to be_coordinates_obscured
+        Delayed::Worker.new.work_off
+        o2.reload
+        expect( o2 ).not_to be_coordinates_obscured
+      end
+      it "should not obscure an observation made on the same day by another user" do
+        o1 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: observer )
+        o2_user = User.make!( prefers_coordinate_interpolation_protection_test: true )
+        o2 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: o2_user )
+        o1.update_attributes!( taxon: make_threatened_taxon )
+        expect( o1 ).to be_coordinates_obscured
+        Delayed::Worker.new.work_off
+        o2.reload
+        expect( o2 ).not_to be_coordinates_obscured
+      end
+      it "should obscure other observations even if this observation has no coordinates" do
+        o1 = Observation.make!( observed_on_string: "2018-10-01", user: observer )
+        o2 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: observer )
+        o1.update_attributes!( taxon: make_threatened_taxon )
+        Delayed::Worker.new.work_off
+        o2.reload
+        expect( o2 ).to be_coordinates_obscured
+      end
+      it "should make same day obs private if this is private" do
+        o1 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: observer )
+        o2 = Observation.make!( latitude: 1, longitude: 1, observed_on_string: "2018-10-01", user: observer )
+        o1.update_attributes!( taxon: make_threatened_taxon( conservation_status: { geoprivacy: Observation::PRIVATE } ) )
+        expect( o1 ).to be_coordinates_obscured
+        Delayed::Worker.new.work_off
+        o2.reload
+        expect( o2.private_latitude ).not_to be_blank
+        expect( o2.latitude ).to be_blank
+      end
+      describe "when date changes" do
+        let(:o1) {
+          Observation.make!(
+            observed_on_string: "2018-10-01",
+            latitude: 1,
+            longitude: 1,
+            taxon: make_threatened_taxon,
+            user: observer
+          )
+        }
+        it "should unobscure observations on the old date" do
+          expect( o1 ).to be_coordinates_obscured
+          o2 = Observation.make!(
+            user: o1.user,
+            observed_on_string: o1.observed_on_string,
+            latitude: 1,
+            longitude: 1
+          )
+          expect( o2 ).to be_coordinates_obscured
+          o1.update_attributes( observed_on_string: ( o1.observed_on + 1.day ).to_s )
+          Delayed::Worker.new.work_off
+          o2.reload
+          expect( o2 ).not_to be_coordinates_obscured
+        end
+        it "should observation observations on the new date" do
+          new_date = ( o1.observed_on + 1.day ).to_s
+          o2 = Observation.make!( user: o1.user, observed_on_string: new_date, latitude: 1, longitude: 1 )
+          expect( o2 ).not_to be_coordinates_obscured
+          o1.update_attributes( observed_on_string: new_date )
+          Delayed::Worker.new.work_off
+          o2.reload
+          expect( o2 ).to be_coordinates_obscured
+        end
+        it "should not unobscure observations on the old date if there are other obscuration origins" do
+          o2 = Observation.make!(
+            user: o1.user,
+            observed_on_string: o1.observed_on_string,
+            latitude: 1,
+            longitude: 1
+          )
+          o3 = Observation.make!(
+            user: o1.user,
+            observed_on_string: o1.observed_on_string,
+            latitude: 1,
+            longitude: 1,
+            taxon: make_threatened_taxon
+          )
+          expect( o2 ).to be_coordinates_obscured
+          o1.update_attributes( observed_on_string: ( o1.observed_on + 1.day ).to_s )
+          Delayed::Worker.new.work_off
+          o2.reload
+          expect( o2 ).to be_coordinates_obscured
+        end
+      end
+      describe "when date removed" do
+        let(:o1) {
+          Observation.make!(
+            observed_on_string: "2018-10-01",
+            latitude: 1,
+            longitude: 1,
+            taxon: make_threatened_taxon,
+            user: observer
+          )
+        }
+        it "should unobscure observations on the old date" do
+          expect( o1 ).to be_coordinates_obscured
+          o2 = Observation.make!(
+            user: o1.user,
+            observed_on_string: o1.observed_on_string,
+            latitude: 1,
+            longitude: 1
+          )
+          expect( o2 ).to be_coordinates_obscured
+          o1.update_attributes( observed_on_string: nil, observed_on: nil )
+          Delayed::Worker.new.work_off
+          o2.reload
+          expect( o2 ).not_to be_coordinates_obscured
+        end
+      end
+      describe "for user geoprivacy" do
+        let(:o1) {
+          Observation.make!(
+            geoprivacy: Observation::OBSCURED,
+            observed_on_string: "2018-10-01",
+            latitude: 1,
+            longitude: 1,
+            user: observer
+          )
+        }
+        describe "when user has not opted in" do
+          it "should not obscure an observation made on the same day by the same user" do
+            expect( o1 ).to be_coordinates_obscured
+            o2 = Observation.make!(
+              user: o1.user,
+              observed_on_string: o1.observed_on_string,
+              latitude: 1,
+              longitude: 1
+            )
+            expect( o2 ).not_to be_coordinates_obscured
+          end
+        end
+        describe "when user opts-in" do
+          before do
+            observer.update_attributes( prefers_coordinate_interpolation_protection: true )
+          end
+          it "should obscure an observation made on the same day by the same user" do
+            expect( o1 ).to be_coordinates_obscured
+            o2 = Observation.make!(
+              user: o1.user,
+              observed_on_string: o1.observed_on_string,
+              latitude: 1,
+              longitude: 1
+            )
+            expect( o2 ).to be_coordinates_obscured
+          end
+          it "should not obscure an observation made on the next day by the same user" do
+            expect( o1 ).to be_coordinates_obscured
+            o2 = Observation.make!(
+              user: o1.user,
+              latitude: 1,
+              longitude: 1,
+              observed_on_string: ( o1.observed_on + 1.day ).to_s
+            )
+            expect( o2 ).not_to be_coordinates_obscured
+          end
+          it "should not obscure an observation made on the same day by another user" do
+            expect( o1 ).to be_coordinates_obscured
+            o2_user = User.make!( prefers_coordinate_interpolation_protection: true )
+            o2 = Observation.make!( latitude: 1, longitude: 1, user: o2_user )
+            expect( o2 ).not_to be_coordinates_obscured
+          end
+        end
+      end
+    end
+
     it "should increment the taxon's counter cache" do
       o = Observation.make!
       t = Taxon.make!
       expect(t.observations_count).to eq(0)
       o.update_attributes(:taxon => t)
-      Delayed::Worker.new.work_off
+      Delayed::Job.find_each{|j| j.invoke_job}
       t.reload
       expect(t.observations_count).to eq(1)
     end
@@ -1215,7 +1462,7 @@ describe Observation do
       t = without_delay { Taxon.make!(parent: p, rank: Taxon::SPECIES) }
       expect(p.observations_count).to eq 0
       o.update_attributes(:taxon => t)
-      Delayed::Worker.new.work_off
+      Delayed::Job.find_each{|j| j.invoke_job}
       p.reload
       expect(p.observations_count).to eq 1
       Observation.elastic_index!(ids: [ o.id ], delay: true)
@@ -1303,13 +1550,13 @@ describe Observation do
 
     it "should decrement the taxon's counter cache" do
       t = Taxon.make!
-      o = without_delay{Observation.make!(:taxon => t)}
+      o = without_delay{ Observation.make!( taxon: t) }
       t.reload
-      expect(t.observations_count).to eq(1)
+      expect( t.observations_count ).to eq 1
       o.destroy
-      Delayed::Worker.new.work_off
+      Delayed::Job.find_each{|j| j.invoke_job}
       t.reload
-      expect(t.observations_count).to eq(0)
+      expect( t.observations_count ).to eq 0
     end
   
     it "should decrement the taxon's ancestors' counter caches" do
@@ -1319,7 +1566,7 @@ describe Observation do
       p.reload
       expect(p.observations_count).to eq(1)
       o.destroy
-      Delayed::Worker.new.work_off
+      Delayed::Job.find_each{|j| j.invoke_job}
       p.reload
       expect(p.observations_count).to eq(0)
     end
@@ -1777,6 +2024,9 @@ describe Observation do
       longitude: original_longitude,
       place_guess: original_place_guess
     } }
+
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
   
     it "should be set automatically if the taxon is threatened" do
       observation = Observation.make!( defaults )
@@ -1832,7 +2082,6 @@ describe Observation do
   
     it "should not be included in json" do
       observation = Observation.make!( defaults )
-      expect( observation.to_json ).not_to match( /private_latitude/ )
       expect( observation.to_json ).not_to match( /#{observation.private_latitude}/ )
       expect( observation.to_json ).not_to match( /#{observation.private_place_guess}/ )
     end
@@ -1840,8 +2089,7 @@ describe Observation do
     it "should not be included in a json array" do
       observation = Observation.make!( defaults )
       Observation.make!
-      observations = Observation.paginate( page: 1, per_page: 2).order( id: :desc )
-      expect( observations.to_json ).not_to match( /private_latitude/ )
+      observations = Observation.paginate( page: 1, per_page: 2 ).order( id: :desc )
       expect( observations.to_json ).not_to match( /#{observation.private_latitude}/ )
       expect( observation.to_json ).not_to match( /#{observation.private_place_guess}/ )
     end
@@ -2382,9 +2630,9 @@ describe Observation do
 
   describe "update_stats" do
     it "should not consider outdated identifications as agreements" do
-      o = Observation.make!( taxon: Taxon.make!( rank: "species", name: "sp1" ) )
+      o = Observation.make!( taxon: Taxon.make!( rank: "species", name: "Species one" ) )
       old_ident = Identification.make!( observation: o, taxon: o.taxon )
-      new_ident = Identification.make!( observation: o, user: old_ident.user, taxon: Taxon.make!( rank: "species", name: "sp2" ) )
+      new_ident = Identification.make!( observation: o, user: old_ident.user, taxon: Taxon.make!( rank: "species", name: "Species two" ) )
       o.reload
       o.update_stats
       o.reload
@@ -2602,7 +2850,7 @@ describe Observation do
       t = Taxon.make!
       o = Observation.make!(:taxon => t, :latitude => 1, :longitude => 1)
       cs = ConservationStatus.make!(:taxon => t)
-      expect(o).not_to be_coordinates_obscured
+      expect( o ).not_to be_coordinates_obscured
       Observation.reassess_coordinates_for_observations_of(t)
       o.reload
       expect(o).to be_coordinates_obscured
@@ -2615,6 +2863,8 @@ describe Observation do
       Identification.make!( observation: o, taxon: @Pseudacris_regilla )
       expect( o ).not_to be_coordinates_obscured
       cs = ConservationStatus.make!( taxon: @Pseudacris_regilla )
+      Delayed::Worker.new.work_off
+      o.reload
       Observation.reassess_coordinates_for_observations_of( @Pseudacris_regilla )
       o.reload
       expect( o ).to be_coordinates_obscured
@@ -2637,7 +2887,6 @@ describe Observation do
       place_guess = "somewhere awesome"
       o = Observation.make!( taxon: t, latitude: p.latitude, longitude: p.longitude, place_guess: place_guess )
       cs = ConservationStatus.make!( taxon: t )
-      expect( o.place_guess ).to eq place_guess
       Observation.reassess_coordinates_for_observations_of( t )
       o.reload
       expect( o.place_guess ).not_to be =~ /#{place_guess}/
@@ -2953,9 +3202,9 @@ describe Observation do
     end
 
     it "should not consider identifications of inactive taxa" do
-      g1 = Taxon.make!( rank: Taxon::GENUS, name: "g1" )
-      s1 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s1" )
-      s2 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "s2", is_active: false )
+      g1 = Taxon.make!( rank: Taxon::GENUS, name: "Genusone" )
+      s1 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "Genus speciesone" )
+      s2 = Taxon.make!( rank: Taxon::SPECIES, parent: g1, name: "Genus speciestwo", is_active: false )
       o = Observation.make!
       Identification.make!( observation: o, taxon: s1 )
       Identification.make!( observation: o, taxon: s1 )
@@ -3754,6 +4003,63 @@ describe Observation, "and update_quality_metrics" do
   end
 end
 
+describe Observation, "taxon_geoprivacy" do
+  it "should be set using private coordinates" do
+    p = make_place_with_geom
+    cs = ConservationStatus.make!( place: p )
+    o = Observation.make!
+    Observation.where( id: o.id ).update_all(
+      latitude: p.latitude + 10,
+      longitude: p.longitude + 10,
+      private_latitude: p.latitude,
+      private_longitude: p.longitude,
+    )
+    o.reload
+    expect( p ).to be_contains_lat_lng( o.private_latitude, o.private_longitude )
+    expect( p ).not_to be_contains_lat_lng( o.latitude, o.longitude )
+    i = Identification.make!( observation: o, taxon: cs.taxon )
+    o.reload
+    expect( o.taxon_geoprivacy ).to eq cs.geoprivacy
+  end
+end
+
+describe Observation, "prefers_auto_obscuration" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  describe "when false" do
+    let(:o) do
+      Observation.make!(
+        latitude: 1,
+        longitude: 1,
+        observed_on_string: 2.days.ago.to_date.to_s,
+        prefers_auto_obscuration: false
+      )
+    end
+    it "should override taxon obscuration" do
+      o.update_attributes( taxon: make_threatened_taxon )
+      o.reload
+      expect( o ).not_to be_coordinates_obscured
+    end
+    it "should override context obscuration" do
+      o.user.update_attributes( prefers_coordinate_interpolation_protection_test: true )
+      o2 = Observation.make!(
+        latitude: 1,
+        longitude: 1,
+        observed_on_string: o.observed_on_string,
+        taxon: make_threatened_taxon,
+        user: o.user
+      )
+      Delayed::Worker.new.work_off
+      o.reload
+      expect( o ).not_to be_coordinates_obscured
+    end
+    it "should not override user obscuration" do
+      o.update_attributes( geoprivacy: Observation::OBSCURED )
+      expect( o ).to be_coordinates_obscured
+    end
+  end
+end
+
 def setup_test_case_taxonomy
   # Tree:
   #          sf
@@ -3768,15 +4074,15 @@ def setup_test_case_taxonomy
 
   # Superfamily intentionally left unavailable. Since it has a blank ancestry,
   # it will not really behave as expected in most tests
-  sf = Taxon.make!( rank: "superfamily", name: "sf" )
-  @f = Taxon.make!( rank: "family", parent: sf, name: "f" )
-  @g1 = Taxon.make!( rank: "genus", parent: @f, name: "g1" )
-  @g2 = Taxon.make!( rank: "genus", parent: @f, name: "g2" )
-  @s1 = Taxon.make!( rank: "species", parent: @g1, name: "s1" )
-  @s2 = Taxon.make!( rank: "species", parent: @g1, name: "s2" )
-  @s3 = Taxon.make!( rank: "species", parent: @g1, name: "s3" )
-  @s4 = Taxon.make!( rank: "species", parent: @g1, name: "s4" )
-  @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss1" )
-  @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "ss2" )
+  sf = Taxon.make!( rank: "superfamily", name: "Superfamily" )
+  @f = Taxon.make!( rank: "family", parent: sf, name: "Family" )
+  @g1 = Taxon.make!( rank: "genus", parent: @f, name: "Genusone" )
+  @g2 = Taxon.make!( rank: "genus", parent: @f, name: "Genustwo" )
+  @s1 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesone" )
+  @s2 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciestwo" )
+  @s3 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesthree" )
+  @s4 = Taxon.make!( rank: "species", parent: @g1, name: "Genusone speciesfour" )
+  @ss1 = Taxon.make!( rank: "subspecies", parent: @s1, name: "Genusone speciesone subspeciesone" )
+  @ss2 = Taxon.make!( rank: "subspecies", parent: @s1, name: "Genusone speciesone subspeciestwo" )
   @o = Observation.make!
 end

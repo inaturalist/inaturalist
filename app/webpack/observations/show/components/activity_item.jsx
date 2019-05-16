@@ -2,7 +2,12 @@ import React from "react";
 import PropTypes from "prop-types";
 import ReactDOMServer from "react-dom/server";
 import _ from "lodash";
-import { OverlayTrigger, Panel, Tooltip } from "react-bootstrap";
+import {
+  OverlayTrigger,
+  Panel,
+  Tooltip,
+  Popover
+} from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
@@ -27,10 +32,12 @@ const ActivityItem = ( {
   hideDisagreement,
   hideCategory,
   noTaxonLink,
-  onClickCompare
+  onClickCompare,
+  trustUser,
+  untrustUser
 } ) => {
   if ( !item ) { return ( <div /> ); }
-  const taxon = item.taxon;
+  const { taxon } = item;
   const isID = !!taxon;
   const loggedIn = config && config.currentUser;
   let contents;
@@ -39,14 +46,14 @@ const ActivityItem = ( {
   const userLink = (
     <a
       className="user"
-      href={ `/people/${item.user.login}` }
-      target={ linkTarget }
+      href={`/people/${item.user.login}`}
+      target={linkTarget}
     >
       { item.user.login }
     </a>
   );
   if ( isID ) {
-    let buttons = [];
+    const buttons = [];
     let canAgree = false;
     let userAgreedToThis;
     if ( loggedIn && item.current && firstDisplay && item.user.id !== config.currentUser.id ) {
@@ -64,19 +71,22 @@ const ActivityItem = ( {
       }
       buttons.push( (
         <a
-          key={ `id-compare-${item.id}` }
-          href={ `/observations/identotron?observation_id=${observation.id}&taxon=${compareTaxonID}` }
+          key={`id-compare-${item.id}`}
+          href={`/observations/identotron?observation_id=${observation.id}&taxon=${compareTaxonID}`}
         >
           <button
+            type="button"
             className="btn btn-default btn-sm"
-            onClick={ e => {
+            onClick={e => {
               if ( onClickCompare ) {
                 return onClickCompare( e, taxon, observation, { currentUser: config.currentUser } );
               }
               return true;
-            } }
+            }}
           >
-            <i className="fa fa-exchange" /> { I18n.t( "compare" ) }
+            <i className="fa fa-exchange" />
+            { " " }
+            { I18n.t( "compare" ) }
           </button>
         </a>
       ) );
@@ -84,21 +94,26 @@ const ActivityItem = ( {
     if ( loggedIn && ( canAgree || userAgreedToThis ) ) {
       buttons.push( (
         <button
-          key={ `id-agree-${item.id}` }
+          type="button"
+          key={`id-agree-${item.id}`}
           className="btn btn-default btn-sm"
-          onClick={ () => { addID( taxon, { agreedTo: item } ); } }
-          disabled={ userAgreedToThis }
+          onClick={( ) => { addID( taxon, { agreedTo: item } ); }}
+          disabled={userAgreedToThis}
         >
-          { userAgreedToThis ? ( <div className="loading_spinner" /> ) :
-            ( <i className="fa fa-check" /> ) } { I18n.t( "agree_" ) }
+          { userAgreedToThis ? ( <div className="loading_spinner" /> )
+            : ( <i className="fa fa-check" /> ) }
+          { " " }
+          { I18n.t( "agree_" ) }
         </button>
       ) );
     }
-    const buttonDiv = ( <div className="buttons">
-      <div className="btn-space">
-        { buttons }
+    const buttonDiv = (
+      <div className="buttons">
+        <div className="btn-space">
+          { buttons }
+        </div>
       </div>
-    </div> );
+    );
     const taxonImageTag = util.taxonImage( taxon );
     header = I18n.t( "user_suggested_an_id", { user: ReactDOMServer.renderToString( userLink ) } );
     if ( item.disagreement ) {
@@ -110,25 +125,25 @@ const ActivityItem = ( {
         { buttonDiv }
         <div className="taxon">
           { noTaxonLink ? taxonImageTag : (
-            <a href={ `/taxa/${taxon.id}` } target={ linkTarget }>
+            <a href={`/taxa/${taxon.id}`} target={linkTarget}>
               { taxonImageTag }
             </a>
           ) }
           <SplitTaxon
-            taxon={ taxon }
-            url={ noTaxonLink ? null : `/taxa/${taxon.id}` }
+            taxon={taxon}
+            url={noTaxonLink ? null : `/taxa/${taxon.id}`}
             noParens
-            target={ linkTarget }
-            user={ config.currentUser }
+            target={linkTarget}
+            user={config.currentUser}
             showMemberGroup
           />
         </div>
-        { item.body && ( <UserText text={ item.body } className="id_body" /> ) }
+        { item.body && ( <UserText text={item.body} className="id_body" /> ) }
       </div>
     );
   } else {
     header = I18n.t( "user_commented", { user: ReactDOMServer.renderToString( userLink ) } );
-    contents = ( <UserText text={ item.body } /> );
+    contents = ( <UserText text={item.body} /> );
   }
   const relativeTime = moment.parseZone( item.created_at ).fromNow( );
   let panelClass;
@@ -137,13 +152,15 @@ const ActivityItem = ( {
   if ( unresolvedFlags.length > 0 ) {
     panelClass = "flagged";
     headerItems.push(
-      <span key={ `flagged-${item.id}` } className="item-status">
+      <span key={`flagged-${item.id}`} className="item-status">
         <a
           href={`/${isID ? "identifications" : "comments"}/${item.id}/flags`}
-          rel="nofollow"
+          rel="nofollow noopener noreferrer"
           target="_blank"
         >
-          <i className="fa fa-flag" /> { I18n.t( "flagged_" ) }
+          <i className="fa fa-flag" />
+          { " " }
+          { I18n.t( "flagged_" ) }
         </a>
       </span>
     );
@@ -152,82 +169,104 @@ const ActivityItem = ( {
     let idCategoryTooltipText;
     if ( item.category === "maverick" ) {
       panelClass = "maverick";
-      idCategory = ( <span key={ `maverick-${item.id}` } className="item-status ident-category">
-        <i className="fa fa-bolt" /> { I18n.t( "maverick" ) }
-      </span> );
+      idCategory = (
+        <span key={`maverick-${item.id}`} className="item-status ident-category">
+          <i className="fa fa-bolt" />
+          { " " }
+          { I18n.t( "maverick" ) }
+        </span>
+      );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.maverick" );
     } else if ( item.category === "improving" ) {
       panelClass = "improving";
-      idCategory = ( <span key={ `improving-${item.id}` } className="item-status ident-category">
-        <i className="fa fa-trophy" /> { I18n.t( "improving" ) }
-      </span> );
+      idCategory = (
+        <span key={`improving-${item.id}`} className="item-status ident-category">
+          <i className="fa fa-trophy" />
+          { " " }
+          { I18n.t( "improving" ) }
+        </span>
+      );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.improving" );
     } else if ( item.category === "leading" ) {
       panelClass = "leading";
-      idCategory = ( <span key={ `leading-${item.id}` } className="item-status ident-category">
-        <i className="icon-icn-leading-id" /> { I18n.t( "leading" ) }
-      </span> );
+      idCategory = (
+        <span key={`leading-${item.id}`} className="item-status ident-category">
+          <i className="icon-icn-leading-id" />
+          { " " }
+          { I18n.t( "leading" ) }
+        </span>
+      );
       idCategoryTooltipText = I18n.t( "id_categories.tooltips.leading" );
     }
     if ( idCategory ) {
       headerItems.push(
         <OverlayTrigger
-          key={ `ident-category-tooltip-${item.id}` }
-          container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+          key={`ident-category-tooltip-${item.id}`}
+          container={$( "#wrapper.bootstrap" ).get( 0 )}
           placement="top"
-          delayShow={ 200 }
-          overlay={ (
+          delayShow={200}
+          overlay={(
             <Tooltip id={`tooltip-${item.id}`}>
               { idCategoryTooltipText }
             </Tooltip>
-          ) }
+          )}
         >
           { idCategory }
         </OverlayTrigger>
       );
     }
   }
-  const viewerIsAdmin = config.currentUser && config.currentUser.roles && config.currentUser.roles.indexOf( "admin" ) >= 0;
-  if ( viewerIsAdmin && item.vision ) {
+  if ( item.vision ) {
     headerItems.push(
       <OverlayTrigger
-        key={ `itent-vision-${item.id}` }
-        container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+        key={`itent-vision-${item.id}`}
+        container={$( "#wrapper.bootstrap" ).get( 0 )}
+        trigger="click"
+        rootClose
         placement="top"
-        delayShow={ 200 }
-        overlay={ (
-          <Tooltip id={`vision-tooltip-${item.id}`}>
-            User chose a computer vision suggestion
-          </Tooltip>
-        ) }
+        delayShow={200}
+        overlay={(
+          <Popover
+            id={`vision-popover-${item.id}`}
+            title={I18n.t( "computer_vision_suggestion" )}
+          >
+            { I18n.t( "computer_vision_suggestion_desc" ) }
+          </Popover>
+        )}
       >
-        <span
-          className="vision-status" style={{ color: "#999", marginRight: "10px" }}
-        >
-          <i className="fa fa-eye"></i>
+        <span className="vision-status">
+          <i className="icon-sparkly-label" />
         </span>
       </OverlayTrigger>
     );
   }
   if ( item.taxon && !item.current ) {
     headerItems.push(
-      <span key={ `ident-withdrawn-${item.id}` } className="item-status">
-        <i className="fa fa-ban"></i> { I18n.t( "id_withdrawn" ) }
+      <span key={`ident-withdrawn-${item.id}`} className="item-status">
+        <i className="fa fa-ban" />
+        { " " }
+        { I18n.t( "id_withdrawn" ) }
       </span>
     );
   }
   let taxonChange;
   if ( item.taxon_change ) {
     const type = _.snakeCase( item.taxon_change.type );
-    taxonChange = ( <div className="taxon-change">
-      <i className="fa fa-refresh" /> { I18n.t( "this_id_was_added_due_to_a" ) } <a
-        href={ `/taxon_changes/${item.taxon_change.id}` }
-        target={ linkTarget }
-        className="linky"
-      >
-         { I18n.t( type ) }
-      </a>
-    </div> );
+    taxonChange = (
+      <div className="taxon-change">
+        <i className="fa fa-refresh" />
+        { " " }
+        { I18n.t( "this_id_was_added_due_to_a" ) }
+        { " " }
+        <a
+          href={`/taxon_changes/${item.taxon_change.id}`}
+          target={linkTarget}
+          className="linky"
+        >
+          { I18n.t( type ) }
+        </a>
+      </div>
+    );
   }
   const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
   const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
@@ -235,10 +274,10 @@ const ActivityItem = ( {
   if ( item.disagreement && !hideDisagreement ) {
     const previousTaxonLink = (
       <SplitTaxon
-        taxon={ item.previous_observation_taxon }
-        url={ urlForTaxon( item.previous_observation_taxon ) }
-        target={ linkTarget }
-        user={ config.currentUser }
+        taxon={item.previous_observation_taxon}
+        url={urlForTaxon( item.previous_observation_taxon )}
+        target={linkTarget}
+        user={config.currentUser}
       />
     );
     const footerText = I18n.t( "user_disagrees_this_is_taxon", {
@@ -248,39 +287,42 @@ const ActivityItem = ( {
     footer = (
       <span
         className="title_text"
-        dangerouslySetInnerHTML={ {
+        dangerouslySetInnerHTML={{
           __html: `* ${footerText}`
-        } }
+        }}
       />
     );
   }
   const elementID = isID ? `activity_identification_${item.id}` : `activity_comment_${item.id}`;
   const itemURL = isID ? `/identifications/${item.id}` : `/comments/${item.id}`;
   return (
-    <div id={ elementID } className={ `ActivityItem ${className} ${byClass}` }>
+    <div id={elementID} className={`ActivityItem ${className} ${byClass}`}>
       <div className="icon">
-        <UserImage user={ item.user } linkTarget={ linkTarget } />
+        <UserImage user={item.user} linkTarget={linkTarget} />
       </div>
-      <Panel className={ panelClass }>
+      <Panel className={panelClass}>
         <Panel.Heading>
           <Panel.Title>
-            <span className="title_text" dangerouslySetInnerHTML={ { __html: header } } />
+            <span className="title_text" dangerouslySetInnerHTML={{ __html: header }} />
             { headerItems }
             <time
               className="time"
-              dateTime={ item.created_at }
-              title={ moment( item.created_at ).format( "LLL" ) }
+              dateTime={item.created_at}
+              title={moment( item.created_at ).format( "LLL" )}
             >
-              <a href={ itemURL } target={ linkTarget }>{ relativeTime }</a>
+              <a href={itemURL} target={linkTarget}>{ relativeTime }</a>
             </time>
             <ActivityItemMenu
-              item={ item }
-              config={ config }
-              deleteComment={ deleteComment }
-              deleteID={ deleteID }
-              restoreID={ restoreID }
-              setFlaggingModalState={ setFlaggingModalState }
+              item={item}
+              observation={observation}
+              config={config}
+              deleteComment={deleteComment}
+              deleteID={deleteID}
+              restoreID={restoreID}
+              setFlaggingModalState={setFlaggingModalState}
               linkTarget={linkTarget}
+              trustUser={trustUser}
+              untrustUser={untrustUser}
             />
           </Panel.Title>
         </Panel.Heading>
@@ -312,7 +354,9 @@ ActivityItem.propTypes = {
   hideDisagreement: PropTypes.bool,
   hideCategory: PropTypes.bool,
   noTaxonLink: PropTypes.bool,
-  onClickCompare: PropTypes.func
+  onClickCompare: PropTypes.func,
+  trustUser: PropTypes.func,
+  untrustUser: PropTypes.func
 };
 
 export default ActivityItem;

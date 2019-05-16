@@ -86,6 +86,11 @@ class Taxon < ActiveRecord::Base
       ancestor_ids: ((ancestry ? ancestry.split("/").map(&:to_i) : [ ]) << id ),
       is_active: is_active
     }
+    # min_species_* below means don't consider any ranks more specific than species.
+    # If the taxon is a subspecies, its min_species_ancestry stops at species
+    # and its min_species_taxon_id is the ID of its parent, the species.
+    # These are used in Elasticsearch aggregations, for example leaf counts
+
     # indexing originating from Identifications
     if options[:for_identification]
       if Taxon::LIFE
@@ -103,6 +108,8 @@ class Taxon < ActiveRecord::Base
       json[:min_species_ancestry] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
         json[:ancestor_ids][0...-1].join(",") : json[:ancestry]
     end
+    json[:min_species_taxon_id] = (rank_level && rank_level < RANK_LEVELS["species"]) ?
+      parent_id : id
     # indexing originating Observations, not via another model
     unless options[:no_details]
       if options[:for_observation]
@@ -128,6 +135,7 @@ class Taxon < ActiveRecord::Base
         taxon_changes_count: taxon_changes_count,
         taxon_schemes_count: taxon_schemes_count,
         observations_count: observations_count,
+        universal_search_rank: observations_count,
         flag_counts: {
           resolved: flag_counts[true] || 0,
           unresolved: flag_counts[false] || 0
@@ -137,8 +145,7 @@ class Taxon < ActiveRecord::Base
         # when using Taxon.elasticindex! to bulk import
         place_ids: (indexed_place_ids || listed_taxa.map(&:place_id)).compact.uniq,
         listed_taxa: listed_taxa_with_means_or_statuses.map(&:as_indexed_json),
-        taxon_photos: taxon_photos_with_backfill(limit: 30, skip_external: true).
-          select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
+        taxon_photos: taxon_photos.select{ |tp| !tp.photo.blank? }.map(&:as_indexed_json),
         atlas_id: atlas.try( :id ),
         complete_species_count: complete_species_count,
         wikipedia_url: en_wikipedia_description ? en_wikipedia_description.url : nil

@@ -9,8 +9,8 @@ $(document).ready(function() {
     bFilter: false
   })
   $('#new_species').chooser({
-    collectionUrl: 'http://'+window.location.host + '/taxa/search.json?partial=taxon',
-    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=taxon',
+    collectionUrl: '/taxa/search.json?partial=taxon',
+    resourceUrl: '/taxa/{{id}}.json?partial=taxon',
     queryParam: 'q',
     afterSelect: function(item) {
       addTaxon(item)
@@ -42,28 +42,32 @@ $(document).ready(function() {
   })
   $('#trip_start_time, #trip_stop_time').iNatDatepicker({time:true})
   $('#trip_place_id').chooser({
-    collectionUrl: 'http://'+window.location.host + '/places/autocomplete.json',
-    resourceUrl: 'http://'+window.location.host + '/places/{{id}}.json?partial=autocomplete_item',
+    collectionUrl: '/places/autocomplete.json',
+    resourceUrl: '/places/{{id}}.json?partial=autocomplete_item',
     afterSelect: function(item) {
       $(this.element).parents('form').find('input[name*="latitude"]').val(item.latitude)
       $(this.element).parents('form').find('input[name*="longitude"]').val(item.longitude)
       
       // set accuracy from bounding box
       if (item.swlat) {
-        $(this.element).parents('form').find('input[name*="positional_accuracy"]').val(
+        $(this.element).parents('form').find('input[name*="radius"]').val(
           iNaturalist.Map.distanceInMeters(item.latitude, item.longitude, item.swlat, item.swlng)
         )
       }
       
       // set the map. it might be worth just using an iNat place selector and hiding the input
       $(this.element).parents('form').find('input[name*="longitude"]').change()
-      if (item.swlat) {$.fn.latLonSelector.zoomToAccuracy()}
+      if (item.swlat) {
+        $.fn.latLonSelector.zoomToAccuracy()
+        $('#trip_place_id').chooser('clear')
+      }
     }
   })
-
+  $("input.ui-widget").width(400)
+  
   $('#new_goal_taxon').chooser({
-    collectionUrl: 'http://'+window.location.host + '/taxa/search.json?partial=taxon',
-    resourceUrl: 'http://'+window.location.host + '/taxa/{{id}}.json?partial=taxon',
+    collectionUrl: '/taxa/search.json?partial=taxon',
+    resourceUrl: '/taxa/{{id}}.json?partial=taxon',
     queryParam: 'q',
     afterSelect: function(item) {
       $('#trip_purposes').data('last-taxon', item)
@@ -75,6 +79,7 @@ $(document).ready(function() {
         row = $('#trip_purposes .nested-fields:last')
     $(':input[name*=resource_type]', row).val('Taxon')
     $(':input[name*=resource_id]', row).val(taxon.id)
+    $( ':input[name*=complete]', row ).val( true )
     $('#new_goal_taxon').chooser('clear')
     $('#trip_purposes').data('last-taxon', null)
     row.attr('data-taxon-id', taxon.id)
@@ -156,4 +161,5 @@ $(document).ready(function() {
       $('#trip_taxa :input').remove()
     })
   })
+  
 })

@@ -1,13 +1,10 @@
 <%- content_for(:title) do -%>
-  <% @title = capture do %>
-    <%=t :flags_for %>
-    <%= link_to @object.try_methods(:to_plain_s, :to_s), @object %>
-  <% end %>
+  <% @title = t( :flags_for_x_html, x: link_to( @object.try_methods(:to_plain_s, :to_s), @object ) ) %>
   <%= strip_tags @title %>
 <%- end -%>
 <div id="pageheader" class="column span-24">
   <span class="breadcrumbs">
-    <%= link_to t(:back_to_this , :place=> "#{@object.try_methods(:to_plain_s, :to_s)}"),
+    <%= link_to t(:back_to_x , noun: "#{@object.try_methods(:to_plain_s, :to_s)}"),
                 @object,
                 :class => 'back crumb' %>
   </span>

@@ -190,6 +190,36 @@ class Emailer < ActionMailer::Base
     reset_locale
   end
 
+  def photos_missing(user, grouped_photos)
+    @user = user
+    @site = user.site || Site.default
+    @grouped_photos = grouped_photos
+    set_locale
+    @subject = I18n.t( "views.emailer.photos_missing.subject" )
+    mail(set_site_specific_opts.merge(
+      :to => "#{@user.name} <#{@user.email}>", :subject => @subject
+    ))
+    reset_locale
+  end
+
+  def notify_staff_about_blocked_user( user )
+    @user = user
+    @site = Site.default
+    @subject = "User #{user.id} (#{user.login}) blocked by #{user.user_blocks_as_blocked_user.count} people"
+    mail( set_site_specific_opts.merge(
+      to: @site.email_help,
+      subject: @subject
+    ) )
+  end
+
+  def parental_consent( email )
+    @site = Site.default
+    mail( set_site_specific_opts.merge(
+      to: email,
+      subject: t( "views.emailer.parental_consent.subject" )
+    ) )
+  end
+
   private
   def default_url_options
     opts = (Rails.application.config.action_mailer.default_url_options || {}).dup

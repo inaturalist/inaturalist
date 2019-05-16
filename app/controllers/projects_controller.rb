@@ -23,6 +23,7 @@ class ProjectsController < ApplicationController
   load_except = [ :create, :index, :search, :new_traditional, :by_login, :map, :browse, :calendar, :new ]
   before_filter :load_project, except: load_except
   blocks_spam except: load_except, instance: :project
+  check_spam only: [:create, :update], instance: :project
   before_filter :ensure_current_project_url, only: :show
   before_filter :load_project_user,
     except: [ :index, :search, :new_traditional, :by_login, :new, :feature, :unfeature ]
@@ -30,6 +31,8 @@ class ProjectsController < ApplicationController
   before_filter :ensure_can_edit, only: [ :edit, :update ]
   before_filter :filter_params, only: [ :update, :create ]
   before_filter :site_required, only: [ :feature, :unfeature ]
+
+  # requires_privilege :organizer, only: [:new_traditional]
   
   ORDERS = %w(title created)
   ORDER_CLAUSES = {
@@ -44,50 +47,56 @@ class ProjectsController < ApplicationController
           @place = @site.place unless params[:everywhere].yesish?
         end
 
-        base_params = { site_id: @site.id }
+        base_params = { site_id: @site.id, ttl: 600 }
         if current_user && ( current_user.is_admin? || current_user.site_admins.any? )
           base_params[:ttl] = -1
         end
-
-        carousel_ids = INatAPIService.projects( base_params.merge(
+        carousel_r = INatAPIService.projects( base_params.merge(
           noteworthy: true,
           order_by: "featured",
           per_page: 3
-        )).results.map{ |p| p["id"] }
-        @carousel = carousel_ids.map{ |id| Project.find(id) }.compact
+        ) )
 
-        featured_ids = INatAPIService.projects( base_params.merge(
+        carousel_ids = ( carousel_r ? carousel_r.results : [] ).map{ |p| p["id"] }
+        @carousel = Project.where(id: carousel_ids).to_a
+
+        featured_r = INatAPIService.projects( base_params.merge(
           featured: true,
           not_id: @carousel.map(&:id),
           order_by: "featured",
           per_page: 11
-        )).results.map{ |p| p["id"] }
-        @featured = featured_ids.map{ |id| Project.find(id) }.compact
+        ) )
+        featured_ids = ( featured_r ? featured_r.results : [] ).map{ |p| p["id"] }
+        @featured = Project.where(id: featured_ids).to_a
         while @carousel.length < 3 && @featured.length > 0 do
           @carousel.push( @featured.shift )
         end
         @featured = @featured[0...8]
 
-        recent_ids = INatAPIService.projects( base_params.merge(
+        recent_r = INatAPIService.projects( base_params.merge(
           not_id: @carousel.map(&:id) + @featured.map(&:id),
           per_page: 11,
           order_by: "recent_posts",
           place_id: @place.try(:id)
-        )).results.map{ |p| p["id"] }
-        @recent = recent_ids.map{ |id| Project.find(id) }.compact
+        ) )
+        recent_ids = ( recent_r ? recent_r.results : [] ).map{ |p| p["id"] }
+        @recent = Project.where(id: recent_ids).to_a
         while @carousel.length < 3 && @recent.length > 0 do
           @carousel.push( @recent.shift )
         end
         @recent = @recent[0...8]
 
-        created_ids = INatAPIService.projects( base_params.merge(
+        created_r = INatAPIService.projects( base_params.merge(
           not_id: @carousel.map(&:id) + @featured.map(&:id) + @recent.map(&:id),
           per_page: 8,
           order_by: "created",
           place_id: @place.try(:id),
           has_posts: true
-        )).results.map{ |p| p["id"] }
-        @created = created_ids.map{ |id| Project.find(id) }.compact
+        ) )
+        created_ids = ( created_r ? created_r.results : [] ).map{ |p| p["id"] }
+        @created = Project.where(id: created_ids).to_a
+
+        Project.preload_associations( @carousel + @featured + @recent + @created, :stored_preferences )
 
         if logged_in?
           @started = current_user.projects.not_flagged_as_spam.
@@ -130,6 +139,9 @@ class ProjectsController < ApplicationController
         end
         scope = scope.in_group(params[:group]) if params[:group]
         scope = scope.from_source_url(params[:source]) if params[:source]
+        scope = scope.includes( { project_observation_rules: :operand }, :project_list, :place,
+          { project_observation_fields: :observation_field }, :stored_preferences
+        )
         @projects = scope.paginate(:page => params[:page], :per_page => 100).to_a.uniq
         opts = Project.default_json_options.merge(:include => [
           :project_list, 

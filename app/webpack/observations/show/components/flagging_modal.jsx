@@ -4,12 +4,15 @@ import PropTypes from "prop-types";
 import { Button, Glyphicon, Modal } from "react-bootstrap";
 
 class FlaggingModal extends Component {
-
   constructor( props, context ) {
     super( props, context );
     this.close = this.close.bind( this );
     this.setRadioOption = this.setRadioOption.bind( this );
     this.submit = this.submit.bind( this );
+    this.textarea = React.createRef();
+    this.state = {
+      textareaChars: 0
+    };
   }
 
   setRadioOption( name ) {
@@ -21,8 +24,9 @@ class FlaggingModal extends Component {
   }
 
   submit( ) {
-    const item = this.props.state.item;
-    const body = this.refs.reason && $( this.refs.reason ).val( );
+    const { state: propsState, createFlag } = this.props;
+    const { item, radioOption } = propsState;
+    const body = this.textarea && this.textarea.current && $( this.textarea.current ).val( );
     let className = "Comment";
     if ( item.constructor.name === "Project" ) {
       className = "Project";
@@ -31,45 +35,63 @@ class FlaggingModal extends Component {
     } else if ( item.taxon ) {
       className = "Identification";
     }
-    this.props.createFlag( className, item.id, this.props.state.radioOption, body );
+    createFlag( className, item.id, radioOption, body );
     this.close( );
   }
 
   render( ) {
-    const item = this.props.state.item;
+    const {
+      state,
+      config,
+      deleteFlag
+    } = this.props;
+    const { item, show } = state;
     if ( !item ) {
       return ( <div /> );
     }
-    const loggedInUser = this.props.config.currentUser;
-    const otherTextarea = this.props.state.radioOption === "other" && (
-      <textarea placeholder={ I18n.t( "specify_the_reason_youre_flagging" ) }
-        className="form-control" ref="reason"
-      /> );
+    const loggedInUser = config.currentUser;
+    const { textareaChars } = this.state;
+    const otherTextarea = state.radioOption === "other" && (
+      <div>
+        <textarea
+          placeholder={I18n.t( "specify_the_reason_youre_flagging" )}
+          className="form-control"
+          ref={this.textarea}
+          maxLength={255}
+          onChange={e => this.setState( { textareaChars: e.target.value.length } )}
+        />
+        <div className="text-muted text-small">
+          { `${textareaChars} / 255` }
+        </div>
+      </div>
+    );
     const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
     const existingFlags = unresolvedFlags.length > 0 && (
       <div className="alert alert-warning">
         { I18n.t( "current_flags" ) }
         <ul>
-        { unresolvedFlags.map( flag => (
-          <li key={ `flag-${flag.id || flag.user.id}` }>
-            { flag.flag } (
-              <a href={ `/people/${flag.user.login}` }>{ flag.user.login }</a>)
-            { flag.user && loggedInUser && flag.user.id === loggedInUser.id && (
-              <Glyphicon glyph="remove-circle"
-                onClick={ ( ) => { this.props.deleteFlag( flag.id ); } }
-              />
-            ) }
-          </li>
-        ) ) }
+          { unresolvedFlags.map( flag => (
+            <li key={`flag-${flag.id || flag.user.id}`}>
+              { flag.flag }
+              { " " }
+              <a href={`/people/${flag.user.login}`}>{ flag.user.login }</a>
+              { flag.user && loggedInUser && flag.user.id === loggedInUser.id && (
+                <Glyphicon
+                  glyph="remove-circle"
+                  onClick={( ) => { deleteFlag( flag.id ); }}
+                />
+              ) }
+            </li>
+          ) ) }
         </ul>
       </div>
     );
     return (
       <Modal
-        show={ this.props.state.show }
+        show={show}
         className="FlaggingModal"
         backdrop="static"
-        onHide={ this.close }
+        onHide={this.close}
       >
         <Modal.Header closeButton>
           <Modal.Title>
@@ -78,15 +100,18 @@ class FlaggingModal extends Component {
         </Modal.Header>
         <Modal.Body>
           <div className="text">
+            <p>{ I18n.t( "flagging_desc" ) }</p>
             { existingFlags }
             <div className="flagInput">
               <label className="heading">
                 <input
                   type="radio"
                   name="spam"
-                  checked={ this.props.state.radioOption === "spam" }
-                  onChange={ () => { this.setRadioOption( "spam" ); } }
-                /> { I18n.t( "spam" ) }
+                  checked={state.radioOption === "spam"}
+                  onChange={() => { this.setRadioOption( "spam" ); }}
+                />
+                { " " }
+                { I18n.t( "spam" ) }
               </label>
               <div className="help-block">
                 { I18n.t( "commercial_solicitation" ) }
@@ -97,13 +122,17 @@ class FlaggingModal extends Component {
                 <input
                   type="radio"
                   name="inappropriate"
-                  checked={ this.props.state.radioOption === "inappropriate" }
-                  onChange={ () => { this.setRadioOption( "inappropriate" ); } }
-                /> { I18n.t( "offensive_inappropriate" ) }
+                  checked={state.radioOption === "inappropriate"}
+                  onChange={( ) => { this.setRadioOption( "inappropriate" ); }}
+                />
+                { " " }
+                { I18n.t( "offensive_inappropriate" ) }
               </label>
-              <div className="help-block"
-                dangerouslySetInnerHTML={ { __html:
-                  I18n.t( "misleading_or_illegal_content_html" ) } }
+              <div
+                className="help-block"
+                dangerouslySetInnerHTML={{
+                  __html: I18n.t( "misleading_or_illegal_content_html" )
+                }}
               />
             </div>
             <div className="flagInput">
@@ -111,12 +140,15 @@ class FlaggingModal extends Component {
                 <input
                   type="radio"
                   name="other"
-                  checked={ this.props.state.radioOption === "other" }
-                  onChange={ () => { this.setRadioOption( "other" ); } }
-                /> { I18n.t( "other" ) }
+                  checked={state.radioOption === "other"}
+                  onChange={( ) => { this.setRadioOption( "other" ); }}
+                />
+                { " " }
+                { I18n.t( "other" ) }
               </label>
               <div className="help-block">
-                { I18n.t( "some_other_reason" ) }
+                <p>{ I18n.t( "some_other_reason" ) }</p>
+                { item.quality_grade && <p>{ I18n.t( "duplicate_observation_flag_warning" ) }</p>}
               </div>
               { otherTextarea }
             </div>
@@ -124,10 +156,10 @@ class FlaggingModal extends Component {
         </Modal.Body>
         <Modal.Footer>
           <div className="buttons">
-            <Button onClick={ this.close }>
+            <Button onClick={this.close}>
               { I18n.t( "cancel" ) }
             </Button>
-            <Button bsStyle="primary" onClick={ this.submit }>
+            <Button bsStyle="primary" onClick={this.submit}>
               { I18n.t( "save" ) }
             </Button>
           </div>

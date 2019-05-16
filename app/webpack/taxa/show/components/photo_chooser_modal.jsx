@@ -8,10 +8,13 @@ import {
   ButtonGroup
 } from "react-bootstrap";
 import _ from "lodash";
+import inatjs from "inaturalistjs";
 import { fetch } from "../../../shared/util";
+import { MAX_TAXON_PHOTOS } from "../../shared/util";
 import ExternalPhoto from "./external_photo";
 import ChosenPhoto from "./chosen_photo";
 import PhotoChooserDropArea from "./photo_chooser_drop_area";
+
 
 class PhotoChooserModal extends React.Component {
   constructor( props ) {
@@ -26,83 +29,132 @@ class PhotoChooserModal extends React.Component {
       page: 1
     };
   }
+
   componentWillMount( ) {
-    if ( this.props.chosen ) {
-      this.setState( { chosen: this.props.chosen } );
+    const { chosen } = this.props;
+    if ( chosen ) {
+      this.setState( { chosen } );
     }
   }
+
   componentWillReceiveProps( newProps ) {
-    if ( !this.props.visible && newProps.visible ) {
+    const { visible } = this.props;
+    if ( !visible && newProps.visible ) {
       this.setState( { submitting: false } );
       this.fetchPhotos( newProps );
     }
     if ( newProps.chosen ) {
       this.setState( {
-        chosen: newProps.chosen.map( p =>
-          Object.assign( {}, p, { chooserID: this.keyForPhoto( p ) } ) )
+        chosen: newProps.chosen.map(
+          p => Object.assign( {}, p, { chooserID: this.keyForPhoto( p ) } )
+        )
       } );
+    }
+    if ( newProps.initialTaxon ) {
+      this.setState( { queryTaxon: newProps.initialTaxon } );
     }
     if ( newProps.initialQuery ) {
       this.setState( { query: newProps.initialQuery } );
     }
   }
+
   setProvider( provider ) {
     this.setState( { provider } );
     this.fetchPhotos( this.props, { provider } );
   }
+
   fetchPhotos( props, options = {} ) {
+    const { provider } = this.state;
     this.setState( { loading: true } );
-    const provider = options.provider || this.state.provider || "inat";
-    const params = Object.assign( { }, options, {
-      q: this.state.query,
-      limit: 12,
-      page: options.page || 1
-    } );
-    this.setState( { page: params.page, photos: [] } );
-    let url;
-    switch ( provider ) {
+    const chosenProvider = options.provider || provider || "inat";
+    this.setState( { page: options.page || 1, photos: [] } );
+    switch ( chosenProvider ) {
       case "inat":
-        url = `/taxa/observation_photos.json?${querystring.stringify( params )}`;
+        this.fetchObservationPhotos( { quality_grade: "any" }, options );
         break;
       case "inat-rg": {
-        const rgParams = Object.assign( {}, params, { quality_grade: "research" } );
-        url = `/taxa/observation_photos.json?${querystring.stringify( rgParams )}`;
+        this.fetchObservationPhotos( { quality_grade: "research" }, options );
         break;
       }
       default:
-        url = `/${provider}/photo_fields.json?${querystring.stringify( params )}`;
+        this.fetchProviderPhotos( chosenProvider, options );
     }
+  }
+
+  fetchObservationPhotos( params, options ) {
+    const { query, queryTaxon } = this.state;
+    const queryParams = Object.assign( {
+      page: options.page || 1,
+      per_page: 24,
+      photos: true,
+      order_by: "votes"
+    }, params );
+    if ( queryTaxon ) {
+      queryParams.taxon_id = queryTaxon.id;
+    } else if ( query
+      && Number( query ).toString( ) === query
+      && Number.isInteger( Number( query ) ) ) {
+      // query is an Integer, so assume its an observation ID
+      queryParams.id = query;
+    } else {
+      queryParams.q = query;
+      queryParams.search_on = "taxon_page_obs_photos";
+    }
+    inatjs.observations.search( queryParams ).then( response => {
+      const obsPhotos = _.compact( _.flatten( _.map( response.results, "photos" ) ) );
+      const photos = _.map( obsPhotos, p => Object.assign( {}, p, {
+        small_url: p.url.replace( "square", "small" ),
+        chooserID: this.keyForPhoto( p )
+      } ) );
+      this.setState( {
+        loading: false,
+        photos: _.uniqBy( photos, photo => photo.chooserID )
+      } );
+    } ).catch( ( ) => {
+      this.setState( { loading: false } );
+    } );
+  }
+
+  fetchProviderPhotos( provider, options ) {
+    const { query } = this.state;
+    const params = Object.assign( { }, options, {
+      q: query,
+      limit: 24,
+      page: options.page || 1
+    } );
+    const url = `/${provider}/photo_fields.json?${querystring.stringify( params )}`;
     fetch( url, params )
       .then(
         response => response.json( ),
         error => {
           // TODO handle error better
           this.setState( { loading: false } );
-          console.log( "[DEBUG] error: ", error );
+          // console.log( "[DEBUG] error: ", error );
         }
       )
       .then( json => {
-        const photos = json.map( p =>
-          Object.assign( {}, p, {
-            chooserID: this.keyForPhoto( p )
-          } )
-        );
+        const photos = json.map( p => Object.assign( {}, p, {
+          chooserID: this.keyForPhoto( p )
+        } ) );
         this.setState( {
           loading: false,
           photos: _.uniqBy( photos, photo => photo.chooserID )
         } );
       } );
   }
+
   fetchNextPhotos( ) {
     this.fetchPhotos( this.props, { page: this.state.page + 1 } );
   }
+
   fetchPrevPhotos( ) {
     this.fetchPhotos( this.props, {
       page: Math.max( this.state.page - 1, 1 )
     } );
   }
+
   movePhoto( dragIndex, hoverIndex ) {
-    const { chosen } = this.state;
+    const { chosen, photos } = this.state;
     const dragPhoto = chosen[dragIndex];
     if ( !dragPhoto ) {
       return;
@@ -119,6 +171,7 @@ class PhotoChooserModal extends React.Component {
       }
     } ) );
   }
+
   choosePhoto( chooserID ) {
     const { photos, chosen } = this.state;
     const existingIndex = chosen.findIndex( p => p.chooserID === chooserID );
@@ -136,6 +189,7 @@ class PhotoChooserModal extends React.Component {
     chosen.push( photo );
     this.setState( { chosen } );
   }
+
   newPhotoEnter( chooserID, index ) {
     const { photos, chosen } = this.state;
     const hovering = _.find( photos, p => p.chooserID === chooserID );
@@ -150,167 +204,198 @@ class PhotoChooserModal extends React.Component {
     chosen.splice( index, 0, newPhoto );
     this.setState( { chosen } );
   }
+
   newPhotoExit( ) {
     const { chosen } = this.state;
     this.setState( { chosen: chosen.filter( p => !p.candidate ) } );
   }
+
   removePhoto( chooserID ) {
     const { chosen } = this.state;
     this.setState( { chosen: chosen.filter( p => p.chooserID !== chooserID ) } );
   }
+
   keyForPhoto( photo ) {
     return `${photo.type || "Photo"}-${photo.id || photo.native_photo_id}`;
   }
+
   infoURL( photo ) {
     return photo.id ? `/photos/${photo.id}` : photo.native_page_url;
   }
+
   submit( ) {
     this.setState( { submitting: true } );
     this.props.onSubmit( this.state.chosen );
   }
+
   render( ) {
     const { visible, onClose } = this.props;
+    const {
+      provider,
+      query,
+      page,
+      photos,
+      loading,
+      chosen,
+      submitting
+    } = this.state;
     let searchPlaceholder = I18n.t( "type_species_name" );
-    if ( this.state.provider === "inat" ) {
+    if ( provider === "inat" ) {
       searchPlaceholder = I18n.t( "search_by_taxon_name_or_observation_id" );
-    } else if ( this.state.provider === "flickr" ) {
+    } else if ( provider === "flickr" ) {
       searchPlaceholder = I18n.t( "search_by_taxon_name_or_flickr_photo_id" );
     }
+    const prevNextButtons = (
+      <ButtonGroup className="pull-right">
+        <Button
+          disabled={page === 1}
+          onClick={( ) => this.fetchPrevPhotos( )}
+          title={I18n.t( "prev" )}
+        >
+          { I18n.t( "prev" ) }
+        </Button>
+        <Button
+          disabled={photos.length < 24}
+          onClick={( ) => this.fetchNextPhotos( )}
+          title={I18n.t( "next" )}
+        >
+          { I18n.t( "next" ) }
+        </Button>
+      </ButtonGroup>
+    );
+    const totalChosenPhotos = _.filter( chosen, p => !p.candidate ).length;
     return (
       <Modal
         show={visible}
         bsSize="large"
-        className="PhotoChooserModal"
+        className="PhotoChooserModal FullScreenModal"
         onHide={onClose}
       >
-        <Modal.Header closeButton>
-          <Modal.Title>{ I18n.t( "choose_photos_for_this_taxon" ) }</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="photocols">
-            <div>
-              <form
-                onSubmit={ e => {
-                  e.preventDefault( );
-                  this.fetchPhotos( );
-                  return false;
-                } }
-              >
-                <div className="input-group search-control">
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder={ searchPlaceholder }
-                    value={ this.state.query }
-                    onChange={ e => this.setState( { query: e.target.value } ) }
-                  />
-                  <span className="input-group-btn">
-                    <button
-                      className="btn btn-default"
-                      type="submit"
-                    >
-                      { I18n.t( "search" ) }
-                    </button>
-                  </span>
-                </div>
-              </form>
-              <form className="form-inline controls nav-buttons stacked">
-                <div className="form-group">
-                  <label>
-                    { I18n.t( "photos_from" ) }
-                  </label> <select
-                    className="form-control"
-                    onChange={ e => this.setProvider( e.target.value ) }
-                  >
-                    <option value="inat">{ I18n.t( "observations" ) }</option>
-                    <option value="inat-rg">{ I18n.t( "rg_observations" ) }</option>
-                    <option value="flickr">Flickr</option>
-                    <option value="eol">EOL</option>
-                    <option value="wikimedia_commons">Wikimedia Commons</option>
-                  </select>
-                </div>
-                <ButtonGroup className="pull-right">
-                  <Button
-                    disabled={this.state.page === 1}
-                    onClick={ ( ) => this.fetchPrevPhotos( ) }
-                    title={ I18n.t( "prev" ) }
-                  >
-                    { I18n.t( "prev" ) }
-                  </Button>
-                  <Button
-                    onClick={ ( ) => this.fetchNextPhotos( ) }
-                    title={ I18n.t( "next" ) }
-                  >
-                    { I18n.t( "next" ) }
-                  </Button>
-                </ButtonGroup>
-              </form>
-              <div className="photos">
-                { this.state.photos.map( photo => (
-                  <ExternalPhoto
-                    key={this.keyForPhoto( photo )}
-                    chooserID={this.keyForPhoto( photo )}
-                    src={photo.small_url}
-                    movePhoto={this.movePhoto}
-                    didNotDropPhoto={ ( ) => this.newPhotoExit( ) }
-                    infoURL={this.infoURL( photo )}
-                  />
-                ) ) }
-                { this.state.loading ? (
-                  <div className="loading text-center">
-                    <i className="fa fa-spin fa-refresh fa-2x text-muted"></i>
+        <div className="inner">
+          <Modal.Header closeButton>
+            <Modal.Title>{ I18n.t( "choose_photos_for_this_taxon" ) }</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <div className="photocols">
+              <div className="choosercol">
+                <form
+                  onSubmit={e => {
+                    e.preventDefault( );
+                    this.fetchPhotos( );
+                    return false;
+                  }}
+                >
+                  <div className="input-group search-control">
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder={searchPlaceholder}
+                      value={query}
+                      onChange={e => this.setState( { query: e.target.value, queryTaxon: null } )}
+                    />
+                    <span className="input-group-btn">
+                      <button
+                        className="btn btn-default"
+                        type="submit"
+                      >
+                        { I18n.t( "search" ) }
+                      </button>
+                    </span>
                   </div>
-                ) : null }
-                { !this.state.loading && this.state.photos.length === 0 && this.state.page === 1 ? (
-                  <div className="text-muted text-center">{ I18n.t( "no_results_found" ) }</div>
-                ) : null }
-                { !this.state.loading && this.state.photos.length === 0 && this.state.page > 1 ? (
-                  <div className="text-muted text-center">{ I18n.t( "no_more_results_found" ) }</div>
-                ) : null }
+                </form>
+                <form className="form-inline controls nav-buttons stacked">
+                  <div className="form-group">
+                    <label>
+                      { I18n.t( "photos_from" ) }
+                    </label>
+                    { " " }
+                    <select
+                      className="form-control"
+                      onChange={e => this.setProvider( e.target.value )}
+                    >
+                      <option value="inat">{ I18n.t( "observations" ) }</option>
+                      <option value="inat-rg">{ I18n.t( "rg_observations" ) }</option>
+                      <option value="flickr">Flickr</option>
+                      <option value="eol">EOL</option>
+                      <option value="wikimedia_commons">Wikimedia Commons</option>
+                    </select>
+                  </div>
+                  { photos.length > 0 && prevNextButtons }
+                </form>
+                <div className="photos">
+                  { photos.map( photo => (
+                    <ExternalPhoto
+                      key={this.keyForPhoto( photo )}
+                      chooserID={this.keyForPhoto( photo )}
+                      src={photo.small_url}
+                      movePhoto={this.movePhoto}
+                      didNotDropPhoto={( ) => this.newPhotoExit( )}
+                      infoURL={this.infoURL( photo )}
+                    />
+                  ) ) }
+                  { loading ? (
+                    <div className="loading text-center">
+                      <i className="fa fa-spin fa-refresh fa-2x text-muted" />
+                    </div>
+                  ) : null }
+                  { !loading && photos.length === 0 && page === 1 ? (
+                    <div className="text-muted text-center">{ I18n.t( "no_results_found" ) }</div>
+                  ) : null }
+                  { !loading && photos.length === 0 && page > 1 ? (
+                    <div className="text-muted text-center">{ I18n.t( "no_more_results_found" ) }</div>
+                  ) : null }
+                </div>
+                { photos.length > 0 && <form>{ prevNextButtons }</form> }
               </div>
+              <PhotoChooserDropArea
+                photos={chosen}
+                droppedPhoto={chooserID => this.choosePhoto( chooserID )}
+              >
+                <h4>{ I18n.t( "photos_chosen_for_this_taxon" ) }</h4>
+                <p>
+                  { I18n.t( "views.taxa.show.photo_chooser_modal_desc" ) }
+                </p>
+                { totalChosenPhotos >= MAX_TAXON_PHOTOS && (
+                  <p className="alert alert-warning">
+                    { I18n.t( "views.taxa.show.max_photos_desc", { max: MAX_TAXON_PHOTOS } ) }
+                  </p>
+                ) }
+                <div className="stacked photos">
+                  { _.map( chosen, ( photo, i ) => (
+                    <ChosenPhoto
+                      key={this.keyForPhoto( photo )}
+                      chooserID={this.keyForPhoto( photo )}
+                      src={photo.small_url}
+                      index={i}
+                      movePhoto={this.movePhoto}
+                      newPhotoEnter={chooserID => this.newPhotoEnter( chooserID )}
+                      dropNewPhoto={chooserID => this.choosePhoto( chooserID )}
+                      removePhoto={chooserID => this.removePhoto( chooserID )}
+                      candidate={photo.candidate}
+                      infoURL={this.infoURL( photo )}
+                      isDefault={i === 0}
+                      totalChosenPhotos={totalChosenPhotos}
+                    />
+                  ) ) }
+                </div>
+                <p className="text-muted">
+                  <small>
+                    { I18n.t( "views.taxa.show.photo_chooser_modal_explanation" ) }
+                  </small>
+                </p>
+              </PhotoChooserDropArea>
             </div>
-            <PhotoChooserDropArea
-              photos={this.state.chosen}
-              droppedPhoto={ chooserID => this.choosePhoto( chooserID ) }
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              bsStyle="primary"
+              onClick={( ) => this.submit( )}
+              disabled={submitting}
             >
-              <h4>{ I18n.t( "photos_chosen_for_this_taxon" ) }</h4>
-              <p>
-                { I18n.t( "views.taxa.show.photo_chooser_modal_desc" ) }
-              </p>
-              <div className="stacked photos">
-                { _.map( this.state.chosen, ( photo, i ) => (
-                  <ChosenPhoto
-                    key={this.keyForPhoto( photo )}
-                    chooserID={this.keyForPhoto( photo )}
-                    src={photo.small_url}
-                    index={i}
-                    movePhoto={this.movePhoto}
-                    newPhotoEnter={ chooserID => this.newPhotoEnter( chooserID ) }
-                    dropNewPhoto={ chooserID => this.choosePhoto( chooserID ) }
-                    removePhoto={ chooserID => this.removePhoto( chooserID ) }
-                    candidate={photo.candidate}
-                    infoURL={this.infoURL( photo )}
-                    isDefault={i === 0}
-                  />
-                ) ) }
-              </div>
-              <p className="text-muted">
-                <small>
-                  { I18n.t( "views.taxa.show.photo_chooser_modal_explanation" ) }
-                </small>
-              </p>
-            </PhotoChooserDropArea>
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button
-            bsStyle="primary"
-            onClick={ ( ) => this.submit( ) }
-            disabled={this.state.submitting}
-          >
-            { this.state.submitting ? I18n.t( "saving" ) : I18n.t( "save_photos" ) }
-          </Button>
-        </Modal.Footer>
+              { submitting ? I18n.t( "saving" ) : I18n.t( "save_photos" ) }
+            </Button>
+          </Modal.Footer>
+        </div>
       </Modal>
     );
   }
@@ -318,6 +403,7 @@ class PhotoChooserModal extends React.Component {
 
 PhotoChooserModal.propTypes = {
   initialQuery: PropTypes.string,
+  initialTaxon: PropTypes.object,
   photos: PropTypes.array,
   chosen: PropTypes.array,
   visible: PropTypes.bool,

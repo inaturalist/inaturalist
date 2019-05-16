@@ -57,7 +57,7 @@
         <div class="bootstrap">
           <div class="container upstacked">
             <div class="alert alert-error upstacked">
-              ><%= raw flash[:error] %>
+              <%= raw flash[:error] %>
             </div>
           </div>
         </div>
@@ -132,7 +132,8 @@
           login: '<%= current_user.login %>',
           icon_url: '<%= current_user.icon.file? ? current_user.icon.url(:medium) : "null" %>',
           roles: <%= current_user.roles.map(&:name).to_json.html_safe %>,
-          prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>
+          prefers_scientific_name_first: <%= current_user.prefers_scientific_name_first %>,
+          prefers_medialess_obs_maps: <%= current_user.prefers_medialess_obs_maps %>
         };
       <% end -%>
       var RAILS_FLASH = <%= flash.to_hash.compact.to_json.html_safe %>;

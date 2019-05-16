@@ -109,6 +109,9 @@ class EolPhoto < Photo
 
   def repair(options = {})
     r = EolPhoto.get_api_response( native_photo_id )
+    if r.blank? || r.children.blank?
+      return [self, { photo_missing: "photo not found #{self}" } ]
+    end
     p = EolPhoto.new_from_api_response( r )
     (EolPhoto.column_names - %w(id created_at updated_at)).each do |a|
       send("#{a}=", p.send(a))

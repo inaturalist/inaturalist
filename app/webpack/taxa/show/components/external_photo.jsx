@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import { DragSource as dragSource } from "react-dnd";
 import { PHOTO_CHOOSER_DRAGGABLE_TYPE } from "./photo_chooser_constants";
-import PhotoChoserPhoto from "./photo_chooser_photo";
+import PhotoChooserPhoto from "./photo_chooser_photo";
 
 const sourceSpec = {
   beginDrag: props => ( {
@@ -41,7 +41,7 @@ class ExternalPhoto extends React.Component {
           `ExternalPhoto ${PHOTO_CHOOSER_DRAGGABLE_TYPE} ${isDragging ? "dragging" : null}`
         }
       >
-        <PhotoChoserPhoto
+        <PhotoChooserPhoto
           infoURL={infoURL}
           src={src}
           chooserID={chooserID}

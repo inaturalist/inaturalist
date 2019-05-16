@@ -75,6 +75,12 @@ describe Project do
       expect( p.slug ).not_to eq "1"
     end
 
+    it "should not set the slug to a number... ever" do
+      p = Project.make( title: "2" )
+      p.save
+      expect( p.slug ).not_to eq "2"
+    end
+
     it "should transliterate slugs when possible" do
       p = Project.make!( title: "föö" )
       p.save

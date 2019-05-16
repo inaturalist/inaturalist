@@ -1,3 +1,4 @@
+import _ from "lodash";
 import {
   UPDATE_SEARCH_PARAMS,
   RECEIVE_OBSERVATIONS,
@@ -5,7 +6,6 @@ import {
   UPDATE_DEFAULT_PARAMS,
   REPLACE_SEARCH_PARAMS
 } from "../actions";
-import _ from "lodash";
 
 const DEFAULT_PARAMS = {
   reviewed: false,
@@ -16,13 +16,14 @@ const DEFAULT_PARAMS = {
   order_by: "observations.id",
   order: "desc",
   dateType: "any",
-  createdDateType: "any"
+  createdDateType: "any",
+  spam: false
 };
 
 const HIDDEN_PARAMS = ["dateType", "createdDateType", "force"];
 
 // Coerce params into a consistent format for update the state
-const normalizeParams = ( params ) => {
+const normalizeParams = params => {
   const newParams = {};
   _.forEach( params, ( v, k ) => {
     // remove blank params
@@ -197,6 +198,22 @@ const searchParamsReducer = ( state = {
     }
     default:
       return state;
+  }
+
+  if ( newState.params.captive && !state.params.captive ) {
+    // If state is changing to captive, change the quality grade
+    newState.params.quality_grade = "casual";
+  } else if (
+    // If state is changing from only casual to another quality grade state, remove captive
+    (
+      newState.params.quality_grade.indexOf( "needs_id" ) >= 0
+      && state.params.quality_grade.indexOf( "needs_id" ) < 0
+    ) || (
+      newState.params.quality_grade.indexOf( "research" ) >= 0
+      && state.params.quality_grade.indexOf( "research" ) < 0
+    )
+  ) {
+    newState.params.captive = false;
   }
   newState.params = normalizeParams( newState.params );
 

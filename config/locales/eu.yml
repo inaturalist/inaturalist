@@ -54,8 +54,6 @@ eu:
       zituzten</span>
     other: <span class=count>%{count}</span> behaketak ikerketa maila espezieak identifikatu
       zituzten</span>
-  a: bat
-  a_: bat
   a_community_for_naturalist: Naturalistentzako komunitatea
   a_default_taxon_name_will_automatically_created: |-
     Taxonaren izen zientifikoaren ezaugarrian oinarrituta taxonaren izena
@@ -111,7 +109,7 @@ eu:
   add_a_batch_of_observations: Ohar taldea gehitu
   add_a_batch_of_observations_by_csv: Ohar taldea gehitu CSV bidez
   add_a_batch_of_taxa: Taxon taldea gehitu
-  add_a_comment: Oharra gehitu
+  add_a_comment: Iruzkina gehitu
   add_a_field: Eremua gehitu
   add_a_flag: Bandera bat gehitu
   add_a_link_raquo: '&raquo; lotura gehitu'
@@ -140,8 +138,8 @@ eu:
   add_colors: Koloreak gehitu
   add_comma_separated_tags: Komarekin bereiztutako etiketak gehitu
   add_comment: Iruzkina gehitu
-  add_common_names_for: Izen arruntak gehitu lehendik dauden taxonei
-  add_conservation_status: iraute egoera gehitu
+  add_common_names_for: Izen arruntak gehitu aurretik dauden taxonei
+  add_conservation_status: Iraute egoera gehitu
   add_countries: Herrialdeak gehitu
   add_custom_project_fields: Pertsonalizatutako proiektu-eremuak gehitu
   add_edit_more_fields: Eremu gehiago gehitu/editatu
@@ -204,7 +202,6 @@ eu:
   add_taxon_batch_to: 'Taxon-zerrenda gehitu hona: %{list}'
   add_taxon_range: Taxon maila gehitu
   add_taxonomic_tags_to: Etiketa taxonomikoak gehitu hautatutako Flickr-eko » argazkiei;
-  add_to: 'Hona gehitu:'
   add_to_a_scheme: Eskema batetara gehitu
   add_to_a_project: Proiektu batera gehitu
   add_to_calendar: Egutegira gehitu
@@ -443,7 +440,6 @@ eu:
   automatically_update_my_content_for_taxon_changes: Nire edukia automatikoki eguneratu
     aldaketa dagoenean
   back: Itzuli
-  back_to: 'Hona itzuli:'
   back_to_albums: Albumera itzuli
   back_to_all_species: Espezie guztietara itzuli
   back_to_browsing_people: Pertsonen bilaketara itzuli
@@ -462,7 +458,6 @@ eu:
   back_to_shared_taxon: 'Hona itzuli: %{sharedtaxon}'
   back_to_suggestions: Bueltatu iradokizunetara
   back_to_taxon: 'Hona itzuli: %{defaulttaxon}'
-  back_to_this: 'Hona itzuli: %{place}'
   back_to_viewing: <i>%{taxon}</i> berriro ikusi
   back_to_x: 'Hona itzuli: %{noun}'
   back_to_x_journal: 'Honen egutegira itzuli: %{user}'
@@ -1013,18 +1008,18 @@ eu:
   eol: EOL
   error_updating_photo: 'Errorea argazkia igotzean: %{photo_errors}'
   establishment:
-    establishment: Sailkapena
-    native: Bertakoa
     endemic: Endemikoa
+    establishment: Sailkapena
     introduced: Sartua
-    naturalised: Naturalizatua
     invasive: Inbaditzailea
     managed: Gatibutasuna/Landua
+    native: Bertakoa
+    naturalised: Naturalizatua
   establishment_means: Kokatzeko moduak
   establishment_means_descriptions:
-    native_and_occurs_nowhere_else: Mexikon soilik gertatzen da
     arrived_in_the_region_via_anthropogenic_means: baliabide antropogenoen bidez iritsi
       zen eskualdera
+    native_and_occurs_nowhere_else: Mexikon soilik gertatzen da
   establishment_means_describes_how: 'Kokatzeko moduak taxona eremu batean nola txertatu
     zen deskribatzen du. Ikusi DarwinCore honetarako: <a href="http: //rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24">informazio
     gehiago terminologian</a>.'
@@ -1092,7 +1087,6 @@ eu:
     bete
   filling_out_your_profile: zure profila osatu
   filter: Iragazkia
-  filter_by: 'Honen arabera iragazi:'
   filter_by_place: Lekuaren arabera iragazi
   filter_by_taxon: Taxioiei begira iragazi
   filter_by_place_taxon_and_color: Kontrolak erabilita iragazi leku, kolore, espezie
@@ -1132,7 +1126,6 @@ eu:
   flag_marked_as_resolved_html: <span class=meta>Markatu</span> <strong>ebatzita gisa.</strong>
   flag_reason: “ %{record}hau markatzen ari naiz, zeren eta
   flag_saved: Ohartarazpena gordeta.
-  flag_saved_thanks: Ohartarazpena gordeta. Mila esker!
   flag_this_observation: Ohar hau markatu
   flag_this_photo: Argazki hau markatu
   flagged: markatuta
@@ -1144,7 +1137,6 @@ eu:
     %{site_name} webguneko erabiltzaileek gauzak markatzen dituzte,
     zerbait ez dagoela ondo topatzen dutenean. Hemen administrariek oraindik konpondu
     gabeko zenbait arazo daude.
-  flags_for: 'Honetarako markak:'
   flickr_account_information: Zure Flickr-eko kontuko informazioa
   flickr_description: Flickr argazkiak linean ostatatzeko zerbitzua da; agian ezagutuko
     duzu.
@@ -1162,8 +1154,6 @@ eu:
   flickr_youre_all_set: Prest dago %{site_name} arakatzen hasteko
   fluid: arina
   follow: Jarraitu
-  follow_us: 'Jarrai iezaguzu hemen:'
-  follow_us_on: 'Jarrai iezaguzu hemen:'
   follow_user: 'Honi jarraitu: %{user}'
   followed_projects: Jarraitutako Proiektuak
   follower: jarraitzailea
@@ -1179,8 +1169,6 @@ eu:
   fri: Ost
   from: 'hemendik:'
   from_a_place: leku batekoa
-  from_anywhere_change: edozein lekutakoa (<span class="button">aldatu</span>)
-  from_in_this_place: leku honetakoa
   from_list: Zerrendakoa
   from_this: honetatik
   from_photos: Argazkiena
@@ -1372,7 +1360,6 @@ eu:
   import_sounds: Soinuak Inportatu
   importing: Inportatzen...
   improving: Hobetzen
-  in_: 'hemendik:'
   inbox: postontzia
   in_order_to_login_and_using_site_visit_url: Erregistratu eta gunea erabiltzen hasteko,
     klikatu esteka honetan zure kontua aktibatzeko
@@ -1426,8 +1413,6 @@ eu:
   invited_to_the_following_projects: 'Proiektu hauetara gonbidatuta zaude:'
   inviting: gonbidatzen...
   iphone: iPhone
-  is_a: 'zera da:'
-  is_an: 'zera da:'
   is_an_evaluation: |-
     zehaztasun meaketaren ebaluaketa da.
     Ikerketa Graduaren oharrak zientzialariek erabili ditzakete ikertzeko. Eman zure botoa hemen:
@@ -2226,8 +2211,8 @@ eu:
     germany: Alemania
     greece: Grezia
     hungary: Hungaria
-    italy: Italia
     iraq: Irak
+    italy: Italia
     japan: Japonia
     martinique: Martinika
     mexico: Mexiko
@@ -2241,8 +2226,8 @@ eu:
     poland: Polonia
     republic_of_congo: Kongo
     russia: Errusia
-    saudi_arabia: Saudi Arabia
     sao_tome_and_principe: Sao Tome eta Principe
+    saudi_arabia: Saudi Arabia
     south_america: Hego Amerika
     spain: Espainia
     sweden: Suedia
@@ -2997,7 +2982,6 @@ eu:
   to_add_comments: aipamenak gehitzeko.
   to_add_identifications: identifikazioak gehitzeko.
   to_add_ids: identifikazioak gehitzeko
-  to_an: bati
   to_configure_your_widget: zure widget-a konfiguratzeko.
   to_suggest_an_identification: Identifikazio bat gomendatu
   to_tag_your_flickr_from_here: zure Flickr-eko argazkiak ebaki eta itsatsi gabe hemendik
@@ -3661,13 +3645,6 @@ eu:
           gonbidapen bereziaren esteka gehitu besterik ez duzu egin behar. Behaketa
           berrirako taxona eta proiektuaren lehen hautaketa ere egin dezakezu.
     places:
-      index:
-        adding_new_places: leku berriak gehitzea
-        confirming_identifications: identifikazioak baieztatzea
-        filling_out_checklists: ondo ezagutzen dituzun lekuetarako egiaztapen-zerrendak
-          eguneratzea
-        you_can_help_out_by: 'Lekuen gure datuak hobetzen lagun diezagukezu, honen
-          bidez:'
       new:
         check_list_note: 'Oharra: Egiaztapen-zerrendak automatikoki desaktibatzen
           dira leku oso handietarako.'

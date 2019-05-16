@@ -17,6 +17,7 @@ class TaxonChangesController < ApplicationController
     @iconic_taxon = Taxon.find_by_id(filter_params[:iconic_taxon_id]) unless filter_params[:iconic_taxon_id].blank?
     @source = Source.find_by_id(filter_params[:source_id]) unless filter_params[:source_id].blank?
     @taxon = Taxon.find_by_id(filter_params[:taxon_id].to_i) unless filter_params[:taxon_id].blank?
+    @ancestor_taxon = Taxon.find_by_id(filter_params[:ancestor_taxon_id].to_i) unless filter_params[:ancestor_taxon_id].blank?
     @change_group = filter_params[:change_group] unless filter_params[:change_group].blank?
     @taxon_scheme = TaxonScheme.find_by_id(filter_params[:taxon_scheme_id]) unless filter_params[:taxon_scheme_id].blank?
     user_id = filter_params[:user_id] || params[:user_id]
@@ -36,6 +37,7 @@ class TaxonChangesController < ApplicationController
     scope = scope.change_group(@change_group) if @change_group
     scope = scope.iconic_taxon(@iconic_taxon) if @iconic_taxon
     scope = scope.taxon(@taxon) if @taxon
+    scope = scope.ancestor_taxon( @ancestor_taxon ) if @ancestor_taxon
     scope = scope.source(@source) if @source
     scope = scope.taxon_scheme(@taxon_scheme) if @taxon_scheme
     scope = scope.by(@user) if @user
@@ -75,6 +77,7 @@ class TaxonChangesController < ApplicationController
   end
   
   def show
+    user_viewed_updates_for( @taxon_change ) if logged_in?
     unless @taxon_change.committed?
       @existing = @taxon_change.input_taxa.map do |it|
         TaxonChange.input_taxon(it).all.to_a
@@ -140,7 +143,7 @@ class TaxonChangesController < ApplicationController
       return
     else
       @change_groups = TaxonChange.select(:change_group).group(:change_group).map{|tc| tc.change_group}.compact.sort
-      render :action => 'edit'
+      render action: "edit", layout: "application"
     end
   end
   

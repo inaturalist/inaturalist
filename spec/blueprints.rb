@@ -66,7 +66,6 @@ ConservationStatus.blueprint do
   taxon { Taxon.make! }
   status { "E" }
   iucn { Taxon::IUCN_ENDANGERED }
-  geoprivacy { Observation::OBSCURED }
 end
 
 ControlledTerm.blueprint do
@@ -94,6 +93,7 @@ end
 
 Flag.blueprint do
   user { User.make! }
+  flaggable { Taxon.make! }
   flag { Faker::Name.name }
   resolved { false }
 end
@@ -286,9 +286,13 @@ Post.blueprint(:draft) do
 end
 
 Project.blueprint do
-  user { User.make! }
+  user { UserPrivilege.make!( privilege: UserPrivilege::ORGANIZER ).user }
   title { Faker::Lorem.sentence }
   description { Faker::Lorem.paragraph.truncate(255) }
+end
+
+Project.blueprint(:collection) do
+  project_type { "collection" }
 end
 
 ProjectInvitation.blueprint do
@@ -395,7 +399,7 @@ Subscription.blueprint do
 end
 
 Taxon.blueprint do
-  name { Faker::Name.name }
+  name { Faker::Name.name.gsub( /[^(A-z|\s|\-|×)]/, "" ) }
   rank { Taxon::RANKS[rand(Taxon::RANKS.size)] }
   is_active { true }
 end
@@ -447,7 +451,7 @@ TaxonMerge.blueprint do
 end
 
 TaxonName.blueprint do
-  name { Faker::Name.name }
+  name { Faker::Name.name.gsub( /[^(A-z|\s|\-|×)]/, "" ) }
   taxon { Taxon.make! }
 end
 
@@ -525,6 +529,11 @@ end
 UserBlock.blueprint do
   user { User.make! }
   blocked_user { User.make! }
+end
+
+UserPrivilege.blueprint do
+  user { User.make! }
+  privilege { UserPrivilege::SPEECH }
 end
 
 WikiPage.blueprint do

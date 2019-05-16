@@ -1,5 +1,5 @@
 - content_for(:title) do
-  = t(:everyone_journal_posts)
+  =raw t(:everyone_journal_posts)
 - content_for(:extracss) do
   = stylesheet_link_tag "posts"
   :css
@@ -27,4 +27,5 @@
               = render "posts/post", :post => post
       - else
         #noposts.description= t(:no_one_posted_anything_yet)
-      = will_paginate @posts, :renderer => INatLinkRenderer
+      - if @posts.total_entries > @posts.size
+        = link_to t(:more), url_for( from: @posts.last.id ), class: "btn btn-default"

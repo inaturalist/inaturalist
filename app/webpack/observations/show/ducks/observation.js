@@ -128,24 +128,51 @@ export function resetStates( ) {
 
 export function fetchTaxonSummary( ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const { observation } = getState( );
     if ( !observation || !observation.taxon ) { return null; }
-    const params = { id: observation.id, ttl: -1 };
+    const params = { id: observation.id, ttl: -1, locale: I18n.locale };
     return inatjs.observations.taxonSummary( params ).then( response => {
-      dispatch( setAttributes( { taxon:
-        Object.assign( { }, observation.taxon, { taxon_summary: response } ) } ) );
+      dispatch( setAttributes( {
+        taxon: Object.assign( { }, observation.taxon, { taxon_summary: response } )
+      } ) );
     } ).catch( e => console.log( e ) );
   };
 }
 
 export function fetchCommunityTaxonSummary( ) {
   return ( dispatch, getState ) => {
-    const observation = getState( ).observation;
+    const { observation } = getState( );
     if ( !observation || !observation.communityTaxon ) { return null; }
-    const params = { id: observation.id, ttl: -1, community: true };
+    const params = {
+      id: observation.id,
+      ttl: -1,
+      community: true,
+      locale: I18n.locale
+    };
     return inatjs.observations.taxonSummary( params ).then( response => {
-      dispatch( setAttributes( { communityTaxon:
-        Object.assign( { }, observation.communityTaxon, { taxon_summary: response } ) } ) );
+      dispatch( setAttributes( {
+        communityTaxon: Object.assign( { }, observation.communityTaxon,
+          { taxon_summary: response } )
+      } ) );
+    } ).catch( e => console.log( e ) );
+  };
+}
+
+export function fetchNewProjects( ) {
+  return ( dispatch, getState ) => {
+    const { observation } = getState( );
+    const params = {
+      include_new_projects: "true",
+      locale: I18n.locale,
+      ttl: -1
+    };
+    return inatjs.observations.fetch( observation.id, params ).then( response => {
+      const responseObservation = response.results[0];
+      if ( responseObservation && _.has( responseObservation, "non_traditional_projects" ) ) {
+        dispatch( setAttributes( {
+          non_traditional_projects: responseObservation.non_traditional_projects
+        } ) );
+      }
     } ).catch( e => console.log( e ) );
   };
 }
@@ -201,6 +228,9 @@ export function renderObservation( observation, options = { } ) {
       }
       if ( fetchAll || options.fetchControlledTerms || taxonUpdated ) {
         dispatch( fetchControlledTerms( ) );
+      }
+      if ( ( fetchAll || taxonUpdated ) && !_.has( observation, "non_traditional_projects" ) ) {
+        dispatch( fetchNewProjects( ) );
       }
     }, taxonUpdated ? 1 : 500 );
     if ( s.flaggingModal && s.flaggingModal.item && s.flaggingModal.show ) {

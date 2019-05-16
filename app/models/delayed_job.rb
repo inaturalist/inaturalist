@@ -123,7 +123,7 @@ class Delayed::Backend::ActiveRecord::Job
     else
       info[:model] = acts_on_object.try(:name)
       if info[:arguments].is_a?(Array) &&
-         info[:arguments][0].is_a?(Fixnum) &&
+         info[:arguments][0].is_a?(Integer) &&
          info[:arguments][1].is_a?(Hash)
         info[:model_id] = info[:arguments][0]
         info[:arguments] = info[:arguments][1]

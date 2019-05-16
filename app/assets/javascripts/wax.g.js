@@ -6,6 +6,7 @@
  * 2015-08-05 pleary - Specify jsonpCallbackName so varnish can cache responses
  * 2015-08-19 pleary - Remove click timeout to avoid delay in popups
  * 2018-07-02 pleary - Some fixes for Google maps renderer in JS v3.32
+ * 2019-04-04 pleary - Configurable tile size; optional interactive
  */
 
 !function (name, context, definition) {
@@ -2312,15 +2313,16 @@ wax.gi = function(grid_tile, options) {
 // It takes one options object, which current accepts a single option:
 // `resolution` determines the number of pixels per grid element in the grid.
 // The default is 4.
-wax.gm = function() {
-
+wax.gm = function( options ) {
+    options = options || { };
     var resolution = 4,
         grid_tiles = {},
         manager = {},
         tilejson,
         formatter,
         minZoom,
-        maxZoom;
+        maxZoom,
+        tileSize = options.tileSize || 256;
 
     var gridUrl = function(url) {
         if (url) {
@@ -2388,7 +2390,8 @@ wax.gm = function() {
             if (err) return callback(err, null);
             callback(null, wax.gi(t, {
                 formatter: formatter,
-                resolution: resolution
+                resolution: resolution,
+                tileSize: tileSize
             }));
         });
         return manager;
@@ -2484,8 +2487,9 @@ wax.hash = function(options) {
 };
 wax = wax || {};
 
-wax.interaction = function() {
-    var gm = wax.gm(),
+wax.interaction = function( options ) {
+    options = options || { };
+    var gm = wax.gm( options ),
         interaction = {},
         _downLock = false,
         _clickTimeout = null,
@@ -2499,7 +2503,8 @@ wax.interaction = function() {
         detach,
         parent,
         map,
-        tileGrid;
+        tileGrid,
+        tileSize = options.tileSize || 256;
 
     var defaultEvents = {
         mousemove: onMove,
@@ -2519,9 +2524,9 @@ wax.interaction = function() {
         var g = grid();
         for (var i = 0; i < g.length; i++) {
             if ((g[i][0] < e.y) &&
-               ((g[i][0] + 256) > e.y) &&
+               ((g[i][0] + tileSize) > e.y) &&
                 (g[i][1] < e.x) &&
-               ((g[i][1] + 256) > e.x)) return g[i][2];
+               ((g[i][1] + tileSize) > e.x)) return g[i][2];
         }
         return false;
     }
@@ -2649,6 +2654,7 @@ wax.interaction = function() {
         var ignoreThisZoom = (zoom < gm.minZoom() || zoom > gm.maxZoom());
         var tile = ignoreThisZoom ? 'undefined' : getTile(pos);
         if (!tile) callback(null);
+
         gm.getGrid(tile.src, function(err, g) {
             if (err || !g) return callback(null);
             var feature = g.tileFeature(pos.x, pos.y, tile);
@@ -3379,7 +3385,7 @@ wax.g.hash = function(map) {
 wax = wax || {};
 wax.g = wax.g || {};
 
-wax.g.interaction = function() {
+wax.g.interaction = function( options ) {
     var dirty = false, _grid, map;
     var tileloadListener = null,
         idleListener = null;
@@ -3431,7 +3437,7 @@ wax.g.interaction = function() {
 
 
 
-    return wax.interaction()
+    return wax.interaction( options )
         .attach(attach)
         .detach(detach)
         .parent(function() {
@@ -3496,10 +3502,11 @@ wax.g.connector = function(options) {
     this.maxZoom = options.maxzoom || 22;
     this.name = options.name || '';
     this.description = options.description || '';
+    this.tileDimension = options.tileSize || 256;
 
     // non-configurable options
-    this.interactive = true;
-    this.tileSize = new google.maps.Size(256, 256);
+    this.interactive = options.interactive !== false;
+    this.tileSize = new google.maps.Size(this.tileDimension, this.tileDimension);
 
     // DOM element cache
     this.cache = {};
@@ -3509,7 +3516,7 @@ wax.g.connector = function(options) {
 // Get a tile element from a coordinate, zoom level, and an ownerDocument.
 wax.g.connector.prototype.getTile = function(coord, zoom, ownerDocument) {
     var key = zoom + '/' + coord.x + '/' + coord.y;
-    var img = this.cache[key] = new Image(256, 256);
+    var img = this.cache[key] = new Image(this.tileDimension, this.tileDimension);
     if (zoom < this.minZoom || zoom > this.maxZoom) {
       this.cache[key].src = this.options.blankImage
       this.cache[key].style.display = 'none'

@@ -7,9 +7,9 @@ import UserWithIcon from "../../../observations/show/components/user_with_icon";
 import DateHistogram from "./date_histogram";
 import PieChartForIconicTaxonCounts from "./pie_chart_for_iconic_taxon_counts";
 
-const Identifications = ( { data, user } ) => {
+const Identifications = ( { data, user, currentUser, year } ) => {
   if ( _.isEmpty( data ) ) {
-    return <div></div>;
+    return <div />;
   }
   const series = {};
   const grayColor = "rgba( 40%, 40%, 40%, 0.5 )";
@@ -19,7 +19,7 @@ const Identifications = ( { data, user } ) => {
       data: _.map( data.month_histogram, ( value, date ) => ( { date, value } ) ),
       style: "bar",
       color: grayColor,
-      label: d => `<strong>${moment( d.date ).format( "MMMM" )}</strong>: ${d.value}`
+      label: d => `<strong>${moment( d.date ).add( 2, "days" ).format( "MMMM" )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
     };
   }
   if ( data.week_histogram ) {
@@ -28,12 +28,12 @@ const Identifications = ( { data, user } ) => {
       data: _.map( data.week_histogram, ( value, date ) => ( { date, value } ) ),
       color: "rgba( 168, 204, 9, 0.2 )",
       style: "bar",
-      label: d => `<strong>${I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } )}</strong>: ${d.value}`
+      label: d => `<strong>${I18n.t( "week_of_date", { date: moment( d.date ).format( "LL" ) } )}</strong>: ${I18n.toNumber( d.value, { precision: 0 } )}`
     };
   }
   if ( data.day_histogram ) {
     series.day = {
-      title: "Per Day",
+      title: I18n.t( "per_day" ),
       data: _.map( data.day_histogram, ( value, date ) => ( { date, value } ) ),
       color: "#74ac00"
     };
@@ -41,54 +41,68 @@ const Identifications = ( { data, user } ) => {
   return (
     <div className="Identifications">
       <Row>
-        <Col xs={ 12 }>
+        <Col xs={12}>
           <h3><span>{ I18n.t( "ids_made_for_others" ) }</span></h3>
           <DateHistogram
-            series={ series }
-            tickFormatBottom={ d => moment( d ).format( "MMM D" ) }
-            onClick={ d => {
+            series={series}
+            tickFormatBottom={d => moment( d ).format( "MMM D" )}
+            onClick={currentUser && currentUser.id ? d => {
               let url = "/identifications?for=others&current=true";
               const d1 = moment( d.date ).format( "YYYY-MM-DD" );
               let d2;
               if ( d.seriesName === "month" ) {
-                d2 = moment( d.date ).endOf( "month" ).add( 1, "day" ).format( "YYYY-MM-DD" );
+                d2 = moment( d.date ).add( 2, "days" ).endOf( "month" ).format( "YYYY-MM-DD" );
               } else if ( d.seriesName === "week" ) {
-                d2 = moment( d.date ).add( 8, "days" ).format( "YYYY-MM-DD" );
+                d2 = moment( d.date ).endOf( "week" ).add( 1, "day" ).format( "YYYY-MM-DD" );
               } else {
-                d2 = moment( d.date ).add( 1, "day" ).format( "YYYY-MM-DD" );
+                d2 = moment( d.date ).format( "YYYY-MM-DD" );
               }
               url += `&d1=${d1}&d2=${d2}`;
               if ( user ) {
                 url += `&user_id=${user.login}`;
               }
               window.open( url, "_blank" );
-            } }
+            } : null}
+            margin={{ left: 60 }}
           />
         </Col>
       </Row>
       { user && ( data.users_helped || data.users_who_helped ) ? (
         <Row>
-          <Col xs={ 4 }>
+          <Col xs={4}>
             { data.users_helped ? (
               <div className="idents-users-helped">
                 <h3><span>{ I18n.t( "who_user_helped_the_most", { user: user.login } ) }</span></h3>
                 { data.users_helped.map( d => (
                   <UserWithIcon
-                    user={ Object.assign( {}, d.user, { icon_url: d.user.icon } ) }
-                    subtitle={ I18n.t( "x_identifications", { count: d.count } ) }
+                    user={Object.assign( {}, d.user, { icon_url: d.user.icon } )}
+                    subtitle={I18n.t( "x_identifications", { count: d.count } )}
                     subtitleIconClass=" "
-                    key={ `idents-users-helped-${d.user.id}` }
+                    key={`idents-users-helped-${d.user.id}`}
                   />
                 ) ) }
+                { data.total_users_helped && data.total_ids_given && (
+                  <p
+                    className="text-muted"
+                    dangerouslySetInnerHTML={{
+                      __html: I18n.t( "user_helped_x_people_with_y_ids_html", {
+                        user: user.login,
+                        x: I18n.toNumber( data.total_users_helped, { precision: 0 } ),
+                        y: I18n.toNumber( data.total_ids_given, { precision: 0 } )
+                      } )
+                    }}
+                  />
+                ) }
               </div>
             ) : null }
           </Col>
-          <Col xs={ 4 }>
+          <Col xs={4}>
             <h3><span>{ I18n.t( "ids_by_taxon" ) }</span></h3>
             <PieChartForIconicTaxonCounts
-              data={ data.iconic_taxon_counts }
-              donutWidth={ 20 }
-              labelForDatum={ d => {
+              year={year}
+              data={data.iconic_taxon_counts}
+              donutWidth={20}
+              labelForDatum={d => {
                 const degrees = ( d.endAngle - d.startAngle ) * 180 / Math.PI;
                 const percent = _.round( degrees / 360 * 100, 2 );
                 const value = I18n.t( "x_identifications", {
@@ -98,18 +112,30 @@ const Identifications = ( { data, user } ) => {
               }}
             />
           </Col>
-          <Col xs={ 4 }>
+          <Col xs={4}>
             { data.users_who_helped ? (
               <div className="idents-users-who-helped">
                 <h3><span>{ I18n.t( "who_helped_user_the_most", { user: user.login } ) }</span></h3>
                 { data.users_who_helped.map( d => (
                   <UserWithIcon
-                    user={ Object.assign( {}, d.user, { icon_url: d.user.icon } ) }
-                    subtitle={ I18n.t( "x_identifications", { count: d.count } ) }
+                    user={Object.assign( {}, d.user, { icon_url: d.user.icon } )}
+                    subtitle={I18n.t( "x_identifications", { count: d.count } )}
                     subtitleIconClass=" "
-                    key={ `idents-users-who-helped-${d.user.id}` }
+                    key={`idents-users-who-helped-${d.user.id}`}
                   />
                 ) ) }
+                { data.total_users_who_helped && data.total_ids_received && (
+                  <p
+                    className="text-muted"
+                    dangerouslySetInnerHTML={{
+                      __html: I18n.t( "x_people_helped_user_with_y_ids_html", {
+                        user: user.login,
+                        x: I18n.toNumber( data.total_users_who_helped, { precision: 0 } ),
+                        y: I18n.toNumber( data.total_ids_received, { precision: 0 } )
+                      } )
+                    }}
+                  />
+                ) }
               </div>
             ) : null }
           </Col>
@@ -121,7 +147,9 @@ const Identifications = ( { data, user } ) => {
 
 Identifications.propTypes = {
   data: PropTypes.object,
-  user: PropTypes.object
+  user: PropTypes.object,
+  currentUser: PropTypes.object,
+  year: PropTypes.number
 };
 
 export default Identifications;

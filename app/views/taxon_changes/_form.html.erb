@@ -179,7 +179,7 @@
           <%= f.fields_for :taxon_change_taxa, :builder => DefaultFormBuilder do |tct| %> 
             <div class="taxon_change_taxon">
               <%= tct.hidden_field :taxon_change_id %>
-              <%= tct.hidden_field "_destroy" %>
+              <%= tct.hidden_field "_destroy", value: false %>
               <%= link_to_function t(:remove),
                 "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp(function( ) { rearrangeTaxonFieldsets( ); }).attr('id', ''); ", 
                 :class => "right" %>
@@ -193,7 +193,7 @@
             <%= f.fields_for :taxon_change_taxa, taxon_change.taxon_change_taxa.build, :builder => DefaultFormBuilder do |tct| %>
               <div class="taxon_change_taxon">
                 <%= tct.hidden_field :taxon_change_id %>
-                <%= tct.hidden_field "_destroy" %>
+                <%= tct.hidden_field "_destroy", value: false %>
                 <%= link_to_function t(:remove),
                   "$(this).prev().val(1); $(this).parents('.taxon_change_taxon').slideUp( function( ) { rearrangeTaxonFieldsets( ); }).attr('id', '');", 
                   :class => "right" %>

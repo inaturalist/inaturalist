@@ -7,8 +7,8 @@ import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
 import UserWithIcon from "./user_with_icon";
 import FlashMessagesContainer from "../../../shared/containers/flash_messages_container";
-import ConservationStatusBadge from "../components/conservation_status_badge";
-import EstablishmentMeansBadge from "../components/establishment_means_badge";
+import ConservationStatusBadge from "./conservation_status_badge";
+import EstablishmentMeansBadge from "./establishment_means_badge";
 import ActivityContainer from "../containers/activity_container";
 import AnnotationsContainer from "../containers/annotations_container";
 import AssessmentContainer from "../containers/assessment_container";
@@ -34,7 +34,7 @@ import ProjectsContainer from "../containers/projects_container";
 import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
-import TestGroupToggle from "../../../shared/components/test_group_toggle";
+// import TestGroupToggle from "../../../shared/components/test_group_toggle";
 
 moment.locale( "en", {
   relativeTime: {
@@ -101,10 +101,10 @@ const App = ( {
             <Col xs={ 10 }>
               <div className="ObservationTitle">
                 <SplitTaxon
-                  taxon={ observation.taxon }
-                  url={ taxonUrl }
+                  taxon={observation.taxon}
+                  url={taxonUrl}
                   placeholder={observation.species_guess}
-                  user={ config.currentUser }
+                  user={config.currentUser}
                 />
                 <ConservationStatusBadge observation={ observation } />
                 <EstablishmentMeansBadge observation={ observation } />

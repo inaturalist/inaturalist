@@ -93,6 +93,35 @@ shared_examples_for "a signed in UsersController" do
         expect( es_response.photo_licenses ).to be_blank
       end
     end
+
+    describe "friend_id" do
+      it "should create a friendship if one doesn't exist" do
+        friend = User.make!
+        expect( user.followees ).not_to include friend
+        put :update, format: :json, id: user.id, friend_id: friend.id
+        user.reload
+        expect( user.followees ).to include friend
+      end
+      it "should update a friendship if one exists" do
+        friendship = Friendship.make!( user: user, following: false, trust: true )
+        expect( user.followees ).not_to include friendship.friend
+        put :update, format: :json, id: user.id, friend_id: friendship.friend.id
+        expect( user.followees ).to include friendship.friend
+        friendship.reload
+        expect( friendship ).to be_following
+      end
+    end
+
+    describe "remove_friend_id" do
+      it "should update a friendship if one exist" do
+        friendship = Friendship.make!( user: user, following: false, trust: true )
+        expect( user.followees ).not_to include friendship.friend
+        put :update, format: :json, id: user.id, remove_friend_id: friendship.friend.id
+        expect( user.followees ).not_to include friendship.friend
+        friendship.reload
+        expect( friendship ).not_to be_following
+      end
+    end
   end
 
   describe "new_updates" do
@@ -189,13 +218,6 @@ describe UsersController, "oauth authentication" do
   it_behaves_like "a signed in UsersController"
 end
 
-describe UsersController, "devise authentication" do
-  before do
-    http_login user
-  end
-  it_behaves_like "a signed in UsersController"
-end
-
 describe UsersController, "without authentication" do
   it "should not show email for edit" do
     user = User.make!
@@ -245,6 +267,66 @@ describe UsersController, "without authentication" do
       expect(JSON.parse(response.body).map{ |r| r["login"] }).to eq [ "aaa", "abb", "acc" ]
       get :search, q: "a", format: :json, order: "activity"
       expect(JSON.parse(response.body).map{ |r| r["login"] }).to eq [ "acc", "aaa", "abb" ]
+    end
+  end
+
+  describe "parental_consent" do
+    it "should deliver an email with the application JWT" do
+      deliveries = ActionMailer::Base.deliveries.size
+      token = JsonWebToken.applicationToken
+      request.env["HTTP_AUTHORIZATION"] = token
+      post :parental_consent, format: :json, email: Faker::Internet.email
+      expect( ActionMailer::Base.deliveries.size ).to eq deliveries + 1
+    end
+    it "should not deliver an email without the application JWT" do
+      deliveries = ActionMailer::Base.deliveries.size
+      token = JsonWebToken.applicationToken + "bad"
+      request.env["HTTP_AUTHORIZATION"] = token
+      post :parental_consent, format: :json, email: Faker::Internet.email
+      expect( ActionMailer::Base.deliveries.size ).to eq deliveries
+    end
+    describe "should return a 422 with" do
+      it "no email" do
+        token = JsonWebToken.applicationToken
+        request.env["HTTP_AUTHORIZATION"] = token
+        post :parental_consent, format: :json
+        expect( response.status ).to eq 422
+      end
+      it "a bad email" do
+        token = JsonWebToken.applicationToken
+        request.env["HTTP_AUTHORIZATION"] = token
+        post :parental_consent, format: :json, email: "lkdshglsdhfg"
+        expect( response.status ).to eq 422
+      end
+    end
+  end
+
+end
+
+describe UsersController, "oauth authentication with login scope" do
+  let(:user) { User.make! }
+  let(:token) { Doorkeeper::AccessToken.create!(
+    application: OauthApplication.make!,
+    scopes: "login",
+    resource_owner_id: user.id
+  ) }
+  before do
+    request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
+    allow( controller ).to receive(:doorkeeper_token) { token }
+  end
+  describe "edit" do
+    it "should return email" do
+      get :edit, format: :json
+      json = JSON.parse( response.body )
+      expect( json["email"] ).to eq user.email
+    end
+  end
+  describe "update" do
+    it "should not work" do
+      old_name = user.name
+      put :update, format: :json, id: user.id, user: { name: "#{user.name} this is a new name" }
+      user.reload
+      expect( user.name ).to eq old_name
     end
   end
 end

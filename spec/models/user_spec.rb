@@ -202,6 +202,16 @@ describe User do
       expect( other_p.native_realname ).to eq other_u.name
     end
 
+    describe 'disallows illegitimate logins' do
+      bad_logins.each do |login_str|
+        it "'#{login_str}'" do
+          u = User.make!
+          u.login = login_str
+          expect(u).not_to be_valid
+        end
+      end
+    end
+
   end
 
   #
@@ -448,34 +458,20 @@ describe User do
   end
 
   describe "sane_destroy" do
-    before(:all) { DatabaseCleaner.strategy = :truncation }
-    after(:all)  { DatabaseCleaner.strategy = :transaction }
 
-    before(:each) do
-      enable_elastic_indexing([ Observation, Taxon, Place ])
-      without_delay do
-        @user = User.make!
-        @place = make_place_with_geom
-        3.times do
-          Observation.make!(:user => @user, :taxon => Taxon.make!, 
-            :latitude => @place.latitude, :longitude => @place.longitude)
-        end
-      end
-      enable_has_subscribers
-    end
-    after(:each) do
-      disable_elastic_indexing([ Observation, Taxon, Place ])
-      disable_has_subscribers
-    end
+    before(:all) { enable_elastic_indexing( Observation ) }
+    after(:all) { disable_elastic_indexing( Observation ) }
+    
+    let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
 
     it "should destroy the user" do
-      @user.sane_destroy
-      expect(User.find_by_id(@user.id)).to be_blank
+      user.sane_destroy
+      expect( User.find_by_id( user.id ) ).to be_blank
     end
 
     it "should not queue jobs to refresh the users lists" do
       Delayed::Job.delete_all
-      @user.sane_destroy
+      user.sane_destroy
       jobs = Delayed::Job.all
       # jobs.map(&:handler).each{|h| puts h}
       expect(jobs.select{ |j| j.handler =~ /'List'.*\:refresh/m }).to be_blank
@@ -483,143 +479,173 @@ describe User do
 
     it "should not queue refresh_with_observation jobs" do
       Delayed::Job.delete_all
-      @user.sane_destroy
+      user.sane_destroy
       expect(Delayed::Job.all.select{ |j| j.handler =~ /refresh_with_observation/m }).to be_blank
     end
 
-    it "should queue jobs to refresh check lists" do
-      Delayed::Job.delete_all
-      @user.sane_destroy
-      jobs = Delayed::Job.all
-      # jobs.map(&:handler).each{|h| puts h}
-      expect(jobs.select{|j| j.handler =~ /'CheckList'.*\:refresh/m}).not_to be_blank
-    end
-
-    it "should refresh check lists" do
-      t = Taxon.make!(rank: "species")
-      o = without_delay do
-        make_research_grade_observation(taxon: t , user: @user,
-          latitude: @place.latitude, longitude: @place.longitude)
+    describe "for user with observations in places" do
+      let(:place) { make_place_with_geom }
+      it "should queue jobs to refresh check lists" do
+        o = without_delay do
+          Observation.make!(
+            user: user,
+            taxon: Taxon.make!,
+            latitude: place.latitude,
+            longitude: place.longitude
+          )
+        end
+        user.sane_destroy
+        jobs = Delayed::Job.all
+        # jobs.map(&:handler).each{|h| puts h}
+        expect(jobs.select{|j| j.handler =~ /'CheckList'.*\:refresh/m}).not_to be_blank
       end
-      expect(@place.check_list.listed_taxa.find_by_taxon_id(t.id)).not_to be_blank
-      @user.sane_destroy
-      Delayed::Worker.new.work_off
-      Delayed::Worker.new.work_off
-      expect( Observation.find_by_id(o.id) ).to be_blank
-      expect( @place.check_list.listed_taxa.find_by_taxon_id( t.id ) ).to be_blank
-    end
 
-    it "should queue jobs to refresh project lists" do
-      project = without_delay {Project.make!(:user => @user)}
-      expect(project.project_list).not_to be_blank
-      Delayed::Job.delete_all
-      @user.sane_destroy
-      jobs = Delayed::Job.all
-      # jobs.map(&:handler).each{|h| puts h}
-      expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).not_to be_blank
-    end
-
-    it "should remove remove taxa from check lists that were only confirmed by the user's observations" do
-      o = without_delay do
-        make_research_grade_observation(:user => @user, :latitude => @place.latitude, :longitude => @place.longitude)
+      it "should refresh check lists" do
+        t = Taxon.make!(rank: "species")
+        o = without_delay do
+          make_research_grade_observation(
+            taxon: t,
+            user: user,
+            latitude: place.latitude,
+            longitude: place.longitude
+          )
+        end
+        expect( place.check_list.listed_taxa.find_by_taxon_id( t.id ) ).not_to be_blank
+        user.sane_destroy
+        Delayed::Worker.new.work_off
+        Delayed::Worker.new.work_off
+        expect( Observation.find_by_id( o.id ) ).to be_blank
+        expect( place.check_list.listed_taxa.find_by_taxon_id( t.id ) ).to be_blank
       end
-      t = o.taxon
-      expect(ListedTaxon.where(:place_id => @place, :taxon_id => t)).not_to be_blank
-      @user.sane_destroy
-      Delayed::Worker.new.work_off
-      Delayed::Worker.new.work_off
-      expect(ListedTaxon.where(:place_id => @place, :taxon_id => t)).to be_blank
-    end
 
-    it "should destroy projects with no observations" do
-      p = Project.make!(:user => @user)
-      @user.sane_destroy
-      expect(Project.find_by_id(p.id)).to be_blank
-    end
-
-    it "should not destroy projects with observations" do
-      p = Project.make!(:user => @user)
-      po = make_project_observation(:project => p)
-      @user.sane_destroy
-      expect(Project.find_by_id(p.id)).not_to be_blank
-    end
-
-    it "should assign projects to a manager" do
-      p = Project.make!(:user => @user)
-      po = make_project_observation(:project => p)
-      m = ProjectUser.make!(:role => ProjectUser::MANAGER, :project => p)
-      @user.sane_destroy
-      p.reload
-      expect(p.user_id).to eq(m.user_id)
-    end
-
-    it "should assign projects to a site admin if no manager" do
-      a = make_admin
-      expect(User.admins.count).to eq(1)
-      p = Project.make!(:user => @user)
-      po = make_project_observation(:project => p)
-      @user.sane_destroy
-      p.reload
-      expect(p.user_id).to eq(a.id)
-    end
-
-    it "should generate a notification update for new project owners" do
-      p = Project.make!(:user => @user)
-      po = make_project_observation(:project => p)
-      m = without_delay do
-        ProjectUser.make!(:role => ProjectUser::MANAGER, :project => p)
+      it "should remove remove taxa from check lists that were only confirmed by the user's observations" do
+        o = without_delay do
+          make_research_grade_observation(
+            user: user,
+            latitude: place.latitude,
+            longitude: place.longitude
+          )
+        end
+        t = o.taxon
+        expect( ListedTaxon.where( place_id: place, taxon_id: t ) ).not_to be_blank
+        user.sane_destroy
+        Delayed::Worker.new.work_off
+        Delayed::Worker.new.work_off
+        expect(ListedTaxon.where( place_id: @place, taxon_id: t ) ).to be_blank
       end
-      expect( UpdateAction.unviewed_by_user_from_query(m.user_id, { }) ).to eq false
-      without_delay { @user.sane_destroy }
-      expect( UpdateAction.unviewed_by_user_from_query(m.user_id, resource: p) ).to eq true
     end
 
-    it "should generate a notification update for new project owners even if they're new members" do
-      p = Project.make!(:user => @user)
-      po = make_project_observation(:project => p)
-      a = without_delay do
-        make_admin
+    describe "for owner of a project" do
+      let(:project) { without_delay { Project.make!( user: user ) } }
+
+      it "should queue jobs to refresh project lists" do
+        expect( project.project_list ).not_to be_blank
+        Delayed::Job.delete_all
+        user.sane_destroy
+        jobs = Delayed::Job.all
+        # jobs.map(&:handler).each{|h| puts h}
+        expect(jobs.select{|j| j.handler =~ /'ProjectList'.*\:refresh/m}).not_to be_blank
       end
-      expect( UpdateAction.unviewed_by_user_from_query(a.id, { }) ).to eq false
-      without_delay { @user.sane_destroy }
-      expect( UpdateAction.unviewed_by_user_from_query(a.id, resource: p) ).to eq true
+
+      it "should destroy projects with no observations" do
+        expect( project.observations ).to be_blank
+        user.sane_destroy
+        expect( Project.find_by_id( project.id ) ).to be_blank
+      end
+
+      it "should not destroy projects with observations" do
+        po = make_project_observation( project: project )
+        user.sane_destroy
+        expect( Project.find_by_id( project.id ) ).not_to be_blank
+      end
+
+      it "should assign projects to a manager" do
+        po = make_project_observation( project: project )
+        m = ProjectUser.make!( role: ProjectUser::MANAGER, project: project )
+        user.sane_destroy
+        project.reload
+        expect( project.user_id ).to eq( m.user_id )
+      end
+
+      it "should assign projects to a site admin if no manager" do
+        a = make_admin
+        expect( User.admins.count ).to eq 1
+        po = make_project_observation( project: project )
+        user.sane_destroy
+        project.reload
+        expect( project.user_id ).to eq a.id
+      end
+
+      it "should not destroy project journal posts" do
+        po = make_project_observation( project: project )
+        pjp = Post.make!( parent: project, user: user )
+        user.sane_destroy
+        expect( Post.find_by_id( pjp.id ) ).not_to be_blank
+      end
+
+      describe "notifications" do
+        before do
+          enable_has_subscribers
+        end
+        after do
+          disable_has_subscribers
+        end
+        it "should generate for new project owners" do
+          p = Project.make!( user: user )
+          po = make_project_observation( project: p )
+          m = without_delay do
+            ProjectUser.make!( role: ProjectUser::MANAGER, project: p )
+          end
+          expect( UpdateAction.unviewed_by_user_from_query( m.user_id, { } ) ).to eq false
+          without_delay { user.sane_destroy }
+          expect( UpdateAction.unviewed_by_user_from_query( m.user_id, resource: p ) ).to eq true
+        end
+
+        it "should generate for new project owners even if they're new members" do
+          p = Project.make!( user: user )
+          po = make_project_observation( project: p )
+          a = without_delay do
+            make_admin
+          end
+          expect( UpdateAction.unviewed_by_user_from_query( a.id, { } ) ).to eq false
+          without_delay { user.sane_destroy }
+          expect( UpdateAction.unviewed_by_user_from_query( a.id, resource: p ) ).to eq true
+        end
+      end
     end
 
-    it "should not destroy project journal posts" do
-      p = Project.make!(:user => @user)
-      po = make_project_observation(:project => p)
-      pjp = Post.make!(:parent => p, :user => @user)
-      @user.sane_destroy
-      expect(Post.find_by_id(pjp.id)).not_to be_blank
-    end
+    describe "user with identifications" do
+      before(:all) { DatabaseCleaner.strategy = :truncation }
+      after(:all)  { DatabaseCleaner.strategy = :transaction }
 
-    it "should reassess the community taxon of observations the user has identified" do
-      o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::SPECIES))
-      expect( o.community_taxon ).to be_blank
-      i = Identification.make!(observation: o, taxon: o.taxon, user: @user)
-      o.reload
-      expect( o.community_taxon ).to eq i.taxon
-      @user.sane_destroy
-      o.reload
-      expect( o.community_taxon ).to be_blank
-    end
+      it "should reassess the community taxon of observations the user has identified" do
+        o = make_research_grade_candidate_observation( taxon: Taxon.make!( rank: Taxon::SPECIES ) )
+        expect( o.community_taxon ).to be_blank
+        i = Identification.make!( observation: o, taxon: o.taxon, user: user )
+        o.reload
+        expect( o.community_taxon ).to eq i.taxon
+        user.sane_destroy
+        o.reload
+        expect( o.community_taxon ).to be_blank
+      end
 
-    it "should reassess the quality grade of observations the user has identified" do
-      o = make_research_grade_candidate_observation(taxon: Taxon.make!(rank: Taxon::SPECIES))
-      expect( o.quality_grade ).to eq Observation::NEEDS_ID
-      i = Identification.make!(observation: o, taxon: o.taxon, user: @user)
-      o.reload
-      expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
-      without_delay { @user.sane_destroy }
-      o.reload
-      expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      it "should reassess the quality grade of observations the user has identified" do
+        o = make_research_grade_candidate_observation( taxon: Taxon.make!( rank: Taxon::SPECIES ) )
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+        i = Identification.make!( observation: o, taxon: o.taxon, user: user )
+        o.reload
+        expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
+        without_delay { user.sane_destroy }
+        o.reload
+        expect( o.quality_grade ).to eq Observation::NEEDS_ID
+      end
     end
   end
 
   describe "suspension" do
     it "deletes unread sent messages" do
-      fu = User.make!
-      tu = User.make!
+      fu = UserPrivilege.make!.user # User.make!
+      tu = UserPrivilege.make!.user # User.make!
       m = make_message(:user => fu, :from_user => fu, :to_user => tu)
       m.send_message
       expect(m.to_user_copy).not_to be_blank
@@ -629,8 +655,8 @@ describe User do
     end
 
     it "should not delete the suspended user's messages" do
-      fu = User.make!
-      tu = User.make!
+      fu = UserPrivilege.make!.user # User.make!
+      tu = UserPrivilege.make!.user # User.make!
       m = make_message(:user => fu, :from_user => fu, :to_user => tu)
       m.send_message
       expect(m.to_user_copy).not_to be_blank
@@ -685,56 +711,108 @@ describe User do
   end
 
   describe "merge" do
-    before(:each) do
-      @keeper = User.make!
-      @reject = User.make!
-      enable_elastic_indexing( Observation )
-    end
-    after(:each) { disable_elastic_indexing( Observation ) }
+    before(:all) { DatabaseCleaner.strategy = :truncation }
+    after(:all)  { DatabaseCleaner.strategy = :transaction }
+    before(:all) { enable_elastic_indexing( Observation, Identification) }
+    after(:all) { disable_elastic_indexing( Observation, Identification) }
+    
+    let(:keeper) { User.make! }
+    let(:reject) { User.make! }
 
     it "should move observations" do
-      o = Observation.make!(:user => @reject)
+      o = Observation.make!(:user => reject)
       without_delay do
-        @keeper.merge(@reject)
+        keeper.merge(reject)
       end
       o.reload
-      expect(o.user_id).to eq @keeper.id
+      expect(o.user_id).to eq keeper.id
     end
 
     it "should update the observations_count" do
-      Observation.make!( user: @keeper )
-      Observation.make!( user: @reject )
+      Observation.make!( user: keeper )
+      Observation.make!( user: reject )
       Delayed::Worker.new.work_off
-      @keeper.reload
-      expect( @keeper.observations_count ).to eq 1
-      @keeper.merge( @reject )
-      @keeper.reload
-      expect( @keeper.observations.count ).to eq 2
-      expect( @keeper.observations_count ).to eq 2
+      keeper.reload
+      expect( keeper.observations_count ).to eq 1
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      keeper.reload
+      expect( keeper.observations.count ).to eq 2
+      expect( keeper.observations_count ).to eq 2
+    end
+
+    it "should update the identifications_count" do
+      Identification.make!( user: reject )
+      Delayed::Worker.new.work_off
+      reject.reload
+      expect( reject.identifications_count ).to eq 1
+      expect( keeper.identifications_count ).to eq 0
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      keeper.reload
+      expect( keeper.identifications_count ).to eq 1
+    end
+    it "should reindex observations by the user" do
+      o = Observation.make!( user: reject )
+      Delayed::Worker.new.work_off
+      expect(
+        Observation.elastic_search( filters: [ { term: { id: o.id } } ] ).response.hits.hits[0]._source.user.id
+      ).to eq reject.id
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      keeper.reload
+      expect(
+        Observation.elastic_search( filters: [ { term: { id: o.id } } ] ).response.hits.hits[0]._source.user.id
+      ).to eq keeper.id
+    end
+    it "should reindex observations identified by the user" do
+      o = Identification.make!( user: reject ).observation
+      Delayed::Worker.new.work_off
+      expect(
+        Observation.elastic_search( filters: [ { term: { id: o.id } } ] ).response.hits.hits[0]._source.identifier_user_ids
+      ).to include reject.id
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      keeper.reload
+      expect(
+        Observation.elastic_search( filters: [ { term: { id: o.id } } ] ).response.hits.hits[0]._source.identifier_user_ids
+      ).to include keeper.id
+    end
+    it "should reindex the user" do
+      o = Observation.make!( user: reject )
+      Delayed::Worker.new.work_off
+      expect(
+        User.elastic_search( filters: [ { term: { id: keeper.id } } ] ).response.hits.hits[0]._source.observations_count
+      ).to eq 0
+      keeper.merge( reject )
+      Delayed::Worker.new.work_off
+      expect(
+        User.elastic_search( filters: [ { term: { id: keeper.id } } ] ).response.hits.hits[0]._source.observations_count
+      ).to eq Observation.by( keeper ).count
     end
 
     it "should merge life lists" do
       t = Taxon.make!
-      @reject.life_list.add_taxon(t)
-      @keeper.merge(@reject)
-      @keeper.reload
-      expect(@keeper.life_list.taxon_ids).to include(t.id)
+      reject.life_list.add_taxon(t)
+      keeper.merge(reject)
+      keeper.reload
+      expect(keeper.life_list.taxon_ids).to include(t.id)
     end
 
     it "should remove self frienships" do
-      f = Friendship.make!(:user => @reject, :friend => @keeper)
-      @keeper.merge(@reject)
+      f = Friendship.make!(:user => reject, :friend => keeper)
+      keeper.merge(reject)
       expect(Friendship.find_by_id(f.id)).to be_blank
-      expect(@keeper.friendships.map(&:friend_id)).not_to include(@keeper.id)
+      expect(keeper.friendships.map(&:friend_id)).not_to include(keeper.id)
     end
 
-    it "should queue a job to refresh the keeper's life list" do
+    it "should queue a job to do the slow stuff" do
       Delayed::Job.delete_all
       stamp = Time.now
-      @keeper.merge(@reject)
+      keeper.merge(reject)
       jobs = Delayed::Job.where("created_at >= ?", stamp)
       # puts jobs.map(&:handler).inspect
-      expect(jobs.select{|j| j.handler =~ /LifeList.*\:reload_from_observations/m}).not_to be_blank
+      expect(jobs.select{|j| j.handler =~ /User.*\:merge_cleanup/m}).not_to be_blank
     end
   end
 
@@ -786,6 +864,7 @@ describe User do
     after(:all)  { DatabaseCleaner.strategy = :transaction }
 
     it "should not remove community taxa when set to false" do
+      enable_elastic_indexing( Identification )
       o = Observation.make!
       i1 = Identification.make!(:observation => o)
       i2 = Identification.make!(:observation => o, :taxon => i1.taxon)
@@ -795,6 +874,7 @@ describe User do
       Delayed::Worker.new.work_off
       o.reload
       expect(o.taxon).to be_blank
+      disable_elastic_indexing( Identification )
     end
 
     it "should set observation taxa to owner's ident when set to false" do
@@ -851,18 +931,6 @@ describe User do
       Delayed::Worker.new.work_off
       o.reload
       expect( o.quality_grade ).to eq Observation::RESEARCH_GRADE
-    end
-  end
-
-  describe "updating" do
-    describe 'disallows illegitimate logins' do
-      bad_logins.each do |login_str|
-        it "'#{login_str}'" do
-          u = User.make!
-          u.login = login_str
-          expect(u).not_to be_valid
-        end
-      end
     end
   end
 
@@ -998,7 +1066,7 @@ describe User do
     before(:each) { enable_elastic_indexing( Observation, Identification, Project ) }
     after(:each) { disable_elastic_indexing( Observation, Identification, Project ) }
 
-    let(:user) { User.make! }
+    let(:user) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
     let(:flagger) { User.make! }
 
     it "should reindex observations as spam" do
@@ -1030,6 +1098,104 @@ describe User do
       Delayed::Worker.new.work_off
       es_project = Project.elastic_search( where: { id: project.id } ).results[0]
       expect( es_project.spam ).to be true
+    end
+  end
+
+  describe "description spam check" do
+    it "should happen on create" do
+      Rakismet.disabled = false
+      user = User.make( description: "this is spam" )
+      allow( user ).to receive(:spam?).and_return( true )
+      user.save!
+      expect( user ).to be_flagged_as_spam
+    end
+    it "should happen on update" do
+      user = User.make!( description: "this is ok" )
+      expect( user ).not_to be_flagged_as_spam
+      Rakismet.disabled = false
+      allow( user ).to receive(:spam?).and_return( true )
+      user.update_attributes( description: "buy this watch!" )
+      expect( user ).to be_flagged_as_spam
+    end
+  end
+
+  describe "coordinate_interpolation_protection" do
+    let(:user) { User.make!( prefers_coordinate_interpolation_protection_test: true ) }
+    let(:obscured_o) {
+      Observation.make!(
+        user: user,
+        geoprivacy: "obscured",
+        observed_on_string: "2018-05-01",
+        latitude: 1,
+        longitude: 1
+      )
+    }
+    describe "becomes true" do
+      it "should obscure an observation on the same day as an observation where geoprivacy is obscured" do
+        o = Observation.make!(
+          user: user,
+          observed_on_string: obscured_o.observed_on_string,
+          latitude: 1,
+          longitude: 1
+        )
+        expect( o.geoprivacy ).to be_blank
+        expect( o.private_latitude ).to be_blank
+        user.update_attributes( prefers_coordinate_interpolation_protection: true )
+        o.reload
+        Delayed::Worker.new.work_off
+        o.reload
+        expect( o ).to be_coordinates_obscured
+        expect( o.private_latitude ).to eq 1
+      end
+      it "should not obscure an observation not on the same day as an observation where geoprivacy is obscured" do
+        o = Observation.make!(
+          user: user,
+          observed_on_string: "2017-04-01",
+          latitude: 1,
+          longitude: 1
+        )
+        expect( o.geoprivacy ).to be_blank
+        expect( o.private_latitude ).to be_blank
+        user.update_attributes( prefers_coordinate_interpolation_protection: true )
+        Delayed::Worker.new.work_off
+        o.reload
+        expect( o.private_latitude ).to be_blank
+      end
+    end
+    describe "becomes false" do
+      it "should unobscure an observation on the same day as an observation where geoprivacy is obscured" do
+        o = Observation.make!(
+          user: user,
+          observed_on_string: obscured_o.observed_on_string,
+          latitude: 1,
+          longitude: 1
+        )
+        user.update_attributes( prefers_coordinate_interpolation_protection: true )
+        Delayed::Worker.new.work_off
+        o.reload
+        expect( o.private_latitude ).to eq 1
+        user.update_attributes( prefers_coordinate_interpolation_protection: false )
+        Delayed::Worker.new.work_off
+        o.reload
+        expect( o.private_latitude ).to be_blank
+        expect( o.latitude ).to eq 1
+      end
+    end
+
+    describe "forget" do
+      before(:each) { enable_elastic_indexing( Observation ) }
+      after(:each) { disable_elastic_indexing( Observation ) }
+      it "changes user_id in flags to -1" do
+        f = Flag.make!
+        other_f = Flag.make!
+        flag_user_id = f.user.id
+        expect( flag_user_id ).not_to be_blank
+        User.forget( f.user_id, skip_aws: true )
+        f.reload
+        expect( f.user_id ).to eq -1
+        other_f.reload
+        expect( other_f.user_id ).to be > 0
+      end
     end
   end
 

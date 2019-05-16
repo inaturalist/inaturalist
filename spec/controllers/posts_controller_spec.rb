@@ -81,7 +81,7 @@ describe PostsController, "creation" do
     end
   end
   describe "for projects" do
-    let( :user ) { User.make! }
+    let( :user ) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
     before do
       sign_in user
     end
@@ -140,7 +140,7 @@ describe PostsController, "update" do
     end
   end
   describe "for project" do
-    let( :user ) { User.make! }
+    let( :user ) { make_user_with_privilege( UserPrivilege::ORGANIZER ) }
     before { sign_in user }
     it "should work or a project curator" do
       project = Project.make!( user: user )

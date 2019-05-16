@@ -15,7 +15,8 @@ where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :locale, "Only check this locale", type: :string, short: "-l"
-  opt :filter, "Filter keys by this substring", type: :string, short: "-f"
+  opt :search, "Filter keys by this substring", type: :string, short: "-s"
+  opt :something, "something", type: :string
   opt :level, "Show only this error level.", type: :string
 end
 
@@ -40,20 +41,28 @@ def traverse( obj, key = nil, &blk )
 end
 
 data = {}
+key_counts = {}
 
 Dir.glob( "config/locales/*.yml" ).each do |path|
   next if path =~ /qqq.yml/
   next if OPTS.locale && path !~ /#{OPTS.locale}.yml/ && path !~ /en.yml/
   traverse( YAML.load_file( path ) ) do |translation, key|
     data[key] = translation
+    key_counts[key.split( "." )[1]] = key_counts[key.split( "." )[1]].to_i + 1
   end
 end
 
 problems = {}
 
+if OPTS.debug
+  puts
+  puts "Found #{data.size} translations of #{key_counts.size} keys"
+  puts
+end
+
 data.each do |key, translation|
   next if key =~ /^en\./
-  next if OPTS.filter && key !~ /#{OPTS.filter}/
+  next if OPTS.search && key !~ /#{OPTS.search}/
   puts "#{key}: #{translation}" if OPTS.debug
   locale = key[/^(.+?)\./, 1]
   en_key = key.sub( "#{locale}.", "en." )
@@ -61,7 +70,11 @@ data.each do |key, translation|
   if translation.is_a?( String ) && @levels.include?( "error" )
     translation.scan( /\{\{.+?\=.+?\}\}/ ).each do |match|
       problems[key] = problems[key] || []
-      problems[key] << "**ERROR:** Must not include `#{match}`"
+      problems[key] << "**ERROR:** Invalid code formatting: `#{match}`"
+    end
+    translation.scan( /\{\{PLURAL.+?\}\}/ ).each do |match|
+      problems[key] = problems[key] || []
+      problems[key] << "**ERROR:** Invalid pluralization formatting: `#{match}`"
     end
   end
   if key =~ /^#{locale}\.i18n\.inflections\.gender\.$/
@@ -91,11 +104,11 @@ data.each do |key, translation|
       problems[key] << "WARNING: Should include `#{variable}`"
     end
   end
-  bad_variables = translation.scan( /%{.+?}/ )
-  bad_variables.each do |bad_variable|
-    if data[en_key] !~ /#{bad_variable.encode( "utf-8" )}/ && @levels.include?( "error" )
+  extraneous_variables = translation.scan( /%{.+?}/ )
+  extraneous_variables.each do |extraneous_variable|
+    if data[en_key] !~ /#{extraneous_variable.encode( "utf-8" )}/ && @levels.include?( "error" )
       problems[key] = problems[key] || []
-      problems[key] << "**ERROR:** Must not include `#{bad_variable}`"
+      problems[key] << "**ERROR:** Must not include `#{extraneous_variable}`"
     end
   end
 

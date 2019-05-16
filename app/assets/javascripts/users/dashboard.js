@@ -1,3 +1,5 @@
+/* eslint-disable */
+
 var DASHBOARD = {
   fromIDs: { }
 };
@@ -219,5 +221,14 @@ $( function( ) {
       });
     }
   });
+
+  $( "#forum-topics" ).on( "show.bs.collapse", function( e ) {
+    $( "#forum .panel-heading .pull-right i.fa" ).removeClass( "fa-caret-left" ).addClass( "fa-caret-down" );
+    updateSession( { prefers_forum_topics_on_dashboard: true } );
+  } );
+  $( "#forum-topics" ).on( "hide.bs.collapse", function( e ) {
+    $( "#forum .panel-heading .pull-right i.fa" ).removeClass( "fa-caret-down" ).addClass( "fa-caret-left" );
+    updateSession( { prefers_forum_topics_on_dashboard: false } );
+  } );
 
 });

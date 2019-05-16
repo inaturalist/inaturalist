@@ -15,12 +15,17 @@ import {
 } from "../../shared/ducks/taxon";
 
 function mapStateToProps( state ) {
-  const speciesTabs = ["map", "articles", "taxonomy", "status", "similar"];
-  const aboveSpeciesTabs = ["map", "articles", "highlights", "taxonomy"];
+  const speciesTabs = ["map", "articles", "interactions", "taxonomy", "status", "similar"];
+  const genusTabs = ["map", "articles", "highlights", "taxonomy", "similar"];
+  const aboveGenusTabs = ["map", "articles", "highlights", "taxonomy"];
   let chosenTab;
   if (
-    ( state.taxon.taxon.rank_level <= 10 && speciesTabs.indexOf( state.config.chosenTab ) >= 0 ) ||
-    ( state.taxon.taxon.rank_level > 10 && aboveSpeciesTabs.indexOf( state.config.chosenTab ) >= 0 )
+    ( state.taxon.taxon.rank_level <= 10 && speciesTabs.indexOf( state.config.chosenTab ) >= 0 )
+    || ( state.taxon.taxon.rank_level === 20 && genusTabs.indexOf( state.config.chosenTab ) >= 0 )
+    || (
+      state.taxon.taxon.rank_level > 20
+      && aboveGenusTabs.indexOf( state.config.chosenTab ) >= 0
+    )
   ) {
     chosenTab = state.config.chosenTab;
   }

@@ -61,6 +61,7 @@ EOS
     Photo licenses. Set to 'ignore' to include unlicensed observations, 'any'
     to include all licensed observations.
   ".strip.gsub( /\s+/m, " " ), type: :strings
+  opt :photos, "Whether or not to include obs with photos", type: :string
   opt :private_coordinates, "Include private coordinates", type: :boolean, default: false
   opt :site_id, "Only include obs from a particular site", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
@@ -71,6 +72,8 @@ EOS
   opt :post_taxon_archive_as_url, "URL the second archive will be posted as", type: :string
   opt :community_taxon, "Use the community taxon for the taxon associated with the occurrence, not the default taxon",
     type: :boolean
+  opt :created_d1, "Mininum date of observation creation", type: :string
+  opt :created_d2, "Maximum date of observation creation", type: :string
 end
 
 if opts.debug

@@ -410,7 +410,8 @@ iNaturalist.Map.createMap = function(options) {
     streetViewControl: false,
     backgroundColor: iNaturalist.Map.MAP_BACKGROUND_COLOR,
     clickableIcons: false,
-    gestureHandling: "greedy"
+    gestureHandling: "greedy",
+    controlSize: 26
   }, options);
   
   var map;
@@ -693,7 +694,7 @@ iNaturalist.Legend = function( controlDiv, map, options ) {
 iNaturalist.OverlayControl = function(map, options) {
   options = options || {}
   var controlDiv = options.div || document.createElement('DIV')
-  controlDiv.style.margin = '14px 10px 0';
+  controlDiv.style.margin = "6px 5px 0";
   var controlUI = $('<div><span class="ui-icon inat-icon ui-icon-layers">'+I18n.t('taxon_map.overlays')+'</span></div>').addClass('gmapv3control overlaycontrol')
   var ul = $('<ul></ul>').addClass("inat-overlay").hide()
   controlUI.append(ul)
@@ -744,7 +745,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if (options.taxon) {
     // Stopgap solution to dealing with multiple taxon maps on a single page.
     // Will break if multiple maps have the same taxon
-    id += '-' + options.taxon.id;
+    id += '-' + options.taxon.id + "-" + options.label;
   }
   li.attr('data-title', title)
   var label = $("<label/>").attr("for", id).html(title)
@@ -763,7 +764,7 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
   if( options.taxon ) {
     addWindshaftOverlayTaxonDiv( ul, li, options );
   }
-  checkbox.change( function( ) {
+  checkbox.change( function( e ) {
     var checked = $( this ).prop( "checked" );
     _.each( layers, function( layerData ) {
       map.overlayMapTypes.setAt( layerData.layerID - 1, checked ? layerData.layer : emptyLayer);
@@ -773,6 +774,9 @@ iNaturalist.OverlayControl.prototype.addWindshaftOverlayControl = function( laye
     // as one checkox is checked, the taxon's checkbox will also be checked
     if ( taxonID = $(this).parent().data( "taxon-id" ) ) {
       updateTaxonCheckboxState( ul, taxonID );
+    }
+    if ( typeof( options.onChange ) === "function" ) {
+      options.onChange( e );
     }
   })
   if( description ) {
@@ -937,17 +941,17 @@ var appendValidParamsToURL = function( url, options ) {
 };
 
 google.maps.Map.prototype.addPlaceLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'color' ] });
+  _.defaults( options, { validParams: [ "color", "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "places", options.place.id, options );
 };
 
 google.maps.Map.prototype.addTaxonRangeLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'color' ] });
+  _.defaults( options, { validParams: [ "color", "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "taxon_ranges", options.taxon.id, options );
 };
 
 google.maps.Map.prototype.addTaxonPlacesLayer = function( options ) {
-  _.defaults( options, { validParams: [ 'confirmed_color', 'unconfirmed_color' ] });
+  _.defaults( options, { validParams: [ "confirmed_color", "unconfirmed_color", "tile_size" ] });
   return this.addPostgisLayerByEndpoint( "taxon_places", options.taxon.id, options );
 };
 
@@ -981,11 +985,12 @@ google.maps.Map.prototype.addPostgisLayerByEndpoint = function( endpoint, endpoi
   this.setTilt(0);
   var tileservers = postgisTileservers( );
   var options = options || { };
+  options.tile_size = 512;
   var tileURLs = _.map( tileservers , function( base ) {
     return appendValidParamsToURL(
       base + "/" + endpoint + "/" + endpointID + "/{z}/{x}/{y}.png", options );
   });
-  return this.addLayerAndControl( { tiles: tileURLs }, options );
+  return this.addLayerAndControl( { tiles: tileURLs, tileSize: 512 }, options );
 };
 
 // Convenience method that likely isn't called outside this file.
@@ -993,18 +998,16 @@ google.maps.Map.prototype.addPostgisLayerByEndpoint = function( endpoint, endpoi
 // to add a checkbox toggle for this new layer
 google.maps.Map.prototype.addLayerAndControl = function( tilejson, options ) {
   options = options || { }
+  tilejson.interactive = false;
   var layer = new wax.g.connector( tilejson );
   layer.title = options.title;
   var layerID = this.overlayMapTypes.push( layer );
-  if( options.interactivity ) {
-    layer.interactivity = this.addTileInteractivity( tilejson, layerID );
-  }
   if( options.disabled ) {
     // even though the layer is meant to be disabled (unselected) by default
     // we need to secure the layerID so that we can add the layer in the proper
     // places when the user selects it. That is why the layer is added
     // above and immediately set to null here.
-    this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
+    this.overlayMapTypes.setAt( layerID - 1, emptyLayer );
   }
   if( this._overlayControl ) {
     this._overlayControl.addWindshaftOverlayControl(
@@ -1078,6 +1081,7 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
       pointTileSuffix = "/points/{z}/{x}/{y}.png",
       gridmaxzoom = options.gridmaxzoom || 9;
   options.title = title;
+  options.tile_size = 512;
   if( options.taxon ) { options.taxon_id = options.taxon.id; }
   // using a less generic name for the elasticmaps param to not show
   // an observation on a tile, because we have a Google marker for it
@@ -1085,20 +1089,92 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
   //   options.featured_observation_id = options.observation_id;
   // }
   // these are the parameters that will be sent to the node API
-  var paramKeys = [ 'taxon_id', 'user_id', 'place_id', 'project_id',
-    'ttl', 'color', 'opacity', 'border_opacity', 'd1', 'd2',
-    'nelat', 'nelng', 'swlat', 'swlng', 'day', 'month', 'year',
-    'rank', 'hrank', 'lrank', 'quality_grade', 'identifications', 'captive',
-    'iconic_taxa', 'q', 'search_on', 'out_of_range', 'has', 'iconic_taxa',
-    'project_ids', 'geoprivacy', 'on', 'created_on', 'viewer_id', 'reviewed',
-    'featured_observation_id', 'threatened', 'introduced', 'endemic',
-    'native', 'verifiable', 'popular', 'has', 'photos', 'sounds',
-    'photo_license', 'created_d1', 'created_d2', 'not_in_project',
-    'lat', 'lng', 'viewer_id', 'identified', 'taxon_ids[]', 'projects[]',
-    'apply_project_rules_for', 'not_matching_project_rules_for', 'list_id',
-    'taxon_ids', 'not_in_place', 'unobserved_by_user_id', 'radius', 'geo',
-    'oauth_application_id', 'collection_preview', 'term_id', 'term_value_id',
-    'without_term_value_id', 'without_taxon_id', 'not_user_id', 'scaled', 'cache' ];
+  var paramKeys = [
+    "acc",
+    "acc_above",
+    "acc_below",
+    "apply_project_rules_for",
+    "border_opacity",
+    "cache",
+    "captive",
+    "collection_preview",
+    "color",
+    "context_geoprivacy",
+    "created_d1",
+    "created_d2",
+    "created_on",
+    "d1",
+    "d2",
+    "day",
+    "endemic",
+    "featured_observation_id",
+    "geo",
+    "geoprivacy",
+    "has",
+    "has",
+    "hrank",
+    "id_above",
+    "iconic_taxa",
+    "iconic_taxa",
+    "ident_taxon_id",
+    "ident_user_id",
+    "identifications",
+    "identified",
+    "introduced",
+    "lat",
+    "list_id",
+    "lng",
+    "lrank",
+    "month",
+    "native",
+    "nelat",
+    "nelng",
+    "not_in_place",
+    "not_in_project",
+    "not_matching_project_rules_for",
+    "not_user_id",
+    "oauth_application_id",
+    "on",
+    "opacity",
+    "out_of_range",
+    "photo_license",
+    "photos",
+    "place_id",
+    "popular",
+    "project_id",
+    "project_ids",
+    "projects[]",
+    "q",
+    "quality_grade",
+    "radius",
+    "rank",
+    "reviewed",
+    "scaled",
+    "search_on",
+    "skip_top_hits",
+    "sounds",
+    "swlat",
+    "swlng",
+    "taxon_geoprivacy",
+    "taxon_id",
+    "taxon_ids",
+    "taxon_ids[]",
+    "term_id",
+    "term_value_id",
+    "threatened",
+    "tile_size",
+    "ttl",
+    "unobserved_by_user_id",
+    "user_after",
+    "user_before",
+    "user_id",
+    "verifiable",
+    "viewer_id",
+    "viewer_id",
+    "without_taxon_id",
+    "without_term_value_id",
+    "year"
+  ];
   gridTileSuffix = appendValidParamsToURL( gridTileSuffix, _.extend(
     options, { validParams: paramKeys, endpoint: "grid" } ));
   pointTileSuffix = appendValidParamsToURL( pointTileSuffix, _.extend(
@@ -1112,7 +1188,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     interactivity: options.interactivity === false ? false : 'id',
     interactionsURL: intereactionsServer( ) + gridTileSuffix,
     disabled: options.disabled,
-    infoWindowCallback: options.infoWindowCallback
+    infoWindowCallback: options.infoWindowCallback,
+    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256
   });
   pointLayer = this.addTileLayer( _.map( tileservers , function( base ) {
       return base + pointTileSuffix;
@@ -1122,7 +1199,8 @@ google.maps.Map.prototype.addObservationsLayer = function(title, options) {
     gridminzoom: gridmaxzoom + 1,
     interactionsURL: intereactionsServer( ) + pointTileSuffix,
     disabled: options.disabled,
-    infoWindowCallback: options.infoWindowCallback
+    infoWindowCallback: options.infoWindowCallback,
+    tileSize: ( Number( options.tile_size ) === 512 ) ? 512 : 256
   });
   gridLayer.layer.title = title;
   pointLayer.layer.title = title;
@@ -1161,19 +1239,19 @@ google.maps.Map.prototype.addTileLayer = function(tileURLs, options) {
     })
   }
   // finish preparing the tile options hash
-  var tilejson = $.extend(true, { }, {
+  var waxOptions = $.extend(true, { }, {
     tiles: tileURLs,
     // wax needs template or it won't fire on events
     "template": "{{species_guess}}"
   }, options);
-  var layer = new wax.g.connector( tilejson );
+  var layer = new wax.g.connector( waxOptions );
   var layerID =  this.overlayMapTypes.push( layer );
   if( options.disabled ) {
     this.overlayMapTypes.setAt( layerID - 1, emptyLayer);
   }
   // add a utfgrid data layer and custom JS events to catch interactivity
   if( options.interactivity ) {
-    layer.interactivity = this.addTileInteractivity( tilejson, layerID, options );
+    layer.interactivity = this.addTileInteractivity( waxOptions, layerID, options );
   }
   // return the layer and index of this layer in the current stack
   return { layer: layer, layerID: layerID };
@@ -1188,7 +1266,7 @@ google.maps.Map.prototype.utfgridURL = function( tileURL ) {
 google.maps.Map.prototype.addTileInteractivity = function( tilejson, layerID, options ) {
   var map = this;
   var interactionOn = false;
-  var waxInteraction = wax.g.interaction( );
+  var waxInteraction = wax.g.interaction( { tileSize: tilejson.tileSize || 256 });
   var oldFeature = waxInteraction.screen_feature;
   map.createInfoWindow( );
 
