@@ -32,7 +32,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # If for some reason a user is already signed in, don't allow them to make
     # another user
-    if current_user
+    if current_user && current_user.id != Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
       errors ||= []
       errors << I18n.t( :user_already_authenticated )
     end
