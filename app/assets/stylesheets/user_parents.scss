@@ -1,0 +1,64 @@
+@import "colors";
+@import "donorbox-iframe";
+
+#progress {
+  margin-top: 30px;
+  h1 {
+    font-weight: bold;
+    font-size: 30px;
+  }
+  min-height: 800px;
+  width: 50%;
+  position: relative;
+  padding: 0 50px;
+  ol {
+    padding: 0;
+    li {
+      margin-bottom: 30px;
+      opacity: 0.15;
+      .title {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        .step {
+          flex: 2;
+          border-radius: 100px;
+          background-color: black;
+          margin-right: 30px;
+          min-width: 54px;
+          max-width: 54px;
+          height: 54px;
+          color: white;
+          font-size: 40px;
+          text-align: center;
+          line-height: 54px;
+        }
+        h2 {
+          font-size: 23px;
+          line-height: 30px;
+          margin: 0;
+          font-weight: bold;
+          height: 54px;
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+    li.current {
+      opacity: 1;
+      .step {
+        background-color: $inat-green;
+      }
+      h2 {
+        color: $inat-green;
+      }
+    }
+  }
+}
+#formcol {
+  padding-top: 50px
+}
+#donorbox-iframe {
+  width: auto;
+  margin: 0 auto;
+}

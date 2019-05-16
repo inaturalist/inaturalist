@@ -168,6 +168,9 @@ class User < ActiveRecord::Base
   has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
   has_many :user_privileges, inverse_of: :user, dependent: :delete_all
+  has_one :user_parent, dependent: :destroy, inverse_of: :user
+  has_many :parentages, class_name: "UserParent", foreign_key: "parent_user_id", inverse_of: :parent_user
+
   
   file_options = {
     processors: [:deanimator],

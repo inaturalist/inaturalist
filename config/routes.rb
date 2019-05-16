@@ -616,6 +616,11 @@ Rails.application.routes.draw do
       post :score
     end
   end
+  resources :user_parents, only: [:new, :create] do
+    member do
+      get :confirm
+    end
+  end
 
   get "/google_photos(/:action(/:id))", controller: :picasa
 

@@ -1,0 +1,36 @@
+- f = builder
+- u = user
+.form-group.text-field.email
+  = f.text_field :email, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( :email ), type: "email", class: "form-control"
+  - unless u.errors[:email].blank?
+    .error= formatted_error_sentence_for( u, :email )
+.form-group.text-field.username
+  = f.text_field :login, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( :username ), class: "form-control"
+  - unless u.errors[:login].blank?
+    .error= formatted_error_sentence_for( u, :login )
+.form-group.text-field.password
+  = f.password_field :password, class: "text form-control", required: true, placeholder: t(:password)
+  - unless u.errors[:password].blank?
+    .error= formatted_error_sentence_for( u, :password )
+.form-group.text-field.password-confirmation
+  = f.password_field :password_confirmation, class: "text form-control", required: true, placeholder: t(:password_confirmation)
+  - unless u.errors[:password_confirmation].blank?
+    .error= formatted_error_sentence_for( u, :password_confirmation )
+- if @site.using_recaptcha?
+  .form-group.recaptcha
+    .g-recaptcha{ data: { sitekey: @site.google_recaptcha_key, callback: "recaptchaCallback" }, style: "text-align: center" }
+    - if u.errors && !u.errors[:recaptcha].blank?
+      .error= u.errors[:recaptcha].to_sentence
+#licensing.form-group.checkbox
+  %label
+    %input#license-all{ type: "checkbox", checked: true }
+    #license-fields.hidden
+      = f.check_box :preferred_observation_license, { checked: true }, Observation::CC_BY_NC
+      = f.check_box :preferred_photo_license, { checked: true }, Observation::CC_BY_NC
+      = f.check_box :preferred_sound_license, { checked: true }, Observation::CC_BY_NC
+    %span
+      =t :yes_license_my_observations_so_scientists_can_use
+      %a{ href: "#", data: { toggle: "popover", content: t(:check_this_box_if_html), placement: "top" }, title: t(:about_licenses) }
+        =t :learn_more
+.form-group.hidden
+  = f.select :time_zone, ActiveSupport::TimeZone.all.sort.map{|tz| [tz.to_s, tz.name, { "data-tz-name": tz.tzinfo.name } ]}, { }, { class: "time_zone_select" }

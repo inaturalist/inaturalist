@@ -6662,6 +6662,32 @@ en:
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended
+    user_parents:
+      new:
+        child_name_private: Child name (private)
+        parent_name_private: Parent name (private)
+        parent_email: Parent email
+        create_minor_account: Create Minor Account
+        inaturalist_minor_account_signup: iNaturalist Minor Account Signup
+        step1_title: CREATE AN ACCOUNT FOR YOUR CHILD
+        step1_desc: |
+          In order to comply with privacy regulations, we need a parent or legal
+          guardian's consent to create an account for a person under the age of
+          13. If you would like your child to use iNaturalist, you must provide
+          us with some identity and contact information.
+        step2_title: CONFIRM YOUR IDENTITY WITH A CREDIT CARD
+        step2_desc: |
+          To confirm your identity as an adult, we need you to provide a nominal
+          donation of at least US$1 to iNaturalist using a credit card. This is
+          the least intrusive form of identity verification that allows us to
+          comply with privacy laws. Please be sure to use the same email
+          address you entered as the "parent email" in the previous step.
+        step3_title: WAIT FOR THE CONFIRMATION EMAIL
+        step3_desc: |
+          Once we match the email used in the donation to the email you entered
+          as the "parent email" we will activate the child's account and send
+          the parent an email with login instructions. This can take up to 24
+          hours.
     welcome:
       index:
         welcome_message_html: |
