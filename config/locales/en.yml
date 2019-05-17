@@ -7213,6 +7213,12 @@ en:
                 letters, numbers, dashes, and underscores
             email:
               must_look_like_an_email_address: must look like an email address
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |
+                belongs to an existing user; if you have an account, please sign
+                in before proceeding, or use a different email address
   doorkeeper:
     scopes:
       write: |

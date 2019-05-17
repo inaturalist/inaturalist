@@ -10,6 +10,8 @@ debug = true
 total_verified_users = 0
 new_verified_users = 0
 new_verified_user_parents = 0
+failed_users = 0
+failed_parents = 0
 donors = {}
 while true
   url = "https://donorbox.org/api/v1/donors?page=#{page}&per_page=#{per_page}"
@@ -25,23 +27,31 @@ while true
     donors[donor["id"]] = true
     puts "Donor #{donor["id"]}"
     if user = User.find_by_email( donor["email"] )
-      puts "\tMarked #{user} as a donor"
       unless user.donor?
-        user.update_attributes( donorbox_donor_id: donor["id"] )
-        new_verified_users += 1
+        if user.update_attributes( donorbox_donor_id: donor["id"] )
+          puts "\tMarked #{user} as a donor"
+          new_verified_users += 1
+        else
+          puts "Failed to mark #{user} as a donor: #{user.errors.full_messages.to_sentence}"
+          failed_users += 1
+        end
       end
       total_verified_users += 1
     end
     if user_parent = UserParent.find_by_email( donor["email"] )
-      puts "\tMarked #{user_parent} as a donor"
       unless user_parent.donor?
-        user_parent.update_attributes( donorbox_donor_id: donor["id"] )
-        new_verified_user_parents += 1
+        if user_parent.update_attributes( donorbox_donor_id: donor["id"] )
+          puts "\tMarked #{user_parent} as a donor"
+          new_verified_user_parents += 1
+        else
+          puts "Failed to mark #{user_parent} as a donor: #{user.errors.full_messages.to_sentence}"
+          failed_parents += 1
+        end
       end
     end
   end
   page += 1
 end
 puts
-puts "#{donors.size} donors, #{total_verified_users} donor users, #{new_verified_users} new donor users, #{new_verified_user_parents} new donor parents in #{Time.now - start}s"
+puts "#{donors.size} donors, #{total_verified_users} donor users, #{new_verified_users} new donor users, #{new_verified_user_parents} new donor parents, #{failed_users} failed users, #{failed_parents} failed parents in #{Time.now - start}s"
 puts
