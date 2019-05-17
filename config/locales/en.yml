@@ -5725,6 +5725,31 @@ en:
           some research grade observations will become casual if they no longer have any photos.
         we_included_links: |
           We've included links to the affected photos below.
+      user_parent_confirmation:
+        subject: Your child's iNaturalist account has been activated
+        content_html: |
+          <p>
+            Thank you for creating an iNaturalist account for your child! Your
+            donation has been verified and your child's account has been
+            activated.
+          </p>
+          <p>
+            Please log into your child's Seek app  with the iNaturalist
+            account you created.
+          </p>
+          <p>
+            If you already have the Seek app downloaded on your child's device,
+            you can navigate to the login screen by clicking "iNaturalist" in
+            the menu, then "Log in to iNaturalist" at the bottom of the screen.
+            From here you can click "Log in with iNaturalist" and enter the
+            username and password for the minor account you created.
+          </p>
+          <p>
+            If you're downloading the Seek app and opening it for the first
+            time, you can click "Log in with iNaturalist" on the signup screen
+            and enter the username and password for the minor account you
+            created.
+          </p>
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended

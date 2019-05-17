@@ -8,4 +8,13 @@ class UserParent < ActiveRecord::Base
   validates_associated :user
 
   accepts_nested_attributes_for :user
+
+  after_update :deliver_confirmation_email_if_donor_verified
+
+  def deliver_confirmation_email_if_donor_verified
+    if donorbox_donor_id_changed? && donorbox_donor_id_was.blank? && donorbox_donor_id.to_i > 0
+      Emailer.user_parent_confirmation( self ).deliver_now
+    end
+    true
+  end
 end
