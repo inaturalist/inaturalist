@@ -2061,6 +2061,10 @@ lb:
           attributes:
             place_geometry:
               is_too_large_to_import: ass ze grouss fir z'importéieren
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: däerf net méi wéi %{max} Fotoen hunn
         user:
           attributes:
             email:

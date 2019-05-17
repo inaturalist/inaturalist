@@ -6381,13 +6381,6 @@ fr:
           le champ d’observation fusionné et déplacera toutes les observations qui l’utilisent
           vers le responsable. <strong>Ce processus ne peut pas être annulé</strong>, donc soyez prudent.
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: |-
-          Votre exportation des observations est prête. Il y a une copie jointe à ce courriel, ou vous pouvez
-          <a href="%{url}">télécharger votre exportation</a>.
-        your_observations_export_failed_html: |-
-          L’export de vos observations a échoué. Allez sur
-          <a href="%{url}">la page d’export des observations</a> pour avoir une liste de toutes vos exportations.
       bulk_import_success:
         success_message: |-
           Vous avez réussi à importer en masse %{filename}. Vos observations
@@ -6399,11 +6392,13 @@ fr:
           avant votre envoi. Utilisez le formulaire au bas de la page de recherche pour importer de nouveaux noms. Si le nom est présent mais
           s’applique à plusieurs taxons valides, essayez d’utiliser un nom plus ou moins
           spécifique qui ne correspond qu’à un seul taxon.
-      users_updates_suspended:
-        message: |-
-          Vous avez été inactif sur %{site_name} depuis un moment, nous avons donc suspendu
-          vos abonnements. Pour reprendre l’obtention des mises à jour de l’activité du site, veuillez
-          <a href="%{login_url}">vous connecter à votre compte</a> de nouveau.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |-
+          Votre exportation des observations est prête. Il y a une copie jointe à ce courriel, ou vous pouvez
+          <a href="%{url}">télécharger votre exportation</a>.
+        your_observations_export_failed_html: |-
+          L’export de vos observations a échoué. Allez sur
+          <a href="%{url}">la page d’export des observations</a> pour avoir une liste de toutes vos exportations.
       photos_missing:
         subject: Certaines photos ont besoin de réparation
         we_have_been_housekeeping: |-
@@ -6424,6 +6419,11 @@ fr:
           que certaines observations de niveau recherche deviennent ponctuelles, si elles n’ont plus de photo.
         we_included_links: Nous avons inclus les liens vers les photos concernées
           ci-dessous.
+      users_updates_suspended:
+        message: |-
+          Vous avez été inactif sur %{site_name} depuis un moment, nous avons donc suspendu
+          vos abonnements. Pour reprendre l’obtention des mises à jour de l’activité du site, veuillez
+          <a href="%{login_url}">vous connecter à votre compte</a> de nouveau.
     photos:
       forbidden_notice_html: |-
         Nous n’avons pas le droit d’accéder à ces photos actuellement. Vous aurez peut-être
@@ -7257,18 +7257,17 @@ fr:
           coordonnées réelles des observations qui sont masquées au public ou qui
           sont privées.</p>\n<p>\n Note: ne modifiez pas à titre d'essai votre affiliation
           si vous avez plus de 1000 observations.\n</p>"
-        licensing_desc_html: |-
-          En mettant votre contenu sous licence, vous donnerez à quiconque le
-          droit de l’utiliser légalement sans
-          demander votre permission s’ils restent dans les conditions de la licence. De
-          plus, %{site_name} inclut votre contenu sous licence Creative Commons dans des archives régulièrement mises à jour produites pour des organisations partenaires
-          sélectionnées intéressées par nos données. Par exemple, nous incluons les enregistrements de Aucun
-          Droit d’auteur (CC0), Attribution (CC BY), et Attribution non commerciale le
-          (CC BY-NC) dans l’archive que nous générons pour
-          <a href="http://www.gbif.org/">Système mondial d’informations sur la
-          biodiversité</a> (SMIB), une organisation internationale
-          intergouvernementale qui compile et distribue des informations sur la
-          biodiversité dans le monde entier.
+        licensing_desc_html: "En mettant votre contenu sous licence, vous donnerez
+          à quiconque le\ndroit de l’utiliser légalement sans\ndemander votre permission
+          s’il reste dans les conditions de la licence. De\nplus, %{site_name} inclut
+          votre contenu sous licence Creative Commons dans des archives régulièrement
+          mises à jour produites pour des organisations partenaires\nsélectionnées
+          intéressées par nos données. Par exemple, nous incluons les enregistrements
+          de Aucun\nDroit d’auteur (CC0), Attribution (CC BY), et Attribution non
+          commerciale le\n(CC BY-NC) dans l’archive que nous générons pour le \n<a
+          href=\"http://www.gbif.org/\">Système mondial d’information sur la\nbiodiversité</a>
+          (SMIB), une organisation internationale\nintergouvernementale qui compile
+          et distribue des informations sur la\nbiodiversité dans le monde entier."
         muting_desc_html: |-
           <p>
             Imposer silence à quelqu’un vous évite de recevoir des notifications au sujet de choses

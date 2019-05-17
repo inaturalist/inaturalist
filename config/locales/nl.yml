@@ -6077,13 +6077,6 @@ nl:
           waarnemingsveld samengevoegen en verplaatst alle waarnemingen die het gebruiken
           naar de keeper. <strong> Dit proces kan niet ongedaan worden gemaakt </strong>, dus wees voorzichtig.
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: "Je export van je waarnemingen is
-          klaar. Er is een kopie bijgevoegd bij deze e-mail of je kunt \n<a href=\"%{url}\">je
-          export downloaden</a>."
-        your_observations_export_failed_html: |-
-          Het exporteren van je waarnemingen is mislukt. Bezoek de
-          <a href="%{url}">waarnemingenexportpagina</a> voor een lijst met jouw exports.
       bulk_import_success:
         success_message: |-
           De bulkimport van %{filename} is gelukt. Jouw waarnemingen
@@ -6096,11 +6089,13 @@ nl:
           namen te importeren. Als de naam aanwezig is maar van toepassing is op meerdere
           geldige taxa, probeer dan een specifieke naam te gebruiken\ndie overeenkomt
           met één taxon."
-      users_updates_suspended:
-        message: Je bent al een tijdje inactief op %{site_name}, dus we hebben je
-          abonnementen opgeschort. Als je weer nieuwtjes over de activiteiten op de
-          website wil ontvangen moet je <a href="%{login_url}">opnieuw inloggen op
-          je account</a>.
+      observations_export_notification:
+        your_observations_export_is_ready_html: "Je export van je waarnemingen is
+          klaar. Er is een kopie bijgevoegd bij deze e-mail of je kunt \n<a href=\"%{url}\">je
+          export downloaden</a>."
+        your_observations_export_failed_html: |-
+          Het exporteren van je waarnemingen is mislukt. Bezoek de
+          <a href="%{url}">waarnemingenexportpagina</a> voor een lijst met jouw exports.
       photos_missing:
         subject: Sommige foto's moeten worden gerepareerd
         we_have_been_housekeeping: |-
@@ -6118,6 +6113,11 @@ nl:
           foto's zijn verwijderd en het is mogelijk dat sommige waarnemingen van "onderzoekskwaliteit(RG)"
           naar "onvolledig(casual)" gaan als ze geen foto's meer hebben.
         we_included_links: We hebben links naar de betreffende foto's hieronder toegevoegd.
+      users_updates_suspended:
+        message: Je bent al een tijdje inactief op %{site_name}, dus we hebben je
+          abonnementen opgeschort. Als je weer nieuwtjes over de activiteiten op de
+          website wil ontvangen moet je <a href="%{login_url}">opnieuw inloggen op
+          je account</a>.
     photos:
       forbidden_notice_html: We hebben momenteel geen rechten om deze foto's te openen.
         Misschien moet u het account ontkoppelen en opnieuw verbinden in uw <a href="/users/edit">instellingen</a>

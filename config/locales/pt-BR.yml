@@ -6108,13 +6108,6 @@ pt-BR:
           as observações e um único campo. <strong>Este processo não pode ser desfeito</strong>,
           portanto tenha cuidado.
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: A exportação de suas observações está
-          pronta. Tem uma cópia anexada neste e-mail, ou você pode fazer o <a href="%{url}">download
-          da sua exportação</a>.
-        your_observations_export_failed_html: Houve uma falha na exportação de suas
-          observações. Visite a <a href="%{url}">página de exportação de observações</a>
-          para ver sua lista de exportações.
       bulk_import_success:
         success_message: Sua importação em massa de %{filename} foi bem sucedida.
           Agora suas observações estão sendo processadas e logo estarão disponíveis
@@ -6127,10 +6120,13 @@ pt-BR:
           Utilize a caixa na base da página de pesquisa para importar novos nomes.
           Se os nomes estão presentes mas se aplicam a múltiplos táxons válidos, tente
           utilizar nomes mais, ou, menos, específicos que combinem com um único táxon.
-      users_updates_suspended:
-        message: Você esteve inativo em %{site_name} por algum tempo, por este motivo
-          suspendemos suas inscrições. Para receber o resumo de atualizações neste
-          local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
+      observations_export_notification:
+        your_observations_export_is_ready_html: A exportação de suas observações está
+          pronta. Tem uma cópia anexada neste e-mail, ou você pode fazer o <a href="%{url}">download
+          da sua exportação</a>.
+        your_observations_export_failed_html: Houve uma falha na exportação de suas
+          observações. Visite a <a href="%{url}">página de exportação de observações</a>
+          para ver sua lista de exportações.
       photos_missing:
         subject: Algumas fotos precisam de reparos
         we_have_been_housekeeping: Temos feito um pouco de limpeza e encontrado algumas
@@ -6151,6 +6147,10 @@ pt-BR:
           as fotos forem excluídas, e é possível que algumas observações das notas
           da pesquisa se tornem informais se não tiverem mais fotos.
         we_included_links: Incluímos links para as fotos afetadas abaixo.
+      users_updates_suspended:
+        message: Você esteve inativo em %{site_name} por algum tempo, por este motivo
+          suspendemos suas inscrições. Para receber o resumo de atualizações neste
+          local, por favor <a href="%{login_url}">se conecte a sua conta</a> novamente.
     photos:
       forbidden_notice_html: |-
         Não temos permissão para acessar essas fotos no momento. Você pode

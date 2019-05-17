@@ -6139,13 +6139,6 @@ it:
           lo stanno utilizzando verso il campo mantenuto. <strong>Questo processo
           è irreversibile</strong>, stai attento!
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: Il tuo export è pronto. Ce n'è una
-          copia in allegato a questa mail; se preferisci puoi <a href="%{url}">scaricare
-          l'export qui</a>.
-        your_observations_export_failed_html: La tua esportazione è fallita. Visita
-          la <a href="%{url}">pagina delle esportazioni</a> per l'elenco delle tue
-          esportazioni.
       bulk_import_success:
         success_message: La tua importazione in gruppo di %{filename} ha avuto successo.
           Stiamo processando le tue osservazioni e presto le potrai vedere sul sito.
@@ -6157,10 +6150,13 @@ it:
           pagina di ricerca per importare nuovi nomi. Se il nome è presente ma si
           riferisce a più di un taxon valido, cerca di usare un nome più o meno specifico
           che corrisponde a solo un singolo taxon.
-      users_updates_suspended:
-        message: Sei stato inattivo su%{site_name} per un po', così abbiamo sospeso
-          la tua iscrizione. Per riattivarla, per favore, <a href="%{login_url}">accedi
-          al tuo account</a>.
+      observations_export_notification:
+        your_observations_export_is_ready_html: Il tuo export è pronto. Ce n'è una
+          copia in allegato a questa mail; se preferisci puoi <a href="%{url}">scaricare
+          l'export qui</a>.
+        your_observations_export_failed_html: La tua esportazione è fallita. Visita
+          la <a href="%{url}">pagina delle esportazioni</a> per l'elenco delle tue
+          esportazioni.
       photos_missing:
         subject: Alcune foto necessitano di riparazione
         we_have_been_housekeeping: Abbiamo fatto un po' di riordino e abbiamo trovato
@@ -6183,6 +6179,10 @@ it:
           ricerca diventeranno di livello casuale se non hanno più foto.
         we_included_links: Abbiamo incluso i collegamenti alle foto interessate qui
           sotto.
+      users_updates_suspended:
+        message: Sei stato inattivo su%{site_name} per un po', così abbiamo sospeso
+          la tua iscrizione. Per riattivarla, per favore, <a href="%{login_url}">accedi
+          al tuo account</a>.
     photos:
       forbidden_notice_html: Non abbiamo i permessi di accedere a quelle foto al momento.
         Potresti aver necessità di disconnettere e riconnettere l'account nelle tue

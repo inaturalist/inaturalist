@@ -6046,13 +6046,6 @@ da:
           til holderen.<strong> Denne proces kan ikke fortrydes </strong>, så PAS
           PÅ."
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: |-
-          Dine observations eksport er klar. Der er en kopi vedhæftet denne email, eller du kan
-          <a href="%{url}"> downloade din eksport </a>.
-        your_observations_export_failed_html: |-
-          Din observationseksport mislykkedes. Besøg
-          <a href="%{url}"> observationseksport siden </a> for en liste over din eksport.
       bulk_import_success:
         success_message: |-
           Din multiimport af %{filename} var vellykket. Dine observationer
@@ -6066,11 +6059,13 @@ da:
           søgesiden for at importere nye navne. Hvis navnet findes, men
           gælder for flere gyldige taksa, så prøv at bruge mere eller mindre specifikke
           navne, der kun matcher en enkelt takson.
-      users_updates_suspended:
-        message: |-
-          Du har været inaktiv på %{site_name} et stykke tid, så vi har suspenderet
-          dine abonnementer. For at genoptage underretningerne, bedes du venligst
-          <a href="%{login_url}">logge ind på din konto</a>igen.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |-
+          Dine observations eksport er klar. Der er en kopi vedhæftet denne email, eller du kan
+          <a href="%{url}"> downloade din eksport </a>.
+        your_observations_export_failed_html: |-
+          Din observationseksport mislykkedes. Besøg
+          <a href="%{url}"> observationseksport siden </a> for en liste over din eksport.
       photos_missing:
         subject: Nogle billeder behøver reparation
         we_have_been_housekeeping: |2-
@@ -6091,6 +6086,11 @@ da:
           vil forblive. De vil blive revurderet, efter at billederne er slettet, og det er muligt
           nogle observationer af forskningskvalitet vil blive almindelige, hvis de ikke længere har nogen billeder.
         we_included_links: Vi har medtaget links til de berørte billeder nedenfor.
+      users_updates_suspended:
+        message: |-
+          Du har været inaktiv på %{site_name} et stykke tid, så vi har suspenderet
+          dine abonnementer. For at genoptage underretningerne, bedes du venligst
+          <a href="%{login_url}">logge ind på din konto</a>igen.
     photos:
       forbidden_notice_html: |-
         Vi har ikke tilladelse til at få adgang til disse billeder lige nu. Du skal måske

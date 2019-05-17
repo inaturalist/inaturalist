@@ -5755,13 +5755,6 @@ et:
           vaatlusvälja ning liigitab kõik seda kasutavad vaatlused alles jääva välja
           alle. <strong>Seda ei saa tagasi võtta!</strong> Ole ettevaatlik!
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: Sinu eksporditud vaatlused on valmis.
-          Koopia ekspordist on selle kirja manuses või saad selle <a href="%{url}">alla
-          laadida siit</a>.
-        your_observations_export_failed_html: Sinu vaatluste eksportimine ebaõnnestus.
-          Külasta <a href="%{url}">vaatluste eksportimise lehte</a>, et näha kõiki
-          oma eksporte.
       bulk_import_success:
         success_message: Faili %{filename} massimport õnnestus. Sinu vaatluseid töödeldakse
           ning need ilmuvad peagi lehele.
@@ -5772,10 +5765,13 @@ et:
           uute nimede importimiseks otsingu lehe allosas olevat kasti. Kui nimi on
           olemas, kuid see on õigesti seotud mitme taksoniga, proovi kasutada mõnda
           teist nimetust, mis oleks seostatav vaid ühe taksoniga.
-      users_updates_suspended:
-        message: Sa pole mõnda aega olnud lehel %{site_name} aktiivne, nii et oleme
-          katkestanud sinu jälgimised. Et jätkuvalt saada teateid lehel toimuvast,
-          palun <a href="%{login_url}">logi uuesti sisse</a>.
+      observations_export_notification:
+        your_observations_export_is_ready_html: Sinu eksporditud vaatlused on valmis.
+          Koopia ekspordist on selle kirja manuses või saad selle <a href="%{url}">alla
+          laadida siit</a>.
+        your_observations_export_failed_html: Sinu vaatluste eksportimine ebaõnnestus.
+          Külasta <a href="%{url}">vaatluste eksportimise lehte</a>, et näha kõiki
+          oma eksporte.
       photos_missing:
         subject: Mõned fotod vajavad parandamist
         we_have_been_housekeeping: Tegelesime natuke koristamisega ning avastasime,
@@ -5795,6 +5791,10 @@ et:
           jäävad alles. Peale fotode kustutamist hinnatakse neid uuesti ning on võimalik,
           et mõned teaduskõlbulikud vaatlused muutuvad peale fotode kadumist juhuvaatlusteks.
         we_included_links: Oleme allpool ära toonud vastavate fotode lingid.
+      users_updates_suspended:
+        message: Sa pole mõnda aega olnud lehel %{site_name} aktiivne, nii et oleme
+          katkestanud sinu jälgimised. Et jätkuvalt saada teateid lehel toimuvast,
+          palun <a href="%{login_url}">logi uuesti sisse</a>.
     photos:
       inviter:
         automatically_add_to_project: Lisa automaatselt projekti

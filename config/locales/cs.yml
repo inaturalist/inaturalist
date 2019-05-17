@@ -4220,6 +4220,9 @@ cs:
   taxon_is_a_rank_of_amphibia_with_x_observations:
     one: '%{taxon} je %{rank} obojživeníků s jedním pozorování'
     other: '%{taxon} je %{rank} obojživelníků s %{count} pozorování'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} je %{rank} ptáků s jedním pozorováním %{taxon} je %{rank} ptáků
+      s %{count} pozorováními'
   taxon_is_a_rank_of_mammalia_with_x_observations:
     one: '%{taxon} je %{rank} savců s jedním pozorováním'
     other: '%{taxon} je %{rank} savců s %{count} pozorováními'
@@ -4720,6 +4723,8 @@ cs:
       remove_photo: Odstranit fotografii
       select_all: Vybrat všechna pozorování
       upload_failed: Nahrávání se nezdařilo
+  uploading_num_of_count_photos: Nahrávání {{PLURAL:%{count}|fotografie|%{num} ze
+    %{count} fotografií|%{num} z %{count} fotografií}}...
   url_identifier_of_a_project_derived_from: URL / identifikátor projektu odvozený
     z externího zdroje
   url_of_this_taxon_on_the_source_website: URL tohoto taxonu na webové stránce zdroje
@@ -5325,6 +5330,17 @@ cs:
             %{site_name} se studenty.
     donate:
       donate_short_desc: Darujte nyní, abyste ukázali, že nás podporujete!
+      donate_desc_html: "<p class = \"lead\">\n  <strong> iNaturalist je jednou z
+        největších komunit na světě\n  zkoumající biologickou rozmanitost. Děkujeme
+        za to, že jste součástí! </ Strong>\n</ P>\n<p class = \"lead\">\n  Pokud
+        věříte v sílu této globální komunity, \n  sdílejte znalosti a vytvářejte nenahraditelná
+        data o biodiverzitě,\n  prosím, zvažte jednorázový nebo opakovaný dar.\n</
+        P>\n<p class = \"lead\">\n  Vaše dary pomáhají podporovat iNaturalist, komunita
+        roste, od\n  zdokonalení počítačů a zavádění nových funkcí\n  pro naše servery
+        a zaměstnance.\n</ P>\n<p class = \"text-muted\">\n  iNaturalist je společná
+        iniciativa Kalifornské akademie věd\n  a National Geographic Society. Všechny
+        dary obdrží\n  Kalifornská akademie věd, 501 (c) (3) nezdanitelný zisk\n  organizace
+        se sídlem ve Spojených státech amerických.\n</ P>"
       post_donate_social_media_text: Podporuji iNaturalist protože...
     flags:
       show:
@@ -5910,13 +5926,6 @@ cs:
           slučované pole pozorování a přesune veškerá pozorování, která ho používají,
           ke správci. <strong>Tento proces je nevratný</strong>, proto buďte opatrní.
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: |-
-          Export vašeho pozorování je připraven. Kopie je přiložena k tomuto e-mailu, nebo si můžete
-          <a href="%{url}">stáhnout export</a>.
-        your_observations_export_failed_html: |-
-          Export vašeho pozorování se nezdařil. Běžte na stránku
-          <a href="%{url}">export pozorování</a>, kde najdete přehled svých exportů.
       bulk_import_success:
         success_message: Váš hromadný import %{filename} byl úspěšný. Vaše pozorování
           se teď zpracovávají a brzy se objeví na stránkách.
@@ -5928,10 +5937,13 @@ cs:
           pole v dolní části stránky vyhledávání. Pokud je název obsažen, ale vztahuje
           se k více platným taxonům, zkuste použít více nebo méně specifický název,
           který se vztahuje k jedinému taxonu.
-      users_updates_suspended:
-        message: |-
-          Na %{site_name} jste nějakou dobu nebyli aktivní, tak jsme zastavili vaše odběry. Pro obnovení zasílání aktualizací o aktivitě na stránkách se prosím znovu
-          <a href="%{login_url}">přihlaste ke svému účtu</a>.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |-
+          Export vašeho pozorování je připraven. Kopie je přiložena k tomuto e-mailu, nebo si můžete
+          <a href="%{url}">stáhnout export</a>.
+        your_observations_export_failed_html: |-
+          Export vašeho pozorování se nezdařil. Běžte na stránku
+          <a href="%{url}">export pozorování</a>, kde najdete přehled svých exportů.
       photos_missing:
         subject: Některé fotky vyžadují opravu
         we_have_been_housekeeping: |-
@@ -5952,6 +5964,10 @@ cs:
           pozorování na úrovni vyhledávání se mohou stát přesnými, pokud nemají více
           fotografií.
         we_included_links: Uvádíme odkazy na níže uvedené fotografie.
+      users_updates_suspended:
+        message: |-
+          Na %{site_name} jste nějakou dobu nebyli aktivní, tak jsme zastavili vaše odběry. Pro obnovení zasílání aktualizací o aktivitě na stránkách se prosím znovu
+          <a href="%{login_url}">přihlaste ke svému účtu</a>.
     photos:
       forbidden_notice_html: Momentálně nemáme přístup k těmto fotografiím. Pravděpodobně
         bude nutné odpojit a znovu připojit účet v <a href="/users/edit"> nastavení
