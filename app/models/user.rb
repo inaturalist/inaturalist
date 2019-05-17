@@ -333,7 +333,7 @@ class User < ActiveRecord::Base
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active?
+    active? && !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
   end
 
   def download_remote_icon
@@ -1267,6 +1267,10 @@ class User < ActiveRecord::Base
       self.pi_consent_at = Time.now
     end
     true
+  end
+
+  def donor?
+    donorbox_donor_id.to_i > 0
   end
 
   # Iterates over recently created accounts of unknown spammer status, zero

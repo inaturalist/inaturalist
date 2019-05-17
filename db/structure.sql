@@ -4731,7 +4731,8 @@ CREATE TABLE public.user_parents (
     email character varying,
     child_name character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    donorbox_donor_id integer
 );
 
 
@@ -4846,7 +4847,8 @@ CREATE TABLE public.users (
     curator_sponsor_id integer,
     suspended_by_user_id integer,
     birthday date,
-    pi_consent_at timestamp without time zone
+    pi_consent_at timestamp without time zone,
+    donorbox_donor_id integer
 );
 
 
@@ -9913,4 +9915,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190514191221');
 INSERT INTO schema_migrations (version) VALUES ('20190514192302');
 
 INSERT INTO schema_migrations (version) VALUES ('20190516011313');
+
+INSERT INTO schema_migrations (version) VALUES ('20190516181748');
 

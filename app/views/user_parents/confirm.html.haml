@@ -10,15 +10,25 @@
     $( ".sharing .btn" ).click( function( ) {
       return !window.open( this.href, $(this).text( ), "width=640,height=400" );
     } );
+    window.addEventListener( "message", function( event ) {
+      if ( event.origin !== "https://donorbox.org" ) {
+        return;
+      }
+      if ( event.data !== "donation_complete" ) {
+        return;
+      }
+      $( "#step2" ).removeClass( "current" );
+      $( "#step3" ).addClass( "current" );
+    }, false);
 - content_for :left do
   #progress
     %h1=t "views.user_parents.new.inaturalist_minor_account_signup"
     %ol.plain
       - ( 1..3 ).each do |step|
-        %li{ class: step == 2 ? "current" : "" }
+        %li{ id: "step#{step}", class: step == 2 ? "current" : "" }
           .title
             .step= step
             %h2=t "views.user_parents.new.step#{step}_title"
           %p=t "views.user_parents.new.step#{step}_desc"
 
-%iframe#donorbox-iframe{ src: "https://donorbox.org/embed/seek-verification?#{donorbox_params.to_query}", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true, onLoad: "console.log('this.contentWindow.location: ', this.contentWindow.location);" }
+%iframe#donorbox-iframe{ src: "https://donorbox.org/embed/seek-verification?#{donorbox_params.to_query}", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
