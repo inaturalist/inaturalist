@@ -1,5 +1,7 @@
 class UserParentsController < ApplicationController
   layout "registrations"
+  before_filter :set_instance_variables
+
   def new
     @user_parent = UserParent.new( user: User.new )
     if current_user
@@ -41,5 +43,12 @@ class UserParentsController < ApplicationController
     respond_to do |format|
       format.html
     end
+  end
+
+  private
+  def set_instance_variables
+    @footless = true
+    @no_footer_gap = true
+    @responsive = true
   end
 end

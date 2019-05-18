@@ -1,12 +1,36 @@
 @import "colors";
 @import "donorbox-iframe";
 
-#progress {
-  margin-top: 30px;
+.bootstrap {
   h1 {
     font-weight: bold;
     font-size: 30px;
+    margin-bottom: 35px;
   }
+
+  h2 {
+    font-size: 23px;
+    line-height: 30px;
+    margin: 0;
+    font-weight: 600;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    color: $inat-green;
+  }
+  h3 {
+    font-weight: bold;
+    font-size: 27px;
+    margin-bottom: 23px;
+  }
+  p {
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+.user-parent-progress {
+  margin-top: 30px;
   min-height: 900px;
   width: 50%;
   position: relative;
@@ -33,15 +57,9 @@
           text-align: center;
           line-height: 54px;
         }
-        h2 {
-          font-size: 23px;
-          line-height: 30px;
-          margin: 0;
-          font-weight: bold;
-          height: 54px;
-          display: flex;
-          align-items: center;
-        }
+      }
+      h2 {
+        color: black;
       }
     }
     li.current {
@@ -55,10 +73,44 @@
     }
   }
 }
+$form-width: 345px;
 #formcol {
-  padding-top: 50px
+  min-width: $form-width;
+  form, .formcol-content {
+    min-width: $form-width;
+  }
+  padding-top: 50px;
+  .user-parent-progress {
+    li {
+      display: none;
+      &.current { display: block; }
+    }
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    padding: 0;
+  }
 }
 #donorbox-iframe {
-  width: auto;
   margin: 0 auto;
+}
+// xs
+@media (max-width: 767px) {
+  #formcol {
+    padding-top: 0;
+  }
+}
+// sm
+@media (min-width: 768px) and (max-width: 991px) {
+  #formcol {
+    padding-top: 0;
+  }
+}
+#user-parent-thanks {
+  display: none;
+  text-align: center;
+  p {
+    font-size: 21px;
+    margin-top: 20px;
+  }
 }

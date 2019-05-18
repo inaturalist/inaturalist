@@ -887,6 +887,7 @@ en:
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
   contest: contest
   continue: Continue
+  continue_to_site: Continue to %{site_name}
   contributions: contributions
   contributions_from: Contributions from
   contributor_cannot_be_found: Contributor cannot be found
@@ -6704,7 +6705,12 @@ en:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended
     user_parents:
+      confirm:
+        thanks_for_creating_a_minor_account: THANKS FOR CREATING A MINOR ACCOUNT!
+        we_will_send_you_an_email: |
+          We will send you an email once your child's account has been activated.
       new:
+        create_a_minor_account: Create a minor account
         child_name_private: Child name (private)
         parent_name_private: Parent name (private)
         parent_email: Parent email
