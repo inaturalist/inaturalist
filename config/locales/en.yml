@@ -5462,7 +5462,7 @@ en:
       show:
         allow_curator_coordinate_access_desc_html: |
           Allow project curators to view the hidden coordinates for this observation.
-        ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but were created after the first identification using this taxon"
+        ancestor_disagreements_desc: "# of identified taxa that are among a taxon's ancestors, but disagree with the taxon (ie \"I think its in the genus but I disagree its that species\")"
         community_taxon_desc_html: |
           <p class="ui">
             The community taxon (or community identification) represents
@@ -5479,26 +5479,36 @@ en:
             correct.
           </p>
           <p class="ui">
-            The community taxon is the taxon we use when sharing observations
-            with data partners, linking observations of the same taxon on the
-            site, updating your life list, etc. If for some reason you don't
-            agree with the community taxon, you can reject it, which means
-            that your ID is the one used for linking to other observations,
-            updating life lists, etc. It also means your observation can only
-            become research grade when the community agrees with <em>you</em>.
-            If you don't like the whole idea of community taxa, you can opt
-            out of them entirely by <a href="/users/edit" target="_blank">editing your settings</a>.
+            A research grade observation must have (among other criteria) a
+            community taxon at rank species or finer. If an observation has
+            only one identification, it won’t have a community taxon. All
+            observations with at least one identification will also have an
+            observation taxon. The observation taxon is the taxon we use when
+            sharing observations with data partners, linking observations of
+            the same taxon on the site, updating your life list, etc. In most
+            cases the observation taxon will eventually be set to the community
+            taxon, but sometimes they will differ especially before the community
+            has settled on an identification. For example, if you think
+            its a snake (suborder Serpentes) and I think it’s a kingsnake (genus
+            <i>Lampropeltis</i>) the observation taxon will be at kingsnake (supported
+            by my identification only) but the community taxon will be at
+            serpentes (supported by at least two identifications). If for
+            some reason you don't agree with the community taxon, you can
+            reject it on your own observations, which means that observation
+            taxon will never be set to the community taxon (rather your own ID).
+            It also means your observation can only become research grade when the community
+            agrees with <em>you</em>. If you don't like the whole idea of
+            community taxa, you can opt out of them entirely by
+            <a href="/users/edit" target="_blank">editing your settings</a>.
           </p>
           <p class="ui">
             <strong>The algorithm:</strong> for all identified taxa and the taxa that contain them
-            (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score
-            each as the ratio between the number of cumulative IDs for
-            that taxon over the sum of the cumulative IDs, the number of
-            more conservative IDs added after the first ID of that taxon,
-            and the number of IDs that are completely different (i.e. IDs
-            of taxa that do not contain the taxon being scored). For the
-            identified taxa that have a score over 2/3 and at least 2
-            identifications, choose the lowest ranked taxon.
+            (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between
+            the number of ‘agreements’ - cumulative IDs for that taxon over the sum of the cumulative
+            IDs, ‘disagreements’ - the number of IDs that are completely different (i.e. IDs of taxa
+            that do not contain the taxon being scored), and ‘ancestor disagreements’ - the number of
+            more conservative IDs that disagree with the finer taxon. For the identified taxa that
+            have a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.
           </p>
         cumulative_count_desc: '# of identifications for an individual taxon and all its descendants'
         curator_coordinate_access_disabled_desc_html: |

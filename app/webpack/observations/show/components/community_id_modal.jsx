@@ -138,12 +138,15 @@ class CommunityIDModal extends Component {
             ( i.taxon.ancestor_ids || [] ).concat( [i.taxon.id] )
           );
           _.each( taxa, t => {
-            if ( _.intersection( t.ancestor_ids, taxonIDsDisagreedWith ).length > 0 ) {
+            if ( _.intersection( ( t.ancestor_ids || [] ).concat( [t.id] ), taxonIDsDisagreedWith ).length > 0 ) {
+              console.log(t.ancestor_ids);
+              console.log(taxonIDsDisagreedWith);
               this.ancestorDisagreements[t.id] = this.ancestorDisagreements[t.id] || 0;
               this.ancestorDisagreements[t.id] += 1;
             }
           } );
         }
+        console.log(this.ancestorDisagreements);
         let lastTaxon;
         _.each( allAncestors, t => {
           this.idTaxonAncestorCounts[t.id] = this.idTaxonAncestorCounts[t.id] || 0;
