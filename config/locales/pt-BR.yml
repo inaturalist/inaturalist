@@ -3042,6 +3042,9 @@ pt-BR:
   owner: Proprietário
   parent: Pai
   parent_name: Nome da espécie pai
+  parental_consent:
+    must_specify_email: Você deve especificar um endereço de e-mail
+    invalid_email: Formato de e-mail inválido
   password: Senha
   password_confirmation: Confirme sua senha
   paste: Colar
@@ -4700,9 +4703,9 @@ pt-BR:
   "true": Verdadeiro
   trending: Tendências
   trends: Tendências
-  trip_target_list_info: Este é um conjunto não-sobreposto dos taxa mais grosseiros
-    na sua lista de alvos. Qualquer taxa representada por observações obscuras excluídas.
-    <a href="/pages/trips">Consulte mais informação</a>.
+  trip_target_list_info: Todas as espécies cobertas por esta lista de alvos que não
+    foram observadas dentro do raio e duração desta viagem serão interpretadas como
+    ausências. <a href="/pages/trips">Consulte mais informação</a>.
   trusted: Confiável
   trusted_project?: É um projeto confiável?
   trust_this_person_with_your_private_coordinates: Confiar nessa pessoa com suas coordenadas
@@ -6127,6 +6130,54 @@ pt-BR:
         your_observations_export_failed_html: Houve uma falha na exportação de suas
           observações. Visite a <a href="%{url}">página de exportação de observações</a>
           para ver sua lista de exportações.
+      parental_consent:
+        subject: Seu filho gostaria de usar o iNaturalist
+        content_html: |-
+          <p>
+          Seu filho está usando o aplicativo educacional do Seek by iNaturalist e gostaria de compartilhar dados com a plataforma ciência-cidadão nacionalista. Porque esses dados incluem identificação pessoal
+             Informação, não pode ser usada por pessoas com menos de 13 anos
+             sem o consentimento de um dos pais.
+          </p>
+          <p>
+            A busca do iNaturalist pode ser usada sem criar uma conta, e não usará os
+            os dados serão compartilhados, mas seu filho não poderá contribuir nas
+            observações para o iNaturalist. [EXPLANATION OF INAT]
+          </p>
+          <p>
+            Se você quiser dar consentimento para seu filho usar o iNaturalist, vamos precisar de você para fazer o seguinte:
+          </p>
+          <ol>
+            <li>
+              <p>
+                Crie uma conta iNaturalist que seu filho usará
+                 indicando que a conta será usada por uma pessoa com
+                13 anos de idade seguindo este link:
+                <a href="%{registration_url}">%{registration_url}</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                Faça uma doação nominal de $1 com um cartão de crédito para o iNaturalist
+                para verificar se você é um adulto. Por favor, certifique-se de usar incluem
+                o mesmo e-mail que você usou para criar a conta ao lado da
+                 sua doação aqui: https://www.inaturalist.org/donate
+              </p>
+            </li>
+            <li>
+              <p>
+                Assim que processarmos a doação, enviaremos uma notificação na
+                conta e-mail que a conta foi ativada e você pode
+                 usar o nome de usuário e a senha do iNaturalist que você criou para entrar no
+                aplicativo Seek do seu filho.
+              </p>
+            </li>
+          </ol>
+          <p>
+            Saiba mais sobre quais compartilhamentos iNaturalist de Informações de Identificação Pessoal: …
+          </p>
+          <p>
+            Saiba mais sobre a Política de Privacidade da iNaturalist <a href="%{privacy_policy_url}">here</a>.
+          </p>
       photos_missing:
         subject: Algumas fotos precisam de reparos
         we_have_been_housekeeping: Temos feito um pouco de limpeza e encontrado algumas
@@ -6327,10 +6378,8 @@ pt-BR:
           contate um dos administradores abaixo e solicite um convite.
       new:
         a_project_allows_you_to_gather: Um projeto de coleta permite reunir e visualizar
-          as observações que utilizam as ferramentas básicas do NaturaLista. Isso
-          elimina a necessidade de adicionar manualmente as observações porque todas
-          as que satisfazem as condições dos parâmetros determinados no projeto serão
-          incluídas automaticamente.
+          observações usando as principais ferramentas de pesquisa iNaturalist. Tudo
+          o que atende ao os parâmetros definidos pelo projeto serão incluídos automaticamente.
         an_umbrella_project_can_be_used_to: Um projeto guarda-chuva pode comparar
           estatísticas de dois ou mais projetos tradicionais ou coletores. Os outros
           projetos precisam existir antes de você adicioná-los a um projeto de guarda-chuva.
@@ -6351,12 +6400,10 @@ pt-BR:
           personalizados ou adicionar observações individuais que não podem ser filtradas
           automaticamente?
         leaderboards_among_individuals: Classificações entre <strong>indivíduos</strong>
-        leaderboards_among_projects_and_bioblitzes: Classificações entre <strong>projetos
-          e maratonas</strong>
+        leaderboards_among_projects_and_bioblitzes: Classificações entre <strong>projetos</strong>
         multiple_project_administrators: Administradores de vários projetos
         name_placeholder: Aves de Chicago, Libélulas Incríveis, etc.
-        no_need_to_rely_on_manual_addition: Não há necessidade de confiar na adição
-          manual de observações ou no agregador para indexar observações
+        no_need_to_rely_on_manual_addition: Nenhuma adição manual de observações
         note_these_users_will_be_able_to_edit: 'Nota: esses usuários poderão editar
           TODOS os detalhes do projeto, incluindo os administradores.'
         note_you_can_delete_the_time: '(Nota: você pode excluir o fuso horário e a
@@ -6385,7 +6432,8 @@ pt-BR:
           do projeto, então inclua os melhores no começo!
         project_summary_placeholder: Descubra e siga os pássaros do Golden Gate Park
           ...
-        start_and_end_times_for_bioblitzes: Horário de início e fim dos bioblitzes
+        start_and_end_times_for_bioblitzes: Data e hora de início e término (para
+          eventos do tipo bioblitz)
         umbrella_project_features: 'Recursos do projeto guarda-chuva:'
         unique_url_for_outreach: URL exclusivo para divulgação
         users_can_follow_your_project: Os usuários podem acompanhar seu projeto para
@@ -6394,10 +6442,16 @@ pt-BR:
           um projeto tradicional.
         visual_comparison_of_data_among: Comparações visuais de dados entre projetos
           sob o guarda-chuva
-        we_have_redesigned_projects: |-
-          Redesenhamos os projetos para incluir automaticamente todas as observações apropriadas de sites, taxa, usuários, qualidade e datas que você define. Escolha entre dois tipos:
-          Projetos de coleta e projetos guarda-chuva, que compartilham as seguintes características:
+        we_have_redesigned_projects: 'Os projetos são projetados para incluir automaticamente
+          todas as observações que se encaixam lugares, táxons, usuários, qualidade
+          e datas que você define. Escolha entre dois tipos principais: Projetos de
+          coleção e projetos de guarda-chuva, que compartilham os seguintes recursos:'
         welcome_to_projects: Bem-vindo ao projeto!
+        you_can_learn_more_html: |-
+          Você pode aprender mais sobre como gerenciar projetos
+          <a href="https://www.inaturalist.org/pages/managing-projects">aqui</a>
+          ou leia a história dos projetos no
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">nosso blog</a>.
         you_have_not_defined_any_observation_requirements: Você não definiu nenhum
           requisito para observações. Certifique-se de selecionar um ou mais taxa
           (por exemplo, pássaros, coníferas), sites (por exemplo, Brasil, Yellowstone),

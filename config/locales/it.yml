@@ -184,20 +184,20 @@ it:
   about_this_bioblitz: Riguardo questo bioblitz
   about_this_map: A proposito di questa mappa
   about_this_project: A proposito di questo Progetto
-  about_trips_html: <h4>i Viaggi permettono la raccolta di dati di presenza-asssenza
-    aggiungendo un contesto alle tue osservazioni</h4><p><strong>Perchè</strong> i
-    dati di Presenza-Assenza includono informazioni sullo sforzo di ricerca effettuato
-    che è utile per analisi scientifiche come i modelli di distribuzione (le osservazioni
+  about_trips_html: <h4>I Viaggi permettono la raccolta di dati di presenza-assenza,
+    aggiungendo un contesto alle tue osservazioni</h4><p><strong>Perchè</strong> I
+    dati di Presenza-Assenza includono informazioni sullo sforzo di ricerca effettuato,
+    utile per analisi scientifiche quali i modelli di distribuzione (le osservazioni
     iNaturalist grezze sono dati di 'sola-presenza').</p> <p><strong>Come</strong>
     Un viaggio aggiunge contesto alle tue osservazioni registrando:</p> <ul> <li><strong>Cosa</strong>
     hai cercato (lista obbiettivi)</li> <li><strong>Dove</strong> hai cercato (area
     di ricerca)</li> <li><strong>Quando</strong> hai cercato (intervallo di ricerca)</li>
-    </ul> <p>Le specie sulla tua lista di obbiettivi che tu sei stato in grado di
-    osservare nell'area per l'intervallo di ricerca sono interpretate come presenze.
-    Mentre le specie sulla tua lista di obbiettivi che tu non sei stato in grado di
-    osservare sono interpretate come assenze. Clicca 'Tabula Dati Presenza Assenza
-    Dai Viaggi' per generare una tabella di record di presenza-assenza per una specie
-    dai viaggi e di osservazioni associate. <a href='%{url}'>Scopri di più</a></p>
+    </ul> <p>Le specie sulla tua lista di obbiettivi che sei stato in grado di osservare
+    nell'area definita e per l'intervallo di ricerca sono interpretate come presenze.
+    Mentre le specie sulla tua lista di obbiettivi che non sei stato in grado di osservare
+    sono interpretate come assenze. Clicca 'Tabula Dati Presenza Assenza Dai Viaggi'
+    per generare una tabella di record di presenza-assenza per una specie a partire
+    dai viaggi e dalle osservazioni associate. <a href='%{url}'>Scopri di più</a></p>
   about_x: A proposito di %{x}
   acc: Acc (m)
   account: Account
@@ -3062,6 +3062,9 @@ it:
   owner: Proprietario
   parent: Di Categoria superiore
   parent_name: Nome di categoria superiore
+  parental_consent:
+    must_specify_email: Devi specificare un indirizzo email
+    invalid_email: Formato email non valido
   password: Password
   password_confirmation: Conferma della password
   paste: Incolla
@@ -6157,6 +6160,42 @@ it:
         your_observations_export_failed_html: La tua esportazione è fallita. Visita
           la <a href="%{url}">pagina delle esportazioni</a> per l'elenco delle tue
           esportazioni.
+      parental_consent:
+        subject: Tuo figlio vorrebbe usare iNaturalist
+        content_html: |-
+          <p>
+            Tuo figlio sta utilizzando l'app educativa Seek di iNaturalist e vorrebbe condividere i dati con la piattaforma di citizen-science iNaturalist. Poiché questi dati contengono Informazioni Identificative Personali, non può essere usata da persone con età inferiore ai 13 anni senza il consenso dei genitori.
+          </p>
+          <p>
+            Seek di iNaturalist può essere usata senza la creazione di un account, e nessun dato sarà condiviso, ma tuo figlio non sarà in grado di contribuire con osservazioni per iNaturalist. [EXPLANATION OF INAT]
+          </p>
+          <p>
+            Se dai il consenso affinché tuo figlio utilizzi iNaturalist, abbiamo bisogno che tu faccia i seguenti passi:
+          </p>
+          <ol>
+            <li>
+              <p>
+                Creare l'account iNaturalist che tuo figlio utilizzerà, indicando che l'account sarà utilizzato da una persona con età inferiore ai 13 anni seguendo il link seguente:
+                <a href="%{registration_url}">%{registration_url}</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                Fare una donazione nominale di $1 con una carta di credito in favore di iNaturalist per verificare che tu sia un adulto. Assicurati di usare la stessa email che hai scelto per creare l'account insieme alla donazione qui: https://www.inaturalist.org/donate
+              </p>
+            </li>
+            <li>
+              <p>
+                Quando avremo processato la donazione, ti manderemo una notifica di attivazione alla mail dell'account e tu potrai usare il nome utente e la password iNaturalist per loggarti sulla app Seek di tuo figlio.
+              </p>
+            </li>
+          </ol>
+          <p>
+            Scopri di più su quali Informazioni Identificative Personali iNaturalist condivide: …
+          </p>
+          <p>
+            Scopri di più sulle Privacy Policy di iNaturalist <a href="%{privacy_policy_url}">qui</a>.
+          </p>
       photos_missing:
         subject: Alcune foto necessitano di riparazione
         we_have_been_housekeeping: Abbiamo fatto un po' di riordino e abbiamo trovato
@@ -6362,8 +6401,7 @@ it:
       new:
         a_project_allows_you_to_gather: Un progetto collezione ti permette di raccogliere
           e visualizzare osservazioni utilizzando lo strumento ricerca di iNaturalist.
-          Questo ti permette di evitare di aggiungere manualmente le osservazioni
-          perché tutto ciò che soddisfa i requisiti del progetto sarà incluso automaticamente.
+          Tutto ciò che soddisfa i requisiti del progetto sarà incluso automaticamente.
         an_umbrella_project_can_be_used_to: Un progetto Ombrello può essere usato
           per confrontare le statistiche tra due o più progetti tradizionali o progetti
           Collezione. Gli altri progetti devono già esistere prima di poterli aggiungere
@@ -6384,12 +6422,10 @@ it:
           osservazione personalizzati, o di aggiungere osservazioni che non possono
           essere filtrate automaticamente?
         leaderboards_among_individuals: Classifiche tra <strong>utenti</strong>
-        leaderboards_among_projects_and_bioblitzes: Classifiche tra <strong>progetti
-          e bioblitz</strong>
+        leaderboards_among_projects_and_bioblitzes: Classifiche tra <strong>progetti</strong>
         multiple_project_administrators: Più di un amministratore del progetto
         name_placeholder: Uccelli di Chicago, Libellule spettacolari, etc.
-        no_need_to_rely_on_manual_addition: Nessun bisogno di aggiungere manualmente
-          le osservazioni o attivare l'aggregatore di osservazioni
+        no_need_to_rely_on_manual_addition: Nessuna aggiunta manuale di osservazioni
         note_these_users_will_be_able_to_edit: 'Nota: questi utenti saranno in grado
           di editare tutti le caratteristiche dei progetti compresi gli amministratori.'
         note_you_can_delete_the_time: '(Nota: puoi cancellare il fuso orario e precisare
@@ -6417,7 +6453,8 @@ it:
           meglio all'inizio!
         project_summary_placeholder: Scopri e registra gli uccelli del Golden Gate
           Park...
-        start_and_end_times_for_bioblitzes: Ora di inizio e fine dei bioblitz
+        start_and_end_times_for_bioblitzes: Ora/data di inizio e fine (per eventi
+          tipo bioblitz)
         umbrella_project_features: Caratteristiche dei Progetti Ombrello
         unique_url_for_outreach: Unico URL per raggiungerlo
         users_can_follow_your_project: Gli utenti possono seguire il tuo progetto
@@ -6426,11 +6463,15 @@ it:
           per creare un progetto tradizionale.
         visual_comparison_of_data_among: Confronto visivo dei dati tra i progetti
           sotto l'ombrello
-        we_have_redesigned_projects: 'Abbiamo ridisegnato i progetti per includere
-          tutte le osservazioni che soddisfano i criteri di luogo, taxon, utente,
-          qualità del dato e periodo che decidi tu. Puoi scegliere tra due tipi: Progetti
-          Collezione e Progetti Ombrello, che condividono le seguenti caratteristiche:'
+        we_have_redesigned_projects: 'I progetti sono stati ideati per includere tutte
+          le osservazioni che soddisfano i criteri di luogo, taxon, utente, qualità
+          del dato e periodo che decidi tu. Puoi scegliere tra due tipi principali:
+          Progetti Collezione e Progetti Ombrello, che condividono le seguenti caratteristiche:'
         welcome_to_projects: Benvenuti nei progetti
+        you_can_learn_more_html: Puoi saperne di più sulla gestione dei progetti <a
+          href="https://www.inaturalist.org/pages/managing-projects">qui</a> o leggere
+          la storia dei progetti sul <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">nostro
+          blog</a>.
         you_have_not_defined_any_observation_requirements: Non hai definito alcun
           requisito per le osservazioni. Accertati di aver selezionato uno o più taxa
           (e.g. uccelli, conifere), luoghi (e.g. Brasile, Yellowstone), utenti, e/o
@@ -6844,13 +6885,16 @@ it:
           <p>
             Nota: Per favore non provare a cambiare affiliazione se hai più di 1000 osservazioni.
           </p>
-        licensing_desc_html: Attribuendo una licenza ai tuoi contenuti darai alle
-          altre persone il diritto legale di utilizzarlo senza chiederti il permesso
-          se essi si attengono ai termini della licenza. %{site_name} utilizza i tuoi
-          contenuti con licenza Creative Commons per condividerli con i partner come
-          il <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>
-          (GBIF), una organizzazione internazionale e intergovernativa che raccoglie
-          e distribuisce le informazioni sulla biodiversità in tutto il mondo.
+        licensing_desc_html: Attribuendo una licenza ai tuoi contenuti darai a chiunque
+          il diritto legale di utilizzarlo senza chiederti il permesso se essi si
+          attengono ai termini della licenza. In più, %{site_name} include i tuoi
+          contenuti con licenza Creative Commons in archivi regolarmente aggiornati
+          da selezionate organizzazioni partner interessate ai nostri dati. Per esempio
+          noi includiamo i dati Nessun Copyright (CC0), Attribuzione (CC BY) e Attribuzione-Non
+          commerciale (CC BY-NC) nell'archivio generato per il <a href="http://www.gbif.org/">Global
+          Biodiversity Information Facility</a> (GBIF), una organizzazione internazionale
+          e intergovernativa che raccoglie e distribuisce le informazioni sulla biodiversità
+          in tutto il mondo.
         muting_desc_html: |-
           <p>
             Silenziare qualcuno ti impedisce di ricevere notifiche sulle cose che fanno, compreso commentare le tue osservazioni, messaggiarti, menzionarti, etc. Silenziare ti aiuta a ignorare qualcuno senza impedirgli di fare qualcosa.

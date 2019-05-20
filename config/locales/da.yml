@@ -3000,6 +3000,9 @@ da:
   owner: Ejer
   parent: Overordnet
   parent_name: Overordnets navn
+  parental_consent:
+    must_specify_email: Du skal angive en e-mail adresse
+    invalid_email: Ugyldigt emailformat
   password: Adgangskode
   password_confirmation: Adgangskode bekræftelse
   paste: Indsæt
@@ -6299,8 +6302,7 @@ da:
           projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter
           eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?
         leaderboards_among_individuals: Toplister iblandt <strong>individuelle</strong>
-        leaderboards_among_projects_and_bioblitzes: Toplister iblandt <strong>projekter
-          og bioblitzer</strong>
+        leaderboards_among_projects_and_bioblitzes: Toplister iblandt <strong>projekter</strong>
         multiple_project_administrators: Flere projektadministratorer
         name_placeholder: Chicagos fugle, fantastiske guldsmede osv.
         no_need_to_rely_on_manual_addition: Du behøver ikke at sætte din lid til manuel
