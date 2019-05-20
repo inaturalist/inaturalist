@@ -119,7 +119,10 @@ input.sortable-position {
   background-color: #ccc;
   margin-bottom:0;
 }
-ul.plain, ol.plain {list-style:none;}
+ul.plain,
+ol.plain {
+  list-style:none;
+}
 .sorttarget { height: 1em; border: 3px dashed #aaa;border-radius: 10px;}
 .stacked, 
 .nav.nav-tabs,
