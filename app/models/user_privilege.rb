@@ -69,4 +69,8 @@ class UserPrivilege < ActiveRecord::Base
       revoke_reason: options[:revoke_reason]
     )
   end
+
+  def revoked?
+    !revoked_at.blank?
+  end
 end
