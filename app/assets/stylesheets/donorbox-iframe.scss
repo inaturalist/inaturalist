@@ -1,0 +1,13 @@
+#donorbox-iframe {
+  min-width: 345px;
+  max-height: none!important;
+  height: 685px;
+  display: block;
+  margin: 0 auto;
+}
+@media (min-width: 992px) {
+  #donorbox-iframe {
+    width: 100%;
+    margin: 0;
+  }
+}

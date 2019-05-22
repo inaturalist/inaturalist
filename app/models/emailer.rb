@@ -214,10 +214,21 @@ class Emailer < ActionMailer::Base
 
   def parental_consent( email )
     @site = Site.default
+    set_site
     mail( set_site_specific_opts.merge(
       to: email,
       subject: t( "views.emailer.parental_consent.subject" )
     ) )
+  end
+
+  def user_parent_confirmation( user_parent )
+    @user_parent = user_parent
+    set_site
+    mail( set_site_specific_opts.merge(
+      to: user_parent.email,
+      subject: t( "views.emailer.user_parent_confirmation.subject" )
+    ) )
+    reset_locale
   end
 
   private

@@ -619,6 +619,7 @@ en:
   bg_color: BG Color
   bioblitz: Bioblitz
   birds: birds
+  birthday: Birthday
   black: black
   block_user: Block User
   block_removed: Block removed
@@ -746,16 +747,15 @@ en:
   check_out_our_blog: Check out our Blog
   check_out_what_the_observation: Check out what the observation you're trying to identify looks like.
   check_out_your_life_list: Check out your Life List
-  check_this_box_if: |
-    Check this box if you want to apply a
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-    to your photos. You can choose a different license or remove the license
-    later, but this is the best license for sharing with researchers.
   check_this_box_if_html: |
-    Check this box if you want to apply a
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-    to your photos. You can choose a different license or remove the license
-    later, but this is the best license for sharing with researchers.
+    Check this box if you want to apply a <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Attribution-NonCommercial license</a> to
+    uploaded content. This means anyone can copy and reuse your photos and/or
+    observations without asking for permission as long as they given you credit
+    and don't use the works commercially. You can choose a different license or
+    remove the license later, but this is the best license for sharing with
+    researchers.
   checklist: Checklist
   checklists: Checklists
   checklist_places: Checklist places
@@ -887,6 +887,7 @@ en:
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
   contest: contest
   continue: Continue
+  continue_to_site: Continue to %{site_name}
   contributions: contributions
   contributions_from: Contributions from
   contributor_cannot_be_found: Contributor cannot be found
@@ -2759,6 +2760,21 @@ en:
   photos_size_photo: "%{photos_size} photo"
   photos_updated: Photos updated.
   google_account_not_linked: "%{user} doesn't have a linked Google account anymore, so %{site_name} doesn't have permission to access this photo."
+  pi_consent_desc_title: About Personal Information
+  pi_consent_desc_html: |
+    We store personal information like usernames and email addresses in order
+    to manage accounts on this site, and to comply with privacy laws, we
+    need you to check this box to indicate that you consent to this use of
+    personal information. To learn more about what information we collect and
+    how we use it, please see our
+    <a href='%{privacy_url}' target='_blank'>Privacy Policy</a>
+    and our <a href='%{terms_url}' target='_blank'>Terms of Service</a>.
+  pi_consent_label: |
+    I consent to allow iNaturalist to store and process limited kinds of
+    personal information about me in order to manage my account
+  pi_consent_child_label: |
+    I consent to allow iNaturalist to store and process limited kinds of
+    personal information about my child in order to manage my child's account
   picasa_identity: Picasa Identity
   pick_a_username: Pick a username
   pin_verb: Pin
@@ -4672,7 +4688,8 @@ en:
   'yes': "Yes"
   yes_find_them!: "Yes, find them!"
   yes_i_want_to_join: Yes, I want to join
-  yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds & observations so scientists can use my data!
+  yes_license_my_childs_observations: Yes, license my child's photos, sounds, and observations so scientists can use the data.
+  yes_license_my_observations_so_scientists_can_use: Yes, license my photos, sounds, and observations so scientists can use my data.
   yes_reject_it: Yes, reject it
   yes_show_this_in_the_box: Yes, show this in the big box at the top of /taxa
   yesterday: Yesterday
@@ -5655,49 +5672,101 @@ en:
         subject: Your child would like to use iNaturalist
         content_html: |
           <p>
-            Your child is using the Seek by iNaturalist educational app and
-            would like to share data with the iNaturalist citizen-science
-            platform. Because this data includes Personal Identifying
-            Information, it cannot be used by person’s under the age of 13
-            without the consent of a parent.
+            Your child is using the <strong>Seek by iNaturalist</strong>
+            educational app and would like to share data with the iNaturalist
+            citizen-science platform. Because posting to iNaturalist reveals
+            Personally Identifiable Information, iNaturalist cannot be used by
+            persons under the age of 13 without the consent of a parent.
           </p>
           <p>
-            Seek by iNaturalist may be used without creating an account, and no
-            data will be shared, but your child will not be able to contribute
-            observations to iNaturalist. [EXPLANATION OF INAT]
+            <strong>Seek by iNaturalist</strong> may be used without creating an
+            account, and no Personally Identifiable Information will be shared,
+            but your child will not be able to contribute observations to
+            iNaturalist. iNaturalist is a citizen-science social network where
+            participants share observations and identifications of living things
+            to teach each others about nature and generate biodiversity data for
+            science.
           </p>
           <p>
-            If you’d like to give consent for your child to use iNaturalist,
-            we’ll need you to do the following:
+            If you'd like to give consent for your child to use iNaturalist,
+            we'll need you to do the following:
           </p>
           <ol>
             <li>
               <p>
-                Create an iNaturalist account that your child will use
-                indicating that the account will be used by a person under the
-                age of 13 by following this link:
+                Create an iNaturalist account that your child will use by
+                following this link:
                 <a href="%{registration_url}">%{registration_url}</a>
               </p>
             </li>
             <li>
               <p>
-                Make a nominal donation of $1 with a credit card to iNaturalist
-                to verify that you are an adult. Please make sure to use include
-                the same email that you used to create the account alongside
-                your donation here: https://www.inaturalist.org/donate
+                After you create your child's account, we will ask you to make a
+                small donation of US$1 with a credit card to iNaturalist to verify
+                that you are an adult. Please make sure to use the same email
+                address that you entered in the "Parent email" field during
+                signup when making your donation.
               </p>
             </li>
             <li>
               <p>
-                Once we process the donation, we will send a notification to the
-                account email that the account has been activated and you can
-                use the iNaturalist username and password you created to log in
-                to your child’s Seek app.
+                Once we process the donation, we will send you another email
+                notifying you that your child's account has been activated and
+                you can use the iNaturalist username and password you created to
+                log in to your child's Seek app.
               </p>
             </li>
           </ol>
           <p>
-            Learn more about what Personal Identifying Information iNaturalist shares: …
+            iNaturalist collects the following Personally Identifiable
+            Information:
+          </p>
+          <ol>
+            <li>
+              <p>
+                <strong>email address (private):</strong> every iNaturalist
+                account has an email address associated with it which is not
+                made public.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>username (public, required):</strong> every iNaturalist
+                account has a public username and user identification number.
+                The username does not have to be similar to a person's real
+                name, but it can be used to contact the person via public
+                comments and private direct messages.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>IP address (private, required):</strong> iNaturalist
+                stores but does not make public the user's IP address which can
+                be used to derive Personal Identifying Information like location
+                (with city-level accuracy).
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>profile picture (public, optional):</strong> iNaturalist
+                accounts can optionally have profile pictures which are often
+                pictures of the user.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>observation location (public or private,
+                required):</strong> iNaturalist observations contain location
+                information about where the observation was made. This can be
+                made public or kept private, but it is public by default.
+              </p>
+            </li>
+          </ol>
+          <p>
+            iNaturalist also allows users to share public images, public
+            comments, and private direct messages associated with their account.
+            It's possible that users could include include Personal Identifying
+            Information in this user generated content.
           </p>
           <p>
             Learn more about iNaturalist’s Privacy Policy <a href="%{privacy_policy_url}">here</a>.
@@ -5725,6 +5794,23 @@ en:
           some research grade observations will become casual if they no longer have any photos.
         we_included_links: |
           We've included links to the affected photos below.
+      user_parent_confirmation:
+        subject: Your child's iNaturalist account has been activated
+        content_html: |
+          <p>
+            Thank you for creating an iNaturalist account for your child! The
+            account has been activated.
+          </p>
+          <p>
+            Please log into the account from your child's Seek app by tapping
+            the "iNaturalist" button in the menu and then "Log in with
+            iNaturalist" at the bottom of the screen.
+          </p>
+          <p>
+            Your child will then be able to post observations to their
+            iNaturalist account using the Seek app so that they can be seen on
+            iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: |
           You have been inactive on %{site_name} for a while, so we have suspended
@@ -6678,6 +6764,38 @@ en:
       show:
         take_a_chance_to_review_html: 'Take a chance to review <a href="%{link}">our guidelines</a>.'
         this_user_was_banned: This user was suspended
+    user_parents:
+      confirm:
+        thanks_for_creating_a_minor_account: THANKS FOR CREATING A MINOR ACCOUNT!
+        we_will_send_you_an_email: |
+          We will send you an email once your child's account has been activated.
+      new:
+        child_name_private: Child name (private)
+        create_a_minor_account: Create a Minor Account
+        create_minor_account: Create Minor Account
+        parent_name_private: Parent or legal guardian name (private)
+        parent_email: Parent or legal guardian email (private)
+        inaturalist_minor_account_signup: iNaturalist Minor Account Signup
+        parent_information_private: Parent Information (private)
+        step1_title: CREATE AN ACCOUNT FOR YOUR CHILD
+        step1_desc: |
+          In order to comply with privacy regulations, we need a parent or legal
+          guardian's consent to create an account for a person under the age of
+          13. If you would like your child to use iNaturalist, you must provide
+          us with some identity and contact information.
+        step2_title: CONFIRM YOUR IDENTITY WITH A CREDIT CARD
+        step2_desc: |
+          To confirm your identity as an adult, we need you to provide a nominal
+          donation of at least US$1 to iNaturalist using a credit card. This is
+          the least intrusive form of identity verification that allows us to
+          comply with privacy laws. Please be sure to use the same email
+          address you entered as the "parent email" in the previous step.
+        step3_title: WAIT FOR THE CONFIRMATION EMAIL
+        step3_desc: |
+          Once we match the email used in the donation to the email you entered
+          as the "parent email" we will activate the child's account and send
+          the parent an email with login instructions. This can take up to 24
+          hours.
     welcome:
       index:
         welcome_message_html: |
@@ -7162,6 +7280,12 @@ en:
                 letters, numbers, dashes, and underscores
             email:
               must_look_like_an_email_address: must look like an email address
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |
+                belongs to an existing user; if you have an account, please sign
+                in before proceeding, or use a different email address
   doorkeeper:
     scopes:
       write: |

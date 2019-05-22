@@ -14,7 +14,7 @@
   <label for="license_all"><%= t :yes_license_my_observations_so_scientists_can_use %></label>
 </span>
 <div class="stacked description">
-  <%=raw t :check_this_box_if %>
+  <%=t :check_this_box_if_html %>
 </div>
 <div class="license_fields" style="display:none;">
   <%= builder.check_box :preferred_observation_license, {:checked => true}, Observation::CC_BY_NC,

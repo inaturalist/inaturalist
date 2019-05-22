@@ -531,6 +531,13 @@ UserBlock.blueprint do
   blocked_user { User.make! }
 end
 
+UserParent.blueprint do
+  email { Faker::Internet.email }
+  name { Faker::Name.name }
+  child_name { Faker::Name.name }
+  user { User.make! }
+end
+
 UserPrivilege.blueprint do
   user { User.make! }
   privilege { UserPrivilege::SPEECH }

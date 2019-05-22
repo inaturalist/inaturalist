@@ -98,7 +98,11 @@
     font-family: "inaturalisticons";
     content: "\e009";
   }
-  form {
+  .form-group.text-field.birthday:before {
+    content: "\f1fd"; // Birthday!
+  }
+  form,
+  .formcol-content {
     width: 304px;
     margin: 0 auto;
   }

@@ -23,4 +23,24 @@ $( document ).ready( function ( ) {
   $( "#license-all" ).click( function ( ) {
     $( "#license-fields input[type=checkbox]" ).click( );
   } );
+  $( ".date-picker" ).datepicker( {
+    yearRange: "c-100:" + ( new Date( ) ).getFullYear( ),
+    maxDate: "+0d",
+    constrainInput: false,
+    firstDay: 0,
+    changeFirstDay: false,
+    changeMonth: true,
+    changeYear: true,
+    dateFormat: "yy-mm-dd",
+    showTimezone: false,
+    closeText: I18n.t( "date_picker.closeText" ),
+    currentText: I18n.t( "date_picker.currentText" ),
+    prevText: I18n.t( "date_picker.prevText" ),
+    nextText: I18n.t( "date_picker.nextText" ),
+    montNames: _.compact( _.values( I18n.t( "date.month_names" ) ) ),
+    monthNamesShort: _.compact( _.values( I18n.t( "date.abbr_month_names" ) ) ),
+    dayNames: _.compact( _.values( I18n.t( "date.day_names" ) ) ),
+    dayNamesShort: _.compact( _.values( I18n.t( "date.abbr_day_names" ) ) ),
+    dayNamesMin: _.compact( _.values( I18n.t( "date.day_names_min" ) ) )
+  } );
 } );
