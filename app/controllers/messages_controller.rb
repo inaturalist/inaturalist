@@ -7,12 +7,23 @@ class MessagesController < ApplicationController
 
   requires_privilege :speech, only: [:new]
 
+  layout "bootstrap"
+
   def index
     @messages = case @box
     when Message::SENT
       current_user.messages.sent.order("id desc").page(params[:page])
     else
       current_user.messages.inbox.order("id desc").page(params[:page])
+    end
+    unless params[:user_id].blank?
+      @search_user = User.find_by_id( params[:user_id] )
+      @search_user ||= User.find_by_login( params[:user_id] )
+      @messages = @messages.where( from_user_id: @search_user )
+    end
+    unless params[:q].blank?
+      @q = params[:q].to_s[0..100]
+      @messages = @messages.where( "subject ILIKE ? OR body ILIKE ?", "%#{@q}%", "%#{@q}%" )
     end
     if params[:partial]
       render :partial => "messages"

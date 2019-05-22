@@ -1,0 +1,22 @@
+td.subject {width:100%;}
+.unread .subject {font-weight:bold;}
+.unread td {background-color: lightyellow;}
+.tools {position:relative; z-index: 1;}
+.messages {
+  .message {
+    td.user {
+      position: relative;
+      padding-right: 30px;
+    }
+    .user-search-link {
+      visibility: hidden;
+      position: absolute;
+      right: 10px;
+    }
+  }
+  .message:hover {
+    .user-search-link {
+      visibility: visible;
+    }
+  }
+}

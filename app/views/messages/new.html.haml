@@ -5,38 +5,55 @@
     = @message.to_user.login
 = content_for :extracss do
   :css
-    #new_message .text_field input.text {width: 400px;}
-.column.prepend-6.span-18
-  %h2
-    =t :new_message
-    - if @message.to_user
-      =t :to_recipient
-      = link_to user_image(@message.to_user, :size => "thumb"), @message.to_user
-      = link_to_user @message.to_user
-  = error_messages_for @message
+    #new_message textarea {min-height: 300px;}
+    #new_message .user-field { display: flex; }
+    #new_message .user-field .ac-chooser { width: 100%; }
+    #new_message .user-field .usericon { max-height: 34px; margin-right: 10px; }
+= content_for :extrajs do
+  :javascript
+    $( document ).ready( function( ) {
+      if ($('#new_message .user_name').length > 0) {
+        $( "#new_message .user_name" ).userAutocomplete( {
+          resetOnChange: false,
+          idEl: $( "#new_message .user_name" ),
+          afterSelect: function( result ) {
+            console.log("selected ", result);
+            $( "#new_message .user-field img" ).attr( { src: result.item.icon } );
+            $( "#message_to_user_id" ).val( result.item.user_id );
+          },
+          afterUnselect: function( ) {
+            $( "#new_message .user-field img" ).attr( { src: $( "#new_message .user-field img" ).data( "original-src" ) } );
+            $( "#message_to_user_id" ).val( "" );
+          }
+        } );
+      }
+    } );
+.container
+  .row
+    .col-xs-6.col-xs-offset-3
+      %h2
+        =t :new_message
+        - if @message.to_user
+          =t :to_recipient
+          = link_to user_image(@message.to_user, :size => "thumb"), @message.to_user
+          = link_to_user @message.to_user
+      = error_messages_for @message
 
-  = form_for @message, :builder => DefaultFormBuilder do |f|
-    - if @message.to_user
-      = f.hidden_field :to_user_id
-    - else
-      = f.text_field :to_user_id, :label => t(:to_recipient).capitalize, :placeholder => t(:start_typing_someones_name)
-    = f.text_field :subject
-    = f.text_area :body
+      = form_for @message, :builder => BootstrapFormBuilder do |f|
+        - if @message.to_user
+          = f.hidden_field :to_user_id
+        - else
+          .form-group
+            %label=t "views.messages.to"
+            .user-field
+              = image_tag User.new.icon.url(:thumb), class: "user_image usericon", data: { original_src: User.new.icon.url(:thumb) }
+              %input.user_name.form-control{ type: "text", placeholder: t(:start_typing_someones_name) }
+            = f.hidden_field :to_user_id
+        = f.text_field :subject
+        = f.text_area :body
 
-    .buttonrow
-      = f.submit t(:send).capitalize, :class => "default button", "data-loading-click" => t(:sending)
-      = link_to t(:preview), @message.new_record? ? messages_path : message_path(@message), :class => 'button previewbutton commentpreviewbutton'
-      .inter.meta.loading{:style => "display:none;"}=t :loading
-      = link_to t(:cancel), :back, :class => "button"
-
-:javascript
-  var CONTACTS = #{raw @contacts.to_json(User.default_json_options.merge(:methods => [:html]))}
-  if ($('#message_to_user_id:visible').length > 0) {
-    $('#message_to_user_id').chooser({
-      queryParam: 'q',
-      defaultSources: CONTACTS,
-      collectionUrl: '/people/search.json',
-      resourceUrl: '/people/{{id}}.json'
-    })
-  }
-  
+        .buttonrow
+          = f.submit t(:send).capitalize, :class => "btn btn-primary", "data-loading-click" => t(:sending)
+          = link_to t(:preview), @message.new_record? ? messages_path : message_path(@message), :class => 'btn btn-default previewbutton commentpreviewbutton'
+          .inter.meta.loading{:style => "display:none;"}=t :loading
+          = link_to t(:cancel), :back, :class => "btn btn-default"

@@ -5300,7 +5300,13 @@ en:
           Taxa manually added by project curators and taxa represented by
           research-grade observations added to the project are listed on project lists.
     messages:
+      from: From
+      to: To
+      subject: Subject
+      subject_body: Subject / Body
       index:
+        show_messages_from_user: Show messages from %{user}
+        show_messages_to_user: Show messages to %{user}
         speech_privilege_notice: |
           You'll be able to send new messages after you've added three
           verifiable observations or three identifications for others. For now
