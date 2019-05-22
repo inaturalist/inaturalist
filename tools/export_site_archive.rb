@@ -1,5 +1,5 @@
 require "rubygems"
-require "Optimist"
+require "optimist"
 
 OPTS = Optimist::options do
     banner <<-EOS
@@ -170,7 +170,6 @@ ActiveRecord::Base.descendants.sort_by(&:name).each do |klass|
     ComputerVisionDemoUpload,
     DeletedObservation, # irrelevant
     UpdateAction, # massive
-    UpdateSubscriber,
     FlowTask, # irrelevant
     TaxonRange # massive
   ].include?(klass)
