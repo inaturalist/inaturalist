@@ -19,7 +19,7 @@ $.fn.projectAutocomplete = function( options ) {
         params.member_id = CURRENT_USER.id;
       }
       if ( options.notIDs ) {
-        params.not_id = options.notIDs.join( "," );
+        params.not_id = options.notIDs.slice( 0, 750 ).join( "," );
       }
       if ( options.notTypes ) {
         params.not_type = options.notTypes.join( "," );
