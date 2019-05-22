@@ -26,7 +26,7 @@
             .step= step
             %h2=t "views.user_parents.new.step#{step}_title"
           %p=t "views.user_parents.new.step#{step}_desc"
-  %h3=t "views.user_parents.new.privacy_compliance_information"
+  %h3=t "views.user_parents.new.parent_information_private"
   .form-group.text-field.email
     = f.text_field :email, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( "views.user_parents.new.parent_email" ), type: "email", class: "form-control"
     - unless @user_parent.errors[:email].blank?
