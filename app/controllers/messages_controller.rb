@@ -19,7 +19,12 @@ class MessagesController < ApplicationController
     unless params[:user_id].blank?
       @search_user = User.find_by_id( params[:user_id] )
       @search_user ||= User.find_by_login( params[:user_id] )
-      @messages = @messages.where( from_user_id: @search_user )
+      @messages = case @box
+      when Message::SENT
+        @messages.where( to_user_id: @search_user )
+      else
+        @messages.where( from_user_id: @search_user )
+      end
     end
     unless params[:q].blank?
       @q = params[:q].to_s[0..100]
