@@ -19,7 +19,7 @@
     } )
 .container
   .row
-    .col-xs-8.col-xs-offset-2
+    .col-xs-12.col-lg-8.col-lg-offset-2
       %h2=t :messages
       - unless current_user.privileged_with?( UserPrivilege::SPEECH )
         .box.notice
@@ -27,7 +27,7 @@
       %ul.nav.nav-pills{ role: "tablist" }
         - for box in Message::BOXES
           %li{ role: "presentation", class: @box == box ? "active" : "" }
-            = link_to t(box).capitalize, @box == box ? url_for_params : url_for_params( box: box ), :title => box
+            = link_to t(box).capitalize, @box == box ? url_for_params : url_for_params( box: box, without: [:page] ), :title => t(box)
         - if current_user.privileged_with?( UserPrivilege::SPEECH )
           %li.pull-right
             = link_to new_message_path do
@@ -38,6 +38,7 @@
             %i.fa.fa-search
             = t(:search)
       = form_tag( url_for, method: "get", builder: DefaultFormBuilder, id: "search-messages", class: "collapse well #{!@search_user.blank? || !@q.blank? ? "in" : ""}" ) do
+        = hidden_field_tag :box, box
         .form-group
           %label=t "views.messages.#{fromto}"
           = text_field_tag :user_id, @search_user.try(:login), class: "form-control user_id", placeholder: t(:start_typing_someones_name)

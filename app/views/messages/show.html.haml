@@ -4,12 +4,13 @@
   :css
     .bootstrap .table > tbody > tr.reply > td {vertical-align: top; padding-top: 20px;}
     tr.reply h3 { margin-top: 0; }
-    td.body {width:100%;overflow:hidden;}
+    .messages > tbody > tr:first-child > td { border-top: 0 transparent; }
+    td.body {overflow:hidden; max-width: 600px; }
     textarea {min-height:300px;}
 
 .container
   .row
-    .col-xs-8.col-xs-offset-2
+    .col-xs-12.col-lg-8.col-lg-offset-2
       #pageheader
         .right.nobr.meta.date= l(@messages.first.created_at.to_datetime, :format => :long)
         .breadcrumbs
