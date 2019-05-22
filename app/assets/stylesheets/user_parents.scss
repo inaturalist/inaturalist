@@ -20,7 +20,7 @@
   }
   h3 {
     font-weight: bold;
-    font-size: 27px;
+    font-size: 21px;
     margin-bottom: 23px;
   }
   p {
@@ -89,6 +89,9 @@ $form-width: 345px;
     height: auto;
     min-height: auto;
     padding: 0;
+  }
+  .popover {
+    min-width: 300px;
   }
 }
 #donorbox-iframe {

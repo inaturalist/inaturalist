@@ -333,7 +333,7 @@ class User < ActiveRecord::Base
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active? && !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists?
+    active? && ( birthday.blank? || birthday < 13.years.ago || !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists? )
   end
 
   def download_remote_icon

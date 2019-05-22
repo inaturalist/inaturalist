@@ -5656,49 +5656,101 @@ en:
         subject: Your child would like to use iNaturalist
         content_html: |
           <p>
-            Your child is using the Seek by iNaturalist educational app and
-            would like to share data with the iNaturalist citizen-science
-            platform. Because this data includes Personal Identifying
-            Information, it cannot be used by person’s under the age of 13
-            without the consent of a parent.
+            Your child is using the <strong>Seek by iNaturalist</strong>
+            educational app and would like to share data with the iNaturalist
+            citizen-science platform. Because posting to iNaturalist reveals
+            Personally Identifiable Information, iNaturalist cannot be used by
+            persons under the age of 13 without the consent of a parent.
           </p>
           <p>
-            Seek by iNaturalist may be used without creating an account, and no
-            data will be shared, but your child will not be able to contribute
-            observations to iNaturalist. [EXPLANATION OF INAT]
+            <strong>Seek by iNaturalist</strong> may be used without creating an
+            account, and no Personally Identifiable Information will be shared,
+            but your child will not be able to contribute observations to
+            iNaturalist. iNaturalist is a citizen-science social network where
+            participants share observations and identifications of living things
+            to teach each others about nature and generate biodiversity data for
+            science.
           </p>
           <p>
-            If you’d like to give consent for your child to use iNaturalist,
-            we’ll need you to do the following:
+            If you'd like to give consent for your child to use iNaturalist,
+            we'll need you to do the following:
           </p>
           <ol>
             <li>
               <p>
-                Create an iNaturalist account that your child will use
-                indicating that the account will be used by a person under the
-                age of 13 by following this link:
+                Create an iNaturalist account that your child will use by
+                following this link:
                 <a href="%{registration_url}">%{registration_url}</a>
               </p>
             </li>
             <li>
               <p>
-                Make a nominal donation of $1 with a credit card to iNaturalist
-                to verify that you are an adult. Please make sure to use include
-                the same email that you used to create the account alongside
-                your donation here: https://www.inaturalist.org/donate
+                After you create your child's account, we will ask you to make a
+                small donation of US$1 with a credit card to iNaturalist to verify
+                that you are an adult. Please make sure to use the same email
+                address that you entered in the "Parent email" field during
+                signup when making your donation.
               </p>
             </li>
             <li>
               <p>
-                Once we process the donation, we will send a notification to the
-                account email that the account has been activated and you can
-                use the iNaturalist username and password you created to log in
-                to your child’s Seek app.
+                Once we process the donation, we will send you another email
+                notifying you that your child's account has been activated and
+                you can use the iNaturalist username and password you created to
+                log in to your child's Seek app.
               </p>
             </li>
           </ol>
           <p>
-            Learn more about what Personal Identifying Information iNaturalist shares: …
+            iNaturalist collects the following Personally Identifiable
+            Information:
+          </p>
+          <ol>
+            <li>
+              <p>
+                <strong>email address (private):</strong> every iNaturalist
+                account has an email address associated with it which is not
+                made public.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>username (public, required):</strong> every iNaturalist
+                account has a public username and user identification number.
+                The username does not have to be similar to a person's real
+                name, but it can be used to contact the person via public
+                comments and private direct messages.                
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>IP address (private, required):</strong> iNaturalist
+                stores but does not make public the user's IP address which can
+                be used to derive Personal Identifying Information like location
+                (with city-level accuracy).
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>profile picture (public, optional):</strong> iNaturalist
+                accounts can optionally have profile pictures which are often
+                pictures of the user.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>observation location (public or private,
+                required):</strong> iNaturalist observations contain location
+                information about where the observation was made. This can be
+                made public or kept private, but it is public by default.
+              </p>
+            </li>
+          </ol>
+          <p>
+            iNaturalist also allows users to share public images, public
+            comments, and private direct messages associated with their account.
+            It's possible that users could include include Personal Identifying
+            Information in this user generated content.
           </p>
           <p>
             Learn more about iNaturalist’s Privacy Policy <a href="%{privacy_policy_url}">here</a>.
@@ -5730,26 +5782,18 @@ en:
         subject: Your child's iNaturalist account has been activated
         content_html: |
           <p>
-            Thank you for creating an iNaturalist account for your child! Your
-            donation has been verified and your child's account has been
-            activated.
+            Thank you for creating an iNaturalist account for your child! The
+            account has been activated.
           </p>
           <p>
-            Please log into your child's Seek app  with the iNaturalist
-            account you created.
+            Please log into the account from your child's Seek app by tapping
+            the "iNaturalist" button in the menu and then "Log in with
+            iNaturalist" at the bottom of the screen.
           </p>
           <p>
-            If you already have the Seek app downloaded on your child's device,
-            you can navigate to the login screen by clicking "iNaturalist" in
-            the menu, then "Log in to iNaturalist" at the bottom of the screen.
-            From here you can click "Log in with iNaturalist" and enter the
-            username and password for the minor account you created.
-          </p>
-          <p>
-            If you're downloading the Seek app and opening it for the first
-            time, you can click "Log in with iNaturalist" on the signup screen
-            and enter the username and password for the minor account you
-            created.
+            Your child will then be able to post observations to their
+            iNaturalist account using the Seek app so that they can be seen on
+            iNaturalist.org.
           </p>
       users_updates_suspended:
         message: |
@@ -6710,12 +6754,13 @@ en:
         we_will_send_you_an_email: |
           We will send you an email once your child's account has been activated.
       new:
-        create_a_minor_account: Create a minor account
         child_name_private: Child name (private)
-        parent_name_private: Parent name (private)
-        parent_email: Parent email
+        create_a_minor_account: Create a minor account
         create_minor_account: Create Minor Account
+        parent_name_private: Parent or legal guardian name (private)
+        parent_email: Parent or legal guardian email (private)
         inaturalist_minor_account_signup: iNaturalist Minor Account Signup
+        privacy_compliance_information: Privacy compliance information
         step1_title: CREATE AN ACCOUNT FOR YOUR CHILD
         step1_desc: |
           In order to comply with privacy regulations, we need a parent or legal

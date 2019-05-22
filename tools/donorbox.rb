@@ -40,11 +40,17 @@ while true
     end
     if user_parent = UserParent.find_by_email( donor["email"] )
       unless user_parent.donor?
-        if user_parent.update_attributes( donorbox_donor_id: donor["id"] )
-          puts "\tMarked #{user_parent} as a donor"
-          new_verified_user_parents += 1
-        else
-          puts "Failed to mark #{user_parent} as a donor: #{user.errors.full_messages.to_sentence}"
+        begin
+          if user_parent.update_attributes( donorbox_donor_id: donor["id"] )
+            puts "\tMarked #{user_parent} as a donor"
+            new_verified_user_parents += 1
+          else
+            puts "Failed to mark #{user_parent} as a donor: #{user.errors.full_messages.to_sentence}"
+            failed_parents += 1
+          end
+        rescue OpenSSL::SSL::SSLError => e
+          # Mail failed to send
+          puts "Failed to mark #{user_parent} as a donor: mail delivery failed (#{e})"
           failed_parents += 1
         end
       end
