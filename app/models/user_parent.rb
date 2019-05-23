@@ -17,7 +17,7 @@ class UserParent < ActiveRecord::Base
   before_validation :strip_strings
 
   before_create :set_donorbox_donor_id_from_parent_user
-  after_update :deliver_confirmation_email_if_donor_verified
+  after_save :deliver_confirmation_email_if_donor_verified
 
   def to_s
     "<UserParent #{id} parent_user_id: #{parent_user_id}>"

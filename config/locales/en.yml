@@ -5799,8 +5799,17 @@ en:
         content_html: |
           <p>
             Thank you for creating an iNaturalist account for your child! The
-            account has been activated.
+            account has been activated. Here are the details you entered that
+            we have on record:
           </p>
+          <ul>
+            <li><strong>Parent or legal guardian's name:</strong> %{parent_name}</li>
+            <li><strong>Parent or legal guardian's email:</strong> %{parent_email}</li>
+            <li><strong>Child's name:</strong> %{child_name}</li>
+            <li><strong>Child's birthday:</strong> %{child_birthday}</li>
+            <li><strong>Child acount email:</strong> %{child_email}</li>
+            <li><strong>Child account username:</strong> %{child_username}</li>
+          </ul>
           <p>
             Please log into the account from your child's Seek app by tapping
             the "iNaturalist" button in the menu and then "Log in with

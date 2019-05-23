@@ -110,6 +110,7 @@ $form-width: 345px;
   }
 }
 #user-parent-thanks {
+  display: none;
   margin-bottom: 50px;
   text-align: center;
   p {
@@ -117,6 +118,7 @@ $form-width: 345px;
     margin-top: 20px;
   }
   &.existing-donor {
+    display: block;
     p { font-weight: normal; }
   }
 }

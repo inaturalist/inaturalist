@@ -38,9 +38,9 @@ describe UserParent, "donorbox_donor_id" do
     up.update_attributes( donorbox_donor_id: 1 )
     expect( ActionMailer::Base.deliveries.size ).to eq deliveries + 1
   end
-  it "should not deliver an email when set on create" do
+  it "should deliver an email when set on create" do
     deliveries = ActionMailer::Base.deliveries.size
     up = UserParent.make!( donorbox_donor_id: 1 )
-    expect( ActionMailer::Base.deliveries.size ).to eq deliveries
+    expect( ActionMailer::Base.deliveries.size ).to eq deliveries + 1
   end
 end

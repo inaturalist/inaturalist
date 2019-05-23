@@ -65,7 +65,7 @@
               =t "views.user_parents.new.step#{step}_desc"
   - unless existing_donor
     %iframe#donorbox-iframe{ src: "https://donorbox.org/embed/seek-verification?#{donorbox_params.to_query}", seamless: "seamless", name: "donorbox", frameborder: "0", scrolling: "no", allowpaymentrequest: true }
-  #user-parent-thanks{ class: existing_donor ? "existing-donor" : "hide" }
+  #user-parent-thanks{ class: existing_donor ? "existing-donor" : "" }
     %h2=t "views.user_parents.confirm.thanks_for_creating_a_minor_account"
     - if existing_donor
       =t "views.user_parents.confirm.thanks_donor_html"
