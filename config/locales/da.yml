@@ -4249,11 +4249,12 @@ da:
   target_list_alert: Er du sikker på, at du forsøgte at observere alle arter på din
     målliste? Husk at alt, der er på din målliste, ikke fortolkes som værende så vigtigt,
     at din målliste nøjagtigt afspejler det sæt arter du forsøgte at registrere
-  target_list_warning: Husk at alt, som er dækket af din mål-liste, som du ikke observerede
+  target_list_warning: Husk at alt, som er dækket af din målliste, som du ikke observerede
     inden for synsvidde eller periode for denne tur, vil blive tolket som fraværende.
-    Det er meget vigtigt at din mål-liste afspejler præcist de arter, som du prøvede
-    at observere. Hvis du ikke forsøgte at observere en art på din mål-liste eller
-    alle arter er dækket af en gruppe på din mål-liste, skal du venligst fjerne den.
+    Det er meget vigtigt at din målliste afspejler præcis de arter, som du prøvede
+    at observere. Hvis du ikke forsøgte at observere en art på din målliste eller
+    alle arter, der er dækket af en gruppe på din målliste, skal du venligst fjerne
+    den.
   taxa: Taksa
   taxa_with_unknown_relationships: Taksa med ukendte forbindelser
   taxa_info: Taksa info
@@ -4677,7 +4678,7 @@ da:
   trending: Tendenser
   trends: Tendenser
   trip_target_list_info: Dette er et ikke overlappende sæt af det groveste taxa på
-    din mål-liste. Alle taxa repræsenteret af slørede observationer er ekskluderet.
+    din målliste. Alle taksa repræsenteret af slørede observationer er ekskluderet.
   trusted: Betroet
   trusted_project?: Tillidsprojekt?
   trust_this_person_with_your_private_coordinates: Betro denne person med dine skjulte
@@ -4774,7 +4775,7 @@ da:
     resize_tip: |-
       Hvis dine fotofiler er for store, kan du prøve at beskære dem til en maksimum størrelse på
       2048 ved 2048 pixels. Dette sker med alle fotos på
-      server alligevel, og muliggør hurtigere upload.
+      serveren alligevel, og muliggør hurtigere upload.
     tooltips:
       add: Tilføj observation(er)
       combine: Kombinér valgte observationer
@@ -5166,10 +5167,10 @@ da:
     følgende regler: %{rules} Vil du fortsætte?
   you_are_submitting_obs_without_photos_and_names: |-
     Du indsender observationer uden fotos og taksonnavne.
-    Observationer uden disse informationer, er ofte umulige at identificere , og vil ikke blive vist i observationssøgninger.
+    Observationer uden disse informationer er ofte umulige at identificere, og vil ikke blive vist i observationssøgninger.
   you_are_submitting_obs_with_no_date_or_no_location: |-
     Du indsender observationer uden dato eller sted.
-    Observationer uden disse informationer, er ofte umulige at identificere , og vil ikke blive vist i observationssøgninger.
+    Observationer uden disse informationer er ofte umulige at identificere, og vil ikke blive vist i observationssøgninger.
   you_are_subscribed_to: Du abonnerer på
   you_arent_a_member_of_that_project: Du er ikke medlem af dette projekt.
   you_arent_following_that_person: Du følger ikke denne person.
@@ -5423,7 +5424,7 @@ da:
       show:
         flags_that_should_not_be_resolved_desc_html: |-
           Løs venligst <code>spam</code> og <code>krænkelse af ophavsret</code>
-          markér kun hvis indholdet ikke er spam eller ikke en krænkelse af
+          markér kun hvis indholdet ikke er spam eller ikke er en krænkelse af
           ophavsret.
     guides:
       index:
@@ -6315,8 +6316,8 @@ da:
         please_specify_the_requirements_html: |-
           Angiv venligst kravene til de observationer, der kan tilføjes til
           dette projekt. Du kan angive flere arter, steder, brugere eller
-          Kvaliteter indgår automatisk, eller efterlad et felt tomt hvis
-          du har ikke noget specifikt krav til det. Forklaringer for hvert felt
+          kvalitetsgrader, der automatisk indgår eller efterlad et felt tomt hvis
+          du ikke har noget specifikt krav til det. Forklaringer for hvert felt
           kan findes <a href="%{url}">here</a>.
         project_background_color: Projektoversigt baggrundsfarve
         project_background_color_help: Sørg for at vælge en farve, der er mørk nok,
@@ -6733,7 +6734,7 @@ da:
         cannot_update_your_content: '%{site_name} kan ikke opdatere dit indhold automatisk
           med denne ændring.'
         new_project_admin_html: |-
-          Spekulerer du på, hvorfor du nu er administrator for dette projekt? Den tidligere ejer har enten tildelt dig rollen som den nye administrator, eller de har slettet deres konto
+          Spekulerer du på, hvorfor du nu er administrator for dette projekt? Den tidligere ejer har enten tildelt dig rollen som den nye administrator eller de har slettet deres konto
           og %{site_name} tildelte dig automatisk, fordi du er projektleder eller side kurator. Hvis du ikke vil være projektadministrator, bedes du venligst
           kontakte <a href="mailto:%{help_email}">%{help_email} </a>
         curators_can_see: |-
@@ -6764,7 +6765,7 @@ da:
           one: <strong class="count">1 kommentar</strong> du har tilføjet
           other: <strong class="count">%{count} kommentarer</strong> du har tilføjet
         furthermore_cannot_undo_html: Desuden kan <strong> denne handling ikke fortrydes.
-          </strong> Hvis du senere skifter mening, kan du ikke få noget af det indhold
+          </strong> Hvis du senere skifter mening, kan du ikke få noget af dette indhold
           tilbage.
         settings_and_mute_html: |-
           Hvis denne side genererer for mange meddelelser, skal du overveje
@@ -6876,7 +6877,7 @@ da:
         recent_users_desc_html: |-
           <p>
             Vi ønsker at byde nye brugere velkommen, men vi ønsker også at
-            bekæmpe spammere. Forhåbentlig hjælper dette værktøj med begge. Vi
+            bekæmpe spammere. Forhåbentlig hjælper dette værktøj med begge dele. Vi
             markerer automatisk mange brugere som spammere ved hjælp af <a
             href="https://akismet.com/">Akismet</a>, men Akismet er ikke
             perfekt, så hvis du vil bruge et par minutter på at markere nye
@@ -7402,7 +7403,7 @@ da:
                 ikke matche det videnskabelige navn på en art i dette leksikon
               bad_format: |-
                 kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
-                ×; Bemærk, at formodede taxa og sorter ikke er tilladt
+                ×; Bemærk, at formodede taksa og sorter ikke er tilladt
         user:
           attributes:
             login:
