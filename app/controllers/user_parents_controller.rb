@@ -36,10 +36,24 @@ class UserParentsController < ApplicationController
         @user_parent_name = @user_parent.name
         @user_parent_email = @user_parent.email
       end
+    else
+      @user_parent = UserParent.find_by_id( params[:id] )
+    end
+    unless @user_parent
+      respond_to do |format|
+        format.html { render_404 }
+      end
+      return
     end
     # Otherwise load it from the session so other people can't see the data in UserParent record
     @user_parent_name ||= session[:user_parent_name] || ""
     @user_parent_email ||= session[:user_parent_email] || ""
+    if @user_parent_name.blank? && @user_parent_email.blank?
+      respond_to do |format|
+        format.html { redirect_back_or_default new_user_parent_path }
+      end
+      return
+    end
     respond_to do |format|
       format.html
     end

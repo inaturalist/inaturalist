@@ -27,10 +27,20 @@ describe UserParent, "creation" do
 end
 
 describe UserParent, "donorbox_donor_id" do
-  it "should deliver an email when set" do
+  it "should get set on create based on the parent_user" do
+    up = UserParent.make!( parent_user: User.make!( donorbox_donor_id: 1 ) )
+    expect( up.donorbox_donor_id ).not_to be_blank
+    expect( up.donorbox_donor_id ).to eq up.parent_user.donorbox_donor_id
+  end
+  it "should deliver an email when set on update" do
     up = UserParent.make!
     deliveries = ActionMailer::Base.deliveries.size
     up.update_attributes( donorbox_donor_id: 1 )
     expect( ActionMailer::Base.deliveries.size ).to eq deliveries + 1
+  end
+  it "should not deliver an email when set on create" do
+    deliveries = ActionMailer::Base.deliveries.size
+    up = UserParent.make!( donorbox_donor_id: 1 )
+    expect( ActionMailer::Base.deliveries.size ).to eq deliveries
   end
 end

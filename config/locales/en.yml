@@ -6766,6 +6766,23 @@ en:
         this_user_was_banned: This user was suspended
     user_parents:
       confirm:
+        thanks_donor_html: |
+          <p>
+            Thanks for being an iNaturalist donor! We were able to use your
+            existing donation to confirm your identity, and don't need any
+            further action from you. <strong>Your child's account has been
+            activated.</strong>
+          </p>
+          <p>
+            Please log into the account from your child's Seek app by tapping
+            the "iNaturalist" button in the menu and then "Log in with
+            iNaturalist" at the bottom of the screen.
+          </p>
+          <p>
+            Your child will then be able to post observations to their
+            iNaturalist account using the Seek app so that they can be seen on
+            iNaturalist.org.
+          </p>
         thanks_for_creating_a_minor_account: THANKS FOR CREATING A MINOR ACCOUNT!
         we_will_send_you_an_email: |
           We will send you an email once your child's account has been activated.
@@ -6796,6 +6813,10 @@ en:
           as the "parent email" we will activate the child's account and send
           the parent an email with login instructions. This can take up to 24
           hours.
+        step3_donor_title: YOUR CHILD'S ACCOUNT HAS BEEN ACTIVATED
+        step3_donor_desc: |
+          Because you're an iNaturalist donor, we were able to verify your
+          identity with your existing donation.
     welcome:
       index:
         welcome_message_html: |

@@ -15,6 +15,8 @@ class UserParent < ActiveRecord::Base
   accepts_nested_attributes_for :user
 
   before_validation :strip_strings
+
+  before_create :set_donorbox_donor_id_from_parent_user
   after_update :deliver_confirmation_email_if_donor_verified
 
   def to_s
@@ -25,6 +27,13 @@ class UserParent < ActiveRecord::Base
     [:name, :child_name, :email].each do |a|
       next if send( a ).blank?
       send( "#{a}=", send( a ).gsub(/[\s\n\t]+/, " " ).strip )
+    end
+    true
+  end
+
+  def set_donorbox_donor_id_from_parent_user
+    if parent_user && !parent_user.donorbox_donor_id.blank?
+      self.donorbox_donor_id = parent_user.donorbox_donor_id
     end
     true
   end
