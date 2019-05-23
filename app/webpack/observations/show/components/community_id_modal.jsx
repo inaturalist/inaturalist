@@ -48,7 +48,7 @@ class CommunityIDModal extends Component {
       const denom = usages + disag + ancDisag;
       const score = _.round( usages / denom, 3 );
       let className;
-      if ( observation.taxon && observation.taxon.id === taxon.id ) {
+      if ( observation.community_taxon && observation.community_taxon.id === taxon.id ) {
         className = "current-id";
       } else if ( hoverTaxon ) {
         if ( hoverTaxon.id === taxon.id ) {
