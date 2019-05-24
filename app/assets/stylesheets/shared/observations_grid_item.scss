@@ -295,6 +295,11 @@ $flowedDim: 150px;
   .photo-count {
     background-color: rgba(0,0,0,0.5);
   }
+  .photo.sound {
+    .sound-icon {
+      display: none;
+    }
+  }
   .all-photos-preview {
     display: flex;
   }

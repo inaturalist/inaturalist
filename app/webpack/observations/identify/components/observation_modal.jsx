@@ -148,7 +148,9 @@ class ObservationModal extends React.Component {
     } else {
       taxonMap = (
         <div className="TaxonMap empty">
-          <i className="fa fa-map-marker" /> { I18n.t( "location_unknown" ) }
+          <i className="fa fa-map-marker" />
+          { " " }
+          { I18n.t( "location_unknown" ) }
         </div>
       );
     }
