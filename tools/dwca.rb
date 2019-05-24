@@ -66,7 +66,7 @@ EOS
   opt :site_id, "Only include obs from a particular site", type: :integer
   opt :debug, "Print debug statements", type: :boolean, short: "-d"
   opt :benchmark, "Print benchmarks", type: :boolean, short: "-b"
-  opt :with_taxa, "Include a taxa.csv file", type: :boolean
+  opt :with_taxa, "Include a taxa.csv file if the core is observations", type: :boolean
   opt :additional_with_taxa_path, "Create a second archive with a taxa.csv file", type: :string
   opt :post_taxon_archive_to_url, "Post the second archive with taxa.csv to this URL", type: :string
   opt :post_taxon_archive_as_url, "URL the second archive will be posted as", type: :string
@@ -74,6 +74,7 @@ EOS
     type: :boolean
   opt :created_d1, "Mininum date of observation creation", type: :string
   opt :created_d2, "Maximum date of observation creation", type: :string
+  opt :photographed_taxa, "When core is taxon, only include taxa with observation photos", type: :boolean, default: false
 end
 
 if opts.debug

@@ -1,6 +1,7 @@
 module DarwinCore
   class Taxon
     TERMS = [
+      %w(id id),
       %w(taxonID http://rs.tdwg.org/dwc/terms/taxonID),
       %w(identifier http://purl.org/dc/terms/identifier),
       %w(kingdom http://rs.tdwg.org/dwc/terms/kingdom),
