@@ -3474,6 +3474,10 @@ el:
         date_column_format: ΕΕΕΕ-ΜΜ-ΗΗ ΩΩ:ΛΛ
         decimal_degrees_format: dd.dddd
     emailer:
+      bulk_import_success:
+        success_message: |-
+          Η μαζική εισαγωγή από το %{filename} ήταν επιτυχής. Οι παρατηρήσεις σας
+          βρίσκονται στο στάδιο της επεξεργασίας και σύντομα θα αναρτηθούν στον ιστότοπο.
       observations_export_notification:
         your_observations_export_is_ready_html: Η εξαγωγή των παρατηρήσεών σας είναι
           έτοιμη. Υπάρχει ένα αντίγραφο συνημμένο σε αυτό το email, ή μπορείτε να
@@ -3481,10 +3485,6 @@ el:
         your_observations_export_failed_html: Η εξαγωγή των παρατηρήσεών σας απέτυχε.
           Επισκεφθείτε τη <a href="%{url}">σελίδα εξαγωγής παρατηρήσεων</a> για μια
           λίστα των εξαγωγών σας.
-      bulk_import_success:
-        success_message: |-
-          Η μαζική εισαγωγή από το %{filename} ήταν επιτυχής. Οι παρατηρήσεις σας
-          βρίσκονται στο στάδιο της επεξεργασίας και σύντομα θα αναρτηθούν στον ιστότοπο.
       photos_missing:
         subject: Μερικές φωτογραφίες χρειάζονται επισκευή
     photos:

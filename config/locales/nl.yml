@@ -3039,6 +3039,9 @@ nl:
   owner: Eigenaar
   parent: Bovenliggende
   parent_name: Oudernaam
+  parental_consent:
+    must_specify_email: Je moet een e-mailadres invullen
+    invalid_email: Ongeldige e-mailopmaak.
   password: Wachtwoord
   password_confirmation: Bevestiging wachtwoord
   paste: Plakken
@@ -6077,13 +6080,6 @@ nl:
           waarnemingsveld samengevoegen en verplaatst alle waarnemingen die het gebruiken
           naar de keeper. <strong> Dit proces kan niet ongedaan worden gemaakt </strong>, dus wees voorzichtig.
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: "Je export van je waarnemingen is
-          klaar. Er is een kopie bijgevoegd bij deze e-mail of je kunt \n<a href=\"%{url}\">je
-          export downloaden</a>."
-        your_observations_export_failed_html: |-
-          Het exporteren van je waarnemingen is mislukt. Bezoek de
-          <a href="%{url}">waarnemingenexportpagina</a> voor een lijst met jouw exports.
       bulk_import_success:
         success_message: |-
           De bulkimport van %{filename} is gelukt. Jouw waarnemingen
@@ -6096,11 +6092,49 @@ nl:
           namen te importeren. Als de naam aanwezig is maar van toepassing is op meerdere
           geldige taxa, probeer dan een specifieke naam te gebruiken\ndie overeenkomt
           met één taxon."
-      users_updates_suspended:
-        message: Je bent al een tijdje inactief op %{site_name}, dus we hebben je
-          abonnementen opgeschort. Als je weer nieuwtjes over de activiteiten op de
-          website wil ontvangen moet je <a href="%{login_url}">opnieuw inloggen op
-          je account</a>.
+      observations_export_notification:
+        your_observations_export_is_ready_html: "Je export van je waarnemingen is
+          klaar. Er is een kopie bijgevoegd bij deze e-mail of je kunt \n<a href=\"%{url}\">je
+          export downloaden</a>."
+        your_observations_export_failed_html: |-
+          Het exporteren van je waarnemingen is mislukt. Bezoek de
+          <a href="%{url}">waarnemingenexportpagina</a> voor een lijst met jouw exports.
+      parental_consent:
+        subject: Jouw kind wil graag iNaturalist gebruiken
+        content_html: |-
+          <p>
+            Je kind gebruikt de educatieve app Seek van iNaturalist en wil graag gegevens delen met het iNaturalist citizen-science platform. Omdat ze Persoonsgegevens bevatten kan de app niet worden gebruikt door personen jonger dan 13 jaar zonder de toestemming van een ouder.
+          </p>
+          <p>
+            Seek van iNaturalist kan worden gebruikt zonder een account aan te maken en dan worden er geen gegevens gedeeld, maar je kind kan geen waarnemingen doorgeven aan iNaturalist. [EXPLANATION OF INAT]
+          </p>
+          <p>
+            Als je jouw kind toestemming wilt geven om iNaturalist te gebruiken moet je het volgende doen:
+          </p>
+          <Ol>
+            <li>
+              <p>
+                Maak het iNaturalist-account aan dat uw kind zal gebruiken en geef aan dat het account zal worden gebruikt door een kind jonger dan 13 door deze link te volgen:
+                <a href="%{registration_url}">%{registration_url}</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                Maak een nominale gift van $1 over met een creditcard aan iNaturalist om te verifiëren dat u een volwassene bent. Zorg ervoor dat hetzelfde e-mailadres wordt meegegeven bij de gift https://www.inaturalist.org/donate dat je ook hebt gebruikt om het account aan te maken.
+              </p>
+            </li>
+            <li>
+              <p>
+                Zodra we de donatie hebben verwerkt sturen we een bericht via e-mail dat het account is geactiveerd en dat je de gebruikersnaam en het wachtwoord van iNaturalist die je hebt aangemaakt kan gebruiken om je aan te melden in de Seek-app van je kind.
+              </p>
+            </li>
+          </Ol>
+          <p>
+            Meer informatie over welke persoonsgegevens iNaturalist deelt: ...
+          </p>
+          <p>
+            Meer informatie over het privacybeleid van iNaturalist <a href="%{privacy_policy_url}">hier</a>.
+          </p>
       photos_missing:
         subject: Sommige foto's moeten worden gerepareerd
         we_have_been_housekeeping: |-
@@ -6118,6 +6152,11 @@ nl:
           foto's zijn verwijderd en het is mogelijk dat sommige waarnemingen van "onderzoekskwaliteit(RG)"
           naar "onvolledig(casual)" gaan als ze geen foto's meer hebben.
         we_included_links: We hebben links naar de betreffende foto's hieronder toegevoegd.
+      users_updates_suspended:
+        message: Je bent al een tijdje inactief op %{site_name}, dus we hebben je
+          abonnementen opgeschort. Als je weer nieuwtjes over de activiteiten op de
+          website wil ontvangen moet je <a href="%{login_url}">opnieuw inloggen op
+          je account</a>.
     photos:
       forbidden_notice_html: We hebben momenteel geen rechten om deze foto's te openen.
         Misschien moet u het account ontkoppelen en opnieuw verbinden in uw <a href="/users/edit">instellingen</a>
@@ -6289,10 +6328,9 @@ nl:
           uitnodiging.
       new:
         a_project_allows_you_to_gather: Met een verzamelproject kun je waarnemingen
-          verzamelen en visualiseren met behulp van de iNaturalist zoekhulpmiddelen.
-          Dit elimineert de noodzaak om handmatig waarnemingen toe te voegen, omdat
-          alles dat voldoet aan de parameters die bij het project zijn ingesteld,
-          automatisch wordt opgenomen.
+          verzamelen en visualiseren met behulp van de iNaturalist kernzoekhulpmiddelen.
+          Alles dat voldoet aan de parameters die bij het project zijn ingesteld worden
+          automatisch opgenomen.
         an_umbrella_project_can_be_used_to: |-
           Een overkoepelend project kan worden gebruikt om statistieken uit twee of meer Collection- of Traditionele projecten te vergelijken. De andere projecten moeten bestaan voordat je ze aan een kunt toevoegen parapluproject. U kunt honderden projecten onder één paraplu onderbrengen. Paraplu
           projecten kunnen geen andere parapluprojecten bevatten.
@@ -6310,13 +6348,12 @@ nl:
         do_you_need_features_from_traditional: |-
           Heeft u functies nodig van traditionele projecten, zoals toegang tot echte coördinaten,
           aangepaste waarnemingsvelden of het toevoegen van individuele waarnemingen die niet automatisch kunnen worden gefilterd?
-        leaderboards_among_individuals: Ranglijsten voor <strong>personen</strong>
+        leaderboards_among_individuals: Toplijsten voor <strong>personen</strong>
         leaderboards_among_projects_and_bioblitzes: Ranglijsten voor <strong>projecten
           en bioblitzes</strong>
         multiple_project_administrators: Meerdere projectadministrators
         name_placeholder: Birds of Chicago, Verbazingwekkende libellen, etc.
-        no_need_to_rely_on_manual_addition: Je hoeft niet te vertrouwen op het handmatig
-          toevoegen van waarnemingen of op de aggregator om  waarnemingen te indexeren
+        no_need_to_rely_on_manual_addition: Geen handmatige toevoeging van waarnemingen
         note_these_users_will_be_able_to_edit: 'Opmerking: deze gebruikers kunnen
           ALLE projectdetails, inclusief admins, bewerken.'
         note_you_can_delete_the_time: '(Opmerking: u kunt de tijdzone en precieze
@@ -6343,7 +6380,8 @@ nl:
           eerste 200 karakters zullen zichtbaar zijn aan de rechterkant van de banner
           van het startscherm van het project, dus begin met de beste dingen!
         project_summary_placeholder: Ontdek en volg de vogels van het Zuiderpark ...
-        start_and_end_times_for_bioblitzes: Start- en eindtijd voor bioblitzes
+        start_and_end_times_for_bioblitzes: Start- en eindtijd/-datum voor bioblitz-achtige
+          activiteiten
         umbrella_project_features: 'Kenmerken van het parapluproject:'
         unique_url_for_outreach: Unieke URL voor outreach
         users_can_follow_your_project: Gebruikers kunnen je projectnieuws volgen via
@@ -6353,10 +6391,13 @@ nl:
         visual_comparison_of_data_among: Visuele vergelijkingen van gegevens tussen
           projecten onder de paraplu
         we_have_redesigned_projects: |-
-          We hebben projecten opnieuw ontworpen om automatisch alle waarnemingen toe te voegen die voldoen aan de
-          plaatsen, taxa, gebruikers, kwaliteit en datums die u definieert. U kunt kiezen uit twee soorten:
-          Collection Projects en Umbrella Projects, die de volgende kenmerken hebben:
+          Projecten zijn ontworpen om automatisch alle waarnemingen toe te voegen die voldoen aan de
+          plaatsen, taxa, gebruikers, kwaliteit en datums die je definieert. Je kunt kiezen uit twee hoofdsoorten:
+          Collection Projects en Umbrella Projects, die de volgende gezamelijke kenmerken hebben:
         welcome_to_projects: Welkom bij Projecten!
+        you_can_learn_more_html: |-
+          Lees <a href="https://www.inaturalist.org/pages/managing-projects">hier</a> meer over het beheren van projecten of over de geschiedenis van projecten op
+          <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">onze  blog</a>.
         you_have_not_defined_any_observation_requirements: Je hebt geen enkele waarnemingsvereisten
           gedefinieerd. Zorg ervoor dat je een of meer taxa selecteert (bijvoorbeeld
           vogels, coniferen), plaatsen (bijvoorbeeld Nederland, Groningen), gebruikers

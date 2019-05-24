@@ -91,6 +91,9 @@ zh-TW:
   x_people_agree_html:
     one: <span class="count">1</span> 位認同
     other: <span class="count">%{count}</span> 位認同
+  x_photos:
+    one: 1 張照片
+    other: '%{count} 張照片'
   x_new_species:
     one: 1 個新物種
     other: '%{count} 個新物種'
@@ -458,6 +461,7 @@ zh-TW:
   amphibiaweb_taxonomy: AmphibiaWeb 分類法
   an: 一個
   an_: 一個
+  ancestor_taxon: 祖先分類
   and: 和
   and_choose_a_matching_taxon: 並從清單挑選出符合的物種分類。若您到最後仍沒有東西像
   and_help_the_inaturalist_community_grow: 並協助 %{site_name} 社群成長。
@@ -1935,6 +1939,7 @@ zh-TW:
     el: 希臘語
     en-US: 英語 (美國)
     en: 英語
+    eo: 世界語
     es-ES: 西班牙語 (西班牙)
     es-MX: 西班牙語 (墨西哥)
     es: 西班牙語
@@ -3449,6 +3454,7 @@ zh-TW:
   search_for_species: 搜尋物種
   search_list: 搜尋清單
   search_obs: 搜尋觀察...
+  search_observations: 搜尋觀察
   search_places: 搜尋地點
   search_projects: 搜尋專案
   search_results_for: 搜尋結果用於
@@ -3824,7 +3830,7 @@ zh-TW:
     gbif_occurrences: GBIF 事件
     it_may_take_google_a_while_to: 這將會讓 Google 花費一些時間來載入這些資料（取決於是否有 GBIF 相關內容）。
     data_url: 資料URL
-    overlays: 覆蓋物
+    overlays: 覆蓋
   taxon_changes: 物種分類更改
   taxon_colors: 物種分類色彩
   taxon_curators: 物種分類策展人
@@ -4860,6 +4866,9 @@ zh-TW:
         place_desc: 自動填寫帶有此地點物種分類群觀察的列表。請注意您僅能選擇具有便界的地點。
       show:
         project_list_desc: 專案清單列出了由專案策展人所手動添加，以及代表著在專案裡研究等級觀察記錄的物種分類群。
+    messages:
+      index:
+        speech_privilege_notice: 在您新增 3 個可驗證觀察、或是 3 個替別人所做的鑑定之後，您就可以發送新訊息。目前您可以閱讀和回覆別人發送給您的訊息。
     oauth:
       authorizations:
         new:
@@ -4870,7 +4879,7 @@ zh-TW:
       community_id:
         agreement: 一致
         algorithm_summary: 演算法摘要
-        ancestor_disagreements: 原型不符
+        ancestor_disagreements: 祖先不符
         below_cutoff: 低於截止
         cumulative_count: 累計次數
         disagreement: 不一致
@@ -5057,16 +5066,14 @@ zh-TW:
       merge:
         warning_html: 請尊重其他人的資料，並在合併觀察欄位前<strong>通知創建者</strong>。此工具將會消去被合併的觀察欄位，以及移動所有觀察至保有者。<strong>此處理過程無法復原</strong>，因此請小心。
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: 您的觀察匯出已就緒。此電子郵件有夾帶副本，或是您可<a href="%{url}">下載您的匯出</a>。
-        your_observations_export_failed_html: 您的觀察匯出失敗。請查看您所匯出清單的<a href="%{url}">觀察匯出頁面</a>。
       bulk_import_success:
         success_message: 您的 %{filename} 大量匯入已成功。您的觀察現正在處理並不久後便會出現在網站上。
       bulk_import_error:
         taxon_spelling_notice_html: 請檢查個項目的拼寫。若您拼寫正確，請在 %{search_taxa_url} 搜尋物種。若名稱尚未存在
           %{site_name} 資料庫裡。您會需要添加此名稱才能讓大量上傳成功運作。使用在搜尋頁面下方的方框來匯入新名稱。若名稱已提供但套用在多項有效物種分類群裡，請嘗試使用更多或更少的特定名稱，來符合單一的物種分類。
-      users_updates_suspended:
-        message: 您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
+      observations_export_notification:
+        your_observations_export_is_ready_html: 您的觀察匯出已就緒。此電子郵件有夾帶副本，或是您可<a href="%{url}">下載您的匯出</a>。
+        your_observations_export_failed_html: 您的觀察匯出失敗。請查看您所匯出清單的<a href="%{url}">觀察匯出頁面</a>。
       photos_missing:
         subject: 一些照片需要回報問題
         we_have_been_housekeeping: 我們在管控時有發現到連接至您的觀察的一些照片，已無法從原有來源存取。那些照片已被%{providers}所託管。
@@ -5075,6 +5082,8 @@ zh-TW:
         you_can_attempt_repair: 您可以透過瀏覽照片頁面與點擊「%{repair_link_text}」連結來嘗試回報照片。若您曉得該照片已不存在，您可以選擇來刪除掉。
         please_address: 請在<b>接下來的 30 天裡</b>處理這些問題。超過 30 天候，我們將會從 iNaturalist 上刪除損毀的照片，但您所有的觀察仍會保留下來。照片在刪除後觀察會被重新評估，一些原本是研究等級的觀察有可能會因為缺少照片而降為粗略等級。
         we_included_links: 我們已包含下列受影響照片的連結。
+      users_updates_suspended:
+        message: 您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
     photos:
       forbidden_notice_html: 我們現在沒有權限來取用這些照片。您可能需要在您的<a href="/users/edit">設定</a>中斷連接並重新連接帳號來授予我們額外權限。
       inviter:
@@ -5218,7 +5227,7 @@ zh-TW:
         display_project_name: 顯示專案名稱
         do_you_need_features_from_traditional: 您需要傳統專案的特性嗎？例如像是存取實際座標、自定義觀察欄位，或是添加無法被自動篩選掉的個別觀察？
         leaderboards_among_individuals: <strong>個人</strong>排行榜
-        leaderboards_among_projects_and_bioblitzes: <strong>專案與 bioblitz </strong>排行榜
+        leaderboards_among_projects_and_bioblitzes: <strong>專案</strong>排行榜
         multiple_project_administrators: 多項專案管理員
         name_placeholder: 在芝加哥的鳥類、令人驚豔的蜻蜓等等。
         no_need_to_rely_on_manual_addition: 不需手動添加觀察額外內容，或是聚集來索引觀察
@@ -5755,6 +5764,8 @@ zh-TW:
       not_an_integer: 必須是整數
       odd: 必須是奇數
       record_invalid: '驗證失敗: %{errors}'
+      requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
+      requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
       taken: 已被使用
       too_long:
         one: 太長 (最多 1 個字元)
@@ -5851,6 +5862,8 @@ zh-TW:
         not_an_integer: 必須為整數
         odd: 必須是奇數
         record_invalid: '驗證失敗: %{errors}'
+        requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
+        requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
         taken: 已被使用
         too_long:
           one: 太長 (最多 1 個字元)
@@ -5983,6 +5996,8 @@ zh-TW:
         not_an_integer: 必須為整數
         odd: 必須是奇數
         record_invalid: 驗證失敗：%{errors}
+        requires_privilege_speech: 必須要有 3 個可驗證觀察、或是 3 個替別人所做的鑑定才可做出
+        requires_privilege_organizer: 必須要有 50 個可驗證觀察才能做出
         taken: 已被使用
         too_long:
           one: 太長（最多 1 個字元）
@@ -6070,6 +6085,10 @@ zh-TW:
             name:
               cannot_match_the_scientific_name_of_a_species_for_this_lexicon: 無法符合此詞彙的物種學名
               bad_format: 僅能包含標準拉丁字元、連字號、空白、以及 × 交叉符號，另外請注意不允許假定的分類群和栽培品種
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: 不能超過 %{max} 張照片
         user:
           attributes:
             login:

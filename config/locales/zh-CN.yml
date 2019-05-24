@@ -4580,14 +4580,14 @@ zh-CN:
       merge:
         warning_html: 请尊重其他人的数据，并且<strong>在合并之前与观察区域的创建者交谈</strong>。该工具将破坏正在合并的观察区域并将所有观察结果移动到其持有人。<strong>此操作无法撤消</strong>，因此请小心。
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: 您的观察导出准备就绪。这封电子邮件带有附件，或者您也可以<a href="%{url}">下载您的导出结果</a>。
-        your_observations_export_failed_html: 您的观察导出失败。请访问<a href="%{url}">观察导出页面</a>以查看您导出的观察列表。
       bulk_import_success:
         success_message: 您 %{filename} 的大量导入已成功。您的观察现正在处理，很快将出现在网站上。
       bulk_import_error:
         taxon_spelling_notice_html: 请检查每条记录的拼写。如果您的拼写正确，则在 %{search_taxa_url} 寻找物种。如果名称尚未存在于
           %{site_name} 数据库，您需要在您的大量上传工作之前添加它。使用搜索页面下方的方框以导入新名称。如果名称已提供，但被应用到多个有效的分类群的话，尝试使用或多或少只匹配单一分类单元的专用名。
+      observations_export_notification:
+        your_observations_export_is_ready_html: 您的观察导出准备就绪。这封电子邮件带有附件，或者您也可以<a href="%{url}">下载您的导出结果</a>。
+        your_observations_export_failed_html: 您的观察导出失败。请访问<a href="%{url}">观察导出页面</a>以查看您导出的观察列表。
       users_updates_suspended:
         message: 您在 %{site_name} 已有段时间不活跃，因此我们暂停了您的订阅。要重新开始获取网站活跃更新，请<a href="%{login_url}">登录您的账户</a>以重试。
     photos:

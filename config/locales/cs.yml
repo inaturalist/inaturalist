@@ -5910,13 +5910,6 @@ cs:
           slučované pole pozorování a přesune veškerá pozorování, která ho používají,
           ke správci. <strong>Tento proces je nevratný</strong>, proto buďte opatrní.
     emailer:
-      observations_export_notification:
-        your_observations_export_is_ready_html: |-
-          Export vašeho pozorování je připraven. Kopie je přiložena k tomuto e-mailu, nebo si můžete
-          <a href="%{url}">stáhnout export</a>.
-        your_observations_export_failed_html: |-
-          Export vašeho pozorování se nezdařil. Běžte na stránku
-          <a href="%{url}">export pozorování</a>, kde najdete přehled svých exportů.
       bulk_import_success:
         success_message: Váš hromadný import %{filename} byl úspěšný. Vaše pozorování
           se teď zpracovávají a brzy se objeví na stránkách.
@@ -5928,10 +5921,13 @@ cs:
           pole v dolní části stránky vyhledávání. Pokud je název obsažen, ale vztahuje
           se k více platným taxonům, zkuste použít více nebo méně specifický název,
           který se vztahuje k jedinému taxonu.
-      users_updates_suspended:
-        message: |-
-          Na %{site_name} jste nějakou dobu nebyli aktivní, tak jsme zastavili vaše odběry. Pro obnovení zasílání aktualizací o aktivitě na stránkách se prosím znovu
-          <a href="%{login_url}">přihlaste ke svému účtu</a>.
+      observations_export_notification:
+        your_observations_export_is_ready_html: |-
+          Export vašeho pozorování je připraven. Kopie je přiložena k tomuto e-mailu, nebo si můžete
+          <a href="%{url}">stáhnout export</a>.
+        your_observations_export_failed_html: |-
+          Export vašeho pozorování se nezdařil. Běžte na stránku
+          <a href="%{url}">export pozorování</a>, kde najdete přehled svých exportů.
       photos_missing:
         subject: Některé fotky vyžadují opravu
         we_have_been_housekeeping: |-
@@ -5952,6 +5948,10 @@ cs:
           pozorování na úrovni vyhledávání se mohou stát přesnými, pokud nemají více
           fotografií.
         we_included_links: Uvádíme odkazy na níže uvedené fotografie.
+      users_updates_suspended:
+        message: |-
+          Na %{site_name} jste nějakou dobu nebyli aktivní, tak jsme zastavili vaše odběry. Pro obnovení zasílání aktualizací o aktivitě na stránkách se prosím znovu
+          <a href="%{login_url}">přihlaste ke svému účtu</a>.
     photos:
       forbidden_notice_html: Momentálně nemáme přístup k těmto fotografiím. Pravděpodobně
         bude nutné odpojit a znovu připojit účet v <a href="/users/edit"> nastavení
