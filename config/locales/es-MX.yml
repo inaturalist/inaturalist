@@ -6102,6 +6102,13 @@ es-MX:
           Por favor se respetuoso con los datos de otras personas y <strong>habla con el creador de un campo de observación, antes de una fusión</strong>. Esta herramienta destruirá el
           campo de observación que se va a combinar y moverá todas las observaciones al campo mantenido. <strong>Este proceso no se puede deshacer</strong>, así que ten cuidado.
     emailer:
+      observations_export_notification:
+        your_observations_export_is_ready_html: Tus observaciones de exportación están
+          listas. Hay una copia  adjunta a este correo, o puedes <a href="%{url}">descargar
+          tu exportación</a>.
+        your_observations_export_failed_html: |-
+          Error al exportar tus observaciones. Visita la
+          <a href="%{url}">página de exportación de observaciones</a> para una lista de tus exportaciones.
       bulk_import_success:
         success_message: Tu importación masiva de %{filename} fue exitosa. Tus observaciones
           están siendo procesadas y pronto aparecerán en el sitio web.
@@ -6111,13 +6118,11 @@ es-MX:
           Si el nombre no está aun en la base de datos %{site_name} necesitas incluirlo
           antes de que la subida masiva empiece. Utiliza la caja en la parte inferior
           de la página de búsqueda para importar nuevos nombres.
-      observations_export_notification:
-        your_observations_export_is_ready_html: Tus observaciones de exportación están
-          listas. Hay una copia  adjunta a este correo, o puedes <a href="%{url}">descargar
-          tu exportación</a>.
-        your_observations_export_failed_html: |-
-          Error al exportar tus observaciones. Visita la
-          <a href="%{url}">página de exportación de observaciones</a> para una lista de tus exportaciones.
+      users_updates_suspended:
+        message: Has estado inactivo en %{site_name} mucho tiempo, por eso hemos suspendido
+          tus suscripciones. Para reanudar la obtención de actualizaciones sobre la
+          actividad del sitio, por favor <a href="%{login_url}">inicia sesión en tu
+          cuenta</a> de nuevo.
       photos_missing:
         subject: Algunas fotos necesitan reparación
         we_have_been_housekeeping: Hemos estado haciendo un poco de limpieza y encontramos
@@ -6139,11 +6144,6 @@ es-MX:
           fotos sean eliminadas, y es posible que algunas observaciones de los grados
           de investigación se convertirán en informales si ya no tienen fotos.
         we_included_links: Hemos incluido enlaces a las fotos afectadas abajo.
-      users_updates_suspended:
-        message: Has estado inactivo en %{site_name} mucho tiempo, por eso hemos suspendido
-          tus suscripciones. Para reanudar la obtención de actualizaciones sobre la
-          actividad del sitio, por favor <a href="%{login_url}">inicia sesión en tu
-          cuenta</a> de nuevo.
     photos:
       forbidden_notice_html: No tenemos permiso para acceder a esas fotos justo ahora.
         Puede que necesite desconectar y reconectar la cuenta en sus <a href="/users/edit">settings</a>
