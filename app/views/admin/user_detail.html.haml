@@ -121,6 +121,26 @@
           %tr
             %th User who made this user a curator
             %td= link_to_user @display_user.curator_sponsor
+        %tr
+          %th User Privileges
+          %td
+            - if @display_user.user_privileges.blank?
+              None yet
+            - else
+              %ul.plain
+                - @display_user.user_privileges.each do |up|
+                  %li.lined
+                    %strong= up.privilege
+                    %p.success
+                      Earned on
+                      = up.created_at.to_date
+                    - if up.revoked?
+                      %p.danger
+                        Revoked on
+                        = up.revoked_at
+                        by
+                        = link_to_user up.revoke_user
+                        %blockquote= up.revoke_reason
     .col-xs-4
       %p
         = user_image( @display_user, size: "large", class: "img-responsive center-block" )

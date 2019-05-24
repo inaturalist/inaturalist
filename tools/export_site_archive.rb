@@ -1,5 +1,5 @@
 require "rubygems"
-require "Optimist"
+require "optimist"
 
 OPTS = Optimist::options do
     banner <<-EOS
@@ -73,7 +73,8 @@ def export_model(klass)
       joins("LEFT OUTER JOIN guide_photos gp ON gp.photo_id = photos.id").
       joins("LEFT OUTER JOIN guide_taxa gt ON gt.id = gp.guide_taxon_id").
       joins("LEFT OUTER JOIN guides g ON g.id = gt.guide_id").
-      where("o.site_id = ? OR tp.id IS NOT NULL OR g.user_id = ?", @site, @site)
+      joins("LEFT OUTER JOIN users gu ON gu.id = g.user_id").
+      where("o.site_id = ? OR tp.id IS NOT NULL OR gu.site_id = ?", @site, @site)
   elsif klass == Project
     puts "Exporting projects with participants from #{@site_name}" if OPTS[:DEBUG]
     scope = scope.joins(:project_users => :user).where("users.site_id = ?", @site)
@@ -167,12 +168,21 @@ ActiveRecord::Base.descendants.sort_by(&:name).each do |klass|
   next if klass != FlowTask && klass.ancestors.include?(FlowTask)
   next if klass != Rule && klass.ancestors.include?(Rule)
   next if [
+    ActiveRecord::SessionStore::Session,
+    Color,
     ComputerVisionDemoUpload,
+    Delayed::Backend::ActiveRecord::Job,
     DeletedObservation, # irrelevant
-    UpdateAction, # massive
-    UpdateSubscriber,
+    Doorkeeper::AccessGrant,
+    Doorkeeper::AccessToken,
+    Doorkeeper::Application,
     FlowTask, # irrelevant
-    TaxonRange # massive
+    FrequencyCell,
+    FrequencyCellMonthTaxon,
+    ObservationsExportFlowTask,
+    TaxonRange, # massive
+    UpdateAction,
+    UpdateAction, # massive
   ].include?(klass)
 
   # test

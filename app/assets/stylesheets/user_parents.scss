@@ -1,0 +1,124 @@
+@import "colors";
+@import "donorbox-iframe";
+
+.bootstrap {
+  h1 {
+    font-weight: bold;
+    font-size: 30px;
+    margin-bottom: 35px;
+  }
+
+  h2 {
+    font-size: 23px;
+    line-height: 30px;
+    margin: 0;
+    font-weight: 600;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    color: $inat-green;
+  }
+  h3 {
+    font-weight: bold;
+    font-size: 21px;
+    margin-bottom: 23px;
+  }
+  p {
+    font-weight: bold;
+    font-size: 16px;
+  }
+}
+
+.user-parent-progress {
+  margin-top: 30px;
+  min-height: 900px;
+  width: 50%;
+  position: relative;
+  padding: 0 50px;
+  ol {
+    padding: 0;
+    li {
+      margin-bottom: 30px;
+      opacity: 0.15;
+      .title {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        .step {
+          flex: 2;
+          border-radius: 100px;
+          background-color: black;
+          margin-right: 30px;
+          min-width: 54px;
+          max-width: 54px;
+          height: 54px;
+          color: white;
+          font-size: 40px;
+          text-align: center;
+          line-height: 54px;
+        }
+      }
+      h2 {
+        color: black;
+      }
+    }
+    li.current {
+      opacity: 1;
+      .step {
+        background-color: $inat-green;
+      }
+      h2 {
+        color: $inat-green;
+      }
+    }
+  }
+}
+$form-width: 345px;
+#formcol {
+  min-width: $form-width;
+  form, .formcol-content {
+    min-width: $form-width;
+  }
+  padding-top: 50px;
+  .user-parent-progress {
+    li {
+      display: none;
+      &.current { display: block; }
+    }
+    width: 100%;
+    height: auto;
+    min-height: auto;
+    padding: 0;
+  }
+  .popover {
+    min-width: 300px;
+  }
+}
+#donorbox-iframe {
+  margin: 0 auto;
+}
+// xs
+@media (max-width: 767px) {
+  #formcol {
+    padding-top: 0;
+  }
+}
+// sm
+@media (min-width: 768px) and (max-width: 991px) {
+  #formcol {
+    padding-top: 0;
+  }
+}
+#user-parent-thanks {
+  display: none;
+  margin-bottom: 50px;
+  text-align: center;
+  p {
+    font-size: 21px;
+    margin-top: 20px;
+  }
+  &.existing-donor {
+    display: block;
+    p { font-weight: normal; }
+  }
+}

@@ -1,0 +1,9 @@
+= render "header"
+=t "views.emailer.user_parent_confirmation.content_html",
+  parent_name: @user_parent.name,
+  parent_email: @user_parent.email,
+  child_name: @user_parent.child_name,
+  child_birthday: @user_parent.user.birthday ? l(@user_parent.user.birthday) : "",
+  child_email: @user_parent.user.email,
+  child_username: @user_parent.user.login
+= render "footer"

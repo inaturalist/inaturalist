@@ -35,7 +35,7 @@ class AdminController < ApplicationController
     respond_to do |format|
       format.html do
         if !@display_user
-          redirect_back_or_default( users_admin_path )
+          return redirect_back_or_default( users_admin_path )
         end
         render layout: "admin"
       end

@@ -77,6 +77,11 @@ class EmailerPreview < ActionMailer::Preview
     Emailer.parental_consent( "test@inaturalist.org" )
   end
 
+  def user_parent_confirmation
+    set_locale
+    Emailer.user_parent_confirmation( UserParent.last )
+  end
+
   private
   def set_user
     # @user = if login = @rack_env["QUERY_STRING"].to_s[/login=([^&]+)/, 1]

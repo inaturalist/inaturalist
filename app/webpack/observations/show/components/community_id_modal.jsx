@@ -48,7 +48,7 @@ class CommunityIDModal extends Component {
       const denom = usages + disag + ancDisag;
       const score = _.round( usages / denom, 3 );
       let className;
-      if ( observation.taxon && observation.taxon.id === taxon.id ) {
+      if ( observation.community_taxon && observation.community_taxon.id === taxon.id ) {
         className = "current-id";
       } else if ( hoverTaxon ) {
         if ( hoverTaxon.id === taxon.id ) {
@@ -132,13 +132,13 @@ class CommunityIDModal extends Component {
         this.idTaxonCounts[i.taxon.id] += 1;
         const allAncestors = _.clone( i.taxon.ancestorTaxa || [] );
         allAncestors.push( i.taxon );
-        if ( i.disagreement && i.previous_observation_taxon ) {
+        if ( i.disagreement && i.previous_observation_taxon && _.intersection( i.previous_observation_taxon.ancestor_ids, [i.taxon.id] ).length > 0 ) {
           const taxonIDsDisagreedWith = _.difference(
             i.previous_observation_taxon.ancestor_ids,
             ( i.taxon.ancestor_ids || [] ).concat( [i.taxon.id] )
           );
           _.each( taxa, t => {
-            if ( _.intersection( t.ancestor_ids, taxonIDsDisagreedWith ).length > 0 ) {
+            if ( _.intersection( ( t.ancestor_ids || [] ).concat( [t.id] ), taxonIDsDisagreedWith ).length > 0 ) {
               this.ancestorDisagreements[t.id] = this.ancestorDisagreements[t.id] || 0;
               this.ancestorDisagreements[t.id] += 1;
             }

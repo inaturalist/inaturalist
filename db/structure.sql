@@ -4720,6 +4720,43 @@ ALTER SEQUENCE public.user_mutes_id_seq OWNED BY public.user_mutes.id;
 
 
 --
+-- Name: user_parents; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.user_parents (
+    id integer NOT NULL,
+    user_id integer,
+    parent_user_id integer,
+    name character varying,
+    email character varying,
+    child_name character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    donorbox_donor_id integer
+);
+
+
+--
+-- Name: user_parents_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.user_parents_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: user_parents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.user_parents_id_seq OWNED BY public.user_parents.id;
+
+
+--
 -- Name: user_privileges; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -4808,7 +4845,10 @@ CREATE TABLE public.users (
     icon_updated_at timestamp without time zone,
     search_place_id integer,
     curator_sponsor_id integer,
-    suspended_by_user_id integer
+    suspended_by_user_id integer,
+    birthday date,
+    pi_consent_at timestamp without time zone,
+    donorbox_donor_id integer
 );
 
 
@@ -5804,6 +5844,13 @@ ALTER TABLE ONLY public.user_mutes ALTER COLUMN id SET DEFAULT nextval('public.u
 
 
 --
+-- Name: user_parents id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_parents ALTER COLUMN id SET DEFAULT nextval('public.user_parents_id_seq'::regclass);
+
+
+--
 -- Name: user_privileges id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6754,6 +6801,14 @@ ALTER TABLE ONLY public.user_blocks
 
 ALTER TABLE ONLY public.user_mutes
     ADD CONSTRAINT user_mutes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: user_parents user_parents_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.user_parents
+    ADD CONSTRAINT user_parents_pkey PRIMARY KEY (id);
 
 
 --
@@ -8864,6 +8919,27 @@ CREATE INDEX index_user_mutes_on_user_id ON public.user_mutes USING btree (user_
 
 
 --
+-- Name: index_user_parents_on_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_parents_on_email ON public.user_parents USING btree (email);
+
+
+--
+-- Name: index_user_parents_on_parent_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_parents_on_parent_user_id ON public.user_parents USING btree (parent_user_id);
+
+
+--
+-- Name: index_user_parents_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_user_parents_on_user_id ON public.user_parents USING btree (user_id);
+
+
+--
 -- Name: index_user_privileges_on_revoke_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -9833,4 +9909,12 @@ INSERT INTO schema_migrations (version) VALUES ('20190301012813');
 INSERT INTO schema_migrations (version) VALUES ('20190308020554');
 
 INSERT INTO schema_migrations (version) VALUES ('20190404042229');
+
+INSERT INTO schema_migrations (version) VALUES ('20190514191221');
+
+INSERT INTO schema_migrations (version) VALUES ('20190514192302');
+
+INSERT INTO schema_migrations (version) VALUES ('20190516011313');
+
+INSERT INTO schema_migrations (version) VALUES ('20190516181748');
 

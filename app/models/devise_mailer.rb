@@ -9,6 +9,9 @@ class DeviseMailer < Devise::Mailer
     end
     site = @site || user.try( :site ) || Site.default
     if action.to_s == "confirmation_instructions"
+      if user && !user.active_for_authentication?
+        return false
+      end
       opts = opts.merge( subject: t( :welcome_to_inat, site_name: site.name ) )
     end
     if user
@@ -22,9 +25,6 @@ class DeviseMailer < Devise::Mailer
         DeviseMailer.default_url_options[:host] = URI.parse(site.url).host
       rescue
         # url didn't parse for some reason, leave it as the default
-      end
-      if action.to_s == "confirmation_instructions"
-        opts = opts.merge( subject: t( :welcome_to_inat, site_name: site.name ) )
       end
       r = super( record, action, opts )
       I18n.locale = old_locale

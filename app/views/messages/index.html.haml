@@ -1,29 +1,51 @@
+- fromto = @box == Message::INBOX ? "from" : "to"
 = content_for :title do
   =t :messages
 = content_for :extracss do
-  :css
-    td.subject {width:100%;}
-    .unread .subject {font-weight:bold;}
-    .unread td {background-color: lightyellow;}
-    .tools {position:relative; z-index: 1;}
-.column.prepend-4.span-16.append-4
-  %h2=t :messages
-
-  - if true || current_user.privileged_with?( UserPrivilege::SPEECH )
-    .tools.right
-      = link_to t(:new_message), new_message_path
-  - else
-    .box.notice
-      =t "views.messages.index.speech_privilege_notice"
-  .tabs
-    %ul
-      - for box in Message::BOXES
-        %li
-          = link_to t(box).capitalize, @box == box ? "##{box}" : {:box => box}, :title => box
-    %div{:id => @box}
-      = render 'messages'
-
+  = stylesheet_link_tag :messages
+= content_for :extrajs do
   :javascript
-    $('.tabs').tabs({
-      ajaxOptions: {data: "partial=true"}
-    })
+    $( document ).ready( function( ) {
+      $( "#search-messages .user_id" ).userAutocomplete( {
+        resetOnChange: false,
+        idEl: $( "#search-messages .user_id" ),
+        afterSelect: function( result ) {
+          console.log("selected ", result);
+        },
+        afterUnselect: function( ) {
+          console.log("unselected");
+        }
+      } );
+    } )
+.container
+  .row
+    .col-xs-12.col-lg-8.col-lg-offset-2
+      %h2=t :messages
+      - unless current_user.privileged_with?( UserPrivilege::SPEECH )
+        .box.notice
+          =t "views.messages.index.speech_privilege_notice"
+      %ul.nav.nav-pills{ role: "tablist" }
+        - for box in Message::BOXES
+          %li{ role: "presentation", class: @box == box ? "active" : "" }
+            = link_to t(box).capitalize, @box == box ? url_for_params : url_for_params( box: box, without: [:page] ), :title => t(box)
+        - if current_user.privileged_with?( UserPrivilege::SPEECH )
+          %li.pull-right
+            = link_to new_message_path do
+              %i.fa.fa-envelope
+              = t(:new_message)
+        %li.pull-right
+          = link_to "#search-messages", data: { toggle: "collapse" }, role: "button", aria_expanded: "false" do
+            %i.fa.fa-search
+            = t(:search)
+      = form_tag( url_for, method: "get", builder: DefaultFormBuilder, id: "search-messages", class: "collapse well #{!@search_user.blank? || !@q.blank? ? "in" : ""}" ) do
+        = hidden_field_tag :box, box
+        .form-group
+          %label=t "views.messages.#{fromto}"
+          = text_field_tag :user_id, @search_user.try(:login), class: "form-control user_id", placeholder: t(:start_typing_someones_name)
+        .form-group
+          %label=t "views.messages.subject_body"
+          = text_field_tag :q, @q, class: "form-control", type: "search", placeholder: t(:search)
+        = submit_tag t(:search), class: "btn btn-primary"
+        = link_to t(:clear_), messages_path( box: @box ), class: "btn btn-default"
+      %div{ id: @box}
+        = render 'messages'

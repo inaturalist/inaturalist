@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   attr_accessor   :make_sound_licenses_same
 
   attr_accessor :html
+  attr_accessor :pi_consent
 
   # Email notification preferences
   preference :comment_email_notification, :boolean, default: true
@@ -168,6 +169,9 @@ class User < ActiveRecord::Base
   has_many :annotations, dependent: :destroy
   has_many :saved_locations, inverse_of: :user, dependent: :destroy
   has_many :user_privileges, inverse_of: :user, dependent: :delete_all
+  has_one :user_parent, dependent: :destroy, inverse_of: :user
+  has_many :parentages, class_name: "UserParent", foreign_key: "parent_user_id", inverse_of: :parent_user
+
   
   file_options = {
     processors: [:deanimator],
@@ -221,6 +225,7 @@ class User < ActiveRecord::Base
   before_save :whitelist_licenses
   before_save :get_lat_lon_from_ip_if_last_ip_changed
   before_save :check_suspended_by_user
+  before_save :set_pi_consent_at
   before_create :set_locale
   after_save :update_observation_licenses
   after_save :update_photo_licenses
@@ -328,7 +333,7 @@ class User < ActiveRecord::Base
   # this b/c we want all users to be able to sign in, even if unconfirmed, but
   # not if suspended.
   def active_for_authentication?
-    active?
+    active? && ( birthday.blank? || birthday < 13.years.ago || !UserParent.where( "user_id = ? AND donorbox_donor_id IS NULL", id ).exists? )
   end
 
   def download_remote_icon
@@ -1255,6 +1260,17 @@ class User < ActiveRecord::Base
 
   def privileged_with?( privilege )
     user_privileges.where( privilege: privilege ).where( "revoked_at IS NULL" ).exists?
+  end
+
+  def set_pi_consent_at
+    if pi_consent
+      self.pi_consent_at = Time.now
+    end
+    true
+  end
+
+  def donor?
+    donorbox_donor_id.to_i > 0
   end
 
   # Iterates over recently created accounts of unknown spammer status, zero

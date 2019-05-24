@@ -3,18 +3,22 @@
   .nocontent.meta
     =t :no_messages_yet
 - else
-  %table
+  %table.messages.table
     %thead
       %tr
-        %th= t(fromto).capitalize
+        %th.user= t(fromto).capitalize
         %th= t(:subject)
         %th= t(:date_)
     %tbody
       - for message in @messages
-        %tr{:class => message.read_at ? nil : 'unread', id: dom_id(message)}
-          %td.nobr
-            = user_image message.send("#{fromto}_user")
-            = link_to_user message.send("#{fromto}_user")
+        - fromto_user = message.send("#{fromto}_user")
+        - fromto_login = fromto_user ? fromto_user.login : t(:deleted_user)
+        %tr.message{:class => message.read_at ? nil : 'unread', id: dom_id(message)}
+          %td.nobr.user
+            = link_to url_for_params( user_id: fromto_login ), class: "user-search-link", title: t("views.messages.index.show_messages_#{fromto}_user", user: fromto_login ) do
+              %i.fa.fa-search-plus
+            = user_image fromto_user
+            = link_to_user fromto_user
           %td.subject
             = link_to message.subject.blank? ? t(:no_subject_parens) : message.subject, message_path(message, :box => @box)
           %td.meta.nobr

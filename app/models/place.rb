@@ -56,9 +56,9 @@ class Place < ActiveRecord::Base
   extend FriendlyId
   friendly_id :name, :use => [ :slugged, :finders ], :reserved_words => PlacesController.action_methods.to_a
 
-  # requires_privilege :organizer,
-  #   if: Proc.new {|place| place.user && !place.user.is_curator? && !place.user.is_admin?},
-  #   on: :create
+  requires_privilege :organizer,
+    if: Proc.new {|place| place.user && !place.user.is_curator? && !place.user.is_admin?},
+    on: :create
   
   def normalize_friendly_id( string )
     super_candidate = super(string)

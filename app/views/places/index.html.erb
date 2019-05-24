@@ -141,20 +141,7 @@
     </div>
   </div>
   <div class="last column span-8">
-    <div class="clear box">
-      <p>
-        <%=t 'views.places.index.you_can_help_out_by' %>
-      </p>
-      <ul class="readable leafylist">
-        <li><%= link_to t('views.places.index.adding_new_places'), new_place_path, :rel => "nofollow" %></li>
-        <li><%= t 'views.places.index.confirming_identifications' %> </li>
-        <li><%= t('views.places.index.filling_out_checklists') %></li>
-      </ul>
-      <div style="margin: 20px 0; text-align: center;">
-        <%= link_to t(:add_new_place), new_place_path, :class => 'inline button readmore right', :rel => "nofollow" %>
-      </div>
-    </div>
-    <% if false && current_user && current_user.privileged_with?( UserPrivilege::ORGANIZER ) %>
+    <% if current_user && current_user.privileged_with?( UserPrivilege::ORGANIZER ) %>
       <%= link_to t(:add_new_place), new_place_path, class: "add-button button readmore", rel: "nofollow" %>
     <% end %>
   </div>

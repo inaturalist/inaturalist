@@ -5,7 +5,9 @@ class MessagesController < ApplicationController
   before_filter :load_box, :only => [:show, :new, :index]
   check_spam only: [:create, :update], instance: :message
 
-  # requires_privilege :speech, only: [:new]
+  requires_privilege :speech, only: [:new]
+
+  layout "bootstrap"
 
   def index
     @messages = case @box
@@ -13,6 +15,20 @@ class MessagesController < ApplicationController
       current_user.messages.sent.order("id desc").page(params[:page])
     else
       current_user.messages.inbox.order("id desc").page(params[:page])
+    end
+    unless params[:user_id].blank?
+      @search_user = User.find_by_id( params[:user_id] )
+      @search_user ||= User.find_by_login( params[:user_id] )
+      @messages = case @box
+      when Message::SENT
+        @messages.where( to_user_id: @search_user )
+      else
+        @messages.where( from_user_id: @search_user )
+      end
+    end
+    unless params[:q].blank?
+      @q = params[:q].to_s[0..100]
+      @messages = @messages.where( "subject ILIKE ? OR body ILIKE ?", "%#{@q}%", "%#{@q}%" )
     end
     if params[:partial]
       render :partial => "messages"

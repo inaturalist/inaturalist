@@ -1,0 +1,46 @@
+- content_for :title do
+  =t "views.user_parents.new.inaturalist_minor_account_signup"
+- content_for :extracss do
+  = stylesheet_link_tag :user_parents
+- content_for(:extrajs) do
+  %script{ src: "https://www.google.com/recaptcha/api.js?hl=#{I18n.locale}" }
+  = javascript_include_tag "moment/min/moment-with-locales.min"
+  = javascript_include_tag "moment-timezone/builds/moment-timezone-with-data-2010-2020.min"
+- content_for :left do
+  .user-parent-progress.hidden-xs.hidden-sm
+    %h1=t "views.user_parents.new.inaturalist_minor_account_signup"
+    %ol.plain
+      - ( 1..3 ).each do |step|
+        %li{ class: step == 1 ? "current" : "" }
+          .title
+            .step= step
+            %h2=t "views.user_parents.new.step#{step}_title"
+          %p=t "views.user_parents.new.step#{step}_desc"
+= form_for @user_parent, html: { class: "sign-up" } do |f|
+  .user-parent-progress.hidden-md.hidden-lg.hidden-xl
+    %h1=t "views.user_parents.new.inaturalist_minor_account_signup"
+    %ol.plain
+      - ( 1..3 ).each do |step|
+        %li{ class: step == 1 ? "current" : "" }
+          .title
+            .step= step
+            %h2=t "views.user_parents.new.step#{step}_title"
+          %p=t "views.user_parents.new.step#{step}_desc"
+  %h3=t "views.user_parents.new.parent_information_private"
+  .form-group.text-field.email
+    = f.text_field :email, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( "views.user_parents.new.parent_email" ), type: "email", class: "form-control"
+    - unless @user_parent.errors[:email].blank?
+      .error= formatted_error_sentence_for( @user_parent, :email )
+  .form-group.text-field.username
+    = f.text_field :name, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( "views.user_parents.new.parent_name_private" ), class: "form-control"
+    - unless @user_parent.errors[:name].blank?
+      .error= formatted_error_sentence_for( @user_parent, :name )
+  .form-group.text-field.username
+    = f.text_field :child_name, autocorrect: "off", autocapitalize: "off", required: true, placeholder: t( "views.user_parents.new.child_name_private" ), class: "form-control"
+    - unless @user_parent.errors[:child_name].blank?
+      .error= formatted_error_sentence_for( @user_parent, :name )
+  = f.fields_for :user do |u|
+    %h3=t "views.user_parents.new.create_a_minor_account"
+    = render "users/registrations/form", builder: u, user: @user_parent.user, child: true
+  .form-group.centered
+    = f.submit t( "views.user_parents.new.create_minor_account" ), class: "btn btn-inat btn-primary btn-lg", disabled: @site.using_recaptcha?

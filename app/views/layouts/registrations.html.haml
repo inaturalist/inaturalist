@@ -29,6 +29,8 @@
               = obs.user.published_name
             %div
               = link_to t( :in_place_x, place: place_guess ), observations_url( lat: obs.latitude, lng: obs.longitude )
+    - else
+      = yield :left
     #formcol
       .inner
         = yield

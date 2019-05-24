@@ -7,10 +7,25 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def whitelist_params
     if params[:user]
       params.require(:user).permit(
-        :login, :email, :name, :password, :password_confirmation, :icon, :description,
-        :time_zone, :icon_url, :locale, :prefers_community_taxa, :place_id,
-        :preferred_photo_license, :preferred_observation_license, :preferred_sound_license,
-        :preferred_observation_fields_by)
+        :birthday,
+        :description,
+        :email,
+        :icon,
+        :icon_url,
+        :locale,
+        :login,
+        :name,
+        :password,
+        :password_confirmation,
+        :pi_consent,
+        :place_id,
+        :preferred_observation_fields_by,
+        :preferred_observation_license,
+        :preferred_photo_license,
+        :preferred_sound_license,
+        :prefers_community_taxa,
+        :time_zone
+      )
     end
   end
 
@@ -32,7 +47,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     # If for some reason a user is already signed in, don't allow them to make
     # another user
-    if current_user
+    if current_user && current_user.id != Devise::Strategies::ApplicationJsonWebToken::ANONYMOUS_USER_ID
       errors ||= []
       errors << I18n.t( :user_already_authenticated )
     end

@@ -418,12 +418,14 @@ span.button {
 .subspecies .sciname,
 .infraspecies .sciname,
 .variety .sciname,
+.form .sciname,
 .hybrid .sciname,
 .sciname.genus,
 .sciname.species,
 .sciname.infraspecies,
 .sciname.subspecies,
 .sciname.variety,
+.sciname.form,
 .sciname.hybrid {
   font-style: italic;
 }
@@ -436,12 +438,14 @@ span.button {
   .subspecies .sciname,
   .infraspecies .sciname,
   .variety .sciname,
+  .form .sciname,
   .hybrid .sciname,
   .sciname.genus,
   .sciname.species,
   .sciname.infraspecies,
   .sciname.subspecies,
   .sciname.variety,
+  .sciname.form,
   .sciname.hybrid {
     font-weight: 100;
   }

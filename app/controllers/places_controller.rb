@@ -22,7 +22,7 @@ class PlacesController < ApplicationController
 
   before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
 
-  # requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy]
+  requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy]
   protect_from_forgery unless: -> {
     request.parameters[:action] == "autocomplete" && request.format.json? }
 
