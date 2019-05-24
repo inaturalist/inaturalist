@@ -132,7 +132,7 @@ class CommunityIDModal extends Component {
         this.idTaxonCounts[i.taxon.id] += 1;
         const allAncestors = _.clone( i.taxon.ancestorTaxa || [] );
         allAncestors.push( i.taxon );
-        if ( i.disagreement && i.previous_observation_taxon ) {
+        if ( i.disagreement && i.previous_observation_taxon && _.intersection( i.previous_observation_taxon.ancestor_ids, [i.taxon.id] ).length > 0 ) {
           const taxonIDsDisagreedWith = _.difference(
             i.previous_observation_taxon.ancestor_ids,
             ( i.taxon.ancestor_ids || [] ).concat( [i.taxon.id] )
