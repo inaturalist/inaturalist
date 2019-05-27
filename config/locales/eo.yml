@@ -64,6 +64,7 @@ eo:
   a_member_of: Ano de
   a_member_of_taxon_html: ano de %{taxon}
   about: Pri
+  about_charts: Pri Diagramoj
   about_community_taxa: Pri komunumaj taksonoj
   about_complete_taxa: Pri Kompletaj Taksonoj
   about_external_links: Pri eksteraj ligiloj
@@ -71,14 +72,22 @@ eo:
   about_life!: Pri Vivo!
   about_names: Pri Nomoj
   about_places: Pri Lokoj
+  about_taxon_changes: Pri Ŝanĝoj de Taksono
+  about_the_cc_licenses: Pri permesiloj de Krea Komunaĵo
+  about_these_licenses: Pri tiuj permesiloj
   about_this_map: Pri Ĉi Tiu Mapo
   about_this_project: Pri ĉi tiu Projekto
   about_x: Pri %{x}
   account: Konto
+  account_creation: Kreado de Konto
+  account_settings: Agordoj de Konto
   accept: akcepti
   actions: Agoj
+  activate_user: Aktivigi uzanton
   active: Aktiva
+  active_users: Aktivaj Uzantoj
   activity: Aktiveco
+  activity_settings: Agordoj pri akiveco
   add: Aldoni
   add_a_comment: Aldoni Komenton
   add_a_field: Aldoni Kampon
@@ -86,10 +95,12 @@ eo:
   add_a_link_raquo: Aldoni Ligilon &raquo;
   add_a_name: Aldoni Nomon
   add_a_place_raquo: Aldoni Lokon &raquo;
+  add_a_single_observation: Aldoni Unuopan Observon.
   add_a_taxon: Aldoni Taksonon
   add_an_observation: Aldoni Observon
   add_an_observation?: Ĉu aldoni Observon?
   add_an_observation_of: Aldoni Observon de %{taxon}
+  add_another: Aldoni Alian
   add_another_flag: Aldoni Alian Flagon
   add_another_photo: Aldoni Alian Foton
   add_another_section: Aldoni Alian Paragrafon
@@ -115,13 +126,16 @@ eo:
   add_one: Aldoni Unu!
   add_one_now: Aldoni Unu Nun
   add_photos: Aldoni Fotojn
+  add_photos_to_this_observation: Aldoni Fotojn al Ĉi Tiu Observo
   add_place: Aldoni Lokon
   add_relationship: Aldoni rilaton
+  add_section: Aldoni Paragrafon
   add_shape: Aldoni formon
   add_tag: Aldoni Etikedon
   add_tags: Aldoni Etikedojn
   add_taxa: Aldoni Taksonojn
   add_taxa_to_places: Aldoni Taksonojn al Lokoj
+  add_to_a_scheme: Aldoni al Skemo
   add_to_a_project: Aldoni al Projekto
   add_to_calendar: Aldoni al Kalendaro
   add_to_list: Aldoni al Listo
@@ -133,6 +147,12 @@ eo:
   added_by: Aldonita de
   added_to: Aldonita al
   adding: Aldonante...
+  admin_tools: Administriloj
+  agree: konsenti
+  agree_: Konsenti
+  agree?: Ĉu konsenti?
+  agreeing: Konsentante...
+  all: Ĉiuj
   all_colors: '&laquo; Ĉiuj Koloroj'
   all_comments: Ĉiuj komentoj
   all_life: Ĉiu vivo
@@ -204,15 +224,20 @@ eo:
   all_taxonomic_groups: '&laquo; Ĉiuj Taksonomiaj Grupoj'
   all_updates: Ĉiuj ĝisdatigoj
   all_your_projects: Ĉiuj viaj projektoj
+  allowed_html: Permesata HTML
+  allowed_values: Permesataj valoroj
   alphabetical: Alfabeta
   alphabetical_order: Alfabeta Ordo
   amphibians: amfibioj
   and: kaj
   and_other_taxa: '&amp; Aliaj Taksonoj'
+  android: Android
   animals: Animaloj
+  announcements: Anoncoj
   any: ajna
   any_: Ajna
   apply_geoprivacy: Apliki geografian privatecon
+  appropriate?: Ĉu taŭga?
   arachnids: Araneedoj
   archives: Arkivoj
   are_you_sure?: Ĉu vi certas?
@@ -221,6 +246,7 @@ eo:
   associated_observations: Asociitaj observoj
   associated_taxa: Asociitaj taksonoj
   associations: Asocioj
+  at_time: je %{time}
   back: Reen
   back_to_albums: Reen al albumoj
   back_to_all_species: Reen al Ĉiuj Specioj
@@ -236,7 +262,9 @@ eo:
   back_to_taxon: Reen al %{defaulttaxon}
   back_to_x: Reen al %{noun}
   back_to_x_history: Reen al historio de %{x}
+  back_to_x_journal: Reen al ĵurnalo de %{user}
   back_to_x_blog: Reen al rettaglibro de %{x}
+  back_to_your_dashboard: Reen al via stirpanelo
   back_to_your_lists: Reen al viaj listoj
   back_to_your_journal: Reen al via ĵurnalo
   back_to_your_observations: Reen al viaj observoj
@@ -366,6 +394,7 @@ eo:
   csv_file: CSV-dosiero
   current_flags: Aktualaj Flagoj
   current_password: Aktuala Pasvorto
+  dashboard: Stirpanelo
   data_used: 'Dateno uzata:'
   datatype: Datentipo
   date_: Dato
@@ -1553,6 +1582,9 @@ eo:
   view_post: Vidi afiŝon
   view_stats: Vidi statistikon
   view_x: Vidi %{x}n
+  view_your_dashboard: Vidi vian stirpanelon
+  view_your_dashboard_for_more_updates_html: <a href='%{url}'>Vidi vian stirpanelon</a>
+    por pli da ĝisdatigoj
   w_photos_only: kun fotoj
   w_sounds: kun sonoj
   want_to_add_one: Volas aldoni?

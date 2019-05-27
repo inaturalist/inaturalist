@@ -86,6 +86,9 @@ ca:
   x_people_agree_html:
     one: <span class='count'>1</span> persona està d'acord
     other: <span class='count'>%{count}</span> persones estan d'acord
+  x_photos:
+    one: 1 foto
+    other: '%{count} fotos'
   x_new_species:
     one: 1 Espècie Nova
     other: '%{count} Espècies Noves'
@@ -158,6 +161,20 @@ ca:
   about_this_bioblitz: Quant aquest bioblitz
   about_this_map: Quant a aquest mapa
   about_this_project: Sobre aquest projecte
+  about_trips_html: <h4>Els viatges permeten recopilar dades de presència/absència
+    donant un context a les vostres observacions</h4><p><strong>Per què</strong> Les
+    dades sobre presència/absència inclouen informació sobre esforç de mostreig que
+    és útil per a l'anàlisi científica com els estudis de distribució (les observacions
+    d'iNaturalist indiquen només la presència).</p><p><strong>Com</strong> Un viatge
+    afegeix context a les vostres observacions en el moment de registrar-les.</p><ul><li><strong>Què</strong>
+    Heu cercat (llista d’objectius)</li><li><strong>On</strong> Heu cercat (àrea de
+    cerca)</li><li><strong>Quan</strong> Heu cercat (interval de dates de la cerca)
+    </li> </ul> <p> Les espècies de la vostra llista d’objectius que heu pogut observar
+    a l’àrea de cerca i l’interval s’interpreten com a presència. En canvi, les espècies
+    de la vostra llista d’objectius que no s’ha pogut observar s’interpreten com a
+    absències. Feu clic a "Tabular dades de presència/absència dels viatges" per generar
+    una taula de registres de presència/absència d’una espècie a partir de viatges
+    i de les observacions associades. <a href='%{url}'>Més informació </a></p>
   about_x: Quant a %{x}
   acc: Exactitud (m)
   account: Compte
@@ -478,6 +495,7 @@ ca:
   amphibiaweb_taxonomy: Taxonomia d'AmphibiaWeb
   an: un
   an_: un
+  ancestor_taxon: Tàxon Ancestral
   and: i
   and_choose_a_matching_taxon: i seleccioneu un tàxon de la llista que hi coincideixi.
     Si no acabeu amb quelcom com
@@ -870,9 +888,6 @@ ca:
   check_out_what_the_observation: Feu un cop d'ull a les observacions que esteu intentant
     identificar.
   check_out_your_life_list: Reviseu la vostra Llista de vida
-  check_this_box_if: |-
-    Seleccioneu aquesta caixa si voleu aplicar una
-    <a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca' target='_blank'>Llicència de reconeixement no comercial Creative Commons</a> a les vostres fotos. Podeu escollir una llicència diferent o eliminar-la després, però aquesta és la millor llicència per compartir dades amb altres investigadors.
   check_this_box_if_html: "Seleccioneu aquest botó si voleu aplicar \n<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca'
     target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> a
     les seves fotos. Podeu escollir una llicència diferent o retirar la llicència
@@ -2228,6 +2243,7 @@ ca:
     el: Grec
     en-US: Anglès (Estats Units)
     en: Anglès
+    eo: Esperanto
     es-ES: Castellà (Espanya)
     es-MX: Castellà (Mèxic)
     es: Castellà
@@ -3026,6 +3042,9 @@ ca:
   owner: Propietari
   parent: Pare
   parent_name: Nom de la classe o espècie pare
+  parental_consent:
+    must_specify_email: Heu d'especificar una adreça de correu electrònic
+    invalid_email: Format de correu electrònic no vàlid
   password: Contrasenya
   password_confirmation: Confirmeu la contrasenya
   paste: Enganxa
@@ -3927,6 +3946,7 @@ ca:
   search_for_species: Cerca d'espècie
   search_list: Cerca Llista
   search_obs: Cerca observacions
+  search_observations: Busca observacions
   search_places: Cerca lloc
   search_projects: Cerca projecte
   search_results_for: Cerca resultats per a
@@ -4725,9 +4745,9 @@ ca:
   "true": Cert
   trending: Tendències
   trends: Tendència
-  trip_target_list_info: Aquest és un conjunt no redundant dels tàxons més generals
-    de la vostra llista d'objectius. Els tàxons representats per observacions ocultades
-    han estat exclosos. <a href="/pages/trips"> Llegiu més </a>.
+  trip_target_list_info: Qualsevol espècie inclosa a la llista d'objectius que no
+    sigui observada en el radi i durada d'aquest viatge s'interpreta com absències.
+    <a href="/pages/trips"> Llegiu més </a>.
   trusted: De confiança
   trusted_project?: És un projecte verificat?
   trust_this_person_with_your_private_coordinates: Compartiu amb aquestes persones
@@ -5787,6 +5807,11 @@ ca:
         project_list_desc: Els tàxons afegits manualment pels supervisors del projecte
           i els tàxons el que tenen observacions en grau de recerca es llisten a la
           llista del projecte.
+    messages:
+      index:
+        speech_privilege_notice: Podreu enviar nous missatges després d'afegir tres
+          observacions verificables o identificar tres observacions d'altres. Per
+          ara podeu llegir i respondre als missatges que altres persones us envien.
     oauth:
       authorizations:
         new:
@@ -6079,6 +6104,30 @@ ca:
         your_observations_export_failed_html: |-
           L'exportació de les vostres observacions ha fallat. Visiteu la
           <a href="%{url}">pàgina d'exportació d'observacions</a> per a obtenir un llistat de les exportacions.
+      parental_consent:
+        subject: Als vostres fills els podria agradar utilitzar iNaturalis
+        content_html: '<p> El vostre fill utilitza l''aplicació educativa "Cerca amb
+          iNaturalist" i vol compartir dades amb la plataforma de ciència ciutadana
+          iNaturalist. Com aquestes dades inclouen informació d’identificació personal,
+          no poden ser utilitzades per menors de 13 anys sense el consentiment d’un
+          dels progenitors o tutors. </p> <p> La Cerca amb iNaturalist es pot utilitzar
+          sense crear un compte i no es compartiran dades, però el vostre fill no
+          podrà aportar observacions a iNaturalist. [EXPLICACIÓ D''INAT] </p> <p>
+          Si voleu donar el vostre consentiment perquè el vostre fill utilitzi iNaturalist,
+          necessitarem que feu el següent: </p> <ol> <li> <p> Creeu un compte iNaturalist
+          perquè l''utilitzi el vostre fill indicant que el compte serà utilitzat
+          per una persona menor de 13 anys seguint aquest enllaç: <a href="%{registration_url}">%{registration_url}</a>
+          </p> </li><li> <p> Feu una donació d''1$ amb una targeta de crèdit a iNaturalist
+          per verificar que sou un adult. Assegureu-vos que utilitzeu el mateix correu
+          electrònic que vau utilitzar per crear el compte al costat de la vostra
+          donació: https://www.inaturalist.org/donate </p> </li> <li> <p> Un cop processem
+          el donació, enviarem una notificació al correu electrònic del compte que
+          s''ha activat el compte i podeu utilitzar el nom d’usuari i la contrasenya
+          d''iNaturalist que heu creat per iniciar sessió a l’aplicació de Cerca del
+          vostre fill. </p> </li> </ol> <p> Més informació sobre la Informació d''Identificació
+          Personal que es comparteix a iNaturalist: ... </p> <p> Més informació sobre
+          la Política de Privacitat d''iNaturalist <a href="%{privacy_policy_url}">
+          aquí </a>. </p>'
       photos_missing:
         subject: Algunes fotos s'han de reparar
         we_have_been_housekeeping: Hem estat fent manteniment i algunes de les fotos
@@ -6286,8 +6335,7 @@ ca:
       new:
         a_project_allows_you_to_gather: Un Projecte de Col·lecció us permet reunir
           i visualitzar les observacions emprant les eines de cerca del nucli d'iNaturalist.
-          Això elimina la necessitat d'afegir manualment les observacions perquè tot
-          allò que compleix els paràmetres del projecte s'inclouen automàticament.
+          Tot allò que compleixi els paràmetres del projecte s'inclouen automàticament.
         an_umbrella_project_can_be_used_to: |-
           Un projecte paraigües pot ser emprat per comparar estadístiques de dos o més Projectes de Col·lecció o
           Tradicionals. L'altre projecte ha d'existir abans que el pugueu afegir a un Projecte Paraigües. Podeu incloure centenars de projectes sota un únic paraigua. Els Projectes Paraigües no poden contenir altres projectes Paraigua.
@@ -6305,12 +6353,10 @@ ca:
           tradicionals, com accedir a coordenades correctes, camps d'observació personalitzats,
           o afegir observacions individuals que no puguin ser filtrades automàticament?
         leaderboards_among_individuals: Els més actius entre els <strong>individus</strong>
-        leaderboards_among_projects_and_bioblitzes: Els més actius entre <strong>projectes
-          i bioblitzes</strong>
+        leaderboards_among_projects_and_bioblitzes: Els més actius entre <strong>projectes</strong>
         multiple_project_administrators: Administradors múltiples del projecte
         name_placeholder: Ocells de Chicago, Libèl·lules increïbles, etc.
-        no_need_to_rely_on_manual_addition: No cal afegir les observacions manualment
-          o en l'agregador per indexar les observacions
+        no_need_to_rely_on_manual_addition: No hi ha observacions afegides manualment
         note_these_users_will_be_able_to_edit: 'Nota: aquests usuaris poden editar
           TOTS els detalls del project incloent l''administració.'
         note_you_can_delete_the_time: '(Nota: podeu eliminar la zona horària i precisar
@@ -6336,7 +6382,8 @@ ca:
           els primers 200 caràcters seran visibles a la dreta de la pancarta de la
           pàgina d'inici projecte, poseu els més important al començament!
         project_summary_placeholder: Descobriu i seguiu els ocells del Parc dels Aiguamolls...
-        start_and_end_times_for_bioblitzes: Moment d'inici i final dels bioblitzes
+        start_and_end_times_for_bioblitzes: Data i hora d'inici i final (per a projectes
+          del tipus bioblitz)
         umbrella_project_features: 'Característiques del Projecte Paraigua:'
         unique_url_for_outreach: URL única per a la promoció
         users_can_follow_your_project: Els usuaris poden seguir les actualitzacions
@@ -6345,11 +6392,16 @@ ca:
           per crear una projecte tradicional en comptes d'aquest.
         visual_comparison_of_data_among: Comparacions visuals de data entre projectes
           sota el paraigua
-        we_have_redesigned_projects: 'Redissenyem els projectes per incloure automàticament
-          totes les observacions que coincideixen amb el lloc, tàxon, usuaris, qualitat
-          i dates que definiu. Escolliu entre dos tipus: Projectes de Col·lecció o
-          de Paraigua, que comparteixen les característiques següents:'
+        we_have_redesigned_projects: 'Els projectes han estat redissenyats per incloure
+          automàticament totes les observacions que coincideixen amb el lloc, tàxon,
+          usuaris, qualitat i dates que definiu. Escolliu entre dos tipus principals:
+          Projectes de Col·lecció i de Paraigua, que comparteixen les característiques
+          següents:'
         welcome_to_projects: benvinguts al Projects!
+        you_can_learn_more_html: "Podeu aprendre més sobre la gestió de projectes
+          <a href=\"https://www.inaturalist.org/pages/managing-projects\">aquí</a>
+          o llegir la història dels projectes al \n<a href=\"https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist\">nostre
+          blog</a>."
         you_have_not_defined_any_observation_requirements: No heu definit cap requeriment
           de les observacions. Assegureu-vos de seleccionar un o més tàxons (p.e.
           ocells, coníferes), llocs (p.e. Brasil, Yellowstone), usuaris i/o dates
@@ -6635,6 +6687,8 @@ ca:
           Life Stage=pupa: Pupa
           Life Stage=adult: Adult
           unannotated: Sense anotacions
+        max_photos_desc: Un tàxon pot tenir un màxim de %{max} fotos. És possible
+          que hagueu d'eliminar algunes fotos per afegir més.
         no_trending_desc: No s'ha observat aquest tàxon el darrer mes
         photo_chooser_modal_desc: Arrossegueu les fotografies aquí des de l'esquerra,
           o arrossegueu les fotografies aquí per tornar a organitzar.
@@ -6782,13 +6836,16 @@ ca:
           a les coordenades reals d''observacions tant siguin públiques o privades.
           </p> <p> Nota: no modifiqueu experimentalment l’afiliació si teniu més de
           1000 observacions. </p>'
-        licensing_desc_html: Llicenciar els continguts, confereix a altres persones
-          el dret a utilitzar-los sense demanar permís si s'adhereixen a les condicions
-          de la llicència. %{site_name} utilitza els vostres continguts amb llicencia
-          Creative Commons per compartir les dades amb socis com ara el <a href="http://www.gbif.org/">Global
-          Biodiversity Information Facility</a> (GBIF), una organització inter-governamental
-          internacional que confecciona i distribueix informació sobre la biodiversitat
-          arreu del món.
+        licensing_desc_html: Llicenciar els continguts, confereix a qualsevol altra
+          el dret a utilitzar-los sense demanar permís si atenen a les condicions
+          de la llicència. %{site_name} inclou els vostres continguts amb llicencia
+          Creative Commons en arxius actualitzats periòdicament produïts per determinades
+          organitzacions associades interessades en les nostres dades. Per exemple,
+          incloem registres No Copyright (CC0), Atribució (CC BY) i Atribució-No Comercial
+          (CC BY-NC) a l'arxiu que generem pel <a href = "http://www.gbif.org/ ">
+          Global Biodiversity Information Facility </a> (GBIF), una organització internacional
+          intergovernamental que recopila i distribueix informació sobre biodiversitat
+          de tot el món.
         muting_desc_html: |-
           <p> Silenciar a algú evita rebre notificacions sobre les coses que fa, inclosos els comentaris sobre les vostres observacions, missatges, que us esmenti, etc. Silenciar us ajuda a ignorar algú sense impedir segueixi la seva activitat.</p>
           <p> Podeu silenciar tantes persones com vulgueu, però tingueu en compte que perdreu notificacions potencialment importants, com ara identificacions que canvien la identificació per part de la comunitat de les vostres observacions.</p>
@@ -7030,6 +7087,10 @@ ca:
       not_an_integer: ha de ser un nombre enter
       odd: ha de ser imparell
       record_invalid: 'La validació ha fallat: %{errors}'
+      requires_privilege_speech: heu de tenir tres observacions verificables o tres
+        identificacions d'altres per fer això
+      requires_privilege_organizer: heu de tenir 50 observacions verificables per
+        fer això
       taken: ja està en ús
       too_long:
         one: és massa llarg (el màxim és 1 caràcter)
@@ -7131,6 +7192,10 @@ ca:
         not_an_integer: ha de ser un nombre enter
         odd: ha de ser senar
         record_invalid: 'Ha fallat la validació: %{errors}'
+        requires_privilege_speech: Heu de tenir tres observacions verificables o tres
+          identificacions d'altres per fer això
+        requires_privilege_organizer: heu de tenir 50 observacions verificables per
+          fer això
         taken: ja està en ús
         too_long:
           one: és massa llarg (el màxim és 1 caràcter)
@@ -7264,6 +7329,10 @@ ca:
         not_an_integer: ha de ser un nombre sencer
         odd: ha de ser senar
         record_invalid: 'La validació ha fallat: %{errors}'
+        requires_privilege_speech: heu de tenir tres observacions verificable o tres
+          identificacions d'altres per fer això
+        requires_privilege_organizer: heu de tenir 50 observacions verificables per
+          fer això
         taken: ja està en ús
         too_long:
           one: és massa llarg (el màxim és 1 caràcter)
@@ -7369,6 +7438,10 @@ ca:
               bad_format: només pot contenir caràcters llatins estàndard, guionets,
                 espais i x; Tingueu en compte que els tàxons o cultivars putatius
                 no són permesos
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: no pot tenir més de %{max} fotos
         user:
           attributes:
             login:
