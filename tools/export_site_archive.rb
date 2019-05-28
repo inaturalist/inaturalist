@@ -58,6 +58,11 @@ def export_model(klass)
     scope = scope.where("#{klass.table_name}.site_id = ?", @site)
 
   # model-specific stuff
+  elsif klass == Annotation
+    puts "Exporting annotations added to observations from #{@site_name}" if OPTS[:debug]
+    scope = scope.where( resource_type: "Observation" ).
+      joins( "JOIN observations ON observations.id = annotations.resource_id" ).
+      where( "observations.site_id = ?", @site )
   elsif klass == ObservationField
     puts "Exporting observation_fields used in observations of #{@site_name}" if OPTS[:debug]
     scope = scope.joins(:observation_field_values => :observation).where("observations.site_id = ?", @site)

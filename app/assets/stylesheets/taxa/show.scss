@@ -613,6 +613,11 @@ $introducedColor: #E4007C;
 }
 .ArticlesTab .taxon_description {
   font-size: 16px;
+  .inat-wikipedia-attribution {
+    font-size: smaller;
+    font-style: italic;
+    margin-top: 20px;
+  }
 }
 .ArticlesTab .taxon_description_header {
   display: none;

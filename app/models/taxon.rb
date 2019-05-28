@@ -1219,6 +1219,7 @@ class Taxon < ActiveRecord::Base
     td ||= self.taxon_descriptions.build(locale: locale)
     if td
       td.update_attributes(
+        title: details[:title],
         body: details[:summary],
         provider_taxon_id: details[:id],
         url: details[:url],
@@ -1233,6 +1234,19 @@ class Taxon < ActiveRecord::Base
   def remove_wikipedia_summary_unless_auto_description
     self.wikipedia_summary = nil unless auto_description?
     true
+  end
+
+  def wikipedia_attribution( options = {} )
+    locale = options[:locale] || I18n.locale
+    locale_lang = locale.to_s.split( "-" ).first
+    if td = taxon_descriptions.where( locale: locale_lang ).first
+      title = td.title
+      url = td.url
+    else
+      title = wikipedia_title || name
+      url = "https://wikipedia.org/wiki/#{title.underscore}"
+    end
+    I18n.t( :wikipedia_attribution_cc_by_sa_3, title: title, locale: locale, url: url )
   end
 
   def ensure_parent_ancestry_in_ancestry

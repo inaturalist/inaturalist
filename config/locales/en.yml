@@ -4637,6 +4637,14 @@ en:
   widget_code: Widget code
   widget_for: Widget for
   will_be: will be
+  wikipedia_attribution_cc_by_sa_3: |
+    Source: Wikipedia, "%{title}", %{url}, CC BY-SA 3.0
+  wikipedia_attribution_cc_by_sa_3_html: |
+    This article uses material from the Wikipedia article
+    <a href="%{url}">"%{title}"</a>, which is released under the
+    <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+    Commons Attribution-Share-Alike License 3.0</a>. Content maybe have been
+    omitted from the original, but no content has been changed or extended.
   wikipedia_entry: Wikipedia entry
   wikipedia_taxobox_raquo: "Wikipedia taxobox &raquo;"
   with: with
@@ -7213,6 +7221,10 @@ en:
               has_query_parameter: "cannot contain a query parameter."
               invalid_uri: "must be a valid URI."
               relative_uri: "must be an absolute URI."
+        flag:
+          attributes:
+            user_id:
+              already_flagged: "already flagged that item"
         guide:
           attributes:
             published_at:

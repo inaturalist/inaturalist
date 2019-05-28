@@ -7,7 +7,7 @@
   :javascript
     $( document ).ready( function( ) {
       $( "#search-messages .user_id" ).userAutocomplete( {
-        resetOnChange: false,
+        resetOnChange: true,
         idEl: $( "#search-messages .user_id" ),
         afterSelect: function( result ) {
           console.log("selected ", result);
@@ -38,7 +38,7 @@
             %i.fa.fa-search
             = t(:search)
       = form_tag( url_for, method: "get", builder: DefaultFormBuilder, id: "search-messages", class: "collapse well #{!@search_user.blank? || !@q.blank? ? "in" : ""}" ) do
-        = hidden_field_tag :box, box
+        = hidden_field_tag :box, @box
         .form-group
           %label=t "views.messages.#{fromto}"
           = text_field_tag :user_id, @search_user.try(:login), class: "form-control user_id", placeholder: t(:start_typing_someones_name)

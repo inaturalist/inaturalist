@@ -16,6 +16,7 @@ module DarwinCore
       @opts[:licenses] ||= ["any"]
       @opts[:licenses] = @opts[:licenses].first if @opts[:licenses].size == 1
       @opts[:private_coordinates] ||= false
+      @opts[:photographed_taxa] ||= false
       @logger = @opts[:logger] || Rails.logger
       @logger.level = Logger::DEBUG if @opts[:debug]
 
@@ -237,18 +238,27 @@ module DarwinCore
       headers = DarwinCore::Taxon::TERM_NAMES
       fname = "taxa.csv"
       tmp_path = File.join(@work_path, fname)
-      licenses = @opts[:photo_licenses].map do |license_code|
-        Photo.license_number_for_code(license_code)
-      end
       
-      scope = ::Taxon.
-        select("DISTINCT ON (taxa.id) taxa.*").
-        joins(:observations => {:observation_photos => :photo}).
-        where("rank_level <= ? AND observation_photos.id IS NOT NULL AND photos.license IN (?)", ::Taxon::SPECIES_LEVEL, licenses)
-      if @opts[:quality] == "research"
-        scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
-      elsif @opts[:quality] == "casual"
-        scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
+      scope = ::Taxon.select( "DISTINCT ON (taxa.id) taxa.*" )
+      
+      if @opts[:photographed_taxa]
+        licenses = @opts[:photo_licenses].map do |license_code|
+          Photo.license_number_for_code(license_code)
+        end
+        scope = scope.
+          joins(:observations => {:observation_photos => :photo}).
+          where(
+            "rank_level <= ? AND observation_photos.id IS NOT NULL AND photos.license IN (?)",
+            ::Taxon::SPECIES_LEVEL,
+            licenses
+          )
+        if @opts[:quality] == "research"
+          scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
+        elsif @opts[:quality] == "casual"
+          scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
+        end
+      else
+        scope = scope.where( "is_active" )
       end
       
       scope = scope.where(@taxon.descendant_conditions[0]) if @taxon
