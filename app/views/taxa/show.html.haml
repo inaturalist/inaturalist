@@ -30,7 +30,7 @@
     - description = @taxon.auto_summary
   - else
     - description = @taxon.wikipedia_summary
-    - attribution = "Source: Wikipedia"
+    - attribution = @taxon.wikipedia_attribution( locale: I18n.locale )
     - attribution += ". Photo: #{@taxon.photos.first.attribution}" unless @taxon.photos.blank?
     - description = "#{description} (#{attribution})"
   %meta{ name: "description", content: html_attributize( description ) }

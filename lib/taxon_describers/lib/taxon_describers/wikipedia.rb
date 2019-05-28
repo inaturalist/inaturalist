@@ -10,15 +10,17 @@ module TaxonDescribers
       title = taxon.wikipedia_title
       title = taxon.name if title.blank?
       decoded = ""
+      page_title = title
       begin
         response = wikipedia.parse(:page => title, :redirects => true)
         return if response.nil?
         parsed = response.at('text').try(:inner_text).to_s
         decoded = clean_html(parsed) if parsed
+        page_title = response.at( "parse" )[:title]
       rescue Timeout::Error => e
         Rails.logger.info "[INFO] Wikipedia API call failed: #{e.message}"
       end
-      decoded
+      decoded + "<p class='inat-wikipedia-attribution'>#{I18n.t(:wikipedia_attribution_cc_by_sa_3_html, url: page_url( taxon ), title: page_title )}</p>"
     end
 
     def clean_html(html, options = {})

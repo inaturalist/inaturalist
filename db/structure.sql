@@ -4184,7 +4184,8 @@ CREATE TABLE public.taxon_descriptions (
     body text,
     provider character varying,
     provider_taxon_id character varying,
-    url character varying
+    url character varying,
+    title character varying
 );
 
 
@@ -9917,4 +9918,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190514192302');
 INSERT INTO schema_migrations (version) VALUES ('20190516011313');
 
 INSERT INTO schema_migrations (version) VALUES ('20190516181748');
+
+INSERT INTO schema_migrations (version) VALUES ('20190528222836');
 
