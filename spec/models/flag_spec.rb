@@ -16,6 +16,19 @@ describe Flag, "creation" do
     expect( f ).to_not be_valid
     expect( f.errors[:flag] ).to_not be_blank
   end
+  it "should not allow you to flag the same thing multiple times" do
+    f1 = Flag.make!
+    f2 = Flag.make( user: f1.user, flaggable: f1.flaggable, flag: f1.flag )
+    expect( f2 ).not_to be_valid
+    expect( f2.errors[:user_id] ).not_to be_blank
+  end
+  it "should allow you to flag something again if your previous flag was resolved" do
+    f1 = Flag.make!
+    f1.update_attributes( resolved_at: Time.now, resolver: User.make!, comment: "foo" )
+    f2 = Flag.make( user: f1.user, flaggable: f1.flaggable, flag: f1.flag )
+    expect( f2 ).to be_valid
+    expect( f2.errors[:user_id] ).to be_blank
+  end
 end
 
 describe Flag, "update" do

@@ -7221,6 +7221,10 @@ en:
               has_query_parameter: "cannot contain a query parameter."
               invalid_uri: "must be a valid URI."
               relative_uri: "must be an absolute URI."
+        flag:
+          attributes:
+            user_id:
+              already_flagged: "already flagged that item"
         guide:
           attributes:
             published_at:

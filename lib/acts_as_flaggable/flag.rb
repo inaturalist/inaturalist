@@ -40,7 +40,14 @@ class Flag < ActiveRecord::Base
   # A user can flag a specific flaggable with a specific flag once
   validates_length_of :flag, :in => 3..256, :allow_blank => false
   validates_length_of :comment, :maximum => 256, :allow_blank => true
-  validates_uniqueness_of :user_id, :scope => [:flaggable_id, :flaggable_type, :flag], :message => "has already flagged that item."
+  validates_uniqueness_of :user_id, scope: [
+    :flaggable_id,
+    :flaggable_type,
+    :flag,
+    # This only works if the validation is on create, i.e. no other user /
+    # flaggable / flag combo can exist when resolved_at is null
+    :resolved_at
+  ], message: :already_flagged, on: :create
   validate :flaggable_type_valid
   
   def flaggable_type_valid
