@@ -2966,6 +2966,10 @@ ko:
           attributes:
             lexicon:
               should_not_contain_commas_or_slashes: 쉼표나 슬래시를 포함할 수 없습니다
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: 사진 %{max}장을 초과할 수 없습니다
         user:
           attributes:
             login:

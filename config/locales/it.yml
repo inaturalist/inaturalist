@@ -725,6 +725,7 @@ it:
   bg_color: Colore di sfondo
   bioblitz: Bioblitz
   birds: uccelli
+  birthday: Compleanno
   black: nero
   block_user: Blocca utente
   block_removed: Blocco rimosso
@@ -903,10 +904,6 @@ it:
   check_out_our_blog: Scopri il nostro Blog
   check_out_what_the_observation: Guarda come appare l'osservazione che vuoi identificare.
   check_out_your_life_list: Consulta la tua Lista degli Esseri Viventi
-  check_this_box_if: |-
-    Seleziona questa casella se vuoi applicare una
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licenza Creative Commons Attribuzione-NonCommerciale</a>
-    alle tue foto. Puoi scegliere un'altra licenza o rimuoverla successivamente, ma questa è la miglior licenza per la condivisione con gli altri ricercatori.
   check_this_box_if_html: |-
     Seleziona questa casella se vuoi applicare una
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licenza Creative Commons Attribuzione-NonCommerciale</a>
@@ -1053,6 +1050,7 @@ it:
     taxon che vivono qui?
   contest: concorso
   continue: Continua
+  continue_to_site: Continua su %{site_name}
   contributions: contributi
   contributions_from: Contributi da parte di
   contributor_cannot_be_found: Il collaboratore è introvabile
@@ -1921,7 +1919,7 @@ it:
   in_n: in %{n}
   in_place_x: in %{place}
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
-  inbox: posta in arrivo
+  inbox: Posta in arrivo
   including: incluso
   in_order_to_login_and_using_site_visit_url: 'Per accedere ed iniziare ad usare il
     sito devi visitare questo url per attivare il tuo account:'
@@ -3127,6 +3125,7 @@ it:
   photos_updated: Foto aggiornate.
   google_account_not_linked: '%{user} non ha più un account Google collegato, perciò
     %{site_name} non ha l''autorizzazione per accedere alla foto.'
+  pi_consent_desc_title: Riguardo le Informazioni Personali
   picasa_identity: Identità Picasa
   pick_a_username: Scegli un nome utente
   pin_verb: Memorizza
@@ -5238,7 +5237,7 @@ it:
   yes_i_want_to_join: Sì, voglio partecipare
   yes_license_my_observations_so_scientists_can_use: Si, applica la licenza alle mie
     foto, ai miei suoni e alle mie osservazioni, così gli scienziati possono usufruire
-    dei miei dati!
+    dei miei dati.
   yes_reject_it: Si, rifiuta
   yes_show_this_in_the_box: Si, mostralo nel grande riquadro in cima ai taxa
   yesterday: Ieri
@@ -5859,7 +5858,13 @@ it:
           e quelli le cui osservazioni hanno raggiunto un livello 'ricerca', sono
           elencati nelle liste del progetto.
     messages:
+      from: Da
+      to: A
+      subject: Oggetto
+      subject_body: Oggetto / Corpo
       index:
+        show_messages_from_user: Mostra messaggi da %{user}
+        show_messages_to_user: Mostra messaggi a %{user}
         speech_privilege_notice: Sarai in grado di mandare nuovi messaggi dopo che
           avrai aggiunto tre osservazioni verificabili o tre identificazioni per altri.
           Per ora puoi leggere e rispondere ai messaggi che ti mandano altre persone.
@@ -6958,6 +6963,11 @@ it:
         take_a_chance_to_review_html: Prova a revisionare le <a href="%{link}">nostre
           linee guida</a>.
         this_user_was_banned: Questo utente è stato sospeso
+    user_parents:
+      new:
+        child_name_private: Nome del Bambino (Privato)
+        create_a_minor_account: Crea un Account per un Minore
+        create_minor_account: Crea Account per un Minore
     welcome:
       index:
         welcome_message_html: a %{image}, dove puoi <strong>registrare</strong> cosa

@@ -504,6 +504,7 @@ nl:
   amphibiaweb_taxonomy: AmphibiaWeb Taxonomie
   an: een
   an_: een
+  ancestor_taxon: Ancestor Taxon
   and: en
   and_choose_a_matching_taxon: en kies een passend taxon uit de lijst. Als u niet
     uitkomt op iets zoals
@@ -886,10 +887,6 @@ nl:
   check_out_what_the_observation: Bekijk hoe de waarneming die je probeert te identificeren
     er uitziet.
   check_out_your_life_list: Bekijk je Lifelist
-  check_this_box_if: |-
-    Vink dit vakje aan als u een
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'> Creative Commons Attribution-NonCommercial-licentie </a>
-    aan je foto's wilt toekennen. U kunt een andere licentie kiezen of de licentie later verwijderen, maar dit is de beste licentie om te delen met onderzoekers.
   check_this_box_if_html: |-
     Vink dit vakje aan als u een
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial-licentie</a> wil toekennen aan je foto's. U kunt later een andere licentie kiezen of de licentie verwijderen, maar dit is de beste licentie als u gegevens wilt delen met de onderzoekers.
@@ -6623,9 +6620,11 @@ nl:
           </p>
         about_conservation_status_desc: De natuurbeschermingstatus vat het risico
           van uitsterven samen voor een groep organismen.
-        about_establishment_desc: |-
-          "Vestigingswijze" beschrijft hoe een soort terechtkomt op de plek waar die tegenwoordig voorkomt. <strong>Geïntroduceerd</strong> betekent dat het door de menselijke activiteit is gekomen, terwijl <strong>Inheems</strong> betekent dat het zonder menselijke hulp gebeurde.
-          <strong>Endemische</strong> soorten komen alleen voor op een specifieke plaats en nergens anders.
+        about_establishment_desc: "\"Vestigingswijze\" beschrijft hoe een soort terechtkomt
+          op de plek waar die tegenwoordig voorkomt. Geïntroduceerd betekent dat het
+          door de menselijke activiteit is gekomen, terwijl \nInheems betekent dat
+          het zonder menselijke hulp gebeurde.\nEndemische soorten komen alleen voor
+          op een specifieke plaats en nergens anders."
         about_taxon_curators_desc: Deze mensen onderhouden het gedeelte van de taxonomische
           boom waartoe dit taxon behoort. Indien je wijzigingen wenst aan te brengen,
           markeer dan dit taxon of neem met een van hen contact op.

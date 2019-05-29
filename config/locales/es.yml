@@ -20,6 +20,7 @@
 # Author: Fitoschido
 # Author: Fortega
 # Author: Germangfeler
+# Author: Harvest
 # Author: Isabelgg22
 # Author: Jbar82
 # Author: Jorge Ubilla
@@ -94,8 +95,8 @@ es:
     one: <span class="count">1</span> taxón que coincide
     other: <span class="count">%{count}</span> taxones que coinciden
   x_misidentifications_of_this_species:
-    one: 1 error de identificación de esta especie
-    other: '%{count} errores de identificación de esta especie'
+    one: 1 identificación erronea de esta especie
+    other: '%{count} identificaciónes erroneas de esta especie'
   x_misidentifications_of_species_in_this_rank:
     one: 1 identificación errónea de especie en este %{rank}
     other: '%{count} identificaciones erróneas de especies en este %{rank}'
@@ -103,8 +104,8 @@ es:
     one: 1 observación
     other: '%{count} observaciones'
   x_observations_:
-    one: 1 observación
-    other: '%{count} observaciones'
+    one: 1 Observación
+    other: '%{count} Observaciones'
   x_observations_html:
     one: <span class='count'>1</span> observación
     other: <span class='count'>%{count}</span> observaciones
@@ -115,8 +116,8 @@ es:
     one: <span class='count'>1</span> observación revisada
     other: <span class='count'>%{count}</span> observaciones revisadas
   x_others:
-    one: 1 más
-    other: '%{count} más'
+    one: 1 otro
+    other: '%{count} otros'
   x_people_found_this_helpful:
     one: Una persona encontró esto útil
     other: '%{count} personas encontraron esto útil'
@@ -903,10 +904,6 @@ es:
   check_out_what_the_observation: Échale un vistazo a como aparece la observación
     que estás tratando de identificar.
   check_out_your_life_list: Revisa tu lista de vida
-  check_this_box_if: |-
-    Selecciona esta caja si quieres aplicar una
-    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Licencia de Atribución Sin Fin Comercial de Creative Commons</a>
-    a tus fotos. Puedes escoger una licencia diferente o eliminarla después, pero esta es la mejor licencia para compartir datos con los investigadores.
   check_this_box_if_html: |-
     Selecciona esta caja si quieres aplicar una
     <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Licencia de Atribución Sin Fin Comercial de Creative Commons</a>

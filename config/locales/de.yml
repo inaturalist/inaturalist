@@ -15,6 +15,7 @@
 # Author: Hwboehm
 # Author: Jacobbraeutigam
 # Author: Jansson
+# Author: JenniferSP
 # Author: Lib2know
 # Author: Macbrayne
 # Author: Macofe
@@ -873,11 +874,6 @@ de:
   check_out_what_the_observation: Untersuchen, wonach die Beobachtung, die Du identifizieren
     möchtest, aussieht.
   check_out_your_life_list: Untersuche Deine Liste des Lebens
-  check_this_box_if: Wähle dies aus, wenn Du Deine Fotos unter die <a href='http://creativecommons.org/licenses/by-nc/4.0/'
-    target='_blank'>Creative Commons - Namensnennung-NichtKommerziell - Lizenz</a>
-    stellen möchtest. Du kannst auch eine andere Lizenz auswählen oder die Lizenz
-    später wieder entfernen, aber diese ist die beste Lizenz um deine Werke mit Forschern
-    zu teilen.
   check_this_box_if_html: Wähle dies aus, wenn Du Deine Fotos unter die <a href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons - Namensnennung-NichtKommerziell - Lizenz</a>
     stellen möchtest. Du kannst auch eine andere Lizenz auswählen oder die Lizenz
@@ -1416,6 +1412,7 @@ de:
   every_species_seen_by: Jede Art gesehen von
   everyone: jeder
   everyone_: Jeder
+  everyone_journal_posts: Alle Journal-Beiträge
   everywhere: überall
   exact: Genau
   exact_coordinates_obscured_for: Genaue Koordinaten für bedrohte Arten sind verschleiert.
@@ -1630,6 +1627,7 @@ de:
   grid_tooltip: Rasteransicht anzeigen
   group: Gruppe
   grouping: Gruppieren
+  guess_description: Vermutung / Beschreibung
   guides: Führer
   guide_colors: Führer Farbe
   guide_compiled_by: Guide zusammengestellt von
@@ -2894,6 +2892,9 @@ de:
   photos_updated: Fotos aktualisiert.
   google_account_not_linked: '%{user} hat kein verlinktes Google-Konto mehr, deshalb
     hat %{site_name} keinen Zugriff mehr auf dieses Foto.'
+  pi_consent_label: Ich bin damit einverstanden, dass iNaturalist begrenzte Arten
+    von Inhalten speichert und verarbeitet persönliche Informationen über mich, um
+    mein Konto zu verwalten
   picasa_identity: Picasa Identität
   pick_a_username: Wähle einen Benutzernamen aus
   pin_verb: Anpinnen
@@ -4584,6 +4585,8 @@ de:
   "yes": Ja
   yes_find_them!: Ja, findet sie!
   yes_i_want_to_join: Ja, ich will beitreten
+  yes_license_my_childs_observations: Ja, lizenzieren Sie die Fotos, Geräusche und
+    Beobachtungen meines Kindes, damit Wissenschaftler die Daten verwenden können.
   yes_reject_it: Ja, ablehnen!
   yesterday: Gestern
   yesterday_at: ', gestern um 16 Uhr'
@@ -4930,6 +4933,10 @@ de:
           in der Lebensliste landen, wird die Art nicht hinzugefügt, falls %{site_name}
           den von Dir benutzten Namen nicht kennt. Wir empfehlen Dir, andere Namen
           auszuprobieren, die wir vielleicht erkennen.
+    messages:
+      subject_body: Thema / Körper
+      index:
+        show_messages_to_user: Zeige Nachrichten an %{user}
     observations:
       community_id:
         agreement: Zustimmung
@@ -4992,6 +4999,10 @@ de:
       show:
         allow_curator_coordinate_access_desc_html: Den Projekt-Kuratoren erlauben,
           die versteckten Koordinaten für diese Beobachtung einzusehen.
+        ancestor_disagreements_desc: '# Anzahl der identifizierten Taxa, die zu den
+          Vorfahren eines Taxons gehören, aber nicht mit dem Taxon übereinstimmen
+          (d.h. "Ich denke, es ist in der Gattung, aber ich bin nicht der Meinung,
+          dass es diese Art ist")'
         community_taxon_desc_html: "<p class=\"ui\">\n  Das Community-Taxon (oder
           die Community-Identifikation) spiegelt wider, welches Taxon die %{site_name}-Community
           denkt, einer Beobachtung entspricht. Wenn du dich dafür interessierst, wie
@@ -5332,6 +5343,13 @@ de:
       show:
         take_a_chance_to_review_html: Nütze die Gelegenheit, <a href="%{link}">unsere
           Richtlinien</a> durchzusehen.
+    user_parents:
+      new:
+        step1_desc: Um die Datenschutzbestimmungen einzuhalten, benötigen wir einen
+          Elternteil oder einen gesetzlichen Vertreter Zustimmung des Vormunds zur
+          Einrichtung eines Kontos für eine Person unter dem Alter von 13. Wenn Sie
+          möchten, dass Ihr Kind iNaturalist verwendet, müssen Sie dies uns mit einigen
+          Identitäts- und Kontaktinformationen angeben.
     welcome:
       index:
         observations_to_date: Beobachtungen bis dato

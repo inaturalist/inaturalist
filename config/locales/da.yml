@@ -87,6 +87,9 @@ da:
   x_people_agree_html:
     one: <span class="count">1</span> person er enig
     other: <span class="count">%{count}</span> personer er enige
+  x_photos:
+    one: 1 foto
+    other: '%{count} fotos'
   x_new_species:
     one: 1 Ny art
     other: '%{count} Nye arter'
@@ -684,6 +687,7 @@ da:
   bg_color: Baggrundsfarve
   bioblitz: Bioblitz
   birds: fugle
+  birthday: Fødselsdag
   black: sort
   block_user: Blokér bruger
   block_removed: Blokering fjernet
@@ -858,11 +862,6 @@ da:
   check_out_what_the_observation: Se hvordan din observation, som du er ved at identificere,
     ser ud
   check_out_your_life_list: Se din livsliste
-  check_this_box_if: |-
-    Marker dette felt, hvis du vil anvende en
-    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-    til dine foto´s. Du kan altid vælge en anden licens eller fjerne licensen
-    senere, men dette er den bedste licens til deling med forskere.
   check_this_box_if_html: |-
     Marker dette felt, hvis du vil anvende en
     <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
@@ -1009,6 +1008,7 @@ da:
     taxon, der forekommer her?
   contest: konkurrence
   continue: Fortsæt
+  continue_to_site: Fortsæt til %{site_name}
   contributions: bidrag
   contributions_from: Bidrag fra
   contributor_cannot_be_found: Bidragsyder findes ikke
@@ -1866,7 +1866,7 @@ da:
   in_n: i %{n}
   in_place_x: i %{place}
   inaturalist_network_affiliation: iNaturalist Network tilknytning
-  inbox: indbakke
+  inbox: Indbakke
   including: inklusiv
   in_order_to_login_and_using_site_visit_url: 'For at logge ind og begynde at bruge
     web-siden, skal du besøge denne webadresse for at aktivere din konto:'
@@ -2210,6 +2210,7 @@ da:
     el: Græsk
     en-US: Engelsk (USA)
     en: Engelsk
+    eo: Esperanto
     es-ES: Spansk (Spanien)
     es-MX: Spansk (Mexico)
     es: Spansk
@@ -3898,6 +3899,7 @@ da:
   search_for_species: Søg efter arter
   search_list: Søg i liste
   search_obs: Søg i observationer
+  search_observations: Søg i observationer
   search_places: Søg i steder
   search_projects: Søg i projekter
   search_results_for: Søg i resultater for
@@ -5763,6 +5765,14 @@ da:
       show:
         project_list_desc: Taksa der er tilføjet manuelt af projektkuratorer og taksa,
           som er observationer af forskningskvalitet, vises på projektlisten.
+    messages:
+      from: Fra
+      to: Til
+      subject: Emne
+      index:
+        speech_privilege_notice: |-
+          Du kan sende nye beskeder, når du har tilføjet tre
+          verificerbare observationer eller tre identifikationer for andre. I øjeblikket kan du læse og svare på beskeder, andre personer sender dig.
     oauth:
       authorizations:
         new:
@@ -6070,6 +6080,8 @@ da:
         your_observations_export_failed_html: |-
           Din observationseksport mislykkedes. Besøg
           <a href="%{url}"> observationseksport siden </a> for en liste over din eksport.
+      parental_consent:
+        subject: Dit barn ønsker at benytte iNaturalist
       photos_missing:
         subject: Nogle billeder behøver reparation
         we_have_been_housekeeping: |2-
@@ -6652,6 +6664,9 @@ da:
           Life Stage=pupa: Puppe
           Life Stage=adult: Voksen
           unannotated: Ingen anmærkning
+        max_photos_desc: |-
+          En takson kan kun have %{max} fotos. Du skal fjerne eksisterende
+          fotos for at tilføje flere.
         no_trending_desc: Intet underliggende denne taxon er observeret i den sidste
           måned
         photo_chooser_modal_desc: Træk foto´s hertil fra venstre side eller træk i
@@ -7070,6 +7085,11 @@ da:
       not_an_integer: skal være et heltal
       odd: skal være ulige
       record_invalid: 'Validering mislykkedes: %{errors}'
+      requires_privilege_speech: |-
+        skal have tre verificerbare observationer eller tre identifikationer
+        for andre at gøre det
+      requires_privilege_organizer: skal have 50 verificerbare observationer for at
+        gøre det
       taken: er allerede blevet taget
       too_long:
         one: er for lang (maksimum er 1 tegn)
@@ -7166,6 +7186,11 @@ da:
         not_an_integer: skal være et heltal
         odd: skal være ulige
         record_invalid: 'Validering mislykkedes: %{errors}'
+        requires_privilege_speech: |-
+          skal have tre verificerbare observationer eller tre identifikationer
+          for andre at gøre det
+        requires_privilege_organizer: skal have 50 verificerbare observationer for
+          at gøre det
         taken: er allerede blevet taget
         too_long:
           one: er for lang (maksimum er 1 tegn)
@@ -7298,6 +7323,11 @@ da:
         not_an_integer: skal være et helt tal
         odd: skal være et ulige tal
         record_invalid: 'Validering fejlede: %{errors}'
+        requires_privilege_speech: |-
+          skal have tre verificerbare observationer eller tre identifikationer
+          for andre at gøre det
+        requires_privilege_organizer: skal have 50 verificerbare observationer for
+          at gøre det
         taken: er allerede blevet taget
         too_long:
           one: er for lang (maksimum er 1 tegn)
@@ -7404,6 +7434,10 @@ da:
               bad_format: |-
                 kan kun indeholde standard latinske tegn, bindestreger, mellemrum og
                 ×; Bemærk, at formodede taksa og sorter ikke er tilladt
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: kan ikke have mere end %{max} fotos
         user:
           attributes:
             login:
