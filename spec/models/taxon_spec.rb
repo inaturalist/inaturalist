@@ -786,15 +786,6 @@ describe Taxon, "merging" do
     jobs = Delayed::Job.where("created_at >= ?", stamp)
     expect(jobs.select{|j| j.handler =~ /set_iconic_taxon_for_observations_of/m}).not_to be_blank
   end
-  
-  it "should delete invalid flags" do
-    u = User.make!
-    @keeper.flags.create(:user => u, :flag => "foo")
-    @reject.flags.create(:user => u, :flag => "foo")
-    @keeper.merge(@reject)
-    @keeper.reload
-    expect(@keeper.flags.size).to eq(1)
-  end
 
   it "should remove duplicate schemes" do
     ts = TaxonScheme.make!
