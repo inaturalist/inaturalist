@@ -529,7 +529,7 @@ fr:
   amphibiaweb_taxonomy: Taxinomie d’AmphibiaWeb
   an: un
   an_: un
-  ancestor_taxon: Taxon ancestre
+  ancestor_taxon: Taxon ancêtre
   and: et
   and_choose_a_matching_taxon: et choisissez un taxon correspondant dans la liste.
     Si vous n’obtenez pas quelque chose comme
@@ -745,6 +745,7 @@ fr:
   bg_color: Couleur de fond
   bioblitz: Bioblitz
   birds: oiseaux
+  birthday: Anniversaire
   black: noir
   block_user: Bloquer l’utilisateur
   block_removed: Blocage supprimé
@@ -1982,7 +1983,7 @@ fr:
   in_n: dans %{n}
   in_place_x: '%{place}'
   inaturalist_network_affiliation: Affiliation de Réseau iNaturalist
-  inbox: boîte de réception
+  inbox: Boîte de réception
   including: y compris
   in_order_to_login_and_using_site_visit_url: 'Pour pouvoir vous connecter et commencer
     à utiliser le site, vous devez aller sur cette URL pour activer votre compte :'
@@ -5359,7 +5360,7 @@ fr:
   yes_i_want_to_join: Oui, je veux me joindre
   yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes
     photos, sons et observations, de sorte que les scientifiques puissent utiliser
-    mes données!
+    mes données.
   yes_reject_it: Oui, refusez le
   yes_show_this_in_the_box: Oui, affichez dans la grande boîte dans le haut de /taxa
   yesterday: Hier
@@ -6045,6 +6046,9 @@ fr:
           Taxons ajoutés manuellement par les responsables de l’organisation du projet et les taxons représentés par
           les observations de niveau recherche sont listés sur les listes du projet.
     messages:
+      from: De
+      to: À
+      subject: Sujet
       index:
         speech_privilege_notice: |-
           Vous pourrez envoyer de nouveaux messages après avoir ajouté trois
@@ -6225,9 +6229,10 @@ fr:
       show:
         allow_curator_coordinate_access_desc_html: Permettre aux superviseurs de projet
           de voir les coordonnées masquées de cette observation.
-        ancestor_disagreements_desc: Nombre de taxons identifiés qui font partie des
-          ancêtres d’un taxon, mais qui ont été créés après la première identification
-          au moyen de ce taxon
+        ancestor_disagreements_desc: Nombre de taxons identifiés faisant partie des
+          ancêtres d’un taxon, mais qui contrarient ce taxon (par exemple, « Je pense
+          que c'est dans le genre mais je ne suis pas d'accord qu'il s'agisse de cette
+          espèce »)
         community_taxon_desc_html: |-
           <p class="ui">
             Le taxon de la communauté (ou l’identification de la communauté) représente

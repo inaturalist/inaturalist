@@ -626,6 +626,7 @@ zh-TW:
   bg_color: 背景顏色
   bioblitz: Bioblitz
   birds: 鳥類
+  birthday: 生日
   black: 黑色
   block_user: 封鎖使用者
   block_removed: 封鎖已移除
@@ -878,6 +879,7 @@ zh-TW:
   contain_all_descendants?: 此清單是否包含所有出現於此的物種分類派生？
   contest: 比賽
   continue: 繼續
+  continue_to_site: 繼續 %{site_name}
   contributions: 貢獻
   contributions_from: 貢獻自
   contributor_cannot_be_found: 查無貢獻者
@@ -2616,6 +2618,9 @@ zh-TW:
   owner: 擁有者
   parent: 父級
   parent_name: 父名稱
+  parental_consent:
+    must_specify_email: 您必須指定電子郵件地址
+    invalid_email: 無效的電子郵件格式。
   password: 密碼
   password_confirmation: 密碼確認
   paste: 貼上
@@ -2672,6 +2677,7 @@ zh-TW:
   photos_size_photo: '%{photos_size} 張照片'
   photos_updated: 照片已更新
   google_account_not_linked: '%{user}不再有連結 Google 的帳號，因此 %{site_name} 沒有權限來使用此照片。'
+  pi_consent_desc_title: 關於個人資訊
   picasa_identity: Picasa 身份
   pick_a_username: 挑選一個用戶名稱
   pin_verb: 釘選
@@ -4424,6 +4430,7 @@ zh-TW:
   widget_code: 小工具代碼
   widget_for: 小工具用於
   will_be: 將會是
+  wikipedia_attribution_cc_by_sa_3: 來源：維基百科、"%{title}"、%{url}、CC BY-SA 3.0
   wikipedia_entry: 維基百科項目
   wikipedia_taxobox_raquo: 維基百科 taxobox &raquo;
   with: 帶
@@ -4470,7 +4477,7 @@ zh-TW:
   "yes": 是
   yes_find_them!: 是的，找到它們！
   yes_i_want_to_join: 是的，我想加入
-  yes_license_my_observations_so_scientists_can_use: 是的，許可我的照片、聲音，與觀察來讓科學家們可使用我的資料！
+  yes_license_my_observations_so_scientists_can_use: 是的，許可我的照片、聲音、與觀察，來讓科學家們可使用我的資料。
   yes_reject_it: 是的，拒絕它
   yes_show_this_in_the_box: 是的，在物種分類頂端的大框內顯示此
   yesterday: 昨天
@@ -4865,7 +4872,13 @@ zh-TW:
       show:
         project_list_desc: 專案清單列出了由專案策展人所手動添加，以及代表著在專案裡研究等級觀察記錄的物種分類群。
     messages:
+      from: 發送人
+      to: 接收人
+      subject: 主旨
+      subject_body: 主旨 / 正文
       index:
+        show_messages_from_user: 顯示來自%{user}的訊息
+        show_messages_to_user: 顯示給%{user}的訊息
         speech_privilege_notice: 在您新增 3 個可驗證觀察、或是 3 個替別人所做的鑑定之後，您就可以發送新訊息。目前您可以閱讀和回覆別人發送給您的訊息。
     oauth:
       authorizations:
@@ -5072,6 +5085,8 @@ zh-TW:
       observations_export_notification:
         your_observations_export_is_ready_html: 您的觀察匯出已就緒。此電子郵件有夾帶副本，或是您可<a href="%{url}">下載您的匯出</a>。
         your_observations_export_failed_html: 您的觀察匯出失敗。請查看您所匯出清單的<a href="%{url}">觀察匯出頁面</a>。
+      parental_consent:
+        subject: 您的兒女想使用 iNaturalist
       photos_missing:
         subject: 一些照片需要回報問題
         we_have_been_housekeeping: 我們在管控時有發現到連接至您的觀察的一些照片，已無法從原有來源存取。那些照片已被%{providers}所託管。
@@ -5080,6 +5095,8 @@ zh-TW:
         you_can_attempt_repair: 您可以透過瀏覽照片頁面與點擊「%{repair_link_text}」連結來嘗試回報照片。若您曉得該照片已不存在，您可以選擇來刪除掉。
         please_address: 請在<b>接下來的 30 天裡</b>處理這些問題。超過 30 天候，我們將會從 iNaturalist 上刪除損毀的照片，但您所有的觀察仍會保留下來。照片在刪除後觀察會被重新評估，一些原本是研究等級的觀察有可能會因為缺少照片而降為粗略等級。
         we_included_links: 我們已包含下列受影響照片的連結。
+      user_parent_confirmation:
+        subject: 您兒女的 iNaturalist 帳號已啟用
       users_updates_suspended:
         message: 您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
     photos:
@@ -5212,7 +5229,7 @@ zh-TW:
       join:
         invite_only_description: 此專案的成員資格僅限於有獲得邀請。若您想加入，請聯絡下列任一策展人來請求一份邀請。
       new:
-        a_project_allows_you_to_gather: 收藏專案允許您使用 iNaturalist 搜尋工具來聚集並視覺化觀察。能自動將符合專案所設定參數內容的觀察給自動包含到，免去需手動添加的步驟。
+        a_project_allows_you_to_gather: 收藏專案允許您使用核心 iNaturalist 搜尋工具來聚集並視覺化觀察。相符由專案所設定參數的一切內容將會自動囊括。
         an_umbrella_project_can_be_used_to: 綜合專案可用來比較兩個或以上的收藏、傳統專案之間的統計內容。在您添加內容至綜合專案前，需要先有其它的專案存在。您可以在一個綜合專案裡加入上百個專案，但不可讓綜合專案含有別的綜合專案。
         can_be_included_in_multiple: 可包含在多項綜合專案
         click_through_to_individual_projects: 點擊至各項專案
@@ -5228,7 +5245,7 @@ zh-TW:
         leaderboards_among_projects_and_bioblitzes: <strong>專案</strong>排行榜
         multiple_project_administrators: 多項專案管理員
         name_placeholder: 在芝加哥的鳥類、令人驚豔的蜻蜓等等。
-        no_need_to_rely_on_manual_addition: 不需手動添加觀察額外內容，或是聚集來索引觀察
+        no_need_to_rely_on_manual_addition: 無手動添加觀察
         note_these_users_will_be_able_to_edit: 註：這些包含到管理員的使用者可以編輯所有專案細節。
         note_you_can_delete_the_time: （註：若您想包含一整天，您可以刪除時區以及準確時間。）
         or_drag_and_drop: （或是拖拉）
@@ -5245,7 +5262,7 @@ zh-TW:
         project_summary: 專案摘要
         project_summary_help: 簡要說明有關您的專案。大約前 200 個字會顯示在專案主螢幕橫幅的右側，因此請填入最精華的內容！
         project_summary_placeholder: 探索並追蹤在金門公園的鳥類...
-        start_and_end_times_for_bioblitzes: bioblitz 的起始與結束時間
+        start_and_end_times_for_bioblitzes: 起始與結束日期/時間（用於 bioblitz 類型活動）
         umbrella_project_features: 綜合專案特性：
         unique_url_for_outreach: 用於推廣的獨一 URL 地址
         users_can_follow_your_project: 使用者可透過日誌發布文章的更新來關注您的專案

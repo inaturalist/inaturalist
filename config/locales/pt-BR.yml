@@ -698,6 +698,7 @@ pt-BR:
   bg_color: Cor BG
   bioblitz: Bioblitz
   birds: aves
+  birthday: Aniversário
   black: preto
   block_user: Bloquear usuário(a)
   block_removed: Bloqueio removido
@@ -1028,6 +1029,7 @@ pt-BR:
     que ocorrem na área?
   contest: concurso
   continue: Continuar
+  continue_to_site: Continuar para %{site_name}
   contributions: contribuições
   contributions_from: Contribuições de
   contributor_cannot_be_found: Colaborador não pode ser encontrado
@@ -1893,7 +1895,7 @@ pt-BR:
   in_n: em %{n}
   in_place_x: no %{place}
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
-  inbox: caixa de entrada
+  inbox: Caixa de entrada
   including: incluindo
   in_order_to_login_and_using_site_visit_url: 'Para realizar login e começar a utilizar
     o site você deve visitar este endereço e ativar a sua conta:'
@@ -3102,6 +3104,16 @@ pt-BR:
   photos_updated: Fotos atualizadas.
   google_account_not_linked: '%{user} deixou de ter uma conta Google vinculada, por
     isso %{site_name} não tem permissão para acessar a esta foto.'
+  pi_consent_desc_title: Sobre informações pessoais
+  pi_consent_desc_html: |-
+    Nós armazenamos informações pessoais, como nomes de usuários e endereços de e-mail, a fim para gerenciar contas neste site e para cumprir as leis de privacidade, nós preciso que você marque esta caixa para indicar que você concorda com esse uso de informação pessoal. Para saber mais sobre quais informações coletamos e como nós o usamos, por favor veja nossa
+    <a href='%{privacy_url}' target='_blank'>Política de Privacidade</a>
+    e nossos <a href='%{terms_url}' target='_blank'>Termos de serviço</a>.
+  pi_consent_label: Eu concordo em permitir que o iNaturalist armazene e processe
+    tipos limitados de informações pessoais sobre mim para gerenciar minha conta
+  pi_consent_child_label: Eu concordo em permitir que o iNaturalist armazene e processe
+    tipos limitados de informações pessoais sobre meu filho para gerenciar a conta
+    do meu filho
   picasa_identity: Identidade Picasa
   pick_a_username: Escolha um nome de usuário
   pin_verb: Pin
@@ -5113,6 +5125,12 @@ pt-BR:
   widget_code: Código do Widget
   widget_for: Widget para
   will_be: será
+  wikipedia_attribution_cc_by_sa_3: 'Fonte: Wikipédia, "%{title}", %{url}, CC BY-SA
+    3.0'
+  wikipedia_attribution_cc_by_sa_3_html: |-
+    Este artigo usa material do artigo da Wikipédia
+    <a href="%{url}">"%{title}"</a>, que é lançado sob a
+    <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licença Creative Commons Attribution-Share-Alike 3.0</a>. Conteúdo talvez tenha sido omitido do original, mas nenhum conteúdo foi alterado ou estendido.
   wikipedia_entry: Registro do Wikipédia
   wikipedia_taxobox_raquo: Ficha do táxon na Wikipédia &raquo;
   with: com
@@ -5167,8 +5185,10 @@ pt-BR:
   "yes": Sim
   yes_find_them!: Sim, encontre-os!
   yes_i_want_to_join: Sim, eu desejo entrar
+  yes_license_my_childs_observations: Sim, licencie fotos, sons e observações do meu
+    filho para que os cientistas possam usar os dados.
   yes_license_my_observations_so_scientists_can_use: Sim, crie uma licença para minhas
-    imagens, sons e observações para que os cientistas possam utilizar meus dados!
+    imagens, sons e observações para que os cientistas possam utilizar meus dados.
   yes_reject_it: Sim, rejeite
   yes_show_this_in_the_box: Sim, mostre isto na grande caixa sobre os táxons
   yesterday: Ontem
@@ -5813,7 +5833,13 @@ pt-BR:
           e, táxons, representados por observações à Nível de Pesquisa adicionados
           ao projeto são exibidos na lista do projeto.
     messages:
+      from: De
+      to: Para
+      subject: Assunto
+      subject_body: Sujeito / Corpo
       index:
+        show_messages_from_user: Mostrar mensagens de %{user}
+        show_messages_to_user: Mostrar mensagens de %{user}
         speech_privilege_notice: Você poderá enviar novas mensagens depois de adicionar
           três observações verificáveis ou três identificações para os outros. Para
           agora você pode ler e responder a mensagem que outras pessoas lhe enviam.
@@ -5978,8 +6004,8 @@ pt-BR:
         allow_curator_coordinate_access_desc_html: Permitir o acesso dos administradores
           do projeto para visualizar as coordenadas ocultas desta observação.
         ancestor_disagreements_desc: '# de táxons identificados que estão entre os
-          ancestrais de um grupo e espécie, mas foram criados depois da primeira identificação
-          utilizando este táxon'
+          ancestrais de um táxon, mas discordam do táxon (ie "eu acho que é no gênero
+          mas eu discordo dessa espécie")'
         community_taxon_desc_html: "<p class=\"ui\">\nO táxon comunitário (ou identificação
           colaborativa) representa  aquele táxon do %{site_name} que a comunidade
           acredita se encaixar perfeitamente a observação. Se você esta interessado
@@ -6194,6 +6220,20 @@ pt-BR:
           as fotos forem excluídas, e é possível que algumas observações das notas
           da pesquisa se tornem informais se não tiverem mais fotos.
         we_included_links: Incluímos links para as fotos afetadas abaixo.
+      user_parent_confirmation:
+        content_html: "<p>\nObrigado por criar uma conta iNaturalist para o seu filho!
+          o\n   conta foi ativada. Aqui estão os detalhes que você digitou\n   nós
+          temos no registro:\n</p>\n<ul>\n  <li><strong>Nome do pais ou responsável
+          legal:</strong> %{parent_name}</li>\n  <li><strong>E-mail dos pais ou responsável
+          legal:</strong> %{parent_email}</li>\n  <li><strong>Nome da criança:</strong>
+          %{child_name}</li>\n  <li><strong>Aniversário da criança:</strong> %{child_birthday}</li>\n
+          \ <li><strong>E-mail da conta infantil:</strong> %{child_email}</li>\n  <li><strong>Nome
+          de usuário da conta da criança:</strong> %{child_username}</li>\n</ul>\n<p>\nPor
+          favor, entre na conta do aplicativo Seek do seu filho tocando em\n   o botão
+          \"iNaturalist\" no menu e, em seguida, \"Entrar com\n   iNaturalist \"na
+          parte inferior da tela.\n</p>\n<p>\nSeu filho poderá então postar observações
+          em sua \n   conta iNaturalist usando o aplicativo Seek para que eles possam
+          ser vistos em\n   iNaturalist.org.\n</p>"
       users_updates_suspended:
         message: Você esteve inativo em %{site_name} por algum tempo, por este motivo
           suspendemos suas inscrições. Para receber o resumo de atualizações neste
@@ -7013,6 +7053,55 @@ pt-BR:
         take_a_chance_to_review_html: Quando puder revise <a href="%{link}">nossas
           orientações</a>.
         this_user_was_banned: O usuário foi suspenso
+    user_parents:
+      confirm:
+        thanks_donor_html: |-
+          <p>
+          Obrigado por ser um doador naturalista! Conseguimos usar seu
+             doação existente para confirmar sua identidade e não precisa de
+             mais ação de você. <strong>A conta do seu filho foi
+             ativado.</strong>
+          </p>
+          <p>
+          Por favor, entre na conta do aplicativo Seek do seu filho tocando em
+             o botão "iNaturalist" no menu e, em seguida, "Entrar com
+             iNaturalist "na parte inferior da tela.
+          </p>
+          <p>
+          Seu filho poderá então postar observações na sua
+             conta iNaturalist usando o aplicativo Seek para que eles possam ser vistos em
+             iNaturalist.org.
+          </p>
+        thanks_for_creating_a_minor_account: OBRIGADO POR CRIAR UMA CONTA SECUNDÁRIA!
+        we_will_send_you_an_email: Enviaremos um e-mail para você assim que a conta
+          do seu filho for ativada.
+      new:
+        child_name_private: Nome do filho (privado)
+        create_a_minor_account: Crie uma conta secundária
+        create_minor_account: Criar conta secundária
+        parent_name_private: Nome do pai ou responsável legal (particular)
+        parent_email: E-mail de pai ou responsável legal (privado)
+        inaturalist_minor_account_signup: Inscrição de conta secundária do iNaturalist
+        parent_information_private: Informações para os pais (particulares)
+        step1_title: CRIE UMA CONTA PARA O SEU FILHO
+        step1_desc: Para cumprir os regulamentos de privacidade, precisamos de um
+          pai ou o consentimento do responsável para criar uma conta para uma pessoa
+          com idade inferior a 13. Se você quiser que seu filho use o iNaturalist,
+          você deve fornecer nos com alguma identidade e informações de contato.
+        step2_title: CONFIRME SUA IDENTIDADE COM UM CARTÃO DE CRÉDITO
+        step2_desc: Para confirmar sua identidade como adulto, precisamos que você
+          forneça um valor nominal doação de pelo menos US$1 para o iNaturalist usando
+          um cartão de crédito. Isto é a forma menos intrusiva de verificação de identidade
+          que nos permite cumprir as leis de privacidade. Por favor, certifique-se
+          de usar o mesmo e-mail endereço digitado como "e-mail do pai" na etapa anterior.
+        step3_title: ESPERE O EMAIL DE CONFIRMAÇÃO
+        step3_desc: Assim que correspondermos ao e mail usado na doação para o e-mail
+          que você inseriu como o "e-mail do responsável", ativamos a conta da criança
+          e enviamos o responsável um e-mail com instruções de login. Isso pode levar
+          até 24 horas.
+        step3_donor_title: A CONTA DO SEU FILHO ESTÁ ATIVADA
+        step3_donor_desc: Como você é doador iNaturalist, pudemos confirmar sua identidade
+          com sua doação existente.
     welcome:
       index:
         welcome_message_html: "para %{image}, onde você pode <strong>gravar</strong>
@@ -7472,6 +7561,10 @@ pt-BR:
               has_query_parameter: não pode conter um parâmetro de consulta.
               invalid_uri: deve ser um URI válido.
               relative_uri: deve ser um URI absoluto.
+        flag:
+          attributes:
+            user_id:
+              already_flagged: já sinalizou esse item
         guide:
           attributes:
             published_at:
@@ -7565,6 +7658,12 @@ pt-BR:
                 sem conter espaços e usar só letras, números, traços e sublinhados
             email:
               must_look_like_an_email_address: deve parecer um endereço de e-mail
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: pertence a um usuário existente; se você
+                tem uma conta, por favor assine antes de prosseguir ou usar um endereço
+                de e-mail diferente
   doorkeeper:
     scopes:
       write: |-

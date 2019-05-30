@@ -907,7 +907,7 @@ it:
   check_this_box_if_html: |-
     Seleziona questa casella se vuoi applicare una
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licenza Creative Commons Attribuzione-NonCommerciale</a>
-    alle tue foto. Puoi scegliere un'altra licenza o rimuoverla successivamente, ma questa è la miglior licenza per la condivisione con gli altri ricercatori.
+    al tuo contenuto caricato. Ciò significa che ognuno potrà copiare o riutilizzare le tue foto e/o le tue osservazioni senza chiederti permesso purché che ti accrediti e non le utilizzi a scopi commerciali. Puoi scegliere un'altra licenza o rimuoverla successivamente, ma questa è la miglior licenza per la condivisione con gli altri ricercatori.
   checklist: Checklist
   checklists: Checklist
   checklist_places: Luoghi con Checklist
@@ -3126,6 +3126,14 @@ it:
   google_account_not_linked: '%{user} non ha più un account Google collegato, perciò
     %{site_name} non ha l''autorizzazione per accedere alla foto.'
   pi_consent_desc_title: Riguardo le Informazioni Personali
+  pi_consent_desc_html: |-
+    Noi conserviamo informazioni personali come nome utente e email per gestire gli account su questo sito, e per rispettare le leggi sulla privacy, devi selezionare questa casella per indicare che tu acconsenti all'utilizzo delle informazioni personali. Per saperne di più su quali informazioni personali raccogliamo e su come le usiamo, per favore visita le nostre <a href='%{privacy_url}' target='_blank'>Politiche della Privacy</a>
+    and our <a href='%{terms_url}' target='_blank'>Termini di Servizio</a>.
+  pi_consent_label: Io acconsento che iNaturalist conservi e processi un limitato
+    tipo di mie informazioni personali al fine di gestire il mio account
+  pi_consent_child_label: Io acconsento che iNaturalist conservi e processi un limitato
+    tipo di informazioni personali su mio figlio al fine di gestire l'account di mio
+    figlio
   picasa_identity: Identità Picasa
   pick_a_username: Scegli un nome utente
   pin_verb: Memorizza
@@ -5182,6 +5190,12 @@ it:
   widget_code: Codice del Widget
   widget_for: Widget per
   will_be: sarà
+  wikipedia_attribution_cc_by_sa_3: 'Fonte: Wikipedia, "%{title}", %{url}, CC BY-SA
+    3.0'
+  wikipedia_attribution_cc_by_sa_3_html: |-
+    Questo articolo usa materiale da un articolo Wikipedia<a href="%{url}">"%{title}"</a>, che è stato rilasciato con
+    <a href="https://creativecommons.org/licenses/by-sa/3.0/">Licenza Creative
+    Commons Attribuzione-Condividi allo stesso modo 3.0</a>. Alcuni contenuti possono essere stati omessi, ma nessuno è stato cambiato o esteso.
   wikipedia_entry: Voce di Wikipedia
   wikipedia_taxobox_raquo: Tassobox di Wikipedia &raquo;
   with: con
@@ -5235,6 +5249,9 @@ it:
   "yes": Sì
   yes_find_them!: Sì, trovali!
   yes_i_want_to_join: Sì, voglio partecipare
+  yes_license_my_childs_observations: Si, applica la licenza alle foto, ai suoni e
+    alle osservazioni di mio figlio affinchè gli scienziati possano usufruire dei
+    suoi dati.
   yes_license_my_observations_so_scientists_can_use: Si, applica la licenza alle mie
     foto, ai miei suoni e alle mie osservazioni, così gli scienziati possono usufruire
     dei miei dati.
@@ -6019,8 +6036,8 @@ it:
         allow_curator_coordinate_access_desc_html: Permetti ai curatori del progetto
           di visualizzare le coordinate nascoste di questa osservazione.
         ancestor_disagreements_desc: '# di taxa identificati che appartengono agli
-          antenati del taxon, ma che sono stati creati dopo la prima identificazione
-          che usa questo taxon'
+          antenati del taxon, ma in disaccordo con il taxon (e.g., "Penso che sia
+          nel genere ma non che sia quella specie")'
         community_taxon_desc_html: "<p class=\"ui\">\nIl taxon della community (o
           l'identificazione della community) è il taxon a cui la community di %{site_name}
           ritiene possa appartenere l'organismo che hai osservato. Se sei interessato
@@ -6223,6 +6240,26 @@ it:
           ricerca diventeranno di livello casuale se non hanno più foto.
         we_included_links: Abbiamo incluso i collegamenti alle foto interessate qui
           sotto.
+      user_parent_confirmation:
+        subject: L'account iNaturalist di tuo figlio è stato attivato
+        content_html: |-
+          <p>
+          Grazie per la creazione di un account iNaturalist per tuo figlio! L'account è stato attivato. Qui i dettagli che hai insertito che abbiamo memorizzato:
+          </p>
+          <ul>
+            <li><strong>Nome del genitore o tutore legale:</strong> %{parent_name}</li>
+            <li><strong>Email del genitore o tutore legale:</strong> %{parent_email}</li>
+            <li><strong>Nome del bambino:</strong> %{child_name}</li>
+            <li><strong>Data di nascita del bambino:</strong> %{child_birthday}</li>
+            <li><strong>Email dell'account del minore:</strong> %{child_email}</li>
+            <li><strong>Nome utente dell'account del minore:</strong> %{child_username}</li>
+          </ul>
+          <p>
+          Per favore entra nell'account dall'app Seek di tuo figlio toccando il bottone "iNaturalist" nel menù e poi "Effettua il login con iNaturalist" al fondo dello schermo.
+          </p>
+          <p>
+            Tuo figlio sarà così in grado di publicare osservazioni sul suo account iNaturalist usando l'app Seek app in modo che queste siano visibili su iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: Sei stato inattivo su%{site_name} per un po', così abbiamo sospeso
           la tua iscrizione. Per riattivarla, per favore, <a href="%{login_url}">accedi
@@ -6964,10 +7001,49 @@ it:
           linee guida</a>.
         this_user_was_banned: Questo utente è stato sospeso
     user_parents:
+      confirm:
+        thanks_donor_html: |-
+          <p>
+          Grazie per essere diventato un donatore per iNaturalist! Saremo in grado di utilizzare la tua donazione per confermare la tua identità, e non avremo più bisogno di altre azioni da parte tua. <strong>L'account di tuo figlio è stato attivato.</strong>
+          </p>
+          <p>
+          Per favore effettua l'accesso dall'app Seek di tuo figlio toccando il bottone "iNaturalist" nel menù e poi "Effettua l'accesso con iNaturalist" al fondo dello schermo.
+          </p>
+          <p>
+          Tuo figlio sara in grado di pubblicare osservazioni sul suo account iNaturalist usando l'app Seek in modo che siano visibili su iNaturalist.org.
+          </p>
+        thanks_for_creating_a_minor_account: GRAZIE PER AVER CREATO UN ACCOUNT PER
+          UN MINORE!
+        we_will_send_you_an_email: Ti manderemo una email quando l'account di tuo
+          figlio sarà attivato.
       new:
         child_name_private: Nome del Bambino (Privato)
         create_a_minor_account: Crea un Account per un Minore
         create_minor_account: Crea Account per un Minore
+        parent_name_private: Nome del genitore o del tutore legale (privato)
+        parent_email: Email del genitore o del tutore legale (privata)
+        inaturalist_minor_account_signup: Registrazione Account per un Minore
+        parent_information_private: Informazioni del genitore (private)
+        step1_title: CREA UN ACCOUNT PER TUO FIGLIO
+        step1_desc: Al fine di rispettare i regolamenti della privacy, abbiamo bisogno
+          del consenso di un genitore o del tutore legale per creare un account per
+          persone con età inferiore ai 13 anni. Se vuoi che tuo figlio usi iNaturalist,
+          devi fornirci alcune informazioni di identità e di contatto.
+        step2_title: CONFERMA LA TUA IDENTITÀ CON UNA CARTA DI CREDITO
+        step2_desc: Per confermare la tua identità come adulto, abbiamo bisogno che
+          tu provveda con una donazione di almeno 1 US$ ad iNaturalist usando la carta
+          di credito. Questa è la forma meno invasiva per la verifica dell'identità
+          che ci permette di rispettare le leggi sulla privacy. Assicurati di usare
+          la stessa email che hai utilizzato quale "email del genitore" nel passaggio
+          precedente.
+        step3_title: ATTENDI LA CONFERMA DELL'EMAIL
+        step3_desc: Una volta trovata la corrispondenza tra l'email usata nella donazione
+          e quella inserita quale "email del genitore" attiveremo l'account del bambino
+          e manderemo al genitore una email con le istruzioni per l'accesso. Questo
+          può durare fino a 24 ore.
+        step3_donor_title: L'ACCOUNT DI TUO FIGLIO È STATO ATTIVATO
+        step3_donor_desc: Visto che sei un donatore per iNaturalist, siamo in grado
+          di verificare la tua identità con la tua donazione esistente.
     welcome:
       index:
         welcome_message_html: a %{image}, dove puoi <strong>registrare</strong> cosa
@@ -7414,6 +7490,10 @@ it:
               has_query_parameter: non può contenere un parametro di ricerca.
               invalid_uri: deve essere un URI valido.
               relative_uri: deve essere un URI assoluto.
+        flag:
+          attributes:
+            user_id:
+              already_flagged: ha già contrassegnato questo contenuto
         guide:
           attributes:
             published_at:
@@ -7505,6 +7585,12 @@ it:
                 spazi e deve avere solo lettere, numeri, trattini e trattini in basso
             email:
               must_look_like_an_email_address: deve sembrare un indirizzo email
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: appartiene ad un utente esistente; se hai
+                un account, per favore effettua l'accesso prima di procedere, o usa
+                una mail diversa
   doorkeeper:
     scopes:
       write: Creare, aggiornare, e cancellare le tue osservazioni, identificazioni,

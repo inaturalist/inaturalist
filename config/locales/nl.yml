@@ -712,6 +712,7 @@ nl:
   bg_color: Achtergrondkleur
   bioblitz: Bioblitz
   birds: vogels
+  birthday: Verjaardag
   black: zwart
   block_user: Gebruiker blokkeren
   block_removed: Blokkering opgeheven
@@ -3100,6 +3101,7 @@ nl:
   photos_updated: Foto's bijgewerkt.
   google_account_not_linked: '%{user} heeft geen gekoppeld Google-account meer, dus
     %{site_name} heeft geen toegang meer tot deze foto.'
+  pi_consent_desc_title: Persoonlijke gegevens
   picasa_identity: Picasa identiteit
   pick_a_username: Kies een gebruikersnaam
   pin_verb: Pin
@@ -5144,6 +5146,8 @@ nl:
   widget_code: Widgetcode
   widget_for: Widget voor
   will_be: zal zijn
+  wikipedia_attribution_cc_by_sa_3: 'Bron: Wikipedia, "%{title}", %{url}, CC BY-SA
+    3.0'
   wikipedia_entry: Wikipedia toegang
   wikipedia_taxobox_raquo: Wikipedia taxobox &raquo;
   with: met
@@ -5197,8 +5201,10 @@ nl:
   "yes": Ja
   yes_find_them!: Ja, vind ze!
   yes_i_want_to_join: Ja, ik wil aansluiten
+  yes_license_my_childs_observations: Ja, zet een licentie op de foto's, geluiden
+    en waarnemingen van mijn kind, zodat wetenschappers haar gegevens kunnen gebruiken.
   yes_license_my_observations_so_scientists_can_use: Ja, zet een licentie op mijn
-    foto's, geluiden en waarnemingen, zodat wetenschappers mijn gegevens kunnen gebruiken!
+    foto's, geluiden en waarnemingen, zodat wetenschappers mijn gegevens kunnen gebruiken.
   yes_reject_it: Ja, verwerp het
   yes_show_this_in_the_box: Ja, toon dit in het grote vak bovenaan/taxa
   yesterday: Gisteren
@@ -5823,6 +5829,10 @@ nl:
           Taxa handmatig toegevoegd door projectcurators en taxa vertegenwoordigd door
           onderzoekskwaliteit waarnemingen die aan het project zijn toegevoegd worden op projectlijsten vermeld.
     messages:
+      from: Van
+      to: Tot
+      subject: Onderwerp
+      subject_body: Onderwerp / Tekst
       index:
         speech_privilege_notice: Je kunt nieuwe berichten verzenden nadat je er drie
           verifieerbare waarnemingen hebt toegevoegd of drie determinaties voor anderen
