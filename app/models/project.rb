@@ -475,9 +475,11 @@ class Project < ActiveRecord::Base
       when "observed_in_place?"
         place_ids << rule.operand_id
       when "has_a_photo?"
-        params[:photos] = true
+        # traditional projects may have this rule, which will be converted to
+        # rule_photos (and rule_souncs below), so ignore these for new projects
+        params[:photos] = true unless is_new_project?
       when "has_a_sound?"
-        params[:sounds] = true
+        params[:sounds] = true unless is_new_project?
       when "observed_by_user?"
         user_ids << rule.operand_id
       when "not_observed_by_user?"
