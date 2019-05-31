@@ -12,24 +12,34 @@ scientific name,common name 1, common name 1 lexicon, common name 2, common name
 
 Only the scientific name is required. So an example row might be
 
-Homo sapiens,Human,English,Humano,Spanish
+  Homo sapiens,Human,English,Humano,Spanish
 
-but
+but this would also work
 
-Homo sapiens
-Vulpes vulpes
+  Homo sapiens
+  Vulpes vulpes
 
-would also work
+This script can also be used to import common names without creating taxa.
 
 Usage:
 
   rails runner tools/taxa_from_csv.rb [OPTIONS] path/to/file.csv
 
+Examples:
+  
+  # Import common names from a pre-existing source, attributing a specific user,
+  # without adding taxa
+  be rails r ~/taxa_from_csv.rb -d -c --skip-check-lists -s 16299 -u 1 -p 7016 --lexicon-first ~/names.csv > ~/names.log
+
 where [options] are:
 EOS
   opt :debug, "Print debug statements", :type => :boolean, :short => "-d"
   opt :skip_creation, "Add names and places, but don't create taxa", type: :boolean, short: "-c"
+  opt :skip_check_lists, "Don't add taxa to checklists", type: :boolean
   opt :place_id, "Place whose checklist these taxa should be added to", type: :integer, short: "-p"
+  opt :user_id, "User ID of user who is adding these names", type: :integer, short: "-u"
+  opt :source_id, "Source ID of source to use for these names these names", type: :integer, short: "-s"
+  opt :lexicon_first, "Allow file to be of format sciname, lexicon, comname", type: :boolean
 end
 
 start = Time.now
@@ -37,29 +47,81 @@ start = Time.now
 OPTS = opts
 
 csv_path = ARGV[0]
-Optimist::DIE unless csv_path && File.exist?(csv_path)
+unless csv_path && File.exist?(csv_path)
+  Optimist::die "CSV does not exist: #{csv_path}"
+end
+
 if opts.place_id && @place = Place.find( opts.place_id )
   puts "Found place: #{@place}"
+else
+  Optimist::die "Couldn't find place: #{OPTS.place_id}"
+end
+
+if opts.user_id && @user = User.find( opts.user_id )
+  puts "Found user: #{@user}"
+else
+  Optimist::die "Couldn't find user: #{OPTS.user_id}"
+end
+
+if opts.source_id && @source = Source.find( opts.source_id )
+  puts "Found source: #{@source}"
+else
+  Optimist::DIE "Couldn't find source: #{OPTS.source_id}"
 end
 
 @errors = []
+@names_created = @names_existing = @name_errors = 0
+@ptn_created = @ptn_existing = @ptn_errors = 0
+@listed_taxa_created = 0
 
 def save_common_names(taxon, common_names)
-  common_names.in_groups_of(2) do |name,lexicon|
+  common_names.in_groups_of(2) do |c1, c2|
+    if OPTS.lexicon_first
+      lexicon = c1
+      name = c2
+    else
+      lexicon = c2
+      name = c1
+    end
     next if name.blank?
-    name = name.split(/[,;]/).first
-    tn = TaxonName.new(:taxon => taxon, :name => name, :lexicon => lexicon, :is_valid => true)
-    begin
-      if tn.save
-        puts "\tCreated #{tn}"
+    name = name.split(/[,;]/).first.strip
+    if tn = taxon.taxon_names.where( name: name, lexicon: lexicon ).first
+      @names_existing += 1
+    else
+      tn = TaxonName.new(
+        taxon: taxon,
+        name: name,
+        lexicon: lexicon,
+        creator: @user,
+        source: @source
+      )
+      begin
+        if tn.save
+          puts "\tCreated #{tn}"
+          @names_created += 1
+        else
+          puts "\tFailed to create #{tn}: #{tn.errors.full_messages.to_sentence}"
+          unless tn.errors.full_messages.to_sentence =~ /already exists/
+            @errors << [taxon.name, "failed common name: #{tn.errors.full_messages.to_sentence}"]
+          end
+        end
+      rescue PG::UniqueViolation, ActiveRecord::RecordNotUnique
+        puts "\tFailed to create #{tn}: already added"
+      end
+    end
+    if tn && tn.persisted? && @place
+      if ptn = tn.place_taxon_names.where( place_id: @place.id ).first
+        @ptn_existing += 1
       else
-        puts "\tFailed to create #{tn}: #{tn.errors.full_messages.to_sentence}"
-        unless tn.errors.full_messages.to_sentence =~ /already exists/
-          @errors << [taxon.name, "failed common name"]
+        ptn = tn.place_taxon_names.build( place: @place )
+        if ptn.save
+          puts "\tCreated #{ptn}"
+          @ptn_created += 1
+        else
+          puts "\tFailed to create place taxon name: #{ptn.errors.full_messages.to_sentence}"
+          @errors << [taxon.name, "failed place taxon name: #{ptn.errors.full_messages.to_sentence}"]
         end
       end
-    rescue PG::UniqueViolation, ActiveRecord::RecordNotUnique
-      puts "\tFailed to create #{tn}: already added"
     end
   end
 rescue Faraday::ConnectionFailed
@@ -71,6 +133,7 @@ def add_to_place( taxon, place )
   lt = place.check_list.listed_taxa.build( taxon: taxon )
   if lt.save
     puts "\tCreated #{lt}"
+    @listed_taxa_created += 1
   else
     puts "\tFailed to add to #{place.name}: #{lt.errors.full_messages.to_sentence}"
     unless lt.errors.full_messages.to_sentence =~ /already/
@@ -82,9 +145,9 @@ end
 num_created = num_existing = 0
 not_created = []
 
-CSV.foreach(csv_path) do |row|
+CSV.foreach( csv_path, skip_blanks: true ) do |row|
   sciname, *common_names = row
-  puts sciname
+  puts row.join( " | " )
   next unless sciname
 
   unless taxon = Taxon.single_taxon_for_name( sciname )
@@ -111,7 +174,7 @@ CSV.foreach(csv_path) do |row|
     num_existing += 1
     puts "\tFound #{taxon}"
     save_common_names(taxon, common_names)
-    add_to_place( taxon, @place ) if @place
+    add_to_place( taxon, @place ) if @place && !OPTS.skip_check_lists
     next
   end
 
@@ -169,5 +232,5 @@ unless @errors.blank?
 end
 
 puts
-puts "Finished in #{Time.now - start} s, #{num_created} created, #{not_created.size} not created, #{num_existing} existing"
+puts "Finished in #{Time.now - start} s, #{num_created} taxa created, #{not_created.size} taxa not created, #{num_existing} taxa existing, #{@names_created} names created, #{@names_existing} names existing, #{@ptn_created} names added to place, #{@ptn_existing} already added to place, #{@listed_taxa_created} listed taxa created"
 puts
