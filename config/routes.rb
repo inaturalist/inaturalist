@@ -616,7 +616,7 @@ Rails.application.routes.draw do
       post :score
     end
   end
-  resources :user_parents, only: [:new, :create] do
+  resources :user_parents, only: [:index, :new, :create] do
     member do
       get :confirm
     end
