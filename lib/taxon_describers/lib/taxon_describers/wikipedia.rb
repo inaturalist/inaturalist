@@ -29,6 +29,8 @@ module TaxonDescribers
       decoded = coder.decode(html)
       decoded.gsub!(/href="\/([A-z])/, "href=\"#{wikipedia.base_url}/\\1")
       decoded.gsub!(/src="\/([A-z])/, "src=\"#{wikipedia.base_url}/\\1")
+      decoded.gsub!(/<table .*?class=.*?ambox.*?>.+?<\/table>/, '')
+      decoded.gsub!(/<div .*?class=.*?hatnote.*?>.+?<\/div>/, '')
       if options[:strip_references]
         decoded.gsub!(/<sup .*?class=.*?reference.*?>.+?<\/sup>/, '')
         decoded.gsub!(/<strong .*?class=.*?error.*?>.+?<\/strong>/, '')
