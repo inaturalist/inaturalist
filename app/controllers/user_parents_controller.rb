@@ -2,6 +2,10 @@ class UserParentsController < ApplicationController
   layout "registrations"
   before_filter :set_instance_variables
 
+  def index
+    redirect_to new_user_parent_path
+  end
+
   def new
     @user_parent = UserParent.new( user: User.new )
     if current_user
