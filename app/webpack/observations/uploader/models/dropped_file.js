@@ -10,7 +10,8 @@ const BRANDED_DESCRIPTIONS = [
   "<KENOX S1050 / Samsung S1050>",
   "KODAK Digital Still Camera",
   "DIGITAL CAMERA",
-  "SAMSUNG CAMERA PICTURES"
+  "SAMSUNG CAMERA PICTURES",
+  "MINOLTA DIGITAL CAMERA"
 ];
 
 const DroppedFile = class DroppedFile {
