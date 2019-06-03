@@ -92,6 +92,15 @@ describe PlacesController do
       expect( p.name ).to eq "Test admin geojson"
       expect( p.place_geometry ).to_not be_nil
     end
+
+    it "should allow users without the organizaer privilege to update places they created" do
+      p = Place.make!( user: user )
+      user.user_privileges.destroy_all
+      sign_in user
+      put :update, id: p.id, place: { name: "the new name" }
+      p.reload
+      expect( p.name ).to eq "the new name"
+    end
   end
 
   describe "destroy" do
