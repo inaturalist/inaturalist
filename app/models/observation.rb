@@ -394,7 +394,8 @@ class Observation < ActiveRecord::Base
              :set_taxon_photo,
              :create_observation_review,
              :reassess_annotations,
-             :reassess_same_day_observations
+             :reassess_same_day_observations,
+             :reindex_others_if_first_of_taxon
   after_create :set_uri, :update_user_counter_caches_after_create
   before_destroy :keep_old_taxon_id
   after_destroy :refresh_lists_after_destroy, :refresh_check_lists,
@@ -2699,6 +2700,18 @@ class Observation < ActiveRecord::Base
     true
   end
 
+  def reindex_others_if_first_of_taxon
+    return unless first_of_taxon?
+    ids = Observation.elastic_search(
+      filters: [
+        { term: { "taxon.id" => taxon_id } },
+        { term: { first_of_taxon: true } }
+      ]
+    ).map{|o| o.id.to_i}
+    Observation.elastic_index!( ids: ids, delay: true )
+    true
+  end
+
   def self.reassess_obscuration_by_user_and_date( user, date )
     user = user.is_a?( User ) ? user : User.find_by_id( user )
     return unless user
@@ -3161,6 +3174,7 @@ class Observation < ActiveRecord::Base
 
   def first_of_taxon?
     return false if taxon_id.blank?
+    return false if quality_grade == CASUAL
     Observation.elastic_search(
       size: 0,
       filters: [

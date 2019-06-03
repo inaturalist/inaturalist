@@ -4060,6 +4060,55 @@ describe Observation, "prefers_auto_obscuration" do
   end
 end
 
+describe Observation, "first_of_taxon" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  it "should be true for the first verifiable obs of a taxon" do
+    t = Taxon.make!
+    o1 = make_research_grade_candidate_observation( taxon: t )
+    o2 = make_research_grade_candidate_observation( taxon: t )
+    expect( o1 ).to be_first_of_taxon
+  end
+  it "should be false if the first obs is not verifiable" do
+    t = Taxon.make!
+    o1 = Observation.make!( taxon: t )
+    o2 = make_research_grade_candidate_observation( taxon: t )
+    expect( o1 ).not_to be_first_of_taxon
+    expect( o2 ).to be_first_of_taxon
+  end
+  it "should update the existing first of taxon in the index when there's a new one" do
+    t = Taxon.make!
+    o1 = make_research_grade_candidate_observation
+    o2 = make_research_grade_candidate_observation( taxon: t )
+    Delayed::Worker.new.work_off
+    2.times { Identification.make!( taxon: t, observation: o1 ) }
+    o1.reload
+    o2.reload
+    expect( o1.taxon ).to eq t
+    expect( o1 ).to be_first_of_taxon
+    expect( o2 ).not_to be_first_of_taxon
+    Delayed::Worker.new.work_off
+    es_o1 = Observation.elastic_search( filters: [ { term: { id: o1.id} } ] ).first._source
+    es_o2 = Observation.elastic_search( filters: [ { term: { id: o2.id} } ] ).first._source
+    expect( es_o1.first_of_taxon ).to be true
+    expect( es_o2.first_of_taxon ).to be false
+  end
+  it "should update records in the index after a taxon merge" do
+    merge = make_taxon_merge
+    o1 = make_research_grade_candidate_observation( taxon: merge.input_taxa[0] )
+    o2 = make_research_grade_candidate_observation( taxon: merge.input_taxa[1] )
+    expect( o1 ).to be_first_of_taxon
+    expect( o2 ).to be_first_of_taxon
+    merge.committer = merge.user
+    merge.commit
+    Delayed::Worker.new.work_off
+    es_o1 = Observation.elastic_search( filters: [ { term: { id: o1.id} } ] ).first._source
+    es_o2 = Observation.elastic_search( filters: [ { term: { id: o2.id} } ] ).first._source
+    expect( es_o1.first_of_taxon ).to be true
+    expect( es_o2.first_of_taxon ).to be false
+  end
+end
+
 def setup_test_case_taxonomy
   # Tree:
   #          sf

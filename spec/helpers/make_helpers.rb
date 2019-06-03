@@ -162,6 +162,21 @@ module MakeHelpers
     split
   end
 
+  def make_taxon_merge( options = {} )
+    output_taxon = options.delete(:output_taxon) || Taxon.make!( rank: Taxon::SPECIES )
+    input_taxa = options.delete(:input_taxa) || [
+      Taxon.make!( rank: Taxon::SPECIES ),
+      Taxon.make!( rank: Taxon::SPECIES )
+    ]
+    merge = TaxonMerge.make( options )
+    merge.add_output_taxon( output_taxon )
+    input_taxa.each do |t|
+      merge.add_input_taxon( t )
+    end
+    merge.save!
+    merge
+  end
+
   def make_published_guide(options = {})
     g = Guide.make!(options)
     3.times { GuideTaxon.make!(:guide => g) }
