@@ -48,6 +48,7 @@ module Logstasher
         split(/[;,]/).select{ |l| l =~ /^[a-z-]+$/i }.map(&:downcase).first
     end
     payload[:Via] = request.headers["Via"]
+    payload[:x_via] = request.headers["X-Via"]
     payload[:ssl] = request.ssl?.to_s
     payload[:bot] = Logstasher.is_user_agent_a_bot?(request.user_agent)
     # this can be overwritten by merging Logstasher.payload_from_user
@@ -106,6 +107,26 @@ module Logstasher
       Logstasher.logger.debug(stash_hash.to_json)
     rescue Exception => e
       Rails.logger.error "[ERROR] Logstasher.write_hash failed: #{e}"
+    end
+  end
+
+  def self.write_unprocessable( request, response, session, current_user )
+    return if Rails.env.test?
+    payload = {
+      request: request,
+      session: session,
+      user: current_user
+    }
+    Logstasher.replace_known_types!( payload )
+    begin
+      Logstasher.write_hash( payload.merge({
+        "@timestamp": Time.now,
+        subtype: "Unprocessable",
+        error_message: response.body[0...1000],
+        status_code: 422
+      }))
+    rescue Exception => e
+      Rails.logger.error "[ERROR] Logstasher.write_unprocessable failed: #{e}"
     end
   end
 
