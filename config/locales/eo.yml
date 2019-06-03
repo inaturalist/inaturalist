@@ -11,6 +11,9 @@ eo:
   x_comments:
     one: 1 komento
     other: '%{count} komentoj'
+  x_faves:
+    one: 1 favorato
+    other: '%{count} favoratoj'
   x_followers:
     one: 1 sekvanto
     other: '%{count} sekvantoj'
@@ -32,6 +35,9 @@ eo:
   x_journal_posts_html:
     one: <span class="count">1</span> ĵurnala afiŝo
     other: <span class="count">%{count}</span> ĵurnalaj afiŝoj
+  x_matching_taxa:
+    one: 1 kongrua taksono
+    other: '%{count} kongruaj taksonoj'
   x_observations:
     one: 1 observo
     other: '%{count} observoj'
@@ -44,6 +50,12 @@ eo:
   x_people_found_this_helpful:
     one: Unu homo trovis ĉi tion utila
     other: '%{count} homoj trovis ĉi tion utila'
+  x_people_like_this:
+    one: 1 homo ŝatas tion
+    other: '%{count} homoj ŝatas tion'
+  x_people_agree_html:
+    one: <span class="count">1</span> homo samopinias
+    other: <span class="count">%{count}</span> homoj samopinias
   x_photos:
     one: 1 foto
     other: '%{count} fotoj'
@@ -61,27 +73,37 @@ eo:
     other: <a href='%{url}'>%{count} specioj</a>
   a_community_for_naturalist: Komunumo por Naturistoj
   a_flag_for_x: flago por %{x}
+  a_greasemonkey_script: Greasemonkey-programeto
   a_member_of: Ano de
   a_member_of_taxon_html: ano de %{taxon}
   about: Pri
+  about_bioblitz_results: Pri rezultoj de biofulmado
   about_charts: Pri Diagramoj
   about_community_taxa: Pri komunumaj taksonoj
   about_complete_taxa: Pri Kompletaj Taksonoj
   about_external_links: Pri eksteraj ligiloj
   about_licenses: Pri permesiloj
+  about_licensing: Pri permesiloj
   about_life!: Pri Vivo!
   about_names: Pri Nomoj
   about_places: Pri Lokoj
   about_taxon_changes: Pri Ŝanĝoj de Taksono
   about_the_cc_licenses: Pri permesiloj de Krea Komunaĵo
+  about_the_taxobox_raquo: Pri la taksonkarto &raquo;
   about_these_licenses: Pri tiuj permesiloj
+  about_this_bioblitz: Pri ĉi tiu biofulmado
   about_this_map: Pri Ĉi Tiu Mapo
   about_this_project: Pri ĉi tiu Projekto
   about_x: Pri %{x}
+  acc: Prec (m)
   account: Konto
   account_creation: Kreado de Konto
   account_settings: Agordoj de Konto
   accept: akcepti
+  accuracy: Precizeco
+  accuracy_m: Precizeco (m)
+  accuracy_meters: Precizeco (metroj)
+  action: Ago
   actions: Agoj
   activate_user: Aktivigi uzanton
   active: Aktiva
@@ -89,6 +111,7 @@ eo:
   activity: Aktiveco
   activity_settings: Agordoj pri akiveco
   add: Aldoni
+  add_a_batch_of_taxa: Aldoni Taksonaron
   add_a_comment: Aldoni Komenton
   add_a_field: Aldoni Kampon
   add_a_flag: Aldoni Flagon
@@ -97,6 +120,8 @@ eo:
   add_a_place_raquo: Aldoni Lokon &raquo;
   add_a_single_observation: Aldoni Unuopan Observon.
   add_a_taxon: Aldoni Taksonon
+  add_an_assessment: Aldoni Taksaron
+  add_an_identification: Aldoni Identigon
   add_an_observation: Aldoni Observon
   add_an_observation?: Ĉu aldoni Observon?
   add_an_observation_of: Aldoni Observon de %{taxon}
@@ -109,6 +134,7 @@ eo:
   add_common_names_for: Aldoni Vulgarajn Nomojn por Ekzistantaj Taksonoj
   add_countries: Aldoni landojn
   add_edit_flags: Aldoni/Redakti Flagojn
+  add_editor: Aldoni Redaktoron
   add_field: Aldoni Kampon
   add_link: Aldoni Ligilon
   add_id: Aldoni Identigilon
@@ -131,27 +157,40 @@ eo:
   add_relationship: Aldoni rilaton
   add_section: Aldoni Paragrafon
   add_shape: Aldoni formon
+  add_some_now: Aldoni Kelkajn Nun
   add_tag: Aldoni Etikedon
   add_tags: Aldoni Etikedojn
+  add_tags_to_selected_taxa: Aldoni Etikedojn al Elektitaj Taksonoj
   add_taxa: Aldoni Taksonojn
   add_taxa_to_places: Aldoni Taksonojn al Lokoj
+  add_taxon_batch_to: Aldoni Taksonaron al %{list}
   add_to_a_scheme: Aldoni al Skemo
   add_to_a_project: Aldoni al Projekto
   add_to_calendar: Aldoni al Kalendaro
+  add_to_favorites: Favori
   add_to_list: Aldoni al Listo
   add_to_project: Aldoni al Projekto
+  add_to_your_life_list: Aldoni al Via Vivolisto!
   add_to_your_list: Aldoni al Via Listo
   add_your_photo: Aldoni Vian Foton
   added: Aldonita
   added!: Aldonita!
   added_by: Aldonita de
   added_to: Aldonita al
+  added_to_favorites: Favoriĝas
+  added_to_favorites_html: <a href="%{url}">Favoriĝas</a>
   adding: Aldonante...
+  adding_to_your_life_list: Aldonante al via vivolisto...
+  admin: Administranto
+  admin_s: Administranto(j)
+  admin_any_projects: administri ajnajn projektojn
+  admin_only: Nur administrantoj
   admin_tools: Administriloj
   agree: konsenti
   agree_: Konsenti
   agree?: Ĉu konsenti?
   agreeing: Konsentante...
+  aka: alinome
   all: Ĉiuj
   all_colors: '&laquo; Ĉiuj Koloroj'
   all_comments: Ĉiuj komentoj
@@ -161,6 +200,34 @@ eo:
   all_photos: Ĉiuj fotoj
   all_places: Ĉiuj Lokoj
   all_projects: Ĉiuj Projektoj
+  all_rank_added_to_the_database:
+    phylum: Ĉiuj filumoj aldonitaj en la datenbankon
+    subphylum: Ĉiuj subfilumoj aldonitaj en la datenbankon
+    superclass: Ĉiuj superklasoj aldonitaj en la datenbankon
+    class: Ĉiuj klasoj aldonitaj en la datenbankon
+    subclass: Ĉiuj subklasoj aldonitaj en la datenbankon
+    infraclass: Ĉiuj infraklasoj aldonitaj en la datenbankon
+    superorder: Ĉiuj superordoj aldonitaj en la datenbankon
+    order: Ĉiuj ordoj aldonitaj en la datenbankon
+    suborder: Ĉiuj subordoj aldonitaj en la datenbankon
+    infraorder: Ĉiuj infraordoj aldonitaj en la datenbankon
+    superfamily: Ĉiuj superfamilioj aldonitaj en la datenbankon
+    family: Ĉiuj familioj aldonitaj en la datenbankon
+    subfamily: Ĉiuj subfamilioj aldonitaj en la datenbankon
+    supertribe: Ĉiuj supertriboj aldonitaj en la datenbankon
+    tribe: Ĉiuj triboj aldonitaj en la datenbankon
+    subtribe: Ĉiuj subtriboj aldonitaj en la datenbankon
+    genus: Ĉiuj generoj aldonitaj en la datenbankon
+    genushybrid: Ĉiuj generhibridoj aldonitaj en la datenbankon
+    subgenus: Ĉiuj subgeneroj aldonitaj en la datenbankon
+    section: Ĉiuj sekcioj aldonitaj en la datenbankon
+    subsection: Ĉiuj subsekcioj aldonitaj en la datenbankon
+    complex: Ĉiuj kompleksoj aldonitaj en la datenbankon
+    species: Ĉiuj specioj aldonitaj en la datenbankon
+    hybrid: Ĉiuj hibridoj aldonitaj en la datenbankon
+    subspecies: Ĉiuj subspecioj aldonitaj en la datenbankon
+    variety: Ĉiuj varioj aldonitaj en la datenbankon
+    form: Ĉiuj formoj aldonitaj en la datenbankon
   all_species: Ĉiuj Specioj
   all_taxa:
     rank:
@@ -173,6 +240,7 @@ eo:
     animals: Animaloj
     arachnids: Araneedoj
     birds: Birdoj
+    chromista: Kromistoj
     fungi: Fungoj
     fungi_including_lichens: Fungoj Inkluzive de Likenoj
     insects: Insektoj
@@ -181,6 +249,7 @@ eo:
     other_animals: Aliaj Animaloj
     plants: Plantoj
     protozoans: Protozooj
+    ray_finned_fishes: Aktinopterigoj
     reptiles: Reptilioj
     life: Vivo
     x_plantae:
@@ -198,6 +267,9 @@ eo:
     x_mammalia:
       one: 1 mamulo
       other: '%{count} mamuloj'
+    x_actinopterygii:
+      one: 1 ray-finned fish
+      other: '%{count} aktinopterigoj'
     x_reptilia:
       one: 1 reptilio
       other: '%{count} reptilioj'
@@ -245,6 +317,8 @@ eo:
   articles: Artikoloj
   associated_observations: Asociitaj observoj
   associated_taxa: Asociitaj taksonoj
+  asc: Kresk
+  ascending: Kreskante
   associations: Asocioj
   at_time: je %{time}
   back: Reen
@@ -270,8 +344,10 @@ eo:
   back_to_your_observations: Reen al viaj observoj
   back_to_your_profile: Reen al via profilo
   back_to_your_projects: Reen al viaj projektoj
+  be_the_first_to_fave_this_observation: Estu la unua favoranto de ĉi tiu observo!
   because: ĉar
   because_of: pro
+  bioblitz: Biofulmado
   birds: birdoj
   black: nigra
   block_user: Forbari Uzanton
@@ -289,11 +365,21 @@ eo:
   categories: Kategorioj
   cc_0_name: Sen Aŭtorrajtoj (CC0)
   change: Ŝanĝi
+  change_cover: Ŝanĝi kovrilon
   change_geoprivacy: Ŝanĝi geografian privatecon
   change_group: Ŝanĝi grupon
   change_icon: Ŝanĝi ikonon
   change_password: Ŝanĝi Pasvorton
+  change_types:
+    split: Disigi
+    merge: Kunigi
+    swap: Interŝanĝi
+    stage: Organizi
+    staged: organizita
   change_your_password: Ŝanĝi Vian Pasvorton
+  checklist: Kontrololisto
+  checklists: Kontrololistoj
+  child_taxa: Idaj taksonoj
   choose_a_field: Elekti kampon
   choose_a_list_above: Elektu unu el ĉi-supraj listoj.
   choose_a_place: Elekti lokon
@@ -313,11 +399,16 @@ eo:
   choose_your_username: Elekti vian uzantnomon
   citation: Citaĵo
   classification: Klasifiko
+  clear: vakigi
+  clear_color_filters: Vaklgi kolorajn filtrilojn
+  clear_filters: Vakigi filtrilojn
+  clear_search: Vakigi serĉon
   close: Fermi
   code: Kodo
   colors: Koloroj
   columns: Kolumnoj
   combine: Kunigi
+  comment_preview: Antaŭrigardo de komento
   comment: komento
   comment_: Komento
   comment_deleted: Koment forigita
@@ -326,14 +417,24 @@ eo:
   comments_by_everyone: Komentoj far ĉiu ajn
   comments_by_me: Komentoj far mi
   comments_on: Komentoj pri
+  commit: Enmeti
+  committed: Enmetita
+  committing: Enmetante...
   community: Komunumo
   community_guidelines: Komunumaj Gvidnormoj
   compare: Kompari
   compare_with: Kompari kun
   comparing: komparanta
+  comparing_list_to_list: Komparante liston %{list1} kun %{list2}
+  comparing_versions_x_and_y: Komparante versiojn %{x} kaj %{y}
   complete: Kompleta
+  complete_sets: Kompletaj Aroj
+  compiled_by_name: Kompilita de %{name}
   completed: Kompletigita
   completed_at: Kompletigita Je
+  comprehensive: ampleksa
+  comprehensive?: Ĉu ampleksa?
+  comprehensive_list: Ampleksa listo
   concept_status: Stato de Koncepto
   configure: Agordi
   confirm: Konfirmi
@@ -349,29 +450,49 @@ eo:
     geoprivacy: Implicita geografia privateco por observoj de tiu taksono
   contest: konkurso
   continue: Daŭrigi
+  continue_to_site: Daŭrigi al %{site_name}
   contributions: kontribuoj
+  contributions_from: Kontribuoj de
+  contributor_cannot_be_found: Kontribuinto ne troviĝas
+  contributors_to_project: Kontribuintoj al %{project}
   controlled_term_labels:
     sex: Sekso
     male: Vira
     female: Ina
+    plant_phenology: Planta Klimata Efiko
     flowering: Florado
     fruiting: Fruktado
     life_stage: Vivstadio
     adult: Adolto
+    teneral: Tenera imagino
+    subimago: Subimagino
     pupa: Pupo
     nymph: Nimfo
     larva: Larvo
     egg: Ovo
+    juvenile: Junulo
+  convert: Konverti
   coordinate_systems: Koordinatsistemoj
   coordinates: Koordinatoj
   coordinates_private: (privataj koordinatoj)
   copy: Kopii
   copyright:
+    some_rights_reserved: iuj rajtoj rezervitaj
+    no_rights_reserved: neniuj rajtoj rezervitaj
     anonymous: anonima
     public_domain: publika havaĵo
     copyright: kopirajto
     no_copyright: sen kopirajto (CC0)
+    attribution_noncommercial_sharealike_license: Permesilo Atribuite-Nekomerce-Samkondiĉe
+    attribution_noncommercial_license: Permesilo Atribuite-Nekomerce
+    attribution_noncommercial_noderivs_license: Permesilo Atribuite-Nekomerce-Nemodifite
+    attribution_license: Permesilo Atribuite
+    attribution_sharealike_license: Permesilo Atribuite-Samkondiĉe
+    attribution_noderivs_license: Permesilo Atribuite-Nemodifite
+    gnu_free_documentation_license: Permesilo de GNU por Liberaj Dokumentoj
+  copyright_holder: Posedanto de la aŭtorrajtoj
   copyright_info: Aŭtorrajta Informo
+  copyright_info_and_more: Informo pri Aŭtorrajtoj kaj Plu
   countries: Landoj
   cover: Kovrilo
   create: Krei
@@ -392,8 +513,11 @@ eo:
   creating_your_account: Kreanta vian konton...
   csv: CSV
   csv_file: CSV-dosiero
+  curator: Kuratoro
+  curators: Kuratoroj
   current_flags: Aktualaj Flagoj
   current_password: Aktuala Pasvorto
+  darr_apply_darr: '&darr; Apliki &darr;'
   dashboard: Stirpanelo
   data_used: 'Dateno uzata:'
   datatype: Datentipo
@@ -426,9 +550,14 @@ eo:
       october: oktobro
       november: novembro
       december: decembro
+  date_is_accurate: Dato estas ĝusta
+  date_observed: Dato de observo
+  date_observed_: Dato de Observo
   date_picker:
     closeText: Fermi
     currentText: Hodiaŭ
+    prevText: Antaŭen
+    nextText: Sekven
   date_time: Dato/tempo
   dates: datoj
   datetime_: Dato/tempo
@@ -448,11 +577,18 @@ eo:
   delete_your_account: Forigi vian konton
   deleted_synonyms: Forigitaj sinonimoj
   deleted_user: forigita uzanto
-  deleting: Forigado...
+  deleted_vote: Forigita voĉdono
+  deleting: Forigante...
   deleting_verb: Forigado
+  deny: Rifuzi
+  desc: Malkr
+  descendant_taxa: ida taksono
+  descending: Malkreskante
   describe_purpose: Priskribu la celon de tiu projekto.
   describe_your_interest_in_nature: Priskribu vian intereson pri naturo!
   description: Priskribo
+  description_from: Priskribo el
+  description_sections: Priskribantaj Paragrafoj
   description_slash_tags: Priskribo / Etikedoj
   description_tags_more: Priskribo, Etikedoj, &amp; Plu
   desription: Priskribo
@@ -465,10 +601,14 @@ eo:
   disable: Malŝalti
   disagree: malkonsenti
   disagree_: Malkonsenti
+  disconnect_provider: Malkonekti provizanton %{provider}
   dna_: DNA
   documentation_for_developers_html: Dokumentaro por <a href="/pages/developers">evoluigantoj</a>
+  doh_something_went_wrong: Domaĝe, io misfunkciis.
+  doh_something_went_wrong_error: 'Domaĝe, io misfunkciis: %{error}'
   done: Farita
   dont_filter: Ne filtri
+  dont_have_an_account_sign_up_html: Ĉu vi ne havas konton? <strong>Registriĝu.</strong>
   dont_send_me_email: Ne sendu al mi ajnan retmesaĝon!
   download: Elŝuti
   download_csv: Elŝuti kiel komo-apartigitaj valoroj
@@ -478,12 +618,15 @@ eo:
   draft_: Malneo
   draft_saved: Konservis malneton!
   drafts: Malnetoj
+  drawings: Desegnaĵoj
+  duplicate_verb: Duplikato
   edit: Redakti
   edit_atlas: Redakti Atlason
   edit_colors: Redakti Kolorojn
   edit_comment: Redakti Vian Komenton
   edit_field: Redakti Kampon
   edit_license: Redakti Permesilon
+  edit_multiple_descriptions: Redakti Plurajn Priskribojn
   edit_multiple_species: Redakti Plurajn Speciojn
   edit_notes: Redakti Notojn
   edit_observation: Redakti Observon
@@ -506,14 +649,19 @@ eo:
   editing_project: Redaktante projekton %{project}
   editing_taxon_name: Redaktante Nomon de Taksono
   eg: ekz.
+  either: Aŭ
   email: Retpoŝta adreso
   enlarge: Pligrandigi
+  end: Fino
+  eol: EdV
+  eol_collection_url: Retadreso de kolekto ĉe EdV
   establishment:
     endemic: Endemia
     invasive: Adventica
     managed: Mastrumata
     native: Indiĝena
     naturalised: Naturigita
+  event_stats: Statistiko pri Evento
   event_url: Eventa Retadreso
   events_only: Nur eventoj
   every_species_seen_by: Ĉiu specio vidata de
@@ -524,6 +672,7 @@ eo:
   exact: Ekzakta
   exact_date: Ekzakta Dato
   exact_location: Ekzakta_loko
+  exclude_x: Ekskluzivi %{x}
   exit_full_screen: Malŝalti plenekranan reĝimon
   explore!: Esploru!
   explore: Esplori
@@ -540,12 +689,19 @@ eo:
   failed_to_repair_photo: 'Malsukcesis ripari foton: %{errors}'
   "false": Malvera
   faq: Oftaj demandoj
+  fave: favori
   Family: Familio
+  faved_this_observation: favoras ĉi tiun observon
+  favorite_taxa: Favorata Taksono
+  favorites: Favoratoj
   fblocale: eo
+  featured: Elstara
+  featured?: ĉu elstara?
   field_guides: Kampogvidiloj
   fields: kampoj
   fields_: Kampoj
   file: Dosiero
+  fill_out_your_profile: kompletigi vian profilon
   filter: Filtri
   filter_by_place: Filtri laŭ Loko
   filter_by_taxon: Filtri laŭ Taksono
@@ -559,6 +715,8 @@ eo:
   find_places: Trovi Lokojn
   find_species: Trovi Specion
   finished: Finita
+  finished_with_page: Finita Kun Paĝo
+  first_report: unua raporto
   flag: Flago
   flag_it!: Flagi ĝin!
   flag_this_photo: Flagi Tiun Foton
@@ -574,20 +732,39 @@ eo:
   flickr_photos: Fotoj ĉe Flickr
   flickr_style: Flickr-stila
   flickr_tags: Etikedoj ĉe Flickr
+  follow: Aboni
+  follow_user: Aboni uzanton %{user}
+  followed_projects: Abonataj Projektoj
+  follower: abonanto
+  followers: Abonantoj
+  following: Abonante
+  following_x_people:
+    one: Abonante 1 Homon
+    other: Abonante %{count} Homojn
   for: por
   for_a_taxon: por taksono
+  for_more_information: por pli da informo.
+  formatting: Aranĝado
   forgot_your_password: Ĉu forgesis vian pasvorton?
   forum: Forumo
   forum_categories:
     bug_reports: Raportoj pri Cimo
     feature_requests: Petoj por Trajto
+    tutorials: Lerniloj
   frequency: Ofteco
   fri: ven
+  from_list: De listo
+  from_photos: De fotoj
+  from_place: De loko
   full_screen: Plenekrane
+  general: Ĝenerale
   Genus: Genro
   genus_slash_species: '[GENRO] / [SPECIO]'
   geoprivacy: Geografia privateco
   geoprivacy_is_private: Geografia privateco estas privata
+  get_started: Komenci
+  getting_started: Komencado
+  getting_started_guide: Lernilo pri Komencado
   go: Ek
   go_back: Reen
   google: Google
@@ -595,8 +772,12 @@ eo:
   gray: griza
   green: verda
   grey: griza
+  group: Grupo
+  grouping: Grupigado
+  guess_description: Konjekto / Priskribo
   guides: Gvidiloj
   guide_compiled_by: Gvidilo farita de
+  has_one_or_more_faves: Havas Unu aŭ Pli da Favoratoj
   has_photo: Havas Foton
   has_photos: Havas Fotojn
   has_photo_and_sound: Havas Kaj Foton Kaj Sonon
@@ -605,6 +786,7 @@ eo:
   has_sounds: Havas Sonojn
   help: Helpo
   help_faq: Helpo / Oftaj Demandoj
+  hex_color_eg: Deksesuma koloro, ekz. 65644F
   hi: Saluton,
   hi_user: Saluton %{user}
   hide: Kaŝi
@@ -614,12 +796,26 @@ eo:
   home: Ĉefpaĝo
   home_faq: Oftaj demandoj
   hybrid: hibrido
+  i_agree_to_the_project_terms: Mi konsentas kondiĉojn de la projekto
+  i_dont_know_but_i_am_sure_this_is_taxon: Mi ne certas, sed mi certas ke ĉi tiu estas
+    %{taxon}
   icon: Ikono
   icon_size: Grando de ikono
   icon_slash_photo: Ikono / Foto
   identify: Identigi
   identify_title: Identigi
+  identification: Identigo
+  identification_by_user: Identigo far %{user}
+  identification_deleted: Identigo foriĝis.
+  identification_saved: Identigo konserviĝis!
+  identification_summary: Resumo de Identigo
+  identification_updated: Identigo aktualiĝis!
+  identifications: Identigoj
+  identifications_by: Identigoj far %{user}
   identified?: identigita
+  ids: Identigoj
+  ids_made_for_others: Identigoj por aliuloj
+  if_you_use: Se vi uzas
   ignore: ignori
   ignore_and_continue: Ignori kaj daŭrigi
   import: Enporti
@@ -630,10 +826,17 @@ eo:
   info: Informo
   insects: insektoj
   insect_life_stage: Insekta Vivstadio
+  internal_server_error: Interna Servila Eraro
   internal_taxon: Interna taksono
   invasive: Adventica
+  invitation: Invito
+  invitations: Invitoj
   invite: inviti
+  invite_more: Inviti plu
   invite_people: Inviti homojn
+  invite_to_project: Inviti al projekto
+  invite_your_friends: Inviti viajn amikojn
+  inviting: Invitante...
   iphone: iPhone
   is_now: estas nun
   it: Ĝi
@@ -645,10 +848,14 @@ eo:
   join_this_project: Aliĝi al ĉi tiu projekto
   joined!: Aliĝis!
   joining: Aliĝanta...
+  journal: Ĵurnalo
   journal_post: Ĵurnala afiŝo
   journal_posts: Ĵurnalaj Afiŝoj
+  jpg_png_or_gif: JPG, PNG, aŭ GIF
+  jump_to_letter: Salti al litero
   just_added!: Ĵus aldonita!
   keep_editing: Daŭrigi modifi
+  kelp_diatoms_and_allies: Brunalgoj, diatomeoj, kaj parencoj
   kml: KML-dosiero
   label_colon: '%{label}:'
   labels: Etikedoj
@@ -709,6 +916,7 @@ eo:
   license: Permesilo
   life: Vivo
   life!: Vivo!
+  life_list: Vivolisto de %{user}
   linear_scale_label: Linia
   link: Ligilo
   linkedin: LinkedIn
@@ -722,6 +930,8 @@ eo:
     title:
       current_user: Viaj listoj
       login: Listoj far %{login}
+  loading_full_description_html: Ŝargante plenan priskribon...
+  loading_wikipedia_description: Ŝargante priskribon laŭ Vikipedio...
   locales:
     ar: araba
     bg: bulgara
@@ -835,6 +1045,7 @@ eo:
   naturalised: naturigita
   naturalized: naturigita
   native: indiĝena
+  ne_lat: Latitudo NE
   near: apud
   nearby: Apude
   new: Nova
@@ -864,6 +1075,9 @@ eo:
   "no": Ne
   no_but_it_is_a_member_of_taxon: Ne, sed ĝi estas ano de %{taxon}
   no_description: Neniu priskribo
+  no_favorites_added:
+    current_user: Vi ne jam favoras ion ajn.
+    user: '%{user} ne jam favoras ion ajn.'
   no_members_yet: Ankoraŭ neniu ano.
   no_messages_yet: Ankoraŭ neniu mesaĝo
   no_news_yet: Ankoraŭ neniu novaĵo
@@ -885,6 +1099,15 @@ eo:
   observations: Observoj
   observations_: observoj
   observations_added_by_x_html: Observoj aldonitaj de %{x}
+  observations_by: Observoj far
+  observations_by_everyone: Observoj far ĉiu ajn
+  observations_by_user: Observoj far %{user}
+  observations_from_you: Observoj far vi
+  observed_by: Observita de
+  observed_on: Observita je
+  observer: Observinto
+  observers: Observintoj
+  observer_short: Observinto
   observing: observanta
   occurrence_status_levels:
     common: ofta
@@ -900,6 +1123,8 @@ eo:
   official_blog: Oficiala Rettaglibro
   ok: Bone
   on_date: je %{date}
+  on_list?: en listo
+  on_your_life_list: en via vivolisto
   only_species: nur specio
   only_you: Nur vi
   open: malfermi
@@ -907,14 +1132,22 @@ eo:
   open_street_map: OpenStreetMap
   or: aŭ
   or_all_caps: AŬ
+  or_you_can: Aŭ vi povas...
+  or_you_can_: aŭ vi povas
   orange: oranĝkolora
+  order: Ordo
+  order_by: Ordigi laŭ
+  organisms: Organismoj
   original: Originalo
+  original_url: Originala retadreso
+  original_url_for_this_map: Originala retadreso de ĉi tiu mapo
   other: Alia
   other_animals: aliaj bestoj
   other_lexicons: Aliaj Terminaroj
   other_names: Aliaj Nomoj
   our_blog: Nia Rettaglibro
   overview: Superrigardo
+  owner: Posedanto
   password: Pasvorto
   password_confirmation: Konfirmo de pasvorto
   paste: Alglui
@@ -935,6 +1168,9 @@ eo:
     medium: meza
     large: granda
     original: originala
+  pick_a_username: Elekti uzantnomon
+  pin_verb: Alpingli
+  pink: roza
   place: Loko
   place_geo:
     geo_planet_place_types:
@@ -950,6 +1186,8 @@ eo:
       continent: kontinento
       Country: Lando
       country: lando
+      County: Kantono
+      county: kantono
       District: Distrikto
       district: distrikto
       Governorate: Gubernio
@@ -1257,6 +1495,7 @@ eo:
   powered_by: Funkcias per
   powered_by_inaturalist_open_source_software_html: Funkciante per <a href="https://github.com/inaturalist/inaturalist"
     target="_new" >malfermitkoda programaro iNaturalist</a>
+  press: Gazetaro
   preview: Antaŭrigardi
   previous_page: Antaŭa paĝo
   previous_photo: Antaŭa Foto
@@ -1265,6 +1504,8 @@ eo:
   privacy: Privateco
   private: privata
   private_: Privata
+  processing: Traktado
+  processing3p: Traktante...
   profile: Profilo
   project: Projekto
   project_group_label: Grupo
@@ -1275,6 +1516,9 @@ eo:
   project_id: Identigilo de Projekto
   project_members: Projektanoj de %{project}
   project_name: Nomo de projekto
+  project_observations: Observoj de Projekto
+  project_post: Afiŝo de Projekto
+  project_requirements: Postuloj de Projekto
   project_rules: Reguloj de Projekto
   project_settings: Agordoj de projekto
   project_was_successfully_created: Sukcese kreis projekton.
@@ -1283,10 +1527,13 @@ eo:
   projects_from_everywhere: Projektoj Ĉie Ajn
   projects_from_place: Projektoj ĉe %{place}
   projects_in_x: Projektoj en %{x}
+  projects_you_admin: Projektoj Administrataj de Vi
+  projects_youve_joined: Projektoj al Kiuj Vi Aliĝis
   protozoans: protozooj
   public_domain: Publika Havaĵo
   publish: Publikigi
   purple: purpura
+  query: Informpeto
   radius: Radiuso (m)
   radius_value: 'Radiuso (m): %{radius}'
   random: Hazarda
@@ -1314,6 +1561,7 @@ eo:
     tribe: Tribo
     subtribe: Subtribo
     genus: Genro
+    genushybrid: Generhibrido
     subgenus: Subgenro
     section: Sekcio
     subsection: Subsekcio
@@ -1322,6 +1570,7 @@ eo:
     hybrid: Hibrido
     subspecies: Subspecio
     form: Formo
+  ray_finned_fishes: aktinopterigoj
   read_more: Legi Plu
   reason: Kialo
   reason_label: 'Kialo:'
@@ -1332,6 +1581,7 @@ eo:
   recently_active: Ĵus Aktiva
   recently_finished: Ĵus Finita
   red: ruĝa
+  refresh: Refreŝigi
   refreshing: refreŝiganta
   reject?: Ĉu malakcepti?
   relationship: Rilato
@@ -1341,6 +1591,7 @@ eo:
   remove: Forigi
   remove_all_tags: Forigi ĉiujn etikedojn
   remove_from: Forigi el
+  remove_from_list: Forigi el listo
   remove_photo: Forigi Foton
   remove_place: Forigi Lokon
   remove_relationship: Forigi Rilaton
@@ -1348,8 +1599,12 @@ eo:
   removed: Forigita
   removed!: Forigita!
   removing: Foriganta...
+  replace_parentesis: (anstataŭigi)
   reply: Respondi
   reptiles: reptilioj
+  required: deviga
+  required_: Deviga
+  required_field: deviga kampo
   resolver_said_x_html: <span class="meta">%{resolver} diris,</span> "%{x}"
   restore: Restarigi
   restoring: Restariganta...
@@ -1357,6 +1612,7 @@ eo:
   review_verb: Revizii
   reviewed: Reviziita
   role: Rolo
+  row_singular_or_plural: Vico(j)
   rule_must_be: Regulo devas esti...
   rules_types:
     must_be_on_list: devas esti en listo
@@ -1366,8 +1622,10 @@ eo:
   satellite: satelito
   save: Konservi
   save_all: Konservi Ĉion
+  save_changes: Konservi Ŝanĝojn
   save_colors: Konservi Kolorojn
   save_comment: Konservi komenton
+  save_draft: Konservi Malneton
   save_fields: Konservi kampojn
   save_flag: Konservi flagon
   save_observation: Konservi observon
@@ -1376,10 +1634,15 @@ eo:
   save_trip: Konservi vojaĝon
   saved: Konservita
   saving: Konservante...
+  saving_verb: Konservado
+  scale_colon: 'Skalo:'
+  schemes: Skemoj
+  scientific_names: Sciencaj nomoj
   search: Serĉi
   search_for_new_taxa: serĉi Novajn Taksojn
   search_for_species: Serĉi Specion
   search_list: Serĉi Liston
+  search_obs: Serĉi observojn...
   search_places: Serĉi Lokojn
   search_projects: Serĉi Projektojn
   search_species: Serĉi Speciojn
@@ -1387,6 +1650,7 @@ eo:
   search_taxa: Serĉi taksonojn...
   search_the_map: Serĉi la mapon
   search_this_taxon: serĉi tiun taksonon
+  searching: Serĉante...
   seasonality: Sezoneco
   second_person_possessive_singular: Via %{noun}
   second_person_possessive_singular_: Via %{noun}
@@ -1394,14 +1658,22 @@ eo:
   seen_one: Ĉu vidis unu?
   select: Elekti
   select_all: Elekti Ĉiujn
+  select_an_album: Elekti Albumon
+  select_at_least_one: Elektu Almenaŭ Unu
   select_none: Elekti Neniun
+  select_options: Elekti Opciojn
   selected: elektita
   selected_photos: Elektitaj fotoj
   selected_taxon: Elektita Taksono
   select_this_taxon: Elekti Tiun Taksonon
   send: sendi
+  send_invite: Invitit
+  send_invites_to: Sendi invitojn al
+  send_the_invites: Sendi la Invitojn
   sending: Sendante...
   sent: Sendita
+  separate_values_with_a_pipe: Apartigu valorojn per vertikalo, ekz. "1-5|6-10|multe"
+    aŭ "jes|ne|eble"
   september: septembro
   settings: Agordoj
   share: Diskonigi
@@ -1417,30 +1689,51 @@ eo:
   similar_taxa: Similaj Taksonoj
   simple: Simpla
   sign_in_exclamation: Ensalutu!
+  single_observation: Unuopa observo
   sizes: Grandoj
+  skip_to_next_page: Salti al sekva paĝo
   small: malgranda
+  site_admin_tools: Retejaj administriloj
+  site_name_place: loko de %{site_name}
+  site_staff: Skipo de %{site_name}
   site_stats: Statistiko pri la Retejo
   so_meta!: kiel metaa!
   some_people: Iuj
   some_people_that: Iuj kiuj
+  some_rights_reserved: iuj rajtoj rezervitaj
   something: Io
   something_: io
   somewhere_on_earth: ie sur Tero
   somewhere: (Ie...)
+  sorry_you_cant_delete_your_own_life_list: Domaĝe, vi ne povas forigi vian propran
+    vivoliston.
   sort: Ordigi
   sort_by: Ordigi Laŭ
   sounds:
+    add_sounds: Aldoni sonojn
     import_sounds: Enporti Sonojn
     listen: Aŭskulti
+    no_photos_sounds: Neniu foto aŭ sono
     photos_sounds: Fotoj / Sonoj
     selected_sounds: Elektitaj sonoj
     sound: Sono
     sounds: Sonoj
   source: Fonto
   source_: 'Fonto:'
+  source_wikipedia: 'Fonto: Vikipedio'
+  source_list_: Listo de Fontoj
   source_list:
+    ubio: uBio
     catalogue_of_life: Katalogo de Vivo
+    inaturalist: iNaturalist
     new_zeland_organisms_register: Nov-Zelanda Registro de Organismoj
+    nzbrn_birds: Birdoj de NZBRN
+    nzbrn_fungi: Fungoj de NZBRN
+    nzbrn_herpetofauna: Amfibioj kaj reptilioj de NZBRN
+    nzbrn_invertebrates: Senvertebruloj de NZBRN
+    nzbrn_mammals: Mamuloj de NZBRN
+    nzbrn_plants: Plantoj de NZBRN
+    nzbrn_other: Aliaj vivuloj de NZBRN
   source_eg:
     title: 'ekz. Snakes: The Evolution of Mystery in Nature'
     in_text: ekz. Greene, 2000
@@ -1448,34 +1741,62 @@ eo:
     citation: 'ekz. Greene, Harry W. Snakes: The Evolution of Mystery in Nature (Serpentoj:
       La Evoluo de Misterio en Naturo). 1a eld. Eldonejo de la Universitato de Kalifornio,
       1997. Presita.'
+  source_unknown: Nekonata fonto
   source_url: Fonta retadreso
   sources: Fontoj
+  spam: Trudmesaĝo
+  spammer: Trudmesaĝisto
   spanish: hispana
   species: Specio
   species_by_category: specioj laŭ kategorio
+  species_guess: konjekto pri specio
   species_header: Specio
   species_name: nomo de specio
   species_name_cap: Nomo de specio
   species_names: nomoj de specioj
+  species_or_lower: specio aŭ pli malaltranga
+  species_search: Serĉado de Specioj
   species_taxon_name: Nomo de Specio aŭ Taksono
   species_unknown: nekonata specio
+  src: Fonto
+  standard: Norma
+  start: Komenci
+  start_a_new_list: Krei Novan Liston
+  start_a_new_project: Fondi Novan Projekton
+  start_a_project: Fondi Projekton
+  start_date_time: Komencaj Dato / Tempo
+  start_new_account: Krei Novan Konton
+  start_new_project: Fondi Novan Projekton
+  start_one: Fondi
+  start_one_now: Fondi Nun!
+  start_typing_field_name: Ektajpu nomon de kampo...
+  start_typing_place_name: Ektajpu nomon de loko...
+  start_typing_taxon_name: Ektajpu nomon de taksono...
+  start_typing_someones_name: Ektajpu ies nomon...
   states: Ŝtatoj
   stats: Statistiko
   stats_title: Statistiko pri Retejo
   status: Stato
   submit: Sendi
   submit_comment: Komenti
+  submitted: Sendita
   subscribe_to_a_taxon: Aboni Taksonon
   subscribe_to_a_place: Aboni Lokon
   subscribe_to_this: Aboni ĉi tion
+  subscribe_to_this_observation: Aboni ĉi tiun observon
   subscriptions: Abonoj
   suggestions: Sugestoj
   summary: Resumo
   sun: dim
+  sw_lat: Latitudo SU
+  sw_lon: Longitudo SU
+  sync: Ĉu sinkronigi?
+  sync_with_eol: Sinkronigi kun EdV
   synonyms: Sinonimoj
   table: Tabelo
   table_of_contents: Enhavtabelo
   tag: Etikedo
+  tagging: Aldonante etikedon...
   tags: Etikedoj
   take_me_facebook: Jes, ek al Facebook!
   take_me_flickr!: Jes, ek al Flickr!
@@ -1518,7 +1839,10 @@ eo:
   there_were_errors: Eraroj okazis.
   theres_also: ankaŭ estas
   this: ĉi tiu
+  this_bioblitz_beings_in: Ĉi tiu biofulmado komencas en
   this_is_a: Ĉi tio estas
+  this_is_a_life_list_of: Jen la vivolisto de
+  this_is_a_life_list_of_taxon_in_place: Jen vivolisto de %{taxon} en %{place}
   this_list_is_empty!: Tiu listo estas malplena!
   this_observation: Tiu observo
   this_species: la specio
@@ -1526,6 +1850,7 @@ eo:
   thu: ĵaŭ
   time_: tempo
   title: titolo
+  title_and_description: Titolo & Priskribo
   to: al
   to_: al
   to_recipient: al
@@ -1546,6 +1871,7 @@ eo:
   unpublish: Malpublikigi
   unreview: Malrevizii
   unsubscribe: Malaboni
+  upcoming_bioblitzes: Okazontaj biofulmadoj
   update: Ĝisdatigi
   upload: Alŝuti
   upload_photo: Alŝuti Foton
@@ -1556,6 +1882,7 @@ eo:
   US_states: Usonaj Ŝtatoj
   user: Uzanto
   user_autocomplete_placeholder: kueda, simon123, ktp.
+  user_faved_a_noun_by_owner: '%{user} favoras %{noun} far %{owner}'
   username: Uzantnomo
   username_or_email: Uzantnomo aŭ retpoŝta adreso
   users: Uzantoj
@@ -1585,9 +1912,12 @@ eo:
   view_your_dashboard: Vidi vian stirpanelon
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>Vidi vian stirpanelon</a>
     por pli da ĝisdatigoj
+  view_your_life_list: Vidi vian vivoliston
   w_photos_only: kun fotoj
   w_sounds: kun sonoj
   want_to_add_one: Volas aldoni?
+  want_to_show_off_some_of_your_favorite_taxa: Ĉu vi volas prezenti kelkajn favoratajn
+    taksonojn ĉi tie?
   weather: Vetero
   website: Retejo
   wed: mer
@@ -1613,6 +1943,7 @@ eo:
   where_were_they?: Kie ili estis?
   where_were_you?: Kie vi estis?
   white: blanka
+  wikipedia_taxobox_raquo: Vikipedia taksonkarto &raquo;
   with: kun
   with_errors: Kun eraroj
   worldwide: Tutmonda
@@ -1641,6 +1972,7 @@ eo:
   you_arent_a_member_of_that_project: Vi ne estas projektano de tiu projekto.
   you_cant_flag_that: Vi ne povas flagi ĝin
   you_dont: Vi ne
+  you_faved_this: Vi favoras ĉi tion!
   you_have_to: Vi devas
   you_havent: Vi ne jam
   you_joined_this_project: Vi aliĝis al tiu projekto!
@@ -1680,51 +2012,109 @@ eo:
         what_is_inaturalist?: Kio estas %{site_name}?
         what_are_tags?: Kio estas etikedoj?
         what_is_geoprivacy?: Kio estas geografia privateco?
+        what_is_a_life_list?: Kio estas vivolisto?
+    messages:
+      from: De
+      to: Al
+      subject: Temo
+      subject_body: Temo / Enhavo
     observations:
       community_id:
+        agreement: Akordo
         algorithm_summary: Resumo de Algoritmo
+      export:
+        receive_an_email_with_your_data: Ricevi retmesaĝon kun via dateno
+        receive_an_email_with_your_data_help: Vi ricevos retmesaĝon, kunsenditan kun
+          via elportaĵo
+        well_email_you: Bone, ni retmesaĝos vin kiam ĝi estas preta.
+      field_descriptions:
+        time_zone: Horzono de observo
+        latitude: Publike videbla latitudo
+        longitude: Publike videbla longitudo
       import:
         date_column_format: JJJJ-MM-TT HH:MM
+        decimal_degrees_format: dd.dddd
+    photos:
+      inviter:
+        automatically_add_to_project: Aŭtomate aldoni en projekton
     projects:
       project_type: Tipo de Projekto
       collection: Kolekto
       umbrella: Ombrelo
+      tracks_multiple_projects: spuras plurajn projektojn
       projects_included: Inkluzivitaj Projektoj
       edit:
+        end_time_desc: Fina tempo por via biofulmado. Devas esti malpli ol unu jaro
+          post la komenca tempo
         rules:
           georeferenced: havi koordinatojn
           has_a_photo: havi foton
           has_a_sound: havi sonon
           in_taxon: esti en taksono
+        start_time_desc: 'Komenca tempo de via biofulmado. Formo: JJJJ-MM-TT[la litero
+          T]hh:mm:ss±hh:mm'
         submission_models:
           any: ajnulo
+          curators: kuratoroj de projekto
       new:
+        data_visualizations: Bildigoj de dateno
         delete_project: Forigi Projekton
+        display_project_name: Montri nomo de projekto
+        leaderboards_among_individuals: Ĉampionejo inter <strong>individuoj</strong>
+        leaderboards_among_projects_and_bioblitzes: Ĉampionejoj inter <strong>projektoj</strong>
+        multiple_project_administrators: Pluraj projektaj administrantoj
+        name_placeholder: Birdoj de Ĉikago, Mirindaj Libeloj, ktp.
         project_details: Detaloj de Projekto
         project_icon: Projekta Ikono (PNG, JPG, aŭ GIF)
         project_name: Nomo de Projekto
         project_summary: Resumo de Projekto
+        start_and_end_times_for_bioblitzes: Komenca kaj fina datoj/tempoj (por eventoj
+          kiel biofulmadoj)
+        umbrella_project_features: 'Trajtoj de Ombrela Projekto:'
+        welcome_to_projects: Bonvenon al Projektoj!
       project_user_curator_coordinate_access_labels:
         none: Ne.
     stats:
+      index:
+        obs_1_day: Observoj (1 tago)
+        TTCID: TTCID
+        TTID: TTID
       year:
         include_usa: Inkluzivi Usonon
         growth_title: Kresko
+        obs_in_year: Observoj en %{year}
     taxa:
       show:
         frequency:
           Flowering Phenology=bare: Sen floro
           Life Stage=egg: Ovo
           Life Stage=larva: Larvo
+          Life Stage=teneral: Tenera imagino
+          Life Stage=subimago: Subimagino
           Life Stage=nymph: Nimfo
           Life Stage=pupa: Pupo
           Life Stage=adult: Adolto
+        trending_desc: Plej ofte observitaj taksonoj dum lasta monato
     users:
       edit:
         project_addition_preferences:
           any: Ajna
+          joined: Projektoj al kiuj vi aliĝis
       recent:
         about_recent_users: Pri
+    user_parents:
+      confirm:
+        thanks_for_creating_a_minor_account: DANKON PRO KREADO DE KONTO POR INFANO!
+      new:
+        child_name_private: Nomo de infano (privata)
+        create_a_minor_account: Krei Konton por Infano
+        create_minor_account: Krei Konton por Infano
+        parent_name_private: Nomo de patro aŭ patrino aŭ zorganto (privata)
+        parent_email: Retpoŝta adreso de patro aŭ patrino aŭ zorganto (privata)
+        inaturalist_minor_account_signup: Registrado de Konto por Infano ĉe iNaturalist
+        parent_information_private: Informo pri Patro aŭ Patrino (privata)
+        step1_title: KREI KONTON POR VIA INFANO
+        step2_title: KONFIRMI VIAN IDENTECON PER KREDITKARTO
     welcome:
       index:
         connect_with_nature: Konektiĝi kun Naturo
@@ -1736,9 +2126,11 @@ eo:
         share_with_fellow_naturalists: Diskonigi al aliaj naturistoj
         discuss_your_findings: Diskuti viajn trovaĵojn
         contribute_to_science: Kontribui al Scienco
+        keep_track: Spuri
         create_useful_data: Krei Utilan Datenon
         become_a_citizen_scientist: Estiĝi Civitano-Sciencisto
         learn_about_nature: Lerni pri Naturo
+        run_a_bioblitz: Organizi Biofulmadon
         works_on_all_your_devices: Ni Funkcias kun Ĉiuj Viaj Aparatoj
         who_uses_site_name: Kiu Uzas %{site_name}?
         what_are_you_waiting_for: Kial vi hezitus?
@@ -1785,6 +2177,7 @@ eo:
       default: '%Y-%m-%d'
       long: '%e-a de %B %Y'
       short: '%e %b'
+      short_with_year: '%b-a de %B, %Y'
       month_year: '%B %Y'
       month_day_year: '%e-a de %B %Y'
     month_names:
@@ -1802,7 +2195,28 @@ eo:
       12: decembro
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: ĉirkaŭ 1 horo
+        other: ĉirkaŭ %{count} horoj
+      about_x_months:
+        one: ĉirkaŭ 1 monato
+        other: ĉirkaŭ %{count} monatoj
+      about_x_years:
+        one: ĉirkaŭ 1 jaro
+        other: ĉirkaŭ %{count} jaroj
+      almost_x_years:
+        one: preskaŭ 1 jaro
+        other: preskaŭ %{count} jaroj
       half_a_minute: duono de minuto
+      less_than_x_minutes:
+        one: malpli ol unu minuto
+        other: malpli ol %{count} minutoj
+      less_than_x_seconds:
+        one: malpli ol 1 sekundo
+        other: malpli ol %{count} sekundoj
+      over_x_years:
+        one: pli ol 1 jaro
+        other: pli ol %{count} jaroj
       x_days:
         one: 1 tago
         other: '%{count} tagoj'
@@ -1835,7 +2249,11 @@ eo:
       second: Sekundoj
       year: Jaro
   errors:
+    format: '%{attribute} %{message}'
     messages:
+      accepted: devas esti akceptita
+      blank: ne povas esti malplena
+      empty: ne povas esti malplena
       even: devas esti para
       invalid: ne estas valida
       not_a_number: ne estas nombro
@@ -1853,18 +2271,30 @@ eo:
   number:
     currency:
       format:
+        delimiter:  
+        format: '%u%n'
         precision: "2"
+        separator: ','
+        unit: €
     format:
+      delimiter:  
       precision: "3"
+      separator: ','
     human:
       decimal_units:
+        format: '%n %u'
         units:
           billion: Miliardo
           million: Miliono
           quadrillion: Duiliardo
           thousand: Mil
           trillion: Duiliono
+      format:
+        precision: "3"
+        significant: "1"
+        strip_insignificant_zeros: "1"
       storage_units:
+        format: '%n %u'
         units:
           byte:
             one: bitoko
@@ -1883,12 +2313,17 @@ eo:
     pm: ptm
   activemodel:
     errors:
+      format: '%{attribute} %{message}'
       messages:
+        accepted: devas esti akceptita
         even: devas esti para
+        greater_than: devas esti pli granda ol %{count}
+        greater_than_or_equal_to: devas esti ne malpli granda ol %{count}
         invalid: ne estas valida
         not_a_number: ne estas nombro
         not_an_integer: devas esti entjero
         odd: devas esti nepara
+        record_invalid: 'Konfirmado de valideco malsukcesis: %{errors}'
   activerecord:
     models:
       Atlas: Atlaso
@@ -1917,45 +2352,66 @@ eo:
         value: valoro
       post:
         title: Titolo
+        body: Enhavo
       project:
         title: Titolo
         project_icon: Ikono de projekto
         project_type: Tipo de projekto
         description: Priskribo
+        end_time: Fina tempo
+        terms: Kondiĉoj
         map_type: Tipo de mapo
         zoom_level: Zomnivelo
+        source_url: Retadreso de fonto
+        start_time: Komenca tempo
+      project_observation:
+        user_id: Aŭtoro
       place:
         code: Kodo
         latitude: Latitudo
         longitude: Longitudo
         name: Nomo
+        parent_id: patro
         place_type: Tipo de loko
+        woeid: WOEID
       source:
         title: Titolo
         in_text: En teksto
+        url: Retadreso
         citation: Citaĵo
       taxon:
         name: Nomo
+        rank: Rango
+        locked: Ŝlosita
+        auto_photos: Aŭtomataj fotoj
         auto_description: Aŭtomata priskribo
         wikipedia_title: Vikipedia titolo
         wikipedia_summary: Resumo ĉe Vikipedio
         source_identifier: Identigilo de fonto
         source_url: Fonta retadreso
       taxon_name:
+        name_provider: Provizanto de nomo
         source_url: Fonta retadreso
+        source_identifier: Identigilo de fonto
       user:
         email: Retpoŝta adreso
         login: Uzantnomo
         name: Nomo
+        locale: Lokaĵaro
         time_zone: Horzono
         place_id: Loko
     errors:
       messages:
         even: devas esti para
+        greater_than: devas esti pli granda ol %{count}
+        greater_than_or_equal_to: devas esti ne malpli granda ol %{count}
         invalid: ne estas valida
+        less_than: devas esti malpli granda ol %{count}
+        less_than_or_equal_to: devas esti ne pli granda ol %{count}
         not_a_number: ne estas nombro
         not_an_integer: devas esti entjero
         odd: devas esti malpara
+        record_invalid: 'Konfirmado de valideco malsukcesis: %{errors}'
       models:
         application:
           attributes:
@@ -1970,6 +2426,32 @@ eo:
           attributes:
             place_geometry:
               is_too_large_to_import: estas tro granda por enportado
+        project_observation:
+          attributes:
+            base:
+              project_does_not_allow_observations: Projekto ne permesas observojn
+            user_id:
+              must_be_curator: devas esti kuratoro de ĉi tiu projekto
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: ne povas enhavi pli ol %{max} fotoj
+        user:
+          attributes:
+            email:
+              must_look_like_an_email_address: devas ŝajni retpoŝta adreso
+  doorkeeper:
+    flash:
+      applications:
+        create:
+          notice: Aplikaĵo kreiĝis.
+        destroy:
+          notice: Aplikaĵo foriĝis.
+        update:
+          notice: Aplikaĵo ĝisdatiĝis.
+      authorized_applications:
+        destroy:
+          notice: Aplikaĵo revokiĝis.
   i18n:
     inflections:
       :@vow_or_con:
@@ -1980,6 +2462,7 @@ eo:
         f: ina
   wild: Sovaĝa
   will_paginate:
+    previous_label: '&#8592; Antaŭen'
     next_label: Sekva &#8594;
     page_gap: '&hellip;'
   zoom_in: Enzomi

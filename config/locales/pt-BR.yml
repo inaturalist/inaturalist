@@ -8,6 +8,7 @@
 # Author: Cashirota
 # Author: Cgalindo
 # Author: Cristofer Alves
+# Author: Deivisony
 # Author: Eduardo Addad de Oliveira
 # Author: Fasouzafreitas
 # Author: Felipe L. Ewald
@@ -172,6 +173,20 @@ pt-BR:
   about_this_bioblitz: Sobre este bioblitz
   about_this_map: Sobre este mapa
   about_this_project: Sobre este Projeto
+  about_trips_html: <h4>Viagens permitem a coleção de dados de presença-ausência por
+    adicionar contexto as suas observações</h4><p><strong>Por quê</strong> Dado de
+    presença-ausência inclui informação sobre esforço de amostragem que é útil para
+    analises cientificas como modelagem de distribuição (Observações cruas do iNaturalist
+    são dados de "somente-presença").</p> <p><strong>Como</strong> Uma viagem adiciona
+    contexto as suas observações por recordar:</p> <ul> <li><strong>O que</strong>
+    você pesquisou (lista alvo)</li> <li><strong>Onde</strong> você pesquisou (área
+    de pesquisa)</li> <li><strong>Quando</strong> você pesquisou (intervalo de pesquisa)</li>
+    </ul> <p>Especies da lista alvo que você conseguiu observar dentro da área de
+    pesquisa e intervalo são interpretadas como presenças. Enquanto espécies da sua
+    lista alvo que não foi capaz de observar são interpretadas como ausências. Clique
+    'Tabular Dados de Presença-Ausência De Viagens' para gerar uma tabela de registros
+    de presença-ausência para espécies de viagens e observações associadas. <a href='%{url}'>Saber
+    mais</a></p>
   about_x: Sobre %{x}
   acc: Precisão exata - Acurácia (m)
   account: Conta
@@ -883,9 +898,9 @@ pt-BR:
     identificar se assemelha.
   check_out_your_life_list: Reveja sua Lista de Vida
   check_this_box_if_html: |-
-    Selecione esta caixa caso queira aplicar a
+    Marque esta caixa caso queira aplicar uma
     <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-    as suas fotos. Você pode escolher uma licença diferente ou remover a licença mais tarde, ma esta é a melhor opção para comaprtilhar seus registros com os pesquisadores.
+     no conteúdo enviado. Isso significa que que qualquer um pode copiar e reutilizar suas fotos e/ou observações sem pedir permissão contanto que lhe deem credito e não usem os trabalhos comercialmente. Você pode escolher uma licença diferente ou remover a licença mais tarde, mas esta é a melhor licença para comaprtilhar seus registros com os pesquisadores.
   checklist: Checklist
   checklists: Checklists
   checklist_places: Lugares com checklists disponíveis.
@@ -4335,6 +4350,49 @@ pt-BR:
   taxon: Táxon
   taxon_autocomplete_placeholder: Aves, monarca, etc.
   taxon_is_a_rank: '%{taxon} é uma %{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} é um %{rank} em %{iconic_taxon} com 1 observação'
+    other: '%{taxon} é um %{rank} em %{iconic_taxon} com %{count} observações'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: '%{taxon} é um %{rank} com 1 observação'
+    other: '%{taxon} é um %{rank} com %{count} observações'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} é um %{rank} de pássaros com 1 observação'
+    other: '%{taxon} é um %{rank} de pássaros com %{count} observações'
+  taxon_is_a_rank_of_mammalia_with_x_observations:
+    one: '%{taxon} é um %{rank} de mamíferos com 1 observação'
+    other: '%{taxon} é um %{rank} de mamíferos com %{count} observações'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon} é um %{rank} de répteis com 1 observação'
+    other: '%{taxon} é um %{rank} de répteis com %{count} observações'
+  taxon_is_a_rank_of_plantae_with_x_observations:
+    one: '%{taxon} é um %{rank} de plantas com 1 observação'
+    other: '%{taxon} é um %{rank} de plantas com %{count} observações'
+  taxon_is_a_rank_of_actinopterygii_with_x_observations:
+    one: '%{taxon} é um %{rank} de peixes de nadadeiras raiadas com 1 observação'
+    other: '%{taxon} é um %{rank} de peixes de nadadeiras raiadas com %{count} observações'
+  taxon_is_a_rank_of_animalia_with_x_observations:
+    one: '%{taxon} é um %{rank} de animais com 1 observação'
+    other: '%{taxon} é um %{rank} de animais com %{count} observações'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon} é um %{rank} de insetos com 1 observação'
+    other: '%{taxon} é um %{rank} de insetos com %{count} observações'
+  taxon_is_a_rank_of_arachnida_with_x_observations:
+    one: '%{taxon} é um %{rank} de aracnídeos com 1 observação'
+    other: '%{taxon} é um %{rank} de aracnídeos com %{count} observações'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon} é um %{rank} de fungi com 1 observação'
+    other: '%{taxon} é um %{rank} de fungi com %{count} observações'
+  taxon_is_a_rank_of_protozoa_with_x_observations:
+    one: '%{taxon} é um %{rank} de protozoários com 1 observação'
+    other: '%{taxon} é um %{rank} de protozoários com %{count} observações'
+  taxon_is_a_rank_of_mollusca_with_x_observations:
+    one: '%{taxon} é um %{rank} de moluscos com 1 observação'
+    other: '%{taxon} é um %{rank} de moluscos com %{count} observações'
+  taxon_is_a_rank_of_chromista_with_x_observations:
+    one: '%{taxon} é um %{rank} no Chromista (algas pardas e aliados) com 1 observação'
+    other: '%{taxon} é um %{rank} no Chromista (algas pardas e aliados) com %{count}
+      observações'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} é um reino com uma observação'
     other: '%{taxon} é um reino com %{count} observações'
@@ -5478,6 +5536,11 @@ pt-BR:
           Estados Unidos da América.
         </p>
       post_donate_social_media_text: Eu apoio o iNaturalist porque...
+    flags:
+      show:
+        flags_that_should_not_be_resolved_desc_html: Por favor resolva bandeirass
+          de <code>spam</code> e de <code>violação de copyright</code> somente se
+          o conteúdo não for spam ou não for uma infração do copyright, respectivamente.
     guides:
       index:
         funding_html: Os recursos financeiros para o desenvolvimento destes Guias
@@ -5981,16 +6044,14 @@ pt-BR:
           A coluna de geoprivacidade deve estar em inglês e deve estar em branco ou ter
           valor de "obscurecido" ou "privado"
         google_photos_notice_html: |-
-          Em fevereiro de 2019, o Google mudou sua API, tornando impossível
-          nos para acessar coordenadas GPS, informações de licença, e quase qualquer
+          Em fevereiro de 2019, o Google mudou sua API, tornando impossível para nós acessarmos coordenadas de GPS, informações de licença, e quase qualquer
           informação que poderíamos usar para adicionar uma identificação (como tags). Eles
-          também removeu pesquisa de texto e paginação numérica. Você ainda pode
-          importar fotos, mas elas não incluirão informações de localização ou
-          informações de licença que você pode ver no Google Fotos.
-          Você pode ler mais sobre isso em
-          <a href="https://developers.google.com/picasa-web">https://developers.google.com/picasa-web</a>.
-          Fazendo o download dos arquivos originais e adicionando-os usando o
-          <a href="/observations/upload">Uploader</a> é a melhor solução alternativa.
+          também removeram a pesquisa por texto e a paginação numérica. Em cima disto, Eles requerem a todas contas conectadas a dar uma permissão adicional,
+          e antes que um terceiro possa solicitar esta permissão aos usuários a parte terceira precisa ser verificada. Nós estamos esperando a verificação, mas até lá, você não poderá importar fotos do Google.
+          Se nós formos aprovados, você poderá importar fotos, mas elas não incluirão nenhuma informações de localidade ou licença que você possa ver no Google Fotos. Você pode ler mais sobre isto em <a
+          href="https://developers.google.com/picasa-
+          web">https://developers.google.com/picasa-web</a>. Baixando os arquivos originais e adicionando eles usando o <a
+          href="/observations/upload">Uploader</a> é a melhor solução alternativa.
         project_csv_template_notice_html: Existe um arquivo modelo para este projeto
           que pode pode ajudá-lo com a estrutura do arquivo CSV. <a href="%{url}">Faça
           o download do arquivo modelo</a>
@@ -6221,6 +6282,7 @@ pt-BR:
           da pesquisa se tornem informais se não tiverem mais fotos.
         we_included_links: Incluímos links para as fotos afetadas abaixo.
       user_parent_confirmation:
+        subject: A conta iNaturalista do seu filho foi ativada
         content_html: "<p>\nObrigado por criar uma conta iNaturalist para o seu filho!
           o\n   conta foi ativada. Aqui estão os detalhes que você digitou\n   nós
           temos no registro:\n</p>\n<ul>\n  <li><strong>Nome do pais ou responsável

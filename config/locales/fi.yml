@@ -1,6 +1,7 @@
 # Messages for Finnish (suomi)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Antsa
 # Author: Cancelion
 # Author: Cruzan
 # Author: Mikahama
@@ -4230,6 +4231,8 @@ fi:
           hämärtää omien havaintojesi koordinaatit. Katso <a href="#geoprivacy">sijainnin
           tietosuoja</a> yläpuolella.
         what_is_a_life_list?: Mikä on elämäluettelo?
+    messages:
+      to: Johonkin/jollekin/määränpää
     observations:
       community_id:
         agreement: Yksimielisyys
@@ -4531,6 +4534,9 @@ fi:
           lisätäksesi toisen.
       recent:
         about_recent_users: Tietoja
+    user_parents:
+      new:
+        create_a_minor_account: Luo uusi käyttäjä
     welcome:
       index:
         connect_with_nature: Vietä aikaa luonnossa

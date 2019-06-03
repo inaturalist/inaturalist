@@ -3806,7 +3806,7 @@ nl:
   remove_place: Verwijder afbeelding
   remove_project_user: Verwijder projectgebruiker
   remove_range: Reeks verwijderen
-  remove_relationship: Verwantschap verwijderen
+  remove_relationship: Relatie verwijderen
   remove_section: Verwijder sectie
   remove_selected: Selectie verwijderen
   remove_tags: Labels verwijderen
@@ -5834,6 +5834,8 @@ nl:
       subject: Onderwerp
       subject_body: Onderwerp / Tekst
       index:
+        show_messages_from_user: Toon berichten van %{user}
+        show_messages_to_user: Toon berichten aan %{user}
         speech_privilege_notice: Je kunt nieuwe berichten verzenden nadat je er drie
           verifieerbare waarnemingen hebt toegevoegd of drie determinaties voor anderen
           hebt gedaan. Nu kun je alleen berichten lezen en beantwoorden die andere
@@ -5997,8 +5999,10 @@ nl:
       show:
         allow_curator_coordinate_access_desc_html: Sta toe dat projectcuratoren de
           verborgen coördinaten van deze waarneming kunnen bekijken.
-        ancestor_disagreements_desc: '# geïdentificeerde taxa die behoren tot de voorouders
-          van een taxon, maar zijn gemaakt na de eerste determinatie met dit taxon'
+        ancestor_disagreements_desc: '# gedetermineerde taxa die behoren tot de voorouders
+          van een taxon, maar die niet overeenkomen met het taxon ("Ik denk dat het
+          in het geslacht (genus) hoort maar ik ben het oneens dat het deze soort
+          is")'
         community_taxon_desc_html: |-
           <p class="ui">
             Het community taxon (of gemeenschapstaxon) is de determinatie van het afgebeelde taxon door de %{site_name} gemeenschap in de waarneming. Als je geïnteresseerd bent in hoe we het community taxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in algemeen proberen we <strong>een taxon te kiezen waar meer dan 2/3 is van de ID's onder valt</strong>. Dit betekent dat soms een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat wat de sooort niet eens (u denkt bijvoorbeeld dat het een Lampropeltis is en ik denk dat het ratelslang is, dan kiest iNat voor de suborde Serpentes die alle slangen omvat). Het algoritme bevooroordeeld enigzins de afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden vaak gelijk hebben.
@@ -6159,6 +6163,8 @@ nl:
           foto's zijn verwijderd en het is mogelijk dat sommige waarnemingen van "onderzoekskwaliteit(RG)"
           naar "onvolledig(casual)" gaan als ze geen foto's meer hebben.
         we_included_links: We hebben links naar de betreffende foto's hieronder toegevoegd.
+      user_parent_confirmation:
+        subject: Het account van je kind is geactiveerd
       users_updates_suspended:
         message: Je bent al een tijdje inactief op %{site_name}, dus we hebben je
           abonnementen opgeschort. Als je weer nieuwtjes over de activiteiten op de
