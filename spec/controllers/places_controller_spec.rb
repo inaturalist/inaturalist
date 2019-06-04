@@ -66,17 +66,26 @@ describe PlacesController do
       expect( p.place_geometry ).to_not be_nil
     end
 
-    it "does not allow non admins to create huge places" do
+    it "does not allow non-admins to update places to make them huge" do
       p = Place.make!(user: user)
       sign_in user
-      place_count = Place.count
       put :update, id: p.id, place: {
         name: "Test non-admin geojson",
         latitude: 30,
         longitude: 30
       }, geojson: test_place_geojson(:huge)
       expect( response ).not_to be_redirect
-      expect( Place.count ).to eq place_count
+    end
+
+    it "does not allow non-admins to update places that are already huge" do
+      p = make_place_with_geom( user: user, wkt: "MULTIPOLYGON(((0 0,0 10,10 10,10 0,0 0)))" )
+      sign_in user
+      put :update, id: p.id, place: {
+        name: "Test non-admin geojson",
+        latitude: 30,
+        longitude: 30
+      }, geojson: test_place_geojson
+      expect( response ).not_to be_redirect
     end
 
     it "allows admins to create huge places" do

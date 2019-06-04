@@ -2643,6 +2643,8 @@ en:
   only_site_curators_can_turn_on_observation_aggregation: Only site curators can turn on project aggregation
   only_species: only species
   only_species_and_subspecies: only species and subspecies/varieties
+  only_staff_can_edit_large_places: Only site staff can edit very large places
+  only_staff_can_edit_standard_places: Only site staff can edit places in the standard hierarchy
   only_the_author_of_this_post_can_do_that: Only the author of this post can do that. Don't be evil.
   only_the_owner_of_this_list_can_do_that: Only the owner of this list can do that.  Don't be evil.
   only_the_project_admin_can_delete_this_project: Only the project admin can delete this project.
@@ -7254,6 +7256,7 @@ en:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: is too large to edit
               is_too_large_to_import: is too large to import
               contains_too_many_observations: contains too many observations to import
         post:
