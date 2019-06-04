@@ -39,11 +39,19 @@ class FriendshipsController < ApplicationController
   end
 
   def update
-    # render_404 unless @friendship = Friendship.find_by_id( params[:id] )
-    @friendship.update_attributes( approved_params )
-    respond_to do |format|
-      format.html { redirect_back_or_default( person_path( current_user ) ) }
-      format.json { render json: { friendship: @friendship } }
+    if @friendship.update_attributes( approved_params )
+      respond_to do |format|
+        format.html { redirect_back_or_default( person_path( current_user ) ) }
+        format.json { render json: { friendship: @friendship } }
+      end
+    else
+      respond_to do |format|
+        format.html do
+          flash[:error] = @friendship.errors.full_messages.to_sentence
+          redirect_back_or_default( person_path( current_user ) )
+        end
+        format.json { render status: :unprocessable_entity, json: @friendship.errors.full_messages.to_sentence }
+      end
     end
   end
 

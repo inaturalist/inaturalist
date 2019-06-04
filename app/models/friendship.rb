@@ -11,8 +11,12 @@ class Friendship < ActiveRecord::Base
   blockable_by lambda {|friendship| friendship.user_id }
   blockable_by lambda {|friendship| friendship.friend_id }
 
-  after_update :remove_subscription_to_friend, if: Proc.new{|friendship| !friendship.following?}
-  after_update :create_subscription_after_update, if: Proc.new{|friendship| friendship.following?}
+  after_update :remove_subscription_to_friend, if: Proc.new{|friendship|
+    friendship.following_changed? && !friendship.following?
+  }
+  after_update :create_subscription_after_update, if: Proc.new{|friendship|
+    friendship.following_changed? && friendship.following?
+  }
   after_destroy :remove_subscription_to_friend
   
   def no_self_love
@@ -25,7 +29,7 @@ class Friendship < ActiveRecord::Base
   end
 
   def create_subscription_after_update
-    Subscription.create!( user: user, resource: friend )
+    Subscription.create( user: user, resource: friend )
     true
   end
 
