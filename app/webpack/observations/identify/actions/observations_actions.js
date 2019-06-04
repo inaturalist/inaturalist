@@ -2,7 +2,7 @@ import iNaturalistJS from "inaturalistjs";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { fetchIdentifiers } from "./identifiers_actions";
 import { setConfig } from "./config_actions";
-import { showAlert } from "./alert_actions";
+import { showAlert, hideAlert } from "./alert_actions";
 import { paramsForSearch } from "../reducers/search_params_reducer";
 
 const RECEIVE_OBSERVATIONS = "receive_observations";
@@ -53,6 +53,21 @@ function fetchObservations( ) {
         } ) );
         dispatch( fetchObservationsStats( ) );
         dispatch( fetchIdentifiers( ) );
+      } ).catch( e => {
+        e.response.json( ).then( json => {
+          if ( json.error.match( /window is too large/ ) ) {
+            dispatch(
+              showAlert(
+                I18n.t( "views.observations.identify.too_many_results_desc" ),
+                {
+                  title: I18n.t( "too_many_results" ),
+                  onClose: dispatch( hideAlert( ) )
+                }
+              )
+            );
+          }
+        } );
+        // alert( msg );
       } );
   };
 }
