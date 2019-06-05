@@ -203,7 +203,10 @@ class Activity extends React.Component {
               firstDisplay = !taxonIDsDisplayed[item.taxon.id];
               taxonIDsDisplayed[item.taxon.id] = true;
             }
-            const first_ident_of_taxon = _.filter( _.sortBy( activity, ai => ai.id ), ai => ( _.intersection( ai.taxon.ancestor_ids, [item.taxon.id] ).length > 0 ) )[0];
+            let first_ident_of_taxon = null;
+            if (item.taxon) {
+              first_ident_of_taxon = _.filter( _.sortBy( _.filter( activity, ai => ( ai.taxon && ai.current ) ), ai => ai.id ), ai => ( _.intersection( ai.taxon.ancestor_ids, [item.taxon.id] ).length > 0 ) )[0];
+            }
             let identIsADisagreement = false;
             if ( first_ident_of_taxon && item.disagreement == null && item.id > first_ident_of_taxon.id ) {
               identIsADisagreement = true;
