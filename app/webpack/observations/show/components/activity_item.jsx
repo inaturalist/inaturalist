@@ -34,7 +34,8 @@ const ActivityItem = ( {
   noTaxonLink,
   onClickCompare,
   trustUser,
-  untrustUser
+  untrustUser,
+  implicitDisagreement
 } ) => {
   if ( !item ) { return ( <div /> ); }
   const { taxon } = item;
@@ -293,6 +294,19 @@ const ActivityItem = ( {
       />
     );
   }
+  if ( implicitDisagreement ) {
+    const footerText = I18n.t( "user_disagrees_with_previous_finer_identifications", {
+      user: ReactDOMServer.renderToString( userLink )
+    } );
+    footer = (
+      <span
+        className="title_text"
+        dangerouslySetInnerHTML={{
+          __html: `* ${footerText}`
+        }}
+      />
+    );
+  }
   const elementID = isID ? `activity_identification_${item.id}` : `activity_comment_${item.id}`;
   const itemURL = isID ? `/identifications/${item.id}` : `/comments/${item.id}`;
   return (
@@ -356,7 +370,8 @@ ActivityItem.propTypes = {
   noTaxonLink: PropTypes.bool,
   onClickCompare: PropTypes.func,
   trustUser: PropTypes.func,
-  untrustUser: PropTypes.func
+  untrustUser: PropTypes.func,
+  implicitDisagreement: PropTypes.bool
 };
 
 export default ActivityItem;
