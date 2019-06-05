@@ -215,15 +215,18 @@ class CommunityIdentification extends React.Component {
       taxonIsMaverick = (
         !obsTaxonAncestry.includes( taxonAncestry ) && !taxonAncestry.includes( obsTaxonAncestry )
       );
+      const first_ident_of_taxon = _.filter( sortedIdents, si => ( si.taxon.id == `${observation.communityTaxon.id}` ) )[0];
       _.each( sortedIdents, i => {
         const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
         if ( obsTaxonAncestry.includes( idAncestry ) || idAncestry.includes( obsTaxonAncestry ) ) {
           if ( obsTaxonAncestry.includes( idAncestry ) && obsTaxonAncestry !== idAncestry && i.disagreement ) {
             votesAgainst.push( i );
-          } else {
+          } else if ( first_ident_of_taxon && obsTaxonAncestry.includes( idAncestry ) && obsTaxonAncestry !== idAncestry && i.disagreement == null && i.id > first_ident_of_taxon.id ) {
+            votesAgainst.push( i );
+          } else if ( !observation.communityTaxon.ancestry.includes( i.taxon.id ) ) {
             votesFor.push( i );
           }
-        } else {
+        } else if ( !observation.communityTaxon.ancestry.includes( i.taxon.id ) ) {
           votesAgainst.push( i );
         }
       } );

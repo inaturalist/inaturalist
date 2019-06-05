@@ -1672,12 +1672,13 @@ class Observation < ActiveRecord::Base
             # sapiens, that implies disagreement with everything between
             # Homonidae and Homo sapiens (i.e. genus Homo), otherwise they would
             # have added an ID of genus Homo
-            disagreement_branch_taxon_ids = i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1]
+            disagreement_branch_taxon_ids = i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1] #comment to switch
             # puts "\t\tdisagreement_branch_taxon_ids: #{disagreement_branch_taxon_ids}"
             # So if the taxon under consideration is any of the taxa this
             # identification disagrees with, count it as a disagreement
             # puts "\t\t( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ): #{( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids )}"
-            ( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ).size > 0
+            ( id_taxon.self_and_ancestor_ids & disagreement_branch_taxon_ids ).size > 0 #comment to switch
+            #( id_taxon.self_and_ancestor_ids & [i.previous_observation_taxon_id] ).size > 0 #uncomment to switch
           elsif i.disagreement == nil
             i.id > first_ident_of_taxon.id && id_taxon.ancestor_ids.include?( i.taxon_id )
           end
