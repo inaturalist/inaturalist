@@ -146,7 +146,7 @@ class CommunityIDModal extends Component {
         } else if ( i.disagreement == null ) {
           _.each( taxa, t => {
             const first_ident_of_taxon = _.filter( _.sortBy( observation.identifications, oi => oi.id ), oi => ( oi.taxon.id == t.id ) )[0];
-            if ( i.id > first_ident_of_taxon.id && _.intersection( _.difference( t.ancestor_ids, [t.id] ), [i.taxon.id] ).length > 0 ) {
+            if ( first_ident_of_taxon && i.id > first_ident_of_taxon.id && _.intersection( _.difference( t.ancestor_ids, [t.id] ), [i.taxon.id] ).length > 0 ) {
               this.ancestorDisagreements[t.id] = this.ancestorDisagreements[t.id] || 0;
               this.ancestorDisagreements[t.id] += 1;
             }
