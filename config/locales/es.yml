@@ -7380,8 +7380,6 @@ es:
           other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
-        header:
-          other: un=1 error ha evitado que este %{model} se guarde
       models:
         application:
           attributes:
