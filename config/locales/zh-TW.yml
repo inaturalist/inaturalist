@@ -626,6 +626,7 @@ zh-TW:
   bg_color: 背景顏色
   bioblitz: Bioblitz
   birds: 鳥類
+  birthday: 生日
   black: 黑色
   block_user: 封鎖使用者
   block_removed: 封鎖已移除
@@ -878,6 +879,7 @@ zh-TW:
   contain_all_descendants?: 此清單是否包含所有出現於此的物種分類派生？
   contest: 比賽
   continue: 繼續
+  continue_to_site: 繼續 %{site_name}
   contributions: 貢獻
   contributions_from: 貢獻自
   contributor_cannot_be_found: 查無貢獻者
@@ -2616,6 +2618,9 @@ zh-TW:
   owner: 擁有者
   parent: 父級
   parent_name: 父名稱
+  parental_consent:
+    must_specify_email: 您必須指定電子郵件地址
+    invalid_email: 無效的電子郵件格式。
   password: 密碼
   password_confirmation: 密碼確認
   paste: 貼上
@@ -2672,6 +2677,9 @@ zh-TW:
   photos_size_photo: '%{photos_size} 張照片'
   photos_updated: 照片已更新
   google_account_not_linked: '%{user}不再有連結 Google 的帳號，因此 %{site_name} 沒有權限來使用此照片。'
+  pi_consent_desc_title: 關於個人資訊
+  pi_consent_label: 我同意允許讓 iNaturalist 儲存、處理關於我的有限個人資訊，以便管理我的帳號
+  pi_consent_child_label: 我同意允許讓 iNaturalist 儲存、處理關於我兒女的有限個人資訊，以便管理我兒女的帳號
   picasa_identity: Picasa 身份
   pick_a_username: 挑選一個用戶名稱
   pin_verb: 釘選
@@ -4424,6 +4432,10 @@ zh-TW:
   widget_code: 小工具代碼
   widget_for: 小工具用於
   will_be: 將會是
+  wikipedia_attribution_cc_by_sa_3: 來源：維基百科、"%{title}"、%{url}、CC BY-SA 3.0
+  wikipedia_attribution_cc_by_sa_3_html: 此篇來自於維基百科條目<a href="%{url}">"%{title}"</a>裡的內容，該基於<a
+    href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">創用 CC 姓名標示協議-相同方式分享
+    3.0 未本地化</a>授權條款所釋出。內容可能已從原始內容裡去除，但未有已更改或擴充的內容。
   wikipedia_entry: 維基百科項目
   wikipedia_taxobox_raquo: 維基百科 taxobox &raquo;
   with: 帶
@@ -4470,7 +4482,8 @@ zh-TW:
   "yes": 是
   yes_find_them!: 是的，找到它們！
   yes_i_want_to_join: 是的，我想加入
-  yes_license_my_observations_so_scientists_can_use: 是的，許可我的照片、聲音，與觀察來讓科學家們可使用我的資料！
+  yes_license_my_childs_observations: 是的，許可我兒女所做出的照片、聲音、與觀察，來讓科學家們可使用這些資料。
+  yes_license_my_observations_so_scientists_can_use: 是的，許可我所做出的照片、聲音、與觀察，來讓科學家們可使用這些資料。
   yes_reject_it: 是的，拒絕它
   yes_show_this_in_the_box: 是的，在物種分類頂端的大框內顯示此
   yesterday: 昨天
@@ -4865,7 +4878,13 @@ zh-TW:
       show:
         project_list_desc: 專案清單列出了由專案策展人所手動添加，以及代表著在專案裡研究等級觀察記錄的物種分類群。
     messages:
+      from: 發送人
+      to: 接收人
+      subject: 主旨
+      subject_body: 主旨 / 正文
       index:
+        show_messages_from_user: 顯示來自%{user}的訊息
+        show_messages_to_user: 顯示給%{user}的訊息
         speech_privilege_notice: 在您新增 3 個可驗證觀察、或是 3 個替別人所做的鑑定之後，您就可以發送新訊息。目前您可以閱讀和回覆別人發送給您的訊息。
     oauth:
       authorizations:
@@ -5072,6 +5091,8 @@ zh-TW:
       observations_export_notification:
         your_observations_export_is_ready_html: 您的觀察匯出已就緒。此電子郵件有夾帶副本，或是您可<a href="%{url}">下載您的匯出</a>。
         your_observations_export_failed_html: 您的觀察匯出失敗。請查看您所匯出清單的<a href="%{url}">觀察匯出頁面</a>。
+      parental_consent:
+        subject: 您的兒女想使用 iNaturalist
       photos_missing:
         subject: 一些照片需要回報問題
         we_have_been_housekeeping: 我們在管控時有發現到連接至您的觀察的一些照片，已無法從原有來源存取。那些照片已被%{providers}所託管。
@@ -5080,6 +5101,8 @@ zh-TW:
         you_can_attempt_repair: 您可以透過瀏覽照片頁面與點擊「%{repair_link_text}」連結來嘗試回報照片。若您曉得該照片已不存在，您可以選擇來刪除掉。
         please_address: 請在<b>接下來的 30 天裡</b>處理這些問題。超過 30 天候，我們將會從 iNaturalist 上刪除損毀的照片，但您所有的觀察仍會保留下來。照片在刪除後觀察會被重新評估，一些原本是研究等級的觀察有可能會因為缺少照片而降為粗略等級。
         we_included_links: 我們已包含下列受影響照片的連結。
+      user_parent_confirmation:
+        subject: 您兒女的 iNaturalist 帳號已啟用
       users_updates_suspended:
         message: 您有段時間在 %{site_name} 上不活躍，因此我們暫停了您的訂閱。要恢復取得在網站活動上的更新，請再次<a href="%{login_url}">登入您的帳號</a>。
     photos:
@@ -5212,7 +5235,7 @@ zh-TW:
       join:
         invite_only_description: 此專案的成員資格僅限於有獲得邀請。若您想加入，請聯絡下列任一策展人來請求一份邀請。
       new:
-        a_project_allows_you_to_gather: 收藏專案允許您使用 iNaturalist 搜尋工具來聚集並視覺化觀察。能自動將符合專案所設定參數內容的觀察給自動包含到，免去需手動添加的步驟。
+        a_project_allows_you_to_gather: 收藏專案允許您使用核心 iNaturalist 搜尋工具來聚集並視覺化觀察。相符由專案所設定參數的一切內容將會自動囊括。
         an_umbrella_project_can_be_used_to: 綜合專案可用來比較兩個或以上的收藏、傳統專案之間的統計內容。在您添加內容至綜合專案前，需要先有其它的專案存在。您可以在一個綜合專案裡加入上百個專案，但不可讓綜合專案含有別的綜合專案。
         can_be_included_in_multiple: 可包含在多項綜合專案
         click_through_to_individual_projects: 點擊至各項專案
@@ -5228,7 +5251,7 @@ zh-TW:
         leaderboards_among_projects_and_bioblitzes: <strong>專案</strong>排行榜
         multiple_project_administrators: 多項專案管理員
         name_placeholder: 在芝加哥的鳥類、令人驚豔的蜻蜓等等。
-        no_need_to_rely_on_manual_addition: 不需手動添加觀察額外內容，或是聚集來索引觀察
+        no_need_to_rely_on_manual_addition: 無手動添加觀察
         note_these_users_will_be_able_to_edit: 註：這些包含到管理員的使用者可以編輯所有專案細節。
         note_you_can_delete_the_time: （註：若您想包含一整天，您可以刪除時區以及準確時間。）
         or_drag_and_drop: （或是拖拉）
@@ -5245,14 +5268,16 @@ zh-TW:
         project_summary: 專案摘要
         project_summary_help: 簡要說明有關您的專案。大約前 200 個字會顯示在專案主螢幕橫幅的右側，因此請填入最精華的內容！
         project_summary_placeholder: 探索並追蹤在金門公園的鳥類...
-        start_and_end_times_for_bioblitzes: bioblitz 的起始與結束時間
+        start_and_end_times_for_bioblitzes: 起始與結束日期/時間（用於 bioblitz 類型活動）
         umbrella_project_features: 綜合專案特性：
         unique_url_for_outreach: 用於推廣的獨一 URL 地址
         users_can_follow_your_project: 使用者可透過日誌發布文章的更新來關注您的專案
         use_this_link_to_create_html: 使用<a href="%{url}">此連結</a>來改以建立傳統專案。
         visual_comparison_of_data_among: 此綜合專案下的視覺化專案資料比較
-        we_have_redesigned_projects: 我們將專案重新設計成能夠自動包含到所有符合您所定義到的地點、物種分類群、使用者、內容品質，以及日期條件的觀察。請選擇以下兩者類型其一：收藏專案或綜合專案，這些共有著以下特點：
+        we_have_redesigned_projects: 專案是設計成能夠自動包含到所有符合您所定義到的地點、物種分類群、使用者、內容品質，以及日期條件的觀察。請選擇以下兩者主要類型其一：收藏專案或綜合專案，這些共有著以下特點：
         welcome_to_projects: 歡迎來到專案！
+        you_can_learn_more_html: 您可以<a href="https://www.inaturalist.org/pages/managing-projects">在此</a>了解到更多關於管理專案，或是在<a
+          href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">我們的部落格</a>上閱讀專案的歷史。
         you_have_not_defined_any_observation_requirements: 您尚未定義任何觀察需求。請確認選擇一個或多個的物種分類群（例如：鳥類、毬果植物門）、地點（例如：巴西、黃石公園）、使用者與/或日期來定義您希望包含在您專案裡的觀察。
       project_location_privacy_notice_html: |-
         <p>
@@ -5448,6 +5473,7 @@ zh-TW:
           Life Stage=pupa: 蛹
           Life Stage=adult: 成體
           unannotated: 沒有註釋
+        max_photos_desc: 一個分類群最多僅能有 %{max} 張照片，您需要移除現有照片來添加別的。
         no_trending_desc: 在上個月裡此物種分類之下沒有被觀察到的事物
         photo_chooser_modal_desc: 從左方拖拉照片於此，或拖拉照片於此來重新排列。
         photo_chooser_modal_explanation: 註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。
@@ -5593,6 +5619,25 @@ zh-TW:
       show:
         take_a_chance_to_review_html: 來試試看<a href="%{link}">我們的指南</a>。
         this_user_was_banned: 此用戶已被停用
+    user_parents:
+      confirm:
+        thanks_for_creating_a_minor_account: 感謝建立次要帳號！
+        we_will_send_you_an_email: 一旦您兒女的帳號啟用後，我們會發送您一封電子郵件。
+      new:
+        child_name_private: 子女名稱（私人）
+        create_a_minor_account: 建立次要帳號
+        create_minor_account: 建立次要帳號
+        parent_name_private: 父母或法定監護人名稱（私人）
+        parent_email: 父母或法定監護人電子郵件（私人）
+        inaturalist_minor_account_signup: iNaturalist 次要帳號註冊
+        parent_information_private: 父母資訊（私人）
+        step1_title: 建立您子女用的帳號
+        step1_desc: 為了遵守隱私法規，我們需要得到父母或法定監護人的同意後，才能讓小於 13 歲的人建立帳號。若您想要讓您的兒女使用 iNaturalist，您必須提供我們一些身份與聯絡資訊。
+        step2_title: 以信用卡來確認您的身份
+        step2_desc: 為了確認您的身份是成年人，我們需要您使用信用卡來向 iNaturalist 做出額度至少 1 美元的名義上捐款。這是最不具侵略性、能允許我們遵守到隱私法規的身分驗證形式。另外請確認您使用的電子郵件地址，是和在上一步驟裡所輸入的「父母電子郵件」相同。
+        step3_title: 等待確認電子郵件
+        step3_donor_title: 您子女的帳號已啟用
+        step3_donor_desc: 因為您是 iNaturalist 捐款者，我們能以您現有的捐款內容來驗證您的身份。
     welcome:
       index:
         welcome_message_html: 來到 %{image} 是個可讓您<strong>記錄</strong>您在自然裡所見事物，與其他自然愛好者<strong>交流</strong>，以及<strong>學習</strong>關於自然世界的地方。
@@ -6019,6 +6064,10 @@ zh-TW:
               has_query_parameter: 不能含有查詢參數。
               invalid_uri: 必須為有效的 URL。
               relative_uri: 必須為絕對的 URI。
+        flag:
+          attributes:
+            user_id:
+              already_flagged: 已標記該項目
         guide:
           attributes:
             published_at:
@@ -6093,6 +6142,10 @@ zh-TW:
               must_begin_with_a_letter: 必須以字母為開頭，內容不可包含空格，開頭以外部份僅能使用字母、數字、連接號、底線
             email:
               must_look_like_an_email_address: 必須要看起來像電子郵件地址
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: 屬於一位現有的使用者，如果您擁有帳號麻煩請在處理前登入，或是使用不同的電子郵件地址
   doorkeeper:
     scopes:
       write: 創建、更新，和刪除您的觀察、鑑定、代表您本身的內容，以及存取您的隱藏座標與您可在網站上取用的資訊。

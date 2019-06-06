@@ -5430,6 +5430,10 @@ zh-CN:
               must_begin_with_a_letter: 必须以字母开头，没有空格，只能使用字母、数字、破折号和下划线
             email:
               must_look_like_an_email_address: 必须看起来像电子邮件地址
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: 如果您有帐户，请在继续之前签名，或使用不同的电子邮件地址。
   i18n:
     inflections:
       :@vow_or_con:
