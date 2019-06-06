@@ -14980,6 +14980,7 @@ I18n.translations["en"] = {
   "user_autocomplete_placeholder": "kueda, simon123, etc.",
   "user_commented": "%{user} commented",
   "user_disagrees_this_is_taxon": "%{user} disagrees this is %{taxon}",
+  "user_disagrees_with_previous_finer_identifications": "%{user} disagrees with previous finer identifications",
   "user_has_opted_out_of_community_id": "User has opted-out of Community ID",
   "user_helped_x_people_with_y_ids_html": "%{user} helped <strong>%{x} people</strong> with <strong>%{y} IDs</strong>",
   "user_suggested_an_id": "%{user} suggested an ID",
@@ -15036,7 +15037,7 @@ I18n.translations["en"] = {
       },
       "identify": {
         "review_all_tooltip": "Mark all observations on the page as reviewed",
-        "too_many_results_desc": "Page number times the number of results per page cannot exceed 10,000.\nTry applying filters to reduce the size of the results, or mark\nobservations as reviewed and use the \"View More\" button instead of\npagination\n",
+        "too_many_results_desc": "Page number times the number of results per page cannot exceed 10,000.\nTry applying filters to reduce the number of results, or mark\nobservations as reviewed and use the \"View More\" button instead of\npagination\n",
         "unreview_all_tooltip": "Remove reviewed status for all observations on the page",
         "you_reviewed_message": "You reviewed %{reviewed} of %{pageTotal} observations on this page out of %{total} matching observations."
       },

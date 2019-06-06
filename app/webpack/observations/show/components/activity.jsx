@@ -1,5 +1,6 @@
 import _ from "lodash";
 import React from "react";
+import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { Button, Tabs, Tab } from "react-bootstrap";
 import moment from "moment-timezone";
@@ -43,14 +44,15 @@ class Activity extends React.Component {
   }
 
   setUpMentionsAutocomplete( ) {
-    $( ".comment_id_panel textarea" ).textcompleteUsers( );
+    const domNode = ReactDOM.findDOMNode( this );
+    $( ".comment_id_panel textarea", domNode ).textcompleteUsers( );
   }
 
   currentUserIcon( ) {
     const { config } = this.props;
     return config ? (
       <div className="icon">
-        <UserImage user={ config.currentUser } />
+        <UserImage user={config.currentUser} />
       </div>
     ) : (
       <div className="icon"><div className="UserImage" /></div>
@@ -82,22 +84,28 @@ class Activity extends React.Component {
                 $( ".id_tab textarea" ).val( "" );
               }
             }
-          } }
+          }
+        }
       >
         { I18n.t( "done" ) }
       </Button> ) : null;
   }
 
   review( ) {
-    const { observation, config, review, unreview } = this.props;
+    const {
+      observation,
+      config,
+      review,
+      unreview
+    } = this.props;
     return config && config.currentUser ? (
       <div className="review">
         <input
           type="checkbox"
           id="reviewed"
           name="reviewed"
-          checked={ _.includes( observation.reviewed_by, config.currentUser.id ) }
-          onChange={ ( ) => {
+          checked={_.includes( observation.reviewed_by, config.currentUser.id )}
+          onChange={( ) => {
             if ( $( "#reviewed" ).is( ":checked" ) ) {
               review( );
             } else {
@@ -112,7 +120,12 @@ class Activity extends React.Component {
   }
 
   render( ) {
-    const { observation, config, commentIDPanel, setActiveTab } = this.props;
+    const {
+      observation,
+      config,
+      commentIDPanel,
+      setActiveTab
+    } = this.props;
     if ( !observation ) { return ( <div /> ); }
     const loggedIn = config && config.currentUser;
     const currentUserID = loggedIn && _.findLast( observation.identifications, i => (
@@ -135,7 +148,7 @@ class Activity extends React.Component {
       ? (
         <div className="form-group">
           <textarea
-            placeholder={ I18n.t( "leave_a_comment" ) }
+            placeholder={I18n.t( "leave_a_comment" )}
             className="form-control"
           />
         </div>
@@ -143,9 +156,16 @@ class Activity extends React.Component {
         <span className="log-in">
           <a href="/login">
             { I18n.t( "log_in" ) }
-          </a> { I18n.t( "or" ) } <a href="/signup">
+          </a>
+          { " " }
+          { I18n.t( "or" ) }
+          { " " }
+          <a href="/signup">
             { I18n.t( "sign_up" ) }
-          </a> { I18n.t( "to_add_comments" ) }.
+          </a>
+          { " " }
+          { I18n.t( "to_add_comments" ) }
+          { "." }
         </span>
       );
     const idContent = loggedIn
@@ -154,15 +174,16 @@ class Activity extends React.Component {
           <TaxonAutocomplete
             bootstrap
             searchExternal
-            perPage={ 6 }
-            resetOnChange={ false }
-            visionParams={ visionEligiblePhotos.length > 0 ?
-              { observationID: observation.id } : null }
-            config={ config }
+            perPage={6}
+            resetOnChange={false}
+            visionParams={
+              visionEligiblePhotos.length > 0 ? { observationID: observation.id } : null
+            }
+            config={config}
           />
           <div className="form-group">
             <textarea
-              placeholder={ I18n.t( "tell_us_why" ) }
+              placeholder={I18n.t( "tell_us_why" )}
               className="form-control"
             />
           </div>
@@ -171,23 +192,30 @@ class Activity extends React.Component {
         <span className="log-in">
           <a href="/login">
             { I18n.t( "log_in" ) }
-          </a> { I18n.t( "or" ) } <a href="/signup">
+          </a>
+          { " " }
+          { I18n.t( "or" ) }
+          { " " }
+          <a href="/signup">
             { I18n.t( "sign_up" ) }
-          </a> { I18n.t( "to_suggest_an_identification" ) }.
+          </a>
+          { " " }
+          { I18n.t( "to_suggest_an_identification" ) }
+          { "." }
         </span>
       );
     const tabs = (
       <Tabs
         id="comment-id-tabs"
-        activeKey={ commentIDPanel.activeTab }
-        onSelect={ key => {
+        activeKey={commentIDPanel.activeTab}
+        onSelect={key => {
           setActiveTab( key );
-        } }
+        }}
       >
-        <Tab eventKey="comment" title={ I18n.t( "comment_" ) } className="comment_tab">
+        <Tab eventKey="comment" title={I18n.t( "comment_" )} className="comment_tab">
           { commentContent }
         </Tab>
-        <Tab eventKey="add_id" title={ I18n.t( "suggest_an_identification" ) } className="id_tab">
+        <Tab eventKey="add_id" title={I18n.t( "suggest_an_identification" )} className="id_tab">
           { idContent }
         </Tab>
       </Tabs>
@@ -203,22 +231,34 @@ class Activity extends React.Component {
               firstDisplay = !taxonIDsDisplayed[item.taxon.id];
               taxonIDsDisplayed[item.taxon.id] = true;
             }
-            let first_ident_of_taxon = null;
-            if (item.taxon) {
-              first_ident_of_taxon = _.filter( _.sortBy( _.filter( activity, ai => ( ai.taxon && ai.current ) ), ai => ai.id ), ai => ( _.intersection( ai.taxon.ancestor_ids, [item.taxon.id] ).length > 0 ) )[0];
+            let firstIdentOfTaxon = null;
+            if ( item.taxon ) {
+              firstIdentOfTaxon = _.filter(
+                _.sortBy(
+                  _.filter( activity, ai => ( ai.taxon && ai.current ) ),
+                  ai => ai.id
+                ),
+                ai => ( _.intersection( ai.taxon.ancestor_ids, [item.taxon.id] ).length > 0 )
+              )[0];
             }
             let identIsADisagreement = false;
-            if ( first_ident_of_taxon && item.disagreement == null && item.id > first_ident_of_taxon.id ) {
+            if (
+              firstIdentOfTaxon
+              && item.disagreement == null
+              && item.id > firstIdentOfTaxon.id
+            ) {
               identIsADisagreement = true;
             }
-            return ( <ActivityItem
-              key={ `activity-${item.id}` }
-              item={ item }
-              currentUserID={ currentUserID }
-              firstDisplay={ firstDisplay }
-              implicitDisagreement={ identIsADisagreement }
-              { ...this.props }
-            /> );
+            return (
+              <ActivityItem
+                key={`activity-${item.id}`}
+                item={item}
+                currentUserID={currentUserID}
+                firstDisplay={firstDisplay}
+                implicitDisagreement={identIsADisagreement}
+                {...this.props}
+              />
+            );
           } ) }
         </div>
         { this.currentUserIcon( ) }
