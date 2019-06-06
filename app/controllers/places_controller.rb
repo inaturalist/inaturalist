@@ -22,7 +22,17 @@ class PlacesController < ApplicationController
 
   before_filter :allow_external_iframes, only: [:guide_widget, :cached_guide]
 
-  requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy]
+  requires_privilege :organizer, only: [:new, :create, :edit, :update, :destroy],
+    if: Proc.new{|c|
+      # Only check privileges if the current user didn't create the place, i.e.
+      # allow people to edit places they created even if they haven't earned the
+      # organizer privilege
+      if @place.blank?
+        true
+      else
+        current_user.id != @place.user_id
+      end
+    }
   protect_from_forgery unless: -> {
     request.parameters[:action] == "autocomplete" && request.format.json? }
 
@@ -192,7 +202,16 @@ class PlacesController < ApplicationController
   
   def edit
     # Only the admin should be able to edit places with admin_level
-    unless @place.admin_level.nil? or current_user.is_admin?
+    if !@place.admin_level.blank? && !current_user.is_admin?
+      flash[:error] = t(:only_staff_can_edit_standard_places)
+      redirect_to place_path(@place)
+      return
+    end
+
+    if !current_user.is_admin? &&
+        ( place_geometry = PlaceGeometry.where( place_id: @place.id ).select( "id, ST_Area(geom) AS area" ).first ) &&
+        place_geometry.area > Place::MAX_PLACE_AREA_FOR_NON_STAFF
+      flash[:error] = t(:only_staff_can_edit_large_places)
       redirect_to place_path(@place)
       return
     end
@@ -203,7 +222,11 @@ class PlacesController < ApplicationController
   
   def update
     if @place.update_attributes(params[:place])
-      if params[:file]
+      if !current_user.is_admin? &&
+          ( place_geometry = PlaceGeometry.where( place_id: @place.id ).select( "id, ST_Area(geom) AS area" ).first ) &&
+          place_geometry.area > Place::MAX_PLACE_AREA_FOR_NON_STAFF
+        @place.add_custom_error(:place_geometry, :is_too_large_to_edit)
+      elsif params[:file]
         assign_geometry_from_file
       elsif !params[:geojson].blank?
         @geometry = geometry_from_geojson(params[:geojson])
@@ -211,6 +234,7 @@ class PlacesController < ApplicationController
           @place.save_geom(@geometry, user: current_user) if @geometry
         end
       end
+
       if @place.errors.any?
         flash[:error] = t(:there_were_problems_importing_that_place_geometry,
           error: @place.errors.full_messages.join(', '))

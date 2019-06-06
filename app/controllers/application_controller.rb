@@ -12,6 +12,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :whitelist_params
   around_filter :set_time_zone
+  around_filter :logstash_catchall
   before_filter :return_here, :only => [:index, :show, :by_login]
   before_filter :return_here_from_url
   before_filter :preload_user_preferences
@@ -248,7 +249,21 @@ class ApplicationController < ActionController::Base
       yield
     end
   end
-  
+
+  def logstash_catchall
+    begin
+      yield
+    ensure
+      if status == 422
+        # Logstasher uses ActiveSupport::Notifications to write controller action
+        # logs, but it won't have access to the response there. This ensures
+        # that all requests with response status 422 get an additional log entry
+        # with the response body
+        Logstasher.write_unprocessable( request, response, session, current_user )
+      end
+    end
+  end
+
   def return_here_from_url
     return true if params[:return_to].blank?
     session[:return_to] = params[:return_to]

@@ -73,6 +73,7 @@ end
 @names_created = @names_existing = @name_errors = 0
 @ptn_created = @ptn_existing = @ptn_errors = 0
 @listed_taxa_created = 0
+@encountered_names = {}
 
 def save_common_names(taxon, common_names)
   common_names.in_groups_of(2) do |c1, c2|
@@ -85,6 +86,8 @@ def save_common_names(taxon, common_names)
     end
     next if name.blank?
     name = name.split(/[,;]/).first.strip
+    next if @encountered_names[name]
+    @encountered_names[name] = true
     if tn = taxon.taxon_names.where( name: name, lexicon: lexicon ).first
       @names_existing += 1
     else

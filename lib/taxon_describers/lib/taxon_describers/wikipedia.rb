@@ -14,9 +14,11 @@ module TaxonDescribers
       begin
         response = wikipedia.parse(:page => title, :redirects => true)
         return if response.nil?
-        parsed = response.at('text').try(:inner_text).to_s
+        parsed = response.at('text').try(:inner_text).to_s if response.at('text')
+        return if parsed.blank?
         decoded = clean_html(parsed) if parsed
-        page_title = response.at( "parse" )[:title]
+        return if decoded.blank?
+        page_title = response.at( "parse" )[:title] if response.at( "parse" )
       rescue Timeout::Error => e
         Rails.logger.info "[INFO] Wikipedia API call failed: #{e.message}"
       end

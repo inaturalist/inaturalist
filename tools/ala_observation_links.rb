@@ -29,7 +29,7 @@ obs_ids_to_index = []
 while true do
   url = "http://biocache.ala.org.au/ws/webportal/occurrences?facet=off&fq=data_resource_uid:#{data_resource_uid}&pageSize=#{maxresults}&startIndex=#{startindex}"
   puts url
-  data = JSON.parse(open(url).read)
+  data = JSON.parse( RestClient.get( url, { "User-Agent" => Site.default.name } ).body )
   occurrences = data['occurrences']
   break if occurrences.size == 0
   occurrences.each do |to|

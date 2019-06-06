@@ -179,6 +179,8 @@ class Place < ActiveRecord::Base
   PARK_LEVEL = 10
   ADMIN_LEVELS = [CONTINENT_LEVEL, COUNTRY_LEVEL, STATE_LEVEL, COUNTY_LEVEL, TOWN_LEVEL, PARK_LEVEL]
 
+  MAX_PLACE_AREA_FOR_NON_STAFF = 66.0
+
   scope :dbsearch, lambda {|q| where("name LIKE ?", "%#{q}%")}
   
   scope :containing_lat_lng, lambda {|lat, lng|
@@ -497,7 +499,7 @@ class Place < ActiveRecord::Base
     end
     # 66 is roughly the size of Texas
     if other_attrs[:user] && !other_attrs[:user].is_admin?
-      if geom.respond_to?(:area) && geom.area > 66.0
+      if geom.respond_to?(:area) && geom.area > MAX_PLACE_AREA_FOR_NON_STAFF
         add_custom_error(:place_geometry, :is_too_large_to_import)
         return false
       elsif Observation.where("ST_Intersects(private_geom, ST_GeomFromEWKT(?))", geom.as_text).count >= 500000
