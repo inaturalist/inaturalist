@@ -2678,6 +2678,8 @@ zh-TW:
   photos_updated: 照片已更新
   google_account_not_linked: '%{user}不再有連結 Google 的帳號，因此 %{site_name} 沒有權限來使用此照片。'
   pi_consent_desc_title: 關於個人資訊
+  pi_consent_label: 我同意允許讓 iNaturalist 儲存、處理關於我的有限個人資訊，以便管理我的帳號
+  pi_consent_child_label: 我同意允許讓 iNaturalist 儲存、處理關於我兒女的有限個人資訊，以便管理我兒女的帳號
   picasa_identity: Picasa 身份
   pick_a_username: 挑選一個用戶名稱
   pin_verb: 釘選
@@ -4431,6 +4433,9 @@ zh-TW:
   widget_for: 小工具用於
   will_be: 將會是
   wikipedia_attribution_cc_by_sa_3: 來源：維基百科、"%{title}"、%{url}、CC BY-SA 3.0
+  wikipedia_attribution_cc_by_sa_3_html: 此篇來自於維基百科條目<a href="%{url}">"%{title}"</a>裡的內容，該基於<a
+    href="https://creativecommons.org/licenses/by-sa/3.0/deed.zh_TW">創用 CC 姓名標示協議-相同方式分享
+    3.0 未本地化</a>授權條款所釋出。內容可能已從原始內容裡去除，但未有已更改或擴充的內容。
   wikipedia_entry: 維基百科項目
   wikipedia_taxobox_raquo: 維基百科 taxobox &raquo;
   with: 帶
@@ -4477,7 +4482,8 @@ zh-TW:
   "yes": 是
   yes_find_them!: 是的，找到它們！
   yes_i_want_to_join: 是的，我想加入
-  yes_license_my_observations_so_scientists_can_use: 是的，許可我的照片、聲音、與觀察，來讓科學家們可使用我的資料。
+  yes_license_my_childs_observations: 是的，許可我兒女所做出的照片、聲音、與觀察，來讓科學家們可使用這些資料。
+  yes_license_my_observations_so_scientists_can_use: 是的，許可我所做出的照片、聲音、與觀察，來讓科學家們可使用這些資料。
   yes_reject_it: 是的，拒絕它
   yes_show_this_in_the_box: 是的，在物種分類頂端的大框內顯示此
   yesterday: 昨天
@@ -5467,6 +5473,7 @@ zh-TW:
           Life Stage=pupa: 蛹
           Life Stage=adult: 成體
           unannotated: 沒有註釋
+        max_photos_desc: 一個分類群最多僅能有 %{max} 張照片，您需要移除現有照片來添加別的。
         no_trending_desc: 在上個月裡此物種分類之下沒有被觀察到的事物
         photo_chooser_modal_desc: 從左方拖拉照片於此，或拖拉照片於此來重新排列。
         photo_chooser_modal_explanation: 註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。
