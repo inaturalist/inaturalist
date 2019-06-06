@@ -219,7 +219,10 @@ class CommunityIdentification extends React.Component {
       _.each( sortedIdents, i => {
         const idAncestry = `${i.taxon.ancestry}/${i.taxon.id}`;
         if ( obsTaxonAncestry.includes( idAncestry ) || idAncestry.includes( obsTaxonAncestry ) ) {
-          if ( obsTaxonAncestry.includes( idAncestry ) && obsTaxonAncestry !== idAncestry && i.disagreement ) {
+          if ( obsTaxonAncestry.includes( i.previous_observation_taxon_id  ) && obsTaxonAncestry !== idAncestry && i.disagreement ) {
+            if( i.previous_observation_taxon_id == 31 ){
+              console.log( obsTaxonAncestry );
+            }
             votesAgainst.push( i );
           } else if ( first_ident_of_taxon && obsTaxonAncestry.includes( idAncestry ) && obsTaxonAncestry !== idAncestry && i.disagreement == null && i.id > first_ident_of_taxon.id ) {
             votesAgainst.push( i );
