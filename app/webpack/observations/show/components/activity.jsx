@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import PropTypes from "prop-types";
 import { Button, Tabs, Tab } from "react-bootstrap";
 import moment from "moment-timezone";
+import { addImplicitDisagreementsToActivity } from "../../../shared/util";
 import TaxonAutocomplete from "../../uploader/components/taxon_autocomplete";
 import UserImage from "../../../shared/components/user_image";
 import ActivityItem from "./activity_item";
@@ -220,46 +221,19 @@ class Activity extends React.Component {
         </Tab>
       </Tabs>
     );
-    const taxonIDsDisplayed = { };
+    activity = addImplicitDisagreementsToActivity( activity );
     return (
       <div className="Activity">
         <h3>{ I18n.t( "activity" ) }</h3>
         <div className={`activity ${activity.length === 0 ? "empty" : ""}`}>
-          { activity.map( item => {
-            let firstDisplay;
-            if ( item.taxon && item.current ) {
-              firstDisplay = !taxonIDsDisplayed[item.taxon.id];
-              taxonIDsDisplayed[item.taxon.id] = true;
-            }
-            let firstIdentOfTaxon = null;
-            if ( item.taxon ) {
-              firstIdentOfTaxon = _.filter(
-                _.sortBy(
-                  _.filter( activity, ai => ( ai.taxon && ai.current ) ),
-                  ai => ai.id
-                ),
-                ai => ( _.intersection( ai.taxon.ancestor_ids, [item.taxon.id] ).length > 0 )
-              )[0];
-            }
-            let identIsADisagreement = false;
-            if (
-              firstIdentOfTaxon
-              && item.disagreement == null
-              && item.id > firstIdentOfTaxon.id
-            ) {
-              identIsADisagreement = true;
-            }
-            return (
-              <ActivityItem
-                key={`activity-${item.id}`}
-                item={item}
-                currentUserID={currentUserID}
-                firstDisplay={firstDisplay}
-                implicitDisagreement={identIsADisagreement}
-                {...this.props}
-              />
-            );
-          } ) }
+          { activity.map( item => (
+            <ActivityItem
+              key={`activity-${item.id}`}
+              item={item}
+              currentUserID={currentUserID}
+              {...this.props}
+            />
+          ) ) }
         </div>
         { this.currentUserIcon( ) }
         <div className="comment_id_panel">

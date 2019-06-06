@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import _ from "lodash";
+import { addImplicitDisagreementsToActivity } from "../../../shared/util";
 import ActivityItemContainer from "../containers/activity_item_container";
 
 const DiscussionList = ( { observation, currentUserID } ) => {
@@ -38,6 +39,7 @@ const DiscussionList = ( { observation, currentUserID } ) => {
     }
     return 0;
   } );
+  items = addImplicitDisagreementsToActivity( items );
   const taxonIDsDisplayed = {};
   return (
     <div className="DiscussionList">

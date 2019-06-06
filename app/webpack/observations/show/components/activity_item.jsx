@@ -22,7 +22,6 @@ const ActivityItem = ( {
   config,
   deleteComment,
   deleteID,
-  firstDisplay,
   restoreID,
   setFlaggingModalState,
   currentUserID,
@@ -34,8 +33,7 @@ const ActivityItem = ( {
   noTaxonLink,
   onClickCompare,
   trustUser,
-  untrustUser,
-  implicitDisagreement
+  untrustUser
 } ) => {
   if ( !item ) { return ( <div /> ); }
   const { taxon } = item;
@@ -57,7 +55,7 @@ const ActivityItem = ( {
     const buttons = [];
     let canAgree = false;
     let userAgreedToThis;
-    if ( loggedIn && item.current && firstDisplay && item.user.id !== config.currentUser.id ) {
+    if ( loggedIn && item.current && item.firstDisplay && item.user.id !== config.currentUser.id ) {
       if ( currentUserID ) {
         canAgree = currentUserID.taxon.id !== taxon.id;
         userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.id === item.id;
@@ -65,7 +63,7 @@ const ActivityItem = ( {
         canAgree = true;
       }
     }
-    if ( loggedIn && firstDisplay && !hideCompare ) {
+    if ( loggedIn && item.firstDisplay && !hideCompare ) {
       let compareTaxonID = taxon.id;
       if ( taxon.rank_level <= 10 ) {
         compareTaxonID = taxon.ancestor_ids[taxon.ancestor_ids.length - 1];
@@ -294,7 +292,7 @@ const ActivityItem = ( {
       />
     );
   }
-  if ( implicitDisagreement ) {
+  if ( item.implicitDisagreement ) {
     const footerText = I18n.t( "user_disagrees_with_previous_finer_identifications", {
       user: ReactDOMServer.renderToString( userLink )
     } );
@@ -361,7 +359,6 @@ ActivityItem.propTypes = {
   deleteComment: PropTypes.func,
   deleteID: PropTypes.func,
   restoreID: PropTypes.func,
-  firstDisplay: PropTypes.bool,
   setFlaggingModalState: PropTypes.func,
   linkTarget: PropTypes.string,
   hideCompare: PropTypes.bool,
@@ -370,8 +367,7 @@ ActivityItem.propTypes = {
   noTaxonLink: PropTypes.bool,
   onClickCompare: PropTypes.func,
   trustUser: PropTypes.func,
-  untrustUser: PropTypes.func,
-  implicitDisagreement: PropTypes.bool
+  untrustUser: PropTypes.func
 };
 
 export default ActivityItem;

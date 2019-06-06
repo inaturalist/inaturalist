@@ -79,6 +79,43 @@ function numberWithCommas( num ) {
   return I18n.toNumber( num, { precision: 0 } );
 }
 
+// "legacy disagreement" might be a better term here. Basically this is
+// "@loarie's code determining whether this would have been considered a
+// "disagreement before we introduced explicit disagreements
+const addImplicitDisagreementsToActivity = activity => {
+  const taxonIDsDisplayed = { };
+  return activity.map( item => {
+    let firstDisplay;
+    if ( item.taxon && item.current ) {
+      firstDisplay = !taxonIDsDisplayed[item.taxon.id];
+      taxonIDsDisplayed[item.taxon.id] = true;
+    } else {
+      return item;
+    }
+    let firstIdentOfTaxon = null;
+    if ( item.taxon ) {
+      firstIdentOfTaxon = _.filter(
+        _.sortBy(
+          _.filter( activity, ai => ( ai.taxon && ai.current ) ),
+          ai => ai.id
+        ),
+        ai => ( _.intersection( ai.taxon.ancestor_ids, [item.taxon.id] ).length > 0 )
+      )[0];
+    }
+    let implicitDisagreement = false;
+    if (
+      firstIdentOfTaxon
+      && item.disagreement == null
+      && item.id > firstIdentOfTaxon.id
+    ) {
+      implicitDisagreement = true;
+    }
+    item.firstDisplay = firstDisplay;
+    item.implicitDisagreement = implicitDisagreement;
+    return item;
+  } );
+};
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -116,5 +153,6 @@ export {
   resizeUpload,
   isBlank,
   numberWithCommas,
+  addImplicitDisagreementsToActivity,
   COLORS
 };
