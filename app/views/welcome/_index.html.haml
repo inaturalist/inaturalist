@@ -102,6 +102,14 @@
                 = link_to people_path, :class => "morelink explorelink" do
                   = t(:meet)
                   %i.icon-arrow-right
+  #info.homesection
+    .row
+      .col-xs-6{style: "padding-right: 29px;"}
+        .pull-right
+          %embed{src: image_path("https://static.inaturalist.org/wiki_page_attachments/1248-original.png"), width: 307}
+      .col-xs-6{style: "padding-left: 29px;"}
+        .pull-left
+          %p= t(:inaturalist_is_a_joint_initiative, :site_name => @site.name)
   #how.homesection
     .row
       .col-xs-12
