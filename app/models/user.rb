@@ -171,7 +171,7 @@ class User < ActiveRecord::Base
   has_many :user_privileges, inverse_of: :user, dependent: :delete_all
   has_one :user_parent, dependent: :destroy, inverse_of: :user
   has_many :parentages, class_name: "UserParent", foreign_key: "parent_user_id", inverse_of: :parent_user
-
+  has_many :moderator_actions, inverse_of: :user
   
   file_options = {
     processors: [:deanimator],

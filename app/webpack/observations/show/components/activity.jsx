@@ -241,7 +241,8 @@ Activity.propTypes = {
   unreview: PropTypes.func,
   onClickCompare: PropTypes.func,
   trustUser: PropTypes.func,
-  untrustUser: PropTypes.func
+  untrustUser: PropTypes.func,
+  showHidden: PropTypes.func
 };
 
 export default Activity;

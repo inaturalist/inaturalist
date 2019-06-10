@@ -13,13 +13,14 @@ class Comment < ActiveRecord::Base
 
   belongs_to :parent, polymorphic: true
   belongs_to :user
+  has_many :moderator_actions, as: :resource, dependent: :destroy
 
   validates_length_of :body, within: 1..5000
   validates_presence_of :parent
 
   after_create :update_parent_counter_cache
   after_destroy :update_parent_counter_cache
-  after_save :index_parent
+  after_touch :index_parent
   after_destroy :index_parent
 
   notifies_subscribers_of :parent, notification: "activity", include_owner: true
@@ -62,8 +63,14 @@ class Comment < ActiveRecord::Base
       created_at: created_at,
       created_at_details: ElasticModel.date_details(created_at),
       body: body,
-      flags: flags.map(&:as_indexed_json)
+      flags: flags.map(&:as_indexed_json),
+      moderator_actions: moderator_actions.map(&:as_indexed_json),
+      hidden: hidden?
     }
+  end
+
+  def hidden?
+    moderator_actions.sort_by(&:id).last.try(:action) == ModeratorAction::HIDE
   end
 
   def formatted_body

@@ -673,6 +673,7 @@ I18n.translations["ar"] = {
   "has_sounds": "لديه أصوات",
   "heads_up": "انتباه",
   "here_are_our_top_species_suggestions": "فيما يلي أهم اقتراحات الأنواع",
+  "hide": "إخفاء",
   "hide_running_total": "إخفاء تشغيل الاجمالي",
   "hide_uncountable_species": "إخفاء الأنواع التي لا تحصى",
   "high": "مرتفع",
@@ -2668,6 +2669,7 @@ I18n.translations["bg"] = {
   "has_sound": "Има звук",
   "has_sounds": "има звуци",
   "here_are_our_top_species_suggestions": "Ето нашите най-добри предложения за видове",
+  "hide": "Скриване",
   "history": "История",
   "id_categories": {
     "tooltips": {
@@ -3751,6 +3753,7 @@ I18n.translations["br"] = {
   "grey": "gris",
   "grid": "Kael",
   "grid_tooltip": "Diskwel ar gwel er mod kael",
+  "hide": "Kuzhat",
   "high": "uhel",
   "id_categories": {
     "tooltips": {
@@ -4767,6 +4770,7 @@ I18n.translations["ca"] = {
   "has_sounds": "Té sons",
   "heads_up": "Avís",
   "here_are_our_top_species_suggestions": "Aquí estan les principals espècies suggerides",
+  "hide": "Oculta",
   "hide_running_total": "Amagar el total acumulat",
   "hide_uncountable_species": "Amaga les espècies incomptables",
   "high": "Alta",
@@ -6706,6 +6710,7 @@ I18n.translations["cs"] = {
   "has_sounds": "má zvuky",
   "heads_up": "Pozor",
   "here_are_our_top_species_suggestions": "Toto jsou naše nejlepší návrhy k druhům",
+  "hide": "Skrýt",
   "hide_running_total": "Skrýt Running Total",
   "hide_uncountable_species": "Skrýt nespočitatelné druhy",
   "high": "vysoká",
@@ -8638,6 +8643,7 @@ I18n.translations["da"] = {
   "has_sounds": "Har lyde",
   "heads_up": "OBS",
   "here_are_our_top_species_suggestions": "Her er vores topforslag til art",
+  "hide": "Skjul",
   "hide_running_total": "Skjul igangværende total",
   "hide_uncountable_species": "Skjul arter der ikke medregnes",
   "high": "Høj",
@@ -10549,6 +10555,7 @@ I18n.translations["de"] = {
   "has_sounds": "mit Audio",
   "heads_up": "Achtung",
   "here_are_our_top_species_suggestions": "Hier unsere top Arten-Vorschläge",
+  "hide": "Ausblenden",
   "hide_uncountable_species": "Unzählbare Arten verstecken",
   "high": "Hoch",
   "history": "Geschichte",
@@ -12352,6 +12359,7 @@ I18n.translations["el"] = {
   "has_photos_or_sounds": "Έχει Φωτογραφίες ή Ήχους",
   "has_sound": "Έχει Ήχο",
   "has_sounds": "Έχει Ήχους",
+  "hide": "Απόκρυψη",
   "hide_uncountable_species": "Απόκρυψη μη μετρήσιμων ειδών",
   "high": "υψηλό",
   "history": "Ιστορικό",
@@ -13960,6 +13968,9 @@ I18n.translations["en"] = {
   "has_sounds": "Has Sounds",
   "heads_up": "Heads up",
   "here_are_our_top_species_suggestions": "Here are our top species suggestions",
+  "hidden": "Hidden",
+  "hide": "Hide",
+  "hide_desc": "Hiding content will remove it from public view, but people will still be\nable to see that something was hidden, and site curators and the author of\nthe content will still be able to see the hidden content. You cannot undo\nthis, and only site staff can unhide content once it has been hidden, so be\ncareful and only use this for very objectionable content.\n",
   "hide_running_total": "Hide Running Total",
   "hide_uncountable_species": "Hide Uncountable Species",
   "high": "High",
@@ -14671,6 +14682,8 @@ I18n.translations["en"] = {
   "plants": "plants",
   "please_allow_a_few_weeks_for_external_sites": "Please allow a few weeks for external sites to sync changes from this observation",
   "please_complete_the_following_to_add_project": "Please complete the following to add this observation to the project:\n",
+  "please_explain_why_you_want_to_hide_this": "Please explain why you want to hide this",
+  "please_explain_why_you_want_to_unhide_this": "Please explain why you want to unhide this",
   "popular": "Popular",
   "potential_disagreement": "Potential Disagreement",
   "prev": "Prev",
@@ -14944,6 +14957,8 @@ I18n.translations["en"] = {
   "type_species_name": "Type species name",
   "umbrella_projects": "Umbrella Projects",
   "unfollow": "Unfollow",
+  "unhide": "Unhide",
+  "unhide_desc": "Unhiding will reveal this content for everyone to see. Curators can still\nchoose to hide it again in the future.\n",
   "unknown": "Unknown",
   "unknown_error": "Unknown error",
   "unreview_all": "Unreview All",
@@ -14985,6 +15000,7 @@ I18n.translations["en"] = {
   "user_suggested_an_id": "%{user} suggested an ID",
   "user_trusts_you_with_their_private_coordinates": "%{user} trusts you with their hidden coordinates",
   "user_trusts_you_with_their_private_coordinates_desc": "The observer has chosen to trust you with the hidden coordinates of all\ntheir observations.\n",
+  "user_wrote_html": "<a href=\"%{url}\" target=\"_blank\">%{user}</a> wrote,",
   "username_or_user_id": "Username or User ID",
   "users": "Users",
   "users_comment_html": "<a href='%{url}'>%{user}</a>'s comment",
@@ -15036,7 +15052,7 @@ I18n.translations["en"] = {
       },
       "identify": {
         "review_all_tooltip": "Mark all observations on the page as reviewed",
-        "too_many_results_desc": "Page number times the number of results per page cannot exceed 10,000.\nTry applying filters to reduce the size of the results, or mark\nobservations as reviewed and use the \"View More\" button instead of\npagination\n",
+        "too_many_results_desc": "Page number times the number of results per page cannot exceed 10,000.\nTry applying filters to reduce the number of results, or mark\nobservations as reviewed and use the \"View More\" button instead of\npagination\n",
         "unreview_all_tooltip": "Remove reviewed status for all observations on the page",
         "you_reviewed_message": "You reviewed %{reviewed} of %{pageTotal} observations on this page out of %{total} matching observations."
       },
@@ -15915,6 +15931,7 @@ I18n.translations["eo"] = {
   "has_photos_or_sounds": "Havas Fotojn aŭ Sonojn",
   "has_sound": "Havas Sonon",
   "has_sounds": "Havas Sonojn",
+  "hide": "Kaŝi",
   "high": "Alta",
   "history": "Historio",
   "id_categories": {
@@ -17209,6 +17226,7 @@ I18n.translations["es"] = {
   "has_sounds": "Tiene sonidos",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Éstas son nuestras sugerencias principales de especies",
+  "hide": "Oculta",
   "hide_running_total": "Esconder Total Acumulado",
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "Alta",
@@ -18839,6 +18857,7 @@ I18n.translations["es-ES"] = {
   "grey": "gris",
   "grid": "Cuadrícula",
   "heads_up": "Aviso",
+  "hide": "Ocultar",
   "id_categories": {
     "tooltips": {
     }
@@ -19860,6 +19879,7 @@ I18n.translations["es-MX"] = {
   "has_sounds": "tiene sonidos",
   "heads_up": "Atención",
   "here_are_our_top_species_suggestions": "Éstas son nuestras mejores sugerencias de especies",
+  "hide": "Ocultar",
   "hide_running_total": "Esconder Total Acumulado",
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "alta",
@@ -21790,6 +21810,7 @@ I18n.translations["et"] = {
   "has_sounds": "On helidega",
   "heads_up": "Pane tähele",
   "here_are_our_top_species_suggestions": "Meie parimad liigipakumised",
+  "hide": "Peida",
   "hide_running_total": "Peida hetke koguarv",
   "hide_uncountable_species": "Peida loendamatud liigid",
   "high": "Kõrge",
@@ -23551,6 +23572,7 @@ I18n.translations["eu"] = {
   "has_sound": "Soinua dauka",
   "has_sounds": "soinuak dauzka",
   "heads_up": "Abisua",
+  "hide": "Ezkutatu",
   "history": "Historia",
   "id_categories": {
     "tooltips": {
@@ -24721,6 +24743,7 @@ I18n.translations["fi"] = {
   "has_sounds": "On ääniä",
   "heads_up": "Huomio",
   "here_are_our_top_species_suggestions": "Täällä ovat parhaimmat lajiehdotuksemme",
+  "hide": "Piilota",
   "hide_uncountable_species": "Piilota ei-laskettavat lajit",
   "high": "Korkea",
   "history": "Historia",
@@ -26451,6 +26474,7 @@ I18n.translations["fr"] = {
   "has_sounds": "A des sons",
   "heads_up": "Avertissement",
   "here_are_our_top_species_suggestions": "Voici les suggestions concernant nos espèces favorites",
+  "hide": "Masquer",
   "hide_running_total": "Masquer le total actuel",
   "hide_uncountable_species": "Masquer les espèces indénombrables",
   "high": "Haut",
@@ -28247,6 +28271,7 @@ I18n.translations["gl"] = {
   "grey": "Gris",
   "grid": "Cuadrícula",
   "heads_up": "Aviso",
+  "hide": "Ocultar",
   "id_categories": {
     "tooltips": {
     }
@@ -29606,6 +29631,7 @@ I18n.translations["id"] = {
   "has_photos": "Foto",
   "has_sounds": "Suara",
   "heads_up": "PENTING:",
+  "hide": "Sembunyikan",
   "high": "tinggi",
   "history": "Sejarah",
   "id_categories": {
@@ -30978,6 +31004,7 @@ I18n.translations["it"] = {
   "has_sounds": "Ha suoni",
   "heads_up": "Avviso",
   "here_are_our_top_species_suggestions": "Questi sono i nostri migliori suggerimenti per la specie",
+  "hide": "Nascondi",
   "hide_running_total": "Nascondi il totale attuale",
   "hide_uncountable_species": "Nascondi le specie non conteggiabili",
   "high": "Superiore",
@@ -32804,6 +32831,7 @@ I18n.translations["ja"] = {
   "has_photos": "写真あり",
   "has_sounds": "音声あり",
   "heads_up": "お知らせ",
+  "hide": "非表示",
   "high": "高",
   "history": "履歴",
   "id_categories": {
@@ -33986,6 +34014,7 @@ I18n.translations["ko"] = {
   "has_sound": "소리가 있음",
   "has_sounds": "소리가 있음",
   "heads_up": "주의",
+  "hide": "숨기기",
   "hide_uncountable_species": "셀 수 없는 종을 숨기기",
   "high": "높음",
   "history": "역사",
@@ -35067,6 +35096,7 @@ I18n.translations["lb"] = {
   "has_photos_or_sounds": "Huet Fotoen oder Téin",
   "has_sound": "Mat Toun",
   "has_sounds": "Huet Téin",
+  "hide": "Verstoppen",
   "high": "Héich",
   "history": "Geschicht",
   "id_categories": {
@@ -36415,6 +36445,7 @@ I18n.translations["mk"] = {
   "grey": "сива",
   "grid": "Решетка",
   "grid_tooltip": "Дај решетест поглед",
+  "hide": "Скриј",
   "id_categories": {
     "tooltips": {
     }
@@ -37611,6 +37642,7 @@ I18n.translations["nl"] = {
   "has_sounds": "heeft geluidsopnames",
   "heads_up": "Opgelet",
   "here_are_our_top_species_suggestions": "Dit zijn onze top voorstellen voor deze soort",
+  "hide": "Verbergen",
   "hide_running_total": "Huidig totaal verbergen",
   "hide_uncountable_species": "Verberg ongetelde soorten",
   "high": "hoog",
@@ -39488,6 +39520,7 @@ I18n.translations["oc"] = {
   "has_photos": "a de fòtos",
   "has_sounds": "a de sons",
   "heads_up": "Avertiment",
+  "hide": "Amagar",
   "high": "naut",
   "history": "Istoric",
   "id_categories": {
@@ -40901,6 +40934,7 @@ I18n.translations["pt-BR"] = {
   "has_sounds": "Possui sons",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Aqui pode ver a nossa seleção de espécies",
+  "hide": "Ocultar",
   "hide_running_total": "Ocultar total Cumulativo",
   "hide_uncountable_species": "Ocultar espécies incontáveis",
   "high": "Alta",
@@ -42817,6 +42851,7 @@ I18n.translations["pt-PT"] = {
   "has_sounds": "Tem sons",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Aqui pode ver a nossa selecção de espécies",
+  "hide": "Ocultar",
   "hide_running_total": "Ocultar total acumulado",
   "hide_uncountable_species": "Ocultar espécies incontáveis",
   "high": "Alto",
@@ -44347,6 +44382,7 @@ I18n.translations["ru"] = {
   "has_sounds": "Со звуком",
   "heads_up": "Осторожно",
   "here_are_our_top_species_suggestions": "Вот наши лучшие предложения видов",
+  "hide": "Скрыть",
   "hide_running_total": "Скрыть текущий итог",
   "hide_uncountable_species": "Не показывать неисчислимые виды",
   "high": "Высший",
@@ -46519,6 +46555,7 @@ I18n.translations["sq"] = {
   "has_sounds": "ka tinguj",
   "heads_up": "Vërejtje",
   "here_are_our_top_species_suggestions": "Këtu janë sugjerimet tona për speciet kryesore",
+  "hide": "Fshih",
   "hide_uncountable_species": "Fsheh speciet e pallogaritshme",
   "high": "I lartë",
   "history": "Historiku",
@@ -49960,6 +49997,7 @@ I18n.translations["zh-CN"] = {
   "has_sounds": "有声音",
   "heads_up": "小心",
   "here_are_our_top_species_suggestions": "这里有我们最常用的物种建议",
+  "hide": "隐藏",
   "hide_uncountable_species": "隐藏无法计数的物种",
   "high": "高",
   "history": "历史",
@@ -51750,6 +51788,7 @@ I18n.translations["zh-TW"] = {
   "has_sounds": "擁有聲音",
   "heads_up": "注意",
   "here_are_our_top_species_suggestions": "這是我們熱門的物種建議",
+  "hide": "隱藏",
   "hide_running_total": "隱藏運行總計",
   "hide_uncountable_species": "隱藏無法計數的物種",
   "high": "高",

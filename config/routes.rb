@@ -621,6 +621,7 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
+  resources :moderator_actions, only: [:create]
 
   get "/google_photos(/:action(/:id))", controller: :picasa
 

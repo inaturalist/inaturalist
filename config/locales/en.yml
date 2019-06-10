@@ -1584,9 +1584,18 @@ en:
   hi: Hi,
   hi_user: "Hi %{user}"
   hide: Hide
+  hide_desc: |
+    Hiding content will remove it from public view, but people will still be
+    able to see that something was hidden, and site curators and the author of
+    the content will still be able to see the hidden content. You cannot undo
+    this, and only site staff can unhide content once it has been hidden, so be
+    careful and only use this for very objectionable content.
+  hide_comment: Hide Comment
   hide_details: Hide Details
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
+  hidden: Hidden
+  hidden_content_explanation: Content has been hidden
   high: High
   highest_rank: Highest Rank
   highlights: Highlights
@@ -3187,6 +3196,8 @@ en:
   please_confirm_your_inat_username: "Please confirm your %{site_name} username"
   please_confirm_your_account_html: 'Please take a second to <a href="%{url}">confirm your account</a>.'
   please_enter_a_new_pass: Please enter a new password and confirm it.
+  please_explain_why_you_want_to_hide_this: Please explain why you want to hide this
+  please_explain_why_you_want_to_unhide_this: Please explain why you want to unhide this
   please_fix_your_csv_and_try_again: Please fix your CSV and try again.
   please_hold_on_while_the_file: Please hold on while the file is generated. It can take a couple minutes if you have a lot of observations.
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
@@ -4304,6 +4315,10 @@ en:
   unblock: Unblock
   unclassified: Unclassified
   ungrafted_taxa: Ungrafted Taxa
+  unhide: Unhide
+  unhide_desc: |
+    Unhiding will reveal this content for everyone to see. Curators can still
+    choose to hide it again in the future.
   uninvite: uninvite
   unique_identifier_of_this_taxon: Unique identifier of this taxon in the source database.
   unique_observers: unique observers
@@ -4442,6 +4457,7 @@ en:
   user_trusts_you_with_their_private_coordinates_desc: |
     The observer has chosen to trust you with the hidden coordinates of all
     their observations.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
   username: Username
   username_or_email: Username or email
   username_or_user_id: Username or User ID

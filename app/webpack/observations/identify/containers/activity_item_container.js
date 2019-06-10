@@ -1,4 +1,5 @@
 import { connect } from "react-redux";
+import { setConfig } from "../../../shared/ducks/config";
 import ActivityItem from "../../show/components/activity_item";
 import {
   postIdentification,
@@ -93,7 +94,8 @@ function mapDispatchToProps( dispatch, ownProps ) {
     },
     setFlaggingModalState: newState => {
       dispatch( setFlaggingModalState( newState ) );
-    }
+    },
+    showHidden: ( ) => dispatch( setConfig( { showHidden: true } ) )
   };
 }
 
