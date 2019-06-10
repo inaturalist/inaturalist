@@ -1848,6 +1848,7 @@ fr:
   helped_the_observer_make: a aidé l’observateur à faire leurs identifications finales
     (c.-à-d. qu’elles ont été faites avant l’identification finale et qu’elles y correspondent)
   here_are_3_examples: Voici 3 exemples de données bien formées
+  here_are_our_top_suggestions: Voici nos suggestions favorites
   here_are_our_top_species_suggestions: Voici les suggestions concernant nos espèces
     favorites
   here_are_some_things_you_can_do_meantime: Voici certaines choses que vous pouvez
@@ -4858,6 +4859,7 @@ fr:
   today: Aujourd’hui
   too_many_observations_csv: Vous avez trop d’observations !<br /> Nous ne pouvons
     prendre que vos %{max_rows} premières observations dans chaque CSV
+  too_many_results: Trop de résultats
   too_many_taxa_to_render: Cette requête renvoie trop de taxons pour tous les afficher
     à la fois. Essayez d’ajouter plus de filtres.
   tools: Outils
@@ -5305,6 +5307,8 @@ fr:
   widget_code: Code du widget
   widget_for: Widget pour
   will_be: sera
+  wikipedia_attribution_cc_by_sa_3: 'Source: Wikipedia, « %{title} » , %{url}, CC
+    BY-SA 3.0'
   wikipedia_entry: Entrée de Wikipédia
   wikipedia_taxobox_raquo: Taxobox de Wikipédia &raquo;
   with: avec
@@ -7859,6 +7863,10 @@ fr:
               has_query_parameter: ne peut contenir de paramètre de requête.
               invalid_uri: doit être un URI valide.
               relative_uri: doit être un URI absolu.
+        flag:
+          attributes:
+            user_id:
+              already_flagged: élément déjà étiqueté
         guide:
           attributes:
             published_at:
@@ -7888,6 +7896,7 @@ fr:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: est trop grand pour être modifié
               is_too_large_to_import: est trop gros pour être importé
               contains_too_many_observations: contient trop d'observations à importer
         post:

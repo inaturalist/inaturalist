@@ -1789,6 +1789,7 @@ it:
   helped_the_observer_make: ha aiutato l'osservatore a decidere la sua ID finale (e.g.
     sono state fatte prima dell'ID finale e corrispondono)
   here_are_3_examples: Qui ci sono tre esempi di dati ben organizzati
+  here_are_our_top_suggestions: Questi sono i nostri migliori suggerimenti
   here_are_our_top_species_suggestions: Questi sono i nostri migliori suggerimenti
     per la specie
   here_are_some_things_you_can_do_meantime: 'Qui ci sono alcune cose che puoi fare
@@ -2993,6 +2994,10 @@ it:
     possono attivare l'aggregazione di un progetto
   only_species: solo specie
   only_species_and_subspecies: solo specie e sottospecie/varietà
+  only_staff_can_edit_large_places: Solo lo staff del sito può editare i luoghi molto
+    vasti
+  only_staff_can_edit_standard_places: Solo lo staff del sito può editare i luoghi
+    nella gerarchia standard
   only_the_author_of_this_post_can_do_that: Solo l'autore del post può fare questo.
     Sii gentile.
   only_the_owner_of_this_list_can_do_that: Solo il proprietario di questa lista può
@@ -4751,6 +4756,7 @@ it:
   today: Oggi
   too_many_observations_csv: Hai troppe osservazioni!<br /> Possiamo caricare solo
     le prime %{max_rows} osservazioni di ogni CSV
+  too_many_results: Troppi risultati
   too_many_taxa_to_render: Questa richiesta ha restituito troppi taxa per vederli
     in una volta sola. Prova ad aggiungere qualche filtro
   tools: Strumenti
@@ -6006,6 +6012,9 @@ it:
           in questa pagina su %{total} osservazioni corrispondenti.
         unreview_all_tooltip: Rimuovi lo stato "revisionata" da tutte le osservazioni
           della pagina
+        too_many_results_desc: |-
+          Il numero di pagine moltiplicato per il numero di risultati per pagina non può superare 10.000.
+          Prova ad applicare dei filtri, o segna le osservazioni come revisionate e usa il bottone "Visualizza di più" al posto della paginazione
       import:
         coordinate_systems_help: '%{site_name} accetta coordinate in differenti sistemi,
           perciò quando inserisci coordinate diverse dalle coordinate geografiche
@@ -7524,6 +7533,7 @@ it:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: è troppo grande per essere modificato
               is_too_large_to_import: è troppo grande per essere importato
               contains_too_many_observations: contiene troppe osservazioni da importare
         post:

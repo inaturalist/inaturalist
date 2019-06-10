@@ -1451,6 +1451,8 @@ sv:
     follow_panel_title_local: Följ några närliggande naturister
     following_panel_title: Håll reda på personer, arter och platser
     youve_got_updates_panel_title: Du har fått uppdateringar!
+  only_staff_can_edit_large_places: Endast webbplatsens personal kan redigera riktigt
+    stora platser
   only_you: Endast dig
   open_street_map: OpenStreetMap
   or: eller
@@ -1980,6 +1982,7 @@ sv:
   to_recipient: till
   to_suggest_an_identification: för att föreslå en identifiering
   today: Idag
+  too_many_results: För många resultat
   translated_languages: Översatta språk
   trending: Trender
   trends: Trender
@@ -2503,6 +2506,7 @@ sv:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: är för stor att redigeras
               is_too_large_to_import: är för stor för att importera
         user:
           attributes:

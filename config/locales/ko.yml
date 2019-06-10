@@ -2458,6 +2458,7 @@ ko:
   this_year: 올해
   thu: 목요일
   title: 제목
+  too_many_results: 결과가 너무 많음
   total: 합계
   total_observations: 총 관찰
   translated_languages: 번역된 언어
@@ -2981,6 +2982,10 @@ ko:
             value:
               date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
                 \n당신이 관찰한 \"%{observation_field_name}\")"
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_edit: 편집하기에 너무 큼
         taxon_name:
           attributes:
             lexicon:

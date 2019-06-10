@@ -1783,6 +1783,7 @@ pt-BR:
   helped_the_observer_make: ajudou o observador a realizar a identificação final (realizado
     antes da identificação final e correspondem)
   here_are_3_examples: Aqui estão 3 exemplos de dados bem organizados
+  here_are_our_top_suggestions: Aqui estão nossas principais sugestões
   here_are_our_top_species_suggestions: Aqui pode ver a nossa seleção de espécies
   here_are_some_things_you_can_do_meantime: 'Aqui estão algumas coisas que você pode
     fazer neste meio tempo:'
@@ -2988,6 +2989,10 @@ pt-BR:
     pode ser ativada apenas pelos administradores do site
   only_species: apenas espécies
   only_species_and_subspecies: apenas espécies e subespécies/variedades
+  only_staff_can_edit_large_places: Somente funcionários do site podem editar lugares
+    muito grandes
+  only_staff_can_edit_standard_places: Somente a equipe do site pode editar lugares
+    na hierarquia padrão
   only_the_author_of_this_post_can_do_that: Somente o autor desta postagem pode fazer
     isso. Não seja mal.
   only_the_owner_of_this_list_can_do_that: Somente o proprietário desta lista pode
@@ -4747,6 +4752,7 @@ pt-BR:
   today: Hoje
   too_many_observations_csv: Você tem um enxame de observações! <br />Nós só podemos
     mostras as primeiras %{max_rows} observações em cada CSV
+  too_many_results: Muitos resultados
   too_many_taxa_to_render: Esta consulta retorna muitos taxa para renderizar de uma
     só vez. Tente adicionar mais filtros
   tools: Ferramentas
@@ -6028,6 +6034,10 @@ pt-BR:
           observações desta página de %{total} observações que combinam.
         unreview_all_tooltip: Remover status revisto para todas as observações na
           página
+        too_many_results_desc: O número de páginas vezes o número de resultados por
+          página não pode exceder 10.000. Tente aplicar filtros para reduzir o número
+          de resultados ou marque observações como revistas e use o botão "Ver Mais"
+          em vez de paginação
       import:
         coordinate_systems_help: '%{site_name} aceita coordenadas utilizando diferentes
           sistemas, então quando você providenciar coordenadas em um sistema diferente
@@ -7656,6 +7666,7 @@ pt-BR:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: é muito grande para editar
               is_too_large_to_import: é muito grande para ser importado
               contains_too_many_observations: contém observações demais para ser importado
         post:
