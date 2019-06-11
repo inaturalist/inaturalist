@@ -10,7 +10,11 @@
       .breadcrumbs
         %strong
           = link_to t(:back_to_flags_html), url_for_referrer_or_default( url_for( @flag.flaggable.is_a?( Photo ) ? @flag.flaggable.becomes( Photo ) : @flag.flaggable ) )
-        = link_to t(:view_all_flags), flags_url, class: "pull-right"
+        .pull-right
+          - if @object.is_a?( Comment )
+            = link_to t(:view_moderation_history_for_this_comment), comment_flags_url( comment_id: @object.id )
+            &middot;
+          = link_to t(:view_all_flags), flags_url
       %h2= @title
   .row
     .col-xs-12
@@ -52,13 +56,6 @@
                   = f.submit t(:resolve), class: "btn btn-success"
               - else
                 = formatted_user_text @flag.comment
-              - if @flag.flaggable.respond_to?(:moderator_actions)
-                - if @flag.flaggable.hidden?
-                  Hidden by
-                  = link_to_user @flag.flaggable.moderator_actions.sort_by(&:id).last.user
-                - else
-                  %button.btn.btn-default{ type: "button", role: "button", "data-toggle" => "modal", "data-target" => "#moderator-action"}
-                    =t "hide_#{@flag.flaggable_type.underscore}"
               - if is_me?( @flag.user )
                 = link_to @flag, class: "btn btn-link", data: { confirm: t(:you_sure_delete_flag?) }, method: :delete do
                   %i.fa.fa-trash
@@ -69,25 +66,3 @@
       - unless is_me?( @flag.user )
         .upstacked
           = render "subscriptions/subscription", resource: @flag
-
-#moderator-action.modal.fade
-  .modal-dialog{ role: "document" }
-    .modal-content
-      .modal-header
-        %button.close{:type => "button", "data-dismiss" => "modal"} x
-        %h4.modal-title=t "hide_#{@flag.flaggable_type.underscore}"
-      .modal-body
-        .container-fluid
-          .row
-            .col-xs-12
-              %p
-                Hiding content is for extremely inappropriate content, e.g. hate speech, pornography, etc. When content is "hidden" it will only be visible to site curators, staff, and the person who authored the content. Other people will see a notice that there is hidden content present. Only staff can un-hide content after it has been hidden, and you cannot edit or remove this action after you've committed it.
-              = form_for ModeratorAction.new( resource: @flag.flaggable ), builder: BootstrapFormBuilder do |f|
-                = f.text_area :reason, required: true
-                = f.hidden_field :action, value: ModeratorAction::HIDE
-                = f.hidden_field :resource_type
-                = f.hidden_field :resource_id
-                = f.submit t( "hide_#{@flag.flaggable_type.underscore}" ), class: "btn btn-primary"
-                %small.required.pull-right
-                  *
-                  =t :required_field
