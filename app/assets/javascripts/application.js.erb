@@ -1004,7 +1004,7 @@ function setMessagesCount(count, options) {
 }
 
 function getMessagesCount() {
-  $.get('/messages/count', function(data) {
+  $.getJSON('/messages/count.json', function(data) {
     setMessagesCount(data.count)
   })
 }
