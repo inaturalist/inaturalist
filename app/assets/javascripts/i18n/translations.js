@@ -15036,7 +15036,7 @@ I18n.translations["en"] = {
       },
       "identify": {
         "review_all_tooltip": "Mark all observations on the page as reviewed",
-        "too_many_results_desc": "Page number times the number of results per page cannot exceed 10,000.\nTry applying filters to reduce the size of the results, or mark\nobservations as reviewed and use the \"View More\" button instead of\npagination\n",
+        "too_many_results_desc": "Page number times the number of results per page cannot exceed 10,000.\nTry applying filters to reduce the number of results, or mark\nobservations as reviewed and use the \"View More\" button instead of\npagination\n",
         "unreview_all_tooltip": "Remove reviewed status for all observations on the page",
         "you_reviewed_message": "You reviewed %{reviewed} of %{pageTotal} observations on this page out of %{total} matching observations."
       },
@@ -15201,6 +15201,7 @@ I18n.translations["en"] = {
   "white": "white",
   "who_can_see_the_coordinates": "Who Can See the Coordinates",
   "who_can_see_the_coordinates_observer": "The person who made the observation",
+  "who_can_see_the_coordinates_privileged": "People who have earned the Coordinate Access privilege (1000+ RG obs or 1000+ improving IDs; staff-only for now)",
   "who_can_see_the_coordinates_projects": "Curators of the following projects",
   "who_can_see_the_coordinates_trusted": "Individuals who the observer has trusted with their hidden coordinates",
   "who_helped_user_the_most": "Who Helped %{user} the Most",
@@ -15327,6 +15328,8 @@ I18n.translations["en"] = {
   "your_observations": "Your Observations",
   "your_pinned_locations": "Your Pinned Locations",
   "yours": "Yours",
+  "youve_earned_the_coordinate_access_privilege": "You've earned the Coordinate Access privilege",
+  "youve_earned_the_coordinate_access_privilege_desc": "Creating 1000+ Research Grade observations or 1000+ improving\nidentifications allows you to see the coordinates that were obscured due to\na threatened taxon (not due to user geoprivacy choice). Staff-only for now.\n",
   "zoom_in": "Zoom In",
   "zoom_out": "Zoom Out",
   "zoom_photo": "Zoom Photo"

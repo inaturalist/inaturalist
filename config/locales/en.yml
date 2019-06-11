@@ -4630,8 +4630,9 @@ en:
   who_can_add_observations_to_this_project?: Who can add observations to this project?
   who_can_see_the_coordinates: Who Can See the Coordinates
   who_can_see_the_coordinates_observer: The person who made the observation
+  who_can_see_the_coordinates_privileged: People who have earned the Coordinate Access privilege (1000+ RG obs or 1000+ improving IDs; staff-only for now)
   who_can_see_the_coordinates_projects: Curators of the following projects
-  who_can_see_the_coordinates_trusted: Individuals who the observer has trusted with their hidden coordinates
+  who_can_see_the_coordinates_trusted: People who the observer has trusted with their hidden coordinates
   who_helped_user_the_most: "Who Helped %{user} the Most"
   who_user_helped_the_most: "Who %{user} Helped the Most"
   why_the_coordinates_are_obscured: Why the Coordinates Are Obscured
@@ -4827,6 +4828,11 @@ en:
   youll_need_to_link: You'll need to link
   youve_been_invited_to_join_this_project_html: |
     You've been invited to <a href="%{url}" class="readmore">join this project</a>
+  youve_earned_the_coordinate_access_privilege: You've earned the Coordinate Access privilege
+  youve_earned_the_coordinate_access_privilege_desc: |
+    Creating 1000+ Research Grade observations or 1000+ improving
+    identifications allows you to see the coordinates that were obscured due to
+    a threatened taxon (not due to user geoprivacy choice). Staff-only for now.
   youve_joined_the_x_project: "You've joined the %{project_invitation} project and your observation was added"
   your: Your
   your_: Your

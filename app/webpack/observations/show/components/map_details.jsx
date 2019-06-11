@@ -43,8 +43,8 @@ class MapDetails extends React.Component {
       restoreAutoObscuration
     } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
-    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles &&
-      config.currentUser.roles.indexOf( "admin" ) >= 0;
+    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const { showAllPlaces } = this.state;
     const { currentUser } = config;
     const testingContextGeoprivacy = currentUser
@@ -77,6 +77,10 @@ class MapDetails extends React.Component {
         )
       );
     }
+    const currentUserHasCoordinateAccessPrivilege = currentUser
+      && currentUser.userPrivileges
+      && currentUser.userPrivileges.indexOf( "coordinate_access" )
+      && viewerIsAdmin;
     const projectObservationsWithCoordinateAccess = _.filter(
       observation.project_observations,
       po => po.preferences && po.preferences.allows_curator_coordinate_access
@@ -247,6 +251,12 @@ class MapDetails extends React.Component {
                 <i className="icon-people" />
                 { I18n.t( "who_can_see_the_coordinates_trusted" ) }
               </li>
+              { viewerIsAdmin && ( observation.geoprivacy === null || observation.geoprivacy === "open" ) && (
+                <li>
+                  <i className="fa fa-certificate" />
+                  { I18n.t( "who_can_see_the_coordinates_privileged" ) }
+                </li>
+              ) }
               { projectObservationsWithCoordinateAccess
                 && projectObservationsWithCoordinateAccess.length > 0 && (
                 <li>
@@ -296,7 +306,20 @@ class MapDetails extends React.Component {
                           label: I18n.t( "user_trusts_you_with_their_private_coordinates", { user: observation.user.login } )
                         } ) }
                       </strong>
+                      { " " }
                       { I18n.t( "user_trusts_you_with_their_private_coordinates_desc" ) }
+                    </li>
+                  ) }
+                  { currentUserHasCoordinateAccessPrivilege && (
+                    <li>
+                      <strong>
+                        <i className="fa fa-certificate" />
+                        { I18n.t( "label_colon", {
+                          label: I18n.t( "youve_earned_the_coordinate_access_privilege" )
+                        } ) }
+                      </strong>
+                      { " " }
+                      { I18n.t( "youve_earned_the_coordinate_access_privilege_desc" ) }
                     </li>
                   ) }
                 </ul>
