@@ -121,5 +121,5 @@
             %li.divider{role: "separator"}
             %li.signout= link_to t(:sign_out), logout_path
   #initiative.navtabs
-    - if site.id==Site.default
+    - if @site && @site.id == Site.default.id
       = image_tag "https://static.inaturalist.org/wiki_page_attachments/1249-original.png", width: 179
