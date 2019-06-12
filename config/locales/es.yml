@@ -730,6 +730,7 @@ es:
   bg_color: Color de fondo
   bioblitz: Maratón naturalista
   birds: aves
+  birthday: Cumpleaños
   black: negro
   block_user: Bloquear usuario
   block_removed: Bloqueo eliminado
@@ -1914,7 +1915,7 @@ es:
   in_n: en %{n}
   in_place_x: en %{place}
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
-  inbox: buzón
+  inbox: Buzón de entrada
   including: incluyendo
   in_order_to_login_and_using_site_visit_url: Con el fin de ingresar y comenzar a
     utilizar el sitio debes visitar este URL para activar tu cuenta
@@ -5185,6 +5186,11 @@ es:
   widget_code: Código de widget
   widget_for: Widget para
   will_be: será
+  wikipedia_attribution_cc_by_sa_3_html: |-
+    Este articulo usa material del articulo de Wikipedia
+    <a href="%{url}">"%{title}"</a>, que esta bajo la licencia
+    <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+    Commons Attribution-Share-Alike License 3.0</a>. Puede haberse omitido parte del contenido original, pero ningún contenido ha sido cambiado o extendido.
   wikipedia_entry: Registro de Wikipedia
   wikipedia_taxobox_raquo: Ficha de taxón en Wikipedia &raquo;
   with: con
@@ -5886,6 +5892,9 @@ es:
         project_list_desc: Los taxones agregados manualmente por los curadores del
           proyecto y taxones con observaciones en grado de investigación agregadas
           al proyecto se muestran en las listas del proyecto.
+    messages:
+      index:
+        show_messages_to_user: Mostrar mensajes a %{user}
     oauth:
       authorizations:
         new:

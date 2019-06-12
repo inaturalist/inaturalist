@@ -1,6 +1,7 @@
 # Messages for Finnish (suomi)
 # Exported from translatewiki.net
 # Export driver: phpyaml
+# Author: Antsa
 # Author: Cancelion
 # Author: Cruzan
 # Author: Mikahama
@@ -78,6 +79,9 @@ fi:
   x_people_agree_html:
     one: <span class="count">1</span> henkilö on samaa mieltä
     other: <span class="count">%{count}</span> henkilöä on samaa mieltä
+  x_photos:
+    one: 1 kuva
+    other: '%{count} kuvaa'
   x_new_species:
     one: 1 uusi laji
     other: '%{count} uutta lajia'
@@ -654,6 +658,7 @@ fi:
   bg_color: Taustaväri
   bioblitz: Bioblitz
   birds: linnut
+  birthday: Syntymäpäivä
   black: musta
   block_user: Estä käyttäjä
   block_removed: Esto poistettu
@@ -1623,7 +1628,7 @@ fi:
   in_n: paikassa %{n}
   in_place_x: paikassa %{place}
   inaturalist_network_affiliation: iNaturalist Network -verkon kytkökset
-  inbox: saapuneet
+  inbox: Saapuneet
   including: mukaan lukien
   in_order_to_login_and_using_site_visit_url: 'Kirjautuaksesi sisään ja aloittaaksesi
     sivuston käytön, sinun täytyy käydä tässä URL-osoitteessa aktivoidaksesi tilisi:'
@@ -1740,7 +1745,8 @@ fi:
   lat: Leveysaste
   latitude: Leveysaste
   latitude_in_decimals: Leveyttä desimaaliasteina, esim. 38.123
-  latitude_slash_y_coord_slash_northing: Leveysaste / y koord / pohjoiseen
+  latitude_slash_y_coord_slash_northing: Leveysaste / y-koordinaatti / pohjoiseen
+  latitude_value: 'Leveysaste: %{latitude}'
   layers: Kerrokset
   layout: Pohja
   leaderboard: Tulostaulukko
@@ -1942,7 +1948,8 @@ fi:
   long: Pituusaste
   longitude: Pituusaste
   longitude_in_decimal: Pituutta desimaalin tarkkuudella, esim. -122.123
-  longitude_slash_x_coord_slash_easting: Pituusaste / x koord / itään
+  longitude_slash_x_coord_slash_easting: Pituusaste / x-koordinaatti / itään
+  longitude_value: 'Pituusaste: %{longitude}'
   look_up_name: Hae nimeä
   looks_like_neither_have!: Näyttää siltä, ettei ole yhtään taksoneita!
   looks_like_no_species_in_guide: Näyttää siltä, että sinulla ei ole vielä yhtään
@@ -3999,7 +4006,7 @@ fi:
   yes_find_them!: Kyllä, hae ne!
   yes_i_want_to_join: Kyllä, haluan liittyä
   yes_license_my_observations_so_scientists_can_use: Kyllä, lisensoi kuvani, ääneni
-    & havaintoni jotta tutkijat voivat käyttää tietojani!
+    ja havaintoni jotta tutkijat voivat käyttää tietojani.
   yes_reject_it: Kyllä, hylkää se
   yesterday: Eilen
   yesterday_at: ', eilen klo 16:00'
@@ -4224,6 +4231,8 @@ fi:
           hämärtää omien havaintojesi koordinaatit. Katso <a href="#geoprivacy">sijainnin
           tietosuoja</a> yläpuolella.
         what_is_a_life_list?: Mikä on elämäluettelo?
+    messages:
+      to: Johonkin/jollekin/määränpää
     observations:
       community_id:
         agreement: Yksimielisyys
@@ -4361,9 +4370,8 @@ fi:
           perusteella, olettaen että meillä on se \n  tiedostossa.\n</p>"
       new:
         a_project_allows_you_to_gather: Kokoelmaprojekti sallii sinun kerätä ja visualisoida
-          havaintoja käyttämällä ytimen iNaturalist hakutyökaluja. Tämä poistaa tarpeen
-          lisätä havaintoja manuaalisesti, koska kaikki joka täyttää hankkeen asettamat
-          parametrit, sisällytetään automaattisesti.
+          havaintoja käyttämällä ytimen iNaturalist hakutyökaluja. Kaikki joka täyttää
+          projektin asettamat parametrit, sisällytetään automaattisesti.
         an_umbrella_project_can_be_used_to: Sateenvarjoprojektia voidaan käyttää kahden
           tai useamman kokoelma tai perinteisen projektin tilastojen vertailemiseen.
           Muiden projektien pitää olla olemassa ennen kun voit lisätä ne sateenvarjoprojektiin.
@@ -4526,6 +4534,9 @@ fi:
           lisätäksesi toisen.
       recent:
         about_recent_users: Tietoja
+    user_parents:
+      new:
+        create_a_minor_account: Luo uusi käyttäjä
     welcome:
       index:
         connect_with_nature: Vietä aikaa luonnossa
