@@ -233,13 +233,25 @@ class ObservationsController < ApplicationController
             taxon.id, @places ]).
           order("establishment_means IN ('endemic', 'introduced') DESC, places.bbox_area ASC").
           first
-        @conservation_status = ConservationStatus.
-          where( taxon_id: taxon ).where("place_id IN (?)", @places).
+        conservation_status_in_place_scope = ConservationStatus.
+          where("place_id IN (?)", @places).
           where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).
-          includes(:place).first
+          includes(:place)
+        @conservation_status = conservation_status_in_place_scope.where( taxon_id: taxon ).first
+        @conservation_status = conservation_status_in_place_scope.
+          where( taxon_id: taxon.self_and_ancestor_ids ).
+          joins(:taxon).
+          order( "taxa.rank_level ASC" ).
+          first
       end
-      @conservation_status ||= ConservationStatus.where( taxon_id: taxon ).
-        where("place_id IS NULL").where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED).first
+      global_conservation_status_scope = ConservationStatus.
+        where("place_id IS NULL").where("iucn >= ?", Taxon::IUCN_NEAR_THREATENED)
+      @conservation_status ||= global_conservation_status_scope.where( taxon_id: taxon ).first
+      @conservation_status ||= global_conservation_status_scope.
+        where( taxon_id: taxon.self_and_ancestor_ids ).
+        joins(:taxon).
+        order( "taxa.rank_level ASC" ).
+        first
       if @listed_taxon
         @conservation_status ||= taxon.threatened_status(place_id: @listed_taxon.place_id)
       end
