@@ -120,6 +120,6 @@
             %li= link_to t(:account_settings), edit_person_path(current_user), :class => 'profile_link'
             %li.divider{role: "separator"}
             %li.signout= link_to t(:sign_out), logout_path
-  #initiative.navtabs
-    - if @site && @site.id == Site.default.id
-      = image_tag "https://static.inaturalist.org/wiki_page_attachments/1249-original.png", width: 179
+  - if @responsive && @site && @site.id == Site.default.id
+    #initiative-branding.navtabs
+      %embed{ src: image_path( "nat-geo-cas-logos-color.svg" ), width: 179 }
