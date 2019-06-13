@@ -102,7 +102,7 @@ class ObservationModal extends React.Component {
         "user",
         "map_scale"
       ] );
-      obsForMap.coordinates_obscured = observation.obscured;
+      obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
       const taxonLayer = {
         observationLayers: [
           { label: I18n.t( "verifiable_observations" ), verifiable: true },

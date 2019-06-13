@@ -7,6 +7,8 @@ class ExternalTaxon < ActiveRecord::Base
   
   before_validation :strip_whitespace
   
+  ADDITIONAL_RANKS = ["cohort", "magnaorder"]
+  
   def update_taxon_framework_relationship
     return true unless self.taxon_framework_relationship
     taxon_framework_relationship.set_relationship if ( name_changed? || new_record? )

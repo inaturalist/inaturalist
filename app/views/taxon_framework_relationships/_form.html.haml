@@ -64,14 +64,14 @@
                 = et.text_field :name, { :class => "form-control" }
               .form-group.col-xs-2
                 = et.label :rank, "Rank"
-                = et.collection_select :rank, Taxon::RANKS, :to_s, :to_s, include_blank: t( :other ).downcase
+                = et.collection_select :rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, include_blank: t( :other ).downcase
             .row
               .form-group.col-xs-8
                 = et.label :parent_name, "Parent Name"
                 = et.text_field :parent_name, { :class => "form-control" }
               .form-group.col-xs-2
                 = et.label :parent_rank, "Parent Rank"
-                = et.collection_select :parent_rank, Taxon::RANKS, :to_s, :to_s, include_blank: t( :other ).downcase
+                = et.collection_select :parent_rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, include_blank: t( :other ).downcase
             .form-group
               = et.label :url, "URL"
               = et.text_field :url, { :class => "form-control" }
@@ -88,14 +88,14 @@
                   = et.text_field :name, { :class => "form-control" }
                 .form-group.col-xs-2
                   = et.label :rank, "Rank"
-                  = et.collection_select :rank, Taxon::RANKS, :to_s, :to_s, include_blank: t( :other ).downcase
+                  = et.collection_select :rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, include_blank: t( :other ).downcase
               .row
                 .form-group.col-xs-8
                   = et.label :parent_name, "Parent Name"
                   = et.text_field :parent_name, { :class => "form-control" }
                 .form-group.col-xs-2
                   = et.label :parent_rank, "Parent Rank"
-                  = et.collection_select :parent_rank, Taxon::RANKS, :to_s, :to_s, include_blank: t( :other ).downcase
+                  = et.collection_select :parent_rank, [Taxon::RANKS,ExternalTaxon::ADDITIONAL_RANKS].flatten, :to_s, :to_s, include_blank: t( :other ).downcase
               .form-group
                 = et.label :url, "URL"
                 = et.text_field :url, { :class => "form-control" }
