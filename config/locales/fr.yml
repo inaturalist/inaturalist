@@ -941,7 +941,7 @@ fr:
   check_out_your_life_list: Consulter votre liste des êtres vivants
   check_this_box_if_html: |-
     Cochez cette case si vous voulez appliquer une
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licence Creative Commons d’attribution non commerciale</a> à vos photos. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s’agit de la meilleure licence pour échanger avec les chercheurs.
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>licence Creative Commons d’attribution non commerciale</a> au contenu téléversé. Cela veut dire que quiconque peut copier et réutiliser vos photos ou vos observations sans demander la permission, du moment qu’ils vous en donnent le crédit et n’utilisent pas les œuvres commercialement. Vous pouvez choisir une autre licence ou supprimer la licence plus tard, mais il s’agit de la meilleure licence pour échanger avec les chercheurs.
   checklist: Liste de contrôle
   checklists: Check-listes
   checklist_places: Lieux de la liste de contrôle
@@ -1098,6 +1098,7 @@ fr:
     de ce taxon qui sont présents ici?
   contest: concours
   continue: Continuer
+  continue_to_site: Continuer vers %{site_name}
   contributions: contributions
   contributions_from: Contributions de
   contributor_cannot_be_found: Le collaborateur est introuvable
@@ -3088,6 +3089,10 @@ fr:
     d'un site peuvent initier l'agrégation d'un projet
   only_species: uniquement les espèces
   only_species_and_subspecies: uniquement les espèces et les sous-espèces/variétés
+  only_staff_can_edit_large_places: Seule l’équipe du site peut modifier de très grands
+    endroits
+  only_staff_can_edit_standard_places: Seule l’équipe du site peut modifier des endroits
+    dans la hiérarchie standard
   only_the_author_of_this_post_can_do_that: Seul l’auteur de cette note peut exécuter
     cette action. Soyez gentil.
   only_the_owner_of_this_list_can_do_that: Seul le propriétaire de cette liste peut
@@ -3219,6 +3224,21 @@ fr:
   photos_updated: Photos à jour.
   google_account_not_linked: '%{user} n’a plus de compte Google lié, donc %{site_name}
     n’a pas le droit d’accéder à cette photo.'
+  pi_consent_desc_title: Au sujet des informations personnelles
+  pi_consent_desc_html: |-
+    Nous stockons les informations personnelles telles que le nom des utilisateurs et les adresses de messagerie afin de
+    gérer les compter sur ce site, et pour être en accord avec les lois sur la vie privée, nous
+    avons besoin que vous cochiez cette case pour indiquer que vous acceptez cette utilisation
+    d’informations personnelles. Pour en savoir plus sur les informations que nous collectons et
+    comment nous les utilisons, veuillez voir notre
+    <a href='%{privacy_url}' target='_blank'>Politique de confidentialité</a>
+    et nos <a href='%{terms_url}' target='_blank'>Conditions de service</a>.
+  pi_consent_label: |-
+    J’accepte d’autoriser iNaturalist à stocker et traiter des sortes d’informations
+    personnelles limitées me concernant, afin de gérer mon compte.
+  pi_consent_child_label: |-
+    J’accepte de permettre à iNaturalist de stocker et traiter des types restreints
+    d’informations personnelles sur mon enfant, afin de gérer son compte
   picasa_identity: Identité Picasa
   pick_a_username: Choisissez un nom d’utilisateur
   pin_verb: Épingler
@@ -5309,6 +5329,12 @@ fr:
   will_be: sera
   wikipedia_attribution_cc_by_sa_3: 'Source: Wikipedia, « %{title} » , %{url}, CC
     BY-SA 3.0'
+  wikipedia_attribution_cc_by_sa_3_html: |-
+    Cet article utilise le matériel de l’article
+    <a href="%{url}">"%{title}"</a> de Wikipédia, qui est mis à disposition sous la
+    licence <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+    Commons Attribution-Share-Alike License 3.0</a>. Son contenu peut avoir été
+    supprimé dans l’original, mais aucun contenu n’a été modifié ou complété.
   wikipedia_entry: Entrée de Wikipédia
   wikipedia_taxobox_raquo: Taxobox de Wikipédia &raquo;
   with: avec
@@ -5362,6 +5388,9 @@ fr:
   "yes": Oui
   yes_find_them!: Oui, trouvez-les!
   yes_i_want_to_join: Oui, je veux me joindre
+  yes_license_my_childs_observations: Oui, veuillez mettre sous licence les photos
+    de mon enfant, l'audio, et les observations afin que les scientifiques puissent
+    utiliser les données.
   yes_license_my_observations_so_scientists_can_use: Oui, mettez sous licence mes
     photos, sons et observations, de sorte que les scientifiques puissent utiliser
     mes données.
@@ -6053,7 +6082,10 @@ fr:
       from: De
       to: À
       subject: Sujet
+      subject_body: Sujet / Corps
       index:
+        show_messages_from_user: Afficher les messages de %{user}
+        show_messages_to_user: Afficher les messages à %{user}
         speech_privilege_notice: |-
           Vous pourrez envoyer de nouveaux messages après avoir ajouté trois
           observations vérifiables ou trois identifications pour d’autres. Pour le moment,
@@ -6192,6 +6224,10 @@ fr:
           de cette page, sur un total de %{total} observations correspondantes.
         unreview_all_tooltip: Supprimer le statut examiné de toutes les observations
           sur la page
+        too_many_results_desc: Le nombre de pages multiplié par le nombre de résultats
+          par page ne peut excéder 10 000. Essayez d'appliquer les filtres afin de
+          réduire le nombre de résultats, ou de marquer les observations comme revues
+          et d'utiliser le bouton « Afficher plus » plutôt que la pagination.
       import:
         coordinate_systems_help: |-
           %{site_name} accepte les coordonnées en provenance de différents systèmes
@@ -6479,6 +6515,22 @@ fr:
           que certaines observations de niveau recherche deviennent ponctuelles, si elles n’ont plus de photo.
         we_included_links: Nous avons inclus les liens vers les photos concernées
           ci-dessous.
+      user_parent_confirmation:
+        subject: Le compte iNaturalist de votre enfant a été activé
+        content_html: "<p>\n  Merci d'avoir créé un compte iNaturalist pour votre
+          enfant! Le\n  compte a été activé. Voici les détails que vous avez saisis
+          et que \n  nous avons enregistrés :\n</p>\n<ul>\n  <li><strong>Nom du parent
+          ou du représentant légal :</strong> %{parent_name}</li>\n  <li><strong>Courriel
+          du parent ou du représentant légal :</strong> %{parent_email}</li>\n  <li><strong>Nom
+          de l'enfant :</strong> %{child_name}</li>\n  <li><strong>Anniversaire de
+          l'enfant :</strong> %{child_birthday}</li>\n  <li><strong>Courriel de l'enfant
+          :</strong> %{child_email}</li>\n  <li><strong>Nom d'utilisateur du compte
+          de l'enfant :</strong> %{child_username}</li>\n</ul>\n<p>\n  Veuillez vous
+          connecter au compte à partir de l'application Seek de votre enfant en tapant
+          \ \n  sur le bouton « iNaturalist » du menu puis sur « Se connecter avec
+          iNaturalist » en bas de l'écran.\n</p>\n<p>\n  Votre enfant pourra ensuite
+          poster les observations sur son compte \n  iNaturalist en utilisant l'application
+          Seek afin qu'elles soient visibles sur \n  iNaturalist.org. \n</p>"
       users_updates_suspended:
         message: |-
           Vous avez été inactif sur %{site_name} depuis un moment, nous avons donc suspendu
@@ -7413,6 +7465,51 @@ fr:
         take_a_chance_to_review_html: Prenez le temps de revoir <a href="%{link}">nos
           lignes directrices</a>.
         this_user_was_banned: Cet utilisateur a été suspendu
+    user_parents:
+      confirm:
+        thanks_donor_html: "<p>\n  Merci d'être un donateur iNaturalist ! Nous avons
+          pu utiliser votre don\n  existant pour confirmer votre identité, et n'avons
+          besoin d'aucune \n  autre action de votre part. <strong>Le compte de votre
+          enfant a été \n  activé.</strong>\n</p>\n<p>\n  Veuillez vous connecter
+          au compte à partir de l'application Seek de votre enfant en tapant \n  sur
+          le bouton « iNaturalist » du menu, puis sur  « Se connecter avec iNaturalist
+          »\n  en bas de l'écran.\n</p>\n<p>\n  Votre enfant pourra ensuite poster
+          des observations sur son \n  compte iNaturalist en utilisant l'application
+          Seek afin qu'elles soient visibles \n  sur iNaturalist.org.\n</p>"
+        thanks_for_creating_a_minor_account: MERCI D'AVOIR CREE UN COMPTE POUR MINEUR
+          !
+        we_will_send_you_an_email: Nous vous enverrons un courriel dès que le compte
+          de votre enfant sera activé.
+      new:
+        child_name_private: Nom de l'enfant (privé)
+        create_a_minor_account: Créer un compte pour mineur
+        create_minor_account: Créer un compte pour mineur
+        parent_name_private: Nom du parent ou du représentant légal (privé)
+        parent_email: Nom du parent ou du représentant légal (privé)
+        inaturalist_minor_account_signup: Ouvrir un compte iNaturalist pour mineur
+        parent_information_private: Information des parents (privée)
+        step1_title: CREER UN COMPTE POUR VOTRE ENFANT
+        step1_desc: Pour être conforme aux règles de confidentialité, nous avons besoin
+          de l'accord d'un parent ou d'un représentant légal pour créer le compte
+          d'une personne n'ayant pas encore 13 ans. Si vous désirez que votre enfant
+          utilise iNaturalist, vous devez nous fournir une identité et des informations
+          de contact.
+        step2_title: VEUILLEZ CONFIRMER VOTRE IDENTITE A L'AIDE D'UNE CARTE DE CREDIT
+        step2_desc: |-
+          Pour confirmer votre identité en tant qu’adulte, nous avons besoin que vous fournissiez un
+          don unique d’au moins 1$US à iNaturalist en utilisant une carte de crédit. C’est
+          la manière de vérifier une identité la moins intrusive qui nous permette
+          d’être en conformité avec les lois sur la vie privée. Assurez-vous d’utiliser la même adresse de messagerie
+          que celle que vous avez saisie comme « courriel du parent » à l’étape précédente.
+        step3_title: VEUILLEZ ATTENDRE LE COURRIEL DE CONFIRMATION
+        step3_desc: |-
+          Une fois que nous avons fait correspondre le courriel utilisé dans le don avec le courriel que vous avez saisi
+          comme « courriel du parent », nous activerons le compte de l’enfant et enverrons
+          au parent un courriel avec les instructions de connexion. Cela peut prendre 24
+          heures.
+        step3_donor_title: LE COMPTE DE VOTRE ENFANT A ETE ACTIVE
+        step3_donor_desc: Parce que vous êtes un donateur iNaturalist, nous avons
+          pu vérifier votre identité en fonction des dons que vous avez faits.
     welcome:
       index:
         welcome_message_html: "sur %{image}, où vous pourrez <strong>enregistrer</strong>
@@ -7964,6 +8061,12 @@ fr:
                 souligné
             email:
               must_look_like_an_email_address: doit ressembler à une adresse courriel
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |-
+                appartient à un utilisateur existant ; si vous avez un compte, veuillez vous connecter
+                avant de continuer, ou utilisez une adresse de messagerie différente
   doorkeeper:
     scopes:
       write: Créer, mettre à jour et supprimer vos observations, identifications et

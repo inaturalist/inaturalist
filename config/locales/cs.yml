@@ -4,6 +4,7 @@
 # Author: Aktron
 # Author: Cvanca
 # Author: Dvorapa
+# Author: Ell2
 # Author: Ilimanaq29
 # Author: Juandev
 # Author: Katcha
@@ -92,6 +93,9 @@ cs:
   x_people_agree_html:
     one: <span class="count">1</span> člověk souhlasí
     other: <span class="count">%{count}</span>lidé souhlasí
+  x_photos:
+    one: 1 fotografie
+    other: '%{count} fotografií'
   x_new_species:
     one: 1 New Species
     other: '%{count}New Species'

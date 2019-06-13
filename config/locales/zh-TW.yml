@@ -4058,6 +4058,7 @@ zh-TW:
   to_the_bat_cave: 到蝙蝠洞！
   today: 今日
   too_many_observations_csv: 您擁有著大量觀察！<br />我們僅能在每個 CSV 裡最多取用您的前 %{max_rows} 觀察
+  too_many_results: 太多結果
   too_many_taxa_to_render: 此查詢一次回傳太多要呈現的物種分類。請嘗試添加更多的篩選
   tools: 工具
   top_5_identifiers: 前5位熱門鑑定人
@@ -6094,6 +6095,7 @@ zh-TW:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: 太大無法編輯
               is_too_large_to_import: 太大而無法匯入
               contains_too_many_observations: 包含太多觀察而無法匯入
         post:
