@@ -25,7 +25,7 @@ class UserPrivilege < ActiveRecord::Base
     return false unless user.created_at < 3.years.ago
     verifiable_obs_count = Observation.elastic_search( filters: [
       { term: { "user.id" => user.id } },
-      { terms: { quality_grade: ["research", "needs_id"] } }
+      { terms: { quality_grade: ["research"] } }
     ] ).total_entries
     return true if verifiable_obs_count >= 1000
     improving_ids_count = Identification.elastic_search( filters: [
