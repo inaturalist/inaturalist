@@ -7162,6 +7162,7 @@ en:
       observation:
         geo_x: Easting
         geo_y: Northing
+        observed_on: date observed
       observation_field_value:
         value: 'value'
       post:
@@ -7253,6 +7254,11 @@ en:
           attributes:
             base:
               api_key_in_use: "API key importing or queued for import"
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: |
+                cannot be greater than the date the observation was added
         observation_field_value:
           attributes:
             value:
