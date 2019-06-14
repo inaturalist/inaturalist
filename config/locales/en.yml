@@ -2529,6 +2529,7 @@ en:
   observations_removed_from_the_project: "Observations removed from the project \"%{project}\""
   observations_saved: Observation(s) saved!
   observations_specifying_this_field: Observations specifying this field
+  observations_specifying_this_field_with_value: Observations specifying this field with "%{value}"
   observations_text_search_warning: |
     Text searches may yield weird results when combined with other filters. If
     you want to find observation of a particular species, use the taxon
@@ -4399,6 +4400,9 @@ en:
     Use well-formed CSV. This means text with commas must be enclosed with
     double-quotes. Most spreadsheet applications should export CSV in this
     format.
+  used_x_times:
+    one: Used 1 time
+    other: Used %{count} times
   user: User
   user_added_a_x: "%{user} added a %{x}"
   user_added_a_x_to_noun_by_html: "%{user} added a %{x} to %{noun} by %{by}"
@@ -4464,6 +4468,7 @@ en:
   valid_interrogation: Valid?
   valid_options_are: Valid options are
   value: Value
+  values: Values
   verbing_x_of_y: "%{verb} %{x} of %{y}..."
   verifiable_observations_by_observation_date: Verifiable Observations By Observation Date
   view: View
