@@ -133,13 +133,12 @@ class CommunityIDModal extends Component {
         const allAncestors = _.clone( i.taxon.ancestorTaxa || [] );
         allAncestors.push( i.taxon );
         if ( i.disagreement && i.previous_observation_taxon && _.intersection( i.previous_observation_taxon.ancestor_ids, [i.taxon.id] ).length > 0 ) {
-          //const taxonIDsDisagreedWith = _.difference( //comment to switch
-          //  i.previous_observation_taxon.ancestor_ids,
-          //  ( i.taxon.ancestor_ids || [] ).concat( [i.taxon.id] )
-          //);
+          const taxonIDsDisagreedWith = _.difference(
+            i.previous_observation_taxon.ancestor_ids,
+            ( i.taxon.ancestor_ids || [] ).concat( [i.taxon.id] )
+          );
           _.each( taxa, t => {
-            if ( _.intersection( ( t.ancestor_ids || [] ).concat( [t.id] ), [i.previous_observation_taxon_id] ).length > 0 ) {  //uncomment to switch
-            //if ( _.intersection( ( t.ancestor_ids || [] ).concat( [t.id] ), taxonIDsDisagreedWith ).length > 0 ) {  //comment to switch
+            if ( _.intersection( ( t.ancestor_ids || [] ).concat( [t.id] ), taxonIDsDisagreedWith ).length > 0 ) {  
               this.ancestorDisagreements[t.id] = this.ancestorDisagreements[t.id] || 0;
               this.ancestorDisagreements[t.id] += 1;
             }
