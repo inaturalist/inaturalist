@@ -109,8 +109,10 @@ class PostsController < ApplicationController
         @shareable_image_url = @post.body[/img.+?src=["'](.+?)["']/, 1] if @post.body
         @shareable_image_url ||= if @post.parent_type == "Project"
           FakeView.image_url(@post.parent.icon.url(:original))
-        else
+        elsif @post.parent_type == "User"
           FakeView.image_url(@post.user.icon.url(:original))
+        elsif @post.parent_type == "Site"
+          FakeView.image_url(@post.parent.logo_square.url)
         end
         @shareable_description = FakeView.shareable_description(@post.body) if @post.body
         render "trips/show"
