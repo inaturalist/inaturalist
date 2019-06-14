@@ -9,66 +9,75 @@ function dateToString( date, spansYears = false ) {
   let format;
   if ( date.match( /^\d{4}-\d{1,2}-\d{1,2} \d{1,2}:\d{2} [+-]\d{1,2}:\d{2}/ ) ) {
     format = spansYears ? "MMMM D, YYYY h:mma z" : "MMMM D h:mma z";
-    return moment( date, "YYYY-MM-DD HH:mm Z" ).
-      parseZone( ).tz( TIMEZONE ).format( format );
+    return moment( date, "YYYY-MM-DD HH:mm Z" )
+      .parseZone( ).tz( TIMEZONE ).format( format );
   }
   format = spansYears ? "MMMM D, YYYY" : "MMMM D";
   return moment( date ).format( format );
 }
 
-const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) => {
-  const taxonRules = _.isEmpty( project.taxonRules ) ? I18n.t( "all_taxa_" ) :
-    _.map( project.taxonRules, r => (
+const Requirements = ( {
+  project, setSelectedTab, includeArrowLink, config
+} ) => {
+  const taxonRules = _.isEmpty( project.taxonRules ) ? I18n.t( "all_taxa_" )
+    : _.map( project.taxonRules, r => (
       <SplitTaxon
-        key={ `project-taxon-rules-${r.id}` }
-        user={ config.currentUser }
-        key={ `requirement_taxon_${r.taxon.id}` }
-        taxon={ r.taxon }
-        url={ `/taxa/${r.taxon.id}` }
+        key={`project-taxon-rules-${r.id}`}
+        user={config.currentUser}
+        taxon={r.taxon}
+        url={`/taxa/${r.taxon.id}`}
         noInactive
       />
     ) );
-  const exceptTaxonRules = !_.isEmpty( project.notTaxonRules ) &&
-    _.map( project.notTaxonRules, r => (
+  const exceptTaxonRules = !_.isEmpty( project.notTaxonRules )
+    && _.map( project.notTaxonRules, r => (
       <SplitTaxon
-        key={ `project-taxon-rules-${r.id}` }
-        user={ config.currentUser }
-        key={ `requirement_taxon_${r.taxon.id}` }
-        taxon={ r.taxon }
-        url={ `/taxa/${r.taxon.id}` }
+        key={`project-taxon-rules-${r.id}`}
+        user={config.currentUser}
+        taxon={r.taxon}
+        url={`/taxa/${r.taxon.id}`}
         noInactive
       />
     ) );
-  const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any" ) :
-    _.map( project.projectRules, r => r.project.title ).join( ", " );
-  const locationRules = _.isEmpty( project.placeRules ) ? I18n.t( "worldwide" ) :
-    _.map( project.placeRules, r => (
-      <a key={ `project-place-rules-${r.id}` } href={ `/places/${r.place.id}` }>
+  const locationRules = _.isEmpty( project.placeRules ) ? I18n.t( "worldwide" )
+    : _.map( project.placeRules, r => (
+      <a key={`project-place-rules-${r.id}`} href={`/places/${r.place.id}`}>
         { r.place.display_name }
       </a>
     ) );
-  const exceptLocationRules = ! _.isEmpty( project.notPlaceRules ) &&
-    _.map( project.notPlaceRules, r => (
-      <a key={ `project-place-rules-${r.id}` } href={ `/places/${r.place.id}` }>
+  const exceptLocationRules = !_.isEmpty( project.notPlaceRules )
+    && _.map( project.notPlaceRules, r => (
+      <a key={`project-place-rules-${r.id}`} href={`/places/${r.place.id}`}>
         { r.place.display_name }
       </a>
     ) );
-  const userRules = _.isEmpty( project.userRules ) ? I18n.t( "any" ) :
-    _.map( project.userRules, r => (
-      <a key={ `project-user-rules-${r.id}` } href={ `/people/${r.user.login}` }>
+  const userRules = _.isEmpty( project.userRules ) ? I18n.t( "any" )
+    : _.map( project.userRules, r => (
+      <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
         { r.user.login }
       </a>
     ) );
-  const exceptUserRules = ! _.isEmpty( project.notUserRules ) &&
-    _.map( project.notUserRules, r => (
-      <a key={ `project-user-rules-${r.id}` } href={ `/people/${r.user.login}` }>
+  const exceptUserRules = !_.isEmpty( project.notUserRules )
+    && _.map( project.notUserRules, r => (
+      <a key={`project-user-rules-${r.id}`} href={`/people/${r.user.login}`}>
         { r.user.login }
       </a>
     ) );
-  const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any" ) :
-    _.map( _.keys( project.rule_quality_grade ), q =>
-      I18n.t( q === "research" ? "research_grade" : q )
-    ).join( ", " );
+  const projectRules = _.isEmpty( project.projectRules ) ? I18n.t( "any" )
+    : _.map( project.projectRules, r => (
+      <a key={`project-project-rules-${r.id}`} href={`/projects/${r.project.slug}`}>
+        { r.project.title }
+      </a>
+    ) );
+  const exceptProjectRules = !_.isEmpty( project.notProjectRules )
+    && _.map( project.notProjectRules, r => (
+      <a key={`project-project-rules-${r.id}`} href={`/projects/${r.project.slug}`}>
+        { r.project.title }
+      </a>
+    ) );
+  const qualityGradeRules = _.isEmpty( project.rule_quality_grade ) ? I18n.t( "any" )
+    : _.map( _.keys( project.rule_quality_grade ),
+      q => I18n.t( q === "research" ? "research_grade" : q ) ).join( ", " );
   const media = [];
   if ( project.rule_photos ) {
     media.push( I18n.t( "photo" ) );
@@ -76,13 +85,13 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
   if ( project.rule_sounds ) {
     media.push( I18n.t( "sounds.sounds" ) );
   }
-  const mediaRules = _.isEmpty( media ) ? I18n.t( "any" ) :
-    media.join( ` ${I18n.t( "and" )} ` );
+  const mediaRules = _.isEmpty( media ) ? I18n.t( "any" )
+    : media.join( ` ${I18n.t( "and" )} ` );
   let dateRules = I18n.t( "any" );
   if ( project.rule_d1 && project.rule_d2 ) {
     const spansYears = project.startDate.year( ) !== project.endDate.year( );
-    dateRules = `${dateToString( project.rule_d1, spansYears )} ${I18n.t( "to" )} ` +
-      `${dateToString( project.rule_d2, spansYears )}`;
+    dateRules = `${dateToString( project.rule_d1, spansYears )} ${I18n.t( "to" )} `
+      + `${dateToString( project.rule_d2, spansYears )}`;
   } else if ( project.rule_observed_on ) {
     dateRules = dateToString( project.rule_observed_on );
   } else if ( project.rule_d1 ) {
@@ -104,7 +113,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
           { I18n.t( "annotation" ) }
         </td>
         <td className="value">
-          <a href={ `/observations?term_id=${project.rule_term_id}` }>
+          <a href={`/observations?term_id=${project.rule_term_id}`}>
             { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_id_instance.label )}`,
               { default: project.rule_term_id_instance.label } )
             }
@@ -114,13 +123,35 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
               <span className="separator">
                 &rarr;
               </span>
-              <a href={ `/observations?term_id=${project.rule_term_id}&term_value_id=${project.rule_term_value_id}` }>
+              <a href={`/observations?term_id=${project.rule_term_id}&term_value_id=${project.rule_term_value_id}`}>
                 { I18n.t( `controlled_term_labels.${_.snakeCase( project.rule_term_value_id_instance.label )}`,
                   { default: project.rule_term_value_id_instance.label } )
                 }
               </a>
             </span>
           )}
+        </td>
+      </tr>
+    );
+  }
+  let projectsRequirement;
+  if ( !_.isEmpty( projectRules ) || !_.isEmpty( projectRules ) ) {
+    projectsRequirement = (
+      <tr>
+        <td className="param">
+          <i className="fa fa-briefcase" />
+          { I18n.t( "projects" ) }
+        </td>
+        <td className="value">
+          { projectRules }
+          { exceptProjectRules && (
+            <span className="except">
+              <span className="bold">
+                { I18n.t( "except" ) }
+              </span>
+              { exceptProjectRules }
+            </span>
+          ) }
         </td>
       </tr>
     );
@@ -132,7 +163,7 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
         { includeArrowLink && (
           <i
             className="fa fa-arrow-circle-right"
-            onClick={ ( ) => setSelectedTab( "about" ) }
+            onClick={( ) => setSelectedTab( "about" )}
           />
         ) }
       </h2>
@@ -140,100 +171,89 @@ const Requirements = ( { project, setSelectedTab, includeArrowLink, config } ) =
         { I18n.t( "observations_in_this_project_must" ) }:
       </div>
       <table>
-        { project.is_umbrella ? (
-          <tbody>
-            <tr>
-              <td className="param">
-                <i className="fa fa-briefcase" />
-                { I18n.t( "projects" ) }
-              </td>
-              <td className="value">{ projectRules }</td>
-            </tr>
-          </tbody>
-        ) : (
-          <tbody>
-            <tr>
-              <td className="param">
-                <i className="fa fa-leaf" />
-                { I18n.t( "taxa" ) }
-              </td>
-              <td className="value">
-                { taxonRules }
-                { exceptTaxonRules && (
-                  <span className="except">
-                    <span className="bold">
-                      { I18n.t( "except" ) }
-                    </span>
-                    { exceptTaxonRules }
+        <tbody>
+          <tr>
+            <td className="param">
+              <i className="fa fa-leaf" />
+              { I18n.t( "taxa" ) }
+            </td>
+            <td className="value">
+              { taxonRules }
+              { exceptTaxonRules && (
+                <span className="except">
+                  <span className="bold">
+                    { I18n.t( "except" ) }
                   </span>
-                ) }
-              </td>
-            </tr>
-            <tr>
-              <td className="param">
-                <i className="fa fa-map-marker" />
-                { I18n.t( "location" ) }
-              </td>
-              <td className="value">
-                { locationRules }
-                { exceptLocationRules && (
-                  <span className="except">
-                    <span className="bold">
-                      { I18n.t( "except" ) }
-                    </span>
-                    { exceptLocationRules }
+                  { exceptTaxonRules }
+                </span>
+              ) }
+            </td>
+          </tr>
+          <tr>
+            <td className="param">
+              <i className="fa fa-map-marker" />
+              { I18n.t( "location" ) }
+            </td>
+            <td className="value">
+              { locationRules }
+              { exceptLocationRules && (
+                <span className="except">
+                  <span className="bold">
+                    { I18n.t( "except" ) }
                   </span>
-                ) }
-              </td>
-            </tr>
-            <tr>
-              <td className="param">
-                <i className="fa fa-user" />
-                { I18n.t( "users" ) }
-              </td>
-              <td className="value">
-                { userRules }
-                { exceptUserRules && (
-                  <span className="except">
-                    <span className="bold">
-                      { I18n.t( "except" ) }
-                    </span>
-                    { exceptUserRules }
+                  { exceptLocationRules }
+                </span>
+              ) }
+            </td>
+          </tr>
+          <tr>
+            <td className="param">
+              <i className="fa fa-user" />
+              { I18n.t( "users" ) }
+            </td>
+            <td className="value">
+              { userRules }
+              { exceptUserRules && (
+                <span className="except">
+                  <span className="bold">
+                    { I18n.t( "except" ) }
                   </span>
-                ) }
-              </td>
-            </tr>
-            <tr>
-              <td className="param">
-                <i className="fa fa-certificate" />
-                { I18n.t( "quality_grade_" ) }
-              </td>
-              <td className="value">{ qualityGradeRules }</td>
-            </tr>
-            <tr>
-              <td className="param">
-                <i className="fa fa-file-image-o" />
-                { I18n.t( "media_type" ) }
-              </td>
-              <td className="value">{ mediaRules }</td>
-            </tr>
-            <tr>
-              <td className="param">
-                <i className="fa fa-calendar" />
-                { I18n.t( "date_" ) }
-              </td>
-              <td className="value">{ dateRules }</td>
-            </tr>
-            <tr>
-              <td className="param">
-                <i className="fa fa-globe" />
-                { I18n.t( "establishment.establishment" ) }
-              </td>
-              <td className="value">{ establishmentRules }</td>
-            </tr>
-            { annotationRequirement }
-          </tbody>
-        ) }
+                  { exceptUserRules }
+                </span>
+              ) }
+            </td>
+          </tr>
+          { projectsRequirement }
+          <tr>
+            <td className="param">
+              <i className="fa fa-certificate" />
+              { I18n.t( "quality_grade_" ) }
+            </td>
+            <td className="value">{ qualityGradeRules }</td>
+          </tr>
+          <tr>
+            <td className="param">
+              <i className="fa fa-file-image-o" />
+              { I18n.t( "media_type" ) }
+            </td>
+            <td className="value">{ mediaRules }</td>
+          </tr>
+          <tr>
+            <td className="param">
+              <i className="fa fa-calendar" />
+              { I18n.t( "date_" ) }
+            </td>
+            <td className="value">{ dateRules }</td>
+          </tr>
+          <tr>
+            <td className="param">
+              <i className="fa fa-globe" />
+              { I18n.t( "establishment.establishment" ) }
+            </td>
+            <td className="value">{ establishmentRules }</td>
+          </tr>
+          { annotationRequirement }
+        </tbody>
       </table>
     </div>
   );
