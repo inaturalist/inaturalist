@@ -3,18 +3,24 @@ import _ from "lodash";
 import EstablishmentHeader from "../components/establishment_header";
 
 function mapStateToProps( state ) {
-  const taxon = state.taxon.taxon;
+  const { taxon } = state.taxon;
   const establishment = taxon.establishment_means;
   if ( !establishment ) {
     return { };
   }
-  const listedTaxon = _.find( taxon.listed_taxa, lt =>
-    lt.place.id === establishment.place.id &&
-    lt.establishment_means === establishment.establishment_means
-  );
+  const listedTaxon = _.find( taxon.listed_taxa, lt => (
+    lt.place.id === establishment.place.id
+    && lt.establishment_means === establishment.establishment_means
+  ) );
+  let url;
+  if ( listedTaxon ) {
+    url = `/listed_taxa/${listedTaxon.id}`;
+  } else if ( establishment.id ) {
+    url = `/listed_taxa/${establishment.id}`;
+  }
   return {
     establishmentMeans: establishment,
-    url: listedTaxon ? `/listed_taxa/${listedTaxon.id}` : null,
+    url,
     source: listedTaxon ? listedTaxon.list.title : null
   };
 }
