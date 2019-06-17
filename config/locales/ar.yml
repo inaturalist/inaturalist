@@ -1700,6 +1700,7 @@ ar:
   helped_the_observer_make: ساعد المراقب في صنع معرفهم النهائي (أي أنهم قُدِّموا قبل
     المعرف النهائي وطابقوه)
   here_are_3_examples: في ما يلي 3 أمثلة للبيانات التي تم تشكيلها بشكل جيد
+  here_are_our_top_suggestions: فيما يلي أهم اقتراحاتنا
   here_are_our_top_species_suggestions: فيما يلي أهم اقتراحات الأنواع
   here_are_some_things_you_can_do_meantime: 'إليك بعض الأشياء التي يمكنك القيام بها
     في هذه الأثناء:'
@@ -1847,6 +1848,8 @@ ar:
     بأصناف هذا المكان.
   inat_user_profile: '%{site_name}: الملف الشخصي لـ%{user}'
   inat_will_be_back_on: سيعود %{site_name} على قدميه/جناحيه/زعانفه/مخالبه/أقدامه الكاذبة
+  inaturalist_is_a_joint_initiative: '%{site_name} هي مبادرة مشتركة بين أكاديمية كاليفورنيا
+    للعلوم والجمعية الجغرافية الوطنية.'
   inaturalist_is_an_online_community: '%{site_name} عبارة عن منتدى عبر الإنترنت لعلماء
     الطبيعة! من خلال إضافة صورتك، يمكنك مساعدة الباحثين على معرفة المزيد حول'
   inaturalist_is_catching_some_zs: '%{site_name} هو اصطياد بعض Zs'
@@ -2858,6 +2861,9 @@ ar:
     تجميع المشروع
   only_species: نوع فقط
   only_species_and_subspecies: الأنواع والنواع الفرعية/الأصناف فقط
+  only_staff_can_edit_large_places: يمكن فقط لطاقم الموقع تعديل الأماكن الكبيرة جدا
+  only_staff_can_edit_standard_places: يمكن فقط لطاقم الموقع تحرير الأماكن في التسلسل
+    الهرمي القياسي
   only_the_author_of_this_post_can_do_that: يمكن لمؤلف هذه المشاركة فقط القيام بذلك،
     لا تكن شريرا.
   only_the_owner_of_this_list_can_do_that: يمكن  لمالك هذه القائمة فقط القيام بذلك،
@@ -4552,6 +4558,7 @@ ar:
   today: اليوم
   too_many_observations_csv: لديك خلية نحل من الملاحظات!<br /> لا يمكننا أن نأخذ سوى
     أول %{max_rows} ملاحظة في كل CSV
+  too_many_results: نتائج كثيرة جدا
   too_many_taxa_to_render: يعرض هذا الاستعلام عددا كبيرا من الأصناف ليتم عرضه في وقت
     واحد؛ حاول إضافة المزيد من المرشحات
   tools: الأدوات
@@ -5715,6 +5722,9 @@ ar:
         you_reviewed_message: لقد راجعت %{reviewed} من %{pageTotal} ملاحظة على هذه
           الصفحة من إجمالي %{total} ملاحظة مطابقة.
         unreview_all_tooltip: إزالة حالة المراجعة لجميع الملاحظات على الصفحة
+        too_many_results_desc: "عدد مرات الصفحة لا يمكن أن يتجاوز عدد النتائج لكل
+          صفحة 10000، \nحاول تطبيق مرشحات لتقليل عدد النتائج، أو تعليم \nالملاحظات
+          كمراجعة واستخدام زر \"عرض المزيد\" بدلا من \nترقيم الصفحات"
       import:
         coordinate_systems_help: "يقبل %{site_name} الإحداثيات باستخدام عدة \nأنظمة
           إحداثيات مختلفة; لذلك عندما تقوم بتوفير إحداثيات في نظام آخر غير \nخط العرض/خط
@@ -7206,6 +7216,7 @@ ar:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: أكبر من اللازم للتعديل
               is_too_large_to_import: كبيرة جدا بحيث لا يمكن استيرادها
               contains_too_many_observations: يحتوي على ملاحظات كثيرة جدا للاستيراد
         post:

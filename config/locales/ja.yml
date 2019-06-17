@@ -6,6 +6,7 @@
 # Author: Omotecho
 # Author: Otokoume
 # Author: S2KTS
+# Author: ShangPan
 # Author: Shirayuki
 # Author: Sudachi
 # Author: Sujiniku
@@ -70,6 +71,7 @@ ja:
   about_x: '%{x}について'
   acc: 精度（m）
   account: アカウント
+  account_creation: アカウント作成
   account_settings: アカウント設定
   accept: 承諾
   accept_community_identifications: コミュニティー判定を承諾
@@ -159,9 +161,22 @@ ja:
   add_photos: 写真を追加
   add_photos_to_this_observation: この観測記録に写真を追加
   add_place: 場所を追加
+  add_life_stage_adult_annotation: '“ライフステージ: 成体”の注釈を追加する'
+  add_life_stage_teneral_annotation: '“ライフステージ: teneral”の注釈を追加する'
+  add_life_stage_subimago_annotation: '“ライフステージ: 亜成虫”の注釈を追加する'
+  add_life_stage_pupa_annotation: '“ライフステージ: 蛹”の注釈を追加する'
+  add_life_stage_nymph_annotation: '“ライフステージ: 幼虫”の注釈を追加する'
+  add_life_stage_larva_annotation: '“ライフステージ: 幼生”の注釈を追加する'
+  add_life_stage_juvenile_annotation: '“ライフステージ: 未成体”の注釈を追加する'
+  add_life_stage_egg_annotation: '“ライフステージ: 卵”の注釈を追加する'
+  add_relationship: 新規関連
+  add_section: 新規セクション
   add_several_observations_at_once: 同時に複数の観察記録を追加する。
+  add_sex_female_annotation: '“性別: メス”の注釈を追加する'
+  add_sex_male_annotation: '“性別: オス”の注釈を追加する'
   add_shape: 形を追加
   add_some_now: 今すぐ追加する
+  add_tag: 新規タグ
   add_tags: タグを追加
   add_tags_to_selected_taxa: 選択されている分類群にタグを追加
   add_taxa: 分類群を追加
@@ -200,8 +215,10 @@ ja:
   additional_range_data_from_an_unknown_source: 追加の分布範囲の提供先は不明
   admin: 管理者
   admin_any_projects: どのプロジェクトも管理していません
+  admin_only: 管理者のみ
   admin_tools: 管理者ツール
   agree: 賛成
+  agree_: 同意
   agree?: 賛成？
   agree_to_the_project_terms: プロジェクト要項に同意します
   agree_with_current_taxon: 現在の分類群に賛成
@@ -271,6 +288,8 @@ ja:
   and_un_license_all_your_observations: そしてすべての観察記録のライセンスを解除
   android: Android
   animals: 動物
+  annotation: 注釈
+  annotations: 注釈
   announcement_was_successfully_created: お知らせは無事作成されました
   announcement_was_successfully_updated: お知らせは無事更新されました
   announcements: お知らせ
@@ -392,6 +411,8 @@ ja:
   batch_edit: 一括編集
   batch_edit_taxa_for_x_html: '%{x}の分類群一括編集'
   batch_operations: 一括操作
+  be_the_first_to_fave_this_observation: 本観測の最初のお気に入り登録者になろう！
+  beacuse_we_recently_changed_auth_system: 認証システムが変わったためパスワードがリセットされました。
   because: その理由は：
   because_of: 理由として
   before_importing_photos: 写真をインポートする前に
@@ -399,7 +420,10 @@ ja:
   bg_color: 背景色
   bioblitz: バイオビリッツ（生物観察会）
   birds: 鳥類
+  birthday: 誕生日
   black: 黒
+  block_user: ユーザーをブロック
+  blocked_users: ブロックされているユーザー
   blog_widget: ブログ用のウィジェット
   blue: 青
   blue_butterfly_etc: 青, チョウチョウ, など
@@ -436,8 +460,10 @@ ja:
   card: カード
   case_plural: s
   casual: カジュアル
+  casual_: カジュアル
   catalogue_of_life: Catalogue of Life
   categories: カテゴリ
+  cc_0_name: 著作権なし(CC0)
   cc_attribution_license: クリエイティブ・コモンズ 表示ライセンス
   cc_by_name: 表示
   cc_by_nc_name: 表示—非営利

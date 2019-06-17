@@ -2458,6 +2458,7 @@ ko:
   this_year: 올해
   thu: 목요일
   title: 제목
+  too_many_results: 결과가 너무 많음
   total: 합계
   total_observations: 총 관찰
   translated_languages: 번역된 언어
@@ -2787,6 +2788,7 @@ ko:
         parent_name_private: 부모 또는 법적 보호자 이름 (비공개)
         parent_email: 부모 또는 법적 보호자 이메일 (비공개)
         parent_information_private: 부모 정보 (비공개)
+        step3_title: 확인 이메일 대기
     welcome:
       index:
         explore_and_share: 자연에서 본 것을 공유하며 알아가요.
@@ -2981,6 +2983,10 @@ ko:
             value:
               date_format: "날짜 필드에는 YYYY-MM-DD 형식으로 넣어야 합니다 (\"%{observation_species_guess}\"의
                 \n당신이 관찰한 \"%{observation_field_name}\")"
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_edit: 편집하기에 너무 큼
         taxon_name:
           attributes:
             lexicon:

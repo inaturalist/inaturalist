@@ -164,6 +164,11 @@ zh-TW:
   about_this_bioblitz: 有關此 bioblitz
   about_this_map: 關於此地圖
   about_this_project: 關於此專案
+  about_trips_html: <h4>「行程」可透過在你的觀察紀錄中加入說明內容來收集物種的出現/不出現(presence/absence)的資料</h4><p><strong>為什麼</strong>出現/不出現資料包含有關取樣努力度的資訊，對於科學上的分析像是物種分布模式來說是很有用的(原始的
+    iNaturalist 觀察紀錄是「僅有出現紀錄」的資料)。</p><p><strong>如何</strong> 一筆「行程」透過紀錄以下的項目來新增說明內容到你的觀察紀錄中：</p>
+    <ul><li> 你找到<strong>什麼</strong>物種 (目標名錄)</li> <li> 你在<strong>何地</strong> 找到的 (搜尋區域)</li>
+    <li> 你<strong>何時</strong>找到的 (搜尋區間)</li> </ul> <p> 你能在搜尋區域和時間區間內於你的目標名錄中所觀察到的物種，可視為「出現紀錄」。若你無法在目標名錄中所觀察到的物種則視為「不出現紀錄」。點選「從行程中以表格顯示出現/不出現資料」來產生從行程和相關觀察紀錄中特定物種的出現/不出現紀錄。<a
+    href='%{url}'>查看更多細節</a></p>
   about_x: 關於 %{x}
   acc: 精確度 (公尺)
   account: 帳號
@@ -955,7 +960,7 @@ zh-TW:
   create_observations: 建立觀察
   create_observations_by_uploading_photos_to: 透過上傳照片至%{place}來創建觀察。當您上傳到%{place}後將會嘗試提取來自於照片的
     GPS 座標與時間/日期。要開始進行，
-  created: 已建建
+  created: 已建立
   created_by: 建立由
   created_by_user_on_date: 由 %{user} 於 %{date} 所建立
   created_on: 創立於
@@ -1545,7 +1550,8 @@ zh-TW:
   help_support_inaturalist: 協助支持 iNaturalist
   helped_the_observer_make: 協助觀察者製作他們的最終鑑定（註：就是在最終鑑定之前，他們所作出符合的）
   here_are_3_examples: 此為 3 個良好格式資料的範例
-  here_are_our_top_species_suggestions: 這是我們熱門的物種建議
+  here_are_our_top_suggestions: 這是我們的最佳建議
+  here_are_our_top_species_suggestions: 這是我們的最佳物種建議
   here_are_some_things_you_can_do_meantime: 此期間有一些事情可讓您來做：
   here_are_some_things_you_can_do_in_the_meantime: 此期間有一些事情可讓您來做
   heres_a_litle_about: 這裡有一些關於
@@ -1663,6 +1669,7 @@ zh-TW:
   inat_believes_this_is_a_complete_listing: '%{site_name} 相信這是此地區物種分類的完整清單。'
   inat_user_profile: '%{site_name}：%{user}的個人檔案'
   inat_will_be_back_on: '%{site_name} 將會返回它的足/翼/鰭/觸手/偽足'
+  inaturalist_is_a_joint_initiative: '%{site_name} 為加利福尼亞州科學院與國家地理學會的聯合倡議。'
   inaturalist_is_an_online_community: '%{site_name} 線上的博物學友社群！透過添加您的照片，您可協助研究員學習更多有關'
   inaturalist_is_catching_some_zs: '%{site_name} 正在獲取一些 Zs'
   inaturalist_observations_by: '%{site_name} &#58;由 %{login} 作出的觀察'
@@ -2062,7 +2069,7 @@ zh-TW:
     的成員
   ? member_of_the_inaturalist_network_a_joint_initiative_of_the_california_academy_of_sciences_and_the_national_geographic_society_html
   : '%{partial_inat_network_tag_html}iNaturalist 網路</a>成員是 %{cas_tag_html} 與 %{nat_geo_tag_html}
-    所共同發起。'
+    所聯合倡議。'
   members: 成員
   membership_model: 成員模組
   mentioned_you_in_noun_html: '%{user} 在 %{noun} 提到了您'
@@ -2229,7 +2236,7 @@ zh-TW:
   new_taxon_name_for: 新物種分類名稱用於
   new_taxon_range: 新物種分類範圍
   new_taxonomic_change: 新物種分類更改（草稿）
-  new_trip: 新旅程
+  new_trip: 新行程
   new_updates_in_the_last_24_hours_from: 來自於 %{site_name} 在最近 24 小時內新的更新
   new_user_rules: 新用戶規範
   new_users: 新使用者
@@ -2562,6 +2569,8 @@ zh-TW:
   only_site_curators_can_turn_on_observation_aggregation: 僅網站策展人可啟動專案聚集
   only_species: 僅物種
   only_species_and_subspecies: 僅有物種和亞種/變種
+  only_staff_can_edit_large_places: 僅有網站人員可以編輯特別廣大地點
+  only_staff_can_edit_standard_places: 僅有網站人員可以編輯標準層次地點
   only_the_author_of_this_post_can_do_that: 僅發佈此文章的作者可這樣做，並請不要破壞。
   only_the_owner_of_this_list_can_do_that: 僅有此清單的擁有者可以這樣做，請不要破壞。
   only_the_project_admin_can_delete_this_project: 僅專案管理員可刪除此專案。
@@ -2796,7 +2805,7 @@ zh-TW:
   place_name: 地名
   place_notes: 地點註釋
   place_subscription: 地點訂閱
-  place_too_big_for_check_list: 此地點對於清單來說過大。因為計算清單狀態相當花代價，除非是由網站管理員所添加，不然我們不允許用在較大的地點上。然而您仍可使用此地點在專案邊界以及觀察查詢上。
+  place_too_big_for_check_list: 此地點對於清單來說過大。因為計算清單狀態相當花代價，除非是由網站管理員所添加，不然我們不允許用在特別廣大地點上。然而您仍可使用此地點在專案邊界以及觀察查詢上。
   place_type_name: 地點類型名稱
   place_updated: 地點已更新！
   placement: 佈置
@@ -3433,7 +3442,7 @@ zh-TW:
   save_observation: 儲存觀察
   save_photos: 儲存照片
   save_place: 儲存地點
-  save_trip: 儲存旅程
+  save_trip: 儲存行程
   saved: 已儲存
   saving: 儲存中...
   saving_num_of_count_observations:
@@ -3762,7 +3771,9 @@ zh-TW:
   take_me_flickr!: 是的，帶我前往 Flickr！
   take_me_back: 帶我返回
   target_list_alert: 您確定您是否嘗試觀察由您的目標清單裡，所涵蓋的所有物種？請記住任何由您的目標清單所涵蓋；但您未觀察到的事物，會被解讀為缺失。因此，讓您的目標清單能清準反映出是您所嘗試發現的物種集，是非常重要的
-  target_list_warning: 請記住任何由您的目標清單所涵蓋；但在您的旅程期間和半徑範圍裡未觀察到的事物，會被解讀為缺失。因此，讓您的目標清單能清準反映出是您所嘗試發覺的物種集，是非常重要的。如果您沒有打算嘗試發現在您目標清單上、或是在您目標清單裡群組所涵蓋的物種，請將它移除。
+  target_list_warning: |-
+    請記住，在你的行程期間和半徑範圍裡未觀察到在你的目標名錄中所涵蓋的任何物種，
+    會被視為不出現紀錄。因此，讓你的目標名錄能精準反映出是您所嘗試發覺的物種集合，是非常重要的。如果你不打算發掘在你的目標名錄上、或在其中分類群內所涵蓋的物種，請將它移除。
   taxa: 物種分類
   taxa_with_unknown_relationships: 帶有未知關聯的分類
   taxa_info: 物種分類群訊息
@@ -4058,6 +4069,7 @@ zh-TW:
   to_the_bat_cave: 到蝙蝠洞！
   today: 今日
   too_many_observations_csv: 您擁有著大量觀察！<br />我們僅能在每個 CSV 裡最多取用您的前 %{max_rows} 觀察
+  too_many_results: 太多結果
   too_many_taxa_to_render: 此查詢一次回傳太多要呈現的物種分類。請嘗試添加更多的篩選
   tools: 工具
   top_5_identifiers: 前5位熱門鑑定人
@@ -4079,7 +4091,9 @@ zh-TW:
   "true": 是
   trending: 趨勢
   trends: 趨勢
-  trip_target_list_info: 這是在您目標清單裡簡略分類群的非重疊集合，不包含隱蔽觀察的分類群。<a href="/pages/trips">了解更多</a>。
+  trip_target_list_info: |-
+    未在此行程半徑和時間區間內觀察到目標名錄中所有涵蓋物種，會被視為不出現紀錄
+    <a href="/pages/trips">了解更多細節</a>。
   trusted: 已信任
   trusted_project?: 託付的專案？
   trust_this_person_with_your_private_coordinates: 以您的隱藏座標信任此人
@@ -4678,7 +4692,7 @@ zh-TW:
           您的捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。
         </p>
         <p class="text-muted">
-          iNaturalist 為加利福尼亞州科學院與國家地理學會所共同發起。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
+          iNaturalist 為加利福尼亞州科學院與國家地理學會所聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
         </p>
       post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
     flags:
@@ -4994,7 +5008,7 @@ zh-TW:
           帳號建立新連接。如果他們恢復了此功能，我們可以重新開始連結帳號至 Soundcloud。同時，您可以使用<a href="/observations/upload">上傳器</a>來直接上傳聲音檔案。
       show:
         allow_curator_coordinate_access_desc_html: 允許專案策展人來檢視此觀察的隱藏座標。
-        ancestor_disagreements_desc: '# 已鑑定物種分類群來自於某一物種分類的祖先，不過是在使用此物種分類的首次鑑定之後創建'
+        ancestor_disagreements_desc: '# 已鑑定物種分類群來自於某一物種分類的祖先，但不同意分類（例如：我同意它歸在這個屬；但不同意它的物種）'
         community_taxon_desc_html: |-
           <p class="ui">
             社群物種分類（或社群鑑定）代表著 %{site_name} 社群對於觀察所對應物種分類的看法。若您對於我們如何挑選社群物種分類方面有興趣，請查看下方演算法的備註，不過通常我們是採用嘗試<strong>挑選超過 2/3 鑑定人所認定的物種分類</strong>。這代表著有時候會挑選到一個有著部份不被認同的物種分類群之更高層級物種分類（例如：您認為對象應是王蛇，但我認為是響尾蛇，因此 iNat 最後會挑選包含所有蛇類的亞目）。規則在意見分歧時有著好處，因為我們發現在過往情況下異議者通常會是對的。
@@ -5124,7 +5138,7 @@ zh-TW:
           來在您所挑選的 GIS 應用程式裡編輯，並直接上傳您所編輯的 KML。
         admin_level_desc: 應僅用於設定政治機構，以美國環境而言：0 = 國家、1 = 州、2 = 郡、3 = 鎮
       new:
-        check_list_note: 註：在廣大地點情況下清單將會被自動停用。
+        check_list_note: 註：在特別廣大地點情況下清單將會被自動停用。
         coordinates_desc: 若您不想畫出邊界或上傳 KML 的話，您必須指定出座標。
         map_instruction: 使用多邊形工具來描繪地點邊界。
     posts:
@@ -5577,8 +5591,9 @@ zh-TW:
           <p>
             註：若您已經做出超過 1000 筆的觀察，請不要出於實驗性質更改您的分部
           </p>
-        licensing_desc_html: 授權您的內容可讓其他遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。%{site_name} 使用您的創用
-          CC 授權內容，來與像是<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF），一個專門編輯發佈全球生物多樣化訊息之國際政府間組織如此般的資料合作者共享內容。
+        licensing_desc_html: 授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name}
+          會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href="http://www.gbif.org/">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC
+          BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。
         muting_desc_html: |-
           <p>
             禁言某人會防止您接受到到對方的通知，包含評論您的觀察、
@@ -5621,6 +5636,16 @@ zh-TW:
         this_user_was_banned: 此用戶已被停用
     user_parents:
       confirm:
+        thanks_donor_html: |-
+          <p>
+            感謝成為 iNaturalist 的捐款者！我們會使用您現有的捐款來確認您的身份，而您不需要再做進一步的操作。<strong>您兒女的帳號現已啟用。</strong>
+          </p>
+          <p>
+            請從您兒女的 Seek 應用程式來透過輕觸在選單上的「iNaturalist」按鈕，然後輕觸在螢幕底部的「以 iNaturalist 登入」進行登入。
+          </p>
+          <p>
+            您兒女將能夠使用 Seek 應用程式來發佈觀察到他們的 iNaturalist 帳號，並可在 iNaturalist.org 上看見。
+          </p>
         thanks_for_creating_a_minor_account: 感謝建立次要帳號！
         we_will_send_you_an_email: 一旦您兒女的帳號啟用後，我們會發送您一封電子郵件。
       new:
@@ -5636,6 +5661,8 @@ zh-TW:
         step2_title: 以信用卡來確認您的身份
         step2_desc: 為了確認您的身份是成年人，我們需要您使用信用卡來向 iNaturalist 做出額度至少 1 美元的名義上捐款。這是最不具侵略性、能允許我們遵守到隱私法規的身分驗證形式。另外請確認您使用的電子郵件地址，是和在上一步驟裡所輸入的「父母電子郵件」相同。
         step3_title: 等待確認電子郵件
+        step3_desc: 一旦我們比對好用來捐款的電子郵件與您輸入為「父母電子郵件」的電子郵件，我們將會啟用兒女的帳號，並發送父母一封登入說明的電子郵件。這最多會需要
+          24 小時處理。
         step3_donor_title: 您子女的帳號已啟用
         step3_donor_desc: 因為您是 iNaturalist 捐款者，我們能以您現有的捐款內容來驗證您的身份。
     welcome:
@@ -6094,6 +6121,7 @@ zh-TW:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: 太大無法編輯
               is_too_large_to_import: 太大而無法匯入
               contains_too_many_observations: 包含太多觀察而無法匯入
         post:

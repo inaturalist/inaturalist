@@ -1767,6 +1767,7 @@ nl:
   helped_the_observer_make: hielp de waarnemer hun definitieve ID te maken (dat wil
     zeggen ze werden gemaakt vóór de definitieve ID en ze matchen het)
   here_are_3_examples: Hier zijn 3 voorbeelden van gegevens in het juiste formaat
+  here_are_our_top_suggestions: Dit zijn onze topvoorstellen
   here_are_our_top_species_suggestions: Dit zijn onze top voorstellen voor deze soort
   here_are_some_things_you_can_do_meantime: 'Enkele dingen die je intussen kan doen:'
   here_are_some_things_you_can_do_in_the_meantime: Enkele dingen die je intussen kan
@@ -2969,6 +2970,7 @@ nl:
     projectaggregatie inschakelen
   only_species: alleen soorten
   only_species_and_subspecies: alleen soorten en ondersoorten/variëteiten
+  only_staff_can_edit_large_places: Alleen de sitestaf kan zeer grote plaatsen bewerken
   only_the_author_of_this_post_can_do_that: Alleen de auteur van dit bericht kan dat
     doen. Wees niet slecht.
   only_the_owner_of_this_list_can_do_that: Alleen de eigenaar van deze lijst kan dat
@@ -4706,6 +4708,7 @@ nl:
   today: Vandaag
   too_many_observations_csv: Je hebt een bijenkorf van waarnemingen!<br/> We kunnen
     alleen je eerste %{max_rows} waarnemingen in elke CSV maken
+  too_many_results: Te veel resultaten
   too_many_taxa_to_render: Deze query retourneert te veel taxa om tegelijkertijd te
     renderen. Probeer meer filters toe te voegen.
   tools: Tools
@@ -7387,6 +7390,10 @@ nl:
               has_query_parameter: kan geen queryparameter bevatten.
               invalid_uri: moet een geldige URI zijn.
               relative_uri: moet een absolute URI zijn.
+        flag:
+          attributes:
+            user_id:
+              already_flagged: item is al gemarkeerd
         guide:
           attributes:
             published_at:
@@ -7418,6 +7425,7 @@ nl:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: is te groot om te bewerken
               is_too_large_to_import: is te groot om te importeren
               contains_too_many_observations: bevat te veel waarnemingen om te importeren
         post:
