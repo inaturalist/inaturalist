@@ -12,7 +12,7 @@ const EstablishmentHeader = ( { establishmentMeans, source, url } ) => {
         { "(" }
         { I18n.t( "label_colon", { label: I18n.t( "source_list_" ) } ) }
         { " " }
-        <a href={url}>{ source }</a>
+        <a href={url}>{ source || url }</a>
         { ")" }
       </span>
     );
