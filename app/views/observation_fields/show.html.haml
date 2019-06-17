@@ -40,7 +40,7 @@
             - max_value_count = @value_counts.values.max
             %table#allowed_values
               - allowed_values.each_with_index do |v,i|
-                - width_percent = @value_counts[v].to_f / max_value_count * 100
+                - width_percent = @value_counts[v].to_f / ( max_value_count || 1) * 100
                 %tr{:class => i >= 15 ? 'extra' : ''}
                   %td= v
                   %td.count-col
