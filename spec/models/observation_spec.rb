@@ -631,6 +631,27 @@ describe Observation do
         observation.update_attributes(:observed_on_string => "")
         expect(observation.observed_on).to be_blank
       end
+
+      it "should not allow dates greater that created_at + 1 day" do
+        o_2_days_ago = Observation.make!( created_at: 2.days.ago, observed_on_string: 3.day.ago.to_s )
+        expect( o_2_days_ago ).to be_valid
+        o_2_days_ago.update_attributes( observed_on_string: Time.now.to_s )
+        expect( o_2_days_ago ).not_to be_valid
+      end
+
+      it "should not allow dates that are greater that created_at due to time zone mismatch" do
+        Time.use_zone( "UTC" ) do
+          o_2_days_ago = Observation.make!(
+            created_at: DateTime.parse( "2019-01-20 23:00" ),
+            observed_on_string: "2019-01-19",
+            time_zone: "Hong Kong"
+          )
+          expect( o_2_days_ago ).to be_valid
+          new_observed_on_string = "2019-01-20 23:00"
+          o_2_days_ago.update_attributes( observed_on_string: new_observed_on_string )
+          expect( o_2_days_ago ).to be_valid
+        end
+      end
     end
   
     it "should set an iconic taxon if the taxon was set" do

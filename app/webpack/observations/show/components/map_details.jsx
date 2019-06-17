@@ -10,6 +10,8 @@ class MapDetails extends React.Component {
       if ( p && p.place_type && iNatModels.Place.PLACE_TYPES[p.place_type] ) {
         placeType = I18n.t( `place_geo.geo_planet_place_types.${
           _.snakeCase( iNatModels.Place.PLACE_TYPES[p.place_type] )}` );
+      } else {
+        placeType = I18n.t( "unknown" );
       }
       const label = placeType && (
         <span className="type">
@@ -19,7 +21,7 @@ class MapDetails extends React.Component {
       return (
         <span className="place" key={`place-${p.id}`}>
           <a href={`/observations?place_id=${p.id}`}>
-            { p.display_name }
+            { p.display_name || p.name }
           </a>
           { label }
         </span>
@@ -120,12 +122,12 @@ class MapDetails extends React.Component {
           <div className="info">
             <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "lat" ) } ) }</span>
             { " " }
-            <span className="value">{ _.round( observation.latitude, 6 ) }</span>
+            <span className="value">{ _.round( observation.latitude, 6 ) || "" }</span>
           </div>
           <div className="info">
             <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "long" ) } ) }</span>
             { " " }
-            <span className="value">{ _.round( observation.longitude, 6 ) }</span>
+            <span className="value">{ _.round( observation.longitude, 6 ) || "" }</span>
           </div>
           <div className="info">
             <span className="attr">{ I18n.t( "label_colon", { label: I18n.t( "accuracy" ) } ) }</span>

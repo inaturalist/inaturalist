@@ -38,12 +38,18 @@ class ObservationFieldsController < ApplicationController
       format.html do
         @value = params[:value] || "any"
         scope = ObservationFieldValue.includes(:observation).
-          where(:observation_field_id => @observation_field).
-          order("observation_field_values.id DESC")
-        scope = scope.where("value = ?", @value) unless @value == "any"
-        @observation_field_values = scope.page(params[:page])
+          where(:observation_field_id => @observation_field)
+        ofv_scope = scope.order( "observation_field_values.id DESC" )
+        ofv_scope = ofv_scope.where( "value = ?", @value ) unless @value == "any"
+        @observation_field_values = ofv_scope.page(params[:page])
         @observations = @observation_field_values.map{|ofv| ofv.observation}
         @projects = @observation_field.project_observation_fields.includes(:project).page(1).map(&:project)
+        unless @observation_field.allowed_values.blank?
+          @value_counts = scope.
+            where( "value IN (?)", @observation_field.allowed_values.split( "|" ).map(&:strip) ).
+            group( "value" ).count
+        end
+        render layout: "bootstrap"
       end
       format.json  do
         extra = params[:extra].to_s.split(',')

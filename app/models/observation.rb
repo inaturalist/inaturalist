@@ -311,6 +311,7 @@ class Observation < ActiveRecord::Base
   validates_presence_of :user_id
   
   validate :must_be_in_the_past,
+           :date_observed_must_be_before_date_created,
            :must_not_be_a_range
 
   validates_numericality_of :latitude,
@@ -1851,6 +1852,15 @@ class Observation < ActiveRecord::Base
     return true if observed_on.blank?
     if observed_on > Time.now.in_time_zone(time_zone || user.time_zone).to_date
       errors.add(:observed_on, "can't be in the future")
+    end
+    true
+  end
+
+  def date_observed_must_be_before_date_created
+    return true if observed_on.blank?
+    return true if created_at.blank?
+    if observed_on.in_time_zone( "UTC" ) > created_at.in_time_zone( "UTC" ).to_date
+      errors.add(:observed_on, :cannot_be_greater_than_date_created)
     end
     true
   end
