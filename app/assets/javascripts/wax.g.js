@@ -3402,6 +3402,8 @@ wax.g.interaction = function( options ) {
             var mapOffset = wax.u.offset(map.getDiv());
             var get = function(mapType) {
                 if (!mapType || !mapType.interactive) return;
+                // ignore when zoom is out of range
+                if (zoom < mapType.minZoom || zoom > mapType.maxZoom) return;
                 for (var key in mapType.cache) {
                     if (key.split('/')[0] != zoom) continue;
                     var tileOffset = wax.u.offset(mapType.cache[key]);

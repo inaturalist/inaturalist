@@ -61,21 +61,25 @@ lb:
   about_external_links: Iwwer extern Linken
   about_licenses: Iwwer Lizenzen
   about_licensing: Iwwer d'Lizenzen
-  about_life!: iwwer d'Liewen!
+  about_life!: Iwwer d'Liewen!
   about_muting: Iwwer stomm schalten
   about_names: Iwwer Nimm
   about_places: Iwwer Plazen
   about_taxon_changes: Iwwer Taxon-Ännerungen
   about_the_cc_licenses: Iwwer Creative Commons Lizenzen
   about_these_licenses: Iwwer dës Lizenzen
-  about_this_bioblitz: Iwwer dëse bioblitz
-  about_this_map: Iwwer Dës Kaart
+  about_this_bioblitz: Iwwer dëse Bioblitz
+  about_this_map: Iwwer dës Kaart
   about_this_project: Iwwer dëse Projet
   about_x: Iwwer %{x}
   account: Benotzerkont
   account_settings: Astellunge vum Benotzerkont
   accept: akzeptéieren
+  accuracy: Prezisioun
+  accuracy_m: Genauechkeet (m)
   accuracy_meters: Genauegkeet (Meter)
+  accuracy_of_the_coordinates: Prezisioun vun de Koordinaten
+  acquaintances: Bekannter
   action: Aktioun
   actions: Aktiounen
   activate_user: Benotzer aktivéieren
@@ -86,17 +90,19 @@ lb:
   adapted_by_name_from_a_work_by_original: Ugepasst vun %{name} aus enger Aarbecht
     vun %{original}
   add: Derbäisetzen
+  add_a_batch_of_observations: E Saz vun Observatiounen derbäisetzen
+  add_a_batch_of_observations_by_csv: E Saz vun Observatiounen am CSV-Format derbäisetzen
+  add_a_batch_of_taxa: En Taxonssaz derbäisetzen
   add_a_comment: Eng Bemierkung derbäisetzen
   add_a_field: E Feld derbäisetzen
   add_a_flag: Eng Markéierung derbäisetzen
   add_a_link_raquo: E Link derbäisetzen &raquo;
   add_a_name: En Numm derbäisetzen
   add_a_new_change_group: Eng nei Ännerungsgrupp derbäisetzen
-  add_a_new_observation_to_id_please!: Eng nei Observatioun fir ze bestëmmen derbäisetze
-    w.e.g.!
+  add_a_new_observation_to_id_please!: Setzt w.e.g. eng nei Observatioun bei d'ID.
   add_a_place_raquo: Eng Plaz derbäisetzen &raquo;
-  add_a_single_observation: Eng Eenzel-Observatioun derbäisetzen.
-  add_a_taxon: Een Taxon derbäisetzen
+  add_a_single_observation: Eng eenzel Observatioun derbäisetzen.
+  add_a_taxon: En Taxon derbäisetzen
   add_all_your_matching_obs_of_this_taxon: Setzt all Är passend Observatioune vun
     dësem Taxon an dëse Projet
   add_all_your_matching_obs_to_this_project: Setzt all Är passend Observatiounen an
@@ -110,15 +116,20 @@ lb:
   add_annotations_for_controlled_attribute:
     sex: Annotatioune fir "Geschlecht" derbäisetzen
     plant_phenology: Annotatioune fir "Planzephänologie" derbäisetzen
+    life_stage: Bemierkunge fir "Liewensstadium" derbäisetzen
   add_another: Eng Aner derbäisetzen
   add_another_flag: Nach eng Markéierung derbäisetzen
   add_another_photo: Eng aner Foto derbäisetzen
   add_another_section: En aneren Abschnitt derbäisetzen
+  add_another_subscription: En anert Abonnement derbäisetzen
+  add_batch: E Saz derbäisetzen
   add_colors: Faarwen derbäisetzen
   add_comment: Eng Bemierkung derbäisetzen
+  add_common_names_for: Ëmgangssproochlech Nimm fir existent Taxa derbäisetzen
+  add_conservation_status: Schutzstatus derbäisetzen
   add_countries: Länner derbäisetzen
   add_edit_more_fields: Méi Felder derbäisetzen/änneren
-  add_editor: Auteur derbäisetzen
+  add_editor: Editeur derbäisetzen
   add_description: '%{description_name} derbäisetzen'
   add_field: Feld derbäisetzen
   add_from_your_observations: Aus Ären Observatiounen derbäisetzen
@@ -137,43 +148,90 @@ lb:
   add_one: Een derbäisetzen!
   add_one_now: Elo eng derbäisetzen
   add_photos: Fotoen derbäisetzen
-  add_photos_to_this_observation: Fotoe bei dëse Observatioun derbäisetzen
+  add_photos_to_this_observation: Fotoe bei dës Observatioun derbäisetzen
   add_place: Plaz derbäisetzen
+  add_plant_phenology_flowering_annotation: 'Setz d''Informatioun "Planzephänologie:
+    Blitt" derbäi'
+  add_plant_phenology_fruiting_annotation: 'Setz d''Informatioun "Planzephänologie:
+    Dréit Friichten" derbäi'
+  add_life_stage_adult_annotation: 'Setz d''Informatioun "Liewesstadium: Ausgewuess"
+    derbäi'
+  add_life_stage_subimago_annotation: 'Setz d''Informatioun "Liewesstadium: Subimago"
+    derbäi'
+  add_life_stage_pupa_annotation: 'Setz d''Informatioun "Liewesstadium: Popp" derbäi'
+  add_life_stage_nymph_annotation: 'Setzt d''Informatioun "Liewensstadium: Nymph"
+    derbäi'
+  add_life_stage_larva_annotation: 'Setzt d''Informatioun "Liewensstadium: Larv" derbäi'
+  add_life_stage_juvenile_annotation: 'Setzt d''Informatioun "Liewensstadium: jonkt
+    Déier" derbäi'
+  add_life_stage_egg_annotation: 'Setzt d''Informatioun "Liewensstadium: Ee" derbäi'
+  add_relationship: Eng Relatioun derbäisetzen
   add_section: Abschnitt derbäisetzen
   add_several_observations_at_once: E puer Observatiounen op eemol derbäisetzen.
+  add_sex_female_annotation: 'Setzt d''Informatioun "Geschlecht: weiblech" derbäi'
+  add_sex_male_annotation: 'Setzt d''Informatioun "Geschlecht: männlech" derbäi'
+  add_shape: Form derbäisetzen
   add_some_now: Der elo e puer derbäisetzen
+  add_tag: Markéierung derbäisetzen
+  add_tags: Markéierungen derbäisetzen
+  add_tags_to_selected_taxa: Tags bei déi ausgewielt Taxa derbäisetzen
+  add_taxa: Taxa derbäisetzen
+  add_taxa_to_places: Taxa bei Plazen derbäisetzen
+  add_to_a_scheme: Bei e Schema derbäisetzen
   add_to_a_project: E Projet derbäisetzen
   add_to_calendar: Bei de Kalenner derbäisetzen
+  add_to_checklist: Bei d'Checklëscht derbäisetzen
   add_to_favorites: Bei d'Favoriten derbäisetzen
+  add_to_id_please: Bei d'ID derbäisetze w.e.g.
   add_to_list: Op d'Lëscht derbäisetzen
   add_to_project: Bei de Projet derbäisetzen
+  add_to_your_life_list: Bei deng Liewenslëscht derbäisetzen!
   add_to_your_list: Op Är Lëscht derbäisetzen
+  add_your_email_to_get: Setzt Är E-mail-Adress derbäi fir vun der Communautéit Réckmeldung
+    ze kréien. Wann Dir se léiwer net ugitt, da kommt geschwënn erëm kucken!
   add_your_own_observations_at: Setzt Är eegen Observatiounen op %{site_name} derbäi
   add_your_photo: Är Foto derbäisetzen
   add_your_photo_to: Är Foto op %{project} derbäisetzen
   added: Derbäigesat
   added!: Derbäigesat!
+  added_an: huet een derbäigesat
+  added_as_a_part_of: Derbäigesat als Deel vun engem
   added_by: Derbäigesat vum
   added_by_user_on_date_html: Derbäigesat vum %{user} de(n) %{date}
+  added_identifications_to: Huet aneren hier Observatioune bestëmmt
   added_on: Derbäigesat de(n)
+  added_to: Derbäigesat zum
   added_to_favorites: Bei d'Favoriten derbäigesat
+  added_to_favorites_html: Bei <a href="%{url}">Favoriten</a> derbäigesat
   adding: Derbäisetzen...
   adding_observations: Observatiounen derbäisetzen
+  adding_to_your_life_list: Bei deng Liewens-Lëscht derbäisetzen...
   additional_range: Zousätzleche Beräich
   admin: Admin
   admin_s: Administrateur(en)
+  admin_only: Just fir Administrateuren
+  admin_tools: Geschier fir Administrateuren
   agree: zoustëmmen
   agree_: Akzeptéieren
   agree?: Zoustëmmen?
+  agree_to_the_project_terms: De Conditioune vum Projet zoustëmmen
+  agree_with_current_taxon: Si mam aktuellen Taxon d'accord
+  agreeing: Sinn d'accord...
+  aka: aka
   all: All
   all_colors: '&laquo; All Faarwen'
   all_comments: All Bemierkungen
+  all_csv: All CSV
+  all_life: All Liewesformen
   all_names: All Nimm
   all_observations: All Observatiounen
   all_photos: All Fotoen
   all_places: All Plazen
   all_projects: All Projeten
   all_rank_added_to_the_database:
+    phylum: All Phyla an d'Datebank derbäigesat
+    subphylum: All Ënner-Phyla an d'Datebank derbäigesat
+    superclass: All Superklassen an d'Datebank derbäigesat
     hybrid: All Hybriden an d'Datebank derbäigesat
   all_species: All Aarten
   all_taxa:
@@ -339,6 +397,7 @@ lb:
   bg_color: Hannergrondfaarf
   bioblitz: Bioblitz
   birds: Vigel
+  birthday: Gebuertsdag
   black: schwaarz
   block_user: Benotzer spären
   block_removed: Spär ewechgeholl
@@ -398,13 +457,25 @@ lb:
   citation: Citatioun
   classification: Klassifikatioun
   clear: eidel maachen
+  clear_color_filters: Faarffilter zrécksetzen
+  clear_filters: Filteren zrécksetzen
+  clear_search: Sich zrécksetzen
+  click_on_the_map_to: Klick op d'Kaart fir deng Observatioun ze lokaliséieren
   click_the_map: <strong>Klickt op d'Kaart</strong> fir eng Plaz dobäizesetzen.
+  click_the_map_to_jump_new_place: Klick op d'Kaart fir op eng nei Plaz ze sprangen
   close: Zoumaachen
   code: Code
   collapse_days: Deeg zouklappen
+  collapse_updates: Updaten zesummeklappen
+  color_categories_for_this_species: Faarfkategorië fir dës Aart, wéi wanns de s'an
+    engem Guide no Faarwe géifs zortéieren. Ziel w.e.g. net all Faarf um Organismus
+    op, just déi markantst. Fir Planzen déi bléien, huel w.e.g. d'Faarf vun der Bléi.
+    Looss eidel, wann d'Faarwen net hëllefen dës Aart ze kategoriséieren, wéi brong
+    Mamendéieren oder gréng Faren.
   colors: Faarwen
   columns: Kolonnen
   combine: Combinéieren
+  comma_separated_please: W.e.g. mat Kommaen trennen
   comment: Bemierkung
   comment_: Bemierkung
   comment_deleted: Bemierkung geläscht
@@ -1130,10 +1201,10 @@ lb:
   ok: OK
   onboarding:
     following_panel_title: Leit, Taxa a Plazen iwwerwaachen
-    following_panel_body: Op %{site_name} kënnt Dir Leit auswielen deenen hir  geposten
+    following_panel_body: Op %{site_name} kënnt Dir Leit erausichen deenen hir gepoust
       Observatiounen Dir verfollege wëllt. Dir kënnt Iech och op verschidden Aarten
-      abonnéieren fir nei Observatiounen vun dësen Aarten am An ze halen, oder dat
-      selwecht och mat Plaze maachen.
+      abonnéieren, fir nei Observatioune vun dësen Aarten am A ze halen, oder datselwecht
+      och mat Plaze maachen.
     youve_got_updates_panel_title: Dir hutt Aktualisatiounen!
   only_administrators_may_access_that_page: Nëmmen Administrateure kënnen op déi Säit
     kommen
@@ -1191,6 +1262,7 @@ lb:
   photos_size_photos: '%{photos_size} Fotoen'
   photos_size_photo: '%{photos_size} Foto'
   photos_updated: Fotoen aktualiséiert.
+  pi_consent_desc_title: Iwwer Perséinlech Informatiounen
   pick_a_username: Sicht e Benotzernumm eraus
   pink: rosa
   place: Plaz
@@ -1569,9 +1641,9 @@ lb:
   stay_and_try_again: Bleiwen an nach emol probéieren
   still_no_luck?: Nach ëmmer kee Gléck?
   submit: Schécken
-  subscribe_to_a_taxon: Op een Taxon abonnéieren
+  subscribe_to_a_taxon: Op en Taxon abonnéieren
   subscribe_to_observations_in_a_taxon: Op all Observatiounen iwwer eng Aart oder
-    ee Grupp vum Organismen (z.B. Skorpiounen) abonnéieren.
+    eng Grupp vun Organismen (z.B. Skorpiounen) abonnéieren.
   subscribe_to_this_observation: Op dës Observatioun abonnéieren
   subscriptions: Abonnementer
   suggestions: Virschléi
@@ -1612,6 +1684,7 @@ lb:
   title: Titel
   title_and_description: Titel & Beschreiwung
   today: Haut
+  too_many_results: Ze vill Resultater
   total: Total
   translated_languages: Iwwersat Sproochen
   "true": Wouer
@@ -1794,8 +1867,8 @@ lb:
   your_sure_delete_list?: Sidd Dir sécher datt dir dës Lëscht läsche wëllt?
   your_world!: Är Welt!
   yours: Ären
-  youve_already_added_an_identification: Dier hutt schonn eng Identifikatioun dobäigesat,
-    Dir däerft just eng derbäisetzen
+  youve_already_added_an_identification: Dir hutt schonn eng Identifikatioun derbäigesat.
+    Et kann een nëmme just eng derbäisetzen.
   views:
     devise:
       mailer:
@@ -1813,6 +1886,10 @@ lb:
         what_is_an_observation?: Wat ass eng Observatioun?
         can_i_include_my_observations_on_my_blog?: Kann ech meng %{site_name} Observatiounen
           op mäi Blog oder meng Websäit bäisetzen?
+    messages:
+      from: Vum
+      to: Fir
+      subject: Sujet
     oauth:
       authorizations:
         new:
@@ -2060,6 +2137,7 @@ lb:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: ass ze grouss fir z'änneren
               is_too_large_to_import: ass ze grouss fir z'importéieren
         taxon_photo:
           attributes:

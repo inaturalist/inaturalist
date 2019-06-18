@@ -2,10 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 import moment from "moment";
 import _ from "lodash";
+import { addImplicitDisagreementsToActivity } from "../../../shared/util";
 import ActivityItemContainer from "../containers/activity_item_container";
 
 const DiscussionList = ( { observation, currentUserID } ) => {
-  let items = ( observation.comments || [] ).map( ( c ) => (
+  let items = ( observation.comments || [] ).map( c => (
     Object.assign( c, {
       className: "Comment",
       key: `Comment-${c.id}`,
@@ -18,7 +19,7 @@ const DiscussionList = ( { observation, currentUserID } ) => {
   if ( currentUserIdent ) {
     taxonIds.add( currentUserIdent.taxon.id );
   }
-  items = items.concat( idents.map( ( i ) => {
+  items = items.concat( idents.map( i => {
     const hideAgree = taxonIds.has( i.taxon.id ) || !i.taxon.is_active;
     taxonIds.add( i.taxon.id );
     return Object.assign( i, {
@@ -32,15 +33,17 @@ const DiscussionList = ( { observation, currentUserID } ) => {
     const dateB = moment( b.created_at );
     if ( dateA < dateB ) {
       return -1;
-    } else if ( dateA > dateB ) {
+    }
+    if ( dateA > dateB ) {
       return 1;
     }
     return 0;
   } );
+  items = addImplicitDisagreementsToActivity( items );
   const taxonIDsDisplayed = {};
   return (
     <div className="DiscussionList">
-      {items.map( ( item ) => {
+      {items.map( item => {
         let firstDisplay;
         let key = `activity-item-comment-${item.id}`;
         if ( item.taxon && item.current ) {
@@ -50,10 +53,10 @@ const DiscussionList = ( { observation, currentUserID } ) => {
         }
         return (
           <ActivityItemContainer
-            key={ key }
-            item={ item }
-            observation={ observation }
-            firstDisplay={ firstDisplay }
+            key={key}
+            item={item}
+            observation={observation}
+            firstDisplay={firstDisplay}
             linkTarget="_blank"
           />
         );
@@ -64,8 +67,6 @@ const DiscussionList = ( { observation, currentUserID } ) => {
 
 DiscussionList.propTypes = {
   observation: PropTypes.object.isRequired,
-  onDelete: PropTypes.func,
-  onRestore: PropTypes.func,
   currentUserID: PropTypes.number
 };
 

@@ -22,7 +22,6 @@ const ActivityItem = ( {
   config,
   deleteComment,
   deleteID,
-  firstDisplay,
   restoreID,
   setFlaggingModalState,
   currentUserID,
@@ -89,7 +88,7 @@ const ActivityItem = ( {
     const buttons = [];
     let canAgree = false;
     let userAgreedToThis;
-    if ( loggedIn && item.current && firstDisplay && item.user.id !== config.currentUser.id ) {
+    if ( loggedIn && item.current && item.firstDisplay && item.user.id !== config.currentUser.id ) {
       if ( currentUserID ) {
         canAgree = currentUserID.taxon.id !== taxon.id;
         userAgreedToThis = currentUserID.agreedTo && currentUserID.agreedTo.id === item.id;
@@ -97,7 +96,7 @@ const ActivityItem = ( {
         canAgree = true;
       }
     }
-    if ( loggedIn && firstDisplay && !hideCompare ) {
+    if ( loggedIn && item.firstDisplay && !hideCompare ) {
       let compareTaxonID = taxon.id;
       if ( taxon.rank_level <= 10 ) {
         compareTaxonID = taxon.ancestor_ids[taxon.ancestor_ids.length - 1];
@@ -365,6 +364,19 @@ const ActivityItem = ( {
       />
     );
   }
+  if ( item.implicitDisagreement ) {
+    const footerText = I18n.t( "user_disagrees_with_previous_finer_identifications", {
+      user: ReactDOMServer.renderToString( userLink )
+    } );
+    footer = (
+      <span
+        className="title_text"
+        dangerouslySetInnerHTML={{
+          __html: `* ${footerText}`
+        }}
+      />
+    );
+  }
   const elementID = isID ? `activity_identification_${item.id}` : `activity_comment_${item.id}`;
   const itemURL = isID ? `/identifications/${item.id}` : `/comments/${item.id}`;
   return (
@@ -421,7 +433,6 @@ ActivityItem.propTypes = {
   deleteComment: PropTypes.func,
   deleteID: PropTypes.func,
   restoreID: PropTypes.func,
-  firstDisplay: PropTypes.bool,
   setFlaggingModalState: PropTypes.func,
   linkTarget: PropTypes.string,
   hideCompare: PropTypes.bool,
