@@ -1743,15 +1743,16 @@ class Observation < ActiveRecord::Base
   # if there are any disagreements, use the community taxon
   def probable_taxon( options = {} )
     nodes = community_taxon_nodes( options )
-    disagreements = nodes.map{|n| [n[:disagreement_count],n[:conservative_disagreement_count]]}.flatten
-    if disagreements && disagreements.max > 0
-      return get_community_taxon
-    else
+    disagreement_count = nodes.map{ |n| [n[:disagreement_count], n[:conservative_disagreement_count]] }.flatten.sort.last
+    disagreement_count ||= 0
+    if disagreement_count == 0
       node = nodes.select{|n| n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF }.sort_by {|n|
         0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
       }.last
       return unless node
       node[:taxon]
+    else
+      return get_community_taxon
     end
   end
 
