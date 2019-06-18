@@ -3444,6 +3444,24 @@ describe Observation do
         o = Observation.find( @o.id )
         expect( o.taxon ).to eq @s1
       end
+      it "ss1 s1.disagreement_false should set the taxon to ss1" do
+        Identification.make!( observation: @o, taxon: @ss1 )
+        Identification.make!( observation: @o, taxon: @s1, disagreement: false )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @ss1
+      end
+      it "ss1 s1.disagreement_true should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @ss1 )
+        Identification.make!( observation: @o, taxon: @s1, disagreement: true )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @s1
+      end
+      it "s1 ss1 should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @ss1 )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @s1
+      end
       it "s1.disagreement_false s2.disagreement_false s2.disagreement_false should be g1" do
         @taxon_swap1 = TaxonSwap.make
         @taxon_swap1.add_input_taxon(@s3)

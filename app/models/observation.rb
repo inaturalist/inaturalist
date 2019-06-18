@@ -1768,7 +1768,7 @@ class Observation < ActiveRecord::Base
       owners_identification.try(:taxon_id)
     elsif ( ct = community_taxon ) && prob_taxon && prob_taxon.rank_level.to_i < Taxon::SPECIES_LEVEL && prob_taxon.ancestor_ids.include?( ct.id )
       first_id_of_prob_taxon = identifications.select{|i| i.current == true && i.taxon_id == prob_taxon.id}.sort_by{|i| i.created_at}.first
-      first_id_of_community_taxon = o.identifications.select{|i| i.current == true && i.taxon_id == ct.id}.sort_by{|i| i.created_at}.first
+      first_id_of_community_taxon = identifications.select{|i| i.current == true && i.taxon_id == ct.id}.sort_by{|i| i.created_at}.first
       if first_id_of_prob_taxon && first_id_of_community_taxon && first_id_of_prob_taxon.id < first_id_of_community_taxon.id
         # prob_taxon was subspecific but first
         prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
