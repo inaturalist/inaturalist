@@ -1740,13 +1740,18 @@ class Observation < ActiveRecord::Base
   # What the system thinks the organism probably is. Current combines the
   # communal opinion with the preferences of individuals (disagreement / not
   # disagreement), and may in the future incorporate modeled identifier skill
+  # if there are any disagreements, use the community taxon
   def probable_taxon( options = {} )
     nodes = community_taxon_nodes( options )
-    node = nodes.select{|n| n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF }.sort_by {|n|
-      0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
-    }.last
-    return unless node
-    node[:taxon]
+    if nodes.map{|n| [n[:disagreement_count],n[:conservative_disagreement_count]]}.flatten.max > 0
+      return get_community_taxon
+    else
+      node = nodes.select{|n| n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF }.sort_by {|n|
+        0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
+      }.last
+      return unless node
+      node[:taxon]
+    end
   end
 
   def set_taxon_from_probable_taxon
@@ -1760,8 +1765,15 @@ class Observation < ActiveRecord::Base
       # obs opted out or user opted out
       owners_identification.try(:taxon_id)
     elsif ( ct = community_taxon ) && prob_taxon && prob_taxon.rank_level.to_i < Taxon::SPECIES_LEVEL && prob_taxon.ancestor_ids.include?( ct.id )
-      # prob_taxon was subspecific, using CID
-      ct.id
+      first_id_of_prob_taxon = identifications.select{|i| i.current == true && i.taxon_id == prob_taxon.id}.sort_by{|i| i.created_at}.first
+      first_id_of_community_taxon = o.identifications.select{|i| i.current == true && i.taxon_id == ct.id}.sort_by{|i| i.created_at}.first
+      if first_id_of_prob_taxon && first_id_of_community_taxon && first_id_of_prob_taxon.id < first_id_of_community_taxon.id
+        # prob_taxon was subspecific but first
+        prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
+      else
+        # prob_taxon was subspecific and not first, using CID
+        ct.id
+      end
     else
       # opted in
       prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
