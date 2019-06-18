@@ -5,8 +5,9 @@ import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
 import { createStore, compose, applyMiddleware } from "redux";
+import _ from "lodash";
 import setupKeyboardShortcuts from "./keyboard_shortcuts";
-import rootReducer from "./reducers/";
+import rootReducer from "./reducers";
 import { normalizeParams } from "./reducers/search_params_reducer";
 import {
   fetchObservations,
@@ -14,10 +15,9 @@ import {
   setConfig,
   updateSearchParamsWithoutHistory,
   updateDefaultParams
-} from "./actions/";
+} from "./actions";
 import { fetchAllControlledTerms } from "../show/ducks/controlled_terms";
 import AppContainer from "./containers/app_container";
-import _ from "lodash";
 
 
 // Use custom relative times for moment
@@ -63,7 +63,7 @@ if ( PREFERRED_SEARCH_PLACE !== undefined && PREFERRED_SEARCH_PLACE !== null ) {
 
 setupKeyboardShortcuts( store.dispatch );
 
-window.onpopstate = ( e ) => {
+window.onpopstate = e => {
   store.dispatch( updateSearchParamsWithoutHistory( e.state ) );
   store.dispatch( fetchObservationsStats() );
 };

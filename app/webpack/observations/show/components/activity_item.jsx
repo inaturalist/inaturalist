@@ -239,8 +239,11 @@ const ActivityItem = ( {
         )}
       >
         <span className="item-status hidden-status">
-          <i className="fa fa-eye-slash" />
-          { I18n.t( "content_hidden" ) }
+          <i className="fa fa-eye-slash" title={I18n.t( "content_hidden" )} />
+          <span className="hidden-xs hidden-sm">
+            { " " }
+            { I18n.t( "content_hidden" ) }
+          </span>
         </span>
       </OverlayTrigger>
     );
