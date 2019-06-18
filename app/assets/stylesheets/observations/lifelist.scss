@@ -1,0 +1,240 @@
+@import "../shared/loading_spinner";
+@import "../shared/split_taxon";
+@import "../users/user_image";
+
+#bodywrapper {
+  background: #ddd;
+}
+
+#bodywrapper:after {
+  height: 196px;
+}
+
+#App {
+  width: 100%;
+  padding: 0px 30px;
+}
+
+div, span {
+  outline: none;
+}
+
+#App > .menu {
+  height: 50px;
+  background: #fff;
+  margin-bottom: 20px;
+  line-height: 50px;
+  padding: 0px 10px;
+}
+
+.FlexGrid {
+  display: flex;
+  flex: 1;
+  height: 75vh;
+  background: #fff;
+  margin-bottom: 20px
+}
+
+.FlexCol {
+  overflow: auto;
+  overscroll-behavior-y: contain;
+  &.tree-col {
+    margin-top: 10px;
+    width: 40%;
+  }
+  &.details-col {
+    width: 60%;
+  }
+  .loading_spinner {
+    margin: 0px auto;
+    margin-top: 60px;
+    display: flex;
+  }
+  h3 {
+    text-align: center;
+  }
+}
+
+.name-row {
+  white-space: nowrap;
+  .name-label, .fa-info-circle {
+    cursor: pointer;
+  }
+}
+.name-label {
+  display: inline-block;
+}
+
+
+.Details {
+  .stats {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .stat {
+    padding: 0 15px;
+  }
+  .attr {
+    font-weight: 700;
+  }
+  .value {
+    margin-left: 3px;
+  }
+}
+
+
+
+
+.taxon-image {
+  width: 25px;
+  height: 25px;
+  margin: 1px;
+}
+
+.ObservationFlexGridView {
+  .col-xs-12 {
+    width: 65% !important
+  }
+  .container {
+    width: auto !important;
+  }
+}
+
+.ObservationsGrid {
+  display: flex;
+  flex-wrap: wrap;
+  .ObservationsGridCell {
+    flex-grow: 1;
+    padding: 2px;
+    min-width: 100px;
+    margin: 0px auto;
+  }
+  .Observation {
+    position: relative;
+    .quality {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 5px 10px;
+      font-size: 16px;
+      &.research {
+        background: $inat-green;
+        color: white;
+      }
+      .full {
+        display: none;
+      }
+    }
+    .photo {
+      background: #ccc;
+      text-align: center;
+      i {
+        color: white;
+        font-size: 180px;
+      }
+    }
+    .caption {
+      background: #464646;
+      color: white;
+      height: 60px;
+      padding: 10px;
+      position: relative;
+      padding-right: 86px;
+      white-space: nowrap;
+      .display-name {
+        font-size: 17px;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .secondary-name {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        color: inherit;
+      }
+      .UserImage {
+        position: absolute;
+        right: 10px;
+        bottom: 40px;
+        border: 2px solid white;
+        height: 45px;
+        width: 45px;
+        i.icon-person {
+          font-size: 36px;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+      .meta {
+        position: absolute;
+        bottom: 10px;
+        right: 8px;
+        color: white;
+        .count {
+          i {
+            margin-right: 1px;
+          }
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+
+.tree, .tree ul {
+  margin: 0 0 0 1em;
+  padding: 0;
+  list-style: none;
+  position: relative;
+}
+
+.tree ul {
+  margin-left:.5em;
+}
+
+.tree:before, .tree ul:before {
+  content: "";
+  display: block;
+  width: 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  border-left: 1px solid;
+  color: #ddd;
+}
+
+.tree li {
+  margin: 0;
+  padding: 0 1em;
+  line-height: 1.5em;
+  position: relative;
+}
+
+.tree li:before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 0;
+  border-top: 1px solid;
+  margin-top: -1px;
+  position: absolute;
+  top: .75em;
+  left: 0;
+  color: #ddd;
+}
+
+.tree li:last-child:before {
+  background: white;
+  height: auto;
+  top: .75em;
+  bottom: 0;
+}
+
+.tree li:last-child {
+  margin-bottom: 10px;
+}

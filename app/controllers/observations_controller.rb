@@ -24,7 +24,7 @@ class ObservationsController < ApplicationController
     only: [ :create, :update, :destroy, :viewed_updates, :update_fields, :review ],
     if: lambda { authenticate_with_oauth? }
   
-  before_filter :load_user_by_login, :only => [:by_login, :by_login_all]
+  before_filter :load_user_by_login, :only => [:by_login, :by_login_all, :lifelist_by_login]
   after_filter :return_here, :only => [:index, :by_login, :show, 
     :import, :export, :add_from_list, :new, :project]
   before_filter :authenticate_user!,
@@ -45,7 +45,8 @@ class ObservationsController < ApplicationController
                             :map,
                             :taxon_summary,
                             :observation_links,
-                            :torquemap]
+                            :torquemap,
+                            :lifelist_by_login]
   load_only = [ :show, :edit, :edit_photos, :update_photos, :destroy,
     :fields, :viewed_updates, :community_taxon_summary, :update_fields,
     :review, :taxon_summary, :observation_links ]
@@ -267,6 +268,10 @@ class ObservationsController < ApplicationController
           include: { place: { only: [:id, :display_name] } } ) : nil,
       wikipedia_summary: taxon ? taxon.wikipedia_summary( locale: I18n.locale ) : nil
     }
+  end
+
+  def lifelist_by_login
+    return render layout: "bootstrap"
   end
 
   # GET /observations/1
