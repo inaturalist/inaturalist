@@ -34,13 +34,29 @@ shared_examples_for "a CommentsController" do
         comment.reload
       }.to change(comment, :body)
     end
+    it "should not work if the comment is hidden" do
+      ModeratorAction.make!( resource: comment )
+      comment.reload
+      expect( comment ).to be_hidden
+      expect {
+        put :update, format: :json, id: comment.id, comment: { body: "i must eat them all" }
+        comment.reload
+      }.not_to change(comment, :body)
+    end
   end
 
   describe "destroy" do
     let(:comment) { Comment.make!(:user => user) }
     it "should work" do
       delete :destroy, :id => comment.id
-      expect(Comment.find_by_id(comment.id)).to be_blank
+      expect( Comment.find_by_id( comment.id ) ).to be_blank
+    end
+    it "should not work if the comment is hidden" do
+      ModeratorAction.make!( resource: comment )
+      comment.reload
+      expect( comment ).to be_hidden
+      delete :destroy, id: comment.id
+      expect( Comment.find_by_id( comment.id ) ).not_to be_blank
     end
   end
 end

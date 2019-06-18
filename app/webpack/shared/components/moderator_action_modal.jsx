@@ -10,13 +10,13 @@ const ModeratorActionModal = ( {
   action,
   submit
 } ) => {
-  let verb = I18n.t( "hide" );
+  let verb = I18n.t( "hide_content" );
   const contentToHide = item ? item.body : "";
   let placeholder = I18n.t( "please_explain_why_you_want_to_hide_this" );
   let explanation = I18n.t( "hide_desc" );
   const login = item ? item.user.login : "";
   if ( action === "unhide" ) {
-    verb = I18n.t( "unhide" );
+    verb = I18n.t( "unhide_content" );
     placeholder = I18n.t( "please_explain_why_you_want_to_unhide_this" );
     explanation = I18n.t( "unhide_desc" );
   }

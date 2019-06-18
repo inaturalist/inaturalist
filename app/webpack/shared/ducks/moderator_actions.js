@@ -10,6 +10,7 @@ const moderatorActionReducer = ( state = {
   action: "hide"
 }, action ) => {
   if ( action.type === SHOW_MODERATOR_ACTION_FORM ) {
+    console.log( "[DEBUG] reducing SHOW_MODERATOR_ACTION_FORM" );
     state.visible = true;
     state.item = action.item;
     if ( action.action === "unhide" ) {
@@ -33,7 +34,12 @@ const submitModeratorAction = ( item, action, reason ) => (
   function ( ) {
     const data = new FormData( );
     data.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
-    data.append( "moderator_action[resource_type]", "Comment" );
+    const isID = !!item.taxon;
+    if ( isID ) {
+      data.append( "moderator_action[resource_type]", "Identification" );
+    } else {
+      data.append( "moderator_action[resource_type]", "Comment" );
+    }
     data.append( "moderator_action[resource_id]", item.id );
     data.append( "moderator_action[reason]", reason );
     data.append( "moderator_action[action]", action );
@@ -43,7 +49,6 @@ const submitModeratorAction = ( item, action, reason ) => (
     } ).then( response => {
       if ( response.status >= 400 ) {
         response.json( ).then( json => {
-          console.log( "[DEBUG] json: ", json );
           let errorText = "Could not save moderator action";
           _.forEach( json.errors, ( v, k ) => {
             errorText += `\n${json.errors[k].map( error => `${k} ${error}` ).join( "\n" )}`;

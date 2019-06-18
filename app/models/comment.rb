@@ -3,6 +3,7 @@ class Comment < ActiveRecord::Base
   acts_as_spammable fields: [ :body ],
                     comment_type: "comment"
   acts_as_votable
+  has_moderator_actions
   SUBSCRIBABLE = false
 
   # Uncomment to require speech privilege to make comments on anything other
@@ -13,13 +14,13 @@ class Comment < ActiveRecord::Base
 
   belongs_to :parent, polymorphic: true
   belongs_to :user
-  has_many :moderator_actions, as: :resource, dependent: :destroy
 
   validates_length_of :body, within: 1..5000
   validates_presence_of :parent
 
   after_create :update_parent_counter_cache
   after_destroy :update_parent_counter_cache
+  after_save :index_parent
   after_touch :index_parent
   after_destroy :index_parent
 
@@ -69,10 +70,6 @@ class Comment < ActiveRecord::Base
     }
   end
 
-  def hidden?
-    moderator_actions.sort_by(&:id).last.try(:action) == ModeratorAction::HIDE
-  end
-
   def formatted_body
     BlueCloth::new(self.body).to_html
   end
@@ -112,9 +109,11 @@ class Comment < ActiveRecord::Base
   end
 
   def index_parent
+    return if @parent_indexed
     return if bulk_delete
     if parent && parent.respond_to?(:elastic_index!)
       parent.elastic_index!
+      @parent_indexed = true
     end
   end
 

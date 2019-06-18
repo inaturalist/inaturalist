@@ -9,6 +9,15 @@ body > [role="dialog"] .ActivityItem {
       display: flex;
       overflow: hidden;
     }
+    .hidden-content {
+      display: flex;
+      align-items: flex-start;
+      line-height: 22px;
+      margin-bottom: 0;
+      i {
+        flex: 2;
+      }
+    }
   }
   .buttons {
     float: right;

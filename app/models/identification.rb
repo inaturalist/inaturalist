@@ -6,6 +6,7 @@ class Identification < ActiveRecord::Base
                     automated: false
 
   blockable_by lambda {|identification| identification.observation.try(:user_id) }
+  has_moderator_actions
   belongs_to :observation
   belongs_to :user
   belongs_to :taxon

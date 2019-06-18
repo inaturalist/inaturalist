@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
-shared_examples_for "an IdentificationsController" do
+shared_examples_for "an IdentificationsController basics" do
   let(:user) { User.make! }
   let(:observation) { Observation.make! }
 
@@ -17,7 +17,24 @@ shared_examples_for "an IdentificationsController" do
       observation.reload
       expect(observation.identifications.count).to eq 1
     end
+  end
 
+  describe "update" do
+    let(:identification) { Identification.make!( user: user ) }
+    it "should work" do
+      expect {
+        put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
+        identification.reload
+      }.to change(identification, :body)
+    end
+  end
+end
+
+shared_examples_for "an IdentificationsController" do
+  let(:user) { User.make! }
+  let(:observation) { Observation.make! }
+
+  describe "create" do
     it "should mark the observation as captive if requested" do
       expect( observation ).not_to be_captive_cultivated
       post :create, format: :json, identification: {
@@ -101,12 +118,6 @@ shared_examples_for "an IdentificationsController" do
 
   describe "update" do
     let(:identification) { Identification.make!( user: user ) }
-    it "should work" do
-      expect {
-        put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
-        identification.reload
-      }.to change(identification, :body)
-    end
     
     it "should return json" do
       put :update, :format => :json, :id => identification.id, :identification => {:body => "i must eat them all"}
@@ -130,6 +141,31 @@ shared_examples_for "an IdentificationsController" do
       expect( i2 ).not_to be_current
       expect( identification ).to be_current
     end
+
+    describe "with hidden content" do
+      let(:hidden_ident) { ModeratorAction.make!( resource: Identification.make!( user: user) ).resource }
+      it "should allow the identifier to withdraw" do
+        expect( hidden_ident ).to be_current
+        put :update, format: :json, id: hidden_ident.id, identification: { current: false }
+        hidden_ident.reload
+        expect( hidden_ident ).not_to be_current
+      end
+      it "should allow the identifier to restore" do
+        hidden_ident.update_attributes( current: false )
+        expect( hidden_ident ).not_to be_current
+        put :update, format: :json, id: hidden_ident.id, identification: { current: true }
+        hidden_ident.reload
+        expect( hidden_ident ).to be_current
+      end
+      it "should not allow the identifier to change the body" do
+        body = "ermgrd its er mirirge"
+        hidden_ident.update_attributes( body: body )
+        expect( hidden_ident.body ).to eq body
+        put :update, format: :json, id: hidden_ident.id, identification: { body: "this is totally less offensive" }
+        hidden_ident.reload
+        expect( hidden_ident.body ).to eq body
+      end
+    end
   end
 
   describe "destroy" do
@@ -142,18 +178,26 @@ shared_examples_for "an IdentificationsController" do
       DatabaseCleaner.strategy = :transaction
     end
 
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    before(:each) { enable_elastic_indexing( Observation, Identification ) }
+    after(:each) { disable_elastic_indexing( Observation, Identification ) }
 
     let(:identification) { Identification.make!(:user => user) }
 
-    # it "should work" do
-    #   delete :destroy, :format => :json, :id => identification.id
-    #   expect(Identification.find_by_id(identification.id)).to be_blank
-    # end
-
-    it "should not destroy the identification" do
+    it "should not destroy the identification by default" do
       delete :destroy, format: :json, id: identification.id
+      expect( Identification.find_by_id( identification.id ) ).not_to be_blank
+    end
+
+    it "should destroy the identification with the delete parameter" do
+      delete :destroy, format: :json, id: identification.id, delete: true
+      expect( Identification.find_by_id( identification.id ) ).to be_blank
+    end
+
+    it "should not destroy the identification with the delete param if the content was hidden" do
+      ModeratorAction.make!( resource: identification )
+      identification.reload
+      expect( identification ).to be_hidden
+      delete :destroy, format: :json, id: identification.id, delete: true
       expect( Identification.find_by_id( identification.id ) ).not_to be_blank
     end
     
@@ -170,18 +214,6 @@ shared_examples_for "an IdentificationsController" do
       identification.reload
       expect( identification.observation.taxon ).to be_blank
     end
-
-    # it "should work if there's a pre-existing ident" do
-    #   i = Identification.make!( user: user, observation: identification.observation )
-    #   expect( i ).to be_current
-    #   identification.reload
-    #   expect( identification ).not_to be_current
-    #   delete :destroy, id: i.id
-    #   i.reload
-    #   expect( i ).not_to be_current
-    #   identification.reload
-    #   expect( identification ).to be_current
-    # end
 
     it "should not leave multiple current IDs when deleting a middle ID" do
       o = Observation.make!
@@ -275,10 +307,11 @@ describe IdentificationsController, "oauth authentication" do
     request.env["HTTP_AUTHORIZATION"] = "Bearer xxx"
     allow(controller).to receive(:doorkeeper_token) { token }
   end
+  it_behaves_like "an IdentificationsController basics"
   it_behaves_like "an IdentificationsController"
 end
 
 describe IdentificationsController, "devise authentication" do
   before { http_login(user) }
-  it_behaves_like "an IdentificationsController"
+  it_behaves_like "an IdentificationsController basics"
 end

@@ -673,7 +673,6 @@ I18n.translations["ar"] = {
   "has_sounds": "لديه أصوات",
   "heads_up": "انتباه",
   "here_are_our_top_species_suggestions": "فيما يلي أهم اقتراحات الأنواع",
-  "hide": "إخفاء",
   "hide_running_total": "إخفاء تشغيل الاجمالي",
   "hide_uncountable_species": "إخفاء الأنواع التي لا تحصى",
   "high": "مرتفع",
@@ -1639,6 +1638,7 @@ I18n.translations["ar"] = {
   "to_add_comments": "لإضافة تعليقات",
   "to_suggest_an_identification": "لاقتراح هوية",
   "today": "اليوم",
+  "too_many_results": "نتائج كثيرة جدا",
   "top_identifier": "أعلى معرف",
   "top_identifiers": "أعلى المعرفات",
   "top_identifiers_of_taxon": "أهم معرفات %{taxon}",
@@ -1748,12 +1748,13 @@ I18n.translations["ar"] = {
       },
       "identify": {
         "review_all_tooltip": "التعليم على جميع الملاحظات على الصفحة كمراجعة",
+        "too_many_results_desc": "عدد مرات الصفحة لا يمكن أن يتجاوز عدد النتائج لكل صفحة 10000، \nحاول تطبيق مرشحات لتقليل عدد النتائج، أو تعليم \nالملاحظات كمراجعة واستخدام زر \"عرض المزيد\" بدلا من \nترقيم الصفحات",
         "unreview_all_tooltip": "إزالة حالة المراجعة لجميع الملاحظات على الصفحة",
         "you_reviewed_message": "لقد راجعت %{reviewed} من %{pageTotal} ملاحظة على هذه الصفحة من إجمالي %{total} ملاحظة مطابقة."
       },
       "show": {
         "ancestor_disagreements_desc": "# الأصناف المحددة التي هي من بين أسلاف الأصناف، لكن لا أوافق على الأصناف (أي \"أعتقد أنها في الجنس ولكني أعارض تلك الأنواع\")",
-        "community_taxon_desc_html": "<p class=\"ui\">\n  تمثل أصنوفة المجتمع (أو معرف المجتمع) ما يفكر به مجتمع %{site_name} في \n  الملاحظة، إذا كنت مهتما بكيفية اختيار \n  أصنوفة المجتمع، فراجع الملاحظات على الخوارزمية أدناه، \n  ولكننا نحاول بشكل عام <strong> اختيار أصنوفة\n  توافق أكثر من 2/3 من المعرفات</strong>، في بعض الأحيان هذا يعني \n  اختيار أصنوفة من أعلى مستوى الذي يحتوي على عدد من \n  أصناف الخلاف (على سبيل المثال كنت تعتقد أنها \n  الثعبان الملك وأنا أعتقد انها أفعى مجلجلة; لذلك يختار إينات رتيبة الثعابين التي \n  تحتوي على جميع الثعابين)، الخوارزمية أيضا تفضل قليلا\n  المعارضة; لأننا وجدنا أن المعارضات في كثير من الأحيان\n  صيحة.\n</p>\n<p class=\"ui\">\n  أصنوفة المجتمع هي الأصنوفة التي نستخدمها عند مشاركة الملاحظات \n  مع شركاء البيانات، ونربط بها ملاحظات نفس الأصنوفة على \n  الموقع، ونحدث قائمة حياتك، وما إذا كانت لسبب ما لا \n  تتفق مع أصنوفة المجتمع، يمكنك رفض ذلك: مما يعني \n  أن معرفك هو الذي تستخدمه لربط الملاحظات الأخرى، \n  وتحديث قوائم الحياة، وما إلى ذلك ويعني أيضا أن ملاحظتك يمكن أن \n  تصبح درجة بحث فقط عندما يتفق المجتمع <em>معك</em>. \n  إذا لم تعجبك فكرة الفكرة المجتمعية بأكملها، يمكنك تعطيلها \n  بالكامل من خلال <a href=\"/users/edit\" target=\"_blank\">تعديل إعداداتك</a>. \n</p>\n<p class=\"ui\">\n  <strong>الخوارزمية:</strong> لجميع الأصناف المحددة والأصناف التي تحتوي عليها\n  (على سبيل المثال الجنس <i>هومو</i> يحتوي على <i>إنسان عاقل</i>)، وتُصنَّف\n  كل منها على أنها النسبة بين عدد المعرفات التراكمية \n  لتلك الأصنوفة على مجموع المعرفات التراكمية وعدد \n  المعرفات الأكثر تحفظا التي أضيفت بعد المعرف الأول لهذه الأصنوفة\n  وعدد المعرفات المختلفة تماما (أي معرفات\n  الأصناف التي لا تحتوي على التاكسون وسجل)، بالنسبة \n  للأصناف التي تم تحديدها والتي تحتوي على نقاط أكثر من 2/3 واثنين على الأقل من \n  هويات، اختر أصنوفة من أدنى رتبة.\n</p>",
+        "community_taxon_desc_html": "<p class=\"ui\">\n  تمثل أصنوفة المجتمع (أو تعريف المجتمع)\n  ما الأصناف التي يعتقد المجتمع %{site_name} أنها مصورة في\n  ملاحظة، إذا كنت مهتما بكيفية اختيار \n  أصنوفة المجتمع، فراجع الملاحظات الموجودة على الخوارزمية أدناه، ولكن \n  بشكل عام، نحاول <strong>اختيار الأصنوفة التي يتفق عليها أكثر من ثلثي المعرفات\n  المعرفات</strong>، في بعض الأحيان، يعني هذا\n  اختيار أصنوفة أعلى في المستوى تحتوي على عدد من\n  الأصناف المختلفة (على سبيل المثال، تعتقد أنها الثعبان الملك وأعتقد أنها \n  أفعى مجلجلة؛ لذلك يختار إيناتوراليست رتيبة الثعابين التي\n  تحتوي على جميع الثعابين)، كما أن الخوارزمية تفضل قليلا\n  المعارضة؛ لأننا قد وجدنا أن المنشقين هم في كثير من الأحيان\n  على حق\n</p>\n<p class=\"ui\">\n  يجب أن تحتوي الملاحظة الخاصة بالصف البحثي (ضمن معايير أخرى) على \n  أصنوفة مجتمع، إذا كانت الملاحظة لها \n  تعريف واحد فقط، فلن تكون لها أصنوفة مجتمع، جميع \n  الملاحظات ذات تحديد واحد على الأقل سوف تكون لها أيضا \n  أصنوفة مراقبة، أصنوفة الملاحظة هي الأصنوفة التي نستخدمها عند \n  مشاركة الملاحظات مع شركاء البيانات، وربط الملاحظات الخاصة \n  بنفس الأصنوفة على الموقع، وتحديث قائمة حياتك، وما إلى ذلك، في معظم \n  الحالات، سيتم في نهاية المطاف تعيين أصنوفة الملاحظة على أصنوفة \n  المجتمع، لكن في بعض الأحيان سوف تختلف خاصةً قبل أن \n  يستقر المجتمع على تحديد الهوية، على سبيل المثال، إذا كنت تعتقد\n  أنها أفعى (subpent Serpentes) وأعتقد أنها من الثعبان الملك (جنس\n  <i>Lampropeltis</i>) ستكون أصنوفة الملاحظة في kingsnake (مدعومة \n  من تحديد الهويتة فقط) ولكن ستكون أصنوفة المجتمع في\n  الثعابين (مدعومة من من تعريفين على الأقل)، إذا\n  كنت لا توافق مع أصنوفة المجتمع لسبب ما، فيمكنك \n  رفضه بناءً على ملاحظاتك الخاصة: مما يعني أن \n  أصنوفة الملاحظة لن يتم تعيينها أبدا على أصنوفة المجتمع (بدلا من هويتك الخاصة):\n  هذا يعني أيضا أن ملاحظتك يمكن أن تصبح مجرد درجة بحث عندما \n  يتفق المجتمع <em>معك</em>، إذا كنت لا تحب فكرة، إذا كنت لا تحب فكرة \n  أصناف المجتمع بأكملها، فيمكنك الانسحاب منها بالكامل\n  <a href=\"/users/edit\" target=\"_blank\">تحرير إعداداتك</a>.\n</p>\n<p class=\"ui\">\n  <strong>الخوارزمية:</strong> لجميع الأصناف المحددة والشهادة التي تحتوي عليها\n  (مثل  جنس<i>هومو</i> يحتوي على <i>إنسان عاقل</i>)، يسجل كل منها كنسبة بين\n  عدد \"الاتفاقيات\": المعرفات التراكمية لتلك الأصنفة على مجموع \n  المعرفات التراكمية، و\"الخلافات\": عدد المعرفات التي تختلف تماما (مثل معرفات الأصناف \n  التي تعمل لا تحتوي على الأصناف المسجلة)، و \"خلافات الأسلاف\": عدد\n  المعرفات الأكثر محافظة التي تختلف مع الأصنوفة الدقيقة،\n  بالنسبة للأصناف المحددة التي لها درجة تزيد عن 2/3 وتعريفان على الأقل، اختر الأصنوفة الأصغر مرتبة.\n</p>",
         "cumulative_count_desc": "# هوية الأصنوفة الفردية وجميع أحفادها",
         "disagreement_count_desc": "# الأصناف المحددة التي ليست من بين أسلاف الأصنوفة",
         "identification_count_desc": "# هويات أصنوفة فردية",
@@ -2669,7 +2670,6 @@ I18n.translations["bg"] = {
   "has_sound": "Има звук",
   "has_sounds": "има звуци",
   "here_are_our_top_species_suggestions": "Ето нашите най-добри предложения за видове",
-  "hide": "Скриване",
   "history": "История",
   "id_categories": {
     "tooltips": {
@@ -3753,7 +3753,6 @@ I18n.translations["br"] = {
   "grey": "gris",
   "grid": "Kael",
   "grid_tooltip": "Diskwel ar gwel er mod kael",
-  "hide": "Kuzhat",
   "high": "uhel",
   "id_categories": {
     "tooltips": {
@@ -4770,7 +4769,6 @@ I18n.translations["ca"] = {
   "has_sounds": "Té sons",
   "heads_up": "Avís",
   "here_are_our_top_species_suggestions": "Aquí estan les principals espècies suggerides",
-  "hide": "Oculta",
   "hide_running_total": "Amagar el total acumulat",
   "hide_uncountable_species": "Amaga les espècies incomptables",
   "high": "Alta",
@@ -6710,7 +6708,6 @@ I18n.translations["cs"] = {
   "has_sounds": "má zvuky",
   "heads_up": "Pozor",
   "here_are_our_top_species_suggestions": "Toto jsou naše nejlepší návrhy k druhům",
-  "hide": "Skrýt",
   "hide_running_total": "Skrýt Running Total",
   "hide_uncountable_species": "Skrýt nespočitatelné druhy",
   "high": "vysoká",
@@ -8023,6 +8020,10 @@ I18n.translations["cs"] = {
     "other": "%{count} ostatní"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x}people</strong> helped %{user}with<strong>%{y}IDs</strong>",
+  "x_photos": {
+    "one": "1 fotografie",
+    "other": "%{count} fotografií"
+  },
   "x_species": {
     "one": "1 druh",
     "other": "%{count}druhy"
@@ -8643,7 +8644,6 @@ I18n.translations["da"] = {
   "has_sounds": "Har lyde",
   "heads_up": "OBS",
   "here_are_our_top_species_suggestions": "Her er vores topforslag til art",
-  "hide": "Skjul",
   "hide_running_total": "Skjul igangværende total",
   "hide_uncountable_species": "Skjul arter der ikke medregnes",
   "high": "Høj",
@@ -9609,6 +9609,7 @@ I18n.translations["da"] = {
   "to_add_comments": "for at tilføje kommentarer",
   "to_suggest_an_identification": "at foreslå en identifikation",
   "today": "I dag",
+  "too_many_results": "For mange resultater",
   "top_identifier": "Top identifikator",
   "top_identifiers": "Flest identifikationer",
   "top_identifiers_of_taxon": "Flest identifikationer af %{taxon}",
@@ -10020,7 +10021,7 @@ I18n.translations["de"] = {
   "about": "Über",
   "about_charts": "Über Diagramme",
   "about_community_taxa": "Über Gemeinschafts-Taxa",
-  "about_complete_taxa": "Über Vollständige Taxa",
+  "about_complete_taxa": "Über vollständige Taxa",
   "about_conservation_status": "Über Schutzstatus",
   "about_establishment_means": "Über Verbreitung",
   "about_names": "Über Namen",
@@ -10555,7 +10556,6 @@ I18n.translations["de"] = {
   "has_sounds": "mit Audio",
   "heads_up": "Achtung",
   "here_are_our_top_species_suggestions": "Hier unsere top Arten-Vorschläge",
-  "hide": "Ausblenden",
   "hide_uncountable_species": "Unzählbare Arten verstecken",
   "high": "Hoch",
   "history": "Geschichte",
@@ -12359,7 +12359,6 @@ I18n.translations["el"] = {
   "has_photos_or_sounds": "Έχει Φωτογραφίες ή Ήχους",
   "has_sound": "Έχει Ήχο",
   "has_sounds": "Έχει Ήχους",
-  "hide": "Απόκρυψη",
   "hide_uncountable_species": "Απόκρυψη μη μετρήσιμων ειδών",
   "high": "υψηλό",
   "history": "Ιστορικό",
@@ -13595,7 +13594,7 @@ I18n.translations["en"] = {
   "attribute": "Attribute",
   "back_to_suggestions": "Back to Suggestions",
   "back_to_x": "Back to %{noun}",
-  "based_on_the_evidence_can_id_be_improved": "Based on the evidence, can the Community ID still be confirmed or improved?\n",
+  "based_on_the_evidence_can_id_be_improved": "Based on the evidence, can the Community Taxon still be confirmed or improved?\n",
   "be_the_first_to_fave_this_observation": "Be the first to fave this observation!",
   "birds": "birds",
   "black": "black",
@@ -13650,9 +13649,9 @@ I18n.translations["en"] = {
   "comment_": "Comment",
   "commercial_solicitation": "Commercial solicitation, links to nowhere, etc.",
   "community_curated": "Community Curated",
-  "community_id_at_genus_level_or_lower": "Community ID at genus level or lower",
-  "community_id_at_species_level_or_lower": "Community ID at species level or lower",
-  "community_id_heading": "Community ID",
+  "community_id_at_genus_level_or_lower": "Community Taxon at genus level or lower",
+  "community_id_at_species_level_or_lower": "Community Taxon at species level or lower",
+  "community_id_heading": "Community Taxon",
   "compare": "Compare",
   "comprehensive_list": "Comprehensive list",
   "computer_vision_suggestion": "Computer Vision Suggestion",
@@ -13660,6 +13659,8 @@ I18n.translations["en"] = {
   "confirm": "Confirm",
   "confirmed": "confirmed",
   "conservation_status": "Conservation Status",
+  "content_hidden": "Content Hidden",
+  "content_hidden_by_user_on_date_because_reason_html": "Content hidden by %{user} on %{date} because: \"%{reason}\"\n",
   "continue": "Continue",
   "controlled_term_labels": {
     "adult": "Adult",
@@ -13968,9 +13969,8 @@ I18n.translations["en"] = {
   "has_sounds": "Has Sounds",
   "heads_up": "Heads up",
   "here_are_our_top_species_suggestions": "Here are our top species suggestions",
-  "hidden": "Hidden",
-  "hide": "Hide",
-  "hide_desc": "Hiding content will remove it from public view, but people will still be\nable to see that something was hidden, and site curators and the author of\nthe content will still be able to see the hidden content. You cannot undo\nthis, and only site staff can unhide content once it has been hidden, so be\ncareful and only use this for very objectionable content.\n",
+  "hide_content": "Hide Content",
+  "hide_desc": "Hiding content will remove it from public view, but people will still be\nable to see that something was hidden, and site curators and the author of\nthe content will still be able to see the hidden content. Generally, this\nonly applies to written content, e.g. if you hide the content of an\nidentification, the identification is still visible but the identifier's\nremarks are hidden. You cannot undo this, and only site staff can unhide\ncontent once it has been hidden, so be careful and only use this for very\nobjectionable content.\n",
   "hide_running_total": "Hide Running Total",
   "hide_uncountable_species": "Hide Uncountable Species",
   "high": "High",
@@ -14822,6 +14822,7 @@ I18n.translations["en"] = {
   "set_license": "Set license",
   "share": "Share",
   "show": "Show",
+  "show_hidden_content": "Show Hidden Content",
   "show_keyboard_shortcuts": "Show Keyboard Shortcuts",
   "show_relative_proportions_of_all_observations": "Show relative proportions of all observations",
   "show_running_total": "Show Running Total",
@@ -14913,7 +14914,7 @@ I18n.translations["en"] = {
   "the_": "The",
   "the_below_items_are_needed_to_achieve": "The below items are needed to achieve <span className=\"bold\">Research Grade:</span>\n",
   "the_community_id_requires_at_least_two_identifications": "The Community ID requires at least two identifications.",
-  "the_community_must_feel_that": "The community must feel that the Community ID is the best it can be based on the evidence\n",
+  "the_community_must_feel_that": "The community must feel that the Community Taxon is the best it can be based on the evidence\n",
   "the_world": "The World",
   "then_keybord_sequence": "then",
   "there_were_problems_adding_taxa": "There were problems adding those taxa: %{errors}",
@@ -14957,7 +14958,7 @@ I18n.translations["en"] = {
   "type_species_name": "Type species name",
   "umbrella_projects": "Umbrella Projects",
   "unfollow": "Unfollow",
-  "unhide": "Unhide",
+  "unhide_content": "Unhide Content",
   "unhide_desc": "Unhiding will reveal this content for everyone to see. Curators can still\nchoose to hide it again in the future.\n",
   "unknown": "Unknown",
   "unknown_error": "Unknown error",
@@ -14996,7 +14997,7 @@ I18n.translations["en"] = {
   "user_commented": "%{user} commented",
   "user_disagrees_this_is_taxon": "%{user} disagrees this is %{taxon}",
   "user_disagrees_with_previous_finer_identifications": "%{user} disagrees with previous finer identifications",
-  "user_has_opted_out_of_community_id": "User has opted-out of Community ID",
+  "user_has_opted_out_of_community_id": "User has opted-out of Community Taxon",
   "user_helped_x_people_with_y_ids_html": "%{user} helped <strong>%{x} people</strong> with <strong>%{y} IDs</strong>",
   "user_suggested_an_id": "%{user} suggested an ID",
   "user_trusts_you_with_their_private_coordinates": "%{user} trusts you with their hidden coordinates",
@@ -15607,12 +15608,18 @@ I18n.translations["eo"] = {
   "about_community_taxa": "Pri komunumaj taksonoj",
   "about_complete_taxa": "Pri Kompletaj Taksonoj",
   "about_names": "Pri Nomoj",
+  "about_this_bioblitz": "Pri ĉi tiu biofulmado",
+  "acc": "Prec (m)",
   "account": "Konto",
   "account_creation": "Kreado de Konto",
+  "accuracy": "Precizeco",
+  "accuracy_meters": "Precizeco (metroj)",
+  "action": "Ago",
   "active": "Aktiva",
   "activerecord": {
     "attributes": {
       "project": {
+        "start_time": "Komenca tempo"
       }
     }
   },
@@ -15621,6 +15628,7 @@ I18n.translations["eo"] = {
   "add_a_comment": "Aldoni Komenton",
   "add_a_field": "Aldoni Kampon",
   "add_a_name": "Aldoni Nomon",
+  "add_an_identification": "Aldoni Identigon",
   "add_edit_flags": "Aldoni/Redakti Flagojn",
   "add_id": "Aldoni Identigilon",
   "add_link": "Aldoni Ligilon",
@@ -15629,14 +15637,44 @@ I18n.translations["eo"] = {
   "add_tag": "Aldoni Etikedon",
   "add_tags": "Aldoni Etikedojn",
   "add_to_a_project": "Aldoni al Projekto",
+  "add_to_favorites": "Favori",
   "add_to_project": "Aldoni al Projekto",
   "added": "Aldonita",
   "added!": "Aldonita!",
   "added_by": "Aldonita de",
+  "admin_s": "Administranto(j)",
   "agree": "konsenti",
   "agree_": "Konsenti",
+  "aka": "alinome",
   "all": "Ĉiuj",
   "all_rank_added_to_the_database": {
+    "class": "Ĉiuj klasoj aldonitaj en la datenbankon",
+    "complex": "Ĉiuj kompleksoj aldonitaj en la datenbankon",
+    "family": "Ĉiuj familioj aldonitaj en la datenbankon",
+    "form": "Ĉiuj formoj aldonitaj en la datenbankon",
+    "genus": "Ĉiuj generoj aldonitaj en la datenbankon",
+    "genushybrid": "Ĉiuj generhibridoj aldonitaj en la datenbankon",
+    "hybrid": "Ĉiuj hibridoj aldonitaj en la datenbankon",
+    "infraclass": "Ĉiuj infraklasoj aldonitaj en la datenbankon",
+    "infraorder": "Ĉiuj infraordoj aldonitaj en la datenbankon",
+    "order": "Ĉiuj ordoj aldonitaj en la datenbankon",
+    "phylum": "Ĉiuj filumoj aldonitaj en la datenbankon",
+    "section": "Ĉiuj sekcioj aldonitaj en la datenbankon",
+    "species": "Ĉiuj specioj aldonitaj en la datenbankon",
+    "subclass": "Ĉiuj subklasoj aldonitaj en la datenbankon",
+    "subfamily": "Ĉiuj subfamilioj aldonitaj en la datenbankon",
+    "subgenus": "Ĉiuj subgeneroj aldonitaj en la datenbankon",
+    "suborder": "Ĉiuj subordoj aldonitaj en la datenbankon",
+    "subphylum": "Ĉiuj subfilumoj aldonitaj en la datenbankon",
+    "subsection": "Ĉiuj subsekcioj aldonitaj en la datenbankon",
+    "subspecies": "Ĉiuj subspecioj aldonitaj en la datenbankon",
+    "subtribe": "Ĉiuj subtriboj aldonitaj en la datenbankon",
+    "superclass": "Ĉiuj superklasoj aldonitaj en la datenbankon",
+    "superfamily": "Ĉiuj superfamilioj aldonitaj en la datenbankon",
+    "superorder": "Ĉiuj superordoj aldonitaj en la datenbankon",
+    "supertribe": "Ĉiuj supertriboj aldonitaj en la datenbankon",
+    "tribe": "Ĉiuj triboj aldonitaj en la datenbankon",
+    "variety": "Ĉiuj varioj aldonitaj en la datenbankon"
   },
   "all_taxa": {
     "rank": {
@@ -15650,6 +15688,7 @@ I18n.translations["eo"] = {
     "animals": "Animaloj",
     "arachnids": "Araneedoj",
     "birds": "Birdoj",
+    "chromista": "Kromistoj",
     "fungi": "Fungoj",
     "fungi_including_lichens": "Fungoj Inkluzive de Likenoj",
     "insects": "Insektoj",
@@ -15658,6 +15697,7 @@ I18n.translations["eo"] = {
     "other_animals": "Aliaj Animaloj",
     "plants": "Plantoj",
     "protozoans": "Protozooj",
+    "ray_finned_fishes": "Aktinopterigoj",
     "reptiles": "Reptilioj",
     "life": "Vivo",
     "x_plantae": {
@@ -15679,6 +15719,10 @@ I18n.translations["eo"] = {
     "x_mammalia": {
       "one": "1 mamulo",
       "other": "%{count} mamuloj"
+    },
+    "x_actinopterygii": {
+      "one": "1 ray-finned fish",
+      "other": "%{count} aktinopterigoj"
     },
     "x_reptilia": {
       "one": "1 reptilio",
@@ -15718,8 +15762,11 @@ I18n.translations["eo"] = {
   "any_": "Ajna",
   "arachnids": "Araneedoj",
   "are_you_sure?": "Ĉu vi certas?",
+  "asc": "Kresk",
+  "ascending": "Kreskante",
   "back_to_suggestions": "Reen al Sugestoj",
   "back_to_x": "Reen al %{noun}",
+  "be_the_first_to_fave_this_observation": "Estu la unua favoranto de ĉi tiu observo!",
   "birds": "birdoj",
   "black": "nigra",
   "blue": "blua",
@@ -15733,15 +15780,18 @@ I18n.translations["eo"] = {
   "cc_0_name": "Sen Aŭtorrajtoj (CC0)",
   "change_types": {
   },
+  "checklist": "Kontrololisto",
   "choose_a_field": "Elekti kampon",
   "choose_file": "Elekti dosieron",
   "choose_files": "Elekti dosierojn",
   "choose_photos_for_this_taxon": "Elekti fotoj pri ĉi tiu taksono",
+  "clear": "vakigi",
   "close": "Fermi",
   "colors": "Koloroj",
   "combine": "Kunigi",
   "comment_": "Komento",
   "compare": "Kompari",
+  "comprehensive_list": "Ampleksa listo",
   "confirm": "Konfirmi",
   "confirmed": "konfirmita",
   "continue": "Daŭrigi",
@@ -15751,20 +15801,35 @@ I18n.translations["eo"] = {
     "female": "Ina",
     "flowering": "Florado",
     "fruiting": "Fruktado",
+    "juvenile": "Junulo",
     "larva": "Larvo",
     "life_stage": "Vivstadio",
     "male": "Vira",
     "nymph": "Nimfo",
+    "plant_phenology": "Planta Klimata Efiko",
     "pupa": "Pupo",
-    "sex": "Sekso"
+    "sex": "Sekso",
+    "subimago": "Subimagino",
+    "teneral": "Tenera imagino"
   },
+  "convert": "Konverti",
   "copyright": {
+    "some_rights_reserved": "iuj rajtoj rezervitaj",
+    "no_rights_reserved": "neniuj rajtoj rezervitaj",
     "anonymous": "anonima",
     "public_domain": "publika havaĵo",
     "copyright": "kopirajto",
-    "no_copyright": "sen kopirajto (CC0)"
+    "no_copyright": "sen kopirajto (CC0)",
+    "attribution_noncommercial_sharealike_license": "Permesilo Atribuite-Nekomerce-Samkondiĉe",
+    "attribution_noncommercial_license": "Permesilo Atribuite-Nekomerce",
+    "attribution_noncommercial_noderivs_license": "Permesilo Atribuite-Nekomerce-Nemodifite",
+    "attribution_license": "Permesilo Atribuite",
+    "attribution_sharealike_license": "Permesilo Atribuite-Samkondiĉe",
+    "attribution_noderivs_license": "Permesilo Atribuite-Nemodifite",
+    "gnu_free_documentation_license": "Permesilo de GNU por Liberaj Dokumentoj"
   },
   "copyright_info": "Aŭtorrajta Informo",
+  "copyright_info_and_more": "Informo pri Aŭtorrajtoj kaj Plu",
   "create_an_atlas": "Krei Atlason",
   "created_by": "Kreita de",
   "created_on": "Kreita je",
@@ -15849,9 +15914,13 @@ I18n.translations["eo"] = {
       "december": "decembro"
     }
   },
+  "date_is_accurate": "Dato estas ĝusta",
+  "date_observed_": "Dato de Observo",
   "date_picker": {
     "closeText": "Fermi",
-    "currentText": "Hodiaŭ"
+    "currentText": "Hodiaŭ",
+    "prevText": "Antaŭen",
+    "nextText": "Sekven"
   },
   "date_time": "Dato/tempo",
   "datetime": {
@@ -15875,21 +15944,28 @@ I18n.translations["eo"] = {
   "default": "implicita",
   "delete": "Forigi",
   "deleting_verb": "Forigado",
+  "desc": "Malkr",
+  "descending": "Malkreskante",
   "description": "Priskribo",
   "description_slash_tags": "Priskribo / Etikedoj",
   "details": "Detaloj",
   "did_you_mean": "Ĉu vi intencis",
   "disagree_": "Malkonsenti",
   "discoveries": "Eltrovoj",
+  "doh_something_went_wrong": "Domaĝe, io misfunkciis.",
+  "doh_something_went_wrong_error": "Domaĝe, io misfunkciis: %{error}",
   "done": "Farita",
   "download": "Elŝuti",
+  "duplicate_verb": "Duplikato",
   "edit": "Redakti",
   "edit_atlas": "Redakti Atlason",
   "edit_license": "Redakti Permesilon",
+  "edit_multiple_descriptions": "Redakti Plurajn Priskribojn",
   "edit_multiple_species": "Redakti Plurajn Speciojn",
   "edit_photos": "Redakti Fotojn",
   "edit_project": "Redakti Projekton",
   "edit_taxon": "Redakti Taksonon",
+  "end": "Fino",
   "establishment": {
     "endemic": "Endemia",
     "invasive": "Adventica",
@@ -15902,11 +15978,15 @@ I18n.translations["eo"] = {
   "exact": "Ekzakta",
   "exact_date": "Ekzakta Dato",
   "exact_location": "Ekzakta_loko",
+  "exclude_x": "Ekskluzivi %{x}",
   "exit_full_screen": "Malŝalti plenekranan reĝimon",
   "exporting": "Elportanta...",
   "extinct": "formortinta",
   "facebook": "Facebook",
   "failed_to_find_your_location": "Malsukcesis trovi vian lokon.",
+  "faved_this_observation": "favoras ĉi tiun observon",
+  "favorites": "Favoratoj",
+  "featured": "Elstara",
   "fields_": "Kampoj",
   "filter_by_place": "Filtri laŭ Loko",
   "filter_by_taxon": "Filtri laŭ Taksono",
@@ -15914,33 +15994,40 @@ I18n.translations["eo"] = {
   "find": "Serĉi",
   "find_photos": "Trovi Fotojn",
   "finished": "Finita",
+  "finished_with_page": "Finita Kun Paĝo",
   "flag": "Flago",
   "flagged_": "Flagita",
   "flags_with_count": "Flagoj (%{count})",
+  "follow": "Aboni",
   "frequency": "Ofteco",
   "full_screen": "Plenekrane",
   "geoprivacy": "Geografia privateco",
   "geoprivacy_is_private": "Geografia privateco estas privata",
+  "get_started": "Komenci",
   "go": "Ek",
   "go_back": "Reen",
   "google": "Google",
   "green": "verda",
   "grey": "griza",
+  "grouping": "Grupigado",
+  "has_one_or_more_faves": "Havas Unu aŭ Pli da Favoratoj",
   "has_photo": "Havas Foton",
   "has_photo_and_sound": "Havas Kaj Foton Kaj Sonon",
   "has_photos": "Havas Fotojn",
   "has_photos_or_sounds": "Havas Fotojn aŭ Sonojn",
   "has_sound": "Havas Sonon",
   "has_sounds": "Havas Sonojn",
-  "hide": "Kaŝi",
   "high": "Alta",
   "history": "Historio",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Mi ne certas, sed mi certas ke ĉi tiu estas %{taxon}",
   "id_categories": {
     "tooltips": {
     }
   },
+  "identifications": "Identigoj",
   "identify": "Identigi",
   "identify_title": "Identigi",
+  "ids_made_for_others": "Identigoj por aliuloj",
   "ignore_and_continue": "Ignori kaj daŭrigi",
   "import": "Enporti",
   "info": "Informo",
@@ -15951,6 +16038,7 @@ I18n.translations["eo"] = {
   "join_project": "Aliĝi al ĉi tiu projekto",
   "join_this_project": "Aliĝi al ĉi tiu projekto",
   "joined!": "Aliĝis!",
+  "journal": "Ĵurnalo",
   "keep_editing": "Daŭrigi modifi",
   "label_colon": "%{label}:",
   "labels": "Etikedoj",
@@ -16066,6 +16154,8 @@ I18n.translations["eo"] = {
   "observation_date": "Dato",
   "observations": "Observoj",
   "observations_": "observoj",
+  "observed_on": "Observita je",
+  "observers": "Observintoj",
   "of": "de",
   "of_identifiers": "identigiloj",
   "of_observers": "observantoj",
@@ -16077,6 +16167,7 @@ I18n.translations["eo"] = {
   "open_street_map": "OpenStreetMap",
   "or": "aŭ",
   "orange": "oranĝkolora",
+  "order_by": "Ordigi laŭ",
   "other": "Alia",
   "overview": "Superrigardo",
   "per_day": "En Tago",
@@ -16086,6 +16177,8 @@ I18n.translations["eo"] = {
   "photo": "Foto",
   "photo_attribution": "Foto %{attribution}",
   "photos_of_taxon_html": "Fotoj de %{taxon}",
+  "pin_verb": "Alpingli",
+  "pink": "roza",
   "place": "Loko",
   "place_geo": {
     "geo_planet_place_types": {
@@ -16101,6 +16194,8 @@ I18n.translations["eo"] = {
       "continent": "kontinento",
       "Country": "Lando",
       "country": "lando",
+      "County": "Kantono",
+      "county": "kantono",
       "District": "Distrikto",
       "district": "distrikto",
       "Governorate": "Gubernio",
@@ -16408,6 +16503,7 @@ I18n.translations["eo"] = {
   "private_": "Privata",
   "profile": "Profilo",
   "project": "Projekto",
+  "project_requirements": "Postuloj de Projekto",
   "projects": "Projektoj",
   "protozoans": "protozooj",
   "public_domain": "Publika Havaĵo",
@@ -16437,6 +16533,7 @@ I18n.translations["eo"] = {
     "tribe": "Tribo",
     "subtribe": "Subtribo",
     "genus": "Genro",
+    "genushybrid": "Generhibrido",
     "subgenus": "Subgenro",
     "section": "Sekcio",
     "subsection": "Subsekcio",
@@ -16446,6 +16543,7 @@ I18n.translations["eo"] = {
     "subspecies": "Subspecio",
     "form": "Formo"
   },
+  "ray_finned_fishes": "aktinopterigoj",
   "read_more": "Legi Plu",
   "recent": "Ĵusaj",
   "red": "ruĝa",
@@ -16454,6 +16552,7 @@ I18n.translations["eo"] = {
   "removed!": "Forigita!",
   "removing": "Foriganta...",
   "reptiles": "reptilioj",
+  "required_": "Deviga",
   "restore": "Restarigi",
   "reviewed": "Reviziita",
   "satellite": "satelito",
@@ -16461,12 +16560,16 @@ I18n.translations["eo"] = {
   "save_photos": "Konservi fotojn",
   "saved": "Konservita",
   "saving": "Konservante...",
+  "saving_verb": "Konservado",
+  "scale_colon": "Skalo:",
   "search": "Serĉi",
   "search_species_": "Serĉi Speciojn...",
   "seasonality": "Sezoneco",
   "select": "Elekti",
   "select_all": "Elekti Ĉiujn",
+  "select_at_least_one": "Elektu Almenaŭ Unu",
   "select_none": "Elekti Neniun",
+  "select_options": "Elekti Opciojn",
   "select_this_taxon": "Elekti Tiun Taksonon",
   "selected_photos": "Elektitaj fotoj",
   "share": "Diskonigi",
@@ -16475,6 +16578,9 @@ I18n.translations["eo"] = {
   "sign_up": "Registriĝi",
   "similar_species": "Similaj Specioj",
   "similar_taxa": "Similaj Taksonoj",
+  "site_admin_tools": "Retejaj administriloj",
+  "skip_to_next_page": "Salti al sekva paĝo",
+  "some_rights_reserved": "iuj rajtoj rezervitaj",
   "something": "Io",
   "somewhere_on_earth": "ie sur Tero",
   "sort_by": "Ordigi Laŭ",
@@ -16484,14 +16590,24 @@ I18n.translations["eo"] = {
   },
   "source": "Fonto",
   "source_": "Fonto:",
+  "source_list_": "Listo de Fontoj",
+  "source_wikipedia": "Fonto: Vikipedio",
+  "spam": "Trudmesaĝo",
   "species": "Specio",
   "species_by_category": "specioj laŭ kategorio",
   "species_name_cap": "Nomo de specio",
   "species_unknown": "nekonata specio",
+  "standard": "Norma",
+  "start": "Komenci",
+  "start_date_time": "Komencaj Dato / Tempo",
+  "start_typing_taxon_name": "Ektajpu nomon de taksono...",
   "stats": "Statistiko",
   "status": "Stato",
+  "submitted": "Sendita",
   "suggestions": "Sugestoj",
+  "support_inaturalist": "Subteni iNaturalist",
   "table": "Tabelo",
+  "tagging": "Aldonante etikedon...",
   "tags": "Etikedoj",
   "taxa": "Taksonoj",
   "taxon": "Taksono",
@@ -16506,6 +16622,7 @@ I18n.translations["eo"] = {
   "the_": "La",
   "the_world": "La Mondo",
   "then_keybord_sequence": "sekve",
+  "this_bioblitz_beings_in": "Ĉi tiu biofulmado komencas en",
   "this_observation": "Tiu observo",
   "this_year": "Nuna Jaro",
   "to": "al",
@@ -16533,9 +16650,11 @@ I18n.translations["eo"] = {
   "views": {
     "observations": {
       "community_id": {
+        "agreement": "Akordo",
         "algorithm_summary": "Resumo de Algoritmo"
       },
       "export": {
+        "well_email_you": "Bone, ni retmesaĝos vin kiam ĝi estas preta."
       },
       "identify": {
       },
@@ -16545,16 +16664,26 @@ I18n.translations["eo"] = {
     "projects": {
       "collection": "Kolekto",
       "new": {
+        "data_visualizations": "Bildigoj de dateno",
         "delete_project": "Forigi Projekton",
+        "display_project_name": "Montri nomo de projekto",
+        "leaderboards_among_individuals": "Ĉampionejo inter <strong>individuoj</strong>",
+        "leaderboards_among_projects_and_bioblitzes": "Ĉampionejoj inter <strong>projektoj</strong>",
+        "multiple_project_administrators": "Pluraj projektaj administrantoj",
+        "name_placeholder": "Birdoj de Ĉikago, Mirindaj Libeloj, ktp.",
         "project_details": "Detaloj de Projekto",
         "project_icon": "Projekta Ikono (PNG, JPG, aŭ GIF)",
         "project_name": "Nomo de Projekto",
-        "project_summary": "Resumo de Projekto"
+        "project_summary": "Resumo de Projekto",
+        "start_and_end_times_for_bioblitzes": "Komenca kaj fina datoj/tempoj (por eventoj kiel biofulmadoj)",
+        "umbrella_project_features": "Trajtoj de Ombrela Projekto:",
+        "welcome_to_projects": "Bonvenon al Projektoj!"
       },
       "project_type": "Tipo de Projekto",
       "projects_included": "Inkluzivitaj Projektoj",
       "show": {
       },
+      "tracks_multiple_projects": "spuras plurajn projektojn",
       "umbrella": "Ombrelo"
     },
     "shared": {
@@ -16565,10 +16694,12 @@ I18n.translations["eo"] = {
     },
     "stats": {
       "index": {
+        "obs_1_day": "Observoj (1 tago)"
       },
       "year": {
         "growth_title": "Kresko",
-        "include_usa": "Inkluzivi Usonon"
+        "include_usa": "Inkluzivi Usonon",
+        "obs_in_year": "Observoj en %{year}"
       }
     },
     "taxa": {
@@ -16577,10 +16708,13 @@ I18n.translations["eo"] = {
           "Flowering Phenology=bare": "Sen floro",
           "Life Stage=egg": "Ovo",
           "Life Stage=larva": "Larvo",
+          "Life Stage=teneral": "Tenera imagino",
+          "Life Stage=subimago": "Subimagino",
           "Life Stage=nymph": "Nimfo",
           "Life Stage=pupa": "Pupo",
           "Life Stage=adult": "Adolto"
-        }
+        },
+        "trending_desc": "Plej ofte observitaj taksonoj dum lasta monato"
       }
     },
     "users": {
@@ -16601,6 +16735,10 @@ I18n.translations["eo"] = {
   "x_comments": {
     "one": "1 komento",
     "other": "%{count} komentoj"
+  },
+  "x_faves": {
+    "one": "1 favorato",
+    "other": "%{count} favoratoj"
   },
   "x_flagged": "flagis %{x}-on",
   "x_identifications": {
@@ -16647,6 +16785,7 @@ I18n.translations["eo"] = {
   "yes": "Jes",
   "yesterday": "Hieraŭ",
   "you_": "Vi",
+  "you_faved_this": "Vi favoras ĉi tion!",
   "your_default": "via implicita",
   "your_observations": "Viaj Observoj",
   "zoom_in": "Enzomi",
@@ -17227,7 +17366,6 @@ I18n.translations["es"] = {
   "has_sounds": "Tiene sonidos",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Éstas son nuestras sugerencias principales de especies",
-  "hide": "Oculta",
   "hide_running_total": "Esconder Total Acumulado",
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "Alta",
@@ -18193,6 +18331,7 @@ I18n.translations["es"] = {
   "to_add_comments": "para agregar comentarios.",
   "to_suggest_an_identification": "para sugerir una identificación",
   "today": "Hoy",
+  "too_many_results": "Demasiados resultados",
   "top_identifier": "Identificador superior",
   "top_identifiers": "Top identificadores",
   "top_identifiers_of_taxon": "Identificadores principales de %{taxon}",
@@ -18858,7 +18997,6 @@ I18n.translations["es-ES"] = {
   "grey": "gris",
   "grid": "Cuadrícula",
   "heads_up": "Aviso",
-  "hide": "Ocultar",
   "id_categories": {
     "tooltips": {
     }
@@ -19880,7 +20018,6 @@ I18n.translations["es-MX"] = {
   "has_sounds": "tiene sonidos",
   "heads_up": "Atención",
   "here_are_our_top_species_suggestions": "Éstas son nuestras mejores sugerencias de especies",
-  "hide": "Ocultar",
   "hide_running_total": "Esconder Total Acumulado",
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "alta",
@@ -21811,7 +21948,6 @@ I18n.translations["et"] = {
   "has_sounds": "On helidega",
   "heads_up": "Pane tähele",
   "here_are_our_top_species_suggestions": "Meie parimad liigipakumised",
-  "hide": "Peida",
   "hide_running_total": "Peida hetke koguarv",
   "hide_uncountable_species": "Peida loendamatud liigid",
   "high": "Kõrge",
@@ -23573,7 +23709,6 @@ I18n.translations["eu"] = {
   "has_sound": "Soinua dauka",
   "has_sounds": "soinuak dauzka",
   "heads_up": "Abisua",
-  "hide": "Ezkutatu",
   "history": "Historia",
   "id_categories": {
     "tooltips": {
@@ -24744,7 +24879,6 @@ I18n.translations["fi"] = {
   "has_sounds": "On ääniä",
   "heads_up": "Huomio",
   "here_are_our_top_species_suggestions": "Täällä ovat parhaimmat lajiehdotuksemme",
-  "hide": "Piilota",
   "hide_uncountable_species": "Piilota ei-laskettavat lajit",
   "high": "Korkea",
   "history": "Historia",
@@ -25701,7 +25835,7 @@ I18n.translations["fi"] = {
     "projects": {
       "collection": "Kokoelma",
       "new": {
-        "a_project_allows_you_to_gather": "Kokoelmaprojekti sallii sinun kerätä ja visualisoida havaintoja käyttämällä ytimen iNaturalist hakutyökaluja. Tämä poistaa tarpeen lisätä havaintoja manuaalisesti, koska kaikki joka täyttää hankkeen asettamat parametrit, sisällytetään automaattisesti.",
+        "a_project_allows_you_to_gather": "Kokoelmaprojekti sallii sinun kerätä ja visualisoida havaintoja käyttämällä ytimen iNaturalist hakutyökaluja. Kaikki joka täyttää projektin asettamat parametrit, sisällytetään automaattisesti.",
         "an_umbrella_project_can_be_used_to": "Sateenvarjoprojektia voidaan käyttää kahden tai useamman kokoelma tai perinteisen projektin tilastojen vertailemiseen. Muiden projektien pitää olla olemassa ennen kun voit lisätä ne sateenvarjoprojektiin. Voit sisällyttää satoja hankkeita yhden sateenvarjon alla. Sateenvarjoprojektit eivät voi sisältää muita sateenvarjoprojekteja.",
         "can_be_included_in_multiple": "Voidaan sisällyttää useisiin sateenvarjoprojekteihin",
         "collection_project_features": "Kokoelmaprojektin ominaisuudet:",
@@ -25862,6 +25996,10 @@ I18n.translations["fi"] = {
     "other": "%{count} muuta"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} ihmistä</strong> auttoi käyttäjää %{user} <strong>%{y} tunnisteen kanssa</strong>",
+  "x_photos": {
+    "one": "1 kuva",
+    "other": "%{count} kuvaa"
+  },
   "x_species": {
     "one": "1 laji",
     "other": "%{count} lajia"
@@ -26475,7 +26613,6 @@ I18n.translations["fr"] = {
   "has_sounds": "A des sons",
   "heads_up": "Avertissement",
   "here_are_our_top_species_suggestions": "Voici les suggestions concernant nos espèces favorites",
-  "hide": "Masquer",
   "hide_running_total": "Masquer le total actuel",
   "hide_uncountable_species": "Masquer les espèces indénombrables",
   "high": "Haut",
@@ -27441,6 +27578,7 @@ I18n.translations["fr"] = {
   "to_add_comments": "pour ajouter des commentaires",
   "to_suggest_an_identification": "pour suggérer une identification",
   "today": "Aujourd’hui",
+  "too_many_results": "Trop de résultats",
   "top_identifier": "Meilleurs identificateurs",
   "top_identifiers": "Meilleurs Identificateurs",
   "top_identifiers_of_taxon": "Meilleurs identificateurs de %{taxon}",
@@ -27550,12 +27688,13 @@ I18n.translations["fr"] = {
       },
       "identify": {
         "review_all_tooltip": "Marquer toutes les observations de la page comme relues",
+        "too_many_results_desc": "Le nombre de pages multiplié par le nombre de résultats par page ne peut excéder 10 000. Essayez d'appliquer les filtres afin de réduire le nombre de résultats, ou de marquer les observations comme revues et d'utiliser le bouton « Afficher plus » plutôt que la pagination.",
         "unreview_all_tooltip": "Supprimer le statut examiné de toutes les observations sur la page",
         "you_reviewed_message": "Vous avez relu %{reviewed} sur %{pageTotal} observations de cette page, sur un total de %{total} observations correspondantes."
       },
       "show": {
-        "ancestor_disagreements_desc": "Nombre de taxons identifiés qui font partie des ancêtres d’un taxon, mais qui ont été créés après la première identification au moyen de ce taxon",
-        "community_taxon_desc_html": "<p class=\"ui\">\n  Le taxon de la communauté (ou l’identification de la communauté) représente\n  le taxon que la communauté d’%{site_name} estime être représenté dans une\n  observation. Si vous êtes intéressé à connaître la façon dont nous choisissons le\n  taxon de la communauté, consultez les notes sur l’algorithme ci-dessous. En\n  général, nous essayons de <strong>choisir un taxon avec lequel plus de 2/3\n  les personnes ayant fait une identification sont d’accord</strong>. Quelquefois, ça veut dire\n  qu’il faut choisir un taxon de plus haut rang qui contient un certain nombre de\n  taxons qui s’opposent (par ex. vous pensez que c’est une couleuvre tachetée et je pense que\n  c’est un serpent à sonnettes. iNat choisira donc le sous-ordre des Serpents qui\n  contient tous les serpents). L’algorithme favorise aussi légèrement les\n  taxons en conflit, parce que nous avons remarqué que les dissidents ont souvent\n  raison.\n</p>\n<p class=\"ui\">\n  Le taxon de la communauté est le taxon que nous utilisons pour échanger des observations\n  avec des partenaires d’échange de données, pour associer les observations du même taxon sur le\n  site, pour mettre à jour votre liste des êtres vivants, etc. Si, pour une raison quelconque, vous n’êtes\n  pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui veut dire\n  que votre identifiant est celui utilisé pour s’associer aux autres observations,\n  pour mettre à jour les listes des êtres vivants, etc. Ça signifie aussi que votre observation ne pourra devenir\n  de calibre recherche que quand la communauté sera d’accord avec <em>vous</em>.\n  Si vous n’aimez pas du tout l’idée des taxons de la communauté, vous pouvez choisir\n  de les rejeter complètement en <a href=\"/users/edit\" target=\"_blank\">modifiant vos paramètres</a>.\n</p>\n<p class=\"ui\">\n  <strong>L’algorithme :</strong> pour tous les taxons identifiés et les taxons qui les contiennent\n  (par ex. genre <i>Homo</i> contient <i>Homo sapiens</i>), évaluez-les selon\n  le rapport entre le nombre d’identifications cumulées pour\n  ce taxon et la somme des identifications cumulées, le nombre d’identifications\n  plus conservatrices ajoutées après la première identification de ce taxon\n  et le nombre d’identifications qui sont complètement différentes (c.-à-d. identifications\n  des taxons qui ne contiennent pas le taxon évalué). Pour les\n  taxons identifiés qui ont un pointage de plus de 2/3 et au moins 2\n  identifications, choisissez le taxon du rang le plus bas.\n</p>",
+        "ancestor_disagreements_desc": "Nombre de taxons identifiés faisant partie des ancêtres d’un taxon, mais qui contrarient ce taxon (par exemple, « Je pense que c'est dans le genre mais je ne suis pas d'accord qu'il s'agisse de cette espèce »)",
+        "community_taxon_desc_html": "<p class=\"ui\">\n  Le taxon de la communauté (ou l’identification de la communauté) représente\n  le taxon que la communauté d’%{site_name} estime être représenté dans une\n  observation. Si vous êtes intéressé à connaître la façon dont nous choisissons le\n  taxon de la communauté, consultez les notes sur l’algorithme ci-dessous. En\n  général, nous essayons de <strong>choisir un taxon avec lequel plus de 2/3\n  les personnes ayant fait une identification sont d’accord</strong>. Quelquefois, ça veut dire\n  qu’il faut choisir un taxon de plus haut rang qui contient un certain nombre de\n  taxons qui s’opposent (par ex. vous pensez que c’est une couleuvre tachetée et je pense que\n  c’est un serpent à sonnettes. iNat choisira donc le sous-ordre des Serpents qui\n  contient tous les serpents). L’algorithme favorise aussi légèrement les\n  taxons en conflit, parce que nous avons remarqué que les dissidents ont souvent\n  raison.\n</p>\n<p class=\"ui\">\n  Une observation de niveau recherche doit avoir (entre autres critères) un\n  taxon de communauté. Si une observation a\n  seulement une identification, elle n’aura pas de taxon de communauté. Toutes\n  les observations avec au moins une identification  auront aussi un\n  taxon d’observation. Le taxon d’observation est le taxon que nous utilisons en\n  partageant les observations avec des partenaires de données, en liant des observations du\n  même taxon sur le site, en mettant à jour votre liste de vie, etc. Dans la plupart\n  des cas, le taxon d’observation sera finalement positionné au taxon de\n  la communauté, mais parfois ils différeront, surtout avant que la communauté\n  se soit mis d’accord sur une identification. Par exemple, si vous pensez\n  que c’est un serpent (sous-ordre Serpentes) et que je pense que c’est un serpent-roi (genre\n  <i>Lampropeltis</i>), le taxon d’observation sera serpent-roi (soutenu\n  uniquement par mon identification), mais le taxon de communauté sera mis à\n  serpentes (soutenu par au moins deux identifications). Si, pour\n  certaines raisons, vous n’êtes pas d’accord avec le taxon de la communauté, vous pouvez\n  la rejeter pour vos propres observations, ce qui veut dire que le taxon d’observation\n  ne sera jamais fixé au taxon de communauté (plutôt à votre propre ID).\n  Cela veut aussi dire que votre observation ne pourra atteindre le niveau recherche que quand la communauté\n  sera d’accord avec <em>vous</em>. Si vous n’appréciez pas l’idée globale de\n  taxons de communauté, vous pouvez les désactiver entièrement en\n  <a href=\"/users/edit\" target=\"_blank\">modifiant vos paramètres</a>.\n</p>\n<p class=\"ui\">\n  <strong>L’algorithme :</strong> pour tous les taxons identifiés et les taxons qui les contiennent\n  (par ex. genre <i>Homo</i> contient <i>Homo sapiens</i>), évaluez-les selon\n  le rapport entre les 'accords' — le nombre d’identifications cumulées pour\n  ce taxon sur la somme des identifications cumulées, les 'désaccords' — le nombre\n  d’identifications complètement différentes (c.-à-d. identifications\n  des taxons qui ne contiennent pas le taxon évalué), et les 'désaccords d’ancêtre' —\n  le nombre d’identifications plus conservatrices qui sont en désaccord avec le taxon plus fin. Pour les\n  taxons identifiés qui ont un pointage de plus de 2/3 et au moins 2\n  identifications, choisissez le taxon du rang le plus bas.\n</p>",
         "cumulative_count_desc": "Nombre d’identifications pour un taxon distinct et tous ses descendants",
         "disagreement_count_desc": "Nombre de taxons identifiés qui ne font pas partie des ancêtres d’un taxon",
         "identification_count_desc": "Nombre d’identifications pour un taxon distinct",
@@ -28272,7 +28411,6 @@ I18n.translations["gl"] = {
   "grey": "Gris",
   "grid": "Cuadrícula",
   "heads_up": "Aviso",
-  "hide": "Ocultar",
   "id_categories": {
     "tooltips": {
     }
@@ -29632,7 +29770,6 @@ I18n.translations["id"] = {
   "has_photos": "Foto",
   "has_sounds": "Suara",
   "heads_up": "PENTING:",
-  "hide": "Sembunyikan",
   "high": "tinggi",
   "history": "Sejarah",
   "id_categories": {
@@ -31005,7 +31142,6 @@ I18n.translations["it"] = {
   "has_sounds": "Ha suoni",
   "heads_up": "Avviso",
   "here_are_our_top_species_suggestions": "Questi sono i nostri migliori suggerimenti per la specie",
-  "hide": "Nascondi",
   "hide_running_total": "Nascondi il totale attuale",
   "hide_uncountable_species": "Nascondi le specie non conteggiabili",
   "high": "Superiore",
@@ -31971,6 +32107,7 @@ I18n.translations["it"] = {
   "to_add_comments": "per aggiungere commenti",
   "to_suggest_an_identification": "per suggerire un'identificazione",
   "today": "Oggi",
+  "too_many_results": "Troppi risultati",
   "top_identifier": "Il miglior identificatore",
   "top_identifiers": "I migliori identificatori",
   "top_identifiers_of_taxon": "Migliori identificatori per %{taxon}",
@@ -32080,11 +32217,12 @@ I18n.translations["it"] = {
       },
       "identify": {
         "review_all_tooltip": "Contrassegna tutte le osservazioni della pagina come già controllate",
+        "too_many_results_desc": "Il numero di pagine moltiplicato per il numero di risultati per pagina non può superare 10.000.\nProva ad applicare dei filtri, o segna le osservazioni come revisionate e usa il bottone \"Visualizza di più\" al posto della paginazione",
         "unreview_all_tooltip": "Rimuovi lo stato \"revisionata\" da tutte le osservazioni della pagina",
         "you_reviewed_message": "Hai controllato %{reviewed} di %{pageTotal} osservazioni in questa pagina su %{total} osservazioni corrispondenti."
       },
       "show": {
-        "ancestor_disagreements_desc": "# di taxa identificati che appartengono agli antenati del taxon, ma che sono stati creati dopo la prima identificazione che usa questo taxon",
+        "ancestor_disagreements_desc": "# di taxa identificati che appartengono agli antenati del taxon, ma in disaccordo con il taxon (e.g., \"Penso che sia nel genere ma non che sia quella specie\")",
         "community_taxon_desc_html": "<p class=\"ui\">\nIl taxon della community (o l'identificazione della community) è il taxon a cui la community di %{site_name} ritiene possa appartenere l'organismo che hai osservato. Se sei interessato alla modalità in cui scegliamo il taxon della community, leggi le note sull'algoritmo qui sotto, ma in generale, proviamo a <strong>scegliere il taxon che mette d'accordo i 2/3 degli identificatori</strong>.\nAlcune volte ciò significa scegliere un taxon di livello superiore che include un certo numero di taxa su cui non c'è accordo (e.g., tu pensi sia una vipera io penso che sia una coronella, così iNat sceglie il subordine Serpentes che contiene tutti i serpenti). L'algoritmo di solito favorisce leggermente chi è in disaccordo, in quanto sbagliano di meno. \n</p>\n<p class=\"ui\">\nIl taxon della community è il taxon che utilizziamo quando condividiamo l'osservazione con i partner esterni, raggruppiamo le osservazioni dello stesso taxon, aggiorniamo la tua lista degli esseri viventi, etc. Se per qualche ragione non sei d'accordo con la identificazione della community, puoi rifiutarla; ciò significa che la tua ID sarà quella usata per condividere, raggruppare le osservazioni dello stesso taxon, aggiornare la tua lista degli esseri viventi, etc. Ciò significa anche che affinché la tua osservazione possa raggiungere il livello 'ricerca', la community dovrà essere d'accordo con <em>te</em>.\nSe l'idea della identificazione della community non ti piace, puoi disattivarla <a href=\"/users/edit\" target=\"_blank\">modificando le tue impostazioni</a>.\n</p>\n<p class=\"ui\">\n<strong>L'algoritmo:</strong> per tutti i taxa identificati e per quelli che li contengono (e.g. il genere <i>Homo</i> contiene <i>Homo sapiens</i>), l'algoritmo assegna un punteggio secondo: il rapporto tra il numero di ID cumulate per quel taxon e la somma delle ID cumulate, il numero delle ID più conservative aggiunto dopo la prima ID di quel taxon, e il numero delle ID che sono completamente differenti (e.g., ID che dei taxa che non contengono il taxon in oggetto). Per tutti i taxa identificati che hanno un punteggio superiore ai 2/3 e almeno 2 identificazioni, sceglia il taxon di rango minore.\n</p>",
         "cumulative_count_desc": "# di identificazioni per un singolo taxon e per tutti i suoi discendenti",
         "disagreement_count_desc": "# di taxa identificati che non sono tra gli antenati del taxon",
@@ -32494,6 +32632,7 @@ I18n.translations["ja"] = {
   "about_this_bioblitz": "このバイオブリッツについて",
   "acc": "精度（m）",
   "account": "アカウント",
+  "account_creation": "アカウント作成",
   "accuracy": "精度",
   "accuracy_meters": "精度（m）",
   "action": "操作",
@@ -32514,9 +32653,16 @@ I18n.translations["ja"] = {
   "add_annotations_for_x": "「%{x}」の注釈を追加",
   "add_edit_flags": "フラッグの追加・編集",
   "add_id": "同定を追加",
+  "add_life_stage_adult_annotation": "“ライフステージ: 成体”の注釈を追加する",
+  "add_life_stage_egg_annotation": "“ライフステージ: 卵”の注釈を追加する",
+  "add_life_stage_larva_annotation": "“ライフステージ: 幼生”の注釈を追加する",
+  "add_life_stage_pupa_annotation": "“ライフステージ: 蛹”の注釈を追加する",
   "add_link": "リンクを追加",
   "add_one_now": "今すぐ追加",
   "add_photos_to_this_observation": "この観測記録に写真を追加",
+  "add_sex_female_annotation": "“性別: メス”の注釈を追加する",
+  "add_sex_male_annotation": "“性別: オス”の注釈を追加する",
+  "add_tag": "新規タグ",
   "add_tags": "タグを追加",
   "add_to_a_project": "プロジェクトに追加",
   "add_to_favorites": "お気に入りに追加",
@@ -32528,6 +32674,7 @@ I18n.translations["ja"] = {
   "additional_range": "追加の分布範囲",
   "additional_range_data_from_an_unknown_source": "追加の分布範囲の提供先は不明",
   "agree": "賛成",
+  "agree_": "同意",
   "agree_with_current_taxon": "現在の分類群に賛成",
   "aka": "別名",
   "all": "すべて",
@@ -32565,6 +32712,8 @@ I18n.translations["ja"] = {
   "and": "そして",
   "android": "Android",
   "animals": "動物",
+  "annotation": "注釈",
+  "annotations": "注釈",
   "any": "すべて",
   "arachnids": "クモ綱",
   "are_you_sure?": "本当によろしいですか？",
@@ -32578,6 +32727,7 @@ I18n.translations["ja"] = {
   "attention": "注意",
   "back_to_x": "%{noun}に戻る",
   "based_on_the_evidence_can_id_be_improved": "証拠を根拠にコミュニティー判定を確定しますか、改善しますか？",
+  "be_the_first_to_fave_this_observation": "本観測の最初のお気に入り登録者になろう！",
   "birds": "鳥類",
   "black": "黒",
   "blue": "青",
@@ -32591,7 +32741,9 @@ I18n.translations["ja"] = {
   "captive": "飼育",
   "captive_cultivated": "飼育／栽培",
   "casual": "カジュアル",
+  "casual_": "カジュアル",
   "categories": "カテゴリ",
+  "cc_0_name": "著作権なし(CC0)",
   "cc_by_name": "表示",
   "cc_by_nc_name": "表示—非営利",
   "cc_by_nc_nd_name": "表示—非営利—改変禁止",
@@ -32832,7 +32984,6 @@ I18n.translations["ja"] = {
   "has_photos": "写真あり",
   "has_sounds": "音声あり",
   "heads_up": "お知らせ",
-  "hide": "非表示",
   "high": "高",
   "history": "履歴",
   "id_categories": {
@@ -34015,7 +34166,6 @@ I18n.translations["ko"] = {
   "has_sound": "소리가 있음",
   "has_sounds": "소리가 있음",
   "heads_up": "주의",
-  "hide": "숨기기",
   "hide_uncountable_species": "셀 수 없는 종을 숨기기",
   "high": "높음",
   "history": "역사",
@@ -34623,6 +34773,7 @@ I18n.translations["ko"] = {
   "this_id_was_added_due_to_a": "이 ID는 다음의 이유로 추가되었습니다:",
   "this_observation_was_created_using": "이 관찰은 다음을 사용하여 만들어졌습니다:",
   "this_year": "올해",
+  "too_many_results": "결과가 너무 많음",
   "total": "합계",
   "total_observations": "총 관찰",
   "twitter": "트위터",
@@ -34770,8 +34921,9 @@ I18n.translations["lb"] = {
   "about": "Iwwer",
   "about_charts": "Iwwer Diagrammer",
   "about_names": "Iwwer Nimm",
-  "about_this_bioblitz": "Iwwer dëse bioblitz",
+  "about_this_bioblitz": "Iwwer dëse Bioblitz",
   "account": "Benotzerkont",
+  "accuracy": "Prezisioun",
   "accuracy_meters": "Genauegkeet (Meter)",
   "action": "Aktioun",
   "active": "Aktiv",
@@ -34788,9 +34940,19 @@ I18n.translations["lb"] = {
   "add_a_name": "En Numm derbäisetzen",
   "add_an_identification": "Eng Bestëmmung derbäisetzen",
   "add_annotations_for_x": "Annotatioune fir %{x} derbäisetzen",
+  "add_life_stage_adult_annotation": "Setz d'Informatioun \"Liewesstadium: Ausgewuess\" derbäi",
+  "add_life_stage_egg_annotation": "Setzt d'Informatioun \"Liewensstadium: Ee\" derbäi",
+  "add_life_stage_larva_annotation": "Setzt d'Informatioun \"Liewensstadium: Larv\" derbäi",
+  "add_life_stage_pupa_annotation": "Setz d'Informatioun \"Liewesstadium: Popp\" derbäi",
   "add_link": "Link derbäisetzen",
   "add_one_now": "Elo eng derbäisetzen",
-  "add_photos_to_this_observation": "Fotoe bei dëse Observatioun derbäisetzen",
+  "add_photos_to_this_observation": "Fotoe bei dës Observatioun derbäisetzen",
+  "add_plant_phenology_flowering_annotation": "Setz d'Informatioun \"Planzephänologie: Blitt\" derbäi",
+  "add_plant_phenology_fruiting_annotation": "Setz d'Informatioun \"Planzephänologie: Dréit Friichten\" derbäi",
+  "add_sex_female_annotation": "Setzt d'Informatioun \"Geschlecht: weiblech\" derbäi",
+  "add_sex_male_annotation": "Setzt d'Informatioun \"Geschlecht: männlech\" derbäi",
+  "add_tag": "Markéierung derbäisetzen",
+  "add_tags": "Markéierungen derbäisetzen",
   "add_to_a_project": "E Projet derbäisetzen",
   "add_to_favorites": "Bei d'Favoriten derbäisetzen",
   "add_to_project": "Bei de Projet derbäisetzen",
@@ -34802,9 +34964,14 @@ I18n.translations["lb"] = {
   "admin_s": "Administrateur(en)",
   "agree": "zoustëmmen",
   "agree_": "Akzeptéieren",
+  "agree_with_current_taxon": "Si mam aktuellen Taxon d'accord",
+  "aka": "aka",
   "all": "All",
   "all_rank_added_to_the_database": {
-    "hybrid": "All Hybriden an d'Datebank derbäigesat"
+    "hybrid": "All Hybriden an d'Datebank derbäigesat",
+    "phylum": "All Phyla an d'Datebank derbäigesat",
+    "subphylum": "All Ënner-Phyla an d'Datebank derbäigesat",
+    "superclass": "All Superklassen an d'Datebank derbäigesat"
   },
   "all_taxa": {
     "rank": {
@@ -35097,7 +35264,6 @@ I18n.translations["lb"] = {
   "has_photos_or_sounds": "Huet Fotoen oder Téin",
   "has_sound": "Mat Toun",
   "has_sounds": "Huet Téin",
-  "hide": "Verstoppen",
   "high": "Héich",
   "history": "Geschicht",
   "id_categories": {
@@ -35588,6 +35754,7 @@ I18n.translations["lb"] = {
   "this_observation": "Dës Observatioun",
   "this_year": "Dëst Joer",
   "today": "Haut",
+  "too_many_results": "Ze vill Resultater",
   "total": "Total",
   "trends": "Tendenzen",
   "twitter": "Twitter",
@@ -36446,7 +36613,6 @@ I18n.translations["mk"] = {
   "grey": "сива",
   "grid": "Решетка",
   "grid_tooltip": "Дај решетест поглед",
-  "hide": "Скриј",
   "id_categories": {
     "tooltips": {
     }
@@ -37643,7 +37809,6 @@ I18n.translations["nl"] = {
   "has_sounds": "heeft geluidsopnames",
   "heads_up": "Opgelet",
   "here_are_our_top_species_suggestions": "Dit zijn onze top voorstellen voor deze soort",
-  "hide": "Verbergen",
   "hide_running_total": "Huidig totaal verbergen",
   "hide_uncountable_species": "Verberg ongetelde soorten",
   "high": "hoog",
@@ -38609,6 +38774,7 @@ I18n.translations["nl"] = {
   "to_add_comments": "om reacties toe te voegen",
   "to_suggest_an_identification": "om een identificatie voor te stellen",
   "today": "Vandaag",
+  "too_many_results": "Te veel resultaten",
   "top_identifier": "Top identificeerder",
   "top_identifiers": "Top identificeerders",
   "top_identifiers_of_taxon": "Top identificeerders van %{taxon}",
@@ -38722,7 +38888,7 @@ I18n.translations["nl"] = {
         "you_reviewed_message": "U heeft %{reviewed} van %{pageTotal} waarnemingen beoordeeld op deze pagina van %{total} overeenkomende waarnemingen."
       },
       "show": {
-        "ancestor_disagreements_desc": "# geïdentificeerde taxa die behoren tot de voorouders van een taxon, maar zijn gemaakt na de eerste determinatie met dit taxon",
+        "ancestor_disagreements_desc": "# gedetermineerde taxa die behoren tot de voorouders van een taxon, maar die niet overeenkomen met het taxon (\"Ik denk dat het in het geslacht (genus) hoort maar ik ben het oneens dat het deze soort is\")",
         "community_taxon_desc_html": "<p class=\"ui\">\n  Het community taxon (of gemeenschapstaxon) is de determinatie van het afgebeelde taxon door de %{site_name} gemeenschap in de waarneming. Als je geïnteresseerd bent in hoe we het community taxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in algemeen proberen we <strong>een taxon te kiezen waar meer dan 2/3 is van de ID's onder valt</strong>. Dit betekent dat soms een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat wat de sooort niet eens (u denkt bijvoorbeeld dat het een Lampropeltis is en ik denk dat het ratelslang is, dan kiest iNat voor de suborde Serpentes die alle slangen omvat). Het algoritme bevooroordeeld enigzins de afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden vaak gelijk hebben.\n</p>\n<p class=\"ui\">\n  Het gemeenschapstaxon is het taxon dat we gebruiken bij het delen van waarnemingen met datapartners, die waarnemingen van hetzelfde taxon koppelen aan de site, het bijwerken van uw levenslijst, enz. Als je om een ​​of andere reden niet akkoord gaat met het gemeenschapstaxon kun je het afwijzen, wat betekent dat uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen te linken, het bijwerken van levenslijsten, enz. Het betekent ook dat jouw waarneming alleen Onderzoekskwaliteit kan worden wanneer de community het eens is met <em>u</em>. Als je het hele idee van community-taxa niet leuk vindt, kun je het volledig uitzetten in <a href=\"/users/edit\" target=\"_blank\">uw instellingen</a>.\n</p>\n<p class=\"ui\">\n  <strong>Het algoritme:</strong> voor alle geïdentificeerde taxa en de taxa waarin ze zijn opgenomen (bijvoorbeeld het geslacht <i>Homo</i> bevat <i>Homo sapiens</i>), score elk als de verhouding tussen het aantal cumulatieve ID's voor dat taxon over de som van de cumulatieve ID's, het aantal meer conservatieve ID's toegevoegd na de eerste ID van dat taxon en het aantal ID's dat compleet verschillend is (dat wil zeggen ID's van taxa die niet het taxon bevatten dat gescoord wordt). Voor de geïdentificeerde taxa die een score hebben van meer dan 2/3 en minstens 2 determinaties, wordt het laagst gerangschikte taxon gekozen.\n</p>",
         "cumulative_count_desc": "# determinaties voor een individueel taxon en al zijn nakomelingen",
         "disagreement_count_desc": "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon",
@@ -39521,7 +39687,6 @@ I18n.translations["oc"] = {
   "has_photos": "a de fòtos",
   "has_sounds": "a de sons",
   "heads_up": "Avertiment",
-  "hide": "Amagar",
   "high": "naut",
   "history": "Istoric",
   "id_categories": {
@@ -40935,7 +41100,6 @@ I18n.translations["pt-BR"] = {
   "has_sounds": "Possui sons",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Aqui pode ver a nossa seleção de espécies",
-  "hide": "Ocultar",
   "hide_running_total": "Ocultar total Cumulativo",
   "hide_uncountable_species": "Ocultar espécies incontáveis",
   "high": "Alta",
@@ -41901,6 +42065,7 @@ I18n.translations["pt-BR"] = {
   "to_add_comments": "para adicionar comentários",
   "to_suggest_an_identification": "para sugerir uma identificação",
   "today": "Hoje",
+  "too_many_results": "Muitos resultados",
   "top_identifier": "Top Identificador",
   "top_identifiers": "Principais Identificadores",
   "top_identifiers_of_taxon": "Principais Identificadores de %{taxon}",
@@ -42010,11 +42175,12 @@ I18n.translations["pt-BR"] = {
       },
       "identify": {
         "review_all_tooltip": "Marcar todas as observações desta página como revisadas",
+        "too_many_results_desc": "O número de páginas vezes o número de resultados por página não pode exceder 10.000. Tente aplicar filtros para reduzir o número de resultados ou marque observações como revistas e use o botão \"Ver Mais\" em vez de paginação",
         "unreview_all_tooltip": "Remover status revisto para todas as observações na página",
         "you_reviewed_message": "Parabéns, você revisou %{reviewed} de %{pageTotal} das observações desta página de %{total} observações que combinam."
       },
       "show": {
-        "ancestor_disagreements_desc": "# de táxons identificados que estão entre os ancestrais de um grupo e espécie, mas foram criados depois da primeira identificação utilizando este táxon",
+        "ancestor_disagreements_desc": "# de táxons identificados que estão entre os ancestrais de um táxon, mas discordam do táxon (ie \"eu acho que é no gênero mas eu discordo dessa espécie\")",
         "community_taxon_desc_html": "<p class=\"ui\">\nO táxon comunitário (ou identificação colaborativa) representa  aquele táxon do %{site_name} que a comunidade acredita se encaixar perfeitamente a observação. Se você esta interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, os membros do iNat tentam <strong>escolher um táxon que mais de 2/3 dos colaboradores concordam ser uma opção plausível</strong>. Algumas vezes isso significa optar por um táxon mais alto, por exemplo, eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, nesse momento o algoritmo do iNaturalist escolhe a subordem Serpentes para identificar o registro. Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.\n</p>\n<p class=\"ui\">\n  Utilizamos um táxon comunitário para compartilhar observações com parceiros, conectando diversos registros para o mesmo táxon no site, atualizando sua lifelist, entre outras coisas. Se por alguma razão você discordar de um táxon comunitário, você pode rejeitá-lo, o que significa que a sua identificação será aquela utilizada pelo sistema. \nTambém significa que sua observação somente poderá ser incluída na categoria pesquisa quando os membros da comunidade concordarem com <em>você/em>.\nSe você simplesmente não gosta do conceito de táxon comunitário, você pode se desligar do processo <a href=\"/users/edit\" target=\"_blank\">editando suas configurações</a>.\n</p>\n<p class=\"ui\">\n  <strong>O algoritmo:</strong> para todos os dados de identificação de espécies, como por exemplo, o táxon <i>Homo</i> engloba a espécie <i>Homo sapiens</i>), bingo, a razão entre o número de IDs acumuladas para o mesmo táxon através da soma das identificações acumuladas, o número de IDs mais conservadoras acrescentadas após a primeira ID desse táxon, além do número de IDs que são completamente diferentes (isto é, identificações\n   de táxons que não contêm o táxon ser marcado). Para os táxons identificados que possuem uma nota de acerto próxima a 2/3 e no mínimo 2 identificações, escolha o táxon mais baixo.\n</p>",
         "cumulative_count_desc": "# de identificações para um único táxon e todos os seus descendentes",
         "disagreement_count_desc": "# de táxons identificados que não estão entre os ancestrais de um grupo ou espécie",
@@ -42852,7 +43018,6 @@ I18n.translations["pt-PT"] = {
   "has_sounds": "Tem sons",
   "heads_up": "Aviso",
   "here_are_our_top_species_suggestions": "Aqui pode ver a nossa selecção de espécies",
-  "hide": "Ocultar",
   "hide_running_total": "Ocultar total acumulado",
   "hide_uncountable_species": "Ocultar espécies incontáveis",
   "high": "Alto",
@@ -44383,7 +44548,6 @@ I18n.translations["ru"] = {
   "has_sounds": "Со звуком",
   "heads_up": "Осторожно",
   "here_are_our_top_species_suggestions": "Вот наши лучшие предложения видов",
-  "hide": "Скрыть",
   "hide_running_total": "Скрыть текущий итог",
   "hide_uncountable_species": "Не показывать неисчислимые виды",
   "high": "Высший",
@@ -45351,6 +45515,7 @@ I18n.translations["ru"] = {
   "to_add_comments": "чтобы добавить комментарии",
   "to_suggest_an_identification": "предлагать идентификацию",
   "today": "Сегодня",
+  "too_many_results": "Слишком много результатов",
   "top_identifier": "Лучший Эксперт",
   "top_identifiers": "Лучшие Эксперты",
   "top_identifiers_of_taxon": "Лучшие Эксперты по %{taxon}",
@@ -45461,12 +45626,12 @@ I18n.translations["ru"] = {
       },
       "identify": {
         "review_all_tooltip": "Отметить все наблюдения на этой странице как проверенные",
+        "too_many_results_desc": "Число страниц, умноженное на число результатов на странице, не может превышать 10 000.\nПопробуйте применить фильтры, чтобы уменьшить количество результатов, или отметьте наблюдения как просмотренные и используйте кнопку \"Просмотреть больше\" вместо разбиения на страницы",
         "unreview_all_tooltip": "Удалить статус \"просмотренные\" для всех наблюдений на странице",
         "you_reviewed_message": "Вы проверили %{reviewed} из %{pageTotal} наблюдений на этой странице из общего числа %{total} наблюдений."
       },
       "show": {
-        "ancestor_disagreements_desc": "# идентифицированных таксонов, которые относятся к предкам таксона, но были созданы после первой идентификации с использованием этого таксона",
-        "community_taxon_desc_html": "<p class=\"ui\">\n  Таксон сообщества (или идентификация сообщества) представляет то, что, по мнению сообщества %{site_name} изображено в наблюдении. Если вас интересует, как мы выбираем таксон сообщества, см. Примечания к алгоритму ниже, но в целом мы стараемся <strong>выбрать таксон, с которым согласны более 2/3 экспертов</strong>. Иногда это означает выбор таксона более высокого уровня, который содержит ряд таксонов-потомков (например, вы думаете, что это королевская змея, а я думаю, что это гремучая змея, поэтому iNat выбирает подотряд Serpentes, который содержит всех змей). Алгоритм также немного благоприятствует инакомыслию, потому что мы обнаружили, что инакомыслящие часто бывают правы.\n</p>\n<p class=\"ui\">\n  Таксоном сообщества является таксон, который мы используем при обмене наблюдениями с партнёрами по данным, связывая наблюдения одного и того же таксона на сайте, обновляя ваш список жизни и т. д. Если по какой-то причине вы не согласны с таксоном сообщества, вы можете его отклонить, что означает, что ваш идентификатор является тем, который используется для связи с другими наблюдениями, обновления списков жизней и т. д. Это также означает, что ваше наблюдение может перейти на исследовательский уровень, только когда сообщество соглашается с <em>вами</em>. Если вам не нравится вся идея таксонов сообщества, вы можете полностью отказаться от них путём <a href=\"/users/edit\" target=\"_blank\">редактирования ваших настроек</a>.\n</p>\n<p class=\"ui\">\n  <strong>Алгоритм:</strong> для всех идентифицированных таксонов и таксонов, которые их содержат (например, род <i>Homo </i> содержит <i>Homo sapiens</i>), каждый оценивается как отношение общего числа идентификаций этого таксона к сумме общего числа идентификаций, числа более консервативных идентификаций, добавленных после первой идентификации этого таксона, и числа полностью отличающихся  идентификаций (т. е. таксонов-идентификаций, которые не содержат оцениваемый таксон). Для идентифицированных таксонов, которые имеют оценку более 2/3 и не менее 2 идентификаций, выбирается низший уровень таксона.\n</p>",
+        "ancestor_disagreements_desc": "# идентифицированных таксонов, которые относятся к предкам таксона, но не соответствуют таксону (т.е. \"я думаю, что этот род, но не согласен, что этот вид\")",
         "cumulative_count_desc": "# идентификаций отдельного таксона и всех его потомков",
         "disagreement_count_desc": "# идентифицированных таксонов, которые не относятся к предкам таксона",
         "identification_count_desc": "# идентификаций отдельного таксона",
@@ -46556,7 +46721,6 @@ I18n.translations["sq"] = {
   "has_sounds": "ka tinguj",
   "heads_up": "Vërejtje",
   "here_are_our_top_species_suggestions": "Këtu janë sugjerimet tona për speciet kryesore",
-  "hide": "Fshih",
   "hide_uncountable_species": "Fsheh speciet e pallogaritshme",
   "high": "I lartë",
   "history": "Historiku",
@@ -48521,6 +48685,7 @@ I18n.translations["sv"] = {
   "to": "till",
   "to_suggest_an_identification": "för att föreslå en identifiering",
   "today": "Idag",
+  "too_many_results": "För många resultat",
   "trending": "Trender",
   "trends": "Trender",
   "trust_this_person_with_your_private_coordinates": "Lita på denna person med dina dolda koordinater",
@@ -49998,7 +50163,6 @@ I18n.translations["zh-CN"] = {
   "has_sounds": "有声音",
   "heads_up": "小心",
   "here_are_our_top_species_suggestions": "这里有我们最常用的物种建议",
-  "hide": "隐藏",
   "hide_uncountable_species": "隐藏无法计数的物种",
   "high": "高",
   "history": "历史",
@@ -51788,8 +51952,7 @@ I18n.translations["zh-TW"] = {
   "has_sound": "擁有聲音",
   "has_sounds": "擁有聲音",
   "heads_up": "注意",
-  "here_are_our_top_species_suggestions": "這是我們熱門的物種建議",
-  "hide": "隱藏",
+  "here_are_our_top_species_suggestions": "這是我們的最佳物種建議",
   "hide_running_total": "隱藏運行總計",
   "hide_uncountable_species": "隱藏無法計數的物種",
   "high": "高",
@@ -52755,6 +52918,7 @@ I18n.translations["zh-TW"] = {
   "to_add_comments": "添加評論",
   "to_suggest_an_identification": "提議一個鑑定",
   "today": "今日",
+  "too_many_results": "太多結果",
   "top_identifier": "熱門鑑定人",
   "top_identifiers": "熱門鑑定人",
   "top_identifiers_of_taxon": "%{taxon}的熱門鑑定人",
@@ -52868,7 +53032,7 @@ I18n.translations["zh-TW"] = {
         "you_reviewed_message": "您檢閱了頁面上超出 %{total} 的符合觀察裡 %{pageTotal} 中的 %{reviewed} 觀察。"
       },
       "show": {
-        "ancestor_disagreements_desc": "# 已鑑定物種分類群來自於某一物種分類的祖先，不過是在使用此物種分類的首次鑑定之後創建",
+        "ancestor_disagreements_desc": "# 已鑑定物種分類群來自於某一物種分類的祖先，但不同意分類（例如：我同意它歸在這個屬；但不同意它的物種）",
         "community_taxon_desc_html": "<p class=\"ui\">\n  社群物種分類（或社群鑑定）代表著 %{site_name} 社群對於觀察所對應物種分類的看法。若您對於我們如何挑選社群物種分類方面有興趣，請查看下方演算法的備註，不過通常我們是採用嘗試<strong>挑選超過 2/3 鑑定人所認定的物種分類</strong>。這代表著有時候會挑選到一個有著部份不被認同的物種分類群之更高層級物種分類（例如：您認為對象應是王蛇，但我認為是響尾蛇，因此 iNat 最後會挑選包含所有蛇類的亞目）。規則在意見分歧時有著好處，因為我們發現在過往情況下異議者通常會是對的。\n</p>\n<p class=\"ui\">\n  社群物種分類是我們在分享觀察給資料合作者，連結在網站上同名稱物種分類觀察，更新您的生物清單等等情況時所用的物種分類。若基於某些原因您不願意認同社群物種分類，您可以選擇退出，這代表著您只能用您的鑑定來連結至其它觀察、更新生物清單等等。這也代表著您的觀察內容在社群認同<em>您</em>之前，無法成為研究等級。若您不喜歡社群物種分類群的想法，您可以透過<a href=\"/users/edit\" target=\"_blank\">編輯您的設定</a>來完全退出。\n</p>\n<p class=\"ui\">\n  <strong>規則：</strong>用於所有已鑑定，以及有包含前著的物種分類群（例如：<i>人</i>屬包含著<i>智人</i>），以比例方式向任一物種分類超過累積鑑定總和的累積鑑定數量之間計分，更謹慎的鑑定數量添加在物種分類首個鑑定之後，並且鑑定數量完全不同（註：物種分類群鑑定不包含被積分的物種分類群）。對於已鑑定且積分有超過 2/3，以及至少 2 個鑑定的物種分類群，請挑選最低級別的物種分類。\n</p>",
         "cumulative_count_desc": "用於各別物種分類及其所有派生的 # 鑑定",
         "disagreement_count_desc": "# 已鑑定物種分類群不在物種分類的祖先之中",
@@ -52880,7 +53044,7 @@ I18n.translations["zh-TW"] = {
     "projects": {
       "collection": "收藏",
       "new": {
-        "a_project_allows_you_to_gather": "收藏專案允許您使用 iNaturalist 搜尋工具來聚集並視覺化觀察。能自動將符合專案所設定參數內容的觀察給自動包含到，免去需手動添加的步驟。",
+        "a_project_allows_you_to_gather": "收藏專案允許您使用核心 iNaturalist 搜尋工具來聚集並視覺化觀察。相符由專案所設定參數的一切內容將會自動囊括。",
         "an_umbrella_project_can_be_used_to": "綜合專案可用來比較兩個或以上的收藏、傳統專案之間的統計內容。在您添加內容至綜合專案前，需要先有其它的專案存在。您可以在一個綜合專案裡加入上百個專案，但不可讓綜合專案含有別的綜合專案。",
         "can_be_included_in_multiple": "可包含在多項綜合專案",
         "click_through_to_individual_projects": "點擊至各項專案",
@@ -52896,7 +53060,7 @@ I18n.translations["zh-TW"] = {
         "leaderboards_among_projects_and_bioblitzes": "<strong>專案</strong>排行榜",
         "multiple_project_administrators": "多項專案管理員",
         "name_placeholder": "在芝加哥的鳥類、令人驚豔的蜻蜓等等。",
-        "no_need_to_rely_on_manual_addition": "不需手動添加觀察額外內容，或是聚集來索引觀察",
+        "no_need_to_rely_on_manual_addition": "無手動添加觀察",
         "note_these_users_will_be_able_to_edit": "註：這些包含到管理員的使用者可以編輯所有專案細節。",
         "note_you_can_delete_the_time": "（註：若您想包含一整天，您可以刪除時區以及準確時間。）",
         "or_drag_and_drop": "（或是拖拉）",
@@ -52912,14 +53076,15 @@ I18n.translations["zh-TW"] = {
         "project_summary": "專案摘要",
         "project_summary_help": "簡要說明有關您的專案。大約前 200 個字會顯示在專案主螢幕橫幅的右側，因此請填入最精華的內容！",
         "project_summary_placeholder": "探索並追蹤在金門公園的鳥類...",
-        "start_and_end_times_for_bioblitzes": "bioblitz 的起始與結束時間",
+        "start_and_end_times_for_bioblitzes": "起始與結束日期/時間（用於 bioblitz 類型活動）",
         "umbrella_project_features": "綜合專案特性：",
         "unique_url_for_outreach": "用於推廣的獨一 URL 地址",
         "use_this_link_to_create_html": "使用<a href=\"%{url}\">此連結</a>來改以建立傳統專案。",
         "users_can_follow_your_project": "使用者可透過日誌發布文章的更新來關注您的專案",
         "visual_comparison_of_data_among": "此綜合專案下的視覺化專案資料比較",
-        "we_have_redesigned_projects": "我們將專案重新設計成能夠自動包含到所有符合您所定義到的地點、物種分類群、使用者、內容品質，以及日期條件的觀察。請選擇以下兩者類型其一：收藏專案或綜合專案，這些共有著以下特點：",
+        "we_have_redesigned_projects": "專案是設計成能夠自動包含到所有符合您所定義到的地點、物種分類群、使用者、內容品質，以及日期條件的觀察。請選擇以下兩者主要類型其一：收藏專案或綜合專案，這些共有著以下特點：",
         "welcome_to_projects": "歡迎來到專案！",
+        "you_can_learn_more_html": "您可以<a href=\"https://www.inaturalist.org/pages/managing-projects\">在此</a>了解到更多關於管理專案，或是在<a href=\"https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist\">我們的部落格</a>上閱讀專案的歷史。",
         "you_have_not_defined_any_observation_requirements": "您尚未定義任何觀察需求。請確認選擇一個或多個的物種分類群（例如：鳥類、毬果植物門）、地點（例如：巴西、黃石公園）、使用者與/或日期來定義您希望包含在您專案裡的觀察。"
       },
       "project_type": "專案類型",
@@ -52996,6 +53161,7 @@ I18n.translations["zh-TW"] = {
           "Life Stage=adult": "成體",
           "unannotated": "沒有註釋"
         },
+        "max_photos_desc": "一個分類群最多僅能有 %{max} 張照片，您需要移除現有照片來添加別的。",
         "photo_chooser_modal_desc": "從左方拖拉照片於此，或拖拉照片於此來重新排列。",
         "photo_chooser_modal_explanation": "註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。",
         "trending_desc": "在最近一個月的最多觀察物種分類群",
@@ -53005,7 +53171,7 @@ I18n.translations["zh-TW"] = {
     },
     "users": {
       "edit": {
-        "licensing_desc_html": "授權您的內容可讓其他遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。%{site_name} 使用您的創用 CC 授權內容，來與像是<a href=\"http://www.gbif.org/\">全球生物多樣性資訊機構</a>（GBIF），一個專門編輯發佈全球生物多樣化訊息之國際政府間組織如此般的資料合作者共享內容。"
+        "licensing_desc_html": "授權您的內容可讓任何遵守授權條款的用戶不必向您詢問許可，即能合法使用其中資料。除此之外，%{site_name} 會替對於我們資料感興趣的精選夥伴組織來定期更新存檔，當中會含有您的創用 CC 授權內容。例如，替<a href=\"http://www.gbif.org/\">全球生物多樣性資訊機構</a>（GBIF）所產生的存檔裡，我們包含公眾領域貢獻宣告（CC0）、姓名標示（CC BY）、姓名標示-非商業性（CC BY-NC）等紀錄，其中 GBIF 是一個專門彙編、發佈來自全球生物多樣化訊息的國際政府間組織。"
       }
     },
     "welcome": {

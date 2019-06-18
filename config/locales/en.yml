@@ -657,6 +657,7 @@ en:
   calendars_only_show_x_observations_at_time: Calendars only show %{x} observations at a time
   can_you_help_your_friends_id_these: Can you help your friends ID these?
   cancel: Cancel
+  cant_edit_or_delete_hidden_content: You can't edit or delete content that has been hidden by site curators
   cant_flag_an_object_that_doesnt_exist: Can't flag an object that doesn't exist
   cant_merge_a_taxon_with_itself: Can't merge a taxon with itself.
   captive: Captive
@@ -885,6 +886,9 @@ en:
     iucn: Equivalent IUCN Red List code
   conservation_summary: Conservation Summary
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
+  content_hidden: Content Hidden
+  content_hidden_by_user_on_date_because_reason_html: |
+    Content hidden by %{user} on %{date} because: "%{reason}"
   contest: contest
   continue: Continue
   continue_to_site: Continue to %{site_name}
@@ -1583,18 +1587,18 @@ en:
   hex_color_eg: Hex color, e.g. 65644F
   hi: Hi,
   hi_user: "Hi %{user}"
-  hide: Hide
+  hide_content: Hide Content
   hide_desc: |
     Hiding content will remove it from public view, but people will still be
     able to see that something was hidden, and site curators and the author of
-    the content will still be able to see the hidden content. You cannot undo
-    this, and only site staff can unhide content once it has been hidden, so be
-    careful and only use this for very objectionable content.
-  hide_comment: Hide Comment
-  hide_details: Hide Details
+    the content will still be able to see the hidden content. Generally, this
+    only applies to written content, e.g. if you hide the content of an
+    identification, the identification is still visible but the identifier's
+    remarks are hidden. You cannot undo this, and only site staff can unhide
+    content once it has been hidden, so be careful and only use this for very
+    objectionable content.
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
-  hidden: Hidden
   hidden_content_explanation: Content has been hidden
   high: High
   highest_rank: Highest Rank
@@ -3444,6 +3448,7 @@ en:
   reload_and_refresh: Reload and refresh list
   reload_from_observations: Reload from observations
   reload_timed_out: 'Reload timed out.  Please try again later.'
+  remarks_hidden: "Remarks hidden"
   remarks_optional: 'Remarks <span class="small description">(optional)</span>'
   remember_its_a_lot_easier_to_id: "Remember, it's a lot easier to ID something if you provide as much descriptive information as possible. Most importantly, please provide a <strong>place</strong>, a <strong>date/time</strong>, and some information about the <strong>size</strong>."
   remember_me: Remember me
@@ -3666,6 +3671,7 @@ en:
   show_common_names: Show common names
   show_counts: Show counts based on the list.
   show_default_taxon_photos: show default taxon photos
+  show_hidden_content: Show Hidden Content
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_kml: Show KML
   show_less: Show Less
@@ -4319,7 +4325,7 @@ en:
   unblock: Unblock
   unclassified: Unclassified
   ungrafted_taxa: Ungrafted Taxa
-  unhide: Unhide
+  unhide_content: Unhide Content
   unhide_desc: |
     Unhiding will reveal this content for everyone to see. Curators can still
     choose to hide it again in the future.

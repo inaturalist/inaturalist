@@ -29,16 +29,18 @@ const ActivityItemMenu = ( {
     && loggedInUser.roles.indexOf( "admin" ) >= 0;
   if ( isID ) {
     if ( viewerIsActor ) {
-      menuItems.push( (
-        <MenuItem
-          key={`id-edit-${item.id}`}
-          eventKey="edit"
-          href={`/identifications/${item.id}/edit`}
-          target={linkTarget}
-        >
-          { I18n.t( "edit" ) }
-        </MenuItem>
-      ) );
+      if ( !item.hidden ) {
+        menuItems.push( (
+          <MenuItem
+            key={`id-edit-${item.id}`}
+            eventKey="edit"
+            href={`/identifications/${item.id}/edit`}
+            target={linkTarget}
+          >
+            { I18n.t( "edit" ) }
+          </MenuItem>
+        ) );
+      }
       if ( item.current ) {
         menuItems.push( (
           <MenuItem
@@ -67,6 +69,26 @@ const ActivityItemMenu = ( {
           { I18n.t( "flag" ) }
         </MenuItem>
       ) );
+      if ( viewerIsCurator && !item.hidden && !_.isEmpty( item.body ) ) {
+        menuItems.push( (
+          <MenuItem
+            key={`identification-hide-${item.id}`}
+            eventKey="hide-identification"
+          >
+            { I18n.t( "hide_content" ) }
+          </MenuItem>
+        ) );
+      }
+      if ( viewerIsAdmin && item.hidden ) {
+        menuItems.push( (
+          <MenuItem
+            key={`identification-unhide-${item.id}`}
+            eventKey="unhide-identification"
+          >
+            { I18n.t( "unhide_content" ) }
+          </MenuItem>
+        ) );
+      }
     }
     if ( item.flags && item.flags.length > 0 ) {
       menuItems.push( (
@@ -158,6 +180,7 @@ const ActivityItemMenu = ( {
       );
     }
   } else if ( viewerIsActor ) {
+    // Item is a comment and the viewer is the author of that comment
     menuItems.push( (
       <MenuItem
         key={`comment-edit-${item.id}`}
@@ -177,6 +200,7 @@ const ActivityItemMenu = ( {
       </MenuItem>
     ) );
   } else if ( loggedInUser ) {
+    // Item is a comment and viewer is logged in
     menuItems.push( (
       <MenuItem
         key={`comment-flag-${item.id}`}
@@ -191,7 +215,7 @@ const ActivityItemMenu = ( {
           key={`comment-hide-${item.id}`}
           eventKey="hide-comment"
         >
-          { I18n.t( "hide" ) }
+          { I18n.t( "hide_content" ) }
         </MenuItem>
       ) );
     }
@@ -201,7 +225,7 @@ const ActivityItemMenu = ( {
           key={`comment-unhide-${item.id}`}
           eventKey="unhide-comment"
         >
-          { I18n.t( "unhide" ) }
+          { I18n.t( "unhide_content" ) }
         </MenuItem>
       ) );
     }
@@ -278,17 +302,15 @@ const ActivityItemMenu = ( {
               untrustUser( item.user );
             } else if ( key === "manage-relationships" ) {
               window.open( "/relationships", "_blank" );
-            } else if ( isID ) {
-              if ( key === "delete" ) {
-                deleteID( item.id );
-              } else if ( key === "restore" ) {
-                restoreID( item.id );
-              }
+            } else if ( isID && key === "delete" ) {
+              deleteID( item.id );
+            } else if ( isID && key === "restore" ) {
+              restoreID( item.id );
             } else if ( key === "delete" ) {
               deleteComment( item.id );
-            } else if ( key === "hide-comment" ) {
+            } else if ( key === "hide-comment" || key === "hide-identification" ) {
               hideContent( item );
-            } else if ( key === "unhide-comment" ) {
+            } else if ( key === "unhide-comment" || key === "unhide-identification" ) {
               unhideContent( item );
             }
           }}
