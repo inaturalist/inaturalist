@@ -9,7 +9,28 @@ class Atlas < ActiveRecord::Base
   validates_presence_of :taxon
   after_save :index_taxon
   after_destroy :index_taxon
-
+  
+  TAXON_JOINS = [
+    "LEFT OUTER JOIN taxa t ON t.id = atlases.taxon_id"
+  ]
+  scope :taxon, lambda{ |taxon|
+    joins( TAXON_JOINS ).
+    where( "t.id = ? OR t.ancestry LIKE (?) OR t.ancestry LIKE (?)", taxon.id, "%/#{ taxon.id }", "%/#{ taxon.id }/%")
+  }
+  scope :marked, -> {
+    where( "is_marked = true" )
+  }
+  scope :unmarked, -> {
+    where( "is_marked = false" )
+  }
+  scope :active, -> {
+    where( "atlases.is_active = true" )
+  }
+  scope :inactive, -> {
+    where( "atlases.is_active = false" )
+  }
+  
+  
   def to_s
     "<Atlas #{id} taxon_id: #{taxon_id}>"
   end

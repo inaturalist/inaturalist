@@ -8,9 +8,9 @@ $(function() {
       url: "/atlases/" + $this.data( "atlas-id" ) + "/refresh_atlas",
       success: function(data){
         if(data){
-          $this.text("still marked");
+          $this.closest('td').prev().text("true");
         }else{
-          $this.closest('tr').fadeOut();
+          $this.closest('td').prev().text("false");
         }
       },
       error: function(data){
