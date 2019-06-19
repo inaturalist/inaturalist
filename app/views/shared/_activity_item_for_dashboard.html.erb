@@ -24,7 +24,6 @@
   last ||= false
 -%>
 
-
 <li class="<%= ("id_refined" unless item.current?) if item.is_a? Identification  %> <%= "last" if last  %>">
   <div class="timeline-badge">
     <% if user && !no_thumb -%>
@@ -111,13 +110,19 @@
           item.description
         end -%>
       <% unless text.blank? -%>
-        <div class="readable body <%= "ident_comment" if item.is_a? Identification %>">
-          <%- if context_around && context = text.context_of_pattern(context_around) %>
-            <%= formatted_user_text(context) %>
-          <% else -%>
-            <%= formatted_user_text(text) %>
-          <% end -%>
-        </div>
+        <% if item.respond_to?(:hidden?) && item.hidden? %>
+          <div class="text-muted well well-sm">
+            <%=t :content_hidden %>
+          </div>
+        <% else %>
+          <div class="readable body <%= "ident_comment" if item.is_a? Identification %>">
+            <%- if context_around && context = text.context_of_pattern(context_around) %>
+              <%= formatted_user_text(context) %>
+            <% else -%>
+              <%= formatted_user_text(text) %>
+            <% end -%>
+          </div>
+        <% end %>
       <% end -%>
     </div>
   </div>

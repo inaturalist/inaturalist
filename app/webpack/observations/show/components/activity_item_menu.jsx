@@ -179,7 +179,7 @@ const ActivityItemMenu = ( {
         </li>
       );
     }
-  } else if ( viewerIsActor ) {
+  } else if ( viewerIsActor && !item.hidden ) {
     // Item is a comment and the viewer is the author of that comment
     menuItems.push( (
       <MenuItem

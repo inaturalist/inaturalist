@@ -84,13 +84,19 @@
         item.description
       end -%>
     <% unless text.blank? -%>
-      <div class="readable body">
-        <%- if context_around && context = text.context_of_pattern(context_around) %>
-          <%= formatted_user_text(context) %>
-        <% else -%>
-          <%= formatted_user_text( text, tags: Observation::ALLOWED_DESCRIPTION_TAGS ) %>
-        <% end -%>
-      </div>
+      <% if item.respond_to?(:hidden?) && item.hidden? %>
+        <div class="quiet box">
+          <%=t :content_hidden %>
+        </div>
+      <% else %>
+        <div class="readable body">
+          <%- if context_around && context = text.context_of_pattern(context_around) %>
+            <%= formatted_user_text(context) %>
+          <% else -%>
+            <%= formatted_user_text( text, tags: Observation::ALLOWED_DESCRIPTION_TAGS ) %>
+          <% end -%>
+        </div>
+      <% end %>
     <% end -%>
     
     <% unless no_meta -%>
