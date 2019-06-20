@@ -1876,7 +1876,7 @@ class Observation < ActiveRecord::Base
     if (
       time_observed_at && time_observed_at.in_time_zone( "UTC" ).to_date > created_at.in_time_zone( "UTC" ).to_date
     ) || (
-      observed_on.in_time_zone( "UTC" ).to_date > created_at.in_time_zone( "UTC" ).to_date
+      observed_on.in_time_zone( "UTC" ).to_date > ( created_at.in_time_zone( "UTC" ) + 1.day ).to_date
     )
       errors.add(:observed_on, :cannot_be_greater_than_date_created)
     end
