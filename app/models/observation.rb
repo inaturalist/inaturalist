@@ -1873,7 +1873,11 @@ class Observation < ActiveRecord::Base
   def date_observed_must_be_before_date_created
     return true if observed_on.blank?
     return true if created_at.blank?
-    if observed_on.in_time_zone( "UTC" ) > created_at.in_time_zone( "UTC" ).to_date
+    if (
+      time_observed_at && time_observed_at.in_time_zone( "UTC" ).to_date > created_at.in_time_zone( "UTC" ).to_date
+    ) || (
+      observed_on.in_time_zone( "UTC" ).to_date > created_at.in_time_zone( "UTC" ).to_date
+    )
       errors.add(:observed_on, :cannot_be_greater_than_date_created)
     end
     true
