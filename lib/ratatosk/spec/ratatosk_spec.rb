@@ -181,7 +181,7 @@ describe Ratatosk, "grafting" do
     expect(anna).to be_grafted
     expect(@ratatosk.graft(anna)).to eq []
   end
-  
+
   it "should graft everything to 'Life'" do
     life = Taxon.find_by_name('Life')
     tn = @ratatosk.find('Hexamitidae').first
@@ -194,6 +194,7 @@ describe Ratatosk, "grafting" do
   it "should set the parent of a kingdom to 'Life'" do
     life = Taxon.find_by_name('Life')
     plantae = @ratatosk.find('Plantae').first
+    plantae.taxon.current_user = make_admin
     plantae.save
     @ratatosk.graft(plantae.taxon)
     plantae.reload
@@ -251,51 +252,6 @@ describe Ratatosk, "grafting" do
       }.to change(Flag, :count).by_at_least(1)
     end
   end
-  
-  describe "to a complete subtree" do
-    it "should fail" do
-      @Amphibia.update_attributes(complete: true, complete_rank: "species")
-      taxon = Taxon.make!(name: "Pseudacris foobar", rank: Taxon::SPECIES)
-      @ratatosk.graft(taxon)
-      taxon.reload
-      expect(taxon).not_to be_grafted
-      expect(taxon.ancestor_ids).not_to include(@Amphibia.id)
-    end
-
-    it "should flag taxa that could not be grafted" do
-      @Amphibia.update_attributes(complete: true, complete_rank: "species")
-      expect(@Amphibia).to be_valid
-      expect(@Amphibia).to be_complete
-      taxon = Taxon.make!(name: "Pseudacris foobar", rank: Taxon::SPECIES)
-      expect {
-        @ratatosk.graft(taxon)
-        taxon.reload
-        expect(taxon).not_to be_grafted
-      }.to change(Flag, :count).by_at_least(1)
-    end
-    
-    it "should not fail if taxon is below complete_rank" do
-      @Amphibia.update_attributes(complete: true, complete_rank: "genus")
-      taxon = Taxon.make!(name: "Pseudacris foobar", rank: Taxon::SPECIES)
-      @ratatosk.graft(taxon)
-      taxon.reload
-      expect(taxon).to be_grafted
-      expect(taxon.ancestor_ids).to include(@Amphibia.id)
-    end
-
-    it "should not flag if taxon is below complete_rank" do
-      @Amphibia.update_attributes(complete: true, complete_rank: "genus")
-      expect(@Amphibia).to be_valid
-      expect(@Amphibia).to be_complete
-      taxon = Taxon.make!(name: "Pseudacris foobar", rank: Taxon::SPECIES)
-      expect {
-        @ratatosk.graft(taxon)
-        taxon.reload
-        expect(taxon).to be_grafted
-      }.not_to change(Flag, :count)
-    end
-  end
-  
 
   it "should look up import a polynom parent" do
     expect(Taxon.find_by_name('Sula leucogaster')).to be_blank
@@ -334,7 +290,7 @@ def load_test_taxa
   Taxon.delete_all
   TaxonName.delete_all
   Rails.logger.debug "\n\n\n[DEBUG] loading test taxa"
-  @Life = Taxon.make!(:name => 'Life')
+  @Life = Taxon.make!( name: "Life", rank: Taxon::STATEOFMATTER )
 
   @Animalia = Taxon.make!(:name => 'Animalia', :rank => 'kingdom', :is_iconic => true)
   @Animalia.update_attributes(:parent => @Life)
