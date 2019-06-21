@@ -61,6 +61,7 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
   options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
   options.gestureHandling = options.gestureHandling || $( elt ).data( "gesture-handling" );
+  options.tilt = options.tilt || $( elt ).data( "tilt" ) || 0;
   // turn the observations JSON into proper JavaScript objects
   if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
@@ -96,6 +97,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
         zoomControlOptions: options.zoomControlOptions,
         scrollwheel: (options.scrollwheel !== false),
         gestureHandling: options.gestureHandling,
+        tilt: options.tilt,
         styles: [
           {
             stylers: [
