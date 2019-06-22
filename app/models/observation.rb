@@ -1873,6 +1873,7 @@ class Observation < ActiveRecord::Base
   def date_observed_must_be_before_date_created
     return true if observed_on.blank?
     return true if created_at.blank?
+    return true if editing_user_id != user_id
     if (
       time_observed_at && time_observed_at.in_time_zone( "UTC" ).to_date > created_at.in_time_zone( "UTC" ).to_date
     ) || (

@@ -632,10 +632,10 @@ describe Observation do
         expect(observation.observed_on).to be_blank
       end
 
-      it "should not allow dates greater that created_at + 1 day" do
+      it "should not allow dates greater that created_at + 1 day when updated by the observer" do
         o_2_days_ago = Observation.make!( created_at: 2.days.ago, observed_on_string: 3.day.ago.to_s )
         expect( o_2_days_ago ).to be_valid
-        o_2_days_ago.update_attributes( observed_on_string: Time.now.to_s )
+        o_2_days_ago.update_attributes( observed_on_string: Time.now.to_s, editing_user_id: o_2_days_ago.user_id )
         expect( o_2_days_ago ).not_to be_valid
       end
 
