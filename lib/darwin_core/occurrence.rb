@@ -43,7 +43,16 @@ module DarwinCore
       %w(rightsHolder http://purl.org/dc/terms/rightsHolder)
     ]
     TERM_NAMES = TERMS.map{|name, uri, default, method| name}
-    
+
+    ALA_EXTRA_TERMS = [
+      %w(identificationVerificationStatus http://rs.tdwg.org/dwc/terms/identificationVerificationStatus),
+      %w(numIdentificationAgreements https://www.inaturalist.org/terms/numIdentificationAgreements),
+      %w(numIdentificationDisagreements https://www.inaturalist.org/terms/numIdentificationDisagreements),
+      %w(positioningDevice https://www.inaturalist.org/terms/positioningDevice),
+      %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod),
+      %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
+    ]
+
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
     # inside.  Otherwise I would just used a more traditional adapter with
@@ -55,6 +64,10 @@ module DarwinCore
       record.set_show_private_coordinates(options[:private_coordinates])
       record.dwc_use_community_taxon if options[:community_taxon]
       record
+    end
+
+    def self.term_names( terms )
+      terms.map{ |name, uri, default, method| name }
     end
 
     module InstanceMethods
@@ -132,6 +145,10 @@ module DarwinCore
 
       def recordedBy
         user.name.blank? ? user.login : user.name
+      end
+
+      def inatLogin
+        user.login
       end
 
       def recordedByOrcid
@@ -260,6 +277,26 @@ module DarwinCore
 
       def dwc_taxon
         @dwc_use_community_taxon ? community_taxon : taxon
+      end
+
+      def identificationVerificationStatus
+        quality_grade
+      end
+
+      def numIdentificationAgreements
+        num_identification_agreements
+      end
+
+      def numIdentificationDisagreements
+        num_identification_disagreements
+      end
+
+      def positioningDevice
+        positioning_device
+      end
+
+      def positioningMethod
+        positioning_method
       end
 
     end
