@@ -693,8 +693,8 @@ pt-BR:
   back_to_your_observations: Voltar para suas observações
   back_to_your_profile: Voltar ao perfil
   back_to_your_projects: Voltar aos seus projetos
-  based_on_the_evidence_can_id_be_improved: Baseado nesta evidência, a ID da comunidade
-    pode ainda ser confirmada ou melhorada?
+  based_on_the_evidence_can_id_be_improved: Com base nas evidências, o Táxon comunitário
+    ainda pode ser confirmado ou melhorado?
   basic: Básico
   batch: Grupo
   batch_edit: Editar em grupo
@@ -985,13 +985,13 @@ pt-BR:
   community_curated: Supervisionado pela Comunidade
   community_guidelines: Diretrizes da comunidade
   community_id: '<strong>Communidade</strong> ID:'
-  community_id_heading: ID da Comunidade
-  community_id_at_species_or_lower?: ID da Comunidade é como espécie ou inferior?
-  community_id_at_genus_level_or_lower: ID da Comunidade ao nível de gênero ou inferior
-  community_id_at_species_level_or_lower: ID da Comunidade ao nível de espécie ou
+  community_id_heading: Taxon comunitário
+  community_id_at_species_or_lower?: Táxon comunitário em espécie ou menor?
+  community_id_at_genus_level_or_lower: Táxon Comunitário ao nível do gênero ou inferior
+  community_id_at_species_level_or_lower: Táxon comunitário a nível de espécie ou
     inferior
   community_moderation_settings: Configuração da Moderação da Comunidade
-  community_supported_id: Indentificação verificada pela comunidade?
+  community_supported_id: Táxon apoiado pela comunidade?
   compare: Comparar
   compare_with: Comparar com
   comparing: comparando
@@ -2749,9 +2749,8 @@ pt-BR:
   obscured_: oculto
   obscured: Oculto
   obscured_or_private: oculta ou privada
-  obscured_description: Coordenadas públicas mostram um raio de um ponto aproximado
-    de 10km das coordenadas verdadeiras. As coordenadas verdadeiras somente são visíveis
-    para você e para os coordenadores dos projetos que você adiciona suas observações.
+  obscured_description: Coordenadas públicas mostradas como um ponto aleatório dentro
+    da célula lat/lon de 0,2 grau que contém as coordenadas verdadeiras.
   observation: Observação
   observation_: observação
   observation_added: Observação adicionada.
@@ -2844,6 +2843,8 @@ pt-BR:
   observations_removed_from_the_project: Observações removidas do projeto "%{project}"
   observations_saved: Observação/Observações salvas!
   observations_specifying_this_field: Observações especificando este campo
+  observations_specifying_this_field_with_value: Observações especificando este campo
+    com "%{value}"
   observations_text_search_warning: Pesquisas de texto podem resultar em resultados
     estranhos quando combinadas com outros filtros. Se você deseja encontrar observações
     de uma espécie em particular, utilize o filtro de táxon.
@@ -4540,8 +4541,8 @@ pt-BR:
     ou por alienígenas inteligentes do espaço)'
   the_community_id_requires_at_least_two_identifications: O ID da comunidade requer
     pelo menos duas identificações.
-  the_community_must_feel_that: A comunidade deve perceber que a identificação da
-    comunidade é a melhor possível baseado nas evidências
+  the_community_must_feel_that: A comunidade deve sentir que o táxon comunitário é
+    o melhor que pode ser baseado na evidência
   the_data_quality_assessment_is: A avaliação da qualidade dos dados é um resumi da
     acurácia das observações, Todas observações são incialmente classificadas como
     <strong>"casual"</strong>, e posteriormente podem receber a classificação de <strong>"pesquisa"</strong>
@@ -4909,6 +4910,9 @@ pt-BR:
   use_well_formed_csv: Utilize bons formatos de CSV. Isto significa que o texto com
     vírgulas deve estar entre aspas. A maioria dos aplicativos de planilhas devem
     exportar CSV neste formato.
+  used_x_times:
+    one: Usado 1 vez
+    other: Used %{count} vezes
   user: Usuário
   user_added_a_x: '%{user} adicionar uma %{x}'
   user_added_a_x_to_noun_by_html: '%{user} adicionou um %{x} a %{noun} de %{by}'
@@ -4926,11 +4930,13 @@ pt-BR:
   user_commented: '%{user} comentado'
   user_commented_on: '%{user} comentou sobre seu %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} discorda que seja um(a) %{taxon}'
+  user_disagrees_with_previous_finer_identifications: '%{user} discorda de identificações
+    anteriores mais precisas'
   user_faved_a_noun_by_owner: '%{user} favorito %{noun} por %{owner}'
   user_flagged_as_a_spammer_html: '%{user} sinalizado como spammer'
   user_flagged_as_a_non_spammer_html: '%{user} marcado como não-spammer'
   user_follows: '%{user} segue'
-  user_has_opted_out_of_community_id: O usuário rejeitou a identificação da comunidade
+  user_has_opted_out_of_community_id: O usuário desativou o Ttáxon da comunidade
   user_has_opted_out_of_community_ids: '%{user} escolheu ter controle sobre os táxons
     associados às suas observações'
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} escolheu ter controle
@@ -4982,6 +4988,7 @@ pt-BR:
   valid_interrogation: Válido?
   valid_options_are: Opções válidas são
   value: Valor
+  values: Valores
   verbing_x_of_y: '%{verb} %{x} de %{y}...'
   verifiable_observations_by_observation_date: Observações verificáveis por data de
     observação
@@ -7522,6 +7529,7 @@ pt-BR:
       observation:
         geo_x: Deslocando-se ao leste
         geo_y: Deslocando-se ao norte
+        observed_on: data observada
       observation_field_value:
         value: valor
       post:
@@ -7652,6 +7660,11 @@ pt-BR:
           attributes:
             base:
               api_key_in_use: Chave de API sendo importada ou aguardando importação
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: não pode ser maior que a data em
+                que a observação foi adicionada
         observation_field_value:
           attributes:
             value:

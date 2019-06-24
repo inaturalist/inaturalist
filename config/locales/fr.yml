@@ -725,7 +725,7 @@ fr:
   back_to_your_observations: Retourner à vos observations
   back_to_your_profile: Retourner à votre profil
   back_to_your_projects: Retourner à vos projets
-  based_on_the_evidence_can_id_be_improved: D’après les preuves, l’ID de la communauté
+  based_on_the_evidence_can_id_be_improved: D’après les preuves, le taxon de communauté
     peut-il être encore confirmé ou amélioré ?
   basic: Basique
   batch: Lot
@@ -1034,15 +1034,14 @@ fr:
   community_curated: Communauté organisée
   community_guidelines: Règles de la communauté
   community_id: 'ID de <strong>communauté</strong> :'
-  community_id_heading: ID de communauté
-  community_id_at_species_or_lower?: ID de la communauté au rang d'espèce ou inférieur
-    ?
-  community_id_at_genus_level_or_lower: ID de la communauté au niveau duu genre ou
+  community_id_heading: Taxon de communauté
+  community_id_at_species_or_lower?: Taxon de communauté au rang d’espèce ou inférieur ?
+  community_id_at_genus_level_or_lower: Taxon de communauté au niveau du genre ou
     inférieur
-  community_id_at_species_level_or_lower: ID de la communauté au rang d'espèce ou
+  community_id_at_species_level_or_lower: Taxon de communauté au rang d’espèce ou
     inférieur
   community_moderation_settings: Paramètres pour modérer la communauté
-  community_supported_id: ID de communauté accepté?
+  community_supported_id: Taxon de communauté accepté ?
   compare: Comparer
   compare_with: Comparer avec
   comparing: comparaison
@@ -2838,9 +2837,8 @@ fr:
   obscured: Masqué
   obscured_or_private: masqué ou privé
   obscured_description: Les coordonnées qui sont visibles pour tout le monde sont
-    montrées comme point au hasard dans les 10 km des vraies coordonnées. Vous êtes
-    la seule personne à voir les vraies coordonnées, ainsi que les responsables de
-    l’organisation de projets pour lesquels vous ajoutez l’observation.
+    montrées comme un point au hasard dans les 0,2 degrés de latitude/longitude contenant
+    les vraies coordonnées.
   observation: Observation
   observation_: observation
   observation_added: Observation ajoutée.
@@ -2939,6 +2937,8 @@ fr:
   observations_removed_from_the_project: Observations supprimées du projet « %{project} »
   observations_saved: Observations enregistrées!
   observations_specifying_this_field: Observations précisant ce champ
+  observations_specifying_this_field_with_value: Observations spécifiant ce champ
+    avec « %{value} »
   observations_text_search_warning: Les recherches textuelles peuvent produire des
     résultats bizarres quand elles sont combinées avec d’autres filtres. Si vous voulez
     trouver l’observation d’une espèce particulière, utilisez le filtre de taxon.
@@ -4657,8 +4657,8 @@ fr:
     ou des extra-terrestres intelligents)
   the_community_id_requires_at_least_two_identifications: L’ID de la communauté nécessite
     au moins deux identifications.
-  the_community_must_feel_that: La communauté doit sentir que l’ID de la communauté
-    est le meilleur possible, d’après la preuve
+  the_community_must_feel_that: La communauté doit sentir que le taxon de communauté
+    est le meilleur possible, d’après les preuves
   the_data_quality_assessment_is: L’évaluation de la qualité des données est un résumé
     de la précision d’une observation. Toutes les observations sont d’abord de calibre
     s <strong>« courante »</strong> et atteignent le calibre <strong>« recherche »</strong>
@@ -5038,6 +5038,9 @@ fr:
   use_well_formed_csv: Utilisez un format CSV bien formé, ce qui signifie que le texte
     avec des virgules doit être inclus dans des guillemets. La plupart des applications
     de tableur exportent le CSV dans ce format.
+  used_x_times:
+    one: Utilisé une fois
+    other: Utilisé %{count} fois
   user: Utilisateur
   user_added_a_x: '%{user} a ajouté un %{x}'
   user_added_a_x_to_noun_by_html: '%{user} a ajouté une %{x} à %{noun} de %{by}'
@@ -5055,11 +5058,13 @@ fr:
   user_commented: '%{user} a commenté'
   user_commented_on: '%{user} a fait un commentaire sur votre %{title} à %{time}'
   user_disagrees_this_is_taxon: '%{user} ne pense pas que ce soit %{taxon}'
+  user_disagrees_with_previous_finer_identifications: '%{user} est en désaccord avec
+    les identifications précédentes plus fines'
   user_faved_a_noun_by_owner: '%{user} a mis en favori %{noun} par %{owner}'
   user_flagged_as_a_spammer_html: '%{user} marqué comme pollueur'
   user_flagged_as_a_non_spammer_html: '%{user} marqué comme non pollueur'
   user_follows: '%{user} suit'
-  user_has_opted_out_of_community_id: L’utilisateur a refusé l’ID de la communauté
+  user_has_opted_out_of_community_id: L’utilisateur a refusé le taxon de communauté
   user_has_opted_out_of_community_ids: '%{user} a choisi de maintenir le contrôle
     des taxons associés à ses observations'
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} a choisi de maintenir
@@ -5112,6 +5117,7 @@ fr:
   valid_interrogation: Valide?
   valid_options_are: Les options valides sont
   value: Valeur
+  values: Valeurs
   verbing_x_of_y: '%{verb} %{x} de %{y}…'
   verifiable_observations_by_observation_date: Observations vérifiables par date d’observation
   view: Afficher
@@ -7910,6 +7916,7 @@ fr:
       observation:
         geo_x: Abscisse
         geo_y: Ordonnée
+        observed_on: date d’observation
       observation_field_value:
         value: valeur
       post:
@@ -8039,6 +8046,11 @@ fr:
           attributes:
             base:
               api_key_in_use: Clef API en cours ou en attente d'importation
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: ne peut pas être postérieure à
+                la date à laquelle l’observation a été ajoutée
         observation_field_value:
           attributes:
             value:

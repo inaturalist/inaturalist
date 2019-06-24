@@ -490,6 +490,7 @@ de:
   amphibiaweb_taxonomy: AmphibiaWeb-Taxonomie
   an: ein/e/r
   an_: ein
+  ancestor_taxon: Vorfahrentaxon
   and: und
   and_choose_a_matching_taxon: und wähle ein passendes Taxon aus der Liste aus. Wenn
     dein Ergebnis nicht ähnlich ist wie
@@ -551,6 +552,9 @@ de:
   are_you_sure_remove_from_project: Bist du sicher, dass du %{user} aus diesem Projekt
     entfernen willst?
   are_you_sure_remove_photo: Bist du sicher, dass du dieses Bild entfernen willst?
+  are_you_sure_remove_relationship: Willst Du diese Verbindung wirklich entfernen?
+    Damit folgst Du dieser Person nicht mehr und entziehst ihr den Zugang zu Deinen
+    versteckten Koordinaten, falls Du ihn ihr gewährt hattest.
   are_you_sure_remove_taxon_from_list: Bist du sicher, dass du dieses Taxon aus der
     Liste entfernen willst?
   are_you_sure_remove_taxon_from_place: Bist du sicher, dass du dieses Taxon aus der
@@ -678,8 +682,8 @@ de:
   back_to_your_observations: Zurück zu deinen Beobachtungen
   back_to_your_profile: Zurück zu deinem Profil
   back_to_your_projects: Zurück zu deinen Projekten
-  based_on_the_evidence_can_id_be_improved: Kann die Community-ID aufgrund der vorhandenen
-    Evidenz noch bestätigt oder verbessert werden?
+  based_on_the_evidence_can_id_be_improved: Kann die Community-ID mithilfe der vorhandenen
+    Belege noch bestätigt oder verbessert werden?
   basic: Einfach
   batch: Bündel
   batch_edit: Stapelbearbeitung
@@ -698,6 +702,7 @@ de:
   bg_color: Hintergrundfarbe
   bioblitz: Bioblitz
   birds: Vögel
+  birthday: Geburtstag
   black: schwarz
   block_user: Benutzer sperren
   block_removed: Sperre entfernt
@@ -1018,6 +1023,7 @@ de:
     die hier vorkommen?
   contest: Wettbewerb
   continue: Fortfahren
+  continue_to_site: Weiter zu %{site_name}
   contributions: Beiträge
   contributions_from: Beiträge von
   contributor_cannot_be_found: Mitwirkender kann nicht gefunden werden
@@ -1258,6 +1264,7 @@ de:
   display_listings_added_by_curators: Aufzählungen anzeigen, die von Kuratoren hinzugefügt
     wurden
   display_listings_from_place: Listeneinträge für Ort anzeigen
+  distance_traveled_value: 'Zurückgelegte Strecke: %{distance} m'
   distance_traveled: Gereiste Entfernung (m)
   dna_: DNA
   documentation_for_developers_html: Dokumentation für <a href="/pages/developers">Entwickler</a>
@@ -1346,6 +1353,8 @@ de:
     um die erhaltenen Updates anzupassen oder diese komplett abzubestellen.
   edited: Bearbeitet
   edited_by_name_html: Bearbeitet von %{name}
+  edited_by_name_some_rights_reserved_html: Bearbeitet von %{name}, einige Rechte
+    vorbehalten (%{license})
   editing: Bearbeiten
   editing_announcement: Ankündigung bearbeiten
   editing_custom_project_fields_for: Benutzerdefinierte Projektfelder bearbeiten für
@@ -1401,6 +1410,8 @@ de:
     arrived_in_the_region_via_anthropogenic_means: Ist durch anthropogenen Einfluss
       in die Region gelangt
     native_and_occurs_nowhere_else: Einheimisch und sonst nirgends zu finden
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: In dieser Region
+      heimisch oder ohne menschlichen Einfluss hierher gelangt
   establishment_means_describes_how: "\"Verbreitung\" bezeichnet wie das Taxon sich
     in einem Gebiet verbreitet hat.  \nSiehe DarwinCore für <a href=\"http://rs.tdwg.org/dwc/terms/history/index.htm#establishmentMeans-2009-04-24\">über
     mehr Informationen zur Terminologie</a>."
@@ -1598,6 +1609,7 @@ de:
   generating: Erstelle...
   generating_mobile_archive: Mobiles Archiv wird erstellt
   Genus: Genus
+  genus_slash_species: '[GATTUNG]/[ART]'
   geoprivacy: Geo-Privatsphäre
   geoprivacy_is_obscured_desc: Der Beobachter hat beschlossen, die Koordinaten zu
     verschleiern.
@@ -1732,8 +1744,8 @@ de:
     (ID) diejenige ist, die für die Verlinkung mit anderen Beobachtungen, die Aktualisierung
     von Lebenslisten usw. verwendet wird. Es bedeutet auch, dass deine Beobachtung
     nur dann Forschungsqualität erreichen kann, wenn die Community dir zustimmt.
-  if_this_is_a_scientific_name: Falls dies ein wissenschaftlicher Namen ist, ist er
-    allgemein akzeptiert?
+  if_this_is_a_scientific_name: Falls dies ein wissenschaftlicher Name ist, ist er
+    derzeit anerkannt?
   if_this_link_will_apply_to_descendant: Wenn dieser Link auf nachkommende Taxa zutrifft,
     kannst du Template-Tags verwenden, um den Taxon-Namen in die URL einzutragen
   if_you_dont_want_us_to_share_your_data: Wenn Du nicht willst, dass wir Deine Daten
@@ -1859,7 +1871,7 @@ de:
     Spam, oder anstößig?
   is_this_place_a_duplicate: Ist dieser Ort ein Duplikat?
   it: Es
-  it_can_now_be_used_for_research: Es kann nun für Forschungszwecke verwendet und
+  it_can_now_be_used_for_research: Sie kann nun für Forschungszwecke verwendet und
     auf anderen Websites genutzt werden
   it_has: Es hat
   item_flagged_notice_html: |-

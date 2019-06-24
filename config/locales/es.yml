@@ -6968,6 +6968,10 @@ es:
         take_a_chance_to_review_html: Aprovecha a revisar <a href="%{link}">nuestras
           directrices</a>.
         this_user_was_banned: Este usuario fue suspendido
+    user_parents:
+      new:
+        create_a_minor_account: Crear cuenta de menor de edad
+        create_minor_account: Crear cuenta de menor de edad
     welcome:
       index:
         welcome_message_html: "%{image} lo invita a utilizar este portal de información
@@ -7383,6 +7387,8 @@ es:
           other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
+        header:
+          other: un=1 error ha evitado que este %{model} se guarde
       models:
         application:
           attributes:

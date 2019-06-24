@@ -661,7 +661,7 @@ ar:
   back_to_your_profile: الرجوع إلى ملفك الشخصي
   back_to_your_projects: العودة إلى مشاريعك
   based_on_the_evidence_can_id_be_improved: استنادا إلى الأدلة، هل يمكن تأكيد أو تحسين
-    معرف المجتمع؟
+    أصنوفة المجتمع؟
   basic: الأساسية
   batch: دفعة
   batch_edit: دفعة تعديلات
@@ -929,12 +929,12 @@ ar:
   community_curated: مجتمع مختار
   community_guidelines: إرشادات المجتمع
   community_id: 'معرف <strong>المجتمع</strong>:'
-  community_id_heading: معرف المجتمع
-  community_id_at_species_or_lower?: معرف المجتمع في الأنواع أو أقل؟
-  community_id_at_genus_level_or_lower: معرف المجتمع على مستوى الجنس أو أقل
-  community_id_at_species_level_or_lower: معرف المجتمع على مستوى الأنواع أو أقل
+  community_id_heading: أصنوفة المجتمع
+  community_id_at_species_or_lower?: أصنوفة المجتمع في الأنواع أو أقل؟
+  community_id_at_genus_level_or_lower: أصنوفة المجتمع على مستوى الجنس أو أقل
+  community_id_at_species_level_or_lower: أصنوفة المجتمع على مستوى الأنواع أو أقل
   community_moderation_settings: إعدادات الإشراف على المجتمع
-  community_supported_id: معرف معتمد من المجتمع؟
+  community_supported_id: أصنوفة معتمد من المجتمع؟
   compare: قارن
   compare_with: مقارنة مع
   comparing: مقارنة
@@ -2638,9 +2638,8 @@ ar:
   obscured_: مشوش
   obscured: مشوش
   obscured_or_private: محجوب أو خاص
-  obscured_description: الإحداثيات العامة تظهر كنقطة عشوائية ضمن 10 كم من الإحداثيات
-    الحقيقية، الإحداثيات الحقيقية مرئية فقط لك ولقيمي للمشاريع التي يمكنك إضافة ملاحظة
-    بها.
+  obscured_description: "الإحداثيات العامة تظهر كنقطة عشوائية داخل خلية \nlat/lon
+    0.2 درجة والتي تحتوي على الإحداثيات الحقيقية."
   observation: الملاحظة
   observation_: الملاحظة
   observation_added: تمت إضافة الملاحظة
@@ -2729,6 +2728,7 @@ ar:
   observations_removed_from_the_project: تمت إزالة الملاحظات من المشروع "%{project}"
   observations_saved: تم حفظ الملاحظة(ات)!
   observations_specifying_this_field: ملاحظات تحدد هذا الحقل
+  observations_specifying_this_field_with_value: ملاحظات تحدد هذا الحقل بـ"%{value}"
   observations_text_search_warning: |-
     قد تؤدي عمليات البحث النصية إلى نتائج غريبة عند دمجها مع مرشحات أخرى;
     إذا كنت ترغب في العثور على ملاحظة نوع معين، استخدم مرشح الأصناف.
@@ -4363,7 +4363,7 @@ ar:
     (على سبيل المثال الأسير أو المزروع من قبل البشر أو الأجنبي الفضائي الذكي)
   the_community_id_requires_at_least_two_identifications: يتطلب معرف المجتمع معرفين
     على الأقل.
-  the_community_must_feel_that: یجب أن یشعر المجتمع بأن ھویة المجتمع ھي الأفضل التي
+  the_community_must_feel_that: یجب أن یشعر المجتمع بأن أصنوفة المجتمع ھي الأفضل التي
     یمكن أن تستند إلی الأدلة
   the_data_quality_assessment_is: تقييم جودة البيانات هو ملخص لدقة الملاحظات، تبدأ
     جميع الملاحظات كدرجة <strong>"عفوي"</strong> وتحقق درجة <strong>"بحث"</strong>
@@ -4707,6 +4707,9 @@ ar:
   use_well_formed_csv: "استخدم CSV بشكل جيد: وهذا يعني أن النص مع الفواصل يجب أن يكون
     محاطا\nبعلامات اقتباس مزدوجة، يجب أن تقوم معظم تطبيقات جدول البيانات بتصدير ملف
     CSV بهذه \nالصيغة."
+  used_x_times:
+    one: مستخدم مرة واحدة
+    other: مستخدم %{count} مرات
   user: مستخدم
   user_added_a_x: أضاف %{user} %{x}
   user_added_a_x_to_noun_by_html: أضاف %{user} %{x} لـ%{noun} بواسطة %{by}
@@ -4724,12 +4727,14 @@ ar:
   user_commented: علق %{user}
   user_commented_on: علق %{user} على %{title} %{time}
   user_disagrees_this_is_taxon: '%{user}غير موافق على هذا %{taxon}'
+  user_disagrees_with_previous_finer_identifications: لا يوافق %{user} على التعريفات
+    الدقيقة السابقة
   user_faved_a_noun_by_owner: '%{user} فضل %{noun} بواسطة %{owner}'
   user_flagged_as_a_spammer_html: تم تعليم %{user} كمرسل رسائل غير مرغوب فيها
   user_flagged_as_a_non_spammer_html: تم تعليم %{user} كغير مرسل لرسائل غير مرغوب
     فيها
   user_follows: يتبع %{user}
-  user_has_opted_out_of_community_id: لقد اختار المستخدم تعطيل معرف المجتمع
+  user_has_opted_out_of_community_id: لقد اختار المستخدم تعطيل أصنوفة المجتمع
   user_has_opted_out_of_community_ids: اختار %{user} الاحتفاظ بالسيطرة على الأصناف
     المرتبطة بملاحظاته
   user_has_opted_out_of_community_ids_for_this_obs: اختار %{user} الاحتفاظ بالسيطرة
@@ -4780,6 +4785,7 @@ ar:
   valid_interrogation: صالح؟
   valid_options_are: الخيارات الصالحة هي
   value: قيمة
+  values: القيم
   verbing_x_of_y: '%{verb} %{x} ل%{y}...'
   verifiable_observations_by_observation_date: ملاحظات يمكن التحقق منها حسب تاريخ
     الملاحظة
@@ -7070,6 +7076,7 @@ ar:
       observation:
         geo_x: اتجاه الشرق
         geo_y: اتجاه الشمال
+        observed_on: تاريخ الملاحظة
       observation_field_value:
         value: قيمة
       post:
@@ -7200,6 +7207,11 @@ ar:
             base:
               api_key_in_use: استيراد مفتاح واجهة برمجة التطبيقات أو قائمة الانتظار
                 للاستيراد
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: لا يمكن أن يكون أكبر من تاريخ إضافة
+                الملاحظة
         observation_field_value:
           attributes:
             value:

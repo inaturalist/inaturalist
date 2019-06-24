@@ -18,12 +18,62 @@ ja:
   x_comments:
     one: 1件のコメント
     other: '%{count}件のコメント'
+  x_faves:
+    other: '%{count}件のお気に入り'
+  x_flags_resolved_html:
+    other: <span class='count'>%{count}</span>件の解決済みフラグ
+  x_followers:
+    other: '%{count}人のフォロワー'
+  x_identifications: '{{PLURAL%{count}件の同定}}'
+  x_identifications_html:
+    other: <span class="count">%{count}</span>件の同定
+  x_identifications_: '{{PLURAL%{count}件の同定}}'
+  x_ids:
+    other: '%{count}件の同定'
+  x_lists:
+    other: '%{count}件のリスト'
+  x_journal_posts:
+    other: '%{count}件のジャーナル投稿'
+  x_journal_posts_html:
+    other: <span class="count">%{count}</span>件のジャーナル投稿
+  x_matching_taxa:
+    other: '%{count}件の該当する分類群'
   x_matching_taxa_html:
     one: <span class="count">1</span>件の該当する分類群
     other: <span class="count">%{count}</span>件の該当する分類群
+  x_misidentifications_of_this_species:
+    other: この種の鑑定に間違いが%{count}件
+  x_misidentifications_of_species_in_this_rank:
+    other: '%この%{rank}中誤同定は%{count}件'
+  x_observations:
+    other: '%{count}件の観察記録'
+  x_observations_:
+    other: '%{count}件の観察記録'
+  x_observations_html:
+    other: <span class='count'>%{count}</span>件の観察記録
+  x_observations_link_html:
+    other: <a href='%{url}'>%{count}件の観察記録</a>
+  x_observations_reviewed_html:
+    other: <span class='count'>%{count}</span>件の観察記録を査読
+  x_others:
+    other: その他%{count}件
+  x_people_found_this_helpful:
+    other: '%{count}人が役に立ったと言っています'
+  x_people_like_this:
+    other: '%{count}人がお気に入りに追加しました'
   x_people_agree_html:
     one: <span class="count">1</span>人が賛成しています
     other: <span class="count">%{count}</span>が賛成しています
+  x_new_species:
+    other: '%{count}件の新種'
+  x_species:
+    other: '%{count}種'
+  x_species_html:
+    other: <span class='count'>%{count}</span>種
+  x_species_link_html:
+    other: <a href='%{url}'>%{count}種</a>
+  x_suggestions_filtered_by_colon:
+    other: '%{count}件の提案を検出:'
   x_taxa_observed_html:
     one: <span class='count'>1</span>件の観察済分類群
     other: <span class='count'>%{count}</span>件の観察済分類群
@@ -33,6 +83,10 @@ ja:
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span>件の種もしくはそれ以下の研究用観察記録</span>
     other: <span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録</span>
+  x_taxa_matching_current_filters:
+    other: '%{count}件の現在の絞込みに該当する分類群'
+  x_taxon_changes_added_html:
+    other: <span class='count'>%{count}</span>件の分類群変更を追加
   x_people_helped_user_with_y_ids_html: <strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました
   _100_day_trends: 100日の傾向
   _percent_ID_d: '%件判定済み'
@@ -261,6 +315,29 @@ ja:
     ray_finned_fishes: 条鰭綱
     reptiles: 爬虫類
     life: 生命
+    x_plantae:
+      other: '%{count}件の植物'
+    x_animalia:
+      other: '%{count}件の動物'
+    x_mollusca:
+      other: '%{count}件の軟体動物'
+    x_amphibia: '{{PLURAL|%{count}件の両生類}'
+    x_mammalia:
+      other: '%{count}件の哺乳類'
+    x_reptilia:
+      other: '%{count}件の爬虫類'
+    x_aves:
+      other: '%{count}羽の鳥'
+    x_insecta:
+      other: '%{count}頭の昆虫類'
+    x_arachnida:
+      other: '%{count}匹のクモ類'
+    x_fungi:
+      other: '%{count}種の菌類'
+    x_protozoa:
+      other: '%{count}件の原生動物'
+    x_other_animals:
+      other: '%{count}件のその他の動物'
   all_taxa_in_this_guide: このガイド内のすべての分類群
   all_taxonomic_groups: '&laquo; すべての分類群'
   all_updates: すべての更新情報
@@ -406,7 +483,7 @@ ja:
   back_to_your_observations: 自分の観察記録に戻る
   back_to_your_profile: 自分のプロフィールに戻る
   back_to_your_projects: 自分のプロジェクトに戻る
-  based_on_the_evidence_can_id_be_improved: 証拠を根拠にコミュニティー判定を確定しますか、改善しますか？
+  based_on_the_evidence_can_id_be_improved: 証拠に基づいてコミュニティー分類を確定しますか、改善しますか？
   batch: 一括
   batch_edit: 一括編集
   batch_edit_taxa_for_x_html: '%{x}の分類群一括編集'
@@ -573,12 +650,12 @@ ja:
   committing: 確定中...
   community: コミュニティ
   community_id: '<strong>コミュニティー</strong>ID:'
-  community_id_heading: コミュニティー判定
-  community_id_at_species_or_lower?: 種以下の階級によるコミニュティIDの有無は？
-  community_id_at_genus_level_or_lower: 層レベル以下のコミュニティー判定の有無
-  community_id_at_species_level_or_lower: 種以下の階級によるコミニュティID
+  community_id_heading: コミュニティー分類
+  community_id_at_species_or_lower?: 種以下の階級によるコミニュティ分類の有無は？
+  community_id_at_genus_level_or_lower: 層レベル以下のコミュニティー分類の有無
+  community_id_at_species_level_or_lower: 種以下の階級によるコミニュティ分類
   community_moderation_settings: コミュニティーモデレーション設定
-  community_supported_id: コミュニティーによるID?
+  community_supported_id: コミュニティーが支持する分類ですか？
   compare_with: 次と比較する：
   comparing: 比較しています
   comparing_list_to_list: '%{list1} と%{list2}を比較しています'
@@ -1013,6 +1090,8 @@ ja:
   follow_user: '%{user}をフォロー'
   follower: フォロワー
   following: フォロー中
+  following_x_people:
+    other: '%{count}人をフォロー中People'
   for_a_taxon: 分類群用
   for_more_information: に詳細情報を確認してください。
   forgot_your_password: パスワードを忘れた場合
@@ -2138,6 +2217,8 @@ ja:
   processing3p: 処理中...
   profile: プロフィール
   project: プロジェクト
+  project_admins:
+    other: プロジェクト管理者
   project_assessments: プロジェクト評定
   project_assets: プロジェクトアセット
   project_cover: プロジェクトカバー
@@ -2273,6 +2354,8 @@ ja:
   remove_from_list: リストから外す
   remove_from_project: プロジェクトから除去
   remove_this_section: このセクションを削除
+  remove_observations:
+    other: '%{count}件の観察記録を除去しますか？'
   remove_place: 場所を取り除く
   remove_project_user: プロジェクトユーザーを取り除く
   remove_selected: 選択された項目を取り除く
@@ -2561,6 +2644,8 @@ ja:
   submission_model_description: プロジェクトに観察記録を追加できる対象は？
   submit: 送信
   submit_comment: コメントを投稿
+  submit_observations:
+    other: '%{count}件の観察記録を送信'
   submitted: 投稿済
   subscribe_to_a_taxon: 分類群を購読
   subscribe_to_a_place: 場所を購読
@@ -2662,7 +2747,7 @@ ja:
   the_community_agrees_location_doesnt: コミュニティーの意見では、<strong>位置情報が正確ではない</strong>ようです。（例：海の真ん中に猿がいたり、オフィスビルの中にカバがいるなど）
   the_community_agrees_organism_isnt: コミュニティーに意見では、<strong>当生き物は野生または帰化されたものではない</strong>ようです。（例：人間または宇宙人により飼育されている生き物）
   the_community_id_requires_at_least_two_identifications: コミュニティーIDには最低2件の判定が必要です。
-  the_community_must_feel_that: コミュニティーにとって、証拠に基づくコミュニティー判定は最善である必要があります
+  the_community_must_feel_that: コミュニティーは、証拠に基づいたコミュニティー分類は最善だと確信する必要があります
   the_data_quality_assessment_is: データ質評定とは、観察記録の精度を示すものです。すべての観察記録の初期状態は<strong>「カジュアル」</strong>となっていますが、<strong>「研究用」</strong>状態になるには
   the_following_lists: 次のリスト
   the_following_observations_could: 次の観察記録は%{link}に追加できませんでした
@@ -2837,7 +2922,7 @@ ja:
   user_commented_on: '%{user}はあなたの%{title}にコメントしました（%{time}）'
   user_faved_a_noun_by_owner: '%{user}が%{owner}の%{noun}をお気に入りに追加しました'
   user_follows: '%{user}がフォローしているユーザー'
-  user_has_opted_out_of_community_id: 利用者はコミュニティー判定の通知を受け取りません
+  user_has_opted_out_of_community_id: 利用者はコミュニティー分類の通知を受け取りません
   user_hasnt: '%{user}はまだ次のことをしていません：'
   user_invited_you_to_join_html: '%{user}から招待が届いています：'
   user_invited_you_to_join_project: '%{user}から%{project}に参加するように招待されました'
@@ -2992,6 +3077,8 @@ ja:
   x_does_not_exist: '%{x}は存在しません'
   x_journal: '%{user}さんのジャーナル'
   x_journal_middot: '%{user}さんのジャーナル •'
+  x_observations_failed:
+    other: '%{count}件の観察失敗記録'
   x_project_journal: '%{project}の%{name}'
   x_project_stats: '%{project}の統計'
   x_site_is_a_social_network_for_naturalist: '%{site}はナチュラリストのためのソーシャルネットワークです！植物や動物の観察を記録し、友人と研究者に共有し、自然についてもっと知りましょう！'
@@ -3199,20 +3286,53 @@ ja:
         unreview_all_tooltip: ページ内のすべての観察記録を未確認にする
       show:
         allow_curator_coordinate_access_desc_html: この観察記録の非公開位置情報の閲覧をプロジェクトキュレーターに許可
-        ancestor_disagreements_desc: 分類群の祖先の中に含まれるものの、この分類群を使用した最初の同定後に作成された、同定された分類群の数
-        community_taxon_desc_html: "<p class=\"ui\">\n  コミュニティの分類群（コミュニティの判定）とは、%{site_name}
-          \n  コミュニティが特定の観察記録に記されたと認めた分類群のことです。\n  コミュニティの分類群の決定法に興味がある場合、以下のアルゴリズム\n
-          \ の説明に説明がありますが、通常は<strong>同定者の3分の2以上が賛成\n  する分類群</strong>を指します。ときには、より上位の分類群を選び\n
-          \ 相反する種を含める（kingsnakeだという主張とrattlesnakeという主張\n  があることからiNatはヘビ類を総括する Serpentes
-          を選択）ことが\n  あります。アルゴリズムは、反対意見がしばしば正しいということから\n  反対意見を少し重視する傾向があります。</p>\n<p
-          class=\"ui\">\n  コミュニティの分類群は、観察記録をデータ提携先と共有したり、同種\n  の観察記録をウェブサイトにリンクしたり、生き物リストの更新に使い\n
-          \ ます。もしコミュニティの分類群に賛成しない場合は否定できますが、\n  その場合はあなたの同定を使い、他の観察記録にリンクしたり、生き物\n
-          \ リストの更新に使われたりします。また自分の観察記録が研究用と承認\n  されるには、コミュニティが<em>アナタの同定</em>に同意する必要があり\n
-          \ ます。もしコミュニティの分類群という考え方に反対であれば、完全に\n  通知を削除するよう<a href=\"/users/edit\" target=\"_blank\">個人設定\n
-          \ を編集してください</a>。\n</p>\n<p class=\"ui\">\n  <strong>アルゴリズム：</strong>同定された群とそれを含む分類（例：\n
-          \ <i> Homo </i>類には<i> Homo sapiens </i>が含まれる）、両方を採\n  点し、同定数の累計の合計に対するその分類群の同定の累計数の比率、\n
-          \ その分類群の最初の同定以降に追加された、より保守的な同定件数、\n  ならびに完全に異なる同定の件数（すなわち分類群で3分の2以上をスコ\n
-          \ アし最低2件の同定が存在）を記録します。3分の2以上をスコアし最低\n  2件の同定が存在する分類群は、最も低い順位の分類群を選択します。</p>"
+        ancestor_disagreements_desc: 分類群の祖先の中に含まれてはいるが、この分類に適合しないもの用した最初の同定後に作成された、同定された分類群の数
+          (つまり「属は正しいはずだが、この種とは思わない」分類)
+        community_taxon_desc_html: |-
+          <p class="ui">
+            コミュニティ分類（もしくはコミュニティ判定）とは
+            %{site_name}コミュニティが特定の観察において
+            認定した分類です。もしコミュニティ判定の選択基準に
+            関心がある場合は、以下のアルゴリズムの注記を参照できますが、一般的に
+            <strong>判定者の 2/3 以上が同意した分類
+            を選択しています</strong>。場合によっては、これは
+            より上位の分類を選択することで矛盾する分類を複数
+            含みます（たとえばキングヘビだと予想するあなたと
+            ガラガラヘビと考える私がいると iNat ではすべてのヘビ類を含む
+            ヘビ亜目を採用するなど。）アルゴリズムはまた、異議申し立て者が
+            正しい場合の多さを発見したため、異議を唱える人を
+            やや優先しがちです。
+          </p>
+          <p class="ui">
+            研究レベルの観察では（その他の規定に優先して）コミュニティ
+            分類が必要です。特定の観察において識別が
+            1件のみの場合、コミュニティ分類はゼロです。すべての
+            観察で最低識別が1件ある場合は必ず観察
+            分類を伴います。観察分類とはデータ提供者と
+            観察を共有するときに用いる分類であり、その観察地における
+            同一の分類の観察の共有や生涯リスト更新その他に用います。ほとんどの
+            場合、観察分類は結局はコミュニティ分類を採用することに
+            なるものの、ときには合致しないことがあり、特にコミュニティが
+            識別の合意を得ないうちは起こりがちです。たとえばあなたは
+            ヘビ（ヘビ亜目）だと考え、私はキングヘビ
+            （<i>キングヘビ</i>属）だと考えた場合、識別分類はキングヘビ属（根拠は私の識別のみ）であって、コミュニティ分類としては
+            ヘビ亜目（最低2件の識別が支持）になります。あるいは
+            その他の理由であなたがコミュニティ分類に不賛同な場合、
+            それを個人の識別では否定しておき、観察
+            分類は（あなた個人の識別となり）コミュニティ分類と合致しません。
+            さらに、あなた個人の観察は、コミュニティの<em>同意</em>を得るまでは研究レベルの観察とは
+            なりえないことを意味します。コミュニティ分類という考え方そのものを
+            容認できない場合、<a href="/users/edit" target="_blank">個人設定を編集し</a>
+             まったく不採用にすることも可能です。
+          </p>
+          <p class="ui">
+            <strong>アルゴリズム：</strong>すべての識別された分類とそれを含む分類
+            (たとえば<i>ホモ</i>属には<i>ホモサピエンス</i>が含まれる)が、互いを「賛成」の件数 - その分類の累積IDに対する
+            「反対」の件数 - まったく異なるIDの件数（たとえば分類IDで
+            計算した分類を含まない物）と、「祖先の不一致」 - より
+            保守的なIDでより詳細な分類と不一致の件数の割合として算出します。スコアが 2/3 以上の識別分類で
+            最低2件の識別がある場合、もっとも低位の分類を選択します。
+          </p>
         cumulative_count_desc: 単一の分類群とその下位分類に対する同定の総数
         identification_count_desc: 単一の分類群に対する同定の件数
     emailer:
@@ -3432,6 +3552,14 @@ ja:
         one: 約1年
         other: 約%{count}年
       half_a_minute: 約30秒
+      over_x_years:
+        other: '%{count}年以上'
+      x_days:
+        other: '%{count}日'
+      x_minutes:
+        other: '%{count}分'
+      x_months:
+        other: '%{count}ヶ月'
       x_seconds:
         one: 1秒
         other: '%{count}秒'
@@ -3467,6 +3595,8 @@ ja:
         other: は短すぎます（最小は%{count}文字）
     template:
       body: 次のフィールドに問題がありました：
+      header:
+        other: '%{model}の保存を許可しなかったエラー%{count}件'
   helpers:
     select:
       prompt: 選択してください
@@ -3541,6 +3671,8 @@ ja:
           other: は短すぎます（最小は%{count}文字）
       template:
         body: 以下のフィールドに問題があります：
+        header:
+          other: ' %{model}の保存を許可しなかった%{count}件のエラー'
   activerecord:
     attributes:
       assessment:
@@ -3610,6 +3742,9 @@ ja:
         name_provider: 名称提供先
         source_url: ソースURL
     errors:
+      template:
+        header:
+          other: '%{model}の保管を許可しなった%{count}件のエラー'
       models:
         guide:
           attributes:

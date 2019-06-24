@@ -692,8 +692,8 @@ nl:
   back_to_your_observations: Terug naar uw waarnemingen
   back_to_your_profile: Terug naar uw profiel
   back_to_your_projects: Terug naar uw projecten
-  based_on_the_evidence_can_id_be_improved: Gebaseerd op het bewijs, kan de Gemeenschap
-    ID nog steeds bevestigd of verbeterd worden?
+  based_on_the_evidence_can_id_be_improved: Gebaseerd op het bewijs, kan het GemeenschapsTaxon
+    nog steeds bevestigd of verbeterd worden?
   basic: Basis
   batch: Batch
   batch_edit: Bewerk in batch
@@ -977,12 +977,12 @@ nl:
   community_curated: Gemeenschap Curated
   community_guidelines: Gemeenschapsrichtlijnen
   community_id: '<strong>Gemeenschaps</strong>ID:'
-  community_id_heading: Community-ID
-  community_id_at_species_or_lower?: Community ID op soort of lager?
-  community_id_at_genus_level_or_lower: Community ID op genus niveau of lager
-  community_id_at_species_level_or_lower: Community ID op soortniveau of lager
+  community_id_heading: GemeenschapsTaxon
+  community_id_at_species_or_lower?: GemeenschapsTaxon op soort of lager?
+  community_id_at_genus_level_or_lower: GemeenschapsTaxon op genus niveau of lager
+  community_id_at_species_level_or_lower: GemeenschapsTaxon op soortniveau of lager
   community_moderation_settings: Community moderatie instellingen
-  community_supported_id: Gemeenschapondersteunde determinatie?
+  community_supported_id: Gemeenschapondersteunde Taxon?
   compare: Vergelijken
   compare_with: Vergelijk met
   comparing: vergelijken
@@ -1034,6 +1034,7 @@ nl:
     die hier voorkomen?
   contest: wedstrijd
   continue: Doorgaan
+  continue_to_site: Ga door naar %{site_name}
   contributions: bijdragen
   contributions_from: Bijdragen van
   contributor_cannot_be_found: Medewerker kan niet gevonden worden
@@ -2827,6 +2828,8 @@ nl:
   observations_removed_from_the_project: Waarnemingen verwijderd van het project %{project}
   observations_saved: Waarneming(en) bewaard!
   observations_specifying_this_field: Waarnemingen die dit veld specificeren
+  observations_specifying_this_field_with_value: Waarnemingen met waarde "%{value}"
+    in dit veld
   observations_text_search_warning: |-
     Tekstzoekopdrachten kunnen vreemde resultaten opleveren in combinatie met andere filters. Als
     je een waarneming van een bepaalde soort wilt vinden, gebruik dan het taxon
@@ -4497,7 +4500,7 @@ nl:
     mensen of intelligente buitenaardse wezens)
   the_community_id_requires_at_least_two_identifications: Het gemeenschapsID vereist
     ten minste twee identificaties.
-  the_community_must_feel_that: De gemeenschap moet vinden dat het gemeenschapsID
+  the_community_must_feel_that: De gemeenschap moet vinden dat het GemeenschapsTaxon
     het beste is op basis van het bewijs
   the_data_quality_assessment_is: De gegevenskwaliteitsbeoordeling is een samenvatting
     van de nauwkeurigheid van een waarneming. Alle waarnemingen beginnen als <strong>"onvolledig(casual)"</strong>
@@ -4864,6 +4867,9 @@ nl:
   use_well_formed_csv: Gebruik goedgevormde CSV. Dit betekent dat tekst tussen dubbele
     aanhalingstekens moet staan en met komma's moet worden omgeven. De meeste spreadsheettoepassingen
     kunnen een bestand exporteren in dit formaat.
+  used_x_times:
+    one: Eén keer gebruikt
+    other: '%{count} keren gebruikt'
   user: Gebruiker
   user_added_a_x: '%{user} voegde een %{x} toe'
   user_added_a_x_to_noun_by_html: '%{user} voegde een %{x} toe aan %{noun} van %{by}'
@@ -4885,7 +4891,7 @@ nl:
   user_flagged_as_a_spammer_html: '%{user} gemarkeerd als een spammer'
   user_flagged_as_a_non_spammer_html: '%{user} gemarkeerd als een niet-spammer'
   user_follows: '%{user} volgt'
-  user_has_opted_out_of_community_id: Gebruiker heeft Community ID uitgezet
+  user_has_opted_out_of_community_id: Gebruiker heeft het GemeenschapsTaxon uitgezet
   user_has_opted_out_of_community_ids: '%{user} heeft ervoor gekozen de controle te
     behouden over de taxa die zijn gekoppeld aan zijn waarnemingen'
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} heeft ervoor gekozen
