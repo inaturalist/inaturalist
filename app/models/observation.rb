@@ -1712,24 +1712,26 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def self.set_community_taxa(options = {})
-    scope = Observation.includes({:identifications => [:taxon]}, :user)
-    scope = scope.where(options[:where]) if options[:where]
-    scope = scope.by(options[:user]) unless options[:user].blank?
-    scope = scope.of(options[:taxon]) unless options[:taxon].blank?
-    scope = scope.in_place(options[:place]) unless options[:place].blank?
-    scope = scope.in_projects([options[:project]]) unless options[:project].blank?
-    start_time = Time.now
+  def self.set_observations_taxa_for_user( user, options = {} )
     logger = options[:logger] || Rails.logger
-    logger.info "[INFO #{Time.now}] Starting Observation.set_community_taxon, options: #{options.inspect}"
-    scope.find_each do |o|
-      next unless o.identifications.size > 1
-      o.set_community_taxon
-      unless o.save
-        logger.error "[ERROR #{Time.now}] Failed to set community taxon for #{o}: #{o.errors.full_messages.to_sentence}"
+    user = User.find_by_id( user ) unless user.is_a?( User )
+    start_time = Time.now
+    logger.info "[INFO #{Time.now}] Starting Observation.set_observations_taxa_for_user #{user.id}, options: #{options.inspect}"
+    Observation.search_in_batches( user_id: user.id ) do |batch|
+      Observation.preload_associations( batch, [
+        { user: :stored_preferences },
+        { identifications: :taxon }
+      ] )
+      batch.each do |o|
+        next if o.taxon_id == o.community_taxon_id && o.user.prefers_community_taxa?
+        o.set_taxon_from_probable_taxon
+        next unless o.changed?
+        unless o.save
+          puts "[ERROR #{Time.now}] Failed to set taxon for #{o}: #{o.errors.full_messages.to_sentence}"
+        end
       end
     end
-    logger.info "[INFO #{Time.now}] Finished Observation.set_community_taxon in #{Time.now - start_time}s, options: #{options.inspect}"
+    logger.info "[INFO #{Time.now}] Finished Observation.set_observations_taxa_for_user in #{Time.now - start_time}s, options: #{options.inspect}"
   end
 
   def community_taxon_rejected?

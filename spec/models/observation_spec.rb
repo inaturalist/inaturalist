@@ -4099,6 +4099,41 @@ describe Observation, "prefers_auto_obscuration" do
   end
 end
 
+describe Observation, "set_observations_taxa_for_user" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  let(:user) { User.make! }
+  let(:family1) { Taxon.make!( rank: Taxon::FAMILY, name: "Familyone" ) }
+  let(:genus1) { Taxon.make!( rank: Taxon::GENUS, name: "Genusone", parent: family1 ) }
+  let(:species1) { Taxon.make!( rank: Taxon::SPECIES, name: "Genusone speciesone", parent: genus1 ) }
+  let(:o) do
+    o = Observation.make!( user: user )
+    i1 = Identification.make!( observation: o, user: user, taxon: genus1 )
+    i2 = Identification.make!( observation: o, taxon: species1 )
+    i3 = Identification.make!( observation: o, taxon: species1 )
+    o
+  end
+  it "should change the community taxon if the observer's opted out of the community taxon" do
+    expect( o.taxon ).to eq species1
+    user.update_attributes( prefers_community_taxa: false )
+    o.reload
+    expect( o.taxon ).to eq species1
+    Observation.set_observations_taxa_for_user( o.user_id )
+    o.reload
+    expect( o.taxon ).to eq genus1
+  end
+  it "should change the community taxon if the observer's opted in to the community taxon" do
+    user.update_attributes( prefers_community_taxa: false )
+    expect( o.taxon ).to eq genus1
+    user.update_attributes( prefers_community_taxa: true )
+    o.reload
+    expect( o.taxon ).to eq genus1
+    Observation.set_observations_taxa_for_user( o.user_id )
+    o.reload
+    expect( o.taxon ).to eq species1
+  end
+end
+
 def setup_test_case_taxonomy
   # Tree:
   #          sf

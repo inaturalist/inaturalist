@@ -234,7 +234,7 @@ class User < ActiveRecord::Base
   after_save :destroy_messages_by_suspended_user
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
-  after_update :set_community_taxa_if_pref_changed
+  after_update :set_observations_taxa_if_pref_changed
   after_update :reassess_coordinate_obscuration_if_pref_changed
   after_update :update_photo_properties
   after_update :update_life_list
@@ -1082,9 +1082,9 @@ class User < ActiveRecord::Base
     true
   end
 
-  def set_community_taxa_if_pref_changed
+  def set_observations_taxa_if_pref_changed
     if prefers_community_taxa_changed? && !id.blank?
-      Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
+      Observation.delay( priority: USER_INTEGRITY_PRIORITY ).set_observations_taxa_for_user( id )
     end
     true
   end
