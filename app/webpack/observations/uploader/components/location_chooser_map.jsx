@@ -398,6 +398,7 @@ class LocationChooserMap extends React.Component {
         ref={ref => { this.map = ref; }}
         defaultZoom={zoom || 1}
         defaultCenter={existingCenter || { lat: 30, lng: 15 }}
+        defaultTilt={0}
         onClick={this.handleMapClick}
         onBoundsChanged={( ) => {
           const c = this.map.getCenter( );
@@ -413,8 +414,7 @@ class LocationChooserMap extends React.Component {
           streetViewControl: false,
           fullscreenControl: true,
           gestureHandling: "greedy",
-          controlSize: 26,
-          tilt: 0
+          controlSize: 26
         }}
       >
         {/*
