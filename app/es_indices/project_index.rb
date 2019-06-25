@@ -9,7 +9,7 @@ class Project < ActiveRecord::Base
     :place,
     :project_users,
     :observation_fields,
-    :project_observation_rules,
+    { project_observation_rules: :operand },
     :stored_preferences,
     :site_featured_projects
   ) }
@@ -71,13 +71,22 @@ class Project < ActiveRecord::Base
   def as_indexed_json(options={})
     preload_for_elastic_index
     project_user_ids = project_users.map(&:user_id).uniq.sort
+    # preload subproject rules to save queries when indexing large umbrellas
+    # sometimes the rule operands aren't preloaded for some reason
+    if project_observation_rules.length > 0 && !project_observation_rules.first.association(:operand).loaded?
+      Project.preload_associations( project_observation_rules, [:operand])
+    end
+    Project.preload_associations(
+      project_observation_rules.select { |r| r.operand_type == "Project" }.map( &:operand ),
+      [{ project_observation_rules: :operand }, :place]
+    )
     total_obs_by_members = Observation.elastic_search(
       filters: [
         { term: { project_ids: id } },
         { terms: { "user.id": project_user_ids } }
       ]
     ).total_entries rescue 0
-    {
+    json = {
       id: id,
       title: title,
       title_autocomplete: title,
@@ -134,7 +143,7 @@ class Project < ActiveRecord::Base
         operand_id: rule.operand_id
       } }.uniq,
       rule_preferences: preferences.
-        select{ |k,v| Project::RULE_PREFERENCES.include?(k) && !v.blank? }.
+        select{ |k,v| Project::RULE_PREFERENCES.include?(k) && !(v.blank? && v != false) }.
         map{ |k,v| { field: k.sub("rule_",""), value: v } },
       created_at: created_at,
       updated_at: updated_at,
@@ -145,6 +154,10 @@ class Project < ActiveRecord::Base
       flags: flags.map(&:as_indexed_json),
       site_features: site_featured_projects.map(&:as_indexed_json)
     }
+    if project_type == "umbrella"
+      json[:hide_umbrella_map_flags] = !!prefers_hide_umbrella_map_flags
+    end
+    json
   end
 
 end

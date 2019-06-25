@@ -69,6 +69,8 @@ I18n.translations["af"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -136,18 +138,9 @@ I18n.translations["ar"] = {
   "add_annotations_for_x": "إضافة تعليقات توضيحية لـ\"%{x}\"",
   "add_edit_flags": "إضافة/تعديل الأعلام",
   "add_id": "أضف معرفا",
-  "add_life_stage_adult_annotation": "إضافة شرح \"مرحلة الحياة:البلوغ\"",
-  "add_life_stage_egg_annotation": "إضافة شرح \"مرحلة الحياة: البيض\"",
-  "add_life_stage_larva_annotation": "إضافة شرح \"مرحلة الحياة: اليرقة\"",
-  "add_life_stage_pupa_annotation": "إضافة شرح \"مرحلة الحياة:العذراء\"",
   "add_link": "إضافة رابط",
   "add_one_now": "إضافة واحد الآن",
   "add_photos_to_this_observation": "إضافة صور إلى هذه الملاحظة",
-  "add_plant_phenology_budding_annotation": "إضافة شرح \"الفينولوجيا النباتي: التبرعم\"",
-  "add_plant_phenology_flowering_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإزهار\"",
-  "add_plant_phenology_fruiting_annotation": "إضافة شرح \"الفينولوجيا النباتي: الإثمار\"",
-  "add_sex_female_annotation": "إضافة شرح \"الجنس: أنثى\"",
-  "add_sex_male_annotation": "إضافة شرح \"الجنس: ذكر\"",
   "add_tag": "إضافة وسم",
   "add_tags": "إضافة وسوم",
   "add_to_a_project": "إضافة إلى مشروع",
@@ -1752,7 +1745,7 @@ I18n.translations["ar"] = {
       },
       "show": {
         "ancestor_disagreements_desc": "# الأصناف المحددة التي هي من بين أسلاف الأصناف، لكن لا أوافق على الأصناف (أي \"أعتقد أنها في الجنس ولكني أعارض تلك الأنواع\")",
-        "community_taxon_desc_html": "<p class=\"ui\">\n  تمثل أصنوفة المجتمع (أو معرف المجتمع) ما يفكر به مجتمع %{site_name} في \n  الملاحظة، إذا كنت مهتما بكيفية اختيار \n  أصنوفة المجتمع، فراجع الملاحظات على الخوارزمية أدناه، \n  ولكننا نحاول بشكل عام <strong> اختيار أصنوفة\n  توافق أكثر من 2/3 من المعرفات</strong>، في بعض الأحيان هذا يعني \n  اختيار أصنوفة من أعلى مستوى الذي يحتوي على عدد من \n  أصناف الخلاف (على سبيل المثال كنت تعتقد أنها \n  الثعبان الملك وأنا أعتقد انها أفعى مجلجلة; لذلك يختار إينات رتيبة الثعابين التي \n  تحتوي على جميع الثعابين)، الخوارزمية أيضا تفضل قليلا\n  المعارضة; لأننا وجدنا أن المعارضات في كثير من الأحيان\n  صيحة.\n</p>\n<p class=\"ui\">\n  أصنوفة المجتمع هي الأصنوفة التي نستخدمها عند مشاركة الملاحظات \n  مع شركاء البيانات، ونربط بها ملاحظات نفس الأصنوفة على \n  الموقع، ونحدث قائمة حياتك، وما إذا كانت لسبب ما لا \n  تتفق مع أصنوفة المجتمع، يمكنك رفض ذلك: مما يعني \n  أن معرفك هو الذي تستخدمه لربط الملاحظات الأخرى، \n  وتحديث قوائم الحياة، وما إلى ذلك ويعني أيضا أن ملاحظتك يمكن أن \n  تصبح درجة بحث فقط عندما يتفق المجتمع <em>معك</em>. \n  إذا لم تعجبك فكرة الفكرة المجتمعية بأكملها، يمكنك تعطيلها \n  بالكامل من خلال <a href=\"/users/edit\" target=\"_blank\">تعديل إعداداتك</a>. \n</p>\n<p class=\"ui\">\n  <strong>الخوارزمية:</strong> لجميع الأصناف المحددة والأصناف التي تحتوي عليها\n  (على سبيل المثال الجنس <i>هومو</i> يحتوي على <i>إنسان عاقل</i>)، وتُصنَّف\n  كل منها على أنها النسبة بين عدد المعرفات التراكمية \n  لتلك الأصنوفة على مجموع المعرفات التراكمية وعدد \n  المعرفات الأكثر تحفظا التي أضيفت بعد المعرف الأول لهذه الأصنوفة\n  وعدد المعرفات المختلفة تماما (أي معرفات\n  الأصناف التي لا تحتوي على التاكسون وسجل)، بالنسبة \n  للأصناف التي تم تحديدها والتي تحتوي على نقاط أكثر من 2/3 واثنين على الأقل من \n  هويات، اختر أصنوفة من أدنى رتبة.\n</p>",
+        "community_taxon_desc_html": "<p class=\"ui\">\n  تمثل أصنوفة المجتمع (أو تعريف المجتمع)\n  ما الأصناف التي يعتقد المجتمع %{site_name} أنها مصورة في\n  ملاحظة، إذا كنت مهتما بكيفية اختيار \n  أصنوفة المجتمع، فراجع الملاحظات الموجودة على الخوارزمية أدناه، ولكن \n  بشكل عام، نحاول <strong>اختيار الأصنوفة التي يتفق عليها أكثر من ثلثي المعرفات\n  المعرفات</strong>، في بعض الأحيان، يعني هذا\n  اختيار أصنوفة أعلى في المستوى تحتوي على عدد من\n  الأصناف المختلفة (على سبيل المثال، تعتقد أنها الثعبان الملك وأعتقد أنها \n  أفعى مجلجلة؛ لذلك يختار إيناتوراليست رتيبة الثعابين التي\n  تحتوي على جميع الثعابين)، كما أن الخوارزمية تفضل قليلا\n  المعارضة؛ لأننا قد وجدنا أن المنشقين هم في كثير من الأحيان\n  على حق\n</p>\n<p class=\"ui\">\n  يجب أن تحتوي الملاحظة الخاصة بالصف البحثي (ضمن معايير أخرى) على \n  أصنوفة مجتمع، إذا كانت الملاحظة لها \n  تعريف واحد فقط، فلن تكون لها أصنوفة مجتمع، جميع \n  الملاحظات ذات تحديد واحد على الأقل سوف تكون لها أيضا \n  أصنوفة مراقبة، أصنوفة الملاحظة هي الأصنوفة التي نستخدمها عند \n  مشاركة الملاحظات مع شركاء البيانات، وربط الملاحظات الخاصة \n  بنفس الأصنوفة على الموقع، وتحديث قائمة حياتك، وما إلى ذلك، في معظم \n  الحالات، سيتم في نهاية المطاف تعيين أصنوفة الملاحظة على أصنوفة \n  المجتمع، لكن في بعض الأحيان سوف تختلف خاصةً قبل أن \n  يستقر المجتمع على تحديد الهوية، على سبيل المثال، إذا كنت تعتقد\n  أنها أفعى (subpent Serpentes) وأعتقد أنها من الثعبان الملك (جنس\n  <i>Lampropeltis</i>) ستكون أصنوفة الملاحظة في kingsnake (مدعومة \n  من تحديد الهويتة فقط) ولكن ستكون أصنوفة المجتمع في\n  الثعابين (مدعومة من من تعريفين على الأقل)، إذا\n  كنت لا توافق مع أصنوفة المجتمع لسبب ما، فيمكنك \n  رفضه بناءً على ملاحظاتك الخاصة: مما يعني أن \n  أصنوفة الملاحظة لن يتم تعيينها أبدا على أصنوفة المجتمع (بدلا من هويتك الخاصة):\n  هذا يعني أيضا أن ملاحظتك يمكن أن تصبح مجرد درجة بحث عندما \n  يتفق المجتمع <em>معك</em>، إذا كنت لا تحب فكرة، إذا كنت لا تحب فكرة \n  أصناف المجتمع بأكملها، فيمكنك الانسحاب منها بالكامل\n  <a href=\"/users/edit\" target=\"_blank\">تحرير إعداداتك</a>.\n</p>\n<p class=\"ui\">\n  <strong>الخوارزمية:</strong> لجميع الأصناف المحددة والشهادة التي تحتوي عليها\n  (مثل  جنس<i>هومو</i> يحتوي على <i>إنسان عاقل</i>)، يسجل كل منها كنسبة بين\n  عدد \"الاتفاقيات\": المعرفات التراكمية لتلك الأصنفة على مجموع \n  المعرفات التراكمية، و\"الخلافات\": عدد المعرفات التي تختلف تماما (مثل معرفات الأصناف \n  التي تعمل لا تحتوي على الأصناف المسجلة)، و \"خلافات الأسلاف\": عدد\n  المعرفات الأكثر محافظة التي تختلف مع الأصنوفة الدقيقة،\n  بالنسبة للأصناف المحددة التي لها درجة تزيد عن 2/3 وتعريفان على الأقل، اختر الأصنوفة الأصغر مرتبة.\n</p>",
         "cumulative_count_desc": "# هوية الأصنوفة الفردية وجميع أحفادها",
         "disagreement_count_desc": "# الأصناف المحددة التي ليست من بين أسلاف الأصنوفة",
         "identification_count_desc": "# هويات أصنوفة فردية",
@@ -1775,6 +1768,8 @@ I18n.translations["ar"] = {
         "delete_project": "حذف المشروع",
         "display_project_name": "عرض اسم المشروع",
         "do_you_need_features_from_traditional": "هل تحتاج إلى ميزات من المشاريع التقليدية، مثل الوصول إلى الإحداثيات الحقيقية أو \nحقول الملاحظة المخصصة أو إضافة ملاحظات فردية لا يمكن تصفيتها \nتلقائيا؟",
+        "errors": {
+        },
         "leaderboards_among_individuals": "المتصدرون ضمن <strong>الأفراد</strong>",
         "leaderboards_among_projects_and_bioblitzes": "ألواح المتصدرين بين <strong>المشاريع",
         "multiple_project_administrators": "مديرو المشاريع المتعددة",
@@ -2111,6 +2106,8 @@ I18n.translations["az"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -2211,6 +2208,8 @@ I18n.translations["be"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -3262,6 +3261,8 @@ I18n.translations["bg"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        },
         "project_name": "Име на проекта",
         "welcome_to_projects": "Добре дошли в Проекти!"
       },
@@ -3459,6 +3460,8 @@ I18n.translations["bn"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -4017,6 +4020,8 @@ I18n.translations["br"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -4163,6 +4168,8 @@ I18n.translations["bs"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -4230,18 +4237,9 @@ I18n.translations["ca"] = {
   "add_annotations_for_x": "Afegiu observacions de \"%{x}\"",
   "add_edit_flags": "Afegir/Editar etiquetes",
   "add_id": "Afegiu ID",
-  "add_life_stage_adult_annotation": "Afegiu nota \"Estat del Cicle biològic: Adult\"",
-  "add_life_stage_egg_annotation": "Afegiu nota \"Estat del Cicle biològic: Ou\"",
-  "add_life_stage_larva_annotation": "Afegiu nota \"Estat del Cicle biològic: Larva\"",
-  "add_life_stage_pupa_annotation": "Afegiu nota \"Estat del Cicle biològic: Pupa\"",
   "add_link": "Afegeix un enllaç",
   "add_one_now": "Afegir-ne un ara",
   "add_photos_to_this_observation": "Afegiu fotos a aquesta observació",
-  "add_plant_phenology_budding_annotation": "Afegir l'anotació «Fenologia de la planta: gemmació»",
-  "add_plant_phenology_flowering_annotation": "Afegiu nota \"Fenologia de la planta: Floració\"",
-  "add_plant_phenology_fruiting_annotation": "Afegiu nota \"Fenologia de la planta: Fructificació\"",
-  "add_sex_female_annotation": "Afegiu nota \"Sexe: Femella\"",
-  "add_sex_male_annotation": "Afegiu nota \"Sexe: Mascle\"",
   "add_tag": "Afegiu etiqueta",
   "add_tags": "Afegiu etiquetes",
   "add_to_a_project": "Afegiu al projecte",
@@ -5869,6 +5867,8 @@ I18n.translations["ca"] = {
         "delete_project": "Elimina Projecte",
         "display_project_name": "Mostra nom del projecte",
         "do_you_need_features_from_traditional": "Necessiteu característiques del projectes tradicionals, com accedir a coordenades correctes, camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Els més actius entre els <strong>individus</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Els més actius entre <strong>projectes</strong>",
         "multiple_project_administrators": "Administradors múltiples del projecte",
@@ -6172,18 +6172,9 @@ I18n.translations["cs"] = {
   "add_annotations_for_x": "Přidat poznámky pro \"%{x}\"",
   "add_edit_flags": "Přidat/editovat vlajky",
   "add_id": "Vložit ID",
-  "add_life_stage_adult_annotation": "Přidat anotaci „Stádium života: dospělý“",
-  "add_life_stage_egg_annotation": "Přidat anotaci „Stádium života: vejce“",
-  "add_life_stage_larva_annotation": "Přidat anotaci „Stádium života: larva“",
-  "add_life_stage_pupa_annotation": "Přidat anotaci „Stádium života: kukla“",
   "add_link": "Přidat odkaz",
   "add_one_now": "Přidat nyní",
   "add_photos_to_this_observation": "Vložit fotky k tomuto pozorování",
-  "add_plant_phenology_budding_annotation": "Přidat anotaci „Fenologie rostliny: pučení“",
-  "add_plant_phenology_flowering_annotation": "Přidat anotaci „Fenologie rostliny: kvetení“",
-  "add_plant_phenology_fruiting_annotation": "Přidat anotaci „Fenologie rostliny: plození“",
-  "add_sex_female_annotation": "Přidat anotaci „Pohlaví: ženské“",
-  "add_sex_male_annotation": "Přidat anotaci „Pohlaví: mužské“",
   "add_tag": "Přidat tag",
   "add_tags": "Přidat tagy",
   "add_to_a_project": "Přidat do projektu",
@@ -7804,6 +7795,8 @@ I18n.translations["cs"] = {
         "delete_project": "Smazat projekt",
         "display_project_name": "Zobrazit název projektu",
         "do_you_need_features_from_traditional": "Potřebujete informace z tradičních projektů, jako je přístup k souřadnicím, nebo přidávání jednotlivých pozorování, která nemohou být automaticky\nfiltrována?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Výsledkové tabulky mezi <strong>individuals</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Výsledková tabulky mezi <strong>projects and bioblitzes</strong>",
         "multiple_project_administrators": "Více administrátorů projektu",
@@ -8101,18 +8094,9 @@ I18n.translations["da"] = {
   "add_annotations_for_x": "Tilføj anmærkninger for \"%{x}\"",
   "add_edit_flags": "Tilføj/redigér markeringer",
   "add_id": "Tilføj ID",
-  "add_life_stage_adult_annotation": "Tilføj noten \"Livsstadie: Voksen\"",
-  "add_life_stage_egg_annotation": "Tilføj anmærkningen \"Livsstadie: Æg\"",
-  "add_life_stage_larva_annotation": "Tilføj anmærkningen \"Livsstadie: Larve\"",
-  "add_life_stage_pupa_annotation": "Tilføj anmærkningen \"Livsstadie: Puppe\"",
   "add_link": "Tilføj link",
   "add_one_now": "Tilføj en nu",
   "add_photos_to_this_observation": "Tilføj fotos til denne observation",
-  "add_plant_phenology_budding_annotation": "Tilføj anmærkningen \"Plantefænologi: Spirende\"",
-  "add_plant_phenology_flowering_annotation": "Tilføj noten \"Plantefænologi: Blomstrende\"",
-  "add_plant_phenology_fruiting_annotation": "Tilføj anmærkningen \"Plantefænologi: I frugt\"",
-  "add_sex_female_annotation": "Tilføj anmærkningen \"Køn: Hunkøn\"",
-  "add_sex_male_annotation": "Tilføj noten \"Køn: Hankøn\"",
   "add_tag": "Tilføj tag",
   "add_tags": "Tilføj tags",
   "add_to_a_project": "Tilføj til et projekt",
@@ -9740,6 +9724,8 @@ I18n.translations["da"] = {
         "delete_project": "Slet projekt",
         "display_project_name": "Vis projektnavn",
         "do_you_need_features_from_traditional": "Har du brug for egenskaber fra de traditionelle projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Toplister iblandt <strong>individuelle</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Toplister iblandt <strong>projekter</strong>",
         "multiple_project_administrators": "Flere projektadministratorer",
@@ -10042,18 +10028,9 @@ I18n.translations["de"] = {
   "add_annotations_for_x": "Vermerke für \"%{x}\" hinzufügen",
   "add_edit_flags": "Marker hinzufügen/bearbeiten",
   "add_id": "Kennung hinzufügen",
-  "add_life_stage_adult_annotation": "Vermerk \"Lebensstadium: Adult\" hinzufügen",
-  "add_life_stage_egg_annotation": "Vermerk \"Lebensstadium: Ei\" hinzufügen",
-  "add_life_stage_larva_annotation": "Vermerk \"Lebensstadium: Larve\" hinzufügen",
-  "add_life_stage_pupa_annotation": "Vermerk \"Lebensstadium: Puppe\" hinzufügen",
   "add_link": "Link hinzufügen",
   "add_one_now": "Jetzt einen hinzufügen",
   "add_photos_to_this_observation": "Fotos zu dieser Beobachtung hinzufügen",
-  "add_plant_phenology_budding_annotation": "Vermerk \"Pflanzenphänologie: Knospend\" hinzufügen",
-  "add_plant_phenology_flowering_annotation": "Vermerk \"Pflanzenphänologie: Blühend\" hinzufügen",
-  "add_plant_phenology_fruiting_annotation": "Vermerk \"Pflanzenphänologie: Fruchttragend\" hinzufügen",
-  "add_sex_female_annotation": "Vermerk \"Geschlecht: Weiblich\" hinzufügen",
-  "add_sex_male_annotation": "Vermerk \"Geschlecht: Männlich\" hinzufügen",
   "add_tag": "Tag hinzufügen",
   "add_tags": "Tags hinzufügen",
   "add_to_a_project": "Zu einem Projekt hinzufügen",
@@ -11558,6 +11535,8 @@ I18n.translations["de"] = {
     "projects": {
       "new": {
         "do_you_need_features_from_traditional": "Brauchst du Funktionen aus traditionellen Projekten, wie den Zugriff auf die tatsächlichen Koordinaten, benutzerdefinierte Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht automatisch gefiltert werden können?",
+        "errors": {
+        },
         "please_specify_the_requirements_html": "Bitte geben Sie die Anforderungen für die Beobachtungen an, die zu diesem Projekt hinzugefügt werden sollen. Sie können mehrere Arten, Orte, Benutzer oder Qualitätsstufen angeben, die automatisch einbezogen werden sollen, oder ein Feld leer lassen, wenn Sie keine besonderen Anforderungen haben. Erklärungen für jedes Feld können <a href=\"%{url}\">hier</a> gefunden werden.",
         "project_summary_help": "Gib eine kurze Erläuterung deines Projekts an. Ungefähr die ersten 200 Zeichen werden rechts neben dem Banner der Projekt-Startseite zu sehen sein, also schreibe das Wichtigste zu Beginn hin!",
         "we_have_redesigned_projects": "Projekte sind so gestaltet, dass sie automatisch alle Beobachtungen einbeziehen, die zu den von dir definierten Orten, Taxa, Benutzern, Qualität und Daten passen. Wähle zwischen zwei Haupttypen:\nKollektionsprojekte und Dachprojekte, die folgende Funktionen gemeinsam haben:"
@@ -11806,6 +11785,8 @@ I18n.translations["de-CH"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -11869,18 +11850,9 @@ I18n.translations["el"] = {
   "add_annotations_for_x": "Προσθήκη Ενδείξεων για \"%{x}\"",
   "add_edit_flags": "Προσθήκη/επεξεργασία σημαιών",
   "add_id": "Προσθήκη ID",
-  "add_life_stage_adult_annotation": "Προσθήκη ένδειξης \"Στάδιο βιολογικού κύκλου: Ενήλικο\"",
-  "add_life_stage_egg_annotation": "Προσθήκη ένδειξης \"Στάδιο βιολογικού κύκλου: Αυγό\"",
-  "add_life_stage_larva_annotation": "Προσθήκη ένδειξης \"Στάδιο βιολογικού κύκλου: Προνύμφη\"",
-  "add_life_stage_pupa_annotation": "Προσθήκη ένδειξης \"Στάδιο βιολογικού κύκλου: Χρυσαλλίδα\"",
   "add_link": "Προσθήκη συνδέσμου",
   "add_one_now": "Προσθήκη ενός τώρα",
   "add_photos_to_this_observation": "Προσθήκη Φωτογραφιών σε αυτήν την Παρατήρηση",
-  "add_plant_phenology_budding_annotation": "Προσθήκη ένδειξης \"Φαινολογία Φυτού: Βλάστηση\"",
-  "add_plant_phenology_flowering_annotation": "Προσθήκη ένδειξης \"Φαινολογία Φυτού: Ανθισμένο\"",
-  "add_plant_phenology_fruiting_annotation": "Προσθήκη ένδειξης \"Φαινολογία Φυτού: Καρποφορία\"",
-  "add_sex_female_annotation": "Προσθήκη ένδειξης \"Φύλο: Θηλυκό\"",
-  "add_sex_male_annotation": "Προσθήκη ένδειξης \"Φύλο: Αρσενικό\"",
   "add_tag": "Πρόσθεση Eτικέτας",
   "add_tags": "Προσθήκη Eτικετών",
   "add_to_a_project": "Προσθήκη σε ένα Πρότζεκτ",
@@ -13241,6 +13213,8 @@ I18n.translations["el"] = {
         "data_visualizations": "Οπτικοποιήσεις δεδομένων",
         "delete_project": "Διαγραφή Πρότζεκτ",
         "display_project_name": "Εμφάνιση ονόματος εγχειρήματος",
+        "errors": {
+        },
         "multiple_project_administrators": "Πολλαπλοί διαχειριστές εγχειρήματος",
         "or_drag_and_drop": "(ή σύρτε και αποθέστε)",
         "project_details": "Λεπτομέρειες Πρότζεκτ",
@@ -13421,18 +13395,9 @@ I18n.translations["en"] = {
   "add_annotations_for_x": "Add Annotations for \"%{x}\"",
   "add_edit_flags": "Add/Edit Flags",
   "add_id": "Add ID",
-  "add_life_stage_adult_annotation": "Add \"Life Stage: Adult\" annotation",
-  "add_life_stage_egg_annotation": "Add \"Life Stage: Egg\" annotation",
-  "add_life_stage_larva_annotation": "Add \"Life Stage: Larva\" annotation",
-  "add_life_stage_pupa_annotation": "Add \"Life Stage: Pupa\" annotation",
   "add_link": "Add Link",
   "add_one_now": "Add One Now",
   "add_photos_to_this_observation": "Add Photos to This Observation",
-  "add_plant_phenology_budding_annotation": "Add \"Plant Phenology: Budding\" annotation",
-  "add_plant_phenology_flowering_annotation": "Add \"Plant Phenology: Flowering\" annotation",
-  "add_plant_phenology_fruiting_annotation": "Add \"Plant Phenology: Fruiting\" annotation",
-  "add_sex_female_annotation": "Add \"Sex: Female\" annotation",
-  "add_sex_male_annotation": "Add \"Sex: Male\" annotation",
   "add_tag": "Add Tag",
   "add_tags": "Add Tags",
   "add_to_a_project": "Add to a Project",
@@ -15066,6 +15031,12 @@ I18n.translations["en"] = {
         "delete_project": "Delete Project",
         "display_project_name": "Display project name",
         "do_you_need_features_from_traditional": "Do you need features from traditional projects, such as access to true coordinates,\ncustom observation fields, or adding individual observations that can’t be automatically\nfiltered?\n",
+        "errors": {
+          "cannot_have_more_than_x_project_rules": "Cannot have more than %{x} project rules",
+          "name_already_taken": "Project name already taken",
+          "name_is_required": "Project name is required",
+          "summary_is_required": "Project summary text is required"
+        },
         "leaderboards_among_individuals": "Leaderboards among <strong>individuals</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Leaderboards among <strong>projects</strong>\n",
         "multiple_project_administrators": "Multiple project administrators",
@@ -15074,7 +15045,8 @@ I18n.translations["en"] = {
         "note_these_users_will_be_able_to_edit": "Note: these users will be able to edit ALL project details including admins.\n",
         "note_you_can_delete_the_time": "(Note: you can delete the time zone and precise times if you want to include whole days.)\n",
         "or_drag_and_drop": "(or drag and drop)",
-        "please_specify_the_requirements_html": "Please specify the requirements for the observations to be added to\nthis project. You can specify multiple species, places, users, or\nquality grades to be automatically included, or leave a field blank if\nyou have no specific requirement for it. Explanations for each field\ncan found <a href=\"%{url}\">here</a>.          \n",
+        "please_specify_the_requirements": "Please specify the requirements for the observations to be added to\nthis project.\n",
+        "please_specify_the_requirements_html": "Please specify the requirements for the observations to be added to\nthis project. You can specify multiple species, places, users, or\nquality grades to be automatically included, or leave a field blank if\nyou have no specific requirement for it. Explanations for each field\ncan found <a href=\"%{url}\">here</a>.\n",
         "project_background_color": "Project Summary Background Color",
         "project_background_color_help": "Make sure to choose a color dark enough so the white overlaid text is legible.",
         "project_banner": "Project Banner (PNG, JPG, or GIF)",
@@ -15086,6 +15058,7 @@ I18n.translations["en"] = {
         "project_summary": "Project Summary",
         "project_summary_help": "Give a concise explanation of your project. Approximately the first 200 characters will\nbe visible to the right of the project home screen banner so put the best stuff first!\n",
         "project_summary_placeholder": "Discover and track the birds of Golden Gate Park...",
+        "show_projects_as_flags": "Show projects as flags in map",
         "start_and_end_times_for_bioblitzes": "Start and end date/times (for bioblitz-type events)",
         "umbrella_project_features": "Umbrella Project features:",
         "unique_url_for_outreach": "Unique URL for outreach",
@@ -15402,6 +15375,8 @@ I18n.translations["en-GB"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -15550,6 +15525,8 @@ I18n.translations["en-US"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -15591,12 +15568,18 @@ I18n.translations["eo"] = {
   "about_community_taxa": "Pri komunumaj taksonoj",
   "about_complete_taxa": "Pri Kompletaj Taksonoj",
   "about_names": "Pri Nomoj",
+  "about_this_bioblitz": "Pri ĉi tiu biofulmado",
+  "acc": "Prec (m)",
   "account": "Konto",
   "account_creation": "Kreado de Konto",
+  "accuracy": "Precizeco",
+  "accuracy_meters": "Precizeco (metroj)",
+  "action": "Ago",
   "active": "Aktiva",
   "activerecord": {
     "attributes": {
       "project": {
+        "start_time": "Komenca tempo"
       }
     }
   },
@@ -15605,6 +15588,7 @@ I18n.translations["eo"] = {
   "add_a_comment": "Aldoni Komenton",
   "add_a_field": "Aldoni Kampon",
   "add_a_name": "Aldoni Nomon",
+  "add_an_identification": "Aldoni Identigon",
   "add_edit_flags": "Aldoni/Redakti Flagojn",
   "add_id": "Aldoni Identigilon",
   "add_link": "Aldoni Ligilon",
@@ -15613,14 +15597,44 @@ I18n.translations["eo"] = {
   "add_tag": "Aldoni Etikedon",
   "add_tags": "Aldoni Etikedojn",
   "add_to_a_project": "Aldoni al Projekto",
+  "add_to_favorites": "Favori",
   "add_to_project": "Aldoni al Projekto",
   "added": "Aldonita",
   "added!": "Aldonita!",
   "added_by": "Aldonita de",
+  "admin_s": "Administranto(j)",
   "agree": "konsenti",
   "agree_": "Konsenti",
+  "aka": "alinome",
   "all": "Ĉiuj",
   "all_rank_added_to_the_database": {
+    "class": "Ĉiuj klasoj aldonitaj en la datenbankon",
+    "complex": "Ĉiuj kompleksoj aldonitaj en la datenbankon",
+    "family": "Ĉiuj familioj aldonitaj en la datenbankon",
+    "form": "Ĉiuj formoj aldonitaj en la datenbankon",
+    "genus": "Ĉiuj generoj aldonitaj en la datenbankon",
+    "genushybrid": "Ĉiuj generhibridoj aldonitaj en la datenbankon",
+    "hybrid": "Ĉiuj hibridoj aldonitaj en la datenbankon",
+    "infraclass": "Ĉiuj infraklasoj aldonitaj en la datenbankon",
+    "infraorder": "Ĉiuj infraordoj aldonitaj en la datenbankon",
+    "order": "Ĉiuj ordoj aldonitaj en la datenbankon",
+    "phylum": "Ĉiuj filumoj aldonitaj en la datenbankon",
+    "section": "Ĉiuj sekcioj aldonitaj en la datenbankon",
+    "species": "Ĉiuj specioj aldonitaj en la datenbankon",
+    "subclass": "Ĉiuj subklasoj aldonitaj en la datenbankon",
+    "subfamily": "Ĉiuj subfamilioj aldonitaj en la datenbankon",
+    "subgenus": "Ĉiuj subgeneroj aldonitaj en la datenbankon",
+    "suborder": "Ĉiuj subordoj aldonitaj en la datenbankon",
+    "subphylum": "Ĉiuj subfilumoj aldonitaj en la datenbankon",
+    "subsection": "Ĉiuj subsekcioj aldonitaj en la datenbankon",
+    "subspecies": "Ĉiuj subspecioj aldonitaj en la datenbankon",
+    "subtribe": "Ĉiuj subtriboj aldonitaj en la datenbankon",
+    "superclass": "Ĉiuj superklasoj aldonitaj en la datenbankon",
+    "superfamily": "Ĉiuj superfamilioj aldonitaj en la datenbankon",
+    "superorder": "Ĉiuj superordoj aldonitaj en la datenbankon",
+    "supertribe": "Ĉiuj supertriboj aldonitaj en la datenbankon",
+    "tribe": "Ĉiuj triboj aldonitaj en la datenbankon",
+    "variety": "Ĉiuj varioj aldonitaj en la datenbankon"
   },
   "all_taxa": {
     "rank": {
@@ -15634,6 +15648,7 @@ I18n.translations["eo"] = {
     "animals": "Animaloj",
     "arachnids": "Araneedoj",
     "birds": "Birdoj",
+    "chromista": "Kromistoj",
     "fungi": "Fungoj",
     "fungi_including_lichens": "Fungoj Inkluzive de Likenoj",
     "insects": "Insektoj",
@@ -15642,6 +15657,7 @@ I18n.translations["eo"] = {
     "other_animals": "Aliaj Animaloj",
     "plants": "Plantoj",
     "protozoans": "Protozooj",
+    "ray_finned_fishes": "Aktinopterigoj",
     "reptiles": "Reptilioj",
     "life": "Vivo",
     "x_plantae": {
@@ -15663,6 +15679,10 @@ I18n.translations["eo"] = {
     "x_mammalia": {
       "one": "1 mamulo",
       "other": "%{count} mamuloj"
+    },
+    "x_actinopterygii": {
+      "one": "1 ray-finned fish",
+      "other": "%{count} aktinopterigoj"
     },
     "x_reptilia": {
       "one": "1 reptilio",
@@ -15702,8 +15722,11 @@ I18n.translations["eo"] = {
   "any_": "Ajna",
   "arachnids": "Araneedoj",
   "are_you_sure?": "Ĉu vi certas?",
+  "asc": "Kresk",
+  "ascending": "Kreskante",
   "back_to_suggestions": "Reen al Sugestoj",
   "back_to_x": "Reen al %{noun}",
+  "be_the_first_to_fave_this_observation": "Estu la unua favoranto de ĉi tiu observo!",
   "birds": "birdoj",
   "black": "nigra",
   "blue": "blua",
@@ -15717,15 +15740,18 @@ I18n.translations["eo"] = {
   "cc_0_name": "Sen Aŭtorrajtoj (CC0)",
   "change_types": {
   },
+  "checklist": "Kontrololisto",
   "choose_a_field": "Elekti kampon",
   "choose_file": "Elekti dosieron",
   "choose_files": "Elekti dosierojn",
   "choose_photos_for_this_taxon": "Elekti fotoj pri ĉi tiu taksono",
+  "clear": "vakigi",
   "close": "Fermi",
   "colors": "Koloroj",
   "combine": "Kunigi",
   "comment_": "Komento",
   "compare": "Kompari",
+  "comprehensive_list": "Ampleksa listo",
   "confirm": "Konfirmi",
   "confirmed": "konfirmita",
   "continue": "Daŭrigi",
@@ -15735,20 +15761,35 @@ I18n.translations["eo"] = {
     "female": "Ina",
     "flowering": "Florado",
     "fruiting": "Fruktado",
+    "juvenile": "Junulo",
     "larva": "Larvo",
     "life_stage": "Vivstadio",
     "male": "Vira",
     "nymph": "Nimfo",
+    "plant_phenology": "Planta Klimata Efiko",
     "pupa": "Pupo",
-    "sex": "Sekso"
+    "sex": "Sekso",
+    "subimago": "Subimagino",
+    "teneral": "Tenera imagino"
   },
+  "convert": "Konverti",
   "copyright": {
+    "some_rights_reserved": "iuj rajtoj rezervitaj",
+    "no_rights_reserved": "neniuj rajtoj rezervitaj",
     "anonymous": "anonima",
     "public_domain": "publika havaĵo",
     "copyright": "kopirajto",
-    "no_copyright": "sen kopirajto (CC0)"
+    "no_copyright": "sen kopirajto (CC0)",
+    "attribution_noncommercial_sharealike_license": "Permesilo Atribuite-Nekomerce-Samkondiĉe",
+    "attribution_noncommercial_license": "Permesilo Atribuite-Nekomerce",
+    "attribution_noncommercial_noderivs_license": "Permesilo Atribuite-Nekomerce-Nemodifite",
+    "attribution_license": "Permesilo Atribuite",
+    "attribution_sharealike_license": "Permesilo Atribuite-Samkondiĉe",
+    "attribution_noderivs_license": "Permesilo Atribuite-Nemodifite",
+    "gnu_free_documentation_license": "Permesilo de GNU por Liberaj Dokumentoj"
   },
   "copyright_info": "Aŭtorrajta Informo",
+  "copyright_info_and_more": "Informo pri Aŭtorrajtoj kaj Plu",
   "create_an_atlas": "Krei Atlason",
   "created_by": "Kreita de",
   "created_on": "Kreita je",
@@ -15833,9 +15874,13 @@ I18n.translations["eo"] = {
       "december": "decembro"
     }
   },
+  "date_is_accurate": "Dato estas ĝusta",
+  "date_observed_": "Dato de Observo",
   "date_picker": {
     "closeText": "Fermi",
-    "currentText": "Hodiaŭ"
+    "currentText": "Hodiaŭ",
+    "prevText": "Antaŭen",
+    "nextText": "Sekven"
   },
   "date_time": "Dato/tempo",
   "datetime": {
@@ -15859,21 +15904,28 @@ I18n.translations["eo"] = {
   "default": "implicita",
   "delete": "Forigi",
   "deleting_verb": "Forigado",
+  "desc": "Malkr",
+  "descending": "Malkreskante",
   "description": "Priskribo",
   "description_slash_tags": "Priskribo / Etikedoj",
   "details": "Detaloj",
   "did_you_mean": "Ĉu vi intencis",
   "disagree_": "Malkonsenti",
   "discoveries": "Eltrovoj",
+  "doh_something_went_wrong": "Domaĝe, io misfunkciis.",
+  "doh_something_went_wrong_error": "Domaĝe, io misfunkciis: %{error}",
   "done": "Farita",
   "download": "Elŝuti",
+  "duplicate_verb": "Duplikato",
   "edit": "Redakti",
   "edit_atlas": "Redakti Atlason",
   "edit_license": "Redakti Permesilon",
+  "edit_multiple_descriptions": "Redakti Plurajn Priskribojn",
   "edit_multiple_species": "Redakti Plurajn Speciojn",
   "edit_photos": "Redakti Fotojn",
   "edit_project": "Redakti Projekton",
   "edit_taxon": "Redakti Taksonon",
+  "end": "Fino",
   "establishment": {
     "endemic": "Endemia",
     "invasive": "Adventica",
@@ -15886,11 +15938,15 @@ I18n.translations["eo"] = {
   "exact": "Ekzakta",
   "exact_date": "Ekzakta Dato",
   "exact_location": "Ekzakta_loko",
+  "exclude_x": "Ekskluzivi %{x}",
   "exit_full_screen": "Malŝalti plenekranan reĝimon",
   "exporting": "Elportanta...",
   "extinct": "formortinta",
   "facebook": "Facebook",
   "failed_to_find_your_location": "Malsukcesis trovi vian lokon.",
+  "faved_this_observation": "favoras ĉi tiun observon",
+  "favorites": "Favoratoj",
+  "featured": "Elstara",
   "fields_": "Kampoj",
   "filter_by_place": "Filtri laŭ Loko",
   "filter_by_taxon": "Filtri laŭ Taksono",
@@ -15898,18 +15954,23 @@ I18n.translations["eo"] = {
   "find": "Serĉi",
   "find_photos": "Trovi Fotojn",
   "finished": "Finita",
+  "finished_with_page": "Finita Kun Paĝo",
   "flag": "Flago",
   "flagged_": "Flagita",
   "flags_with_count": "Flagoj (%{count})",
+  "follow": "Aboni",
   "frequency": "Ofteco",
   "full_screen": "Plenekrane",
   "geoprivacy": "Geografia privateco",
   "geoprivacy_is_private": "Geografia privateco estas privata",
+  "get_started": "Komenci",
   "go": "Ek",
   "go_back": "Reen",
   "google": "Google",
   "green": "verda",
   "grey": "griza",
+  "grouping": "Grupigado",
+  "has_one_or_more_faves": "Havas Unu aŭ Pli da Favoratoj",
   "has_photo": "Havas Foton",
   "has_photo_and_sound": "Havas Kaj Foton Kaj Sonon",
   "has_photos": "Havas Fotojn",
@@ -15918,12 +15979,15 @@ I18n.translations["eo"] = {
   "has_sounds": "Havas Sonojn",
   "high": "Alta",
   "history": "Historio",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Mi ne certas, sed mi certas ke ĉi tiu estas %{taxon}",
   "id_categories": {
     "tooltips": {
     }
   },
+  "identifications": "Identigoj",
   "identify": "Identigi",
   "identify_title": "Identigi",
+  "ids_made_for_others": "Identigoj por aliuloj",
   "ignore_and_continue": "Ignori kaj daŭrigi",
   "import": "Enporti",
   "info": "Informo",
@@ -15934,6 +15998,7 @@ I18n.translations["eo"] = {
   "join_project": "Aliĝi al ĉi tiu projekto",
   "join_this_project": "Aliĝi al ĉi tiu projekto",
   "joined!": "Aliĝis!",
+  "journal": "Ĵurnalo",
   "keep_editing": "Daŭrigi modifi",
   "label_colon": "%{label}:",
   "labels": "Etikedoj",
@@ -16049,6 +16114,8 @@ I18n.translations["eo"] = {
   "observation_date": "Dato",
   "observations": "Observoj",
   "observations_": "observoj",
+  "observed_on": "Observita je",
+  "observers": "Observintoj",
   "of": "de",
   "of_identifiers": "identigiloj",
   "of_observers": "observantoj",
@@ -16060,6 +16127,7 @@ I18n.translations["eo"] = {
   "open_street_map": "OpenStreetMap",
   "or": "aŭ",
   "orange": "oranĝkolora",
+  "order_by": "Ordigi laŭ",
   "other": "Alia",
   "overview": "Superrigardo",
   "per_day": "En Tago",
@@ -16069,6 +16137,8 @@ I18n.translations["eo"] = {
   "photo": "Foto",
   "photo_attribution": "Foto %{attribution}",
   "photos_of_taxon_html": "Fotoj de %{taxon}",
+  "pin_verb": "Alpingli",
+  "pink": "roza",
   "place": "Loko",
   "place_geo": {
     "geo_planet_place_types": {
@@ -16084,6 +16154,8 @@ I18n.translations["eo"] = {
       "continent": "kontinento",
       "Country": "Lando",
       "country": "lando",
+      "County": "Kantono",
+      "county": "kantono",
       "District": "Distrikto",
       "district": "distrikto",
       "Governorate": "Gubernio",
@@ -16391,6 +16463,7 @@ I18n.translations["eo"] = {
   "private_": "Privata",
   "profile": "Profilo",
   "project": "Projekto",
+  "project_requirements": "Postuloj de Projekto",
   "projects": "Projektoj",
   "protozoans": "protozooj",
   "public_domain": "Publika Havaĵo",
@@ -16420,6 +16493,7 @@ I18n.translations["eo"] = {
     "tribe": "Tribo",
     "subtribe": "Subtribo",
     "genus": "Genro",
+    "genushybrid": "Generhibrido",
     "subgenus": "Subgenro",
     "section": "Sekcio",
     "subsection": "Subsekcio",
@@ -16429,6 +16503,7 @@ I18n.translations["eo"] = {
     "subspecies": "Subspecio",
     "form": "Formo"
   },
+  "ray_finned_fishes": "aktinopterigoj",
   "read_more": "Legi Plu",
   "recent": "Ĵusaj",
   "red": "ruĝa",
@@ -16437,6 +16512,7 @@ I18n.translations["eo"] = {
   "removed!": "Forigita!",
   "removing": "Foriganta...",
   "reptiles": "reptilioj",
+  "required_": "Deviga",
   "restore": "Restarigi",
   "reviewed": "Reviziita",
   "satellite": "satelito",
@@ -16444,12 +16520,16 @@ I18n.translations["eo"] = {
   "save_photos": "Konservi fotojn",
   "saved": "Konservita",
   "saving": "Konservante...",
+  "saving_verb": "Konservado",
+  "scale_colon": "Skalo:",
   "search": "Serĉi",
   "search_species_": "Serĉi Speciojn...",
   "seasonality": "Sezoneco",
   "select": "Elekti",
   "select_all": "Elekti Ĉiujn",
+  "select_at_least_one": "Elektu Almenaŭ Unu",
   "select_none": "Elekti Neniun",
+  "select_options": "Elekti Opciojn",
   "select_this_taxon": "Elekti Tiun Taksonon",
   "selected_photos": "Elektitaj fotoj",
   "share": "Diskonigi",
@@ -16458,6 +16538,9 @@ I18n.translations["eo"] = {
   "sign_up": "Registriĝi",
   "similar_species": "Similaj Specioj",
   "similar_taxa": "Similaj Taksonoj",
+  "site_admin_tools": "Retejaj administriloj",
+  "skip_to_next_page": "Salti al sekva paĝo",
+  "some_rights_reserved": "iuj rajtoj rezervitaj",
   "something": "Io",
   "somewhere_on_earth": "ie sur Tero",
   "sort_by": "Ordigi Laŭ",
@@ -16467,14 +16550,23 @@ I18n.translations["eo"] = {
   },
   "source": "Fonto",
   "source_": "Fonto:",
+  "source_list_": "Listo de Fontoj",
+  "source_wikipedia": "Fonto: Vikipedio",
+  "spam": "Trudmesaĝo",
   "species": "Specio",
   "species_by_category": "specioj laŭ kategorio",
   "species_name_cap": "Nomo de specio",
   "species_unknown": "nekonata specio",
+  "standard": "Norma",
+  "start": "Komenci",
+  "start_date_time": "Komencaj Dato / Tempo",
+  "start_typing_taxon_name": "Ektajpu nomon de taksono...",
   "stats": "Statistiko",
   "status": "Stato",
+  "submitted": "Sendita",
   "suggestions": "Sugestoj",
   "table": "Tabelo",
+  "tagging": "Aldonante etikedon...",
   "tags": "Etikedoj",
   "taxa": "Taksonoj",
   "taxon": "Taksono",
@@ -16489,6 +16581,7 @@ I18n.translations["eo"] = {
   "the_": "La",
   "the_world": "La Mondo",
   "then_keybord_sequence": "sekve",
+  "this_bioblitz_beings_in": "Ĉi tiu biofulmado komencas en",
   "this_observation": "Tiu observo",
   "this_year": "Nuna Jaro",
   "to": "al",
@@ -16516,9 +16609,11 @@ I18n.translations["eo"] = {
   "views": {
     "observations": {
       "community_id": {
+        "agreement": "Akordo",
         "algorithm_summary": "Resumo de Algoritmo"
       },
       "export": {
+        "well_email_you": "Bone, ni retmesaĝos vin kiam ĝi estas preta."
       },
       "identify": {
       },
@@ -16528,16 +16623,28 @@ I18n.translations["eo"] = {
     "projects": {
       "collection": "Kolekto",
       "new": {
+        "data_visualizations": "Bildigoj de dateno",
         "delete_project": "Forigi Projekton",
+        "display_project_name": "Montri nomo de projekto",
+        "errors": {
+        },
+        "leaderboards_among_individuals": "Ĉampionejo inter <strong>individuoj</strong>",
+        "leaderboards_among_projects_and_bioblitzes": "Ĉampionejoj inter <strong>projektoj</strong>",
+        "multiple_project_administrators": "Pluraj projektaj administrantoj",
+        "name_placeholder": "Birdoj de Ĉikago, Mirindaj Libeloj, ktp.",
         "project_details": "Detaloj de Projekto",
         "project_icon": "Projekta Ikono (PNG, JPG, aŭ GIF)",
         "project_name": "Nomo de Projekto",
-        "project_summary": "Resumo de Projekto"
+        "project_summary": "Resumo de Projekto",
+        "start_and_end_times_for_bioblitzes": "Komenca kaj fina datoj/tempoj (por eventoj kiel biofulmadoj)",
+        "umbrella_project_features": "Trajtoj de Ombrela Projekto:",
+        "welcome_to_projects": "Bonvenon al Projektoj!"
       },
       "project_type": "Tipo de Projekto",
       "projects_included": "Inkluzivitaj Projektoj",
       "show": {
       },
+      "tracks_multiple_projects": "spuras plurajn projektojn",
       "umbrella": "Ombrelo"
     },
     "shared": {
@@ -16548,10 +16655,12 @@ I18n.translations["eo"] = {
     },
     "stats": {
       "index": {
+        "obs_1_day": "Observoj (1 tago)"
       },
       "year": {
         "growth_title": "Kresko",
-        "include_usa": "Inkluzivi Usonon"
+        "include_usa": "Inkluzivi Usonon",
+        "obs_in_year": "Observoj en %{year}"
       }
     },
     "taxa": {
@@ -16560,10 +16669,13 @@ I18n.translations["eo"] = {
           "Flowering Phenology=bare": "Sen floro",
           "Life Stage=egg": "Ovo",
           "Life Stage=larva": "Larvo",
+          "Life Stage=teneral": "Tenera imagino",
+          "Life Stage=subimago": "Subimagino",
           "Life Stage=nymph": "Nimfo",
           "Life Stage=pupa": "Pupo",
           "Life Stage=adult": "Adolto"
-        }
+        },
+        "trending_desc": "Plej ofte observitaj taksonoj dum lasta monato"
       }
     },
     "users": {
@@ -16584,6 +16696,10 @@ I18n.translations["eo"] = {
   "x_comments": {
     "one": "1 komento",
     "other": "%{count} komentoj"
+  },
+  "x_faves": {
+    "one": "1 favorato",
+    "other": "%{count} favoratoj"
   },
   "x_flagged": "flagis %{x}-on",
   "x_identifications": {
@@ -16630,6 +16746,7 @@ I18n.translations["eo"] = {
   "yes": "Jes",
   "yesterday": "Hieraŭ",
   "you_": "Vi",
+  "you_faved_this": "Vi favoras ĉi tion!",
   "your_default": "via implicita",
   "your_observations": "Viaj Observoj",
   "zoom_in": "Enzomi",
@@ -16673,18 +16790,9 @@ I18n.translations["es"] = {
   "add_annotations_for_x": "Agregar anotaciones para «%{x}»",
   "add_edit_flags": "Agregar/editar etiquetas",
   "add_id": "Agregar ID",
-  "add_life_stage_adult_annotation": "Agregar anotación \"Etapa de vida: adulto\"",
-  "add_life_stage_egg_annotation": "Agregar anotación \"Etapa de vida: huevo\"",
-  "add_life_stage_larva_annotation": "Agregar anotación \"Etapa de vida: larva\"",
-  "add_life_stage_pupa_annotation": "Agregar anotación\"Etapa de vida: pupa\"",
   "add_link": "Agregar enlace",
   "add_one_now": "Agregar una ahora",
   "add_photos_to_this_observation": "Agregar fotos a esta observación",
-  "add_plant_phenology_budding_annotation": "Agregar anotación «Fenología de la planta: en botón»",
-  "add_plant_phenology_flowering_annotation": "Agregar anotación «Fenología de la planta: floreciendo»",
-  "add_plant_phenology_fruiting_annotation": "Agregar anotación \"fenología de la planta: fructificando\"",
-  "add_sex_female_annotation": "Agregar anotación \"Género: femenino\"",
-  "add_sex_male_annotation": "Añade anotación «Género: masculino»",
   "add_tag": "Agregar etiqueta",
   "add_tags": "Agregar etiquetas",
   "add_to_a_project": "Agregar a un proyecto",
@@ -18312,6 +18420,8 @@ I18n.translations["es"] = {
         "delete_project": "Eliminar proyecto",
         "display_project_name": "Exhibe nombre del proyecto",
         "do_you_need_features_from_traditional": "¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación a la medida, o añadir observaciones individuales que no pueden ser filtradas automáticamente?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Tabler de líderes entre <strong>@individuos</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Tablero de líderes entre <strong>proyectos y maratones</strong>",
         "multiple_project_administrators": "Administradores múltiples de proyecto",
@@ -19227,6 +19337,8 @@ I18n.translations["es-ES"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -19324,18 +19436,9 @@ I18n.translations["es-MX"] = {
   "add_annotations_for_x": "Añade anotaciones para \"%{x}\"",
   "add_edit_flags": "Agrega/edita etiquetas",
   "add_id": "Añade ID",
-  "add_life_stage_adult_annotation": "Añade anotación \"etapa de vida: adulto\"",
-  "add_life_stage_egg_annotation": "Añade anotación \"etapa de vida: huevo\"",
-  "add_life_stage_larva_annotation": "Añade anotación \"etapa de vida: larva\"",
-  "add_life_stage_pupa_annotation": "Añade anotación\"etapa de vida: pupa\"",
   "add_link": "Añade enlace",
   "add_one_now": "Añadir una ahora",
   "add_photos_to_this_observation": "Añade fotos a esta observación",
-  "add_plant_phenology_budding_annotation": "Añade anotación \"fenología de la planta: en botón\"",
-  "add_plant_phenology_flowering_annotation": "Agrega anotación \"Fenología de la planta: floreciendo\"",
-  "add_plant_phenology_fruiting_annotation": "Añade anotación \"fenología de la planta: fructificando\"",
-  "add_sex_female_annotation": "Añade anotación \"género: femenino\"",
-  "add_sex_male_annotation": "Añade anotación \"Género: masculino\"",
   "add_tag": "Añade etiqueta",
   "add_tags": "Añade etiquetas",
   "add_to_a_project": "Añade a un proyecto",
@@ -20963,6 +21066,8 @@ I18n.translations["es-MX"] = {
         "delete_project": "Eliminar proyecto",
         "display_project_name": "Exhibe nombre del proyecto",
         "do_you_need_features_from_traditional": "¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados o añadir observaciones individuales que no pueden ser filtradas automáticamente?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Marcador entre <strong>@individuos</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Marcador entre <strong>proyectos y maratones naturalista </strong>",
         "multiple_project_administrators": "Administradores de múltiples proyectos",
@@ -21256,18 +21361,9 @@ I18n.translations["et"] = {
   "add_annotations_for_x": "Lisa \"%{x}\" märked",
   "add_edit_flags": "Lisa/muuda märkuseid",
   "add_id": "Lisa määratlus",
-  "add_life_stage_adult_annotation": "Lisa märge \"Elujärk: täiskasvanud\" (Life Stage: Adult)",
-  "add_life_stage_egg_annotation": "Lisa märge \"Elujärk: muna\" (Life Stage: Egg)",
-  "add_life_stage_larva_annotation": "Lisa märge \"Elujärk: tõuk\" (Life Stage: Larva)",
-  "add_life_stage_pupa_annotation": "Lisa märge \"Elujärk: nukk\" (Life Stage: Pupa)",
   "add_link": "Lisa link",
   "add_one_now": "Lisa",
   "add_photos_to_this_observation": "Lisa selle vaatluse kohta käivad fotod",
-  "add_plant_phenology_budding_annotation": "Lisa märge \"Taime fenoloogia: võrsuv\" (Plant Phenology: Budding)",
-  "add_plant_phenology_flowering_annotation": "Lisa märge \"Taime fenoloogia: õitsev\" (Plant Phenology: Flowering)",
-  "add_plant_phenology_fruiting_annotation": "Lisa märge \"Taime fenoloogia: viljakandev\" (Plant Phenology: Fruiting)",
-  "add_sex_female_annotation": "Lisa märge \"Sugu: nais\"",
-  "add_sex_male_annotation": "Lisa märge \"Sugu: mees\"",
   "add_tag": "Lisa märksõna",
   "add_tags": "Lisa märksõnad",
   "add_to_a_project": "Lisa projekti alla",
@@ -22875,6 +22971,8 @@ I18n.translations["et"] = {
         "delete_project": "Kustuta projekt",
         "display_project_name": "Näita projekti nime",
         "do_you_need_features_from_traditional": "Kas sa vajad tavaprojektide võimalusi nagu ligipääsu tõelistele koordinaatidele, vaatluste spetsiaalväljasid või üksikute vaatluste lisamist, millega automaatfiltrid hakkama ei saa?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "<strong>Kasutajate</strong> edetabelid",
         "leaderboards_among_projects_and_bioblitzes": "<strong>Projektide ja välkvaatluste</strong> edetabelid",
         "multiple_project_administrators": "Mitu projekti administraatorit",
@@ -23160,17 +23258,9 @@ I18n.translations["eu"] = {
   "add_a_name": "Izena gehitu",
   "add_an_identification": "Identifikazioa gehitu",
   "add_id": "Identifikadorea gehitu",
-  "add_life_stage_adult_annotation": "Gehitu \"Bizi Aroa: Heldua\" oharra",
-  "add_life_stage_egg_annotation": "Gehitu: \"Bizi aroa: Arrautza\" oharra",
-  "add_life_stage_larva_annotation": "Gehitu \"Bizi Aroa: Larba\" oharra",
-  "add_life_stage_pupa_annotation": "Gehitu: \"Bizi Aroa: Pupa\" oharra",
   "add_link": "Gehitu lotura",
   "add_one_now": "Gehitu bat orain",
   "add_photos_to_this_observation": "Argazkiak gehitu oharrari",
-  "add_plant_phenology_flowering_annotation": "Gehitu \"Landare Fenologia: Loratzen\" oharra",
-  "add_plant_phenology_fruiting_annotation": "Gehitu \"Landare Fenologia: Fruituak ematen\" oharra",
-  "add_sex_female_annotation": "Gehitu: \"Sexua: Emakumezkoa\" oharra",
-  "add_sex_male_annotation": "Gehitu: \"Sexua: Gizonezkoa\" oharra",
   "add_tag": "Etiketa gehitu",
   "add_tags": "Etiketak gehitu",
   "add_to_a_project": "Proiektu batera gehitu",
@@ -24002,6 +24092,8 @@ I18n.translations["eu"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -24143,6 +24235,8 @@ I18n.translations["fa"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -24210,18 +24304,9 @@ I18n.translations["fi"] = {
   "add_annotations_for_x": "Lisää huomautus kohteelle \"%{x}\"",
   "add_edit_flags": "Lisää/muokkaa merkintöjä",
   "add_id": "Lisää tunniste",
-  "add_life_stage_adult_annotation": "Lisää \"Life Stage: Adult\" selitys",
-  "add_life_stage_egg_annotation": "Lisää \"Life Stage: Egg\" selitys",
-  "add_life_stage_larva_annotation": "Lisää \"Life Stage: Larva\" selitys",
-  "add_life_stage_pupa_annotation": "Lisää \"Life Stage: Pupa\" selitys",
   "add_link": "Lisää linkki",
   "add_one_now": "Lisää yksi nyt",
   "add_photos_to_this_observation": "Lisää kuvia tähän havaintoon",
-  "add_plant_phenology_budding_annotation": "Lisää \"Plant Phenology: Budding\" selitys",
-  "add_plant_phenology_flowering_annotation": "Lisää \"Plant Phenology: Flowering\" selitys",
-  "add_plant_phenology_fruiting_annotation": "Lisää \"Plant Phenology: Fruiting\" selitys",
-  "add_sex_female_annotation": "Lisää \"Sukupuoli: Nainen\" selitys",
-  "add_sex_male_annotation": "Lisää \"Sex: Male\" selitys",
   "add_tag": "Lisää merkintä",
   "add_tags": "Lisää merkintöjä",
   "add_to_a_project": "Lisää projektiin",
@@ -25678,7 +25763,7 @@ I18n.translations["fi"] = {
     "projects": {
       "collection": "Kokoelma",
       "new": {
-        "a_project_allows_you_to_gather": "Kokoelmaprojekti sallii sinun kerätä ja visualisoida havaintoja käyttämällä ytimen iNaturalist hakutyökaluja. Tämä poistaa tarpeen lisätä havaintoja manuaalisesti, koska kaikki joka täyttää hankkeen asettamat parametrit, sisällytetään automaattisesti.",
+        "a_project_allows_you_to_gather": "Kokoelmaprojekti sallii sinun kerätä ja visualisoida havaintoja käyttämällä ytimen iNaturalist hakutyökaluja. Kaikki joka täyttää projektin asettamat parametrit, sisällytetään automaattisesti.",
         "an_umbrella_project_can_be_used_to": "Sateenvarjoprojektia voidaan käyttää kahden tai useamman kokoelma tai perinteisen projektin tilastojen vertailemiseen. Muiden projektien pitää olla olemassa ennen kun voit lisätä ne sateenvarjoprojektiin. Voit sisällyttää satoja hankkeita yhden sateenvarjon alla. Sateenvarjoprojektit eivät voi sisältää muita sateenvarjoprojekteja.",
         "can_be_included_in_multiple": "Voidaan sisällyttää useisiin sateenvarjoprojekteihin",
         "collection_project_features": "Kokoelmaprojektin ominaisuudet:",
@@ -25687,6 +25772,8 @@ I18n.translations["fi"] = {
         "data_visualizations": "Tietojen visualisoinnit",
         "delete_project": "Poista projekti",
         "display_project_name": "Näytä projektin nimi",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Tulostaulukot <strong>yksilöiden</strong> kesken",
         "multiple_project_administrators": "Useita projektin ylläpitäjiä",
         "no_need_to_rely_on_manual_addition": "Ei tarvitse luottaa manuaaliseen havaintojen lisäykseen tai kerääjään indeksoidaksesi havaintoja",
@@ -25839,6 +25926,10 @@ I18n.translations["fi"] = {
     "other": "%{count} muuta"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x} ihmistä</strong> auttoi käyttäjää %{user} <strong>%{y} tunnisteen kanssa</strong>",
+  "x_photos": {
+    "one": "1 kuva",
+    "other": "%{count} kuvaa"
+  },
   "x_species": {
     "one": "1 laji",
     "other": "%{count} lajia"
@@ -25915,18 +26006,9 @@ I18n.translations["fr"] = {
   "add_annotations_for_x": "Ajouter des annotations pour « %{x} »",
   "add_edit_flags": "Ajouter / éditer les marquages",
   "add_id": "Ajouter une identification",
-  "add_life_stage_adult_annotation": "Ajoute l'annotation \"Stade d'évolution : Adulte\"",
-  "add_life_stage_egg_annotation": "Ajoute l'annotation \"Stade d'évolution : Oeuf\"",
-  "add_life_stage_larva_annotation": "Ajoute l'annotation \"Stade d'évolution : Larve\"",
-  "add_life_stage_pupa_annotation": "Ajoute l'annotation \"Stade d'évolution : Pupe\"",
   "add_link": "Ajouter un lien",
   "add_one_now": "En ajouter un maintenant",
   "add_photos_to_this_observation": "Ajouter des photos à cette observation",
-  "add_plant_phenology_budding_annotation": "Ajouter l’annotation « Phénologie végétale : Bourgeonnement »",
-  "add_plant_phenology_flowering_annotation": "Ajouter l’annotation « Phénologie de plante : Floraison »",
-  "add_plant_phenology_fruiting_annotation": "Ajouter l’annotation « Phénologie de plante : Fruits »",
-  "add_sex_female_annotation": "Ajouter l'annotation \"Sex: Female\"",
-  "add_sex_male_annotation": "Ajouter l'annotation \"Sex: Male\"",
   "add_tag": "Ajouter une balise",
   "add_tags": "Ajouter des balises",
   "add_to_a_project": "Ajouter à un projet",
@@ -27530,7 +27612,7 @@ I18n.translations["fr"] = {
         "you_reviewed_message": "Vous avez relu %{reviewed} sur %{pageTotal} observations de cette page, sur un total de %{total} observations correspondantes."
       },
       "show": {
-        "ancestor_disagreements_desc": "Nombre de taxons identifiés qui font partie des ancêtres d’un taxon, mais qui ont été créés après la première identification au moyen de ce taxon",
+        "ancestor_disagreements_desc": "Nombre de taxons identifiés faisant partie des ancêtres d’un taxon, mais qui contrarient ce taxon (par exemple, « Je pense que c'est dans le genre mais je ne suis pas d'accord qu'il s'agisse de cette espèce »)",
         "community_taxon_desc_html": "<p class=\"ui\">\n  Le taxon de la communauté (ou l’identification de la communauté) représente\n  le taxon que la communauté d’%{site_name} estime être représenté dans une\n  observation. Si vous êtes intéressé à connaître la façon dont nous choisissons le\n  taxon de la communauté, consultez les notes sur l’algorithme ci-dessous. En\n  général, nous essayons de <strong>choisir un taxon avec lequel plus de 2/3\n  les personnes ayant fait une identification sont d’accord</strong>. Quelquefois, ça veut dire\n  qu’il faut choisir un taxon de plus haut rang qui contient un certain nombre de\n  taxons qui s’opposent (par ex. vous pensez que c’est une couleuvre tachetée et je pense que\n  c’est un serpent à sonnettes. iNat choisira donc le sous-ordre des Serpents qui\n  contient tous les serpents). L’algorithme favorise aussi légèrement les\n  taxons en conflit, parce que nous avons remarqué que les dissidents ont souvent\n  raison.\n</p>\n<p class=\"ui\">\n  Le taxon de la communauté est le taxon que nous utilisons pour échanger des observations\n  avec des partenaires d’échange de données, pour associer les observations du même taxon sur le\n  site, pour mettre à jour votre liste des êtres vivants, etc. Si, pour une raison quelconque, vous n’êtes\n  pas d’accord avec le taxon de la communauté, vous pouvez le rejeter, ce qui veut dire\n  que votre identifiant est celui utilisé pour s’associer aux autres observations,\n  pour mettre à jour les listes des êtres vivants, etc. Ça signifie aussi que votre observation ne pourra devenir\n  de calibre recherche que quand la communauté sera d’accord avec <em>vous</em>.\n  Si vous n’aimez pas du tout l’idée des taxons de la communauté, vous pouvez choisir\n  de les rejeter complètement en <a href=\"/users/edit\" target=\"_blank\">modifiant vos paramètres</a>.\n</p>\n<p class=\"ui\">\n  <strong>L’algorithme :</strong> pour tous les taxons identifiés et les taxons qui les contiennent\n  (par ex. genre <i>Homo</i> contient <i>Homo sapiens</i>), évaluez-les selon\n  le rapport entre le nombre d’identifications cumulées pour\n  ce taxon et la somme des identifications cumulées, le nombre d’identifications\n  plus conservatrices ajoutées après la première identification de ce taxon\n  et le nombre d’identifications qui sont complètement différentes (c.-à-d. identifications\n  des taxons qui ne contiennent pas le taxon évalué). Pour les\n  taxons identifiés qui ont un pointage de plus de 2/3 et au moins 2\n  identifications, choisissez le taxon du rang le plus bas.\n</p>",
         "cumulative_count_desc": "Nombre d’identifications pour un taxon distinct et tous ses descendants",
         "disagreement_count_desc": "Nombre de taxons identifiés qui ne font pas partie des ancêtres d’un taxon",
@@ -27554,6 +27636,8 @@ I18n.translations["fr"] = {
         "delete_project": "Supprimer le projet",
         "display_project_name": "Afficher le nom du projet",
         "do_you_need_features_from_traditional": "Avez-vous besoin des fonctionnalités des projets traditionnels, comme accéder aux coordonnées réelles,\ndes champs d’observation personnalisés, ou ajouter des observations qui ne peuvent pas être filtrées automatiquement ?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Classements entre <strong>individus</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Classements entre <strong>projets</strong>",
         "multiple_project_administrators": "Administrateurs multiples du projet",
@@ -27890,6 +27974,8 @@ I18n.translations["fr-CA"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -28637,6 +28723,8 @@ I18n.translations["gl"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -28767,6 +28855,8 @@ I18n.translations["ha"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -28867,6 +28957,8 @@ I18n.translations["he"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -28967,6 +29059,8 @@ I18n.translations["hi"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -29067,6 +29161,8 @@ I18n.translations["hr"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -29167,6 +29263,8 @@ I18n.translations["hu"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -30119,6 +30217,8 @@ I18n.translations["id"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -30275,6 +30375,8 @@ I18n.translations["ig"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -30375,6 +30477,8 @@ I18n.translations["is"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -30442,18 +30546,9 @@ I18n.translations["it"] = {
   "add_annotations_for_x": "Aggiungi annotazione per %{x}",
   "add_edit_flags": "Aggiungi/Modifica contrassegni",
   "add_id": "Aggiungi ID",
-  "add_life_stage_adult_annotation": "Aggiungi nota \"Stadio vitale: Adulto\"",
-  "add_life_stage_egg_annotation": "Aggiungi nota \"Stadio vitale: Uovo\"",
-  "add_life_stage_larva_annotation": "Aggiungi nota \"Stadio vitale: Larva\"",
-  "add_life_stage_pupa_annotation": "Aggiungi nota \"Stadio vitale: Pupa\"",
   "add_link": "Aggiungi collegamento",
   "add_one_now": "Aggiungi ora",
   "add_photos_to_this_observation": "Aggiungi foto a questa osservazione",
-  "add_plant_phenology_budding_annotation": "Aggiungi nota \"Fenologia della Pianta: Germinazione\"",
-  "add_plant_phenology_flowering_annotation": "Aggiungi nota \"Fenologia della Pianta: Fioritura\"",
-  "add_plant_phenology_fruiting_annotation": "Aggiungi nota \"Fenologia della Pianta: Fruttificazione\"",
-  "add_sex_female_annotation": "Aggiungi nota \"Sesso: Femmina\"",
-  "add_sex_male_annotation": "Aggiungi nota \"Sesso: Maschio\"",
   "add_tag": "Aggiungi etichetta",
   "add_tags": "Aggiungi etichetta",
   "add_to_a_project": "Aggiungi a un progetto",
@@ -32057,7 +32152,7 @@ I18n.translations["it"] = {
         "you_reviewed_message": "Hai controllato %{reviewed} di %{pageTotal} osservazioni in questa pagina su %{total} osservazioni corrispondenti."
       },
       "show": {
-        "ancestor_disagreements_desc": "# di taxa identificati che appartengono agli antenati del taxon, ma che sono stati creati dopo la prima identificazione che usa questo taxon",
+        "ancestor_disagreements_desc": "# di taxa identificati che appartengono agli antenati del taxon, ma in disaccordo con il taxon (e.g., \"Penso che sia nel genere ma non che sia quella specie\")",
         "community_taxon_desc_html": "<p class=\"ui\">\nIl taxon della community (o l'identificazione della community) è il taxon a cui la community di %{site_name} ritiene possa appartenere l'organismo che hai osservato. Se sei interessato alla modalità in cui scegliamo il taxon della community, leggi le note sull'algoritmo qui sotto, ma in generale, proviamo a <strong>scegliere il taxon che mette d'accordo i 2/3 degli identificatori</strong>.\nAlcune volte ciò significa scegliere un taxon di livello superiore che include un certo numero di taxa su cui non c'è accordo (e.g., tu pensi sia una vipera io penso che sia una coronella, così iNat sceglie il subordine Serpentes che contiene tutti i serpenti). L'algoritmo di solito favorisce leggermente chi è in disaccordo, in quanto sbagliano di meno. \n</p>\n<p class=\"ui\">\nIl taxon della community è il taxon che utilizziamo quando condividiamo l'osservazione con i partner esterni, raggruppiamo le osservazioni dello stesso taxon, aggiorniamo la tua lista degli esseri viventi, etc. Se per qualche ragione non sei d'accordo con la identificazione della community, puoi rifiutarla; ciò significa che la tua ID sarà quella usata per condividere, raggruppare le osservazioni dello stesso taxon, aggiornare la tua lista degli esseri viventi, etc. Ciò significa anche che affinché la tua osservazione possa raggiungere il livello 'ricerca', la community dovrà essere d'accordo con <em>te</em>.\nSe l'idea della identificazione della community non ti piace, puoi disattivarla <a href=\"/users/edit\" target=\"_blank\">modificando le tue impostazioni</a>.\n</p>\n<p class=\"ui\">\n<strong>L'algoritmo:</strong> per tutti i taxa identificati e per quelli che li contengono (e.g. il genere <i>Homo</i> contiene <i>Homo sapiens</i>), l'algoritmo assegna un punteggio secondo: il rapporto tra il numero di ID cumulate per quel taxon e la somma delle ID cumulate, il numero delle ID più conservative aggiunto dopo la prima ID di quel taxon, e il numero delle ID che sono completamente differenti (e.g., ID che dei taxa che non contengono il taxon in oggetto). Per tutti i taxa identificati che hanno un punteggio superiore ai 2/3 e almeno 2 identificazioni, sceglia il taxon di rango minore.\n</p>",
         "cumulative_count_desc": "# di identificazioni per un singolo taxon e per tutti i suoi discendenti",
         "disagreement_count_desc": "# di taxa identificati che non sono tra gli antenati del taxon",
@@ -32081,6 +32176,8 @@ I18n.translations["it"] = {
         "delete_project": "Elimina progetto",
         "display_project_name": "Visualizza il nome del Progetto",
         "do_you_need_features_from_traditional": "Hai bisogno di caratteristiche dei progetti tradizionali, come l'accesso alle coordinate precise, campi di osservazione personalizzati, o di aggiungere osservazioni che non possono essere filtrate automaticamente?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Classifiche tra <strong>utenti</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Classifiche tra <strong>progetti</strong>",
         "multiple_project_administrators": "Più di un amministratore del progetto",
@@ -32421,6 +32518,8 @@ I18n.translations["iw"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -33402,6 +33501,8 @@ I18n.translations["ja"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -33544,6 +33645,8 @@ I18n.translations["ka"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -34656,6 +34759,8 @@ I18n.translations["ko"] = {
         "custom_banner_icon_and_project_description": "사용자 지정 배너, 아이콘, 프로젝트 설명",
         "data_visualizations": "데이터 시각화",
         "delete_project": "프로젝트 삭제",
+        "errors": {
+        },
         "multiple_project_administrators": "다중 프로젝트 관리자",
         "note_you_can_delete_the_time": "(참고: 전체 일수를 포함하고 싶으시다면 시간대와 정확한 시간을 삭제할 수 있습니다.)",
         "or_drag_and_drop": "(아니면 끌어 놓으십시오)",
@@ -34741,8 +34846,9 @@ I18n.translations["lb"] = {
   "about": "Iwwer",
   "about_charts": "Iwwer Diagrammer",
   "about_names": "Iwwer Nimm",
-  "about_this_bioblitz": "Iwwer dëse bioblitz",
+  "about_this_bioblitz": "Iwwer dëse Bioblitz",
   "account": "Benotzerkont",
+  "accuracy": "Prezisioun",
   "accuracy_meters": "Genauegkeet (Meter)",
   "action": "Aktioun",
   "active": "Aktiv",
@@ -34761,7 +34867,9 @@ I18n.translations["lb"] = {
   "add_annotations_for_x": "Annotatioune fir %{x} derbäisetzen",
   "add_link": "Link derbäisetzen",
   "add_one_now": "Elo eng derbäisetzen",
-  "add_photos_to_this_observation": "Fotoe bei dëse Observatioun derbäisetzen",
+  "add_photos_to_this_observation": "Fotoe bei dës Observatioun derbäisetzen",
+  "add_tag": "Markéierung derbäisetzen",
+  "add_tags": "Markéierungen derbäisetzen",
   "add_to_a_project": "E Projet derbäisetzen",
   "add_to_favorites": "Bei d'Favoriten derbäisetzen",
   "add_to_project": "Bei de Projet derbäisetzen",
@@ -34773,9 +34881,14 @@ I18n.translations["lb"] = {
   "admin_s": "Administrateur(en)",
   "agree": "zoustëmmen",
   "agree_": "Akzeptéieren",
+  "agree_with_current_taxon": "Si mam aktuellen Taxon d'accord",
+  "aka": "aka",
   "all": "All",
   "all_rank_added_to_the_database": {
-    "hybrid": "All Hybriden an d'Datebank derbäigesat"
+    "hybrid": "All Hybriden an d'Datebank derbäigesat",
+    "phylum": "All Phyla an d'Datebank derbäigesat",
+    "subphylum": "All Ënner-Phyla an d'Datebank derbäigesat",
+    "superclass": "All Superklassen an d'Datebank derbäigesat"
   },
   "all_taxa": {
     "rank": {
@@ -35608,6 +35721,8 @@ I18n.translations["lb"] = {
       "new": {
         "delete_project": "Projet läschen",
         "display_project_name": "Numm vum Projet weisen",
+        "errors": {
+        },
         "project_details": "Detailer vum Projet",
         "project_name": "Numm vum Projet",
         "project_summary": "Resumé vum Projet",
@@ -35792,6 +35907,8 @@ I18n.translations["lexicons"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -35892,6 +36009,8 @@ I18n.translations["lo-LA"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -35992,6 +36111,8 @@ I18n.translations["lt"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -36092,6 +36213,8 @@ I18n.translations["lv"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -36771,6 +36894,8 @@ I18n.translations["mk"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -36908,6 +37033,8 @@ I18n.translations["ms"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -37008,6 +37135,8 @@ I18n.translations["nb"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -37075,18 +37204,9 @@ I18n.translations["nl"] = {
   "add_annotations_for_x": "Voeg aantekeningen voor %{x} toe",
   "add_edit_flags": "Markeringen toevoegen/bewerken",
   "add_id": "ID toevoegen",
-  "add_life_stage_adult_annotation": "Voeg \"Levenstadium: Volwassen\" aantekening toe",
-  "add_life_stage_egg_annotation": "Voeg \"Levenstadium: Ei\" aantekening toe",
-  "add_life_stage_larva_annotation": "Voeg \"Levenstadium: Larve\" aantekening toe",
-  "add_life_stage_pupa_annotation": "Voeg \"Levenstadium: Pop\" aantekening toe",
   "add_link": "Voeg link toe",
   "add_one_now": "Voeg er nu één toe",
   "add_photos_to_this_observation": "Voeg foto's toe bij deze waarneming",
-  "add_plant_phenology_budding_annotation": "Voeg \"Plantenfenologie: Knopvormend\" aantekening toe",
-  "add_plant_phenology_flowering_annotation": "Voeg \"Plantenfenologie: Bloeiend\" aantekening toe",
-  "add_plant_phenology_fruiting_annotation": "Voeg \"Plantenfenologie: Vruchtdragend\" aantekening toe",
-  "add_sex_female_annotation": "Voeg \"Sex: vrouw\" annotation",
-  "add_sex_male_annotation": "Voeg \"Sexe: Man\" annotation",
   "add_tag": "Label toevoegen",
   "add_tags": "Labels toevoegen",
   "add_to_a_project": "Aan een project toevoegen",
@@ -38690,7 +38810,7 @@ I18n.translations["nl"] = {
         "you_reviewed_message": "U heeft %{reviewed} van %{pageTotal} waarnemingen beoordeeld op deze pagina van %{total} overeenkomende waarnemingen."
       },
       "show": {
-        "ancestor_disagreements_desc": "# geïdentificeerde taxa die behoren tot de voorouders van een taxon, maar zijn gemaakt na de eerste determinatie met dit taxon",
+        "ancestor_disagreements_desc": "# gedetermineerde taxa die behoren tot de voorouders van een taxon, maar die niet overeenkomen met het taxon (\"Ik denk dat het in het geslacht (genus) hoort maar ik ben het oneens dat het deze soort is\")",
         "community_taxon_desc_html": "<p class=\"ui\">\n  Het community taxon (of gemeenschapstaxon) is de determinatie van het afgebeelde taxon door de %{site_name} gemeenschap in de waarneming. Als je geïnteresseerd bent in hoe we het community taxon kiezen, kijk dan bij de opmerkingen over het algoritme hieronder, maar in algemeen proberen we <strong>een taxon te kiezen waar meer dan 2/3 is van de ID's onder valt</strong>. Dit betekent dat soms een taxon op een hoger niveau wordt gekozen dat een aantal taxa bevat wat de sooort niet eens (u denkt bijvoorbeeld dat het een Lampropeltis is en ik denk dat het ratelslang is, dan kiest iNat voor de suborde Serpentes die alle slangen omvat). Het algoritme bevooroordeeld enigzins de afwijkende mening, omdat we hebben geconstateerd dat andersdenkenden vaak gelijk hebben.\n</p>\n<p class=\"ui\">\n  Het gemeenschapstaxon is het taxon dat we gebruiken bij het delen van waarnemingen met datapartners, die waarnemingen van hetzelfde taxon koppelen aan de site, het bijwerken van uw levenslijst, enz. Als je om een ​​of andere reden niet akkoord gaat met het gemeenschapstaxon kun je het afwijzen, wat betekent dat uw determinatie de naam is die wordt gebruikt om naar andere waarnemingen te linken, het bijwerken van levenslijsten, enz. Het betekent ook dat jouw waarneming alleen Onderzoekskwaliteit kan worden wanneer de community het eens is met <em>u</em>. Als je het hele idee van community-taxa niet leuk vindt, kun je het volledig uitzetten in <a href=\"/users/edit\" target=\"_blank\">uw instellingen</a>.\n</p>\n<p class=\"ui\">\n  <strong>Het algoritme:</strong> voor alle geïdentificeerde taxa en de taxa waarin ze zijn opgenomen (bijvoorbeeld het geslacht <i>Homo</i> bevat <i>Homo sapiens</i>), score elk als de verhouding tussen het aantal cumulatieve ID's voor dat taxon over de som van de cumulatieve ID's, het aantal meer conservatieve ID's toegevoegd na de eerste ID van dat taxon en het aantal ID's dat compleet verschillend is (dat wil zeggen ID's van taxa die niet het taxon bevatten dat gescoord wordt). Voor de geïdentificeerde taxa die een score hebben van meer dan 2/3 en minstens 2 determinaties, wordt het laagst gerangschikte taxon gekozen.\n</p>",
         "cumulative_count_desc": "# determinaties voor een individueel taxon en al zijn nakomelingen",
         "disagreement_count_desc": "# geïdentificeerde taxa die niet behoren tot de voorouders van een taxon",
@@ -38714,6 +38834,8 @@ I18n.translations["nl"] = {
         "delete_project": "Project verwijderen",
         "display_project_name": "Toon project naam",
         "do_you_need_features_from_traditional": "Heeft u functies nodig van traditionele projecten, zoals toegang tot echte coördinaten,\naangepaste waarnemingsvelden of het toevoegen van individuele waarnemingen die niet automatisch kunnen worden gefilterd?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Toplijsten voor <strong>personen</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Ranglijsten voor <strong>projecten en bioblitzes</strong>",
         "multiple_project_administrators": "Meerdere projectadministrators",
@@ -39050,6 +39172,8 @@ I18n.translations["nn-NO"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -39150,6 +39274,8 @@ I18n.translations["no"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -39853,6 +39979,8 @@ I18n.translations["oc"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -39998,6 +40126,8 @@ I18n.translations["pap-AW"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -40098,6 +40228,8 @@ I18n.translations["pap-CW"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -40198,6 +40330,8 @@ I18n.translations["pl"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -40298,6 +40432,8 @@ I18n.translations["pt"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -40365,18 +40501,9 @@ I18n.translations["pt-BR"] = {
   "add_annotations_for_x": "Adicionar anotações para \"%{x}\"",
   "add_edit_flags": "Adicionar/Editar Etiquetas",
   "add_id": "Adicionar identificação (ID)",
-  "add_life_stage_adult_annotation": "Adicionar \"Estágio de Vida: Adulto\" anotação",
-  "add_life_stage_egg_annotation": "Adicionar \"Estágio de Vida: Ovo\" anotação",
-  "add_life_stage_larva_annotation": "Adicionar \"Estágio de Vida: Larva\" anotação",
-  "add_life_stage_pupa_annotation": "Adicionar \"Estágio de Vida: Pupa\" anotação",
   "add_link": "Adicionar Link",
   "add_one_now": "Adicionar Uma Agora",
   "add_photos_to_this_observation": "Adicionar fotos para esta observação",
-  "add_plant_phenology_budding_annotation": "Adicionar \"Fenologia\": Brotamento\" anotações",
-  "add_plant_phenology_flowering_annotation": "Adicionar \"Fenologia\": Floração\" anotações",
-  "add_plant_phenology_fruiting_annotation": "Adicionar \"Fenologia\": Frutificação\" anotações",
-  "add_sex_female_annotation": "Adicionar \"Sexo: Fêmea\" anotação",
-  "add_sex_male_annotation": "Adicionar \"Sexo: Macho\" anotação",
   "add_tag": "Adicionar marcação",
   "add_tags": "Adicionar marcações",
   "add_to_a_project": "Adicionar a um projeto",
@@ -41980,7 +42107,7 @@ I18n.translations["pt-BR"] = {
         "you_reviewed_message": "Parabéns, você revisou %{reviewed} de %{pageTotal} das observações desta página de %{total} observações que combinam."
       },
       "show": {
-        "ancestor_disagreements_desc": "# de táxons identificados que estão entre os ancestrais de um grupo e espécie, mas foram criados depois da primeira identificação utilizando este táxon",
+        "ancestor_disagreements_desc": "# de táxons identificados que estão entre os ancestrais de um táxon, mas discordam do táxon (ie \"eu acho que é no gênero mas eu discordo dessa espécie\")",
         "community_taxon_desc_html": "<p class=\"ui\">\nO táxon comunitário (ou identificação colaborativa) representa  aquele táxon do %{site_name} que a comunidade acredita se encaixar perfeitamente a observação. Se você esta interessado na forma como nós identificamos um táxon de forma colaborativa, confira as anotações abaixo, mas em geral, os membros do iNat tentam <strong>escolher um táxon que mais de 2/3 dos colaboradores concordam ser uma opção plausível</strong>. Algumas vezes isso significa optar por um táxon mais alto, por exemplo, eu submeto uma observação e você sugere que seja uma cascavel enquanto eu acredito que seja uma jararaca, nesse momento o algoritmo do iNaturalist escolhe a subordem Serpentes para identificar o registro. Nosso algoritmo também favorece levemente a opinião daqueles que contestam um registro, isso porque descobrimos que estes usuários costumam estar certos.\n</p>\n<p class=\"ui\">\n  Utilizamos um táxon comunitário para compartilhar observações com parceiros, conectando diversos registros para o mesmo táxon no site, atualizando sua lifelist, entre outras coisas. Se por alguma razão você discordar de um táxon comunitário, você pode rejeitá-lo, o que significa que a sua identificação será aquela utilizada pelo sistema. \nTambém significa que sua observação somente poderá ser incluída na categoria pesquisa quando os membros da comunidade concordarem com <em>você/em>.\nSe você simplesmente não gosta do conceito de táxon comunitário, você pode se desligar do processo <a href=\"/users/edit\" target=\"_blank\">editando suas configurações</a>.\n</p>\n<p class=\"ui\">\n  <strong>O algoritmo:</strong> para todos os dados de identificação de espécies, como por exemplo, o táxon <i>Homo</i> engloba a espécie <i>Homo sapiens</i>), bingo, a razão entre o número de IDs acumuladas para o mesmo táxon através da soma das identificações acumuladas, o número de IDs mais conservadoras acrescentadas após a primeira ID desse táxon, além do número de IDs que são completamente diferentes (isto é, identificações\n   de táxons que não contêm o táxon ser marcado). Para os táxons identificados que possuem uma nota de acerto próxima a 2/3 e no mínimo 2 identificações, escolha o táxon mais baixo.\n</p>",
         "cumulative_count_desc": "# de identificações para um único táxon e todos os seus descendentes",
         "disagreement_count_desc": "# de táxons identificados que não estão entre os ancestrais de um grupo ou espécie",
@@ -42004,6 +42131,8 @@ I18n.translations["pt-BR"] = {
         "delete_project": "Apagar Projeto",
         "display_project_name": "Exibir nome do projeto",
         "do_you_need_features_from_traditional": "Você precisa de características de projetos tradicionais, como acessar coordenadas reais, campos de observação personalizados ou adicionar observações individuais que não podem ser filtradas automaticamente?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Classificações entre <strong>indivíduos</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Classificações entre <strong>projetos</strong>",
         "multiple_project_administrators": "Administradores de vários projetos",
@@ -42305,18 +42434,9 @@ I18n.translations["pt-PT"] = {
   "add_annotations_for_x": "Adicionar Anotações para \"%{x}\"",
   "add_edit_flags": "Adicionar/Editar Sinalizadores",
   "add_id": "Adicionar identificação",
-  "add_life_stage_adult_annotation": "Adicionar anotação \"Fase da Vida: Adulto\"",
-  "add_life_stage_egg_annotation": "Adicionar anotação \"Fase da Vida: Ovo\"",
-  "add_life_stage_larva_annotation": "Adicionar anotação \"Fase da Vida: Larva\"",
-  "add_life_stage_pupa_annotation": "Adicionar anotação \"Fase da Vida: Pupa\"",
   "add_link": "Adicionar Link",
   "add_one_now": "Adicionar Um(a) Agora",
   "add_photos_to_this_observation": "Adicionar fotografias a esta observação",
-  "add_plant_phenology_budding_annotation": "Adicionar anotação \"Fenologia da Planta: Gemulação\"",
-  "add_plant_phenology_flowering_annotation": "Adicionar anotação \"Fenologia da Planta: Floração\"",
-  "add_plant_phenology_fruiting_annotation": "Adicionar anotação \"Fenologia da Planta: Frutificação\"",
-  "add_sex_female_annotation": "Adicionar anotação \"Género: Fêmea\"",
-  "add_sex_male_annotation": "Adicionar anotação \"Género: Macho\"",
   "add_tag": "Adicionar etiqueta",
   "add_tags": "Adicionar etiquetas",
   "add_to_a_project": "Adicionar a um projeto",
@@ -43556,6 +43676,8 @@ I18n.translations["pt-PT"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        },
         "welcome_to_projects": "Bem-vindo ao projeto!"
       },
       "show": {
@@ -43738,6 +43860,8 @@ I18n.translations["ro"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -43805,18 +43929,9 @@ I18n.translations["ru"] = {
   "add_annotations_for_x": "Добавить значения для \"%{x}\"",
   "add_edit_flags": "Добавить/редактировать флаги",
   "add_id": "Добавить идентификатор",
-  "add_life_stage_adult_annotation": "Добавить значение \"Стадия жизни: Взрослый\"",
-  "add_life_stage_egg_annotation": "Добавить значение \"Стадия жизни: Яйцо\"",
-  "add_life_stage_larva_annotation": "Добавить значение \"Стадия жизни: Личинка\"",
-  "add_life_stage_pupa_annotation": "Добавить значение \"Стадия жизни: Куколка\"",
   "add_link": "Добавить ссылку",
   "add_one_now": "Добавить один сейчас",
   "add_photos_to_this_observation": "Добавить фото к этому наблюдению",
-  "add_plant_phenology_budding_annotation": "Добавить значение \"Фенология растений: Почкование\"",
-  "add_plant_phenology_flowering_annotation": "Добавить аннотацию к \"Plant Phenology: Flowering\"",
-  "add_plant_phenology_fruiting_annotation": "Добавить значение \"Фенология растений: Плодоношение\"",
-  "add_sex_female_annotation": "Добавить значение \"Пол: Женский\"",
-  "add_sex_male_annotation": "Добавить значение \"Пол: Мужской\"",
   "add_tag": "Добавить тег",
   "add_tags": "Добавить теги",
   "add_to_a_project": "Добавить в проект",
@@ -45429,8 +45544,7 @@ I18n.translations["ru"] = {
         "you_reviewed_message": "Вы проверили %{reviewed} из %{pageTotal} наблюдений на этой странице из общего числа %{total} наблюдений."
       },
       "show": {
-        "ancestor_disagreements_desc": "# идентифицированных таксонов, которые относятся к предкам таксона, но были созданы после первой идентификации с использованием этого таксона",
-        "community_taxon_desc_html": "<p class=\"ui\">\n  Таксон сообщества (или идентификация сообщества) представляет то, что, по мнению сообщества %{site_name} изображено в наблюдении. Если вас интересует, как мы выбираем таксон сообщества, см. Примечания к алгоритму ниже, но в целом мы стараемся <strong>выбрать таксон, с которым согласны более 2/3 экспертов</strong>. Иногда это означает выбор таксона более высокого уровня, который содержит ряд таксонов-потомков (например, вы думаете, что это королевская змея, а я думаю, что это гремучая змея, поэтому iNat выбирает подотряд Serpentes, который содержит всех змей). Алгоритм также немного благоприятствует инакомыслию, потому что мы обнаружили, что инакомыслящие часто бывают правы.\n</p>\n<p class=\"ui\">\n  Таксоном сообщества является таксон, который мы используем при обмене наблюдениями с партнёрами по данным, связывая наблюдения одного и того же таксона на сайте, обновляя ваш список жизни и т. д. Если по какой-то причине вы не согласны с таксоном сообщества, вы можете его отклонить, что означает, что ваш идентификатор является тем, который используется для связи с другими наблюдениями, обновления списков жизней и т. д. Это также означает, что ваше наблюдение может перейти на исследовательский уровень, только когда сообщество соглашается с <em>вами</em>. Если вам не нравится вся идея таксонов сообщества, вы можете полностью отказаться от них путём <a href=\"/users/edit\" target=\"_blank\">редактирования ваших настроек</a>.\n</p>\n<p class=\"ui\">\n  <strong>Алгоритм:</strong> для всех идентифицированных таксонов и таксонов, которые их содержат (например, род <i>Homo </i> содержит <i>Homo sapiens</i>), каждый оценивается как отношение общего числа идентификаций этого таксона к сумме общего числа идентификаций, числа более консервативных идентификаций, добавленных после первой идентификации этого таксона, и числа полностью отличающихся  идентификаций (т. е. таксонов-идентификаций, которые не содержат оцениваемый таксон). Для идентифицированных таксонов, которые имеют оценку более 2/3 и не менее 2 идентификаций, выбирается низший уровень таксона.\n</p>",
+        "ancestor_disagreements_desc": "# идентифицированных таксонов, которые относятся к предкам таксона, но не соответствуют таксону (т.е. \"я думаю, что этот род, но не согласен, что этот вид\")",
         "cumulative_count_desc": "# идентификаций отдельного таксона и всех его потомков",
         "disagreement_count_desc": "# идентифицированных таксонов, которые не относятся к предкам таксона",
         "identification_count_desc": "# идентификаций отдельного таксона",
@@ -45453,6 +45567,8 @@ I18n.translations["ru"] = {
         "delete_project": "Удалить проект",
         "display_project_name": "Отобразить название проекта",
         "do_you_need_features_from_traditional": "Нужны ли вам функции традиционных проектов, такие как доступ к реальным  координатам, пользовательские поля наблюдения или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Таблицы лидеров среди <strong>отдельных лиц</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Лидеры <strong>проектов</strong>",
         "multiple_project_administrators": "Администраторы нескольких проектов",
@@ -45808,6 +45924,8 @@ I18n.translations["si"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -45908,6 +46026,8 @@ I18n.translations["sk"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -46008,6 +46128,8 @@ I18n.translations["sl"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -46074,18 +46196,9 @@ I18n.translations["sq"] = {
   "add_annotations_for_x": "Shto shënime për \"%{x}\"",
   "add_edit_flags": "Shto/redakto shënime",
   "add_id": "Shto ID-në",
-  "add_life_stage_adult_annotation": "Shto shënimin \"Faza e Jetës: I rritur\"",
-  "add_life_stage_egg_annotation": "Shto shënimin \"Faza e Jetës: Vezë\"",
-  "add_life_stage_larva_annotation": "Shto shënimin \"Faza e Jetës: Larva\"",
-  "add_life_stage_pupa_annotation": "Shto shënimin \"Faza e Jetës: Krizalida\"",
   "add_link": "Shto vegëzen",
   "add_one_now": "Shto një tani",
   "add_photos_to_this_observation": "Shto fotografi këtij vëzhgimi",
-  "add_plant_phenology_budding_annotation": "Shto shënimin \"Fenologjia e Bimëve: Nxjerrja e sytheve\"",
-  "add_plant_phenology_flowering_annotation": "Shto shënimin \"Fenologjia e Bimëve: Lulëzimi\"",
-  "add_plant_phenology_fruiting_annotation": "Shto shënimin \"Fenologjia e Bimëve: Frytëzimi\"",
-  "add_sex_female_annotation": "Shto shënimin \"Gjinia: Femër\"",
-  "add_sex_male_annotation": "Shto shënimin \"Gjinia: Mashkull\"",
   "add_tag": "Shto etiketën",
   "add_tags": "Shto etiketat",
   "add_to_a_project": "Shto në një projekt",
@@ -47197,6 +47310,8 @@ I18n.translations["sq"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        },
         "welcome_to_projects": "Mirë se vini te Projektet!"
       },
       "show": {
@@ -47376,6 +47491,8 @@ I18n.translations["sr"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -47476,6 +47593,8 @@ I18n.translations["sr-RS"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -47542,18 +47661,9 @@ I18n.translations["sv"] = {
   "add_annotations_for_x": "Lägg till noteringar för \"%{x}\"",
   "add_edit_flags": "Lägg till/ändra markeringar",
   "add_id": "Lägg till ID",
-  "add_life_stage_adult_annotation": "Lägg till notering \"Livsstadium: vuxen\"",
-  "add_life_stage_egg_annotation": "Lägg till notering \"Livsstadium: ägg\"",
-  "add_life_stage_larva_annotation": "Lägg till notering \"Livsstadium: larv\"",
-  "add_life_stage_pupa_annotation": "Lägg till notering \"Livsstadium: puppa\"",
   "add_link": "Lägg till länk",
   "add_one_now": "Lägg till en nu",
   "add_photos_to_this_observation": "Lägg till foton i denna observation",
-  "add_plant_phenology_budding_annotation": "Lägg till notering \"Växtfenologi: knoppar\"",
-  "add_plant_phenology_flowering_annotation": "Lägg till notering \"Växtfenologi: blommar\"",
-  "add_plant_phenology_fruiting_annotation": "Lägg till notering \"Växtfenologi: frukt\"",
-  "add_sex_female_annotation": "Bifoga notering \"Kön: Hona\"",
-  "add_sex_male_annotation": "Bifoga notering \"Kön: Hane\"",
   "add_tag": "Lägg till tagg",
   "add_tags": "Lägg till taggar",
   "add_to_a_project": "Lägg till ett projekt",
@@ -48549,6 +48659,8 @@ I18n.translations["sv"] = {
       "new": {
         "collection_projects": "Samlingsprojekt",
         "delete_project": "Radera projekt",
+        "errors": {
+        },
         "multiple_project_administrators": "Flera projektadministratörer",
         "or_drag_and_drop": "(eller dra och släpp)",
         "project_name": "Projektnamn",
@@ -48773,6 +48885,8 @@ I18n.translations["th"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -48873,6 +48987,8 @@ I18n.translations["tl"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -48973,6 +49089,8 @@ I18n.translations["tr"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49073,6 +49191,8 @@ I18n.translations["uk"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49173,6 +49293,8 @@ I18n.translations["ur"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49273,6 +49395,8 @@ I18n.translations["vi"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49373,6 +49497,8 @@ I18n.translations["yo"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49439,18 +49565,9 @@ I18n.translations["zh-CN"] = {
   "add_annotations_for_x": "添加用于“%{x}”的注释",
   "add_edit_flags": "添加/编辑标记",
   "add_id": "添加ID",
-  "add_life_stage_adult_annotation": "添加“生命阶段：成人”注释",
-  "add_life_stage_egg_annotation": "为“生命阶段：卵”添加注释",
-  "add_life_stage_larva_annotation": "添加“生活期：幼虫”注解",
-  "add_life_stage_pupa_annotation": "添加“生命阶段：蛹”注释",
   "add_link": "添加链接",
   "add_one_now": "现在添加一个",
   "add_photos_to_this_observation": "添加照片至此观察",
-  "add_plant_phenology_budding_annotation": "添加“植物物候学：发芽”注释",
-  "add_plant_phenology_flowering_annotation": "添加“植物物候学：开花”注释",
-  "add_plant_phenology_fruiting_annotation": "添加“植物物候学：结果”注释",
-  "add_sex_female_annotation": "添加“性别：女”注释",
-  "add_sex_male_annotation": "添加“性别：男”注释",
   "add_tag": "添加标签",
   "add_tags": "添加标签",
   "add_to_a_project": "添加至一个项目",
@@ -50844,6 +50961,8 @@ I18n.translations["zh-CN"] = {
         "delete_project": "删除项目",
         "display_project_name": "显示项目名称",
         "do_you_need_features_from_traditional": "您是否需要传统项目中的功能，例如访问真实坐标，自定义观察字段或添加无法自动过滤的单个观察？",
+        "errors": {
+        },
         "leaderboards_among_individuals": "<strong>个人</strong>之间的排行榜",
         "leaderboards_among_projects_and_bioblitzes": "<strong>项目和bioblitzes</strong>中的排行榜",
         "multiple_project_administrators": "多重项目管理员",
@@ -51147,6 +51266,8 @@ I18n.translations["zh-HK"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -51214,18 +51335,9 @@ I18n.translations["zh-TW"] = {
   "add_annotations_for_x": "新增「%{x}」註解",
   "add_edit_flags": "新增/編輯標記",
   "add_id": "新增物種鑑定",
-  "add_life_stage_adult_annotation": "新增「生命階段：成體」的註解",
-  "add_life_stage_egg_annotation": "新增「生命階段：卵」註解",
-  "add_life_stage_larva_annotation": "新增「生命階段：幼蟲」註解",
-  "add_life_stage_pupa_annotation": "新增「生命階段：蛹」的註解",
   "add_link": "新增連結",
   "add_one_now": "現在新增一個",
   "add_photos_to_this_observation": "新增相片到觀察紀錄中",
-  "add_plant_phenology_budding_annotation": "新增「植物物候：發新芽」的註解",
-  "add_plant_phenology_flowering_annotation": "新增「植物物候學：開花」的註解",
-  "add_plant_phenology_fruiting_annotation": "新增「植物物候：結果」註解",
-  "add_sex_female_annotation": "新增「性别：雌」的註解",
-  "add_sex_male_annotation": "新增「性別：雄」之註解",
   "add_tag": "添加標籤",
   "add_tags": "添加標籤",
   "add_to_a_project": "新增至專案",
@@ -52841,7 +52953,7 @@ I18n.translations["zh-TW"] = {
     "projects": {
       "collection": "收藏",
       "new": {
-        "a_project_allows_you_to_gather": "收藏專案允許您使用 iNaturalist 搜尋工具來聚集並視覺化觀察。能自動將符合專案所設定參數內容的觀察給自動包含到，免去需手動添加的步驟。",
+        "a_project_allows_you_to_gather": "收藏專案允許您使用核心 iNaturalist 搜尋工具來聚集並視覺化觀察。相符由專案所設定參數的一切內容將會自動囊括。",
         "an_umbrella_project_can_be_used_to": "綜合專案可用來比較兩個或以上的收藏、傳統專案之間的統計內容。在您添加內容至綜合專案前，需要先有其它的專案存在。您可以在一個綜合專案裡加入上百個專案，但不可讓綜合專案含有別的綜合專案。",
         "can_be_included_in_multiple": "可包含在多項綜合專案",
         "click_through_to_individual_projects": "點擊至各項專案",
@@ -52853,11 +52965,13 @@ I18n.translations["zh-TW"] = {
         "delete_project": "刪除專案",
         "display_project_name": "顯示專案名稱",
         "do_you_need_features_from_traditional": "您需要傳統專案的特性嗎？例如像是存取實際座標、自定義觀察欄位，或是添加無法被自動篩選掉的個別觀察？",
+        "errors": {
+        },
         "leaderboards_among_individuals": "<strong>個人</strong>排行榜",
         "leaderboards_among_projects_and_bioblitzes": "<strong>專案</strong>排行榜",
         "multiple_project_administrators": "多項專案管理員",
         "name_placeholder": "在芝加哥的鳥類、令人驚豔的蜻蜓等等。",
-        "no_need_to_rely_on_manual_addition": "不需手動添加觀察額外內容，或是聚集來索引觀察",
+        "no_need_to_rely_on_manual_addition": "無手動添加觀察",
         "note_these_users_will_be_able_to_edit": "註：這些包含到管理員的使用者可以編輯所有專案細節。",
         "note_you_can_delete_the_time": "（註：若您想包含一整天，您可以刪除時區以及準確時間。）",
         "or_drag_and_drop": "（或是拖拉）",
@@ -52873,14 +52987,15 @@ I18n.translations["zh-TW"] = {
         "project_summary": "專案摘要",
         "project_summary_help": "簡要說明有關您的專案。大約前 200 個字會顯示在專案主螢幕橫幅的右側，因此請填入最精華的內容！",
         "project_summary_placeholder": "探索並追蹤在金門公園的鳥類...",
-        "start_and_end_times_for_bioblitzes": "bioblitz 的起始與結束時間",
+        "start_and_end_times_for_bioblitzes": "起始與結束日期/時間（用於 bioblitz 類型活動）",
         "umbrella_project_features": "綜合專案特性：",
         "unique_url_for_outreach": "用於推廣的獨一 URL 地址",
         "use_this_link_to_create_html": "使用<a href=\"%{url}\">此連結</a>來改以建立傳統專案。",
         "users_can_follow_your_project": "使用者可透過日誌發布文章的更新來關注您的專案",
         "visual_comparison_of_data_among": "此綜合專案下的視覺化專案資料比較",
-        "we_have_redesigned_projects": "我們將專案重新設計成能夠自動包含到所有符合您所定義到的地點、物種分類群、使用者、內容品質，以及日期條件的觀察。請選擇以下兩者類型其一：收藏專案或綜合專案，這些共有著以下特點：",
+        "we_have_redesigned_projects": "專案是設計成能夠自動包含到所有符合您所定義到的地點、物種分類群、使用者、內容品質，以及日期條件的觀察。請選擇以下兩者主要類型其一：收藏專案或綜合專案，這些共有著以下特點：",
         "welcome_to_projects": "歡迎來到專案！",
+        "you_can_learn_more_html": "您可以<a href=\"https://www.inaturalist.org/pages/managing-projects\">在此</a>了解到更多關於管理專案，或是在<a href=\"https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist\">我們的部落格</a>上閱讀專案的歷史。",
         "you_have_not_defined_any_observation_requirements": "您尚未定義任何觀察需求。請確認選擇一個或多個的物種分類群（例如：鳥類、毬果植物門）、地點（例如：巴西、黃石公園）、使用者與/或日期來定義您希望包含在您專案裡的觀察。"
       },
       "project_type": "專案類型",
@@ -52957,6 +53072,7 @@ I18n.translations["zh-TW"] = {
           "Life Stage=adult": "成體",
           "unannotated": "沒有註釋"
         },
+        "max_photos_desc": "一個分類群最多僅能有 %{max} 張照片，您需要移除現有照片來添加別的。",
         "photo_chooser_modal_desc": "從左方拖拉照片於此，或拖拉照片於此來重新排列。",
         "photo_chooser_modal_explanation": "註：物種分類頁面顯示初此物種分類的照片和其派生。挑選來用於此物種分類的照片會首張顯示出，首張照片也會是用在跨網站方面的預設圖片。",
         "trending_desc": "在最近一個月的最多觀察物種分類群",
@@ -53187,6 +53303,8 @@ I18n.translations["zh-YUE"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
