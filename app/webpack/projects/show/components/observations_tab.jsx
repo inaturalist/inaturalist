@@ -30,6 +30,7 @@ const ObservationsTab = ( {
     view = (
       <ObservationsMapView
         project={ project }
+        config={config}
       />
     );
   } else if ( activeSubview === "table" ) {

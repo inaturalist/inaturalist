@@ -64,6 +64,7 @@ const TaxonPageMap = ( {
         longitude={longitude}
         zoomLevel={zoomLevel}
         gestureHandling="auto"
+        currentUser={config.currentUser}
       />
     );
   } else {

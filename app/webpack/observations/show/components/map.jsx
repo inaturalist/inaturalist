@@ -137,6 +137,7 @@ class Map extends React.Component {
           overlayMenu
           clickable={false}
           zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+          currentUser={config.currentUser}
         />
       );
     }

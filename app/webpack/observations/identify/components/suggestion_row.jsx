@@ -118,6 +118,7 @@ const SuggestionRow = ( {
             zoomControl={ false }
             mapTypeControl={ false }
             disableFullscreen
+            currentUser={config.currentUser}
           />
         </div>
       </LazyLoad>

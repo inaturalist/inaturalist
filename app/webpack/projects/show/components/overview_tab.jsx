@@ -16,7 +16,7 @@ import FlagAnItemContainer from "../../../shared/containers/flag_an_item_contain
 
 class OverviewTab extends Component {
   render( ) {
-    const { project } = this.props;
+    const { project, config } = this.props;
     const instances = project.recent_observations ? project.recent_observations.results : null;
     return (
       <div className="OverviewTab">
@@ -47,7 +47,7 @@ class OverviewTab extends Component {
         </Grid>
         { ( !_.isEmpty( project.placeRules ) || !_.isEmpty( instances ) ) && (
           <div>
-            <OverviewMap project={ project } />
+            <OverviewMap project={ project } config={config} />
             <RecentObservationsContainer />
             <PhotoModalContainer />
           </div>

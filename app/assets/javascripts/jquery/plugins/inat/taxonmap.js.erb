@@ -148,6 +148,19 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     map._overlayControl = new iNaturalist.OverlayControl(map);
   }
 
+  if ( options.currentUser ) {
+    var currentUser = options.currentUser;
+    if ( currentUser.preferred_observations_search_map_type ) {
+      map.setMapTypeId( currentUser.preferred_observations_search_map_type );
+    }
+    if ( !map.mapTypeListener ) {
+      function setMapTypeAndUpdateSession( ) {
+        updateSession( { prefers_observations_search_map_type: this.getMapTypeId( ) } );
+      }
+      map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", setMapTypeAndUpdateSession );
+    }
+  }
+
   if( options.showLegend && !map._legend ) {
     // Create the DIV to hold the control and call the CenterControl() constructor
     // passing in this DIV.

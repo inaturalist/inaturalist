@@ -137,6 +137,7 @@ class ObservationModal extends React.Component {
           showAllLayer={false}
           overlayMenu={false}
           zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+          currentUser={currentUser}
         />
       );
     } else if ( observation.obscured ) {

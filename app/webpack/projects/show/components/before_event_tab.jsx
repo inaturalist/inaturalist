@@ -34,7 +34,7 @@ class BeforeEventTab extends Component {
             </Col>
           </Row>
           { !_.isEmpty( project.placeRules ) && (
-            <OverviewMap project={ project } />
+            <OverviewMap project={ project } config={config} />
           ) }
         </Grid>
       </div>

@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import TaxonMap from "../../../observations/identify/components/taxon_map";
 
-const OverviewMap = ( { project } ) => {
+const OverviewMap = ( { project, config } ) => {
   let title = I18n.t( "map_of_observations" );
   let totalBounds = project.recent_observations && project.recent_observations.total_bounds;
   if ( _.isEmpty( totalBounds ) && !_.isEmpty( project.placeRules ) ) {
@@ -46,6 +46,7 @@ const OverviewMap = ( { project } ) => {
             maxY={ totalBounds && totalBounds.nelat }
             minX={ totalBounds && totalBounds.swlng }
             minY={ totalBounds && totalBounds.swlat }
+            currentUser={config.currentUser}
           />
         </Col>
       </Row>
@@ -54,7 +55,12 @@ const OverviewMap = ( { project } ) => {
 };
 
 OverviewMap.propTypes = {
-  project: PropTypes.object
+  project: PropTypes.object,
+  config: PropTypes.object
+};
+
+OverviewMap.defaultProps = {
+  config: {}
 };
 
 export default OverviewMap;

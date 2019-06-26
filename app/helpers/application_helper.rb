@@ -672,7 +672,7 @@ module ApplicationHelper
     map_tag_attrs = {
       "latitude" => options[:latitude],
       "longitude" => options[:longitude],
-      "map-type" => options[:map_type],
+      "map-type" => options[:map_type] || current_user && current_user.preferred_observations_search_map_type,
       "zoom-level" => options[:zoom_level],
       "min-zoom" => options[:min_zoom],
       "url-coords" => options[:url_coords] ? 'true' : nil,

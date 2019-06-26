@@ -6,7 +6,7 @@ import TaxonMap from "../../../observations/identify/components/taxon_map";
 import RecentObservationsContainer from "../containers/recent_observations_container";
 import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_container";
 
-const ObservationsMapView = ( { project } ) => {
+const ObservationsMapView = ( { project, config } ) => {
   const totalBounds = project.recent_observations && project.recent_observations.total_bounds;
   return (
     <div className="ObservationsListView">
@@ -30,6 +30,7 @@ const ObservationsMapView = ( { project } ) => {
               maxY={ totalBounds && totalBounds.nelat }
               minX={ totalBounds && totalBounds.swlng }
               minY={ totalBounds && totalBounds.swlat }
+              currentUser={config.currentUser}
             />
           </Col>
         </Row>
@@ -41,7 +42,8 @@ const ObservationsMapView = ( { project } ) => {
 };
 
 ObservationsMapView.propTypes = {
-  project: PropTypes.object
+  project: PropTypes.object,
+  config: PropTypes.object
 };
 
 export default ObservationsMapView;

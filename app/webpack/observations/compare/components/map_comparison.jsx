@@ -66,6 +66,7 @@ class MapComparison extends React.Component {
           maxX={ bounds.nelng }
           maxY={ bounds.nelat }
           observationLayers={ _.map( queries, layerForQuery ) }
+          currentUser={config.currentUser}
         />
       );
     } else {
@@ -123,7 +124,8 @@ MapComparison.propTypes = {
   mapLayout: PropTypes.string,
   setMapLayout: PropTypes.func,
   queries: PropTypes.array,
-  bounds: PropTypes.object
+  bounds: PropTypes.object,
+  config: PropTypes.object
 };
 
 MapComparison.defaultProps = {
