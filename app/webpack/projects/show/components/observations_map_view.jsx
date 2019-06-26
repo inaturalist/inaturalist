@@ -12,24 +12,24 @@ const ObservationsMapView = ( { project, config } ) => {
     <div className="ObservationsListView">
       <Grid>
         <Row>
-          <Col xs={ 12 }>
+          <Col xs={12}>
             <TaxonMap
-              observationLayers={ [project.search_params] }
+              observationLayers={[project.search_params]}
               showAccuracy
-              enableShowAllLayer={ false }
-              overlayMenu={ false }
+              enableShowAllLayer={false}
+              overlayMenu={false}
               gestureHandling="auto"
-              placeLayers={ _.isEmpty( project.placeRules ) ? null :
-                [{ place: {
+              placeLayers={_.isEmpty( project.placeRules ) ? null : [{
+                place: {
                   id: _.map( project.placeRules, "operand_id" ).join( "," ),
                   name: "Places"
-                } }]
-              }
-              minZoom={ 2 }
-              maxX={ totalBounds && totalBounds.nelng }
-              maxY={ totalBounds && totalBounds.nelat }
-              minX={ totalBounds && totalBounds.swlng }
-              minY={ totalBounds && totalBounds.swlat }
+                }
+              }]}
+              minZoom={2}
+              maxX={totalBounds && totalBounds.nelng}
+              maxY={totalBounds && totalBounds.nelat}
+              minX={totalBounds && totalBounds.swlng}
+              minY={totalBounds && totalBounds.swlat}
               currentUser={config.currentUser}
             />
           </Col>

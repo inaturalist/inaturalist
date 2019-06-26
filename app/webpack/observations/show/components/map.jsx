@@ -96,11 +96,11 @@ class Map extends React.Component {
         obsForMap.taxon = Object.assign( { }, observation.taxon, {
           forced_name: ReactDOMServer.renderToString(
             <SplitTaxon
-              taxon={ observation.taxon }
-              user={ config.currentUser }
+              taxon={observation.taxon}
+              user={config.currentUser}
               noParens
               iconLink
-              url={ urlForTaxon( observation.taxon ) }
+              url={urlForTaxon( observation.taxon )}
             />
           )
         } );
@@ -148,7 +148,9 @@ class Map extends React.Component {
       const obscured = observation.obscured && !observation.private_geojson
         && (
           <span className="obscured">
-            ({ I18n.t( "obscured" ) })
+            { "(" }
+            { I18n.t( "obscured" ) }
+            { ")" }
           </span>
         );
       const showLength = observation.obscured ? 22 : 32;
@@ -157,9 +159,13 @@ class Map extends React.Component {
         placeGuess = `${placeGuess.substring( 0, showLength ).trim( )}...`;
         showMore = (
           <div className="show-more">
-            <div onClick={ ( ) => { this.setState( { showLongLabel: true } ); } }>
+            <button
+              type="button"
+              className="btn btn-nostyle"
+              onClick={( ) => { this.setState( { showLongLabel: true } ); }}
+            >
               { I18n.t( "show" ) }
-            </div>
+            </button>
           </div> );
       }
       placeGuessElement = (
