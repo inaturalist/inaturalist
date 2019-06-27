@@ -10,15 +10,15 @@ import {
 } from "react-google-maps";
 import { SearchBox } from "react-google-maps/lib/components/places/SearchBox";
 import util from "../models/util";
-import { objectToComparable } from "../../../shared/util";
+import { objectToComparable, updateSession } from "../../../shared/util";
 
 let lastCenterChange = new Date().getTime();
 
 const markerSVG = {
-  path: "M648 1169q117 0 216 -60t156.5 -161t57.5 -218q0 -115 -70 -258q-69 -109 -158 -225.5t-143 " +
-    "-179.5l-54 -62q-9 8 -25.5 24.5t-63.5 67.5t-91 103t-98.5 128t-95.5 148q-60 132 -60 249q0 88 " +
-    "34 169.5t91.5 142t137 96.5t166.5 36zM652.5 974q-91.5 0 -156.5 -65 t-65 -157t65 -156.5t156.5 " +
-    "-64.5t156.5 64.5t65 156.5t-65 157t-156.5 65z",
+  path: "M648 1169q117 0 216 -60t156.5 -161t57.5 -218q0 -115 -70 -258q-69 -109 -158 -225.5t-143 "
+  + "-179.5l-54 -62q-9 8 -25.5 24.5t-63.5 67.5t-91 103t-98.5 128t-95.5 148q-60 132 -60 249q0 88 "
+  + "34 169.5t91.5 142t137 96.5t166.5 36zM652.5 974q-91.5 0 -156.5 -65 t-65 -157t65 -156.5t156.5 "
+  + "-64.5t156.5 64.5t65 156.5t-65 157t-156.5 65z",
   fillOpacity: 1,
   strokeWeight: 0,
   scale: 0.02,
@@ -29,6 +29,21 @@ const markerSVG = {
 
 // https://github.com/tomchentw/react-google-maps/issues/220#issuecomment-319269122
 class LocationChooserMap extends React.Component {
+  // Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
+  static distanceInMeters( lat1, lon1, lat2, lon2 ) {
+    const earthRadius = 6370997; // m
+    const degreesPerRadian = 57.2958;
+    const dLat = ( lat2 - lat1 ) / degreesPerRadian;
+    const dLon = ( lon2 - lon1 ) / degreesPerRadian;
+    const lat1Mod = lat1 / degreesPerRadian;
+    const lat2Mod = lat2 / degreesPerRadian;
+    const a = Math.sin( dLat / 2 ) * Math.sin( dLat / 2 )
+      + Math.sin( dLon / 2 ) * Math.sin( dLon / 2 ) * Math.cos( lat1Mod ) * Math.cos( lat2Mod );
+    const c = 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) );
+    const d = earthRadius * c;
+    return d;
+  }
+
   constructor( props, context ) {
     super( props, context );
     this.handleMapClick = this.handleMapClick.bind( this );
@@ -42,7 +57,8 @@ class LocationChooserMap extends React.Component {
   }
 
   componentDidMount( ) {
-    if ( this.map && !this.props.center ) {
+    const { center } = this.props;
+    if ( this.map && !center ) {
       setTimeout( this.fitCircles, 10 );
     }
   }
@@ -93,7 +109,8 @@ class LocationChooserMap extends React.Component {
   fitCircles( ) {
     if ( !this.map ) { return; }
     const circles = [];
-    _.each( this.props.obsCards, c => {
+    const { obsCards } = this.props;
+    _.each( obsCards, c => {
       if ( c.latitude ) {
         /* global google */
         circles.push( new google.maps.Circle( {
@@ -137,20 +154,23 @@ class LocationChooserMap extends React.Component {
   }
 
   handleMapClick( event ) {
-    const latLng = event.latLng;
+    const { latLng } = event;
     const zoom = this.map.getZoom( );
-    const radius = Math.round( ( 1 / Math.pow( 2, zoom ) ) * 2000000 );
+    const radius = Math.round( ( 1 / ( 2 ** zoom ) ) * 2000000 );
     this.moveCircle( latLng, radius, { geocode: true } );
   }
 
   moveCircle( center, radius, options = { } ) {
-    this.props.updateState( { locationChooser: {
-      lat: center.lat( ),
-      lng: center.lng( ),
-      center: this.map.getCenter( ),
-      bounds: this.map.getBounds( ),
-      radius
-    } } );
+    const { updateState } = this.props;
+    updateState( {
+      locationChooser: {
+        lat: center.lat( ),
+        lng: center.lng( ),
+        center: this.map.getCenter( ),
+        bounds: this.map.getBounds( ),
+        radius
+      }
+    } );
     if ( options.geocode ) {
       this.reverseGeocode( center.lat( ), center.lng( ) );
     }
@@ -196,9 +216,6 @@ class LocationChooserMap extends React.Component {
 
   handlePlacesChanged( ) {
     const places = this.searchbox.getPlaces();
-    // if ( places.length <= 0 ) {
-    //   return;
-    // }
     const { updateState } = this.props;
     let searchQuery;
     let lat;
@@ -225,6 +242,7 @@ class LocationChooserMap extends React.Component {
     let viewport;
     if ( places.length > 0 ) {
       const { geometry } = places[0];
+      ( { viewport } = geometry );
       lat = lat || geometry.location.lat( );
       lng = lng || geometry.location.lng( );
       // Set the locality notes using political entity names and omitting
@@ -247,14 +265,13 @@ class LocationChooserMap extends React.Component {
       } else {
         notes = places[0].formatted_address;
       }
-      viewport = geometry.viewport;
     }
     if ( viewport && !searchedForCoord ) {
       // radius is the largest distance from geom center to one of the bounds corners
       radius = _.max( [
-        this.distanceInMeters( lat, lng,
+        LocationChooserMap.distanceInMeters( lat, lng,
           viewport.getCenter().lat(), viewport.getCenter().lng() ),
-        this.distanceInMeters( lat, lng,
+        LocationChooserMap.distanceInMeters( lat, lng,
           viewport.getNorthEast().lat(), viewport.getNorthEast().lng() )
       ] );
       this.map.fitBounds( viewport );
@@ -288,21 +305,6 @@ class LocationChooserMap extends React.Component {
     } );
   }
 
-  // Haversine distance calc, adapted from http://www.movable-type.co.uk/scripts/latlong.html
-  distanceInMeters( lat1, lon1, lat2, lon2 ) {
-    const earthRadius = 6370997; // m
-    const degreesPerRadian = 57.2958;
-    const dLat = ( lat2 - lat1 ) / degreesPerRadian;
-    const dLon = ( lon2 - lon1 ) / degreesPerRadian;
-    const lat1Mod = lat1 / degreesPerRadian;
-    const lat2Mod = lat2 / degreesPerRadian;
-    const a = Math.sin( dLat / 2 ) * Math.sin( dLat / 2 )
-      + Math.sin( dLon / 2 ) * Math.sin( dLon / 2 ) * Math.cos( lat1Mod ) * Math.cos( lat2Mod );
-    const c = 2 * Math.atan2( Math.sqrt( a ), Math.sqrt( 1 - a ) );
-    const d = earthRadius * c;
-    return d;
-  }
-
   render( ) {
     // const props = this.props;
     const {
@@ -314,7 +316,8 @@ class LocationChooserMap extends React.Component {
       zoom,
       bounds,
       center: existingCenter,
-      updateState
+      updateState,
+      config
     } = this.props;
     let center;
     const circles = [];
@@ -399,7 +402,13 @@ class LocationChooserMap extends React.Component {
         defaultZoom={zoom || 1}
         defaultCenter={existingCenter || { lat: 30, lng: 15 }}
         defaultTilt={0}
+        defaultMapTypeId={
+          config.currentUser && config.currentUser.preferred_observations_search_map_type
+        }
         onClick={this.handleMapClick}
+        onMapTypeIdChanged={( ) => {
+          updateSession( { prefers_observations_search_map_type: this.map.getMapTypeId( ) } );
+        }}
         onBoundsChanged={( ) => {
           const c = this.map.getCenter( );
           updateState( {
@@ -467,11 +476,13 @@ LocationChooserMap.propTypes = {
   bounds: PropTypes.object,
   notes: PropTypes.string,
   manualPlaceGuess: PropTypes.bool,
-  fitCurrentCircle: PropTypes.bool
+  fitCurrentCircle: PropTypes.bool,
+  config: PropTypes.object
 };
 
 LocationChooserMap.defaultProps = {
-  obsCards: {}
+  obsCards: {},
+  config: {}
 };
 
 // withGoogleMap is a HOC from react-google-maps. It requires that this

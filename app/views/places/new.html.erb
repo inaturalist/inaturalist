@@ -61,7 +61,10 @@
         PLACE_INVALID = <%= @place && !@place.errors.blank? ? 'true' : 'false' %>,
         CURRENT_USER_IS_CURATOR = <%= logged_in? && current_user.is_curator? ? 'true' : 'false' %>
     $(document).ready(function() {
-      window.importMap = iNaturalist.Map.createMap({div: 'importMap'})
+      window.importMap = iNaturalist.Map.createMap( {
+        div: "importMap",
+        mapTypeId: typeof( CURRENT_USER ) === "object" ? CURRENT_USER.preferred_observations_search_map_type : null
+      } );
       window.map = L.map('drawingMap', { minZoom: 1 }).setView([0,0], 1)
       var d = new Date()
       var bing = new L.BingLayer(BING_KEY, {type:"AerialWithLabels"});

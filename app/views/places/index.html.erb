@@ -30,15 +30,15 @@
 
   <script type="text/javascript" charset="utf-8">
     var places = <%=json_escape @places.to_json.html_safe %>,
-        BOUNDS = <%= @site.bounds ? raw(@site.bounds.to_h.to_json) : "false" %>
+        BOUNDS = <%= @site.bounds ? raw(@site.bounds.to_h.to_json) : "false" %>;
     $(document).ready(function() {
       window.map = iNaturalist.Map.createMap({
         lat: 0, 
         lng: 0, 
         zoom: 2,
         minZoom: 2,
-        mapTypeId: eval(I18n.t('maptype_for_places')),
-        bounds: BOUNDS
+        bounds: BOUNDS,
+        mapTypeId: typeof( CURRENT_USER ) === "object" ? CURRENT_USER.preferred_observations_search_map_type : null
       })
       for (var i=0; i < places.length; i++) {
         var place = places[i],

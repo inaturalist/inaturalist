@@ -6,7 +6,8 @@ function mapStateToProps( state ) {
   return {
     mapLayout: state.compare.mapLayout,
     queries: state.compare.queries,
-    bounds: state.compare.bounds
+    bounds: state.compare.bounds,
+    config: state.config
   };
 }
 

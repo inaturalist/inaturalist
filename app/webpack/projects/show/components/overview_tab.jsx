@@ -1,5 +1,5 @@
 import _ from "lodash";
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import RecentObservationsContainer from "../containers/recent_observations_container";
@@ -14,58 +14,56 @@ import OverviewStats from "./overview_stats";
 import OverviewMap from "./overview_map";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 
-class OverviewTab extends Component {
-  render( ) {
-    const { project } = this.props;
-    const instances = project.recent_observations ? project.recent_observations.results : null;
-    return (
-      <div className="OverviewTab">
-        <OverviewRecentObservations { ...this.props } />
-        <Grid className="leaders-grid">
-          <Row>
-            <Col xs={ 4 } className="no-padding">
-              <TopObserversPanelContainer />
-            </Col>
-            <Col xs={ 4 } className="no-padding">
-              <TopSpeciesObserversPanelContainer />
-            </Col>
-            <Col xs={ 4 } className="no-padding">
-              <TopSpeciesPanelContainer />
-            </Col>
-          </Row>
-        </Grid>
-        <Grid className="info-grid">
-          <Row>
-            <Col xs={ 4 }>
-              <Requirements { ...this.props } includeArrowLink />
-            </Col>
-            <OverviewStats { ...this.props } />
-            <Col xs={ 4 }>
-              <News { ...this.props } />
-            </Col>
-          </Row>
-        </Grid>
-        { ( !_.isEmpty( project.placeRules ) || !_.isEmpty( instances ) ) && (
-          <div>
-            <OverviewMap project={ project } />
-            <RecentObservationsContainer />
-            <PhotoModalContainer />
-          </div>
-        ) }
-        <Grid>
-          <Row>
-            <Col xs={ 12 }>
-              <FlagAnItemContainer
-                item={ project }
-                manageFlagsPath={ `/flags?project_id=${project.id}` }
-              />
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-    );
-  }
-}
+const OverviewTab = props => {
+  const { config, project } = props;
+  const instances = project.recent_observations ? project.recent_observations.results : null;
+  return (
+    <div className="OverviewTab">
+      <OverviewRecentObservations {...props} />
+      <Grid className="leaders-grid">
+        <Row>
+          <Col xs={4} className="no-padding">
+            <TopObserversPanelContainer />
+          </Col>
+          <Col xs={4} className="no-padding">
+            <TopSpeciesObserversPanelContainer />
+          </Col>
+          <Col xs={4} className="no-padding">
+            <TopSpeciesPanelContainer />
+          </Col>
+        </Row>
+      </Grid>
+      <Grid className="info-grid">
+        <Row>
+          <Col xs={4}>
+            <Requirements {...props} includeArrowLink />
+          </Col>
+          <OverviewStats {...props} />
+          <Col xs={4}>
+            <News {...props} />
+          </Col>
+        </Row>
+      </Grid>
+      { ( !_.isEmpty( project.placeRules ) || !_.isEmpty( instances ) ) && (
+        <div>
+          <OverviewMap project={project} config={config} />
+          <RecentObservationsContainer />
+          <PhotoModalContainer />
+        </div>
+      ) }
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            <FlagAnItemContainer
+              item={project}
+              manageFlagsPath={`/flags?project_id=${project.id}`}
+            />
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  );
+};
 
 OverviewTab.propTypes = {
   project: PropTypes.object,

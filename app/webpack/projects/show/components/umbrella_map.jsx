@@ -38,7 +38,7 @@ class UmbrellaMap extends Component {
   }
 
   render( ) {
-    const { project } = this.props;
+    const { project, config } = this.props;
     const subprojectPlaceRules = _.compact( _.flattenDeep( _.map( project.projectRules, rule => (
       _.filter( rule.project.project_observation_rules, subRule => (
         subRule.operand_type === "Place" && subRule.operator === "observed_in_place?"
@@ -71,6 +71,7 @@ class UmbrellaMap extends Component {
               maxY={totalBounds && totalBounds.nelat}
               minX={totalBounds && totalBounds.swlng}
               minY={totalBounds && totalBounds.swlat}
+              currentUser={config.currentUser}
             />
           </Col>
         </Row>
@@ -80,7 +81,12 @@ class UmbrellaMap extends Component {
 }
 
 UmbrellaMap.propTypes = {
-  project: PropTypes.object
+  project: PropTypes.object,
+  config: PropTypes.object
+};
+
+UmbrellaMap.defaultProps = {
+  config: {}
 };
 
 export default UmbrellaMap;

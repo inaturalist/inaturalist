@@ -29,32 +29,33 @@ const ObservationsTab = ( {
   } else if ( activeSubview === "map" ) {
     view = (
       <ObservationsMapView
-        project={ project }
+        project={project}
+        config={config}
       />
     );
   } else if ( activeSubview === "table" ) {
     view = (
       <ObservationsListView
-        config={ config }
-        loading={ loading }
-        setObservationFilters={ setObservationFilters }
-        observations={ loading ? null : project.filtered_observations.results }
-        loadMore={ ( ) => {
+        config={config}
+        loading={loading}
+        setObservationFilters={setObservationFilters}
+        observations={loading ? null : project.filtered_observations.results}
+        loadMore={( ) => {
           infiniteScrollObservations( scrollIndex + 30 );
-        } }
-        hasMore={ observations && observations.length >= scrollIndex && scrollIndex < 200 }
+        }}
+        hasMore={observations && observations.length >= scrollIndex && scrollIndex < 200}
       />
     );
   } else {
     view = (
       <ObservationsFlexGridView
-        config={ config }
-        observations={ observations }
-        scrollIndex={ config.observationsScrollIndex }
-        loadMore={ ( ) => {
+        config={config}
+        observations={observations}
+        scrollIndex={config.observationsScrollIndex}
+        loadMore={( ) => {
           infiniteScrollObservations( scrollIndex + 30 );
-        } }
-        hasMore={ observations && observations.length >= scrollIndex && scrollIndex < 200 }
+        }}
+        hasMore={observations && observations.length >= scrollIndex && scrollIndex < 200}
       />
     );
   }
@@ -62,44 +63,47 @@ const ObservationsTab = ( {
     <div className="ObservationsTab">
       <Grid>
         <Row className="button-row">
-          <Col xs={ 12 }>
+          <Col xs={12}>
             <div className="btn-group">
               <button
-                className={ `btn btn-default ${activeSubview === "map" && "active"}` }
-                onClick={ ( ) => setSelectedTab( "observations", { subtab: "map" } ) }
+                type="button"
+                className={`btn btn-default ${activeSubview === "map" && "active"}`}
+                onClick={( ) => setSelectedTab( "observations", { subtab: "map" } )}
               >
                 <i className="fa fa-map-marker" />
                 { I18n.t( "map" ) }
               </button>
               <button
-                className={ `btn btn-default ${activeSubview === "grid" && "active"}` }
-                onClick={ ( ) => setSelectedTab( "observations", { subtab: "grid" } ) }
+                type="button"
+                className={`btn btn-default ${activeSubview === "grid" && "active"}`}
+                onClick={( ) => setSelectedTab( "observations", { subtab: "grid" } )}
               >
                 <i className="fa fa-th" />
                 { I18n.t( "grid" ) }
               </button>
               <button
-                className={ `btn btn-default ${activeSubview === "table" && "active"}` }
-                onClick={ ( ) => setSelectedTab( "observations", { subtab: "table" } ) }
+                type="button"
+                className={`btn btn-default ${activeSubview === "table" && "active"}`}
+                onClick={( ) => setSelectedTab( "observations", { subtab: "table" } )}
               >
                 <i className="fa fa-bars" />
                 { I18n.t( "list" ) }
               </button>
             </div>
-            <a href={ `/observations/identify?project_id=${project.slug}` }>
-              <button className="btn btn-default standalone">
+            <a href={`/observations/identify?project_id=${project.slug}`}>
+              <button type="button" className="btn btn-default standalone">
                 <i className="icon-identification" />
                 { I18n.t( "identify" ) }
               </button>
             </a>
-            <a href={ `/observations?project_id=${project.slug}&verifiable=any&place_id=any` }>
-              <button className="btn btn-default standalone">
+            <a href={`/observations?project_id=${project.slug}&verifiable=any&place_id=any`}>
+              <button type="button" className="btn btn-default standalone">
                 <i className="fa fa-search" />
                 { I18n.t( "search" ) }
               </button>
             </a>
-            <a href={ `/observations/export?projects=${project.slug}` }>
-              <button className="btn btn-default standalone export">
+            <a href={`/observations/export?projects=${project.slug}`}>
+              <button type="button" className="btn btn-default standalone export">
                 <i className="fa fa-external-link" />
                 { I18n.t( "export_observations" ) }
               </button>

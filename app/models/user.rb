@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   preference :receive_mentions, :boolean, :default => true
   preference :observations_view, :string
   preference :observations_search_subview, :string
-  preference :observations_search_map_type, :string
+  preference :observations_search_map_type, :string, default: "terrain"
   preference :community_taxa, :boolean, :default => true
   PREFERRED_OBSERVATION_FIELDS_BY_ANYONE = "anyone"
   PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"

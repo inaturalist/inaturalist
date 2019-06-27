@@ -23,9 +23,12 @@ const SuggestionRow = ( {
     .slice( 0, 2 );
   let backgroundSize = "cover";
   if (
-    taxonPhotos.length === 1 &&
-    taxonPhotos[0].photo.original_dimensions &&
-    taxonPhotos[0].photo.original_dimensions.width <= taxonPhotos[0].photo.original_dimensions.height
+    taxonPhotos.length === 1
+    && taxonPhotos[0].photo.original_dimensions
+    && (
+      taxonPhotos[0].photo.original_dimensions.width
+      <= taxonPhotos[0].photo.original_dimensions.height
+    )
   ) {
     backgroundSize = "contain";
   }
@@ -35,15 +38,15 @@ const SuggestionRow = ( {
     <div className="suggestion-row" key={`suggestion-row-${taxon.id}`}>
       <h3 className="clearfix">
         <SplitTaxon
-          taxon={ taxon }
+          taxon={taxon}
           target="_blank"
-          url={ urlForTaxon( taxon ) }
-          onClick={ e => {
+          url={urlForTaxon( taxon )}
+          onClick={e => {
             e.preventDefault( );
             setDetailTaxon( taxon );
             return false;
-          } }
-          user={ config.currentUser }
+          }}
+          user={config.currentUser}
           iconLink
         />
         <div className="btn-group pull-right">
@@ -57,12 +60,12 @@ const SuggestionRow = ( {
           <Button
             bsSize="xs"
             bsStyle="primary"
-            onClick={ ( ) => {
+            onClick={( ) => {
               chooseTaxon( taxon, {
                 observation,
                 vision: source === "visual"
               } );
-            } }
+            }}
           >
             { I18n.t( "select" ) }
           </Button>
@@ -81,22 +84,22 @@ const SuggestionRow = ( {
                 photo={tp.photo}
                 taxon={taxon}
                 height={200}
-                backgroundSize={ backgroundSize }
+                backgroundSize={backgroundSize}
                 showTaxonPhotoModal={ p => {
-                  const index = _.findIndex( taxon.taxonPhotos, taxonPhoto =>
-                    taxonPhoto.photo.id === p.id );
+                  const index = _.findIndex( taxon.taxonPhotos,
+                    taxonPhoto => taxonPhoto.photo.id === p.id );
                   setDetailTaxon( taxon, { detailPhotoIndex: index } );
-                } }
+                }}
               />
             ) ) }
           </div>
           <TaxonMap
             showAllLayer={false}
-            minZoom={ 2 }
-            zoomLevel={ 6 }
+            minZoom={2}
+            zoomLevel={6}
             preserveViewport
-            latitude={ observation.latitude }
-            longitude={ observation.longitude }
+            latitude={observation.latitude}
+            longitude={observation.longitude}
             gbifLayerLabel={I18n.t( "maps.overlays.gbif_network" )}
             observations={[observation]}
             gestureHandling="auto"
@@ -108,16 +111,19 @@ const SuggestionRow = ( {
                   label: I18n.t( "observations_without_media" ),
                   verifiable: false,
                   disabled: !currentUserPrefersMedialessObs,
-                  onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+                  onChange: e => updateCurrentUser( {
+                    prefers_medialess_obs_maps: e.target.checked
+                  } )
                 }
               ],
               gbif: { disabled: true },
               places: true,
               ranges: true
             }]}
-            zoomControl={ false }
-            mapTypeControl={ false }
+            zoomControl={false}
+            mapTypeControl={false}
             disableFullscreen
+            currentUser={config.currentUser}
           />
         </div>
       </LazyLoad>
