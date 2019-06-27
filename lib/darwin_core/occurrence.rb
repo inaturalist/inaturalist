@@ -147,7 +147,7 @@ module DarwinCore
         user.name.blank? ? user.login : user.name
       end
 
-      def inatLogin
+      def inaturalistLogin
         user.login
       end
 

@@ -4,7 +4,7 @@ import Project from "../shared/models/project";
 import { setConfirmModalState } from "../../observations/show/ducks/confirm_modal";
 
 const SET_ATTRIBUTES = "projects-form/project/SET_ATTRIBUTES";
-const UMBRELLA_SUBPROJECT_LIMIT = 5;
+const UMBRELLA_SUBPROJECT_LIMIT = 500;
 
 export default function reducer( state = { }, action ) {
   switch ( action.type ) {
@@ -121,7 +121,7 @@ export function validateSubprojects( ) {
     const { project } = getState( ).form;
     if ( !project ) { return void null; }
     const subprojectLimit = (
-      project.initialSubprojectCount && project.initialSubprojectCount > 500
+      project.initialSubprojectCount && project.initialSubprojectCount > UMBRELLA_SUBPROJECT_LIMIT
     ) ? project.initialSubprojectCount : UMBRELLA_SUBPROJECT_LIMIT;
     const countActiveSubprojects = _.filter(
       project.project_observation_rules, rule => rule.operand_type === "Project" && !rule._destroy
