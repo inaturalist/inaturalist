@@ -42,6 +42,7 @@
 # Author: Ncontinanza
 # Author: Ohlila
 # Author: Optilete
+# Author: Pablo de la Fuente Brun
 # Author: Pato
 # Author: PoLuX124
 # Author: Pyscowicz
@@ -995,7 +996,7 @@ es:
   community_guidelines: Directrices de la comunidad
   community_id: 'Identificación de la <strong>comunidad</strong>:'
   community_id_heading: ID de la comunidad
-  community_id_at_species_or_lower?: ¿La ID de la comunidad es a nivel de especie
+  community_id_at_species_or_lower?: ¿La ID de la comunidad está a nivel de especie
     o inferior?
   community_id_at_genus_level_or_lower: ID de la comunidad a nivel de género o inferior
   community_id_at_species_level_or_lower: ID de la comunidad a nivel de especie o
@@ -1053,6 +1054,7 @@ es:
     de este taxón que se producen aquí?
   contest: concurso
   continue: Continua
+  continue_to_site: Continuar a %{site_name}
   contributions: contribuciones
   contributions_from: Aportes de
   contributor_cannot_be_found: El contribuidor no se pudo encontrar
@@ -1785,6 +1787,7 @@ es:
   helped_the_observer_make: ayudó al observador a hacer su identificación final (es
     decir, se hicieron antes de la identificación final y concuerdan)
   here_are_3_examples: Aquí hay 3 ejemplos de datos bien formados
+  here_are_our_top_suggestions: Éstas son nuestras principales sugerencias
   here_are_our_top_species_suggestions: Éstas son nuestras sugerencias principales
     de especies
   here_are_some_things_you_can_do_meantime: Aquí hay algunas cosas que puede hacer
@@ -2258,6 +2261,7 @@ es:
     el: Griego
     en-US: Inglés (Estados Unidos)
     en: Inglés
+    eo: Esperanto
     es-ES: Español (España)
     es-MX: Español (México)
     es: Español
@@ -2998,6 +3002,10 @@ es:
     pueden activar la agregación de proyectos
   only_species: solamente especies
   only_species_and_subspecies: solamente especies y subespecies/variedades
+  only_staff_can_edit_large_places: Solo el personal de la pagina puede editar espacios
+    muy grandes
+  only_staff_can_edit_standard_places: Solo el personal de la página puede editar
+    la jerarquía estándar
   only_the_author_of_this_post_can_do_that: Solo el autor de esta nota puede hacer
     eso. No seas malvado.
   only_the_owner_of_this_list_can_do_that: Solo el propietario de esa lista puede
@@ -3064,6 +3072,9 @@ es:
   owner: Propietario
   parent: Padre
   parent_name: Nombre de la clase o especie padre
+  parental_consent:
+    must_specify_email: Debe especificarse la cuenta de correo electrónico
+    invalid_email: Formato de correo electrónico incorrecto
   password: Contraseña
   password_confirmation: Confirmar contraseña
   paste: Pegar
@@ -3125,6 +3136,13 @@ es:
   photos_updated: Fotos actualizadas.
   google_account_not_linked: Como %{user} ya no tiene ninguna cuenta de Google enlazada,
     %{site_name} no tiene permisos para acceder a esta fotografía.
+  pi_consent_desc_title: Sobre la Informacion Personal
+  pi_consent_label: |-
+    Permito a iNaturalist a almacenar y procesar ciertos tipos de
+    información personal para administrar mi cuenta
+  pi_consent_child_label: |-
+    Permito a iNaturalist a almacenar y procesar ciertos tipos de
+    información personal acerca de mi hijo/a para administrar la cuenta de este/a
   picasa_identity: Identidad de Picasa
   pick_a_username: Elegir nombre de usuario
   pin_verb: Pin
@@ -3559,7 +3577,7 @@ es:
   posted_on: Ingresado el
   posts: Ingresos
   potential_disagreement: Posible desacuerdo
-  powered_by: Desarrollado por
+  powered_by: Propulsado por
   powered_by_inaturalist_open_source_software_html: Desarrollado por <a href="https://github.com/inaturalist/inaturalist"
     target="_new">el software de código abierto iNaturalist</a>
   present: nativo
@@ -3965,6 +3983,7 @@ es:
   search_for_species: Busca especies
   search_list: Lista de búsqueda
   search_obs: Búsqueda de observaciones
+  search_observations: Búsqueda de observaciones
   search_places: Busca lugares
   search_projects: Busca proyectos
   search_results_for: Buscar resultados para
@@ -4901,6 +4920,9 @@ es:
   use_well_formed_csv: |-
     Usa un CSV correcto. Esto significa que el texto con comas debe encerrarse entre comillas dobles.
     La mayoría de las aplicaciones de hoja de cálculos deberían exportar a CSV con este formato.
+  used_x_times:
+    one: Utilizado 1 vez
+    other: Utilizado %{count} veces
   user: Usuario
   user_added_a_x: '%{user} añadió una %{x}'
   user_added_a_x_to_noun_by_html: '%{user} añadió un %{x} a %{noun} de %{by}'
@@ -4977,6 +4999,7 @@ es:
   valid_interrogation: ¿Válido?
   valid_options_are: Las opciones válidas son
   value: Valor
+  values: Valores
   verbing_x_of_y: '%{verb} %{x} de %{y}...'
   verifiable_observations_by_observation_date: Observaciones verificables por fecha
     de observación
@@ -5189,6 +5212,8 @@ es:
   widget_code: Código de widget
   widget_for: Widget para
   will_be: será
+  wikipedia_attribution_cc_by_sa_3: 'Fuente: Wikipedia, «%{title}», %{url}, CC BY-SA
+    3.0'
   wikipedia_attribution_cc_by_sa_3_html: |-
     Este articulo usa material del articulo de Wikipedia
     <a href="%{url}">"%{title}"</a>, que esta bajo la licencia
@@ -5896,6 +5921,10 @@ es:
           proyecto y taxones con observaciones en grado de investigación agregadas
           al proyecto se muestran en las listas del proyecto.
     messages:
+      from: De
+      to: Para
+      subject: Asunto
+      subject_body: Asunto/cuerpo
       index:
         show_messages_to_user: Mostrar mensajes a %{user}
     oauth:
@@ -6969,9 +6998,15 @@ es:
           directrices</a>.
         this_user_was_banned: Este usuario fue suspendido
     user_parents:
+      confirm:
+        thanks_for_creating_a_minor_account: ¡GRACIAS POR CREAR UNA CUENTA INFANTIL!
       new:
         create_a_minor_account: Crear cuenta de menor de edad
         create_minor_account: Crear cuenta de menor de edad
+        step1_title: CREAR UNA CUENTA PARA TU HIJO/A
+        step2_title: CONFIRMA TU IDENTIDAD CON UNA TARJETA DE CRÉDITO
+        step3_title: ESPERA EL MENSAJE DE CONFIRMACIÓN
+        step3_donor_title: SE HA ACTIVADO LA CUENTA INFANTIL
     welcome:
       index:
         welcome_message_html: "%{image} lo invita a utilizar este portal de información
@@ -7351,7 +7386,7 @@ es:
         login: Nombre de usuario
         name: Nombre
         locale: Configuración regional
-        time_zone: Zona horaria
+        time_zone: Huso horario
         search_place_id: Busca lugares
         place_id: Lugar
         preferred_observation_fields_by: Permite campos de observación de

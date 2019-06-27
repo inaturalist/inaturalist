@@ -3105,6 +3105,7 @@ ca:
   photos_updated: Fotos actualitzades.
   google_account_not_linked: L'usuari %{user} ja no està vinculat amb un compte de
     Google, per tant %{site_name} no té permís per accedir a aquesta fotografia.
+  pi_consent_desc_title: Quant a la informació personal
   picasa_identity: Usuari de Picasa
   pick_a_username: Trieu nom d'usuari
   pin_verb: Posar al mapa
@@ -5161,6 +5162,8 @@ ca:
   widget_code: Codi de giny
   widget_for: Giny per a
   will_be: serà
+  wikipedia_attribution_cc_by_sa_3: 'Font: Viquipèdia, «%{title}», %{url}, CC BY-SA
+    3.0'
   wikipedia_entry: Entrada de Viquipèdia
   wikipedia_taxobox_raquo: Fitxa de tàxon a Viquipèdia »
   with: amb
@@ -6903,6 +6906,12 @@ ca:
         take_a_chance_to_review_html: Preneu un moment per revisar <a href="%{link}">les
           nostres directrius</a>.
         this_user_was_banned: Aquest usuari ha estat suspès
+    user_parents:
+      confirm:
+        thanks_for_creating_a_minor_account: GRÀCIES PER CREAR UN COMPTE INFANTIL!
+      new:
+        step2_title: CONFIRMEU LA VOSTRA IDENTITAT AMB UNA TARGETA DE CRÈDIT
+        step3_title: AGUARDEU EL MISSATGE DE CONFIRMACIÓ PER CORREU
     welcome:
       index:
         welcome_message_html: '%{image} us convida a utilitzar aquest portal d''informació
@@ -7305,7 +7314,7 @@ ca:
         login: Nom d’usuari
         name: Nom
         locale: Local
-        time_zone: Zona horària
+        time_zone: Fus horari
         search_place_id: Cerqueu lloc
         place_id: Lloc
         preferred_observation_fields_by: Permet camps d'observació de
