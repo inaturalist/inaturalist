@@ -148,8 +148,8 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     map._overlayControl = new iNaturalist.OverlayControl(map);
   }
 
-  if ( options.currentUser ) {
-    var currentUser = options.currentUser;
+  if ( options.currentUser || typeof( CURRENT_USER ) === "object" ) {
+    var currentUser = options.currentUser || CURRENT_USER;
     if ( currentUser.preferred_observations_search_map_type ) {
       map.setMapTypeId( currentUser.preferred_observations_search_map_type );
     }

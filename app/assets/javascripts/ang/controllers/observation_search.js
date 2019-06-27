@@ -1296,7 +1296,7 @@ function( ObservationsFactory, PlacesFactory, shared, $scope, $rootScope ) {
     } else {
       mapTypeId = mapLabels ? google.maps.MapTypeId.HYBRID : google.maps.MapTypeId.SATELLITE;
     }
-    $scope.map.setGlobalMapTypeId( mapTypeId );
+    $scope.map.setMapTypeId( mapTypeId );
   });
   $scope.lastMoveTime = 0;
   $scope.delayedOnMove = function( ) {

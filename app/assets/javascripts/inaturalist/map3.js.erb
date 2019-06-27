@@ -242,11 +242,6 @@ google.maps.Map.prototype.addPlace = function(place, options) {
   return place;
 }
 
-google.maps.Map.prototype.setGlobalMapTypeId = function( mapTypeId ) {
-  this.setMapTypeId( mapTypeId );
-  updateSession( { prefers_observations_search_map_type: mapTypeId } );
-}
-
 // Zooms to place boundaries, adds kml if available
 google.maps.Map.prototype.setPlace = function(place, options) {
   options = options || {}
