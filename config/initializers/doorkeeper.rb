@@ -73,7 +73,7 @@ Doorkeeper.configure do
   #   client.superapp? or resource_owner.admin?
   # end
 
-  grant_flows %w(authorization_code client_credentials password)
+  grant_flows %w(authorization_code client_credentials password implicit)
 
   # Don't force devs to use SSL redirects
   force_ssl_in_redirect_uri false
