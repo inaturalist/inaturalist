@@ -402,7 +402,11 @@ class LocationChooserMap extends React.Component {
       && config.currentUser.preferred_observations_search_map_type
       && !_.isEmpty( config.currentUser.preferred_observations_search_map_type )
     ) {
-      defaultMapTypeId = config.currentUser.preferred_observations_search_map_type;
+      if ( config.currentUser.preferred_observations_search_map_type.match( /light/ ) ) {
+        defaultMapTypeId = google.maps.MapTypeId.ROADMAP;
+      } else {
+        defaultMapTypeId = config.currentUser.preferred_observations_search_map_type;
+      }
     }
     return (
       <GoogleMap
