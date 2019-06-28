@@ -140,7 +140,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
     }
   }
   // Set custom map type
-  if (options.mapType) {
+  if ( options.mapType ) {
     map.setMapTypeId(options.mapType)
   }
   // Create the custom control (but don't show it yet)
@@ -155,7 +155,11 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       && currentUser.preferred_observations_search_map_type
       && !_.isEmpty( currentUser.preferred_observations_search_map_type )
     ) {
-      map.setMapTypeId( currentUser.preferred_observations_search_map_type );
+      if ( currentUser.preferred_observations_search_map_type.match( /light/ ) ) {
+        map.setMapTypeId( google.maps.MapTypeId.ROADMAP );
+      } else {
+        map.setMapTypeId( currentUser.preferred_observations_search_map_type );
+      }
     }
     if ( !map.mapTypeListener ) {
       function setMapTypeAndUpdateSession( ) {

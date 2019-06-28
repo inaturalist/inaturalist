@@ -38,7 +38,11 @@
         && CURRENT_USER.preferred_observations_search_map_type
         && !_.isEmpty( CURRENT_USER.preferred_observations_search_map_type )
       ) {
-        defaultMapTypeId = CURRENT_USER.preferred_observations_search_map_type;
+        if ( CURRENT_USER.preferred_observations_search_map_type.match( /light/ ) ) {
+          defaultMapTypeId = google.maps.MapTypeId.ROADMAP;
+        } else {
+          defaultMapTypeId = CURRENT_USER.preferred_observations_search_map_type;
+        }
       }
       window.map = iNaturalist.Map.createMap({
         lat: 0, 
