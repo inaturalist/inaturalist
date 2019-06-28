@@ -669,10 +669,14 @@ module ApplicationHelper
   end
   
   def setup_map_tag_attrs(options = {})
+    map_type = options[:map_type]
+    if current_user && !current_user.preferred_observations_search_map_type.blank?
+      map_type = current_user.preferred_observations_search_map_type
+    end
     map_tag_attrs = {
       "latitude" => options[:latitude],
       "longitude" => options[:longitude],
-      "map-type" => options[:map_type] || current_user && current_user.preferred_observations_search_map_type,
+      "map-type" => map_type,
       "zoom-level" => options[:zoom_level],
       "min-zoom" => options[:min_zoom],
       "url-coords" => options[:url_coords] ? 'true' : nil,

@@ -32,13 +32,21 @@
     var places = <%=json_escape @places.to_json.html_safe %>,
         BOUNDS = <%= @site.bounds ? raw(@site.bounds.to_h.to_json) : "false" %>;
     $(document).ready(function() {
+      var defaultMapTypeId = google.maps.MapTypeId.LIGHT;
+      if (
+        typeof( CURRENT_USER ) === "object"
+        && CURRENT_USER.preferred_observations_search_map_type
+        && !_.isEmpty( CURRENT_USER.preferred_observations_search_map_type )
+      ) {
+        defaultMapTypeId = CURRENT_USER.preferred_observations_search_map_type;
+      }
       window.map = iNaturalist.Map.createMap({
         lat: 0, 
         lng: 0, 
         zoom: 2,
         minZoom: 2,
         bounds: BOUNDS,
-        mapTypeId: typeof( CURRENT_USER ) === "object" ? CURRENT_USER.preferred_observations_search_map_type : null
+        mapTypeId: defaultMapTypeId
       })
       for (var i=0; i < places.length; i++) {
         var place = places[i],

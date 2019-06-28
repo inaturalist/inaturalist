@@ -396,15 +396,21 @@ class LocationChooserMap extends React.Component {
         );
       }
     }
+    let defaultMapTypeId = google.maps.MapTypeId.LIGHT;
+    if (
+      config.currentUser
+      && config.currentUser.preferred_observations_search_map_type
+      && !_.isEmpty( config.currentUser.preferred_observations_search_map_type )
+    ) {
+      defaultMapTypeId = config.currentUser.preferred_observations_search_map_type;
+    }
     return (
       <GoogleMap
         ref={ref => { this.map = ref; }}
         defaultZoom={zoom || 1}
         defaultCenter={existingCenter || { lat: 30, lng: 15 }}
         defaultTilt={0}
-        defaultMapTypeId={
-          config.currentUser && config.currentUser.preferred_observations_search_map_type
-        }
+        defaultMapTypeId={defaultMapTypeId}
         onClick={this.handleMapClick}
         onMapTypeIdChanged={( ) => {
           updateSession( { prefers_observations_search_map_type: this.map.getMapTypeId( ) } );

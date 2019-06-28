@@ -150,7 +150,11 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
 
   if ( options.currentUser || typeof( CURRENT_USER ) === "object" ) {
     var currentUser = options.currentUser || CURRENT_USER;
-    if ( currentUser.preferred_observations_search_map_type ) {
+    if (
+      currentUser
+      && currentUser.preferred_observations_search_map_type
+      && !_.isEmpty( currentUser.preferred_observations_search_map_type )
+    ) {
       map.setMapTypeId( currentUser.preferred_observations_search_map_type );
     }
     if ( !map.mapTypeListener ) {
