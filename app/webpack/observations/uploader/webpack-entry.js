@@ -8,7 +8,7 @@ import _ from "lodash";
 
 import reducer from "./reducers";
 import Uploader from "./containers/uploader";
-import actions from "./actions/actions";
+import { setConfig } from "../../shared/ducks/config";
 import { fetchSavedLocations } from "./ducks/saved_locations";
 
 const store = createStore(
@@ -23,11 +23,7 @@ const store = createStore(
 );
 
 if ( !_.isEmpty( CURRENT_USER ) ) {
-  store.dispatch( actions.setState( {
-    config: {
-      currentUser: CURRENT_USER
-    }
-  } ) );
+  store.dispatch( setConfig( { currentUser: CURRENT_USER } ) );
   store.dispatch( fetchSavedLocations( ) );
 }
 

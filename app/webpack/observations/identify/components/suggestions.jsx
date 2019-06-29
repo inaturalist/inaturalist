@@ -405,6 +405,7 @@ class Suggestions extends React.Component {
                       ranges: true
                     }]}
                     currentUser={config.currentUser}
+                    updateCurrentUser={updateCurrentUser}
                   />
                   <h4>{ I18n.t( "taxonomy" ) }</h4>
                   <TaxonomicBranch

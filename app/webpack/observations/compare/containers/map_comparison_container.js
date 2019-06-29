@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import MapComparison from "../components/map_comparison";
 import { setMapLayout } from "../ducks/compare";
+import { updateCurrentUser } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
   return {
@@ -13,7 +14,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setMapLayout: layout => dispatch( setMapLayout( layout ) )
+    setMapLayout: layout => dispatch( setMapLayout( layout ) ),
+    updateCurrentUser: user => dispatch( updateCurrentUser( user ) )
   };
 }
 

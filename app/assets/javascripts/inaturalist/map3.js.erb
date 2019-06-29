@@ -544,6 +544,23 @@ iNaturalist.Map.distanceInMeters = function(lat1, lon1, lat2, lon2) {
   return d
 }
 
+// return a default map type with an optional user
+iNaturalist.Map.preferredMapTypeId = function( user ) {
+  let mapTypeId = google.maps.MapTypeId.TERRAIN;
+  if (
+    user
+    && user.preferred_observations_search_map_type
+    && !_.isEmpty( user.preferred_observations_search_map_type )
+  ) {
+    if ( user.preferred_observations_search_map_type.match( /light/ ) ) {
+      mapTypeId = google.maps.MapTypeId.ROADMAP;
+    } else {
+      mapTypeId = user.preferred_observations_search_map_type;
+    }
+  }
+  return mapTypeId;
+};
+
 iNaturalist.FullScreenControl = function(map) {
   var controlDiv = document.createElement('DIV'),
       enter = '<span class="ui-icon ui-icon-extlink">Full screen</span>',

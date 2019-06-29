@@ -65,6 +65,7 @@ const TaxonPageMap = ( {
         zoomLevel={zoomLevel}
         gestureHandling="auto"
         currentUser={config.currentUser}
+        updateCurrentUser={updateCurrentUser}
       />
     );
   } else {

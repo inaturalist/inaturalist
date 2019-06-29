@@ -56,7 +56,8 @@ class MapComparison extends React.Component {
       setMapLayout,
       queries,
       bounds,
-      config
+      config,
+      updateCurrentUser
     } = this.props;
     let maps;
     const colorScale = scaleOrdinal( schemeCategory10 );
@@ -77,6 +78,7 @@ class MapComparison extends React.Component {
           maxY={bounds.nelat}
           observationLayers={_.map( queries, layerForQuery )}
           currentUser={config.currentUser}
+          updateCurrentUser={updateCurrentUser}
         />
       );
     } else {
@@ -95,6 +97,8 @@ class MapComparison extends React.Component {
               maxX={bounds.nelng}
               maxY={bounds.nelat}
               observationLayers={observationLayers}
+              currentUser={config.currentUser}
+              updateCurrentUser={updateCurrentUser}
             />
           </div>
         );
@@ -138,7 +142,8 @@ MapComparison.propTypes = {
   setMapLayout: PropTypes.func,
   queries: PropTypes.array,
   bounds: PropTypes.object,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateCurrentUser: PropTypes.func
 };
 
 MapComparison.defaultProps = {

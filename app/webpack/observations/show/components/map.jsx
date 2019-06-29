@@ -138,6 +138,7 @@ class Map extends React.Component {
           clickable={false}
           zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
           currentUser={config.currentUser}
+          updateCurrentUser={updateCurrentUser}
         />
       );
     }

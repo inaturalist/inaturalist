@@ -871,26 +871,9 @@ $.fn.observationsMap = function() {
       mapDiv.height(h)
     }
     $(this).prepend(mapDiv)
-    var mapTypeId;
-    if (
-      typeof( CURRENT_USER ) === "object"
-      && CURRENT_USER.preferred_observations_search_map_type
-      && !_.isEmpty( CURRENT_USER.preferred_observations_search_map_type )
-    ) {
-      if ( CURRENT_USER.preferred_observations_search_map_type.match( /light/ ) ) {
-        mapTypeId = google.maps.MapTypeId.ROADMAP;
-      } else {
-        mapTypeId = CURRENT_USER.preferred_observations_search_map_type;
-      }
-    }
-    var map = iNaturalist.Map.createMap({
-      div: mapDiv.get(0),
-      mapTypeId: mapTypeId
-    } );
+    var map = iNaturalist.Map.createMap( { div: mapDiv.get(0) } );
     if ( typeof( CURRENT_USER ) === "object" ) {
-      if ( mapTypeId ) {
-        map.setMapTypeId( mapTypeId );
-      }
+      map.setMapTypeId( iNaturalist.Map.preferredMapTypeId( CURRENT_USER ) );
       if ( !map.mapTypeListener ) {
         function setMapTypeAndUpdateSession( ) {
           updateSession( { prefers_observations_search_map_type: this.getMapTypeId( ) } );

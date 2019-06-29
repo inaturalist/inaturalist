@@ -8,7 +8,7 @@ import EventCountdown from "./event_countdown";
 import OverviewMap from "./overview_map";
 
 const BeforeEventTab = props => {
-  const { project, config } = props;
+  const { project, config, updateCurrentUser } = props;
   if ( !project.recent_observations_loaded ) {
     return ( <div className="loading_spinner huge" /> );
   }
@@ -33,7 +33,11 @@ const BeforeEventTab = props => {
           </Col>
         </Row>
         { !_.isEmpty( project.placeRules ) && (
-          <OverviewMap project={project} config={config} />
+          <OverviewMap
+            project={project}
+            config={config}
+            updateCurrentUser={updateCurrentUser}
+          />
         ) }
       </Grid>
     </div>
@@ -43,7 +47,8 @@ const BeforeEventTab = props => {
 BeforeEventTab.propTypes = {
   project: PropTypes.object,
   config: PropTypes.object,
-  setSelectedTab: PropTypes.func
+  setSelectedTab: PropTypes.func,
+  updateCurrentUser: PropTypes.func
 };
 
 export default BeforeEventTab;

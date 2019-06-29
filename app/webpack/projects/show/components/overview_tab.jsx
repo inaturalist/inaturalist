@@ -15,7 +15,7 @@ import OverviewMap from "./overview_map";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 
 const OverviewTab = props => {
-  const { config, project } = props;
+  const { config, project, updateCurrentUser } = props;
   const instances = project.recent_observations ? project.recent_observations.results : null;
   return (
     <div className="OverviewTab">
@@ -46,7 +46,7 @@ const OverviewTab = props => {
       </Grid>
       { ( !_.isEmpty( project.placeRules ) || !_.isEmpty( instances ) ) && (
         <div>
-          <OverviewMap project={project} config={config} />
+          <OverviewMap project={project} config={config} updateCurrentUser={updateCurrentUser} />
           <RecentObservationsContainer />
           <PhotoModalContainer />
         </div>
@@ -68,7 +68,8 @@ const OverviewTab = props => {
 OverviewTab.propTypes = {
   project: PropTypes.object,
   config: PropTypes.object,
-  setSelectedTab: PropTypes.func
+  setSelectedTab: PropTypes.func,
+  updateCurrentUser: PropTypes.func
 };
 
 export default OverviewTab;

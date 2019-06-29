@@ -15,14 +15,14 @@ export default function reducer( state = {}, action ) {
       return Object.assign( {}, state, { [action.key]: !state[action.key] } );
     case UPDATE_CURRENT_USER: {
       if ( !state.currentUser ) return state;
-      const prefUpdates = _.pickBy( action.updates, ( v, k ) => k.match( /prefers_/ ) );
+      const prefUpdates = _.pickBy( action.updates, ( v, k ) => ( k.match( /prefers_/ ) || k.match( /preferred_/ ) ) );
       if ( _.keys( prefUpdates ).length > 0 ) {
         const body = new FormData( );
         body.append( "authenticity_token", $( "meta[name=csrf-token]" ).attr( "content" ) );
         _.forEach( action.updates, ( v, k ) => {
           body.append( `user[${k}]`, `${v}` );
         } );
-        fetch( `/users/${state.currentUser.id}`, {
+        fetch( `/users/${state.currentUser.id}.json`, {
           method: "PUT",
           body
         } );

@@ -10,7 +10,8 @@ const ObservationsTab = ( {
   project,
   infiniteScrollObservations,
   setSelectedTab,
-  setObservationFilters
+  setObservationFilters,
+  updateCurrentUser
 } ) => {
   const scrollIndex = config.observationsScrollIndex || 30;
   let view;
@@ -31,6 +32,7 @@ const ObservationsTab = ( {
       <ObservationsMapView
         project={project}
         config={config}
+        updateCurrentUser={updateCurrentUser}
       />
     );
   } else if ( activeSubview === "table" ) {
@@ -123,7 +125,8 @@ ObservationsTab.propTypes = {
   project: PropTypes.object,
   infiniteScrollObservations: PropTypes.func,
   setSelectedTab: PropTypes.func,
-  setObservationFilters: PropTypes.func
+  setObservationFilters: PropTypes.func,
+  updateCurrentUser: PropTypes.func
 };
 
 export default ObservationsTab;

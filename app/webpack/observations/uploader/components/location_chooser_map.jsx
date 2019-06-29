@@ -10,7 +10,7 @@ import {
 } from "react-google-maps";
 import { SearchBox } from "react-google-maps/lib/components/places/SearchBox";
 import util from "../models/util";
-import { objectToComparable, updateSession } from "../../../shared/util";
+import { objectToComparable } from "../../../shared/util";
 
 let lastCenterChange = new Date().getTime();
 
@@ -317,7 +317,8 @@ class LocationChooserMap extends React.Component {
       bounds,
       center: existingCenter,
       updateState,
-      config
+      config,
+      updateCurrentUser
     } = this.props;
     let center;
     const circles = [];
@@ -396,28 +397,16 @@ class LocationChooserMap extends React.Component {
         );
       }
     }
-    let defaultMapTypeId = google.maps.MapTypeId.LIGHT;
-    if (
-      config.currentUser
-      && config.currentUser.preferred_observations_search_map_type
-      && !_.isEmpty( config.currentUser.preferred_observations_search_map_type )
-    ) {
-      if ( config.currentUser.preferred_observations_search_map_type.match( /light/ ) ) {
-        defaultMapTypeId = google.maps.MapTypeId.ROADMAP;
-      } else {
-        defaultMapTypeId = config.currentUser.preferred_observations_search_map_type;
-      }
-    }
     return (
       <GoogleMap
         ref={ref => { this.map = ref; }}
         defaultZoom={zoom || 1}
         defaultCenter={existingCenter || { lat: 30, lng: 15 }}
         defaultTilt={0}
-        defaultMapTypeId={defaultMapTypeId}
+        defaultMapTypeId={iNaturalist.Map.preferredMapTypeId( config.currentUser )}
         onClick={this.handleMapClick}
         onMapTypeIdChanged={( ) => {
-          updateSession( { prefers_observations_search_map_type: this.map.getMapTypeId( ) } );
+          updateCurrentUser( { preferred_observations_search_map_type: this.map.getMapTypeId( ) } );
         }}
         onBoundsChanged={( ) => {
           const c = this.map.getCenter( );
@@ -487,7 +476,8 @@ LocationChooserMap.propTypes = {
   notes: PropTypes.string,
   manualPlaceGuess: PropTypes.bool,
   fitCurrentCircle: PropTypes.bool,
-  config: PropTypes.object
+  config: PropTypes.object,
+  updateCurrentUser: PropTypes.func
 };
 
 LocationChooserMap.defaultProps = {

@@ -669,18 +669,10 @@ module ApplicationHelper
   end
   
   def setup_map_tag_attrs(options = {})
-    map_type = options[:map_type]
-    if current_user && !current_user.preferred_observations_search_map_type.blank?
-      if current_user.preferred_observations_search_map_type =~ /light/
-        map_type = "roadmap"
-      else
-        map_type = current_user.preferred_observations_search_map_type
-      end
-    end
     map_tag_attrs = {
       "latitude" => options[:latitude],
       "longitude" => options[:longitude],
-      "map-type" => map_type,
+      "map-type" => options[:map_type],
       "zoom-level" => options[:zoom_level],
       "min-zoom" => options[:min_zoom],
       "url-coords" => options[:url_coords] ? 'true' : nil,

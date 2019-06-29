@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { setConfig } from "../../../shared/ducks/config";
+import { setConfig, updateCurrentUser } from "../../../shared/ducks/config";
 import UmbrellaMap from "../components/umbrella_map";
 
 function mapStateToProps( state ) {
@@ -11,7 +11,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setConfig: attributes => { dispatch( setConfig( attributes ) ); }
+    setConfig: attributes => dispatch( setConfig( attributes ) ),
+    updateCurrentUser: user => dispatch( updateCurrentUser( user ) )
   };
 }
 

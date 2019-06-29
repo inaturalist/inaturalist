@@ -1,19 +1,21 @@
 import { connect } from "react-redux";
-import DragDropZone from "../components/drag_drop_zone";
-import actions from "../actions/actions";
 import HTML5Backend from "react-dnd-html5-backend";
 import { DragDropContext } from "react-dnd";
+import DragDropZone from "../components/drag_drop_zone";
+import actions from "../actions/actions";
 import { createSavedLocation, removeSavedLocation } from "../ducks/saved_locations";
+import { updateCurrentUser } from "../../../shared/ducks/config";
 
-const mapStateToProps = ( state ) => {
+const mapStateToProps = state => {
   return Object.assign(
     {},
     state.dragDropZone,
-    { savedLocations: state.savedLocations }
+    { savedLocations: state.savedLocations },
+    { config: state.config }
   );
 };
 
-const mapDispatchToProps = ( dispatch ) => ( {
+const mapDispatchToProps = dispatch => ( {
   onDrop: ( droppedFiles, rejectedFiles, e ) => {
     if ( rejectedFiles.length > 0 ) {
       dispatch( actions.onRejectedFiles( rejectedFiles ) );
@@ -83,7 +85,8 @@ const mapDispatchToProps = ( dispatch ) => ( {
   saveLocation: params => {
     dispatch( createSavedLocation( params ) );
   },
-  removeSavedLocation: savedLocation => dispatch( removeSavedLocation( savedLocation ) )
+  removeSavedLocation: savedLocation => dispatch( removeSavedLocation( savedLocation ) ),
+  updateCurrentUser: updates => dispatch( updateCurrentUser( updates ) )
 } );
 
 /* eslint new-cap: [2, { capIsNewExceptions: ["DragDropContext"] }] */

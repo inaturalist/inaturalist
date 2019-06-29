@@ -62,6 +62,10 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
   options.gestureHandling = options.gestureHandling || $( elt ).data( "gesture-handling" );
   options.tilt = options.tilt || $( elt ).data( "tilt" ) || 0;
+  options.currentUser = options.currentUser || $( elt ).data( "current-user" );
+  if ( typeof( CURRENT_USER ) === "object" ) {
+    options.currentUser = options.currentUser || CURRENT_USER;
+  }
   // turn the observations JSON into proper JavaScript objects
   if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
@@ -139,31 +143,24 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       map.setZoom(options.zoomLevel)
     }
   }
-  // Set custom map type
-  if ( options.mapType ) {
-    map.setMapTypeId(options.mapType)
-  }
+
   // Create the custom control (but don't show it yet)
   if( options.overlayMenu && !map._overlayControl) {
     map._overlayControl = new iNaturalist.OverlayControl(map);
   }
 
-  if ( options.currentUser || typeof( CURRENT_USER ) === "object" ) {
-    var currentUser = options.currentUser || CURRENT_USER;
-    if (
-      currentUser
-      && currentUser.preferred_observations_search_map_type
-      && !_.isEmpty( currentUser.preferred_observations_search_map_type )
-    ) {
-      if ( currentUser.preferred_observations_search_map_type.match( /light/ ) ) {
-        map.setMapTypeId( google.maps.MapTypeId.ROADMAP );
-      } else {
-        map.setMapTypeId( currentUser.preferred_observations_search_map_type );
-      }
-    }
+  // Set custom map type
+  if ( options.mapType ) {
+    map.setMapTypeId( options.mapType )
+  } else if ( options.currentUser || typeof( CURRENT_USER ) === "object" ) {
+    map.setMapTypeId( iNaturalist.Map.preferredMapTypeId( options.currentUser || CURRENT_USER ) );
     if ( !map.mapTypeListener ) {
       function setMapTypeAndUpdateSession( ) {
-        updateSession( { prefers_observations_search_map_type: this.getMapTypeId( ) } );
+        if ( options.updateCurrentUser ) {
+          options.updateCurrentUser( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
+        } else {
+          updateSession( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
+        }
       }
       map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", setMapTypeAndUpdateSession );
     }

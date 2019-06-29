@@ -356,7 +356,8 @@ DragDropZone.propTypes = {
   selectedObsCards: PropTypes.object,
   selectObsCards: PropTypes.func,
   setState: PropTypes.func,
-  shiftKeyPressed: PropTypes.bool
+  shiftKeyPressed: PropTypes.bool,
+  updateCurrentUser: PropTypes.func
 };
 
 export default pipe(
