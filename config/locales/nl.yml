@@ -1918,6 +1918,8 @@ nl:
     lijst is van dit taxon op deze plaats.'
   inat_user_profile: '%{site_name}: Profiel van %{user}'
   inat_will_be_back_on: '%{site_name} zal terug komen op zijn voeten/vleugels/vinnen/tentakels/pseudopodia/schijnvoeten'
+  inaturalist_is_a_joint_initiative: '%{site_name} is een gezamelijk initiatief van
+    de ''California Academy of Sciences'' en ''National Geographic Society''.'
   inaturalist_is_an_online_community: '%{site_name} is een online gemeenschap voor
     naturalists! Door het toevoegen van je foto kun je wetenschappers helpen meer
     te leren over'
@@ -2735,8 +2737,7 @@ nl:
   obscured: Verborgen
   obscured_or_private: verborgen of privé
   obscured_description: Openbare coördinaten worden weergegeven als een willekeurig
-    punt binnen 10 km van de werkelijke coördinaten. Echte coördinaten zijn alleen
-    zichtbaar voor u en de curatoren van projecten waaraan u de waarneming toevoegt.
+    punt in de 0.2 graden lat/lon cel die de werkelijke coördinaten omvat.
   observation: Waarneming
   observation_: waarneming
   observation_added: Waarneming toegevoegd.
@@ -2974,6 +2975,8 @@ nl:
   only_species: alleen soorten
   only_species_and_subspecies: alleen soorten en ondersoorten/variëteiten
   only_staff_can_edit_large_places: Alleen de sitestaf kan zeer grote plaatsen bewerken
+  only_staff_can_edit_standard_places: Alleen de staf van de site kan plaatsen in
+    de standaardhiërarchie bewerken
   only_the_author_of_this_post_can_do_that: Alleen de auteur van dit bericht kan dat
     doen. Wees niet slecht.
   only_the_owner_of_this_list_can_do_that: Alleen de eigenaar van deze lijst kan dat
@@ -4945,6 +4948,7 @@ nl:
   valid_interrogation: Geldig?
   valid_options_are: Geldige opties zijn
   value: Waarde
+  values: Waarden
   verbing_x_of_y: '%{x} van de %{y}%{verb} ...'
   verifiable_observations_by_observation_date: Verifieerbare waarnemingen op datum
     van waarneming
@@ -6950,6 +6954,10 @@ nl:
         take_a_chance_to_review_html: Werp eens een blik op <a href="%{link}">our
           guidelines</a>.
         this_user_was_banned: Deze gebruiker werd geschorst
+    user_parents:
+      new:
+        child_name_private: Naam van het kind (privé)
+        create_a_minor_account: Maak een minderjarig account aan
     welcome:
       index:
         welcome_message_html: Naar %{image}, waar je kunt <strong>vastleggen</strong>
@@ -7284,6 +7292,7 @@ nl:
       observation:
         geo_x: Oostwaarde
         geo_y: Noordwaarde
+        observed_on: Waarnemingsdatum
       observation_field_value:
         value: waarde
       post:
