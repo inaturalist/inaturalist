@@ -153,7 +153,10 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
   if ( options.mapType ) {
     map.setMapTypeId( options.mapType )
   } else if ( options.currentUser || typeof( CURRENT_USER ) === "object" ) {
-    map.setMapTypeId( iNaturalist.Map.preferredMapTypeId( options.currentUser || CURRENT_USER ) );
+    var preferredMapTypeId = iNaturalist.Map.preferredMapTypeId( options.currentUser || CURRENT_USER );
+    if ( map.getMapTypeId( ) !== preferredMapTypeId ) {
+      map.setMapTypeId( preferredMapTypeId );
+    }
     if ( !map.mapTypeListener ) {
       function setMapTypeAndUpdateSession( ) {
         if ( options.updateCurrentUser ) {
@@ -245,6 +248,11 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
   if( !options.taxonLayers ) { return; }
   _.each( options.taxonLayers, function( layer ) {
     if( !( layer.taxon && layer.taxon.id ) ) { return; }
+    map.taxonLayerSignatures = map.taxonLayerSignatures || {};
+    var sig = JSON.stringify( layer );
+    if ( map.taxonLayerSignatures[sig] ) {
+      return;
+    }
     $.getJSON( "/taxa/" + layer.taxon.id + "/map_layers", function( taxonData ) {
       inatTaxonMap.addTaxonLayer( map, layer, options, taxonData );
     });

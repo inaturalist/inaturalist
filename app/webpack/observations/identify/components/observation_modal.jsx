@@ -123,6 +123,7 @@ class ObservationModal extends React.Component {
       taxonMap = (
         <TaxonMap
           key={`map-for-${obsForMap.id}`}
+          reloadKey={`map-for-${obsForMap.id}`}
           taxonLayers={[taxonLayer]}
           observations={[obsForMap]}
           clickable={!blind}
