@@ -56,7 +56,7 @@ const OverviewTab = props => {
           <Col xs={12}>
             <FlagAnItemContainer
               item={project}
-              manageFlagsPath={`/flags?project_id=${project.id}`}
+              manageFlagsPath={`/projects/${project.id}/flags`}
             />
           </Col>
         </Row>
