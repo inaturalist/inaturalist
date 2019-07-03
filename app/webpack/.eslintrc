@@ -18,7 +18,8 @@
     google: true,
     iNaturalist: true,
     SITE: true,
-    iNatModels: true
+    iNatModels: true,
+    history: true
   },
   // To give you an idea how to override rule options:
   // "rules": {
@@ -34,6 +35,7 @@
     "func-names": 0,
     "no-underscore-dangle": 0,
     "no-void": 0,
+    "no-restricted-globals": 0,
     "prefer-destructuring": [2, { "object": true, "array": false }],
     "quotes": [2, "double"],
     "space-in-parens": [2, "always"],

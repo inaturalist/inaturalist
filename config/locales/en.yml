@@ -1119,6 +1119,10 @@ en:
   disable: Disable
   disagree: disagree
   disagree_: Disagree
+  disagreement_responses:
+    yes_im_certain_its_not_taxon: Yes, I'm certain it's not %{taxon}
+    yes_we_cant_be_certain_beyond_taxon: Yes, I don't think we can be certain beyond %{taxon}
+    no_im_not_disagreeing: No, I'm not disagreeing
   disconnect_provider: "Disconnect %{provider}"  
   display_link_to_checklist: Display link to project list from project page
   display_listings_added_by_curators: Display listings added by curators
@@ -1129,7 +1133,7 @@ en:
   documentation_for_developers_html: Documentation for <a href="/pages/developers">developers</a>
   do_not_show_this_message_again: Do not show this message again
   do_you_know_where_this_species_lives: Do you know where this species lives?
-  do_you_study_nematodes_worlds_foremost_expert_barnacle: |    
+  do_you_study_nematodes_worlds_foremost_expert_barnacle: |
     Do you study nematodes? Are you the world's foremost expert on barnacle
     taxonomy? Do you just like looking at pretty flowers? Filling out your
     profile adds some personality and helps establish your credibility when
