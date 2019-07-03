@@ -446,7 +446,7 @@ iNaturalist.Map.createMap = function(options) {
   google.maps.Map.prototype.infoWindow = null;
 
   map.addListener('maptypeid_changed', function() {
-    var mapTypeId = map.getMapTypeId()
+    var mapTypeId = map.getMapTypeId();
     if (mapTypeId == google.maps.MapTypeId.SATELLITE || mapTypeId == google.maps.MapTypeId.HYBRID) {
       $(map.getDiv()).css({'backgroundColor': iNaturalist.Map.SATELLITE_BACKGROUND_COLOR})
     } else {
@@ -546,7 +546,7 @@ iNaturalist.Map.distanceInMeters = function(lat1, lon1, lat2, lon2) {
 
 // return a default map type with an optional user
 iNaturalist.Map.preferredMapTypeId = function( user ) {
-  let mapTypeId = google.maps.MapTypeId.TERRAIN;
+  var mapTypeId = google.maps.MapTypeId.TERRAIN;
   if (
     user
     && user.preferred_observations_search_map_type
