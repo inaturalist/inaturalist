@@ -1068,6 +1068,51 @@ describe Identification, "disagreement" do
   end
 end
 
+describe Identification, "disagreement_type" do
+  let(:family) { Taxon.make!( rank: Taxon::FAMILY, name: "Family") }
+  let(:genus) { Taxon.make!( rank: Taxon::GENUS, parent: family, name: "Genus" ) }
+  let(:sp1) { Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus speciesone" ) }
+  let(:sp2) { Taxon.make!( rank: Taxon::SPECIES, parent: genus, name: "Genus speciestwo" ) }
+  it "should default to null" do
+    i = Identification.make!
+    expect( i.disagreement_type ).to be_nil
+  end
+  it "should default to branch if disagreement is true" do
+    i1 = Identification.make!( taxon: sp1 )
+    i2 = Identification.make!( observation: i1.observation, taxon: genus, disagreement: true )
+    expect( i2.disagreement_type ).to eq Identification::BRANCH
+  end
+  it "should set disagreement to true if not null" do
+    i1 = Identification.make!( taxon: sp1 )
+    i2 = Identification.make!( observation: i1.observation, taxon: genus, disagreement_type: Identification::LEAF )
+    expect( i2 ).to be_disagreement
+  end
+  describe "leaf" do
+    it "should not disagree with sisters of the disagreement taxon" do
+      o = Observation.make!
+      i1 = Identification.make!( observation: o, taxon: sp1 )
+      i2 = Identification.make!( observation: o, taxon: family, disagreement_type: Identification::LEAF )
+      i3 = Identification.make!( observation: o, taxon: sp2 )
+      i4 = Identification.make!( observation: o, taxon: sp2 )
+      i5 = Identification.make!( observation: o, taxon: sp2 )
+      o.reload
+      expect( o.taxon ).to eq sp2
+    end
+  end
+  describe "branch" do
+    it "should disagree with sisters of the disagreement taxon" do
+      o = Observation.make!
+      i1 = Identification.make!( observation: o, taxon: sp1 )
+      i2 = Identification.make!( observation: o, taxon: family, disagreement_type: Identification::BRANCH )
+      i3 = Identification.make!( observation: o, taxon: sp2 )
+      i4 = Identification.make!( observation: o, taxon: sp2 )
+      i5 = Identification.make!( observation: o, taxon: sp2 )
+      o.reload
+      expect( o.taxon ).to eq genus
+    end
+  end
+end
+
 describe Identification, "set_previous_observation_taxon" do
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }

@@ -1896,7 +1896,8 @@ CREATE TABLE public.identifications (
     uuid uuid DEFAULT public.uuid_generate_v4(),
     blind boolean,
     previous_observation_taxon_id integer,
-    disagreement boolean
+    disagreement boolean,
+    disagreement_type character varying
 );
 
 
@@ -9920,4 +9921,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190516011313');
 INSERT INTO schema_migrations (version) VALUES ('20190516181748');
 
 INSERT INTO schema_migrations (version) VALUES ('20190528222836');
+
+INSERT INTO schema_migrations (version) VALUES ('20190702215433');
 

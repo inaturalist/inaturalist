@@ -79,6 +79,9 @@ class Identification < ActiveRecord::Base
     LEADING,
     MAVERICK
   ]
+
+  LEAF = "leaf"
+  BRANCH = "branch"
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :queue_if => lambda {|ident| 
@@ -207,7 +210,11 @@ class Identification < ActiveRecord::Base
 
     # Explicit disagreement can only happen when suggesting a taxon that is an
     # ancestor of the previous taxon
+    if disagreement_type && disagreement_was.nil? && disagreement.nil?
+      self.disagreement = true
+    end
     if disagreement? && previous_observation_taxon.ancestor_ids.include?( taxon.id )
+      self.disagreement_type ||= BRANCH
       return true
     end
 

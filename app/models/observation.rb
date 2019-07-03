@@ -1655,6 +1655,7 @@ class Observation < ActiveRecord::Base
       disagreement_count = working_idents.reject{|i|
        id_taxon.self_and_ancestor_ids.include?(i.taxon_id) || i.taxon.self_and_ancestor_ids.include?(id_taxon.id)
       }.size
+      # puts "\tdisagreement_count: #{disagreement_count}"
 
       # Count identifications that explicitly disagreed with an ancestor of this taxon
       first_ident_of_taxon = working_idents.detect{|i| i.taxon.self_and_ancestor_ids.include?(id_taxon.id)}
@@ -1673,7 +1674,11 @@ class Observation < ActiveRecord::Base
             # sapiens, that implies disagreement with everything between
             # Homonidae and Homo sapiens (i.e. genus Homo), otherwise they would
             # have added an ID of genus Homo
-            disagreement_branch_taxon_ids = i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1]
+            disagreement_branch_taxon_ids = if i.disagreement_type == Identification::LEAF
+              [i.previous_observation_taxon.id]
+            else
+              i.previous_observation_taxon.self_and_ancestor_ids[base_index+1..-1]
+            end
             # puts "\t\tdisagreement_branch_taxon_ids: #{disagreement_branch_taxon_ids}"
             # So if the taxon under consideration is any of the taxa this
             # identification disagrees with, count it as a disagreement
