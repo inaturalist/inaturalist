@@ -28,6 +28,13 @@ import FavesContainer from "../containers/faves_container";
 import { TABS } from "../actions/current_observation_actions";
 
 class ObservationModal extends React.Component {
+  constructor( props, context ) {
+    super( props, context );
+    this.state = {
+      brightnesses: {}
+    };
+  }
+
   componentDidUpdate( prevProps ) {
     // this is a stupid hack to get the google map to render correctly if it
     // was created while it wasn't visible
@@ -163,8 +170,12 @@ class ObservationModal extends React.Component {
 
     let photos = null;
     if ( images && images.length > 0 ) {
+      const brightnessKey = `${observation.id}-${imagesCurrentIndex}`;
+      const { brightnesses } = this.state;
+      const brightness = brightnesses[brightnessKey] || 1;
+      const brightnessClass = `brightness-${brightness.toString( ).replace( ".", "-" )}`;
       photos = (
-        <div className="photos-wrapper">
+        <div className={`photos-wrapper ${brightnessClass}`}>
           <ZoomableImageGallery
             key={`map-for-${observation.id}`}
             items={images}
@@ -188,6 +199,64 @@ class ObservationModal extends React.Component {
           >
             <i className="icon-link-external" />
           </a>
+          { currentUser && currentUser.roles.indexOf( "admin" ) >= 0 && (
+            <div className="brightness-control btn-group btn-group-xs" role="group">
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={( ) => {
+                  const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
+              >
+                <i className="fa fa-sun-o" />
+                { brightness !== 1 && (
+                  <span>
+                    { " " }
+                    { _.isInteger( brightness ) ? `${brightness}.0` : brightness }
+                    X
+                  </span>
+                ) }
+              </button>
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={( ) => {
+                  const existing = brightnesses[brightnessKey] || 1;
+                  let newBrightness = _.round( existing - 0.2, 2 );
+                  if ( newBrightness < 0.2 ) {
+                    newBrightness = 0.2;
+                  }
+                  const newBrightnesses = Object.assign( {}, brightnesses, {
+                    [brightnessKey]: newBrightness
+                  } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={I18n.t( "decrease_brightness" )}
+              >
+                -
+              </button>
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={( ) => {
+                  const existing = brightnesses[brightnessKey] || 1;
+                  let newBrightness = _.round( existing + 0.2, 2 );
+                  if ( newBrightness > 3 ) {
+                    newBrightness = 3;
+                  }
+                  const newBrightnesses = Object.assign( {}, brightnesses, {
+                    [brightnessKey]: newBrightness
+                  } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={I18n.t( "increase_brightness" )}
+              >
+                +
+              </button>
+            </div>
+          ) }
         </div>
       );
     }
