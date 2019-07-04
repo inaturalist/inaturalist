@@ -1119,10 +1119,6 @@ en:
   disable: Disable
   disagree: disagree
   disagree_: Disagree
-  disagreement_responses:
-    yes_im_certain_its_not_taxon: Yes, I'm certain it's not %{taxon}
-    yes_we_cant_be_certain_beyond_taxon: Yes, I don't think we can be certain beyond %{taxon}
-    no_im_not_disagreeing: No, I'm not disagreeing
   disconnect_provider: "Disconnect %{provider}"  
   display_link_to_checklist: Display link to project list from project page
   display_listings_added_by_curators: Display listings added by curators
@@ -1303,6 +1299,11 @@ en:
   examples_of_ranking_organizations: Examples of Ranking Organizations
   expand_days: Expand Days
   expand_updates: Expand Updates
+  explicit_disagreement:
+    are_you_disagreeing_this_is_taxon: Are you disagreeing this is %{taxon}?
+    yes_im_certain_its_not_taxon: Yes, I'm certain it's not %{taxon}
+    yes_we_cant_be_certain_beyond_taxon: Yes, I don't think we can be certain beyond %{taxon}
+    no_im_not_disagreeing: No, I'm not disagreeing
   explore!: Explore!
   explore: Explore
   explore_everyones_observations: Explore Everyone's Observations
@@ -4423,6 +4424,8 @@ en:
   user_blocked: User blocked
   user_commented: "%{user} commented"
   user_commented_on: "%{user} commented on your %{title} %{time}"
+  user_does_not_think_we_can_be_certain_beyond_taxon: |
+    %{user} doesn't think we can be certain beyond %{taxon}
   user_disagrees_this_is_taxon: "%{user} disagrees this is %{taxon}"
   user_disagrees_with_previous_finer_identifications: "%{user} disagrees with previous finer identifications"
   user_faved_a_noun_by_owner: "%{user} faved %{noun} by %{owner}"
@@ -4440,6 +4443,7 @@ en:
   user_invited_you_to_join_this_project_on_date_html: "%{user} invited you to join this project on %{date}"
   user_invited_your_x_to_a_project_html: "%{user} invited your %{x} to a project"
   user_is_a_naturalist: "%{user} is a naturalist!"
+  user_is_certain_this_is_not_taxon: "%{user} is certain this is not %{taxon}"
   user_is_now_role_for_project_html: "<strong>%{user}</strong> is now %{role} for %{project}"
   user_muted: User muted
   user_observations: User observations

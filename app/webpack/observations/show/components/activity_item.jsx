@@ -42,6 +42,9 @@ const ActivityItem = ( {
   let contents;
   let header;
   let className;
+  const testingDisagreementTypes = config && config.currentUser
+    && config.currentUser.roles
+    && config.currentUser.roles.indexOf( "admin" ) >= 0;
   const userLink = (
     <a
       className="user"
@@ -279,10 +282,33 @@ const ActivityItem = ( {
         user={config.currentUser}
       />
     );
-    const footerText = I18n.t( "user_disagrees_this_is_taxon", {
-      user: ReactDOMServer.renderToString( userLink ),
-      taxon: ReactDOMServer.renderToString( previousTaxonLink )
-    } );
+    const currentTaxonLink = (
+      <SplitTaxon
+        taxon={item.taxon}
+        url={urlForTaxon( item.taxon )}
+        target={linkTarget}
+        user={config.currentUser}
+      />
+    );
+    let footerText;
+    if ( testingDisagreementTypes ) {
+      if ( item.disagreement_type === "leaf" ) {
+        footerText = I18n.t( "user_is_certain_this_is_not_taxon", {
+          user: ReactDOMServer.renderToString( userLink ),
+          taxon: ReactDOMServer.renderToString( previousTaxonLink )
+        } );
+      } else {
+        footerText = I18n.t( "user_does_not_think_we_can_be_certain_beyond_taxon", {
+          user: ReactDOMServer.renderToString( userLink ),
+          taxon: ReactDOMServer.renderToString( currentTaxonLink )
+        } );
+      }
+    } else {
+      footerText = I18n.t( "user_disagrees_this_is_taxon", {
+        user: ReactDOMServer.renderToString( userLink ),
+        taxon: ReactDOMServer.renderToString( previousTaxonLink )
+      } );
+    }
     footer = (
       <span
         className="title_text"

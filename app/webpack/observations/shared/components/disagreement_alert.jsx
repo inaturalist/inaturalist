@@ -24,6 +24,71 @@ const DisagreementAlert = ( {
   const oldTaxonHTML = ReactDOMServer.renderToString(
     <SplitTaxon taxon={oldTaxon} forceRank config={config} />
   );
+  const testingDisagreementTypes = config && config.currentUser
+    && config.currentUser.roles
+    && config.currentUser.roles.indexOf( "admin" ) >= 0;
+  let buttons;
+  if ( testingDisagreementTypes ) {
+    buttons = (
+      <span>
+        <Button
+          bsStyle="warning"
+          className="btn-block stacked"
+          onClick={( ) => {
+            onDisagree( "leaf" );
+            onClose( );
+          }}
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "explicit_disagreement.yes_im_certain_its_not_taxon", { taxon: oldTaxonHTML } )
+          }}
+        />
+        <Button
+          bsStyle="warning"
+          className="btn-block stacked"
+          onClick={( ) => {
+            onDisagree( "branch" );
+            onClose( );
+          }}
+          dangerouslySetInnerHTML={{
+            __html: I18n.t( "explicit_disagreement.yes_we_cant_be_certain_beyond_taxon", { taxon: newTaxonHTML } )
+          }}
+        />
+        <Button
+          bsStyle="success"
+          className="btn-block"
+          onClick={( ) => {
+            onBestGuess( );
+            onClose( );
+          }}
+        >
+          { I18n.t( "explicit_disagreement.no_im_not_disagreeing" ) }
+        </Button>
+      </span>
+    );
+  } else {
+    buttons = (
+      <span>
+        <Button
+          bsStyle="success"
+          className="btn-block stacked"
+          onClick={( ) => {
+            onBestGuess( );
+            onClose( );
+          }}
+          dangerouslySetInnerHTML={{ __html: I18n.t( "i_dont_know_but_i_am_sure_this_is_taxon", { taxon: newTaxonHTML } ) }}
+        />
+        <Button
+          bsStyle="warning"
+          className="btn-block"
+          onClick={( ) => {
+            onDisagree( );
+            onClose( );
+          }}
+          dangerouslySetInnerHTML={{ __html: I18n.t( "no_but_it_is_a_member_of_taxon", { taxon: newTaxonHTML } ) }}
+        />
+      </span>
+    );
+  }
   return (
     <Modal
       show={visible}
@@ -43,29 +108,12 @@ const DisagreementAlert = ( {
         <p
           dangerouslySetInnerHTML={{
             __html: I18n.t(
-              "is_the_evidence_provided_enough_to_confirm_this_is_taxon",
+              "explicit_disagreement.are_you_disagreeing_this_is_taxon",
               { taxon: oldTaxonHTML }
             )
           }}
         />
-        <Button
-          bsStyle="success"
-          className="btn-block stacked"
-          onClick={( ) => {
-            onBestGuess( );
-            onClose( );
-          }}
-          dangerouslySetInnerHTML={{ __html: I18n.t( "i_dont_know_but_i_am_sure_this_is_taxon", { taxon: newTaxonHTML } ) }}
-        />
-        <Button
-          bsStyle="warning"
-          className="btn-block"
-          onClick={( ) => {
-            onDisagree( );
-            onClose( );
-          }}
-          dangerouslySetInnerHTML={{ __html: I18n.t( "no_but_it_is_a_member_of_taxon", { taxon: newTaxonHTML } ) }}
-        />
+        { buttons }
       </Modal.Body>
     </Modal>
   );

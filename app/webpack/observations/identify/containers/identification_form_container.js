@@ -30,10 +30,13 @@ function mapDispatchToProps( dispatch, ownProps ) {
         observation: ownProps.observation
       } );
       dispatch( loadingDiscussionItem( ident ) );
-      const boundPostIdentification = disagreement => {
+      const boundPostIdentification = ( disagreement, disagreementType ) => {
         const params = Object.assign( { }, ident );
         if ( _.isNil( ident.disagreement ) ) {
           params.disagreement = disagreement || false;
+        }
+        if ( !_.isNil( disagreementType ) ) {
+          params.disagreement_type = disagreementType;
         }
         dispatch( postIdentification( params ) )
           .catch( ( ) => {
@@ -66,8 +69,8 @@ function mapDispatchToProps( dispatch, ownProps ) {
           observationTaxon = o.community_taxon || o.taxon;
         }
         dispatch( showDisagreementAlert( {
-          onDisagree: ( ) => {
-            boundPostIdentification( true );
+          onDisagree: disagreementType => {
+            boundPostIdentification( true, disagreementType );
           },
           onBestGuess: boundPostIdentification,
           onCancel: ( ) => {

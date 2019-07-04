@@ -62,6 +62,7 @@ class Identification < ActiveRecord::Base
       } : nil,
       vision: vision,
       disagreement: disagreement,
+      disagreement_type: disagreement_type,
       previous_observation_taxon_id: previous_observation_taxon_id,
       spam: known_spam? || owned_by_spammer?,
       taxon_id: taxon_id

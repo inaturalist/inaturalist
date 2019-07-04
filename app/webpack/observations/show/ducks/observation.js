@@ -483,6 +483,7 @@ export function doAddID( taxon, confirmForm, options = { } ) {
         body: options.body,
         agreedTo: options.agreedTo,
         disagreement: options.disagreement,
+        disagreement_type: options.disagreement_type,
         taxon,
         current: true,
         api_status: "saving"
@@ -494,7 +495,8 @@ export function doAddID( taxon, confirmForm, options = { } ) {
       taxon_id: taxon.id,
       body: options.body,
       vision: !!taxon.isVisionResult,
-      disagreement: options.disagreement
+      disagreement: options.disagreement,
+      disagreement_type: options.disagreement_type
     };
     dispatch( callAPI( inatjs.identifications.create, payload ) );
   };
@@ -517,8 +519,12 @@ export function addID( taxon, options = { } ) {
       && _.includes( observationTaxon.ancestor_ids, taxon.id )
     ) {
       dispatch( showDisagreementAlert( {
-        onDisagree: ( ) => {
-          dispatch( doAddID( taxon, { }, Object.assign( { disagreement: true }, options ) ) );
+        onDisagree: disagreementType => {
+          dispatch( doAddID(
+            taxon,
+            { },
+            Object.assign( { disagreement: true, disagreement_type: disagreementType }, options )
+          ) );
         },
         onBestGuess: ( ) => {
           dispatch(
