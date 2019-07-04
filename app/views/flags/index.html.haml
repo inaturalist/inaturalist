@@ -13,7 +13,7 @@
         %p
           = t :flags_explanation, :site_name => @site.name
           = t :flagged_thing_explanation, :thing => @model.name.downcase
-      - if @flags.empty?
+      - if items.empty?
         %ul
           %li.quiet.description= t :no_flags
       - else
@@ -27,16 +27,6 @@
                 - if item.is_a?( Flag )
                   = render "flag", flag: item
                 - elsif item.action == ModeratorAction::HIDE
-                  = link_to_user item.user
-                  hid this
-                  =t @model.name.underscore
-                  because
-                  = surround "\"", "\"" do
-                    = formatted_user_text item.reason, skip_simple_format: true
+                  =t :user_hid_this_item_because_reason_html, user: link_to_user( item.user ), item: t( @model.name.underscore ), reason: formatted_user_text( item.reason, skip_simple_format: true )
                 - else
-                  = link_to_user item.user
-                  unhid this
-                  =t @model.name.underscore
-                  because
-                  = surround "\"", "\"" do
-                    = formatted_user_text item.reason, skip_simple_format: true
+                  =t :user_unhid_this_item_because_reason_html, user: link_to_user( item.user ), item: t( @model.name.underscore ), reason: formatted_user_text( item.reason, skip_simple_format: true )

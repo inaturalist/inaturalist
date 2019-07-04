@@ -890,6 +890,10 @@ en:
   content_hidden: Content Hidden
   content_hidden_by_user_on_date_because_reason_html: |
     Content hidden by %{user} on %{date} because: "%{reason}"
+  user_hid_this_item_because_reason_html: |
+    %{user} hid this %{item} because "%{reason}"
+  user_unhid_this_item_because_reason_html: |
+    %{user} unhid this %{item} because "%{reason}"
   contest: contest
   continue: Continue
   continue_to_site: Continue to %{site_name}
