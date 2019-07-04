@@ -47,6 +47,7 @@ const ActivityItem = ( {
     || config.currentUser.roles.indexOf( "curator" ) >= 0
     || config.currentUser.id === item.user.id
   );
+  const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
   let contents;
   let header;
   let className;
@@ -235,6 +236,29 @@ const ActivityItem = ( {
                 } )
               }}
             />
+            <div className="upstacked text-muted">
+              <a
+                href={`/${isID ? "identifications" : "comments"}/${item.id}/flags`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="linky"
+              >
+                { I18n.t( "view_moderation_history" ) }
+              </a>
+              { viewerIsActor && (
+                <span>
+                  <br />
+                  <a
+                    href="/help"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="linky"
+                  >
+                    { I18n.t( "contact_support" ) }
+                  </a>
+                </span>
+              ) }
+            </div>
           </Popover>
         )}
       >
@@ -367,7 +391,6 @@ const ActivityItem = ( {
       </div>
     );
   }
-  const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
   const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
   let footer;
   if ( item.disagreement && !hideDisagreement ) {
