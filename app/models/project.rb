@@ -88,6 +88,7 @@ class Project < ActiveRecord::Base
   preference :banner_color, :string
   preference :banner_contain, :boolean, default: false
   preference :hide_title, :boolean, default: false
+  preference :hide_umbrella_map_flags, :boolean, default: false
   preference :rule_quality_grade, :string
   preference :rule_photos, :boolean
   preference :rule_sounds, :boolean
@@ -371,7 +372,7 @@ class Project < ActiveRecord::Base
   def associated_place_ids
     place_ids = [place.try(:self_and_ancestor_ids), rule_places.map(&:self_and_ancestor_ids)]
     if project_type == "umbrella"
-      project_observation_rules.includes(:operand).each do |por|
+      project_observation_rules.each do |por|
         next unless por.operand.is_a? Project
         place_ids << por.operand.associated_place_ids
       end

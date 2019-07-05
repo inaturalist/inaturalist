@@ -28,18 +28,26 @@ import FavesContainer from "../containers/faves_container";
 import { TABS } from "../actions/current_observation_actions";
 
 class ObservationModal extends React.Component {
+  constructor( props, context ) {
+    super( props, context );
+    this.state = {
+      brightnesses: {}
+    };
+  }
+
   componentDidUpdate( prevProps ) {
     // this is a stupid hack to get the google map to render correctly if it
     // was created while it wasn't visible
-    if ( this.props.tab === "info" && prevProps.tab !== "info" ) {
+    const { tab, observation } = this.props;
+    if ( tab === "info" && prevProps.tab !== "info" ) {
       const that = this;
       setTimeout( ( ) => {
         const map = $( ".TaxonMap", ReactDOM.findDOMNode( that ) ).data( "taxonMap" );
         google.maps.event.trigger( map, "resize" );
-        if ( this.props.observation && this.props.observation.latitude ) {
+        if ( observation && observation.latitude ) {
           map.setCenter( new google.maps.LatLng(
-            this.props.observation.latitude,
-            this.props.observation.longitude
+            observation.latitude,
+            observation.longitude
           ) );
         }
       }, 500 );
@@ -122,6 +130,7 @@ class ObservationModal extends React.Component {
       taxonMap = (
         <TaxonMap
           key={`map-for-${obsForMap.id}`}
+          reloadKey={`map-for-${obsForMap.id}`}
           taxonLayers={[taxonLayer]}
           observations={[obsForMap]}
           clickable={!blind}
@@ -137,12 +146,16 @@ class ObservationModal extends React.Component {
           showAllLayer={false}
           overlayMenu={false}
           zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+          currentUser={currentUser}
+          updateCurrentUser={updateCurrentUser}
         />
       );
     } else if ( observation.obscured ) {
       taxonMap = (
         <div className="TaxonMap empty">
-          <i className="fa fa-map-marker" /> { I18n.t( "location_private" ) }
+          <i className="fa fa-map-marker" />
+          { " " }
+          { I18n.t( "location_private" ) }
         </div>
       );
     } else {
@@ -157,8 +170,12 @@ class ObservationModal extends React.Component {
 
     let photos = null;
     if ( images && images.length > 0 ) {
+      const brightnessKey = `${observation.id}-${imagesCurrentIndex}`;
+      const { brightnesses } = this.state;
+      const brightness = brightnesses[brightnessKey] || 1;
+      const brightnessClass = `brightness-${brightness.toString( ).replace( ".", "-" )}`;
       photos = (
-        <div className="photos-wrapper">
+        <div className={`photos-wrapper ${brightnessClass}`}>
           <ZoomableImageGallery
             key={`map-for-${observation.id}`}
             items={images}
@@ -182,6 +199,64 @@ class ObservationModal extends React.Component {
           >
             <i className="icon-link-external" />
           </a>
+          { currentUser && currentUser.roles.indexOf( "admin" ) >= 0 && (
+            <div className="brightness-control btn-group btn-group-xs" role="group">
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={( ) => {
+                  const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
+              >
+                <i className="fa fa-sun-o" />
+                { brightness !== 1 && (
+                  <span>
+                    { " " }
+                    { _.isInteger( brightness ) ? `${brightness}.0` : brightness }
+                    X
+                  </span>
+                ) }
+              </button>
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={( ) => {
+                  const existing = brightnesses[brightnessKey] || 1;
+                  let newBrightness = _.round( existing - 0.2, 2 );
+                  if ( newBrightness < 0.2 ) {
+                    newBrightness = 0.2;
+                  }
+                  const newBrightnesses = Object.assign( {}, brightnesses, {
+                    [brightnessKey]: newBrightness
+                  } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={I18n.t( "decrease_brightness" )}
+              >
+                -
+              </button>
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={( ) => {
+                  const existing = brightnesses[brightnessKey] || 1;
+                  let newBrightness = _.round( existing + 0.2, 2 );
+                  if ( newBrightness > 3 ) {
+                    newBrightness = 3;
+                  }
+                  const newBrightnesses = Object.assign( {}, brightnesses, {
+                    [brightnessKey]: newBrightness
+                  } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={I18n.t( "increase_brightness" )}
+              >
+                +
+              </button>
+            </div>
+          ) }
         </div>
       );
     }
@@ -274,7 +349,7 @@ class ObservationModal extends React.Component {
                 key={`keyboard-shortcuts-${shortcut.keys.join( "-" )}`}
               >
                 <td>
-                  <span dangerouslySetInnerHTML={ { __html: shortcut.keys.map( k => `<code>${k}</code>` ).join( " + " ) } } />
+                  <span dangerouslySetInnerHTML={{ __html: shortcut.keys.map( k => `<code>${k}</code>` ).join( " + " ) }} />
                 </td>
                 <td>{ shortcut.label }</td>
               </tr>
@@ -385,7 +460,7 @@ class ObservationModal extends React.Component {
                       return false;
                     }}
                   >
-                    <i className="fa fa-keyboard-o"/>
+                    <i className="fa fa-keyboard-o" />
                   </Button>
                   <Overlay
                     placement="top"
@@ -419,9 +494,11 @@ class ObservationModal extends React.Component {
                                             key={`keyboard-shortcuts-${labelKey}`}
                                           >
                                             <td>
-                                              <code>{ shortcut.keys[0] }</code> {
-                                                I18n.t( "then_keybord_sequence" )
-                                              } <code>{ shortcut.keys[1] }</code>
+                                              <code>{ shortcut.keys[0] }</code>
+                                              { " " }
+                                              { I18n.t( "then_keybord_sequence" ) }
+                                              { " " }
+                                              <code>{ shortcut.keys[1] }</code>
                                             </td>
                                             <td>{ I18n.t( labelKey ) }</td>
                                           </tr>
@@ -458,22 +535,24 @@ class ObservationModal extends React.Component {
                     >
                       <input
                         type="checkbox"
-                        checked={ captiveByCurrentUser || false }
+                        checked={captiveByCurrentUser || false}
                         onChange={function ( ) {
                           toggleCaptive( );
                         }}
-                      /> { I18n.t( "captive_cultivated" ) }
+                      />
+                      { " " }
+                      { I18n.t( "captive_cultivated" ) }
                     </label>
                   </OverlayTrigger>
                   <OverlayTrigger
                     placement="top"
                     delayShow={1000}
-                    overlay={
+                    overlay={(
                       <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
                         { I18n.t( "mark_as_reviewed" ) }
                       </Tooltip>
-                    }
-                    container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+                    )}
+                    container={$( "#wrapper.bootstrap" ).get( 0 )}
                   >
                     <label
                       className={
@@ -482,7 +561,9 @@ class ObservationModal extends React.Component {
                     >
                       <input
                         type="checkbox"
-                        checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
+                        checked={
+                          observation.reviewedByCurrentUser || reviewedByCurrentUser || false
+                        }
                         onChange={function ( ) {
                           toggleReviewed( );
                         }}
@@ -500,11 +581,11 @@ class ObservationModal extends React.Component {
                 <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
                   <a
                     href="#"
-                    onClick={ e => {
+                    onClick={e => {
                       e.preventDefault( );
                       chooseTab( tabName, { observation } );
                       return false;
-                    } }
+                    }}
                   >
                     { tabTitles[tabName] || I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } ) }
                   </a>
@@ -570,8 +651,13 @@ class ObservationModal extends React.Component {
                           </li>
                           { blind ? null : (
                             <li className="view-follow">
-                              <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
-                                <i className="icon-link-external bullet-icon"></i>
+                              <a
+                                className="permalink"
+                                href={`/observations/${observation.id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <i className="icon-link-external bullet-icon" />
                                 { I18n.t( "view" ) }
                               </a>
                               { observation.user.id === currentUser.id ? null : (
@@ -596,10 +682,10 @@ class ObservationModal extends React.Component {
                         <div className="big loading_spinner" />
                       </center>
                       <CommentFormContainer
-                        key={ `comment-form-obs-${observation.id}` }
+                        key={`comment-form-obs-${observation.id}`}
                         observation={observation}
                         className={commentFormVisible ? "" : "collapse"}
-                        ref={ function ( elt ) {
+                        ref={elt => {
                           const domNode = ReactDOM.findDOMNode( elt );
                           if ( domNode && commentFormVisible ) {
                             scrollSidebarToForm( domNode );
@@ -610,13 +696,13 @@ class ObservationModal extends React.Component {
                               $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
                             }
                           }
-                        } }
+                        }}
                       />
                       <IdentificationFormContainer
-                        key={ `identification-form-obs-${observation.id}` }
+                        key={`identification-form-obs-${observation.id}`}
                         observation={observation}
                         className={identificationFormVisible ? "" : "collapse"}
-                        ref={ function ( elt ) {
+                        ref={elt => {
                           const domNode = ReactDOM.findDOMNode( elt );
                           if ( domNode && identificationFormVisible ) {
                             scrollSidebarToForm( domNode );
@@ -627,7 +713,7 @@ class ObservationModal extends React.Component {
                               $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
                             }
                           }
-                        } }
+                        }}
                       />
                     </div>
                   </div>
@@ -635,37 +721,41 @@ class ObservationModal extends React.Component {
                     <OverlayTrigger
                       placement="top"
                       delayShow={1000}
-                      overlay={
+                      overlay={(
                         <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
                           { I18n.t( "agree_with_current_taxon" ) }
                         </Tooltip>
-                      }
-                      container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+                      )}
+                      container={$( "#wrapper.bootstrap" ).get( 0 )}
                     >
                       <Button
                         bsStyle="default"
-                        disabled={ agreeingWithObservation || !showAgree( ) }
+                        disabled={agreeingWithObservation || !showAgree( )}
                         className="agree-btn"
-                        onClick={ function ( ) {
-                          agreeWithCurrentObservation( );
-                        } }
+                        onClick={( ) => agreeWithCurrentObservation( )}
                       >
                         { agreeingWithObservation ? (
                           <div className="loading_spinner" />
                         ) : (
-                          <i className="fa fa-check"></i>
-                        ) } { I18n.t( "agree_" ) }
+                          <i className="fa fa-check" />
+                        ) }
+                        { " " }
+                        { I18n.t( "agree_" ) }
                       </Button>
                     </OverlayTrigger>
                     <Button
                       bsStyle="default"
                       className="comment-btn"
-                      onClick={ function ( ) { addComment( ); } }
+                      onClick={( ) => addComment( )}
                     >
-                      <i className="fa fa-comment"></i> { I18n.t( "comment_" ) }
+                      <i className="fa fa-comment" />
+                      { " " }
+                      { I18n.t( "comment_" ) }
                     </Button>
-                    <Button bsStyle="default" onClick={ function ( ) { addIdentification( ); } } >
-                      <i className="icon-identification"></i> { I18n.t( "add_id" ) }
+                    <Button bsStyle="default" onClick={( ) => addIdentification( )}>
+                      <i className="icon-identification" />
+                      { " " }
+                      { I18n.t( "add_id" ) }
                     </Button>
                   </div>
                 </div>

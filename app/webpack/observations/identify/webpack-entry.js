@@ -19,7 +19,6 @@ import {
 import { fetchAllControlledTerms } from "../show/ducks/controlled_terms";
 import AppContainer from "./containers/app_container";
 
-
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
 const relativeTime = Object.assign(

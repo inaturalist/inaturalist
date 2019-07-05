@@ -689,4 +689,30 @@ body > [role="dialog"] .ObservationModal {
       padding-left: 10px !important;
     }
   }
+
+  .brightness-control {
+    position: absolute;
+    bottom: 18px;
+    right: 10px;
+    .btn {
+      background-color: rgba(255,255,255,0.8);
+    }
+    z-index: 1;
+  }
+
+  .brightness-0-2 .image-gallery-image img { filter: brightness(0.2); }
+  .brightness-0-4 .image-gallery-image img { filter: brightness(0.4); }
+  .brightness-0-6 .image-gallery-image img { filter: brightness(0.6); }
+  .brightness-0-8 .image-gallery-image img { filter: brightness(0.8); }
+  .brightness-1-2 .image-gallery-image img { filter: brightness(1.2); }
+  .brightness-1-4 .image-gallery-image img { filter: brightness(1.4); }
+  .brightness-1-6 .image-gallery-image img { filter: brightness(1.6); }
+  .brightness-1-8 .image-gallery-image img { filter: brightness(1.8); }
+  .brightness-2   .image-gallery-image img { filter: brightness(2.0); }
+  .brightness-2-2 .image-gallery-image img { filter: brightness(2.2); }
+  .brightness-2-4 .image-gallery-image img { filter: brightness(2.4); }
+  .brightness-2-6 .image-gallery-image img { filter: brightness(2.6); }
+  .brightness-2-8 .image-gallery-image img { filter: brightness(2.8); }
+  .brightness-3   .image-gallery-image img { filter: brightness(3.0); }
+
 }

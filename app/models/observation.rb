@@ -1712,24 +1712,26 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def self.set_community_taxa(options = {})
-    scope = Observation.includes({:identifications => [:taxon]}, :user)
-    scope = scope.where(options[:where]) if options[:where]
-    scope = scope.by(options[:user]) unless options[:user].blank?
-    scope = scope.of(options[:taxon]) unless options[:taxon].blank?
-    scope = scope.in_place(options[:place]) unless options[:place].blank?
-    scope = scope.in_projects([options[:project]]) unless options[:project].blank?
-    start_time = Time.now
+  def self.set_observations_taxa_for_user( user, options = {} )
     logger = options[:logger] || Rails.logger
-    logger.info "[INFO #{Time.now}] Starting Observation.set_community_taxon, options: #{options.inspect}"
-    scope.find_each do |o|
-      next unless o.identifications.size > 1
-      o.set_community_taxon
-      unless o.save
-        logger.error "[ERROR #{Time.now}] Failed to set community taxon for #{o}: #{o.errors.full_messages.to_sentence}"
+    user = User.find_by_id( user ) unless user.is_a?( User )
+    start_time = Time.now
+    logger.info "[INFO #{Time.now}] Starting Observation.set_observations_taxa_for_user #{user.id}, options: #{options.inspect}"
+    Observation.search_in_batches( user_id: user.id ) do |batch|
+      Observation.preload_associations( batch, [
+        { user: :stored_preferences },
+        { identifications: :taxon }
+      ] )
+      batch.each do |o|
+        next if o.taxon_id == o.community_taxon_id && o.user.prefers_community_taxa?
+        o.set_taxon_from_probable_taxon
+        next unless o.changed?
+        unless o.save
+          puts "[ERROR #{Time.now}] Failed to set taxon for #{o}: #{o.errors.full_messages.to_sentence}"
+        end
       end
     end
-    logger.info "[INFO #{Time.now}] Finished Observation.set_community_taxon in #{Time.now - start_time}s, options: #{options.inspect}"
+    logger.info "[INFO #{Time.now}] Finished Observation.set_observations_taxa_for_user in #{Time.now - start_time}s, options: #{options.inspect}"
   end
 
   def community_taxon_rejected?
@@ -1740,13 +1742,20 @@ class Observation < ActiveRecord::Base
   # What the system thinks the organism probably is. Current combines the
   # communal opinion with the preferences of individuals (disagreement / not
   # disagreement), and may in the future incorporate modeled identifier skill
+  # if there are any disagreements, use the community taxon
   def probable_taxon( options = {} )
     nodes = community_taxon_nodes( options )
-    node = nodes.select{|n| n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF }.sort_by {|n|
-      0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
-    }.last
-    return unless node
-    node[:taxon]
+    disagreement_count = nodes.map{ |n| [n[:disagreement_count], n[:conservative_disagreement_count]] }.flatten.sort.last
+    disagreement_count ||= 0
+    if disagreement_count == 0
+      node = nodes.select{|n| n[:score].to_f > COMMUNITY_TAXON_SCORE_CUTOFF }.sort_by {|n|
+        0 - (n[:taxon].rank_level || 500) # within that set, sort by rank level, i.e. choose lowest rank
+      }.last
+      return unless node
+      node[:taxon]
+    else
+      return get_community_taxon
+    end
   end
 
   def set_taxon_from_probable_taxon
@@ -1760,8 +1769,15 @@ class Observation < ActiveRecord::Base
       # obs opted out or user opted out
       owners_identification.try(:taxon_id)
     elsif ( ct = community_taxon ) && prob_taxon && prob_taxon.rank_level.to_i < Taxon::SPECIES_LEVEL && prob_taxon.ancestor_ids.include?( ct.id )
-      # prob_taxon was subspecific, using CID
-      ct.id
+      first_id_of_prob_taxon = identifications.select{|i| i.current == true && i.taxon_id == prob_taxon.id}.sort_by{|i| i.created_at}.first
+      first_id_of_community_taxon = identifications.select{|i| i.current == true && i.taxon_id == ct.id}.sort_by{|i| i.created_at}.first
+      if first_id_of_prob_taxon && first_id_of_community_taxon && first_id_of_prob_taxon.id < first_id_of_community_taxon.id
+        # prob_taxon was subspecific but first
+        prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
+      else
+        # prob_taxon was subspecific and not first, using CID
+        ct.id
+      end
     else
       # opted in
       prob_taxon.try(:id) || owners_identification.try(:taxon_id) || others_identifications.last.try(:taxon_id)
@@ -1859,7 +1875,12 @@ class Observation < ActiveRecord::Base
   def date_observed_must_be_before_date_created
     return true if observed_on.blank?
     return true if created_at.blank?
-    if observed_on.in_time_zone( "UTC" ) > created_at.in_time_zone( "UTC" ).to_date
+    return true if editing_user_id != user_id
+    if (
+      time_observed_at && time_observed_at.in_time_zone( "UTC" ).to_date > created_at.in_time_zone( "UTC" ).to_date
+    ) || (
+      observed_on.in_time_zone( "UTC" ).to_date > ( created_at.in_time_zone( "UTC" ) + 1.day ).to_date
+    )
       errors.add(:observed_on, :cannot_be_greater_than_date_created)
     end
     true

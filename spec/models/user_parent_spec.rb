@@ -24,6 +24,27 @@ describe UserParent, "creation" do
     Delayed::Worker.new.work_off
     expect( Devise.mailer.deliveries.size ).to eq deliveries
   end
+
+  it "should not allow an email that belongs to another user that is not the parent user" do
+    existing_user = User.make!
+    up = UserParent.make( email: existing_user.email )
+    expect( up ).not_to be_valid
+    expect( up.errors[:email] ).not_to be_blank
+  end
+  it "should allow an email that belongs to another user that is the parent user" do
+    existing_user = User.make!
+    up = UserParent.make!( email: existing_user.email, parent_user: existing_user )
+    expect( up ).to be_valid
+  end
+end
+
+describe UserParent, "update" do
+  it "should allow the donorbox_donor_id to be set even if a non-parent user exists with the same email address" do
+    up = UserParent.make!
+    u = User.make!( email: up.email )
+    up.update_attributes( donorbox_donor_id: 1 )
+    expect( up ).to be_valid
+  end
 end
 
 describe UserParent, "donorbox_donor_id" do

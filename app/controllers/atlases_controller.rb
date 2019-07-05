@@ -47,7 +47,25 @@ class AtlasesController < ApplicationController
   end
   
   def index
-    @marked_atlases = Atlas.where(is_active: true, is_marked: true).page(params[:page]).per_page(10)
+    filter_params = params[:filters] || params
+    @taxon = Taxon.find_by_id( filter_params[:taxon_id].to_i ) unless filter_params[:taxon_id].blank?
+    @is_active = filter_params[:is_active]
+    @is_marked = filter_params[:is_marked]
+    
+    scope = Atlas.all
+    scope = scope.taxon(@taxon) if @taxon
+    if @is_active.yesish?
+      scope = scope.active
+    elsif @is_active.noish?
+      scope = scope.inactive
+    end
+    if @is_marked.yesish?
+      scope = scope.marked
+    elsif @is_marked.noish?
+      scope = scope.unmarked
+    end
+    
+    @atlases = scope.page(params[:page]).per_page(10)
   end
 
   def create

@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import OverviewTab from "../components/overview_tab";
 import { setSelectedTab } from "../ducks/project";
+import { updateCurrentUser } from "../../../shared/ducks/config";
 
 function mapStateToProps( state ) {
   return {
@@ -11,7 +12,8 @@ function mapStateToProps( state ) {
 
 function mapDispatchToProps( dispatch ) {
   return {
-    setSelectedTab: tab => { dispatch( setSelectedTab( tab ) ); }
+    setSelectedTab: tab => dispatch( setSelectedTab( tab ) ),
+    updateCurrentUser: user => dispatch( updateCurrentUser( user ) )
   };
 }
 

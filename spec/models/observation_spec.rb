@@ -632,10 +632,10 @@ describe Observation do
         expect(observation.observed_on).to be_blank
       end
 
-      it "should not allow dates greater that created_at + 1 day" do
+      it "should not allow dates greater that created_at + 1 day when updated by the observer" do
         o_2_days_ago = Observation.make!( created_at: 2.days.ago, observed_on_string: 3.day.ago.to_s )
         expect( o_2_days_ago ).to be_valid
-        o_2_days_ago.update_attributes( observed_on_string: Time.now.to_s )
+        o_2_days_ago.update_attributes( observed_on_string: Time.now.to_s, editing_user_id: o_2_days_ago.user_id )
         expect( o_2_days_ago ).not_to be_valid
       end
 
@@ -3444,6 +3444,24 @@ describe Observation do
         o = Observation.find( @o.id )
         expect( o.taxon ).to eq @s1
       end
+      it "ss1 s1.disagreement_false should set the taxon to ss1" do
+        Identification.make!( observation: @o, taxon: @ss1 )
+        Identification.make!( observation: @o, taxon: @s1, disagreement: false )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @ss1
+      end
+      it "ss1 s1.disagreement_true should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @ss1 )
+        Identification.make!( observation: @o, taxon: @s1, disagreement: true )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @s1
+      end
+      it "s1 ss1 should set the taxon to s1" do
+        Identification.make!( observation: @o, taxon: @s1 )
+        Identification.make!( observation: @o, taxon: @ss1 )
+        o = Observation.find( @o.id )
+        expect( o.taxon ).to eq @s1
+      end
       it "s1.disagreement_false s2.disagreement_false s2.disagreement_false should be g1" do
         @taxon_swap1 = TaxonSwap.make
         @taxon_swap1.add_input_taxon(@s3)
@@ -4078,6 +4096,41 @@ describe Observation, "prefers_auto_obscuration" do
       o.update_attributes( geoprivacy: Observation::OBSCURED )
       expect( o ).to be_coordinates_obscured
     end
+  end
+end
+
+describe Observation, "set_observations_taxa_for_user" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  let(:user) { User.make! }
+  let(:family1) { Taxon.make!( rank: Taxon::FAMILY, name: "Familyone" ) }
+  let(:genus1) { Taxon.make!( rank: Taxon::GENUS, name: "Genusone", parent: family1 ) }
+  let(:species1) { Taxon.make!( rank: Taxon::SPECIES, name: "Genusone speciesone", parent: genus1 ) }
+  let(:o) do
+    o = Observation.make!( user: user )
+    i1 = Identification.make!( observation: o, user: user, taxon: genus1 )
+    i2 = Identification.make!( observation: o, taxon: species1 )
+    i3 = Identification.make!( observation: o, taxon: species1 )
+    o
+  end
+  it "should change the community taxon if the observer's opted out of the community taxon" do
+    expect( o.taxon ).to eq species1
+    user.update_attributes( prefers_community_taxa: false )
+    o.reload
+    expect( o.taxon ).to eq species1
+    Observation.set_observations_taxa_for_user( o.user_id )
+    o.reload
+    expect( o.taxon ).to eq genus1
+  end
+  it "should change the community taxon if the observer's opted in to the community taxon" do
+    user.update_attributes( prefers_community_taxa: false )
+    expect( o.taxon ).to eq genus1
+    user.update_attributes( prefers_community_taxa: true )
+    o.reload
+    expect( o.taxon ).to eq genus1
+    Observation.set_observations_taxa_for_user( o.user_id )
+    o.reload
+    expect( o.taxon ).to eq species1
   end
 end
 

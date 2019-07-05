@@ -309,6 +309,7 @@ en:
   adding_to_your_life_list: "Adding to your life list..."
   additional_range: Additional range
   additional_range_data_from_an_unknown_source: Additional range data from an unknown source
+  adjust_brightness: Adjust Brightness
   admin: Admin
   admin_s: Admin(s)
   admin_any_projects: admin any projects
@@ -1069,6 +1070,7 @@ en:
   dates: dates
   datetime_: Date/Time
   day: Day
+  decrease_brightness: Decrease Brightness
   default: default
   default_invite_comment: "Great photo!  You should post it to %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Default observation license
@@ -1715,6 +1717,7 @@ en:
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   inbox: Inbox
   including: including
+  increase_brightness: Increase Brightness
   in_order_to_login_and_using_site_visit_url: "In order to login and start using the site you must visit this url to activate your account:"
   in_progress: in progress
   in_taxon?: in taxon
@@ -2115,7 +2118,6 @@ en:
       range: Range
   map_tooltip: Show map view
   map_for: Map for
-  maptype_for_places: 'google.maps.MapTypeId.TERRAIN'
   mark_as_reviewed: Mark As Reviewed
   mark_all_as_reviewed: Mark All As Reviewed
   mark_all_as_unreviewed: Mark All As Unreviewed
@@ -3516,6 +3518,7 @@ en:
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
   research_quality: Research Quality
+  reset_brightness: Reset Brightness
   reset_search_filters: Reset Search Filters
   reset_your_password: Reset Your Password
   resolve: Resolve
@@ -6113,12 +6116,15 @@ en:
         note_you_can_delete_the_time: |
           (Note: you can delete the time zone and precise times if you want to include whole days.)
         or_drag_and_drop: (or drag and drop)
+        please_specify_the_requirements: |
+          Please specify the requirements for the observations to be added to
+          this project.
         please_specify_the_requirements_html: |
           Please specify the requirements for the observations to be added to
           this project. You can specify multiple species, places, users, or
           quality grades to be automatically included, or leave a field blank if
           you have no specific requirement for it. Explanations for each field
-          can found <a href="%{url}">here</a>.          
+          can found <a href="%{url}">here</a>.
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
         project_banner: Project Banner (PNG, JPG, or GIF)
@@ -6133,6 +6139,7 @@ en:
           Give a concise explanation of your project. Approximately the first 200 characters will
           be visible to the right of the project home screen banner so put the best stuff first!
         project_summary_placeholder: Discover and track the birds of Golden Gate Park...
+        show_projects_as_flags: Show projects as flags in map
         start_and_end_times_for_bioblitzes: Start and end date/times (for bioblitz-type events)
         umbrella_project_features: "Umbrella Project features:"
         unique_url_for_outreach: Unique URL for outreach
@@ -6154,6 +6161,12 @@ en:
           You have not defined any observation requirements. Make sure to select one or more taxa
           (e.g. birds, conifers), places (e.g. Brazil, Yellowstone), users, and/or dates to define
           the observations that you want to include in your project.
+        errors:
+          name_is_required: Project name is required
+          name_less_than_100_characters: Project name must be less than 100 characters
+          name_already_taken: Project name already taken
+          cannot_have_more_than_x_project_rules: Cannot have more than %{x} project rules
+          summary_is_required: Project summary text is required
       project_location_privacy_notice_html: |
         <p>
           Please be aware project curators will be able to see any private or

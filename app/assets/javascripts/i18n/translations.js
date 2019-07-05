@@ -69,6 +69,8 @@ I18n.translations["af"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -1777,6 +1779,8 @@ I18n.translations["ar"] = {
         "delete_project": "حذف المشروع",
         "display_project_name": "عرض اسم المشروع",
         "do_you_need_features_from_traditional": "هل تحتاج إلى ميزات من المشاريع التقليدية، مثل الوصول إلى الإحداثيات الحقيقية أو \nحقول الملاحظة المخصصة أو إضافة ملاحظات فردية لا يمكن تصفيتها \nتلقائيا؟",
+        "errors": {
+        },
         "leaderboards_among_individuals": "المتصدرون ضمن <strong>الأفراد</strong>",
         "leaderboards_among_projects_and_bioblitzes": "ألواح المتصدرين بين <strong>المشاريع",
         "multiple_project_administrators": "مديرو المشاريع المتعددة",
@@ -2113,6 +2117,8 @@ I18n.translations["az"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -2213,6 +2219,8 @@ I18n.translations["be"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -3264,6 +3272,8 @@ I18n.translations["bg"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        },
         "project_name": "Име на проекта",
         "welcome_to_projects": "Добре дошли в Проекти!"
       },
@@ -3461,6 +3471,8 @@ I18n.translations["bn"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -4019,6 +4031,8 @@ I18n.translations["br"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -4165,6 +4179,8 @@ I18n.translations["bs"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -5871,6 +5887,8 @@ I18n.translations["ca"] = {
         "delete_project": "Elimina Projecte",
         "display_project_name": "Mostra nom del projecte",
         "do_you_need_features_from_traditional": "Necessiteu característiques del projectes tradicionals, com accedir a coordenades correctes, camps d'observació personalitzats, o afegir observacions individuals que no puguin ser filtrades automàticament?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Els més actius entre els <strong>individus</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Els més actius entre <strong>projectes</strong>",
         "multiple_project_administrators": "Administradors múltiples del projecte",
@@ -7806,6 +7824,8 @@ I18n.translations["cs"] = {
         "delete_project": "Smazat projekt",
         "display_project_name": "Zobrazit název projektu",
         "do_you_need_features_from_traditional": "Potřebujete informace z tradičních projektů, jako je přístup k souřadnicím, nebo přidávání jednotlivých pozorování, která nemohou být automaticky\nfiltrována?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Výsledkové tabulky mezi <strong>individuals</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Výsledková tabulky mezi <strong>projects and bioblitzes</strong>",
         "multiple_project_administrators": "Více administrátorů projektu",
@@ -9747,6 +9767,8 @@ I18n.translations["da"] = {
         "delete_project": "Slet projekt",
         "display_project_name": "Vis projektnavn",
         "do_you_need_features_from_traditional": "Har du brug for egenskaber fra de traditionelle projekter, så som adgang til de rigtige koordinater, bruger-observationsfelter eller tilføjelse af individuelle observationer, der ikke kan filtreres automatisk?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Toplister iblandt <strong>individuelle</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Toplister iblandt <strong>projekter</strong>",
         "multiple_project_administrators": "Flere projektadministratorer",
@@ -11565,6 +11587,8 @@ I18n.translations["de"] = {
     "projects": {
       "new": {
         "do_you_need_features_from_traditional": "Brauchst du Funktionen aus traditionellen Projekten, wie den Zugriff auf die tatsächlichen Koordinaten, benutzerdefinierte Beobachtungsfelder oder das Hinzufügen einzelner Beobachtungen, die nicht automatisch gefiltert werden können?",
+        "errors": {
+        },
         "please_specify_the_requirements_html": "Bitte geben Sie die Anforderungen für die Beobachtungen an, die zu diesem Projekt hinzugefügt werden sollen. Sie können mehrere Arten, Orte, Benutzer oder Qualitätsstufen angeben, die automatisch einbezogen werden sollen, oder ein Feld leer lassen, wenn Sie keine besonderen Anforderungen haben. Erklärungen für jedes Feld können <a href=\"%{url}\">hier</a> gefunden werden.",
         "project_summary_help": "Gib eine kurze Erläuterung deines Projekts an. Ungefähr die ersten 200 Zeichen werden rechts neben dem Banner der Projekt-Startseite zu sehen sein, also schreibe das Wichtigste zu Beginn hin!",
         "we_have_redesigned_projects": "Projekte sind so gestaltet, dass sie automatisch alle Beobachtungen einbeziehen, die zu den von dir definierten Orten, Taxa, Benutzern, Qualität und Daten passen. Wähle zwischen zwei Haupttypen:\nKollektionsprojekte und Dachprojekte, die folgende Funktionen gemeinsam haben:"
@@ -11813,6 +11837,8 @@ I18n.translations["de-CH"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -13248,6 +13274,8 @@ I18n.translations["el"] = {
         "data_visualizations": "Οπτικοποιήσεις δεδομένων",
         "delete_project": "Διαγραφή Πρότζεκτ",
         "display_project_name": "Εμφάνιση ονόματος εγχειρήματος",
+        "errors": {
+        },
         "multiple_project_administrators": "Πολλαπλοί διαχειριστές εγχειρήματος",
         "or_drag_and_drop": "(ή σύρτε και αποθέστε)",
         "project_details": "Λεπτομέρειες Πρότζεκτ",
@@ -13451,6 +13479,7 @@ I18n.translations["en"] = {
   "added_on": "Added on",
   "additional_range": "Additional range",
   "additional_range_data_from_an_unknown_source": "Additional range data from an unknown source",
+  "adjust_brightness": "Adjust Brightness",
   "admin_s": "Admin(s)",
   "agree": "agree",
   "agree_": "Agree",
@@ -13829,6 +13858,7 @@ I18n.translations["en"] = {
       "other": "sec"
     }
   },
+  "decrease_brightness": "Decrease Brightness",
   "default": "default",
   "delete": "Delete",
   "deleting_verb": "Deleting",
@@ -14002,6 +14032,7 @@ I18n.translations["en"] = {
   "inactive_taxon": "Inactive Taxon",
   "inappropriate_content": "Inappropriate content?",
   "including": "including",
+  "increase_brightness": "Increase Brightness",
   "info": "Info",
   "input_taxon": "Input taxon",
   "insect_life_stage": "Insect Life Stage",
@@ -14130,7 +14161,6 @@ I18n.translations["en"] = {
       "range": "Range"
     }
   },
-  "maptype_for_places": "google.maps.MapTypeId.TERRAIN",
   "mark_all_as_reviewed": "Mark All As Reviewed",
   "mark_all_as_unreviewed": "Mark All As Unreviewed",
   "mark_as_reviewed": "Mark As Reviewed",
@@ -14782,6 +14812,7 @@ I18n.translations["en"] = {
   "research_grade": "Research Grade",
   "research_grade_qualification": "Research Grade Qualification",
   "research_grade_short_html": "R<span class='full'>esearch </span>G<span class='full'>rade</span>",
+  "reset_brightness": "Reset Brightness",
   "reset_search_filters": "Reset Search Filters",
   "restore": "Restore",
   "review_all": "Review All",
@@ -15085,6 +15116,12 @@ I18n.translations["en"] = {
         "delete_project": "Delete Project",
         "display_project_name": "Display project name",
         "do_you_need_features_from_traditional": "Do you need features from traditional projects, such as access to true coordinates,\ncustom observation fields, or adding individual observations that can’t be automatically\nfiltered?\n",
+        "errors": {
+          "cannot_have_more_than_x_project_rules": "Cannot have more than %{x} project rules",
+          "name_already_taken": "Project name already taken",
+          "name_is_required": "Project name is required",
+          "summary_is_required": "Project summary text is required"
+        },
         "leaderboards_among_individuals": "Leaderboards among <strong>individuals</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Leaderboards among <strong>projects</strong>\n",
         "multiple_project_administrators": "Multiple project administrators",
@@ -15093,7 +15130,8 @@ I18n.translations["en"] = {
         "note_these_users_will_be_able_to_edit": "Note: these users will be able to edit ALL project details including admins.\n",
         "note_you_can_delete_the_time": "(Note: you can delete the time zone and precise times if you want to include whole days.)\n",
         "or_drag_and_drop": "(or drag and drop)",
-        "please_specify_the_requirements_html": "Please specify the requirements for the observations to be added to\nthis project. You can specify multiple species, places, users, or\nquality grades to be automatically included, or leave a field blank if\nyou have no specific requirement for it. Explanations for each field\ncan found <a href=\"%{url}\">here</a>.          \n",
+        "please_specify_the_requirements": "Please specify the requirements for the observations to be added to\nthis project.\n",
+        "please_specify_the_requirements_html": "Please specify the requirements for the observations to be added to\nthis project. You can specify multiple species, places, users, or\nquality grades to be automatically included, or leave a field blank if\nyou have no specific requirement for it. Explanations for each field\ncan found <a href=\"%{url}\">here</a>.\n",
         "project_background_color": "Project Summary Background Color",
         "project_background_color_help": "Make sure to choose a color dark enough so the white overlaid text is legible.",
         "project_banner": "Project Banner (PNG, JPG, or GIF)",
@@ -15105,6 +15143,7 @@ I18n.translations["en"] = {
         "project_summary": "Project Summary",
         "project_summary_help": "Give a concise explanation of your project. Approximately the first 200 characters will\nbe visible to the right of the project home screen banner so put the best stuff first!\n",
         "project_summary_placeholder": "Discover and track the birds of Golden Gate Park...",
+        "show_projects_as_flags": "Show projects as flags in map",
         "start_and_end_times_for_bioblitzes": "Start and end date/times (for bioblitz-type events)",
         "umbrella_project_features": "Umbrella Project features:",
         "unique_url_for_outreach": "Unique URL for outreach",
@@ -15421,6 +15460,8 @@ I18n.translations["en-GB"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -15569,6 +15610,8 @@ I18n.translations["en-US"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -16669,6 +16712,8 @@ I18n.translations["eo"] = {
         "data_visualizations": "Bildigoj de dateno",
         "delete_project": "Forigi Projekton",
         "display_project_name": "Montri nomo de projekto",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Ĉampionejo inter <strong>individuoj</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Ĉampionejoj inter <strong>projektoj</strong>",
         "multiple_project_administrators": "Pluraj projektaj administrantoj",
@@ -18471,6 +18516,8 @@ I18n.translations["es"] = {
         "delete_project": "Eliminar proyecto",
         "display_project_name": "Exhibe nombre del proyecto",
         "do_you_need_features_from_traditional": "¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación a la medida, o añadir observaciones individuales que no pueden ser filtradas automáticamente?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Tabler de líderes entre <strong>@individuos</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Tablero de líderes entre <strong>proyectos y maratones</strong>",
         "multiple_project_administrators": "Administradores múltiples de proyecto",
@@ -19075,7 +19122,6 @@ I18n.translations["es-ES"] = {
     "overlays": {
     }
   },
-  "maptype_for_places": "google.maps.MapTypeId.TERRAIN",
   "members": "Miembros",
   "messages": "Mensajes",
   "misleading_or_illegal_content_html": "Contenido ilegal, engañoso, racista, xenófobo, etc.",
@@ -19386,6 +19432,8 @@ I18n.translations["es-ES"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -21122,6 +21170,8 @@ I18n.translations["es-MX"] = {
         "delete_project": "Eliminar proyecto",
         "display_project_name": "Exhibe nombre del proyecto",
         "do_you_need_features_from_traditional": "¿Necesitas características de proyectos tradicionales, como acceder a coordenadas verdaderas, campos de observación personalizados o añadir observaciones individuales que no pueden ser filtradas automáticamente?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Marcador entre <strong>@individuos</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Marcador entre <strong>proyectos y maratones naturalista </strong>",
         "multiple_project_administrators": "Administradores de múltiples proyectos",
@@ -23034,6 +23084,8 @@ I18n.translations["et"] = {
         "delete_project": "Kustuta projekt",
         "display_project_name": "Näita projekti nime",
         "do_you_need_features_from_traditional": "Kas sa vajad tavaprojektide võimalusi nagu ligipääsu tõelistele koordinaatidele, vaatluste spetsiaalväljasid või üksikute vaatluste lisamist, millega automaatfiltrid hakkama ei saa?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "<strong>Kasutajate</strong> edetabelid",
         "leaderboards_among_projects_and_bioblitzes": "<strong>Projektide ja välkvaatluste</strong> edetabelid",
         "multiple_project_administrators": "Mitu projekti administraatorit",
@@ -24161,6 +24213,8 @@ I18n.translations["eu"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -24302,6 +24356,8 @@ I18n.translations["fa"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -25846,6 +25902,8 @@ I18n.translations["fi"] = {
         "data_visualizations": "Tietojen visualisoinnit",
         "delete_project": "Poista projekti",
         "display_project_name": "Näytä projektin nimi",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Tulostaulukot <strong>yksilöiden</strong> kesken",
         "multiple_project_administrators": "Useita projektin ylläpitäjiä",
         "no_need_to_rely_on_manual_addition": "Ei tarvitse luottaa manuaaliseen havaintojen lisäykseen tai kerääjään indeksoidaksesi havaintoja",
@@ -27719,6 +27777,8 @@ I18n.translations["fr"] = {
         "delete_project": "Supprimer le projet",
         "display_project_name": "Afficher le nom du projet",
         "do_you_need_features_from_traditional": "Avez-vous besoin des fonctionnalités des projets traditionnels, comme accéder aux coordonnées réelles,\ndes champs d’observation personnalisés, ou ajouter des observations qui ne peuvent pas être filtrées automatiquement ?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Classements entre <strong>individus</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Classements entre <strong>projets</strong>",
         "multiple_project_administrators": "Administrateurs multiples du projet",
@@ -28055,6 +28115,8 @@ I18n.translations["fr-CA"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -28802,6 +28864,8 @@ I18n.translations["gl"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -28932,6 +28996,8 @@ I18n.translations["ha"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -29032,6 +29098,8 @@ I18n.translations["he"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -29132,6 +29200,8 @@ I18n.translations["hi"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -29232,6 +29302,8 @@ I18n.translations["hr"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -29332,6 +29404,8 @@ I18n.translations["hu"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -30284,6 +30358,8 @@ I18n.translations["id"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -30440,6 +30516,8 @@ I18n.translations["ig"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -30540,6 +30618,8 @@ I18n.translations["is"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -32248,6 +32328,8 @@ I18n.translations["it"] = {
         "delete_project": "Elimina progetto",
         "display_project_name": "Visualizza il nome del Progetto",
         "do_you_need_features_from_traditional": "Hai bisogno di caratteristiche dei progetti tradizionali, come l'accesso alle coordinate precise, campi di osservazione personalizzati, o di aggiungere osservazioni che non possono essere filtrate automaticamente?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Classifiche tra <strong>utenti</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Classifiche tra <strong>progetti</strong>",
         "multiple_project_administrators": "Più di un amministratore del progetto",
@@ -32588,6 +32670,8 @@ I18n.translations["iw"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -33583,6 +33667,8 @@ I18n.translations["ja"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -33725,6 +33811,8 @@ I18n.translations["ka"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -34838,6 +34926,8 @@ I18n.translations["ko"] = {
         "custom_banner_icon_and_project_description": "사용자 지정 배너, 아이콘, 프로젝트 설명",
         "data_visualizations": "데이터 시각화",
         "delete_project": "프로젝트 삭제",
+        "errors": {
+        },
         "multiple_project_administrators": "다중 프로젝트 관리자",
         "note_you_can_delete_the_time": "(참고: 전체 일수를 포함하고 싶으시다면 시간대와 정확한 시간을 삭제할 수 있습니다.)",
         "or_drag_and_drop": "(아니면 끌어 놓으십시오)",
@@ -35807,6 +35897,8 @@ I18n.translations["lb"] = {
       "new": {
         "delete_project": "Projet läschen",
         "display_project_name": "Numm vum Projet weisen",
+        "errors": {
+        },
         "project_details": "Detailer vum Projet",
         "project_name": "Numm vum Projet",
         "project_summary": "Resumé vum Projet",
@@ -35991,6 +36083,8 @@ I18n.translations["lexicons"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -36091,6 +36185,8 @@ I18n.translations["lo-LA"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -36191,6 +36287,8 @@ I18n.translations["lt"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -36291,6 +36389,8 @@ I18n.translations["lv"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -36970,6 +37070,8 @@ I18n.translations["mk"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -37107,6 +37209,8 @@ I18n.translations["ms"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -37207,6 +37311,8 @@ I18n.translations["nb"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -38914,6 +39020,8 @@ I18n.translations["nl"] = {
         "delete_project": "Project verwijderen",
         "display_project_name": "Toon project naam",
         "do_you_need_features_from_traditional": "Heeft u functies nodig van traditionele projecten, zoals toegang tot echte coördinaten,\naangepaste waarnemingsvelden of het toevoegen van individuele waarnemingen die niet automatisch kunnen worden gefilterd?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Toplijsten voor <strong>personen</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Ranglijsten voor <strong>projecten en bioblitzes</strong>",
         "multiple_project_administrators": "Meerdere projectadministrators",
@@ -39250,6 +39358,8 @@ I18n.translations["nn-NO"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -39350,6 +39460,8 @@ I18n.translations["no"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -40053,6 +40165,8 @@ I18n.translations["oc"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -40198,6 +40312,8 @@ I18n.translations["pap-AW"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -40298,6 +40414,8 @@ I18n.translations["pap-CW"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -40398,6 +40516,8 @@ I18n.translations["pl"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -40498,6 +40618,8 @@ I18n.translations["pt"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -42206,6 +42328,8 @@ I18n.translations["pt-BR"] = {
         "delete_project": "Apagar Projeto",
         "display_project_name": "Exibir nome do projeto",
         "do_you_need_features_from_traditional": "Você precisa de características de projetos tradicionais, como acessar coordenadas reais, campos de observação personalizados ou adicionar observações individuais que não podem ser filtradas automaticamente?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Classificações entre <strong>indivíduos</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Classificações entre <strong>projetos</strong>",
         "multiple_project_administrators": "Administradores de vários projetos",
@@ -43758,6 +43882,8 @@ I18n.translations["pt-PT"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        },
         "welcome_to_projects": "Bem-vindo ao projeto!"
       },
       "show": {
@@ -43940,6 +44066,8 @@ I18n.translations["ro"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -45656,6 +45784,8 @@ I18n.translations["ru"] = {
         "delete_project": "Удалить проект",
         "display_project_name": "Отобразить название проекта",
         "do_you_need_features_from_traditional": "Нужны ли вам функции традиционных проектов, такие как доступ к реальным  координатам, пользовательские поля наблюдения или добавление отдельных наблюдений, которые невозможно фильтровать автоматически?",
+        "errors": {
+        },
         "leaderboards_among_individuals": "Таблицы лидеров среди <strong>отдельных лиц</strong>",
         "leaderboards_among_projects_and_bioblitzes": "Лидеры <strong>проектов</strong>",
         "multiple_project_administrators": "Администраторы нескольких проектов",
@@ -46011,6 +46141,8 @@ I18n.translations["si"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -46111,6 +46243,8 @@ I18n.translations["sk"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -46211,6 +46345,8 @@ I18n.translations["sl"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -47400,6 +47536,8 @@ I18n.translations["sq"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        },
         "welcome_to_projects": "Mirë se vini te Projektet!"
       },
       "show": {
@@ -47579,6 +47717,8 @@ I18n.translations["sr"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -47679,6 +47819,8 @@ I18n.translations["sr-RS"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -48753,6 +48895,8 @@ I18n.translations["sv"] = {
       "new": {
         "collection_projects": "Samlingsprojekt",
         "delete_project": "Radera projekt",
+        "errors": {
+        },
         "multiple_project_administrators": "Flera projektadministratörer",
         "or_drag_and_drop": "(eller dra och släpp)",
         "project_name": "Projektnamn",
@@ -48977,6 +49121,8 @@ I18n.translations["th"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49077,6 +49223,8 @@ I18n.translations["tl"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49177,6 +49325,8 @@ I18n.translations["tr"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49277,6 +49427,8 @@ I18n.translations["uk"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49377,6 +49529,8 @@ I18n.translations["ur"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49477,6 +49631,8 @@ I18n.translations["vi"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -49577,6 +49733,8 @@ I18n.translations["yo"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -51048,6 +51206,8 @@ I18n.translations["zh-CN"] = {
         "delete_project": "删除项目",
         "display_project_name": "显示项目名称",
         "do_you_need_features_from_traditional": "您是否需要传统项目中的功能，例如访问真实坐标，自定义观察字段或添加无法自动过滤的单个观察？",
+        "errors": {
+        },
         "leaderboards_among_individuals": "<strong>个人</strong>之间的排行榜",
         "leaderboards_among_projects_and_bioblitzes": "<strong>项目和bioblitzes</strong>中的排行榜",
         "multiple_project_administrators": "多重项目管理员",
@@ -51351,6 +51511,8 @@ I18n.translations["zh-HK"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }
@@ -53058,6 +53220,8 @@ I18n.translations["zh-TW"] = {
         "delete_project": "刪除專案",
         "display_project_name": "顯示專案名稱",
         "do_you_need_features_from_traditional": "您需要傳統專案的特性嗎？例如像是存取實際座標、自定義觀察欄位，或是添加無法被自動篩選掉的個別觀察？",
+        "errors": {
+        },
         "leaderboards_among_individuals": "<strong>個人</strong>排行榜",
         "leaderboards_among_projects_and_bioblitzes": "<strong>專案</strong>排行榜",
         "multiple_project_administrators": "多項專案管理員",
@@ -53394,6 +53558,8 @@ I18n.translations["zh-YUE"] = {
     },
     "projects": {
       "new": {
+        "errors": {
+        }
       },
       "show": {
       }

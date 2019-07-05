@@ -46,7 +46,7 @@ Rails.application.config.middleware.use OmniAuth::Builder do
     provider :twitter, CONFIG.twitter.key , CONFIG.twitter.secret
   end
   if fb_cfg = CONFIG.facebook
-    opts = {:scope => 'email,user_photos'}
+    opts = { scope: "email,user_photos", image_size: "large" }
     provider :facebook, fb_cfg["app_id"], fb_cfg["app_secret"], opts
   end
 
