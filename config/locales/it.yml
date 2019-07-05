@@ -705,8 +705,8 @@ it:
   back_to_your_observations: Torna alle tue osservazioni
   back_to_your_profile: Torna al tuo profilo
   back_to_your_projects: Torna ai tuoi progetti
-  based_on_the_evidence_can_id_be_improved: Basandosi sull'evidenza, l'ID della Comunità
-    può essere ancora confermata o migliorata?
+  based_on_the_evidence_can_id_be_improved: Basandosi sull'evidenza, il taxon della
+    comunità può essere ancora confermato o migliorato?
   basic: Base
   batch: Gruppo
   batch_edit: Modifica in gruppo
@@ -991,13 +991,14 @@ it:
   community_curated: Curate dalla Community
   community_guidelines: Linee guida della comunità
   community_id: 'ID della <strong>Community</strong>:'
-  community_id_heading: ID della Comunità
-  community_id_at_species_or_lower?: ID della community a livello di specie o inferiore?
-  community_id_at_genus_level_or_lower: ID della Comunità a livello di genere o inferiore
-  community_id_at_species_level_or_lower: ID della Comunità a livello di specie o
+  community_id_heading: Taxon della comunità
+  community_id_at_species_or_lower?: Taxon della comunità a livello di specie o inferiore?
+  community_id_at_genus_level_or_lower: Taxon della comunità a livello di genere o
     inferiore
+  community_id_at_species_level_or_lower: Taxon della comunità a livello di specie
+    o inferiore
   community_moderation_settings: Impostazioni della Moderazione da parte della Community
-  community_supported_id: ID accettata della Community?
+  community_supported_id: Taxon accettato dalla comunità?
   compare: Confronta
   compare_with: Confronta con
   comparing: confronto in corso
@@ -2751,9 +2752,9 @@ it:
   obscured_: oscurato
   obscured: Oscurata
   obscured_or_private: nascosto o privato
-  obscured_description: Le coordinate pubbliche visibili a tutti sono quelle di un
-    punto casuale all'interno di un raggio di 10 Km dalle coordinate reali. Le coordinate
-    vere sono visibili solo a te e ai curatori dei progetti a cui hai aggiunto l'osservazione.
+  obscured_description: Le coordinate pubbliche sono quelle di un punto casuale all'interno
+    di 0,2 gradi di latitudine/longitudine dalla cella che contiene le coordinate
+    reali.
   observation: Osservazione
   observation_: osservazione
   observation_added: Osservazione aggiunta.
@@ -4543,8 +4544,8 @@ it:
     o alieni spaziali intelligenti)
   the_community_id_requires_at_least_two_identifications: L'ID della Comunità richiede
     almeno due identificatori
-  the_community_must_feel_that: La comunità deve poter percepire che l'ID della Comunità
-    è la migliore che può avere in base alle evidenze
+  the_community_must_feel_that: La comunità deve poter percepire che il taxon della
+    comunità è il migliore che può avere in base alle evidenze
   the_data_quality_assessment_is: La valutazione della qualità dei dati è un riassunto
     dell'accuratezza di un'osservazione. Tutte le osservazioni partono da un livello
     <strong>"casuale"</strong>, e raggiungono un livello <strong>"ricerca"</strong>
@@ -4930,7 +4931,7 @@ it:
   user_flagged_as_a_spammer_html: '%{user} l''ha contrassegnato come uno spammer'
   user_flagged_as_a_non_spammer_html: '%{user} l''ha segnato come un non-spammer'
   user_follows: '%{user} segue'
-  user_has_opted_out_of_community_id: L'utente ha deselezionato l'ID della comunità
+  user_has_opted_out_of_community_id: L'utente ha deselezionato il taxon della comunità
   user_has_opted_out_of_community_ids: '%{user} ha scelto di mantenere il controllo
     sui taxa associati alle loro osservazioni'
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} ha scelto di mantenere
@@ -4985,6 +4986,7 @@ it:
   valid_interrogation: Valido?
   valid_options_are: Le opzioni valide sono
   value: Valore
+  values: Valori
   verbing_x_of_y: '%{verb} %{x} di %{y}...'
   verifiable_observations_by_observation_date: Osservazioni verificabili per data
     di osservazione

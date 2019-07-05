@@ -17,8 +17,10 @@
 # Author: Shizhao
 # Author: Yfdyh000
 # Author: Zz
+# Author: 佛壁灯
 # Author: 夢蝶葬花
 # Author: 水獭很懒
+# Author: 神樂坂秀吉
 # Author: 아라
 ---
 zh-CN:
@@ -478,7 +480,7 @@ zh-CN:
   archives: 档案
   are_you_really_sure_want_delete_this_user: 您真的，真的确定要删除这位用户及其所有内容么？
   are_you_sure?: 您确定么？
-  are_you_sure_no_undo: 您确定么？这不能被恢复。
+  are_you_sure_no_undo: 您确定么？这不能恢复。
   are_you_sure_delete_asset: 您确定要删除此资产么？
   are_you_sure_delete_observation_from_project: 您确定要从%{project}中移除这一条观察记录吗？
   are_you_sure_delete_post: 您确定要删除此帖子么？
@@ -501,7 +503,7 @@ zh-CN:
   are_you_sure_want_delete_this_range: 您确定要删除此范围吗？
   are_you_sure_want_join: 您确定您希望加入
   are_you_sure_you_want_sync_this: 您确定要将这条观察记录数据和这张Flickr照片进行同步吗？这张表单上您做的改动会丢失，但是您可以在您自己保存的副本上复原。
-  are_you_sure_you_want_to_commit_this_change: 您确定要进行这个改动吗？这一操作不能被撤销。
+  are_you_sure_you_want_to_commit_this_change: 您确定要进行这个改动吗？此操作不能撤销。
   are_you_sure_you_want_to_delete_this: 您确信您要删除这个么？
   are_you_sure_you_want_to_delete_this_assessment?: 您确定您想要删除此评估吗？
   are_you_sure_you_want_to_delete_this_photo?: 您确定要删除这张照片么？
@@ -3721,7 +3723,7 @@ zh-CN:
   unblock: 解封
   unclassified: 未分类
   ungrafted_taxa: 未分类的分类群
-  uninvite: 未被邀请
+  uninvite: 未邀请
   unique_identifier_of_this_taxon: 来源数据库中此分类的唯一标识符。
   unique_observers: 唯一观察者
   unique_observers_last_3_months: 过去3个月中的唯一观察者
@@ -3849,6 +3851,7 @@ zh-CN:
   valid_interrogation: 有效么？
   valid_options_are: 有效选项是
   value: 值
+  values: 值
   verbing_x_of_y: '%{verb} %{y}的%{x}……'
   verifiable_observations_by_observation_date: 观察日期可核实的观察结果
   view: 查看
