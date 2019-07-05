@@ -61,6 +61,11 @@ inatTaxonMap.setup = function ( elt, options ) {
   options.controlPosition = options.controlPosition || $(elt).data('control-position');
   options.elastic_params = options.elastic_params || $(elt).data('elastic-params');
   options.gestureHandling = options.gestureHandling || $( elt ).data( "gesture-handling" );
+  options.tilt = options.tilt || $( elt ).data( "tilt" ) || 0;
+  options.currentUser = options.currentUser || $( elt ).data( "current-user" );
+  if ( typeof( CURRENT_USER ) === "object" ) {
+    options.currentUser = options.currentUser || CURRENT_USER;
+  }
   // turn the observations JSON into proper JavaScript objects
   if ( options.observations ) {
     options.observations = _.map( options.observations, function( observation ) {
@@ -96,6 +101,7 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
         zoomControlOptions: options.zoomControlOptions,
         scrollwheel: (options.scrollwheel !== false),
         gestureHandling: options.gestureHandling,
+        tilt: options.tilt,
         styles: [
           {
             stylers: [
@@ -137,13 +143,30 @@ inatTaxonMap.setupGoogleMap = function( elt ) {
       map.setZoom(options.zoomLevel)
     }
   }
-  // Set custom map type
-  if (options.mapType) {
-    map.setMapTypeId(options.mapType)
-  }
+
   // Create the custom control (but don't show it yet)
   if( options.overlayMenu && !map._overlayControl) {
     map._overlayControl = new iNaturalist.OverlayControl(map);
+  }
+
+  // Set custom map type
+  if ( options.mapType ) {
+    map.setMapTypeId( options.mapType )
+  } else if ( options.currentUser || typeof( CURRENT_USER ) === "object" ) {
+    var preferredMapTypeId = iNaturalist.Map.preferredMapTypeId( options.currentUser || CURRENT_USER );
+    if ( map.getMapTypeId( ) !== preferredMapTypeId ) {
+      map.setMapTypeId( preferredMapTypeId );
+    }
+    if ( !map.mapTypeListener ) {
+      function setMapTypeAndUpdateSession( ) {
+        if ( options.updateCurrentUser ) {
+          options.updateCurrentUser( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
+        } else {
+          updateSession( { preferred_observations_search_map_type: this.getMapTypeId( ) } );
+        }
+      }
+      map.mapTypeListener = google.maps.event.addListener( map, "maptypeid_changed", setMapTypeAndUpdateSession );
+    }
   }
 
   if( options.showLegend && !map._legend ) {
@@ -225,6 +248,11 @@ inatTaxonMap.addTaxonLayers = function( map, options ) {
   if( !options.taxonLayers ) { return; }
   _.each( options.taxonLayers, function( layer ) {
     if( !( layer.taxon && layer.taxon.id ) ) { return; }
+    map.taxonLayerSignatures = map.taxonLayerSignatures || {};
+    var sig = JSON.stringify( layer );
+    if ( map.taxonLayerSignatures[sig] ) {
+      return;
+    }
     $.getJSON( "/taxa/" + layer.taxon.id + "/map_layers", function( taxonData ) {
       inatTaxonMap.addTaxonLayer( map, layer, options, taxonData );
     });

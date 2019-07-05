@@ -1,7 +1,13 @@
 import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col, SplitButton, MenuItem } from "react-bootstrap";
+import {
+  Grid,
+  Row,
+  Col,
+  SplitButton,
+  MenuItem
+} from "react-bootstrap";
 import moment from "moment-timezone";
 import SplitTaxon from "../../../shared/components/split_taxon";
 import UserText from "../../../shared/components/user_text";
@@ -33,6 +39,7 @@ import ProjectFieldsModalContainer from "../containers/project_fields_modal_cont
 import ProjectsContainer from "../containers/projects_container";
 import SimilarContainer from "../containers/similar_container";
 import TagsContainer from "../containers/tags_container";
+import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 import ObservationModalContainer from "../containers/observation_modal_container";
 // import TestGroupToggle from "../../../shared/components/test_group_toggle";
 
@@ -274,6 +281,7 @@ const App = ( {
       <MediaViewerContainer />
       <ProjectFieldsModalContainer />
       <ObservationModalContainer />
+      <ModeratorActionModalContainer />
     </div>
   );
 };

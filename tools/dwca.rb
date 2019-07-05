@@ -50,7 +50,7 @@ EOS
     type: :string, short: "-r", default: "observations/gbif.descriptor.builder"
   opt :quality, "
     Quality grade of observation output.  This will also filter EolMedia
-    exports. Options: research, casual, any.
+    exports. Options: research, casual, verifiable, any.
   ".strip.gsub( /\s+/m, " " ), type: :string, short: "-q", default: "research"
   opt :license, "Archive license that applies to the entire archive. Optional.", type: :string
   opt :licenses, "  
@@ -75,6 +75,7 @@ EOS
   opt :created_d1, "Mininum date of observation creation", type: :string
   opt :created_d2, "Maximum date of observation creation", type: :string
   opt :photographed_taxa, "When core is taxon, only include taxa with observation photos", type: :boolean, default: false
+  opt :ala, "Add ALA requested fields", type: :boolean, default: false
 end
 
 if opts.debug

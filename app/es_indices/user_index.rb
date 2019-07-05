@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   include ActsAsElasticModel
 
-  scope :load_for_index, -> { includes( :roles, :flags ) }
+  scope :load_for_index, -> { includes( :roles, :flags, :provider_authorizations ) }
 
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
       indexes :name, analyzer: "ascii_snowball_analyzer"
       indexes :name_autocomplete, analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
+      indexes :orcid, type: "keyword"
     end
   end
 
@@ -33,6 +34,7 @@ class User < ActiveRecord::Base
         login_exact: login,
         name: name,
         name_autocomplete: name,
+        orcid: orcid,
         icon: icon.file? ? icon.url(:thumb) : nil,
         observations_count: obs_count,
         identifications_count: ident_count,

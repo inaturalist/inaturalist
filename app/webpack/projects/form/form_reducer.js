@@ -4,6 +4,7 @@ import Project from "../shared/models/project";
 import { setConfirmModalState } from "../../observations/show/ducks/confirm_modal";
 
 const SET_ATTRIBUTES = "projects-form/project/SET_ATTRIBUTES";
+const UMBRELLA_SUBPROJECT_LIMIT = 500;
 
 export default function reducer( state = { }, action ) {
   switch ( action.type ) {
@@ -27,6 +28,8 @@ export function removeProject( ) {
 }
 
 export function setProject( p ) {
+  p.initialSubprojectCount = _.isEmpty( p.project_observation_rules ) ? 0
+    : _.filter( p.project_observation_rules, rule => rule.operand_type === "Project" ).length;
   return setAttributes( { project: new Project( p ) } );
 }
 
@@ -71,11 +74,11 @@ export function validateProjectTitle( ) {
     const { project } = getState( ).form;
     if ( !project ) { return null; }
     if ( _.isEmpty( project.title ) ) {
-      dispatch( setProjectError( "title", "Project name is required" ) );
+      dispatch( setProjectError( "title", I18n.t( "views.projects.new.errors.name_is_required" ) ) );
       return null;
     }
     if ( project.title.length > 100 ) {
-      dispatch( setProjectError( "title", "Project name must be less than 100 characters" ) );
+      dispatch( setProjectError( "title", I18n.t( "views.projects.new.errors.summary_is_required" ) ) );
       return null;
     }
     const searchParams = { title_exact: project.title, not_id: project.id, per_page: 1 };
@@ -87,7 +90,7 @@ export function validateProjectTitle( ) {
           if ( _.isEmpty( response.results ) ) {
             dispatch( setProjectError( "title", null ) );
           } else {
-            dispatch( setProjectError( "title", "Project name already taken" ) );
+            dispatch( setProjectError( "title", I18n.t( "views.projects.new.errors.name_already_taken" ) ) );
           }
         } ).catch( e => console.log( e ) );
       }
@@ -110,6 +113,26 @@ export function setDescription( description ) {
     }
     dispatch( updateProject( { description } ) );
     dispatch( setProjectError( "description", descriptionError ) );
+  };
+}
+
+export function validateSubprojects( ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( ).form;
+    if ( !project ) { return void null; }
+    const subprojectLimit = (
+      project.initialSubprojectCount && project.initialSubprojectCount > UMBRELLA_SUBPROJECT_LIMIT
+    ) ? project.initialSubprojectCount : UMBRELLA_SUBPROJECT_LIMIT;
+    const countActiveSubprojects = _.filter(
+      project.project_observation_rules, rule => rule.operand_type === "Project" && !rule._destroy
+    ).length;
+    if ( countActiveSubprojects > subprojectLimit ) {
+      dispatch( setProjectError( "subprojects",
+        I18n.t( "views.projects.new.errors.cannot_have_more_than_x_project_rules",
+          { x: subprojectLimit } ) ) );
+      return void null;
+    }
+    dispatch( setProjectError( "subprojects", null ) );
   };
 }
 
@@ -149,6 +172,9 @@ export function addProjectRule( operator, operandType, operand ) {
       newRules.push( newRule );
     }
     dispatch( updateProject( { project_observation_rules: newRules } ) );
+    if ( operandType === "Project" ) {
+      dispatch( validateSubprojects( ) );
+    }
   };
 }
 
@@ -176,6 +202,9 @@ export function removeProjectRule( ruleToRemove ) {
       }
     } );
     dispatch( updateProject( { project_observation_rules: newRules } ) );
+    if ( ruleToRemove.operand_type === "Project" ) {
+      dispatch( validateSubprojects( ) );
+    }
   };
 }
 
@@ -302,11 +331,12 @@ export function submitProject( ) {
     // if the user didn't enter text in those fields yet
     let errors;
     if ( _.isEmpty( project.title ) ) {
-      dispatch( setProjectError( "title", "Project name is required" ) );
+      dispatch( setProjectError( "title", I18n.t( "views.projects.new.errors.name_is_required" ) ) );
       errors = true;
     }
     if ( _.isEmpty( project.description ) ) {
-      dispatch( setProjectError( "description", "Project summary text is required" ) );
+      dispatch( setProjectError( "description",
+        I18n.t( "views.projects.new.errors.summary_is_required" ) ) );
       errors = true;
     }
     if ( errors ) { return; }
@@ -319,8 +349,9 @@ export function submitProject( ) {
         icon: project.droppedIcon ? project.droppedIcon : null,
         cover: project.droppedBanner ? project.droppedBanner : null,
         preferred_banner_color: project.banner_color,
-        prefers_hide_title: project.hide_title,
-        prefers_banner_contain: project.header_image_contain,
+        prefers_hide_title: !!project.hide_title,
+        prefers_hide_umbrella_map_flags: !!project.hide_umbrella_map_flags,
+        prefers_banner_contain: !!project.header_image_contain,
         prefers_rule_quality_grade: project.rule_quality_grade
           ? _.keys( project.rule_quality_grade ).join( "," ) : "",
         prefers_rule_photos: _.isEmpty( project.rule_photos ) ? "" : project.rule_photos,

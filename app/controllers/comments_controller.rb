@@ -88,6 +88,19 @@ class CommentsController < ApplicationController
   end
   
   def update
+    if @comment.hidden?
+      respond_to do |format|
+        msg = t(:cant_edit_or_delete_hidden_content)
+        format.html do
+          flash[:error] = msg
+          redirect_to_parent
+        end
+        format.json do
+          render json: { error: msg }
+        end
+      end
+      return
+    end
     @comment.attributes = params[:comment]
     @comment.save unless params[:preview]
     respond_to do |format|
@@ -109,6 +122,20 @@ class CommentsController < ApplicationController
   end
   
   def destroy
+    if @comment.hidden?
+      respond_to do |format|
+        msg = t(:cant_edit_or_delete_hidden_content)
+        format.html do
+          flash[:error] = msg
+          redirect_to_parent
+        end
+        format.json do
+          render json: { error: msg }
+        end
+      end
+      return
+    end
+    
     unless @comment.deletable_by?(current_user)
       msg = t(:you_dont_have_permission_to_do_that)
       respond_to do |format|

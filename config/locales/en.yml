@@ -309,6 +309,7 @@ en:
   adding_to_your_life_list: "Adding to your life list..."
   additional_range: Additional range
   additional_range_data_from_an_unknown_source: Additional range data from an unknown source
+  adjust_brightness: Adjust Brightness
   admin: Admin
   admin_s: Admin(s)
   admin_any_projects: admin any projects
@@ -657,6 +658,7 @@ en:
   calendars_only_show_x_observations_at_time: Calendars only show %{x} observations at a time
   can_you_help_your_friends_id_these: Can you help your friends ID these?
   cancel: Cancel
+  cant_edit_or_delete_hidden_content: You can't edit or delete content that has been hidden by site curators
   cant_flag_an_object_that_doesnt_exist: Can't flag an object that doesn't exist
   cant_merge_a_taxon_with_itself: Can't merge a taxon with itself.
   captive: Captive
@@ -884,7 +886,15 @@ en:
     geoprivacy: Default geoprivacy for observations of this taxon
     iucn: Equivalent IUCN Red List code
   conservation_summary: Conservation Summary
+  contact_support: Contact Support
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
+  content_hidden: Content Hidden
+  content_hidden_by_user_on_date_because_reason_html: |
+    Content hidden by %{user} on %{date} because: "%{reason}"
+  user_hid_this_item_because_reason_html: |
+    %{user} hid this %{item} because "%{reason}"
+  user_unhid_this_item_because_reason_html: |
+    %{user} unhid this %{item} because "%{reason}"
   contest: contest
   continue: Continue
   continue_to_site: Continue to %{site_name}
@@ -1060,6 +1070,7 @@ en:
   dates: dates
   datetime_: Date/Time
   day: Day
+  decrease_brightness: Decrease Brightness
   default: default
   default_invite_comment: "Great photo!  You should post it to %{site_name}: {{INVITE_LINK}}"
   default_observation_license: Default observation license
@@ -1583,10 +1594,19 @@ en:
   hex_color_eg: Hex color, e.g. 65644F
   hi: Hi,
   hi_user: "Hi %{user}"
-  hide: Hide
-  hide_details: Hide Details
+  hide_content: Hide Content
+  hide_desc: |
+    Hiding content will remove it from public view, but people will still be
+    able to see that something was hidden, and site curators and the author of
+    the content will still be able to see the hidden content. Generally, this
+    only applies to written content, e.g. if you hide the content of an
+    identification, the identification is still visible but the identifier's
+    remarks are hidden. You cannot undo this, and only site staff can unhide
+    content once it has been hidden, so be careful and only use this for very
+    objectionable content.
   hide_running_total: Hide Running Total
   hide_uncountable_species: Hide Uncountable Species
+  hidden_content_explanation: Content has been hidden
   high: High
   highest_rank: Highest Rank
   highlights: Highlights
@@ -1697,6 +1717,7 @@ en:
   inaturalist_network_affiliation: iNaturalist Network Affiliation
   inbox: Inbox
   including: including
+  increase_brightness: Increase Brightness
   in_order_to_login_and_using_site_visit_url: "In order to login and start using the site you must visit this url to activate your account:"
   in_progress: in progress
   in_taxon?: in taxon
@@ -2097,7 +2118,6 @@ en:
       range: Range
   map_tooltip: Show map view
   map_for: Map for
-  maptype_for_places: 'google.maps.MapTypeId.TERRAIN'
   mark_as_reviewed: Mark As Reviewed
   mark_all_as_reviewed: Mark All As Reviewed
   mark_all_as_unreviewed: Mark All As Unreviewed
@@ -3191,6 +3211,8 @@ en:
   please_confirm_your_inat_username: "Please confirm your %{site_name} username"
   please_confirm_your_account_html: 'Please take a second to <a href="%{url}">confirm your account</a>.'
   please_enter_a_new_pass: Please enter a new password and confirm it.
+  please_explain_why_you_want_to_hide_this: Please explain why you want to hide this
+  please_explain_why_you_want_to_unhide_this: Please explain why you want to unhide this
   please_fix_your_csv_and_try_again: Please fix your CSV and try again.
   please_hold_on_while_the_file: Please hold on while the file is generated. It can take a couple minutes if you have a lot of observations.
   please_hold_on_while_the_file_is_generated: Please hold on while the file is generated.  It can take a couple minutes for large lists.
@@ -3433,6 +3455,7 @@ en:
   reload_and_refresh: Reload and refresh list
   reload_from_observations: Reload from observations
   reload_timed_out: 'Reload timed out.  Please try again later.'
+  remarks_hidden: "Remarks hidden"
   remarks_optional: 'Remarks <span class="small description">(optional)</span>'
   remember_its_a_lot_easier_to_id: "Remember, it's a lot easier to ID something if you provide as much descriptive information as possible. Most importantly, please provide a <strong>place</strong>, a <strong>date/time</strong>, and some information about the <strong>size</strong>."
   remember_me: Remember me
@@ -3495,6 +3518,7 @@ en:
   research_grade_observations_have: '"Research grade" observations have a date, photo, coordinates, and a community-supported ID.  Click through to see the data quality assessment.'
   research_grade_qualification: Research Grade Qualification
   research_quality: Research Quality
+  reset_brightness: Reset Brightness
   reset_search_filters: Reset Search Filters
   reset_your_password: Reset Your Password
   resolve: Resolve
@@ -3655,6 +3679,7 @@ en:
   show_common_names: Show common names
   show_counts: Show counts based on the list.
   show_default_taxon_photos: show default taxon photos
+  show_hidden_content: Show Hidden Content
   show_keyboard_shortcuts: Show Keyboard Shortcuts
   show_kml: Show KML
   show_less: Show Less
@@ -4308,6 +4333,10 @@ en:
   unblock: Unblock
   unclassified: Unclassified
   ungrafted_taxa: Ungrafted Taxa
+  unhide_content: Unhide Content
+  unhide_desc: |
+    Unhiding will reveal this content for everyone to see. Curators can still
+    choose to hide it again in the future.
   uninvite: uninvite
   unique_identifier_of_this_taxon: Unique identifier of this taxon in the source database.
   unique_observers: unique observers
@@ -4450,6 +4479,7 @@ en:
   user_trusts_you_with_their_private_coordinates_desc: |
     The observer has chosen to trust you with the hidden coordinates of all
     their observations.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> wrote,
   username: Username
   username_or_email: Username or email
   username_or_user_id: Username or User ID
@@ -4475,6 +4505,7 @@ en:
   verifiable_observations_by_observation_date: Verifiable Observations By Observation Date
   view: View
   view_all: View All
+  view_all_flags: View All Flags
   view_all_from_x: View All from %{x}
   view_all_members: View All Members
   view_all_n: "View All %{n}"
@@ -4501,6 +4532,8 @@ en:
   view_license: View License
   view_lists: View Lists
   view_listing: View Listing
+  view_moderation_history: View Moderation History
+  view_moderation_history_for_this_comment: View Moderation History for this Comment
   view_more: View More
   view_more_about_x: "View More About %{x}"
   view_more_observations: View More Observations
@@ -6083,12 +6116,15 @@ en:
         note_you_can_delete_the_time: |
           (Note: you can delete the time zone and precise times if you want to include whole days.)
         or_drag_and_drop: (or drag and drop)
+        please_specify_the_requirements: |
+          Please specify the requirements for the observations to be added to
+          this project.
         please_specify_the_requirements_html: |
           Please specify the requirements for the observations to be added to
           this project. You can specify multiple species, places, users, or
           quality grades to be automatically included, or leave a field blank if
           you have no specific requirement for it. Explanations for each field
-          can found <a href="%{url}">here</a>.          
+          can found <a href="%{url}">here</a>.
         project_background_color: Project Summary Background Color
         project_background_color_help: Make sure to choose a color dark enough so the white overlaid text is legible.
         project_banner: Project Banner (PNG, JPG, or GIF)
@@ -6103,6 +6139,7 @@ en:
           Give a concise explanation of your project. Approximately the first 200 characters will
           be visible to the right of the project home screen banner so put the best stuff first!
         project_summary_placeholder: Discover and track the birds of Golden Gate Park...
+        show_projects_as_flags: Show projects as flags in map
         start_and_end_times_for_bioblitzes: Start and end date/times (for bioblitz-type events)
         umbrella_project_features: "Umbrella Project features:"
         unique_url_for_outreach: Unique URL for outreach
@@ -6124,6 +6161,12 @@ en:
           You have not defined any observation requirements. Make sure to select one or more taxa
           (e.g. birds, conifers), places (e.g. Brazil, Yellowstone), users, and/or dates to define
           the observations that you want to include in your project.
+        errors:
+          name_is_required: Project name is required
+          name_less_than_100_characters: Project name must be less than 100 characters
+          name_already_taken: Project name already taken
+          cannot_have_more_than_x_project_rules: Cannot have more than %{x} project rules
+          summary_is_required: Project summary text is required
       project_location_privacy_notice_html: |
         <p>
           Please be aware project curators will be able to see any private or

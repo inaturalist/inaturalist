@@ -10,7 +10,7 @@ class UserParent < ActiveRecord::Base
   validates :child_name, presence: true
   validates :user, presence: true
   validates_associated :user
-  validate :email_does_not_belong_to_another_user
+  validate :email_does_not_belong_to_another_user, on: :create
 
   accepts_nested_attributes_for :user
 
@@ -50,7 +50,7 @@ class UserParent < ActiveRecord::Base
     scope = User.where( email: email )
     scope = scope.where( "id != ?", parent_user.id ) if parent_user
     if scope.exists?
-      errors.add(:email, :belongs_to_an_existing_user )
+      errors.add( :email, :belongs_to_an_existing_user )
     end
     true
   end

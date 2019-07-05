@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
   preference :receive_mentions, :boolean, :default => true
   preference :observations_view, :string
   preference :observations_search_subview, :string
-  preference :observations_search_map_type, :string
+  preference :observations_search_map_type, :string, default: "terrain"
   preference :community_taxa, :boolean, :default => true
   PREFERRED_OBSERVATION_FIELDS_BY_ANYONE = "anyone"
   PREFERRED_OBSERVATION_FIELDS_BY_CURATORS = "curators"
@@ -171,7 +171,7 @@ class User < ActiveRecord::Base
   has_many :user_privileges, inverse_of: :user, dependent: :delete_all
   has_one :user_parent, dependent: :destroy, inverse_of: :user
   has_many :parentages, class_name: "UserParent", foreign_key: "parent_user_id", inverse_of: :parent_user
-
+  has_many :moderator_actions, inverse_of: :user
   
   file_options = {
     processors: [:deanimator],
@@ -234,7 +234,7 @@ class User < ActiveRecord::Base
   after_save :destroy_messages_by_suspended_user
   after_save :revoke_access_tokens_by_suspended_user
   after_save :restore_access_tokens_by_suspended_user
-  after_update :set_community_taxa_if_pref_changed
+  after_update :set_observations_taxa_if_pref_changed
   after_update :reassess_coordinate_obscuration_if_pref_changed
   after_update :update_photo_properties
   after_update :update_life_list
@@ -489,6 +489,11 @@ class User < ActiveRecord::Base
 
   def api_token
     JsonWebToken.encode( user_id: id )
+  end
+
+  def orcid
+    provider_authorizations.
+      detect{ |pa| pa.provider_name == "orcid" }.try( :provider_uid )
   end
 
   def update_observation_licenses
@@ -1082,9 +1087,9 @@ class User < ActiveRecord::Base
     true
   end
 
-  def set_community_taxa_if_pref_changed
+  def set_observations_taxa_if_pref_changed
     if prefers_community_taxa_changed? && !id.blank?
-      Observation.delay(:priority => USER_INTEGRITY_PRIORITY).set_community_taxa(:user => id)
+      Observation.delay( priority: USER_INTEGRITY_PRIORITY ).set_observations_taxa_for_user( id )
     end
     true
   end
@@ -1187,24 +1192,13 @@ class User < ActiveRecord::Base
 
   def self.update_identifications_counter_cache(user_id)
     return unless user = User.find_by_id(user_id)
-    result = Observation.elastic_search(
-      filters: [ { nested: {
-        path: "identifications",
-        query: { bool: { must: [
-          { term: { "identifications.user.id": user_id } },
-          { term: { "identifications.own_observation": false } }
-        ] } }
-      } } ],
-      size: 0
-    )
-    count = (result && result.response) ? result.response.hits.total : 0
     new_fields_result = Observation.elastic_search(
       filters: [
         { term: { non_owner_identifier_user_ids: user_id } }
       ],
       size: 0
     )
-    count += (new_fields_result && new_fields_result.response) ?
+    count = (new_fields_result && new_fields_result.response) ?
       new_fields_result.response.hits.total : 0
     User.where(id: user_id).update_all(identifications_count: count)
   end

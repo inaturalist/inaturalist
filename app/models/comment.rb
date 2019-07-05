@@ -3,6 +3,7 @@ class Comment < ActiveRecord::Base
   acts_as_spammable fields: [ :body ],
                     comment_type: "comment"
   acts_as_votable
+  has_moderator_actions
   SUBSCRIBABLE = false
 
   # Uncomment to require speech privilege to make comments on anything other
@@ -20,6 +21,7 @@ class Comment < ActiveRecord::Base
   after_create :update_parent_counter_cache
   after_destroy :update_parent_counter_cache
   after_save :index_parent
+  after_touch :index_parent
   after_destroy :index_parent
 
   notifies_subscribers_of :parent, notification: "activity", include_owner: true
@@ -62,7 +64,9 @@ class Comment < ActiveRecord::Base
       created_at: created_at,
       created_at_details: ElasticModel.date_details(created_at),
       body: body,
-      flags: flags.map(&:as_indexed_json)
+      flags: flags.map(&:as_indexed_json),
+      moderator_actions: moderator_actions.map(&:as_indexed_json),
+      hidden: hidden?
     }
   end
 
@@ -105,9 +109,11 @@ class Comment < ActiveRecord::Base
   end
 
   def index_parent
+    return if @parent_indexed
     return if bulk_delete
     if parent && parent.respond_to?(:elastic_index!)
       parent.elastic_index!
+      @parent_indexed = true
     end
   end
 

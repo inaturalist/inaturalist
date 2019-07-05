@@ -1095,6 +1095,7 @@ protected
       :place_id,
       :preferred_observation_fields_by,
       :preferred_observation_license,
+      :preferred_observations_search_map_type,
       :preferred_observations_view,
       :preferred_photo_license,
       :preferred_project_addition_by,

@@ -8,12 +8,6 @@ class DeviseMailer < Devise::Mailer
       record.user
     end
     site = @site || user.try( :site ) || Site.default
-    if action.to_s == "confirmation_instructions"
-      if user && !user.active_for_authentication?
-        return false
-      end
-      opts = opts.merge( subject: t( :welcome_to_inat, site_name: site.name ) )
-    end
     if user
       old_locale = I18n.locale
       I18n.locale = user.locale.blank? ? I18n.default_locale : user.locale
@@ -21,6 +15,10 @@ class DeviseMailer < Devise::Mailer
         from: "#{site.name} <#{site.email_noreply}>",
         reply_to: site.email_noreply
       )
+      if action.to_s == "confirmation_instructions"
+        return false unless user.active_for_authentication?
+        opts = opts.merge( subject: t( :welcome_to_inat, site_name: site.name ) )
+      end
       begin
         DeviseMailer.default_url_options[:host] = URI.parse(site.url).host
       rescue

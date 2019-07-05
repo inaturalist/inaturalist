@@ -90,7 +90,17 @@ class Photo < ActiveRecord::Base
     photo_taxa = photo_taxa.sort_by{|t| t.rank_level || Taxon::ROOT_LEVEL + 1}
     candidate = photo_taxa.detect(&:species_or_lower?) || photo_taxa.first
     # if there are synonyms, don't decide
-    if photo_taxa.detect{|t| t.name == candidate.name && t.id != candidate.id}
+    synonym = photo_taxa.detect{|t| t.name == candidate.name && t.id != candidate.id}
+    synonym ||= photo_taxa.detect do |t|
+      t_common_names = t.taxon_names.select{ |tn|
+        tn.is_valid? && tn.lexicon != TaxonName::SCIENTIFIC_NAMES}.map{|tn| tn.name.downcase
+      }
+      c_common_names = candidate.taxon_names.select{ |tn|
+        tn.is_valid? && tn.lexicon != TaxonName::SCIENTIFIC_NAMES}.map{|tn| tn.name.downcase
+      }
+      t.id != candidate.id && ( t_common_names & c_common_names ).size > 0
+    end
+    if synonym
       nil
     else
       candidate

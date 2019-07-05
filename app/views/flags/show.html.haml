@@ -10,7 +10,11 @@
       .breadcrumbs
         %strong
           = link_to t(:back_to_flags_html), url_for_referrer_or_default( url_for( @flag.flaggable.is_a?( Photo ) ? @flag.flaggable.becomes( Photo ) : @flag.flaggable ) )
-        = link_to t(:view_all_flags), flags_url, class: "pull-right"
+        .pull-right
+          - if @object.is_a?( Comment )
+            = link_to t(:view_moderation_history_for_this_comment), comment_flags_url( comment_id: @object.id )
+            &middot;
+          = link_to t(:view_all_flags), flags_url
       %h2= @title
   .row
     .col-xs-12
@@ -51,7 +55,7 @@
                   = f.hidden_field :resolved, value: true
                   = f.submit t(:resolve), class: "btn btn-success"
               - else
-                =formatted_user_text @flag.comment
+                = formatted_user_text @flag.comment
               - if is_me?( @flag.user )
                 = link_to @flag, class: "btn btn-link", data: { confirm: t(:you_sure_delete_flag?) }, method: :delete do
                   %i.fa.fa-trash
@@ -62,4 +66,3 @@
       - unless is_me?( @flag.user )
         .upstacked
           = render "subscriptions/subscription", resource: @flag
-

@@ -145,7 +145,7 @@ module DarwinCore
           end
         end
       end
-      d = DarwinCore::Descriptor.new(:core => @opts[:core], :extensions => extensions)
+      d = DarwinCore::Descriptor.new(core: @opts[:core], extensions: extensions, ala: @opts[:ala])
       tmp_path = File.join(@work_path, "meta.xml")
       open(tmp_path, 'w') do |f|
         f << d.render(:file => @opts[:descriptor])
@@ -171,7 +171,7 @@ module DarwinCore
       params[:place_id] = @place.id if @place
       params[:taxon_id] = @taxon.id if @taxon
       params[:projects] = [@project.id] if @project
-      params[:quality_grade] = @opts[:quality]
+      params[:quality_grade] = @opts[:quality] === "verifiable" ? "research,needs_id" : @opts[:quality]
       params[:site_id] = @opts[:site_id]
       params[:created_d1] = @opts[:created_d1]
       params[:created_d2] = @opts[:created_d2] || ( @generate_started_at || Time.now ).iso8601
@@ -196,7 +196,11 @@ module DarwinCore
     end
 
     def make_occurrence_data
-      headers = DarwinCore::Occurrence::TERM_NAMES
+      terms = DarwinCore::Occurrence::TERMS
+      if @opts[:ala]
+        terms += DarwinCore::Occurrence::ALA_EXTRA_TERMS
+      end
+      headers = DarwinCore::Occurrence.term_names( terms )
       fname = "observations.csv"
       tmp_path = File.join(@work_path, fname)
       fake_view = FakeView.new
@@ -221,7 +225,7 @@ module DarwinCore
                 private_coordinates: @opts[:private_coordinates],
                 community_taxon: @opts[:community_taxon]
               )
-              row = DarwinCore::Occurrence::TERMS.map do |field, uri, default, method|
+              row = terms.map do |field, uri, default, method|
                 key = method || field
                 benchmark( "obs_#{key}" ) { o.send( key ) }
               end
@@ -256,6 +260,8 @@ module DarwinCore
           scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
         elsif @opts[:quality] == "casual"
           scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
+        elsif @opts[:quality] == "verifiable"
+          scope = scope.where("observations.quality_grade IN (?, ?)", Observation::RESEARCH_GRADE, Observation::NEEDS_ID)
         end
       else
         scope = scope.where( "is_active" )
@@ -290,6 +296,8 @@ module DarwinCore
         scope = scope.where("observations.quality_grade = ?", Observation::RESEARCH_GRADE)
       elsif @opts[:quality] == "casual"
         scope = scope.where("observations.quality_grade = ?", Observation::CASUAL_GRADE)
+      elsif @opts[:quality] == "verifiable"
+        scope = scope.where("observations.quality_grade IN (?, ?)", Observation::RESEARCH_GRADE, Observation::NEEDS_ID)
       end
       
       scope = scope.where(@taxon.descendant_conditions) if @taxon

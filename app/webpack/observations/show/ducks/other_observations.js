@@ -64,6 +64,7 @@ export function fetchNearby( ) {
     const baseParams = {
       lat: observation.latitude,
       lng: observation.longitude,
+      verifiable: true,
       radius: 50,
       order_by: "observed_on",
       preferred_place_id: s.config.preferredPlace ? s.config.preferredPlace.id : null,
