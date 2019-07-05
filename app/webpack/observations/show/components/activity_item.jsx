@@ -297,10 +297,15 @@ const ActivityItem = ( {
           user: ReactDOMServer.renderToString( userLink ),
           taxon: ReactDOMServer.renderToString( previousTaxonLink )
         } );
-      } else {
+      } else if ( item.disagreement_type === "branch" ) {
         footerText = I18n.t( "user_does_not_think_we_can_be_certain_beyond_taxon", {
           user: ReactDOMServer.renderToString( userLink ),
           taxon: ReactDOMServer.renderToString( currentTaxonLink )
+        } );
+      } else {
+        footerText = I18n.t( "user_disagrees_this_is_taxon", {
+          user: ReactDOMServer.renderToString( userLink ),
+          taxon: ReactDOMServer.renderToString( previousTaxonLink )
         } );
       }
     } else {
