@@ -138,10 +138,15 @@ class CommunityIDModal extends Component {
           && i.previous_observation_taxon
           && _.intersection( i.previous_observation_taxon.ancestor_ids, [i.taxon.id] ).length > 0
         ) {
-          const taxonIDsDisagreedWith = _.difference(
-            i.previous_observation_taxon.ancestor_ids,
-            ( i.taxon.ancestor_ids || [] ).concat( [i.taxon.id] )
-          );
+          let taxonIDsDisagreedWith;
+          if ( i.disagreement_type === "leaf" ) {
+            taxonIDsDisagreedWith = [i.previous_observation_taxon.id];
+          } else {
+            taxonIDsDisagreedWith = _.difference(
+              i.previous_observation_taxon.ancestor_ids,
+              ( i.taxon.ancestor_ids || [] ).concat( [i.taxon.id] )
+            );
+          }
           _.each( taxa, t => {
             const ancestorIDsDisagreedWith = _.intersection(
               ( t.ancestor_ids || [] ).concat( [t.id] ),

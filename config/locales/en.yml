@@ -5564,7 +5564,7 @@ en:
             IDs, ‘disagreements’ - the number of IDs that are completely different (i.e. IDs of taxa
             that do not contain the taxon being scored), and ‘ancestor disagreements’ - the number of
             more conservative IDs that disagree with the finer taxon. For the identified taxa that
-            have a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.
+            have a score over 2/3 and at least 2 cumulative IDs, choose the lowest ranked taxon.
           </p>
         cumulative_count_desc: '# of identifications for an individual taxon and all its descendants'
         curator_coordinate_access_disabled_desc_html: |
