@@ -1301,8 +1301,8 @@ en:
   expand_updates: Expand Updates
   explicit_disagreement:
     are_you_disagreeing_this_is_taxon: Are you disagreeing this is %{taxon}?
-    yes_im_certain_its_not_taxon: Yes, I'm certain it's not %{taxon}
-    yes_we_cant_be_certain_beyond_taxon: Yes, I don't think we can be certain beyond %{taxon}
+    yes_im_certain_its_not_taxon: Yes, I'm certain it's not %{old_taxon}, but it could be something else in %{new_taxon}
+    yes_we_cant_be_certain_beyond_taxon: Yes, and we can't be certain beyond %{taxon}
     no_im_not_disagreeing: No, I'm not disagreeing
   explore!: Explore!
   explore: Explore
@@ -1618,8 +1618,9 @@ en:
         First suggestion of this taxon that the community subsequently agreed with. This helped
         refine the community taxon.
       maverick: |
-        Taxon is not a descendant or ancestor of the community taxon, i.e. the community does not
-        agree with this taxon.
+        Taxon is not a descendant or ancestor of the community taxon or others
+        have overridden a disagreement, i.e. the community does not agree with
+        this taxon.
   id_more_in_id_please: ID more in ID Please
   id_please!: ID Please!
   id_please: ID Please

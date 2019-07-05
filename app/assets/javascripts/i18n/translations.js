@@ -683,6 +683,7 @@ I18n.translations["ar"] = {
   "hide_uncountable_species": "إخفاء الأنواع التي لا تحصى",
   "high": "مرتفع",
   "history": "التاريخ",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "أنا لا أعرف ولكن أنا متأكد من أن هذا %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "أول اقتراح لهذه الأصنوفة التي اتفق عليها المجتمع لاحقا، وقد ساعد هذا على\nتحسين أصنوفة المجتمع.",
@@ -912,6 +913,7 @@ I18n.translations["ar"] = {
   "next_photo": "الصورة التالية",
   "next_tab": "علامة التبويب التالية",
   "no": "لا",
+  "no_but_it_is_a_member_of_taxon": "لا، ولكنه عضو في %{taxon}",
   "no_identifications": "لا توجد هويات",
   "no_ids_have_been_suggested_yet": "لم يتم اقتراح أية معرفات بعد",
   "no_interaction_data_available": "لا تتوفر بيانات تفاعل",
@@ -4804,6 +4806,7 @@ I18n.translations["ca"] = {
   "hide_uncountable_species": "Amaga les espècies incomptables",
   "high": "Alta",
   "history": "Historial",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "No ho sé segur, però segur que és%{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Primer suggeriment d'aquest tàxon sobre el que la comunitat ha estat posteriorment d'acord. Això va ajudar a refinar el tàxon proposat per la Comunitat.",
@@ -5033,6 +5036,7 @@ I18n.translations["ca"] = {
   "next_photo": "Propera foto",
   "next_tab": "Propera pestanya",
   "no": "No",
+  "no_but_it_is_a_member_of_taxon": "No, però es un membre de %{taxon}",
   "no_identifications": "Sense identificacions",
   "no_ids_have_been_suggested_yet": "Encara no s'ha suggerit cap identificació",
   "no_interaction_data_available": "Sense dades d'interacció disponibles",
@@ -6744,6 +6748,7 @@ I18n.translations["cs"] = {
   "hide_uncountable_species": "Skrýt nespočitatelné druhy",
   "high": "vysoká",
   "history": "Historie",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Nevím, ale jsem si jistý/á, že toto je %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "První návrh tohoto taxonu, s nímž komunita následně souhlasila. Toto pomohlo komunitní taxon vylepšit.",
@@ -6973,6 +6978,7 @@ I18n.translations["cs"] = {
   "next_photo": "Další fotka",
   "next_tab": "Další panel",
   "no": "Ne",
+  "no_but_it_is_a_member_of_taxon": "Ne, ale patří do %{taxon}",
   "no_identifications": "Žádná identifikace",
   "no_ids_have_been_suggested_yet": "Zatím nebyla navržena žádná ID",
   "no_interaction_data_available": "Nejsou dostupné žádné údaje o interakci",
@@ -8681,6 +8687,7 @@ I18n.translations["da"] = {
   "hide_uncountable_species": "Skjul arter der ikke medregnes",
   "high": "Høj",
   "history": "Historik",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Jeg ved det ikke, men jeg sikker på det er %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Første forslag til dette takson, som fællesskabet efterfølgende var enige i. Dette hjalp med at forbedre fællesskabs taksonen.",
@@ -8910,6 +8917,7 @@ I18n.translations["da"] = {
   "next_photo": "Næste foto",
   "next_tab": "Næste fane",
   "no": "Nej",
+  "no_but_it_is_a_member_of_taxon": "Nej, men det er et medlem af %{taxon}",
   "no_identifications": "Ingen identifikationer",
   "no_ids_have_been_suggested_yet": "Ingen IDs er foreslået endnu",
   "no_interaction_data_available": "Ingen interaktionsdata tilgængelige",
@@ -10593,6 +10601,7 @@ I18n.translations["de"] = {
   "hide_uncountable_species": "Unzählbare Arten verstecken",
   "high": "Hoch",
   "history": "Geschichte",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Ich weiß nicht, aber bin mir sicher dies ist %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Erster Vorschlag dieses Taxons, dem die Community anschließend zustimmte. Dies half dabei das Community-Taxon zu verfeinern."
@@ -10815,6 +10824,7 @@ I18n.translations["de"] = {
   "next_photo": "Nächstes Foto",
   "next_tab": "Nächster Tab",
   "no": "Nein",
+  "no_but_it_is_a_member_of_taxon": "Nein, es ist aber ein Mitglied von %{taxon}",
   "no_identifications": "Keine Bestimmungen",
   "no_ids_have_been_suggested_yet": "Es wurden noch keine IDs vorgeschlagen",
   "no_interaction_data_available": "Keine Interaktionsdaten verfügbar",
@@ -12401,6 +12411,7 @@ I18n.translations["el"] = {
   "hide_uncountable_species": "Απόκρυψη μη μετρήσιμων ειδών",
   "high": "υψηλό",
   "history": "Ιστορικό",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Δεν γνωρίζω όμως είμαι βέβαιος πως είναι %{taxon}",
   "id_categories": {
     "tooltips": {
     }
@@ -12606,6 +12617,7 @@ I18n.translations["el"] = {
   "next_photo": "Επόμενη φωτογραφία",
   "next_tab": "Επόμενη ετικέτα",
   "no": "Όχι",
+  "no_but_it_is_a_member_of_taxon": "Όχι, αλλά είναι μέρος του %{taxon}",
   "no_identifications": "Καμιά Αναγνώριση",
   "no_ids_have_been_suggested_yet": "Κανένα ID δεν έχει προταθεί ακόμα",
   "no_its_as_good_as_it_can_be": "Όχι, είναι όσο το δυνατόν καλύτερη",
@@ -13932,8 +13944,8 @@ I18n.translations["en"] = {
   "explicit_disagreement": {
     "are_you_disagreeing_this_is_taxon": "Are you disagreeing this is %{taxon}?",
     "no_im_not_disagreeing": "No, I'm not disagreeing",
-    "yes_im_certain_its_not_taxon": "Yes, I'm certain it's not %{taxon}",
-    "yes_we_cant_be_certain_beyond_taxon": "Yes, I don't think we can be certain beyond %{taxon}"
+    "yes_im_certain_its_not_taxon": "Yes, I'm certain it's not %{old_taxon}, but it could be something else in %{new_taxon}",
+    "yes_we_cant_be_certain_beyond_taxon": "Yes, and we can't be certain beyond %{taxon}"
   },
   "export_observations": "Export Observations",
   "exporting": "Exporting...",
@@ -14015,11 +14027,12 @@ I18n.translations["en"] = {
   "hide_uncountable_species": "Hide Uncountable Species",
   "high": "High",
   "history": "History",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "I don't know but I am sure this is %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "First suggestion of this taxon that the community subsequently agreed with. This helped\nrefine the community taxon.\n",
       "leading": "Taxon descends from the community taxon. This identification could be leading toward the\nright answer.\n",
-      "maverick": "Taxon is not a descendant or ancestor of the community taxon, i.e. the community does not\nagree with this taxon.\n"
+      "maverick": "Taxon is not a descendant or ancestor of the community taxon or others\nhave overridden a disagreement, i.e. the community does not agree with\nthis taxon.\n"
     }
   },
   "id_withdrawn": "ID Withdrawn",
@@ -14244,6 +14257,7 @@ I18n.translations["en"] = {
   "next_photo": "Next Photo",
   "next_tab": "Next Tab",
   "no": "No",
+  "no_but_it_is_a_member_of_taxon": "No, but it is a member of %{taxon}",
   "no_identifications": "No Identifications",
   "no_ids_have_been_suggested_yet": "No IDs have been suggested yet",
   "no_interaction_data_available": "No interaction data available",
@@ -15092,7 +15106,7 @@ I18n.translations["en"] = {
       },
       "show": {
         "ancestor_disagreements_desc": "# of identified taxa that are among a taxon's ancestors, but disagree with the taxon (ie \"I think its in the genus but I disagree its that species\")",
-        "community_taxon_desc_html": "<p class=\"ui\">\n  The community taxon (or community identification) represents\n  what taxon the %{site_name} community thinks is depicted in an\n  observation. If you're interested in how we choose the\n  community taxon, see the notes on the algorithm below, but in\n  general, we try to <strong>choose a taxon that more than 2/3\n  of the identifiers agree with</strong>. Sometimes this means\n  choosing a higher level taxon that contains a number of\n  disagreeing taxa (e.g. you think it's a kingsnake and I think\n  it's rattlesnake, so iNat chooses suborder Serpentes which\n  contains all snakes). The algorithm also slightly favors\n  dissent, because we've found that dissenters are often\n  correct.\n</p>\n<p class=\"ui\">\n  A research grade observation must have (among other criteria) a\n  community taxon. If an observation has\n  only one identification, it won’t have a community taxon. All\n  observations with at least one identification will also have an\n  observation taxon. The observation taxon is the taxon we use when\n  sharing observations with data partners, linking observations of\n  the same taxon on the site, updating your life list, etc. In most\n  cases the observation taxon will eventually be set to the community\n  taxon, but sometimes they will differ especially before the community\n  has settled on an identification. For example, if you think\n  its a snake (suborder Serpentes) and I think it’s a kingsnake (genus\n  <i>Lampropeltis</i>) the observation taxon will be at kingsnake (supported\n  by my identification only) but the community taxon will be at\n  serpentes (supported by at least two identifications). If for\n  some reason you don't agree with the community taxon, you can\n  reject it on your own observations, which means that observation\n  taxon will never be set to the community taxon (rather your own ID).\n  It also means your observation can only become research grade when the community\n  agrees with <em>you</em>. If you don't like the whole idea of\n  community taxa, you can opt out of them entirely by\n  <a href=\"/users/edit\" target=\"_blank\">editing your settings</a>.\n</p>\n<p class=\"ui\">\n  <strong>The algorithm:</strong> for all identified taxa and the taxa that contain them\n  (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between\n  the number of ‘agreements’ - cumulative IDs for that taxon over the sum of the cumulative\n  IDs, ‘disagreements’ - the number of IDs that are completely different (i.e. IDs of taxa\n  that do not contain the taxon being scored), and ‘ancestor disagreements’ - the number of\n  more conservative IDs that disagree with the finer taxon. For the identified taxa that\n  have a score over 2/3 and at least 2 identifications, choose the lowest ranked taxon.\n</p>\n",
+        "community_taxon_desc_html": "<p class=\"ui\">\n  The community taxon (or community identification) represents\n  what taxon the %{site_name} community thinks is depicted in an\n  observation. If you're interested in how we choose the\n  community taxon, see the notes on the algorithm below, but in\n  general, we try to <strong>choose a taxon that more than 2/3\n  of the identifiers agree with</strong>. Sometimes this means\n  choosing a higher level taxon that contains a number of\n  disagreeing taxa (e.g. you think it's a kingsnake and I think\n  it's rattlesnake, so iNat chooses suborder Serpentes which\n  contains all snakes). The algorithm also slightly favors\n  dissent, because we've found that dissenters are often\n  correct.\n</p>\n<p class=\"ui\">\n  A research grade observation must have (among other criteria) a\n  community taxon. If an observation has\n  only one identification, it won’t have a community taxon. All\n  observations with at least one identification will also have an\n  observation taxon. The observation taxon is the taxon we use when\n  sharing observations with data partners, linking observations of\n  the same taxon on the site, updating your life list, etc. In most\n  cases the observation taxon will eventually be set to the community\n  taxon, but sometimes they will differ especially before the community\n  has settled on an identification. For example, if you think\n  its a snake (suborder Serpentes) and I think it’s a kingsnake (genus\n  <i>Lampropeltis</i>) the observation taxon will be at kingsnake (supported\n  by my identification only) but the community taxon will be at\n  serpentes (supported by at least two identifications). If for\n  some reason you don't agree with the community taxon, you can\n  reject it on your own observations, which means that observation\n  taxon will never be set to the community taxon (rather your own ID).\n  It also means your observation can only become research grade when the community\n  agrees with <em>you</em>. If you don't like the whole idea of\n  community taxa, you can opt out of them entirely by\n  <a href=\"/users/edit\" target=\"_blank\">editing your settings</a>.\n</p>\n<p class=\"ui\">\n  <strong>The algorithm:</strong> for all identified taxa and the taxa that contain them\n  (e.g. genus <i>Homo</i> contains <i>Homo sapiens</i>), score each as the ratio between\n  the number of ‘agreements’ - cumulative IDs for that taxon over the sum of the cumulative\n  IDs, ‘disagreements’ - the number of IDs that are completely different (i.e. IDs of taxa\n  that do not contain the taxon being scored), and ‘ancestor disagreements’ - the number of\n  more conservative IDs that disagree with the finer taxon. For the identified taxa that\n  have a score over 2/3 and at least 2 cumulative IDs, choose the lowest ranked taxon.\n</p>\n",
         "cumulative_count_desc": "# of identifications for an individual taxon and all its descendants",
         "disagreement_count_desc": "# of identified taxa that are not among a taxon's ancestors",
         "identification_count_desc": "# of identifications for an individual taxon",
@@ -16069,6 +16083,7 @@ I18n.translations["eo"] = {
   "has_sounds": "Havas Sonojn",
   "high": "Alta",
   "history": "Historio",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Mi ne certas, sed mi certas ke ĉi tiu estas %{taxon}",
   "id_categories": {
     "tooltips": {
     }
@@ -16196,6 +16211,7 @@ I18n.translations["eo"] = {
   "next_photo": "Sekva Foto",
   "next_tab": "Sekva Langeto",
   "no": "Ne",
+  "no_but_it_is_a_member_of_taxon": "Ne, sed ĝi estas ano de %{taxon}",
   "no_news_yet": "Ankoraŭ neniu novaĵo",
   "no_photos": "Neniu foto",
   "none": "Nenio",
@@ -17422,6 +17438,7 @@ I18n.translations["es"] = {
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "Alta",
   "history": "Historial",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "No lo sé, pero estoy seguro de que es %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón comunitario.",
@@ -17651,6 +17668,7 @@ I18n.translations["es"] = {
   "next_photo": "Foto siguiente",
   "next_tab": "Siguiente pestaña",
   "no": "No",
+  "no_but_it_is_a_member_of_taxon": "No, pero es un miembro de %{taxon}",
   "no_identifications": "Sin identificaciones",
   "no_ids_have_been_suggested_yet": "Aún no se ha sugerido ningún ID",
   "no_interaction_data_available": "Datos de interacción no disponibles",
@@ -20078,6 +20096,7 @@ I18n.translations["es-MX"] = {
   "hide_uncountable_species": "Esconde especies incontables",
   "high": "alta",
   "history": "Historial",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "No lo sé, pero estoy seguro de que es %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Primera sugerencia de este taxón con el que la comunidad ha estado posteriormente de acuerdo. Esto ayudó a refinar el taxón de la comunidad.",
@@ -20307,6 +20326,7 @@ I18n.translations["es-MX"] = {
   "next_photo": "Foto siguiente",
   "next_tab": "Siguiente pestaña",
   "no": "No",
+  "no_but_it_is_a_member_of_taxon": "No, pero es un miembro de %{taxon}",
   "no_identifications": "Sin identificaciones",
   "no_ids_have_been_suggested_yet": "Aún no se ha sugerido ningún ID",
   "no_interaction_data_available": "Datos de interacción no disponibles",
@@ -22009,6 +22029,7 @@ I18n.translations["et"] = {
   "hide_uncountable_species": "Peida loendamatud liigid",
   "high": "Kõrge",
   "history": "Ajalugu",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Ma pole kindel, kuid arvan, et see on %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Esimene selle taksoni pakkumine, millega kogukond hiljem ka nõustus. See aitas kogukondliku taksonit parandada.",
@@ -22237,6 +22258,7 @@ I18n.translations["et"] = {
   "next_photo": "Järgmine foto",
   "next_tab": "Järgmine sakk",
   "no": "Ei",
+  "no_but_it_is_a_member_of_taxon": "Ei, kuid see kuulub taksonisse %{taxon}",
   "no_identifications": "Määratlused puuduvad",
   "no_ids_have_been_suggested_yet": "Määratlusi pole veel soovitatud",
   "no_interaction_data_available": "Vastastikmõjude kohta andmed puuduvad",
@@ -24948,6 +24970,7 @@ I18n.translations["fi"] = {
   "hide_uncountable_species": "Piilota ei-laskettavat lajit",
   "high": "Korkea",
   "history": "Historia",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "En tiedä mutta olen varma että tämä on %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Ensimmäinen ehdotus tästä taksosta, jonka yhteisö on myöhemmin hyväksyi. Tämä auttoi kohentamaan yhteisön taksonia.",
@@ -25162,6 +25185,7 @@ I18n.translations["fi"] = {
   "next_photo": "Uusi kuva",
   "next_tab": "Seuraava välilehti",
   "no": "Ei",
+  "no_but_it_is_a_member_of_taxon": "Ei, mutta se on taksonin %{taxon} jäsen",
   "no_identifications": "Ei tunnistuksia",
   "no_ids_have_been_suggested_yet": "Tunnistetta ei ole vielä ehdotettu",
   "no_its_as_good_as_it_can_be": "Ei, se on niin hyvä kuin se voi olla",
@@ -26685,6 +26709,7 @@ I18n.translations["fr"] = {
   "hide_uncountable_species": "Masquer les espèces indénombrables",
   "high": "Haut",
   "history": "Historique",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Je ne sais pas, mais je suis sûr de que c'est %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Première suggestion pour ce taxon avec laquelle la communauté a ensuite été d’accord. Cela a aidé\nà affiner le taxon de la communauté.",
@@ -26914,6 +26939,7 @@ I18n.translations["fr"] = {
   "next_photo": "Photo suivante",
   "next_tab": "Onglet suivant",
   "no": "Non",
+  "no_but_it_is_a_member_of_taxon": "Non, mais c'est un membre de %{taxon}",
   "no_identifications": "Aucune identification",
   "no_ids_have_been_suggested_yet": "Aucun ID n’a encore été suggéré",
   "no_interaction_data_available": "Aucune donnée d’interaction disponible",
@@ -31255,6 +31281,7 @@ I18n.translations["it"] = {
   "hide_uncountable_species": "Nascondi le specie non conteggiabili",
   "high": "Superiore",
   "history": "Cronologia",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Non lo so ma sono sicuro che è %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Il primo suggerimento per questo taxon che la comunità ha approvato successivamente. Questo suggerimento ha aiutato ad affinare il taxon della comunità.",
@@ -31484,6 +31511,7 @@ I18n.translations["it"] = {
   "next_photo": "Prossima foto",
   "next_tab": "Scheda successiva",
   "no": "No",
+  "no_but_it_is_a_member_of_taxon": "No, ma questo è un membro di %{taxon}",
   "no_identifications": "Nessuna identificazione",
   "no_ids_have_been_suggested_yet": "Ancora nessuna ID suggerita",
   "no_interaction_data_available": "Nessuna informazione di interazione disponibile",
@@ -35534,6 +35562,7 @@ I18n.translations["lb"] = {
   "next_photo": "Nächst Foto",
   "next_tab": "Nächsten Tab",
   "no": "Neen",
+  "no_but_it_is_a_member_of_taxon": "Neen, awer et ass e Member vu(n) %{taxon}",
   "no_identifications": "Keng Identifikatiounen",
   "no_matching_users": "Keng passend Benotzer.",
   "no_more_results_found": "Net méi Resultater fonnt",
@@ -37970,6 +37999,7 @@ I18n.translations["nl"] = {
   "hide_uncountable_species": "Verberg ongetelde soorten",
   "high": "hoog",
   "history": "Geschiedenis",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Ik weet het niet maar ik weet zeker dat het %{taxon} is",
   "id_categories": {
     "tooltips": {
       "improving": "Eerste suggestie van dit taxon waar de gemeenschap vervolgens mee instemde. Dit hielp bij het verfijnen van het gemeenschapstaxon.",
@@ -38199,6 +38229,7 @@ I18n.translations["nl"] = {
   "next_photo": "Volgende foto",
   "next_tab": "Volgende tabblad",
   "no": "Nee",
+  "no_but_it_is_a_member_of_taxon": "Nee, maar het is een lid van %{taxon}",
   "no_identifications": "Geen identificaties",
   "no_ids_have_been_suggested_yet": "Er werden nog geen ID's voorgesteld",
   "no_interaction_data_available": "Geen interactiegegevens beschikbaar",
@@ -41290,6 +41321,7 @@ I18n.translations["pt-BR"] = {
   "hide_uncountable_species": "Ocultar espécies incontáveis",
   "high": "Alta",
   "history": "Histórico",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Eu não sei mas tenho a certeza que é %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Primeira sugestão do táxon proveniente de um consenso da comunidade. Isto auxiliou ao refinar o táxon da comunidade",
@@ -41519,6 +41551,7 @@ I18n.translations["pt-BR"] = {
   "next_photo": "Próxima Foto",
   "next_tab": "Nova Aba",
   "no": "Não",
+  "no_but_it_is_a_member_of_taxon": "Não, mas é um membro de %{taxon}",
   "no_identifications": "Sem Identificações",
   "no_ids_have_been_suggested_yet": "Nenhuma identificação foi sugerida",
   "no_interaction_data_available": "Dados sobre interações não disponíveis",
@@ -43209,6 +43242,7 @@ I18n.translations["pt-PT"] = {
   "hide_uncountable_species": "Ocultar espécies incontáveis",
   "high": "Alto",
   "history": "Histórico",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Eu não sei mas tenho a certeza que é %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Primeira sugestão deste táxon que teve o acordo da comunidade. Isto ajudou a refinar o táxon comunitário.",
@@ -43427,6 +43461,7 @@ I18n.translations["pt-PT"] = {
   "next_photo": "Próxima Foto",
   "next_tab": "Separador Seguinte",
   "no": "Não",
+  "no_but_it_is_a_member_of_taxon": "Não, mas é um membro de %{taxon}",
   "no_identifications": "Sem Identificações",
   "no_ids_have_been_suggested_yet": "Ainda sem identificação sugerida",
   "no_interaction_data_available": "Dados sobre interações não disponíveis",
@@ -44744,6 +44779,7 @@ I18n.translations["ru"] = {
   "hide_uncountable_species": "Не показывать неисчислимые виды",
   "high": "Высший",
   "history": "История",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Я не знаю, но уверен, что это таксон %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Первое предложение этого таксона, с которым сообщество впоследствии согласилось. Это помогло уточнить таксон сообщества.",
@@ -44973,6 +45009,7 @@ I18n.translations["ru"] = {
   "next_photo": "Следующее фото",
   "next_tab": "Новая вкладка",
   "no": "Нет",
+  "no_but_it_is_a_member_of_taxon": "Нет, но это член %{taxon}",
   "no_identifications": "Нет идентификаций",
   "no_ids_have_been_suggested_yet": "Никаких идентификаций пока не предложено",
   "no_interaction_data_available": "Нет доступных взаимосвязаных данных",
@@ -46929,6 +46966,7 @@ I18n.translations["sq"] = {
   "hide_uncountable_species": "Fsheh speciet e pallogaritshme",
   "high": "I lartë",
   "history": "Historiku",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "Nuk e dij, por jam i sigurtë se kjo është %{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "Sugjerimi i parë i këtij taxon me të cilin komuniteti më pas pajtohet. Kjo ndihmon rafinimin komunitetit taxon.",
@@ -47143,6 +47181,7 @@ I18n.translations["sq"] = {
   "next_photo": "Foto tjetër",
   "next_tab": "Lidhësja e radhës",
   "no": "Jo",
+  "no_but_it_is_a_member_of_taxon": "Jo, por është anëtar i %{taxon}",
   "no_identifications": "Asnjë identifikim",
   "no_ids_have_been_suggested_yet": "Asnjë ID nuk është sugjeruar ende",
   "no_interaction_data_available": "Nuk ka të dhëna të ndërveprimit",
@@ -48502,6 +48541,7 @@ I18n.translations["sv"] = {
   "next_photo": "Nästa foto",
   "next_tab": "Nästa flik",
   "no": "Nej",
+  "no_but_it_is_a_member_of_taxon": "Nej, men det är en medlem av %{taxon}",
   "no_identifications": "Inga identifieringar",
   "no_license_all_rights_reserved": "Ingen licens (alla rättigheter reserverade)",
   "no_news_yet": "Inga nyheter ännu",
@@ -50411,6 +50451,7 @@ I18n.translations["zh-CN"] = {
   "hide_uncountable_species": "隐藏无法计数的物种",
   "high": "高",
   "history": "历史",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "我不知道，但我确信这是%{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "此分类单元在该社区被接纳的第一个提议。这有助于完善社区分类单元。",
@@ -50625,6 +50666,7 @@ I18n.translations["zh-CN"] = {
   "next_photo": "下一照片",
   "next_tab": "下一标签",
   "no": "否",
+  "no_but_it_is_a_member_of_taxon": "不，但它是%{taxon}的成员之一",
   "no_identifications": "没有鉴定",
   "no_ids_have_been_suggested_yet": "没有建议ID",
   "no_interaction_data_available": "没有可用的交互数据",
@@ -52207,6 +52249,7 @@ I18n.translations["zh-TW"] = {
   "hide_uncountable_species": "隱藏無法計數的物種",
   "high": "高",
   "history": "歷史",
+  "i_dont_know_but_i_am_sure_this_is_taxon": "我不清楚，但我確定這是%{taxon}",
   "id_categories": {
     "tooltips": {
       "improving": "首先建議此物種分類來讓社群後續同意。這有助於改進社群物種分類。",
@@ -52436,6 +52479,7 @@ I18n.translations["zh-TW"] = {
   "next_photo": "下一張照片",
   "next_tab": "下一個頁籤",
   "no": "否",
+  "no_but_it_is_a_member_of_taxon": "不，但這是%{taxon}的成員之一",
   "no_identifications": "沒有鑑定",
   "no_ids_have_been_suggested_yet": "尚未有鑑定被建議",
   "no_interaction_data_available": "沒有可用的互動資料",

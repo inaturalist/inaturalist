@@ -39,7 +39,7 @@ const DisagreementAlert = ( {
             onClose( );
           }}
           dangerouslySetInnerHTML={{
-            __html: I18n.t( "explicit_disagreement.yes_im_certain_its_not_taxon", { taxon: oldTaxonHTML } )
+            __html: I18n.t( "explicit_disagreement.yes_im_certain_its_not_taxon", { old_taxon: oldTaxonHTML, new_taxon: newTaxonHTML } )
           }}
         />
         <Button

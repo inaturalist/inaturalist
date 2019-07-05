@@ -82,6 +82,7 @@ class Identification < ActiveRecord::Base
 
   LEAF = "leaf"
   BRANCH = "branch"
+  IMPLICIT = "implicit"
   
   notifies_subscribers_of :observation, :notification => "activity", :include_owner => true, 
     :queue_if => lambda {|ident| 
@@ -222,6 +223,9 @@ class Identification < ActiveRecord::Base
     ancestor_of_previous_observation_taxon = previous_observation_taxon.self_and_ancestor_ids.include?( taxon_id )
     descendant_of_previous_observation_taxon = taxon.self_and_ancestor_ids.include?( previous_observation_taxon.id )
     self.disagreement = !ancestor_of_previous_observation_taxon && !descendant_of_previous_observation_taxon
+    if disagreement
+      self.disagreement_type = IMPLICIT
+    end
 
     true
   end
@@ -442,7 +446,11 @@ class Identification < ActiveRecord::Base
       if o.community_taxon.blank? || descendant_of_community_taxon
         categories[:leading] << ident
       elsif ( ancestor_of_community_taxon || matches_community_taxon ) && progressive
-        categories[:improving] << ident
+        if ident.disagreement && ident.disagreement_type != LEAF
+          categories[:maverick] << ident
+        else
+          categories[:improving] << ident
+        end
       elsif !ancestor_of_community_taxon && !descendant_of_community_taxon && !matches_community_taxon
         categories[:maverick] << ident
       else
