@@ -62,7 +62,7 @@ if ( PREFERRED_SEARCH_PLACE !== undefined && PREFERRED_SEARCH_PLACE !== null ) {
 
 setupKeyboardShortcuts( store.dispatch );
 
-window.onpopstate = ( e ) => {
+window.onpopstate = e => {
   store.dispatch( updateSearchParamsWithoutHistory( e.state ) );
   store.dispatch( fetchObservationsStats() );
 };

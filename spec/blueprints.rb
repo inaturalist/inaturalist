@@ -194,6 +194,13 @@ Message.blueprint do
   body { Faker::Lorem.paragraph }
 end
 
+ModeratorAction.blueprint do
+  user { make_curator }
+  resource { Comment.make! }
+  action { ModeratorAction::HIDE }
+  reason { Faker::Lorem.sentence }
+end
+
 MushroomObserverImportFlowTask.blueprint do
   user { User.make! }
 end

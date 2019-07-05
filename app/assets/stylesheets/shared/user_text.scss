@@ -1,13 +1,16 @@
-.UserText a {
-  cursor: pointer;
-}
-.UserText .content {
-  position: relative;
-  overflow: hidden;
-  transition: height 2s;
-  overflow-wrap: break-word;
-}
+.UserText {
+  &.inline { display: inline; }
+  a {
+    cursor: pointer;
+  }
+  .content {
+    position: relative;
+    overflow: hidden;
+    transition: height 2s;
+    overflow-wrap: break-word;
+  }
 
-.UserText .content img {
-  max-width: 100%;
+  .content img {
+    max-width: 100%;
+  }
 }

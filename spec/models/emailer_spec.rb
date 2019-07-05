@@ -7,7 +7,7 @@ describe Emailer, "updates_notification" do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
   before do
-    enable_elastic_indexing( Taxon )
+    enable_elastic_indexing( Taxon, Observation )
     enable_has_subscribers
     @observation = Observation.make!
     @comment = without_delay { Comment.make!(:parent => @observation) }

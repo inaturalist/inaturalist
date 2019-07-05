@@ -76,11 +76,15 @@
                 notifier.description
               end -%>
             <% if text -%>
-              <% if context = text.context_of_pattern("@#{ viewing_user.login }") -%>
-                <%= formatted_user_text(context) %>
-              <% else -%>
-                <%= formatted_user_text(text) %>
-              <% end -%>
+              <% if notifier.respond_to?(:hidden?) && notifier.hidden? %>
+                <em>[<%=t :content_hidden %>]</em>
+              <% else %>
+                <% if context = text.context_of_pattern("@#{ viewing_user.login }") -%>
+                  <%= formatted_user_text(context) %>
+                <% else -%>
+                  <%= formatted_user_text(text) %>
+                <% end -%>
+              <% end %>
             <% end -%>
           <% end -%>
           <% unless no_meta -%>

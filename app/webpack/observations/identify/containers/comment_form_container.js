@@ -17,7 +17,7 @@ function mapStateToProps( state, ownProps ) {
 
 function mapDispatchToProps( dispatch, ownProps ) {
   return {
-    onSubmitComment: ( comment ) => {
+    onSubmitComment: comment => {
       dispatch( loadingDiscussionItem( comment ) );
       dispatch( postComment( comment ) )
         .catch( ( ) => {

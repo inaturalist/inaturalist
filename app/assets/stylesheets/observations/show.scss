@@ -98,7 +98,9 @@ a:focus {
 
 .linky,
 a.linky,
-.bootstrap a.linky {
+button.linky,
+.bootstrap a.linky,
+.bootstrap button.linky {
   color: $bootstrap-link-color;
   cursor: pointer;
 }

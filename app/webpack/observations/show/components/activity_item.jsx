@@ -33,15 +33,50 @@ const ActivityItem = ( {
   noTaxonLink,
   onClickCompare,
   trustUser,
-  untrustUser
+  untrustUser,
+  showHidden,
+  hideContent,
+  unhideContent
 } ) => {
   if ( !item ) { return ( <div /> ); }
   const { taxon } = item;
   const isID = !!taxon;
   const loggedIn = config && config.currentUser;
+  const canSeeHidden = config && config.currentUser && (
+    config.currentUser.roles.indexOf( "admin" ) >= 0
+    || config.currentUser.roles.indexOf( "curator" ) >= 0
+    || config.currentUser.id === item.user.id
+  );
+  const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
   let contents;
   let header;
   let className;
+  if ( !config.showHidden && item.hidden && !isID ) {
+    return (
+      <div className="ActivityItem">
+        <div className="icon">
+          <UserImage user={null} />
+        </div>
+        <Panel className="moderator-hidden">
+          <Panel.Heading>
+            <Panel.Title>
+              <span className="title_text text-muted"><i>{ I18n.t( "content_hidden" ) }</i></span>
+              { canSeeHidden && (
+                <button
+                  href="#"
+                  type="button"
+                  className="btn btn-default btn-xs"
+                  onClick={( ) => showHidden( )}
+                >
+                  { I18n.t( "show_hidden_content" ) }
+                </button>
+              ) }
+            </Panel.Title>
+          </Panel.Heading>
+        </Panel>
+      </div>
+    );
+  }
   const userLink = (
     <a
       className="user"
@@ -119,6 +154,26 @@ const ActivityItem = ( {
       header += "*";
     }
     if ( !item.current ) { className = "withdrawn"; }
+    let idBody;
+    if ( item.hidden && !config.showHidden ) {
+      idBody = (
+        <div className="hidden-content upstacked text-muted well well-sm">
+          <i>{ I18n.t( "content_hidden" ) }</i>
+          { canSeeHidden && (
+            <button
+              href="#"
+              type="button"
+              className="btn btn-default btn-xs"
+              onClick={( ) => showHidden( )}
+            >
+              { I18n.t( "show_hidden_content" ) }
+            </button>
+          ) }
+        </div>
+      );
+    } else {
+      idBody = item.body && ( <UserText text={item.body} className="id_body" /> );
+    }
     contents = (
       <div className="identification">
         { buttonDiv }
@@ -137,7 +192,7 @@ const ActivityItem = ( {
             showMemberGroup
           />
         </div>
-        { item.body && ( <UserText text={item.body} className="id_body" /> ) }
+        { idBody }
       </div>
     );
   } else {
@@ -148,6 +203,75 @@ const ActivityItem = ( {
   let panelClass;
   const headerItems = [];
   const unresolvedFlags = _.filter( item.flags || [], f => !f.resolved );
+  if ( item.hidden ) {
+    const moderatorAction = _.sortBy( _.filter( item.moderator_actions, ma => ma.action === "hide" ), ma => ma.id * -1 )[0];
+    const maUserLink = (
+      <a
+        href={`/people/${moderatorAction.user.login}`}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        { `@${moderatorAction.user.login}` }
+      </a>
+    );
+    headerItems.push(
+      <OverlayTrigger
+        key={`hidden-tooltip-${item.id}`}
+        container={$( "#wrapper.bootstrap" ).get( 0 )}
+        placement="top"
+        trigger="click"
+        rootClose
+        delayShow={200}
+        overlay={(
+          <Popover
+            id={`hidden-${item.id}`}
+            className="unhide-popover"
+          >
+            <span
+              dangerouslySetInnerHTML={{
+                __html: I18n.t( "content_hidden_by_user_on_date_because_reason_html", {
+                  user: ReactDOMServer.renderToString( maUserLink ),
+                  date: I18n.localize( "date.formats.month_day_year", moderatorAction.created_at ),
+                  reason: ReactDOMServer.renderToString( <UserText text={moderatorAction.reason} className="inline" /> )
+                } )
+              }}
+            />
+            <div className="upstacked text-muted">
+              <a
+                href={`/${isID ? "identifications" : "comments"}/${item.id}/flags`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="linky"
+              >
+                { I18n.t( "view_moderation_history" ) }
+              </a>
+              { viewerIsActor && (
+                <span>
+                  <br />
+                  <a
+                    href="/help"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="linky"
+                  >
+                    { I18n.t( "contact_support" ) }
+                  </a>
+                </span>
+              ) }
+            </div>
+          </Popover>
+        )}
+      >
+        <span className="item-status hidden-status">
+          <i className="fa fa-eye-slash" title={I18n.t( "content_hidden" )} />
+          <span className="hidden-xs hidden-sm">
+            { " " }
+            { I18n.t( "content_hidden" ) }
+          </span>
+        </span>
+      </OverlayTrigger>
+    );
+  }
   if ( unresolvedFlags.length > 0 ) {
     panelClass = "flagged";
     headerItems.push(
@@ -267,7 +391,6 @@ const ActivityItem = ( {
       </div>
     );
   }
-  const viewerIsActor = config.currentUser && item.user.id === config.currentUser.id;
   const byClass = viewerIsActor ? "by-current-user" : "by-someone-else";
   let footer;
   if ( item.disagreement && !hideDisagreement ) {
@@ -335,6 +458,8 @@ const ActivityItem = ( {
               linkTarget={linkTarget}
               trustUser={trustUser}
               untrustUser={untrustUser}
+              hideContent={hideContent}
+              unhideContent={unhideContent}
             />
           </Panel.Title>
         </Panel.Heading>
@@ -367,7 +492,10 @@ ActivityItem.propTypes = {
   noTaxonLink: PropTypes.bool,
   onClickCompare: PropTypes.func,
   trustUser: PropTypes.func,
-  untrustUser: PropTypes.func
+  untrustUser: PropTypes.func,
+  showHidden: PropTypes.func,
+  hideContent: PropTypes.func,
+  unhideContent: PropTypes.func
 };
 
 export default ActivityItem;

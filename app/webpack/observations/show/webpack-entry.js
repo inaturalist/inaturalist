@@ -4,7 +4,12 @@ import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import {
+  createStore,
+  compose,
+  applyMiddleware,
+  combineReducers
+} from "redux";
 import moment from "moment";
 import AppContainer from "./containers/app_container";
 import commentIDPanelReducer from "./ducks/comment_id_panel";
@@ -26,6 +31,7 @@ import disagreementAlertReducer from "../shared/ducks/disagreement_alert";
 import setupKeyboardShortcuts from "./keyboard_shortcuts";
 import currentObservationReducer from "../identify/reducers/current_observation_reducer";
 import suggestionsReducer from "../identify/ducks/suggestions";
+import moderatorActionsReducer from "../../shared/ducks/moderator_actions";
 
 // Use custom relative times for moment
 const shortRelativeTime = I18n.t( "momentjs" ) ? I18n.t( "momentjs" ).shortRelativeTime : null;
@@ -54,6 +60,7 @@ const rootReducer = combineReducers( {
   qualityMetrics: qualityMetricsReducer,
   subscriptions: subscriptionsReducer,
   disagreementAlert: disagreementAlertReducer,
+  moderatorActions: moderatorActionsReducer,
 
   // stuff from identify, where the "current observation" is the obs in a modal
   currentObservation: currentObservationReducer,

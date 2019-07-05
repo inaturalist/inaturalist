@@ -338,7 +338,7 @@ input[type="color"]:focus,
   padding: 0;
   background-color: transparent;
   border: 0 transparent;
-  line-height: 1;
+  line-height: inherit;
 }
 
 .modal-container {

@@ -1,4 +1,6 @@
 import { connect } from "react-redux";
+import { setConfig } from "../../../shared/ducks/config";
+import { showModeratorActionForm } from "../../../shared/ducks/moderator_actions";
 import ActivityItem from "../../show/components/activity_item";
 import {
   postIdentification,
@@ -13,6 +15,7 @@ import {
   updateIdentification
 } from "../actions";
 import { setFlaggingModalState } from "../../show/ducks/flagging_modal";
+
 
 function mapStateToProps( state, ownProps ) {
   return {
@@ -93,7 +96,10 @@ function mapDispatchToProps( dispatch, ownProps ) {
     },
     setFlaggingModalState: newState => {
       dispatch( setFlaggingModalState( newState ) );
-    }
+    },
+    showHidden: ( ) => dispatch( setConfig( { showHidden: true } ) ),
+    hideContent: item => dispatch( showModeratorActionForm( item ) ),
+    unhideContent: item => dispatch( showModeratorActionForm( item, "unhide" ) )
   };
 }
 
