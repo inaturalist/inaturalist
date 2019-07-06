@@ -22,7 +22,7 @@ describe LocalPhoto, "creation" do
 
     it "requires user unless it has a subtype" do
       expect{ LocalPhoto.make!(user: nil) }.to raise_error( ActiveRecord::RecordInvalid )
-      expect{ LocalPhoto.make!(user: nil, subtype: "FlickrPhoto") }.to_not raise_error( ActiveRecord::RecordInvalid )
+      expect{ LocalPhoto.make!(user: nil, subtype: "FlickrPhoto") }.to_not raise_error
     end
 
     it "uses id as native_photo id unless it has a subtype" do
@@ -189,6 +189,23 @@ describe LocalPhoto, "to_observation" do
       o = lp.to_observation
       expect( o.description ).to be_blank
     end
+  end
+
+  it "should set positional_accuracy from the GPSHPositioningError tag" do
+    p = LocalPhoto.make
+    p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "hyalophora-gps-h-pos.jpg" ) )
+    p.extract_metadata
+    o = p.to_observation
+    expect( o.positional_accuracy ).not_to be_blank
+  end
+
+  it "should set positional_accuracy to zero if GPSHPositioningError is absent" do
+    p = LocalPhoto.make
+    p.file = File.open( File.join( Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg" ) )
+    p.extract_metadata
+    o = p.to_observation
+    expect( o.positional_accuracy ).not_to eq 0
+    expect( o.positional_accuracy ).to be_nil
   end
 end
 
