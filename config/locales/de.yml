@@ -882,9 +882,11 @@ de:
   check_out_your_life_list: Deine Lebensliste ansehen
   check_this_box_if_html: Wähle dies aus, wenn Du Deine Fotos unter die <a href='http://creativecommons.org/licenses/by-nc/4.0/'
     target='_blank'>Creative Commons - Namensnennung-NichtKommerziell - Lizenz</a>
-    stellen möchtest. Du kannst auch eine andere Lizenz auswählen oder die Lizenz
-    später wieder entfernen, aber diese ist die beste Lizenz um deine Werke mit Forschern
-    zu teilen.
+    stellen möchtest. Das bedeutet, dass jeder Deine Fotos und/oder Beobachtungen
+    kopieren und wiederverwenden kann, ohne um Erlaubnis zu bitten, solange eine Namensnennung
+    erfolgt und die Werke nicht kommerziell genutzt werden. Du kannst eine andere
+    Lizenz wählen oder die Lizenz später entfernen, aber dies ist die beste Lizenz
+    für die Weitergabe an Forscher.
   checklist: Checkliste
   checklists: Prüflisten
   checklist_places: Prüfliste Orte
@@ -1361,6 +1363,9 @@ de:
   editing_custom_project_fields_for: Benutzerdefinierte Projektfelder bearbeiten für
   editing_observation_field: Beobachtungsfeld bearbeiten
   editing_observation_id: Beobachtung %{obs_id} bearbeiten
+  editing_observations:
+    one: 'Bearbeitung <span class="count">einer</span> Beobachtung:'
+    other: 'Bearbeitung von <span class="count">%{count}</span> Beobachtungen:'
   editing_project: '%{project} bearbeiten'
   editing_subscription_to_x_html: Abonnements für %{x} bearbeiten
   editing_taxon_link: Taxonlink bearbeiten
@@ -1438,6 +1443,7 @@ de:
   expand_days: Tage ausklappen
   explore!: Erkunden!
   explore: Entdecken
+  explore_everyones_observations: Alle Beobachtungen erkunden
   export: Exportieren
   export_observations: Beobachtungen exportieren
   export_with_private_coordinates: Mit versteckten Koordinaten exportieren
@@ -1493,6 +1499,9 @@ de:
   filter_by_taxon: Nach Taxon filtern
   filter_list_by_this_taxon: Liste nach diesem Taxon filtern
   filtering: Filterung
+  filtering_observations_that_pass_the: Filtern von Beobachtungen, die den Projektregeln
+    entsprechen oder am Ort des Projekts gemacht wurden und noch nicht beigetragen
+    wurden
   filters: Filter
   find: Finden
   find_a_guide: Einen Guide finden
@@ -1557,11 +1566,16 @@ de:
   flickr_tags: Flickr Tags
   flowering_phenology: Blütenphänologie
   follow: Folgen
+  follow_receive_updates_about_new_observations: Folgen (über neue Beobachtungen informiert
+    werden)
   follow_user: Folge %{user}
   followed_projects: Gefolgte Projekte
   follower: Follower
   followers: Follower
   following: Abonnements
+  following_x_people:
+    one: Folgt einer Person
+    other: Folgt %{count} Personen
   for: für
   for_a_taxon: für ein Taxon
   for_more_information: für mehr Informationen.
@@ -1692,8 +1706,6 @@ de:
   hex_color_eg: Hex Farbe, z.B. 65644F
   hi: Hallo,
   hi_user: Hallo %{user}
-  hide: Ausblenden
-  hide_details: Details ausblenden
   hide_uncountable_species: Unzählbare Arten verstecken
   high: Hoch
   highest_rank: Höchster Rang
@@ -1724,6 +1736,7 @@ de:
   ids_by_taxon: Kennungen nach Taxon
   identify: Identifizieren
   identify_observations: Beobachtungen bestimmen
+  identify_observations_by_these_users: Identifiziere Beobachtungen dieser Benutzer
   identify_title: Bestimmen
   identification: Bestimmung
   identification_by_user: Bestimmung durch %{user}
@@ -2293,11 +2306,11 @@ de:
   mollusks: Mollusken
   momentjs:
     shortRelativeTime:
-      future: in % s
-      past: '% s'
+      future: in %s
+      past: '%s'
       s: 1 s
       m: 1 min
-      mm: '% dm'
+      mm: '%dm'
       h: 1 h
       hh: '%dh'
       d: 1 d
@@ -2738,7 +2751,7 @@ de:
       Überblick über deren veröffentlichte Beobachtungen zu behalten. Du kannst auch
       nur bestimmte Arten oder Orte abonnieren, um von neuen Beobachtungen dieser
       Arten oder von diesen Orten zu erfahren.
-    comments_panel_title: Neugierig, welche Diskussionen auf %{site_name} stattfinden?
+    comments_panel_title: Neugierig welche Diskussionen auf %{site_name} stattfinden?
     comments_panel_body: '<p>Auf %{site_name} dreht sich alles um das Teilen und Diskutieren
       von Beobachtungen von lebenden Organismen. Unten sind Diskussionen, die jetzt
       gerade stattfinden. (Hinweis: Du abonnierst automatisch alle Diskussionen, zu
@@ -3299,6 +3312,8 @@ de:
     hinzufügen.
   please_add_this_observation_to: Bitte diese Beobachtung hinzufügen zu
   please_add_this_to_x_html: Bitte dies zu %{x} hinzufügen
+  please_allow_a_few_weeks_for_external_sites: Es kann einige Wochen dauern, bis externe
+    Seiten Änderungen aus dieser Beobachtung synchronisiert haben
   please_cite_the_published_source_of_taxon: Bitte zitiere die veröffentlichte Quelle
     für dieses Taxon.
   please_complete_the_following_to_add_project: 'Bitte vervollständige die folgenden
@@ -3553,6 +3568,9 @@ de:
   remove_from_project: Von Projekt entfernen
   remove_this_section: Diesen Abschnitt entfernen
   remove_manager: Manager Entfernen
+  remove_observations:
+    one: Eine Beobachtung entfernen?
+    other: '%{count} Beobachtungen entfernen?'
   remove_photo: Bild entfernen
   remove_place: Ort entfernen
   remove_project_user: Projektbenutzer entfernen
@@ -3606,7 +3624,7 @@ de:
   results: Ergebnisse
   review_all: Alle Überprüfen
   review_verb: Überprüfen
-  reviewed: Überprüft
+  reviewed: Überprüfte
   rg_observations: FQ Beobachtungen
   roadmap: Roadmap
   role: Rolle
@@ -4319,7 +4337,7 @@ de:
   unpublish: Veröffentlichung rückgängig machen
   unreview: Ungeprüft
   unsubscribe: Abbestellen
-  unsubscribe_from_this: Hiervon abmelden
+  unsubscribe_from_this: Neuigkeiten abbestellen von
   unsuspend_user: Benutzer entsperren
   unverifiable: Nicht verifizierbar
   upcoming_bioblitzes: Bevorstehende bioblitze
@@ -4452,6 +4470,7 @@ de:
   view_more_unreviewed: Mehr ungeprüfte ansehen
   view_observation: Beobachtung ansehen
   view_observations: Beobachtungen anzeigen
+  view_observation_flags: Meldungen für Beobachtung anzeigen
   view_observations_by_everyone: Beobachtungen von allen anzeigen
   view_observations_by_these_users: Beobachtungen dieser Benutzer anzeigen
   view_observations_causing_this_observation_to_be_obscured: Beobachtungen anzeigen,
@@ -5540,9 +5559,15 @@ de:
       less_than_x_seconds:
         one: vor weniger als 1 Sekunde
         other: vor weniger als %{count} Sekunden
+      x_days:
+        one: 1 Tag
+        other: '%{count} Tage'
       x_minutes:
         one: eine Minute
         other: '%{count} Minuten'
+    countdown_x_days:
+      one: Tag
+      other: Tage
     prompts:
       day: Tag
       hour: Stunde
@@ -5747,6 +5772,14 @@ de:
             place_geometry:
               is_too_large_to_import: ist zu groß zum importieren
               contains_too_many_observations: Enthält zu viele zu importierende Beobachtungen
+        post:
+          attributes:
+            user:
+              must_be_on_site_long_enough: muss sich vor mehr als 24 Stunden registriert
+                haben, um zu veröffentlichen. Wir haben viele Spammer, und dies ist
+                eine Art mit ihnen umzugehen. Du kannst immer noch einen Entwurf speichern,
+                und wenn du die Seite in einem Tag immer noch benutzt, kannst du den
+                Post veröffentlichen.
         project_observation:
           attributes:
             user_id:

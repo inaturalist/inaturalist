@@ -888,9 +888,13 @@ nl:
   check_out_what_the_observation: Bekijk hoe de waarneming die je probeert te identificeren
     er uitziet.
   check_out_your_life_list: Bekijk je Lifelist
-  check_this_box_if_html: |-
-    Vink dit vakje aan als u een
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial-licentie</a> wil toekennen aan je foto's. U kunt later een andere licentie kiezen of de licentie verwijderen, maar dit is de beste licentie als u gegevens wilt delen met de onderzoekers.
+  check_this_box_if_html: "Vink dit vakje aan als u een\n<a href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Attribution-NonCommercial-licentie</a> wil toekennen
+    aan ingevoerde media en gegevens. \nDit betekent dat iedereen jouw foto's en/of
+    waarnemingen kan kopiëren en hergebruiken zonder toestemming te vragen zolang
+    ze je naam vermelden en de werken niet commercieel gebruiken. U kunt later een
+    andere licentie kiezen of de licentie verwijderen, maar dit is de beste licentie
+    als u gegevens wilt delen met de onderzoekers."
   checklist: Checklist
   checklists: Checklists
   checklist_places: Checklist locaties
@@ -1777,8 +1781,6 @@ nl:
   hex_color_eg: Hexadecimale kleur, bijvoorbeeld 65644F
   hi: Hallo,
   hi_user: Hallo %{user}
-  hide: Verbergen
-  hide_details: Details verbergen
   hide_running_total: Huidig totaal verbergen
   hide_uncountable_species: Verberg ongetelde soorten
   high: hoog
@@ -3110,6 +3112,14 @@ nl:
   google_account_not_linked: '%{user} heeft geen gekoppeld Google-account meer, dus
     %{site_name} heeft geen toegang meer tot deze foto.'
   pi_consent_desc_title: Persoonlijke gegevens
+  pi_consent_desc_html: |-
+    Persoonlijke gegevens zoals gebruikersnamen en e-mailadressen worden bewaard om accounts op deze site te beheren en om te voldoen aan privacywetten moet je dit vakje aanvinken om aan te geven dat je akkoord gaat met het gebruik van deze persoonlijke informatie. Voor meer informatie over de informatie die wordt verzamelt en hoe we het gebruiken, zie onze
+    <a href='%{privacy_url}' target='_blank'>Privacybeleid</a>
+    en onze <a href='%{terms_url}' target='_blank'>Servicevoorwaarden</a>.
+  pi_consent_label: Ik stem ermee in dat iNaturalist persoonlijke informatie over
+    mij kan opslaan en verwerken om mijn account te beheren
+  pi_consent_child_label: Ik stem ermee in dat iNaturalist persoonlijke informatie
+    over mijn kind kan opslaan en verwerken om het account van mijn kind te beheren
   picasa_identity: Picasa identiteit
   pick_a_username: Kies een gebruikersnaam
   pin_verb: Pin
@@ -4890,6 +4900,8 @@ nl:
   user_commented: '%{user} reageerde'
   user_commented_on: '%{user} gaf een reactie op jouw %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} is het niet eens dat dit %{taxon} is'
+  user_disagrees_with_previous_finer_identifications: '%{user}  is het niet eens met
+    eerdere fijnere determinaties'
   user_faved_a_noun_by_owner: '%{user} maakte favoriet %{noun} door %{owner}'
   user_flagged_as_a_spammer_html: '%{user} gemarkeerd als een spammer'
   user_flagged_as_a_non_spammer_html: '%{user} gemarkeerd als een niet-spammer'
@@ -5161,6 +5173,9 @@ nl:
   will_be: zal zijn
   wikipedia_attribution_cc_by_sa_3: 'Bron: Wikipedia, "%{title}", %{url}, CC BY-SA
     3.0'
+  wikipedia_attribution_cc_by_sa_3_html: |-
+    Dit artikel maakt gebruik van materiaal uit het Wikipedia-artikel <a href="%{url}">"%{title}"</a>, uitgebracht onder de <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+    Commons Naamsvermelding-GelijkDelen License 3.0</a>. Er is misschien inhoud weggelaten uit het origineel maar er is geen inhoud gewijzigd of toegevoegd.
   wikipedia_entry: Wikipedia toegang
   wikipedia_taxobox_raquo: Wikipedia taxobox &raquo;
   with: met
@@ -5977,6 +5992,10 @@ nl:
           op deze pagina van %{total} overeenkomende waarnemingen.
         unreview_all_tooltip: Verwijder de beoordeelde status voor alle waarnemingen
           op de pagina
+        too_many_results_desc: |-
+          Paginanummer maal 'het aantal resultaten per pagina' mag niet hoger zijn dan 10.000.
+          Probeer filters toe te passen om het aantal resultaten te verminderen of markeer
+          waarnemingen zoals beoordeeld en gebruik de "View More" knop in plaats van paginering
       import:
         coordinate_systems_help: '%{site_name} accepteert coördinaten met verschillende
           coördinaatsystemen, dus als je coördinaten verstrekt in een ander systeem
@@ -6955,9 +6974,23 @@ nl:
           guidelines</a>.
         this_user_was_banned: Deze gebruiker werd geschorst
     user_parents:
+      confirm:
+        thanks_donor_html: |-
+          <p>Bedankt dat je een iNaturalist-donor bent! We hebben je bestaande donatie kunnen gebruiken om je identiteit te bevestigen en er is geen enkele actie van jou nodig.
+          <strong>Het account van je kind is geactiveerd.</strong>
+          </p>
+          <p>
+             Meld je aan met het account van je kind via de Seek-app door op de knop "iNaturalist" te drukken in het menu en vervolgens "Aanmelden met iNaturalist" onderaan het scherm.
+          </p>
+          <p>
+             Je kind kan dan waarnemingen invoeren op zijn iNaturalist-account met behulp van de Seek-app, zodat ze zichtbaar zijn iNaturalist.org.
+          </p>
       new:
         child_name_private: Naam van het kind (privé)
         create_a_minor_account: Maak een minderjarig account aan
+        create_minor_account: Maak een minderjarig account aan
+        step3_donor_desc: Omdat je een iNaturalist-donor bent is je identiteit geverifiëert
+          met door je bestaande gift.
     welcome:
       index:
         welcome_message_html: Naar %{image}, waar je kunt <strong>vastleggen</strong>
@@ -7422,6 +7455,11 @@ nl:
             base:
               api_key_in_use: API-sleutel importeren of in de wachtrij zetten voor
                 importeren
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: kan niet later zijn dan de datum
+                waarop de waarneming is toegevoegd
         observation_field_value:
           attributes:
             value:
@@ -7509,6 +7547,12 @@ nl:
                 en liggende streepjes
             email:
               must_look_like_an_email_address: moet eruit zien als een e-mailadres
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: behoort bij een bestaande gebruiker; als
+                je een account hebt, meld je dan aan voordat je doorgaat of gebruik
+                een ander e-mailadres
   doorkeeper:
     scopes:
       write: Maak, bewerk en verwijder uw waarnemingen, determinaties en andere inhoud

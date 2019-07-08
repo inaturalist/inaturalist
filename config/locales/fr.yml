@@ -379,6 +379,7 @@ fr:
   additional_range: Aire de répartition supplémentaire
   additional_range_data_from_an_unknown_source: Données supplémentaires sur l’aire
     de répartition d’une source inconnue
+  adjust_brightness: Ajuster la Luminosité
   admin: Admin
   admin_s: Administrateur(s)
   admin_any_projects: Administrer n’importe quels projets
@@ -1094,8 +1095,12 @@ fr:
     geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
     iucn: Code équivalent de la liste rouge de l’UICN
   conservation_summary: Résumé de la situation de conservation
+  contact_support: Contacter le Support
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants
     de ce taxon qui sont présents ici?
+  content_hidden: Contenu Masqué
+  user_hid_this_item_because_reason_html: '%{user} a masqué ce %{item} car «&nbsp;%{reason}&nbsp;»'
+  user_unhid_this_item_because_reason_html: '%{user} a affiché ce %{item} car «&nbsp;%{reason}&nbsp;»'
   contest: concours
   continue: Continuer
   continue_to_site: Continuer vers %{site_name}
@@ -1860,8 +1865,6 @@ fr:
   hex_color_eg: Couleur en hexadécimal, par ex. 65644F
   hi: Bonjour,
   hi_user: Bonjour %{user}
-  hide: Masquer
-  hide_details: Masquer les détails
   hide_running_total: Masquer le total actuel
   hide_uncountable_species: Masquer les espèces indénombrables
   high: Haut
@@ -3659,6 +3662,10 @@ fr:
   please_confirm_your_account_html: Merci de prendre quelques instants pour <a href="%{url}">confirmer
     votre compte</a>.
   please_enter_a_new_pass: Veuillez saisir un nouveau mot de passe et le confirmer.
+  please_explain_why_you_want_to_hide_this: Veuillez expliquer la raison pour laquelle
+    vous voulez masquer ceci.
+  please_explain_why_you_want_to_unhide_this: Veuillez expliquer la raison pour laquelle
+    vous voulez afficher ceci.
   please_fix_your_csv_and_try_again: Veuillez corriger le format CSV et réessayer.
   please_hold_on_while_the_file: Veuillez patienter pendant la génération du fichier.
     Cette démarche peut prendre quelques minutes si vous avez beaucoup d’observations.
@@ -3986,6 +3993,7 @@ fr:
     Cliquer dessus pour voir l’évaluation de la garantie des données.
   research_grade_qualification: Qualification de niveau recherche
   research_quality: Qualité de la recherche
+  reset_brightness: Réinitialiser la Luminosité
   reset_search_filters: Réinitialiser les filtres de recherche
   reset_your_password: Réinitialiser votre mot de passe
   resolve: Régler
@@ -5150,6 +5158,7 @@ fr:
   view_license: Afficher la licence
   view_lists: Afficher les listes
   view_listing: Afficher la liste
+  view_moderation_history: Afficher l’historique de modération
   view_more: Afficher plus
   view_more_about_x: Afficher plus sur %{x}
   view_more_observations: Afficher plus d'observations
@@ -6838,6 +6847,8 @@ fr:
         note_you_can_delete_the_time: '(Note: vous pouvez supprimer le fuseau horaire
           et l''heure locale si vous voulez inclure les journées complètes.)'
         or_drag_and_drop: (ou glissez et déposez)
+        please_specify_the_requirements: Veuillez spécifier les prérequis des observations
+          à ajouter à ce projet.
         please_specify_the_requirements_html: |-
           Veuillez spécifier les exigences pour les observations à ajouter à ce projet.
           Vous pouvez spécifier plusieurs espèces, lieux, utilisateurs, ou des niveaux de qualité à inclure automatiquement, ou bien laisser le champ vide si vous n'avez pas d’exigences particulières.
@@ -6859,6 +6870,7 @@ fr:
           visibles à droite de la bannière de l’écran d’accueil du projet, donc mettez le meilleur en premier !
         project_summary_placeholder: Découvrir et suivre les oiseaux du parc de Golden
           Gate…
+        show_projects_as_flags: Afficher les projets avec des drapeaux sur la carte
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements
           de type bioblitz)
         umbrella_project_features: 'Fonctionnalités du projet cadre:'
@@ -6883,6 +6895,9 @@ fr:
           taxons (par exemple: oiseaux, connifères), places (par exemple: Brésil,
           Yellowstone), utilisateurs, et/ou dates des observations que vous voulez
           inclure dans votre projet.'
+        errors:
+          name_less_than_100_characters: Le nom du projet ne doit pas excéder 100
+            caractères
       project_location_privacy_notice_html: |-
         <p>
           Soyez bien conscient que les superviseurs du projet pourront voir n’importe quel emplacement

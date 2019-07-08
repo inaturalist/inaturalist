@@ -1801,8 +1801,6 @@ it:
   hex_color_eg: Colore in esadecimale, e.g. 65644F
   hi: Ciao,
   hi_user: Ciao %{user}
-  hide: Nascondi
-  hide_details: Nascondi i dettagli
   hide_running_total: Nascondi il totale attuale
   hide_uncountable_species: Nascondi le specie non conteggiabili
   high: Superiore
@@ -1941,6 +1939,8 @@ it:
     lista completa di questo taxon in questo luogo.'
   inat_user_profile: '%{site_name}: Profilo di %{user}'
   inat_will_be_back_on: '%{site_name} tornerà in piedi/ali/pinne/tentacoli/pseudopodi'
+  inaturalist_is_a_joint_initiative: '%{site_name} è un''iziativa congiunta della
+    California Academy of Sciences e della National Geographic Society.'
   inaturalist_is_an_online_community: '%{site_name} è una community online per naturalisti!
     Aggiungendo la tua foto, puoi permettere ai ricercatori di sapere di più su'
   inaturalist_is_catching_some_zs: '%{site_name} sta schiacciando un sonnellino'
@@ -2847,6 +2847,8 @@ it:
   observations_removed_from_the_project: Osservazioni rimosse dal progetto "%{project}"
   observations_saved: Osservazione(i) salvata(e)!
   observations_specifying_this_field: Osservazioni che hanno questo campo
+  observations_specifying_this_field_with_value: Osservazioni che hanno questo campo
+    con %{value}
   observations_text_search_warning: Le ricerche di testo possono restituire risultati
     strani se combinate con altri filtri. Se vuoi trovare le osservazioni di una particolare
     specie, usa il filtro del taxon.
@@ -4910,6 +4912,9 @@ it:
   use_well_formed_csv: Usa CSV ben formattati. Ciò significa che i testi con virgole
     devono essere compresi tra virgolette. La maggior parte delle applicazioni di
     calcolo dovrebbero esportare i CSV in questo formato.
+  used_x_times:
+    one: Usato 1 volta
+    other: Usato %{count} volte
   user: Utente
   user_added_a_x: '%{user} ha aggiunto una %{x}'
   user_added_a_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a una %{noun} di %{by}'
@@ -4927,6 +4932,8 @@ it:
   user_commented: '%{user} ha commentato'
   user_commented_on: '%{user} ha commentato la tua %{title} alle ore %{time}'
   user_disagrees_this_is_taxon: '%{user} non concorda che sia %{taxon}'
+  user_disagrees_with_previous_finer_identifications: '%{user} non è d''accordo con
+    le identificazioni precedenti di maggior dettaglio'
   user_faved_a_noun_by_owner: '%{user} ha messo nei preferiti %{noun} di %{owner}'
   user_flagged_as_a_spammer_html: '%{user} l''ha contrassegnato come uno spammer'
   user_flagged_as_a_non_spammer_html: '%{user} l''ha segnato come un non-spammer'
@@ -7389,6 +7396,7 @@ it:
       observation:
         geo_x: Est
         geo_y: Nord
+        observed_on: osservata in data
       observation_field_value:
         value: valore
       post:
@@ -7518,6 +7526,11 @@ it:
           attributes:
             base:
               api_key_in_use: importando chiave API o accodato per l'importazione
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: non può essere successiva alla
+                data in cui l'osservazione è stata aggiunta
         observation_field_value:
           attributes:
             value:
