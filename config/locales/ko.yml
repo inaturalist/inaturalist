@@ -186,6 +186,7 @@ ko:
   adding_to_your_life_list: Life 목록에 추가 중...
   additional_range: 추가적인 범위
   additional_range_data_from_an_unknown_source: 알 수 없는 자료에서 추가적인 범위 데이터
+  adjust_brightness: 밝기 조정
   admin: 관리자
   admin_s: 관리자
   admin_any_projects: 관리자 아무 프로젝트
@@ -652,6 +653,7 @@ ko:
     geoprivacy: 분류군 관찰에 대한 기본 위치보호 설정
     iucn: 동일한 IUCN 적색 목록 코드
   conservation_summary: 보전 요약
+  contact_support: 연락 지원
   contain_all_descendants?: 이 체크리스트가 여기 존재하는 하위 분류군을 모두 포함하고 있나요?
   contest: 대회
   continue: 계속
@@ -2312,6 +2314,7 @@ ko:
   required_field: 필수 필드
   research_: 연구
   research_quality: 연구 품질
+  reset_brightness: 밝기 초기화
   reset_search_filters: 검색 필터 초기화
   reset_your_password: 내 비밀번호 재설정
   restore: 복구
@@ -2738,6 +2741,8 @@ ko:
         project_summary: 프로젝트 요약
         use_this_link_to_create_html: 전통 프로젝트를 만들려면 <a href="%{url}">이 링크</a>를 사용하세요.
         welcome_to_projects: 프로젝트에 오신 것을 환영합니다!
+        errors:
+          name_is_required: 프로젝트 이름은 필수입니다
       project_user_curator_coordinate_access_labels:
         none: 없음.
     shared:

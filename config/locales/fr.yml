@@ -796,6 +796,8 @@ fr:
     à la fois
   can_you_help_your_friends_id_these: Pouvez-vous aider vos amis à identifier ceci?
   cancel: Annuler
+  cant_edit_or_delete_hidden_content: Vous ne pouvez modifier ou supprimer du contenu
+    masqué par des utilisateurs du site
   cant_flag_an_object_that_doesnt_exist: Impossible de signaler un objet qui n’existe
     pas
   cant_merge_a_taxon_with_itself: Impossible de fusionner un taxon avec lui-même.
@@ -1099,6 +1101,8 @@ fr:
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants
     de ce taxon qui sont présents ici?
   content_hidden: Contenu Masqué
+  content_hidden_by_user_on_date_because_reason_html: 'Contenu masqué par %{user}
+    le %{date} car&nbsp;: "%{reason}"'
   user_hid_this_item_because_reason_html: '%{user} a masqué ce %{item} car «&nbsp;%{reason}&nbsp;»'
   user_unhid_this_item_because_reason_html: '%{user} a affiché ce %{item} car «&nbsp;%{reason}&nbsp;»'
   contest: concours
@@ -1285,6 +1289,7 @@ fr:
   dates: dates
   datetime_: Horodatage
   day: Jour
+  decrease_brightness: Diminuer la Luminosité
   default: par défaut
   default_invite_comment: 'Belle photo! Vous devriez la publier sur %{site_name} :
     {{INVITE_LINK}}'
@@ -1865,8 +1870,19 @@ fr:
   hex_color_eg: Couleur en hexadécimal, par ex. 65644F
   hi: Bonjour,
   hi_user: Bonjour %{user}
+  hide_content: Masquer le Contenu
+  hide_desc: |-
+    Masquer du contenu le rendra invisible au public, mais celui-ci pourra
+    toujours voir que quelque chose a été masqué, et les utilisateurs du site
+    et le créateur du contenu pourront toujours voir le contenu masqué.
+    Généralement, cela s’applique uniquement au contenu écrit, ex. si vous
+    masquez le contenu d’une identification, celle-ci reste visible mais ses
+    remarques sont masquées. Cela n’est pas réversible, et seul le personnel
+    peut réafficher du contenu une fois masqué. Soyez donc prudent et ne le
+    faites que pour du contenu particulièrement répréhensible.
   hide_running_total: Masquer le total actuel
   hide_uncountable_species: Masquer les espèces indénombrables
+  hidden_content_explanation: Le contenu a été masqué
   high: Haut
   highest_rank: Rang le plus élevé
   highlights: Mise en évidence
@@ -1990,6 +2006,7 @@ fr:
   inaturalist_network_affiliation: Affiliation de Réseau iNaturalist
   inbox: Boîte de réception
   including: y compris
+  increase_brightness: Augmenter la luminosité
   in_order_to_login_and_using_site_visit_url: 'Pour pouvoir vous connecter et commencer
     à utiliser le site, vous devez aller sur cette URL pour activer votre compte :'
   in_progress: en cours
@@ -3925,6 +3942,7 @@ fr:
   reload_and_refresh: Recharger et rafraîchir la liste
   reload_from_observations: Recharger à partir des observations
   reload_timed_out: Délai de rechargement écoulé. Veuillez réessayer plus tard.
+  remarks_hidden: Remarques masquées
   remarks_optional: Remarques <span class="small description">(facultatif)</span>
   remember_its_a_lot_easier_to_id: N’oubliez pas qu’il est bien plus facile d’identifier
     quelque chose si vous fournissez le plus d’information descriptive possible. Mieux
@@ -4167,6 +4185,7 @@ fr:
   show_common_names: Afficher les noms vulgaires
   show_counts: Afficher le nombre en fonction de la liste.
   show_default_taxon_photos: afficher les photos de taxon par défaut
+  show_hidden_content: Afficher le contenu masqué
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_kml: Afficher en format KML
   show_less: Afficher moins
@@ -4948,6 +4967,9 @@ fr:
   unblock: Débloquer
   unclassified: Non classifié
   ungrafted_taxa: Taxons non greffés
+  unhide_content: Démasquer le contenu
+  unhide_desc: Réafficher ce contenu le révélera à tout le monde. Les utilisateurs
+    pourront toujours choisir de le masquer à nouveau à l’avenir.
   uninvite: désinviter
   unique_identifier_of_this_taxon: Identifiant unique de ce taxon dans la base de
     données source.
@@ -5102,6 +5124,7 @@ fr:
     ses coordonnées masquées'
   user_trusts_you_with_their_private_coordinates_desc: L’observateur a choisi de vous
     faire confiance pour les coordonnées masquées relatives aux observations associées.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> a écrit,
   username: Nom d’utilisateur
   username_or_email: Nom d’utilisateur ou adresse électronique
   username_or_user_id: Nom ou ID d’utilisateur
@@ -5131,6 +5154,7 @@ fr:
   verifiable_observations_by_observation_date: Observations vérifiables par date d’observation
   view: Afficher
   view_all: Afficher tout
+  view_all_flags: Afficher toutes les balises
   view_all_from_x: Afficher tout de %{x}
   view_all_members: Afficher tous les membres
   view_all_n: Afficher tous les %{n}
@@ -5159,6 +5183,8 @@ fr:
   view_lists: Afficher les listes
   view_listing: Afficher la liste
   view_moderation_history: Afficher l’historique de modération
+  view_moderation_history_for_this_comment: Afficher l’historique de modération de
+    ce commentaire
   view_more: Afficher plus
   view_more_about_x: Afficher plus sur %{x}
   view_more_observations: Afficher plus d'observations
@@ -6896,8 +6922,13 @@ fr:
           Yellowstone), utilisateurs, et/ou dates des observations que vous voulez
           inclure dans votre projet.'
         errors:
+          name_is_required: Le nom du projet est obligatoire
           name_less_than_100_characters: Le nom du projet ne doit pas excéder 100
             caractères
+          name_already_taken: Le nom de projet a déjà été pris
+          cannot_have_more_than_x_project_rules: Impossible d’avoir plus de %{x} règles
+            de projet
+          summary_is_required: Le texte du résumé du projet est obligatoire
       project_location_privacy_notice_html: |-
         <p>
           Soyez bien conscient que les superviseurs du projet pourront voir n’importe quel emplacement

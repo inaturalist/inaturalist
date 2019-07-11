@@ -24,6 +24,7 @@
 # Author: Harvest
 # Author: Isabelgg22
 # Author: Jbar82
+# Author: Johny Weissmuller Jr
 # Author: Jorge Ubilla
 # Author: Josecurioso
 # Author: Juan Cuartas
@@ -375,6 +376,7 @@ es:
   additional_range: Distribución adicional
   additional_range_data_from_an_unknown_source: Datos de distribución adicional de
     fuente desconocida
+  adjust_brightness: Ajustar brillo
   admin: Administrador
   admin_s: Administrador(es)
   admin_any_projects: administra cualquier proyecto
@@ -779,6 +781,8 @@ es:
   can_you_help_your_friends_id_these: ¿Puedes ayudar a tus amigos a identificar estas
     observaciones?
   cancel: Cancelar
+  cant_edit_or_delete_hidden_content: No puede editar o eliminar contenido que haya
+    sido ocultado por los administradores del sitio.
   cant_flag_an_object_that_doesnt_exist: No puedes marcar un objeto que no existe
   cant_merge_a_taxon_with_itself: No puedes combinar ese taxón consigo mismo.
   captive: En cautiverio
@@ -1051,8 +1055,13 @@ es:
     geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
     iucn: Código equivalente a la Lista roja de UICN.
   conservation_summary: Resumen de conservación
+  contact_support: Contactar el servicio técnico
   contain_all_descendants?: ¿Esta lista de verificación contiene todos los descendientes
     de este taxón que se producen aquí?
+  content_hidden: Contenido oculto
+  user_hid_this_item_because_reason_html: '%{user} ocultó este %{item} porque «%{reason}»'
+  user_unhid_this_item_because_reason_html: '%{user} desocultó este %{item} porque
+    «%{reason}»'
   contest: concurso
   continue: Continua
   continue_to_site: Continuar a %{site_name}
@@ -1235,6 +1244,7 @@ es:
   dates: fechas
   datetime_: Fecha/hora
   day: Día
+  decrease_brightness: Reducir brillo
   default: Predeterminada
   default_invite_comment: '¡Que gran foto! Debe enviarla a %{site_name}: {{INVITE_LINK}}'
   default_observation_license: 'Licencia predeterminada para tus observaciones:'
@@ -1799,6 +1809,10 @@ es:
   hex_color_eg: Color en hexadecimal, ej. 65644F
   hi: 'Hola:'
   hi_user: Hola, %{user}
+  hide_content: Ocultar contenido
+  hide_desc: |-
+    Ocultar el contenido lo eliminará de la vista pública, pero los usuarios seguirán siendo capaces de ver que algo estaba oculto, y los administradores del sitio y el autor del contenido podrán seguir viendo el contenido oculto. En general, este sólo se aplica al contenido escrito, por ejemplo, si oculta el contenido de una  identificación, la identificación sigue siendo visible pero los comentarios del identificador están ocultos. No se puede deshacer esto, y sólo el personal del sitio puede desocultar contenido una vez que ha sido ocultado, así que ten cuidado y úsalo sólo para
+    contenido censurable.
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
   high: Alta
@@ -1919,6 +1933,7 @@ es:
   inaturalist_network_affiliation: Afiliación de Red iNaturalist
   inbox: Buzón de entrada
   including: incluyendo
+  increase_brightness: Aumentar brillo
   in_order_to_login_and_using_site_visit_url: Con el fin de ingresar y comenzar a
     utilizar el sitio debes visitar este URL para activar tu cuenta
   in_progress: en curso
@@ -3558,6 +3573,8 @@ es:
   please_confirm_your_account_html: Por favor tómate un segundo para <a href="%{url}">confirmar
     tu cuenta</a>.
   please_enter_a_new_pass: Por favor digite una nueva contraseña y confírmela.
+  please_explain_why_you_want_to_hide_this: Explica por qué quieres ocultar esto.
+  please_explain_why_you_want_to_unhide_this: Explica por qué quieres desocultar esto
   please_fix_your_csv_and_try_again: Corrige el archivo CSV e inténtalo de nuevo.
   please_hold_on_while_the_file: Por favor espere mientras se genera el archivo. Puede
     tomar algunos minutos para listas grandes.
@@ -3884,6 +3901,7 @@ es:
     Haga clic para ver la evaluación de la calidad de LOS datos.
   research_grade_qualification: Calificación de Grado de Investigación
   research_quality: Calidad de la investigación
+  reset_brightness: Restablecer brillo
   reset_search_filters: Restablece filtros de búsqueda
   reset_your_password: Restablece tu contraseña
   resolve: Resolver
@@ -4053,6 +4071,7 @@ es:
   show_common_names: Mostrar nombres vernáculos
   show_counts: Mostrar conteos con base en la lista
   show_default_taxon_photos: Muestra las fotos predeterminadas de las especies
+  show_hidden_content: Mostrar contenido oculto
   show_keyboard_shortcuts: Mostrar Atajos de Teclado
   show_kml: Mostrar KML
   show_less: Muestra menos
@@ -5030,6 +5049,7 @@ es:
   view_license: Ve licencia
   view_lists: Ve las Listas
   view_listing: Ve listado
+  view_moderation_history: Ver el historial de moderación
   view_more: Ve más
   view_more_about_x: Ve más sobre %{x}
   view_more_observations: Ve más observaciones
@@ -6440,6 +6460,8 @@ es:
         note_you_can_delete_the_time: '(Nota:  puedes eliminar el huso horario y tiempo
           preciso si  quieres incluir días enteros.)'
         or_drag_and_drop: (O arrastrar y soltar)
+        please_specify_the_requirements: Especifica los requisitos para las observaciones
+          que se añadirán a este proyecto.
         please_specify_the_requirements_html: Especifica por favor los requisitos
           que deben cumplir las observaciones que serán añadidas a este proyecto.
           Puedes seleccionar múltiples especies, sitios, y usuarios para ser automáticamente
@@ -6461,6 +6483,7 @@ es:
           los primeros 200 caracteres estarán visibles a la derecha de la pantalla
           principal del proyecto, así que ¡incluye lo mejor al principio!
         project_summary_placeholder: Descubre y sigue las aves del Parque Golden Gate...
+        show_projects_as_flags: Mostrar los proyectos como banderas en el mapa
         start_and_end_times_for_bioblitzes: Tiempos de principio y fin de maratones
           naturalista
         umbrella_project_features: 'Características de proyecto paraguas:'
@@ -6479,6 +6502,12 @@ es:
           requisito para las observación. Asegúrate de seleccionar uno o más taxa
           (p. ej. aves, coníferas), sitios (p. ej. Brasil, Yellowstone), usuarios,
           y/o fechas para definir las observaciones que quieres incluir en tu proyecto.
+        errors:
+          name_is_required: El nombre del proyecto es obligatorio
+          name_less_than_100_characters: El nombre del proyecto no debe sobrepasar
+            100 caracteres
+          cannot_have_more_than_x_project_rules: No puede tener más de %{x} reglas
+            de proyecto
       project_location_privacy_notice_html: |-
         <p>
          Por favor, date cuenta que los curadores de proyectos podrán ver cualquier ubicación privada o oscurecida de tus observaciones en este proyecto a menos que declines el permiso, y también podrán añadir cualquiera de tus observaciones a este proyecto a menos que cambies tu  <a href="/users/edit"> configuración</a>. También puedes conceder o revocar el acceso a las observaciones del proyecto caso por caso.
