@@ -160,7 +160,7 @@ export function fetchUser( user, options ) {
   return dispatch => {
     const urlParams = $.deparam( window.location.search.replace( /^\?/, "" ) );
     const searchParams = _.isEmpty( urlParams ) ? { user_id: user.id } : urlParams;
-    inatjs.observations.lifelistTaxa( searchParams ).then( response => {
+    inatjs.observations.taxonomy( searchParams ).then( response => {
       const children = { };
       _.each( response.results, r => {
         if ( r.name === "Life" ) {
