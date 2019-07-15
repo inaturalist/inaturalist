@@ -24,6 +24,7 @@
 # Author: Mirzali
 # Author: Octycs
 # Author: Oliverr
+# Author: Optilete
 # Author: Phil.pav
 # Author: Polvonrbaun
 # Author: Predatorix
@@ -77,6 +78,9 @@ de:
   x_misidentifications_of_this_species:
     one: Eine Fehlbestimmung dieser Art
     other: '%{count} Fehlbestimmungen dieser Art'
+  x_misidentifications_of_species_in_this_rank:
+    one: Eine Fehlidentifizierung von Arten in diesem %{rank}}
+    other: '%{count} Fehlidentifizierungen von Arten in diesem %{rank}}'
   x_observations:
     one: Eine Beobachtung
     other: '%{count} Beobachtungen'
@@ -142,6 +146,8 @@ de:
   x_taxon_changes_added_html:
     one: <span class='count'>1</span> Taxon-Änderung gemacht
     other: <span class='count'>%{count}</span> Taxon-Änderungen gemacht
+  x_people_helped_user_with_y_ids_html: <strong>%{x} Pesonen</strong> halfen%{user}
+    mit <strong>%{y} IDs</strong>
   _100_day_trends: 100-Tage-Trends
   _percent_ID_d: '% identifiziert'
   a_community_for_naturalist: Eine Community für Naturfreunde
@@ -215,6 +221,8 @@ de:
   add_a_place_raquo: Ort hinzufügen &raquo;
   add_a_single_observation: Einzelbeobachtung hinzufügen.
   add_a_taxon: Taxon hinzufügen
+  add_a_taxon_swap_if_you_want_to_change_the_name_html: Füge einen <a target="_blank"
+    href="%{url}">Taxon-Tausch</a> hinzu, wenn du den Namen ändern möchtest
   add_all_your_matching_obs_of_this_taxon: All deine passenden Beobachtungen dieses
     Taxons zu diesem Projekt hinzufügen
   add_all_your_matching_obs_to_this_project: All deine passenden Beobachtungen zu
@@ -343,6 +351,7 @@ de:
   additional_range: Zusätzlicher Bereich
   additional_range_data_from_an_unknown_source: Zusätzliche Bereichsdaten von einer
     unbekannten Quelle
+  adjust_brightness: Helligkeit anpassen
   admin: Administrator
   admin_s: Admin(s)
   admin_any_projects: Projekte verwalten
@@ -636,7 +645,7 @@ de:
   authority_list:
     iucn_red_list: Rote Liste der IUCN
     natureserve: NatureServe
-  authorize: Behörde
+  authorize: Erlauben
   authorize_permissions_from_provider: Berechtigungen von %{provider} zulassen
   automatic_descriptions_have_been_disabled: Automatische Beschreibungen wurden für
     dieses Taxon deaktiviert.
@@ -1022,8 +1031,10 @@ de:
     geoprivacy: Standard-Geo-Privatsphäre für Beobachtungen dieses Taxons
     iucn: Gleichwertiger Rote-Listen-Code der IUCN
   conservation_summary: Schutzstatus-Zusammenfassung
+  contact_support: Support kontaktieren
   contain_all_descendants?: Enthält diese Checkliste alle Nachkommen dieses Taxons,
     die hier vorkommen?
+  content_hidden: Inhalt versteckt
   contest: Wettbewerb
   continue: Fortfahren
   continue_to_site: Weiter zu %{site_name}
@@ -1203,6 +1214,7 @@ de:
   dates: Daten
   datetime_: Datum/Zeit
   day: Tag
+  decrease_brightness: Helligkeit reduzieren
   default: Standard
   default_invite_comment: 'Super Foto! Du solltest es hier posten: %{site_name}: {{INVITE_LINK}}'
   default_observation_license: Standardbeobachtungslizenz
@@ -1220,8 +1232,8 @@ de:
   delete_selected: Ausgewählte löschen
   delete_taxon_and_merge_most_data_html: Lösche <i>%{taxon}</i> und verschmelze die
     meisten seiner Daten in ein anderes Taxon. Verwende dieses Tool zum <strong>Entfernen
-    doppelter Taxa</strong>. Wenn du ein veraltetes Synonym entfernen möchtest, lege
-    bitte einen Taxon-Swap an. <strong>ACHTUNG!</strong> Das Löschen von Taxa kann
+    doppelter Taxa</strong>. Wenn du ein veraltetes Synonym entfernen möchtest, erstelle
+    bitte einen Taxon-Tausch. <strong>ACHTUNG!</strong> Das Löschen von Taxa kann
     sehr destruktiv sein. Lese den <a href="%{curator_url}">Kurator-Guide</a> für
     weitere Details.
   delete_this_name: Diesen Namen löschen
@@ -1310,7 +1322,7 @@ de:
     %{site_name} von diesem Ort kennt, einschließlich Informationen über deren Häufigkeit
     und Erhaltungszustand und wer als erster eine Art von diesem Ort auf %{site_name}
     beobachtet hat. Du kannst Arten nach taxonomischer Gruppe, Farbe, Erhaltungszustand
-    filter oder die einfache alte Suche nutzen.
+    filtern oder die einfache alte Suche nutzen.
   edit: Bearbeiten
   edit_a_batch_of_observations: Batch-Bearbeitung von Beobachtungen
   edit_account_settings_and_profile: Kontoeinstellungen &amp; Profil bearbeiten
@@ -1812,6 +1824,7 @@ de:
   inaturalist_network_affiliation: iNaturalist Zusammenschluss
   inbox: Posteingang
   including: beinhaltet
+  increase_brightness: Helligkeit erhöhen
   in_order_to_login_and_using_site_visit_url: 'Um Dich einzuloggen und die Seite zu
     nutzen, musst Du diese URL besuchen, um Deinen Account zu aktivieren:'
   in_progress: in Bearbeitung
@@ -2100,6 +2113,7 @@ de:
   list_tooltip: Listen-Ansicht zeigen
   list_updated: Liste aktualisiert!
   list_views:
+    plain: einfach
     taxonomic: taxonomisch
     photo: Foto
   list_was_successfully_created: Die Liste wurde erfolgreich erstellt.
@@ -2365,7 +2379,7 @@ de:
   mute_user: Benutzer sperren
   mute_removed: Sperre entfernt
   muted_users: Stummgestellte Benutzer
-  n_ago: '%{n} her'
+  n_ago: vor %{n}
   n_people_agrees: '%{amount} der Personen stimmen zu'
   n_people_disagrees: '%{amount} Leute stimmen nicht zu'
   n_person_agrees: '%{amount} Leute stimmen zu'
@@ -2409,7 +2423,7 @@ de:
   new_assessment: Neue Beurteilung
   new_check_list: Neue Checkliste
   new_check_list_for: Eine neue Checkliste für %{place} &raquo; erstellen
-  new_comment_on_a_parent_by_user_link: Ein neuer Kommentar zu einer @vow_or_con{vow:an|a}
+  new_comment_on_a_parent_by_user_link: Ein neuer Kommentar zu @vow_or_con{vow:einer|einer}
     %{parent} von %{user_link}
   new_custom_field_for: Neues benutzerdefiniertes Feld für
   new_flag_for: Neue Meldung für
@@ -2889,15 +2903,17 @@ de:
   people_following_user: Personen, die %{user} folgen
   people_user_follows: Leute denen %{user} folgt
   people_added:
-    observation: ': %{observation_link} von @vow_or_con{vow:an|a} %{taxon_link} hinzugefügt'
+    observation: ': %{observation_link} von @vow_or_con{vow:einer|einer} %{taxon_link}
+      hinzugefügt'
     identification:
       with_observation: ': <strong>ID</strong> zu %{observation_link} von %{user_link}
         hinzugefügt'
       without_observation: hat eine <strong>ID</strong> hinzugefügt
     post: hat einen %{post_link} gemacht
     comment:
-      with_by: hat @vow_or_con{vow:an|a} %{comment_subject_link} von %{by_link} kommentiert
-      without_by: hat @vow_or_con{vow:an|a} %{comment_subject_link} kommentiert
+      with_by: hat @vow_or_con{vow:einer|einer} %{comment_subject_link} von %{by_link}
+        kommentiert
+      without_by: hat @vow_or_con{vow:einer|einer} %{comment_subject_link} kommentiert
   per_day: Pro Tag
   per_month: Pro Monat
   per_week: Pro Woche
@@ -3745,7 +3761,7 @@ de:
   search_your_photos: Suchen in deinen Bildern
   searching: Suche...
   seasonality: Saisonalität
-  second_person_possessive_singular: Dein %{noun}
+  second_person_possessive_singular: Deine %{noun}
   second_person_possessive_singular_: Dein %{noun}
   see_something_wrong_with_taxon: Stimmt etwas nicht mit diesem Taxon?  Lass es die
     Kuratoren wissen.
@@ -4011,7 +4027,7 @@ de:
   stuff_just_added: Dinge, die du gerade hinzugefügt hast....
   subject_resolved_noun_html: '%{subject} hat %{noun} geklärt'
   subject_affecting_stuff_html: '%{subject} mit Einfluss auf %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} reichte @vow_or_con{vow:an|a}
+  subject_committed_thing_affecting_stuff_html: '%{subject} reichte @vow_or_con{vow:einern|einer}
     %{thing} betreffend %{stuff} ein'
   submission_model: Art der Einreichung
   submission_model_description: Wer kann dem Projekt Beobachtungen hinzufügen?
@@ -4143,6 +4159,7 @@ de:
   terrain: Gelände
   text: Text
   text_: Text
+  thanks!: Danke!
   thanks_for_signing_up: Danke fürs Anmelden!
   thanks_for_using: Danke fürs benutzen von
   thanks_from_all_of_us_here_at: Danke von uns allen hier bei
@@ -5676,6 +5693,9 @@ de:
       12: Dezember
   datetime:
     distance_in_words:
+      about_x_hours:
+        one: vor ca. einer Stunde
+        other: vor ca. %{count} Stunden
       half_a_minute: Halbe Minute
       less_than_x_minutes:
         one: vor weniger als eine Minute

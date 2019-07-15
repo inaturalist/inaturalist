@@ -2551,8 +2551,8 @@ nl:
   new_check_list_record: Als u deze lijst als uitgebreid wilt markeren, maak deze
     dan aan, voeg de taxa toe en bewerk deze vervolgens en u kunt de optie hier als
     uitgebreid markeren.
-  new_comment_on_a_parent_by_user_link: Nieuwe reactie op @vow_or_con{vow:an|a} %{parent}
-    door %{user_link}
+  new_comment_on_a_parent_by_user_link: Nieuwe reactie op @vow_or_con{vow:een|een}
+    %{parent} door %{user_link}
   new_custom_field_for: Nieuw aangepast veld voor
   new_flag_for: Nieuwe makering voor
   new_guide: Nieuwe Gids
@@ -3080,7 +3080,7 @@ nl:
   people_following_user: Personen die %{user} volgen
   people_user_follows: Personen die %{user} volgt
   people_added:
-    observation: heeft een %{observation_link} van @vow_or_con{vow:an|a} %{taxon_link}
+    observation: heeft een %{observation_link} van @vow_or_con{vow:een|een} %{taxon_link}
       toegevoegd
     identification:
       with_observation: een <strong>determinatie</strong> toegevoegd aan een %{observation_link}
@@ -3088,8 +3088,8 @@ nl:
       without_observation: een <strong>ID</strong> toegevoegd
     post: maakte een %{post_link}
     comment:
-      with_by: Reactie op @vow_or_con{vow:an|a} %{comment_subject_link} door %{by_link}
-      without_by: reactie op @vow_or_con{vow:an|a} %{comment_subject_link}
+      with_by: Reactie op @vow_or_con{vow:een|een} %{comment_subject_link} door %{by_link}
+      without_by: reactie op @vow_or_con{vow:een|een} %{comment_subject_link}
   per_day: Per Dag
   per_month: Per Maand
   per_week: Per Week
@@ -4272,7 +4272,7 @@ nl:
   stuff_just_added: Stuff die je zojuist hebt toegevoegd ...
   subject_resolved_noun_html: '%{subject} lost %{noun} op'
   subject_affecting_stuff_html: '%{subject} van invloed op %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} voerde een @vow_or_con{vow:an|a}
+  subject_committed_thing_affecting_stuff_html: '%{subject} voerde een @vow_or_con{vow:een|een}
     %{thing} uit met gevolgen voor %{stuff}'
   submission_model: Submission Model
   submission_model_description: Wie kan waarnemingen toevoegen aan uw project?
@@ -5088,10 +5088,10 @@ nl:
   view_x_from_x: '%{day_observations} van %{observed_on} weergeven'
   view_xs_journal: Dagboek van %{x} weergeven
   view_year_stats_for_site: Statistieken van %{year} voor %{site} weergeven
-  view_your_dashboard: Bekijk je controle paneel
+  view_your_dashboard: Bekijk je dashboard
   view_your_dashboard_for_more_updates_html: |2-
 
-    <a href='%{url}'>Bekijk je controle paneel</a> voor meer nieuws
+    <a href='%{url}'>Bekijk je dashboard</a> voor meer nieuws
   view_your_inbox: Uw Inbox weergeven
   view_your_life_list: Uw levenslijst weergeven
   view_your_calendar: Uw kalender weergeven
@@ -5500,8 +5500,8 @@ nl:
   youve_seen_it_want_to: Je hebt het gezien! Willen
   youve_successfully_linked_your_provider_account: Je hebt je %{provider}-account
     succesvol gekoppeld.
-  your_dashboard_helps_you: Uw controle paneel helpt u bij te houden wat mensen op
-    de site doen. Als u de nieuwtjes van iemand wilt volgen, klikt u op de link 'Volgen
+  your_dashboard_helps_you: Je dashboard helpt je bij te houden wat er op de site
+    gebeurt. Als je de activiteiten van iemand wilt volgen, klik je op de link 'Volgen
     [name]' in de kop bij het bekijken van hun waarnemingen of profiel.
   verifiable: Verifieerbaar
   verifiable_observations: Verifieerbare waarnemingen
@@ -6413,16 +6413,15 @@ nl:
           door <a href="%{url}">hier te klikken</a>.
       invite:
         description_html: "<h3> Over uitnodigingen </h3>\n<p class = \"ui\">\n   Mensen
-          uitnodigen voor uw project is een beetje anders dan een uitnodiging \n  
-          voor individuele waarnemingen. Uitnodigende mensen zullen \n</p>\n<Ol>\n  
-          <li> Stuur ze een e-mail met de uitnodiging om deel te nemen aan uw project
-          </li>\n   <li> Een uitnodiging op hun controle paneel weergeven </li>\n  
-          <li> Stel ze in staat om deel te nemen aan uw project als dit is ingesteld
-          op alleen-uitnodigen </li>\n</Ol>\n<p class = \"ui\">\n   Alleen projectconservatoren
-          kunnen mensen uitnodigen om deel te nemen aan een project. U\n   moet in
-          staat zijn om mensen te zoeken op hun iNat-gebruikersnaam of\n   hun <em>
-          complete </em> e-mailadres, ervan uitgaande dat we dat hebben in \n   het
-          dossier.\n</p>"
+          uitnodigen voor uw project is een anders dan een uitnodiging \n   voor individuele
+          waarnemingen. Mensen uitnodigen:\n</p>\n<Ol>\n   <li> Stuur ze een e-mail
+          met de uitnodiging om deel te nemen aan uw project </li>\n   <li> Een uitnodiging
+          op hun dashboard weergeven </li>\n   <li> Stel ze in staat om deel te nemen
+          aan uw project als dit is ingesteld op alleen-uitnodigen </li>\n</Ol>\n<p
+          class = \"ui\">\n   Alleen projectconservatoren kunnen mensen uitnodigen
+          om deel te nemen aan een project. U\n   moet in staat zijn om mensen te
+          zoeken op hun iNat-gebruikersnaam of\n   hun <em>complete</em> e-mailadres,
+          ervan uitgaande dat we dat hebben in \n   het dossier.\n</p>"
       join:
         invite_only_description: |-
           Het lidmaatschap van dit project is alleen op uitnodiging. Als je deel wilt
@@ -6564,8 +6563,8 @@ nl:
           hebt gelezen.
         this_is_a_preview: Dit is een voorbeeld van hoe dit project eruit zou zien
           als een verzamelproject.
-      updates_desc: Ontvang nieuwtjes over dit project in je controle paneel en de
-        dagelijkse e-mail met nieuws
+      updates_desc: Ontvang nieuwtjes over dit project in je dashboard en de dagelijkse
+        e-mail met nieuws
     search:
       index:
         no_taxa_options_html: |-

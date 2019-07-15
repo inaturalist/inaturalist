@@ -1059,9 +1059,10 @@ es:
   contain_all_descendants?: ¿Esta lista de verificación contiene todos los descendientes
     de este taxón que se producen aquí?
   content_hidden: Contenido oculto
+  content_hidden_by_user_on_date_because_reason_html: '%{user} ocultó el contenido
+    el %{date} porque: «%{reason}»'
   user_hid_this_item_because_reason_html: '%{user} ocultó este %{item} porque «%{reason}»'
-  user_unhid_this_item_because_reason_html: '%{user} desocultó este %{item} porque
-    «%{reason}»'
+  user_unhid_this_item_because_reason_html: '%{user} reveló este %{item} porque «%{reason}»'
   contest: concurso
   continue: Continua
   continue_to_site: Continuar a %{site_name}
@@ -1815,6 +1816,7 @@ es:
     contenido censurable.
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
+  hidden_content_explanation: Se ha ocultado el contenido
   high: Alta
   highest_rank: Rango más alto
   highlights: Destacado
@@ -2869,6 +2871,8 @@ es:
   observations_removed_from_the_project: Observaciones eliminadas del proyecto "%{project}"
   observations_saved: Observación(es) guardadas!
   observations_specifying_this_field: Observaciones que especifican este campo
+  observations_specifying_this_field_with_value: Observaciones que especifican este
+    campo con «%{value}»
   observations_text_search_warning: |-
     Las búsquedas de textos pueden producir resultados extraños cuando se combina
     con otros filtros. Si quieres encontrar la observación de una especie en particular, utiliza el filtro de taxón.
@@ -3574,7 +3578,7 @@ es:
     tu cuenta</a>.
   please_enter_a_new_pass: Por favor digite una nueva contraseña y confírmela.
   please_explain_why_you_want_to_hide_this: Explica por qué quieres ocultar esto.
-  please_explain_why_you_want_to_unhide_this: Explica por qué quieres desocultar esto
+  please_explain_why_you_want_to_unhide_this: Explica por qué quieres revelar esto
   please_fix_your_csv_and_try_again: Corrige el archivo CSV e inténtalo de nuevo.
   please_hold_on_while_the_file: Por favor espere mientras se genera el archivo. Puede
     tomar algunos minutos para listas grandes.
@@ -4839,6 +4843,7 @@ es:
   unblock: Desbloquear
   unclassified: Sin clasificar
   ungrafted_taxa: Taxones sin injertar
+  unhide_content: Mostrar contenido
   uninvite: cancelar invitación
   unique_identifier_of_this_taxon: Identificador único para esta especie o grupo en
     la base de datos.
@@ -4992,6 +4997,7 @@ es:
     %{user} confía en ti con sus coordenadas ocultas
   user_trusts_you_with_their_private_coordinates_desc: El observador ha elegido confiarle
     las coordenadas ocultas de todas sus observaciones.
+  user_wrote_html: '<a href="%{url}" target="_blank">%{user}</a> escribió:'
   username: Nombre de usuario
   username_or_email: Nombre de usuario o correo electrónico
   username_or_user_id: Nombre o identificador del usuario
