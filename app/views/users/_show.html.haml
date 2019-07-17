@@ -32,7 +32,7 @@
                     = link_to t(:make_curator), add_role_path(@user, :role => "curator"), :method => :post
               - if is_admin?
                 %li
-                  = link_to t(:curate_user), curate_users_path(:id => @user.id)
+                  = link_to t(:curate_user), user_detail_admin_path( id: @user.id )
               - if current_user.is_curator? && !is_me?(@user) && !@user.is_admin?
                 %li.divider{:role => "separator"}
                 - unless @user.spammer?
