@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Abijeet Patro
+# Author: H2kks
 # Author: Ilmarine
 # Author: Marcelhospers
 # Author: Optilete
@@ -151,6 +152,7 @@ et:
   about_x: 'Info: %{x}'
   acc: Täpsus (m)
   account: Konto
+  account_creation: Konto loomine
   account_settings: Kontosätted
   accept: nõustu
   accept_community_identifications: Luba kogukondlikud määratlused
@@ -268,6 +270,7 @@ et:
   add_life_stage_larva_annotation: 'Lisa märge "Elujärk: tõuk" (Life Stage: Larva)'
   add_life_stage_juvenile_annotation: 'Lisa märge "Elujärk: nooruk" (Life Stage: Juvenile)'
   add_life_stage_egg_annotation: 'Lisa märge "Elujärk: muna" (Life Stage: Egg)'
+  add_relationship: Lisa seos
   add_section: Lisa alaosa
   add_several_observations_at_once: Lisa korraga mitu vaatlust
   add_sex_female_annotation: 'Lisa märge "Sugu: nais"'
@@ -317,6 +320,7 @@ et:
   additional_range: Lisapiirkond
   additional_range_data_from_an_unknown_source: Tundmatust allikast pärinevad vahemiku
     andmed
+  adjust_brightness: Muuda heledust
   admin: Administraator
   admin_s: Admin(id)
   admin_any_projects: administreeri projekte
@@ -364,6 +368,7 @@ et:
     subgenus: Kõik alamperekonnad lisatud andmebaasi
     section: Kõik sektsioonid lisatud andmebaasi
     subsection: Kõik alamsektsioonid lisatud andmebaasi
+    complex: Kõik sugukonnad, mis on andmebaasi lisatud
     species: Kõik liigid lisatud andmebaasi
     hybrid: Kõik hübriidliigid lisatud andmebaasi
     subspecies: Kõik alamliigid lisatud andmebaasi
@@ -666,6 +671,7 @@ et:
   bg_color: Taustavärv
   bioblitz: Välkvaatlus
   birds: linnud
+  birthday: Sünnipäev
   black: must
   block_user: Blokeeri kasutaja
   block_removed: Blokeering eemaldatud
@@ -780,6 +786,7 @@ et:
     merged_into: ühendatud
     replaced_by: asendab
     replace_with: asenda
+    replaced_with: asendatud
     dropped: kustutatud
     staged: vaheetapis
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} jagati osadeks: %{output_taxa}'
@@ -974,6 +981,7 @@ et:
     geoprivacy: Selle taksoni vaatluste asukoha privaatsuse vaikimisi säte
     iucn: Samaväärne IUCNi punase nimestiku kood
   conservation_summary: Kaitsestaatuse kokkuvõte
+  contact_support: Klienditugi
   contain_all_descendants?: Kas see kontrollnimekiri sisaldab kõiki selles kohas leiduvaid
     antud taksoni järglasi?
   contest: võistlus
@@ -1804,7 +1812,7 @@ et:
   in_n: kohas %{n}
   in_place_x: kohas %{place}
   inaturalist_network_affiliation: iNaturalist võrgustiku kuuluvus
-  inbox: saabunud
+  inbox: Saabunud kirjad
   including: sisaldab
   in_order_to_login_and_using_site_visit_url: 'Sisse logimiseks ja lehekülje kasutamiseks
     pead külastama aadressi, millega saab kontot aktiveerida:'

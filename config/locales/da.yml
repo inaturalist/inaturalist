@@ -143,10 +143,10 @@ da:
   a_member_of_taxon_html: et medlem af %{taxon}
   able_to_connect_flickr: Super! Det lykkedes os at tilknytte din Flickr-konto.
   about: Om
-  about_bioblitz_results: Om bioblitz-resultater
+  about_bioblitz_results: Om bioblitz resultater
   about_blocking: Om blokering
   about_charts: Om diagrammer
-  about_community_taxa: Om fællesskabstaksa
+  about_community_taxa: Om fællesskabs taksa
   about_complete_taxa: Om komplet taksa
   about_conservation_status: Om bevaringsstatus
   about_editing_observation_fields: Om redigering af observationsfelter
@@ -183,7 +183,7 @@ da:
   account: Konto
   account_creation: Kontooprettelse
   account_settings: Kontoindstillinger
-  accept: accepter
+  accept: acceptér
   accept_community_identifications: Accepter fællesskabets identifikationer
   accuracy: Nøjagtighed
   accuracy_m: Nøjagtighed (m)
@@ -196,7 +196,7 @@ da:
   action: Handling
   actions: Handlinger
   activate_user: Aktivér bruger
-  active: aktiv
+  active: Aktiv
   active_users: Aktive brugere
   activity: Aktivitet
   activity_settings: Aktivitetsindstillinger
@@ -261,7 +261,8 @@ da:
   add_more_photos: Tilføj flere fotos
   add_new_lexicon: Tilføj nyt leksikon
   add_new_observations: Tilføj nye observationer
-  add_new_photos_by_their_ids: Tilføj nyt foto via Flickr ID (skal være Creative Commons!)
+  add_new_photos_by_their_ids: Tilføj nye fotos via Flickr ID'er (skal være Creative
+    Commons!)
   add_new_place: Tilføj et nyt sted
   add_new_rule: Tilføj en ny regel
   add_new_source: Tilføj en ny kilde...
@@ -6160,6 +6161,78 @@ da:
           <a href="%{url}"> observationseksport siden </a> for en liste over din eksport.
       parental_consent:
         subject: Dit barn ønsker at benytte iNaturalist
+        content_html: |-
+          <p>
+            Dit barn bruger <strong>Seek af iNaturalist</strong>
+            lærings-app'en og vil gerne dele data med borgervidenskabs-platformen iNaturalist. Da posteringer på iNaturalist afslører
+            personligt identificerbare oplysninger, kan iNaturalist ikke bruges af en person under 13 år uden samtykke fra en forælder.
+          </p>
+          <p>
+            <strong>Seek af iNaturalist</strong> kan bruges uden at oprette en konto, og ingen personligt identificerbare oplysninger vil blive delt,
+            men dit barn vil ikke kunne bidrage med observationer til iNaturalist. iNaturalist borgervidenskabeligt socialt netværk, hvor deltagere deler observationer og identifikationer af levende ting for at lære hinanden om naturen og skabe biodiversitetsdata for videnskaben.
+          </p>
+          <p>
+            Hvis du gerne vil give dit barn samtykke til at bruge iNaturalist,
+            har vi brug for at du gør følgende:
+          </p>
+          <ol>
+            <li>
+              <p>
+                Opret en iNaturalist-konto, som dit barn vil bruge ved at følge dette link:
+                <a href="%{registration_url}">%{registration_url}</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                Efter du opretter dit barns konto, vil vi bede dig om at give en lille donation på 1 US dollar med et kreditkort til iNaturalist for at bekræfte, at du er voksen. Sørg venligst for at benytte samme e-mailadresse, som du indtastede i "Forælder e-mail" under oprettelse, når du laver din donation.
+              </p>
+            </li>
+            <li>
+              <p>
+                Når vi behandler donationen, vil vi sende dig endnu en e-mail for at oplyse dig om, at dit barns konto er blevet aktiveret, og at du kan bruge iNaturalist-brugernavnet og adgangskoden, du oprettede, til at logge ind på dit barns Seek-app.
+              </p>
+            </li>
+          </ol>
+          <p>
+            iNaturalist indsamler følgende personligt identificerbare oplysninger:
+          </p>
+          <ol>
+            <li>
+              <p>
+                <strong>e-mailadresse (privat):</strong> enhver iNaturalist-konto har en tilknyttet e-mailadresse, som ikke offentliggøres.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>brugernavn (offentligt, obligatorisk):</strong> enhver iNaturalist-konto har et offentligt brugernavn og bruger-identifikationsnummer.
+                Brugernavnet behøver ikke at ligne personens rigtige navn, men det kan bruges til at kontakte personen via offentlige kommentarer og private direkte beskeder.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>IP-adresse (privat, obligatorisk):</strong> iNaturalist
+                indsamler, men offentliggøre ikke brugerens IP-adresse, som kan bruges til at udlede personligt identificerbare oplysninger såsom placering (med nøjagtighed på by-niveau).
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>Profilbillede (offentligt, valgfrit):</strong> iNaturalist-konti har mulighed for at have et profilbillede, som ofte er billeder af brugeren.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>observationsplacering (offentlig eller privat,
+                obligatorisk):</strong> iNaturalist-observationer inkluderer placeringsinformation om, hvor observationen blev gjort. Dette kan gøres offentlig eller forblive privat, men der er offentlig som standard.
+              </p>
+            </li>
+          </ol>
+          <p>
+            iNaturalist tillader og brugere at dele offentlige billeder, offentlige kommentarer og private direkte beskeder i forbindelse med deres konto.
+            Der er muligt, at brugere kan inkluderer personligt identificerbare oplysninger i deres brugerskabte indhold.
+          </p>
+          <p>
+            Lær mere om iNaturalist’s privatlivspolitik <a href="%{privacy_policy_url}">her</a>.
+          </p>
       photos_missing:
         subject: Nogle billeder behøver reparation
         we_have_been_housekeeping: |2-
@@ -7025,16 +7098,16 @@ da:
           <p>
             Dit barn vil da kunne oprette observationer på deres iNaturalist-konto ved hjælp af Seek-app'en, så de kan ses på iNaturalist.org.
           </p>
-        thanks_for_creating_a_minor_account: TAK FOR AT OPRETTE EN MINDREÅRIGKONTO!
+        thanks_for_creating_a_minor_account: TAK FOR AT OPRETTE EN MINDREÅRIG KONTO!
         we_will_send_you_an_email: Vi sender en e-mail til dig, når dit barns konto
           er blevet aktiveret.
       new:
         child_name_private: Barns navn (privat)
-        create_a_minor_account: Opret en mindreårigkonto
-        create_minor_account: Opret mindreårigkonto
+        create_a_minor_account: Opret en mindreårig konto
+        create_minor_account: Opret mindreårig konto
         parent_name_private: Navn på forælder eller værge (privat)
-        parent_email: Forælders eller værges e-mail (privat)
-        inaturalist_minor_account_signup: iNaturalist mindreårigkonto oprettelse
+        parent_email: Forælder eller værges e-mail (privat)
+        inaturalist_minor_account_signup: iNaturalist mindreårig kontooprettelse
         parent_information_private: Forælderinformation (privat)
         step1_title: OPRET EN KONTO TIL DIT BARN
         step1_desc: For at overholde persondataloven skal vi bruge en forælder eller
@@ -7043,12 +7116,12 @@ da:
           og kontaktoplysninger.
         step2_title: BEKRÆFT DIN IDENTITET MED ET KREDITKORT
         step2_desc: For at bekræfte din identitet som voksen, har vi brug for at du
-          giver en nominel donation på mindst 1 US-dollar til iNaturalist med et kreditkort.
-          Dette er den mindst påtrængende form for identifikationsbekræftelse, som
-          gør det muligt for os at overholde persondataloven. Vær venligst opmærksom
+          giver en nominel donation på mindst 1 US$ dollar til iNaturalist med et
+          kreditkort. Dette er den mindst påtrængende form for identifikationsbekræftelse,
+          som gør det muligt for os at overholde persondataloven. Vær venligst opmærksom
           på at bruge samme e-mailadresse, som du indtastede som "forælder e-mail"
           i forrige trin.
-        step3_title: VENT PÅ BEKRÆFTELSESEMAIL
+        step3_title: VENT PÅ BEKRÆFTELSES E-MAIL
         step3_desc: Når vi har matchet den e-mail, som blev brugt til donationen,
           til den e-mail du angav som "forælder e-mail", vil vi aktivere barnets konto
           og sende forælderen en e-mail med login-instruktioner. Dette kan tage op
@@ -7506,6 +7579,10 @@ da:
               has_query_parameter: må ikke indeholde en forespørgselsparameter.
               invalid_uri: skal være et gyldigt URI.
               relative_uri: skal være et fuldstændigt URI.
+        flag:
+          attributes:
+            user_id:
+              already_flagged: allerede markeret dette
         guide:
           attributes:
             published_at:
