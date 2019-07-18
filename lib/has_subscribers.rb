@@ -324,9 +324,6 @@ module HasSubscribers
         return
       end
       users_to_notify = users - except_users
-      user_ids = users.map{ |u|
-        options[:if].blank? || options[:if].call( u ) ? u.id : nil
-      }.compact
       user_ids_to_notify = users_to_notify.map{ |u|
         options[:if].blank? || options[:if].call( u ) ? u.id : nil
       }.compact

@@ -40,7 +40,6 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
   notifies_users :mentioned_users,
-    except: :previously_mentioned_users,
     on: :save,
     notification: "mention",
     delay: false,
@@ -3089,11 +3088,6 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
-  end
-
-  def previously_mentioned_users
-    return [ ] if description_was.blank?
-    description.mentioned_users & description_was.to_s.mentioned_users
   end
 
   def faves_count

@@ -3815,8 +3815,17 @@ describe Observation do
     it "does not generation a mention update if the description was updated and the mentioned user wasn't in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
-      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
+      # mark the generated updates as viewed
+      UpdateAction.user_viewed_updates( UpdateAction.where( notifier: o ), u.id )
       o.update_attributes( description: "#{o.description} and some extra" )
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
+    end
+    it "removes mention updates if the description was updated to remove the mentioned user" do
+      u = User.make!
+      o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
+      o.update_attributes( description: "bye" )
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "generates a mention update if the description was updated and the mentioned user was in the new content" do
