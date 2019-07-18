@@ -222,7 +222,9 @@ class ObsCardComponent extends Component {
             </p>
             <TaxonAutocomplete
               key={
-                `taxonac${obsCard.selected_taxon && obsCard.selected_taxon.title}` }
+                // `taxonac${obsCard.selected_taxon && obsCard.selected_taxon.title}`
+                `taxonac${obsCard.id}`
+              }
               small
               bootstrap
               searchExternal
