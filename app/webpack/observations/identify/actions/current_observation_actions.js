@@ -1,7 +1,7 @@
 import iNaturalistJS from "inaturalistjs";
 import moment from "moment";
 import _ from "lodash";
-import { setConfig } from "../../../shared/ducks/config";;
+import { setConfig } from "../../../shared/ducks/config";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";

@@ -392,7 +392,7 @@ namespace :inaturalist do
 
   desc "Remove expired sessions"
   task :remove_expired_sessions => :environment do
-    expiration_date = 30.days.ago
+    expiration_date = 7.days.ago
     ActiveRecord::SessionStore::Session.select(:id, :updated_at).find_in_batches(batch_size: 10000) do |batch|
       expired_ids = batch.select{ |s| s.updated_at < expiration_date }.map(&:id)
       ActiveRecord::SessionStore::Session.where(id: expired_ids).delete_all

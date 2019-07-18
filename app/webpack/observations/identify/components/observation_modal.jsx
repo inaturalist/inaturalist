@@ -199,64 +199,55 @@ class ObservationModal extends React.Component {
           >
             <i className="icon-link-external" />
           </a>
-          { currentUser && currentUser.roles.indexOf( "admin" ) >= 0 && (
-            <div className="brightness-control btn-group btn-group-xs" role="group">
-              <button
-                type="button"
-                className="btn btn-default"
-                onClick={( ) => {
-                  const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
-                title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
-              >
-                <i className="fa fa-sun-o" />
-                { brightness !== 1 && (
-                  <span>
-                    { " " }
-                    { _.isInteger( brightness ) ? `${brightness}.0` : brightness }
-                    X
-                  </span>
-                ) }
-              </button>
-              <button
-                type="button"
-                className="btn btn-default"
-                onClick={( ) => {
-                  const existing = brightnesses[brightnessKey] || 1;
-                  let newBrightness = _.round( existing - 0.2, 2 );
-                  if ( newBrightness < 0.2 ) {
-                    newBrightness = 0.2;
-                  }
-                  const newBrightnesses = Object.assign( {}, brightnesses, {
-                    [brightnessKey]: newBrightness
-                  } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
-                title={I18n.t( "decrease_brightness" )}
-              >
-                -
-              </button>
-              <button
-                type="button"
-                className="btn btn-default"
-                onClick={( ) => {
-                  const existing = brightnesses[brightnessKey] || 1;
-                  let newBrightness = _.round( existing + 0.2, 2 );
-                  if ( newBrightness > 3 ) {
-                    newBrightness = 3;
-                  }
-                  const newBrightnesses = Object.assign( {}, brightnesses, {
-                    [brightnessKey]: newBrightness
-                  } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
-                title={I18n.t( "increase_brightness" )}
-              >
-                +
-              </button>
-            </div>
-          ) }
+          <div className="brightness-control btn-group-vertical btn-group-xs" role="group">
+            <button
+              type="button"
+              className="btn btn-default btn-adjust-brightness"
+              onClick={( ) => {
+                const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
+                this.setState( { brightnesses: newBrightnesses } );
+              }}
+              title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
+            >
+              <i className="icon-adjust" />
+            </button>
+            <button
+              type="button"
+              className="btn btn-default btn-increase-brightness"
+              onClick={( ) => {
+                const existing = brightnesses[brightnessKey] || 1;
+                let newBrightness = _.round( existing + 0.2, 2 );
+                if ( newBrightness > 3 ) {
+                  newBrightness = 3;
+                }
+                const newBrightnesses = Object.assign( {}, brightnesses, {
+                  [brightnessKey]: newBrightness
+                } );
+                this.setState( { brightnesses: newBrightnesses } );
+              }}
+              title={I18n.t( "increase_brightness" )}
+            >
+              +
+            </button>
+            <button
+              type="button"
+              className="btn btn-default btn-decrease-brightness"
+              onClick={( ) => {
+                const existing = brightnesses[brightnessKey] || 1;
+                let newBrightness = _.round( existing - 0.2, 2 );
+                if ( newBrightness < 0.2 ) {
+                  newBrightness = 0.2;
+                }
+                const newBrightnesses = Object.assign( {}, brightnesses, {
+                  [brightnessKey]: newBrightness
+                } );
+                this.setState( { brightnesses: newBrightnesses } );
+              }}
+              title={I18n.t( "decrease_brightness" )}
+            >
+              –
+            </button>
+          </div>
         </div>
       );
     }
@@ -293,23 +284,11 @@ class ObservationModal extends React.Component {
 
     const scrollSidebarToForm = form => {
       const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
-      const target = $( form );
       $( ":input:visible:first", form ).focus( );
-      $( sidebar ).scrollTo( target );
-    };
-
-    const showAgree = ( ) => {
-      if ( loadingDiscussionItem ) {
-        return false;
-      }
-      if ( !currentUserIdentification ) {
-        return observation.taxon && observation.taxon.is_active;
-      }
-      return (
-        observation.taxon
-        && observation.taxon.is_active
-        && observation.taxon.id !== currentUserIdentification.taxon.id
-      );
+      // Note that you need to scroll the element that can actually scroll.
+      // There are a lot of nested divs here, so make sure you're scrolling the
+      // right one
+      $( ".info-tab-content", sidebar ).scrollTo( form );
     };
 
     const qualityGrade = ( ) => {
@@ -718,31 +697,11 @@ class ObservationModal extends React.Component {
                     </div>
                   </div>
                   <div className="tools">
-                    <OverlayTrigger
-                      placement="top"
-                      delayShow={1000}
-                      overlay={(
-                        <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
-                          { I18n.t( "agree_with_current_taxon" ) }
-                        </Tooltip>
-                      )}
-                      container={$( "#wrapper.bootstrap" ).get( 0 )}
-                    >
-                      <Button
-                        bsStyle="default"
-                        disabled={agreeingWithObservation || !showAgree( )}
-                        className="agree-btn"
-                        onClick={( ) => agreeWithCurrentObservation( )}
-                      >
-                        { agreeingWithObservation ? (
-                          <div className="loading_spinner" />
-                        ) : (
-                          <i className="fa fa-check" />
-                        ) }
-                        { " " }
-                        { I18n.t( "agree_" ) }
-                      </Button>
-                    </OverlayTrigger>
+                    <Button bsStyle="default" onClick={( ) => addIdentification( )}>
+                      <i className="icon-identification" />
+                      { " " }
+                      { I18n.t( "add_id" ) }
+                    </Button>
                     <Button
                       bsStyle="default"
                       className="comment-btn"
@@ -751,11 +710,6 @@ class ObservationModal extends React.Component {
                       <i className="fa fa-comment" />
                       { " " }
                       { I18n.t( "comment_" ) }
-                    </Button>
-                    <Button bsStyle="default" onClick={( ) => addIdentification( )}>
-                      <i className="icon-identification" />
-                      { " " }
-                      { I18n.t( "add_id" ) }
                     </Button>
                   </div>
                 </div>

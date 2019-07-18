@@ -1876,10 +1876,11 @@ class Observation < ActiveRecord::Base
     return true if observed_on.blank?
     return true if created_at.blank?
     return true if editing_user_id != user_id
+    threshold_date = ( created_at.in_time_zone( "UTC" ) + 1.day ).to_date
     if (
-      time_observed_at && time_observed_at.in_time_zone( "UTC" ).to_date > created_at.in_time_zone( "UTC" ).to_date
+      time_observed_at && time_observed_at.in_time_zone( "UTC" ).to_date > threshold_date
     ) || (
-      observed_on.in_time_zone( "UTC" ).to_date > ( created_at.in_time_zone( "UTC" ) + 1.day ).to_date
+      observed_on.in_time_zone( "UTC" ).to_date > threshold_date
     )
       errors.add(:observed_on, :cannot_be_greater_than_date_created)
     end

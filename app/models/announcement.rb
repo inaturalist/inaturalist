@@ -20,4 +20,29 @@ class Announcement < ActiveRecord::Base
   def compact_locales
     self.locales = ( locales || [] ).reject(&:blank?).compact
   end
+
+  def self.active_in_placement( placement, site )
+    scope = Announcement.
+      joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id").
+      joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
+      where( 'placement = ? AND ? BETWEEN "start" AND "end"', placement, Time.now.utc ).
+      limit( 50 )
+    base_scope = scope
+    scope = scope.where( "sites.id = ?", site.id )
+    @announcements = scope.in_specific_locale( I18n.locale )
+    @announcements = scope.in_specific_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
+    @announcements = scope.in_locale( I18n.locale ) if @announcements.blank?
+    @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
+    if @announcements.blank?
+      @announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
+      @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if @announcements.blank?
+      @announcements = @announcements.flatten
+    end
+    @announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ) if @announcements.blank?
+    @announcements = @announcements.sort_by {|a| [
+      a.site_ids.include?( @site.try(:id) ) ? 0 : 1,
+      a.locales.include?( I18n.locale ) ? 0 : 1,
+      a.id * -1
+    ] }
+  end
 end

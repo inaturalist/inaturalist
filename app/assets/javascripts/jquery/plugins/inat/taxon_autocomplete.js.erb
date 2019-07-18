@@ -287,6 +287,7 @@ $.fn.taxonAutocomplete = function( options ) {
     var photo = autocompleter.defaultPhotoForResult(t)
     field.wrappingDiv.find(".ac-select-thumb").html( photo );
     field.selection = t;
+    field.data( "autocomplete-item", t );
     if( field.searchClear ) { $(field.searchClear).show( ); }
   });
   field.bind( "resetSelection", function( e ) {
@@ -294,6 +295,7 @@ $.fn.taxonAutocomplete = function( options ) {
       field.wrappingDiv.find(".ac-select-thumb").html( autocompleter.defaultPhotoForResult( { } ) );
     }
     field.selection = null;
+    field.data( "autocomplete-item", null );
   });
   if( options.initialSelection ) {
     field.trigger( "assignSelection", options.initialSelection );
