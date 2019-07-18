@@ -284,23 +284,11 @@ class ObservationModal extends React.Component {
 
     const scrollSidebarToForm = form => {
       const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
-      const target = $( form );
       $( ":input:visible:first", form ).focus( );
-      $( sidebar ).scrollTo( target );
-    };
-
-    const showAgree = ( ) => {
-      if ( loadingDiscussionItem ) {
-        return false;
-      }
-      if ( !currentUserIdentification ) {
-        return observation.taxon && observation.taxon.is_active;
-      }
-      return (
-        observation.taxon
-        && observation.taxon.is_active
-        && observation.taxon.id !== currentUserIdentification.taxon.id
-      );
+      // Note that you need to scroll the element that can actually scroll.
+      // There are a lot of nested divs here, so make sure you're scrolling the
+      // right one
+      $( ".info-tab-content", sidebar ).scrollTo( form );
     };
 
     const qualityGrade = ( ) => {
@@ -709,31 +697,11 @@ class ObservationModal extends React.Component {
                     </div>
                   </div>
                   <div className="tools">
-                    <OverlayTrigger
-                      placement="top"
-                      delayShow={1000}
-                      overlay={(
-                        <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
-                          { I18n.t( "agree_with_current_taxon" ) }
-                        </Tooltip>
-                      )}
-                      container={$( "#wrapper.bootstrap" ).get( 0 )}
-                    >
-                      <Button
-                        bsStyle="default"
-                        disabled={agreeingWithObservation || !showAgree( )}
-                        className="agree-btn"
-                        onClick={( ) => agreeWithCurrentObservation( )}
-                      >
-                        { agreeingWithObservation ? (
-                          <div className="loading_spinner" />
-                        ) : (
-                          <i className="fa fa-check" />
-                        ) }
-                        { " " }
-                        { I18n.t( "agree_" ) }
-                      </Button>
-                    </OverlayTrigger>
+                    <Button bsStyle="default" onClick={( ) => addIdentification( )}>
+                      <i className="icon-identification" />
+                      { " " }
+                      { I18n.t( "add_id" ) }
+                    </Button>
                     <Button
                       bsStyle="default"
                       className="comment-btn"
@@ -742,11 +710,6 @@ class ObservationModal extends React.Component {
                       <i className="fa fa-comment" />
                       { " " }
                       { I18n.t( "comment_" ) }
-                    </Button>
-                    <Button bsStyle="default" onClick={( ) => addIdentification( )}>
-                      <i className="icon-identification" />
-                      { " " }
-                      { I18n.t( "add_id" ) }
                     </Button>
                   </div>
                 </div>
