@@ -356,6 +356,7 @@ pt-BR:
   additional_range: Distribuição adicional
   additional_range_data_from_an_unknown_source: Distribuição adicional para fontes
     desconhecidas
+  adjust_brightness: Ajustar o brilho
   admin: Administrador
   admin_s: Administrador(es)
   admin_any_projects: administra qualquer projeto
@@ -759,6 +760,8 @@ pt-BR:
     por vez
   can_you_help_your_friends_id_these: Você pode ajudar seus amigos a identificar isto?
   cancel: Cancelar
+  cant_edit_or_delete_hidden_content: Você não pode editar ou excluir o conteúdo que
+    foi ocultado pelos curadores do site
   cant_flag_an_object_that_doesnt_exist: Não pode marcar com alerta um objeto que
     não existe
   cant_merge_a_taxon_with_itself: Não pode combinar um táxon com ele mesmo.
@@ -1040,8 +1043,14 @@ pt-BR:
       e grupo.
     iucn: Código equivalente ao da Lista Vermelha IUCN
   conservation_summary: Resumo de Conservação
+  contact_support: Fale com o Suporte
   contain_all_descendants?: Este check list contém todos os representantes deste táxon
     que ocorrem na área?
+  content_hidden: Conteúdo oculto
+  content_hidden_by_user_on_date_because_reason_html: 'Conteúdo oculto por %{user}
+    em %{date} porque: "%{reason}"'
+  user_hid_this_item_because_reason_html: '%{user} ocultou isso %{item} porque "%{reason}"'
+  user_unhid_this_item_because_reason_html: '%{user} reexibir isso %{item} porque  "%{reason}"'
   contest: concurso
   continue: Continuar
   continue_to_site: Continuar para %{site_name}
@@ -1226,6 +1235,7 @@ pt-BR:
   dates: Datas
   datetime_: Data/Horário
   day: Dia
+  decrease_brightness: Diminuir o brilho
   default: padrão
   default_invite_comment: 'Ótima foto! Você deveria publicar ela no %{site_name}:
     {{INVITE_LINK}}'
@@ -1793,10 +1803,19 @@ pt-BR:
   hex_color_eg: 'Cor hexadecimal, ex: 65644F'
   hi: Olá,
   hi_user: Olá %{user}
-  hide: Ocultar
-  hide_details: Ocultar detalhes
+  hide_content: Ocultar conteúdo
+  hide_desc: |-
+    Esconder conteúdo irá removê-lo da exibição pública, mas as pessoas ainda serão
+    capaz de ver que algo estava escondido, e curadores do site e autor de
+    o conteúdo ainda poderá ver o conteúdo oculto. Geralmente, isso
+    aplica-se apenas ao conteúdo escrito, por ex. se você ocultar o conteúdo de um
+    identificação, a identificação ainda é visível, mas o identificador
+    observações estão ocultas. Você não pode desfazer isso e somente a equipe do site pode exibir
+    conteúdo, uma vez que tenha sido escondido, por isso tenha cuidado e use-o apenas para
+    conteúdo censurável.
   hide_running_total: Ocultar total Cumulativo
   hide_uncountable_species: Ocultar espécies incontáveis
+  hidden_content_explanation: O conteúdo foi ocultado
   high: Alta
   highest_rank: Categoria mais alta
   highlights: Destaques
@@ -1913,6 +1932,7 @@ pt-BR:
   inaturalist_network_affiliation: Filiação da Rede iNaturalist
   inbox: Caixa de entrada
   including: incluindo
+  increase_brightness: Aumentar o brilho
   in_order_to_login_and_using_site_visit_url: 'Para realizar login e começar a utilizar
     o site você deve visitar este endereço e ativar a sua conta:'
   in_progress: em progresso
@@ -3553,6 +3573,10 @@ pt-BR:
   please_confirm_your_account_html: Por favor reserve um segundo para <a href="%{url}">confirmar
     sua conta</a>.
   please_enter_a_new_pass: Por favor digite sua nova senha e confirme.
+  please_explain_why_you_want_to_hide_this: Por favor, explique por que você quer
+    esconder isso
+  please_explain_why_you_want_to_unhide_this: Por favor, explique por que você quer
+    mostrar isso
   please_fix_your_csv_and_try_again: Por favor arrume seu CSV e tente novamente.
   please_hold_on_while_the_file: Por favor aguarde enquanto este arquivo é gerado.
     Isto pode levar alguns minutos caso você tenha muitas observações.
@@ -3812,6 +3836,7 @@ pt-BR:
   reload_and_refresh: Recarregue e atualize a lista
   reload_from_observations: Atualizar a partir das observações
   reload_timed_out: O tempo expirou. Por favor, tente em alguns instantes novamente.
+  remarks_hidden: Observações ocultas
   remarks_optional: Comentários <span class="small description">(optional)</span>
   remember_its_a_lot_easier_to_id: Dica, é muito mais fácil (ID) identificar uma espécie
     se for disponibilizado a maior quantidade de informações possíveis. Antes de mais
@@ -3880,6 +3905,7 @@ pt-BR:
     a avaliação da qualidade dos dados.'
   research_grade_qualification: Qualificação à Nível de Pesquisa
   research_quality: Qualidade dos dados
+  reset_brightness: Repor brilho
   reset_search_filters: Restabelecer filtros de pesquisa
   reset_your_password: Redefinir a sua senha
   resolve: Solucionar
@@ -4050,6 +4076,7 @@ pt-BR:
   show_common_names: Mostrar nomes comuns
   show_counts: Exibir contagens baseadas na lista
   show_default_taxon_photos: Exibir fotos padrão para os táxons
+  show_hidden_content: Mostrar conteúdo oculto
   show_keyboard_shortcuts: Mostrar Teclas de Atalho
   show_kml: Exibir KML
   show_less: Mostrar menos
@@ -4812,6 +4839,9 @@ pt-BR:
   unblock: Desbloquear
   unclassified: Não classificado
   ungrafted_taxa: Táxons ainda não abordados
+  unhide_content: Mostrar conteúdo
+  unhide_desc: Exibir o material revelará esse conteúdo para todos verem. Curadores
+    ainda podem opte por ocultá-lo novamente no futuro.
   uninvite: cancelar o convite
   unique_identifier_of_this_taxon: Identificador único para esta espécie ou grupo
     na base de dados.
@@ -4964,6 +4994,7 @@ pt-BR:
     coordenadas ocultadas'
   user_trusts_you_with_their_private_coordinates_desc: O observador escolheu confiar
     em você com as coordenadas ocultadas de todas as suas observações.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> escreveu,
   username: Nome de usuário
   username_or_email: Nome de usuário ou email
   username_or_user_id: Nome de usuário ou identificação do usuário
@@ -4994,6 +5025,7 @@ pt-BR:
     observação
   view: Exibir
   view_all: Ver todas
+  view_all_flags: Ver todas as marcações
   view_all_from_x: Ver todos de %{x}
   view_all_members: Ver todos os membros
   view_all_n: Exibir todos %{n}
@@ -5021,6 +5053,8 @@ pt-BR:
   view_license: Ver licença
   view_lists: Ver listas
   view_listing: Ver listas
+  view_moderation_history: Ver histórico de moderação
+  view_moderation_history_for_this_comment: Ver histórico de moderação deste comentário
   view_more: Exibir mais
   view_more_about_x: Ver mais sobre %{x}
   view_more_observations: Ver mais observações
@@ -6526,6 +6560,8 @@ pt-BR:
         note_you_can_delete_the_time: '(Nota: você pode excluir o fuso horário e a
           hora exata se quiser incluir dias inteiros.)'
         or_drag_and_drop: (ou arraste e solte)
+        please_specify_the_requirements: Por favor especifique os requisitos para
+          as observações a serem adicionadas este projeto.
         please_specify_the_requirements_html: Por favor especifique os requisitos
           para as observações a serem adicionadas este projeto. Você pode especificar
           várias espécies, locais, usuários ou notas de qualidade a serem automaticamente
@@ -6549,6 +6585,7 @@ pt-BR:
           do projeto, então inclua os melhores no começo!
         project_summary_placeholder: Descubra e siga os pássaros do Golden Gate Park
           ...
+        show_projects_as_flags: Mostrar projetos como sinalizadores no mapa
         start_and_end_times_for_bioblitzes: Data e hora de início e término (para
           eventos do tipo bioblitz)
         umbrella_project_features: 'Recursos do projeto guarda-chuva:'
@@ -6574,6 +6611,13 @@ pt-BR:
           (por exemplo, pássaros, coníferas), sites (por exemplo, Brasil, Yellowstone),
           usuários e/ou datas para definir as observações que você deseja incluir
           em seu projeto.
+        errors:
+          name_is_required: Nome do projeto é obrigatório
+          name_less_than_100_characters: O nome do projeto deve ter menos de 100 caracteres
+          name_already_taken: Nome do projeto já usado
+          cannot_have_more_than_x_project_rules: Não é possível ter mais de %{x} regras
+            de projeto
+          summary_is_required: O texto do resumo do projeto é obrigatório
       project_location_privacy_notice_html: |-
         <p>
           Por favor este ciente de que os administradores de projetos serão capazes de acessar todos seus dados de localização, sejam elas ocultas ou privadas, a não ser que você revogue esta permissão além disso, eles serão capazes de adicionar qualquer uma de suas observações aos seus projetos a não ser que você <a href="/users/edit">altere suas configurações</a>. Você também pode permitir ou revogar o acesso de administradores de projetos as suas observações configurando uma à uma.

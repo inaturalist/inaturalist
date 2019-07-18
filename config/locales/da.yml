@@ -3,6 +3,7 @@
 # Export driver: phpyaml
 # Author: Abijeet Patro
 # Author: BoBrandt
+# Author: Fugithora
 # Author: IBDJ
 # Author: Joedalton
 # Author: Jorn Ari
@@ -79,7 +80,7 @@ da:
     one: 1 anden
     other: '%{count} andre'
   x_people_found_this_helpful:
-    one: En person synes dette var hjælpsomy
+    one: En person synes dette var hjælpsomt
     other: '%{count} personer synes dette var hjælpsomt'
   x_people_like_this:
     one: 1 person kan lide dette
@@ -134,12 +135,13 @@ da:
     blive dannet ud fra det videnskabelige navn af denne takson. Når du har gemt den
     nye takson, vil du kunne tilføje andre navne her (lokale navne, forældede videnskabelige
     navne osv.)
-  a_few_points_to_make_things_clear: 'Et par punkter for at gøre tingene mere klare:'
+  a_few_points_to_make_things_clear: 'Et par punkter for at gøre tingene lidt mere
+    tydelige:'
   a_flag_for_x: en markering for %{x}
-  a_greasemonkey_script: et Greasemonkey-skript
+  a_greasemonkey_script: et Greasemonkey-script
   a_member_of: Et medlem af
   a_member_of_taxon_html: et medlem af %{taxon}
-  able_to_connect_flickr: Super! Det lykkedes os at tilknytte din Flickr konto.
+  able_to_connect_flickr: Super! Det lykkedes os at tilknytte din Flickr-konto.
   about: Om
   about_bioblitz_results: Om bioblitz resultater
   about_blocking: Om blokering
@@ -160,15 +162,28 @@ da:
   about_the_cc_licenses: Om Creative Commons licenser
   about_the_taxobox_raquo: Om taksonboksen &raquo;
   about_these_licenses: Om disse licenser
-  about_this_bioblitz: Om bioblitzen
+  about_this_bioblitz: Om denne bioblitz
   about_this_map: Om dette kort
   about_this_project: Om dette projekt
+  about_trips_html: <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværende-fraværende
+    kriterium ved at tilføje kontekst til dine observationer</h4><p><strong>Hvorfor</strong>
+    Tilstedeværende-fraværende data inkluderer information om indsamlingsindsatsen,
+    hvilket er nyttigt for videnskabelige analyser som udbredelsesmodellering (rå
+    iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong>
+    En tur tilføjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong>
+    du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li>
+    <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på din
+    målliste, som du var i stand til at observere inden for søgeområdet og intervallet
+    tolkes som tilstedeværende. Derimod tolkes arter som du ikke kunne observere som
+    værende fraværende. Klik på 'Tabuler tilstedeværende-fraværende data fra tur'
+    for at generere en tabel over tilstedeværende-fraværende registreringer for en
+    art fra ture og tilhørende observationer. <a href='%{url}'>Lær mere</a></p>
   about_x: Om %{x}
   acc: Nøj. (m)
   account: Konto
   account_creation: Kontooprettelse
   account_settings: Kontoindstillinger
-  accept: accept
+  accept: acceptér
   accept_community_identifications: Accepter fællesskabets identifikationer
   accuracy: Nøjagtighed
   accuracy_m: Nøjagtighed (m)
@@ -181,7 +196,7 @@ da:
   action: Handling
   actions: Handlinger
   activate_user: Aktivér bruger
-  active: aktiv
+  active: Aktiv
   active_users: Aktive brugere
   activity: Aktivitet
   activity_settings: Aktivitetsindstillinger
@@ -246,7 +261,8 @@ da:
   add_more_photos: Tilføj flere fotos
   add_new_lexicon: Tilføj nyt leksikon
   add_new_observations: Tilføj nye observationer
-  add_new_photos_by_their_ids: Tilføj nyt foto via Flickr ID (skal være Creative Commons!)
+  add_new_photos_by_their_ids: Tilføj nye fotos via Flickr ID'er (skal være Creative
+    Commons!)
   add_new_place: Tilføj et nyt sted
   add_new_rule: Tilføj en ny regel
   add_new_source: Tilføj en ny kilde...
@@ -330,6 +346,7 @@ da:
   additional_range: Yderligere område
   additional_range_data_from_an_unknown_source: Yderligere område data fra en ukendt
     kilde
+  adjust_brightness: Justér lysstyrke
   admin: Administrator
   admin_s: Administrator(er)
   admin_any_projects: administrerer et hvert projekt
@@ -478,6 +495,7 @@ da:
   amphibiaweb_taxonomy: AmphibiaWeb taksonomi
   an: en
   an_: et
+  ancestor_taxon: Stamfader Takson
   and: og
   and_choose_a_matching_taxon: og vælg en matchende takson fra listen. Hvis du ikke
     ender med noget som
@@ -734,6 +752,8 @@ da:
   can_you_help_your_friends_id_these: Kan du hjælpe dine venner med at identificere
     disse?
   cancel: Annullér
+  cant_edit_or_delete_hidden_content: Du kan ikke redigere eller slette indhold, som
+    er blevet skjult af sidens kuratorer
   cant_flag_an_object_that_doesnt_exist: Kan ikke markere et objekt, som ikke eksisterer
   cant_merge_a_taxon_with_itself: Kan ikke sammenlægge en takson med sig selv.
   captive: I fangenskab
@@ -863,9 +883,9 @@ da:
   check_out_your_life_list: Se din livsliste
   check_this_box_if_html: |-
     Marker dette felt, hvis du vil anvende en
-    <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Creative Commons Attribution-NonCommercial license</a>
-    til dine foto´s. Du kan altid vælge en anden licens eller fjerne licensen
-    senere, men dette er den bedste licens til deling med forskere.
+    <a href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Kreditering-Ikkekommerciel 4.0 International licens</a>
+    til uploadet indhold. Det betyder, at alle kan kopiere eller genanvende din fotos og/eller observationer uden at spørge om lov, så længe at du krediteres og indholdet ikke bruges kommercielt. Du kan altid vælge en anden licens eller fjerne licensen senere, men dette er den bedste licens til deling med forskere.
   checklist: Tjekliste
   checklists: Tjeklister
   checklist_places: Tjekliste steder
@@ -1002,8 +1022,15 @@ da:
     geoprivacy: Standard geofortrolighed for denne taksons observationer
     iucn: Tilsvarende IUCN Rødliste kode
   conservation_summary: Bevaringsoversigt
+  contact_support: Kontakt support
   contain_all_descendants?: Indeholder denne tjekliste alle efterkommere af denne
     taxon, der forekommer her?
+  content_hidden: Indhold skjult
+  content_hidden_by_user_on_date_because_reason_html: 'Indhold skjult af %{user} den
+    %{date} fordi: "%{reason}"'
+  user_hid_this_item_because_reason_html: '%{user} skjulte dette %{item} fordi "%{reason}"'
+  user_unhid_this_item_because_reason_html: '%{user} valgte af vise %{item} igen fordi
+    "%{reason}"'
   contest: konkurrence
   continue: Fortsæt
   continue_to_site: Fortsæt til %{site_name}
@@ -1182,6 +1209,7 @@ da:
   dates: datoer
   datetime_: Dato/Tidspunkt
   day: Dag
+  decrease_brightness: Mindsk lysstyrke
   default: standard
   default_invite_comment: 'Godt billede! Du bør sende det til %{site_name}: {{INVITE_LINK}}'
   default_observation_license: Standard observations licens
@@ -1734,6 +1762,7 @@ da:
   helped_the_observer_make: hjalp observatøren til at finde deres endelige Id (dvs.
     de blev lavet før det endelige Id og de matcher det)
   here_are_3_examples: Her er 3 eksempler på data i korrekt formattering
+  here_are_our_top_suggestions: Her er vores bedste forslag
   here_are_our_top_species_suggestions: Her er vores topforslag til art
   here_are_some_things_you_can_do_meantime: 'Her er nogle ting du kan gøre i mellemtiden:'
   here_are_some_things_you_can_do_in_the_meantime: Her er nogle ting du kan gøre i
@@ -1742,10 +1771,18 @@ da:
   hex_color_eg: Hex farve, f.eks. 65644F
   hi: Hej,
   hi_user: Hej,%{user}
-  hide: Skjul
-  hide_details: Skjul detaljer
+  hide_content: Skjul indhold
+  hide_desc: Skjulning af indhold vil fjerne det fra offentlig visning, men folk vil
+    stadig kunne se, at noget er blevet skjult, og hjemmesidens kuratorer og indholdets
+    forfatter vil stadig kunne se det skjulte indhold. Generelt gælder dette kun for
+    skrevet indhold, dvs. hvis du skjuler indholdet af en identifikation, vil selve
+    identifikationen stadig være synlig, men bemærkninger fra personen bag identifikationen
+    vil være skjult. Du kan ikke fortryde dette, og kun hjemmesidens personale kan
+    gøre indhold synligt igen, når det først er blevet skjult, så vær forsigtig og
+    brug kun dette ved meget anstødeligt indhold.
   hide_running_total: Skjul igangværende total
   hide_uncountable_species: Skjul arter der ikke medregnes
+  hidden_content_explanation: Indhold er blevet skjult
   high: Høj
   highest_rank: Højeste rang
   highlights: Højdepunkter
@@ -1866,6 +1903,7 @@ da:
   inaturalist_network_affiliation: iNaturalist Network tilknytning
   inbox: Indbakke
   including: inklusiv
+  increase_brightness: Øg lysstyrke
   in_order_to_login_and_using_site_visit_url: 'For at logge ind og begynde at bruge
     web-siden, skal du besøge denne webadresse for at aktivere din konto:'
   in_progress: i gang
@@ -1885,6 +1923,8 @@ da:
   inat_user_profile: '%{site_name}: %{user}''s profil'
   inat_will_be_back_on: '%{site_name} vil være tilbage på sine fødder / vinger / finner
     / tentakler / pseudopodier'
+  inaturalist_is_a_joint_initiative: '%{site_name} er et fælles initiativ fra California
+    Academy of Sciences og National Geographic Society.'
   inaturalist_is_an_online_community: '%{site_name} er et online fællesskab for naturelskere!
     Ved at tilføje dit billede kan du hjælpe forskere med at lære mere om'
   inaturalist_is_catching_some_zs: '%{site_name} snorksover'
@@ -2697,8 +2737,7 @@ da:
   obscured: Sløret
   obscured_or_private: Sløret eller privat
   obscured_description: Offentlige koordinater vist som et tilfældigt punkt inden
-    for 10KM af de korrekte koordinater. Korrekte koordinater er kun synlige for dig
-    og kuratorerne for projekter, som du tilføjer observationen til.
+    for 0,2 længde- og breddegrad af feltet, som indeholder de korrekte koordinater.
   observation: Observation
   observation_: observation
   observation_added: Observation tilføjet
@@ -2792,6 +2831,8 @@ da:
   observations_removed_from_the_project: Observationer fjernet fra dette projekt %{project}
   observations_saved: Observation(er) gemt!
   observations_specifying_this_field: Observationer, der angiver dette felt
+  observations_specifying_this_field_with_value: Observationer med %{value} i dette
+    felt
   observations_text_search_warning: |-
     Tekstsøgninger kan give underlige resultater, når de kombineres med andre filtre. Hvis du vil finde observationer af en bestemt art, brug takson
     filtret.
@@ -2934,6 +2975,10 @@ da:
     projekt sammenlægning
   only_species: kun arter
   only_species_and_subspecies: kun arter og underarter/varianter
+  only_staff_can_edit_large_places: Kun hjemmesidens personale kan redigere meget
+    store steder
+  only_staff_can_edit_standard_places: Kun hjemmesidepersonale kan redigere steder
+    i standardhierarkiet
   only_the_author_of_this_post_can_do_that: Kun forfatteren af dette indlæg kan gøre
     det. Vær ikke ond.
   only_the_owner_of_this_list_can_do_that: Kun ejeren af denne liste kan gøre det.
@@ -3063,6 +3108,17 @@ da:
   photos_updated: Foto´s opdateret
   google_account_not_linked: '%{user} har ikke længere en tilknyttet Google-konto,
     så %{site_name} har ikke tilladelse til at få adgang til dette billede.'
+  pi_consent_desc_title: Om personlig information
+  pi_consent_desc_html: |-
+    Vi opbevarer personlig information som brugernavne og e-mailadresser for at administrere konti på dette site, og for at overholde persondataloven beder vi dig markere denne boks for at indikere at du accepterer denne brug af
+    personlig information. Se mere om hvilken information vi indsamler og hvordan vi bruger den i vores <a href='%{privacy_url}' target='_blank'>fortrolighedspolitik</a>
+    og vores <a href='%{terms_url}' target='_blank'>brugerbetingelser</a>.
+  pi_consent_label: Jeg accepterer, at iNaturalist får tilladelse til at gemme og
+    behandle begrænsede former for personlig information om mig for at administrere
+    min konto
+  pi_consent_child_label: Jeg accepterer, at iNaturalist får tilladelse til at gemme
+    og behandle begrænsede former for personlig information om mit barn for at administrere
+    mit barns konto
   picasa_identity: Picasa Identitet
   pick_a_username: Vælg et brugernavn
   pin_verb: Gem
@@ -3477,6 +3533,10 @@ da:
   please_confirm_your_account_html: Brug venligst et sekund til at <a href="%{url}">
     bekræft din konto </a>.
   please_enter_a_new_pass: Indtast venligst en ny adgangskode og bekræft den.
+  please_explain_why_you_want_to_hide_this: Forklar venligst hvorfor du vil skjule
+    dette
+  please_explain_why_you_want_to_unhide_this: Forklar venligst hvorfor du ikke længere
+    vil skjule dette
   please_fix_your_csv_and_try_again: Ret venligst din CSV og prøv igen.
   please_hold_on_while_the_file: Vent venligst, mens filen genereres. Det kan tage
     et par minutter, hvis du har mange observationer.
@@ -3731,6 +3791,7 @@ da:
   reload_and_refresh: Genindlæs og opdatér liste
   reload_from_observations: Genindlæs fra observationer
   reload_timed_out: Genindlæsning fejlede. Prøv igen senere.
+  remarks_hidden: Bemærkninger skjult
   remarks_optional: Bemærkninger <span class="kort beskrivelse">(optional)</span>
   remember_its_a_lot_easier_to_id: Husk, det er meget nemmere at identificere noget,
     hvis du opgiver så mange beskrivende oplysninger som muligt. Vigtigst er det,
@@ -3799,6 +3860,7 @@ da:
     af datakvaliteten.
   research_grade_qualification: Kvalifikation til Forskningskvalitet
   research_quality: Forskningskvalitet
+  reset_brightness: Nulstil lysstyrke
   reset_search_filters: Nulstil søgefiltre
   reset_your_password: Nulstil din adgangskode
   resolve: Løs
@@ -3967,6 +4029,7 @@ da:
   show_common_names: Vis lokale navne
   show_counts: Vis antal baseret på listen.
   show_default_taxon_photos: vis standard takson foto´s
+  show_hidden_content: Vis skjult indhold
   show_keyboard_shortcuts: Vis tastaturgenveje
   show_kml: Vis KML
   show_less: Vis mindre
@@ -4446,8 +4509,8 @@ da:
     eller intelligente rumvæsener)
   the_community_id_requires_at_least_two_identifications: Fællesskabs ID kræver mindst
     to identifikationer.
-  the_community_must_feel_that: Fællesskabet må være sikre på, at fællesskabs ID'et
-    er det bedste, det kan være, baseret på beviserne
+  the_community_must_feel_that: Fællesskabet må mene, at fællesskabs ID'et er det
+    bedste, det kan være, baseret på beviserne
   the_data_quality_assessment_is: Vurderingen af datakvaliteten er resultatet af en
     observations nøjagtighed. Alle observationer starter som <strong>"uformel"</strong>
     kvalitet og opnår <strong>"forsknings"</strong> kvalitet når
@@ -4712,6 +4775,9 @@ da:
   unblock: Ophæv blokering
   unclassified: Uklassificeret
   ungrafted_taxa: Ikke podede taksa
+  unhide_content: Vi skjult indhold
+  unhide_desc: Skjules dette indhold ikke længere vil alle kunne se det. Kuratorer
+    kan stadig vælge at skjule det igen senere.
   uninvite: fjern invitation
   unique_identifier_of_this_taxon: Unik identifikator af denne takson i kildedatabasen.
   unique_observers: unikke observatører
@@ -4807,6 +4873,9 @@ da:
   use_well_formed_csv: |-
     Brug korrekt formateret CSV. Det betyder, at tekst med kommaer skal indsættes i
     dobbelte anførselstegn. De fleste regnearksprogrammer kan eksportere CSV i dette format.
+  used_x_times:
+    one: brugt 1 gang
+    other: brugt %{count} gange
   user: Bruger
   user_added_a_x: '%{user} tilføjede en %{x}'
   user_added_a_x_to_noun_by_html: '%{user} tilføjede en %{x} til %{noun} af %{by}'
@@ -4824,11 +4893,13 @@ da:
   user_commented: '%{user} kommenterede'
   user_commented_on: '%{user} kommenterede på din %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} er uenig i denne %{taxon}'
+  user_disagrees_with_previous_finer_identifications: '%{user} er uenig med tidligere,
+    mere præcise identifikationer'
   user_faved_a_noun_by_owner: '%{user} synes godt om %{noun} af %{owner}'
   user_flagged_as_a_spammer_html: '%{user} markeret som spammer'
   user_flagged_as_a_non_spammer_html: '%{user} markeret som ikke-spammer'
   user_follows: '%{user} følger'
-  user_has_opted_out_of_community_id: Bruger er blevet afmeldt af fællesskabs ID
+  user_has_opted_out_of_community_id: Bruger har afmeldt sig fællesskabs ID
   user_has_opted_out_of_community_ids: '%{user}har valgt at bevare kontrollen over
     taksa tilknyttet deres observationer'
   user_has_opted_out_of_community_ids_for_this_obs: '%{user}har valgt at bevare kontrollen
@@ -4855,6 +4926,7 @@ da:
     skjulte koordinater'
   user_trusts_you_with_their_private_coordinates_desc: Observatøren har valgt at betro
     dig med alle skjulte koordinater for alle sine observationer.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> skrev,
   username: Brugernavn
   username_or_email: Brugernavn eller e-mail
   username_or_user_id: Brugernavn eller bruger ID
@@ -4885,6 +4957,7 @@ da:
     dato
   view: Vis
   view_all: Vis alle
+  view_all_flags: Vis alle markeringer
   view_all_from_x: Vis alle fra %{x}
   view_all_members: Vis alle medlemmer
   view_all_n: Vis alle %{n}
@@ -4912,6 +4985,8 @@ da:
   view_license: Vis licens
   view_lists: Vis lister
   view_listing: Vis opførelse
+  view_moderation_history: Vis ændringshistorik
+  view_moderation_history_for_this_comment: Vis ændringshistorik for denne kommentar
   view_more: Se flere
   view_more_about_x: Vis mere om %{x}
   view_more_observations: Vis flere observationer
@@ -5088,6 +5163,11 @@ da:
   widget_code: Widget kode
   widget_for: Widget for
   will_be: vil være
+  wikipedia_attribution_cc_by_sa_3: 'Kilde: Wikipedia, "%{title}", %{url}, CC BY-SA
+    3.0'
+  wikipedia_attribution_cc_by_sa_3_html: |-
+    Denne artikel bruger materiale fra Wikipedia-artiklen <a href="%{url}">"%{title}"</a>, som er frigivet under licensen <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+    Commons Kreditering-Deling på samme vilkår 3.0 Ikke porteret</a>. Indhold kan være blevet udeladt fra originalen, men intet indhold er blevet ændret eller tilføjet.
   wikipedia_entry: Wikipedia indgang
   wikipedia_taxobox_raquo: Wikipedia taksoboks &raquo;
   with: med
@@ -5142,8 +5222,10 @@ da:
   "yes": Ja
   yes_find_them!: Ja, find dem!
   yes_i_want_to_join: Ja, jeg ønsker at blive medlem
+  yes_license_my_childs_observations: Ja, licensér mit barns fotos, lyde og observationer,
+    så forskere kan bruge data.
   yes_license_my_observations_so_scientists_can_use: Ja, licensér mine billeder, lyde
-    og observationer, så forskere kan bruge mine data!
+    og observationer, så forskere kan bruge mine data.
   yes_reject_it: Ja, afvis det
   yes_show_this_in_the_box: Ja, vis dette i den store boks øverst på/taksa
   yesterday: I går
@@ -5769,7 +5851,10 @@ da:
       from: Fra
       to: Til
       subject: Emne
+      subject_body: Emne / Indhold
       index:
+        show_messages_from_user: Vis beskeder fra %{user}
+        show_messages_to_user: Vis beskeder til %{user}
         speech_privilege_notice: |-
           Du kan sende nye beskeder, når du har tilføjet tre
           verificerbare observationer eller tre identifikationer for andre. I øjeblikket kan du læse og svare på beskeder, andre personer sender dig.
@@ -5899,6 +5984,9 @@ da:
         you_reviewed_message: Du har gennemgået %{reviewed} af %{pageTotal} observationer
           på denne side ud af %{total} matchende observationer.
         unreview_all_tooltip: Fjern gennemgået status for alle observationer på siden
+        too_many_results_desc: |-
+          Side antal gange antallet af resultater per side må ikke overstire 10.000.
+          Prøv at bruge filtre for at reducere antallet af resultater, eller marker observationer som gennemgået og brug "Se mere" knappen i stedet for sideinddeling
       import:
         coordinate_systems_help: |-
           %{site_name} accepterer koordinater ved hjælp af flere forskellige koordinat
@@ -5933,47 +6021,38 @@ da:
         allow_curator_coordinate_access_desc_html: Tillad projekt kuratorer at se
           de skjulte koordinater for denne observation.
         ancestor_disagreements_desc: Antal af identificerede taksa, der er blandt
-          en taksons stamfædre, men blev oprettet efter den første identifikation
-          ved hjælp af denne takson
+          en taksons stamfædre, men ikke stemmer overens med dette takson (dvs. "Jeg
+          tror det er indenfor slægten, men jeg er uenig i arten")
         community_taxon_desc_html: |-
           <p class="ui">
             Fællesskabets takson (eller
             fællesskabets identifikation) fortæller hvilken takson %{site_name}
-            fællesskabet mener, er afbildet i en observation. Hvis du er interesseret i, hvordan
-            vi vælger et fællesskabs takson, så se noterne på algoritmen nedenfor,
+            fællesskabet mener, er afbildet i en observation. Hvis du er interesseret i at vide, hvordan
+            vi vælger et fællesskabstakson, så se bemærkningerne om algoritmen nedenfor,
             men generelt forsøger vi at <strong>vælge en takson som mere end 2/3  af
             identifikatorerne er enige i </strong>. Nogle gange betyder det et valg
             af et højere taksonomisk niveau, der indeholder en række uenigheder
-            om taksa (f.eks. du synes det er en kongeslange, og jeg tror det er
-            klapperslange, så vælger iNat underorden slanger Serpentes) som
-            indeholder alle slanger). Algoritmen favoriserer også lidt
-            uenighed, fordi vi har fundet ud af, at dem der er uenige ofte har
+            om taksa (f.eks. hvis du synes det er en kongeslange, og jeg mener det er
+            klapperslange, så vælger iNat underordenen slanger Serpentes) som
+            indeholder alle slanger). Algoritmen favoriserer også til dels uenighed, fordi vi har fundet ud af, at dem der er uenige ofte har
             ret.
           </p>
           <p class="ui">
-            Fællesskabets takson er den takson, vi bruger, når vi deler
+          En observation af forskningskvalitet skal (blandt andre kriterier) have et fællesskabstakson. Hvis en observation kun har én identifikation, vil den ikke have et fællesskabstakson. Alle observationer med mindst én identifikation vil også have observationstakson. Denne observationstakson er den takson vi bruger, når vi deler
             observationer med datapartnere, samler observationer af samme
-            takson på siden, opdatering af din livsliste mv. Hvis du af en
+            takson på hjemmesiden, opdatering af din livsliste etc. I de fleste tilfælde vil observationstakson ende med at blive til fællesskabets takson, men sommetider vil de afvige, især før fællesskabet har fundet til enighed om en identifikation. Hvis for eksempel du mener, at det er en slange (underordenen Serpentes) og jeg mener, at det er en kongesnog (slægten <i>Lampropeltis</i>), vil observationstakson blive kongesnog (kun understøttet af min identifikation), men fællesskabets takson vil være serpentes (understøttet af mindst to identifikationer). Hvis du af en
             eller anden grund ikke er enig med fællesskabets takson, kan du
-            afvise det, hvilket betyder at DIT ID er det, der bruges til at
-            forbinde det til andre observationer, opdatering af livslister
-            mv. Det betyder også, at din observation kun kan opnå
-            forskningskvalitet hvis fællesskabet er enig med <em>dig</em>.Hvis
-            du ikke kan lide hele ideen om fællesskabs taksa, kan du fravælge
-            dem helt ved <a href="/brugere/redigér" target="_blank">redigering
-            af dine indstillinger</a>.
+            afvise det, hvilket betyder at observationstakson aldrig vil blive sat til fællesskabets takson (i stedet for din eget identifikation). Det betyder også, at din observation kun kan opnå
+            forskningskvalitet hvis fællesskabet er enig med <em>dig</em>. Hvis
+            du ikke kan lide ideen om fællesskabstaksa, kan du fravælge
+            dem helt ved at <a href="/users/edit" target="_blank">redigere
+            dine indstillinger</a>.
           </p>
           <p class="ui">
-            <strong>Algoritmen:</strong> For alle identificerede taksa og de
+            <strong>Algoritmen:</strong> for alle identificerede taksa og de
             taksa, der indeholder dem (f.eks. slægt <i>Homo</i> indeholder
-            <i>Homo sapiens </i>), score hver som forholdet mellem antallet af
-            kumulative ID'er for  det takson over summen af ​​de kumulative
-            ID'er, antallet af mere konservative ID'er tilføjet efter det
-            første ID af det pågældende takson,  og antallet af ID'er, der
-            er helt forskellige (dvs. ID'er af taksa, der ikke indeholder
-            taksonen bliver scoret). For identificerede taksa, der har en
-            score på over 2/3 og mindst 2 identifikationer, vælges den laveste
-            rangerede takson.
+            <i>Homo sapiens </i>), scorer hver som forholdet mellem antallet af 'enigheder - kumulative ID'er for det takson over summen af ​​de kumulative
+            ID'er, 'uenigheder' - antallet af ID'er der er helt forskellige (dvs. ID'er af taksa der ikke indholder det takson som scores) og 'stamfader-uenigheder' - antallet af mere konservative ID'er, der ikke stemmer overens med det finere takson. For identificerede taksa, der har en score på over 2/3 og med mindst 2 identifikationer, vælges den lavest rangerede takson.
           </p>
         cumulative_count_desc: Antal af identifikationer for en enkelt takson og alle
           dets efterkommere
@@ -6082,6 +6161,78 @@ da:
           <a href="%{url}"> observationseksport siden </a> for en liste over din eksport.
       parental_consent:
         subject: Dit barn ønsker at benytte iNaturalist
+        content_html: |-
+          <p>
+            Dit barn bruger <strong>Seek af iNaturalist</strong>
+            lærings-app'en og vil gerne dele data med borgervidenskabs-platformen iNaturalist. Da posteringer på iNaturalist afslører
+            personligt identificerbare oplysninger, kan iNaturalist ikke bruges af en person under 13 år uden samtykke fra en forælder.
+          </p>
+          <p>
+            <strong>Seek af iNaturalist</strong> kan bruges uden at oprette en konto, og ingen personligt identificerbare oplysninger vil blive delt,
+            men dit barn vil ikke kunne bidrage med observationer til iNaturalist. iNaturalist borgervidenskabeligt socialt netværk, hvor deltagere deler observationer og identifikationer af levende ting for at lære hinanden om naturen og skabe biodiversitetsdata for videnskaben.
+          </p>
+          <p>
+            Hvis du gerne vil give dit barn samtykke til at bruge iNaturalist,
+            har vi brug for at du gør følgende:
+          </p>
+          <ol>
+            <li>
+              <p>
+                Opret en iNaturalist-konto, som dit barn vil bruge ved at følge dette link:
+                <a href="%{registration_url}">%{registration_url}</a>
+              </p>
+            </li>
+            <li>
+              <p>
+                Efter du opretter dit barns konto, vil vi bede dig om at give en lille donation på 1 US dollar med et kreditkort til iNaturalist for at bekræfte, at du er voksen. Sørg venligst for at benytte samme e-mailadresse, som du indtastede i "Forælder e-mail" under oprettelse, når du laver din donation.
+              </p>
+            </li>
+            <li>
+              <p>
+                Når vi behandler donationen, vil vi sende dig endnu en e-mail for at oplyse dig om, at dit barns konto er blevet aktiveret, og at du kan bruge iNaturalist-brugernavnet og adgangskoden, du oprettede, til at logge ind på dit barns Seek-app.
+              </p>
+            </li>
+          </ol>
+          <p>
+            iNaturalist indsamler følgende personligt identificerbare oplysninger:
+          </p>
+          <ol>
+            <li>
+              <p>
+                <strong>e-mailadresse (privat):</strong> enhver iNaturalist-konto har en tilknyttet e-mailadresse, som ikke offentliggøres.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>brugernavn (offentligt, obligatorisk):</strong> enhver iNaturalist-konto har et offentligt brugernavn og bruger-identifikationsnummer.
+                Brugernavnet behøver ikke at ligne personens rigtige navn, men det kan bruges til at kontakte personen via offentlige kommentarer og private direkte beskeder.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>IP-adresse (privat, obligatorisk):</strong> iNaturalist
+                indsamler, men offentliggøre ikke brugerens IP-adresse, som kan bruges til at udlede personligt identificerbare oplysninger såsom placering (med nøjagtighed på by-niveau).
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>Profilbillede (offentligt, valgfrit):</strong> iNaturalist-konti har mulighed for at have et profilbillede, som ofte er billeder af brugeren.
+              </p>
+            </li>
+            <li>
+              <p>
+                <strong>observationsplacering (offentlig eller privat,
+                obligatorisk):</strong> iNaturalist-observationer inkluderer placeringsinformation om, hvor observationen blev gjort. Dette kan gøres offentlig eller forblive privat, men der er offentlig som standard.
+              </p>
+            </li>
+          </ol>
+          <p>
+            iNaturalist tillader og brugere at dele offentlige billeder, offentlige kommentarer og private direkte beskeder i forbindelse med deres konto.
+            Der er muligt, at brugere kan inkluderer personligt identificerbare oplysninger i deres brugerskabte indhold.
+          </p>
+          <p>
+            Lær mere om iNaturalist’s privatlivspolitik <a href="%{privacy_policy_url}">her</a>.
+          </p>
       photos_missing:
         subject: Nogle billeder behøver reparation
         we_have_been_housekeeping: |2-
@@ -6102,6 +6253,26 @@ da:
           vil forblive. De vil blive revurderet, efter at billederne er slettet, og det er muligt
           nogle observationer af forskningskvalitet vil blive almindelige, hvis de ikke længere har nogen billeder.
         we_included_links: Vi har medtaget links til de berørte billeder nedenfor.
+      user_parent_confirmation:
+        subject: Dit barns iNaturalist-konto er blevet aktiveret
+        content_html: |-
+          <p>
+            Tak fordi du har oprettet en iNaturalist-konto til dit barn! Kontoen er blevet aktiveret. Her er de detaljer, som du oplyste, og som vi har gemt:
+          </p>
+          <ul>
+            <li><strong>Forælder eller værges navn:</strong> %{parent_name}</li>
+            <li><strong>Forælder eller værges e-mail:</strong> %{parent_email}</li>
+            <li><strong>Barns navn:</strong> %{child_name}</li>
+            <li><strong>Barns fødselsdag:</strong> %{child_birthday}</li>
+            <li><strong>Børnekonto e-mail:</strong> %{child_email}</li>
+            <li><strong>Børnekonto brugernavn:</strong> %{child_username}</li>
+          </ul>
+          <p>
+            Log venligst ind på kontoen fra dit barns Seek's app ved at trykke på "iNaturalist"-knappen i menuen og dernæst "Log ind med iNaturalist" i bunden af skærmen.
+          </p>
+          <p>
+            Dit barn vil da kunne oprette observationer på deres iNaturalist-konto med Seek-app'en, så de kan ses på iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: |-
           Du har været inaktiv på %{site_name} et stykke tid, så vi har suspenderet
@@ -6325,6 +6496,8 @@ da:
         note_you_can_delete_the_time: '(OBS: Du kan slette tidszone og nøjagtige tidspunkt,
           hvis du i stedet vil bruge hele dage.)'
         or_drag_and_drop: (eller træk og slip)
+        please_specify_the_requirements: Præciser venligst betingelserne for at observationerne
+          kan tilføjes til projektet.
         please_specify_the_requirements_html: |-
           Angiv venligst kravene til de observationer, der kan tilføjes til
           dette projekt. Du kan angive flere arter, steder, brugere eller
@@ -6346,6 +6519,7 @@ da:
           ca. 200 karakterer vil blive synlige i banneret i højre side på projektsiden,
           så begynd med det bedste!
         project_summary_placeholder: Opdag og følg Golden Gate Parks fugle...
+        show_projects_as_flags: Vis projekter som flag på kort
         start_and_end_times_for_bioblitzes: Start og slut tidspunkt for bioblitzer
         umbrella_project_features: 'Paraplyprojekt egenskaber:'
         unique_url_for_outreach: Unik URL til opsøgning
@@ -6360,9 +6534,19 @@ da:
           datoer, som du har defineret. Vælg mellem to typer: Samlingsprojekter og
           Paraplyprojekter, som deler følgende egenskaber:'
         welcome_to_projects: Velkommen til projekter!
+        you_can_learn_more_html: Du kan lære mere om at administrere projekter <a
+          href="https://www.inaturalist.org/pages/managing-projects">her</a> eller
+          læse historien om projekter på <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist">vores
+          blog</a>.
         you_have_not_defined_any_observation_requirements: |-
           Du har ikke defineret nogen observationskrav. Sørg for at vælge en eller flere taksa
           (f.eks. fugle, nåletræer), steder (f.eks Brasilien, Yellowstone), brugere og/eller datoer for at definere de observationer, du vil medtage i dit projekt.
+        errors:
+          name_is_required: Projektnavn er påkrævet
+          name_less_than_100_characters: Projektnavn skal være kortere end 100 tegn
+          name_already_taken: Projektnavn allerede taget
+          cannot_have_more_than_x_project_rules: Kan ikke have mere end %{x} projektregler
+          summary_is_required: Projektsammenfatning er påkrævet
       project_location_privacy_notice_html: |-
         <P>
            Vær opmærksom på, at projektets kuratorer vil kunne se enhver privat eller
@@ -6902,6 +7086,49 @@ da:
         take_a_chance_to_review_html: Grib chancen for at gennemse <a href="%{link}">vores
           retningslinjer</a>
         this_user_was_banned: Denne bruger er blevet suspenderet
+    user_parents:
+      confirm:
+        thanks_donor_html: |-
+          <p>
+            Tak for at være en iNaturalist-donor! Vi kunne bruge din eksisterende donation til at bekræfte din identitet og behøver ikke yderligere handling fra dig. <strong>Dit barns konto er blevet aktiveret.</strong>
+          </p>
+          <p>
+            Log venligst indtil kontoen på dit barns Seek-app ved at trykke på "iNaturalist"-knappen i menuen og dernæst "Log ind med iNaturalist" i bunden af skærmen.
+          </p>
+          <p>
+            Dit barn vil da kunne oprette observationer på deres iNaturalist-konto ved hjælp af Seek-app'en, så de kan ses på iNaturalist.org.
+          </p>
+        thanks_for_creating_a_minor_account: TAK FOR AT OPRETTE EN MINDREÅRIG KONTO!
+        we_will_send_you_an_email: Vi sender en e-mail til dig, når dit barns konto
+          er blevet aktiveret.
+      new:
+        child_name_private: Barns navn (privat)
+        create_a_minor_account: Opret en mindreårig konto
+        create_minor_account: Opret mindreårig konto
+        parent_name_private: Navn på forælder eller værge (privat)
+        parent_email: Forælder eller værges e-mail (privat)
+        inaturalist_minor_account_signup: iNaturalist mindreårig kontooprettelse
+        parent_information_private: Forælderinformation (privat)
+        step1_title: OPRET EN KONTO TIL DIT BARN
+        step1_desc: For at overholde persondataloven skal vi bruge en forælder eller
+          værges samtykke for at oprette en konto til en person under 13 år. Hvis
+          du ønsker at dit barn skal bruge iNaturalist, skal du give os nogle identitets-
+          og kontaktoplysninger.
+        step2_title: BEKRÆFT DIN IDENTITET MED ET KREDITKORT
+        step2_desc: For at bekræfte din identitet som voksen, har vi brug for at du
+          giver en nominel donation på mindst 1 US$ dollar til iNaturalist med et
+          kreditkort. Dette er den mindst påtrængende form for identifikationsbekræftelse,
+          som gør det muligt for os at overholde persondataloven. Vær venligst opmærksom
+          på at bruge samme e-mailadresse, som du indtastede som "forælder e-mail"
+          i forrige trin.
+        step3_title: VENT PÅ BEKRÆFTELSES E-MAIL
+        step3_desc: Når vi har matchet den e-mail, som blev brugt til donationen,
+          til den e-mail du angav som "forælder e-mail", vil vi aktivere barnets konto
+          og sende forælderen en e-mail med login-instruktioner. Dette kan tage op
+          til 24 timer.
+        step3_donor_title: DIT BARNS KONTO ER BLEVET AKTIVERET
+        step3_donor_desc: Eftersom du er en iNaturalist-donor, kunne vi bekræfte din
+          identitet med din eksisterende donation.
     welcome:
       index:
         welcome_message_html: til%{image}hvor du kan <strong> registrere </strong>,
@@ -7238,6 +7465,7 @@ da:
       observation:
         geo_x: Østlig
         geo_y: Nordlig
+        observed_on: Observationsdato
       observation_field_value:
         value: værdi
       post:
@@ -7351,6 +7579,10 @@ da:
               has_query_parameter: må ikke indeholde en forespørgselsparameter.
               invalid_uri: skal være et gyldigt URI.
               relative_uri: skal være et fuldstændigt URI.
+        flag:
+          attributes:
+            user_id:
+              already_flagged: allerede markeret dette
         guide:
           attributes:
             published_at:
@@ -7363,6 +7595,11 @@ da:
           attributes:
             base:
               api_key_in_use: API nøgle import eller kø for import
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: kan ikke være større end datoen
+                observationen blev tilføjet
         observation_field_value:
           attributes:
             value:
@@ -7381,6 +7618,7 @@ da:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: er for stor til at redigere
               is_too_large_to_import: er for stor til import
               contains_too_many_observations: indeholder for mange observationer til
                 import
@@ -7445,6 +7683,12 @@ da:
                 mellemrum, anvend kun bogstaver, tal, bindestreger og understregninger
             email:
               must_look_like_an_email_address: skal se ud som en e-mail adresse
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: tilhører en eksisterende bruger; hvis du
+                har en konto, log venligst ind før du fortsætter, eller brug en anden
+                e-mailadresse
   doorkeeper:
     scopes:
       write: Opret, opdater og slet dine observationer, identifikationer og andet

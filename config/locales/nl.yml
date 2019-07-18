@@ -32,8 +32,8 @@ nl:
     one: 1 favoriet
     other: '%{count} favorieten'
   x_flags_resolved_html:
-    one: <span class='count'>1</span> vlag opgelost
-    other: <span class='count'>%{count}</span> vlaggen opgelost
+    one: <span class='count'>1</span> markering opgelost
+    other: <span class='count'>%{count}</span> markeringen opgelost
   x_followers:
     one: 1 volger
     other: '%{count} volgers'
@@ -356,6 +356,7 @@ nl:
   additional_range: Bijkomende omvang
   additional_range_data_from_an_unknown_source: Bijkomende range data van een onbekende
     bron
+  adjust_brightness: Helderheid aanpassen
   admin: Admin
   admin_s: Beheerder(s)
   admin_any_projects: Beheer willekeurig project
@@ -759,6 +760,8 @@ nl:
     tegelijk
   can_you_help_your_friends_id_these: Kan je je vrienden helpen om deze te identificeren?
   cancel: Annuleren
+  cant_edit_or_delete_hidden_content: Je kunt inhoud die is verborgen door sitecuratoren
+    niet bewerken of verwijderen
   cant_flag_an_object_that_doesnt_exist: Niet mogelijk om een object te labelen dat
     niet bestaat
   cant_merge_a_taxon_with_itself: Kan een taxon niet met zichzelf samenvoegen.
@@ -888,9 +891,13 @@ nl:
   check_out_what_the_observation: Bekijk hoe de waarneming die je probeert te identificeren
     er uitziet.
   check_out_your_life_list: Bekijk je Lifelist
-  check_this_box_if_html: |-
-    Vink dit vakje aan als u een
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Attribution-NonCommercial-licentie</a> wil toekennen aan je foto's. U kunt later een andere licentie kiezen of de licentie verwijderen, maar dit is de beste licentie als u gegevens wilt delen met de onderzoekers.
+  check_this_box_if_html: "Vink dit vakje aan als u een\n<a href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Attribution-NonCommercial-licentie</a> wil toekennen
+    aan ingevoerde media en gegevens. \nDit betekent dat iedereen jouw foto's en/of
+    waarnemingen kan kopiëren en hergebruiken zonder toestemming te vragen zolang
+    ze je naam vermelden en de werken niet commercieel gebruiken. U kunt later een
+    andere licentie kiezen of de licentie verwijderen, maar dit is de beste licentie
+    als u gegevens wilt delen met de onderzoekers."
   checklist: Checklist
   checklists: Checklists
   checklist_places: Checklist locaties
@@ -1030,8 +1037,16 @@ nl:
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
     iucn: Equivalent van IUCN Rode Lijst code
   conservation_summary: Beschermings Samenvatting
+  contact_support: Contact Support
   contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon
     die hier voorkomen?
+  content_hidden: Inhoud is verborgen
+  content_hidden_by_user_on_date_because_reason_html: 'Inhoud is verborgen door %{user}
+    op %{date} met als reden: "%{reason}"'
+  user_hid_this_item_because_reason_html: '%{user} verborg dit/deze %{item} met als
+    reden: "%{reason}"'
+  user_unhid_this_item_because_reason_html: '%{user} maakt dit/deze %{item} weer zichtbaar
+    met als reden "%{reason}"'
   contest: wedstrijd
   continue: Doorgaan
   continue_to_site: Ga door naar %{site_name}
@@ -1212,6 +1227,7 @@ nl:
   dates: data
   datetime_: Datum/tijd
   day: Dag
+  decrease_brightness: Verlaag de helderheid
   default: standaard
   default_invite_comment: 'Mooie foto! Post ze op %{site_name}: {{INVITE_LINK}}'
   default_observation_license: Standaard waarnemingslicentie
@@ -1777,10 +1793,14 @@ nl:
   hex_color_eg: Hexadecimale kleur, bijvoorbeeld 65644F
   hi: Hallo,
   hi_user: Hallo %{user}
-  hide: Verbergen
-  hide_details: Details verbergen
+  hide_content: Inhoud verbergen
+  hide_desc: |-
+    Als je inhoud verbergt wordt deze niet meer openbaar weergegeven, maar mensen kunnen wel zien dat er iets verborgen  is. Site-curatoren en de auteur van de inhoud kunnen de verborgen inhoud nog steeds zien. Over het algemeen is dit
+    alleen van toepassing op geschreven inhoud, bijv. als je de een determinatie verbergt. De determinatie is nog steeds zichtbaar, maar de opmerkingen zijn verborgen. Je kunt dit niet ongedaan maken en alleen het personeel van de site kan de inhoud weer zichtbaar maken nadat deze is verborgen. Wees dus voorzichtig en gebruik dit alleen voor zeer
+    aanstootgevende inhoud.
   hide_running_total: Huidig totaal verbergen
   hide_uncountable_species: Verberg ongetelde soorten
+  hidden_content_explanation: De inhoud is verborgen
   high: hoog
   highest_rank: Hoogste rang
   highlights: Uitgelicht
@@ -1899,6 +1919,7 @@ nl:
   inaturalist_network_affiliation: iNaturalist netwerk affiliatie
   inbox: Postvak IN
   including: inclusief
+  increase_brightness: Verhoog de helderheid
   in_order_to_login_and_using_site_visit_url: Om toegang te krijgen en het kunnen
     gebruike van de site, moet je je account activeren op deze url
   in_progress: bezig
@@ -2530,8 +2551,8 @@ nl:
   new_check_list_record: Als u deze lijst als uitgebreid wilt markeren, maak deze
     dan aan, voeg de taxa toe en bewerk deze vervolgens en u kunt de optie hier als
     uitgebreid markeren.
-  new_comment_on_a_parent_by_user_link: Nieuwe reactie op @vow_or_con{vow:an|a} %{parent}
-    door %{user_link}
+  new_comment_on_a_parent_by_user_link: Nieuwe reactie op @vow_or_con{vow:een|een}
+    %{parent} door %{user_link}
   new_custom_field_for: Nieuw aangepast veld voor
   new_flag_for: Nieuwe makering voor
   new_guide: Nieuwe Gids
@@ -2599,7 +2620,7 @@ nl:
   no_curators_yet: Nog geen curatoren!
   no_description: Geen beschrijving
   no_facebook_photos: We kunnen geen foto's van Facebook terugvinden.
-  no_flags: Geen vlaggen deze keer
+  no_flags: Geen markeringen deze keer
   no_flickr_photos_tagged: Geen Flickr-foto's getagd!
   no_header_row: Geen kopregel
   no_identifications: Geen identificaties
@@ -3059,7 +3080,7 @@ nl:
   people_following_user: Personen die %{user} volgen
   people_user_follows: Personen die %{user} volgt
   people_added:
-    observation: heeft een %{observation_link} van @vow_or_con{vow:an|a} %{taxon_link}
+    observation: heeft een %{observation_link} van @vow_or_con{vow:een|een} %{taxon_link}
       toegevoegd
     identification:
       with_observation: een <strong>determinatie</strong> toegevoegd aan een %{observation_link}
@@ -3067,8 +3088,8 @@ nl:
       without_observation: een <strong>ID</strong> toegevoegd
     post: maakte een %{post_link}
     comment:
-      with_by: Reactie op @vow_or_con{vow:an|a} %{comment_subject_link} door %{by_link}
-      without_by: reactie op @vow_or_con{vow:an|a} %{comment_subject_link}
+      with_by: Reactie op @vow_or_con{vow:een|een} %{comment_subject_link} door %{by_link}
+      without_by: reactie op @vow_or_con{vow:een|een} %{comment_subject_link}
   per_day: Per Dag
   per_month: Per Maand
   per_week: Per Week
@@ -3110,6 +3131,14 @@ nl:
   google_account_not_linked: '%{user} heeft geen gekoppeld Google-account meer, dus
     %{site_name} heeft geen toegang meer tot deze foto.'
   pi_consent_desc_title: Persoonlijke gegevens
+  pi_consent_desc_html: |-
+    Persoonlijke gegevens zoals gebruikersnamen en e-mailadressen worden bewaard om accounts op deze site te beheren en om te voldoen aan privacywetten moet je dit vakje aanvinken om aan te geven dat je akkoord gaat met het gebruik van deze persoonlijke informatie. Voor meer informatie over de informatie die wordt verzamelt en hoe we het gebruiken, zie onze
+    <a href='%{privacy_url}' target='_blank'>Privacybeleid</a>
+    en onze <a href='%{terms_url}' target='_blank'>Servicevoorwaarden</a>.
+  pi_consent_label: Ik stem ermee in dat iNaturalist persoonlijke informatie over
+    mij kan opslaan en verwerken om mijn account te beheren
+  pi_consent_child_label: Ik stem ermee in dat iNaturalist persoonlijke informatie
+    over mijn kind kan opslaan en verwerken om het account van mijn kind te beheren
   picasa_identity: Picasa identiteit
   pick_a_username: Kies een gebruikersnaam
   pin_verb: Pin
@@ -3528,6 +3557,10 @@ nl:
   please_confirm_your_account_html: Neem even de tijd om <a href="%{url}">uw account
     te bevestigen</a>.
   please_enter_a_new_pass: Voer een nieuw wachtwoord in en bevestig het.
+  please_explain_why_you_want_to_hide_this: We willen graag weten waarom je dit wilt
+    verbergen
+  please_explain_why_you_want_to_unhide_this: We willen graag weten waarom je dit
+    weer wil laten zien
   please_fix_your_csv_and_try_again: Corrigeer uw CSV en probeer het opnieuw.
   please_hold_on_while_the_file: Even geduld, het bestand wordt aangemaakt. Als je
     veel waarnemingen hebt kan dit enkele minuten duren.
@@ -3784,6 +3817,7 @@ nl:
   reload_and_refresh: Opnieuw laden en bijwerken lijst
   reload_from_observations: Opnieuw laden vanuit de waarnemingen
   reload_timed_out: Reload timed out.  Probeer het later opnieuw
+  remarks_hidden: Reacties verborgen
   remarks_optional: Opmerkingen <span class="small description">(optional)</span>
   remember_its_a_lot_easier_to_id: Vergeet niet dat het veel gemakkelijker is om iets
     te determineren als u zoveel mogelijk beschrijvende informatie geeft. Het belangrijkste
@@ -3851,6 +3885,7 @@ nl:
     Klik door om de kwaliteitsbeoordeling van de gegevens te bekijken.
   research_grade_qualification: Onderzoekskwaliteitqualificatie
   research_quality: Kwaliteitsklasse
+  reset_brightness: Reset helderheid
   reset_search_filters: Reset zoekfilters
   reset_your_password: Uw wachtwoord opnieuw instellen
   resolve: Oplossen
@@ -4018,6 +4053,7 @@ nl:
   show_common_names: Toon lokale namen
   show_counts: Tellingen tonen op basis van de lijst
   show_default_taxon_photos: Toon standaard taxonfoto's
+  show_hidden_content: Toon Verborgen Inhoud
   show_keyboard_shortcuts: Toon sneltoetsen
   show_kml: Toon foto's van waarnemingen
   show_less: Minder weergeven
@@ -4236,7 +4272,7 @@ nl:
   stuff_just_added: Stuff die je zojuist hebt toegevoegd ...
   subject_resolved_noun_html: '%{subject} lost %{noun} op'
   subject_affecting_stuff_html: '%{subject} van invloed op %{stuff}'
-  subject_committed_thing_affecting_stuff_html: '%{subject} voerde een @vow_or_con{vow:an|a}
+  subject_committed_thing_affecting_stuff_html: '%{subject} voerde een @vow_or_con{vow:een|een}
     %{thing} uit met gevolgen voor %{stuff}'
   submission_model: Submission Model
   submission_model_description: Wie kan waarnemingen toevoegen aan uw project?
@@ -4772,6 +4808,10 @@ nl:
   unblock: Deblokkeren
   unclassified: Niet gerangschikt
   ungrafted_taxa: Niet geënt Taxa (zwevend)
+  unhide_content: Inhoud tonen
+  unhide_desc: |-
+    Door zichtbaar te maken wordt deze inhoud zichtbaar voor iedereen. Curatoren kunnen nog steeds
+    ervoor kiezen om het in de toekomst opnieuw te verbergen.
   uninvite: Uitnodiging verwijderen
   unique_identifier_of_this_taxon: Unieke identifier van dit taxon in de brondatabase.
   unique_observers: Unieke waarnemers
@@ -4890,6 +4930,8 @@ nl:
   user_commented: '%{user} reageerde'
   user_commented_on: '%{user} gaf een reactie op jouw %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} is het niet eens dat dit %{taxon} is'
+  user_disagrees_with_previous_finer_identifications: '%{user}  is het niet eens met
+    eerdere fijnere determinaties'
   user_faved_a_noun_by_owner: '%{user} maakte favoriet %{noun} door %{owner}'
   user_flagged_as_a_spammer_html: '%{user} gemarkeerd als een spammer'
   user_flagged_as_a_non_spammer_html: '%{user} gemarkeerd als een niet-spammer'
@@ -4923,6 +4965,7 @@ nl:
     coördinaten toe'
   user_trusts_you_with_their_private_coordinates_desc: De waarnemer heeft ervoor gekozen
     om je de verborgen coördinaten van al zijn waarnemingen toe te vertrouwen.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> schreef,
   username: Gebruikersnaam
   username_or_email: Gebruikersnaam of e-mail
   username_or_user_id: Gebruikersnaam of Gebruikers-ID
@@ -4954,6 +4997,7 @@ nl:
     van waarneming
   view: Bekijken
   view_all: Alles weergeven
+  view_all_flags: Toon alle markeringen
   view_all_from_x: Alles weergeven van %{x}
   view_all_members: Alle leden weergeven
   view_all_n: Alle %{n} weergeven
@@ -4981,6 +5025,9 @@ nl:
   view_license: Licentie weergeven
   view_lists: Lijsten weergeven
   view_listing: Oplijsting weergeven
+  view_moderation_history: Moderatiegeschiedenis bekijken
+  view_moderation_history_for_this_comment: Moderatiegeschiedenis bekijken voor deze
+    reactie
   view_more: Meer weergeven
   view_more_about_x: Meer weergeven over %{x}
   view_more_observations: Meer waarnemingen weergeven
@@ -5041,10 +5088,10 @@ nl:
   view_x_from_x: '%{day_observations} van %{observed_on} weergeven'
   view_xs_journal: Dagboek van %{x} weergeven
   view_year_stats_for_site: Statistieken van %{year} voor %{site} weergeven
-  view_your_dashboard: Bekijk je controle paneel
+  view_your_dashboard: Bekijk je dashboard
   view_your_dashboard_for_more_updates_html: |2-
 
-    <a href='%{url}'>Bekijk je controle paneel</a> voor meer nieuws
+    <a href='%{url}'>Bekijk je dashboard</a> voor meer nieuws
   view_your_inbox: Uw Inbox weergeven
   view_your_life_list: Uw levenslijst weergeven
   view_your_calendar: Uw kalender weergeven
@@ -5161,6 +5208,9 @@ nl:
   will_be: zal zijn
   wikipedia_attribution_cc_by_sa_3: 'Bron: Wikipedia, "%{title}", %{url}, CC BY-SA
     3.0'
+  wikipedia_attribution_cc_by_sa_3_html: |-
+    Dit artikel maakt gebruik van materiaal uit het Wikipedia-artikel <a href="%{url}">"%{title}"</a>, uitgebracht onder de <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
+    Commons Naamsvermelding-GelijkDelen License 3.0</a>. Er is misschien inhoud weggelaten uit het origineel maar er is geen inhoud gewijzigd of toegevoegd.
   wikipedia_entry: Wikipedia toegang
   wikipedia_taxobox_raquo: Wikipedia taxobox &raquo;
   with: met
@@ -5450,8 +5500,8 @@ nl:
   youve_seen_it_want_to: Je hebt het gezien! Willen
   youve_successfully_linked_your_provider_account: Je hebt je %{provider}-account
     succesvol gekoppeld.
-  your_dashboard_helps_you: Uw controle paneel helpt u bij te houden wat mensen op
-    de site doen. Als u de nieuwtjes van iemand wilt volgen, klikt u op de link 'Volgen
+  your_dashboard_helps_you: Je dashboard helpt je bij te houden wat er op de site
+    gebeurt. Als je de activiteiten van iemand wilt volgen, klik je op de link 'Volgen
     [name]' in de kop bij het bekijken van hun waarnemingen of profiel.
   verifiable: Verifieerbaar
   verifiable_observations: Verifieerbare waarnemingen
@@ -5977,6 +6027,10 @@ nl:
           op deze pagina van %{total} overeenkomende waarnemingen.
         unreview_all_tooltip: Verwijder de beoordeelde status voor alle waarnemingen
           op de pagina
+        too_many_results_desc: |-
+          Paginanummer maal 'het aantal resultaten per pagina' mag niet hoger zijn dan 10.000.
+          Probeer filters toe te passen om het aantal resultaten te verminderen of markeer
+          waarnemingen zoals beoordeeld en gebruik de "View More" knop in plaats van paginering
       import:
         coordinate_systems_help: '%{site_name} accepteert coördinaten met verschillende
           coördinaatsystemen, dus als je coördinaten verstrekt in een ander systeem
@@ -6178,6 +6232,28 @@ nl:
         we_included_links: We hebben links naar de betreffende foto's hieronder toegevoegd.
       user_parent_confirmation:
         subject: Het account van je kind is geactiveerd
+        content_html: |-
+          <p>
+            Dank u wel voor het aanmaken van een account op iNaturalist voor uw kind!
+            De account is nu actief. Hier zijn de gegevens die we hebben geregistreerd:
+          </p>
+          <ul>
+            <li><strong>Naam van ouder of voogd:</strong> %{parent_name}</li>
+            <li><strong>E-mailadres van ouder of voogd:</strong> %{parent_email}</li>
+            <li><strong>Naam kind:</strong> %{child_name}</li>
+            <li><strong>Geboortedatum kind:</strong> %{child_birthday}</li>
+            <li><strong>E-mailadres kind:</strong> %{child_email}</li>
+            <li><strong>Gebruikersnaam account kind:</strong> %{child_username}</li>
+          </ul>
+          <p>
+            Meld u alstublieft aan bij het account van de app Seek van uw kind door op de knop "iNaturalist" te klikken en dan te kiezen voor
+            "Aanmelden met iNaturalist" onderaan het scherm.
+          </p>
+          <p>
+            Uw kind kan daarna observaties toevoegen aan haar of zijn account bij
+            iNaturalist met behulp van de app Seek, zodat die zichtbaar worden op
+            iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: Je bent al een tijdje inactief op %{site_name}, dus we hebben je
           abonnementen opgeschort. Als je weer nieuwtjes over de activiteiten op de
@@ -6337,16 +6413,15 @@ nl:
           door <a href="%{url}">hier te klikken</a>.
       invite:
         description_html: "<h3> Over uitnodigingen </h3>\n<p class = \"ui\">\n   Mensen
-          uitnodigen voor uw project is een beetje anders dan een uitnodiging \n  
-          voor individuele waarnemingen. Uitnodigende mensen zullen \n</p>\n<Ol>\n  
-          <li> Stuur ze een e-mail met de uitnodiging om deel te nemen aan uw project
-          </li>\n   <li> Een uitnodiging op hun controle paneel weergeven </li>\n  
-          <li> Stel ze in staat om deel te nemen aan uw project als dit is ingesteld
-          op alleen-uitnodigen </li>\n</Ol>\n<p class = \"ui\">\n   Alleen projectconservatoren
-          kunnen mensen uitnodigen om deel te nemen aan een project. U\n   moet in
-          staat zijn om mensen te zoeken op hun iNat-gebruikersnaam of\n   hun <em>
-          complete </em> e-mailadres, ervan uitgaande dat we dat hebben in \n   het
-          dossier.\n</p>"
+          uitnodigen voor uw project is een anders dan een uitnodiging \n   voor individuele
+          waarnemingen. Mensen uitnodigen:\n</p>\n<Ol>\n   <li> Stuur ze een e-mail
+          met de uitnodiging om deel te nemen aan uw project </li>\n   <li> Een uitnodiging
+          op hun dashboard weergeven </li>\n   <li> Stel ze in staat om deel te nemen
+          aan uw project als dit is ingesteld op alleen-uitnodigen </li>\n</Ol>\n<p
+          class = \"ui\">\n   Alleen projectconservatoren kunnen mensen uitnodigen
+          om deel te nemen aan een project. U\n   moet in staat zijn om mensen te
+          zoeken op hun iNat-gebruikersnaam of\n   hun <em>complete</em> e-mailadres,
+          ervan uitgaande dat we dat hebben in \n   het dossier.\n</p>"
       join:
         invite_only_description: |-
           Het lidmaatschap van dit project is alleen op uitnodiging. Als je deel wilt
@@ -6385,6 +6460,8 @@ nl:
         note_you_can_delete_the_time: '(Opmerking: u kunt de tijdzone en precieze
           tijden verwijderen als je hele dagen wilt noteren.)'
         or_drag_and_drop: (of sleep en plaats)
+        please_specify_the_requirements: Geef de vereisten op voor de waarnemingen
+          die moeten worden toegevoegd aan dit project.
         please_specify_the_requirements_html: Specificeer de eisen voor de waarnemingen
           die aan dit project moeten worden toegevoegd. Je kunt meerdere soorten,
           plaatsen, gebruikers of kwaliteitsklassen opgeven die automatisch worden
@@ -6406,6 +6483,7 @@ nl:
           eerste 200 karakters zullen zichtbaar zijn aan de rechterkant van de banner
           van het startscherm van het project, dus begin met de beste dingen!
         project_summary_placeholder: Ontdek en volg de vogels van het Zuiderpark ...
+        show_projects_as_flags: Toon projecten als vlaggetjes op de kaart
         start_and_end_times_for_bioblitzes: Start- en eindtijd/-datum voor bioblitz-achtige
           activiteiten
         umbrella_project_features: 'Kenmerken van het parapluproject:'
@@ -6428,6 +6506,14 @@ nl:
           gedefinieerd. Zorg ervoor dat je een of meer taxa selecteert (bijvoorbeeld
           vogels, coniferen), plaatsen (bijvoorbeeld Nederland, Groningen), gebruikers
           en/of datums die de waarnemingen  definiëren die je in je project wilt opnemen.
+        errors:
+          name_is_required: Een projectnaam invullen is verplicht
+          name_less_than_100_characters: De projectnaam moet minder dan 100 tekens
+            bevatten
+          name_already_taken: Projectnaam is al in gebruik
+          cannot_have_more_than_x_project_rules: Kan niet meer dan %{x} projectregels
+            hebben
+          summary_is_required: Projectsamenvatting is vereist
       project_location_privacy_notice_html: |-
         <p>
            Houd er rekening mee dat projectcuratoren privé of
@@ -6477,8 +6563,8 @@ nl:
           hebt gelezen.
         this_is_a_preview: Dit is een voorbeeld van hoe dit project eruit zou zien
           als een verzamelproject.
-      updates_desc: Ontvang nieuwtjes over dit project in je controle paneel en de
-        dagelijkse e-mail met nieuws
+      updates_desc: Ontvang nieuwtjes over dit project in je dashboard en de dagelijkse
+        e-mail met nieuws
     search:
       index:
         no_taxa_options_html: |-
@@ -6883,8 +6969,8 @@ nl:
           Let op: Ga alsjeblieft niet experimenteel lid worden van een lokale netwerksite als je meer dan 1000 waarnemingen hebt.
           </p>
         licensing_desc_html: |-
-          Het licentiëren van uw inhoud geeft andere mensen het wettelijke recht om het te gebruiken
-          zonder uw toestemming te vragen als ze zich houden aan de voorwaarden van de licentie. %{site_name} gebruikt uw door Creative Commons gelicentieerde inhoud om te delen met gegevenspartners zoals de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
+          Het licentiëren van uw inhoud geeft iedereen het wettelijke recht om het te gebruiken
+          zonder uw toestemming te vragen als ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} uw Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
         muting_desc_html: |-
           <p>
              Als u iemand dempt, kunt u geen meldingen meer over dingen ontvangen die ze doen, inclusief commentaar op uw waarnemingen, berichten aan u, vermeldingen van u, enz. Muting helpt u iemand te negeren zonder dat ze er iets aan doen.
@@ -6955,9 +7041,48 @@ nl:
           guidelines</a>.
         this_user_was_banned: Deze gebruiker werd geschorst
     user_parents:
+      confirm:
+        thanks_donor_html: |-
+          <p>Bedankt dat je een iNaturalist-donor bent! We hebben je bestaande donatie kunnen gebruiken om je identiteit te bevestigen en er is geen enkele actie van jou nodig.
+          <strong>Het account van je kind is geactiveerd.</strong>
+          </p>
+          <p>
+             Meld je aan met het account van je kind via de Seek-app door op de knop "iNaturalist" te drukken in het menu en vervolgens "Aanmelden met iNaturalist" onderaan het scherm.
+          </p>
+          <p>
+             Je kind kan dan waarnemingen invoeren op zijn iNaturalist-account met behulp van de Seek-app, zodat ze zichtbaar zijn iNaturalist.org.
+          </p>
+        thanks_for_creating_a_minor_account: BEDANKT VOOR HET MAKEN VAN EEN ACCOUNT
+          VOOR EEN MINDERJARIGE!
+        we_will_send_you_an_email: We sturen je een e-mail zodra het account van je
+          kind is geactiveerd.
       new:
         child_name_private: Naam van het kind (privé)
         create_a_minor_account: Maak een minderjarig account aan
+        create_minor_account: Maak een minderjarig account aan
+        parent_name_private: Naam van de ouder of wettelijke voogd (privé)
+        parent_email: Email van de ouder of wettelijke voogd (privé)
+        inaturalist_minor_account_signup: Aanmelden Minderjarig Account voor iNaturalist
+        parent_information_private: Ouderinformatie (privé)
+        step1_title: ACCOUNT AANMAKEN VOOR UW KIND
+        step1_desc: |-
+          Om te voldoen aan de privacyregels hebben we toestemming van een ouder of de wettelijke voogd nodig
+          om een account aan te mogen maken voor een persoon onder de leeftijd van 13. Als je wilt dat jouw kind iNaturalist gebruikt hebben we identiteits- en contactinformatie nodig.
+        step2_title: Bevestig je identiteit met een credit card
+        step2_desc: "Om uw identiteit als volwassene te bevestigen, moet u  \ndonatie
+          maken\nvan minstens USD 1,00 aan iNaturalist met behulp van een creditcard.
+          Dit is\nde minst ingrijpende vorm van identiteitsverificatie die ons in
+          staat stelt\nte voldoen aan privacywetten. Zorg ervoor dat u hetzelfde e-mailadres
+          gebruikt\nals het adres dat u hebt ingevoerd als het \"e-mailadres van ouder
+          of voogd\" in de vorige stap."
+        step3_title: Wacht op de bevestigingse-mail
+        step3_desc: Zodra we de e-mail in de donatie hebben gekoppeld aan de e-mail
+          die u hebt ingevoerd als de "oudermail" zullen we het account van het kind
+          activeren en de ouder een e-mail zenden met inloginstructies. Dit kan tot
+          24 uur duren.
+        step3_donor_title: Het account van uw kind is geactiveerd
+        step3_donor_desc: Omdat je een iNaturalist-donor bent is je identiteit geverifiëert
+          met door je bestaande gift.
     welcome:
       index:
         welcome_message_html: Naar %{image}, waar je kunt <strong>vastleggen</strong>
@@ -7422,6 +7547,11 @@ nl:
             base:
               api_key_in_use: API-sleutel importeren of in de wachtrij zetten voor
                 importeren
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: kan niet later zijn dan de datum
+                waarop de waarneming is toegevoegd
         observation_field_value:
           attributes:
             value:
@@ -7509,6 +7639,12 @@ nl:
                 en liggende streepjes
             email:
               must_look_like_an_email_address: moet eruit zien als een e-mailadres
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: behoort bij een bestaande gebruiker; als
+                je een account hebt, meld je dan aan voordat je doorgaat of gebruik
+                een ander e-mailadres
   doorkeeper:
     scopes:
       write: Maak, bewerk en verwijder uw waarnemingen, determinaties en andere inhoud

@@ -339,6 +339,7 @@ ar:
   adding_to_your_life_list: تجري الإضافة إلى قائمة حياتك...
   additional_range: نطاق إضافي
   additional_range_data_from_an_unknown_source: بيانات نطاق إضافية من مصدر غير معروف
+  adjust_brightness: ضبط السطوع
   admin: إداري
   admin_s: إداري(ون)
   admin_any_projects: مشرف أي المشاريع
@@ -724,6 +725,8 @@ ar:
     في كل مرة
   can_you_help_your_friends_id_these: هل يمكنك مساعدة معرفات أصدقائك هؤلاء؟
   cancel: إلغاء
+  cant_edit_or_delete_hidden_content: لا يمكنك تحرير أو حذف المحتوى الذي تم إخفاؤه
+    بواسطة منسقي الموقع
   cant_flag_an_object_that_doesnt_exist: لا يمكن وضع علامة على كائن غير موجود
   cant_merge_a_taxon_with_itself: لا يمكن دمج أصنوفة مع نفسها.
   captive: أسير
@@ -982,8 +985,14 @@ ar:
     geoprivacy: الخصوصية الجغرافية الافتراضية لملاحظات هذه الأصنوفة
     iucn: يعادل رمز القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية
   conservation_summary: ملخص الحفظ
+  contact_support: اتصل بالدعم
   contain_all_descendants?: هل تحتوي قائمة التحقق هذه على جميع أحفاد هذه الأصنوفة
     التي تحدث هنا؟
+  content_hidden: المحتوى المخفي
+  content_hidden_by_user_on_date_because_reason_html: 'المحتوى مخفي بواسطة %{user}
+    في %{date} بسبب: "%{reason}"'
+  user_hid_this_item_because_reason_html: '%{user} أخفى هذا %{item} بسبب "%{reason}"'
+  user_unhid_this_item_because_reason_html: '%{user} أظهر هذا %{item} بسبب "%{reason}"'
   contest: مسابقة
   continue: استمرار
   continue_to_site: المواصلة إلى %{site_name}
@@ -1160,6 +1169,7 @@ ar:
   dates: تواريخ
   datetime_: تاريخ/وقت
   day: يوم
+  decrease_brightness: تقليل السطوع
   default: الافتراضي
   default_invite_comment: 'صورة رائعة! ينبغي نشرهها في %{site_name}: {{INVITE_LINK}}'
   default_observation_license: رخصة الملاحظة الافتراضية
@@ -1710,10 +1720,16 @@ ar:
   hex_color_eg: لون Hex، على سبيل المثال 65644F
   hi: مرحبًا،
   hi_user: مرحبا %{user}
-  hide: إخفاء
-  hide_details: أخفِ التفاصيل
+  hide_content: إخفاء المحتوى
+  hide_desc: "سيؤدي إخفاء المحتوى إلى إزالته من العرض العام، ولكن سيظل الأشخاص \nقادرين
+    على رؤية إخفاء شيء ما، وسيظل بإمكان منسقي المواقع ومؤلف\nالمحتوى رؤية المحتوى
+    المخفي، بشكل عام، لا\nينطبق هذا إلا على المحتوى المكتوب، على سبيل المثال إذا قمت
+    بإخفاء محتوى التعريف،\nفسيظل التعريف مرئيا ولكن ملاحظات\nالمعرف تكون مخفية، لا
+    يمكنك التراجع عن ذلك، ولا يمكن إلا لموظفي الموقع إظهار\nالمحتوى بمجرد إخفائه؛
+    لذا كن حذرا واستخدم هذا فقط \nللمحتوى غير المرغوب فيه للغاية."
   hide_running_total: إخفاء تشغيل الاجمالي
   hide_uncountable_species: إخفاء الأنواع التي لا تحصى
+  hidden_content_explanation: تم إخفاء المحتوى
   high: مرتفع
   highest_rank: أعلى رتبة
   highlights: الأبرز
@@ -1830,6 +1846,7 @@ ar:
   inaturalist_network_affiliation: شبكة انتماء إيناتوراليست
   inbox: صندوق الوارد
   including: يتضمن
+  increase_brightness: زيادة السطوع
   in_order_to_login_and_using_site_visit_url: 'لتسجيل الدخول والبدء في استخدام الموقع
     يجب عليك زيارة هذا المسار لتفعيل حسابك:'
   in_progress: في تقدم
@@ -3417,6 +3434,8 @@ ar:
   please_confirm_your_account_html: يُرجَى أخذ ثانية ثانية <a href="%{url}">لتأكيد
     حسابك</a>.
   please_enter_a_new_pass: الرجاء إدخال كلمة سر جديدة وتأكيدها.
+  please_explain_why_you_want_to_hide_this: يُرجَى توضيح لماذا تريد إخفاء هذا
+  please_explain_why_you_want_to_unhide_this: يُرجَى توضيح لماذا تريد إخفاء هذا
   please_fix_your_csv_and_try_again: الرجاء إصلاح CSV الخاص بك وإعادة المحاولة.
   please_hold_on_while_the_file: يُرجَى الاستمرار في حين يتم إنشاء الملف، قد يستغرق
     الأمر بضع دقائق إذا كان لديك الكثير من الملاحظات.
@@ -3669,6 +3688,7 @@ ar:
   reload_and_refresh: إعادة تحميل وتحديث القائمة
   reload_from_observations: إعادة تحميل من الملاحظات
   reload_timed_out: انتهت مهلة التحميل; الرجاء معاودة المحاولة في وقت لاحق.
+  remarks_hidden: تم إخفاء الملاحظات
   remarks_optional: ملاحظات <span class="وصف صغير">(اختياري)</span>
   remember_its_a_lot_easier_to_id: 'تذكر، أنه من الأسهل بكثير لتعريف شيء أن تقوم بتوفير
     أكبر قدر من المعلومات الوصفية قدر الإمكان، والأهم من ذلك: يُرجَى تقديم <strong>مكان</strong>
@@ -3734,6 +3754,7 @@ ar:
     ومعرف مدعوم من المجتمع، انقر للاطلاع على تقييم جودة البيانات.
   research_grade_qualification: مؤهل درجة البحث
   research_quality: جودة البحث
+  reset_brightness: إعادة ضبط السطوع
   reset_search_filters: إعادة تعيين مرشحات البحث
   reset_your_password: أعد ضبط كلمة السر
   resolve: حل
@@ -3896,6 +3917,7 @@ ar:
   show_common_names: عرض الأسماء الشائعة
   show_counts: عرض العدد استنادا إلى القائمة.
   show_default_taxon_photos: عرض صور الأصناف الافتراضية
+  show_hidden_content: إظهار المحتوى المخفي
   show_keyboard_shortcuts: عرض اختصارات لوحة المفاتيح
   show_kml: عرض KML
   show_less: عرض أقل
@@ -4614,6 +4636,10 @@ ar:
   unblock: رفع المنع
   unclassified: غير مصنف
   ungrafted_taxa: أصناف غير مطعمة
+  unhide_content: إظهار المحتوى
+  unhide_desc: |-
+    سيؤدي الإظهار إلى الكشف عن هذا المحتوى ليراه الجميع، لا يزال بإمكان المنسقين
+    اختيار إخفاؤه مرة أخرى في المستقبل.
   uninvite: إلغاء الدعوة
   unique_identifier_of_this_taxon: معرف فريد لهذه الأصنوفة في قاعدة بيانات المصدر.
   unique_observers: مراقبون فريدون
@@ -4762,6 +4788,7 @@ ar:
   user_trusts_you_with_their_private_coordinates_desc: |-
     اختار المراقب أن يثق بك بالإحداثيات المخفية لجميع
     ملاحظاته.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> كتب ،
   username: اسم المستخدم
   username_or_email: اسم المستخدم أو البريد الإلكتروني
   username_or_user_id: اسم المستخدم أو معرف المستخدم
@@ -4791,6 +4818,7 @@ ar:
     الملاحظة
   view: عرض
   view_all: اعرض الكل
+  view_all_flags: عرض جميع الأعلام
   view_all_from_x: عرض الكل من %{x}
   view_all_members: عرض جميع الأعضاء
   view_all_n: عرض كل %{n}
@@ -4818,6 +4846,8 @@ ar:
   view_license: عرض الترخيص
   view_lists: عرض القوائم
   view_listing: عرض القائمة
+  view_moderation_history: عرض سجل الإشراف
+  view_moderation_history_for_this_comment: عرض سجل الإشراف لهذا التعليق
   view_more: أظهر المزيد
   view_more_about_x: عرض المزيد حول %{x}
   view_more_observations: عرض المزيد من الملاحظات
@@ -6152,6 +6182,9 @@ ar:
         note_you_can_delete_the_time: '(ملاحظة: يمكنك حذف المنطقة الزمنية والأوقات
           الدقيقة إذا كنت تريد تضمين أيام كاملة.)'
         or_drag_and_drop: (أو سحب وإسقاط)
+        please_specify_the_requirements: |-
+          ُيرجَى تحديد متطلبات الملاحظات التي ستُضاف إلى
+          هذا المشروع.
         please_specify_the_requirements_html: "يُرجَى تحديد متطلبات الملاحظات التي
           ستُضاف إلى \nهذا المشروع، يمكنك تحديد أنواع أو أماكن أو مستخدمين أو \nدرجات
           جودة متعددة لإدراجها تلقائيا، أو ترك الحقل فارغا إذا \nلم يكن لديك أي متطلبات
@@ -6172,6 +6205,7 @@ ar:
           قدم شرحا موجزا ​​لمشروعك، سيكون أول 200 حرف
           مرئيين على يمين إعلان بانر الشاشة الرئيسية للمشروع; لذا ضع أفضل الأشياء أولا!
         project_summary_placeholder: اكتشاف وتتبع طيور حديقة جولدن جيت...
+        show_projects_as_flags: عرض المشاريع كأعلام في خريطة
         start_and_end_times_for_bioblitzes: تاريخ/أوقات البدء والانتهاء (للأحداث من
           نوع bioblitz)
         umbrella_project_features: 'ميزات مشروع المظلة:'
@@ -6192,6 +6226,13 @@ ar:
           تأكد من تحديد أصنوفة واحدة أو أكثر \n(مثل الطيور والصنوبريات) والأماكن (مثل
           البرازيل ويلوستون) والمستخدمين و/أو التواريخ لتحديد \nالملاحظات التي تريد
           تضمينها في مشروعك."
+        errors:
+          name_is_required: اسم المشروع مطلوب
+          name_less_than_100_characters: يجب أن يكون اسم المشروع أقل من 100 حرف
+          name_already_taken: اسم المشروع مأخوذ بالفعل
+          cannot_have_more_than_x_project_rules: لا يمكن أن يكون هناك أكثر من %{x}
+            قواعد للمشروع
+          summary_is_required: نص ملخص المشروع مطلوب
       project_location_privacy_notice_html: "<p>\n  يُرجَى الانتباه إلى أن أمناء المشروع
         سيكونون قادرين على رؤية أي \n  مواقع خاصة أو محجوبة لملاحظاتك في هذا المشروع
         ما لم \n  تلغٍ هذا الإذن، وسيتمكنون من إضافة أي من ملاحظاتك \n  إلى هذا المشروع

@@ -23,6 +23,7 @@
 # Author: Linedwell
 # Author: Macofe
 # Author: Nicolapps
+# Author: Niconoe
 # Author: Orikrin1998
 # Author: Oupsa
 # Author: Pamputt
@@ -379,6 +380,7 @@ fr:
   additional_range: Aire de répartition supplémentaire
   additional_range_data_from_an_unknown_source: Données supplémentaires sur l’aire
     de répartition d’une source inconnue
+  adjust_brightness: Ajuster la luminosité
   admin: Admin
   admin_s: Administrateur(s)
   admin_any_projects: Administrer n’importe quels projets
@@ -795,6 +797,8 @@ fr:
     à la fois
   can_you_help_your_friends_id_these: Pouvez-vous aider vos amis à identifier ceci?
   cancel: Annuler
+  cant_edit_or_delete_hidden_content: Vous ne pouvez modifier ou supprimer du contenu
+    masqué par des utilisateurs du site
   cant_flag_an_object_that_doesnt_exist: Impossible de signaler un objet qui n’existe
     pas
   cant_merge_a_taxon_with_itself: Impossible de fusionner un taxon avec lui-même.
@@ -1094,8 +1098,14 @@ fr:
     geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
     iucn: Code équivalent de la liste rouge de l’UICN
   conservation_summary: Résumé de la situation de conservation
+  contact_support: Contacter le support
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants
     de ce taxon qui sont présents ici?
+  content_hidden: Contenu masqué
+  content_hidden_by_user_on_date_because_reason_html: 'Contenu masqué par %{user}
+    le %{date} car&nbsp;: "%{reason}"'
+  user_hid_this_item_because_reason_html: '%{user} a masqué ce %{item} car «&nbsp;%{reason}&nbsp;»'
+  user_unhid_this_item_because_reason_html: '%{user} a affiché ce %{item} car «&nbsp;%{reason}&nbsp;»'
   contest: concours
   continue: Continuer
   continue_to_site: Continuer vers %{site_name}
@@ -1280,6 +1290,7 @@ fr:
   dates: dates
   datetime_: Horodatage
   day: Jour
+  decrease_brightness: Diminuer la luminosité
   default: par défaut
   default_invite_comment: 'Belle photo! Vous devriez la publier sur %{site_name} :
     {{INVITE_LINK}}'
@@ -1860,10 +1871,19 @@ fr:
   hex_color_eg: Couleur en hexadécimal, par ex. 65644F
   hi: Bonjour,
   hi_user: Bonjour %{user}
-  hide: Masquer
-  hide_details: Masquer les détails
+  hide_content: Masquer le contenu
+  hide_desc: |-
+    Masquer du contenu le rendra invisible au public, mais celui-ci pourra
+    toujours voir que quelque chose a été masqué, et les utilisateurs du site
+    et le créateur du contenu pourront toujours voir le contenu masqué.
+    Généralement, cela s’applique uniquement au contenu écrit, ex. si vous
+    masquez le contenu d’une identification, celle-ci reste visible mais ses
+    remarques sont masquées. Cela n’est pas réversible, et seul le personnel
+    peut réafficher du contenu une fois masqué. Soyez donc prudent et ne le
+    faites que pour du contenu particulièrement répréhensible.
   hide_running_total: Masquer le total actuel
   hide_uncountable_species: Masquer les espèces indénombrables
+  hidden_content_explanation: Le contenu a été masqué
   high: Haut
   highest_rank: Rang le plus élevé
   highlights: Mise en évidence
@@ -1987,6 +2007,7 @@ fr:
   inaturalist_network_affiliation: Affiliation de Réseau iNaturalist
   inbox: Boîte de réception
   including: y compris
+  increase_brightness: Augmenter la luminosité
   in_order_to_login_and_using_site_visit_url: 'Pour pouvoir vous connecter et commencer
     à utiliser le site, vous devez aller sur cette URL pour activer votre compte :'
   in_progress: en cours
@@ -3659,6 +3680,10 @@ fr:
   please_confirm_your_account_html: Merci de prendre quelques instants pour <a href="%{url}">confirmer
     votre compte</a>.
   please_enter_a_new_pass: Veuillez saisir un nouveau mot de passe et le confirmer.
+  please_explain_why_you_want_to_hide_this: Veuillez expliquer la raison pour laquelle
+    vous voulez masquer ceci.
+  please_explain_why_you_want_to_unhide_this: Veuillez expliquer la raison pour laquelle
+    vous voulez afficher ceci.
   please_fix_your_csv_and_try_again: Veuillez corriger le format CSV et réessayer.
   please_hold_on_while_the_file: Veuillez patienter pendant la génération du fichier.
     Cette démarche peut prendre quelques minutes si vous avez beaucoup d’observations.
@@ -3918,6 +3943,7 @@ fr:
   reload_and_refresh: Recharger et rafraîchir la liste
   reload_from_observations: Recharger à partir des observations
   reload_timed_out: Délai de rechargement écoulé. Veuillez réessayer plus tard.
+  remarks_hidden: Remarques masquées
   remarks_optional: Remarques <span class="small description">(facultatif)</span>
   remember_its_a_lot_easier_to_id: N’oubliez pas qu’il est bien plus facile d’identifier
     quelque chose si vous fournissez le plus d’information descriptive possible. Mieux
@@ -3986,6 +4012,7 @@ fr:
     Cliquer dessus pour voir l’évaluation de la garantie des données.
   research_grade_qualification: Qualification de niveau recherche
   research_quality: Qualité de la recherche
+  reset_brightness: Réinitialiser la luminosité
   reset_search_filters: Réinitialiser les filtres de recherche
   reset_your_password: Réinitialiser votre mot de passe
   resolve: Régler
@@ -4159,6 +4186,7 @@ fr:
   show_common_names: Afficher les noms vulgaires
   show_counts: Afficher le nombre en fonction de la liste.
   show_default_taxon_photos: afficher les photos de taxon par défaut
+  show_hidden_content: Afficher le contenu masqué
   show_keyboard_shortcuts: Afficher les raccourcis clavier
   show_kml: Afficher en format KML
   show_less: Afficher moins
@@ -4940,6 +4968,9 @@ fr:
   unblock: Débloquer
   unclassified: Non classifié
   ungrafted_taxa: Taxons non greffés
+  unhide_content: Démasquer le contenu
+  unhide_desc: Réafficher ce contenu le révélera à tout le monde. Les superviseurs
+    pourront toujours choisir de le masquer à nouveau à l’avenir.
   uninvite: désinviter
   unique_identifier_of_this_taxon: Identifiant unique de ce taxon dans la base de
     données source.
@@ -5094,6 +5125,7 @@ fr:
     ses coordonnées masquées'
   user_trusts_you_with_their_private_coordinates_desc: L’observateur a choisi de vous
     faire confiance pour les coordonnées masquées relatives aux observations associées.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> a écrit,
   username: Nom d’utilisateur
   username_or_email: Nom d’utilisateur ou adresse électronique
   username_or_user_id: Nom ou ID d’utilisateur
@@ -5123,6 +5155,7 @@ fr:
   verifiable_observations_by_observation_date: Observations vérifiables par date d’observation
   view: Afficher
   view_all: Afficher tout
+  view_all_flags: Afficher toutes les balises
   view_all_from_x: Afficher tout de %{x}
   view_all_members: Afficher tous les membres
   view_all_n: Afficher tous les %{n}
@@ -5150,6 +5183,9 @@ fr:
   view_license: Afficher la licence
   view_lists: Afficher les listes
   view_listing: Afficher la liste
+  view_moderation_history: Afficher l’historique de modération
+  view_moderation_history_for_this_comment: Afficher l’historique de modération de
+    ce commentaire
   view_more: Afficher plus
   view_more_about_x: Afficher plus sur %{x}
   view_more_observations: Afficher plus d'observations
@@ -5220,7 +5256,7 @@ fr:
   view_your_calendar: Afficher votre calendrier
   view_your_observations: Afficher vos observations
   view_your_year_stats: Afficher vos statistiques de %{year}
-  view_yours: Afficher la vôtre
+  view_yours: Afficher les vôtres
   view_all_of_your_observations_from_x: Afficher toutes vos observations depuis %{x}
   video_tutorials: Tutoriels vidéo
   visually_similar: Visuellement semblable
@@ -6838,6 +6874,8 @@ fr:
         note_you_can_delete_the_time: '(Note: vous pouvez supprimer le fuseau horaire
           et l''heure locale si vous voulez inclure les journées complètes.)'
         or_drag_and_drop: (ou glissez et déposez)
+        please_specify_the_requirements: Veuillez spécifier les prérequis des observations
+          à ajouter à ce projet.
         please_specify_the_requirements_html: |-
           Veuillez spécifier les exigences pour les observations à ajouter à ce projet.
           Vous pouvez spécifier plusieurs espèces, lieux, utilisateurs, ou des niveaux de qualité à inclure automatiquement, ou bien laisser le champ vide si vous n'avez pas d’exigences particulières.
@@ -6859,6 +6897,7 @@ fr:
           visibles à droite de la bannière de l’écran d’accueil du projet, donc mettez le meilleur en premier !
         project_summary_placeholder: Découvrir et suivre les oiseaux du parc de Golden
           Gate…
+        show_projects_as_flags: Afficher les projets avec des drapeaux sur la carte
         start_and_end_times_for_bioblitzes: Heures de début et de fin (pour les événements
           de type bioblitz)
         umbrella_project_features: 'Fonctionnalités du projet cadre:'
@@ -6883,6 +6922,14 @@ fr:
           taxons (par exemple: oiseaux, connifères), places (par exemple: Brésil,
           Yellowstone), utilisateurs, et/ou dates des observations que vous voulez
           inclure dans votre projet.'
+        errors:
+          name_is_required: Le nom du projet est obligatoire
+          name_less_than_100_characters: Le nom du projet ne doit pas excéder 100
+            caractères
+          name_already_taken: Le nom de projet a déjà été pris
+          cannot_have_more_than_x_project_rules: Impossible d’avoir plus de %{x} règles
+            de projet
+          summary_is_required: Le texte du résumé du projet est obligatoire
       project_location_privacy_notice_html: |-
         <p>
           Soyez bien conscient que les superviseurs du projet pourront voir n’importe quel emplacement

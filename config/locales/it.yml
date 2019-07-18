@@ -12,6 +12,7 @@
 # Author: Federico Mugnaini
 # Author: Fitoschido
 # Author: Fringio
+# Author: Frubino
 # Author: G.garatti
 # Author: Gianfranco
 # Author: Greis
@@ -132,9 +133,9 @@ it:
     one: <span class='count'>1</span> osservazione livello di ricerca</span>
     other: <span class='count'>%{count}</span> osservazioni livello di ricerca</span>
   x_research_grade_observations_to_species_html:
-    one: <span class='count'>1</span> osservazione livello-ricerca identificate al
-      grado di specie o inferiore</span>
-    other: <span class='count'>%{count}</span> osservazioni livello-ricerca identificate
+    one: <span class='count'>1</span> osservazione livello di ricerca identificate
+      al grado di specie o inferiore</span>
+    other: <span class='count'>%{count}</span> osservazioni livello di ricerca identificate
       al grado di specie o inferiore</span>
   x_taxa_curated_html:
     one: <span class='count'>1</span> taxon curato
@@ -163,8 +164,8 @@ it:
     di Flickr.
   about: Informazioni
   about_bioblitz_results: A proposito dei risultati bioblitz
-  about_blocking: Riguardo al blocco
-  about_charts: Sui Grafici
+  about_blocking: Riguardo il blocco
+  about_charts: Riguardo i grafici
   about_community_taxa: A proposito dei taxa della community
   about_complete_taxa: A proposito dei taxa completi
   about_conservation_status: A proposito dello stato di conservazione
@@ -173,7 +174,7 @@ it:
   about_external_links: A proposito dei Collegamenti Esterni
   about_licenses: A proposito delle licenze
   about_licensing: A proposito delle licenze
-  about_life!: a proposito della vita!
+  about_life!: A proposito della vita!
   about_muting: Riguardo il silenziamento
   about_names: A proposito dei nomi
   about_places: A proposito dei luoghi
@@ -195,7 +196,7 @@ it:
     </ul> <p>Le specie sulla tua lista di obbiettivi che sei stato in grado di osservare
     nell'area definita e per l'intervallo di ricerca sono interpretate come presenze.
     Mentre le specie sulla tua lista di obbiettivi che non sei stato in grado di osservare
-    sono interpretate come assenze. Clicca 'Tabula Dati Presenza Assenza Dai Viaggi'
+    sono interpretate come assenze. Clicca 'Tabulato Dati Presenza Assenza Dai Viaggi'
     per generare una tabella di record di presenza-assenza per una specie a partire
     dai viaggi e dalle osservazioni associate. <a href='%{url}'>Scopri di più</a></p>
   about_x: A proposito di %{x}
@@ -207,11 +208,11 @@ it:
   accept_community_identifications: Accetta le identificazioni della community
   accuracy: Accuratezza
   accuracy_m: Precisione (m)
-  accuracy_meters: Precisione di misura (in metri)
+  accuracy_meters: Precisione (metri)
   accuracy_of_the_coordinates: Precisione delle coordinate in metri. È possibile modificare
-    questa operazione facendo clic sul collegamento "modifica" qui sopra o cliccando
-    sull'indicatore di mappa e trascinando gli agganci. Prova a fare un cerchio grande
-    abbastanza per assicurarti di essere stato da qualche parte al suo interno.
+    questa operazione facendo click sul collegamento "modifica" qui sopra o facendo
+    click sull'indicatore di mappa e trascinando gli agganci. Prova a fare un cerchio
+    grande abbastanza per assicurarti di essere stato da qualche parte al suo interno.
   acquaintances: conoscenti
   action: Azione
   actions: Azioni
@@ -228,19 +229,19 @@ it:
   add_a_comment: Aggiungi un commento
   add_a_field: Aggiungi un campo
   add_a_flag: Aggiungi un contrassegno
-  add_a_link_raquo: Aggiungi un link &raquo;
+  add_a_link_raquo: Aggiungi un collegamento &raquo;
   add_a_name: Aggiungi un nome
-  add_a_new_change_group: Aggiungi un nuovo cambia gruppo
-  add_a_new_observation_to_id_please!: Aggiungi una Nuova Osservazione a "ID per favore!"
+  add_a_new_change_group: Aggiungi un nuovo gruppo di cambiamenti
+  add_a_new_observation_to_id_please!: Aggiungi una nuova osservazione a questo ID!
   add_a_place_raquo: Aggiungi un luogo &raquo;
   add_a_single_observation: Aggiungi una singola osservazione.
   add_a_taxon: Aggiungi un taxon
   add_a_taxon_swap_if_you_want_to_change_the_name_html: Aggiungi un <a target="_blank"
     href="%{url}">cambio di taxon </a> se vuoi modificare il nome
-  add_all_your_matching_obs_of_this_taxon: Aggiungi al progetto tutti gli oggetti
-    corrispondenti a questo taxon
-  add_all_your_matching_obs_to_this_project: Aggiungi a questo progetto tutti gli
-    elementi corrispondenti
+  add_all_your_matching_obs_of_this_taxon: Aggiungi al progetto tutte le osservazioni
+    corrispondenti di questo taxon
+  add_all_your_matching_obs_to_this_project: Aggiungi a questo progetto tutte le osservazioni
+    corrispondenti
   add_an_assessment: Aggiungi una valutazione
   add_an_identification: Aggiungi un'identificazione
   add_an_observation: Aggiungi un'osservazione
@@ -368,6 +369,7 @@ it:
   additional_range: Areale aggiuntivo
   additional_range_data_from_an_unknown_source: Ulteriori dati di distribuzione da
     fonte sconosciuta
+  adjust_brightness: Regola luminosità
   admin: Amministratore
   admin_s: Amministratore(i)
   admin_any_projects: amministra qualsiasi progetto
@@ -773,6 +775,8 @@ it:
     alla volta
   can_you_help_your_friends_id_these: Puoi aiutare i tuoi amici a identificare questi?
   cancel: Annulla
+  cant_edit_or_delete_hidden_content: Non puoi modificare o cancellare contenuti che
+    sono stati nascosti dai curatori del sito
   cant_flag_an_object_that_doesnt_exist: Non è possibile contrassegnare un oggetto
     che non esiste
   cant_merge_a_taxon_with_itself: Impossibile unire un taxon con se stesso.
@@ -1047,8 +1051,16 @@ it:
     geoprivacy: Geoprivacy predefinita per le osservazioni di questo taxon
     iucn: Codice equivalente della Lista Rossa IUCN
   conservation_summary: Riepilogo dello stato conservazionistico
+  contact_support: Contatta il supporto
   contain_all_descendants?: Questa checklist include tutti i discendenti di questo
     taxon che vivono qui?
+  content_hidden: Contenuto nascosto
+  content_hidden_by_user_on_date_because_reason_html: 'Contenuto nascosto da %{user}
+    il %{date} perché: "%{reason}"'
+  user_hid_this_item_because_reason_html: '%{user} ha nascosto questo %{item} perché
+    «%{reason}»'
+  user_unhid_this_item_because_reason_html: '%{user} ha rivelato questo %{item} perché
+    «%{reason}»'
   contest: concorso
   continue: Continua
   continue_to_site: Continua su %{site_name}
@@ -1229,6 +1241,7 @@ it:
   dates: date
   datetime_: Data/Ora
   day: Giorno
+  decrease_brightness: Riduci luminosità
   default: predefinito
   default_invite_comment: 'Ottima foto! Dovresti postarla su %{site_name}: {{INVITE_LINK}}'
   default_observation_license: Licenza predefinita delle osservazioni
@@ -1801,10 +1814,19 @@ it:
   hex_color_eg: Colore in esadecimale, e.g. 65644F
   hi: Ciao,
   hi_user: Ciao %{user}
-  hide: Nascondi
-  hide_details: Nascondi i dettagli
+  hide_content: Nascondi il contenuto
+  hide_desc: Nascondere il contenuto rimuoverà lo stesso dalla vista pubblica, ma
+    gli utenti potranno comunque vedere che qualcosa è stato nascosto, ed i curatori
+    del sito e l'autore del contenuto potranno continuare a vedere il contenuto nascosto.
+    In generale, questo si applica solo al contenuto scritto, ad esempio se avete
+    nascosto dei contenuti da una identificazione, l'identificazione è ancora visibile
+    ma i commenti dell'identificatore sono nascosti. Non è possibile annullare questa
+    operazione, e solamente il personale del sito può annullare l'occultamento di
+    contenuti nascosti, per cui siate prudenti ed usate questa funzione per contenuti
+    particolarmente sgradevoli.
   hide_running_total: Nascondi il totale attuale
   hide_uncountable_species: Nascondi le specie non conteggiabili
+  hidden_content_explanation: Il contenuto è stato nascosto
   high: Superiore
   highest_rank: Il rango più alto
   highlights: In evidenza
@@ -1923,6 +1945,7 @@ it:
   inaturalist_network_affiliation: Affiliazione al Network iNaturalist
   inbox: Posta in arrivo
   including: incluso
+  increase_brightness: Aumenta luminosità
   in_order_to_login_and_using_site_visit_url: 'Per accedere ed iniziare ad usare il
     sito devi visitare questo url per attivare il tuo account:'
   in_progress: in corso
@@ -1941,6 +1964,8 @@ it:
     lista completa di questo taxon in questo luogo.'
   inat_user_profile: '%{site_name}: Profilo di %{user}'
   inat_will_be_back_on: '%{site_name} tornerà in piedi/ali/pinne/tentacoli/pseudopodi'
+  inaturalist_is_a_joint_initiative: '%{site_name} è un''iziativa congiunta della
+    California Academy of Sciences e della National Geographic Society.'
   inaturalist_is_an_online_community: '%{site_name} è una community online per naturalisti!
     Aggiungendo la tua foto, puoi permettere ai ricercatori di sapere di più su'
   inaturalist_is_catching_some_zs: '%{site_name} sta schiacciando un sonnellino'
@@ -2457,8 +2482,8 @@ it:
   more_from_x: Più info su %{x}
   more_help: Più aiuto
   more_import_options: Più opzioni di importazione
-  more_info: Ulteriori Informazioni
-  more_info_title: Ulteriori Informazioni
+  more_info: Ulteriori informazioni
+  more_info_title: Ulteriori informazioni
   more_journal_posts: Più post del diario
   more_observations: Più osservazioni
   more_photos: Più Foto
@@ -2847,6 +2872,8 @@ it:
   observations_removed_from_the_project: Osservazioni rimosse dal progetto "%{project}"
   observations_saved: Osservazione(i) salvata(e)!
   observations_specifying_this_field: Osservazioni che hanno questo campo
+  observations_specifying_this_field_with_value: Osservazioni che hanno questo campo
+    con %{value}
   observations_text_search_warning: Le ricerche di testo possono restituire risultati
     strani se combinate con altri filtri. Se vuoi trovare le osservazioni di una particolare
     specie, usa il filtro del taxon.
@@ -3557,6 +3584,10 @@ it:
   please_confirm_your_account_html: Per favore, dedica qualche secondo a <a href="%{url}">confermare
     il tuo account</a>
   please_enter_a_new_pass: Per favore inserisci una nuova password e confermala.
+  please_explain_why_you_want_to_hide_this: Per favore spiegate perché vuoi nascondere
+    questo
+  please_explain_why_you_want_to_unhide_this: Per favore spiega perché vuoi scoprire
+    questo
   please_fix_your_csv_and_try_again: Per favore  correggi il tuo CSV e prova di nuovo.
   please_hold_on_while_the_file: Per favore attendi la creazione del file. L'operazione
     può richiedere alcuni minuti se hai molte osservazioni.
@@ -3816,6 +3847,7 @@ it:
   reload_and_refresh: Ricarica ed aggiorna la lista
   reload_from_observations: Ricarica dalle osservazioni
   reload_timed_out: Tempo del caricamento scaduto. Riprova più tardi.
+  remarks_hidden: Osservazioni nascosti
   remarks_optional: Commenti <span class="small description">(optional)</span>
   remember_its_a_lot_easier_to_id: Ricorda, è molto più facile identificare qualcosa
     se fornisci tutte le informazioni possibili. La cosa più importante è fornire
@@ -3886,6 +3918,7 @@ it:
     la valutazione della qualità dei dati
   research_grade_qualification: Qualifica di Livello ricerca
   research_quality: Qualità ricerca
+  reset_brightness: Reimposta luminosità
   reset_search_filters: Resetta i filtri di ricerca
   reset_your_password: Reimposta la tua password
   resolve: Risolvi
@@ -4055,6 +4088,7 @@ it:
   show_common_names: Mostra nomi comuni
   show_counts: Mostra i conteggi un base alla lista.
   show_default_taxon_photos: mostra le foto predefinite del taxon
+  show_hidden_content: Mostra contenuti nascosti
   show_keyboard_shortcuts: Mostra Scorciatoie di Tastiera
   show_kml: Mostra il KML
   show_less: Mostra meno
@@ -4814,6 +4848,9 @@ it:
   unblock: Sblocca
   unclassified: Non classificato
   ungrafted_taxa: Taxa senza relazioni tassonomiche
+  unhide_content: Scopri contenuti
+  unhide_desc: Rimuovere l'occultamento mostrerà questo contenuto per tutti. I curatori
+    possono comunque scegliere di nasconderlo nuovamente in futuro.
   uninvite: revoca invito
   unique_identifier_of_this_taxon: Identificatore unico di questo taxon nel database
     sorgente.
@@ -4910,6 +4947,9 @@ it:
   use_well_formed_csv: Usa CSV ben formattati. Ciò significa che i testi con virgole
     devono essere compresi tra virgolette. La maggior parte delle applicazioni di
     calcolo dovrebbero esportare i CSV in questo formato.
+  used_x_times:
+    one: Usato 1 volta
+    other: Usato %{count} volte
   user: Utente
   user_added_a_x: '%{user} ha aggiunto una %{x}'
   user_added_a_x_to_noun_by_html: '%{user} ha aggiunto una %{x} a una %{noun} di %{by}'
@@ -4927,6 +4967,8 @@ it:
   user_commented: '%{user} ha commentato'
   user_commented_on: '%{user} ha commentato la tua %{title} alle ore %{time}'
   user_disagrees_this_is_taxon: '%{user} non concorda che sia %{taxon}'
+  user_disagrees_with_previous_finer_identifications: '%{user} non è d''accordo con
+    le identificazioni precedenti di maggior dettaglio'
   user_faved_a_noun_by_owner: '%{user} ha messo nei preferiti %{noun} di %{owner}'
   user_flagged_as_a_spammer_html: '%{user} l''ha contrassegnato come uno spammer'
   user_flagged_as_a_non_spammer_html: '%{user} l''ha segnato come un non-spammer'
@@ -4962,6 +5004,7 @@ it:
     nascoste'
   user_trusts_you_with_their_private_coordinates_desc: L'osservatore ha deciso di
     rivelarti le coordinate nascoste di tutte le sue osservazioni.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> ha scritto,
   username: Nome utente
   username_or_email: Nome utente o email
   username_or_user_id: Nome Utente o ID Utente
@@ -4992,6 +5035,7 @@ it:
     di osservazione
   view: Visualizza
   view_all: Mostra tutto
+  view_all_flags: Mostra tutti i contrassegni
   view_all_from_x: Vedi tutto da %{x}
   view_all_members: Visualizza tutti i membri
   view_all_n: Visualizza tutte %{n}
@@ -5019,6 +5063,9 @@ it:
   view_license: Visualizza la licenza
   view_lists: Visualizza gli elenchi
   view_listing: Visualizza l'elenco
+  view_moderation_history: Visualizza lo storico della moderazione
+  view_moderation_history_for_this_comment: Visualizza lo storico della moderazione
+    per questo commento
   view_more: Mostra di più
   view_more_about_x: Mostra di più su %{x}
   view_more_observations: Visualizza più osservazioni
@@ -6052,33 +6099,44 @@ it:
         community_taxon_desc_html: "<p class=\"ui\">\nIl taxon della community (o
           l'identificazione della community) è il taxon a cui la community di %{site_name}
           ritiene possa appartenere l'organismo che hai osservato. Se sei interessato
-          alla modalità in cui scegliamo il taxon della community, leggi le note sull'algoritmo
-          qui sotto, ma in generale, proviamo a <strong>scegliere il taxon che mette
-          d'accordo i 2/3 degli identificatori</strong>.\nAlcune volte ciò significa
+          alla modalità di scelta del taxon della community, leggi le note sull'algoritmo
+          qui sotto, ma in generale proviamo a <strong>scegliere il taxon che mette
+          d'accordo i 2/3 degli identificatori</strong>.\nIn alcuni casi questo significa
           scegliere un taxon di livello superiore che include un certo numero di taxa
-          su cui non c'è accordo (e.g., tu pensi sia una vipera io penso che sia una
-          coronella, così iNat sceglie il subordine Serpentes che contiene tutti i
-          serpenti). L'algoritmo di solito favorisce leggermente chi è in disaccordo,
-          in quanto sbagliano di meno. \n</p>\n<p class=\"ui\">\nIl taxon della community
-          è il taxon che utilizziamo quando condividiamo l'osservazione con i partner
-          esterni, raggruppiamo le osservazioni dello stesso taxon, aggiorniamo la
-          tua lista degli esseri viventi, etc. Se per qualche ragione non sei d'accordo
-          con la identificazione della community, puoi rifiutarla; ciò significa che
-          la tua ID sarà quella usata per condividere, raggruppare le osservazioni
-          dello stesso taxon, aggiornare la tua lista degli esseri viventi, etc. Ciò
-          significa anche che affinché la tua osservazione possa raggiungere il livello
-          'ricerca', la community dovrà essere d'accordo con <em>te</em>.\nSe l'idea
-          della identificazione della community non ti piace, puoi disattivarla <a
-          href=\"/users/edit\" target=\"_blank\">modificando le tue impostazioni</a>.\n</p>\n<p
-          class=\"ui\">\n<strong>L'algoritmo:</strong> per tutti i taxa identificati
-          e per quelli che li contengono (e.g. il genere <i>Homo</i> contiene <i>Homo
-          sapiens</i>), l'algoritmo assegna un punteggio secondo: il rapporto tra
-          il numero di ID cumulate per quel taxon e la somma delle ID cumulate, il
-          numero delle ID più conservative aggiunto dopo la prima ID di quel taxon,
-          e il numero delle ID che sono completamente differenti (e.g., ID che dei
-          taxa che non contengono il taxon in oggetto). Per tutti i taxa identificati
-          che hanno un punteggio superiore ai 2/3 e almeno 2 identificazioni, sceglia
-          il taxon di rango minore.\n</p>"
+          su cui non c'è accordo (es. tu pensi sia una vipera mentre io penso sia
+          un crotalo, per cui iNat sceglie il subordine Serpentes che contiene tutti
+          i serpenti). L'algoritmo di solito favorisce leggermente chi è in disaccordo,
+          perché abbiamo notato che i dissenzienti sono spesso corretti. \n</p>\n<p
+          class=\"ui\">\nUna osservazione di livello da ricerca deve avere (tra gli
+          altri criteri) un \ncommunity taxon. Se una osservazione ha una sola identificazione,
+          Non avrà\nun community taxon. Tutte le osservazioni con una identificazione
+          avranno anche un taxon\ndell'osservazione. Il taxon dell'osservazione è
+          il taxon che usiamo quando condividiamo\nle osservazioni con i partner dei
+          dati, collegando osservazioni dello stesso taxon\nsul sito, aggiornando
+          la tua lista della vita, ecc. Nella maggior parte dei casi il taxon\ndell'osservazione
+          verrà eventualmente impostato al taxon della community, ma in alcuni casi\ndifferiranno,
+          in special modo prima che la community sia sia accordata riguardo una osservazione.\nPer
+          esempio, se pensi che una osservazione sia un serpente (subordine Serpentes)
+          mentre io penso che sia un kingsnake (genus <i>Lampropeltis</i>) il taxon
+          dell'osservazione sara' kingsnake (supportato\nsolo dalla mia identificazione)
+          ma il taxon della community sarà impostato a \nserpentes (supportato da
+          almeno due identificazioni). Se per qualche motivo non sei d'accordo con
+          il taxon della community taxon, puoi rigettarlo nelle tue osservazioni,
+          il che significa che il taxon dell'osservazione non sarà mai impostato a
+          quello della community (ma piuttosto al tuo ID).\nSignifica anche che la
+          tua osservazione può solo diventare di livello da ricerca quando la community\nsarà
+          d'accordo con <em>te</em>. Se l'idea del taxon della community non ti piace,
+          puoi interamente rinunciarvi\n<a href=\"/users/edit\" target=\"_blank\">modificando
+          le tue impostazioni</a>.</p>\n<p class=\"ui\">\n<strong>L'algoritmo:</strong>
+          per tutti i taxa ed i taxa contenuti in essi\n(es. il genere <i>Homo</i>
+          contiene <i>Homo sapiens</i>), il punteggio per ognuno è il rapporto tra
+          il numero di ‘assensi’ - ID cumulativi per quel taxon e la somma degli\nID
+          comulativi, ‘dissensi’ - il numero di ID che sono completamente diversi
+          (cioè ID di taxa\nche non contengono il taxon di cui si sta calcolando il
+          punteggio), e ‘dissensi sull'antenato’ - il numero di ID più conservativi
+          che non sono in accordo con il taxon più specifico. Per i taxa identificati
+          che hanno un punteggio\nsopra 2/3 ed almeno 2 identificazioni, viene scelto
+          il taxon con il rango più specifico.\n</p>"
         cumulative_count_desc: '# di identificazioni per un singolo taxon e per tutti
           i suoi discendenti'
         curator_coordinate_access_disabled_desc_html: Questo progetto non permette
@@ -6484,6 +6542,8 @@ it:
         note_you_can_delete_the_time: '(Nota: puoi cancellare il fuso orario e precisare
           le ore se vuoi includere giornate intere.)'
         or_drag_and_drop: (o trascina e rilascia)
+        please_specify_the_requirements: Per favore specifica i requisiti per le osservazioni
+          da aggiungere a questo progetto.
         please_specify_the_requirements_html: Per favore specifica i requisiti delle
           osservazioni da aggiungere al progetto. Puoi specificare più specie, luoghi,
           utenti e gradi di qualità da inserire automaticamente, o lasciare un campo
@@ -6506,6 +6566,7 @@ it:
           meglio all'inizio!
         project_summary_placeholder: Scopri e registra gli uccelli del Golden Gate
           Park...
+        show_projects_as_flags: Mostra i progetti come segnalini sulla mappa
         start_and_end_times_for_bioblitzes: Ora/data di inizio e fine (per eventi
           tipo bioblitz)
         umbrella_project_features: Caratteristiche dei Progetti Ombrello
@@ -6529,6 +6590,14 @@ it:
           requisito per le osservazioni. Accertati di aver selezionato uno o più taxa
           (e.g. uccelli, conifere), luoghi (e.g. Brasile, Yellowstone), utenti, e/o
           date che definiscano le osservazioni che vuoi includere nel tuo progetto.
+        errors:
+          name_is_required: Il nome del progetto è necessario
+          name_less_than_100_characters: Il nome del progetto deve avere meno di 100
+            caratteri
+          name_already_taken: Il nome del progetto è già stato usato
+          cannot_have_more_than_x_project_rules: Non è possibile avere più di %{x}
+            regole di progetto
+          summary_is_required: Il sommario del progetto è necessario
       project_location_privacy_notice_html: |-
         <p>
           Ricordati che i curatori del progetto possono vedere le coordinate private e quelle oscurate delle tue osservazioni aggiunte in questo progetto a meno che tu non revochi questo permesso, ed essi possono aggiungere qualsiasi delle tue osservazioni a meno che tu non <a href="/users/edit">modifichi le tue impostazioni</a>. Puoi anche garantire o revocare l'accesso alle osservazioni una per una.
@@ -7389,6 +7458,7 @@ it:
       observation:
         geo_x: Est
         geo_y: Nord
+        observed_on: osservata in data
       observation_field_value:
         value: valore
       post:
@@ -7518,6 +7588,11 @@ it:
           attributes:
             base:
               api_key_in_use: importando chiave API o accodato per l'importazione
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: non può essere successiva alla
+                data in cui l'osservazione è stata aggiunta
         observation_field_value:
           attributes:
             value:
