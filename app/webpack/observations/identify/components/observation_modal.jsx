@@ -199,64 +199,55 @@ class ObservationModal extends React.Component {
           >
             <i className="icon-link-external" />
           </a>
-          { currentUser && currentUser.roles.indexOf( "admin" ) >= 0 && (
-            <div className="brightness-control btn-group btn-group-xs" role="group">
-              <button
-                type="button"
-                className="btn btn-default"
-                onClick={( ) => {
-                  const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
-                title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
-              >
-                <i className="fa fa-sun-o" />
-                { brightness !== 1 && (
-                  <span>
-                    { " " }
-                    { _.isInteger( brightness ) ? `${brightness}.0` : brightness }
-                    X
-                  </span>
-                ) }
-              </button>
-              <button
-                type="button"
-                className="btn btn-default"
-                onClick={( ) => {
-                  const existing = brightnesses[brightnessKey] || 1;
-                  let newBrightness = _.round( existing - 0.2, 2 );
-                  if ( newBrightness < 0.2 ) {
-                    newBrightness = 0.2;
-                  }
-                  const newBrightnesses = Object.assign( {}, brightnesses, {
-                    [brightnessKey]: newBrightness
-                  } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
-                title={I18n.t( "decrease_brightness" )}
-              >
-                -
-              </button>
-              <button
-                type="button"
-                className="btn btn-default"
-                onClick={( ) => {
-                  const existing = brightnesses[brightnessKey] || 1;
-                  let newBrightness = _.round( existing + 0.2, 2 );
-                  if ( newBrightness > 3 ) {
-                    newBrightness = 3;
-                  }
-                  const newBrightnesses = Object.assign( {}, brightnesses, {
-                    [brightnessKey]: newBrightness
-                  } );
-                  this.setState( { brightnesses: newBrightnesses } );
-                }}
-                title={I18n.t( "increase_brightness" )}
-              >
-                +
-              </button>
-            </div>
-          ) }
+          <div className="brightness-control btn-group-vertical btn-group-xs" role="group">
+            <button
+              type="button"
+              className="btn btn-default btn-adjust-brightness"
+              onClick={( ) => {
+                const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
+                this.setState( { brightnesses: newBrightnesses } );
+              }}
+              title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
+            >
+              <i className="icon-adjust" />
+            </button>
+            <button
+              type="button"
+              className="btn btn-default btn-increase-brightness"
+              onClick={( ) => {
+                const existing = brightnesses[brightnessKey] || 1;
+                let newBrightness = _.round( existing + 0.2, 2 );
+                if ( newBrightness > 3 ) {
+                  newBrightness = 3;
+                }
+                const newBrightnesses = Object.assign( {}, brightnesses, {
+                  [brightnessKey]: newBrightness
+                } );
+                this.setState( { brightnesses: newBrightnesses } );
+              }}
+              title={I18n.t( "increase_brightness" )}
+            >
+              +
+            </button>
+            <button
+              type="button"
+              className="btn btn-default btn-decrease-brightness"
+              onClick={( ) => {
+                const existing = brightnesses[brightnessKey] || 1;
+                let newBrightness = _.round( existing - 0.2, 2 );
+                if ( newBrightness < 0.2 ) {
+                  newBrightness = 0.2;
+                }
+                const newBrightnesses = Object.assign( {}, brightnesses, {
+                  [brightnessKey]: newBrightness
+                } );
+                this.setState( { brightnesses: newBrightnesses } );
+              }}
+              title={I18n.t( "decrease_brightness" )}
+            >
+              –
+            </button>
+          </div>
         </div>
       );
     }

@@ -103,7 +103,7 @@ body > [role="dialog"] .ObservationModal {
       top: 0;
       right: 0;
       font-size: 200%;
-      padding: 5px;
+      padding: 8px;
       color: white;
       text-shadow: 1px 1px 5px #666;
     }
@@ -358,6 +358,9 @@ body > [role="dialog"] .ObservationModal {
     display: inline-block;
     width: 100%;
     cursor: zoom-in;
+  }
+  .easyzoom > a:hover {
+    opacity: 1;
   }
 
   .easyzoom.is-loading img {
@@ -692,12 +695,26 @@ body > [role="dialog"] .ObservationModal {
 
   .brightness-control {
     position: absolute;
-    bottom: 18px;
+    top: 50%;
+    margin-top: -30px;
     right: 10px;
     .btn {
       background-color: rgba(255,255,255,0.8);
     }
     z-index: 1;
+    button {
+      padding-left: 6px;
+      line-height: 19px;
+    }
+    .btn-adjust-brightness i {
+      position: relative;
+      top: -1px;
+    }
+    .btn-increase-brightness,
+    .btn-decrease-brightness {
+      font-size: 14px;
+      font-weight: bold;
+    }
   }
 
   .brightness-0-2 .image-gallery-image img { filter: brightness(0.2); }
