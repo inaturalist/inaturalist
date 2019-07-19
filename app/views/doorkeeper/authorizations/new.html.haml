@@ -16,6 +16,8 @@
           = hidden_field_tag :state, @pre_auth.state
           = hidden_field_tag :response_type, @pre_auth.response_type
           = hidden_field_tag :scope, @pre_auth.scope
+          = hidden_field_tag :code_challenge, @pre_auth.code_challenge
+          = hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method
           = submit_tag t(:authorize), :class => "btn btn-success"
         = form_tag oauth_authorization_path, method: :delete, class: "inlineblock", style: "margin-left: 10px;" do
           = hidden_field_tag :client_id, @pre_auth.client.uid
@@ -23,5 +25,7 @@
           = hidden_field_tag :state, @pre_auth.state
           = hidden_field_tag :response_type, @pre_auth.response_type
           = hidden_field_tag :scope, @pre_auth.scope
+          = hidden_field_tag :code_challenge, @pre_auth.code_challenge
+          = hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method
           = submit_tag t(:deny), :class => "btn btn-default"
         = link_to t("views.oauth.authorizations.new.more_about_application", application: @pre_auth.client.name ), @pre_auth.client.application.becomes( OauthApplication ), target: "_blank", class: "btn btn-link pull-right"

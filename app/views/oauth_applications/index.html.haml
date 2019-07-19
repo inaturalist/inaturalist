@@ -9,6 +9,7 @@
       %th Name
       %th Callback url
       %th Owner
+      %th Confidential
       %th
       %th
   %tbody
@@ -17,6 +18,7 @@
         %td= link_to application.name, oauth_application_path(application)
         %td= application.redirect_uri
         %td= link_to_user(application.owner) if application.owner
+        %td= application.confidential
         %td= link_to 'Edit', edit_oauth_application_path(application) if is_admin? || is_me?(application.owner)
         %td
           - if is_admin? || is_me?(application.owner)

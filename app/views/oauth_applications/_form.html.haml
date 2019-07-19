@@ -4,8 +4,10 @@
     = f.file_field :image
     = f.text_field :name
     = f.text_field :redirect_uri
+    = f.check_box :confidential, :description => "Enable for trusted clients that can keep the secret, disable for PKCE flow without a secret"
     = f.text_area :description
     = f.text_field :url, :description => "URL for your app outside of iNaturalist"
+
   - if is_admin?
     .admin.stacked
       = f.check_box :trusted, :label_after => true
