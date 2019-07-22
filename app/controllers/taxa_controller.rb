@@ -296,6 +296,7 @@ class TaxaController < ApplicationController
       end
       redirect_to :action => 'show', :id => @taxon
     else
+      @protected_attributes_editable = true
       render :action => 'new'
     end
   end

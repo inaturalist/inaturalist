@@ -125,7 +125,7 @@ $.fn.universalAutocomplete = function( options ) {
         }
         itemText = item.record.login;
         if ( item.record.name ) {
-          itemText += " <span class='secondary-name'>" + item.record.name + "</span>";
+          itemText += " <span class='secondary-name'>" + item.record.name.replace( /\<.*?\/.+\>/, '') + "</span>";
         }
         break;
     }

@@ -349,6 +349,7 @@ class User < ActiveRecord::Base
 
   def strip_name
     return true if name.blank?
+    self.name = FakeView.strip_tags( name ).to_s
     self.name = name.gsub(/[\s\n\t]+/, ' ').strip
     true
   end
