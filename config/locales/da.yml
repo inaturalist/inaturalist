@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: Abijeet Patro
+# Author: Annarella
 # Author: BoBrandt
 # Author: Fugithora
 # Author: IBDJ
@@ -104,8 +105,8 @@ da:
     one: <a href='%{url}'>1 art</a>
     other: <a href='%{url}'>%{count} arter</a>
   x_suggestions_filtered_by_colon:
-    one: '1 forslag filtreret af:'
-    other: '%{count} forslag filtreret af:'
+    one: '1 forslag filtreret efter:'
+    other: '%{count} forslag filtreret efter:'
   x_taxa_observed_html:
     one: <span class='count'>1</span> takson observeret
     other: <span class='count'>%{count}</span> taksa observeret
@@ -143,10 +144,10 @@ da:
   a_member_of_taxon_html: et medlem af %{taxon}
   able_to_connect_flickr: Super! Det lykkedes os at tilknytte din Flickr-konto.
   about: Om
-  about_bioblitz_results: Om bioblitz resultater
+  about_bioblitz_results: Om bioblitz-resultater
   about_blocking: Om blokering
   about_charts: Om diagrammer
-  about_community_taxa: Om fællesskabs taksa
+  about_community_taxa: Om fællesskabs-taksa
   about_complete_taxa: Om komplet taksa
   about_conservation_status: Om bevaringsstatus
   about_editing_observation_fields: Om redigering af observationsfelter
@@ -158,7 +159,7 @@ da:
   about_muting: Om slukning
   about_names: Om navne
   about_places: Om steder
-  about_taxon_changes: Om takson ændringer
+  about_taxon_changes: Om takson-ændringer
   about_the_cc_licenses: Om Creative Commons licenser
   about_the_taxobox_raquo: Om taksonboksen &raquo;
   about_these_licenses: Om disse licenser
@@ -310,7 +311,7 @@ da:
   add_taxa: Tilføj taksa
   add_taxa_to_places: Tilføj taksa til steder
   add_taxon_batch_to: Tilføj et bundt af taksa til %{list}
-  add_taxon_range: Tilføj takson område
+  add_taxon_range: Tilføj takson-område
   add_taxonomic_tags_to: Tilføj taksonomiske tags til valgte Flickr fotos &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Tilføj taksonomiske tags til valgte Flickr
     foto´s forbundet med de valgte observationer.
@@ -407,7 +408,7 @@ da:
       kingdom: Rige
       class: Klasse
       phylum: Række
-      species: Arter
+      species: Art
       order: Orden
     amphibians: Padder
     animals: Dyr
@@ -1675,7 +1676,7 @@ da:
   generating: Genererer...
   generating_mobile_archive: Genererer mobil arkiv
   Genus: Slægt
-  genus_slash_species: '[SLÆGT] / [ARTER]'
+  genus_slash_species: '[SLÆGT] / [ART]'
   geoprivacy: geofortrolighed
   geoprivacy_is_obscured: Geofortrolighed er sløret
   geoprivacy_is_obscured_desc: Observatør har valgt at sløre koordinaterne.
@@ -2884,7 +2885,7 @@ da:
   of_it_and_its_descendants: af det og dets efterkommere
   of_least_concern: Mindste bekymring
   of_observations: observationer
-  of_species: arter
+  of_species: art
   of_observers: observatører
   of_identifiers: identifikatorer
   of_places: steder
@@ -3497,7 +3498,7 @@ da:
     ukraine: Ukraine
     united_arab_emirates: Forenede Arabiske Emirater
     united_kingdom: Storbritannien
-    united_states: De Forenede Stater
+    united_states: USA
     united_states_minor_outlying_islands: USA's ydre småøer
     united_states_virgin_islands: Amerikanske Jomfruøer
     uruguay: Uruguay
@@ -5056,7 +5057,7 @@ da:
   view_yours: Vis dine
   view_all_of_your_observations_from_x: Vis alle dine observationer fra %{x}
   video_tutorials: Video selvstudier
-  visually_similar: Visuelt lignende
+  visually_similar: Ligner
   vulnerable: Sårbar
   w00t_no_ungrafted_taxa: w00t!  Ingen upodede taksa!
   w_photos_only: m/ foto´s
@@ -7116,8 +7117,8 @@ da:
           og kontaktoplysninger.
         step2_title: BEKRÆFT DIN IDENTITET MED ET KREDITKORT
         step2_desc: For at bekræfte din identitet som voksen, har vi brug for at du
-          giver en nominel donation på mindst 1 US$ dollar til iNaturalist med et
-          kreditkort. Dette er den mindst påtrængende form for identifikationsbekræftelse,
+          giver en nominel donation på mindst 1 amerikansk dollar (USD) til iNaturalist
+          med et kreditkort. Dette er den mindst påtrængende form for identifikationsbekræftelse,
           som gør det muligt for os at overholde persondataloven. Vær venligst opmærksom
           på at bruge samme e-mailadresse, som du indtastede som "forælder e-mail"
           i forrige trin.
