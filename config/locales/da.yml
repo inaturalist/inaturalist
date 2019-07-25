@@ -159,7 +159,7 @@ da:
   about_muting: Om slukning
   about_names: Om navne
   about_places: Om steder
-  about_taxon_changes: Om takson-ændringer
+  about_taxon_changes: Om takson ændringer
   about_the_cc_licenses: Om Creative Commons licenser
   about_the_taxobox_raquo: Om taksonboksen &raquo;
   about_these_licenses: Om disse licenser
@@ -169,14 +169,14 @@ da:
   about_trips_html: <h4>Ture gøre det muligt at indsamle data ud fra et tilstedeværende-fraværende
     kriterium ved at tilføje kontekst til dine observationer</h4><p><strong>Hvorfor</strong>
     Tilstedeværende-fraværende data inkluderer information om indsamlingsindsatsen,
-    hvilket er nyttigt for videnskabelige analyser som udbredelsesmodellering (rå
+    hvilket er nyttigt for videnskabelige analyser som udbredelses modellering (rå
     iNauralist-observationer angiver kun tilstedeværelse).</p> <p><strong>Hvordan</strong>
     En tur tilføjer kontekst til dine observationer ved at registrere:</p> <ul> <li><strong>Hvad</strong>
     du søgte efter (målliste)</li><li><strong>Hvor</strong> du søgte (søgeområde)</li>
     <li><strong>Hvornår</strong> du søgte (søgeinterval)</li> </ul> <p>Arter på din
     målliste, som du var i stand til at observere inden for søgeområdet og intervallet
     tolkes som tilstedeværende. Derimod tolkes arter som du ikke kunne observere som
-    værende fraværende. Klik på 'Tabuler tilstedeværende-fraværende data fra tur'
+    værende fraværende. Klik på 'Tabellér tilstedeværende-fraværende data fra tur'
     for at generere en tabel over tilstedeværende-fraværende registreringer for en
     art fra ture og tilhørende observationer. <a href='%{url}'>Lær mere</a></p>
   about_x: Om %{x}
@@ -311,7 +311,7 @@ da:
   add_taxa: Tilføj taksa
   add_taxa_to_places: Tilføj taksa til steder
   add_taxon_batch_to: Tilføj et bundt af taksa til %{list}
-  add_taxon_range: Tilføj takson-område
+  add_taxon_range: Tilføj takson område
   add_taxonomic_tags_to: Tilføj taksonomiske tags til valgte Flickr fotos &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Tilføj taksonomiske tags til valgte Flickr
     foto´s forbundet med de valgte observationer.
@@ -408,7 +408,7 @@ da:
       kingdom: Rige
       class: Klasse
       phylum: Række
-      species: Art
+      species: Arter
       order: Orden
     amphibians: Padder
     animals: Dyr
@@ -1026,7 +1026,7 @@ da:
   contact_support: Kontakt support
   contain_all_descendants?: Indeholder denne tjekliste alle efterkommere af denne
     taxon, der forekommer her?
-  content_hidden: Indhold skjult
+  content_hidden: Skjult indhold
   content_hidden_by_user_on_date_because_reason_html: 'Indhold skjult af %{user} den
     %{date} fordi: "%{reason}"'
   user_hid_this_item_because_reason_html: '%{user} skjulte dette %{item} fordi "%{reason}"'
@@ -1676,7 +1676,7 @@ da:
   generating: Genererer...
   generating_mobile_archive: Genererer mobil arkiv
   Genus: Slægt
-  genus_slash_species: '[SLÆGT] / [ART]'
+  genus_slash_species: '[SLÆGT] / [ARTER]'
   geoprivacy: geofortrolighed
   geoprivacy_is_obscured: Geofortrolighed er sløret
   geoprivacy_is_obscured_desc: Observatør har valgt at sløre koordinaterne.
@@ -1834,12 +1834,11 @@ da:
   identifications_by: Identifikationer af %{user}
   identified?: Identificeret
   computer_vision_suggestion: Computer vision forslag
-  computer_vision_suggestion_desc: |-
-    Computer vision er processen, at lære computere at genkende mønstre
-    i billeder. Vi leverer værktøjer, der bruger computer vision modeller, der er trænet via
-    fællesskabets fotos til, at give identifikations forslag, som auto-
-    komplette og sammenligningsfunktioner. Denne etiket angiver, hvornår en person tilføjede
-    en identifikation ved hjælp af et af disse værktøjer.
+  computer_vision_suggestion_desc: Computersyn er en læringsproces, hvor man lærer
+    computere at genkende visuelle mønstre. Vi leverer værktøjer, der bruger computersyn
+    modeller, der er trænet på fællesskabets fotos, til at give forslag på identifikation,
+    såsom autofuldførelse og sammenlignings funktionerne. Denne etikette angiver,
+    hvornår en person tilføjede en identifikation ved hjælp af et af disse værktøjer.
   identifiers: identifikatorer
   identotron: Identotron
   identotron_for: Identotron for
@@ -2160,7 +2159,7 @@ da:
   linked_facebook: Din %{site_name} konto er i øjeblikket tilknyttet til din Facebook
     konto.
   linked_facebook_automaticaly: Husk også, at hvis du logger ind på %{site_name} via
-    Facebook, vil vi automatisk genforbinde dine %{site_name} og Facebook-konti. Det
+    Facebook, vil vi automatisk genforbinde dine %{site_name} og Facebook konti. Det
     ser rimeligt ud, at hvis du bruger Facebook, vil du gerne kunne importere Facebook
     fotos, ikke?
   linked_facebook_description: Ved at lade din %{site_name} konto være tilknyttet
@@ -2885,7 +2884,7 @@ da:
   of_it_and_its_descendants: af det og dets efterkommere
   of_least_concern: Mindste bekymring
   of_observations: observationer
-  of_species: art
+  of_species: arter
   of_observers: observatører
   of_identifiers: identifikatorer
   of_places: steder
@@ -3111,14 +3110,14 @@ da:
     så %{site_name} har ikke tilladelse til at få adgang til dette billede.'
   pi_consent_desc_title: Om personlig information
   pi_consent_desc_html: |-
-    Vi opbevarer personlig information som brugernavne og e-mailadresser for at administrere konti på dette site, og for at overholde persondataloven beder vi dig markere denne boks for at indikere at du accepterer denne brug af
+    Vi opbevarer personlig information som brugernavne og e-mail adresser for at administrere konti på dette site, og for at overholde persondataloven beder vi dig markere denne boks for at indikere at du accepterer denne brug af
     personlig information. Se mere om hvilken information vi indsamler og hvordan vi bruger den i vores <a href='%{privacy_url}' target='_blank'>fortrolighedspolitik</a>
     og vores <a href='%{terms_url}' target='_blank'>brugerbetingelser</a>.
   pi_consent_label: Jeg accepterer, at iNaturalist får tilladelse til at gemme og
-    behandle begrænsede former for personlig information om mig for at administrere
+    behandle begrænsede former for personlig information om mig, for at administrere
     min konto
   pi_consent_child_label: Jeg accepterer, at iNaturalist får tilladelse til at gemme
-    og behandle begrænsede former for personlig information om mit barn for at administrere
+    og behandle begrænsede former for personlig information om mit barn, for at administrere
     mit barns konto
   picasa_identity: Picasa Identitet
   pick_a_username: Vælg et brugernavn
@@ -4776,7 +4775,7 @@ da:
   unblock: Ophæv blokering
   unclassified: Uklassificeret
   ungrafted_taxa: Ikke podede taksa
-  unhide_content: Vi skjult indhold
+  unhide_content: Skjul ikke indhold
   unhide_desc: Skjules dette indhold ikke længere vil alle kunne se det. Kuratorer
     kan stadig vælge at skjule det igen senere.
   uninvite: fjern invitation
@@ -4876,7 +4875,7 @@ da:
     dobbelte anførselstegn. De fleste regnearksprogrammer kan eksportere CSV i dette format.
   used_x_times:
     one: brugt 1 gang
-    other: brugt %{count} gange
+    other: Brugt %{count} gange
   user: Bruger
   user_added_a_x: '%{user} tilføjede en %{x}'
   user_added_a_x_to_noun_by_html: '%{user} tilføjede en %{x} til %{noun} af %{by}'
@@ -5057,7 +5056,7 @@ da:
   view_yours: Vis dine
   view_all_of_your_observations_from_x: Vis alle dine observationer fra %{x}
   video_tutorials: Video selvstudier
-  visually_similar: Ligner
+  visually_similar: Visuelt lignende
   vulnerable: Sårbar
   w00t_no_ungrafted_taxa: w00t!  Ingen upodede taksa!
   w_photos_only: m/ foto´s
@@ -5986,8 +5985,8 @@ da:
           på denne side ud af %{total} matchende observationer.
         unreview_all_tooltip: Fjern gennemgået status for alle observationer på siden
         too_many_results_desc: |-
-          Side antal gange antallet af resultater per side må ikke overstire 10.000.
-          Prøv at bruge filtre for at reducere antallet af resultater, eller marker observationer som gennemgået og brug "Se mere" knappen i stedet for sideinddeling
+          Side antal gange antallet af resultater per side må ikke overstige 10.000.
+          Prøv at bruge filtre for at reducere antallet af resultater, eller markér observationer som gennemgået og brug "Se mere" knappen i stedet for sideinddeling
       import:
         coordinate_systems_help: |-
           %{site_name} accepterer koordinater ved hjælp af flere forskellige koordinat
@@ -6497,7 +6496,7 @@ da:
         note_you_can_delete_the_time: '(OBS: Du kan slette tidszone og nøjagtige tidspunkt,
           hvis du i stedet vil bruge hele dage.)'
         or_drag_and_drop: (eller træk og slip)
-        please_specify_the_requirements: Præciser venligst betingelserne for at observationerne
+        please_specify_the_requirements: Præcisér venligst betingelserne for at observationerne
           kan tilføjes til projektet.
         please_specify_the_requirements_html: |-
           Angiv venligst kravene til de observationer, der kan tilføjes til
@@ -7094,7 +7093,7 @@ da:
             Tak for at være en iNaturalist-donor! Vi kunne bruge din eksisterende donation til at bekræfte din identitet og behøver ikke yderligere handling fra dig. <strong>Dit barns konto er blevet aktiveret.</strong>
           </p>
           <p>
-            Log venligst indtil kontoen på dit barns Seek-app ved at trykke på "iNaturalist"-knappen i menuen og dernæst "Log ind med iNaturalist" i bunden af skærmen.
+            Log venligst ind på kontoen via dit barns Seek-app ved at trykke på "iNaturalist" knappen i menuen og dernæst "Log ind med iNaturalist" i bunden af skærmen.
           </p>
           <p>
             Dit barn vil da kunne oprette observationer på deres iNaturalist-konto ved hjælp af Seek-app'en, så de kan ses på iNaturalist.org.
@@ -7117,10 +7116,10 @@ da:
           og kontaktoplysninger.
         step2_title: BEKRÆFT DIN IDENTITET MED ET KREDITKORT
         step2_desc: For at bekræfte din identitet som voksen, har vi brug for at du
-          giver en nominel donation på mindst 1 amerikansk dollar (USD) til iNaturalist
-          med et kreditkort. Dette er den mindst påtrængende form for identifikationsbekræftelse,
+          giver en nominel donation på mindst 1 amerikansk dollar (US$) til iNaturalist
+          via et kreditkort. Dette er den mindst påtrængende form for identifikationsbekræftelse,
           som gør det muligt for os at overholde persondataloven. Vær venligst opmærksom
-          på at bruge samme e-mailadresse, som du indtastede som "forælder e-mail"
+          på at bruge samme e-mailadresse, som du indtastede som "forældre e-mail"
           i forrige trin.
         step3_title: VENT PÅ BEKRÆFTELSES E-MAIL
         step3_desc: Når vi har matchet den e-mail, som blev brugt til donationen,
@@ -7314,8 +7313,8 @@ da:
       odd: skal være ulige
       record_invalid: 'Validering mislykkedes: %{errors}'
       requires_privilege_speech: |-
-        skal have tre verificerbare observationer eller tre identifikationer
-        for andre at gøre det
+        skal have tre verificérbare observationer eller tre identifikationer
+        for at andre kan gøre det
       requires_privilege_organizer: skal have 50 verificerbare observationer for at
         gøre det
       taken: er allerede blevet taget
@@ -7415,8 +7414,8 @@ da:
         odd: skal være ulige
         record_invalid: 'Validering mislykkedes: %{errors}'
         requires_privilege_speech: |-
-          skal have tre verificerbare observationer eller tre identifikationer
-          for andre at gøre det
+          skal have tre verificérbare observationer eller tre identifikationer
+          for at andre kan gøre det
         requires_privilege_organizer: skal have 50 verificerbare observationer for
           at gøre det
         taken: er allerede blevet taget
@@ -7466,7 +7465,7 @@ da:
       observation:
         geo_x: Østlig
         geo_y: Nordlig
-        observed_on: Observationsdato
+        observed_on: observationsdato
       observation_field_value:
         value: værdi
       post:
@@ -7553,8 +7552,8 @@ da:
         odd: skal være et ulige tal
         record_invalid: 'Validering fejlede: %{errors}'
         requires_privilege_speech: |-
-          skal have tre verificerbare observationer eller tre identifikationer
-          for andre at gøre det
+          skal have tre verificérbare observationer eller tre identifikationer
+          for at andre kan gøre det
         requires_privilege_organizer: skal have 50 verificerbare observationer for
           at gøre det
         taken: er allerede blevet taget

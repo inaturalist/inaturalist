@@ -239,7 +239,7 @@ pl:
   add_from_your_observations: Dodaj ze swoich obserwacji
   add_link: Dodaj link
   add_higher_level_taxon: Dodaj takson wyższego rzędu (np. "ptaki")
-  add_id: Dodaj identyfikator
+  add_id: Dodaj identyfikację
   add_it_to_place_raquo: Dodaj do miejsca &raquo;
   add_more_photos: Dodaj więcej zdjęć
   add_new_lexicon: Dodaj nowy język
@@ -271,7 +271,7 @@ pl:
   add_plant_phenology_flowering_annotation: 'Dodaj adnotację: "Fenologia roślin: Kwitnie"'
   add_plant_phenology_fruiting_annotation: 'Dodaj adnotację: "Fenologia roślin: Owocuje"'
   add_life_stage_adult_annotation: 'Dodaj adnotację "Stadium rozwoju: Forma dorosła"'
-  add_life_stage_teneral_annotation: 'Dodaj adnotacje "Stadium rozwoju: teneral"'
+  add_life_stage_teneral_annotation: 'Dodaj adnotację "Stadium rozwoju: Osobnik teneralny"'
   add_life_stage_subimago_annotation: 'Dodaj adnotację "Stadium rozwoju: Subimago"'
   add_life_stage_pupa_annotation: 'Dodaj adnotację "Stadium rozwoju: Poczwarka"'
   add_life_stage_nymph_annotation: 'Dodaj adnotację "Stadium rozwoju: Nimfa"'
@@ -311,8 +311,8 @@ pl:
   add_your_own_observations_at: Dodaj swoje własne obserwacje na %{site_name}
   add_your_photo: Dodaj swoje zdjęcie
   add_your_photo_to: Dodaj swoje zdjęcie do %{project}
-  added: Dodane
-  added!: Dodane!
+  added: Dodano
+  added!: Dodano!
   added_an: dodano
   added_as_a_part_of: Dodane jako część
   added_by: Dodane przez
@@ -588,8 +588,9 @@ pl:
   back_to_calendar: Wróć do kalendarza %{user}
   back_to_editing_observation: Wróć do edycji obserwacji
   back_to_friends: Wróć do znajomych
+  back_to_flags_html: '&laquo; Wróć do flag'
   back_to_help: Wróć do Pomocy
-  back_to_import: Wróć do Importowania
+  back_to_import: Wróć do importowania
   back_to_lists: Wróć do list %{name}
   back_to_observation: Wróć do obserwacji
   back_to_observation_fields: Wróć do notatek terenowych
@@ -599,7 +600,7 @@ pl:
   back_to_post: '&laquo; Wróć do posta'
   back_to_projects: Wróć do projektów
   back_to_shared_taxon: Wróć do %{sharedtaxon}
-  back_to_suggestions: Wróć do Sugestii
+  back_to_suggestions: Wróć do sugestii
   back_to_taxon: Wróć do %{defaulttaxon}
   back_to_taxon_changes: Wróć do zmian taksonu
   back_to_viewing: Wróć do <i>%{taxon}</i>
@@ -643,14 +644,14 @@ pl:
     więcej szczegółów.
   body: Treść
   brief_caption: Krótki podpis
-  brief_description_on_what_you_observed: Zwięzły opis tego, co widziałeś
-  brief_description_of_what_you_saw: Zwięzły opis tego, co widziałeś
+  brief_description_on_what_you_observed: Krótki opis tego, co widziałeś
+  brief_description_of_what_you_saw: Krótki opis tego, co widziałeś
   brown: brązowy
   browse: Przeglądaj
   browse_all_projects: Przeglądaj wszystkie projekty
   browse_all_species: Przeglądaj wszystkie gatunki
-  browse_observations: Przeglądaj Obserwacje
-  browse_people: Przeglądaj Ludzi
+  browse_observations: Przeglądaj obserwacje
+  browse_people: Przeglądaj ludzi
   browse_projects: Przeglądaj projekty
   browse_species_that_occur_near_this_observation: Przeglądaj gatunki występujące
     w pobliżu obserwacji
@@ -670,6 +671,7 @@ pl:
     many: Kalendarze pokazują tylko %{x} obserwacji naraz
   can_you_help_your_friends_id_these: Pomożesz znajomym to oznaczyć?
   cancel: Anuluj
+  cant_merge_a_taxon_with_itself: Nie można połączyć taksonu z samym sobą.
   captive: Hodowany
   captive_cultivated: Hodowany / Uprawiany
   card: Karta
@@ -818,6 +820,11 @@ pl:
   click_the_map_to_jump_new_place: Kliknij mapę, aby przeskoczyć do następnego miejsca
   close: Zamknij
   code: Kod
+  color_categories_for_this_species: "Dodaj kolor dla tego gatunku - w przewodniku
+    kategoryzuje się kolorami. \nNie dodawaj wszystkich kolorów, jakie widzisz u tego
+    gatunku, tylko te najbardziej charakterystyczne. Dla roślin okrytonasiennych dodawaj
+    barwę kwiatów. \nZostaw to pole puste, jeśli nie można wyróżnić charakterystycznego
+    koloru (tzn. nie dodawaj \"brązowych ssaków\" czy \"zielonych paproci\")."
   colors: Kolory
   columns: Kolumny
   combine: Połącz
@@ -895,6 +902,7 @@ pl:
   user_unhid_this_item_because_reason_html: '%{user} przywrócił widoczność %{item},
     ponieważ "%{reason}"'
   continue: Kontynuuj
+  continue_to_site: Przejdź do %{site_name}
   contributor_cannot_be_found: Współautor nie został odnaleziony
   contributors_to_project: Współautorzy %{project}
   controlled_term_labels:
@@ -907,6 +915,7 @@ pl:
     fruiting: Owocuje
     life_stage: Stadium rozwoju
     adult: Osobnik dorosły
+    teneral: Osobnik teneralny
     subimago: Subimago
     pupa: Poczwarka
     nymph: Nimfa
@@ -1187,6 +1196,7 @@ pl:
   embed_place_widget: Osadź widget miejsca
   embed_widget_project: Osadź widget projektu na swojej stronie
   enable_offline_access: Zezwól na dostęp offline
+  enable_offline_access_for_mobile: Zezwól na dostęp offline dla urządzeń mobilnych
   enlarge: Powiększ
   end: Koniec
   end_date_time: Data / Czas zakończenia
@@ -1217,12 +1227,15 @@ pl:
   exact_date: Dokładna data
   exact_location: Dokładna lokalizacja
   except: poza
-  exclude_x: Wyłącz %{x}
+  exclude_x: Wyklucz %{x}
+  exclusion_filters: Filtry wykluczające
+  existing_flags: Aktualne flagi
   exit_full_screen: Wyjdź z trybu pełnoekranowego
   expand_days: Rozwiń dni
   expand_updates: Rozwiń aktualizacje
-  explore!: Odkrywaj!
-  explore: Odkrywaj
+  explore!: Przeglądaj!
+  explore: Przeglądaj
+  explore_everyones_observations: Przeglądaj wszystkie obserwacje
   export: Eksport
   export_observations: Eksport obserwacji
   export_with_private_coordinates: Eksportuj wraz z ukrytymi współrzędnymi
@@ -1233,8 +1246,7 @@ pl:
   extra_properties: Dodatkowe właściwości
   extras: Dodatki
   facebook: Facebook
-  facebook_confirmation: Facebook oczekuje potwierdzenia, że chcesz połączyć swoje
-    konto z %{site_name}.
+  facebook_confirmation: Facebook oczekuje potwierdzenia połączenia konta z %{site_name}.
   facebook_options: Opcje Facebooka
   facts_and_stats: Fakty i statystyki
   failed_to_find_your_location: Nie udało się odnaleźć twojej lokalizacji.
@@ -1249,29 +1261,85 @@ pl:
   favorite_taxa: Ulubione taksony
   favorites: Ulubione
   fblocale: pl_PL
+  feature_this_project: Ująć w tym projekcie?
+  feature_this_project_: Ujmij w tym projekcie
+  featured: Ujęto
+  featured_projects_from_everywhere: Powiązane projekty z całego świata
+  featured_projects_from_place: Powiązane projekty z miejsca %{place}
   failed: Nie powiodło się
-  fields: pola
+  field_guides: Przewodnik terenowy
+  field_note: <strong>Uwaga:</strong> zanim dodasz kolejną notatkę terenową, upewnij
+    się, że nie istnieje podobna.
+  fields: notatki
   fields_: Notatki
+  fields_can_only_be_edited_by_the_people_who: Notatki terenowe mogą być edytowane
+    tylko przez twórców i opiekunów strony
   fields_merged: Połączone notatki
   file: Plik
+  file_should_be_in_the_following_format: 'Plik powinien zawierać następującą kolejność:
+    nazwa taksonu, opis'
+  fill_out_project_observation_fields: Uzupełnij notatki związane z projektem
   filter: Filtr
+  filter_by_curator_identification: Filtruj po identyfikacjach opiekunów strony
   filter_by_place: Filtruj według miejsca
   filter_by_taxon: Filtruj po taksonach
+  filter_by_place_taxon_and_color: Filtruj według miejsca, taksonu i koloru używając
+    strzałek.
+  filter_list_by_this_taxon: Filtruj listę według tego taksonu
   filtering: Filtrowanie
+  filtering_observations_that_pass_the: Filtrowanie obserwacji, które spełniają zasady
+    projektu lub były zrobione w miejscu projektu, ale nie zostały jeszcze ujęte
   filters: Filtry
   find: Znajdź
   find_a_guide: Znajdź przewodnik
   find_a_place: Znajdź miejsce
-  find_photos: Znajdź Zdjęcia
-  find_places: Znajdź Miejsca
+  find_guides: Znajdź przewodniki
+  find_new_place_to_explore: Znajdź nowe miejsce do obserwacji!
+  find_observations: Znajdź obserwacje
+  find_photos: Znajdź zdjęcia
+  find_places: Znajdź miejsca
+  find_some_people_to_follow: Znajdź ludzi wartych obserwowania
   find_species: Znajdź gatunki
+  find_suitable_observations: Znajdź zgodne obserwacje
+  find_unsuitable_observations: Znajdź niezgodne obserwacje
+  find_your_current_location: Znajdź swoją aktualną lokalizację
   finished: Zakończone
+  first_connect_your_provider_account_to_your_site: Połącz najpierw swoje konto na
+    %{provider} z %{site_name}
+  first_inat_observation: Pierwsza obserwacja na %{site_name}
   first_observation: Pierwsza obserwacja
   first_observer: Pierwszy obserwator
-  flag_as_spammer: Oznacz jako spamera
-  flag_it!: Oznacz!
-  flagged_: Oznaczone
-  flagger: Oznaczający
+  flag: Zgłoś
+  flag_as_inappropriate: Oznacz jako nieodpowienie
+  flag_an_item: Zgłoś element
+  flag_as_spammer: Zgłoś spamera
+  flag_description: Oflaguj ten element, aby powiadomić opiekunów strony, że coś jest
+    nie tak.
+  flag_it!: Zgłoś to!
+  flag_marked_as_resolved_html: <span class="meta">Zgłoszenie</span> <strong>rozwiązane.</strong>
+  flag_reason: '&ldquo;Zgłaszam %{record}, ponieważ'
+  flag_saved: Zgłoszenie zapisane
+  flag_saved_thanks_html: Zgłoszenie zapisane. Dziękujemy! <a href="%{url}" class="readmore">Zobacz
+    zgłoszenie</a>
+  flag_this_observation: Zgłoś obserwację
+  flag_this_photo: Zgłoś zdjęcie
+  flagged: zgłoszono
+  flagged_: Zgłoszono
+  flagged_taxon: Zgłoszony takson
+  flagged_thing_explanation: Użytkownicy zgłosili %{thing}, ponieważ
+  flagger: Zgłaszający
+  flags: Zgłoszenia
+  flags_with_count: Zgłoszenia (%{count})
+  flags_explanation: Zgłoszenia użytkowników %{site_name}, które wymagają rozpatrzenia
+    przez opiekunów i/lub adminów strony.
+  flags_on_users_content: Zgłoszenia dotyczące treści użytkownika %{user}
+  flickr_description: Flickr to serwis fotograficzny online, może już go kojarzysz?
+  flickr_has_no_creative_commons: Flickr nie posiada zdjęć na licencji Creative Commons
+    z tego miejsca.
+  flickr_needs_to_confirm: Flickr oczekuje potwierdzenia połączenia konta z %{site_name}.
+  flickr_photo: Zdjęcie z Flickra
+  flickr_photos: Zdjęcia z Flickra
+  flickr_tags: Tagi z Flickra
   follow: Śledź
   follow_user: Śledź %{user}
   followed_projects: Śledzone Projekty

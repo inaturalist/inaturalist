@@ -83,6 +83,9 @@ sv:
   x_people_agree_html:
     one: <span class="count">1</span> person håller med
     other: <span class="count">%{count}</span> personer håller med
+  x_photos:
+    one: 1 foto
+    other: '%{count} foton'
   x_new_species:
     one: 1 ny art
     other: '%{count} ny arter'
@@ -662,6 +665,7 @@ sv:
   bg_color: Bakgrundsfärg
   bioblitz: Bioblitz
   birds: fåglar
+  birthday: Födelsedag
   black: svart
   block_user: Blockera användare
   block_removed: Blockering togs bort
@@ -1258,6 +1262,7 @@ sv:
     el: Grekiska
     en-US: Engelska (USA)
     en: Engelska
+    eo: Esperanto
     es-ES: Spanska (Spanien)
     es-MX: Spanska (Mexiko)
     es: Spanska
@@ -1334,6 +1339,7 @@ sv:
   months_ago: '%{text} sedan'
   more: Mer
   more_filters: Mer filtrerar
+  more_from_x: Mer från %{x}
   more_import_options: Fler importalternativ
   more_info: Mer info
   more_observations: Mer observationer
@@ -1783,6 +1789,8 @@ sv:
   projects: Projekt
   projects_from_everywhere: Projekt från allihopa
   publish: Publicera
+  quality_grade: Kvalitet klass
+  quality_grade_colon: 'Kvalitet klass:'
   radius: Radie (m)
   radius_value: 'Radie (m): %{radius}'
   ranks:
@@ -2444,6 +2452,7 @@ sv:
       rfc: '%-d %B %Y'
       day_month_year: '%-d %B %Y'
       hours: '%H:%M'
+    pm: pm
   activemodel:
     errors:
       format: '%{attribute} %{message}'
@@ -2461,8 +2470,13 @@ sv:
         terms: Villkor
       place:
         code: Kod
+        latitude: Latitud
+        longitude: Longitud
+        name: Namn
       source:
         url: URL
+      taxon:
+        name: Namn
       user:
         email: E-post
         login: Användarnamn
