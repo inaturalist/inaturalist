@@ -82,6 +82,7 @@ module Inaturalist
       allow do
         origins '*'
         resource '/oauth/token', :headers => :any, :methods => [:post]
+        resource '/oauth/revoke', :headers => :any, :methods => [:post]
         resource '/users/api_token', :headers => :any, :methods => [:get]
       end
     end
