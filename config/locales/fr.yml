@@ -48,77 +48,53 @@ fr:
     one: 1 favori
     other: '%{count} favoris'
   x_flags_resolved_html:
-    one: <span class='count'>1</span> marque résolue
-    other: <span class='count'>%{count}</span> marques résolues
+    other: un (= <span class='count'>1</span>) marqué résolu
   x_followers:
-    one: 1 abonné
-    other: '%{count} abonnés'
+    other: un (=1) abonné
   x_identifications:
-    one: 1 identification
-    other: '%{count} identifications'
+    other: une (=1) identification
   x_identifications_html:
-    one: <span class="count">1</span> identification
-    other: <span class="count">%{count}</span> identifications
+    other: une (=<span class="count">1</span>) identification
   x_identifications_:
-    one: 1 identification
-    other: '%{count} identifications'
+    other: une (=1) identification
   x_ids:
-    one: 1 ID
-    other: '%{count} IDs'
+    other: un (=1) ID
   x_lists:
-    one: 1 liste
-    other: '%{count} listes'
+    other: une (=1) liste
   x_journal_posts:
-    one: 1 note de journal
-    other: '%{count} notes de journal'
+    other: une (=1) note de journal
   x_journal_posts_html:
-    one: <span class="count">1</span> publication du journal
-    other: <span class="count">%{count}</span> publications du journal
+    other: une (=<span class="count">1</span>) publication du journal
   x_matching_taxa:
-    one: 1 taxon correspondant
-    other: '%{count} taxons correspondants'
+    other: un (=1) taxon correspondant
   x_matching_taxa_html:
-    one: <span class="count">1</span> taxon correspondant
-    other: <span class="count">%{count}</span> taxons correspondants
+    other: un (=<span class="count">1</span>) taxon correspondant
   x_misidentifications_of_this_species:
-    one: 1 mauvaise identification de cette espèce
-    other: '%{count} mauvaises identifications de cette espèce'
+    other: une (=1) mauvaise identification de cette espèce
   x_misidentifications_of_species_in_this_rank:
-    one: 1 mauvaise identification d’espèce dans ce %{rank}
-    other: '%{count} mauvaises identifications d’espèce dans ce %{rank}'
+    other: une (=1) mauvaise identification d’espèce dans ce %{rank}
   x_observations:
-    one: 1 observation
-    other: '%{count} observations'
+    other: une (=1) observation
   x_observations_:
-    one: 1 observation
-    other: '%{count} observations'
+    other: une (=1) observation
   x_observations_html:
-    one: <span class='count'>1</span> observation
-    other: <span class='count'>%{count}</span> observations
+    other: une (=<span class='count'>1</span>) observation
   x_observations_link_html:
-    one: <a href='%{url}'>1 observation</a>
-    other: <a href='%{url}'>%{count} observations</a>
+    other: <a href='%{url}'>une (=1) observation</a>
   x_observations_reviewed_html:
-    one: <span class='count'>1</span> observation revue
-    other: <span class='count'>%{count}</span> observations revues
+    other: une (=<span class='count'>1</span>) observation revue
   x_others:
-    one: 1 autre
-    other: '%{count} autres'
+    other: une (=1) autre
   x_people_found_this_helpful:
-    one: Une personne a trouvé cela utile
-    other: '%{count} personnes ont trouvé cela utile'
+    other: une (=1) personne a trouvé cela utile
   x_people_like_this:
-    one: 1 personne aime cela
-    other: '%{count} personnes aiment cela'
+    other: une (=1) personne aime cela
   x_people_agree_html:
-    one: <span class="count">1</span> personne est d’accord
-    other: <span class="count">%{count}</span> personnes sont d’accord
+    other: une (=<span class="count">1</span>) personne est d’accord
   x_photos:
-    one: 1 photo
-    other: '%{count} photos'
+    other: une (=1) photo
   x_new_species:
-    one: 1 nouvelle espèce
-    other: '%{count} nouvelles espèces'
+    other: une (=1) nouvelle espèce
   x_species:
     one: 1 espèce
     other: '%{count} espèces'
@@ -3067,7 +3043,7 @@ fr:
       mais aussi du contenu des gens que vous suivez et des taxons ou lieux auxquels
       vous vous êtes inscrits en utilisant l’outil d’abonnements sur la droite.
     youve_got_updates_panel_title: Vous avez des mises à jour !
-    youve_got_updates_panel_body_p1: Rester à jour avec les mises à jour sur ce qui
+    youve_got_updates_panel_body_p1: Restez synchro avec les mises à jour sur ce qui
       suit…
     youve_got_updates_panel_body_p2: |-
       <ul>
