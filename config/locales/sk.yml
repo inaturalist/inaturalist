@@ -268,6 +268,8 @@ sk:
   add_life_stage_pupa_annotation: 'Pridať anotáciu „Štádium života: pupa“'
   add_life_stage_nymph_annotation: 'Pridať anotáciu „Štádium života: nymfa“'
   add_life_stage_larva_annotation: 'Pridať anotáciu „Štádium života: larva“'
+  add_life_stage_juvenile_annotation: 'Pridať anotáciu „Štádium života: mláďa“'
+  add_life_stage_egg_annotation: 'Pridať anotáciu „Štádium života: vajíčko“'
   add_relationship: Pridať vzťah
   add_section: Pridať sekciu
   add_several_observations_at_once: Vložiť niekoľko pozorovaní naraz.
@@ -282,6 +284,8 @@ sk:
   add_taxa_to_places: pridať taxóny k miestam
   add_taxon_batch_to: Vložiť taxónovú skupinu do %{list}
   add_taxon_range: Pridat rozsah taxónov
+  add_taxonomic_tags_to: Pridať taxonomické tagy do vybraných fotografií z Flicker
+    &raquo;
   add_taxonomic_tags_to_the_flickr_photos: Pridať taxonomické tagy do fotografií z
     Flickr spojených s vybraným pozorovaním.
   add_to_a_scheme: Pridať do schémy
@@ -294,6 +298,8 @@ sk:
   add_to_project: Pridať do projektu
   add_to_your_life_list: Pridať do vášho zoznamu života!
   add_to_your_list: Pridať k svojmu zoznamu
+  add_your_email_to_get: Vložením svojho e-mailu získate spätnú väzbu ku svojim pozorovaniam
+    od komunity. Ak by ste ho radšej nezdieľali, čoskoro to prosím skúste!
   add_your_own_observations_at: Vložte vaše vlastné pozorovania na %{site_name}
   add_your_photo: Vložiť vlastnú fotku
   add_your_photo_to: Vložiť vlastnú fotku do %{project}
@@ -331,6 +337,7 @@ sk:
   all_comments: Všetky komentáre
   all_csv: Všetky CSV
   all_flags_must_be_resolved: Všetky značky musia byť vyriešené
+  all_life: Všetok život
   all_names: Všetky názvy
   all_observations: Všetky pozorovania
   all_photos: Všetky fotografie
@@ -436,6 +443,8 @@ sk:
   all_taxa_in_this_guide: Všetky taxóny v tomto sprievodcovi
   all_taxonomic_groups: '&laquo; Všetky taxonomické skupiny'
   all_updates: Všetky aktualizácie
+  all_your_observations_will_default_to_this_time_zone: Všetky vaše pozorovania budú
+    mať toto časové pásmo, ak nezadáte iné.
   all_your_projects: Všetky vaše projekty
   allow_any: povoliť akýkoľvek
   allow_curator_access: Povoliť prístup správcovi
@@ -512,11 +521,24 @@ sk:
   are_you_sure_remove_from_project: Ste si istý, že chcete odstrániť %{user} z tohto
     projektu?
   are_you_sure_remove_photo: Ste si istý, že chcete odstrániť túto fotku?
+  are_you_sure_remove_relationship: Naozaj chcete tento vzťah odstrániť? Týmto spôsobom
+    prestanete sledovať túto osobu a prístup k skrytým súradniciam sa zruší, ak ste
+    takýto prístup povolili.
+  are_you_sure_remove_taxon_from_list: Ste si istý, že chcete odstrániť taxón z tohto
+    zoznamu?
+  are_you_sure_want_activate_account: Naozaj chcete aktivovať tento účet?
+  are_you_sure_want_delete_account: Naozaj chcete zmazať svoj účet? Touto akciou sa
+    vymažú všetky vaše dáta. Akciu nemožno vrátiť späť a nás bude mrzieť, keď odídete.
   are_you_sure_want_delete_taxon: Naozaj chcete odstrániť tento taxón %{msg}?
   are_you_sure_want_delete_taxon_link: Naozaj chcete odstrániť tento link na taxón?
   are_you_sure_want_delete_this_name: Naozaj chcete odstrániť toto meno?
   are_you_sure_want_delete_this_range: Naozaj chcete odstrániť tento rozsah?
   are_you_sure_want_join: Naozaj sa chcete pripojiť
+  are_you_sure_you_want_sync_this: Ste si istí, že chcete synchronizovať údaje z tohto
+    pozorovania s touto fotografiou na Flickr? Stratíte vykonané zmeny, ale budete
+    sa môcť vrátiť k uloženej kópii.
+  are_you_sure_you_want_to_commit_this_change: Ste si istý, že chcete vykonať túto
+    zmenu? Toto sa nedá vrátiť.
   are_you_sure_you_want_to_delete_this: Naozaj chcete toto odstrániť?
   are_you_sure_you_want_to_delete_this_assessment?: Naozaj chcete odstrániť toto hodnotenie?
   are_you_sure_you_want_to_delete_this_photo?: Naozaj chcete odstrániť túto fotku?
@@ -536,6 +558,8 @@ sk:
     tieto %{x} taxóny?
   are_you_sure_you_want_to_remove_this_invitation: Naozaj chcete odstrániť túto pozvánku?
   are_you_sure_you_want_to_remove_this_taxon: Naozaj chcete odstrániť tento taxón?
+  are_you_sure_you_want_to_remove_this_taxon_from_checklist: Ste si istý, že chcete
+    odstrániť tento taxón zo zoznamu %{place}?
   articles: Články
   associated_observations: Súvisiace pozorovania
   associated_taxa: Súvisiace taxóny
@@ -637,9 +661,16 @@ sk:
   blog_widget: Zásuvný modul pre blog
   blue: modrá
   blue_butterfly_etc: modrý, motýľ atď.
+  blue_icons_represent_political_units: Modré ikony označujú správnej jednotky, napríklad
+    štáty, provincie, okresy a podobne, zatiaľ čo zelené ikony označujú rôzne druhy
+    otvorených priestorov (parky, rezervácie). Keď sa priblížite, uvidíte viac menších
+    miest.
   body: Telo
   bounding_box: Ohraničenie
   breadcrumbs: Strúhanka
+  breadcrumbs_description: Toto nahradí h1 a základné nastavenie výziev, preto ich
+    pridajte, ak sú pre tento projekt dôležité, a nezabudnite, že maximálna povolená
+    veľkosť je 950px
   brief_caption: Stručný opis
   brief_description_on_what_you_observed: Stručný opis, čo ste pozorovali
   brief_description_of_what_you_saw: Stručný opis čo ste videli
@@ -674,13 +705,39 @@ sk:
   casual_: Bežný
   catalogue_of_life: Catalogue of Life
   categories: Kategórie
+  cc_0_description: Táto licencia umožní uvoľnenie vášho diela do verejného priestoru
+    a ostatní budú môcť vaše dielo kopírovať, upravovať, šíriť a predkladať, a to
+    aj pre komerčné účely, bez nutnosti žiadať vás o povolenie a uvedenia zdroja.
+    Toto je najširšia poskytovaná licencia. Odporúča sa pre maximálne šírenie a využívanie
+    príslušných materiálov.
   cc_0_name: Žiadne autorské práva (CC0)
   cc_attribution_license: Licencia Creative Commons s uvedením autora
+  cc_by_description: Táto licencia umožňuje ostatným šíriť, kombinovať, upravovať
+    a spracovávať vaše dielo, a to aj pre komerčné účely, a sú povinní vás uviesť
+    ako pôvodného autora.
   cc_by_name: Uvedenie autora
+  cc_by_nc_description: Táto licencia umožňuje ostatným šíriť, kombinovať, upravovať
+    a spracovávať vaše dielo na nekomerčné účely, pričom nové diela vás musia uvádzať
+    ako autora a musia byť nekomerčné, odvodené diela však nepodliehajú licencii za
+    rovnakých podmienok.
   cc_by_nc_name: S uvedením autora - nekomerčné
+  cc_by_nc_nd_description: Táto licencia je zo šiestich možných najreštriktívnejšia.
+    Umožňuje ostatným len stiahnuť si vaše dielo a zdieľať ho s ostatnými len za podmienok,
+    že vás uvedú ako autora. Nebudú ho však môcť akokoľvek zmeniť alebo komerčne používať.
   cc_by_nc_nd_name: S uvedením autora - nekomerčné - bez odvodených diel
+  cc_by_nc_sa_description: Táto licencia umožní ostatným upravovať Vaše dielo a zároveň
+    ho používať ako podklad pre ich ďalšie práce. Tieto práce však budú môcť byť využité
+    len nekomerčne, a to pod podmienkou, že Vás uvedú ako autora a takisto bude použitá
+    rovnaká licencia.
   cc_by_nc_sa_name: S uvedením autora - nekomerčné - zdieľanie
+  cc_by_nd_description: Táto licencia umožňuje komerčné a nekomerčné šírenie, musí
+    však byť zachované dielo ako celok s uvedením autora.
   cc_by_nd_name: S uvedením autora - bez odvodených diel
+  cc_by_sa_description: Táto licencia umožňuje ostatným šíriť, kombinovať, upravovať
+    a spracovávať vaše dielo, a to aj pre komerčné účely, s uvedením autora a poskytovaním
+    licencie k novým dielam za rovnakých podmienok. Všetky nové diela vychádzajúce
+    z vášho diela budú podliehať rovnakej licencii, teda všetky odvodené diela môžu
+    byť tiež použité pre komerčné účely.
   cc_by_sa_name: S uvedením autora - zdieľanie
   cc_used_under_a: Creative Commons, použité podľa
   change: Zmena
@@ -690,6 +747,9 @@ sk:
     split: Rozdelenie starého taxónu do niekoľko nových taxónov
     merge: Zlúčenie niekoľko starých taxonov do jedného nového taxónu
     swap: Zmena názvu 1 za 1
+    drop: Koncept taxónu úplne neplatný, udržiavaný na historické účely alebo kompatibilitu
+      s partnerom
+    stage: Pripraviť neaktívny koncept pre spustenie v rámci skupiny zmien
   change_geoprivacy: Zmeniť geosúkromie
   change_group: Zmeniť skupinu
   change_icon: Zmeniť ikonu
@@ -712,6 +772,8 @@ sk:
     dropped: zahodené
     input_taxon_was_split_into_output_taxa_html: '%{input_taxon} bol rozdelený na
       %{output_taxa}'
+    input_taxon_will_be_split_into_output_taxa_html: '%{input_taxon} bude rozdelený
+      na %{output_taxa}'
     input_taxon_was_dropped_html: '%{input_taxon} bol zahodený'
     input_taxon_will_be_dropped_html: '%{input_taxon} bude zahodený'
     input_taxon_will_be_activated_soon_html: '%{input_taxon} bude čoskoro aktivovaný'
@@ -729,6 +791,12 @@ sk:
     vášho pozorovania.
   check_above_for_errors: Skontrolujte chyby vyššie
   check_back_soon: Skoro opäť skontrolujte!
+  check_here_to_autoload_description: Označte pre automatické nahranie opisu z Wikipédie.
+    Označenie môžete zrušiť, ak je vedecký názov taxónu zároveň nevedeckým výrazom
+    alebo bežne používaným chybným označením.
+  check_here_to_autoload_photos: Označte pre automatické nahranie fotiek z Flickr.
+    Označenie môžete zrušiť, ak je vedecký názov taxónu zároveň nevedeckým výrazom
+    alebo bežne používaným chybným označením.
   check_it_out: Skontrolovať
   check_list_of_species_occuring_in: Zoznam druhov vyskytujúcich sa v
   check_list_place: Zoznam pre %{place}
@@ -744,6 +812,7 @@ sk:
   checklist_places_absent: Zoznam miest (chýba)
   checklist_places_confirmed: Zoznam miest (potvrdené)
   checklist_places_introduced: Zoznam miest (zadané)
+  choose_a_field: Vybrať pole
   choose_a_list_above: Vybrať zoznam vyššie.
   choose_a_place: Vybrať miesto
   choose_a_taxon: Vybrať taxón (voliteľné)
@@ -776,6 +845,11 @@ sk:
   code: Kód
   collapse_days: zbaliť dni
   collapse_updates: zbaliť aktualizácie
+  color_categories_for_this_species: Uveďte farebné kategórie tohto druhu, ako keby
+    ste ho chceli zaradiť do kategórie podľa farby. Neuvádzajte prosím všetky farby
+    organizmu, iba tie hlavné. U kvitnúcich rastlín prosím uvádzajte farbu kvetu.
+    Vynechajte prosím farby, ktoré by neboli prínosné pri kategorizácii, napríklad
+    hnedú u cicavcov alebo zelenú u papradia.
   colors: Farby
   columns: Stĺpce
   combine: Spojiť
@@ -834,12 +908,17 @@ sk:
   connecting_to_facebook: Pripájanie k Facebooku...
   conservation_status: Stav ochrany
   conservation_status_descriptions:
+    description: Krátky opis dôvodov, prečo je toto na zozname.
+    authority: Organizácia, ktorá tento status vyhlásila. Môžete preskočiť, ak chcete
+      byť ako autorita uvedený *vy*.
     place: Miesto, na ktoré je tento status obmedzený.
     url: URL stránky opisujúci tento status.
     geoprivacy: Štandardne nastavené geosúkromie pre pozorovanie tohto taxónu
     iucn: Ekvivalentný kód v Červenom zozname IUCN
   conservation_summary: Zhrnutie ochrany
   contact_support: Kontaktujte podporu
+  contain_all_descendants?: Obsahuje tento zoznam všetky následné taxóny, ktoré se
+    tu vyskytujú?
   content_hidden: Obsah skrytý
   content_hidden_by_user_on_date_because_reason_html: 'Obsah skryl používateľ %{user}
     v čase %{date} pretože: "%{reason}"'
@@ -908,6 +987,7 @@ sk:
     niekým iným než pozorovateľom a nie je uvedený autor
   covered_by_a_taxon_framework_html: Zahrňuje %{link}
   couldnt_change_your_password: 'Nedá sa zmeniť vaše heslo: %{e}'
+  couldnt_find_a_user_matching_x_param: Nebol nájdený odpovedajúci užívateľ %{id}
   couldnt_find_that_taxon: Tento taxón nebol nájdený.
   couldnt_log_you_in_x: Nebolo možné vás prihlásiť ako '%{x}'
   countries: Krajiny
@@ -1095,6 +1175,7 @@ sk:
   download_csv_template: Stiahnuť šablónu CSV
   download_kml: Stiahnuť KML
   downstream_flagged_covered_taxa: Označené taxóny
+  drag_and_drop_photos: ťahaj a pusti fotky do tohto okna alebo
   draft: koncept
   draft_: Koncept
   draft_saved: Komcept uložený!
@@ -1747,6 +1828,7 @@ sk:
   leave_a_comment: Zanechať komentár
   leave_this_project: Opustiť tento projekt
   leaves: odchádza
+  let_us_walk_you_through: Poďme si teraz prejsť hlavné funkcie tejto stránky.
   lexicon: Slovník
   lexicons:
     scientific_names: Vedecké názvy
@@ -1823,6 +1905,7 @@ sk:
   link_your_flickr_account_with_inat: Pripojiť váš účet na Flickr s %{site_name}
   link_your_google_account: Pripojiť účet Google
   linked_facebook: Váš účet na %{site_name} je teraz pripojený s vašim účtom na Facebooku.
+  linked_flickr: Váš účet na %{site_name} je teraz pripojený s vašim účtom na Flickr.
   linkedin: LinkedIn
   list: Zoznam
   list_deleted: Zoznam bol zmazaný.
@@ -1930,6 +2013,8 @@ sk:
   longitude_value: 'Zemepisná dĺžka: %{longitude}'
   look_up_name: Vyhľadať meno
   looks_like_neither_have!: Vyzerá to, že nemá žiadne taxóny!
+  looks_like_no_species_in_guide: Vyzerá to, že vo svojom sprievodcovi nemáte ešte
+    žiadny druh.
   lookup: Vyhľadať
   lookup_user_rarr: Vyhľadať užívateľa &rarr;
   low: Nízka
@@ -1947,6 +2032,7 @@ sk:
   make_one: vytvoriť jedno?
   make_sure_the_default_photo_looks_good: Uitite sa, že štandardná fotografia vyzerá
     dobre vo veľkej veľkosti.
+  make_this_the_primary_listing: Vytvorte toto ako primárny zápis
   mammals: cicavce
   manage: Spravovať
   manage_all_your_subscriptions: Spravovať všetky vaše odbery
@@ -1958,6 +2044,8 @@ sk:
   managed: riadený
   manager: Manažér
   managers: Manažéri
+  managing_projects: Spravovať projekty
+  manually_create_new_place: Vytvoriť nové miesto manuálne
   map: Mapa
   map_legend: legenda mapy
   map_marker_size: veľkosť značky mapy
@@ -1968,9 +2056,191 @@ sk:
       featured_observations: Odporúčané pozorovania
       gbif_network: GBIF sieť
       observations: Pozorovania
+      place_boundary: Umiestniť hranicu
+      checklist_places: Zoznam miest
+      range: Rozsah
+  map_tooltip: Ukázať zobrazenie mapy
+  map_for: Mapa pre
+  mark_as_reviewed: Označiť ako skontrolované
+  mark_all_as_reviewed: Označiť všetko ako skontrolované
+  mark_all_as_unreviewed: Označiť všetko ako neskontrolované
+  matched_several_different_taxa: prepojenie niekoľko rôznych taxónov
+  maverick: Maverick
+  media: Média
+  media_type: Typ média
+  medium: stredný
+  medium_url: Stredné URL
+  meet: Stretnúť sa
+  member_of_the_inaturalist_network_html: Člen siete <a href="%{url}">iNaturalist</a>
+  members: Členovia
+  membership_model: Členský model
+  mentioned_you_in_noun_html: užívateľ %{user} sa o vás zmienil v %{noun}
+  mentioned_you_in_noun_by_html: užívateľ %{user} sa o vás zmienil v %{noun} podľa
+    %{by}
+  mentioned_you_in_a_x_on_noun_html: užívateľ %{user} sa o vás zmienil v %{x} na %{noun}
+  mentioned_you_in_an_x_on_noun_html: užívateľ %{user} sa o vás zmienil v %{x} na
+    %{noun}
+  mentioned_you_in_a_x_on_noun_by_html: užívateľ %{user} sa o vás zmienil v %{x} na
+    %{noun} podľa %{by}
+  mentioned_you_in_an_x_on_noun_by_html: užívateľ %{user} sa o vás zmienil v %{x}
+    na %{noun} podľa %{by}
+  mentions: Zmienky
+  merge: Zlúčiť
+  merge_it_with_another_place: Zlúčiť s iným miestom
+  merge_two_places_together: Zlúčiť dve miesta. Všetky druhy na zoznamoch a všetky
+    geografické údaje budú zlúčené.
+  merge_observation_field_x_into: Zlúčiť pole pozorovania "%{x}" s...
+  merging: Zlučovanie
+  merging_places: Zlučovanie miest
+  message: Správa
+  messages: Správy
+  misidentifications: Nesprávne identifikácie
+  misleading_or_illegal_content_html: |-
+    Zavádzajúci alebo nelegálny obsah, rasové alebo etnické napádanie atď. Podrobnosti k našej definíciu toho, čo je "vhodné" nájdete na
+    <a href="/help#inappropriate">FAQ</a>
+  mixed_licenses: zmiešané licencie
+  mobile: Mobilný
+  mobile_app_for: Mobilná aplikácia pre
+  mobile_apps_for: Mobilné aplikácie pre
+  mollusks: mäkkyše
+  momentjs:
+    shortRelativeTime:
+      future: v %s
+      past: '%s'
+      s: 1 s
+      m: 1 min
+      mm: '%dm'
+      h: 1 h
+      hh: '%dh'
+      d: 1 d
+      dd: '%dd'
+      M: 1 m
+      MM: '%dmo'
+      "y": 1 r
+      yy: '%dy'
+    datetime_with_zone: MMM D, YYYY · LT z
+  mon: Pon
+  month: Mesiac
+  months: Mesiace
+  months_ago: pred %{text}
+  more: Viac
+  more_fields: Ďalšie polia
+  more_filters: Ďalšie filtre
+  more_from_x: Viac z %{x}
+  more_help: Ďalšia nápoveda
+  more_import_options: Ďalšie možnosti importu
+  more_info: Viac informácií
+  more_info_title: Viac informácií
+  more_journal_posts: Ďalšie príspevky v denníku
+  more_observations: Ďalšie pozorovania
+  more_photos: Ďalšie fotky
+  more_than_a_week_ago: Viac ako pred týždňom
+  most: Najviac
+  most_agree: väčšina súhlasí
+  most_browser_print_pdf: 'Poznámka: väčšina prehliadačov má možnosť tlačiť do PDF'
+  most_disagree: väčšina nesúhlasí
+  most_comments_and_faves: Najviac komentárov a obľúbených
+  most_observations: Najviac pozorovaní
+  most_recent_observation_by_date_observed: Najnovšie overiteľné pozorovania podľa
+    dátumu pozorovania
+  most_species: Najviac druhov
+  most_observed_species: Najviac pozorovaných druhov
   most_observed_introduced_species: Najviac pozorovaných introdukovaných druhov
   most_observed_threatened_species: Najviac pozorovaných ohrozených druhov
+  multiple: viacero
+  multiple_select_option: -- viacero --
+  must_have_x: musí mať %{x}
+  mute_user: Stlmiť užívateľa
+  mute_removed: Stlmenie zrušené
+  muted_users: Stlmení používatelia
+  n_ago: pred %{n}
+  n_people_agrees: '%{amount} ľudí súhlasí'
+  n_people_disagrees: '%{amount} ľudí nesúhlasí'
+  n_person_agrees: '%{amount} osoba súhlasí'
+  n_person_disagrees: '%{amount} osoba nesúhlasí'
+  name: Názov
+  name_entered: Názov zadaný
+  name_llaves: '[NÁZOV]'
+  name_or_slug: Názov alebo riadok URL, napr. môj projekt
+  name_of_the_place_you: Názov miesta, kde ste uskutočnili pozorovanie
+  name_or_username: Meno alebo užívateľské meno
+  name_provider: Poskytovateľ názvu
+  name_providers:
+    col: Catalogue of Life
+    ubio: uBio
+    nzor: New Zealand Organisms Register
+  named_based_url_might_change: URL obsahujúce názov sa môžu zmeniť, ale toto sa nezmení.
+  names: Názvy
+  names_for_taxon_html: Názvy pre %{taxon}
+  naturalised: naturalizovaný
+  naturalized: naturalizovaný
+  native: pôvodný
+  native_page_url: pôvodná stránka URL
+  native_to_place: Pôvodný v %{place}
+  nav: Navigácia
+  nav_description: Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+    eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+    fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+    culpa qui officia deserunt mollit anim id est laborum.
+  ne_lat: z.d. SV
+  ne_lon: z. š. SV
+  near: blízko
+  near_threatened: Takmer ohrozený
+  nearby: V blízkosti
+  nearby_observations_: Blízke pozorovania
+  nearby_observations: Blízke pozorovania
+  need_id_help?: Potrebujete pomoc s ID?
+  needs_id: potrebuje ID
+  needs_id_: Potrebuje ID
+  Needs_ID!: Potrebuje ID!
+  needs_id_expandable_html: <span class='full'>Potrebuje </span>ID
+  needs_to_be_identified: Musí byť identifikovaný
+  new: Nový
+  new_and_noteworthy: Nové a pozoruhodné
+  new_announcement: Nové oznámenie
+  new_assessment: Nové hodnotenie
+  new_check_list: Nový zoznam
+  new_check_list_for: Vytvoriť nový zoznam pre %{place}&raquo;
+  new_custom_field_for: Nové vlastné pole pre
   new_flag_for: Nová značka pre
+  new_guide: Nový sprievodca
+  new_journal_post: Nový príspevok do denníka
+  new_lexicon: Nový slovník
+  new_list: Nový zoznam
+  new_members: Noví členovia
+  new_message: Nová správa
+  new_observation_field: Nové pole pozorovania
+  new_observation_rules: Nové pravidlá pozorovania
+  new_observations: Nové pozorovania
+  new_observations_this_year: Nové pozorovania v tomto roku
+  new_observations_ellispsis: Nové pozorovania...
+  new_observations_from_place_html: Nové pozorovania z %{place}
+  new_observations_may_take_up_to: Zobrazenie nových pozorovaní vo widgete môže trvať
+    až %{widget_expiration} minút.
+  new_observations_of_x_html: Nové pozorovania %{x}
+  new_password: Nové heslo
+  new_post: Nový príspevok
+  new_project: Nový projekt
+  new_project_asset: Nová projektová_položka
+  new_project_asset_for: Nová projektová položka pre
+  new_source: Nový zdroj
+  new_species_added_in_interval: Nové druhy pridané v %{interval}
+  new_species_added_in_interval_x_of_y: Nové druhy pridané v %{interval}(Zobrazuje
+    %{x} z %{y})
+  new_taxon_change: Nová zmena taxónu
+  new_taxon_link: Nový odkaz na taxón
+  new_taxon_name: Nový názov taxónu
+  new_taxon_name_for: Nový názov taxónu pre
+  new_taxon_range: Nový rozsah taxónu
+  new_taxonomic_change: Nová taxonomická zmena (návrh)
+  new_trip: Nová cesta
+  new_updates_in_the_last_24_hours_from: Nové aktualizácie z %{site_name} za posledných
+    24 hodín
+  new_user_rules: Nové užívateľské pravidlá
+  new_users: Noví používatelia
+  new_users_this_year: Noví užívatelia v tomto roku
   no_administrator_knows_your_password: Žiadny administrátor %{sitename} nepozná vaše
     nové heslo ani k nemu v žiadnom okamihu nemal a nemá prístup.
   no_flags: Tentokrát žiadne značky
@@ -2104,6 +2374,7 @@ sk:
     projects:
       new:
         multiple_project_administrators: Viac administrátorov projektu
+        or_drag_and_drop: (alebo ťahaj a pusti)
       curator_coordinate_access_note: V tomto projekte môžete zdielať aj súkromné
         koordinácie pozorovania krok za krokom. Toto sú len základné nastavenia pre
         nové pozorovania pridané do tohto projektu.
@@ -2120,6 +2391,18 @@ sk:
           prosím statusy pre taxóny, ktoré obsahujú druhy bez statusu pretože to zakryje
           súradnice pozorovaní týchto druhov.
       show:
+        charts_help_other: 'Tiež zobrazujeme grafy sezónnosti pre anotácie pozorovaní.
+          Anotácie sú nový systém pridávania metadát k pozorovaniam prostredníctvom
+          kontrolovaných termínov. Zatiaľ používame len "životné štádium" a "rastlinnú
+          fenológiu" (keď rastlina kvitne alebo plodí). Zatiaľ nemáme žiadny spôsob,
+          ako pridávať anotácie priamo, takže teraz prevádzame údaje z polí pozorovania
+          do anotácií. Ak sa nemôžete dočkať, až vytvoríme systém anotácií, môžete
+          prispieť k anotáciám "životného štádia" pridaním údajov o pozorovaní, ktoré
+          majú jednu z nasledujúcich hodnôt: dospelý, po zvliekaní, kukla, nymfa,
+          larva, vajíčko alebo mláďa. Dobré sú teda najmä polia "životné štádium"
+          a "životné štádium hmyzu". Pokiaľ ide o "rastlinnú fenológiu", zameriavame
+          sa na všetky polia s výrazom "fenológia" v názve a "kvet" alebo "plod" v
+          hodnote, takže je vhodné použiť pole "fenológia kvitnutia".'
         frequency:
           Life Stage=teneral: Po zvliekaní
     users:
