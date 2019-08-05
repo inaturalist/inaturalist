@@ -64,6 +64,9 @@ ja:
   x_people_agree_html:
     one: <span class="count">1</span>人が賛成しています
     other: <span class="count">%{count}</span>が賛成しています
+  x_photos:
+    one: 1枚の写真
+    other: '%{count}枚の写真'
   x_new_species:
     other: '%{count}件の新種'
   x_species:
@@ -267,7 +270,9 @@ ja:
   adding_to_your_life_list: ライフリストに追加中...
   additional_range: 追加の分布範囲
   additional_range_data_from_an_unknown_source: 追加の分布範囲の提供先は不明
+  adjust_brightness: 明るさを調節
   admin: 管理者
+  admin_s: 管理者
   admin_any_projects: どのプロジェクトも管理していません
   admin_only: 管理者のみ
   admin_tools: 管理者ツール
@@ -288,8 +293,33 @@ ja:
   all_photos: すべての写真
   all_places: すべての場所
   all_projects: すべてのプロジェクト
+  all_children_added_to_the_database: データベースに追加した子項目の合計
   all_rank_added_to_the_database:
+    phylum: データベースに追加した門の合計
+    subphylum: データベースに追加した亜門の合計
+    superclass: データベースに追加した上綱の合計
+    class: データベースに追加した綱の合計
+    subclass: データベースに追加した亜綱の合計
+    infraclass: データベースに追加した下綱の合計
+    superorder: データベースに追加した上目の合計
+    order: データベースに追加した目の合計
+    suborder: データベースに追加した亜目の合計
+    infraorder: データベースに追加した下目の合計
+    superfamily: データベースに追加した上科の合計
+    family: データベースに追加した科の合計
+    subfamily: データベースに追加した亜科の合計
+    supertribe: データベースに追加した上族の合計
+    tribe: データベースに追加した族（連）の合計
+    subtribe: データベースに追加した亜族の合計
+    genus: データベースに追加した属の合計
+    subgenus: データベースに追加した亜属の合計
+    section: データベースに追加した節の合計
+    subsection: データベースに追加した亜節の合計
     species: データベースに追加した種の合計
+    hybrid: データベースに追加した交雑種の合計
+    subspecies: データベースに追加した亜種の合計
+    variety: データベースに追加した変種の合計
+    form: データベースに追加した形態の合計
   all_rights_reserved: 著作権を全て留保する
   all_species: すべての種
   all_taxa:
@@ -324,6 +354,9 @@ ja:
     x_amphibia: '{{PLURAL|%{count}件の両生類}'
     x_mammalia:
       other: '%{count}件の哺乳類'
+    x_actinopterygii:
+      one: 側棘鰭上目1種
+      other: 側棘鰭上目%{count}種
     x_reptilia:
       other: '%{count}件の爬虫類'
     x_aves:
@@ -334,10 +367,14 @@ ja:
       other: '%{count}匹のクモ類'
     x_fungi:
       other: '%{count}種の菌類'
+    x_chromista:
+      one: クロミスタ1類
+      other: クロミスタ%{count}類
     x_protozoa:
       other: '%{count}件の原生動物'
     x_other_animals:
       other: '%{count}件のその他の動物'
+  all_taxa_: すべての分類群
   all_taxa_in_this_guide: このガイド内のすべての分類群
   all_taxonomic_groups: '&laquo; すべての分類群'
   all_updates: すべての更新情報
@@ -353,6 +390,7 @@ ja:
   allowed_values: 許可される値
   alphabetical: アルファベット順
   alphabetical_order: アルファベット順
+  already_have_an_account_log_in_html: アカウントは登録済みですか？ <strong>ログインしてください。</strong>
   amphibians: 両生類
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWebにはこの種についての情報はありません
   amphibiaweb_taxonomy: AmphibiaWebの分類体系情報
@@ -363,6 +401,9 @@ ja:
   and_make_some_new: 新規作成しませんか？
   and_other_taxa: '&amp; その他の分類群'
   and_un_license_all_your_observations: そしてすべての観察記録のライセンスを解除
+  and_x_more_people!:
+    one: ともう1人!
+    other: 他%{count}人!
   android: Android
   animals: 動物
   annotation: 注釈
@@ -443,10 +484,16 @@ ja:
   at_any_time_change: いつでも(<span class="button">変更</span>)
   at_time: '%{time}'
   atom: Atom
+  attached_taxon: 関連する分類群
+  attribute: 属性
+  attribution: 帰属
   authority_list:
     iucn_red_list: IUCNレッドリスト
+    natureserve: NatureServe
+    cites: CITES
   authorize_permissions_from_provider: '%{provider}の権限を承認'
   automatic_descriptions_have_been_disabled: この分類群の自動説明が使用できません。
+  automatic_short: 自動
   automatically_add_to_project: プロジェクトに自動的に追加
   automatically_add_observations_to_this_project: このプロジェクトに観察記録を自動的に追加する
   automatically_share_your_observations_on: 観測記録を自動的にシェアー
@@ -477,6 +524,7 @@ ja:
   back_to_x_history: '%{x}の履歴へ戻る'
   back_to_x_journal: '%{user}のジャーナルへ戻る'
   back_to_x_blog: '%{x}のブログに戻る'
+  back_to_your_dashboard: 自分のダッシュボードに戻る
   back_to_x_observations: '%{user}の観察記録へ戻る'
   back_to_your_lists: 自分のリストに戻る
   back_to_your_journal: 自分の日記に戻る
@@ -484,6 +532,7 @@ ja:
   back_to_your_profile: 自分のプロフィールに戻る
   back_to_your_projects: 自分のプロジェクトに戻る
   based_on_the_evidence_can_id_be_improved: 証拠に基づいてコミュニティー分類を確定しますか、改善しますか？
+  basic: 基本
   batch: 一括
   batch_edit: 一括編集
   batch_edit_taxa_for_x_html: '%{x}の分類群一括編集'
@@ -2682,6 +2731,24 @@ ja:
   taxa_observed: 観察された分類群
   taxa_to_include: 対象分類群
   taxon: 分類群
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon}は観察1件で%{iconic_taxon}の中で%{rank}位'
+    other: '%{taxon}は観察%{count}件で%{iconic_taxon}の%{rank}位'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: 観察された1件の%{taxon}は両生ハ虫類中%{rank}位
+    other: 観察された%{count}件の%{taxon}は両生ハ虫類中%{rank}位
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon}は観察1件で鳥類の%{rank}位'
+    other: '%{taxon}は観察%{count}件で鳥類の%{rank}位'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon}は観察1件でハ虫類の%{rank}位'
+    other: '%{taxon}は観察%{count}件でハ虫類の%{rank}位'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon}は観察1件で昆虫類の%{rank}位'
+    other: '%{taxon}は観察%{count}件で昆虫類の%{rank}位'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon}は観察1件でキノコ類の%{rank}位'
+    other: '%{taxon}は観察%{count}件でキノコ類の%{rank}位'
   taxonomy: 分類
   taxon_: 分類群
   taxon_change: 分類群の変更
@@ -2799,6 +2866,12 @@ ja:
   this_list_is_empty!: このリストに項目がありません！
   this_list_only_accepts_taxa_that_are: このリストは次の条件を満たす分類群のみを追加することができます：
   this_observation_has_been_incorporated_into_the_following_external_websites: この観察記録データが次の外部サイトに提供されています：
+  this_observation_is_featured_on_x_sites:
+    one: この観察はウェブサイト1箇所に掲載されています
+    other: この観察はウェブサイト %{count}箇所に掲載されています
+  this_observation_is_in_x_projects:
+    one: この観察が属するプロジェクトは1件
+    other: この観察が属するプロジェクトは%{count}件
   this_observation_lies_outside_the: この観察記録が%{site_name}のデータベース上にあるこの種の生息域の外にあるようです。もしかしたら、${site_name}の生息域データに不備があるか、IDが異なるか、迷鳥のような突発的な移動なのか、また生息域拡大なのかもしれません
   this_photo_is_already_associated: この写真はすでに別の観察記録で使用されています。
   this_place_has_no_check_list: この場所にはチェックリストがありません。
@@ -2882,6 +2955,9 @@ ja:
   update_selected_taxa: 選択された分類群を更新
   update_subscription: 購読を更新
   update_subscription_preferences: 購読設定を更新
+  update_x_selected_taxa:
+    one: 選んだ分類群1件を更新
+    other: 選んだ分類群%{count}件を更新
   update_your_content: 内容を更新
   update_with_eol_content: EOLデータで更新
   update_with_site_content: '%{site_name}データで更新'
@@ -2908,6 +2984,9 @@ ja:
   US_states: アメリカの州
   usage_stats: 利用状況
   use_unique_file_names_for_separate_uploads: 個別のアップロードの場合、一意のファイル名をご使用ください
+  used_x_times:
+    one: 1回使用
+    other: '%{count}回使用'
   user: ユーザー
   user_added_a_x: '%{user}が%{x}を追加しました'
   user_added_a_x_to_noun_by_html: '%{user}は%{by}の%{noun}に%{x}を追加しました'
@@ -3416,6 +3495,10 @@ ja:
           Life Stage=pupa: 蛹
           Life Stage=adult: 成虫
     users:
+      delete:
+        x_comments_html:
+          one: あなたが追加した<strong class="count">コメントは1件</strong>
+          other: あなたが追加した<strong class="count">コメントは%{count}件</strong>
       edit:
         blocking_desc_html: |-
           <p>
@@ -3558,7 +3641,13 @@ ja:
       about_x_years:
         one: 約1年
         other: 約%{count}年
+      almost_x_years:
+        one: 約1年
+        other: 約%{count}年
       half_a_minute: 約30秒
+      less_than_x_seconds:
+        one: 1秒以内
+        other: '%{count}秒以内'
       over_x_years:
         other: '%{count}年以上'
       x_days:
@@ -3570,6 +3659,12 @@ ja:
       x_seconds:
         one: 1秒
         other: '%{count}秒'
+    countdown_x_hours:
+      one: 時間
+      other: 時間
+    countdown_x_seconds:
+      one: 秒
+      other: 秒
     prompts:
       day: 日
       hour: 時間
@@ -3600,6 +3695,9 @@ ja:
       too_short:
         one: は短すぎます（最小は1文字）
         other: は短すぎます（最小は%{count}文字）
+      wrong_length:
+        one: の長さが間違いです (数字1文字が正解)
+        other: iの長さが間違いです (数字%{count}文字が正解)
     template:
       body: 次のフィールドに問題がありました：
       header:

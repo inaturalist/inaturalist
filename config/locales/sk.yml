@@ -1906,6 +1906,14 @@ sk:
   link_your_google_account: Pripojiť účet Google
   linked_facebook: Váš účet na %{site_name} je teraz pripojený s vašim účtom na Facebooku.
   linked_flickr: Váš účet na %{site_name} je teraz pripojený s vašim účtom na Flickr.
+  linked_flickr_hotwo: Svoj účet na Flickr môžete aktivovať prostredníctvom %{site_name},
+    aby ste mohli pridávať fotky, kliknutím na tento odkaz.
+  linked_flickr_password_html: <Strong>Nikdy vás nebudeme žiadať o vaše heslo na Flickr</
+    strong> (Flickr o neho však žiadať môže, skontrolujte url a overte si, že ide
+    o Flickr.com).
+  linked_flickr_photo_copy_html: <strong>Nikdy nebudeme ukladať kópie vašich fotiek
+    ani meniť vaše údaje na Flickr (ak nás o to nepožiadate). </strong> Príliš sa
+    zaujímame o vtáky, chrobáky a ulitníkov, než aby sme sa hrali s vašimi údajmi!
   linkedin: LinkedIn
   list: Zoznam
   list_deleted: Zoznam bol zmazaný.
@@ -1949,6 +1957,7 @@ sk:
   loading_tags: Nahrávanie tagov...
   loading_taxa_from_your: Nahrávanie taxónov z vašich pozorovaní...
   loading_wikipedia_description: Nahrávam opisu z Wikipédie...
+  locale_description: Umiestnenie nastavuje predvoľby jazyka a formátovanie dátumu.
   locales:
     ar: Arabčina
     bg: Bulharčina
@@ -1996,6 +2005,14 @@ sk:
   location_is_obscured: Miesto je neznáme
   location_is_private: Miesto je súkromné
   location_specified: Miesto určené
+  locked_taxa_will_not_allow_new: Zamknuté taxóny neumožňujú pridávanie nových následných
+    taxónov. Takže ak ste zamkli obojživelníky a niekto sa pokúsil importovať <i>Rana
+    catesbeiana</ i> od externého poskytovateľa názvov, nový taxón bude vytvorený,
+    ale nemožno ho klasifikovať ako obojživelníka. Pokiaľ k tomuto dôjde, novo pridané
+    taxóny by mali byť označené pre správcov. Tento postup by sa mal používať iba
+    pre taxóny, u ktorých sme presvedčení, že už máme všetky následné. Správca môže
+    vykonať úpravu editáciou taxónov a priamym zadaním základných ID, zvážte však
+    prosím zlúčenie nových taxónov s existujúcimi taxóny.
   log_in: Prihlásiť sa
   log_scale_label: Protokol
   logged_in_as: Prihlásený ako
@@ -2022,6 +2039,9 @@ sk:
   made_a: urobiť
   make_admin: Vytvoriť admina
   make_an_observation: urobiť pozorovanie
+  mail_disclaimer: '%{site_name} neumožňuje svojim užívateľom zasielať vám ďalšie
+    pozvánky prostredníctvom nášho systému pozvánok. Nahláste prosím zneužitie pozvánok
+    %{site}.'
   main_content: Hlavný obsah
   make_a_new_place: Vytvoriť nové miesto
   make_a_taxon_swap_instead?: Namiesto toho urobiť zámenu taxónu?
@@ -2032,6 +2052,9 @@ sk:
   make_one: vytvoriť jedno?
   make_sure_the_default_photo_looks_good: Uitite sa, že štandardná fotografia vyzerá
     dobre vo veľkej veľkosti.
+  make_taxonomic_flickr_tags_for_taxon_raquo: Vytvoriť taxonomické tagy na Flickr
+    pre tento taxón &raquo;
+  make_this_your_default_license: Nastavte túto východziu licenciu %{type}
   make_this_the_primary_listing: Vytvorte toto ako primárny zápis
   mammals: cicavce
   manage: Spravovať
@@ -2044,6 +2067,8 @@ sk:
   managed: riadený
   manager: Manažér
   managers: Manažéri
+  managers_can_do: Manažéri môžu robiť všetko to čo správcovia, ako napríklad úpravy
+    nastavenia projektu a písanie príspevkov v denníkoch projektu.
   managing_projects: Spravovať projekty
   manually_create_new_place: Vytvoriť nové miesto manuálne
   map: Mapa
@@ -2053,11 +2078,16 @@ sk:
   maps:
     overlays:
       all_observations: Všetky pozorovania
+      every_publicly_visible_observation: Každé verejne viditeľné pozorovanie vytvorené
+        v sieti iNaturalist
       featured_observations: Odporúčané pozorovania
       gbif_network: GBIF sieť
+      gbif_network_description: Záznamy z múzeí a iných poskytovateľov výskytu, ktoré
+        distribuuje Global Biodiversity Informatics Facility
       observations: Pozorovania
       place_boundary: Umiestniť hranicu
       checklist_places: Zoznam miest
+      checklist_places_description: Miesta, kde bol tento taxón uvedený
       range: Rozsah
   map_tooltip: Ukázať zobrazenie mapy
   map_for: Mapa pre
@@ -2244,9 +2274,71 @@ sk:
   no_administrator_knows_your_password: Žiadny administrátor %{sitename} nepozná vaše
     nové heslo ani k nemu v žiadnom okamihu nemal a nemá prístup.
   no_flags: Tentokrát žiadne značky
+  no_link_flickr: Nie, radšej nie.
+  no_photo: Žiadna fotka
+  no_photos: Žiadne fotky
+  no_photos_of_that_size: Žiadna fotka v tejto veľkosti.
+  no_places_available: Žiadne dostupné miesta
+  no_places_selected: Neboli zvolené žiadne miesta.
+  no_post_yet: Zatiaľ žiadne príspevky!
+  no_project_selected: Nie je vybraný žiadny projekt
+  no_project_to_admin_current_user: Nespravujete žiadne projekty
+  no_project_to_admin_login: '%{login} nespravuje žiadne projekty'
+  no_projects_yet: Zatiaľ žiadne projekty
+  no_range_data_available: Žiadne dostupné údaje o rozsahu.
+  no_recent_activity: Žiadna nedávna aktivita
+  none: Žiadny
+  none_found: Nenájdené
+  normal: normálny
+  not_absent: nechýba
+  not_completed: Nedokončený
+  not_covered_by_any_taxon_frameworks: Nie je pokryté žiadnym taxónom
+  not_evaluated: nehodnotené
+  not_filtering: Nefiltruje sa
+  not_found: Nenájdené
+  not_just_creative_commons_licensed: nevzťahuje sa iba licencia Creative Commons
+  not_logged_in: Nie ste prihlásený
+  not_on_this_list: Nie je na tomto zozname.
+  not_recorded: Nebol zaznamenaný
+  not_seeing_what_looking_for: Nevidíte, čo ste hľadali?
+  not_spam: Nie je spam
+  not_yet: Ešte nie
+  note: Poznámka
+  notes: Poznámky
+  numeric_: numericky
+  noun_by_you: '%{noun} vami'
+  obs: Poz
+  obscured: Skrytý
+  obscured_or_private: skrytý alebo súkromný
+  observation: Pozorovanie
+  observation_: pozorovanie
+  observation_added: Pozorovanie pridané.
+  observation_added_to_the_project: Pozorovanie pridané k projektu "%{project}"
+  observation_aggregation: Zoskupenie pozorovania
+  observation_photo_uploader: Fotka z pozorovania vložená užívateľom
   observations_by_category: Pozorovania podľa kategórie
+  observations_by_app: Pozorovanie podľa aplikácie
+  observations_by_rank: Pozorovanie podľa poradia
+  observations_by_user_on_date: Pozorovania užívateľa %{user} uskutočnená dňa %{date}
+  observations_by_you: Vaše pozorovania
+  observations_by_you_on_date: Vaše pozorovania z dňa %{date}
+  observation_calendar_for: Kalendár pozorovaní užívateľa %{user} v roku %{year}
+  observation_contest: súťaž pozorovaní
+  observation_curation: Správa pozorovaní
+  observation_date: Dátum
+  observation_date?: Dátum?
+  observation_field: Pole pozorovania
+  observation_field_details: Podrobnosti poľa pozorovania
+  observation_fields: Pole pozorovania
+  observation_fields_are_additional: Polia pozorovaní sú dodatočné polia údajov, ktoré
+    možno pridať k pozorovaniam.
+  observation_fields_by_preferences_description: Polia pozorovania sú trochu podobné
+    tagom s tým rozdielom, že ich štandardne môže k vášmu pozorovaniu pridať ktokoľvek.
+    Ak chcete, aby ste túto možnosť mali len vy alebo správcovia stránky, vykonajte
+    zmenu nastavenia.
   observation_flagged: Pozorovanie označené
   observation_flagged_as_flag: Pozorovanie označené ako %{flag}
+  observation_removed_from_the_project: Pozorovanie odstránené z projektu "%{project}"
   observations_last_aggregated: Naposledy zoskupené pozorovania
   on_your_life_list: na vašom zoznamu života
   only_administrators_may_access_that_page: K tejto stránke majú pristup iba administrátori

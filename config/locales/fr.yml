@@ -80,19 +80,19 @@ fr:
   x_observations_html:
     other: une (=<span class='count'>1</span>) observation
   x_observations_link_html:
-    other: <a href='%{url}'>une (=1) observation</a>
+    other: <a href='%{url}'>une observation</a>
   x_observations_reviewed_html:
-    other: une (=<span class='count'>1</span>) observation revue
+    other: <span class='count'>1</span> observation revue
   x_others:
-    other: une (=1) autre
+    other: 1 autre
   x_people_found_this_helpful:
-    other: une (=1) personne a trouvé cela utile
+    other: 1 personne a trouvé cela utile
   x_people_like_this:
-    other: une (=1) personne aime cela
+    other: 1 personne aime cela
   x_people_agree_html:
-    other: une (=<span class="count">1</span>) personne est d’accord
+    other: <span class="count">1</span> personne est d’accord
   x_photos:
-    other: une (=1) photo
+    other: 1 photo
   x_new_species:
     other: une (=1) nouvelle espèce
   x_species:
@@ -3043,8 +3043,8 @@ fr:
       mais aussi du contenu des gens que vous suivez et des taxons ou lieux auxquels
       vous vous êtes inscrits en utilisant l’outil d’abonnements sur la droite.
     youve_got_updates_panel_title: Vous avez des mises à jour !
-    youve_got_updates_panel_body_p1: Restez synchro avec les mises à jour sur ce qui
-      suit…
+    youve_got_updates_panel_body_p1: Restez synchronisé avec les mises à jour sur
+      ce qui suit…
     youve_got_updates_panel_body_p2: |-
       <ul>
         <li><strong>Votre contenu :</strong> Activité sur vos observations, comme des commentaires, des identifications, ou des mises en favori par la communauté de %{site_name}. Vous recevrez aussi des mises à jour quand quelqu’un ajoute votre observation  à un projet, ou annotez-le avec des champs supplémentaires.</li>

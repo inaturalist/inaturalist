@@ -752,6 +752,8 @@ ca:
     alhora
   can_you_help_your_friends_id_these: Podeu ajudar a ID aquestes observacions?
   cancel: Cancel·la
+  cant_edit_or_delete_hidden_content: No podeu editar o esborrar continguts que han
+    estat ocultats pels supervisors del lloc
   cant_flag_an_object_that_doesnt_exist: No podeu posar una marca a un contingut que
     no existeix
   cant_merge_a_taxon_with_itself: No podeu combinar aquest tàxon amb ell mateix.
@@ -891,9 +893,12 @@ ca:
     identificar.
   check_out_your_life_list: Reviseu la vostra Llista de vida
   check_this_box_if_html: "Seleccioneu aquest botó si voleu aplicar \n<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca'
-    target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> a
-    les seves fotos. Podeu escollir una llicència diferent o retirar la llicència
-    més tard, però aquesta és la millor llicència per compartir amb investigadors."
+    target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> al
+    contingut penjat. Això significa que qualsevol pot copiar i reutilitzar les teves
+    fotos o observacions sense demanar-te permís indicant la vostra autoria i sembre
+    que no l'utilitzeu per explotar-ho comercialment. Podeu escollir una llicència
+    diferent o retirar la llicència més tard, però aquesta és la millor llicència
+    per compartir amb investigadors."
   checklist: Llista de comprovació
   checklists: Llistes de comprovació
   checklist_places: Llocs amb llista de comprovació
@@ -2846,6 +2851,8 @@ ca:
   observations_removed_from_the_project: Observacions eliminades del projecte %{project}
   observations_saved: Observacions desades!
   observations_specifying_this_field: Observacions que especifiquen aquest camp
+  observations_specifying_this_field_with_value: Observacions especificant aquest
+    camp amb %{value}
   observations_text_search_warning: Les cerques de text poden produir resultats estranys
     quan es combinen amb altres filtres; si vols trobar l'observació d'una espècie
     en particular, utilitza filtrar tàxon.
