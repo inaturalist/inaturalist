@@ -653,19 +653,19 @@ describe Observation do
         end
       end
 
-      it "should not allow dates that are creater than created_at due to chronic's weird time parsing" do
+      it "should not allow dates that are greater than created_at due to chronic's weird time parsing" do
         d = 7.months.ago
         observed_on_string = "3 whatever"
         o = Observation.make!( created_at: d, observed_on_string: d.to_s )
         Observation.where( id: o.id ).update_all( observed_on_string: observed_on_string )
         o.reload
         expect( o.observed_on_string ).to eq observed_on_string
-        expect( o.created_at ).to eq d
+        expect( o.created_at.to_s ).to eq d.to_s
         expect( o.observed_on ).to eq d.to_date
         observed_on = o.observed_on
         o.update_attributes( updated_at: Time.now )
         o.reload
-        expect( o.observed_on ).to eq observed_on
+        expect( o.observed_on.to_s ).to eq observed_on.to_s
       end
     end
   
