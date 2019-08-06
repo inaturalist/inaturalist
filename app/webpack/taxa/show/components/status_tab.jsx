@@ -60,37 +60,40 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                 <td>
                   <div className="media">
                     <div className="media-left">
-                      { status.place ?
-                        <a
-                          href={`/places/${status.place ? status.place.id : null}`}
-                          className="place-link"
-                        >
-                          <i className="fa fa-invert fa-map-marker"></i>
-                        </a>
-                        :
-                        <i className="fa fa-invert fa-globe"></i>
+                      { status.place
+                        ? (
+                          <a
+                            href={`/places/${status.place ? status.place.id : null}`}
+                            className="place-link"
+                          >
+                            <i className="fa fa-invert fa-map-marker" />
+                          </a>
+                        )
+                        : <i className="fa fa-invert fa-globe" />
                       }
                     </div>
                     <div className="media-body">
-                      { status.place ?
-                        <a href={`/places/${status.place.id}`} className="place-link">
-                          { I18n.t( `places_name.${_.snakeCase( status.place.display_name )}`,
-                            { defaultValue: status.place.display_name } ) }
-                        </a>
-                        :
-                        I18n.t( "globally" )
+                      { status.place
+                        ? (
+                          <a href={`/places/${status.place.id}`} className="place-link">
+                            { I18n.t( `places_name.${_.snakeCase( status.place.display_name )}`,
+                              { defaultValue: status.place.display_name } ) }
+                          </a>
+                        )
+                        : I18n.t( "globally" )
                       }
                     </div>
                   </div>
                 </td>
                 <td>
-                  <i className={`glyphicon glyphicon-flag ${flagClass}`}>
-                  </i> { text }
+                  <i className={`glyphicon glyphicon-flag ${flagClass}`} />
+                  { " " }
+                  { text }
                   { status.description && status.description.length > 0 ? (
                     <UserText
                       truncate={550}
                       className="text-muted"
-                      text={ status.description }
+                      text={status.description}
                     />
                   ) : null }
                 </td>
@@ -103,8 +106,8 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                         </a>
                       </div>
                       <div className="media-right">
-                        <a href={ status.url }>
-                          <i className="glyphicon glyphicon-new-window"></i>
+                        <a href={status.url}>
+                          <i className="glyphicon glyphicon-new-window" />
                         </a>
                       </div>
                     </div>
@@ -141,22 +144,24 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                 <td className="conservation-status">
                   <div className="media">
                     <div className="media-left">
-                      { lt.place ?
-                        <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                          <i className="fa fa-invert fa-map-marker"></i>
-                        </a>
-                        :
-                        <i className="fa fa-invert fa-globe"></i>
+                      { lt.place
+                        ? (
+                          <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
+                            <i className="fa fa-invert fa-map-marker" />
+                          </a>
+                        )
+                        : <i className="fa fa-invert fa-globe" />
                       }
                     </div>
                     <div className="media-body">
-                      { lt.place ?
-                        <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
-                          { I18n.t( `places_name.${_.snakeCase( lt.place.name )}`,
-                            { defaultValue: lt.place.display_name } ) }
-                        </a>
-                        :
-                        I18n.t( "globally" )
+                      { lt.place
+                        ? (
+                          <a href={`/places/${lt.place ? lt.place.id : null}`} className="place-link">
+                            { I18n.t( `places_name.${_.snakeCase( lt.place.name )}`,
+                              { defaultValue: lt.place.display_name } ) }
+                          </a>
+                        )
+                        : I18n.t( "globally" )
                       }
                     </div>
                   </div>
@@ -189,11 +194,13 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
             <Col xs={4}>
               <h4>{ I18n.t( "about_conservation_status" ) }</h4>
               <p>
-                {
-                  I18n.t( "views.taxa.show.about_conservation_status_desc" )
-                } <a
-                  href="https://en.wikipedia.org/wiki/Conservation_status"
-                >{ I18n.t( "more" ) } <i className="icon-link-external"></i></a>
+                { I18n.t( "views.taxa.show.about_conservation_status_desc" ) }
+                { " " }
+                <a href="https://en.wikipedia.org/wiki/Conservation_status">
+                  { I18n.t( "more" ) }
+                  { " " }
+                  <i className="icon-link-external" />
+                </a>
               </p>
               <h4>{ I18n.t( "examples_of_ranking_organizations" ) }</h4>
               <ul className="tab-links list-group iconified-list-group">
@@ -219,7 +226,7 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                           backgroundImage: `url( 'https://www.google.com/s2/favicons?domain=${link.host}' )`
                         }}
                       >
-                        <i className="icon-link-external pull-right"></i>
+                        <i className="icon-link-external pull-right" />
                         { link.text }
                       </a>
                     </li>
@@ -240,11 +247,12 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
             <Col xs={4}>
               <h4>{ I18n.t( "about_establishment_means" ) }</h4>
               <p>
-                {
-                  I18n.t( "views.taxa.show.about_establishment_desc" )
-                } <a
-                  href="https://en.wikipedia.org/wiki/Conservation_status"
-                >{ I18n.t( "more" ) } <i className="icon-link-external"></i></a>
+                { I18n.t( "views.taxa.show.about_establishment_desc" ) }
+                <a href="https://en.wikipedia.org/wiki/Conservation_status">
+                  { I18n.t( "more" ) }
+                  { " " }
+                  <i className="icon-link-external" />
+                </a>
               </p>
             </Col>
           </Row>
