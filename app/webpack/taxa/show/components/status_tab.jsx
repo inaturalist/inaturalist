@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col } from "react-bootstrap";
+import { Grid, Row, Col, Popover, OverlayTrigger } from "react-bootstrap";
 import _ from "lodash";
 import UserText from "../../../shared/components/user_text";
 
@@ -28,6 +28,28 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
             <th>{ I18n.t( "place" ) }</th>
             <th>{ I18n.t( "conservation_status" ) }</th>
             <th>{ I18n.t( "source" ) }</th>
+            <th>
+              <OverlayTrigger
+                trigger="click"
+                rootClose
+                placement="top"
+                containerPadding={20}
+                overlay={(
+                  <Popover id="geoprivacy-explanation">
+                    <div className="contents">
+                      { I18n.t( "conservation_status_geoprivacy_desc" ) }
+                    </div>
+                  </Popover>
+                )}
+                className="cool"
+              >
+                <span>
+                  { I18n.t( "taxon_geoprivacy" ) }
+                  { " " }
+                  <i className="fa fa-info-circle linky" />
+                </span>
+              </OverlayTrigger>
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -52,6 +74,12 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                 break;
               default:
                 // ok
+            }
+            let geoprivacy = I18n.t( "open_" );
+            if ( status.geoprivacy === "obscured" ) {
+              geoprivacy = I18n.t( "obscured" );
+            } else if ( status.geoprivacy === "private" ) {
+              geoprivacy = I18n.t( "private_" );
             }
             return (
               <tr
@@ -112,6 +140,9 @@ const StatusTab = ( { statuses, listedTaxa, listedTaxaCount } ) => {
                       </div>
                     </div>
                   ) : null }
+                </td>
+                <td>
+                  { geoprivacy }
                 </td>
               </tr>
             );
