@@ -26,7 +26,6 @@ class Comment < ActiveRecord::Base
 
   notifies_subscribers_of :parent, notification: "activity", include_owner: true
   notifies_users :mentioned_users,
-    except: :previously_mentioned_users,
     on: :save,
     delay: false,
     notification: "mention",
@@ -96,16 +95,6 @@ class Comment < ActiveRecord::Base
   def mentioned_users
     return [ ] unless body
     body.mentioned_users
-  end
-
-  def new_mentioned_users
-    return [ ] unless body && body_changed?
-    body.mentioned_users - body_was.to_s.mentioned_users
-  end
-
-  def previously_mentioned_users
-    return [ ] unless body_was.blank?
-    body.mentioned_users & body_was.to_s.mentioned_users
   end
 
   def index_parent

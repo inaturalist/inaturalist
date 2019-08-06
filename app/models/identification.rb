@@ -97,7 +97,6 @@ class Identification < ActiveRecord::Base
     ident.user_id != observation.user_id
   }
   notifies_users :mentioned_users,
-    except: :previously_mentioned_users,
     on: :save,
     delay: false,
     notification: "mention",
@@ -476,11 +475,6 @@ class Identification < ActiveRecord::Base
   def mentioned_users
     return [ ] unless body
     body.mentioned_users
-  end
-
-  def previously_mentioned_users
-    return [ ] if body_was.blank?
-    body.mentioned_users & body_was.to_s.mentioned_users
   end
 
   def vision

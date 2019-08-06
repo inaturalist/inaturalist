@@ -693,27 +693,31 @@ body > [role="dialog"] .ObservationModal {
     }
   }
 
-  .brightness-control {
+  .photo-controls {
+    display: flex;
+    flex-direction: column;
     position: absolute;
     top: 50%;
-    margin-top: -30px;
+    margin-top: -70px;
     right: 10px;
+    .btn-group-vertical {
+      margin-bottom: 10px;
+    }
+    .btn-group-vertical:last-child {
+      margin-bottom: 0px;
+    }
     .btn {
+      font-size: 16px;
+      font-weight: bold;
       background-color: rgba(255,255,255,0.8);
+      i {
+        position: relative;
+        top: -1px;
+      }
     }
     z-index: 1;
-    button {
-      padding-left: 6px;
-      line-height: 19px;
-    }
-    .btn-adjust-brightness i {
-      position: relative;
-      top: -1px;
-    }
-    .btn-increase-brightness,
-    .btn-decrease-brightness {
-      font-size: 14px;
-      font-weight: bold;
+    .btn-adjust-brightness {
+      border-color: transparent;
     }
   }
 

@@ -639,7 +639,7 @@ describe Observation do
         expect( o_2_days_ago ).not_to be_valid
       end
 
-      it "should not allow dates that are greater that created_at due to time zone mismatch" do
+      it "should not allow dates that are greater than created_at due to time zone mismatch" do
         Time.use_zone( "UTC" ) do
           o_2_days_ago = Observation.make!(
             created_at: DateTime.parse( "2019-01-20 23:00" ),
@@ -651,6 +651,21 @@ describe Observation do
           o_2_days_ago.update_attributes( observed_on_string: new_observed_on_string )
           expect( o_2_days_ago ).to be_valid
         end
+      end
+
+      it "should not allow dates that are greater than created_at due to chronic's weird time parsing" do
+        d = 7.months.ago
+        observed_on_string = "3 whatever"
+        o = Observation.make!( created_at: d, observed_on_string: d.to_s )
+        Observation.where( id: o.id ).update_all( observed_on_string: observed_on_string )
+        o.reload
+        expect( o.observed_on_string ).to eq observed_on_string
+        expect( o.created_at.to_s ).to eq d.to_s
+        expect( o.observed_on ).to eq d.to_date
+        observed_on = o.observed_on
+        o.update_attributes( updated_at: Time.now )
+        o.reload
+        expect( o.observed_on.to_s ).to eq observed_on.to_s
       end
     end
   
@@ -3815,8 +3830,17 @@ describe Observation do
     it "does not generation a mention update if the description was updated and the mentioned user wasn't in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
-      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
+      # mark the generated updates as viewed
+      UpdateAction.user_viewed_updates( UpdateAction.where( notifier: o ), u.id )
       o.update_attributes( description: "#{o.description} and some extra" )
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
+    end
+    it "removes mention updates if the description was updated to remove the mentioned user" do
+      u = User.make!
+      o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
+      o.update_attributes( description: "bye" )
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "generates a mention update if the description was updated and the mentioned user was in the new content" do

@@ -40,7 +40,6 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
   notifies_users :mentioned_users,
-    except: :previously_mentioned_users,
     on: :save,
     notification: "mention",
     delay: false,
@@ -846,6 +845,8 @@ class Observation < ActiveRecord::Base
       self.time_observed_at = nil
       return true
     end
+    # Only re-interpret the date if observed_on_string or time_zone changed
+    return unless observed_on_string_changed? || time_zone_changed?
     date_string = observed_on_string.strip
     tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/ # ends with (PDT)
     tz_offset_pattern = /([+-]\d{4})$/ # contains -0800
@@ -951,33 +952,33 @@ class Observation < ActiveRecord::Base
     begin
       # Start parsing...
       t = begin
-        Chronic.parse(date_string)
+        Chronic.parse( date_string, context: :past )
       rescue ArgumentError
         nil
       end
-      t = Chronic.parse(date_string.split[0..-2].join(' ')) unless t 
+      t = Chronic.parse( date_string.split[0..-2].join(' '), context: :past ) unless t 
       if !t && (locale = user.locale || I18n.locale)
         date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-        t = Chronic.parse(date_string)
+        t = Chronic.parse( date_string, context: :past )
       end
 
       if !t
         I18N_SUPPORTED_LOCALES.each do |locale|
           next if locale =~ /^en.*/
           new_date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-          break if t = Chronic.parse(new_date_string)
+          break if t = Chronic.parse( new_date_string, context: :past )
         end
       end
       return true unless t
     
       # Re-interpret future dates as being in the past
-      t = Chronic.parse(date_string, :context => :past) if t > Time.now
+      t = Chronic.parse( date_string, context: :past) if t > Time.now
       
       self.observed_on = t.to_date if t
     
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
-      if tspan = Chronic.parse(date_string, :context => :past, :guess => false)
+      if tspan = Chronic.parse( date_string, context: :past, guess: false )
         # If tspan is less than a day and the string wasn't 'today', set time
         if tspan.width < 86400 && date_string.strip.downcase != 'today'
           self.time_observed_at = t
@@ -3089,11 +3090,6 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
-  end
-
-  def previously_mentioned_users
-    return [ ] if description_was.blank?
-    description.mentioned_users & description_was.to_s.mentioned_users
   end
 
   def faves_count

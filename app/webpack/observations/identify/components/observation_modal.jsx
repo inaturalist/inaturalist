@@ -190,63 +190,67 @@ class ObservationModal extends React.Component {
             onSlide={setImagesCurrentIndex}
             onThumbnailClick={( event, index ) => setImagesCurrentIndex( index )}
           />
-          <a
-            href={images[imagesCurrentIndex].zoom || images[imagesCurrentIndex].original}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="original-photo-link"
-            title={I18n.t( "view_full_size_photo" )}
-          >
-            <i className="icon-link-external" />
-          </a>
-          <div className="brightness-control btn-group-vertical btn-group-xs" role="group">
-            <button
-              type="button"
-              className="btn btn-default btn-adjust-brightness"
-              onClick={( ) => {
-                const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
-                this.setState( { brightnesses: newBrightnesses } );
-              }}
-              title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
-            >
-              <i className="icon-adjust" />
-            </button>
-            <button
-              type="button"
-              className="btn btn-default btn-increase-brightness"
-              onClick={( ) => {
-                const existing = brightnesses[brightnessKey] || 1;
-                let newBrightness = _.round( existing + 0.2, 2 );
-                if ( newBrightness > 3 ) {
-                  newBrightness = 3;
-                }
-                const newBrightnesses = Object.assign( {}, brightnesses, {
-                  [brightnessKey]: newBrightness
-                } );
-                this.setState( { brightnesses: newBrightnesses } );
-              }}
-              title={I18n.t( "increase_brightness" )}
-            >
-              +
-            </button>
-            <button
-              type="button"
-              className="btn btn-default btn-decrease-brightness"
-              onClick={( ) => {
-                const existing = brightnesses[brightnessKey] || 1;
-                let newBrightness = _.round( existing - 0.2, 2 );
-                if ( newBrightness < 0.2 ) {
-                  newBrightness = 0.2;
-                }
-                const newBrightnesses = Object.assign( {}, brightnesses, {
-                  [brightnessKey]: newBrightness
-                } );
-                this.setState( { brightnesses: newBrightnesses } );
-              }}
-              title={I18n.t( "decrease_brightness" )}
-            >
-              –
-            </button>
+          <div className="photo-controls" role="toolbar">
+            <div className="btn-group-vertical btn-group-xs" role="group">
+              <a
+                href={images[imagesCurrentIndex].zoom || images[imagesCurrentIndex].original}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-default"
+                title={I18n.t( "view_full_size_photo" )}
+              >
+                <i className="icon-link-external" />
+              </a>
+            </div>
+            <div className="brightness-control btn-group-vertical btn-group-xs" role="group">
+              <button
+                type="button"
+                className="btn btn-default btn-adjust-brightness"
+                onClick={( ) => {
+                  const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
+              >
+                <i className="icon-adjust" />
+              </button>
+              <button
+                type="button"
+                className="btn btn-default btn-increase-brightness"
+                onClick={( ) => {
+                  const existing = brightnesses[brightnessKey] || 1;
+                  let newBrightness = _.round( existing + 0.2, 2 );
+                  if ( newBrightness > 3 ) {
+                    newBrightness = 3;
+                  }
+                  const newBrightnesses = Object.assign( {}, brightnesses, {
+                    [brightnessKey]: newBrightness
+                  } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={I18n.t( "increase_brightness" )}
+              >
+                +
+              </button>
+              <button
+                type="button"
+                className="btn btn-default btn-decrease-brightness"
+                onClick={( ) => {
+                  const existing = brightnesses[brightnessKey] || 1;
+                  let newBrightness = _.round( existing - 0.2, 2 );
+                  if ( newBrightness < 0.2 ) {
+                    newBrightness = 0.2;
+                  }
+                  const newBrightnesses = Object.assign( {}, brightnesses, {
+                    [brightnessKey]: newBrightness
+                  } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={I18n.t( "decrease_brightness" )}
+              >
+                -
+              </button>
+            </div>
           </div>
         </div>
       );

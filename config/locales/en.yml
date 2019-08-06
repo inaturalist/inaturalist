@@ -885,6 +885,8 @@ en:
     url: URL for a page describing this status.
     geoprivacy: Default geoprivacy for observations of this taxon
     iucn: Equivalent IUCN Red List code
+  conservation_status_geoprivacy_desc: |
+    Default geoprivacy applied to all observations of this taxon in this place
   conservation_summary: Conservation Summary
   contact_support: Contact Support
   contain_all_descendants?: Does this check list contain all the descendants of this taxon that occur here?
@@ -3939,6 +3941,7 @@ en:
   taxa_to_include: Taxa to include
   taxon: Taxon
   taxon_autocomplete_placeholder: Birds, monarch, etc.
+  taxon_geoprivacy: Taxon Geoprivacy
   taxon_is_a_rank: "%{taxon} is a %{rank}"
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: "%{taxon} is a %{rank} in %{iconic_taxon} with 1 observation"
