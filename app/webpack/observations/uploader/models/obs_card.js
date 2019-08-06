@@ -1,8 +1,9 @@
 import _ from "lodash";
 import inaturalistjs from "inaturalistjs";
-import actions from "../actions/actions";
 import moment from "moment-timezone";
-import util from "../models/util";
+import uuidv4 from "uuid/v4";
+import actions from "../actions/actions";
+import util from "./util";
 
 const ObsCard = class ObsCard {
   constructor( attrs ) {
@@ -24,7 +25,8 @@ const ObsCard = class ObsCard {
       projects: [],
       changedFields: { },
       /* global TIMEZONE */
-      time_zone: TIMEZONE
+      time_zone: TIMEZONE,
+      uuid: uuidv4()
     };
     Object.assign( this, defaultAttrs, attrs );
   }
@@ -114,7 +116,8 @@ const ObsCard = class ObsCard {
         place_guess: this.locality_notes,
         observation_field_values_attributes: this.observation_field_values,
         tag_list: this.tags.join( "," ),
-        captive_flag: this.captive
+        captive_flag: this.captive,
+        uuid: this.uuid
       },
       project_id: _.map( this.projects, "id" ),
       uploader: true
