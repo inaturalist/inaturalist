@@ -208,10 +208,12 @@ module DarwinCore
       end
 
       def countryCode
+        return if latitude.blank?
         observations_places.map(&:place).compact.detect{ |p| p.admin_level == Place::COUNTRY_LEVEL }.try(:code)
       end
 
       def stateProvince
+        return if latitude.blank?
         observations_places.map(&:place).compact.detect{ |p| p.admin_level == Place::STATE_LEVEL }.try(:name)
       end
 
