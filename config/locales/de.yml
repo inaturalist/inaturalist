@@ -184,6 +184,20 @@ de:
   about_this_bioblitz: Über diesen Bioblitz
   about_this_map: Über diese Karte
   about_this_project: Über dieses Projekt
+  about_trips_html: <h4>Trips ermöglichen die Erfassung von Daten über Fehlen/Vorhandensein,
+    durch Hinzufügen von Kontext zu Ihren Beobachtungen</h4><p><strong>Warum</strong>
+    Daten über Fehlen/Vorhandensein enthalten Informationen über den Aufwand der Erfassung,
+    die für wissenschaftliche Analysen wie die Verteilungsmodellierung nützlich sind
+    (normale iNaturalist Beobachtungen enthalten nur Daten über das Vorhandensein").</p>
+    <p><strong>How</strong> Ein Trip fügt Deinen Beobachtungen einen Kontext hinzu,
+    durch Protokollierung von:</p> <ul> <li><strong>Was</strong> Du gesucht hast (Zielliste)</li>
+    <li><strong>Wo</strong> Du gesucht hast (Suchgebiet)</li> <li><strong>Wann</strong>Du
+    gesucht hast (Suchintervall)</li> </ul> </ul> <p> Arten auf Deiner Zielliste,
+    die Du innerhalb des Suchgebietes und Intervalls beobachten konntest, werden als
+    vorhanden interpretiert. Während Arten auf Deiner Zielliste, die Du nicht beobachten
+    konntest, als fehlend interpretiert werden. Klicke auf 'Zusammenfassen von Fehlen-Vorhandensein
+    von Trips', um eine Tabelle mit Daten über das Fehlen-Vorhandensein für eine Spezies
+    aus Trips und zugehörigen Beobachtungen zu erstellen. <a href='%{url}'>Mehr erfahren</a></p>
   about_x: Über %{x}
   acc: Genauigkeit (m)
   account: Benutzerkonto
@@ -279,7 +293,7 @@ de:
   add_observation: Beobachtung hinzufügen
   add_observations!: Füge Beobachtungen hinzu!
   add_observations: Beobachtungen hinzufügen
-  add_observations_by_checking_off: Beobachtungen aus einer Arten-Prüfliste hinzufügen
+  add_observations_by_checking_off: Beobachtungen aus einer Arten-Checkliste hinzufügen
   add_observations_from_list: Beobachtungen aus einer Liste hinzufügen
   add_observations_of_taxa_youve_added: Beobachtungen von Taxa hinzufügen, die du
     zu einer Liste hinzugefügt hast. In Entwicklung und erzeugt noch Fehlermeldungen.
@@ -322,7 +336,7 @@ de:
   add_to_a_scheme: Zu einem Schema hinzufügen
   add_to_a_project: Zu einem Projekt hinzufügen
   add_to_calendar: Zum Kalender hinzufügen
-  add_to_checklist: Zu Prüfliste hinzufügen
+  add_to_checklist: Zur Checkliste hinzufügen
   add_to_favorites: Zu Favoriten hinzufügen
   add_to_id_please: Bitte zu Kennung hinzufügen
   add_to_list: Zur Liste hinzufügen
@@ -568,7 +582,7 @@ de:
   are_you_sure_remove_taxon_from_list: Bist du sicher, dass du dieses Taxon aus der
     Liste entfernen willst?
   are_you_sure_remove_taxon_from_place: Bist du sicher, dass du dieses Taxon aus der
-    Prüfliste von %{place} entfernen willst?
+    Checkliste von %{place} entfernen willst?
   are_you_sure_this_will_reload_the_page_and_you_may_lose_changes: Bist du sicher?
     Die Seite wird neu geladen und deine Änderungen könnten verloren gehen.
   are_you_sure_want_activate_account: Bist du sicher, dass du dieses Konto aktivieren
@@ -866,24 +880,24 @@ de:
     Name eines Taxons auch ein nichtwissenschaftliches Wort oder eine häufige Falschschreibung
     ist.
   check_it_out: Probier es aus
-  check_list: Prüfliste
+  check_list: Checkliste
   check_list_description: Wähle ein höherstufiges Taxon, wie "Aves" für Vögel oder
     "Amphibia" für Lurche aus, das du in dieser Liste anzeigen möchtest. Wenn gesetzt,
     erlaubt diese Liste keine Taxa, die nicht in diesem Taxon enthalten sind. Zum
     Beispiel, wenn du eine Liste mit Vögeln erstellt, wirst dort keine Frösche hinzufügen
     können.
-  check_list_for_individual_taxa_that: Prüflisten für individuelle Taxa die hier leben,
-    wie "Vögel in %{place}".
+  check_list_for_individual_taxa_that: Checklisten für individuelle Taxa die hier
+    leben, wie "Vögel in %{place}".
   check_list_individual_taxa: Prüflisten für individuelle Taxa die hier leben, wie
     "Vögel in %{place}".
   check_lists_must_belong_to_a_place: Checklisten müssen zu einem Ort gehören. Um
     eine neue Checkliste zu erstellen, rufe die Standardprüfliste des Ortes auf und
     klicke auf die Verknüpfung "Neue Checkliste erstellen".
-  check_list_of_species_occuring_in: Prüflisten von Arten vorkommend in
-  check_list_place: '%{place}-Prüfliste'
-  check_list_updated: Prüfliste aktualisiert!
+  check_list_of_species_occuring_in: Checkliste von Arten vorkommend in
+  check_list_place: '%{place}-Checkliste'
+  check_list_updated: Checkliste aktualisiert!
   check_list_source: Quelle <span class="meta">(optional)</span>
-  check_lists_for: Andere Prüflisten für %{place}
+  check_lists_for: Andere Checklisten für %{place}
   check_out_my_observations_at: 'Wenn Du möchtest, kannst Du hier ein Auge auf meine
     Beobachtungen werfen:'
   check_out_our_blog: Teste unseren Blog
@@ -898,13 +912,13 @@ de:
     Lizenz wählen oder die Lizenz später entfernen, aber dies ist die beste Lizenz
     für die Weitergabe an Forscher.
   checklist: Checkliste
-  checklists: Prüflisten
-  checklist_places: Prüfliste Orte
+  checklists: Checklisten
+  checklist_places: Checklisten-Orte
   checklist_places_absent: Prüfliste Orte (ausbleibend)
-  checklist_places_confirmed: Prüfliste Orte (bestätigt)
-  checklist_places_introduced: Prüfliste Orte (ausgebreitet)
-  cheklist_places_are_places_with_contain_taxon: '"Prüfliste Orte" sind Orte mit Prüflisten,
-    die dieses Taxon enthalten.'
+  checklist_places_confirmed: Checklisten-Orte (bestätigt)
+  checklist_places_introduced: Checklisten-Orte (eingeführt)
+  cheklist_places_are_places_with_contain_taxon: '"Checklisten-Orte" sind Orte mit
+    Checklisten, die dieses Taxon enthalten.'
   child_taxa: Untergeordnete Taxa
   choose_a_field: Ein Feld auswählen
   choose_a_list_above: Wähle eine der obigen Listen.
@@ -1140,7 +1154,7 @@ de:
   curate_user: Benutzer kuratieren
   curate_users: Benutzer kuratieren
   curated: kuratiert
-  curated_checklist: Kuratierte Prüfliste
+  curated_checklist: Kuratierte Checkliste
   curated_count: Anzahl kuratierter Beiträge
   curating: Kuratierung
   curation: Kuration
@@ -2272,7 +2286,7 @@ de:
         werden.
       observations: Beobachtungen
       place_boundary: Orts-Grenzen
-      checklist_places: Checklist Orte
+      checklist_places: Checklisten-Orte
       checklist_places_description: Orte an denen das Taxon aufgeführt wurde
       range: Bereich
   map_tooltip: Kartenansicht anzeigen
@@ -2340,7 +2354,7 @@ de:
       MM: '%dmo'
       "y": 1y
       yy: '%dy'
-  mon: Mon
+  mon: Mo
   month: Monat
   months: Monate
   months_ago: '%{text} her'
@@ -2625,7 +2639,7 @@ de:
   observations_by_user_on_date: Beobachtet von %{user} am %{date}
   observations_by_you: Deine Beobachtungen
   observations_by_you_on_date: Deine Beobachtungen am %{date}
-  observation_calendar_for: Beobachtungs-Kalender von %{user} im Jahr %{year}
+  observation_calendar_for: Beobachtungskalender von %{user} im Jahr %{year}
   observation_contest: Beobachtungswettbewerb
   observation_curation: Beobachtungskuration
   observation_date: Datum
@@ -3423,7 +3437,7 @@ de:
     ermöglichen, es sei denn, das Projekt ist mit einem Ort moderater Größe verbunden
     oder es sind nur Beobachtungen von bestimmten Taxa oder Taxa auf einer Liste erlaubt
   project_cover: Projektcover
-  project_created_on: dieses Projekt erstellen am %{date}
+  project_created_on: hat dieses Projekt am %{date} erstellt
   project_curator_changes: Projektkurator-Änderungen
   project_curator_id: Projektkurator-Kennung
   project_curator_tools: Projektkurator-Werkzeuge
@@ -4070,7 +4084,7 @@ de:
   support_inaturalist: iNaturalist unterstützen
   suspicious_photos: Verdächtige Fotos
   siutable_observations: geeignete Beobachtungen
-  sun: Sonne
+  sun: So
   suspend_user: Benutzer sperren
   sync: Synchronisieren?
   sync_with_eol: Mit EOL synchronisieren
@@ -4290,7 +4304,7 @@ de:
     dies fälschlicherweise passiert ist, <a href="mailto:%{email}">kontaktiere uns</a>
     bitte.
   this_will_add_listed_taxa: Hiermit werden Taxa aus Beobachtungen hinzugefügt. Das
-    könnte ein Weilchen dauern, deshalb bitte sparsam und für kleine Prüflisten verwenden.
+    könnte ein Weilchen dauern, deshalb bitte sparsam und für kleine Checklisten verwenden.
   this_will_refresh_without_reload: Hiermit werden die Beobachtungsstatistiken sofort
     aktualisiert. Es könnte ein Weilchen dauern; bitte sparsam verwenden.
   this_will_reload_and_refresh: Hiermit werden Taxa aus Beobachtungen hinzugefügt
@@ -4757,7 +4771,7 @@ de:
     verwendest.
   you_can_change_your_new_passwd_after_logging_in: 'Du kannst Dein neues Passwort
     ändern, nachdem Du Dich hier angemeldet hast:'
-  you_can_edit_this_default_check_list_because: Du kannst diese Standard-Prüfliste
+  you_can_edit_this_default_check_list_because: Du kannst diese Standard-Checkliste
     ändern, weil Du Admin bist, aber eigentlich sollte dafür keine Notwendigkeit bestehen.
   you_can_help_make_our: Du kannst helfen unsere Artenseiten zu verbessern, indem
     Du Daten hinzufügst! Hier ein paar Möglichkeiten zu helfen
@@ -5095,6 +5109,10 @@ de:
       subject_body: Thema / Körper
       index:
         show_messages_to_user: Zeige Nachrichten an %{user}
+        speech_privilege_notice: Du kannst neue Nachrichten senden, nachdem Du drei
+          überprüfbare Beobachtungen oder drei Identifikationen für andere hinzugefügt
+          hast. Im Moment kannst Du die Nachrichten lesen und beantworten, die andere
+          Leute Dir schicken.
     observations:
       community_id:
         agreement: Zustimmung
@@ -5384,6 +5402,10 @@ de:
           Der Besitzer dieser Ressource hat dich gesperrt, was dich daran hindert,
           mit ihm zu kommunizieren. Die meisten interaktiven Funktionen auf dieser Seite werden
           nicht funktionieren.
+      not_found:
+        sorry_that_doesnt_exist: Sorry, das gibt es nicht!
+        even_our_dedicated_search_mole_couldnt: Selbst unser engagierter "Spürmaulwürf"
+          konnte nichts finden!
     stats:
       index:
         identifiers_desc: Eine ID zu der Beobachtung von jemand anderem an diesem
@@ -5398,6 +5420,10 @@ de:
         time_to_id_desc: Zeit bis Bestimmung (Stunden, 1 Woche gleitender Wert)
       year:
         growth_title: Wachstum
+        new_species_desc_html: |-
+          Arten, die in diesem Jahr zum ersten Mal hinzugefügt wurden.
+          Klick auf einen Monat, um einige der neuen Arten zu sehen, die in diesem Monat hinzugefügt wurden.
+          Du kannst auch die gesamte Artenakkumulation anzeigen oder den Schieberegler in der Zeit zurück bewegen, um andere neu beobachtete Arten zu sehen. Dieses Diagramm zeigt Arten aus verifizierbaren Beobachtungen in dem Monat, in dem sie auf %{site_name} (nicht der Monat, in dem sie beobachtet wurden) hochgeladen wurden. Es werden nicht über- oder untergeordnete Taxa inkludiert, so dass eine Beobachtung, die als Säugetier bestimmt wurde, nicht gezählt wird, und eine Beobachtung von <i>Canis lupus</i> ssp. <i>arctos</i> wird einfach als <i>Canis lupus</i> gezählt.
     taxa:
       show:
         about_names_desc: |-
@@ -5617,7 +5643,7 @@ de:
         crowdsource_identifications: Identifikationen durch Crowdsourcing
         connect_with_experts: Komm in Kontakt mit Experten, die Deine beobachteten
           Organismen bestimmen können.
-        become_a_citizen_scientist: Werde ein Citizen Scientiest
+        become_a_citizen_scientist: Werde ein Citizen Scientist
         find_a_project: Finde ein Projekt mit einer Mission, die Dich interessiert,
           oder starte Dein eigenes.
         learn_about_nature: Erfahre mehr über die Natur
@@ -5739,6 +5765,8 @@ de:
       not_an_integer: muss eine ganze Zahl sein
       odd: muss ungerade sein
       record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
+      requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder drei
+        Identifikationen verfügen, damit andere dies tun können
       taken: ist bereits vergeben
     template:
       body: 'Es gab Probleme mit den folgenden Feldern:'
@@ -5818,6 +5846,8 @@ de:
         not_an_integer: muss eine Ganzzahl sein
         odd: muss ungerade sein
         record_invalid: 'Überprüfung fehlgeschlagen: %{errors}'
+        requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder
+          drei Identifikationen verfügen, damit andere dies tun können
         taken: ist bereits vergeben
       template:
         body: 'Es gab Probleme mit den folgenden Feldern:'
@@ -5901,6 +5931,8 @@ de:
         less_than_or_equal_to: muss kleiner als oder gleich %{count} sein
         not_a_number: ist keine Zahl
         not_an_integer: muss eine ganze Zahl sein
+        requires_privilege_speech: muss über drei überprüfbare Beobachtungen oder
+          drei Identifikationen verfügen, damit andere dies tun können
         taken: ist bereits vergeben
       template:
         body: 'Es gab Probleme mit den folgenden Feldern:'

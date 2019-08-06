@@ -346,6 +346,7 @@ ca:
   additional_range: Distribució addicional
   additional_range_data_from_an_unknown_source: Dades addicionals de distribució des
     de font desconeguda
+  adjust_brightness: Ajusteu brillantor
   admin: administrador
   admin_s: Administrador/s
   admin_any_projects: administres cap projecte
@@ -751,6 +752,8 @@ ca:
     alhora
   can_you_help_your_friends_id_these: Podeu ajudar a ID aquestes observacions?
   cancel: Cancel·la
+  cant_edit_or_delete_hidden_content: No podeu editar o esborrar continguts que han
+    estat ocultats pels supervisors del lloc
   cant_flag_an_object_that_doesnt_exist: No podeu posar una marca a un contingut que
     no existeix
   cant_merge_a_taxon_with_itself: No podeu combinar aquest tàxon amb ell mateix.
@@ -890,9 +893,12 @@ ca:
     identificar.
   check_out_your_life_list: Reviseu la vostra Llista de vida
   check_this_box_if_html: "Seleccioneu aquest botó si voleu aplicar \n<a href='https://creativecommons.org/licenses/by-nc/4.0/deed.ca'
-    target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> a
-    les seves fotos. Podeu escollir una llicència diferent o retirar la llicència
-    més tard, però aquesta és la millor llicència per compartir amb investigadors."
+    target='_blank'>Llicència de Reconeixement No Comercial Creative Commons</a> al
+    contingut penjat. Això significa que qualsevol pot copiar i reutilitzar les teves
+    fotos o observacions sense demanar-te permís indicant la vostra autoria i sembre
+    que no l'utilitzeu per explotar-ho comercialment. Podeu escollir una llicència
+    diferent o retirar la llicència més tard, però aquesta és la millor llicència
+    per compartir amb investigadors."
   checklist: Llista de comprovació
   checklists: Llistes de comprovació
   checklist_places: Llocs amb llista de comprovació
@@ -978,13 +984,12 @@ ca:
   community_curated: Supervisat per la Comunitat
   community_guidelines: Directrius de la comunitat
   community_id: 'ID de la <strong>Comunitat</strong>:'
-  community_id_heading: Identificació de la Comunitat
-  community_id_at_species_or_lower?: ID de la Comunitat a nivell específic o inferior?
-  community_id_at_genus_level_or_lower: Identificació de la Comunitat genèric o inferior
-  community_id_at_species_level_or_lower: Identificació de la Comunitat específic
-    o inferior
+  community_id_heading: Tàxon segons la Comunitat
+  community_id_at_species_or_lower?: Tàxon de la Comunitat a nivell específic o inferior?
+  community_id_at_genus_level_or_lower: Tàxon de la Comunitat genèric o inferior
+  community_id_at_species_level_or_lower: Tàxon de la Comunitat específic o inferior
   community_moderation_settings: Configuració de la Moderació de la Comunitat
-  community_supported_id: ID reconegut per la comunitat?
+  community_supported_id: Tàxon reconegut per la comunitat?
   compare: Compara
   compare_with: Compara amb
   comparing: comparant
@@ -1032,8 +1037,15 @@ ca:
     geoprivacy: Geo-privacitat per defecte per a les observacions d'aquesta espècie
     iucn: Equivalent del codi de la Llista Vermella (IUCN)
   conservation_summary: Resum de conservació
+  contact_support: Contacteu amb Suport
   contain_all_descendants?: Aquesta llista de comprovació conté tots els descendents
     d'aquest tàxon que es succeeixen aquí?
+  content_hidden: Contingut amagat
+  content_hidden_by_user_on_date_because_reason_html: 'Contingut amagat per %{user}
+    el %{date} per: %{reason}'
+  user_hid_this_item_because_reason_html: '%{user} amagà aquest %{item} perquè "%{reason}"'
+  user_unhid_this_item_because_reason_html: '%{user} ha deixat d''ocultar aquest %{item}
+    perquè "%{reason}"'
   contest: concurs
   continue: Continua
   continue_to_site: Continueu a %{site_name}
@@ -1215,6 +1227,7 @@ ca:
   dates: dates
   datetime_: Data/Hora
   day: Dia
+  decrease_brightness: Reduïu brillantor
   default: Predeterminada
   default_invite_comment: 'Gran foto! Podeu enviar-la a %{site_name}: {{INVITE_LINK}}'
   default_observation_license: 'Llicència per a les vostres observacions:'
@@ -1779,8 +1792,17 @@ ca:
   hex_color_eg: Color en hexadecimal, ex. 65644F
   hi: Hola.
   hi_user: Hola %{user}
+  hide_content: Amaga Contingut
+  hide_desc: Amagant el contingut eviteu que el públic ho vegi, però poden saber que
+    s'ha amagat alguna cosa i els conservadors i l'autor del contingut encara poden
+    veure el contingut amagat. Normalment, això únicament afecta el contingut escrit,
+    p.e. si amagueu el contingut d'una identificació, la identificació encara és visible
+    però les marques de l'identificador s'amaguen. No podeu desfer això, únicament
+    els responsables del lloc poden fer que es torni a veure, per tant sigueu curosos,
+    i useu-lo únicament per continguts molt objectivables.
   hide_running_total: Amagar el total acumulat
   hide_uncountable_species: Amaga les espècies incomptables
+  hidden_content_explanation: S'ha amagat el contingut
   high: Alta
   highest_rank: Tàxon superior
   highlights: Destacats
@@ -1899,6 +1921,7 @@ ca:
   inaturalist_network_affiliation: Afiliació a la Xarxa d'iNaturalist
   inbox: bústia
   including: inclou
+  increase_brightness: Augmenteu brillantor
   in_order_to_login_and_using_site_visit_url: Per accedir i començar a utilitzar el
     web, feu clic en aquest enllaç per activar el compte
   in_progress: en curs
@@ -2735,9 +2758,8 @@ ca:
   obscured_: enfosquida
   obscured: Enfosquida
   obscured_or_private: enfosquit o privat
-  obscured_description: Les coordenades públiques es mostren en un punt triat a l'atzar
-    dins un radi de 10 km de les coordenades reals. Les coordenades reals només les
-    podeu veure vosaltres i els supervisors dels projectes als quals s'ha afegit l'observació.
+  obscured_description: Les coordenades públiques es mostren en un punt triat a l'atzar  dins
+    la cel·la  de 0,2 graus de latitud i longitud que conté les coordenades reals.
   observation: Observació
   observation_: observació
   observation_added: Observació afegida
@@ -2829,6 +2851,8 @@ ca:
   observations_removed_from_the_project: Observacions eliminades del projecte %{project}
   observations_saved: Observacions desades!
   observations_specifying_this_field: Observacions que especifiquen aquest camp
+  observations_specifying_this_field_with_value: Observacions especificant aquest
+    camp amb %{value}
   observations_text_search_warning: Les cerques de text poden produir resultats estranys
     quan es combinen amb altres filtres; si vols trobar l'observació d'una espècie
     en particular, utilitza filtrar tàxon.
@@ -4974,7 +4998,7 @@ ca:
   view_change: Veure canvi
   view_check_list_page: Veure la pàgina de la llista de comprovació
   view_contributions: Veure contribucions
-  view_details: Veure els detalls
+  view_details: Mostra els detalls
   view_field_options: Veure el camp Opcions
   view_flag: Veure etiqueta
   view_flags: Veure les etiquetes
@@ -7397,6 +7421,7 @@ ca:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: és massa gran per editar
               is_too_large_to_import: és massa gran per a importar-ho
               contains_too_many_observations: Conté massa observacions per importar
         post:
@@ -7464,6 +7489,12 @@ ca:
             email:
               must_look_like_an_email_address: ha de semblar una adreça de correu
                 electrònic
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: pertany a un usuari existent, si teniu
+                un compte, si us plau accediu a ella abans de continuar, o utilitzeu
+                una altra adreça de correu electrònic
   doorkeeper:
     scopes:
       write: Creeu, actualitzeu, i elimineu les vostres observacions, identificacions,
