@@ -399,7 +399,7 @@ class Observation < ActiveRecord::Base
       elsif match_filter
         search_filters << match_filter
       elsif search_taxa
-        search_filters << taxon_search_filter || { term: { id: -1 } }
+        search_filters << ( taxon_search_filter || { term: { id: -1 } } )
       end
     end
     if p[:user]

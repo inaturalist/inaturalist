@@ -925,8 +925,8 @@ shared_examples_for "an ObservationsController" do
   end
 
   describe "index" do
-    before(:each) { enable_elastic_indexing( Observation, Place ) }
-    after(:each) { disable_elastic_indexing( Observation, Place ) }
+    before(:each) { enable_elastic_indexing( Observation, Place, Taxon ) }
+    after(:each) { disable_elastic_indexing( Observation, Place, Taxon ) }
 
     it "should allow search" do
       expect {
