@@ -334,8 +334,25 @@ class Observation < ActiveRecord::Base
     end
   end
 
-  def self.elasticsearch_taxon_names_fields
-    @@taxon_names_fields ||= TaxonName::LOCALES.values.map{ |l| "taxon.names_#{l}" }.sort
+  def self.matching_taxon_ids( search_term )
+    filters = [
+      { term: { is_active: true } },
+      {
+        nested: {
+          path: "names",
+          query: {
+            match: {
+              "names.name": {
+                query: search_term,
+                operator: "and"
+              }
+            }
+          }
+        }
+      }
+    ]
+    search_result = Taxon.elastic_search(filters: filters, source: [:id], size: 2000 )
+    return search_result.results.results.map( &:id ).map( &:to_i )
   end
 
   def self.params_to_elastic_query(params, options = {})
@@ -350,19 +367,40 @@ class Observation < ActiveRecord::Base
     q = p[:q] unless p[:q].blank?
     search_on = p[:search_on] if Observation::FIELDS_TO_SEARCH_ON.include?(p[:search_on])
     if q
-      fields = case search_on
-      when "names"
-        elasticsearch_taxon_names_fields
-      when "tags"
-        [ :tags ]
-      when "description"
-        [ :description ]
-      when "place"
-        [ :place_guess ]
+      if search_on === "names"
+        search_taxa = true
+        searched_taxa = matching_taxon_ids( q )
+      elsif search_on === "tags"
+        fields = [ :tags ]
+      elsif search_on === "description"
+        fields = [ :description ]
+      elsif search_on === "place"
+        fields = [ :place_guess ]
       else
-        elasticsearch_taxon_names_fields + [ :tags, :description, :place_guess ]
+        fields = [ :tags, :description, :place_guess ]
+        search_taxa = true
+        searched_taxa = matching_taxon_ids( q )
       end
-      search_filters << { multi_match: { query: q, operator: "and", fields: fields } }
+      if searched_taxa && !searched_taxa.empty?
+        taxon_search_filter = { terms: { "taxon.id" => searched_taxa } }
+      end
+      if fields && !fields.empty?
+        match_filter = { multi_match: { query: q, operator: "and", fields: fields } }
+      end
+      if match_filter && taxon_search_filter
+        search_filters << {
+          bool: {
+            should: [
+              match_filter,
+              taxon_search_filter
+            ]
+          }
+        }
+      elsif match_filter
+        search_filters << match_filter
+      elsif search_taxa
+        search_filters << taxon_search_filter || { term: { id: -1 } }
+      end
     end
     if p[:user]
       search_filters << { term: {
