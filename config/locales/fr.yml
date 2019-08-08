@@ -1097,6 +1097,8 @@ fr:
     url: URL d’une page décrivant la situation.
     geoprivacy: Géoconfidentialité par défaut pour les observations liées à ce taxon
     iucn: Code équivalent de la liste rouge de l’UICN
+  conservation_status_geoprivacy_desc: La confidentialité géographique par défaut
+    est appliquée à toutes les observations de taxon à cet endroit
   conservation_summary: Résumé de la situation de conservation
   contact_support: Contacter le support
   contain_all_descendants?: Cette liste de contrôle contient-elle tous les descendants
@@ -2381,9 +2383,11 @@ fr:
     mk: Macédonien
     nl: Néerlandais
     oc: Occitan
+    pl: Polonais
     pt-BR: Portugais (Brésil)
     pt-PT: Portugais (du Portugal)
     ru: Russe
+    sk: Slovaque
     sq: Albanais
     sv: Suédois
     zh-CN: Chinois (simplifié)
@@ -4503,6 +4507,7 @@ fr:
   taxa_to_include: Taxons à inclure
   taxon: Taxon
   taxon_autocomplete_placeholder: Oiseaux, monarque, etc.
+  taxon_geoprivacy: Confidentialité géographique du taxon
   taxon_is_a_rank: '%{taxon} est un %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} est un %{rank} dans %{iconic_taxon} avec 1 observation'

@@ -8,6 +8,7 @@
 # Author: Esraa Ismail
 # Author: Haytham morsy
 # Author: Helmoony
+# Author: HitomiAkane
 # Author: Maroen1990
 # Author: Meno25
 # Author: Mido
@@ -984,6 +985,8 @@ ar:
     url: مسار لصفحة تصف هذه الحالة.
     geoprivacy: الخصوصية الجغرافية الافتراضية لملاحظات هذه الأصنوفة
     iucn: يعادل رمز القائمة الحمراء للاتحاد الدولي لحفظ الطبيعة والموارد الطبيعية
+  conservation_status_geoprivacy_desc: يتم تطبيق الخصوصية الجغرافية الافتراضي على
+    جميع ملاحظات هذه الأصنوفة في هذا المكان
   conservation_summary: ملخص الحفظ
   contact_support: اتصل بالدعم
   contain_all_descendants?: هل تحتوي قائمة التحقق هذه على جميع أحفاد هذه الأصنوفة
@@ -2194,9 +2197,11 @@ ar:
     mk: المقدونية
     nl: الهولندية
     oc: القسطانية
+    pl: البولندية
     pt-BR: البرتغالية (البرازيل).
     pt-PT: البرتغالية (البرتغال)
     ru: الروسية
+    sk: السلوفاكية
     sq: الألبانية
     sv: السويدية
     zh-CN: الصينية (المبسطة)
@@ -4207,6 +4212,7 @@ ar:
   taxa_to_include: أصناف للتضمين
   taxon: أصنوفة
   taxon_autocomplete_placeholder: طيور، فراشة ملكية، إلخ.
+  taxon_geoprivacy: الخصوصية الجغرافية للأصنوفة
   taxon_is_a_rank: '%{taxon} %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} هي %{rank} في %{iconic_taxon} بملاحظة واحدة'

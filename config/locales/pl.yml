@@ -19,7 +19,6 @@ pl:
   x_comments:
     one: 1 komentarz
     few: '%{count} komentarze'
-    other: '%{count} komentarzy'
     other: '%{count} komentarza'
   x_followers:
     one: 1 obserwujący
@@ -135,7 +134,7 @@ pl:
   a_default_taxon_name_will_automatically_created: Domyślna nazwa taksonu zostanie
     utworzona automatycznie
   a_few_points_to_make_things_clear: Kilka punktów, które pomogą wyjaśnić sprawy
-  a_flag_for_x: Flaga dla %{x}
+  a_flag_for_x: Zgłoszenie dla %{x}
   a_greasemonkey_script: skrypt dla Greasemonkey
   a_member_of: należy do
   a_member_of_taxon_html: należy do %{taxon}
@@ -198,7 +197,7 @@ pl:
   add_a_batch_of_taxa: Dodaj serię taksonów
   add_a_comment: Dodaj komentarz
   add_a_field: Dodaj notatkę
-  add_a_flag: Dodaj znacznik
+  add_a_flag: Dodaj zgłoszenie
   add_a_link_raquo: Dodaj łącze &raquo;
   add_a_name: Dodaj nazwę
   add_a_new_change_group: Dodaj nową grupę zmian
@@ -219,7 +218,7 @@ pl:
     plant_phenology: Dodaj adnotacje do "fenologii roślin"
     life_stage: Dodaj adnotacje do "Stadium rozwoju"
   add_another: Dodaj kolejny
-  add_another_flag: Dodaj kolejną flagę
+  add_another_flag: Zgłoś kolejne
   add_another_photo: Dodaj kolejne zdjęcie
   add_another_section: Dodaj kolejną sekcję
   add_another_subscription: Dodaj kolejną subskrypcję
@@ -231,7 +230,7 @@ pl:
   add_common_names_for: Dodaj nazwy zwyczajowe do istniejących taksonów
   add_conservation_status: Dodaj status ochronny
   add_countries: Dodaj kraje
-  add_edit_flags: Dodaj/Edytuj flagi
+  add_edit_flags: Dodaj/Edytuj zgłoszenia
   add_edit_more_fields: Dodaj/edytuj więcej notatek
   add_editor: Dodaj edytora
   add_description: Dodaj %{description_name}
@@ -340,6 +339,7 @@ pl:
   all_colors: '&laquo; wszystkie kolory'
   all_comments: Wszystkie komentarze
   all_csv: Wszystkie pliki CSV
+  all_flags_must_be_resolved: Wszystkie zgłoszenia muszą być rozwiązane
   all_names: Wszystkie nazwy
   all_observations: Wszystkie obserwacje
   all_photos: Wszystkie zdjęcia
@@ -398,6 +398,58 @@ pl:
     ray_finned_fishes: Promieniopłetwe
     reptiles: Gady
     life: Życie
+    x_plantae:
+      one: 1 roślina
+      few: '%{count} rośliny'
+      many: '%{count} roślin'
+    x_animalia:
+      one: 1 zwierzę
+      few: '%{count} zwierzęta'
+      many: '%{count} zwierząt'
+    x_mollusca:
+      one: 1 mięczak
+      few: '%{count} mięczaki'
+      many: '%{count} mięczaków'
+    x_amphibia:
+      one: 1 płaz
+      few: '%{count} płazy'
+      many: '%{count} płazów'
+    x_mammalia:
+      one: 1 ssak
+      few: '%{count} ssaki'
+      many: '%{count} ssaków'
+    x_actinopterygii:
+      one: 1 promieniopłetwy
+      few: '%{count} promieniopłetwe'
+      many: '%{count} promieniopłetwych'
+    x_reptilia:
+      one: 1 gad
+      few: '%{count} gady'
+      many: '%{count} gadów'
+    x_aves:
+      one: 1 ptak
+      few: '%{count} ptaki'
+      many: '%{count} ptaków'
+    x_insecta:
+      one: 1 owad
+      few: '%{count} owady'
+      many: '%{count} owadów'
+    x_arachnida:
+      one: 1 pajęczak
+      few: '%{count} pajęczaki'
+      many: '%{count} pajęczaków'
+    x_fungi:
+      one: 1 grzyb
+      few: '%{count} grzyby'
+      many: '%{count} grzybów'
+    x_protozoa:
+      one: 1 pierwotniak
+      few: '%{count} pierwotniaki'
+      many: '%{count} pierwotniaków'
+    x_other_animals:
+      one: 1 inne zwierzę
+      few: '%{count} inne zwierzęta'
+      many: '%{count} innych zwierząt'
   all_taxa_: Wszystkie taksony
   all_taxa_in_this_guide: Wszystkie taksony w tym przewodniku
   all_taxonomic_groups: '&laquo; Wszystkie grupy taksonomiczne'
@@ -532,11 +584,11 @@ pl:
   back: Wstecz
   back_to_albums: Wróć do albumów
   back_to_all_species: Wróć do wszystkich gatunków
-  back_to_browsing_people: Wróć do przeglądania ludzi
+  back_to_browsing_people: Wróć do przeglądania użytkowników
   back_to_calendar: Wróć do kalendarza %{user}
   back_to_editing_observation: Wróć do edycji obserwacji
   back_to_friends: Wróć do znajomych
-  back_to_flags_html: '&laquo; Wróć do flag'
+  back_to_flags_html: '&laquo; Wróć do zgłoszeń'
   back_to_help: Wróć do Pomocy
   back_to_import: Wróć do importowania
   back_to_lists: Wróć do list %{name}
@@ -619,6 +671,7 @@ pl:
     many: Kalendarze pokazują tylko %{x} obserwacji naraz
   can_you_help_your_friends_id_these: Pomożesz znajomym to oznaczyć?
   cancel: Anuluj
+  cant_flag_an_object_that_doesnt_exist: Nie można zgłosić elementu, który nie istnieje
   cant_merge_a_taxon_with_itself: Nie można połączyć taksonu z samym sobą.
   captive: Hodowany
   captive_cultivated: Hodowany / Uprawiany
@@ -944,6 +997,7 @@ pl:
   cumulative_ids: 'Skumulowane identyfikacje: %{count} z %{total}'
   curator: Kurator
   curators: Kuratorzy
+  current_flags: Aktualne zgłoszenia
   current_password: Bieżące hasło
   customize_location: Dostosuj lokalizację
   darr_apply_darr: '&darr; Zastosuj &darr;'
@@ -1088,6 +1142,7 @@ pl:
   edit_colors: Edytuj kolory
   edit_comment: Edytuj komentarz
   edit_field: Edytuj notatkę
+  edit_flagged_observation: Edytuj zgłoszoną obserwację
   edit_license: Edytuj licencję
   edit_multiple_dates: Edytuj wiele dat
   edit_multiple_descriptions: Edytuj wiele opisów
@@ -1122,6 +1177,10 @@ pl:
   edited_by_name_some_rights_reserved_html: Edytowany przez %{name}, niektóre prawa
     zastrzeżone (%{license})
   editing: Edycja
+  editing_observations:
+    one: 'Edycja <span class="count">1</span> obserwacji:'
+    few: 'Edycja <span class="count">%{count}</span> obserwacji:'
+    many: 'Edycja <span class="count">%{count}</span> obserwacji:'
   editing_project: Edycja %{project}
   editing_taxon_link: Edytuj Łącze Taksonu
   editing_taxon_name: Edycja nazwy taksonu
@@ -1173,7 +1232,7 @@ pl:
   except: poza
   exclude_x: Wyklucz %{x}
   exclusion_filters: Filtry wykluczające
-  existing_flags: Aktualne flagi
+  existing_flags: Istniejące zgłoszenia
   exit_full_screen: Wyjdź z trybu pełnoekranowego
   expand_days: Rozwiń dni
   expand_updates: Rozwiń aktualizacje
@@ -1324,6 +1383,7 @@ pl:
   grid_tooltip: Pokaż widok siatki
   group: Grupa
   grouping: Grupowanie
+  has_already_been_flagged_by: zostało już zgłoszone przez
   has_been: był
   has_one_or_more_faves: Posiada jeden lub więcej polubień
   has_photo: Posiada zdjęcie
@@ -1332,6 +1392,7 @@ pl:
   has_photos_or_sounds: Posiada zdjęcie lub odgłos
   has_sound: Posiada odgłos
   has_sounds: posiada odgłosy
+  heads_up_this_observation_has_been_flagged: 'UWAGA: obserwacja została zgłoszona.'
   hello: <test>
   help: Pomoc
   help_faq: Pomoc / FAQ
@@ -1647,9 +1708,17 @@ pl:
   previous_observation: Poprzednia obserwacja
   previous_photo: Poprzednie zdjęcie
   previous_tab: Poprzednia strona
+  project_admins:
+    one: administrator projektu
+    few: administratorów projektu
+    many: administratorów projektu
   rank_position: Ranga
   ranks:
     complex: Kompleks
+  remove_observations:
+    one: Usunąć 1 obserwację?
+    few: Usunąć %{count} obserwacje?
+    many: Usunąć %{count} obserwacji?
   rg_observations: Obserwacje RG
   saving_num_of_count_observations:
     one: Zapisywanie obserwacji...
@@ -1662,14 +1731,23 @@ pl:
   suggest_an_identification: Zasugeruj identyfikacje
   suggestions: Sugestie
   then_keybord_sequence: potem
+  there_are_x_synonyms_html:
+    one: Istnieje <span class='count'>1</span> synonim</span>
+    few: Istnieją <span class='count'>%{count}</span> synonimy</span>
+    many: Istnieje <span class='count'>%{count}</span> synonimów</span>
   this_observation_was_created_using: 'Ta obserwacja została wykonana przy użyciu:'
   total: Razem
   twitter: Twitter
+  update_x_selected_taxa:
+    one: Zaktualizuj 1 wybrany takson
+    few: Zaktualizuj %{count} wybrane taksony
+    many: Zaktualizuj %{count} wybranych taksonów
   uploaded_by: Przesłane przez
   uploading_num_of_count_photos:
     one: Przesyłanie zdjęcia...
     other: Przesyłanie %{num} z %{count} zdjęć...
   user_is_a_naturalist: '%{user} jest przyrodnikiem!'
+  view_your_inbox: Zobacz skrzynkę odbiorczą
   website: Strona internetowa
   with_annotation: Z adnotacją
   x_site_is_a_social_network_for_naturalist: '%{site} to przyrodniczy portal społecznościowy!
@@ -1679,6 +1757,10 @@ pl:
     przyrodników pozwoli ci na łatwe śledzenie ich ostatnich obserwacji. \n<a href=\"%{people_path}\">Poznaj</a>
     nowych ludzi i zobacz co <a href=\"%{observations_path}\">obserwują</a>."
   views:
+    help:
+      index:
+        what_are_admins_and_curators?: Kim są administratorzy i opiekunowie strony?
+        what_are_tags?: Czym są tagi?
     stats:
       index:
         avg_ttcid: Średni TTCID
@@ -1689,6 +1771,7 @@ pl:
         share_with_fellow_naturalists: Podziel się ze znajomymi
         build_your_knowledge: Zdobywaj doświadczenie i wiedzę poprzez dyskusje z przyrodnikami
           oraz pomoc innym użytkownikom.
+        what_are_you_waiting_for: Nie czekaj!
   date:
     formats:
       short_with_year: '%b %d, %Y'

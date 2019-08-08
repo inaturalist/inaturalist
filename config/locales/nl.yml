@@ -1036,6 +1036,8 @@ nl:
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
     iucn: Equivalent van IUCN Rode Lijst code
+  conservation_status_geoprivacy_desc: Default geoprivacy toegepast op alle waarnemingen
+    van dit taxon op deze plaats.
   conservation_summary: Beschermings Samenvatting
   contact_support: Contact Support
   contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon
@@ -2285,9 +2287,11 @@ nl:
     mk: Macedonisch
     nl: Nederlands
     oc: Provençaals
+    pl: Pools
     pt-BR: Portugees (Brazilië)
     pt-PT: Portugees (Portugal)
     ru: Russisch
+    sk: Slowaaks
     sq: Albanees
     sv: Zweeds
     zh-CN: Chinees (vereenvoudigd)
@@ -4357,6 +4361,7 @@ nl:
   taxa_to_include: Taxa om op te nemen
   taxon: Taxon
   taxon_autocomplete_placeholder: Vogels, monarch, etc.
+  taxon_geoprivacy: Taxon Geoprivacy
   taxon_is_a_rank: '%{taxon} is een %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} is een %{rank} in %{iconic_taxon} met 1 waarneming'

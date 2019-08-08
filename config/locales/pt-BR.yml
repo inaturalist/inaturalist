@@ -1042,6 +1042,8 @@ pt-BR:
     geoprivacy: Geoprivacidade pré-determinada para as observações destas espécies
       e grupo.
     iucn: Código equivalente ao da Lista Vermelha IUCN
+  conservation_status_geoprivacy_desc: Geoprivacidade padrão aplicada a todas as observações
+    deste táxon neste local
   conservation_summary: Resumo de Conservação
   contact_support: Fale com o Suporte
   contain_all_descendants?: Este check list contém todos os representantes deste táxon
@@ -2295,9 +2297,11 @@ pt-BR:
     mk: Macedônio
     nl: Holandês
     oc: Occitano
+    pl: Polonês
     pt-BR: Português (Brasil)
     pt-PT: Português (Portugal)
     ru: Russo
+    sk: Eslovaco
     sq: Albanês
     sv: Sueco
     zh-CN: Chinês (Simplificado)
@@ -4384,6 +4388,7 @@ pt-BR:
   taxa_to_include: Táxons a incluir
   taxon: Táxon
   taxon_autocomplete_placeholder: Aves, monarca, etc.
+  taxon_geoprivacy: Geoprivação de taxon
   taxon_is_a_rank: '%{taxon} é uma %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} é um %{rank} em %{iconic_taxon} com 1 observação'
