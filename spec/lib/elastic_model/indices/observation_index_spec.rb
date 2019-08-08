@@ -7,8 +7,8 @@ describe "Observation Index" do
     load_test_taxa
   end
   after( :all ) { Time.zone = @starting_time_zone }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
   it "as_indexed_json should return a hash" do
     o = Observation.make!
@@ -228,17 +228,15 @@ describe "Observation Index" do
       expect( Observation.params_to_elastic_query({ }, site: s) ).to include( filters: [ ] )
     end
 
-    it "queries names" do
+    it "looks up taxa by ids before querying observations" do
+      taxon = Taxon.make!( name: "testname" )
+      eq = Observation.params_to_elastic_query({ q: "testname", search_on: "names" })
+      expect( eq[:filters] ).to eq( [{ terms: { "taxon.id" => [taxon.id] } }])
+    end
+
+    it "adds an impossible filter when taxa searches return no results" do
       eq = Observation.params_to_elastic_query({ q: "s", search_on: "names" })
-      multi_match = eq[:filters][0][:multi_match]
-      expect( multi_match[:query] ).to eq( "s" )
-      expect( multi_match[:operator] ).to eq( "and" )
-      expect( multi_match[:fields] ).to include( "taxon.names_sci" )
-      expect( multi_match[:fields] ).to include( "taxon.names_en" )
-      expect( multi_match[:fields] ).to include( "taxon.names_fr" )
-      expect( multi_match[:fields] ).to_not include( :tags )
-      expect( multi_match[:fields] ).to_not include( :description )
-      expect( multi_match[:fields] ).to_not include( :place_guess )
+      expect( eq[:filters] ).to eq( [{ term: { id: -1 } }])
     end
 
     it "queries tags" do
@@ -259,17 +257,35 @@ describe "Observation Index" do
           { query: "s", operator: "and", fields: [ :place_guess ] } } ] )
     end
 
-    it "queries all fields by default" do
+    it "queries all fields by default when there are no matching taxa" do
       eq = Observation.params_to_elastic_query({ q: "s" })
       multi_match = eq[:filters][0][:multi_match]
       expect( multi_match[:query] ).to eq( "s" )
       expect( multi_match[:operator] ).to eq( "and" )
-      expect( multi_match[:fields] ).to include( "taxon.names_sci" )
-      expect( multi_match[:fields] ).to include( "taxon.names_en" )
-      expect( multi_match[:fields] ).to include( "taxon.names_fr" )
       expect( multi_match[:fields] ).to include( :tags )
       expect( multi_match[:fields] ).to include( :description )
       expect( multi_match[:fields] ).to include( :place_guess )
+    end
+
+    it "queries core observation attributes or matching taxa" do
+      taxon = Taxon.make!( name: "testname" )
+      eq = Observation.params_to_elastic_query({ q: "testname" })
+      expect( eq[:filters][0] ).to eq( {
+        bool: {
+          should: [{
+            multi_match: {
+              query: "testname",
+              operator: "and",
+              fields: [:tags, :description, :place_guess]
+            }
+          },
+          {
+            terms: {
+              "taxon.id" => [taxon.id]
+            }
+          }]
+        }
+      } )
     end
 
     it "filters by param values" do
