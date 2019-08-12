@@ -1050,6 +1050,8 @@ it:
     url: URL di una pagina che descrive questo stato conservazionistico.
     geoprivacy: Geoprivacy predefinita per le osservazioni di questo taxon
     iucn: Codice equivalente della Lista Rossa IUCN
+  conservation_status_geoprivacy_desc: Geoprivacy predefinita applicata a tutte le
+    osservazioni di questo taxon per questo luogo
   conservation_summary: Riepilogo dello stato conservazionistico
   contact_support: Contatta il supporto
   contain_all_descendants?: Questa checklist include tutti i discendenti di questo
@@ -2304,9 +2306,11 @@ it:
     mk: Macedone
     nl: Olandese
     oc: Occitano
+    pl: Polacco
     pt-BR: Portoghese (Brasile)
     pt-PT: Portoghese (Portogallo)
     ru: Russo
+    sk: Slovacco
     sq: Albanese
     sv: Svedese
     zh-CN: Cinese (tradizionale)
@@ -4397,6 +4401,7 @@ it:
   taxa_to_include: Taxa da includere
   taxon: Taxon
   taxon_autocomplete_placeholder: Uccelli, Monarca, etc.
+  taxon_geoprivacy: Geoprivacy del Taxon
   taxon_is_a_rank: '%{taxon} è un %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} è un %{rank} in %{iconic_taxon} con 1 osservazione'

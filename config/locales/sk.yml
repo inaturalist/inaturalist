@@ -904,6 +904,10 @@ sk:
   community_guidelines: Pravidlá komunity
   community_id: 'ID <strong>komunity</strong>:'
   community_id_heading: Komunitný taxón
+  community_id_at_species_or_lower?: Komunitný taxón na druh alebo nižšie?
+  community_id_at_genus_level_or_lower: Komunitný taxón na úrovni rod alebo nižšie
+  community_id_at_species_level_or_lower: Komunitný taxón na úrovni druh alebo nižšie
+  community_moderation_settings: Nastavenie moderovania komunity
   compare: Porovnať
   compare_with: Porovnať s
   comparing: porovnanie
@@ -2670,6 +2674,13 @@ sk:
     často chybne identifikované ako tento druh v <a href="%{url}">%{place}</a>
   other_taxa_commonly_misidentified_as_this_rank: Ďalšie taxóny bežne chybne označené
     ako tento %{rank}
+  other_taxa_commonly_misidentified_as_this_rank_in_place_html: Ostatné taxóny bežne
+    chybne označené ako %{rank}v<a href="%{url}">%{place}</a>
+  our_blog: Náš blog
+  out_of_range: Mimo rozsah
+  output_taxon: Výstupný taxón
+  overview: Prehľad
+  overlapping_downstream_taxon_frameworks: Prekrývajúce sa rámce taxónov
   owner: Vlastník
   parent: Nadradený
   parent_name: Názov nadradeného
@@ -2679,6 +2690,9 @@ sk:
   password: Heslo
   password_confirmation: Potvrdenie hesla
   paste: Prilepiť
+  paste_in_a_bunch_of_names: Vložte skupinu názvov, 1 na každý riadok, a zmáčknite
+    tlačidlo!
+  paste_in_a_comma_separated_list: Vložte zoznam štátov oddelených čiarkami
   pdf: PDF
   people: Ľudia
   people_agree: ľudia súhlasia
@@ -2691,6 +2705,9 @@ sk:
         %{user_link}
       without_observation: pridal/a <strong>ID</strong>
     post: vložil/a %{post_link}
+    comment:
+      with_by: vložil/a komentár k @vow_or_con{vow:an|a} %{comment_subject_link} %{by_link}
+      without_by: okomentoval/a @vow_or_con{vow:an|a} %{comment_subject_link}
   per_day: Za deň
   per_month: Za mesiac
   per_week: Za týždeň
@@ -2726,22 +2743,128 @@ sk:
   photos_size_photos: '%{photos_size} fotky'
   photos_size_photo: '%{photos_size} fotka'
   photos_updated: Fotky boli aktualizované.
+  pi_consent_desc_title: O osobných údajoch
+  picasa_identity: Identita Picasa
+  pick_a_username: Vybrať užívateľské meno
+  pin_verb: Pripnúť
   pink: ružový
+  pinned_locations_desc: Pripnite túto kombináciu súradníc, presnosti, geografické
+    dôvernosti a poznámky k miestam pre neskoršie použitie.
+  place: Miesto
+  placeholder: Zástupný
+  place_added_to_inat_by: Miesto pridané na %{site_name} užívateľom
+  place_autocomplete_placeholder: Zion National Park, Miami, atď.
   place_deleted: Miesto zmazané.
   place_geo:
     geo_planet_place_types:
       Aggregate: Agregát
+      aggregate: zoskupiť
       Airport: Letisko
       airport: letisko
       Building: Budova
       building: budova
       Canton: Kantón
       canton: kantón
+      Colloquial: Hovorový
+      colloquial: hovorový
+      Commune: Obec
+      commune: Obec
+      Continent: Kontinent
+      continent: kontinent
+      Country: Krajina
+      country: krajina
+      County: County
+      county: county
+      District: Okres
+      district: okres
+      Division: Časť
+      division: časť
+      Drainage: Spádová oblasť
+      drainage: spádová oblasť
+      Estate: Pozemok
+      estate: pozemok
+      Governorate: Správny celok
+      governorate: správny celok
+      Historical_County: Historický County
+      historical_county: historický county
+      Historical_State: Historický štát
+      historical_state: historický štát
+      Historical_Town: Historické mesto
+      historical_town: historické mesto
+      Intersection: Križovatka
+      intersection: križovatka
       Island: Ostrov
       island: ostrov
       Land_Feature: Krajinný prvok
       land_feature: krajinný prvok
       Local_Administrative_Area: Lokálna administratívna oblasť
+      local_administrative_area: lokálna administratívna oblasť
+      Local_Authority: Miestny orgán
+      local_authority: miestny orgán
+      Miscellaneous: Rôzne
+      miscellaneous: rôzne
+      Municipality: Obec
+      municipality: obec
+      Nationality: Národnosť
+      nationality: národnosť
+      Nearby_Building: Blízka budova
+      nearby_building: blízka budova
+      Nearby_Intersection: Blízka križovatka
+      nearby_intersection: blízka križovatka
+      Open_Space: Otvorený priestor
+      open_space: otvorený priestor
+      Parish: Farnosť
+      parish: farnosť
+      Prefecture_City: Mesto prefektúry
+      prefecture_city: mesto prefektúry
+      Point_of_Interest: Zaujímavé miesto
+      point_of_interest: zaujímavé miesto
+      Postal_Code: Poštové smerovacie číslo
+      postal_code: poštové smerovacie číslo
+      Province: Provincia
+      province: provincia
+      Region: Región
+      region: región
+      Republic: Republika
+      republic: republika
+      Shire: Kraj
+      shire: kraj
+      Sports_Team: Športový tím
+      sports_team: športový tím
+      State: Štát
+      state: štát
+      Street: Ulica
+      street: ulica
+      Street_Segment: Časť ulice
+      street_segment: časť ulice
+      Subdivision: Sekcia
+      subdivision: sekcia
+      Suburb: Mestský obvod
+      suburb: mestský obvod
+      Supername: Nadradený názov
+      supername: nadradený názov
+      Territory: Teritórium
+      territory: teritórium
+      Time_Zone: Časové pásmo
+      time_zone: časové pásmo
+      Town: Mesto
+      town: mesto
+      Undefined: Nedefinované
+      undefined: Nedefinované
+      Unknown: Neznáme
+      unknown: neznáme
+      Zone: Zóna
+      zone: zóna
+  place_guess: hádať miesto
+  place_imported: Miesto bolo importované!
+  place_must_have_a_boundary_defined: Miesto musí mať definovanú hranicu.
+  place_name: Názov miesta
+  place_notes: Poznámky k miestu
+  place_subscription: odoberanie miesta
+  place_type_name: Názov typu miesta
+  place_updated: Miesto bolo aktualizované!
+  placement: Umiestnenie
+  places: Miesta
   places_name:
     afghanistan: Afganistan
     africa: Afrika
@@ -3011,22 +3134,189 @@ sk:
   places_of_interest: Zaujímavé miesta
   places_merged_successfully: Miesta boli úspešne zlúčené!
   plants: rastliny
+  post: Príspevok
+  post_from_journal_by_parent_html: Príspevok z <a href="%{url}"> denníka od %{parent}
+    </a>
+  post_from_your_journal_html: Príspevok z <a href="%{url}">vášho denníka</a>
+  post_published: Príspevok zverejnený!
+  post_some_new_stuff: pridať niečo nové
+  posted_by: Autor
+  posted_on: Pridané dňa
+  posts: Príspevky
+  potential_disagreement: Potenciálna nezhoda
+  powered_by: Vytvorené pomocou
+  powered_by_inaturalist_open_source_software_html: Vytvorené pomocou otvoreného softvéru<a
+    href="https://github.com/inaturalist/inaturalist" target="_new" >iNaturalist</a>
+  present: prítomný
+  press: Tlač
+  preview: Náhľad
+  preview_observations: Náhľad pozorovaní
+  preview_of_synced_observation: <strong>Náhľad</strong> synchronizovaného pozorovania.<a
+    href="%{url}">Zpět?</a>
   preview_personal_message: Chcel/a by som aby ste sa ku mne pripojili na stránke
     %{site}, kde môžete zaznamenávať svoje pozorovania rastlín a živočíchov, sledovať
     svoj zoznam života a dozvedieť sa o svete prírody!
+  preview_your_message: Náhľad vašej správy
+  previewing: Vytváranie náhľadu...
+  previous: Predchádzajúci
+  prev: Predch.
+  previous_observation: Predchádzajúce pozorovanie
+  previous_page: Predchádzajúca strana
+  previous_photo: Predchádzajúca fotka
+  previous_tab: Predchádzajúci panel
+  print_verb: Tlač
+  print_in_browser: Tlač v prehliadači
+  privacy: Súkromie
+  privacy_policy: Zásady ochrany osobných údajov
+  private: súkromný
+  private_: Súkromný
   private_description: Súradnice sú vo verejných mapách úplne skryté, skutočné súradnice
     vidíte len vy a kurátori projektov, ku ktorým pridáte pozorovanie. Pozorovanie
     so súkromnými súradnicami budú stále využívané na overovanie zoznamov miest.
+  probably_spam: Pravdepodobne spam
+  proceed: Pokračovať
+  processing: Spracováva sa
+  processing3p: Spracováva sa...
+  profile: Profil
+  profile_visibility_pending_account_verification: Kontrola viditeľnosti profilov
+    čakajúcich účtov
+  project: Projekt
+  project_added_your_observations: Projekt pridal vaše pozorovania
+  project_admins:
+    one: Projektový admin
+    other: Projektoví admini
+  project_assessments: Hodnotenie projektu
+  project_assets: Položky projektu
+  project_cover: Obal projektu
+  project_created_on: vytvoril/a tento projekt dňa %{date}
   project_curator_changes: Zmeny kurátorov projektu
+  project_curator_id: ID kurátora projektu
   project_curator_tools: Nástroje kurátora projektu
+  project_curators: Kurátori projektu
+  project_group_label: Skupina
+  project_group_description: Skupina, do ktorej projekt patrí
+  project_home: Domov projektu
+  project_icon: Ikona projektu
+  project_id_or_url_slug: ID projektu alebo riadok URL, napr. 333 alebo môj projekt
+  project_invitations: Pozvánky do projektu
+  project_journal_posts: Príspevky v denníku projektu
+  project_list: Zoznam projektov
+  project_list_defaults:
+    title: Zoznam užívateľa %{owner_name}
+    description: Zoznam druhov pre %{owner_name}
   project_curators_added_some_of_your_observations_html: kurátori <a href="%{url}">%{project}</a>
     pridali nejaké vaše pozorovania
+  project_id: ID projektu
+  project_members: Členovia %{project}
+  project_membership_model_description: Je váš projekt otvorený všetkým, alebo iba
+    pozvaným ľuďom?
+  project_name: Názov projektu
+  project_observation_settings: Nastavenia pozorovania v projektu
+  project_observations: Pozorovania v projekte
+  project_post: Príspevok v projekte
+  project_preferred_count_description: Chcete, aby sa celkový počet taxónov pre váš
+    projekt uvádzal ako druhy, akýkoľvek taxón, alebo iba „listy“ taxonomického stromu?
+  project_requirements: Požiadavky na projekt
+  project_rules: Pravidlá projektu
+  project_settings: Nastavenia projektu
+  project_terms_and_rules: podmienky projektu &amp; pravidlá
+  project_that_does_not_contain_these_observations: Projekt, ktorý neobsahuje tieto
+    pozorovania
+  project_user_cannot_be_found: Projektový užívateľ nebol nájdený
+  project_user_was_invalid: 'Projektový užívateľ bol neplatný: %{project_user}'
+  project_was_successfully_created: Projekt bol úspešne vytvorený.
+  project_was_successfully_updated: Projekt bol úspešne aktualizovaný.
+  project_x_was_delete: '%{project} bol zmazaný (počkajte prosím pár minút, než bude
+    odstránený z webovej stránky)'
+  projects: Projekty
+  projects_from_everywhere: Projekty odvšadiaľ
+  projects_from_place: Projekty z %{place}
+  projects_in_x: Projekty v %{x}
+  projects_you_admin: Projekty, ktoré spravujete
+  projects_youve_joined: Projekty, ku ktorým ste sa pridali
+  proposed_taxa_that_contradict_the_community_id: Navrhované taxóny, ktoré sa lišia
+    od ID komunity
+  public_domain: Voľné dielo
+  publish: Publikovať
+  purple: fialová
+  quality_grade: Úroveň kvality
+  quality_grade_: Úroveň kvality
+  quality_grade_colon: 'Úroveň kvality:'
+  queued: V poradí
+  query: Požiadavka
+  radius: polomer (m)
+  radius_value: 'Polomer (m): %{radius}'
+  random: Náhodný
+  range: Rozsah
+  range_from: Rozsah od
+  rank: Klasifikácia
+  rank_position: Klasifikácia
+  rank_restrictions: Obmedzenia klasifikácie
   ranks:
+    stateofmatter: Stav veci
     kingdom: Ríša
+    subkingdom: Podríša
+    phylum: Kmeň
+    subphylum: Podkmeň
+    superclass: Nadtrieda
+    class: Trieda
+    subclass: Podtrieda
+    infraclass: Infratrieda
+    superorder: Nadrad
+    order: Rad
+    suborder: Podrad
+    infraorder: Infrarad
+    subterclass: Subterclass
+    parvorder: Parvrad
+    zoosection: zoosekcia
+    zoosubsection: Zoopodsekcia
+    superfamily: nadčeľaď
+    epifamily: epičeľaď
+    family: Čeľaď
+    subfamily: Podčeľaď
+    supertribe: Nadkmeň
+    tribe: Kmeň
+    subtribe: Podkmeň
     genus: Rod
+    genushybrid: Hybridný rod
     subgenus: Podrod
+    section: Sekcia
+    subsection: Podsekcia
+    complex: Dokončiť
+    species: Druh
+    hybrid: Kríženec
+    subspecies: Poddruh
+    variety: Varieta
+    form: Forma
+    infrahybrid: Infrahybrid
+    leaves: Listy
+  ranges: Rozsahy
+  rare: Vzácny
+  ray_finned_fishes: lúčoplutvovce
+  re_apply_list_rules: Znovu aplikovať pravidlá zoznamu
+  re_order_photos: Znovu usporiadať fotky &raquo;
+  read_more: Čítať ďalej
+  read_our_getting_started_guide: prečítajte si našho sprievodcu Začíname
+  read_the_full_wikipedia: Prečítať si celý opis na Wikipédii
+  ready_to_get_started?: Ste pripravení začať?
+  real_time_stats: Štatistiky v reálnom čase
+  real_time_discussions: Diskusie v reálnom čase
+  reason: Dôvod
+  reason_label: 'Dôvod:'
   reason_you_are_flagging_this_item: Dôvod, prečo označujete túto položku.
+  recaptcha_verification_failed: overenie reCaptcha sa nepodarilo
+  receive_email_notifications_when_people_leave_you: Dostávať emailové oznámenia o
   receive_updates_from_this_project: Prijímať aktualizácie z tohto projektu.
+  received: prijatý
+  recent: Nedávne
+  recent_additions: Najnovšie preklady
+  recent_comments_on_your_stuff: Nedávne komentáre k vašim príspevkom
+  recent_evidence?: Nedávne dôkazy?
+  recent_evidence_of_organism: Nedávne dôkazy o organizme
+  recent_new_users: Noví užívatelia
+  recent_observations: Nedávne pozorovania
+  recent_observations_: Nedávne pozorovania
+  recent_post: Nedávne príspevky
   remove_curator: Odstrániť kurátora
   remove_curator_status: Odstrániť status kurátora
   resolve_this_flag: Vyriešiť toto označenie
