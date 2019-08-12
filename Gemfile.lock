@@ -429,7 +429,7 @@ GEM
     net-ssh (5.1.0)
     netrc (0.11.0)
     newrelic_rpm (6.2.0.354)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     non-stupid-digest-assets (1.0.9)
       sprockets (>= 2.0)
@@ -721,7 +721,7 @@ DEPENDENCIES
   koala
   machinist!
   newrelic_rpm (~> 6.2.0)
-  nokogiri (~> 1.10.3)
+  nokogiri (~> 1.10.4)
   non-stupid-digest-assets
   objectify-xml!
   omniauth
