@@ -4,7 +4,7 @@
     = f.file_field :image
     = f.text_field :name
     = f.text_field :redirect_uri
-    = f.check_box :confidential, :description => "Enable for trusted clients that can keep the secret, disable for PKCE flow without a secret"
+    = f.check_box :confidential, :label_after => true, :description => "Make your app confidential if you can store your app secret securely, i.e. not in a publicly availble binary that can be decompiled. Uncheck this box if this is not the case and you plan to use the more PKCE flow"
     = f.text_area :description
     = f.text_field :url, :description => "URL for your app outside of iNaturalist"
 

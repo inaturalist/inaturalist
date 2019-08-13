@@ -35,7 +35,7 @@
       - if !@application.confidential
         %p
           = link_to 'Authorize with PKCE', oauth_authorization_path(:client_id => @application.uid, :redirect_uri => @application.redirect_uri, :response_type => 'code', :code_challenge_method => 'plain', :code_challenge => 'some_terrible_challenge' )
-          %span (Use 'some_terrible_challenge' as the code_verifier) Note: this is a basic example. In real code, you MUST use code_challenge_method=S256 and correctly hash the code_challenge.
+          %span (Use <code>some_terrible_challenge</code> as the <code>code_verifier</code>) Note: this is a basic example. In real code, you MUST use <code>code_challenge_method=S256</code> and correctly hash the <code>code_challenge</code>.
       %h3 Actions
       .inline.buttonrow
         = link_to 'Edit', edit_oauth_application_path(@application), :class => "inline button"
