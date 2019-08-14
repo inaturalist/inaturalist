@@ -7,6 +7,7 @@ class OauthAuthorizationsController < Doorkeeper::AuthorizationsController
 
   private
   def return_here
+    @responsive = true
     ie_needs_return_to = false
     if request.user_agent =~ /msie/i && params[:format].blank? && 
         ![Mime::JS, Mime::JSON, Mime::XML, Mime::KML, Mime::ATOM].map(&:to_s).include?(request.format.to_s)

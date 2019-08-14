@@ -134,3 +134,5 @@ group :test do
   gem "rspec-html-matchers"
   gem "webmock"
 end
+
+gem "rack-cors", "~> 1.0"

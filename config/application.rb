@@ -77,6 +77,15 @@ module Inaturalist
 
     config.middleware.insert_before "ActionDispatch::DebugExceptions", "LogstasherCatchAllErrors"
     config.middleware.use Rack::MobileDetect
+
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '/oauth/token', :headers => :any, :methods => [:post]
+        resource '/oauth/revoke', :headers => :any, :methods => [:post]
+        resource '/users/api_token', :headers => :any, :methods => [:get]
+      end
+    end
   end
 
 end
