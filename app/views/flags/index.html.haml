@@ -8,6 +8,7 @@
       #pageheader
         %span.breadcrumbs
           = link_to t(:back_to_x , noun: "#{@object.try_methods(:to_plain_s, :to_s)}"), @object, class: "back crumb"
+          = link_to t(:add_a_flag), send( "new_#{@model.name.underscore}_flag_path" ), class: "pull-right"
         %h2= @title
       .description
         %p
