@@ -120,6 +120,6 @@
             %li= link_to t(:account_settings), edit_person_path(current_user), :class => 'profile_link'
             %li.divider{role: "separator"}
             %li.signout= link_to t(:sign_out), logout_path
-  - if @responsive && @site && @site.id == Site.default.id
+  - if !logged_in? && @site && @site.id == Site.default.id
     #initiative-branding.navtabs
       %embed{ src: image_path( "nat-geo-cas-logos-color.svg" ), width: 179, height: 31 }
