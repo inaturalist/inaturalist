@@ -22,7 +22,6 @@
 <% else -%>
 <h3><%=t :not_linked_flickr, :site_name => @site.preferred_site_name_short %></h3>
 <p class="description">
-  <%=t :linked_flickr_howto %> <%= link_to t(:flickr_tagger), flickr_tagger_path %>.
   To connect Flickr with <%= @site.site_name_short %> , click the link on the right and sign into
   Flickr.com. Flickr will ask you if you want to give <%= @site.name %> permission
   to <strong>read</strong> from your Flickr account and will then send you
