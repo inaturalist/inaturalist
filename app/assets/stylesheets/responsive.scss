@@ -18,14 +18,18 @@
 }
 
 #header {
-  margin-bottom: 0;
-  #mainnav,
-  #headersearch,
-  .add-obs,
-  #usernav {
-    display: none;
-  }
   #initiative-branding {
-    display: flex;
+    position: relative;
+    top: 2px;
+  }
+  @media (max-width: 767.99px) {
+    #mainnav,
+    #headersearch,
+    .add-obs,
+    #usernav .messages,
+    #usernav .updates,
+    #usernav .signedout {
+      display: none;
+    }
   }
 }

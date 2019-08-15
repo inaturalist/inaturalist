@@ -1,8 +1,23 @@
-.container
+- content_for :extracss do
+  = stylesheet_link_tag :responsive, media: "all"
+  :css
+    #auth-buttons form { display: inline-block; }
+    #auth-buttons form .btn { margin-left: 10px; }
+    #auth-buttons form:first-child .btn { margin-left: 0px; }
+    #auth-buttons .btn-link { float: right; }
+    @media (max-width: 767px) {
+      #app-img { width: 50%; }
+      #auth-buttons form { display: block; width: 100%; }
+      #auth-buttons form .btn,
+      #auth-buttons .btn { display: block; margin: 0; width: 100%; margin-bottom: 10px; }
+      #auth-buttons .btn-link { float: none; }
+    }
+.container.upstacked
   .row
-    .col-xs-4
-      = image_tag @pre_auth.client.application.becomes( OauthApplication ).image.url(:medium), class: "img-responsive"
-    .col-xs-8
+    .col-sm-4.hidden-xs
+      = image_tag @pre_auth.client.application.becomes( OauthApplication ).image.url(:medium), class: "img-responsive", id: "app-img"
+    .col-xs-12.col-sm-8
+      = image_tag @pre_auth.client.application.becomes( OauthApplication ).image.url(:medium), class: "img-responsive hidden-sm hidden-md hidden-lg center-block", id: "app-img"
       %h2=t "views.oauth.authorizations.new.authorize_application_to_use_your_account?", application: @pre_auth.client.name
       - if @pre_auth.scopes
         %p=t "views.oauth.authorizations.new.this_application_will_be_able_to_colon"
@@ -16,12 +31,16 @@
           = hidden_field_tag :state, @pre_auth.state
           = hidden_field_tag :response_type, @pre_auth.response_type
           = hidden_field_tag :scope, @pre_auth.scope
+          = hidden_field_tag :code_challenge, @pre_auth.code_challenge
+          = hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method
           = submit_tag t(:authorize), :class => "btn btn-success"
-        = form_tag oauth_authorization_path, method: :delete, class: "inlineblock", style: "margin-left: 10px;" do
+        = form_tag oauth_authorization_path, method: :delete do
           = hidden_field_tag :client_id, @pre_auth.client.uid
           = hidden_field_tag :redirect_uri, @pre_auth.redirect_uri
           = hidden_field_tag :state, @pre_auth.state
           = hidden_field_tag :response_type, @pre_auth.response_type
           = hidden_field_tag :scope, @pre_auth.scope
+          = hidden_field_tag :code_challenge, @pre_auth.code_challenge
+          = hidden_field_tag :code_challenge_method, @pre_auth.code_challenge_method
           = submit_tag t(:deny), :class => "btn btn-default"
-        = link_to t("views.oauth.authorizations.new.more_about_application", application: @pre_auth.client.name ), @pre_auth.client.application.becomes( OauthApplication ), target: "_blank", class: "btn btn-link pull-right"
+        = link_to t("views.oauth.authorizations.new.more_about_application", application: @pre_auth.client.name ), @pre_auth.client.application.becomes( OauthApplication ), target: "_blank", class: "btn btn-link"

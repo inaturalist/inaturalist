@@ -149,6 +149,12 @@ LICENSE_PARAMS["CC-BY-NC-ND"]  = "Creative Commons Attribution-NonCommercial-NoD
 api "iNaturalist API" do
   desc <<-EOT
 <p>
+  <strong>Note: a faster API with more consistent response formats can be
+  found at <a href="https://api.inaturalist.org">api.inaturalist.org</a>.</strong>
+  You will still need to refer to these docs for obtaining an OAuth access
+  token.
+</p>
+<p>
   The iNat API is a set of REST endpoints that can be used to read data from
   iNat and write data back on the behalf of users. Data can be retrieved in
   different formats by appending
@@ -162,12 +168,6 @@ api "iNaturalist API" do
   Note that endpoints that receive binary data must have the
   <code>Content-Type: multipart-formdata</code> header and parts that are not
   binary should be simple form data, even if you're requesting JSON data.
-</p>
-<p>
-  If you're mainly focusing on read-only operations that don't require auth,
-  you might want to check out
-  <a href="https://api.inaturalist.org">api.inaturalist.org</a>, a faster and
-  more consistent iNaturalist API.
 </p>
 EOT
   post "/comments", auth_required: true do

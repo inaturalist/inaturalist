@@ -20,6 +20,8 @@
           %li
             %a{:href => "#authorization_code_flow"} Authorization Code Flow
           %li
+            %a{:href => "#pkce_flow"} Proof Key for Code Exchange (PKCE)
+          %li
             %a{:href => "#resource_owner_password_credentials_flow"} Resource Owner Password Credentials Flow
           %li
             %a{:href => "#assertion_flow"} Assertion Flow
@@ -37,10 +39,13 @@
   %a{:name => "auth"}
   %h2 Authentication
   %p
-    iNaturalist is an OAuth2 provider and supports
-    %a{:href => "http://tools.ietf.org/html/rfc6749#section-4.1"} Authorization Code
+    iNaturalist is an OAuth2 provider and supports the
+    = succeed "," do
+      %a{ href: "http://tools.ietf.org/html/rfc6749#section-4.1" } Authorization Code
+    = succeed "," do
+      %a{ href: "http://tools.ietf.org/html/draft-ietf-oauth-v2-25#page-9" } Resource Owner Password Credentials
     and
-    %a{:href => "http://tools.ietf.org/html/draft-ietf-oauth-v2-25#page-9"} Resource Owner Password Credentials
+    %a{ href: "https://tools.ietf.org/html/rfc7636" } Proof Key for Code Exchange (PKCE)
     flows, as well as some custom auth flows for 3rd party authentication. Methods marked
     %em.auth Auth required
     require authentication via one of the aforementioned methods. Please make
@@ -74,22 +79,35 @@
   %a{:name => "authorization_code_flow"}
   %h4 Authorization Code Flow
   %p
-    This is what you'll want to use if your app is a web app. The rough
-    outline is you redirect your user to iNat, the user is offered the
-    choice to authorize your app with access to their iNat data, and if
-    they agree, they are redirected to the
+    This is what you'll want to use if your app is a web app, and/or you're sure
+    you're users can open a web browser for auth *and* you can store your client
+    secret in a secure fashion. The rough outline is you redirect your user to
+    iNat, the user is offered the choice to authorize your app with access to
+    their iNat data, and if they agree, they are redirected to the
     %code redirect_uri
-    you specified with
-    an
+    you specified with an
     %code access_token
     in the params.
   %script{:src => "https://gist.github.com/kueda/96394b87244fe6ea1457.js"}
+
+  %a{:name => "pkce_flow"}
+  %h4 Proof Key for Code Exchange Flow
+  %p
+    This is a variation on the Authorization Code Flow for use in situations where you cannot store your client secret securely, e.g. in a client-side Javascript application or a mobile application that could be decompiled. Instead of providing a secret to identify itself, the client provides a hashed, single-use "code verifier" when requesting an authorization code. When the client requests an access token it must provide the unhashed code verifier to verify that it is the same client that requested the authorization code. More details at the
+    = succeed "," do
+      %a{ href: "https://tools.ietf.org/html/rfc7636" } IETF
+    but the
+    %a{ href: "https://github.com/doorkeeper-gem/doorkeeper/wiki/Using-PKCE-flow" } Doorkeeper docs
+    might be easier to read.
+  %script{:src => "https://gist.github.com/kueda/0ad3c5b78c822bd059f095152165a9e0.js"}
 
   %a{:name => "resource_owner_password_credentials_flow"}
   %h4 Resource Owner Password Credentials Flow
   %p
     Retrieve an access token based on the user's iNat username and
-    password. This is more for desktop and mobile apps, not for web.
+    password. This is more for desktop and mobile apps, or any situation where
+    you can store a user's password and they have reason to trust you,
+    i.e. not for web.
   %script{:src => "https://gist.github.com/kueda/f4835782e1615932d85a.js"}
 
   %a{:name => "assertion_flow"}

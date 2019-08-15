@@ -2224,7 +2224,9 @@ CREATE TABLE public.oauth_access_grants (
     redirect_uri character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
     revoked_at timestamp without time zone,
-    scopes character varying(255)
+    scopes character varying(255),
+    code_challenge character varying,
+    code_challenge_method character varying
 );
 
 
@@ -9987,4 +9989,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190516181748');
 INSERT INTO schema_migrations (version) VALUES ('20190528222836');
 
 INSERT INTO schema_migrations (version) VALUES ('20190604231553');
+
+INSERT INTO schema_migrations (version) VALUES ('20190702063435');
 

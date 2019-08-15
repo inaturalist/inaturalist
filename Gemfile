@@ -56,7 +56,7 @@ gem "json"
 gem "jquery-rails", "~> 4.0"
 gem "koala"
 gem "dalli"
-gem "nokogiri", "~> 1.10.3"
+gem "nokogiri", "~> 1.10.4"
 gem "non-stupid-digest-assets"
 gem "objectify-xml", git: "https://github.com/inaturalist/objectify_xml.git"
 gem "omniauth"
@@ -134,3 +134,5 @@ group :test do
   gem "rspec-html-matchers"
   gem "webmock"
 end
+
+gem "rack-cors", "~> 1.0"

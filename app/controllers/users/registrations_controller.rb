@@ -61,6 +61,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
             format.html do
               if session[:return_to_for_new_user]
                 redirect_to session[:return_to_for_new_user]
+              elsif session[:return_to]
+                redirect_to session[:return_to]
               else
                 redirect_to home_path( new_user: true )
               end

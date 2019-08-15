@@ -34,6 +34,7 @@ class TaxonName < ActiveRecord::Base
   LEXICONS = {
     :SCIENTIFIC_NAMES    =>  'Scientific Names',
     :AFRIKAANS           =>  'Afrikaans',
+    :ALBANIAN            =>  'Albanian',
     :BENGALI             =>  'Bengali',
     :CATALAN             =>  'Catalan',
     :CEBUANO             =>  'Cebuano',
@@ -62,9 +63,11 @@ class TaxonName < ActiveRecord::Base
     :MISIMA_PANEATI      =>  'Misima-paneati',
     :NORWEGIAN           =>  'Norwegian',
     :PANGASINAN          =>  'Pangasinan',
+    :POLISH              =>  'Polish',
     :PORTUGUESE          =>  'Portuguese',
     :RUMANIAN            =>  'Rumanian',
     :RUSSIAN             =>  'Russian',
+    :SLOVAK              =>  'Slovak',
     :SPANISH             =>  'Spanish',
     :SWEDISH             =>  'Swedish',
     :TAGALOG             =>  'Tagalog',
@@ -96,6 +99,7 @@ class TaxonName < ActiveRecord::Base
     "danish"                => "da",
     "dutch"                 => "nl",
     "english"               => "en",
+    "esperanto"             => "eo",
     "estonian"              => "et",
     "finnish"               => "fi",
     "french"                => "fr",
@@ -113,10 +117,13 @@ class TaxonName < ActiveRecord::Base
     "maori"                 => "mi",
     "maya"                  => "myn",
     "occitan"               => "oc",
+    "polish"                => "pl",
     "portuguese"            => "pt",
     "russian"               => "ru",
     "scientific_names"      => "sci",
-    "spanish"               => "es"
+    "slovak"                => "sk",
+    "spanish"               => "es",
+    "swedish"               => "sv"
   }
   LEXICONS_BY_LOCALE = LOCALES.invert.merge( "zh-TW" => "chinese_traditional" )
 
