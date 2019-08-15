@@ -11,6 +11,7 @@
 # Author: Jiang123aa
 # Author: Jiangche
 # Author: Liuxinyu970226
+# Author: Looong
 # Author: NeverBehave
 # Author: Peishanxu
 # Author: Phenolla
@@ -845,6 +846,7 @@ zh-CN:
     url: 描述此状态的页面的URL。
     geoprivacy: 用于此分类单元观察的默认位置隐私
     iucn: 等价的世界自然保护联盟红色名录代码
+  conservation_status_geoprivacy_desc: 默认的地理敏感信息应用到该地址的所有观察到的分类上
   conservation_summary: 保护概要
   contain_all_descendants?: 这个清单是否包含这个分类单元在此地的所有后代？
   contest: 竞赛
@@ -1848,9 +1850,11 @@ zh-CN:
     lb: 卢森堡语
     mk: 马其顿语
     oc: 奥克语
+    pl: 抛光
     pt-BR: 葡萄牙语（巴西）
     pt-PT: 葡萄牙语（葡萄牙）
     ru: 俄语
+    sk: 斯洛伐克
     sq: 阿尔巴尼亚语
     zh-CN: 简体中文
     zh-TW: 繁体中文
@@ -3412,6 +3416,7 @@ zh-CN:
   taxa_to_include: 包含的分类群
   taxon: 类群
   taxon_autocomplete_placeholder: 鸟、君主等
+  taxon_geoprivacy: 分类地理敏感信息
   taxon_is_a_rank: '%{taxon}是一个%{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon}是%{iconic_taxon}中的%{rank}，共有1次观察'

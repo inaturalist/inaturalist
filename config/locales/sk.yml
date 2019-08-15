@@ -1289,7 +1289,7 @@ sk:
   eg: napr.
   either: Buď
   either_that_user_doesnt_exist_or: Tento užívateľ buď neexistuje, alebo už ho sledujete.
-  eligible_for_research_grade: Vhodné pre potvrdené určenie
+  eligible_for_research_grade: Vhodné pre výskumný stupeň
   email: Email
   email_addresses_description: E-mailové adresy oddelené čiarkami, maximálne 60 každých
     30 dní.
@@ -3236,6 +3236,8 @@ sk:
   projects_youve_joined: Projekty, ku ktorým ste sa pridali
   proposed_taxa_that_contradict_the_community_id: Navrhované taxóny, ktoré sa lišia
     od ID komunity
+  provider_authorizations: Autorizácia poskytovateľa
+  public_coordinates_obscured_by: Verejné súradnice zakryté o %{distance} km
   public_domain: Voľné dielo
   publish: Publikovať
   purple: fialová
@@ -3317,13 +3319,182 @@ sk:
   recent_observations: Nedávne pozorovania
   recent_observations_: Nedávne pozorovania
   recent_post: Nedávne príspevky
+  recent_atom_observations_by: Nedávne pozorovania užívateľa %{login} (Atom)
+  recent_observations_by: Nedávne pozorovania užívateľa %{login}
+  recent_updates: Nedávne aktualizácie
+  recently_active: Nedávno aktívne
+  recently_active_projects_from_everywhere: Nedávno aktívne projekty zo všetkých miest
+  recently_active_projects_from_place: Nedávno aktívne projekty z %{place}
+  recently_created: Nedávno vytvorené
+  recently_created_projects_from_everywhere: Nedávno vytvorené projekty zo všetkých
+    miest
+  recently_created_projects_from_place: Nedávno vytvorené projekty z %{place}
+  recently_finished: Nedávno dokončené
+  recently_observed: Nedávno pozorované
+  recently_resolved: Nedávno vyriešené
+  record!: Rekord!
+  red: červený
+  redo_search_in_map: Opakovať hľadanie v mape
+  redo_search_in_map_area: Opakovať hľadanie v časti mapy
+  refresh: Obnoviť
+  refresh_listed_taxa: obnoviť taxóny v zozname
+  refreshing: obnovovanie
+  regenerate_stats: Obnoviť štatistiky
+  regenerate_url: Obnoviť URL
+  register_for_this_event_at_x_html: Registrovať sa na udalosť na %{x}
+  reject?: Odmietnuť?
+  reject_the_community_id: odmietnuť ID komunity
+  related_species: Súvisiaci druh
+  relative_observations: Súvisiace pozorovania
+  relationship: Vzťah
+  relationship_unknown_count: Počet neznámych vzťahov
+  relationship_x: Vzťah %{relationship}
+  relationships:
+    match: spojenie
+    one_to_one: jedna ku jednej
+    alternate_position: náhradná pozícia
+    many_to_many: mnoho k mnoho
+    many_to_one: mnoho k jednému
+    one_to_many: jeden k mnohým
+    not_external: nie je externý
+    not_internal: nie je interný
+    error: chyba
+  relationship_html: 'Vzťah: %{link}'
+  reload_and_refresh: Znovu načítať a obnoviť zoznam
+  reload_from_observations: Znovu načítať z pozorovaní
+  reload_timed_out: Čas pre opätovné načítanie vypršal. Skúste to prosím znovu neskôr.
+  remarks_hidden: Poznámky sú skryté
+  remarks_optional: Poznámky <span class="small description">(dobrovoľné)</span>
+  remember_me: Zapamätať si ma
+  remove: Odstrániť
+  remove_all_tags: Odstrániť všetky tag
+  remove_boundary: Odstrániť hranicu
+  remove_comma_separated_tags: Odstrániť tagy oddelené čiarkami
+  remove_conservation_status: odstrániť status ochrany
+  remove_from: Odstrániť z
   remove_curator: Odstrániť kurátora
+  remove_curator_role: Odstrániť pozíciu kurátora
   remove_curator_status: Odstrániť status kurátora
+  remove_from_batch: Odstrániť zo série
+  remove_from_featured: Odstrániť z vybraných
+  remove_from_guide: Odstrániť zo sprievodcu
+  remove_from_id_please?: Odstrániť z ID prosím?
+  remove_from_list: Odstrániť zo zoznamu
+  remove_from_project: Odstrániť z projektu
+  remove_this_section: Odstrániť túto časť
+  remove_manager: Odstrániť manažéra
+  remove_observations:
+    one: Odstrániť 1 pozorovanie?
+    other: Odstrániť %{count} pozorovaní?
+  remove_photo: Odstrániť fotografiu
+  remove_place: Odstrániť miesto
+  remove_project_user: Odstrániť projektového užívateľa
+  remove_range: Odstrániť rozsah
+  remove_relationship: Odstrániť vzťah
+  remove_section: Odstrániť časť
+  remove_selected: Odstrániť označené
+  remove_tags: Odstrániť tagy
+  remove_your_existing_id?: Odstrániť existujúce ID?
+  removed: Odstránené
+  removed!: Odstránené!
+  removed_project_user: Odstránený projektový užívateľ
+  removing: Odstraňovanie...
+  reorder_by_taxonomy: Znovu usporiadať podľa taxonómie
+  repair_broken_urls: Opraviť pokazené URL
+  repair_doesnt_work_for_that_kind_of_photo: Tento typ fotky sa nedá opraviť
+  repair_external_photos: Opraviť externé fotky
+  replace_boundary_with_kml: Nahradiť hranicu s KML
+  replace_parentesis: (nahradiť)
+  replacing: nahradzovanie
+  reply: Odpovedať
+  report_any_problems: Nahlásiť problémy
+  reptiles: plazy
+  request_failed: Požiadavka zlyhala
+  request_id_help: Požiadať o pomoc s identifikáciou
+  request_password: Požiadať o heslo
+  request_timed_out: Čas požiadavky vypršal!
+  required: povinné
+  required_: Povinné
+  required_field: Povinné pole
+  required_columns_in_order: Povinné stĺpce v poradí
+  research: výskum
+  research_: Výskum
+  research_grade: Výskumný stupeň
+  research_grade_expandable_html: V<span class='full'>ýskumný </span>S<span class='full'>tupeň</span>
+  research_grade_short_html: V<span class='full'>ýskumný </span>S<span class='full'>tupeň</span>
+  research_grade_qualification: Vymedzenie výskumného stupňa
+  research_quality: Kvalita výskumu
+  reset_brightness: Resetovať jas
+  reset_search_filters: Resetovať filtre vyhľadávania
+  reset_your_password: Obnoviť heslo
+  resolve: Vyriešiť
   resolve_this_flag: Vyriešiť toto označenie
+  resolved: Vyriešené
+  resolved_by: Vyriešil/a
+  resolved_by_user_on_date_html: 'Vyriešené: %{user} v %{date}'
+  resolver_said_x_html: <span class="meta">%{resolver} povedal/a:</span> "%{x}"
+  restore: Obnoviť
+  restoring: Obnovovanie...
+  results: výsledky
+  review_all: Označiť všetky za skontrolované
+  review_verb: Kontrola
+  reviewed: Skontrolované
+  rg_observations: VS pozorovania
+  roadmap: plán cesty
+  role: Funkcia
+  rotate_left: Otočiť doľava
+  rotate_right: Otočiť doprava
+  row_singular_or_plural: Riadok/riadky
+  row_number_i_was_parsed_as: Riadok číslo %{row} bol rozobraný ako
+  rule_must_be: Pravidlo musí byť...
+  rules_and_formatting: Pravidlá a formatovanie
+  rules_for_adding_observations: Pravidlá pre pridávanie pozorovaní
+  rules_for_becoming_a_member: Pravidlá pre vznik členstva
+  rules_for_becoming_memner: Pravidlá pre vznik členstva
   rules_types:
+    must_be_georeferenced: musí byť uvedený geografický odkaz
+    must_be_identified: musí byť uvedená identifikácia
+    must_be_on_list: musí byť na zoznamu
+    must_be_observed_in_place: musí byť pozorovaný v mieste
+    must_be_in: musí byť v taxóne
     must_be_coordinates_shareable_by_project_curators: pozorovateľ musí kurátorom
       projektu sprístupniť náhľad súradníc.
+  same_day_obscured: Ďalšie pozorovanie tejto osoby v tento deň je zakryté
+  said: povedal/a
+  sat: Sob
+  satellite: satelitný
+  save: Uložiť
+  save_all: Uložiť všetko
+  save_and_add_another: Uložiť a pridať ďalší
+  save_and_continue: Uložiť &amp; pokračovať...
+  save_and_add_taxa: Uložiť a začať pridávať druhy
+  save_changes: Uložiť zmeny
+  save_colors: Uložiť farby
+  save_comment: Uložiť komentár
+  save_draft: Uložiť koncept
+  save_fields: Uložiť pole
   save_flag: Uložiť značku
+  save_guide: Uložiť sprievodcu
+  save_guide_taxon: Uložiť sprievodcu taxónu
+  save_identification: Uložiť identifikáciu
+  save_observation: Uložiť pozorovanie
+  save_photos: Uložiť fotky
+  save_place: Uložiť miesto
+  save_trip: Uložiť cestu
+  saved: Uložené
+  saving: Ukladanie...
+  saving_num_of_count_observations:
+    one: Ukladanie pozorovania...
+    other: Ukladanie %{num} zo %{count} pozorovaní...
+  saving_verb: Ukladá sa
+  scale_colon: 'Mierka:'
+  schemes: Plány
+  schemes_including: Plány obsahujúce
+  scientific_names: Vedecké názvy
+  search: Hľadať
+  search_all_fields: prehliadať všetky polia
+  search_by_name_or_email: Hľadať podľa mena alebo e-mailu
+  search_by_taxon_name_or_observation_id: Hľadať podľa názvu taxónu alebo ID pozorovania
   see_something_wrong_with_taxon: Je s týmto taxónom niečo v neporiadku? Dajte to
     vedieť kurátorom.
   show_common_names: Zobraziť bežné mená
@@ -3341,6 +3512,7 @@ sk:
   taxonomy_settings: Nastavenie Taxonómie
   this_is_a_life_list_of: Toto je zoznam života
   this_is_a_life_list_of_taxon_in_place: Toto je zoznam života %{taxon} v %{place}
+  this_observation_is_research_grade: Toto pozorovanie je pozorovanie výskumného stupňa!
   top_observers: Najlepší pozorovatelia
   user_flagged_as_a_spammer_html: '%{user} označený ako spamer'
   view_all_flags: Pozri všetky značky

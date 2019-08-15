@@ -42,6 +42,7 @@
 # Author: Mirzali
 # Author: Mynor Archila
 # Author: Ncontinanza
+# Author: Nicolas Ramirez
 # Author: Ohlila
 # Author: Optilete
 # Author: Pablo de la Fuente Brun
@@ -912,7 +913,7 @@ es:
     que estás tratando de identificar.
   check_out_your_life_list: Revisa tu lista de vida
   check_this_box_if_html: |-
-    Selecciona esta caja si quieres aplicar una
+    Selecciona esta casilla si quieres aplicar una
     <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Licencia de Atribución Sin Fin Comercial de Creative Commons</a>
     a tus fotos. Puedes escoger una licencia diferente o eliminarla después, pero esta es la mejor licencia para compartir datos con los investigadores.
   checklist: Lista de verificación
@@ -2408,7 +2409,7 @@ es:
   matched_several_different_taxa: varios taxones distintos coinciden
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí.
     El mapa mostrará un área si %{place} tiene alguna de esas especies.
-  maverick: Maverick
+  maverick: Disidente
   maybe_your_signed_in_with: ¿Tal vez ingresaste con tu cuenta %{omniauth}?
   media: Multimedia
   media_type: Tipo de medios
@@ -4846,6 +4847,8 @@ es:
   unclassified: Sin clasificar
   ungrafted_taxa: Taxones sin injertar
   unhide_content: Mostrar contenido
+  unhide_desc: Mostrar revelará este contenido para que todos lo vean. Los curadores
+    todavía pueden eligir ocultarlo nuevamente en el futuro.
   uninvite: cancelar invitación
   unique_identifier_of_this_taxon: Identificador único para esta especie o grupo en
     la base de datos.
@@ -5030,6 +5033,7 @@ es:
     de observación
   view: Ver
   view_all: Ve todo
+  view_all_flags: Ver Todas las Marcas
   view_all_from_x: Ve todo de %{x}
   view_all_members: Ve todos los miembros
   view_all_n: Ve todas las %{n}
