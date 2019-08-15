@@ -2766,7 +2766,6 @@ en:
   photo?: Photo?
   photo_attribution: "Photo %{attribution}"
   photo_browser: Photo Browser
-  photo_by: Photo by
   photo_by_id_attribution: "Photo %{id}, %{attribution}"
   photo_credits: Photo Credits
   photo_deleted: Photo deleted
@@ -4032,6 +4031,8 @@ en:
   taxon_merge: taxon merge
   taxon_name: Taxon name
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxon name must match an existing taxon in our database
+  taxon_observed_by_html: |
+    <a href="%{url}">%{taxon}</a> observed by
   taxon_observed_by_user: "%{taxon} observed by %{user}"
   taxon_or_place_observations: Taxon or place observations
   taxon_photos_updated: Taxon photos updated!
