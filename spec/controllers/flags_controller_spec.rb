@@ -7,13 +7,13 @@ describe FlagsController do
   it "should have the right FLAG_MODELS" do
     expect( FlagsController::FLAG_MODELS ).to eq [ "Observation", "Taxon", "Post", "Comment",
       "Identification", "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList",
-      "User", "CheckList" ]
+      "User", "CheckList", "Sound" ]
   end
 
   it "should have the right FLAG_MODELS_ID" do
     expect( FlagsController::FLAG_MODELS_ID ).to eq [ "observation_id", "taxon_id", "post_id",
       "comment_id", "identification_id", "message_id", "photo_id", "list_id", "project_id",
-      "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id"]
+      "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id", "sound_id" ]
   end
 
   describe "update" do
