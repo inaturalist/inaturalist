@@ -259,8 +259,9 @@ class ObservationModal extends React.Component {
     if ( observation.sounds && observation.sounds.length > 0 ) {
       sounds = observation.sounds.map( s => {
         const soundKey = `sound-${s.id}`;
+        let player;
         if ( s.subtype === "SoundcloudSound" || !s.file_url ) {
-          return (
+          player = (
             <iframe
               key={soundKey}
               title={soundKey}
@@ -271,13 +272,46 @@ class ObservationModal extends React.Component {
               src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${s.native_sound_id}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false&show_artwork=false`}
             />
           );
+        } else {
+          player = (
+            <audio key={soundKey} controls preload="none">
+              <source src={s.file_url} type={s.file_content_type} />
+              { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
+            </audio>
+          );
         }
-        return (
-          <audio key={soundKey} controls preload="none">
-            <source src={s.file_url} type={s.file_content_type} />
-            { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
-          </audio>
-        );
+        let flagNotice;
+        if ( _.find( s.flags, f => !f.resolved ) ) {
+          flagNotice = (
+            <p className="flag-notice alert alert-warning">
+              { I18n.t( "sounds.sound_has_been_flagged" )}
+              { " " }
+              <a href={`/sounds/${s.id}/flags`} className="linky">
+                { I18n.t( "view_flags" ) }
+              </a>
+            </p>
+          );
+        }
+        if ( flagNotice ) {
+          if (
+            currentUser.id === observation.user.id
+            || currentUser.roles.indexOf( "curator" ) >= 0
+            || currentUser.roles.indexOf( "admin" ) >= 0
+          ) {
+            return (
+              <div key={soundKey}>
+                { flagNotice }
+                { player }
+              </div>
+            );
+          }
+          return (
+            <div key={soundKey}>
+              { flagNotice }
+            </div>
+          );
+        }
+        return <div key={soundKey}>{ player }</div>;
       } );
       sounds = (
         <div className="sounds">

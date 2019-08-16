@@ -6,6 +6,7 @@ class Sound < ActiveRecord::Base
   serialize :native_response
 
   include Shared::LicenseModule
+  acts_as_flaggable
 
   attr_accessor :orphan
   
@@ -132,7 +133,8 @@ class Sound < ActiveRecord::Base
       file_url: is_a?( LocalSound ) ? FakeView.uri_join( Site.default.url, file.url ) : nil,
       file_content_type: is_a?( LocalSound ) ? file.content_type : nil,
       play_local: is_a?( LocalSound ) && ( subtype.blank? || ( native_response && native_response["sharing"] == "private") ),
-      subtype: subtype
+      subtype: subtype,
+      flags: flags.map(&:as_indexed_json)
     }
   end
 

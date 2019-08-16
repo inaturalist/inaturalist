@@ -651,12 +651,20 @@ module ApplicationHelper
           url.each {|k,v| new_pieces[k] = v.encode('UTF-8')}
           url_for(new_pieces)
         end
+      rescue NoMethodError => e
+        if e.message =~ /sound_path/ && url.is_a?( Sound )
+          url_for( url.becomes( Sound ) )
+        elsif e.message =~ /photo_path/ && url.is_a?( Photo )
+          url_for( url.becomes( Photo ) )
+        else
+          raise e
+        end
       end
       if url_candidate =~ /\?/
         options ||= {}
         options[:rel] ||= "nofollow" unless options[:rel].to_s =~ /nofollow/
       end
-      super(body, url, options)
+      super(body, url_candidate, options)
     else
       super
     end

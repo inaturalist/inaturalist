@@ -1,5 +1,10 @@
 class SoundsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :load_record, only: [:show]
+
+  def show
+    redirect_to @sound.observations.first
+  end
 
   def create
     @sound = LocalSound.new( file: params[:file], user: current_user )
