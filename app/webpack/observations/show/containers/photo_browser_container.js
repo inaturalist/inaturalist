@@ -2,6 +2,7 @@ import { connect } from "react-redux";
 import PhotoBrowser from "../components/photo_browser";
 import { setMediaViewerState } from "../ducks/media_viewer";
 import { onFileDrop } from "../ducks/observation";
+import { setFlaggingModalState } from "../ducks/flagging_modal";
 
 function mapStateToProps( state ) {
   return {
@@ -17,7 +18,8 @@ function mapDispatchToProps( dispatch ) {
     },
     setMediaViewerState: ( key, value ) => {
       dispatch( setMediaViewerState( key, value ) );
-    }
+    },
+    setFlaggingModalState: state => dispatch( setFlaggingModalState( state ) )
   };
 }
 

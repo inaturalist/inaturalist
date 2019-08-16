@@ -9,7 +9,7 @@
     .col-xs-12
       .breadcrumbs
         %strong
-          = link_to t(:back_to_flags_html), url_for_referrer_or_default( url_for( @flag.flaggable.is_a?( Photo ) ? @flag.flaggable.becomes( Photo ) : @flag.flaggable ) )
+          = link_to t(:back_to_flags_html), url_for_referrer_or_default( @object )
         .pull-right
           - if @object.is_a?( Comment )
             = link_to t(:view_moderation_history_for_this_comment), comment_flags_url( comment_id: @object.id )
