@@ -175,7 +175,7 @@ class UsersController < ApplicationController
         @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
       end
     end
-    redirect_to :back
+    redirect_back_or_default( @user )
   end
 
   # Methods below here are added by iNaturalist
