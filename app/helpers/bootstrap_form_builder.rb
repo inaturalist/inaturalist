@@ -52,8 +52,10 @@ class BootstrapFormBuilder < DefaultFormBuilder
     if options[:required]
       label_content += content_tag(:span, " *", :class => 'required')
     end
+    content = @template.content_tag( :label, [field_content, label_content].join(' ').html_safe )
+    content += @template.content_tag(:div, description.html_safe ) unless description.blank?
     @template.content_tag(:div, wrapper_options) do
-      @template.content_tag(:label, [field_content, label_content].join(' ').html_safe)
+      content
     end
   end
 end

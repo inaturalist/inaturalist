@@ -81,16 +81,18 @@
     = f.text_area :description, class: "form-control"
   
   .form-group#covers_section
-    = label_tag "Show downstream coverage options"
-    = check_box_tag :covers
+    %label
+      = check_box_tag :covers
+      Show downstream coverage options
     
     #covers_details
       = f.select :rank_level, @rank_levels, include_blank: t( :none ), selected: @taxon_framework.try( :rank_level ), label: t( :rank_level )
-      = f.check_box :complete
+      = f.check_box :complete, label: t(:complete), description: "All descendant taxa have been added to the database down to the declared rank level OR are covered by other complete taxon frameworks"
 
       .form-group
-        = label_tag "Show source options"
-        = check_box_tag :add_source
+        %label
+          = check_box_tag :add_source
+          Show source options
     
       #add_source_details
         .source
