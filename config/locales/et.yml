@@ -840,7 +840,9 @@ et:
   check_out_your_life_list: Vaata oma elunimekirja
   check_this_box_if_html: |-
     Pane siia kasti linnuke, kui soovid oma fotodele määrata
-    <a href='http://creativecommons.org/licenses/by-nc/4.0/' target='_blank'>Creative Commons Viitamine-Mitteäriline litsentsi</a>. Võid hiljem valida erineva litsentsi või litsentsi eemaldada, kuid antud litsents on uurijatega andmete jagamiseks kõige parem.
+    <a
+    href='http://creativecommons.org/licenses/by-nc/4.0/'
+    target='_blank'>Creative Commons Viitamine-Mitteäriline litsentsi</a>. See tähendab, et kõik saavad sinu fotosid ja/või vaatluseid taaskasutada sinu käest luba küsimata, kuid peavad viitama sulle kui autorile ja ei saa neid kasutada ärilistel eesmärkidel. Võid hiljem valida erineva litsentsi või litsentsi eemaldada, kuid antud litsents on uurijatega andmete jagamiseks kõige parem.
   checklist: Kontrollnimekiri
   checklists: Kontrollnimekirjad
   checklist_places: Kontrollnimekirja kohad
@@ -926,12 +928,12 @@ et:
   community_guidelines: Kogukonna reeglid
   community_id: '<strong>Kogukondlik</strong> määratlus:'
   community_id_heading: Kogukondlik määratlus
-  community_id_at_species_or_lower?: Kogukondlik määratlus liigi või sellest madalamal
+  community_id_at_species_or_lower?: Kogukondlik määratlus liigina või sellest madalamal
     tasemel?
-  community_id_at_genus_level_or_lower: Kogukondlik määratlus perekonna või sellest
+  community_id_at_genus_level_or_lower: Kogukondlik määratlus perekonnana või sellest
     madalamal tasemel
-  community_id_at_species_level_or_lower: Liigi või sellest madalamal taseme kogukondlik
-    määratlus
+  community_id_at_species_level_or_lower: Kogukondlik määratlus liigina või sellest
+    madalamal tasemel
   community_moderation_settings: Kogukonna modereerimissätted
   community_supported_id: Kogukonna toel määramine?
   compare: Võrdle
@@ -2617,9 +2619,8 @@ et:
   obscured_: varjatud
   obscured: Varjatud
   obscured_or_private: varjatud või privaatne
-  obscured_description: Avalike koordinaatidena näidatakse juhuslikku punkti 10 km
-    raadiuses reaalsetest koordinaatidest. Tõeliseid koordinaadid on nähtavad ainult
-    sulle ja nende projektide kuraatoritele, kuhu sa selle vaatluse lisad.
+  obscured_description: Avalike koordinaatidena näidatakse juhuslikku punkti 0,2 pikkus/laiuskraadi
+    suurusel alal, kus paikneb tõeline asukoht.
   observation: Vaatlus
   observation_: vaatlus
   observation_added: Vaatlus lisatud.
@@ -2931,7 +2932,6 @@ et:
   photo?: Foto?
   photo_attribution: 'Foto: %{attribution}'
   photo_browser: Fotodevalija
-  photo_by: Pildistatud
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_credits: Foto andmed
   photo_deleted: Foto kustutatud
@@ -4051,8 +4051,8 @@ et:
   stuff_just_added: Sinu poolt hiljuti lisatud...
   subject_resolved_noun_html: '%{subject} lahendas: %{noun}'
   subject_affecting_stuff_html: '%{subject}, mis mõjutas: %{stuff}'
-  subject_committed_thing_affecting_stuff_html: 'Kasutaja %{subject} tegi %{thing},
-    mis mõjutas: %{stuff}'
+  subject_committed_thing_affecting_stuff_html: 'Kasutaja %{subject} tegi @vow_or_con{vow:|}
+    %{thing}, mis mõjutas: %{stuff}'
   submission_model: Lisamisviis
   submission_model_description: Kes saavad sinu projektile vaatluseid lisada?
   submit: Saada
@@ -4987,9 +4987,11 @@ et:
   you_are_setting_this_project_to_aggregate: 'Määrad selle projekti koguma kõiki vaatlusi,
     mis vastavad reeglitele: %{rules} Soovid sa jätkata?'
   you_are_submitting_obs_without_photos_and_names: Lisad vaatluseid ilma fotode ja
-    taksoni nimedeta. Nende vaatluste täpne määratlemine saab olema väga keeruline.
+    taksoni nimedeta. Nende vaatluste täpne määratlemine saab olema väga keeruline,
+    mistõttu pole need vaatlusotsingutes vaikimisi nähtavad.
   you_are_submitting_obs_with_no_date_or_no_location: Lisad vaatluseid ilma kuupäevade
-    või asukohtadeta.
+    või asukohtadeta. Ilma selle infota vaatluseid on sageli võimatu määratleda ning
+    seetõttu pole nad vaikimisi vaatlusotsingutes nähtavad.
   you_are_subscribed_to: Jäligd
   you_arent_a_member_of_that_project: Sa pole selle projekti liige.
   you_arent_following_that_person: Sa ei jälgi seda kasutajat.
@@ -5671,17 +5673,17 @@ et:
         allow_curator_coordinate_access_desc_html: Luba projektide kuraatoritel näha
           selle vaatluse peidetud koordinaate.
         ancestor_disagreements_desc: Määratletud taksonite hulk, milles sisalduvad
-          antud taksoni alamtaksonid, mis määrati peale seda, kui antud taksonit esimest
-          korda määratluses kasutati
+          antud taksoni ülemtaksonid, kuid mis ei nõustu antud taksoniga (st "Ma arvan,
+          et tegu on selle perekonnnaga, kuid ei usu, et tegu on selle liigiga")
         community_taxon_desc_html: |-
           <p class="ui">
           Kogukondlik takson (ehk kogukondlik määratlus) tähistab seda, mida lehe %{site_name} kogukond mingi vaatluse kohta arvab. Kui sind huvitab, kuidas me kogukondliku taksoni valime, vaata allpool olevaid algorütmi kohta käivaid märkuseid. Üldiselt proovime <strong>valida taksoni, millega enam kui 2/3 määratlejatest nõustuvad</strong>. Mõnikord tähendab see seda, et peame valima kõrgema tasema taksoni, milles sisalduvad arvamuste vastuolud (nt kui sina arvad, et tegu on kuningmaoga, ja mina arvan, et tegu on lõgismaoga, valib iNat alamseltsi Serpentes, mis sisaldab kõik madusid). Algorütm eelistab vähesel määral ebakõla, sest oleme avastanud, et mittenõustujatel on sageli õigus.
           </p>
           <p class="ui">
-          Kogukondlikut taksonit kasutame vaatluste jagamisel andmepartneritega, vaatluste seostamiseks sama taksoniga, sinu elunimekirja täiendamiseks, jne. Kui sa mingil põhjusel ei nõustu kogukondliku taksoniga, saad selle tagasi lükata, mis tähendab, et sinu määratlust kasutatakse teiste vaatlustega seostamiseks, elunimekirjade täiendamiseks, jne. Samuti tähendab see seda, et su vaatlus muutub teaduskõlbulikuks vaid siis, kui kogukond <em>sinuga</em> nõustub. Kui sulle mõte kogukondlikest taksonitest ei meeldi, võid neist täielikult keelduda <a href="/users/edit" target="_blank">muutes enda sätteid</a>.
+          Teaduskõlbulik vaatlus peab (muuhulgas) omama ka kogukondlikku taksonit. Kui vaatlusel on vaid üks määratlus, siis sel puudub kogukondlik takson. Kõiigil vaatlustel, millel on vähemalt üks määratlus, on olemas ka vaatluse takson. Vaatluse taksonit kasutame vaatluste jagamisel andmepartneritega, vaatluste seostamiseks sama taksoniga, sinu elunimekirja täiendamiseks, jne. Enamasti saab vaatluse taksonist ka kogukondlik takson, kuid mõnikord need erinevad, sest kogukond pole veel jõudnud määratluse osas üksmeelele. Kui sina näiteks arvad, et tegu on maoga (alamselts Serpentes) ning mina arvan, et tegu on kuningmaoga (perekond <i>Lampropeltis</i>), siis on vaatlustaksoniks kuningmadu (mis põhineb ainult minu määratlusel), kuid kogukondlikuks taksoniks on Serpentes (sest see tugineb vähemalt kahel määratlusel). Kui sa mingil põhjusel ei nõustu kogukondliku taksoniga, saad selle endale kuuluvate vaatluste puhul tagasi lükata, mis tähendab, et kogukondlikut taksonit ei panna kunagi vaatlustaksonit (selleks on siis su enda määratlus). Samuti tähendab see seda, et su vaatlus muutub teaduskõlbulikuks vaid siis, kui kogukond <em>sinuga</em> nõustub. Kui sulle mõte kogukondlikest taksonitest ei meeldi, võid neist täielikult keelduda <a href="/users/edit" target="_blank">muutes enda sätteid</a>.
           </p>
           <p class="ui">
-          <strong>Algorütm:</strong> kõigile määratletud taksonitele ja neid sisalduvatele taksonitele (st perekond <em>Homo</em> sisaldab liiki <em>Homo sapiens</em>) antakse skoor, mis vastab suhtarvule: kõik selle taksoni määratlused jagatud kõigi määratluste pluss peale esmast määratlemist lisatud konservatiivsemate määratluste pluss täiesti erinevate taksonite määratluste (st määratlused, mis ei sisalda skooritavat taksonit) summaga. Määratletud taksonite puhul, mille skoor on suurem kui 2/3 ning, millel on vähemalt 2 määratlust, valitakse täpseim sobiv takson.
+          <strong>Algorütm:</strong> kõigile määratletud taksonitele ja neid sisalduvatele taksonitele (st perekond <em>Homo</em> sisaldab liiki <em>Homo sapiens</em>) antakse skoor. Selleks on "nõustujate" (selle taksoni määratluste osa kõigist määratlustest), "mittenõustujate" (määratluste arv, mis on täiesti erinevad - st pakutud taksonis ei sisaldu hinnatav takson) ja "alamtaksoni osas mittenõustujate" (konservatiivsemad määratlused, mis ei nõustu täpsema taksoniga) suhtarv. Taksonite hulgast, mille skoor on suurem kui 2/3 ja millel on vähemalt 2 määratlejat, valitakse kõige madalama skooriga takson.
           </p>
         cumulative_count_desc: Taksoni ja kõigi selle alamtaksonite määratluste hulk
         curator_coordinate_access_disabled_desc_html: See projekt ei luba lisada vaatluseid,

@@ -857,10 +857,6 @@ qqq:
     {{Identical|Photo}}
   photo?: '{{Identical|Photo}}'
   photo_attribution: where attribution is the author's name
-  photo_by: |-
-    Used as a header above a user's name, as in "Photo by\nAbdul", so if
-    that doesn't make sense syntactically, something that works as a header
-    would be appropriate, like just "Photo"
   photo_by_id_attribution: where id is an identifier and attribution is the author's
     name
   photo_destroyed_because_it_was_deleted_from: where site_name is the site name
@@ -1162,11 +1158,11 @@ qqq:
     translate both `one` and `other` or users of this language will experience crashes.
   taxon_is_kingdom_of_life_with_x_observations: Like all plural strings, you must
     translate both `one` and `other` or users of this language will experience crashes.
-  taxon_observed_by_html: |
-    Header usually followed by a user's name, e.g. "Bear observed by Svetlana"
-    where "Svetlana" is generally on a new line
   taxonomy: '{{Identical|Taxonomy}}'
   taxon_: '{{Identical|Taxon}}'
+  taxon_observed_by_html: |-
+    Header usually followed by a user's name, e.g. "Bear observed by Svetlana"
+    where "Svetlana" is generally on a new line
   taxon_swap_has_inputs_and_outputs: See [https://www.inaturalist.org/pages/curator+guide#changes
     here].
   taxonomy_details_for: https://www.inaturalist.org/taxa/797944/taxonomy_details

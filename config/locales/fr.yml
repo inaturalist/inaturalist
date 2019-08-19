@@ -21,6 +21,7 @@
 # Author: Jujurenoult
 # Author: Ktmartins
 # Author: Linedwell
+# Author: Lyokoï
 # Author: Macofe
 # Author: Nicolapps
 # Author: Niconoe
@@ -3225,7 +3226,6 @@ fr:
   photo?: Photo?
   photo_attribution: Photo de %{attribution}
   photo_browser: Navigateur de photos
-  photo_by: Photographie de
   photo_by_id_attribution: Photo %{id}, de %{attribution}
   photo_credits: Crédits photos
   photo_deleted: Photo supprimée
@@ -4601,6 +4601,7 @@ fr:
   taxon_name: Nom du taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Le nom du taxon doit correspondre
     à un taxon existant dans notre base de données
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> observé par
   taxon_observed_by_user: '%{taxon} observé par %{user}'
   taxon_or_place_observations: Observations de taxon ou de place
   taxon_photos_updated: Photos du taxon mises à jour!

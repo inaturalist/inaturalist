@@ -3084,7 +3084,6 @@ da:
   photo?: Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Foto browser
-  photo_by: Billede af
   photo_by_id_attribution: Foto %{id},%{attribution}
   photo_credits: Fotokrediteringer
   photo_deleted: Foto slettet
@@ -4425,6 +4424,7 @@ da:
   taxon_name: Takson navn
   taxon_name_must_match_an_existing_taxon_in_our_database: Takson navn skal matche
     et eksisterende takson i vores database
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> observeret af
   taxon_observed_by_user: '%{taxon} observeret af %{user}'
   taxon_or_place_observations: Takson eller sted observationer
   taxon_photos_updated: Takson foto´s opdateret!

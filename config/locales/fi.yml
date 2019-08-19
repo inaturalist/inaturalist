@@ -1922,9 +1922,11 @@ fi:
     mk: Makedonia
     nl: Hollanti
     oc: Oksitaani
+    pl: Puola
     pt-BR: Portugali (Brasilia)
     pt-PT: Portugali (Portugali)
     ru: Venäjä
+    sk: Slovakia
     sq: Albania
     sv: Ruotsi
     zh-CN: Kiina (yksinkertaistettu)
@@ -2533,7 +2535,6 @@ fi:
   photo?: Kuva?
   photo_attribution: 'Kuva: %{attribution}'
   photo_browser: Kuvaselain
-  photo_by: Kuvannut
   photo_by_id_attribution: Kuva %{id}, %{attribution}
   photo_deleted: Kuva poistettu
   photo_destroyed_because_it_was_deleted_from: Kuva tuhottu b/c se poistettiin ulkoisesta
@@ -3788,7 +3789,7 @@ fi:
   user_disagrees_this_is_taxon: '%{user} on eri mieltä siitä että tämä on %{taxon}'
   user_faved_a_noun_by_owner: '%{user} suositteli käyttäjän %{owner} %{noun}:ta'
   user_follows: '%{user} seuraa'
-  user_has_opted_out_of_community_id: Käyttäjä on jättänyt yhteisön tunnisteen pois
+  user_has_opted_out_of_community_id: Käyttäjä on jättänyt yhteisön taksonin pois
   user_hasnt: '%{user} ei ole'
   user_invite_observation_to_project: '%{user} haluaisi kutsua havaintosi "%{observation}"
     projektiin %{project}.'
@@ -3970,6 +3971,8 @@ fi:
   widget_code: Pienoisohjelmakoodi
   widget_for: Pienoisohjelma
   will_be: tulee olemaan
+  wikipedia_attribution_cc_by_sa_3: 'Lähde: Wikipedia, "%{title}", %{url}, CC BY-SA
+    3.0'
   wikipedia_entry: Wikipedia-merkintä
   withdraw: Peruuta
   with_errors: Virheiden kera
@@ -4239,6 +4242,10 @@ fi:
         what_is_a_life_list?: Mikä on elämäluettelo?
     messages:
       to: Johonkin/jollekin/määränpää
+    oauth:
+      authorizations:
+        new:
+          more_about_application: Lisätietoa sovelluksesta %{application}
     observations:
       community_id:
         agreement: Yksimielisyys
@@ -4409,6 +4416,10 @@ fi:
         users_can_follow_your_project: Käyttäjät voivat seurata projektisi päivityksiä
           päiväkirjamerkintöjen kautta
         welcome_to_projects: Tervetuloa projekteihin!
+        errors:
+          name_is_required: Projektin nimi on pakollinen
+          name_less_than_100_characters: Projektin nimen täytyy olla vähemmän kuin
+            100 merkkiä
       project_user_curator_coordinate_access_labels:
         observer: Kyllä, mutta vain jos itse lisään havainnon projektiin.
         any: Kyllä, ei väliä kuka lisää havainnon projektiin.

@@ -3107,7 +3107,6 @@ nl:
   photo?: Afbeelding?
   photo_attribution: Foto %{attribution}
   photo_browser: Foto Browser
-  photo_by: Foto door
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_credits: Foto Credits
   photo_deleted: Foto verwijderd
@@ -4455,6 +4454,7 @@ nl:
   taxon_name: Taxon naam
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnaam moet overeenkomen
     met een bestaand taxon in onze database
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> waargenomen door
   taxon_observed_by_user: '%{taxon} waargenomen door %{user}'
   taxon_or_place_observations: Waarnemingen van taxon of plaats
   taxon_photos_updated: Taxon foto's bijgewerkt!

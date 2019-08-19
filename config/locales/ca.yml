@@ -3113,7 +3113,6 @@ ca:
   photo?: Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Navegador de fotografies
-  photo_by: Foto de
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_credits: Crèdit de la foto
   photo_deleted: Foto esborrada
@@ -4470,6 +4469,7 @@ ca:
   taxon_name: Nom del tàxon
   taxon_name_must_match_an_existing_taxon_in_our_database: El nom del tàxon ha de
     correspondre amb un d'existent a la nostra base de dades
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> observat per
   taxon_observed_by_user: '%{taxon} observat per %{user}'
   taxon_or_place_observations: Observacions de taxon o lloc
   taxon_photos_updated: S'han actualitzat les fotos del tàxon.
@@ -6018,6 +6018,9 @@ ca:
           d'aquesta pàgina de %{total} observacions coincidents.
         unreview_all_tooltip: Eliminar l'estat de revisat a totes les observacions
           de la pàgina
+        too_many_results_desc: |-
+          El número de pàgina multiplicat pel número de resultats per pàgina no pot superar els 10.000.
+          Intenteu aplicar filtres per a reduir el número de resultats, o marqueu les observacions com a revisades i utilitzeu el botó "Veure Més" en comptes de la paginació
       import:
         coordinate_systems_help: '%{site_name} accepta coordenades procedents de diversos
           sistemes de coordenades, de manera que quan proporcioneu les coordenades

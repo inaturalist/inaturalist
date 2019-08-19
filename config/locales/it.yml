@@ -3135,7 +3135,6 @@ it:
   photo?: Foto?
   photo_attribution: Foto di %{attribution}
   photo_browser: Browser delle foto
-  photo_by: Foto di
   photo_by_id_attribution: Foto %{id}, di %{attribution}
   photo_credits: Crediti delle foto
   photo_deleted: Foto cancellata
@@ -4401,7 +4400,7 @@ it:
   taxa_to_include: Taxa da includere
   taxon: Taxon
   taxon_autocomplete_placeholder: Uccelli, Monarca, etc.
-  taxon_geoprivacy: Geoprivacy del Taxon
+  taxon_geoprivacy: Geoprivacy del taxon
   taxon_is_a_rank: '%{taxon} è un %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} è un %{rank} in %{iconic_taxon} con 1 osservazione'
@@ -4493,6 +4492,7 @@ it:
   taxon_name: Nome del taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Il nome del taxon deve
     corrispondere a uno di quelli del nostro database
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> osservata da
   taxon_observed_by_user: '%{taxon} osservato da %{user}'
   taxon_or_place_observations: Osservazioni del taxon o del luogo
   taxon_photos_updated: Foto del taxon aggiornate!

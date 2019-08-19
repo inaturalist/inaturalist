@@ -762,11 +762,13 @@ lt:
     sex: Lytis
     male: Vyr.
     female: Mot.
+    plant_phenology: Augalo fenologija
     budding: Sprogsta
     flowering: Žydintis
     fruiting: Su vaisiais
     life_stage: Gyvenimo stadija
     adult: Subrendęs
+    teneral: Išsinėręs
     subimago: Subimago
     pupa: Lėliukė
     nymph: Nimfa
@@ -1545,6 +1547,7 @@ lt:
   taxonomy: Taksonomija
   taxon_id: Taksono ID
   taxon_ids: Taksono ID
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> pastebėjo
   taxon_search: Taksono paieška
   tell_everyone_a_little_about_you: Trumpai save visiems pristatykite
   terms_of_service: Paslaugų teikimo sąlygos

@@ -2987,7 +2987,6 @@ ar:
   photo?: صورة؟
   photo_attribution: صورة %{attribution}
   photo_browser: متصفح الصور
-  photo_by: الصورة بواسطة
   photo_by_id_attribution: صورة %{id}، %{attribution}
   photo_credits: نسب صور
   photo_deleted: تم حذف الصورة
@@ -4306,6 +4305,7 @@ ar:
   taxon_name: اسم الأصنوفة
   taxon_name_must_match_an_existing_taxon_in_our_database: يجب أن يتطابق اسم الأصنوفة
     مع أصنوفة موجودة في قاعدة البيانات الخاصة بنا
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> لُوحِظت من قبل
   taxon_observed_by_user: '%{taxon} لاحظها %{user}'
   taxon_or_place_observations: ملاحظات أصنوفة أو مكان
   taxon_photos_updated: صور الأصنوفة محدثة!

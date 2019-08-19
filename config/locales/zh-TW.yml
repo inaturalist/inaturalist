@@ -2675,7 +2675,6 @@ zh-TW:
   photo?: 照片？
   photo_attribution: 照片%{attribution}
   photo_browser: 照片瀏覽
-  photo_by: 照片提供由
   photo_by_id_attribution: 照片 %{id}， %{attribution}
   photo_credits: 照片出處
   photo_deleted: 照片已刪除
@@ -3885,6 +3884,7 @@ zh-TW:
   taxon_merge: 物種分類合併
   taxon_name: 物種分類名稱
   taxon_name_must_match_an_existing_taxon_in_our_database: 物種分類名稱必須符合存在於我們資料庫裡的物種分類
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a>的觀察出自
   taxon_observed_by_user: 由 %{user} 觀察到的%{taxon}
   taxon_or_place_observations: 物種分類或地點觀察
   taxon_photos_updated: 物種分類照片已更新！
