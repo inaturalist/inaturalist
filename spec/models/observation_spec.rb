@@ -558,6 +558,31 @@ describe Observation do
       end
     end
 
+    it "should not allow latitude greater than 90" do
+      o = Observation.make( latitude: 91, longitude: 1 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:latitude] ).not_to be_blank
+    end
+    it "should not allow latitude less than -90" do
+      o = Observation.make( latitude: 91, longitude: 1 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:latitude] ).not_to be_blank
+    end
+    it "should not allow longitude greater than 180" do
+      o = Observation.make( latitude: 1, longitude: 181 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:longitude] ).not_to be_blank
+    end
+    it "should not allow longitude less than -180" do
+      o = Observation.make( latitude: 1, longitude: -181 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:longitude] ).not_to be_blank
+    end
+    it "should not allow latitude of 0 AND longitude of 0" do
+      o = Observation.make( latitude: 0, longitude: 0 )
+      expect( o ).not_to be_valid
+    end
+
   end
 
   describe "updating" do

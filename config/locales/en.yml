@@ -7309,6 +7309,8 @@ en:
               api_key_in_use: "API key importing or queued for import"
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: "coordinates cannot be 0,0"
             observed_on:
               cannot_be_greater_than_date_created: |
                 cannot be greater than the date the observation was added
