@@ -341,6 +341,9 @@ class UsersController < ApplicationController
             ).first.try(&:created_at)
           ].compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
         end
+        @donor_since = @selected_user.donorbox_plan_status == "active" &&
+          @selected_user.donorbox_plan_type == "monthly" &&
+          @selected_user.donorbox_plan_started_at
         render layout: "bootstrap"
       end
       opts = User.default_json_options
