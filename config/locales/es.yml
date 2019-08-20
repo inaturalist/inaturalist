@@ -131,8 +131,6 @@ es:
   x_people_agree_html:
     one: <span class="count">1</span> persona está de acuerdo
     other: <span class="count">%{count}</span> personas están de acuerdo
-  x_photos:
-    other: una=1 foto
   x_new_species:
     one: 1 Nueva especie
     other: '%{count} Nuevas especies'
@@ -7490,8 +7488,6 @@ es:
           other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
-        header:
-          other: un=1 error ha evitado que este %{model} se guarde
       models:
         application:
           attributes:
