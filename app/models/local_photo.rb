@@ -243,8 +243,13 @@ class LocalPhoto < Photo
         o.longitude = o.longitude * -1
       end
     end
-    if !metadata[:gps_h_positioning_error].blank? && !metadata[:gps_h_positioning_error].to_f.nan?
-      o.positional_accuracy = metadata[:gps_h_positioning_error].to_i
+    begin
+      if !metadata[:gps_h_positioning_error].blank? && !metadata[:gps_h_positioning_error].to_f.nan?
+        o.positional_accuracy = metadata[:gps_h_positioning_error].to_i
+      end
+    rescue FloatDomainError
+      # Apparently GPS Horizontal Positioning Error can be infinity.
+      # Let's just ignore photos of the entire Universe
     end
     if (o.latitude && o.latitude.abs > 90) || (o.longitude && o.longitude.abs > 180)
       o.latitude = nil
