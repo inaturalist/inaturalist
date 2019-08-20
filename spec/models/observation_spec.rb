@@ -681,7 +681,7 @@ describe Observation do
       it "should not allow dates that are greater than created_at due to chronic's weird time parsing" do
         d = Chronic.parse( "2019-03-04 3pm" )
         observed_on_string = "3 whatever"
-        o = Observation.make!( created_at: d, observed_on_string: d.to_s )
+        o = Observation.make!( created_at: d, observed_on_string: d.to_s, time_zone: "Pacific Time (US & Canada)" )
         Observation.where( id: o.id ).update_all( observed_on_string: observed_on_string )
         o.reload
         expect( o.observed_on_string ).to eq observed_on_string
