@@ -311,16 +311,19 @@ class Observation < ActiveRecord::Base
   
   validate :must_be_in_the_past,
            :date_observed_must_be_before_date_created,
-           :must_not_be_a_range
+           :must_not_be_a_range,
+           :must_not_be_on_null_island
 
-  validates_numericality_of :latitude,
-    :allow_blank => true, 
-    :less_than_or_equal_to => 90, 
-    :greater_than_or_equal_to => -90
-  validates_numericality_of :longitude,
-    :allow_blank => true, 
-    :less_than_or_equal_to => 180, 
-    :greater_than_or_equal_to => -180
+  validates :latitude, numericality: {
+    allow_blank: true,
+    less_than_or_equal_to: 90,
+    greater_than_or_equal_to: -90
+  }
+  validates :longitude, numericality: {
+    allow_blank: true,
+    less_than_or_equal_to: 180,
+    greater_than_or_equal_to: -180
+  }
   validates_numericality_of :positional_accuracy,
     allow_nil: true,
     greater_than: 0,
@@ -1914,6 +1917,15 @@ class Observation < ActiveRecord::Base
     
     if is_a_range
       errors.add(:observed_on, "must be a single day, not a range")
+    end
+  end
+
+  def must_not_be_on_null_island
+    lat = latitude || private_latitude
+    lng = longitude || private_longitude
+    return true if lat.nil? || lng.nil?
+    if lat.to_f == 0 && lng.to_f == 0
+      errors.add(:base, :coordinates_cannot_be_zero_zero )
     end
   end
   

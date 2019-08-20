@@ -120,7 +120,10 @@ class DefaultFormBuilder < ActionView::Helpers::FormBuilder
       ]
     end
     lexicon_options =
-      [I18n.t( "lexicons.scientific_names" ), separator] +
+      [
+        [I18n.t( "lexicons.scientific_names" ), TaxonName::SCIENTIFIC_NAMES],
+        separator
+      ] +
       [I18n.t( :translated_languages )] +
       default_lexicons.map( &lexicon_optionifier ) +
       [separator, I18n.t( :other_lexicons )] +

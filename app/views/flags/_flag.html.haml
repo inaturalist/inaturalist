@@ -1,6 +1,7 @@
 - flaggable = flag.flaggable
 - flaggable_class = flaggable.class
 - flaggable = flaggable.becomes( Photo ) if flaggable.is_a?( Photo )
+- flaggable = flaggable.becomes( Sound ) if flaggable.is_a?( Sound )
 %div{ class: "flag #{"resolved" if flag.resolved?}" }
   - if flag.user
     = link_to flag.user.login, flag.user

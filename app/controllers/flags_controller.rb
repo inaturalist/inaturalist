@@ -8,16 +8,18 @@ class FlagsController < ApplicationController
   # put the parameters for the foreign keys here
   FLAG_MODELS = [ "Observation", "Taxon", "Post", "Comment", "Identification",
     "Message", "Photo", "List", "Project", "Guide", "GuideSection", "LifeList",
-    "User", "CheckList" ]
+    "User", "CheckList", "Sound" ]
   FLAG_MODELS_ID = [ "observation_id","taxon_id","post_id", "comment_id",
     "identification_id", "message_id", "photo_id", "list_id", "project_id",
-    "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id" ]
+    "guide_id", "guide_section_id", "life_list_id", "user_id", "check_list_id",
+    "sound_id" ]
   PARTIALS = %w(dialog)
 
   def index
     if request.path != "/flags" && @model && @object = @model.find_by_id(params[@param])
       # The default acts_as_flaggable index route
       @object = @object.becomes(Photo) if @object.is_a?(Photo)
+      @object = @object.becomes(Sound) if @object.is_a?(Sound)
       @flags = @object.flags.includes(:user, :resolver).
         paginate(page: params[:page]).
         order(id: :desc)
@@ -98,6 +100,7 @@ class FlagsController < ApplicationController
   def show
     @object = @flag.flagged_object
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
+    @object = @object.becomes(Sound) if @object.is_a?(Sound)
     user_viewed_updates_for( @flag ) if logged_in?
     respond_to do |format|
       format.html { render layout: "bootstrap" }
@@ -109,7 +112,6 @@ class FlagsController < ApplicationController
     @object = @model.find(params[@param])
     @object = @object.becomes(Photo) if @object.is_a?(Photo)
     @flag.flaggable ||= @object
-    @flag.flag ||= "spam" if @object && !@object.is_a?(Taxon)
     @flags = @object.flags.where(resolved: false).includes(:user)
     if PARTIALS.include?(params[:partial])
       render :layout => false, :partial => params[:partial]

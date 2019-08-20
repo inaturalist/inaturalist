@@ -40,7 +40,8 @@ module DarwinCore
       %w(genus http://rs.tdwg.org/dwc/terms/genus),
       ['license', 'http://purl.org/dc/terms/license', nil, 'dwc_license'],
       %w(rights http://purl.org/dc/terms/rights),
-      %w(rightsHolder http://purl.org/dc/terms/rightsHolder)
+      %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
+      %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
     ]
     TERM_NAMES = TERMS.map{|name, uri, default, method| name}
 
@@ -49,8 +50,7 @@ module DarwinCore
       %w(numIdentificationAgreements https://www.inaturalist.org/terms/numIdentificationAgreements),
       %w(numIdentificationDisagreements https://www.inaturalist.org/terms/numIdentificationDisagreements),
       %w(positioningDevice https://www.inaturalist.org/terms/positioningDevice),
-      %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod),
-      %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
+      %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod)
     ]
 
     # Extend observation with DwC methods.  For reasons unclear to me, url

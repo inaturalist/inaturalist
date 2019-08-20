@@ -5,6 +5,7 @@ class ProviderAuthorization < ActiveRecord::Base
   validates_uniqueness_of :provider_uid, :scope => :provider_name
   validate :uniqueness_of_authorization_per_user
   after_save :create_photo_identity, :create_sound_identity
+  after_destroy :destroy_photo_identity, :destroy_sound_identity
   
   # Hash that comes back from the provider through omniauth.  Should be set 
   # after the callback gets fired, so in theory should only be available when 
@@ -111,6 +112,20 @@ class ProviderAuthorization < ActiveRecord::Base
     secret = auth_info.try(:[], 'credentials').try(:[], 'secret')
     fi.secret = secret unless secret.blank?
     fi.save
+    true
+  end
+
+  def destroy_photo_identity
+    if provider_name == "flickr"
+      user.flickr_identity.destroy
+    end
+    true
+  end
+
+  def destroy_sound_identity
+    if provider_name == "soundcloud"
+      user.soundcloud_identity.destroy
+    end
     true
   end
 

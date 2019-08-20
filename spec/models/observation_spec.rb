@@ -558,6 +558,31 @@ describe Observation do
       end
     end
 
+    it "should not allow latitude greater than 90" do
+      o = Observation.make( latitude: 91, longitude: 1 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:latitude] ).not_to be_blank
+    end
+    it "should not allow latitude less than -90" do
+      o = Observation.make( latitude: 91, longitude: 1 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:latitude] ).not_to be_blank
+    end
+    it "should not allow longitude greater than 180" do
+      o = Observation.make( latitude: 1, longitude: 181 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:longitude] ).not_to be_blank
+    end
+    it "should not allow longitude less than -180" do
+      o = Observation.make( latitude: 1, longitude: -181 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:longitude] ).not_to be_blank
+    end
+    it "should not allow latitude of 0 AND longitude of 0" do
+      o = Observation.make( latitude: 0, longitude: 0 )
+      expect( o ).not_to be_valid
+    end
+
   end
 
   describe "updating" do
@@ -654,13 +679,13 @@ describe Observation do
       end
 
       it "should not allow dates that are greater than created_at due to chronic's weird time parsing" do
-        d = 7.months.ago
+        d = Chronic.parse( "2019-03-04 3pm" )
         observed_on_string = "3 whatever"
         o = Observation.make!( created_at: d, observed_on_string: d.to_s )
         Observation.where( id: o.id ).update_all( observed_on_string: observed_on_string )
         o.reload
         expect( o.observed_on_string ).to eq observed_on_string
-        expect( o.created_at.to_s ).to eq d.to_s
+        expect( o.created_at.to_date ).to eq d.to_date
         expect( o.observed_on ).to eq d.to_date
         observed_on = o.observed_on
         o.update_attributes( updated_at: Time.now )
