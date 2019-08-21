@@ -482,11 +482,11 @@ describe Observation do
     end
 
     it "should be georeferenced? with zero degrees" do
-      expect( Observation.make!(longitude: 0, latitude: 0) ).to be_georeferenced
+      expect( Observation.make!(longitude: 1, latitude: 1) ).to be_georeferenced
     end
 
     it "should not be georeferenced with nil degrees" do
-      expect( Observation.make!(longitude: 0, latitude: nil) ).not_to be_georeferenced
+      expect( Observation.make!(longitude: 1, latitude: nil) ).not_to be_georeferenced
     end
 
     it "should be georeferenced? even with private geoprivacy" do
@@ -556,6 +556,31 @@ describe Observation do
         expect( o.identifications.first.taxon ).to eq t
         expect( o.identifications.first.category ).to eq Identification::LEADING
       end
+    end
+
+    it "should not allow latitude greater than 90" do
+      o = Observation.make( latitude: 91, longitude: 1 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:latitude] ).not_to be_blank
+    end
+    it "should not allow latitude less than -90" do
+      o = Observation.make( latitude: 91, longitude: 1 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:latitude] ).not_to be_blank
+    end
+    it "should not allow longitude greater than 180" do
+      o = Observation.make( latitude: 1, longitude: 181 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:longitude] ).not_to be_blank
+    end
+    it "should not allow longitude less than -180" do
+      o = Observation.make( latitude: 1, longitude: -181 )
+      expect( o ).not_to be_valid
+      expect( o.errors[:longitude] ).not_to be_blank
+    end
+    it "should not allow latitude of 0 AND longitude of 0" do
+      o = Observation.make( latitude: 0, longitude: 0 )
+      expect( o ).not_to be_valid
     end
 
   end
@@ -632,14 +657,14 @@ describe Observation do
         expect(observation.observed_on).to be_blank
       end
 
-      it "should not allow dates greater that created_at + 1 day" do
+      it "should not allow dates greater that created_at + 1 day when updated by the observer" do
         o_2_days_ago = Observation.make!( created_at: 2.days.ago, observed_on_string: 3.day.ago.to_s )
         expect( o_2_days_ago ).to be_valid
-        o_2_days_ago.update_attributes( observed_on_string: Time.now.to_s )
+        o_2_days_ago.update_attributes( observed_on_string: Time.now.to_s, editing_user_id: o_2_days_ago.user_id )
         expect( o_2_days_ago ).not_to be_valid
       end
 
-      it "should not allow dates that are greater that created_at due to time zone mismatch" do
+      it "should not allow dates that are greater than created_at due to time zone mismatch" do
         Time.use_zone( "UTC" ) do
           o_2_days_ago = Observation.make!(
             created_at: DateTime.parse( "2019-01-20 23:00" ),
@@ -651,6 +676,21 @@ describe Observation do
           o_2_days_ago.update_attributes( observed_on_string: new_observed_on_string )
           expect( o_2_days_ago ).to be_valid
         end
+      end
+
+      it "should not allow dates that are greater than created_at due to chronic's weird time parsing" do
+        d = Chronic.parse( "2019-03-04 3pm" )
+        observed_on_string = "3 whatever"
+        o = Observation.make!( created_at: d, observed_on_string: d.to_s, time_zone: "Pacific Time (US & Canada)" )
+        Observation.where( id: o.id ).update_all( observed_on_string: observed_on_string )
+        o.reload
+        expect( o.observed_on_string ).to eq observed_on_string
+        expect( o.created_at.to_date ).to eq d.to_date
+        expect( o.observed_on ).to eq d.to_date
+        observed_on = o.observed_on
+        o.update_attributes( updated_at: Time.now )
+        o.reload
+        expect( o.observed_on.to_s ).to eq observed_on.to_s
       end
     end
   
@@ -3729,22 +3769,22 @@ describe Observation do
   describe "interpolate_coordinates" do
     it "should use means" do
       u = User.make!
-      p = Observation.make!(user: u, latitude: 0, longitude: 0, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
-      n = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
+      p = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
+      n = Observation.make!(user: u, latitude: 2, longitude: 2, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
       o = Observation.make!(user: u, observed_on_string: "2014-06-02 01:00")
       o.interpolate_coordinates
-      expect( o.latitude ).to eq 0.5
-      expect( o.longitude ).to eq 0.5
+      expect( o.latitude ).to eq 1.5
+      expect( o.longitude ).to eq 1.5
     end
 
     it "should use weight by time" do
       u = User.make!
-      p = Observation.make!(user: u, latitude: 0, longitude: 0, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
-      n = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
+      p = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
+      n = Observation.make!(user: u, latitude: 2, longitude: 2, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
       o = Observation.make!(user: u, observed_on_string: "2014-06-02 01:59")
       o.interpolate_coordinates
-      expect( o.latitude.to_f ).to be > 0.5
-      expect( o.longitude.to_f ).to be > 0.5
+      expect( o.latitude.to_f ).to be > 1.5
+      expect( o.longitude.to_f ).to be > 1.5
     end
   end
 
@@ -3815,8 +3855,17 @@ describe Observation do
     it "does not generation a mention update if the description was updated and the mentioned user wasn't in the new content" do
       u = User.make!
       o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
-      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq true
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
+      # mark the generated updates as viewed
+      UpdateAction.user_viewed_updates( UpdateAction.where( notifier: o ), u.id )
       o.update_attributes( description: "#{o.description} and some extra" )
+      expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
+    end
+    it "removes mention updates if the description was updated to remove the mentioned user" do
+      u = User.make!
+      o = without_delay { Observation.make!(description: "hey @#{ u.login }") }
+      expect( UpdateAction.unviewed_by_user_from_query( u.id, notifier: o ) ).to eq true
+      o.update_attributes( description: "bye" )
       expect( UpdateAction.unviewed_by_user_from_query(u.id, notifier: o) ).to eq false
     end
     it "generates a mention update if the description was updated and the mentioned user was in the new content" do
@@ -4096,6 +4145,41 @@ describe Observation, "prefers_auto_obscuration" do
       o.update_attributes( geoprivacy: Observation::OBSCURED )
       expect( o ).to be_coordinates_obscured
     end
+  end
+end
+
+describe Observation, "set_observations_taxa_for_user" do
+  before(:all) { enable_elastic_indexing( Observation ) }
+  after(:all) { disable_elastic_indexing( Observation ) }
+  let(:user) { User.make! }
+  let(:family1) { Taxon.make!( rank: Taxon::FAMILY, name: "Familyone" ) }
+  let(:genus1) { Taxon.make!( rank: Taxon::GENUS, name: "Genusone", parent: family1 ) }
+  let(:species1) { Taxon.make!( rank: Taxon::SPECIES, name: "Genusone speciesone", parent: genus1 ) }
+  let(:o) do
+    o = Observation.make!( user: user )
+    i1 = Identification.make!( observation: o, user: user, taxon: genus1 )
+    i2 = Identification.make!( observation: o, taxon: species1 )
+    i3 = Identification.make!( observation: o, taxon: species1 )
+    o
+  end
+  it "should change the community taxon if the observer's opted out of the community taxon" do
+    expect( o.taxon ).to eq species1
+    user.update_attributes( prefers_community_taxa: false )
+    o.reload
+    expect( o.taxon ).to eq species1
+    Observation.set_observations_taxa_for_user( o.user_id )
+    o.reload
+    expect( o.taxon ).to eq genus1
+  end
+  it "should change the community taxon if the observer's opted in to the community taxon" do
+    user.update_attributes( prefers_community_taxa: false )
+    expect( o.taxon ).to eq genus1
+    user.update_attributes( prefers_community_taxa: true )
+    o.reload
+    expect( o.taxon ).to eq genus1
+    Observation.set_observations_taxa_for_user( o.user_id )
+    o.reload
+    expect( o.taxon ).to eq species1
   end
 end
 

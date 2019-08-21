@@ -6,6 +6,9 @@ else
   core_row_type = "http://rs.tdwg.org/dwc/terms/Occurrence"
   core_file_location = "observations.csv"
   core_terms = DarwinCore::Occurrence::TERMS
+  if @ala
+    core_terms += DarwinCore::Occurrence::ALA_EXTRA_TERMS
+  end
 end
 xml.instruct!
 xml.archive :xmlns => "http://rs.tdwg.org/dwc/text/",

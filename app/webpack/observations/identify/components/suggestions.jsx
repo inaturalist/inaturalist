@@ -29,12 +29,13 @@ class Suggestions extends React.Component {
   }
 
   componentWillReceiveProps( nextProps ) {
+    const { detailTaxon, prevTaxon } = this.props;
     if (
-      nextProps.detailTaxon &&
-      this.props.detailTaxon &&
-      this.props.detailTaxon.id !== nextProps.detailTaxon.id
+      nextProps.detailTaxon
+      && detailTaxon
+      && detailTaxon.id !== nextProps.detailTaxon.id
     ) {
-      if ( this.props.prevTaxon && this.props.prevTaxon.id === nextProps.detailTaxon.id ) {
+      if ( prevTaxon && prevTaxon.id === nextProps.detailTaxon.id ) {
         this.setState( { detailTaxonChangedFor: "prev" } );
       } else {
         this.setState( { detailTaxonChangedFor: "next" } );
@@ -45,11 +46,12 @@ class Suggestions extends React.Component {
   }
 
   componentDidUpdate( ) {
-    if ( this.state.detailTaxonChangedFor ) {
+    const { detailTaxonChangedFor } = this.state;
+    if ( detailTaxonChangedFor ) {
       const domNode = ReactDOM.findDOMNode( this );
       $( ".detail-taxon", domNode ).removeClass( "changed" );
       $( ".detail-taxon", domNode ).addClass(
-        `will-change-for-${this.state.detailTaxonChangedFor}`
+        `will-change-for-${detailTaxonChangedFor}`
       );
       setTimeout( ( ) => {
         $( ".detail-taxon", domNode ).addClass( "changed" );
@@ -65,8 +67,9 @@ class Suggestions extends React.Component {
   }
 
   resetScrollTop( ) {
-    if ( this.state.scrollTopWas ) {
-      const scrollTopWas = this.state.scrollTopWas;
+    const { scrollTopWas: stateScrollTopWas } = this.state;
+    if ( stateScrollTopWas ) {
+      const scrollTopWas = stateScrollTopWas;
       this.setState( { scrollTopWas: null } );
       setTimeout( ( ) => {
         $( ".Suggestions" ).scrollTop( scrollTopWas );
@@ -103,21 +106,29 @@ class Suggestions extends React.Component {
         description: (
           <div className="photo-meta">
             <OverlayTrigger
-              container={ $( ".suggestions-detail" ).get( 0 ) }
+              container={$( ".suggestions-detail" ).get( 0 )}
               placement="top"
-              delayShow={ 500 }
+              delayShow={500}
               trigger="click"
               rootClose
-              overlay={ (
+              overlay={(
                 <Tooltip id="add-tip">
-                  <ObservationPhotoAttribution photo={ taxonPhoto.photo } />
-                </Tooltip> ) }
-              key={ `photo-${taxonPhoto.photo.id}-license` }
+                  <ObservationPhotoAttribution photo={taxonPhoto.photo} />
+                </Tooltip>
+              )}
+              key={`photo-${taxonPhoto.photo.id}-license`}
             >
-              { taxonPhoto.photo.license_code ? ( <i className="fa fa-creative-commons license" /> ) :
-                ( <i className="fa fa-copyright license" /> ) }
+              {
+                taxonPhoto.photo.license_code
+                  ? <i className="fa fa-creative-commons license" />
+                  : <i className="fa fa-copyright license" />
+              }
             </OverlayTrigger>
-            <a href={`/photos/${taxonPhoto.photo.id}`} target="_blank">
+            <a
+              href={`/photos/${taxonPhoto.photo.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <i className="fa fa-info-circle" />
             </a>
           </div>
@@ -138,12 +149,12 @@ class Suggestions extends React.Component {
           server
           showNav={false}
           disableArrowKeys
-          showFullscreenButton={ false }
-          showPlayButton={ false }
+          showFullscreenButton={false}
+          showPlayButton={false}
           slideIndex={detailPhotoIndex}
           currentIndex={detailPhotoIndex}
-          renderItem={ item => (
-            <div className="image-gallery-image" key={ item.key }>
+          renderItem={item => (
+            <div className="image-gallery-image" key={item.key}>
               <img
                 src={item.original}
                 alt={item.originalAlt}
@@ -152,23 +163,25 @@ class Suggestions extends React.Component {
                 title={item.originalTitle}
               />
               {
-                item.description &&
+                item.description
+                && (
                   <span className="image-gallery-description">
                     {item.description}
                   </span>
+                )
               }
             </div>
-          ) }
+          )}
         />
       );
     }
     let comprehensiveList;
     if (
-      query.source === "checklist" &&
-      response &&
-      response.results.length > 0 &&
-      _.uniq( response.results.map( r => r.sourceKey ) ).length === 1 &&
-      response.results[0].sourceDetails.listedTaxon.list.comprehensive
+      query.source === "checklist"
+      && response
+      && response.results.length > 0
+      && _.uniq( response.results.map( r => r.sourceKey ) ).length === 1
+      && response.results[0].sourceDetails.listedTaxon.list.comprehensive
     ) {
       comprehensiveList = response.results[0].sourceDetails.listedTaxon.list;
     }
@@ -190,21 +203,21 @@ class Suggestions extends React.Component {
             <div className="suggestions-inner">
               <ChooserPopover
                 id="suggestions-sort-chooser"
-                label={ I18n.t( "sort_by" ) }
+                label={I18n.t( "sort_by" )}
                 className="pull-right"
-                container={ $( ".ObservationModal" ).get( 0 ) }
-                chosen={ query.order_by }
+                container={$( ".ObservationModal" ).get( 0 )}
+                chosen={query.order_by}
                 choices={["frequency", "taxonomy"]}
                 defaultChoice="frequency"
-                preIconClass={ false }
+                preIconClass={false}
                 postIconClass="fa fa-angle-down"
                 hideClear
-                setChoice={ orderBy => {
+                setChoice={orderBy => {
                   setQuery( Object.assign( { }, query, { order_by: orderBy } ) );
-                } }
-                clearChoice={ ( ) => {
+                }}
+                clearChoice={( ) => {
                   setQuery( Object.assign( { }, query, { order_by: null } ) );
-                } }
+                }}
               />
               <div className="column-header">
                 { title }
@@ -212,54 +225,54 @@ class Suggestions extends React.Component {
               <div className="filters">
                 <ChooserPopover
                   id="suggestions-source-chooser"
-                  label={ I18n.t( "source" ) }
-                  container={ $( ".ObservationModal" ).get( 0 ) }
-                  chosen={ query.source }
+                  label={I18n.t( "source" )}
+                  container={$( ".ObservationModal" ).get( 0 )}
+                  chosen={query.source}
                   choices={["observations", "rg_observations", "checklist", "misidentifications", "visual"]}
                   choiceLabels={{ visual: "visually_similar" }}
                   defaultChoice="observations"
-                  preIconClass={ false }
+                  preIconClass={false}
                   postIconClass="fa fa-angle-down"
                   hideClear
-                  setChoice={ source => {
+                  setChoice={source => {
                     setQuery( Object.assign( { }, query, { source } ) );
-                  } }
-                  clearChoice={ ( ) => {
+                  }}
+                  clearChoice={( ) => {
                     setQuery( Object.assign( { }, query, { source: null } ) );
-                  } }
+                  }}
                 />
                 <TaxonChooserPopover
                   id="suggestions-taxon-chooser"
-                  container={ $( ".ObservationModal" ).get( 0 ) }
-                  label={ I18n.t( "taxon" ) }
-                  taxon={ query.taxon }
-                  defaultTaxon={ query.defaultTaxon }
+                  container={$( ".ObservationModal" ).get( 0 )}
+                  label={I18n.t( "taxon" )}
+                  taxon={query.taxon}
+                  defaultTaxon={query.defaultTaxon}
                   preIconClass={false}
                   postIconClass="fa fa-angle-down"
-                  setTaxon={ taxon => {
+                  setTaxon={taxon => {
                     setQuery( Object.assign( { }, query, { taxon, taxon_id: taxon.id } ) );
-                  } }
-                  clearTaxon={ ( ) => {
+                  }}
+                  clearTaxon={( ) => {
                     setQuery( Object.assign( { }, query, { taxon: null, taxon_id: null } ) );
-                  } }
-                  config={ config }
+                  }}
+                  config={config}
                 />
                 { query.source === "visual" ? null : (
                   <PlaceChooserPopover
-                    container={ $( ".ObservationModal" ).get( 0 ) }
-                    label={ I18n.t( "place" ) }
-                    place={ query.place }
+                    container={$( ".ObservationModal" ).get( 0 )}
+                    label={I18n.t( "place" )}
+                    place={query.place}
                     withBoundaries
-                    defaultPlace={ query.defaultPlace }
-                    defaultPlaces={ _.sortBy( defaultPlaces, p => p.bbox_area ) }
+                    defaultPlace={query.defaultPlace}
+                    defaultPlaces={_.sortBy( defaultPlaces, p => p.bbox_area )}
                     preIconClass={false}
                     postIconClass="fa fa-angle-down"
-                    setPlace={ place => {
+                    setPlace={place => {
                       setQuery( Object.assign( { }, query, { place, place_id: place.id } ) );
-                    } }
-                    clearPlace={ ( ) => {
+                    }}
+                    clearPlace={( ) => {
                       setQuery( Object.assign( { }, query, { place: null, place_id: null } ) );
-                    } }
+                    }}
                   />
                 ) }
               </div>
@@ -270,10 +283,24 @@ class Suggestions extends React.Component {
               ) : null }
               { comprehensiveList ? (
                 <div className="comprehensive-list">
-                  <i className="fa fa-list-ul"></i>
-                  {I18n.t( "comprehensive_list" )}: <a target="_blank" href={`/lists/${comprehensiveList.id}`}>
-                    { comprehensiveList.title } { comprehensiveList.source ? (
-                      <span>({I18n.t( "source_" )} { comprehensiveList.source.in_text })</span>
+                  <i className="fa fa-list-ul" />
+                  { I18n.t( "label_colon", { label: I18n.t( "comprehensive_list" ) } )}
+                  { " " }
+                  <a
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    href={`/lists/${comprehensiveList.id}`}
+                  >
+                    { comprehensiveList.title }
+                    { " "}
+                    { comprehensiveList.source ? (
+                      <span>
+                        { "(" }
+                        { I18n.t( "label_colon", { label: I18n.t( "source_" ) } )}
+                        { " " }
+                        { comprehensiveList.source.in_text }
+                        { ")" }
+                      </span>
                     ) : null }
                   </a>
                 </div>
@@ -301,47 +328,57 @@ class Suggestions extends React.Component {
               <div className="column-header">
                 <a
                   href="#"
-                  onClick={ e => {
+                  onClick={e => {
                     e.preventDefault( );
                     setDetailTaxon( null );
                     this.resetScrollTop( );
                     return false;
-                  } }
+                  }}
                 >
-                  <i className="fa fa-chevron-circle-left"></i> { I18n.t( "back_to_suggestions" ) }
+                  <i className="fa fa-chevron-circle-left" />
+                  { " " }
+                  { I18n.t( "back_to_suggestions" ) }
                 </a>
                 <div className="prevnext pull-right">
                   <Button
-                    disabled={ prevTaxon === null }
-                    onClick={ ( ) => setDetailTaxon( prevTaxon ) }
+                    disabled={prevTaxon === null}
+                    onClick={( ) => setDetailTaxon( prevTaxon )}
                     className="prev"
                   >
-                    <i className="fa fa-chevron-circle-left"></i> { I18n.t( "prev" ) }
+                    <i className="fa fa-chevron-circle-left" />
+                    { " " }
+                    { I18n.t( "prev" ) }
                   </Button>
                   <Button
-                    disabled={ nextTaxon === null }
-                    onClick={ ( ) => setDetailTaxon( nextTaxon ) }
+                    disabled={nextTaxon === null}
+                    onClick={( ) => setDetailTaxon( nextTaxon )}
                     className="next"
                   >
-                    { I18n.t( "next" ) } <i className="fa fa-chevron-circle-right"></i>
+                    { I18n.t( "next" ) }
+                    { " " }
+                    <i className="fa fa-chevron-circle-right" />
                   </Button>
                 </div>
               </div>
               { detailTaxon ? (
-                <div className={ `detail-taxon ${detailTaxonImages && detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}` }>
+                <div
+                  className={
+                    `detail-taxon ${detailTaxonImages && detailTaxonImages.length > 1 ? "multiple-photos" : "single-photo"}`
+                  }
+                >
                   { detailPhotos }
                   <div className="obs-modal-header">
                     <SplitTaxon
-                      taxon={ detailTaxon }
-                      url={ urlForTaxon( detailTaxon ) }
+                      taxon={detailTaxon}
+                      url={urlForTaxon( detailTaxon )}
                       target="_blank"
                       noParens
-                      user={ config.currentUser }
+                      user={config.currentUser}
                       iconLink
                     />
                   </div>
-                  { detailTaxon.wikipedia_summary ?
-                    <UserText text={`${detailTaxon.wikipedia_summary} (${I18n.t( "source_wikipedia" )})`} /> : null
+                  { detailTaxon.wikipedia_summary
+                    && <UserText text={`${detailTaxon.wikipedia_summary} (${I18n.t( "source_wikipedia" )})`} />
                   }
                   <h4>{ I18n.t( "observations_map" ) }</h4>
                   <TaxonMap
@@ -358,18 +395,22 @@ class Suggestions extends React.Component {
                           label: I18n.t( "observations_without_media" ),
                           verifiable: false,
                           disabled: !currentUserPrefersMedialessObs,
-                          onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+                          onChange: e => updateCurrentUser( {
+                            prefers_medialess_obs_maps: e.target.checked
+                          } )
                         }
                       ],
                       gbif: { disabled: true },
                       places: true,
                       ranges: true
                     }]}
+                    currentUser={config.currentUser}
+                    updateCurrentUser={updateCurrentUser}
                   />
                   <h4>{ I18n.t( "taxonomy" ) }</h4>
                   <TaxonomicBranch
-                    taxon={ detailTaxon }
-                    chooseTaxon={ t => setDetailTaxon( t ) }
+                    taxon={detailTaxon}
+                    chooseTaxon={t => setDetailTaxon( t )}
                     noHideable
                   />
                 </div>
@@ -381,16 +422,16 @@ class Suggestions extends React.Component {
           <div className="suggestions-tools tools">
             <Button
               bsStyle="link"
-              onClick={ ( ) => setDetailTaxon( null ) }
+              onClick={( ) => setDetailTaxon( null )}
             >
               { I18n.t( "cancel" ) }
             </Button>
             <Button
               bsStyle="primary"
-              onClick={ ( ) => chooseTaxon( detailTaxon, {
+              onClick={( ) => chooseTaxon( detailTaxon, {
                 observation,
                 vision: query.source === "visual"
-              } ) }
+              } )}
             >
               { I18n.t( "select_this_taxon" ) }
             </Button>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import { Grid, Row, Col } from "react-bootstrap";
 import UmbrellaLeaderboardContainer from "../containers/umbrella_leaderboard_container";
@@ -8,39 +8,37 @@ import PhotoModalContainer from "../../../taxa/show/containers/photo_modal_conta
 import UmbrellaNews from "./umbrella_news";
 import FlagAnItemContainer from "../../../shared/containers/flag_an_item_container";
 
-class UmbrellaOverviewTab extends Component {
-  render( ) {
-    const { project } = this.props;
-    if ( !project.umbrella_stats_loaded ) {
-      return ( <div className="loading_spinner huge" /> );
-    }
-    return (
-      <div className="UmbrellaOverviewTab">
-        <Grid>
-          <Row>
-            <Col xs={ 12 }>
-              <UmbrellaLeaderboardContainer />
-            </Col>
-          </Row>
-        </Grid>
-        <UmbrellaMapContainer />
-        <RecentObservationsContainer />
-        <PhotoModalContainer />
-        <UmbrellaNews { ...this.props } />
-        <Grid>
-          <Row>
-            <Col xs={ 12 }>
-              <FlagAnItemContainer
-                item={ project }
-                manageFlagsPath={ `/flags?project_id=${project.id}` }
-              />
-            </Col>
-          </Row>
-        </Grid>
-      </div>
-    );
+const UmbrellaOverviewTab = props => {
+  const { project } = props;
+  if ( !project.umbrella_stats_loaded ) {
+    return ( <div className="loading_spinner huge" /> );
   }
-}
+  return (
+    <div className="UmbrellaOverviewTab">
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            <UmbrellaLeaderboardContainer />
+          </Col>
+        </Row>
+      </Grid>
+      <UmbrellaMapContainer />
+      <RecentObservationsContainer />
+      <PhotoModalContainer />
+      <UmbrellaNews {...props} />
+      <Grid>
+        <Row>
+          <Col xs={12}>
+            <FlagAnItemContainer
+              item={project}
+              manageFlagsPath={`/projects/${project.id}/flags`}
+            />
+          </Col>
+        </Row>
+      </Grid>
+    </div>
+  );
+};
 
 
 UmbrellaOverviewTab.propTypes = {

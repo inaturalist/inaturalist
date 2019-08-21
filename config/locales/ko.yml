@@ -186,6 +186,7 @@ ko:
   adding_to_your_life_list: Life 목록에 추가 중...
   additional_range: 추가적인 범위
   additional_range_data_from_an_unknown_source: 알 수 없는 자료에서 추가적인 범위 데이터
+  adjust_brightness: 밝기 조정
   admin: 관리자
   admin_s: 관리자
   admin_any_projects: 관리자 아무 프로젝트
@@ -652,6 +653,7 @@ ko:
     geoprivacy: 분류군 관찰에 대한 기본 위치보호 설정
     iucn: 동일한 IUCN 적색 목록 코드
   conservation_summary: 보전 요약
+  contact_support: 연락 지원
   contain_all_descendants?: 이 체크리스트가 여기 존재하는 하위 분류군을 모두 포함하고 있나요?
   contest: 대회
   continue: 계속
@@ -797,6 +799,7 @@ ko:
   dates: 날짜
   datetime_: 날짜/시간
   day: 일
+  decrease_brightness: 밝기 줄이기
   default: 기본값
   default_invite_comment: '좋은 사진이네요! %{site_name}에 업로드하세요: {{INVITE_LINK}}'
   default_observation_license: 기본 관찰 라이선스
@@ -1208,9 +1211,9 @@ ko:
   here_are_some_things_you_can_do_meantime: '그 동안 하실 수 있는 몇 가지 일들은 다음와 같습니다:'
   hi: 안녕하세요,
   hi_user: '%{user}님, 안녕하세요.'
-  hide: 숨기기
-  hide_details: 자세한 내용 숨기기
+  hide_content: 내용 숨기기
   hide_uncountable_species: 셀 수 없는 종을 숨기기
+  hidden_content_explanation: 내용이 숨겨져 있습니다
   high: 높음
   highest_rank: 가장 높은 랭크
   history: 역사
@@ -2203,6 +2206,8 @@ ko:
   plants: 식물
   please_be_careful_particulary_when: 특히 분류군을 삭제할 때 조심해 주세요. 연관된 관찰이나 동정, 다른 분류군 등이
     있는 분류군의 경우 부탁드립니다.
+  please_explain_why_you_want_to_hide_this: 이것을 숨기려는 이유를 설명해 주십시오
+  please_explain_why_you_want_to_unhide_this: 이것의 숨김을 해제하려는 이유를 설명해 주십시오
   please_hold_on_while_the_file: 파일이 생성될 때까지 잠시 기다려 주세요. 관찰이 많을 경우 몇 분 걸릴 수 있습니다.
   position: 위치
   previous: 이전
@@ -2314,6 +2319,7 @@ ko:
   required_field: 필수 필드
   research_: 연구
   research_quality: 연구 품질
+  reset_brightness: 밝기 초기화
   reset_search_filters: 검색 필터 초기화
   reset_your_password: 내 비밀번호 재설정
   restore: 복구
@@ -2740,6 +2746,8 @@ ko:
         project_summary: 프로젝트 요약
         use_this_link_to_create_html: 전통 프로젝트를 만들려면 <a href="%{url}">이 링크</a>를 사용하세요.
         welcome_to_projects: 프로젝트에 오신 것을 환영합니다!
+        errors:
+          name_is_required: 프로젝트 이름은 필수입니다
       project_user_curator_coordinate_access_labels:
         none: 없음.
     shared:

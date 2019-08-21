@@ -175,7 +175,7 @@ class UsersController < ApplicationController
         @user.add_flag( flag: Flag::SPAM, user_id: current_user.id )
       end
     end
-    redirect_to :back
+    redirect_back_or_default( @user )
   end
 
   # Methods below here are added by iNaturalist
@@ -500,28 +500,10 @@ class UsersController < ApplicationController
     end
     respond_to do |format|
       format.html do
-        scope = Announcement.
-          joins( "LEFT OUTER JOIN announcements_sites ON announcements_sites.announcement_id = announcements.id").
-          joins( "LEFT OUTER JOIN sites ON sites.id = announcements_sites.site_id" ).
-          where( 'placement LIKE \'users/dashboard%\' AND ? BETWEEN "start" AND "end"', Time.now.utc ).
-          limit( 50 )
-        base_scope = scope
-        scope = scope.where( "sites.id = ?", @site )
-        @announcements = scope.in_specific_locale( I18n.locale )
-        @announcements = scope.in_specific_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
-        @announcements = scope.in_locale( I18n.locale ) if @announcements.blank?
-        @announcements = scope.in_locale( I18n.locale.to_s.split('-').first ) if @announcements.blank?
-        if @announcements.blank?
-          @announcements = base_scope.in_specific_locale( I18n.locale ).where( "sites.id IS NULL" )
-          @announcements = base_scope.where( "sites.id IS NULL AND locales IS NULL" ) if @announcements.blank?
-          @announcements = @announcements.flatten
-        end
-        @announcements = base_scope.where( "(locales IS NULL OR locales = '{}') AND sites.id IS NULL" ) if @announcements.blank?
-        @announcements = @announcements.sort_by {|a| [
-          a.site_ids.include?( @site.try(:id) ) ? 0 : 1,
-          a.locales.include?( I18n.locale ) ? 0 : 1,
-          a.id * -1
-        ] }
+        @announcements = [
+          Announcement.active_in_placement( "users/dashboard", @site),
+          Announcement.active_in_placement( "users/dashboard#sidebar", @site )
+        ].flatten.compact
         @subscriptions = current_user.subscriptions.includes(:resource).
           where("resource_type in ('Place', 'Taxon')").
           limit(5)
@@ -1095,6 +1077,7 @@ protected
       :place_id,
       :preferred_observation_fields_by,
       :preferred_observation_license,
+      :preferred_observations_search_map_type,
       :preferred_observations_view,
       :preferred_photo_license,
       :preferred_project_addition_by,

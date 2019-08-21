@@ -49,15 +49,27 @@
         %input.btn.btn-default{ type: "submit", value: "Search" }
   .row
     .col-xs-8
+      %h3 Basics
       %table.table
-        - for user_attr in User.column_names
+        - basic_attrs = %w(id login name email created_at updated_at time_zone description last_ip last_active locale site_id place_id search_place_id spammer spam_count suspended_at suspension_reason suspended_by_user_id)
+        - for user_attr in basic_attrs
           %tr
             %th= user_attr
             %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
-        - @display_user.preferences.each do |pref,val|
+      %h3 Other Attributes
+      %table.table
+        - for user_attr in ( User.column_names - basic_attrs - %w(encrypted_password password_salt remember_token remember_token_expires_at confirmation_token deleted_at old_preferences state) ).sort
+          %tr
+            %th= user_attr
+            %td{ style: "width: 100%" }= @display_user.send(user_attr).to_s.html_safe
+      %h3 Preferences
+      %table.table
+        - @display_user.preferences.sort_by{|p,v| p}.each do |pref,val|
           %tr
             %th= pref
             %td= val
+      %h3 Misc.
+      %table.table
         %tr
           %th Recent user agents
           %td
@@ -141,7 +153,52 @@
                         by
                         = link_to_user up.revoke_user
                         %blockquote= up.revoke_reason
-    .col-xs-4
+        %tr
+          %th Parent
+          %td
+            - if up = @display_user.user_parent
+              .panel.panel-default
+                .panel-heading= up.name
+                %table.table
+                  %tbody
+                    %tr
+                      %th Parent User Account
+                      %td
+                        - if up.parent_user
+                          = link_to_user up.parent_user
+                        - else
+                          Parent doesn't have an account
+                    - %w(name email child_name created_at updated_at).each do |a|
+                      %tr
+                        %th= a.to_s.humanize
+                        %td= up.send( a.to_sym )
+                    %tr
+                      %th Donorbox donation?
+                      %td= up.donorbox_donor_id ? "yes" : "no"
+            - else
+              No parent record
+        %tr
+          %th Children
+          %td
+            - if @display_user.parentages.count > 0
+              - @display_user.parentages.each do |up|
+                .panel.panel-default
+                  .panel-heading= link_to_user up.user
+                  %table.table
+                    %tbody
+                      %tr
+                        %th User Account
+                        %td= link_to_user up.user
+                      - %w(name email child_name created_at updated_at).each do |a|
+                        %tr
+                          %th= a.to_s.humanize
+                          %td= up.send( a.to_sym )
+                      %tr
+                        %th Donorbox donation?
+                        %td= up.donorbox_donor_id ? "yes" : "no"
+            - else
+              No children
+    .col-xs-3
       %p
         = user_image( @display_user, size: "large", class: "img-responsive center-block" )
       - if @display_user.is_curator?

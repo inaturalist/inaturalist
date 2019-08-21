@@ -1972,7 +1972,7 @@ $header-line-height: 34px;
   .header-sm,
   .header-md,
   .header-lg { display: none; }
-  @media (max-width: 767px) {
+  @media (max-width: 767.99px) {
     .header-xs { display: inline-block; }
     .dropdown-menu {
       .header-xs { display: block; }
@@ -1982,7 +1982,7 @@ $header-line-height: 34px;
       padding: 5px 7px !important;
     }
   }
-  @media (min-width: 768px) and (max-width: 991px) {
+  @media (min-width: 768px) and (max-width: 991.99px) {
     .header-sm { display: inline-block; }
     .dropdown-menu {
       .header-sm { display: block; }
@@ -1999,7 +1999,7 @@ $header-line-height: 34px;
       }
     }
   }
-  @media (min-width: 992px) and (max-width: 1199px) {
+  @media (min-width: 992px) and (max-width: 1199.99px) {
     .header-md { display: inline-block; }
     .dropdown-menu {
       .header-md { display: block; }
@@ -2255,4 +2255,7 @@ $header-line-height: 34px;
 }
 #initiative {
   display: none;
+}
+#header #initiative-branding {
+  line-height: 0;
 }

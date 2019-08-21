@@ -217,7 +217,24 @@ class IdentificationsController < ApplicationController
   end
   
   def update
-    if @identification.update_attributes(params[:identification])
+    @identification.assign_attributes( params[:identification] )
+    if @identification.body_changed? && @identification.hidden?
+      puts "@identification.body_changed?: #{@identification.body_changed?}"
+      puts "@identification.body_was:      #{@identification.body_was}"
+      puts "@identification.body:          #{@identification.body}"
+      respond_to do |format|
+        msg = t(:cant_edit_or_delete_hidden_content)
+        format.html do
+          flash[:error] = msg
+          redirect_to @identification.observation
+        end
+        format.json do
+          render statys: :unprocessable_entity, json: { error: msg }
+        end
+      end
+      return
+    end
+    if @identification.save
       msg = t(:identification_updated)
       respond_to do |format|
         format.html do
@@ -248,6 +265,19 @@ class IdentificationsController < ApplicationController
   def destroy
     observation = @identification.observation
     if params[:delete]
+      if @identification.hidden?
+        respond_to do |format|
+          msg = t(:cant_edit_or_delete_hidden_content)
+          format.html do
+            flash[:error] = msg
+            redirect_to_parent
+          end
+          format.json do
+            render json: { error: msg }
+          end
+        end
+        return
+      end
       @identification.destroy
     else
       @identification.update_attributes( current: false )

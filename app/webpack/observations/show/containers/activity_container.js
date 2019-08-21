@@ -14,7 +14,8 @@ import {
 import {
   showCurrentObservation as showObservationModal
 } from "../../identify/actions/current_observation_actions";
-import { trustUser, untrustUser } from "../../../shared/ducks/config";
+import { trustUser, untrustUser, setConfig } from "../../../shared/ducks/config";
+import { showModeratorActionForm } from "../../../shared/ducks/moderator_actions";
 
 function mapStateToProps( state ) {
   const observation = Object.assign( {}, state.observation, {
@@ -57,7 +58,10 @@ function mapDispatchToProps( dispatch ) {
     },
     untrustUser: user => {
       dispatch( untrustUser( user ) );
-    }
+    },
+    showHidden: ( ) => dispatch( setConfig( { showHidden: true } ) ),
+    hideContent: item => dispatch( showModeratorActionForm( item ) ),
+    unhideContent: item => dispatch( showModeratorActionForm( item, "unhide" ) )
   };
 }
 

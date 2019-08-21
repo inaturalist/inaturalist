@@ -2176,6 +2176,42 @@ ALTER SEQUENCE public.model_attribute_changes_id_seq OWNED BY public.model_attri
 
 
 --
+-- Name: moderator_actions; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.moderator_actions (
+    id integer NOT NULL,
+    resource_type character varying,
+    resource_id integer,
+    user_id integer,
+    action character varying,
+    reason character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+--
+-- Name: moderator_actions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.moderator_actions_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: moderator_actions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.moderator_actions_id_seq OWNED BY public.moderator_actions.id;
+
+
+--
 -- Name: oauth_access_grants; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2188,7 +2224,9 @@ CREATE TABLE public.oauth_access_grants (
     redirect_uri character varying(255) NOT NULL,
     created_at timestamp without time zone NOT NULL,
     revoked_at timestamp without time zone,
-    scopes character varying(255)
+    scopes character varying(255),
+    code_challenge character varying,
+    code_challenge_method character varying
 );
 
 
@@ -5418,6 +5456,13 @@ ALTER TABLE ONLY public.model_attribute_changes ALTER COLUMN id SET DEFAULT next
 
 
 --
+-- Name: moderator_actions id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.moderator_actions ALTER COLUMN id SET DEFAULT nextval('public.moderator_actions_id_seq'::regclass);
+
+
+--
 -- Name: oauth_access_grants id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -6314,6 +6359,14 @@ ALTER TABLE ONLY public.messages
 
 ALTER TABLE ONLY public.model_attribute_changes
     ADD CONSTRAINT model_attribute_changes_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: moderator_actions moderator_actions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.moderator_actions
+    ADD CONSTRAINT moderator_actions_pkey PRIMARY KEY (id);
 
 
 --
@@ -7657,6 +7710,20 @@ CREATE INDEX index_model_attribute_changes_on_changed_at ON public.model_attribu
 --
 
 CREATE INDEX index_model_attribute_changes_on_model_id_and_field_name ON public.model_attribute_changes USING btree (model_id, field_name);
+
+
+--
+-- Name: index_moderator_actions_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_moderator_actions_on_resource_type_and_resource_id ON public.moderator_actions USING btree (resource_type, resource_id);
+
+
+--
+-- Name: index_moderator_actions_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_moderator_actions_on_user_id ON public.moderator_actions USING btree (user_id);
 
 
 --
@@ -9920,4 +9987,8 @@ INSERT INTO schema_migrations (version) VALUES ('20190516011313');
 INSERT INTO schema_migrations (version) VALUES ('20190516181748');
 
 INSERT INTO schema_migrations (version) VALUES ('20190528222836');
+
+INSERT INTO schema_migrations (version) VALUES ('20190604231553');
+
+INSERT INTO schema_migrations (version) VALUES ('20190702063435');
 

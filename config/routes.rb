@@ -203,7 +203,9 @@ Rails.application.routes.draw do
   resources :observation_sounds, :only => [:show, :create, :update, :destroy]
   get 'flickr/photos.:format' => 'flickr#photos'
   resources :soundcloud_sounds, :only => [:index]
-  resources :sounds, only: [:local_sound_fields, :create]
+  resources :sounds, only: [:show, :local_sound_fields, :create] do
+    resources :flags
+  end
   resources :observations, :constraints => { :id => id_param_pattern } do
     resources :flags
     get 'fields', :as => 'extra_fields'
@@ -622,6 +624,7 @@ Rails.application.routes.draw do
       get :confirm
     end
   end
+  resources :moderator_actions, only: [:create]
 
   get "/google_photos(/:action(/:id))", controller: :picasa
 

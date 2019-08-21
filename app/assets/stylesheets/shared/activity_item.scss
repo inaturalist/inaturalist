@@ -9,6 +9,15 @@ body > [role="dialog"] .ActivityItem {
       display: flex;
       overflow: hidden;
     }
+    .hidden-content {
+      display: flex;
+      align-items: flex-start;
+      line-height: 22px;
+      margin-bottom: 0;
+      i {
+        flex: 2;
+      }
+    }
   }
   .buttons {
     float: right;
@@ -77,6 +86,7 @@ body > [role="dialog"] .ActivityItem {
     }
     .item-status {
       margin-right: 15px;
+      white-space: nowrap;
      .fa, i {
         width: 20px;
         text-align: center;
@@ -95,6 +105,9 @@ body > [role="dialog"] .ActivityItem {
         position: relative;
         bottom: 4px;
       }
+    }
+    .hidden-status {
+      cursor: pointer;
     }
   }
   .panel.flagged .panel-heading {
@@ -288,3 +301,16 @@ body > [role="dialog"] .ActivityItemMenu {
     }
   }
 }
+
+.unhide-popover {
+  .unhide-form {
+    .form-group {
+      display: flex;
+      input[type="text"] {
+        flex: 2;
+        margin-right: 5px
+      }
+    }
+  }
+}
+

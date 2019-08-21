@@ -18,7 +18,7 @@
     "d3-tip": "^0.7.1",
     "debug": "^2.6.9",
     "es6-promise-pool": "^2.5.0",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "html-truncate": "^1.2.1",
     "immutability-helper": "^2.8.1",
     "inaturalistjs": "github:inaturalist/inaturalistjs#d894d9dadc91c85c75c1e06f477637fa695c4d3a",
@@ -26,9 +26,11 @@
     "json-loader": "^0.5.4",
     "jsx-loader": "^0.13.2",
     "linkifyjs": "^2.1.8",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.13",
+    "lodash-es": "^4.17.14",
     "lodash.assign": "^3.2.0",
     "lodash.keysin": "^3.0.8",
+    "lodash.mergewith": "^4.6.2",
     "lodash.pick": "^3.1.0",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.23",
@@ -59,7 +61,8 @@
     "sanitize-html": "^1.19.1",
     "topojson-client": "^3.0.0",
     "underscore": "^1.9.1",
-    "utf8": "^3.0.0"
+    "utf8": "^3.0.0",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -72,8 +75,8 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^6.1.1",
     "eslint-plugin-react": "^7.11.1",
-    "webpack": "^4.23.1",
-    "webpack-stream": "^5.1.1"
+    "webpack": "^4.35.3",
+    "webpack-stream": "^5.2.1"
   },
   "repository": {
     "type": "git",

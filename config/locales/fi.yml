@@ -4,6 +4,7 @@
 # Author: Antsa
 # Author: Cancelion
 # Author: Cruzan
+# Author: KK
 # Author: Mikahama
 # Author: Nike
 # Author: Pihlaviita
@@ -322,6 +323,7 @@ fi:
   additional_range: Lisäalue
   additional_range_data_from_an_unknown_source: Lisäalueen tietoja tuntemattomattomasta
     lähteestä
+  adjust_brightness: Säädä kirkkautta
   admin: Ylläpitäjä
   admin_s: Ylläpitäjä(t)
   admin_any_projects: hallinnoi mitä tahansa projekteja
@@ -369,6 +371,7 @@ fi:
     subgenus: Kaikki alasuvut lisätty tietokantaan
     section: Kaikki jaksot lisätty tietokantaan
     subsection: Kaikki välitasot lisätty tietokantaan
+    complex: Kaikki yhdistelmät lisätty tietokantaan
     species: Kaikki lajit lisätty tietokantaan
     hybrid: Kaikki risteymät lisätty tietokantaan
     subspecies: Kaikki alalajit lisätty tietokantaan
@@ -893,10 +896,10 @@ fi:
   community_curated: Yhteisön kuratoimat
   community_guidelines: Yhteisön suuntaviivat
   community_id: '<strong>Yhteisön</strong> tunniste:'
-  community_id_heading: Yhteisön tunniste
-  community_id_at_species_level_or_lower: Yhteisön tunniste lajitasolla tai pienempi
+  community_id_heading: Yhteisön taksoni
+  community_id_at_species_level_or_lower: Yhteisön taksoni lajitasolla tai pienempi
   community_moderation_settings: Yhteisön moderointiasetukset
-  community_supported_id: Yhteisö-tuettu tunniste?
+  community_supported_id: Yhteisö-tuettu taksoni?
   compare: Vertaa
   compare_with: Vertaa
   comparing: verrataan
@@ -934,6 +937,7 @@ fi:
   conservation_status_descriptions:
     geoprivacy: Sijainnin tietosuojan oletusarvo havainnoille tässä taksonissa.
   continue: Jatka
+  continue_to_site: Jatka %{site_name}iin
   contributions: muokkaukset
   contributions_from: Muokkaukset käyttäjältä
   contributor_cannot_be_found: Osallistujaa ei löydy
@@ -1542,8 +1546,6 @@ fi:
   hex_color_eg: Hex-väri, esim. 65644F
   hi: Hei,
   hi_user: Hei %{user}
-  hide: Piilota
-  hide_details: Piilota tiedot
   hide_uncountable_species: Piilota ei-laskettavat lajit
   high: Korkea
   highest_rank: Korkein arvo
@@ -1645,6 +1647,8 @@ fi:
     luettelo tästä taksonista tässä paikassa.'
   inat_user_profile: '%{site_name}: Käyttäjän %{user} profiili'
   inat_will_be_back_on: '%{site_name} tulee pian olemaan jaloillaan /siivillään/evillään/lonkeroillaan/valejaloillaan'
+  inaturalist_is_a_joint_initiative: '%{site_name} on Kalifornian tiedeakatemian ja
+    National Geographic Societyn yhteinen aloite.'
   inaturalist_is_an_online_community: '%{site_name} on verkkoyhteisö luonnontieteilijöille.
     Lisäämällä kuviasi, voit auttaa tutkijoita oppimaan lisää.'
   inaturalist_observations_by: '%{site_name} &#58; Havainnot käyttäjältä %{login}'
@@ -1900,6 +1904,7 @@ fi:
     el: Kreikka
     en-US: Englanti (Yhdysvallat)
     en: Englanti
+    eo: Esperanto
     es-ES: Espanja (Espanja)
     es-MX: Espanja (Meksiko)
     es: Espanja
@@ -3435,6 +3440,7 @@ fi:
   stats: Tilastot
   stats_title: Sivun tilastot
   status: Tila
+  status_globally: '%{status} maailmanlaajuisesti'
   status_in_place: '%{status} paikassa %{place}'
   stay_and_try_again: Jää ja yritä uudelleen
   still_no_luck?: Vieläkään onnea?

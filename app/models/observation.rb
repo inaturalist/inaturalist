@@ -40,7 +40,6 @@ class Observation < ActiveRecord::Base
       observation.taxon.ancestor_ids.include?(subscription.resource_id)
     }
   notifies_users :mentioned_users,
-    except: :previously_mentioned_users,
     on: :save,
     notification: "mention",
     delay: false,
@@ -312,16 +311,19 @@ class Observation < ActiveRecord::Base
   
   validate :must_be_in_the_past,
            :date_observed_must_be_before_date_created,
-           :must_not_be_a_range
+           :must_not_be_a_range,
+           :must_not_be_on_null_island
 
-  validates_numericality_of :latitude,
-    :allow_blank => true, 
-    :less_than_or_equal_to => 90, 
-    :greater_than_or_equal_to => -90
-  validates_numericality_of :longitude,
-    :allow_blank => true, 
-    :less_than_or_equal_to => 180, 
-    :greater_than_or_equal_to => -180
+  validates :latitude, numericality: {
+    allow_blank: true,
+    less_than_or_equal_to: 90,
+    greater_than_or_equal_to: -90
+  }
+  validates :longitude, numericality: {
+    allow_blank: true,
+    less_than_or_equal_to: 180,
+    greater_than_or_equal_to: -180
+  }
   validates_numericality_of :positional_accuracy,
     allow_nil: true,
     greater_than: 0,
@@ -846,6 +848,8 @@ class Observation < ActiveRecord::Base
       self.time_observed_at = nil
       return true
     end
+    # Only re-interpret the date if observed_on_string or time_zone changed
+    return unless observed_on_string_changed? || time_zone_changed?
     date_string = observed_on_string.strip
     tz_abbrev_pattern = /\s\(?([A-Z]{3,})\)?$/ # ends with (PDT)
     tz_offset_pattern = /([+-]\d{4})$/ # contains -0800
@@ -951,33 +955,33 @@ class Observation < ActiveRecord::Base
     begin
       # Start parsing...
       t = begin
-        Chronic.parse(date_string)
+        Chronic.parse( date_string, context: :past )
       rescue ArgumentError
         nil
       end
-      t = Chronic.parse(date_string.split[0..-2].join(' ')) unless t 
+      t = Chronic.parse( date_string.split[0..-2].join(' '), context: :past ) unless t 
       if !t && (locale = user.locale || I18n.locale)
         date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-        t = Chronic.parse(date_string)
+        t = Chronic.parse( date_string, context: :past )
       end
 
       if !t
         I18N_SUPPORTED_LOCALES.each do |locale|
           next if locale =~ /^en.*/
           new_date_string = englishize_month_abbrevs_for_locale(date_string, locale)
-          break if t = Chronic.parse(new_date_string)
+          break if t = Chronic.parse( new_date_string, context: :past )
         end
       end
       return true unless t
     
       # Re-interpret future dates as being in the past
-      t = Chronic.parse(date_string, :context => :past) if t > Time.now
+      t = Chronic.parse( date_string, context: :past) if t > Time.now
       
       self.observed_on = t.to_date if t
     
       # try to determine if the user specified a time by ask Chronic to return
       # a time range. Time ranges less than a day probably specified a time.
-      if tspan = Chronic.parse(date_string, :context => :past, :guess => false)
+      if tspan = Chronic.parse( date_string, context: :past, guess: false )
         # If tspan is less than a day and the string wasn't 'today', set time
         if tspan.width < 86400 && date_string.strip.downcase != 'today'
           self.time_observed_at = t
@@ -1712,24 +1716,26 @@ class Observation < ActiveRecord::Base
     true
   end
 
-  def self.set_community_taxa(options = {})
-    scope = Observation.includes({:identifications => [:taxon]}, :user)
-    scope = scope.where(options[:where]) if options[:where]
-    scope = scope.by(options[:user]) unless options[:user].blank?
-    scope = scope.of(options[:taxon]) unless options[:taxon].blank?
-    scope = scope.in_place(options[:place]) unless options[:place].blank?
-    scope = scope.in_projects([options[:project]]) unless options[:project].blank?
-    start_time = Time.now
+  def self.set_observations_taxa_for_user( user, options = {} )
     logger = options[:logger] || Rails.logger
-    logger.info "[INFO #{Time.now}] Starting Observation.set_community_taxon, options: #{options.inspect}"
-    scope.find_each do |o|
-      next unless o.identifications.size > 1
-      o.set_community_taxon
-      unless o.save
-        logger.error "[ERROR #{Time.now}] Failed to set community taxon for #{o}: #{o.errors.full_messages.to_sentence}"
+    user = User.find_by_id( user ) unless user.is_a?( User )
+    start_time = Time.now
+    logger.info "[INFO #{Time.now}] Starting Observation.set_observations_taxa_for_user #{user.id}, options: #{options.inspect}"
+    Observation.search_in_batches( user_id: user.id ) do |batch|
+      Observation.preload_associations( batch, [
+        { user: :stored_preferences },
+        { identifications: :taxon }
+      ] )
+      batch.each do |o|
+        next if o.taxon_id == o.community_taxon_id && o.user.prefers_community_taxa?
+        o.set_taxon_from_probable_taxon
+        next unless o.changed?
+        unless o.save
+          puts "[ERROR #{Time.now}] Failed to set taxon for #{o}: #{o.errors.full_messages.to_sentence}"
+        end
       end
     end
-    logger.info "[INFO #{Time.now}] Finished Observation.set_community_taxon in #{Time.now - start_time}s, options: #{options.inspect}"
+    logger.info "[INFO #{Time.now}] Finished Observation.set_observations_taxa_for_user in #{Time.now - start_time}s, options: #{options.inspect}"
   end
 
   def community_taxon_rejected?
@@ -1873,7 +1879,13 @@ class Observation < ActiveRecord::Base
   def date_observed_must_be_before_date_created
     return true if observed_on.blank?
     return true if created_at.blank?
-    if observed_on.in_time_zone( "UTC" ) > created_at.in_time_zone( "UTC" ).to_date
+    return true if editing_user_id != user_id
+    threshold_date = ( created_at.in_time_zone( "UTC" ) + 1.day ).to_date
+    if (
+      time_observed_at && time_observed_at.in_time_zone( "UTC" ).to_date > threshold_date
+    ) || (
+      observed_on.in_time_zone( "UTC" ).to_date > threshold_date
+    )
       errors.add(:observed_on, :cannot_be_greater_than_date_created)
     end
     true
@@ -1905,6 +1917,15 @@ class Observation < ActiveRecord::Base
     
     if is_a_range
       errors.add(:observed_on, "must be a single day, not a range")
+    end
+  end
+
+  def must_not_be_on_null_island
+    lat = latitude || private_latitude
+    lng = longitude || private_longitude
+    return true if lat.nil? || lng.nil?
+    if lat.to_f == 0 && lng.to_f == 0
+      errors.add(:base, :coordinates_cannot_be_zero_zero )
     end
   end
   
@@ -3081,11 +3102,6 @@ class Observation < ActiveRecord::Base
   def mentioned_users
     return [ ] unless description
     description.mentioned_users
-  end
-
-  def previously_mentioned_users
-    return [ ] if description_was.blank?
-    description.mentioned_users & description_was.to_s.mentioned_users
   end
 
   def faves_count

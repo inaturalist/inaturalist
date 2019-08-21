@@ -29,7 +29,6 @@ class Post < ActiveRecord::Base
     :include_notifier => true
   }
   notifies_users :mentioned_users,
-    except: :previously_mentioned_users,
     on: :save,
     delay: false,
     notification: "mention",
@@ -115,11 +114,6 @@ class Post < ActiveRecord::Base
   def mentioned_users
     return [ ] unless published? && body
     body.mentioned_users
-  end
-
-  def previously_mentioned_users
-    return [ ] if !published? || body_was.blank? || ( published? && published_at_was.blank? )
-    body.mentioned_users & body_was.to_s.mentioned_users
   end
 
 end

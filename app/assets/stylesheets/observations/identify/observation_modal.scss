@@ -103,7 +103,7 @@ body > [role="dialog"] .ObservationModal {
       top: 0;
       right: 0;
       font-size: 200%;
-      padding: 5px;
+      padding: 8px;
       color: white;
       text-shadow: 1px 1px 5px #666;
     }
@@ -358,6 +358,9 @@ body > [role="dialog"] .ObservationModal {
     display: inline-block;
     width: 100%;
     cursor: zoom-in;
+  }
+  .easyzoom > a:hover {
+    opacity: 1;
   }
 
   .easyzoom.is-loading img {
@@ -689,4 +692,48 @@ body > [role="dialog"] .ObservationModal {
       padding-left: 10px !important;
     }
   }
+
+  .photo-controls {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    margin-top: -70px;
+    right: 10px;
+    .btn-group-vertical {
+      margin-bottom: 10px;
+    }
+    .btn-group-vertical:last-child {
+      margin-bottom: 0px;
+    }
+    .btn {
+      font-size: 16px;
+      font-weight: bold;
+      background-color: rgba(255,255,255,0.8);
+      i {
+        position: relative;
+        top: -1px;
+      }
+    }
+    z-index: 1;
+    .btn-adjust-brightness {
+      border-color: transparent;
+    }
+  }
+
+  .brightness-0-2 .image-gallery-image img { filter: brightness(0.2); }
+  .brightness-0-4 .image-gallery-image img { filter: brightness(0.4); }
+  .brightness-0-6 .image-gallery-image img { filter: brightness(0.6); }
+  .brightness-0-8 .image-gallery-image img { filter: brightness(0.8); }
+  .brightness-1-2 .image-gallery-image img { filter: brightness(1.2); }
+  .brightness-1-4 .image-gallery-image img { filter: brightness(1.4); }
+  .brightness-1-6 .image-gallery-image img { filter: brightness(1.6); }
+  .brightness-1-8 .image-gallery-image img { filter: brightness(1.8); }
+  .brightness-2   .image-gallery-image img { filter: brightness(2.0); }
+  .brightness-2-2 .image-gallery-image img { filter: brightness(2.2); }
+  .brightness-2-4 .image-gallery-image img { filter: brightness(2.4); }
+  .brightness-2-6 .image-gallery-image img { filter: brightness(2.6); }
+  .brightness-2-8 .image-gallery-image img { filter: brightness(2.8); }
+  .brightness-3   .image-gallery-image img { filter: brightness(3.0); }
+
 }

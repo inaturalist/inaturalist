@@ -14,15 +14,17 @@ class ProjectAutocomplete extends React.Component {
   }
 
   componentDidUpdate( prevProps ) {
-    if ( this.props.initialProjectID &&
-         this.props.initialProjectID !== prevProps.initialProjectID ) {
+    const { initialProjectID } = this.props;
+    if ( initialProjectID
+         && initialProjectID !== prevProps.initialProjectID ) {
       this.fetchProject( );
     }
   }
 
   fetchProject( ) {
-    if ( this.props.initialProjectID ) {
-      inaturalistjs.projects.fetch( this.props.initialProjectID ).then( r => {
+    const { initialProjectID } = this.props;
+    if ( initialProjectID ) {
+      inaturalistjs.projects.fetch( initialProjectID ).then( r => {
         if ( r.results.length > 0 ) {
           this.updateProject( { project: r.results[0] } );
         }
@@ -33,8 +35,8 @@ class ProjectAutocomplete extends React.Component {
   updateProject( options = { } ) {
     const domNode = ReactDOM.findDOMNode( this );
     if ( options.project ) {
-      $( "input[name='project_title']", domNode ).
-        trigger( "assignSelection", Object.assign(
+      $( "input[name='project_title']", domNode )
+        .trigger( "assignSelection", Object.assign(
           {},
           options.project,
           { title: options.project.title }
@@ -48,13 +50,15 @@ class ProjectAutocomplete extends React.Component {
   }
 
   render( ) {
+    const { className, disabled } = this.props;
     return (
       <span className="ProjectAutocomplete">
         <input
           type="search"
           name="project_title"
-          className={`form-control ${this.props.className}`}
-          placeholder={ I18n.t( "name_or_slug" ) }
+          className={`form-control ${className}`}
+          placeholder={I18n.t( "name_or_slug" )}
+          disabled={disabled}
         />
         <input type="hidden" name="project_id" />
       </span>
@@ -62,13 +66,8 @@ class ProjectAutocomplete extends React.Component {
   }
 }
 
-
 ProjectAutocomplete.propTypes = {
-  resetOnChange: PropTypes.bool,
-  bootstrapClear: PropTypes.bool,
-  afterSelect: PropTypes.func,
-  afterUnselect: PropTypes.func,
-  initialSelection: PropTypes.object,
+  disabled: PropTypes.bool,
   initialProjectID: PropTypes.number,
   className: PropTypes.string
 };

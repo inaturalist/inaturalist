@@ -10,6 +10,7 @@
 # Author: Chimu
 # Author: Cruzan
 # Author: Danieleseglie
+# Author: E150a
 # Author: Exonie
 # Author: Fortega
 # Author: Frog7301
@@ -113,7 +114,10 @@ qqq:
     where description_name represents place notes or a description
     {{Identical|Add}}
   add_obs_from_a_link: where link is a URL
-  add_life_stage_teneral_annotation: teneral - nie mam pojęcia jak to przetłumaczyć
+  add_life_stage_teneral_annotation: |-
+    teneral - nie mam pojęcia jak to przetłumaczyć
+
+    Odp: Niestety nie ma dosłownego polskiego odpowiednika. Na forach entomologicznych pojawia się określenie "teneralny/teneralne", więc "osobnik teneralny" powinno być ok.
   add_tags: '{{Identical|Add tag}}'
   add_taxon_batch_to: where list is the title of a list such as Birds of Brazil
   add_your_own_observations_at: where site_name is the name of the site
@@ -496,7 +500,6 @@ qqq:
     network partner sites, so please do not translate this to "NaturaLista" or
     anything.
   hi_user: '{{Identical|Hi}}'
-  hide: '{{Identical|Hide}}'
   high: '{{Identical|High}}'
   history: '{{Identical|History}}'
   home_faq: '{{Identical|FAQ}}'
@@ -702,7 +705,6 @@ qqq:
       observations: '{{Identical|Observation}}'
       checklist_places_description: Description of what checklist places are
       range: '{{Identical|Range}}'
-  maptype_for_places: '{{notranslate}}'
   mark_as_reviewed: '{{Identical|Mark as reviewed}}'
   matching_species_will_shown_up_here: where place is the name of a place
   maybe_your_signed_in_with: where omniauth is the name of an external provider like
@@ -756,6 +758,11 @@ qqq:
   nearby: '{{Identical|Nearby}}'
   new: '{{Identical|New}}'
   new_check_list_for: where place is the name of a place
+  new_comment_on_a_parent_by_user_link: |2-
+     @vow_or_con{vow:an|a} %{parent}
+    How should this be translated?
+    Should an/a be replaced?
+    And how should %{parent} be translated, cause observation is not correct...
   new_message: Clicked to create a new message to another user.
   new_observations_from_place_html: where place is the name of a place
   new_observations_may_take_up_to: where widget_expiration is a number

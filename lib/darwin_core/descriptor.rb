@@ -4,6 +4,7 @@ module DarwinCore
       super()
       @core = options[:core]
       @extensions = options[:extensions]
+      @ala = options[:ala]
     end
   end
 end

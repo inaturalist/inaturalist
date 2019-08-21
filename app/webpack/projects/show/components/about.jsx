@@ -83,9 +83,9 @@ class About extends React.Component {
               </div>
             </Col>
             <Col xs={ 5 } className="requirements-col">
-              { project.is_umbrella ?
-                ( <SubprojectsList {...this.props } /> ) :
-                ( <Requirements { ...this.props } /> )
+              { project.is_umbrella
+                ? ( <SubprojectsList {...this.props} /> )
+                : ( <Requirements {...this.props} /> )
               }
               { siteAdminTools }
             </Col>

@@ -70,11 +70,18 @@ class PhotoBrowser extends React.Component {
   }
 
   render( ) {
-    const config = this.props.config;
-    const observation = this.props.observation;
+    const {
+      config,
+      setFlaggingModalState,
+      observation
+    } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
     this.viewerIsObserver = config && config.currentUser &&
       config.currentUser.id === observation.user.id;
+    const viewerIsCurator = config && config.currentUser && (
+      config.currentUser.roles.indexOf( "curator" ) >= 0
+      || config.currentUser.roles.indexOf( "admin" ) >= 0
+    );
     let images = observation.photos.map( ( photo ) => {
       let original = photo.photoUrl( "original" );
       let large = photo.photoUrl( "large" );
@@ -97,6 +104,18 @@ class PhotoBrowser extends React.Component {
           <div className="captions">
             <div className="captions-box">
               { this.attributionIcon( photo, "photo" ) }
+              <button
+                type="button"
+                className="btn btn-nostyle"
+                onClick={( ) => setFlaggingModalState( {
+                  item: photo,
+                  show: true,
+                  radioOptions: ["spam", "copyright infringement", "inappropriate"]
+                } )}
+                title={I18n.t( "flag_as_inappropriate" )}
+              >
+                <i className="fa fa-flag" />
+              </button>
               <a href={ `/photos/${photo.id}` }>
                 <Badge>
                   <i className="fa fa-info" />
@@ -116,6 +135,18 @@ class PhotoBrowser extends React.Component {
     _.each( observation.sounds, sound => {
       let player;
       let containerClass = "sound-container-local";
+      let flagNotice;
+      if ( _.find( sound.flags, f => !f.resolved ) ) {
+        flagNotice = (
+          <p className="flag-notice alert alert-warning">
+            { I18n.t( "sounds.sound_has_been_flagged" )}
+            { " " }
+            <a href={`/sounds/${sound.id}/flags`} className="linky">
+              { I18n.t( "view_flags" ) }
+            </a>
+          </p>
+        );
+      }
       if ( !sound.play_local && ( sound.subtype === "SoundcloudSound" || !sound.file_url ) ) {
         containerClass = "sound-container-soundcloud";
         player = (
@@ -133,6 +164,19 @@ class PhotoBrowser extends React.Component {
           </audio>
         );
       }
+      let playerContent = player;
+      if ( flagNotice ) {
+        if ( this.viewerIsObserver || viewerIsCurator ) {
+          playerContent = (
+            <div>
+              { flagNotice }
+              { player }
+            </div>
+          );
+        } else {
+          playerContent = flagNotice;
+        }
+      }
       images.push( {
         original: null,
         zoom: null,
@@ -140,11 +184,24 @@ class PhotoBrowser extends React.Component {
         description: (
           <div className={`sound-container ${containerClass}`}>
             <div className="sound">
-              { player }
+              { playerContent }
             </div>
             <div className="captions">
               <div className="captions-box">
                 { this.attributionIcon( sound, "sound" ) }
+                { " " }
+                <button
+                  type="button"
+                  className="btn btn-nostyle"
+                  onClick={( ) => setFlaggingModalState( {
+                    item: sound,
+                    show: true,
+                    radioOptions: ["spam", "copyright infringement", "inappropriate"]
+                  } )}
+                  title={I18n.t( "flag_this_sound" )}
+                >
+                  <i className="fa fa-flag" />
+                </button>
               </div>
             </div>
           </div>
@@ -249,7 +306,8 @@ PhotoBrowser.propTypes = {
   config: PropTypes.object,
   observation: PropTypes.object,
   setMediaViewerState: PropTypes.func,
-  onFileDrop: PropTypes.func
+  onFileDrop: PropTypes.func,
+  setFlaggingModalState: PropTypes.func
 };
 
 export default PhotoBrowser;

@@ -103,7 +103,7 @@ input[type="text"].hasDatepicker {margin-bottom:0;}
 .item_user {float: left;margin-right: 10px;}
 .item_content {float: left; }
 .comment_activity_item { margin-bottom: 20px; }
-#pageheader h2 {margin: 0; line-height: 1;}
+#pageheader h2 {margin: 0;}
 blockquote p {margin-bottom: inherit;}
 input.sortable-position { 
   border-radius: 500px;
@@ -338,7 +338,7 @@ input[type="color"]:focus,
   padding: 0;
   background-color: transparent;
   border: 0 transparent;
-  line-height: 1;
+  line-height: inherit;
 }
 
 .modal-container {
@@ -348,3 +348,4 @@ input[type="color"]:focus,
   position: absolute;
 }
 
+.linky { color: #337ab7; }

@@ -40,10 +40,19 @@ module DarwinCore
       %w(genus http://rs.tdwg.org/dwc/terms/genus),
       ['license', 'http://purl.org/dc/terms/license', nil, 'dwc_license'],
       %w(rights http://purl.org/dc/terms/rights),
-      %w(rightsHolder http://purl.org/dc/terms/rightsHolder)
+      %w(rightsHolder http://purl.org/dc/terms/rightsHolder),
+      %w(inaturalistLogin http://xmlns.com/foaf/0.1/nick)
     ]
     TERM_NAMES = TERMS.map{|name, uri, default, method| name}
-    
+
+    ALA_EXTRA_TERMS = [
+      %w(identificationVerificationStatus http://rs.tdwg.org/dwc/terms/identificationVerificationStatus),
+      %w(numIdentificationAgreements https://www.inaturalist.org/terms/numIdentificationAgreements),
+      %w(numIdentificationDisagreements https://www.inaturalist.org/terms/numIdentificationDisagreements),
+      %w(positioningDevice https://www.inaturalist.org/terms/positioningDevice),
+      %w(positioningMethod https://www.inaturalist.org/terms/positioningMethod)
+    ]
+
     # Extend observation with DwC methods.  For reasons unclear to me, url
     # methods are protected if you instantiate a view *outside* a model, but not
     # inside.  Otherwise I would just used a more traditional adapter with
@@ -55,6 +64,10 @@ module DarwinCore
       record.set_show_private_coordinates(options[:private_coordinates])
       record.dwc_use_community_taxon if options[:community_taxon]
       record
+    end
+
+    def self.term_names( terms )
+      terms.map{ |name, uri, default, method| name }
     end
 
     module InstanceMethods
@@ -134,6 +147,10 @@ module DarwinCore
         user.name.blank? ? user.login : user.name
       end
 
+      def inaturalistLogin
+        user.login
+      end
+
       def recordedByOrcid
         orcid_id = user.provider_authorizations.detect{|pa| pa.provider_name == "orcid"}.try(:provider_uid)
         return unless orcid_id
@@ -191,10 +208,12 @@ module DarwinCore
       end
 
       def countryCode
+        return if latitude.blank?
         observations_places.map(&:place).compact.detect{ |p| p.admin_level == Place::COUNTRY_LEVEL }.try(:code)
       end
 
       def stateProvince
+        return if latitude.blank?
         observations_places.map(&:place).compact.detect{ |p| p.admin_level == Place::STATE_LEVEL }.try(:name)
       end
 
@@ -260,6 +279,26 @@ module DarwinCore
 
       def dwc_taxon
         @dwc_use_community_taxon ? community_taxon : taxon
+      end
+
+      def identificationVerificationStatus
+        quality_grade
+      end
+
+      def numIdentificationAgreements
+        num_identification_agreements
+      end
+
+      def numIdentificationDisagreements
+        num_identification_disagreements
+      end
+
+      def positioningDevice
+        positioning_device
+      end
+
+      def positioningMethod
+        positioning_method
       end
 
     end

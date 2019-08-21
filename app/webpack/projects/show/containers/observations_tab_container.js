@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import ObservationsTab from "../components/observations_tab";
-import { setConfig } from "../../../shared/ducks/config";
+import { setConfig, updateCurrentUser } from "../../../shared/ducks/config";
 import {
   infiniteScrollObservations,
   setSelectedTab,
@@ -21,7 +21,8 @@ function mapDispatchToProps( dispatch ) {
     setObservationsSearchSubview: subview =>
       dispatch( setConfig( { observationsSearchSubview: subview } ) ),
     infiniteScrollObservations: nextScrollIndex =>
-      dispatch( infiniteScrollObservations( nextScrollIndex ) )
+      dispatch( infiniteScrollObservations( nextScrollIndex ) ),
+    updateCurrentUser: user => dispatch( updateCurrentUser( user ) )
   };
 }
 

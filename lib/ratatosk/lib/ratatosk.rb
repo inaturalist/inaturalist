@@ -305,15 +305,17 @@ module Ratatosk
     
     def find_existing_taxon(taxon_adapter, name_provider = nil)
       name_provider ||= NameProviders.const_get(taxon_adapter.name_provider).new
-      existing_phylum = if (phylum = name_provider.get_phylum_for(taxon_adapter))
-        Taxon.where("lower(name) = ? AND rank = 'phylum'", phylum.name.downcase).first
+      existing_ancestor = if ( phylum = name_provider.get_phylum_for( taxon_adapter ) )
+        Taxon.where( "lower(name) = ? AND rank = 'phylum'", phylum.name.downcase ).first
       end
-
-      if existing_phylum
-        existing_phylum.descendants.where("lower(name) = ?", taxon_adapter.name.downcase).first
-      else
-        Taxon.where("lower(name) = ?", taxon_adapter.name.downcase).first
+      if existing_ancestor && existing_ancestor.current_synonymous_taxon
+        existing_ancestor = existing_ancestor.current_synonymous_taxon
       end
+      existing_taxon = nil
+      if existing_ancestor
+        existing_taxon = existing_ancestor.descendants.where("lower(name) = ?", taxon_adapter.name.downcase).first
+      end
+      existing_taxon ||= Taxon.where("lower(name) = ?", taxon_adapter.name.downcase).first
     end
     
     protected

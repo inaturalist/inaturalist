@@ -1,6 +1,11 @@
 require "rubygems"
 require "optimist"
 
+# The official list of locales current supported by Seek can be found at:
+# https://github.com/inaturalist/SeekReactNative/blob/master/i18n.js
+
+SEEK_LOCALES = ["da", "de", "en", "es", "fr", "hi", "nl", "pt", "pt-BR", "zh"]
+
 OPTS = Optimist::options do
     banner <<-EOS
 
@@ -29,8 +34,6 @@ unless File.exist?( OPTS.taxonomy_csv_path )
   puts "There is no file at #{ OPTS.taxonomy_csv_path }"
   exit( 0 )
 end
-
-SEEK_LOCALES = ["de", "en", "es", "fr", "hi", "nl", "pt", "pt-BR", "zh"]
 
 relevant_taxa = { }
 begin

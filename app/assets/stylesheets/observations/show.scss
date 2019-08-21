@@ -98,7 +98,9 @@ a:focus {
 
 .linky,
 a.linky,
-.bootstrap a.linky {
+button.linky,
+.bootstrap a.linky,
+.bootstrap button.linky {
   color: $bootstrap-link-color;
   cursor: pointer;
 }
@@ -361,6 +363,9 @@ a.UserImage,
             position: relative;
             width: 100%; // needed for IE
           }
+          .flag-notice {
+            color: black;
+          }
           .captions {
             line-height: 18px;
             .captions-box {
@@ -383,6 +388,9 @@ a.UserImage,
             .badge {
               background: white;
               color: rgba(0,0,0,.75);
+              margin-left: 5px;
+            }
+            .btn-nostyle {
               margin-left: 5px;
             }
           }

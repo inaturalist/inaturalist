@@ -1,7 +1,7 @@
 import iNaturalistJS from "inaturalistjs";
 import moment from "moment";
 import _ from "lodash";
-import { setConfig } from "./config_actions";
+import { setConfig } from "../../../shared/ducks/config";
 import { fetchObservationsStats } from "./observations_stats_actions";
 import { updateObservationInCollection } from "./observations_actions";
 import { showFinishedModal } from "./finished_modal_actions";
@@ -85,7 +85,7 @@ function fetchCurrentObservation( observation = null ) {
         const newObs = response.results[0];
         let captiveByCurrentUser = false;
         if ( currentUser && newObs && newObs.quality_metrics ) {
-          const userQualityMetric = _.find( newObs.quality_metrics, ( qm ) => (
+          const userQualityMetric = _.find( newObs.quality_metrics, qm => (
             qm.user && qm.user.id === currentUser.id && qm.metric === "wild"
           ) );
           if ( userQualityMetric ) {
@@ -98,7 +98,7 @@ function fetchCurrentObservation( observation = null ) {
         }
         let currentUserIdentification;
         if ( currentUser && newObs && newObs.identifications ) {
-          currentUserIdentification = _.find( newObs.identifications, ( ident ) => (
+          currentUserIdentification = _.find( newObs.identifications, ident => (
             ident.user.id === currentUser.id && ident.current
           ) );
         }

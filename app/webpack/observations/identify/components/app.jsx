@@ -10,9 +10,10 @@ import SideBar from "./side_bar";
 import AlertModalContainer from "../containers/alert_modal_container";
 import FlaggingModalContainer from "../containers/flagging_modal_container";
 import DisagreementAlertContainer from "../containers/disagreement_alert_container";
+import ModeratorActionModalContainer from "../containers/moderator_action_modal_container";
 
 const App = ( { blind } ) => (
-  <div id="Identify" className={ blind ? "blind" : "" }>
+  <div id="Identify" className={blind ? "blind" : ""}>
     <Grid fluid>
       <Row>
         <Col xs={12}>
@@ -38,6 +39,7 @@ const App = ( { blind } ) => (
       <AlertModalContainer />
       <FlaggingModalContainer />
       <DisagreementAlertContainer />
+      <ModeratorActionModalContainer />
     </Grid>
   </div>
 );

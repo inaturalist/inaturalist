@@ -28,18 +28,26 @@ import FavesContainer from "../containers/faves_container";
 import { TABS } from "../actions/current_observation_actions";
 
 class ObservationModal extends React.Component {
+  constructor( props, context ) {
+    super( props, context );
+    this.state = {
+      brightnesses: {}
+    };
+  }
+
   componentDidUpdate( prevProps ) {
     // this is a stupid hack to get the google map to render correctly if it
     // was created while it wasn't visible
-    if ( this.props.tab === "info" && prevProps.tab !== "info" ) {
+    const { tab, observation } = this.props;
+    if ( tab === "info" && prevProps.tab !== "info" ) {
       const that = this;
       setTimeout( ( ) => {
         const map = $( ".TaxonMap", ReactDOM.findDOMNode( that ) ).data( "taxonMap" );
         google.maps.event.trigger( map, "resize" );
-        if ( this.props.observation && this.props.observation.latitude ) {
+        if ( observation && observation.latitude ) {
           map.setCenter( new google.maps.LatLng(
-            this.props.observation.latitude,
-            this.props.observation.longitude
+            observation.latitude,
+            observation.longitude
           ) );
         }
       }, 500 );
@@ -122,6 +130,7 @@ class ObservationModal extends React.Component {
       taxonMap = (
         <TaxonMap
           key={`map-for-${obsForMap.id}`}
+          reloadKey={`map-for-${obsForMap.id}`}
           taxonLayers={[taxonLayer]}
           observations={[obsForMap]}
           clickable={!blind}
@@ -137,12 +146,16 @@ class ObservationModal extends React.Component {
           showAllLayer={false}
           overlayMenu={false}
           zoomControlOptions={{ position: google.maps.ControlPosition.TOP_LEFT }}
+          currentUser={currentUser}
+          updateCurrentUser={updateCurrentUser}
         />
       );
     } else if ( observation.obscured ) {
       taxonMap = (
         <div className="TaxonMap empty">
-          <i className="fa fa-map-marker" /> { I18n.t( "location_private" ) }
+          <i className="fa fa-map-marker" />
+          { " " }
+          { I18n.t( "location_private" ) }
         </div>
       );
     } else {
@@ -157,8 +170,12 @@ class ObservationModal extends React.Component {
 
     let photos = null;
     if ( images && images.length > 0 ) {
+      const brightnessKey = `${observation.id}-${imagesCurrentIndex}`;
+      const { brightnesses } = this.state;
+      const brightness = brightnesses[brightnessKey] || 1;
+      const brightnessClass = `brightness-${brightness.toString( ).replace( ".", "-" )}`;
       photos = (
-        <div className="photos-wrapper">
+        <div className={`photos-wrapper ${brightnessClass}`}>
           <ZoomableImageGallery
             key={`map-for-${observation.id}`}
             items={images}
@@ -173,15 +190,68 @@ class ObservationModal extends React.Component {
             onSlide={setImagesCurrentIndex}
             onThumbnailClick={( event, index ) => setImagesCurrentIndex( index )}
           />
-          <a
-            href={images[imagesCurrentIndex].zoom || images[imagesCurrentIndex].original}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="original-photo-link"
-            title={I18n.t( "view_full_size_photo" )}
-          >
-            <i className="icon-link-external" />
-          </a>
+          <div className="photo-controls" role="toolbar">
+            <div className="btn-group-vertical btn-group-xs" role="group">
+              <a
+                href={images[imagesCurrentIndex].zoom || images[imagesCurrentIndex].original}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-default"
+                title={I18n.t( "view_full_size_photo" )}
+              >
+                <i className="icon-link-external" />
+              </a>
+            </div>
+            <div className="brightness-control btn-group-vertical btn-group-xs" role="group">
+              <button
+                type="button"
+                className="btn btn-default btn-adjust-brightness"
+                onClick={( ) => {
+                  const newBrightnesses = Object.assign( {}, brightnesses, { [brightnessKey]: 1 } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={brightness === 1 ? I18n.t( "adjust_brightness" ) : I18n.t( "reset_brightness" )}
+              >
+                <i className="icon-adjust" />
+              </button>
+              <button
+                type="button"
+                className="btn btn-default btn-increase-brightness"
+                onClick={( ) => {
+                  const existing = brightnesses[brightnessKey] || 1;
+                  let newBrightness = _.round( existing + 0.2, 2 );
+                  if ( newBrightness > 3 ) {
+                    newBrightness = 3;
+                  }
+                  const newBrightnesses = Object.assign( {}, brightnesses, {
+                    [brightnessKey]: newBrightness
+                  } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={I18n.t( "increase_brightness" )}
+              >
+                +
+              </button>
+              <button
+                type="button"
+                className="btn btn-default btn-decrease-brightness"
+                onClick={( ) => {
+                  const existing = brightnesses[brightnessKey] || 1;
+                  let newBrightness = _.round( existing - 0.2, 2 );
+                  if ( newBrightness < 0.2 ) {
+                    newBrightness = 0.2;
+                  }
+                  const newBrightnesses = Object.assign( {}, brightnesses, {
+                    [brightnessKey]: newBrightness
+                  } );
+                  this.setState( { brightnesses: newBrightnesses } );
+                }}
+                title={I18n.t( "decrease_brightness" )}
+              >
+                -
+              </button>
+            </div>
+          </div>
         </div>
       );
     }
@@ -189,8 +259,9 @@ class ObservationModal extends React.Component {
     if ( observation.sounds && observation.sounds.length > 0 ) {
       sounds = observation.sounds.map( s => {
         const soundKey = `sound-${s.id}`;
+        let player;
         if ( s.subtype === "SoundcloudSound" || !s.file_url ) {
-          return (
+          player = (
             <iframe
               key={soundKey}
               title={soundKey}
@@ -201,13 +272,46 @@ class ObservationModal extends React.Component {
               src={`https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${s.native_sound_id}&auto_play=false&hide_related=false&show_comments=false&show_user=false&show_reposts=false&visual=false&show_artwork=false`}
             />
           );
+        } else {
+          player = (
+            <audio key={soundKey} controls preload="none">
+              <source src={s.file_url} type={s.file_content_type} />
+              { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
+            </audio>
+          );
         }
-        return (
-          <audio key={soundKey} controls preload="none">
-            <source src={s.file_url} type={s.file_content_type} />
-            { I18n.t( "your_browser_does_not_support_the_audio_element" ) }
-          </audio>
-        );
+        let flagNotice;
+        if ( _.find( s.flags, f => !f.resolved ) ) {
+          flagNotice = (
+            <p className="flag-notice alert alert-warning">
+              { I18n.t( "sounds.sound_has_been_flagged" )}
+              { " " }
+              <a href={`/sounds/${s.id}/flags`} className="linky">
+                { I18n.t( "view_flags" ) }
+              </a>
+            </p>
+          );
+        }
+        if ( flagNotice ) {
+          if (
+            currentUser.id === observation.user.id
+            || currentUser.roles.indexOf( "curator" ) >= 0
+            || currentUser.roles.indexOf( "admin" ) >= 0
+          ) {
+            return (
+              <div key={soundKey}>
+                { flagNotice }
+                { player }
+              </div>
+            );
+          }
+          return (
+            <div key={soundKey}>
+              { flagNotice }
+            </div>
+          );
+        }
+        return <div key={soundKey}>{ player }</div>;
       } );
       sounds = (
         <div className="sounds">
@@ -218,23 +322,11 @@ class ObservationModal extends React.Component {
 
     const scrollSidebarToForm = form => {
       const sidebar = $( form ).parents( ".ObservationModal:first" ).find( ".sidebar" );
-      const target = $( form );
       $( ":input:visible:first", form ).focus( );
-      $( sidebar ).scrollTo( target );
-    };
-
-    const showAgree = ( ) => {
-      if ( loadingDiscussionItem ) {
-        return false;
-      }
-      if ( !currentUserIdentification ) {
-        return observation.taxon && observation.taxon.is_active;
-      }
-      return (
-        observation.taxon
-        && observation.taxon.is_active
-        && observation.taxon.id !== currentUserIdentification.taxon.id
-      );
+      // Note that you need to scroll the element that can actually scroll.
+      // There are a lot of nested divs here, so make sure you're scrolling the
+      // right one
+      $( ".info-tab-content", sidebar ).scrollTo( form );
     };
 
     const qualityGrade = ( ) => {
@@ -274,7 +366,7 @@ class ObservationModal extends React.Component {
                 key={`keyboard-shortcuts-${shortcut.keys.join( "-" )}`}
               >
                 <td>
-                  <span dangerouslySetInnerHTML={ { __html: shortcut.keys.map( k => `<code>${k}</code>` ).join( " + " ) } } />
+                  <span dangerouslySetInnerHTML={{ __html: shortcut.keys.map( k => `<code>${k}</code>` ).join( " + " ) }} />
                 </td>
                 <td>{ shortcut.label }</td>
               </tr>
@@ -385,7 +477,7 @@ class ObservationModal extends React.Component {
                       return false;
                     }}
                   >
-                    <i className="fa fa-keyboard-o"/>
+                    <i className="fa fa-keyboard-o" />
                   </Button>
                   <Overlay
                     placement="top"
@@ -419,9 +511,11 @@ class ObservationModal extends React.Component {
                                             key={`keyboard-shortcuts-${labelKey}`}
                                           >
                                             <td>
-                                              <code>{ shortcut.keys[0] }</code> {
-                                                I18n.t( "then_keybord_sequence" )
-                                              } <code>{ shortcut.keys[1] }</code>
+                                              <code>{ shortcut.keys[0] }</code>
+                                              { " " }
+                                              { I18n.t( "then_keybord_sequence" ) }
+                                              { " " }
+                                              <code>{ shortcut.keys[1] }</code>
                                             </td>
                                             <td>{ I18n.t( labelKey ) }</td>
                                           </tr>
@@ -458,22 +552,24 @@ class ObservationModal extends React.Component {
                     >
                       <input
                         type="checkbox"
-                        checked={ captiveByCurrentUser || false }
+                        checked={captiveByCurrentUser || false}
                         onChange={function ( ) {
                           toggleCaptive( );
                         }}
-                      /> { I18n.t( "captive_cultivated" ) }
+                      />
+                      { " " }
+                      { I18n.t( "captive_cultivated" ) }
                     </label>
                   </OverlayTrigger>
                   <OverlayTrigger
                     placement="top"
                     delayShow={1000}
-                    overlay={
+                    overlay={(
                       <Tooltip id={`modal-reviewed-tooltip-${observation.id}`}>
                         { I18n.t( "mark_as_reviewed" ) }
                       </Tooltip>
-                    }
-                    container={ $( "#wrapper.bootstrap" ).get( 0 ) }
+                    )}
+                    container={$( "#wrapper.bootstrap" ).get( 0 )}
                   >
                     <label
                       className={
@@ -482,7 +578,9 @@ class ObservationModal extends React.Component {
                     >
                       <input
                         type="checkbox"
-                        checked={ observation.reviewedByCurrentUser || reviewedByCurrentUser || false }
+                        checked={
+                          observation.reviewedByCurrentUser || reviewedByCurrentUser || false
+                        }
                         onChange={function ( ) {
                           toggleReviewed( );
                         }}
@@ -500,11 +598,11 @@ class ObservationModal extends React.Component {
                 <li key={`obs-modal-tabs-${tabName}`} className={activeTab === tabName ? "active" : ""}>
                   <a
                     href="#"
-                    onClick={ e => {
+                    onClick={e => {
                       e.preventDefault( );
                       chooseTab( tabName, { observation } );
                       return false;
-                    } }
+                    }}
                   >
                     { tabTitles[tabName] || I18n.t( _.snakeCase( tabName ), { defaultValue: tabName } ) }
                   </a>
@@ -570,8 +668,13 @@ class ObservationModal extends React.Component {
                           </li>
                           { blind ? null : (
                             <li className="view-follow">
-                              <a className="permalink" href={`/observations/${observation.id}`} target="_blank">
-                                <i className="icon-link-external bullet-icon"></i>
+                              <a
+                                className="permalink"
+                                href={`/observations/${observation.id}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <i className="icon-link-external bullet-icon" />
                                 { I18n.t( "view" ) }
                               </a>
                               { observation.user.id === currentUser.id ? null : (
@@ -596,10 +699,10 @@ class ObservationModal extends React.Component {
                         <div className="big loading_spinner" />
                       </center>
                       <CommentFormContainer
-                        key={ `comment-form-obs-${observation.id}` }
+                        key={`comment-form-obs-${observation.id}`}
                         observation={observation}
                         className={commentFormVisible ? "" : "collapse"}
-                        ref={ function ( elt ) {
+                        ref={elt => {
                           const domNode = ReactDOM.findDOMNode( elt );
                           if ( domNode && commentFormVisible ) {
                             scrollSidebarToForm( domNode );
@@ -610,13 +713,13 @@ class ObservationModal extends React.Component {
                               $( "textarea", domNode ).val( $( ".IdentificationForm textarea" ).val( ) );
                             }
                           }
-                        } }
+                        }}
                       />
                       <IdentificationFormContainer
-                        key={ `identification-form-obs-${observation.id}` }
+                        key={`identification-form-obs-${observation.id}`}
                         observation={observation}
                         className={identificationFormVisible ? "" : "collapse"}
-                        ref={ function ( elt ) {
+                        ref={elt => {
                           const domNode = ReactDOM.findDOMNode( elt );
                           if ( domNode && identificationFormVisible ) {
                             scrollSidebarToForm( domNode );
@@ -627,45 +730,24 @@ class ObservationModal extends React.Component {
                               $( "textarea", domNode ).val( $( ".CommentForm textarea" ).val( ) );
                             }
                           }
-                        } }
+                        }}
                       />
                     </div>
                   </div>
                   <div className="tools">
-                    <OverlayTrigger
-                      placement="top"
-                      delayShow={1000}
-                      overlay={
-                        <Tooltip id={`modal-agree-tooltip-${observation.id}`}>
-                          { I18n.t( "agree_with_current_taxon" ) }
-                        </Tooltip>
-                      }
-                      container={ $( "#wrapper.bootstrap" ).get( 0 ) }
-                    >
-                      <Button
-                        bsStyle="default"
-                        disabled={ agreeingWithObservation || !showAgree( ) }
-                        className="agree-btn"
-                        onClick={ function ( ) {
-                          agreeWithCurrentObservation( );
-                        } }
-                      >
-                        { agreeingWithObservation ? (
-                          <div className="loading_spinner" />
-                        ) : (
-                          <i className="fa fa-check"></i>
-                        ) } { I18n.t( "agree_" ) }
-                      </Button>
-                    </OverlayTrigger>
+                    <Button bsStyle="default" onClick={( ) => addIdentification( )}>
+                      <i className="icon-identification" />
+                      { " " }
+                      { I18n.t( "add_id" ) }
+                    </Button>
                     <Button
                       bsStyle="default"
                       className="comment-btn"
-                      onClick={ function ( ) { addComment( ); } }
+                      onClick={( ) => addComment( )}
                     >
-                      <i className="fa fa-comment"></i> { I18n.t( "comment_" ) }
-                    </Button>
-                    <Button bsStyle="default" onClick={ function ( ) { addIdentification( ); } } >
-                      <i className="icon-identification"></i> { I18n.t( "add_id" ) }
+                      <i className="fa fa-comment" />
+                      { " " }
+                      { I18n.t( "comment_" ) }
                     </Button>
                   </div>
                 </div>

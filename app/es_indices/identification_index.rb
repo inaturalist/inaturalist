@@ -64,13 +64,15 @@ class Identification < ActiveRecord::Base
       disagreement: disagreement,
       previous_observation_taxon_id: previous_observation_taxon_id,
       spam: known_spam? || owned_by_spammer?,
-      taxon_id: taxon_id
+      taxon_id: taxon_id,
+      hidden: hidden?
     }
     if observation && taxon && !options[:no_details]
       json.merge!({
         current_taxon: (taxon_id == observation.taxon_id),
         taxon: taxon.as_indexed_json(no_details: true, for_identification: true),
-        observation: observation.as_indexed_json(no_details: true, for_identification: true)
+        observation: observation.as_indexed_json(no_details: true, for_identification: true),
+        moderator_actions: moderator_actions.map(&:as_indexed_json)
       })
     end
     json

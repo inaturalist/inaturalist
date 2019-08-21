@@ -1,6 +1,10 @@
 @import "../colors";
 @import "../responsive";
 
+#header {
+  margin-bottom: 0;
+}
+
 #imgcol {
   flex: 1;
   background-size: cover;

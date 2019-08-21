@@ -131,11 +131,24 @@ describe User do
       }.to raise_error(ActiveRecord::RecordInvalid)
     end
 
+    it "should strip html out of the name" do
+      name = "Trillian"
+      u = User.make!( name: "#{name}<script>foo</script>" )
+      expect( u.name ).to eq name
+    end
+
   end
 
   describe "update" do
     before(:each) { enable_elastic_indexing( Observation ) }
     after(:each) { disable_elastic_indexing( Observation ) }
+
+    it "should strip html out of the name" do
+      u = User.make!
+      n = u.name
+      u.update_attributes( name: "#{u.name}<script>foo</script>" )
+      expect( u.name ).to eq n
+    end
     
     it "should update the site_id on the user's observations" do
       s1 = Site.make!

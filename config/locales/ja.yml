@@ -24,6 +24,9 @@ ja:
   x_people_agree_html:
     one: <span class="count">1</span>人が賛成しています
     other: <span class="count">%{count}</span>が賛成しています
+  x_photos:
+    one: 1枚の写真
+    other: '%{count}枚の写真'
   x_taxa_observed_html:
     one: <span class='count'>1</span>件の観察済分類群
     other: <span class='count'>%{count}</span>件の観察済分類群
@@ -213,7 +216,9 @@ ja:
   adding_to_your_life_list: ライフリストに追加中...
   additional_range: 追加の分布範囲
   additional_range_data_from_an_unknown_source: 追加の分布範囲の提供先は不明
+  adjust_brightness: 明るさを調節
   admin: 管理者
+  admin_s: 管理者
   admin_any_projects: どのプロジェクトも管理していません
   admin_only: 管理者のみ
   admin_tools: 管理者ツール
@@ -234,8 +239,33 @@ ja:
   all_photos: すべての写真
   all_places: すべての場所
   all_projects: すべてのプロジェクト
+  all_children_added_to_the_database: データベースに追加した子項目の合計
   all_rank_added_to_the_database:
+    phylum: データベースに追加した門の合計
+    subphylum: データベースに追加した亜門の合計
+    superclass: データベースに追加した上綱の合計
+    class: データベースに追加した綱の合計
+    subclass: データベースに追加した亜綱の合計
+    infraclass: データベースに追加した下綱の合計
+    superorder: データベースに追加した上目の合計
+    order: データベースに追加した目の合計
+    suborder: データベースに追加した亜目の合計
+    infraorder: データベースに追加した下目の合計
+    superfamily: データベースに追加した上科の合計
+    family: データベースに追加した科の合計
+    subfamily: データベースに追加した亜科の合計
+    supertribe: データベースに追加した上族の合計
+    tribe: データベースに追加した族（連）の合計
+    subtribe: データベースに追加した亜族の合計
+    genus: データベースに追加した属の合計
+    subgenus: データベースに追加した亜属の合計
+    section: データベースに追加した節の合計
+    subsection: データベースに追加した亜節の合計
     species: データベースに追加した種の合計
+    hybrid: データベースに追加した交雑種の合計
+    subspecies: データベースに追加した亜種の合計
+    variety: データベースに追加した変種の合計
+    form: データベースに追加した形態の合計
   all_rights_reserved: 著作権を全て留保する
   all_species: すべての種
   all_taxa:
@@ -261,6 +291,13 @@ ja:
     ray_finned_fishes: 条鰭綱
     reptiles: 爬虫類
     life: 生命
+    x_actinopterygii:
+      one: 側棘鰭上目1種
+      other: 側棘鰭上目%{count}種
+    x_chromista:
+      one: クロミスタ1類
+      other: クロミスタ%{count}類
+  all_taxa_: すべての分類群
   all_taxa_in_this_guide: このガイド内のすべての分類群
   all_taxonomic_groups: '&laquo; すべての分類群'
   all_updates: すべての更新情報
@@ -276,6 +313,7 @@ ja:
   allowed_values: 許可される値
   alphabetical: アルファベット順
   alphabetical_order: アルファベット順
+  already_have_an_account_log_in_html: アカウントは登録済みですか？ <strong>ログインしてください。</strong>
   amphibians: 両生類
   amphibiaweb_doesnt_have_info_about_species: AmphibiaWebにはこの種についての情報はありません
   amphibiaweb_taxonomy: AmphibiaWebの分類体系情報
@@ -286,6 +324,9 @@ ja:
   and_make_some_new: 新規作成しませんか？
   and_other_taxa: '&amp; その他の分類群'
   and_un_license_all_your_observations: そしてすべての観察記録のライセンスを解除
+  and_x_more_people!:
+    one: ともう1人!
+    other: 他%{count}人!
   android: Android
   animals: 動物
   annotation: 注釈
@@ -366,10 +407,16 @@ ja:
   at_any_time_change: いつでも(<span class="button">変更</span>)
   at_time: '%{time}'
   atom: Atom
+  attached_taxon: 関連する分類群
+  attribute: 属性
+  attribution: 帰属
   authority_list:
     iucn_red_list: IUCNレッドリスト
+    natureserve: NatureServe
+    cites: CITES
   authorize_permissions_from_provider: '%{provider}の権限を承認'
   automatic_descriptions_have_been_disabled: この分類群の自動説明が使用できません。
+  automatic_short: 自動
   automatically_add_to_project: プロジェクトに自動的に追加
   automatically_add_observations_to_this_project: このプロジェクトに観察記録を自動的に追加する
   automatically_share_your_observations_on: 観測記録を自動的にシェアー
@@ -400,13 +447,15 @@ ja:
   back_to_x_history: '%{x}の履歴へ戻る'
   back_to_x_journal: '%{user}のジャーナルへ戻る'
   back_to_x_blog: '%{x}のブログに戻る'
+  back_to_your_dashboard: 自分のダッシュボードに戻る
   back_to_x_observations: '%{user}の観察記録へ戻る'
   back_to_your_lists: 自分のリストに戻る
   back_to_your_journal: 自分の日記に戻る
   back_to_your_observations: 自分の観察記録に戻る
   back_to_your_profile: 自分のプロフィールに戻る
   back_to_your_projects: 自分のプロジェクトに戻る
-  based_on_the_evidence_can_id_be_improved: 証拠を根拠にコミュニティー判定を確定しますか、改善しますか？
+  based_on_the_evidence_can_id_be_improved: 証拠に基づいてコミュニティー分類を確定しますか、改善しますか？
+  basic: 基本
   batch: 一括
   batch_edit: 一括編集
   batch_edit_taxa_for_x_html: '%{x}の分類群一括編集'
@@ -573,12 +622,12 @@ ja:
   committing: 確定中...
   community: コミュニティ
   community_id: '<strong>コミュニティー</strong>ID:'
-  community_id_heading: コミュニティー判定
-  community_id_at_species_or_lower?: 種以下の階級によるコミニュティIDの有無は？
-  community_id_at_genus_level_or_lower: 層レベル以下のコミュニティー判定の有無
-  community_id_at_species_level_or_lower: 種以下の階級によるコミニュティID
+  community_id_heading: コミュニティー分類
+  community_id_at_species_or_lower?: 種以下の階級によるコミニュティ分類の有無は？
+  community_id_at_genus_level_or_lower: 層レベル以下のコミュニティー分類の有無
+  community_id_at_species_level_or_lower: 種以下の階級によるコミニュティ分類
   community_moderation_settings: コミュニティーモデレーション設定
-  community_supported_id: コミュニティーによるID?
+  community_supported_id: コミュニティーが支持する分類ですか？
   compare_with: 次と比較する：
   comparing: 比較しています
   comparing_list_to_list: '%{list1} と%{list2}を比較しています'
@@ -1105,8 +1154,6 @@ ja:
   hex_color_eg: 16進色、例：65644F
   hi: こんにちは、
   hi_user: こんにちは、%{user}
-  hide: 非表示
-  hide_details: 詳細を非表示
   high: 高
   highest_rank: 最高位階級
   highlights: ハイライト
@@ -2130,7 +2177,7 @@ ja:
   prev: 前へ
   previous_page: 前のページ
   print_in_browser: ブラウザーで印刷
-  privacy: プライバシー・ポリシー
+  privacy: プライバシー
   privacy_policy: プライバシー・ポリシー
   private: 非公開
   proceed: 続行
@@ -2599,6 +2646,24 @@ ja:
   taxa_observed: 観察された分類群
   taxa_to_include: 対象分類群
   taxon: 分類群
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon}は観察1件で%{iconic_taxon}の中で%{rank}位'
+    other: '%{taxon}は観察%{count}件で%{iconic_taxon}の%{rank}位'
+  taxon_is_a_rank_of_amphibia_with_x_observations:
+    one: 観察された1件の%{taxon}は両生ハ虫類中%{rank}位
+    other: 観察された%{count}件の%{taxon}は両生ハ虫類中%{rank}位
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon}は観察1件で鳥類の%{rank}位'
+    other: '%{taxon}は観察%{count}件で鳥類の%{rank}位'
+  taxon_is_a_rank_of_reptilia_with_x_observations:
+    one: '%{taxon}は観察1件でハ虫類の%{rank}位'
+    other: '%{taxon}は観察%{count}件でハ虫類の%{rank}位'
+  taxon_is_a_rank_of_insecta_with_x_observations:
+    one: '%{taxon}は観察1件で昆虫類の%{rank}位'
+    other: '%{taxon}は観察%{count}件で昆虫類の%{rank}位'
+  taxon_is_a_rank_of_fungi_with_x_observations:
+    one: '%{taxon}は観察1件でキノコ類の%{rank}位'
+    other: '%{taxon}は観察%{count}件でキノコ類の%{rank}位'
   taxonomy: 分類
   taxon_: 分類群
   taxon_change: 分類群の変更
@@ -2662,7 +2727,7 @@ ja:
   the_community_agrees_location_doesnt: コミュニティーの意見では、<strong>位置情報が正確ではない</strong>ようです。（例：海の真ん中に猿がいたり、オフィスビルの中にカバがいるなど）
   the_community_agrees_organism_isnt: コミュニティーに意見では、<strong>当生き物は野生または帰化されたものではない</strong>ようです。（例：人間または宇宙人により飼育されている生き物）
   the_community_id_requires_at_least_two_identifications: コミュニティーIDには最低2件の判定が必要です。
-  the_community_must_feel_that: コミュニティーにとって、証拠に基づくコミュニティー判定は最善である必要があります
+  the_community_must_feel_that: コミュニティーは、証拠に基づいたコミュニティー分類は最善だと確信する必要があります
   the_data_quality_assessment_is: データ質評定とは、観察記録の精度を示すものです。すべての観察記録の初期状態は<strong>「カジュアル」</strong>となっていますが、<strong>「研究用」</strong>状態になるには
   the_following_lists: 次のリスト
   the_following_observations_could: 次の観察記録は%{link}に追加できませんでした
@@ -2716,6 +2781,12 @@ ja:
   this_list_is_empty!: このリストに項目がありません！
   this_list_only_accepts_taxa_that_are: このリストは次の条件を満たす分類群のみを追加することができます：
   this_observation_has_been_incorporated_into_the_following_external_websites: この観察記録データが次の外部サイトに提供されています：
+  this_observation_is_featured_on_x_sites:
+    one: この観察はウェブサイト1箇所に掲載されています
+    other: この観察はウェブサイト %{count}箇所に掲載されています
+  this_observation_is_in_x_projects:
+    one: この観察が属するプロジェクトは1件
+    other: この観察が属するプロジェクトは%{count}件
   this_observation_lies_outside_the: この観察記録が%{site_name}のデータベース上にあるこの種の生息域の外にあるようです。もしかしたら、${site_name}の生息域データに不備があるか、IDが異なるか、迷鳥のような突発的な移動なのか、また生息域拡大なのかもしれません
   this_photo_is_already_associated: この写真はすでに別の観察記録で使用されています。
   this_place_has_no_check_list: この場所にはチェックリストがありません。
@@ -2799,6 +2870,9 @@ ja:
   update_selected_taxa: 選択された分類群を更新
   update_subscription: 購読を更新
   update_subscription_preferences: 購読設定を更新
+  update_x_selected_taxa:
+    one: 選んだ分類群1件を更新
+    other: 選んだ分類群%{count}件を更新
   update_your_content: 内容を更新
   update_with_eol_content: EOLデータで更新
   update_with_site_content: '%{site_name}データで更新'
@@ -2825,6 +2899,9 @@ ja:
   US_states: アメリカの州
   usage_stats: 利用状況
   use_unique_file_names_for_separate_uploads: 個別のアップロードの場合、一意のファイル名をご使用ください
+  used_x_times:
+    one: 1回使用
+    other: '%{count}回使用'
   user: ユーザー
   user_added_a_x: '%{user}が%{x}を追加しました'
   user_added_a_x_to_noun_by_html: '%{user}は%{by}の%{noun}に%{x}を追加しました'
@@ -2837,7 +2914,7 @@ ja:
   user_commented_on: '%{user}はあなたの%{title}にコメントしました（%{time}）'
   user_faved_a_noun_by_owner: '%{user}が%{owner}の%{noun}をお気に入りに追加しました'
   user_follows: '%{user}がフォローしているユーザー'
-  user_has_opted_out_of_community_id: 利用者はコミュニティー判定の通知を受け取りません
+  user_has_opted_out_of_community_id: 利用者はコミュニティー分類の通知を受け取りません
   user_hasnt: '%{user}はまだ次のことをしていません：'
   user_invited_you_to_join_html: '%{user}から招待が届いています：'
   user_invited_you_to_join_project: '%{user}から%{project}に参加するように招待されました'
@@ -3199,20 +3276,53 @@ ja:
         unreview_all_tooltip: ページ内のすべての観察記録を未確認にする
       show:
         allow_curator_coordinate_access_desc_html: この観察記録の非公開位置情報の閲覧をプロジェクトキュレーターに許可
-        ancestor_disagreements_desc: 分類群の祖先の中に含まれるものの、この分類群を使用した最初の同定後に作成された、同定された分類群の数
-        community_taxon_desc_html: "<p class=\"ui\">\n  コミュニティの分類群（コミュニティの判定）とは、%{site_name}
-          \n  コミュニティが特定の観察記録に記されたと認めた分類群のことです。\n  コミュニティの分類群の決定法に興味がある場合、以下のアルゴリズム\n
-          \ の説明に説明がありますが、通常は<strong>同定者の3分の2以上が賛成\n  する分類群</strong>を指します。ときには、より上位の分類群を選び\n
-          \ 相反する種を含める（kingsnakeだという主張とrattlesnakeという主張\n  があることからiNatはヘビ類を総括する Serpentes
-          を選択）ことが\n  あります。アルゴリズムは、反対意見がしばしば正しいということから\n  反対意見を少し重視する傾向があります。</p>\n<p
-          class=\"ui\">\n  コミュニティの分類群は、観察記録をデータ提携先と共有したり、同種\n  の観察記録をウェブサイトにリンクしたり、生き物リストの更新に使い\n
-          \ ます。もしコミュニティの分類群に賛成しない場合は否定できますが、\n  その場合はあなたの同定を使い、他の観察記録にリンクしたり、生き物\n
-          \ リストの更新に使われたりします。また自分の観察記録が研究用と承認\n  されるには、コミュニティが<em>アナタの同定</em>に同意する必要があり\n
-          \ ます。もしコミュニティの分類群という考え方に反対であれば、完全に\n  通知を削除するよう<a href=\"/users/edit\" target=\"_blank\">個人設定\n
-          \ を編集してください</a>。\n</p>\n<p class=\"ui\">\n  <strong>アルゴリズム：</strong>同定された群とそれを含む分類（例：\n
-          \ <i> Homo </i>類には<i> Homo sapiens </i>が含まれる）、両方を採\n  点し、同定数の累計の合計に対するその分類群の同定の累計数の比率、\n
-          \ その分類群の最初の同定以降に追加された、より保守的な同定件数、\n  ならびに完全に異なる同定の件数（すなわち分類群で3分の2以上をスコ\n
-          \ アし最低2件の同定が存在）を記録します。3分の2以上をスコアし最低\n  2件の同定が存在する分類群は、最も低い順位の分類群を選択します。</p>"
+        ancestor_disagreements_desc: 分類群の祖先の中に含まれてはいるが、この分類に適合しないもの用した最初の同定後に作成された、同定された分類群の数
+          (つまり「属は正しいはずだが、この種とは思わない」分類)
+        community_taxon_desc_html: |-
+          <p class="ui">
+            コミュニティ分類（もしくはコミュニティ判定）とは
+            %{site_name}コミュニティが特定の観察において
+            認定した分類です。もしコミュニティ判定の選択基準に
+            関心がある場合は、以下のアルゴリズムの注記を参照できますが、一般的に
+            <strong>判定者の 2/3 以上が同意した分類
+            を選択しています</strong>。場合によっては、これは
+            より上位の分類を選択することで矛盾する分類を複数
+            含みます（たとえばキングヘビだと予想するあなたと
+            ガラガラヘビと考える私がいると iNat ではすべてのヘビ類を含む
+            ヘビ亜目を採用するなど。）アルゴリズムはまた、異議申し立て者が
+            正しい場合の多さを発見したため、異議を唱える人を
+            やや優先しがちです。
+          </p>
+          <p class="ui">
+            研究レベルの観察では（その他の規定に優先して）コミュニティ
+            分類が必要です。特定の観察において識別が
+            1件のみの場合、コミュニティ分類はゼロです。すべての
+            観察で最低識別が1件ある場合は必ず観察
+            分類を伴います。観察分類とはデータ提供者と
+            観察を共有するときに用いる分類であり、その観察地における
+            同一の分類の観察の共有や生涯リスト更新その他に用います。ほとんどの
+            場合、観察分類は結局はコミュニティ分類を採用することに
+            なるものの、ときには合致しないことがあり、特にコミュニティが
+            識別の合意を得ないうちは起こりがちです。たとえばあなたは
+            ヘビ（ヘビ亜目）だと考え、私はキングヘビ
+            （<i>キングヘビ</i>属）だと考えた場合、識別分類はキングヘビ属（根拠は私の識別のみ）であって、コミュニティ分類としては
+            ヘビ亜目（最低2件の識別が支持）になります。あるいは
+            その他の理由であなたがコミュニティ分類に不賛同な場合、
+            それを個人の識別では否定しておき、観察
+            分類は（あなた個人の識別となり）コミュニティ分類と合致しません。
+            さらに、あなた個人の観察は、コミュニティの<em>同意</em>を得るまでは研究レベルの観察とは
+            なりえないことを意味します。コミュニティ分類という考え方そのものを
+            容認できない場合、<a href="/users/edit" target="_blank">個人設定を編集し</a>
+             まったく不採用にすることも可能です。
+          </p>
+          <p class="ui">
+            <strong>アルゴリズム：</strong>すべての識別された分類とそれを含む分類
+            (たとえば<i>ホモ</i>属には<i>ホモサピエンス</i>が含まれる)が、互いを「賛成」の件数 - その分類の累積IDに対する
+            「反対」の件数 - まったく異なるIDの件数（たとえば分類IDで
+            計算した分類を含まない物）と、「祖先の不一致」 - より
+            保守的なIDでより詳細な分類と不一致の件数の割合として算出します。スコアが 2/3 以上の識別分類で
+            最低2件の識別がある場合、もっとも低位の分類を選択します。
+          </p>
         cumulative_count_desc: 単一の分類群とその下位分類に対する同定の総数
         identification_count_desc: 単一の分類群に対する同定の件数
     emailer:
@@ -3256,6 +3366,15 @@ ja:
           curators: プロジェクトキュレーター
       project_user_curator_coordinate_access_labels:
         observer: 同意します。ただしその観察記録をプロジェクトに追加したのが私自身だった場合に限定します。
+      show:
+        bioblitz_results_desc_html: |-
+          <p>
+          通常のプロジェクトと異なり、bioblitzes は特定の場所と時間枠で記録された<em>全ての</em>観察統計を表示し、対象は人々が意図的にプロジェクトに追加した観察に限定されません。これは、統計をリアルタイムで操作するには、観察をプロジェクトに追加しなければいけないというハードルを取り除くためです。プロジェクトチームと参加者が通常のプロジェクトのように、関連する観察を積極的に追加しない限り、観察をエクスポートしたり、さまざまなプロジェクトビュー（Webサイトのメンバー投稿やモバイルアプリのプロジェクト観察検索など）に表示することはできません。
+          </p>
+          <p>
+          この種のプロジェクトは、プロジェクトに不注意に追加した観察も統計に表示しますが、キュレータがそれらの観察の非公開または不明瞭な座標を表示することはできず、また観察者がプロジェクトの規約を遵守したとは見なしません。あなたがプロジェクトのキュレータで非公開の座標にアクセスしたい場合、あるいはまた観察をキュレーション済みのプロジェクトのチェックリストに含めたい場合は、通常のプロジェクトの場合と同様、プロジェクトに登録した人に観察を追加してもらう必要があります。
+          </p>
+        curated_checklist_desc: これはこのプロジェクトに明示的に追加され専門家が吟味したチェックリストと種数の観測であり、対象はこのイベントを行った場所と時間に記録された観測すべではありません。
     shared:
       spam:
         this_has_been_flagged_as_spam: スパムとしてフラグ付けられました
@@ -3289,6 +3408,10 @@ ja:
           Life Stage=pupa: 蛹
           Life Stage=adult: 成虫
     users:
+      delete:
+        x_comments_html:
+          one: あなたが追加した<strong class="count">コメントは1件</strong>
+          other: あなたが追加した<strong class="count">コメントは%{count}件</strong>
       edit:
         blocking_desc_html: |-
           <p>
@@ -3431,10 +3554,22 @@ ja:
       about_x_years:
         one: 約1年
         other: 約%{count}年
+      almost_x_years:
+        one: 約1年
+        other: 約%{count}年
       half_a_minute: 約30秒
+      less_than_x_seconds:
+        one: 1秒以内
+        other: '%{count}秒以内'
       x_seconds:
         one: 1秒
         other: '%{count}秒'
+    countdown_x_hours:
+      one: 時間
+      other: 時間
+    countdown_x_seconds:
+      one: 秒
+      other: 秒
     prompts:
       day: 日
       hour: 時間
@@ -3465,8 +3600,12 @@ ja:
       too_short:
         one: は短すぎます（最小は1文字）
         other: は短すぎます（最小は%{count}文字）
+      wrong_length:
+        one: の長さが間違いです (数字1文字が正解)
+        other: iの長さが間違いです (数字%{count}文字が正解)
     template:
       body: 次のフィールドに問題がありました：
+  
   helpers:
     select:
       prompt: 選択してください

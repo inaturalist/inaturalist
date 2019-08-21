@@ -30,6 +30,7 @@ class ProjectForm extends React.Component {
       removeProject
     } = this.props;
     if ( !project ) { return ( <span /> ); }
+    const thereAreErrors = !_.isEmpty( _.compact( _.values( project.errors ) ) );
     return (
       <div className="Form">
         <SharedForm {...this.props} />
@@ -99,13 +100,11 @@ class ProjectForm extends React.Component {
                   className="btn btn-default done"
                   ref={this.doneButton}
                   onClick={( ) => confirmSubmitProject( )}
-                  disabled={
-                    project.saving || !_.isEmpty( _.compact( _.values( project.errors ) ) )
-                  }
+                  disabled={project.saving || thereAreErrors}
                 >
                   { project.saving ? I18n.t( "saving" ) : I18n.t( "done" ) }
                 </button>
-                { project.errors.description && (
+                { thereAreErrors && (
                   <Overlay
                     show
                     placement="top"
