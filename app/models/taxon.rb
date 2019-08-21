@@ -97,9 +97,7 @@ class Taxon < ActiveRecord::Base
              :handle_after_move,
              :update_taxon_framework_relationship
   after_destroy :update_taxon_framework_relationship
-             
-
-  after_commit :index_observations
+  after_save :index_observations
 
   validates_presence_of :name, :rank, :rank_level
   validates_uniqueness_of :name, 
