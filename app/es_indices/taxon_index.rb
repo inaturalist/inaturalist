@@ -112,10 +112,7 @@ class Taxon < ActiveRecord::Base
       parent_id : id
     # indexing originating Observations, not via another model
     unless options[:no_details]
-      if options[:for_observation]
-        mapped = taxon_names.to_a.group_by{ |tn| "names_#{tn.locale_for_lexicon}" }
-        mapped.each{ |k,v| json[k] = v.map(&:name) }
-      else
+      unless options[:for_observation]
         json[:names] = taxon_names.
           sort_by{ |tn| [ tn.is_valid? ? 0 : 1, tn.position, tn.id ] }.
           map{ |tn| tn.as_indexed_json(autocomplete: !options[:for_observation]) }

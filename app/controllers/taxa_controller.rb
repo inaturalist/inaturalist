@@ -764,13 +764,27 @@ class TaxaController < ApplicationController
     else
       filters = [ { exists: { field: "photos_count" } } ]
       unless params[:q].blank?
-        filters << {
+        searched_taxa = Observation.matching_taxon_ids( params[:q] )
+        taxon_search_filter = !searched_taxa.empty? && { terms: { "taxon.id" => searched_taxa } }
+        match_filter = {
           multi_match: {
             query: params[:q],
             operator: "and",
-            fields: [ :description, "taxon.names_*", "user.login", "field_values.value" ]
+            fields: [ :description, "user.login", "field_values.value" ]
           }
         }
+        if match_filter && taxon_search_filter
+          filters << {
+            bool: {
+              should: [
+                match_filter,
+                taxon_search_filter
+              ]
+            }
+          }
+        else
+          filters << match_filter
+        end
       end
       unless quality_grades.blank?
         filters << {

@@ -14,7 +14,7 @@ class Observation < ActiveRecord::Base
     :photos,
     { sounds: :user },
     { identifications: [ :stored_preferences, :taxon ] }, :project_observations,
-    { taxon: [ :taxon_names, :conservation_statuses ] },
+    { taxon: [ :conservation_statuses ] },
     { observation_field_values: :observation_field },
     { comments: [ { user: :flags }, :flags ] } ) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
@@ -107,18 +107,6 @@ class Observation < ActiveRecord::Base
       indexes :identifications, type: :nested do
       end
     end
-    mapping dynamic_templates: [
-      {
-        names_locales: {
-          path_match: "taxon.names_*",
-          match_mapping_type: "string",
-          mapping: {
-            type: "text",
-            analyzer: "ascii_snowball_analyzer"
-          }
-        }
-      }
-    ]
   end
 
   def as_indexed_json(options={})
