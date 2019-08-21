@@ -32,6 +32,9 @@ while true
     user.donorbox_plan_status = plan["status"],
     user.donorbox_plan_started_at = Date.parse( plan["started_at"] ) rescue nil
     if user.changed?
+      if user.donorbox_plan_status_changed? && user.donorbox_plan_status != "active"
+        user.prefers_monthly_supporter_badge = false
+      end
       if user.save
         puts "\tUpdated #{user}"
         num_updated_users += 1

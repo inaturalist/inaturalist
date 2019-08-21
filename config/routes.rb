@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get "/privacy", to: redirect( "/pages/privacy" ), as: :privacy_policy
   get "/users/new.mobile", to: redirect( "/signup" )
   get "/donate", to: "donate#index"
+  get "/monthly-supporters", to: "donate#monthly_supporters", as: :monthly_supporters
 
   resources :controlled_terms
   resources :controlled_term_labels, only: [:create, :update, :destroy]

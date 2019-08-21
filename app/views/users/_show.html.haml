@@ -71,7 +71,7 @@
         - else
           =t :last_active_with_date, date: t(:unknown)
       = feature_test :monthly_supporters do
-        - if @donor_since
+        - if @donor_since && @user.prefers_monthly_supporter_badge?
           %span.date.monthly-supporter
             %i.fa.fa-check-circle
             =t :monthly_supporter_since_date, date: l( @donor_since, format: :short_with_year )

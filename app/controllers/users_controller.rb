@@ -565,7 +565,10 @@ class UsersController < ApplicationController
   
   def edit
     respond_to do |format|
-      format.html
+      format.html do
+        @monthly_supporter = @user.donorbox_plan_status == "active" &&
+          @user.donorbox_plan_type == "monthly"
+      end
       format.json do
         render :json => @user.to_json(
           :except => [
@@ -1109,6 +1112,7 @@ protected
       :prefers_no_place,
       :prefers_coordinate_interpolation_protection,
       :prefers_coordinate_interpolation_protection_test,
+      :prefers_monthly_supporter_badge,
       :search_place_id,
       :site_id,
       :test_groups,

@@ -4999,6 +4999,33 @@ en:
           organization based in the United States of America.
         </p>
       post_donate_social_media_text: I support iNaturalist because...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Become a Monthly Supporter of iNaturalist
+        desc_html: |
+          <p class="lead">
+            <strong>iNaturalist is one of the world's largest communities dedicated to
+            exploring biodiversity. Thank you for being part of it!</strong>
+          </p>
+          <p class="lead">
+            We want to keep iNaturalist free to use, but it’s not free to
+            operate. If you love iNaturalist, please consider becoming a monthly
+            supporter. Recurring gifts help ensure that iNaturalist can continue
+            to scale its infrastructure and staff by providing predictable
+            revenue. You can also opt to show your monthly supporter status on
+            your user profile.
+          </p>
+          <p class="lead">
+            Your charitable donations help support iNaturalist as the community
+            grows, from advancing computer vision and implementing new features
+            to supporting our servers and staff. If you prefer to give a
+            one-time donation, please <a href="%{donate_url}">click here</a>.
+          </p>
+          <p class="text-muted">
+            iNaturalist is a joint initiative of the California Academy of Sciences
+            and the National Geographic Society. All donations will be received by
+            the California Academy of Sciences, a 501(c)(3) tax-exempt not-for-profit
+            organization based in the United States of America.
+          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |
@@ -6719,6 +6746,8 @@ en:
           Show common names. Disable if you only want to view scientific names.
           Note that you can control which common names you see by changing your
           locale and place settings.
+        display_monthly_supporter_status_on_my_profile: |
+          Display Monthly Supporter status on my profile
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |
           If you change your mind you can always
           <a href='/users/edit'>edit your settings</a>.
@@ -6756,6 +6785,14 @@ en:
           Facility</a> (GBIF), an international, inter-governmental organization
           that compiles and distributes biodiversity information from around the
           world.
+        monthly_supporter_desc_html: |
+          iNaturalist Monthly Supporters make automatic monthly contributions
+          which are received by the California Academy of Sciences (United
+          States IRS FIN 94-1156258) to support the not-for-profit operation of
+          iNaturalist and iNaturalist Network sites.
+          <a href="%{url}">Click here to become a monthly supporter</a>.
+          When we have confirmed your support you will be able to check this
+          box to display this status on your profile.
         muting_desc_html: |
           <p>
             Muting someone prevents you from receiving notifications about things
@@ -6777,23 +6814,6 @@ en:
           any: Any
           joined: Projects you've joined
           none: "None, only you can add your observations to projects"
-        this_only_applies_to_traditional_projects: |
-          This only applies to traditional projects. You can't exclude observations
-          from collection or umbrella projects, which are essentially saved searches.
-          You can read more
-          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
-        project_settings_desc: |
-          Remember, this does not give projects permission to access your
-          hidden coordinates or send you updates. You must join projects in
-          order to grant these permissions, or grant them on a case-by-case
-          basis.
-        taxon_change_desc: |
-          When taxa are merged or renamed on %{site_name}, your observations, listed
-          taxa, identifications, etc. will be automatically updated to the new
-          taxa if the change is unambiguous. If you opt out or the change is
-          ambiguous (e.g. a split), you will receive an update about the
-          change linking to a tool you can use to manually update your content
-          if you choose.
         prefers_community_taxa_desc: |
           %{site_name} tracks what you think your observations are and what
           the community thinks they are. The identification we share with data
@@ -6803,18 +6823,36 @@ en:
           community opinion won't be favored over yours. This means your
           observations will not be eligible for research grade unless you
           agree with the community.
-        search_place_help_html: |
-          Default place for observation searches.
-        scientific_name_first_desc: |
-          Show scientific names before common names.
-        youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
-        same_day_geoprivacy_protection: Same-day geoprivacy protection
         prefers_coordinate_interpolation_protection_desc: |
           When you set the geoprivacy of an observation to "obscured" or
           "private" this will apply the same geoprivacy to all your other
           observations from the same day to make it harder for other people to
           guess the true coordinates based on observations made around the same
           time.
+        project_settings_desc: |
+          Remember, this does not give projects permission to access your
+          hidden coordinates or send you updates. You must join projects in
+          order to grant these permissions, or grant them on a case-by-case
+          basis.
+        same_day_geoprivacy_protection: Same-day geoprivacy protection
+        search_place_help_html: |
+          Default place for observation searches.
+        scientific_name_first_desc: |
+          Show scientific names before common names.
+        taxon_change_desc: |
+          When taxa are merged or renamed on %{site_name}, your observations, listed
+          taxa, identifications, etc. will be automatically updated to the new
+          taxa if the change is unambiguous. If you opt out or the change is
+          ambiguous (e.g. a split), you will receive an update about the
+          change linking to a tool you can use to manually update your content
+          if you choose.
+        thanks_for_supporting_us!: Thanks for supporting us!
+        this_only_applies_to_traditional_projects: |
+          This only applies to traditional projects. You can't exclude observations
+          from collection or umbrella projects, which are essentially saved searches.
+          You can read more
+          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
+        youve_used_all_of_your_blocks: You've used all of your blocks. Remove a block to add another.
       recent:
         about_recent_users: About
         definitions_html:
