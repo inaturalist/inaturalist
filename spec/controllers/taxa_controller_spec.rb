@@ -164,8 +164,8 @@ describe TaxaController do
   end
 
   describe "observation_photos" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    before(:each) { enable_elastic_indexing( Observation, Taxon ) }
+    after(:each) { disable_elastic_indexing( Observation, Taxon ) }
 
     let(:o) { make_research_grade_observation }
     let(:p) { o.photos.first }

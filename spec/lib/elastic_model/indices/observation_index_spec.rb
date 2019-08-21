@@ -193,7 +193,7 @@ describe "Observation Index" do
     end
     it "should not include places that do not contain the uncertainty cell" do
       place = make_place_with_geom
-      o = Observation.make!( latitude: place.bounding_box[0], longitude: place.bounding_box[1] )
+      o = Observation.make!( latitude: place.bounding_box[2], longitude: place.bounding_box[3] )
       expect( o.as_indexed_json[:place_ids] ).not_to include place.id
     end
     it "should include county-level places that do not contain the uncertainty cell" do
@@ -201,7 +201,7 @@ describe "Observation Index" do
         place_type: Place::COUNTY,
         admin_level: Place::COUNTY_LEVEL
       )
-      o = Observation.make!( latitude: place.bounding_box[0], longitude: place.bounding_box[1] )
+      o = Observation.make!( latitude: place.bounding_box[2], longitude: place.bounding_box[3] )
       expect( o.as_indexed_json[:place_ids] ).to include place.id
     end
   end

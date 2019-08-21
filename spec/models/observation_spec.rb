@@ -482,11 +482,11 @@ describe Observation do
     end
 
     it "should be georeferenced? with zero degrees" do
-      expect( Observation.make!(longitude: 0, latitude: 0) ).to be_georeferenced
+      expect( Observation.make!(longitude: 1, latitude: 1) ).to be_georeferenced
     end
 
     it "should not be georeferenced with nil degrees" do
-      expect( Observation.make!(longitude: 0, latitude: nil) ).not_to be_georeferenced
+      expect( Observation.make!(longitude: 1, latitude: nil) ).not_to be_georeferenced
     end
 
     it "should be georeferenced? even with private geoprivacy" do
@@ -679,18 +679,20 @@ describe Observation do
       end
 
       it "should not allow dates that are greater than created_at due to chronic's weird time parsing" do
-        d = Chronic.parse( "2019-03-04 3pm" )
-        observed_on_string = "3 whatever"
-        o = Observation.make!( created_at: d, observed_on_string: d.to_s )
-        Observation.where( id: o.id ).update_all( observed_on_string: observed_on_string )
-        o.reload
-        expect( o.observed_on_string ).to eq observed_on_string
-        expect( o.created_at.to_date ).to eq d.to_date
-        expect( o.observed_on ).to eq d.to_date
-        observed_on = o.observed_on
-        o.update_attributes( updated_at: Time.now )
-        o.reload
-        expect( o.observed_on.to_s ).to eq observed_on.to_s
+        Time.use_zone "UTC" do
+          d = Chronic.parse( "2019-03-04 3pm" )
+          observed_on_string = "3 whatever"
+          o = Observation.make!( created_at: d, observed_on_string: d.to_s )
+          Observation.where( id: o.id ).update_all( observed_on_string: observed_on_string )
+          o.reload
+          expect( o.observed_on_string ).to eq observed_on_string
+          expect( o.created_at.to_date ).to eq d.to_date
+          expect( o.observed_on ).to eq d.to_date
+          observed_on = o.observed_on
+          o.update_attributes( updated_at: Time.now )
+          o.reload
+          expect( o.observed_on.to_s ).to eq observed_on.to_s
+        end
       end
     end
   
@@ -3769,22 +3771,22 @@ describe Observation do
   describe "interpolate_coordinates" do
     it "should use means" do
       u = User.make!
-      p = Observation.make!(user: u, latitude: 0, longitude: 0, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
-      n = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
+      p = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
+      n = Observation.make!(user: u, latitude: 2, longitude: 2, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
       o = Observation.make!(user: u, observed_on_string: "2014-06-02 01:00")
       o.interpolate_coordinates
-      expect( o.latitude ).to eq 0.5
-      expect( o.longitude ).to eq 0.5
+      expect( o.latitude ).to eq 1.5
+      expect( o.longitude ).to eq 1.5
     end
 
     it "should use weight by time" do
       u = User.make!
-      p = Observation.make!(user: u, latitude: 0, longitude: 0, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
-      n = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
+      p = Observation.make!(user: u, latitude: 1, longitude: 1, observed_on_string: "2014-06-02 00:00", positional_accuracy: 100)
+      n = Observation.make!(user: u, latitude: 2, longitude: 2, observed_on_string: "2014-06-02 02:00", positional_accuracy: 100)
       o = Observation.make!(user: u, observed_on_string: "2014-06-02 01:59")
       o.interpolate_coordinates
-      expect( o.latitude.to_f ).to be > 0.5
-      expect( o.longitude.to_f ).to be > 0.5
+      expect( o.latitude.to_f ).to be > 1.5
+      expect( o.longitude.to_f ).to be > 1.5
     end
   end
 

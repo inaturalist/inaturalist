@@ -276,7 +276,7 @@ describe CheckList, "refresh_with_observation" do
     expect( lt.first_observation_id ).not_to be( o.id )
     expect( lt.observations_count ).to be( 3 )
     
-    o.update_attributes( latitude: 0, longitude: 0 )
+    o.update_attributes( latitude: -1, longitude: -1 )
     without_delay do
       CheckList.refresh_with_observation(o, :latitude_was => @place.latitude, 
         :longitude_was => @place.longitude)
