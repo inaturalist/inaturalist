@@ -42,6 +42,7 @@
 # Author: Mirzali
 # Author: Mynor Archila
 # Author: Ncontinanza
+# Author: Nicolas Ramirez
 # Author: Ohlila
 # Author: Optilete
 # Author: Pablo de la Fuente Brun
@@ -525,6 +526,7 @@ es:
   amphibiaweb_taxonomy: Taxonomía de AmphibiaWeb
   an: un(a)
   an_: un(a)
+  ancestor_taxon: Taxón Antepasado
   and: "y"
   and_choose_a_matching_taxon: y selecciona un taxón de la lista que concuerde. Si
     no terminas con algo como
@@ -912,7 +914,7 @@ es:
     que estás tratando de identificar.
   check_out_your_life_list: Revisa tu lista de vida
   check_this_box_if_html: |-
-    Selecciona esta caja si quieres aplicar una
+    Selecciona esta casilla si quieres aplicar una
     <a href='http://creativecommons.org/licenses/by-nc/3.0/' target='_blank'>Licencia de Atribución Sin Fin Comercial de Creative Commons</a>
     a tus fotos. Puedes escoger una licencia diferente o eliminarla después, pero esta es la mejor licencia para compartir datos con los investigadores.
   checklist: Lista de verificación
@@ -1054,6 +1056,8 @@ es:
     url: URL de una página que describa este estado.
     geoprivacy: Geoprivacidad predeterminada para esta especie o grupo.
     iucn: Código equivalente a la Lista roja de UICN.
+  conservation_status_geoprivacy_desc: La geoprivacidad predeterminada se aplica a
+    todas las observaciones de este taxón en este lugar
   conservation_summary: Resumen de conservación
   contact_support: Contactar el servicio técnico
   contain_all_descendants?: ¿Esta lista de verificación contiene todos los descendientes
@@ -2295,9 +2299,11 @@ es:
     mk: Macedonio
     nl: Holandés
     oc: Occitano
+    pl: Polaco
     pt-BR: Portugués (Brasil)
     pt-PT: Portugués (Portugal)
     ru: Ruso
+    sk: Eslovaco
     sq: Albanés
     sv: Sueco
     zh-CN: Chino (simplificado)
@@ -2406,7 +2412,7 @@ es:
   matched_several_different_taxa: varios taxones distintos coinciden
   matching_species_will_shown_up_here: Las especies que encuentres se mostrarán aquí.
     El mapa mostrará un área si %{place} tiene alguna de esas especies.
-  maverick: Maverick
+  maverick: Disidente
   maybe_your_signed_in_with: ¿Tal vez ingresaste con tu cuenta %{omniauth}?
   media: Multimedia
   media_type: Tipo de medios
@@ -3127,7 +3133,6 @@ es:
   photo?: ¿Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Navegador de fotos
-  photo_by: Foto por
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_credits: Créditos de las fotos
   photo_deleted: Foto borrada
@@ -3155,6 +3160,13 @@ es:
   google_account_not_linked: Como %{user} ya no tiene ninguna cuenta de Google enlazada,
     %{site_name} no tiene permisos para acceder a esta fotografía.
   pi_consent_desc_title: Sobre la Informacion Personal
+  pi_consent_desc_html: Almacenamos información personal como nombres de usuario y
+    direcciones de correo electrónico para administrar cuentas en este sitio y para
+    cumplir con las leyes de privacidad, necesitamos que marque esta casilla para
+    indicar que acepta este uso de información personal. Para obtener más información
+    sobre qué información recopilamos y cómo la usamos, consulte nuestro <a href='%{privacy_url}'
+    target='_blank'>Política de Privacidad</a> y nuestro a href='%{terms_url}' target='_blank'>Términos
+    de Servicio</a>.
   pi_consent_label: |-
     Permito a iNaturalist a almacenar y procesar ciertos tipos de
     información personal para administrar mi cuenta
@@ -3837,6 +3849,7 @@ es:
   reload_and_refresh: Volver a cargar y refrescar lista
   reload_from_observations: Volver a cargar sus observaciones
   reload_timed_out: El tiempo de carga expiró.  Por favor trate de nuevo en un momento.
+  remarks_hidden: Observaciones ocultas
   remarks_optional: Comentarios <span class="small description">(opcionales)</span>
   remember_its_a_lot_easier_to_id: Recuerda, es mucho más fácil identificar algo si
     ofrece tanta información descriptiva como sea posible. Más importante aún, por
@@ -4386,6 +4399,7 @@ es:
   taxa_to_include: Especies o grupos a incluir
   taxon: Taxón
   taxon_autocomplete_placeholder: Aves, Monarca, etc.
+  taxon_geoprivacy: Geoprivación de taxones
   taxon_is_a_rank: '%{taxon} es un %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} es un %{rank} en %{iconic_taxon} con 1 observación'
@@ -4809,9 +4823,9 @@ es:
   "true": Verdadero
   trending: Tendencias
   trends: Tendencias
-  trip_target_list_info: Este es un conjunto no redundante de los taxones más generales
-    de en tu lista objetivo. Los taxones representados por observaciones ocultadas
-    fueron excluidos.<a href="/pages/trips">Leer más</a>.
+  trip_target_list_info: Cualquier especie cubierta por esta lista de objetivos que
+    no se observó dentro del radio y la duración de este viaje se interpretará como
+    ausencias. <a href="/pages/trips">Leer más</a>.
   trusted: De confianza
   trusted_project?: ¿Es un projecto verificicado?
   trust_this_person_with_your_private_coordinates: Confía a esta persona con tus coordenadas
@@ -4844,6 +4858,8 @@ es:
   unclassified: Sin clasificar
   ungrafted_taxa: Taxones sin injertar
   unhide_content: Mostrar contenido
+  unhide_desc: Mostrar revelará este contenido para que todos lo vean. Los curadores
+    todavía pueden eligir ocultarlo nuevamente en el futuro.
   uninvite: cancelar invitación
   unique_identifier_of_this_taxon: Identificador único para esta especie o grupo en
     la base de datos.
@@ -4963,6 +4979,8 @@ es:
   user_commented: '%{user} comentó'
   user_commented_on: '%{user} comentó sobre tu %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} no está de acuerdo que es %{taxon}'
+  user_disagrees_with_previous_finer_identifications: '%{user} no está de acuerdo
+    con identificaciones anteriores más finas.'
   user_faved_a_noun_by_owner: '%{user} preferido %{noun} por %{owner}'
   user_flagged_as_a_spammer_html: '%{user} marcado como spammer'
   user_flagged_as_a_non_spammer_html: '%{user} marcado como no-spammer'
@@ -5028,6 +5046,7 @@ es:
     de observación
   view: Ver
   view_all: Ve todo
+  view_all_flags: Ver Todas las Marcas
   view_all_from_x: Ve todo de %{x}
   view_all_members: Ve todos los miembros
   view_all_n: Ve todas las %{n}
@@ -5056,6 +5075,8 @@ es:
   view_lists: Ve las Listas
   view_listing: Ve listado
   view_moderation_history: Ver el historial de moderación
+  view_moderation_history_for_this_comment: Ver el historial de moderación de este
+    comentario
   view_more: Ve más
   view_more_about_x: Ve más sobre %{x}
   view_more_observations: Ve más observaciones
@@ -5300,8 +5321,8 @@ es:
   yes_i_want_to_join: Sí, deseo unirme
   yes_license_my_childs_observations: Sí, hacer una licencia de mis fotos, sonidos
     y observaciones para que los científicos puedan usar los datos
-  yes_license_my_observations_so_scientists_can_use: ¡Sí, hacer una licencia de mis
-    fotos, sonidos y observaciones para que los científicos puedan usar mis datos!
+  yes_license_my_observations_so_scientists_can_use: Sí, licencia mis fotos, sonidos
+    y observaciones para que los científicos puedan usar mis datos.
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Sí, muestra esto en la caja grande por arriba de los taxones
   yesterday: Ayer
@@ -5952,7 +5973,11 @@ es:
       subject: Asunto
       subject_body: Asunto/cuerpo
       index:
+        show_messages_from_user: Mostrar mensajes de %{user}
         show_messages_to_user: Mostrar mensajes a %{user}
+        speech_privilege_notice: |-
+          Podrás enviar nuevos mensajes después de haber agregado tres
+          observaciones verificables o tres identificaciones para otros. Por ahora puede leer y responder mensajes que otras personas le envían.
     oauth:
       authorizations:
         new:
@@ -6111,18 +6136,21 @@ es:
       show:
         allow_curator_coordinate_access_desc_html: Permite a los curadores de proyectos
           ver las coordenadas privadas de esta observación.
-        ancestor_disagreements_desc: nº de taxones identificados que están entre los
-          ancestros de un taxón pero que fueron creados después de la primera identificación
-          usando este taxón
+        ancestor_disagreements_desc: '# de taxones identificados que se encuentran
+          entre los antepasados de un taxón, pero no están de acuerdo con el taxón
+          (es decir, "Creo que está en el género pero no estoy de acuerdo con su especie")'
         community_taxon_desc_html: |-
           <p class="ui">
-          El taxón comunitario (o la identificación por la comunidad) representa qué taxón %{site_name} la comunidad piensa que es representado en una observación. Si estás interesado en cómo seleccionamos un taxón comunitario consulta las notas sobre el algoritmo de abajo, pero en general, tratamos de <strong>elegir un taxón con un acuerdo de más de 2/3 de los identificadores. A veces esto significa que la elección de un nivel superior de taxón que contiene un número de desacuerdos (por ejemplo, tú piensas que es una culebra rey y yo creo es la serpiente de cascabel, así NaturaLista elige el suborden Serpentes que contiene a todas las serpientes). El algoritmo también favorece ligeramente la disidencia, porque hemos encontrado que los disidentes a menudo tienen razón.
+          El taxón comunitario (o identificación de la comunidad) representa lo que el taxón que la comunidad %{site_name} cree que se representa en una observación. Si está interesado en cómo elegimos el taxón comunitario, consulte las notas sobre el algoritmo a continuación, pero en general, tratamos de <strong> elegir un taxón con el que más de 2/3 de los identificadores estén de acuerdo </strong>. A veces esto significa elegir un taxón de nivel superior que contenga una serie de taxones en desacuerdo (por ejemplo, si crees que es una serpiente de rey y yo creo que es una serpiente de cascabel, por lo que iNat elige el suborden Serpentes que contiene todas las serpientes). El algoritmo también favorece ligeramente la disidencia, porque hemos descubierto que los disidentes a menudo son correctos.
           </p>
           <p class="ui">
-          El taxón comunitario es el taxón que utilizamos a la hora de compartir observaciones con socios, enlazando las observaciones de un mismo taxón en el sitio, actualizando tu lista de vida, etc. Si por alguna razón no estás de acuerdo con el taxón comunitario puedes rechazarlo, lo que significa que tú identificación es la que se utiliza para vincular a otras observaciones, actualizar tu lista de vida, etc. También significa que tú observación sólo puede tener grado de investigación cuando la comunidad está de acuerdo <em>contigo</em>. Si no te gusta la idea de taxón comunitario, puedes optar por salirte de ellos totalmente <a href="/users/editar" target="_blank">editando tu configuración</a>.
-          </p>
+          Una observación de grado de investigación debe tener (entre otros criterios) un taxón comunitario. Si una observación tiene solo una identificación, no tendrá un taxón comunitario. Todas las observaciones con al menos una identificación también tendrán un taxón de observación. El taxón de observación es el taxón que utilizamos al compartir observaciones con socios de datos, vincular observaciones del mismo taxón en el sitio, actualizar su lista de vida, etc. En la mayoría de los casos, el taxón de observación eventualmente se establecerá en el taxón comunitario, pero a veces diferirá especialmente antes de que la comunidad se haya decidido por una identificación. Por ejemplo, si crees que es una serpiente (suborden Serpentes) y yo creo que es una serpiente de rey (género <i> Lampropeltis </i>), el taxón de observación estará en la serpiente de rey (solo con mi identificación) pero el taxón comunitario será en Serpentes (respaldado por al menos dos identificaciones). Si por alguna razón no está de acuerdo con el taxón de la comunidad, puede rechazarlo en sus propias observaciones, lo que significa que el taxón de observación nunca se establecerá en el taxón de la comunidad (más bien su propia identificación). También significa que su observación solo puede convertirse en grado de investigación cuando la comunidad
+            está de acuerdo con <em> usted </em>. Si no te gusta la idea de
+            taxones comunitarios, puede optar por no participar por completo
+            <a href="/users/edit" target="_blank"> editando su configuración </a>
           <p class="ui">
-           <strong>El algoritmo:</strong> para todos los taxones identificados y los taxones que contienen (por ejemplo, género <i>Homo</i> contiene <i>Homo sapiens</i>), toma la puntuación de cada uno como el cociente entre el número acumulado de  identificaciones para cada taxón sobre la suma de las identificaciones acumuladas, el número más conservador de identificaciones añadido después de la primera identificación para ese taxón, y el número de identificaciones que son completamente diferentes (por ejemplo, identificaciones de taxones que no contienen el taxón que se está evaluando). Para los taxones identificados con un valor sobre 2/3 y por lo menos con 2 identificaciones, selecciona el taxón con el rango más bajo.
+          <strong> El algoritmo: </strong> para todos los taxones identificados y los taxones que los contienen (por ejemplo, el género <i> Homo </i> contiene <i> Homo sapiens </i>), califique cada uno como la relación entre número de 'acuerdos': identificaciones acumulativas para ese taxón sobre la suma de las identificaciones acumulativas, 'desacuerdos': el número de identificaciones que son completamente diferentes (es decir, identificaciones de taxones que no contienen el taxón que se califica) y 'desacuerdos de antepasados '- el número de identificaciones más conservadoras que no están de acuerdo con el taxón más fino. Para los taxones identificados que tienen una puntuación superior a 2/3 y al menos 2 identificaciones, elija el taxón con la clasificación más baja.
+          </p>
         cumulative_count_desc: '# de identificaciones para un taxón individual y todos
           sus descendientes'
         curator_coordinate_access_disabled_desc_html: Este proyecto no permite observaciones
@@ -6223,6 +6251,8 @@ es:
         your_observations_export_failed_html: |-
           Error al exportar tus observaciones. Visita la
           <a href="%{url}">página de exportación de observaciones</a> para una lista de tus exportaciones.
+      parental_consent:
+        subject: A su hijo le gustaría usar iNaturalist
       photos_missing:
         subject: Algunas fotos necesitan reparación
         we_have_been_housekeeping: Hemos estado haciendo un poco de limpieza y encontramos

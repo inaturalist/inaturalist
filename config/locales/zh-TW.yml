@@ -882,6 +882,7 @@ zh-TW:
     url: 描述此狀態的頁面 URL。
     geoprivacy: 用於此物種分類觀察的預設位置隱私
     iucn: 等同國際自然保護聯盟瀕危物種（IUCN）紅色名錄規範
+  conservation_status_geoprivacy_desc: 預設位置隱私會套用到在此地點上的所有分類群觀察
   conservation_summary: 保育摘要
   contact_support: 聯絡支援
   contain_all_descendants?: 此清單是否包含所有出現於此的物種分類派生？
@@ -1974,9 +1975,11 @@ zh-TW:
     mk: 馬其頓語
     nl: 荷蘭語
     oc: 奧克語
+    pl: 波蘭語
     pt-BR: 葡萄牙語 (巴西)
     pt-PT: 葡萄牙語 (葡萄牙)
     ru: 俄語
+    sk: 斯洛伐克語
     sq: 阿爾巴尼亞
     sv: 瑞典語
     zh-CN: 簡體中文
@@ -2672,7 +2675,6 @@ zh-TW:
   photo?: 照片？
   photo_attribution: 照片%{attribution}
   photo_browser: 照片瀏覽
-  photo_by: 照片提供由
   photo_by_id_attribution: 照片 %{id}， %{attribution}
   photo_credits: 照片出處
   photo_deleted: 照片已刪除
@@ -3801,6 +3803,7 @@ zh-TW:
   taxa_to_include: 包括的物種分類群
   taxon: 物種分類
   taxon_autocomplete_placeholder: 鳥、君主斑蝶等等。
+  taxon_geoprivacy: 分類群位置隱私
   taxon_is_a_rank: '%{taxon}屬於%{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: 帶有 1 個觀察屬於%{iconic_taxon}中%{rank}的%{taxon}
@@ -3881,6 +3884,7 @@ zh-TW:
   taxon_merge: 物種分類合併
   taxon_name: 物種分類名稱
   taxon_name_must_match_an_existing_taxon_in_our_database: 物種分類名稱必須符合存在於我們資料庫裡的物種分類
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a>的觀察出自
   taxon_observed_by_user: 由 %{user} 觀察到的%{taxon}
   taxon_or_place_observations: 物種分類或地點觀察
   taxon_photos_updated: 物種分類照片已更新！

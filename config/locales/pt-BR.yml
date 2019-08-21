@@ -1042,6 +1042,8 @@ pt-BR:
     geoprivacy: Geoprivacidade pré-determinada para as observações destas espécies
       e grupo.
     iucn: Código equivalente ao da Lista Vermelha IUCN
+  conservation_status_geoprivacy_desc: Geoprivacidade padrão aplicada a todas as observações
+    deste táxon neste local
   conservation_summary: Resumo de Conservação
   contact_support: Fale com o Suporte
   contain_all_descendants?: Este check list contém todos os representantes deste táxon
@@ -2295,9 +2297,11 @@ pt-BR:
     mk: Macedônio
     nl: Holandês
     oc: Occitano
+    pl: Polonês
     pt-BR: Português (Brasil)
     pt-PT: Português (Portugal)
     ru: Russo
+    sk: Eslovaco
     sq: Albanês
     sv: Sueco
     zh-CN: Chinês (Simplificado)
@@ -3119,7 +3123,6 @@ pt-BR:
   photo?: Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Navegador de Fotos
-  photo_by: Foto por
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_credits: Créditos fotográficos
   photo_deleted: Foto apagada
@@ -4384,6 +4387,7 @@ pt-BR:
   taxa_to_include: Táxons a incluir
   taxon: Táxon
   taxon_autocomplete_placeholder: Aves, monarca, etc.
+  taxon_geoprivacy: Geoprivação de taxon
   taxon_is_a_rank: '%{taxon} é uma %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} é um %{rank} em %{iconic_taxon} com 1 observação'
@@ -4480,6 +4484,7 @@ pt-BR:
   taxon_name: Nome de táxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Nome do táxon deve coincidir
     com um nome presente em nossa base de dados
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> observado por
   taxon_observed_by_user: '%{taxon} observado por %{user}'
   taxon_or_place_observations: Observações de táxon ou de lugar
   taxon_photos_updated: Táxon das fotos atualizado!

@@ -300,7 +300,7 @@ it:
     aggiunto a una lista. In fase di sviluppo, stiamo risolvendo i bug...
   add_observations_project: Aggiungi osservazioni a questo progetto
   add_one: Aggiungine una!
-  add_one_now: Aggiungi ora
+  add_one_now: Aggiungi una ora
   add_photos: Aggiungi foto
   add_photos_to_this_observation: Aggiungi foto a questa osservazione
   add_place: Aggiungi luogo
@@ -1050,6 +1050,8 @@ it:
     url: URL di una pagina che descrive questo stato conservazionistico.
     geoprivacy: Geoprivacy predefinita per le osservazioni di questo taxon
     iucn: Codice equivalente della Lista Rossa IUCN
+  conservation_status_geoprivacy_desc: Geoprivacy predefinita applicata a tutte le
+    osservazioni di questo taxon per questo luogo
   conservation_summary: Riepilogo dello stato conservazionistico
   contact_support: Contatta il supporto
   contain_all_descendants?: Questa checklist include tutti i discendenti di questo
@@ -2304,9 +2306,11 @@ it:
     mk: Macedone
     nl: Olandese
     oc: Occitano
+    pl: Polacco
     pt-BR: Portoghese (Brasile)
     pt-PT: Portoghese (Portogallo)
     ru: Russo
+    sk: Slovacco
     sq: Albanese
     sv: Svedese
     zh-CN: Cinese (tradizionale)
@@ -3131,7 +3135,6 @@ it:
   photo?: Foto?
   photo_attribution: Foto di %{attribution}
   photo_browser: Browser delle foto
-  photo_by: Foto di
   photo_by_id_attribution: Foto %{id}, di %{attribution}
   photo_credits: Crediti delle foto
   photo_deleted: Foto cancellata
@@ -4397,6 +4400,7 @@ it:
   taxa_to_include: Taxa da includere
   taxon: Taxon
   taxon_autocomplete_placeholder: Uccelli, Monarca, etc.
+  taxon_geoprivacy: Geoprivacy del taxon
   taxon_is_a_rank: '%{taxon} è un %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} è un %{rank} in %{iconic_taxon} con 1 osservazione'
@@ -4488,6 +4492,7 @@ it:
   taxon_name: Nome del taxon
   taxon_name_must_match_an_existing_taxon_in_our_database: Il nome del taxon deve
     corrispondere a uno di quelli del nostro database
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> osservata da
   taxon_observed_by_user: '%{taxon} osservato da %{user}'
   taxon_or_place_observations: Osservazioni del taxon o del luogo
   taxon_photos_updated: Foto del taxon aggiornate!

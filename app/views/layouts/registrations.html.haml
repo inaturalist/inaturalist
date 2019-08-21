@@ -24,8 +24,8 @@
             &nbsp;
           .details
             %div
-              =t :photo_by
-            = link_to obs, class: "username" do
+              =t :taxon_observed_by_html, taxon: render( partial: "shared/taxon", locals: { taxon: obs.taxon, one_name: true } ), url: url_for( obs )
+            = link_to_user obs.user, class: "username" do
               = obs.user.published_name
             %div
               = link_to t( :in_place_x, place: place_guess ), observations_url( lat: obs.latitude, lng: obs.longitude )

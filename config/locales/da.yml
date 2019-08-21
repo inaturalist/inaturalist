@@ -159,7 +159,7 @@ da:
   about_muting: Om slukning
   about_names: Om navne
   about_places: Om steder
-  about_taxon_changes: Om takson ændringer
+  about_taxon_changes: Om taksonændringer
   about_the_cc_licenses: Om Creative Commons licenser
   about_the_taxobox_raquo: Om taksonboksen &raquo;
   about_these_licenses: Om disse licenser
@@ -204,8 +204,8 @@ da:
   adapted_by_name_from_a_work_by_original: Tilpasset efter %{name} fra et værk af
     %{original}
   add: Tilføj
-  add_a_batch_of_observations: Tilføj et bundt af observationer
-  add_a_batch_of_observations_by_csv: Tilføj bundt af observationer ved hjælp af CSV
+  add_a_batch_of_observations: Tilføj et bundt observationer
+  add_a_batch_of_observations_by_csv: Tilføj bundt observationer ved hjælp af CSV
     fil
   add_a_batch_of_taxa: Tilføj et bundt af taksa
   add_a_comment: Tilføj en kommentar
@@ -1022,6 +1022,8 @@ da:
     url: URL for en side, der beskriver denne status.
     geoprivacy: Standard geofortrolighed for denne taksons observationer
     iucn: Tilsvarende IUCN Rødliste kode
+  conservation_status_geoprivacy_desc: Standard lokalitetsbeskyttelse anvendt på alle
+    observationer af dette takson på dette sted
   conservation_summary: Bevaringsoversigt
   contact_support: Kontakt support
   contain_all_descendants?: Indeholder denne tjekliste alle efterkommere af denne
@@ -1188,7 +1190,7 @@ da:
       may: Maj
       june: Juni
       july: Juli
-      august: August
+      august: august
       september: September
       october: Oktober
       november: November
@@ -2266,9 +2268,11 @@ da:
     mk: Makedonsk
     nl: Hollandsk
     oc: Occitansk
+    pl: Polsk
     pt-BR: Portugisisk (Brasilien)
     pt-PT: Portugisisk (Portugal)
     ru: Russisk
+    sk: slovakisk
     sq: Albansk
     sv: Svensk
     zh-CN: Kinesisk (simplificeret)
@@ -3080,7 +3084,6 @@ da:
   photo?: Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Foto browser
-  photo_by: Billede af
   photo_by_id_attribution: Foto %{id},%{attribution}
   photo_credits: Fotokrediteringer
   photo_deleted: Foto slettet
@@ -4327,6 +4330,7 @@ da:
   taxa_to_include: Taksa som skal medtages
   taxon: Takson
   taxon_autocomplete_placeholder: Fugle, Monarker, osv.
+  taxon_geoprivacy: Takson lokalitetsbeskyttelse
   taxon_is_a_rank: '%{taxon} er en %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} er en %{rank} i %{iconic_taxon} med 1 observation'
@@ -4420,6 +4424,7 @@ da:
   taxon_name: Takson navn
   taxon_name_must_match_an_existing_taxon_in_our_database: Takson navn skal matche
     et eksisterende takson i vores database
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> observeret af
   taxon_observed_by_user: '%{taxon} observeret af %{user}'
   taxon_or_place_observations: Takson eller sted observationer
   taxon_photos_updated: Takson foto´s opdateret!
@@ -7232,7 +7237,7 @@ da:
       5: Maj
       6: Juni
       7: Juli
-      8: August
+      8: august
       9: September
       10: Oktober
       11: November

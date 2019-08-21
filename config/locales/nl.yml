@@ -1036,6 +1036,8 @@ nl:
     url: URL naar de website die deze status beschrijft
     geoprivacy: Standaard geoprivacy voor waarnemingen van dit taxon
     iucn: Equivalent van IUCN Rode Lijst code
+  conservation_status_geoprivacy_desc: Default geoprivacy toegepast op alle waarnemingen
+    van dit taxon op deze plaats.
   conservation_summary: Beschermings Samenvatting
   contact_support: Contact Support
   contain_all_descendants?: Bevat deze checklist alle afstammelingen van dit taxon
@@ -2285,9 +2287,11 @@ nl:
     mk: Macedonisch
     nl: Nederlands
     oc: Provençaals
+    pl: Pools
     pt-BR: Portugees (Brazilië)
     pt-PT: Portugees (Portugal)
     ru: Russisch
+    sk: Slowaaks
     sq: Albanees
     sv: Zweeds
     zh-CN: Chinees (vereenvoudigd)
@@ -3103,7 +3107,6 @@ nl:
   photo?: Afbeelding?
   photo_attribution: Foto %{attribution}
   photo_browser: Foto Browser
-  photo_by: Foto door
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_credits: Foto Credits
   photo_deleted: Foto verwijderd
@@ -4357,6 +4360,7 @@ nl:
   taxa_to_include: Taxa om op te nemen
   taxon: Taxon
   taxon_autocomplete_placeholder: Vogels, monarch, etc.
+  taxon_geoprivacy: Taxon Geoprivacy
   taxon_is_a_rank: '%{taxon} is een %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} is een %{rank} in %{iconic_taxon} met 1 waarneming'
@@ -4450,6 +4454,7 @@ nl:
   taxon_name: Taxon naam
   taxon_name_must_match_an_existing_taxon_in_our_database: Taxonnaam moet overeenkomen
     met een bestaand taxon in onze database
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> waargenomen door
   taxon_observed_by_user: '%{taxon} waargenomen door %{user}'
   taxon_or_place_observations: Waarnemingen van taxon of plaats
   taxon_photos_updated: Taxon foto's bijgewerkt!

@@ -1036,6 +1036,8 @@ ca:
     url: URL de la pàgina que descriu aquest estat.
     geoprivacy: Geo-privacitat per defecte per a les observacions d'aquesta espècie
     iucn: Equivalent del codi de la Llista Vermella (IUCN)
+  conservation_status_geoprivacy_desc: Geoprivacitat aplicada per defecte a totes
+    les observacions d'aquest tàxon en aquest lloc
   conservation_summary: Resum de conservació
   contact_support: Contacteu amb Suport
   contain_all_descendants?: Aquesta llista de comprovació conté tots els descendents
@@ -2287,9 +2289,11 @@ ca:
     mk: Macedònic
     nl: Holandès
     oc: Occità
+    pl: Polonès
     pt-BR: Portuguès (Brasil)
     pt-PT: Portuguès (Portugal)
     ru: Rus
+    sk: Eslovac
     sq: Albanès
     sv: Suec
     zh-CN: Xinès (simplificat)
@@ -2399,7 +2403,7 @@ ca:
   matched_several_different_taxa: coincideix amb diferents tàxons
   matching_species_will_shown_up_here: Les espècies trobades es mostraran aquí. El
     mapa mostrarà un rang si %{place} té alguna d'aquestes espècies.
-  maverick: Maverick
+  maverick: Disident
   maybe_your_signed_in_with: És possible que hagueu iniciat sessió amb el compte %{omniauth}?
   media: Multimèdia
   media_type: Tipus de fitxer multimèdia
@@ -3002,6 +3006,10 @@ ca:
     lloc poden activar l'agregació del projecte
   only_species: només espècies
   only_species_and_subspecies: només espècies i subespècies/varietats
+  only_staff_can_edit_large_places: Només el personal de l'organització poden editat
+    llocs molt grans
+  only_staff_can_edit_standard_places: Només el personal de l'organització poen editar
+    llocs de la jerarquia estàndard
   only_the_author_of_this_post_can_do_that: Només l'autor d'aquesta nota pot fer això.
     No sigueu dolent.
   only_the_owner_of_this_list_can_do_that: Només el propietari d'aquesta llista pot
@@ -3105,7 +3113,6 @@ ca:
   photo?: Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Navegador de fotografies
-  photo_by: Foto de
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_credits: Crèdit de la foto
   photo_deleted: Foto esborrada
@@ -3133,6 +3140,18 @@ ca:
   google_account_not_linked: L'usuari %{user} ja no està vinculat amb un compte de
     Google, per tant %{site_name} no té permís per accedir a aquesta fotografia.
   pi_consent_desc_title: Quant a la informació personal
+  pi_consent_desc_html: "Emmagatzem informació personal com el nom d'usuari i l'adreça
+    de correu electrònic per gestionar els comptes d'aquest lloc i per complir amb
+    la legislació sobre privacitat necessitem que confirmeu el vostre consentiment
+    per utilitzar aquesta informació personal. Per conèixer més sobre la informació
+    que guardem i com la utilitzem, si us plau, llegiu la nostra \n<a href='%{privacy_url}'
+    target='_blank'>Política de Privacitat</a> i les nostres <a href='%{terms_url}'
+    target='_blank'>Condicions del Servei</a>."
+  pi_consent_label: Autoritzo a iNaturalist a guardar i processar determinades informacions
+    de caràcter personal sobre mi per gestionar el meu compte
+  pi_consent_child_label: Autoritzo a iNaturalist a guardar i processar determinades
+    informacions de caràcter personal sobre el meu/va fill/a per gestionar el meu
+    compte infantil
   picasa_identity: Usuari de Picasa
   pick_a_username: Trieu nom d'usuari
   pin_verb: Posar al mapa
@@ -3549,6 +3568,10 @@ ca:
   please_confirm_your_inat_username: Confirmeu el nom d'usuari a %{site_name}
   please_confirm_your_account_html: <a href="%{url}">Confirmeu el vostre compte</a>.
   please_enter_a_new_pass: Introduïu una nova contrasenya i confirmeu-la.
+  please_explain_why_you_want_to_hide_this: Si us plau, expliqueu el motiu pels qual
+    voleu ocultar això
+  please_explain_why_you_want_to_unhide_this: Si us plau, expliqueu el motiu pel qual
+    voleu deixar d'ocultar aixó
   please_fix_your_csv_and_try_again: Si us plau corregiu el CSV i proveu-ho de nou.
   please_hold_on_while_the_file: Espereu mentre es genera l'arxiu. El procés pot trigar
     uns minuts per a llistes grans.
@@ -3809,6 +3832,7 @@ ca:
   reload_from_observations: Torna a carregar des de les observacions
   reload_timed_out: El temps de càrrega ha caducat. Torneu a intentar-ho d’aquí una
     estona.
+  remarks_hidden: Comentaria amagats
   remarks_optional: Comentaris <span class="small description">(opcionals)</span>
   remember_its_a_lot_easier_to_id: 'Recordeu: és molt més fàcil IDentificar quelcom
     si oferiu tantes dades descriptives com sigui possible. Encara més important,
@@ -4044,6 +4068,7 @@ ca:
   show_common_names: Mostra noms vulgars
   show_counts: Mostra càlculs basats en la llista
   show_default_taxon_photos: Mostra les fotos predeterminades del tàxon
+  show_hidden_content: Mostra Contingut Ocult
   show_keyboard_shortcuts: Mostreu Dreceres de teclat
   show_kml: Mostra KML
   show_less: Mostrar menys
@@ -4350,6 +4375,7 @@ ca:
   taxa_to_include: Tàxons per incloure
   taxon: Tàxon
   taxon_autocomplete_placeholder: Ocells, monarca, etc.
+  taxon_geoprivacy: Geoprivacitat del Tàxon
   taxon_is_a_rank: '%{taxon} és un %{rank}'
   taxon_is_a_rank_in_iconic_taxon_with_x_observations:
     one: '%{taxon} és un %{rank} a %{iconic_taxon} amb 1 observació'
@@ -4443,6 +4469,7 @@ ca:
   taxon_name: Nom del tàxon
   taxon_name_must_match_an_existing_taxon_in_our_database: El nom del tàxon ha de
     correspondre amb un d'existent a la nostra base de dades
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> observat per
   taxon_observed_by_user: '%{taxon} observat per %{user}'
   taxon_or_place_observations: Observacions de taxon o lloc
   taxon_photos_updated: S'han actualitzat les fotos del tàxon.
@@ -4533,8 +4560,8 @@ ca:
     o alienígenes espacials intel·ligents)
   the_community_id_requires_at_least_two_identifications: La ID de la Comunitat necessita
     un mínim de dues identificacions.
-  the_community_must_feel_that: La comunitat ha de sentir que la Identificació de
-    la Comunitat és la millor basant-se en l'evidència
+  the_community_must_feel_that: La comunitat ha de sentir que el Tàxon de la Comunitat
+    és el millor basant-se en l'evidència
   the_data_quality_assessment_is: L'avaluació de la qualitat de les dades és un resum
     de l'exactitud d'una observació. Totes les observacions comencen amb el grau de
     <strong>"casual"</strong> i aconsegueixen el grau de <strong>"recerca"</strong>
@@ -4751,6 +4778,7 @@ ca:
   today: Avui
   too_many_observations_csv: Teniu massa observacions! Només podem incloure les primeres
     %{max_rows} observacions de cada arxiu CSV
+  too_many_results: Massa resultats
   too_many_taxa_to_render: Aquesta consulta retorna massa resultats per mostrar a
     la vegada. Proveu d'afegir més filtres
   tools: Eines
@@ -4807,6 +4835,9 @@ ca:
   unblock: Desbloca
   unclassified: Sense classificar
   ungrafted_taxa: Tàxons no inserits
+  unhide_content: Deixa d'amagar el contingut
+  unhide_desc: '"Deixar d''amagar" permetrà que qualsevol pugui veure aquest contingut.
+    Els administradors encara poden escollir amagar-lo de nou en el futur.'
   uninvite: Cancel·la invitació
   unique_identifier_of_this_taxon: Identificador únic per a aquesta espècie o grup
     en la base de dades.
@@ -4906,6 +4937,9 @@ ca:
   use_well_formed_csv: Utilitza CSV amb format correcte, Això significa que el text
     entre comes ha d'estar tancat entre dobles cometes. La major part de les aplicacions
     de fulla de càlcul haurien de permetre-us exportar a CSV amb aquest format.
+  used_x_times:
+    one: Usat 1 vegada
+    other: Usat %{count} vegades
   user: Usuari
   user_added_a_x: '%{user} ha afegit una %{x}'
   user_added_a_x_to_noun_by_html: '%{user} ha afegit %{x} a %{noun} de %{by}'
@@ -4923,11 +4957,13 @@ ca:
   user_commented: '%{user} ha comentat'
   user_commented_on: '%{user} ha comentat el teu %{title} %{time}'
   user_disagrees_this_is_taxon: '%{user} no creu que sigui %{taxon}'
+  user_disagrees_with_previous_finer_identifications: '%{user} discrepa amb identificacions
+    anteriors adequades'
   user_faved_a_noun_by_owner: '%{user} preferit %{noun} per %{owner}'
   user_flagged_as_a_spammer_html: '%{user} marcat com spammer'
   user_flagged_as_a_non_spammer_html: '%{user} marca com a no spammer'
   user_follows: '%{user} segueix'
-  user_has_opted_out_of_community_id: L'usuari ha refusat la identificació de la Comunitat
+  user_has_opted_out_of_community_id: L'usuari ha refusat el Tàxon de la Comunitat
   user_has_opted_out_of_community_ids: '%{user} ha optat per mantenir el control sobre
     els tàxons associats a les seves observacions'
   user_has_opted_out_of_community_ids_for_this_obs: '%{user} ha optat per mantenir
@@ -4956,6 +4992,7 @@ ca:
     coordenades ocultes'
   user_trusts_you_with_their_private_coordinates_desc: L'observador ha escollit compartir
     amb tu les coordenades ocultes de totes les seves observacions.
+  user_wrote_html: <a href="%{url}" target="_blank">%{user}</a> ha escrit,
   username: Nom d'usuari
   username_or_email: Nom d'usuari o correu electrònic
   username_or_user_id: Nom o identificador de l'usuari
@@ -4986,6 +5023,7 @@ ca:
     d'observació
   view: Mostra
   view_all: Mostra-ho tot
+  view_all_flags: Veure totes les marques
   view_all_from_x: Veure tot el de %{x}
   view_all_members: Veure tots els membres
   view_all_n: Veure tots els %{n}
@@ -5013,6 +5051,9 @@ ca:
   view_license: Veure la llicència
   view_lists: Veure les llistes
   view_listing: Veure les llistes
+  view_moderation_history: Veure història de la moderació
+  view_moderation_history_for_this_comment: Veure història de la moderació d'aquest
+    comentari
   view_more: Veure més
   view_more_about_x: Veures més sobre %{x}
   view_more_observations: Veure més observacions
@@ -5192,6 +5233,10 @@ ca:
   will_be: serà
   wikipedia_attribution_cc_by_sa_3: 'Font: Viquipèdia, «%{title}», %{url}, CC BY-SA
     3.0'
+  wikipedia_attribution_cc_by_sa_3_html: "Aquest article utilitza material de l'article
+    de la Wikipèdia <a href=\"%{url}\">\"%{title}\"</a>, alliberat sota \n<a href=\"https://creativecommons.org/licenses/by-sa/3.0/\">Llicencia
+    Creative Commons Reconeixement-Compartir Igual  3.0</a>. El contingut pot haver
+    estat eliminat en el original però no s'ha canviat o estès."
   wikipedia_entry: Entrada de Viquipèdia
   wikipedia_taxobox_raquo: Fitxa de tàxon a Viquipèdia »
   with: amb
@@ -5245,8 +5290,10 @@ ca:
   "yes": Sí­
   yes_find_them!: Sí, troba-les!
   yes_i_want_to_join: Sí, desitjo unir-m’hi
+  yes_license_my_childs_observations: Sí, llicencia les meves fotos i observacions
+    perquè els científics puguin usar les meves dades
   yes_license_my_observations_so_scientists_can_use: Sí, crea una llicència de les
-    meves fotos i observacions perquè els científics puguin usar les meves dades!
+    meves fotos, sons i observacions perquè els científics puguin usar les meves dades
   yes_reject_it: Sí, refusa'l
   yes_show_this_in_the_box: Sí, mostrar-ho al requadre superior sobre els tàxons
   yesterday: Ahir
@@ -5839,7 +5886,13 @@ ca:
           i els tàxons el que tenen observacions en grau de recerca es llisten a la
           llista del projecte.
     messages:
+      from: De
+      to: A
+      subject: Assumpte
+      subject_body: Subjecte/Cos
       index:
+        show_messages_from_user: Mostreu missatges de %{user}
+        show_messages_to_user: Mostreu missatges a %{user}
         speech_privilege_notice: Podreu enviar nous missatges després d'afegir tres
           observacions verificables o identificar tres observacions d'altres. Per
           ara podeu llegir i respondre als missatges que altres persones us envien.
@@ -5965,6 +6018,9 @@ ca:
           d'aquesta pàgina de %{total} observacions coincidents.
         unreview_all_tooltip: Eliminar l'estat de revisat a totes les observacions
           de la pàgina
+        too_many_results_desc: |-
+          El número de pàgina multiplicat pel número de resultats per pàgina no pot superar els 10.000.
+          Intenteu aplicar filtres per a reduir el número de resultats, o marqueu les observacions com a revisades i utilitzeu el botó "Veure Més" en comptes de la paginació
       import:
         coordinate_systems_help: '%{site_name} accepta coordenades procedents de diversos
           sistemes de coordenades, de manera que quan proporcioneu les coordenades
@@ -5997,8 +6053,8 @@ ca:
         allow_curator_coordinate_access_desc_html: Permet als supervisors del projecte
           veure les coordenades ocultes d'aquesta observació.
         ancestor_disagreements_desc: '# dels tàxons identificats es troben entre els
-          avantpassats d''un tàxon, però es van crear després de la primera identificació
-          que va usar aquest tàxon'
+          avantpassats d''un tàxon, però en desacord amb el tàxon (p.e. creieu que
+          són d''aquest però esteu en desacord amb aquesta espècie)'
         community_taxon_desc_html: |-
           <p class="ui">
           El tàxon comunitari (o identificació per la comunitat) indica quin tàxon de %{site_name} creu la comunitat que representa una observació. Si esteu interessats en saber com seleccionen un tàxon comunitari, consulteu les notes de l'algorisme a continuació, però en general, intentem <strong>triar el tàxon amb el que més de 2/3 dels identificadors estan d'acord</strong>. De vegades això implica triar un tàxon d'un nivell superior que contingui diversos tàxons en els que no s'està d'acord (per exemple, si algú IDentifica una observació com una Colobra i creieu que es tracta d'una Víbora, iNat triarà el subordre Serpentes, que conté totes les serps). L'algorisme també afavoreix lleugerament la dissidència, perquè hem trobat que els dissidents són sovint correctes.
@@ -6180,6 +6236,24 @@ ca:
           després que les fotos siguin eliminades, i és possible que algunes observacions
           de grau de la recerca esdevinguin casuals si no tenen cap foto.
         we_included_links: Hem inclòs enllaços que afecten les fotos següents.
+      user_parent_confirmation:
+        subject: El compte del vostre infant a iNaturalist s'ha activat
+        content_html: |-
+          <p>
+            Gràcies per crear un compte a iNaturalist pel vostre infant! S'ha activat el compte. Aquests són els detalls que heu introduït que tenim en el nostre registre:
+          </p>
+          <ul>
+            <li><strong>Nom del Progenitor/a o Tutor/a Legal:</strong> %{parent_name}</li>
+            <li><strong>Correu electrònic del Progenitor/a o Tutor/a Legal:</strong> %{parent_email}</li>
+            <li><strong>Nom de l'infant:</strong> %{child_name}</li>
+            <li><strong>Dia de naixement de l'infant:</strong> %{child_birthday}</li>
+            <li><strong>Correu electrònic de l'infant:</strong> %{child_email}</li>
+            <li><strong>Nom d'usuari de l'infant:</strong> %{child_username}</li>
+          </ul>
+          <p>Si us plau accediu al compte del vostre infant, cerqueu l'App prement el botó d'iNaturalist en el menú i llavors "Entreu a iNaturalist" amb el botó a la pantalla.
+          </p>
+          <p>El vostre infant podrà incorporar observacions al seu compte d'iNaturalist utilitzant l'app de Cerca amb el que les podrà veure a iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: |-
           Heu estat inactiu a %{site_name} per molt de temps, així que hem suspès les vostres subscripcions. Per continuar rebent actualitzacions sobre l'activitat del lloc, si us plau
@@ -6393,6 +6467,8 @@ ca:
         note_you_can_delete_the_time: '(Nota: podeu eliminar la zona horària i precisar
           el moment si voleu indicar dies sencers.)'
         or_drag_and_drop: (o arrossegar i enganxar)
+        please_specify_the_requirements: Si us plau, especifiqueu els requisits que
+          han de complir les observacions per poder incorporar-les en aquest projecte.
         please_specify_the_requirements_html: |-
           Si us plau especifiqueu els requisits per afegir observacions a aquest projecte.
           Podeu especificar diverses espècies, llocs, usuaris, o graus de qualitat perquè siguin automàticament afegides, o deixar-ho en blanc si no hi ha cap requisit específic.
@@ -6413,6 +6489,7 @@ ca:
           els primers 200 caràcters seran visibles a la dreta de la pancarta de la
           pàgina d'inici projecte, poseu els més important al començament!
         project_summary_placeholder: Descobriu i seguiu els ocells del Parc dels Aiguamolls...
+        show_projects_as_flags: Mostra projectes com a banderes en el mapa
         start_and_end_times_for_bioblitzes: Data i hora d'inici i final (per a projectes
           del tipus bioblitz)
         umbrella_project_features: 'Característiques del Projecte Paraigua:'
@@ -6437,6 +6514,14 @@ ca:
           de les observacions. Assegureu-vos de seleccionar un o més tàxons (p.e.
           ocells, coníferes), llocs (p.e. Brasil, Yellowstone), usuaris i/o dates
           per identificar les observacions que voleu incloure en el vostres projecte.
+        errors:
+          name_is_required: Cal un nom de Projecte
+          name_less_than_100_characters: El nom del Projecte ha de tenir menys de
+            100 caràcters
+          name_already_taken: Nom del Projecte ja existent
+          cannot_have_more_than_x_project_rules: El projecte no pot tenir més de %{x}
+            regles
+          summary_is_required: Cal un text de resum del Projecte
       project_location_privacy_notice_html: |-
         <p>
         Si us plau, tingueu en comte que els supervisors del projecte poden veure les ubicacions privades o enfosquides de les vostres observacions a aquest projecte llevat que hagueu revocat aquesta autorització, i afegir les vostres observacions a aquest projecte, llevat que <a href="/users/edit">ho canvieu a la vostra configuració</a>. També es pot concedir o revocar l'accés a les observacions del projecte cas per cas.
@@ -6937,9 +7022,36 @@ ca:
     user_parents:
       confirm:
         thanks_for_creating_a_minor_account: GRÀCIES PER CREAR UN COMPTE INFANTIL!
+        we_will_send_you_an_email: Us enviarem un e-mail en quant s'activi el compte
+          del vostre infant.
       new:
+        child_name_private: Nom de l'infant (privat)
+        create_a_minor_account: Creeu un compte a un menor
+        create_minor_account: Creu Compte a un menor
+        parent_name_private: Nom del progenitor o tutor legal (privat)
+        parent_email: Correu-e del progenitor o tutor legal (privat)
+        inaturalist_minor_account_signup: Accés al Compte del Menor a iNaturalist
+        parent_information_private: Informació paterna (privat)
+        step1_title: CREEU UN COMPTE PEL VOSTRE INFANT
+        step1_desc: Per complir amb les regulacions sobre privacitat, necessitem que
+          un progenitor o tutor legal accepti crear un compta per a una persona menor
+          de 13 anys. Si voleu que el vostre infant utilitzi iNaturalist, heu de subministrar-nos
+          alguna identificació i informació de contacte.
         step2_title: CONFIRMEU LA VOSTRA IDENTITAT AMB UNA TARGETA DE CRÈDIT
+        step2_desc: Per a confirmar la vostra identitat com adult, necessiten que
+          feu un donatiu nominal, al menys 1$ a iNaturalist utilitzant una targeta
+          de crèdit. Aquesta és la forma menys intrusiva de verificació de la vostra
+          identitat que ens permet la legislació sobre privacitat. Si us plau assegureu-vos
+          d'utilitzar la mateixa adreça de correu electrònic que heu introduït com
+          "correu electrònic patern" en el pas anterior.
         step3_title: AGUARDEU EL MISSATGE DE CONFIRMACIÓ PER CORREU
+        step3_desc: Una vegada comprovem que el correu electrònic utilitzat a la donació
+          és el mateix emprat com a "correu electrònic patern" activarem el compte
+          al vostre infant i enviarem un correu electrònic a aquesta adreça amb les
+          instruccions per entrar. Això pot trigar un màxim de 24 hores,
+        step3_donor_title: EL COMPTE DEL VOSTRE INFANT HA ESTAT ACTIVAT
+        step3_donor_desc: Gràcies a la vostra donació a iNaturalist hem estat capaços
+          de verificar la vostra identitat amb la donació efectuada.
     welcome:
       index:
         welcome_message_html: '%{image} us convida a utilitzar aquest portal d''informació
@@ -7281,6 +7393,7 @@ ca:
       observation:
         geo_x: Est
         geo_y: Nord
+        observed_on: data d'observació
       observation_field_value:
         value: valor
       post:
@@ -7394,6 +7507,10 @@ ca:
               has_query_parameter: no pot contenir un paràmetre de consulta.
               invalid_uri: Ha de ser un URI vàlid.
               relative_uri: ha de ser un URI absolut.
+        flag:
+          attributes:
+            user_id:
+              already_flagged: aquest ítem ja ha estat assenyalat
         guide:
           attributes:
             published_at:
@@ -7406,6 +7523,11 @@ ca:
           attributes:
             base:
               api_key_in_use: Clau API important-se o pendent d'importar
+        observation:
+          attributes:
+            observed_on:
+              cannot_be_greater_than_date_created: no pot ser major que la data quan
+                els va afegir l'observació
         observation_field_value:
           attributes:
             value:
