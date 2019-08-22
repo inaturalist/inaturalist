@@ -2,7 +2,7 @@
   = "#{ @selected_user.login }'s LifeList"
 - content_for :extracss do
   = stylesheet_link_tag "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-  = stylesheet_link_tag "observations/lifelist"
+  = stylesheet_link_tag "lifelists"
 - content_for :extrajs do
   :ruby
     js_lifelist_user = {
@@ -54,7 +54,7 @@
         square: "#{image_url(LocalPhoto.new.file.url(:square))}"
       }
     };
-  = javascript_include_tag "observations-lifelist-webpack"
+  = javascript_include_tag "lifelists-show-webpack"
 
 #app
   #initial-loading.text-center

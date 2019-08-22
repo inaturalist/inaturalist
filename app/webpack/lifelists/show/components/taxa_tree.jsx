@@ -2,7 +2,7 @@ import _ from "lodash";
 import React from "react";
 import PropTypes from "prop-types";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import util from "../../show/util";
+import util from "../../../observations/show/util";
 
 class TaxaTree extends React.Component {
   constructor( ) {

@@ -265,8 +265,6 @@ Rails.application.routes.draw do
   get 'observations/of/:id.:format' => 'observations#of', :as => :observations_of
   match 'observations/:id/quality/:metric' => 'quality_metrics#vote', :as => :observation_quality, :via => [:post, :delete]
 
-  get 'observations/lifelist/:login' => 'observations#lifelist_by_login', constraints: { login: simplified_login_regex }
-
   match 'projects/:id/join' => 'projects#join', :as => :join_project, :via => [:get, :post]
   delete 'projects/:id/leave' => 'projects#leave', :as => :leave_project
   post 'projects/:id/add' => 'projects#add', :as => :add_project_observation
@@ -625,6 +623,12 @@ Rails.application.routes.draw do
     end
   end
   resources :moderator_actions, only: [:create]
+
+  resources :lifelists do
+    collection do
+      get ":login", to: "lifelists#by_login", constraints: { login: simplified_login_regex }
+    end
+  end
 
   get "/google_photos(/:action(/:id))", controller: :picasa
 

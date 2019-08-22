@@ -2,8 +2,8 @@ import _ from "lodash";
 import inatjs from "inaturalistjs";
 import PromisePool from "es6-promise-pool";
 
-const SET_ATTRIBUTES = "obs-lifelist/SET_ATTRIBUTES";
-const UPDATE_COMMON_NAMES = "obs-lifelist/UPDATE_COMMON_NAMES";
+const SET_ATTRIBUTES = "lifelists-show/SET_ATTRIBUTES";
+const UPDATE_COMMON_NAMES = "lifelists-show/UPDATE_COMMON_NAMES";
 
 export default function reducer( state = {
   loading: true,
