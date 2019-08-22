@@ -64,4 +64,15 @@ h1 {
   .date {
     margin-right: 20px;
   }
+  .monthly-supporter {
+    color: $inat-green;
+    white-space: nowrap;
+    i {
+      color: $inat-green;
+      position: relative;
+      top: -1px;
+      font-size: 20px;
+    }
+  }
+
 }

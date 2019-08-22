@@ -70,6 +70,12 @@
           =t :last_active_with_date, date: l( @user.last_active, format: :short_with_year )
         - else
           =t :last_active_with_date, date: t(:unknown)
+      = feature_test :monthly_supporters do
+        - if @donor_since && @user.prefers_monthly_supporter_badge?
+          %span.date.monthly-supporter
+            %i.icon-iconic-aves
+            =t :monthly_supporter_since_date, date: l( @donor_since, format: :month_year )
+
     #description
       - if @user.description.blank?
         - if is_me?(@selected_user)
