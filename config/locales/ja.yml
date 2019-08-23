@@ -18,15 +18,65 @@ ja:
   x_comments:
     one: 1件のコメント
     other: '%{count}件のコメント'
+  x_faves:
+    other: '%{count}件のお気に入り'
+  x_flags_resolved_html:
+    other: <span class='count'>%{count}</span>件の解決済みフラグ
+  x_followers:
+    other: '%{count}人のフォロワー'
+  x_identifications: '{{PLURAL%{count}件の同定}}'
+  x_identifications_html:
+    other: <span class="count">%{count}</span>件の同定
+  x_identifications_: '{{PLURAL%{count}件の同定}}'
+  x_ids:
+    other: '%{count}件の同定'
+  x_lists:
+    other: '%{count}件のリスト'
+  x_journal_posts:
+    other: '%{count}件のジャーナル投稿'
+  x_journal_posts_html:
+    other: <span class="count">%{count}</span>件のジャーナル投稿
+  x_matching_taxa:
+    other: '%{count}件の該当する分類群'
   x_matching_taxa_html:
     one: <span class="count">1</span>件の該当する分類群
     other: <span class="count">%{count}</span>件の該当する分類群
+  x_misidentifications_of_this_species:
+    other: この種の鑑定に間違いが%{count}件
+  x_misidentifications_of_species_in_this_rank:
+    other: '%この%{rank}中誤同定は%{count}件'
+  x_observations:
+    other: '%{count}件の観察記録'
+  x_observations_:
+    other: '%{count}件の観察記録'
+  x_observations_html:
+    other: <span class='count'>%{count}</span>件の観察記録
+  x_observations_link_html:
+    other: <a href='%{url}'>%{count}件の観察記録</a>
+  x_observations_reviewed_html:
+    other: <span class='count'>%{count}</span>件の観察記録を査読
+  x_others:
+    other: その他%{count}件
+  x_people_found_this_helpful:
+    other: '%{count}人が役に立ったと言っています'
+  x_people_like_this:
+    other: '%{count}人がお気に入りに追加しました'
   x_people_agree_html:
     one: <span class="count">1</span>人が賛成しています
     other: <span class="count">%{count}</span>が賛成しています
   x_photos:
     one: 1枚の写真
     other: '%{count}枚の写真'
+  x_new_species:
+    other: '%{count}件の新種'
+  x_species:
+    other: '%{count}種'
+  x_species_html:
+    other: <span class='count'>%{count}</span>種
+  x_species_link_html:
+    other: <a href='%{url}'>%{count}種</a>
+  x_suggestions_filtered_by_colon:
+    other: '%{count}件の提案を検出:'
   x_taxa_observed_html:
     one: <span class='count'>1</span>件の観察済分類群
     other: <span class='count'>%{count}</span>件の観察済分類群
@@ -36,6 +86,10 @@ ja:
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span>件の種もしくはそれ以下の研究用観察記録</span>
     other: <span class='count'>%{count}</span>件の種もしくはそれ以下の研究用観察記録</span>
+  x_taxa_matching_current_filters:
+    other: '%{count}件の現在の絞込みに該当する分類群'
+  x_taxon_changes_added_html:
+    other: <span class='count'>%{count}</span>件の分類群変更を追加
   x_people_helped_user_with_y_ids_html: <strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました
   _100_day_trends: 100日の傾向
   _percent_ID_d: '%件判定済み'
@@ -291,12 +345,35 @@ ja:
     ray_finned_fishes: 条鰭綱
     reptiles: 爬虫類
     life: 生命
+    x_plantae:
+      other: '%{count}件の植物'
+    x_animalia:
+      other: '%{count}件の動物'
+    x_mollusca:
+      other: '%{count}件の軟体動物'
+    x_amphibia: '{{PLURAL|%{count}件の両生類}'
+    x_mammalia:
+      other: '%{count}件の哺乳類'
     x_actinopterygii:
       one: 側棘鰭上目1種
       other: 側棘鰭上目%{count}種
+    x_reptilia:
+      other: '%{count}件の爬虫類'
+    x_aves:
+      other: '%{count}羽の鳥'
+    x_insecta:
+      other: '%{count}頭の昆虫類'
+    x_arachnida:
+      other: '%{count}匹のクモ類'
+    x_fungi:
+      other: '%{count}種の菌類'
     x_chromista:
       one: クロミスタ1類
       other: クロミスタ%{count}類
+    x_protozoa:
+      other: '%{count}件の原生動物'
+    x_other_animals:
+      other: '%{count}件のその他の動物'
   all_taxa_: すべての分類群
   all_taxa_in_this_guide: このガイド内のすべての分類群
   all_taxonomic_groups: '&laquo; すべての分類群'
@@ -1062,6 +1139,8 @@ ja:
   follow_user: '%{user}をフォロー'
   follower: フォロワー
   following: フォロー中
+  following_x_people:
+    other: '%{count}人をフォロー中People'
   for_a_taxon: 分類群用
   for_more_information: に詳細情報を確認してください。
   forgot_your_password: パスワードを忘れた場合
@@ -2185,6 +2264,8 @@ ja:
   processing3p: 処理中...
   profile: プロフィール
   project: プロジェクト
+  project_admins:
+    other: プロジェクト管理者
   project_assessments: プロジェクト評定
   project_assets: プロジェクトアセット
   project_cover: プロジェクトカバー
@@ -2320,6 +2401,8 @@ ja:
   remove_from_list: リストから外す
   remove_from_project: プロジェクトから除去
   remove_this_section: このセクションを削除
+  remove_observations:
+    other: '%{count}件の観察記録を除去しますか？'
   remove_place: 場所を取り除く
   remove_project_user: プロジェクトユーザーを取り除く
   remove_selected: 選択された項目を取り除く
@@ -2608,6 +2691,8 @@ ja:
   submission_model_description: プロジェクトに観察記録を追加できる対象は？
   submit: 送信
   submit_comment: コメントを投稿
+  submit_observations:
+    other: '%{count}件の観察記録を送信'
   submitted: 投稿済
   subscribe_to_a_taxon: 分類群を購読
   subscribe_to_a_place: 場所を購読
@@ -3069,6 +3154,8 @@ ja:
   x_does_not_exist: '%{x}は存在しません'
   x_journal: '%{user}さんのジャーナル'
   x_journal_middot: '%{user}さんのジャーナル •'
+  x_observations_failed:
+    other: '%{count}件の観察失敗記録'
   x_project_journal: '%{project}の%{name}'
   x_project_stats: '%{project}の統計'
   x_site_is_a_social_network_for_naturalist: '%{site}はナチュラリストのためのソーシャルネットワークです！植物や動物の観察を記録し、友人と研究者に共有し、自然についてもっと知りましょう！'
@@ -3561,6 +3648,14 @@ ja:
       less_than_x_seconds:
         one: 1秒以内
         other: '%{count}秒以内'
+      over_x_years:
+        other: '%{count}年以上'
+      x_days:
+        other: '%{count}日'
+      x_minutes:
+        other: '%{count}分'
+      x_months:
+        other: '%{count}ヶ月'
       x_seconds:
         one: 1秒
         other: '%{count}秒'
@@ -3605,6 +3700,8 @@ ja:
         other: iの長さが間違いです (数字%{count}文字が正解)
     template:
       body: 次のフィールドに問題がありました：
+      header:
+        other: '%{model}の保存を許可しなかったエラー%{count}件'
   helpers:
     select:
       prompt: 選択してください
@@ -3679,6 +3776,8 @@ ja:
           other: は短すぎます（最小は%{count}文字）
       template:
         body: 以下のフィールドに問題があります：
+        header:
+          other: ' %{model}の保存を許可しなかった%{count}件のエラー'
   activerecord:
     attributes:
       assessment:
@@ -3748,6 +3847,9 @@ ja:
         name_provider: 名称提供先
         source_url: ソースURL
     errors:
+      template:
+        header:
+          other: '%{model}の保管を許可しなった%{count}件のエラー'
       models:
         guide:
           attributes:

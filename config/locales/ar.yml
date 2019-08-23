@@ -1053,6 +1053,7 @@ ar:
   copyright_holder: مالك الحقوق
   copyright_info: معلومات حقوق الطبع والنشر
   copyright_info_and_more: معلومات حقوق الطبع والنشر والمزيد
+  copyright_infringement: انتهاك حقوق الطبع والنشر
   copyright_infringement_desc: ينتهك قانون حقوق الطبع والنشر أو تم إنشاؤه بواسطة شخص
     آخر بخلاف المراقب ويفتقر إلى الإحالة
   covered_by_a_taxon_framework_html: مغطاة بنسبة %{link}
@@ -1533,6 +1534,7 @@ ar:
     العلم</a>
   flag_this_observation: التعليم على هذه الملاحظة
   flag_this_photo: التعليم على هذه الصورة
+  flag_this_sound: تعليم هذا الصوت
   flagged: مُعلَّم
   flagged_: مُعلَّم
   flagged_covered_taxa: الأصناف المغطاة المعلمة
@@ -4031,6 +4033,7 @@ ar:
     select_one_or_more_sounds: حدد صوتا واحدا أو أكثر
     selected_sounds: الأصوات المحددة
     sound: صوت
+    sound_has_been_flagged: تم تعليم هذا الصوت.
     soundcloud_replied_with_an_error: رد ساوند كلاود بوجود خطأ; الرجاء معاودة المحاولة
       في وقت لاحق.
     sounds: أصوات
@@ -7256,6 +7259,8 @@ ar:
                 للاستيراد
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: الإحداثيات لا يمكن أن تكون 0,0
             observed_on:
               cannot_be_greater_than_date_created: لا يمكن أن يكون أكبر من تاريخ إضافة
                 الملاحظة

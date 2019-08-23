@@ -1169,6 +1169,7 @@ fr:
   copyright_holder: Détenteur des droits
   copyright_info: Informations concernant les droits d'auteur
   copyright_info_and_more: Information de Copyright et Plus
+  copyright_infringement: Violation de droit d’auteur
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne
     autre que l’observateur et attribution manquante
   covered_by_a_taxon_framework_html: Couvert par un %{link}
@@ -1674,6 +1675,7 @@ fr:
     le drapeau</a>
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
+  flag_this_sound: Marquer ce son
   flagged: a signalé
   flagged_: Marqué
   flagged_covered_taxa: Taxons couverts marqués
@@ -4315,6 +4317,7 @@ fr:
     select_one_or_more_sounds: Sélectionnez un ou plusieurs sons
     selected_sounds: Sons sélectionnés
     sound: Son
+    sound_has_been_flagged: Ce son a été marqué.
     soundcloud_replied_with_an_error: SoundCloud affiche une erreur. Veuillez réessayer
       plus tard.
     sounds: Sons
@@ -8101,6 +8104,9 @@ fr:
               api_key_in_use: Clef API en cours ou en attente d'importation
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: les coordonnées ne peuvent pas être
+                0,0
             observed_on:
               cannot_be_greater_than_date_created: ne peut pas être postérieure à
                 la date à laquelle l’observation a été ajoutée

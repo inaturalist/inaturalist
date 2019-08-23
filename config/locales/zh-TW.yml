@@ -945,6 +945,7 @@ zh-TW:
   copyright_holder: 版權所有人
   copyright_info: 版權訊息
   copyright_info_and_more: 更多版權訊息
+  copyright_infringement: 侵犯版權
   copyright_infringement_desc: 違反版權法律，或由非由觀察者所創建並缺乏姓名標示。
   covered_by_a_taxon_framework_html: 由%{link}涵蓋
   covered_by_a_taxon_framework_link: '%{taxon_framework_rank} %{taxon_framework_name}的物種分類框架'
@@ -1394,6 +1395,7 @@ zh-TW:
   flag_saved_thanks_html: 標記已儲存，感謝！<a href="%{url}" class="readmore">檢視標記</a>
   flag_this_observation: 為本觀察紀錄加上旗號標記。
   flag_this_photo: 標記此照片
+  flag_this_sound: 標記此聲音
   flagged: 已標記
   flagged_: 已標記
   flagged_covered_taxa: 已標記的涵蓋物種分類
@@ -3646,6 +3648,7 @@ zh-TW:
     select_one_or_more_sounds: 選擇一個或更多的聲音
     selected_sounds: 已選聲音
     sound: 聲音
+    sound_has_been_flagged: 此聲音已被標記
     soundcloud_replied_with_an_error: SoundCloud 回覆時出現錯誤。請稍後再重試。
     sounds: 聲音
     sounds_size_sound: '%{sounds_size} 段聲音'
@@ -6240,6 +6243,8 @@ zh-TW:
               api_key_in_use: 正在匯入或等候匯入的 API 鍵
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: 座標不能是 0,0
             observed_on:
               cannot_be_greater_than_date_created: 不能大於所添加觀察的日期
         observation_field_value:

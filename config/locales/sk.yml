@@ -1142,6 +1142,11 @@ sk:
   delete_photo: Zmazať fotku
   delete_project: Zmazať tento projekt
   delete_selected: Zmazať vybrané
+  delete_taxon_and_merge_most_data_html: Zmazať <i>%{taxon}</ i> a zlúčiť väčšinu
+    jeho údajov s iným taxónmi. Tento nástroj použite na <strong>odstránenie zdvojených
+    taxónov</ strong>. Pokiaľ chcete odstrániť zastarané synonymum, vytvorte prosím
+    zámenu taxónov. <Strong>POZOR!</ Strong> Mazaním taxónov môže dôjsť k veľkým škodám.
+    Viac informácií nájdete v <a href="%{curator_url}">sprievodcovi pre kurátorov</a>.
   delete_this_name: Zmazať tento názov
   delete_user: Zmazať používateľa
   delete_your_account: Zmazať váš účet
@@ -1626,6 +1631,10 @@ sk:
     načítať maximálne 50 stránok'
   heads_up_this_observation_has_been_flagged: 'POZOR: toto pozorovanie bolo označené.'
   heads_up_this_photo_has_been_flagged: 'POZOR: táto fotka bola označená.'
+  heads_up_this_taxon_locked_users_cant_add_descendants: <Strong>Pozor:</ strong>
+    tento taxón je zamknutý, čo znamená, že väčšina užívateľov nemôže pridať ďalšie
+    nástupcu importovaním taxónov. Kurátori to urobiť môžu editovaním taxónov a výberom
+    základného taxónu, namiesto toho však zvážte zlúčenie taxónov.
   hello: <test>
   help: Pomoc
   help_confirm_observations!: Pomôžte potvrdiť pozorovania!
@@ -1752,6 +1761,11 @@ sk:
   inaturalist_is_catching_some_zs: '%{site_name} práve spí'
   inaturalist_observations_by: '%{site_name} &#58; Pozorovania užívateľa %{login}'
   inaturalist_places: '%{site_name} Miesta'
+  inaturalist_places_are_way_record_what_lives_where: '%{Site_name} Miesta sú spôsob,
+    ako zaznamenávať, čo kde žije. Ak hľadáte konkrétny druh, budete vedieť, kde hľadať.
+    Každé miesto má zoznam, do ktorého sa zapisujú všetky druhy vyskytujúce sa na
+    tomto mieste, čo tiež pomáha pri vyhľadávaní niečoho, čo ste objavili v konkrétnej
+    lokalite.'
   info: Informácie
   input_taxon: Vstupný taxón
   insects: hmyz
@@ -1998,6 +2012,9 @@ sk:
     keď si vytvoríte nový účet na Flickr, s ktorým chcete prepojiť %{site_name}.
   linked_flickr_hotwo: Svoj účet na Flickr môžete aktivovať prostredníctvom %{site_name},
     aby ste mohli pridávať fotky, kliknutím na tento odkaz.
+  linked_flickr_password_html: <Strong>Nikdy vás nebudeme žiadať o vaše heslo na Flickr</
+    strong> (Flickr o neho však žiadať môže, skontrolujte url a overte si, že ide
+    o Flickr.com).
   linked_flickr_photo_copy_html: <strong>Nikdy nebudeme ukladať kópie vašich fotiek
     ani meniť vaše údaje na Flickr (ak nás o to nepožiadate). </strong> Príliš sa
     zaujímame o vtáky, chrobáky a ulitníkov, než aby sme sa hrali s vašimi údajmi!
@@ -3736,10 +3753,70 @@ sk:
   stay_and_try_again: Zostať a skúsiť znova
   still_no_luck?: Stále nič?
   still_needs_id?: Môže komunita potvrdiť/zlepšiť identifikáciu?
+  taxa: Taxóny
+  taxa_with_unknown_relationships: Taxóny s neznámymi vzťahmi
+  taxa_info: Informácie o taxónoch
+  taxa_all_species_html: Všetky druhy
+  taxa_needing_curation: Taxóny vyžadujúce správu
+  taxa_observed: pozorované taxóny
+  taxa_to_include: Taxóny, ktoré sa majú zahrnúť
+  taxon: Taxón
+  taxon_autocomplete_placeholder: Vtáky, babôčky, atď.
+  taxon_geoprivacy: Geosúkromie taxónu
+  taxon_is_a_rank: '%{taxon} je %{rank}'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} je ríša s 1 pozorovaním'
     other: '%{taxon} je ríša s %{count} pozorovaniami'
+  taxonomy: Taxonómia
+  taxon_: taxón
+  taxon_change: zmena taxónu
+  taxon_deleted: Taxón zmazaný.
+  taxon_doesnt_have_a_range: Taxón nemá rozsah.
+  taxon_drop: odložiť taxón
+  taxon_id: ID taxónu
+  taxon_ids: ID taxónu
+  taxon_map:
+    gbif_occurrences: Výskyty GBIF
+    data_url: URL údajov
+    overlays: Prekrytie
+  taxon_changes: Zmeny taxónu
+  taxon_colors: Farby taxónu
   taxon_curators: Kurátori taxónov
+  taxon_extras: Doplnky taxónu
+  taxon_framework: Rámec taxónu
+  taxon_links: Odkazy taxónu
+  taxon_merge: zlúčenie taxónu
+  taxon_name: Názov taxónu
+  taxon_range: Rozsah taxónu
+  taxon_ranks: Poradie taxónu
+  taxon_removed_from_list: Taxón bol odstránený zo zoznamu.
+  taxon_scheme: Plán taxónu
+  taxon_schemes: Plány taxónu
+  taxon_schemes_raquo_html: <nobr>Plány taxónu &raquo;</nobr>
+  taxon_search: Prehľadávanie taxónu
+  taxon_search_results_for: Výsledky prehľadávania taxónu pre
+  taxon_split: rozdelenie taxónu
+  taxon_stage: štádium taxónu
+  taxon_subscription: odber taxónu
+  taxon_swap: zámena taxónu
+  taxon_swap_only_has_one_input: pre zámenu je povolený iba jeden vstup
+  taxon_swap_has_inputs_and_outputs: zámena musí mať vstupy aj výstupy
+  taxon_to_delete: Taxón určený na zmazanie
+  taxon_to_keep: Taxón určený na zachovanie
+  taxon_name_was_deleted: Názov taxónu bol zmazaný.
+  taxon_name_was_successfully_updated: Názov taxónu bol úspešne aktualizovaný.
+  taxon_was_successfully_created: Taxón bol úspešne vytvorený.
+  taxon_was_successfully_updated: Taxón bol úspešne aktualizovaný.
+  taxonomic: Taxonomický
+  taxonomic_changes: Taxonomické zmeny
+  taxonomic_changes_raquo_html: Taxonomické <nobr>zmeny &raquo;</nobr>
+  taxonomic_groups: Taxonomické skupiny
+  taxonomic_order: Taxonomický rad
+  taxonomic_status: Taxonomický status
+  taxonomic_tags_for_flickr: Taxonomické tagy na Flickr
+  taxonomic_tree_browser: Prehliadač taxonomického stromu
+  taxonomy_details: Podrobnosti o taxonómii
+  taxonomy_details_for: Podrobnosti o taxonómii pre
   taxonomy_settings: Nastavenie Taxonómie
   this_is_a_life_list_of: Toto je zoznam života
   this_is_a_life_list_of_taxon_in_place: Toto je zoznam života %{taxon} v %{place}
@@ -3826,6 +3903,62 @@ sk:
           Zobraziť bežné mená. Zakážete, ak chcete zobraziť len vedecké názvy.
           Upozorňujeme, že môžete zmeniť, ktoré bežné názvy sa zobrazujú zmenou
           lokálneho nastavenia a nastavenia miesta.
+  date:
+    month_names:
+      1: Január
+      2: Február
+      3: Marec
+      4: Apríl
+      5: Máj
+      6: Jún
+      7: Júl
+      8: August
+      9: September
+      10: Október
+      11: November
+      12: December
+  datetime:
+    distance_in_words:
+      about_x_months:
+        one: asi 1 mesiac
+        other: asi %{count} mesiace/ov
+      about_x_years:
+        one: asi 1 rok
+        other: asi %{count} roky/ov
+      almost_x_years:
+        one: skoro 1 rok
+        other: skoro %{count} roky/ov
+    prompts:
+      day: Deň
+      hour: Hodina
+      minute: Minúta
+      month: Mesiac
+      second: Sekundy
+      year: Rok
+  errors:
+    format: '%{attribute} %{message}'
+    messages:
+      accepted: musí byť prijaté
+      blank: nesmie byť nevyplnené
+      confirmation: heslo nesedí
+      empty: nesmie byť prázdne
+      equal_to: musí sa rovnať %{count}
+      even: musí byť párne
+      exclusion: je vyhradené
+      greater_than: musí väčšie ako %{count}
+      greater_than_or_equal_to: musí byť vyšší alebo rovnaký ako %{count}
+      inclusion: nie je zahrnuté v zozname
+      invalid: je neplatné
+      less_than: musí byť menší ako %{count}
+      less_than_or_equal_to: musí byť nižší alebo rovnaký ako %{count}
+      not_a_number: nie je číslo
+      not_an_integer: musí byť celé číslo
+      odd: musí byť nepárne
+      record_invalid: 'Potvrdenie zlyhalo: %{errors}'
+      requires_privilege_speech: musíte mať tri overené pozorovania alebo tri identifikácie
+        pre ostatných aby ste mohli
+      requires_privilege_organizer: musíte mať 50 overených pozorovaní aby ste mohli
+      taken: už bolo prijaté
   activerecord:
     attributes:
       project:

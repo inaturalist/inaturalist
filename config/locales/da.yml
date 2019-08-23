@@ -416,7 +416,7 @@ da:
     birds: Fugle
     chromista: Gulbrune alger
     fungi: Svampe
-    fungi_including_lichens: Svampe inklusiv laver
+    fungi_including_lichens: Svampe inklusiv lav
     insects: Insekter
     mammals: Pattedyr
     mollusks: Bløddyr
@@ -1093,6 +1093,7 @@ da:
   copyright_holder: Ophavsret
   copyright_info: Ophavsret info
   copyright_info_and_more: Ophavsret info og mere
+  copyright_infringement: Krænkelse af ophavsret
   copyright_infringement_desc: Overtræder ophavsretsloven eller er blevet oprettet
     af en anden end observatøren og mangler kildeangivelse
   covered_by_a_taxon_framework_html: Dækket af et %{link}
@@ -2272,7 +2273,7 @@ da:
     pt-BR: Portugisisk (Brasilien)
     pt-PT: Portugisisk (Portugal)
     ru: Russisk
-    sk: slovakisk
+    sk: Slovakisk
     sq: Albansk
     sv: Svensk
     zh-CN: Kinesisk (simplificeret)
@@ -7602,6 +7603,8 @@ da:
               api_key_in_use: API nøgle import eller kø for import
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: koordinater kan ikke være 0,0
             observed_on:
               cannot_be_greater_than_date_created: kan ikke være større end datoen
                 observationen blev tilføjet

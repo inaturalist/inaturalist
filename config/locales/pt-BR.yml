@@ -1114,6 +1114,7 @@ pt-BR:
   copyright_holder: Titular dos direitos autorais
   copyright_info: Informação sobre copyright
   copyright_info_and_more: Informação sobre copyright e Mais
+  copyright_infringement: Violação de direitos autorais
   copyright_infringement_desc: Viola o direito autoral ou foi criada por alguém que
     não é o observador e está sem atribuição
   covered_by_a_taxon_framework_html: Coberto por um %{link}
@@ -1609,6 +1610,7 @@ pt-BR:
     marcação</a>
   flag_this_observation: Marque com alerta esta observação
   flag_this_photo: Faça um alerta sobre esta foto
+  flag_this_sound: Sinalizar este som
   flagged: Marcados
   flagged_: Marcado
   flagged_covered_taxa: Taxa coberta sinalizada
@@ -4201,6 +4203,7 @@ pt-BR:
     select_one_or_more_sounds: Selecione um ou mais sons
     selected_sounds: Selecione sons
     sound: Som
+    sound_has_been_flagged: Este som foi sinalizado.
     soundcloud_replied_with_an_error: Houve um erro com a sua conexão ao SoundCloud.
       Por favor tente novamente.
     sounds: Sons
@@ -7711,6 +7714,8 @@ pt-BR:
               api_key_in_use: Chave de API sendo importada ou aguardando importação
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: coordenadas não podem ser 0,0
             observed_on:
               cannot_be_greater_than_date_created: não pode ser maior que a data em
                 que a observação foi adicionada
