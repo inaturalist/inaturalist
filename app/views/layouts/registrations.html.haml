@@ -18,13 +18,18 @@
           )
         }.reverse.join( ", " )
         place_guess = obs.place_guess if place_guess.blank?
+        taxon_name = if obs.taxon
+          render( partial: "shared/taxon", locals: { taxon: obs.taxon, one_name: true } )
+        else
+          t(:unknown)
+        end
       #imgcol.hidden-xs.hidden-sm{ style: "background-image: url('#{photo.large_url}');" }
         .about-observation
           = link_to_user obs.user, style: "background-image: url('#{obs.user.icon.url(:medium)}');", class: "usericon" do
             &nbsp;
           .details
             %div
-              =t :taxon_observed_by_html, taxon: render( partial: "shared/taxon", locals: { taxon: obs.taxon, one_name: true } ), url: url_for( obs )
+              =t :taxon_observed_by_html, taxon: taxon_name, url: url_for( obs )
             = link_to_user obs.user, class: "username" do
               = obs.user.published_name
             %div
