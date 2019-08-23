@@ -63,10 +63,16 @@
       .box
         %h3= t :guidelines
         = t 'views.taxon_names.form.new_name_guidelines_html'
-      - unless @taxon_name.source_identifier.blank?
+      - if @taxon_name.source_identifier.blank? || @taxon_name.source
         .clear.quiet.box
           %p.description
             = t(:this_taxon_name_was_originally_imported)
-          = n.text_field :name_provider, :disabled => true, :class => "text"
-          = n.text_field :source_url, :disabled => true, :class => "text"
-          = n.text_field :source_identifier, :disabled => true, :class => "text"
+          - if @taxon_name.source
+            = @taxon_name.source.citation
+            = link_to t(:link), @taxon_name.source.url if @taxon_name.source.url
+            &middot;
+            = link_to t(:edit_source), edit_source_path( @taxon_name.source )
+          - else
+            = n.text_field :name_provider, :disabled => true, :class => "text"
+            = n.text_field :source_url, :disabled => true, :class => "text"
+            = n.text_field :source_identifier, :disabled => true, :class => "text"
