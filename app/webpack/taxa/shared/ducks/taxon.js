@@ -255,13 +255,17 @@ export function fetchTaxon( taxon, options = { } ) {
 export function fetchDescription( ) {
   return ( dispatch, getState ) => {
     const { taxon } = getState( ).taxon;
-    fetch( `/taxa/${taxon.id}/description` ).then(
+    let url = `/taxa/${taxon.id}/description`;
+    if ( I18n.locale.match( /^en/ ) ) {
+      url += "?wiki_prompt=true";
+    }
+    fetch( url ).then(
       response => {
         const source = response.headers.get( "X-Describer-Name" );
-        const url = response.headers.get( "X-Describer-URL" );
+        const describerUrl = response.headers.get( "X-Describer-URL" );
         response.text( ).then( body => {
           if ( body && body.length > 0 ) {
-            dispatch( setDescription( source, url, body ) );
+            dispatch( setDescription( source, describerUrl, body ) );
           }
         } );
       },
