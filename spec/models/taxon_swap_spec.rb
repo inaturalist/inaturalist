@@ -124,6 +124,16 @@ describe TaxonSwap, "commit" do
     expect(@output_taxon.taxon_names.detect{|tn| tn.name == name}).not_to be_blank
   end
 
+  it "should not associate users with the duplicate taxon names" do
+    name = "Bunny foo foo"
+    @input_taxon.taxon_names.create( name: name, lexicon: TaxonName::ENGLISH, creator: User.make! )
+    expect( @output_taxon.taxon_names.detect{|tn| tn.name == name} ).to be_blank
+    @swap.commit
+    @output_taxon.reload
+    new_name = @output_taxon.taxon_names.detect{|tn| tn.name == name}
+    expect( new_name.creator ).to be_blank
+  end
+
   it "should mark the duplicate of the input taxon's sciname as invalid" do
     @swap.commit
     @output_taxon.reload
@@ -395,7 +405,7 @@ describe TaxonSwap, "commit" do
     @output_taxon.reload
     expect {
       @swap.commit
-    }.not_to raise_error TaxonChange::PermissionError
+    }.not_to raise_error # TaxonChange::PermissionError
   end
   
   it "should raise an error if input taxon has active children" do

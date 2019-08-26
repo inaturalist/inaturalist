@@ -90,6 +90,14 @@ class TaxonSwap < TaxonChange
         next
       end
       new_taxon_name = taxon_name.dup
+      new_taxon_name.creator = nil
+      new_taxon_name.updater = nil
+      if new_taxon_name.source_url.blank?
+        new_taxon_name.source_url = FakeView.edit_taxon_name_url( taxon_name )
+      end
+      if new_taxon_name.source_identifier.blank?
+        new_taxon_name.source_identifier = taxon_name.id
+      end
       new_taxon_name.taxon_id = output_taxon.id
       new_taxon_name.is_valid = false if taxon_name.is_scientific_names? && taxon_name.is_valid?
       unless new_taxon_name.save
