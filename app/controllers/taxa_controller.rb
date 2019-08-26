@@ -1032,9 +1032,9 @@ class TaxaController < ApplicationController
     @describers = if @site.taxon_describers
       @site.taxon_describers.map{|d| TaxonDescribers.get_describer(d)}.compact
     elsif @taxon.iconic_taxon_name == "Amphibia" && @taxon.species_or_lower?
-      [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol]
+      [TaxonDescribers::Wikipedia, TaxonDescribers::AmphibiaWeb, TaxonDescribers::Eol, TaxonDescribers::Inaturalist]
     else
-      [TaxonDescribers::Wikipedia, TaxonDescribers::Eol]
+      [TaxonDescribers::Wikipedia, TaxonDescribers::Eol, TaxonDescribers::Inaturalist]
     end
     # Perform caching here as opposed to caches_action so we can set request headers appropriately
     key = "views/taxa/#{@taxon.id}/description?#{request.query_parameters.merge( locale: I18n.locale ).to_a.join{|k,v| "#{k}=#{v}"}}"
@@ -1068,17 +1068,17 @@ class TaxaController < ApplicationController
       end
       if @describer
         @describer_url = @describer.page_url( @taxon )
-        response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
+        response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
         response.headers["X-Describer-URL"] = @describer_url
       end
       if !@description.blank? && !logged_in?
         Rails.cache.write( key, @description, expires_in: 1.day )
-        Rails.cache.write( "#{key}-describer", @describer.name.split( "::" ).last, expires_in: 1.day )
+        Rails.cache.write( "#{key}-describer", @describer.describer_name || @describer.name.split( "::" ).last, expires_in: 1.day )
       end
     # If we have cached content and a cached describer name, set the response headers
     elsif !@description.blank? && ( @describer = TaxonDescribers.get_describer( Rails.cache.read( "#{key}-describer" ) ) )
       @describer_url = @describer.page_url( @taxon )
-      response.headers["X-Describer-Name"] = @describer.name.split( "::" ).last
+      response.headers["X-Describer-Name"] = @describer.describer_name || @describer.name.split( "::" ).last
       response.headers["X-Describer-URL"] = @describer_url
     end
     respond_to do |format|

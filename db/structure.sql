@@ -4887,7 +4887,10 @@ CREATE TABLE public.users (
     suspended_by_user_id integer,
     birthday date,
     pi_consent_at timestamp without time zone,
-    donorbox_donor_id integer
+    donorbox_donor_id integer,
+    donorbox_plan_type character varying,
+    donorbox_plan_status character varying,
+    donorbox_plan_started_at date
 );
 
 
@@ -9991,4 +9994,6 @@ INSERT INTO schema_migrations (version) VALUES ('20190528222836');
 INSERT INTO schema_migrations (version) VALUES ('20190604231553');
 
 INSERT INTO schema_migrations (version) VALUES ('20190702063435');
+
+INSERT INTO schema_migrations (version) VALUES ('20190820224224');
 

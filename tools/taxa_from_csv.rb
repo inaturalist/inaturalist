@@ -29,7 +29,7 @@ Examples:
   
   # Import common names from a pre-existing source, attributing a specific user,
   # without adding taxa
-  be rails r ~/taxa_from_csv.rb -d -c --skip-check-lists -s 16299 -u 1 -p 7016 --lexicon-first ~/names.csv > ~/names.log
+  be rails r tools/taxa_from_csv.rb -d -c --skip-check-lists -s 16299 -u 1 -p 7016 --lexicon-first ~/names.csv > ~/names.log
 
 where [options] are:
 EOS
@@ -40,6 +40,7 @@ EOS
   opt :user_id, "User ID of user who is adding these names", type: :integer, short: "-u"
   opt :source_id, "Source ID of source to use for these names these names", type: :integer, short: "-s"
   opt :lexicon_first, "Allow file to be of format sciname, lexicon, comname", type: :boolean
+  opt :lexicon, "Lexicon that will override the lexicon in the file", type: :string, short: "-l"
 end
 
 start = Time.now
@@ -88,6 +89,7 @@ def save_common_names(taxon, common_names)
     name = name.split(/[,;]/).first.strip
     next if @encountered_names[name]
     @encountered_names[name] = true
+    lexicon = OPTS.lexicon || lexicon
     if tn = taxon.taxon_names.where( name: name, lexicon: lexicon ).first
       @names_existing += 1
     else

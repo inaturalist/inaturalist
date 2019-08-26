@@ -87,6 +87,7 @@ class User < ActiveRecord::Base
   preference :coordinate_interpolation_protection, default: false
   preference :coordinate_interpolation_protection_test, default: false
   preference :forum_topics_on_dashboard, :boolean, default: true
+  preference :monthly_supporter_badge, :boolean, default: false
   
   NOTIFICATION_PREFERENCES = %w(
     comment_email_notification

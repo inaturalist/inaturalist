@@ -341,6 +341,9 @@ class UsersController < ApplicationController
             ).first.try(&:created_at)
           ].compact.sort.map{|t| t.in_time_zone( Time.zone ).to_date }.last
         end
+        @donor_since = @selected_user.donorbox_plan_status == "active" &&
+          @selected_user.donorbox_plan_type == "monthly" &&
+          @selected_user.donorbox_plan_started_at
         render layout: "bootstrap"
       end
       opts = User.default_json_options
@@ -562,7 +565,10 @@ class UsersController < ApplicationController
   
   def edit
     respond_to do |format|
-      format.html
+      format.html do
+        @monthly_supporter = @user.donorbox_plan_status == "active" &&
+          @user.donorbox_plan_type == "monthly"
+      end
       format.json do
         render :json => @user.to_json(
           :except => [
@@ -1106,6 +1112,7 @@ protected
       :prefers_no_place,
       :prefers_coordinate_interpolation_protection,
       :prefers_coordinate_interpolation_protection_test,
+      :prefers_monthly_supporter_badge,
       :search_place_id,
       :site_id,
       :test_groups,
