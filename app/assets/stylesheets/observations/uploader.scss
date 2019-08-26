@@ -321,9 +321,12 @@ input.failed, textarea.failed {
       margin-left: 5px;
     }
   }
+
+  .ui-autocomplete {
+    max-height: 300px;
+    overflow-y: auto;
+  }
 }
-
-
 
 // Card grid
 
