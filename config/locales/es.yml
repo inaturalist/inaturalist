@@ -208,6 +208,20 @@ es:
   about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
   about_this_project: Acerca de este proyecto
+  about_trips_html: '<h4> Los viajes permiten la recopilación de datos de presencia-ausencia
+    al agregar contexto a sus observaciones </h4> <p> <strong> Por qué </strong> Los
+    datos de presencia-ausencia incluyen información sobre el esfuerzo de muestreo
+    que es útil para análisis científicos como la distribución modelada (las observaciones
+    naturales de Raw son datos de ''solo presencia''). </p> <p> <strong> Cómo </strong>
+    Un viaje agrega contexto a sus observaciones al registrar: </p> <ul> <li> < strong>
+    Qué </strong> buscó (lista de objetivos) </li> <li> <strong> Dónde </strong> buscó
+    (área de búsqueda) </li> <li> <strong> Cuándo </strong> buscó (intervalo de búsqueda)
+    </li> </ul> <p> Las especies en su lista de objetivos que pudo observar dentro
+    del área de búsqueda y el intervalo se interpretan como presencias. Mientras que
+    las especies en su lista de objetivos que no pudo observar se interpretan como
+    ausencias. Haga clic en ''Tabular datos de ausencia de presencia de viajes'' para
+    generar una tabla de registros de presencia-ausencia para una especie de viajes
+    y observaciones asociadas. <a href=''%{url}''> Obtenga más información </a> </p>'
   about_x: Acerca de %{x}
   acc: Prec.(m)
   account: Cuenta
@@ -1129,6 +1143,7 @@ es:
   copyright_holder: Titular de los derechos de autor
   copyright_info: Información sobre copyright
   copyright_info_and_more: Información de copyright y más
+  copyright_infringement: Violación de derechos de autor
   copyright_infringement_desc: Viola el derecho de autor o fue creado por una persona
     distinta del observador y carece de atribución
   covered_by_a_taxon_framework_html: Cubierto por un %{link}
@@ -1619,6 +1634,7 @@ es:
     marca</a>
   flag_this_observation: Incluir advertencia en esta observación
   flag_this_photo: Marca esta foto con advertencia
+  flag_this_sound: Marcar este sonido
   flagged: marcado
   flagged_: Marcado
   flagged_covered_taxa: Taxones cubiertos marcados
@@ -4212,6 +4228,7 @@ es:
     select_one_or_more_sounds: Selecciona uno o más sonidos
     selected_sounds: Sonidos seleccionados
     sound: Sonido
+    sound_has_been_flagged: Este sonido ha sido marcado
     soundcloud_replied_with_an_error: SoundCloud respondió con un error. Por favor,
       inténtalo de nuevo más tarde.
     sounds: Sonidos
@@ -4498,6 +4515,7 @@ es:
   taxon_name: Nombre del taxón
   taxon_name_must_match_an_existing_taxon_in_our_database: El nombre taxonómico debe
     coincidir con un taxón existente en la base de datos.
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> observado por
   taxon_observed_by_user: '%{taxon} observado por %{user}'
   taxon_or_place_observations: Observaciones de taxón o lugar
   taxon_photos_updated: ¡Las fotos del taxón fueron actualizadas!
@@ -6109,6 +6127,9 @@ es:
           en esta página, de un total de %{total} observaciones coincidentes.
         unreview_all_tooltip: Quitar el estatus de revisadas a todas las observaciones
           de esta página
+        too_many_results_desc: |-
+          El número de página multiplicado por el número de resultados por página no puede superar los 10.000.
+          Intente aplicar filtros para reducir el número de resultados, o marque las observaciones como revisadas y use el botón "Ver más" en lugar de paginación
       import:
         coordinate_systems_help: El %{site_name} acepta coordenadas usando varios
           tipos distintos de sistemas de coordenadas, por lo que cuando proporcionas
@@ -6255,6 +6276,69 @@ es:
           <a href="%{url}">página de exportación de observaciones</a> para una lista de tus exportaciones.
       parental_consent:
         subject: A su hijo le gustaría usar iNaturalist
+        content_html: |-
+          <p>
+          Su hijo está utilizando la aplicación educativa <strong> Busqueda de iNaturalist </strong> y le gustaría compartir datos con la plataforma de ciencia ciudadana iNaturalist. Debido a que publicar en iNaturalist revela información de identificación personal, iNaturalist no puede ser utilizado por personas menores de 13 años sin el consentimiento de un padre.
+          </p>
+          <p>
+          <strong> Búsqueda de iNaturalist </strong> se puede usar sin crear una cuenta, y no se compartirá ninguna información de identificación personal, pero su hijo no podrá contribuir con observaciones a iNaturalist. iNaturalist es una red social de ciencia ciudadana donde los participantes comparten observaciones e identificaciones de seres vivos para aprender mutuamente sobre la naturaleza y generar datos de biodiversidad para la ciencia.
+          </p>
+          <p>
+          Si desea dar su consentimiento para que su hijo use iNaturalist, necesitaremos que haga lo siguiente:
+          </p>
+          <ol>
+          <li>
+          <p>
+          Cree una cuenta de iNaturalist que su hijo usará siguiendo este enlace: <a href="%{registration_url}">%{registration_url}</a>
+          </p>
+          </li>
+          <li>
+          <p>
+          Después de crear la cuenta de su hijo, le pediremos que haga una pequeña donación de US $ 1 con una tarjeta de crédito a iNaturalist para verificar que es un adulto. Asegúrese de utilizar la misma dirección de correo electrónico que ingresó en el campo "Correo electrónico principal" durante el registro al hacer su donación.
+          </p>
+          </li>
+          <li>
+          <p>
+          Una vez que procesemos la donación, le enviaremos otro correo electrónico notificándole que la cuenta de su hijo se ha activado y puede usar el nombre de usuario y la contraseña de iNaturalist que creó para iniciar sesión en la aplicación Busqueda de su hijo.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist recopila la siguiente información de identificación personal:
+          </p>
+          <ol>
+          <li>
+          <p>
+          <strong> dirección de correo electrónico (privada): </strong> cada cuenta de iNaturalist tiene asociada una dirección de correo electrónico que no se hace pública.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong> nombre de usuario (público, obligatorio): </strong> cada cuenta de iNaturalist tiene un nombre de usuario público y un número de identificación de usuario. El nombre de usuario no tiene que ser similar al nombre real de una persona, pero se puede utilizar para contactar a la persona a través de comentarios públicos y mensajes directos privados.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong> Dirección IP (privada, requerida): </strong> iNaturalist almacena pero no hace pública la dirección IP del usuario que se puede utilizar para obtener información de identificación personal como la ubicación (con precisión a nivel de ciudad).
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong> Imagen de perfil (pública, opcional): </strong> las cuentas de iNaturalist pueden tener opcionalmente imágenes de perfil, que a menudo son imágenes del usuario.
+          </p>
+          </li>
+          <li>
+          <p>
+          <strong> Ubicación de observación (pública o privada, requerida): </strong> las observaciones de INaturaList contienen información de ubicación sobre dónde se realizó la observación. Esto puede hacerse público o mantenerse privado, pero es público de forma predeterminada.
+          </p>
+          </li>
+          </ol>
+          <p>
+          iNaturalist también permite a los usuarios compartir imágenes públicas, comentarios públicos y mensajes privados directos asociados con su cuenta. Es posible que los usuarios puedan incluir información de identificación personal en este contenido generado por el usuario.
+          </p>
+          <p>
+          Obtenga más información sobre la Política de privacidad de iNaturalist <a href="%{privacy_policy_url}"> aquí </a>
+          </p>
       photos_missing:
         subject: Algunas fotos necesitan reparación
         we_have_been_housekeeping: Hemos estado haciendo un poco de limpieza y encontramos
@@ -6276,6 +6360,26 @@ es:
           fotos sean eliminadas, y es posible que algunas observaciones de los grados
           de investigación se convertirán en informales si ya no tienen fotos.
         we_included_links: Hemos incluido enlaces a las fotos afectadas abajo.
+      user_parent_confirmation:
+        subject: La cuenta de iNaturalist de su hijo ha sido activada
+        content_html: |-
+          <p>
+          ¡Gracias por crear una cuenta de INaturaList para su hijo! La cuenta ha sido activada. Aquí están los detalles que ingresó que tenemos registrados:
+          </p>
+          <ul>
+          <li><strong>Nombre del padre o tutor legal: </strong> %{parent_name}</li>
+          <li><strong>Correo electrónico del padre o tutor legal: </strong> %{parent_email}</li>
+          <li><strong>Nombre del niño: </strong> %{child_name}</li>
+          <li><strong>Fecha de nacimiento del niño: </strong> %{child_birthday}</li>
+          <li><strong>Correo electrónico de la cuenta del niño: </strong> %{child_email}</li>
+          <li><strong>Nombre de usuario de la cuenta del niño: </strong> %{child_username}</li>
+          </ul>
+          <p>
+          Inicie sesión en la cuenta desde la aplicación Busqueda de su hijo tocando el botón "iNaturalist" en el menú y luego "Iniciar sesión con iNaturalist" en la parte inferior de la pantalla.
+          </p>
+          <p>
+          Luego, su hijo podrá publicar observaciones en su cuenta de iNaturalist utilizando la aplicación Busqueda para que se puedan ver en iNaturalist.org.
+          </p>
       users_updates_suspended:
         message: Has estado inactivo en %{site_name} mucho tiempo, por eso hemos suspendido
           tus suscripciones. Para reanudar la obtención de actualizaciones sobre la
@@ -6462,11 +6566,10 @@ es:
           Si quieres unirte, por favor ponte en contacto con uno de los curadores
           y solicita una invitación.
       new:
-        a_project_allows_you_to_gather: Un proyecto de colección te permite reunir
-          y visualizar las observaciones que utilizan las herramientas básicas de
-          NaturaLista. Esto elimina la necesidad de añadir manualmente añadir observaciones
-          porque todas aquellas que satisfagan las condiciones de los parámetros determinados
-          en el proyecto serán automáticamente incluídas.
+        a_project_allows_you_to_gather: Un proyecto de recopilación le permite recopilar
+          y visualizar observaciones utilizando las principales herramientas de búsqueda
+          de iNaturalist. Todo lo que cumpla con los parámetros establecidos por el
+          proyecto se incluirá automáticamente.
         an_umbrella_project_can_be_used_to: Un proyecto de paraguas puede comparar
           estadísticas de dos o más proyectos tradicionales o de colección. Los otros
           proyectos tienen que existir antes de que los añadas a un proyecto paraguas.
@@ -6487,12 +6590,11 @@ es:
           a la medida, o añadir observaciones individuales que no pueden ser filtradas
           automáticamente?
         leaderboards_among_individuals: Tabler de líderes entre <strong>@individuos</strong>
-        leaderboards_among_projects_and_bioblitzes: Tablero de líderes entre <strong>proyectos
-          y maratones</strong>
+        leaderboards_among_projects_and_bioblitzes: Tablas de clasificación entre
+          <strong>proyectos</strong>
         multiple_project_administrators: Administradores múltiples de proyecto
         name_placeholder: Aves de Chicago, Libélulas increíbles, etc.
-        no_need_to_rely_on_manual_addition: No hay necesidad de añadir las observaciones
-          manualmente o en el agregador para indexar las observaciones
+        no_need_to_rely_on_manual_addition: Sin adición manual de observaciones
         note_these_users_will_be_able_to_edit: 'Nota: estos usuarios podrán editar
           TODOS los detalles del proyecto incluyendo a los administradores.'
         note_you_can_delete_the_time: '(Nota:  puedes eliminar el huso horario y tiempo
@@ -6522,8 +6624,8 @@ es:
           principal del proyecto, así que ¡incluye lo mejor al principio!
         project_summary_placeholder: Descubre y sigue las aves del Parque Golden Gate...
         show_projects_as_flags: Mostrar los proyectos como banderas en el mapa
-        start_and_end_times_for_bioblitzes: Tiempos de principio y fin de maratones
-          naturalista
+        start_and_end_times_for_bioblitzes: Fecha / hora de inicio y finalización
+          (para eventos de tipo bioblitz)
         umbrella_project_features: 'Características de proyecto paraguas:'
         unique_url_for_outreach: URL único para promoción
         users_can_follow_your_project: Los usuarios pueden seguir actualizaciones
@@ -6532,10 +6634,14 @@ es:
           un proyecto tradicional.
         visual_comparison_of_data_among: Comparaciones visuales de datos entre proyectos
           del paraguas
-        we_have_redesigned_projects: |-
-          Rediseñamos los proyectos para incluir automáticamente todas las observaciones adecuadas de sitios, taxa, usuarios, calidad, y fechas que definas. Escoge entre dos tipos:
-          Proyectos de colección y Proyectos de paraguas, los cuales comparten las siguientes características:
+        we_have_redesigned_projects: 'Los proyectos están diseñados para incluir automáticamente
+          todas las observaciones que se ajusten a los lugares, taxones, usuarios,
+          calidad y fechas que usted defina. Elija entre dos tipos principales: Proyectos
+          de colección y Proyectos generales, que comparten las siguientes características:'
         welcome_to_projects: ¡Te damos la bienvenida a los proyectos!
+        you_can_learn_more_html: |-
+          Puede obtener más información sobre la gestión de proyectos.
+          <a href="https://www.inaturalist.org/pages/managing-projects"> aquí </a> o leer el historial de proyectos en <a href="https://www.inaturalist.org/blog/15450-announcing-changes-to-projects-on-inaturalist"> nuestro blog </a>.
         you_have_not_defined_any_observation_requirements: No has definido ningún
           requisito para las observación. Asegúrate de seleccionar uno o más taxa
           (p. ej. aves, coníferas), sitios (p. ej. Brasil, Yellowstone), usuarios,
@@ -6544,8 +6650,10 @@ es:
           name_is_required: El nombre del proyecto es obligatorio
           name_less_than_100_characters: El nombre del proyecto no debe sobrepasar
             100 caracteres
+          name_already_taken: El nombre del proyecto ya ha sido tomado
           cannot_have_more_than_x_project_rules: No puede tener más de %{x} reglas
             de proyecto
+          summary_is_required: Se requiere texto de resumen del proyecto
       project_location_privacy_notice_html: |-
         <p>
          Por favor, date cuenta que los curadores de proyectos podrán ver cualquier ubicación privada o oscurecida de tus observaciones en este proyecto a menos que declines el permiso, y también podrán añadir cualquiera de tus observaciones a este proyecto a menos que cambies tu  <a href="/users/edit"> configuración</a>. También puedes conceder o revocar el acceso a las observaciones del proyecto caso por caso.
@@ -6830,6 +6938,8 @@ es:
           Life Stage=pupa: Pupa
           Life Stage=adult: Adulto
           unannotated: Sin anotación
+        max_photos_desc: Un taxón solo puede tener %{max} fotos. Deberá eliminar las
+          fotos existentes para agregar más.
         no_trending_desc: Ninguna observación bajo este taxón en el último mes
         photo_chooser_modal_desc: Arrastre las fotos aquí desde la izquierda, o arrastre
           las fotos aquí para volver a organizar.
@@ -6987,13 +7097,9 @@ es:
           <p>
             Nota: Por favor no cambies tu afiliación de forma experimental si tienes más de 1000 observaciones.
           </p>
-        licensing_desc_html: "Obtención de la licencia de contenido da a otras personas
-          el derecho\nlegal de utilizar sin pedir su permiso si se adhieren a los
-          términos\nde la licencia. %{site_name} utiliza su contenido con licencia\nCreative
-          Commons-para compartir con los socios de datos como la \n<a href=\"http://www.gbif.org/\">Global
-          Biodiversity Informatics Facility</a>\n(GBIF), una organización internacional,
-          organización\nintergubernamental que recopila y distribuye información sobre
-          la\nbiodiversidad de todo el mundo."
+        licensing_desc_html: |-
+          La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
+          Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
         muting_desc_html: |-
           <p>
             Silenciar a alguien te previene de recibir notificaciones de lo que hacen, incluyendo comentarios acerca de tus observaciones, o de enviarte mensajes, de mencionarte, etc. El silenciar a alguien te ayuda a ignorarlos sin prevenir de que hagan otras actividades.
@@ -7066,14 +7172,47 @@ es:
         this_user_was_banned: Este usuario fue suspendido
     user_parents:
       confirm:
+        thanks_donor_html: |-
+          <p>
+          ¡Gracias por ser un donante naturalista! Pudimos usar su donación actual para confirmar su identidad y no necesitamos ninguna otra acción suya. <strong> La cuenta de su hijo se ha activado. </strong>
+          </p>
+          <p>
+          Inicie sesión en la cuenta desde la aplicación Busqueda de su hijo tocando el botón "iNaturalist" en el menú y luego "Iniciar sesión con iNaturalist" en la parte inferior de la pantalla.
+          </p>
+          <p>
+          Luego, su hijo podrá publicar observaciones en su cuenta de iNaturalist utilizando la aplicación Busqueda para que se puedan ver en iNaturalist.org.
+          </p>
         thanks_for_creating_a_minor_account: ¡GRACIAS POR CREAR UNA CUENTA INFANTIL!
+        we_will_send_you_an_email: Le enviaremos un correo electrónico una vez que
+          se haya activado la cuenta de su hijo.
       new:
+        child_name_private: Nombre del niño (privado)
         create_a_minor_account: Crear cuenta de menor de edad
         create_minor_account: Crear cuenta de menor de edad
+        parent_name_private: Nombre del padre o tutor legal (privado)
+        parent_email: Correo electrónico del padre o tutor legal (privado)
+        inaturalist_minor_account_signup: Registro de Cuenta de un Menor INaturalist
+        parent_information_private: Información de los padres (privado)
         step1_title: CREAR UNA CUENTA PARA TU HIJO/A
+        step1_desc: Para cumplir con las normas de privacidad, necesitamos el consentimiento
+          de un padre o tutor legal para crear una cuenta para una persona menor de
+          13 años. Si desea que su hijo use iNaturalist, debe proporcionarnos cierta
+          identidad e información de contacto.
         step2_title: CONFIRMA TU IDENTIDAD CON UNA TARJETA DE CRÉDITO
+        step2_desc: Para confirmar su identidad como adulto, necesitamos que proporcione
+          una donación nominal de al menos US $ 1 a iNaturalist usando una tarjeta
+          de crédito. Esta es la forma menos intrusiva de verificación de identidad
+          que nos permite cumplir con las leyes de privacidad. Asegúrese de utilizar
+          la misma dirección de correo electrónico que ingresó como "correo electrónico
+          principal" en el paso anterior.
         step3_title: ESPERA EL MENSAJE DE CONFIRMACIÓN
+        step3_desc: Una vez que hagamos coincidir el correo electrónico utilizado
+          en la donación con el correo electrónico que ingresó como "correo electrónico
+          principal", activaremos la cuenta del niño y le enviaremos un correo electrónico
+          con las instrucciones de inicio de sesión. Esto puede tomar hasta 24 horas.
         step3_donor_title: SE HA ACTIVADO LA CUENTA INFANTIL
+        step3_donor_desc: Debido a que usted es un donante INaturalist, pudimos verificar
+          su identidad con su donación existente.
     welcome:
       index:
         welcome_message_html: "%{image} lo invita a utilizar este portal de información
@@ -7255,6 +7394,11 @@ es:
       not_an_integer: debe ser un entero
       odd: debe ser impar
       record_invalid: 'La validación falló: %{errors}'
+      requires_privilege_speech: |-
+        Debe tener tres observaciones verificables o tres identificaciones
+        para que otros hagan eso
+      requires_privilege_organizer: Debe tener 50 observaciones verificables para
+        hacer eso
       taken: ya está en uso
       too_long: es demasiado largo (%{count} caracteres máximo)
       too_short: es demasiado corto (%{count} caracteres mínimo)
@@ -7345,6 +7489,11 @@ es:
         not_an_integer: debe ser un entero
         odd: debe ser impar
         record_invalid: 'Falló la validación: %{errors}'
+        requires_privilege_speech: |-
+          Debe tener tres observaciones verificables o tres identificaciones
+          para que otros hagan eso
+        requires_privilege_organizer: Debe tener 50 observaciones verificables para
+          hacer eso
         taken: ya ha sido tomado.
         too_long:
           one: es demasiado largo (el máximo es 1 carácter)
@@ -7478,6 +7627,11 @@ es:
         not_an_integer: debe ser un número entero
         odd: debe ser impar
         record_invalid: 'Falló la validación: %{errors}'
+        requires_privilege_speech: |-
+          Debe tener tres observaciones verificables o tres identificaciones
+          para que otros hagan eso
+        requires_privilege_organizer: Debe tener 50 observaciones verificables para
+          hacer eso
         taken: ya está en uso
         too_long:
           one: es demasiado largo (el máximo es 1 carácter)
@@ -7500,6 +7654,10 @@ es:
               has_query_parameter: No puede contener un parámetro de consulta.
               invalid_uri: Debe ser un URI válido.
               relative_uri: debe ser un URI absoluto.
+        flag:
+          attributes:
+            user_id:
+              already_flagged: Ese elemento ya ha sido marcado
         guide:
           attributes:
             published_at:
@@ -7512,6 +7670,13 @@ es:
           attributes:
             base:
               api_key_in_use: Clave de API importándose o en espera de importación
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: Las coordenadas no pueden ser 0,0
+            observed_on:
+              cannot_be_greater_than_date_created: No puede ser mayor que la fecha
+                en que se agregó la observación
         observation_field_value:
           attributes:
             value:
@@ -7529,6 +7694,7 @@ es:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: Es demasiado grande para editar
               is_too_large_to_import: es demasiado grande para importar
               contains_too_many_observations: contiene demasiadas observaciones para
                 importar
@@ -7580,6 +7746,10 @@ es:
                 encontrar el nombre científico de una especie para este léxico
               bad_format: solo puede contener caracteres latinos estándar, guiones,
                 espacios, y ×; nota que no se permiten taxones putativos ni cultivares
+        taxon_photo:
+          attributes:
+            taxon:
+              too_many_photos: No puede tener más de %{max} fotos
         user:
           attributes:
             login:
@@ -7589,6 +7759,12 @@ es:
             email:
               must_look_like_an_email_address: debe asemejarse a una dirección de
                 correo electrónico
+        user_parent:
+          attributes:
+            email:
+              belongs_to_an_existing_user: |-
+                pertenece a un usuario existente; Si tiene una cuenta, firme
+                antes de continuar, o use una dirección de correo electrónico diferente
   doorkeeper:
     scopes:
       write: Crear, actualizar y eliminar sus observaciones, identificaciones, y otro

@@ -2988,6 +2988,10 @@ ko:
               has_query_parameter: 쿼리 변수를 포함할 수 없습니다.
               invalid_uri: 유효한 URI이어야 합니다.
               relative_uri: 절대 URI이어야 합니다.
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: 좌표는 0,0이 될 수 없습니다
         observation_field_value:
           attributes:
             value:

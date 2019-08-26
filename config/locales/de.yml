@@ -286,7 +286,7 @@ de:
   add_new_rule: Neue Regel hinzufügen
   add_new_source: Neue Quelle hinzufügen …
   add_new_taxon_name: Neuen Taxonnamen hinzufügen
-  add_notes_about_this_taxon: Füge Anmerkungen über dieses Taxon dieses Ortes hinzu,
+  add_notes_about_this_taxon: Füge Anmerkungen über dieses Taxon an diesem Ort hinzu,
     z.B. wo und wann es erscheint.
   add_obs_from_a_link: Beobachtungen aus Liste %{link} hinzufügen
   add_obs_from_a_list: Beobachtungen aus einer Liste hinzufügen
@@ -296,7 +296,7 @@ de:
   add_observations_by_checking_off: Beobachtungen aus einer Arten-Checkliste hinzufügen
   add_observations_from_list: Beobachtungen aus einer Liste hinzufügen
   add_observations_of_taxa_youve_added: Beobachtungen von Taxa hinzufügen, die du
-    zu einer Liste hinzugefügt hast. In Entwicklung und erzeugt noch Fehlermeldungen.
+    zu einer Liste hinzugefügt hast. In Entwicklung, erzeugt noch Fehlermeldungen.
   add_observations_project: Beobachtungen zu diesem Projekt hinzufügen
   add_one: Eins hinzufügen!
   add_one_now: Jetzt einen hinzufügen
@@ -996,7 +996,7 @@ de:
   community_id_at_species_or_lower?: Community-Taxon bei Art oder genauer?
   community_id_at_genus_level_or_lower: Community-Taxon auf Genus-Ebene oder darunter
   community_id_at_species_level_or_lower: Community-Taxon auf Art-Ebene oder darunter
-  community_moderation_settings: Gemeisnchafts moderations Einstellungen
+  community_moderation_settings: Gemeinschaftsmoderations-Einstellungen
   community_supported_id: Gemeinschafts-unterstütztes Taxon?
   compare: Vergleichen
   compare_with: Vergleiche mit
@@ -5966,8 +5966,8 @@ de:
             user_id:
               must_be_curator: Muss Kurator dieses Projekts sein
             observation_id:
-              must_be_observed_after: muss beobachtet worden sein nach %{time}
-              must_be_observed_before: muss beobachtet worden sein bevor %{time}
+              must_be_observed_after: muss nach %{time} beobachtet worden sein
+              must_be_observed_before: muss vor %{time} beobachtet worden sein
         taxon:
           attributes:
             rank:
@@ -5991,7 +5991,7 @@ de:
         taxon_name:
           attributes:
             lexicon:
-              should_not_contain_commas_or_slashes: soll keine Komma oder Schrägstrich
+              should_not_contain_commas_or_slashes: soll keine Kommata oder Schrägstriche
                 enthalten
   doorkeeper:
     errors:

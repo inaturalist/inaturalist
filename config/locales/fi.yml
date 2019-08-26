@@ -4160,6 +4160,9 @@ fi:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Suunnitteletko käyttäväsi %{site_name}ia
             luokkahuoneessa?
+          please_read_the_teachers_guide_html: Jos niin, lue <a href="%{url}">Opettajan
+            oppaamme</a> saadaksesi vinkkejä %{site_name}in käyttämisessä opiskelijoiden
+            kanssa.
     donate:
       donate_short_desc: Lahjoita nyt näyttääksesi tukesi!
       donate_desc_html: "<p class=\"lead\">\n  <strong>iNaturalist on yksi maailman
