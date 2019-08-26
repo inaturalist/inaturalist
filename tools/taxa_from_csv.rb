@@ -52,22 +52,28 @@ unless csv_path && File.exist?(csv_path)
   Optimist::die "CSV does not exist: #{csv_path}"
 end
 
-if opts.place_id && @place = Place.find( opts.place_id )
-  puts "Found place: #{@place}"
-else
-  Optimist::die "Couldn't find place: #{OPTS.place_id}"
+if !opts.place_id.blank?
+  if @place = Place.find( opts.place_id )
+    puts "Found place: #{@place}"
+  else
+    Optimist::die "Couldn't find place: #{OPTS.place_id}"
+  end
 end
 
-if opts.user_id && @user = User.find( opts.user_id )
-  puts "Found user: #{@user}"
-else
-  Optimist::die "Couldn't find user: #{OPTS.user_id}"
+if !opts.user_id.blank?
+  if @user = User.find( opts.user_id )
+    puts "Found user: #{@user}"
+  else
+    Optimist::die "Couldn't find user: #{OPTS.user_id}"
+  end
 end
 
-if opts.source_id && @source = Source.find( opts.source_id )
-  puts "Found source: #{@source}"
-else
-  Optimist::DIE "Couldn't find source: #{OPTS.source_id}"
+if !opts.source_id.blank?
+  if @source = Source.find( opts.source_id )
+    puts "Found source: #{@source}"
+  else
+    Optimist::DIE "Couldn't find source: #{OPTS.source_id}"
+  end
 end
 
 @errors = []
