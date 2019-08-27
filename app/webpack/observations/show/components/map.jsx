@@ -28,16 +28,30 @@ class Map extends React.Component {
       && config.currentUser.prefers_medialess_obs_maps;
     let geoprivacyIconClass = "fa fa-map-marker";
     let geoprivacyTitle = I18n.t( "location_is_public" );
-    if ( observation.obscured ) {
-      if ( !observation.geojson ) {
+    let geoprivacyLabel = I18n.t( "location_unknown" );
+    if (
+      observation.obscured
+      && (
+        observation.geoprivacy
+        || observation.taxon_geoprivacy
+        || observation.context_geoprivacy
+      )
+    ) {
+      if (
+        observation.geoprivacy === "private"
+        || observation.taxon_geoprivacy === "private"
+        || observation.context_geoprivacy === "private"
+      ) {
         geoprivacyIconClass = "icon-icn-location-private";
         geoprivacyTitle = I18n.t( "location_is_private" );
+        geoprivacyLabel = I18n.t( "location_private" );
       } else {
         geoprivacyIconClass = "icon-icn-location-obscured";
         geoprivacyTitle = I18n.t( "location_is_obscured" );
       }
     } else if ( !observation.latitude && !observation.private_geojson ) {
       geoprivacyIconClass = "icon-no-location";
+      geoprivacyLabel = I18n.t( "location_unknown" );
     }
     if ( !observation || !observation.latitude ) {
       return (
@@ -45,8 +59,7 @@ class Map extends React.Component {
           <div className="TaxonMap empty">
             <div className="no_location">
               <i className="fa fa-map-marker" />
-              { observation.obscured && !observation.geojson
-                ? I18n.t( "location_private" ) : I18n.t( "location_unknown" ) }
+              { geoprivacyLabel }
             </div>
           </div>
           <div className="map_details">

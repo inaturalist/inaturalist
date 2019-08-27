@@ -45,8 +45,8 @@ class MapDetails extends React.Component {
       restoreAutoObscuration
     } = this.props;
     if ( !observation || !observation.user ) { return ( <div /> ); }
-    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles &&
-      config.currentUser.roles.indexOf( "admin" ) >= 0;
+    const viewerIsAdmin = config && config.currentUser && config.currentUser.roles
+      && config.currentUser.roles.indexOf( "admin" ) >= 0;
     const { showAllPlaces } = this.state;
     const { currentUser } = config;
     const testingContextGeoprivacy = currentUser
@@ -173,7 +173,11 @@ class MapDetails extends React.Component {
             ) }
           </div>
         </div>
-        { observation.obscured && ( observation.geoprivacy || observation.taxon_geoprivacy || observation.context_geoprivacy ) && (
+        { observation.obscured && (
+          observation.geoprivacy
+          || observation.taxon_geoprivacy
+          || observation.context_geoprivacy
+        ) && (
           <div className="obscured">
             <h4>{ I18n.t( "why_the_coordinates_are_obscured" ) }</h4>
             <ul className="plain">
