@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import CoverImage from "../../../shared/components/cover_image";
 import SplitTaxon from "../../../shared/components/split_taxon";
-import { urlForTaxon } from "../../shared/util";
+import { urlForTaxon } from "../util";
 
 const TaxonPhoto = ( {
   photo,
@@ -30,17 +30,17 @@ const TaxonPhoto = ( {
             taxon={taxon}
             noParens
             url={urlForTaxon( taxon )}
-            onClick={ e => {
+            onClick={e => {
               if ( !onClickTaxon ) return true;
               if ( e.metaKey || e.ctrlKey ) return true;
               e.preventDefault( );
               onClickTaxon( taxon );
               return false;
-            } }
-            user={ config.currentUser }
+            }}
+            user={config.currentUser}
           />
           <a href={urlForTaxon( taxon )} className="btn btn-link info-link">
-            <i className="fa fa-info-circle"></i>
+            <i className="fa fa-info-circle" />
           </a>
         </div>
       );
@@ -53,25 +53,26 @@ const TaxonPhoto = ( {
   return (
     <div
       className={`TaxonPhoto ${className}`}
-      style={ style }
+      style={style}
       key={`TaxonPhoto-taxon-${taxon.id}-photo-${photo.id}`}
     >
       <div className="photo-hover">
         <button
+          type="button"
           className="btn btn-link modal-link"
-          onClick={ e => {
+          onClick={e => {
             e.preventDefault( );
             showTaxonPhotoModal( photo, taxon, observation );
             return false;
-          } }
+          }}
         >
-          <i className="fa fa-search-plus"></i>
+          <i className="fa fa-search-plus" />
         </button>
         { photoTaxon }
       </div>
       <CoverImage
-        src={ photo.photoUrl( size ) || photo.photoUrl( "small" ) }
-        low={ photo.photoUrl( "small" ) }
+        src={photo.photoUrl( size ) || photo.photoUrl( "small" )}
+        low={photo.photoUrl( "small" )}
         height={height}
         backgroundSize={backgroundSize}
         backgroundPosition={backgroundPosition}
