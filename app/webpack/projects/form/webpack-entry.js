@@ -4,15 +4,17 @@ import thunkMiddleware from "redux-thunk";
 import React from "react";
 import { render } from "react-dom";
 import { Provider } from "react-redux";
-import { createStore, compose, applyMiddleware, combineReducers } from "redux";
+import {
+  createStore, compose, applyMiddleware, combineReducers
+} from "redux";
 import AppContainer from "./containers/app_container";
 import configReducer, { setConfig } from "../../shared/ducks/config";
-import formReducer, { setProject } from "./form_reducer";
+import formReducer, { setProject, setCopyProject } from "./form_reducer";
 import confirmModalReducer from "../../observations/show/ducks/confirm_modal";
 import controlledTermsReducer, { fetchAllControlledTerms }
   from "../../observations/show/ducks/controlled_terms";
-/* global PROJECT_DATA */
 /* global CURRENT_PROJECT */
+/* global COPY_PROJECT */
 
 const rootReducer = combineReducers( {
   confirmModal: confirmModalReducer,
@@ -40,6 +42,8 @@ if ( !_.isEmpty( CURRENT_USER ) ) {
 
 if ( !_.isEmpty( CURRENT_PROJECT ) ) {
   store.dispatch( setProject( CURRENT_PROJECT ) );
+} else if ( !_.isEmpty( COPY_PROJECT ) ) {
+  store.dispatch( setCopyProject( COPY_PROJECT ) );
 }
 
 store.dispatch( fetchAllControlledTerms( ) );
