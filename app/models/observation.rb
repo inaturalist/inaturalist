@@ -855,6 +855,7 @@ class Observation < ActiveRecord::Base
     tz_offset_pattern = /([+-]\d{4})$/ # contains -0800
     tz_js_offset_pattern = /(GMT)?([+-]\d{4})/ # contains GMT-0800
     tz_colon_offset_pattern = /(GMT|HSP)([+-]\d+:\d+)/ # contains (GMT-08:00)
+    tz_moment_offset_pattern = /\s([+-]\d{2})$/ # contains -08, +05, etc.
     tz_failed_abbrev_pattern = /\(#{tz_colon_offset_pattern}\)/
     
     if date_string =~ /#{tz_js_offset_pattern} #{tz_failed_abbrev_pattern}/
@@ -905,6 +906,9 @@ class Observation < ActiveRecord::Base
         ( negpos = offset.to_i > 0 ? 1 : -1 ) &&
         ( parsed_time_zone = ActiveSupport::TimeZone[negpos * t.hour+t.min/60.0] )
       date_string = date_string.sub(/#{tz_colon_offset_pattern}|#{tz_failed_abbrev_pattern}/, '')
+    elsif ( offset = date_string[tz_moment_offset_pattern, 1] ) &&
+        ( parsed_time_zone = ActiveSupport::TimeZone[offset.to_i] )
+      date_string = date_string.sub( tz_moment_offset_pattern, "" )
     end
     
     if parsed_time_zone && observed_on_string_changed?

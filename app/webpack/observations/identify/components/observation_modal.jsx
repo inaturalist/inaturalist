@@ -21,6 +21,7 @@ import ObservationFieldsContainer from "../containers/observation_fields_contain
 import SplitTaxon from "../../../shared/components/split_taxon";
 import TaxonMap from "./taxon_map";
 import UserText from "../../../shared/components/user_text";
+import { formattedDateTimeInTimeZone } from "../../../shared/util";
 import ZoomableImageGallery from "./zoomable_image_gallery";
 import FollowButtonContainer from "../containers/follow_button_container";
 import FavesContainer from "../containers/faves_container";
@@ -416,7 +417,9 @@ class ObservationModal extends React.Component {
     let dateTimeObserved = I18n.t( "unknown" );
     if ( observation.observed_on ) {
       if ( observation.time_observed_at ) {
-        dateTimeObserved = moment( observation.time_observed_at ).format( "LLL" );
+        dateTimeObserved = formattedDateTimeInTimeZone(
+          observation.time_observed_at, observation.observed_time_zone
+        );
       } else {
         dateTimeObserved = moment( observation.observed_on ).format( "LL" );
       }

@@ -187,7 +187,10 @@ class ObsCardComponent extends Component {
 
     let inputFormat = "YYYY/MM/DD h:mm A z";
     if ( obsCard.time_zone ) {
-      if ( parseInt( moment().tz( obsCard.time_zone ).format( 'z' ), 0 ) !== 0 ) {
+      if (
+        parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 )
+        && parseInt( moment().tz( obsCard.time_zone ).format( "z" ), 0 ) !== 0
+      ) {
         inputFormat = "YYYY/MM/DD h:mm A ZZ";
       }
     }
