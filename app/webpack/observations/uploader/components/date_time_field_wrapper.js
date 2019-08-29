@@ -30,16 +30,17 @@ class DateTimeFieldWrapper extends Component {
   }
 
   onChange( e, inputValue ) {
+    const { timeZone, inputFormat } = this.props;
     let value = inputValue;
     const eInt = parseInt( e, 10 );
     if ( e && eInt ) {
       const pickedDate = new Date( eInt );
       if ( pickedDate ) {
-        value = this.props.timeZone ?
-          moment( pickedDate ).tz( this.props.timeZone ).
-            format( this.props.inputFormat || "YYYY/MM/DD h:mm A z" ) :
-          moment.parseZone( pickedDate ).
-            format( this.props.inputFormat || "YYYY/MM/DD h:mm A ZZ" );
+        if ( timeZone ) {
+          value = moment( pickedDate ).tz( timeZone ).format( inputFormat || "YYYY/MM/DD h:mm A z" );
+        } else {
+          value = moment.parseZone( pickedDate ).format( inputFormat || "YYYY/MM/DD h:mm A ZZ" );
+        }
       }
     }
     this.props.onChange( value );

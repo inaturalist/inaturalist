@@ -185,6 +185,13 @@ class ObsCardComponent extends Component {
       locationIcon = <i className="icon-icn-location-private" />;
     }
 
+    let inputFormat = "YYYY/MM/DD h:mm A z";
+    if ( obsCard.time_zone ) {
+      if ( parseInt( moment().tz( obsCard.time_zone ).format( 'z' ), 0 ) !== 0 ) {
+        inputFormat = "YYYY/MM/DD h:mm A ZZ";
+      }
+    }
+
     return cardDropTarget( fileDropTarget( cardDragSource(
       <li onClick={ () => selectCard( obsCard ) }>
         <Dropzone
@@ -255,9 +262,9 @@ class ObsCardComponent extends Component {
               key={ `datetime${obsCard.selected_date}`}
               reactKey={ `datetime${obsCard.selected_date}`}
               ref="datetime"
-              inputFormat="YYYY/MM/DD h:mm A z"
+              inputFormat={inputFormat}
               dateTime={ obsCard.selected_date ?
-                moment( obsCard.selected_date, "YYYY/MM/DD h:mm A z" ).format( "x" ) : undefined }
+                moment( obsCard.selected_date, inputFormat ).format( "x" ) : undefined }
               timeZone={ obsCard.time_zone }
               onChange={ dateString => updateObsCard( obsCard, { date: dateString } ) }
               onSelection={ dateString =>

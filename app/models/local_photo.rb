@@ -263,7 +263,7 @@ class LocalPhoto < Photo
       o.time_observed_at = capture_time
       o.set_time_in_time_zone
       if o.time_observed_at
-        o.observed_on_string = o.time_observed_at.strftime("%Y-%m-%d %H:%M:%S")
+        o.observed_on_string = o.time_observed_at.in_time_zone( o.time_zone || user.time_zone ).strftime("%Y-%m-%d %H:%M:%S")
         o.observed_on = o.time_observed_at.to_date
       end
     end
