@@ -68,13 +68,13 @@ class CoverImage extends React.Component {
         if ( this.mounted ) {
           domNode.classList.add( "loaded" );
           this.setState( { loaded: true } );
-          domNode.style.backgroundImage = `url(${img.src})`;
+          domNode.style.backgroundImage = `url("${img.src}")`;
         }
       };
     } else if ( this.mounted ) {
       domNode.classList.add( "loaded" );
       this.setState( { loaded: true } );
-      domNode.style.backgroundImage = `url(${p.src})`;
+      domNode.style.backgroundImage = `url("${p.src}")`;
     }
   }
 
