@@ -7115,19 +7115,6 @@ es:
           any: Cualquiera
           joined: Proyectos a los que te has unido
           none: 'Ninguno: solo tú puedes añadir observaciones a los proyectos'
-        this_only_applies_to_traditional_projects: Esto sólo aplica a proyectos tradicionales.
-          No puedes excluir observaciones de proyectos de colección o paraguas, los
-          cuales son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
-        project_settings_desc: Recuerda, esto no le da permiso a los proyectos para
-          acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte
-          a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso
-          particular.
-        taxon_change_desc: Cuando los taxones se fusionan o cambian de nombre  en
-          %{site_name}, sus observaciones, taxones enlistados, identificaciones, etc.,
-          se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco.
-          Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás
-          una actualización sobre el cambio de la vinculación a una herramienta que
-          puedes utilizar para actualizar manualmente el contenido si así lo eliges.
         prefers_community_taxa_desc: '%{site_name} rastrea lo que piensas que son
           tus observaciones y lo que piensa la comunidad. La identificación que compartimos
           con los socios de datos es la de la comunidad, pero si tu no crees que la
@@ -7136,16 +7123,29 @@ es:
           no será priorizadas frente a la tuya. Esto significa que tus observaciones
           sólo serán de grado de investigación, cuando tu estés de acuerdo con la
           comunidad.'
-        search_place_help_html: Sitio predeterminado para las búsquedas de observaciones.
-        scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
-        youve_used_all_of_your_blocks: Has utilizado todos tus bloques. Quita un bloque
-          para añadir otro.
-        same_day_geoprivacy_protection: Protección de geoprivacidad del mismo día
         prefers_coordinate_interpolation_protection_desc: "Cuando configuras la geoprivacidad
           de una observación como \"oculto\" o \"Privado\" se aplicará la misma geoprivacidad
           a todas las \nobservaciones del mismo día para evitar sacar conclusiones
           de coordenadas mediante observaciones que se hicieron alrededor del mismo
           tiempo."
+        project_settings_desc: Recuerda, esto no le da permiso a los proyectos para
+          acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte
+          a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso
+          particular.
+        same_day_geoprivacy_protection: Protección de geoprivacidad del mismo día
+        search_place_help_html: Sitio predeterminado para las búsquedas de observaciones.
+        scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
+        taxon_change_desc: Cuando los taxones se fusionan o cambian de nombre  en
+          %{site_name}, sus observaciones, taxones enlistados, identificaciones, etc.,
+          se actualizarán automáticamente al nuevo taxón si el cambio es inequívoco.
+          Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás
+          una actualización sobre el cambio de la vinculación a una herramienta que
+          puedes utilizar para actualizar manualmente el contenido si así lo eliges.
+        this_only_applies_to_traditional_projects: Esto sólo aplica a proyectos tradicionales.
+          No puedes excluir observaciones de proyectos de colección o paraguas, los
+          cuales son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
+        youve_used_all_of_your_blocks: Has utilizado todos tus bloques. Quita un bloque
+          para añadir otro.
       recent:
         about_recent_users: Acerca de
         definitions_html: <dl><dt>Probablemente Spam</dt><dd> Usuario que probablemente

@@ -5576,20 +5576,6 @@ de:
           any: Beliebige
           joined: Projekte, denen du beigetreten bist
           none: Keine, nur du kannst deine Beobachtungen zu Projekten hinzufügen.
-        this_only_applies_to_traditional_projects: |-
-          Dies gilt nur für traditionelle Projekte. Du kannst Beobachtungen nicht von Sammlungs- oder Schirmprojekten ausschließen, die im Wesentlichen gespeicherte Suchen sind.
-          Mehr <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a>.
-        project_settings_desc: Denke daran dass dies dem Projekt keine Berechtigung
-          gibt, auf deine versteckten Koordinaten zuzugreifen oder dir Updates zu
-          schicken. Du musst Projekten beitreten, um diese Berechtigungen zu vergeben,
-          oder sie jeweils einzeln vergeben.
-        taxon_change_desc: Wenn Taxa auf %{site_name} zusammengeführt oder umbenannt
-          werden, werden deine Beobachtungen, aufgelisteten Taxa, Identifikationen
-          usw. automatisch auf die neuen Taxa aktualisiert, wenn die Änderung eindeutig
-          ist. Wenn du dich abmeldest oder die Änderung mehrdeutig ist (z.B. eine
-          Aufteilung), erhältst du ein Update über die Änderungsverknüpfung zu einem
-          Tool, mit dem du deinen Inhalt manuell aktualisieren kannst, wenn du es
-          willst.
         prefers_community_taxa_desc: '%{site_name}erfasst, was du denkst, was deine
           Beobachtungen sind und was die Community denkt, was sie sind. Die Identifikation,
           die wir mit Datenpartnern teilen, ist die Community-Identifikation, aber
@@ -5599,9 +5585,23 @@ de:
           die Meinung der Community wird gegenüber deiner nicht bevorzugt. Das bedeutet,
           dass deine Beobachtungen nicht "Forschungsquälität" erhält, es sei denn,
           du stimmst der Gemeinschaft zu.'
+        project_settings_desc: Denke daran dass dies dem Projekt keine Berechtigung
+          gibt, auf deine versteckten Koordinaten zuzugreifen oder dir Updates zu
+          schicken. Du musst Projekten beitreten, um diese Berechtigungen zu vergeben,
+          oder sie jeweils einzeln vergeben.
         search_place_help_html: Standardort für die Suche nach Beobachtungen.
         scientific_name_first_desc: Wissenschaftliche Namen vor umgangssprachlichen
           Namen anzeigen.
+        taxon_change_desc: Wenn Taxa auf %{site_name} zusammengeführt oder umbenannt
+          werden, werden deine Beobachtungen, aufgelisteten Taxa, Identifikationen
+          usw. automatisch auf die neuen Taxa aktualisiert, wenn die Änderung eindeutig
+          ist. Wenn du dich abmeldest oder die Änderung mehrdeutig ist (z.B. eine
+          Aufteilung), erhältst du ein Update über die Änderungsverknüpfung zu einem
+          Tool, mit dem du deinen Inhalt manuell aktualisieren kannst, wenn du es
+          willst.
+        this_only_applies_to_traditional_projects: |-
+          Dies gilt nur für traditionelle Projekte. Du kannst Beobachtungen nicht von Sammlungs- oder Schirmprojekten ausschließen, die im Wesentlichen gespeicherte Suchen sind.
+          Mehr <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a>.
         youve_used_all_of_your_blocks: Du hast all deine Sperren verbraucht. Entferne
           eine Sperre, um eine weitere hinzuzufügen.
       show:

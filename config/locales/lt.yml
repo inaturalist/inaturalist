@@ -487,6 +487,7 @@ lt:
   attention: Dėmesio
   you_sure_delete_list: Ar tikrai norite ištrinti šį sąrašą?
   you_sure_delete_taxon_from_list?: Ar tikrai norite ištrinti %{taxon} iš sąrašo?
+  asc: Did.
   ascending: didėjančia tvarka
   aside_from_extraordinary_circumstances: Be ypatingų aplinkybių, niekada neprašysime
     jūsų slaptažodžio.
@@ -679,6 +680,7 @@ lt:
   checklists: Kontrolinis sąrašas
   checklist_places: Kontrolinio sąrašo vieos
   checklist_places_confirmed: Stebimųjų vietų sąrašas (patvirtintas)
+  choose_a_field: Pasirinkite lauką
   choose_a_list_above: Pasirinkite sąrašą viršuje.
   choose_a_place: Pasirinkite vietą
   choose_a_taxon: Pasirinkite taksoną (nebūtinas)
@@ -703,6 +705,7 @@ lt:
   click_the_map: <strong>Paspauskite ant žemėlapio</strong>, kad pridėtumėte vietą.
   click_the_map_to_jump_new_place: Paspauskite ant žemėlapio, kad pereitumėte į naują
     vietą
+  close: Uždaryti
   code: Kodas
   collapse_days: suskleisti dienas
   collapse_updates: suskleisti atnaujinimus
@@ -752,6 +755,7 @@ lt:
   conservation_status_descriptions:
     url: Puslapio, apibūdinančio šią būseną, URL.
   conservation_summary: Apsaugos Santrauka
+  content_hidden: Turinys paslėptas
   contest: konkursas
   continue: Tęsti
   contributions: Įnašai
@@ -909,7 +913,7 @@ lt:
   deleting: Trinama...
   deleting_verb: Trinama
   desc: Maž.
-  descending: mažėjančia tvarka
+  descending: Mažėjančia tvarka
   describe_purpose: Apibūdinkite šio projekto tikslą.
   describe_your_interest_in_nature: Apibūdinkite savo susidomėjimą gamta.
   description: Aprašymas
@@ -925,6 +929,7 @@ lt:
         suspended: Jūsų paskyra buvo laikinai sustabdyta
   developers: Kūrėjai
   device: Įrenginys
+  discoveries: Atradimai
   did_not_send_invitations_because: Nesiuntė pakvietimų šiems, nes...
   did_you_mean: Ar turėjote omenyje
   did_you_photos_flickr?: Ar įkėlėte nuotraukų į Flickr?
@@ -983,7 +988,10 @@ lt:
   edit_remove: Redaguoti/Šalinti
   edit_selected: Redaguoti pasirinktus
   edit_source: Redaguoti šaltinį
+  edit_taxa: Redaguoti taksonus
   edit_taxon: Redaguoti taksoną
+  edit_taxon_change: Redaguoti taksono pakeitimus
+  edit_taxon_link: Redaguoti taksono nuorodą
   edit_the_observation: Redaguoti stebėjimą
   edit_this_link: Redaguoti šią nuorodą
   edit_your_account: Redaguoti savo paskyrą
@@ -1023,19 +1031,26 @@ lt:
   embed_widget_project: Įterpti šio projekto valdiklį savo svetainėje
   enable_offline_access: Įgalinti prieigą neprisijungus
   enable_offline_access_for_mobile: Įgalinti prieigą neprisijungus mobiliesiems
+  enlarge: Padidinti
   end: Baigti
-  endangered: nykstantis
+  endangered: Nykstantis
+  endemic: Endeminis
+  endemic_to_x: 'Endeminis vietovėje: %{x}'
   eol: EOL
   eol_collection_url: EOL kolekcijos URL
   error_updating_photo: 'Klaida atnaujinant nuotrauką: %{photo_errors}'
   establishment:
+    endemic: Endeminis
     establishment: Įstaiga
+    introduced: Introdukuotas
     invasive: Invazinis
     managed: Kontroliuojamas
     native: Vietinis
   establishment_means: Įstaiga reiškia
   establishment_means_descriptions:
     native_and_occurs_nowhere_else: vietinis ir nėra niekur kitus
+    evolved_in_this_region_or_arrived_by_non_anthropogenic_means: Atsirado šiame regione
+      arba atkeliavo čia be žmonių pagalbos
   event_in_progress: Renginys vyksta
   event_registration_url: Renginio registracijos URL
   event_stats: Renginio Statistika
@@ -1046,11 +1061,14 @@ lt:
   everyone_: Visi
   everyone_journal_posts: Visų Žurnalo Įrašai
   everywhere: visur
+  exact: Tikslus
   exact_coordinates_obscured_for: Nykstančių rūšių tikslios koordinatės nerodomos
     viešai.
   exact_date: Tiksli data
   exact_location: Tiksli_vieta
   exact_rank: Tikslus rangas
+  except: išskyrus
+  exclude_x: Neįtraukti %{x}
   exit_full_screen: Išeiti iš viso ekrano režimo
   expand_days: išplėsti dienas
   expand_updates: išplėsti atnaujinimus
@@ -1082,16 +1100,25 @@ lt:
   "false": Netiesa
   faq: Dažnai Užduodami Klausimai
   fave: mėgstamas
+  faves: Pamėgimai
   Family: Šeima
   faved_this_observation: pamėgti šį stebėjimą
+  favorite_taxa: Mėgiamiausi taksonai
   favorites: Mėgstamiausi
   fblocale: en_US
+  feature_this_project: Siūlyti šį projektą?
+  feature_this_project_: Siūlyti šį projektą
+  featured: Siūlomi
+  featured?: siūlomi?
   featured_projects_from_everywhere: Siūlomi projektai iš kitur
+  featured_projects_from_place: Siūlomi projektai iš %{place}
+  featuring: Siūloma
   feedback: Atsiliepimai
   feedback_group: Atsiliepimų Grupė
   feeds: Srautai
   feeds_for_current_filters: Dabartinių Filtrų Srautai
   failed: Nepavyko
+  field_guides: Lauko vadovai
   field_note: <strong>Pastaba:</strong> Jei norite sukurti lauką, patikrinkite ar
     kas nors kitas to dar nepadarė, kad būtų išvengta dublikatų.
   fields: laukai
@@ -1210,6 +1237,7 @@ lt:
   go_back: Grįžti
   going_to_your_observations: Atidaromi jūsų stebėjimai...
   good_choice_for_sharing: Geras pasirinkimas dalintis su mokslininkais
+  google: Google
   got_it!: Aišku!
   got_your_data_somewhere_else?: Jūsų duomenys kažkur kitur?  Mes galime padėti.
   grant_role: '%{grant} %{role} vaidmenį'
@@ -1225,6 +1253,7 @@ lt:
   guide_compiled_by: Gidas sukurtas
   guide_deleted: Gidas ištrintas
   guide_will_be_deleted: Gidas bus ištrintas. Tai šiek tiek užtrunka, jei gidas didelis.
+  guide_taxon: Vadovo taksonas
   guide_was_successfully_created: Gidas buvo sėkmingai sukurtas.
   guide_was_successfully_published: Gidas buvo sėkmingai paskelbtas.
   guide_was_successfully_updated: Gidas buvo sėkmingai atnaujintas.
@@ -1288,9 +1317,22 @@ lt:
   ids_made_for_others: Identifikavimai atlikti kitiems
   import_observations: Importuoti stebėjimus
   import_tags_from_csv: Importuoti žymes iš CSV
+  in_the_past: praeityje
+  in_the_past_week: praėjusioje savaitėje
+  inactive: Neaktyvus
+  inactive_taxon: Neaktyvus taksonas
+  inappropriate: Netinkamas?
+  inappropriate_content: Netinkamas turinys?
+  inat_account_action: '%{site_name} &#58; Vartotojas &#58; %{action_name}'
   inat_user_profile: '%{site_name}: %{user} profilis'
   inaturalist_places: '%{site_name} vietos'
+  info: Informacija
+  insects: vabzdžiai
+  insect_life_stage: Vabzdžio gyvenimo ciklo stadija
+  invasive: Invazinis
   invite_observations: Pakviesti stebėjimus
+  invite_people: Pakviesti žmonių
+  invite_people_to_project: Pakviesti žmonių į %{project}
   invited_to_the_following_projects: 'Pakviesti į šiuos projektus:'
   is_now: dabar yra
   journal: Žurnalas
@@ -1302,12 +1344,43 @@ lt:
   leading: Vadovaujantis
   learn_more: Sužinokite daugiau
   let_us_walk_you_through: Leiskite jums pristatyti pagrindines puslapio funkcijas.
+  lexicon: Leksikonas
   lexicons:
+    scientific_names: Moksliniai pavadinimai
+    chinese_simplified: Kinų (supaprastinta)
+    chinese_traditional: Kinų (tradicinė)
+    czech: Čekų
+    danish: Danų
     english: Anglų
+    estonian: Estų
+    finnish: Suomių
+    french: Prancūzų
+    german: Vokiečių
+    greek: Graikų
+    hebrew: Hebrajų
+    icelandic: Islandiečių
+    italian: Italų
+    japanese: Japonų
+    lithuanian: Lietuvių
+    norwegian: Norvegų
+    portuguese: Portugalų
+    russian: Rusų
+    swedish: Švedų
+    turkish: Turkų
   licensing_your_content: "Jūsų turinio licencijavimas suteikia juridinę teisę kitiems
     \ jį naudoti, jei jie laikysis licencijos sąlygų. %{site_name} naudoja jūsų Creative
     Commons licencijuotą turinį pasidalinti su duomenų partneriais, pavyzdžiui \n<a
     href=\"http://www.gbif.org/\">Pasaulinė Biologinės Įvairovės Informacijos Priemonė</a>\n(GBIF)."
+  life: Gyvybė
+  life!: Gyvybė!
+  list: Sąrašas
+  list_deleted: Sąrašas ištrintas.
+  list_saved: Sąrašas išsaugotas.
+  list_updated: Sąrašas atnaujintas!
+  list_views:
+    taxonomic: taksonominis
+    photo: Nuotrauka
+  list_was_successfully_created: Sąrašas sėkmingai sukurtas.
   lists: Sąrašai
   lists_by_login:
     title:
@@ -1327,9 +1400,31 @@ lt:
   locales:
     ar: Arabų
     bg: Bulgarų
+    cs: Čekų
+    da: Danų
     de: Vokiečių
+    el: Graikų
     en-US: Anglų (Jungtinės Valstijos)
+    en: Anglų
+    eo: Esperanto
+    es-ES: Ispanų (Ispanija)
+    es-MX: Ispanų (Meksika)
+    es: Ispanų
+    et: Estų
+    fi: Suomių
+    fr: Prancūzų
+    it: Italų
+    iw: Hebrajų
+    ja: Japonų
     ko: Korėjiečių
+    lt: Lietuvių
+    pl: Lenkų
+    pt-BR: Portugalų (Brazilija)
+    pt-PT: Portugalų (Portugalija)
+    ru: Rusų
+    sv: Švedų
+    zh-CN: Kinų (supaprastinta)
+    zh-TW: Kinų (tradicinė)
   location_is_public: Vieta yra vieša
   location_is_obscured: Vieta yra neaiški
   location_is_private: Vieta yra privati
@@ -1427,6 +1522,7 @@ lt:
     one: kitas gyvūnas
     other: kiti gyvūnai
   our_blog: Mūsų dienoraštis
+  people: Žmonės
   per_day: Per Dieną
   per_month: Per Mėnesį
   per_week: Per Savaitę
@@ -1696,8 +1792,13 @@ lt:
         search_place_id: Ieškoti vietos
     errors:
       models:
+        place:
+          attributes:
+            place_geometry:
+              is_too_large_to_edit: yra per didelis redagavimui
         taxon_photo:
           attributes:
             taxon:
               too_many_photos: negalima turėti daugiau nei %{max} nuotraukų
+  wild: Laukinis
 ...

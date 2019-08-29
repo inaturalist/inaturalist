@@ -7052,19 +7052,6 @@ it:
           any: Qualsiasi
           joined: Progetti a cui ti sei unito
           none: Nessuno, solo tu puoi aggiungere le tue osservazioni ai progetti
-        this_only_applies_to_traditional_projects: Questo si applica ai progetti tradizionali.
-          Non puoi escludere delle osservazioni dai progetti collezione ed ombrello,
-          che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
-        project_settings_desc: Ricorda, questa opzione non concede il permesso ai
-          progetti di accedere alle tue coordinate nascoste o di mandarti gli aggiornamenti.
-          Devi unirti ai progetti per garantirgli tali autorizzazioni, oppure concedere
-          i permessi osservazione per osservazione.
-        taxon_change_desc: Quando dei taxa sono uniti o rinominati su %{site_name},
-          le tue osservazioni, i taxa elencati, le identificazioni, etc. saranno automaticamente
-          aggiornati ad nuovo taxon se questo non è ambiguo. Se deselezioni questa
-          opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai
-          un aggiornamento sulla modifica, con un link ad uno strumento che potrai
-          usare per aggiornare manualmente il tuo contenuto.
         prefers_community_taxa_desc: '%{site_name} tiene traccia di cosa tu pensi
           che sia ciò che hai osservato e di ciò che ne pensa la community. L''identificazione
           che condividiamo con i partner dei dati è l''identificazione della community,
@@ -7073,16 +7060,29 @@ it:
           in grado di aggiungere identificazioni, ma l''opinione della community non
           avrà prevalenza sulla tua. Ciò significa che le tue osservazioni non raggiungeranno
           il Livello Ricerca a me che non sia in accordo con l''ID della community.'
-        search_place_help_html: Luogo predefinito per le ricerche di osservazione.
-        scientific_name_first_desc: Mostra il nome scientifico prima di quello comune.
-        youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi
-          un blocco per poterne aggiungere un altro.
-        same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
         prefers_coordinate_interpolation_protection_desc: Quando imposti la geoprivacy
           di un osservazione come "oscurata" o "privata" questa impostazione si applicherà
           a tutte le altre tue osservazioni fatte nello stesso giorno al fine di rendere
           più difficile alle altre persone ipotizzare le coordinate reali basandosi
           sulle osservazioni fatte lì intorno nello stesso periodo.
+        project_settings_desc: Ricorda, questa opzione non concede il permesso ai
+          progetti di accedere alle tue coordinate nascoste o di mandarti gli aggiornamenti.
+          Devi unirti ai progetti per garantirgli tali autorizzazioni, oppure concedere
+          i permessi osservazione per osservazione.
+        same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
+        search_place_help_html: Luogo predefinito per le ricerche di osservazione.
+        scientific_name_first_desc: Mostra il nome scientifico prima di quello comune.
+        taxon_change_desc: Quando dei taxa sono uniti o rinominati su %{site_name},
+          le tue osservazioni, i taxa elencati, le identificazioni, etc. saranno automaticamente
+          aggiornati ad nuovo taxon se questo non è ambiguo. Se deselezioni questa
+          opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai
+          un aggiornamento sulla modifica, con un link ad uno strumento che potrai
+          usare per aggiornare manualmente il tuo contenuto.
+        this_only_applies_to_traditional_projects: Questo si applica ai progetti tradizionali.
+          Non puoi escludere delle osservazioni dai progetti collezione ed ombrello,
+          che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
+        youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi
+          un blocco per poterne aggiungere un altro.
       recent:
         about_recent_users: A proposito di
         definitions_html: <dl> <dt>Probabilmente Spam</dt> <dd> Utenti che sono probabilmente

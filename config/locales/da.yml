@@ -2439,6 +2439,7 @@ da:
     datetime_with_zone: MMM D, YYYY · LT z
   mon: Man
   month: Måned
+  monthly_supporter_since_date: Månedlig supporter siden %{date}
   months: Måneder
   months_ago: '%{text} siden'
   more: Mere
@@ -5126,7 +5127,7 @@ da:
     <strong> møde </strong> andre naturelskere, og <strong> lære </strong> om verdens
     natur.
   welcome_to_inat: Velkommen til %{site_name}
-  welcome_to_guides: Velkommen til  %{site_name} guides!
+  welcome_to_guides: Velkommen til  %{site_name} guider!
   welcome_to_x_project: Velkommen til %{project}
   were_currently_down_for: Vi er i øjeblikket nede for
   were_pretty_sure_this_is_in_the_rank: Vi er ret sikre på, at dette er i %{rank}
@@ -5512,6 +5513,22 @@ da:
            organisation med base i USA.
         </p>
       post_donate_social_media_text: Jeg støtter iNaturalist fordi...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Bliv en månedlig supporter af iNaturalist
+        desc_html: |-
+          <p class="lead">
+            <strong>iNaturalist er et af verdens største fællesskab dedikeret til udforskning af biodiversitet. Tak for at du er en del af det!</strong>
+          </p>
+          <p class="lead">
+            Vi ønsker, at iNaturalist skal forblive gratis at bruge, men det er ikke gratis at drive. Hvis du elsker iNaturalist, så overvej venligst at blive en månedlig supporter. Tilbagevendende gaver er med til at sikre, at iNaturalist fortsat kan tilpasse sin infrastruktur og personale ved at give en stabil indkomst. Du har mulighed for at vise din status som månedlig supporter på din brugerprofil.
+          </p>
+          <p class="lead">
+          Dine velgørende donationer er med til at støtte iNaturalist efterhånden som fællesskabet vokser, fra videreudvikling af billedgenkendelse og implementering af nye funktioner til støtte af servere og personale. Hvis du foretrækker at give en engangsdonation, så klik venligst a href="%{donate_url}">her</a>.
+          </p>
+          <p class="text-muted">
+            iNaturalist er et fælles initiativ fra California Academy of Sciences
+            og National Geographic Society. Alle donationer vil blive modtaget af California Academy of Sciences, en 501(c)(3) skattefritaget, nonprofit-orgqnisation med base i USA.
+          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |-
@@ -7007,6 +7024,8 @@ da:
           Vis lokale navne. Deaktiver, hvis du kun vil se videnskabelige navne.
           Bemærk at du kan styre hvilke lokale navne du ser ved at ændre din
           landestandard og indstillinger for sted.
+        display_monthly_supporter_status_on_my_profile: Vis månedlig supporter status
+          på min profil
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
           Hvis du skifter mening, kan du altid
           <a href='/users/edit'> redigere dine indstillinger </a>.
@@ -7030,6 +7049,11 @@ da:
           Biodiversitet information facilitet </a> (GBIF), en international,
           interstatslig organisation, der udarbejder og distribuerer
           biodiversitets information fra hele verden.
+        monthly_supporter_desc_html: |-
+          iNaturalist månedlige supporters giver månedlige bidrag, som modtages af California Academy of Sciences (United
+          States IRS FIN 94-1156258) til støtte af nonprofit-driften af iNaturalist og iNaturalist-netværk sites.
+          <a href="%{url}">Klik her for at blive en månedlig supporter</a>.
+          Når vi har bekræftet din støtte, vil du kunne markere denne boks for at vise denne status på din profil. Bemærk: du skal bruge præcis den samme email-adresse på Donorbox, som du bruger på iNaturalist, for at vi kan bekræfte at du er blevet en månedlig supporter.
         muting_desc_html: |-
           <P>
              At slukke for en bruger forhindrer dig i at modtage underretninger om ting de gør, herunder kommenterer på dine observationer, sende dig beskeder, nævne dig osv. At slukke for dem hjælper dig med at ignorere dem uden forhindre dem i at gøre noget.
@@ -7045,32 +7069,33 @@ da:
           any: Alle
           joined: Projekter du er medlem af
           none: Ingen. Det er kun dig der kan tilføje dine observationer til projekter
-        this_only_applies_to_traditional_projects: |-
-          Dette gælder kun for traditionelle projekter. Du kan ikke udelukke observationer
-          fra samlings- eller paraplyprojekter, som hovedsageligt er gemte søgninger.
-          Du kan læse mere <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
-        project_settings_desc: |-
-          Husk, dette giver ikke projekter tilladelse til at få adgang til dine
-          skjulte koordinater eller sende dig underretninger. Du skal være medlem af disse  projekter for at give disse tilladelser eller for at tillade dem fra gang til gang.
-        taxon_change_desc: |-
-          Når taksa sammenlægges eller omdøbes på %{site_name}, vil dine observationer, opførte taksa, identifikationer mv. automatisk blive opdateret til den nye
-          taksa, hvis ændringen er entydig. Hvis du har fravalgt det, eller ændringen er
-          tvetydig (f.eks ved en deling), vil du modtage en underretning om ændringen med et link til et værktøj du kan bruge til manuelt at opdatere dit indhold.
         prefers_community_taxa_desc: |-
           %{site_name} holder styr på, hvad du tror dine observationer er, og hvad
           fællesskabet mener at de er. Den identifikation, vi deler med data
           partnere er fællesskabs identifikationen, men hvis du ikke mener at
           fællesskabets mening nogensinde bør underkende din egen, kan du fravælge det. Andre personer vil stadig kunne tilføje identifikationer, men
           fællesskabets mening vil ikke blive foretrukket frem for din. Det betyder samtidigt at dine observationer ikke vil kunne opnå status af forskningskvalitet, medmindre du er enig med fællesskabet.
-        search_place_help_html: Standard sted for søgninger af observationer.
-        scientific_name_first_desc: Vis videnskabelige navne før lokale navne.
-        youve_used_all_of_your_blocks: Du har brugt alle dine blokeringer. Fjern en
-          blokering for at tilføje en anden.
-        same_day_geoprivacy_protection: Samme dag geofortrolighedsbeskyttelse
         prefers_coordinate_interpolation_protection_desc: |-
           Når du indstiller geofortroligheden for en observation til "sløret" eller
           "privat", gælder den for alle observationer, for denne dag, for at gøre det sværere for andre mennesker at gætte de rigtige koordinater baseret på observationer lavet omkring det samme
           tidspunkt.
+        project_settings_desc: |-
+          Husk, dette giver ikke projekter tilladelse til at få adgang til dine
+          skjulte koordinater eller sende dig underretninger. Du skal være medlem af disse  projekter for at give disse tilladelser eller for at tillade dem fra gang til gang.
+        same_day_geoprivacy_protection: Samme dag geofortrolighedsbeskyttelse
+        search_place_help_html: Standard sted for søgninger af observationer.
+        scientific_name_first_desc: Vis videnskabelige navne før lokale navne.
+        taxon_change_desc: |-
+          Når taksa sammenlægges eller omdøbes på %{site_name}, vil dine observationer, opførte taksa, identifikationer mv. automatisk blive opdateret til den nye
+          taksa, hvis ændringen er entydig. Hvis du har fravalgt det, eller ændringen er
+          tvetydig (f.eks ved en deling), vil du modtage en underretning om ændringen med et link til et værktøj du kan bruge til manuelt at opdatere dit indhold.
+        thanks_for_supporting_us!: Tak for at støtte os!
+        this_only_applies_to_traditional_projects: |-
+          Dette gælder kun for traditionelle projekter. Du kan ikke udelukke observationer
+          fra samlings- eller paraplyprojekter, som hovedsageligt er gemte søgninger.
+          Du kan læse mere <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">here</a>.
+        youve_used_all_of_your_blocks: Du har brugt alle dine blokeringer. Fjern en
+          blokering for at tilføje en anden.
       recent:
         about_recent_users: Om
         definitions_html: <dl> <dt> Sandsynligvis Spam </dt><dd> Bruger der sandsynligvis
@@ -7091,7 +7116,7 @@ da:
             konti som spammere eller ikke spammere, vil det hjælpe.
           </p>
       show:
-        take_a_chance_to_review_html: Grib chancen for at gennemse <a href="%{link}">vores
+        take_a_chance_to_review_html: Benyt chancen til at gennemse <a href="%{link}">vores
           retningslinjer</a>
         this_user_was_banned: Denne bruger er blevet suspenderet
     user_parents:

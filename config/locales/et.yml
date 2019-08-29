@@ -6420,18 +6420,6 @@ et:
           any: Kõik
           joined: Projektid, millega oled liitunud
           none: Ei ühelegi, ainult sina saad enda vaatluseid projektidesse lisada
-        this_only_applies_to_traditional_projects: See kehtib ainult tavaprojektide
-          puhul. Kogumis- või ülemprojektide puhul, mis on sisuliselt meeldejäetud
-          otsingud, sa vaatlusi välistada ei saa. Loe edasi <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">siit</a>.
-        project_settings_desc: Pea meeles, et see ei anna projektidele luba näha sinu
-          peidetud koordinaate või saata sulla uudiseid. Nende lubade andmiseks pead
-          projektidega liituma või andma neile igale ühele eraldi load.
-        taxon_change_desc: Kui taksoneid lehel %{site_name} kokku liidetakse või ümbernimetatakse,
-          uuendatakse automaatselt ka sinu vaatluseid, taksonite nimekirju, määratlusi,
-          jms, kui taksonimuutus on üheti tõlgendatav. Kui sa sellest keeldud või
-          muutus on mitmeti tõlgendatav (nt taksonite jagamine), saad muudatuse kohta
-          teate koos lingiga tööriistale, mis võimaldab sul enda sisu soovi korral
-          käsitsi uuendada.
         prefers_community_taxa_desc: '%{site_name} jälgib, kuidas sina oma vaatluseid
           määratled ja kuidas kogukond neid määralteb. Andmepartneritega jagame kogukondliku
           määratlust, aga kui sa arvad, et kogukonna arvamus ei tohiks kunagi sinu
@@ -6439,8 +6427,20 @@ et:
           määratlusi, kuid kogukonna arvamust ei eelistata sinu omale. See tähendab,
           et su vaatlused ei saa olla teaduskõlbulikud, kui just sinu ja kogukonna
           määratlus kokku ei lange.'
+        project_settings_desc: Pea meeles, et see ei anna projektidele luba näha sinu
+          peidetud koordinaate või saata sulla uudiseid. Nende lubade andmiseks pead
+          projektidega liituma või andma neile igale ühele eraldi load.
         search_place_help_html: Vaatluste otsimise vaikimisi asukoht.
         scientific_name_first_desc: Näita teaduslikke nimesid enne rahvapäraseid.
+        taxon_change_desc: Kui taksoneid lehel %{site_name} kokku liidetakse või ümbernimetatakse,
+          uuendatakse automaatselt ka sinu vaatluseid, taksonite nimekirju, määratlusi,
+          jms, kui taksonimuutus on üheti tõlgendatav. Kui sa sellest keeldud või
+          muutus on mitmeti tõlgendatav (nt taksonite jagamine), saad muudatuse kohta
+          teate koos lingiga tööriistale, mis võimaldab sul enda sisu soovi korral
+          käsitsi uuendada.
+        this_only_applies_to_traditional_projects: See kehtib ainult tavaprojektide
+          puhul. Kogumis- või ülemprojektide puhul, mis on sisuliselt meeldejäetud
+          otsingud, sa vaatlusi välistada ei saa. Loe edasi <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">siit</a>.
         youve_used_all_of_your_blocks: Oled kõik blokeeringud ära kasutanud. Lõpeta
           mõni blokeering, et uusi lisada.
       recent:

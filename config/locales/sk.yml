@@ -55,16 +55,16 @@ sk:
     other: '%{count} nesprávne identifikácie druhov v tomto%{rank}'
   x_observations:
     one: 1 pozorovanie
-    other: '%{count} pozorovania'
+    other: '%{count} pozorovaní'
   x_observations_:
     one: 1 Pozorovanie
-    other: '%{count} Pozorovania'
+    other: '%{count} Pozorovaní'
   x_observations_html:
     one: <span class='count'>1</span> pozorovanie
-    other: <span class='count'>%{count}</span> pozorovania
+    other: <span class='count'>%{count}</span> pozorovaní
   x_observations_link_html:
     one: <a href='%{url}'>1 pozorovanie</a>
-    other: <a href='%{url}'>%{count} pozorovania</a>
+    other: <a href='%{url}'>%{count} pozorovaní</a>
   x_observations_reviewed_html:
     one: <span class='count'>1</span> pozorovanie skontrolované
     other: <span class='count'>%{count}</span> pozorovania skontrolované
@@ -116,8 +116,8 @@ sk:
     one: 1 taxón zodpovedá súčasným filtrom
     other: '%{count} taxóny zodpovedajú súčasným filtrom'
   x_taxon_changes_added_html:
-    one: <span class="count">1</span>pridaná zmena taxónu
-    other: <span class="count">%{count}</span>pridané zmeny taxónu
+    one: <span class="count">1</span> pridaná zmena taxónu
+    other: <span class="count">%{count}</span> pridané zmeny taxónu
   x_people_helped_user_with_y_ids_html: <strong>%{x} ľudí</strong> pomohlo %{user}
     s <strong>%{y} identifikáciou</strong>
   _100_day_trends: 100-dňové trendy
@@ -466,7 +466,7 @@ sk:
   amphibiaweb_doesnt_have_info_about_species: O týchto druhoch nemá AmphibiaWeb zatiaľ
     žiadne informácie
   amphibiaweb_taxonomy: Taxonómia AmphibiaWeb
-  an: jeden
+  an: jedno
   an_: jeden
   and: a
   and_choose_a_matching_taxon: a zvoľte taxón na porovnanie z tohto zoznamu. Ak neskončíte
@@ -490,8 +490,8 @@ sk:
   announcement_was_successfully_created: Oznámenie bolo úspešne vytvorené.
   announcement_was_successfully_updated: Oznámenie oylo úspešne aktualizované.
   announcements: Oznámenia
-  any: ľubovoľné
-  any_: Ľubovoľné
+  any: ľubovoľný
+  any_: Ľubovoľný
   apply_to_selected: Použiť pre vybrané
   apply_captive_cultivated: Použiť zajatý / kutlivovaný
   apply_fields: Použiť polia
@@ -639,7 +639,7 @@ sk:
   back_to_x_history: Späť na %{x} históriu
   back_to_x_journal: Späť do denníka %{user}
   back_to_x_blog: Späť na blog užívateľa %{x}
-  back_to_your_dashboard: Späť na hlavný panel
+  back_to_your_dashboard: Späť na nástenku
   back_to_x_observations: Späť na pozorovania užívateľa %{user}
   back_to_your_lists: Späť na váš zoznam
   back_to_your_journal: Späť na váš denník
@@ -1224,7 +1224,7 @@ sk:
   duration_value: 'Doba trvania: %{duration} minút'
   edit: Upraviť
   edit_a_batch_of_observations: Upraviť súbor pozorovaní
-  edit_account_settings_and_profile: Upraviť nastavenie účtu &amp; profil
+  edit_account_settings_and_profile: Upraviť váš účet a profil
   edit_assessment: Upraviť hodnotenie
   edit_atlas: Upraviť atlas
   edit_body: Upraviť text
@@ -1640,6 +1640,7 @@ sk:
   help_confirm_observations!: Pomôžte potvrdiť pozorovania!
   help_faq: Nápoveda / často kladené otázky
   help_out!: Pomôžte!
+  here_are_3_examples: Toto sú 3 príklady dobre zostavených údajov
   here_are_our_top_suggestions: Tu sú naše najlepšie návrhy
   here_are_our_top_species_suggestions: Tu sú naše najlepšie návrhy druhov
   here_are_some_things_you_can_do_meantime: Tu sú veci, ktoré môžete zatiaľ urobiť
@@ -1756,8 +1757,11 @@ sk:
   inactive_taxon: Neaktívny taxón
   inappropriate: Nevhodné?
   inappropriate_content: Nevhodný obsah?
+  inat_account_action: '%{site_name} &#58; Účet &#58; %{action_name}'
   inat_user_profile: '%{site_name}: Profil užívateľa %{user}'
   inat_will_be_back_on: '%{site_name} bude zas na nohách/krídloch/plutvách/chápadlách/panôžkách'
+  inaturalist_is_a_joint_initiative: '%{site_name} je spoločná iniciatíva California
+    Academy of Sciences a National Geographic Society.'
   inaturalist_is_catching_some_zs: '%{site_name} práve spí'
   inaturalist_observations_by: '%{site_name} &#58; Pozorovania užívateľa %{login}'
   inaturalist_places: '%{site_name} Miesta'
@@ -1932,6 +1936,7 @@ sk:
     italian: Taliančina
     japanese: Japončina
     korean: Kórejčina
+    lithuanian: Litovský
     luxembourgish: Luxemburčina
     maltese: Maltčina
     maori: Maorčina
@@ -2089,6 +2094,7 @@ sk:
     ja: Japončina
     ko: Kórejčina
     lb: Luxemburčina
+    lt: Litovský
     mk: Macedónčina
     nl: Holandčina
     oc: Okcitánčina
@@ -2264,6 +2270,7 @@ sk:
     datetime_with_zone: MMM D, YYYY · LT z
   mon: Pon
   month: Mesiac
+  monthly_supporter_since_date: Mesačný podporovateľ od %{date}
   months: Mesiace
   months_ago: pred %{text}
   more: Viac
@@ -2292,6 +2299,11 @@ sk:
   most_observed_threatened_species: Najviac pozorovaných ohrozených druhov
   multiple: viacero
   multiple_select_option: -- viacero --
+  must_be_observed_after: musí byť pozorovaný po %{operand}
+  must_be_observed_before: musí byť pozorovaný pred %{operand}
+  must_be_observed_in: musí byť pozorovaný v
+  must_be_less_than_x_MB: Musí byť menej ako %{x} MB
+  must_have_observation_field: pole pozorovania '%{operand}' musí byť vyplnené
   must_have_x: musí mať %{x}
   mute_user: Stlmiť užívateľa
   mute_removed: Stlmenie zrušené
@@ -2389,6 +2401,7 @@ sk:
   new_user_rules: Nové užívateľské pravidlá
   new_users: Noví používatelia
   new_users_this_year: Noví užívatelia v tomto roku
+  new_users_w_7_obs: Noví používatelia so 7 pozorovaniami
   new_users_week: Noví užívatelia / týždeň
   newly_added: Novo pridané
   newly_added_species: Novo pridané druhy
@@ -2448,6 +2461,7 @@ sk:
   no_misidentifications_yet: Zatiaľ žiadne chybné určenia
   no_more_mail_from_site: Nechcete dostávať žiadne e-maily z %{site_name}? Upravte
     svoje e-mailové nastavenia na
+  no_more_taxa_to_load: Žiadne ďalšie taxóny na nahratie!
   no_more_results_found: Žiadne ďalšie výsledky
   no_more_updates: Žiadne ďalšie aktualizácie!
   no_nearby_observations: Žiadne pozorovania v okolí.
@@ -2606,8 +2620,11 @@ sk:
   observations_of_relatives: Pozorovania príbuzných
   observations_of_taxon: Pozorovania %{taxon_name}
   observations_per_month: Pozorovania / Mesiac
+  observations_removed_from_the_project: Pozorovania odstránené z projektu "%{project}"
   observations_saved: Pozorovanie/a uložené!
   observations_specifying_this_field: Pozorovania špecifikujúce toto pole
+  observations_specifying_this_field_with_value: Pozorovania špecifikujú toto pole
+    s "%{value}"
   observations_this_year_vs_last_year: Porovnanie minuloročných pozorovaní s tohtoročnými
   observations_title: Pozorovania všetkých užívateľov
   observations_total: Pozorovania celkom
@@ -2668,20 +2685,52 @@ sk:
   on_list?: v zozname
   on_submit_date: dňa %{submitdate}
   on_your_life_list: na vašom zoznamu života
+  onboarding:
+    observe_panel_title: Začneme odoslaním nejakých pozorovaní
+    observe_panel_body_p1_local: Potrebujete inšpiráciu? Tu nájdete niekoľko organizmov,
+      ktoré sú pozorované v okolí...
+    observe_panel_body_p1_global: Potrebujete inšpiráciu? Tu nájdete niekoľko organizmov,
+      ktoré sú pozorované...
+    follow_panel_title_local: Sledovať prírodovedca vo svojom okolí
+    follow_panel_title_global: Sledovať aktívnych prírodovedcov
+    following_panel_title: Sledovať ľudí, taxóny a miesta
+    comments_panel_title: Ste zvedavý, aké diskusie prebiehajú na stránke %{site_name}?
+    youve_got_updates_panel_title: Máte aktualizácie!
+    youve_got_updates_panel_body_p1: Zostaňte aktuálny s aktualizáciami nasledujúceho...
   one_by_one: Jeden po druhom
   one_of_your_lists: jeden z vašich zoznamov...
   only_a_project_manager_can_add: Status kurátora projektu môže pridať iba manažér
     projektu
   only_administrators_may_access_that_page: K tejto stránke majú pristup iba administrátori
   only_accepts_taxa: prijíma iba taxóny
+  only_an_admin_can_remove_project_users: Užívateľa projektu môže odobrať iba admin
+  only_country_state_and_county: Teraz sa zobrazujú iba krajiny, štáty a odpovedajúce
+    miesta. Pre zobrazenie menších oblastí použite priblíženie.
   only_curators_can_add_edit_scientific_names: Vedecké názvy môžu pridávať/editovať
     iba kurátori.
+  only_curators_can_access_that_page: K tejto stránke majú prístup iba kurátori.
+  only_files_with_10000_rows_at_a_time: Vkládejte prosím iba súbory s maximálne 10000
+    riadkami
+  only_letters_numbers: Iba písmena a číslice, bez medzier, musí začínať písmenom
+  only_one_coordinate_system_per_file: Pre jeden súbor možno použiť iba jeden systém
+    súradníc, inak môže dôjsť k nesprávnej konverzii alebo zobrazeniu.
   only_project_curators_can_do_that: Tento krok môžu vykonať len kurátori projektu.
+  only_receive_updates_about_this_taxon: Dostávať aktualizácie iba o tomto taxóne
   only_show_active_taxa: Zobraziť iba aktívne taxóny
+  only_show_events_that_last_less_than_2_weeks: Zobraziť iba udalosti, ktoré trvajú
+    menej než 2 týždne
+  only_show_for_species_subspecies_varieties_etc: Zobraziť iba pre druhy, poddruhy,
+    odrody atď.
+  only_show_taxa_fom_this_list: Zobraziť iba taxóny z tohto zoznamu
+  only_showing_taxa_from: zobrazené iba taxóny z tohto zoznamu
   only_site_curators_can_turn_on_observation_aggregation: Zoskupenie projektov môžu
     povoliť iba kurátori stránky
   only_species: iba druhy
   only_species_and_subspecies: iba druhy a poddruhy/odrody
+  only_staff_can_edit_large_places: Iba personál stránky môže upravovať veľmi veľké
+    miesta
+  only_staff_can_edit_standard_places: Iba personál stránky môže upraviť miesta v
+    štandardnej hierarchii
   only_you: Iba vy
   open: otvorený
   open_: Otvorený
@@ -2690,6 +2739,7 @@ sk:
   or: alebo
   or_all_caps: ALEBO
   or_invited: alebo pozvaný.
+  or_log_in_with_colon: 'Alebo sa prihláste cez:'
   or_upload: Alebo nahrať
   or_you_can: Alebo môžete...
   or_you_can_: alebo môžete
@@ -2700,6 +2750,7 @@ sk:
   organisms: Organizmy
   original: Pôvodný
   originally_flagged_by: Pôvodne označené používateľom
+  original_rights_holder: Pôvodný vlastník práv
   original_url: Originálne URL
   original_url_for_this_map: Originálne URL pre túto mapu
   organism_appears_captive_cultivated: Organizmus sa javí v zajatí / kultivácii
@@ -2908,6 +2959,7 @@ sk:
   place_updated: Miesto bolo aktualizované!
   placement: Umiestnenie
   places: Miesta
+  places_maintained_by_site_admins: Miesta udržiavaná administrátormi stránky
   places_name:
     afghanistan: Afganistan
     africa: Afrika
@@ -3177,6 +3229,27 @@ sk:
   places_of_interest: Zaujímavé miesta
   places_merged_successfully: Miesta boli úspešne zlúčené!
   plants: rastliny
+  please_add_a_citation_for_this_change: Pridajte prosím citáciu pre túto zmenu.
+  please_add_this_observation_to: Pridajte prosím toto pozorovanie k
+  please_add_this_to_x_html: Pridajte toto prosím k %{x}
+  please_allow_a_few_weeks_for_external_sites: Počkajte prosím pár týždňov, než sa
+    zmeny z tohto pozorovania synchronizujú s externými stránkami
+  please_cite_the_published_source_of_taxon: Uveďte prosím citáciu publikovaného zdroja
+    pre tento taxón.
+  please_complete_the_following_to_add_project: 'Ak chcete pridať toto pozorovanie
+    k projektu, vyplňte prosím nasledujúce:'
+  please_confirm_your_inat_username: Potvrďte prosím svoje používateľské meno pre
+    %{site_name}
+  please_confirm_your_account_html: Urobte si prosím chvíľku a <a href="%{url}">potvrďte
+    svoj účet</a>.
+  please_enter_a_new_pass: Zadajte prosím nové heslo a potvrďte.
+  please_explain_why_you_want_to_hide_this: Prosím vysvetlite, prečo chcete toto skryť
+  please_explain_why_you_want_to_unhide_this: Prosím vystlite, prečo chcete toto odkryť
+  please_fix_your_csv_and_try_again: Opravte si prosím CSV a skúste to znova.
+  popular: Obľúbené
+  position: Pozícia
+  positional_accuracy: Presnosť pozície
+  possessive_user: užívateľa %{user}
   post: Príspevok
   post_from_journal_by_parent_html: Príspevok z <a href="%{url}"> denníka od %{parent}
     </a>
@@ -3279,6 +3352,7 @@ sk:
   projects_youve_joined: Projekty, ku ktorým ste sa pridali
   proposed_taxa_that_contradict_the_community_id: Navrhované taxóny, ktoré sa lišia
     od ID komunity
+  protozoans: prvoky
   provider_authorizations: Autorizácia poskytovateľa
   public_coordinates_obscured_by: Verejné súradnice zakryté o %{distance} km
   public_domain: Voľné dielo
@@ -3315,7 +3389,7 @@ sk:
     parvorder: Parvrad
     zoosection: zoosekcia
     zoosubsection: Zoopodsekcia
-    superfamily: nadčeľaď
+    superfamily: Nadčeľaď
     epifamily: epičeľaď
     family: Čeľaď
     subfamily: Podčeľaď
@@ -3538,6 +3612,8 @@ sk:
   search_all_fields: prehliadať všetky polia
   search_by_name_or_email: Hľadať podľa mena alebo e-mailu
   search_by_taxon_name_or_observation_id: Hľadať podľa názvu taxónu alebo ID pozorovania
+  search_descendant_taxa_raquo: Hľadať v následných taxónoch &raquo;
+  search_external_name_providers: Hladať v externých poskytovateľoch názvov
   search_for_a_location: Hľadať miesto
   search_for_new_taxa: hľadať nové taxóny
   search_for_place_to_import_from_yahoo: Hľadať miesto k importovaniu z Yahoo.
@@ -3547,6 +3623,8 @@ sk:
   search_observations: Hľadať pozorovania
   search_places: Hľadať v miestach
   search_projects: Hľadať v projektoch
+  search_results_for: Výsledky vyhľadávania pre
+  search_results_for_query: Výsledky vyhľadávania pre %{query}
   search_remote: Hľadať na diaľku
   search_species: Hľadať druhy
   search_species_: Hľadať druhy...
@@ -3603,6 +3681,7 @@ sk:
   show: Zobraziť
   show_active_and_inactive_taxa: Zobraziť aktívne a neaktívne taxóny
   show_common_names: Zobraziť bežné mená
+  show_counts: Zobraziť počty podľa zoznamu.
   show_default_taxon_photos: zobraziť základné fotky taxónu
   show_hidden_content: Zobraziť skrytý obsah
   show_keyboard_shortcuts: Zobraziť klávesové skratky
@@ -3642,11 +3721,14 @@ sk:
   simple: Jednoduché
   sign_in_exclamation: Prihlásiť sa!
   single_observation: Jedno pozorovanie
+  single_taxon: Jediný taxón (vstup pre rozdelenie/odloženie/rozloženie na etapy,
+    výstup pre zlúčenie/zámenu)
   sizes: Veľkosti
   skip_to_next_page: Preskočiť na ďalšiu stránku
   small: malý
   site_admin_tools: Nástroje pre správu webových stránok
   site_name_place: '%{site_name} miesto'
+  site_observations_export_from_date: '%{site_name} export pozorovania zo dňa %{date}'
   site_site_admin: '%{site_name} Admin stránky'
   site_staff: Zamestnanci %{site_name}
   site_stats: Štatistika stránky
@@ -3670,8 +3752,15 @@ sk:
   something_: niečo
   something_went_wrong_adding: Pri pridávani tohto druhu do vášho zoznamu sa niečo
     pokazilo
+  something_went_wrong_deleting_the_taxon_name: Pri odstraňovaní názvu taxónu sa niečo
+    pokazilo '%{taxon_name}'!
+  something_went_wrong_updating: Pri aktualizácii vášho zoznamu sa niečo pokazilo!
   somewhere_on_earth: niekde na Zemi
   somewhere: (Niekde...)
+  sorry_google_isnt_responding_at_the_moment: Prepáčte, Google v túto chvíľu nereaguje.
+  sorry_we_didnt_find_that_photo: Prepáčte, túto fotku sme nenašli.
+  sorry_x_is_not_responding: Prepáčte, %{x} nereaguje. Skúste to prosím znovu neskôr.
+  sorry_you_can_only_add_1000_at_a_time: Prepáčte, naraz môžete pridať maximálne 1000.
   sorry_you_cant_delete_your_own_life_list: Ospravedlňujeme sa, nemôžete zmazat svoj
     vlastný zoznam života.
   sort: Zoradiť
@@ -3683,6 +3772,7 @@ sk:
     before_importing_sounds: pred importovaním zvukov
     import_from_sounds: Importovať zo zvukov
     import_sounds: Importovať zvuky
+    link_your_soundcloud_account: Prepojiť váš účet na SoundCloud
     listen: Počúvať
     no_photos_sounds: Žiadne fotky alebo zvuky
     photos_sounds: Fotky / zvuky
@@ -3702,6 +3792,21 @@ sk:
     catalogue_of_life: Catalogue of Life
     inaturalist: iNaturalist
     new_zeland_organisms_register: New Zealand Organisms Register
+    nzbrn_birds: NZBRN vtáky
+    nzbrn_fungi: NZBRN huby
+    nzbrn_herpetofauna: NZBRN herpetofauna
+    nzbrn_invertebrates: NZBRN bezstavovce
+    nzbrn_mammals: NZBRN cicavce
+    nzbrn_plants: NZBRN rastliny
+    nzbrn_other: NZBRN ostatní
+    catalogue_of_life_2012_annual_checklist: 'Catalogue of Life: 2012 ročný zoznam'
+    catalogue_of_life_2013_annual_checklist: 'Catalogue of Life: 2013 ročný zoznam'
+  source_eg:
+    title: 'napr. Snakes: The Evolution of Mystery in Nature'
+    in_text: napr. Greene, 2000
+    url: napr. 'http://www.ucpress.edu/book.php?isbn=9780520224872'
+    citation: 'napr. Greene, Harry W. Snakes: The Evolution of Mystery in Nature.
+      1st ed. University of California Press, 1997. Print.'
   source_identifier: Identifikátor zdroja
   source_unknown: Zdroj neznámy
   source_url: Zdrojový URL
@@ -3714,12 +3819,13 @@ sk:
   spam: Spam
   spammer: Spammer
   spanish: Španielčina
-  species: Druh
+  species: Druhy
   species_by_category: druhy podľa kategórie
   species_from_around_the_world: Druhy z celého sveta
   species_guess: hádanie druhov
   species_guide: Sprievodca druhmi
   species_header: Druh
+  species_name: druhové meno
   species_name_cap: Druhové meno
   species_names: druhové mená
   species_or_lower: druh alebo nižší
@@ -3753,6 +3859,61 @@ sk:
   stay_and_try_again: Zostať a skúsiť znova
   still_no_luck?: Stále nič?
   still_needs_id?: Môže komunita potvrdiť/zlepšiť identifikáciu?
+  still_working_on_classifying_taxon: Na klasifikácií tohto taxónu ešte pracujeme.
+    Pozrite sa znovu neskôr
+  stop_editing: Přestať editovať
+  stop_following_user: Nesledovať používateľa %{user}
+  stop_testing: Prestať testovať
+  stop_trusting_this_person_with_your_private_coordinates: Prestať veriť tejto osobe
+    so skrytými súradnicami
+  stop_updating_position: Prestať aktualizovať polohu
+  studies_that_used_inaturalist_data_in_year: Štúdie používajúce iNaturalist dáta
+    v %{year}
+  stuff_just_added: Materiál, ktorý ste práve pridali...
+  subject_resolved_noun_html: '%{subject} vyriešil %{noun}'
+  subject_affecting_stuff_html: '%{subject} ovplyvňujúci %{stuff}'
+  subject_committed_thing_affecting_stuff_html: '%{subject} spojený s %{thing} ovplyvňujúci
+    %{stuff}'
+  submission_model: Model pre predloženie
+  submission_model_description: Kdo môže pridávať pozorovania k vášmu projektu?
+  submit: Odoslať
+  submit_comment: Odoslať komentár
+  submit_observations:
+    one: Odoslať 1 pozorovanie
+    other: Odoslať %{count} pozorovania
+  submitted: Odoslané
+  subscribe_to_a_taxon: Sledovať taxón
+  subscribe_to_a_place: Sledovať miesto
+  subscribe_to_this: Prihlásiť sa k odberu
+  subscribe_to_this_observation: Prihlásiť sa k odberu tohto pozorovania
+  subscribe_to_x_from_this_y_html: |-
+    <a href="#" onclick="$(this).parents('form:first').submit(); return false;">Prihlásiť sa k odberu</a>
+    to %{x} z tohto %{y}.
+  subscriptions: Odoberania
+  suggest_an_id: Navrhnúť ID
+  suggest_an_identification: Navrhnúť identifikáciu
+  suggestions: Návrhy
+  summary: Zhrnutie
+  supporting: Podpora
+  support_inaturalist: Podpora iNaturalist
+  suspicious_photos: Podozrelé fotky
+  siutable_observations: vhodné pozorovania
+  sun: Ned
+  suspend_user: Vylúčiť užívateľa
+  sw_lat: z. d. JZ
+  sw_lon: z. d. JZ
+  sync: Synchronizovať?
+  sync_with_eol: Synchronizovať s EOL
+  sync_obs_with_photo_metadata: Synchronizovať pozorovania s metadátami fotky?
+  synonyms: Synonymá
+  table: Tabuľka
+  table_of_contents: Obsah
+  tag: Tag
+  tagging: Tagovanie...
+  tags: Tagy
+  take_me_facebook: Áno, chcem ísť na Facebook!
+  take_me_flickr!: Áno, chcem ísť na Flickr!
+  take_me_back: Chcem ísť späť
   taxa: Taxóny
   taxa_with_unknown_relationships: Taxóny s neznámymi vzťahmi
   taxa_info: Informácie o taxónoch
@@ -3764,6 +3925,9 @@ sk:
   taxon_autocomplete_placeholder: Vtáky, babôčky, atď.
   taxon_geoprivacy: Geosúkromie taxónu
   taxon_is_a_rank: '%{taxon} je %{rank}'
+  taxon_is_a_rank_in_iconic_taxon_with_x_observations:
+    one: '%{taxon} je %{rank} v %{iconic_taxon} s jedným pozorovaním '
+    other: '%{taxon} je %{rank} v %{iconic_taxon} s %{count} pozorovaniami'
   taxon_is_kingdom_of_life_with_x_observations:
     one: '%{taxon} je ríša s 1 pozorovaním'
     other: '%{taxon} je ríša s %{count} pozorovaniami'
@@ -3818,25 +3982,121 @@ sk:
   taxonomy_details: Podrobnosti o taxonómii
   taxonomy_details_for: Podrobnosti o taxonómii pre
   taxonomy_settings: Nastavenie Taxonómie
+  tell_the_world_a_little_about_yourself: Povedzte nám niečo o sobe
+  tell_us_why: Povedzte nám prečo...
+  terms_of_service: Podmienky používania
+  terms_service: Podmienky používania
+  terrain: terén
+  text: Text
+  text_: text
+  thanks!: Ďakujeme!
+  thanks_for_signing_up: Ďakujeme za vašu registráciu!
+  thanks_for_using: Ďakujeme, za používanie
+  thanks_from_all_of_us_here_at: Poďakovanie od nás všetkých z
+  that_photo_doesnt_exist: Tá fotka neexistuje.
+  that_observation_doesnt_exist: To pozorovanie neexistuje.
+  that_observation_doesnt_have_any_photos: To pozorovanie nemá žiadne fotky.
+  that_observation_hasnt_been_added_this_project: To pozorovanie nebolo pridané k
+    tomuto projektu.
+  that_observation_no_longer_exists: To pozorovanie už neexistuje.
+  that_project_doesnt_exist: Ten projekt neexistuje.
+  that_role_doesnt_exist: Tá funkcia neexistuje.
+  the: ten
+  the_: Ten
+  the_list: zoznam
+  the_past: minulý
+  the_people_of_inat: Ľudia z %{site_name}
+  the_project: projekt
+  the_world: Svet
+  then_keybord_sequence: potom
+  there_is_no_wikipedia_page_matching: Na Wikipédii nie je odpovedajúca stránka
+  there_were_errors: Objavili sa chyby.
+  these_folks_kindly_volunteer_to: Títo ľudia sú takí dobrí, že dobrovoľne udržujú
+    našu taxonómiu a riešia ďalšie problémy.
   this_is_a_life_list_of: Toto je zoznam života
   this_is_a_life_list_of_taxon_in_place: Toto je zoznam života %{taxon} v %{place}
+  this_is_your_observation: Toto je vaše pozorovanie
   this_observation_is_research_grade: Toto pozorovanie je pozorovanie výskumného stupňa!
+  this_observation_was_created_using: 'Toto pozorovanie bolo vytvorené pomocou:'
+  to_suggest_an_identification: k navrhnutiu identifikácie
+  top_identifier: Najlepší identifikátor
+  top_identifiers: Najlepší identifikátori
+  top_observer: Najlepší pozorovateľ
   top_observers: Najlepší pozorovatelia
+  "true": Pravda
+  type_taxon_name: Napíšte názov taxónu
+  unknown: Neznámy
+  unknown_error: Neznáma chyba
+  unknown_rank: (Neznáme zaradenie)
+  update_your_content: Aktualizovať váš obsah
+  updated: Aktualizované
+  updated_daily: Aktualizované denne
+  updated_photo: Aktualizovaná fotka
+  user_added_an_observation_html: Používateľ %{user} pridal pozorovanie
+  user_added_an_x: '%{user} pridal(a) %{x}'
+  user_added_an_x_to_noun_by_html: '%{user} vložil %{x} na %{noun} od %{by}'
+  user_added_an_x_to_noun_html: Používateľ %{user} pridal %{x} k %{noun}
+  user_commented: '%{user} komentoval'
+  user_disagrees_this_is_taxon: Užívateľ %{user} nesúhlasí s tým, že toto je %{taxon}
   user_flagged_as_a_spammer_html: '%{user} označený ako spamer'
+  user_thinks_yours_is: '%{user} %{noun} vaše pozorovanie %{observation} je'
+  username: Používateľské meno
+  username_or_email: Používateľské meno alebo email
+  username_or_user_id: Používateľské meno alebo používateľské ID
+  value: Hodnota
+  view_all: Zobraziť všetko
   view_all_flags: Pozri všetky značky
+  view_all_from_x: Zobraziť všetky z %{x}
+  view_all_members: Zobraziť všetkých členov
+  view_all_observations: Zobraziť všetky pozorovania
+  view_all_photocount_photos: Zobraziť všetkých %{photo_count} fotiek
+  view_all_photos_tagged_taxon_html: Zobraziť všetky fotky označené ako „%{taxon}“
+    na <nobr>Flickr &raquo;</nobr>
   view_flag: Pozri značky
   view_flags_for_x_html: Pozri značky pre %{x}
+  view_leaderboard_from_last_year: Zobraziť prehľad najlepších za minulý rok
+  view_observation: Zobraziť pozorovanie
   view_observation_flags: Pozri značky pozorovania
+  view_observations_by_everyone: Zobraziť pozorovania všetkých
+  view_observations_causing_this_observation_to_be_obscured: Zobraziť pozorovania,
+    ktoré spôsobia, že toto pozorovanie bude zakryté
+  view_observations_raquo: Zobraziť pozorovania &raquo;
+  view_taxonomic_changes: Zobraziť taxonomické zmeny
+  view_your_dashboard: Zobraziť vašu nástenku
+  view_your_dashboard_for_more_updates_html: <a href='%{url}'>Zobraziť vašu nástenku</a>
+    a aktualizácie
+  view_your_inbox: Zobraziť vaše prijaté správy
   view_your_life_list: Zobraziť váš zoznam života
+  view_your_observations: Zobraziť vaše pozorovania.
+  view_all_of_your_observations_from_x: Zobraziť všetky vaše pozorovania z %{x}
   we_had_a_problem_flagging_that_item: Máme problém s označením tejto položky:%{flag_error}
+  welcome!: Vitajte!
+  welcome: vitajte
+  welcome_back!: Vitajte späť!
+  welcome_login: Vitajte, %{login}
+  welcome_to_inat: Vitajte na %{site_name}!
+  welcome_to_x_project: Vitajte v projekte %{project}
   x_flagged: '%{x} označené'
   x_flagged_as_flag: '%{x} označené ako %{flag}'
+  x_of_y: '%{x} z %{y}'
+  "yes": Áno
+  yes_i_want_to_join: Áno, chcem sa pridať
   you_are_setting_this_project_to_aggregate: 'Nastavujete tento projekt tak, aby zoskupil
     všetky pozorovania, ktoré spĺňajú následujúce pravidlá: %{rules} Chcete pokračovať?'
   you_cant_flag_that: Toto nemôžete označiť
+  you_faved_this: Toto ste označili ako obľúbené!
+  your_comment_was_saved: Váš obsah bol uložený
   your_life_list: váš zoznam života!
+  your_membership: Vaše členstvo
+  your_name_was_saved: Vaše meno bolo uložené.
   your_observation_wont_get: vaše pozorovanie nebude spojené s ďalšími pozorovaniami
     tohto druhu a váš zoznam života nebude aktualizovaný.
+  your_observations: Vaše pozorovania
+  your_profile_was_successfully_updated: Váš profil bol úspešne aktualizovaný!
+  your_recent_projects: Vaše nedávne projekty
+  your_dashboard_helps_you: Na svojej nástenke môžete sledovať, čo ostatní na stránkach
+    tobia. Ak chcete sledovať niekoho aktualizácie, kliknite na odkaz „Sledovať [meno]“
+    v nadpise, keď sa dívate na pozorovanie alebo profil tejto osoby.
   views:
     devise:
       mailer:
@@ -3856,12 +4116,15 @@ sk:
           si môžete aj manuálne pridávať taxóny rovnako ako na normálny zoznam. Druhy,
           ktoré pridáte manuálne, nebudú zmazané, ak ich budete pozorovať a potom
           pozorovanie zmažete.
+    messages:
+      subject: Predmet
     observations:
       export:
         geo_help_html: |-
           Pole mesta, okresu, štátu podľa súradníc. Pre pozorovánia, na ktoré sa tieto typy nevzťahujú, budú použité odpovedajúcej správnej úrovne.
           Súkromné polia_* budú obsiahnuté iba pri použití užívateľského filtra a ak ste zároveň užívateľ alebo pri použití projektového filtra, ak ste zároveň správcom projektu.
       field_descriptions:
+        user_login: Používateľské meno pozorovateľa
         place_admin1_name: Názov administratívneho miesta v rámci krajiny
     projects:
       new:
@@ -3903,7 +4166,89 @@ sk:
           Zobraziť bežné mená. Zakážete, ak chcete zobraziť len vedecké názvy.
           Upozorňujeme, že môžete zmeniť, ktoré bežné názvy sa zobrazujú zmenou
           lokálneho nastavenia a nastavenia miesta.
+    welcome:
+      index:
+        explore_and_share: Objavujte a zdieľajte svoje pozorovania zo sveta prírody.
+        observations_to_date: Pozorovaní k dnešnému dňu
+        people_signed_up: Zaregistrovaných ľudí
+        how_it_works: Ako to funguje
+        record_your_observations: Zaznamenejte svoje pozorovania
+        share_with_fellow_naturalists: Zdieľajte s našimi prirodovedcami
+        discuss_your_findings: Diskutujte o svojich nálezoch
+        contribute_to_science: Prispejte k vede
+        nature_at_your_fingertips: Príroda na dosah ruky
+        keep_track: Evidovať
+        record_your_encounters: Evidujte svoje stretnutia s ostatnými organizmami
+          a vytvárajte si zoznamy života, všetko v cloude.
+        create_useful_data: Vytvorte užitočné údaje
+        help_scientists: Pomôžte vedcom a správcom zdrojov pochopiť, kedy a kde sa
+          organizmi vyskytujú.
+        crowdsource_identifications: Crowdsource identifikácie
+        connect_with_experts: Spojte sa s odborníkmi, ktorí môžu identifikovať organizmy,
+          ktoré pozorujete.
+        become_a_citizen_scientist: Staňte sa občianskym vedcom
+        find_a_project: Nájdite projekt s poslaním, ktoré vás zaujíma, alebo začnite
+          sami.
+        learn_about_nature: Učte sa o prírode
+        build_your_knowledge: Vybudujte si svoje znalosti tým, že budete diskutovať
+          s ostatnými prírodovedcami a pomáhat druhým.
+        run_a_bioblitz: Spusťte Bioblitz
+        hold_an_event: Usporiadajte udalosť, kde sa ľudia snažia nájsť čo najviac
+          druhov.
+        works_on_all_your_devices: Pracuje na všetkých vašich zariadeniach
+        install_our_mobile_apps: Nainštalujte si naše mobilné aplikácie, aby ste mohli
+          vždy pozorovať, a to aj bez mobilných dát a wifi.
+        who_uses_site_name: Kto používa %{site_name}?
+        what_are_you_waiting_for: Na čo čakáte?
+        join_today: Pripojte sa dnes
+    wiki_pages:
+      form:
+        save_and_edit_to_add_attachments: Uložiť a upraviť pre pridanie prílohy
   date:
+    abbr_day_names:
+    - Ned
+    - Pon
+    - Uto
+    - Str
+    - Štv
+    - Pia
+    - Sob
+    abbr_month_names:
+      1: Jan
+      2: Feb
+      3: Mar
+      4: Apr
+      5: Máj
+      6: Jún
+      7: Júl
+      8: Aug
+      9: Sep
+      10: Okt
+      11: Nov
+      12: Dec
+    day_names:
+    - Nedeľa
+    - Pondelok
+    - Utorok
+    - Streda
+    - Štvrtok
+    - Piatok
+    - Sobota
+    day_names_min:
+      1: Ne
+      2: Po
+      3: Ut
+      4: St
+      5: Št
+      6: Pia
+      7: So
+    formats:
+      default: '%R-%m-%d'
+      long: '%M %d, %R'
+      short: '%m %d'
+      short_with_year: '%M %d, %R'
+      month_year: '%B %Y'
+      month_day_year: '%M %d, %R'
     month_names:
       1: Január
       2: Február
@@ -3928,6 +4273,9 @@ sk:
       almost_x_years:
         one: skoro 1 rok
         other: skoro %{count} roky/ov
+      less_than_x_minutes:
+        one: menej než minútou
+        other: menej než %{count} minútami
     prompts:
       day: Deň
       hour: Hodina
@@ -3963,6 +4311,8 @@ sk:
     attributes:
       project:
         last_aggregated_at: Naposledy zoskupené pozorovania
+      user:
+        login: Používateľské meno
     errors:
       models:
         project_observation:
@@ -3980,4 +4330,8 @@ sk:
             complete:
               can_only_be_changed_by_a_curator_of_this_taxon: môže byť zmenený iba
                 kurátorom tohto taxónu
+  doorkeeper:
+    errors:
+      messages:
+        invalid_scope: Rozsah požiadavky nie je platný, je neznámy alebo zle vytvorený.
 ...

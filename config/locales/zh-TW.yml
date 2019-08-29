@@ -1842,6 +1842,7 @@ zh-TW:
     italian: 義大利語
     japanese: 日語
     korean: 韓語
+    lithuanian: 立陶宛語
     luxembourgish: 盧森堡語
     maltese: 馬爾他語
     maori: 毛利語
@@ -1974,6 +1975,7 @@ zh-TW:
     ja: 日語
     ko: 韓語
     lb: 盧森堡語
+    lt: 立陶宛語
     mk: 馬其頓語
     nl: 荷蘭語
     oc: 奧克語
@@ -2129,6 +2131,7 @@ zh-TW:
     datetime_with_zone: MMM D, YYYY · LT z
   mon: 週一
   month: 月
+  monthly_supporter_since_date: 自 %{date} 開始的每月贊助者
   months: 月
   months_ago: '%{text}前'
   more: 更多
@@ -4722,7 +4725,7 @@ zh-TW:
           <strong>iNaturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
         </p>
         <p class="lead">
-          若您肯定這份分享知識、產生出無可替代生物多樣性資料的全球自然愛好者社群力量，您可以考慮一次性或定期的捐款。
+          若您肯定這份分享知識、產生出無可替代生物多樣性資料的全球自然愛好者社群力量，您可以考慮單筆或定期的捐款。
         </p>
         <p class="lead">
           您的捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。
@@ -4731,6 +4734,21 @@ zh-TW:
           iNaturalist 為加利福尼亞州科學院與國家地理學會所聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
         </p>
       post_donate_social_media_text: 我對 iNaturalist 作出了支持是出自於…
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: 成為 iNaturalist 的每月贊助者
+        desc_html: |-
+          <p class="lead">
+            <strong>Naturalist 是全球最大的致力於探索生物多樣性社群之一，很感謝您參與為其中的一份子！</strong>
+          </p>
+          <p class="lead">
+            我們希望能讓 iNaturalist 持續開放給各位自由使用，但在運作方面我們需要資金。若您喜愛 iNaturalist，歡迎考慮成為固定每月的贊助者。定期的捐款能協助確保讓 iNaturalist 透過可預期的收益，來持續擴充其基礎設備與人員。
+          </p>
+          <p class="lead">
+            您的慈善捐款會協助 iNaturalist 隨著社群發展來增進電腦視覺，並實行新功能以支援我們的伺服器與人員。若您有意做出單筆捐款，請點擊<a href="%{donate_url}">此</a>。
+          </p>
+          <p class="text-muted">
+            iNaturalist 為加利福尼亞州科學院與國家地理學會所聯合倡議。所有捐款會由設立於美利堅合眾國的免稅非營利性組織加利福尼亞州科學院 501(c)(3) 所接收。
+          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |-
@@ -5712,6 +5730,7 @@ zh-TW:
         common_names_desc: |-
           顯示通用名稱。若您想要檢視學名的話請停用。
           註：您可以透過更改您的在地化與地點設定，來控制要查看何種通用名稱。
+        display_monthly_supporter_status_on_my_profile: 在我的個人檔案上顯示每月贊助者狀態
         if_you_change_your_mind_you_can_always_edit_your_settings_html: 若您改變想法，您可以隨時<a
           href='/users/edit'>編輯您的設定</a>。
         inaturalist_network_affiliation_desc_html: |-
@@ -5743,16 +5762,17 @@ zh-TW:
           any: 任何
           joined: 您已加入的專案
           none: 不，僅有您可添加您的觀察至專案
-        this_only_applies_to_traditional_projects: 這僅會套用到傳統專案。您不能從基本上有保存搜尋的收藏或綜合專案裡排除掉觀察。您可<a
-          href="/blog/15450-announcing-changes-to-projects-on-inaturalist">按此</a>來了解更多。
-        project_settings_desc: 請記住，這並沒有給予專案能存取您的隱藏座標，或寄發給您更新內容的權限。您必須要加入專案才能授予權限，或依各個情況授予它們權限。
-        taxon_change_desc: 當 %{site_name} 上的物種分類群被合併或重新命名時，若更改內容為含糊的（例如：拆分） 您的觀察、所列出物種分類群、鑑定等等，將會自動更新到新的物種分類群，您將會收到有關若您有挑選用來手動更新內容的工具方面之更改連結的更新。
         prefers_community_taxa_desc: '%{site_name} 追蹤您對於您的觀察之想法以及社群方面想法。我們與資料合作者所分享的鑑定為社群鑑定，若您認為社群看法不應駕馭您所擁有事物，您可以選擇排除。這樣一來其他人雖仍可添加鑑定，但社群看法將不會偏好您的內容。此代表著您的觀察內容沒有機會被列為研究等級，除非您願意同意社群。'
+        prefers_coordinate_interpolation_protection_desc: 當您設定觀察的位置隱私成「obscured」或「private」時，將會對您在同一天的所有其它觀察套用相同的位置隱私，這會讓其他人較難從同一時間所做出的觀察來猜測出真實座標。
+        project_settings_desc: 請記住，這並沒有給予專案能存取您的隱藏座標，或寄發給您更新內容的權限。您必須要加入專案才能授予權限，或依各個情況授予它們權限。
+        same_day_geoprivacy_protection: 同日位置隱私保護
         search_place_help_html: 用於觀察搜尋的預設地點。
         scientific_name_first_desc: 學名顯示優於通用名稱。
+        taxon_change_desc: 當 %{site_name} 上的物種分類群被合併或重新命名時，若更改內容為含糊的（例如：拆分） 您的觀察、所列出物種分類群、鑑定等等，將會自動更新到新的物種分類群，您將會收到有關若您有挑選用來手動更新內容的工具方面之更改連結的更新。
+        thanks_for_supporting_us!: 感謝您對我們的支持！
+        this_only_applies_to_traditional_projects: 這僅會套用到傳統專案。您不能從基本上有保存搜尋的收藏或綜合專案裡排除掉觀察。您可<a
+          href="/blog/15450-announcing-changes-to-projects-on-inaturalist">按此</a>來了解更多。
         youve_used_all_of_your_blocks: 您已經用完所有的封鎖數量額度，請移除舊有項目來新增其它封鎖。
-        same_day_geoprivacy_protection: 同日位置隱私保護
-        prefers_coordinate_interpolation_protection_desc: 當您設定觀察的位置隱私成「obscured」或「private」時，將會對您在同一天的所有其它觀察套用相同的位置隱私，這會讓其他人較難從同一時間所做出的觀察來猜測出真實座標。
       recent:
         about_recent_users: 關於
         definitions_html: <dl> <dt>可能是垃圾訊息</dt> <dd> 使用者可能是濫發垃圾訊息者代表著他們雖有個人檔案描述，但沒有觀察或鑑定。
