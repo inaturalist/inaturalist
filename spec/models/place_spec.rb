@@ -431,4 +431,14 @@ describe Place, "destruction" do
     place.destroy
     expect( Project.find( collection_project.id ).project_observation_rules.length ).to eq 0
   end
+
+  it "should not delete children" do
+    parent = make_place_with_geom
+    child = make_place_with_geom( parent: parent )
+    parent.reload
+    expect( parent.children ).to include child
+    parent.destroy
+    Delayed::Worker.new.work_off
+    expect( Place.find_by_id( child.id ) ).not_to be_blank
+  end
 end

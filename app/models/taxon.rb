@@ -27,7 +27,7 @@ class Taxon < ActiveRecord::Base
   include ActsAsElasticModel
 
   acts_as_flaggable
-  has_ancestry
+  has_ancestry orphan_strategy: :adopt
 
   has_many :child_taxa, :class_name => Taxon.to_s, :foreign_key => :parent_id
   has_many :taxon_names, :dependent => :destroy
