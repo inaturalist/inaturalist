@@ -34,7 +34,6 @@ GIT
       activesupport (> 3)
       elasticsearch (> 1)
       hashie
-    elasticsearch-rails (6.0.0.alpha1)
 
 GIT
   remote: https://github.com/fnando/i18n-js.git
@@ -317,6 +316,7 @@ GEM
       elasticsearch-transport (= 5.0.4)
     elasticsearch-api (5.0.4)
       multi_json
+    elasticsearch-rails (7.0.0)
     elasticsearch-transport (5.0.4)
       faraday
       multi_json
@@ -701,7 +701,7 @@ DEPENDENCIES
   elasticsearch (= 5.0.4)
   elasticsearch-api (= 5.0.4)
   elasticsearch-model!
-  elasticsearch-rails!
+  elasticsearch-rails
   exifr
   faker
   fastimage
