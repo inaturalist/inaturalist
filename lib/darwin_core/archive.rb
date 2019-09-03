@@ -337,31 +337,36 @@ module DarwinCore
           csv << headers
           observations_in_batches(params, preloads, label: 'make_simple_multimedia_data') do |observation|
             next if observation.observation_photos.blank? && observation.observation_sounds.blank?
-            observation.observation_photos.sort_by{|op| op.position || op.id }.each do |op|
-              # If ES is out of sync with the DB, the photo might no longer exist
-              next if op.nil?
-              next if op.created_at.nil?
-              next if op.photo.nil?
-              next unless op.created_at <= start_time
-              if !media_licenses.include?( "ignore" )
-                next if op.photo.all_rights_reserved?
-                next unless media_licenses.include?( op.photo.license_code.downcase )
+            begin
+              observation.observation_photos.sort_by{|op| op.position || op.id }.each do |op|
+                # If ES is out of sync with the DB, the photo might no longer exist
+                next if op.nil?
+                next if op.created_at.nil?
+                next if op.photo.nil?
+                next unless op.created_at <= start_time
+                if !media_licenses.include?( "ignore" )
+                  next if op.photo.all_rights_reserved?
+                  next unless media_licenses.include?( op.photo.license_code.to_s.downcase )
+                end
+                DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
+                csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
               end
-              DarwinCore::SimpleMultimedia.adapt(op.photo, observation: observation, core: @opts[:core])
-              csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| op.photo.send(method || field)}
-            end
-            observation.observation_sounds.sort_by(&:id).each do |os|
-              next if os.nil?
-              next if os.created_at.nil?
-              next if os.sound.nil?
-              next unless os.sound.is_a?( LocalSound ) # Soundcloud sounds don't come with stable file URLs we can share
-              next unless os.created_at <= start_time
-              if !media_licenses.include?( "ignore" )
-                next if os.sound.all_rights_reserved?
-                next unless media_licenses.include?( os.sound.license_code.downcase )
+              observation.observation_sounds.sort_by(&:id).each do |os|
+                next if os.nil?
+                next if os.created_at.nil?
+                next if os.sound.nil?
+                next unless os.sound.is_a?( LocalSound ) # Soundcloud sounds don't come with stable file URLs we can share
+                next unless os.created_at <= start_time
+                if !media_licenses.include?( "ignore" )
+                  next if os.sound.all_rights_reserved?
+                  next unless media_licenses.include?( os.sound.license_code.to_s.downcase )
+                end
+                DarwinCore::SimpleMultimedia.adapt( os.sound, observation: observation, core: @opts[:core] )
+                csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| os.sound.send(method || field)}
               end
-              DarwinCore::SimpleMultimedia.adapt( os.sound, observation: observation, core: @opts[:core] )
-              csv << DarwinCore::SimpleMultimedia::TERMS.map{|field, uri, default, method| os.sound.send(method || field)}
+            rescue => e
+              logger.error "make_simple_multimedia_data failed on observation #{observation.id}"
+              raise e
             end
           end
         end
