@@ -78,6 +78,9 @@ et:
   x_people_agree_html:
     one: <span class="count">1</span> isik nõustub
     other: <span class="count">%{count}</span> isikut nõustub
+  x_photos:
+    one: 1 foto
+    other: '%{count} fotod'
   x_new_species:
     one: 1 uus liik
     other: '%{count} uut liiki'
@@ -2006,6 +2009,7 @@ et:
     italian: Itaalia
     japanese: Jaapani
     korean: Korea
+    lithuanian: Leedu
     luxembourgish: Luksemburgi
     maltese: Malta
     maori: Maori
@@ -2147,6 +2151,7 @@ et:
     el: Kreeka
     en-US: Inglise (USA)
     en: Inglise
+    eo: Esperanto
     es-ES: Hispaania (Hispaania)
     es-MX: Hispaania (Mehhiko)
     es: Hispaania
@@ -2161,9 +2166,11 @@ et:
     ja: Jaapani
     ko: Korea
     lb: Luksemburgi
+    lt: Leedu
     mk: Makedoonia
     nl: Hollandi
     oc: Oksitaani
+    pl: Poola
     pt-BR: Portugali (Brasilia)
     pt-PT: Portugali (Portugali)
     ru: Vene

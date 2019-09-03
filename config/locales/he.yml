@@ -1242,6 +1242,7 @@ he:
   inappropriate: בלתי הולם?
   info: מידע
   insects: חרקים
+  insect_life_stage: שלב חיים של החרק
   internal_server_error: שגיאת שרת פנימית
   invasive: פולש
   invitation: הזמנה
@@ -2499,6 +2500,7 @@ he:
   show_kml: הצגת KML
   show_less: להציג פחות
   show_more: להציג עוד
+  show_observation_photos: הצגת תמונות תצפית
   show_observations_from: הצגת תצפיות לפי
   show_only: הצגת רק
   show_taxa_from_everywhere: הצגת טקסונים מכל המקומות
@@ -2507,6 +2509,7 @@ he:
   showing_observations_by: הצגת תצפיות לפי
   showing_taxa_from_everywhere: הצגת טקסונים מכל המקומות
   showing_taxa_from_place: הצגת טקסונים מ%{place}
+  sign_up_with_provider: הרשמה באמצעות %{provider}
   sign_out: התנתקות
   sign_up!: הרשמה!
   sign_up: הרשמה
@@ -2679,6 +2682,7 @@ he:
   terms: תנאים
   terms_of_service: תנאי השירות
   terms_service: תנאי השירות
+  terrain: קרקע
   text: טקסט
   text_: טקסט
   thanks!: תודה!
@@ -2691,6 +2695,7 @@ he:
   that_observation_hasnt_been_added_this_project: התצפית לא הוספה לפרוייקט.
   that_observation_no_longer_exists: תצפית זו אינה קיימת.
   that_project_doesnt_exist: פרוייקט זה אינו קיים.
+  that_role_doesnt_exist: תפקיד זה אינו קיים
   that_was_the_last_observation_matching_the_current_filters: זו התצפית האחרונה שמתאימה
     למסננים הנוכחיים.
   thats_not_a_real_date: זה לא תאריך אמיתי!
@@ -2721,6 +2726,7 @@ he:
   there_were_some_problems_saving_those_colors: 'קיימות בעיות בשמירת צבעים אלו: %{error}'
   there_were_some_problems_with_fields: 'קיימות בעיות עם שדות אלו:'
   there_were_some_problems_with_these_files: 'קיימות בעיות עם קבצים אלו:'
+  theres_also: ישנו גם
   these_are_items_people_on: 'הפריטים האלה סומנו להשגחה. תגובות ספאם צריכות להימחק,
     ומשתמשים שמוסיפים תגובות ספאם צריכים להיות מושעים (היכנסו לפרופיל שלהם ולחצו על
     הקישור "השעיית המשתמש" כדי למנוע מהם להיכנס לחשבון). פריטים אחרים שסומנו להשגחה
@@ -2895,15 +2901,95 @@ he:
   view_on_flickr: צפייה ב Flickr
   view_on_wikipedia: צפייה בויקיפידיה
   view_original: צפייה במקור
+  view_place: הצגת מקום
+  view_post: הצגת פוסט
+  view_projects_from_place: הצגת פרוייקטים מ%{place}
   view_real_time_stats_in_a_new_window: צפייה בנתוני זמן אמת בחלון חדש
+  view_sample: הצגת דוגמא
   view_stats: צפייה בסטטיסטיקות
+  view_the_observation: הצגת התצפית
+  view_user_observations: הצגת התצפיות של %{user}
+  view_x: הצגת %{x}
+  view_your_life_list: הצגת רשימת החיים שלך
+  view_your_calendar: הצגת היומן שלך
+  view_your_observations: הצגת התצפיות שלך
+  view_your_year_stats: הצגת הסטטיסטיקות שלך לשנת %{year}
+  view_all_of_your_observations_from_x: הצגת כל התצפיות שלך מ%{x}
+  video_tutorials: מדריכי וידאו
+  visually_similar: דומים ויזואלית
+  vulnerable: רגיש
+  w_photos_only: עם תמונות
+  w_sounds: עם קולות
+  want_to_test_a_new_version_of_this_page: לבדיקת גירסה חדשה של דף זה?
   we_also_support: אנחנו תומכים גם ב־<a href="http://flickr.com">Flickr</a>&rlm;,
     <a href="http://picasaweb.google.com">Picasa</a> ו־<a href="http://facebook.com">Facebook</a>
     כדי לאחסן תמונות.
+  we_can_only_understand_csv_in: אנחנו יכולים להבין CSV רק בפורמט הבא
+  we_care_privacy: הפרטיות שלך חשובה לנו!
+  we_couldnt_find_a_user: לא יכולנו למצוא משתמש עם כתובת מייל זו.
+  we_had_trouble_saving_comment: 'התקשינו לשמור את ההודעה הזאת:'
+  we_have_no_conservation_status_for_this_taxon: אין לנו סטטוס שימור לטקסון זה
+  weather: מזג־אוויר
+  website: אתר אינטרנט
+  wed: יום רביעי
+  week_of_date: השבוע של ה%{date}
+  welcome!: ברוכים הבאים!
+  welcome_comma!: ברוכים הבאים,
+  welcome: ברוכים הבאים
+  welcome_back: ברוכים השבים
+  welcome_back!: ברוכים השבים!
+  welcome_comma: ברוכים השבים,
+  welcome_login: ברוכים השבים, %{login}
+  welcome_to_inat: ברוכים הבאים ל%{site_name}!
+  welcome_to_guides: ברוכים הבאים למגדירי %{site_name}!
+  welcome_to_x_project: ברוכים הבאים ל%{project}
+  were_currently_down_for: האתר ירד ל
+  what_color_was_it: איזה צבע זה היה?
+  what_did_you_see: מה ראית?
+  what_to_keep: לשמירה
+  whats_this?: מה זה?
+  when: מתי
+  when_did_you_see_it?: מתי ראית את זה?
+  where_did_you_see_it: היכן ראית את זה?
+  where_were_they?: היכן הם היו?
+  where_were_you?: היכן היית?
+  white: לבן
+  who_can_add_observations_to_this_project?: מי יכולים להוסיף תצפיות לפרוייקט?
   who_can_see_the_coordinates: מי יכול לראות את הקואורדינטות
+  who_can_see_the_coordinates_projects: אוצרים של הפרוייקטים הבאים
+  who_helped_user_the_most: מי עזר הכי הרבה ל%{user}
+  who_user_helped_the_most: למי %{user} עזר הכי הרבה
+  why_the_coordinates_are_obscured: הסיבה שבגללה הקואורדינטות מוסתרות
+  with_annotation: עם תווית
+  without_annotation: ללא תווית
+  wikipedia_entry: ערך ויקיפידיה
+  with: עם
+  with_errors: עם טעויות
+  within_inaturalist: ב%{site_name}
+  worldwide: בכל העולם
+  would_you_like_to: האם ברצונך
+  would_like_some_help_identifying_this: אשמח לעזרה בזיהוי
+  x_blog: הבלוג של %{x}
+  x_deleted: '%{x} נמחק'
+  x_does_not_exist: '"%{x}" אינו קיים'
   x_observations_failed:
     one: תצפית אחת נכשלה
     other: '%{count} תצפיות נכשלו'
+  x_of_y: '%{x}מ %{y}'
+  x_project_stats: הסטטיסטיקות של %{project}
+  x_sent_you_a_new_message_on_y_html: '%{x} שלח לך הועדה על %{y}'
+  x_wrote_a_new_post_html: פוסט חדש של %{x}
+  x_wrote_y_new_posts_html: '%{y} פוסטים חדשים של %{y}'
+  year: שנה
+  year_in_review: '%{year} - סקירת השנה'
+  year_month: שנה/חודש
+  yellow: צהוב
+  "yes": כן
+  yes_i_want_to_join: כן, ברצוני להצטרף
+  yes_license_my_observations_so_scientists_can_use: כן, החל רישוי לתמונות, קולות
+    ותצפיות על מנת שחוקרים יוכלו להשתמש בנתונים שלי.
+  yesterday: אתמול
+  yesterday_at: ', אתמול ב 4 אחה"צ'
   you_: אתה
   you_appear_offline_try_again: נראה שאתם במצב לא מקוון. אנא נסו שוב כשתהיו מחוברים
     לאינטרנט.
@@ -2912,22 +2998,130 @@ he:
     אבל אם יש לכם זמן לבדוק חלק מהם, אנחנו נעריך כל עזרה שנקבל מכם. אם יש לכם שאלות
     בנוגע להשגחה על תוכן או שאינכם רוצים להיות משגיחי תוכן יותר, אנא צרו איתנו קשר
     ב: %{email}'
+  you_are_over_your_invites_quota: '... עברת את המיכסה החודשית של 60 הזמנות'
   you_are_now: את/ה עכשיו
   you_are_submitting_obs_without_photos_and_names: |-
     הנכם שולחים תצפיות ללא תמונות ושמות טקסונומיים.
-    יהיה מאוד קשה לזהות תצפיות כאלה במדויק.
+    יהיה מאוד קשה לזהות תצפיות כאלה במדויק, ולא ניתן יהיה למצוא אותן בחיפושי תצפיות.
   you_are_submitting_obs_with_no_date_or_no_location: הנכם שולחים תצפיות ללא תאריכים
-    או מיקומים.
+    או מיקומים. יהיה מאוד קשה לזהות תצפיות כאלה במדויק, ולא ניתן יהיה למצוא אותן בחיפושי
+    תצפיות.
+  you_can_accept_invitations: ביכולתך לקבל את ההזמנה כאן
+  you_can_alwais_add_new: תמיד ניתן להוסיף תצפיות ע"י הקלקה על החץ בפינה הימנית העליונה,
+    ושימוש בתפריט שנפתח.
+  you_can_only_block_three_users: ביכולתך לחסום רק שלושה משתמשים
+  you_can_show_the_boundary_of: ניתן להציג את גבולות המקום בפרוייקט שלך רק אם למקום
+    גבול קיים.
+  you_can_sign_free_at: ניתן להרשם לחשבון חינם ב%{site_name}
+  you_cant_compare_a_list_with_nothing: לא ניתן להשוות רשימה ריקה!
+  you_cant_delete_observation_fields_that_people_are_using: לא ניתן למחוק שדות תצפית
+    שאחרים משתמשים בהם
+  you_cant_leave_a_project_you_created: לא ניתן לעזור פרוייק שיצרת.
+  you_cant_remove_other_peoples_observations: לא ניתן להסיר תצפיות של אנשים אחרים.
+  you_didnt_select_any_observations: לא בחרת אף תצפית.
+  you_didnt_select_any_photos_to_tag: לא בחרת תמונות לתיוג!
+  you_dont_have_permission_to_do_that: אין לך הרשאה לעשות זאת.
+  you_dont_have_permission_to_edit_that_observation: אין לך הרשאה לערוך תצפית זו.
+  you_dont_have_permission_to_edit_that_project: אין לך הרשאה לערוך פרוייקט זה.
+  you_dont_have_permission_to_edit_those_photos: אין לך הרשאה לערוך תמונות אלו.
+  you_have_left_x_project: עזבת את %{project}
+  you_have_to: חובה עליך
+  you_joined_this_project: הצטרפת לפרוייקט!
+  you_must_be_a_member_of_this_project_to_do_that: רק חברי פרוייקט יכולים לעשות את
+    זה
+  you_must_choose_an_observation_field: יש לבחור שדה תצפית
+  you_must_fill_out_the_required_fields: יש צורך למלא את השדות הנדרשים
+  you_must_select_at_least_one_taxon: יש לבחור טקסון אחד לפחות
+  you_must_select_dates_to_compare: יש צורך לבחור בתאריכים להשוואה
+  you_must_specify_and_confirm_a_new_password: יש צורך להגדיר ולאשר ססמה חדשה.
+  you_need_to_select_at_least_one_photo: יש צורך לבחור תמונה אחת לפחות!
+  you_need_to_select_some_observations_first: יש צורך לבחור מספר תצפיות תחילה.
+  you_sure_delete_asset?: האם ברצונך למחוק את הנכס הזה?
+  you_sure_delete_comment?: האם ברצונך באמת למחוק את התגובה הזאת?
+  you_sure_delete_project?: האם ברצונך למחוק באמת את הפרוייקט הזה?
+  you_sure_delete_this_observation: האם באמת התכוונת למחוק את התצפית הזאת?
+  you_sure_remove_taxon_from?: האם ברצונך להסיר את הטקסון הזה מהרשימה?
+  you_sure_remove_this_invitation?: האם ברצונך להסיר הזמנה זו?
+  you_sure_remove_this_observation?: האם באמת התכוונת למחוק את התצפית הזאת?
   you_think_observation_inacurate: אם לדעתכם התצפית הזאת אינה מדויקת, אנא הוסיפו מזהה
     (ID), השתתפו באומדן האיכות שלמעלה, או תארו את חוסר־הדיוק בתגובה.
+  youve_joined_the_x_project: הצטרפת ל%{project_invitation} והתצפית שלך הוספה
+  your: שלך
+  your_: שלך
+  your_account_has_been_activated: חשבונך הופעל!
+  your_activation_code_was_missing: קוד ההפעלה שלך חסר. יש להשתמש ב URL מהאימייל.
+  your_browser_does_not_support_the_audio_element: הדפדפן שלך אינו תומך ברכיב האודיו
+  your_comment_was_saved: נשמר!
   your_content: התוכן שלך
+  your_contributions_to_project: התרומות שלך ל%{project_title}
+  your_drafts: הטיוטות שלךל
+  your_email_address: כתובת הדוא"ל שלך
+  your_flickr_account: חשבון הFlickr שלך
+  your_flickr_photos_have_been_tagged: תמונות ה Flickr שלך תויגו!
+  your_hard_drive: בכונן הקשיח שלך
+  your_inat_account_has_been_activated: חשבון ה %{inat} הופעל.
+  your_life_list: רשימת החיים שלך!
+  your_membership: החברות שלך
+  your_month_observations: תצפיות %{month} שלך
+  your_new_password_is: הססמה החדשה שלך היא
+  your_observations: התצפיות שלך
+  your_observations_couldnt_be_added_to_that_project: 'לא ניתן היה להוסיף את התצפיות
+    שלך לפרוייקט: %{errors}'
+  your_photos_have_been_tagged: התמונות שלך תויגו!
+  your_projects: הפרוייקטים שלך
+  your_google_account: חשבון הגוגל שלך
+  your_google_account_info: פרטי חשבון הגוגל שלך
+  your_profile_was_successfully_updated: הפרופיל שלך עודכן בהצלחה
+  your_recent_projects: הפרוייקטים האחרונים שלך
   your_relationships: הקשרים שלך
+  your_subscriptions: המנויים שלך
+  your_sure_delete_list?: האם ברצונך למחוק את הרשימה הזאת?
+  your_sure_delete_taxon_from_list?: האם ברצונך להסיר את %{taxon} מהרשימה
+  your_tags: התגיות שלך
+  your_world!: העולם שלך!
+  youre_viewing_all_observations: אתם צופים בכל התצפיות
+  youve_already_added_an_identification: כבר הוספת זיהוי, וניתן להוסיף רק אחד
+  verifiable: ניתן לבדיקה
+  verifiable_observations: תצפיות שניתנות לבדיקה
   views:
+    views: צפיות
+    devise:
+      mailer:
+        confirmation_instructions:
+          are_you_planning_on_using_in_the_classroom: האם ברצונך להשתמש ב%{site_name}
+            בכיתה?
+    donate:
+      donate_short_desc: תרומה להבעת תמיכתך!
     guides:
       index:
         funding_html: |-
           פיתוח המדריכים מומן על ידי
           <a href="http://eol.org"><img src="https://eol.org/assets/blue_logo-1edfd969b808300ae34a9530531df17f0c66a29882303b75452bfa62f7e6fa37.png"></a>
+      edit:
+        add_color_tags_help: הוספת תגיות צבע מהצבעים המשוייכים לטקסונים שנבחרו.
+      mobile_downloads_tip_html: ניתן להוריד מדריך זה ליישומון לשימוש לא מקוון
+      pdf_layouts:
+        grid: שריג
+        book: ספר
+      sorts:
+        alphaname: שמות המינים בסדר אלף-ביתי
+    help:
+      index:
+        what_is_inaturalist?: מהו %{site_name}?
+        who_is_behind_inaturalist?: מה מסתתר מאחורי %{site_name}?
+        who_is_behind_inaturalist: מה מסתתר מאחורי %{site_name}?
+        what_can_i_do_to_help_inaturalist?: מה ניתן לעשות על מנת לעזור ל%{site_name}
+        how_do_i_contact_inaturalist?: איך יוצרים קשר עם %{site_name}
+        what_is_considered_inappropriate_content?: מה נחשב לתוכן לא הולם?
+        what_is_an_observation?: מהי תצפית?
+        why_doesnt_inaturalist_recognize_the_name_ive_entered?: למה %{site_name} לא
+          מזהה את השם שהזנתי?
+        how_can_i_get_help_identifying_what_i_saw?: איך ניתן לקבל עזרה בזיהוי מה שראיתי?
+        what_does_it_mean_to_link_inaturalist_to_my_flickr_account?: מה המשמעות של
+          קישור %{site_name} לחשבון ה Flickr שלי?
+        can_i_add_photos_without_a_flickr_account?: האם ניתן להוסיף תמונות ללא חשבון
+          Flickr?
+        what_are_tags?: מהן תגיות?
     observations:
       copy_tip: הוסיפו תצפית חדשה על־ידי העתקת התאריך, המקום, התמונות והשדות של התצפית.
       identify:

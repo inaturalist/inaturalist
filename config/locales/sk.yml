@@ -10,7 +10,7 @@
 sk:
   x_comments:
     one: 1 komentár
-    other: '%{count} komentáre'
+    other: '%{count} komentárov'
   x_faves:
     one: 1 obľúbenec
     other: '%{count} obľúbenci'
@@ -3636,8 +3636,8 @@ sk:
   search_your_photos: Prehľadať vaše fotky
   searching: Hľadám...
   seasonality: Sezónnosť
-  second_person_possessive_singular: Váš %{noun}
-  second_person_possessive_singular_: Váš %{noun}
+  second_person_possessive_singular: Vaše %{noun}
+  second_person_possessive_singular_: Vaše %{noun}
   see_something_wrong_with_taxon: Je s týmto taxónom niečo v neporiadku? Dajte to
     vedieť kurátorom.
   seen_it?: Videli ste to?
@@ -3951,7 +3951,15 @@ sk:
   taxon_links: Odkazy taxónu
   taxon_merge: zlúčenie taxónu
   taxon_name: Názov taxónu
+  taxon_observed_by_html: <a href="%{url}">%{taxon}</a> pozorovaný od
+  taxon_observed_by_user: '%{taxon} pozorovaný užívateľom %{user}'
+  taxon_or_place_observations: Pozorovania taxónu alebo miesta
+  taxon_photos_updated: Fotky taxónu boli aktualizované!
   taxon_range: Rozsah taxónu
+  taxon_range_created_notice: Rozsah taxónu bol úspešne vytvorený. Počkajte prosím
+    pár minút, než sa objaví na mapách.
+  taxon_range_updated_notice: Rozsah taxónu bol úspešne aktualizovaný. Počkajte prosím
+    pár minut, než sa objaví na mapách.
   taxon_ranks: Poradie taxónu
   taxon_removed_from_list: Taxón bol odstránený zo zoznamu.
   taxon_scheme: Plán taxónu
@@ -3981,9 +3989,17 @@ sk:
   taxonomic_tree_browser: Prehliadač taxonomického stromu
   taxonomy_details: Podrobnosti o taxonómii
   taxonomy_details_for: Podrobnosti o taxonómii pre
+  taxonomy_details_info: Stránka Taxonomy Details (Podrobnosti o taxonómii) používa
+    rámce taxónu, ktoré pomáhajú opísať, čo máme na mysli pod pojmom taxón. <a href="/pages/taxon_frameworks">
+    Ďalšie informácie </a>.
   taxonomy_settings: Nastavenie Taxonómie
+  tell_everyone_a_little_about_you: Povedzte ostatným niečo málo o sebe
   tell_the_world_a_little_about_yourself: Povedzte nám niečo o sobe
   tell_us_why: Povedzte nám prečo...
+  terms: Podmienky
+  terms_and_rules_html: Podmienky &amp; Pravidlá
+  terms_new_users: Ak pridáte podmienky, musia ich noví používatelia odsúhlasiť, než
+    sa pripoja k tomuto projektu.
   terms_of_service: Podmienky používania
   terms_service: Podmienky používania
   terrain: terén
@@ -4001,8 +4017,13 @@ sk:
   that_observation_no_longer_exists: To pozorovanie už neexistuje.
   that_project_doesnt_exist: Ten projekt neexistuje.
   that_role_doesnt_exist: Tá funkcia neexistuje.
+  that_was_the_last_observation_matching_the_current_filters: Toto bolo posledné pozorovanie
+    odpovedajúce aktuálnym filtrom.
+  thats_not_a_real_date: Toto nie je skutočný dátum!
   the: ten
   the_: Ten
+  the_community_id_requires_at_least_two_identifications: Komunitné ID vyžaduje aspoň
+    dve identifikácie.
   the_list: zoznam
   the_past: minulý
   the_people_of_inat: Ľudia z %{site_name}
@@ -4018,24 +4039,106 @@ sk:
   this_is_your_observation: Toto je vaše pozorovanie
   this_observation_is_research_grade: Toto pozorovanie je pozorovanie výskumného stupňa!
   this_observation_was_created_using: 'Toto pozorovanie bolo vytvorené pomocou:'
+  this_species: tento druh
+  this_taxon_has_no_default_photo: Tento taxón nemá žiadnu základnú fotku!
+  this_taxon_is_inactive_this_means: Tento taxón je <strong>neaktívny</strong>. To
+    znamená, že ho kurátori %{site_name} nahradili konceptom, ktorý je taxonomicky
+    aktuálnejší.
+  threatened: Ohrozený
+  thu: Štv
+  thumb_url: Adresa URL
+  time_: čas
+  time_ago: pred %{time}
+  tired_of_testing_this_new_version: Už vás nebaví testovanie tejto novej verzie?
+  title: názov
+  title_and_description: Názov a opis
+  titled_favorites_and_the_most_recent_additions: s názvom „Obľúbené “ a na tomto
+    mieste sa objaví novo pridané.
+  to: do
+  to_: do
+  to_add_comments: pridať komentáre
+  to_add_identifications: pridať identifikácie
+  to_add_ids: pridať ID
+  to_configure_your_widget: ku konfigurácii vášho widgetu.
+  to_include_your_google_with_inat: k pridaniu vášho účtu Google na %{site_name}
+  to_recipient: k prevedeniu
   to_suggest_an_identification: k navrhnutiu identifikácie
+  to_the_bat_cave: Do netopierej jaskyne!
+  today: Dnes
+  too_many_observations_csv: Máte veľa pozorovaní!<br /> Môžeme prijať iba vašich
+    prvých %{max_rows} pozorovaní v každom CSV
+  too_many_results: Veľmi veľa výsledkov
+  tools: Nástroje
+  top_5_identifiers: Najlepších 5 identifikátorov
+  top_contributors: Najlepší prispievatelia
   top_identifier: Najlepší identifikátor
   top_identifiers: Najlepší identifikátori
+  top_identifiers_of_taxon: Najlepší identifikátori %{taxon}
   top_observer: Najlepší pozorovateľ
   top_observers: Najlepší pozorovatelia
+  top_species: Najlepší druh
+  total: Súčet
+  totals: Súčty
+  total_members: Celkový počet členov
+  total_observations: Celkový počet pozorovaní
+  total_species_observed: Celkový počet pozorovaných druhov
+  total_unique_observers: Celkový počet jednotlivých pozorovateľov
+  total_users: celkový počet uživateľov,
+  translated_languages: Preložené jazyky
   "true": Pravda
+  trending: Populárne
+  trends: Trendy
+  trusted: Dôveryhodné
+  trusted_project?: Dôveryhodný projekt?
+  try_wikipedia: Skúsiť Wikipédiu?
+  tue: Uto
+  twitter: Twitter
+  two_thirds: 2/3
+  type: Napíšte
+  type_a_name_and_click: Napíšte názov a kliknite na HĽADAŤ
+  type_one_name_per_line: Napíšte jeden názov na každý riadok
+  type_place_name: Napíšte názov miesta
+  type_project_name: Napíšte názov projektu
+  type_source_name: Napíšte názov zdroja
+  type_source_title: Napíšte nadpis zdroja
+  type_species_name: Napíšte názov druhu
   type_taxon_name: Napíšte názov taxónu
+  type_taxon_name_and_click_lookup: Napíšte názov taxónu a kliknite na hľadanie
+  uicn_red_list_status: 'Status na Červenom zozname IUCN:'
+  un_license_this_observation: odobrať licenciu pre toto pozorovanie
+  unblock: Odblokovať
+  unclassified: Nezaradené
+  ungrafted_taxa: Nepriradené taxóny
+  unhide_content: Odkryť obsah
+  uninvite: zrušiť pozvanie
+  unique_identifier_of_this_taxon: Jedinečný identifikátor tohto taxónu v databáze
+    zdrojov.
+  unique_observers: jedineční pozorovatelia
+  unique_observers_last_3_months: jedineční pozorovatelia za posledné 3 mesiace
   unknown: Neznámy
   unknown_error: Neznáma chyba
   unknown_rank: (Neznáme zaradenie)
+  unknown_taxon_framework_relationship: Neznámy vzťah taxónu
+  unfollow: Prestať sledovať
+  unlink_your_google_account: Zrušiť pripojenie vášho účtu Google
+  unmute: Zapnúť zvuk
+  unobserved_listings: Nepozorované záznamy
+  updates_notification_email_subject: '%{prefix} Nové aktualizácie %{date}'
+  updates_suspension_email_subject: '%{prefix} Vaše prihlásenia čakajú'
+  updating: Aktualizovanie...
+  unprocessable: Nespracovateľný
+  unpublish: Zrušiť zverejnenie
   update_your_content: Aktualizovať váš obsah
   updated: Aktualizované
   updated_daily: Aktualizované denne
   updated_photo: Aktualizovaná fotka
+  user_added_a_x: '%{user} pridal(a) %{x}'
+  user_added_a_x_to_noun_html: '%{user} pridal(a) %{x} k %{noun}'
   user_added_an_observation_html: Používateľ %{user} pridal pozorovanie
   user_added_an_x: '%{user} pridal(a) %{x}'
   user_added_an_x_to_noun_by_html: '%{user} vložil %{x} na %{noun} od %{by}'
   user_added_an_x_to_noun_html: Používateľ %{user} pridal %{x} k %{noun}
+  user_added_x_observations_html: Užívateľ %{user} pridal %{x} pozorovaní
   user_commented: '%{user} komentoval'
   user_disagrees_this_is_taxon: Užívateľ %{user} nesúhlasí s tým, že toto je %{taxon}
   user_flagged_as_a_spammer_html: '%{user} označený ako spamer'
@@ -4044,6 +4147,7 @@ sk:
   username_or_email: Používateľské meno alebo email
   username_or_user_id: Používateľské meno alebo používateľské ID
   value: Hodnota
+  view: Zobraziť
   view_all: Zobraziť všetko
   view_all_flags: Pozri všetky značky
   view_all_from_x: Zobraziť všetky z %{x}
@@ -4052,22 +4156,58 @@ sk:
   view_all_photocount_photos: Zobraziť všetkých %{photo_count} fotiek
   view_all_photos_tagged_taxon_html: Zobraziť všetky fotky označené ako „%{taxon}“
     na <nobr>Flickr &raquo;</nobr>
+  view_all_your_projects: Zobraziť všetky vaše projekty
+  view_change: Zobraziť zmeny
+  view_contributions: Zobraziť príspevky
+  view_field_options: Zobraziť možnosti poľa
   view_flag: Pozri značky
   view_flags_for_x_html: Pozri značky pre %{x}
+  view_full_observation: Zobraziť celé pozorovanie
+  view_invitation: Zobraziť pozvánku
+  view_leaderboard: Zobraziť prehľad najlepších
   view_leaderboard_from_last_year: Zobraziť prehľad najlepších za minulý rok
+  view_license: Zobraziť licenciu
+  view_listing: Zobraziť záznam
+  view_more_about_x: Zobraziť viac o %{x}
+  view_more_observations_from_x: Zobraziť viac pozorovaní z %{x}
+  view_more_observations_near_x_place: Zobraziť viac pozorovaní blízko %{place} na
+    <nobr>%{site_name} &raquo;</nobr>
+  view_more_observations_of_x_taxon: Zobraziť viac pozorovaní %{taxon} na <nobr>%{site_name}
+    &raquo;</nobr>
+  view_more_unreviewed: Zobraziť viac neskontrolovaných
   view_observation: Zobraziť pozorovanie
+  view_observations: Zobraziť pozorovania
   view_observation_flags: Pozri značky pozorovania
   view_observations_by_everyone: Zobraziť pozorovania všetkých
   view_observations_causing_this_observation_to_be_obscured: Zobraziť pozorovania,
     ktoré spôsobia, že toto pozorovanie bude zakryté
+  view_observations_of_this_taxon_by: Zobraziť pozorovania tohto taxónu
   view_observations_raquo: Zobraziť pozorovania &raquo;
+  view_on_amphibiaweb: Zobraziť na AmphibiaWeb
+  view_on_wikipedia: Zobraziť na Wikipédii
+  view_original_by: Zobraziť originál %{by} na %{photo}
+  view_other_taxa: Zobraziť ostatné <nobr> %{taxon_name} &raquo; </nobr>
+  view_place: Zobraziť miesto
+  view_projects_from_place: Zobraziť projekty z %{place}
+  view_sample: Zobraziť ukážku
+  view_stats: Zobraziť štatistiku
+  view_taxon_changes: Zobraziť zmeny taxónu
+  view_taxon_page: Zobraziť stránku taxónu
+  view_taxon_page_for_this_x: Zobraziť stránku taxónu pre tento %{x}
   view_taxonomic_changes: Zobraziť taxonomické zmeny
+  view_terms: Zobraziť podmienky
+  view_the_observation: Zobraziť pozorovania
+  view_unidentified_observations: Zobraziť neidentifikované pozorovania...
+  view_x: Zobraziť %{x}
+  view_xs_journal: Zobraziť denník %{x}
   view_your_dashboard: Zobraziť vašu nástenku
   view_your_dashboard_for_more_updates_html: <a href='%{url}'>Zobraziť vašu nástenku</a>
     a aktualizácie
   view_your_inbox: Zobraziť vaše prijaté správy
   view_your_life_list: Zobraziť váš zoznam života
+  view_your_calendar: Zobraziť váš kalendár
   view_your_observations: Zobraziť vaše pozorovania.
+  view_yours: Zobraziť váš
   view_all_of_your_observations_from_x: Zobraziť všetky vaše pozorovania z %{x}
   we_had_a_problem_flagging_that_item: Máme problém s označením tejto položky:%{flag_error}
   welcome!: Vitajte!
@@ -4083,6 +4223,7 @@ sk:
   yes_i_want_to_join: Áno, chcem sa pridať
   you_are_setting_this_project_to_aggregate: 'Nastavujete tento projekt tak, aby zoskupil
     všetky pozorovania, ktoré spĺňajú následujúce pravidlá: %{rules} Chcete pokračovať?'
+  you_are_subscribed_to: Ste prihlásení k odberu
   you_cant_flag_that: Toto nemôžete označiť
   you_faved_this: Toto ste označili ako obľúbené!
   your_comment_was_saved: Váš obsah bol uložený
@@ -4098,6 +4239,7 @@ sk:
     tobia. Ak chcete sledovať niekoho aktualizácie, kliknite na odkaz „Sledovať [meno]“
     v nadpise, keď sa dívate na pozorovanie alebo profil tejto osoby.
   views:
+    views: Zobrazenia
     devise:
       mailer:
         confirmation_instructions:
@@ -4139,6 +4281,27 @@ sk:
         youve_blocked_desc: Zablokovali ste majiteľa tohto zdroja, čo vám zabraňuje
           s nimi komunikovať. Väčšina interaktívnych funkcií na tejto stránke bude
           nefunkčná.
+    stats:
+      index:
+        obs_1_day: Pozorovania (1 deň)
+        obs_1_day_desc: Pozorovania vytvorené v jeden deň
+        obs_cid_d_desc: Vytvorené za posledných 7 dní a má ID komunity
+        obs_cid_d_to_genus: CID pozorovania do rodu
+        obs_cid_d_to_genus_desc: Vytvorené za posledných 7 dní a má komunitnú identitu
+          na úrovni alebo pod úrovňou rodu
+        obs_desc: Vytvorené pred 7 dňami
+        obs_id_d_desc: Vytvorené počas posledných 7 dní s ID (môžu byť pozorovateľove)
+        other_desc_html: Vytvorené pomocou iných aplikácií <a href="%{url}">vytvorených
+          vývojármi</a>
+        recent_desc: Registrovaní v 7 dňoch
+        recent_w_0_obs: Nedávne bez pozorovaní
+        recent_w_0_obs_desc: Prihlásení v minulých 7 dňoch bez pozorovaní
+        recent_w_7_obs: Nedávne so 7 alebo viacerými pozorovaniami
+        recent_w_7_obs_desc: Pripojil sa za posledných 7 dní a pridal aspoň 7 komentárov
+        time_to_id_desc: Čas na identifikáciu (hodiny, 1 týždenné pohyblivé okno)
+        TTCID: TTCID
+        TTCID_desc: Čas získať identifikáciu od niekoho iného, ​​kto porovnáva komunitný
+          taxón.
     taxa:
       edit:
         high_status_conservation_status_notice_html: Pridanie statusu ochrany vyššiemu

@@ -5,6 +5,9 @@
 # Author: Vlad5250
 ---
 mk:
+  x_comments:
+    one: 1 коментар
+    other: '%{count} коментари'
   x_followers:
     one: 1 следбеник
     other: '%{count} следбеници'
@@ -26,15 +29,27 @@ mk:
   x_observations:
     one: 1 набљудување
     other: '%{count} набљудувања'
+  x_observations_:
+    one: 1 набљудување
+    other: '%{count} набљудувања'
   x_observations_html:
     one: <span class='count'>1</span> набљудување
     other: <span class='count'>%{count}</span> набљудувања
   x_observations_link_html:
     one: <a href='%{url}'>1</a> набљудување
     other: <a href='%{url}'>%{count}</a> набљудувања
+  x_others:
+    one: 1 друг
+    other: '%{count} други'
   x_people_agree_html:
     one: <span class="count">1</span> се согласува
     other: <span class="count">%{count}</span> се согласуваат
+  x_photos:
+    one: 1 слика
+    other: '%{count} слики'
+  x_new_species:
+    one: 1 нов вид
+    other: '%{count} нови видови'
   x_species:
     one: 1 вид
     other: '%{count} видови'
@@ -57,19 +72,23 @@ mk:
   x_taxa_matching_current_filters:
     one: На тековните филтри одговара 1 таксон
     other: На тековните филтри одговараат %{count} таксони
+  _100_day_trends: Трендови за 100 дена
   a_community_for_naturalist: Заедница за природници
   a_few_points_to_make_things_clear: 'Неколку нешта за да ги разјасниме работите:'
   a_flag_for_x: обележувач за %{x}
   a_greasemonkey_script: скрипта со Greasemonkey
+  a_member_of: Член на
   a_member_of_taxon_html: член на %{taxon}
   able_to_connect_flickr: Одлично! Успешно се поврзавме со вашата сметка на Flickr.
   about: За
   about_bioblitz_results: За биобличкиот исход
+  about_blocking: За блокирањето
   about_community_taxa: За таксоните од заедницата
   about_external_links: За надворешните врски
   about_licenses: За лиценците
   about_licensing: За лиценцирањето
   about_life!: за животот!
+  about_names: За имињата
   about_places: За местата
   about_the_cc_licenses: За лиценците на Криејтив комонс
   about_the_taxobox_raquo: За таксокутијава &raquo;
@@ -78,6 +97,9 @@ mk:
   about_this_project: За проектов
   about_x: За %{x}
   acc: Уточнетост (м)
+  account: Сметка
+  account_creation: Создавање на сметка
+  account_settings: Нагодувања на сметката
   accept: прифати
   accept_community_identifications: Прифати препознавања од заедницата
   accuracy: Уточнетост
@@ -87,8 +109,13 @@ mk:
     рачките. Потрудете се кружницата да биде доволно голема за да бидете сигурни дека
     сте некаде во неа.
   acquaintances: познаници
+  action: Дејство
   actions: Дејства
   activate_user: Активирај корисник
+  active: Активен
+  active_users: Активни корисници
+  activity: Активност
+  activity_settings: Поставки за активноста
   add: Додај
   add_a_batch_of_observations: Додај збир набљудувања
   add_a_batch_of_observations_by_csv: Додај збир набљудувања по CSV
@@ -106,7 +133,7 @@ mk:
   add_an_observation: Додај набљудување
   add_an_observation?: Да додадам набљудување?
   add_an_observation_of: Додај набљудување на %{taxon}
-  add_another: Додај уште
+  add_another: Додај друг
   add_another_flag: Додај друг обележувач
   add_another_photo: Додај друга слика
   add_another_section: Додај друг оддел
@@ -116,14 +143,17 @@ mk:
   add_colors: Додај бои
   add_comma_separated_tags: Додај ознаки одделени со запирки
   add_comment: Додај коментар
-  add_common_names_for: додај народни имиња за постоечки таксони
-  add_conservation_status: додај заштитен статус
+  add_common_names_for: Додај народни имиња за постоечки таксони
+  add_conservation_status: Додај заштитен статус
   add_countries: Додај земји
   add_custom_project_fields: Додај свои проектни полиња
   add_edit_more_fields: Додај/измени повеќе полиња
+  add_editor: Додај уредник
   add_description: Додај го %{description_name}
+  add_field: Додај поле
   add_from_your_observations: Додај од моите набљудувања
-  add_listed_taxa_from_observations: Додај наведени текасони од набљудувањата
+  add_link: Додај врска
+  add_listed_taxa_from_observations: Додај наведени таксони од набљудувањата
   add_higher_level_taxon: Додај виш таксон (на пр. „птици“)
   add_id: Додај препознавање
   add_it_to_place_raquo: Додај го во место &raquo;
@@ -141,37 +171,49 @@ mk:
   add_observations: Додај набљудувања
   add_photos: Додај слики
   add_photos_to_this_observation: Додај слики во ова набљудување
+  add_relationship: Додај однос
+  add_section: Додај поднаслов
   add_several_observations_at_once: Додајте неколку набљудувања наеднаш.
   add_shape: Додај облик
   add_some_now: Додајте некого сега
+  add_tag: Додај ознака
   add_tags: Додај ознаки
   add_tags_to_selected_taxa: Додај ознаки на избрани таксони
   add_taxa: Додај таксони
   add_taxon_batch_to: Додај збир таксони во %{list}
   add_to_a_scheme: Додај во шема
-  add_to_checklist: додај во контролен список
+  add_to_a_project: Додај во проект
+  add_to_checklist: Додај во контролен список
+  add_to_favorites: Додај во омилени
   add_to_id_please: Додај во „Препознајте“
   add_to_list: Додај во список
   add_to_project: Додај во проект
   add_to_your_life_list: Додај во мојот животен список
   add_to_your_list: Додај во мојот список
-  add_your_photo: Ставете ваша слика
-  add_your_photo_to: Ставете ваша слика на %{project}
+  add_your_photo: Додај своја слика
+  add_your_photo_to: Додај своја слика на %{project}
   added: Додадено
   added!: Додадено!
   added_an: додадено
   added_as_a_part_of: Додадено како дел од
   added_by: Додадено од
+  added_by_user_on_date_html: Додадено од %{user} на %{dаte}
   added_on: Додадено на
   added_to: Додадено во
+  added_to_favorites: Додадено во омилени
+  added_to_favorites_html: Додадено во <a href="%{url}">омилени</a>
   adding: Додавам...
   adding_observations: Додавање набљудувања
   adding_to_your_life_list: Додавам во вашиот животен список...
   additional_range: Дополнителна распространетост
   admin: Админ
+  admin_s: Администратор(и)
   admin_tools: Администраторски алатки
   agree: се согласувам
+  agree_: Се согласувам
   agree?: Се согласувате?
+  agree_to_the_project_terms: Се согласувам со условите на проектот
+  agree_with_current_taxon: Се согласувам со тековниот таксон
   agreeing: Поднесувам согласност...
   aka: наречен и
   all: Сите
@@ -250,6 +292,7 @@ mk:
     x_other_animals:
       one: 1 друго животно
       other: '%{count} други животни'
+  all_taxa_: Сите таксони
   all_taxa_in_this_guide: Сите таксони во водичов
   all_taxonomic_groups: '&laquo; Сите таксономски групи'
   all_your_projects: Сите ваши проекти
@@ -292,13 +335,15 @@ mk:
     спроведете оваа промена? Ова дејство е неповратно.
   are_you_sure_you_want_to_delete_this: Дали сте сигурни дека сакате да го избришете
     ова?
+  articles: Статии
   associated_observations: Поврзани набљудувања
   associated_taxa: Поврзани таксони
+  attention: Внимание
   you_sure_delete_list: Дали сте сигурни дека сакате да го избришете списоков?
   you_sure_delete_taxon_from_list?: Дали сте сигурни дека сакате да го отстраните
     %{taxon} од списокот?
-  asc: раст
-  ascending: растечки
+  asc: Раст.
+  ascending: Растечки
   assessment: оценка
   assessment_has_benn_completed: Оценувањето е завршено
   assessment_sections: Оддели на оценката
@@ -311,10 +356,16 @@ mk:
   at_any_time_change: во било кое време (<span class="button">измени</span>)
   at_time: во %{time}
   atom: Атом
+  attached_taxon: Приврзан таксон
+  attribute: Атрибут
+  attribution: Припис
   authority_list:
     iucn_red_list: Црвен список на МСЗП
   authorize_permissions_from_provider: Овласти дозволи од %{provider}
+  automatic_short: Автоматски
   back: Назад
+  back_to_albums: Назад кон албумите
+  back_to_all_species: Назад кон сите видови
   back_to_shared_taxon: Назад на %{sharedtaxon}
   back_to_taxon: Назад на %{defaulttaxon}
   back_to_viewing: Назад на погледот на <i>%{taxon}</i>
