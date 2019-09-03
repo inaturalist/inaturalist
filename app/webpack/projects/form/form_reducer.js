@@ -33,22 +33,6 @@ export function setProject( p ) {
   return setAttributes( { project: new Project( p ) } );
 }
 
-export function createNewProject( type ) {
-  return ( dispatch, getState ) => {
-    const { config } = getState( );
-    dispatch( setProject( {
-      project_type: type,
-      user_id: config.currentUser.id,
-      admins: [{ user: config.currentUser, role: "manager" }]
-    } ) );
-    $( window ).scrollTop( 0 );
-  };
-}
-
-export function loggedIn( state ) {
-  return ( state && state.config && state.config.currentUser );
-}
-
 export function updateProject( attrs ) {
   return ( dispatch, getState ) => {
     const state = getState( );
@@ -56,6 +40,69 @@ export function updateProject( attrs ) {
       project: new Project( Object.assign( { }, state.form.project, attrs ) )
     } ) );
   };
+}
+
+export function addManager( user ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( ).form;
+    if ( !project || !user ) { return; }
+    const newAdmins = [];
+    let managerExists = false;
+    _.each( project.admins, admin => {
+      const isMatch = ( admin.user.id === user.id );
+      if ( isMatch && admin._destroy ) {
+        newAdmins.push( Object.assign( { }, admin, { _destroy: false } ) );
+        managerExists = true;
+      } else {
+        managerExists = managerExists || isMatch;
+        newAdmins.push( admin );
+      }
+    } );
+    if ( !managerExists ) {
+      newAdmins.push( { user, role: "manager" } );
+    }
+    dispatch( updateProject( { admins: newAdmins } ) );
+  };
+}
+
+export function createNewProject( type, copyProject ) {
+  return ( dispatch, getState ) => {
+    const { config } = getState( );
+    const newProjectAttributes = {
+      project_type: type,
+      user_id: config.currentUser.id,
+      admins: [{ user: config.currentUser, role: "manager" }]
+    };
+    if ( copyProject ) {
+      const attributesToInherit = [
+        "hide_umbrella_map_flags",
+        "project_observation_rules",
+        "rule_preferences",
+        "search_parameters",
+        "banner_color",
+        "description",
+        "title"
+      ];
+      _.each( attributesToInherit, a => { newProjectAttributes[a] = copyProject[a]; } );
+      _.each( newProjectAttributes.project_observation_rules, r => delete r.id );
+    }
+    dispatch( setProject( newProjectAttributes ) );
+    if ( copyProject ) {
+      _.each( copyProject.admins, a => {
+        dispatch( addManager( a.user ) );
+      } );
+    }
+    $( window ).scrollTop( 0 );
+  };
+}
+
+export function setCopyProject( p ) {
+  setAttributes( { copy_project: new Project( p ) } );
+  return createNewProject( p.project_type, p );
+}
+
+export function loggedIn( state ) {
+  return ( state && state.config && state.config.currentUser );
 }
 
 export function setProjectError( field, error ) {
@@ -205,29 +252,6 @@ export function removeProjectRule( ruleToRemove ) {
     if ( ruleToRemove.operand_type === "Project" ) {
       dispatch( validateSubprojects( ) );
     }
-  };
-}
-
-export function addManager( user ) {
-  return ( dispatch, getState ) => {
-    const { project } = getState( ).form;
-    if ( !project || !user ) { return; }
-    const newAdmins = [];
-    let managerExists = false;
-    _.each( project.admins, admin => {
-      const isMatch = ( admin.user.id === user.id );
-      if ( isMatch && admin._destroy ) {
-        newAdmins.push( Object.assign( { }, admin, { _destroy: false } ) );
-        managerExists = true;
-      } else {
-        managerExists = managerExists || isMatch;
-        newAdmins.push( admin );
-      }
-    } );
-    if ( !managerExists ) {
-      newAdmins.push( { user, role: "manager" } );
-    }
-    dispatch( updateProject( { admins: newAdmins } ) );
   };
 }
 

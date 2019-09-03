@@ -726,6 +726,12 @@ qqq:
       future: '{{Identical|In}}'
     datetime_with_zone: momentjs formatting string for a date with a time and a time
       zone. See https://momentjs.com/docs/#/displaying/ for formatting rules.
+    datetime_with_offset: momentjs formatting string for a date with a time and a time
+      zone offset. For some time zones, momentjs cannot print a time zone
+      abbreviation like GMT or PDT, so it will instead print a weird offset
+      like "-05". In these cases, we try to use datetime_with_offset instead
+      of datetime_with_zone. See https://momentjs.com/docs/#/displaying/ for
+      formatting rules.
   mon: Abbreviation for Monday, a day of the week.
   month: '{{Identical|Month}}'
   months: '{{Identical|Month}}'

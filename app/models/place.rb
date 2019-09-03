@@ -3,7 +3,7 @@ class Place < ActiveRecord::Base
 
   include ActsAsElasticModel
 
-  has_ancestry
+  has_ancestry orphan_strategy: :adopt
 
   belongs_to :user
   belongs_to :check_list, :dependent => :destroy

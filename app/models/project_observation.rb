@@ -351,12 +351,12 @@ class ProjectObservation < ActiveRecord::Base
 
   def has_a_photo?(options = {})
     observation.reload unless options[:skip_reload]
-    observation.observation_photos_count > 0
+    observation.observation_photos.count > 0
   end
 
   def has_a_sound?(options = {})
     observation.reload unless options[:skip_reload]
-    observation.observation_sounds_count > 0
+    observation.observation_sounds.count > 0
   end
 
   def has_media?

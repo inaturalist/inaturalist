@@ -29,7 +29,7 @@
         =t :no_matching_article_from_x, :x => @describer.describer_name
   - else
     =raw @description
-  - if params[:wiki_prompt] && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist )
+  - if params[:wiki_prompt] && !@taxon.rank.blank? && !%w(stateofmatter parvorder zoosection zoosubsection supertribe subtribe genushybrid subgenus section subsection complex).include?( @taxon.rank ) && I18n.locale.to_s =~ /^en/ && ( @description.blank? || @describer == TaxonDescribers::Inaturalist )
     %hr
     .alert.alert-warning.upstacked
       %p
@@ -82,63 +82,25 @@
             #{"| image = #{image}" if image}
             }}
           WIKI
-        elsif @taxon.rank == Taxon::SUBSPECIES && Taxon::ICONIC_TAXA_BY_NAME["Animalia"] && @taxon.self_and_ancestor_ids.include?( Taxon::ICONIC_TAXA_BY_NAME["Animalia"].id )
-          box = <<-WIKI
-            {{Subspeciesbox
-            | genus = #{@taxon.genus.name}
-            | species =  #{@taxon.species.name.split( " " ).last}
-            | subspecies = #{@taxon.name.split( " " ).last}
-            }}
+        end
+        wikitext = if @taxon.rank_level && @taxon.rank_level < Taxon::SPECIES_LEVEL
+          <<-WIKI
+            #REDIRECT [[#{@taxon.species.name}]]
           WIKI
-        elsif @taxon.rank == Taxon::HYBRID
-          box = <<-WIKI
-            {{Hybridbox
-            | name = #{@taxon.name}
-            | genus =  #{@taxon.genus.name}
-            }}
-          WIKI
-        elsif @taxon.rank == Taxon::SUBSPECIES && Taxon::ICONIC_TAXA_BY_NAME["Plantae"] && @taxon.self_and_ancestor_ids.include?( Taxon::ICONIC_TAXA_BY_NAME["Plantae"].id )
-          box = <<-WIKI
-            {{Infraspeciesbox
-            | genus = #{@taxon.genus.name}
-            | species =  #{@taxon.species.name.split( " " ).last}
-            | subspecies = #{@taxon.name.split( " " ).last}
-            }}
-          WIKI
-        elsif @taxon.rank == Taxon::VARIETY && Taxon::ICONIC_TAXA_BY_NAME["Plantae"] && @taxon.self_and_ancestor_ids.include?( Taxon::ICONIC_TAXA_BY_NAME["Plantae"].id )
-          box = <<-WIKI
-            {{Infraspeciesbox
-            | genus = #{@taxon.genus.name}
-            | species =  #{@taxon.species.name.split( " " ).last}
-            | varietas = #{@taxon.name.split( " " ).last}
-            }}
+        else
+          <<-WIKI
+            #{box}
+            #{structure}
+            {{#{stub}}}
           WIKI
         end
-        wikitext = <<-WIKI
-          #{box}
-          #{structure}
-          {{#{stub}}}
-        WIKI
       %pre.code
         = wikitext.gsub( /^\s+/, "" )
-
       %ul
         %li
           Learn more about
           %a{ href: "https://en.wikipedia.org/wiki/Template:Speciesbox" }
             Speciesbox
-        %li
-          Learn more about
-          %a{ href: "https://en.wikipedia.org/wiki/Template:Subspeciesbox" }
-            Subspeciesbox
-        %li
-          Learn more about
-          %a{ href: "https://en.wikipedia.org/wiki/Template:Infraspeciesbox" }
-            Infraspeciesbox
-        %li
-          Learn more about
-          %a{ href: "https://en.wikipedia.org/wiki/Template:Hybridbox" }
-            Hybridbox
         %li
           Learn more about
           %a{ href: "https://en.wikipedia.org/wiki/Template:Automatic_taxobox" }

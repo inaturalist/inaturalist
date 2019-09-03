@@ -5,12 +5,17 @@ import OnScreen from "onscreen";
 import _ from "lodash";
 
 class CoverImage extends React.Component {
+  static idForUrl( url ) {
+    return `cover-image-${_.kebabCase( url )}`;
+  }
+
   constructor( ) {
     super( );
     this.state = {
       loaded: false
     };
   }
+
   componentDidMount( ) {
     // TODO: find a better way to do this
     // there is an async domNode.classList.add below which fails if this component is
@@ -18,22 +23,26 @@ class CoverImage extends React.Component {
     this.mounted = true;
     this.loadOrDelayImages( );
   }
+
   componentWillReceiveProps( newProps ) {
-    if ( this.props.src !== newProps.src ) {
+    const { src } = this.props;
+    if ( src !== newProps.src ) {
       this.setState( { loaded: false } );
       this.loadOrDelayImages( newProps, { force: true } );
     }
   }
+
   componentWillUnmount( ) {
     this.mounted = false;
   }
+
   loadOrDelayImages( props, options = {} ) {
     const domNode = ReactDOM.findDOMNode( this );
     const p = props || this.props;
     const that = this;
     if ( p.lazyLoad ) {
       const os = new OnScreen( );
-      const selector = `#${this.idForUrl( p.src )}`;
+      const selector = `#${CoverImage.idForUrl( p.src )}`;
       os.on( "enter", selector, ( ) => {
         if ( options.force || !that.state.loaded ) {
           this.loadImages( p, domNode, options );
@@ -44,9 +53,11 @@ class CoverImage extends React.Component {
     }
     this.loadImages( p, domNode, options );
   }
+
   loadImages( props, domNode, options = {} ) {
     const p = props || this.props;
-    if ( this.state.loaded && !options.force ) {
+    const { loaded } = this.state;
+    if ( loaded && !options.force ) {
       return;
     }
     if ( p.low ) {
@@ -57,36 +68,39 @@ class CoverImage extends React.Component {
         if ( this.mounted ) {
           domNode.classList.add( "loaded" );
           this.setState( { loaded: true } );
-          domNode.style.backgroundImage = `url(${img.src})`;
+          domNode.style.backgroundImage = `url("${img.src}")`;
         }
       };
-    } else {
-      if ( this.mounted ) {
-        domNode.classList.add( "loaded" );
-        this.setState( { loaded: true } );
-        domNode.style.backgroundImage = `url(${p.src})`;
-      }
+    } else if ( this.mounted ) {
+      domNode.classList.add( "loaded" );
+      this.setState( { loaded: true } );
+      domNode.style.backgroundImage = `url("${p.src}")`;
     }
   }
-  idForUrl( url ) {
-    return `cover-image-${_.kebabCase( url )}`;
-  }
+
   render( ) {
-    const lowResUrl = this.props.low || this.props.src;
+    const {
+      low,
+      src,
+      className,
+      height,
+      backgroundSize,
+      backgroundPosition
+    } = this.props;
+    const lowResUrl = low || src;
     return (
       <div
-        id={this.idForUrl( this.props.src )}
-        className={`CoverImage low ${this.props.className}`}
+        id={CoverImage.idForUrl( src )}
+        className={`CoverImage low ${className}`}
         style={{
           width: "100%",
-          minHeight: this.props.height,
-          backgroundSize: this.props.backgroundSize,
-          backgroundPosition: this.props.backgroundPosition,
+          minHeight: height,
+          backgroundSize,
+          backgroundPosition,
           backgroundRepeat: "no-repeat",
           backgroundImage: `url('${lowResUrl}')`
         }}
-      >
-      </div>
+      />
     );
   }
 }

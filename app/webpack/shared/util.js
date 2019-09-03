@@ -1,5 +1,6 @@
 import baseFetch from "cross-fetch";
 import _ from "lodash";
+import moment from "moment-timezone";
 
 // Light wrapper around fetch to ensure credentials are always passed through
 const fetch = ( url, options = {} ) =>
@@ -116,6 +117,18 @@ const addImplicitDisagreementsToActivity = activity => {
   } );
 };
 
+const formattedDateTimeInTimeZone = ( dateTime, timeZone ) => {
+  const d = moment.tz( dateTime, timeZone );
+  let format = I18n.t( "momentjs.datetime_with_zone" );
+  // For some time zones, moment cannot output something nice like PDT and
+  // instead does something like -08. In this situations, we print a full offset
+  // like -08:00 instead
+  if ( parseInt( d.format( "z" ), 0 ) && parseInt( d.format( "z" ), 0 ) !== 0 ) {
+    format = I18n.t( "momentjs.datetime_with_offset" );
+  }
+  return d.format( format );
+};
+
 // Duplicating stylesheets/colors
 const COLORS = {
   inatGreen: "#74ac00",
@@ -154,5 +167,6 @@ export {
   isBlank,
   numberWithCommas,
   addImplicitDisagreementsToActivity,
+  formattedDateTimeInTimeZone,
   COLORS
 };

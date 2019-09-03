@@ -319,6 +319,19 @@ class ProjectsController < ApplicationController
   end
 
   def new
+    if params[:copy_project_id]
+      @copy_project = Project.find( params[:copy_project_id] ) rescue nil
+      if @copy_project
+        if @copy_project.is_new_project?
+          projects_response = INatAPIService.project( params[:copy_project_id], { rule_details: true, ttl: -1 } )
+          unless projects_response.blank?
+            @copy_project_json = projects_response.results[0]
+          end
+        else
+          flash.now[:notice] = I18n.t( "views.projects.new.traditional_projects_cannot_be_copied" )
+        end
+      end
+    end
     render layout: "bootstrap"
   end
 
