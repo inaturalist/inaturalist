@@ -9,7 +9,7 @@ I18N_SUPPORTED_LOCALES = I18N_LOCALES.reject{|l| l == 'qqq' || l =~ /\-phonetic/
 # set up fallbacks
 require "i18n/backend/fallbacks"
 I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
-Rails.application.config.i18n.fallbacks = [ :en ]
+I18n.fallbacks.map( iw: :he )
 
 # from and to locales for the translate gem (translation ui)
 Rails.application.config.from_locales = [:en, :es]
