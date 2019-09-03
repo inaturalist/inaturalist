@@ -399,58 +399,6 @@ pl:
     ray_finned_fishes: Promieniopłetwe
     reptiles: Gady
     life: Życie
-    x_plantae:
-      one: 1 roślina
-      few: '%{count} rośliny'
-      many: '%{count} roślin'
-    x_animalia:
-      one: 1 zwierzę
-      few: '%{count} zwierzęta'
-      many: '%{count} zwierząt'
-    x_mollusca:
-      one: 1 mięczak
-      few: '%{count} mięczaki'
-      many: '%{count} mięczaków'
-    x_amphibia:
-      one: 1 płaz
-      few: '%{count} płazy'
-      many: '%{count} płazów'
-    x_mammalia:
-      one: 1 ssak
-      few: '%{count} ssaki'
-      many: '%{count} ssaków'
-    x_actinopterygii:
-      one: 1 promieniopłetwy
-      few: '%{count} promieniopłetwe'
-      many: '%{count} promieniopłetwych'
-    x_reptilia:
-      one: 1 gad
-      few: '%{count} gady'
-      many: '%{count} gadów'
-    x_aves:
-      one: 1 ptak
-      few: '%{count} ptaki'
-      many: '%{count} ptaków'
-    x_insecta:
-      one: 1 owad
-      few: '%{count} owady'
-      many: '%{count} owadów'
-    x_arachnida:
-      one: 1 pajęczak
-      few: '%{count} pajęczaki'
-      many: '%{count} pajęczaków'
-    x_fungi:
-      one: 1 grzyb
-      few: '%{count} grzyby'
-      many: '%{count} grzybów'
-    x_protozoa:
-      one: 1 pierwotniak
-      few: '%{count} pierwotniaki'
-      many: '%{count} pierwotniaków'
-    x_other_animals:
-      one: 1 inne zwierzę
-      few: '%{count} inne zwierzęta'
-      many: '%{count} innych zwierząt'
   all_taxa_: Wszystkie taksony
   all_taxa_in_this_guide: Wszystkie taksony w tym przewodniku
   all_taxonomic_groups: '&laquo; Wszystkie grupy taksonomiczne'
@@ -1213,10 +1161,6 @@ pl:
     zastrzeżone (%{license})
   editing: Edycja
   editing_observation_id: Edycja obserwacji %{obs_id}
-  editing_observations:
-    one: 'Edycja <span class="count">1</span> obserwacji:'
-    few: 'Edycja <span class="count">%{count}</span> obserwacji:'
-    many: 'Edycja <span class="count">%{count}</span> obserwacji:'
   editing_project: Edycja projektu %{project}
   editing_taxon_link: Edytuj Łącze Taksonu
   editing_taxon_name: Edycja nazwy taksonu
@@ -1416,10 +1360,6 @@ pl:
   follower: obserwator
   followers: Obserwatorzy
   following: Obserwowane
-  following_x_people:
-    one: Obserwuje 1 osobę
-    few: Obserwuje %{count} osoby
-    many: Obserwuje %{count} osób
   for: dla
   for_a_taxon: dla taksonu
   for_more_information: aby uzyskać więcej informacji.
@@ -2395,10 +2335,6 @@ pl:
   previous_photo: Poprzednie zdjęcie
   previous_tab: Poprzednia strona
   profile: Profil
-  project_admins:
-    one: administrator projektu
-    few: administratorów projektu
-    many: administratorów projektu
   projects: Projekty
   projects_from_place: Projekty z miejsca %{place}
   projects_you_admin: Projekty, którymi administrujesz
@@ -2409,10 +2345,6 @@ pl:
   recently_created_projects_from_everywhere: Niedawno utworzone projekty z całego
     świata
   remove_from_id_please?: Usunąć z działu Proszę o identyfikację?
-  remove_observations:
-    one: Usunąć 1 obserwację?
-    few: Usunąć %{count} obserwacje?
-    many: Usunąć %{count} obserwacji?
   rg_observations: Obserwacje RG
   saving_num_of_count_observations:
     one: Zapisywanie obserwacji...
@@ -2436,10 +2368,6 @@ pl:
   thanks_for_signing_up: Dziękujemy za rejestrację!
   the_people_of_inat: Ludzie z %{site_name}
   then_keybord_sequence: potem
-  there_are_x_synonyms_html:
-    one: Istnieje <span class='count'>1</span> synonim</span>
-    few: Istnieją <span class='count'>%{count}</span> synonimy</span>
-    many: Istnieje <span class='count'>%{count}</span> synonimów</span>
   these_are_items_people_on: To są elementy, które zostały zgłoszone. Komentarze,
     które są spamem powinny zostać usunięte, a użytkownicy, którzy go dodali - zawieszeni
     (idź do ich profilu i kliknij "Zawieś użytkownika", aby zapobiec ponownemu zalogowaniu).
@@ -2450,10 +2378,6 @@ pl:
   this_observation_was_created_using: 'Ta obserwacja została wykonana przy użyciu:'
   total: Razem
   twitter: Twitter
-  update_x_selected_taxa:
-    one: Zaktualizuj 1 wybrany takson
-    few: Zaktualizuj %{count} wybrane taksony
-    many: Zaktualizuj %{count} wybranych taksonów
   uploaded_by: Przesłane przez
   uploading_num_of_count_photos:
     one: Przesyłanie zdjęcia...
