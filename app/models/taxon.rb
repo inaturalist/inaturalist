@@ -87,8 +87,8 @@ class Taxon < ActiveRecord::Base
 
   before_validation :normalize_rank, :set_rank_level, :remove_rank_from_name
   before_save :set_iconic_taxon, # if after, it would require an extra save
-              :capitalize_name,
               :strip_name,
+              :capitalize_name,
               :remove_wikipedia_summary_unless_auto_description,
               :ensure_parent_ancestry_in_ancestry
   after_create :denormalize_ancestry
@@ -603,13 +603,25 @@ class Taxon < ActiveRecord::Base
   end
   
   def capitalize_name
-    self.name = if genus? && name =~ /^(x|×)\s+?(.+)/
-      match, x, genus_name = name.match(/^(x|×)\s+?(.+)/).to_a
+    self.name = Taxon.capitalize_scientific_name( name, rank )
+    true
+  end
+
+  def self.capitalize_scientific_name( name, rank )
+    if rank.blank?
+      name.capitalize
+    elsif [GENUS, GENUSHYBRID].include?( rank ) && name =~ /^(x|×)\s+?(.+)/
+      full_name, x, genus_name = name.match(/^(x|×)\s+?(.+)/).to_a
       "#{x} #{genus_name.capitalize}"
+    elsif [GENUS, GENUSHYBRID].include?( rank ) && name =~ /^\w+\s+(x|×)\s+\w+$/
+      full_name, name1, x, name2 = name.match( /^(\w+)\s+(x|×)\s+(\w+)/ ).to_a
+      "#{name1.capitalize} #{x} #{name2.capitalize}"
+    elsif rank == HYBRID && name =~ /(x|×)\s+\w+\s+\w+/
+      full_name, name1, x, name2 = name.match( /^(\w+\s+\w+)\s+(x|×)\s+(\w+\s+\w+)/ ).to_a
+      "#{name1.capitalize} #{x} #{name2.capitalize}"
     else
       name.capitalize
     end
-    true
   end
 
   def strip_name

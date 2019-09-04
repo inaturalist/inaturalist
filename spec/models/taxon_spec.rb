@@ -71,11 +71,23 @@ describe Taxon, "creation" do
     expect(taxon.name).to eq 'Balderdash'
   end
 
-  it "should capitalize hybrid genera correclty" do
-    taxon = Taxon.make!(name: "× chitalpa", rank: "genus")
+  it "should capitalize genushybrids with leading x correclty" do
+    taxon = Taxon.make!( name: "× chitalpa", rank: Taxon::GENUSHYBRID )
     expect( taxon.name ).to eq "× Chitalpa"
-    taxon = Taxon.make!(name: "× Chitalpa", rank: "genus")
+    taxon = Taxon.make!( name: "× Chitalpa", rank: Taxon::GENUSHYBRID )
     expect( taxon.name ).to eq "× Chitalpa"
+  end
+
+  it "should capitalize Foo x Bar style genushybrids correctly" do
+    taxon = Taxon.make!( name: "foo × bar", rank: Taxon::GENUSHYBRID )
+    expect( taxon.name ).to eq "Foo × Bar"
+    taxon = Taxon.make!( name: "Foo × Bar", rank: Taxon::GENUSHYBRID )
+    expect( taxon.name ).to eq "Foo × Bar"
+  end
+
+  it "should capitalize hybrid species in genushybrids correctly" do
+    taxon = Taxon.make!( name: "Foo bar × Baz roq", rank: Taxon::HYBRID )
+    expect( taxon.name ).to eq "Foo bar × Baz roq"
   end
   
   it "should set the rank_level based on the rank" do

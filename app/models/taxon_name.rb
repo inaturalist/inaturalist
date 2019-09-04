@@ -18,9 +18,10 @@ class TaxonName < ActiveRecord::Base
   NAME_FORMAT = /\A([A-z]|\s|\-|×)+\z/
   validates :name, format: { with: NAME_FORMAT, message: :bad_format }, on: :create, if: Proc.new {|tn| tn.lexicon == SCIENTIFIC_NAMES}
   before_validation :strip_tags, :strip_name, :remove_rank_from_name, :normalize_lexicon
-  before_validation do |tn|
-    tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
-  end
+  # before_validation do |tn|
+  #   tn.name = tn.name.capitalize if tn.lexicon == LEXICONS[:SCIENTIFIC_NAMES]
+  # end
+  before_validation :capitalize_scientific_name
   before_create {|name| name.position = name.taxon.taxon_names.size}
   before_save :set_is_valid
   after_create {|name| name.taxon.set_scientific_taxon_name}
@@ -146,6 +147,12 @@ class TaxonName < ActiveRecord::Base
   
   def strip_tags
     self.name.gsub!(/<.*?>/, '')
+    true
+  end
+
+  def capitalize_scientific_name
+    return true unless lexicon == LEXICONS[:SCIENTIFIC_NAMES]
+    self.name = Taxon.capitalize_scientific_name( name, taxon.try(:rank) )
     true
   end
   
