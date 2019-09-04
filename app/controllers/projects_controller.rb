@@ -465,7 +465,14 @@ class ProjectsController < ApplicationController
   
   def members
     @project_users = @project.project_users.joins(:user).
-      paginate(:page => params[:page]).order("users.login ASC")
+      paginate(:page => params[:page])
+    @order_by = params[:order_by] || "login"
+    @order = %w(asc desc).include?( params[:order] ) ? params[:order] : "asc"
+    if params[:order_by] == "created_at"
+      @project_users = @project_users.order( "project_users.id #{@order}" )
+    else
+      @project_users = @project_users.order( "users.login #{@order}" )
+    end
     respond_to do |format|
       format.html do
         @admin = @project.user

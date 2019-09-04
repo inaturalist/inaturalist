@@ -8,6 +8,22 @@
     td.actions .smallbuttons:first-child {margin-bottom:5px;}
     td.actions .button {width:100%;}
     td.actions {padding-right:15px;}
+    th.asc a,
+    th.desc a { position: relative; padding-right: 15px; }
+    th.asc a:after,
+    th.desc a:after {
+      position: absolute;
+      right: 0px;
+      content: '\f0d7';
+      display: inline-block;
+      font: normal normal normal 18px/1 FontAwesome;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transform: translate(0, 0);
+    }
+    th.asc a:after { content: '\f0d8'; }
+    th.desc a:after { content: '\f0d7'; }
 #pageheader.clear
   .breadcrumbs
     %strong= link_to "&laquo; #{h @project.title}".html_safe, @project, :class => 'crumb'
@@ -24,12 +40,16 @@
       %table{:width => "100%"}
         %thead
           %tr
-            %th= t :user
-            %th
+            %th{ class: @order_by == "login" ? @order : nil, colspan: 2 }
+              - order = @order == "desc" ? "asc" : "desc" if @order_by == "login"
+              = link_to t(:user), url_for_params( order: order, order_by: "login" )
             %th= t :role
             - unless @project.is_new_project?
               %th.nobr
                 \# #{t :obs}.
+            %th{ class: @order_by == "created_at" ? @order : nil }
+              - order = @order == "desc" ? "asc" : "desc" if @order_by == "created_at"
+              = link_to t(:date_joined), url_for_params( order: order, order_by: "created_at" )
             %th
             - if logged_in? && @project_user && @project_user.is_manager?
               %th
@@ -52,6 +72,8 @@
               %td.nobr.numeric
                 = link_to number_with_delimiter(project_user.observations_count),  |
                   project_show_contributor_path(@project, project_user.user.login) |
+            %td.nobr
+              =l project_user.created_at.to_date, format: :long
             %td.nobr
               = link_to t(:view_stats),                                           |
                 project_show_contributor_path(@project, project_user.user.login), |
