@@ -22,10 +22,10 @@ class DisagreementAlert extends React.Component {
       config
     } = this.props;
     const newTaxonHTML = ReactDOMServer.renderToString(
-      <SplitTaxon taxon={newTaxon} forceRank config={ config } />
+      <SplitTaxon taxon={newTaxon} config={ config } />
     );
     const oldTaxonHTML = ReactDOMServer.renderToString(
-      <SplitTaxon taxon={oldTaxon} forceRank config={ config } />
+      <SplitTaxon taxon={oldTaxon} config={ config } />
     );
     return (
       <Modal

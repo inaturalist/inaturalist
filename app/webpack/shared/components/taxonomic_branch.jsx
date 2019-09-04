@@ -70,7 +70,6 @@ const TaxonomicBranch = ( {
                 <SplitTaxon
                   taxon={t}
                   url={shouldLinkToTaxon ? urlForTaxon( t ) : null}
-                  forceRank
                   user={ currentUser }
                   onClick={ e => {
                     if ( !shouldLinkToTaxon ) return true;

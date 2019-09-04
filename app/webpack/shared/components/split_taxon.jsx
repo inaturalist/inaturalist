@@ -136,7 +136,7 @@ const SplitTaxon = props => {
     } else {
       sciNameClass += " secondary-name";
     }
-    let name = taxon.name;
+    let { name } = taxon;
     if ( taxon.rank_level < 10 ) {
       const namePieces = name.split( " " );
       let rankPiece;
@@ -150,9 +150,9 @@ const SplitTaxon = props => {
       if ( rankPiece ) {
         name = (
           <span>
-            {
-              namePieces.slice( 0, namePieces.length - 1 ).join( " " )
-            } <span className="rank">
+            { namePieces.slice( 0, namePieces.length - 1 ).join( " " ) }
+            { " " }
+            <span className="rank">
               { rankPiece }
             </span>
             &nbsp;
@@ -161,16 +161,14 @@ const SplitTaxon = props => {
         );
       }
     }
-    // Maybe we don't really need forceRank...
-    // if ( ( forceRank || taxon.preferred_common_name ) && taxon.rank && taxon.rank_level > 10 ) {
     if ( taxon.rank && taxon.rank_level > 10 ) {
       return (
         <LinkElement
-          key={ key }
+          key={key}
           className={sciNameClass}
-          href={ url }
-          onClick={ onClick }
-          target={ target }
+          href={url}
+          onClick={onClick}
+          target={target}
         >
           <span className="rank">
             { I18n.t( `ranks.${taxon.rank.toLowerCase( )}`, { defaultValue: taxon.rank } ) }
@@ -182,11 +180,11 @@ const SplitTaxon = props => {
     }
     return (
       <LinkElement
-        key={ key }
+        key={key}
         className={sciNameClass}
-        href={ url }
-        onClick={ onClick }
-        target={ target }
+        href={url}
+        onClick={onClick}
+        target={target}
       >
         { truncateText( name ) }
       </LinkElement>
@@ -197,12 +195,14 @@ const SplitTaxon = props => {
       return null;
     }
     return (
-      <span key={ `${keyBase}-inactive` } className="inactive">
+      <span key={`${keyBase}-inactive`} className="inactive">
         <a
           href={`/taxon_changes?taxon_id=${taxon.id}`}
-          target={ target }
+          target={target}
         >
-          <i className="fa fa-exclamation-circle"></i> { I18n.t( "inactive_taxon" ) }
+          <i className="fa fa-exclamation-circle" />
+          { " " }
+          { I18n.t( "inactive_taxon" ) }
         </a>
       </span>
     );
@@ -212,9 +212,9 @@ const SplitTaxon = props => {
       return null;
     }
     return (
-      <span key={ `${keyBase}-extinct` } className="extinct">
+      <span key={`${keyBase}-extinct`} className="extinct">
         [
-          { I18n.t( "extinct" ) }
+        { I18n.t( "extinct" ) }
         ]
       </span>
     );
@@ -223,11 +223,11 @@ const SplitTaxon = props => {
   // show "is member of" if requested and there's no common name
   const isBetweenGenusAndSpecies = taxon && taxon.rank_level < 20 && taxon.rank_level > 10;
   if (
-    showMemberGroup &&
-    taxon &&
-    (
-      ( !taxon.preferred_common_name && !_.isEmpty( taxon.ancestors ) ) ||
-      isBetweenGenusAndSpecies
+    showMemberGroup
+    && taxon
+    && (
+      ( !taxon.preferred_common_name && !_.isEmpty( taxon.ancestors ) )
+      || isBetweenGenusAndSpecies
     )
   ) {
     let groupAncestor;
@@ -240,12 +240,13 @@ const SplitTaxon = props => {
     }
     if ( groupAncestor ) {
       memberGroup = (
-        <span key={ `${keyBase}-memberGroup` }className="member-group">
-          { I18n.t( "a_member_of" ) } <SplitTaxon
-            taxon={ groupAncestor }
-            forceRank
-            url={ `/taxa/${groupAncestor.id}` }
-            user={ user }
+        <span key={`${keyBase}-memberGroup`} className="member-group">
+          { I18n.t( "a_member_of" ) }
+          { " " }
+          <SplitTaxon
+            taxon={groupAncestor}
+            url={`/taxa/${groupAncestor.id}`}
+            user={user}
           />
         </span>
       );
@@ -264,12 +265,12 @@ const SplitTaxon = props => {
   if ( iconLink ) {
     linkIcon = (
       <a
-        target={ target }
-        href={ url }
+        target={target}
+        href={url}
         className="direct-link"
-        key={ `${keyBase}-linkIcon` }
+        key={`${keyBase}-linkIcon`}
       >
-        <i className="icon-link"></i>
+        <i className="icon-link" />
       </a>
     );
   }
@@ -296,7 +297,6 @@ SplitTaxon.propTypes = {
   noParens: PropTypes.bool,
   placeholder: PropTypes.string,
   displayClassName: PropTypes.string,
-  forceRank: PropTypes.bool,
   showIcon: PropTypes.bool,
   truncate: PropTypes.number,
   onClick: PropTypes.func,

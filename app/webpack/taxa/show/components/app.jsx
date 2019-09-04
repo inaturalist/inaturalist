@@ -47,7 +47,6 @@ const App = ( { taxon, showNewTaxon, config } ) => (
             <h1>
               <SplitTaxon
                 taxon={taxon}
-                forceRank={taxon.rank_level > 10 && !taxon.preferred_common_name}
                 user={ config.currentUser }
               />
               {

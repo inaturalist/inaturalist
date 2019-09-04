@@ -44,7 +44,7 @@ class CommunityIDModal extends Component {
         ) ).length;
       const ancDisag = this.ancestorDisagreements[taxon.id] || 0;
       const taxonName = isLife ? LIFE_TAXON.default_name.name : (
-        <SplitTaxon taxon={taxon} url={`/taxa/${taxon.id}`} forceRank user={config.currentUser} /> );
+        <SplitTaxon taxon={taxon} url={`/taxa/${taxon.id}`} user={config.currentUser} /> );
       const denom = usages + disag + ancDisag;
       const score = _.round( usages / denom, 3 );
       let className;

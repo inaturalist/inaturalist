@@ -33,7 +33,7 @@ const Taxa = ( {
           labelForDatum={d => (
             ReactDOMServer.renderToString(
               <div>
-                <SplitTaxon taxon={d.data} noInactive forceRank user={currentUser} />
+                <SplitTaxon taxon={d.data} noInactive user={currentUser} />
                 <div className="text-muted small">
                   { I18n.t( "x_observations", { count: I18n.toNumber( d.value, { precision: 0 } ) } ) }
                 </div>

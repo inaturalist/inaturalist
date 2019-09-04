@@ -124,7 +124,7 @@ class TaxonChooserPopover extends React.Component {
                     <i className={`media-object icon-iconic-${( t.iconic_taxon_name || "unknown" ).toLowerCase( )}`}></i>
                   </div>
                   <div className="media-body">
-                    <SplitTaxon taxon={t} forceRank user={ config.currentUser } />
+                    <SplitTaxon taxon={t} user={ config.currentUser } />
                   </div>
                 </li>
               ) ) }
