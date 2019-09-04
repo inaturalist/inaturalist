@@ -1,10 +1,10 @@
 :ruby
   observation_by_login_title = if is_me?(@selected_user)
     t('faves_by_login.title.current_user',
-      default: t(:second_person_possessive_singular_, :noun => t(:favorites).downcase))
+      default: t(:second_person_possessive_plural, :noun => t(:favorites).downcase))
   else
     t('faves_by_login.title.login', login: @login,
-      default: t(:third_person_possessive_singular, :noun => t(:favorites).titleize, :object_phrase => @login))
+      default: t(:third_person_possessive_plural, :noun => t(:favorites).titleize, :object_phrase => @login))
   end
 
 - content_for :title do
