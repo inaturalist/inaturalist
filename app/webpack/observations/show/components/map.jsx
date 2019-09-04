@@ -130,13 +130,13 @@ class Map extends React.Component {
               {
                 label: I18n.t( "verifiable_observations" ),
                 verifiable: true,
-                observation_id: obsForMap.id
+                observation_id: observation.obscured && observation.private_geojson && obsForMap.id
               },
               {
                 label: I18n.t( "observations_without_media" ),
                 verifiable: false,
                 disabled: !currentUserPrefersMedialessObs,
-                observation_id: obsForMap.id,
+                observation_id: observation.obscured && observation.private_geojson && obsForMap.id,
                 onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
               }
             ],

@@ -114,12 +114,17 @@ class ObservationModal extends React.Component {
       obsForMap.coordinates_obscured = observation.obscured && !observation.private_geojson;
       const taxonLayer = {
         observationLayers: [
-          { label: I18n.t( "verifiable_observations" ), verifiable: true },
+          {
+            label: I18n.t( "verifiable_observations" ),
+            verifiable: true,
+            observation_id: observation.obscured && observation.private_geojson && obsForMap.id
+          },
           {
             label: I18n.t( "observations_without_media" ),
             verifiable: false,
             disabled: !currentUserPrefersMedialessObs,
-            onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } )
+            onChange: e => updateCurrentUser( { prefers_medialess_obs_maps: e.target.checked } ),
+            observation_id: observation.obscured && observation.private_geojson && obsForMap.id
           }
         ],
         places: { disabled: true }
