@@ -65,6 +65,15 @@ export function addManager( user ) {
   };
 }
 
+export function setProjectError( field, error ) {
+  return ( dispatch, getState ) => {
+    const { project } = getState( ).form;
+    dispatch( updateProject( {
+      errors: Object.assign( { }, project.errors, { [field]: error } )
+    } ) );
+  };
+}
+
 export function createNewProject( type, copyProject ) {
   return ( dispatch, getState ) => {
     const { config } = getState( );
@@ -91,6 +100,7 @@ export function createNewProject( type, copyProject ) {
       _.each( copyProject.admins, a => {
         dispatch( addManager( a.user ) );
       } );
+      dispatch( setProjectError( "title", I18n.t( "views.projects.new.errors.name_already_taken" ) ) );
     }
     $( window ).scrollTop( 0 );
   };
@@ -103,15 +113,6 @@ export function setCopyProject( p ) {
 
 export function loggedIn( state ) {
   return ( state && state.config && state.config.currentUser );
-}
-
-export function setProjectError( field, error ) {
-  return ( dispatch, getState ) => {
-    const { project } = getState( ).form;
-    dispatch( updateProject( {
-      errors: Object.assign( { }, project.errors, { [field]: error } )
-    } ) );
-  };
 }
 
 let titleValidationTimestamp = new Date( ).getTime( );
@@ -326,13 +327,13 @@ export function deleteProject( ) {
     if ( !loggedIn( state ) || !project ) { return; }
     dispatch( setConfirmModalState( {
       show: true,
-      message: "Are you sure you want to delete this project?",
+      message: I18n.t( "views.projects.new.are_you_sure_you_want_to_delete" ),
       confirmText: I18n.t( "yes" ),
       onConfirm: ( ) => {
         setTimeout( ( ) => {
           dispatch( setConfirmModalState( {
             show: true,
-            message: "Deleting...",
+            message: I18n.t( "deleting" ),
             hideFooter: true
           } ) );
         }, 1 );
@@ -493,6 +494,21 @@ export function confirmSubmitProject( ) {
       cancelText: I18n.t( "continue" ),
       onCancel: ( ) => {
         dispatch( submitProject( ) );
+      }
+    } ) );
+  };
+}
+
+export function duplicateProject( ) {
+  return ( dispatch, getState ) => {
+    const state = getState( );
+    const { project } = state.form;
+    dispatch( setConfirmModalState( {
+      show: true,
+      message: I18n.t( "views.projects.new.are_you_ready_to_duplicate" ),
+      confirmText: I18n.t( "yes" ),
+      onConfirm: ( ) => {
+        window.location = `/projects/new?copy_project_id=${project.slug}`;
       }
     } ) );
   };

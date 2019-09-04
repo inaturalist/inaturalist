@@ -161,9 +161,15 @@ body>div>.popover[role="tooltip"].popover-error {
 
 .Form {
   h1 {
-    button.delete {
+    button {
       float: right;
       font-size: 14px;
+      margin-left: 8px;
+      .fa {
+        color: $inat-green;
+      }
+    }
+    button.delete {
       .fa {
         color: $fail-red;
       }

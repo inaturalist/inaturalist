@@ -1,6 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Grid, Row, Col, OverlayTrigger, Popover, Overlay } from "react-bootstrap";
+import {
+  Grid, Row, Col, OverlayTrigger, Popover, Overlay
+} from "react-bootstrap";
 import Dropzone from "react-dropzone";
 import { ChromePicker } from "react-color";
 
@@ -16,7 +18,8 @@ class SharedForm extends React.Component {
       setTitle,
       onFileDrop,
       updateProject,
-      deleteProject
+      deleteProject,
+      duplicateProject
     } = this.props;
     const bgColor = project.banner_color;
     return (
@@ -33,6 +36,15 @@ class SharedForm extends React.Component {
                   >
                     <i className="fa fa-trash" />
                     { I18n.t( "views.projects.new.delete_project" ) }
+                  </button>
+                ) }
+                { project.id && (
+                  <button
+                    className="btn-white"
+                    onClick={ duplicateProject }
+                  >
+                    <i className="fa fa-clone" />
+                    { I18n.t( "views.projects.new.duplicate_project" ) }
                   </button>
                 ) }
               </h1>
@@ -300,7 +312,8 @@ SharedForm.propTypes = {
   setDescription: PropTypes.func,
   setTitle: PropTypes.func,
   updateProject: PropTypes.func,
-  deleteProject: PropTypes.func
+  deleteProject: PropTypes.func,
+  duplicateProject: PropTypes.func
 };
 
 export default SharedForm;

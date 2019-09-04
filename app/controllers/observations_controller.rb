@@ -2851,6 +2851,7 @@ class ObservationsController < ApplicationController
     if map_params[:user]
       map_params[:user_id] = map_params.delete(:user)
     end
+    map_params[:precision_offset] = params[:precision_offset]
     map_params.select do |k,v|
       ! [ :utf8, :controller, :action, :page, :per_page,
           :preferences, :color, :_query_params_set,
