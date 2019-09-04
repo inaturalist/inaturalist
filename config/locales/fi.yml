@@ -514,7 +514,7 @@ fi:
   are_you_sure_delete_post: Haluatko varmasti poistaa tämän julkaisun?
   are_you_sure_delete_taxon_move_associates: Haluatko varmasti poistaa taksonin %{taxonname}
     (%{taxonid}), ja siirtää kaikki sen kumppanit?
-  are_you_sure_delete_this: Haluatko varmasti poistaa tämän? Sinun pitäisi todennäköisesti
+  are_you_sure_delete_this: Haluatko varmasti poistaa tämän? Sinun tulisi todennäköisesti
     ensin tarkistaa, nähdäksesi jos siinä on havaintoja tai luetteloituja taksoneita.
   are_you_sure_delete_this_place: Haluatko varmasti poistaa tämän paikan?
   are_you_sure_leave_this_project: Haluatko varmasti lähteä pois tästä projektista?
@@ -1200,7 +1200,7 @@ fi:
     haun mukaan.
   edit: Muokkaa
   edit_a_batch_of_observations: Muokkaa erä havaintoja
-  edit_account_settings_and_profile: Muokkaa tiliäsi &amp; profiiliasi
+  edit_account_settings_and_profile: Muokkaa tiliä &amp; profiilia
   edit_assessment: Muokkaa arviointia
   edit_atlas: Muokkaa atlasta
   edit_body: Muokkaa kappaletta
@@ -1454,9 +1454,12 @@ fi:
   forum_categories:
     bug_reports: Bugiraportit
     forum_feedback: Foorumin palaute
+    forum_moderation: Foorumin moderointi
     nature_talk: Keskustelua luonnosta
     news_and_updates: Uutiset & päivitykset
     tutorials: Oppaat
+  forum_desc: Foorumi on paikka iNatista keskustelemiseen, mukaan lukien apu & tuki,
+    ominaisuuspyynnöt, bugiraportit, ilmoitukset ja muuta.
   frequency: Lukumäärä
   fri: Pe
   from: paikasta
@@ -1735,6 +1738,7 @@ fi:
   keyboard_shortcuts: Pikanäppäimet
   kml: KML
   kml_file_size_error: KML:n on oltava kooltaan pienempi kuin 1 MT
+  label_colon: '%{label}:'
   labels: Merkinnät
   location_private: Yksityinen sijainti
   location_unknown: Tuntematon sijainti
@@ -2307,7 +2311,7 @@ fi:
   observations_by_user_on_date: Käyttäjän %{user} havainnot %{date}
   observations_by_you: Omat havainnot
   observations_by_you_on_date: Omat havainnot %{date}
-  observation_calendar_for: Havainnointikalenteri käyttäjälle %{user} vuonna %{year}
+  observation_calendar_for: Käyttäjän %{user} vuoden %{year} havainnointikalenteri
   observation_curation: Havaintokuratointi
   observation_date: Päiväys
   observation_date?: Päiväys?
@@ -2365,6 +2369,7 @@ fi:
   observations_was_successfully_updated: Havainto/havainnot päivitetty onnistuneesti.
   observations_week: Havainnot / Viikko
   observations_widget: Havaintojen pienoisohjelma
+  observations_with_this_field: Havainnot tällä kentällä
   observed: Havaittu
   observed_by: Havainnut
   observed_in_place?: havaittu paikallaan
@@ -3030,6 +3035,7 @@ fi:
   radius_value: 'Säde (m): %{radius}'
   random: Satunnainen
   range: Väli
+  range_from: Etäisyys
   rank: Sija
   rank_position: Sija
   ranks:
@@ -3132,6 +3138,7 @@ fi:
   remove_photo: Poista kuva
   remove_place: Poista paikka
   remove_project_user: Poista projektikäyttäjä
+  remove_relationship: Poista suhde
   remove_selected: Poista valitut
   remove_tags: Poista merkinnät
   remove_your_existing_id?: Poista olemassaoleva tunnisteesi?
@@ -3369,6 +3376,7 @@ fi:
     select_one_or_more_sounds: Valitse yksi tai useampia ääniä
     selected_sounds: Valitut äänet
     sound: Ääni
+    sound_has_been_flagged: Tämä ääni on merkitty.
     sounds: Äänet
     sounds_size_sound: '%{sounds_size} ääni'
     sounds_size_sounds: '%{sounds_size} ääntä'
@@ -4097,7 +4105,7 @@ fi:
   your_account_has_been_verified: '%{site_name}-tilisi on varmistettu! Kirjaudu sisään
     jatkaaksesi.'
   your_comment_was_saved: Sisältösi tallennettiin
-  your_content: Sisältösi
+  your_content: Oma sisältö
   your_contributions_to_project: Muokkauksesi projektiin %{project_title}
   your_default: oletuksesi
   your_default_time_zone: Oletusaikavyöhykkeesi
@@ -4152,6 +4160,9 @@ fi:
         confirmation_instructions:
           are_you_planning_on_using_in_the_classroom: Suunnitteletko käyttäväsi %{site_name}ia
             luokkahuoneessa?
+          please_read_the_teachers_guide_html: Jos niin, lue <a href="%{url}">Opettajan
+            oppaamme</a> saadaksesi vinkkejä %{site_name}in käyttämisessä opiskelijoiden
+            kanssa.
     donate:
       donate_short_desc: Lahjoita nyt näyttääksesi tukesi!
       donate_desc_html: "<p class=\"lead\">\n  <strong>iNaturalist on yksi maailman
@@ -4401,8 +4412,7 @@ fi:
         leaderboards_among_individuals: Tulostaulukot <strong>yksilöiden</strong>
           kesken
         multiple_project_administrators: Useita projektin ylläpitäjiä
-        no_need_to_rely_on_manual_addition: Ei tarvitse luottaa manuaaliseen havaintojen
-          lisäykseen tai kerääjään indeksoidaksesi havaintoja
+        no_need_to_rely_on_manual_addition: Ei manuaalista havaintojen lisäystä
         or_drag_and_drop: (tai vedä ja pudota)
         project_banner: Projektin banneri (PNG, JPG, tai GIF)
         project_banner_help: Valinnainen bannerikuva. Ihanteelliset mitat ovat 760px
@@ -4908,7 +4918,19 @@ fi:
         place_id: Paikka
         preferred_observation_fields_by: Salli havaintokentät
     errors:
+      messages:
+        even: pitää olla edes
+        exclusion: on varattu
+        not_a_number: ei ole numero
+        not_an_integer: on oltava kokonaisluku
+        odd: on oltava pariton
+        record_invalid: 'Vahvistus epäonnistui: %{errors}'
+        taken: on jo varattu
       models:
+        application:
+          attributes:
+            redirect_uri:
+              invalid_uri: pitää olla kelvollinen URL
         guide:
           attributes:
             published_at:
@@ -4917,6 +4939,10 @@ fi:
           attributes:
             base:
               guide_has_too_many_taxa: oppaassa voi olla vain 500 taksonia
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: koordinaatit eivät voi olla 0,0
         observation_field_value:
           attributes:
             value:
@@ -4927,6 +4953,7 @@ fi:
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: on liian iso muokattavaksi
               is_too_large_to_import: on liian iso tuotavaksi
               contains_too_many_observations: sisältää liian monta havaintoa tuotavaksi
         project_observation:
@@ -4938,6 +4965,26 @@ fi:
             observation_id:
               must_be_observed_after: tulee olla havaittu %{time} jälkeen
               must_be_observed_before: pitää olla havaittu ennen %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: voi muuttaa vain tämän
+                taksonin kuraattori
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: voi muuttaa vain tämän
+                taksonin kuraattori
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: voi muuttaa vain tämän
+                taksonin kuraattori
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: voi muuttaa vain tämän
+                taksonin kuraattori
+            complete:
+              can_only_be_changed_by_a_curator_of_this_taxon: voi muuttaa vain tämän
+                taksonin kuraattori
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: voi muuttaa vain tämän
+                taksonin kuraattori
         user:
           attributes:
             email:

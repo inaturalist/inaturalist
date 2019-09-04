@@ -18,6 +18,7 @@
 # Author: Petra cze
 # Author: Psax
 # Author: Radana
+# Author: Tkiwik
 # Author: Walter Klosse
 ---
 cs:
@@ -332,6 +333,7 @@ cs:
   adding_to_your_life_list: Vkládám do vašeho seznamu života...
   additional_range: Přídavný rozsah
   additional_range_data_from_an_unknown_source: Přídavný rozsah dat z neznámého zdroje
+  adjust_brightness: Upravit jas
   admin: Správce
   admin_s: Administrátoři
   admin_any_projects: Správcovat jakýkoliv projekt
@@ -681,6 +683,7 @@ cs:
   bg_color: Barva pozadí
   bioblitz: Bioblitz
   birds: ptáci
+  birthday: Narozeniny
   black: černá
   block_user: Zablokovat uživatele
   block_removed: Zablokování zrušeno
@@ -6639,18 +6642,6 @@ cs:
           any: Jakýkoliv
           joined: Projekty, ke kterým jste se přidali
           none: Žádný, k projektům můžete přidávat svá pozorování pouze vy
-        this_only_applies_to_traditional_projects: |-
-          To platí pouze pro tradiční projekty. Nemůžete vyloučit pozorování ze sbírek nebo ze zastřešujích projektů, které jsou v podstatě uložená vyhledávání.
-          Další informace <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">zde</a>.
-        project_settings_desc: Nezapomeňte, že toto nedává projektům povolení k přístupu
-          k vašim soukromým souřadnicím ani zasílání aktualizací. Abyste mohli tato
-          povolení udělit, musíte se přidat do projektů, nebo je udělit jednotlivě.
-        taxon_change_desc: Když jsou na %{site_name} sloučeny nebo přejmenovány taxony,
-          vaše pozorování, taxony na seznamu, identifikace atd. budou automaticky
-          aktualizovány na nové taxony, pokud je změna jasná. Pokud si aktualizace
-          zrušíte nebo je změna nejednoznačná (např. kvůli nejednotnosti názorů),
-          dostanete oznámení o změně s odkazem na nástroj, který můžete použít k manuální
-          aktualizaci svého obsahu, pokud chcete.
         prefers_community_taxa_desc: '%{site_name} sleduje, co si myslíte, že jsou
           vaše pozorování, a co si myslí komunita. Identifikace, kterou sdílíme s
           partnery, je komunitní identifikace, ale pokud si myslíte, že by názor komunity
@@ -6658,14 +6649,26 @@ cs:
           Lidé budou dál moci přidávat identifikace, ale názor komunity nebude převládat
           nad tím vaším. To znamená, že vaše pozorování nepostoupí na výzkumný stupeň,
           pokud budete mít jiný názor než komunita.'
-        search_place_help_html: Výchozí místo pro hledání.
-        scientific_name_first_desc: Zobrazit vědecká jména před obvyklými jmény
-        youve_used_all_of_your_blocks: Použili jste všechny své bloky. Pokud chcete
-          přidat další blok, některý musíte odstranit.
-        same_day_geoprivacy_protection: Stejná ochrana geoprivacy
         prefers_coordinate_interpolation_protection_desc: |-
           Když nastavíte geoprivacy pozorování na "zakryté" nebo
           "soukromé" toto bude platit stejně k vašemu druhému pozorování ze stejného dne, aby bylo pro ostatní lidi obtížnější odhadnout skutečné souřadnice na základě pozorování ve stejný čas.
+        project_settings_desc: Nezapomeňte, že toto nedává projektům povolení k přístupu
+          k vašim soukromým souřadnicím ani zasílání aktualizací. Abyste mohli tato
+          povolení udělit, musíte se přidat do projektů, nebo je udělit jednotlivě.
+        same_day_geoprivacy_protection: Stejná ochrana geoprivacy
+        search_place_help_html: Výchozí místo pro hledání.
+        scientific_name_first_desc: Zobrazit vědecká jména před obvyklými jmény
+        taxon_change_desc: Když jsou na %{site_name} sloučeny nebo přejmenovány taxony,
+          vaše pozorování, taxony na seznamu, identifikace atd. budou automaticky
+          aktualizovány na nové taxony, pokud je změna jasná. Pokud si aktualizace
+          zrušíte nebo je změna nejednoznačná (např. kvůli nejednotnosti názorů),
+          dostanete oznámení o změně s odkazem na nástroj, který můžete použít k manuální
+          aktualizaci svého obsahu, pokud chcete.
+        this_only_applies_to_traditional_projects: |-
+          To platí pouze pro tradiční projekty. Nemůžete vyloučit pozorování ze sbírek nebo ze zastřešujích projektů, které jsou v podstatě uložená vyhledávání.
+          Další informace <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">zde</a>.
+        youve_used_all_of_your_blocks: Použili jste všechny své bloky. Pokud chcete
+          přidat další blok, některý musíte odstranit.
       recent:
         about_recent_users: O projektu
         definitions_html: <dl> <dt> Bezpochyby spam </dt> <dd> Uživatel, který je

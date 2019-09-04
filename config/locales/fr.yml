@@ -1169,6 +1169,7 @@ fr:
   copyright_holder: Détenteur des droits
   copyright_info: Informations concernant les droits d'auteur
   copyright_info_and_more: Information de Copyright et Plus
+  copyright_infringement: Violation de droit d’auteur
   copyright_infringement_desc: Violation du droit d’auteur ou création par une personne
     autre que l’observateur et attribution manquante
   covered_by_a_taxon_framework_html: Couvert par un %{link}
@@ -1674,6 +1675,7 @@ fr:
     le drapeau</a>
   flag_this_observation: Signaler cette observation
   flag_this_photo: Signaler cette photo
+  flag_this_sound: Marquer ce son
   flagged: a signalé
   flagged_: Marqué
   flagged_covered_taxa: Taxons couverts marqués
@@ -2219,6 +2221,7 @@ fr:
     italian: Italien
     japanese: Japonais
     korean: Coréen
+    lithuanian: Lithuanien
     luxembourgish: Luxembourgeois
     maltese: Maltais
     maori: Maori
@@ -2381,6 +2384,7 @@ fr:
     ja: Japonais
     ko: Coréen
     lb: Luxembourgeois
+    lt: Lithuanien
     mk: Macédonien
     nl: Néerlandais
     oc: Occitan
@@ -2557,6 +2561,7 @@ fr:
     datetime_with_zone: D MMM YYYY · LT z
   mon: Lun
   month: Mois
+  monthly_supporter_since_date: Soutien mensuel depuis %{date}
   months: Mois
   months_ago: il y a %{text}
   more: Plus
@@ -4315,6 +4320,7 @@ fr:
     select_one_or_more_sounds: Sélectionnez un ou plusieurs sons
     selected_sounds: Sons sélectionnés
     sound: Son
+    sound_has_been_flagged: Ce son a été marqué.
     soundcloud_replied_with_an_error: SoundCloud affiche une erreur. Veuillez réessayer
       plus tard.
     sounds: Sons
@@ -5749,6 +5755,8 @@ fr:
           non soumise à l’impôt basée aux États-Unis d’Amérique.
         </p>
       post_donate_social_media_text: Je soutiens iNaturalist  parce que...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Devenir un soutien mensuel de iNaturalist
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |-
@@ -7477,6 +7485,8 @@ fr:
         common_names_desc: |-
           Afficher les noms vulgaires. À désactiver si vous ne voulez voir que les noms scientifiques.
           Notez que vous pouvez contrôler le type de noms vulgaires que vous voyez en changeant vos paramètres régionaux et votre localisation.
+        display_monthly_supporter_status_on_my_profile: Afficher l’état de Soutien
+          mensuel sur mon profil
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
           Si vous changez d’avis, vous pouvez toujours
           <a href='/users/edit'>modifier vos paramètres</a>.
@@ -7526,22 +7536,6 @@ fr:
           any: Tout
           joined: Projets que vous avez rejoint
           none: Non, vous seul pouvez ajouter vos observations aux projets
-        this_only_applies_to_traditional_projects: |-
-          Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.
-          Davantage d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
-        project_settings_desc: |-
-          Souvenez-vous, cela ne donne pas aux projets le droit d’accéder à vos
-          coordonnées masquées ou de vous envoyer des mises à jour. Vous devez rejoindre les projets afin
-          d’accorder ces droits, ou les autoriser au cas par cas.
-        taxon_change_desc: |-
-          Quand des taxons sont fusionnés ou renommés sur %{site_name}, vos
-          observations, taxons répertoriés, identifications, etc., seront
-          automatiquement mis à jour avec les nouveaux taxons si la
-          modification est sans ambiguïté. Si vous décidez de ne pas choisir
-          cette option ou si le changement est ambigu (par ex. une séparation),
-          vous recevrez une mise à jour sur le changement lié à un outil que
-          vous pouvez utiliser pour mettre à jour votre contenu manuellement,
-          si vous le voulez.
         prefers_community_taxa_desc: |-
           %{site_name} suit ce que vos identifications d’observations et les identifications de
           la communauté. L’identification que nous échangeons avec les partenaires
@@ -7551,19 +7545,36 @@ fr:
           l’opinion de la communauté ne sera pas favorisée par rapport à la vôtre, ce qui veut dire que vos
           observations ne seront pas admissibles au calibre recherche, à moins que vous
           ne soyez d’accord avec la communauté.
-        search_place_help_html: Endroit par défaut pour les recherches d’observation.
-        scientific_name_first_desc: Afficher les noms scientifiques avant les noms
-          communs.
-        youve_used_all_of_your_blocks: Vous avez utilisé tous vos blocages. Supprimez
-          un blocage pour en ajouter un autre.
-        same_day_geoprivacy_protection: Protection de confidentialité géographique
-          du même jour
         prefers_coordinate_interpolation_protection_desc: |-
           Quand vous fixez la confidentialité géographique d’une observation à « obscured » ou
           « private », cela appliquera la même confidentialité géographique à toutes vos autres
           observations du même jour, pour rendre plus difficile aux autres personnes de
           deviner les vraies coordonnées d’après les observations faites alentour au même
           moment.
+        project_settings_desc: |-
+          Souvenez-vous, cela ne donne pas aux projets le droit d’accéder à vos
+          coordonnées masquées ou de vous envoyer des mises à jour. Vous devez rejoindre les projets afin
+          d’accorder ces droits, ou les autoriser au cas par cas.
+        same_day_geoprivacy_protection: Protection de confidentialité géographique
+          du même jour
+        search_place_help_html: Endroit par défaut pour les recherches d’observation.
+        scientific_name_first_desc: Afficher les noms scientifiques avant les noms
+          communs.
+        taxon_change_desc: |-
+          Quand des taxons sont fusionnés ou renommés sur %{site_name}, vos
+          observations, taxons répertoriés, identifications, etc., seront
+          automatiquement mis à jour avec les nouveaux taxons si la
+          modification est sans ambiguïté. Si vous décidez de ne pas choisir
+          cette option ou si le changement est ambigu (par ex. une séparation),
+          vous recevrez une mise à jour sur le changement lié à un outil que
+          vous pouvez utiliser pour mettre à jour votre contenu manuellement,
+          si vous le voulez.
+        thanks_for_supporting_us!: Merci de nous soutenir !
+        this_only_applies_to_traditional_projects: |-
+          Ceci ne s'applique qu'aux projets traditionnels. Vous ne pouvez pas exclure les observations des collections ni des projets chapeau, qui sont essentiellement des recherches sauvegardées.
+          Davantage d'informations <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">ici</a>.
+        youve_used_all_of_your_blocks: Vous avez utilisé tous vos blocages. Supprimez
+          un blocage pour en ajouter un autre.
       recent:
         about_recent_users: À propos
         definitions_html: <dl> <dt>Sans doute du pourriel</dt> <dd> Utilisateur qui
@@ -8101,6 +8112,9 @@ fr:
               api_key_in_use: Clef API en cours ou en attente d'importation
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: les coordonnées ne peuvent pas être
+                0,0
             observed_on:
               cannot_be_greater_than_date_created: ne peut pas être postérieure à
                 la date à laquelle l’observation a été ajoutée

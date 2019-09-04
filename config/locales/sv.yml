@@ -842,6 +842,7 @@ sv:
     attribution_sharealike_license: Erkännande-DelaLika Licens
     attribution_noderivs_license: Erkännande-IngaBearbetningar
     gnu_free_documentation_license: GNU Free Documentation License
+  copyright_infringement: Upphovsrättsintrång
   couldnt_change_your_password: 'Kunde inte ändra ditt lösenord: %{e}'
   countries: Länder
   create: Skapa
@@ -1071,6 +1072,7 @@ sv:
   flag_saved: Flagga sparades.
   flag_this_observation: Flagga denna observation
   flag_this_photo: Flagga detta foto
+  flag_this_sound: Flagga detta ljud
   flagged: flaggades
   flags: Flaggor
   flags_with_count: Flaggor (%{count})
@@ -1910,6 +1912,7 @@ sv:
     listen: Lyssna
     no_photos_sounds: Inga foton eller ljud
     photos_sounds: Foton / ljud
+    sound_has_been_flagged: Detta ljud har flaggats.
   source: Källa
   source_: 'Källa:'
   source_wikipedia: 'Källa: Wikipedia'
@@ -2514,6 +2517,10 @@ sv:
             redirect_uri:
               fragment_present: kan inte innehålla ett fragment.
               invalid_uri: måste vara en giltig URI.
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: koordinaterna kan inte vara 0,0
         observation_field_value:
           attributes:
             observation_id:

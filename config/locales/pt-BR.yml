@@ -1114,6 +1114,7 @@ pt-BR:
   copyright_holder: Titular dos direitos autorais
   copyright_info: Informação sobre copyright
   copyright_info_and_more: Informação sobre copyright e Mais
+  copyright_infringement: Violação de direitos autorais
   copyright_infringement_desc: Viola o direito autoral ou foi criada por alguém que
     não é o observador e está sem atribuição
   covered_by_a_taxon_framework_html: Coberto por um %{link}
@@ -1609,6 +1610,7 @@ pt-BR:
     marcação</a>
   flag_this_observation: Marque com alerta esta observação
   flag_this_photo: Faça um alerta sobre esta foto
+  flag_this_sound: Sinalizar este som
   flagged: Marcados
   flagged_: Marcado
   flagged_covered_taxa: Taxa coberta sinalizada
@@ -2133,6 +2135,7 @@ pt-BR:
     italian: Italiano
     japanese: Japonês
     korean: Coreano
+    lithuanian: Lituano
     luxembourgish: Luxemburguês
     maltese: Maltês
     maori: Maori
@@ -2294,6 +2297,7 @@ pt-BR:
     ja: Japonês
     ko: Coreano
     lb: Luxemburguês
+    lt: Lituano
     mk: Macedônio
     nl: Holandês
     oc: Occitano
@@ -2469,6 +2473,7 @@ pt-BR:
     datetime_with_zone: MMM D, YYYY · LT z
   mon: Seg
   month: Mês
+  monthly_supporter_since_date: Apoiador mensal desde %{date}
   months: Meses
   months_ago: há %{text}
   more: Mais
@@ -4201,6 +4206,7 @@ pt-BR:
     select_one_or_more_sounds: Selecione um ou mais sons
     selected_sounds: Selecione sons
     sound: Som
+    sound_has_been_flagged: Este som foi sinalizado.
     soundcloud_replied_with_an_error: Houve um erro com a sua conexão ao SoundCloud.
       Por favor tente novamente.
     sounds: Sons
@@ -5590,6 +5596,9 @@ pt-BR:
           Estados Unidos da América.
         </p>
       post_donate_social_media_text: Eu apoio o iNaturalist porque...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Torne-se um apoiador mensal do
+          iNaturalist
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: Por favor resolva bandeirass
@@ -7095,6 +7104,8 @@ pt-BR:
           Mostrar nomes comuns. Desabilite se você quiser apenas ver nomes científicos.
           Observe que você pode controlar quais nomes comuns você vê alterando
           local e configurações de local.
+        display_monthly_supporter_status_on_my_profile: Exibir o status de apoiador
+          mensal no meu perfil
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
           Se você mudar de ideia você sempre pode
           <a href='/users/edit'>editar suas configurações</a>.
@@ -7109,6 +7120,16 @@ pt-BR:
         licensing_desc_html: |-
           Licenciar seu conteúdo da a oportunidade de outras pessoas utilizarem ele de maneira totalmente legalizada sem ter que solicitar sua permissão direta, sempre que forem respeitados os termos de licença. %{site_name} utiliza conteúdo licenciado com Creative Commons para compartilhar dados com parceiros como a <a href="http://www.gbif.org/">Global
           Biodiversity Information Facility</a> (GBIF), uma organização internacional e inter-governamental que compila e distribui informação sobre biodiversidade de todo o mundo.
+        monthly_supporter_desc_html: |-
+          Os apoiadores mensais do iNaturalist fazem contribuições mensais automáticas
+          recebidos pela Academia de Ciências da Califórnia (United
+          IRS FIN 94-1156258) para apoiar a operação sem fins lucrativos de
+          Sites da iNaturalist e da iNaturalist Network.
+          <a href="%{url}">Clique aqui para se tornar um apoiador mensal</a>.
+          Quando confirmarmos seu apoio, você poderá verificar isso
+          para exibir esse status no seu perfil. Nota: você precisará usar
+          exatamente o mesmo endereço de email no Donorbox que você usa no iNaturalist
+          para confirmarmos que você se tornou um Suporte mensal.
         muting_desc_html: |-
           ↓
           <p>
@@ -7130,18 +7151,6 @@ pt-BR:
           any: Qualquer
           joined: Projetos em que você participa
           none: Nenhuma, apenas você pode adicionar as suas observações a projetos
-        this_only_applies_to_traditional_projects: |-
-          Isso só se aplica a projetos tradicionais. Você não pode excluir observações
-          de projetos de coleção ou guarda-chuva, que são essencialmente pesquisas salvas.
-          Você pode ler mais
-          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aqui</a>.
-        project_settings_desc: Lembre-se, isto não concede permissão aos projetos
-          para acessar suas coordenadas ocultadas ou lhe enviar notificações. Você
-          precisa se inscrever nos projetos para conceder estas permissões ou, concedê-las
-          para cada caso em particular.
-        taxon_change_desc: Quando os táxons convergirem ou forem renomeados para %{site_name},
-          suas observações, táxons registrados, identificações, entre outros serão
-          automaticamente atualizados para o novo táxon se a mudança não for ambígua.
         prefers_community_taxa_desc: '%{site_name} ratreia oque você acredita que
           suas observações são e o que a comunidade acredita. A identificação que
           dividimos com parceiros é a realizada pela comunidade, porém se você não
@@ -7150,16 +7159,29 @@ pt-BR:
           opinião da comunidade de identificação não irá se sobrepor à sua. Isto significa
           que suas observações não estarão elegíveis para serem utilizadas em pesquisas
           a não ser que você concorde com a comunidade.'
-        search_place_help_html: Lugar padrão para pesquisas de observação.
-        scientific_name_first_desc: Mostre nomes científicos antes dos nomes comuns.
-        youve_used_all_of_your_blocks: Você usou todos os seus blocos. Remova um bloco
-          para adicionar outro.
-        same_day_geoprivacy_protection: Proteção de geoprivacidade no mesmo dia
         prefers_coordinate_interpolation_protection_desc: Quando você define a geocodificação
           de uma observação como "obscurecida" ou "privado", isto aplicará a mesma
           georreferenciação a todas as outras observações do mesmo dia para tornar
           mais difícil para outras pessoas adivinhar as coordenadas verdadeiras com
           base em observações feitas em torno do mesmo tempo.
+        project_settings_desc: Lembre-se, isto não concede permissão aos projetos
+          para acessar suas coordenadas ocultadas ou lhe enviar notificações. Você
+          precisa se inscrever nos projetos para conceder estas permissões ou, concedê-las
+          para cada caso em particular.
+        same_day_geoprivacy_protection: Proteção de geoprivacidade no mesmo dia
+        search_place_help_html: Lugar padrão para pesquisas de observação.
+        scientific_name_first_desc: Mostre nomes científicos antes dos nomes comuns.
+        taxon_change_desc: Quando os táxons convergirem ou forem renomeados para %{site_name},
+          suas observações, táxons registrados, identificações, entre outros serão
+          automaticamente atualizados para o novo táxon se a mudança não for ambígua.
+        thanks_for_supporting_us!: Obrigado por nos apoiar!
+        this_only_applies_to_traditional_projects: |-
+          Isso só se aplica a projetos tradicionais. Você não pode excluir observações
+          de projetos de coleção ou guarda-chuva, que são essencialmente pesquisas salvas.
+          Você pode ler mais
+          <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aqui</a>.
+        youve_used_all_of_your_blocks: Você usou todos os seus blocos. Remova um bloco
+          para adicionar outro.
       recent:
         about_recent_users: Sobre
         definitions_html: <dl> <dt>Provável Spam</dt> <dd> Usuário que provavelmente
@@ -7711,6 +7733,8 @@ pt-BR:
               api_key_in_use: Chave de API sendo importada ou aguardando importação
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: coordenadas não podem ser 0,0
             observed_on:
               cannot_be_greater_than_date_created: não pode ser maior que a data em
                 que a observação foi adicionada

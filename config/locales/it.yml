@@ -11,6 +11,7 @@
 # Author: Einreiher
 # Author: Federico Mugnaini
 # Author: Fitoschido
+# Author: Fox64
 # Author: Fringio
 # Author: Frubino
 # Author: G.garatti
@@ -1121,6 +1122,7 @@ it:
   copyright_holder: Detentore del copyright
   copyright_info: Informazione sul copyright
   copyright_info_and_more: Informazione sul copyright ed altro
+  copyright_infringement: Violazione del copyright
   copyright_infringement_desc: Viola la legge sul copyright o è stato creato da qualcuno
     che non è l'osservatore e manca l'attribuzione
   covered_by_a_taxon_framework_html: Coperto da un %{link}
@@ -1617,6 +1619,7 @@ it:
     contrassegno</a>
   flag_this_observation: Contrassegna questa osservazione
   flag_this_photo: Contrassegna questa foto
+  flag_this_sound: Segnala questo suono
   flagged: ha segnalato
   flagged_: Contrassegnato
   flagged_covered_taxa: Taxa coperti segnati
@@ -4210,6 +4213,7 @@ it:
     select_one_or_more_sounds: Seleziona uno o più suoni
     selected_sounds: Suoni selezionati
     sound: Suono
+    sound_has_been_flagged: Questo suono è stato contrassegnato
     soundcloud_replied_with_an_error: SoundCloud ha risposto con un messaggio di errore.
       Si prega di riprovare più tardi.
     sounds: Suoni
@@ -6258,40 +6262,52 @@ it:
           esportazioni.
       parental_consent:
         subject: Tuo figlio vorrebbe usare iNaturalist
-        content_html: |-
-          <p>
-            Tuo figlio sta utilizzando l'app educativa Seek di iNaturalist e vorrebbe condividere i dati con la piattaforma di citizen-science iNaturalist. Poiché questi dati contengono Informazioni Identificative Personali, non può essere usata da persone con età inferiore ai 13 anni senza il consenso dei genitori.
-          </p>
-          <p>
-            Seek di iNaturalist può essere usata senza la creazione di un account, e nessun dato sarà condiviso, ma tuo figlio non sarà in grado di contribuire con osservazioni per iNaturalist. [EXPLANATION OF INAT]
-          </p>
-          <p>
-            Se dai il consenso affinché tuo figlio utilizzi iNaturalist, abbiamo bisogno che tu faccia i seguenti passi:
-          </p>
-          <ol>
-            <li>
-              <p>
-                Creare l'account iNaturalist che tuo figlio utilizzerà, indicando che l'account sarà utilizzato da una persona con età inferiore ai 13 anni seguendo il link seguente:
-                <a href="%{registration_url}">%{registration_url}</a>
-              </p>
-            </li>
-            <li>
-              <p>
-                Fare una donazione nominale di $1 con una carta di credito in favore di iNaturalist per verificare che tu sia un adulto. Assicurati di usare la stessa email che hai scelto per creare l'account insieme alla donazione qui: https://www.inaturalist.org/donate
-              </p>
-            </li>
-            <li>
-              <p>
-                Quando avremo processato la donazione, ti manderemo una notifica di attivazione alla mail dell'account e tu potrai usare il nome utente e la password iNaturalist per loggarti sulla app Seek di tuo figlio.
-              </p>
-            </li>
-          </ol>
-          <p>
-            Scopri di più su quali Informazioni Identificative Personali iNaturalist condivide: …
-          </p>
-          <p>
-            Scopri di più sulle Privacy Policy di iNaturalist <a href="%{privacy_policy_url}">qui</a>.
-          </p>
+        content_html: "<p>\n  Tuo figlio sta utilizzando l'app educativa Seek di iNaturalist
+          e vorrebbe condividere i dati con la piattaforma di citizen-science iNaturalist.
+          Poiché questi dati contengono Informazioni Identificative Personali, non
+          può essere usata da persone con età inferiore ai 13 anni senza il consenso
+          dei genitori.\n</p>\n<p>\n  Seek di iNaturalist può essere usata senza la
+          creazione di un account, e nessun dato sarà condiviso, ma tuo figlio non
+          sarà in grado di contribuire con osservazioni per iNaturalist. iNaturalist
+          è un social network di citizen-science in cui i partecipanti condividono
+          osservazioni e identificazioni di esseri viventi per insegnarsi vicendevolmente
+          sulla natura e generare dati sulla biodiversità a favore della scienza.
+          [EXPLANATION OF INAT]\n</p>\n<p>\n  Se dai il consenso affinché tuo figlio
+          utilizzi iNaturalist, occorre che tu faccia i seguenti passi:\n</p>\n<ol>\n
+          \ <li>\n    <p>\n      Creare l'account iNaturalist che tuo figlio utilizzerà
+          seguendo il link seguente:\n      <a href=\"%{registration_url}\">%{registration_url}</a>\n
+          \   </p>\n  </li>\n  <li>\n    <p>\n      Dopo aver creato l'account di
+          tuo figlio ti chiederemo di fare una piccola donazione di $1 con una carta
+          di credito in favore di iNaturalist per verificare che tu sia un adulto.
+          Quando fai la donazione assicurati di usare la stessa email che hai indicato
+          come \"email genitore\" durante la fase di iscrizione. https://www.inaturalist.org/donate\n
+          \   </p>\n  </li>\n  <li>\n    <p>\n      Una volta elaborata la donazione,
+          ti invieremo una mail di notifica informandoti che l'account di tuo figlio
+          è stato attivato e che puoi usare il nome utente e la password iNaturalist
+          che hai creato per loggarti sulla app Seek di tuo figlio.\n    </p>\n  </li>\n</ol>\n<p>\n
+          \ iNaturalist raccoglie le seguenti informazioni identificative personali:
+          \n </p>\n  </li>\n  <li>\n    <p>\nindirizzo email privato: ogni profilo
+          iNaturalist\n      è associato ad un indirizzo e-mail che non è\n      reso
+          pubblico. \n </p>\n  </li>\n  <li>\n    <p>\nnome utente (pubblico, obbligatorio):
+          ogni profilo iNaturalist è associato ad un nome utente pubblico e ad un
+          numero di identificazione dell'utente. Il nome utente non deve essere simile
+          al nome reale dell'utente, ma può essere utilizzato per contattare la persona
+          tramite commenti pubblici e messaggi diretti privati.\n </p>\n  </li>\n
+          \ <li>\n    <p>\nIndirizzo IP (privato, obbligatorio): iNaturalist memorizza
+          ma non rende pubblico l'indirizzo IP dell'utente che può essere utilizzato
+          per ricavare informazioni di identificazione personale come la posizione
+          (con precisione a livello di città).\n</p>\n  </li>\n  <li>\n    <p>\nimmagine
+          del profilo (pubblica, facoltativa): come opzione gli account iNaturalist
+          possono avere immagini del profilo che spesso sono immagini dell'utente.\n</p>\n
+          \ </li>\n  <li>\n    <p>\nluogo di osservazione (pubblico o privato, richiesto):
+          le osservazioni iNaturalist contengono informazioni sulla posizione dove
+          è stata fatta l'osservazione. La posizione può essere resa pubblica o privata,
+          ma è pubblica per impostazione predefinita.\n</p>\n  </li>\n  <li>\n    <p>\niNaturalist
+          consente inoltre agli utenti di condividere immagini pubbliche, commenti
+          pubblici e messaggi privati diretti ​​associati al proprio account. È possibile
+          che gli utenti includano informazioni identificative personali in questo
+          tipo di contenuti.\n</p>\n<p>\n  Scopri di più sulle Privacy Policy di iNaturalist
+          <a href=\"%{privacy_policy_url}\">qui</a>.\n</p>"
       photos_missing:
         subject: Alcune foto necessitano di riparazione
         we_have_been_housekeeping: Abbiamo fatto un po' di riordino e abbiamo trovato
@@ -7036,19 +7052,6 @@ it:
           any: Qualsiasi
           joined: Progetti a cui ti sei unito
           none: Nessuno, solo tu puoi aggiungere le tue osservazioni ai progetti
-        this_only_applies_to_traditional_projects: Questo si applica ai progetti tradizionali.
-          Non puoi escludere delle osservazioni dai progetti collezione ed ombrello,
-          che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
-        project_settings_desc: Ricorda, questa opzione non concede il permesso ai
-          progetti di accedere alle tue coordinate nascoste o di mandarti gli aggiornamenti.
-          Devi unirti ai progetti per garantirgli tali autorizzazioni, oppure concedere
-          i permessi osservazione per osservazione.
-        taxon_change_desc: Quando dei taxa sono uniti o rinominati su %{site_name},
-          le tue osservazioni, i taxa elencati, le identificazioni, etc. saranno automaticamente
-          aggiornati ad nuovo taxon se questo non è ambiguo. Se deselezioni questa
-          opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai
-          un aggiornamento sulla modifica, con un link ad uno strumento che potrai
-          usare per aggiornare manualmente il tuo contenuto.
         prefers_community_taxa_desc: '%{site_name} tiene traccia di cosa tu pensi
           che sia ciò che hai osservato e di ciò che ne pensa la community. L''identificazione
           che condividiamo con i partner dei dati è l''identificazione della community,
@@ -7057,16 +7060,29 @@ it:
           in grado di aggiungere identificazioni, ma l''opinione della community non
           avrà prevalenza sulla tua. Ciò significa che le tue osservazioni non raggiungeranno
           il Livello Ricerca a me che non sia in accordo con l''ID della community.'
-        search_place_help_html: Luogo predefinito per le ricerche di osservazione.
-        scientific_name_first_desc: Mostra il nome scientifico prima di quello comune.
-        youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi
-          un blocco per poterne aggiungere un altro.
-        same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
         prefers_coordinate_interpolation_protection_desc: Quando imposti la geoprivacy
           di un osservazione come "oscurata" o "privata" questa impostazione si applicherà
           a tutte le altre tue osservazioni fatte nello stesso giorno al fine di rendere
           più difficile alle altre persone ipotizzare le coordinate reali basandosi
           sulle osservazioni fatte lì intorno nello stesso periodo.
+        project_settings_desc: Ricorda, questa opzione non concede il permesso ai
+          progetti di accedere alle tue coordinate nascoste o di mandarti gli aggiornamenti.
+          Devi unirti ai progetti per garantirgli tali autorizzazioni, oppure concedere
+          i permessi osservazione per osservazione.
+        same_day_geoprivacy_protection: Protezione della geoprivacy stesso-giorno
+        search_place_help_html: Luogo predefinito per le ricerche di osservazione.
+        scientific_name_first_desc: Mostra il nome scientifico prima di quello comune.
+        taxon_change_desc: Quando dei taxa sono uniti o rinominati su %{site_name},
+          le tue osservazioni, i taxa elencati, le identificazioni, etc. saranno automaticamente
+          aggiornati ad nuovo taxon se questo non è ambiguo. Se deselezioni questa
+          opzione o la modifica è ambigua (e.g. nel caso di una divisione), riceverai
+          un aggiornamento sulla modifica, con un link ad uno strumento che potrai
+          usare per aggiornare manualmente il tuo contenuto.
+        this_only_applies_to_traditional_projects: Questo si applica ai progetti tradizionali.
+          Non puoi escludere delle osservazioni dai progetti collezione ed ombrello,
+          che sono essenzialmente dei filtri salvati. Puoi approfondire <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">qui</a>.
+        youve_used_all_of_your_blocks: Hai esaurito tutti i tuoi blocchi. Rimuovi
+          un blocco per poterne aggiungere un altro.
       recent:
         about_recent_users: A proposito di
         definitions_html: <dl> <dt>Probabilmente Spam</dt> <dd> Utenti che sono probabilmente
@@ -7595,6 +7611,8 @@ it:
               api_key_in_use: importando chiave API o accodato per l'importazione
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: le coordinate non possono essere 0,0
             observed_on:
               cannot_be_greater_than_date_created: non può essere successiva alla
                 data in cui l'osservazione è stata aggiunta

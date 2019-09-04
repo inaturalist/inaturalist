@@ -6973,18 +6973,6 @@ ca:
           any: Qualsevol
           joined: Projectes als que us heu unit
           none: Ningú, només vosaltres, pot afegir les vostres observacions als projectes
-        this_only_applies_to_traditional_projects: |-
-          Això només s'aplica als projectes tradicionals. No podeu excloure observacions de projectes col·lectius o paraigua, els quals són essencialment va salvar recerques.
-          Podeu llegir més <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
-        project_settings_desc: Recordeu, això no dóna permís als projectes per accedir
-          a les vostres coordenades ocultes o enviar-vos actualitzacions. Cal unir-se
-          a projectes per a la concessió d'aquests permisos, o concedir-los cas-per-cas.
-        taxon_change_desc: Quan es fusionen o canvien de nom els tàxons a %{site_name},
-          les vostres observacions, llistes de tàxons, identificacions, etc. seran
-          actualitzades automàticament al nou tàxon si el canvi és inequívoc. Si opteu
-          pel contrari o el canvi és ambigu (per exemple, es tracta d'un separació
-          de dos tàxons), rebreu una actualització sobre el canvi vinculat a una eina
-          que, si ho voleu, podreu utilitzar per actualitzar manualment el contingut.
         prefers_community_taxa_desc: '%{site_name} rastreja el que penseu que són
           les vostres observacions i el que opina la comunitat. Les dades d''identificació
           que compartim amb els socis són les que ofereix la comunitat, però si no
@@ -6993,14 +6981,26 @@ ca:
           de la comunitat no tindrà prioritat sobre la vostra. Això significa que
           les vostres observacions únicament tindran el grau de recerca, quan coincideix
           la vostra opinió i la de la comunitat.'
-        search_place_help_html: Lloc per defecte per a les cerques d’observacions.
-        scientific_name_first_desc: Mostra els noms científics abans dels vernàculs.
-        youve_used_all_of_your_blocks: Heu utilitzat tots els vostres bloquejos. Elimineu
-          un bloqueix per afegir un altre.
-        same_day_geoprivacy_protection: Protecció de geoprivacitat per "mateix dia"
         prefers_coordinate_interpolation_protection_desc: |-
           Quan poseu la geoprivacitat d'una observació "enfoquida" o
           "Privada" s'aplicarà la mateixa geoprivacitat a la resta d'Observacions del mateix dia per fer més difícil que altres persones  puguin intuir les coordenades real a partir d'altres observacions fetes al voltant d'aquesta en el mateix temps.
+        project_settings_desc: Recordeu, això no dóna permís als projectes per accedir
+          a les vostres coordenades ocultes o enviar-vos actualitzacions. Cal unir-se
+          a projectes per a la concessió d'aquests permisos, o concedir-los cas-per-cas.
+        same_day_geoprivacy_protection: Protecció de geoprivacitat per "mateix dia"
+        search_place_help_html: Lloc per defecte per a les cerques d’observacions.
+        scientific_name_first_desc: Mostra els noms científics abans dels vernàculs.
+        taxon_change_desc: Quan es fusionen o canvien de nom els tàxons a %{site_name},
+          les vostres observacions, llistes de tàxons, identificacions, etc. seran
+          actualitzades automàticament al nou tàxon si el canvi és inequívoc. Si opteu
+          pel contrari o el canvi és ambigu (per exemple, es tracta d'un separació
+          de dos tàxons), rebreu una actualització sobre el canvi vinculat a una eina
+          que, si ho voleu, podreu utilitzar per actualitzar manualment el contingut.
+        this_only_applies_to_traditional_projects: |-
+          Això només s'aplica als projectes tradicionals. No podeu excloure observacions de projectes col·lectius o paraigua, els quals són essencialment va salvar recerques.
+          Podeu llegir més <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
+        youve_used_all_of_your_blocks: Heu utilitzat tots els vostres bloquejos. Elimineu
+          un bloqueix per afegir un altre.
       recent:
         about_recent_users: Quant a
         definitions_html: <dl> <dt>Spam Probable</dt> <dd> L'usuari probablement sigui

@@ -17,6 +17,7 @@
 # Author: Mwestra74
 # Author: Ndecouck
 # Author: Nienke74
+# Author: OlgaVDB
 # Author: Optilete
 # Author: Pwijnsouw
 # Author: Robin van der Vliet
@@ -762,7 +763,7 @@ nl:
   cancel: Annuleren
   cant_edit_or_delete_hidden_content: Je kunt inhoud die is verborgen door sitecuratoren
     niet bewerken of verwijderen
-  cant_flag_an_object_that_doesnt_exist: Niet mogelijk om een object te labelen dat
+  cant_flag_an_object_that_doesnt_exist: Niet mogelijk om een object te markeren dat
     niet bestaat
   cant_merge_a_taxon_with_itself: Kan een taxon niet met zichzelf samenvoegen.
   captive: In gevangenschap
@@ -1108,6 +1109,7 @@ nl:
   copyright_holder: Auteursrechthouder
   copyright_info: Auteursrechtinformatie
   copyright_info_and_more: Auteursrechtinformatie en meer
+  copyright_infringement: Auteursrechtenschending
   copyright_infringement_desc: Is in strijd met de auteursrechtwetgeving of is gemaakt
     door iemand anders dan de waarnemer en heeft geen aantrekkingskracht
   covered_by_a_taxon_framework_html: Gedekt door een %{link}
@@ -1599,6 +1601,7 @@ nl:
     markering</a>
   flag_this_observation: Markeer deze waarneming
   flag_this_photo: Markeer deze foto
+  flag_this_sound: Markeer Dit Geluid
   flagged: gemarkeerd
   flagged_: Gemarkeerd
   flagged_covered_taxa: Markeer covered taxa
@@ -2125,6 +2128,7 @@ nl:
     italian: Italiaans
     japanese: Japans
     korean: Koreaans
+    lithuanian: Litouws
     luxembourgish: Luxemburgs
     maltese: Maltees
     maori: Maori
@@ -2284,6 +2288,7 @@ nl:
     ja: Japans
     ko: Koreaans
     lb: Luxemburgs
+    lt: Litouws
     mk: Macedonisch
     nl: Nederlands
     oc: Provençaals
@@ -2458,6 +2463,7 @@ nl:
     datetime_with_zone: MMM D, YYYY · LT z
   mon: ma
   month: Maand
+  monthly_supporter_since_date: Maandelijkse Supporter sinds %{date}
   months: Maanden
   months_ago: '%{text} geleden'
   more: Meer
@@ -4174,6 +4180,7 @@ nl:
     select_one_or_more_sounds: Selecteer één of meerdere geluiden
     selected_sounds: Geselecteerde geluiden
     sound: Geluid
+    sound_has_been_flagged: Dit geluid is gemarkeerd
     soundcloud_replied_with_an_error: SoundCloud geeft een foutmelding. Probeer het
       later opnieuw.
     sounds: Geluiden
@@ -4586,8 +4593,8 @@ nl:
     De wereld zit vol met interessante plaatsen, elk gevuld met merkwaardige en
     prachtige levensvormen. Soms aan de andere kant van de wereld, soms gewoon in de straat! %{site_name} Surf langs plaatsen en ontdek het leven van onze planeet. Begin met ontdekken!
   the_world_is_full_of_interesting_places_short: De wereld zit vol met interessante
-    plaatsen, elk met de meest bizarre en prachtige levensvormen. Sommige zijn aan
-    de andere kant van de wereld, terwijl anderen gewoon bij je in de straat zijn!
+    plaatsen, elk met de meest bizarre en prachtige levensvormen. Sommige bevinden
+    zich aan de andere kant van de wereld, terwijl anderen gewoon in jouw straat leven!
   then_keybord_sequence: dan
   there_are_x_synonyms_html:
     one: Er is <span class='count'>1</span> synoniem</span>
@@ -5554,6 +5561,27 @@ nl:
         iNaturalist is een gezamenlijk initiatief van de 'California Academy of Sciences' en de 'National Geographic Society'. Alle donaties worden ontvangen door de 'California Academy of Sciences', een 501 (c) (3) tax-exempt not-for-profit organisatie gevestigd in de Verenigde Staten van Amerika.
         </p>
       post_donate_social_media_text: Ik ondersteun iNaturalist omdat...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Word maandelijkse supporter van
+          iNaturalist
+        desc_html: "<p class=\"lead\">\n  <strong>iNaturalist is één van 's werelds
+          grootste gemeenschappen die zich toeleggen op het verkennen \n  van de biodiversiteit.
+          Fijn dat je er deel van uitmaakt!</strong>\n</p>\n<p class=\"lead\">\n   We
+          willen iNaturalist gratis houden, maar het leveren van deze dienst is niet
+          gratis.\n   Als je van iNaturalist houdt, kun je overwegen om iNaturalist
+          maandelijks te steunen.\n   Terugkerende donaties helpen zorgen ervoor dat
+          iNaturalist door kan gaan met het opschalen\n   van zijn infrastructuur
+          en personeel vanwege voorspelbare inkomsten. \n   Je kunt er voor kiezen
+          om je supporterstatus weer te geven op je gebruikersprofiel.\n</p>\n<p class=\"lead\">\n
+          \  Je charitieve donaties steunen iNaturalist terwijl de gemeenschap groeit,
+          bijvoorbeeld door het \n   verbeteren van Computer Vision en het implementeren
+          van nieuwe functies\n   ter ondersteuning van onze servers en medewerkers.
+          Als je liever een\n   eenmalige donatie wilt doen <a href=\"%{donate_url}\">klik
+          dan hier</a>.\n</p>\n<p class=\"text-muted\">\n   iNaturalist is een gezamenlijk
+          initiatief van 'California Academy of Sciences'\n   en 'National Geographic
+          Society'. Alle donaties worden ontvangen door\n   de 'California Academy
+          of Sciences', een 501(c)(3) belastingvrije non-profit\n   organisatie gevestigd
+          in de Verenigde Staten van Amerika.\n</p>"
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: Verwijder de<code>spam</code>
@@ -6960,6 +6988,8 @@ nl:
         common_names_desc: Toon lokale namen. Uitschakelen als u alleen wetenschappelijke
           namen wilt zien. Merk op dat u kunt bepalen welke lokale namen u ziet door
           uw Taalinstelling en plaatsinstellingen te wijzigen.
+        display_monthly_supporter_status_on_my_profile: Toon maandelijkse supporterstatus
+          op mijn profiel
         if_you_change_your_mind_you_can_always_edit_your_settings_html: "Als je van
           gedachten verandert, kun je dat altijd via \n<a href='/users/edit'>je instellingen
           wijzigen</a>."
@@ -6976,6 +7006,14 @@ nl:
         licensing_desc_html: |-
           Het licentiëren van uw inhoud geeft iedereen het wettelijke recht om het te gebruiken
           zonder uw toestemming te vragen als ze zich houden aan de voorwaarden van de licentie. Daarnaast neemt %{site_name} uw Creative Commons gelicentieerde inhoud op in archieven die regelmatig gedeeld worden met geselecteerde partnerorganisaties die daar interesse in hebben. Zo nemen we bijvoorbeeld gegevens met de licenties Geen Auteursrechten (CC0), Naamsvermelding (CC BY) en Naamsvermelding-Niet commercieel op in de archieven die we maken voor de <a href="http://www.gbif.org/">Global Biodiversity Information Facility</a>(GBIF), een internationale, intergouvernementele organisatie die biodiversiteitsinformatie van over de hele wereld compileert en distribueert.
+        monthly_supporter_desc_html: "iNaturalist Maandelijkse Supporters doneren
+          maandelijks aan de \n'California Academy of Sciences' (United States IRS
+          FIN 94-1156258) ter ondersteuning van de not-for-profit-beheer van iNaturalist-
+          en iNaturalist-netwerksites.\n<a href=\"%{url}\">Klik hier om een Maandelijkse
+          Supporter te worden</a>.\nAls je steun door ons is bevestigd, kun je deze
+          checkbox aanvinken\nzodat deze status in je profiel wordt weergegeven. Je
+          moet wel \nexact hetzelfde e-mailadres gebruiken in de Donorbox als in iNaturalist\n
+          zodat we weten dat jij maandelijkse supporter bent geworden."
         muting_desc_html: |-
           <p>
              Als u iemand dempt, kunt u geen meldingen meer over dingen ontvangen die ze doen, inclusief commentaar op uw waarnemingen, berichten aan u, vermeldingen van u, enz. Muting helpt u iemand te negeren zonder dat ze er iets aan doen.
@@ -6993,20 +7031,6 @@ nl:
           any: Alle
           joined: Projecten waar je lid van bent
           none: Geen. U bent de enige die uw waarnemingen aan projecten kunt toevoegen
-        this_only_applies_to_traditional_projects: |-
-          Dit geldt alleen voor traditionele projecten. U kunt waarnemingen niet uitsluiten
-          van collection- of parapluprojecten, die in wezen opgeslagen zoekopdrachten zijn.
-          U kunt <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a> meer lezen.
-        project_settings_desc: 'Let op: dit geeft geen projecten toestemming om toegang
-          te krijgen tot uw verborgen coördinaten of om u nieuwtjes te sturen. U moet
-          deelnemen aan projecten om deze rechten toe te kennen, of ze van geval tot
-          geval verlenen.'
-        taxon_change_desc: Wanneer taxa worden samengevoegd of hernoemd op %{site_name},
-          worden uw waarnemingen, vermelde taxa, determinaties, etc. automatisch bijgewerkt
-          naar de nieuwe taxa als de wijziging ondubbelzinnig is. Als u zich afmeldt
-          of als de wijziging niet eenduidig is (bijvoorbeeld een splitsing), ontvangt
-          u een update over de wijziging die linkt naar een tool die u kunt gebruiken
-          om uw inhoud handmatig bij te werken als u dat wilt.
         prefers_community_taxa_desc: '%{site_name} volgt wat je denkt dat je waarnemingen
           zijn en wat de gemeenschap denkt dat ze zijn. De determinatie die we met
           gegevenspartners delen, is de determinatie van de gemeenschap, maar als
@@ -7015,16 +7039,31 @@ nl:
           maar de mening van de gemeenschap heeft geen voorkeur boven die van u. Dit
           betekent dat uw waarnemingen niet in aanmerking komen voor Onderzoekskwaliteit
           tenzij u instemt met de gemeenschap.'
-        search_place_help_html: Standaardplaats voor waarnemingzoekopdrachten
-        scientific_name_first_desc: Toon wetenschappelijke namen voor lokale namen.
-        youve_used_all_of_your_blocks: Je hebt al je blokkeringen opgebruikt. Verwijder
-          een blokkering om een andere toe te voegen.
-        same_day_geoprivacy_protection: DezelfdeDag geoprivacy protectie
         prefers_coordinate_interpolation_protection_desc: Wanneer je de geoprivacy
           van een waarneming instelt op "verduisterd" of "privé" dan zal dezelfde
           geoprivacy op al je andere waarnemingen van dezelfde dag worden toegepast
           om het moeilijker te maken voor andere mensen om de ware coördinaten af
           te leiden van waarnemingen die rondom hetzelfde tijdstip zijn gemaakt.
+        project_settings_desc: 'Let op: dit geeft geen projecten toestemming om toegang
+          te krijgen tot uw verborgen coördinaten of om u nieuwtjes te sturen. U moet
+          deelnemen aan projecten om deze rechten toe te kennen, of ze van geval tot
+          geval verlenen.'
+        same_day_geoprivacy_protection: DezelfdeDag geoprivacy protectie
+        search_place_help_html: Standaardplaats voor waarnemingzoekopdrachten
+        scientific_name_first_desc: Toon wetenschappelijke namen voor lokale namen.
+        taxon_change_desc: Wanneer taxa worden samengevoegd of hernoemd op %{site_name},
+          worden uw waarnemingen, vermelde taxa, determinaties, etc. automatisch bijgewerkt
+          naar de nieuwe taxa als de wijziging ondubbelzinnig is. Als u zich afmeldt
+          of als de wijziging niet eenduidig is (bijvoorbeeld een splitsing), ontvangt
+          u een update over de wijziging die linkt naar een tool die u kunt gebruiken
+          om uw inhoud handmatig bij te werken als u dat wilt.
+        thanks_for_supporting_us!: Bedankt voor je support aan ons!
+        this_only_applies_to_traditional_projects: |-
+          Dit geldt alleen voor traditionele projecten. U kunt waarnemingen niet uitsluiten
+          van collection- of parapluprojecten, die in wezen opgeslagen zoekopdrachten zijn.
+          U kunt <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">hier</a> meer lezen.
+        youve_used_all_of_your_blocks: Je hebt al je blokkeringen opgebruikt. Verwijder
+          een blokkering om een andere toe te voegen.
       recent:
         about_recent_users: Over
         definitions_html: "<dl><dt>Waarschijnlijk Spam</dt><dd>Gebruiker is waarschijnlijk
@@ -7554,6 +7593,8 @@ nl:
                 importeren
         observation:
           attributes:
+            base:
+              coordinates_cannot_be_zero_zero: coördinaten kunnen niet 0,0 zijn
             observed_on:
               cannot_be_greater_than_date_created: kan niet later zijn dan de datum
                 waarop de waarneming is toegevoegd

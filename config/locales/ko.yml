@@ -1407,6 +1407,7 @@ ko:
     italian: italiano
     japanese: 日本語
     korean: 한국어
+    lithuanian: 리투아니아어
     luxembourgish: 룩셈부르크어
     maltese: maltese
     norwegian: norsk
@@ -1507,6 +1508,7 @@ ko:
     iw: 히브리어
     ja: 일본어
     ko: 한국어
+    lt: 리투아니아어
     mk: 마케도니아어
     pl: 폴란드어
     pt-BR: 포루투갈어 (브라질)
@@ -2788,6 +2790,7 @@ ko:
         project_addition_preferences:
           none: 없음, 프로젝트에 관찰만 추가할 수 있습니다
         scientific_name_first_desc: 보통 명사 앞에 학명을 표시합니다.
+        thanks_for_supporting_us!: 지원해 주셔서 감사합니다!
       recent:
         about_recent_users: 정보
     user_parents:
@@ -2988,6 +2991,10 @@ ko:
               has_query_parameter: 쿼리 변수를 포함할 수 없습니다.
               invalid_uri: 유효한 URI이어야 합니다.
               relative_uri: 절대 URI이어야 합니다.
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: 좌표는 0,0이 될 수 없습니다
         observation_field_value:
           attributes:
             value:
