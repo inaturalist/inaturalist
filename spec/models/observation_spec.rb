@@ -584,10 +584,6 @@ describe Observation do
       expect( o ).not_to be_valid
       expect( o.errors[:longitude] ).not_to be_blank
     end
-    it "should not allow latitude of 0 AND longitude of 0" do
-      o = Observation.make( latitude: 0, longitude: 0 )
-      expect( o ).not_to be_valid
-    end
 
   end
 

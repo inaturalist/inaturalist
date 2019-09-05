@@ -1925,6 +1925,7 @@ class Observation < ActiveRecord::Base
   end
 
   def must_not_be_on_null_island
+    return true if editing_user_id != user_id
     lat = latitude || private_latitude
     lng = longitude || private_longitude
     return true if lat.nil? || lng.nil?

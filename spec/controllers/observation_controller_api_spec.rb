@@ -268,6 +268,10 @@ shared_examples_for "an ObservationsController" do
       end
     end
 
+    it "should not allow observations where latitude AND longitude are 0" do
+      post :create, format: :json, observation: { latitude: 0, longitude: 0 }
+      expect( response.status ).to eq 422
+    end
   end
 
   describe "destroy" do
@@ -819,6 +823,14 @@ shared_examples_for "an ObservationsController" do
         update_to_obscured( obs )
         expect( obs.latitude ).not_to eq obs.private_latitude
       end
+    end
+
+    it "should not allow observations where latitude AND longitude are 0" do
+      o = Observation.make!( user: user )
+      post :update, id: o.id, format: :json, observation: { latitude: 0, longitude: 0 }
+      expect( response.status ).to eq 422
+      o.reload
+      expect( o.latitude ).not_to eq 0
     end
   end
 
