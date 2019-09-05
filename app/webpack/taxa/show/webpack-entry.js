@@ -63,6 +63,11 @@ if ( serverPayload.ancestorsShown ) {
     ancestorsShown: serverPayload.ancestorsShown
   } ) );
 }
+if ( serverPayload.testNewSimilar ) {
+  store.dispatch( setConfig( {
+    testNewSimilar: true
+  } ) );
+}
 const taxon = new Taxon( serverPayload.taxon );
 store.dispatch( setTaxon( taxon ) );
 if ( taxon.wikipedia_summary ) {
