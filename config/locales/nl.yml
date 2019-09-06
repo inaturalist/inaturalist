@@ -1340,11 +1340,11 @@ nl:
   drawings: Tekeningen
   duplicate_verb: Dupliceren
   duration_value: 'Tijdsduur: %{duration} minuten'
-  each_place_displays_all_species_inat_knows: Bij elke plaats staan alle soorten %{site_name}
-    die bekend zijn van die plek, inclusief informatie over hun abundantie, beschermingsstatus
-    en wie als eerste die soort vanaf die plaats op %{site_name} heeft waargenomen.
-    U kunt de soort filteren op taxonomische groep, kleur, beschermingsstatus of gewoon
-    ouderwets zoeken.
+  each_place_displays_all_species_inat_knows: Bij elke plaats staan alle soorten uit
+    %{site_name} die bekend zijn van die plek, inclusief informatie over hun abundantie,
+    beschermingsstatus en wie als eerste die soort vanaf die plaats op %{site_name}
+    heeft waargenomen. Je kunt de soort filteren op taxonomische groep, kleur, beschermingsstatus
+    of gewoon ouderwets zoeken.
   edit: Bewerken
   edit_a_batch_of_observations: Bewerk een reeks Waarnemingen
   edit_account_settings_and_profile: Account instellingen &amp; profiel bewerken
@@ -2461,6 +2461,7 @@ nl:
       "y": 1 jaar
       yy: '%d jaar'
     datetime_with_zone: MMM D, YYYY · LT z
+    datetime_with_offset: D MMM YYYY · LT Z
   mon: ma
   month: Maand
   monthly_supporter_since_date: Maandelijkse Supporter sinds %{date}
@@ -6519,6 +6520,8 @@ nl:
         show_projects_as_flags: Toon projecten als vlaggetjes op de kaart
         start_and_end_times_for_bioblitzes: Start- en eindtijd/-datum voor bioblitz-achtige
           activiteiten
+        traditional_projects_cannot_be_copied: Traditioneel project kan niet worden
+          gekopieerd.
         umbrella_project_features: 'Kenmerken van het parapluproject:'
         unique_url_for_outreach: Unieke URL voor outreach
         users_can_follow_your_project: Gebruikers kunnen je projectnieuws volgen via

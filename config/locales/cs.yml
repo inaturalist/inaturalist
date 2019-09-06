@@ -4220,6 +4220,9 @@ cs:
   taxon_is_a_rank_of_amphibia_with_x_observations:
     one: '%{taxon} je %{rank} obojživeníků s jedním pozorování'
     other: '%{taxon} je %{rank} obojživelníků s %{count} pozorování'
+  taxon_is_a_rank_of_aves_with_x_observations:
+    one: '%{taxon} je %{rank} ptáků s jedním pozorováním %{taxon} je %{rank} ptáků
+      s %{count} pozorováními'
   taxon_is_a_rank_of_mammalia_with_x_observations:
     one: '%{taxon} je %{rank} savců s jedním pozorováním'
     other: '%{taxon} je %{rank} savců s %{count} pozorováními'
@@ -4720,6 +4723,8 @@ cs:
       remove_photo: Odstranit fotografii
       select_all: Vybrat všechna pozorování
       upload_failed: Nahrávání se nezdařilo
+  uploading_num_of_count_photos: Nahrávání {{PLURAL:%{count}|fotografie|%{num} ze
+    %{count} fotografií|%{num} z %{count} fotografií}}...
   url_identifier_of_a_project_derived_from: URL / identifikátor projektu odvozený
     z externího zdroje
   url_of_this_taxon_on_the_source_website: URL tohoto taxonu na webové stránce zdroje
@@ -5325,6 +5330,17 @@ cs:
             %{site_name} se studenty.
     donate:
       donate_short_desc: Darujte nyní, abyste ukázali, že nás podporujete!
+      donate_desc_html: "<p class = \"lead\">\n  <strong> iNaturalist je jednou z
+        největších komunit na světě\n  zkoumající biologickou rozmanitost. Děkujeme
+        za to, že jste součástí! </ Strong>\n</ P>\n<p class = \"lead\">\n  Pokud
+        věříte v sílu této globální komunity, \n  sdílejte znalosti a vytvářejte nenahraditelná
+        data o biodiverzitě,\n  prosím, zvažte jednorázový nebo opakovaný dar.\n</
+        P>\n<p class = \"lead\">\n  Vaše dary pomáhají podporovat iNaturalist, komunita
+        roste, od\n  zdokonalení počítačů a zavádění nových funkcí\n  pro naše servery
+        a zaměstnance.\n</ P>\n<p class = \"text-muted\">\n  iNaturalist je společná
+        iniciativa Kalifornské akademie věd\n  a National Geographic Society. Všechny
+        dary obdrží\n  Kalifornská akademie věd, 501 (c) (3) nezdanitelný zisk\n  organizace
+        se sídlem ve Spojených státech amerických.\n</ P>"
       post_donate_social_media_text: Podporuji iNaturalist protože...
     flags:
       show:

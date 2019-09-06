@@ -1753,8 +1753,6 @@ es-MX:
   hex_color_eg: Color en hexadecimal, ej. 65644F
   hi: Hola,
   hi_user: Hola %{user}
-  hide: Ocultar
-  hide_details: Esconde los detalles
   hide_running_total: Esconder Total Acumulado
   hide_uncountable_species: Esconde especies incontables
   high: alta
@@ -3061,7 +3059,6 @@ es-MX:
   photo?: ¿Foto?
   photo_attribution: Foto %{attribution}
   photo_browser: Navegador de fotos
-  photo_by: Foto por
   photo_by_id_attribution: Foto %{id}, %{attribution}
   photo_credits: Créditos de las fotos
   photo_deleted: Foto borrada
@@ -6830,20 +6827,6 @@ es-MX:
           any: Cualquiera
           joined: Proyectos a los que te has unido
           none: 'Ninguno: solo tú puedes añadir observaciones a los proyectos'
-        this_only_applies_to_traditional_projects: Esto sólo aplica a proyectos tradicionales.
-          No puedes excluir observaciones de proyectos de colección o contenedores,
-          los cuales son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
-        project_settings_desc: Recuerda, esto no le da permiso a los proyectos para
-          acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte
-          a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso
-          particular.
-        taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia
-          de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones,
-          etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no
-          es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la
-          división de una especie en dos) recibirás\nuna actualización sobre el cambio
-          con un enlace a una herramienta que puedes usar\nmanualmente para actualizar
-          el contenido."
         prefers_community_taxa_desc: '%{site_name} rastrea lo que piensas que son
           tus observaciones y lo que piensa la comunidad. La identificación que compartimos
           con los socios de datos es la de la comunidad, pero si tu no crees que la
@@ -6852,15 +6835,29 @@ es-MX:
           no será priorizadas frente a la tuya. Esto significa que tus observaciones
           sólo serán de grado de investigación, cuando tu estés de acuerdo con la
           comunidad.'
-        search_place_help_html: Sitio predeterminado para las búsquedas de observaciones.
-        scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
-        youve_used_all_of_your_blocks: Has utilizado todos tus bloqueos. Quita un
-          bloqueo para añadir otro.
-        same_day_geoprivacy_protection: Protección de geoprivacidad "del mismo día"
         prefers_coordinate_interpolation_protection_desc: Cuando configuras la geoprivacidad
           de una observación como "oculto" o "privado" se aplicará la misma geoprivacidad
           a todas las observaciones del mismo día para evitar sacar conclusiones de
           coordenadas mediante observaciones que se hicieron alrededor del mismo tiempo.
+        project_settings_desc: Recuerda, esto no le da permiso a los proyectos para
+          acceder a tus coordenadas privadas o enviarte actualizaciones. Debes unirte
+          a los proyectos para otorgarles estos permisos, u otorgarlos en cada paso
+          particular.
+        same_day_geoprivacy_protection: Protección de geoprivacidad "del mismo día"
+        search_place_help_html: Sitio predeterminado para las búsquedas de observaciones.
+        scientific_name_first_desc: Mostrar los nombres científicos antes de los vernáculos.
+        taxon_change_desc: "Cuando una especie o grupo (taxa) se combina o cambia
+          de nombre en %{site_name}, \ntus observaciones, listas de especies, identificaciones,
+          etc., serán automaticamente\nactualizados al nuevo nombre si el cambio no
+          es ambiguo. Si no quieres hacer el \ncambio o es ambiguo (por ejemplo, la
+          división de una especie en dos) recibirás\nuna actualización sobre el cambio
+          con un enlace a una herramienta que puedes usar\nmanualmente para actualizar
+          el contenido."
+        this_only_applies_to_traditional_projects: Esto sólo aplica a proyectos tradicionales.
+          No puedes excluir observaciones de proyectos de colección o contenedores,
+          los cuales son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
+        youve_used_all_of_your_blocks: Has utilizado todos tus bloqueos. Quita un
+          bloqueo para añadir otro.
       recent:
         about_recent_users: Acerca de
         definitions_html: <dl><dt>Probablemente Spam</dt><dd> Usuario que probablemente

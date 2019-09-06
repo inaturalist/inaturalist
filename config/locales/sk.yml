@@ -1142,6 +1142,11 @@ sk:
   delete_photo: Zmazať fotku
   delete_project: Zmazať tento projekt
   delete_selected: Zmazať vybrané
+  delete_taxon_and_merge_most_data_html: Zmazať <i>%{taxon}</ i> a zlúčiť väčšinu
+    jeho údajov s iným taxónmi. Tento nástroj použite na <strong>odstránenie zdvojených
+    taxónov</ strong>. Pokiaľ chcete odstrániť zastarané synonymum, vytvorte prosím
+    zámenu taxónov. <Strong>POZOR!</ Strong> Mazaním taxónov môže dôjsť k veľkým škodám.
+    Viac informácií nájdete v <a href="%{curator_url}">sprievodcovi pre kurátorov</a>.
   delete_this_name: Zmazať tento názov
   delete_user: Zmazať používateľa
   delete_your_account: Zmazať váš účet
@@ -1626,6 +1631,10 @@ sk:
     načítať maximálne 50 stránok'
   heads_up_this_observation_has_been_flagged: 'POZOR: toto pozorovanie bolo označené.'
   heads_up_this_photo_has_been_flagged: 'POZOR: táto fotka bola označená.'
+  heads_up_this_taxon_locked_users_cant_add_descendants: <Strong>Pozor:</ strong>
+    tento taxón je zamknutý, čo znamená, že väčšina užívateľov nemôže pridať ďalšie
+    nástupcu importovaním taxónov. Kurátori to urobiť môžu editovaním taxónov a výberom
+    základného taxónu, namiesto toho však zvážte zlúčenie taxónov.
   hello: <test>
   help: Pomoc
   help_confirm_observations!: Pomôžte potvrdiť pozorovania!
@@ -1756,6 +1765,11 @@ sk:
   inaturalist_is_catching_some_zs: '%{site_name} práve spí'
   inaturalist_observations_by: '%{site_name} &#58; Pozorovania užívateľa %{login}'
   inaturalist_places: '%{site_name} Miesta'
+  inaturalist_places_are_way_record_what_lives_where: '%{Site_name} Miesta sú spôsob,
+    ako zaznamenávať, čo kde žije. Ak hľadáte konkrétny druh, budete vedieť, kde hľadať.
+    Každé miesto má zoznam, do ktorého sa zapisujú všetky druhy vyskytujúce sa na
+    tomto mieste, čo tiež pomáha pri vyhľadávaní niečoho, čo ste objavili v konkrétnej
+    lokalite.'
   info: Informácie
   input_taxon: Vstupný taxón
   insects: hmyz
@@ -2003,6 +2017,9 @@ sk:
     keď si vytvoríte nový účet na Flickr, s ktorým chcete prepojiť %{site_name}.
   linked_flickr_hotwo: Svoj účet na Flickr môžete aktivovať prostredníctvom %{site_name},
     aby ste mohli pridávať fotky, kliknutím na tento odkaz.
+  linked_flickr_password_html: <Strong>Nikdy vás nebudeme žiadať o vaše heslo na Flickr</
+    strong> (Flickr o neho však žiadať môže, skontrolujte url a overte si, že ide
+    o Flickr.com).
   linked_flickr_photo_copy_html: <strong>Nikdy nebudeme ukladať kópie vašich fotiek
     ani meniť vaše údaje na Flickr (ak nás o to nepožiadate). </strong> Príliš sa
     zaujímame o vtáky, chrobáky a ulitníkov, než aby sme sa hrali s vašimi údajmi!
@@ -4209,6 +4226,7 @@ sk:
   you_are_subscribed_to: Ste prihlásení k odberu
   you_cant_flag_that: Toto nemôžete označiť
   you_faved_this: Toto ste označili ako obľúbené!
+  your_: Váš
   your_comment_was_saved: Váš obsah bol uložený
   your_life_list: váš zoznam života!
   your_membership: Vaše členstvo

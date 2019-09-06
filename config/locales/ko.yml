@@ -1511,7 +1511,7 @@ ko:
     lt: 리투아니아어
     mk: 마케도니아어
     pl: 폴란드어
-    pt-BR: 포루투갈어 (브라질)
+    pt-BR: 포르투갈어 (브라질)
     pt-PT: 포르투갈어 (포르투갈)
     ru: 러시아어
     sk: 슬로바키아어
@@ -1609,6 +1609,7 @@ ko:
       m: 1분
       M: 1분
     datetime_with_zone: MMM D, YYYY · LT z
+    datetime_with_offset: MMM D, YYYY · LT Z
   mon: 월
   month: 월
   months_ago: '%{text}전'
@@ -2748,6 +2749,7 @@ ko:
         project_icon_help: 선택적 아이콘. 최소 72px x 72px이어야 정사각형으로 잘립니다.
         project_name: 프로젝트 이름
         project_summary: 프로젝트 요약
+        traditional_projects_cannot_be_copied: 전통적인 프로젝트는 복사할 수 없습니다
         use_this_link_to_create_html: 전통 프로젝트를 만들려면 <a href="%{url}">이 링크</a>를 사용하세요.
         welcome_to_projects: 프로젝트에 오신 것을 환영합니다!
         errors:
