@@ -2189,7 +2189,8 @@ en:
     datetime_with_offset: "MMM D, YYYY · LT Z"
   mon: Mon
   month: Month
-  monthly_supporter_since_date: Monthly Supporter since %{date}
+  monthly_supporter_since_date_html: |
+    <a href="%{url}">Monthly Supporter</a> since %{date}
   months: Months
   months_ago: "%{text} ago"
   more: More
