@@ -131,6 +131,8 @@ es:
   x_people_agree_html:
     one: <span class="count">1</span> persona está de acuerdo
     other: <span class="count">%{count}</span> personas están de acuerdo
+  x_photos:
+    other: una=1 foto
   x_new_species:
     one: 1 Nueva especie
     other: '%{count} Nuevas especies'
@@ -206,6 +208,20 @@ es:
   about_this_bioblitz: Acerca de esta maratón naturalista
   about_this_map: Acerca de este mapa
   about_this_project: Acerca de este proyecto
+  about_trips_html: '<h4> Los viajes permiten la recopilación de datos de presencia-ausencia
+    al agregar contexto a sus observaciones </h4> <p> <strong> Por qué </strong> Los
+    datos de presencia-ausencia incluyen información sobre el esfuerzo de muestreo
+    que es útil para análisis científicos como la distribución modelada (las observaciones
+    naturales de Raw son datos de ''solo presencia''). </p> <p> <strong> Cómo </strong>
+    Un viaje agrega contexto a sus observaciones al registrar: </p> <ul> <li> < strong>
+    Qué </strong> buscó (lista de objetivos) </li> <li> <strong> Dónde </strong> buscó
+    (área de búsqueda) </li> <li> <strong> Cuándo </strong> buscó (intervalo de búsqueda)
+    </li> </ul> <p> Las especies en su lista de objetivos que pudo observar dentro
+    del área de búsqueda y el intervalo se interpretan como presencias. Mientras que
+    las especies en su lista de objetivos que no pudo observar se interpretan como
+    ausencias. Haga clic en ''Tabular datos de ausencia de presencia de viajes'' para
+    generar una tabla de registros de presencia-ausencia para una especie de viajes
+    y observaciones asociadas. <a href=''%{url}''> Obtenga más información </a> </p>'
   about_x: Acerca de %{x}
   acc: Prec.(m)
   account: Cuenta
@@ -2472,8 +2488,10 @@ es:
       "y": 1a
       yy: '%da'
     datetime_with_zone: MMM D, YYYY · LT z
+    datetime_with_offset: MMM D, AAAA · LT Z
   mon: lun
   month: Mes
+  monthly_supporter_since_date: Partidario mensual desde %{date}
   months: Meses
   months_ago: hace %{text}
   more: Más
@@ -4864,8 +4882,8 @@ es:
   unclassified: Sin clasificar
   ungrafted_taxa: Taxones sin injertar
   unhide_content: Mostrar contenido
-  unhide_desc: Mostrar revelará este contenido para que todos lo vean. Los curadores
-    todavía pueden eligir ocultarlo nuevamente en el futuro.
+  unhide_desc: La revelación permitirá que cualquiera pueda ver este contenido. Los
+    curadores aún pueden optar por ocultarlo de nuevo en el futuro.
   uninvite: cancelar invitación
   unique_identifier_of_this_taxon: Identificador único para esta especie o grupo en
     la base de datos.
@@ -5266,10 +5284,9 @@ es:
   wikipedia_attribution_cc_by_sa_3: 'Fuente: Wikipedia, «%{title}», %{url}, CC BY-SA
     3.0'
   wikipedia_attribution_cc_by_sa_3_html: |-
-    Este articulo usa material del articulo de Wikipedia
-    <a href="%{url}">"%{title}"</a>, que esta bajo la licencia
-    <a href="https://creativecommons.org/licenses/by-sa/3.0/">Creative
-    Commons Attribution-Share-Alike License 3.0</a>. Puede haberse omitido parte del contenido original, pero ningún contenido ha sido cambiado o extendido.
+    Este artículo utiliza material del artículo de Wikipedia.
+    <a href="%{url}">"%{title}"</a>, que se publica bajo el
+    <a href="https://creativecommons.org/licenses/by-sa/3.0/"> Creative Commons Attribution-Share-Alike License 3.0</a>. El contenido puede haber sido omitido del original, pero ningún contenido ha sido modificado o extendido.
   wikipedia_entry: Registro de Wikipedia
   wikipedia_taxobox_raquo: Ficha de taxón en Wikipedia &raquo;
   with: con
@@ -5327,8 +5344,8 @@ es:
   yes_i_want_to_join: Sí, deseo unirme
   yes_license_my_childs_observations: Sí, hacer una licencia de mis fotos, sonidos
     y observaciones para que los científicos puedan usar los datos
-  yes_license_my_observations_so_scientists_can_use: Sí, licencia mis fotos, sonidos
-    y observaciones para que los científicos puedan usar mis datos.
+  yes_license_my_observations_so_scientists_can_use: Sí; dar licencia a científicos
+    para que puedan utilizar mis fotografías, sonidos y observaciones.
   yes_reject_it: Sí, rechazarlo
   yes_show_this_in_the_box: Sí, muestra esto en la caja grande por arriba de los taxones
   yesterday: Ayer
@@ -5605,6 +5622,22 @@ es:
           iNaturalist es una iniciativa conjunta de la Academia de Ciencias de California y la Sociedad de National Geographic. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización 501(c)(3), sin ánimo de lucro, exenta de impuestos con sede en los Estados Unidos de América.
         </p>
       post_donate_social_media_text: Apoyo iNaturalist porque...
+      monthly_supporters:
+        become_a_monthly_supporter_of_inaturalist: Conviértase en un Patrocinador
+          Mensual de Naturalista.
+        desc_html: |-
+          <p class="lead">
+          <strong>NaturaLista es una de las comunidades más grandes del mundo dedicada a explorar la biodiversidad. ¡Gracias por ser parte de esto!</strong>
+          </p>
+          <p class="lead">
+          Queremos que NaturaLista sea de uso gratuito, pero no es libre de operar. Si amas NaturaLista, considera convertirte en un patrocinador mensual. Los obsequios recurrentes ayudan a garantizar que NaturaLista pueda seguir ampliando su infraestructura y su personal al proporcionar ingresos predecibles. También puede optar por mostrar su estado de patrocinador mensual en su perfil de usuario.
+          </p>
+          <p class='lead'>
+          Sus donaciones caritativas ayudan a apoyar a NaturaLista a medida que la comunidad crece, desde el avance de la visión por computadora y la implementación de nuevas funciones hasta el soporte de nuestros servidores y personal. Si prefiere hacer una donación única, por favor <a href="%{donate_url}"> haga clic aquí </a>.
+          </p>
+          <p class="text-muted">
+          NaturaLista es una iniciativa conjunta de la Academia de Ciencias de California y la National Geographic Society. Todas las donaciones serán recibidas por la Academia de Ciencias de California, una organización sin fines de lucro 501(c)(3) exenta de impuestos con sede en los Estados Unidos de América.
+          </p>
     flags:
       show:
         flags_that_should_not_be_resolved_desc_html: |-
@@ -6612,6 +6645,8 @@ es:
         show_projects_as_flags: Mostrar los proyectos como banderas en el mapa
         start_and_end_times_for_bioblitzes: Fecha / hora de inicio y finalización
           (para eventos de tipo bioblitz)
+        traditional_projects_cannot_be_copied: El proyecto tradicional no se puede
+          copiar.
         umbrella_project_features: 'Características de proyecto paraguas:'
         unique_url_for_outreach: URL único para promoción
         users_can_follow_your_project: Los usuarios pueden seguir actualizaciones
@@ -7072,6 +7107,8 @@ es:
         common_names_desc: |-
           Mostrar los nombres vernáculos. Desactiva la opción si quieres ver solo los científicos.
           Observa que puedes controlar cuáles nombres vernáculos ves al modificar la configuración de idioma y región.
+        display_monthly_supporter_status_on_my_profile: Mostrar el estado de Patrocinador
+          mensual en mi perfil
         if_you_change_your_mind_you_can_always_edit_your_settings_html: |-
           Si cambias de opinión siempre puedes
           <a href='/users/edit'>editar tus preferencias</a>.
@@ -7086,6 +7123,9 @@ es:
         licensing_desc_html: |-
           La licencia de su contenido le otorga a cualquier persona el derecho legal de usarlo sin pedirle permiso si cumple con los términos de la licencia. Además, %{site_name} incluye su contenido con licencia Creative Commons en archivos actualizados regularmente producidos para organizaciones asociadas seleccionadas interesadas en nuestros datos. Por ejemplo, incluimos los registros Sin Copyright (CC0), Atribución (CC BY) y Atribución-No Comercial (CC BY-NC) en el archivo que generamos para <a href="http://www.gbif.org/">Global Biodiversity Information
           Facility</a> (GBIF), una organización internacional e intergubernamental que recopila y distribuye información sobre biodiversidad de todo el mundo.
+        monthly_supporter_desc_html: |-
+          Los Patrocinadores mensuales de NaturaLista hacen contribuciones mensuales automáticas que son recibidas por la Academia de Ciencias de California (IRS FIN 94-1156258 de los Estados Unidos) para apoyar la operación sin fines de lucro de los sitios de NaturaLista y de la Red de NaturaLista.
+          <a href="%{url}"> Haga clic aquí para convertirse en un patrocinador mensual</a>. Cuando hayamos confirmado su apoyo, podrá marcar esta casilla para mostrar este estado en su perfil. Nota: necesitará usar exactamente la misma dirección de correo electrónico en Donorbox que en NaturaLista para que podamos confirmar que se ha convertido en un seguidor mensual.
         muting_desc_html: |-
           <p>
             Silenciar a alguien te previene de recibir notificaciones de lo que hacen, incluyendo comentarios acerca de tus observaciones, o de enviarte mensajes, de mencionarte, etc. El silenciar a alguien te ayuda a ignorarlos sin prevenir de que hagan otras actividades.
@@ -7127,6 +7167,7 @@ es:
           Si no se concreta el cambio o es ambiguo (por ejemplo, una división), recibirás
           una actualización sobre el cambio de la vinculación a una herramienta que
           puedes utilizar para actualizar manualmente el contenido si así lo eliges.
+        thanks_for_supporting_us!: ¡Gracias por apoyarnos!
         this_only_applies_to_traditional_projects: Esto sólo aplica a proyectos tradicionales.
           No puedes excluir observaciones de proyectos de colección o paraguas, los
           cuales son esencialmente búsquedas guardadas. Puedes leer más <a href="/blog/15450-announcing-changes-to-projects-on-inaturalist">aquí</a>.
@@ -7630,6 +7671,8 @@ es:
           other: es de tamaño incorrecto (debe ser de %{count} caracteres)
       template:
         body: 'Se encontraron problemas con los siguientes campos:'
+        header:
+          other: un=1 error ha evitado que este %{model} se guarde
       models:
         application:
           attributes:
@@ -7657,7 +7700,7 @@ es:
         observation:
           attributes:
             base:
-              coordinates_cannot_be_zero_zero: Las coordenadas no pueden ser 0,0
+              coordinates_cannot_be_zero_zero: las coordenadas no pueden ser 0,0
             observed_on:
               cannot_be_greater_than_date_created: No puede ser mayor que la fecha
                 en que se agregó la observación
@@ -7678,7 +7721,7 @@ es:
         place:
           attributes:
             place_geometry:
-              is_too_large_to_edit: Es demasiado grande para editar
+              is_too_large_to_edit: es demasiado grande para editarse
               is_too_large_to_import: es demasiado grande para importar
               contains_too_many_observations: contiene demasiadas observaciones para
                 importar

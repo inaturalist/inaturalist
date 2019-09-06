@@ -32,6 +32,7 @@
 # Author: Siebrand
 # Author: SimondR
 # Author: Sudachi
+# Author: Verdy p
 # Author: Walter Klosse
 # Author: Woytecr
 # Author: 아라
@@ -154,6 +155,9 @@ qqq:
   and: '{{Identical|And}}'
   and_help_the_inaturalist_community_grow: where site_name is the name of the site
   and_you_havent_linked: where site_name is the name of the site
+  android: |-
+    It's assumed that this indicates the wellknown OS name (and brand) for mobile computing devices and home appliances, with a capital (left untranslated in most markets).
+    And not a generic translatable term for an humanoid-shaped robot.
   animals: '{{Identical|Animal}}'
   annotations: '{{Identical|Annotation}}'
   announcements: '{{Identical|Announcement}}'
@@ -188,7 +192,10 @@ qqq:
   at_time: |-
     where time is a time
     {{Identical|At}}
-  atom: '{{Identical|Atom}}'
+  atom: |-
+    This is assumed to be the name and brand of the Internet toolkit for news feeds, generally left untranslated in most markets.
+    Not the generic term for the smallest physical stable group of elementary particles of matter.
+    {{Identical|Atom}}
   attribute: '{{Identical|Attribute}}'
   authority_list:
     cites: Convención sobre el Comercio Internacional de Especies Amenazadas de Fauna
@@ -234,15 +241,14 @@ qqq:
   captive: '{{Identical|Captive}}'
   card: '{{Identical|Card}}'
   case_plural: https://www.inaturalist.org/identifications/<your name> It is used
-    to make meervoud from a singe person, but unfortunately this does not work in
-    all languagues
+    to append a plural mark to a single person name, but unfortunately this does not
+    work in all languages
   casual: |-
-    The data quality assessment is a summary of an observation's accuracy. All observations start as "casual" grade, and become "needs ID" when
-
-    the observation has a date /
-    the observation is georeferenced (i.e. has lat/lon coordinates) /
-    the observation has photos or sounds /
-    the observation isn't of a human
+    The data quality assessment is a summary of an observation's accuracy. All observations start as "casual" grade, and become "needs ID" when:
+    * the observation has a date,
+    * the observation is georeferenced (i.e. has lat/lon coordinates),
+    * the observation has photos or sounds, or
+    * the observation isn't of a human.
   catalogue_of_life: The Catalogue of Life is the most comprehensive and authoritative
     global index of species currently available.
   categories: '{{Identical|Category}}'
@@ -726,12 +732,11 @@ qqq:
       future: '{{Identical|In}}'
     datetime_with_zone: momentjs formatting string for a date with a time and a time
       zone. See https://momentjs.com/docs/#/displaying/ for formatting rules.
-    datetime_with_offset: momentjs formatting string for a date with a time and a time
-      zone offset. For some time zones, momentjs cannot print a time zone
-      abbreviation like GMT or PDT, so it will instead print a weird offset
-      like "-05". In these cases, we try to use datetime_with_offset instead
-      of datetime_with_zone. See https://momentjs.com/docs/#/displaying/ for
-      formatting rules.
+    datetime_with_offset: momentjs formatting string for a date with a time and a
+      time zone offset. For some time zones, momentjs cannot print a time zone abbreviation
+      like GMT or PDT, so it will instead print a weird offset like "-05". In these
+      cases, we try to use datetime_with_offset instead of datetime_with_zone. See
+      https://momentjs.com/docs/#/displaying/ for formatting rules.
   mon: Abbreviation for Monday, a day of the week.
   month: '{{Identical|Month}}'
   months: '{{Identical|Month}}'

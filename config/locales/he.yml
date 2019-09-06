@@ -5,6 +5,7 @@
 # Author: Erelon
 # Author: Geagea
 # Author: Guycn2
+# Author: Nawaf9
 # Author: Strayblues
 # Author: Uziel302
 # Author: YaronSh
@@ -35,6 +36,7 @@ he:
   x_journal_posts:
     one: פרסום עיתוני אחד
     other: '%{count} פרסומים עיתוניים'
+  x_journal_posts_html: J
   x_matching_taxa:
     one: טקסון מתאים אחד
     other: '%{count} טקסונים מתאימים'
@@ -224,6 +226,8 @@ he:
   add_taxon_batch_to: הוספת טקסונים מרובים ל"%{list}"
   add_taxon_range: הוספת מגוון טקסונים
   add_taxonomic_tags_to: הוספת תגיות טקסונומיות לתמונות ה־Flickr שנבחרו &raquo;
+  add_taxonomic_tags_to_the_flickr_photos: Add taxonomic tags to the Flickr photos
+    associated with the selected observations.jw
   add_to_a_scheme: הוספה לערכה
   add_to_a_project: הוספה לפרויקט
   add_to_calendar: הוספה ליומן
@@ -1232,9 +1236,11 @@ he:
   importing: מתבצע יבוא...
   improving: שיפור
   in_n: ב %{n}
+  in_place_x: ב%{place}
   inbox: דואר נכנס
   including: כולל
   in_progress: בתהליך
+  in_taxon?: בטקסון
   in_the_past: בעבר
   in_the_past_week: בשבוע החולף
   inactive: לא פעיל
@@ -1269,6 +1275,7 @@ he:
   iucn_red_list_status: סטטוס לפי רשימת המינים האדומים של IUCN
   january: ינואר
   join: הצטרפות
+  join_inat: הצטרפות ל%{site_name}
   join_project: הצטרף לפרוייקט זה
   join_this_project: הצטרף לפרויקט זה
   joined_with_date: הצטרף ב:%{date}
@@ -1379,7 +1386,10 @@ he:
   loading_metadata: טוען מטא־נתונים...
   loading_more_photos: תמונות נוספות נטענות...
   loading_observations: תצפיות נטענות...
+  loading_suggestions: הצעות נטענות...
   loading_tags: תגיות נטענות...
+  loading_taxa_from_your: טקסונים מהתצפיות שלך נטענות...
+  loading_wikipedia_description: תיאור מויקיפידיה נטען...
   locales_: אזורים
   locales:
     ar: ערבית
@@ -1659,7 +1669,9 @@ he:
   no_species_observed: לא נצפה אף מין
   no_species_on_this_list: אין עדיין מינים ברשימה זו!
   no_subject_parens: (ללא נושא)
+  no_suggestions_available: אין הצעות זמינות
   no_summary_from_wikipedia: אין סיכום מויקיפידיה
+  no_summary_has_been_set: טרם הוגדר סיכום
   no_taxa_selected: אף טקסה לא נבחרה!
   no_taxa_yet: עדיין ללא טקסות!
   no_wikipedia_page_for_taxon: אין ערך בויקיפידיה לטקסון זה.
@@ -1679,6 +1691,7 @@ he:
   not_linked_flickr: חשבון ה%{site_name} שלך אינו מקושר לחשבון ה Flickr שלך
   not_logged_in: לא התחברת לחשבון
   not_on_this_list: לא ברשימה זו.
+  not_recorded: לא נרשם
   not_seeing_what_looking_for: לא מצאת את מה שחיפשת?
   not_yet: עדיין לא
   note: הערה
@@ -1820,6 +1833,7 @@ he:
   only_project_curators_can_do_that: רק אוצרי פרוייקטים יכולים לעשות את זה.
   only_receive_updates_about_this_taxon: קבלת עדכונים רק עבור טקסון זה
   only_show_active_taxa: הצגת טקסונים פעילים בלבד
+  only_show_events_that_last_less_than_2_weeks: הצגת אירועים שנמשכים פחות משבועיים
   only_show_taxa_fom_this_list: הצגת נתונים מטקסונים אלה בלבד
   only_species: מינים בלבד
   only_species_and_subspecies: מינים ותתי-מינים/זנים בלבד
@@ -2312,6 +2326,7 @@ he:
   received: התקבל
   recent_additions: תוספות אחרונות
   recent_comments_on_your_stuff: הערות אחרונות על הדברים שלך
+  recent_new_users: משתמשים שהצטרפו לאחרונה
   recent_observations: תצפיות אחרונות
   recent_observations_: תצפיות אחרונות
   recent_observations_by: תצפיות אחרונות של %{login}
@@ -2332,6 +2347,7 @@ he:
   refreshing: מתרענן
   regenerate_stats: יצירת סטטיסטיקות מחדש
   regenerate_url: יצירת URL מחדש
+  register_for_this_event_at_x_html: הרשמה לאירוע ב%{x}
   reject?: לדחות?
   reject_the_community_id: דחיית זיהוי הקהילה
   related_species: מינים קרובים
@@ -2393,6 +2409,7 @@ he:
   research: מחקר
   research_: מחקר
   research_grade: דרגת מחקר
+  research_quality: דרגת מחקר
   reset_search_filters: איפוס פילטרי חיפוש
   reset_your_password: איפוס הססמה
   resolved: נפתר
@@ -2509,6 +2526,8 @@ he:
   showing_observations_by: הצגת תצפיות לפי
   showing_taxa_from_everywhere: הצגת טקסונים מכל המקומות
   showing_taxa_from_place: הצגת טקסונים מ%{place}
+  sign_in: כניסה
+  sign_in_with_provider: כניסה באמצעות %{provider}
   sign_up_with_provider: הרשמה באמצעות %{provider}
   sign_out: התנתקות
   sign_up!: הרשמה!
@@ -2640,6 +2659,8 @@ he:
   table_of_contents: תוכן עניינים
   tag: תגית
   tags: תגיות
+  take_me_facebook: כן, קחו אותי לפייסבוק!
+  take_me_flickr!: כן, קחו אותי ל Flickr!
   take_me_back: החזירו אותי
   taxa: טקסונים
   taxa_info: מידע על הטקסונים
@@ -2705,6 +2726,7 @@ he:
   the_following_observations_could: לא ניתן היה להוסיף את התצפיות הבאות ל%{link}
   the_following_photos_have_been_tagged: 'התמונות הבאות תויגו:'
   the_list: הרשימה
+  the_observation_form_looks: 'טופס התצפית נראה כך:'
   the_people_of_inat: האנשים של %{site_name}
   the_project: הפרוייקט
   the_species_listed_below_were_not_found_in_the_site_database: מינים אלו לא מופיעים
@@ -2748,7 +2770,9 @@ he:
   this_is_taking_forever: זה לוקח לנצח... נסו שנית מאוחר יותר
   this_is_the_primary_listing: זוהי הרשומה העיקרית
   this_is_your_observation: זו התצפית שלך
+  this_job_failed_to_run: לא ניתן היה להשלים את המשימה. אנא צרו קשר עם %{email}
   this_list_is_empty!: הרשימה ריקה!
+  this_list_only_accepts_taxa_that_are: לרשימה זו ניתן להוסיף רק טקסונים ש
   this_observation: תצפית זו
   this_observation_was_created_using: 'תצפית זו נוצרה באמצעות:'
   this_photo_is_already_associated: תמונה זו משוייכת כבר לאחת מתצפיותך
@@ -2910,6 +2934,7 @@ he:
   view_the_observation: הצגת התצפית
   view_user_observations: הצגת התצפיות של %{user}
   view_x: הצגת %{x}
+  view_your_inbox: לתיבת הדואר הנכנס
   view_your_life_list: הצגת רשימת החיים שלך
   view_your_calendar: הצגת היומן שלך
   view_your_observations: הצגת התצפיות שלך
@@ -2946,6 +2971,7 @@ he:
   were_currently_down_for: האתר ירד ל
   what_color_was_it: איזה צבע זה היה?
   what_did_you_see: מה ראית?
+  what_do_you_think: מה דעתך?
   what_to_keep: לשמירה
   whats_this?: מה זה?
   when: מתי
@@ -3045,6 +3071,7 @@ he:
   you_sure_remove_this_observation?: האם באמת התכוונת למחוק את התצפית הזאת?
   you_think_observation_inacurate: אם לדעתכם התצפית הזאת אינה מדויקת, אנא הוסיפו מזהה
     (ID), השתתפו באומדן האיכות שלמעלה, או תארו את חוסר־הדיוק בתגובה.
+  you_would_get_the: 'התגיות הבאות יתקבלו:'
   youve_joined_the_x_project: הצטרפת ל%{project_invitation} והתצפית שלך הוספה
   your: שלך
   your_: שלך
@@ -3054,6 +3081,7 @@ he:
   your_comment_was_saved: נשמר!
   your_content: התוכן שלך
   your_contributions_to_project: התרומות שלך ל%{project_title}
+  your_default: ברירת המחדל שלך
   your_drafts: הטיוטות שלךל
   your_email_address: כתובת הדוא"ל שלך
   your_flickr_account: חשבון הFlickr שלך
@@ -3063,6 +3091,7 @@ he:
   your_life_list: רשימת החיים שלך!
   your_membership: החברות שלך
   your_month_observations: תצפיות %{month} שלך
+  your_name_was_saved: שמך נשמר
   your_new_password_is: הססמה החדשה שלך היא
   your_observations: התצפיות שלך
   your_observations_couldnt_be_added_to_that_project: 'לא ניתן היה להוסיף את התצפיות
@@ -3074,13 +3103,16 @@ he:
   your_profile_was_successfully_updated: הפרופיל שלך עודכן בהצלחה
   your_recent_projects: הפרוייקטים האחרונים שלך
   your_relationships: הקשרים שלך
+  your_site_account_has_been_created: חשבון %{site} שלך נוצר
   your_subscriptions: המנויים שלך
   your_sure_delete_list?: האם ברצונך למחוק את הרשימה הזאת?
   your_sure_delete_taxon_from_list?: האם ברצונך להסיר את %{taxon} מהרשימה
   your_tags: התגיות שלך
   your_world!: העולם שלך!
+  yours: שלך
   youre_viewing_all_observations: אתם צופים בכל התצפיות
   youve_already_added_an_identification: כבר הוספת זיהוי, וניתן להוסיף רק אחד
+  youve_seen_it_want_to: ראית את זה! רוצה ל
   verifiable: ניתן לבדיקה
   verifiable_observations: תצפיות שניתנות לבדיקה
   views:
@@ -3122,8 +3154,26 @@ he:
         can_i_add_photos_without_a_flickr_account?: האם ניתן להוסיף תמונות ללא חשבון
           Flickr?
         what_are_tags?: מהן תגיות?
+        what_is_a_life_list?: מה זה רשימת חיים?
+        i_observed_a_species: ראיתי מין, למה הוא לא מופיע ברשימת החיים שלי?
+    messages:
+      from: מ
+      to: אל
+      subject: נושא
+      index:
+        show_messages_from_user: הצגת הודעות של %{user}
+        show_messages_to_user: הצגת הודעות ל%{user}
     observations:
       copy_tip: הוסיפו תצפית חדשה על־ידי העתקת התאריך, המקום, התמונות והשדות של התצפית.
+      export:
+        well_email_you: אוקיי, נשלח אלייך כשה יהיה מוכן.
+        taking_a_while: זה לוקח קצת זמן. נסו את האפשרויות האחרות.
+      field_descriptions:
+        observed_on_string: תאריך/שעה כפי שהוזן על ידי המתצפת
+        observed_on: תאריך תצפית מנורמל
+        time_zone: אזור הזמן של התצפית
+        url: URL של התצפית
+        tag_list: רשימת תגיות מופרדת פסיקים
       identify:
         review_all_tooltip: סימון כל התצפיות בדף כתצפיות שנסקרו
         you_reviewed_message: סקרת %{reviewed} מתוך %{pageTotal} תצפיות בדף הזה, מתוך
@@ -3132,14 +3182,205 @@ he:
       show:
         allow_curator_coordinate_access_desc_html: לאפשר למשגיחי המיזם לצפות בנקודות
           הציון המוסתרות עבור התצפית הזאת.
+    photos:
+      inviter:
+        automatically_add_to_project: הוסף באופן אוטומטי לפרוייקט
     projects:
+      collection: אוסף
+      umbrella: מטריה
+      tracks_multiple_projects: לעקוב אחרי מספר פרוייקטים
+      edit:
+        icon_desc: יחתך לריבוע
+        rules:
+          georeferenced: בעלי קואורדינטות
+        submission_models:
+          any: כולם
+          curators: אוצרי הפרוייקט
+      join:
+        invite_only_description: חברות בפרוייקט זה על פי הזמנה בלבד. אם תרצו להצטרף,
+          נא ליצור קשר עם אחד האוצרים שברשימה, ולבקש הזמנה.
+      new:
+        data_visualizations: הצגת נתונים
+        delete_project: מחיקת פרויקט
+        display_project_name: מחיקת שם הפרוייקט
+        project_details: פרטי הפרוייקט
+        project_name: שם הפרויקט
+        project_summary: תקציר הפרוייקט
+        project_summary_placeholder: גלו ועקבו אחרי הציפורים של פארק שער הזהב...
+        welcome_to_projects: ברוכים הבאים לפרוייקטים!
       project_user_curator_coordinate_access_labels:
         observer: כן, אבל רק אם אני מוסיף את ההבחנה לפרויקט בעצמי
         none: לא
+    shared:
+      blocked:
+        youve_been_blocked: נחסמת
+        youve_blocked: חסמת משתמש זה
+      spam:
+        this_has_been_flagged_as_spam: סומן כספאם
+    taxa:
+      show:
+        frequency:
+          Flowering Phenology=bare: ללא פריחה
+          Flowering Phenology=budding: הנצה
+          Flowering Phenology=flower: פריחה
+          Flowering Phenology=fruit: עם פירות
+          Life Stage=egg: ביצה
+          Life Stage=larva: לרווה
+          Life Stage=nymph: נימפה
+          Life Stage=adult: בוגר
+          unannotated: ללא תווית
     users:
+      delete:
+        by_deleting_your_account_you_will_remove: במחיקת החשבון שלך יוסרו גם
+        type_confirmation_code: הקלדת %{confirmation_code}
+      edit:
+        project_addition_preferences:
+          joined: פרוייקטים שהצטרפת אליהם
+        thanks_for_supporting_us!: תודה על התמיכה!
+      recent:
+        about_recent_users: אודות
       show:
         this_user_was_banned: משתמש זה הושעה
+    welcome:
+      index:
+        species_observed: מינים שנצפו
+        nature_at_your_fingertips: טבע בקצות אצבעותייך
+        who_uses_site_name: מי משתמש ב%{site_name}?
+        what_are_you_waiting_for: למה אתם מחכים?
+  date:
+    abbr_day_names:
+    - א'
+    - ב'
+    - ג'
+    - ד'
+    - ה'
+    - ו'
+    - שבת
+    abbr_month_names:
+      1: ינו'
+      2: פבר'
+      3: מרץ
+      4: אפר'
+      5: מאי
+      6: יוני
+      7: יולי
+      8: אוג'
+      9: ספט'
+      10: אוק'
+      11: נוב'
+      12: דצמ'
+    day_names:
+    - יום ראשון
+    - יום שני
+    - יום שלישי
+    - יום רביעי
+    - יום חמישי
+    - יום שישי
+    - יום שבת
+    month_names:
+      1: ינואר
+      2: פברואר
+      3: מרץ
+      4: אפריל
+      5: מאי
+      6: יוני
+      7: יולי
+      8: אוגוסט
+      9: ספטמבר
+      10: אוקטובר
+      11: נובמבר
+      12: דצמבר
+  datetime:
+    distance_in_words:
+      half_a_minute: חצי דקה
+      less_than_x_minutes:
+        one: לפני פחות מדקה
+        other: לפני פחות מ־%{count} דקות
+      less_than_x_seconds:
+        one: לפני פחות משנייה
+        other: לפני פחות מ־%{count} שניות
+    prompts:
+      day: יום
+      hour: שעה
+      minute: דקה
+      month: חודש
+      second: שניות
+      year: שנה
+  errors:
+    messages:
+      blank: לא ניתן להשאיר ריק
+      confirmation: לא תואם לססמה
+      empty: אינו יכול להיות ריק
+      equal_to: חייב להיות שווה ל־%{count}
+      even: חייב להיות זוגי
+      greater_than: חייב להיות גדול מ־%{count}
+      greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
+      inclusion: לא ברשימה
+      invalid: שגוי
+      less_than: חייב להיות פחות מ־%{count}
+      less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
+      not_a_number: הוא לא מספר
+      not_an_integer: חייב להיות מספר שלם
+      odd: חייב להיות אי־זוגי
+      record_invalid: 'אימות נכשל: %{errors}'
+  number:
+    currency:
+      format:
+        delimiter: ','
+        precision: "2"
+        separator: .
+        unit: $
+    format:
+      delimiter: ','
+      precision: "3"
+      separator: .
+    human:
+      decimal_units:
+        units:
+          billion: מיליארד
+          million: מיליון
+          thousand: אלך
+          trillion: טריליארד
+      format:
+        precision: "3"
+        significant: "1"
+        strip_insignificant_zeros: "1"
+      storage_units:
+        units:
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+  support:
+    array:
+      last_word_connector: ', וגם'
+  time:
+    pm: אחה"צ
+  activemodel:
+    errors:
+      messages:
+        blank: לא ניתן להשאיר ריק
+        confirmation: לא תואם לססמה
+        empty: אינו יכול להיות ריק
+        equal_to: חייב להיות שווה ל־%{count}
+        even: חייב להיות זוגי
   activerecord:
+    attributes:
+      project:
+        description: תיאור
+        end_time: זמן סיום
+        terms: תנאים
+        prefers_place_boundary_visible: הצגת גבולות מקום על המפה
+      place:
+        display_name: שם לתצוגה
+        latitude: קו רוחב
+        longitude: קו אורך
+      user:
+        email: דוא״ל
+        login: שם משתמש
+        name: שם
+        locale: אזור
+        time_zone: אזור זמן
     errors:
       messages:
         blank: לא ניתן להשאיר ריק
@@ -3148,8 +3389,11 @@ he:
         equal_to: חייב להיות שווה ל־%{count}
         even: חייב להיות זוגי
         greater_than: חייב להיות גדול מ־%{count}
+        greater_than_or_equal_to: חייב להיות גדול או שווה ל%{count}
+        inclusion: לא ברשימה
         invalid: שגוי
         less_than: חייב להיות פחות מ־%{count}
+        less_than_or_equal_to: חייב להיות קטן או שווה ל%{count}
         not_a_number: הוא לא מספר
         not_an_integer: חייב להיות מספר שלם וחיובי
         odd: חייב להיות אי־זוגי
@@ -3163,10 +3407,38 @@ he:
           attributes:
             redirect_uri:
               invalid_uri: חייב להיות כתובת תקנית.
+        observation:
+          attributes:
+            base:
+              coordinates_cannot_be_zero_zero: הקואורדינטות לא יכולות להיות 0,0
         place:
           attributes:
             place_geometry:
+              is_too_large_to_edit: גדול מדי בכדי לערוך
               is_too_large_to_import: קובץ גדול מדי לייבוא
+              contains_too_many_observations: יותר מדי תצפיות מכדי לייבא
+        project_observation:
+          attributes:
+            observation_id:
+              must_be_observed_after: שנצפה אחרי %{time}
+              must_be_observed_before: שנצפה לפני %{time}
+        taxon:
+          attributes:
+            rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: ניתן לשינוי רק על ידי
+                האוצר של טקסון זה
+            rank_level:
+              can_only_be_changed_by_a_curator_of_this_taxon: ניתן לשינוי רק על ידי
+                האוצר של טקסון זה
+            ancestry:
+              can_only_be_changed_by_a_curator_of_this_taxon: ניתן לשינוי רק על ידי
+                האוצר של טקסון זה
+            is_active:
+              can_only_be_changed_by_a_curator_of_this_taxon: ניתן לשינוי רק על ידי
+                האוצר של טקסון זה
+            complete_rank:
+              can_only_be_changed_by_a_curator_of_this_taxon: ניתן לשינוי רק על ידי
+                האוצר של טקסון זה
   doorkeeper:
     scopes:
       write: באפשרותך ליצור, לעדכן ולמחוק תצפיות, אמצעי זיהוי ותוכן אחר שלך מטעמך
