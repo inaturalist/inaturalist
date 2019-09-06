@@ -6133,7 +6133,10 @@ en:
           Traditional Projects. The other projects need to exist before you can add them to an
           umbrella project. You can include hundreds of projects under a single umbrella. Umbrella
           projects cannot contain other umbrella projects.
-        are_you_ready_to_duplicate: Are you ready to leave this page to duplicate this project?
+        are_you_ready_to_duplicate: |
+          Are you ready to leave this page to duplicate this project? Please note the project icon
+          and banner will not be duplicated, and would need to be re-uploaded in the duplicate
+          project.
         are_you_sure_you_want_to_delete: Are you sure you want to delete this project?
         can_be_included_in_multiple: Can be included in multiple umbrella projects
         click_through_to_individual_projects: Click through to individual projects

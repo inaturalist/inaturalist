@@ -397,7 +397,10 @@ export function fetchSimilar( ) {
     const endpoint = state.config.testNewSimilar
       ? inatjs.observations.similarSpecies
       : inatjs.identifications.similar_species;
-    endpoint( defaultObservationParams( getState( ) ) ).then(
+    const params = Object.assign( { }, defaultObservationParams( getState( ) ), {
+      verifiable: "any"
+    } );
+    endpoint( params ).then(
       response => {
         const withoutAncestors = response.results.filter( r => taxon.ancestor_ids.indexOf( r.taxon.id ) < 0 );
         const commonlyMisidentified = withoutAncestors.filter( r => ( r.count > 1 ) );
