@@ -89,6 +89,16 @@ describe Taxon, "creation" do
     taxon = Taxon.make!( name: "Foo bar × Baz roq", rank: Taxon::HYBRID )
     expect( taxon.name ).to eq "Foo bar × Baz roq"
   end
+
+  it "should not fail on poorly-formatted hybrid names" do
+    taxon = Taxon.make!( name: "Calystegia sepium roseata × c tuguriorum", rank: Taxon::HYBRID )
+    expect( taxon.name ).to eq "Calystegia sepium roseata × C tuguriorum"
+  end
+
+  it "should capitalize hybrid names of the form Genus species1 x species2" do
+    taxon = Taxon.make!( name: "genusone speciesone × speciestwo", rank: Taxon::HYBRID )
+    expect( taxon.name ).to eq "Genusone speciesone × speciestwo"
+  end
   
   it "should set the rank_level based on the rank" do
     t = Taxon.make!
