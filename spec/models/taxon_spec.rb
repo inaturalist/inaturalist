@@ -91,8 +91,13 @@ describe Taxon, "creation" do
   end
 
   it "should not fail on poorly-formatted hybrid names" do
-    taxon = Taxon.make!( name: "Calystegia sepium roseata × c tuguriorum", rank: Taxon::HYBRID )
-    expect( taxon.name ).to eq "Calystegia sepium roseata × C tuguriorum"
+    [
+      "Carex × leutzii pseudofulva",
+      "Calystegia sepium roseata × c tuguriorum"
+    ].each do |name|
+      taxon = Taxon.make!( name: name, rank: Taxon::HYBRID )
+      expect( taxon ).to be_valid
+    end
   end
 
   it "should capitalize hybrid names of the form Genus species1 x species2" do

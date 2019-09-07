@@ -618,7 +618,11 @@ class Taxon < ActiveRecord::Base
       "#{name1.capitalize} #{x} #{name2.capitalize}"
     elsif rank == HYBRID && name =~ /(x|×)\s+\w+\s+\w+/
       full_name, name1, x, name2 = name.match( /^(.+)\s+(x|×)\s+(.+)/ ).to_a
-      "#{name1.capitalize} #{x} #{name2.capitalize}"
+      if name1 && name2
+        "#{name1.capitalize} #{x} #{name2.capitalize}"
+      else
+        name.capitalize
+      end
     else
       name.capitalize
     end
