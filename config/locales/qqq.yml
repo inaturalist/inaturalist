@@ -521,9 +521,16 @@ qqq:
   if_you_already_have_an_account: where article is a or an and site_name is the name
     of the site
   ignore: '{{Identical|Ignore}}'
+  ignore_times: |-
+    '''FIXME''': Not sure about the intended meaning of "times": do we want to ignore timestamps/datetime ranges present in the submitted data/metadata ? Or do we want to ignore the number of occurences of something ?
+    No clear context, translation may be wrong and already disagree between the two interpretations.
+    Please document this message for its intended use !
   import: '{{Identical|Import}}'
   importing: '{{Identical|Importing}}'
   improving: '{{Identical|Improving}}'
+  in_n: '''''''FIXME'''''': what is meant in %{n} : a place name, a time, a group
+    of things, a taxon ? Without it, the translation of "in" is ambiguous, possibly
+    wrong.'
   in_place_x: |-
     Used in a vertical treatment like "Photo by\nAbdul\nin place X", so if that
     doesn't make sense syntactically, omitting the "in" would be fine, making
@@ -654,7 +661,10 @@ qqq:
   licensing: '{{Identical|Licensing}}'
   licensing_your_content: Info about licensing content where site_name is the name
     of the site
-  licensing_your_content_gives_others_legal: where site_name is the name of the site
+  licensing_your_content_gives_others_legal: |-
+    where site_name is the name of the site.
+
+    '''FIXME:''' The end of sentence, assuming this is followed by a partner name and nothing else after it, is grammatically incorrect in several languages.  As well the final "the" is untranslatable out of context, and should be avoided. This is a "patchwork" message (only suitable for English and never tested to be really translatable correctly), which should be fixed by including a placeholder for the data partner name(s), like there's one for the site name. For now we need to remove "the" and formulate the sentence as if it was a colon, separating the partner name from the introduction sentence.
   life: '{{Identical|Life}}'
   life!: '{{Identical|Life}}'
   life_list: where user is the name of a user
@@ -1045,7 +1055,9 @@ qqq:
   second_person_possessive_plural: |-
     where noun is a resource like an observation
     used in "Your Observations", "Your Lists", "Your Identifications" and "Your Projects"
-  second_person_possessive_singular: where noun is a resource like an observation
+  second_person_possessive_singular: |-
+    where noun is a resource like an observation
+    used in "Your Observations", "Your Lists", "Your Identifications" and "Your Projects"
   select: '{{Identical|Select}}'
   select_all: '{{Identical|Select all}}'
   select_photos_from_your_photo_stream: where site_name is the name of a site

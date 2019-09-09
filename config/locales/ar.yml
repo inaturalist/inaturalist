@@ -2,6 +2,7 @@
 # Exported from translatewiki.net
 # Export driver: phpyaml
 # Author: 20عبد العزيز
+# Author: Abijeet Patro
 # Author: Aboulouei1
 # Author: Azouz.anis
 # Author: DRIHEM
@@ -115,12 +116,12 @@ ar:
     one: <span class='count'>1</span> أصنوفة ملاحظة
     other: <span class='count'>%{count}</span> أصناف ملحوظة
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> ملاحظة درجة بحث</span>
-    other: <span class='count'>%{count}</span> ملاحظات درجات لحوث</span>
+    one: <span class='count'>1</span> ملاحظة درجة بحث
+    other: <span class='count'>%{count}</span> ملاحظات درجات لحوث<
   x_research_grade_observations_to_species_html:
-    one: <span class='count'>1</span> معرف ملاحظة على مستوى البحث إلى نوع أو أقل</span>
+    one: <span class='count'>1</span> معرف ملاحظة على مستوى البحث إلى نوع أو أقل
     other: <span class='count'>%{count}</span>معرف ملاحظات على مستوى البحث إلى أنواع
-      أو أقل</span>
+      أو أقل
   x_taxa_curated_html:
     one: <span class=تم حفظ 'count'>1</span> أصنوفة
     other: <span class=تم حفظ 'count'>%{count}</span> أصناف
@@ -1157,6 +1158,7 @@ ar:
       november: نوفمبر/تشرين الثاني
       december: ديسمبر/كانون الأول
   date_is_accurate: التاريخ دقيق
+  date_joined: تاريخ الانضمام
   date_observed: التاريخ ملاحظ
   date_observed_: تاريخ الملاحظة
   date_observed_on: لُوحِظ التاريخ في
@@ -4493,6 +4495,7 @@ ar:
   they_already_have_iNat_accounts: '...لديهم حسابات %{site_name} بالفعل'
   they_have_been_invited: '...لقد تمت دعوتهم بالفعل'
   third_person_possessive_singular: '%{noun} %{object_phrase}'
+  third_person_possessive_plural: '%{object_phrase}''s %{noun}'
   this: هذا
   this_bioblitz_beings_in: هذا bioblitz يبدأ في
   this_id_was_added_due_to_a: تمت إضافة هذا المعرف بسبب
@@ -6188,6 +6191,8 @@ ar:
           عبر مجموعتين أو أكثر من \nالمشروعات التقليدية، يجب أن توجد المشاريع الأخرى
           قبل أن تتمكن من إضافتها إلى \nمشروع مظلة، يمكنك تضمين مئات المشاريع تحت
           مظلة واحدة، لا يمكن \nلمشاريع المظلة أن تحتوي على مشاريع مظلة أخرى."
+        are_you_ready_to_duplicate: هل أنت مستعد لمغادرة هذه الصفحة لتكرار هذا المشروع؟
+        are_you_sure_you_want_to_delete: هل أنت متأكد أنك تريد حذف هذا المشروع؟
         can_be_included_in_multiple: يمكن تضمينها في مشاريع مظلة متعددة
         click_through_to_individual_projects: انقر من خلال المشاريع الفردية
         collection_projects: مشاريع المجموعة
@@ -6200,6 +6205,7 @@ ar:
         do_you_need_features_from_traditional: "هل تحتاج إلى ميزات من المشاريع التقليدية،
           مثل الوصول إلى الإحداثيات الحقيقية أو \nحقول الملاحظة المخصصة أو إضافة ملاحظات
           فردية لا يمكن تصفيتها \nتلقائيا؟"
+        duplicate_project: مشروع مكرر
         leaderboards_among_individuals: المتصدرون ضمن <strong>الأفراد</strong>
         leaderboards_among_projects_and_bioblitzes: ألواح المتصدرين بين <strong>المشاريع
         multiple_project_administrators: مديرو المشاريع المتعددة

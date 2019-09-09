@@ -4432,6 +4432,8 @@ de:
   upload_range: Bereich hochladen
   uploaded_by: Hochgeladen von
   uploader:
+    errors:
+      file_too_big: Datei muss kleiner als %{megabytes} MB sein
     tooltips:
       add: Beobachtung(en) hinzufügen
       combine: Ausgewählte Beobachtungen kombinieren
@@ -5376,6 +5378,8 @@ de:
         we_have_redesigned_projects: |-
           Projekte sind so gestaltet, dass sie automatisch alle Beobachtungen einbeziehen, die zu den von dir definierten Orten, Taxa, Benutzern, Qualität und Daten passen. Wähle zwischen zwei Haupttypen:
           Kollektionsprojekte und Dachprojekte, die folgende Funktionen gemeinsam haben:
+        errors:
+          name_less_than_100_characters: Projektname muss kürzer als 100 Zeichen sein
       project_user_curator_coordinate_access_labels:
         none: Keine.
       curator_coordinate_access_label: Sollen die privaten/verschleierten Koordinaten
@@ -5922,7 +5926,9 @@ de:
       messages:
         blank: darf nicht leer sein
         empty: darf nicht leer sein
+        equal_to: muss gleich %{count} sein
         exclusion: ist reserviert
+        greater_than: muss größer als %{count} sein
         greater_than_or_equal_to: muss größer als oder gleich %{count} sein
         inclusion: ist nicht in der Liste enthalten
         invalid: ist ungültig
@@ -5993,6 +5999,12 @@ de:
             lexicon:
               should_not_contain_commas_or_slashes: soll keine Kommata oder Schrägstriche
                 enthalten
+        user:
+          attributes:
+            login:
+              must_begin_with_a_letter: muss mit einem Buchstaben beginnen, darf keine
+                Leerzeichen oder andere Zeichen als Buchstaben, Zahlen, Binde- oder
+                Unterstriche enthalten
   doorkeeper:
     errors:
       messages:

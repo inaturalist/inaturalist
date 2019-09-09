@@ -131,13 +131,13 @@ it:
     one: <span class='count'>1</span> taxon osservato
     other: <span class='count'>%{count}</span> taxa osservati
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> osservazione livello di ricerca</span>
-    other: <span class='count'>%{count}</span> osservazioni livello di ricerca</span>
+    one: <span class='count'>1</span> osservazione livello di ricerca
+    other: <span class='count'>%{count}</span> osservazioni livello di ricerca
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span> osservazione livello di ricerca identificate
-      al grado di specie o inferiore</span>
+      al grado di specie o inferiore
     other: <span class='count'>%{count}</span> osservazioni livello di ricerca identificate
-      al grado di specie o inferiore</span>
+      al grado di specie o inferiore
   x_taxa_curated_html:
     one: <span class='count'>1</span> taxon curato
     other: <span class='count'>%{count}</span> taxa curati
@@ -4041,8 +4041,8 @@ it:
   search_your_photos: Cerca tra le tue foto
   searching: Ricerca in corso...
   seasonality: Stagionalità
-  second_person_possessive_plural: Le tue/I tuoi %{noun}
-  second_person_possessive_singular: Il tuo %{noun}
+  second_person_possessive_plural: Il tuo %{noun}
+  second_person_possessive_singular: Le tue/I tuoi %{noun}
   see_something_wrong_with_taxon: Vedi qualcosa di sbagliato riguardo questo taxon?
     Informa i curatori.
   seen_it?: Lo hai visto?

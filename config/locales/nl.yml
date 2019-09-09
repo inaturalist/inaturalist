@@ -120,13 +120,13 @@ nl:
     one: <span class='count'>1</span> taxon waargenomen
     other: <span class='count'>%{count}</span> taxa waargenomen
   x_research_grade_observations_html:
-    one: <span class='count'>1</span> waarneming van onderzoekskwaliteit</span>
-    other: <span class='count'>%{count}</span> waarnemingen van onderzoekskwaliteit</span>
+    one: <span class='count'>1</span> waarneming van onderzoekskwaliteit
+    other: <span class='count'>%{count}</span> waarnemingen van onderzoekskwaliteit
   x_research_grade_observations_to_species_html:
     one: <span class='count'>1</span> waarneming van onderszoeksniveau gedetermineerd
-      tot soort of lager</span>
+      tot op soort of lager
     other: <span class='count'>%{count}</span> waarnemingen van onderszoeksniveau
-      gedetermineerd tot soort of lager</span>
+      gedetermineerd tot op soort of lager
   x_taxa_curated_html:
     one: <span class='count'>1</span> taxon gecureerd
     other: <span class='count'>%{count}</span> taxa gecureerd
@@ -1215,6 +1215,7 @@ nl:
       november: november
       december: december
   date_is_accurate: Datum is accuraat
+  date_joined: Datum Aangemeld
   date_observed: Datum waarneming
   date_observed_: Datum waarneming
   date_observed_on: Waarnemingsdatum
@@ -4653,6 +4654,7 @@ nl:
   they_already_have_iNat_accounts: '... ze hebben reeds %{site_name}-accounts'
   they_have_been_invited: '... zij werden reeds uitgenodigd'
   third_person_possessive_singular: '%{noun} van %{object_phrase}'
+  third_person_possessive_plural: '%{noun} van %{object_phrase}'
   this: deze
   this_bioblitz_beings_in: Deze bioblitz start in
   this_id_was_added_due_to_a: Dit ID werd toegevoegd wegens een
@@ -6469,6 +6471,9 @@ nl:
         an_umbrella_project_can_be_used_to: |-
           Een overkoepelend project kan worden gebruikt om statistieken uit twee of meer Collection- of Traditionele projecten te vergelijken. De andere projecten moeten bestaan voordat je ze aan een kunt toevoegen parapluproject. U kunt honderden projecten onder één paraplu onderbrengen. Paraplu
           projecten kunnen geen andere parapluprojecten bevatten.
+        are_you_ready_to_duplicate: Ben je klaar met deze pagina om een kopie van
+          dit project te maken?
+        are_you_sure_you_want_to_delete: Weet je zeker dat je dit project wilt verwijderen?
         can_be_included_in_multiple: Kan worden opgenomen in meerdere parapluprojecten
         click_through_to_individual_projects: Doorklikken naar individuele projecten
         collection_projects: Collection Projects
@@ -6483,6 +6488,7 @@ nl:
         do_you_need_features_from_traditional: |-
           Heeft u functies nodig van traditionele projecten, zoals toegang tot echte coördinaten,
           aangepaste waarnemingsvelden of het toevoegen van individuele waarnemingen die niet automatisch kunnen worden gefilterd?
+        duplicate_project: Kopieer Project
         leaderboards_among_individuals: Toplijsten voor <strong>personen</strong>
         leaderboards_among_projects_and_bioblitzes: Ranglijsten voor <strong>projecten
           en bioblitzes</strong>
