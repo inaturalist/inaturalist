@@ -37,7 +37,7 @@ before_install:
   - echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
 
 before_script:
-  - sleep 15
+  - sleep 25
   - sudo ls -al /tmp/elasticsearch-7.3.1/logs
   - free -m
   - sudo cat /tmp/elasticsearch-7.3.1/logs/gc.log.0.current
