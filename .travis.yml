@@ -30,7 +30,7 @@ before_install:
   - export JAVA_HOME='/usr'
   - sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-kuromoji
   - sudo cat /etc/elasticsearch/elasticsearch.yml
-  - "echo -e \"cluster.name: es7_cluster\\nnode.name: es7_node\\ncluster.initial_master_nodes: es7_node\" > /etc/elasticsearch/elasticsearch.yml"
+  - "sudo bash -c 'echo -e \"cluster.name: es7_cluster\\nnode.name: es7_node\\ncluster.initial_master_nodes: es7_node\" > /etc/elasticsearch/elasticsearch.yml'"
   - sudo service elasticsearch start
   - gem install bundler
   - mkdir -p tmp/pids
