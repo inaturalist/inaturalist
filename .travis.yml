@@ -16,6 +16,7 @@ addons:
   postgresql: "11.5"
 
 before_install:
+  - free -m
   - sudo apt-get -qq update
   - sudo apt-get --yes remove postgresql\*
   - sudo apt-get install -y postgresql-11 postgresql-client-11
@@ -38,6 +39,10 @@ before_install:
 before_script:
   - sleep 15
   - sudo ls -al /tmp/elasticsearch-7.3.1/logs
+  - free -m
+  - sudo cat /tmp/elasticsearch-7.3.1/logs/gc.log.0.current
+  - sudo cat /tmp/elasticsearch-7.3.1/logs/elasticsearch.log
+  - sudo cat /tmp/elasticsearch-7.3.1/logs/elasticsearch_server.json
   - sudo netstat -plunt
   - curl localhost:9200
   - ci/scripts/before_script.sh
