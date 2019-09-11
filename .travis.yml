@@ -26,27 +26,12 @@ before_install:
   - psql -U postgres -c 'create extension "uuid-ossp"'
   - sudo -u postgres createdb template_postgis
   - psql -U postgres template_postgis -c "UPDATE pg_database SET datistemplate = TRUE WHERE datname = 'template_postgis'"
-  - sudo netstat -plunt
-  - curl -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.3.1-amd64.deb && sudo dpkg -i --force-confnew elasticsearch-7.3.1-amd64.deb
   - export JAVA_HOME='/usr'
-  - sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-kuromoji
-  - sudo cat /etc/elasticsearch/elasticsearch.yml
-  - sudo cat /etc/elasticsearch/log4j2.properties
-  - sudo cat /etc/elasticsearch/jvm.options
-  - sudo ls -al /etc/elasticsearch
-  - "sudo bash -c 'echo -e \"cluster.name: es7_cluster\\nnode.name: es7_node\\ncluster.initial_master_nodes: es7_node\" > /etc/elasticsearch/elasticsearch.yml'"
-  - sudo cat /etc/elasticsearch/elasticsearch.yml
-  - sudo sed -i.old 's/-Xms1g/-Xms128m/' /etc/elasticsearch/jvm.options
-  - sudo sed -i.old 's/-Xmx1g/-Xmx128m/' /etc/elasticsearch/jvm.options
-  - echo -e '-XX:+DisableExplicitGC\n-Djdk.io.permissionsUseCanonicalPath=true\n-Dlog4j.skipJansi=true\n-server\n' | sudo tee -a /etc/elasticsearch/jvm.options
-  - sudo cat /etc/elasticsearch/jvm.options
-  - sudo chown -R elasticsearch:elasticsearch /etc/default/elasticsearch
-  - sudo systemctl start elasticsearch
-  - sudo service elasticsearch start
-  - sudo ls -al /var/log
-  - sudo ls -al /var/log/elasticsearch
-  - sudo cat /var/log/syslog
-  - sudo cat /var/log/elasticsearch/elasticsearch.log
+  - curl https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.3.1-linux-x86_64.tar.gz | tar xz -C /tmp
+  - /tmp/elasticsearch-7.3.1/bin/elasticsearch-keystore create
+  - /tmp/elasticsearch-7.3.1/bin/elasticsearch-plugin install analysis-kuromoji
+  - /tmp/elasticsearch-7.3.1/bin/elasticsearch -E http.port=9200 &> /dev/null &
+  - sudo ls -al /tmp/elasticsearch-7.3.1/logs
   - sudo netstat -plunt
   - gem install bundler
   - mkdir -p tmp/pids
