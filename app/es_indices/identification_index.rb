@@ -5,42 +5,114 @@ class Identification < ActiveRecord::Base
   DEFAULT_ES_BATCH_SIZE = 500
 
   scope :load_for_index, -> { includes(:taxon, :flags,
-    :stored_preferences, :taxon_change,
-    { observation: [ :taxon, { user: :flags } ] }, { user: :flags } ) }
+    :stored_preferences, :taxon_change, :moderator_actions,
+    { observation: [ :taxon, { user: :flags }, :identifications ] }, { user: :flags } ) }
 
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
-      indexes :uuid, type: "keyword"
       indexes :body, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :category, type: "keyword"
+      indexes :created_at, type: "date"
+      indexes :created_at_details do
+        indexes :date, type: "date", index: false
+        indexes :day, type: "byte", index: false
+        indexes :hour, type: "byte", index: false
+        indexes :month, type: "byte", index: false
+        indexes :week, type: "byte", index: false
+        indexes :year, type: "short", index: false
+      end
+      indexes :current, type: "boolean"
+      indexes :current_taxon, type: "boolean"
+      indexes :flags do
+        indexes :comment, type: "keyword", index: false
+        indexes :created_at, type: "date", index: false
+        indexes :flag, type: "keyword", index: false
+        indexes :id, type: "integer", index: false
+        indexes :resolved, type: "boolean", index: false
+        indexes :resolver_id, type: "integer", index: false
+        indexes :updated_at, type: "date", index: false
+        indexes :user_id, type: "integer", index: false
+      end
+      indexes :hidden, type: "boolean"
+      indexes :id, type: "integer"
       indexes :observation do
-        indexes :uuid, type: "keyword"
+        indexes :captive, type: "boolean"
+        indexes :created_at, type: "date"
+        indexes :created_at_details do
+          indexes :date, type: "date", index: false
+          indexes :day, type: "byte", index: false
+          indexes :hour, type: "byte", index: false
+          indexes :month, type: "byte", index: false
+          indexes :week, type: "byte", index: false
+          indexes :year, type: "short", index: false
+        end
+        indexes :id, type: "integer"
+        indexes :observed_on, type: "date", format: "dateOptionalTime"
+        indexes :observed_on_details do
+          indexes :date, type: "date", index: false
+          indexes :day, type: "byte", index: false
+          indexes :hour, type: "byte", index: false
+          indexes :month, type: "byte", index: false
+          indexes :week, type: "byte", index: false
+          indexes :year, type: "short", index: false
+        end
+        indexes :place_ids, type: "integer"
+        indexes :private_place_ids, type: "integer"
         indexes :quality_grade, type: "keyword"
+        indexes :site_id, type: "integer"
         indexes :taxon do
+          indexes :ancestor_ids, type: "integer"
           indexes :ancestry, type: "keyword"
+          indexes :iconic_taxon_id, type: "integer"
+          indexes :id, type: "integer"
+          indexes :is_active, type: "boolean"
           indexes :min_species_ancestry, type: "keyword"
-          indexes :rank, type: "keyword"
+          indexes :min_species_taxon_id, type: "integer"
           indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+          indexes :parent_id, type: "integer"
+          indexes :rank, type: "keyword"
+          indexes :rank_level, type: "scaled_float", scaling_factor: 100
         end
+        indexes :time_observed_at, type: "date"
         indexes :user do
+          indexes :created_at, type: "date"
+          indexes :id, type: "integer"
           indexes :login, type: "keyword"
+          indexes :spam, type: "boolean"
+          indexes :suspended, type: "boolean"
         end
+        indexes :uuid, type: "keyword"
       end
+      indexes :own_observation, type: "boolean"
+      indexes :previous_observation_taxon_id, type: "integer"
+      indexes :spam, type: "boolean"
       indexes :taxon do
+        indexes :ancestor_ids, type: "integer"
         indexes :ancestry, type: "keyword"
+        indexes :iconic_taxon_id, type: "integer"
+        indexes :id, type: "integer"
+        indexes :is_active, type: "boolean"
         indexes :min_species_ancestry, type: "keyword"
-        indexes :rank, type: "keyword"
+        indexes :min_species_taxon_id, type: "integer"
         indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-      end
-      indexes :user do
-        indexes :login, type: "keyword"
+        indexes :parent_id, type: "integer"
+        indexes :rank, type: "keyword"
+        indexes :rank_level, type: "scaled_float", scaling_factor: 100
       end
       indexes :taxon_change do
+        indexes :id, type: "integer"
         indexes :type, type: "keyword"
       end
-      indexes :flags do
-        indexes :flag, type: "keyword"
+      indexes :taxon_id, type: "integer"
+      indexes :user do
+        indexes :created_at, type: "date"
+        indexes :id, type: "integer"
+        indexes :login, type: "keyword"
+        indexes :spam, type: "boolean"
+        indexes :suspended, type: "boolean"
       end
+      indexes :uuid, type: "keyword"
+      indexes :vision, type: "boolean"
     end
   end
 

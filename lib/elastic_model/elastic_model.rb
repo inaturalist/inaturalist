@@ -5,7 +5,7 @@ module ElasticModel
   ASCII_SNOWBALL_ANALYZER = {
     ascii_snowball_analyzer: {
       tokenizer: "standard",
-      filter: [ "standard", "lowercase", "asciifolding", "stop", "snowball" ]
+      filter: [ "lowercase", "asciifolding", "stop", "snowball" ]
     }
   }
   # basic autocomplete analyzer. Avoids diacritic variations, will find
@@ -13,7 +13,7 @@ module ElasticModel
   AUTOCOMPLETE_ANALYZER = {
     autocomplete_analyzer: {
       tokenizer: "standard",
-      filter: [ "standard", "lowercase", "asciifolding", "edge_ngram_filter" ]
+      filter: [ "lowercase", "asciifolding", "edge_ngram_filter" ]
     }
   }
   # autocomplete analyzer for Japanese strings
@@ -22,28 +22,28 @@ module ElasticModel
   AUTOCOMPLETE_ANALYZER_JA = {
     autocomplete_analyzer_ja: {
       tokenizer: "kuromoji_tokenizer",
-      filter: [ "lowercase", "cjk_width", "kuromoji_readingform" ]
+      filter: [ "cjk_width", "kuromoji_readingform" ]
     }
   }
   # autocomplete with no sub-matches (e.g. `Park` doesn't find `National Park`)
   KEYWORD_AUTOCOMPLETE_ANALYZER = {
     keyword_autocomplete_analyzer: {
       tokenizer: "keyword",
-      filter: [ "standard", "lowercase", "asciifolding", "stop", "edge_ngram_filter" ]
+      filter: [ "lowercase", "asciifolding", "stop", "edge_ngram_filter" ]
     }
   }
   # basic search analyzer that allows sub-matches
   STANDARD_ANALYZER = {
     standard_analyzer: {
       tokenizer: "standard",
-      filter: [ "standard", "lowercase", "asciifolding" ]
+      filter: [ "lowercase", "asciifolding" ]
     }
   }
   # basic search analyzer with no sub-matches
   KEYWORD_ANALYZER = {
     keyword_analyzer: {
       tokenizer: "keyword",
-      filter: [ "standard", "lowercase", "asciifolding" ]
+      filter: [ "lowercase", "asciifolding" ]
     }
   }
   # for autocomplete analyzers. Needs at least 2 letters (e.g. `P` doesn't find `Park`)
@@ -107,7 +107,8 @@ module ElasticModel
     if !options[:inverse_filters].blank?
       query[:bool][:must_not] = options[:inverse_filters]
     end
-    elastic_hash = { query: { constant_score: { query: query } } }
+    elastic_hash = { query: query }
+    # elastic_hash[:track_total_hits] = true
     elastic_hash[:sort] = options[:sort] if options[:sort]
     elastic_hash[:size] = options[:size] if options[:size]
     elastic_hash[:from] = options[:from] if options[:from]
@@ -188,7 +189,7 @@ module ElasticModel
   def self.point_geojson(lat, lon)
     return unless valid_latlon?(lat, lon)
     # notice the order of lon, lat which is standard for GeoJSON
-    { type: "Point", coordinates: [ lon, lat ] }
+    { type: "Point", coordinates: [ lon.to_f, lat.to_f ] }
   end
 
   def self.point_latlon(lat, lon)

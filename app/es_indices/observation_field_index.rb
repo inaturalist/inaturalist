@@ -6,14 +6,17 @@ class ObservationField < ActiveRecord::Base
     mappings(dynamic: true) do
       indexes :allowed_values, type: "keyword"
       indexes :datatype, type: "keyword"
-      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :name_autocomplete, type: "text",
-        analyzer: "autocomplete_analyzer",
-        search_analyzer: "standard_analyzer"
       indexes :description, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :description_autocomplete, type: "text",
         analyzer: "autocomplete_analyzer",
         search_analyzer: "standard_analyzer"
+      indexes :id, type: "integer"
+      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+      indexes :name_autocomplete, type: "text",
+        analyzer: "autocomplete_analyzer",
+        search_analyzer: "standard_analyzer"
+      indexes :users_count, type: "integer"
+      indexes :values_count, type: "integer"
     end
   end
 

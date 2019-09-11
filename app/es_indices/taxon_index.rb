@@ -16,58 +16,126 @@ class Taxon < ActiveRecord::Base
     { listed_taxa_with_means_or_statuses: :place }) }
   settings index: { number_of_shards: 1, analysis: ElasticModel::ANALYSIS } do
     mappings(dynamic: true) do
+      indexes :ancestor_ids, type: "integer"
       indexes :ancestry, type: "keyword"
-      indexes :min_species_ancestry, type: "keyword"
-      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
-      indexes :rank, type: "keyword"
-      indexes :wikipedia_url, type: "keyword", index: false
-      indexes :taxon_photos do
-        indexes :license_code, type: "keyword"
-        indexes :photo do
-          indexes :attribution, type: "keyword", index: false
-          indexes :license_code, type: "keyword"
-          indexes :original_url, type: "keyword", index: false
-          indexes :large_url, type: "keyword", index: false
-          indexes :medium_url, type: "keyword", index: false
-          indexes :small_url, type: "keyword", index: false
-          indexes :square_url, type: "keyword", index: false
-          indexes :url, type: "keyword", index: false
-          indexes :native_page_url, type: "keyword", index: false
-          indexes :native_photo_id, type: "keyword", index: false
-          indexes :type, type: "keyword"
-        end
-      end
+      indexes :atlas_id, type: "integer"
       indexes :colors do
-        indexes :value, type: "keyword"
+        indexes :id, type: "byte", index: false
+        indexes :value, type: "keyword", index: false
       end
+      indexes :complete_rank, type: "keyword"
+      indexes :complete_species_count, type: "integer"
+      indexes :created_at, type: "date"
+      indexes :current_synonymous_taxon_ids, type: "integer"
       indexes :default_photo do
         indexes :attribution, type: "keyword", index: false
-        indexes :license_code, type: "keyword"
+        indexes :flags do
+          indexes :comment, type: "keyword", index: false
+          indexes :created_at, type: "date", index: false
+          indexes :flag, type: "keyword", index: false
+          indexes :id, type: "integer", index: false
+          indexes :resolved, type: "boolean", index: false
+          indexes :resolver_id, type: "integer", index: false
+          indexes :updated_at, type: "date", index: false
+          indexes :user_id, type: "integer", index: false
+        end
+        indexes :id, type: "integer"
+        indexes :license_code, type: "keyword", index: false
         indexes :medium_url, type: "keyword", index: false
+        indexes :original_dimensions do
+          indexes :height, type: "short", index: false
+          indexes :width, type: "short", index: false
+        end
         indexes :square_url, type: "keyword", index: false
         indexes :url, type: "keyword", index: false
       end
-      indexes :listed_taxa do
-        indexes :establishment_means, type: "keyword"
+      indexes :extinct, type: "boolean"
+      indexes :flag_counts do
+        indexes :resolved, type: "short", index: false
+        indexes :unresolved, type: "short", index: false
       end
+      indexes :iconic_taxon_id, type: "integer"
+      indexes :id, type: "integer"
+      indexes :is_active, type: "boolean"
+      indexes :listed_taxa do
+        indexes :establishment_means, type: "keyword", index: false
+        indexes :id, type: "integer", index: false
+        indexes :occurrence_status_level, type: "byte", index: false
+        indexes :place_id, type: "integer", index: false
+        indexes :user_id, type: "integer", index: false
+      end
+      indexes :min_species_ancestry, type: "keyword"
+      indexes :min_species_taxon_id, type: "integer"
+      indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
       indexes :names, type: :nested do
-        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
+        indexes :exact, type: "keyword"
+        indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
+        indexes :is_valid, type: "boolean"
         indexes :locale, type: "keyword"
-        # NOTE: don't forget to install the proper analyzers in Elasticsearch
-        # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
-        indexes :name_ja, type: "text", analyzer: "kuromoji"
+        indexes :name, type: "text", analyzer: "ascii_snowball_analyzer"
         indexes :name_autocomplete, type: "text",
           analyzer: "autocomplete_analyzer",
           search_analyzer: "standard_analyzer"
         indexes :name_autocomplete_ja, type: "text", analyzer: "autocomplete_analyzer_ja"
-        indexes :exact, type: "keyword"
-        indexes :exact_ci, type: "text", analyzer: "keyword_analyzer"
+        # NOTE: don't forget to install the proper analyzers in Elasticsearch
+        # see https://github.com/elastic/elasticsearch-analysis-kuromoji#japanese-kuromoji-analysis-for-elasticsearch
+        indexes :name_ja, type: "text", analyzer: "kuromoji"
+        indexes :place_taxon_names do
+          indexes :place_id, type: "integer"
+          indexes :position, type: "short"
+        end
+        indexes :position, type: "short"
       end
+      indexes :observations_count, type: "integer"
+      indexes :parent_id, type: "integer"
+      indexes :place_ids, type: "integer"
+      indexes :rank, type: "keyword"
+      indexes :rank_level, type: "scaled_float", scaling_factor: 100
       indexes :statuses do
         indexes :authority, type: "keyword"
         indexes :geoprivacy, type: "keyword"
+        indexes :iucn, type: "byte"
+        indexes :place_id, type: "integer"
+        indexes :source_id, type: "short"
         indexes :status, type: "keyword"
+        indexes :status_name, type: "keyword"
       end
+      indexes :taxon_changes_count, type: "byte"
+      indexes :taxon_photos do
+        indexes :license_code, type: "keyword", index: false
+        indexes :photo do
+          indexes :attribution, type: "keyword", index: false
+          indexes :flags do
+            indexes :comment, type: "keyword", index: false
+            indexes :created_at, type: "date", index: false
+            indexes :flag, type: "keyword", index: false
+            indexes :id, type: "integer", index: false
+            indexes :resolved, type: "boolean", index: false
+            indexes :resolver_id, type: "integer", index: false
+            indexes :updated_at, type: "date", index: false
+            indexes :user_id, type: "integer", index: false
+          end
+          indexes :id, type: "integer"
+          indexes :large_url, type: "keyword", index: false
+          indexes :license_code, type: "keyword", index: false
+          indexes :medium_url, type: "keyword", index: false
+          indexes :native_page_url, type: "keyword", index: false
+          indexes :native_photo_id, type: "keyword", index: false
+          indexes :original_dimensions do
+            indexes :height, type: "short", index: false
+            indexes :width, type: "short", index: false
+          end
+          indexes :original_url, type: "keyword", index: false
+          indexes :small_url, type: "keyword", index: false
+          indexes :square_url, type: "keyword", index: false
+          indexes :url, type: "keyword", index: false
+          indexes :type, type: "keyword", index: false
+        end
+        indexes :taxon_id, type: "integer", index: false
+      end
+      indexes :taxon_schemes_count, type: "byte"
+      indexes :universal_search_rank, type: "integer"
+      indexes :wikipedia_url, type: "keyword", index: false
     end
   end
 
