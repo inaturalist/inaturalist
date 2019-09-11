@@ -50,7 +50,7 @@ gem "haml"
 gem "htmlentities"
 gem "icalendar", require: ["icalendar", "icalendar/tzinfo"]
 gem "i18n-inflector-rails"
-gem "i18n-js", git: "https://github.com/fnando/i18n-js.git"
+gem "i18n-js", git: "https://github.com/fnando/i18n-js.git", ref: "931c534f45006363652e5ec0b5e5120a1c108126"
 gem "irwi", git: "https://github.com/Programatica/irwi.git"
 gem "json"
 gem "jquery-rails", "~> 4.0"
