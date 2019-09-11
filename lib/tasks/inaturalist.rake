@@ -205,16 +205,147 @@ namespace :inaturalist do
   desc "Find all javascript i18n keys and print a new translations.js"
   task :generate_translations_js => :environment do
     output_path = "app/assets/javascripts/i18n/translations.js"
-    all_keys = get_i18n_keys_in_js.uniq.sort
+    # various keys from models, or from JS dynamic calls
+    all_keys = [
+      "added!",
+      "amphibians",
+      "animals",
+      "arachnids",
+      "asc",
+      "birds",
+      "black",
+      "blue",
+      "brown",
+      "browse",
+      "casual",
+      "checklist",
+      "colors",
+      "copyright",
+      "data_quality",
+      "date.formats.month_day_year",
+      "date_added",
+      "date_format.month",
+      "date_picker",
+      "date_updated",
+      "desc",
+      "edit_license",
+      "endemic",
+      "exporting",
+      "find",
+      "find",
+      "flowering_phenology",
+      "frequency",
+      "fungi",
+      "green",
+      "grey",
+      "imperiled",
+      "input_taxon",
+      "insect_life_stage",
+      "insects",
+      "introduced",
+      "kml_file_size_error",
+      "lexicons",
+      "lexicons",
+      "loading",
+      "mammals",
+      "maps",
+      "maptype_for_places",
+      "misidentifications",
+      "mollusks",
+      "momentjs",
+      "native",
+      "none",
+      "number_selected",
+      "observation_date",
+      "orange",
+      "output_taxon",
+      "pink",
+      "place_geo.geo_planet_place_types",
+      "places_name",
+      "places_name",
+      "plants",
+      "preview",
+      "protozoans",
+      "purple",
+      "random",
+      "ranks",
+      "ray_finned_fishes",
+      "red",
+      "reload_timed_out",
+      "reptiles",
+      "research",
+      "rg_observations",
+      "saving",
+      "something_went_wrong_adding",
+      "status_globally",
+      "status_in_place",
+      "supporting",
+      "taxon_drop",
+      "taxon_merge",
+      "taxon_split",
+      "taxon_stage",
+      "taxon_swap",
+      "unknown",
+      "view_more",
+      "views.observations.export.taking_a_while",
+      "views.taxa.show.frequency",
+      "white",
+      "vulnerable",
+      "yellow",
+      "you_are_setting_this_project_to_aggregate"
+    ]
+    %w(
+      all_rank_added_to_the_database
+      all_taxa
+      controlled_term_labels
+      establishment
+    ).each do |key|
+      all_keys += I18n.t( key ).map{|k,v| "#{key}.#{k}" }
+    end
+    all_keys += ControlledTerm.attributes.map{|a|
+      a.values.map{|v| "add_#{a.label.parameterize.underscore}_#{v.label.underscore}_annotation" }
+    }.flatten
+    # look for other keys in all javascript files
+    scanner_proc = Proc.new do |f|
+      # Ignore non-files
+      next unless File.file?( f )
+      # Ignore images and php scripts
+      next if f =~ /\.(gif|png|php)$/
+      # Ignore generated webpack outputs
+      next if f =~ /\-webpack.js$/
+      # Ignore an existing translations file
+      next if f == output_path
+      contents = IO.read( f )
+      results = contents.scan(/(I18n|shared).t\(\s*(["'])(.*?)\2/i)
+      unless results.empty?
+        all_keys += results.map{ |r| r[2].chomp(".") }
+      end
+    end
+    Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each(&scanner_proc)
+    Dir.glob(Rails.root.join("app/webpack/**/*")).each(&scanner_proc)
+
+    # look for keys in angular expressions in all templates
+    Dir.glob(Rails.root.join("app/views/**/*")).each do |f|
+      next unless File.file?( f )
+      next if f =~ /\.(gif|png|php)$/
+      next if f == output_path
+      contents = IO.read( f )
+      results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
+      unless results.empty?
+        all_keys += results.map{ |r| r[2].chomp(".") }
+      end
+    end
+
+    # remnant from a dynamic JS call for colors
+    all_keys.delete("lts[i].valu")
 
     # load translations
     all_translations = { }
     I18n.backend.send(:init_translations)
-    I18N_SUPPORTED_LOCALES.each do |locale|
-      locale = locale.to_sym
+    I18n.backend.send(:translations).keys.each do |locale|
       next if locale === :qqq
       all_translations[ locale ] = { }
-      all_keys.each do |key_string|
+      all_keys.uniq.sort.each do |key_string|
         split_keys = key_string.split(".").select{|k| k !~ /\#\{/ }.map(&:to_sym)
         split_keys.inject(all_translations[ locale ]) do |h, key|
           if key == split_keys.last
@@ -235,73 +366,10 @@ namespace :inaturalist do
     # output what should be the new contents of app/assets/javascripts/i18n/translations.js
     File.open(output_path, "w") do |file|
       file.puts "I18n.translations || (I18n.translations = {});"
-      all_translations.sort.each do |locale, translations|
-        file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translations ) };"
+      all_translations.sort.each do |locale, translastions|
+        file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translastions ) };"
       end
     end
-  end
-
-  desc "Find all javascript i18n keys and print a new translations.js"
-  task :potentially_unused_i18n_keys => :environment do
-    patterns_to_ignore = [
-      /^Family/,
-      /^Genus/,
-      /^activemodel\./,
-      /^activerecord\./,
-      /^add_annotations_for_controlled_attribute\./,
-      /^forum_categories\./,
-      /^i18n\./,
-      /^lexicons\./,
-      /^locale\./,
-      /^momentjs\./,
-      /^number\./,
-      /^occurrence_status_descriptions\./,
-      /^place_geo\./,
-      /^places_name\./,
-      /^ranks\./,
-      /^rules_types\./,
-      /^source_list\./,
-      /^views\.observations\.field_descriptions\./,
-      /^views\.projects\.edit\.rules\./,
-      /^views\.projects\.edit\.rules\./,
-      /^views\.projects\.project_user_curator_coordinate_access_labels\./,
-      /^views\.taxa\.show\.frequency\./,
-      /^add_life_stage_/,
-      /^all_taxa\./,
-      /^alphabetical$/,
-      /^taxonomic$/,
-      /^authority_list\./,
-    ]
-    all_keys_in_use = (get_i18n_keys_in_js + get_i18n_keys_in_rb).uniq
-
-    def traverse(obj, branch = nil, &blk)
-      if obj.is_a?( Hash )
-        obj.each do |k,v|
-          if v.is_a?( Hash )
-            if v.keys.include?( :one ) || v.keys.include?( "one" )
-              blk.call( k, branch )
-            else
-              traverse(v, [branch, k].flatten.compact.join( "." ), &blk)
-            end
-          else
-            blk.call( k, branch )
-          end
-        end
-      else
-        blk.call( obj, branch )
-      end
-    end
-
-    all_keys = []
-    traverse( YAML.load_file( File.join( Rails.root, "config", "locales", "en.yml" ) ) ) do |str, branch|
-      key = "#{branch}.#{str}".sub( /^en\./, "" )
-      next if patterns_to_ignore.detect{|p| key =~ p }
-      all_keys << key
-    end
-    ( all_keys - all_keys_in_use ).sort.each do |key|
-      puts key
-    end
-
   end
 
   desc "Fetch missing image dimensions"

@@ -8,6 +8,13 @@ GIT
       omniauth-oauth (~> 1.0)
 
 GIT
+  remote: https://github.com/JayTeeSF/translate.git
+  revision: 164f9ef6c51ca238c92ae4bb32d098693558f363
+  specs:
+    translate-rails3 (0.2.3)
+      ya2yaml (~> 0.30)
+
+GIT
   remote: https://github.com/Programatica/irwi.git
   revision: ca970bca1ccd07e9a7ac8782c7a892d1ec0f06d1
   specs:
@@ -32,7 +39,6 @@ GIT
 GIT
   remote: https://github.com/fnando/i18n-js.git
   revision: 931c534f45006363652e5ec0b5e5120a1c108126
-  ref: 931c534f45006363652e5ec0b5e5120a1c108126
   specs:
     i18n-js (3.2.1)
       i18n (>= 0.6.6)
@@ -502,9 +508,6 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
-    rails-i18n (4.0.9)
-      i18n (~> 0.7)
-      railties (~> 4.0)
     rails-observers (0.1.5)
       activemodel (>= 4.0)
     rails_autolink (1.1.6)
@@ -742,7 +745,6 @@ DEPENDENCIES
   rack-mobile-detect
   rails (= 4.2.11.1)
   rails-html-sanitizer (~> 1.0.4)
-  rails-i18n (~> 4.0)
   rails-observers
   rakismet
   rest-client
@@ -760,6 +762,7 @@ DEPENDENCIES
   soundcloud
   sprockets (~> 2.12.5)
   thin (~> 1.7)
+  translate-rails3!
   uglifier
   utf8-cleaner
   watu_table_builder

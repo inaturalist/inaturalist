@@ -1,5 +1,111 @@
 I18n.translations || (I18n.translations = {});
+I18n.translations["af"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ar"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "عضو في",
   "about": "حول",
   "about_charts": "حول الرسوم البيانية",
@@ -1965,6 +2071,7 @@ I18n.translations["ar"] = {
   "you_sure_delete_comment?": "هل أنت متأكد أنك تريد حذف هذا التعليق؟",
   "you_sure_delete_this_observation": "هل تريد بالتأكيد حذف هذه الملاحظة؟",
   "your_browser_does_not_support_the_audio_element": "متصفحك لا يدعم عنصر الصوت.",
+  "your_coarser_id": "يشير معرفك الخشن الخاص ب<span class='taxon'>%{coarser_taxon_name}</span> إلى عدم\nموافقتك على معرف \n<span class='taxon'>%{finer_taxon_name}</span> الموجود، هل هذا ما تريد فعله؟<br><br>\n<a href='/pages/getting+started' target='_blank'>اعرف المزيد من المعلومات حول كيفية عمل الهويات&raquo;</a>",
   "your_default": "الافتراضي لك",
   "your_hard_drive": "القرص الصلب الخاص بك",
   "your_observations": "ملاحظاتك",
@@ -1974,7 +2081,215 @@ I18n.translations["ar"] = {
   "zoom_out": "تصغير",
   "zoom_photo": "تكبير الصورة"
 };
+I18n.translations["az"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["be"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["bg"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Представител на",
   "about": "Относно",
   "about_community_taxa": "За таксоните от общността",
@@ -3116,13 +3431,120 @@ I18n.translations["bg"] = {
   "you_must_select_at_least_one_taxon": "Трябва да изберете поне един таксон",
   "you_retain_full_copyright": "Запазвате пълни права над своето съдържание, с изключение на правата предоставени на %{site_name} в нашите Условия за ползване.",
   "your_browser_does_not_support_the_audio_element": "Вашият браузър не поддържа аудио функцията.",
+  "your_coarser_id": "Вашето по-общо ID <span class='taxon'>%{coarser_taxon_name}</span> предполага, че не сте съгласни с текущото по-конкретно ID <span class='taxon'>%{finer_taxon_name}</span>. Това ли е намерението Ви?<br><br>\n<a href='/pages/getting+started' target='_blank'>Научете повече за процеса на разпознаване &raquo;</a>",
   "your_hard_drive": "Вашият твърд диск",
   "your_observations": "Ваши наблюдения",
   "yours": "Вашите",
   "zoom_in": "Приближи",
   "zoom_out": "Отдалечи"
 };
+I18n.translations["bn"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["br"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "about": "Diwar-benn",
   "about_community_taxa": "Diwar-benn taksonioù ar gumuniezh",
   "acc": "Acc (m)",
@@ -3725,7 +4147,113 @@ I18n.translations["br"] = {
     "other": "<a href='%{url}'>%{count}</a> spesadoù"
   }
 };
+I18n.translations["bs"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ca"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Un membre de",
   "about": "Quant a",
   "about_charts": "Quant als gràfics",
@@ -5686,6 +6214,7 @@ I18n.translations["ca"] = {
   "you_sure_delete_comment?": "Esteu segur que voleu esborrar el comentari?",
   "you_sure_delete_this_observation": "Esteu segur que voleu eliminar aquesta observació?",
   "your_browser_does_not_support_the_audio_element": "El vostre navegador no admet l'element d'àudio.",
+  "your_coarser_id": "Una IDentificació menys precisa de <span class=\"taxon\">%{coarser_taxon_name}</span> implica que no esteu\nd'acord amb la IDentificació detallada de\n<span class=\"taxon\">%{finer_taxon_name}</span>. És realment això el que voleu fer?<br><br>\n<a href=\"/pages/getting+started\" target=\"_blank\">Coneix més sobre com actuen les identificacions\"</a>",
   "your_default": "els vostres valors per defecte",
   "your_hard_drive": "El vostre disc dur",
   "your_observations": "Les vostres observacions",
@@ -5696,6 +6225,10 @@ I18n.translations["ca"] = {
   "zoom_photo": "Zoom de la Foto"
 };
 I18n.translations["cs"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Člen",
   "about": "O",
   "about_charts": "O grafech",
@@ -7622,6 +8155,7 @@ I18n.translations["cs"] = {
   "you_sure_delete_comment?": "Jste si jistí, že chcete smazat tento komentář?",
   "you_sure_delete_this_observation": "Jste si jistí, že chcete smazat toto pozorování?",
   "your_browser_does_not_support_the_audio_element": "Váš prohlížeč tento zvukový prvek nepodporuje.",
+  "your_coarser_id": "Vaše hrubší ID <span class='taxon'>%{coarser_taxon_name}</span> ukazuje, že nesouhlasíte se stávajícím konkrétnějším ID <span class='taxon'>%{finer_taxon_name}</span>. Chcete udělat tento krok?<br><br> <a href='/pages/getting+started' target='_blank'>Více o identifikaci &raquo;</a>",
   "your_default": "vaše základní nastavení",
   "your_hard_drive": "váš pevný disk",
   "your_observations": "Vaše pozorování",
@@ -7632,6 +8166,10 @@ I18n.translations["cs"] = {
   "zoom_photo": "Přiblížit fotku"
 };
 I18n.translations["da"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Et medlem af",
   "about": "Om",
   "about_charts": "Om diagrammer",
@@ -9597,6 +10135,7 @@ I18n.translations["da"] = {
   "you_sure_delete_comment?": "Er du sikker på, at du vil slette denne kommentar?",
   "you_sure_delete_this_observation": "Er du sikker på, at du vil slette denne observation?",
   "your_browser_does_not_support_the_audio_element": "Din browser understøtter ikke lydelementet.",
+  "your_coarser_id": "Dit løslige ID på <span class='takson'> %{coarser_taxon_name}</span> indebærer, at du er uenig med det eksisterende nøjagtigere ID af\n<span class='takson'>%{finer_taxon_name}</span>. Er det hvad du vil gøre? <br/><br/><a href='/pages/getting+started' target='_blank'>Få flere oplysninger om, hvordan identifikationer fungerer & raquo;</a>",
   "your_default": "din standard",
   "your_hard_drive": "din harddisk",
   "your_observations": "Dine observationer",
@@ -9607,6 +10146,10 @@ I18n.translations["da"] = {
   "zoom_photo": "Zoom foto"
 };
 I18n.translations["de"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Ein Mitglied von",
   "about": "Über",
   "about_charts": "Über Diagramme",
@@ -11373,7 +11916,113 @@ I18n.translations["de"] = {
   "zoom_in": "Heranzoomen",
   "zoom_out": "Herauszoomen"
 };
+I18n.translations["de-CH"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["el"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Ένα μέλος του",
   "about": "Σχετικά",
   "about_charts": "Σχετικά με γραφήματα",
@@ -12926,6 +13575,10 @@ I18n.translations["el"] = {
   "your_observations": "Οι παρατηρήσεις σας"
 };
 I18n.translations["en"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "A member of",
   "about": "About",
   "about_charts": "About Charts",
@@ -14620,7 +15273,7 @@ I18n.translations["en"] = {
       "new": {
         "a_project_allows_you_to_gather": "A collection project allows you to gather and visualize observations\nusing the core iNaturalist search tools. Everything that meets the\nparameters set by the project will be automatically included.\n",
         "an_umbrella_project_can_be_used_to": "An umbrella project can be used to compare statistics across two or more Collection or\nTraditional Projects. The other projects need to exist before you can add them to an\numbrella project. You can include hundreds of projects under a single umbrella. Umbrella\nprojects cannot contain other umbrella projects.\n",
-        "are_you_ready_to_duplicate": "Are you ready to leave this page to duplicate this project? Please note the project icon\nand banner will not be duplicated, and would need to be re-uploaded in the duplicate\nproject.\n",
+        "are_you_ready_to_duplicate": "Are you ready to leave this page to duplicate this project?",
         "are_you_sure_you_want_to_delete": "Are you sure you want to delete this project?",
         "can_be_included_in_multiple": "Can be included in multiple umbrella projects",
         "click_through_to_individual_projects": "Click through to individual projects",
@@ -14897,6 +15550,7 @@ I18n.translations["en"] = {
   "you_sure_delete_comment?": "Are you sure you want to delete this comment?",
   "you_sure_delete_this_observation": "Are you sure you want to delete this observation?",
   "your_browser_does_not_support_the_audio_element": "Your browser does not support the audio element.",
+  "your_coarser_id": "Your coarser ID of <span class='taxon'>%{coarser_taxon_name}</span> implies that you\ndisagree with the existing finer ID of\n<span class='taxon'>%{finer_taxon_name}</span>. Is this what you want to do?<br><br>\n<a href='/pages/getting+started' target='_blank'>Learn more about how identifications work &raquo;</a>\n",
   "your_default": "your default",
   "your_hard_drive": "your hard drive",
   "your_observations": "Your Observations",
@@ -14906,7 +15560,113 @@ I18n.translations["en"] = {
   "zoom_out": "Zoom Out",
   "zoom_photo": "Zoom Photo"
 };
+I18n.translations["en-GB"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["en-US"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "activerecord": {
     "attributes": {
       "project": {
@@ -15053,6 +15813,10 @@ I18n.translations["en-US"] = {
   }
 };
 I18n.translations["eo"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Ano de",
   "about": "Pri",
   "about_charts": "Pri Diagramoj",
@@ -16249,6 +17013,10 @@ I18n.translations["eo"] = {
   "zoom_photo": "Zomi Foton"
 };
 I18n.translations["es"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Un miembro de",
   "about": "Acerca de",
   "about_charts": "Acerca de los gráficos",
@@ -18210,6 +18978,7 @@ I18n.translations["es"] = {
   "you_sure_delete_comment?": "¿Confirmas que quieres eliminar el comentario?",
   "you_sure_delete_this_observation": "¿Confirma que quiere borrar esta observación?",
   "your_browser_does_not_support_the_audio_element": "El navegador no parece ser compatible con el elemento <audio>.",
+  "your_coarser_id": "La seva ID com a tàxon superior <span class='taxon'>%{coarser_taxon_name}</span> significa que esteu en desacord amb la ID de tàxon de detall <span class='taxon'>%{finer_taxon_name}</span>. Esteu d'acord??<br><br>\n<a href='/pages/getting+started' target='_blank'>Ampreneu més sobre com actuen les identificacions &raquo;</a>",
   "your_default": "tu valor predeterminado",
   "your_hard_drive": "Su disco duro",
   "your_observations": "Tus observaciones",
@@ -18220,6 +18989,10 @@ I18n.translations["es"] = {
   "zoom_photo": "Ampliar foto"
 };
 I18n.translations["es-ES"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "about": "Acerca de",
   "acc": "Exactitud (metros)",
   "account": "Cuenta",
@@ -18416,56 +19189,8 @@ I18n.translations["es-ES"] = {
   "data_deficient": "datos insuficientes",
   "data_quality_assessment": "Evaluación de la calidad de datos",
   "date": {
-    "abbr_day_names": [
-      "dom",
-      "lun",
-      "mar",
-      "mié",
-      "jue",
-      "vie",
-      "sáb"
-    ],
-    "abbr_month_names": [
-      null,
-      "ene",
-      "feb",
-      "mar",
-      "abr",
-      "may",
-      "jun",
-      "jul",
-      "ago",
-      "sep",
-      "oct",
-      "nov",
-      "dic"
-    ],
-    "day_names": [
-      "domingo",
-      "lunes",
-      "martes",
-      "miércoles",
-      "jueves",
-      "viernes",
-      "sábado"
-    ],
     "formats": {
-    },
-    "month_names": [
-      null,
-      "enero",
-      "febrero",
-      "marzo",
-      "abril",
-      "mayo",
-      "junio",
-      "julio",
-      "agosto",
-      "septiembre",
-      "octubre",
-      "noviembre",
-      "diciembre"
-    ]
+    }
   },
   "date_added": "Fecha añadida",
   "date_format": {
@@ -18982,6 +19707,10 @@ I18n.translations["es-ES"] = {
   "your_observations": "Tus observaciones"
 };
 I18n.translations["es-MX"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Un miembro de",
   "about": "Acerca",
   "about_charts": "Acerca de los gráficos",
@@ -20907,6 +21636,7 @@ I18n.translations["es-MX"] = {
   "you_sure_delete_comment?": "¿Estás seguro que quieres borrar este comentario?",
   "you_sure_delete_this_observation": "¿Estás seguro que quieres borrar esta observación?",
   "your_browser_does_not_support_the_audio_element": "El navegador no parece ser compatible con el elemento <audio>.",
+  "your_coarser_id": "Tu ID más general de <span class='taxon'>%{coarser_taxon_name}</span> implica que estás en desacuerdo con el ID existente <span class='taxon'>%{finer_taxon_name}</span>. ¿Es esto lo que deseas hacer?<br><br>\n<a href='/pages/getting+started' target='_blank'>Aprender más sobre como funcionan las identificaciones &raquo;</a>",
   "your_default": "Predeterminado",
   "your_hard_drive": "Tu disco duro",
   "your_observations": "Tus observaciones",
@@ -20917,6 +21647,10 @@ I18n.translations["es-MX"] = {
   "zoom_photo": "Ampliar foto"
 };
 I18n.translations["et"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Kuulub:",
   "about": "Info",
   "about_charts": "Graafikutest",
@@ -22829,6 +23563,7 @@ I18n.translations["et"] = {
   "you_sure_delete_comment?": "Oled sa kindel, et soovid selle kommentaari kustutada?",
   "you_sure_delete_this_observation": "Oled sa kindel, et soovid selle vaatluse kustutada?",
   "your_browser_does_not_support_the_audio_element": "Sinu brauser ei toeta audio elementi.",
+  "your_coarser_id": "Sinu taksoni <span class='taxon'>%{coarser_taxon_name}</span> ebatäpsem määratlus tähendab, et sa ei ole nõus olemasoleva täpsema määratlusega <span class='taxon'>%{finer_taxon_name}</span>. Soovid sa seda tõesti teha?<br><br>\n<a href='/pages/getting+started' target='_blank'>Loe täpselt, kuidas määratlemine käib &raquo;</a>",
   "your_default": "vaikimisi",
   "your_hard_drive": "kõvaketas",
   "your_observations": "Sinu vaatlused",
@@ -22839,6 +23574,10 @@ I18n.translations["et"] = {
   "zoom_photo": "Suurenda fotot"
 };
 I18n.translations["eu"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "ren kidea",
   "about": "Honi buruz:",
   "about_community_taxa": "Komunitate taxoien inguruan",
@@ -23781,7 +24520,113 @@ I18n.translations["eu"] = {
   "your_observations": "Zure behaketak",
   "zoom_photo": "Argazkia handitu"
 };
+I18n.translations["fa"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["fi"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Jäsen",
   "about": "Tietoja",
   "about_charts": "Tietoja kaavioista",
@@ -25502,6 +26347,10 @@ I18n.translations["fi"] = {
   "zoom_photo": "Zoomaa kuvaa"
 };
 I18n.translations["fr"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Un membre de",
   "about": "À propos",
   "about_charts": "À propos des graphiques",
@@ -27467,6 +28316,7 @@ I18n.translations["fr"] = {
   "you_sure_delete_comment?": "Êtes-vous certain de vouloir supprimer ce commentaire?",
   "you_sure_delete_this_observation": "Êtes-vous certain de vouloir supprimer cette observation?",
   "your_browser_does_not_support_the_audio_element": "Votre navigateur ne supporte pas l’élément audio",
+  "your_coarser_id": "Votre ID plus générale de <span class='taxon'>%{coarser_taxon_name}</span> implique que vous\nn’êtes pas d’accord avec l’ID plus précise de\n<span class='taxon'>%{finer_taxon_name}</span>. Est-ce bien ce que vous voulez faire ?<br><br>\n<a href='/pages/getting+started' target='_blank'>En savoir plus sur les principes d’identification &raquo;</a>",
   "your_default": "vos paramètres par défaut",
   "your_hard_drive": "votre disque dur",
   "your_observations": "Vos observations",
@@ -27476,7 +28326,113 @@ I18n.translations["fr"] = {
   "zoom_out": "Zoom arrière",
   "zoom_photo": "Élargir la photo"
 };
+I18n.translations["fr-CA"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["gl"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "about": "Acerca de",
   "acc": "Exactitude (metros)",
   "account": "Conta",
@@ -28253,7 +29209,113 @@ I18n.translations["gl"] = {
   "your_hard_drive": "O teu disco duro",
   "your_observations": "As túas observacións"
 };
+I18n.translations["ha"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["he"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "שייך ל",
   "about": "אודות",
   "about_charts": "גרף סיכום",
@@ -28517,56 +29579,8 @@ I18n.translations["he"] = {
   "customize_location": "התאמת מיקום",
   "data_quality": "איכות הנתון",
   "date": {
-    "abbr_day_names": [
-      "א",
-      "ב",
-      "ג",
-      "ד",
-      "ה",
-      "ו",
-      "ש"
-    ],
-    "abbr_month_names": [
-      null,
-      "ינו",
-      "פבר",
-      "מרץ",
-      "אפר",
-      "מאי",
-      "יונ",
-      "יול",
-      "אוג",
-      "ספט",
-      "אוק",
-      "נוב",
-      "דצמ"
-    ],
-    "day_names": [
-      "ראשון",
-      "שני",
-      "שלישי",
-      "רביעי",
-      "חמישי",
-      "שישי",
-      "שבת"
-    ],
     "formats": {
-    },
-    "month_names": [
-      null,
-      "ינואר",
-      "פברואר",
-      "מרץ",
-      "אפריל",
-      "מאי",
-      "יוני",
-      "יולי",
-      "אוגוסט",
-      "ספטמבר",
-      "אוקטובר",
-      "נובמבר",
-      "דצמבר"
-    ]
+    }
   },
   "date_": "תאריך",
   "date_added": "תאריך הוספה",
@@ -29602,7 +30616,317 @@ I18n.translations["he"] = {
   "your_hard_drive": "בכונן הקשיח שלך",
   "your_observations": "התצפיות שלך"
 };
+I18n.translations["hi"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["hr"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["hu"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["id"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "about": "Tentang",
   "about_charts": "Tentang Grafik",
   "about_community_taxa": "Tentang komunitas taksa",
@@ -30612,7 +31936,215 @@ I18n.translations["id"] = {
   "zoom_in": "Perdekat",
   "zoom_out": "Perjauh"
 };
+I18n.translations["ig"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["is"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["it"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Un membro di",
   "about": "Informazioni",
   "about_charts": "Riguardo i grafici",
@@ -32577,6 +34109,7 @@ I18n.translations["it"] = {
   "you_sure_delete_comment?": "Sei sicuro di voler cancellare questo commento?",
   "you_sure_delete_this_observation": "Sei sicuro di voler cancellare questa osservazione?",
   "your_browser_does_not_support_the_audio_element": "Il tuo browser non supporta l'elemento audio.",
+  "your_coarser_id": "La tua scelta del nome generico <span class='taxon'>%{coarser_taxon_name}</span> implica che tu non sia d'accordo con l'uso del nome più preciso\n<span class='taxon'>%{finer_taxon_name}</span>. Vuoi confermare questa scelta?<br><br>\n<a href='/pages/getting+started' target='_blank'>Scopri di più su come funziona il sistema dei nomi. &raquo;</a>",
   "your_default": "il tuo predefinito",
   "your_hard_drive": "tuo disco rigido",
   "your_observations": "Le tue osservazioni",
@@ -32586,7 +34119,117 @@ I18n.translations["it"] = {
   "zoom_out": "Zoom indietro",
   "zoom_photo": "Zoom sulla foto"
 };
+I18n.translations["iw"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "lexicons": {
+    "scientific_names": "שמות מדעיים",
+    "english": "אנגלית"
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ja"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "属する分類は",
   "about": "詳細",
   "about_charts": "図表について",
@@ -33673,13 +35316,120 @@ I18n.translations["ja"] = {
   "you_must_select_at_least_one_taxon": "一つ以上の分類群を選択しなければなりません",
   "you_sure_delete_comment?": "このコメントを削除して本当によろしいですか？",
   "you_sure_delete_this_observation": "この観察記録を削除して本当によろしいですか？",
+  "your_coarser_id": "より大まかな<span class='taxon'>%{coarser_taxon_name}</span>の同定が、下位分類の<span class='taxon'>%{finer_taxon_name}</span>の同定と一致していないようです。このまま保存してよいですか？<br><br>\n<a href='/pages/getting+started' target='_blank'>同定の方法について、詳しい説明はこちら&raquo;</a>",
   "your_default": "自分のデフォルト",
   "your_hard_drive": "マイパソコンから",
   "your_observations": "自分の観察記録",
   "zoom_in": "拡大",
   "zoom_out": "縮小"
 };
+I18n.translations["ka"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ko"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "소속:",
   "about": "소개",
   "about_charts": "Charts 정보",
@@ -34851,6 +36601,10 @@ I18n.translations["ko"] = {
   "zoom_photo": "사진 확대/축소"
 };
 I18n.translations["lb"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "E Member vu(n)",
   "about": "Iwwer",
   "about_charts": "Iwwer Diagrammer",
@@ -35861,7 +37615,215 @@ I18n.translations["lb"] = {
   "yours": "Ären",
   "zoom_photo": "Zoom Foto"
 };
+I18n.translations["lexicons"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["lo-LA"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["lt"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Narys",
   "about": "Apie",
   "about_charts": "Apie Diagramas",
@@ -36138,21 +38100,6 @@ I18n.translations["lt"] = {
       "Ket",
       "Pen",
       "Šeš"
-    ],
-    "abbr_month_names": [
-      null,
-      "Sau",
-      "Vas",
-      "Kov",
-      "Bal",
-      "Geg",
-      "Bir",
-      "Lie",
-      "Rgp",
-      "Rgs",
-      "Spa",
-      "Lap",
-      "Grd"
     ],
     "day_names": [
       "Sekmadienis",
@@ -36667,7 +38614,113 @@ I18n.translations["lt"] = {
   "your_observations": "Jūsų stebėjimai",
   "your_pinned_locations": "Jūsų išsaugotos vietos"
 };
+I18n.translations["lv"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["mk"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Член на",
   "about": "За",
   "about_community_taxa": "За таксоните од заедницата",
@@ -37421,7 +39474,215 @@ I18n.translations["mk"] = {
   "yes": "Да",
   "your_observations": "Ваши набљудувања"
 };
+I18n.translations["ms"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["nb"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["nl"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Een lid van",
   "about": "Over",
   "about_charts": "Over Grafieken",
@@ -39387,6 +41648,7 @@ I18n.translations["nl"] = {
   "you_sure_delete_comment?": "Weet u zeker dat u deze reactie wilt verwijderen?",
   "you_sure_delete_this_observation": "Weet u zeker dat u deze waarneming wil verwijderen?",
   "your_browser_does_not_support_the_audio_element": "Je browser ondersteunt het audio-element niet.",
+  "your_coarser_id": "Je grove determinatie van <span class='taxon'>%{coarser_taxon_name}</span> houdt in dat je het niet eens bent met de bestaande fijnere determinatie van <span class = 'taxon'>%{finer_taxon_name}</span>. Is dit wat je wilt doen?<br><br>\n<a href='/pages/getting+started' target='_blank'>Meer informatie over hoe determinaties werken &raquo;</a>",
   "your_default": "jouw standaard",
   "your_hard_drive": "uw harde schijf",
   "your_observations": "Uw waarnemingen",
@@ -39396,7 +41658,215 @@ I18n.translations["nl"] = {
   "zoom_out": "Uitzoomen",
   "zoom_photo": "Inzoomen op foto"
 };
+I18n.translations["nn-NO"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["no"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["oc"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Un membre de",
   "about": "A prepaus",
   "about_charts": "A prepaus dels grafics",
@@ -40126,7 +42596,215 @@ I18n.translations["oc"] = {
     "other": "<a href='%{url}'>%{count} espècias</a>"
   }
 };
+I18n.translations["pap-AW"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["pap-CW"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["pl"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "należy do",
   "about": "O nas",
   "about_community_taxa": "O taksonach społeczności",
@@ -40388,56 +43066,8 @@ I18n.translations["pl"] = {
   "data_quality": "Jakość danych",
   "data_used": "Użyte dane:",
   "date": {
-    "abbr_day_names": [
-      "nie",
-      "pon",
-      "wto",
-      "śro",
-      "czw",
-      "pią",
-      "sob"
-    ],
-    "abbr_month_names": [
-      null,
-      "sty",
-      "lut",
-      "mar",
-      "kwi",
-      "maj",
-      "cze",
-      "lip",
-      "sie",
-      "wrz",
-      "paź",
-      "lis",
-      "gru"
-    ],
-    "day_names": [
-      "niedziela",
-      "poniedziałek",
-      "wtorek",
-      "środa",
-      "czwartek",
-      "piątek",
-      "sobota"
-    ],
     "formats": {
-    },
-    "month_names": [
-      null,
-      "styczeń",
-      "luty",
-      "marzec",
-      "kwiecień",
-      "maj",
-      "czerwiec",
-      "lipiec",
-      "sierpień",
-      "wrzesień",
-      "październik",
-      "listopad",
-      "grudzień"
-    ]
+    }
   },
   "date_": "Data",
   "date_added": "Data dodania",
@@ -41088,7 +43718,113 @@ I18n.translations["pl"] = {
   },
   "zoom_photo": "Przybliż zdjęcie"
 };
+I18n.translations["pt"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["pt-BR"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Um membro de",
   "about": "Sobre",
   "about_charts": "Sobre os Gráficos",
@@ -43054,6 +45790,7 @@ I18n.translations["pt-BR"] = {
   "you_sure_delete_comment?": "Você tem certeza que deseja apagar este comentário?",
   "you_sure_delete_this_observation": "Você tem certeza que deseja remover esta observação?",
   "your_browser_does_not_support_the_audio_element": "Seu navegador não suporta o elemento de áudio.",
+  "your_coarser_id": "Sua identificação ID para um nível inferior de <span class='taxon'>%{coarser_taxon_name}</span> implica em discordar de uma identificação atual mais refinada de <span class='taxon'>%{finer_taxon_name}</span>. Tem certeza de sua decisão?<br><br>\n<a href='/pages/getting+started' target='_blank'>Entenda um pouco melhor sobre o funcionamento das identificações de organismo &raquo;</a>",
   "your_default": "seu padrão",
   "your_hard_drive": "seu disco rígido (HD)",
   "your_observations": "Suas observações",
@@ -43064,6 +45801,10 @@ I18n.translations["pt-BR"] = {
   "zoom_photo": "Ampliar Foto"
 };
 I18n.translations["pt-PT"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Um membro de",
   "about": "Acerca de",
   "about_charts": "Acerca dos gráficos",
@@ -44464,7 +47205,113 @@ I18n.translations["pt-PT"] = {
   "your_observations": "Suas observações",
   "zoom_photo": "Ampliar Foto"
 };
+I18n.translations["ro"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["ru"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Член",
   "about": "Подробнее",
   "about_charts": "О Диаграммах",
@@ -46461,6 +49308,7 @@ I18n.translations["ru"] = {
   "you_sure_delete_comment?": "Вы уверены, что хотите удалить данный комментарий?",
   "you_sure_delete_this_observation": "Вы уверены, что хотите удалить это наблюдение?",
   "your_browser_does_not_support_the_audio_element": "Ваш браузер не поддерживает аудио элементы.",
+  "your_coarser_id": "Ваша более грубая идентификация <span class='taxon'>%{coarser_taxon_name}</span> означает, что вы не согласны с существующей более точной идентификацией\n<span class='taxon'>%{finer_taxon_name}</span>. Это то, что вы хотите сделать?<br><br>\n<a href='/pages/getting+started' target='_blank'>Подробнее о том, как работает идентификация &raquo;</a>",
   "your_default": "ваше значение по умолчанию",
   "your_hard_drive": "ваш жесткий диск",
   "your_observations": "Ваши наблюдения",
@@ -46470,7 +49318,113 @@ I18n.translations["ru"] = {
   "zoom_out": "Уменьшить",
   "zoom_photo": "Увеличить фото"
 };
+I18n.translations["si"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["sk"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Člen",
   "about": "O projekte",
   "about_charts": "O grafoch",
@@ -48159,7 +51113,113 @@ I18n.translations["sk"] = {
   "you_faved_this": "Toto ste označili ako obľúbené!",
   "your_observations": "Vaše pozorovania"
 };
+I18n.translations["sl"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["sq"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "Një anëtar i",
   "about": "Për",
   "about_charts": "Për grafikët",
@@ -48476,56 +51536,8 @@ I18n.translations["sq"] = {
   "data_quality_assessment": "Vlerësimi i cilësisë së të dhënave",
   "data_quality_assessment_": "vlerësimi i cilësisë së të dhënave",
   "date": {
-    "abbr_day_names": [
-      "E Diel",
-      "E Hënë",
-      "E Martë",
-      "E Mërkurë",
-      "E Enjte",
-      "E Premte",
-      "E Shtunë"
-    ],
-    "abbr_month_names": [
-      null,
-      "Janar",
-      "Shkurt",
-      "Mars",
-      "Prill",
-      "Maj",
-      "Qershor",
-      "Korrik",
-      "Gusht",
-      "Shtator",
-      "Tetor",
-      "Nëntor",
-      "Dhjetor"
-    ],
-    "day_names": [
-      "E Diel",
-      "E Hënë",
-      "E Martë",
-      "E Mërkurë",
-      "E Enjte",
-      "E Premte",
-      "E Shtunë"
-    ],
     "formats": {
-    },
-    "month_names": [
-      null,
-      "Janar",
-      "Shkurt",
-      "Mars",
-      "Prill",
-      "Maj",
-      "Qershor",
-      "Korrik",
-      "Gusht",
-      "Shtator",
-      "Tetor",
-      "Nëntor",
-      "Dhjetor"
-    ]
+    }
   },
   "date_": "Data",
   "date_added": "Data e shtuar",
@@ -49477,7 +52489,215 @@ I18n.translations["sq"] = {
   "zoom_out": "Zvogëloni",
   "zoom_photo": "Zmadho foton"
 };
+I18n.translations["sr"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["sr-RS"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["sv"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "En medlem av",
   "about": "Om",
   "about_charts": "Om diagram",
@@ -50687,7 +53907,725 @@ I18n.translations["sv"] = {
   "zoom_out": "Zooma ut",
   "zoom_photo": "Zooma foto"
 };
+I18n.translations["th"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["tl"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["tr"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["uk"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["ur"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["vi"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
+I18n.translations["yo"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["zh-CN"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "会员属于",
   "about": "关于",
   "about_charts": "关于图表",
@@ -52356,6 +56294,7 @@ I18n.translations["zh-CN"] = {
   "you_sure_delete_comment?": "您确定要删除此评论吗？",
   "you_sure_delete_this_observation": "您确定要删除此观察吗？",
   "your_browser_does_not_support_the_audio_element": "您的浏览器不支持音频元素。",
+  "your_coarser_id": "您的粗略ID<span class ='taxon'>%{coarser_taxon_name}</span>意味着您不同意<span class ='taxon'>%{finer_taxon_name}</span>的现有更精细ID。您确定要如此吗？<br><br><a href='/pages/getting+started'target='_blank'>了解有关标识如何工作的详情&raquo;</a>",
   "your_default": "您默认的",
   "your_hard_drive": "您的硬盘驱动器",
   "your_observations": "您的观察",
@@ -52365,7 +56304,113 @@ I18n.translations["zh-CN"] = {
   "zoom_out": "缩小",
   "zoom_photo": "缩放照片"
 };
+I18n.translations["zh-HK"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
+};
 I18n.translations["zh-TW"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
   "a_member_of": "成員隸屬於",
   "about": "關於",
   "about_charts": "關於圖表",
@@ -54331,6 +58376,7 @@ I18n.translations["zh-TW"] = {
   "you_sure_delete_comment?": "您確定要刪除此評論？",
   "you_sure_delete_this_observation": "您確定要刪除此觀察？",
   "your_browser_does_not_support_the_audio_element": "您的瀏覽器不支援音效元素。",
+  "your_coarser_id": "您的<span class='taxon'>%{coarser_taxon_name}</span>粗略鑑定，反應出您並不認同<span class='taxon'>%{finer_taxon_name}</span>上的較佳鑑定。您確實有想這樣做嗎？<br><br>\n<a href='/pages/getting+started' target='_blank'>了解更多如何進行鑑定&raquo;</a>",
   "your_default": "您的預設",
   "your_hard_drive": "您的磁碟機",
   "your_observations": "您的觀察",
@@ -54339,4 +58385,106 @@ I18n.translations["zh-TW"] = {
   "zoom_in": "放大",
   "zoom_out": "縮小",
   "zoom_photo": "縮放照片"
+};
+I18n.translations["zh-YUE"] = {
+  "<%= name": {
+    "parameterize": {
+    }
+  },
+  "activerecord": {
+    "attributes": {
+      "project": {
+      }
+    }
+  },
+  "all_rank_added_to_the_database": {
+  },
+  "all_taxa": {
+  },
+  "change_types": {
+  },
+  "controlled_term_labels": {
+  },
+  "copyright": {
+  },
+  "date": {
+    "formats": {
+    }
+  },
+  "date_format": {
+    "month": {
+    }
+  },
+  "date_picker": {
+  },
+  "datetime": {
+  },
+  "establishment": {
+  },
+  "id_categories": {
+    "tooltips": {
+    }
+  },
+  "maps": {
+    "overlays": {
+    }
+  },
+  "momentjs": {
+  },
+  "place_geo": {
+  },
+  "sounds": {
+  },
+  "taxon_map": {
+  },
+  "uploader": {
+    "errors": {
+    },
+    "tooltips": {
+    }
+  },
+  "views": {
+    "observations": {
+      "community_id": {
+      },
+      "export": {
+      },
+      "identify": {
+      },
+      "show": {
+      }
+    },
+    "projects": {
+      "new": {
+        "errors": {
+        }
+      },
+      "show": {
+      }
+    },
+    "shared": {
+      "blocked": {
+      },
+      "spam": {
+      }
+    },
+    "stats": {
+      "index": {
+      },
+      "year": {
+      }
+    },
+    "taxa": {
+      "show": {
+      }
+    },
+    "users": {
+      "edit": {
+      }
+    },
+    "welcome": {
+      "index": {
+      }
+    }
+  }
 };
