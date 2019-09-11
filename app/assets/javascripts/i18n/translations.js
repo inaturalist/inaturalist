@@ -18416,8 +18416,56 @@ I18n.translations["es-ES"] = {
   "data_deficient": "datos insuficientes",
   "data_quality_assessment": "Evaluación de la calidad de datos",
   "date": {
+    "abbr_day_names": [
+      "dom",
+      "lun",
+      "mar",
+      "mié",
+      "jue",
+      "vie",
+      "sáb"
+    ],
+    "abbr_month_names": [
+      null,
+      "ene",
+      "feb",
+      "mar",
+      "abr",
+      "may",
+      "jun",
+      "jul",
+      "ago",
+      "sep",
+      "oct",
+      "nov",
+      "dic"
+    ],
+    "day_names": [
+      "domingo",
+      "lunes",
+      "martes",
+      "miércoles",
+      "jueves",
+      "viernes",
+      "sábado"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "enero",
+      "febrero",
+      "marzo",
+      "abril",
+      "mayo",
+      "junio",
+      "julio",
+      "agosto",
+      "septiembre",
+      "octubre",
+      "noviembre",
+      "diciembre"
+    ]
   },
   "date_added": "Fecha añadida",
   "date_format": {
@@ -28469,8 +28517,56 @@ I18n.translations["he"] = {
   "customize_location": "התאמת מיקום",
   "data_quality": "איכות הנתון",
   "date": {
+    "abbr_day_names": [
+      "א",
+      "ב",
+      "ג",
+      "ד",
+      "ה",
+      "ו",
+      "ש"
+    ],
+    "abbr_month_names": [
+      null,
+      "ינו",
+      "פבר",
+      "מרץ",
+      "אפר",
+      "מאי",
+      "יונ",
+      "יול",
+      "אוג",
+      "ספט",
+      "אוק",
+      "נוב",
+      "דצמ"
+    ],
+    "day_names": [
+      "ראשון",
+      "שני",
+      "שלישי",
+      "רביעי",
+      "חמישי",
+      "שישי",
+      "שבת"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "ינואר",
+      "פברואר",
+      "מרץ",
+      "אפריל",
+      "מאי",
+      "יוני",
+      "יולי",
+      "אוגוסט",
+      "ספטמבר",
+      "אוקטובר",
+      "נובמבר",
+      "דצמבר"
+    ]
   },
   "date_": "תאריך",
   "date_added": "תאריך הוספה",
@@ -32602,47 +32698,13 @@ I18n.translations["ja"] = {
     "ray_finned_fishes": "条鰭綱",
     "reptiles": "爬虫類",
     "life": "生命",
-    "x_plantae": {
-      "other": "%{count}件の植物"
-    },
-    "x_animalia": {
-      "other": "%{count}件の動物"
-    },
-    "x_mollusca": {
-      "other": "%{count}件の軟体動物"
-    },
-    "x_amphibia": "{{PLURAL|%{count}件の両生類}",
-    "x_mammalia": {
-      "other": "%{count}件の哺乳類"
-    },
     "x_actinopterygii": {
       "one": "側棘鰭上目1種",
       "other": "側棘鰭上目%{count}種"
     },
-    "x_reptilia": {
-      "other": "%{count}件の爬虫類"
-    },
-    "x_aves": {
-      "other": "%{count}羽の鳥"
-    },
-    "x_insecta": {
-      "other": "%{count}頭の昆虫類"
-    },
-    "x_arachnida": {
-      "other": "%{count}匹のクモ類"
-    },
-    "x_fungi": {
-      "other": "%{count}種の菌類"
-    },
     "x_chromista": {
       "one": "クロミスタ1類",
       "other": "クロミスタ%{count}類"
-    },
-    "x_protozoa": {
-      "other": "%{count}件の原生動物"
-    },
-    "x_other_animals": {
-      "other": "%{count}件のその他の動物"
     }
   },
   "all_taxa_": "すべての分類群",
@@ -33324,9 +33386,6 @@ I18n.translations["ja"] = {
   "proceed": "続行",
   "profile": "プロフィール",
   "project": "プロジェクト",
-  "project_admins": {
-    "other": "プロジェクト管理者"
-  },
   "projects": "プロジェクト",
   "proposed_taxa_that_contradict_the_community_id": "コミュニティー鑑定を否定する種分類",
   "protozoans": "原生動物",
@@ -33369,9 +33428,6 @@ I18n.translations["ja"] = {
   "reload_timed_out": "再読み込みがタイムアウトしました。しばらくしてから再度お試しください。",
   "remove": "削除",
   "remove_from_project": "プロジェクトから除去",
-  "remove_observations": {
-    "other": "%{count}件の観察記録を除去しますか？"
-  },
   "removed!": "取り除きました！",
   "removing": "除去中...",
   "reptiles": "爬虫類",
@@ -33435,9 +33491,6 @@ I18n.translations["ja"] = {
   "status": "状況",
   "status_globally": "世界中で%{status}",
   "status_in_place": "%{place}で%{status}",
-  "submit_observations": {
-    "other": "%{count}件の観察記録を送信"
-  },
   "submitted": "投稿済",
   "suggest_an_identification": "同定を提案",
   "table": "表",
@@ -33604,64 +33657,14 @@ I18n.translations["ja"] = {
     "one": "1件のコメント",
     "other": "%{count}件のコメント"
   },
-  "x_faves": {
-    "other": "%{count}件のお気に入り"
-  },
-  "x_identifications": "{{PLURAL%{count}件の同定}}",
-  "x_identifications_": "{{PLURAL%{count}件の同定}}",
-  "x_identifications_html": {
-    "other": "<span class=\"count\">%{count}</span>件の同定"
-  },
   "x_matching_taxa_html": {
     "one": "<span class=\"count\">1</span>件の該当する分類群",
     "other": "<span class=\"count\">%{count}</span>件の該当する分類群"
-  },
-  "x_misidentifications_of_species_in_this_rank": {
-    "other": "%この%{rank}中誤同定は%{count}件"
-  },
-  "x_misidentifications_of_this_species": {
-    "other": "この種の鑑定に間違いが%{count}件"
-  },
-  "x_new_species": {
-    "other": "%{count}件の新種"
-  },
-  "x_observations": {
-    "other": "%{count}件の観察記録"
-  },
-  "x_observations_": {
-    "other": "%{count}件の観察記録"
-  },
-  "x_observations_failed": {
-    "other": "%{count}件の観察失敗記録"
-  },
-  "x_observations_html": {
-    "other": "<span class='count'>%{count}</span>件の観察記録"
-  },
-  "x_observations_link_html": {
-    "other": "<a href='%{url}'>%{count}件の観察記録</a>"
-  },
-  "x_observations_reviewed_html": {
-    "other": "<span class='count'>%{count}</span>件の観察記録を査読"
-  },
-  "x_others": {
-    "other": "その他%{count}件"
   },
   "x_people_helped_user_with_y_ids_html": "<strong>%{x}人</strong>が%{user}さんを<strong>%{y}判定</strong>で助けました",
   "x_photos": {
     "one": "1枚の写真",
     "other": "%{count}枚の写真"
-  },
-  "x_species": {
-    "other": "%{count}種"
-  },
-  "x_species_html": {
-    "other": "<span class='count'>%{count}</span>種"
-  },
-  "x_species_link_html": {
-    "other": "<a href='%{url}'>%{count}種</a>"
-  },
-  "x_suggestions_filtered_by_colon": {
-    "other": "%{count}件の提案を検出:"
   },
   "yellow": "黄",
   "yes": "はい",
@@ -36135,6 +36138,21 @@ I18n.translations["lt"] = {
       "Ket",
       "Pen",
       "Šeš"
+    ],
+    "abbr_month_names": [
+      null,
+      "Sau",
+      "Vas",
+      "Kov",
+      "Bal",
+      "Geg",
+      "Bir",
+      "Lie",
+      "Rgp",
+      "Rgs",
+      "Spa",
+      "Lap",
+      "Grd"
     ],
     "day_names": [
       "Sekmadienis",
@@ -40370,8 +40388,56 @@ I18n.translations["pl"] = {
   "data_quality": "Jakość danych",
   "data_used": "Użyte dane:",
   "date": {
+    "abbr_day_names": [
+      "nie",
+      "pon",
+      "wto",
+      "śro",
+      "czw",
+      "pią",
+      "sob"
+    ],
+    "abbr_month_names": [
+      null,
+      "sty",
+      "lut",
+      "mar",
+      "kwi",
+      "maj",
+      "cze",
+      "lip",
+      "sie",
+      "wrz",
+      "paź",
+      "lis",
+      "gru"
+    ],
+    "day_names": [
+      "niedziela",
+      "poniedziałek",
+      "wtorek",
+      "środa",
+      "czwartek",
+      "piątek",
+      "sobota"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "styczeń",
+      "luty",
+      "marzec",
+      "kwiecień",
+      "maj",
+      "czerwiec",
+      "lipiec",
+      "sierpień",
+      "wrzesień",
+      "październik",
+      "listopad",
+      "grudzień"
+    ]
   },
   "date_": "Data",
   "date_added": "Data dodania",
@@ -48410,8 +48476,56 @@ I18n.translations["sq"] = {
   "data_quality_assessment": "Vlerësimi i cilësisë së të dhënave",
   "data_quality_assessment_": "vlerësimi i cilësisë së të dhënave",
   "date": {
+    "abbr_day_names": [
+      "E Diel",
+      "E Hënë",
+      "E Martë",
+      "E Mërkurë",
+      "E Enjte",
+      "E Premte",
+      "E Shtunë"
+    ],
+    "abbr_month_names": [
+      null,
+      "Janar",
+      "Shkurt",
+      "Mars",
+      "Prill",
+      "Maj",
+      "Qershor",
+      "Korrik",
+      "Gusht",
+      "Shtator",
+      "Tetor",
+      "Nëntor",
+      "Dhjetor"
+    ],
+    "day_names": [
+      "E Diel",
+      "E Hënë",
+      "E Martë",
+      "E Mërkurë",
+      "E Enjte",
+      "E Premte",
+      "E Shtunë"
+    ],
     "formats": {
-    }
+    },
+    "month_names": [
+      null,
+      "Janar",
+      "Shkurt",
+      "Mars",
+      "Prill",
+      "Maj",
+      "Qershor",
+      "Korrik",
+      "Gusht",
+      "Shtator",
+      "Tetor",
+      "Nëntor",
+      "Dhjetor"
+    ]
   },
   "date_": "Data",
   "date_added": "Data e shtuar",
