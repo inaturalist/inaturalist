@@ -209,8 +209,7 @@ namespace :inaturalist do
 
     # load translations
     all_translations = { }
-    I18n.backend.send(:init_translations)
-    I18n.backend.send(:translations).keys.each do |locale|
+    I18N_SUPPORTED_LOCALES.each do |locale|
       next if locale === :qqq
       all_translations[ locale ] = { }
       all_keys.uniq.sort.each do |key_string|
