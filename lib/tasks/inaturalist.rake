@@ -205,7 +205,7 @@ namespace :inaturalist do
   desc "Find all javascript i18n keys and print a new translations.js"
   task :generate_translations_js => :environment do
     output_path = "app/assets/javascripts/i18n/translations.js"
-    all_keys = get_i18n_keys_in_use
+    all_keys = get_i18n_keys_in_js
 
     # load translations
     all_translations = { }
