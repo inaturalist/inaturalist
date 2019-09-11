@@ -31,13 +31,15 @@ before_install:
   - sudo /usr/share/elasticsearch/bin/elasticsearch-plugin install analysis-kuromoji
   - sudo cat /etc/elasticsearch/elasticsearch.yml
   - sudo cat /etc/elasticsearch/log4j2.properties
+  - sudo cat /etc/elasticsearch/jvm.options
   - sudo ls -al /etc/elasticsearch
   - "sudo bash -c 'echo -e \"cluster.name: es7_cluster\\nnode.name: es7_node\\ncluster.initial_master_nodes: es7_node\" > /etc/elasticsearch/elasticsearch.yml'"
   - sudo cat /etc/elasticsearch/elasticsearch.yml
   - sudo service elasticsearch start
   - sudo ls -al /var/log
   - sudo ls -al /var/log/elasticsearch
-  - sudo cat /var/log/elasticsearch/es7_cluster.log
+  - sudo cat /var/log/syslog
+  - sudo cat /var/log/elasticsearch/elasticsearch.log
   - gem install bundler
   - mkdir -p tmp/pids
   - echo -e "--format documentation\n--color\n--require spec_helper\n--profile\n--tty" > .rspec
