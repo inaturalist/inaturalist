@@ -170,7 +170,7 @@ end
 
 # Returns all keys in dot notation, e.g. views.observations.show.some_text
 def get_i18n_keys_in_js( options = {} )
-  paths_to_ignore = ["translations.js"]
+  paths_to_ignore = ["app/assets/javascripts/i18n/translations.js"]
   # various keys from models, or from JS dynamic calls
   all_keys = [
     "added!",
@@ -284,7 +284,7 @@ def get_i18n_keys_in_js( options = {} )
     contents = IO.read( f )
     results = contents.scan(/(I18n|shared).t\(\s*(["'])(.*?)\2/i)
     unless results.empty?
-      all_keys += results.map{ |r| r[2].chomp(".") }
+      all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
     end
   end
   Dir.glob(Rails.root.join("app/assets/javascripts/**/*")).each(&scanner_proc)
@@ -298,7 +298,7 @@ def get_i18n_keys_in_js( options = {} )
     contents = IO.read( f )
     results = contents.scan(/\{\{.*?(I18n|shared).t\( ?(.)(.*?)\2.*?\}\}/i)
     unless results.empty?
-      all_keys += results.map{ |r| r[2].chomp(".") }
+      all_keys += results.map{ |r| r[2].chomp(".") }.select{|k| k =~ /^[A-z]/ }
     end
   end
 

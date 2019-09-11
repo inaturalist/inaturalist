@@ -205,14 +205,16 @@ namespace :inaturalist do
   desc "Find all javascript i18n keys and print a new translations.js"
   task :generate_translations_js => :environment do
     output_path = "app/assets/javascripts/i18n/translations.js"
-    all_keys = get_i18n_keys_in_js
+    all_keys = get_i18n_keys_in_js.uniq.sort
 
     # load translations
     all_translations = { }
+    I18n.backend.send(:init_translations)
     I18N_SUPPORTED_LOCALES.each do |locale|
+      locale = locale.to_sym
       next if locale === :qqq
       all_translations[ locale ] = { }
-      all_keys.uniq.sort.each do |key_string|
+      all_keys.each do |key_string|
         split_keys = key_string.split(".").select{|k| k !~ /\#\{/ }.map(&:to_sym)
         split_keys.inject(all_translations[ locale ]) do |h, key|
           if key == split_keys.last
@@ -233,8 +235,8 @@ namespace :inaturalist do
     # output what should be the new contents of app/assets/javascripts/i18n/translations.js
     File.open(output_path, "w") do |file|
       file.puts "I18n.translations || (I18n.translations = {});"
-      all_translations.sort.each do |locale, translastions|
-        file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translastions ) };"
+      all_translations.sort.each do |locale, translations|
+        file.puts "I18n.translations[\"#{ locale }\"] = #{ JSON.pretty_generate( translations ) };"
       end
     end
   end
