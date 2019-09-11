@@ -81,8 +81,7 @@ describe ProjectsController, "leave" do
 end
 
 describe ProjectsController, "search" do
-  before(:each) { enable_elastic_indexing( Project, Place ) }
-  after(:each) { disable_elastic_indexing( Project, Place ) }
+  elastic_models( Project, Place )
 
   describe "for site with a place" do
     let(:place) { make_place_with_geom }
@@ -146,8 +145,7 @@ end
 describe ProjectsController, "update" do
   let(:project) { Project.make! }
   let(:user) { project.user }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   before { sign_in user }
   it "should work for the owner" do
     put :update, id: project.id, project: {title: "the new title"}

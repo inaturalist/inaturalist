@@ -95,8 +95,7 @@ end
 
 describe TaxonSplit, "commit_records" do
   before(:each) { prepare_split }
-  before(:each) { enable_elastic_indexing( Observation, Identification ) }
-  after(:each) { disable_elastic_indexing( Observation, Identification ) }
+  elastic_models( Observation, Identification )
 
   describe "for identification disagreements" do
     before do

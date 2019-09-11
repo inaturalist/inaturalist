@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe PlacesController, "index" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   it "should return places" do
     p = Place.make!
@@ -68,8 +67,7 @@ describe PlacesController, "index" do
 end
 
 describe PlacesController, "search" do
-  before { enable_elastic_indexing(Place) }
-  after { disable_elastic_indexing(Place) }
+  elastic_models( Place )
   it "should filter by with_geom" do
     with_geom = make_place_with_geom
     without_geom = Place.make!(name: with_geom.name)
@@ -86,8 +84,7 @@ end
 
 
 describe PlacesController, "autocomplete" do
-  before { enable_elastic_indexing(Place) }
-  after { disable_elastic_indexing(Place) }
+  elastic_models( Place )
   it "be able to find places with short words and diacritics" do
     place = Place.make!(name: "Área de Protección de Flora y Fauna Laguna de Términos")
     get :autocomplete, format: :json, q: "Área"

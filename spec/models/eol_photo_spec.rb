@@ -28,8 +28,7 @@ describe EolPhoto, "new_from_api_response" do
 end
 
 describe EolPhoto, "repair", disabled: ENV["TRAVIS_CI"] do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   it "should not fail" do
     api_response = EolPhoto.get_api_response( 5246083 )
     p = EolPhoto.new_from_api_response(api_response)
@@ -40,8 +39,7 @@ describe EolPhoto, "repair", disabled: ENV["TRAVIS_CI"] do
 end
 
 describe EolPhoto, "sync", disabled: ENV["TRAVIS_CI"] do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:api_response) { EolPhoto.get_api_response( 5246083 ) }
   let(:p) { EolPhoto.new_from_api_response(api_response) }
   it "should reset native_realname" do

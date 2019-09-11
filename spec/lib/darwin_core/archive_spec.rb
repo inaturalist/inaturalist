@@ -46,8 +46,7 @@ describe DarwinCore::Archive, "make_descriptor" do
 end
 
 describe DarwinCore::Archive, "make_simple_multimedia_data" do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
 
   let(:o) { make_research_grade_observation }
   let(:p) { 
@@ -128,8 +127,7 @@ describe DarwinCore::Archive, "make_simple_multimedia_data" do
 end
 
 describe DarwinCore::Archive, "make_observation_fields_data" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   let(:o) { make_research_grade_observation }
   let(:of) { ObservationField.make! }
@@ -166,8 +164,7 @@ describe DarwinCore::Archive, "make_observation_fields_data" do
 end
 
 describe DarwinCore::Archive, "make_project_observations_data" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   let(:o) { make_research_grade_observation }
   let(:po) {
@@ -205,8 +202,7 @@ describe DarwinCore::Archive, "make_project_observations_data" do
 end
 
 describe DarwinCore::Archive, "make_occurrence_data" do
-  before(:each) { enable_elastic_indexing( Observation, Project, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Project, Taxon ) }
+  elastic_models( Observation, Project, Taxon )
 
   it "should filter by taxon" do
     parent = Taxon.make!(rank: Taxon::GENUS)

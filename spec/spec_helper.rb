@@ -38,6 +38,17 @@ RSpec.configure do |config|
   config.before(:suite) do
     DatabaseCleaner.strategy = :transaction
     Elasticsearch::Model.client.ping
+    ES_CLASSES = [ControlledTerm, Identification, ObservationField,
+      Observation, Place, Project, Taxon, UpdateAction, User]
+    ES_CLASSES.each do |klass|
+      begin
+        klass.__elasticsearch__.delete_index!
+      rescue Exception => e
+        raise e unless e.class.to_s =~ /NotFound/
+      end
+      klass.__elasticsearch__.create_index!
+      ElasticModel.wait_until_index_exists(klass.index_name)
+    end
   end
 
   config.before(:each) do
@@ -190,13 +201,9 @@ end
 def enable_elastic_indexing(*args)
   classes = [args].flatten
   classes.each do |klass|
-    begin
-      klass.__elasticsearch__.delete_index!
-    rescue Exception => e
-      raise e unless e.class.to_s =~ /NotFound/
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+      klass.__elasticsearch__.client.delete_by_query(index: klass.index_name, body: { query: { match_all: { } } })
     end
-    klass.__elasticsearch__.create_index!
-    ElasticModel.wait_until_index_exists(klass.index_name)
     klass.send :after_save, :elastic_index!
     klass.send :after_destroy, :elastic_delete!
     klass.send :after_touch, :elastic_index!
@@ -211,7 +218,22 @@ def disable_elastic_indexing(*args)
     klass.send :skip_callback, :save, :after, :elastic_index!
     klass.send :skip_callback, :destroy, :after, :elastic_delete!
     klass.send :skip_callback, :touch, :after, :elastic_index!
-    klass.__elasticsearch__.delete_index!
+    try_and_try_again( Elasticsearch::Transport::Transport::Errors::Conflict, sleep: 0.1, tries: 20 ) do
+      klass.__elasticsearch__.client.delete_by_query(index: klass.index_name, body: { query: { match_all: { } } })
+    end
+  end
+end
+
+# The `test` environment doesn't commit, and we use commit hooks to update model
+# data in Elasticsearch. Tests also create a ton of data that doesn't need to be
+# indexed. Use this method in specs to temporarily turn the ES-related commit
+# hooks into save/touch/destroy hooks so they work in specs, and clear out test
+# index data
+def elastic_models(*args)
+  around(:each) do |example|
+    enable_elastic_indexing(*args)
+    example.run
+    disable_elastic_indexing(*args)
   end
 end
 
@@ -225,11 +247,11 @@ def make_default_site
 end
 
 def enable_has_subscribers
-  enable_elastic_indexing(UpdateAction)
+  enable_elastic_indexing( UpdateAction )
   CONFIG.has_subscribers = :enabled
 end
 
 def disable_has_subscribers
-  disable_elastic_indexing(UpdateAction)
+  disable_elastic_indexing( UpdateAction )
   CONFIG.has_subscribers = :disabled
 end

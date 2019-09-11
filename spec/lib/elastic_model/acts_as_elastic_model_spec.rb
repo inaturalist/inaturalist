@@ -2,8 +2,7 @@ require "spec_helper"
 
 describe ActsAsElasticModel do
 
-  before(:each) { enable_elastic_indexing([ Observation, Taxon, Identification ]) }
-  after(:each) { disable_elastic_indexing([ Observation, Taxon, Identification ]) }
+  elastic_models( Observation, Taxon, Identification )
 
   describe "callbacks" do
     it "properly indexes the document on create" do

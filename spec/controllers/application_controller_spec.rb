@@ -9,8 +9,7 @@ describe ApplicationController do
     describe ObservationsController do
       render_views
       before(:all) { Observation.destroy_all }
-      before(:each) { enable_elastic_indexing( Observation ) }
-      after(:each) { disable_elastic_indexing( Observation ) }
+      elastic_models( Observation )
 
       it "render the 404 page for unknown formats" do
         get :index, format: :html

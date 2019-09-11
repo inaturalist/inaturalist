@@ -6,8 +6,7 @@ describe Observation do
     DatabaseCleaner.clean_with(:truncation, except: %w[spatial_ref_sys])
   end
 
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
 
   describe "creation" do
 
@@ -2709,8 +2708,7 @@ describe Observation do
   end
 
   describe "update_stats_for_observations_of" do
-    before(:each) { enable_elastic_indexing(Identification) }
-    after(:each) { disable_elastic_indexing(Identification) }
+    elastic_models( Identification )
 
     it "should work" do
       parent = Taxon.make!(rank: Taxon::GENUS)
@@ -3954,8 +3952,7 @@ describe Observation do
 end
 
 describe Observation, "probably_captive?" do
-  before(:all) { enable_elastic_indexing( Observation ) }
-  after(:all) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let( :taxon ) { Taxon.make!( rank: Taxon::SPECIES ) }
   let( :place ) { make_place_with_geom( admin_level: Place::COUNTRY_LEVEL ) }
   def make_captive_obs
@@ -4116,8 +4113,7 @@ describe Observation, "taxon_geoprivacy" do
 end
 
 describe Observation, "prefers_auto_obscuration" do
-  before(:all) { enable_elastic_indexing( Observation ) }
-  after(:all) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   describe "when false" do
     let(:o) do
       Observation.make!(
@@ -4153,8 +4149,7 @@ describe Observation, "prefers_auto_obscuration" do
 end
 
 describe Observation, "set_observations_taxa_for_user" do
-  before(:all) { enable_elastic_indexing( Observation ) }
-  after(:all) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:user) { User.make! }
   let(:family1) { Taxon.make!( rank: Taxon::FAMILY, name: "Familyone" ) }
   let(:genus1) { Taxon.make!( rank: Taxon::GENUS, name: "Genusone", parent: family1 ) }

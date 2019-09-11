@@ -67,8 +67,7 @@ shared_examples_for "a ProjectsController" do
   end
 
   describe "leave" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "works" do
       delete :leave, :format => :json, :id => project.id
       project.reload

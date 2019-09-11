@@ -37,8 +37,7 @@ shared_examples_for "a QualityMetricsController" do
     end
 
     describe "elastic index" do
-      before(:each) { enable_elastic_indexing( Observation ) }
-      after(:each) { disable_elastic_indexing( Observation ) }
+      elastic_models( Observation )
 
       it "should get the updated quality_grade" do
         o = without_delay { make_research_grade_observation }

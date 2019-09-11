@@ -274,8 +274,7 @@ describe Project do
   end
 
   describe "generate_csv" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "should include curator_coordinate_access" do
       path = File.join(Dir::tmpdir, "project_generate_csv_test-#{Time.now.to_i}")
       po = make_project_observation
@@ -325,8 +324,7 @@ describe Project do
   end
 
   describe "queue_project_aggregations class method" do
-    before(:each) { enable_elastic_indexing(Observation, Place) }
-    after(:each) { disable_elastic_indexing(Observation, Place) }
+    elastic_models( Observation, Place )
     it "should touch projects that prefer aggregation" do
       p = Project.make!(prefers_aggregation: true, place: make_place_with_geom, trusted: true)
       Delayed::Job.destroy_all
@@ -347,8 +345,7 @@ describe Project do
   end
 
   describe "aggregate_observations" do
-    before(:each) { enable_elastic_indexing(Observation, Place) }
-    after(:each) { disable_elastic_indexing(Observation, Place) }
+    elastic_models( Observation, Place )
     let(:project) { Project.make!(prefers_aggregation: true, place: make_place_with_geom) }
     it "should add observations matching the project observation scope" do
       project.update_attributes(place: make_place_with_geom, trusted: true)
@@ -589,8 +586,8 @@ describe Project do
   end
 
   describe "update_counts" do
+    elastic_models( Observation )
     before :each do
-      enable_elastic_indexing(Observation)
       @p = Project.make!(preferred_submission_model: Project::SUBMISSION_BY_ANYONE)
       @pu = ProjectUser.make!(project: @p)
       taxon = Taxon.make!(rank: "species")
@@ -604,7 +601,6 @@ describe Project do
           observation: Observation.make!(taxon: taxon, user: @pu.user))
       end
     end
-    after(:each) { disable_elastic_indexing(Observation) }
 
     it "should update counts for all project_users in a project" do
       expect( @pu.observations_count ).to eq 0

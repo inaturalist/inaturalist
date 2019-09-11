@@ -2,8 +2,7 @@ require File.dirname(__FILE__) + '/../spec_helper'
 
 shared_examples_for "a TaxaController" do
   describe "index" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "should filter by place_id" do
       t = Taxon.make!
       p = Place.make!
@@ -39,8 +38,7 @@ shared_examples_for "a TaxaController" do
   end
 
   describe "search" do
-    before(:each) { enable_elastic_indexing( Observation, Taxon, Place ) }
-    after(:each) { disable_elastic_indexing( Observation, Taxon, Place ) }
+    elastic_models( Observation, Taxon, Place )
 
     it "should filter by place_id" do
       taxon_not_in_place = Taxon.make!
@@ -139,8 +137,7 @@ shared_examples_for "a TaxaController" do
   end
 
   describe "autocomplete" do
-    before(:each) { enable_elastic_indexing([ Observation, Taxon, Place ]) }
-    after(:each) { disable_elastic_indexing([ Observation, Taxon, Place ]) }
+    elastic_models( Observation, Taxon, Place )
 
     it "filters by is_active=true" do
       active = Taxon.make!(name: "test", is_active: true)
@@ -170,8 +167,7 @@ shared_examples_for "a TaxaController" do
   end
 
   describe "show" do
-    before(:each) { enable_elastic_indexing( Observation ) }
-    after(:each) { disable_elastic_indexing( Observation ) }
+    elastic_models( Observation )
     it "should include range kml url" do
       tr = TaxonRange.make!(:url => "http://foo.bar/range.kml")
       get :show, :format => :json, :id => tr.taxon_id

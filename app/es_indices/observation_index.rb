@@ -75,12 +75,12 @@ class Observation < ActiveRecord::Base
       indexes :context_user_geoprivacy, type: "keyword"
       indexes :created_at, type: "date"
       indexes :created_at_details do
-        indexes :date, type: "date", index: false
-        indexes :day, type: "byte", index: false
-        indexes :hour, type: "byte", index: false
-        indexes :month, type: "byte", index: false
-        indexes :week, type: "byte", index: false
-        indexes :year, type: "short", index: false
+        indexes :date, type: "date"
+        indexes :day, type: "byte"
+        indexes :hour, type: "byte"
+        indexes :month, type: "byte"
+        indexes :week, type: "byte"
+        indexes :year, type: "short"
       end
       indexes :created_time_zone, type: "keyword", index: false
       indexes :description, type: "text", analyzer: "ascii_snowball_analyzer"
@@ -117,12 +117,12 @@ class Observation < ActiveRecord::Base
       indexes :obscured, type: "boolean"
       indexes :observed_on, type: "date", format: "dateOptionalTime"
       indexes :observed_on_details do
-        indexes :date, type: "date", index: false
-        indexes :day, type: "byte", index: false
-        indexes :hour, type: "byte", index: false
-        indexes :month, type: "byte", index: false
-        indexes :week, type: "byte", index: false
-        indexes :year, type: "short", index: false
+        indexes :date, type: "date"
+        indexes :day, type: "byte"
+        indexes :hour, type: "byte"
+        indexes :month, type: "byte"
+        indexes :week, type: "byte"
+        indexes :year, type: "short"
       end
       indexes :observed_on_string, type: "text"
       indexes :observed_time_zone, type: "keyword", index: false

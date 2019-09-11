@@ -31,11 +31,10 @@ describe Place, "bbox_contains_lat_lng_acc?" do
 end
 
 describe Place, "creation" do
+  elastic_models( Observation, Place )
   before(:each) do
-    enable_elastic_indexing( Observation, Place )
     @place = Place.make!
   end
-  after(:each) { disable_elastic_indexing( Observation, Place ) }
   
   it "should create a default check_list" do
     expect(@place.check_list).to_not be_nil
@@ -131,8 +130,8 @@ end
 # These pass individually but fail as a group, probably due to some 
 # transaction weirdness.
 describe Place, "merging" do
+  elastic_models( Observation, Place )
   before(:each) do
-    enable_elastic_indexing( Observation, Place )
     @place = Place.make!(:name => "Berkeley")
     @place.save_geom(GeoRuby::SimpleFeatures::MultiPolygon.from_ewkt("MULTIPOLYGON(((-122.247619628906 37.8547693305679,-122.284870147705 37.8490764953623,-122.299289703369 37.8909492165781,-122.250881195068 37.8970452004104,-122.239551544189 37.8719807055375,-122.247619628906 37.8547693305679)))"))
     3.times do
@@ -150,7 +149,6 @@ describe Place, "merging" do
     @reject_geom = @reject.place_geometry.geom
     @merged_place = @place.merge(@reject)
   end
-  after(:each) { disable_elastic_indexing( Observation, Place ) }
 
   it "should return a valid place if the merge was successful" do
     expect(@merged_place).to be_valid
@@ -382,8 +380,7 @@ describe Place, "append_geom" do
 end
 
 describe Place, "save_geom" do
-  before { enable_elastic_indexing( Observation, Place ) }
-  after { disable_elastic_indexing( Observation, Place ) }
+  elastic_models( Observation, Place )
   describe "if there was no geom before" do
     let(:p) { Place.make! }
     let(:geom) { RGeo::Geos.factory(:srid => -1).parse_wkt("MULTIPOLYGON(((0 0,0 1,1 1,1 0,0 0)))")}

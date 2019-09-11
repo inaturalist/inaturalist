@@ -177,13 +177,18 @@ module ElasticModel
           envelope_filter(left),
           envelope_filter(right) ]}}
     end
-    { geo_shape: {
+    {
+      geo_shape: {
         field => {
           shape: {
             type: "envelope",
             coordinates: [
-              [ swlng, swlat ],
-              [ nelng, nelat ] ] } } } }
+              [ swlng, nelat ],
+              [ nelng, swlat ] ]
+          }
+        }
+      }
+    }
   end
 
   def self.point_geojson(lat, lon)

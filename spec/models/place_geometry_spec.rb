@@ -31,8 +31,7 @@ describe PlaceGeometry, "validation" do
   end
 
   describe "observations_places" do
-    before(:each) { enable_elastic_indexing( Observation, Place ) }
-    after(:each) { disable_elastic_indexing( Observation, Place ) }
+    elastic_models( Observation, Place )
 
     it "should generate observations_places after save" do
       p = make_place_with_geom

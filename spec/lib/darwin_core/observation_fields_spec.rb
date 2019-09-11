@@ -1,8 +1,7 @@
 require "spec_helper"
 
 describe DarwinCore::ObservationFields do
-  before(:each) { enable_elastic_indexing( Observation, Taxon ) }
-  after(:each) { disable_elastic_indexing( Observation, Taxon ) }
+  elastic_models( Observation, Taxon )
   let(:o) { make_research_grade_observation }
   let(:of) { ObservationField.make! }
   let(:ofv) {

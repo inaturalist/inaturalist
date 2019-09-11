@@ -16,8 +16,7 @@ end
 
 describe TaxonDrop, "commit_records" do
   before(:each) { prepare_drop }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
 
   it "should not update records" do
     obs = Observation.make!( taxon: @input_taxon )

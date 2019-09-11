@@ -5,8 +5,7 @@ def update_cache_columns_jobs
 end
 
 describe ListedTaxon do
-  before(:each) { enable_elastic_indexing( Observation, Place ) }
-  after(:each) { disable_elastic_indexing( Observation, Place ) }
+  elastic_models( Observation, Place )
   it "should be invalid when check list fields set on a non-check list" do
     list = List.make!
     check_list = CheckList.make!

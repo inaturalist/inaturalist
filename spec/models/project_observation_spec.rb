@@ -1,11 +1,10 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe ProjectObservation, "creation" do
+  elastic_models( Observation, Place )
   before(:each) do
-    enable_elastic_indexing( Observation, Place )
     setup_project_and_user
   end
-  after(:each) { disable_elastic_indexing( Observation, Place ) }
   it "should queue a DJ job for the list" do
     stamp = Time.now
     make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
@@ -199,15 +198,14 @@ describe ProjectObservation, "creation" do
 end
 
 describe ProjectObservation, "destruction" do
+  elastic_models( Observation, Place )
   before(:each) do
-    enable_elastic_indexing(Observation, Place)
     setup_project_and_user
     @project_observation = make_project_observation(:observation => @observation, :project => @project, :user => @observation.user)
     Delayed::Job.destroy_all
     enable_has_subscribers
   end
   after(:each) {
-    disable_elastic_indexing(Observation, Place)
     disable_has_subscribers
   }
 
@@ -341,8 +339,7 @@ end
 
 describe ProjectObservation, "has_a_photo?" do
   let(:p) { Project.make! }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
   it "should be true if photo present" do
@@ -361,8 +358,7 @@ end
 
 describe ProjectObservation, "has_a_sound?" do
   let(:p) { Project.make! }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   it "should be true if sound present" do
     os = ObservationSound.make!
     o = os.observation
@@ -381,8 +377,7 @@ end
 
 describe ProjectObservation, "has_media?" do
   let(:p) { Project.make! }
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   before(:all) { DatabaseCleaner.strategy = :truncation }
   after(:all)  { DatabaseCleaner.strategy = :transaction }
   it "should be true if photo present" do

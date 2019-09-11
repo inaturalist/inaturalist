@@ -1,8 +1,7 @@
 require File.dirname(__FILE__) + '/../spec_helper.rb'
 
 describe LocalPhoto, "creation" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   describe "creation" do
     it "should set the native page url" do
       p = LocalPhoto.make!
@@ -89,8 +88,7 @@ describe LocalPhoto, "creation" do
 end
 
 describe LocalPhoto, "to_observation" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   it "should set a taxon from tags" do
     p = LocalPhoto.make
     p.file = File.open(File.join(Rails.root, "spec", "fixtures", "files", "cuthona_abronia-tagged.jpg"))
@@ -210,8 +208,7 @@ describe LocalPhoto, "to_observation" do
 end
 
 describe LocalPhoto, "flagging" do
-  before(:each) { enable_elastic_indexing( Observation ) }
-  after(:each) { disable_elastic_indexing( Observation ) }
+  elastic_models( Observation )
   let(:lp) { LocalPhoto.make! }
   it "should change the URLs for copyright infringement" do
     Flag.make!(:flaggable => lp, :flag => Flag::COPYRIGHT_INFRINGEMENT)
